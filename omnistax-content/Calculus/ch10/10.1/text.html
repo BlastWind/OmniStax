@@ -1,0 +1,131 @@
+<p id="power-intro">A <span data-concept="power-series">power series</span> is a type of series with terms involving a variable. More specifically, if the variable is <em>x</em>, then all the terms of the series involve powers of <em>x</em>. As a result, a <span data-concept="power-series">power series</span> can be thought of as an infinite polynomial. <span data-concept="power-series">Power series</span> are used to represent common functions and also to define new functions. In this section we define <span data-concept="power-series">power series</span> and show how to determine when a <span data-concept="power-series">power series</span> converges and when it diverges. We also show how to represent certain functions using <span data-concept="power-series">power series</span>.</p>
+
+<section id="form">
+<h2>Form of a Power Series</h2>
+<p class="cite-target">A series of the form</p>
+$$\sum_{n=0}^{\infty} c_{n}x^{n} =c_{0}+c_{1}x+c_{2}x^{2}+\cdots ,$$
+<p id="power-series-term">where <em>x</em> is a variable and the coefficients <em>c<sub>n</sub></em> are constants, is known as a <strong><span data-concept="power-series">power series</span></strong>. The series</p>
+$$1+x+x^{2}+\cdots =\sum_{n=0}^{\infty} x^{n}$$
+<p>is an example of a <span data-concept="power-series">power series</span>. Since this series is a <span data-concept="geometric-series">geometric series</span> with ratio $r=x,$ we know that it converges if $|x|\lt 1$ and diverges if $|x|\ge 1.$</p>
+<div class="note" id="fs-id1170571656400">
+<div class="eyebrow">Definition</div>
+<p>A series of the form</p>
+<div class="equation" id="fs-id1170572644191">$$\sum_{n=0}^{\infty} c_{n}x^{n} =c_{0}+c_{1}x+c_{2}x^{2}+\cdots\tag{10.1}$$</div>
+<p>is a <span data-concept="power-series">power series</span> centered at $x=0.$ A series of the form</p>
+<div class="equation" id="fs-id1170572295618">$$\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} =c_{0}+c_{1}(x-a)+c_{2}{(x-a)}^{2}+\cdots\tag{10.2}$$</div>
+<p>is a <span data-concept="power-series">power series</span> centered at $x=a.$</p>
+</div>
+<p>To make this definition precise, we stipulate that $x^{0}=1$ and ${(x-a)}^{0}=1$ even when $x=0$ and $x=a,$ respectively.</p>
+<p>The series</p>
+$$\sum_{n=0}^{\infty} \frac{x^{n}}{n!} =1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+\cdots$$
+<p>and</p>
+$$\sum_{n=0}^{\infty} n!x^{n} =1+x+2!x^{2}+3!x^{3}+\cdots$$
+<p>are both <span data-concept="power-series">power series</span> centered at $x=0.$ The series</p>
+$$\sum_{n=0}^{\infty} \frac{{(x-2)}^{n}}{(n+1)3^{n}} =1+\frac{x-2}{2\cdot 3}+\frac{{(x-2)}^{2}}{3\cdot 3^{2}}+\frac{{(x-2)}^{3}}{4\cdot 3^{3}}+\cdots$$
+<p>is a <span data-concept="power-series">power series</span> centered at $x=2.$</p>
+</section>
+
+<section id="convergence">
+<h2>Convergence of a Power Series</h2>
+<p class="cite-target">Since the terms in a <span data-concept="power-series">power series</span> involve a variable <em>x</em>, the series may converge for certain values of <em>x</em> and diverge for other values of <em>x</em>. For a <span data-concept="power-series">power series</span> centered at $x=a,$ the value of the series at $x=a$ is given by $c_{0}.$ Therefore, a <span data-concept="power-series">power series</span> always converges at its center. Some <span data-concept="power-series">power series</span> converge only at that value of <em>x</em>. Most <span data-concept="power-series">power series</span>, however, converge for more than one value of <em>x</em>. In that case, the <span data-concept="power-series">power series</span> either converges for all real numbers <em>x</em> or converges for all <em>x</em> in a finite interval. For example, the <span data-concept="geometric-series">geometric series</span> $\sum_{n=0}^{\infty} x^{n}$ converges for all <em>x</em> in the interval $(-1,1),$ but diverges for all <em>x</em> outside that interval. We now summarize these three possibilities for a general <span data-concept="power-series">power series</span>.</p>
+<div class="note" id="fs-id1170572419070">
+<div class="eyebrow">Theorem</div>
+<h3>Convergence of a Power Series</h3>
+<p>Consider the <span data-concept="power-series">power series</span> $\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} .$ The series satisfies exactly one of the following properties:</p>
+<ol><li>The series converges at $x=a$ and diverges for all $x\ne a.$</li><li>The series converges for all real numbers <em>x</em>.</li><li>There exists a real number $R\gt 0$ such that the series converges if $|x-a|\lt R$ and diverges if $|x-a|\gt R.$ At the values <em>x</em> where $|x-a|=R,$ the series may converge or diverge.</li></ol>
+</div>
+<h3>Proof</h3>
+<p>Suppose that the <span data-concept="power-series">power series</span> is centered at $a=0.$ (For a series centered at a value of <em>a</em> other than zero, the result follows by letting $y=x-a$ and considering the series $\sum_{n=1}^{\infty} c_{n}y^{n} .)$ We must first prove the following fact:</p>
+<p>If there exists a real number $d\ne 0$ such that $\sum_{n=0}^{\infty} c_{n}d^{n}$ converges, then the series $\sum_{n=0}^{\infty} c_{n}x^{n}$ <span data-concept="absolute-convergence">converges absolutely</span> for all <em>x</em> such that $|x|\lt |d|.$</p>
+<p>Since $\sum_{n=0}^{\infty} c_{n}d^{n}$ converges, the <em>n</em>th term $c_{n}d^{n}\to 0$ as $n\to \infty .$ Therefore, there exists an integer <em>N</em> such that $|c_{n}d^{n}|\le 1$ for all $n\ge N.$ Writing</p>
+$$|c_{n}x^{n}|=|c_{n}d^{n}|{|\frac{x}{d}|}^{n},$$
+<p>we conclude that, for all $n\ge N,$</p>
+$$|c_{n}x^{n}|\le {|\frac{x}{d}|}^{n}.$$
+<p>The series</p>
+$$\sum_{n=N}^{\infty} {|\frac{x}{d}|}^{n}$$
+<p>is a <span data-concept="geometric-series">geometric series</span> that converges if $|\frac{x}{d}|\lt 1.$ Therefore, by the <span data-concept="comparison-test">comparison test</span>, we conclude that $\sum_{n=N}^{\infty} c_{n}x^{n}$ also converges for $|x|\lt |d|.$ Since we can add a finite number of terms to a convergent series, we conclude that $\sum_{n=0}^{\infty} c_{n}x^{n}$ converges for $|x|\lt |d|.$</p>
+<p>With this result, we can now prove the theorem. Consider the series</p>
+$$\sum_{n=0}^{\infty} a_{n}x^{n}$$
+<p>and let <em>S</em> be the set of real numbers for which the series converges. Suppose that the set $S=\{0\}.$ Then the series falls under case i. Suppose that the set <em>S</em> is the set of all real numbers. Then the series falls under case ii. Suppose that $S\ne \{0\}$ and <em>S</em> is not the set of real numbers. Then there exists a real number $x*\ne 0$ such that the series does not converge. Thus, the series cannot converge for any <em>x</em> such that $|x|\gt |x*|.$ Therefore, the set <em>S</em> must be a bounded set, which means that it must have a smallest upper bound. (This fact follows from the Least Upper Bound Property for the real numbers, which is beyond the scope of this text and is covered in real analysis courses.) Call that smallest upper bound <em>R</em>. Since $S\ne \{0\},$ the number $R\gt 0.$ Therefore, the series converges for all <em>x</em> such that $|x|\lt R,$ and the series falls into case iii.</p>
+<p>□</p>
+<p id="interval-term">If a series $\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n}$ falls into case iii. of <a href="#fs-id1170572419070">Convergence of a Power Series</a>, then the series converges for all <em>x</em> such that $|x-a|\lt R$ for some $R\gt 0,$ and diverges for all <em>x</em> such that $|x-a|\gt R.$ The series may converge or diverge at the values <em>x</em> where $|x-a|=R.$ The set of values <em>x</em> for which the series $\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n}$ converges is known as the <strong><span data-concept="interval-of-convergence">interval of convergence</span></strong>. Since the series diverges for all values <em>x</em> where $|x-a|\gt R,$ the length of the interval is 2<em>R</em>, and therefore, the radius of the interval is <em>R</em>. The value <em>R</em> is called the <strong><span data-concept="radius-of-convergence">radius of convergence</span></strong>. For example, since the series $\sum_{n=0}^{\infty} x^{n}$ converges for all values <em>x</em> in the interval $(-1,1)$ and diverges for all values <em>x</em> such that $|x|\ge 1,$ the <span data-concept="interval-of-convergence">interval of convergence</span> of this series is <span data-type="set">$(-1,1).$</span> Since the length of the interval is 2, the <span data-concept="radius-of-convergence">radius of convergence</span> is 1.</p>
+<div class="note" id="fs-id1170572593004">
+<div class="eyebrow">Definition</div>
+<p>Consider the <span data-concept="power-series">power series</span> $\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} .$ The set of real numbers <em>x</em> where the series converges is the <span data-concept="interval-of-convergence">interval of convergence</span>. If there exists a real number $R\gt 0$ such that the series converges for $|x-a|\lt R$ and diverges for $|x-a|\gt R,$ then <em>R</em> is the <span data-concept="radius-of-convergence">radius of convergence</span>. If the series converges only at $x=a,$ we say the <span data-concept="radius-of-convergence">radius of convergence</span> is $R=0.$ If the series converges for all real numbers <em>x</em>, we say the <span data-concept="radius-of-convergence">radius of convergence</span> is $R=\infty$ (Figure 10.2).</p>
+</div>
+<figure class="sim" id="sim-convergence" data-figure="10.2" data-original="/media/ch10/CNX_Calc_Figure_10_01_004.jpg" data-original-caption="For a series ∑ₙ₌₀^∞ cₙ(x − a)ⁿ graph (a) shows a radius of convergence at R = 0, graph (b) shows a radius of convergence at R = ∞, and graph (c) shows a radius of convergence at R. For graph (c) we note that the series may or may not converge at the endpoints x = a + R and x = a − R.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.2</span><span>A power series centered at $x=a$ converges only at $a,$ for every $x,$ or on an interval of radius $R$ about $a,$ shaded on the number line. Choose a series and drag $x$: below, the partial sums at that $x$ settle on the sum inside the interval and run off outside it, and at an endpoint the series may go either way.</span></div>
+</figure>
+<p>To determine the <span data-concept="interval-of-convergence">interval of convergence</span> for a <span data-concept="power-series">power series</span>, we typically apply the <span data-concept="ratio-test">ratio test</span>. In <a href="#fs-id1170572554745">Example 10.1</a>, we show the three different possibilities illustrated in Figure 10.2.</p>
+<div class="example" id="fs-id1170572554745">
+<h3>Example 10.1 · Finding the Interval and Radius of Convergence</h3>
+<p>For each of the following series, find the interval and <span data-concept="radius-of-convergence">radius of convergence</span>.</p>
+<p>a. $\sum_{n=0}^{\infty} \frac{x^{n}}{n!}$</p>
+<p>b. $\sum_{n=0}^{\infty} n!x^{n}$</p>
+<p>c. $\sum_{n=0}^{\infty} \frac{{(x-2)}^{n}}{(n+1)3^{n}}$</p>
+<h4>Solution</h4>
+<p>a. To check for convergence, apply the <span data-concept="ratio-test">ratio test</span>. We have</p>
+$$\begin{array}{rl}ρ & =\lim_{n\to \infty}|\frac{\frac{x^{n+1}}{(n+1)!}}{\frac{x^{n}}{n!}}| \\ & =\lim_{n\to \infty}|\frac{x^{n+1}}{(n+1)!}\cdot \frac{n!}{x^{n}}| \\ & =\lim_{n\to \infty}|\frac{x^{n+1}}{(n+1)\cdot n!}\cdot \frac{n!}{x^{n}}| \\ & =\lim_{n\to \infty}|\frac{x}{n+1}| \\ & =|x|\lim_{n\to \infty}\frac{1}{n+1} \\ & =0\lt 1\end{array}$$
+<p>for all values of <em>x</em>. Therefore, the series converges for all real numbers <em>x</em>. The <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-\infty ,\infty )$</span> and the <span data-concept="radius-of-convergence">radius of convergence</span> is $R=\infty .$</p>
+<p>b. Apply the <span data-concept="ratio-test">ratio test</span>. For $x\ne 0,$ we see that</p>
+$$\begin{array}{rr}ρ & =\lim_{n\to \infty}|\frac{(n+1)!x^{n+1}}{n!x^{n}}| \\ & =\lim_{n\to \infty}|(n+1)x| \\ & =|x|\lim_{n\to \infty}(n+1) \\ & =\infty .\end{array}$$
+<p>Therefore, the series diverges for all $x\ne 0.$ Since the series is centered at $x=0,$ it must converge there, so the series converges only for $x=0.$ The <span data-concept="interval-of-convergence">interval of convergence</span> is the single value $x=0$ and the <span data-concept="radius-of-convergence">radius of convergence</span> is $R=0.$</p>
+<p>c. In order to apply the <span data-concept="ratio-test">ratio test</span>, consider</p>
+$$\begin{array}{rl}ρ & =\lim_{n\to \infty}|\frac{\frac{{(x-2)}^{n+1}}{(n+2)3^{n+1}}}{\frac{{(x-2)}^{n}}{(n+1)3^{n}}}| \\ & =\lim_{n\to \infty}|\frac{{(x-2)}^{n+1}}{(n+2)3^{n+1}}\cdot \frac{(n+1)3^{n}}{{(x-2)}^{n}}| \\ & =\lim_{n\to \infty}|\frac{(x-2)(n+1)}{3(n+2)}| \\ & =\frac{|x-2|}{3}.\end{array}$$
+<p>The ratio $ρ\lt 1$ if $|x-2|\lt 3.$ Since $|x-2|\lt 3$ implies that $-3\lt x-2\lt 3,$ the series <span data-concept="absolute-convergence">converges absolutely</span> if $-1\lt x\lt 5.$ The ratio $ρ\gt 1$ if $|x-2|\gt 3.$ Therefore, the series diverges if $x\lt -1$ or $x\gt 5.$ The <span data-concept="ratio-test">ratio test</span> is inconclusive if $ρ=1.$ The ratio $ρ=1$ if and only if $x=-1$ or $x=5.$ We need to test these values of <em>x</em> separately. For $x=-1,$ the series is given by</p>
+$$\sum_{n=0}^{\infty} \frac{{(-1)}^{n}}{n+1} =1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots .$$
+<p>Since this is the <span data-concept="alternating-harmonic-series">alternating harmonic series</span>, it converges. Thus, the series converges at $x=-1.$ For $x=5,$ the series is given by</p>
+$$\sum_{n=0}^{\infty} \frac{1}{n+1} =1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots .$$
+<p>This is the <span data-concept="harmonic-series">harmonic series</span>, which is divergent. Therefore, the <span data-concept="power-series">power series</span> diverges at $x=5.$ We conclude that the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$[-1,5)$</span> and the <span data-concept="radius-of-convergence">radius of convergence</span> is $R=3.$</p>
+</div>
+<div class="exercises" data-place="fs-id1170572554745"></div>
+</section>
+
+<section id="representing">
+<h2>Representing Functions as Power Series</h2>
+<p class="cite-target">Being able to represent a function by an “infinite polynomial” is a powerful tool. <span data-concept="polynomial-function">Polynomial functions</span> are the easiest functions to analyze, since they only involve the basic arithmetic operations of addition, subtraction, multiplication, and division. If we can represent a complicated function by an infinite polynomial, we can use the polynomial representation to differentiate or integrate it. In addition, we can use a truncated version of the polynomial expression to approximate values of the function. So, the question is, when can we represent a function by a <span data-concept="power-series">power series</span>?</p>
+<p>Consider again the <span data-concept="geometric-series">geometric series</span></p>
+<div class="equation" id="fs-id1170572443573">$$1+x+x^{2}+x^{3}+\cdots =\sum_{n=0}^{\infty} x^{n} .\tag{10.3}$$</div>
+<p>Recall that the <span data-concept="geometric-series">geometric series</span></p>
+$$a+ar+ar^{2}+ar^{3}+\cdots$$
+<p>converges if and only if $|r|\lt 1.$ In that case, it converges to $\frac{a}{1-r}.$ Therefore, if $|x|\lt 1,$ the series in <a href="#fs-id1170572180135">Example 10.3</a><sup class="fn" data-note="c-series-ref"></sup> converges to $\frac{1}{1-x}$ and we write</p>
+$$1+x+x^{2}+x^{3}+\cdots =\frac{1}{1-x}\;\text{for}\;|x|\lt 1.$$
+<p id="geometric-representation">As a result, we are able to represent the function <span data-fn="1/(1-x)">$\kf(x)=\frac{1}{1-x}$</span> by the <span data-concept="power-series">power series</span></p>
+$$1+x+x^{2}+x^{3}+\cdots \;\text{when}\;|x|\lt 1.$$
+<p>We now show graphically how this series provides a representation for the function <span data-fn="1/(1-x)">$\kf(x)=\frac{1}{1-x}$</span> by comparing the graph of <em>f</em> with the graphs of several of the <span data-concept="partial-sum">partial sums</span> of this <span data-concept="infinite-series">infinite series</span>.</p>
+<div class="example" id="fs-id1170572498722">
+<h3>Example 10.2 · Graphing a Function and Partial Sums of its Power Series</h3>
+<p>Sketch a graph of <span data-fn="1/(1-x)">$\kf(x)=\frac{1}{1-x}$</span> and the graphs of the corresponding <span data-concept="partial-sum">partial sums</span> $\kS_{N}(x)=\sum_{n=0}^{N} x^{n}$ for $N=2,4,6$ on the interval $(-1,1).$ Comment on the approximation $\kS_{N}$ as <em>N</em> increases.</p>
+<h4>Solution</h4>
+<p>From the graph in Figure 10.3 you see that as <em>N</em> increases, $\kS_{N}$ becomes a better approximation for $\kf(x)=\frac{1}{1-x}$ for <em>x</em> in the interval $(-1,1).$</p>
+<figure class="sim" id="sim-partial-sums" data-figure="10.3" data-original="/media/ch10/CNX_Calc_Figure_10_01_002.jpg" data-original-caption="The graph shows a function and three approximations of it by partial sums of a power series.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.3</span><span>The partial sums $\kS_{N}(x)=1+x+\cdots+x^{N}$ of the geometric series over $\kf(x)=\frac{1}{1-x}.$ Raise $N$ and the partial sums climb toward $\kf$ across $(-1,1)$ while the earlier ones fade; drag $x$ to measure the gap at a point, which closes inside the interval and never closes near $x=1.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1170572498722"></div>
+<p>Next we consider functions involving an expression similar to the sum of a <span data-concept="geometric-series">geometric series</span> and show how to represent these functions using <span data-concept="power-series">power series</span>.</p>
+<div class="example" id="fs-id1170572180135">
+<h3>Example 10.3 · Representing a Function with a Power Series</h3>
+<p>Use a <span data-concept="power-series">power series</span> to represent each of the following functions $f.$ Find the <span data-concept="interval-of-convergence">interval of convergence</span>.</p>
+<p>a. <span data-fn="1/(1+x^3)">$\kf(x)=\frac{1}{1+x^{3}}$</span></p>
+<p>b. <span data-fn="x^2/(4-x^2)">$\kf(x)=\frac{x^{2}}{4-x^{2}}$</span></p>
+<h4>Solution</h4>
+<p>a. You should recognize this function <em>f</em> as the sum of a <span data-concept="geometric-series">geometric series</span>, because</p>
+$$\frac{1}{1+x^{3}}=\frac{1}{1-(-x^{3})}.$$
+<p>Using the fact that, for $|r|\lt 1,\frac{a}{1-r}$ is the sum of the <span data-concept="geometric-series">geometric series</span></p>
+$$\sum_{n=0}^{\infty} a r^{n}=a+ar+ar^{2}+\cdots ,$$
+<p>we see that, for $|-x^{3}|\lt 1,$</p>
+$$\begin{array}{rl}\frac{1}{1+x^{3}} & =\frac{1}{1-(-x^{3})} \\ & =\sum_{n=0}^{\infty} {(-x^{3})}^{n} \\ & =1-x^{3}+x^{6}-x^{9}+\cdots .\end{array}$$
+<p>Since this series converges if and only if $|-x^{3}|\lt 1,$ the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-1,1),$</span> and we have</p>
+$$\frac{1}{1+x^{3}}=1-x^{3}+x^{6}-x^{9}+\cdots \;\text{for}\;|x|\lt 1.$$
+<p>b. This function is not in the exact form of a sum of a <span data-concept="geometric-series">geometric series</span>. However, with a little algebraic manipulation, we can relate <em>f</em> to a <span data-concept="geometric-series">geometric series</span>. By factoring 4 out of the two terms in the denominator, we obtain</p>
+$$\begin{array}{rl}\frac{x^{2}}{4-x^{2}} & =\frac{x^{2}}{4(1-\frac{x^{2}}{4})} \\ & =\frac{x^{2}}{4(1-{(\frac{x}{2})}^{2})}.\end{array}$$
+<p>Therefore, we have</p>
+$$\begin{array}{rl}\frac{x^{2}}{4-x^{2}} & =\frac{x^{2}}{4(1-{(\frac{x}{2})}^{2})} \\ & =\frac{\frac{x^{2}}{4}}{1-{(\frac{x}{2})}^{2}} \\ & =\sum_{n=0}^{\infty} \frac{x^{2}}{4}{(\frac{x}{2})}^{2n} .\end{array}$$
+<p>The series converges as long as $|{(\frac{x}{2})}^{2}|\lt 1$ (note that when $|{(\frac{x}{2})}^{2}|=1$ the series does not converge). Solving this inequality, we conclude that the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-2,2)$</span> and</p>
+$$\begin{array}{rl}\frac{x^{2}}{4-x^{2}} & =\sum_{n=0}^{\infty} \frac{x^{2n+2}}{4^{n+1}} \\ & =\frac{x^{2}}{4}+\frac{x^{4}}{4^{2}}+\frac{x^{6}}{4^{3}}+\cdots \end{array}$$
+<p>for $|x|\lt 2.$</p>
+</div>
+<div class="exercises" data-place="fs-id1170572180135"></div>
+<p>In the remaining sections of this chapter, we will show ways of deriving <span data-concept="power-series">power series</span> representations for many other functions, and how we can make use of these representations to evaluate, differentiate, and integrate various functions.</p>
+</section>

@@ -1,0 +1,1208 @@
+{
+ "id": "10.1",
+ "module": "m53761",
+ "chapter": "10",
+ "title": "Power Series and Functions",
+ "short": "Power Series and Functions",
+ "lead": "A <span data-concept=\"power-series\">power series</span> is a series whose terms carry powers of a variable, so it can be read as an infinite polynomial. This section shows where such a series converges, measures its <span data-concept=\"interval-of-convergence\">interval</span> and <span data-concept=\"radius-of-convergence\">radius of convergence</span>, and uses the <span data-concept=\"geometric-series\">geometric series</span> to represent functions.",
+ "objectives": [
+  "Identify a power series and provide examples of them.",
+  "Determine the radius of convergence and interval of convergence of a power series.",
+  "Use a power series to represent a function."
+ ],
+ "summary_html": "<ul><li>For a <span data-concept=\"power-series\">power series</span> centered at $x=a,$ one of the following three properties hold: <ol><li>The <span data-concept=\"power-series\">power series</span> converges only at $x=a.$ In this case, we say that the <span data-concept=\"radius-of-convergence\">radius of convergence</span> is $R=0.$</li><li>The <span data-concept=\"power-series\">power series</span> converges for all real numbers <em>x</em>. In this case, we say that the <span data-concept=\"radius-of-convergence\">radius of convergence</span> is $R=\\infty .$</li><li>There is a real number <em>R</em> such that the series converges for $|x-a|\\lt R$ and diverges for $|x-a|\\gt R.$ In this case, the <span data-concept=\"radius-of-convergence\">radius of convergence</span> is <em>R</em>.</li></ol></li><li>If a <span data-concept=\"power-series\">power series</span> converges on a finite interval, the series may or may not converge at the endpoints.</li><li>The <span data-concept=\"ratio-test\">ratio test</span> may often be used to determine the <span data-concept=\"radius-of-convergence\">radius of convergence</span>.</li><li>The <span data-concept=\"geometric-series\">geometric series</span> $\\sum_{n=0}^{\\infty} x^{n} =\\frac{1}{1-x}$ for $|x|\\lt 1$ allows us to represent certain functions using <span data-concept=\"geometric-series\">geometric series</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. The 31 even-numbered section exercises have no answer in the book’s key. Three are kept with an AI-written suggested approach: 2 and 4 (true or false, with the reason) and 48 (why p(x) = −p(−x)). The other 28 are computational and are left out: exercise 6 (where a series must converge), 8–12 even (radii from a ratio), 14–22 even (radii and intervals), 24–32 even (radii by the ratio test), 34–42 even (power series from 1/(1 − x)), 44 and 46 (radii by the root test), 50 (the interval of p(Ax)), 52, 54 and 56 (convergence on (−1, 1)) and 58, 60, 62 (plots of partial sums). Review exercises 257 and 259 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-convergence",
+   "kind": "sim",
+   "number": "10.2",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_10_01_004.jpg"
+   ],
+   "original_caption": "For a series ∑ₙ₌₀^∞ cₙ(x − a)ⁿ graph (a) shows a radius of convergence at R = 0, graph (b) shows a radius of convergence at R = ∞, and graph (c) shows a radius of convergence at R. For graph (c) we note that the series may or may not converge at the endpoints x = a + R and x = a − R.",
+   "draws": [
+    "series",
+    "set"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-partial-sums",
+   "kind": "sim",
+   "number": "10.3",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_10_01_002.jpg"
+   ],
+   "original_caption": "The graph shows a function and three approximations of it by partial sums of a power series.",
+   "draws": [
+    "function",
+    "series",
+    "set",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "power-intro",
+   "concept": "power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "power-series-term",
+   "concept": "power-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "form",
+   "concept": "geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572419070",
+   "concept": "convergence-of-a-power-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "convergence",
+   "concept": "comparison-test",
+   "verb": "uses"
+  },
+  {
+   "span": "convergence",
+   "concept": "absolute-convergence",
+   "verb": "uses"
+  },
+  {
+   "span": "interval-term",
+   "concept": "interval-of-convergence",
+   "verb": "introduces"
+  },
+  {
+   "span": "interval-term",
+   "concept": "radius-of-convergence",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572593004",
+   "concept": "interval-of-convergence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572593004",
+   "concept": "radius-of-convergence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1170572554745",
+   "concept": "finding-the-interval-of-convergence",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572554745",
+   "concept": "ratio-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572554745",
+   "concept": "harmonic-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572554745",
+   "concept": "alternating-harmonic-series",
+   "verb": "uses"
+  },
+  {
+   "span": "representing",
+   "concept": "sum-of-a-geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "geometric-representation",
+   "concept": "representing-a-function-by-a-geometric-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1170572498722",
+   "concept": "partial-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1170572180135",
+   "concept": "representing-a-function-by-a-geometric-series",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1170572582282",
+   "source_number": "Checkpoint 10.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572554745"
+   },
+   "cite": "interval-term",
+   "prompt": "Find the interval and radius of convergence for the series $\\sum_{n=1}^{\\infty} \\frac{x^{n}}{\\sqrt{n}} .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The interval of convergence is $[-1,1).$ The radius of convergence is $R=1.$",
+    "hint": "Apply the ratio test to check for absolute convergence."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1170571673196",
+   "source_number": "Checkpoint 10.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572498722"
+   },
+   "cite": "representing",
+   "prompt": "Sketch a graph of $f(x)=\\frac{1}{1-x^{2}}$ and the corresponding partial sums $S_{N}(x)=\\sum_{n=0}^{N} x^{2n}$ for $N=2,4,6$ on the interval $(-1,1).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_01_003.jpg\" alt=\"This figure is the graph of y = 1/(1-x^2), which is a curve concave up, symmetrical about the y axis. Also on this graph are three partial sums of the function, S sub 6, S sub 4, and S sub 2. These curves, in order, gradually become flatter.\">",
+    "hint": "$S_{N}(x)=1+x^{2}+\\cdots +x^{2N}=\\frac{1-x^{2(N+1)}}{1-x^{2}}$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1170572481630",
+   "source_number": "Checkpoint 10.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1170572180135"
+   },
+   "cite": "representing",
+   "prompt": "Represent the function $f(x)=\\frac{x^{3}}{2-x}$ using a power series and find the interval of convergence.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} \\frac{x^{n+3}}{2^{n+1}}$ with interval of convergence $(-2,2)$",
+    "hint": "Rewrite <em>f</em> in the form $f(x)=\\frac{g(x)}{1-h(x)}$ for some functions <em>g</em> and <em>h</em>."
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1170572553276",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "convergence",
+   "prompt": "<p>In the following exercises, state whether each statement is true, or give an example to show that it is false.</p><p>If $\\sum_{n=1}^{\\infty} a_{n}x^{n}$ converges, then $a_{n}x^{n}\\to 0$ as $n\\to \\infty .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True. If a series converges then its terms tend to zero."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "fs-id1170572539637",
+   "source_number": "2",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "convergence",
+   "prompt": "<p>In the following exercises, state whether each statement is true, or give an example to show that it is false.</p><p>$\\sum_{n=1}^{\\infty} a_{n}x^{n}$ converges at $x=0$ for any real numbers $a_{n}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True. At $x=0$ every term $a_{n}x^{n}$ with $n\\ge 1$ is $a_{n}\\cdot 0=0,$ so every partial sum is $0$ and the series converges (to $0$) whatever the numbers $a_{n}$ are. This is the fact that a power series always converges at its center.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1170572618047",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "convergence",
+   "prompt": "<p>In the following exercises, state whether each statement is true, or give an example to show that it is false.</p><p>Given any sequence $a_{n},$ there is always some $R\\gt 0,$ possibly very small, such that $\\sum_{n=1}^{\\infty} a_{n}x^{n}$ converges on $(-R,R).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "False. It would imply that $a_{n}x^{n}\\to 0$ for $|x|\\lt R.$ If $a_{n}=n^{n},$ then $a_{n}x^{n}={(nx)}^{n}$ does not tend to zero for any $x\\ne 0.$"
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "fs-id1170571673676",
+   "source_number": "4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>In the following exercises, state whether each statement is true, or give an example to show that it is false.</p><p>If $\\sum_{n=1}^{\\infty} a_{n}x^{n}$ has radius of convergence $R\\gt 0$ and if $|b_{n}|\\le |a_{n}|$ for all <em>n</em>, then the radius of convergence of $\\sum_{n=1}^{\\infty} b_{n}x^{n}$ is greater than or equal to <em>R</em>.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>True. Take any $x$ with $|x|\\lt R.$ Inside its radius of convergence $\\sum a_{n}x^{n}$ converges absolutely, so $\\sum |a_{n}x^{n}|$ converges. Since $|b_{n}x^{n}|\\le |a_{n}x^{n}|$ for all $n,$ the comparison test shows that $\\sum |b_{n}x^{n}|$ converges, so $\\sum b_{n}x^{n}$ converges for every $|x|\\lt R.$ A series that converges on all of $(-R,R)$ has radius of convergence at least $R.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1170572370004",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "convergence",
+   "prompt": "<p>Suppose that $\\sum_{n=0}^{\\infty} a_{n}{(x-3)}^{n}$ converges at $x=6.$ At which of the following points might the series diverge? Use the fact that if $\\sum a_{n}{(x-c)}^{n}$ converges at <em>x</em>, then it converges at any point closer to <em>c</em> than <em>x</em>.</p><p>a. $x=1$</p><p>b. $x=2$</p><p>c. $x=3$</p><p>d. $x=0$</p><p>e. $x=5.99$</p><p>f. $x=0.000001$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "It must converge on $(0,6]$ and hence at:<sup class=\"fn\" data-note=\"c-e5-endpoint\"></sup> a. $x=1;$ b. $x=2;$ c. $x=3;$ d. $x=0;$ e. $x=5.99;$ and f. $x=0.000001.$"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1170572553194",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>In the following exercises, suppose that $|\\frac{a_{n+1}}{a_{n}}|\\to 1$ as $n\\to \\infty .$ Find the radius of convergence for each series.</p><p>$\\sum_{n=0}^{\\infty} a_{n}2^{n}x^{n}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5,
+    "solution": "$|\\frac{a_{n+1}2^{n+1}x^{n+1}}{a_{n}2^{n}x^{n}}|=2|x||\\frac{a_{n+1}}{a_{n}}|\\to 2|x|$ so $R=\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1170571728396",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>In the following exercises, suppose that $|\\frac{a_{n+1}}{a_{n}}|\\to 1$ as $n\\to \\infty .$ Find the radius of convergence for each series.</p><p>$\\sum_{n=0}^{\\infty} \\frac{a_{n}{\\pi}^{n}x^{n}}{e^{n}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.8652559791731674,
+    "tol": 0.005,
+    "solution": "$|\\frac{a_{n+1}{(\\frac{\\pi}{e})}^{n+1}x^{n+1}}{a_{n}{(\\frac{\\pi}{e})}^{n}x^{n}}|=\\frac{\\pi |x|}{e}|\\frac{a_{n+1}}{a_{n}}|\\to \\frac{\\pi |x|}{e}$ so $R=\\frac{e}{\\pi}$"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1170572168767",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>In the following exercises, suppose that $|\\frac{a_{n+1}}{a_{n}}|\\to 1$ as $n\\to \\infty .$ Find the radius of convergence for each series.</p><p>$\\sum_{n=0}^{\\infty} a_{n}{(-1)}^{n}x^{2n}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "solution": "$|\\frac{a_{n+1}{(-1)}^{n+1}x^{2n+2}}{a_{n}{(-1)}^{n}x^{2n}}|=|x^{2}||\\frac{a_{n+1}}{a_{n}}|\\to |x^{2}|$ so $R=1$"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1170572553490",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence <em>R</em> and interval of convergence for $\\sum a_{n}x^{n}$ with the given coefficients $a_{n}.$</p><p>$\\sum_{n=1}^{\\infty} \\frac{{(2x)}^{n}}{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{n}=\\frac{2^{n}}{n}$ so $\\frac{a_{n+1}x}{a_{n}}\\to 2x.$ so $R=\\frac{1}{2}.$ When $x=\\frac{1}{2}$ the series is harmonic and diverges. When $x=-\\frac{1}{2}$ the series is alternating harmonic and converges. The interval of convergence is $I=[-\\frac{1}{2},\\frac{1}{2}).$"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1170572218394",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence <em>R</em> and interval of convergence for $\\sum a_{n}x^{n}$ with the given coefficients $a_{n}.$</p><p>$\\sum_{n=1}^{\\infty} \\frac{nx^{n}}{2^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{n}=\\frac{n}{2^{n}}$ so $\\frac{a_{n+1}x}{a_{n}}\\to \\frac{x}{2}$ so $R=2.$ When $x=\\text{±}2$ the series diverges by the divergence test. The interval of convergence is $I=(-2,2).$"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1170572305757",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence <em>R</em> and interval of convergence for $\\sum a_{n}x^{n}$ with the given coefficients $a_{n}.$</p><p>$\\sum_{n=1}^{\\infty} \\frac{n^{2}x^{n}}{2^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{n}=\\frac{n^{2}}{2^{n}}$ so $R=2.$ When $x=\\text{±}2$ the series diverges by the divergence test. The interval of convergence is $I=(-2,2).$"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1170572517582",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence <em>R</em> and interval of convergence for $\\sum a_{n}x^{n}$ with the given coefficients $a_{n}.$</p><p>$\\sum_{k=1}^{\\infty} \\frac{{\\pi}^{k}x^{k}}{k^{\\pi}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{k}=\\frac{{\\pi}^{k}}{k^{\\pi}}$ so $R=\\frac{1}{\\pi}.$ When $x=\\text{±}\\frac{1}{\\pi}$ the series is an absolutely convergent <em>p</em>-series. The interval of convergence is $I=[-\\frac{1}{\\pi},\\frac{1}{\\pi}].$"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1170571715307",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence <em>R</em> and interval of convergence for $\\sum a_{n}x^{n}$ with the given coefficients $a_{n}.$</p><p>$\\sum_{n=1}^{\\infty} \\frac{{10}^{n}x^{n}}{n!}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{n}=\\frac{{10}^{n}}{n!},\\frac{a_{n+1}x}{a_{n}}=\\frac{10x}{n+1}\\to 0\\lt 1$ so the series converges for all <em>x</em> by the ratio test and $I=(-\\infty ,\\infty ).$"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1170572573709",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence of each series.</p><p>$\\sum_{k=1}^{\\infty} \\frac{{(k!)}^{2}x^{k}}{(2k)!}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4,
+    "solution": "$a_{k}=\\frac{{(k!)}^{2}}{(2k)!}$ so $\\frac{a_{k+1}}{a_{k}}=\\frac{{(k+1)}^{2}}{(2k+2)(2k+1)}\\to \\frac{1}{4}$ so $R=4$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1170572401996",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence of each series.</p><p>$\\sum_{k=1}^{\\infty} \\frac{k!}{1\\cdot 3\\cdot 5\\cdots (2k-1)} x^{k}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "solution": "$a_{k}=\\frac{k!}{1\\cdot 3\\cdot 5\\cdots (2k-1)}$ so $\\frac{a_{k+1}}{a_{k}}=\\frac{k+1}{2k+1}\\to \\frac{1}{2}$ so $R=2$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1170571779959",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence of each series.</p><p>$\\sum_{n=1}^{\\infty} \\frac{x^{n}}{\\binom{2n}{n}}$ where $\\binom{n}{k}=\\frac{n!}{k!(n-k)!}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4,
+    "solution": "$a_{n}=\\frac{1}{\\binom{2n}{n}}$ so $\\frac{a_{n+1}}{a_{n}}=\\frac{{((n+1)!)}^{2}}{(2n+2)!}\\;\\frac{2n!}{{(n!)}^{2}}=\\frac{{(n+1)}^{2}}{(2n+2)(2n+1)}\\to \\frac{1}{4}$ so $R=4$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1170571823075",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, use the ratio test to determine the radius of convergence of each series.</p><p>$\\sum_{n=1}^{\\infty} \\frac{{(n!)}^{3}}{(3n)!}x^{n}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 27,
+    "solution": "$\\frac{a_{n+1}}{a_{n}}=\\frac{{(n+1)}^{3}}{(3n+3)(3n+2)(3n+1)}\\to \\frac{1}{27}$ so $R=27$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1170572088674",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, use the ratio test to determine the radius of convergence of each series.</p><p>$\\sum_{n=1}^{\\infty} \\frac{n!}{n^{n}}x^{n}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.718281828,
+    "tol": 0.005,
+    "solution": "$a_{n}=\\frac{n!}{n^{n}}$ so $\\frac{a_{n+1}}{a_{n}}=\\frac{(n+1)!}{n!}\\;\\frac{n^{n}}{{(n+1)}^{n+1}}={(\\frac{n}{n+1})}^{n}\\to \\frac{1}{e}$ so $R=e$"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1170572338277",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, given that $\\frac{1}{1-x}=\\sum_{n=0}^{\\infty} x^{n}$ with convergence in $(-1,1),$ find the power series for each function with the given center <em>a</em>, and identify its interval of convergence.</p><p>$f(x)=\\frac{1}{x};a=1$ (<em>Hint:</em> $\\frac{1}{x}=\\frac{1}{1-(1-x)})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(x)=\\sum_{n=0}^{\\infty} {(1-x)}^{n}$ on $I=(0,2)$"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1170572570707",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, given that $\\frac{1}{1-x}=\\sum_{n=0}^{\\infty} x^{n}$ with convergence in $(-1,1),$ find the power series for each function with the given center <em>a</em>, and identify its interval of convergence.</p><p>$f(x)=\\frac{x}{1-x^{2}};a=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} x^{2n+1}$ on $I=(-1,1)$"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1170571831335",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, given that $\\frac{1}{1-x}=\\sum_{n=0}^{\\infty} x^{n}$ with convergence in $(-1,1),$ find the power series for each function with the given center <em>a</em>, and identify its interval of convergence.</p><p>$f(x)=\\frac{x^{2}}{1+x^{2}};a=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} {(-1)}^{n}x^{2n+2}$ on $I=(-1,1)$"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1170572592199",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, given that $\\frac{1}{1-x}=\\sum_{n=0}^{\\infty} x^{n}$ with convergence in $(-1,1),$ find the power series for each function with the given center <em>a</em>, and identify its interval of convergence.</p><p>$f(x)=\\frac{1}{1-2x};a=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} 2^{n}x^{n}$ on $(-\\frac{1}{2},\\frac{1}{2})$"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1170572471618",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, given that $\\frac{1}{1-x}=\\sum_{n=0}^{\\infty} x^{n}$ with convergence in $(-1,1),$ find the power series for each function with the given center <em>a</em>, and identify its interval of convergence.</p><p>$f(x)=\\frac{x^{2}}{1-4x^{2}};a=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} 4^{n}x^{2n+2}$ on $(-\\frac{1}{2},\\frac{1}{2})$"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1170572476611",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>Use the next exercise to find the radius of convergence of the given series in the subsequent exercises.</p><p>Explain why, if ${|a_{n}|}^{1/n}\\to r\\gt 0,$ then ${|a_{n}x^{n}|}^{1/n}\\to |x|r\\lt 1$ whenever $|x|\\lt \\frac{1}{r}$ and, therefore, the radius of convergence of $\\sum_{n=1}^{\\infty} a_{n}x^{n}$ is $R=\\frac{1}{r}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${|a_{n}x^{n}|}^{1/n}={|a_{n}|}^{1/n}|x|\\to |x|r$ as $n\\to \\infty$ and $|x|r\\lt 1$ when $|x|\\lt \\frac{1}{r}.$ Therefore, $\\sum_{n=1}^{\\infty} a_{n}x^{n}$ converges when $|x|\\lt \\frac{1}{r}$ by the <em>n</em>th root test."
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1170571814956",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>Use the next exercise to find the radius of convergence of the given series in the subsequent exercises.</p><p>$\\sum_{k=1}^{\\infty} {(\\frac{k-1}{2k+3})}^{k}x^{k}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "solution": "$a_{k}={(\\frac{k-1}{2k+3})}^{k}$ so ${(a_{k})}^{1/k}\\to \\frac{1}{2}\\lt 1$ so $R=2$"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1170572504560",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>Use the next exercise to find the radius of convergence of the given series in the subsequent exercises.</p><p>$\\sum_{n=1}^{\\infty} a_{n} ={(n^{1/n}-1)}^{n}x^{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{n}={(n^{1/n}-1)}^{n}$ so ${(a_{n})}^{1/n}\\to 0$ so $R=\\infty$"
+   }
+  },
+  {
+   "id": "e48",
+   "source_id": "fs-id1170572468447",
+   "source_number": "48",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "form",
+   "prompt": "<p>Suppose that $p(x)=\\sum_{n=0}^{\\infty} a_{n}x^{n}$ such that $a_{n}=0$ if <em>n</em> is even. Explain why $p(x)=-p(-x).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>If $a_{n}=0$ whenever $n$ is even, only odd powers remain: $p(x)=\\sum_{k=0}^{\\infty} a_{2k+1}x^{2k+1}.$ Since $(-x)^{2k+1}=-x^{2k+1},$ each term of $p(-x)$ is the negative of the corresponding term of $p(x),$ so $p(-x)=\\sum_{k=0}^{\\infty} a_{2k+1}(-x)^{2k+1}=-\\sum_{k=0}^{\\infty} a_{2k+1}x^{2k+1}=-p(x).$ The interval of convergence is symmetric about the center 0, so $x$ and $-x$ lie in it together, and $p(x)=-p(-x)$ there: $p$ is an odd function.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1170572176149",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "form",
+   "prompt": "<p>Suppose that $p(x)=\\sum_{n=0}^{\\infty} a_{n}x^{n}$ such that $a_{n}=0$ if <em>n</em> is odd. Explain why $p(x)=p(-x).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "We can rewrite<sup class=\"fn\" data-note=\"c-e49-even\"></sup> $p(x)=\\sum_{n=0}^{\\infty} a_{2n+1}x^{2n+1}$ and $p(x)=p(-x)$ since only even powers of $x$ remain, $p(x)$ is an even function, for which, by definition $p(x)=p(–x)$."
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1170571526581",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>Suppose that $p(x)=\\sum_{n=0}^{\\infty} a_{n}x^{n}$ converges on $(-1,1].$ Find the interval of convergence of $p(2x-1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "If $x\\in [0,1],$<sup class=\"fn\" data-note=\"c-e51-interval\"></sup> then $y=2x-1\\in [-1,1]$ so $p(2x-1)=p(y)=\\sum_{n=0}^{\\infty} a_{n}y^{n}$ converges."
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1170572625652",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>In the following exercises, suppose that $p(x)=\\sum_{n=0}^{\\infty} a_{n}x^{n}$ satisfies $\\lim_{n\\to \\infty}\\frac{a_{n+1}}{a_{n}}=1$ where $a_{n}\\ge 0$ for each <em>n</em>. State whether each series converges on the full interval $(-1,1),$ or if there is not enough information to draw a conclusion. Use the comparison test when appropriate.</p><p>$\\sum_{n=0}^{\\infty} a_{2n}x^{2n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Converges on $(-1,1)$ by the ratio test"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1170572593782",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interval-term",
+   "prompt": "<p>In the following exercises, suppose that $p(x)=\\sum_{n=0}^{\\infty} a_{n}x^{n}$ satisfies $\\lim_{n\\to \\infty}\\frac{a_{n+1}}{a_{n}}=1$ where $a_{n}\\ge 0$ for each <em>n</em>. State whether each series converges on the full interval $(-1,1),$ or if there is not enough information to draw a conclusion. Use the comparison test when appropriate.</p><p>$\\sum_{n=0}^{\\infty} a_{n^{2}}x^{n^{2}}$ (<em>Hint:</em> Let $b_{k}=a_{k}$ if $k=n^{2}$ for some <em>n</em>, otherwise $b_{k}=0.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Consider the series $\\sum b_{k}x^{k}$ where $b_{k}=a_{k}$ if $k=n^{2}$ and $b_{k}=0$ otherwise. Then $b_{k}\\le a_{k}$ and so the series converges on $(-1,1)$ by the comparison test."
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1170572388866",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p><strong>[T]</strong> Plot the graphs of $\\frac{1}{1-x}$ and of the partial sums $S_{N}=\\sum_{n=0}^{N} x^{n}$ for $n=10,20,30$ on the interval $[-0.99,0.99].$ Comment on the approximation of $\\frac{1}{1-x}$ by $S_{N}$ near $x=-1$ and near $x=1$ as <em>N</em> increases.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_01_201.jpg\" alt=\"This figure is the graph of y = 1/(1-x), which is an increasing curve with vertical asymptote at 1.\">\n<p>The approximation is more accurate near $x=-1.$ The partial sums follow $\\frac{1}{1-x}$ more closely as <em>N</em> increases but are never accurate near $x=1$ since the series diverges there.</p>"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1170571798886",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p><strong>[T]</strong> Plot the graphs of the partial sums $S_{n}=\\sum_{n=1}^{N} \\frac{x^{n}}{n^{2}}$ for $n=10,50,100$ on the interval $[-0.99,0.99].$ Comment on the behavior of the sums near $x=-1$ and near $x=1$ as <em>N</em> increases.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_01_203.jpg\" alt=\"This figure is the graph of y = -ln(1-x) which is an increasing curve passing through the origin.\">\n<p>The approximation appears to stabilize quickly near both $x=\\text{±}1.$</p>"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1170571586109",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p><strong>[T]</strong> Plot the graphs of the partial sums $S_{N}=\\sum_{n=0}^{N} {(-1)}^{n}\\frac{x^{2n+1}}{(2n+1)!}$ for $n=3,5,10$ on the interval $[-2\\pi ,2\\pi ].$ Comment on how these plots approximate $\\sin x$ as <em>N</em> increases.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_01_205.jpg\" alt=\"This figure is the graph of the partial sums of (-1)^n times x^(2n+1) divided by (2n+1)! For n=3,5,10. The curves approximate the sine curve close to the origin and then separate as the curves move away from the origin.\">\n<p>The polynomial curves have roots close to those of $\\sin x$ up to their degree and then the polynomials diverge from $\\sin x.$</p>"
+   }
+  },
+  {
+   "id": "r257",
+   "source_id": "fs-id1167024045348",
+   "source_section": "10.4",
+   "source_number": "257",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence and the interval of convergence for the given series.</p><p>$\\sum_{n=0}^{\\infty} n^{2} {(x-1)}^{n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "ROC: $1;$ IOC: $(0,2)$"
+   }
+  },
+  {
+   "id": "r259",
+   "source_id": "fs-id1167024045497",
+   "source_section": "10.4",
+   "source_number": "259",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1170572554745",
+   "prompt": "<p>In the following exercises, find the radius of convergence and the interval of convergence for the given series.</p><p>$\\sum_{n=0}^{\\infty} \\frac{3nx^{n}}{{12}^{n}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "ROC: $12;$ IOC: $(-12,12)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "finding-the-interval-of-convergence"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "representing-a-function-by-a-geometric-series"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "representing-a-function-by-a-geometric-series"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e1",
+   "concept": "power-series"
+  },
+  {
+   "exercise": "e1",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e2",
+   "concept": "power-series"
+  },
+  {
+   "exercise": "e2",
+   "concept": "convergence-of-a-power-series"
+  },
+  {
+   "exercise": "e3",
+   "concept": "convergence-of-a-power-series"
+  },
+  {
+   "exercise": "e3",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e4",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e4",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e5",
+   "concept": "convergence-of-a-power-series"
+  },
+  {
+   "exercise": "e5",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e7",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e7",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e9",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e9",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e11",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e11",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e13",
+   "concept": "finding-the-interval-of-convergence"
+  },
+  {
+   "exercise": "e13",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e13",
+   "concept": "alternating-harmonic-series"
+  },
+  {
+   "exercise": "e15",
+   "concept": "finding-the-interval-of-convergence"
+  },
+  {
+   "exercise": "e15",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e15",
+   "concept": "divergence-test"
+  },
+  {
+   "exercise": "e17",
+   "concept": "finding-the-interval-of-convergence"
+  },
+  {
+   "exercise": "e17",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e19",
+   "concept": "finding-the-interval-of-convergence"
+  },
+  {
+   "exercise": "e19",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e19",
+   "concept": "convergence-of-p-series"
+  },
+  {
+   "exercise": "e21",
+   "concept": "finding-the-interval-of-convergence"
+  },
+  {
+   "exercise": "e21",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e23",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e23",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e25",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e25",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e27",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e27",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e29",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e29",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e31",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e31",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e33",
+   "concept": "representing-a-function-by-a-geometric-series"
+  },
+  {
+   "exercise": "e33",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e35",
+   "concept": "representing-a-function-by-a-geometric-series"
+  },
+  {
+   "exercise": "e35",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e37",
+   "concept": "representing-a-function-by-a-geometric-series"
+  },
+  {
+   "exercise": "e37",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e39",
+   "concept": "representing-a-function-by-a-geometric-series"
+  },
+  {
+   "exercise": "e39",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e41",
+   "concept": "representing-a-function-by-a-geometric-series"
+  },
+  {
+   "exercise": "e41",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e43",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e43",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e45",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e45",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e47",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e47",
+   "concept": "root-test"
+  },
+  {
+   "exercise": "e48",
+   "concept": "power-series"
+  },
+  {
+   "exercise": "e48",
+   "concept": "odd-function"
+  },
+  {
+   "exercise": "e49",
+   "concept": "power-series"
+  },
+  {
+   "exercise": "e49",
+   "concept": "even-function"
+  },
+  {
+   "exercise": "e51",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "e53",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e53",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e55",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e55",
+   "concept": "comparison-test"
+  },
+  {
+   "exercise": "e57",
+   "concept": "representing-a-function-by-a-geometric-series"
+  },
+  {
+   "exercise": "e57",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e59",
+   "concept": "power-series"
+  },
+  {
+   "exercise": "e59",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "e61",
+   "concept": "power-series"
+  },
+  {
+   "exercise": "e61",
+   "concept": "partial-sum"
+  },
+  {
+   "exercise": "r257",
+   "concept": "finding-the-interval-of-convergence"
+  },
+  {
+   "exercise": "r257",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "r257",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "r259",
+   "concept": "finding-the-interval-of-convergence"
+  },
+  {
+   "exercise": "r259",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "r259",
+   "concept": "radius-of-convergence"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-series-ref",
+   "kind": "correction",
+   "html": "The book links this phrase to Example 10.3; the series meant is the geometric series $1+x+x^{2}+x^{3}+\\cdots$ of Equation 10.3, just above."
+  },
+  {
+   "id": "c-e5-endpoint",
+   "kind": "correction",
+   "html": "The point $x=0$ is not in $(0,6]$: it lies the full distance 3 from the center, at the other end of the interval, so the series might diverge there. The answer to the question is d. $x=0;$ the series must converge at the other five points."
+  },
+  {
+   "id": "c-e49-even",
+   "kind": "correction",
+   "html": "With $a_{n}=0$ for odd $n,$ only the even powers remain: $p(x)=\\sum_{n=0}^{\\infty} a_{2n}x^{2n},$ not $\\sum a_{2n+1}x^{2n+1}.$"
+  },
+  {
+   "id": "c-e51-interval",
+   "kind": "correction",
+   "html": "Since $p$ converges on $(-1,1],$ the series $p(2x-1)$ converges when $-1\\lt 2x-1\\le 1,$ that is on $(0,1];$ at $x=0,$ $y=-1$ is outside $(-1,1].$"
+  }
+ ]
+}

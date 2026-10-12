@@ -1,0 +1,285 @@
+<p id="taylor-intro">In the previous two sections we discussed how to find <span data-concept="power-series">power series representations</span> for certain types of functions––specifically, functions related to <span data-concept="geometric-series">geometric series</span>. Here we discuss <span data-concept="power-series">power series representations</span> for other types of functions. In particular, we address the following questions: Which functions can be represented by <span data-concept="power-series">power series</span> and how do we find such representations? If we can find a <span data-concept="power-series">power series representation</span> for a particular function $f$ and the series converges on some interval, how do we prove that the series actually converges to $f?$</p>
+
+<section id="overview">
+<h2>Overview of Taylor/Maclaurin Series</h2>
+<p class="cite-target">Consider a function $f$ that has a <span data-concept="power-series">power series representation</span> at $x=a.$ Then the series has the form</p>
+<div class="equation" id="fs-id1167025118355">$$\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} =c_{0}+c_{1}(x-a)+c_{2}{(x-a)}^{2}+\cdots .\tag{10.4}$$</div>
+<p>What should the coefficients be? For now, we ignore issues of convergence, but instead focus on what the series should be, if one exists. We return to discuss convergence later in this section. If the series <a href="#fs-id1167025118355">Equation 10.4</a> is a representation for $f$ at $x=a,$ we certainly want the series to equal $\kf(a)$ at $x=a.$ Evaluating the series at $x=a,$ we see that</p>
+$$\begin{array}{rl}\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} & =c_{0}+c_{1}(a-a)+c_{2}{(a-a)}^{2}+\cdots  \\ & =c_{0}.\end{array}$$
+<p>Thus, the series equals $\kf(a)$ if the coefficient $c_{0}=\kf(a).$ In addition, we would like the first derivative of the <span data-concept="power-series">power series</span> to equal $\kfprime(a)$ at $x=a.$ Differentiating <a href="#fs-id1167025118355">Equation 10.4</a> term-by-term, we see that</p>
+$$\frac{d}{dx}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} )=c_{1}+2c_{2}(x-a)+3c_{3}{(x-a)}^{2}+\cdots .$$
+<p>Therefore, at $x=a,$ the derivative is</p>
+$$\begin{array}{rl} \\ \\ \frac{d}{dx}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} ) & =c_{1}+2c_{2}(a-a)+3c_{3}{(a-a)}^{2}+\cdots  \\ & =c_{1}.\end{array}$$
+<p>Therefore, the derivative of the series equals $\kfprime(a)$ if the coefficient $c_{1}=\kfprime(a).$ Continuing in this way, we look for coefficients <em>c<sub>n</sub></em> such that all the derivatives of the <span data-concept="power-series">power series</span> <a href="#fs-id1167025118355">Equation 10.4</a> will agree with all the corresponding derivatives of $f$ at $x=a.$ The second and third derivatives of <a href="#fs-id1167025118355">Equation 10.4</a> are given by</p>
+$$\frac{d^{2}}{dx^{2}}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} )=2c_{2}+3\cdot 2c_{3}(x-a)+4\cdot 3c_{4}{(x-a)}^{2}+\cdots$$
+<p>and</p>
+$$\frac{d^{3}}{dx^{3}}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} )=3\cdot 2c_{3}+4\cdot 3\cdot 2c_{4}(x-a)+5\cdot 4\cdot 3c_{5}{(x-a)}^{2}+\cdots .$$
+<p>Therefore, at $x=a,$ the second and third derivatives</p>
+$$\begin{array}{rl}\frac{d^{2}}{dx^{2}}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} ) & =2c_{2}+3\cdot 2c_{3}(a-a)+4\cdot 3c_{4}{(a-a)}^{2}+\cdots  \\ & =2c_{2}\end{array}$$
+<p>and</p>
+$$\begin{array}{rl}\frac{d^{3}}{dx^{3}}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} ) & =3\cdot 2c_{3}+4\cdot 3\cdot 2c_{4}(a-a)+5\cdot 4\cdot 3c_{5}{(a-a)}^{2}+\cdots  \\ & =3\cdot 2c_{3}\end{array}$$
+<p>equal $\kfdprime(a)$ and $\kftprime(a),$ respectively, if $c_{2}=\frac{\kfdprime(a)}{2}$ and $c_{3}=\frac{\kftprime(a)}{3\cdot 2}.$ More generally, we see that if $f$ has a <span data-concept="power-series">power series representation</span> at $x=a,$ then the coefficients should be given by $c_{n}=\frac{\kfn(a)}{n!}.$ That is, the series should be</p>
+$$\sum_{n=0}^{\infty} \frac{\kfn(a)}{n!} {(x-a)}^{n}=\kf(a)+\kfprime(a)(x-a)+\frac{\kfdprime(a)}{2!}{(x-a)}^{2}+\frac{\kftprime(a)}{3!}{(x-a)}^{3}+\cdots .$$
+<p>This <span data-concept="power-series">power series</span> for $f$ is known as the <span data-concept="taylor-series">Taylor series</span> for $f$ at $a.$ If $a=0,$ then this series is known as the <span data-concept="maclaurin-series">Maclaurin series</span> for $f.$</p>
+<div class="note" id="fs-id1167024973208">
+<div class="eyebrow">Definition</div>
+<p>If $f$ has derivatives of all orders at $x=a,$ then the <strong><span data-concept="taylor-series">Taylor series</span></strong> for the function $f$ at $a$ is</p>
+<div class="equation" id="fs-id1167025228678">$$\sum_{n=0}^{\infty} \frac{\kfn(a)}{n!} {(x-a)}^{n}=\kf(a)+\kfprime(a)(x-a)+\frac{\kfdprime(a)}{2!}{(x-a)}^{2}+\cdots +\frac{\kfn(a)}{n!}{(x-a)}^{n}+\cdots .\tag{10.5}$$</div>
+<p>The <span data-concept="taylor-series">Taylor series</span> for $f$ at 0 is known as the <strong><span data-concept="maclaurin-series">Maclaurin series</span></strong> for $f.$</p>
+</div>
+<p>Later in this section, we will show examples of finding <span data-concept="taylor-series">Taylor series</span> and discuss conditions under which the <span data-concept="taylor-series">Taylor series</span> for a function will converge to that function. Here, we state an important result. Recall from <a href="/calculus/ch10/10.2/#10.2-fs-id1167023777376">Uniqueness of Power Series</a> that <span data-concept="power-series">power series representations</span> are unique. Therefore, if a function $f$ has a <span data-concept="power-series">power series</span> at $a,$ then it must be the <span data-concept="taylor-series">Taylor series</span> for $f$ at $a.$</p>
+<div class="note" id="fs-id1167025088556">
+<div class="eyebrow">Theorem</div>
+<h3>Uniqueness of Taylor Series</h3>
+<p>If a function $f$ has a <span data-concept="power-series">power series</span> at <em>a</em> that converges to $f$ on some open interval containing <em>a</em>, then that <span data-concept="power-series">power series</span> is the <span data-concept="taylor-series">Taylor series</span> for $f$ at <em>a</em>.</p>
+</div>
+<p>The proof follows directly from <a href="/calculus/ch10/10.2/#10.2-fs-id1167023777376">Uniqueness of Power Series</a>.</p>
+<p id="taylor-polynomials-term">To determine if a <span data-concept="taylor-series">Taylor series</span> converges, we need to look at its sequence of <span data-concept="partial-sum">partial sums</span>. These <span data-concept="partial-sum">partial sums</span> are finite polynomials, known as <strong><span data-concept="taylor-polynomial">Taylor polynomials</span></strong>.</p>
+</section>
+
+<section id="polynomials">
+<h2>Taylor Polynomials</h2>
+<p class="cite-target">The <em>n</em>th <span data-concept="partial-sum">partial sum</span> of the <span data-concept="taylor-series">Taylor series</span> for a function $f$ at $a$ is known as the <em>n</em>th <span data-concept="taylor-polynomial">Taylor polynomial</span>. For example, the 0th, 1st, 2nd, and 3rd <span data-concept="partial-sum">partial sums</span> of the <span data-concept="taylor-series">Taylor series</span> are given by</p>
+$$\begin{array}{l}\kp_{0}(x)=\kf(a), \\ \kp_{1}(x)=\kf(a)+\kfprime(a)(x-a), \\ \kp_{2}(x)=\kf(a)+\kfprime(a)(x-a)+\frac{\kfdprime(a)}{2!}{(x-a)}^{2}, \\ \kp_{3}(x)=\kf(a)+\kfprime(a)(x-a)+\frac{\kfdprime(a)}{2!}{(x-a)}^{2}+\frac{\kftprime(a)}{3!}{(x-a)}^{3},\end{array}$$
+<p id="maclaurin-polynomials-term">respectively. These <span data-concept="partial-sum">partial sums</span> are known as the 0th, 1st, 2nd, and 3rd <span data-concept="taylor-polynomial">Taylor polynomials</span> of $f$ at $a,$ respectively. If $a=0,$ then these polynomials are known as <strong><span data-concept="maclaurin-polynomial">Maclaurin polynomials</span></strong> for $f.$ We now provide a formal definition of Taylor and <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> for a function $f.$</p>
+<div class="note" id="fs-id1167025242377">
+<div class="eyebrow">Definition</div>
+<p>If $f$ has <em>n</em> derivatives at $x=a,$ then the <em>n</em>th <span data-concept="taylor-polynomial">Taylor polynomial</span> for $f$ at $a$ is</p>
+$$\kp_{n}(x)=\kf(a)+\kfprime(a)(x-a)+\frac{\kfdprime(a)}{2!}{(x-a)}^{2}+\frac{\kftprime(a)}{3!}{(x-a)}^{3}+\cdots +\frac{\kfn(a)}{n!}{(x-a)}^{n}.$$
+<p>The <em>n</em>th <span data-concept="taylor-polynomial">Taylor polynomial</span> for $f$ at 0 is known as the <em>n</em>th <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> for $f.$</p>
+</div>
+<p>We now show how to use this definition to find several <span data-concept="taylor-polynomial">Taylor polynomials</span> for <span data-fn="ln(x)">$\kf(x)=\ln x$</span> at $x=1.$</p>
+<div class="example" id="fs-id1167025228652">
+<h3>Example 10.11 · Finding Taylor Polynomials</h3>
+<p>Find the <span data-concept="taylor-polynomial">Taylor polynomials</span> $\kp_{0},\kp_{1},\kp_{2}$ and $\kp_{3}$ for $\kf(x)=\ln x$ at $x=1.$ Use a graphing utility to compare the graph of $f$ with the graphs of $\kp_{0},\kp_{1},\kp_{2}$ and $\kp_{3}.$</p>
+<h4>Solution</h4>
+<p>To find these <span data-concept="taylor-polynomial">Taylor polynomials</span>, we need to evaluate $f$ and its first three derivatives at $x=1.$</p>
+$$\begin{array}{rllllrll}\kf(x) & = & \ln x & & & \kf(1) & = & 0 \\ \kfprime(x) & = & \frac{1}{x} & & & \kfprime(1) & = & 1 \\ \kfdprime(x) & = & -\frac{1}{x^{2}} & & & \kfdprime(1) & = & -1 \\ \kftprime(x) & = & \frac{2}{x^{3}} & & & \kftprime(1) & = & 2\end{array}$$
+<p>Therefore,</p>
+$$\begin{array}{rll}\kp_{0}(x) & = & \kf(1)=0, \\ \kp_{1}(x) & = & \kf(1)+\kfprime(1)(x-1)=x-1, \\ \kp_{2}(x) & = & \kf(1)+\kfprime(1)(x-1)+\frac{\kfdprime(1)}{2}{(x-1)}^{2}=(x-1)-\frac{1}{2}{(x-1)}^{2}, \\ \kp_{3}(x) & = & \kf(1)+\kfprime(1)(x-1)+\frac{\kfdprime(1)}{2}{(x-1)}^{2}+\frac{\kftprime(1)}{3!}{(x-1)}^{3} \\ & = & (x-1)-\frac{1}{2}{(x-1)}^{2}+\frac{1}{3}{(x-1)}^{3}.\end{array}$$
+<p>The graphs of $y=\kf(x)$ and the first three <span data-concept="taylor-polynomial">Taylor polynomials</span> are shown in Figure 10.5.</p>
+<figure class="sim" id="sim-taylor-ln" data-figure="10.5" data-original="/media/ch10/CNX_Calc_Figure_10_03_001.jpg" data-original-caption="The function y = ln x and the Taylor polynomials p₀, p₁, p₂ and p₃ at x = 1 are plotted on this graph.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.5</span><span>The Taylor polynomials $\kp_{n}$ of $\kf(x)=\ln x$ at $x=1,$ each matching $\ln x$ and its first $n$ derivatives at the point $(1,0).$ Raise the degree $n$: the polynomials hug the curve on more of $(0,2]$ and peel away beyond $x=2,$ while the lower degrees fade behind.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1167025228652"></div>
+<p>We now show how to find <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> for <em>e<sup>x</sup></em>, $\sin x,$ and $\cos x.$ As stated above, <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> are <span data-concept="taylor-polynomial">Taylor polynomials</span> centered at zero.</p>
+<div class="example" id="fs-id1167025118487">
+<h3>Example 10.12 · Finding Maclaurin Polynomials</h3>
+<p>For each of the following functions, find formulas for the <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> $\kp_{0},\kp_{1},\kp_{2}$ and $\kp_{3}.$ Find a formula for the <em>n</em>th <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> and write it using sigma notation. Use a graphing utilty to compare the graphs of $\kp_{0},\kp_{1},\kp_{2}$ and $\kp_{3}$ with $f.$</p>
+<p>a. <span data-fn="e^x">$\kf(x)=e^{x}$</span></p>
+<p>b. <span data-fn="sin(x)">$\kf(x)=\sin x$</span></p>
+<p>c. <span data-fn="cos(x)">$\kf(x)=\cos x$</span></p>
+<h4>Solution</h4>
+<p>a. Since $\kf(x)=e^{x},$ we know that $\kf(x)=\kfprime(x)=\kfdprime(x)=\cdots =\kfn(x)=e^{x}$ for all positive integers <em>n</em>. Therefore,</p>
+$$\kf(0)=\kfprime(0)=\kfdprime(0)=\cdots =\kfn(0)=1$$
+<p>for all positive integers <em>n</em>. Therefore, we have</p>
+$$\begin{array}{rll}\kp_{0}(x) & = & \kf(0)=1, \\ \kp_{1}(x) & = & \kf(0)+\kfprime(0)x=1+x, \\ \kp_{2}(x) & = & \kf(0)+\kfprime(0)x+\frac{\kfdprime(0)}{2!}x^{2}=1+x+\frac{1}{2}x^{2}, \\ \kp_{3}(x) & = & \kf(0)+\kfprime(0)x+\frac{\kfdprime(0)}{2}x^{2}+\frac{\kftprime(0)}{3!}x^{3} \\ & = & 1+x+\frac{1}{2}x^{2}+\frac{1}{3!}x^{3}, \\ \kp_{n}(x) & = & \kf(0)+\kfprime(0)x+\frac{\kfdprime(0)}{2}x^{2}+\frac{\kftprime(0)}{3!}x^{3}+\cdots +\frac{\kfn(0)}{n!}x^{n} \\ & = & 1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+\cdots +\frac{x^{n}}{n!} \\ & = & \sum_{k=0}^{n} \frac{x^{k}}{k!} .\end{array}$$
+<p>The function and the first three <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> are shown in Figure 10.6.</p>
+<figure class="sim" id="sim-maclaurin-exp" data-figure="10.6" data-original="/media/ch10/CNX_Calc_Figure_10_03_002.jpg" data-original-caption="The graph shows the function y = eˣ and the Maclaurin polynomials p₀, p₁, p₂ and p₃.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.6</span><span>The Maclaurin polynomials $\kp_{n}$ of $\kf(x)=e^{x},$ which agree with $e^{x}$ and all its derivatives up to order $n$ at $x=0.$ Raise $n$ and the polynomials follow $e^{x}$ across more of the window on both sides.</span></div>
+</figure>
+<p>b. For $\kf(x)=\sin x,$ the values of the function and its first four derivatives at $x=0$ are given as follows:</p>
+$$\begin{array}{rllllrll}\kf(x) & = & \sin x & & & \kf(0) & = & 0 \\ \kfprime(x) & = & \cos x & & & \kfprime(0) & = & 1 \\ \kfdprime(x) & = & -\sin x & & & \kfdprime(0) & = & 0 \\ \kftprime(x) & = & -\cos x & & & \kftprime(0) & = & -1 \\ f^{(4)}(x) & = & \sin x & & & f^{(4)}(0) & = & 0.\end{array}$$
+<p>Since the fourth derivative is $\sin x,$ the pattern repeats. That is, $f^{(2m)}(0)=0$ and $f^{(2m+1)}(0)={(-1)}^{m}$ for $m\ge 0.$ Thus, we have</p>
+$$\begin{array}{l}\kp_{0}(x)=0, \\ \kp_{1}(x)=0+x=x, \\ \kp_{2}(x)=0+x+0=x, \\ \kp_{3}(x)=0+x+0-\frac{1}{3!}x^{3}=x-\frac{x^{3}}{3!}, \\ \kp_{4}(x)=0+x+0-\frac{1}{3!}x^{3}+0=x-\frac{x^{3}}{3!}, \\ \kp_{5}(x)=0+x+0-\frac{1}{3!}x^{3}+0+\frac{1}{5!}x^{5}=x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!},\end{array}$$
+<p>and for $m\ge 0,$</p>
+$$\begin{array}{rl}\kp_{2m+1}(x) & =\kp_{2m+2}(x) \\ & =x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}-\cdots +{(-1)}^{m}\frac{x^{2m+1}}{(2m+1)!} \\ & =\sum_{k=0}^{m} {(-1)}^{k}\frac{x^{2k+1}}{(2k+1)!} .\end{array}$$
+<p>Graphs of the function and its <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> are shown in Figure 10.7.</p>
+<figure class="sim" id="sim-maclaurin-sin" data-figure="10.7" data-original="/media/ch10/CNX_Calc_Figure_09_03_003.jpg" data-original-caption="The graph shows the function y = sin x and the Maclaurin polynomials p₁, p₃ and p₅.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.7</span><span>The Maclaurin polynomials $\kp_{n}$ of $\kf(x)=\sin x$ have only odd powers, so $\kp_{2m+1}=\kp_{2m+2}.$ Raise $n$ and each new polynomial follows the sine wave through one more crossing before turning away.</span></div>
+</figure>
+<p>c. For $\kf(x)=\cos x,$ the values of the function and its first four derivatives at $x=0$ are given as follows:</p>
+$$\begin{array}{rllllrll}\kf(x) & = & \cos x & & & \kf(0) & = & 1 \\ \kfprime(x) & = & -\sin x & & & \kfprime(0) & = & 0 \\ \kfdprime(x) & = & -\cos x & & & \kfdprime(0) & = & -1 \\ \kftprime(x) & = & \sin x & & & \kftprime(0) & = & 0 \\ f^{(4)}(x) & = & \cos x & & & f^{(4)}(0) & = & 1.\end{array}$$
+<p>Since the fourth derivative is $\cos x,$ the pattern repeats. In other words, $f^{(2m)}(0)={(-1)}^{m}$ and $f^{(2m+1)}=0$ for $m\ge 0.$ Therefore,</p>
+$$\begin{array}{l}\kp_{0}(x)=1, \\ \kp_{1}(x)=1+0=1, \\ \kp_{2}(x)=1+0-\frac{1}{2!}x^{2}=1-\frac{x^{2}}{2!}, \\ \kp_{3}(x)=1+0-\frac{1}{2!}x^{2}+0=1-\frac{x^{2}}{2!}, \\ \kp_{4}(x)=1+0-\frac{1}{2!}x^{2}+0+\frac{1}{4!}x^{4}=1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}, \\ \kp_{5}(x)=1+0-\frac{1}{2!}x^{2}+0+\frac{1}{4!}x^{4}+0=1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!},\end{array}$$
+<p>and for $n\ge 0,$<sup class="fn" data-note="c-ex1012-index"></sup></p>
+$$\begin{array}{rl}\kp_{2m}(x) & =\kp_{2m+1}(x) \\ & =1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}-\cdots +{(-1)}^{m}\frac{x^{2m}}{(2m)!} \\ & =\sum_{k=0}^{m} {(-1)}^{k} \frac{x^{2k}}{(2k)!}.\end{array}$$
+<p>Graphs of the function and the <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> appear in Figure 10.8.</p>
+<figure class="sim" id="sim-maclaurin-cos" data-figure="10.8" data-original="/media/ch10/CNX_Calc_Figure_10_03_004.jpg" data-original-caption="The function y = cos x and the Maclaurin polynomials p₀, p₂ and p₄ are plotted on this graph.">
+  <div class="sim-head"><span class="eyebrow">Figure 10.8</span><span>The Maclaurin polynomials $\kp_{n}$ of $\kf(x)=\cos x$ have only even powers, so $\kp_{2m}=\kp_{2m+1}.$ Raise $n$ and each new polynomial follows the cosine through one more crossing before turning away.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1167025118487"></div>
+</section>
+
+<section id="remainder">
+<h2>Taylor’s Theorem with Remainder</h2>
+<p class="cite-target" id="remainder-term">Recall that the <em>n</em>th <span data-concept="taylor-polynomial">Taylor polynomial</span> for a function $f$ at <em>a</em> is the <em>n</em>th <span data-concept="partial-sum">partial sum</span> of the <span data-concept="taylor-series">Taylor series</span> for $f$ at <em>a</em>. Therefore, to determine if the <span data-concept="taylor-series">Taylor series</span> converges, we need to determine whether the sequence of <span data-concept="taylor-polynomial">Taylor polynomials</span> $\{\kp_{n}\}$ converges. However, not only do we want to know if the sequence of <span data-concept="taylor-polynomial">Taylor polynomials</span> converges, we want to know if it converges to $f.$ To answer this question, we define the <span data-concept="taylor-remainder">remainder</span> $\kR_{n}(x)$ as</p>
+$$\kR_{n}(x)=\kf(x)-\kp_{n}(x).$$
+<p>For the sequence of <span data-concept="taylor-polynomial">Taylor polynomials</span> to converge to $f,$ we need the <span data-concept="taylor-remainder">remainder</span> $\kR_{n}$ to converge to zero. To determine if $\kR_{n}$ converges to zero, we introduce <strong><span data-concept="taylors-theorem-with-remainder">Taylor’s theorem with remainder</span></strong>. Not only is this theorem useful in proving that a <span data-concept="taylor-series">Taylor series</span> converges to its related function, but it will also allow us to quantify how well the <em>n</em>th <span data-concept="taylor-polynomial">Taylor polynomial</span> approximates the function.</p>
+<p>Here we look for a bound on $|\kR_{n}|.$ Consider the simplest case: $n=0.$ Let $\kp_{0}$ be the 0th <span data-concept="taylor-polynomial">Taylor polynomial</span> at <em>a</em> for a function $f.$ The <span data-concept="taylor-remainder">remainder</span> $\kR_{0}$ satisfies</p>
+$$\begin{array}{rl}\kR_{0}(x) & =\kf(x)-\kp_{0}(x) \\ & =\kf(x)-\kf(a).\end{array}$$
+<p>If $f$ is differentiable on an interval <em>I</em> containing <em>a</em> and <em>x</em>, then by the <span data-concept="mean-value-theorem">Mean Value Theorem</span> there exists a real number <em>c</em> between <em>a</em> and <em>x</em> such that $\kf(x)-\kf(a)=\kfprime(c)(x-a).$ Therefore,</p>
+$$\kR_{0}(x)=\kfprime(c)(x-a).$$
+<p>Using the <span data-concept="mean-value-theorem">Mean Value Theorem</span> in a similar argument, we can show that if $f$ is <em>n</em> times differentiable on an interval <em>I</em> containing <em>a</em> and <em>x</em>, then the <em>n</em>th <span data-concept="taylor-remainder">remainder</span> $\kR_{n}$ satisfies</p>
+$$\kR_{n}(x)=\frac{\kfnplusone(c)}{(n+1)!}{(x-a)}^{n+1}$$
+<p>for some real number <em>c</em> between <em>a</em> and <em>x</em>. It is important to note that the value <em>c</em> in the numerator above is not the center <em>a</em>, but rather an unknown value <em>c</em> between <em>a</em> and <em>x</em>. This formula allows us to get a bound on the <span data-concept="taylor-remainder">remainder</span> $\kR_{n}$. If we happen to know that $|\kfnplusone(x)|$ is bounded by some real number <em>M</em> on this interval <em>I</em>, then</p>
+$$|\kR_{n}(x)|\le \frac{M}{(n+1)!}{|x-a|}^{n+1}$$
+<p>for all <em>x</em> in the interval <em>I</em>.</p>
+<p>We now state <span data-concept="taylors-theorem-with-remainder">Taylor’s theorem</span>, which provides the formal relationship between a function $f$ and its <em>n</em>th degree <span data-concept="taylor-polynomial">Taylor polynomial</span> $\kp_{n}(x).$ This theorem allows us to bound the error when using a <span data-concept="taylor-polynomial">Taylor polynomial</span> to approximate a function value, and will be important in proving that a <span data-concept="taylor-series">Taylor series</span> for $f$ converges to $f.$</p>
+<div class="note" id="fs-id1167025239317">
+<div class="eyebrow">Theorem</div>
+<h3>Taylor’s Theorem with Remainder</h3>
+<p>Let $f$ be a function that can be differentiated $n+1$ times on an interval <em>I</em> containing the real number <em>a</em>. Let $\kp_{n}$ be the <em>n</em>th <span data-concept="taylor-polynomial">Taylor polynomial</span> of $f$ at <em>a</em> and let</p>
+$$\kR_{n}(x)=\kf(x)-\kp_{n}(x)$$
+<p>be the <em>n</em>th <span data-concept="taylor-remainder">remainder</span>. Then for each <em>x</em> in the interval <em>I</em>, there exists a real number <em>c</em> between <em>a</em> and <em>x</em> such that</p>
+$$\kR_{n}(x)=\frac{\kfnplusone(c)}{(n+1)!}{(x-a)}^{n+1}.$$
+<p>If there exists a real number <em>M</em> such that $|\kfnplusone(x)|\le M$ for all $x\in I,$ then</p>
+$$|\kR_{n}(x)|\le \frac{M}{(n+1)!}{|x-a|}^{n+1}$$
+<p>for all <em>x</em> in <em>I</em>.</p>
+</div>
+<h3>Proof</h3>
+<p>Fix a point $x\in I$ and introduce the function <em>g</em> such that</p>
+$$\kg(t)=\kf(x)-\kf(t)-\kfprime(t)(x-t)-\frac{\kfdprime(t)}{2!}{(x-t)}^{2}-\cdots -\frac{\kfn(t)}{n!}{(x-t)}^{n}-\kR_{n}(x)\frac{{(x-t)}^{n+1}}{{(x-a)}^{n+1}}.$$
+<p>We claim that <em>g</em> satisfies the criteria of <span data-concept="rolles-theorem">Rolle’s theorem</span>. Since <em>g</em> is a polynomial function (in <em>t</em>), it is a differentiable function. Also, <em>g</em> is zero at $t=a$ and $t=x$ because</p>
+$$\begin{array}{rll}\kg(a) & = & \kf(x)-\kf(a)-\kfprime(a)(x-a)-\frac{\kfdprime(a)}{2!}{(x-a)}^{2}+\cdots +\frac{\kfn(a)}{n!}{(x-a)}^{n}-\kR_{n}(x) \\ & = & \kf(x)-\kp_{n}(x)-\kR_{n}(x) \\ & = & 0, \\ \kg(x) & = & \kf(x)-\kf(x)-0-\cdots -0 \\ & = & 0.\end{array}$$
+<p>Therefore, <em>g</em> satisfies <span data-concept="rolles-theorem">Rolle’s theorem</span>, and consequently, there exists <em>c</em> between <em>a</em> and <em>x</em> such that $\kgprime(c)=0.$ We now calculate $\kgprime.$ Using the product rule, we note that</p>
+$$\frac{d}{dt}[\frac{\kfn(t)}{n!}{(x-t)}^{n}]=\frac{-\kfn(t)}{(n-1)!}{(x-t)}^{n-1}+\frac{\kfnplusone(t)}{n!}{(x-t)}^{n}.$$
+<p>Consequently,</p>
+$$\begin{array}{ll}\kgprime(t) & =-\kfprime(t)+[\kfprime(t)-\kfdprime(t)(x-t)]+[\kfdprime(t)(x-t)-\frac{\kftprime(t)}{2!}{(x-t)}^{2}]+\cdots  \\ & \hspace{1.4em}+[\frac{\kfn(t)}{(n-1)!}{(x-t)}^{n-1}-\frac{\kfnplusone(t)}{n!}{(x-t)}^{n}]+(n+1)\kR_{n}(x)\frac{{(x-t)}^{n}}{{(x-a)}^{n+1}}.\end{array}$$
+<p>Notice that there is a telescoping effect. Therefore,</p>
+$$\kgprime(t)=-\frac{\kfnplusone(t)}{n!}{(x-t)}^{n}+(n+1)\kR_{n}(x)\frac{{(x-t)}^{n}}{{(x-a)}^{n+1}}.$$
+<p>By <span data-concept="rolles-theorem">Rolle’s theorem</span>, we conclude that there exists a number <em>c</em> between <em>a</em> and <em>x</em> such that $\kgprime(c)=0.$ Since</p>
+$$\kgprime(c)=-\frac{\kfnplusone(c)}{n!}{(x-c)}^{n}+(n+1)\kR_{n}(x)\frac{{(x-c)}^{n}}{{(x-a)}^{n+1}}$$
+<p>we conclude that</p>
+$$-\frac{\kfnplusone(c)}{n!}{(x-c)}^{n}+(n+1)\kR_{n}(x)\frac{{(x-c)}^{n}}{{(x-a)}^{n+1}}=0.$$
+<p>Adding the first term on the left-hand side to both sides of the equation and dividing both sides of the equation by $\frac{(n+1){(x-c)}^{n}}{{(x-a)}^{n+1}},$ we conclude that</p>
+$$\kR_{n}(x)=\frac{\kfnplusone(c)}{(n+1)!}{(x-a)}^{n+1}$$
+<p>as desired. From this fact, it follows that if there exists <em>M</em> such that $|\kfnplusone(x)|\le M$ for all <em>x</em> in <em>I</em>, then</p>
+$$|\kR_{n}(x)|\le \frac{M}{(n+1)!}{|x-a|}^{n+1}.$$
+<p>□</p>
+<p>Not only does <span data-concept="taylors-theorem-with-remainder">Taylor’s theorem</span> allow us to prove that a <span data-concept="taylor-series">Taylor series</span> converges to a function, but it also allows us to estimate the accuracy of <span data-concept="taylor-polynomial">Taylor polynomials</span> in approximating function values. We begin by looking at <span data-concept="linear-approximation">linear and quadratic approximations</span> of $\kf(x)=\sqrt[3]{x}$ at $x=8$ and determine how accurate these approximations are at estimating $\sqrt[3]{11}.$</p>
+<div class="example" id="fs-id1167024999614">
+<h3>Example 10.13 · Using Linear and Quadratic Approximations to Estimate Function Values</h3>
+<p>Consider the function <span data-fn="cbrt(x)">$\kf(x)=\sqrt[3]{x}$</span>.</p>
+<p>a. Find the first and second <span data-concept="taylor-polynomial">Taylor polynomials</span> for $f$ at $x=8.$ Use a graphing utility to compare these polynomials with $f$ near $x=8.$</p>
+<p>b. Use these two polynomials to estimate $\sqrt[3]{11}.$</p>
+<p>c. Use <span data-concept="taylors-theorem-with-remainder">Taylor’s theorem</span> to bound the error.</p>
+<h4>Solution</h4>
+<p>a. For $\kf(x)=\sqrt[3]{x},$ the values of the function and its first two derivatives at $x=8$ are as follows:</p>
+$$\begin{array}{rllllrll}\kf(x) & = & \sqrt[3]{x} & & & \kf(8) & = & 2 \\ \kfprime(x) & = & \frac{1}{3x^{2/3}} & & & \kfprime(8) & = & \frac{1}{12} \\ \kfdprime(x) & = & \frac{-2}{9x^{5/3}} & & & \kfdprime(8) & = & -\frac{1}{144}.\end{array}$$
+<p>Thus, the first and second <span data-concept="taylor-polynomial">Taylor polynomials</span> at $x=8$ are given by</p>
+$$\begin{array}{rll}\kp_{1}(x) & = & \kf(8)+\kfprime(8)(x-8) \\ & = & 2+\frac{1}{12}(x-8) \\ \kp_{2}(x) & = & \kf(8)+\kfprime(8)(x-8)+\frac{\kfdprime(8)}{2!}{(x-8)}^{2} \\ & = & 2+\frac{1}{12}(x-8)-\frac{1}{288}{(x-8)}^{2}.\end{array}$$
+<p>The function and the <span data-concept="taylor-polynomial">Taylor polynomials</span> are shown in Figure 10.9.</p>
+<figure class="sim" id="sim-taylor-remainder" data-figure="10.9" data-original="/media/ch10/CNX_Calc_Figure_10_03_005.jpg" data-original-caption="The graphs of f(x) = ∛x and the linear and quadratic approximations p₁(x) and p₂(x).">
+  <div class="sim-head"><span class="eyebrow">Figure 10.9</span><span>The Taylor polynomials $\kp_{n}$ of $\kf(x)=\sqrt[3]{x}$ at $x=8,$ the linear and quadratic approximations for $n=1$ and $2.$ Drag $x$: the gap between $\kf(x)$ and $\kp_{n}(x)$ is the remainder $\kR_{n}(x),$ and Taylor’s bound on it, set beside it, grows like $|x-8|^{n+1}.$</span></div>
+</figure>
+<p>b. Using the first <span data-concept="taylor-polynomial">Taylor polynomial</span> at $x=8,$ we can estimate</p>
+$$\sqrt[3]{11}\approx \kp_{1}(11)=2+\frac{1}{12}(11-8)=2.25.$$
+<p>Using the second <span data-concept="taylor-polynomial">Taylor polynomial</span> at $x=8,$ we obtain</p>
+$$\sqrt[3]{11}\approx \kp_{2}(11)=2+\frac{1}{12}(11-8)-\frac{1}{288}{(11-8)}^{2}=2.21875.$$
+<p>c. By <a href="#fs-id1167025239317">Taylor’s Theorem with Remainder</a>, there exists a <em>c</em> in the interval $(8,11)$ such that the <span data-concept="taylor-remainder">remainder</span> when approximating $\sqrt[3]{11}$ by the first <span data-concept="taylor-polynomial">Taylor polynomial</span> satisfies</p>
+$$\kR_{1}(11)=\frac{\kfdprime(c)}{2!}{(11-8)}^{2}.$$
+<p>We do not know the exact value of <em>c</em>, so we find an upper bound on $\kR_{1}(11)$ by determining the maximum value of $\kfdprime$ on the interval $(8,11).$ Since $\kfdprime(x)=-\frac{2}{9x^{5/3}},$ the largest value for $|\kfdprime(x)|$ on that interval occurs at $x=8.$ Using the fact that $\kfdprime(8)=-\frac{1}{144},$ we obtain</p>
+$$|\kR_{1}(11)|\le \frac{1}{144\cdot 2!}{(11-8)}^{2}=0.03125.$$
+<p>Similarly, to estimate $\kR_{2}(11),$ we use the fact that</p>
+$$\kR_{2}(11)=\frac{\kftprime(c)}{3!}{(11-8)}^{3}.$$
+<p>Since $\kftprime(x)=\frac{10}{27x^{8/3}},$ the maximum value of $\kftprime$ on the interval $(8,11)$ is $\kftprime(8)\approx 0.0014468.$ Therefore, we have</p>
+<div class="equation">$$|\kR_{2}(11)|\le \frac{0.0011468}{3!}{(11-8)}^{3}\approx 0.0065104.$$<sup class="fn" data-note="c-ex1013-value"></sup></div>
+</div>
+<div class="exercises" data-place="fs-id1167024999614"></div>
+<div class="example" id="fs-id1167025098904">
+<h3>Example 10.14 · Approximating sin <em>x</em> Using Maclaurin Polynomials</h3>
+<p>From <a href="#fs-id1167025118487">Example 10.12</a>b., the <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> for $\sin x$ are given by</p>
+$$\begin{array}{rl}\kp_{2m+1}(x) & =\kp_{2m+2}(x) \\ & =x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}-\frac{x^{7}}{7!}+\cdots +{(-1)}^{m}\frac{x^{2m+1}}{(2m+1)!}\end{array}$$
+<p>for $m=0,1,2,\text{…}.$</p>
+<p>a. Use the fifth <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> for $\sin x$ to approximate $\sin (\frac{\pi}{18})$ and bound the error.</p>
+<p>b. For what values of <em>x</em> does the fifth <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> approximate $\sin x$ to within 0.0001?</p>
+<h4>Solution</h4>
+<p>a. The fifth <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> is</p>
+$$\kp_{5}(x)=x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}.$$
+<p>Using this polynomial, we can estimate as follows:</p>
+$$\begin{array}{rl}\sin (\frac{\pi}{18}) & \approx \kp_{5}(\frac{\pi}{18}) \\ & =\frac{\pi}{18}-\frac{1}{3!}{(\frac{\pi}{18})}^{3}+\frac{1}{5!}{(\frac{\pi}{18})}^{5} \\ & \approx 0.173648.\end{array}$$
+<p>To estimate the error, use the fact that the sixth <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> is $\kp_{6}(x)=\kp_{5}(x)$ and calculate a bound on $\kR_{6}(\frac{\pi}{18}).$ By <a href="#fs-id1167025088556">Uniqueness of Taylor Series</a><sup class="fn" data-note="c-ex1014-theorem"></sup>, the <span data-concept="taylor-remainder">remainder</span> is</p>
+$$\kR_{6}(\frac{\pi}{18})=\frac{f^{(7)}(c)}{7!}{(\frac{\pi}{18})}^{7}$$
+<p>for some <em>c</em> between 0 and $\frac{\pi}{18}.$ Using the fact that $|f^{(7)}(x)|\le 1$ for all <em>x</em>, we find that the magnitude of the error is at most</p>
+$$\frac{1}{7!}\cdot {(\frac{\pi}{18})}^{7}\le 9.8\;\times \;{10}^{-10}.$$
+<p>b. We need to find the values of <em>x</em> such that</p>
+$$\frac{1}{7!}{|x|}^{7}\le 0.0001.$$
+<p>Solving this inequality for <em>x</em>, we have that the fifth <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> gives an estimate to within 0.0001 as long as $|x|\lt 0.907.$</p>
+</div>
+<div class="exercises" data-place="fs-id1167025098904"></div>
+<p>Now that we are able to bound the <span data-concept="taylor-remainder">remainder</span> $\kR_{n}(x),$ we can use this bound to prove that a <span data-concept="taylor-series">Taylor series</span> for $f$ at <em>a</em> converges to $f.$</p>
+</section>
+
+<section id="representing">
+<h2>Representing Functions with Taylor and Maclaurin Series</h2>
+<p class="cite-target">We now discuss issues of convergence for <span data-concept="taylor-series">Taylor series</span>. We begin by showing how to find a <span data-concept="taylor-series">Taylor series</span> for a function, and how to find its <span data-concept="interval-of-convergence">interval of convergence</span>.</p>
+<div class="example" id="fs-id1167025009066">
+<h3>Example 10.15 · Finding a Taylor Series</h3>
+<p>Find the <span data-concept="taylor-series">Taylor series</span> for $\kf(x)=\frac{1}{x}$ at $x=1.$ Determine the <span data-concept="interval-of-convergence">interval of convergence</span>.</p>
+<h4>Solution</h4>
+<p>For $\kf(x)=\frac{1}{x},$ the values of the function and its first four derivatives at $x=1$ are</p>
+$$\begin{array}{rllllrll}\kf(x) & = & \frac{1}{x} & & & \kf(1) & = & 1 \\ \kfprime(x) & = & -\frac{1}{x^{2}} & & & \kfprime(1) & = & -1 \\ \kfdprime(x) & = & \frac{2}{x^{3}} & & & \kfdprime(1) & = & 2! \\ \kftprime(x) & = & -\frac{3\cdot 2}{x^{4}} & & & \kftprime(1) & = & -3! \\ f^{(4)}(x) & = & \frac{4\cdot 3\cdot 2}{x^{5}} & & & f^{(4)}(1) & = & 4\text{!.}\end{array}$$
+<p>That is, we have $\kfn(1)={(-1)}^{n}n!$ for all $n\ge 0.$ Therefore, the <span data-concept="taylor-series">Taylor series</span> for $f$ at $x=1$ is given by</p>
+$$\sum_{n=0}^{\infty} \frac{\kfn(1)}{n!}{(x-1)}^{n} =\sum_{n=0}^{\infty} {(-1)}^{n}{(x-1)}^{n} .$$
+<p>To find the <span data-concept="interval-of-convergence">interval of convergence</span>, we use the <span data-concept="ratio-test">ratio test</span>. We find that</p>
+$$\frac{|a_{n+1}|}{|a_{n}|}=\frac{|{(-1)}^{n+1}{(x-1)}^{n+1}|}{|{(-1)}^{n}{(x-1)}^{n}|}=|x-1|.$$
+<p>Thus, the series converges if $|x-1|\lt 1.$ That is, the series converges for $0\lt x\lt 2.$ Next, we need to check the endpoints. At $x=2,$ we see that</p>
+$$\sum_{n=0}^{\infty} {(-1)}^{n}{(2-1)}^{n} =\sum_{n=0}^{\infty} {(-1)}^{n}$$
+<p>diverges by the <span data-concept="divergence-test">divergence test</span>. Similarly, at $x=0,$</p>
+$$\sum_{n=0}^{\infty} {(-1)}^{n}{(0-1)}^{n} =\sum_{n=0}^{\infty} {(-1)}^{2n} =\sum_{n=0}^{\infty} 1$$
+<p>diverges. Therefore, the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(0,2)$</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1167025009066"></div>
+<p>We know that the <span data-concept="taylor-series">Taylor series</span> found in this example converges on the interval $(0,2),$ but how do we know it actually converges to $f?$ We consider this question in more generality in a moment, but for this example, we can answer this question by writing</p>
+$$\kf(x)=\frac{1}{x}=\frac{1}{1-(1-x)}.$$
+<p>That is, $f$ can be represented by the <span data-concept="geometric-series">geometric series</span> $\sum_{n=0}^{\infty} {(1-x)}^{n} .$ Since this is a <span data-concept="geometric-series">geometric series</span>, it converges to $\frac{1}{x}$ as long as $|1-x|\lt 1.$ Therefore, the <span data-concept="taylor-series">Taylor series</span> found in <a href="#fs-id1167025009066">Example 10.15</a> does converge to $\kf(x)=\frac{1}{x}$ on $(0,2).$</p>
+<p>We now consider the more general question: if a <span data-concept="taylor-series">Taylor series</span> for a function $f$ converges on some interval, how can we determine if it actually converges to $f?$ To answer this question, recall that a series converges to a particular value if and only if its sequence of <span data-concept="partial-sum">partial sums</span> converges to that value. Given a <span data-concept="taylor-series">Taylor series</span> for $f$ at <em>a</em>, the <em>n</em>th <span data-concept="partial-sum">partial sum</span> is given by the <em>n</em>th <span data-concept="taylor-polynomial">Taylor polynomial</span> $\kp_{n}$. Therefore, to determine if the <span data-concept="taylor-series">Taylor series</span> converges to $f,$ we need to determine whether</p>
+$$\lim_{n\to \infty}\kp_{n}(x)=\kf(x).$$
+<p>Since the <span data-concept="taylor-remainder">remainder</span> $\kR_{n}(x)=\kf(x)-\kp_{n}(x),$ the <span data-concept="taylor-series">Taylor series</span> converges to $f$ if and only if</p>
+$$\lim_{n\to \infty}\kR_{n}(x)=0.$$
+<p>We now state this theorem formally.</p>
+<div class="note" id="fs-id1167025166976">
+<div class="eyebrow">Theorem</div>
+<h3>Convergence of Taylor Series</h3>
+<p>Suppose that $f$ has derivatives of all orders on an interval <em>I</em> containing <em>a</em>. Then the <span data-concept="taylor-series">Taylor series</span></p>
+$$\sum_{n=0}^{\infty} \frac{\kfn(a)}{n!}{(x-a)}^{n}$$
+<p>converges to $\kf(x)$ for all <em>x</em> in <em>I</em> if and only if</p>
+$$\lim_{n\to \infty}\kR_{n}(x)=0$$
+<p>for all <em>x</em> in <em>I</em>.</p>
+</div>
+<p>With this theorem, we can prove that a <span data-concept="taylor-series">Taylor series</span> for $f$ at <em>a</em> converges to $f$ if we can prove that the <span data-concept="taylor-remainder">remainder</span> $\kR_{n}(x)\to 0.$ To prove that $\kR_{n}(x)\to 0,$ we typically use the bound</p>
+$$|\kR_{n}(x)|\le \frac{M}{(n+1)!}{|x-a|}^{n+1}$$
+<p>from <span data-concept="taylors-theorem-with-remainder">Taylor’s theorem with remainder</span>.</p>
+<p>In the next example, we find the <span data-concept="maclaurin-series">Maclaurin series</span> for <em>e<sup>x</sup></em> and $\sin x$ and show that these series converge to the corresponding functions for all real numbers by proving that the remainders $\kR_{n}(x)\to 0$ for all real numbers <em>x</em>.</p>
+<div class="example" id="fs-id1167025117785">
+<h3>Example 10.16 · Finding Maclaurin Series</h3>
+<p>For each of the following functions, find the <span data-concept="maclaurin-series">Maclaurin series</span> and its <span data-concept="interval-of-convergence">interval of convergence</span>. Use <a href="#fs-id1167025239317">Taylor’s Theorem with Remainder</a> to prove that the <span data-concept="maclaurin-series">Maclaurin series</span> for $f$ converges to $f$ on that interval.</p>
+<p>a. <em>e<sup>x</sup></em></p>
+<p>b. $\sin x$</p>
+<h4>Solution</h4>
+<p>a. Using the <em>n</em>th <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> for <em>e<sup>x</sup></em> found in <a href="#fs-id1167025118487">Example 10.12</a>a., we find that the <span data-concept="maclaurin-series">Maclaurin series</span> for <em>e<sup>x</sup></em> is given by</p>
+$$\sum_{n=0}^{\infty} \frac{x^{n}}{n!} .$$
+<p>To determine the <span data-concept="interval-of-convergence">interval of convergence</span>, we use the <span data-concept="ratio-test">ratio test</span>. Since</p>
+$$\frac{|a_{n+1}|}{|a_{n}|}=\frac{{|x|}^{n+1}}{(n+1)!}\cdot \frac{n!}{{|x|}^{n}}=\frac{|x|}{n+1},$$
+<p>we have</p>
+$$\lim_{n\to \infty}\frac{|a_{n+1}|}{|a_{n}|}=\lim_{n\to \infty}\frac{|x|}{n+1}=0$$
+<p>for all <em>x</em>. Therefore, the series converges absolutely for all <em>x</em>, and thus, the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-\infty ,\infty )$</span>. To show that the series converges to <em>e<sup>x</sup></em> for all <em>x</em>, we use the fact that $\kfn(x)=e^{x}$ for all $n\ge 0$ and <em>e<sup>x</sup></em> is an increasing function on $(-\infty ,\infty ).$ Therefore, for any real number <em>b</em>, the maximum value of <em>e<sup>x</sup></em> for all $|x|\le b$ is <em>e<sup>b</sup></em>. Thus,</p>
+$$|\kR_{n}(x)|\le \frac{e^{b}}{(n+1)!}{|x|}^{n+1}.$$
+<p>Since we just showed that</p>
+$$\sum_{n=0}^{\infty} \frac{|x{|}^{n}}{n!}$$
+<p>converges for all <em>x</em>, by the <span data-concept="divergence-test">divergence test</span>, we know that</p>
+$$\lim_{n\to \infty}\frac{{|x|}^{n+1}}{(n+1)!}=0$$
+<p>for any real number <em>x</em>. By combining this fact with the <span data-concept="squeeze-theorem">squeeze theorem</span>, the result is $\lim_{n\to \infty}\kR_{n}(x)=0.$</p>
+<p>b. Using the <em>n</em>th <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> for $\sin x$ found in <a href="#fs-id1167025118487">Example 10.12</a>b., we find that the <span data-concept="maclaurin-series">Maclaurin series</span> for $\sin x$ is given by</p>
+$$\sum_{n=0}^{\infty} {(-1)}^{n}\frac{x^{2n+1}}{(2n+1)!} .$$
+<p>In order to apply the <span data-concept="ratio-test">ratio test</span>, consider</p>
+$$\frac{|a_{n+1}|}{|a_{n}|}=\frac{{|x|}^{2n+3}}{(2n+3)!}\cdot \frac{(2n+1)!}{{|x|}^{2n+1}}=\frac{{|x|}^{2}}{(2n+3)(2n+2)}.$$
+<p>Since</p>
+$$\lim_{n\to \infty}\frac{{|x|}^{2}}{(2n+3)(2n+2)}=0$$
+<p>for all <em>x</em>, we obtain the <span data-concept="interval-of-convergence">interval of convergence</span> as <span data-type="set">$(-\infty ,\infty )$</span>. To show that the <span data-concept="maclaurin-series">Maclaurin series</span> converges to $\sin x,$ look at $\kR_{n}(x).$ For each <em>x</em> there exists a real number <em>c</em> between 0 and <em>x</em> such that</p>
+$$\kR_{n}(x)=\frac{\kfnplusone(c)}{(n+1)!}x^{n+1}.$$
+<p>Since $|\kfnplusone(c)|\le 1$ for all integers <em>n</em> and all real numbers <em>c</em>, we have</p>
+$$|\kR_{n}(x)|\le \frac{{|x|}^{n+1}}{(n+1)!}$$
+<p>for all real numbers <em>x</em>. Using the same idea as in part a., the result is $\lim_{n\to \infty}\kR_{n}(x)=0$ for all <em>x</em>, and therefore, the <span data-concept="maclaurin-series">Maclaurin series</span> for $\sin x$ converges to $\sin x$ for all real <em>x</em>.</p>
+</div>
+<div class="exercises" data-place="fs-id1167025117785"></div>
+<div class="note" id="fs-id1167025241347">
+<div class="eyebrow">Student Project</div>
+<h3>Proving that <em>e</em> is Irrational</h3>
+<p>In this project, we use the <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> for <em>e<sup>x</sup></em> to prove that <em>e</em> is irrational. The proof relies on supposing that <em>e</em> is rational and arriving at a contradiction. Therefore, in the following steps, we suppose $e=r/s$ for some integers <em>r</em> and <em>s</em> where $s\ne 0.$</p>
+<ol><li>Write the <span data-concept="maclaurin-polynomial">Maclaurin polynomials</span> $\kp_{0}(x),\kp_{1}(x),\kp_{2}(x),\kp_{3}(x),\kp_{4}(x)$ for <em>e<sup>x</sup></em>. Evaluate $\kp_{0}(1),\kp_{1}(1),\kp_{2}(1),\kp_{3}(1),\kp_{4}(1)$ to estimate <em>e</em>.</li><li>Let $\kR_{n}(x)$ denote the <span data-concept="taylor-remainder">remainder</span> when using $\kp_{n}(x)$ to estimate <em>e<sup>x</sup></em>. Therefore, $\kR_{n}(x)=e^{x}-\kp_{n}(x),$ and $\kR_{n}(1)=e-\kp_{n}(1).$ Assuming that $e=\frac{r}{s}$ for integers <em>r</em> and <em>s</em>, evaluate $\kR_{0}(1),\kR_{1}(1),\kR_{2}(1),\kR_{3}(1),\kR_{4}(1).$</li><li>Using the results from part 2, show that for each <span data-concept="taylor-remainder">remainder</span> $\kR_{0}(1),\kR_{1}(1),\kR_{2}(1),\kR_{3}(1),\kR_{4}(1),$ we can find an integer <em>k</em> such that $kR_{n}(1)$ is an integer for $n=0,1,2,3,4.$</li><li>Write down the formula for the <em>n</em>th <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> $\kp_{n}(x)$ for <em>e<sup>x</sup></em> and the corresponding <span data-concept="taylor-remainder">remainder</span> $\kR_{n}(x).$ Show that $sn!\kR_{n}(1)$ is an integer.</li><li>Use <span data-concept="taylors-theorem-with-remainder">Taylor’s theorem</span> to write down an explicit formula for $\kR_{n}(1).$ Conclude that $\kR_{n}(1)\ne 0,$ and therefore, $sn!\kR_{n}(1)\ne 0.$</li><li>Use <span data-concept="taylors-theorem-with-remainder">Taylor’s theorem</span> to find an estimate on $\kR_{n}(1).$ Use this estimate combined with the result from part 5 to show that $|sn!\kR_{n}(1)|\lt \frac{se}{n+1}.$ Conclude that if <em>n</em> is large enough, then $|sn!\kR_{n}(1)|\lt 1.$ Therefore, $sn!\kR_{n}(1)$ is an integer with magnitude less than 1. Thus, $sn!\kR_{n}(1)=0.$ But from part 5, we know that $sn!\kR_{n}(1)\ne 0.$ We have arrived at a contradiction, and consequently, the original supposition that <em>e</em> is rational must be false.</li></ol>
+</div>
+</section>

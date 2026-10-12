@@ -1,0 +1,1208 @@
+{
+ "id": "10.3",
+ "module": "m53817",
+ "chapter": "10",
+ "title": "Taylor and Maclaurin Series",
+ "short": "Taylor and Maclaurin Series",
+ "lead": "If a function has a power series, its coefficients are fixed by its derivatives at the center. This section builds the <span data-concept=\"taylor-series\">Taylor series</span> and <span data-concept=\"taylor-polynomial\">Taylor polynomials</span> from those derivatives, bounds the error of a polynomial approximation with <span data-concept=\"taylors-theorem-with-remainder\">Taylor’s theorem with remainder</span>, and asks when the series converges to the function.",
+ "objectives": [
+  "Describe the procedure for finding a Taylor polynomial of a given order for a function.",
+  "Explain the meaning and significance of Taylor’s theorem with remainder.",
+  "Estimate the remainder for a Taylor series approximation of a given function."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"taylor-polynomial\">Taylor polynomials</span> are used to approximate functions near a value $x=a.$ <span data-concept=\"maclaurin-polynomial\">Maclaurin polynomials</span> are <span data-concept=\"taylor-polynomial\">Taylor polynomials</span> at $x=0.$</li><li>The <em>n</em>th degree <span data-concept=\"taylor-polynomial\">Taylor polynomials</span> for a function $f$ are the <span data-concept=\"partial-sum\">partial sums</span> of the <span data-concept=\"taylor-series\">Taylor series</span> for $f.$</li><li>If a function $f$ has a <span data-concept=\"power-series\">power series representation</span> at $x=a,$ then it is given by its <span data-concept=\"taylor-series\">Taylor series</span> at $x=a.$</li><li>A <span data-concept=\"taylor-series\">Taylor series</span> for $f$ converges to $f$ if and only if $\\lim_{n\\to \\infty}\\kR_{n}(x)=0$ where $\\kR_{n}(x)=\\kf(x)-\\kp_{n}(x).$</li><li>The <span data-concept=\"taylor-series\">Taylor series</span> for <em>e<sup>x</sup></em>, $\\sin x,$ and $\\cos x$ converge to the respective functions for all real <em>x</em>.</li></ul>",
+ "notes": "The media note linking to the MacTutor History of Mathematics biographies of Brook Taylor and Colin Maclaurin is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 29 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: exercises 116–122 even (Taylor polynomials of degree two), 124–128 even (verifying a remainder estimate), 130 (an integral from a sine polynomial), 132 and 134 (the smallest n for a remainder bound), 136 and 138 (the largest R for a linear approximation), 140–150 even (Taylor series at a point), 152–158 even (Taylor series about x = 1), 160 and 162 (identifying a Maclaurin series), 164, 166 and 168 (plots of Taylor errors) and 170 and 172 (limits by Maclaurin series). Review exercises 255, 265 and 269 from the end of the chapter are held here.",
+ "figures": [
+  {
+   "id": "sim-taylor-ln",
+   "kind": "sim",
+   "number": "10.5",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_10_03_001.jpg"
+   ],
+   "original_caption": "The function y = ln x and the Taylor polynomials p₀, p₁, p₂ and p₃ at x = 1 are plotted on this graph.",
+   "draws": [
+    "function",
+    "series",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-maclaurin-exp",
+   "kind": "sim",
+   "number": "10.6",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_10_03_002.jpg"
+   ],
+   "original_caption": "The graph shows the function y = eˣ and the Maclaurin polynomials p₀, p₁, p₂ and p₃.",
+   "draws": [
+    "function",
+    "series",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-maclaurin-sin",
+   "kind": "sim",
+   "number": "10.7",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_09_03_003.jpg"
+   ],
+   "original_caption": "The graph shows the function y = sin x and the Maclaurin polynomials p₁, p₃ and p₅.",
+   "draws": [
+    "function",
+    "series",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-maclaurin-cos",
+   "kind": "sim",
+   "number": "10.8",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_10_03_004.jpg"
+   ],
+   "original_caption": "The function y = cos x and the Maclaurin polynomials p₀, p₂ and p₄ are plotted on this graph.",
+   "draws": [
+    "function",
+    "series",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-taylor-remainder",
+   "kind": "sim",
+   "number": "10.9",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_10_03_005.jpg"
+   ],
+   "original_caption": "The graphs of f(x) = ∛x and the linear and quadratic approximations p₁(x) and p₂(x).",
+   "draws": [
+    "function",
+    "series",
+    "error",
+    "point",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "taylor-intro",
+   "concept": "power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "overview",
+   "concept": "term-by-term-differentiation-and-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "overview",
+   "concept": "higher-order-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167024973208",
+   "concept": "taylor-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167024973208",
+   "concept": "maclaurin-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167025088556",
+   "concept": "uniqueness-of-taylor-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "overview",
+   "concept": "uniqueness-of-power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "taylor-polynomials-term",
+   "concept": "taylor-polynomial",
+   "verb": "introduces"
+  },
+  {
+   "span": "taylor-polynomials-term",
+   "concept": "partial-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "maclaurin-polynomials-term",
+   "concept": "maclaurin-polynomial",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167025242377",
+   "concept": "taylor-polynomial",
+   "verb": "reinforces"
+  },
+  {
+   "span": "remainder-term",
+   "concept": "taylor-remainder",
+   "verb": "introduces"
+  },
+  {
+   "span": "remainder",
+   "concept": "mean-value-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167025239317",
+   "concept": "taylors-theorem-with-remainder",
+   "verb": "introduces"
+  },
+  {
+   "span": "remainder",
+   "concept": "rolles-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167024999614",
+   "concept": "linear-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167025009066",
+   "concept": "ratio-test",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167025009066",
+   "concept": "divergence-test",
+   "verb": "uses"
+  },
+  {
+   "span": "representing",
+   "concept": "geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167025166976",
+   "concept": "convergence-of-taylor-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167025166976",
+   "concept": "convergence-of-a-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167025117785",
+   "concept": "squeeze-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167025117785",
+   "concept": "interval-of-convergence",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167025241347",
+   "concept": "e-is-irrational",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167025019199",
+   "source_number": "Checkpoint 10.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167025228652"
+   },
+   "cite": "polynomials",
+   "prompt": "Find the Taylor polynomials $p_{0},p_{1},p_{2}$ and $p_{3}$ for $f(x)=\\frac{1}{x^{2}}$ at $x=1.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$p_{0}(x)=1;\\;p_{1}(x)=1-2(x-1);\\;p_{2}(x)=1-2(x-1)+3{(x-1)}^{2};\\;p_{3}(x)=1-2(x-1)+3{(x-1)}^{2}-4{(x-1)}^{3}$",
+    "hint": "Find the first three derivatives of $f$ and evaluate them at $x=1.$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167025235548",
+   "source_number": "Checkpoint 10.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167025118487"
+   },
+   "cite": "polynomials",
+   "prompt": "Find formulas for the Maclaurin polynomials $p_{0},p_{1},p_{2}$ and $p_{3}$ for $f(x)=\\frac{1}{1+x}.$ Find a formula for the <em>n</em>th Maclaurin polynomial. Write your answer using sigma notation.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$p_{0}(x)=1;\\;p_{1}(x)=1-x;\\;p_{2}(x)=1-x+x^{2};\\;p_{3}(x)=1-x+x^{2}-x^{3};\\;p_{n}(x)=1-x+x^{2}-x^{3}+\\cdots +{(-1)}^{n}x^{n}=\\sum_{k=0}^{n} {(-1)}^{k}x^{k}$",
+    "hint": "Evaluate the first four derivatives of $f$ and look for a pattern."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167024969439",
+   "source_number": "Checkpoint 10.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167024999614"
+   },
+   "cite": "remainder",
+   "prompt": "Find the first and second Taylor polynomials for $f(x)=\\sqrt{x}$ at $x=4.$ Use these polynomials to estimate $\\sqrt{6}.$ Use Taylor’s theorem to bound the error.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$p_{1}(x)=2+\\frac{1}{4}(x-4);p_{2}(x)=2+\\frac{1}{4}(x-4)-\\frac{1}{64}{(x-4)}^{2};\\;p_{1}(6)=2.5;p_{2}(6)=2.4375;$ $|R_{1}(6)|\\le 0.0625;|R_{2}(6)|\\le 0.015625$",
+    "hint": "Evaluate $f(4),f^{\\prime}(4),$ and $f^{\\prime\\prime}(4).$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167025131374",
+   "source_number": "Checkpoint 10.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167025098904"
+   },
+   "cite": "remainder",
+   "prompt": "Use the fourth Maclaurin polynomial for $\\cos x$ to approximate $\\cos (\\frac{\\pi}{12}).$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.96593,
+    "tol": 0.0001,
+    "solution": "0.96593",
+    "hint": "The fourth Maclaurin polynomial is $p_{4}(x)=1-\\frac{x^{2}}{2!}+\\frac{x^{4}}{4!}.$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167024969273",
+   "source_number": "Checkpoint 10.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167025009066"
+   },
+   "cite": "representing",
+   "prompt": "Find the Taylor series for $f(x)=\\frac{1}{2x}$ at $x=2$ and determine its interval of convergence.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} \\frac{{(2-x)}^{n}}{2^{n+1}}.$<sup class=\"fn\" data-note=\"c-cp1014-series\"></sup> The interval of convergence is $(0,4).$",
+    "hint": "$f^{(n)}(2)=\\frac{{(-1)}^{n}n!}{2^{n+1}}$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167024999408",
+   "source_number": "Checkpoint 10.15",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167025117785"
+   },
+   "cite": "representing",
+   "prompt": "Find the Maclaurin series for $f(x)=\\cos x.$ Use the ratio test to show that the interval of convergence is $(-\\infty ,\\infty ).$ Show that the Maclaurin series converges to $\\cos x$ for all real numbers <em>x</em>.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} \\frac{{(-1)}^{n}x^{2n}}{(2n)!}$ By the ratio test, the interval of convergence is $(-\\infty ,\\infty ).$ Since $|R_{n}(x)|\\le \\frac{{|x|}^{n+1}}{(n+1)!},$ the series converges to $\\cos x$ for all real <em>x</em>.",
+    "hint": "Use the Maclaurin polynomials for $\\cos x.$"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1167025012142",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polynomials",
+   "prompt": "<p>In the following exercises, find the Taylor polynomials of degree two approximating the given function centered at the given point.</p><p>$f(x)=1+x+x^{2}$ at $a=-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(-1)=1;f^{\\prime}(-1)=-1;f^{\\prime\\prime}(-1)=2;f(x)=1-(x+1)+{(x+1)}^{2}$"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1167025099845",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polynomials",
+   "prompt": "<p>In the following exercises, find the Taylor polynomials of degree two approximating the given function centered at the given point.</p><p>$f(x)=\\sin (2x)$ at $a=\\frac{\\pi}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f^{\\prime}(x)=2\\;\\cos (2x);f^{\\prime\\prime}(x)=-4\\;\\sin (2x);p_{2}(x)=-2(x-\\frac{\\pi}{2})$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1167025112421",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polynomials",
+   "prompt": "<p>In the following exercises, find the Taylor polynomials of degree two approximating the given function centered at the given point.</p><p>$f(x)=\\ln x$ at $a=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f^{\\prime}(x)=\\frac{1}{x};f^{\\prime\\prime}(x)=-\\frac{1}{x^{2}};p_{2}(x)=0+(x-1)-\\frac{1}{2}{(x-1)}^{2}$"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1167025166349",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polynomials",
+   "prompt": "<p>In the following exercises, find the Taylor polynomials of degree two approximating the given function centered at the given point.</p><p>$f(x)=e^{x}$ at $a=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$p_{2}(x)=e+e(x-1)+\\frac{e}{2}{(x-1)}^{2}$"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1167025090549",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In the following exercises, verify that the given choice of <em>n</em> in the remainder estimate $|R_{n}|\\le \\frac{M}{(n+1)!}{(x-a)}^{n+1},$ where <em>M</em> is the maximum value of $|f^{(n+1)}(z)|$ on the interval between <em>a</em> and the indicated point, yields $|R_{n}|\\le \\frac{1}{1000}.$ Find the value of the Taylor polynomial <em>p<sub>n</sub></em> of $f$ at the indicated point.  If $|Rn|$ is not less than $1/1000$, determine what it is.</p><p><strong>[T]</strong> ${(28)}^{1/3};a=27,n=1$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.037,
+    "tol": 0.0005,
+    "solution": "$\\frac{d^{2}}{dx^{2}}x^{1/3}=-\\frac{2}{9x^{5/3}}\\ge -0.00092\\text{…}$ when $x\\ge 28$ so the remainder estimate applies to the linear approximation $x^{1/3}\\approx p_{1}(27)=3+\\frac{x-27}{27},$ which gives ${(28)}^{1/3}\\approx 3+\\frac{1}{27}=3.\\bar{037},$ while ${(28)}^{1/3}\\approx 3.03658.$"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1167024996140",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In the following exercises, verify that the given choice of <em>n</em> in the remainder estimate $|R_{n}|\\le \\frac{M}{(n+1)!}{(x-a)}^{n+1},$ where <em>M</em> is the maximum value of $|f^{(n+1)}(z)|$ on the interval between <em>a</em> and the indicated point, yields $|R_{n}|\\le \\frac{1}{1000}.$ Find the value of the Taylor polynomial <em>p<sub>n</sub></em> of $f$ at the indicated point.  If $|Rn|$ is not less than $1/1000$, determine what it is.</p><p><strong>[T]</strong> <em>e</em><sup>2</sup>; $a=0,n=9$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.3887,
+    "tol": 0.0001,
+    "solution": "Using the estimate $\\frac{2^{10}}{10!}\\lt 0.000283$ we can use the Taylor expansion of order 9 to estimate <em>e<sup>x</sup></em> at $x=2.$ as $e^{2}\\approx p_{9}(2)=1+2+\\frac{2^{2}}{2}+\\frac{2^{3}}{6}+\\cdots +\\frac{2^{9}}{9!}=7.3887\\text{…}$ whereas $e^{2}\\approx 7.3891.$"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1167025228620",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In the following exercises, verify that the given choice of <em>n</em> in the remainder estimate $|R_{n}|\\le \\frac{M}{(n+1)!}{(x-a)}^{n+1},$ where <em>M</em> is the maximum value of $|f^{(n+1)}(z)|$ on the interval between <em>a</em> and the indicated point, yields $|R_{n}|\\le \\frac{1}{1000}.$ Find the value of the Taylor polynomial <em>p<sub>n</sub></em> of $f$ at the indicated point.  If $|Rn|$ is not less than $1/1000$, determine what it is.</p><p><strong>[T]</strong> $\\ln (2);a=1,n=1000$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Since $\\frac{d^{n}}{dx^{n}}(\\ln x)={(-1)}^{n-1}\\frac{(n-1)!}{x^{n}},R_{1000}\\approx \\frac{1}{1001}.$ One has $p_{1000}(1)=\\sum_{n=1}^{1000} \\frac{{(-1)}^{n-1}}{n} \\approx 0.6936$<sup class=\"fn\" data-note=\"c-e129-sum\"></sup> whereas $\\ln (2)\\approx 0.6931\\cdots .$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1167025148804",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>Integrate the approximation $e^{x}\\approx 1+x+\\frac{x^{2}}{2}+\\cdots +\\frac{x^{6}}{720}$ evaluated at −<em>x</em><sup>2</sup> to approximate $\\int_0^{1}e^{-x^{2}}dx .$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.74683,
+    "tol": 0.0001,
+    "solution": "$\\int_0^{1}(1-x^{2}+\\frac{x^{4}}{2}-\\frac{x^{6}}{6}+\\frac{x^{8}}{24}-\\frac{x^{10}}{120}+\\frac{x^{12}}{720})\\;dx$ $=1-\\frac{1^{3}}{3}+\\frac{1^{5}}{10}-\\frac{1^{7}}{42}+\\frac{1^{9}}{9\\cdot 24}-\\frac{1^{11}}{120\\cdot 11}+\\frac{1^{13}}{720\\cdot 13}\\approx 0.74683$ whereas $\\int_0^{1}e^{-x^{2}}dx \\approx 0.74682.$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1167025240362",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In the following exercises, find the smallest value of <em>n</em> such that the remainder estimate $|R_{n}|\\le \\frac{M}{(n+1)!}{(x-a)}^{n+1},$ where <em>M</em> is the maximum value of $|f^{(n+1)}(z)|$ on the interval between <em>a</em> and the indicated point, yields $|R_{n}|\\le \\frac{1}{1000}$ on the indicated interval.</p><p>$f(x)=\\cos x$ on $[-\\frac{\\pi}{2},\\frac{\\pi}{2}],a=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7,
+    "tol": 1e-09,
+    "solution": "Since $f^{(n+1)}(z)$ is $\\sin z$ or $\\cos z,$ we have $M=1.$ Since $|x-0|\\le \\frac{\\pi}{2},$ we seek the smallest <em>n</em> such that $\\frac{{\\pi}^{n+1}}{2^{n+1}(n+1)!}\\le 0.001.$ The smallest such value is $n=7.$ The remainder estimate is $R_{7}\\le 0.00092.$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1167024986177",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In the following exercises, find the smallest value of <em>n</em> such that the remainder estimate $|R_{n}|\\le \\frac{M}{(n+1)!}{(x-a)}^{n+1},$ where <em>M</em> is the maximum value of $|f^{(n+1)}(z)|$ on the interval between <em>a</em> and the indicated point, yields $|R_{n}|\\le \\frac{1}{1000}$ on the indicated interval.</p><p>$f(x)=e^{-x}$ on $[-3,3],a=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 14,
+    "tol": 1e-09,
+    "solution": "Since $f^{(n+1)}(z)=\\text{±}e^{-z}$ one has $M=e^{3}.$ Since $|x-0|\\le 3,$ one seeks the smallest <em>n</em> such that $\\frac{3^{n+1}e^{3}}{(n+1)!}\\le 0.001.$ The smallest such value is $n=14.$ The remainder estimate is $R_{14}\\le 0.000220.$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1167025098102",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In the following exercises, the maximum of the right-hand side of the remainder estimate $|R_{1}|\\le \\frac{\\text{max}|f^{\\prime\\prime}(z)|}{2}R^{2}$ on $[a-R,a+R]$ occurs at <em>a</em> or $a\\pm R.$ Estimate the maximum value of <em>R</em> such that $\\frac{\\text{max}|f^{\\prime\\prime}(z)|}{2}R^{2}\\le 0.1$ on $[a-R,a+R]$ by plotting this maximum as a function of <em>R</em>.</p><p><strong>[T]</strong> $\\sin x$ approximated by <em>x</em>, $a=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.596,
+    "tol": 0.005,
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_03_202.jpg\" alt=\"This graph has a horizontal line at y=0.2. It also has a curve starting at the origin and concave up. The curve and the line intersect at the ordered pair (0.5966, 0.2).\">\n<p>Since $\\sin x$ is increasing for small <em>x</em> and since $sin^{\\prime\\prime}x=-\\sin x,$ the estimate applies whenever $R^{2}\\sin (R)\\le 0.2,$ which applies up to $R=0.596.$</p>"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1167024988528",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In the following exercises, the maximum of the right-hand side of the remainder estimate $|R_{1}|\\le \\frac{\\text{max}|f^{\\prime\\prime}(z)|}{2}R^{2}$ on $[a-R,a+R]$ occurs at <em>a</em> or $a\\pm R.$ Estimate the maximum value of <em>R</em> such that $\\frac{\\text{max}|f^{\\prime\\prime}(z)|}{2}R^{2}\\le 0.1$ on $[a-R,a+R]$ by plotting this maximum as a function of <em>R</em>.</p><p><strong>[T]</strong> $\\cos x$ approximated by $1,a=0$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.447,
+    "tol": 0.005,
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_03_204.jpg\" alt=\"This graph has a horizontal line at y=0.2. It also has a curve starting at the origin and concave up. The curve and the line intersect at the ordered pair (0.44720, 0.2).\">\n<p>Since the second derivative of $\\cos x$ is $-\\cos x$ and since $\\cos x$ is decreasing away from $x=0,$ the estimate applies when $R^{2}\\cos R\\le 0.2$<sup class=\"fn\" data-note=\"c-e139-max\"></sup> or $R\\le 0.447.$</p>"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1167025130124",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, find the Taylor series of the given function centered at the indicated point.</p><p>$1+x+x^{2}+x^{3}$ at $a=-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(x+1)}^{3}-2{(x+1)}^{2}+2(x+1)$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1167025010956",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, find the Taylor series of the given function centered at the indicated point.</p><p>$\\cos x$ at $a=2\\pi$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Values of derivatives are the same as for $x=0$ so $\\cos x={\\sum_{n=0}^{\\infty} (-1) }^{n}\\frac{{(x-2\\pi )}^{2n}}{(2n)!}$"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1167025096642",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, find the Taylor series of the given function centered at the indicated point.</p><p>$\\cos x$ at $x=\\frac{\\pi}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\cos (\\frac{\\pi}{2})=0,-\\sin (\\frac{\\pi}{2})=-1$ so $\\cos x=\\sum_{n=0}^{\\infty} {(-1)}^{n+1} \\frac{{(x-\\frac{\\pi}{2})}^{2n+1}}{(2n+1)!},$ which is also $-\\cos (x-\\frac{\\pi}{2}).$<sup class=\"fn\" data-note=\"c-e145-sine\"></sup>"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1167024991698",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, find the Taylor series of the given function centered at the indicated point.</p><p>$e^{x}$ at $a=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The derivatives are $f^{(n)}(1)=e$ so $e^{x}=e\\sum_{n=0}^{\\infty} \\frac{{(x-1)}^{n}}{n!} .$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1167024983157",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, find the Taylor series of the given function centered at the indicated point.</p><p>$\\frac{1}{{(x-1)}^{3}}$ at $a=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{{(x-1)}^{3}}=-(\\frac{1}{2})\\frac{d^{2}}{dx^{2}}\\;\\frac{1}{1-x}=-\\sum_{n=0}^{\\infty} (\\frac{(n+2)(n+1)x^{n}}{2})$"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1167025166790",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, compute the Taylor series of each function around $x=1.$</p><p>$f(x)=2-x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2-x=1-(x-1)$"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1167025070684",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, compute the Taylor series of each function around $x=1.$</p><p>$f(x)={(x-2)}^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${((x-1)-1)}^{2}={(x-1)}^{2}-2(x-1)+1$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1167025070893",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, compute the Taylor series of each function around $x=1.$</p><p>$f(x)=\\frac{1}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{1-(1-x)}=\\sum_{n=0}^{\\infty} {(-1)}^{n}{(x-1)}^{n}$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1167025159222",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, compute the Taylor series of each function around $x=1.$</p><p>$f(x)=\\frac{x}{4x-2x^{2}-1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x\\sum_{n=0}^{\\infty} 2^{n}{(1-x)}^{2n}= \\sum_{n=0}^{\\infty} 2^{n}{(x-1)}^{2n+1}+ \\sum_{n=0}^{\\infty} 2^{n}{(x-1)}^{2n}$"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1167025005292",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, compute the Taylor series of each function around $x=1.$</p><p>$f(x)=e^{2x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{2x}=e^{2(x-1)+2}=e^{2}\\sum_{n=0}^{\\infty} \\frac{2^{n}{(x-1)}^{n}}{n!}$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1167025235065",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p><strong>[T]</strong> In the following exercises, identify the value of <em>x</em> such that the given series $\\sum_{n=0}^{\\infty} a_{n}$ is the value of the Maclaurin series of $f(x)$ at $x.$ Approximate the value of $f(x)$ using $S_{10}=\\sum_{n=0}^{10} a_{n} .$</p><p>$\\sum_{n=0}^{\\infty} \\frac{2^{n}}{n!}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=e^{2};S_{10}=\\frac{34,913}{4725}\\approx 7.3889947$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1167025235256",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p><strong>[T]</strong> In the following exercises, identify the value of <em>x</em> such that the given series $\\sum_{n=0}^{\\infty} a_{n}$ is the value of the Maclaurin series of $f(x)$ at $x.$ Approximate the value of $f(x)$ using $S_{10}=\\sum_{n=0}^{10} a_{n} .$</p><p>$\\sum_{n=0}^{\\infty} \\frac{{(-1)}^{n}{(2\\pi )}^{2n+1}}{(2n+1)!}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin (2\\pi )=0;S_{10}=8.27\\;\\times \\;{10}^{-5}$"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1167025001143",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>The following exercises make use of the functions $S_{5}(x)=x-\\frac{x^{3}}{6}+\\frac{x^{5}}{120}$ and $C_{4}(x)=1-\\frac{x^{2}}{2}+\\frac{x^{4}}{24}$ on $[-\\pi ,\\pi ].$</p><p><strong>[T]</strong> Plot ${\\cos }^{2}x-{(C_{4}(x))}^{2}$ on $[-\\pi ,\\pi ].$ Compare the maximum difference with the square of the Taylor remainder estimate for $\\cos x.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_03_206.jpg\" alt=\"This graph has a concave up curve that is symmetrical about the y axis. The lowest point of the graph is the origin with the rest of the curve above the x-axis.\">\n<p>The difference is small on the interior of the interval but approaches $1$ near the endpoints. The remainder estimate is $|R_{4}|=\\frac{{\\pi}^{5}}{120}\\approx 2.552.$</p>"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1167025090979",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>The following exercises make use of the functions $S_{5}(x)=x-\\frac{x^{3}}{6}+\\frac{x^{5}}{120}$ and $C_{4}(x)=1-\\frac{x^{2}}{2}+\\frac{x^{4}}{24}$ on $[-\\pi ,\\pi ].$</p><p><strong>[T]</strong> Compare $\\frac{S_{5}(x)}{C_{4}(x)}$ on $[-1,1]$ to $\\tan x.$ Compare this with the Taylor remainder estimate for the approximation of $\\tan x$ by $x+\\frac{x^{3}}{3}+\\frac{2x^{5}}{15}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_03_208.jpg\" alt=\"This graph has two curves. The solid curve is very flat and close to the x-axis. It passes through the origin. The second curve, a broken line, is concave down and symmetrical about the y-axis. It is very close to the x-axis between -3 and 3.\">\n<p>The difference is on the order of ${10}^{-4}$ on $[-1,1]$ while the Taylor approximation error is around $0.1$ near $\\pm 1.$ The top curve is a plot of ${\\tan }^{2}x-{(\\frac{S_{5}(x)}{C_{4}(x)})}^{2}$ and the lower dashed plot shows $t^{2}-{(\\frac{S_{5}}{C_{4}})}^{2}.$</p>"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1167025146418",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>(Taylor approximations and root finding.) Recall that Newton’s method $x_{n+1}=x_{n}-\\frac{f(x_{n})}{f^{\\prime}(x_{n})}$ approximates solutions of $f(x)=0$ near the input $x_{0}.$</p><p>a. If $f$ and $g$ are inverse functions, explain why a solution of $g(x)=a$ is the value $f(a)\\;\\text{of}\\;f.$</p><p>b. Let $p_{N}(x)$ be the $N\\;\\text{th}$ degree Maclaurin polynomial of $e^{x}.$ Use Newton’s method to approximate solutions of $p_{N}(x)-2=0$ for $N=4,5,6.$</p><p>c. Explain why the approximate roots of $p_{N}(x)-2=0$ are approximate values of $\\ln (2).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. Answers will vary. b. The following are the $x_{n}$ values after $10$ iterations of Newton’s method to approximation a root of $p_{N}(x)-2=0\\text{:}$ for $N=4,x=0.6939...;$ for $N=5,x=0.6932...;$ for $N=6,x=0.69315...;.$ (<em>Note:</em> $\\ln (2)=0.69314...)$ c. Answers will vary."
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1167025006894",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, use the fact that if $q(x)=\\sum_{n=1}^{\\infty} a_{n}{(x-c)}^{n}$ converges in an interval containing $c,$ then $\\lim_{x\\to c}q(x)=a_0^{}$ to evaluate each limit using Taylor series.</p><p>$\\lim_{x\\to 0}\\frac{\\ln (1-x^{2})}{x^{2}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -1,
+    "solution": "$\\frac{\\ln (1-x^{2})}{x^{2}}\\to -1$"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1167025150828",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, use the fact that if $q(x)=\\sum_{n=1}^{\\infty} a_{n}{(x-c)}^{n}$ converges in an interval containing $c,$ then $\\lim_{x\\to c}q(x)=a_0^{}$ to evaluate each limit using Taylor series.</p><p>$\\lim_{x\\to 0^{+}}\\frac{\\cos (\\sqrt{x})-1}{2x}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": -0.25,
+    "solution": "$\\frac{\\cos (\\sqrt{x})-1}{2x}\\approx \\frac{(1-\\frac{x}{2}+\\frac{x^{2}}{4!}-\\cdots )-1}{2x}\\to -\\frac{1}{4}$"
+   }
+  },
+  {
+   "id": "r255",
+   "source_id": "fs-id1167024045260",
+   "source_section": "10.4",
+   "source_number": "255",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polynomials",
+   "prompt": "<p><em>True or False?</em> In the following exercises, justify your answer with a proof or a counterexample.</p><p>For small values of $x,\\sin x\\approx x.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "True"
+   }
+  },
+  {
+   "id": "r265",
+   "source_id": "fs-id1167023777932",
+   "source_section": "10.4",
+   "source_number": "265",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "remainder",
+   "prompt": "<p>In the following exercises, evaluate the Taylor series expansion of degree four for the given function at the specified point. What is the error in the approximation?</p><p>$f(x)=x^{3}-2x^{2}+4,a=-3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$p_{4}(x)={(x+3)}^{3}-11{(x+3)}^{2}+39(x+3)-41;$ exact"
+   }
+  },
+  {
+   "id": "r269",
+   "source_id": "fs-id1167023827798",
+   "source_section": "10.4",
+   "source_number": "269",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "representing",
+   "prompt": "<p>In the following exercises, find the Taylor series at the given value.</p><p>$f(x)=\\sin x,a=\\frac{\\pi}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} \\frac{{(-1)}^{n}}{(2n)!} {(x-\\frac{\\pi}{2})}^{2n}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "maclaurin-polynomial"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "maclaurin-polynomial"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "interval-of-convergence"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "maclaurin-series"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "convergence-of-taylor-series"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "ratio-test"
+  },
+  {
+   "exercise": "e117",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "e119",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "e121",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "e123",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "e125",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e125",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "e127",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e127",
+   "concept": "maclaurin-polynomial"
+  },
+  {
+   "exercise": "e129",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e129",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "e131",
+   "concept": "maclaurin-polynomial"
+  },
+  {
+   "exercise": "e131",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e133",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e135",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e137",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e137",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "e139",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e141",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "e143",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "e145",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "e147",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "e149",
+   "concept": "maclaurin-series"
+  },
+  {
+   "exercise": "e149",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e151",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "e153",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "e155",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "e155",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e157",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "e157",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e159",
+   "concept": "taylor-series"
+  },
+  {
+   "exercise": "e161",
+   "concept": "maclaurin-series"
+  },
+  {
+   "exercise": "e163",
+   "concept": "maclaurin-series"
+  },
+  {
+   "exercise": "e165",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e165",
+   "concept": "maclaurin-polynomial"
+  },
+  {
+   "exercise": "e167",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e167",
+   "concept": "maclaurin-polynomial"
+  },
+  {
+   "exercise": "e169",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "e169",
+   "concept": "newtons-method"
+  },
+  {
+   "exercise": "e171",
+   "concept": "maclaurin-series"
+  },
+  {
+   "exercise": "e173",
+   "concept": "maclaurin-series"
+  },
+  {
+   "exercise": "r255",
+   "concept": "maclaurin-polynomial"
+  },
+  {
+   "exercise": "r255",
+   "concept": "linear-approximation"
+  },
+  {
+   "exercise": "r265",
+   "concept": "taylor-polynomial"
+  },
+  {
+   "exercise": "r265",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "r269",
+   "concept": "taylor-series"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-ex1012-index",
+   "kind": "correction",
+   "html": "The index here is $m$: the formula that follows holds for $m\\ge 0.$"
+  },
+  {
+   "id": "c-ex1013-value",
+   "kind": "correction",
+   "html": "The numerator is printed as 0.0011468; it is $f^{\\prime\\prime\\prime}(8)\\approx 0.0014468,$ found just above, and the bound 0.0065104 is computed from that value: $\\frac{0.0014468}{3!}\\cdot 27\\approx 0.0065104.$"
+  },
+  {
+   "id": "c-ex1014-theorem",
+   "kind": "correction",
+   "html": "The remainder formula comes from Taylor’s Theorem with Remainder, not from Uniqueness of Taylor Series."
+  },
+  {
+   "id": "c-cp1014-series",
+   "kind": "correction",
+   "html": "For $f(x)=\\frac{1}{2x}=\\frac{1}{2}x^{-1},$ the derivatives are $f^{(n)}(2)=\\frac{{(-1)}^{n}n!}{2\\cdot 2^{n+1}}=\\frac{{(-1)}^{n}n!}{2^{n+2}},$ and the Taylor series is $\\sum_{n=0}^{\\infty} \\frac{{(2-x)}^{n}}{2^{n+2}};$ the hint and the answer print $2^{n+1}.$ At $x=2$ the printed series gives $\\frac{1}{2},$ not $f(2)=\\frac{1}{4}.$ The interval of convergence, $(0,4),$ is right."
+  },
+  {
+   "id": "c-e129-sum",
+   "kind": "correction",
+   "html": "The partial sum is $p_{1000}(2),$ the polynomial at $x=2$ ($p_{1000}(1)=0$), and $\\sum_{n=1}^{1000}\\frac{{(-1)}^{n-1}}{n}\\approx 0.69265,$ below $\\ln 2$ by about $\\frac{1}{2000},$ within the estimate $R_{1000}\\approx\\frac{1}{1001}.$"
+  },
+  {
+   "id": "c-e139-max",
+   "kind": "correction",
+   "html": "The largest value of $|\\cos z|$ on $[-R,R]$ is 1, at $z=0,$ so the condition is $\\frac{R^{2}}{2}\\le 0.1,$ that is $R^{2}\\le 0.2$ and $R\\le \\sqrt{0.2}\\approx 0.447,$ the value given."
+  },
+  {
+   "id": "c-e145-sine",
+   "kind": "correction",
+   "html": "The series is that of $-\\sin (x-\\frac{\\pi}{2});$ $-\\cos (x-\\frac{\\pi}{2})$ is printed."
+  }
+ ]
+}

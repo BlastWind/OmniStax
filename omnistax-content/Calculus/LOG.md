@@ -348,3 +348,62 @@ Figures 6.1–6.84 and Tables 6.1–6.4 are numbered without gaps. Solids of rev
 The Chapter Review Exercises printed at the end of 6.9 landed with the section that introduces what each tests: 437, 439, 441 in 6.2; 443, 445, 447 in 6.3; 453, 455 in 6.4; 435, 436, 449 in 6.5; 451 in 6.6; 438, 457, 458 in 6.8; 459 in 6.9; 436, 438 and 458 with AI-marked answers; the ten unkeyed computational ones left out. Unkeyed even section exercises were left out except derivations, proofs, checks and true-or-false justifications, kept with AI-marked answers (6.2's 58–62, 6.3's 164, 6.4's 168 and 214, 6.6's 282 and 284, 6.7's 344 and 346, 6.8's 348 and 350, 6.9's 380–384, 420, 422, 428–434), and keyed ones whose key reads only "Answers may vary" (6.4's 215, 6.5's 253, 6.9's 379–383 and 419). Where the book leaves a "For the following exercises" stem standing over exercises it does not describe, those cards carry no stem (6.1 49, 51; 6.2 103–107; 6.3 163, 164; 6.4 169, 207–217; 6.5 234–253; 6.6 290–294; review 449, 451, 457).
 
 Corrections added as notes: 6.5 exercise 253's area A = πr²h²/H³ (over H²); 6.6 Checkpoint 6.30's "on a number line" for points of the plane; 6.8 exercise 351's key (the constant of the other form of the model); 6.9 Example 6.51's "Recall from Section 2.4", reworded to Section 6.4 and linked. The dropped media notes (6.1's area calculator, 6.2's integral calculator, 6.5's History Channel article) are named in `notes`.
+
+
+## Pass 12 (2026-10-13): Chapter 10, Power Series, was built by one agent in one run: prep, the
+
+introduction and 10.1 to 10.4, then the chapter pass. The chapter's 30
+concepts and 50 prerequisite edges were merged after Chapter 9's; one symbol was
+added, f⁽ⁿ⁺¹⁾ (`\kfnplusone`), for Taylor's theorem. `series` is the chapter's
+main type: a power series, the partial sums S_N and T_N, the Cauchy product,
+the Taylor and Maclaurin polynomials pₙ (written `\kp_{n}` on row p), the
+binomial series and the present value P; the remainder Rₙ wears `error`
+(`\kR_{n}` on row R, which means the radius of convergence in 10.1 and 10.2,
+untyped, and the remainder in 10.3 and 10.4, with `redefines`); intervals of
+convergence the text states are marked `data-type="set"`. Every section's
+"Wanted at chapter level" was applied: the anchors of all 32 forms and of every
+variables row. The book numbers 11 equations here, every `<equation>` that is
+not `class="unnumbered"`, as openstax.org shows them (Volume 2's 6.4 prints
+(6.6) to (6.11)); all keep their numbers as \tag{10.N}, and every reference to
+one reads "Equation 10.N", linked. Theorems are cited by their titles, linked
+to their notes, as openstax.org prints them. Table 10.1 (Maclaurin Series for
+Common Functions) stays in the text and the words that present it link to the
+Maclaurin sheet. The chapter review exercises printed at the end of 10.4 landed
+with the section that introduces what each tests: 257 and 259 in 10.1; 253,
+254 (AI-marked), 261, 263 and 277 in 10.2; 255, 265 and 269 in 10.3; 256
+(AI-marked), 267, 271, 273 and 275 (keyed "Answers may vary", AI-marked) stay
+in 10.4. Corrections added as notes: 10.1's "the series in Example 10.3" (the
+series of Equation 10.3) and exercises 5 (x = 0 is an endpoint), 49 (a₂ₙ) and 51
+((0, 1]); 10.2's exercises 67 (2²ⁿ⁺²) and 89 (the prompt's series and the key
+each off by a sign); 10.3's Example 10.12 (m ≥ 0), Example 10.13 (f‴(8) ≈
+0.0014468), Example 10.14 (the remainder comes from Taylor's theorem),
+Checkpoint 10.14 (2ⁿ⁺² in the hint and the series) and exercises 129
+(p₁₀₀₀(2) ≈ 0.6926), 139 and 145 (−sin(x − π/2)); 10.4's Checkpoint 10.18 (the
+series of (1 + x)^(−3/2)), Checkpoint 10.19 (the coefficient equations
+reversed), Checkpoint 10.21 (0.764, not 0.514), Example 10.20 (4c₄), Example
+10.23 (six terms give 0.4729; five give 0.4922, outside the stated accuracy),
+Example 10.24 (1·3), exercises 185, 195, 199, 205, 213 (the arcsin series),
+235, 237, 241 (the signs of a₂, a₃, a₅), 247, 251 (9k⁴/64) and review 267. Each
+corrected value was recomputed, and many keys of 10.2 to 10.4 were checked by hand on the way. Figures 10.1 to 10.12
+are numbered without gaps; none is folded (10.6 to 10.8 are the three parts of
+one example, each read beside its part); 10.1 and 10.4 are kept photographs.
+Four Sims of OmniStax's own were added: the present value of an annuity, the
+Cauchy product as a grid, term-by-term differentiation and integration in 10.2,
+and the series solution of Airy's equation in 10.4. The MacTutor biographies
+of 10.3 are left out (a media note). Binomial coefficients, which the CNXML
+writes as one-column arrays, are set as \binom.
+
+
+## Pass 13 (2026-10-13): Chapter 9, Sequences and Series, was built by one agent in one run: prep, the introduction and 9.1 to 9.6, then the chapter pass
+
+Prep converted the seven modules, wrote exploration.md, config.md (carried over from Chapter 3) and COLOR.md, chapter.json (46 variables rows) and book-rows.json, merged after Chapter 8's concepts were in: 60 concepts, 106 edges (checked Hasse-reduced against the book's graph), four new symbols, a_seq, b_seq and c_seq (the terms of sequences, latex a, b, c, typed `sequence` through their concept) and S_sum (the sum of a series, typed `limit`); the book's a_n, a polynomial coefficient of 1.2, is untouched. S carries the partial sums Sₖ (`series`), R the remainder R_N (`error`), ρ the limit of the ratio and root tests (`limit`). Every variables row carries an anchor, and so does every form of the chapter's concepts. Plans for every page were written in prep.
+
+Equations are numbered as openstax.org numbers them, checked on its pages: every clean display equation of 9.1–9.3 and the four marked `class="numbered"` in 9.5, Equations 9.1–9.14, each `\tag{9.N}`, so "Equation 9.6" and "Series (1), shown in Equation 9.11" name visible numbers. Figures 9.1–9.18 and Tables 9.1–9.3 are numbered without gaps; Table 9.3, the book's Summary of Convergence Tests, stays a book table with its spanning rows.
+
+Sequences and series are drawn apart throughout: terms as dots in `sequence`, partial sums in `series`, limits and sums as dashed `limit` levels, the remainder in `error`. Sims: 9.1 six (Figure 9.2 widened to the text's arithmetic and geometric sequences; Figure 9.3 with N terms; Figure 9.4's ε–N band on a stand-in aₙ = 2 + 3(−1)ⁿ⁺¹/n, the sketch printing no formula, and on the text's two convergent sequences; Figure 9.5 on the text's √x and cos x cases; Figure 9.6 with the three sequences as referents; Figure 9.7 with a bound M); 9.2 four (Figure 9.10 as terms below partial sums for five series; Figure 9.11 the Koch snowflake live; Sims of the geometric series and of the telescoping series laid end to end on a number line); 9.3 two (the fold 9.12 + 9.13 + 9.14 on p and the remainder estimate on Example 9.16's 1/x³); 9.4 two (Figure 9.16 with referents for the given and the compared series; a limit comparison Sim with Example 9.18(c)'s three tries); 9.5 two (the fold 9.17 + 9.18; the rearrangement the text describes, to any target); 9.6 one (the ratio and root tests on the section's series). All still; no 3D. Photographs kept: the opener's Koch iterations (intro), the sunflower and the Parthenon of 9.1's Fibonacci project. The 9.6 media link is dropped and named in `notes`.
+
+The Chapter Review Exercises printed at the end of 9.6 landed with the section that introduces what each tests: 383, 385, 387, 401 in 9.1; 389, 399, 403 in 9.2; 379, 380 in 9.3; 381, 382, 393, 397 in 9.5; 391, 395 in 9.6; 380 and 382 with AI-marked answers, 379 and 381 as true-or-false choices; the eleven unkeyed computational ones left out. Unkeyed even section exercises were left out except explanations, proofs, procedures and true-or-false statements, kept with AI-marked answers (9.2's 88, 90, 92, 130; 9.3's 188; 9.4's 230, 236, 238, 240, 244, 246, 248; 9.5's 286, 288, 290, 292, 294, 296, 298, 300, 308, 316; 9.6's 368, 374, 376, 378). Stems stand only over the exercises they describe (config 30).
+
+Corrections added as notes: the introduction's "(see Example 9.8)" for the Koch snowflake's area, which is Example 9.11; 9.1's "shown in Figure 9.4" for sequences drawn in Figure 9.3, "= → −∞", and Example 9.6(b)'s recursion "for all n ≥ 2" used from n = 1; 9.2's "the form given by Equation 9.5" for 9.6, exercise 107's prompt and exercise 113's key; 9.4's exercise 229 prompt (no summand) and exercise 205's key; 9.5's "Theorem 5.13", Volume 2's number for the Alternating Series Test, reworded "Theorem 9.13" and linked, the note adding that the step uses the limit comparison test (Theorem 9.12), and exercise 305's prompt; 9.6's ratio-test proof (|a_{n−}|, |aₙ| ≠ 0) and exercise 327's key. Stray "**" in the keys of 9.4's 203–209 are removed.
+
+Colour flags for the orchestrator's colours:default: in the light theme `sequence` and `series` read close (olive and dark brown), and `function`, `error` and the `integral` shading sit close (9.3's remainder figure).

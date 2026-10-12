@@ -1,0 +1,1583 @@
+{
+ "id": "10.4",
+ "module": "m53769",
+ "chapter": "10",
+ "title": "Working with Taylor Series",
+ "short": "Working with Taylor Series",
+ "lead": "Known Taylor series yield new ones. This section builds the <span data-concept=\"binomial-series\">binomial series</span> for (1 + x)ʳ, collects the Maclaurin series of common functions, and puts power series to work solving <span data-concept=\"differential-equation\">differential equations</span> and evaluating <span data-concept=\"nonelementary-integral\">nonelementary integrals</span>, among them a normal probability and the period of a pendulum.",
+ "objectives": [
+  "Write the terms of the binomial series.",
+  "Recognize the Taylor series expansions of common functions.",
+  "Recognize and apply techniques to find the Taylor series for a function.",
+  "Use Taylor series to solve differential equations.",
+  "Use Taylor series to evaluate nonelementary integrals."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"binomial-series\">binomial series</span> is the <span data-concept=\"maclaurin-series\">Maclaurin series</span> for $\\kf(x)={(1+x)}^{r}.$ It converges for $|x|\\lt 1.$</li><li><span data-concept=\"taylor-series\">Taylor series</span> for functions can often be derived by algebraic operations with a known <span data-concept=\"taylor-series\">Taylor series</span> or by differentiating or integrating a known <span data-concept=\"taylor-series\">Taylor series</span>.</li><li><span data-concept=\"power-series\">Power series</span> can be used to solve <span data-concept=\"differential-equation\">differential equations</span>.</li><li><span data-concept=\"taylor-series\">Taylor series</span> can be used to help approximate integrals that cannot be evaluated by other means.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. The 39 even-numbered section exercises have no answer in the book’s key. One is kept with an AI-written suggested approach: 232 (sinh x differentiated term by term). The other 38 are computational and are left out: exercises 174–200 even (binomial series and estimates), 202–230 even (Maclaurin series and radii), 234 (the series of sin²x), 236 (a series solution, shown and plotted), 238–252 even (probabilities, series solutions, integral estimates and pendulum periods). Of the Chapter Review Exercises printed here, 256, 267, 271, 273 and 275 are this section’s; 275 is keyed only “Answers may vary” and 256 not at all, so both carry AI-written approaches. Review exercises 253, 254, 257, 259, 261, 263, 277 are set in 10.1 and 10.2 and 255, 265, 269 in 10.3; 258, 260, 262, 264, 266, 268, 270, 272, 274, 276 and 278 are unkeyed and computational and are left out.",
+ "figures": [
+  {
+   "id": "sim-binomial",
+   "kind": "sim",
+   "number": "10.10",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_10_04_001.jpg"
+   ],
+   "original_caption": "The third-order Maclaurin polynomial p₃(x) provides a good approximation for f(x) = √(1 + x) for x near zero.",
+   "draws": [
+    "function",
+    "series",
+    "set",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-airy",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "series",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-normal",
+   "kind": "sim",
+   "number": "10.11",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_10_04_003.jpg"
+   ],
+   "original_caption": "If data values are normally distributed with mean μ and standard deviation σ, the probability that a randomly selected data value is between a and b is the area under the curve y = (1/(σ√(2π)))e^(−(x − μ)²/(2σ²)) between x = a and x = b.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pendulum",
+   "kind": "sim",
+   "number": "10.12",
+   "originals": [
+    "/media/ch10/CNX_Calc_Figure_10_04_002.jpg"
+   ],
+   "original_caption": "This pendulum has length L and makes a maximum angle θmax with the vertical.",
+   "draws": [
+    "angle",
+    "series",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "working-intro",
+   "concept": "taylor-series",
+   "verb": "uses"
+  },
+  {
+   "span": "binomial-series-term",
+   "concept": "binomial-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "binomial-series-term",
+   "concept": "maclaurin-series",
+   "verb": "uses"
+  },
+  {
+   "span": "binomial-coefficient-term",
+   "concept": "binomial-coefficient",
+   "verb": "introduces"
+  },
+  {
+   "span": "binomial",
+   "concept": "ratio-test",
+   "verb": "uses"
+  },
+  {
+   "span": "binomial",
+   "concept": "interval-of-convergence",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167023778748",
+   "concept": "binomial-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1167023918533",
+   "concept": "taylors-theorem-with-remainder",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167023918533",
+   "concept": "maclaurin-polynomial",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167024047165",
+   "concept": "maclaurin-series-of-common-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "common",
+   "concept": "combining-power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167024038502",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167023802476",
+   "concept": "term-by-term-differentiation-and-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "power-series-solution-term",
+   "concept": "power-series-solution-of-a-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-series-solution-term",
+   "concept": "separable-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167023814845",
+   "concept": "uniqueness-of-power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167023814845",
+   "concept": "initial-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "airy-term",
+   "concept": "airys-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "airy-term",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "elementary-term",
+   "concept": "elementary-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "elementary-term",
+   "concept": "nonelementary-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "elementary-term",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1167023782746",
+   "concept": "alternating-series-test",
+   "verb": "uses"
+  },
+  {
+   "span": "normal-term",
+   "concept": "normal-distribution",
+   "verb": "introduces"
+  },
+  {
+   "span": "normal-term",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "elliptic-term",
+   "concept": "elliptic-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167024040533",
+   "concept": "period-of-a-pendulum",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1167024040533",
+   "concept": "binomial-series",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1167024040777",
+   "source_number": "Checkpoint 10.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167023918533"
+   },
+   "cite": "binomial",
+   "prompt": "Find the binomial series for $f(x)=\\frac{1}{{(1+x)}^{2}}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} {(-1)}^{n}(n+1)x^{n}$",
+    "hint": "Use the definition of binomial series for $r=-2.$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1167024047399",
+   "source_number": "Checkpoint 10.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167024038502"
+   },
+   "cite": "common",
+   "prompt": "Find the Maclaurin series for $\\sin (x^{2}).$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} \\frac{{(-1)}^{n}x^{4n+2}}{(2n+1)!}$",
+    "hint": "Use the Maclaurin series for $\\sin x.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1167023914389",
+   "source_number": "Checkpoint 10.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167023802476"
+   },
+   "cite": "common",
+   "prompt": "Find the binomial series for $f(x)=\\frac{1}{{(1+x)}^{3/2}}$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n}}{n!}\\;\\frac{1\\cdot 3\\cdot 5\\cdots (2n-1)}{2^{n}}x^{n}$<sup class=\"fn\" data-note=\"c-cp1018-series\"></sup>",
+    "hint": "Differentiate the series for $\\frac{1}{\\sqrt{1+x}}.$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1167023779815",
+   "source_number": "Checkpoint 10.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167023814845"
+   },
+   "cite": "differential",
+   "prompt": "Use power series to solve $y^{\\prime}=2y,\\;y(0)=5.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=5e^{2x}$",
+    "hint": "The equations for the first several coefficients $c_{n}$ will satisfy $c_{0}=2c_{1},c_{1}=2\\cdot 2c_{2},c_{2}=2\\cdot 3c_{3}\\text{,….}$ In general, for all $n\\ge 0,c_{n}=2(n+1)C_{n+1}.$<sup class=\"fn\" data-note=\"c-cp1019-hint\"></sup>"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1167023801467",
+   "source_number": "Checkpoint 10.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167024039063"
+   },
+   "cite": "differential",
+   "prompt": "Use power series to solve $y^{\\prime\\prime}+x^{2}y=0$ with the initial condition $y(0)=a$ and $y^{\\prime}(0)=b.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=a(1-\\frac{x^{4}}{3\\cdot 4}+\\frac{x^{8}}{3\\cdot 4\\cdot 7\\cdot 8}-\\cdots )+b(x-\\frac{x^{5}}{4\\cdot 5}+\\frac{x^{9}}{4\\cdot 5\\cdot 8\\cdot 9}-\\cdots )$",
+    "hint": "The coefficients satisfy $c_{0}=a,c_{1}=b,c_{2}=0,c_{3}=0,$ and for $n\\ge 4,n(n-1)c_{n}=-c_{n-4}.$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1167023808285",
+   "source_number": "Checkpoint 10.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167023782746"
+   },
+   "cite": "nonelementary",
+   "prompt": "Express $\\int \\cos \\sqrt{x}dx$ as an infinite series. Evaluate $\\int_0^{1}\\cos \\sqrt{x}dx$ to within an error of $0.01.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$C+\\sum_{n=1}^{\\infty} {(-1)}^{n+1}\\frac{x^{n}}{n(2n-2)!}$ The definite integral is approximately $0.514$<sup class=\"fn\" data-note=\"c-cp1021-value\"></sup> to within an error of $0.01.$",
+    "hint": "Use the series found in <a href=\"#fs-id1167024038502\">Example 10.18</a>."
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1167023790666",
+   "source_number": "Checkpoint 10.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1167023782321"
+   },
+   "cite": "nonelementary",
+   "prompt": "Use the first five terms of the Maclaurin series for $e^{-x^{2}/2}$ to estimate the probability that a randomly selected test score is between $100$ and $150.$ Use the alternating series test to determine the accuracy of this estimate.",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.3414,
+    "tol": 0.0005,
+    "solution": "The estimate is approximately $0.3414.$ This estimate is accurate to within $0.0000094.$",
+    "hint": "Evaluate $\\int_0^{1}e^{-z^{2}/2} dz$ using the first five terms of the Maclaurin series for $e^{-z^{2}/2}.$"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1167023801880",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use appropriate substitutions to write down the Maclaurin series for the given binomial.</p><p>${(1+x^{2})}^{-1/3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(1+x^{2})}^{-1/3}=\\sum_{n=0}^{\\infty} \\binom{-\\frac{1}{3}}{n}x^{2n}$"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1167023851687",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use appropriate substitutions to write down the Maclaurin series for the given binomial.</p><p>${(1-2x)}^{2/3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(1-2x)}^{2/3}=\\sum_{n=0}^{\\infty} {(-1)}^{n}2^{n} \\binom{\\frac{2}{3}}{n}x^{n}$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1167023785043",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the substitution ${(b+x)}^{r}={(b+a)}^{r}{(1+\\frac{x-a}{b+a})}^{r}$ in the binomial expansion to find the Taylor series of each function with the given center.</p><p>$\\sqrt{x^{2}+2}$ at $a=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{2+x^{2}}=\\sum_{n=0}^{\\infty} 2^{(1/2)-n} \\binom{\\frac{1}{2}}{n}x^{2n};(|x^{2}|\\lt 2)$"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1167023772292",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the substitution ${(b+x)}^{r}={(b+a)}^{r}{(1+\\frac{x-a}{b+a})}^{r}$ in the binomial expansion to find the Taylor series of each function with the given center.</p><p>$\\sqrt{2x-x^{2}}$ at $a=1$ (<em>Hint:</em> $2x-x^{2}=1-{(x-1)}^{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{2x-x^{2}}=\\sqrt{1-{(x-1)}^{2}}$ so $\\sqrt{2x-x^{2}}=\\sum_{n=0}^{\\infty} {(-1)}^{n} \\binom{\\frac{1}{2}}{n}{(x-1)}^{2n}$"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1167023765599",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the substitution ${(b+x)}^{r}={(b+a)}^{r}{(1+\\frac{x-a}{b+a})}^{r}$ in the binomial expansion to find the Taylor series of each function with the given center.</p><p>$\\sqrt{x}$ at $a=4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{x}=2\\sqrt{1+\\frac{x-4}{4}}$ so $\\sqrt{x}=\\sum_{n=0}^{\\infty} 2^{1-2n}\\binom{\\frac{1}{2}}{n}{(x-4)}^{n}$"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1167024042805",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the substitution ${(b+x)}^{r}={(b+a)}^{r}{(1+\\frac{x-a}{b+a})}^{r}$ in the binomial expansion to find the Taylor series of each function with the given center.</p><p>$\\sqrt{x}$ at $\\alpha =9$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{x}=\\sum_{n=0}^{\\infty} 3^{1-2n}(\\frac{1}{2}n){(x-9)}^{n}$<sup class=\"fn\" data-note=\"c-e185-binomial\"></sup>"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1167023916291",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the binomial theorem to estimate each number, computing enough terms to obtain an estimate accurate to an error of at most $1/1000.$</p><p><strong>[T]</strong> ${(1001)}^{1/3}$ using ${(1000+x)}^{1/3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$10{(1+\\frac{x}{1000})}^{1/3}=\\sum_{n=0}^{\\infty} {10}^{1-3n} \\binom{\\frac{1}{3}}{n}x^{n}.$ Using, for example, a fourth-degree estimate at $x=1$ gives $\\begin{array}{rl}{(1001)}^{1/3} & \\approx 10(1+\\binom{\\frac{1}{3}}{1}{10}^{-3}+\\binom{\\frac{1}{3}}{2}{10}^{-6}+\\binom{\\frac{1}{3}}{3}{10}^{-9}+\\binom{\\frac{1}{3}}{4}{10}^{-12}) \\\\ & =10(1+\\frac{1}{{3.10}^{3}}-\\frac{1}{{9.10}^{6}}+\\frac{5}{{81.10}^{9}}-\\frac{10}{{243.10}^{12}})=10.00333222...\\end{array}$ whereas ${(1001)}^{1/3}=10.00332222839093....$ Two terms would suffice for three-digit accuracy."
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1167023809286",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the binomial approximation $\\sqrt{1-x}\\approx 1-\\frac{x}{2}-\\frac{x^{2}}{8}-\\frac{x^{3}}{16}-\\frac{5x^{4}}{128}-\\frac{7x^{5}}{256}$ for $|x|\\lt 1$ to approximate each number. Compare this value to the value given by a scientific calculator.</p><p><strong>[T]</strong> $\\sqrt{5}=5\\;\\times \\;\\frac{1}{\\sqrt{5}}$ using $x=\\frac{4}{5}$ in ${(1-x)}^{1/2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The approximation is $2.3152;$ the CAS value is $2.23\\text{…}.$"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1167023806380",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the binomial approximation $\\sqrt{1-x}\\approx 1-\\frac{x}{2}-\\frac{x^{2}}{8}-\\frac{x^{3}}{16}-\\frac{5x^{4}}{128}-\\frac{7x^{5}}{256}$ for $|x|\\lt 1$ to approximate each number. Compare this value to the value given by a scientific calculator.</p><p><strong>[T]</strong> $\\sqrt{6}$ using $x=\\frac{5}{6}$ in ${(1-x)}^{1/2}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The approximation is $2.583\\text{…};$ the CAS value is $2.449\\text{…}.$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1167024043307",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the binomial approximation $\\sqrt{1-x}\\approx 1-\\frac{x}{2}-\\frac{x^{2}}{8}-\\frac{x^{3}}{16}-\\frac{5x^{4}}{128}-\\frac{7x^{5}}{256}$ for $|x|\\lt 1$ to approximate each number. Compare this value to the value given by a scientific calculator.</p><p><strong>[T]</strong> Recall that the graph of $\\sqrt{1-x^{2}}$ is an upper semicircle of radius $1.$ Integrate the binomial approximation of $\\sqrt{1-x^{2}}$ up to order $8$ from $x=-1$ to $x=1$ to estimate $\\frac{\\pi}{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{1-x^{2}}=1-\\frac{x^{2}}{2}-\\frac{x^{4}}{8}-\\frac{x^{6}}{16}-\\frac{5x^{8}}{128}+\\cdots .$ Thus $\\int_{-1}^{1}\\sqrt{1-x^{2}} dx=x-\\frac{x^{3}}{6}-\\frac{x^{5}}{40}-\\frac{x^{7}}{7\\cdot 16}-\\frac{5x^{9}}{9\\cdot 128}+\\cdots {|}_{-1}^{1}\\approx 2-\\frac{1}{3}-\\frac{1}{20}-\\frac{1}{56}-\\frac{10}{9\\cdot 128}+\\text{error}=1.590...$ whereas $\\frac{\\pi}{2}=1.570...$"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1167023755649",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the expansion ${(1+x)}^{1/3}=1+\\frac{1}{3}x-\\frac{1}{9}x^{2}+\\frac{5}{81}x^{3}-\\frac{10}{243}x^{4}+\\cdots$ to write the first five terms (not necessarily a quartic polynomial) of each expression.</p><p>${(1+4x)}^{4/3};a=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{l}{(1+4x)}^{4/3}=(1+4x){(1+4x)}^{1/3} \\\\ =(1+4x)(1+\\frac{4x}{3}-\\frac{16x^{3}}{9}+\\frac{320x^{3}}{81}-\\frac{2560x^{4}}{243}) \\\\ =1+\\frac{16}{3}x+\\frac{32}{9}x^{2}-\\frac{256}{81}x^{3}+\\frac{1280}{243}x^{4}-\\frac{10240}{243}x^{5}\\end{array}$<sup class=\"fn\" data-note=\"c-e195-power\"></sup>"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1167023803588",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>In the following exercises, use the expansion ${(1+x)}^{1/3}=1+\\frac{1}{3}x-\\frac{1}{9}x^{2}+\\frac{5}{81}x^{3}-\\frac{10}{243}x^{4}+\\cdots$ to write the first five terms (not necessarily a quartic polynomial) of each expression.</p><p>${(x^{2}+6x+10)}^{1/3};a=-3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${(1+{(x+3)}^{2})}^{1/3}=1+\\frac{1}{3}{(x+3)}^{2}-\\frac{1}{9}{(x+3)}^{4}+\\frac{5}{81}{(x+3)}^{6}-\\frac{10}{243}{(x+3)}^{8}+\\cdots$"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1167023778819",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>Use the approximation ${(1-x)}^{2/3}=1-\\frac{2x}{3}-\\frac{x^{2}}{9}-\\frac{4x^{3}}{81}-\\frac{7x^{4}}{243}-\\frac{14x^{5}}{729}+\\cdots$ for $|x|\\lt 1$ to approximate $2^{1/3}={2.2}^{-2/3}.$<sup class=\"fn\" data-note=\"c-e199-product\"></sup></p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.26,
+    "tol": 0.001,
+    "solution": "Twice the approximation is $1.260\\text{…}$ whereas $2^{1/3}=1.2599....$"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1167023786885",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "binomial",
+   "prompt": "<p>Find the $99$ th derivative at $x=0$ of $f(x)={(1+x^{4})}^{25}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "solution": "$f^{(99)}(0)=0$"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1167023787057",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series of each function.</p><p>$f(x)=2^{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} \\frac{{(\\ln (2)x)}^{n}}{n!}$"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1167023800961",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series of each function.</p><p>$f(x)=\\frac{\\sin (\\sqrt{x})}{\\sqrt{x}},\\;(x\\gt 0),$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "For $x\\gt 0,\\sin (\\sqrt{x})=<sup class=\"fn\" data-note=\"c-e205-left\"></sup>\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{x^{(2n+1)/2}}{\\sqrt{x}(2n+1)!} =\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{x^{n}}{(2n+1)!} .$"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1167023799746",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series of each function.</p><p>$f(x)=e^{x^{3}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{x^{3}}=\\sum_{n=0}^{\\infty} \\frac{x^{3n}}{n!}$"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1167023779564",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series of each function.</p><p>$f(x)={\\sin }^{2}x$ using the identity ${\\sin }^{2}x=\\frac{1}{2}-\\frac{1}{2}\\;\\cos (2x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${\\sin }^{2}x=-\\sum_{k=1}^{\\infty} \\frac{{(-1)}^{k}2^{2k-1}x^{2k}}{(2k)!}$"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1167023920580",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series of $F(x)=\\int_0^{x}f(t)\\;dt$ by integrating the Maclaurin series of $f$ term by term. If $f$ is not strictly defined at zero, you may substitute the value of the Maclaurin series at zero.</p><p>$F(x)={\\tan }^{-1}x;\\;f(t)=\\frac{1}{1+t^{2}}=\\sum_{n=0}^{\\infty} {(-1)}^{n}t^{2n}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${\\tan }^{-1}x=\\sum_{k=0}^{\\infty} \\frac{{(-1)}^{k}x^{2k+1}}{2k+1}$"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1167023776912",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series of $F(x)=\\int_0^{x}f(t)\\;dt$ by integrating the Maclaurin series of $f$ term by term. If $f$ is not strictly defined at zero, you may substitute the value of the Maclaurin series at zero.</p><p>$F(x)={\\sin }^{-1}x;\\;f(t)=\\frac{1}{\\sqrt{1-t^{2}}}=\\sum_{k=0}^{\\infty} \\binom{\\frac{1}{2}}{k}\\frac{t^{2k}}{k!}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${\\sin }^{-1}x=\\sum_{n=0}^{\\infty} \\binom{\\frac{1}{2}}{n}\\frac{x^{2n+1}}{(2n+1)n!}$<sup class=\"fn\" data-note=\"c-e213-arcsin\"></sup>"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1167023922573",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series of $F(x)=\\int_0^{x}f(t)\\;dt$ by integrating the Maclaurin series of $f$ term by term. If $f$ is not strictly defined at zero, you may substitute the value of the Maclaurin series at zero.</p><p>$F(x)=\\int_0^{x}\\cos (\\sqrt{t})\\;dt ;\\;f(t)=\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{x^{n}}{(2n)!}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{x^{n+1}}{(n+1)(2n)!}$"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1167023797831",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series of $F(x)=\\int_0^{x}f(t)\\;dt$ by integrating the Maclaurin series of $f$ term by term. If $f$ is not strictly defined at zero, you may substitute the value of the Maclaurin series at zero.</p><p>$F(x)=\\int_0^{x}\\frac{\\ln (1+t)}{t}dt ;\\;f(t)=\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{t^{n}}{n+1}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\sum_{n=1}^{\\infty} {(-1)}^{n+1}\\frac{x^{n}}{n^{2}}$"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1167023799995",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, compute at least the first three nonzero terms (not necessarily a quadratic polynomial) of the Maclaurin series of $f.$</p><p>$f(x)=\\tan x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x+\\frac{x^{3}}{3}+\\frac{2x^{5}}{15}+\\cdots$"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1167023800152",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, compute at least the first three nonzero terms (not necessarily a quadratic polynomial) of the Maclaurin series of $f.$</p><p>$f(x)=e^{x}\\cos x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1+x-\\frac{x^{3}}{3}-\\frac{x^{4}}{6}+\\cdots$"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1167023775350",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, compute at least the first three nonzero terms (not necessarily a quadratic polynomial) of the Maclaurin series of $f.$</p><p>$f(x)={\\sec }^{2}x$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$1+x^{2}+\\frac{2x^{4}}{3}+\\frac{17x^{6}}{45}+\\cdots$"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1167023775501",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, compute at least the first three nonzero terms (not necessarily a quadratic polynomial) of the Maclaurin series of $f.$</p><p>$f(x)=\\frac{\\tan \\sqrt{x}}{\\sqrt{x}}$ (see expansion for $\\tan x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Using the expansion for $\\tan x$ gives $1+\\frac{x}{3}+\\frac{2x^{2}}{15}.$"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1167023764857",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the radius of convergence of the Maclaurin series of each function.</p><p>$\\frac{1}{1+x^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{1+x^{2}}=\\sum_{n=0}^{\\infty} {(-1)}^{n}x^{2n}$ so $R=1$ by the ratio test."
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1167023913276",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the radius of convergence of the Maclaurin series of each function.</p><p>$\\ln (1+x^{2})$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln (1+x^{2})=\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n-1}}{n} x^{2n}$ so $R=1$ by the ratio test."
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1167023763642",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>Find the Maclaurin series of $\\operatorname{cosh}\\;x=\\frac{e^{x}+e^{-x}}{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Add series of $e^{x}$ and $e^{-x}$ term by term. Odd terms cancel and $\\operatorname{cosh}\\;x=\\sum_{n=0}^{\\infty} \\frac{x^{2n}}{(2n)!} .$"
+   }
+  },
+  {
+   "id": "e232",
+   "source_id": "fs-id1167023763767",
+   "source_number": "232",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>Differentiate term by term the Maclaurin series of $\\operatorname{sinh}\\;x$ and compare the result with the Maclaurin series of $\\operatorname{cosh}\\;x.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>The Maclaurin series of $\\operatorname{sinh}x$ is $\\sum_{n=0}^{\\infty} \\frac{x^{2n+1}}{(2n+1)!}=x+\\frac{x^{3}}{3!}+\\frac{x^{5}}{5!}+\\cdots.$ Differentiating term by term gives $\\sum_{n=0}^{\\infty} \\frac{(2n+1)x^{2n}}{(2n+1)!}=\\sum_{n=0}^{\\infty} \\frac{x^{2n}}{(2n)!}=1+\\frac{x^{2}}{2!}+\\frac{x^{4}}{4!}+\\cdots,$ which is the Maclaurin series of $\\operatorname{cosh}x.$ Both series converge for all $x,$ so the comparison shows $\\frac{d}{dx}\\operatorname{sinh}x=\\operatorname{cosh}x.$</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1167023774048",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p><strong>[T]</strong> Let $S_{n}(x)=\\sum_{k=0}^{n} {(-1)}^{k}\\frac{x^{2k+1}}{(2k+1)!}$ and $C_{n}(x)=\\sum_{n=0}^{n} {(-1)}^{k}\\frac{x^{2k}}{(2k)!}$ denote the respective Maclaurin polynomials of degree $2n+1$ of $\\sin x$ and degree $2n$ of $\\cos x.$ Plot the errors $\\frac{S_{n}(x)}{C_{n}(x)}-\\tan x$ for $n=1,..,5$ and compare them to $x+\\frac{x^{3}}{3}+\\frac{2x^{5}}{15}+\\frac{17x^{7}}{315}-\\tan x$ on $(-\\frac{\\pi}{4},\\frac{\\pi}{4}).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_04_201.jpg\" alt=\"This graph has two curves. The first one is a decreasing function passing through the origin. The second is a broken line which is an increasing function passing through the origin. The two curves are very close around the origin.\">\n<p>The ratio $\\frac{S_{n}(x)}{C_{n}(x)}$ approximates $\\tan x$ better than does $p_{7}(x)=x+\\frac{x^{3}}{3}+\\frac{2x^{5}}{15}+\\frac{17x^{7}}{315}$ for $N\\ge 3.$ The dashed curves are $\\frac{S_{n}}{C_{n}}-\\tan$ for $n=1,2.$ The dotted curve corresponds to $n=3,$ and the dash-dotted curve corresponds to $n=4.$ The solid curve is $p_{7}-\\tan x.$</p>"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1167023785664",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differential",
+   "prompt": "<p>If $y=\\sum_{n=0}^{\\infty} a_{n}x^{n} ,$ find the power series expansions of $xy^{\\prime}$ and $x^{2}y^{\\prime\\prime}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "By the term-by-term differentiation theorem, $y^{\\prime}=\\sum_{n=1}^{\\infty} na_{n}x^{n-1}$ so $y^{\\prime}=\\sum_{n=1}^{\\infty} na_{n}x^{n-1} \\;xy^{\\prime}=\\sum_{n=1}^{\\infty} na_{n}x^{n} ,$ whereas $y^{\\prime}=\\sum_{n=2}^{\\infty} n(n-1)a_{n}x^{n-2}$ so<sup class=\"fn\" data-note=\"c-e235-second\"></sup> $xy^{\\prime\\prime}=\\sum_{n=2}^{\\infty} n(n-1)a_{n}x^{n} .$"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1167023780227",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonelementary",
+   "prompt": "<p><strong>[T]</strong> Suppose that a set of standardized test scores is normally distributed with mean $μ=100$ and standard deviation $σ=10.$ Set up an integral that represents the probability that a test score will be between $90$ and $110$ and use the integral of the degree $10$ Maclaurin polynomial of $\\frac{1}{\\sqrt{2\\pi}}e^{-x^{2}/2}$ to estimate this probability.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.6827,
+    "tol": 0.0005,
+    "solution": "The probability is $p=\\frac{1}{\\sqrt{2\\pi}}\\int_{(a-μ)/σ}^{(b-μ)/σ}e^{-x^{2}/2}dx$ where $a=90$ and $b=100,$<sup class=\"fn\" data-note=\"c-e237-b\"></sup> that is, $p=\\frac{1}{\\sqrt{2\\pi}}\\int_{-1}^{1}e^{-x^{2}/2}dx =\\frac{1}{\\sqrt{2\\pi}}\\int_{-1}^{1}\\sum_{n=0}^{5} {(-1)}^{n} \\frac{x^{2n}}{2^{n}n!}dx =\\frac{2}{\\sqrt{2\\pi}}\\sum_{n=0}^{5} {(-1)}^{n} \\frac{1}{(2n+1)2^{n}n!}\\approx 0.6827.$"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1167024036700",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differential",
+   "prompt": "<p><strong>[T]</strong> Suppose that $\\sum_{n=0}^{\\infty} a_{n}x^{n}$ converges to a function $f(x)$ such that $f(0)=1,f^{\\prime}(0)=0,$ and $f^{\\prime\\prime}(x)=-f(x).$ Find a formula for $a_{n}$ and plot the partial sum $S_{N}$ for $N=20$ on $[-5,5].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_04_207.jpg\" alt=\"This graph is a wave curve symmetrical about the origin. It has a peak at y = 1 above the origin. It has lowest points at -3 and 3.\">\n<p>As in the previous problem one obtains $a_{n}=0$ if $n$ is odd and $a_{n}=-(n+2)(n+1)a_{n+2}$ if $n$ is even, so $a_{0}=1$ leads to $a_{2n}=\\frac{{(-1)}^{n}}{(2n)!}.$</p>"
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1167023858990",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "differential",
+   "prompt": "<p>Suppose that $\\sum_{n=0}^{\\infty} a_{n}x^{n}$ converges to a function $y$ such that $y^{\\prime\\prime}-y^{\\prime}+y=0$ where $y(0)=1$ and $y^{\\prime}(0)=0.$ Find a formula that relates $a_{n+2},a_{n+1},$ and $a_{n}$ and compute $a_{0},...,a_{5}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y^{\\prime\\prime}=\\sum_{n=0}^{\\infty} (n+2)(n+1)a_{n+2}x^{n}$ and $y^{\\prime}=\\sum_{n=0}^{\\infty} (n+1)a_{n+1}x^{n}$ so $y^{\\prime\\prime}-y^{\\prime}+y=0$ implies that $(n+2)(n+1)a_{n+2}-(n+1)a_{n+1}+a_{n}=0$ or $a_{n}=\\frac{a_{n-1}}{n}-\\frac{a_{n-2}}{n(n-1)}$ for all $n\\cdot y(0)=a_{0}=1$ and $y^{\\prime}(0)=a_{1}=0,$ so $a_{2}=\\frac{1}{2},a_{3}=\\frac{1}{6},a_{4}=0,$ and $a_{5}=-\\frac{1}{120}.$<sup class=\"fn\" data-note=\"c-e241-signs\"></sup>"
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1167023829504",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonelementary",
+   "prompt": "<p>The error in approximating the integral $\\int_{a}^{b}f(t)\\;dt$ by that of a Taylor approximation $\\int_{a}^{b}P_{n}(t)\\;dt$ is at most $\\int_{a}^{b}R_{n}(t)\\;dt.$ In the following exercises, the Taylor remainder estimate $R_{n}\\le \\frac{M}{(n+1)!}{|x-a|}^{n+1}$ guarantees that the integral of the Taylor polynomial of the given order approximates the integral of $f$ with an error less than $\\frac{1}{10}.$</p><p>a. Evaluate the integral of the appropriate Taylor polynomial and verify that it approximates the CAS value with an error less than $\\frac{1}{100}.$</p><p>b. Compare the accuracy of the polynomial integral estimate with the remainder estimate.</p><p><strong>[T]</strong> $\\int_0^{\\pi}\\frac{\\sin t}{t}dt ;P_{s}=1-\\frac{x^{2}}{3!}+\\frac{x^{4}}{5!}-\\frac{x^{6}}{7!}+\\frac{x^{8}}{9!}$ (You may assume that the absolute value of the ninth derivative of $\\frac{\\sin t}{t}$ is bounded by $0.1.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. (Proof) b. We have $R_{s}\\le \\frac{0.1}{(9)!}{\\pi}^{9}\\approx 0.0082\\lt 0.01.$ We have $\\int_0^{\\pi}(1-\\frac{x^{2}}{3!}+\\frac{x^{4}}{5!}-\\frac{x^{6}}{7!}+\\frac{x^{8}}{9!})\\;dx =\\pi -\\frac{{\\pi}^{3}}{3\\cdot 3!}+\\frac{{\\pi}^{5}}{5\\cdot 5!}-\\frac{{\\pi}^{7}}{7\\cdot 7!}+\\frac{{\\pi}^{9}}{9\\cdot 9!}=1.852...,$ whereas $\\int_0^{\\pi}\\frac{\\sin t}{t}dt =1.85194...,$ so the actual error is approximately $0.00006.$"
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1167023915040",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonelementary",
+   "prompt": "<p>The following exercises deal with Fresnel integrals.</p><p>The Fresnel integrals are defined by $C(x)=\\int_0^{x}\\cos (t^{2})\\;dt$ and $S(x)=\\int_0^{x}\\sin (t^{2})\\;dt .$ Compute the power series of $C(x)$ and $S(x)$ and plot the sums $C_{N}(x)$ and $S_{N}(x)$ of the first $N=50$ nonzero terms on $[0,2\\pi ].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch10/CNX_Calc_Figure_10_04_204.jpg\" alt=\"This graph has two curves. The first one is a solid curve labeled Csub50(x). It begins at the origin and is a wave that gradually decreases in amplitude. The highest it reaches is y = 1. The second curve is labeled Ssub50(x). It is a wave that gradually decreases in amplitude. The highest it reaches is 0.9. It is very close to the pattern of the first curve with a slight shift to the right.\">\n<p>Since $\\cos (t^{2})=\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{t^{4n}}{(2n)!}$ and $\\sin (t^{2})=\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{t^{4n+2}}{(2n+1)!} ,$ one has $S(x)=\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{x^{4n+3}}{(4n+3)(2n+1)!}$ and $C(x)=\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{x^{4n+1}}{(4n+1)(2n)!} .$ The sums of the first $50$ nonzero terms are plotted below with $C_{50}(x)$ the solid curve and $S_{50}(x)$ the dashed curve.</p>"
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1167024042101",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonelementary",
+   "prompt": "<p>Estimate $\\int_0^{1/4}\\sqrt{x-x^{2}} dx$ by approximating $\\sqrt{1-x}$ using the binomial approximation $1-\\frac{x}{2}-\\frac{x^{2}}{8}-\\frac{x^{3}}{16}-\\frac{5x^{4}}{2128}-\\frac{7x^{5}}{256}.$<sup class=\"fn\" data-note=\"c-e247-denominator\"></sup></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{1/4}\\sqrt{x} (1-\\frac{x}{2}-\\frac{x^{2}}{8}-\\frac{x^{3}}{16}-\\frac{5x^{4}}{128}-\\frac{7x^{5}}{256})\\;dx$ $=\\frac{2}{3}2^{-3}-\\frac{1}{2}\\;\\frac{2}{5}2^{-5}-\\frac{1}{8}\\;\\frac{2}{7}2^{-7}-\\frac{1}{16}\\;\\frac{2}{9}2^{-9}-\\frac{5}{128}\\;\\frac{2}{11}2^{-11}-\\frac{7}{256}\\;\\frac{2}{13}2^{-13}=0.0767732...$ whereas $\\int_0^{1/4}\\sqrt{x-x^{2}} dx=0.076773.$"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1167023907486",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonelementary",
+   "prompt": "<p>Use the approximation $T\\approx 2\\pi \\sqrt{\\frac{L}{g}}(1+\\frac{k^{2}}{4})$ to approximate the period of a pendulum having length $10$ meters and maximum angle ${\\theta}_{\\text{max}}=\\frac{\\pi}{6}$ where $k=\\sin (\\frac{{\\theta}_{\\text{max}}}{2}).$ Compare this with the small angle estimate $T\\approx 2\\pi \\sqrt{\\frac{L}{g}}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.453,
+    "tol": 0.001,
+    "solution": "$T\\approx 2\\pi \\sqrt{\\frac{10}{9.8}}(1+\\frac{{\\sin }^{2}(\\theta /12)}{4})\\approx 6.453$ seconds. The small angle estimate is $T\\approx 2\\pi \\sqrt{\\frac{10}{9.8}\\approx 6.347}.$ The relative error is around $2$ percent."
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1167024045994",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonelementary",
+   "prompt": "<p>Evaluate $\\int_0^{\\pi /2}{\\sin }^{4}\\theta d\\theta$ in the approximation $T=4\\sqrt{\\frac{L}{g}}\\int_0^{\\pi /2}(1+\\frac{1}{2}k^{2}{\\sin }^{2}\\theta +\\frac{3}{8}k^{4}{\\sin }^{4}\\theta +\\cdots )\\;d\\theta$ to obtain an improved estimate for $T.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^{\\pi /2}{\\sin }^{4}\\theta d\\theta =\\frac{3\\pi}{16}.$ Hence $T\\approx 2\\pi \\sqrt{\\frac{L}{g}}(1+\\frac{k^{2}}{4}+\\frac{9}{256}k^{4}).$<sup class=\"fn\" data-note=\"c-e251-coefficient\"></sup>"
+   }
+  },
+  {
+   "id": "r256",
+   "source_id": "fs-id1167024045297",
+   "source_number": "256",
+   "kind": "review-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p><em>True or False?</em> In the following exercises, justify your answer with a proof or a counterexample.</p><p>The radius of convergence for the Maclaurin series of $f(x)=3^{x}$ is $3.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>False. Since $3^{x}=e^{x\\ln 3},$ substituting $x\\ln 3$ for $x$ in the Maclaurin series of $e^{x}$ gives $3^{x}=\\sum_{n=0}^{\\infty} \\frac{{(\\ln 3)}^{n}x^{n}}{n!}.$ By the ratio test, $\\frac{|a_{n+1}|}{|a_{n}|}=\\frac{(\\ln 3)|x|}{n+1}\\to 0\\lt 1$ for every $x,$ so the series converges for all real $x$ and its radius of convergence is $\\infty,$ not 3.</p>",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r267",
+   "source_id": "fs-id1167023827605",
+   "source_number": "267",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series for the given function.</p><p>$f(x)=\\cos (3x)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=0}^{\\infty} \\frac{{(-1)}^{n}{(3x)}^{2n}}{2n!}$<sup class=\"fn\" data-note=\"c-r267-factorial\"></sup>"
+   }
+  },
+  {
+   "id": "r271",
+   "source_id": "fs-id1167023828013",
+   "source_number": "271",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series for the given function.</p><p>$f(x)=e^{-x^{2}}-1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n}}{n!} x^{2n}$"
+   }
+  },
+  {
+   "id": "r273",
+   "source_id": "fs-id1167023846017",
+   "source_number": "273",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>In the following exercises, find the Maclaurin series for $F(x)=\\int_0^{x}f(t) dt$ by integrating the Maclaurin series of $f(x)$ term by term.</p><p>$f(x)=\\frac{\\sin x}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$F(x)=\\sum_{n=0}^{\\infty} \\frac{{(-1)}^{n}}{(2n+1)(2n+1)!} x^{2n+1}$"
+   }
+  },
+  {
+   "id": "r275",
+   "source_id": "fs-id1167023846232",
+   "source_number": "275",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "common",
+   "prompt": "<p>Use power series to prove Euler’s formula: $e^{ix}=\\cos x+i\\;\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<p>Substitute $ix$ for $x$ in the Maclaurin series of $e^{x}$ and use $i^{2}=-1,$ $i^{3}=-i,$ $i^{4}=1$: $e^{ix}=\\sum_{n=0}^{\\infty} \\frac{{(ix)}^{n}}{n!}=1+ix-\\frac{x^{2}}{2!}-i\\frac{x^{3}}{3!}+\\frac{x^{4}}{4!}+i\\frac{x^{5}}{5!}-\\cdots.$ The series converges absolutely for every $x,$ so its terms may be grouped into the even and the odd powers: $e^{ix}=(1-\\frac{x^{2}}{2!}+\\frac{x^{4}}{4!}-\\cdots)+i(x-\\frac{x^{3}}{3!}+\\frac{x^{5}}{5!}-\\cdots)=\\sum_{n=0}^{\\infty} \\frac{{(-1)}^{n}x^{2n}}{(2n)!}+i\\sum_{n=0}^{\\infty} \\frac{{(-1)}^{n}x^{2n+1}}{(2n+1)!}.$ The two series are the Maclaurin series of $\\cos x$ and $\\sin x,$ so $e^{ix}=\\cos x+i\\sin x.$</p>",
+    "generated_by": "ai"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "combining-power-series"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "nonelementary-integral"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "normal-distribution"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "nonelementary-integral"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "alternating-series-test"
+  },
+  {
+   "exercise": "e175",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e177",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e179",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e181",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e183",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e185",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e187",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e187",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e189",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e191",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e193",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e193",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e195",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e195",
+   "concept": "multiplying-power-series"
+  },
+  {
+   "exercise": "e197",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e199",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e201",
+   "concept": "binomial-coefficient"
+  },
+  {
+   "exercise": "e201",
+   "concept": "uniqueness-of-power-series"
+  },
+  {
+   "exercise": "e203",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e205",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e205",
+   "concept": "combining-power-series"
+  },
+  {
+   "exercise": "e207",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e209",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e209",
+   "concept": "combining-power-series"
+  },
+  {
+   "exercise": "e211",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e211",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e213",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e213",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e215",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e215",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e217",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e217",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e219",
+   "concept": "maclaurin-series"
+  },
+  {
+   "exercise": "e221",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e221",
+   "concept": "multiplying-power-series"
+  },
+  {
+   "exercise": "e223",
+   "concept": "maclaurin-series"
+  },
+  {
+   "exercise": "e225",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e227",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e227",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e229",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e229",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "e231",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e231",
+   "concept": "combining-power-series"
+  },
+  {
+   "exercise": "e232",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e232",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e233",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e235",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "e235",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e237",
+   "concept": "normal-distribution"
+  },
+  {
+   "exercise": "e237",
+   "concept": "nonelementary-integral"
+  },
+  {
+   "exercise": "e239",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e241",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e243",
+   "concept": "nonelementary-integral"
+  },
+  {
+   "exercise": "e243",
+   "concept": "taylors-theorem-with-remainder"
+  },
+  {
+   "exercise": "e245",
+   "concept": "nonelementary-integral"
+  },
+  {
+   "exercise": "e245",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "e247",
+   "concept": "binomial-series"
+  },
+  {
+   "exercise": "e247",
+   "concept": "nonelementary-integral"
+  },
+  {
+   "exercise": "e249",
+   "concept": "period-of-a-pendulum"
+  },
+  {
+   "exercise": "e251",
+   "concept": "period-of-a-pendulum"
+  },
+  {
+   "exercise": "e251",
+   "concept": "elliptic-integral"
+  },
+  {
+   "exercise": "r256",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "r256",
+   "concept": "radius-of-convergence"
+  },
+  {
+   "exercise": "r267",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "r267",
+   "concept": "combining-power-series"
+  },
+  {
+   "exercise": "r271",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "r271",
+   "concept": "combining-power-series"
+  },
+  {
+   "exercise": "r273",
+   "concept": "maclaurin-series-of-common-functions"
+  },
+  {
+   "exercise": "r273",
+   "concept": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "exercise": "r275",
+   "concept": "maclaurin-series-of-common-functions"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-cp1018-series",
+   "kind": "correction",
+   "html": "The printed series is that of $\\frac{1}{\\sqrt{1+x}}$ less its first term. Differentiating $\\frac{1}{\\sqrt{1+x}}$ and multiplying by $-2$ gives the binomial series of $(1+x)^{-3/2}$: $1+\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n}}{n!}\\;\\frac{1\\cdot 3\\cdot 5\\cdots (2n+1)}{2^{n}}x^{n}=1-\\frac{3}{2}x+\\frac{15}{8}x^{2}-\\cdots,$ the series for $r=-\\frac{3}{2}.$"
+  },
+  {
+   "id": "c-cp1019-hint",
+   "kind": "correction",
+   "html": "The equations are reversed: substituting $y=\\sum c_{n}x^{n}$ into $y^{\\prime}=2y$ gives $c_{1}=2c_{0},$ $2c_{2}=2c_{1},$ $3c_{3}=2c_{2},$ …, and in general $(n+1)c_{n+1}=2c_{n}$ for $n\\ge 0.$"
+  },
+  {
+   "id": "c-cp1021-value",
+   "kind": "correction",
+   "html": "The series gives $\\int_{0}^{1}\\cos \\sqrt{x}\\,dx=1-\\frac{1}{4}+\\frac{1}{72}-\\frac{1}{2160}+\\cdots\\approx 0.764,$ the value of $2(\\cos 1+\\sin 1-1)\\approx 0.7635;$ 0.514 is printed."
+  },
+  {
+   "id": "c-ex1020-c4",
+   "kind": "correction",
+   "html": "The last term shown on the right is $4c_{4}x^{3},$ the term of $y^{\\prime}$ above; $4c_{3}x^{3}$ is printed. The equations that follow use $c_{3}=4c_{4}.$"
+  },
+  {
+   "id": "c-ex1023-terms",
+   "kind": "correction",
+   "html": "The problem asks for the first six terms, and the stated accuracy, 0.00546, is the size of the seventh term. The first six terms give $\\frac{1}{\\sqrt{2\\pi}}(2-\\frac{8}{6}+\\frac{32}{40}-\\frac{128}{336}+\\frac{512}{3456}-\\frac{2^{11}}{11\\cdot 2^{5}\\cdot 5!})\\approx 0.4729,$ within 0.00546 of the probability, about 0.4772; the first five give 0.4922, which is not within the stated accuracy."
+  },
+  {
+   "id": "c-ex1024-dot",
+   "kind": "correction",
+   "html": "In the first coefficient of $k^{4},$ “1.3” is printed for $1\\cdot 3,$ as the right side has it."
+  },
+  {
+   "id": "c-e185-binomial",
+   "kind": "correction",
+   "html": "The factor printed $(\\frac{1}{2}n)$ is the binomial coefficient $\\binom{\\frac{1}{2}}{n},$ as in exercise 183."
+  },
+  {
+   "id": "c-e195-power",
+   "kind": "correction",
+   "html": "In the second line the third term is $-\\frac{16x^{2}}{9};$ $x^{3}$ is printed. The last line keeps only the terms of the product through $x^{4}$ exactly; its $x^{5}$ term also takes a contribution from the next term of the series for $(1+4x)^{1/3}.$"
+  },
+  {
+   "id": "c-e199-product",
+   "kind": "correction",
+   "html": "“2.2” is printed for $2\\cdot 2$: $2^{1/3}=2\\cdot 2^{-2/3}=2(1-\\frac{1}{2})^{2/3},$ so the approximation is used at $x=\\frac{1}{2}$ and doubled."
+  },
+  {
+   "id": "c-e205-left",
+   "kind": "correction",
+   "html": "The left side is $\\frac{\\sin (\\sqrt{x})}{\\sqrt{x}},$ the function of the exercise; $\\sin (\\sqrt{x})$ is printed."
+  },
+  {
+   "id": "c-e213-arcsin",
+   "kind": "correction",
+   "html": "The prompt’s series and the key use $\\binom{\\frac{1}{2}}{k}.$ The binomial series of $\\frac{1}{\\sqrt{1-t^{2}}}=(1-t^{2})^{-1/2}$ is $\\sum_{k=0}^{\\infty} \\binom{-\\frac{1}{2}}{k}{(-1)}^{k}t^{2k}=\\sum_{k=0}^{\\infty} \\frac{(2k)!}{4^{k}{(k!)}^{2}}t^{2k},$ so ${\\sin }^{-1}x=\\sum_{n=0}^{\\infty} \\frac{(2n)!}{4^{n}{(n!)}^{2}}\\frac{x^{2n+1}}{2n+1}=x+\\frac{x^{3}}{6}+\\frac{3x^{5}}{40}+\\cdots.$"
+  },
+  {
+   "id": "c-e235-second",
+   "kind": "correction",
+   "html": "The second series is $y^{\\prime\\prime}=\\sum_{n=2}^{\\infty} n(n-1)a_{n}x^{n-2},$ so $x^{2}y^{\\prime\\prime}=\\sum_{n=2}^{\\infty} n(n-1)a_{n}x^{n};$ $y^{\\prime}$ and $xy^{\\prime\\prime}$ are printed."
+  },
+  {
+   "id": "c-e237-b",
+   "kind": "correction",
+   "html": "The upper end is $b=110,$ as the prompt and the limits $-1$ to $1$ have it; $b=100$ is printed."
+  },
+  {
+   "id": "c-e241-signs",
+   "kind": "correction",
+   "html": "With $a_{0}=1$ and $a_{1}=0,$ the relation $a_{n}=\\frac{a_{n-1}}{n}-\\frac{a_{n-2}}{n(n-1)}$ gives $a_{2}=-\\frac{1}{2},$ $a_{3}=-\\frac{1}{6},$ $a_{4}=0$ and $a_{5}=\\frac{1}{120}$: the signs of $a_{2},$ $a_{3}$ and $a_{5}$ are printed reversed. (Check: $y^{\\prime\\prime}(0)=y^{\\prime}(0)-y(0)=-1=2a_{2}.$)"
+  },
+  {
+   "id": "c-e247-denominator",
+   "kind": "correction",
+   "html": "The coefficient of $x^{4}$ is $\\frac{5}{128},$ as in the key; $\\frac{5}{2128}$ is printed."
+  },
+  {
+   "id": "c-e251-coefficient",
+   "kind": "correction",
+   "html": "Since $4\\cdot \\frac{3}{8}\\cdot \\frac{3\\pi}{16}=\\frac{9\\pi}{32}=2\\pi \\cdot \\frac{9}{64},$ the improved estimate is $T\\approx 2\\pi \\sqrt{\\frac{L}{g}}(1+\\frac{k^{2}}{4}+\\frac{9}{64}k^{4});$ $\\frac{9}{256}$ is printed."
+  },
+  {
+   "id": "c-r267-factorial",
+   "kind": "correction",
+   "html": "The denominator is $(2n)!$; $2n!$ is printed."
+  }
+ ]
+}

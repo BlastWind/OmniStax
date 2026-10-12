@@ -1,0 +1,244 @@
+<p id="properties-intro">In the preceding section on <span data-concept="power-series">power series</span> and functions we showed how to represent certain functions using <span data-concept="power-series">power series</span>. In this section we discuss how <span data-concept="power-series">power series</span> can be combined, differentiated, or integrated to create new <span data-concept="power-series">power series</span>. This capability is particularly useful for a couple of reasons. First, it allows us to find <span data-concept="power-series">power series representations</span> for certain elementary functions, by writing those functions in terms of functions with known <span data-concept="power-series">power series</span>. For example, given the <span data-concept="power-series">power series representation</span> for $\kf(x)=\frac{1}{1-x},$ we can find a <span data-concept="power-series">power series representation</span> for $\kfprime(x)=\frac{1}{{(1-x)}^{2}}.$ Second, being able to create <span data-concept="power-series">power series</span> allows us to define new functions that cannot be written in terms of elementary functions. This capability is particularly useful for solving differential equations for which there is no solution in terms of elementary functions.</p>
+
+<section id="combining">
+<h2>Combining Power Series</h2>
+<p class="cite-target">If we have two <span data-concept="power-series">power series</span> with the same <span data-concept="interval-of-convergence">interval of convergence</span>, we can add or subtract the two series to create a new <span data-concept="power-series">power series</span>, also with the same <span data-concept="interval-of-convergence">interval of convergence</span>. Similarly, we can multiply a <span data-concept="power-series">power series</span> by a power of <em>x</em> or evaluate a <span data-concept="power-series">power series</span> at $x^{m}$ for a positive integer <em>m</em> to create a new <span data-concept="power-series">power series</span>. Being able to do this allows us to find <span data-concept="power-series">power series representations</span> for certain functions by using <span data-concept="power-series">power series representations</span> of other functions. For example, since we know the <span data-concept="power-series">power series representation</span> for $\kf(x)=\frac{1}{1-x},$ we can find <span data-concept="power-series">power series representations</span> for related functions, such as</p>
+$$y=\frac{3x}{1-x^{2}}\;\text{and}\;y=\frac{1}{(x-1)(x-3)}.$$
+<p>In <a href="#fs-id1167023714096">Combining Power Series</a> we state results regarding addition or subtraction of <span data-concept="power-series">power series</span>, composition of a <span data-concept="power-series">power series</span>, and multiplication of a <span data-concept="power-series">power series</span> by a power of the variable. For simplicity, we state the theorem for <span data-concept="power-series">power series</span> centered at $x=0.$ Similar results hold for <span data-concept="power-series">power series</span> centered at $x=a.$</p>
+<div class="note" id="fs-id1167023714096">
+<div class="eyebrow">Theorem</div>
+<h3>Combining Power Series</h3>
+<p>Suppose that the two <span data-concept="power-series">power series</span> $\sum_{n=0}^{\infty} c_{n}x^{n}$ and $\sum_{n=0}^{\infty} d_{n}x^{n}$ converge to the functions <em>f</em> and <em>g</em>, respectively, on a common interval <em>I</em>.</p>
+<ol><li>The <span data-concept="power-series">power series</span> $\sum_{n=0}^{\infty} (c_{n}x^{n}\pm d_{n}x^{n})$ converges to $f\pm g$ on <em>I</em>.</li><li>For any integer $m\ge 0$ and any real number <em>b</em>, the <span data-concept="power-series">power series</span> $\sum_{n=0}^{\infty} bx^{m}c_{n}x^{n}$ converges to $bx^{m}\kf(x)$ on <em>I</em>.</li><li>For any integer $m\ge 0$ and any real number <em>b</em>, the series $\sum_{n=0}^{\infty} c_{n}{(bx^{m})}^{n}$ converges to $\kf(bx^{m})$ for all <em>x</em> such that $bx^{m}$ is in <em>I</em>.</li></ol>
+</div>
+<h3>Proof</h3>
+<p>We prove i. in the case of the series $\sum_{n=0}^{\infty} (c_{n}x^{n}+d_{n}x^{n}) .$ Suppose that $\sum_{n=0}^{\infty} c_{n}x^{n}$ and $\sum_{n=0}^{\infty} d_{n}x^{n}$ converge to the functions <em>f</em> and <em>g</em>, respectively, on the interval <em>I</em>. Let <em>x</em> be a point in <em>I</em> and let $\kS_{N}(x)$ and $\kT_{N}(x)$ denote the <em>N</em>th <span data-concept="partial-sum">partial sums</span> of the series $\sum_{n=0}^{\infty} c_{n}x^{n}$ and $\sum_{n=0}^{\infty} d_{n}x^{n} ,$ respectively. Then the sequence $\{\kS_{N}(x)\}$ converges to $\kf(x)$ and the sequence $\{\kT_{N}(x)\}$ converges to $\kg(x).$ Furthermore, the <em>N</em>th <span data-concept="partial-sum">partial sum</span> of $\sum_{n=0}^{\infty} (c_{n}x^{n}+d_{n}x^{n})$ is</p>
+$$\begin{array}{rl}\sum_{n=0}^{N} (c_{n}x^{n}+d_{n}x^{n}) & =\sum_{n=0}^{N} c_{n}x^{n} +\sum_{n=0}^{N} d_{n}x^{n} \\ & =\kS_{N}(x)+\kT_{N}(x).\end{array}$$
+<p>Because</p>
+$$\begin{array}{rl}\lim_{N\to \infty}(\kS_{N}(x)+\kT_{N}(x)) & =\lim_{N\to \infty}\kS_{N}(x)+\lim_{N\to \infty}\kT_{N}(x) \\ & =\kf(x)+\kg(x),\end{array}$$
+<p>we conclude that the series $\sum_{n=0}^{\infty} (c_{n}x^{n}+d_{n}x^{n})$ converges to $\kf(x)+\kg(x)\text{ on }I.$</p>
+<p>□</p>
+<p>We examine products of <span data-concept="power-series">power series</span> in a later theorem. First, we show several applications of <a href="#fs-id1167023714096">Combining Power Series</a> and how to find the <span data-concept="interval-of-convergence">interval of convergence</span> of a <span data-concept="power-series">power series</span> given the <span data-concept="interval-of-convergence">interval of convergence</span> of a related <span data-concept="power-series">power series</span>.</p>
+<div class="example" id="fs-id1167023715788">
+<h3>Example 10.4 · Combining Power Series</h3>
+<p>Suppose that $\sum_{n=0}^{\infty} a_{n}x^{n}$ is a <span data-concept="power-series">power series</span> whose <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-1,1)$</span>, and suppose that $\sum_{n=0}^{\infty} b_{n}x^{n}$ is a <span data-concept="power-series">power series</span> whose <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-2,2)$</span>.</p>
+<p>a. Find the <span data-concept="interval-of-convergence">interval of convergence</span> of the series $\sum_{n=0}^{\infty} (a_{n}x^{n}+b_{n}x^{n}) .$</p>
+<p>b. Find the <span data-concept="interval-of-convergence">interval of convergence</span> of the series $\sum_{n=0}^{\infty} a_{n}3^{n}x^{n} .$</p>
+<h4>Solution</h4>
+<p>a. Since the interval $(-1,1)$ is a common <span data-concept="interval-of-convergence">interval of convergence</span> of the series $\sum_{n=0}^{\infty} a_{n}x^{n}$ and $\sum_{n=0}^{\infty} b_{n}x^{n} ,$ the <span data-concept="interval-of-convergence">interval of convergence</span> of the series $\sum_{n=0}^{\infty} (a_{n}x^{n}+b_{n}x^{n})$ is $(-1,1).$</p>
+<p>b. Since $\sum_{n=0}^{\infty} a_{n}x^{n}$ is a <span data-concept="power-series">power series</span> centered at zero with <span data-concept="radius-of-convergence">radius of convergence</span> 1, it converges for all <em>x</em> in the interval $(-1,1).$ By <a href="#fs-id1167023714096">Combining Power Series</a>, the series</p>
+$$\sum_{n=0}^{\infty} a_{n}3^{n}x^{n} =\sum_{n=0}^{\infty} a_{n}{(3x)}^{n}$$
+<p>converges if 3<em>x</em> is in the interval $(-1,1).$ Therefore, the series converges for all <em>x</em> in the interval $(-\frac{1}{3},\frac{1}{3}).$</p>
+</div>
+<div class="exercises" data-place="fs-id1167023715788"></div>
+<p>In the next example, we show how to use <a href="#fs-id1167023714096">Combining Power Series</a> and the <span data-concept="power-series">power series</span> for a function <em>f</em> to construct <span data-concept="power-series">power series</span> for functions related to <em>f</em>. Specifically, we consider functions related to the function $\kf(x)=\frac{1}{1-x}$ and we use the fact that</p>
+$$\frac{1}{1-x}=\sum_{n=0}^{\infty} x^{n} =1+x+x^{2}+x^{3}+\cdots$$
+<p>for $|x|\lt 1.$</p>
+<div class="example" id="fs-id1167023806689">
+<h3>Example 10.5 · Constructing Power Series from Known Power Series</h3>
+<p>Use the <span data-concept="power-series">power series representation</span> for $\kf(x)=\frac{1}{1-x}$ combined with <a href="#fs-id1167023714096">Combining Power Series</a> to construct a <span data-concept="power-series">power series</span> for each of the following functions. Find the <span data-concept="interval-of-convergence">interval of convergence</span> of the <span data-concept="power-series">power series</span>.</p>
+<p>a. $\kf(x)=\frac{3x}{1+x^{2}}$</p>
+<p>b. $\kf(x)=\frac{1}{(x-1)(x-3)}$</p>
+<h4>Solution</h4>
+<p>a. First write $\kf(x)$ as</p>
+$$\kf(x)=3x(\frac{1}{1-(-x^{2})}).$$
+<p>Using the <span data-concept="power-series">power series representation</span> for $\kf(x)=\frac{1}{1-x}$ and parts ii. and iii. of <a href="#fs-id1167023714096">Combining Power Series</a>, we find that a <span data-concept="power-series">power series representation</span> for <em>f</em> is given by</p>
+$$\sum_{n=0}^{\infty} 3x{(-x^{2})}^{n} =\sum_{n=0}^{\infty} 3{(-1)}^{n}x^{2n+1} .$$
+<p>Since the <span data-concept="interval-of-convergence">interval of convergence</span> of the series for $\frac{1}{1-x}$ is $(-1,1),$ the <span data-concept="interval-of-convergence">interval of convergence</span> for this new series is the set of real numbers <em>x</em> such that $|x^{2}|\lt 1.$ Therefore, the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-1,1)$</span>.</p>
+<p>b. To find the <span data-concept="power-series">power series representation</span>, use <span data-concept="partial-fraction-decomposition">partial fractions</span> to write $\kf(x)=\frac{1}{(x-1)(x-3)}$ as the sum of two fractions. We have</p>
+$$\begin{array}{rl}\frac{1}{(x-1)(x-3)} & =\frac{-1/2}{x-1}+\frac{1/2}{x-3} \\ & =\frac{1/2}{1-x}-\frac{1/2}{3-x} \\ & =\frac{1/2}{1-x}-\frac{1/6}{1-\frac{x}{3}}.\end{array}$$
+<p>First, using part ii. of <a href="#fs-id1167023714096">Combining Power Series</a>, we obtain</p>
+$$\frac{1/2}{1-x}=\sum_{n=0}^{\infty} \frac{1}{2}x^{n} \;\text{for}\;|x|\lt 1.$$
+<p>Then, using parts ii. and iii. of <a href="#fs-id1167023714096">Combining Power Series</a>, we have</p>
+$$\frac{1/6}{1-x/3}=\sum_{n=0}^{\infty} \frac{1}{6}{(\frac{x}{3})}^{n} \;\text{for}\;|x|\lt 3.$$
+<p>Since we are combining these two <span data-concept="power-series">power series</span>, the <span data-concept="interval-of-convergence">interval of convergence</span> of the difference must be the smaller of these two intervals. Using this fact and part i. of <a href="#fs-id1167023714096">Combining Power Series</a>, we have</p>
+$$\frac{1}{(x-1)(x-3)}=\sum_{n=0}^{\infty} (\frac{1}{2}-\frac{1}{6\cdot 3^{n}})x^{n}$$
+<p>where the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-1,1)$</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1167023806689"></div>
+<p>In <a href="#fs-id1167023806689">Example 10.5</a>, we showed how to find <span data-concept="power-series">power series</span> for certain functions. In <a href="#fs-id1167023772606">Example 10.6</a> we show how to do the opposite: given a <span data-concept="power-series">power series</span>, determine which function it represents.</p>
+<div class="example" id="fs-id1167023772606">
+<h3>Example 10.6 · Finding the Function Represented by a Given Power Series</h3>
+<p>Consider the <span data-concept="power-series">power series</span> $\sum_{n=0}^{\infty} 2^{n}x^{n} .$ Find the function <em>f</em> represented by this series. Determine the <span data-concept="interval-of-convergence">interval of convergence</span> of the series.</p>
+<h4>Solution</h4>
+<p>Writing the given series as</p>
+$$\sum_{n=0}^{\infty} 2^{n}x^{n} =\sum_{n=0}^{\infty} {(2x)}^{n} ,$$
+<p>we can recognize this series as the <span data-concept="power-series">power series</span> for</p>
+$$\kf(x)=\frac{1}{1-2x}.$$
+<p>Since this is a <span data-concept="geometric-series">geometric series</span>, the series converges if and only if $|2x|\lt 1.$ Therefore, the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-\frac{1}{2},\frac{1}{2})$</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1167023772606"></div>
+<p id="present-value-term">Recall the questions posed in the chapter opener about which is the better way of receiving payouts from lottery winnings. We now revisit those questions and show how to use series to compare values of payments over time with a lump sum payment today. We will compute how much future payments are worth in terms of today’s dollars, assuming we have the ability to invest winnings and earn interest. The value of future payments in terms of today’s dollars is known as the <em><span data-concept="present-value">present value</span></em> of those payments.</p>
+<div class="example" id="fs-id1167023711689">
+<h3>Example 10.7 · Chapter Opener: Present Value of Future Winnings</h3>
+<figure class="photo" id="fig-money" data-figure="10.4">
+  <img src="/media/ch10/CNX_Calc_Figure_10_02_001.jpg" alt="This is a picture of a stack of money. There are 100 dollar bills wrapped in groups of &#36;10,000.">
+  <figcaption><span class="eyebrow">Figure 10.4</span><span>(credit: modification of work by Robert Huffstutter, Flickr)</span></figcaption>
+</figure>
+<p>Suppose you win the lottery and are given the following three options: (1) Receive 20 million dollars today; (2) receive 1.5 million dollars per year over the next 20 years; or (3) receive 1 million dollars per year indefinitely (being passed on to your heirs). Which is the best deal, assuming that the annual interest rate is 5%? We answer this by working through the following sequence of questions.</p>
+<p>a. How much is the 1.5 million dollars received annually over the course of 20 years worth in terms of today’s dollars, assuming an annual interest rate of 5%?</p>
+<p>b. Use the answer to part a. to find a general formula for the <span data-concept="present-value">present value</span> of payments of <em>C</em> dollars received each year over the next <em>n</em> years, assuming an average annual interest rate <em>r</em>.</p>
+<p>c. Find a formula for the <span data-concept="present-value">present value</span> if annual payments of <em>C</em> dollars continue indefinitely, assuming an average annual interest rate <em>r</em>.</p>
+<p>d. Use the answer to part c. to determine the <span data-concept="present-value">present value</span> of 1 million dollars paid annually indefinitely.</p>
+<p>e. Use your answers to parts a. and d. to determine which of the three options is best.</p>
+<h4>Solution</h4>
+<p>a. Consider the payment of 1.5 million dollars made at the end of the first year. If you were able to receive that payment today instead of one year from now, you could invest that money and earn 5% interest. Therefore, the <span data-concept="present-value">present value</span> of that money <em>P</em><sub>1</sub> satisfies $P_{1}(1+0.05)=1.5\;\text{million dollars}.$ We conclude that</p>
+$$P_{1}=\frac{1.5}{1.05}=\text{＄}1.429\;\text{million dollars}\text{.}$$
+<p>Similarly, consider the payment of 1.5 million dollars made at the end of the second year. If you were able to receive that payment today, you could invest that money for two years, earning 5% interest, <span data-concept="compound-interest">compounded annually</span>. Therefore, the <span data-concept="present-value">present value</span> of that money <em>P</em><sub>2</sub> satisfies $P_{2}{(1+0.05)}^{2}=1.5\;\text{million dollars}.$ We conclude that</p>
+$$P_{2}=\frac{1.5}{{(1.05)}^{2}}=\text{＄}1.361\;\text{million dollars}\text{.}$$
+<p>The value of the future payments today is the sum of the present values $P_{1},P_{2},\text{…},P_{20}$ of each of those annual payments. The <span data-concept="present-value">present value</span> <em>P<sub>k</sub></em> satisfies</p>
+$$P_{k}=\frac{1.5}{{(1.05)}^{k}}.$$
+<p>Therefore,</p>
+$$\begin{array}{rl}P & =\frac{1.5}{1.05}+\frac{1.5}{{(1.05)}^{2}}+\cdots +\frac{1.5}{{(1.05)}^{20}} \\ & =\text{＄}18.693\;\text{million dollars}\text{.}\end{array}$$
+<p>b. Using the result from part a. we see that the <span data-concept="present-value">present value</span> <em>P</em> of <em>C</em> dollars paid annually over the course of <em>n</em> years, assuming an annual interest rate <em>r</em>, is given by</p>
+<div class="equation" id="fs-id1167023780795">$$\kP=\frac{C}{1+r}+\frac{C}{{(1+r)}^{2}}+\cdots +\frac{C}{{(1+r)}^{n}}\;\text{dollars}\text{.}$$</div>
+<p>c. Using the result from part b. we see that the <span data-concept="present-value">present value</span> of an annuity that continues indefinitely is given by the infinite series</p>
+$$\kP=\sum_{n=0}^{\infty} \frac{C}{{(1+r)}^{n+1}} .$$
+<p>We can view the <span data-concept="present-value">present value</span> as a <span data-concept="power-series">power series</span> in <em>r</em>, which converges as long as $|\frac{1}{1+r}|\lt 1.$ Since $r\gt 0,$ this series converges. Rewriting the series as</p>
+$$\kP=\frac{C}{(1+r)}\sum_{n=0}^{\infty} {(\frac{1}{1+r})}^{n} ,$$
+<p>we recognize this series as the <span data-concept="power-series">power series</span> for</p>
+$$\kf(r)=\frac{1}{1-(\frac{1}{1+r})}=\frac{1}{(\frac{r}{1+r})}=\frac{1+r}{r}.$$
+<p>We conclude that the <span data-concept="present-value">present value</span> of this annuity is</p>
+<div class="equation" id="fs-id1167023920708">$$\kP=\frac{C}{1+r}\cdot \frac{1+r}{r}=\frac{C}{r}.$$</div>
+<p>d. From the result to part c. we conclude that the <span data-concept="present-value">present value</span> <em>P</em> of $C=1\;\text{million dollars}$ paid out every year indefinitely, assuming an annual interest rate $r=0.05,$ is given by</p>
+$$\kP=\frac{1}{0.05}=20\;\text{million dollars}\text{.}$$
+<p>e. From part a. we see that receiving &#36;1.5 million dollars over the course of 20 years is worth &#36;18.693 million dollars in today’s dollars. From part d. we see that receiving &#36;1 million dollars per year indefinitely is worth &#36;20 million dollars in today’s dollars. Therefore, either receiving a lump-sum payment of &#36;20 million dollars today or receiving &#36;1 million dollars indefinitely have the same <span data-concept="present-value">present value</span>.</p>
+</div>
+<figure class="sim" id="sim-present-value">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>Each bar is the present value $\frac{C}{(1+r)^{k}}$ of the payment made at the end of year $k,$ and the curve is their running sum $\kP.$ Drag the rate $r$ and the number of years $n$: the bars shrink geometrically, and as $n$ grows the sum climbs toward $\frac{C}{r},$ the value of payments that continue indefinitely.</span></div>
+</figure>
+</section>
+
+<section id="multiplication">
+<h2>Multiplication of Power Series</h2>
+<p class="cite-target">We can also create new <span data-concept="power-series">power series</span> by multiplying <span data-concept="power-series">power series</span>. Being able to multiply two <span data-concept="power-series">power series</span> provides another way of finding <span data-concept="power-series">power series representations</span> for functions.</p>
+<p>The way we multiply them is similar to how we multiply polynomials. For example, suppose we want to multiply</p>
+$$\sum_{n=0}^{\infty} c_{n}x^{n} =c_{0}+c_{1}x+c_{2}x^{2}+\cdots$$
+<p>and</p>
+$$\sum_{n=0}^{\infty} d_{n}x^{n} =d_{0}+d_{1}x+d_{2}x^{2}+\cdots .$$
+<p>It appears that the product should satisfy</p>
+$$\begin{array}{rl}(\sum_{n=0}^{\infty} c_{n}x^{n} )(\sum_{n=-0}^{\infty} d_{n}x^{n} ) & =(c_{0}+c_{1}x+c_{2}x^{2}+\cdots )\cdot (d_{0}+d_{1}x+d_{2}x^{2}+\cdots ) \\ & =c_{0}d_{0}+(c_{1}d_{0}+c_{0}d_{1})\;x+(c_{2}d_{0}+c_{1}d_{1}+c_{0}d_{2})\;x^{2}+\cdots .\end{array}$$
+<p>In <a href="#fs-id1167023808343">Multiplying Power Series</a>, we state the main result regarding multiplying <span data-concept="power-series">power series</span>, showing that if $\sum_{n=0}^{\infty} c_{n}x^{n}$ and $\sum_{n=0}^{\infty} d_{n}x^{n}$ converge on a common interval <em>I</em>, then we can multiply the series in this way, and the resulting series also converges on the interval <em>I</em>.</p>
+<div class="note" id="fs-id1167023808343">
+<div class="eyebrow">Theorem</div>
+<h3>Multiplying Power Series</h3>
+<p>Suppose that the <span data-concept="power-series">power series</span> $\sum_{n=0}^{\infty} c_{n}x^{n}$ and $\sum_{n=0}^{\infty} d_{n}x^{n}$ converge to <em>f</em> and <em>g</em>, respectively, on a common interval <em>I</em>. Let</p>
+$$\begin{array}{rl}e_{n} & =c_{0}d_{n}+c_{1}d_{n-1}+c_{2}d_{n-2}+\cdots +c_{n-1}d_{1}+c_{n}d_{0} \\ & =\sum_{k=0}^{n} c_{k}d_{n-k} .\end{array}$$
+<p>Then</p>
+$$(\sum_{n=0}^{\infty} c_{n}x^{n} )(\sum_{n=0}^{\infty} d_{n}x^{n} )=\sum_{n=0}^{\infty} e_{n}x^{n}$$
+<p>and</p>
+$$\sum_{n=0}^{\infty} e_{n}x^{n} \;\text{converges to}\;\kf(x)\cdot \kg(x)\;\text{on}\;I.$$
+<p>The series $\sum_{n=0}^{\infty} e_{n} x^{n}$ is known as the <span data-concept="multiplying-power-series">Cauchy product</span> of the series $\sum_{n=0}^{\infty} c_{n}x^{n}$ and $\sum_{n=0}^{\infty} d_{n}x^{n} .$</p>
+</div>
+<figure class="sim" id="sim-cauchy-product">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>Each square holds the product $c_{i}d_{j}$ of a coefficient of one series and a coefficient of the other. Every term $c_{i}x^{i}\cdot d_{j}x^{j}$ is a multiple of $x^{i+j},$ so the coefficient $e_{n}$ of $x^{n}$ in the product is the sum along the diagonal $i+j=n$; drag $n$ to walk the diagonals.</span></div>
+</figure>
+<p>We omit the proof of this theorem, as it is beyond the level of this text and is typically covered in a more advanced course. We now provide an example of this theorem by finding the <span data-concept="power-series">power series representation</span> for</p>
+$$\kf(x)=\frac{1}{(1-x)(1-x^{2})}$$
+<p>using the <span data-concept="power-series">power series representations</span> for</p>
+$$y=\frac{1}{1-x}\;\text{and}\;y=\frac{1}{1-x^{2}}.$$
+<div class="example" id="fs-id1167023799559">
+<h3>Example 10.8 · Multiplying Power Series</h3>
+<p>Multiply the <span data-concept="power-series">power series representation</span></p>
+$$\begin{array}{rl}\frac{1}{1-x} & =\sum_{n=0}^{\infty} x^{n} \\ & =1+x+x^{2}+x^{3}+\cdots \end{array}$$
+<p>for $|x|\lt 1$ with the <span data-concept="power-series">power series representation</span></p>
+$$\begin{array}{rl}\frac{1}{1-x^{2}} & =\sum_{n=0}^{\infty} {(x^{2})}^{n} \\ & =1+x^{2}+x^{4}+x^{6}+\cdots \end{array}$$
+<p>for $|x|\lt 1$ to construct a <span data-concept="power-series">power series</span> for $\kf(x)=\frac{1}{(1-x)(1-x^{2})}$ on the interval $(-1,1).$</p>
+<h4>Solution</h4>
+<p>We need to multiply</p>
+$$(1+x+x^{2}+x^{3}+\cdots )(1+x^{2}+x^{4}+x^{6}+\cdots ).$$
+<p>Writing out the first several terms, we see that the product is given by</p>
+$$\begin{array}{l}(1+x^{2}+x^{4}+x^{6}+\cdots )+(x+x^{3}+x^{5}+x^{7}+\cdots )+(x^{2}+x^{4}+x^{6}+x^{8}+\cdots )+(x^{3}+x^{5}+x^{7}+x^{9}+\cdots ) \\ =1+x+(1+1)x^{2}+(1+1)x^{3}+(1+1+1)x^{4}+(1+1+1)x^{5}+\cdots  \\ =1+x+2x^{2}+2x^{3}+3x^{4}+3x^{5}+\cdots .\end{array}$$
+<p>Since the series for $y=\frac{1}{1-x}$ and $y=\frac{1}{1-x^{2}}$ both converge on the interval $(-1,1),$ the series for the product also converges on the interval $(-1,1).$</p>
+</div>
+<div class="exercises" data-place="fs-id1167023799559"></div>
+</section>
+
+<section id="differentiating">
+<h2>Differentiating and Integrating Power Series</h2>
+<p class="cite-target">Consider a <span data-concept="power-series">power series</span> $\sum_{n=0}^{\infty} c_{n}x^{n} =c_{0}+c_{1}x+c_{2}x^{2}+\cdots$ that converges on some interval <em>I</em>, and let $f$ be the function defined by this series. Here we address two questions about $f.$</p>
+<ul><li>Is $f$ differentiable, and if so, how do we determine the derivative $f^{\prime}?$</li><li>How do we evaluate the <span data-concept="indefinite-integral">indefinite integral</span> $\int \kf(x)\;dx ?$</li></ul>
+<p>We know that, for a polynomial with a finite number of terms, we can evaluate the derivative by differentiating each term separately. Similarly, we can evaluate the <span data-concept="indefinite-integral">indefinite integral</span> by integrating each term separately. Here we show that we can do the same thing for convergent <span data-concept="power-series">power series</span>. That is, if</p>
+$$\kf(x)=\sum_{n=0}^{\infty} c_{n}x^{n} =c_{0}+c_{1}x+c_{2}x^{2}+\cdots$$
+<p>converges on some interval <em>I</em>, then</p>
+$$\kfprime(x)=c_{1}+2c_{2}x+3c_{3}x^{2}+\cdots$$
+<p>and</p>
+$$\int \kf(x)\;dx =C+c_{0}x+c_{1}\frac{x^{2}}{2}+c_{2}\frac{x^{3}}{3}+\cdots$$
+<p>converges on <em>I</em>. As noted below, behavior at the endpoints of the interval must be investigated individually.</p>
+<p id="term-by-term-term">Evaluating the derivative and <span data-concept="indefinite-integral">indefinite integral</span> in this way is called <strong><span data-concept="term-by-term-differentiation-and-integration">term-by-term differentiation of a power series</span></strong> and <strong><span data-concept="term-by-term-differentiation-and-integration">term-by-term integration of a power series</span></strong>, respectively. The ability to differentiate and integrate <span data-concept="power-series">power series</span> term-by-term also allows us to use known <span data-concept="power-series">power series representations</span> to find <span data-concept="power-series">power series representations</span> for other functions. For example, given the <span data-concept="power-series">power series</span> for $\kf(x)=\frac{1}{1-x},$ we can differentiate term-by-term to find the <span data-concept="power-series">power series</span> for $\kfprime(x)=\frac{1}{{(1-x)}^{2}}.$ Similarly, using the <span data-concept="power-series">power series</span> for $\kg(x)=\frac{1}{1+x},$ we can integrate term-by-term to find the <span data-concept="power-series">power series</span> for $\kG(x)=\ln (1+x),$ an <span data-concept="antiderivative">antiderivative</span> of <em>g</em>. We show how to do this in <a href="#fs-id1167023766613">Example 10.9</a> and <a href="#fs-id1167023911153">Example 10.10</a>. First, we state <a href="#fs-id1167023789599">Term-by-Term Differentiation and Integration for Power Series</a>, which provides the main result regarding differentiation and integration of <span data-concept="power-series">power series</span>.</p>
+<div class="note" id="fs-id1167023789599">
+<div class="eyebrow">Theorem</div>
+<h3>Term-by-Term Differentiation and Integration for Power Series</h3>
+<p>Suppose that the <span data-concept="power-series">power series</span> $\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n}$ converges on the interval $(a-R,a+R)$ for some $R\gt 0.$ Let <em>f</em> be the function defined by the series</p>
+$$\begin{array}{rl}\kf(x) & =\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} \\ & =c_{0}+c_{1}(x-a)+c_{2}{(x-a)}^{2}+c_{3}{(x-a)}^{3}+\cdots \end{array}$$
+<p>for $|x-a|\lt R.$ Then <em>f</em> is differentiable on the interval $(a-R,a+R)$ and we can find $f^{\prime}$ by differentiating the series term-by-term:</p>
+$$\begin{array}{rl}\kfprime(x) & =\sum_{n=1}^{\infty} nc_{n}{(x-a)}^{n-1} \\ & =c_{1}+2c_{2}(x-a)+3c_{3}{(x-a)}^{2}+\cdots \end{array}$$
+<p>for $|x-a|\lt R.$ Also, to find $\int \kf(x)\;dx ,$ we can integrate the series term-by-term. The resulting series converges on $(a-R,a+R),$ and we have</p>
+$$\begin{array}{rl}\int \kf(x)\;dx & =C+\sum_{n=0}^{\infty} c_{n}\frac{{(x-a)}^{n+1}}{n+1} \\ & =C+c_{0}(x-a)+c_{1}\frac{{(x-a)}^{2}}{2}+c_{2}\frac{{(x-a)}^{3}}{3}+\cdots \end{array}$$
+<p>for $|x-a|\lt R.$</p>
+</div>
+<p>The proof of this result is beyond the scope of the text and is omitted. Note that although <a href="#fs-id1167023789599">Term-by-Term Differentiation and Integration for Power Series</a> guarantees the same <span data-concept="radius-of-convergence">radius of convergence</span> when a <span data-concept="power-series">power series</span> is differentiated or integrated term-by-term, it says nothing about what happens at the endpoints. It is possible that the differentiated and integrated <span data-concept="power-series">power series</span> have different behavior at the endpoints than does the original series. We see this behavior in the next examples.</p>
+<figure class="sim" id="sim-term-by-term">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A partial sum of the series found by differentiating or integrating a geometric series term by term, over the function it represents. Raise $N$: inside the interval the partial sums close on the function, with the same radius as the series they came from, while at the endpoints the new series may converge where the old one did not.</span></div>
+</figure>
+<div class="example" id="fs-id1167023766613">
+<h3>Example 10.9 · Differentiating Power Series</h3>
+<p>a. Use the <span data-concept="power-series">power series representation</span></p>
+$$\begin{array}{rl}\kf(x) & =\frac{1}{1-x} \\ & =\sum_{n=0}^{\infty} x^{n} \\ & =1+x+x^{2}+x^{3}+\cdots \end{array}$$
+<p>for $|x|\lt 1$ to find a <span data-concept="power-series">power series representation</span> for</p>
+$$\kg(x)=\frac{1}{{(1-x)}^{2}}$$
+<p>on the interval $(-1,1).$ Determine whether the resulting series converges at the endpoints.</p>
+<p>b. Use the result of part a. to evaluate the sum of the series $\sum_{n=0}^{\infty} \frac{n+1}{4^{n}} .$</p>
+<h4>Solution</h4>
+<p>a. Since $\kg(x)=\frac{1}{{(1-x)}^{2}}$ is the derivative of $\kf(x)=\frac{1}{1-x},$ we can find a <span data-concept="power-series">power series representation</span> for <em>g</em> by differentiating the <span data-concept="power-series">power series</span> for <em>f</em> term-by-term. The result is</p>
+$$\begin{array}{rl}\kg(x) & =\frac{1}{{(1-x)}^{2}} \\ & =\frac{d}{dx}(\frac{1}{1-x}) \\ & =\sum_{n=0}^{\infty} \frac{d}{dx}(x^{n}) \\ & =\frac{d}{dx}(1+x+x^{2}+x^{3}+\cdots ) \\ & =0+1+2x+3x^{2}+4x^{3}+\cdots  \\ & =\sum_{n=0}^{\infty} (n+1)x^{n} \end{array}$$
+<p>for $|x|\lt 1.$ <a href="#fs-id1167023789599">Term-by-Term Differentiation and Integration for Power Series</a> does not guarantee anything about the behavior of this series at the endpoints. Testing the endpoints by using the <span data-concept="divergence-test">divergence test</span>, we find that the series diverges at both endpoints $x=\text{±}1.$ Note that this is the same result found in <a href="#fs-id1167023799559">Example 10.8</a>.</p>
+<p>b. From part a. we know that</p>
+$$\sum_{n=0}^{\infty} (n+1)x^{n} =\frac{1}{{(1-x)}^{2}}.$$
+<p>Therefore,</p>
+$$\begin{array}{rl}\sum_{n=0}^{\infty} \frac{n+1}{4^{n}} & =\sum_{n=0}^{\infty} (n+1){(\frac{1}{4})}^{n} \\ & =\frac{1}{{(1-\frac{1}{4})}^{2}} \\ & =\frac{1}{{(\frac{3}{4})}^{2}} \\ & =\frac{16}{9}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1167023766613"></div>
+<div class="example" id="fs-id1167023911153">
+<h3>Example 10.10 · Integrating Power Series</h3>
+<p>For each of the following functions <em>f</em>, find a <span data-concept="power-series">power series representation</span> for <em>f</em> by integrating the <span data-concept="power-series">power series</span> for $f^{\prime}$ and find its <span data-concept="interval-of-convergence">interval of convergence</span>.</p>
+<p>a. <span data-fn="ln(1+x)">$\kf(x)=\ln (1+x)$</span></p>
+<p>b. <span data-fn="atan(x)">$\kf(x)={\tan }^{-1}x$</span></p>
+<h4>Solution</h4>
+<p>a. For $\kf(x)=\ln (1+x),$ the derivative is $\kfprime(x)=\frac{1}{1+x}.$ We know that</p>
+$$\begin{array}{rl}\frac{1}{1+x} & =\frac{1}{1-(-x)} \\ & =\sum_{n=0}^{\infty} {(-x)}^{n} \\ & =1-x+x^{2}-x^{3}+\cdots \end{array}$$
+<p>for $|x|\lt 1.$ To find a <span data-concept="power-series">power series</span> for $\kf(x)=\ln (1+x),$ we integrate the series term-by-term.</p>
+$$\begin{array}{rl}\int \kfprime(x)\;dx & =\int (1-x+x^{2}-x^{3}+\cdots )\;dx \\ & =C+x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\frac{x^{4}}{4}+\cdots \end{array}$$
+<p>Since $\kf(x)=\ln (1+x)$ is an <span data-concept="antiderivative">antiderivative</span> of $\frac{1}{1+x},$ it remains to solve for the constant <em>C</em>. Since $\ln (1+0)=0,$ we have $C=0.$ Therefore, a <span data-concept="power-series">power series representation</span> for $\kf(x)=\ln (1+x)$ is</p>
+$$\begin{array}{rl}\ln (1+x) & =x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\frac{x^{4}}{4}+\cdots  \\ & =\sum_{n=1}^{\infty} {(-1)}^{n+1}\frac{x^{n}}{n} \end{array}$$
+<p>for $|x|\lt 1.$ <a href="#fs-id1167023789599">Term-by-Term Differentiation and Integration for Power Series</a> does not guarantee anything about the behavior of this <span data-concept="power-series">power series</span> at the endpoints. However, checking the endpoints, we find that at $x=1$ the series is the <span data-concept="alternating-harmonic-series">alternating harmonic series</span>, which converges. Also, at $x=-1,$ the series is the <span data-concept="harmonic-series">harmonic series</span>, which diverges. It is important to note that, even though this series converges at $x=1,$ <a href="#fs-id1167023789599">Term-by-Term Differentiation and Integration for Power Series</a> does not guarantee that the series actually converges to $\ln (2).$ In fact, the series does converge to $\ln (2),$ but showing this fact requires more advanced techniques. (Abel’s theorem, covered in more advanced texts, deals with this more technical point.) The <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-1,1]$</span>.</p>
+<p>b. The derivative of $\kf(x)={\tan }^{-1}x$ is $\kfprime(x)=\frac{1}{1+x^{2}}.$ We know that</p>
+$$\begin{array}{rl}\frac{1}{1+x^{2}} & =\frac{1}{1-(-x^{2})} \\ & =\sum_{n=0}^{\infty} {(-x^{2})}^{n} \\ & =1-x^{2}+x^{4}-x^{6}+\cdots \end{array}$$
+<p>for $|x|\lt 1.$ To find a <span data-concept="power-series">power series</span> for $\kf(x)={\tan }^{-1}x,$ we integrate this series term-by-term.</p>
+$$\begin{array}{rl}\int \kfprime(x)\;dx & =\int (1-x^{2}+x^{4}-x^{6}+\cdots )\;dx \\ & =C+x-\frac{x^{3}}{3}+\frac{x^{5}}{5}-\frac{x^{7}}{7}+\cdots \end{array}$$
+<p>Since ${\tan }^{-1}(0)=0,$ we have $C=0.$ Therefore, a <span data-concept="power-series">power series representation</span> for $\kf(x)={\tan }^{-1}x$ is</p>
+$$\begin{array}{rl}{\tan }^{-1}x & =x-\frac{x^{3}}{3}+\frac{x^{5}}{5}-\frac{x^{7}}{7}+\cdots  \\ & =\sum_{n=0}^{\infty} {(-1)}^{n}\frac{x^{2n+1}}{2n+1} \end{array}$$
+<p>for $|x|\lt 1.$ Again, <a href="#fs-id1167023789599">Term-by-Term Differentiation and Integration for Power Series</a> does not guarantee anything about the convergence of this series at the endpoints. However, checking the endpoints and using the <span data-concept="alternating-series-test">alternating series test</span>, we find that the series converges at $x=1$ and $x=-1.$ As discussed in part a., using Abel’s theorem, it can be shown that the series actually converges to ${\tan }^{-1}(1)$ and ${\tan }^{-1}(-1)$ at $x=1$ and $x=-1,$ respectively. Thus, the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$[-1,1]$</span>.</p>
+</div>
+<div class="exercises" data-place="fs-id1167023911153"></div>
+<p>Up to this point, we have shown several techniques for finding <span data-concept="power-series">power series representations</span> for functions. However, how do we know that these <span data-concept="power-series">power series</span> are unique? That is, given a function <em>f</em> and a <span data-concept="power-series">power series</span> for <em>f</em> at <em>a</em>, is it possible that there is a different <span data-concept="power-series">power series</span> for <em>f</em> at <em>a</em> that we could have found if we had used a different technique? The answer to this question is no. This fact should not seem surprising if we think of <span data-concept="power-series">power series</span> as polynomials with an infinite number of terms. Intuitively, if</p>
+$$c_{0}+c_{1}x+c_{2}x^{2}+\cdots =d_{0}+d_{1}x+d_{2}x^{2}+\cdots$$
+<p>for all values <em>x</em> in some open interval <em>I</em> about zero, then the coefficients <em>c<sub>n</sub></em> should equal <em>d<sub>n</sub></em> for $n\ge 0.$ We now state this result formally in <a href="#fs-id1167023777376">Uniqueness of Power Series</a>.</p>
+<div class="note" id="fs-id1167023777376">
+<div class="eyebrow">Theorem</div>
+<h3>Uniqueness of Power Series</h3>
+<p>Let $\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n}$ and $\sum_{n=0}^{\infty} d_{n}{(x-a)}^{n}$ be two convergent <span data-concept="power-series">power series</span> such that</p>
+$$\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} =\sum_{n=0}^{\infty} d_{n}{(x-a)}^{n}$$
+<p>for all <em>x</em> in an open interval containing <em>a</em>. Then $c_{n}=d_{n}$ for all $n\ge 0.$</p>
+</div>
+<h3>Proof</h3>
+<p>Let</p>
+$$\begin{array}{rl}\kf(x) & =c_{0}+c_{1}(x-a)+c_{2}{(x-a)}^{2}+c_{3}{(x-a)}^{3}+\cdots  \\ & =d_{0}+d_{1}(x-a)+d_{2}{(x-a)}^{2}+d_{3}{(x-a)}^{3}+\cdots .\end{array}$$
+<p>Then $\kf(a)=c_{0}=d_{0}.$ By <a href="#fs-id1167023789599">Term-by-Term Differentiation and Integration for Power Series</a>, we can differentiate both series term-by-term. Therefore,</p>
+$$\begin{array}{rl}\kfprime(x) & =c_{1}+2c_{2}(x-a)+3c_{3}{(x-a)}^{2}+\cdots  \\ & =d_{1}+2d_{2}(x-a)+3d_{3}{(x-a)}^{2}+\cdots ,\end{array}$$
+<p>and thus, $\kfprime(a)=c_{1}=d_{1}.$ Similarly,</p>
+$$\begin{array}{rl}f^{\prime\prime}(x) & =2c_{2}+3\cdot 2c_{3}(x-a)+\cdots  \\ & =2d_{2}+3\cdot 2d_{3}(x-a)+\cdots \end{array}$$
+<p>implies that $f^{\prime\prime}(a)=2c_{2}=2d_{2},$ and therefore, $c_{2}=d_{2}.$ More generally, for any integer $n\ge 0,f^{(n)}(a)=n!c_{n}=n!d_{n},$ and consequently, $c_{n}=d_{n}$ for all $n\ge 0.$</p>
+<p>□</p>
+<p>In this section we have shown how to find <span data-concept="power-series">power series representations</span> for certain functions using various algebraic operations, differentiation, or integration. At this point, however, we are still limited as to the functions for which we can find <span data-concept="power-series">power series representations</span>. Next, we show how to find <span data-concept="power-series">power series representations</span> for many more functions by introducing Taylor series.</p>
+</section>

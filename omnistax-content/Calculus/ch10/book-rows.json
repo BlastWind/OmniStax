@@ -1,0 +1,705 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "f_n1",
+   "latex": "f^{(n+1)}",
+   "macro": "\\kfnplusone"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "power-series",
+   "kind": "definition",
+   "section": "10.1",
+   "name": "Power series",
+   "terms": [
+    "power series",
+    "power series centered at"
+   ],
+   "type": "series",
+   "statement": "A series of the form Σₙ₌₀^∞ cₙxⁿ = c₀ + c₁x + c₂x² + ⋯, where x is a variable and the coefficients cₙ are constants, is a power series centered at x = 0; a series of the form Σₙ₌₀^∞ cₙ(x − a)ⁿ is a power series centered at x = a. By convention x⁰ = 1 and (x − a)⁰ = 1 even when x = 0 and x = a.",
+   "forms": [
+    {
+     "id": "eq-power-series-at-zero",
+     "latex": "\\sum_{n=0}^{\\infty}c_{n}x^{n}=c_{0}+c_{1}x+c_{2}x^{2}+\\cdots",
+     "anchor": "10.1-fs-id1170572644191"
+    },
+    {
+     "id": "eq-power-series-at-a",
+     "latex": "\\sum_{n=0}^{\\infty}c_{n}(x-a)^{n}=c_{0}+c_{1}(x-a)+c_{2}(x-a)^{2}+\\cdots",
+     "anchor": "10.1-fs-id1170572295618"
+    }
+   ]
+  },
+  {
+   "id": "convergence-of-a-power-series",
+   "kind": "result",
+   "section": "10.1",
+   "name": "Convergence of a power series",
+   "statement": "A power series Σcₙ(x − a)ⁿ satisfies exactly one of three properties: it converges at x = a and diverges for all x ≠ a; it converges for all real numbers x; or there is a real number R > 0 such that it converges if |x − a| < R and diverges if |x − a| > R, and at the values where |x − a| = R it may converge or diverge."
+  },
+  {
+   "id": "interval-of-convergence",
+   "kind": "definition",
+   "section": "10.1",
+   "name": "Interval of convergence",
+   "terms": [
+    "interval of convergence"
+   ],
+   "type": "set",
+   "statement": "The interval of convergence of a power series Σcₙ(x − a)ⁿ is the set of real numbers x for which the series converges."
+  },
+  {
+   "id": "radius-of-convergence",
+   "kind": "definition",
+   "section": "10.1",
+   "name": "Radius of convergence",
+   "terms": [
+    "radius of convergence"
+   ],
+   "symbol": "R",
+   "statement": "If there is a real number R > 0 such that a power series centered at x = a converges for |x − a| < R and diverges for |x − a| > R, then R is the radius of convergence; if the series converges only at x = a, the radius of convergence is R = 0, and if it converges for all real numbers x, R = ∞."
+  },
+  {
+   "id": "finding-the-interval-of-convergence",
+   "kind": "skill",
+   "section": "10.1",
+   "name": "Finding the interval of convergence",
+   "statement": "To find the interval and radius of convergence of a power series, apply the ratio test to the absolute values of its terms: the series converges where the limit ρ < 1 and diverges where ρ > 1; then test each endpoint, where ρ = 1, separately."
+  },
+  {
+   "id": "representing-a-function-by-a-geometric-series",
+   "kind": "result",
+   "section": "10.1",
+   "name": "Representing functions by geometric series",
+   "statement": "Since the geometric series converges to 1/(1 − x) when |x| < 1, the function f(x) = 1/(1 − x) is represented by the power series 1 + x + x² + ⋯ on (−1, 1), and a function of the form g(x)/(1 − h(x)) is represented by substituting into it for the x where |h(x)| < 1.",
+   "forms": [
+    {
+     "id": "eq-geometric-power-series",
+     "latex": "\\frac{1}{1-x}=\\sum_{n=0}^{\\infty}x^{n}=1+x+x^{2}+x^{3}+\\cdots\\quad\\text{for}\\;|x|<1",
+     "anchor": "10.1-geometric-representation"
+    }
+   ]
+  },
+  {
+   "id": "combining-power-series",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Combining power series",
+   "statement": "If Σcₙxⁿ and Σdₙxⁿ converge to f and g on a common interval I, then Σ(cₙxⁿ ± dₙxⁿ) converges to f ± g on I; for any integer m ≥ 0 and real number b, Σbxᵐcₙxⁿ converges to bxᵐf(x) on I, and Σcₙ(bxᵐ)ⁿ converges to f(bxᵐ) for all x such that bxᵐ is in I.",
+   "forms": [
+    {
+     "id": "eq-combining-sum",
+     "latex": "\\sum_{n=0}^{\\infty}(c_{n}x^{n}\\pm d_{n}x^{n})=f(x)\\pm g(x)",
+     "anchor": "10.2-fs-id1167023714096"
+    },
+    {
+     "id": "eq-combining-substitution",
+     "latex": "\\sum_{n=0}^{\\infty}c_{n}(bx^{m})^{n}=f(bx^{m})",
+     "anchor": "10.2-fs-id1167023714096"
+    }
+   ]
+  },
+  {
+   "id": "multiplying-power-series",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Multiplying power series",
+   "terms": [
+    "Cauchy product"
+   ],
+   "statement": "If Σcₙxⁿ and Σdₙxⁿ converge to f and g on a common interval I and eₙ = c₀dₙ + c₁dₙ₋₁ + ⋯ + cₙd₀ = Σₖ₌₀ⁿ cₖdₙ₋ₖ, then (Σcₙxⁿ)(Σdₙxⁿ) = Σeₙxⁿ, and Σeₙxⁿ, the Cauchy product of the two series, converges to f(x)·g(x) on I.",
+   "forms": [
+    {
+     "id": "eq-cauchy-product",
+     "latex": "\\Big(\\sum_{n=0}^{\\infty}c_{n}x^{n}\\Big)\\Big(\\sum_{n=0}^{\\infty}d_{n}x^{n}\\Big)=\\sum_{n=0}^{\\infty}e_{n}x^{n},\\quad e_{n}=\\sum_{k=0}^{n}c_{k}d_{n-k}",
+     "anchor": "10.2-fs-id1167023808343"
+    }
+   ]
+  },
+  {
+   "id": "term-by-term-differentiation-and-integration",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Term-by-term differentiation and integration",
+   "terms": [
+    "term-by-term differentiation of a power series",
+    "term-by-term integration of a power series"
+   ],
+   "statement": "If Σcₙ(x − a)ⁿ converges to f on (a − R, a + R) for some R > 0, then f is differentiable there, f′(x) = Σₙ₌₁^∞ ncₙ(x − a)ⁿ⁻¹, and ∫f(x) dx = C + Σcₙ(x − a)ⁿ⁺¹/(n + 1), both series converging on (a − R, a + R); the behavior at the endpoints must be checked separately.",
+   "forms": [
+    {
+     "id": "eq-term-by-term-derivative",
+     "latex": "f'(x)=\\sum_{n=1}^{\\infty}nc_{n}(x-a)^{n-1}=c_{1}+2c_{2}(x-a)+3c_{3}(x-a)^{2}+\\cdots",
+     "anchor": "10.2-fs-id1167023789599"
+    },
+    {
+     "id": "eq-term-by-term-integral",
+     "latex": "\\int f(x)\\,dx=C+\\sum_{n=0}^{\\infty}c_{n}\\frac{(x-a)^{n+1}}{n+1}",
+     "anchor": "10.2-fs-id1167023789599"
+    }
+   ]
+  },
+  {
+   "id": "uniqueness-of-power-series",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Uniqueness of power series",
+   "statement": "If two convergent power series Σcₙ(x − a)ⁿ and Σdₙ(x − a)ⁿ are equal for all x in an open interval containing a, then cₙ = dₙ for all n ≥ 0."
+  },
+  {
+   "id": "present-value",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Present value",
+   "terms": [
+    "present value"
+   ],
+   "type": "series",
+   "symbol": "P",
+   "statement": "The present value of future payments is their value in terms of today’s dollars, assuming the money can be invested at an interest rate r; payments of C dollars a year for n years are worth C/(1 + r) + C/(1 + r)² + ⋯ + C/(1 + r)ⁿ, and payments that continue indefinitely are worth the sum of a geometric series, C/r.",
+   "forms": [
+    {
+     "id": "eq-present-value-n-years",
+     "latex": "P=\\frac{C}{1+r}+\\frac{C}{(1+r)^{2}}+\\cdots+\\frac{C}{(1+r)^{n}}",
+     "anchor": "10.2-fs-id1167023780795"
+    },
+    {
+     "id": "eq-present-value-perpetual",
+     "latex": "P=\\sum_{n=0}^{\\infty}\\frac{C}{(1+r)^{n+1}}=\\frac{C}{r}",
+     "anchor": "10.2-fs-id1167023920708"
+    }
+   ]
+  },
+  {
+   "id": "taylor-series",
+   "kind": "definition",
+   "section": "10.3",
+   "name": "Taylor series",
+   "terms": [
+    "Taylor series",
+    "Taylor series for f at a"
+   ],
+   "type": "series",
+   "statement": "If f has derivatives of all orders at x = a, the Taylor series for f at a is Σₙ₌₀^∞ f⁽ⁿ⁾(a)/n! (x − a)ⁿ = f(a) + f′(a)(x − a) + f″(a)/2! (x − a)² + ⋯; its coefficients are the ones a power series for f at a must have.",
+   "forms": [
+    {
+     "id": "eq-taylor-series",
+     "latex": "\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(a)}{n!}(x-a)^{n}=f(a)+f'(a)(x-a)+\\frac{f''(a)}{2!}(x-a)^{2}+\\cdots+\\frac{f^{(n)}(a)}{n!}(x-a)^{n}+\\cdots",
+     "anchor": "10.3-fs-id1167025228678"
+    }
+   ]
+  },
+  {
+   "id": "maclaurin-series",
+   "kind": "definition",
+   "section": "10.3",
+   "name": "Maclaurin series",
+   "terms": [
+    "Maclaurin series"
+   ],
+   "type": "series",
+   "statement": "The Taylor series for f at 0, Σₙ₌₀^∞ f⁽ⁿ⁾(0)/n! xⁿ, is the Maclaurin series for f."
+  },
+  {
+   "id": "uniqueness-of-taylor-series",
+   "kind": "result",
+   "section": "10.3",
+   "name": "Uniqueness of Taylor series",
+   "statement": "If a function f has a power series at a that converges to f on some open interval containing a, then that power series is the Taylor series for f at a."
+  },
+  {
+   "id": "taylor-polynomial",
+   "kind": "definition",
+   "section": "10.3",
+   "name": "Taylor polynomial",
+   "terms": [
+    "Taylor polynomials",
+    "Taylor polynomial",
+    "nth Taylor polynomial"
+   ],
+   "type": "series",
+   "symbol": "p",
+   "statement": "If f has n derivatives at x = a, the nth Taylor polynomial for f at a is pₙ(x) = f(a) + f′(a)(x − a) + f″(a)/2! (x − a)² + ⋯ + f⁽ⁿ⁾(a)/n! (x − a)ⁿ, the nth partial sum of the Taylor series for f at a.",
+   "forms": [
+    {
+     "id": "eq-taylor-polynomial",
+     "latex": "p_{n}(x)=f(a)+f'(a)(x-a)+\\frac{f''(a)}{2!}(x-a)^{2}+\\frac{f'''(a)}{3!}(x-a)^{3}+\\cdots+\\frac{f^{(n)}(a)}{n!}(x-a)^{n}",
+     "anchor": "10.3-fs-id1167025242377"
+    }
+   ]
+  },
+  {
+   "id": "maclaurin-polynomial",
+   "kind": "definition",
+   "section": "10.3",
+   "name": "Maclaurin polynomial",
+   "terms": [
+    "Maclaurin polynomials",
+    "Maclaurin polynomial",
+    "nth Maclaurin polynomial"
+   ],
+   "type": "series",
+   "statement": "The nth Taylor polynomial for f at 0 is the nth Maclaurin polynomial for f."
+  },
+  {
+   "id": "taylor-remainder",
+   "kind": "definition",
+   "section": "10.3",
+   "name": "Remainder of a Taylor polynomial",
+   "terms": [
+    "remainder",
+    "nth remainder"
+   ],
+   "type": "error",
+   "symbol": "R",
+   "statement": "The nth remainder Rₙ(x) = f(x) − pₙ(x) is the error when f(x) is approximated by its nth Taylor polynomial at a; the sequence of Taylor polynomials converges to f exactly where Rₙ converges to zero.",
+   "forms": [
+    {
+     "id": "eq-taylor-remainder",
+     "latex": "R_{n}(x)=f(x)-p_{n}(x)",
+     "anchor": "10.3-remainder-term"
+    }
+   ]
+  },
+  {
+   "id": "taylors-theorem-with-remainder",
+   "kind": "result",
+   "section": "10.3",
+   "name": "Taylor’s theorem with remainder",
+   "terms": [
+    "Taylor’s theorem with remainder",
+    "Taylor’s theorem"
+   ],
+   "statement": "If f can be differentiated n + 1 times on an interval I containing a, then for each x in I there is a real number c between a and x such that Rₙ(x) = f⁽ⁿ⁺¹⁾(c)/(n + 1)! (x − a)ⁿ⁺¹; if |f⁽ⁿ⁺¹⁾(x)| ≤ M for all x in I, then |Rₙ(x)| ≤ M/(n + 1)! |x − a|ⁿ⁺¹ for all x in I.",
+   "forms": [
+    {
+     "id": "eq-lagrange-remainder",
+     "latex": "R_{n}(x)=\\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}",
+     "anchor": "10.3-fs-id1167025239317"
+    },
+    {
+     "id": "eq-remainder-bound",
+     "latex": "|R_{n}(x)|\\le\\frac{M}{(n+1)!}|x-a|^{n+1}",
+     "anchor": "10.3-fs-id1167025239317"
+    }
+   ]
+  },
+  {
+   "id": "convergence-of-taylor-series",
+   "kind": "result",
+   "section": "10.3",
+   "name": "Convergence of Taylor series",
+   "statement": "If f has derivatives of all orders on an interval I containing a, the Taylor series Σf⁽ⁿ⁾(a)/n! (x − a)ⁿ converges to f(x) for all x in I if and only if lim Rₙ(x) = 0 as n → ∞ for all x in I; the Taylor series for eˣ, sin x and cos x converge to them for all real x.",
+   "forms": [
+    {
+     "id": "eq-taylor-series-converges",
+     "latex": "\\lim_{n\\to\\infty}R_{n}(x)=0",
+     "anchor": "10.3-fs-id1167025166976"
+    }
+   ]
+  },
+  {
+   "id": "e-is-irrational",
+   "kind": "idea",
+   "section": "10.3",
+   "name": "The irrationality of e",
+   "statement": "Supposing e = r/s for integers r and s, the remainder of the nth Maclaurin polynomial of eˣ at 1 makes s n! Rₙ(1) a nonzero integer of magnitude less than 1 for n large, a contradiction, so e is irrational."
+  },
+  {
+   "id": "binomial-coefficient",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "Binomial coefficient",
+   "terms": [
+    "binomial coefficients",
+    "binomial coefficient",
+    "binomial expansions"
+   ],
+   "statement": "For any real number r, the binomial coefficient is (r choose n) = r(r − 1)(r − 2)⋯(r − n + 1)/n!; for a nonnegative integer r it equals r!/(n!(r − n)!), the coefficient of xⁿ in the binomial expansion of (1 + x)ʳ.",
+   "forms": [
+    {
+     "id": "eq-binomial-coefficient-integer",
+     "latex": "\\binom{r}{n}=\\frac{r!}{n!(r-n)!}",
+     "anchor": "10.4-fs-id1167023717125"
+    },
+    {
+     "id": "eq-binomial-expansion",
+     "latex": "(1+x)^{r}=\\sum_{n=0}^{r}\\binom{r}{n}x^{n}",
+     "anchor": "10.4-fs-id1167023919069"
+    },
+    {
+     "id": "eq-binomial-coefficient",
+     "latex": "\\binom{r}{n}=\\frac{r(r-1)(r-2)\\cdots(r-n+1)}{n!}",
+     "anchor": "10.4-binomial-coefficient-general"
+    }
+   ]
+  },
+  {
+   "id": "binomial-series",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "Binomial series",
+   "terms": [
+    "binomial series"
+   ],
+   "type": "series",
+   "statement": "For any real number r, the Maclaurin series for f(x) = (1 + x)ʳ is the binomial series Σ(r choose n)xⁿ = 1 + rx + r(r − 1)/2! x² + ⋯; it converges to f for |x| < 1, and it terminates when r is a nonnegative integer.",
+   "forms": [
+    {
+     "id": "eq-binomial-series",
+     "latex": "(1+x)^{r}=\\sum_{n=0}^{\\infty}\\binom{r}{n}x^{n}=1+rx+\\frac{r(r-1)}{2!}x^{2}+\\cdots+\\frac{r(r-1)\\cdots(r-n+1)}{n!}x^{n}+\\cdots",
+     "anchor": "10.4-fs-id1167024036610"
+    },
+    {
+     "id": "eq-binomial-series-coefficients",
+     "latex": "\\frac{f^{(n)}(0)}{n!}=\\frac{r(r-1)(r-2)\\cdots(r-n+1)}{n!}",
+     "anchor": "10.4-fs-id1167023896721"
+    }
+   ]
+  },
+  {
+   "id": "maclaurin-series-of-common-functions",
+   "kind": "result",
+   "section": "10.4",
+   "name": "Maclaurin series of common functions",
+   "statement": "1/(1 − x) = Σxⁿ for −1 < x < 1; eˣ = Σxⁿ/n!, sin x = Σ(−1)ⁿx²ⁿ⁺¹/(2n + 1)! and cos x = Σ(−1)ⁿx²ⁿ/(2n)! for all x; ln(1 + x) = Σ(−1)ⁿ⁺¹xⁿ/n for −1 < x ≤ 1; tan⁻¹x = Σ(−1)ⁿx²ⁿ⁺¹/(2n + 1) for −1 ≤ x ≤ 1; (1 + x)ʳ = Σ(r choose n)xⁿ for −1 < x < 1. New Maclaurin series are derived from these by substitution, algebra, differentiation and integration.",
+   "forms": [
+    {
+     "id": "eq-maclaurin-exp",
+     "latex": "e^{x}=\\sum_{n=0}^{\\infty}\\frac{x^{n}}{n!}",
+     "anchor": "10.4-fs-id1167024047165"
+    },
+    {
+     "id": "eq-maclaurin-sin",
+     "latex": "\\sin x=\\sum_{n=0}^{\\infty}(-1)^{n}\\frac{x^{2n+1}}{(2n+1)!}",
+     "anchor": "10.4-fs-id1167024047165"
+    },
+    {
+     "id": "eq-maclaurin-cos",
+     "latex": "\\cos x=\\sum_{n=0}^{\\infty}(-1)^{n}\\frac{x^{2n}}{(2n)!}",
+     "anchor": "10.4-fs-id1167024047165"
+    },
+    {
+     "id": "eq-maclaurin-ln",
+     "latex": "\\ln(1+x)=\\sum_{n=1}^{\\infty}(-1)^{n+1}\\frac{x^{n}}{n}",
+     "anchor": "10.4-fs-id1167024047165"
+    },
+    {
+     "id": "eq-maclaurin-arctan",
+     "latex": "\\tan^{-1}x=\\sum_{n=0}^{\\infty}(-1)^{n}\\frac{x^{2n+1}}{2n+1}",
+     "anchor": "10.4-fs-id1167024047165"
+    }
+   ]
+  },
+  {
+   "id": "power-series-solution-of-a-differential-equation",
+   "kind": "skill",
+   "section": "10.4",
+   "name": "Solving a differential equation with power series",
+   "statement": "To solve a differential equation by power series, suppose a solution y = Σcₙxⁿ, differentiate it term by term, substitute into the equation, equate the coefficients of like powers of x by the uniqueness of power series, and use the initial conditions to find c₀, c₁ and the rest."
+  },
+  {
+   "id": "airys-equation",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "Airy’s equation",
+   "terms": [
+    "Airy’s equation"
+   ],
+   "statement": "The differential equation y″ − xy = 0 is Airy’s equation; it has no solution in elementary functions, and its power series solutions have coefficients with n(n − 1)cₙ = cₙ₋₃ for n ≥ 3 and c₂ = 0.",
+   "forms": [
+    {
+     "id": "eq-airy",
+     "latex": "y''-xy=0",
+     "anchor": "10.4-airy-term"
+    }
+   ]
+  },
+  {
+   "id": "elementary-function",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "Elementary function",
+   "terms": [
+    "elementary function"
+   ],
+   "type": "function",
+   "statement": "An elementary function is a function that can be written using a finite number of algebraic combinations or compositions of exponential, logarithmic, trigonometric, or power functions."
+  },
+  {
+   "id": "nonelementary-integral",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "Nonelementary integral",
+   "terms": [
+    "nonelementary integral"
+   ],
+   "type": "integral",
+   "statement": "An integral ∫f(x) dx whose integrand has no antiderivative that can be written as an elementary function is a nonelementary integral; it can be evaluated by expressing the integrand as a power series and integrating term by term."
+  },
+  {
+   "id": "normal-distribution",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "Normal distribution",
+   "terms": [
+    "normally distributed",
+    "z score"
+   ],
+   "statement": "Data values are normally distributed with mean μ and standard deviation σ when the probability that a randomly chosen value lies between a and b is (1/(σ√(2π)))∫ₐᵇ e^(−(x − μ)²/(2σ²)) dx, the area under a bell-shaped curve; with the z score z = (x − μ)/σ it becomes (1/√(2π))∫ e^(−z²/2) dz from (a − μ)/σ to (b − μ)/σ.",
+   "forms": [
+    {
+     "id": "eq-normal-probability",
+     "latex": "\\frac{1}{\\sigma\\sqrt{2\\pi}}\\int_{a}^{b}e^{-(x-\\mu)^{2}/(2\\sigma^{2})}dx",
+     "anchor": "10.4-fs-id1167023806051"
+    },
+    {
+     "id": "eq-normal-standardized",
+     "latex": "\\frac{1}{\\sqrt{2\\pi}}\\int_{(a-\\mu)/\\sigma}^{(b-\\mu)/\\sigma}e^{-z^{2}/2}dz",
+     "anchor": "10.4-fs-id1167023782231"
+    }
+   ]
+  },
+  {
+   "id": "elliptic-integral",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "Elliptic integral",
+   "terms": [
+    "elliptic integral"
+   ],
+   "type": "integral",
+   "statement": "An integral of the form ∫₀^(π/2) dθ/√(1 − k² sin²θ) is an elliptic integral of the first kind; elliptic integrals arose in calculating the arc length of an ellipse and are nonelementary.",
+   "forms": [
+    {
+     "id": "eq-elliptic-integral",
+     "latex": "\\int_{0}^{\\pi/2}\\frac{d\\theta}{\\sqrt{1-k^{2}\\sin^{2}\\theta}}",
+     "anchor": "10.4-elliptic-term"
+    }
+   ]
+  },
+  {
+   "id": "period-of-a-pendulum",
+   "kind": "result",
+   "section": "10.4",
+   "name": "Period of a pendulum",
+   "statement": "A pendulum of length L making a maximum angle θmax with the vertical has period T = 4√(L/g)∫₀^(π/2) dθ/√(1 − k² sin²θ) with k = sin(θmax/2); expanding the integrand in the binomial series gives T ≈ 2π√(L/g) for small k and T ≈ 2π√(L/g)(1 + k²/4) with two terms.",
+   "forms": [
+    {
+     "id": "eq-pendulum-period",
+     "latex": "T=4\\sqrt{\\frac{L}{g}}\\int_{0}^{\\pi/2}\\frac{d\\theta}{\\sqrt{1-k^{2}\\sin^{2}\\theta}}",
+     "anchor": "10.4-fs-id1167024040533"
+    },
+    {
+     "id": "eq-pendulum-two-terms",
+     "latex": "T\\approx 2\\pi\\sqrt{\\frac{L}{g}}\\Big(1+\\frac{k^{2}}{4}\\Big)",
+     "anchor": "10.4-fs-id1167024040533"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "power-series",
+   "prereq": "infinite-series"
+  },
+  {
+   "concept": "convergence-of-a-power-series",
+   "prereq": "power-series"
+  },
+  {
+   "concept": "convergence-of-a-power-series",
+   "prereq": "comparison-test"
+  },
+  {
+   "concept": "convergence-of-a-power-series",
+   "prereq": "geometric-series"
+  },
+  {
+   "concept": "interval-of-convergence",
+   "prereq": "convergence-of-a-power-series"
+  },
+  {
+   "concept": "interval-of-convergence",
+   "prereq": "interval-notation"
+  },
+  {
+   "concept": "radius-of-convergence",
+   "prereq": "interval-of-convergence"
+  },
+  {
+   "concept": "finding-the-interval-of-convergence",
+   "prereq": "radius-of-convergence"
+  },
+  {
+   "concept": "finding-the-interval-of-convergence",
+   "prereq": "ratio-test"
+  },
+  {
+   "concept": "representing-a-function-by-a-geometric-series",
+   "prereq": "power-series"
+  },
+  {
+   "concept": "representing-a-function-by-a-geometric-series",
+   "prereq": "sum-of-a-geometric-series"
+  },
+  {
+   "concept": "combining-power-series",
+   "prereq": "interval-of-convergence"
+  },
+  {
+   "concept": "combining-power-series",
+   "prereq": "algebraic-properties-of-convergent-series"
+  },
+  {
+   "concept": "multiplying-power-series",
+   "prereq": "interval-of-convergence"
+  },
+  {
+   "concept": "term-by-term-differentiation-and-integration",
+   "prereq": "radius-of-convergence"
+  },
+  {
+   "concept": "term-by-term-differentiation-and-integration",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "uniqueness-of-power-series",
+   "prereq": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "concept": "uniqueness-of-power-series",
+   "prereq": "higher-order-derivative"
+  },
+  {
+   "concept": "present-value",
+   "prereq": "sum-of-a-geometric-series"
+  },
+  {
+   "concept": "present-value",
+   "prereq": "compound-interest"
+  },
+  {
+   "concept": "taylor-series",
+   "prereq": "power-series"
+  },
+  {
+   "concept": "taylor-series",
+   "prereq": "higher-order-derivative"
+  },
+  {
+   "concept": "maclaurin-series",
+   "prereq": "taylor-series"
+  },
+  {
+   "concept": "uniqueness-of-taylor-series",
+   "prereq": "taylor-series"
+  },
+  {
+   "concept": "uniqueness-of-taylor-series",
+   "prereq": "uniqueness-of-power-series"
+  },
+  {
+   "concept": "taylor-polynomial",
+   "prereq": "taylor-series"
+  },
+  {
+   "concept": "taylor-polynomial",
+   "prereq": "partial-sum"
+  },
+  {
+   "concept": "maclaurin-polynomial",
+   "prereq": "taylor-polynomial"
+  },
+  {
+   "concept": "taylor-remainder",
+   "prereq": "taylor-polynomial"
+  },
+  {
+   "concept": "taylors-theorem-with-remainder",
+   "prereq": "taylor-remainder"
+  },
+  {
+   "concept": "taylors-theorem-with-remainder",
+   "prereq": "rolles-theorem"
+  },
+  {
+   "concept": "convergence-of-taylor-series",
+   "prereq": "taylor-remainder"
+  },
+  {
+   "concept": "convergence-of-taylor-series",
+   "prereq": "convergence-of-a-series"
+  },
+  {
+   "concept": "e-is-irrational",
+   "prereq": "taylors-theorem-with-remainder"
+  },
+  {
+   "concept": "e-is-irrational",
+   "prereq": "maclaurin-polynomial"
+  },
+  {
+   "concept": "binomial-series",
+   "prereq": "maclaurin-series"
+  },
+  {
+   "concept": "binomial-series",
+   "prereq": "binomial-coefficient"
+  },
+  {
+   "concept": "maclaurin-series-of-common-functions",
+   "prereq": "binomial-series"
+  },
+  {
+   "concept": "maclaurin-series-of-common-functions",
+   "prereq": "term-by-term-differentiation-and-integration"
+  },
+  {
+   "concept": "maclaurin-series-of-common-functions",
+   "prereq": "convergence-of-taylor-series"
+  },
+  {
+   "concept": "power-series-solution-of-a-differential-equation",
+   "prereq": "uniqueness-of-power-series"
+  },
+  {
+   "concept": "power-series-solution-of-a-differential-equation",
+   "prereq": "initial-value-problem"
+  },
+  {
+   "concept": "airys-equation",
+   "prereq": "differential-equation"
+  },
+  {
+   "concept": "elementary-function",
+   "prereq": "transcendental-function"
+  },
+  {
+   "concept": "nonelementary-integral",
+   "prereq": "elementary-function"
+  },
+  {
+   "concept": "nonelementary-integral",
+   "prereq": "antiderivative"
+  },
+  {
+   "concept": "normal-distribution",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "elliptic-integral",
+   "prereq": "nonelementary-integral"
+  },
+  {
+   "concept": "period-of-a-pendulum",
+   "prereq": "elliptic-integral"
+  },
+  {
+   "concept": "period-of-a-pendulum",
+   "prereq": "binomial-series"
+  }
+ ]
+}

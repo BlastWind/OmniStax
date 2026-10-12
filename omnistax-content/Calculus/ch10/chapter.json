@@ -1,0 +1,289 @@
+{
+ "id": "10",
+ "dir": "ch10",
+ "title": "Power Series",
+ "intro": {
+  "module": "m53760",
+  "slug": "calculus-volume-2/pages/6-introduction"
+ },
+ "sections": [
+  {
+   "id": "10.1",
+   "module": "m53761",
+   "title": "Power Series and Functions",
+   "slug": "calculus-volume-2/pages/6-1-power-series-and-functions"
+  },
+  {
+   "id": "10.2",
+   "module": "m53762",
+   "title": "Properties of Power Series",
+   "slug": "calculus-volume-2/pages/6-2-properties-of-power-series"
+  },
+  {
+   "id": "10.3",
+   "module": "m53817",
+   "title": "Taylor and Maclaurin Series",
+   "slug": "calculus-volume-2/pages/6-3-taylor-and-maclaurin-series"
+  },
+  {
+   "id": "10.4",
+   "module": "m53769",
+   "title": "Working with Taylor Series",
+   "slug": "calculus-volume-2/pages/6-4-working-with-taylor-series"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "f",
+   "section": "10.1",
+   "concept": "function",
+   "meaning": "a function represented on an interval by a power series, such as f(x) = 1/(1 − x), whose values the series' sums give",
+   "redefines": true,
+   "anchor": "10.1-geometric-representation"
+  },
+  {
+   "sym": "S",
+   "section": "10.1",
+   "concept": "partial-sum",
+   "meaning": "the Nth partial sum S_N(x) = c₀ + c₁x + ⋯ + c_Nx^N of a power series, a polynomial in x",
+   "redefines": true,
+   "anchor": "10.1-fs-id1170572498722"
+  },
+  {
+   "sym": "R",
+   "section": "10.1",
+   "concept": "radius-of-convergence",
+   "meaning": "the radius of convergence R of a power series centered at a, the number with convergence for |x − a| < R and divergence for |x − a| > R",
+   "redefines": true,
+   "anchor": "10.1-interval-term"
+  },
+  {
+   "sym": "f",
+   "section": "10.2",
+   "concept": "function",
+   "meaning": "a function represented on an interval by a power series, such as f(x) = 1/(1 − x), whose values the series' sums give",
+   "anchor": "10.2-fs-id1167023714096"
+  },
+  {
+   "sym": "g",
+   "section": "10.2",
+   "concept": "function",
+   "meaning": "a second function, the sum of a second power series on a common interval, or one built from f",
+   "redefines": true,
+   "anchor": "10.2-fs-id1167023714096"
+  },
+  {
+   "sym": "S",
+   "section": "10.2",
+   "concept": "partial-sum",
+   "meaning": "the Nth partial sum S_N(x) = c₀ + c₁x + ⋯ + c_Nx^N of a power series, a polynomial in x",
+   "anchor": "10.2-fs-id1167023714096"
+  },
+  {
+   "sym": "T",
+   "section": "10.2",
+   "concept": "partial-sum",
+   "meaning": "the Nth partial sum T_N(x) of a second power series, beside S_N(x) of the first",
+   "redefines": true,
+   "anchor": "10.2-fs-id1167023714096"
+  },
+  {
+   "sym": "R",
+   "section": "10.2",
+   "concept": "radius-of-convergence",
+   "meaning": "the radius of convergence R of a power series centered at a, the number with convergence for |x − a| < R and divergence for |x − a| > R",
+   "anchor": "10.2-fs-id1167023789599"
+  },
+  {
+   "sym": "f_prime",
+   "section": "10.2",
+   "concept": "derivative-function",
+   "meaning": "the derivative function of f",
+   "anchor": "10.2-fs-id1167023789599"
+  },
+  {
+   "sym": "G",
+   "section": "10.2",
+   "concept": "antiderivative",
+   "meaning": "an antiderivative of g, or a second antiderivative of f",
+   "anchor": "10.2-term-by-term-term"
+  },
+  {
+   "sym": "P",
+   "section": "10.2",
+   "concept": "present-value",
+   "meaning": "the present value P of future payments, their worth in today’s dollars at an interest rate r, the sum of a geometric series when they continue indefinitely",
+   "redefines": true,
+   "anchor": "10.2-present-value-term"
+  },
+  {
+   "sym": "f",
+   "section": "10.3",
+   "concept": "function",
+   "meaning": "a function with derivatives of all orders at a, approximated near a by its Taylor polynomials",
+   "redefines": true,
+   "anchor": "10.3-overview"
+  },
+  {
+   "sym": "f_prime",
+   "section": "10.3",
+   "concept": "derivative-function",
+   "meaning": "the derivative function of f",
+   "anchor": "10.3-overview"
+  },
+  {
+   "sym": "f_dprime",
+   "section": "10.3",
+   "concept": "higher-order-derivative",
+   "meaning": "the second derivative of f, the derivative of its derivative f′",
+   "anchor": "10.3-overview"
+  },
+  {
+   "sym": "f_tprime",
+   "section": "10.3",
+   "concept": "higher-order-derivative",
+   "meaning": "the third derivative of f, the derivative of its second derivative",
+   "anchor": "10.3-overview"
+  },
+  {
+   "sym": "f_n",
+   "section": "10.3",
+   "concept": "higher-order-derivative",
+   "meaning": "the nth derivative of f, obtained by differentiating f n times",
+   "anchor": "10.3-overview"
+  },
+  {
+   "sym": "f_n1",
+   "section": "10.3",
+   "concept": "higher-order-derivative",
+   "meaning": "the (n + 1)st derivative of f, whose bound M on an interval bounds the remainder Rₙ",
+   "anchor": "10.3-fs-id1167025239317"
+  },
+  {
+   "sym": "p",
+   "section": "10.3",
+   "concept": "taylor-polynomial",
+   "meaning": "the nth Taylor polynomial pₙ(x) of f at a, the nth partial sum of the Taylor series for f at a",
+   "redefines": true,
+   "anchor": "10.3-fs-id1167025242377"
+  },
+  {
+   "sym": "R",
+   "section": "10.3",
+   "concept": "taylor-remainder",
+   "meaning": "the nth remainder Rₙ(x) = f(x) − pₙ(x), the error when f(x) is approximated by its nth Taylor polynomial",
+   "redefines": true,
+   "anchor": "10.3-remainder-term"
+  },
+  {
+   "sym": "g",
+   "section": "10.3",
+   "concept": "function",
+   "meaning": "the function g(t) of t that the proof of Taylor’s theorem builds from f, zero at t = a and t = x so that Rolle’s theorem applies",
+   "redefines": true,
+   "anchor": "10.3-fs-id1167025239317"
+  },
+  {
+   "sym": "g_prime",
+   "section": "10.3",
+   "concept": "derivative-function",
+   "meaning": "the derivative of the function g",
+   "anchor": "10.3-fs-id1167025239317"
+  },
+  {
+   "sym": "I",
+   "section": "10.3",
+   "concept": "interval-notation",
+   "meaning": "an interval containing a, on which the function f is defined",
+   "redefines": true,
+   "anchor": "10.3-fs-id1167025239317"
+  },
+  {
+   "sym": "f",
+   "section": "10.4",
+   "concept": "function",
+   "meaning": "a function with derivatives of all orders at a, approximated near a by its Taylor polynomials",
+   "redefines": true,
+   "anchor": "10.4-binomial"
+  },
+  {
+   "sym": "f_prime",
+   "section": "10.4",
+   "concept": "derivative-function",
+   "meaning": "the derivative function of f",
+   "anchor": "10.4-binomial"
+  },
+  {
+   "sym": "f_dprime",
+   "section": "10.4",
+   "concept": "higher-order-derivative",
+   "meaning": "the second derivative of f, the derivative of its derivative f′",
+   "anchor": "10.4-binomial"
+  },
+  {
+   "sym": "f_tprime",
+   "section": "10.4",
+   "concept": "higher-order-derivative",
+   "meaning": "the third derivative of f, the derivative of its second derivative",
+   "anchor": "10.4-binomial"
+  },
+  {
+   "sym": "f_4",
+   "section": "10.4",
+   "concept": "higher-order-derivative",
+   "meaning": "the fourth derivative of f, obtained by differentiating f four times",
+   "anchor": "10.4-binomial"
+  },
+  {
+   "sym": "f_n",
+   "section": "10.4",
+   "concept": "higher-order-derivative",
+   "meaning": "the nth derivative of f, obtained by differentiating f n times",
+   "anchor": "10.4-binomial"
+  },
+  {
+   "sym": "p",
+   "section": "10.4",
+   "concept": "taylor-polynomial",
+   "meaning": "the nth Taylor polynomial pₙ(x) of f at a, the nth partial sum of the Taylor series for f at a",
+   "anchor": "10.4-fs-id1167023918533"
+  },
+  {
+   "sym": "R",
+   "section": "10.4",
+   "concept": "taylor-remainder",
+   "meaning": "the nth remainder Rₙ(x) = f(x) − pₙ(x), the error when f(x) is approximated by its nth Taylor polynomial",
+   "redefines": true,
+   "anchor": "10.4-fs-id1167023918533"
+  },
+  {
+   "sym": "y_fn",
+   "section": "10.4",
+   "concept": "solution-to-a-differential-equation",
+   "meaning": "the unknown function y = f(x) of a differential equation, a solution of it, a function of the independent variable",
+   "anchor": "10.4-differential"
+  },
+  {
+   "sym": "y_prime",
+   "section": "10.4",
+   "concept": "derivative-function",
+   "meaning": "the derivative of y = f(x), the same function as f′(x)",
+   "anchor": "10.4-differential"
+  },
+  {
+   "sym": "y_dprime",
+   "section": "10.4",
+   "concept": "higher-order-derivative",
+   "meaning": "the second derivative of the unknown function y",
+   "anchor": "10.4-differential"
+  },
+  {
+   "sym": "θ",
+   "section": "10.4",
+   "meaning": "the angle a pendulum makes with the vertical, the variable of integration in the period’s elliptic integral; θmax is its largest value",
+   "redefines": true,
+   "type": "angle",
+   "anchor": "10.4-fs-id1167024040533"
+  }
+ ]
+}
