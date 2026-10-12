@@ -1,0 +1,8 @@
+# Introduction
+
+> FIGURE {fig:CNX_Calc_Figure_07_00_001} src=../../media/CNX_Calc_Figure_07_00_001.jpg class=splash
+> alt: This is a picture of a city street with a traffic signal. The picture has very busy lanes of traffic in both directions.
+> caption: Careful planning of traffic signals can prevent or reduce the number of accidents at busy intersections. (credit: modification of work by David McKelvey, Flickr)
+
+In a large city, accidents occurred at an average rate of one every three months at a particularly busy intersection. After residents complained, changes were made to the traffic lights at the intersection. It has now been ten months since the changes were made and there have been no accidents. Were the changes effective or is the ten-month interval without an accident a result of chance? We explore this question later in this chapter and see that integration is an essential part of determining the answer (see [ref:fs-id1165043021843](module:m53686)).
+We saw in the previous chapter how important integration can be for all kinds of different topics—from calculations of volumes to flow rates, and from using a velocity function to determine a position to locating centers of mass. It is no surprise, then, that techniques for finding antiderivatives (or indefinite integrals) are important to know for everyone who uses them. We have already discussed some basic integration formulas and the method of integration by substitution. In this chapter, we study some additional techniques, including some ways of approximating definite integrals when normal techniques do not work.

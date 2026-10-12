@@ -1,0 +1,1270 @@
+{
+ "id": "7.1",
+ "module": "m53656",
+ "chapter": "7",
+ "title": "Integration by Parts",
+ "short": "Integration by Parts",
+ "lead": "<span data-concept=\"integration-by-parts\">Integration by parts</span>, a technique built on the <span data-concept=\"product-rule\">product rule</span>, exchanges one integral for another, possibly easier, one. Here the reader learns to choose its two parts with LIATE, to apply it more than once, and to use it on <span data-concept=\"definite-integral\">definite integrals</span> for an area and a volume.",
+ "objectives": [
+  "Recognize when to use integration by parts.",
+  "Use the integration-by-parts formula to solve integration problems.",
+  "Use the integration-by-parts formula for definite integrals."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"integration-by-parts\">integration-by-parts formula</span> allows the exchange of one <span data-concept=\"indefinite-integral\">integral</span> for another, possibly easier, <span data-concept=\"indefinite-integral\">integral</span>.</li><li><span data-concept=\"integration-by-parts\">Integration by parts</span> applies to both definite and <span data-concept=\"indefinite-integral\">indefinite integrals</span>.</li></ul>",
+ "notes": "The book’s links to a video and a website of integration-by-parts examples are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. The 34 even-numbered section exercises have no answer in the book’s key. Five are kept with an AI-written suggested approach: 48 and 50 (derive the reduction formulas for xⁿeˣ and xⁿ sin x) and 52, 54 and 56 (say whether to integrate by parts, and with which u and dv); exercise 49, whose key says only “Answers vary,” has one too. The other 29 are computational and are left out: exercises 2 and 4 (choose u), 6–46 even (integrate by parts, indefinite and definite), 58 (an area) and 60, 62, 64, 66 and 68 (a volume, a distance, an area and two volumes). Review exercises 408 and 411 from the end of the chapter are held here; 412 and 414, unkeyed integrals by parts, are left out.",
+ "figures": [
+  {
+   "id": "sim-parts-area",
+   "kind": "sim",
+   "number": "7.2",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_01_001.jpg"
+   ],
+   "original_caption": "To find the area of the shaded region, we have to use integration by parts.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-shell-volume",
+   "kind": "sim",
+   "number": "7.3",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_01_002.jpg"
+   ],
+   "original_caption": "We can use the shell method to find a volume of revolution.",
+   "draws": [
+    "function",
+    "region",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "parts-intro",
+   "concept": "integration-by-parts",
+   "verb": "introduces"
+  },
+  {
+   "span": "parts-intro",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "formula",
+   "concept": "product-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "formula",
+   "concept": "indefinite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "parts-theorem",
+   "concept": "integration-by-parts",
+   "verb": "reinforces"
+  },
+  {
+   "span": "liate",
+   "concept": "liate",
+   "verb": "introduces"
+  },
+  {
+   "span": "liate",
+   "concept": "logarithmic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "liate",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "liate",
+   "concept": "algebraic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "liate",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "liate",
+   "concept": "exponential-function",
+   "verb": "uses"
+  },
+  {
+   "span": "more-than-once",
+   "concept": "integrating-by-parts-more-than-once",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165042035446",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "definite",
+   "concept": "definite-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "definite",
+   "concept": "limits-of-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "parts-definite-theorem",
+   "concept": "integration-by-parts-for-definite-integrals",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165042231180",
+   "concept": "area-under-the-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042231180",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042231180",
+   "concept": "fundamental-theorem-of-calculus-part-2",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042058871",
+   "concept": "method-of-cylindrical-shells",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042058871",
+   "concept": "solid-of-revolution",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1165042127899",
+   "source_number": "Checkpoint 7.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165041832973"
+   },
+   "cite": "formula",
+   "prompt": "Evaluate $\\int xe^{2x}dx$ using the integration-by-parts formula with $u=x$ and $dv=e^{2x}dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int xe^{2x}dx=\\frac{1}{2}xe^{2x}-\\frac{1}{4}e^{2x}+C$",
+    "hint": "Find $du$ and $v,$ and use the previous example as a guide."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1165041899921",
+   "source_number": "Checkpoint 7.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042015633"
+   },
+   "cite": "formula",
+   "prompt": "Evaluate $\\int x\\;\\ln x\\;dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}x^{2}\\ln x-\\frac{1}{4}x^{2}+C$",
+    "hint": "Use $u=\\ln x$ and $dv=x\\;dx.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1165042295956",
+   "source_number": "Checkpoint 7.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042035446"
+   },
+   "cite": "formula",
+   "prompt": "Evaluate $\\int x^{2}\\sin x\\;dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-x^{2}\\cos x+2x\\;\\sin x+2\\;\\cos x+C$",
+    "hint": "This is similar to <a href=\"#fs-id1165041948192\">Example 7.3</a>."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1165042299598",
+   "source_number": "Checkpoint 7.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042058871"
+   },
+   "cite": "definite",
+   "prompt": "Evaluate $\\int_0^{\\pi /2}x\\;\\cos x\\;dx.$",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5707963267948966,
+    "tol": 0.001,
+    "solution": "$\\frac{\\pi}{2}-1$",
+    "hint": "Use <a href=\"#fs-id1165042231112\">Equation 7.2</a> with $u=x$ and $dv=\\cos x\\;dx.$"
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1165040642447",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>In using the technique of integration by parts, you must carefully choose which expression is <em>u.</em> For each of the following problems, use the guidelines in this section to choose <em>u.</em> Do <strong>not</strong> evaluate the integrals.</p><p>$\\int x^{3}e^{2x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$u=x^{3}$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1165040642565",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>In using the technique of integration by parts, you must carefully choose which expression is <em>u.</em> For each of the following problems, use the guidelines in this section to choose <em>u.</em> Do <strong>not</strong> evaluate the integrals.</p><p>$\\int y^{3}\\cos ydy$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$u=y^{3}$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1165041787483",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>In using the technique of integration by parts, you must carefully choose which expression is <em>u.</em> For each of the following problems, use the guidelines in this section to choose <em>u.</em> Do <strong>not</strong> evaluate the integrals.</p><p>$\\int e^{3x}\\sin (2x)dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$u=\\sin (2x)$"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1165041787622",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int \\ln x\\;dx$ (<em>Hint:</em> $\\int \\ln x\\;dx$ is equivalent to $\\int 1\\cdot \\ln (x)dx .)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-x+x\\;\\ln x+C$"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1165041848632",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int {\\tan }^{-1}x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x\\;{\\tan }^{-1}x-\\frac{1}{2}\\ln (1+x^{2})+C$"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1165042279525",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int x\\;\\sin (2x)dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2}x\\;\\cos (2x)+\\frac{1}{4}\\sin (2x)+C$"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1165042279694",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int xe^{-x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{-x}(-1-x)+C$"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1165040739210",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int x^{2} \\cos x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2x\\;\\cos x+(-2+x^{2})\\sin x+C$"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1165042106390",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int \\ln (2x+1)dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}(1+2x)(-1+\\ln (1+2x))+C$"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1165040696935",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int e^{x}\\sin x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}e^{x}(-\\cos x+\\sin x)+C$"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1165040697080",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int xe^{-x^{2}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{e^{-x^{2}}}{2}+C$"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1165042110324",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int \\sin (\\ln (2x))dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2}x\\;\\cos [\\ln (2x)]+\\frac{1}{2}x\\;\\sin [\\ln (2x)]+C$"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1165042071182",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int {(\\ln x)}^{2}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2x-2x\\;\\ln x+x{(\\ln x)}^{2}+C$"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1165042071342",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int x^{2}\\ln x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(-\\;\\frac{x^{3}}{9}+\\frac{1}{3}x^{3}\\ln x)+C$"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1165042230128",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int {\\cos }^{-1}(2x)dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2}\\sqrt{1-4x^{2}}+x\\;{\\cos }^{-1}(2x)+C$"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1165042273684",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int x^{2}\\sin x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-(-2+x^{2})\\cos x+2x\\;\\sin x+C$"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1165042233474",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int x^{3}\\sin x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-x(-6+x^{2})\\cos x+3(-2+x^{2})\\sin x+C$"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1165042233649",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int x\\;{\\sec }^{-1}x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}x(-\\sqrt{1-\\frac{1}{x^{2}}}+x\\cdot {\\sec }^{-1}x)+C$"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1165040754583",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Find the integral by using the simplest method. Not all problems require integration by parts.</p><p>$\\int x\\;\\operatorname{cosh}\\;x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\operatorname{cosh}\\;x+x\\;\\operatorname{sinh}\\;x+C$"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1165040754696",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite",
+   "prompt": "<p>Compute the definite integrals. Use a graphing utility to confirm your answers.</p><p>$\\int_0^{1}xe^{-2x}dx$ (Express the answer in exact form.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.14849853757254047,
+    "tol": 0.001,
+    "solution": "$\\frac{1}{4}-\\frac{3}{4{\\text{e}}^{2}}$"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1165042232041",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite",
+   "prompt": "<p>Compute the definite integrals. Use a graphing utility to confirm your answers.</p><p>$\\int_1^{e}\\ln (x^{2})dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2,
+    "solution": "$2$"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1165042232131",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite",
+   "prompt": "<p>Compute the definite integrals. Use a graphing utility to confirm your answers.</p><p>$\\int_{-\\pi}^{\\pi}x\\;\\sin x\\;dx$ (Express the answer in exact form.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6.283185307179586,
+    "tol": 0.001,
+    "solution": "$2\\pi$"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1165041918039",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite",
+   "prompt": "<p>Compute the definite integrals. Use a graphing utility to confirm your answers.</p><p>$\\int_0^{\\pi /2}x^{2}\\sin x\\;dx$ (Express the answer in exact form.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.1415926535897931,
+    "tol": 0.001,
+    "solution": "$-2+\\pi$"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1165041918142",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Evaluate $\\int \\cos x\\;\\ln (\\sin x)dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\sin (x)+\\ln [\\sin (x)]\\sin x+C$"
+   }
+  },
+  {
+   "id": "e48",
+   "source_id": "fs-id1165040756812",
+   "source_number": "48",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Derive the following formulas using the technique of integration by parts. Assume that <em>n</em> is a positive integer. These formulas are called <em>reduction formulas</em> because the exponent in the <em>x</em> term has been reduced by one in each case. The second integral is simpler than the original integral.</p><p>$\\int x^{n}e^{x}dx=x^{n}e^{x}-n\\int x^{n-1}e^{x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Choose $u=x^{n}$ and $dv=e^{x}dx,$ so that $du=nx^{n-1}dx$ and $v=e^{x}.$ Equation 7.1 then gives $\\int x^{n}e^{x}dx=x^{n}e^{x}-\\int e^{x}\\cdot nx^{n-1}dx=x^{n}e^{x}-n\\int x^{n-1}e^{x}dx,$ the formula, with the power of $x$ lowered by one.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1165040756896",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Derive the following formulas using the technique of integration by parts. Assume that <em>n</em> is a positive integer. These formulas are called <em>reduction formulas</em> because the exponent in the <em>x</em> term has been reduced by one in each case. The second integral is simpler than the original integral.</p><p>$\\int x^{n}\\cos x\\;dx =x^{n}\\sin x-n\\int x^{n-1}\\sin x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Choose $u=x^{n}$ and $dv=\\cos x\\;dx,$ so that $du=nx^{n-1}dx$ and $v=\\sin x.$ Equation 7.1 then gives $\\int x^{n}\\cos x\\;dx=x^{n}\\sin x-\\int \\sin x\\cdot nx^{n-1}dx=x^{n}\\sin x-n\\int x^{n-1}\\sin x\\;dx.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e50",
+   "source_id": "fs-id1165040722179",
+   "source_number": "50",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Derive the following formulas using the technique of integration by parts. Assume that <em>n</em> is a positive integer. These formulas are called <em>reduction formulas</em> because the exponent in the <em>x</em> term has been reduced by one in each case. The second integral is simpler than the original integral.</p><p>$\\int x^{n}\\sin x\\;dx =\\underset{\\_\\_\\_\\_\\_\\_}{}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Choose $u=x^{n}$ and $dv=\\sin x\\;dx,$ so that $du=nx^{n-1}dx$ and $v=-\\cos x.$ Equation 7.1 then gives $\\int x^{n}\\sin x\\;dx=-x^{n}\\cos x+n\\int x^{n-1}\\cos x\\;dx.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1165040722280",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>Integrate $\\int 2x\\sqrt{2x-3} dx$ using two methods:</p><p>a. Using parts, letting $dv=\\sqrt{2x-3}\\;dx$</p><p>b. Substitution, letting $u=2x-3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\frac{2}{5}(1+x){(-3+2x)}^{3/2}+C$ b. $\\frac{2}{5}(1+x){(-3+2x)}^{3/2}+C$"
+   }
+  },
+  {
+   "id": "e52",
+   "source_id": "fs-id1165042276367",
+   "source_number": "52",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>State whether you would use integration by parts to evaluate the integral. If so, identify <em>u</em> and <em>dv</em>. If not, describe the technique used to perform the integration without actually doing the problem.</p><p>$\\int x\\;\\ln x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Use integration by parts. The integrand holds a logarithmic and an algebraic function, and L comes before A in LIATE, so $u=\\ln x$ and $dv=x\\;dx;$ then $du=\\frac{1}{x}dx$ and $v=\\frac{1}{2}x^{2},$ and the new integral $\\int \\frac{1}{2}x\\;dx$ is easy.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1165042276432",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>State whether you would use integration by parts to evaluate the integral. If so, identify <em>u</em> and <em>dv</em>. If not, describe the technique used to perform the integration without actually doing the problem.</p><p>$\\int \\frac{{\\ln }^{2}x}{x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Do not use integration by parts. Choose <em>u</em> to be $\\ln x,$ and the integral is of the form $\\int u^{2}du .$"
+   }
+  },
+  {
+   "id": "e54",
+   "source_id": "fs-id1165042276512",
+   "source_number": "54",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>State whether you would use integration by parts to evaluate the integral. If so, identify <em>u</em> and <em>dv</em>. If not, describe the technique used to perform the integration without actually doing the problem.</p><p>$\\int xe^{x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Use integration by parts. A comes before E in LIATE, so $u=x$ and $dv=e^{x}dx;$ then $du=dx$ and $v=e^{x},$ and the new integral $\\int e^{x}dx$ is easy.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1165040741668",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>State whether you would use integration by parts to evaluate the integral. If so, identify <em>u</em> and <em>dv</em>. If not, describe the technique used to perform the integration without actually doing the problem.</p><p>$\\int xe^{x^{2}-3}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Do not use integration by parts. Let $u=x^{2}-3,$ and the integral can be put into the form $\\int e^{u}du .$"
+   }
+  },
+  {
+   "id": "e56",
+   "source_id": "fs-id1165040741753",
+   "source_number": "56",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>State whether you would use integration by parts to evaluate the integral. If so, identify <em>u</em> and <em>dv</em>. If not, describe the technique used to perform the integration without actually doing the problem.</p><p>$\\int x^{2}\\sin x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Use integration by parts, twice. A comes before T in LIATE, so $u=x^{2}$ and $dv=\\sin x\\;dx;$ then $du=2x\\;dx$ and $v=-\\cos x,$ and the new integral $\\int 2x\\cos x\\;dx$ needs integration by parts again, with $u=2x$ and $dv=\\cos x\\;dx.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1165040741825",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>State whether you would use integration by parts to evaluate the integral. If so, identify <em>u</em> and <em>dv</em>. If not, describe the technique used to perform the integration without actually doing the problem.</p><p>$\\int x^{2}\\sin (3x^{3}+2)dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Do not use integration by parts. Choose <em>u</em> to be $u=3x^{3}+2$ and the integral can be put into the form $\\int \\sin (u)du .$"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1165042271779",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite",
+   "prompt": "<p>Sketch the region bounded above by the curve, the <em>x</em>-axis, and $x=1,$ and find the area of the region. Provide the exact form or round answers to the number of places indicated.</p><p>$y=e^{-x}\\sin (\\pi x)$ (Approximate answer to five decimal places.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.39535,
+    "tol": 0.0005,
+    "solution": "The area under graph is 0.39535."
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1165040671747",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite",
+   "prompt": "<p>Find the volume generated by rotating the region bounded by the given curves about the specified line. Express the answers in exact form or approximate to the number of decimal places indicated.</p><p>$y=e^{-x}$ $y=0,x=-1x=0;$ about $x=1$ (Express the answer in exact form.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 17.079468445347132,
+    "tol": 0.001,
+    "solution": "$2\\pi e$"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1165040671890",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite",
+   "prompt": "<p>Find the area under the graph of $y={\\sec }^{3}x$ from $x=0\\;\\text{to}\\;x=1.$ (Round the answer to two significant digits.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.05,
+    "tol": 0.01,
+    "solution": "2.05"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1165040665848",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite",
+   "prompt": "<p>Find the area of the region enclosed by the curve $y=x\\;\\cos x$ and the <em>x</em>-axis for</p><p>$\\frac{11\\pi}{2}\\le x\\le \\frac{13\\pi}{2}.$ (Express the answer in exact form.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 37.69911184307752,
+    "tol": 0.001,
+    "solution": "$12\\pi$"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1165040665996",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definite",
+   "prompt": "<p>Find the volume of the solid generated by revolving the region bounded by the curve $y=4\\;\\cos x$ and the <em>x</em>-axis, $\\frac{\\pi}{2}\\le x\\le \\frac{3\\pi}{2},$ about the <em>x</em>-axis. (Express the answer in exact form.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 78.95683520871486,
+    "tol": 0.001,
+    "solution": "$8{\\pi}^{2}$"
+   }
+  },
+  {
+   "id": "r408",
+   "source_id": "fs-id1165042796906",
+   "source_section": "7.7",
+   "source_number": "408",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>For the following exercises, determine whether the statement is true or false. Justify your answer with a proof or a counterexample.</p><p>$\\int e^{x}\\sin (x)dx$ cannot be integrated by parts.</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False. Integration by parts works on it, applied twice: with $u=\\sin x$ and $dv=e^{x}dx,$ and then $u=\\cos x$ and $dv=e^{x}dx,$ the original integral reappears on the right, and solving for it, as in Example 7.5, gives $\\int e^{x}\\sin x\\;dx=\\frac{1}{2}e^{x}(\\sin x-\\cos x)+C.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r411",
+   "source_id": "fs-id1165043173865",
+   "source_section": "7.7",
+   "source_number": "411",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "formula",
+   "prompt": "<p>For the following exercises, determine whether the statement is true or false. Justify your answer with a proof or a counterexample.</p><p>Integration by parts can always yield the integral.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "liate"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e1",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e3",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e5",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e7",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e9",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e9",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e11",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e13",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e15",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "e17",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e19",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "e21",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e23",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "e25",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "e27",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e27",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e29",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e29",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e31",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "e33",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "e35",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e37",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e39",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e41",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e43",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e45",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e45",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "e47",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e47",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e48",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e49",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e50",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e51",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "e51",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e52",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e53",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e53",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e54",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e55",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e55",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e56",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e56",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "e57",
+   "concept": "liate"
+  },
+  {
+   "exercise": "e57",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e59",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e59",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "e59",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e61",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e61",
+   "concept": "method-of-cylindrical-shells"
+  },
+  {
+   "exercise": "e63",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e63",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e63",
+   "concept": "power-reduction-formulas"
+  },
+  {
+   "exercise": "e65",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e65",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e67",
+   "concept": "integration-by-parts-for-definite-integrals"
+  },
+  {
+   "exercise": "e67",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e67",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "r408",
+   "concept": "integration-by-parts"
+  },
+  {
+   "exercise": "r408",
+   "concept": "integrating-by-parts-more-than-once"
+  },
+  {
+   "exercise": "r411",
+   "concept": "integration-by-parts"
+  }
+ ],
+ "referents": [
+  {
+   "id": "parts-under",
+   "label": "the region under y = tan⁻¹x, of area ∫u dv",
+   "figures": [
+    "sim-parts-area"
+   ]
+  },
+  {
+   "id": "parts-beside",
+   "label": "the region between y = tan⁻¹x and the y-axis, of area ∫v du",
+   "figures": [
+    "sim-parts-area"
+   ]
+  }
+ ]
+}

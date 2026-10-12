@@ -1,0 +1,165 @@
+<p id="trig-intro">In this section we look at how to integrate a variety of products of <span data-concept="trigonometric-functions">trigonometric functions</span>. These <span data-concept="indefinite-integral">integrals</span> are called <strong><span data-concept="trigonometric-integral">trigonometric integrals</span></strong>. They are an important part of the integration technique called <em><span data-concept="trigonometric-substitution">trigonometric substitution</span></em>, which is featured in <a href="/calculus/ch07/7.3/">Trigonometric Substitution</a>. This technique allows us to convert algebraic expressions that we may not be able to integrate into expressions involving <span data-concept="trigonometric-functions">trigonometric functions</span>, which we may be able to integrate using the techniques described in this section. In addition, these types of <span data-concept="indefinite-integral">integrals</span> appear frequently when we study polar, cylindrical, and spherical coordinate systems later. Let’s begin our study with products of $\sin x$ and $\cos x.$</p>
+
+<section id="sin-cos">
+<h2>Integrating Products and Powers of $\sin x$ and $\cos x$</h2>
+<p class="cite-target">A key idea behind the strategy used to integrate combinations of products and powers of $\sin x$ and $\cos x$ involves rewriting these expressions as sums and differences of <span data-concept="indefinite-integral">integrals</span> of the form $\int {\sin }^{j}x\;\cos x\;dx$ or $\int {\cos }^{j}x\;\sin x\;dx.$ After rewriting these <span data-concept="indefinite-integral">integrals</span>, we evaluate them using <span data-concept="integration-by-substitution"><em>u</em>-substitution</span>. Before describing the general process in detail, let’s take a look at the following examples.</p>
+<div class="example" id="fs-id1165043250980">
+<h3>Example 7.8 · Integrating $\int {\cos }^{j}x\;\sin x\;dx$</h3>
+<p>Evaluate <span data-fn="cos(x)^3*sin(x)">$\int {\cos }^{3}x\;\sin x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>Use <a href="/calculus/sheets/integral-calculator/?expr=cos(x)^3*sin(x)"><span data-concept="integration-by-substitution">$u$-substitution</span></a> and let $u=\cos x.$ In this case, $du=-\sin x\;dx.$ Thus,</p>
+$$\begin{array}{ll}\int {\cos }^{3}\;x\;\sin x\;dx & =-\int u^{3}\;du \\ & =-\frac{1}{4}u^{4}+C \\ & =-\frac{1}{4}{\cos }^{4}\;x+C.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165043250980"></div>
+<div class="example" id="fs-id1165043281403">
+<h3>Example 7.9 · A Preliminary Example: Integrating $\int {\cos }^{j}x\;{\sin }^{k}x\;dx$ Where <em>k</em> is Odd</h3>
+<p>Evaluate <span data-fn="cos(x)^2*sin(x)^3">$\int {\cos }^{2}x\;{\sin }^{3}x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>To convert this <span data-concept="indefinite-integral">integral</span> to <span data-concept="indefinite-integral">integrals</span> of the form $\int {\cos }^{j}x\;\sin x\;dx,$ rewrite ${\sin }^{3}x={\sin }^{2}x\;\sin x$ and make the substitution ${\sin }^{2}x=1-{\cos }^{2}x.$ Thus,</p>
+$$\begin{array}{lll}\int {\cos }^{2}x\;{\sin }^{3}x\;dx & =\int {\cos }^{2}x(1-{\cos }^{2}x)\sin x\;dx & \text{Let}\;u=\cos x;\;\text{then}\;du=-\sin x\;dx. \\ & =-\int u^{2}(1-u^{2})du & \\ & =\int (u^{4}-u^{2})du & \\ & =\frac{1}{5}u^{5}-\frac{1}{3}u^{3}+C & \\ & =\frac{1}{5}{\cos }^{5}x-\frac{1}{3}{\cos }^{3}x+C. & \end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165043281403"></div>
+<p>In the next example, we see the strategy that must be applied when there are only even powers of $\sin x$ and $\cos x.$ For <span data-concept="indefinite-integral">integrals</span> of this type, the identities</p>
+$${\sin }^{2}x=\frac{1}{2}-\frac{1}{2}\cos (2x)=\frac{1-\cos (2x)}{2}$$
+<p>and</p>
+$${\cos }^{2}x=\frac{1}{2}+\frac{1}{2}\cos (2x)=\frac{1+\cos (2x)}{2}$$
+<p id="power-reducing">are invaluable. These identities are sometimes known as <em><span data-concept="power-reducing-identities">power-reducing identities</span></em> and they may be derived from the <span data-concept="double-angle-formulas">double-angle identity</span> $\cos (2x)={\cos }^{2}x-{\sin }^{2}x$ and the <span data-concept="pythagorean-identities">Pythagorean identity</span> ${\cos }^{2}x+{\sin }^{2}x=1.$</p>
+<div class="example" id="fs-id1165042936506">
+<h3>Example 7.10 · Integrating an Even Power of $\sin x$</h3>
+<p>Evaluate <span data-fn="sin(x)^2">$\int {\sin }^{2}x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>To evaluate this <span data-concept="indefinite-integral">integral</span>, let’s use the trigonometric identity ${\sin }^{2}x=\frac{1}{2}-\frac{1}{2}\cos (2x).$ Thus,</p>
+$$\begin{array}{ll}\int {\sin }^{2}x\;dx & =\int (\frac{1}{2}-\frac{1}{2}\cos (2x))dx \\ & =\frac{1}{2}x-\frac{1}{4}\sin (2x)+C.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042936506"></div>
+<p>The general process for integrating products of powers of $\sin x$ and $\cos x$ is summarized in the following set of guidelines.</p>
+<div class="note" id="sin-cos-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Integrating Products and Powers of $\sin x$ and $\cos x$</h3>
+<p>To integrate $\int {\cos }^{j}x\;{\sin }^{k}x\;dx$ use the following strategies:</p>
+<ol><li>If $k$ is odd, rewrite ${\sin }^{k}x={\sin }^{k-1}x\;\sin x$ and use the identity ${\sin }^{2}x=1-{\cos }^{2}x$ to rewrite ${\sin }^{k-1}x$ in terms of $\cos x.$ Integrate using the substitution $u=\cos x.$ This substitution makes $du=-\sin x\;dx.$</li><li>If $j$ is odd, rewrite ${\cos }^{j}x={\cos }^{j-1}x\;\cos x$ and use the identity ${\cos }^{2}x=1-{\sin }^{2}x$ to rewrite ${\cos }^{j-1}x$ in terms of $\sin x.$ Integrate using the substitution $u=\sin x.$ This substitution makes $du=\cos x\;dx.$ (<em>Note</em>: If both $j$ and $k$ are odd, either strategy 1 or strategy 2 may be used.)</li><li>If both $j$ and $k$ are even, use ${\sin }^{2}x=(1/2)-(1/2)\cos (2x)$ and ${\cos }^{2}x=(1/2)+(1/2)\cos (2x).$ After applying these formulas, simplify and reapply strategies 1 through 3 as appropriate.</li></ol>
+</div>
+<div class="example" id="fs-id1165043272282">
+<h3>Example 7.11 · Integrating $\int {\cos }^{j}x\;{\sin }^{k}x\;dx$ where <em>k</em> is Odd</h3>
+<p>Evaluate <span data-fn="cos(x)^8*sin(x)^5">$\int {\cos }^{8}x\;{\sin }^{5}x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>Since the power on $\sin x$ is odd, use strategy 1. Thus,</p>
+$$\begin{array}{rlll}\int {\cos }^{8}x\;{\sin }^{5}x\;dx & =\int {\cos }^{8}x\;{\sin }^{4}x\;\sin x\;dx & & \text{Break off}\;\sin x. \\ & =\int {\cos }^{8}x{({\sin }^{2}x)}^{2}\sin x\;dx & & \text{Rewrite}\;{\sin }^{4}x={({\sin }^{2}x)}^{2}. \\ & =\int {\cos }^{8}x{(1-{\cos }^{2}x)}^{2}\sin x\;dx & & \text{Substitute}\;{\sin }^{2}x=1-{\cos }^{2}x. \\ & =\int u^{8}{(1-u^{2})}^{2}(-du) & & \text{Let}\;u=\cos x\;\text{and}\;du=-\sin x\;dx. \\ & =\int (-u^{8}+2u^{10}-u^{12})du & & \text{Expand}. \\ & =-\frac{1}{9}u^{9}+\frac{2}{11}u^{11}-\frac{1}{13}u^{13}+C & & \text{Evaluate the integral}. \\ & =-\frac{1}{9}{\cos }^{9}x+\frac{2}{11}{\cos }^{11}x-\frac{1}{13}{\cos }^{13}x+C. & & \text{Substitute}\;u=\cos x.\end{array}$$
+</div>
+<div class="example" id="fs-id1165042707196">
+<h3>Example 7.12 · Integrating $\int {\cos }^{j}x\;{\sin }^{k}x\;dx$ where <em>k</em> and <em>j</em> are Even</h3>
+<p>Evaluate <span data-fn="sin(x)^4">$\int {\sin }^{4}x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>Since the power on $\sin x$ is even $(k=4)$ and the power on $\cos x$ is even $(j=0),$ we must use strategy 3. Thus,</p>
+$$\begin{array}{rlll}\int {\sin }^{4}x\;dx & =\int {({\sin }^{2}x)}^{2}dx & & \text{Rewrite}\;{\sin }^{4}x={({\sin }^{2}x)}^{2}. \\ & =\int {(\frac{1}{2}-\frac{1}{2}\cos (2x))}^{2}dx & & \text{Substitute}\;{\sin }^{2}x=\frac{1}{2}-\frac{1}{2}\cos (2x). \\ & =\int (\frac{1}{4}-\frac{1}{2}\cos (2x)+\frac{1}{4}{\cos }^{2}(2x))dx & & \text{Expand}\;{(\frac{1}{2}-\frac{1}{2}\cos (2x))}^{2}. \\ & =\int (\frac{1}{4}-\frac{1}{2}\cos (2x)+\frac{1}{4}(\frac{1}{2}+\frac{1}{2}\cos (4x))dx. & & \end{array}$$
+<p>Since ${\cos }^{2}(2x)$ has an even power, substitute ${\cos }^{2}(2x)=\frac{1}{2}+\frac{1}{2}\cos (4x)\text{:}$</p>
+$$\begin{array}{ll}=\int (\frac{3}{8}-\frac{1}{2}\cos (2x)+\frac{1}{8}\cos (4x))dx & \text{Simplify}. \\ =\frac{3}{8}x-\frac{1}{4}\sin (2x)+\frac{1}{32}\;\sin (4x)+C & \text{Evaluate the integral}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042707196"></div>
+<p>In some areas of physics, such as quantum mechanics, signal processing, and the computation of Fourier series, it is often necessary to integrate products that include $\sin (ax),$ $\sin (bx),$ $\cos (ax),$ and $\cos (bx).$ These <span data-concept="indefinite-integral">integrals</span> are evaluated by applying <span data-concept="trigonometric-identity">trigonometric identities</span>, as outlined in the following rule.</p>
+<div class="note" id="products-rule">
+<div class="eyebrow">Rule</div>
+<h3>Integrating Products of Sines and Cosines of Different Angles</h3>
+<p>To integrate products involving $\sin (ax),$ $\sin (bx),$ $\cos (ax),$ and $\cos (bx),$ use the substitutions</p>
+<div class="equation" id="fs-id1165043229277">$$\;\sin (ax)\sin (bx)=\frac{1}{2}\cos ((a-b)x)-\frac{1}{2}\cos ((a+b)x)\tag{7.3}$$</div>
+<div class="equation" id="fs-id1165042349512">$$\sin (ax)\cos (bx)=\frac{1}{2}\sin ((a-b)x)+\frac{1}{2}\sin ((a+b)x)\tag{7.4}$$</div>
+<div class="equation" id="fs-id1165042332192">$$\;\cos (ax)\cos (bx)=\frac{1}{2}\cos ((a-b)x)+\frac{1}{2}\cos ((a+b)x)\tag{7.5}$$</div>
+</div>
+<p id="sum-of-angles">These formulas may be derived from the <span data-concept="addition-and-subtraction-formulas">sum-of-angle formulas</span> for sine and cosine.</p>
+<figure class="sim" id="sim-product-to-sum">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A product of a sine or cosine of $ax$ and one of $bx$ is drawn as the sum it equals: half a wave of $(a-b)x$ and half a wave of $(a+b)x$, <span data-ref="wave-diff wave-sum">the two waves</span> of Equations 7.3 to 7.5, add up to the product at every $x$. Choose the product and set $a$ and $b$; the readout integrates <span data-ref="wave-diff">each wave</span> and <span data-ref="wave-sum">the other</span>. With $b=a$, <span data-ref="wave-diff">the wave of $(a-b)x$</span> is the constant $\frac{1}{2}$ or $0$, and $\sin^{2}(ax)$ or $\cos^{2}(ax)$ is $\frac{1}{2}$ less or more <span data-ref="wave-sum">half a wave of $2ax$</span>: the <span data-concept="power-reducing-identities">power-reducing identities</span>.</span></div>
+</figure>
+<div class="example" id="fs-id1165043094091">
+<h3>Example 7.13 · Evaluating $\int \sin (ax)\cos (bx)dx$</h3>
+<p>Evaluate <span data-fn="sin(5x)*cos(3x)">$\int \sin (5x)\cos (3x)dx.$</span></p>
+<h4>Solution</h4>
+<p>Apply the identity $\sin (5x)\cos (3x)=\frac{1}{2}\sin (2x)+\frac{1}{2}\sin (8x).$ Thus,</p>
+$$\begin{array}{ll}\int \sin (5x)\cos (3x)dx & =\int \frac{1}{2}\sin (2x)dx+\int \frac{1}{2}\sin (8x)dx \\ & =-\frac{1}{4}\cos (2x)-\frac{1}{16}\;\cos (8x)+C.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165043094091"></div>
+</section>
+
+<section id="tan-sec">
+<h2>Integrating Products and Powers of $\tan x$ and $\sec x$</h2>
+<p class="cite-target">Before discussing the integration of products and powers of $\tan x$ and $\sec x,$ it is useful to recall the <span data-concept="indefinite-integral">integrals</span> involving $\tan x$ and $\sec x$ we have already learned:</p>
+<ol><li>$\int {\sec }^{2}x\;dx=\tan x+C$</li><li>$\int \sec x\;\tan x\;dx=\sec x+C$</li><li>$\int \tan x\;dx=\ln |\sec x|+C$</li><li>$\int \sec x\;dx=\ln |\sec x+\tan x|+C.$</li></ol>
+<p>For most <span data-concept="indefinite-integral">integrals</span> of products and powers of $\tan x$ and $\sec x,$ we rewrite the expression we wish to integrate as the sum or difference of <span data-concept="indefinite-integral">integrals</span> of the form $\int {\tan }^{j}x\;{\sec }^{2}x\;dx$ or $\int {\sec }^{j}x\;\tan x\;dx.$ As we see in the following example, we can evaluate these new <span data-concept="indefinite-integral">integrals</span> by using <em>u</em>-substitution.</p>
+<div class="example" id="fs-id1165043183813">
+<h3>Example 7.14 · Evaluating $\int {\sec }^{j}x\;\tan x\;dx$</h3>
+<p>Evaluate <span data-fn="sec(x)^5*tan(x)">$\int {\sec }^{5}x\;\tan x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>Start by rewriting ${\sec }^{5}x\;\tan x$ as ${\sec }^{4}x\;\sec x\;\tan x.$</p>
+$$\begin{array}{rlll}\int {\sec }^{5}x\;\tan x\;dx & =\int {\sec }^{4}x\;\sec x\;\tan x\;dx & & \text{Let}\;u=\sec x;\;\text{then},\;du=\sec x\;\tan x\;dx. \\ & =\int u^{4}du & & \text{Evaluate the integral}. \\ & =\frac{1}{5}u^{5}+C & & \text{Substitute}\;\sec x=u. \\ & =\frac{1}{5}{\sec }^{5}x+C & & \end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165043183813"></div>
+<p>We now take a look at the various strategies for integrating products and powers of $\sec x$ and $\tan x.$</p>
+<div class="note" id="tan-sec-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Integrating $\int {\tan }^{k}x\;{\sec }^{j}x\;dx$</h3>
+<p>To integrate $\int {\tan }^{k}x\;{\sec }^{j}x\;dx,$ use the following strategies:</p>
+<ol><li>If $j$ is even and $j\ge 2,$ rewrite ${\sec }^{j}x={\sec }^{j-2}x\;{\sec }^{2}x$ and use ${\sec }^{2}x={\tan }^{2}x+1$ to rewrite ${\sec }^{j-2}x$ in terms of $\tan x.$ Let $u=\tan x$ and $du={\sec }^{2}xdx.$</li><li>If $k$ is odd and $j\ge 1,$ rewrite ${\tan }^{k}x\;{\sec }^{j}x={\tan }^{k-1}x\;{\sec }^{j-1}x\;\sec x\;\tan x$ and use ${\tan }^{2}x={\sec }^{2}x-1$ to rewrite ${\tan }^{k-1}x$ in terms of $\sec x.$ Let $u=\sec x$ and $du=\sec x\;\tan x\;dx.$ (<em>Note</em>: If $j$ is even and $k$ is odd, then either strategy 1 or strategy 2 may be used.)</li><li>If $k$ is odd where $k\ge 3$ and $j=0,$ rewrite ${\tan }^{k}x={\tan }^{k-2}x\;{\tan }^{2}x={\tan }^{k-2}x({\sec }^{2}x-1)={\tan }^{k-2}x\;{\sec }^{2}x-{\tan }^{k-2}x.$ It may be necessary to repeat this process on the ${\tan }^{k-2}x$ term.</li><li>If $k$ is even and $j$ is odd, then use ${\tan }^{2}x={\sec }^{2}x-1$ to express ${\tan }^{k}x$ in terms of $\sec x.$ Use <span data-concept="integration-by-parts">integration by parts</span> to integrate odd powers of $\sec x.$</li></ol>
+</div>
+<div class="example" id="fs-id1165042707642">
+<h3>Example 7.15 · Integrating $\int {\tan }^{k}x\;{\sec }^{j}x\;dx$ when $j$ is Even</h3>
+<p>Evaluate <span data-fn="tan(x)^6*sec(x)^4">$\int {\tan }^{6}x\;{\sec }^{4}x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>Since the power on $\sec x$ is even, rewrite ${\sec }^{4}x={\sec }^{2}x\;{\sec }^{2}x$ and use ${\sec }^{2}x={\tan }^{2}x+1$ to rewrite the first ${\sec }^{2}x$ in terms of $\tan x.$ Thus,</p>
+$$\begin{array}{rlll}\int {\tan }^{6}x\;{\sec }^{4}x\;dx & =\int {\tan }^{6}x({\tan }^{2}x+1){\sec }^{2}x\;dx & & \text{Let}\;u=\tan x\;\text{and}\;du={\sec }^{2}xdx. \\ & =\int u^{6}(u^{2}+1)du & & \text{Expand}. \\ & =\int (u^{8}+u^{6})du & & \text{Evaluate the integral}. \\ & =\frac{1}{9}u^{9}+\frac{1}{7}u^{7}+C & & \text{Substitute}\;\tan x=u. \\ & =\frac{1}{9}{\tan }^{9}x+\frac{1}{7}{\tan }^{7}x+C. & & \end{array}$$
+</div>
+<div class="example" id="fs-id1165042527092">
+<h3>Example 7.16 · Integrating $\int {\tan }^{k}x\;{\sec }^{j}x\;dx$ when $k$ is Odd</h3>
+<p>Evaluate <span data-fn="tan(x)^5*sec(x)^3">$\int {\tan }^{5}x\;{\sec }^{3}x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>Since the power on $\tan x$ is odd, begin by rewriting ${\tan }^{5}x\;{\sec }^{3}x={\tan }^{4}x\;{\sec }^{2}x\;\sec x\;\tan x.$ Thus,</p>
+$$\begin{array}{rlllll}{\tan }^{5}x\;{\sec }^{3}x & = & {\tan }^{4}x\;{\sec }^{2}x\;\sec x\;\tan x. & & & \text{Write}\;{\tan }^{4}x={({\tan }^{2}x)}^{2}. \\ \int {\tan }^{5}x\;{\sec }^{3}x\;dx & = & \int {({\tan }^{2}x)}^{2}{\sec }^{2}x\;\sec x\;\tan x\;dx & & & \text{Use}\;{\tan }^{2}x={\sec }^{2}x-1. \\ & = & \int {({\sec }^{2}x-1)}^{2}{\sec }^{2}x\;\sec x\;\tan x\;dx & & & \text{Let}\;u=\sec x\;\text{and}\;du=\sec x\;\tan x\;dx. \\ & = & \int {(u^{2}-1)}^{2}u^{2}du & & & \text{Expand}. \\ & = & \int (u^{6}-2u^{4}+u^{2})du & & & \text{Integrate}. \\ & = & \frac{1}{7}u^{7}-\frac{2}{5}u^{5}+\frac{1}{3}u^{3}+C & & & \text{Substitute}\;\sec x=u. \\ & = & \frac{1}{7}{\sec }^{7}x-\frac{2}{5}{\sec }^{5}x+\frac{1}{3}{\sec }^{3}x+C. & & & \end{array}$$
+</div>
+<div class="example" id="fs-id1165043327268">
+<h3>Example 7.17 · Integrating $\int {\tan }^{k}x\;dx$ where $k$ is Odd and $k\ge 3$</h3>
+<p>Evaluate <span data-fn="tan(x)^3">$\int {\tan }^{3}x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>Begin by rewriting ${\tan }^{3}x=\tan x\;{\tan }^{2}x=\tan x({\sec }^{2}x-1)=\tan x\;{\sec }^{2}x-\tan x.$ Thus,</p>
+$$\begin{array}{ll}\int {\tan }^{3}x\;dx & =\int (\tan x\;{\sec }^{2}x-\tan x)dx \\ & =\int \tan x\;{\sec }^{2}x\;dx-\int \tan x\;dx \\ & =\frac{1}{2}{\tan }^{2}x-\ln |\sec x|+C.\end{array}$$
+<p>For the first <span data-concept="indefinite-integral">integral</span>, use the substitution $u=\tan x.$ For the second <span data-concept="indefinite-integral">integral</span>, use the formula.</p>
+</div>
+<div class="example" id="fs-id1165043311678">
+<h3>Example 7.18 · Integrating $\int {\sec }^{3}x\;dx$</h3>
+<p>Integrate <span data-fn="sec(x)^3">$\int {\sec }^{3}x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>This <span data-concept="indefinite-integral">integral</span> requires <span data-concept="integration-by-parts">integration by parts</span>. To begin, let $u=\sec x$ and $dv={\sec }^{2}xdx.$ These choices make $du=\sec x\;\tan x$ and $v=\tan x.$ Thus,</p>
+$$\begin{array}{rlll}\int {\sec }^{3}x\;dx & =\sec x\;\tan x-\int \tan x\;\sec x\;\tan x\;dx & & \\ & =\sec x\;\tan x-\int {\tan }^{2}x\;\sec x\;dx & & \text{Simplify}. \\ & =\sec x\;\tan x-\int ({\sec }^{2}x-1)\sec x\;dx & & \text{Substitute}\;{\tan }^{2}x={\sec }^{2}x-1. \\ & =\sec x\;\tan x+\int \sec x\;dx-\int {\sec }^{3}x\;dx & & \text{Rewrite}. \\ & =\sec x\;\tan x+\ln |\sec x+\tan x|-\int {\sec }^{3}x\;dx. & & \text{Evaluate}\int \sec x\;dx.\end{array}$$
+<p>We now have</p>
+$$\int {\sec }^{3}x\;dx=\sec x\;\tan x+\ln |\sec x+\tan x|-\int {\sec }^{3}x\;dx.$$
+<p>Since the <span data-concept="indefinite-integral">integral</span> $\int {\sec }^{3}x\;dx$ has reappeared on the right-hand side, we can solve for $\int {\sec }^{3}x\;dx$ by adding it to both sides. In doing so, we obtain</p>
+$$2\int {\sec }^{3}x\;dx=\sec x\;\tan x+\ln |\sec x+\tan x|.$$
+<p>Dividing by 2, we arrive at</p>
+$$\int {\sec }^{3}x\;dx=\frac{1}{2}\sec x\;\tan x+\frac{1}{2}\ln |\sec x+\tan x|+C.$$
+</div>
+<div class="exercises" data-place="fs-id1165043311678"></div>
+</section>
+
+<section id="reduction">
+<h2>Reduction Formulas</h2>
+<p class="cite-target" id="reduction-intro">Evaluating $\int {\sec }^{n}x\;dx$ for values of $n$ where $n$ is odd requires <span data-concept="integration-by-parts">integration by parts</span>. In addition, we must also know the value of $\int {\sec }^{n-2}x\;dx$ to evaluate $\int {\sec }^{n}x\;dx.$ The evaluation of $\int {\tan }^{n}x\;dx$ also requires being able to integrate $\int {\tan }^{n-2}x\;dx.$ To make the process easier, we can derive and apply the following <strong><span data-concept="power-reduction-formulas">power reduction formulas</span></strong>. These rules allow us to replace the <span data-concept="indefinite-integral">integral</span> of a power of $\sec x$ or $\tan x$ with the <span data-concept="indefinite-integral">integral</span> of a lower power of $\sec x$ or $\tan x.$</p>
+<div class="note" id="reduction-rule">
+<div class="eyebrow">Rule</div>
+<h3>Reduction Formulas for $\int {\sec }^{n}x\;dx$ and $\int {\tan }^{n}x\;dx$</h3>
+<div class="equation" id="fs-id1165043276273">$$\int {\sec }^{n}x\;dx=\frac{1}{n-1}{\sec }^{n-2}x\;\tan x+\frac{n-2}{n-1}\int {\sec }^{n-2}x\;dx\tag{7.6}$$</div>
+<div class="equation" id="fs-id1165039565660">$$\int {\tan }^{n}x\;dx=\frac{1}{n-1}{\tan }^{n-1}x-\int {\tan }^{n-2}x\;dx\tag{7.7}$$</div>
+<p>The first <span data-concept="power-reduction-formulas">power reduction rule</span> may be verified by applying <span data-concept="integration-by-parts">integration by parts</span>. The second may be verified by following the strategy outlined for integrating odd powers of $\tan x.$</p>
+</div>
+<div class="example" id="fs-id1165042445770">
+<h3>Example 7.19 · Revisiting $\int {\sec }^{3}x\;dx$</h3>
+<p>Apply a <span data-concept="power-reduction-formulas">reduction formula</span> to evaluate $\int {\sec }^{3}x\;dx.$</p>
+<h4>Solution</h4>
+<p>By applying the first <span data-concept="power-reduction-formulas">reduction formula</span>, we obtain</p>
+$$\begin{array}{ll}\int {\sec }^{3}x\;dx & =\frac{1}{2}\sec x\;\tan x+\frac{1}{2}\int \sec x\;dx \\ & =\frac{1}{2}\sec x\;\tan x+\frac{1}{2}\ln |\sec x+\tan x|+C.\end{array}$$
+</div>
+<div class="example" id="fs-id1165042599295">
+<h3>Example 7.20 · Using a Reduction Formula</h3>
+<p>Evaluate <span data-fn="tan(x)^4">$\int {\tan }^{4}x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>Applying the <span data-concept="power-reduction-formulas">reduction formula</span> for $\int {\tan }^{4}x\;dx$ we have</p>
+$$\begin{array}{rlll}\int {\tan }^{4}x\;dx & =\frac{1}{3}{\tan }^{3}x-\int {\tan }^{2}x\;dx & & \\ & =\frac{1}{3}{\tan }^{3}x-(\tan x-\int {\tan }^{0}x\;dx) & & \text{Apply the reduction formula to}\int {\tan }^{2}x\;dx. \\ & =\frac{1}{3}{\tan }^{3}x-\tan x+\int 1\;dx & & \text{Simplify}. \\ & =\frac{1}{3}{\tan }^{3}x-\tan x+x+C. & & \text{Evaluate}\int 1dx.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042599295"></div>
+</section>

@@ -1,0 +1,1099 @@
+{
+ "id": "7.3",
+ "module": "m53659",
+ "chapter": "7",
+ "title": "Trigonometric Substitution",
+ "short": "Trigonometric Substitution",
+ "lead": "<span data-concept=\"trigonometric-substitution\">Trigonometric substitution</span> turns an integral containing $\\sqrt{a^{2}-x^{2}},$ $\\sqrt{a^{2}+x^{2}}$ or $\\sqrt{x^{2}-a^{2}}$ into a <span data-concept=\"trigonometric-integral\">trigonometric integral</span>. Here each radical gets its substitution, $x=a\\sin\\ktheta,$ $a\\tan\\ktheta$ or $a\\sec\\ktheta,$ and a <span data-concept=\"reference-triangle\">reference triangle</span> carries the answer back to $x.$",
+ "objectives": [
+  "Solve integration problems involving the square root of a sum or difference of two squares."
+ ],
+ "summary_html": "<ul><li>For <span data-concept=\"indefinite-integral\">integrals</span> involving $\\sqrt{a^{2}-x^{2}},$ use the substitution $x=a\\;\\sin \\ktheta$ and $dx=a\\;\\cos \\ktheta d\\theta .$</li><li>For <span data-concept=\"indefinite-integral\">integrals</span> involving $\\sqrt{a^{2}+x^{2}},$ use the substitution $x=a\\;\\tan \\ktheta$ and $dx=a\\;{\\sec }^{2}\\ktheta d\\theta .$</li><li>For <span data-concept=\"indefinite-integral\">integrals</span> involving $\\sqrt{x^{2}-a^{2}},$ substitute $x=a\\;\\sec \\ktheta$ and $dx=a\\;\\sec \\ktheta \\;\\tan \\ktheta d\\theta .$</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. The 28 even-numbered section exercises have no answer in the book’s key. Two are kept with an AI-written suggested approach: 168 (show two substitutions give equivalent results) and 170 (name a method and say why). The other 26 are computational and are left out: exercises 126, 128 and 130 (simplify with an identity), 132 (complete the square), 134–158 even (integrate by trigonometric or hyperbolic substitution), 160, 162 and 164 (complete the square and integrate), 166 (the area of an ellipse), 172 (a definite integral), 174 (a surface area), 176 (an initial-value problem), 178 (an area) and 180 (a displacement). Review exercises 413 and 419 from the end of the chapter are held here; 416, unkeyed, is left out.",
+ "figures": [
+  {
+   "id": "sim-triangle-sine",
+   "kind": "sim",
+   "number": "7.4",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_03_001.jpg"
+   ],
+   "original_caption": "A reference triangle can help express the trigonometric functions evaluated at θ in terms of x.",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-triangle-nine",
+   "kind": "figure",
+   "number": "7.5",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_03_002.jpg"
+   ],
+   "original_caption": "A reference triangle can be constructed for Example 7.21.",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-triangle-four",
+   "kind": "figure",
+   "number": "7.6",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_03_003.jpg"
+   ],
+   "original_caption": "A reference triangle can be constructed for Example 7.22.",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-triangle-tangent",
+   "kind": "sim",
+   "number": "7.7",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_03_004.jpg"
+   ],
+   "original_caption": "A reference triangle can be constructed to express the trigonometric functions evaluated at θ in terms of x.",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-triangle-one",
+   "kind": "figure",
+   "number": "7.8",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_03_005.jpg"
+   ],
+   "original_caption": "The reference triangle for Example 7.24.",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-triangle-secant",
+   "kind": "sim",
+   "number": "7.9",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_03_006.jpg"
+   ],
+   "original_caption": "Use the appropriate reference triangle to express the trigonometric functions evaluated at θ in terms of x.",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-area-secant",
+   "kind": "sim",
+   "number": "7.10",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_03_007.jpg"
+   ],
+   "original_caption": "Calculating the area of the shaded region requires evaluating an integral with a trigonometric substitution.",
+   "draws": [
+    "function",
+    "integral",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "trigsub-intro",
+   "concept": "trigonometric-substitution",
+   "verb": "introduces"
+  },
+  {
+   "span": "trigsub-intro",
+   "concept": "trigonometric-integral",
+   "verb": "uses"
+  },
+  {
+   "span": "sine",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "sine",
+   "concept": "range",
+   "verb": "uses"
+  },
+  {
+   "span": "sine",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "reference-triangle",
+   "concept": "reference-triangle",
+   "verb": "introduces"
+  },
+  {
+   "span": "sine-strategy",
+   "concept": "sine-substitution",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165041837235",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042092098",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "tangent-strategy",
+   "concept": "tangent-substitution",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165042301696",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042301696",
+   "concept": "reconciling-equivalent-antiderivatives",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165040639551",
+   "concept": "arc-length",
+   "verb": "uses"
+  },
+  {
+   "span": "secant-strategy",
+   "concept": "secant-substitution",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165041831016",
+   "concept": "area-under-the-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165041831016",
+   "concept": "limits-of-integration",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1165042094004",
+   "source_number": "Checkpoint 7.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042092098"
+   },
+   "cite": "sine",
+   "prompt": "Rewrite the integral $\\int \\frac{x^{3}}{\\sqrt{25-x^{2}}}dx$ using the appropriate trigonometric substitution (do not evaluate the integral).",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int 125\\;{\\sin }^{3}\\theta d\\theta$",
+    "hint": "Substitute $x=5\\;\\sin \\theta$ and $dx=5\\;\\cos \\theta d\\theta .$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1165042041808",
+   "source_number": "Checkpoint 7.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165040639551"
+   },
+   "cite": "tangent",
+   "prompt": "Rewrite $\\int x^{3}\\sqrt{x^{2}+4}\\;dx$ by using a substitution involving $\\tan \\theta .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int 32\\;{\\tan }^{3}\\theta \\;{\\sec }^{3}\\theta d\\theta$",
+    "hint": "Use $x=2\\;\\tan \\theta$ and $dx=2\\;{\\sec }^{2}\\theta d\\theta .$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1165041757010",
+   "source_number": "Checkpoint 7.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165041831016"
+   },
+   "cite": "secant",
+   "prompt": "Evaluate $\\int \\frac{dx}{\\sqrt{x^{2}-4}} .$ Assume that $x\\gt 2.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln |\\frac{x}{2}+\\frac{\\sqrt{x^{2}-4}}{2}|+C$",
+    "hint": "Substitute $x=2\\;\\sec \\theta$ and $dx=2\\;\\sec \\theta \\;\\tan \\theta d\\theta .$"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1165041926600",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Simplify the following expressions by writing each one using a single trigonometric function.</p><p>$9\\;{\\sec }^{2}\\theta -9$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$9\\;{\\tan }^{2}\\theta$"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1165041822391",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>Simplify the following expressions by writing each one using a single trigonometric function.</p><p>$a^{2}+a^{2}{\\operatorname{sinh}}^{2}\\theta$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a^{2}{\\operatorname{cosh}}^{2}\\theta$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1165042028245",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Use the technique of completing the square to express each trinomial as the square of a binomial or the square of a binomial plus a constant.</p><p>$4x^{2}-4x+1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$4{(x-\\frac{1}{2})}^{2}$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1165042088594",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Use the technique of completing the square to express each trinomial as the square of a binomial or the square of a binomial plus a constant.</p><p>$-x^{2}-2x+4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-{(x+1)}^{2}+5$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1165042018113",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "secant",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int \\frac{dx}{\\sqrt{x^{2}-a^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln |\\frac{\\sqrt{x^{2}-a^{2}}+x}{a}|+C$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1165042311909",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int \\frac{dx}{\\sqrt{1+9x^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}\\ln |\\sqrt{9x^{2}+1}+3x|+C$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1165040646186",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int \\frac{dx}{x^{2}\\sqrt{1-x^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{\\sqrt{1-x^{2}}}{x}+C$"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1165041826993",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int \\sqrt{x^{2}+9} dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$9[\\frac{x\\sqrt{x^{2}+9}}{18}+\\frac{1}{2}\\ln|\\frac{\\sqrt{x^{2}+9}}{3}+\\frac{x}{3}|]+C$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1165040775694",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int \\frac{{\\theta}^{3}d\\theta}{\\sqrt{9-{\\theta}^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{3}\\sqrt{9-{\\theta}^{2}}(18+{\\theta}^{2})+C$"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1165040768885",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int \\sqrt{x^{6}-x^{8}} dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{(-1+x^{2})(2+3x^{2})\\sqrt{x^{6}-x^{8}}}{15x^{3}}+C$"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1165041962860",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "secant",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int \\frac{dx}{{(x^{2}-9)}^{3/2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{x}{9\\sqrt{-9+x^{2}}}+C$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1165041932696",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "secant",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int \\frac{x^{2}dx}{\\sqrt{x^{2}-1}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}(\\ln |x+\\sqrt{x^{2}-1}|+x\\sqrt{x^{2}-1})+C$"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1165042247082",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int \\frac{dx}{x^{2}\\sqrt{x^{2}+1}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{\\sqrt{1+x^{2}}}{x}+C$"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1165040669735",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Integrate using the method of trigonometric substitution. Express the final answer in terms of the variable.</p><p>$\\int {(1-x^{2})}^{3/2}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{8}(x(5-2x^{2})\\sqrt{1-x^{2}}+3\\;\\operatorname{arcsin}\\;x)+C$"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1165040668400",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>In the following exercises, use the substitutions $x=\\operatorname{sinh}\\;\\theta ,\\operatorname{cosh}\\;\\theta ,$ or $\\operatorname{tanh}\\;\\theta .$ Express the final answers in terms of the variable <em>x.</em></p><p>$\\int \\frac{dx}{x\\sqrt{1-x^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln x-\\ln |1+\\sqrt{1-x^{2}}|+C$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1165040762399",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "secant",
+   "prompt": "<p>In the following exercises, use the substitutions $x=\\operatorname{sinh}\\;\\theta ,\\operatorname{cosh}\\;\\theta ,$ or $\\operatorname{tanh}\\;\\theta .$ Express the final answers in terms of the variable <em>x.</em></p><p>$\\int \\frac{\\sqrt{x^{2}-1}}{x^{2}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{\\sqrt{-1+x^{2}}}{x}+\\ln |x+\\sqrt{-1+x^{2}}|+C$"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1165042033113",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>In the following exercises, use the substitutions $x=\\operatorname{sinh}\\;\\theta ,\\operatorname{cosh}\\;\\theta ,$ or $\\operatorname{tanh}\\;\\theta .$ Express the final answers in terms of the variable <em>x.</em></p><p>$\\int \\frac{\\sqrt{1+x^{2}}}{x^{2}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{\\sqrt{1+x^{2}}}{x}+\\operatorname{arcsinh}\\;x+C$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1165042040096",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Use the technique of completing the square to evaluate the following integrals.</p><p>$\\int \\frac{1}{x^{2}+2x+1}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{1+x}+C$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1165040730904",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Use the technique of completing the square to evaluate the following integrals.</p><p>$\\int \\frac{1}{\\sqrt{-x^{2}+10x}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\operatorname{arcsin}(\\frac{x-5}{5})+C$"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1165040775633",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Evaluate the integral without using calculus: $\\int_{-3}^{3}\\sqrt{9-x^{2}}\\;dx.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 14.137166941154069,
+    "tol": 0.001,
+    "solution": "$\\frac{9\\pi}{2};$ area of a semicircle with radius 3"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1165040693506",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Evaluate the integral $\\int \\frac{dx}{\\sqrt{1-x^{2}}}$ using two different substitutions. First, let $x=\\cos \\theta$ and evaluate using trigonometric substitution. Second, let $x=\\sin \\theta$ and use trigonometric substitution. Are the answers the same?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\operatorname{arcsin}(x)+C$ is the common answer."
+   }
+  },
+  {
+   "id": "e168",
+   "source_id": "fs-id1165042262087",
+   "source_number": "168",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "secant",
+   "prompt": "<p>Evaluate the integral $\\int \\frac{dx}{x\\sqrt{x^{2}-1}}$ using the substitution $x=\\sec \\theta .$ Next, evaluate the same integral using the substitution $x=\\csc \\theta .$ Show that the results are equivalent.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "With $x=\\sec \\theta$ and $x\\gt 1,$ $dx=\\sec \\theta \\;\\tan \\theta \\;d\\theta$ and $\\sqrt{x^{2}-1}=\\tan \\theta,$ so $\\int \\frac{dx}{x\\sqrt{x^{2}-1}}=\\int \\frac{\\sec \\theta \\;\\tan \\theta}{\\sec \\theta \\;\\tan \\theta}d\\theta =\\theta +C={\\sec }^{-1}x+C.$ With $x=\\csc \\theta,$ $dx=-\\csc \\theta \\;\\cot \\theta \\;d\\theta$ and $\\sqrt{x^{2}-1}=\\cot \\theta,$ so the integral is $\\int -d\\theta =-\\theta +C=-{\\csc }^{-1}x+C.$ Since ${\\sec }^{-1}x+{\\csc }^{-1}x=\\frac{\\pi}{2},$ the two results differ only by the constant $\\frac{\\pi}{2},$ so they are equivalent.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1165042040456",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>Evaluate the integral $\\int \\frac{x}{x^{2}+1} dx$ using the form $\\int \\frac{1}{u}du .$ Next, evaluate the same integral using $x=\\tan \\theta .$ Are the results the same?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}\\ln (1+x^{2})+C$ is the result using either method."
+   }
+  },
+  {
+   "id": "e170",
+   "source_id": "fs-id1165040796150",
+   "source_number": "170",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>State the method of integration you would use to evaluate the integral $\\int x\\sqrt{x^{2}+1}\\;dx .$ Why did you choose this method?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Use <em>u</em>-substitution with $u=x^{2}+1:$ its differential $du=2x\\;dx$ already stands in the integrand, so $\\int x\\sqrt{x^{2}+1}\\;dx=\\frac{1}{2}\\int \\sqrt{u}\\;du=\\frac{1}{3}{(x^{2}+1)}^{3/2}+C.$ A trigonometric substitution $x=\\tan \\theta$ also works but takes longer.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1165040720673",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "secant",
+   "prompt": "<p>State the method of integration you would use to evaluate the integral $\\int x^{2}\\sqrt{x^{2}-1}\\;dx .$ Why did you choose this method?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Use trigonometric substitution. Let $x=\\sec (\\theta ).$"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1165040795699",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>Find the length of the arc of the curve over the specified interval: $y=\\ln x,[1,5].$ Round the answer to three decimal places.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 4.367,
+    "tol": 0.001,
+    "solution": "4.367"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1165040745060",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>The region bounded by the graph of $f(x)=\\frac{1}{1+x^{2}}$ and the <em>x</em>-axis between $x=0$ and $x=1$ is revolved about the *x-*axis. Find the volume of the solid that is generated.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.019098713533618,
+    "tol": 0.001,
+    "solution": "$\\frac{{\\pi}^{2}}{8}+\\frac{\\pi}{4}$"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1165042093493",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Solve the initial-value problem for <em>y</em> as a function of <em>x</em>.</p><p>$(64-x^{2})\\frac{dy}{dx}=1,y(0)=3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=\\frac{1}{16}\\ln |\\frac{x+8}{x-8}|+3$"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1165042236343",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>An oil storage tank can be described as the volume generated by revolving the area bounded by $y=\\frac{16}{\\sqrt{64+x^{2}}},x=0,y=0,x=2$ about the <em>x</em>-axis. Find the volume of the tank (in cubic meters).</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 24.6,
+    "tol": 0.005,
+    "solution": "24.6 m<sup>3</sup>"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1165041975788",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>Find the length of the curve $y=\\sqrt{16-x^{2}}$ between $x=0$ and $x=2.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.0943951023931953,
+    "tol": 0.001,
+    "solution": "$\\frac{2\\pi}{3}$"
+   }
+  },
+  {
+   "id": "r413",
+   "source_id": "fs-id1165043258858",
+   "source_section": "7.7",
+   "source_number": "413",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent",
+   "prompt": "<p>For the following exercises, evaluate the integral using the specified method.</p><p>$\\int \\frac{1}{x^{2}\\sqrt{x^{2}+16}}dx$ using trigonometric substitution</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{\\sqrt{x^{2}+16}}{16x}+C$"
+   }
+  },
+  {
+   "id": "r419",
+   "source_id": "fs-id1165039519266",
+   "source_section": "7.7",
+   "source_number": "419",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine",
+   "prompt": "<p>For the following exercises, integrate using whatever method you choose.</p><p>$\\int x^{3}\\sqrt{x^{2}+2}\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{15}{(x^{2}+2)}^{3/2}(3x^{2}-4)+C$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "sine-substitution"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "secant-substitution"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "reference-triangle"
+  },
+  {
+   "exercise": "e127",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e129",
+   "concept": "hyperbolic-identities"
+  },
+  {
+   "exercise": "e131",
+   "concept": "trigonometric-substitution"
+  },
+  {
+   "exercise": "e133",
+   "concept": "trigonometric-substitution"
+  },
+  {
+   "exercise": "e135",
+   "concept": "secant-substitution"
+  },
+  {
+   "exercise": "e137",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "e139",
+   "concept": "sine-substitution"
+  },
+  {
+   "exercise": "e139",
+   "concept": "reference-triangle"
+  },
+  {
+   "exercise": "e141",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "e141",
+   "concept": "power-reduction-formulas"
+  },
+  {
+   "exercise": "e143",
+   "concept": "sine-substitution"
+  },
+  {
+   "exercise": "e145",
+   "concept": "sine-substitution"
+  },
+  {
+   "exercise": "e147",
+   "concept": "secant-substitution"
+  },
+  {
+   "exercise": "e147",
+   "concept": "reference-triangle"
+  },
+  {
+   "exercise": "e149",
+   "concept": "secant-substitution"
+  },
+  {
+   "exercise": "e151",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "e151",
+   "concept": "reference-triangle"
+  },
+  {
+   "exercise": "e153",
+   "concept": "sine-substitution"
+  },
+  {
+   "exercise": "e153",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e155",
+   "concept": "sine-substitution"
+  },
+  {
+   "exercise": "e157",
+   "concept": "secant-substitution"
+  },
+  {
+   "exercise": "e159",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "e161",
+   "concept": "trigonometric-substitution"
+  },
+  {
+   "exercise": "e161",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e163",
+   "concept": "sine-substitution"
+  },
+  {
+   "exercise": "e163",
+   "concept": "trigonometric-substitution"
+  },
+  {
+   "exercise": "e165",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e167",
+   "concept": "sine-substitution"
+  },
+  {
+   "exercise": "e167",
+   "concept": "reconciling-equivalent-antiderivatives"
+  },
+  {
+   "exercise": "e168",
+   "concept": "secant-substitution"
+  },
+  {
+   "exercise": "e168",
+   "concept": "reconciling-equivalent-antiderivatives"
+  },
+  {
+   "exercise": "e169",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "e169",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e170",
+   "concept": "trigonometric-substitution"
+  },
+  {
+   "exercise": "e170",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e171",
+   "concept": "secant-substitution"
+  },
+  {
+   "exercise": "e173",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "e173",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "e175",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "e175",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e177",
+   "concept": "trigonometric-substitution"
+  },
+  {
+   "exercise": "e177",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e179",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "e179",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e181",
+   "concept": "sine-substitution"
+  },
+  {
+   "exercise": "e181",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "r413",
+   "concept": "tangent-substitution"
+  },
+  {
+   "exercise": "r413",
+   "concept": "reference-triangle"
+  },
+  {
+   "exercise": "r419",
+   "concept": "trigonometric-substitution"
+  },
+  {
+   "exercise": "r419",
+   "concept": "integration-by-substitution"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-dx",
+   "kind": "correction",
+   "html": "The book prints $dx=a\\;\\cos \\theta;$ the differential is $dx=a\\;\\cos \\theta \\;d\\theta,$ as step 2 of the strategy below writes it."
+  },
+  {
+   "id": "c-ex726",
+   "kind": "correction",
+   "html": "The side note prints $\\sqrt{1+4x^{2}}=\\tan \\theta;$ with $x=\\frac{1}{2}\\tan \\theta$ it is $\\sqrt{1+4x^{2}}=\\sqrt{1+{\\tan }^{2}\\theta}=\\sec \\theta.$"
+  },
+  {
+   "id": "c-ex727",
+   "kind": "correction",
+   "html": "The side note prints ${\\tan }^{2}\\theta =1-{\\sec }^{2}\\theta;$ the identity used in the next line is ${\\tan }^{2}\\theta ={\\sec }^{2}\\theta -1.$"
+  }
+ ]
+}

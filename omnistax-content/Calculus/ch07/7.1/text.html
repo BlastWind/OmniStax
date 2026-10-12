@@ -1,0 +1,146 @@
+<p id="parts-intro">By now we have a fairly thorough procedure for how to evaluate many basic <span data-concept="indefinite-integral">integrals</span>. However, although we can integrate $\int x\;\sin (x^{2})dx$ by using the <span data-concept="integration-by-substitution">substitution</span>, $u=x^{2},$ something as simple looking as <span data-fn="x*sin(x)">$\int x\;\sin x\;dx$</span> defies us. Many students want to know whether there is a <span data-concept="product-rule">product rule</span> for integration. There isn’t, but there is a technique based on the <span data-concept="product-rule">product rule for differentiation</span> that allows us to exchange one <span data-concept="indefinite-integral">integral</span> for another. We call this technique <strong><span data-concept="integration-by-parts">integration by parts</span></strong>.</p>
+
+<section id="formula">
+<h2>The Integration-by-Parts Formula</h2>
+<p class="cite-target">If, $\kh(x)=\kf(x)\kg(x),$ then by using the <span data-concept="product-rule">product rule</span>, we obtain $\khprime(x)=\kfprime(x)\kg(x)+\kgprime(x)\kf(x).$ Although at first it may seem counterproductive, let’s now integrate both sides of this equation: $\int \khprime(x)dx=\int (\kg(x)\kfprime(x)+\kf(x)\kgprime(x))dx.$</p>
+<p>This gives us</p>
+$$\kh(x)=\kf(x)\kg(x)=\int \kg(x)\kfprime(x)dx+\int \kf(x)\kgprime(x)dx.$$
+<p>Now we solve for $\int \kf(x)\kgprime(x)dx:$</p>
+$$\int \kf(x)\kgprime(x)dx=\kf(x)\kg(x)-\int \kg(x)\kfprime(x)dx.$$
+<p>By making the substitutions $u=\kf(x)$ and $v=\kg(x),$ which in turn make $du=\kfprime(x)dx$ and $dv=\kgprime(x)dx,$ we have the more compact form</p>
+$$\int u\;dv=uv- \int v\;du.$$
+<div class="note" id="parts-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Integration by Parts</h3>
+<p>Let $u=\kf(x)$ and $v=\kg(x)$ be <span data-concept="function">functions</span> with continuous derivatives. Then, the <span data-concept="integration-by-parts">integration-by-parts formula</span> for the <span data-concept="indefinite-integral">integral</span> involving these two functions is:</p>
+<div class="equation" id="fs-id1165042232372">$$\int u\;dv=uv-\int v\;du .\tag{7.1}$$</div>
+</div>
+<p>The advantage of using the <span data-concept="integration-by-parts">integration-by-parts formula</span> is that we can use it to exchange one <span data-concept="indefinite-integral">integral</span> for another, possibly easier, <span data-concept="indefinite-integral">integral</span>. The following example illustrates its use.</p>
+<div class="example" id="fs-id1165041832973">
+<h3>Example 7.1 · Using Integration by Parts</h3>
+<p>Use <a href="/calculus/sheets/integral-calculator/?expr=x*sin(x)"><span data-concept="integration-by-parts">integration by parts</span></a> with $u=x$ and $dv=\sin x\;dx$ to evaluate <span data-fn="x*sin(x)">$\int x\;\sin x\;dx.$</span></p>
+<h4>Solution</h4>
+<p>By choosing $u=x,$ we have $du=1dx.$ Since $dv=\sin x\;dx,$ we get $v=\int \sin x\;dx=-\cos x.$ It is handy to keep track of these values as follows:</p>
+$$\begin{array}{rlllrll}u & = & x & & dv & = & \sin x\;dx \\ du & = & 1dx & & v & = & \int \sin x\;dx=-\cos x. \end{array}$$
+<p>Applying the <span data-concept="integration-by-parts">integration-by-parts formula</span> results in</p>
+$$\begin{array}{rlll}\int x\;\sin x\;dx & =(x)(-\cos x)-\int (-\cos x)(1dx) & & \text{Substitute}. \\ & =-x\;\cos x+\int \cos x\;dx & & \text{Simplify}. \\ & =-x\;\cos x+\sin x+C. & & \text{Use}\;\int \cos x\;dx=\sin x+C. \end{array}$$
+<h4>Analysis</h4>
+<p>At this point, there are probably a few items that need clarification. First of all, you may be curious about what would have happened if we had chosen $u=\sin x$ and $dv=x.$ If we had done so, then we would have $du=\cos xdx$ and $v=\frac{1}{2}x^{2}.$ Thus, after applying <span data-concept="integration-by-parts">integration by parts</span>, we have $\int x\;\sin x\;dx=\frac{1}{2}x^{2}\sin x-\int \frac{1}{2}x^{2}\cos x\;dx.$ Unfortunately, with the new <span data-concept="indefinite-integral">integral</span>, we are in no better position than before. It is important to keep in mind that when we apply <span data-concept="integration-by-parts">integration by parts</span>, we may need to try several choices for $u$ and $dv$ before finding a choice that works.</p>
+<p>Second, you may wonder why, when we find $v=\int \sin x\;dx=-\cos x,$ we do not use $v=-\cos x+K.$ To see that it makes no difference, we can rework the problem using $v=-\cos x+K\text{:}$</p>
+$$\begin{array}{ll}\int x\;\sin x\;dx & =(x)(-\cos x+K)-\int (-\cos x+K)(1dx) \\ & =-x\;\cos x+Kx+\int \cos x\;dx-\int Kdx \\ & =-x\;\cos x\;+Kx+\sin x-Kx+C \\ & =-x\;\cos x+\sin x+C.\end{array}$$
+<p>As you can see, it makes no difference in the final solution.</p>
+<p>Last, we can check to make sure that our <span data-concept="antiderivative">antiderivative</span> is correct by differentiating $-x\;\cos x+\sin x+C\text{:}$</p>
+$$\begin{array}{ll}\frac{d}{dx}(-x\;\cos x+\sin x+C) & =(-1)\cos x+(-x)(-\sin x)+\cos x \\ & =x\;\sin x.\end{array}$$
+<p>Therefore, the <span data-concept="antiderivative">antiderivative</span> checks out.</p>
+</div>
+<div class="exercises" data-place="fs-id1165041832973"></div>
+<p id="liate">The natural question to ask at this point is: How do we know how to choose $u$ and $dv?$ Sometimes it is a matter of trial and error; however, the acronym <span data-concept="liate">LIATE</span> can often help to take some of the guesswork out of our choices. This acronym stands for <strong>L</strong>ogarithmic Functions, <strong>I</strong>nverse <span data-concept="trigonometric-functions">Trigonometric Functions</span>, <strong>A</strong>lgebraic Functions, <strong>T</strong>rigonometric Functions, and <strong>E</strong>xponential Functions. This mnemonic serves as an aid in determining an appropriate choice for $u.$</p>
+<p>The type of function in the <span data-concept="indefinite-integral">integral</span> that appears first in the list should be our first choice of $u.$ For example, if an <span data-concept="indefinite-integral">integral</span> contains a <span data-concept="logarithmic-function">logarithmic function</span> and an <span data-concept="algebraic-function">algebraic function</span>, we should choose $u$ to be the <span data-concept="logarithmic-function">logarithmic function</span>, because L comes before A in <span data-concept="liate">LIATE</span>. The <span data-concept="indefinite-integral">integral</span> in <a href="#fs-id1165041832973">Example 7.1</a> has a <span data-concept="trigonometric-functions">trigonometric function</span> $\text{(}\sin x\text{)}$ and an <span data-concept="algebraic-function">algebraic function</span> $(x).$ Because A comes before T in <span data-concept="liate">LIATE</span>, we chose $u$ to be the <span data-concept="algebraic-function">algebraic function</span>. When we have chosen $u,$ $dv$ is selected to be the remaining part of the function to be integrated, together with $dx.$</p>
+<p>Why does this mnemonic work? Remember that whatever we pick to be $dv$ must be something we can integrate. Since we do not have integration formulas that allow us to integrate simple <span data-concept="logarithmic-function">logarithmic functions</span> and <span data-concept="inverse-trigonometric-functions">inverse trigonometric functions</span>, it makes sense that they should not be chosen as values for $dv.$ Consequently, they should be at the head of the list as choices for $u.$ Thus, we put LI at the beginning of the mnemonic. (We could just as easily have started with IL, since these two types of functions won’t appear together in an <span data-concept="integration-by-parts">integration-by-parts</span> problem.) The <span data-concept="exponential-function">exponential</span> and <span data-concept="trigonometric-functions">trigonometric functions</span> are at the end of our list because they are fairly easy to integrate and make good choices for $dv.$ Thus, we have TE at the end of our mnemonic. (We could just as easily have used ET at the end, since when these types of functions appear together it usually doesn’t really matter which one is $u$ and which one is $dv.)$ <span data-concept="algebraic-function">Algebraic functions</span> are generally easy both to integrate and to differentiate, and they come in the middle of the mnemonic.</p>
+<div class="example" id="fs-id1165042015633">
+<h3>Example 7.2 · Using Integration by Parts</h3>
+<p>Evaluate <span data-fn="ln(x)/x^3">$\int \frac{\ln x}{x^{3}}dx.$</span></p>
+<h4>Solution</h4>
+<p>Begin by rewriting the <span data-concept="indefinite-integral">integral</span>:</p>
+$$\int \frac{\ln x}{x^{3}}dx =\int x^{-3}\ln x\;dx.$$
+<p>Since this <span data-concept="indefinite-integral">integral</span> contains the <span data-concept="algebraic-function">algebraic function</span> $x^{-3}$ and the <span data-concept="logarithmic-function">logarithmic function</span> $\ln x,$ choose $u=\ln x,$ since L comes before A in <span data-concept="liate">LIATE</span>. After we have chosen $u=\ln x,$ we must choose $dv=x^{-3}dx.$</p>
+<p>Next, since $u=\ln x,$ we have $du=\frac{1}{x}dx.$ Also, $v=\int x^{-3}dx=-\frac{1}{2}x^{-2}.$ Summarizing,</p>
+$$\begin{array}{rlllrll}u & = & \ln x & & dv & = & x^{-3}dx \\ du & = & \frac{1}{x}dx & & v & = & \int x^{-3}dx=-\frac{1}{2}x^{-2}.\end{array}$$
+<p>Substituting into the <span data-concept="integration-by-parts">integration-by-parts formula</span> (<a href="#fs-id1165042232372">Equation 7.1</a>) gives</p>
+$$\begin{array}{rllll}\int \frac{\ln x}{x^{3}}dx & =\int x^{-3}\ln x\;dx=(\ln x)(-\;\frac{1}{2}x^{-2})-\int (-\;\frac{1}{2}x^{-2})(\frac{1}{x}dx) & & & \\ & =-\frac{1}{2}x^{-2}\ln x+\int \frac{1}{2}x^{-3}dx & & & \text{Simplify}. \\ & =-\frac{1}{2}x^{-2}\ln x-\frac{1}{4}x^{-2}+C & & & \text{Integrate}. \\ & =-\frac{1}{2x^{2}}\ln x-\frac{1}{4x^{2}}+C. & & & \text{Rewrite with positive integers.}\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042015633"></div>
+<p id="more-than-once">In some cases, as in the next two examples, it may be necessary to apply <span data-concept="integration-by-parts">integration by parts</span> more than once.</p>
+<div class="example" id="fs-id1165041948192">
+<h3>Example 7.3 · Applying Integration by Parts More Than Once</h3>
+<p>Evaluate <span data-fn="x^2*e^(3x)">$\int x^{2}e^{3x}dx.$</span></p>
+<h4>Solution</h4>
+<p>Using <span data-concept="liate">LIATE</span>, choose $u=x^{2}$ and $dv=e^{3x}dx.$ Thus, $du=2x\;dx$ and $v=\int e^{3x}dx=(\frac{1}{3})e^{3x} .$ Therefore,</p>
+$$\begin{array}{rlllrll}u & = & x^{2} & & dv & = & e^{3x}dx \\ du & = & 2x\;dx & & v & = & \int e^{3x}dx=\frac{1}{3}e^{3x} .\end{array}$$
+<p>Substituting into <a href="#fs-id1165042232372">Equation 7.1</a> produces</p>
+$$\int x^{2}e^{3x}dx =\frac{1}{3}x^{2}e^{3x}-\int \frac{2}{3}xe^{3x}dx .$$
+<p>We still cannot integrate $\int \frac{2}{3}xe^{3x}dx$ directly, but the <span data-concept="indefinite-integral">integral</span> now has a lower power on $x.$ We can evaluate this new <span data-concept="indefinite-integral">integral</span> by using <span data-concept="integration-by-parts">integration by parts</span> again. To do this, choose $u=x$ and $dv=\frac{2}{3}e^{3x}dx.$ Thus, $du=dx$ and $v=\int (\frac{2}{3})e^{3x}dx=(\frac{2}{9})e^{3x} .$ Now we have</p>
+$$\begin{array}{rlllrll}u & = & x & & dv & = & \frac{2}{3}e^{3x}dx \\ du & = & dx & & v & = & \int \frac{2}{3}e^{3x}dx=\frac{2}{9}e^{3x} .\end{array}$$
+<p>Substituting back into the previous equation yields</p>
+$$\int x^{2}e^{3x}dx=\frac{1}{3}x^{2}e^{3x}-(\frac{2}{9}xe^{3x}-\int \frac{2}{9}e^{3x}dx).$$
+<p>After evaluating the last <span data-concept="indefinite-integral">integral</span> and simplifying, we obtain</p>
+$$\int x^{2}e^{3x}dx =\frac{1}{3}x^{2}e^{3x}-\frac{2}{9}xe^{3x}+\frac{2}{27}e^{3x}+C.$$
+</div>
+<div class="example" id="fs-id1165042132627">
+<h3>Example 7.4 · Applying Integration by Parts When LIATE Doesn’t Quite Work</h3>
+<p>Evaluate <span data-fn="x^3*e^(x^2)">$\int t^{3}e^{t^{2}}dt.$</span></p>
+<h4>Solution</h4>
+<p>If we use a strict interpretation of the mnemonic <span data-concept="liate">LIATE</span> to make our choice of $u,$ we end up with $u=t^{3}$ and $dv=e^{t^{2}}dt.$ Unfortunately, this choice won’t work because we are unable to evaluate $\int e^{t^{2}}dt.$ However, since we can evaluate $\int te^{t^{2}}dt,$ we can try choosing $u=t^{2}$ and $dv=te^{t^{2}}dt.$ With these choices we have</p>
+$$\begin{array}{rlllrll}u & = & t^{2} & & dv & = & te^{t^{2}}dt \\ du & = & 2t\;dt & & v & = & \int te^{t^{2}}dt=\frac{1}{2}e^{t^{2}}.\end{array}$$
+<p>Thus, we obtain</p>
+$$\begin{array}{ll}\int t^{3}e^{t^{2}}dt & =\frac{1}{2}t^{2}e^{t^{2}}-\int \frac{1}{2}e^{t^{2}}2tdt \\ & =\frac{1}{2}t^{2}e^{t^{2}}-\frac{1}{2}e^{t^{2}}+C.\end{array}$$
+</div>
+<div class="example" id="fs-id1165042035446">
+<h3>Example 7.5 · Applying Integration by Parts More Than Once</h3>
+<p>Evaluate <span data-fn="sin(ln(x))">$\int \sin (\ln x)dx.$</span></p>
+<h4>Solution</h4>
+<p>This <span data-concept="indefinite-integral">integral</span> appears to have only one function—namely, $\sin (\ln x)$ —however, we can always use the <span data-concept="constant-function">constant function</span> 1 as the other <span data-concept="function">function</span>. In this example, let’s choose $u=\sin (\ln x)$ and $dv=1dx.$ (The decision to use $u=\sin (\ln x)$ is easy. We can’t choose $dv=\;\sin (\ln x)dx$ because if we could integrate it, we wouldn’t be using <span data-concept="integration-by-parts">integration by parts</span> in the first place!) Consequently, $du=(1/x)\cos (\ln x)dx$ and $v=\int 1dx=x.$ After applying <span data-concept="integration-by-parts">integration by parts</span> to the <span data-concept="indefinite-integral">integral</span> and simplifying, we have</p>
+$$\int \sin (\ln x)dx=x\;\sin (\ln x)-\int \cos (\ln x)dx.$$
+<p>Unfortunately, this process leaves us with a new <span data-concept="indefinite-integral">integral</span> that is very similar to the original. However, let’s see what happens when we apply <span data-concept="integration-by-parts">integration by parts</span> again. This time let’s choose $u=\cos (\ln x)$ and $dv=1dx,$ making $du=-(1/x)\sin (\ln x)dx$ and $v=\int 1dx=x.$ Substituting, we have</p>
+$$\int \sin (\ln x)dx=x\;\sin (\ln x)-(x\;\cos (\ln x)-\int -\sin (\ln x)dx).$$
+<p>After simplifying, we obtain</p>
+$$\int \sin (\ln x)dx=x\;\sin (\ln x)-x\;\cos (\ln x)-\int \sin (\ln x)dx.$$
+<p>The last <span data-concept="indefinite-integral">integral</span> is now the same as the original. It may seem that we have simply gone in a circle, but now we can actually evaluate the <span data-concept="indefinite-integral">integral</span>. To see how to do this more clearly, substitute $\kI=\int \sin (\ln x)dx.$ Thus, the equation becomes</p>
+$$\kI=x\;\sin (\ln x)-x\;\cos (\ln x)-I.$$
+<p>First, add $I$ to both sides of the equation to obtain</p>
+$$2\kI=x\;\sin (\ln x)-x\;\cos (\ln x).$$
+<p>Next, divide by 2:</p>
+$$\kI=\frac{1}{2}x\;\sin (\ln x)-\frac{1}{2}x\;\cos (\ln x).$$
+<p>Substituting $\kI=\int \sin (\ln x)dx$ again, we have</p>
+$$\int \sin (\ln x)dx=\frac{1}{2}x\;\sin (\ln x)-\frac{1}{2}x\;\cos (\ln x).$$
+<p>From this we see that $(1/2)x\;\sin (\ln x)-(1/2)x\;\cos (\ln x)$ is an <span data-concept="antiderivative">antiderivative</span> of $\sin (\ln x)dx.$ For the <span data-concept="indefinite-integral">most general antiderivative</span>, add $+C\text{:}$</p>
+$$\int \sin (\ln x)dx=\frac{1}{2}x\;\sin (\ln x)-\frac{1}{2}x\;\cos (\ln x)+C.$$
+<h4>Analysis</h4>
+<p>If this method feels a little strange at first, we can check the answer by differentiation:</p>
+$$\begin{array}{l}\frac{d}{dx}(\frac{1}{2}x\;\sin (\ln x)-\frac{1}{2}x\;\cos (\ln x)) \\ \\ =\frac{1}{2}(\sin (\ln x))+\cos (\ln x)\cdot \frac{1}{x}\cdot \frac{1}{2}x-(\frac{1}{2}\cos (\ln x)-\sin (\ln x)\cdot \frac{1}{x}\cdot \frac{1}{2}x) \\ =\sin (\ln x).\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042035446"></div>
+</section>
+
+<section id="definite">
+<h2>Integration by Parts for Definite Integrals</h2>
+<p class="cite-target">Now that we have used <span data-concept="integration-by-parts">integration by parts</span> successfully to evaluate <span data-concept="indefinite-integral">indefinite integrals</span>, we turn our attention to <span data-concept="definite-integral">definite integrals</span>. The integration technique is really the same, only we add a step to evaluate the <span data-concept="definite-integral">integral</span> at the <span data-concept="limits-of-integration">upper and lower limits of integration</span>.</p>
+<div class="note" id="parts-definite-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Integration by Parts for Definite Integrals</h3>
+<p>Let $u=\kf(x)$ and $v=\kg(x)$ be <span data-concept="function">functions</span> with continuous derivatives on <span data-type="set">$[a,b]$</span>. Then</p>
+<div class="equation" id="fs-id1165042231112">$$\int_a^{b}u\;dv ={uv|}_a^{b}-\int_a^{b}v\;du .\tag{7.2}$$</div>
+</div>
+<div class="example" id="fs-id1165042231180">
+<h3>Example 7.6 · Finding the Area of a Region</h3>
+<p>Find the <span data-concept="area-under-the-curve">area</span> of <span data-ref="parts-under">the region</span> bounded above by the graph of <span data-fn="atan(x)">$y={\tan }^{-1}x$</span> and below by the $x$-axis over the interval <span data-type="set">$[0,1]$</span>.</p>
+<h4>Solution</h4>
+<p><span data-ref="parts-under">This region</span> is shown in Figure 7.2. To find the <span data-concept="area-under-the-curve">area</span>, we must evaluate $\int_0^{1}{\tan }^{-1}x\;dx.$</p>
+<figure class="sim" id="sim-parts-area" data-figure="7.2" data-original="/media/ch07/CNX_Calc_Figure_07_01_001.jpg" data-original-caption="To find the area of the shaded region, we have to use integration by parts.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.2</span><span>The curve $y=\tan^{-1}x$ from $(0,0)$ to $(b,\tan^{-1}b)$ splits the rectangle of width $b$ and height $\tan^{-1}b$ in two. With $u=\tan^{-1}x$ and $v=x,$ <span data-ref="parts-under">the region under the curve</span> has <span data-concept="area-under-the-curve">area</span> $\int_0^b u\,dv$ and <span data-ref="parts-beside">the region between the curve and the $y$-axis</span> has area $\int_0^b v\,du$; together they fill the rectangle, of area $uv\big|_0^b,$ which is <a href="#fs-id1165042231112">Equation 7.2</a>. Drag $b$: at $b=1$ <span data-ref="parts-under">the region under the curve</span> is the one of Example 7.6, with area $\frac{\pi}{4}-\frac{1}{2}\ln 2.$</span></div>
+</figure>
+<p>For this <span data-concept="indefinite-integral">integral</span>, let’s choose $u={\tan }^{-1}x$ and $dv=dx,$ thereby making $du=\frac{1}{x^{2}+1}dx$ and $v=x.$ After applying the <span data-concept="integration-by-parts">integration-by-parts formula</span> (<a href="#fs-id1165042231112">Equation 7.2</a>) we obtain</p>
+$$\text{Area}=x\;{\tan }^{-1}{x|}_0^{1}-\int_0^{1} \frac{x}{x^{2}+1}dx.$$
+<p>Use <span data-concept="integration-by-substitution"><em>u</em>-substitution</span> to obtain</p>
+$$\int_0^{1} \frac{x}{x^{2}+1}dx=\frac{1}{2}\ln |x^{2}+1{|}_0^{1}.$$
+<p>Thus,</p>
+$$\text{Area}=x\;\tan ^{-1}x{| }_0^{1}-\frac{1}{2}\ln|x^{2}+1|{|}_0^{1}=\frac{\pi}{4}-\frac{1}{2}\ln\;2.$$
+<p>At this point it might not be a bad idea to do a “reality check” on the reasonableness of our solution. Since $\frac{\pi}{4}-\frac{1}{2}\ln 2\approx 0.4388,$ and from Figure 7.2 we expect our <span data-concept="area-under-the-curve">area</span> to be slightly less than 0.5, this solution appears to be reasonable.</p>
+</div>
+<div class="example" id="fs-id1165042058871">
+<h3>Example 7.7 · Finding a Volume of Revolution</h3>
+<p>Find the volume of the <span data-concept="solid-of-revolution">solid</span> obtained by revolving the region bounded by the graph of <span data-fn="e^(-x)">$\kf(x)=e^{-x},$</span> the <em>x</em>-axis, the <em>y</em>-axis, and the line $x=1$ about the <em>y</em>-axis.</p>
+<h4>Solution</h4>
+<p>The best option to solving this problem is to use the <span data-concept="method-of-cylindrical-shells">shell method</span>. Begin by sketching the region to be revolved, along with a typical rectangle (see the following graph).</p>
+<figure class="sim" id="sim-shell-volume" data-figure="7.3" data-original="/media/ch07/CNX_Calc_Figure_07_01_002.jpg" data-original-caption="We can use the shell method to find a volume of revolution.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.3</span><span>The region under <span data-fn="e^(-x)">$\kf(x)=e^{-x}$</span> on <span data-type="set">$[0,1]$</span> turns about the $y$-axis into the <span data-concept="solid-of-revolution">solid</span>. Slide $x$ to move one shell: its radius is $x,$ its height $e^{-x},$ and its volume about $2\pi xe^{-x}\,\Delta x,$ so the shells together give $2\pi\int_0^1 xe^{-x}\,dx.$ Turn the solid to see the shell inside it.</span></div>
+</figure>
+<p>To find the volume using <span data-concept="method-of-cylindrical-shells">shells</span>, we must evaluate $2\pi \int_0^{1}xe^{-x}dx .$ To do this, let $u=x$ and $dv=e^{-x}.$ These choices lead to $du=dx$ and $v=\int e^{-x}=-e^{-x}.$ Substituting into <a href="#fs-id1165042231112">Equation 7.2</a>, we obtain</p>
+$$\begin{array}{rlll}\text{Volume} & =2\pi \int_0^{1}xe^{-x}dx=2\pi (-xe^{-x}{|}_0^{1}+\int_0^{1}e^{-x}dx) & & \text{Use integration by parts}. \\ & =-2\pi xe^{-x}{|}_0^{1}-2\pi e^{-x}{|}_0^{1} & & \text{Evaluate}\;\int_0^{1}e^{-x}dx=-e^{-x}{|}_0^{1}. \\ & =2\pi -\frac{4\pi}{e}. & & \text{Evaluate and simplify}.\end{array}$$
+<h4>Analysis</h4>
+<p>Again, it is a good idea to check the reasonableness of our solution. We observe that the solid has a volume slightly less than that of a cylinder of radius $1$ and height of $1/e$ added to the volume of a cone of base radius $1$ and height of $1-\frac{1}{e}.$ Consequently, the solid should have a volume a bit less than</p>
+$$\pi {(1)}^{2}\frac{1}{e}+(\frac{\pi}{3}){(1)}^{2}(1-\frac{1}{e})=\frac{2\pi}{3e}+\frac{\pi}{3}\approx 1.8177.$$
+<p>Since $2\pi -\frac{4\pi}{e}\approx 1.6603,$ we see that our calculated volume is reasonable.</p>
+</div>
+<div class="exercises" data-place="fs-id1165042058871"></div>
+</section>

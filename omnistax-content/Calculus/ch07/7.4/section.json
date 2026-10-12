@@ -1,0 +1,1110 @@
+{
+ "id": "7.4",
+ "module": "m53681",
+ "chapter": "7",
+ "title": "Partial Fractions",
+ "short": "Partial Fractions",
+ "lead": "<span data-concept=\"partial-fraction-decomposition\">Partial fraction decomposition</span> breaks a <span data-concept=\"rational-function\">rational function</span> into a sum of simpler ones that can be integrated term by term. Here the form of the decomposition is read off the factors of the denominator, linear or irreducible quadratic, single or repeated, and its constants are found by equating coefficients or by strategic substitution.",
+ "objectives": [
+  "Integrate a rational function using the method of partial fractions.",
+  "Recognize simple linear factors in a rational function.",
+  "Recognize repeated linear factors in a rational function.",
+  "Recognize quadratic factors in a rational function."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"partial-fraction-decomposition\">Partial fraction decomposition</span> is a technique used to break down a <span data-concept=\"rational-function\">rational function</span> into a sum of simple <span data-concept=\"rational-function\">rational functions</span> that can be integrated using previously learned techniques.</li><li>When applying <span data-concept=\"partial-fraction-decomposition\">partial fraction decomposition</span>, we must make sure that the degree of the numerator is less than the degree of the denominator. If not, we need to perform long division before attempting <span data-concept=\"partial-fraction-decomposition\">partial fraction decomposition</span>.</li><li>The form the decomposition takes depends on the type of factors in the denominator. The types of factors include nonrepeated linear factors, <span data-concept=\"repeated-linear-factors\">repeated linear factors</span>, nonrepeated <span data-concept=\"quadratic-factors\">irreducible quadratic factors</span>, and repeated <span data-concept=\"quadratic-factors\">irreducible quadratic factors</span>.</li></ul>",
+ "notes": "The book’s link to a website reviewing long division of polynomials is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approach marked as such. The 31 even-numbered section exercises have no answer in the book’s key. Exercise 242, deriving the substitution formulas for t = tan(x/2), is kept with an AI-written suggested approach. The other 30 are computational and are left out: exercises 182–194 even (decompose), 196–206 even and 208–212 even (integrate by partial fractions), 214–228 even (substitute, then decompose), 230 (an area), 232 (a distance), 234 (an initial-value problem), 236 (a centroid), 238 (an area) and 240 (the tan(x/2) substitution). Review exercises 409, 415 and 421 from the end of the chapter are held here; 420, unkeyed, is left out.",
+ "figures": [
+  {
+   "id": "sim-partial-fractions",
+   "kind": "sim",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-shell-rational",
+   "kind": "figure",
+   "number": "7.11",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_04_001.jpg"
+   ],
+   "original_caption": "We can use the shell method to find the volume of revolution obtained by revolving the region shown about the y-axis.",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "pfd-intro",
+   "concept": "partial-fraction-decomposition",
+   "verb": "introduces"
+  },
+  {
+   "span": "pfd-intro",
+   "concept": "rational-function",
+   "verb": "uses"
+  },
+  {
+   "span": "nonrepeated",
+   "concept": "nonrepeated-linear-factors",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-methods",
+   "concept": "method-of-equating-coefficients",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-methods",
+   "concept": "method-of-strategic-substitution",
+   "verb": "introduces"
+  },
+  {
+   "span": "equating-rule",
+   "concept": "method-of-equating-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "strategic-rule",
+   "concept": "method-of-strategic-substitution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1165042003975",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "repeated",
+   "concept": "repeated-linear-factors",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-strategy",
+   "concept": "decomposing-a-rational-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-strategy",
+   "concept": "irreducible-quadratic",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-strategy",
+   "concept": "quadratic-factors",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165042311614",
+   "concept": "method-of-cylindrical-shells",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1165042281186",
+   "source_number": "Checkpoint 7.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042228991"
+   },
+   "cite": "pfd-intro",
+   "prompt": "Evaluate $\\int \\frac{x-3}{x+2}dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x-5\\;\\ln |x+2|+C$",
+    "hint": "Use long division to obtain $\\frac{x-3}{x+2}=1-\\frac{5}{x+2}.$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1165042048892",
+   "source_number": "Checkpoint 7.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042003975"
+   },
+   "cite": "nonrepeated",
+   "prompt": "Evaluate $\\int \\frac{x+1}{(x+3)(x-2)}dx .$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2}{5}\\ln |x+3|+\\frac{3}{5}\\ln |x-2|+C$",
+    "hint": "$\\frac{x+1}{(x+3)(x-2)}=\\frac{A}{x+3}+\\frac{B}{x-2}$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1165042088545",
+   "source_number": "Checkpoint 7.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165041952248"
+   },
+   "cite": "repeated",
+   "prompt": "Set up the partial fraction decomposition for $\\int \\frac{x+2}{{(x+3)}^{3}{(x-4)}^{2}}dx.$ (Do not solve for the coefficients or complete the integration.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x+2}{{(x+3)}^{3}{(x-4)}^{2}}=\\frac{A}{x+3}+\\frac{B}{{(x+3)}^{2}}+\\frac{C}{{(x+3)}^{3}}+\\frac{D}{(x-4)}+\\frac{E}{{(x-4)}^{2}}$",
+    "hint": "Use the problem-solving method of <a href=\"#fs-id1165041952248\">Example 7.32</a> for guidance."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1165041926583",
+   "source_number": "Checkpoint 7.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042311614"
+   },
+   "cite": "quadratic",
+   "prompt": "Set up the partial fraction decomposition for $\\int \\frac{x^{2}+3x+1}{(x+2){(x-3)}^{2}{(x^{2}+4)}^{2}}dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x^{2}+3x+1}{(x+2){(x-3)}^{2}{(x^{2}+4)}^{2}}=\\frac{A}{x+2}+\\frac{B}{x-3}+\\frac{C}{{(x-3)}^{2}}+\\frac{Dx+E}{x^{2}+4}+\\frac{Fx+G}{{(x^{2}+4)}^{2}}$",
+    "hint": "Use the problem-solving strategy."
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1165042088576",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Express the rational function as a sum or difference of two simpler rational expressions.</p><p>$\\frac{x^{2}+1}{x(x+1)(x+2)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{2}{x+1}+\\frac{5}{2(x+2)}+\\frac{1}{2x}$"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1165040726928",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "repeated",
+   "prompt": "<p>Express the rational function as a sum or difference of two simpler rational expressions.</p><p>$\\frac{3x+1}{x^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{x^{2}}+\\frac{3}{x}$"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1165042311902",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pfd-intro",
+   "prompt": "<p>Express the rational function as a sum or difference of two simpler rational expressions.</p><p>$\\frac{2x^{4}}{x^{2}-2x}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2x^{2}+4x+8+\\frac{16}{x-2}$"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1165042045960",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "repeated",
+   "prompt": "<p>Express the rational function as a sum or difference of two simpler rational expressions.</p><p>$\\frac{1}{x^{2}(x-1)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{x^{2}}-\\frac{1}{x}+\\frac{1}{x-1}$"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1165042039159",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Express the rational function as a sum or difference of two simpler rational expressions.</p><p>$\\frac{1}{x(x-1)(x-2)(x-3)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2(x-2)}+\\frac{1}{2(x-1)}-\\frac{1}{6x}+\\frac{1}{6(x-3)}$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1165042225107",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>Express the rational function as a sum or difference of two simpler rational expressions.</p><p>$\\frac{3x^{2}}{x^{3}-1}=\\frac{3x^{2}}{(x-1)(x^{2}+x+1)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{x-1}+\\frac{2x+1}{x^{2}+x+1}$"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1165040768884",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>Express the rational function as a sum or difference of two simpler rational expressions.</p><p>$\\frac{3x^{4}+x^{3}+20x^{2}+3x+31}{(x+1){(x^{2}+4)}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2}{x+1}+\\frac{x}{x^{2}+4}-\\frac{1}{{(x^{2}+4)}^{2}}$"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1165041892980",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use the method of partial fractions to evaluate each of the following integrals.</p><p>$\\int \\frac{3x}{x^{2}+2x-8}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln |x-2|+2\\;\\ln |x+4|+C$"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1165040744925",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use the method of partial fractions to evaluate each of the following integrals.</p><p>$\\int \\frac{x}{x^{2}-4}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}\\ln |4-x^{2}|+C$"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1165040669725",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>Use the method of partial fractions to evaluate each of the following integrals.</p><p>$\\int \\frac{2x^{2}+4x+22}{x^{2}+2x+10}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2(x+\\frac{1}{3}\\operatorname{arctan}(\\frac{1+x}{3}))+C$"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1165042235498",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use the method of partial fractions to evaluate each of the following integrals.</p><p>$\\int \\frac{2-x}{x^{2}+x}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\;\\ln |x|-3\\;\\ln |1+x|+C$"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1165040762364",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "repeated",
+   "prompt": "<p>Use the method of partial fractions to evaluate each of the following integrals.</p><p>$\\int \\frac{dx}{x^{3}-2x^{2}-4x+8}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{16}(-\\;\\frac{4}{-2+x}-\\ln |-2+x|+\\ln |2+x|)+C$"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1165040795642",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>Evaluate the following integrals, which have irreducible quadratic factors.</p><p>$\\int \\frac{2}{(x-4)(x^{2}+2x+6)}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{30}(-2\\sqrt{5}\\;\\operatorname{arctan}[\\frac{1+x}{\\sqrt{5}}]+2\\;\\ln |-4+x|-\\ln |6+2x+x^{2}|)+C$"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1165042038802",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>Evaluate the following integrals, which have irreducible quadratic factors.</p><p>$\\int \\frac{x^{3}+6x^{2}+3x+6}{x^{3}+2x^{2}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{3}{x}+4\\;\\ln |x+2|+x+C$"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1165040693544",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>Use the method of partial fractions to evaluate the following integrals.</p><p>$\\int \\frac{3x+4}{(x^{2}+4)(3-x)}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\ln |3-x|+\\frac{1}{2}\\ln |x^{2}+4|+C$"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1165042040493",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>Use the method of partial fractions to evaluate the following integrals.</p><p>$\\int \\frac{3x+4}{x^{3}-2x-4}dx$ (<em>Hint:</em> Use the rational root theorem.)</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln |x-2|-\\frac{1}{2}\\ln |x^{2}+2x+2|+C$"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1165040795696",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use substitution to convert the integrals to integrals of rational functions. Then use partial fractions to evaluate the integrals.</p><p>$\\int \\frac{e^{x}}{e^{2x}-e^{x}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-x+\\ln |1-e^{x}|+C$"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1165042236521",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use substitution to convert the integrals to integrals of rational functions. Then use partial fractions to evaluate the integrals.</p><p>$\\int \\frac{\\sin x}{{\\cos }^{2}x+\\cos x-6}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{5}\\ln |\\frac{\\cos x+3}{\\cos x-2}|+C$"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1165040646091",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "repeated",
+   "prompt": "<p>Use substitution to convert the integrals to integrals of rational functions. Then use partial fractions to evaluate the integrals.</p><p>$\\int \\frac{dt}{{(e^{t}-e^{-t})}^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2-2e^{2t}}+C$"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1165042236343",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use substitution to convert the integrals to integrals of rational functions. Then use partial fractions to evaluate the integrals.</p><p>$\\int \\frac{dx}{1+\\sqrt{x+1}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\sqrt{1+x}-2\\;\\ln |1+\\sqrt{1+x}|+C$"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1165041975773",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use substitution to convert the integrals to integrals of rational functions. Then use partial fractions to evaluate the integrals.</p><p>$\\int \\frac{\\cos x}{\\sin x(1-\\sin x)}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln |\\frac{\\sin x}{1-\\sin x}|+C$"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1165041968999",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use substitution to convert the integrals to integrals of rational functions. Then use partial fractions to evaluate the integrals.</p><p>$\\int_1^{2} \\frac{1}{x^{2}\\sqrt{4-x^{2}}}dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.4330127018922193,
+    "tol": 0.001,
+    "solution": "$\\frac{\\sqrt{3}}{4}$"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1165042293904",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use substitution to convert the integrals to integrals of rational functions. Then use partial fractions to evaluate the integrals.</p><p>$\\int \\frac{1}{1+e^{x}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x-\\ln (1+e^{x})+C$"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1165040800580",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Use the given substitution to convert the integral to an integral of a rational function, then evaluate.</p><p>$\\int \\frac{1}{\\sqrt{x}+\\sqrt[3]{x}}dx ;x=u^{6}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$6x^{1/6}-3x^{1/3}+2\\sqrt{x}-6\\;\\ln (1+x^{1/6})+C$"
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1165042038980",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Find the volume of the solid generated when the region bounded by $y=1/\\sqrt{x(3-x)},$ $y=0,$ $x=1,$ and $x=2$ is revolved about the *x-*axis.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.4517240602024013,
+    "tol": 0.001,
+    "solution": "$\\frac{4}{3}\\pi \\;\\operatorname{arctanh}[\\frac{1}{3}]=\\frac{1}{3}\\pi \\;\\ln 4$"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1165042011063",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Solve the initial-value problem for <em>x</em> as a function of <em>t.</em></p><p>$(t^{2}-7t+12)\\frac{dx}{dt}=1,(t\\gt 4,x(5)=0)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=-\\ln |t-3|+\\ln |t-4|+\\ln 2$"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1165042035703",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>Solve the initial-value problem for <em>x</em> as a function of <em>t.</em></p><p>$(2t^{3}-2t^{2}+t-1)\\frac{dx}{dt}=3,x(2)=0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=\\ln |t-1|-\\sqrt{2}\\;\\operatorname{arctan}(\\sqrt{2}t)-\\frac{1}{2}\\ln (t^{2}+\\frac{1}{2})+\\sqrt{2}\\;\\operatorname{arctan}(2\\sqrt{2})+\\frac{1}{2}\\ln 4.5$"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1165040774145",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>Find the volume generated by revolving the area bounded by $y=\\frac{1}{x^{3}+7x^{2}+6x}\\text{,}\\;x=1,x=7,\\;\\text{and}\\;y=0$ about the <em>y</em>-axis.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.9641612604776687,
+    "tol": 0.001,
+    "solution": "$\\frac{2}{5}\\pi \\;\\ln \\frac{28}{13}$"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1165042287453",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>Evaluate the integral $\\int \\frac{dx}{x^{3}+1}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\operatorname{arctan}[\\frac{-1+2x}{\\sqrt{3}}]}{\\sqrt{3}}+\\frac{1}{3}\\ln |1+x|-\\frac{1}{6}\\ln |1-x+x^{2}|+C$"
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1165040646251",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>For the following problems, use the substitutions $\\tan (\\frac{x}{2})=t,$ $dx=\\frac{2}{1+t^{2}}dt,$ $\\sin x=\\frac{2t}{1+t^{2}},$ and $\\cos x=\\frac{1-t^{2}}{1+t^{2}}.$</p><p>Find the area under the curve $y=\\frac{1}{1+\\sin x}$ between $x=0$ and $x=\\pi .$ (Assume the dimensions are in inches.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.0,
+    "tol": 0.01,
+    "solution": "2.0 in.<sup>2</sup>"
+   }
+  },
+  {
+   "id": "e242",
+   "source_id": "fs-id1165042301988",
+   "source_number": "242",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>For the following problems, use the substitutions $\\tan (\\frac{x}{2})=t,$ $dx=\\frac{2}{1+t^{2}}dt,$ $\\sin x=\\frac{2t}{1+t^{2}},$ and $\\cos x=\\frac{1-t^{2}}{1+t^{2}}.$</p><p>Given $\\tan (\\frac{x}{2})=t,$ derive the formulas $dx=\\frac{2}{1+t^{2}}dt,$ $\\sin x=\\frac{2t}{1+t^{2}},$ and $\\cos x=\\frac{1-t^{2}}{1+t^{2}}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "From $t=\\tan (\\frac{x}{2}),$ $x=2\\;{\\tan }^{-1}t,$ so $dx=\\frac{2}{1+t^{2}}dt.$ A right triangle with legs $1$ and $t$ has the angle $\\frac{x}{2}$ opposite $t$ and hypotenuse $\\sqrt{1+t^{2}},$ so $\\sin (\\frac{x}{2})=\\frac{t}{\\sqrt{1+t^{2}}}$ and $\\cos (\\frac{x}{2})=\\frac{1}{\\sqrt{1+t^{2}}}.$ The double-angle formulas then give $\\sin x=2\\sin (\\frac{x}{2})\\cos (\\frac{x}{2})=\\frac{2t}{1+t^{2}}$ and $\\cos x={\\cos }^{2}(\\frac{x}{2})-{\\sin }^{2}(\\frac{x}{2})=\\frac{1-t^{2}}{1+t^{2}}.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1165040800455",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>For the following problems, use the substitutions $\\tan (\\frac{x}{2})=t,$ $dx=\\frac{2}{1+t^{2}}dt,$ $\\sin x=\\frac{2t}{1+t^{2}},$ and $\\cos x=\\frac{1-t^{2}}{1+t^{2}}.$</p><p>Evaluate $\\int \\frac{\\sqrt[3]{x-8}}{x}dx .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$3{(-8+x)}^{1/3}$ $-2\\sqrt{3}\\;\\operatorname{arctan}[\\frac{-1+{(-8+x)}^{1/3}}{\\sqrt{3}}]$ $-2\\;\\ln [2+{(-8+x)}^{1/3}]$ $+\\ln [4-2{(-8+x)}^{1/3}+{(-8+x)}^{2/3}]+C$"
+   }
+  },
+  {
+   "id": "r409",
+   "source_id": "fs-id1165043173806",
+   "source_section": "7.7",
+   "source_number": "409",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>For the following exercises, determine whether the statement is true or false. Justify your answer with a proof or a counterexample.</p><p>$\\int \\frac{1}{x^{4}+1}dx$ cannot be integrated using partial fractions.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False"
+   }
+  },
+  {
+   "id": "r415",
+   "source_id": "fs-id1165042468092",
+   "source_section": "7.7",
+   "source_number": "415",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nonrepeated",
+   "prompt": "<p>For the following exercises, evaluate the integral using the specified method.</p><p>$\\int \\frac{3x}{x^{3}+2x^{2}-5x-6}dx$ using partial fractions</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{10}(4\\;\\ln (2-x)+5\\;\\ln (x+1)-9\\;\\ln (x+3))+C$"
+   }
+  },
+  {
+   "id": "r421",
+   "source_id": "fs-id1165043311717",
+   "source_section": "7.7",
+   "source_number": "421",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quadratic",
+   "prompt": "<p>For the following exercises, integrate using whatever method you choose.</p><p>$\\int \\frac{1}{x^{4}+4}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{16}\\ln (\\frac{x^{2}+2x+2}{x^{2}-2x+2})-\\frac{1}{8}{\\tan }^{-1}(1-x)+\\frac{1}{8}{\\tan }^{-1}(x+1)+C$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "method-of-strategic-substitution"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "repeated-linear-factors"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "repeated-linear-factors"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "decomposing-a-rational-function"
+  },
+  {
+   "exercise": "e183",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e185",
+   "concept": "repeated-linear-factors"
+  },
+  {
+   "exercise": "e187",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e187",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e189",
+   "concept": "repeated-linear-factors"
+  },
+  {
+   "exercise": "e191",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e193",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "e195",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "e197",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e199",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e201",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e201",
+   "concept": "irreducible-quadratic"
+  },
+  {
+   "exercise": "e203",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e205",
+   "concept": "repeated-linear-factors"
+  },
+  {
+   "exercise": "e207",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "e209",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e209",
+   "concept": "repeated-linear-factors"
+  },
+  {
+   "exercise": "e211",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "e213",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "e213",
+   "concept": "decomposing-a-rational-function"
+  },
+  {
+   "exercise": "e215",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e215",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e217",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e217",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e219",
+   "concept": "repeated-linear-factors"
+  },
+  {
+   "exercise": "e219",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e221",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e221",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e223",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e223",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e225",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e225",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e227",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e227",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e229",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e229",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e231",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e231",
+   "concept": "disk-method"
+  },
+  {
+   "exercise": "e233",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e233",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e235",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "e235",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e237",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "e237",
+   "concept": "method-of-cylindrical-shells"
+  },
+  {
+   "exercise": "e239",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "e239",
+   "concept": "decomposing-a-rational-function"
+  },
+  {
+   "exercise": "e241",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e241",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e241",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e242",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e242",
+   "concept": "double-angle-formulas"
+  },
+  {
+   "exercise": "e243",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "e243",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "r409",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "r409",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "r415",
+   "concept": "nonrepeated-linear-factors"
+  },
+  {
+   "exercise": "r421",
+   "concept": "quadratic-factors"
+  },
+  {
+   "exercise": "r421",
+   "concept": "decomposing-a-rational-function"
+  }
+ ],
+ "referents": [
+  {
+   "id": "term-1",
+   "label": "the first partial fraction",
+   "figures": [
+    "sim-partial-fractions"
+   ]
+  },
+  {
+   "id": "term-2",
+   "label": "the second partial fraction",
+   "figures": [
+    "sim-partial-fractions"
+   ]
+  },
+  {
+   "id": "term-3",
+   "label": "the third partial fraction",
+   "figures": [
+    "sim-partial-fractions"
+   ]
+  }
+ ]
+}

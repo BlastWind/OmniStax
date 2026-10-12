@@ -1,0 +1,190 @@
+<p>We have seen some techniques that allow us to integrate specific <span data-concept="rational-function">rational functions</span>. For example, we know that</p>
+$$\int \frac{du}{u} =\ln |u|+C\;\text{and}\;\int \frac{du}{u^{2}+a^{2}} =\frac{1}{a}{\tan }^{-1}(\frac{u}{a})+C\text{.}$$
+<p>However, we do not yet have a technique that allows us to tackle arbitrary quotients of this type. Thus, it is not immediately obvious how to go about evaluating <span data-fn="3x/(x^2-x-2)">$\int \frac{3x}{x^{2}-x-2}dx.$</span> However, we know from material previously developed that</p>
+$$\int (\frac{1}{x+1}+\frac{2}{x-2})dx=\ln |x+1|+2\;\ln |x-2|+C.$$
+<p>In fact, by getting a common denominator, we see that</p>
+$$\frac{1}{x+1}+\frac{2}{x-2}=\frac{3x}{x^{2}-x-2}.$$
+<p>Consequently,</p>
+$$\int \frac{3x}{x^{2}-x-2}dx =\int (\frac{1}{x+1}+\frac{2}{x-2})dx .$$
+<p id="pfd-intro">In this section, we examine the method of <strong><span data-concept="partial-fraction-decomposition">partial fraction decomposition</span></strong>, which allows us to decompose <span data-concept="rational-function">rational functions</span> into sums of simpler, more easily integrated <span data-concept="rational-function">rational functions</span>. Using this method, we can rewrite an expression such as: $\frac{3x}{x^{2}-x-2}$ as an expression such as $\frac{1}{x+1}+\frac{2}{x-2}.$</p>
+<p>The key to the method of <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span> is being able to anticipate the form that the decomposition of a <span data-concept="rational-function">rational function</span> will take. As we shall see, this form is both predictable and highly dependent on the factorization of the denominator of the <span data-concept="rational-function">rational function</span>. It is also extremely important to keep in mind that <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span> can be applied to a <span data-concept="rational-function">rational function</span> $\frac{\kP(x)}{\kQ(x)}$ only if $\text{deg}(\kP(x))\lt \text{deg}(\kQ(x)).$ In the case when $\text{deg}(\kP(x))\ge \text{deg}(\kQ(x)),$ we must first perform long division to rewrite the quotient $\frac{\kP(x)}{\kQ(x)}$ in the form $A(x)+\frac{R(x)}{\kQ(x)},$ where $\text{deg}(R(x))\lt \text{deg}(\kQ(x)).$ We then do a <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span> on $\frac{R(x)}{\kQ(x)}.$ The following example, although not requiring <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span>, illustrates our approach to <span data-concept="indefinite-integral">integrals</span> of <span data-concept="rational-function">rational functions</span> of the form $\int \frac{\kP(x)}{\kQ(x)}dx,$ where $\text{deg}(\kP(x))\ge \text{deg}(\kQ(x)).$</p>
+<div class="example" id="fs-id1165042228991">
+<h3>Example 7.28 · Integrating $\int \frac{\kP(x)}{\kQ(x)}dx,$ where $\text{deg}(\kP(x))\ge \text{deg}(\kQ(x))$</h3>
+<p>Evaluate <span data-fn="(x^2+3x+5)/(x+1)">$\int \frac{x^{2}+3x+5}{x+1}dx .$</span></p>
+<h4>Solution</h4>
+<p>Since $\text{deg}(x^{2}+3x+5)\ge \text{deg}(x+1),$ we perform long division to obtain</p>
+$$\frac{x^{2}+3x+5}{x+1}=x+2+\frac{3}{x+1}.$$
+<p>Thus,</p>
+$$\begin{array}{rl}\int \frac{x^{2}+3x+5}{x+1}dx & =\int (x+2+\frac{3}{x+1})dx \\ & =\frac{1}{2}x^{2}+2x+3\;\ln |x+1|+C.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042228991"></div>
+<p>To integrate $\int \frac{\kP(x)}{\kQ(x)}dx,$ where $\text{deg}(\kP(x))\lt \text{deg}(\kQ(x)),$ we must begin by factoring $\kQ(x).$</p>
+
+<section id="nonrepeated">
+<h2>Nonrepeated Linear Factors</h2>
+<p class="cite-target">If $\kQ(x)$ can be factored as $(a_{1}x+b_{1})(a_{2}x+b_{2})\text{…}(a_{n}x+b_{n}),$ where each linear factor is distinct, then it is possible to find constants $A_{1},A_{2}\text{,…}\;A_{n}$ satisfying</p>
+$$\frac{\kP(x)}{\kQ(x)}=\frac{A_{1}}{a_{1}x+b_{1}}+\frac{A_{2}}{a_{2}x+b_{2}}+\cdots +\frac{A_{n}}{a_{n}x+b_{n}}.$$
+<p>The proof that such constants exist is beyond the scope of this course.</p>
+<p>In this next example, we see how to use <span data-concept="partial-fraction-decomposition">partial fractions</span> to integrate a <span data-concept="rational-function">rational function</span> of this type.</p>
+<div class="example" id="fs-id1165042007126">
+<h3>Example 7.29 · Partial Fractions with Nonrepeated Linear Factors</h3>
+<p>Evaluate <span data-fn="(3x+2)/(x^3-x^2-2x)">$\int \frac{3x+2}{x^{3}-x^{2}-2x}dx.$</span></p>
+<h4>Solution</h4>
+<p>Since $\text{deg}(3x+2)\lt \text{deg}(x^{3}-x^{2}-2x),$ we begin by factoring the denominator of $\frac{3x+2}{x^{3}-x^{2}-2x}.$ We can see that $x^{3}-x^{2}-2x=x(x-2)(x+1).$ Thus, there are constants $A,$ $B,$ and $C$ satisfying</p>
+$$\frac{3x+2}{x(x-2)(x+1)}=\frac{A}{x}+\frac{B}{x-2}+\frac{C}{x+1}.$$
+<p>We must now find these constants. To do so, we begin by getting a common denominator on the right. Thus,</p>
+$$\frac{3x+2}{x(x-2)(x+1)}=\frac{A(x-2)(x+1)+Bx(x+1)+Cx(x-2)}{x(x-2)(x+1)}.$$
+<p>Now, we set the numerators equal to each other, obtaining</p>
+<div class="equation" id="fs-id1165042002695">$$3x+2=A(x-2)(x+1)+Bx(x+1)+Cx(x-2).\tag{7.8}$$</div>
+<p id="two-methods">There are two different strategies for finding the coefficients $A,$ $B,$ and $C.$ We refer to these as the <em><span data-concept="method-of-equating-coefficients">method of equating coefficients</span></em> and the <em><span data-concept="method-of-strategic-substitution">method of strategic substitution</span></em>.</p>
+<div class="note" id="equating-rule">
+<div class="eyebrow">Rule</div>
+<h3>Method of Equating Coefficients</h3>
+<p>Rewrite <a href="#fs-id1165042002695">Equation 7.8</a> in the form</p>
+$$3x+2=(A+B+C)x^{2}+(-A+B-2C)x+(-2A).$$
+<p>Equating coefficients produces the system of equations</p>
+$$\begin{array}{rll}A+B+C & = & 0 \\ -A+B-2C & = & 3 \\ -2A & = & 2.\end{array}$$
+<p>To solve this system, we first observe that $-2A=2⇒A=-1.$ Substituting this value into the first two equations gives us the system</p>
+$$\begin{array}{rll}B+C & = & 1 \\ B-2C & = & 2.\end{array}$$
+<p>Multiplying the second equation by $-1$ and adding the resulting equation to the first produces</p>
+$$-3C=1,$$
+<p>which in turn implies that $C=-\frac{1}{3}.$ Substituting this value into the equation $B+C=1$ yields $B=\frac{4}{3}.$ Thus, solving these equations yields $A=-1,$ $B=\frac{4}{3},$ and $C=-\frac{1}{3}.$</p>
+<p>It is important to note that the system produced by this method is consistent if and only if we have set up the decomposition correctly. If the system is inconsistent, there is an error in our decomposition.</p>
+</div>
+<div class="note" id="strategic-rule">
+<div class="eyebrow">Rule</div>
+<h3>Method of Strategic Substitution</h3>
+<p>The <span data-concept="method-of-strategic-substitution">method of strategic substitution</span> is based on the assumption that we have set up the decomposition correctly. If the decomposition is set up correctly, then there must be values of $A,$ $B,$ and $C$ that satisfy <a href="#fs-id1165042002695">Equation 7.8</a> for <em>all</em> values of $x.$ That is, this equation must be true for any value of $x$ we care to substitute into it. Therefore, by choosing values of $x$ carefully and substituting them into the equation, we may find $A,$ $B,$ and $C$ easily. For example, if we substitute $x=0,$ the equation reduces to $2=A(-2)(1).$ Solving for $A$ yields $A=-1.$ Next, by substituting $x=2,$ the equation reduces to $8=B(2)(3),$ or equivalently $B=4/3.$ Last, we substitute $x=-1$ into the equation and obtain $-1=C(-1)(-3).$ Solving, we have $C=-\frac{1}{3}.$</p>
+<p>It is important to keep in mind that if we attempt to use this method with a decomposition that has not been set up correctly, we are still able to find values for the constants, but these constants are meaningless. If we do opt to use the <span data-concept="method-of-strategic-substitution">method of strategic substitution</span>, then it is a good idea to check the result by recombining the terms algebraically.</p>
+</div>
+<p>Now that we have the values of $A,$ $B,$ and $C,$ we rewrite the original <span data-concept="indefinite-integral">integral</span>:</p>
+$$\int \frac{3x+2}{x^{3}-x^{2}-2x}dx =\int (-\;\frac{1}{x}+\frac{4}{3}\cdot \frac{1}{(x-2)}-\frac{1}{3}\cdot \frac{1}{(x+1)}) dx.$$
+<p>Evaluating the <span data-concept="indefinite-integral">integral</span> gives us</p>
+$$\int \frac{3x+2}{x^{3}-x^{2}-2x}dx =-\ln |x|+\frac{4}{3}\ln |x-2|-\frac{1}{3}\ln |x+1|+C.$$
+</div>
+<p>In the next example, we integrate a <span data-concept="rational-function">rational function</span> in which the degree of the numerator is not less than the degree of the denominator.</p>
+<div class="example" id="fs-id1165042066339">
+<h3>Example 7.30 · Dividing before Applying Partial Fractions</h3>
+<p>Evaluate <span data-fn="(x^2+3x+1)/(x^2-4)">$\int \frac{x^{2}+3x+1}{x^{2}-4}dx.$</span></p>
+<h4>Solution</h4>
+<p>Since $\text{degree}(x^{2}+3x+1)\ge \text{degree}(x^{2}-4),$ we must perform long division of polynomials. This results in</p>
+$$\frac{x^{2}+3x+1}{x^{2}-4}=1+\frac{3x+5}{x^{2}-4}.$$
+<p>Next, we perform <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span> on $\frac{3x+5}{x^{2}-4}=\frac{3x+5}{(x+2)(x-2)}.$ We have</p>
+$$\frac{3x+5}{(x-2)(x+2)}=\frac{A}{x-2}+\frac{B}{x+2}.$$
+<p>Thus,</p>
+$$3x+5=A(x+2)+B(x-2).$$
+<p>Solving for $A$ and $B$ using either method, we obtain $A=11/4$ and $B=1/4.$</p>
+<p>Rewriting the original <span data-concept="indefinite-integral">integral</span>, we have</p>
+$$\int \frac{x^{2}+3x+1}{x^{2}-4}dx =\int (1+\frac{11}{4}\cdot \frac{1}{x-2}+\frac{1}{4}\cdot \frac{1}{x+2})dx.$$
+<p>Evaluating the <span data-concept="indefinite-integral">integral</span> produces</p>
+$$\int \frac{x^{2}+3x+1}{x^{2}-4}dx =x+\frac{11}{4}\ln |x-2|+\frac{1}{4}\ln |x+2|+C.$$
+</div>
+<p>As we see in the next example, it may be possible to apply the technique of <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span> to a nonrational function. The trick is to convert the nonrational function to a <span data-concept="rational-function">rational function</span> through a <span data-concept="integration-by-substitution">substitution</span>.</p>
+<div class="example" id="fs-id1165042003975">
+<h3>Example 7.31 · Applying Partial Fractions after a Substitution</h3>
+<p>Evaluate <span data-fn="cos(x)/(sin(x)^2-sin(x))">$\int \frac{\cos x}{{\sin }^{2}x-\sin x}dx .$</span></p>
+<h4>Solution</h4>
+<p>Let’s begin by letting $u=\sin x.$ Consequently, $du=\cos x\;dx.$ After making these substitutions, we have</p>
+$$\int \frac{\cos x}{{\sin }^{2}x-\sin x}dx =\int \frac{du}{u^{2}-u} =\int \frac{du}{u(u-1)}.$$
+<p>Applying <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span> to $1/u(u-1)$ gives $\frac{1}{u(u-1)}=-\frac{1}{u}+\frac{1}{u-1}.$</p>
+<p>Thus,</p>
+$$\begin{array}{rl}\int \frac{\cos x}{{\sin }^{2}x-\sin x}dx & =-\ln |u|+\ln |u-1|+C \\ & =-\ln |\sin x|+\ln |\sin x-1|+C.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042003975"></div>
+<figure class="sim" id="sim-partial-fractions">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A <span data-concept="rational-function">rational function</span> of this section is drawn with <span data-ref="term-1 term-2 term-3">the partial fractions</span> it decomposes into. Choose the function and drag $x$: at every $x$ the values of the fractions add up to the value of the function, and near each zero of the denominator one fraction alone grows without bound, so each pole of the function belongs to one term. Multiplying by that term’s factor and letting $x$ approach the zero leaves its numerator, which is what the <span data-concept="method-of-strategic-substitution">method of strategic substitution</span> computes.</span></div>
+</figure>
+</section>
+
+<section id="repeated">
+<h2>Repeated Linear Factors</h2>
+<p class="cite-target">For some applications, we need to integrate rational expressions that have denominators with <span data-concept="repeated-linear-factors">repeated linear factors</span>—that is, <span data-concept="rational-function">rational functions</span> with at least one factor of the form ${(ax+b)}^{n},$ where $n$ is a positive integer greater than or equal to $2.$ If the denominator contains the <span data-concept="repeated-linear-factors">repeated linear factor</span> ${(ax+b)}^{n},$ then the decomposition must contain</p>
+$$\frac{A_{1}}{ax+b}+\frac{A_{2}}{{(ax+b)}^{2}}+\cdots +\frac{A_{n}}{{(ax+b)}^{n}}.$$
+<p>As we see in our next example, the basic technique used for solving for the coefficients is the same, but it requires more algebra to determine the numerators of the <span data-concept="partial-fraction-decomposition">partial fractions</span>.</p>
+<div class="example" id="fs-id1165041952248">
+<h3>Example 7.32 · Partial Fractions with Repeated Linear Factors</h3>
+<p>Evaluate <span data-fn="(x-2)/((2x-1)^2*(x-1))">$\int \frac{x-2}{{(2x-1)}^{2}(x-1)}dx.$</span></p>
+<h4>Solution</h4>
+<p>We have $\text{degree}(x-2)\lt \text{degree}({(2x-1)}^{2}(x-1)),$ so we can proceed with the decomposition. Since ${(2x-1)}^{2}$ is a <span data-concept="repeated-linear-factors">repeated linear factor</span>, include $\frac{A}{2x-1}+\frac{B}{{(2x-1)}^{2}}$ in the decomposition. Thus,</p>
+$$\frac{x-2}{{(2x-1)}^{2}(x-1)}=\frac{A}{2x-1}+\frac{B}{{(2x-1)}^{2}}+\frac{C}{x-1}.$$
+<p>After getting a common denominator and equating the numerators, we have</p>
+<div class="equation" id="fs-id1165040688639">$$x-2=A(2x-1)(x-1)+B(x-1)+C{(2x-1)}^{2}.\tag{7.9}$$</div>
+<p>We then use the <span data-concept="method-of-equating-coefficients">method of equating coefficients</span> to find the values of $A,$ $B,$ and $C.$</p>
+$$x-2=(2A+4C)x^{2}+(-3A+B-4C)x+(A-B+C).$$
+<p>Equating coefficients yields $2A+4C=0,$ $-3A+B-4C=1,$ and $A-B+C=-2.$ Solving this system yields $A=2,$ $B=3,$ and $C=-1.$</p>
+<p>Alternatively, we can use the <span data-concept="method-of-strategic-substitution">method of strategic substitution</span>. In this case, substituting $x=1$ and $x=1/2$ into <a href="#fs-id1165040688639">Equation 7.9</a> easily produces the values $B=3$ and $C=-1.$ At this point, it may seem that we have run out of good choices for $x,$ however, since we already have values for $B$ and $C,$ we can substitute in these values and choose any value for $x$ not previously used. The value $x=0$ is a good option. In this case, we obtain the equation $-2=A(-1)(-1)+3(-1)+(-1){(-1)}^{2}$ or, equivalently, $A=2.$</p>
+<p>Now that we have the values for $A,$ $B,$ and $C,$ we rewrite the original <span data-concept="indefinite-integral">integral</span> and evaluate it:</p>
+$$\begin{array}{rl}\int \frac{x-2}{{(2x-1)}^{2}(x-1)}dx & =\int (\frac{2}{2x-1}+\frac{3}{{(2x-1)}^{2}}-\frac{1}{x-1})dx \\ & =\ln |2x-1|-\frac{3}{2(2x-1)}-\ln |x-1|+C.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165041952248"></div>
+</section>
+
+<section id="general">
+<h2>The General Method</h2>
+<p class="cite-target">Now that we are beginning to get the idea of how the technique of <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span> works, let’s outline the basic method in the following problem-solving strategy.</p>
+<div class="note" id="general-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Partial Fraction Decomposition</h3>
+<p>To decompose the <span data-concept="rational-function">rational function</span> $\kP(x)/\kQ(x),$ use the following steps:</p>
+<ol><li>Make sure that $\text{degree}(\kP(x))\lt \text{degree}(\kQ(x)).$ If not, perform long division of polynomials.</li><li>Factor $\kQ(x)$ into the product of linear and <span data-concept="quadratic-factors">irreducible quadratic factors</span>. An <span data-concept="irreducible-quadratic">irreducible quadratic</span> is a quadratic that has no real zeros.</li><li>Assuming that $\text{deg}(\kP(x))\lt \text{deg}(\kQ(x)),$ the factors of $\kQ(x)$ determine the form of the decomposition of $\kP(x)/\kQ(x).$
+<ol type="a"><li>If $\kQ(x)$ can be factored as $(a_{1}x+b_{1})(a_{2}x+b_{2})\text{…}(a_{n}x+b_{n}),$ where each linear factor is distinct, then it is possible to find constants $A_{1},A_{2},...A_{n}$ satisfying $$\frac{\kP(x)}{\kQ(x)}=\frac{A_{1}}{a_{1}x+b_{1}}+\frac{A_{2}}{a_{2}x+b_{2}}+\cdots +\frac{A_{n}}{a_{n}x+b_{n}}.$$</li><li>If $\kQ(x)$ contains the <span data-concept="repeated-linear-factors">repeated linear factor</span> ${(ax+b)}^{n},$ then the decomposition must contain $$\frac{A_{1}}{ax+b}+\frac{A_{2}}{{(ax+b)}^{2}}+\cdots +\frac{A_{n}}{{(ax+b)}^{n}}.$$</li><li>For each <span data-concept="quadratic-factors">irreducible quadratic factor</span> $ax^{2}+bx+c$ that $\kQ(x)$ contains, the decomposition must include $$\frac{Ax+B}{ax^{2}+bx+c}.$$</li><li>For each repeated <span data-concept="quadratic-factors">irreducible quadratic factor</span> ${(ax^{2}+bx+c)}^{n},$ the decomposition must include $$\frac{A_{1}x+B_{1}}{ax^{2}+bx+c}+\frac{A_{2}x+B_{2}}{{(ax^{2}+bx+c)}^{2}}+\cdots +\frac{A_{n}x+B_{n}}{{(ax^{2}+bx+c)}^{n}}.$$</li><li>After the appropriate decomposition is determined, solve for the constants.</li><li>Last, rewrite the <span data-concept="indefinite-integral">integral</span> in its decomposed form and evaluate it using previously developed techniques or integration formulas.</li></ol></li></ol>
+</div>
+</section>
+
+<section id="quadratic">
+<h2>Simple Quadratic Factors</h2>
+<p class="cite-target">Now let’s look at integrating a rational expression in which the denominator contains an <span data-concept="quadratic-factors">irreducible quadratic factor</span>. Recall that the quadratic $ax^{2}+bx+c$ is irreducible if $ax^{2}+bx+c=0$ has no real zeros—that is, if $b^{2}-4ac\lt 0.$</p>
+<div class="example" id="fs-id1165042096550">
+<h3>Example 7.33 · Rational Expressions with an Irreducible Quadratic Factor</h3>
+<p>Evaluate <span data-fn="(2x-3)/(x^3+x)">$\int \frac{2x-3}{x^{3}+x}dx.$</span></p>
+<h4>Solution</h4>
+<p>Since $\text{deg}(2x-3)\lt \text{deg}(x^{3}+x),$ factor the denominator and proceed with <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span>. Since $x^{3}+x=x(x^{2}+1)$ contains the <span data-concept="quadratic-factors">irreducible quadratic factor</span> $x^{2}+1,$ include $\frac{Ax+B}{x^{2}+1}$ as part of the decomposition, along with $\frac{C}{x}$ for the linear term $x.$ Thus, the decomposition has the form</p>
+$$\frac{2x-3}{x(x^{2}+1)}=\frac{Ax+B}{x^{2}+1}+\frac{C}{x}.$$
+<p>After getting a common denominator and equating the numerators, we obtain the equation</p>
+$$2x-3=(Ax+B)x+C(x^{2}+1).$$
+<p>Solving for $A,B,$ and $C,$ we get $A=3,$ $B=2,$ and $C=-3.$</p>
+<p>Thus,</p>
+$$\frac{2x-3}{x^{3}+x}=\frac{3x+2}{x^{2}+1}-\frac{3}{x}.$$
+<p>Substituting back into the <span data-concept="indefinite-integral">integral</span>, we obtain</p>
+$$\begin{array}{rllll}\int \frac{2x-3}{x^{3}+x}dx & =\int (\frac{3x+2}{x^{2}+1}-\frac{3}{x})dx & & & \\ & =3\int \frac{x}{x^{2}+1}dx +2\int \frac{1}{x^{2}+1}dx -3\int \frac{1}{x}dx & & & \text{Split up the integral.} \\ & =\frac{3}{2}\ln |x^{2}+1|+2\;{\tan }^{-1}x-3\;\ln |x|+C. & & & \text{Evaluate each integral.}\end{array}$$
+<p><em>Note</em>: We may rewrite $\ln |x^{2}+1|=\ln (x^{2}+1),$ if we wish to do so, since $x^{2}+1\gt 0.$</p>
+</div>
+<div class="example" id="fs-id1165042107572">
+<h3>Example 7.34 · Partial Fractions with an Irreducible Quadratic Factor</h3>
+<p>Evaluate <span data-fn="1/(x^3-8)">$\int \frac{dx}{x^{3}-8}.$</span></p>
+<h4>Solution</h4>
+<p>We can start by factoring $x^{3}-8=(x-2)(x^{2}+2x+4).$ We see that the quadratic factor $x^{2}+2x+4$ is irreducible since $2^{2}-4(1)(4)=-12\lt 0.$ Using the decomposition described in the problem-solving strategy, we get</p>
+$$\frac{1}{(x-2)(x^{2}+2x+4)}=\frac{A}{x-2}+\frac{Bx+C}{x^{2}+2x+4}.$$
+<p>After obtaining a common denominator and equating the numerators, this becomes</p>
+$$1=A(x^{2}+2x+4)+(Bx+C)(x-2).$$
+<p>Applying either method, we get $A=\frac{1}{12},B=-\frac{1}{12},\;\text{and}\;C=-\frac{1}{3}.$</p>
+<p>Rewriting $\int \frac{dx}{x^{3}-8},$ we have</p>
+$$\int \frac{dx}{x^{3}-8} =\frac{1}{12}\int \frac{1}{x-2}dx -\frac{1}{12}\int \frac{x+4}{x^{2}+2x+4}dx.$$
+<p>We can see that</p>
+<p>$\int \frac{1}{x-2}dx =\ln |x-2|+C,$ but $\int \frac{x+4}{x^{2}+2x+4}dx$ requires a bit more effort. Let’s begin by completing the square on $x^{2}+2x+4$ to obtain</p>
+$$x^{2}+2x+4={(x+1)}^{2}+3.$$
+<p>By letting $u=x+1$ and consequently $du=dx,$ we see that</p>
+$$\begin{array}{rllll}\int \frac{x+4}{x^{2}+2x+4}dx & =\int \frac{x+4}{{(x+1)}^{2}+3}dx & & & \begin{array}{l}\text{Complete the square on the} \\ \text{denominator.}\end{array} \\ & =\int \frac{u+3}{u^{2}+3}du & & & \begin{array}{l}\text{Substitute}\;u=x+1,x=u-1, \\ \text{and}\;du=dx.\end{array} \\ & =\int \frac{u}{u^{2}+3}du +\int \frac{3}{u^{2}+3}du & & & \text{Split the numerator apart.} \\ & =\frac{1}{2}\ln |u^{2}+3|+\frac{3}{\sqrt{3}}{\tan }^{-1}\frac{u}{\sqrt{3}}+C & & & \text{Evaluate each integral.} \\ & =\frac{1}{2}\ln |x^{2}+2x+4|+\sqrt{3}{\tan }^{-1}(\frac{x+1}{\sqrt{3}})+C. & & & \begin{array}{l}\text{Rewrite in terms of}\;x\;\text{and} \\ \text{simplify.}\end{array}\end{array}$$
+<p>Substituting back into the original <span data-concept="indefinite-integral">integral</span> and simplifying gives</p>
+$$\int \frac{dx}{x^{3}-8}=\frac{1}{12}\ln |x-2|-\frac{1}{24}\ln |x^{2}+2x+4|-\frac{\sqrt{3}}{12}{\tan }^{-1}(\frac{x+1}{\sqrt{3}})+C.$$
+<p>Here again, we can drop the absolute value if we wish to do so, since $x^{2}+2x+4\gt 0$ for all $x.$</p>
+</div>
+<div class="example" id="fs-id1165042311614">
+<h3>Example 7.35 · Finding a Volume</h3>
+<p>Find the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> obtained by revolving the region enclosed by the graph of $f(x)=\frac{x^{2}}{{(x^{2}+1)}^{2}}$ and the <em>x</em>-axis over the interval $[0,1]$ about the <em>y</em>-axis.</p>
+<h4>Solution</h4>
+<p>Let’s begin by sketching the region to be revolved (see Figure 7.11). From the sketch, we see that the <span data-concept="method-of-cylindrical-shells">shell method</span> is a good choice for solving this problem.</p>
+<figure class="sim" id="fig-shell-rational" data-figure="7.11" data-original="/media/ch07/CNX_Calc_Figure_07_04_001.jpg" data-original-caption="We can use the shell method to find the volume of revolution obtained by revolving the region shown about the y-axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.11</span><span>We can use the <span data-concept="method-of-cylindrical-shells">shell method</span> to find the volume of revolution obtained by revolving the region shown about the <em>y</em>-axis.</span></div>
+</figure>
+<p>The volume is given by</p>
+$$V=2\pi \int_0^{1}x\cdot \frac{x^{2}}{{(x^{2}+1)}^{2}}dx =2\pi \int_0^{1}\frac{x^{3}}{{(x^{2}+1)}^{2}}dx.$$
+<p>Since $\text{deg}({(x^{2}+1)}^{2})=4\gt 3=\text{deg}(x^{3}),$ we can proceed with <span data-concept="partial-fraction-decomposition">partial fraction decomposition</span>. Note that ${(x^{2}+1)}^{2}$ is a repeated <span data-concept="irreducible-quadratic">irreducible quadratic</span>. Using the decomposition described in the problem-solving strategy, we get</p>
+$$\frac{x^{3}}{{(x^{2}+1)}^{2}}=\frac{Ax+B}{x^{2}+1}+\frac{Cx+D}{{(x^{2}+1)}^{2}}.$$
+<p>Finding a common denominator and equating the numerators gives</p>
+$$x^{3}=(Ax+B)(x^{2}+1)+Cx+D.$$
+<p>Solving, we obtain $A=1,$ $B=0,$ $C=-1,$ and $D=0.$ Substituting back into the <span data-concept="indefinite-integral">integral</span>, we have</p>
+$$\begin{array}{rl}V & =2\pi \int_0^{1} \frac{x^{3}}{{(x^{2}+1)}^{2}}dx \\ & =2\pi \int_0^{1} (\frac{x}{x^{2}+1}-\frac{x}{{(x^{2}+1)}^{2}})dx \\ & =2\pi (\frac{1}{2}\ln (x^{2}+1)+\frac{1}{2}\cdot \frac{1}{x^{2}+1})|{}_{\begin{array}{l} \\ 0\end{array}}^{\begin{array}{l}1 \\ \end{array}} \\ & =\pi (\ln 2-\frac{1}{2}).\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042311614"></div>
+</section>

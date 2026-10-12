@@ -1,0 +1,182 @@
+<p id="numerical-intro">The <span data-concept="antiderivative">antiderivatives</span> of many functions either cannot be expressed or cannot be expressed easily in closed form (that is, in terms of known functions). Consequently, rather than evaluate <span data-concept="definite-integral">definite integrals</span> of these functions directly, we resort to various techniques of <strong><span data-concept="numerical-integration">numerical integration</span></strong> to approximate their values. In this section we explore several of these techniques. In addition, we examine the process of estimating the error in using these techniques.</p>
+
+<section id="midpoint">
+<h2>The Midpoint Rule</h2>
+<p class="cite-target">Earlier in this text we defined the <span data-concept="definite-integral">definite integral</span> of a function over an interval as the limit of <span data-concept="riemann-sum">Riemann sums</span>. In general, any <span data-concept="riemann-sum">Riemann sum</span> of a function $\kf(x)$ over an interval $[a,b]$ may be viewed as an estimate of $\int_a^{b}\kf(x)dx .$ Recall that a <span data-concept="riemann-sum">Riemann sum</span> of a function $\kf(x)$ over an interval $[a,b]$ is obtained by selecting a <span data-concept="partition">partition</span></p>
+$$\kP=\{x_{0},x_{1},x_{2}\text{,…},x_{n}\},\;\text{where}\;a=x_{0}\lt x_{1}\lt x_{2}\lt \cdots \lt x_{n}=b$$
+<p>and a set</p>
+$$S=\{x_1^{*},x_2^{*}\text{,…},x_n^{*}\},\;\text{where}\;x_{i-1}\le x_i^{*}\le x_{i}\;\text{for all}\;i.$$
+<p>The <span data-concept="riemann-sum">Riemann sum</span> corresponding to the <span data-concept="partition">partition</span> $P$ and the set $S$ is given by $\sum_{i=1}^{n} \kf(x_i^{*})\Delta x_{i} ,$ where $\Delta x_{i}=x_{i}-x_{i-1},$ the length of the <em>i</em>th subinterval.</p>
+<p id="midpoint-term">The <strong><span data-concept="midpoint-rule">midpoint rule</span></strong> for estimating a <span data-concept="definite-integral">definite integral</span> uses a <span data-concept="riemann-sum">Riemann sum</span> with subintervals of equal width and the midpoints, $m_{i},$ of each subinterval in place of $x_i^{*}.$ Formally, we state a theorem regarding the convergence of the <span data-concept="midpoint-rule">midpoint rule</span> as follows.</p>
+<div class="note" id="midpoint-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>The Midpoint Rule</h3>
+<p>Assume that $\kf(x)$ is continuous on $[a,b].$ Let <em>n</em> be a positive integer and $\Delta x=\frac{b-a}{n}.$ If $[a,b]$ is divided into $n$ subintervals, each of length $\Delta x,$ and $m_{i}$ is the midpoint of the <em>i</em>th subinterval, set</p>
+<div class="equation" id="fs-id1165040697119">$$\kM_{n}=\sum_{i=1}^{n}\kf(m_{i})\Delta x.\tag{7.10}$$</div>
+<p>Then $\lim_{n\to \infty}\kM_{n}=\int_a^{b}\kf(x)dx .$</p>
+</div>
+<p>As we can see in Figure 7.13, if $\kf(x)\ge 0$ over $[a,b],$ then $\sum_{i=1}^{n}\kf(m_{i})\Delta x$ corresponds to the sum of the areas of rectangles approximating the area between the graph of $\kf(x)$ and the <em>x</em>-axis over $[a,b].$ The graph shows the rectangles corresponding to $\kM_{4}$ for a nonnegative function over a closed interval $[a,b].$</p>
+<figure class="sim" id="sim-midpoint" data-figure="7.13" data-original="/media/ch07/CNX_Calc_Figure_07_06_001.jpg" data-original-caption="The midpoint rule approximates the area between the graph of f(x) and the x-axis by summing the areas of rectangles with midpoints that are points on f(x).">
+  <div class="sim-head"><span class="eyebrow">Figure 7.13</span><span>On each of the $n$ subintervals of $[a,b]$ a rectangle stands as tall as $\kf$ at the midpoint $m_{i},$ and $\kM_{n}$ adds their areas. Drag $n$ and choose the function: the rectangles overshoot the curve on one side of each midpoint and fall short on the other, and the gap between $\kM_{n}$ and the <span data-concept="definite-integral">integral</span> shrinks as $n$ grows.</span></div>
+</figure><div class="example" id="fs-id1165040799117">
+<h3>Example 7.39 · Using the Midpoint Rule with $\kM_{4}$</h3>
+<p>Use the <span data-concept="midpoint-rule">midpoint rule</span> to estimate $\int_0^{1}x^{2}dx$ using four subintervals. Compare the result with the actual value of this <span data-concept="definite-integral">integral</span>.</p>
+<h4>Solution</h4>
+<p>Each subinterval has length $\Delta x=\frac{1-0}{4}=\frac{1}{4}.$ Therefore, the subintervals consist of</p>
+$$[0,\frac{1}{4}],[\frac{1}{4},\frac{1}{2}],[\frac{1}{2},\frac{3}{4}],\;\text{and}\;[\frac{3}{4},1].$$
+<p>The midpoints of these subintervals are $\{\frac{1}{8},\frac{3}{8},\frac{5}{8},\frac{7}{8}\}.$ Thus,</p>
+$$\kM_{4}=\frac{1}{4}\kf(\frac{1}{8})+\frac{1}{4}\kf(\frac{3}{8})+\frac{1}{4}\kf(\frac{5}{8})+\frac{1}{4}\kf(\frac{7}{8})=\frac{1}{4}\cdot \frac{1}{64}+\frac{1}{4}\cdot \frac{9}{64}+\frac{1}{4}\cdot \frac{25}{64}+\frac{1}{4}\cdot \frac{49}{64}=\frac{21}{64}.$$
+<p>Since</p>
+$$\int_0^{1}x^{2}dx=\frac{1}{3} \;\text{and}\;|\frac{1}{3}-\frac{21}{64}|=\frac{1}{192}\approx 0.0052,$$
+<p>we see that the <span data-concept="midpoint-rule">midpoint rule</span> produces an estimate that is somewhat close to the actual value of the <span data-concept="definite-integral">definite integral</span>.</p>
+</div>
+<div class="example" id="fs-id1165041840100">
+<h3>Example 7.40 · Using the Midpoint Rule with $\kM_{6}$</h3>
+<p>Use $\kM_{6}$ to estimate the <span data-concept="arc-length">length of the curve</span> $y=\frac{1}{2}x^{2}$ on $[1,4].$</p>
+<h4>Solution</h4>
+<p>The length of $y=\frac{1}{2}x^{2}$ on $[1,4]$ is</p>
+$$\int_1^{4}\sqrt{1+{(\frac{dy}{dx})}^{2}}\;dx .$$
+<p>Since $\frac{dy}{dx}=x,$ this <span data-concept="definite-integral">integral</span> becomes $\int_1^{4}\sqrt{1+x^{2}}\;dx .$</p>
+<p>If $[1,4]$ is divided into six subintervals, then each subinterval has length $\Delta x=\frac{4-1}{6}=\frac{1}{2}$ and the midpoints of the subintervals are $\{\frac{5}{4},\frac{7}{4},\frac{9}{4},\frac{11}{4},\frac{13}{4},\frac{15}{4}\}.$ If we set $\kf(x)=\sqrt{1+x^{2}},$</p>
+$$\begin{array}{rl}\kM_{6} & =\frac{1}{2}\kf(\frac{5}{4})+\frac{1}{2}\kf(\frac{7}{4})+\frac{1}{2}\kf(\frac{9}{4})+\frac{1}{2}\kf(\frac{11}{4})+\frac{1}{2}\kf(\frac{13}{4})+\frac{1}{2}\kf(\frac{15}{4}) \\ & \approx \frac{1}{2}(1.6008+2.0156+2.4622+2.9262+3.4004+3.8810)=8.1431.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165041840100"></div>
+</section>
+
+<section id="trapezoidal">
+<h2>The Trapezoidal Rule</h2>
+<p class="cite-target">We can also approximate the value of a <span data-concept="definite-integral">definite integral</span> by using trapezoids rather than rectangles. In Figure 7.14, the area beneath the curve is approximated by trapezoids rather than by rectangles.</p>
+<figure class="sim" id="sim-trapezoid" data-figure="7.14 + 7.15" data-original="/media/ch07/CNX_Calc_Figure_07_06_002.jpg,/media/ch07/CNX_Calc_Figure_07_06_003.jpg" data-original-caption="(Figure 7.14) Trapezoids may be used to approximate the area under a curve, hence approximating the definite integral. (Figure 7.15) The trapezoidal rule tends to be less accurate than the midpoint rule.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.14 + 7.15</span><span>Trapezoids join the points of the graph above $x_{0},x_{1},\ldots,x_{n},$ and $\kT_{n}$ adds their areas; choose midpoints to set the rectangles of $\kM_{n}$ over the same subintervals. The shaded slivers are the error. Where the curve is <span data-concept="concavity">concave up</span> the trapezoids lie above it and overestimate; where it is concave down they underestimate, while the rectangles overshoot and fall short within each subinterval, so their error partly cancels.</span></div>
+</figure><p id="trapezoidal-term">The <strong><span data-concept="trapezoidal-rule">trapezoidal rule</span></strong> for estimating <span data-concept="definite-integral">definite integrals</span> uses trapezoids rather than rectangles to approximate the area under a curve. To gain insight into the final form of the rule, consider the trapezoids shown in Figure 7.14. We assume that the length of each subinterval is given by $\Delta x.$ First, recall that the area of a trapezoid with a height of <em>h</em> and bases of length $b_{1}$ and $b_{2}$ is given by $\text{Area}=\frac{1}{2}h(b_{1}+b_{2}).$ We see that the first trapezoid has a height $\Delta x$ and parallel bases of length $\kf(x_{0})$ and $\kf(x_{1}).$ Thus, the area of the first trapezoid in Figure 7.14 is</p>
+$$\frac{1}{2}\Delta x(\kf(x_{0})+\kf(x_{1})).$$
+<p>The areas of the remaining three trapezoids are</p>
+$$\frac{1}{2}\Delta x(\kf(x_{1})+\kf(x_{2})),\frac{1}{2}\Delta x(\kf(x_{2})+\kf(x_{3})),\text{and}\;\frac{1}{2}\Delta x(\kf(x_{3})+\kf(x_{4})).$$
+<p>Consequently,</p>
+$$\int_a^{b}\kf(x)dx\approx \frac{1}{2}\Delta x(\kf(x_{0})+\kf(x_{1}))+\frac{1}{2}\Delta x(\kf(x_{1})+\kf(x_{2}))+\frac{1}{2}\Delta x(\kf(x_{2})+\kf(x_{3}))+\frac{1}{2}\Delta x(\kf(x_{3})+\kf(x_{4})) .$$
+<p>After taking out a common factor of $\frac{1}{2}\Delta x$ and combining like terms, we have</p>
+$$\int_a^{b}\kf(x)dx\approx \frac{1}{2}\Delta x(\kf(x_{0})+2\kf(x_{1})+2\kf(x_{2})+2\kf(x_{3})+\kf(x_{4})).$$
+<p>Generalizing, we formally state the following rule.</p>
+<div class="note" id="trapezoidal-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>The Trapezoidal Rule</h3>
+<p>Assume that $\kf(x)$ is continuous over $[a,b].$ Let <em>n</em> be a positive integer and $\Delta x=\frac{b-a}{n}.$ Let $[a,b]$ be divided into $n$ subintervals, each of length $\Delta x,$ with endpoints at $\kP=\{x_{0},x_{1},x_{2}\text{…},x_{n}\}.$ Set</p>
+<div class="equation" id="fs-id1165041762506">$$\kT_{n}=\frac{1}{2}\Delta x(\kf(x_{0})+2\kf(x_{1})+2\kf(x_{2})+\cdots +2\kf(x_{n-1})+\kf(x_{n})).\tag{7.11}$$</div>
+<p>Then, $\lim_{n\to +\infty}\kT_{n}=\int_a^{b}\kf(x)dx .$</p>
+</div>
+<p>Before continuing, let’s make a few observations about the <span data-concept="trapezoidal-rule">trapezoidal rule</span>. First of all, it is useful to note that</p>
+$$\kT_{n}=\frac{1}{2}(\kL_{n}+\kR_{n})\;\text{where}\;\kL_{n}=\sum_{i=1}^{n}\kf(x_{i-1})\Delta x\;\text{and}\;\kR_{n}=\sum_{i=1}^{n}\kf(x_{i})\Delta x.$$
+<p id="concavity-paragraph">That is, $\kL_{n}$ and $\kR_{n}$ approximate the <span data-concept="definite-integral">integral</span> using the left-hand and right-hand endpoints of each subinterval, respectively. In addition, a careful examination of Figure 7.15 leads us to make the following observations about using the <span data-concept="trapezoidal-rule">trapezoidal rules</span> and <span data-concept="midpoint-rule">midpoint rules</span> to estimate the <span data-concept="definite-integral">definite integral</span> of a nonnegative function. The <span data-concept="trapezoidal-rule">trapezoidal rule</span> tends to overestimate the value of a <span data-concept="definite-integral">definite integral</span> systematically over intervals where the function is <span data-concept="concavity">concave up</span> and to underestimate the value of a <span data-concept="definite-integral">definite integral</span> systematically over intervals where the function is <span data-concept="concavity">concave down</span>. On the other hand, the <span data-concept="midpoint-rule">midpoint rule</span> tends to average out these errors somewhat by partially overestimating and partially underestimating the value of the <span data-concept="definite-integral">definite integral</span> over these same types of intervals. This leads us to hypothesize that, in general, the <span data-concept="midpoint-rule">midpoint rule</span> tends to be more accurate than the <span data-concept="trapezoidal-rule">trapezoidal rule</span>.</p>
+<div class="example" id="fs-id1165042234318">
+<h3>Example 7.41 · Using the Trapezoidal Rule</h3>
+<p>Use the <span data-concept="trapezoidal-rule">trapezoidal rule</span> to estimate $\int_0^{1}x^{2}dx$ using four subintervals.</p>
+<h4>Solution</h4>
+<p>The endpoints of the subintervals consist of elements of the set $\kP=\{0,\frac{1}{4},\frac{1}{2},\frac{3}{4},1\}$ and $\Delta x=\frac{1-0}{4}=\frac{1}{4}.$ Thus,</p>
+$$\begin{array}{rl}\int_0^{1}x^{2}dx & \approx \frac{1}{2}\cdot \frac{1}{4}(\kf(0)+2\kf(\frac{1}{4})+2\kf(\frac{1}{2})+2\kf(\frac{3}{4})+\kf(1)) \\ & =\frac{1}{8}(0+2\cdot \frac{1}{16}+2\cdot \frac{1}{4}+2\cdot \frac{9}{16}+1) \\ & =\frac{11}{32}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042234318"></div>
+</section>
+
+<section id="error">
+<h2>Absolute and Relative Error</h2>
+<p class="cite-target">An important aspect of using these numerical approximation rules consists of calculating the error in using them for estimating the value of a <span data-concept="definite-integral">definite integral</span>. We first need to define <strong><span data-concept="absolute-error">absolute error</span></strong> and <strong><span data-concept="relative-error">relative error</span></strong>.</p>
+<div class="note" id="error-definition">
+<div class="eyebrow">Definition</div>
+<p>If $B$ is our estimate of some quantity having an actual value of $A,$ then the <span data-concept="absolute-error">absolute error</span> is given by $|A-B|.$ The <span data-concept="relative-error">relative error</span> is the error as a percentage of the absolute value and is given by $|\frac{A-B}{A}|=|\frac{A-B}{A}|\cdot 100\%.$</p>
+</div>
+<div class="example" id="fs-id1165040640346">
+<h3>Example 7.42 · Calculating Error in the Midpoint Rule</h3>
+<p>Calculate the absolute and <span data-concept="relative-error">relative error</span> in the estimate of $\int_0^{1}x^{2}dx$ using the <span data-concept="midpoint-rule">midpoint rule</span>, found in <a href="#fs-id1165040799117">Example 7.39</a>.</p>
+<h4>Solution</h4>
+<p>The calculated value is $\int_0^{1}x^{2}dx=\frac{1}{3}$ and our estimate from the example is $\kM_{4}=\frac{21}{64}.$ Thus, the <span data-concept="absolute-error">absolute error</span> is given by $|(\frac{1}{3})-(\frac{21}{64})|=\frac{1}{192}\approx 0.0052.$ The <span data-concept="relative-error">relative error</span> is</p>
+$$\frac{1/192}{1/3}=\frac{1}{64}\approx 0.015625\approx 1.6\%.$$
+</div>
+<div class="example" id="fs-id1165040736472">
+<h3>Example 7.43 · Calculating Error in the Trapezoidal Rule</h3>
+<p>Calculate the absolute and <span data-concept="relative-error">relative error</span> in the estimate of $\int_0^{1}x^{2}dx$ using the <span data-concept="trapezoidal-rule">trapezoidal rule</span>, found in <a href="#fs-id1165042234318">Example 7.41</a>.</p>
+<h4>Solution</h4>
+<p>The calculated value is $\int_0^{1}x^{2}dx=\frac{1}{3}$ and our estimate from the example is $\kT_{4}=\frac{11}{32}.$ Thus, the <span data-concept="absolute-error">absolute error</span> is given by $|\frac{1}{3}-\frac{11}{32}|=\frac{1}{96}\approx 0.0104.$ The <span data-concept="relative-error">relative error</span> is given by</p>
+$$\frac{1/96}{1/3}=0.03125\approx 3.1\%.$$
+</div>
+<div class="exercises" data-place="fs-id1165040736472"></div>
+<p>In the two previous examples, we were able to compare our estimate of an <span data-concept="definite-integral">integral</span> with the actual value of the <span data-concept="definite-integral">integral</span>; however, we do not typically have this luxury. In general, if we are approximating an <span data-concept="definite-integral">integral</span>, we are doing so because we cannot compute the exact value of the <span data-concept="definite-integral">integral</span> itself easily. Therefore, it is often helpful to be able to determine an <span data-concept="error-bounds-for-the-midpoint-and-trapezoidal-rules">upper bound for the error</span> in an approximation of an <span data-concept="definite-integral">integral</span>. The following theorem provides error bounds for the midpoint and <span data-concept="trapezoidal-rule">trapezoidal rules</span>. The theorem is stated without proof.</p>
+<div class="note" id="error-bounds-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Error Bounds for the Midpoint and Trapezoidal Rules</h3>
+<p>Let $\kf(x)$ be a continuous function over $[a,b],$ having a second derivative $\kfdprime(x)$ over this interval. If $M$ is the maximum value of $|\kfdprime(x)|$ over $[a,b],$ then the upper bounds for the error in using $\kM_{n}$ and $\kT_{n}$ to estimate $\int_a^{b}\kf(x)dx$ are</p>
+<div class="equation" id="fs-id1165041827796">$$\text{Error in}\;\kM_{n}\le \frac{M{(b-a)}^{3}}{24n^{2}}\tag{7.12}$$</div>
+<p>and</p>
+<div class="equation" id="fs-id1165041814747">$$\text{Error in}\;\kT_{n}\le \frac{M{(b-a)}^{3}}{12n^{2}}.\tag{7.13}$$</div>
+</div>
+<p>We can use these bounds to determine the value of $n$ necessary to guarantee that the error in an estimate is less than a specified value.</p>
+<div class="example" id="fs-id1165042277050">
+<h3>Example 7.44 · Determining the Number of Intervals to Use</h3>
+<p>What value of $n$ should be used to guarantee that an estimate of $\int_0^{1}e^{x^{2}}dx$ is accurate to within 0.01 if we use the <span data-concept="midpoint-rule">midpoint rule</span>?</p>
+<h4>Solution</h4>
+<p>We begin by determining the value of $M,$ the maximum value of $|\kfdprime(x)|$ over $[0,1]$ for $\kf(x)=e^{x^{2}}.$ Since $\kfprime(x)=2xe^{x^{2}},$ we have</p>
+$$\kfdprime(x)=2e^{x^{2}}+4x^{2}e^{x^{2}}.$$
+<p>Thus,</p>
+$$|\kfdprime(x)|=2e^{x^{2}}(1+2x^{2})\le 2\cdot e\cdot 3=6e.$$
+<p>From the error-bound <a href="#fs-id1165041827796">Equation 7.12</a>, we have</p>
+$$\text{Error in}\;\kM_{n}\le \frac{M{(b-a)}^{3}}{24n^{2}}\le \frac{6e{(1-0)}^{3}}{24n^{2}}=\frac{6e}{24n^{2}}.$$
+<p>Now we solve the following inequality for $n\text{:}$</p>
+$$\frac{6e}{24n^{2}}\le 0.01.$$
+<p>Thus, $n\ge \sqrt{\frac{600e}{24}}\approx 8.24.$ Since $n$ must be an integer satisfying this inequality, a choice of $n=9$ would guarantee that $|\int_0^{1}e^{x^{2}}dx-\kM_{n} |\lt 0.01.$</p>
+<h4>Analysis</h4>
+<p>We might have been tempted to round $8.24$ down and choose $n=8,$ but this would be incorrect because we must have an integer greater than or equal to $8.24.$ We need to keep in mind that the error estimates provide an upper bound only for the error. The actual estimate may, in fact, be a much better approximation than is indicated by the error bound.</p>
+</div>
+<div class="exercises" data-place="fs-id1165042277050"></div>
+</section>
+
+<section id="simpson">
+<h2>Simpson’s Rule</h2>
+<p class="cite-target">With the <span data-concept="midpoint-rule">midpoint rule</span>, we estimated areas of regions under curves by using rectangles. In a sense, we approximated the curve with piecewise constant functions. With the <span data-concept="trapezoidal-rule">trapezoidal rule</span>, we approximated the curve by using piecewise linear functions. What if we were, instead, to approximate a curve using piecewise quadratic functions? With <strong><span data-concept="simpsons-rule">Simpson’s rule</span></strong>, we do just this. We <span data-concept="partition">partition</span> the interval into an even number of subintervals, each of equal width. Over the first pair of subintervals we approximate $\int_{x_{0}}^{x_{2}}\kf(x)dx$ with $\int_{x_{0}}^{x_{2}}\kp(x)dx,$ where $\kp(x)=Ax^{2}+Bx+C$ is the <span data-concept="quadratic-function">quadratic function</span> passing through $(x_{0},\kf(x_{0})),$ $(x_{1},\kf(x_{1})),$ and $(x_{2},\kf(x_{2}))$ (Figure 7.16). Over the next pair of subintervals we approximate $\int_{x_{2}}^{x_{4}}\kf(x)dx$ with the <span data-concept="definite-integral">integral</span> of another <span data-concept="quadratic-function">quadratic function</span> passing through $(x_{2},\kf(x_{2})),$ $(x_{3},\kf(x_{3})),$ and $(x_{4},\kf(x_{4})).$ This process is continued with each successive pair of subintervals.</p>
+<figure class="sim" id="sim-simpson" data-figure="7.16" data-original="/media/ch07/CNX_Calc_Figure_07_06_004.jpg" data-original-caption="With Simpson’s rule, we approximate a definite integral by integrating a piecewise quadratic function.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.16</span><span>Over each pair of subintervals a parabola $\kp(x)=Ax^{2}+Bx+C$ passes through the three points of the graph, and $\kS_{n}$ adds the areas under the parabolas. Drag $n$ through the even numbers and choose the function: with two subintervals there is one parabola, with four there are two, and the parabolas hug the curve so closely that the error falls like $1/n^{4}.$</span></div>
+</figure><p>To understand the formula that we obtain for <span data-concept="simpsons-rule">Simpson’s rule</span>, we begin by deriving a formula for this approximation over the first two subintervals. As we go through the derivation, we need to keep in mind the following relationships:</p>
+$$\begin{array}{l}\kf(x_{0})=\kp(x_{0})=Ax_{0}{}^{2}+Bx_{0}+C \\ \kf(x_{1})=\kp(x_{1})=Ax_{1}{}^{2}+Bx_{1}+C \\ \kf(x_{2})=\kp(x_{2})=Ax_{2}{}^{2}+Bx_{2}+C\end{array}$$
+<p>$x_{2}-x_{0}=2\Delta x,$ where $\Delta x$ is the length of a subinterval.</p>
+$$x_{2}+x_{0}=2x_{1},\;\text{since}\;x_{1}=\frac{(x_{2}+x_{0})}{2}.$$
+<p>Thus,</p>
+$$\begin{array}{rllll}\int_{x_{0}}^{x_{2}}\kf(x)dx & \approx \int_{x_{0}}^{x_{2}}\kp(x)dx & & & \\ & =\int_{x_{0}}^{x_{2}}(Ax^{2}+Bx+C)dx & & & \\ & =\frac{A}{3}x^{3}+\frac{B}{2}x^{2}+Cx|\begin{array}{l}{}^{x_{2}} \\ {}_{x_{0}}\end{array} & & & \text{Find the antiderivative.} \\ & =\frac{A}{3}(x_{2}{}^{3}-x_{0}{}^{3})+\frac{B}{2}(x_{2}{}^{2}-x_{0}{}^{2})+C(x_{2}-x_{0}) & & & \text{Evaluate the antiderivative.} \\ & =\frac{A}{3}(x_{2}-x_{0})(x_{2}{}^{2}+x_{2}x_{0}+x_{0}{}^{2}) & & & \\ & +\frac{B}{2}(x_{2}-x_{0})(x_{2}+x_{0})+C(x_{2}-x_{0}) & & & \\ & =\frac{x_{2}-x_{0}}{6}(2A(x_{2}{}^{2}+x_{2}x_{0}+x_{0}{}^{2})+3B(x_{2}+x_{0})+6C) & & & \text{Factor out}\;\frac{x_{2}-x_{0}}{6}. \\ & =\frac{\Delta x}{3}((Ax_{2}{}^{2}+Bx_{2}+C)+(Ax_{0}{}^{2}+Bx_{0}+C) & & & \\ & +A(x_{2}{}^{2}+2x_{2}x_{0}+x_{0}{}^{2})+2B(x_{2}+x_{0})+4C) & & & \\ & =\frac{\Delta x}{3}(\kf(x_{2})+\kf(x_{0})+A{(x_{2}+x_{0})}^{2}+2B(x_{2}+x_{0})+4C) & & & \text{Rearrange the terms.} \\ & & & & \begin{array}{l}\text{Factor and substitute.} \\ \kf(x_{2})=Ax_{2}{}^{2}+Bx_{2}+C\;\text{and} \\ \kf(x_{0})=Ax_{0}{}^{2}+Bx_{0}+C.\end{array} \\ & =\frac{\Delta x}{3}(\kf(x_{2})+\kf(x_{0})+A{(2x_{1})}^{2}+2B(2x_{1})+4C) & & & \text{Substitute}\;x_{2}+x_{0}=2x_{1}. \\ & =\frac{\Delta x}{3}(\kf(x_{2})+4\kf(x_{1})+\kf(x_{0})). & & & \begin{array}{l}\text{Expand and substitute} \\ \kf(x_{1})=Ax_{1}{}^{2}+Bx_{1}+C.\end{array}\end{array}$$
+<p>If we approximate $\int_{x_{2}}^{x_{4}}\kf(x)dx$ using the same method, we see that we have</p>
+$$\int_{x_{2}}^{x_{4}}\kf(x)dx\approx \frac{\Delta x}{3}(\kf(x_{4})+4\kf(x_{3})+\kf(x_{2})).$$
+<p>Combining these two approximations, we get</p>
+<div class="equation">$$\int_{x_{2}}^{x_{4}}\kf(x)dx=\frac{\Delta x}{3}(\kf(x_{0})+4\kf(x_{1})+2\kf(x_{2})+4\kf(x_{3})+\kf(x_{4})).$$<sup class="fn" data-note="c-simpson-combined"></sup></div>
+<p>The pattern continues as we add pairs of subintervals to our approximation. The general rule may be stated as follows.</p>
+<div class="note" id="simpson-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Simpson’s Rule</h3>
+<p>Assume that $\kf(x)$ is continuous over $[a,b].$ Let <em>n</em> be a positive even integer and $\Delta x=\frac{b-a}{n}.$ Let $[a,b]$ be divided into $n$ subintervals, each of length $\Delta x,$ with endpoints at $\kP=\{x_{0},x_{1},x_{2}\text{,…},x_{n}\}.$ Set</p>
+<div class="equation" id="fs-id1165041953720">$$\kS_{n}=\frac{\Delta x}{3}(\kf(x_{0})+4\kf(x_{1})+2\kf(x_{2})+4\kf(x_{3})+2\kf(x_{4})+\cdots +2\kf(x_{n-2})+4\kf(x_{n-1})+\kf(x_{n})).\tag{7.14}$$</div>
+<p>Then,</p>
+$$\lim_{n\to +\infty}\kS_{n}=\int_a^{b}\kf(x)dx.$$
+</div>
+<p>Just as the <span data-concept="trapezoidal-rule">trapezoidal rule</span> is the average of the left-hand and right-hand rules for estimating <span data-concept="definite-integral">definite integrals</span>, <span data-concept="simpsons-rule">Simpson’s rule</span> may be obtained from the midpoint and <span data-concept="trapezoidal-rule">trapezoidal rules</span> by using a weighted average. It can be shown that $\kS_{2n}=(\frac{2}{3})\kM_{n}+(\frac{1}{3})\kT_{n}.$</p>
+<p>It is also possible to put a bound on the error when using <span data-concept="simpsons-rule">Simpson’s rule</span> to approximate a <span data-concept="definite-integral">definite integral</span>. The bound in the error is given by the following rule:</p>
+<div class="note" id="simpson-error-rule">
+<div class="eyebrow">Rule</div>
+<h3>Error Bound for Simpson’s Rule</h3>
+<p>Let $\kf(x)$ be a continuous function over $[a,b]$ having a fourth derivative, $\kffour(x),$ over this interval. If $M$ is the maximum value of $|\kffour(x)|$ over $[a,b],$ then the <span data-concept="error-bounds-for-the-midpoint-and-trapezoidal-rules">upper bound for the error</span> in using $\kS_{n}$ to estimate $\int_a^{b}\kf(x)dx$ is given by</p>
+<div class="equation" id="fs-id1165042109950">$$\text{Error in}\;\kS_{n}\le \frac{M{(b-a)}^{5}}{180n^{4}}.\tag{7.15}$$</div>
+</div>
+<div class="example" id="fs-id1165042217547">
+<h3>Example 7.45 · Applying Simpson’s Rule 1</h3>
+<p>Use $\kS_{2}$ to approximate $\int_0^{1}x^{3}dx .$ Estimate a bound for the error in $\kS_{2}.$</p>
+<h4>Solution</h4>
+<p>Since $[0,1]$ is divided into two intervals, each subinterval has length $\Delta x=\frac{1-0}{2}=\frac{1}{2}.$ The endpoints of these subintervals are $\{0,\frac{1}{2},1\}.$ If we set $\kf(x)=x^{3},$ then</p>
+<p>$\kS_{4}=\frac{1}{3}\cdot \frac{1}{2}(\kf(0)+4\kf(\frac{1}{2})+\kf(1))=\frac{1}{6}(0+4\cdot \frac{1}{8}+1)=\frac{1}{4}.$<sup class="fn" data-note="c-ex745-s2"></sup> Since $\kffour(x)=0$ and consequently $M=0,$ we see that</p>
+$$\text{Error in}\;\kS_{2}\le \frac{0{(1)}^{5}}{180⋅2^{4}}=0.$$
+<p>This bound indicates that the value obtained through <span data-concept="simpsons-rule">Simpson’s rule</span> is exact. A quick check will verify that, in fact, $\int_0^{1}x^{3}dx=\frac{1}{4} .$</p>
+</div>
+<div class="example" id="fs-id1165042199249">
+<h3>Example 7.46 · Applying Simpson’s Rule 2</h3>
+<p>Use $\kS_{6}$ to estimate the <span data-concept="arc-length">length of the curve</span> $y=\frac{1}{2}x^{2}$ over $[1,4].$</p>
+<h4>Solution</h4>
+<p>The length of $y=\frac{1}{2}x^{2}$ over $[1,4]$ is $\int_1^{4}\sqrt{1+x^{2}}\;dx .$ If we divide $[1,4]$ into six subintervals, then each subinterval has length $\Delta x=\frac{4-1}{6}=\frac{1}{2},$ and the endpoints of the subintervals are $\{1,\frac{3}{2},2,\frac{5}{2},3,\frac{7}{2},4\}.$ Setting $\kf(x)=\sqrt{1+x^{2}},$</p>
+$$\kS_{6}=\frac{1}{3}\cdot \frac{1}{2}(\kf(1)+4\kf(\frac{3}{2})+2\kf(2)+4\kf(\frac{5}{2})+2\kf(3)+4\kf(\frac{7}{2})+\kf(4)).$$
+<p>After substituting, we have</p>
+$$\begin{array}{rl}\kS_{6} & =\frac{1}{6}(1.4142+4\cdot 1.80278+2\cdot 2.23607+4\cdot 2.69258+2\cdot 3.16228+4\cdot 3.64005+4.12311) \\ & \approx 8.14594.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042199249"></div>
+</section>

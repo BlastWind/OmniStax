@@ -1,0 +1,894 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "f_4",
+   "latex": "f^{(4)}",
+   "macro": "\\kffour"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "integration-by-parts",
+   "kind": "result",
+   "section": "7.1",
+   "name": "Integration by parts",
+   "terms": [
+    "integration by parts",
+    "integration-by-parts formula"
+   ],
+   "statement": "If u = f(x) and v = g(x) are functions with continuous derivatives, then ∫u dv = uv − ∫v du; the formula, which comes from integrating the product rule, exchanges one integral for another, possibly easier, integral.",
+   "forms": [
+    {
+     "id": "eq-integration-by-parts",
+     "latex": "\\int u\\,dv=uv-\\int v\\,du",
+     "anchor": "7.1-fs-id1165042232372"
+    },
+    {
+     "id": "eq-integration-by-parts-fg",
+     "latex": "\\int f(x)g'(x)\\,dx=f(x)g(x)-\\int g(x)f'(x)\\,dx",
+     "anchor": "7.1-formula"
+    }
+   ]
+  },
+  {
+   "id": "liate",
+   "kind": "skill",
+   "section": "7.1",
+   "name": "Choosing u with LIATE",
+   "terms": [
+    "LIATE"
+   ],
+   "statement": "To choose u for integration by parts, take the type of function that comes first in the list Logarithmic, Inverse trigonometric, Algebraic, Trigonometric, Exponential; dv is the remaining part of the integrand together with dx, and must be something we can integrate."
+  },
+  {
+   "id": "integrating-by-parts-more-than-once",
+   "kind": "skill",
+   "section": "7.1",
+   "name": "Integrating by parts more than once",
+   "statement": "When the new integral still cannot be evaluated directly, integration by parts may be applied to it again; if the original integral reappears, it is named I and the equation is solved for I."
+  },
+  {
+   "id": "integration-by-parts-for-definite-integrals",
+   "kind": "result",
+   "section": "7.1",
+   "name": "Integration by parts for definite integrals",
+   "statement": "If u = f(x) and v = g(x) have continuous derivatives on [a, b], then ∫ₐᵇ u dv = uv|ₐᵇ − ∫ₐᵇ v du: the technique is the same, with the step of evaluating at the upper and lower limits of integration added.",
+   "forms": [
+    {
+     "id": "eq-integration-by-parts-definite",
+     "latex": "\\int_{a}^{b}u\\,dv=uv\\Big|_{a}^{b}-\\int_{a}^{b}v\\,du",
+     "anchor": "7.1-fs-id1165042231112"
+    }
+   ]
+  },
+  {
+   "id": "trigonometric-integral",
+   "kind": "definition",
+   "section": "7.2",
+   "name": "Trigonometric integral",
+   "terms": [
+    "trigonometric integral",
+    "trigonometric integrals"
+   ],
+   "type": "integral",
+   "statement": "A trigonometric integral is an integral involving powers and products of trigonometric functions."
+  },
+  {
+   "id": "power-reducing-identities",
+   "kind": "result",
+   "section": "7.2",
+   "name": "Power-reducing identities",
+   "terms": [
+    "power-reducing identities"
+   ],
+   "statement": "sin²x = 1/2 − (1/2)cos(2x) and cos²x = 1/2 + (1/2)cos(2x); they may be derived from the double-angle identity cos(2x) = cos²x − sin²x and the Pythagorean identity cos²x + sin²x = 1, and they turn even powers of sin x and cos x into lower powers.",
+   "forms": [
+    {
+     "id": "eq-sin-squared-reducing",
+     "latex": "\\sin^{2}x=\\frac{1}{2}-\\frac{1}{2}\\cos(2x)=\\frac{1-\\cos(2x)}{2}",
+     "anchor": "7.2-power-reducing"
+    },
+    {
+     "id": "eq-cos-squared-reducing",
+     "latex": "\\cos^{2}x=\\frac{1}{2}+\\frac{1}{2}\\cos(2x)=\\frac{1+\\cos(2x)}{2}",
+     "anchor": "7.2-power-reducing"
+    }
+   ]
+  },
+  {
+   "id": "integrating-products-and-powers-of-sine-and-cosine",
+   "kind": "skill",
+   "section": "7.2",
+   "name": "Integrating powers of sin x and cos x",
+   "statement": "To integrate ∫cosʲx sinᵏx dx: if k is odd, keep one sin x, rewrite the rest with sin²x = 1 − cos²x and substitute u = cos x; if j is odd, keep one cos x, rewrite the rest with cos²x = 1 − sin²x and substitute u = sin x; if both are even, use the power-reducing identities, simplify and apply the strategies again."
+  },
+  {
+   "id": "products-of-sines-and-cosines-of-different-angles",
+   "kind": "result",
+   "section": "7.2",
+   "name": "Products of sines and cosines of different angles",
+   "statement": "Products of sin(ax), sin(bx), cos(ax) and cos(bx) are integrated by rewriting each as half a sum or difference of sines or cosines of (a − b)x and (a + b)x; the formulas may be derived from the sum-of-angle formulas for sine and cosine.",
+   "forms": [
+    {
+     "id": "eq-sine-products",
+     "latex": "\\sin(ax)\\sin(bx)=\\frac{1}{2}\\cos((a-b)x)-\\frac{1}{2}\\cos((a+b)x)",
+     "anchor": "7.2-fs-id1165043229277"
+    },
+    {
+     "id": "eq-sine-cosine-products",
+     "latex": "\\sin(ax)\\cos(bx)=\\frac{1}{2}\\sin((a-b)x)+\\frac{1}{2}\\sin((a+b)x)",
+     "anchor": "7.2-fs-id1165042349512"
+    },
+    {
+     "id": "eq-cosine-products",
+     "latex": "\\cos(ax)\\cos(bx)=\\frac{1}{2}\\cos((a-b)x)+\\frac{1}{2}\\cos((a+b)x)",
+     "anchor": "7.2-fs-id1165042332192"
+    }
+   ]
+  },
+  {
+   "id": "integrating-products-and-powers-of-tangent-and-secant",
+   "kind": "skill",
+   "section": "7.2",
+   "name": "Integrating powers of tan x and sec x",
+   "statement": "To integrate ∫tanᵏx secʲx dx: if j is even and j ≥ 2, keep sec²x, rewrite the rest with sec²x = tan²x + 1 and substitute u = tan x; if k is odd and j ≥ 1, keep sec x tan x, rewrite the rest with tan²x = sec²x − 1 and substitute u = sec x; if k is odd, k ≥ 3 and j = 0, split off tan²x = sec²x − 1 and repeat; if k is even and j is odd, write tanᵏx in terms of sec x and integrate the odd powers of sec x by parts."
+  },
+  {
+   "id": "power-reduction-formulas",
+   "kind": "result",
+   "section": "7.2",
+   "name": "Power reduction formulas",
+   "terms": [
+    "power reduction formula",
+    "power reduction formulas"
+   ],
+   "statement": "A power reduction formula allows an integral of a power of a trigonometric function to be exchanged for an integral involving a lower power: ∫secⁿx dx = (1/(n − 1))secⁿ⁻²x tan x + ((n − 2)/(n − 1))∫secⁿ⁻²x dx and ∫tanⁿx dx = (1/(n − 1))tanⁿ⁻¹x − ∫tanⁿ⁻²x dx.",
+   "forms": [
+    {
+     "id": "eq-secant-reduction",
+     "latex": "\\int\\sec^{n}x\\,dx=\\frac{1}{n-1}\\sec^{n-2}x\\tan x+\\frac{n-2}{n-1}\\int\\sec^{n-2}x\\,dx",
+     "anchor": "7.2-fs-id1165043276273"
+    },
+    {
+     "id": "eq-tangent-reduction",
+     "latex": "\\int\\tan^{n}x\\,dx=\\frac{1}{n-1}\\tan^{n-1}x-\\int\\tan^{n-2}x\\,dx",
+     "anchor": "7.2-fs-id1165039565660"
+    }
+   ]
+  },
+  {
+   "id": "trigonometric-substitution",
+   "kind": "definition",
+   "section": "7.3",
+   "name": "Trigonometric substitution",
+   "terms": [
+    "trigonometric substitution"
+   ],
+   "statement": "Trigonometric substitution is an integration technique that converts an algebraic integral containing expressions of the form √(a² − x²), √(a² + x²) or √(x² − a²) into a trigonometric integral."
+  },
+  {
+   "id": "reference-triangle",
+   "kind": "idea",
+   "section": "7.3",
+   "name": "Reference triangle",
+   "terms": [
+    "reference triangle"
+   ],
+   "statement": "After a trigonometric substitution, a right triangle drawn from the substitution (for sin θ = x/a, hypotenuse a, the side opposite θ of length x and the third side √(a² − x²)) expresses the trigonometric functions of θ in terms of x, so a result in θ can be written in x; the radical is the length of one side."
+  },
+  {
+   "id": "sine-substitution",
+   "kind": "skill",
+   "section": "7.3",
+   "name": "Integrating with x = a sin θ",
+   "statement": "For an integral involving √(a² − x²), substitute x = a sin θ and dx = a cos θ dθ with −π/2 ≤ θ ≤ π/2, so that √(a² − x²) = a cos θ; evaluate the trigonometric integral and rewrite the result in x with the reference triangle and θ = sin⁻¹(x/a).",
+   "forms": [
+    {
+     "id": "eq-sine-substitution",
+     "latex": "\\sqrt{a^{2}-x^{2}}=a\\cos\\theta\\quad\\text{for}\\;x=a\\sin\\theta,\\;-\\frac{\\pi}{2}\\le\\theta\\le\\frac{\\pi}{2}",
+     "anchor": "7.3-sine-strategy"
+    }
+   ]
+  },
+  {
+   "id": "tangent-substitution",
+   "kind": "skill",
+   "section": "7.3",
+   "name": "Integrating with x = a tan θ",
+   "statement": "For an integral involving √(a² + x²), substitute x = a tan θ and dx = a sec²θ dθ with −π/2 < θ < π/2, so that √(a² + x²) = a sec θ; evaluate the trigonometric integral and rewrite the result in x with the reference triangle and θ = tan⁻¹(x/a).",
+   "forms": [
+    {
+     "id": "eq-tangent-substitution",
+     "latex": "\\sqrt{a^{2}+x^{2}}=a\\sec\\theta\\quad\\text{for}\\;x=a\\tan\\theta,\\;-\\frac{\\pi}{2}<\\theta<\\frac{\\pi}{2}",
+     "anchor": "7.3-tangent-strategy"
+    }
+   ]
+  },
+  {
+   "id": "secant-substitution",
+   "kind": "skill",
+   "section": "7.3",
+   "name": "Integrating with x = a sec θ",
+   "statement": "For an integral involving √(x² − a²), substitute x = a sec θ and dx = a sec θ tan θ dθ with 0 ≤ θ < π/2 or π/2 < θ ≤ π, so that √(x² − a²) = |a tan θ|, which is a tan θ for x ≥ a and −a tan θ for x ≤ −a; evaluate and rewrite in x with the reference triangle for the sign of x and θ = sec⁻¹(x/a).",
+   "forms": [
+    {
+     "id": "eq-secant-substitution",
+     "latex": "\\sqrt{x^{2}-a^{2}}=|a\\tan\\theta|\\quad\\text{for}\\;x=a\\sec\\theta",
+     "anchor": "7.3-secant-strategy"
+    }
+   ]
+  },
+  {
+   "id": "partial-fraction-decomposition",
+   "kind": "definition",
+   "section": "7.4",
+   "name": "Partial fraction decomposition",
+   "terms": [
+    "partial fraction decomposition",
+    "partial fractions"
+   ],
+   "statement": "Partial fraction decomposition is a technique used to break down a rational function into the sum of simple rational functions; it applies to P(x)/Q(x) only when deg(P(x)) < deg(Q(x)), and otherwise long division first gives A(x) + R(x)/Q(x) with deg(R(x)) < deg(Q(x))."
+  },
+  {
+   "id": "nonrepeated-linear-factors",
+   "kind": "result",
+   "section": "7.4",
+   "name": "Nonrepeated linear factors",
+   "statement": "If Q(x) factors as (a₁x + b₁)(a₂x + b₂)…(aₙx + bₙ) with each linear factor distinct and deg(P(x)) < deg(Q(x)), there are constants A₁, A₂, …, Aₙ with P(x)/Q(x) = A₁/(a₁x + b₁) + A₂/(a₂x + b₂) + ⋯ + Aₙ/(aₙx + bₙ).",
+   "forms": [
+    {
+     "id": "eq-nonrepeated-linear-factors",
+     "latex": "\\frac{P(x)}{Q(x)}=\\frac{A_{1}}{a_{1}x+b_{1}}+\\frac{A_{2}}{a_{2}x+b_{2}}+\\cdots+\\frac{A_{n}}{a_{n}x+b_{n}}",
+     "anchor": "7.4-nonrepeated"
+    }
+   ]
+  },
+  {
+   "id": "method-of-equating-coefficients",
+   "kind": "skill",
+   "section": "7.4",
+   "name": "Method of equating coefficients",
+   "terms": [
+    "method of equating coefficients"
+   ],
+   "statement": "After setting the numerators equal, collect each side by powers of x and equate the coefficients of like powers; the system of equations that results is solved for the unknown constants, and it is consistent if and only if the decomposition was set up correctly."
+  },
+  {
+   "id": "method-of-strategic-substitution",
+   "kind": "skill",
+   "section": "7.4",
+   "name": "Method of strategic substitution",
+   "terms": [
+    "method of strategic substitution"
+   ],
+   "statement": "Since the equation of numerators must hold for all values of x, substituting carefully chosen values (the zeros of the linear factors) makes all but one term vanish and gives the constants one at a time; the result should be checked by recombining the terms."
+  },
+  {
+   "id": "repeated-linear-factors",
+   "kind": "result",
+   "section": "7.4",
+   "name": "Repeated linear factors",
+   "statement": "If the denominator contains the repeated linear factor (ax + b)ⁿ, the decomposition must contain A₁/(ax + b) + A₂/(ax + b)² + ⋯ + Aₙ/(ax + b)ⁿ.",
+   "forms": [
+    {
+     "id": "eq-repeated-linear-factors",
+     "latex": "\\frac{A_{1}}{ax+b}+\\frac{A_{2}}{(ax+b)^{2}}+\\cdots+\\frac{A_{n}}{(ax+b)^{n}}",
+     "anchor": "7.4-repeated"
+    }
+   ]
+  },
+  {
+   "id": "irreducible-quadratic",
+   "kind": "definition",
+   "section": "7.4",
+   "name": "Irreducible quadratic",
+   "terms": [
+    "irreducible quadratic"
+   ],
+   "type": "function",
+   "statement": "A quadratic ax² + bx + c is irreducible if ax² + bx + c = 0 has no real zeros, that is, if b² − 4ac < 0."
+  },
+  {
+   "id": "quadratic-factors",
+   "kind": "result",
+   "section": "7.4",
+   "name": "Irreducible quadratic factors",
+   "statement": "For each irreducible quadratic factor ax² + bx + c of Q(x), the decomposition must include (Ax + B)/(ax² + bx + c); for each repeated irreducible quadratic factor (ax² + bx + c)ⁿ, it must include (A₁x + B₁)/(ax² + bx + c) + ⋯ + (Aₙx + Bₙ)/(ax² + bx + c)ⁿ.",
+   "forms": [
+    {
+     "id": "eq-quadratic-factor",
+     "latex": "\\frac{Ax+B}{ax^{2}+bx+c}",
+     "anchor": "7.4-general-strategy"
+    },
+    {
+     "id": "eq-repeated-quadratic-factors",
+     "latex": "\\frac{A_{1}x+B_{1}}{ax^{2}+bx+c}+\\frac{A_{2}x+B_{2}}{(ax^{2}+bx+c)^{2}}+\\cdots+\\frac{A_{n}x+B_{n}}{(ax^{2}+bx+c)^{n}}",
+     "anchor": "7.4-general-strategy"
+    }
+   ]
+  },
+  {
+   "id": "decomposing-a-rational-function",
+   "kind": "skill",
+   "section": "7.4",
+   "name": "Decomposing a rational function",
+   "statement": "To decompose P(x)/Q(x): make sure deg(P(x)) < deg(Q(x)), performing long division if not; factor Q(x) into linear and irreducible quadratic factors; let the factors determine the form of the decomposition; solve for the constants; and rewrite the integral in its decomposed form and evaluate it."
+  },
+  {
+   "id": "integration-table",
+   "kind": "definition",
+   "section": "7.5",
+   "name": "Integration table",
+   "terms": [
+    "integration table",
+    "integration tables"
+   ],
+   "statement": "An integration table is a table that lists integration formulas; used in the right manner, it is a handy way either to evaluate or to check an integral quickly."
+  },
+  {
+   "id": "computer-algebra-system",
+   "kind": "definition",
+   "section": "7.5",
+   "name": "Computer algebra system",
+   "terms": [
+    "computer algebra system",
+    "computer algebra systems (CAS)",
+    "CAS"
+   ],
+   "statement": "A computer algebra system (CAS) is technology used to perform many mathematical tasks, including integration; it is a faster alternative to a table for solving an integration problem."
+  },
+  {
+   "id": "reconciling-equivalent-antiderivatives",
+   "kind": "skill",
+   "section": "7.5",
+   "name": "Reconciling equivalent antiderivatives",
+   "statement": "Two completely correct antiderivatives found by different methods may look very different; they are equivalent as long as they differ by a constant, which identities, algebra or differentiation can show."
+  },
+  {
+   "id": "numerical-integration",
+   "kind": "definition",
+   "section": "7.6",
+   "name": "Numerical integration",
+   "terms": [
+    "numerical integration"
+   ],
+   "statement": "Numerical integration is the variety of numerical methods used to estimate the value of a definite integral, including the midpoint rule, the trapezoidal rule and Simpson’s rule, when an antiderivative cannot be expressed, or expressed easily, in closed form."
+  },
+  {
+   "id": "midpoint-rule",
+   "kind": "result",
+   "section": "7.6",
+   "name": "Midpoint rule",
+   "terms": [
+    "midpoint rule"
+   ],
+   "type": "integral",
+   "symbol": "M",
+   "statement": "If f(x) is continuous on [a, b], divided into n subintervals of length Δx = (b − a)/n with midpoints mᵢ, then Mₙ = Σ f(mᵢ)Δx, a Riemann sum with subintervals of equal width, satisfies lim Mₙ = ∫ₐᵇ f(x) dx as n → ∞.",
+   "forms": [
+    {
+     "id": "eq-midpoint-rule",
+     "latex": "M_{n}=\\sum_{i=1}^{n}f(m_{i})\\Delta x",
+     "anchor": "7.6-fs-id1165040697119"
+    }
+   ]
+  },
+  {
+   "id": "trapezoidal-rule",
+   "kind": "result",
+   "section": "7.6",
+   "name": "Trapezoidal rule",
+   "terms": [
+    "trapezoidal rule"
+   ],
+   "type": "integral",
+   "symbol": "T",
+   "statement": "If f(x) is continuous on [a, b], divided into n subintervals of length Δx = (b − a)/n with endpoints x₀, x₁, …, xₙ, then Tₙ = (1/2)Δx(f(x₀) + 2f(x₁) + ⋯ + 2f(xₙ₋₁) + f(xₙ)), the sum of the areas of trapezoids, satisfies lim Tₙ = ∫ₐᵇ f(x) dx as n → +∞; Tₙ is the average of the left and right endpoint sums.",
+   "forms": [
+    {
+     "id": "eq-trapezoidal-rule",
+     "latex": "T_{n}=\\frac{1}{2}\\Delta x\\left(f(x_{0})+2f(x_{1})+2f(x_{2})+\\cdots+2f(x_{n-1})+f(x_{n})\\right)",
+     "anchor": "7.6-fs-id1165041762506"
+    },
+    {
+     "id": "eq-trapezoidal-average",
+     "latex": "T_{n}=\\frac{1}{2}(L_{n}+R_{n})",
+     "anchor": "7.6-concavity-paragraph"
+    }
+   ]
+  },
+  {
+   "id": "concavity-and-the-trapezoidal-and-midpoint-rules",
+   "kind": "idea",
+   "section": "7.6",
+   "name": "Concavity and the trapezoidal and midpoint rules",
+   "statement": "For a nonnegative function, the trapezoidal rule tends to overestimate a definite integral over intervals where the function is concave up and to underestimate it where the function is concave down; the midpoint rule partly overestimates and partly underestimates over the same intervals, so it tends to be more accurate."
+  },
+  {
+   "id": "absolute-error",
+   "kind": "definition",
+   "section": "7.6",
+   "name": "Absolute error",
+   "terms": [
+    "absolute error"
+   ],
+   "type": "error",
+   "statement": "If B is an estimate of some quantity having an actual value of A, then the absolute error is |A − B|.",
+   "forms": [
+    {
+     "id": "eq-absolute-error",
+     "latex": "\\text{absolute error}=|A-B|",
+     "anchor": "7.6-error-definition"
+    }
+   ]
+  },
+  {
+   "id": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+   "kind": "result",
+   "section": "7.6",
+   "name": "Error bounds for the midpoint and trapezoidal rules",
+   "type": "error",
+   "statement": "If f(x) is continuous on [a, b] with a second derivative there and M is the maximum value of |f″(x)| over [a, b], then the error in Mₙ is at most M(b − a)³/(24n²) and the error in Tₙ at most M(b − a)³/(12n²); the bounds tell what n guarantees a given accuracy.",
+   "forms": [
+    {
+     "id": "eq-midpoint-error-bound",
+     "latex": "\\text{Error in}\\;M_{n}\\le\\frac{M(b-a)^{3}}{24n^{2}}",
+     "anchor": "7.6-fs-id1165041827796"
+    },
+    {
+     "id": "eq-trapezoidal-error-bound",
+     "latex": "\\text{Error in}\\;T_{n}\\le\\frac{M(b-a)^{3}}{12n^{2}}",
+     "anchor": "7.6-fs-id1165041814747"
+    }
+   ]
+  },
+  {
+   "id": "simpsons-rule",
+   "kind": "result",
+   "section": "7.6",
+   "name": "Simpson’s rule",
+   "terms": [
+    "Simpson’s rule"
+   ],
+   "type": "integral",
+   "symbol": "S",
+   "statement": "If f(x) is continuous on [a, b] and n is a positive even integer, with Δx = (b − a)/n and endpoints x₀, …, xₙ, then Sₙ = (Δx/3)(f(x₀) + 4f(x₁) + 2f(x₂) + 4f(x₃) + ⋯ + 2f(xₙ₋₂) + 4f(xₙ₋₁) + f(xₙ)), the integral of a piecewise quadratic function through the points of the graph, satisfies lim Sₙ = ∫ₐᵇ f(x) dx as n → +∞; S₂ₙ = (2/3)Mₙ + (1/3)Tₙ.",
+   "forms": [
+    {
+     "id": "eq-simpsons-rule",
+     "latex": "S_{n}=\\frac{\\Delta x}{3}\\left(f(x_{0})+4f(x_{1})+2f(x_{2})+4f(x_{3})+2f(x_{4})+\\cdots+2f(x_{n-2})+4f(x_{n-1})+f(x_{n})\\right)",
+     "anchor": "7.6-fs-id1165041953720"
+    },
+    {
+     "id": "eq-simpsons-weighted-average",
+     "latex": "S_{2n}=\\frac{2}{3}M_{n}+\\frac{1}{3}T_{n}",
+     "anchor": "7.6-simpson"
+    }
+   ]
+  },
+  {
+   "id": "error-bound-for-simpsons-rule",
+   "kind": "result",
+   "section": "7.6",
+   "name": "Error bound for Simpson’s rule",
+   "type": "error",
+   "statement": "If f(x) is continuous on [a, b] with a fourth derivative there and M is the maximum value of |f⁽⁴⁾(x)| over [a, b], then the error in Sₙ is at most M(b − a)⁵/(180n⁴).",
+   "forms": [
+    {
+     "id": "eq-simpsons-error-bound",
+     "latex": "\\text{Error in}\\;S_{n}\\le\\frac{M(b-a)^{5}}{180n^{4}}",
+     "anchor": "7.6-fs-id1165042109950"
+    }
+   ]
+  },
+  {
+   "id": "improper-integral",
+   "kind": "definition",
+   "section": "7.7",
+   "name": "Improper integral",
+   "terms": [
+    "improper integral",
+    "improper integrals"
+   ],
+   "type": "integral",
+   "statement": "An improper integral is an integral over an infinite interval or an integral of a function containing an infinite discontinuity on the interval; it is defined in terms of a limit, and it converges if this limit is a finite real number and diverges otherwise."
+  },
+  {
+   "id": "integral-over-an-infinite-interval",
+   "kind": "definition",
+   "section": "7.7",
+   "name": "Integral over an infinite interval",
+   "type": "integral",
+   "statement": "For f(x) continuous over [a, +∞), ∫ₐ^{+∞} f(x) dx = lim_{t→+∞} ∫ₐᵗ f(x) dx, provided this limit exists, and likewise over (−∞, b]; over (−∞, +∞) the integral is ∫_{−∞}^0 f(x) dx + ∫₀^{+∞} f(x) dx, provided both converge.",
+   "forms": [
+    {
+     "id": "eq-improper-to-infinity",
+     "latex": "\\int_{a}^{+\\infty}f(x)\\,dx=\\lim_{t\\to+\\infty}\\int_{a}^{t}f(x)\\,dx",
+     "anchor": "7.7-fs-id1165043372378"
+    },
+    {
+     "id": "eq-improper-from-minus-infinity",
+     "latex": "\\int_{-\\infty}^{b}f(x)\\,dx=\\lim_{t\\to-\\infty}\\int_{t}^{b}f(x)\\,dx",
+     "anchor": "7.7-fs-id1165043086270"
+    },
+    {
+     "id": "eq-improper-whole-line",
+     "latex": "\\int_{-\\infty}^{+\\infty}f(x)\\,dx=\\int_{-\\infty}^{0}f(x)\\,dx+\\int_{0}^{+\\infty}f(x)\\,dx",
+     "anchor": "7.7-fs-id1165042478832"
+    }
+   ]
+  },
+  {
+   "id": "integral-of-a-discontinuous-integrand",
+   "kind": "definition",
+   "section": "7.7",
+   "name": "Integral of a discontinuous integrand",
+   "type": "integral",
+   "statement": "For f(x) continuous over [a, b) and discontinuous at b, ∫ₐᵇ f(x) dx = lim_{t→b⁻} ∫ₐᵗ f(x) dx, and for f(x) continuous over (a, b], the limit is taken as t → a⁺; if f(x) is continuous over [a, b] except at a point c in (a, b), ∫ₐᵇ f(x) dx = ∫ₐᶜ f(x) dx + ∫꜀ᵇ f(x) dx, provided both converge.",
+   "forms": [
+    {
+     "id": "eq-improper-right-endpoint",
+     "latex": "\\int_{a}^{b}f(x)\\,dx=\\lim_{t\\to b^{-}}\\int_{a}^{t}f(x)\\,dx",
+     "anchor": "7.7-fs-id1165042617693"
+    },
+    {
+     "id": "eq-improper-left-endpoint",
+     "latex": "\\int_{a}^{b}f(x)\\,dx=\\lim_{t\\to a^{+}}\\int_{t}^{b}f(x)\\,dx",
+     "anchor": "7.7-fs-id1165042506827"
+    },
+    {
+     "id": "eq-improper-interior-point",
+     "latex": "\\int_{a}^{b}f(x)\\,dx=\\int_{a}^{c}f(x)\\,dx+\\int_{c}^{b}f(x)\\,dx",
+     "anchor": "7.7-fs-id1165043378015"
+    }
+   ]
+  },
+  {
+   "id": "gabriels-horn",
+   "kind": "idea",
+   "section": "7.7",
+   "name": "Gabriel’s Horn",
+   "terms": [
+    "Gabriel’s Horn"
+   ],
+   "type": "region",
+   "statement": "The solid generated by revolving about the x-axis the region between the graph of f(x) = 1/x and the x-axis over [1, +∞) has a finite volume, π, although the area of the region is infinite."
+  },
+  {
+   "id": "comparison-theorem-for-improper-integrals",
+   "kind": "result",
+   "section": "7.7",
+   "name": "Comparison theorem for improper integrals",
+   "statement": "If f(x) and g(x) are continuous over [a, +∞) with 0 ≤ f(x) ≤ g(x) for x ≥ a, then ∫ₐ^{+∞} f(x) dx = +∞ implies ∫ₐ^{+∞} g(x) dx = +∞, and ∫ₐ^{+∞} g(x) dx = L, a real number, implies ∫ₐ^{+∞} f(x) dx = M for some real number M ≤ L."
+  },
+  {
+   "id": "laplace-transform",
+   "kind": "definition",
+   "section": "7.7",
+   "name": "Laplace transform",
+   "terms": [
+    "Laplace transform"
+   ],
+   "type": "integral",
+   "statement": "The Laplace transform of a function f(t) is L{f(t)} = F(s) = ∫₀^∞ e^{−st} f(t) dt, an improper integral that transforms a function of time into a function of frequency; differentiation in the time domain becomes multiplication by s, and integration becomes division by s.",
+   "forms": [
+    {
+     "id": "eq-laplace-transform",
+     "latex": "L\\{f(t)\\}=F(s)=\\int_{0}^{\\infty}e^{-st}f(t)\\,dt",
+     "anchor": "7.7-laplace-project"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "integration-by-parts",
+   "prereq": "product-rule"
+  },
+  {
+   "concept": "integration-by-parts",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "liate",
+   "prereq": "integration-by-parts"
+  },
+  {
+   "concept": "liate",
+   "prereq": "logarithmic-function"
+  },
+  {
+   "concept": "liate",
+   "prereq": "inverse-trigonometric-functions"
+  },
+  {
+   "concept": "integrating-by-parts-more-than-once",
+   "prereq": "integration-by-parts"
+  },
+  {
+   "concept": "integration-by-parts-for-definite-integrals",
+   "prereq": "integration-by-parts"
+  },
+  {
+   "concept": "integration-by-parts-for-definite-integrals",
+   "prereq": "fundamental-theorem-of-calculus-part-2"
+  },
+  {
+   "concept": "trigonometric-integral",
+   "prereq": "trigonometric-functions"
+  },
+  {
+   "concept": "trigonometric-integral",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "power-reducing-identities",
+   "prereq": "double-angle-formulas"
+  },
+  {
+   "concept": "power-reducing-identities",
+   "prereq": "pythagorean-identities"
+  },
+  {
+   "concept": "integrating-products-and-powers-of-sine-and-cosine",
+   "prereq": "trigonometric-integral"
+  },
+  {
+   "concept": "integrating-products-and-powers-of-sine-and-cosine",
+   "prereq": "power-reducing-identities"
+  },
+  {
+   "concept": "integrating-products-and-powers-of-sine-and-cosine",
+   "prereq": "integration-by-substitution"
+  },
+  {
+   "concept": "products-of-sines-and-cosines-of-different-angles",
+   "prereq": "trigonometric-integral"
+  },
+  {
+   "concept": "products-of-sines-and-cosines-of-different-angles",
+   "prereq": "addition-and-subtraction-formulas"
+  },
+  {
+   "concept": "integrating-products-and-powers-of-tangent-and-secant",
+   "prereq": "trigonometric-integral"
+  },
+  {
+   "concept": "integrating-products-and-powers-of-tangent-and-secant",
+   "prereq": "pythagorean-identities"
+  },
+  {
+   "concept": "integrating-products-and-powers-of-tangent-and-secant",
+   "prereq": "integration-by-substitution"
+  },
+  {
+   "concept": "integrating-products-and-powers-of-tangent-and-secant",
+   "prereq": "integration-by-parts"
+  },
+  {
+   "concept": "power-reduction-formulas",
+   "prereq": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "concept": "trigonometric-substitution",
+   "prereq": "trigonometric-integral"
+  },
+  {
+   "concept": "trigonometric-substitution",
+   "prereq": "integration-by-substitution"
+  },
+  {
+   "concept": "reference-triangle",
+   "prereq": "inverse-trigonometric-functions"
+  },
+  {
+   "concept": "sine-substitution",
+   "prereq": "trigonometric-substitution"
+  },
+  {
+   "concept": "sine-substitution",
+   "prereq": "reference-triangle"
+  },
+  {
+   "concept": "sine-substitution",
+   "prereq": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "concept": "tangent-substitution",
+   "prereq": "trigonometric-substitution"
+  },
+  {
+   "concept": "tangent-substitution",
+   "prereq": "reference-triangle"
+  },
+  {
+   "concept": "tangent-substitution",
+   "prereq": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "concept": "secant-substitution",
+   "prereq": "trigonometric-substitution"
+  },
+  {
+   "concept": "secant-substitution",
+   "prereq": "reference-triangle"
+  },
+  {
+   "concept": "secant-substitution",
+   "prereq": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "concept": "partial-fraction-decomposition",
+   "prereq": "rational-function"
+  },
+  {
+   "concept": "partial-fraction-decomposition",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "nonrepeated-linear-factors",
+   "prereq": "partial-fraction-decomposition"
+  },
+  {
+   "concept": "method-of-equating-coefficients",
+   "prereq": "partial-fraction-decomposition"
+  },
+  {
+   "concept": "method-of-strategic-substitution",
+   "prereq": "partial-fraction-decomposition"
+  },
+  {
+   "concept": "repeated-linear-factors",
+   "prereq": "partial-fraction-decomposition"
+  },
+  {
+   "concept": "irreducible-quadratic",
+   "prereq": "quadratic-formula"
+  },
+  {
+   "concept": "quadratic-factors",
+   "prereq": "partial-fraction-decomposition"
+  },
+  {
+   "concept": "quadratic-factors",
+   "prereq": "irreducible-quadratic"
+  },
+  {
+   "concept": "decomposing-a-rational-function",
+   "prereq": "nonrepeated-linear-factors"
+  },
+  {
+   "concept": "decomposing-a-rational-function",
+   "prereq": "repeated-linear-factors"
+  },
+  {
+   "concept": "decomposing-a-rational-function",
+   "prereq": "quadratic-factors"
+  },
+  {
+   "concept": "decomposing-a-rational-function",
+   "prereq": "method-of-equating-coefficients"
+  },
+  {
+   "concept": "decomposing-a-rational-function",
+   "prereq": "method-of-strategic-substitution"
+  },
+  {
+   "concept": "integration-table",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "computer-algebra-system",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "reconciling-equivalent-antiderivatives",
+   "prereq": "general-form-of-an-antiderivative"
+  },
+  {
+   "concept": "numerical-integration",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "midpoint-rule",
+   "prereq": "numerical-integration"
+  },
+  {
+   "concept": "trapezoidal-rule",
+   "prereq": "numerical-integration"
+  },
+  {
+   "concept": "concavity-and-the-trapezoidal-and-midpoint-rules",
+   "prereq": "midpoint-rule"
+  },
+  {
+   "concept": "concavity-and-the-trapezoidal-and-midpoint-rules",
+   "prereq": "trapezoidal-rule"
+  },
+  {
+   "concept": "concavity-and-the-trapezoidal-and-midpoint-rules",
+   "prereq": "concavity"
+  },
+  {
+   "concept": "absolute-error",
+   "prereq": "numerical-integration"
+  },
+  {
+   "concept": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+   "prereq": "midpoint-rule"
+  },
+  {
+   "concept": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+   "prereq": "trapezoidal-rule"
+  },
+  {
+   "concept": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+   "prereq": "absolute-error"
+  },
+  {
+   "concept": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+   "prereq": "higher-order-derivative"
+  },
+  {
+   "concept": "simpsons-rule",
+   "prereq": "numerical-integration"
+  },
+  {
+   "concept": "simpsons-rule",
+   "prereq": "quadratic-function"
+  },
+  {
+   "concept": "error-bound-for-simpsons-rule",
+   "prereq": "simpsons-rule"
+  },
+  {
+   "concept": "error-bound-for-simpsons-rule",
+   "prereq": "absolute-error"
+  },
+  {
+   "concept": "error-bound-for-simpsons-rule",
+   "prereq": "higher-order-derivative"
+  },
+  {
+   "concept": "improper-integral",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "integral-over-an-infinite-interval",
+   "prereq": "improper-integral"
+  },
+  {
+   "concept": "integral-over-an-infinite-interval",
+   "prereq": "limit-at-infinity"
+  },
+  {
+   "concept": "integral-of-a-discontinuous-integrand",
+   "prereq": "improper-integral"
+  },
+  {
+   "concept": "integral-of-a-discontinuous-integrand",
+   "prereq": "infinite-discontinuity"
+  },
+  {
+   "concept": "gabriels-horn",
+   "prereq": "integral-over-an-infinite-interval"
+  },
+  {
+   "concept": "gabriels-horn",
+   "prereq": "disk-method"
+  },
+  {
+   "concept": "comparison-theorem-for-improper-integrals",
+   "prereq": "integral-over-an-infinite-interval"
+  },
+  {
+   "concept": "comparison-theorem-for-improper-integrals",
+   "prereq": "integral-comparison-theorem"
+  },
+  {
+   "concept": "laplace-transform",
+   "prereq": "integral-over-an-infinite-interval"
+  }
+ ]
+}

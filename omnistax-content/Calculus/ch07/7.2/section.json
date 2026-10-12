@@ -1,0 +1,1093 @@
+{
+ "id": "7.2",
+ "module": "m53657",
+ "chapter": "7",
+ "title": "Trigonometric Integrals",
+ "short": "Trigonometric Integrals",
+ "lead": "A <span data-concept=\"trigonometric-integral\">trigonometric integral</span>, an integral of powers and products of <span data-concept=\"trigonometric-functions\">trigonometric functions</span>, is rewritten by identities until <span data-concept=\"integration-by-substitution\"><em>u</em>-substitution</span>, <span data-concept=\"integration-by-parts\">integration by parts</span> or a <span data-concept=\"power-reduction-formulas\">reduction formula</span> applies. Here the strategies are read off the powers of sin x and cos x, and of tan x and sec x.",
+ "objectives": [
+  "Solve integration problems involving products and powers of $\\sin x$ and $\\cos x.$",
+  "Solve integration problems involving products and powers of $\\tan x$ and $\\sec x.$",
+  "Use reduction formulas to solve trigonometric integrals."
+ ],
+ "summary_html": "<ul><li><span data-concept=\"indefinite-integral\">Integrals</span> of <span data-concept=\"trigonometric-functions\">trigonometric functions</span> can be evaluated by the use of various strategies. These strategies include <ol><li>Applying <span data-concept=\"trigonometric-identity\">trigonometric identities</span> to rewrite the <span data-concept=\"indefinite-integral\">integral</span> so that it may be evaluated by <em>u</em>-substitution</li><li>Using <span data-concept=\"integration-by-parts\">integration by parts</span></li><li>Applying <span data-concept=\"trigonometric-identity\">trigonometric identities</span> to rewrite products of sines and cosines with different arguments as the sum of individual sine and cosine functions</li><li>Applying <span data-concept=\"power-reduction-formulas\">reduction formulas</span></li></ol></li></ul>",
+ "notes": "The book’s link to a website on a common integral involving the secant is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approach marked as such. The 28 even-numbered section exercises have no answer in the book’s key. Exercise 124, which of two integrals is harder and why, is kept with an AI-written suggested approach. The other 27 are computational and are left out: exercises 70 and 72 (identities), 74–96 even (indefinite integrals by substitution and the strategies), 98–110 even (definite integrals), 112 (an area), 114 (a position), 116 (a differential equation), 118 (an arc length), 120 (a volume) and 122 (∫ sin(mx) cos(nx) dx over [−π, π]).",
+ "figures": [
+  {
+   "id": "sim-product-to-sum",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "trig-intro",
+   "concept": "trigonometric-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "trig-intro",
+   "concept": "trigonometric-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "sin-cos",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "sin-cos",
+   "concept": "trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "power-reducing",
+   "concept": "power-reducing-identities",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-reducing",
+   "concept": "double-angle-formulas",
+   "verb": "uses"
+  },
+  {
+   "span": "power-reducing",
+   "concept": "pythagorean-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "sin-cos-strategy",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine",
+   "verb": "introduces"
+  },
+  {
+   "span": "products-rule",
+   "concept": "products-of-sines-and-cosines-of-different-angles",
+   "verb": "introduces"
+  },
+  {
+   "span": "sum-of-angles",
+   "concept": "addition-and-subtraction-formulas",
+   "verb": "uses"
+  },
+  {
+   "span": "tan-sec-strategy",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1165043311678",
+   "concept": "integration-by-parts",
+   "verb": "uses"
+  },
+  {
+   "span": "reduction-intro",
+   "concept": "power-reduction-formulas",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1165043354058",
+   "source_number": "Checkpoint 7.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043250980"
+   },
+   "cite": "sin-cos",
+   "prompt": "Evaluate $\\int {\\sin }^{4}x\\;\\cos x\\;dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{5}{\\sin }^{5}x+C$",
+    "hint": "Let $u=\\sin x.$"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1165042980470",
+   "source_number": "Checkpoint 7.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043281403"
+   },
+   "cite": "sin-cos",
+   "prompt": "Evaluate $\\int {\\cos }^{3}x\\;{\\sin }^{2}x\\;dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}{\\sin }^{3}x-\\frac{1}{5}{\\sin }^{5}x+C$",
+    "hint": "Write ${\\cos }^{3}x={\\cos }^{2}x\\;\\cos x=(1-{\\sin }^{2}x)\\cos x$ and let $u=\\sin x.$"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1165042989371",
+   "source_number": "Checkpoint 7.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042936506"
+   },
+   "cite": "sin-cos",
+   "prompt": "Evaluate $\\int {\\cos }^{2}x\\;dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}x+\\frac{1}{4}\\sin (2x)+C$",
+    "hint": "$${\\cos }^{2}x=\\frac{1}{2}+\\frac{1}{2}\\cos (2x)$$"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1165042369121",
+   "source_number": "Checkpoint 7.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042707196"
+   },
+   "cite": "sin-cos",
+   "prompt": "Evaluate $\\int {\\cos }^{3}x\\;dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin x-\\frac{1}{3}{\\sin }^{3}x+C$",
+    "hint": "Use strategy 2. Write ${\\cos }^{3}x={\\cos }^{2}x\\;\\cos x$ and substitute ${\\cos }^{2}x=1-{\\sin }^{2}x.$"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1165039562346",
+   "source_number": "Checkpoint 7.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042707196"
+   },
+   "cite": "sin-cos",
+   "prompt": "Evaluate $\\int {\\cos }^{2}(3x)dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}x+\\frac{1}{12}\\;\\sin (6x)+C$",
+    "hint": "Use strategy 3. Substitute ${\\cos }^{2}(3x)=\\frac{1}{2}+\\frac{1}{2}\\cos (6x)$"
+   }
+  },
+  {
+   "id": "cp6",
+   "source_id": "fs-id1165043094213",
+   "source_number": "Checkpoint 7.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043094091"
+   },
+   "cite": "sin-cos",
+   "prompt": "Evaluate $\\int \\cos (6x)\\cos (5x)dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}\\sin x+\\frac{1}{22}\\;\\sin (11x)+C$",
+    "hint": "Substitute $\\cos (6x)\\cos (5x)=\\frac{1}{2}\\cos x+\\frac{1}{2}\\cos (11x).$"
+   }
+  },
+  {
+   "id": "cp7",
+   "source_id": "fs-id1165042708861",
+   "source_number": "Checkpoint 7.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043183813"
+   },
+   "cite": "tan-sec",
+   "prompt": "Evaluate $\\int {\\tan }^{5}x\\;{\\sec }^{2}x\\;dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{6}{\\tan }^{6}x+C$",
+    "hint": "Let $u=\\tan x$ and $du={\\sec }^{2}x.$"
+   }
+  },
+  {
+   "id": "cp8",
+   "source_id": "fs-id1165042808799",
+   "source_number": "Checkpoint 7.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165043311678"
+   },
+   "cite": "tan-sec",
+   "prompt": "Evaluate $\\int {\\tan }^{3}x\\;{\\sec }^{7}x\\;dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{9}{\\sec }^{9}x-\\frac{1}{7}{\\sec }^{7}x+C$"
+   }
+  },
+  {
+   "id": "cp9",
+   "source_id": "fs-id1165043301707",
+   "source_number": "Checkpoint 7.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042599295"
+   },
+   "cite": "reduction",
+   "prompt": "Apply the reduction formula to $\\int {\\sec }^{5}x\\;dx.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int {\\sec }^{5}x\\;dx=\\frac{1}{4}{\\sec }^{3}x\\;\\tan x+\\frac{3}{4}\\int {\\sec }^{3}x$",
+    "hint": "Use reduction formula 1 and let $n=5.$"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1165042466940",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Fill in the blank to make a true statement.</p><p>${\\sin }^{2}x+\\_\\_\\_\\_\\_\\_\\_=1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${\\cos }^{2}x$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1165042815096",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Use an identity to reduce the power of the trigonometric function to a trigonometric function raised to the first power.</p><p>${\\sin }^{2}x=\\_\\_\\_\\_\\_\\_\\_$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1-\\cos (2x)}{2}$"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1165042659489",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Evaluate each of the following integrals by <em>u</em>-substitution.</p><p>$\\int {\\sin }^{3}x\\;\\cos x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{{\\sin }^{4}x}{4}+C$"
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1165039566778",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tan-sec",
+   "prompt": "<p>Evaluate each of the following integrals by <em>u</em>-substitution.</p><p>$\\int {\\tan }^{5}(2x){\\sec }^{2}(2x)dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{12}{\\tan }^{6}(2x)+C$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1165043188506",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tan-sec",
+   "prompt": "<p>Evaluate each of the following integrals by <em>u</em>-substitution.</p><p>$\\int \\tan (\\frac{x}{2}){\\sec }^{2}(\\frac{x}{2})dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(\\frac{x}{2})(\\frac{x}{2})+C_{1}$<sup class=\"fn\" data-note=\"c-e77-key\"></sup> or ${\\sec }^{2}(\\frac{x}{2})+C_{2}$"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1165043179948",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Compute the following integrals using the guidelines for integrating powers of trigonometric functions. Use a CAS to check the solutions. (<em>Note</em>: Some of the problems may be done using techniques of integration learned previously.)</p><p>$\\int {\\sin }^{3}x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\cos x+\\frac{1}{3}{\\cos }^{3}x+C$"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1165042533152",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Compute the following integrals using the guidelines for integrating powers of trigonometric functions. Use a CAS to check the solutions. (<em>Note</em>: Some of the problems may be done using techniques of integration learned previously.)</p><p>$\\int \\sin x\\;\\cos x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2}{\\cos }^{2}x+C$ or $\\frac{1}{2}{\\sin }^{2}x+C$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1165039562435",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Compute the following integrals using the guidelines for integrating powers of trigonometric functions. Use a CAS to check the solutions. (<em>Note</em>: Some of the problems may be done using techniques of integration learned previously.)</p><p>$\\int {\\sin }^{5}x\\;{\\cos }^{2}x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{3}{\\cos }^{3}x+\\frac{2}{5}{\\cos }^{5}x-\\frac{1}{7}{\\cos }^{7}x+C$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1165042977672",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Compute the following integrals using the guidelines for integrating powers of trigonometric functions. Use a CAS to check the solutions. (<em>Note</em>: Some of the problems may be done using techniques of integration learned previously.)</p><p>$\\int \\sqrt{\\sin x} \\;\\cos x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2}{3}{(\\sin x)}^{\\frac{3}{2}}+C$"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1165039565954",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tan-sec",
+   "prompt": "<p>Compute the following integrals using the guidelines for integrating powers of trigonometric functions. Use a CAS to check the solutions. (<em>Note</em>: Some of the problems may be done using techniques of integration learned previously.)</p><p>$\\int \\sec x\\;\\tan x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sec x+C$"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1165043404330",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tan-sec",
+   "prompt": "<p>Compute the following integrals using the guidelines for integrating powers of trigonometric functions. Use a CAS to check the solutions. (<em>Note</em>: Some of the problems may be done using techniques of integration learned previously.)</p><p>$\\int {\\tan }^{2}x\\;\\sec x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}\\sec x\\;\\tan x-\\frac{1}{2}\\ln (\\sec x+\\tan x)+C$"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1165042323266",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tan-sec",
+   "prompt": "<p>Compute the following integrals using the guidelines for integrating powers of trigonometric functions. Use a CAS to check the solutions. (<em>Note</em>: Some of the problems may be done using techniques of integration learned previously.)</p><p>$\\int {\\sec }^{4}x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2\\;\\tan x}{3}+\\frac{1}{3}\\sec {(x)}^{2}\\tan x$ $=\\tan x+\\frac{{\\tan }^{3}x}{3}+C$"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1165042672375",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tan-sec",
+   "prompt": "<p>Compute the following integrals using the guidelines for integrating powers of trigonometric functions. Use a CAS to check the solutions. (<em>Note</em>: Some of the problems may be done using techniques of integration learned previously.)</p><p>$\\int \\csc x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\ln |\\cot x+\\csc x|+C$"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1165042659035",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, find a general formula for the integrals.</p><p>$\\int {\\sin }^{2}ax\\;\\cos ax\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{{\\sin }^{3}(ax)}{3a}+C$"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1165043310799",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Use the double-angle formulas to evaluate the following integrals.</p><p>$\\int_0^{\\pi}{\\sin }^{2}x\\;dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.5707963267948966,
+    "tol": 0.001,
+    "solution": "$\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1165043310900",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Use the double-angle formulas to evaluate the following integrals.</p><p>$\\int {\\cos }^{2}3x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{x}{2}+\\frac{1}{12}\\;\\sin (6x)+C$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1165039563290",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>Use the double-angle formulas to evaluate the following integrals.</p><p>$\\int {\\sin }^{2}x\\;dx +\\int {\\cos }^{2}x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x+C$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1165042657818",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, evaluate the definite integrals. Express answers in exact form whenever possible.</p><p>$\\int_0^{2\\pi}\\cos x\\;\\sin 2x\\;dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "tol": 1e-06,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1165042657931",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, evaluate the definite integrals. Express answers in exact form whenever possible.</p><p>$\\int_0^{\\pi}\\cos (99x)\\sin (101x)dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "tol": 1e-06,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1165042390991",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, evaluate the definite integrals. Express answers in exact form whenever possible.</p><p>$\\int_0^{2\\pi}\\sin x\\;\\sin (2x)\\sin (3x)dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "tol": 1e-06,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1165039521468",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, evaluate the definite integrals. Express answers in exact form whenever possible.</p><p>$\\int_{\\pi /6}^{\\pi /3}\\frac{{\\cos }^{3}x}{\\sqrt{\\sin x}}dx$ (Round this answer to three decimal places.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.239,
+    "tol": 0.002,
+    "solution": "Approximately 0.239"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1165043378020",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, evaluate the definite integrals. Express answers in exact form whenever possible.</p><p>$\\int_0^{\\pi /2}\\sqrt{1-\\cos (2x)}\\;dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.4142135623730951,
+    "tol": 0.001,
+    "solution": "$\\sqrt{2}$"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1165042448062",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, evaluate the definite integrals. Express answers in exact form whenever possible.</p><p>Find the area of the region bounded by the graphs of the equations $y={\\cos }^{2}x,y={\\sin }^{2}x,x=-\\frac{\\pi}{4},\\text{and}\\;x=\\frac{\\pi}{4}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.0,
+    "tol": 0.001,
+    "solution": "1.0"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1165042327533",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, evaluate the definite integrals. Express answers in exact form whenever possible.</p><p>Find the average value of the function $f(x)={\\sin }^{2}x\\;{\\cos }^{3}x$ over the interval $[-\\pi ,\\pi ].$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0,
+    "tol": 1e-06,
+    "solution": "$0$"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1165042627387",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, solve the differential equations.</p><p>$\\frac{dy}{d\\theta}={\\sin }^{4}(\\pi \\theta )$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3\\theta}{8}-\\frac{1}{4\\pi}\\;\\sin (2\\pi \\theta )+\\frac{1}{32\\pi}\\;\\sin (4\\pi \\theta )+C=f(x)$"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1165042660279",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tan-sec",
+   "prompt": "<p>For the following exercises, solve the differential equations.</p><p>Find the length of the curve $y=\\ln (\\sin x),\\frac{\\pi}{3}\\le x\\le \\frac{\\pi}{2}.$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5493061443340548,
+    "tol": 0.001,
+    "solution": "$\\ln (\\sqrt{3})$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1165042477378",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For the following exercises, use this information: The inner product of two functions <em>f</em> and <em>g</em> over $[a,b]$ is defined by $f(x)\\cdot g(x)=\\langle f,g\\rangle =\\int_a^{b}f\\cdot gdx.$ Two distinct functions <em>f</em> and <em>g</em> are said to be orthogonal if $\\langle f,g\\rangle =0.$</p><p>Show that $\\{\\sin (2x),\\cos (3x)\\}$ are orthogonal over the interval $[-\\pi ,\\pi ].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_{-\\pi}^{\\pi}\\sin (2x)\\cos (3x) dx=0$"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1165043311416",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tan-sec",
+   "prompt": "<p>For the following exercises, use this information: The inner product of two functions <em>f</em> and <em>g</em> over $[a,b]$ is defined by $f(x)\\cdot g(x)=\\langle f,g\\rangle =\\int_a^{b}f\\cdot gdx.$ Two distinct functions <em>f</em> and <em>g</em> are said to be orthogonal if $\\langle f,g\\rangle =0.$</p><p>Integrate $y^{\\prime}=\\sqrt{\\tan x}{\\sec }^{4}x.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{\\tan (x)}(\\frac{8\\;\\tan x}{21}+\\frac{2}{7}\\sec x^{2}\\tan x)+C=f(x)$"
+   }
+  },
+  {
+   "id": "e124",
+   "source_id": "fs-id1165042549309",
+   "source_number": "124",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sin-cos",
+   "prompt": "<p>For each pair of integrals, determine which one is more difficult to evaluate. Explain your reasoning.</p><p>$\\int {\\sin }^{456}x\\;\\cos x\\;dx$ or $\\int {\\sin }^{2}x\\;{\\cos }^{2}x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "The second integral, $\\int {\\sin }^{2}x\\;{\\cos }^{2}x\\;dx,$ is more difficult. The first has an odd power of $\\cos x,$ so it is a <em>u</em>-substitution type: with $u=\\sin x$ and $du=\\cos x\\;dx$ it becomes $\\int u^{456}du=\\frac{1}{457}{\\sin }^{457}x+C.$ The second has only even powers, so strategy 3 applies: the power-reducing identities give ${\\sin }^{2}x\\;{\\cos }^{2}x=\\frac{1}{4}{\\sin }^{2}(2x)=\\frac{1}{8}(1-\\cos (4x)),$ and only then can it be integrated.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1165042633982",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tan-sec",
+   "prompt": "<p>For each pair of integrals, determine which one is more difficult to evaluate. Explain your reasoning.</p><p>$\\int {\\tan }^{350}x\\;{\\sec }^{2}x\\;dx$ or $\\int {\\tan }^{350}x\\;\\sec x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The second integral is more difficult because the first integral is simply a <em>u</em>-substitution type."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "cp6",
+   "concept": "products-of-sines-and-cosines-of-different-angles"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "exercise": "cp7",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "cp8",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "exercise": "cp9",
+   "concept": "power-reduction-formulas"
+  },
+  {
+   "exercise": "e69",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e71",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e73",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e73",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e75",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "exercise": "e75",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e77",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "exercise": "e77",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e79",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e81",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e81",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e83",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e85",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e85",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e87",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "exercise": "e89",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "exercise": "e89",
+   "concept": "power-reduction-formulas"
+  },
+  {
+   "exercise": "e91",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "exercise": "e93",
+   "concept": "trigonometric-integral"
+  },
+  {
+   "exercise": "e95",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e95",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e97",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e97",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e99",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e101",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e101",
+   "concept": "pythagorean-identities"
+  },
+  {
+   "exercise": "e103",
+   "concept": "products-of-sines-and-cosines-of-different-angles"
+  },
+  {
+   "exercise": "e103",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e105",
+   "concept": "products-of-sines-and-cosines-of-different-angles"
+  },
+  {
+   "exercise": "e105",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e107",
+   "concept": "products-of-sines-and-cosines-of-different-angles"
+  },
+  {
+   "exercise": "e107",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e109",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e109",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e111",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e111",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e113",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e113",
+   "concept": "area-between-two-curves"
+  },
+  {
+   "exercise": "e115",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e115",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "e117",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e117",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e117",
+   "concept": "initial-value-problem"
+  },
+  {
+   "exercise": "e119",
+   "concept": "trigonometric-integral"
+  },
+  {
+   "exercise": "e119",
+   "concept": "arc-length"
+  },
+  {
+   "exercise": "e121",
+   "concept": "products-of-sines-and-cosines-of-different-angles"
+  },
+  {
+   "exercise": "e121",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e123",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant"
+  },
+  {
+   "exercise": "e124",
+   "concept": "integrating-products-and-powers-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e124",
+   "concept": "power-reducing-identities"
+  },
+  {
+   "exercise": "e125",
+   "concept": "integrating-products-and-powers-of-tangent-and-secant"
+  }
+ ],
+ "referents": [
+  {
+   "id": "wave-diff",
+   "label": "the half wave of (a − b)x",
+   "figures": [
+    "sim-product-to-sum"
+   ]
+  },
+  {
+   "id": "wave-sum",
+   "label": "the half wave of (a + b)x",
+   "figures": [
+    "sim-product-to-sum"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-e77-key",
+   "kind": "correction",
+   "html": "The key prints $(\\frac{x}{2})(\\frac{x}{2})+C_{1}$ for the first form; it is ${\\tan }^{2}(\\frac{x}{2})+C_{1},$ since $u=\\tan (\\frac{x}{2})$ gives $\\int 2u\\;du=u^{2}+C_{1}.$"
+  }
+ ]
+}

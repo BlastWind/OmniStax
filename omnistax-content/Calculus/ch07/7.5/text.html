@@ -1,0 +1,53 @@
+<p id="tools-intro">In addition to the techniques of integration we have already seen, several other tools are widely available to assist with the process of integration. Among these tools are <strong><span data-concept="integration-table">integration tables</span></strong>, which are readily available in many books, including <a href="/calculus/sheets/integrals/">the appendices to this one</a>. Also widely available are <strong><span data-concept="computer-algebra-system">computer algebra systems (CAS)</span></strong>, which are found on calculators and in many campus computer labs, and are free online.</p>
+
+<section id="tables">
+<h2>Tables of Integrals</h2>
+<p class="cite-target"><span data-concept="integration-table">Integration tables</span>, if used in the right manner, can be a handy way either to evaluate or check an <span data-concept="indefinite-integral">integral</span> quickly. Keep in mind that when using a table to check an answer, it is possible for two completely correct solutions to look very different. For example, in <a href="/calculus/ch07/7.3/">Trigonometric Substitution</a>, we found that, by using the <span data-concept="trigonometric-substitution">substitution</span> $x=\tan \theta ,$ we can arrive at</p>
+$$\int \frac{dx}{\sqrt{1+x^{2}}} =\ln (x+\sqrt{x^{2}+1})+C.$$
+<p>However, using $x=\operatorname{sinh}\;\theta ,$ we obtained a different solution—namely,</p>
+$$\int \frac{dx}{\sqrt{1+x^{2}}} ={\operatorname{sinh}}^{-1}x+C.$$
+<p>We later showed algebraically that the two solutions are equivalent. That is, we showed that ${\operatorname{sinh}}^{-1}x=\ln (x+\sqrt{x^{2}+1}).$ In this case, the two <span data-concept="antiderivative">antiderivatives</span> that we found were actually equal. This need not be the case. However, as long as the difference in the two <span data-concept="antiderivative">antiderivatives</span> is a constant, they are equivalent.</p>
+<div class="example" id="fs-id1165041930726">
+<h3>Example 7.36 · Using a Formula from a Table to Evaluate an Integral</h3>
+<p>Use the table formula</p>
+$$\int \frac{\sqrt{a^{2}-u^{2}}}{u^{2}}du =-\frac{\sqrt{a^{2}-u^{2}}}{u}-{\sin }^{-1}\frac{u}{a}+C$$
+<p>to evaluate $\int \frac{\sqrt{16-e^{2x}}}{e^{x}}dx.$</p>
+<h4>Solution</h4>
+<p>If we look at <span data-concept="integration-table">integration tables</span>, we see that several formulas contain expressions of the form $\sqrt{a^{2}-u^{2}}.$ This expression is actually similar to $\sqrt{16-e^{2x}},$ where $a=4$ and $u=e^{x}.$ Keep in mind that we must also have $du=e^{x}dx.$ Multiplying the numerator and the denominator of the given <span data-concept="indefinite-integral">integral</span> by $e^{x}$ should help to put this <span data-concept="indefinite-integral">integral</span> in a useful form. Thus, we now have</p>
+$$\int \frac{\sqrt{16-e^{2x}}}{e^{x}}dx =\int \frac{\sqrt{16-e^{2x}}}{e^{2x}}e^{x}dx.$$
+<p>Substituting $u=e^{x}$ and $du=e^{x}dx$ produces $\int \frac{\sqrt{a^{2}-u^{2}}}{u^{2}}du.$ From the <span data-concept="integration-table">integration table</span> (#88 in <a href="/calculus/sheets/integrals/">Appendix A</a>),</p>
+$$\int \frac{\sqrt{a^{2}-u^{2}}}{u^{2}}du =-\frac{\sqrt{a^{2}-u^{2}}}{u}-{\sin }^{-1}\frac{u}{a}+C.$$
+<p>Thus,</p>
+$$\begin{array}{rllll}\int \frac{\sqrt{16-e^{2x}}}{e^{x}}dx & =\int \frac{\sqrt{16-e^{2x}}}{e^{2x}}e^{x}dx & & & \text{Substitute}\;u=e^{x}\;\text{and}\;du=e^{x}dx. \\ & =\int \frac{\sqrt{4^{2}-u^{2}}}{u^{2}}du & & & \text{Apply the formula using}\;a=4. \\ & =-\frac{\sqrt{4^{2}-u^{2}}}{u}-{\sin }^{-1}\frac{u}{4}+C & & & \text{Substitute}\;u=e^{x}. \\ & =-\frac{\sqrt{16-e^{2x}}}{e^{x}}-{\sin }^{-1}(\frac{e^{x}}{4})+C. & & & \end{array}$$
+</div>
+</section>
+
+<section id="cas">
+<h2>Computer Algebra Systems</h2>
+<p class="cite-target">If available, a <span data-concept="computer-algebra-system">CAS</span> is a faster alternative to a table for solving an integration problem. Many such systems are widely available and are, in general, quite easy to use.</p>
+<div class="example" id="fs-id1165040682585">
+<h3>Example 7.37 · Using a Computer Algebra System to Evaluate an Integral</h3>
+<p>Use a <a href="/calculus/sheets/integral-calculator/?expr=1/sqrt(x^2-4)"><span data-concept="computer-algebra-system">computer algebra system</span></a> to evaluate <span data-fn="1/sqrt(x^2-4)">$\int \frac{dx}{\sqrt{x^{2}-4}}.$</span> Compare this result with $\ln |\frac{\sqrt{x^{2}-4}}{2}+\frac{x}{2}|+C,$ a result we might have obtained if we had used <span data-concept="trigonometric-substitution">trigonometric substitution</span>.</p>
+<h4>Solution</h4>
+<p>Using Wolfram Alpha, we obtain</p>
+$$\int \frac{dx}{\sqrt{x^{2}-4}} =\ln |\sqrt{x^{2}-4}+x|+C.$$
+<p>Notice that</p>
+$$\ln |\frac{\sqrt{x^{2}-4}}{2}+\frac{x}{2}|+C=\ln |\frac{\sqrt{x^{2}-4}+x}{2}|+C=\ln |\sqrt{x^{2}-4}+x|-\ln 2+C.$$
+<p>Since these two <span data-concept="antiderivative">antiderivatives</span> differ by only a constant, the solutions are equivalent. We could have also demonstrated that each of these <span data-concept="antiderivative">antiderivatives</span> is correct by differentiating them.</p>
+</div>
+<div class="example" id="fs-id1165042089942">
+<h3>Example 7.38 · Using a CAS to Evaluate an Integral</h3>
+<p>Evaluate <span data-fn="sin(x)^3">$\int {\sin }^{3}x\;dx$</span> using a <span data-concept="computer-algebra-system">CAS</span>. Compare the result to $\frac{1}{3}{\cos }^{3}x-\cos x+C,$ the result we might have obtained using the technique for integrating odd powers of $\sin x$ discussed earlier in this chapter.</p>
+<h4>Solution</h4>
+<p>Using Wolfram Alpha, we obtain</p>
+$$\int {\sin }^{3}x\;dx =\frac{1}{12}(\cos (3x)-9\;\cos x)+C.$$
+<p>This looks quite different from $\frac{1}{3}{\cos }^{3}x-\cos x+C.$ To see that these <span data-concept="antiderivative">antiderivatives</span> are equivalent, we can make use of a few <span data-concept="trigonometric-identity">trigonometric identities</span>:</p>
+$$\begin{array}{rl}\frac{1}{12}(\cos (3x)-9\;\cos x) & =\frac{1}{12}(\cos (x+2x)-9\;\cos x) \\ & =\frac{1}{12}(\cos (x)\cos (2x)-\sin (x)\sin (2x)-9\;\cos x) \\ & =\frac{1}{12}(\cos x(2\;{\cos }^{2}x-1)-\sin x(2\;\sin x\;\cos x)-9\;\cos x) \\ & =\frac{1}{12}(2{\cos }^{3}x-\cos x-2\;\cos x(1-{\cos }^{2}x)-9\;\cos x) \\ & =\frac{1}{12}(4{\cos }^{3}x-12\;\cos x) \\ & =\frac{1}{3}{\cos }^{3}x-\cos x.\end{array}$$
+<p>Thus, the two <span data-concept="antiderivative">antiderivatives</span> are identical.</p>
+<p>We may also use a <span data-concept="computer-algebra-system">CAS</span> to compare the graphs of the two functions, as shown in the following figure.</p>
+<figure class="sim" id="sim-equivalent-antiderivatives" data-figure="7.12" data-original="/media/ch07/CNX_Calc_Figure_07_05_001.jpg" data-original-caption="The graphs of y = (1/3)cos³x − cos x and y = (1/12)(cos(3x) − 9 cos x) are identical.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.12</span><span>Two <span data-concept="antiderivative">antiderivatives</span> found by different methods, <span data-ref="antiderivative-hand">the one found by hand</span> and <span data-ref="antiderivative-cas">the one a CAS gives</span>, drawn on one graph. For $\sin^{3}x,$ the curves of Example 7.38 lie on top of each other: the two are identical. Choose Example 7.37 and drag $x$: the two curves for $\frac{1}{\sqrt{x^{2}-4}}$ never meet, but the gap between them is $\ln 2$ at every $x,$ so they differ by a constant and are equivalent.</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1165042089942"></div>
+</section>

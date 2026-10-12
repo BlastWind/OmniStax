@@ -1,0 +1,152 @@
+<p id="trigsub-intro">In this section, we explore <span data-concept="indefinite-integral">integrals</span> containing expressions of the form $\sqrt{a^{2}-x^{2}},$ $\sqrt{a^{2}+x^{2}},$ and $\sqrt{x^{2}-a^{2}},$ where the values of $a$ are positive. We have already encountered and evaluated <span data-concept="indefinite-integral">integrals</span> containing some expressions of this type, but many still remain inaccessible. The technique of <strong><span data-concept="trigonometric-substitution">trigonometric substitution</span></strong> comes in very handy when evaluating these <span data-concept="indefinite-integral">integrals</span>. This technique uses substitution to rewrite these <span data-concept="indefinite-integral">integrals</span> as <span data-concept="trigonometric-integral">trigonometric integrals</span>.</p>
+
+<section id="sine">
+<h2>Integrals Involving $\sqrt{a^{2}-x^{2}}$</h2>
+<p class="cite-target">Before developing a general strategy for <span data-concept="indefinite-integral">integrals</span> containing $\sqrt{a^{2}-x^{2}},$ consider the <span data-concept="indefinite-integral">integral</span> $\int \sqrt{9-x^{2}} dx.$ This <span data-concept="indefinite-integral">integral</span> cannot be evaluated using any of the techniques we have discussed so far. However, if we make the substitution $x=3\;\sin \ktheta ,$ we have $dx=3\;\cos \ktheta d\theta .$ After substituting into the <span data-concept="indefinite-integral">integral</span>, we have</p>
+$$\int \sqrt{9-x^{2}}\;dx =\int \sqrt{9-{(3\;\sin \ktheta )}^{2}}3\;\cos \ktheta d\theta .$$
+<p>After simplifying, we have</p>
+$$\int \sqrt{9-x^{2}}\;dx=\int 9\sqrt{1-{\sin }^{2}\ktheta}\;\cos \ktheta d\theta .$$
+<p>Letting $1-{\sin }^{2}\ktheta ={\cos }^{2}\ktheta ,$ we now have</p>
+$$\int \sqrt{9-x^{2}}\;dx=\int 9\sqrt{{\cos }^{2}\ktheta}\;\cos \ktheta d\theta .$$
+<p>Assuming that $\cos \ktheta \ge 0,$ we have</p>
+$$\int \sqrt{9-x^{2}}\;dx=\int 9\;{\cos }^{2}\ktheta d\theta .$$
+<p>At this point, we can evaluate the <span data-concept="indefinite-integral">integral</span> using the techniques developed for <span data-concept="integrating-products-and-powers-of-sine-and-cosine">integrating powers and products of trigonometric functions</span>. Before completing this example, let’s take a look at the general theory behind this idea.</p>
+<p>To evaluate <span data-concept="indefinite-integral">integrals</span> involving $\sqrt{a^{2}-x^{2}},$ we make the substitution $x=a\;\sin \ktheta$ and $dx=a\;\cos \ktheta .$<sup class="fn" data-note="c-dx"></sup> To see that this actually makes sense, consider the following argument: The <span data-concept="domain">domain</span> of $\sqrt{a^{2}-x^{2}}$ is $[-a,a].$ Thus, $-a\le x\le a.$ Consequently, $-1\le \frac{x}{a}\le 1.$ Since the <span data-concept="range">range</span> of $\sin x$ over $[-(\pi /2),\pi /2]$ is $[-1,1],$ there is a unique angle $\ktheta$ satisfying $-(\pi /2)\le \ktheta \le \pi /2$ so that $\sin \ktheta =x/a,$ or equivalently, so that $x=a\;\sin \ktheta .$ If we substitute $x=a\;\sin \ktheta$ into $\sqrt{a^{2}-x^{2}},$ we get</p>
+$$\begin{array}{rllll}\sqrt{a^{2}-x^{2}} & =\sqrt{a^{2}-{(a\;\sin \ktheta )}^{2}} & & & \text{Let}\;x=a\;\sin \ktheta \;\text{where}\;-\frac{\pi}{2}\le \ktheta \le \frac{\pi}{2}.\;\text{Simplify.} \\ & =\sqrt{a^{2}-a^{2}{\sin }^{2}\ktheta} & & & \text{Factor out}\;a^{2}. \\ & =\sqrt{a^{2}(1-{\sin }^{2}\ktheta )} & & & \text{Substitute}\;1-{\sin }^{2}x={\cos }^{2}x. \\ & =\sqrt{a^{2}{\cos }^{2}\ktheta} & & & \text{Take the square root.} \\ & =|a\;\cos \ktheta | & & & \\ & =a\;\cos \ktheta . & & & \end{array}$$
+<p id="reference-triangle">Since $\cos \ktheta \ge 0$ on $-\frac{\pi}{2}\le \ktheta \le \frac{\pi}{2}$ and $a\gt 0,$ $|a\;\cos \ktheta |=a\;\cos \ktheta .$ We can see, from this discussion, that by making the substitution $x=a\;\sin \ktheta ,$ we are able to convert an <span data-concept="indefinite-integral">integral</span> involving a radical into an <span data-concept="indefinite-integral">integral</span> involving <span data-concept="trigonometric-functions">trigonometric functions</span>. After we evaluate the <span data-concept="indefinite-integral">integral</span>, we can convert the solution back to an expression involving $x.$ To see how to do this, let’s begin by assuming that $0\lt x\lt a.$ In this case, $0\lt \ktheta \lt \frac{\pi}{2}.$ Since $\sin \ktheta =\frac{x}{a},$ we can draw the <span data-concept="reference-triangle">reference triangle</span> in Figure 7.4 to assist in expressing the values of $\cos \ktheta ,$ $\tan \ktheta ,$ and the remaining <span data-concept="trigonometric-functions">trigonometric functions</span> in terms of $x.$ It can be shown that this triangle actually produces the correct values of the <span data-concept="trigonometric-functions">trigonometric functions</span> evaluated at $\ktheta$ for all $\ktheta$ satisfying $-\frac{\pi}{2}\le \ktheta \le \frac{\pi}{2}.$ It is useful to observe that the expression $\sqrt{a^{2}-x^{2}}$ actually appears as the length of one side of the triangle. Last, should $\ktheta$ appear by itself, we use $\ktheta ={\sin }^{-1}(\frac{x}{a}).$</p>
+<figure class="sim" id="sim-triangle-sine" data-figure="7.4" data-original="/media/ch07/CNX_Calc_Figure_07_03_001.jpg" data-original-caption="A reference triangle can help express the trigonometric functions evaluated at θ in terms of x.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.4</span><span>With $x=a\sin\ktheta$ and $-\frac{\pi}{2}\le\ktheta\le\frac{\pi}{2},$ the triangle has hypotenuse $a$ and the side opposite $\ktheta$ of length $x,$ so its third side is $\sqrt{a^{2}-x^{2}}=a\cos\ktheta$ and every trigonometric function of $\ktheta$ can be read in terms of $x.$ Drag $x$ between $-a$ and $a$ or change $a$: the radical stays the side beside $\ktheta,$ and $\ktheta=\sin^{-1}(x/a).$ For $x\lt 0$ the triangle turns below the axis and $\ktheta$ is negative, with the same ratios.</span></div>
+</figure>
+<p>The essential part of this discussion is summarized in the following problem-solving strategy.</p>
+<div class="note" id="sine-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Integrating Expressions Involving $\sqrt{a^{2}-x^{2}}$</h3>
+<ol><li>It is a good idea to make sure the <span data-concept="indefinite-integral">integral</span> cannot be evaluated easily in another way. For example, although this method can be applied to <span data-concept="indefinite-integral">integrals</span> of the form $\int \frac{1}{\sqrt{a^{2}-x^{2}}}dx ,$ $\int \frac{x}{\sqrt{a^{2}-x^{2}}}dx ,$ and $\int x\sqrt{a^{2}-x^{2}}\;dx,$ they can each be integrated directly either by formula or by a simple <em>u</em>-substitution.</li><li>Make the substitution $x=a\;\sin \ktheta$ and $dx=a\;\cos \ktheta d\theta .$ <em>Note</em>: This substitution yields $\sqrt{a^{2}-x^{2}}=a\;\cos \ktheta .$</li><li>Simplify the expression.</li><li>Evaluate the <span data-concept="indefinite-integral">integral</span> using techniques from the section on <span data-concept="trigonometric-integral">trigonometric integrals</span>.</li><li>Use the <span data-concept="reference-triangle">reference triangle</span> from Figure 7.4 to rewrite the result in terms of $x.$ You may also need to use some <span data-concept="trigonometric-identity">trigonometric identities</span> and the relationship $\ktheta ={\sin }^{-1}(\frac{x}{a}).$</li></ol>
+</div>
+<p>The following example demonstrates the application of this problem-solving strategy.</p>
+<div class="example" id="fs-id1165041837235">
+<h3>Example 7.21 · Integrating an Expression Involving $\sqrt{a^{2}-x^{2}}$</h3>
+<p>Evaluate <span data-fn="sqrt(9-x^2)">$\int \sqrt{9-x^{2}}\;dx.$</span></p>
+<h4>Solution</h4>
+<p>Begin by making the <a href="/calculus/sheets/integral-calculator/?expr=sqrt(9-x^2)">substitutions</a> $x=3\;\sin \ktheta$ and $dx=3\;\cos \ktheta d\theta .$ Since $\sin \ktheta =\frac{x}{3},$ we can construct the <span data-concept="reference-triangle">reference triangle</span> shown in the following figure.</p>
+<figure class="sim" id="fig-triangle-nine" data-figure="7.5" data-original="/media/ch07/CNX_Calc_Figure_07_03_002.jpg" data-original-caption="A reference triangle can be constructed for Example 7.21.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.5</span><span>A <span data-concept="reference-triangle">reference triangle</span> can be constructed for <a href="#fs-id1165041837235">Example 7.21</a>.</span></div>
+</figure>
+<p>Thus,</p>
+$$\begin{array}{rllll}\int \sqrt{9-x^{2}}\;dx & =\int \sqrt{9-{(3\;\sin \ktheta )}^{2}}3\;\cos \ktheta d\theta & & & \text{Substitute}\;x=3\;\sin \ktheta \;\text{and}\;dx=3\;\cos \ktheta d\theta . \\ & =\int \sqrt{9(1-{\sin }^{2}\ktheta )}3\;\cos \ktheta d\theta & & & \text{Simplify.} \\ & =\int \sqrt{9\;{\cos }^{2}\ktheta}3\;\cos \ktheta d\theta & & & \text{Substitute}\;{\cos }^{2}\ktheta =1-{\sin }^{2}\ktheta . \\ & =\int 3|\cos \ktheta |3\;\cos \ktheta d\theta & & & \text{Take the square root.} \\ & =\int 9\;{\cos }^{2}\ktheta d\theta & & & \begin{array}{l}\text{Simplify. Since}\;-\frac{\pi}{2}\le \ktheta \le \frac{\pi}{2},\;\cos \ktheta \ge 0\;\text{and} \\ |\cos \ktheta |=\cos \ktheta .\end{array} \\ & =\int 9(\frac{1}{2}+\frac{1}{2}\cos (2\ktheta ))d\theta & & & \begin{array}{l}\text{Use the strategy for integrating an even power} \\ \text{of}\;\cos \ktheta .\end{array} \\ & =\frac{9}{2}\ktheta +\frac{9}{4}\sin (2\ktheta )+C & & & \text{Evaluate the integral.} \\ & =\frac{9}{2}\ktheta +\frac{9}{4}(2\;\sin \ktheta \;\cos \ktheta )+C & & & \text{Substitute}\;\sin (2\ktheta )=2\;\sin \ktheta \;\cos \ktheta . \\ & =\frac{9}{2}{\sin }^{-1}(\frac{x}{3})+\frac{9}{2}\cdot \frac{x}{3}\cdot \frac{\sqrt{9-x^{2}}}{3}+C & & & \begin{array}{l}\text{Substitute}\;{\sin }^{-1}(\frac{x}{3})=\ktheta \;\text{and}\;\sin \ktheta =\frac{x}{3}.\;\text{Use} \\ \text{the reference triangle to see that} \\ \cos \ktheta =\frac{\sqrt{9-x^{2}}}{3}\;\text{and make this substitution.}\end{array} \\ & =\frac{9}{2}{\sin }^{-1}(\frac{x}{3})+\frac{x\sqrt{9-x^{2}}}{2}+C. & & & \text{Simplify.}\end{array}$$
+</div>
+<div class="example" id="fs-id1165042229562">
+<h3>Example 7.22 · Integrating an Expression Involving $\sqrt{a^{2}-x^{2}}$</h3>
+<p>Evaluate <span data-fn="sqrt(4-x^2)/x">$\int \frac{\sqrt{4-x^{2}}}{x}dx.$</span></p>
+<h4>Solution</h4>
+<p>First make the substitutions $x=2\;\sin \ktheta$ and $dx=2\;\cos \ktheta d\theta .$ Since $\sin \ktheta =\frac{x}{2},$ we can construct the <span data-concept="reference-triangle">reference triangle</span> shown in the following figure.</p>
+<figure class="sim" id="fig-triangle-four" data-figure="7.6" data-original="/media/ch07/CNX_Calc_Figure_07_03_003.jpg" data-original-caption="A reference triangle can be constructed for Example 7.22.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.6</span><span>A <span data-concept="reference-triangle">reference triangle</span> can be constructed for <a href="#fs-id1165042229562">Example 7.22</a>.</span></div>
+</figure>
+<p>Thus,</p>
+$$\begin{array}{rllll}\int \frac{\sqrt{4-x^{2}}}{x}dx & =\int \frac{\sqrt{4-{(2\;\sin \ktheta )}^{2}}}{2\;\sin \ktheta}2\;\cos \ktheta d\theta & & & \text{Substitute}\;x=2\;\sin \ktheta \;\text{and}\;dx=2\;\cos \ktheta d\theta . \\ & =\int \frac{2\;{\cos }^{2}\ktheta}{\sin \ktheta}d\theta & & & \text{Substitute}\;{\cos }^{2}\ktheta =1-{\sin }^{2}\ktheta \;\text{and simplify.} \\ & =\int \frac{2(1-{\sin }^{2}\ktheta )}{\sin \ktheta}d\theta & & & \text{Substitute}\;{\sin }^{2}\ktheta =1-{\cos }^{2}\ktheta . \\ & =\int (2\;\csc \ktheta -2\;\sin \ktheta )d\theta & & & \begin{array}{l}\text{Separate the numerator, simplify, and use} \\ \csc \ktheta =\frac{1}{\sin \ktheta}.\end{array} \\ & =2\;\ln |\csc \ktheta -\cot \ktheta |+2\;\cos \ktheta +C & & & \text{Evaluate the integral.} \\ & =2\;\ln |\frac{2}{x}-\frac{\sqrt{4-x^{2}}}{x}|+\sqrt{4-x^{2}}+C. & & & \begin{array}{l}\text{Use the reference triangle to rewrite the} \\ \text{expression in terms of}\;x\;\text{and simplify.}\end{array}\end{array}$$
+</div>
+<p>In the next example, we see that we sometimes have a choice of methods.</p>
+<div class="example" id="fs-id1165042092098">
+<h3>Example 7.23 · Integrating an Expression Involving $\sqrt{a^{2}-x^{2}}$ Two Ways</h3>
+<p>Evaluate <span data-fn="x^3*sqrt(1-x^2)">$\int x^{3}\sqrt{1-x^{2}}\;dx$</span> two ways: first by using the <span data-concept="integration-by-substitution">substitution</span> $u=1-x^{2}$ and then by using a <span data-concept="trigonometric-substitution">trigonometric substitution</span>.</p>
+<h4>Solution</h4>
+<p><strong>Method 1</strong></p>
+<p>Let $u=1-x^{2}$ and hence $x^{2}=1-u.$ Thus, $du=-2x\;dx.$ In this case, the <span data-concept="indefinite-integral">integral</span> becomes</p>
+$$\begin{array}{rllll}\int x^{3}\sqrt{1-x^{2}}\;dx & =-\frac{1}{2}\int x^{2}\sqrt{1-x^{2}}(-2x\;dx) & & & \text{Make the substitution.} \\ & =-\frac{1}{2}\int (1-u)\sqrt{u}\;du & & & \text{Expand the expression.} \\ & =-\frac{1}{2}\int (u^{1/2}-u^{3/2})du & & & \text{Evaluate the integral.} \\ & =-\frac{1}{2}(\frac{2}{3}u^{3/2}-\frac{2}{5}u^{5/2})+C & & & \text{Rewrite in terms of}\;x. \\ & =-\frac{1}{3}{(1-x^{2})}^{3/2}+\frac{1}{5}{(1-x^{2})}^{5/2}+C. & & & \end{array}$$
+<p><strong>Method 2</strong></p>
+<p>Let $x=\sin \ktheta .$ In this case, $dx=\cos \ktheta d\theta .$ Using this substitution, we have</p>
+$$\begin{array}{rllll}\int x^{3}\sqrt{1-x^{2}}\;dx & =\int {\sin }^{3}\ktheta \;{\cos }^{2}\ktheta d\theta & & & \\ & =\int (1-{\cos }^{2}\ktheta ){\cos }^{2}\ktheta \;\sin \ktheta d\theta & & & \text{Let}\;u=\cos \ktheta .\;\text{Thus,}\;du=-\sin \ktheta d\theta . \\ & =\int (u^{4}-u^{2})du & & & \\ & =\frac{1}{5}u^{5}-\frac{1}{3}u^{3}+C & & & \text{Substitute}\;\cos \ktheta =u. \\ & =\frac{1}{5}{\cos }^{5}\ktheta -\frac{1}{3}{\cos }^{3}\ktheta +C & & & \begin{array}{l}\text{Use a reference triangle to see that} \\ \cos \ktheta =\sqrt{1-x^{2}}.\end{array} \\ & =\frac{1}{5}{(1-x^{2})}^{5/2}-\frac{1}{3}{(1-x^{2})}^{3/2}+C. & & & \end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1165042092098"></div>
+</section>
+
+<section id="tangent">
+<h2>Integrating Expressions Involving $\sqrt{a^{2}+x^{2}}$</h2>
+<p class="cite-target">For <span data-concept="indefinite-integral">integrals</span> containing $\sqrt{a^{2}+x^{2},}$ let’s first consider the <span data-concept="domain">domain</span> of this expression. Since $\sqrt{a^{2}+x^{2}}$ is defined for all real values of $x,$ we restrict our choice to those <span data-concept="trigonometric-functions">trigonometric functions</span> that have a <span data-concept="range">range</span> of all real numbers. Thus, our choice is restricted to selecting either $x=a\;\tan \ktheta$ or $x=a\;\cot \ktheta .$ Either of these substitutions would actually work, but the standard substitution is $x=a\;\tan \ktheta$ or, equivalently, $\tan \ktheta =x/a.$ With this substitution, we make the assumption that $-(\pi /2)\lt \ktheta \lt \pi /2,$ so that we also have $\ktheta ={\tan }^{-1}(x/a).$ The procedure for using this substitution is outlined in the following problem-solving strategy.</p>
+<div class="note" id="tangent-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Integrating Expressions Involving $\sqrt{a^{2}+x^{2}}$</h3>
+<ol><li>Check to see whether the <span data-concept="indefinite-integral">integral</span> can be evaluated easily by using another method. In some cases, it is more convenient to use an alternative method.</li><li>Substitute $x=a\;\tan \ktheta$ and $dx=a\;{\sec }^{2}\ktheta d\theta .$ This substitution yields</li></ol>
+<p>$\sqrt{a^{2}+x^{2}}=\sqrt{a^{2}+{(a\;\tan \ktheta )}^{2}}=\sqrt{a^{2}(1+{\tan }^{2}\ktheta )}=\sqrt{a^{2}{\sec }^{2}\ktheta}=|a\;\sec \ktheta |=a\;\sec \ktheta .$ (Since $-\frac{\pi}{2}\lt \ktheta \lt \frac{\pi}{2}$ and $\sec \ktheta \gt 0$ over this interval, $|a\;\sec \ktheta |=a\;\sec \ktheta .)$</p>
+<ol start="3"><li>Simplify the expression.</li><li>Evaluate the <span data-concept="indefinite-integral">integral</span> using techniques from the section on <span data-concept="trigonometric-integral">trigonometric integrals</span>.</li><li>Use the <span data-concept="reference-triangle">reference triangle</span> from Figure 7.7 to rewrite the result in terms of $x.$ You may also need to use some <span data-concept="trigonometric-identity">trigonometric identities</span> and the relationship $\ktheta ={\tan }^{-1}(\frac{x}{a}).$ (<em>Note</em>: The <span data-concept="reference-triangle">reference triangle</span> is based on the assumption that $x\gt 0;$ however, the <span data-concept="trigonometric-functions">trigonometric ratios</span> produced from the <span data-concept="reference-triangle">reference triangle</span> are the same as the ratios for which $x\le 0.)$</li></ol>
+</div>
+<figure class="sim" id="sim-triangle-tangent" data-figure="7.7" data-original="/media/ch07/CNX_Calc_Figure_07_03_004.jpg" data-original-caption="A reference triangle can be constructed to express the trigonometric functions evaluated at θ in terms of x.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.7</span><span>With $x=a\tan\ktheta$ and $-\frac{\pi}{2}\lt\ktheta\lt\frac{\pi}{2},$ the legs are $a$ and $x$ and the hypotenuse is $\sqrt{a^{2}+x^{2}}=a\sec\ktheta.$ Drag $x$ through every real value or change $a$: the radical is always the hypotenuse, and $\ktheta=\tan^{-1}(x/a).$</span></div>
+</figure>
+<div class="example" id="fs-id1165042089656">
+<h3>Example 7.24 · Integrating an Expression Involving $\sqrt{a^{2}+x^{2}}$</h3>
+<p>Evaluate <span data-fn="1/sqrt(1+x^2)">$\int \frac{dx}{\sqrt{1+x^{2}}}$</span> and check the solution by differentiating.</p>
+<h4>Solution</h4>
+<p>Begin with the substitution $x=\tan \ktheta$ and $dx={\sec }^{2}\ktheta d\theta .$ Since $\tan \ktheta =x,$ draw the <span data-concept="reference-triangle">reference triangle</span> in the following figure.</p>
+<figure class="sim" id="fig-triangle-one" data-figure="7.8" data-original="/media/ch07/CNX_Calc_Figure_07_03_005.jpg" data-original-caption="The reference triangle for Example 7.24.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.8</span><span>The <span data-concept="reference-triangle">reference triangle</span> for <a href="#fs-id1165042089656">Example 7.24</a>.</span></div>
+</figure>
+<p>Thus,</p>
+$$\begin{array}{rllll}\int \frac{dx}{\sqrt{1+x^{2}}} & =\int \frac{{\sec }^{2}\ktheta}{\sec \ktheta}d\theta & & & \begin{array}{l}\text{Substitute}\;x=\tan \ktheta \;\text{and}\;dx={\sec }^{2}\ktheta d\theta .\;\text{This} \\ \text{substitution makes}\;\sqrt{1+x^{2}}=\sec \ktheta .\;\text{Simplify.}\end{array} \\ & =\int \sec \ktheta d\theta & & & \text{Evaluate the integral.} \\ & =\ln |\sec \ktheta +\tan \ktheta |+C & & & \begin{array}{l}\text{Use the reference triangle to express the result} \\ \text{in terms of}\;x.\end{array} \\ & =\ln |\sqrt{1+x^{2}}+x|+C. & & & \end{array}$$
+<p>To check the solution, differentiate:</p>
+$$\begin{array}{rl}\frac{d}{dx}(\ln |\sqrt{1+x^{2}}+x|) & =\frac{1}{\sqrt{1+x^{2}}+x}\cdot (\frac{x}{\sqrt{1+x^{2}}}+1) \\ & =\frac{1}{\sqrt{1+x^{2}}+x}\cdot \frac{x+\sqrt{1+x^{2}}}{\sqrt{1+x^{2}}} \\ & =\frac{1}{\sqrt{1+x^{2}}}.\end{array}$$
+<p>Since $\sqrt{1+x^{2}}+x\gt 0$ for all values of $x,$ we could rewrite $\ln |\sqrt{1+x^{2}}+x|+C=\ln (\sqrt{1+x^{2}}+x)+C,$ if desired.</p>
+</div>
+<div class="example" id="fs-id1165042301696">
+<h3>Example 7.25 · Evaluating $\int \frac{dx}{\sqrt{1+x^{2}}}$ Using a Different Substitution</h3>
+<p>Use the substitution $x=\operatorname{sinh}\;\ktheta$ to evaluate $\int \frac{dx}{\sqrt{1+x^{2}}}.$</p>
+<h4>Solution</h4>
+<p>Because $\operatorname{sinh}\;\ktheta$ has a <span data-concept="range">range</span> of all real numbers, and $1+{\operatorname{sinh}}^{2}\ktheta ={\operatorname{cosh}}^{2}\ktheta ,$ we may also use the substitution $x=\operatorname{sinh}\;\ktheta$ to evaluate this <span data-concept="indefinite-integral">integral</span>. In this case, $dx=\operatorname{cosh}\;\ktheta d\theta .$ Consequently,</p>
+$$\begin{array}{rllll}\int \frac{dx}{\sqrt{1+x^{2}}} & =\int \frac{\operatorname{cosh}\;\ktheta}{\sqrt{1+{\operatorname{sinh}}^{2}\ktheta}}d\theta & & & \begin{array}{l}\text{Substitute}\;x=\operatorname{sinh}\;\ktheta \;\text{and}\;dx=\operatorname{cosh}\;\ktheta d\theta . \\ \text{Substitute}\;1+{\operatorname{sinh}}^{2}\ktheta ={\operatorname{cosh}}^{2}\ktheta .\end{array} \\ & =\int \frac{\operatorname{cosh}\;\ktheta}{\sqrt{{\operatorname{cosh}}^{2}\ktheta}}d\theta & & & \sqrt{{\operatorname{cosh}}^{2}\ktheta}=|\operatorname{cosh}\;\ktheta | \\ & =\int \frac{\operatorname{cosh}\;\ktheta}{|\operatorname{cosh}\;\ktheta |}d\theta & & & |\operatorname{cosh}\;\ktheta |=\operatorname{cosh}\;\ktheta \;\text{since}\;\operatorname{cosh}\;\ktheta \gt 0\;\text{for all}\;\ktheta . \\ & =\int \frac{\operatorname{cosh}\;\ktheta}{\operatorname{cosh}\;\ktheta}d\theta & & & \text{Simplify.} \\ & =\int 1d\theta & & & \text{Evaluate the integral.} \\ & =\ktheta +C & & & \text{Since}\;x=\operatorname{sinh}\;\ktheta ,\;\text{we know}\;\ktheta ={\operatorname{sinh}}^{-1}x. \\ & ={\operatorname{sinh}}^{-1}x+C. & & & \end{array}$$
+<h4>Analysis</h4>
+<p>This answer looks quite different from the answer obtained using the substitution $x=\tan \ktheta .$ To see that the solutions are the same, set $y={\operatorname{sinh}}^{-1}x.$ Thus, $\operatorname{sinh}\;y=x.$ From this equation we obtain:</p>
+$$\frac{e^{y}-e^{-y}}{2}=x.$$
+<p>After multiplying both sides by $2e^{y}$ and rewriting, this equation becomes:</p>
+$$e^{2y}-2xe^{y}-1=0.$$
+<p>Use the <span data-concept="quadratic-formula">quadratic equation</span> to solve for $e^{y}\text{:}$</p>
+$$e^{y}=\frac{2x\pm \sqrt{4x^{2}+4}}{2}.$$
+<p>Simplifying, we have:</p>
+$$e^{y}=x\pm \sqrt{x^{2}+1}.$$
+<p>Since $x-\sqrt{x^{2}+1}\lt 0,$ it must be the case that $e^{y}=x+\sqrt{x^{2}+1}.$ Thus,</p>
+$$y=\ln (x+\sqrt{x^{2}+1}).$$
+<p>Last, we obtain</p>
+$${\operatorname{sinh}}^{-1}x=\ln (x+\sqrt{x^{2}+1}).$$
+<p>After we make the final observation that, since $x+\sqrt{x^{2}+1}\gt 0,$</p>
+$$\ln (x+\sqrt{x^{2}+1})=\ln |\sqrt{1+x^{2}}+x|,$$
+<p>we see that the two different methods produced equivalent solutions.</p>
+</div>
+<div class="example" id="fs-id1165040639551">
+<h3>Example 7.26 · Finding an Arc Length</h3>
+<p>Find the length of the curve <span data-fn="x^2">$y=x^{2}$</span> over the interval $[0,\frac{1}{2}].$</p>
+<h4>Solution</h4>
+<p>Because $\frac{dy}{dx}=2x,$ the <span data-concept="arc-length">arc length</span> is given by</p>
+$$\int_0^{1/2}\sqrt{1+{(2x)}^{2}}\;dx =\int_0^{1/2}\sqrt{1+4x^{2}}\;dx .$$
+<p>To evaluate this <span data-concept="indefinite-integral">integral</span>, use the substitution $x=\frac{1}{2}\tan \ktheta$ and $dx=\frac{1}{2}{\sec }^{2}\ktheta d\theta .$ We also need to change the <span data-concept="limits-of-integration">limits of integration</span>. If $x=0,$ then $\ktheta =0$ and if $x=\frac{1}{2},$ then $\ktheta =\frac{\pi}{4}.$ Thus,</p>
+<div class="equation">$$\begin{array}{rllll}\int_0^{1/2}\sqrt{1+4x^{2}}\;dx & =\int_0^{\pi /4}\sqrt{1+{\tan }^{2}\ktheta}\frac{1}{2}{\sec }^{2}\ktheta d\theta & & & \begin{array}{l}\text{After substitution,} \\ \sqrt{1+4x^{2}}=\tan \ktheta .\;\text{Substitute} \\ 1+{\tan }^{2}\ktheta ={\sec }^{2}\ktheta \;\text{and simplify.}\end{array} \\ & =\frac{1}{2}\int_0^{\pi /4}{\sec }^{3}\ktheta d\theta & & & \begin{array}{l}\text{We derived this integral in the} \\ \text{previous section.}\end{array} \\ & =\frac{1}{2}(\frac{1}{2}\sec \ktheta \;\tan \ktheta +\frac{1}{2}\ln |\sec \ktheta +\tan \ktheta |)|{}_{\begin{array}{l} \\ 0\end{array}}^{\begin{array}{l}\pi /4 \\ \end{array}} & & & \text{Evaluate and simplify.} \\ & =\frac{1}{4}(\sqrt{2}+\ln (\sqrt{2}+1)). & & & \end{array}$$<sup class="fn" data-note="c-ex726"></sup></div>
+</div>
+<div class="exercises" data-place="fs-id1165040639551"></div>
+</section>
+
+<section id="secant">
+<h2>Integrating Expressions Involving $\sqrt{x^{2}-a^{2}}$</h2>
+<p class="cite-target">The <span data-concept="domain">domain</span> of the expression $\sqrt{x^{2}-a^{2}}$ is $(-\infty ,-a]\cup [a,+\infty ).$ Thus, either $x\le -a$ or $x\ge a.$ Hence, $\frac{x}{a}\le -1$ or $\frac{x}{a}\ge 1.$ Since these intervals correspond to the <span data-concept="range">range</span> of $\sec \ktheta$ on the set $[0,\frac{\pi}{2})\cup (\frac{\pi}{2},\pi ],$ it makes sense to use the substitution $\sec \ktheta =\frac{x}{a}$ or, equivalently, $x=a\;\sec \ktheta ,$ where $0\le \ktheta \lt \frac{\pi}{2}$ or $\frac{\pi}{2}\lt \ktheta \le \pi .$ The corresponding substitution for $dx$ is $dx=a\;\sec \ktheta \;\tan \ktheta d\theta .$ The procedure for using this substitution is outlined in the following problem-solving strategy.</p>
+<div class="note" id="secant-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Integrals Involving $\sqrt{x^{2}-a^{2}}$</h3>
+<ol><li>Check to see whether the <span data-concept="indefinite-integral">integral</span> cannot be evaluated using another method. If so, we may wish to consider applying an alternative technique.</li><li>Substitute $x=a\;\sec \ktheta$ and $dx=a\;\sec \ktheta \;\tan \ktheta d\theta .$ This substitution yields</li></ol>
+$$\sqrt{x^{2}-a^{2}}=\sqrt{{(a\;\sec \ktheta )}^{2}-a^{2}}=\sqrt{a^{2}({\sec }^{2}\ktheta -1)}=\sqrt{a^{2}{\tan }^{2}\ktheta}=|a\;\tan \ktheta |.$$
+<p>For $x\ge a,$ $|a\;\tan \ktheta |=a\;\tan \ktheta$ and for $x\le -a,$ $|a\;\tan \ktheta |=-a\;\tan \ktheta .$</p>
+<ol start="3"><li>Simplify the expression.</li><li>Evaluate the <span data-concept="indefinite-integral">integral</span> using techniques from the section on <span data-concept="trigonometric-integral">trigonometric integrals</span>.</li><li>Use the <span data-concept="reference-triangle">reference triangles</span> from Figure 7.9 to rewrite the result in terms of $x.$ You may also need to use some <span data-concept="trigonometric-identity">trigonometric identities</span> and the relationship $\ktheta ={\sec }^{-1}(\frac{x}{a}).$ (<em>Note</em>: We need both <span data-concept="reference-triangle">reference triangles</span>, since the values of some of the <span data-concept="trigonometric-functions">trigonometric ratios</span> are different depending on whether $x\ge a$ or $x\le -a.)$</li></ol>
+</div>
+<figure class="sim" id="sim-triangle-secant" data-figure="7.9" data-original="/media/ch07/CNX_Calc_Figure_07_03_006.jpg" data-original-caption="Use the appropriate reference triangle to express the trigonometric functions evaluated at θ in terms of x.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.9</span><span>With $x=a\sec\ktheta,$ the hypotenuse is $|x|$ and the side along the $x$-axis is $a,$ so the third side is $\sqrt{x^{2}-a^{2}}.$ Drag $x$: for $x\ge a$ the triangle stands in the first quadrant, for $x\le -a$ in the second, where $\ktheta$ is obtuse and $\tan\ktheta$ is negative, so $\sqrt{x^{2}-a^{2}}=|a\tan\ktheta|$ is $a\tan\ktheta$ on one side and $-a\tan\ktheta$ on the other. Between $-a$ and $a$ there is no triangle.</span></div>
+</figure>
+<div class="example" id="fs-id1165041831016">
+<h3>Example 7.27 · Finding the Area of a Region</h3>
+<p>Find the <span data-concept="area-under-the-curve">area</span> of the region between the graph of <span data-fn="sqrt(x^2-9)">$\kf(x)=\sqrt{x^{2}-9}$</span> and the <em>x</em>-axis over the interval $[3,5].$</p>
+<h4>Solution</h4>
+<p>First, sketch a rough graph of the region described in the problem, as shown in the following figure.</p>
+<figure class="sim" id="sim-area-secant" data-figure="7.10" data-original="/media/ch07/CNX_Calc_Figure_07_03_007.jpg" data-original-caption="Calculating the area of the shaded region requires evaluating an integral with a trigonometric substitution.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.10</span><span>The shaded region lies under <span data-fn="sqrt(x^2-9)">$\kf(x)=\sqrt{x^{2}-9}$</span> from $3$ to $b.$ Drag $b$: the substitution $x=3\sec\ktheta$ carries the limits $3$ and $b$ to $0$ and $\sec^{-1}(b/3),$ and at $b=5$ the <span data-concept="area-under-the-curve">area</span> is the $10-\frac{9}{2}\ln 3$ of Example 7.27.</span></div>
+</figure>
+<p>We can see that the <span data-concept="area-under-the-curve">area</span> is $\kA=\int_3^{5}\sqrt{x^{2}-9}\;dx.$ To evaluate this <span data-concept="definite-integral">definite integral</span>, substitute $x=3\;\sec \ktheta$ and $dx=3\;\sec \ktheta \;\tan \ktheta d\theta .$ We must also change the <span data-concept="limits-of-integration">limits of integration</span>. If $x=3,$ then $3=3\;\sec \ktheta$ and hence $\ktheta =0.$ If $x=5,$ then $\ktheta ={\sec }^{-1}(\frac{5}{3}).$ After making these substitutions and simplifying, we have</p>
+<div class="equation">$$\begin{array}{rllll}\text{Area} & =\int_3^{5}\sqrt{x^{2}-9}\;dx & & & \\ & =\int_0^{{\sec }^{-1}(5/3)}9\;{\tan }^{2}\ktheta \;\sec \ktheta d\theta & & & \text{Use}\;{\tan }^{2}\ktheta =1-{\sec }^{2}\ktheta . \\ & =\int_0^{{\sec }^{-1}(5/3)}9({\sec }^{2}\ktheta -1)\sec \ktheta d\theta & & & \text{Expand.} \\ & =\int_0^{{\sec }^{-1}(5/3)}9({\sec }^{3}\ktheta -\sec \ktheta )d\theta & & & \text{Evaluate the integral.} \\ & =(\frac{9}{2}\ln |\sec \ktheta +\tan \ktheta |+\frac{9}{2}\sec \ktheta \;\tan \ktheta )-9\;\ln |\sec \ktheta +\tan \ktheta ||{}_{\begin{array}{l} \\ 0\end{array}}^{\begin{array}{l}{\sec }^{-1}(5/3) \\ \end{array}} & & & \text{Simplify.} \\ & =\frac{9}{2}\sec \ktheta \;\tan \ktheta -\frac{9}{2}\ln |\sec \ktheta +\tan \ktheta ||{}_{\begin{array}{l} \\ 0\end{array}}^{\begin{array}{l}{\sec }^{-1}(5/3) \\ \end{array}} & & & \begin{array}{l}\text{Evaluate. Use}\;\sec ({\sec }^{-1}\frac{5}{3})=\frac{5}{3} \\ \text{and}\;\tan ({\sec }^{-1}\frac{5}{3})=\frac{4}{3}.\end{array} \\ & =\frac{9}{2}\cdot \frac{5}{3}\cdot \frac{4}{3}-\frac{9}{2}\ln |\frac{5}{3}+\frac{4}{3}|-(\frac{9}{2}\cdot 1\cdot 0-\frac{9}{2}\ln |1+0|) & & & \\ & =10-\frac{9}{2}\ln 3. & & & \end{array}$$<sup class="fn" data-note="c-ex727"></sup></div>
+</div>
+<div class="exercises" data-place="fs-id1165041831016"></div>
+</section>

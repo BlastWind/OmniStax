@@ -1,0 +1,805 @@
+{
+ "id": "7.5",
+ "module": "m53684",
+ "chapter": "7",
+ "title": "Other Strategies for Integration",
+ "short": "Other Strategies for Integration",
+ "lead": "Besides the techniques of integration, two tools evaluate integrals: an <span data-concept=\"integration-table\">integration table</span>, used with a substitution that puts the integral into a listed form, and a <span data-concept=\"computer-algebra-system\">computer algebra system</span>. Here both are used, and answers that look different are reconciled.",
+ "objectives": [
+  "Use a table of integrals to solve integration problems.",
+  "Use a computer algebra system (CAS) to solve integration problems."
+ ],
+ "summary_html": "<ul><li>An <span data-concept=\"integration-table\">integration table</span> may be used to evaluate indefinite <span data-concept=\"indefinite-integral\">integrals</span>.</li><li>A <span data-concept=\"computer-algebra-system\">CAS</span> (or <span data-concept=\"computer-algebra-system\">computer algebra system</span>) may be used to evaluate indefinite <span data-concept=\"indefinite-integral\">integrals</span>.</li><li>It may require some effort to reconcile equivalent solutions obtained using different methods.</li></ul>",
+ "notes": "The book’s link to an online integral calculator is left out; the book’s own Integral Calculator stands in its place.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 27 even-numbered section exercises have no answer in the book’s key and are all computational, so they are left out: exercises 244–260 even (use a table), 262–272 even (use a CAS), 274, 276 and 278 (a calculator or CAS), 280–288 even (tables, after completing the square or a substitution), and 290 (a volume), 292 (a surface area), 294 (an arc length), 296 (a surface area) and 298 (an arc length). Review exercise 417 from the end of the chapter is held here; 418 and 422, unkeyed, are left out.",
+ "figures": [
+  {
+   "id": "sim-equivalent-antiderivatives",
+   "kind": "sim",
+   "number": "7.12",
+   "originals": [
+    "/media/ch07/CNX_Calc_Figure_07_05_001.jpg"
+   ],
+   "original_caption": "The graphs of y = (1/3)cos³x − cos x and y = (1/12)(cos(3x) − 9 cos x) are identical.",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "tools-intro",
+   "concept": "integration-table",
+   "verb": "introduces"
+  },
+  {
+   "span": "tools-intro",
+   "concept": "computer-algebra-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "tables",
+   "concept": "reconciling-equivalent-antiderivatives",
+   "verb": "introduces"
+  },
+  {
+   "span": "tables",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165041930726",
+   "concept": "integration-by-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165040682585",
+   "concept": "trigonometric-substitution",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1165042089942",
+   "concept": "trigonometric-identity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1165041893152",
+   "source_number": "Checkpoint 7.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1165042089942"
+   },
+   "cite": "cas",
+   "prompt": "Use a CAS to evaluate $\\int \\frac{dx}{\\sqrt{x^{2}+4}}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Possible solutions include ${\\operatorname{sinh}}^{-1}(\\frac{x}{2})+C$ and $\\ln |\\sqrt{x^{2}+4}+x|+C.$",
+    "hint": "Answers may vary."
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1165042066444",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use a table of integrals to evaluate the following integrals.</p><p>$\\int \\frac{x+3}{x^{2}+2x+2}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}\\ln |x^{2}+2x+2|+2\\;\\operatorname{arctan}(x+1)+C$"
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1165040797018",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use a table of integrals to evaluate the following integrals.</p><p>$\\int \\frac{1}{\\sqrt{x^{2}+6x}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "${\\operatorname{cosh}}^{-1}(\\frac{x+3}{3})+C$"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1165042281143",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use a table of integrals to evaluate the following integrals.</p><p>$\\int x\\cdot 2^{x^{2}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{2^{x^{2}-1}}{\\ln 2}+C$"
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1165041818478",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use a table of integrals to evaluate the following integrals.</p><p>$\\int \\frac{dy}{\\sqrt{4-y^{2}}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\operatorname{arcsin}(\\frac{y}{2})+C$"
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1165041838330",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use a table of integrals to evaluate the following integrals.</p><p>$\\int \\csc (2w)\\cot (2w)dw$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{2}\\csc (2w)+C$"
+   }
+  },
+  {
+   "id": "e255",
+   "source_id": "fs-id1165040682461",
+   "source_number": "255",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use a table of integrals to evaluate the following integrals.</p><p>$\\int_0^{1}\\frac{3x\\;dx}{\\sqrt{x^{2}+8}}$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5147186257614287,
+    "tol": 0.001,
+    "solution": "$9-6\\sqrt{2}$"
+   }
+  },
+  {
+   "id": "e257",
+   "source_id": "fs-id1165041893186",
+   "source_number": "257",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use a table of integrals to evaluate the following integrals.</p><p>$\\int_0^{\\pi /2}{\\tan }^{2}(\\frac{x}{2})dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.42920367320510344,
+    "tol": 0.001,
+    "solution": "$2-\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e259",
+   "source_id": "fs-id1165041795957",
+   "source_number": "259",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use a table of integrals to evaluate the following integrals.</p><p>$\\int {\\tan }^{5}(3x)dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{12}{\\tan }^{4}(3x)-\\frac{1}{6}{\\tan }^{2}(3x)+\\frac{1}{3}\\ln |\\sec (3x)|+C$"
+   }
+  },
+  {
+   "id": "e261",
+   "source_id": "fs-id1165042033160",
+   "source_number": "261",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>Use a CAS to evaluate the following integrals. Tables can also be used to verify the answers.</p><p><strong>[T]</strong> $\\int \\frac{dw}{1+\\sec (\\frac{w}{2})}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\;\\cot (\\frac{w}{2})-2\\;\\csc (\\frac{w}{2})+w+C$"
+   }
+  },
+  {
+   "id": "e263",
+   "source_id": "fs-id1165041805666",
+   "source_number": "263",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>Use a CAS to evaluate the following integrals. Tables can also be used to verify the answers.</p><p><strong>[T]</strong> $\\int_0^{t}\\frac{dt}{4\\;\\cos t+3\\;\\sin t}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{5}\\ln |\\frac{2(5+4\\;\\sin t-3\\;\\cos t)}{4\\;\\cos t+3\\;\\sin t}|$"
+   }
+  },
+  {
+   "id": "e265",
+   "source_id": "fs-id1165042088563",
+   "source_number": "265",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>Use a CAS to evaluate the following integrals. Tables can also be used to verify the answers.</p><p><strong>[T]</strong> $\\int \\frac{dx}{x^{1/2}+x^{1/3}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$6x^{1/6}-3x^{1/3}+2\\sqrt{x}-6\\;\\ln [1+x^{1/6}]+C$"
+   }
+  },
+  {
+   "id": "e267",
+   "source_id": "fs-id1165042303689",
+   "source_number": "267",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>Use a CAS to evaluate the following integrals. Tables can also be used to verify the answers.</p><p><strong>[T]</strong> $\\int x^{3}\\sin x\\;dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-x^{3}\\cos x+3x^{2}\\sin x+6x\\;\\cos x-6\\;\\sin x+C$"
+   }
+  },
+  {
+   "id": "e269",
+   "source_id": "fs-id1165042295836",
+   "source_number": "269",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>Use a CAS to evaluate the following integrals. Tables can also be used to verify the answers.</p><p><strong>[T]</strong> $\\int \\frac{x}{1+e^{-x^{2}}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}(x^{2}+\\ln |1+e^{-x^{2}}|)+C$"
+   }
+  },
+  {
+   "id": "e271",
+   "source_id": "fs-id1165040758316",
+   "source_number": "271",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>Use a CAS to evaluate the following integrals. Tables can also be used to verify the answers.</p><p><strong>[T]</strong> $\\int \\frac{dx}{x\\sqrt{x-1}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2\\;\\operatorname{arctan}(\\sqrt{x-1})+C$"
+   }
+  },
+  {
+   "id": "e273",
+   "source_id": "fs-id1165042083447",
+   "source_number": "273",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>Use a calculator or CAS to evaluate the following integrals.</p><p><strong>[T]</strong> $\\int_0^{\\pi /4}\\cos (2x)dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.5,
+    "tol": 0.001,
+    "solution": "$0.5=\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e275",
+   "source_id": "fs-id1165042231112",
+   "source_number": "275",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>Use a calculator or CAS to evaluate the following integrals.</p><p><strong>[T]</strong> $\\int_0^{8}\\frac{2x}{\\sqrt{x^{2}+36}}dx$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.0,
+    "tol": 0.001,
+    "solution": "8.0"
+   }
+  },
+  {
+   "id": "e277",
+   "source_id": "fs-id1165042281590",
+   "source_number": "277",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>Use a calculator or CAS to evaluate the following integrals.</p><p><strong>[T]</strong> $\\int \\frac{dx}{x^{2}+4x+13}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}\\operatorname{arctan}(\\frac{1}{3}(x+2))+C$"
+   }
+  },
+  {
+   "id": "e279",
+   "source_id": "fs-id1165042071606",
+   "source_number": "279",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use tables to evaluate the integrals. You may need to complete the square or change variables to put the integral into a form given in the table.</p><p>$\\int \\frac{dx}{x^{2}+2x+10}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}\\operatorname{arctan}(\\frac{x+1}{3})+C$"
+   }
+  },
+  {
+   "id": "e281",
+   "source_id": "fs-id1165041908101",
+   "source_number": "281",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use tables to evaluate the integrals. You may need to complete the square or change variables to put the integral into a form given in the table.</p><p>$\\int \\frac{e^{x}}{\\sqrt{e^{2x}-4}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln (e^{x}+\\sqrt{–4+e^{2x}})+C$"
+   }
+  },
+  {
+   "id": "e283",
+   "source_id": "fs-id1165040796026",
+   "source_number": "283",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use tables to evaluate the integrals. You may need to complete the square or change variables to put the integral into a form given in the table.</p><p>$\\int \\frac{\\operatorname{arctan}(x^{3})}{x^{4}}dx$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln x-\\frac{1}{6}\\ln (x^{6}+1)-\\frac{\\operatorname{arctan}(x^{3})}{3x^{3}}+C$"
+   }
+  },
+  {
+   "id": "e285",
+   "source_id": "fs-id1165042066364",
+   "source_number": "285",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use tables to perform the integration.</p><p>$\\int \\frac{dx}{\\sqrt{x^{2}+16}}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ln |x+\\sqrt{16+x^{2}}|+C$"
+   }
+  },
+  {
+   "id": "e287",
+   "source_id": "fs-id1165042063055",
+   "source_number": "287",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use tables to perform the integration.</p><p>$\\int \\frac{dx}{1-\\cos (4x)}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{1}{4}\\cot (2x)+C$"
+   }
+  },
+  {
+   "id": "e289",
+   "source_id": "fs-id1165040796057",
+   "source_number": "289",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Find the area bounded by $y=\\frac{5}{4+25x^{2}},x=0,y=0,\\text{and}\\;x=4.$ Use a table of integrals or a CAS.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.7355638371518674,
+    "tol": 0.001,
+    "solution": "$\\frac{1}{2}\\operatorname{arctan}\\;10$"
+   }
+  },
+  {
+   "id": "e291",
+   "source_id": "fs-id1165040757800",
+   "source_number": "291",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Use substitution and a table of integrals to find the area of the surface generated by revolving the curve $y=e^{x},0\\le x\\le 3,$ about the <em>x</em>-axis. (Round the answer to two decimal places.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1276.14,
+    "tol": 0.003,
+    "solution": "1276.14<sup class=\"fn\" data-note=\"c-e291-value\"></sup>"
+   }
+  },
+  {
+   "id": "e293",
+   "source_id": "fs-id1165042107572",
+   "source_number": "293",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p><strong>[T]</strong> Use a CAS or tables to find the area of the surface generated by revolving the curve $y=\\cos x,0\\le x\\le \\frac{\\pi}{2},$ about the <em>x</em>-axis. (Round the answer to two decimal places.)</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.21,
+    "tol": 0.002,
+    "solution": "7.21"
+   }
+  },
+  {
+   "id": "e295",
+   "source_id": "fs-id1165041921707",
+   "source_number": "295",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Find the length of the curve $y=e^{x}$ over $[0,\\ln (2)].$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.222016177086634,
+    "tol": 0.001,
+    "solution": "$\\sqrt{5}-\\sqrt{2}+\\ln |\\frac{2+2\\sqrt{2}}{1+\\sqrt{5}}|$"
+   }
+  },
+  {
+   "id": "e297",
+   "source_id": "fs-id1165042238064",
+   "source_number": "297",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tables",
+   "prompt": "<p>Find the average value of the function $f(x)=\\frac{1}{x^{2}+1}$ over the interval $[-3,3].$</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.41634859079941816,
+    "tol": 0.002,
+    "solution": "$\\frac{1}{3}\\operatorname{arctan}(3)\\approx 0.416$"
+   }
+  },
+  {
+   "id": "r417",
+   "source_id": "fs-id1165042648934",
+   "source_section": "7.7",
+   "source_number": "417",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cas",
+   "prompt": "<p>For the following exercises, evaluate the integral using the specified method.</p><p>$\\int \\frac{\\sqrt{4-{\\sin }^{2}(x)}}{{\\sin }^{2}(x)}\\cos (x)dx$ using a table of integrals or a CAS</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$-\\frac{\\sqrt{4-{\\sin }^{2}(x)}}{\\sin (x)}-\\frac{x}{2}+C$<sup class=\"fn\" data-note=\"c-r417-key\"></sup>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "reconciling-equivalent-antiderivatives"
+  },
+  {
+   "exercise": "e245",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e247",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e249",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e249",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e251",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e253",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e255",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e255",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e257",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e257",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e259",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e259",
+   "concept": "power-reduction-formulas"
+  },
+  {
+   "exercise": "e261",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e263",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e265",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e267",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e269",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e271",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e273",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e273",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e275",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e275",
+   "concept": "definite-integral"
+  },
+  {
+   "exercise": "e277",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e279",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e281",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e281",
+   "concept": "integration-by-substitution"
+  },
+  {
+   "exercise": "e283",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e285",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e287",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e289",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e289",
+   "concept": "area-under-the-curve"
+  },
+  {
+   "exercise": "e291",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e291",
+   "concept": "surface-area-of-a-surface-of-revolution"
+  },
+  {
+   "exercise": "e293",
+   "concept": "computer-algebra-system"
+  },
+  {
+   "exercise": "e293",
+   "concept": "surface-area-of-a-surface-of-revolution"
+  },
+  {
+   "exercise": "e295",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e295",
+   "concept": "arc-length-of-a-function-of-x"
+  },
+  {
+   "exercise": "e297",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "e297",
+   "concept": "average-value-of-a-function"
+  },
+  {
+   "exercise": "r417",
+   "concept": "integration-table"
+  },
+  {
+   "exercise": "r417",
+   "concept": "computer-algebra-system"
+  }
+ ],
+ "referents": [
+  {
+   "id": "antiderivative-hand",
+   "label": "the antiderivative found by hand",
+   "figures": [
+    "sim-equivalent-antiderivatives"
+   ]
+  },
+  {
+   "id": "antiderivative-cas",
+   "label": "the antiderivative a CAS gives",
+   "figures": [
+    "sim-equivalent-antiderivatives"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-r417-key",
+   "kind": "correction",
+   "html": "The key’s last term $-\\frac{x}{2}$ should be $-{\\sin }^{-1}(\\frac{\\sin x}{2}):$ with $u=\\sin x,$ the integral is $\\int \\frac{\\sqrt{4-u^{2}}}{u^{2}}du=-\\frac{\\sqrt{4-u^{2}}}{u}-{\\sin }^{-1}\\frac{u}{2}+C,$ formula 88 of the table with $a=2.$"
+  },
+  {
+   "id": "c-e291-value",
+   "kind": "correction",
+   "html": "The key prints 1276.14; the area is $2\\pi\\int_0^{3}e^{x}\\sqrt{1+e^{2x}}\\,dx=\\pi\\left[u\\sqrt{1+u^{2}}+\\ln(u+\\sqrt{1+u^{2}})\\right]_{1}^{e^{3}}\\approx 1273.37.$"
+  }
+ ]
+}

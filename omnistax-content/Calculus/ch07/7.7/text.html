@@ -1,0 +1,206 @@
+<p>Is the <span data-concept="area-under-the-curve">area</span> between the graph of $\kf(x)=\frac{1}{x}$ and the <em>x</em>-axis over the interval $[1,+\infty )$ finite or infinite? If this same region is revolved about the <em>x</em>-axis, is the volume finite or infinite? Surprisingly, the <span data-concept="area-under-the-curve">area</span> of the region described is infinite, but the volume of the solid obtained by revolving this region about the <em>x</em>-axis is finite.</p>
+<p>In this section, we define <span data-concept="definite-integral">integrals</span> over an infinite interval as well as <span data-concept="definite-integral">integrals</span> of functions containing a discontinuity on the interval. <span data-concept="definite-integral">Integrals</span> of these types are called <span data-concept="improper-integral">improper integrals</span>. We examine several techniques for evaluating <span data-concept="improper-integral">improper integrals</span>, all of which involve taking limits.</p>
+
+<section id="infinite">
+<h2>Integrating over an Infinite Interval</h2>
+<p class="cite-target">How should we go about defining an <span data-concept="definite-integral">integral</span> of the type $\int_a^{+\infty}\kf(x)dx ?$ We can integrate $\int_a^{t}\kf(x)dx$ for any value of $t,$ so it is reasonable to look at the behavior of this <span data-concept="definite-integral">integral</span> as we substitute larger values of $t.$ Figure 7.17 shows that $\int_a^{t}\kf(x)dx$ may be interpreted as <span data-concept="area-under-the-curve">area</span> for various values of $t.$ In other words, we may define an <span data-concept="improper-integral">improper integral</span> as a limit, taken as one of the limits of integration increases or decreases without bound.</p>
+<figure class="sim" id="sim-improper-infinite" data-figure="7.17" data-original="/media/ch07/CNX_Calc_Figure_07_07_001.jpg" data-original-caption="To integrate a function over an infinite interval, we consider the limit of the integral as the upper limit increases without bound.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.17</span><span>The area under <span data-fn="1/x^2">$\kf(x)=\frac{1}{x^{2}}$</span> from $a=1$ to $t$ is $\int_1^{t}\kf(x)dx=1-\frac{1}{t}.$ Drag $t$ to the right: the region widens without end, but the bar of its <span data-concept="area-under-the-curve">area</span> rises toward the dashed line at $1$ and never passes it, so the <span data-concept="improper-integral">improper integral</span> $\int_1^{+\infty}\kf(x)dx$ is the limit, $1.$</span></div>
+</figure>
+<div class="note" id="infinite-definition">
+<div class="eyebrow">Definition</div>
+<ol><li>Let $\kf(x)$ be continuous over an interval of the form $[a,+\infty ).$ Then</li></ol>
+<div class="equation" id="fs-id1165043372378">$$\int_a^{+\infty}\kf(x)dx=\lim_{t\to +\infty}\int_a^{t}\kf(x)dx,\tag{7.16}$$</div>
+<p>provided this limit exists.</p>
+<ol start="2"><li>Let $\kf(x)$ be continuous over an interval of the form $(-\infty ,b].$ Then</li></ol>
+<div class="equation" id="fs-id1165043086270">$$\int_{-\infty}^{b}\kf(x)dx=\lim_{t\to -\infty}\int_t^{b}\kf(x)dx,\tag{7.17}$$</div>
+<p>provided this limit exists.</p>
+<p>In each case, if the limit exists, then the <strong><span data-concept="improper-integral">improper integral</span></strong> is said to converge. If the limit does not exist, then the <span data-concept="improper-integral">improper integral</span> is said to diverge.</p>
+<ol start="3"><li>Let $\kf(x)$ be continuous over $(-\infty ,+\infty ).$ Then</li></ol>
+<div class="equation" id="fs-id1165042478832">$$\int_{-\infty}^{+\infty}\kf(x)dx=\int_{-\infty}^{0}\kf(x)dx+\int_0^{+\infty}\kf(x)dx,\tag{7.18}$$</div>
+<p>provided that $\int_{-\infty}^{0}\kf(x)dx$ and $\int_0^{+\infty}\kf(x)dx$ both converge. If either one or both of these two <span data-concept="definite-integral">integrals</span> diverge, then $\int_{-\infty}^{+\infty}\kf(x)dx$ diverges. (It can be shown that, in fact, $\int_{-\infty}^{+\infty}\kf(x)dx=\int_{-\infty}^{a}\kf(x)dx+\int_a^{+\infty}\kf(x)dx$ for any value of $a.)$</p>
+</div>
+<p>In our first example, we return to the question we posed at the start of this section: Is the <span data-concept="area-under-the-curve">area</span> between the graph of $\kf(x)=\frac{1}{x}$ and the $x$-axis over the interval $[1,+\infty )$ finite or infinite?</p>
+<div class="example" id="fs-id1165043428127">
+<h3>Example 7.47 · Finding an Area</h3>
+<p>Determine whether the <span data-concept="area-under-the-curve">area</span> between the graph of $\kf(x)=\frac{1}{x}$ and the <em>x</em>-axis over the interval $[1,+\infty )$ is finite or infinite.</p>
+<h4>Solution</h4>
+<p>We first do a quick sketch of the region in question, as shown in the following graph.</p>
+<figure class="sim" id="sim-area-reciprocal" data-figure="7.18" data-original="/media/ch07/CNX_Calc_Figure_07_07_002.jpg" data-original-caption="We can find the area between the curve f(x)=1/x and the x-axis on an infinite interval.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.18</span><span>The area under <span data-fn="1/x">$\kf(x)=\frac{1}{x}$</span> from $1$ to $t$ is $\ln t.$ Drag $t$: the curve sinks toward the axis, yet the bar of the area keeps climbing past every level, so the area over $[1,+\infty)$ is infinite.</span></div>
+</figure>
+<p>We can see that the <span data-concept="area-under-the-curve">area</span> of this region is given by $\kA=\int_1^{\infty}\frac{1}{x}dx .$ Then we have</p>
+$$\begin{array}{rllll}A & =\int_1^{\infty}\frac{1}{x}dx & & & \\ & =\lim_{t\to +\infty}\int_1^{t}\frac{1}{x}dx & & & \text{Rewrite the improper integral as a limit.} \\ & =\lim_{t\to +\infty}\ln |x||{}_{\begin{array}{l} \\ 1\end{array}}^{\begin{array}{l}t \\ \end{array}} & & & \text{Find the antiderivative.} \\ & =\lim_{t\to +\infty}(\ln |t|-\ln 1) & & & \text{Evaluate the antiderivative.} \\ & =+\infty . & & & \text{Evaluate the limit.}\end{array}$$
+<p>Since the <span data-concept="improper-integral">improper integral</span> diverges to $+\infty ,$ the <span data-concept="area-under-the-curve">area</span> of the region is infinite.</p>
+</div>
+<div class="example" id="fs-id1165042988868">
+<h3>Example 7.48 · Finding a Volume</h3>
+<p>Find the volume of the solid obtained by revolving the region bounded by the graph of $\kf(x)=\frac{1}{x}$ and the <em>x</em>-axis over the interval $[1,+\infty )$ about the $x$-axis.</p>
+<h4>Solution</h4>
+<p>The solid is shown in Figure 7.19. Using the <span data-concept="disk-method">disk method</span>, we see that the volume <em>V</em> is</p>
+$$\kV=\pi \int_1^{+\infty}\frac{1}{x^{2}}dx .$$
+<figure class="sim" id="sim-gabriels-horn" data-figure="7.19" data-original="/media/ch07/CNX_Calc_Figure_07_07_003.jpg" data-original-caption="The solid of revolution can be generated by rotating an infinite area about the x-axis.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.19</span><span>The region under <span data-fn="1/x">$\kf(x)=\frac{1}{x}$</span> from $1$ to $t,$ revolved about the $x$-axis. Drag $t$ to lengthen the horn and turn it: its volume $\pi(1-\frac{1}{t})$ closes on $\pi$ while the area of the region it is made from, $\ln t,$ grows without bound.</span></div>
+</figure>
+<p>Then we have</p>
+$$\begin{array}{rllll}V & =\pi \int_1^{+\infty}\frac{1}{x^{2}}dx & & & \\ & =\pi \lim_{t\to +\infty}\int_1^{t}\frac{1}{x^{2}}dx & & & \text{Rewrite as a limit.} \\ & =\pi \lim_{t\to +\infty}-\frac{1}{x}|{}_{\begin{array}{l} \\ 1\end{array}}^{\begin{array}{l}t \\ \end{array}} & & & \text{Find the antiderivative.} \\ & =\pi \lim_{t\to +\infty}(-\;\frac{1}{t}+1) & & & \text{Evaluate the antiderivative.} \\ & =\pi . & & & \end{array}$$
+<p>The <span data-concept="improper-integral">improper integral</span> converges to $\pi .$ Therefore, the volume of the <span data-concept="solid-of-revolution">solid of revolution</span> is $\pi .$</p>
+</div>
+<p id="gabriels-horn">In conclusion, although the <span data-concept="area-under-the-curve">area</span> of the region between the <em>x</em>-axis and the graph of $\kf(x)=1/x$ over the interval $[1,+\infty )$ is infinite, the volume of the solid generated by revolving this region about the <em>x</em>-axis is finite. The solid generated is known as <em><span data-concept="gabriels-horn">Gabriel’s Horn</span></em>.</p>
+<div class="example" id="fs-id1165043021843">
+<h3>Example 7.49 · Chapter Opener: Traffic Accidents in a City</h3>
+<figure class="photo" id="fig-intersection-again" data-figure="7.20">
+  <img src="/media/ch07/CNX_Calc_Figure_07_07_006.jpg" alt="A city street with a traffic signal and very busy lanes of traffic in both directions.">
+  <figcaption><span class="eyebrow">Figure 7.20</span><span>(credit: modification of work by David McKelvey, Flickr)</span></figcaption>
+</figure>
+<p>In the chapter opener, we stated the following problem: Suppose that at a busy intersection, traffic accidents occur at an average rate of one every three months. After residents complained, changes were made to the traffic lights at the intersection. It has now been ten months since the changes were made and there have been no accidents. Were the changes effective or is the 10-month interval without an accident a result of chance?</p>
+<h4>Solution</h4>
+<p>Revise to:<sup class="fn" data-note="c-ex749-revise"></sup> Let $x$ represent the amount of time it takes for the next accident to occur. We want to know how likely it is that $x\gt 10$.  Define the rate parameter $\lambda$ to be the average number of accidents per month. According to probability theory, for $a\gt 0$,</p>
+$$P(x\gt a)=\int_a^{\infty}\lambda e^{-\lambda x} dx,$$
+<p>In this example, since one accident happens every three months, on average, $\lambda =\frac{1}{3}$. The desired probability is:</p>
+$$\begin{array}{l}P(x\gt 10)=\int_{10}^{\infty} \frac{1}{3}e^{-\frac{1}{3}x}dx \\ =\underset{t\to \infty}{lim}\int_{10}^{t} \frac{1}{3}e^{-\frac{1}{3}x}dx \\ =\underset{t\to \infty}{lim}-e^{-\frac{1}{3}x}{|}_{10}^{t} \\ =\underset{t\to \infty}{lim}(-e^{-\frac{t}{3}}+e^{-\frac{10}{3}}) \\ \approx 0.0357\end{array}$$
+<p>The value $3.8\;\times \;{10}^{-11}$ represents the probability of no accidents in 8 months under the initial conditions.<sup class="fn" data-note="c-ex749-value"></sup> Since this value is very, very small, it is reasonable to conclude the changes were effective.</p>
+</div>
+<div class="example" id="fs-id1165042804162">
+<h3>Example 7.50 · Evaluating an Improper Integral over an Infinite Interval</h3>
+<p>Evaluate $\int_{-\infty}^{0}\frac{1}{x^{2}+4}dx .$ State whether the <span data-concept="improper-integral">improper integral</span> converges or diverges.</p>
+<h4>Solution</h4>
+<p>Begin by rewriting $\int_{-\infty}^{0}\frac{1}{x^{2}+4}dx$ as a limit using <a href="#fs-id1165043086270">Equation 7.17</a> from the definition. Thus,</p>
+<div class="equation">$$\begin{array}{rllll}\int_{-\infty}^{0}\frac{1}{x^{2}+4}dx & =\lim_{x\to -\infty}\int_t^{0}\frac{1}{x^{2}+4}dx & & & \text{Rewrite as a limit.} \\ & =\lim_{t\to -\infty}\frac{1}{2}{\tan }^{-1}\frac{x}{2}|{}_{\begin{array}{l} \\ t\end{array}}^{\begin{array}{l}0 \\ \end{array}} & & & \text{Find the antiderivative.} \\ & =\frac{1}{2}\lim_{t\to -\infty}({\tan }^{-1}0-{\tan }^{-1}\frac{t}{2}) & & & \text{Evaluate the antiderivative.} \\ & =\frac{\pi}{4}. & & & \text{Evaluate the limit and simplify.}\end{array}$$<sup class="fn" data-note="c-ex750-limit"></sup></div>
+<p>The <span data-concept="improper-integral">improper integral</span> converges to $\frac{\pi}{4}.$</p>
+</div>
+<div class="example" id="fs-id1165042508139">
+<h3>Example 7.51 · Evaluating an Improper Integral on $(-\infty ,+\infty )$</h3>
+<p>Evaluate $\int_{-\infty}^{+\infty}xe^{x}dx .$ State whether the <span data-concept="improper-integral">improper integral</span> converges or diverges.</p>
+<h4>Solution</h4>
+<p>Start by splitting up the <span data-concept="definite-integral">integral</span>:</p>
+$$\int_{-\infty}^{+\infty}xe^{x}dx=\int_{-\infty}^{0}xe^{x}dx+\int_0^{+\infty}xe^{x}dx .$$
+<p>If either $\int_{-\infty}^{0}xe^{x}dx$ or $\int_0^{+\infty}xe^{x}dx$ diverges, then $\int_{-\infty}^{+\infty}xe^{x}dx$ diverges. Compute each <span data-concept="definite-integral">integral</span> separately. For the first <span data-concept="definite-integral">integral</span>,</p>
+$$\begin{array}{rllll}\int_{-\infty}^{0}xe^{x}dx & =\lim_{t\to -\infty}\int_t^{0}xe^{x}dx & & & \text{Rewrite as a limit.} \\ & =\lim_{t\to -\infty}(xe^{x}-e^{x})|{}_{\begin{array}{l} \\ t\end{array}}^{\begin{array}{l}0 \\ \end{array}} & & & \begin{array}{l}\text{Use integration by parts to find the} \\ \text{antiderivative. (Here}\;u=x\;\text{and}\;dv=e^{x}dx.)\end{array} \\ & =\lim_{t\to -\infty}(-1-te^{t}+e^{t}) & & & \text{Evaluate the antiderivative.} \\ & =-1. & & & \begin{array}{l}\text{Evaluate the limit.}\;\text{Note:}\;\lim_{t\to -\infty}te^{t}\;\text{is} \\ \text{indeterminate of the form}\;0\cdot \infty .\;\text{Thus,} \\ \lim_{t\to -\infty}te^{t}=\lim_{t\to -\infty}\frac{t}{e^{-t}}=\lim_{t\to -\infty}\frac{-1}{e^{-t}}=\lim_{t\to -\infty}-e^{t}=0\;\text{by} \\ \text{L’Hôpital’s Rule.}\end{array}\end{array}$$
+<p>The first <span data-concept="improper-integral">improper integral</span> converges. For the second <span data-concept="definite-integral">integral</span>,</p>
+$$\begin{array}{rllll}\int_0^{+\infty}xe^{x}dx & =\lim_{t\to +\infty}\int_0^{t}xe^{x}dx & & & \text{Rewrite as a limit.} \\ & =\lim_{t\to +\infty}(xe^{x}-e^{x})|{}_{\begin{array}{l} \\ 0\end{array}}^{\begin{array}{l}t \\ \end{array}} & & & \text{Find the antiderivative.} \\ & =\lim_{t\to +\infty}(te^{t}-e^{t}+1) & & & \text{Evaluate the antiderivative.} \\ & =\lim_{t\to +\infty}((t-1)e^{t}+1) & & & \text{Rewrite.}\;(te^{t}-e^{t}\;\text{is indeterminate.)} \\ & =+\infty . & & & \text{Evaluate the limit.}\end{array}$$
+<p>Thus, $\int_0^{+\infty}xe^{x}dx$ diverges. Since this <span data-concept="definite-integral">integral</span> diverges, $\int_{-\infty}^{+\infty}xe^{x}dx$ diverges as well.</p>
+</div>
+<div class="exercises" data-place="fs-id1165042508139"></div>
+</section>
+
+<section id="discontinuous">
+<h2>Integrating a Discontinuous Integrand</h2>
+<p class="cite-target">Now let’s examine <span data-concept="definite-integral">integrals</span> of functions containing an <span data-concept="infinite-discontinuity">infinite discontinuity</span> in the interval over which the integration occurs. Consider an <span data-concept="definite-integral">integral</span> of the form $\int_a^{b}\kf(x)dx,$ where $\kf(x)$ is continuous over $[a,b)$ and discontinuous at $b.$ Since the function $\kf(x)$ is continuous over $[a,t]$ for all values of $t$ satisfying $a\lt t\lt b,$ the <span data-concept="definite-integral">integral</span> $\int_a^{t}\kf(x)dx$ is defined for all such values of $t.$ Thus, it makes sense to consider the values of $\int_a^{t}\kf(x)dx$ as $t$ approaches $b$ for $a\lt t\lt b.$ That is, we define $\int_a^{b}\kf(x)dx=\lim_{t\to b^{-}}\int_a^{t}\kf(x)dx ,$ provided this limit exists. Figure 7.21 illustrates $\int_a^{t}\kf(x)dx$ as areas of regions for values of $t$ approaching $b.$</p>
+<figure class="sim" id="sim-improper-discontinuous" data-figure="7.21" data-original="/media/ch07/CNX_Calc_Figure_07_07_004.jpg" data-original-caption="As t approaches b from the left, the value of the area from a to t approaches the area from a to b.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.21</span><span>The integrand rises to a vertical asymptote at $x=b=4.$ Drag $t$ toward $b$ from the left and choose the function: under <span data-fn="1/sqrt(4-x)">$\frac{1}{\sqrt{4-x}}$</span> the area from $0$ to $t$ approaches $4,$ the value of Example 7.52, and under <span data-fn="1/(4-x)">$\frac{1}{4-x}$</span> it grows without bound.</span></div>
+</figure>
+<p>We use a similar approach to define $\int_a^{b}\kf(x)dx,$ where $\kf(x)$ is continuous over $(a,b]$ and discontinuous at $a.$ We now proceed with a formal definition.</p>
+<div class="note" id="discontinuous-definition">
+<div class="eyebrow">Definition</div>
+<ol><li>Let $\kf(x)$ be continuous over $[a,b).$ Then,</li></ol>
+<div class="equation" id="fs-id1165042617693">$$\int_a^{b}\kf(x)dx=\lim_{t\to b^{-}}\int_a^{t}\kf(x)dx .\tag{7.19}$$</div>
+<ol start="2"><li>Let $\kf(x)$ be continuous over $(a,b].$ Then,</li></ol>
+<div class="equation" id="fs-id1165042506827">$$\int_a^{b}\kf(x)dx=\lim_{t\to a^{+}}\int_t^{b}\kf(x)dx .\tag{7.20}$$</div>
+<p>In each case, if the limit exists, then the <span data-concept="improper-integral">improper integral</span> is said to converge. If the limit does not exist, then the <span data-concept="improper-integral">improper integral</span> is said to diverge.</p>
+<ol start="3"><li>If $\kf(x)$ is continuous over $[a,b]$ except at a point $c$ in $(a,b),$ then</li></ol>
+<div class="equation" id="fs-id1165043378015">$$\int_a^{b}\kf(x)dx=\int_a^{c}\kf(x)dx+\int_c^{b}\kf(x)dx,\tag{7.21}$$</div>
+<p>provided both $\int_a^{c}\kf(x)dx$ and $\int_c^{b}\kf(x)dx$ converge. If either of these <span data-concept="definite-integral">integrals</span> diverges, then $\int_a^{b}\kf(x)dx$ diverges.</p>
+</div>
+<p>The following examples demonstrate the application of this definition.</p>
+<div class="example" id="fs-id1165043257650">
+<h3>Example 7.52 · Integrating a Discontinuous Integrand</h3>
+<p>Evaluate $\int_0^{4}\frac{1}{\sqrt{4-x}}dx ,$ if possible. State whether the <span data-concept="definite-integral">integral</span> converges or diverges.</p>
+<h4>Solution</h4>
+<p>The function $\kf(x)=\frac{1}{\sqrt{4-x}}$ is continuous over $[0,4)$ and discontinuous at 4. Using <a href="#fs-id1165042617693">Equation 7.19</a> from the definition, rewrite $\int_0^{4}\frac{1}{\sqrt{4-x}}dx$ as a limit:</p>
+$$\begin{array}{rllll}\int_0^{4}\frac{1}{\sqrt{4-x}}dx & =\lim_{t\to 4^{-}}\int_0^{t}\frac{1}{\sqrt{4-x}}dx & & & \text{Rewrite as a limit.} \\ & =\lim_{t\to 4^{-}}(-2\sqrt{4-x})|{}_{\begin{array}{l} \\ 0\end{array}}^{\begin{array}{l}t \\ \end{array}} & & & \text{Find the antiderivative.} \\ & =\lim_{t\to 4^{-}}(-2\sqrt{4-t}+4) & & & \text{Evaluate the antiderivative.} \\ & =4. & & & \text{Evaluate the limit.}\end{array}$$
+<p>The <span data-concept="improper-integral">improper integral</span> converges.</p>
+</div>
+<div class="example" id="fs-id1165043173678">
+<h3>Example 7.53 · Integrating a Discontinuous Integrand</h3>
+<p>Evaluate $\int_0^{2}x\;\ln x\;dx .$ State whether the <span data-concept="definite-integral">integral</span> converges or diverges.</p>
+<h4>Solution</h4>
+<p>Since $\kf(x)=x\;\ln x$ is continuous over $(0,2]$ and is discontinuous at zero, we can rewrite the <span data-concept="definite-integral">integral</span> in limit form using <a href="#fs-id1165042506827">Equation 7.20</a>:</p>
+$$\begin{array}{rllll}\int_0^{2}x\;\ln x\;dx & =\lim_{t\to 0^{+}}\int_t^{2}x\;\ln x\;dx & & & \text{Rewrite as a limit.} \\ & =\lim_{t\to 0^{+}}(\frac{1}{2}x^{2}\ln x-\frac{1}{4}x^{2})|{}_{\begin{array}{l} \\ t\end{array}}^{\begin{array}{l}2 \\ \end{array}} & & & \begin{array}{l}\text{Evaluate}\;\int x\;\ln x\;dx\;\text{using integration by parts} \\ \text{with}\;u=\ln x\;\text{and}\;dv=xdx.\end{array} \\ & =\lim_{t\to 0^{+}}(2\;\ln 2-1-\frac{1}{2}t^{2}\ln t+\frac{1}{4}t^{2}). & & & \text{Evaluate the antiderivative.} \\ & =2\;\ln 2-1. & & & \begin{array}{l}\text{Evaluate the limit.}\;\lim_{t\to 0^{+}}t^{2}\ln t\;\text{is indeterminate.} \\ \text{To evaluate it, rewrite as a quotient and apply} \\ \text{L’Hôpital’s rule.}\end{array}\end{array}$$
+<p>The <span data-concept="improper-integral">improper integral</span> converges.</p>
+</div>
+<div class="example" id="fs-id1165043423550">
+<h3>Example 7.54 · Integrating a Discontinuous Integrand</h3>
+<p>Evaluate $\int_{-1}^{1}\frac{1}{x^{3}}dx .$ State whether the <span data-concept="improper-integral">improper integral</span> converges or diverges.</p>
+<h4>Solution</h4>
+<p>Since $\kf(x)=1/x^{3}$ is discontinuous at zero, using <a href="#fs-id1165043378015">Equation 7.21</a>, we can write</p>
+$$\int_{-1}^{1}\frac{1}{x^{3}}dx=\int_{-1}^{0}\frac{1}{x^{3}}dx+\int_0^{1}\frac{1}{x^{3}}dx .$$
+<p>If either of the two <span data-concept="definite-integral">integrals</span> diverges, then the original <span data-concept="definite-integral">integral</span> diverges. Begin with $\int_{-1}^{0}\frac{1}{x^{3}}dx :$</p>
+$$\begin{array}{rllll}\int_{-1}^{0}\frac{1}{x^{3}}dx & =\lim_{t\to 0^{-}}\int_{-1}^{t}\frac{1}{x^{3}}dx & & & \text{Rewrite as a limit.} \\ & =\lim_{t\to 0^{-}}(-\frac{1}{2x^{2}})|{}_{\begin{array}{l} \\ -1\end{array}}^{\begin{array}{l}t \\ \end{array}} & & & \text{Find the antiderivative.} \\ & =\lim_{t\to 0^{-}}(-\frac{1}{2t^{2}}+\frac{1}{2}) & & & \text{Evaluate the antiderivative.} \\ & =-\infty . & & & \text{Evaluate the limit.}\end{array}$$
+<p>Therefore, $\int_{-1}^{0}\frac{1}{x^{3}}dx$ diverges. Since $\int_{-1}^{0}\frac{1}{x^{3}}dx$ diverges, $\int_{-1}^{1}\frac{1}{x^{3}}dx$ diverges.</p>
+</div>
+<div class="exercises" data-place="fs-id1165043423550"></div>
+</section>
+
+<section id="comparison">
+<h2>A Comparison Theorem</h2>
+<p class="cite-target">It is not always easy or even possible to evaluate an <span data-concept="improper-integral">improper integral</span> directly; however, by comparing it with another carefully chosen <span data-concept="definite-integral">integral</span>, it may be possible to determine its convergence or divergence. To see this, consider two continuous functions <span data-ref="lower-f">$\kf(x)$</span> and <span data-ref="upper-g">$\kg(x)$</span> satisfying $0\le \kf(x)\le \kg(x)$ for $x\ge a$ (Figure 7.22). In this case, we may view <span data-concept="definite-integral">integrals</span> of these functions over intervals of the form $[a,t]$ as areas, so we have the relationship</p>
+$$0\le \int_a^{t}\kf(x)dx\le \int_a^{t}\kg(x)dx \;\text{for}\;t\ge a.$$
+<figure class="sim" id="sim-comparison" data-figure="7.22" data-original="/media/ch07/CNX_Calc_Figure_07_07_005.jpg" data-original-caption="If 0 ≤ f(x) ≤ g(x) for x ≥ a, then for t ≥ a, ∫ from a to t of f(x) dx ≤ ∫ from a to t of g(x) dx.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.22</span><span>On $[1,+\infty),$ <span data-ref="lower-f">$\kf(x)=\frac{1}{xe^{x}}$</span> lies below <span data-ref="upper-g">$\kg(x)=e^{-x},$</span> the pair of Example 7.55. Drag $t$: the area under $\kf$ from $1$ to $t$ is always the smaller, and since the area under $\kg$ approaches $e^{-1},$ the area under $\kf$ increases toward a limit no larger.</span></div>
+</figure>
+<p>Thus, if</p>
+$$\int_a^{+\infty}\kf(x)dx=\lim_{t\to +\infty}\int_a^{t}\kf(x)dx=+\infty ,$$
+<p>then</p>
+<p>$\int_a^{+\infty}\kg(x)dx=\lim_{t\to +\infty}\int_a^{t}\kg(x)dx=+\infty$ as well. That is, if the <span data-concept="area-under-the-curve">area</span> of the region between the graph of $\kf(x)$ and the <em>x</em>-axis over $[a,+\infty )$ is infinite, then the <span data-concept="area-under-the-curve">area</span> of the region between the graph of $\kg(x)$ and the <em>x</em>-axis over $[a,+\infty )$ is infinite too.</p>
+<p>On the other hand, if</p>
+<p>$\int_a^{+\infty}\kg(x)dx=\lim_{t\to +\infty}\int_a^{t}\kg(x)dx=L$ for some real number $L,$ then</p>
+<p>$\int_a^{+\infty}\kf(x)dx=\lim_{t\to +\infty}\int_a^{t}\kf(x)dx$ must converge to some value less than or equal to $L,$ since $\int_a^{t}\kf(x)dx$ increases as $t$ increases and $\int_a^{t}\kf(x)dx\le L$ for all $t\ge a.$</p>
+<p>If the <span data-concept="area-under-the-curve">area</span> of the region between the graph of $\kg(x)$ and the <em>x</em>-axis over $[a,+\infty )$ is finite, then the <span data-concept="area-under-the-curve">area</span> of the region between the graph of $\kf(x)$ and the <em>x</em>-axis over $[a,+\infty )$ is also finite.</p>
+<p>These conclusions are summarized in the following theorem.</p>
+<div class="note" id="comparison-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>A Comparison Theorem</h3>
+<p>Let $\kf(x)$ and $\kg(x)$ be continuous over $[a,+\infty ).$ Assume that $0\le \kf(x)\le \kg(x)$ for $x\ge a.$</p>
+<ol><li>If $\int_a^{+\infty}\kf(x)dx=\lim_{t\to +\infty}\int_a^{t}\kf(x)dx=+\infty ,$ then $\int_a^{+\infty}\kg(x)dx=\lim_{t\to +\infty}\int_a^{t}\kg(x)dx=+\infty .$</li><li>If $\int_a^{+\infty}\kg(x)dx=\lim_{t\to +\infty}\int_a^{t}\kg(x)dx=L,$ where $L$ is a real number, then $\int_a^{+\infty}\kf(x)dx=\lim_{t\to +\infty}\int_a^{t}\kf(x)dx=M$ for some real number $M\le L.$</li></ol>
+</div>
+<div class="example" id="fs-id1165039554188">
+<h3>Example 7.55 · Applying the Comparison Theorem</h3>
+<p>Use a comparison to show that $\int_1^{+\infty}\frac{1}{xe^{x}}dx$ converges.</p>
+<h4>Solution</h4>
+<p>We can see that</p>
+$$0\le \frac{1}{xe^{x}}\le \frac{1}{e^{x}}=e^{-x},$$
+<p>so if $\int_1^{+\infty}e^{-x}dx$ converges, then so does $\int_1^{+\infty}\frac{1}{xe^{x}}dx .$ To evaluate $\int_1^{+\infty}e^{-x}dx ,$ first rewrite it as a limit:</p>
+$$\begin{array}{rl}\int_1^{+\infty}e^{-x} dx & =\lim_{t\to +\infty}\int_1^{t}e^{-x}dx \\ & =\lim_{t\to +\infty}(-e^{-x})|\begin{array}{l}t \\ 1\end{array} \\ & =\lim_{t\to +\infty}(-e^{-t}+e^{–1}) \\ & =e^{–1}.\end{array}$$
+<p>Since $\int_1^{+\infty}e^{-x}dx$ converges, so does $\int_1^{+\infty}\frac{1}{xe^{x}}dx .$</p>
+</div>
+<div class="example" id="fs-id1165042601863">
+<h3>Example 7.56 · Applying the Comparison Theorem</h3>
+<p>Use the comparison theorem to show that $\int_1^{+\infty}\frac{1}{x^{p}}dx$ diverges for all $p\lt 1.$</p>
+<h4>Solution</h4>
+<p>For $p\lt 1,$ $1/x\le 1/(x^{p})$ over $[1,+\infty ).$ In <a href="#fs-id1165043428127">Example 7.47</a>, we showed that $\int_1^{+\infty}\frac{1}{x}dx=+\infty .$ Therefore, $\int_1^{+\infty}\frac{1}{x^{p}}dx$ diverges for all $p\lt 1.$</p>
+</div>
+<div class="exercises" data-place="fs-id1165042601863"></div>
+<div class="note" id="laplace-project">
+<div class="eyebrow">Student Project</div>
+<h3>Laplace Transforms</h3>
+<p>In the last few chapters, we have looked at several ways to use integration for solving real-world problems. For this next project, we are going to explore a more advanced application of integration: <span data-concept="laplace-transform">integral transforms</span>. Specifically, we describe the <span data-concept="laplace-transform">Laplace transform</span> and some of its properties. The <span data-concept="laplace-transform">Laplace transform</span> is used in engineering and physics to simplify the computations needed to solve some problems. It takes functions expressed in terms of time and <em>transforms</em> them to functions expressed in terms of frequency. It turns out that, in many cases, the computations needed to solve problems in the frequency domain are much simpler than those required in the time domain.</p>
+<p>The <span data-concept="laplace-transform">Laplace transform</span> is defined in terms of an <span data-concept="definite-integral">integral</span> as</p>
+$$L\{\kf(t)\}=\kF(s)=\int_0^{\infty}e^{-st}\kf(t)dt .$$
+<p>Note that the input to a <span data-concept="laplace-transform">Laplace transform</span> is a function of time, $\kf(t),$ and the output is a function of frequency, $\kF(s).$ Although many real-world examples require the use of complex numbers (involving the imaginary number $i=\sqrt{-1}),$ in this project we limit ourselves to functions of real numbers.</p>
+<p>Let’s start with a simple example. Here we calculate the <span data-concept="laplace-transform">Laplace transform</span> of $\kf(t)=t$. We have</p>
+$$L\{t\}=\int_0^{\infty}te^{-st}dt .$$
+<p>This is an <span data-concept="improper-integral">improper integral</span>, so we express it in terms of a limit, which gives</p>
+$$L\{t\}=\int_0^{\infty}te^{-st}dt =\lim_{z\to \infty}\int_0^{z}te^{-st}dt .$$
+<p>Now we use <span data-concept="integration-by-parts">integration by parts</span> to evaluate the <span data-concept="definite-integral">integral</span>. Note that we are integrating with respect to <em>t</em>, so we treat the variable <em>s</em> as a constant. We have</p>
+$$\begin{array}{rllllrll}u & = & t & & & dv & = & e^{-st}dt \\ du & = & dt & & & v & = & -\frac{1}{s}e^{-st}.\end{array}$$
+<p>Then we obtain</p>
+$$\begin{array}{rl}\lim_{z\to \infty}\int_0^{z}te^{-st}dt & =\lim_{z\to \infty}[{[-\frac{t}{s}e^{-st}]|}_0^{z}+\frac{1}{s}\int_0^{z}e^{-st}dt ] \\ & =\lim_{z\to \infty}[[-\frac{z}{s}e^{-sz}+\frac{0}{s}e^{-0s}]+\frac{1}{s}\int_0^{z}e^{-st}dt ] \\ & =\lim_{z\to \infty}[[-\frac{z}{s}e^{-sz}+0]-\frac{1}{s}{[\frac{e^{-st}}{s}]|}_0^{z}] \\ & =\lim_{z\to \infty}[[-\frac{z}{s}e^{-sz}]-\frac{1}{s^{2}}[e^{-sz}-1]] \\ & =\lim_{z\to \infty}[-\frac{z}{se^{sz}}]-\lim_{z\to \infty}[\frac{1}{s^{2}e^{sz}}]+\lim_{z\to \infty}\frac{1}{s^{2}} \\ & =0-0+\frac{1}{s^{2}} \\ & =\frac{1}{s^{2}}.\end{array}$$
+<ol><li>Calculate the <span data-concept="laplace-transform">Laplace transform</span> of $\kf(t)=1.$</li><li>Calculate the <span data-concept="laplace-transform">Laplace transform</span> of $\kf(t)=e^{-3t}.$</li><li>Calculate the <span data-concept="laplace-transform">Laplace transform</span> of $\kf(t)=t^{2}.$ (Note, you will have to integrate by parts twice.)</li></ol>
+<p><span data-concept="laplace-transform">Laplace transforms</span> are often used to solve differential equations. Differential equations are not covered in detail until later in this book; but, for now, let’s look at the relationship between the <span data-concept="laplace-transform">Laplace transform</span> of a function and the <span data-concept="laplace-transform">Laplace transform</span> of its derivative.</p>
+<p>Let’s start with the definition of the <span data-concept="laplace-transform">Laplace transform</span>. We have</p>
+$$L\{\kf(t)\}=\int_0^{\infty}e^{-st}\kf(t)dt =\lim_{z\to \infty}\int_0^{z}e^{-st}\kf(t)dt .$$
+<ol start="4"><li>Use <span data-concept="integration-by-parts">integration by parts</span> to evaluate $\lim_{z\to \infty}\int_0^{z}e^{-st}\kf(t)dt .$ (Let $u=\kf(t)$ and $dv=e^{-st}dt.)$</li></ol>
+<p>After integrating by parts and evaluating the limit, you should see that</p>
+$$L\{\kf(t)\}=\frac{\kf(0)}{s}+\frac{1}{s}[L\{\kfprime(t)\}].$$
+<p>Then,</p>
+$$L\{\kfprime(t)\}=sL\{\kf(t)\}-\kf(0).$$
+<p>Thus, differentiation in the time domain simplifies to multiplication by <em>s</em> in the frequency domain.</p>
+<p>The final thing we look at in this project is how the <span data-concept="laplace-transform">Laplace transforms</span> of $\kf(t)$ and its <span data-concept="antiderivative">antiderivative</span> are related. Let $\kg(t)=\int_0^{t}f (u)du.$ Then,</p>
+$$L\{\kg(t)\}=\int_0^{\infty}e^{-st}\kg(t)dt =\lim_{z\to \infty}\int_0^{z}e^{-st}\kg(t)dt .$$
+<ol start="5"><li>Use <span data-concept="integration-by-parts">integration by parts</span> to evaluate $\lim_{z\to \infty}\int_0^{z}e^{-st}\kg(t)dt .$ (Let $u=\kg(t)$ and $dv=e^{-st}dt.$ Note, by the way, that we have defined $\kg(t),$ $du=\kf(t)dt.)$</li></ol>
+<p>As you might expect, you should see that</p>
+$$L\{\kg(t)\}=\frac{1}{s}\cdot L\{\kf(t)\}.$$
+<p>Integration in the time domain simplifies to division by <em>s</em> in the frequency domain.</p>
+</div>
+</section>
