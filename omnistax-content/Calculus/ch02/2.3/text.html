@@ -8,8 +8,8 @@
 <h3>Basic Limit Results</h3>
 <p>For any real number <em>a</em> and any constant <em>c</em>,</p>
 <ol>
-<li>$$\lim_{x\to a}x=a$$</li>
-<li>$$\lim_{x\to a}c=c$$</li>
+<li>$$\lim_{x\to a}x=a\tag{2.14}$$</li>
+<li>$$\lim_{x\to a}c=c\tag{2.15}$$</li>
 </ol>
 </div>
 <div class="example" id="fs-id1170572111463">
@@ -240,16 +240,16 @@ $$\lim_{x\to a}\kf(x)=\kL=\lim_{x\to a}\kh(x)$$
 <p>Because $\lim_{\ktheta\to 0^{+}}0=0$ and $\lim_{\ktheta\to 0^{+}}\ktheta=0,$ by using the <span data-concept="squeeze-theorem">squeeze theorem</span> we conclude that</p>
 $$\lim_{\ktheta\to 0^{+}}\sin\ktheta=0.$$
 <p>To see that $\lim_{\ktheta\to 0^{-}}\sin\ktheta=0$ as well, observe that for $-\dfrac{\pi}{2}\lt\ktheta\lt 0,\ 0\lt-\ktheta\lt\dfrac{\pi}{2}$ and hence, $0\lt\sin(-\ktheta)\lt-\ktheta.$ Consequently, $0\lt-\sin\ktheta\lt-\ktheta.$ It follows that $0\gt\sin\ktheta\gt\ktheta.$ An application of the <span data-concept="squeeze-theorem">squeeze theorem</span> produces the desired <span data-concept="limit">limit</span>. Thus, since $\lim_{\ktheta\to 0^{+}}\sin\ktheta=0$ and $\lim_{\ktheta\to 0^{-}}\sin\ktheta=0,$</p>
-$$\lim_{\ktheta\to 0}\sin\ktheta=0.$$
+$$\lim_{\ktheta\to 0}\sin\ktheta=0.\tag{2.16}$$
 <p>Next, using the identity $\cos\ktheta=\sqrt{1-\sin^{2}\ktheta}$ for $-\dfrac{\pi}{2}\lt\ktheta\lt\dfrac{\pi}{2},$ we see that</p>
-$$\lim_{\ktheta\to 0}\cos\ktheta=\lim_{\ktheta\to 0}\sqrt{1-\sin^{2}\ktheta}=1.$$
+$$\lim_{\ktheta\to 0}\cos\ktheta=\lim_{\ktheta\to 0}\sqrt{1-\sin^{2}\ktheta}=1.\tag{2.17}$$
 <p>We now take a look at a <span data-concept="limit">limit</span> that plays an important role in later chapters—namely, <span data-fn="sin(x)/x">$\lim_{\ktheta\to 0}\dfrac{\sin\ktheta}{\ktheta}.$</span> To evaluate this <span data-concept="limit">limit</span>, we use the unit circle in Figure 2.30. Notice that this figure adds one additional triangle to Figure 2.30.<sup class="fn" data-note="added-triangle"></sup> We see that the length of <span data-ref="tangent-segment">the side opposite angle $\ktheta$ in this new triangle</span> is $\tan\ktheta.$ Thus, we see that for $0\lt\ktheta\lt\dfrac{\pi}{2},\ \sin\ktheta\lt\ktheta\lt\tan\ktheta.$</p>
 <p>By dividing by $\sin\ktheta$ in all parts of the inequality, we obtain</p>
 $$1\lt\frac{\ktheta}{\sin\ktheta}\lt\frac{1}{\cos\ktheta}.$$
 <p>Equivalently, we have</p>
 $$1\gt\frac{\sin\ktheta}{\ktheta}\gt\cos\ktheta.$$
 <p>Since $\lim_{\ktheta\to 0^{+}}1=1=\lim_{\ktheta\to 0^{+}}\cos\ktheta,$ we conclude that $\lim_{\ktheta\to 0^{+}}\dfrac{\sin\ktheta}{\ktheta}=1.$ By applying a manipulation similar to that used in demonstrating that $\lim_{\ktheta\to 0^{-}}\sin\ktheta=0,$ we can show that $\lim_{\ktheta\to 0^{-}}\dfrac{\sin\ktheta}{\ktheta}=1.$ Thus,</p>
-$$\lim_{\ktheta\to 0}\frac{\sin\ktheta}{\ktheta}=1.$$
+$$\lim_{\ktheta\to 0}\frac{\sin\ktheta}{\ktheta}=1.\tag{2.18}$$
 <p>In Example 2.25 we use this <span data-concept="limit">limit</span> to establish <span data-fn="(1-cos(x))/x">$\lim_{\ktheta\to 0}\dfrac{1-\cos\ktheta}{\ktheta}=0.$</span> This <span data-concept="limit">limit</span> also proves useful in later chapters.</p>
 <div class="example" id="fs-id1170572243714">
 <h3>Example 2.25 · Evaluating an Important Trigonometric Limit</h3>
@@ -258,7 +258,7 @@ $$\lim_{\ktheta\to 0}\frac{\sin\ktheta}{\ktheta}=1.$$
 <p>In the first step, we multiply by the conjugate so that we can use a <span data-concept="trigonometric-identity">trigonometric identity</span> to convert the cosine in the numerator to a sine:</p>
 $$\begin{aligned}\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}&=\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}\cdot\frac{1+\cos\ktheta}{1+\cos\ktheta}\\&=\lim_{\ktheta\to 0}\frac{1-\cos^{2}\ktheta}{\ktheta(1+\cos\ktheta)}\\&=\lim_{\ktheta\to 0}\frac{\sin^{2}\ktheta}{\ktheta(1+\cos\ktheta)}\\&=\lim_{\ktheta\to 0}\frac{\sin\ktheta}{\ktheta}\cdot\frac{\sin\ktheta}{1+\cos\ktheta}\\&=1\cdot\frac{0}{2}=0.\end{aligned}$$
 <p>Therefore,</p>
-$$\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}=0.$$
+$$\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}=0.\tag{2.19}$$
 </div>
 <div class="exercises" data-place="fs-id1170572243714"></div>
 <div class="note" id="area-of-a-circle-project">
