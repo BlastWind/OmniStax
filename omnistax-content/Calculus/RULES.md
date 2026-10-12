@@ -71,6 +71,10 @@ The chapter's equations table is printed as **Theorems and formulas**: the book'
 
 Three, declared in `book.json`. `checkpoint`: inline after its example, with the book's answer. `exercise`: a Section Exercise, in the Exercises document. `review-exercise`: a Chapter Review Exercise, in the Exercises document of the section that introduces what it tests (root rule 12), carrying `source_section` for the last section, where the book prints it.
 
+## Function tokens
+
+The book keeps a Grapher and a Unit Circle as sheets. Where the prose gives a function by its rule, the builder wraps the math in `<span data-fn="…">`, the rule in x as the grapher reads it (`x^2-3`, `sqrt(3x+2)-1`, `3/(x-2)`, `{x>=2: 3x+1, x^2}` with `<` and `>` written `&lt;` and `&gt;`): it hovers as a small graph and opens the Grapher with that function. Only a rule the reader could graph is marked, never an f of nothing in particular.
+
 ## Figures
 
 Figures, tables and examples are numbered chapter-wide as openstax.org prints them, shifted to the merged chapter, from the opener's photograph as Figure N.1. A bare `<media>` is an unnumbered image.
@@ -83,7 +87,7 @@ Tables stay in the text as `div.book-table` with the publisher's number as eyebr
 
 ## Files
 
-The root layout, plus `sheets/`, `COLOR.md`, `modules.json`, `toc.md` and `tools/`.
+The root layout, plus `sheets/` (the appendices' tables, and `grapher.json` and `unit-circle.json`, the instruments' opening data), `COLOR.md`, `modules.json`, `toc.md` and `tools/`.
 
 ## Template sections
 
