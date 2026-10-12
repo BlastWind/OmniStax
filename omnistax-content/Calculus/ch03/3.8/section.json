@@ -1,0 +1,579 @@
+{
+ "id": "3.8",
+ "module": "m53585",
+ "chapter": "3",
+ "title": "Implicit Differentiation",
+ "short": "Implicit Differentiation",
+ "lead": "An equation in x and y can define y as a <span data-concept=\"implicitly-defined-function\">function of x implicitly</span>, without solving for it. <span data-concept=\"implicit-differentiation\">Implicit differentiation</span> differentiates both sides of such an equation, treating y as a function of x, and so finds the slope of a <span data-concept=\"tangent-line\">tangent line</span> to curves such as a circle, the folium of Descartes and an ellipse.",
+ "objectives": [
+  "Find the derivative of a complicated function by using implicit differentiation.",
+  "Use implicit differentiation to determine the equation of a tangent line."
+ ],
+ "summary_html": "<ul><li>We use <span data-concept=\"implicit-differentiation\">implicit differentiation</span> to find <span data-concept=\"derivative\">derivatives</span> of <span data-concept=\"implicitly-defined-function\">implicitly defined functions</span> (<span data-concept=\"function\">functions</span> defined by equations).</li><li>By using <span data-concept=\"implicit-differentiation\">implicit differentiation</span>, we can find the equation of a <span data-concept=\"tangent-line\">tangent line</span> to the graph of a curve.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 16 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: exercises 300 to 308 (implicit derivatives), 310 to 314 (tangent lines), 316 (the folium), 318 (vertical tangents), 320 (a tangent line), 322 (a second derivative), 324 (the cars), 326 (the box’s surface area), 328 and 330 (the inverse sine and tangent). Review exercise 380, an implicit derivative printed at the end of 3.9, has no answer in the key and is left out.",
+ "figures": [
+  {
+   "id": "sim-implicit-circle",
+   "kind": "sim",
+   "number": "3.30",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_08_001.jpg"
+   ],
+   "original_caption": "The equation x²+y²=25 defines many functions implicitly.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-implicit-tangent",
+   "kind": "sim",
+   "number": "3.31",
+   "folds": [
+    "3.32"
+   ],
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_08_002.jpg",
+    "/media/ch03/CNX_Calc_Figure_03_08_003.jpg"
+   ],
+   "original_caption": "(Figure 3.31) The line y=3/4x−25/4 is tangent to x²+y²=25 at the point (3, −4). (Figure 3.32) Finding the tangent line to the folium of Descartes at (3/2,3/2).",
+   "draws": [
+    "function",
+    "line",
+    "derivative",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "explicit-implicit",
+   "concept": "implicitly-defined-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "implicit",
+   "concept": "implicit-differentiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "implicit-strategy",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738068274",
+   "concept": "product-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738217476",
+   "concept": "quotient-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738217476",
+   "concept": "higher-order-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "implicit",
+   "concept": "vertical-line-test",
+   "verb": "uses"
+  },
+  {
+   "span": "tangent-implicit",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "tangent-implicit",
+   "concept": "point-slope-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "implicit",
+   "concept": "leibniz-notation",
+   "verb": "uses"
+  },
+  {
+   "span": "tangent-implicit",
+   "concept": "implicit-differentiation",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp48",
+   "source_id": "fs-id1169738220221",
+   "source_number": "Checkpoint 3.48",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738217476"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p>Find $\\frac{dy}{dx}$ for $y$ defined implicitly by the equation $4x^{5}+\\tan y=y^{2}+5x.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Follow the problem solving strategy, remembering to apply the chain rule to differentiate $\\tan$ and $y^{2}.$",
+    "solution": "$\\frac{dy}{dx}=\\frac{5-20x^{4}}{{\\sec }^{2}y-2y}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp49",
+   "source_id": "fs-id1169738186788",
+   "source_number": "Checkpoint 3.49",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737935216"
+   },
+   "cite": "tangent-implicit",
+   "prompt": "<p>Find an equation of the line tangent to the hyperbola $x^{2}-y^{2}=16$ at the point $(5,3).$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "$\\frac{dy}{dx}=\\frac{x}{y}$",
+    "solution": "$y=\\frac{5}{3}x-\\frac{16}{3}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e301",
+   "source_id": "fs-id1169738106195",
+   "source_number": "301",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p>For the following exercises, use implicit differentiation to find $\\frac{dy}{dx}.$</p><p>$6x^{2}+3y^{2}=12$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=\\frac{-2x}{y}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e303",
+   "source_id": "fs-id1169738073286",
+   "source_number": "303",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p>For the following exercises, use implicit differentiation to find $\\frac{dy}{dx}.$</p><p>$3x^{3}+9xy^{2}=5x^{3}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=\\frac{x}{3y}-\\frac{y}{2x}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e305",
+   "source_id": "fs-id1169738237485",
+   "source_number": "305",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p>For the following exercises, use implicit differentiation to find $\\frac{dy}{dx}.$</p><p>$y\\sqrt{x+4}=xy+8$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=\\frac{y-\\frac{y}{2\\sqrt{x+4}}}{\\sqrt{x+4}-x}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e307",
+   "source_id": "fs-id1169737911358",
+   "source_number": "307",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p>For the following exercises, use implicit differentiation to find $\\frac{dy}{dx}.$</p><p>$y\\;\\sin (xy)=y^{2}-2$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=\\frac{y^{2}\\cos (xy)}{2y-\\sin (xy)-xy\\;\\cos (xy)}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e309",
+   "source_id": "fs-id1169738187223",
+   "source_number": "309",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p>For the following exercises, use implicit differentiation to find $\\frac{dy}{dx}.$</p><p>$x^{3}y+xy^{3}=-8$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=\\frac{-3x^{2}y-y^{3}}{x^{3}+3xy^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e311",
+   "source_id": "fs-id1169738184892",
+   "source_number": "311",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-implicit",
+   "prompt": "<p>For the following exercises, find an equation of the tangent line to the graph of the given equation at the indicated point. Use a calculator or computer software to graph the function and the tangent line.</p><p><strong>[T]</strong> $x^{2}y^{2}+5xy=14,(2,1)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<img src=\"/media/ch03/CNX_Calc_Figure_03_08_202.jpg\" alt=\"The graph has a crescent in each of the four quadrants. There is a straight line marked T(x) with slope −1/2 and y intercept 2.\"> <p>$y=\\frac{-1}{2}x+2$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e313",
+   "source_id": "fs-id1169738238122",
+   "source_number": "313",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-implicit",
+   "prompt": "<p>For the following exercises, find an equation of the tangent line to the graph of the given equation at the indicated point. Use a calculator or computer software to graph the function and the tangent line.</p><p><strong>[T]</strong> $xy^{2}+\\sin (\\pi y)-2x^{2}=10,(2,-3)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<img src=\"/media/ch03/CNX_Calc_Figure_03_08_204.jpg\" alt=\"The graph has two curves, one in the first quadrant and one in the fourth quadrant. They are symmetric about the x axis. The curve in the first quadrant goes from (0.3, 5) to (1.5, 3.5) to (5, 4). There is a straight line marked T(x) with slope 1/(π + 12) and y intercept −(3π + 38)/(π + 12).\"> <p>$y=\\frac{1}{\\pi +12}x-\\frac{3\\pi +38}{\\pi +12}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e315",
+   "source_id": "fs-id1169738221157",
+   "source_number": "315",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-implicit",
+   "prompt": "<p>For the following exercises, find an equation of the tangent line to the graph of the given equation at the indicated point. Use a calculator or computer software to graph the function and the tangent line.</p><p><strong>[T]</strong> $xy+\\sin (x)=1,(\\frac{\\pi}{2},0)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<img src=\"/media/ch03/CNX_Calc_Figure_03_08_206.jpg\" alt=\"The graph starts in the third quadrant near (−5, 0), remains near 0 until x = −4, at which point it decreases until it reaches near (0, −5). There is an asymptote at x = 0. The graph begins again near (0, 5) decreases to (1, 0) and then increases a little bit before decreasing to be near (5, 0). There is a straight line marked T(x) that coincides with y = 0.\"> <p>$y=0$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e317",
+   "source_id": "fs-id1169738244350",
+   "source_number": "317",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-implicit",
+   "prompt": "<p>For the equation $x^{2}+2xy-3y^{2}=0,$</p><p>a. Find an equation of the normal to the tangent line at the point $(1,1).$</p><p>b. At what other point does the normal line in a. intersect the graph of the equation?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $y=-x+2$ b. $(3,-1)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e319",
+   "source_id": "fs-id1169738211822",
+   "source_number": "319",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-implicit",
+   "prompt": "<p>For the equation $x^{2}+xy+y^{2}=7,$</p><p>a. Find the $x$-intercept(s).</p><p>b. Find the slope of the tangent line(s) at the <em>x</em>-intercept(s).</p><p>c. What does the value(s) in b. indicate about the tangent line(s)?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $(\\pm \\sqrt{7},0)$ b. $-2$ c. They are parallel since the slope is the same at both intercepts.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e321",
+   "source_id": "fs-id1169738201886",
+   "source_number": "321",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-implicit",
+   "prompt": "<p>Find an equation of the tangent line to the graph of the equation ${\\tan }^{-1}(x+y)=x^{2}+\\frac{\\pi}{4}$ at the point $(0,1).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y=-x+1$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e323",
+   "source_id": "fs-id1169737934269",
+   "source_number": "323",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p><strong>[T]</strong> The number of cell phones produced when $x$ dollars is spent on labor and $y$ dollars is spent on capital invested by a manufacturer can be modeled by the equation $60x^{3/4}y^{1/4}=3240.$</p><p>a. Find $\\frac{dy}{dx}$ and evaluate at the point $(81,16).$</p><p>b. Interpret the result of a.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $-0.5926$ b. When ＄81 is spent on labor and ＄16 is spent on capital, the amount spent on capital is decreasing by ＄0.5926 per ＄1 spent on labor.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e325",
+   "source_id": "fs-id1169738185162",
+   "source_number": "325",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p>The volume of a right circular cone of radius $x$ and height $y$ is given by $V=\\frac{1}{3}\\pi x^{2}y.$ Suppose that the volume of the cone is a constant. Find $\\frac{dy}{dx}$ when $x=4$ and $y=16.$</p>",
+   "answer": {
+    "type": "number",
+    "value": -8,
+    "solution": "$-8$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e327",
+   "source_id": "fs-id1169737954242",
+   "source_number": "327",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p>For the following exercises, consider a closed rectangular box with a square base with side $x$ and height $y.$</p><p>If the surface area of the rectangular box is 78 square feet, find $\\frac{dy}{dx}$ when $x=3$ feet and $y=5$ feet.</p>",
+   "answer": {
+    "type": "number",
+    "value": -2.67,
+    "tol": 0.01,
+    "solution": "$-2.67$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e329",
+   "source_id": "fs-id1169738071406",
+   "source_number": "329",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "implicit-strategy",
+   "prompt": "<p>For the following exercises, use implicit differentiation to determine $y^{\\prime}.$ Does the answer agree with the formulas we have previously determined?</p><p>$x=\\cos y$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y^{\\prime}=-\\frac{1}{\\sqrt{1-x^{2}}}$",
+    "generated_by": "source"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp48",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "cp48",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp49",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "cp49",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e301",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e303",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e303",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e305",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e305",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e307",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e307",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e307",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e309",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e309",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e311",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e311",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e313",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e313",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e315",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e315",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e317",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e317",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e319",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e319",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e321",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e321",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e321",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e323",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e323",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e325",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e327",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e329",
+   "concept": "implicit-differentiation"
+  },
+  {
+   "exercise": "e329",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "split-domain",
+   "kind": "correction",
+   "html": "The second piece is printed with $0\\lt x\\lt 25;$ the circle reaches only to $x=5,$ so it means $0\\lt x\\lt 5.$"
+  },
+  {
+   "id": "ex370-ddy",
+   "kind": "correction",
+   "html": "The second step’s note says $\\frac{d}{dy}\\left(-\\frac{x}{y}\\right);$ the derivative taken is with respect to $x,$ $\\frac{d}{dx}\\left(-\\frac{x}{y}\\right).$"
+  }
+ ]
+}

@@ -65,3 +65,16 @@ Ids confirmed with `ost ids calculus 3.2` after the build.
   - `{"id": "r370", "source_id": "fs-id1169738040765", "source_section": "3.9", "source_number": "370", "kind": "review-exercise", "bloom": "Evaluate", "place": {"at": "end"}, "cite": "derivatives-and-continuity", "prompt": "<p><em>True or False</em>? Justify the answer with a proof or a counterexample.</p><p>If a function is differentiable, it is continuous.</p>", "answer": {"type": "open", "generated_by": "ai", "solution": "True. If $f$ is differentiable at $a,$ then $\\lim_{x\\to a}f(x)=\\lim_{x\\to a}\\left(\\frac{f(x)-f(a)}{x-a}\\cdot(x-a)+f(a)\\right)=f'(a)\\cdot 0+f(a)=f(a),$ so $f$ is continuous at $a$; this is the theorem Differentiability Implies Continuity."}}` · tag `differentiability-implies-continuity`
   - `{"id": "r371", "source_id": "fs-id1169738040784", "source_section": "3.9", "source_number": "371", "kind": "review-exercise", "bloom": "Apply", "place": {"at": "end"}, "cite": "derivative-functions", "prompt": "<p>Use the limit definition of the derivative to exactly evaluate the derivative.</p><p>$f(x)=\\sqrt{x+4}$</p>", "answer": {"type": "open", "generated_by": "source", "solution": "$\\frac{1}{2\\sqrt{x+4}}$"}}` · tag `derivative-function`
   - `{"id": "r387", "source_id": "fs-id1169738226588", "source_section": "3.9", "source_number": "387", "kind": "review-exercise", "bloom": "Apply", "place": {"at": "end"}, "cite": "graphing-a-derivative", "prompt": "<p>Draw the derivative for the following graphs.</p>", "figure": "media/ch03/CNX_Calc_Figure_03_09_206.jpg", "answer": {"type": "open", "generated_by": "source", "solution": "<img src=\"media/ch03/CNX_Calc_Figure_03_09_207.jpg\" alt=\"The function is the straight line y = −4 until x = 0, at which point it becomes a straight line starting at the origin with slope 2. There is no value assigned for this function at x = 0.\">"}}` · tags `sketching-a-derivative`, `graph-of-the-derivative`
+
+## As built (2026-10-12)
+
+- figlib (Chapter 3 block): `F.deriv({f, df})` and `F.secants(ctx, ax, f, a, h, color)`, pure parts in `src/lib/fig/deriv.ts` with `tests/deriv.test.ts`; documented in `docs/prompts/interactive-figures.md`.
+- `fig-delta-secant` uses the stand-in f(x) = 4 − 0.18(x − 4.5)², rising and concave down like the book's sketch (not concave up as planned).
+- `sim-three-failures`: h is a linear slider 0.01 to 1 (detents 1, 0.5, 0.1, 0.01) on fixed axes ±1.2; for x sin(1/x) the two secant slopes are −sin(1/h) and sin(1/h) (f is even), so they are opposite, not equal as the plan's headline guessed.
+- `sim-smooth-track`: the right-hand slope is the line itself, so only the left stub shows until b = 7/4.
+- Example 3.13's two graphs are bare images in the example (no figure row), as the plan says.
+- No Integral Calculator link here: the section applies no rule; 3.3 carries it.
+- Variables rows added: 3.2/f, 3.2/s, 3.2/v and 3.2/s_prime (velocity); anchors set on every 3.2 row and its three forms.
+- `ost.py`: a variables key whose symbol holds a slash (dy/dx) could not be named; `find_row` now splits the key only as many times as the table has key fields.
+- Corrections: Checkpoint 3.10's hint (Example 3.13 for 3.16), exercise 105's key (f″ for F″).
+- Review rows 367–371 and 387 are written by mk.py once 3.9 is built.

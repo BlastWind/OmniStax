@@ -56,3 +56,11 @@ Ids confirmed with `ost ids calculus 3.5` after the build.
   - `{"id": "r389", "source_id": "fs-id1169738138102", "source_section": "3.9", "source_number": "389", "kind": "review-exercise", "bloom": "Apply", "place": {"at": "end"}, "cite": "sine-cosine", "prompt": "<p>The following questions concern the water level in Ocean City, New Jersey, in January, which can be approximated by $w(t)=1.9+2.9\\cos\\left(\\frac{\\pi}{6}t\\right),$ where $t$ is measured in hours after midnight, and the height is measured in feet.</p><p>Find $w'(3).$ What is the physical meaning of this value?</p>", "answer": {"type": "open", "generated_by": "source", "solution": "$w'(3)=-\\frac{2.9\\pi}{6}.$ At 3 a.m. the tide is decreasing at a rate of 1.518 ft/hr."}}` · tags `derivatives-of-sine-and-cosine`, `instantaneous-rate-of-change`
 
   The cos(πt/6) needs the chain rule of 3.6; the card is set in 3.5, where the cosine's derivative is, and the AI does not change it.
+
+## As built (2026-10-12)
+
+- `sim-sine-difference-quotient`: h runs 0.01 (the book's value, default) to 2 with detents 0.01, 0.5, 1, 2; h = 0 is not on the slider, so there is no special. The readout writes D(x) for the live h and the largest gap |D(x) − cos x| on the window.
+- `sim-sine-derivative-trace` is built on `F.deriv` (3.2); the book's dots at the horizontal tangents and the zeros of cos x are drawn on both graphs, and the four x values are specials.
+- Sheet links on book words: "derivative formulas" in the opening paragraph opens the Table of Derivatives; "derivative" in Example 3.39's problem opens the Integral Calculator on 5x³ sin x.
+- Review exercise 389 (w′(3) for w(t) = 1.9 + 2.9 cos(πt/6)) needs the chain rule, so it is set in 3.6, not here (root rule 12); 377 stays here.
+- Variables rows added: 3.5/f, f_prime, g, g_prime, s, s_prime, v, v_prime, a; anchors on D and the seven forms.

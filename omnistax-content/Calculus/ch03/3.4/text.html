@@ -1,0 +1,131 @@
+<p>In this section we look at some applications of the <span data-concept="derivative">derivative</span> by focusing on the interpretation of the <span data-concept="derivative">derivative</span> as the <span data-concept="rate-of-change">rate of change</span> of a <span data-concept="function">function</span>. These applications include <strong><span data-concept="acceleration">acceleration</span></strong> and <span data-concept="velocity">velocity</span> in physics, <strong><span data-concept="population-growth-rate">population growth rates</span></strong> in biology, and marginal <span data-concept="function">functions</span> in economics.</p>
+
+<section id="amount-of-change">
+<h2>Amount of Change Formula</h2>
+<p class="cite-target">One application for <span data-concept="derivative">derivatives</span> is to estimate an unknown value of a <span data-concept="function">function</span> at a point by using a known value of a <span data-concept="function">function</span> at some given point together with its <span data-concept="rate-of-change">rate of change</span> at the given point. If $\kf(x)$ is a <span data-concept="function">function</span> defined on an interval $[a,a+h],$ then the <strong><span data-concept="amount-of-change">amount of change</span></strong> of $\kf(x)$ over the interval is the change in the $y$ values of the <span data-concept="function">function</span> over that interval and is given by</p>
+$$\kf(a+h)-\kf(a).$$
+<p>The <strong><span data-concept="average-rate-of-change">average rate of change</span></strong> of the <span data-concept="function">function</span> $\kf$ over that same interval is the ratio of the <span data-concept="amount-of-change">amount of change</span> over that interval to the corresponding change in the $x$ values. It is given by</p>
+$$\frac{\kf(a+h)-\kf(a)}{h}.$$
+<p>As we already know, the <span data-concept="instantaneous-rate-of-change">instantaneous rate of change</span> of $\kf(x)$ at $a$ is its <span data-concept="derivative">derivative</span></p>
+$$\kfprime(a)=\lim_{h\to 0}\frac{\kf(a+h)-\kf(a)}{h}.$$
+<p id="amount-of-change-formula">For small enough values of $h,\kfprime(a)\approx \frac{\kf(a+h)-\kf(a)}{h}.$ We can then solve for $\kf(a+h)$ to get the <span data-concept="amount-of-change-formula">amount of change formula</span>:</p>
+$$\kf(a+h)\approx \kf(a)+\kfprime(a)h.\tag{3.10}$$
+<p>We can use this formula if we know only $\kf(a)$ and $\kfprime(a)$ and wish to estimate the value of $\kf(a+h).$ For example, we may use the current population of a city and the rate at which it is growing to estimate its population in the near future. As we can see in Figure 3.22, we are approximating $\kf(a+h)$ by the $y$ coordinate at $a+h$ on the line tangent to $\kf(x)$ at $x=a.$ Observe that the accuracy of this estimate depends on the value of $h$ as well as the value of $\kfprime(a).$</p>
+<figure class="sim" id="sim-amount-of-change" data-figure="3.22" data-original="/media/ch03/CNX_Calc_Figure_03_04_001.jpg" data-original-caption="The new value of a changed quantity equals the original value plus the rate of change times the interval of change: f(a+h) ≈ f(a)+f′(a)h.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.22</span><span>The <span data-concept="tangent-line">tangent line</span> at $(a,\kf(a))$ on the graph of $\kf$ reaches the height $\kf(a)+\kfprime(a)h$ at $a+h,$ the estimate of the <span data-concept="amount-of-change-formula">amount of change formula</span>; the curve reaches $\kf(a+h).$ Slide $h:$ the gap between the two, the error of the estimate, shrinks to nothing as $h$ goes to $0$ and grows as $h$ does.</span></div>
+</figure>
+<div class="example" id="fs-id1169738907373">
+<h3>Example 3.33 · Estimating the Value of a Function</h3>
+<p>If $\kf(3)=2$ and $\kfprime(3)=5,$ estimate $\kf(3.2).$</p>
+<h4>Solution</h4>
+<p>Begin by finding $h.$ We have $h=3.2-3=0.2.$ Thus,</p>
+$$\kf(3.2)=\kf(3+0.2)\approx \kf(3)+(0.2)\kfprime(3)=2+0.2(5)=3.$$
+</div>
+<div class="exercises" data-place="fs-id1169738907373"></div>
+</section>
+
+<section id="motion">
+<h2>Motion along a Line</h2>
+<p class="cite-target">Another use for the <span data-concept="derivative">derivative</span> is to analyze motion along a line. We have described <span data-concept="velocity">velocity</span> as the <span data-concept="rate-of-change">rate of change</span> of position. If we take the <span data-concept="derivative">derivative</span> of the <span data-concept="velocity">velocity</span>, we can find the <span data-concept="acceleration">acceleration</span>, or the <span data-concept="rate-of-change">rate of change</span> of <span data-concept="velocity">velocity</span>. It is also important to introduce the idea of <strong><span data-concept="speed">speed</span></strong>, which is the magnitude of <span data-concept="velocity">velocity</span>. Thus, we can state the following mathematical definitions.</p>
+<div class="note" id="motion-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\ks(t)$ be a <span data-concept="function">function</span> giving the position of an object at time $t.$</p>
+<p>The <span data-concept="velocity">velocity</span> of the object at time $t$ is given by $\kv(t)=\ksprime(t).$</p>
+<p>The <span data-concept="speed">speed</span> of the object at time $t$ is given by $|\kv(t)|.$</p>
+<p>The <span data-concept="acceleration">acceleration</span> of the object at $t$ is given by $\ka(t)=\kvprime(t)=\ksdprime(t).$</p>
+</div>
+<div class="example" id="fs-id1169738906211">
+<h3>Example 3.34 · Comparing Instantaneous Velocity and Average Velocity</h3>
+<p>A ball is dropped from a height of 64 feet. Its height above ground (in feet) $t$ seconds later is given by <span data-fn="-16x^2+64">$\ks(t)=-16t^{2}+64.$</span></p>
+<figure class="sim" id="fig-ball-drop" data-original="/media/ch03/CNX_Calc_Figure_03_04_002.jpg" data-original-caption="">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span>The height <span data-fn="-16x^2+64">$\ks(t)=-16t^{2}+64$</span> of the dropped ball for $0\le t\le 2.$</span></div>
+</figure>
+<p>a. What is the <span data-concept="instantaneous-velocity">instantaneous velocity</span> of the ball when it hits the ground?</p>
+<p>b. What is the <span data-concept="average-velocity">average velocity</span> during its fall?</p>
+<h4>Solution</h4>
+<p>The first thing to do is determine how long it takes the ball to reach the ground. To do this, set $\ks(t)=0.$ Solving $-16t^{2}+64=0,$ we get $t=2,$ so it take 2 seconds for the ball to reach the ground.</p>
+<p>a. The <span data-concept="instantaneous-velocity">instantaneous velocity</span> of the ball as it strikes the ground is $\kv(2).$ Since $\kv(t)=\ksprime(t)=-32t,$ we obtain $\kv(t)=-64\;\text{ft/s}.$<sup class="fn" data-note="ex334-v2"></sup></p>
+<p>b. The <span data-concept="average-velocity">average velocity</span> of the ball during its fall is</p>
+$$\kvave=\frac{\ks(2)-\ks(0)}{2-0}=\frac{0-64}{2}=-32\;\text{ft/s}.$$
+</div>
+<div class="example" id="fs-id1169738904404">
+<h3>Example 3.35 · Interpreting the Relationship between $\kv(t)$ and $\ka(t)$</h3>
+<p>A particle moves along a coordinate axis in the positive direction to the right. Its position at time $t$ is given by <span data-fn="x^3-4x+2">$\ks(t)=t^{3}-4t+2.$</span> Find $\kv(1)$ and $\ka(1)$ and use these values to answer the following questions.</p>
+<p>a. Is the particle moving from left to right or from right to left at time $t=1?$</p>
+<p>b. Is the particle speeding up or slowing down at time $t=1?$</p>
+<h4>Solution</h4>
+<p>Begin by finding $\kv(t)$ and $\ka(t).$</p>
+<p>$\kv(t)=\ksprime(t)=3t^{2}-4$  and $\ka(t)=\kvprime(t)=\ksdprime(t)=6t.$</p>
+<p>Evaluating these <span data-concept="function">functions</span> at $t=1,$ we obtain $\kv(1)=-1$ and $\ka(1)=6.$</p>
+<p>a. Because $\kv(1)\lt 0,$ the particle is moving from right to left.</p>
+<p id="speeding-up">b. Because $\kv(1)\lt 0$ and $\ka(1)\gt 0,$ <span data-concept="velocity">velocity</span> and <span data-concept="acceleration">acceleration</span> are acting in opposite directions. In other words, the particle is being accelerated in the direction opposite the direction in which it is traveling, causing $|\kv(t)|$ to decrease. The particle is slowing down.</p>
+</div>
+<div class="example" id="fs-id1169738889577">
+<h3>Example 3.36 · Position and Velocity</h3>
+<p>The position of a particle moving along a coordinate axis is given by <span data-fn="x^3-9x^2+24x+4">$\ks(t)=t^{3}-9t^{2}+24t+4,t\ge 0.$</span></p>
+<p>a. Find $\kv(t).$</p>
+<p>b. At what time(s) is the particle at rest?</p>
+<p>c. On what time intervals is the particle moving from left to right? From right to left?</p>
+<p>d. Use the information obtained to sketch the path of the particle along a coordinate axis.</p>
+<h4>Solution</h4>
+<p>a. The <span data-concept="velocity">velocity</span> is the <span data-concept="derivative">derivative</span> of the position <span data-concept="function">function</span>:</p>
+$$\kv(t)=\ksprime(t)=3t^{2}-18t+24.$$
+<p>b. The particle is at rest when $\kv(t)=0,$ so set $3t^{2}-18t+24=0.$ Factoring the left-hand side of the equation produces $3(t-2)(t-4)=0.$ Solving, we find that the particle is at rest at $t=2$ and $t=4.$</p>
+<p>c. The particle is moving from left to right when $\kv(t)\gt 0$ and from right to left when $\kv(t)\lt 0.$ Figure 3.23 gives the analysis of the sign of $\kv(t)$ for $t\ge 0,$ but it does not represent the axis along which the particle is moving.</p>
+<figure class="sim" id="sim-particle-path" data-figure="3.23 + 3.24" data-original="/media/ch03/CNX_Calc_Figure_03_04_003.jpg,/media/ch03/CNX_Calc_Figure_03_04_005.jpg" data-original-caption="(Figure 3.23) The sign of v(t) determines the direction of the particle. (Figure 3.24) The path of the particle can be determined by analyzing v(t).">
+  <div class="sim-head"><span class="eyebrow">Figure 3.23 + 3.24</span><span>The particle of Example 3.36 moves along its coordinate axis, below, as the time runs from $0$ to $5$ along the graph of its position $\ks(t)=t^{3}-9t^{2}+24t+4,$ above; between them the sign of its <span data-concept="velocity">velocity</span> $\kv(t)$ marks the intervals. The particle moves right while $\kv(t)\gt 0,$ stops and turns at $24$ when $t=2,$ moves left to $20,$ and turns again at $t=4,$ its path drawn behind it.</span></div>
+</figure>
+<p>Since $3t^{2}-18t+24\gt 0$ on $[0,2){\displaystyle \cup}(4,+\infty ),$ the particle is moving from left to right on these intervals.</p>
+<p>Since $3t^{2}-18t+24\lt 0$ on $(2,4),$ the particle is moving from right to left on this interval.</p>
+<p>d. Before we can sketch the graph of the particle, we need to know its position at the time it starts moving $(t=0)$ and at the times that it changes direction $(t=2,4).$ We have $\ks(0)=4,\ks(2)=24,$ and $\ks(4)=20.$ This means that the particle begins on the coordinate axis at 4 and changes direction at 24 and 20 on the coordinate axis. The path of the particle is shown on a coordinate axis in Figure 3.24.</p>
+</div>
+<div class="exercises" data-place="fs-id1169738889577"></div>
+</section>
+
+<section id="population">
+<h2>Population Change</h2>
+<p class="cite-target">In addition to analyzing <span data-concept="velocity">velocity</span>, <span data-concept="speed">speed</span>, <span data-concept="acceleration">acceleration</span>, and position, we can use <span data-concept="derivative">derivatives</span> to analyze various types of populations, including those as diverse as bacteria colonies and cities. We can use a current population, together with a <span data-concept="population-growth-rate">growth rate</span>, to estimate the size of a population in the future. The <span data-concept="population-growth-rate">population growth rate</span> is the <span data-concept="rate-of-change">rate of change</span> of a population and consequently can be represented by the <span data-concept="derivative">derivative</span> of the size of the population.</p>
+<div class="note" id="population-definition">
+<div class="eyebrow">Definition</div>
+<p>If $\kP(t)$ is the number of entities present in a population, then the <span data-concept="population-growth-rate">population growth rate</span> of $\kP(t)$ is defined to be $\kPprime(t).$</p>
+</div>
+<div class="example" id="fs-id1169739270775">
+<h3>Example 3.37 · Estimating a Population</h3>
+<p>The population of a city is tripling every 5 years. If its current population is 10,000, what will be its approximate population 2 years from now?</p>
+<h4>Solution</h4>
+<p>Let $\kP(t)$ be the population (in thousands) $t$ years from now. Thus, we know that $\kP(0)=10$ and based on the information, we anticipate $\kP(5)=30.$ Now estimate $\kPprime(0),$ the current <span data-concept="population-growth-rate">growth rate</span>, using</p>
+$$\kPprime(0)\approx \frac{\kP(5)-\kP(0)}{5-0}=\frac{30-10}{5}=4.$$
+<p>By applying Equation 3.10 to $\kP(t),$ we can estimate the population 2 years from now by writing</p>
+$$\kP(2)\approx \kP(0)+(2)\kPprime(0)\approx 10+2(4)=18;$$
+<p>thus, in 2 years the population will be 18,000.</p>
+</div>
+<div class="exercises" data-place="fs-id1169739270775"></div>
+</section>
+
+<section id="cost-revenue">
+<h2>Changes in Cost and Revenue</h2>
+<p class="cite-target">In addition to analyzing motion along a line and population growth, <span data-concept="derivative">derivatives</span> are useful in analyzing changes in cost, revenue, and profit. The concept of a marginal <span data-concept="function">function</span> is common in the fields of business and economics and implies the use of <span data-concept="derivative">derivatives</span>. The <span data-concept="marginal-cost">marginal cost</span> is the <span data-concept="derivative">derivative</span> of the cost <span data-concept="function">function</span>. The <span data-concept="marginal-revenue">marginal revenue</span> is the <span data-concept="derivative">derivative</span> of the revenue <span data-concept="function">function</span>. The <span data-concept="marginal-profit">marginal profit</span> is the <span data-concept="derivative">derivative</span> of the profit <span data-concept="function">function</span>, which is based on the cost <span data-concept="function">function</span> and the revenue <span data-concept="function">function</span>.</p>
+<div class="note" id="marginal-definition">
+<div class="eyebrow">Definition</div>
+<p>If $\kC(x)$ is the cost of producing <em>x</em> items, then the <strong><span data-concept="marginal-cost">marginal cost</span></strong> $\kMC(x)$ is $\kMC(x)=\kCprime(x).$</p>
+<p>If $\kR(x)$ is the revenue obtained from selling $x$ items, then the <span data-concept="marginal-revenue">marginal revenue</span> $\kMR(x)$ is $\kMR(x)=\kRprime(x).$</p>
+<p>If $\kP(x)=\kR(x)-\kC(x)$ is the profit obtained from selling <em>x</em> items, then the <strong><span data-concept="marginal-profit">marginal profit</span></strong> $\kMP(x)$ is defined to be $\kMP(x)=\kPprime(x)=\kMR(x)-\kMC(x)=\kRprime(x)-\kCprime(x).$</p>
+</div>
+<p>We can roughly approximate</p>
+$$\kMC(x)=\kCprime(x)=\lim_{h\to 0}\frac{\kC(x+h)-\kC(x)}{h}$$
+<p id="marginal-estimate">by choosing an appropriate value for $h.$ Since <em>x</em> represents objects, a reasonable and small value for $h$ is 1. Thus, by substituting $h=1,$ we get the approximation $\kMC(x)=\kCprime(x)\approx \kC(x+1)-\kC(x).$ Consequently, $\kCprime(x)$ for a given value of $x$ can be thought of as the change in cost associated with producing one additional item. In a similar way, $\kMR(x)=\kRprime(x)$ approximates the revenue obtained by selling one additional item, and $\kMP(x)=\kPprime(x)$ approximates the profit obtained by producing and selling one additional item.</p>
+<div class="example" id="fs-id1169739302508">
+<h3>Example 3.38 · Applying Marginal Revenue</h3>
+<p>Assume that the number of barbeque dinners that can be sold, $x,$ can be related to the price charged, $\kp,$ by the equation <span data-fn="9-0.03x">$\kp(x)=9-0.03x,0\le x\le 300.$</span></p>
+<p>In this case, the revenue in dollars obtained by selling $x$ barbeque dinners is given by</p>
+$$\kR(x)=x\kp(x)=x(9-0.03x)=-0.03x^{2}+9x\;\text{for}\;0\le x\le 300.$$
+<p>Use the <span data-concept="marginal-revenue">marginal revenue</span> <span data-concept="function">function</span> to estimate the revenue obtained from selling the 101st barbeque dinner. Compare this to the actual revenue obtained from the sale of this dinner.</p>
+<h4>Solution</h4>
+<p>First, find the <span data-concept="marginal-revenue">marginal revenue</span> <span data-concept="function">function</span>: $\kMR(x)=\kRprime(x)=-0.06x+9.$</p>
+<p>Next, use $\kRprime(100)$ to approximate $\kR(101)-\kR(100),$ the revenue obtained from the sale of the 101st dinner. Since $\kRprime(100)=3,$ the revenue obtained from the sale of the 101st dinner is approximately &#36;3.</p>
+<p>The actual revenue obtained from the sale of the 101st dinner is</p>
+$$\kR(101)-\kR(100)=602.97-600=2.97,\text{or}\;\text{＄}2.97.$$
+<p>The <span data-concept="marginal-revenue">marginal revenue</span> is a fairly good estimate in this case and has the advantage of being easy to compute.</p>
+</div>
+<div class="exercises" data-place="fs-id1169739302508"></div>
+</section>

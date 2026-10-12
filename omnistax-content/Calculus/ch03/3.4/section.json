@@ -1,0 +1,682 @@
+{
+ "id": "3.4",
+ "module": "m53576",
+ "chapter": "3",
+ "title": "Derivatives as Rates of Change",
+ "short": "Derivatives as Rates of Change",
+ "lead": "Read as a <span data-concept=\"rate-of-change\">rate of change</span>, the <span data-concept=\"derivative\">derivative</span> estimates how much a quantity changes, gives the <span data-concept=\"velocity\">velocity</span>, <span data-concept=\"speed\">speed</span> and <span data-concept=\"acceleration\">acceleration</span> of an object moving along a line, the <span data-concept=\"population-growth-rate\">growth rate</span> of a population, and the <span data-concept=\"marginal-cost\">marginal cost</span>, revenue and profit of a business.",
+ "objectives": [
+  "Determine a new value of a quantity from the old value and the amount of change.",
+  "Calculate the average rate of change and explain how it differs from the instantaneous rate of change.",
+  "Apply rates of change to displacement, velocity, and acceleration of an object moving along a straight line.",
+  "Predict the future population from the present value and the population growth rate.",
+  "Use derivatives to calculate marginal cost and revenue in a business situation."
+ ],
+ "summary_html": "<ul><li>Using $\\kf(a+h)\\approx \\kf(a)+\\kfprime(a)h,$ it is possible to estimate $\\kf(a+h)$ given $\\kfprime(a)$ and $\\kf(a).$</li><li>The <span data-concept=\"rate-of-change\">rate of change</span> of position is <span data-concept=\"velocity\">velocity</span>, and the <span data-concept=\"rate-of-change\">rate of change</span> of <span data-concept=\"velocity\">velocity</span> is <span data-concept=\"acceleration\">acceleration</span>. <span data-concept=\"speed\">Speed</span> is the absolute value, or magnitude, of <span data-concept=\"velocity\">velocity</span>.</li><li>The <span data-concept=\"population-growth-rate\">population growth rate</span> and the present population can be used to predict the size of a future population.</li><li><span data-concept=\"marginal-cost\">Marginal cost</span>, <span data-concept=\"marginal-revenue\">marginal revenue</span>, and <span data-concept=\"marginal-profit\">marginal profit</span> <span data-concept=\"function\">functions</span> can be used to predict, respectively, the cost of producing one more item, the revenue obtained by selling one more item, and the profit obtained by producing and selling one more item.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 13 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: exercises 150 and 152 (velocity and acceleration functions), 154 (the ball thrown from the building), 156 (the hummingbird), 158 (the freight train), 160 (the food processors), 162 (the skateboards), 164 (the Ohio town), 166 (the centripetal force), 168 (a quadratic fit to the London data), 170 (a cubic fit to the sensor data), 172 (the Holling type II equation) and 174 (the hares and lynx, with Table 3.5).",
+ "figures": [
+  {
+   "id": "sim-amount-of-change",
+   "kind": "sim",
+   "number": "3.22",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_04_001.jpg"
+   ],
+   "original_caption": "The new value of a changed quantity equals the original value plus the rate of change times the interval of change: f(a+h) ≈ f(a)+f′(a)h.",
+   "draws": [
+    "function",
+    "line",
+    "derivative",
+    "error"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-ball-drop",
+   "kind": "figure",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_04_002.jpg"
+   ],
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-particle-path",
+   "kind": "sim",
+   "number": "3.23",
+   "folds": [
+    "3.24"
+   ],
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_04_003.jpg",
+    "/media/ch03/CNX_Calc_Figure_03_04_005.jpg"
+   ],
+   "original_caption": "(Figure 3.23) The sign of v(t) determines the direction of the particle. (Figure 3.24) The path of the particle can be determined by analyzing v(t).",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "amount-of-change",
+   "concept": "amount-of-change",
+   "verb": "introduces"
+  },
+  {
+   "span": "amount-of-change",
+   "concept": "average-rate-of-change",
+   "verb": "introduces"
+  },
+  {
+   "span": "amount-of-change-formula",
+   "concept": "amount-of-change-formula",
+   "verb": "introduces"
+  },
+  {
+   "span": "motion-definition",
+   "concept": "velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "motion-definition",
+   "concept": "speed",
+   "verb": "introduces"
+  },
+  {
+   "span": "motion-definition",
+   "concept": "acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "speeding-up",
+   "concept": "speeding-up-and-slowing-down",
+   "verb": "introduces"
+  },
+  {
+   "span": "population-definition",
+   "concept": "population-growth-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "marginal-definition",
+   "concept": "marginal-cost",
+   "verb": "introduces"
+  },
+  {
+   "span": "marginal-definition",
+   "concept": "marginal-revenue",
+   "verb": "introduces"
+  },
+  {
+   "span": "marginal-definition",
+   "concept": "marginal-profit",
+   "verb": "introduces"
+  },
+  {
+   "span": "amount-of-change",
+   "concept": "derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "amount-of-change",
+   "concept": "instantaneous-rate-of-change",
+   "verb": "uses"
+  },
+  {
+   "span": "amount-of-change",
+   "concept": "tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738906211",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738906211",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "motion-definition",
+   "concept": "higher-order-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738904404",
+   "concept": "derivative-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738889577",
+   "concept": "derivative-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739302508",
+   "concept": "derivative-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738889577",
+   "concept": "power-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738889577",
+   "concept": "sum-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739302508",
+   "concept": "constant-multiple-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739270775",
+   "concept": "amount-of-change-formula",
+   "verb": "reinforces"
+  },
+  {
+   "span": "marginal-estimate",
+   "concept": "marginal-cost",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp21",
+   "source_id": "fs-id1169738972483",
+   "source_number": "Checkpoint 3.21",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738907373"
+   },
+   "cite": "amount-of-change-formula",
+   "prompt": "<p>Given $f(10)=-5$ and $f^{\\prime}(10)=6,$ estimate $f(10.1).$</p>",
+   "answer": {
+    "type": "number",
+    "value": -4.4,
+    "hint": "Use the same process as in the preceding example.",
+    "solution": "$-4.4$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp22",
+   "source_id": "fs-id1169738843352",
+   "source_number": "Checkpoint 3.22",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738889577"
+   },
+   "cite": "motion-definition",
+   "prompt": "<p>A particle moves along a coordinate axis. Its position at time $t$ is given by $s(t)=t^{2}-5t+1.$ Is the particle moving from right to left or from left to right at time $t=3?$</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "from right to left",
+     "from left to right"
+    ],
+    "correct": 1,
+    "hint": "Find $v(3)$ and look at the sign.",
+    "solution": "left to right",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp23",
+   "source_id": "fs-id1169739202494",
+   "source_number": "Checkpoint 3.23",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739270775"
+   },
+   "cite": "population-definition",
+   "prompt": "<p>The current population of a mosquito colony is known to be 3,000; that is, $P(0)=3,000.$ If $P^{\\prime}(0)=100,$ estimate the size of the population in 3 days, where $t$ is measured in days.</p>",
+   "answer": {
+    "type": "number",
+    "value": 3300,
+    "hint": "Use $P(3)\\approx P(0)+3P^{\\prime}(0).$",
+    "solution": "3,300",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp24",
+   "source_id": "fs-id1169739054965",
+   "source_number": "Checkpoint 3.24",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739302508"
+   },
+   "cite": "marginal-definition",
+   "prompt": "<p>Suppose that the profit obtained from the sale of $x$ fish-fry dinners is given by $P(x)=-0.03x^{2}+8x-50.$ Use the marginal profit function to estimate the profit from the sale of the 101st fish-fry dinner.</p>",
+   "answer": {
+    "type": "number",
+    "value": 2,
+    "hint": "Use $P^{\\prime}(100)$ to approximate $P(101)-P(100).$",
+    "solution": "＄2",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1169739301136",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-definition",
+   "prompt": "<p>For the following exercises, the given functions represent the position of a particle traveling along a horizontal line; $t\\ge 0$.</p><p>a. Find the velocity and acceleration functions.</p><p>b. Determine the time intervals when the object is slowing down or speeding up.</p><p>$s(t)=2t^{3}-15t^{2}+36t-10$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $v(t)=6t^{2}-30t+36,a(t)=12t-30;$ b. speeds up $(2,2.5){\\displaystyle \\cup}(3,\\infty ),$ slows down $(0,2){\\displaystyle \\cup}(2.5,3)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1169736609267",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-definition",
+   "prompt": "<p>A model rocket is fired vertically upward from the ground. The distance $s$ in feet that the rocket travels from the ground after $t$ seconds is given by $s(t)=-16t^{2}+560t.$</p><p>a. Find the velocity of the rocket 3 seconds after being fired.</p><p>b. Find the acceleration of the rocket 3 seconds after being fired.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $464{\\;\\text{ft/s}}^{2}$<sup class=\"fn\" data-note=\"e153-key\"></sup> b. $-32{\\;\\text{ft/s}}^{2}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1169739274630",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-definition",
+   "prompt": "<p>The position function $s(t)=t^{2}-3t-4$ represents the position of the back of a car backing out of a driveway and then driving in a straight line, where $s$ is in feet and $t$ is in seconds. In this case, $s(t)=0$ represents the time at which the back of the car is at the garage door, so $s(0)=-4$ is the starting position of the car, 4 feet inside the garage.</p><p>a. Determine the velocity of the car when $s(t)=0.$</p><p>b. Determine the velocity of the car when $s(t)=14.$</p>",
+   "answer": {
+    "type": "multi",
+    "parts": [
+     {
+      "part": "a",
+      "value": 5
+     },
+     {
+      "part": "b",
+      "value": 9
+     }
+    ],
+    "solution": "a. 5 ft/s b. 9 ft/s",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1169739300061",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-definition",
+   "prompt": "<p>A potato is launched vertically upward with an initial velocity of 100 ft/s from a potato gun at the top of an 85-foot-tall building. The position of the potato relative to the ground after $t$ seconds is given by $s(t)=-16t^{2}+100t+85.$</p><p>a. Find the velocity of the potato after $0.5\\;\\text{s}$ and $5.75\\;\\text{s}.$</p><p>b. Find the speed of the potato at 0.5 s and 5.75 s.</p><p>c. Determine when the potato reaches its maximum height.</p><p>d. Find the acceleration of the potato at 0.5 s and 1.5 s.</p><p>e. Determine how long the potato is in the air.</p><p>f. Determine the velocity of the potato upon hitting the ground.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. 84 ft/s, −84 ft/s b. 84 ft/s c. $\\frac{25}{8}\\;\\text{s}$ d. $-32{\\;\\text{ft/s}}^{2}$ in both cases e. $\\frac{1}{8}(25+\\sqrt{965})\\;\\text{s}$ f. $-4\\sqrt{965}\\;\\text{ft/s}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1169739191157",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion",
+   "figure": {
+    "src": "/media/ch03/CNX_Calc_Figure_03_04_201.jpg",
+    "alt": "On the Cartesian coordinate plane, a function is graphed that is part of a parabola from the origin to (2, 2) with maximum at (1.5, 2.25). Then the function is constant until (5, 2), at which points becomes a parabola again, decreasing to a minimum at (6, 1) and then increasing to (7, 2)."
+   },
+   "prompt": "<p>The following graph shows the position $y=s(t)$ of an object moving along a straight line.</p><p>a. Use the graph of the position function to determine the time intervals when the velocity is positive, negative, or zero.</p><p>b. Sketch the graph of the velocity function.</p><p>c. Use the graph of the velocity function to determine the time intervals when the acceleration is positive, negative, or zero.</p><p>d. Determine the time intervals when the object is speeding up or slowing down.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. Velocity is positive on $(0,1.5){\\displaystyle \\cup}(6,7),$ negative on $(1.5,2){\\displaystyle \\cup}(5,6),$ and zero on $(2,5).$ b.</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_04_202.jpg\" alt=\"The graph is a straight line from (0, 2) to (2, −1), then is discontinuous with a straight line from (2, 0) to (5, 0), and then is discontinuous with a straight line from (5, −4) to (7, 4).\"> <p>c. Acceleration is positive on $(5,7),$ negative on $(0,2),$ and zero on $(2,5).$ d. The object is speeding up on $(6,7){\\displaystyle \\cup}(1.5,2)$ and slowing down on $(0,1.5){\\displaystyle \\cup}(5,6).$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1169736659653",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "marginal-definition",
+   "prompt": "<p>The price $p$ (in dollars) and the demand $x$ for a certain digital clock radio is given by the price–demand function $p=10-0.001x.$</p><p>a. Find the revenue function $R(x).$</p><p>b. Find the marginal revenue function.</p><p>c. Find the marginal revenue at $x=2000$ and $5000.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $R(x)=10x-0.001x^{2}$ b. $R^{\\prime}(x)=10-0.002x$ c. ＄6 per item, ＄0 per item",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1169739301640",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "marginal-definition",
+   "prompt": "<p><strong>[T]</strong> In general, the profit function is the difference between the revenue and cost functions: $P(x)=R(x)-C(x).$</p><p>Suppose the price-demand and cost functions for the production of cordless drills is given respectively by $p=143-0.03x$ and $C(x)=75,000+65x,$ where $x$ is the number of cordless drills that are sold at a price of $p$ dollars per drill and $C(x)$ is the cost of producing $x$ cordless drills.</p><p>a. Find the marginal cost function.</p><p>b. Find the revenue and marginal revenue functions.</p><p>c. Find $R^{\\prime}(1000)$ and $R^{\\prime}(4000).$ Interpret the results.</p><p>d. Find the profit and marginal profit functions.</p><p>e. Find $P^{\\prime}(1000)$ and $P^{\\prime}(4000).$ Interpret the results.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $C^{\\prime}(x)=65$ b. $R(x)=143x-0.03x^{2},R^{\\prime}(x)=143-0.06x$ c. $83,-97.$ At a production level of 1000 cordless drills, revenue is increasing at a rate of ＄83 per drill; at a production level of 4000 cordless drills, revenue is decreasing at a rate of ＄97 per drill. d. $P(x)=-0.03x^{2}+78x-75000,P^{\\prime}(x)=-0.06x+78$ e. $18,-162.$ At a production level of 1000 cordless drills, profit is increasing at a rate of ＄18 per drill; at a production level of 4000 cordless drills, profit is decreasing at a rate of ＄162 per drill.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1169736662792",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "population-definition",
+   "prompt": "<p><strong>[T]</strong> A culture of bacteria grows in number according to the function $N(t)=3000(1+\\frac{4t}{t^{2}+100}),$ where $t$ is measured in hours.</p><p>a. Find the rate of change of the number of bacteria.</p><p>b. Find $N^{\\prime}(0),N^{\\prime}(10),N^{\\prime}(20),$ and $N^{\\prime}(30).$</p><p>c. Interpret the results in (b).</p><p>d. Find $N^{\\prime\\prime}(0),N^{\\prime\\prime}(10),N^{\\prime\\prime}(20),$ and $N^{\\prime\\prime}(30).$ Interpret what the answers imply about the bacteria population growth.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $N^{\\prime}(t)=3000(\\frac{-4t^{2}+400}{{(t^{2}+100)}^{2}})$ b. $120,0,-14.4,-9.6$ c. The bacteria population increases from time 0 to 10 hours; afterwards, the bacteria population decreases. d. $0,-6,0.384,0.432.$ The rate at which the bacteria is increasing is decreasing during the first 10 hours. Afterwards, the bacteria population is decreasing at a decreasing rate.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1169739270171",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "population-definition",
+   "prompt": "<p>The following questions concern the population (in millions) of London by decade in the 19th century, which is listed in the following table.</p><div class=\"book-table\" id=\"fs-id1169736656020\"><div class=\"tcap\"><span class=\"eyebrow\">Table 3.4</span><span>Population of London</span></div><table><thead><tr><th>Years since 1800</th><th>Population (millions)</th></tr></thead><tbody><tr><td>1</td><td>0.8795</td></tr><tr><td>11</td><td>1.040</td></tr><tr><td>21</td><td>1.264</td></tr><tr><td>31</td><td>1.516</td></tr><tr><td>41</td><td>1.661</td></tr><tr><td>51</td><td>2.000</td></tr><tr><td>61</td><td>2.634</td></tr><tr><td>71</td><td>3.272</td></tr><tr><td>81</td><td>3.911</td></tr><tr><td>91</td><td>4.422</td></tr></tbody></table></div><p><strong>[T]</strong></p><p>a. Using a calculator or a computer program, find the best-fit linear function to measure the population.</p><p>b. Find the derivative of the equation in a. and explain its physical meaning.</p><p>c. Find the second derivative of the equation and explain its physical meaning.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $P(t)=0.03983+0.4280$<sup class=\"fn\" data-note=\"e167-key\"></sup> b. $P^{\\prime}(t)=0.03983.$ The population is increasing. c. $P^{\\prime\\prime}(t)=0.$ The rate at which the population is increasing is constant.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1169736654815",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "motion-definition",
+   "prompt": "<p>For the following exercises, consider an astronaut on a large planet in another galaxy. To learn more about the composition of this planet, the astronaut drops an electronic sensor into a deep trench. The sensor transmits its vertical position every second in relation to the astronaut’s position. The summary of the falling sensor data is displayed in the following table.</p><div class=\"book-table\" id=\"fs-id1169739251296\"><table><thead><tr><th>Time after dropping (s)</th><th>Position (m)</th></tr></thead><tbody><tr><td>0</td><td>0</td></tr><tr><td>1</td><td>−1</td></tr><tr><td>2</td><td>−2</td></tr><tr><td>3</td><td>−5</td></tr><tr><td>4</td><td>−7</td></tr><tr><td>5</td><td>−14</td></tr></tbody></table></div><p><strong>[T]</strong></p><p>a. Using a calculator or computer program, find the best-fit quadratic curve to the data.</p><p>b. Find the derivative of the position function and explain its physical meaning.</p><p>c. Find the second derivative of the position function and explain its physical meaning.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $p(t)=-0.6071x^{2}+0.4357x-0.3571$<sup class=\"fn\" data-note=\"e169-key\"></sup> b. $p^{\\prime}(t)=-1.214x+0.4357.$ This is the velocity of the sensor. c. $p^{\\prime\\prime}(t)=-1.214.$ This is the acceleration of the sensor; it is a constant acceleration downward.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1169739336094",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "population",
+   "prompt": "<p>The following problems deal with the Holling type I, II, and III equations. These equations describe the ecological event of growth of a predator population given the amount of prey available for consumption.</p><p><strong>[T]</strong> The Holling type I equation is described by $f(x)=ax,$ where $x$ is the amount of prey available and $a\\gt 0$ is the rate at which the predator meets the prey for consumption.</p><p>a. Graph the Holling type I equation, given $a=0.5.$</p><p>b. Determine the first derivative of the Holling type I equation and explain physically what the derivative implies.</p><p>c. Determine the second derivative of the Holling type I equation and explain physically what the derivative implies.</p><p>d. Using the interpretations from b. and c. explain why the Holling type I equation may not be realistic.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a.</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_04_203.jpg\" alt=\"The graph is a straight line drawn through the origin with slope 1/2.\"> <p>b. $f^{\\prime}(x)=a.$ The more increase in prey, the more growth for predators. c. $f^{\\prime\\prime}(x)=0.$ As the amount of prey increases, the rate at which the predator population growth increases is constant. d. This equation assumes that if there is more prey, the predator is able to increase consumption linearly. This assumption is unphysical because we would expect there to be some saturation point at which there is too much prey for the predator to consume adequately.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1169739299237",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "population",
+   "prompt": "<p>The following problems deal with the Holling type I, II, and III equations. These equations describe the ecological event of growth of a predator population given the amount of prey available for consumption.</p><p><strong>[T]</strong> The Holling type III equation is described by $f(x)=\\frac{ax^{2}}{n^{2}+x^{2}},$ where $x$ is the amount of prey available and $a\\gt 0$ is the maximum consumption rate of the predator.</p><p>a. Graph the Holling type III equation given $a=0.5$ and $n=5.$ What are the differences between the Holling type II and III equations?</p><p>b. Take the first derivative of the Holling type III equation and interpret the physical meaning of the derivative.</p><p>c. Find and interpret the meaning of the second derivative (it may help to graph the second derivative).</p><p>d. What additional ecological phenomena does the Holling type III function describe compared with the Holling type II function?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a.</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_04_205.jpg\" alt=\"The graph increases from the origin quickly at first and then slowly to (10, 0.4).\"> <p>b. $f^{\\prime}(x)=\\frac{2axn^{2}}{{(n^{2}+x^{2})}^{2}}.$ When the amount of prey increases, the predator growth increases. c. $f^{\\prime\\prime}(x)=\\frac{2an^{2}(n^{2}-3x^{2})}{{(n^{2}+x^{2})}^{3}}.$ When the amount of prey is extremely small, the rate at which predator growth is increasing is increasing, but when the amount of prey reaches above a certain threshold, the rate at which predator growth is increasing begins to decrease. d. At lower levels of prey, the prey is more easily able to avoid detection by the predator, so fewer prey individuals are consumed, resulting in less predator growth.",
+    "generated_by": "source"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp21",
+   "concept": "amount-of-change-formula"
+  },
+  {
+   "exercise": "cp22",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "cp23",
+   "concept": "population-growth-rate"
+  },
+  {
+   "exercise": "cp23",
+   "concept": "amount-of-change-formula"
+  },
+  {
+   "exercise": "cp24",
+   "concept": "marginal-profit"
+  },
+  {
+   "exercise": "e151",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e151",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e151",
+   "concept": "speeding-up-and-slowing-down"
+  },
+  {
+   "exercise": "e153",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e153",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e155",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e157",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e157",
+   "concept": "speed"
+  },
+  {
+   "exercise": "e157",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e159",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e159",
+   "concept": "graph-of-the-derivative"
+  },
+  {
+   "exercise": "e161",
+   "concept": "marginal-revenue"
+  },
+  {
+   "exercise": "e163",
+   "concept": "marginal-cost"
+  },
+  {
+   "exercise": "e163",
+   "concept": "marginal-revenue"
+  },
+  {
+   "exercise": "e163",
+   "concept": "marginal-profit"
+  },
+  {
+   "exercise": "e165",
+   "concept": "population-growth-rate"
+  },
+  {
+   "exercise": "e165",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e167",
+   "concept": "population-growth-rate"
+  },
+  {
+   "exercise": "e167",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e169",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e169",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e171",
+   "concept": "derivative-function"
+  },
+  {
+   "exercise": "e171",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e171",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e173",
+   "concept": "derivative-function"
+  },
+  {
+   "exercise": "e173",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e173",
+   "concept": "instantaneous-rate-of-change"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "ex334-v2",
+   "kind": "correction",
+   "html": "The book writes $v(t)=-64$ ft/s; the velocity at impact is $v(2)=-32(2)=-64$ ft/s."
+  },
+  {
+   "id": "e153-key",
+   "kind": "correction",
+   "html": "Part a. is a velocity: the key’s unit should read ft/s, so $464$ ft/s."
+  },
+  {
+   "id": "e167-key",
+   "kind": "correction",
+   "html": "The key drops the variable: the best-fit line is $P(t)=0.03983t+0.4280.$"
+  },
+  {
+   "id": "e169-key",
+   "kind": "correction",
+   "html": "The key writes the variable as $x;$ in $t$ the fit is $p(t)=-0.6071t^{2}+0.4357t-0.3571,$ with $p^{\\prime}(t)=-1.214t+0.4357.$"
+  }
+ ]
+}

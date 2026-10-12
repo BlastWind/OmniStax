@@ -1,0 +1,1133 @@
+{
+ "id": "3.3",
+ "module": "m53575",
+ "chapter": "3",
+ "title": "Differentiation Rules",
+ "short": "Differentiation Rules",
+ "lead": "Rules replace the <span data-concept=\"limit\">limit</span> computation: the <span data-concept=\"constant-rule\">constant</span> and <span data-concept=\"power-rule\">power rules</span> for the building blocks, the <span data-concept=\"sum-rule\">sum</span>, <span data-concept=\"difference-rule\">difference</span> and <span data-concept=\"constant-multiple-rule\">constant multiple rules</span> for combining them, then the <span data-concept=\"product-rule\">product</span> and <span data-concept=\"quotient-rule\">quotient rules</span> and the <span data-concept=\"extended-power-rule\">extended power rule</span>, which together differentiate any <span data-concept=\"polynomial-function\">polynomial</span> or <span data-concept=\"rational-function\">rational function</span>.",
+ "objectives": [
+  "State the constant, constant multiple, and power rules.",
+  "Apply the sum and difference rules to combine derivatives.",
+  "Use the product rule for finding the derivative of a product of functions.",
+  "Use the quotient rule for finding the derivative of a quotient of functions.",
+  "Extend the power rule to functions with negative exponents.",
+  "Combine the differentiation rules to find the derivative of a polynomial or rational function."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"derivative\">derivative</span> of a constant <span data-concept=\"function\">function</span> is zero.</li><li>The <span data-concept=\"derivative\">derivative</span> of a <span data-concept=\"power-function\">power function</span> is a <span data-concept=\"function\">function</span> in which the power on $x$ becomes the coefficient of the term and the power on $x$ in the <span data-concept=\"derivative\">derivative</span> decreases by 1.</li><li>The <span data-concept=\"derivative\">derivative</span> of a constant <em>c</em> multiplied by a <span data-concept=\"function\">function</span> <em>f</em> is the same as the constant multiplied by the <span data-concept=\"derivative\">derivative</span>.</li><li>The <span data-concept=\"derivative\">derivative</span> of the sum of a <span data-concept=\"function\">function</span> <em>f</em> and a <span data-concept=\"function\">function</span> <em>g</em> is the same as the sum of the <span data-concept=\"derivative\">derivative</span> of <em>f</em> and the <span data-concept=\"derivative\">derivative</span> of <em>g.</em></li><li>The <span data-concept=\"derivative\">derivative</span> of the difference of a <span data-concept=\"function\">function</span> <em>f</em> and a <span data-concept=\"function\">function</span> <em>g</em> is the same as the difference of the <span data-concept=\"derivative\">derivative</span> of <em>f</em> and the <span data-concept=\"derivative\">derivative</span> of <em>g.</em></li><li>The <span data-concept=\"derivative\">derivative</span> of a product of two <span data-concept=\"function\">functions</span> is the <span data-concept=\"derivative\">derivative</span> of the first <span data-concept=\"function\">function</span> times the second <span data-concept=\"function\">function</span> plus the <span data-concept=\"derivative\">derivative</span> of the second <span data-concept=\"function\">function</span> times the first <span data-concept=\"function\">function</span>.</li><li>The <span data-concept=\"derivative\">derivative</span> of the quotient of two <span data-concept=\"function\">functions</span> is the <span data-concept=\"derivative\">derivative</span> of the first <span data-concept=\"function\">function</span> times the second <span data-concept=\"function\">function</span> minus the <span data-concept=\"derivative\">derivative</span> of the second <span data-concept=\"function\">function</span> times the first <span data-concept=\"function\">function</span>, all divided by the square of the second <span data-concept=\"function\">function</span>.</li><li>We used the <span data-concept=\"limit\">limit</span> definition of the <span data-concept=\"derivative\">derivative</span> to develop formulas that allow us to find <span data-concept=\"derivative\">derivatives</span> without resorting to the definition of the <span data-concept=\"derivative\">derivative</span>. These formulas can be used singly or in combination with each other.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 22 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: exercises 106 to 116 (derivatives), 118 and 120 (tangent lines), 122 and 124 (derivatives of combinations), 126 and 128 (derivatives from the table), 130 and 132 (derivatives read from the figure), 134 and 136 (tangent lines), 138, 140 and 142 (tangent lines and points), 144 (the car on the freeway), 146 (the flounder population) and 148 (the publisher’s cost). Review exercise 373 is printed at the end of 3.9 and set here; review exercise 374 has no answer in the key and is left out.",
+ "figures": [
+  {
+   "id": "fig-constant-multiple",
+   "kind": "figure",
+   "number": "3.18",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_03_001.jpg"
+   ],
+   "original_caption": "The derivative of g(x) is 3 times the derivative of f(x).",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-product-rule-area",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-horizontal-tangents",
+   "kind": "figure",
+   "number": "3.19",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_03_002.jpg"
+   ],
+   "original_caption": "This function has horizontal tangent lines at x = 2/3 and x = 4.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-grandstand",
+   "kind": "photo",
+   "number": "3.20",
+   "draws": []
+  },
+  {
+   "id": "fig-racetrack",
+   "kind": "figure",
+   "number": "3.21",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_03_004.jpg"
+   ],
+   "original_caption": "(a) One section of the racetrack can be modeled by the function f(x)=x³+3x²+x. (b) The front corner of the grandstand is located at (−1.9,2.8).",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "basic-rules",
+   "concept": "constant-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-rule",
+   "concept": "power-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "sum-difference-theorem",
+   "concept": "sum-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "sum-difference-theorem",
+   "concept": "difference-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "sum-difference-theorem",
+   "concept": "constant-multiple-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "product-rule",
+   "concept": "product-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "quotient-rule",
+   "concept": "quotient-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "extended-power-rule-theorem",
+   "concept": "extended-power-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "combining-paragraph",
+   "concept": "combining-differentiation-rules",
+   "verb": "introduces"
+  },
+  {
+   "span": "basic-rules",
+   "concept": "polynomial-function",
+   "verb": "uses"
+  },
+  {
+   "span": "basic-rules",
+   "concept": "rational-function",
+   "verb": "uses"
+  },
+  {
+   "span": "power-rule",
+   "concept": "power-function",
+   "verb": "uses"
+  },
+  {
+   "span": "basic-rules",
+   "concept": "derivative-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738993994",
+   "concept": "derivative-function",
+   "verb": "uses"
+  },
+  {
+   "span": "sum-difference-constant-multiple",
+   "concept": "sum-law-for-limits",
+   "verb": "uses"
+  },
+  {
+   "span": "product-rule",
+   "concept": "differentiability-implies-continuity",
+   "verb": "uses"
+  },
+  {
+   "span": "product-rule",
+   "concept": "limit-laws",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739301889",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "project-grandstands",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736589236",
+   "concept": "graph-of-the-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736589236",
+   "concept": "combining-differentiation-rules",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169739281977",
+   "concept": "velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739281977",
+   "concept": "quotient-rule",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169739273812",
+   "concept": "product-rule",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp11",
+   "source_id": "fs-id1169738923828",
+   "source_number": "Checkpoint 3.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739274547"
+   },
+   "cite": "constant-rule-theorem",
+   "prompt": "<p>Find the derivative of $g(x)=-3.$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0,
+    "hint": "Use the preceding example as a guide.",
+    "solution": "0",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp12",
+   "source_id": "fs-id1169736611688",
+   "source_number": "Checkpoint 3.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738993994"
+   },
+   "cite": "fs-id1169738993994",
+   "prompt": "<p>Find $\\frac{d}{dx}(x^{4}).$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use ${(x+h)}^{4}=x^{4}+4x^{3}h+6x^{2}h^{2}+4xh^{3}+h^{4}$ and follow the procedure outlined in the preceding example.",
+    "solution": "$4x^{3}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp13",
+   "source_id": "fs-id1169739199743",
+   "source_number": "Checkpoint 3.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739190555"
+   },
+   "cite": "power-rule-theorem",
+   "prompt": "<p>Find the derivative of $f(x)=x^{7}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the power rule with $n=7.$",
+    "solution": "$f^{\\prime}(x)=7x^{6}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp14",
+   "source_id": "fs-id1169739299465",
+   "source_number": "Checkpoint 3.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739300387"
+   },
+   "cite": "sum-difference-theorem",
+   "prompt": "<p>Find the derivative of $f(x)=2x^{3}-6x^{2}+3.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the preceding example as a guide.",
+    "solution": "$f^{\\prime}(x)=6x^{2}-12x.$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp15",
+   "source_id": "fs-id1169736654286",
+   "source_number": "Checkpoint 3.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739301889"
+   },
+   "cite": "sum-difference-theorem",
+   "prompt": "<p>Find an equation of the line tangent to the graph of $f(x)=3x^{2}-11$ at $x=2.$ Use the point-slope form.</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the preceding example as a guide.",
+    "solution": "$y=12x-23$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp16",
+   "source_id": "fs-id1169736654824",
+   "source_number": "Checkpoint 3.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739273812"
+   },
+   "cite": "product-rule-theorem",
+   "prompt": "<p>Use the product rule to obtain the derivative of $j(x)=2x^{5}(4x^{2}+x).$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Set $f(x)=2x^{5}$ and $g(x)=4x^{2}+x$ and use the preceding example as a guide.",
+    "solution": "$j^{\\prime}(x)=10x^{4}(4x^{2}+x)+(8x+1)(2x^{5})=56x^{6}+12x^{5}.$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp17",
+   "source_id": "fs-id1169739299853",
+   "source_number": "Checkpoint 3.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739305225"
+   },
+   "cite": "quotient-rule-theorem",
+   "prompt": "<p>Find the derivative of $h(x)=\\frac{3x+1}{4x-3}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Apply the quotient rule with $f(x)=3x+1$ and $g(x)=4x-3.$",
+    "solution": "$k^{\\prime}(x)<sup class=\"fn\" data-note=\"cp17-key\"></sup>=-\\frac{13}{{(4x-3)}^{2}}.$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp18",
+   "source_id": "fs-id1169736657090",
+   "source_number": "Checkpoint 3.18",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739300101"
+   },
+   "cite": "extended-power-rule-theorem",
+   "prompt": "<p>Find the derivative of $g(x)=\\frac{1}{x^{7}}$ using the extended power rule.</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Rewrite $g(x)=\\frac{1}{x^{7}}=x^{-7}.$ Use the extended power rule with $k=-7.$",
+    "solution": "$g^{\\prime}(x)=-7x^{-8}.$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp19",
+   "source_id": "fs-id1169736607615",
+   "source_number": "Checkpoint 3.19",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736658392"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>Find $\\frac{d}{dx}(3f(x)-2g(x)).$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Apply the difference rule and the constant multiple rule.",
+    "solution": "$3f^{\\prime}(x)-2g^{\\prime}(x).$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp20",
+   "source_id": "fs-id1169739301462",
+   "source_number": "Checkpoint 3.20",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739281977"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>Find the values of $x$ for which the graph of $f(x)=4x^{2}-3x+2$ has a tangent line parallel to the line $y=2x+3.$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.625,
+    "hint": "Solve $f^{\\prime}(x)=2.$",
+    "solution": "$\\frac{5}{8}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1169739293680",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=5x^{3}-x+1$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$f^{\\prime}(x)=15x^{2}-1$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1169736595965",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=8x^{4}+9x^{2}-1$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$f^{\\prime}(x)=32x^{3}+18x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1169739282659",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=3x(18x^{4}+\\frac{13}{x+1})$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$f^{\\prime}(x)=270x^{4}+\\frac{39}{{(x+1)}^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1169736662630",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=x^{2}(\\frac{2}{x^{2}}+\\frac{5}{x^{3}})$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$f^{\\prime}(x)=\\frac{-5}{x^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1169736658971",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=\\frac{4x^{3}-2x+1}{x^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$f^{\\prime}(x)=\\frac{4x^{4}+2x^{2}-2x}{x^{4}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1169739303900",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=\\frac{x+9}{x^{2}-7x+1}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$f^{\\prime}(x)=\\frac{-x^{2}-18x+64}{{(x^{2}-7x+1)}^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1169739376112",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises, find an equation of the tangent line $T(x)$ to the graph of the given function at the indicated point. Use a graphing calculator to graph the function and the tangent line.</p><p><strong>[T]</strong> $y=\\frac{2}{x^{2}}+1$ at $(1,3)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<img src=\"/media/ch03/CNX_Calc_Figure_03_03_202.jpg\" alt=\"The graph y is a slightly curving line with y intercept at 1. The line T(x) is straight with y intercept 3 and slope 1/2.\"> <p>$T(x)=-4x+7$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1169739345852",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises, find an equation of the tangent line $T(x)$ to the graph of the given function at the indicated point. Use a graphing calculator to graph the function and the tangent line.</p><p><strong>[T]</strong> $y=\\frac{2}{x}-\\frac{3}{x^{2}}$ at $(1,-1)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<img src=\"/media/ch03/CNX_Calc_Figure_03_03_204.jpg\" alt=\"The graph y is a two crescents with the crescent in the third quadrant sloping gently from (−3, −1) to (−1, −5) and the other crescent sloping more sharply from (0.8, −5) to (3, 0.2). The straight line T(x) is drawn through (0, −5) with slope 4.\"> <p>$T(x)=4x-5$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1169739273725",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "product-rule-theorem",
+   "prompt": "<p>For the following exercises, assume that $f(x)$ and $g(x)$ are both differentiable functions for all $x.$ Find the derivative of each of the functions $h(x).$</p><p>$h(x)=x^{3}f(x)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$h^{\\prime}(x)=3x^{2}f(x)+x^{3}f^{\\prime}(x)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1169739304919",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quotient-rule-theorem",
+   "prompt": "<p>For the following exercises, assume that $f(x)$ and $g(x)$ are both differentiable functions for all $x.$ Find the derivative of each of the functions $h(x).$</p><p>$h(x)=\\frac{3f(x)}{g(x)+2}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$h^{\\prime}(x)=\\frac{3f^{\\prime}(x)(g(x)+2)-3f(x)g^{\\prime}(x)}{{(g(x)+2)}^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1169739275301",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quotient-rule-theorem",
+   "prompt": "<p>For the following exercises, assume that $f(x)$ and $g(x)$ are both differentiable functions with values as given in the following table. Use the following table to calculate the following derivatives.</p><div class=\"book-table\" id=\"fs-id1169736597684\"><table><tbody><tr><td><strong>$x$</strong></td><td>$1$</td><td>$2$</td><td>$3$</td><td>$4$</td></tr><tr><td><strong>$f(x)$</strong></td><td>$3$</td><td>$5$</td><td>$-2$</td><td>$0$</td></tr><tr><td><strong>$g(x)$</strong></td><td>$2$</td><td>$3$</td><td>$-4$</td><td>$6$</td></tr><tr><td><strong>$f^{\\prime}(x)$</strong></td><td>$-1$</td><td>$7$</td><td>$8$</td><td>$-3$</td></tr><tr><td><strong>$g^{\\prime}(x)$</strong></td><td>$4$</td><td>$1$</td><td>$2$</td><td>$9$</td></tr></tbody></table></div><p>Find $h^{\\prime}(2)$ if $h(x)=\\frac{f(x)}{g(x)}.$</p>",
+   "answer": {
+    "type": "number",
+    "value": 1.7777777777777777,
+    "solution": "$\\frac{16}{9}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1169739303722",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quotient-rule-theorem",
+   "prompt": "<p>For the following exercises, assume that $f(x)$ and $g(x)$ are both differentiable functions with values as given in the following table. Use the following table to calculate the following derivatives.</p><div class=\"book-table\" id=\"fs-id1169736597684\"><table><tbody><tr><td><strong>$x$</strong></td><td>$1$</td><td>$2$</td><td>$3$</td><td>$4$</td></tr><tr><td><strong>$f(x)$</strong></td><td>$3$</td><td>$5$</td><td>$-2$</td><td>$0$</td></tr><tr><td><strong>$g(x)$</strong></td><td>$2$</td><td>$3$</td><td>$-4$</td><td>$6$</td></tr><tr><td><strong>$f^{\\prime}(x)$</strong></td><td>$-1$</td><td>$7$</td><td>$8$</td><td>$-3$</td></tr><tr><td><strong>$g^{\\prime}(x)$</strong></td><td>$4$</td><td>$1$</td><td>$2$</td><td>$9$</td></tr></tbody></table></div><p>Find $h^{\\prime}(4)$ if $h(x)=\\frac{1}{x}+\\frac{g(x)}{f(x)}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Undefined",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1169736593509",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "product-rule-theorem",
+   "figure": {
+    "src": "/media/ch03/CNX_Calc_Figure_03_03_205.jpg",
+    "alt": "Two functions are graphed: f(x) and g(x). The function f(x) starts at (−1, 5) and decreases linearly to (3, 1) at which point it increases linearly to (5, 3). The function g(x) starts at the origin, increases linearly to (2.5, 2.5), and then remains constant at y = 2.5."
+   },
+   "prompt": "<p>For the following exercises, use the following figure to find the indicated derivatives, if they exist.</p><p>Let $h(x)=f(x)g(x).$ Find</p><p>a. $h^{\\prime}(1),$</p><p>b. $h^{\\prime}(3),$ and</p><p>c. $h^{\\prime}(4).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $2,$ b. does not exist, c. $2.5$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1169739266751",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises,</p><p>a. evaluate $f^{\\prime}(a),$ and</p><p>b. graph the function $f(x)$ and the tangent line at $x=a.$</p><p><strong>[T]</strong> $f(x)=2x^{3}+3x-x^{2},a=2$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. 23, b. $y=23x-28$</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_03_206.jpg\" alt=\"The graph is a slightly deformed cubic function passing through the origin. The tangent line is drawn through (0, −28) with slope 23.\">",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1169736655292",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>For the following exercises,</p><p>a. evaluate $f^{\\prime}(a),$ and</p><p>b. graph the function $f(x)$ and the tangent line at $x=a.$</p><p><strong>[T]</strong> $f(x)=x^{2}-x^{12}+3x+2,a=0$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. 3, b. $y=3x+2$</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_03_208.jpg\" alt=\"The graph starts in the third quadrant, increases quickly and passes through the x axis near −0.9, then increases at a lower rate, passes through (0, 2), increases to (1, 5), and then decreases quickly and passes through the x axis near 1.2.\">",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1169739305607",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>Find an equation of the tangent line to the graph of $f(x)=2x^{3}+4x^{2}-5x-3$ at $x=-1.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y=-7x-3$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1169736662390",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "product-rule-theorem",
+   "prompt": "<p>Find an equation of the tangent line to the graph of $f(x)=(3x-x^{2})(3-x-x^{2})$ at $x=1.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y=-5x+7$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1169739303473",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>Find an equation of the line passing through the point $P(3,3)$ and tangent to the graph of $f(x)=\\frac{6}{x-1}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y=-\\frac{3}{2}x+\\frac{15}{2}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1169739335937",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p>Find a quadratic polynomial such that $f(1)=5,f^{\\prime}(1)=3$ and $f^{\\prime\\prime}(1)=-6.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y=-3x^{2}+9x-1$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1169736613986",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quotient-rule-theorem",
+   "prompt": "<p><strong>[T]</strong> A herring swimming along a straight line has traveled $s(t)=\\frac{t^{2}}{t^{2}+2}$ feet in $t$ seconds.</p><p>Determine the velocity of the herring when it has traveled 3 seconds.</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.09917355371900827,
+    "unit": "ft/s",
+    "solution": "$\\frac{12}{121}$ or 0.0992 ft/s",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1169739341415",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "quotient-rule-theorem",
+   "prompt": "<p><strong>[T]</strong> The concentration of antibiotic in the bloodstream $t$ hours after being injected is given by the function $C(t)=\\frac{2t^{2}+t}{t^{3}+50},$ where $C$ is measured in milligrams per liter of blood.</p><p>a. Find the rate of change of $C(t).$</p><p>b. Determine the rate of change for $t=8,12,24,$ and $36.$</p><p>c. Briefly describe what seems to be occurring as the number of hours increases.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $\\frac{-2t^{4}-2t^{3}+200t+50}{{(t^{3}+50)}^{2}}$ b. $-0.02395$ mg/L-hr, −0.01344 mg/L-hr, −0.003566 mg/L-hr, −0.001579 mg/L-hr c. The rate at which the concentration of drug in the bloodstream decreases is slowing to 0 as time increases.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1169739353433",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-paragraph",
+   "prompt": "<p><strong>[T]</strong> According to Newton’s law of universal gravitation, the force $F$ between two bodies of constant mass $m_{1}$ and $m_{2}$ is given by the formula $F=\\frac{Gm_{1}m_{2}}{d^{2}},$ where $G$ is the gravitational constant and $d$ is the distance between the bodies.</p><p>a. Suppose that $G,m_{1},\\text{and}\\;m_{2}$ are constants. Find the rate of change of force $F$ with respect to distance $d.$</p><p>b. Find the rate of change of force $F$ with gravitational constant $G=6.67\\;\\times \\;{10}^{-11}$ ${\\text{Nm}}^{2}/{\\text{kg}}^{2},$ on two bodies 10 meters apart, each with a mass of 1000 kilograms.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $F'(d)=\\frac{-2Gm_{1}m_{2}}{d^{3}}$ b. $-1.33\\;\\times \\;{10}^{-7}$ N/m",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "r373",
+   "source_id": "fs-id1169738230392",
+   "source_section": "3.9",
+   "source_number": "373",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combining-rules",
+   "prompt": "<p>Find the derivatives of the following functions.</p><p>$f(x)=3x^{3}-\\frac{4}{x^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$9x^{2}+\\frac{8}{x^{3}}$",
+    "generated_by": "source"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp11",
+   "concept": "constant-rule"
+  },
+  {
+   "exercise": "cp12",
+   "concept": "derivative-function"
+  },
+  {
+   "exercise": "cp12",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "cp13",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "cp14",
+   "concept": "sum-rule"
+  },
+  {
+   "exercise": "cp14",
+   "concept": "difference-rule"
+  },
+  {
+   "exercise": "cp14",
+   "concept": "constant-multiple-rule"
+  },
+  {
+   "exercise": "cp14",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "cp15",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "cp15",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "cp15",
+   "concept": "difference-rule"
+  },
+  {
+   "exercise": "cp16",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "cp17",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "cp18",
+   "concept": "extended-power-rule"
+  },
+  {
+   "exercise": "cp19",
+   "concept": "difference-rule"
+  },
+  {
+   "exercise": "cp19",
+   "concept": "constant-multiple-rule"
+  },
+  {
+   "exercise": "cp20",
+   "concept": "combining-differentiation-rules"
+  },
+  {
+   "exercise": "cp20",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e107",
+   "concept": "combining-differentiation-rules"
+  },
+  {
+   "exercise": "e107",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "e107",
+   "concept": "sum-rule"
+  },
+  {
+   "exercise": "e109",
+   "concept": "combining-differentiation-rules"
+  },
+  {
+   "exercise": "e109",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "e109",
+   "concept": "sum-rule"
+  },
+  {
+   "exercise": "e111",
+   "concept": "combining-differentiation-rules"
+  },
+  {
+   "exercise": "e111",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e111",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e113",
+   "concept": "combining-differentiation-rules"
+  },
+  {
+   "exercise": "e113",
+   "concept": "extended-power-rule"
+  },
+  {
+   "exercise": "e115",
+   "concept": "combining-differentiation-rules"
+  },
+  {
+   "exercise": "e115",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e117",
+   "concept": "combining-differentiation-rules"
+  },
+  {
+   "exercise": "e117",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e119",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e119",
+   "concept": "extended-power-rule"
+  },
+  {
+   "exercise": "e121",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e121",
+   "concept": "extended-power-rule"
+  },
+  {
+   "exercise": "e123",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e123",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "e125",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e125",
+   "concept": "constant-multiple-rule"
+  },
+  {
+   "exercise": "e127",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e129",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e129",
+   "concept": "sum-rule"
+  },
+  {
+   "exercise": "e131",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e131",
+   "concept": "graph-of-the-derivative"
+  },
+  {
+   "exercise": "e133",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e133",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "e135",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e135",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "e137",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e137",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "e139",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e139",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e141",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e141",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e143",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e143",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "e145",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e145",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e147",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e147",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e149",
+   "concept": "extended-power-rule"
+  },
+  {
+   "exercise": "e149",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "r373",
+   "concept": "extended-power-rule"
+  },
+  {
+   "exercise": "r373",
+   "concept": "difference-rule"
+  }
+ ],
+ "referents": [
+  {
+   "id": "const-f",
+   "label": "f(x) = x²",
+   "figures": [
+    "fig-constant-multiple"
+   ]
+  },
+  {
+   "id": "const-g",
+   "label": "g(x) = 3x²",
+   "figures": [
+    "fig-constant-multiple"
+   ]
+  },
+  {
+   "id": "factor-f",
+   "label": "the first function, f(x)",
+   "figures": [
+    "sim-product-rule-area"
+   ]
+  },
+  {
+   "id": "factor-g",
+   "label": "the second function, g(x)",
+   "figures": [
+    "sim-product-rule-area"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "cp17-key",
+   "kind": "correction",
+   "html": "The answer is written $k^{\\prime}(x);$ the function of the checkpoint is $h,$ so it means $h^{\\prime}(x)=-\\frac{13}{{(4x-3)}^{2}}.$"
+  }
+ ]
+}

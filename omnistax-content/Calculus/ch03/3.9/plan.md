@@ -60,3 +60,12 @@ Ids confirmed with `ost ids calculus 3.9` after the build.
   - `{"id": "r383", "source_id": "fs-id1169738239462", "source_section": "3.9", "source_number": "383", "kind": "review-exercise", "bloom": "Apply", "place": {"at": "end"}, "cite": "logarithmic", "prompt": "<p>Find the following derivatives of various orders.</p><p>Second derivative of $y=4^{x}+x^{2}\\sin(x)$</p>", "answer": {"type": "open", "generated_by": "source", "solution": "$4^{x}(\\ln 4)^{2}+2\\sin x+4x\\cos x-x^{2}\\sin x$"}}` · tags `derivatives-of-general-exponential-and-logarithmic-functions`, `higher-order-derivative`
   - `{"id": "r385", "source_id": "fs-id1169738226472", "source_section": "3.9", "source_number": "385", "kind": "review-exercise", "bloom": "Apply", "place": {"at": "end"}, "cite": "exponential", "prompt": "<p>Find an equation of the tangent line to the following equations at the specified point.</p><p>$y=x+e^{x}-\\frac{1}{x}$ at $x=1$</p>", "answer": {"type": "open", "generated_by": "source", "solution": "$T=(2+e)x-2$"}}` · tags `derivative-of-the-natural-exponential-function`, `equation-of-a-tangent-line`
 - The other sections' review rows are written in their own plans (3.1, 3.2, 3.3, 3.5, 3.7).
+
+## As built (2026-10-12)
+
+- `sim-find-e`: b from 2 to 3 (step 0.001), detents only at 2 and 3 (the book's 2.7 and 2.8 lie too near e to snap to, so they are reached by sliding), special at e where the readout becomes E′(0) = 1 and y = x + 1 is labelled.
+- `sim-ln-derivative` on `F.deriv`, x from 0.2 to 5.
+- Sheet links on book words: "derivative formula" in Example 3.74 opens the Table of Derivatives; "derivative" in Examples 3.74, 3.77 and 3.81 opens the calculator.
+- Review exercises: 375, 381, 383, 385 set here; the others written into 3.1 (391), 3.2 (367–371, 387), 3.3 (373), 3.5 (377), 3.6 (389, moved from 3.5: it needs the chain rule) and 3.7 (379); 372, 374, 376, 378, 380, 382, 384, 386, 388, 390 unkeyed and left out.
+- 366 kept with an AI-marked answer; variables rows added for f, f_prime, dy/dx; anchors on every 3.9 row and the eleven forms (E_prime already had its symbol and row).
+- Corrections: Example 3.79's broken reference (Equation 3.34), exercise 361's key ("United States" for New York City).

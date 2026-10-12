@@ -1,0 +1,952 @@
+{
+ "id": "3.9",
+ "module": "m53586",
+ "chapter": "3",
+ "title": "Derivatives of Exponential and Logarithmic Functions",
+ "short": "Exponential and Logarithmic Derivatives",
+ "lead": "Assuming only that bˣ has a <span data-concept=\"derivative\">derivative</span> at 0, the derivative of every <span data-concept=\"exponential-function\">exponential function</span> follows, and the number e is the base whose tangent at 0 has <span data-concept=\"slope\">slope</span> 1. The derivatives of the <span data-concept=\"natural-logarithm\">natural logarithm</span> and of the general exponential and logarithmic functions come next, then <span data-concept=\"logarithmic-differentiation\">logarithmic differentiation</span> for functions such as xˣ.",
+ "objectives": [
+  "Find the derivative of exponential functions.",
+  "Find the derivative of logarithmic functions.",
+  "Use logarithmic differentiation to determine the derivative of a function."
+ ],
+ "summary_html": "<ul><li>On the basis of the assumption that the <span data-concept=\"exponential-function\">exponential function</span> $y=b^{x},b\\gt 0$ is continuous everywhere and differentiable at 0, this <span data-concept=\"function\">function</span> is differentiable everywhere and there is a formula for its <span data-concept=\"derivative\">derivative</span>.</li><li>We can use a formula to find the <span data-concept=\"derivative\">derivative</span> of $y=\\ln x,$ and the relationship ${\\log }_{b}x=\\frac{\\ln x}{\\ln b}$ allows us to extend our differentiation formulas to include logarithms with arbitrary bases.</li><li><span data-concept=\"logarithmic-differentiation\">Logarithmic differentiation</span> allows us to differentiate <span data-concept=\"function\">functions</span> of the form $y=g{(x)}^{\\kf(x)}$ or very complex <span data-concept=\"function\">functions</span> by taking the <span data-concept=\"natural-logarithm\">natural logarithm</span> of both sides and exploiting the <span data-concept=\"properties-of-logarithms\">properties of logarithms</span> before differentiating.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except that of exercise 366, which the key leaves unanswered and whose answer, with its reasoning, is an AI suggestion. The other 17 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: exercises 332 to 344 (derivatives), 346 to 352 (logarithmic differentiation), 354 and 356 (tangent lines), 358 (the alternating current), 360 (erbium), 362 (the Gompertz function) and 364 (the table of derivatives). The Chapter Review Exercises 367 to 391 are printed at the end of this section, and each is set with the section that introduces what it tests: 375, 381, 383 and 385 are set here, 391 in 3.1, 367 to 371 and 387 in 3.2, 373 in 3.3, 377 in 3.5, 389 in 3.6 and 379 in 3.7; review exercises 372, 374, 376, 378, 380, 382, 384, 386, 388 and 390 have no answer in the key and are left out.",
+ "figures": [
+  {
+   "id": "sim-find-e",
+   "kind": "sim",
+   "number": "3.33",
+   "folds": [
+    "3.34"
+   ],
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_09_001.jpg",
+    "/media/ch03/CNX_Calc_Figure_03_09_002.jpg"
+   ],
+   "original_caption": "(Figure 3.33) The graph of E(x)=eˣ is between y=2ˣ and y=3ˣ. (Figure 3.34) The tangent line to E(x)=eˣ at x=0 has slope 1.",
+   "draws": [
+    "function",
+    "line",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-ln-derivative",
+   "kind": "sim",
+   "number": "3.35",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_09_003.jpg"
+   ],
+   "original_caption": "The function y=ln x is increasing on (0,+∞). Its derivative y′=1/x is greater than zero on (0,+∞).",
+   "draws": [
+    "function",
+    "line",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "e-defined",
+   "concept": "number-e-by-slope",
+   "verb": "introduces"
+  },
+  {
+   "span": "bx-derivative",
+   "concept": "derivative-of-an-exponential-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "exp-theorem",
+   "concept": "derivative-of-the-natural-exponential-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "ln-theorem",
+   "concept": "derivative-of-the-natural-logarithm",
+   "verb": "introduces"
+  },
+  {
+   "span": "general-theorem",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "log-diff",
+   "concept": "logarithmic-differentiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169738228453",
+   "concept": "power-rule-for-real-exponents",
+   "verb": "introduces"
+  },
+  {
+   "span": "e-defined",
+   "concept": "natural-exponential-function",
+   "verb": "uses"
+  },
+  {
+   "span": "e-defined",
+   "concept": "natural-logarithm",
+   "verb": "uses"
+  },
+  {
+   "span": "e-defined",
+   "concept": "number-e",
+   "verb": "uses"
+  },
+  {
+   "span": "exponential",
+   "concept": "exponential-function",
+   "verb": "uses"
+  },
+  {
+   "span": "exponential",
+   "concept": "laws-of-exponents",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738223456",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737140879",
+   "concept": "quotient-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737949367",
+   "concept": "population-growth-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "logarithmic",
+   "concept": "implicit-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "logarithmic",
+   "concept": "inverse-function-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738244488",
+   "concept": "properties-of-logarithms",
+   "verb": "uses"
+  },
+  {
+   "span": "log-diff-strategy",
+   "concept": "properties-of-logarithms",
+   "verb": "uses"
+  },
+  {
+   "span": "logarithmic",
+   "concept": "change-of-base-formulas",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738219393",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738238112",
+   "concept": "product-rule",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp50",
+   "source_id": "fs-id1169738152553",
+   "source_number": "Checkpoint 3.50",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737140879"
+   },
+   "cite": "exp-theorem",
+   "prompt": "<p>Find the derivative of $h(x)=xe^{2x}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Don’t forget to use the product rule.",
+    "solution": "$h^{\\prime}(x)=e^{2x}+2xe^{2x}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp51",
+   "source_id": "fs-id1169738186822",
+   "source_number": "Checkpoint 3.51",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737949367"
+   },
+   "cite": "exp-theorem",
+   "prompt": "<p>If $A(t)=1000e^{0.3t}$ describes the mosquito population after $t$ days, as in the preceding example, what is the rate of change of $A(t)$ after 4 days?</p>",
+   "answer": {
+    "type": "number",
+    "value": 996,
+    "hint": "Find $A^{\\prime}(4).$",
+    "solution": "996",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp52",
+   "source_id": "fs-id1169738219657",
+   "source_number": "Checkpoint 3.52",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738244488"
+   },
+   "cite": "ln-theorem",
+   "prompt": "<p>Differentiate: $f(x)=\\ln {(3x+2)}^{5}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use a property of logarithms to simplify before taking the derivative.",
+    "solution": "$f^{\\prime}(x)=\\frac{15}{3x+2}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp53",
+   "source_id": "fs-id1169738240285",
+   "source_number": "Checkpoint 3.53",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738219393"
+   },
+   "cite": "general-theorem",
+   "prompt": "<p>Find the slope for the line tangent to $y=3^{x}$ at $x=2.$</p>",
+   "answer": {
+    "type": "number",
+    "value": 9.887510598012987,
+    "tol": 0.001,
+    "hint": "Evaluate the derivative at $x=2.$",
+    "solution": "$9\\;\\ln (3)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp54",
+   "source_id": "fs-id1169737933513",
+   "source_number": "Checkpoint 3.54",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738228453"
+   },
+   "cite": "log-diff-strategy",
+   "prompt": "<p>Use logarithmic differentiation to find the derivative of $y=x^{x}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Follow the problem solving strategy.",
+    "solution": "$\\frac{dy}{dx}=x^{x}(1+\\ln x)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp55",
+   "source_id": "fs-id1169737933598",
+   "source_number": "Checkpoint 3.55",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738228453"
+   },
+   "cite": "log-diff",
+   "prompt": "<p>Find the derivative of $y={(\\tan x)}^{\\pi}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the result from Example 3.83.",
+    "solution": "$y^{\\prime}=\\pi {(\\tan x)}^{\\pi -1}{\\sec }^{2}x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e331",
+   "source_id": "fs-id1169738235136",
+   "source_number": "331",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-theorem",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=x^{2}e^{x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$2xe^{x}+x^{2}e^{x}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e333",
+   "source_id": "fs-id1169738085451",
+   "source_number": "333",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-theorem",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=e^{x^{3}\\ln x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$e^{x^{3}\\ln x}(3x^{2}\\ln x+x^{2})$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e335",
+   "source_id": "fs-id1169738240382",
+   "source_number": "335",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-theorem",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=\\frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{4}{{(e^{x}+e^{-x})}^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e337",
+   "source_id": "fs-id1169738071335",
+   "source_number": "337",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-theorem",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=2^{4x}+4x^{2}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$2^{4x+2}\\cdot \\ln 2+8x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e339",
+   "source_id": "fs-id1169738039846",
+   "source_number": "339",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-theorem",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=x^{\\pi}\\cdot {\\pi}^{x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\pi x^{\\pi -1}\\cdot {\\pi}^{x}+x^{\\pi}\\cdot {\\pi}^{x}\\ln \\pi$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e341",
+   "source_id": "fs-id1169737904496",
+   "source_number": "341",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ln-theorem",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=\\ln \\sqrt{5x-7}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{5}{2(5x-7)}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e343",
+   "source_id": "fs-id1169737904626",
+   "source_number": "343",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-theorem",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=\\log (\\sec x)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{\\tan x}{\\ln 10}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e345",
+   "source_id": "fs-id1169738054489",
+   "source_number": "345",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-theorem",
+   "prompt": "<p>For the following exercises, find $f^{\\prime}(x)$ for each function.</p><p>$f(x)=2^{x}\\cdot {\\log }_{3}7^{x^{2}-4}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$2^{x}\\cdot \\ln 2\\cdot {\\log }_{3}7^{x^{2}-4}+2^{x}\\cdot \\frac{2x\\;\\ln 7}{\\ln 3}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e347",
+   "source_id": "fs-id1169738199977",
+   "source_number": "347",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-diff-strategy",
+   "prompt": "<p>For the following exercises, use logarithmic differentiation to find $\\frac{dy}{dx}.$</p><p>$y={(\\sin 2x)}^{4x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "${(\\sin 2x)}^{4x}[4\\cdot \\ln (\\sin 2x)+8x\\cdot \\cot 2x]$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e349",
+   "source_id": "fs-id1169738092313",
+   "source_number": "349",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-diff-strategy",
+   "prompt": "<p>For the following exercises, use logarithmic differentiation to find $\\frac{dy}{dx}.$</p><p>$y=x^{{\\log }_{2}x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$x^{{\\log }_{2}x}\\cdot \\frac{2\\;\\ln x}{x\\;\\ln 2}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e351",
+   "source_id": "fs-id1169738039194",
+   "source_number": "351",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-diff-strategy",
+   "prompt": "<p>For the following exercises, use logarithmic differentiation to find $\\frac{dy}{dx}.$</p><p>$y=x^{\\cot x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$x^{\\cot x}\\cdot [-{\\csc }^{2}x\\cdot \\ln x+\\frac{\\cot x}{x}]$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e353",
+   "source_id": "fs-id1169738094022",
+   "source_number": "353",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-diff-strategy",
+   "prompt": "<p>For the following exercises, use logarithmic differentiation to find $\\frac{dy}{dx}.$</p><p>$y=x^{-1/2}{(x^{2}+3)}^{2/3}{(3x-4)}^{4}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$x^{-1/2}{(x^{2}+3)}^{2/3}{(3x-4)}^{4}\\cdot [\\frac{-1}{2x}+\\frac{4x}{3(x^{2}+3)}+\\frac{12}{3x-4}]$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e355",
+   "source_id": "fs-id1169738210057",
+   "source_number": "355",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-theorem",
+   "prompt": "<p><strong>[T]</strong> Find an equation of the line that is normal to the graph of $f(x)=x\\cdot 5^{x}$ at the point where $x=1.$ Graph both the function and the normal line.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<img src=\"/media/ch03/CNX_Calc_Figure_03_09_202.jpg\" alt=\"The function starts at (−3, 0), decreases slightly and then increases through the origin and increases to (1.25, 10). There is a straight line marked T(x) with slope −1/(5 + 5 ln 5) and y intercept 5 + 1/(5 + 5 ln 5).\"> <p>$y=\\frac{-1}{5+5\\;\\ln 5}x+(5+\\frac{1}{5+5\\;\\ln 5})$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e357",
+   "source_id": "fs-id1169738094644",
+   "source_number": "357",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "log-diff",
+   "prompt": "<p>Consider the function $y=x^{1/x}$ for $x\\gt 0.$</p><p>a. Determine the points on the graph where the tangent line is horizontal.</p><p>b. Determine the points on the graph where $y^{\\prime}\\gt 0$ and those where $y^{\\prime}\\lt 0.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $x=e\\sim 2.718$ b. $y'\\gt 0\\text{on}(0,e);y'\\lt 0\\text{on}(e,\\infty )$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e359",
+   "source_id": "fs-id1169738229480",
+   "source_number": "359",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-theorem",
+   "prompt": "<p><strong>[T]</strong> The population of Toledo, Ohio, in 2000 was approximately 500,000. Assume the population is increasing at a rate of 5% per year.</p><p>a. Write the exponential function that relates the total population as a function of $t.$</p><p>b. Use a. to determine the rate at which the population is increasing in $t$ years.</p><p>c. Use b. to determine the rate at which the population is increasing in 10 years.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $P=500,000{(1.05)}^{t}$ individuals b. $P^{\\prime}(t)=24395\\cdot {(1.05)}^{t}$ individuals per year c. $39,737$ individuals per year",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e361",
+   "source_id": "fs-id1169738220789",
+   "source_number": "361",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exp-theorem",
+   "prompt": "<p><strong>[T]</strong> The number of cases of influenza in New York City from the beginning of 1960 to the beginning of 1964 is modeled by the function</p><p>$N(t)=5.3e^{0.093t^{2}-0.87t},(0\\le t\\le 4),$ where $N(t)$ gives the number of cases (in thousands) and <em>t</em> is measured in years, with $t=0$ corresponding to the beginning of 1960.</p><p>a. Show work that evaluates $N(0)$ and $N(4).$ Briefly describe what these values indicate about the disease in New York City.</p><p>b. Show work that evaluates $N^{\\prime}(0)$ and $N^{\\prime}(3).$ Briefly describe what these values indicate about the disease in New York City.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. At the beginning of 1960 there were 5.3 thousand cases of the disease in New York City. At the beginning of 1964 there were approximately 723 cases of the disease in the United States.<sup class=\"fn\" data-note=\"e361-key\"></sup> b. At the beginning of 1960 the number of cases of the disease was decreasing at rate of $-4.611$ thousand per year; at the beginning of 1963, the number of cases of the disease was decreasing at a rate of $-0.2808$ thousand per year.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e363",
+   "source_id": "fs-id1169738066609",
+   "source_number": "363",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>For the following exercises, use the population of New York City from 1790 to 1860, given in the following table.</p><div class=\"book-table\" id=\"fs-id1169738227097\"><div class=\"tcap\"><span class=\"eyebrow\">Table 3.8</span><span>New York City Population Over Time</span></div><table><thead><tr><th>Years since 1790</th><th>Population</th></tr></thead><tbody><tr><td>0</td><td>33,131</td></tr><tr><td>10</td><td>60,515</td></tr><tr><td>20</td><td>96,373</td></tr><tr><td>30</td><td>123,706</td></tr><tr><td>40</td><td>202,300</td></tr><tr><td>50</td><td>312,710</td></tr><tr><td>60</td><td>515,547</td></tr><tr><td>70</td><td>813,669</td></tr></tbody></table></div><p><strong>[T]</strong> Using a computer program or a calculator, fit a growth curve to the data of the form $p=ab^{t}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$p=35741{(1.045)}^{t}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e365",
+   "source_id": "fs-id1169738071156",
+   "source_number": "365",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>For the following exercises, use the population of New York City from 1790 to 1860, given in the following table.</p><div class=\"book-table\" id=\"fs-id1169738227097\"><div class=\"tcap\"><span class=\"eyebrow\">Table 3.8</span><span>New York City Population Over Time</span></div><table><thead><tr><th>Years since 1790</th><th>Population</th></tr></thead><tbody><tr><td>0</td><td>33,131</td></tr><tr><td>10</td><td>60,515</td></tr><tr><td>20</td><td>96,373</td></tr><tr><td>30</td><td>123,706</td></tr><tr><td>40</td><td>202,300</td></tr><tr><td>50</td><td>312,710</td></tr><tr><td>60</td><td>515,547</td></tr><tr><td>70</td><td>813,669</td></tr></tbody></table></div><p><strong>[T]</strong> Using the exponential best fit for the data, write a table containing the second derivatives evaluated at each year.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<div class=\"book-table\" id=\"fs-id1169738071176\"> <table> <thead><tr><th>Years since 1790</th><th>$P^{\\prime\\prime}$</th></tr></thead> <tbody> <tr><td>0</td><td>69.25</td></tr> <tr><td>10</td><td>107.5</td></tr> <tr><td>20</td><td>167.0</td></tr> <tr><td>30</td><td>259.4</td></tr> <tr><td>40</td><td>402.8</td></tr> <tr><td>50</td><td>625.5</td></tr> <tr><td>60</td><td>971.4</td></tr> <tr><td>70</td><td>1508.5</td></tr> </tbody> </table> </div>",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e366",
+   "source_id": "fs-id1169738040664",
+   "source_number": "366",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>For the following exercises, use the population of New York City from 1790 to 1860, given in the following table.</p><div class=\"book-table\" id=\"fs-id1169738227097\"><div class=\"tcap\"><span class=\"eyebrow\">Table 3.8</span><span>New York City Population Over Time</span></div><table><thead><tr><th>Years since 1790</th><th>Population</th></tr></thead><tbody><tr><td>0</td><td>33,131</td></tr><tr><td>10</td><td>60,515</td></tr><tr><td>20</td><td>96,373</td></tr><tr><td>30</td><td>123,706</td></tr><tr><td>40</td><td>202,300</td></tr><tr><td>50</td><td>312,710</td></tr><tr><td>60</td><td>515,547</td></tr><tr><td>70</td><td>813,669</td></tr></tbody></table></div><p><strong>[T]</strong> Using the tables of first and second derivatives and the best fit, answer the following questions:</p><p>a. Will the model be accurate in predicting the future population of New York City? Why or why not?</p><p>b. Estimate the population in 2010. Was the prediction correct from a.?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. No. The best fit $p=35741{(1.045)}^{t}$ is exponential, and the tables show its first and second derivatives growing larger every decade, so the model has the population growing ever faster without bound. A city’s population is limited by space and resources and cannot keep growing faster and faster, so the model will not predict the future population accurately for long. b. The year 2010 is $t=220$ years after 1790: $p=35741{(1.045)}^{220}\\approx 5.7\\times {10}^{8},$ about 574 million people. The population of New York City in 2010 was about 8.2 million, so the prediction is far too large, as part a. expects.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r375",
+   "source_id": "fs-id1169738230535",
+   "source_section": "3.9",
+   "source_number": "375",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>Find the derivatives of the following functions.</p><p>$f(x)=e^{\\sin x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$e^{\\sin x}\\cos x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "r381",
+   "source_id": "fs-id1169738239323",
+   "source_section": "3.9",
+   "source_number": "381",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "logarithmic",
+   "prompt": "<p>Find the following derivatives of various orders.</p><p>First derivative of $y=x\\;\\ln (x)\\;\\cos x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\cos x\\cdot (\\ln x+1)-x\\;\\ln (x)\\;\\sin x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "r383",
+   "source_id": "fs-id1169738239462",
+   "source_section": "3.9",
+   "source_number": "383",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "logarithmic",
+   "prompt": "<p>Find the following derivatives of various orders.</p><p>Second derivative of $y=4^{x}+x^{2}\\sin (x)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$4^{x}{(\\ln 4)}^{2}+2\\;\\sin x+4x\\;\\cos x-x^{2}\\sin x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "r385",
+   "source_id": "fs-id1169738226472",
+   "source_section": "3.9",
+   "source_number": "385",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "exponential",
+   "prompt": "<p>Find an equation of the tangent line to the following equations at the specified point.</p><p>$y=x+e^{x}-\\frac{1}{x}$ at $x=1$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$T=(2+e)x-2$",
+    "generated_by": "source"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp50",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "cp50",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "cp50",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp51",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "cp51",
+   "concept": "population-growth-rate"
+  },
+  {
+   "exercise": "cp52",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "cp52",
+   "concept": "properties-of-logarithms"
+  },
+  {
+   "exercise": "cp53",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "cp53",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "cp54",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "cp55",
+   "concept": "power-rule-for-real-exponents"
+  },
+  {
+   "exercise": "cp55",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e331",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "e331",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e333",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "e333",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e333",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e335",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "e335",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e337",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e337",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e339",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e339",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e339",
+   "concept": "power-rule-for-real-exponents"
+  },
+  {
+   "exercise": "e341",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "e341",
+   "concept": "properties-of-logarithms"
+  },
+  {
+   "exercise": "e343",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e343",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e345",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e345",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e347",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e349",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e351",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e353",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e355",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e355",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e355",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e357",
+   "concept": "logarithmic-differentiation"
+  },
+  {
+   "exercise": "e357",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e359",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e359",
+   "concept": "population-growth-rate"
+  },
+  {
+   "exercise": "e361",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "e361",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e361",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e363",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e365",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e365",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e366",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "e366",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e366",
+   "concept": "population-growth-rate"
+  },
+  {
+   "exercise": "r375",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "r375",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "r381",
+   "concept": "derivative-of-the-natural-logarithm"
+  },
+  {
+   "exercise": "r381",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "r383",
+   "concept": "derivatives-of-general-exponential-and-logarithmic-functions"
+  },
+  {
+   "exercise": "r383",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "r385",
+   "concept": "derivative-of-the-natural-exponential-function"
+  },
+  {
+   "exercise": "r385",
+   "concept": "equation-of-a-tangent-line"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "ex379-ref",
+   "kind": "correction",
+   "html": "The book’s reference here points to no equation; the formula it uses is Equation 3.34, $\\frac{d}{dx}(b^{x})=b^{x}\\ln b.$"
+  },
+  {
+   "id": "e361-key",
+   "kind": "correction",
+   "html": "The model counts cases in New York City; the key’s “in the United States” means New York City."
+  }
+ ]
+}

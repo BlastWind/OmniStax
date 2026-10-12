@@ -1,0 +1,227 @@
+<p>We have seen the techniques for differentiating basic <span data-concept="function">functions</span> $(x^{n},\sin x,\cos x,\text{etc}.)$ as well as sums, differences, products, quotients, and constant multiples of these <span data-concept="function">functions</span>. However, these techniques do not allow us to differentiate <span data-concept="composite-function">compositions of functions</span>, such as $\kh(x)=\sin (x^{3})$ or <span data-fn="sqrt(3x^2+1)">$\kk(x)=\sqrt{3x^{2}+1}.$</span> In this section, we study the rule for finding the <span data-concept="derivative">derivative</span> of the composition of two or more <span data-concept="function">functions</span>.</p>
+
+<section id="deriving">
+<h2>Deriving the Chain Rule</h2>
+<p class="cite-target">When we have a <span data-concept="function">function</span> that is a composition of two or more <span data-concept="function">functions</span>, we could use all of the techniques we have already learned to differentiate it. However, using all of those techniques to break down a <span data-concept="function">function</span> into simpler parts that we are able to differentiate can get cumbersome. Instead, we use the <strong><span data-concept="chain-rule">chain rule</span></strong>, which states that the <span data-concept="derivative">derivative</span> of a <span data-concept="composite-function">composite function</span> is the <span data-concept="derivative">derivative</span> of the outer <span data-concept="function">function</span> evaluated at the inner <span data-concept="function">function</span> times the <span data-concept="derivative">derivative</span> of the inner <span data-concept="function">function</span>.</p>
+<p>To put this rule into context, let’s take a look at an example: <span data-fn="sin(x^3)">$\kh(x)=\sin (x^{3}).$</span> We can think of the <span data-concept="derivative">derivative</span> of this <span data-concept="function">function</span> with respect to <em>x</em> as the rate of change of $\sin (x^{3})$ relative to the change in $x.$ Consequently, we want to know how $\sin (x^{3})$ changes as $x$ changes. We can think of this event as a chain reaction: As $x$ changes, $x^{3}$ changes, which leads to a change in $\sin (x^{3}).$ This chain reaction gives us hints as to what is involved in computing the <span data-concept="derivative">derivative</span> of $\;\sin (x^{3}).$ First of all, a change in $x$ forcing a change in $x^{3}$ suggests that somehow the <span data-concept="derivative">derivative</span> of $x^{3}$ is involved. In addition, the change in $x^{3}$ forcing a change in $\sin (x^{3})$ suggests that the <span data-concept="derivative">derivative</span> of $\sin (u)$ with respect to $u,$ where $u=x^{3},$ is also part of the final <span data-concept="derivative">derivative</span>.</p>
+<p>We can take a more formal look at the <span data-concept="derivative">derivative</span> of $\kh(x)=\sin (x^{3})$ by setting up the <span data-concept="limit">limit</span> that would give us the <span data-concept="derivative">derivative</span> at a specific value $a$ in the domain of $\kh(x)=\sin (x^{3}).$</p>
+$$\khprime(a)=\lim_{x\to a}\frac{\sin (x^{3})-\sin (a^{3})}{x-a}.$$
+<p>This expression does not seem particularly helpful; however, we can modify it by multiplying and dividing by the expression $x^{3}-a^{3}$ to obtain</p>
+$$\khprime(a)=\lim_{x\to a}\frac{\sin (x^{3})-\sin (a^{3})}{x^{3}-a^{3}}\cdot \frac{x^{3}-a^{3}}{x-a}.$$
+<p>From the definition of the <span data-concept="derivative">derivative</span>, we can see that the second factor is the <span data-concept="derivative">derivative</span> of $x^{3}$ at $x=a.$ That is,</p>
+$$\lim_{x\to a}\frac{x^{3}-a^{3}}{x-a}=\frac{d}{dx}{(x^{3})}_{x=a}=3a^{2}.$$
+<p>However, it might be a little more challenging to recognize that the first term is also a <span data-concept="derivative">derivative</span>. We can see this by letting $u=x^{3}$ and observing that as $x\to a,u\to a^{3}\text{:}$</p>
+$$\begin{array}{rl}\lim_{x\to a}\frac{\sin (x^{3})-\sin (a^{3})}{x^{3}-a^{3}} & =\lim_{u\to a^{3}}\frac{\sin u-\sin (a^{3})}{u-a^{3}} \\ & =\frac{d}{du}{(\sin u)}_{u=a^{3}} \\ & =\cos (a^{3}).\end{array}$$
+<p>Thus, $\khprime(a)=\cos (a^{3})\cdot 3a^{2}.$</p>
+<p>In other words, if $\kh(x)=\sin (x^{3}),$ then $\khprime(x)=\cos (x^{3})\cdot 3x^{2}.$ Thus, if we think of $\kh(x)=\sin (x^{3})$ as the composition $(\kf\circ \kg)(x)=\kf(\kg(x))$ where $\kf(x)=$ sin $x$ and $\kg(x)=x^{3},$ then the <span data-concept="derivative">derivative</span> of $\kh(x)=\sin (x^{3})$ is the product of the <span data-concept="derivative">derivative</span> of $\kg(x)=x^{3}$ and the <span data-concept="derivative">derivative</span> of the <span data-concept="function">function</span> $\kf(x)=\sin x$ evaluated at the <span data-concept="function">function</span> $\kg(x)=x^{3}.$ At this point, we anticipate that for $\kh(x)=\sin (\kg(x)),$ it is quite likely that $\khprime(x)=\cos (\kg(x))\kgprime(x).$ As we determined above, this is the case for $\kh(x)=\sin (x^{3}).$</p>
+<p>Now that we have derived a special case of the <span data-concept="chain-rule">chain rule</span>, we state the general case and then apply it in a general form to other <span data-concept="composite-function">composite functions</span>. An informal proof is provided at the end of the section.</p>
+<div class="note" id="chain-rule-note">
+<div class="eyebrow">Rule</div>
+<h3>The Chain Rule</h3>
+<p>Let $\kf$ and $\kg$ be <span data-concept="function">functions</span>. For all <em>x</em> in the domain of $\kg$ for which $\kg$ is differentiable at <em>x</em> and $\kf$ is differentiable at $\kg(x),$ the <span data-concept="derivative">derivative</span> of the <span data-concept="composite-function">composite function</span></p>
+$$\kh(x)=(\kf\circ \kg)(x)=\kf(\kg(x))$$
+<p>is given by</p>
+$$\khprime(x)=\kfprime(\kg(x))\kgprime(x).\tag{3.17}$$
+<p>Alternatively, if $y$ is a <span data-concept="function">function</span> of $u,$ and $u$ is a <span data-concept="function">function</span> of $x,$ then</p>
+$$\kdydx=\kdydu\cdot \kdudx.$$
+</div>
+<figure class="sim" id="sim-chain-stretch">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The chain reaction of <span data-fn="sin(x^3)">$\kh(x)=\sin(x^{3})$</span> on three number lines: a short interval from $x$ to $x+\Delta x$ is carried by the inner <span data-concept="function">function</span> $u=\kg(x)$ to an interval about $\kgprime(x)$ times as long, and that one by the outer <span data-concept="function">function</span> $y=\kf(u)$ to an interval about $\kfprime(u)$ times as long again. Shrink $\Delta x:$ the ratio of the last length to the first closes on the product $\kfprime(\kg(x))\kgprime(x).$ Choose the composite of Example 3.48 or 3.52 to see the same two stretchings on other <span data-concept="function">functions</span>.</span></div>
+</figure>
+<div class="note" id="chain-rule-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Applying the Chain Rule</h3>
+<ol><li>To differentiate $\kh(x)=\kf(\kg(x)),$ begin by identifying $\kf(x)$ and $\kg(x).$</li><li>Find $\kfprime(x)$ and evaluate it at $\kg(x)$ to obtain $\kfprime(\kg(x)).$</li><li>Find $\kgprime(x).$</li><li>Write $\khprime(x)=\kfprime(\kg(x))\cdot \kgprime(x).$</li></ol>
+<p><em>Note</em>: When applying the <span data-concept="chain-rule">chain rule</span> to the composition of two or more <span data-concept="function">functions</span>, keep in mind that we work our way from the outside <span data-concept="function">function</span> in. It is also useful to remember that the <span data-concept="derivative">derivative</span> of the <span data-concept="composite-function">composition of two functions</span> can be thought of as having two parts; the <span data-concept="derivative">derivative</span> of the <span data-concept="composite-function">composition of three functions</span> has three parts; and so on. Also, remember that we never evaluate a <span data-concept="derivative">derivative</span> at a <span data-concept="derivative">derivative</span>.</p>
+</div>
+</section>
+
+<section id="chain-power">
+<h2>The Chain and Power Rules Combined</h2>
+<p class="cite-target">We can now apply the <span data-concept="chain-rule">chain rule</span> to <span data-concept="composite-function">composite functions</span>, but note that we often need to use it with other rules. For example, to find <span data-concept="derivative">derivatives</span> of <span data-concept="function">functions</span> of the form $\kh(x)={(\kg(x))}^{n},$ we need to use the <span data-concept="chain-rule">chain rule</span> combined with the <span data-concept="power-rule">power rule</span>. To do so, we can think of $\kh(x)={(\kg(x))}^{n}$ as $\kf(\kg(x))$ where $\kf(x)=x^{n}.$ Then $\kfprime(x)=nx^{n-1}.$ Thus, $\kfprime(\kg(x))=n{(\kg(x))}^{n-1}.$ This leads us to the <span data-concept="derivative">derivative</span> of a power <span data-concept="function">function</span> using the <span data-concept="chain-rule">chain rule</span>,</p>
+$$\khprime(x)=n{(\kg(x))}^{n-1}\kgprime(x)$$
+<div class="note" id="power-composition-rule">
+<div class="eyebrow">Rule</div>
+<h3>Power Rule for Composition of Functions</h3>
+<p>For all values of <em>x</em> for which the <span data-concept="derivative">derivative</span> is defined, if</p>
+$$\kh(x)={(\kg(x))}^{n}.$$
+<p>Then</p>
+$$\khprime(x)=n{(\kg(x))}^{n-1}\kgprime(x).\tag{3.18}$$
+</div>
+<div class="example" id="fs-id1169739274312">
+<h3>Example 3.48 · Using the Chain and Power Rules</h3>
+<p>Find the <a href="/calculus/sheets/integral-calculator/?op=derivative&amp;expr=1%2F(3x%5E2%2B1)%5E2"><span data-concept="derivative">derivative</span></a> of <span data-fn="1/(3x^2+1)^2">$\kh(x)=\frac{1}{{(3x^{2}+1)}^{2}}.$</span></p>
+<h4>Solution</h4>
+<p>First, rewrite $\kh(x)=\frac{1}{{(3x^{2}+1)}^{2}}={(3x^{2}+1)}^{-2}.$</p>
+<p>Applying the <span data-concept="power-rule">power rule</span> with $\kg(x)=3x^{2}+1,$ we have</p>
+$$\khprime(x)=-2{(3x^{2}+1)}^{-3}(6x).$$
+<p>Rewriting back to the original form gives us</p>
+$$\khprime(x)=\frac{-12x}{{(3x^{2}+1)}^{3}}.$$
+</div>
+<div class="exercises" data-place="fs-id1169739274312"></div>
+<div class="example" id="fs-id1169739302258">
+<h3>Example 3.49 · Using the Chain and Power Rules with a Trigonometric Function</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="sin(x)^3">$\kh(x)={\sin }^{3}x.$</span></p>
+<h4>Solution</h4>
+<p>First recall that ${\sin }^{3}x={(\sin x)}^{3},$ so we can rewrite $\kh(x)={\sin }^{3}x$ as $\kh(x)={(\sin x)}^{3}.$</p>
+<p>Applying the <span data-concept="power-rule">power rule</span> with $\kg(x)=\sin x,$ we obtain</p>
+$$\khprime(x)=3{(\sin x)}^{2}\cos x=3\;{\sin }^{2}x\;\cos x.$$
+</div>
+<div class="example" id="fs-id1169739190027">
+<h3>Example 3.50 · Finding the Equation of a Tangent Line</h3>
+<p>Find the equation of a line tangent to the graph of <span data-fn="1/(3x-5)^2">$\kh(x)=\frac{1}{{(3x-5)}^{2}}$</span> at $x=2.$</p>
+<h4>Solution</h4>
+<p>Because we are finding an equation of a line, we need a point. The <em>x</em>-coordinate of the point is 2. To find the <em>y</em>-coordinate, substitute 2 into $\kh(x).$ Since $\kh(2)=\frac{1}{{(3(2)-5)}^{2}}=1,$ the point is $(2,1).$</p>
+<p>For the <span data-concept="slope">slope</span>, we need $\khprime(2).$ To find $\khprime(x),$ first we rewrite $\kh(x)={(3x-5)}^{-2}$ and apply the <span data-concept="power-rule">power rule</span> to obtain</p>
+$$\khprime(x)=-2{(3x-5)}^{-3}(3)=-6{(3x-5)}^{-3}.$$
+<p>By substituting, we have $\khprime(2)=-6{(3(2)-5)}^{-3}=-6.$ Therefore, the line has equation $y-1=-6(x-2).$ Rewriting, the equation of the line is $y=-6x+13.$</p>
+</div>
+<div class="exercises" data-place="fs-id1169739190027"></div>
+</section>
+
+<section id="chain-other">
+<h2>Combining the Chain Rule with Other Rules</h2>
+<p class="cite-target">Now that we can combine the <span data-concept="chain-rule">chain rule</span> and the <span data-concept="power-rule">power rule</span>, we examine how to combine the <span data-concept="chain-rule">chain rule</span> with the other rules we have learned. In particular, we can use it with the formulas for the <span data-concept="derivative">derivatives</span> of <span data-concept="trigonometric-functions">trigonometric functions</span> or with the <span data-concept="product-rule">product rule</span>.</p>
+<div class="example" id="fs-id1169736656617">
+<h3>Example 3.51 · Using the Chain Rule on a General Cosine Function</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of $\kh(x)=\cos (\kg(x)).$</p>
+<h4>Solution</h4>
+<p>Think of $\kh(x)=\cos (\kg(x))$ as $\kf(\kg(x))$ where $\kf(x)=\cos x.$ Since $\kfprime(x)=-\sin x.$ we have $\kfprime(\kg(x))=-\sin (\kg(x)).$ Then we do the following calculation.</p>
+$$\begin{array}{rllll}\khprime(x) & =\kfprime(\kg(x))\kgprime(x) & & & \text{Apply the chain rule.} \\ & =-\sin (\kg(x))\kgprime(x) & & & \text{Substitute}\;\kfprime(\kg(x))=-\sin (\kg(x)).\end{array}$$
+<p>Thus, the <span data-concept="derivative">derivative</span> of $\kh(x)=\cos (\kg(x))$ is given by $\khprime(x)=-\sin (\kg(x))\kgprime(x).$</p>
+</div>
+<p>In the following example we apply the rule that we have just derived.</p>
+<div class="example" id="fs-id1169739301537">
+<h3>Example 3.52 · Using the Chain Rule on a Cosine Function</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="cos(5x^2)">$\kh(x)=\cos (5x^{2}).$</span></p>
+<h4>Solution</h4>
+<p>Let $\kg(x)=5x^{2}.$ Then $\kgprime(x)=10x.$ Using the result from the previous example,</p>
+$$\begin{array}{rl}\khprime(x) & =-\sin (5x^{2})\cdot 10x \\ & =-10x\;\sin (5x^{2}).\end{array}$$
+</div>
+<div class="example" id="fs-id1169739333921">
+<h3>Example 3.53 · Using the Chain Rule on Another Trigonometric Function</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="sec(4x^5+2x)">$\kh(x)=\sec (4x^{5}+2x).$</span></p>
+<h4>Solution</h4>
+<p>Apply the <span data-concept="chain-rule">chain rule</span> to $\kh(x)=\sec (\kg(x))$ to obtain</p>
+$$\khprime(x)=\sec (\kg(x))\;\tan (\kg(x))\kgprime(x).$$
+<p>In this problem, $\kg(x)=4x^{5}+2x,$ so we have $\kgprime(x)=20x^{4}+2.$ Therefore, we obtain</p>
+$$\begin{array}{rl}\khprime(x) & =\sec (4x^{5}+2x)\;\tan (4x^{5}+2x)(20x^{4}+2) \\ & =(20x^{4}+2)\sec (4x^{5}+2x)\;\tan (4x^{5}+2x).\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169739333921"></div>
+<p>At this point we provide <a href="/calculus/sheets/derivatives/">a list of <span data-concept="derivative">derivative</span> formulas</a> that may be obtained by applying the <span data-concept="chain-rule">chain rule</span> in conjunction with the formulas for <span data-concept="derivative">derivatives</span> of <span data-concept="trigonometric-functions">trigonometric functions</span>. Their derivations are similar to those used in Example 3.51 and Example 3.53. For convenience, formulas are also given in <span data-concept="leibniz-notation">Leibniz’s notation</span>, which some students find easier to remember. (We discuss the <span data-concept="chain-rule">chain rule</span> using <span data-concept="leibniz-notation">Leibniz’s notation</span> at the end of this section.) It is not absolutely necessary to memorize these as separate formulas as they are all applications of the <span data-concept="chain-rule">chain rule</span> to previously learned formulas.</p>
+<div class="note" id="chain-trig-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Using the Chain Rule with Trigonometric Functions</h3>
+<p>For all values of $x$ for which the <span data-concept="derivative">derivative</span> is defined,</p>
+$$\begin{array}{llll}\frac{d}{dx}(\sin (\kg(x)))\;=\cos (\kg(x))\kgprime(x) & & & \frac{d}{dx}\;\sin u\;=\cos u\frac{du}{dx} \\ \frac{d}{dx}(\cos (\kg(x)))\;=-\sin (\kg(x))\kgprime(x) & & & \frac{d}{dx}\;\cos u\;=-\sin u\frac{du}{dx} \\ \frac{d}{dx}(\tan (\kg(x)))\;={\sec }^{2}(\kg(x))\kgprime(x) & & & \frac{d}{dx}\;\tan u\;={\sec }^{2}u\frac{du}{dx} \\ \frac{d}{dx}(\cot (\kg(x)))\;=-{\csc }^{2}(\kg(x))\kgprime(x) & & & \frac{d}{dx}\;\cot u\;=-{\csc }^{2}u\frac{du}{dx} \\ \frac{d}{dx}(\sec (\kg(x)))\;=\sec (\kg(x)\;\tan (\kg(x))\kgprime(x) & & & \frac{d}{dx}\;\sec u\;=\sec u\;\tan u\frac{du}{dx} \\ \frac{d}{dx}(\csc (\kg(x)))\;=-\csc (\kg(x))\cot (\kg(x))\kgprime(x) & & & \frac{d}{dx}\;\csc u\;=-\csc u\;\cot u\frac{du}{dx}.\end{array}$$
+</div>
+<div class="example" id="fs-id1169739298047">
+<h3>Example 3.54 · Combining the Chain Rule with the Product Rule</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="(2x+1)^5*(3x-2)^7">$\kh(x)={(2x+1)}^{5}{(3x-2)}^{7}.$</span></p>
+<h4>Solution</h4>
+<p>First apply the <span data-concept="product-rule">product rule</span>, then apply the <span data-concept="chain-rule">chain rule</span> to each term of the product.</p>
+$$\begin{array}{rllll}\khprime(x) & =\frac{d}{dx}({(2x+1)}^{5})\cdot {(3x-2)}^{7}+\frac{d}{dx}({(3x-2)}^{7})\cdot {(2x+1)}^{5} & & & \text{Apply the product rule.} \\ & =5{(2x+1)}^{4}\cdot 2\cdot {(3x-2)}^{7}+7{(3x-2)}^{6}\cdot 3\cdot {(2x+1)}^{5} & & & \text{Apply the chain rule.} \\ & =10{(2x+1)}^{4}{(3x-2)}^{7}+21{(3x-2)}^{6}{(2x+1)}^{5} & & & \text{Simplify.} \\ & ={(2x+1)}^{4}{(3x-2)}^{6}(10(3x-2)+21(2x+1)) & & & \text{Factor out}\;{(2x+1)}^{4}{(3x-2)}^{6}. \\ & ={(2x+1)}^{4}{(3x-2)}^{6}(72x+1) & & & \text{Simplify.}\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169739298047"></div>
+</section>
+
+<section id="three-functions">
+<h2>Composites of Three or More Functions</h2>
+<p class="cite-target">We can now combine the <span data-concept="chain-rule">chain rule</span> with other rules for differentiating <span data-concept="function">functions</span>, but when we are differentiating the composition of three or more <span data-concept="function">functions</span>, we need to apply the <span data-concept="chain-rule">chain rule</span> more than once. If we look at this situation in general terms, we can generate a formula, but we do not need to remember it, as we can simply apply the <span data-concept="chain-rule">chain rule</span> multiple times.</p>
+<p id="general-three">In general terms, first we let</p>
+$$\kk(x)=\kh(\kf(\kg(x))).$$
+<p>Then, applying the <span data-concept="chain-rule">chain rule</span> once we obtain</p>
+$$\kkprime(x)=\frac{d}{dx}(\kh(\kf(\kg(x)))=\khprime(\kf(\kg(x)))\cdot \frac{d}{dx}\kf((\kg(x))).$$
+<p>Applying the <span data-concept="chain-rule">chain rule</span> again, we obtain</p>
+$$\kkprime(x)=\khprime(\kf(\kg(x))\kfprime(\kg(x))\kgprime(x)).$$
+<div class="note" id="three-rule">
+<div class="eyebrow">Rule</div>
+<h3>Chain Rule for a Composition of Three Functions</h3>
+<p>For all values of <em>x</em> for which the <span data-concept="function">function</span> is differentiable, if</p>
+$$\kk(x)=\kh(\kf(\kg(x))),$$
+<p>then</p>
+$$\kkprime(x)=\khprime(\kf(\kg(x)))\kfprime(\kg(x))\kgprime(x).$$
+<p>In other words, we are applying the <span data-concept="chain-rule">chain rule</span> twice.</p>
+</div>
+<p>Notice that the <span data-concept="derivative">derivative</span> of the <span data-concept="composite-function">composition of three functions</span> has three parts. (Similarly, the <span data-concept="derivative">derivative</span> of the composition of four <span data-concept="function">functions</span> has four parts, and so on.) Also, <em>remember, we can always work from the outside in, taking one <span data-concept="derivative">derivative</span> at a time.</em></p>
+<div class="example" id="fs-id1169736658580">
+<h3>Example 3.55 · Differentiating a Composite of Three Functions</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="cos(7x^2+1)^4">$\kk(x)={\cos }^{4}({7x}^{2}+1).$</span></p>
+<h4>Solution</h4>
+<p>First, rewrite $\kk(x)$ as</p>
+$$\kk(x)={(\cos (7x^{2}+1))}^{4}.$$
+<p>Then apply the <span data-concept="power-rule">power rule</span> several times.</p>
+$$\begin{array}{rllll}\kkprime(x) & =4{(\cos (7x^{2}+1))}^{3}(\frac{d}{dx}\cos (7x^{2}+1)) & & & \text{Apply the chain rule.} \\ & =4{(\cos (7x^{2}+1))}^{3}(-\sin (7x^{2}+1))(\frac{d}{dx}(7x^{2}+1)) & & & \text{Apply the chain rule.} \\ & =4{(\cos (7x^{2}+1))}^{3}(-\sin (7x^{2}+1))(14x) & & & \text{Apply the chain rule.} \\ & =-56x\;\sin (7x^{2}+1){\cos }^{3}(7x^{2}+1) & & & \text{Simplify.}\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169736658580"></div>
+<div class="example" id="fs-id1169736593542">
+<h3>Example 3.56 · Using the Chain Rule in a Velocity Problem</h3>
+<p>A particle moves along a coordinate axis. Its position at time <em>t</em> is given by <span data-fn="sin(2x)+cos(3x)">$\ks(t)=\sin (2t)+\cos (3t).$</span> What is the <span data-concept="velocity">velocity</span> of the particle at time $t=\frac{\pi}{6}?$</p>
+<h4>Solution</h4>
+<p>To find $\kv(t),$ the <span data-concept="velocity">velocity</span> of the particle at time $t,$ we must differentiate $\ks(t).$ Thus,</p>
+$$\kv(t)=\ksprime(t)=2\;\cos (2t)-3\;\sin (3t).$$
+<p>Substituting $t=\frac{\pi}{6}$ into $\kv(t),$ we obtain $\kv(\frac{\pi}{6})=-2.$</p>
+</div>
+<div class="exercises" data-place="fs-id1169736593542"></div>
+<h3>Proof</h3>
+<p>At this point, we present a very informal proof of the <span data-concept="chain-rule">chain rule</span>. For simplicity’s sake we ignore certain issues: For example, we assume that $\kg(x)\ne \kg(a)$ for $x\ne a$ in some open interval containing $a.$ We begin by applying the <span data-concept="limit">limit</span> definition of the <span data-concept="derivative">derivative</span> to the <span data-concept="function">function</span> $\kh(x)$ to obtain $\khprime(a)\text{:}$</p>
+$$\khprime(a)=\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{x-a}.$$
+<p>Rewriting, we obtain</p>
+$$\khprime(a)=\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{\kg(x)-\kg(a)}\cdot \frac{\kg(x)-\kg(a)}{x-a}.$$
+<p>Although it is clear that</p>
+$$\lim_{x\to a}\frac{\kg(x)-\kg(a)}{x-a}=\kgprime(a),$$
+<p>it is not obvious that</p>
+$$\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{\kg(x)-\kg(a)}=\kfprime(\kg(a)).$$
+<p>To see that this is true, first recall that since <em>g</em> is differentiable at $a,\kg$ is also continuous at $a.$ Thus,</p>
+$$\lim_{x\to a}\kg(x)=\kg(a).$$
+<p>Next, make the substitution $y=\kg(x)$ and $b=\kg(a)$ and use change of variables in the <span data-concept="limit">limit</span> to obtain</p>
+$$\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{\kg(x)-\kg(a)}=\lim_{y\to b}\frac{\kf(y)-\kf(b)}{y-b}=\kfprime(b)=\kfprime(\kg(a)).$$
+<p>Finally,</p>
+$$\khprime(a)=\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{\kg(x)-\kg(a)}\cdot \frac{\kg(x)-\kg(a)}{x-a}=\kfprime(\kg(a))\kgprime(a).$$
+<p>□</p>
+<div class="example" id="fs-id1169736613849">
+<h3>Example 3.57 · Using the Chain Rule with Functional Values</h3>
+<p>Let $\kh(x)=\kf(\kg(x)).$ If $\kg(1)=4,\kgprime(1)=3,$ and $\kfprime(4)=7,$ find $\khprime(1).$</p>
+<h4>Solution</h4>
+<p>Use the <span data-concept="chain-rule">chain rule</span>, then substitute.</p>
+$$\begin{array}{rllll}\khprime(1) & =\kfprime(\kg(1))\kgprime(1) & & & \text{Apply the chain rule.} \\ & =\kfprime(4)\cdot 3 & & & \text{Substitute}\;\kg(1)=4\;\text{and}\;\kgprime(1)=3. \\ & =7\cdot 3 & & & \text{Substitute}\;\kfprime(4)=7. \\ & =21 & & & \text{Simplify.}\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169736613849"></div>
+</section>
+
+<section id="leibniz">
+<h2>The Chain Rule Using Leibniz’s Notation</h2>
+<p class="cite-target">As with other <span data-concept="derivative">derivatives</span> that we have seen, we can express the <span data-concept="chain-rule">chain rule</span> using <span data-concept="leibniz-notation">Leibniz’s notation</span>. This notation for the <span data-concept="chain-rule">chain rule</span> is used heavily in physics applications.</p>
+<p id="leibniz-derivation">$\text{For}\;\kh(x)=\kf(\kg(x)),$ let $u=\kg(x)$ and $y=\kh(x)=\kf(u).$ Thus,</p>
+$$\khprime(x)=\kdydx,\kfprime(\kg(x))=\kfprime(u)=\kdydu\;\text{and}\;\kgprime(x)=\kdudx.$$
+<p>Consequently,</p>
+$$\kdydx=\khprime(x)=\kfprime(\kg(x))\kgprime(x)=\kdydu\cdot \kdudx.$$
+<div class="note" id="leibniz-rule">
+<div class="eyebrow">Rule</div>
+<h3>Chain Rule Using Leibniz’s Notation</h3>
+<p>If $y$ is a <span data-concept="function">function</span> of $u,$ and $u$ is a <span data-concept="function">function</span> of $x,$ then</p>
+$$\kdydx=\kdydu\cdot \kdudx.$$
+</div>
+<div class="example" id="fs-id1169739264200">
+<h3>Example 3.58 · Taking a Derivative Using Leibniz’s Notation, Example 1</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="(x/(3x+2))^5">$y={(\frac{x}{3x+2})}^{5}.$</span></p>
+<h4>Solution</h4>
+<p>First, let $u=\frac{x}{3x+2}.$ Thus, $y=u^{5}.$ Next, find $\kdudx$ and $\kdydu.$ Using the <span data-concept="quotient-rule">quotient rule</span>,</p>
+$$\kdudx=\frac{2}{{(3x+2)}^{2}}$$
+<p>and</p>
+$$\kdydu=5u^{4}.$$
+<p>Finally, we put it all together.</p>
+$$\begin{array}{rllll}\kdydx & =\kdydu\cdot \kdudx & & & \text{Apply the chain rule.} \\ & =5u^{4}\cdot \frac{2}{{(3x+2)}^{2}} & & & \text{Substitute}\;\kdydu=5u^{4}\;\text{and}\;\kdudx=\frac{2}{{(3x+2)}^{2}}. \\ & =5{(\frac{x}{3x+2})}^{4}\cdot \frac{2}{{(3x+2)}^{2}} & & & \text{Substitute}\;u=\frac{x}{3x+2}. \\ & =\frac{10x^{4}}{{(3x+2)}^{6}} & & & \text{Simplify.}\end{array}$$
+<p>It is important to remember that, when using the Leibniz form of the <span data-concept="chain-rule">chain rule</span>, the final answer must be expressed entirely in terms of the original variable given in the problem.</p>
+</div>
+<div class="example" id="fs-id1169736592583">
+<h3>Example 3.59 · Taking a Derivative Using Leibniz’s Notation, Example 2</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="tan(4x^2-3x+1)">$y=\tan (4x^{2}-3x+1).$</span></p>
+<h4>Solution</h4>
+<p>First, let $u=4x^{2}-3x+1.$ Then $y=\tan u.$ Next, find $\kdudx$ and $\kdydu\text{:}$</p>
+$$\kdudx=8x-3\;\text{and}\;\kdydu={\sec }^{2}u.$$
+<p>Finally, we put it all together.</p>
+$$\begin{array}{rllll}\kdydx & =\kdydu\cdot \kdudx & & & \text{Apply the chain rule.} \\ & ={\sec }^{2}u\cdot (8x-3) & & & \text{Use}\;\kdudx=8x-3\;\text{and}\;\kdydu={\sec }^{2}u. \\ & ={\sec }^{2}(4x^{2}-3x+1)\cdot (8x-3) & & & \text{Substitute}\;u=4x^{2}-3x+1.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169736592583"></div>
+</section>

@@ -1,0 +1,878 @@
+{
+ "id": "3.7",
+ "module": "m53584",
+ "chapter": "3",
+ "title": "Derivatives of Inverse Functions",
+ "short": "Derivatives of Inverse Functions",
+ "lead": "The <span data-concept=\"derivative\">derivative</span> of an <span data-concept=\"inverse-function\">inverse function</span> is the reciprocal of the derivative of the function at the matching point, the <span data-concept=\"inverse-function-theorem\">inverse function theorem</span>. It extends the <span data-concept=\"power-rule\">power rule</span> to rational exponents and gives the derivatives of the <span data-concept=\"inverse-trigonometric-functions\">inverse trigonometric functions</span>.",
+ "objectives": [
+  "Calculate the derivative of an inverse function.",
+  "Recognize the derivatives of the standard inverse trigonometric functions."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"inverse-function-theorem\">inverse function theorem</span> allows us to compute <span data-concept=\"derivative\">derivatives</span> of <span data-concept=\"inverse-function\">inverse functions</span> without using the <span data-concept=\"limit\">limit</span> definition of the <span data-concept=\"derivative\">derivative</span>.</li><li>We can use the <span data-concept=\"inverse-function-theorem\">inverse function theorem</span> to develop differentiation formulas for the <span data-concept=\"inverse-trigonometric-functions\">inverse trigonometric functions</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 20 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: exercises 260 and 262 (inverses read from a graph), 264 and 266 (derivatives of inverses), 268 to 272 (derivatives of inverses at a point), 274, 276 and 278 (tangent lines to inverses), 280 to 288 (derivatives of inverse trigonometric functions), 290 to 294 (values of the derivative of an inverse), 296 (the building’s shadow) and 298 (the television camera). Review exercise 379 is printed at the end of 3.9 and set here; review exercise 384 has no answer in the key and is left out.",
+ "figures": [
+  {
+   "id": "sim-inverse-tangents",
+   "kind": "sim",
+   "number": "3.28",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_07_001.jpg"
+   ],
+   "original_caption": "The tangent lines of a function and its inverse are related; so, too, are the derivatives of these functions.",
+   "draws": [
+    "function",
+    "line",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-sin-inverse-triangle",
+   "kind": "figure",
+   "number": "3.29",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_07_002.jpg"
+   ],
+   "original_caption": "Using a right triangle having acute angle θ, a hypotenuse of length 1, and the side opposite angle θ having length x, we can see that cos(sin⁻¹x) = cos θ = √(1−x²).",
+   "draws": [
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "inverse-function-theorem-note",
+   "concept": "inverse-function-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "rational-power-note",
+   "concept": "power-rule-for-rational-exponents",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-trig-note",
+   "concept": "derivatives-of-inverse-trigonometric-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-derivative",
+   "concept": "inverse-function",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-derivative",
+   "concept": "graph-of-an-inverse-function",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-derivative",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "rational-power-note",
+   "concept": "power-rule-for-composition-of-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739001941",
+   "concept": "quotient-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-trig",
+   "concept": "inverse-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739208944",
+   "concept": "pythagorean-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736662939",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739301501",
+   "concept": "product-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736614197",
+   "concept": "velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739298630",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-derivative",
+   "concept": "derivative-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739208944",
+   "concept": "inverse-function-theorem",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp42",
+   "source_id": "fs-id1169736612521",
+   "source_number": "Checkpoint 3.42",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739001941"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>Use the inverse function theorem to find the derivative of $g(x)=\\frac{1}{x+2}.$ Compare the result obtained by differentiating $g(x)$ directly.</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the preceding example as a guide.",
+    "solution": "$g^{\\prime}(x)=-\\frac{1}{{(x+2)}^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp43",
+   "source_id": "fs-id1169739274236",
+   "source_number": "Checkpoint 3.43",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738977168"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>Find the derivative of $g(x)=\\sqrt[5]{x}$ by applying the inverse function theorem.</p>",
+   "answer": {
+    "type": "open",
+    "hint": "$g(x)$ is the inverse of $f(x)=x^{5}.$",
+    "solution": "$g(x)<sup class=\"fn\" data-note=\"cp43-key\"></sup>=\\frac{1}{5}x^{-4/5}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp44",
+   "source_id": "fs-id1169738961642",
+   "source_number": "Checkpoint 3.44",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739298630"
+   },
+   "cite": "rational-power-note",
+   "prompt": "<p>Find the derivative of $s(t)=\\sqrt{2t+1}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the chain rule.",
+    "solution": "$s^{\\prime}(t)={(2t+1)}^{-1/2}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp45",
+   "source_id": "fs-id1169739303914",
+   "source_number": "Checkpoint 3.45",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736662939"
+   },
+   "cite": "inverse-trig",
+   "prompt": "<p>Use the inverse function theorem to find the derivative of $g(x)={\\tan }^{-1}x.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "The inverse of $g(x)$ is $f(x)=\\tan x.$ Use Example 3.61 as a guide.",
+    "solution": "$g^{\\prime}(x)=\\frac{1}{1+x^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp46",
+   "source_id": "fs-id1169736656490",
+   "source_number": "Checkpoint 3.46",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739301501"
+   },
+   "cite": "inverse-trig-note",
+   "prompt": "<p>Find the derivative of $h(x)={\\cos }^{-1}(3x-1).$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use Equation 3.23. with $g(x)=3x-1$",
+    "solution": "$h^{\\prime}(x)=\\frac{-3}{\\sqrt{6x-9x^{2}}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp47",
+   "source_id": "fs-id1169736605031",
+   "source_number": "Checkpoint 3.47",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736614197"
+   },
+   "cite": "inverse-trig-note",
+   "prompt": "<p>Find an equation of the line tangent to the graph of $f(x)={\\sin }^{-1}x$ at $x=0.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "$f^{\\prime}(0)$ is the slope of the tangent line.",
+    "solution": "$y=x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e261",
+   "source_id": "fs-id1169739007164",
+   "source_number": "261",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-derivative",
+   "figure": {
+    "src": "/media/ch03/CNX_Calc_Figure_03_07_203.jpg",
+    "alt": "A curved line starting at (−2, 0) and passing through (−1, 1) and (2, 2)."
+   },
+   "prompt": "<p>For the following exercises, use the graph of $y=f(x)$ to</p><p>a. sketch the graph of $y=f^{-1}(x),$ and</p><p>b. use part a. to estimate ${(f^{-1})}^{\\prime}(1).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a.</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_07_204.jpg\" alt=\"A curved line starting at (−3, 0) and passing through (−2, 1) and (1, 2). There is another curved line that is symmetric with this about the line x = y. That is, it starts at (0, −3) and passes through (1, −2) and (2, 1).\"> <p>b. ${(f^{-1})}^{\\prime}(1)\\sim 2$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e263",
+   "source_id": "fs-id1169739285054",
+   "source_number": "263",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-derivative",
+   "figure": {
+    "src": "/media/ch03/CNX_Calc_Figure_03_07_207.jpg",
+    "alt": "A quarter circle starting at (0, 4) and ending at (4, 0)."
+   },
+   "prompt": "<p>For the following exercises, use the graph of $y=f(x)$ to</p><p>a. sketch the graph of $y=f^{-1}(x),$ and</p><p>b. use part a. to estimate ${(f^{-1})}^{\\prime}(1).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a.</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_07_208.jpg\" alt=\"A quarter circle starting at (0, 4) and ending at (4, 0).\"> <p>b. $\\begin{array}{l}y'=\\frac{-x}{\\sqrt{16-x^{2}}} \\\\ y'(1)=\\frac{-1}{\\sqrt{16-1}}=\\frac{-1}{\\sqrt{15}}\\end{array}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e265",
+   "source_id": "fs-id1169739242570",
+   "source_number": "265",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For the following exercises, use the functions $y=f(x)$ to find</p><p>a. $\\frac{df}{dx}$ at $x=a$ and</p><p>b. $x=f^{-1}(y).$</p><p>c. Then use part b. to find $\\frac{df^{-1}}{dy}$ at $y=f(a).$</p><p>$f(x)=2x^{3}-3,x=1$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. 6, b. $x=f^{-1}(y)={(\\frac{y+3}{2})}^{1/3},$ c. $\\frac{1}{6}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e267",
+   "source_id": "fs-id1169736656049",
+   "source_number": "267",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For the following exercises, use the functions $y=f(x)$ to find</p><p>a. $\\frac{df}{dx}$ at $x=a$ and</p><p>b. $x=f^{-1}(y).$</p><p>c. Then use part b. to find $\\frac{df^{-1}}{dy}$ at $y=f(a).$</p><p>$f(x)=\\sin x,x=0$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $1,$ b. $x=f^{-1}(y)={\\sin }^{-1}y,$ c. $1$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e269",
+   "source_id": "fs-id1169739270336",
+   "source_number": "269",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For each of the following functions, find ${(f^{-1})}^{\\prime}(a).$</p><p>$f(x)=x^{3}+2x+3,a=0$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.2,
+    "solution": "$\\frac{1}{5}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e271",
+   "source_id": "fs-id1169736658912",
+   "source_number": "271",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For each of the following functions, find ${(f^{-1})}^{\\prime}(a).$</p><p>$f(x)=x-\\frac{2}{x},x\\lt 0,a=1$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.3333333333333333,
+    "solution": "$\\frac{1}{3}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e273",
+   "source_id": "fs-id1169736655092",
+   "source_number": "273",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For each of the following functions, find ${(f^{-1})}^{\\prime}(a).$</p><p>$f(x)=\\tan x+3x^{2},a=0;0\\lt x\\lt \\pi /2$</p>",
+   "answer": {
+    "type": "number",
+    "value": 1,
+    "solution": "$1$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e275",
+   "source_id": "fs-id1169736658749",
+   "source_number": "275",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For each of the given functions $y=f(x),$  </p><p>a. find the slope of the tangent line to its inverse function $f^{-1}$ at the indicated point $P,$ and</p><p>b. find an equation of the tangent line to the graph of $f^{-1}$ at the indicated point.</p><p>$f(x)=\\sqrt{x-4},P(2,8)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $4,$ b. $y=4x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e277",
+   "source_id": "fs-id1169739353343",
+   "source_number": "277",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For each of the given functions $y=f(x),$  </p><p>a. find the slope of the tangent line to its inverse function $f^{-1}$ at the indicated point $P,$ and</p><p>b. find an equation of the tangent line to the graph of $f^{-1}$ at the indicated point.</p><p>$f(x)=-x^{3}-x+2,P(-8,2)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $-\\frac{1}{13},$ b. $y=-\\frac{1}{13}x+\\frac{18}{13}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e279",
+   "source_id": "fs-id1169736659177",
+   "source_number": "279",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-note",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given function.</p><p>$y={\\sin }^{-1}(x^{2})$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{2x}{\\sqrt{1-x^{4}}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e281",
+   "source_id": "fs-id1169736658373",
+   "source_number": "281",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-note",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given function.</p><p>$y={\\sec }^{-1}(\\frac{1}{x})$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{-1}{\\sqrt{1-x^{2}}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e283",
+   "source_id": "fs-id1169739187768",
+   "source_number": "283",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-note",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given function.</p><p>$y={(1+{\\tan }^{-1}x)}^{3}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{3{(1+{\\tan }^{-1}x)}^{2}}{1+x^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e285",
+   "source_id": "fs-id1169739188192",
+   "source_number": "285",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-note",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given function.</p><p>$y=\\frac{1}{{\\tan }^{-1}(x)}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{-1}{(1+x^{2}){({\\tan }^{-1}x)}^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e287",
+   "source_id": "fs-id1169736597734",
+   "source_number": "287",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig-note",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given function.</p><p>$y={\\cot }^{-1}\\sqrt{4-x^{2}}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{x}{(5-x^{2})\\sqrt{4-x^{2}}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e289",
+   "source_id": "fs-id1169736589250",
+   "source_number": "289",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For the following exercises, use the given values to find ${(f^{-1})}^{\\prime}(a).$</p><p>$f(\\pi )=0,f'(\\pi )=-1,a=0$</p>",
+   "answer": {
+    "type": "number",
+    "value": -1,
+    "solution": "$-1$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e291",
+   "source_id": "fs-id1169739273561",
+   "source_number": "291",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For the following exercises, use the given values to find ${(f^{-1})}^{\\prime}(a).$</p><p>$f(\\frac{1}{3})=-8,f'(\\frac{1}{3})=2,a=-8$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.5,
+    "solution": "$\\frac{1}{2}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e293",
+   "source_id": "fs-id1169736610026",
+   "source_number": "293",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-function-theorem-note",
+   "prompt": "<p>For the following exercises, use the given values to find ${(f^{-1})}^{\\prime}(a).$</p><p>$f(1)=-3,f'(1)=10,a=-3$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.1,
+    "solution": "$\\frac{1}{10}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e295",
+   "source_id": "fs-id1169736655158",
+   "source_number": "295",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig",
+   "prompt": "<p><strong>[T]</strong> The position of a moving hockey puck after $t$ seconds is $s(t)={\\tan }^{-1}t$ where $s$ is in meters.</p><p>a. Find the velocity of the hockey puck at any time $t.$</p><p>b. Find the acceleration of the puck at any time $t.$</p><p>c. Evaluate a. and b. for $t=2,4,$ and $6$ seconds.</p><p>d. What conclusion can be drawn from the results in c.?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $v(t)=\\frac{1}{1+t^{2}}$ b. $a(t)=\\frac{-2t}{{(1+t^{2})}^{2}}$ c. $(a)0.2,0.06,0.03;(b)-0.16,-0.028,-0.0088$ d. The hockey puck is decelerating/slowing down at 2, 4, and 6 seconds.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e297",
+   "source_id": "fs-id1169739351749",
+   "source_number": "297",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig",
+   "figure": {
+    "src": "/media/ch03/CNX_Calc_Figure_03_07_210.jpg",
+    "alt": "A flagpole is shown with height 75 ft. A triangle is made with the flagpole height as the opposite side from the angle θ. The hypotenuse has length x."
+   },
+   "prompt": "<p><strong>[T]</strong> A pole stands 75 feet tall. An angle $\\theta$ is formed when wires of various lengths of $x$ feet are attached from the ground to the top of the pole, as shown in the following figure. Find the rate of change of the angle $\\frac{d\\theta}{dx}$ when a wire of length 90 feet is attached.</p>",
+   "answer": {
+    "type": "number",
+    "value": -0.0168,
+    "unit": "radians per foot",
+    "solution": "$-0.0168$ radians per foot",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e299",
+   "source_id": "fs-id1169736593600",
+   "source_number": "299",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig",
+   "figure": {
+    "src": "/media/ch03/CNX_Calc_Figure_03_07_212.jpg",
+    "alt": "A person is shown with a right triangle coming from their eye (the right angle being on the opposite side from the eye), with height 10 and base x. There is a line drawn from the eye to the top of the screen, which makes an angle θ with the triangle’s hypotenuse. The screen has a height of 30."
+   },
+   "prompt": "<p><strong>[T]</strong> A local movie theater with a 30-foot-high screen that is 10 feet above a person’s eye level when seated has a viewing angle $\\theta$ (in radians) given by $\\theta ={\\cot }^{-1}\\frac{x}{40}-{\\cot }^{-1}\\frac{x}{10},$</p><p>where $x$ is the distance in feet away from the movie screen that the person is sitting, as shown in the following figure.</p><p>a. Find $\\frac{d\\theta}{dx}.$</p><p>b. Evaluate $\\frac{d\\theta}{dx}$ for $x=5,10,15,$ and 20.</p><p>c. Interpret the results in b..</p><p>d. Evaluate $\\frac{d\\theta}{dx}$ for $x=25,30,35,$ and 40</p><p>e. Interpret the results in d. At what distance $x$ should the person sit to maximize his or her viewing angle?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $\\frac{d\\theta}{dx}=\\frac{10}{100+x^{2}}-\\frac{40}{1600+x^{2}}$ b. $\\frac{18}{325},\\frac{9}{340},\\frac{42}{4745},0$ c. As a person moves farther away from the screen, the viewing angle is increasing, which implies that as he or she moves farther away, his or her screen vision is widening. d. $-\\frac{54}{12905},-\\frac{3}{500},-\\frac{198}{29945},-\\frac{9}{1360}$ e. As the person moves beyond 20 feet from the screen, the viewing angle is decreasing. The optimal distance the person should stand for maximizing the viewing angle is 20 feet.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "r379",
+   "source_id": "fs-id1169738082288",
+   "source_section": "3.9",
+   "source_number": "379",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-trig",
+   "prompt": "<p>Find the derivatives of the following functions.</p><p>$f(x)=\\frac{x}{4}\\;{\\sin }^{-1}(x)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{1}{4}(\\frac{x}{\\sqrt{1-x^{2}}}+{\\sin }^{-1}(x))$",
+    "generated_by": "source"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp42",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "cp43",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "cp43",
+   "concept": "power-rule-for-rational-exponents"
+  },
+  {
+   "exercise": "cp44",
+   "concept": "power-rule-for-rational-exponents"
+  },
+  {
+   "exercise": "cp44",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp45",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "cp45",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "cp46",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "cp46",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp47",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "cp47",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e261",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e261",
+   "concept": "graph-of-an-inverse-function"
+  },
+  {
+   "exercise": "e263",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e263",
+   "concept": "graph-of-an-inverse-function"
+  },
+  {
+   "exercise": "e265",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e265",
+   "concept": "finding-an-inverse-function"
+  },
+  {
+   "exercise": "e267",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e267",
+   "concept": "inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e269",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e271",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e273",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e275",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e275",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e277",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e277",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e279",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e279",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e281",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e281",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e283",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e283",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e285",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e285",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e287",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e287",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e289",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e291",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e293",
+   "concept": "inverse-function-theorem"
+  },
+  {
+   "exercise": "e295",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e295",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e295",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e297",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e297",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e297",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e299",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "e299",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "r379",
+   "concept": "derivatives-of-inverse-trigonometric-functions"
+  },
+  {
+   "exercise": "r379",
+   "concept": "product-rule"
+  }
+ ],
+ "referents": [
+  {
+   "id": "tangent-f",
+   "label": "the tangent line of f at (f⁻¹(a), a)",
+   "figures": [
+    "sim-inverse-tangents"
+   ]
+  },
+  {
+   "id": "tangent-inverse",
+   "label": "the tangent line of f⁻¹ at (a, f⁻¹(a))",
+   "figures": [
+    "sim-inverse-tangents"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "ex364-ref",
+   "kind": "correction",
+   "html": "Example 3.61 derives the derivative of $\\sqrt[3]{x};$ the formula for the derivative of ${\\sin }^{-1}x$ applied here is derived in Example 3.63."
+  },
+  {
+   "id": "cp43-key",
+   "kind": "correction",
+   "html": "The answer is the derivative: $g^{\\prime}(x)=\\frac{1}{5}x^{-4/5}.$"
+  }
+ ]
+}

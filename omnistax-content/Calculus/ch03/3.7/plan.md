@@ -54,3 +54,11 @@ Ids confirmed with `ost ids calculus 3.7` after the build.
 - forms: `eq-inverse-function-theorem`, `eq-inverse-function-theorem-g` → `3.7-inverse-function-theorem-note`; `eq-power-rule-root`, `eq-power-rule-rational` → `3.7-rational-power-note`; `eq-derivative-arcsine`, `eq-derivative-arccosine`, `eq-derivative-arctangent`, `eq-derivative-arccotangent`, `eq-derivative-arcsecant`, `eq-derivative-arccosecant` → `3.7-inverse-trig-note`.
 - Review exercise (add with `ost add calculus exercises --section 3.7 '<row>'`, tag with `ost add calculus exercise_concepts`, name in `exercise_notes`: "Review exercise 379 is printed at the end of 3.9 and set here; 384 has no answer in the key and is left out."):
   - `{"id": "r379", "source_id": "fs-id1169738082288", "source_section": "3.9", "source_number": "379", "kind": "review-exercise", "bloom": "Apply", "place": {"at": "end"}, "cite": "inverse-trig", "prompt": "<p>Find the derivatives of the following functions.</p><p>$f(x)=\\frac{x}{4}\\sin^{-1}(x)$</p>", "answer": {"type": "open", "generated_by": "source", "solution": "$\\frac{1}{4}\\left(\\frac{x}{\\sqrt{1-x^{2}}}+\\sin^{-1}(x)\\right)$"}}` · tags `derivatives-of-inverse-trigonometric-functions`, `product-rule`
+
+## As built (2026-10-12)
+
+- `sim-inverse-tangents` as planned (stand-in f(x) = x³/8 + x/2 + 1 on [0, 3], square window 0 to 6, y = x dashed in `line`); the two tangents wear their referent colours `tangent-f`, `tangent-inverse`, marked in the opening paragraph and the caption; the readout writes (f⁻¹)′(a) = 1/f′(f⁻¹(a)) with the numbers.
+- `fig-sin-inverse-triangle` drawn for x = 0.6, θ's arc and label in `angle`.
+- Sheet links on book words: "These formulas" before the inverse-trig theorem opens the Table of Derivatives; "derivative" in Example 3.65 opens the calculator on tan⁻¹(x²).
+- Variables rows added: 3.7/f, f_inv, f_prime, g_prime, dy/dx, s, s_prime, v, θ (angle); anchors on every 3.7 row and the ten forms.
+- Corrections: Example 3.64's reference (Example 3.61 for 3.63), Checkpoint 3.43's answer (g for g′).

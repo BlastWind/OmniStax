@@ -1,0 +1,1052 @@
+{
+ "id": "3.5",
+ "module": "m53578",
+ "chapter": "3",
+ "title": "Derivatives of Trigonometric Functions",
+ "short": "Derivatives of Trigonometric Functions",
+ "lead": "The <span data-concept=\"derivative\">derivatives</span> of the sine and cosine come from the definition and two <span data-concept=\"important-trigonometric-limits\">trigonometric limits</span>; the <span data-concept=\"quotient-rule\">quotient rule</span> then gives the derivatives of the other four <span data-concept=\"trigonometric-functions\">trigonometric functions</span>, and the <span data-concept=\"higher-order-derivative\">higher-order derivatives</span> of sine and cosine are found to repeat.",
+ "objectives": [
+  "Find the derivatives of the sine and cosine function.",
+  "Find the derivatives of the standard trigonometric functions.",
+  "Calculate the higher-order derivatives of the sine and cosine."
+ ],
+ "summary_html": "<ul><li>We can find the <span data-concept=\"derivative\">derivatives</span> of sin <em>x</em> and cos <em>x</em> by using the definition of <span data-concept=\"derivative\">derivative</span> and the <span data-concept=\"limit\">limit</span> formulas found earlier. The results are $$\\frac{d}{dx}\\;\\sin x=\\cos x\\;\\frac{d}{dx}\\;\\cos x=-\\sin x.$$</li><li>With these two formulas, we can determine the <span data-concept=\"derivative\">derivatives</span> of all six basic <span data-concept=\"trigonometric-functions\">trigonometric functions</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except those of exercises 205, 206, 207 and 208, derivations the key leaves unanswered, whose answers, with their reasoning, are AI suggestions. The other 17 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: exercises 176 to 184 (derivatives), 186, 188 and 190 (tangent lines), 192, 194 and 196 (second derivatives), 198 (where the slope is 2), 200 (the mass on a spring), 202 (the diving board), 204 (rainfall in Phoenix), 210 and 212 (higher-order derivatives). Review exercise 377 is printed at the end of 3.9 and set here; review exercise 378 has no answer in the key and is left out.",
+ "figures": [
+  {
+   "id": "sim-sine-difference-quotient",
+   "kind": "sim",
+   "number": "3.25",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_05_001.jpg"
+   ],
+   "original_caption": "The graph of the function D(x) looks a lot like a cosine curve.",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-two-trig-limits",
+   "kind": "figure",
+   "number": "3.26",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_05_002.jpg"
+   ],
+   "original_caption": "These graphs show two important limits needed to establish the derivative formulas for the sine and cosine functions.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-sine-derivative-trace",
+   "kind": "sim",
+   "number": "3.27",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_05_003.jpg"
+   ],
+   "original_caption": "Where f(x) has a maximum or a minimum, f′(x)=0 that is, f′(x)=0 where f(x) has a horizontal tangent. These points are noted with dots on the graphs.",
+   "draws": [
+    "function",
+    "line",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "sine-cosine-theorem",
+   "concept": "derivatives-of-sine-and-cosine",
+   "verb": "introduces"
+  },
+  {
+   "span": "other-trig-theorem",
+   "concept": "derivatives-of-the-other-trigonometric-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "sine-cycle",
+   "concept": "higher-order-derivatives-of-sine-and-cosine",
+   "verb": "introduces"
+  },
+  {
+   "span": "sine-cosine",
+   "concept": "derivative-function",
+   "verb": "uses"
+  },
+  {
+   "span": "d-of-x",
+   "concept": "difference-quotient",
+   "verb": "uses"
+  },
+  {
+   "span": "sine-cosine",
+   "concept": "important-trigonometric-limits",
+   "verb": "uses"
+  },
+  {
+   "span": "sine-cosine",
+   "concept": "addition-and-subtraction-formulas",
+   "verb": "uses"
+  },
+  {
+   "span": "sine-cosine",
+   "concept": "graph-of-the-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738999233",
+   "concept": "product-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738889578",
+   "concept": "quotient-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736589199",
+   "concept": "quotient-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736589199",
+   "concept": "pythagorean-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736589199",
+   "concept": "reciprocal-and-ratio-identities",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739111296",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736655845",
+   "concept": "sum-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736655845",
+   "concept": "product-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739220928",
+   "concept": "velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739376125",
+   "concept": "velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739376125",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739376125",
+   "concept": "speeding-up-and-slowing-down",
+   "verb": "uses"
+  },
+  {
+   "span": "higher-order",
+   "concept": "higher-order-derivative",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp25",
+   "source_id": "fs-id1169739327353",
+   "source_number": "Checkpoint 3.25",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738999233"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>Find the derivative of $f(x)=\\sin x\\;\\cos x.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Don’t forget to use the product rule.",
+    "solution": "$f^{\\prime}(x)={\\cos }^{2}x-{\\sin }^{2}x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp26",
+   "source_id": "fs-id1169738971411",
+   "source_number": "Checkpoint 3.26",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738889578"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>Find the derivative of $f(x)=\\frac{x}{\\cos x}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the quotient rule.",
+    "solution": "$\\frac{\\cos x+x\\;\\sin x}{{\\cos }^{2}x}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp27",
+   "source_id": "fs-id1169739327877",
+   "source_number": "Checkpoint 3.27",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739220928"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>A particle moves along a coordinate axis. Its position at time $t$ is given by $s(t)=\\sqrt{3}t+2\\;\\cos t$ for $0\\le t\\le 2\\pi .$ At what times is the particle at rest?</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the previous example as a guide.",
+    "solution": "$t=\\frac{\\pi}{3},t=\\frac{2\\pi}{3}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp28",
+   "source_id": "fs-id1169739273066",
+   "source_number": "Checkpoint 3.28",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736589199"
+   },
+   "cite": "other-trig",
+   "prompt": "<p>Find the derivative of $f(x)=\\cot x.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Rewrite $\\cot x$ as $\\frac{\\cos x}{\\sin x}$ and use the quotient rule.",
+    "solution": "$f^{\\prime}(x)=-{\\csc }^{2}x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp29",
+   "source_id": "fs-id1169739188146",
+   "source_number": "Checkpoint 3.29",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736655845"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>Find the derivative of $f(x)=2\\;\\tan x-3\\;\\cot x.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the rule for differentiating a constant multiple and the rule for differentiating a difference of two functions.",
+    "solution": "$f^{\\prime}(x)=2\\;{\\sec }^{2}x+3\\;{\\csc }^{2}x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp30",
+   "source_id": "fs-id1169736662630",
+   "source_number": "Checkpoint 3.30",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736655845"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>Find the slope of the line tangent to the graph of $f(x)=\\tan x$ at $x=\\frac{\\pi}{6}.$</p>",
+   "answer": {
+    "type": "number",
+    "value": 1.3333333333333333,
+    "hint": "Evaluate the derivative at $x=\\frac{\\pi}{6}.$",
+    "solution": "$\\frac{4}{3}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp31",
+   "source_id": "fs-id1169739298012",
+   "source_number": "Checkpoint 3.31",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739303827"
+   },
+   "cite": "higher-order",
+   "prompt": "<p>For $y=\\cos x,$ find $\\frac{d^{4}y}{dx^{4}}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "See the previous example.",
+    "solution": "$\\cos x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp32",
+   "source_id": "fs-id1169736595964",
+   "source_number": "Checkpoint 3.32",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739298086"
+   },
+   "cite": "sine-cycle",
+   "prompt": "<p>For $y=\\sin x,$ find $\\frac{d^{59}}{dx^{59}}(\\sin x).$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "$\\frac{d^{59}}{dx^{59}}(\\sin x)=\\frac{d^{4\\cdot 14+3}}{dx^{4\\cdot 14+3}}(\\sin x)$",
+    "solution": "$-\\cos x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp33",
+   "source_id": "fs-id1169739273659",
+   "source_number": "Checkpoint 3.33",
+   "kind": "checkpoint",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739376125"
+   },
+   "cite": "higher-order",
+   "prompt": "<p>A block attached to a spring is moving vertically. Its position at time $t$ is given by $s(t)=2\\;\\sin t.$ Find $v(\\frac{5\\pi}{6})$ and $a(\\frac{5\\pi}{6}).$ Compare these values and decide whether the block is speeding up or slowing down.</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use Example 3.47 as a guide.",
+    "solution": "$v(\\frac{5\\pi}{6})=-\\sqrt{3}\\lt 0$ and $a(\\frac{5\\pi}{6})=-1\\lt 0.$ The block is speeding up.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1169736597649",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given functions.</p><p>$y=x^{2}-\\sec x+1$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=2x-\\sec x\\;\\tan x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1169736658534",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given functions.</p><p>$y=x^{2}\\cot x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=2x\\;\\cot x-x^{2}{\\csc }^{2}x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1169739275164",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given functions.</p><p>$y=\\frac{\\sec x}{x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=\\frac{x\\;\\sec x\\;\\tan x-\\sec x}{x^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1169739303603",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given functions.</p><p>$y=(x+\\cos x)(1-\\sin x)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=(1-\\sin x)(1-\\sin x)-\\cos x(x+\\cos x)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1169739350812",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for the given functions.</p><p>$y=\\frac{1-\\cot x}{1+\\cot x}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{dy}{dx}=\\frac{2\\;{\\csc }^{2}x}{{(1+\\cot x)}^{2}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1169736593674",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>For the following exercises, find an equation of the tangent line to each of the given functions at the indicated values of $x.$ Then use a calculator to graph both the function and the tangent line to ensure the equation for the tangent line is correct.</p><p><strong>[T]</strong> $f(x)=-\\sin x,x=0$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y=-x$</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_05_201.jpg\" alt=\"The graph shows negative sin(x) and the straight line T(x) with slope −1 and y intercept 0.\">",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1169739266742",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>For the following exercises, find an equation of the tangent line to each of the given functions at the indicated values of $x.$ Then use a calculator to graph both the function and the tangent line to ensure the equation for the tangent line is correct.</p><p><strong>[T]</strong> $f(x)=1+\\cos x,x=\\frac{3\\pi}{2}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y=x+\\frac{2-3\\pi}{2}$</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_05_203.jpg\" alt=\"The graph shows the cosine function shifted up one and has the straight line T(x) with slope 1 and y intercept (2 – 3π)/2.\">",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1169736655301",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>For the following exercises, find an equation of the tangent line to each of the given functions at the indicated values of $x.$ Then use a calculator to graph both the function and the tangent line to ensure the equation for the tangent line is correct.</p><p><strong>[T]</strong> $f(x)=x^{2}-\\tan x,\\;x=0$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y=-x$</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_05_205.jpg\" alt=\"The graph shows the function as starting at (−1, 3), decreasing to the origin, continuing to slowly decrease to about (1, −0.5), at which point it decreases very quickly.\">",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1169739305614",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order",
+   "prompt": "<p>For the following exercises, find $\\frac{d^{2}y}{dx^{2}}$ for the given functions.</p><p>$y=x\\;\\sin x-\\cos x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$3\\;\\cos x-x\\;\\sin x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1169736662371",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order",
+   "prompt": "<p>For the following exercises, find $\\frac{d^{2}y}{dx^{2}}$ for the given functions.</p><p>$y=x-\\frac{1}{2}\\;\\sin x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{1}{2}\\;\\sin x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1169739303429",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order",
+   "prompt": "<p>For the following exercises, find $\\frac{d^{2}y}{dx^{2}}$ for the given functions.</p><p>$y=2\\;\\csc x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$2\\csc x({\\csc }^{2}x+{\\cot }^{2}x)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1169739335809",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>Find all $x$ values on the graph of $f(x)=-3\\;\\sin x\\;\\cos x$ where the tangent line is horizontal.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{(2n+1)\\pi}{4},\\text{where}\\;n\\;\\text{is an integer}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1169739335992",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>Let $f(x)=\\cot x.$ Determine the points on the graph of $f$ for $0\\lt x\\lt 2\\pi$ where the tangent line(s) is (are) parallel to the line $y=-2x.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$(\\frac{\\pi}{4},1),(\\frac{3\\pi}{4},-1),(\\frac{5\\pi}{4},1),(\\frac{7\\pi}{4},-1)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1169736614037",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>Let the position of a swinging pendulum in simple harmonic motion be given by $s(t)=a\\;\\cos t+b\\;\\sin t$ where $a$ and $b$ are constants, $t$ measures time in seconds, and $s$ measures position in centimeters. If the position is 0 cm and the velocity is 3 cm/s when $t=0$, find the values of $a$ and $b$.</p>",
+   "answer": {
+    "type": "multi",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0
+     },
+     {
+      "part": "b",
+      "value": 3
+     }
+    ],
+    "solution": "$a=0,b=3$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e203",
+   "source_id": "fs-id1169739353376",
+   "source_number": "203",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>The number of hamburgers sold at a fast-food restaurant in Pasadena, California, is given by $y=10+5\\;\\sin x$ where $y$ is the number of hamburgers sold and $x$ represents the number of hours after the restaurant opened at 11 a.m. until 11 p.m., when the store closes. Find $y'$ and determine the intervals where the number of burgers being sold is increasing.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y^{\\prime}=5\\;\\cos (x),$ increasing on $(0,\\frac{\\pi}{2}),(\\frac{3\\pi}{2},\\frac{5\\pi}{2}),$ and $(\\frac{7\\pi}{2},12)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e205",
+   "source_id": "fs-id1169739264128",
+   "source_number": "205",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>For the following exercises, use the quotient rule to derive the given equations.</p><p>$\\frac{d}{dx}(\\cot x)=-{\\csc }^{2}x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Write $\\cot x=\\frac{\\cos x}{\\sin x}$ and apply the quotient rule: $\\frac{d}{dx}(\\cot x)=\\frac{(-\\sin x)(\\sin x)-(\\cos x)(\\cos x)}{{\\sin }^{2}x}=\\frac{-({\\sin }^{2}x+{\\cos }^{2}x)}{{\\sin }^{2}x}=\\frac{-1}{{\\sin }^{2}x}=-{\\csc }^{2}x.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e206",
+   "source_id": "fs-id1169739264176",
+   "source_number": "206",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>For the following exercises, use the quotient rule to derive the given equations.</p><p>$\\frac{d}{dx}(\\sec x)=\\sec x\\;\\tan x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Write $\\sec x=\\frac{1}{\\cos x}$ and apply the quotient rule: $\\frac{d}{dx}(\\sec x)=\\frac{(0)(\\cos x)-(1)(-\\sin x)}{{\\cos }^{2}x}=\\frac{\\sin x}{{\\cos }^{2}x}=\\frac{1}{\\cos x}\\cdot \\frac{\\sin x}{\\cos x}=\\sec x\\;\\tan x.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e207",
+   "source_id": "fs-id1169739264230",
+   "source_number": "207",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig-theorem",
+   "prompt": "<p>For the following exercises, use the quotient rule to derive the given equations.</p><p>$\\frac{d}{dx}(\\csc x)=-\\csc x\\;\\cot x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Write $\\csc x=\\frac{1}{\\sin x}$ and apply the quotient rule: $\\frac{d}{dx}(\\csc x)=\\frac{(0)(\\sin x)-(1)(\\cos x)}{{\\sin }^{2}x}=-\\frac{1}{\\sin x}\\cdot \\frac{\\cos x}{\\sin x}=-\\csc x\\;\\cot x.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e208",
+   "source_id": "fs-id1169739264287",
+   "source_number": "208",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine-cosine-theorem",
+   "prompt": "<p>Use the definition of derivative and the identity</p><p>$\\cos (x+h)=\\cos x\\;\\cos h-\\sin x\\;\\sin h$ to prove that $\\frac{d(\\cos x)}{dx}=-\\sin x.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "By the definition of the derivative and the identity, $\\frac{d(\\cos x)}{dx}=\\lim_{h\\to 0}\\frac{\\cos (x+h)-\\cos x}{h}=\\lim_{h\\to 0}\\frac{\\cos x\\;\\cos h-\\sin x\\;\\sin h-\\cos x}{h}=\\lim_{h\\to 0}\\left(\\cos x\\left(\\frac{\\cos h-1}{h}\\right)-\\sin x\\left(\\frac{\\sin h}{h}\\right)\\right).$ Since $\\lim_{h\\to 0}\\frac{\\cos h-1}{h}=0$ and $\\lim_{h\\to 0}\\frac{\\sin h}{h}=1,$ this is $\\cos x\\cdot 0-\\sin x\\cdot 1=-\\sin x.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e209",
+   "source_id": "fs-id1169739289340",
+   "source_number": "209",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine-cycle",
+   "prompt": "<p>For the following exercises, find the requested higher-order derivative for the given functions.</p><p>$\\frac{d^{3}y}{dx^{3}}$ of $y=3\\;\\cos x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$3\\;\\sin x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e211",
+   "source_id": "fs-id1169736592467",
+   "source_number": "211",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sine-cycle",
+   "prompt": "<p>For the following exercises, find the requested higher-order derivative for the given functions.</p><p>$\\frac{d^{4}y}{dx^{4}}$ of $y=5\\;\\cos x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$5\\;\\cos x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e213",
+   "source_id": "fs-id1169739301937",
+   "source_number": "213",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order",
+   "prompt": "<p>For the following exercises, find the requested higher-order derivative for the given functions.</p><p>$\\frac{d^{3}y}{dx^{3}}$ of $y=x^{10}-\\sec x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$720x^{7}-5\\;\\tan (x){\\sec }^{3}(x)-{\\tan }^{3}(x)\\;\\sec (x)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "r377",
+   "source_id": "fs-id1169738191971",
+   "source_section": "3.9",
+   "source_number": "377",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "other-trig",
+   "prompt": "<p>Find the derivatives of the following functions.</p><p>$f(x)=x^{2}\\cos x+x\\;\\tan (x)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$x\\;{\\sec }^{2}(x)+2x\\;\\cos (x)+\\tan (x)-x^{2}\\sin (x)$",
+    "generated_by": "source"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp25",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp25",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "cp26",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp26",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "cp27",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp27",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "cp28",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "cp28",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "cp29",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "cp29",
+   "concept": "difference-rule"
+  },
+  {
+   "exercise": "cp29",
+   "concept": "constant-multiple-rule"
+  },
+  {
+   "exercise": "cp30",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "cp30",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "cp31",
+   "concept": "higher-order-derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp32",
+   "concept": "higher-order-derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp33",
+   "concept": "higher-order-derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "cp33",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "cp33",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "cp33",
+   "concept": "speeding-up-and-slowing-down"
+  },
+  {
+   "exercise": "e175",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e175",
+   "concept": "difference-rule"
+  },
+  {
+   "exercise": "e177",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e177",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e179",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e179",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e181",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e181",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e183",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e183",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e185",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e185",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e187",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e187",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e189",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e189",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e191",
+   "concept": "higher-order-derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e191",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e191",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e193",
+   "concept": "higher-order-derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e193",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e195",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e195",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e197",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e197",
+   "concept": "product-rule"
+  },
+  {
+   "exercise": "e197",
+   "concept": "graph-of-the-derivative"
+  },
+  {
+   "exercise": "e199",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e199",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e201",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e201",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e203",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e203",
+   "concept": "graph-of-the-derivative"
+  },
+  {
+   "exercise": "e205",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e205",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e206",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e206",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e207",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e207",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "e208",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e208",
+   "concept": "important-trigonometric-limits"
+  },
+  {
+   "exercise": "e208",
+   "concept": "addition-and-subtraction-formulas"
+  },
+  {
+   "exercise": "e209",
+   "concept": "higher-order-derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e211",
+   "concept": "higher-order-derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "e213",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "e213",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "e213",
+   "concept": "power-rule"
+  },
+  {
+   "exercise": "r377",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "r377",
+   "concept": "derivatives-of-the-other-trigonometric-functions"
+  },
+  {
+   "exercise": "r377",
+   "concept": "product-rule"
+  }
+ ],
+ "referents": [],
+ "footnotes": []
+}

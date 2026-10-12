@@ -1,0 +1,164 @@
+<p>One of the most important types of motion in physics is simple harmonic motion, which is associated with such systems as an object with mass oscillating on a spring. Simple harmonic motion can be described by using either sine or cosine <span data-concept="function">functions</span>. In this section we expand our knowledge of <a href="/calculus/sheets/derivatives/"><span data-concept="derivative">derivative</span> formulas</a> to include <span data-concept="derivative">derivatives</span> of these and other <span data-concept="trigonometric-functions">trigonometric functions</span>. We begin with the <span data-concept="derivative">derivatives</span> of the sine and cosine <span data-concept="function">functions</span> and then use them to obtain formulas for the <span data-concept="derivative">derivatives</span> of the remaining four <span data-concept="trigonometric-functions">trigonometric functions</span>. Being able to calculate the <span data-concept="derivative">derivatives</span> of the sine and cosine <span data-concept="function">functions</span> will enable us to find the <span data-concept="velocity">velocity</span> and <span data-concept="acceleration">acceleration</span> of simple harmonic motion.</p>
+
+<section id="sine-cosine">
+<h2>Derivatives of the Sine and Cosine Functions</h2>
+<p class="cite-target">We begin our exploration of the <span data-concept="derivative">derivative</span> for the sine <span data-concept="function">function</span> by using the formula to make a reasonable guess at its <span data-concept="derivative">derivative</span>. Recall that for a <span data-concept="function">function</span> $\kf(x),$</p>
+$$\kfprime(x)=\lim_{h\to 0}\frac{\kf(x+h)-\kf(x)}{h}.$$
+<p>Consequently, for values of $h$ very close to 0, $\kfprime(x)\approx \frac{\kf(x+h)-\kf(x)}{h}.$ We see that by using $h=0.01,$</p>
+$$\frac{d}{dx}(\sin x)\approx \frac{\sin (x+0.01)-\sin x}{0.01}$$
+<p id="d-of-x">By setting <span data-fn="(sin(x+0.01)-sin(x))/0.01">$\kD(x)=\frac{\sin (x+0.01)-\sin x}{0.01}$</span> and using a graphing utility, we can get a graph of an approximation to the <span data-concept="derivative">derivative</span> of $\sin x$ (Figure 3.25).</p>
+<figure class="sim" id="sim-sine-difference-quotient" data-figure="3.25" data-original="/media/ch03/CNX_Calc_Figure_03_05_001.jpg" data-original-caption="The graph of the function D(x) looks a lot like a cosine curve.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.25</span><span>The <span data-concept="difference-quotient">difference quotient</span> $\kD(x)=\frac{\sin(x+h)-\sin x}{h}$ of the sine, drawn over $\cos x.$ At the book’s $h=0.01$ the two graphs cannot be told apart; widen $h$ and $\kD$ becomes a cosine shifted left and flattened, then closes on $\cos x$ again as $h$ shrinks.</span></div>
+</figure>
+<p>Upon inspection, the graph of $\kD(x)$ appears to be very close to the graph of the cosine <span data-concept="function">function</span>. Indeed, we will show that</p>
+$$\frac{d}{dx}(\sin x)=\cos x.$$
+<p>If we were to follow the same steps to approximate the <span data-concept="derivative">derivative</span> of the cosine <span data-concept="function">function</span>, we would find that</p>
+$$\frac{d}{dx}(\cos x)=-\sin x.$$
+<div class="note" id="sine-cosine-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>The Derivatives of sin <em>x</em> and cos <em>x</em></h3>
+<p>The <span data-concept="derivative">derivative</span> of the sine <span data-concept="function">function</span> is the cosine and the <span data-concept="derivative">derivative</span> of the cosine <span data-concept="function">function</span> is the negative sine.</p>
+$$\frac{d}{dx}(\sin x)=\cos x\tag{3.11}$$
+$$\frac{d}{dx}(\cos x)=-\sin x\tag{3.12}$$
+</div>
+<h3>Proof</h3>
+<p>Because the proofs for $\frac{d}{dx}(\sin x)=\cos x$ and $\frac{d}{dx}(\cos x)=-\sin x$ use similar techniques, we provide only the proof for $\frac{d}{dx}(\sin x)=\cos x.$ Before beginning, recall two important trigonometric <span data-concept="limit">limits</span> we learned in Introduction to Limits:</p>
+$$\lim_{h\to 0}\frac{\sin h}{h}=1\;\text{and}\;\lim_{h\to 0}\frac{\cos h-1}{h}=0.$$
+<p>The graphs of $y=\frac{(\sin h)}{h}$ and $y=\frac{(\cos h-1)}{h}$ are shown in Figure 3.26.</p>
+<figure class="sim" id="fig-two-trig-limits" data-figure="3.26" data-original="/media/ch03/CNX_Calc_Figure_03_05_002.jpg" data-original-caption="These graphs show two important limits needed to establish the derivative formulas for the sine and cosine functions.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.26</span><span>These graphs show two important <span data-concept="limit">limits</span> needed to establish the <span data-concept="derivative">derivative</span> formulas for the sine and cosine <span data-concept="function">functions</span>.</span></div>
+</figure>
+<p>We also recall the following <span data-concept="trigonometric-identity">trigonometric identity</span> for the sine of the sum of two angles:</p>
+$$\sin (x+h)=\sin x\;\cos h+\cos x\;\sin h.$$
+<p>Now that we have gathered all the necessary equations and identities, we proceed with the proof.</p>
+$$\begin{array}{rllll}\frac{d}{dx}\;\sin x & =\lim_{h\to 0}\frac{\sin (x+h)-\sin x}{h} & & & \text{Apply the definition}\;\text{of the derivative.} \\ & =\lim_{h\to 0}\frac{\sin x\;\cos h+\cos x\;\sin h-\sin x}{h} & & & \text{Use trig identity for the sine of the sum of two angles.} \\ & =\lim_{h\to 0}(\frac{\sin x\;\cos h-\sin x}{h}+\frac{\cos x\;\sin h}{h}) & & & \text{Regroup.} \\ & =\lim_{h\to 0}(\sin x(\frac{\cos h-1}{h})+\cos x(\frac{\sin h}{h})) & & & \text{Factor out}\;\sin x\;\text{and}\;\cos x. \\ & =\sin x\cdot 0+\cos x\cdot 1 & & & \text{Apply trig limit formulas.} \\ & =\cos x & & & \text{Simplify.}\end{array}$$
+<p>□</p>
+<p>Figure 3.27 shows the relationship between the graph of $\kf(x)=\sin x$ and its <span data-concept="derivative">derivative</span> $\kfprime(x)=\cos x.$ Notice that at the points where $\kf(x)=\sin x$ has a horizontal <span data-concept="tangent-line">tangent</span>, its <span data-concept="derivative">derivative</span> $\kfprime(x)=\cos x$ takes on the value zero. We also see that where $\kf(x)=\sin x$ is increasing, $\kfprime(x)=\cos x\gt 0$ and where $\kf(x)=\sin x$ is decreasing, $\kfprime(x)=\cos x\lt 0.$</p>
+<figure class="sim" id="sim-sine-derivative-trace" data-figure="3.27" data-original="/media/ch03/CNX_Calc_Figure_03_05_003.jpg" data-original-caption="Where f(x) has a maximum or a minimum, f′(x)=0 that is, f′(x)=0 where f(x) has a horizontal tangent. These points are noted with dots on the graphs.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.27</span><span>Drag the point along <span data-fn="sin(x)">$\kf(x)=\sin x:$</span> its <span data-concept="tangent-line">tangent line</span> rides with it, and below, the point $(x,\kfprime(x))$ traces the graph of <span data-fn="cos(x)">$\kfprime(x)=\cos x.$</span> Where $\kf$ has a maximum or a minimum the <span data-concept="tangent-line">tangent</span> is horizontal and $\kfprime(x)=0.$</span></div>
+</figure>
+<div class="example" id="fs-id1169738999233">
+<h3>Example 3.39 · Differentiating a Function Containing sin <em>x</em></h3>
+<p>Find the <a href="/calculus/sheets/integral-calculator/?op=derivative&amp;expr=5x%5E3*sin(x)"><span data-concept="derivative">derivative</span></a> of <span data-fn="5x^3*sin(x)">$\kf(x)=5x^{3}\sin x.$</span></p>
+<h4>Solution</h4>
+<p>Using the <span data-concept="product-rule">product rule</span>, we have</p>
+$$\begin{array}{rl}\kfprime(x) & =\frac{d}{dx}(5x^{3})\cdot \sin x+\frac{d}{dx}(\sin x)\cdot 5x^{3} \\ & =15x^{2}\cdot \sin x+\cos x\cdot 5x^{3}.\end{array}$$
+<p>After simplifying, we obtain</p>
+$$\kfprime(x)=15x^{2}\sin x+5x^{3}\cos x.$$
+</div>
+<div class="exercises" data-place="fs-id1169738999233"></div>
+<div class="example" id="fs-id1169738889578">
+<h3>Example 3.40 · Finding the Derivative of a Function Containing cos <em>x</em></h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="cos(x)/(4x^2)">$\kg(x)=\frac{\cos x}{4x^{2}}.$</span></p>
+<h4>Solution</h4>
+<p>By applying the <span data-concept="quotient-rule">quotient rule</span>, we have</p>
+$$\kgprime(x)=\frac{(-\sin x)4x^{2}-8x(\cos x)}{{(4x^{2})}^{2}}.$$
+<p>Simplifying, we obtain</p>
+$$\begin{array}{rl}\kgprime(x) & =\frac{-4x^{2}\sin x-8x\;\cos x}{16x^{4}} \\ & =\frac{-x\;\sin x-2\;\cos x}{4x^{3}}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169738889578"></div>
+<div class="example" id="fs-id1169739220928">
+<h3>Example 3.41 · An Application to Velocity</h3>
+<p>A particle moves along a coordinate axis in such a way that its position at time $t$ is given by <span data-fn="2sin(x)-x">$\ks(t)=2\;\sin t-t$</span> for $0\le t\le 2\pi .$ At what times is the particle at rest?</p>
+<h4>Solution</h4>
+<p>To determine when the particle is at rest, set $\ksprime(t)=\kv(t)=0.$ Begin by finding $\ksprime(t).$ We obtain</p>
+$$\ksprime(t)=2\;\cos t-1,$$
+<p>so we must solve</p>
+$$2\;\cos t-1=0\;\text{for}\;0\le t\le 2\pi .$$
+<p>The solutions to this equation are $t=\frac{\pi}{3}$ and $t=\frac{5\pi}{3}.$ Thus the particle is at rest at times $t=\frac{\pi}{3}$ and $t=\frac{5\pi}{3}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1169739220928"></div>
+</section>
+
+<section id="other-trig">
+<h2>Derivatives of Other Trigonometric Functions</h2>
+<p class="cite-target">Since the remaining four <span data-concept="trigonometric-functions">trigonometric functions</span> may be expressed as quotients involving sine, cosine, or both, we can use the <span data-concept="quotient-rule">quotient rule</span> to find formulas for their <span data-concept="derivative">derivatives</span>.</p>
+<div class="example" id="fs-id1169736589199">
+<h3>Example 3.42 · The Derivative of the Tangent Function</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="tan(x)">$\kf(x)=\tan x.$</span></p>
+<h4>Solution</h4>
+<p>Start by expressing $\tan x$ as the quotient of $\sin x$ and $\cos x:$</p>
+$$\kf(x)=\tan x=\frac{\sin x}{\cos x}.$$
+<p>Now apply the <span data-concept="quotient-rule">quotient rule</span> to obtain</p>
+$$\kfprime(x)=\frac{\cos x\;\cos x-(-\sin x)\sin x}{{(\cos x)}^{2}}.$$
+<p>Simplifying, we obtain</p>
+$$\kfprime(x)=\frac{{\cos }^{2}x+{\;\sin }^{2}x}{{\cos }^{2}x}.$$
+<p>Recognizing that ${\cos }^{2}x+{\sin }^{2}x=1,$ by the Pythagorean theorem, we now have</p>
+$$\kfprime(x)=\frac{1}{{\cos }^{2}x}.$$
+<p>Finally, use the identity $\sec x=\frac{1}{\cos x}$ to obtain</p>
+$$\kfprime(x)={\sec }^{2}x.$$
+</div>
+<div class="exercises" data-place="fs-id1169736589199"></div>
+<p>The <span data-concept="derivative">derivatives</span> of the remaining <span data-concept="trigonometric-functions">trigonometric functions</span> may be obtained by using similar techniques. We provide these formulas in the following theorem.</p>
+<div class="note" id="other-trig-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Derivatives of $\tan x,\cot x,\sec x,$ and $\csc x$</h3>
+<p>The <span data-concept="derivative">derivatives</span> of the remaining <span data-concept="trigonometric-functions">trigonometric functions</span> are as follows:</p>
+$$\frac{d}{dx}(\tan x)={\sec }^{2}x\tag{3.13}$$
+$$\;\frac{d}{dx}(\cot x)=-{\csc }^{2}x\tag{3.14}$$
+$$\hspace{1.4em}\frac{d}{dx}(\sec x)=\sec x\;\tan x\tag{3.15}$$
+$$\hspace{2.2em}\frac{d}{dx}(\csc x)=-\csc x\;\cot x.\tag{3.16}$$
+</div>
+<div class="example" id="fs-id1169739111296">
+<h3>Example 3.43 · Finding the Equation of a Tangent Line</h3>
+<p>Find the equation of a line <span data-concept="tangent-line">tangent</span> to the graph of <span data-fn="cot(x)">$\kf(x)=\cot x$</span> at $x=\frac{\pi}{4}.$</p>
+<h4>Solution</h4>
+<p>To find an equation of the <span data-concept="tangent-line">tangent line</span>, we need a point and a <span data-concept="slope">slope</span> at that point. To find the point, compute</p>
+$$\kf(\frac{\pi}{4})=\cot \frac{\pi}{4}=1.$$
+<p>Thus the <span data-concept="tangent-line">tangent line</span> passes through the point $(\frac{\pi}{4},1).$ Next, find the <span data-concept="slope">slope</span> by finding the <span data-concept="derivative">derivative</span> of $\kf(x)=\cot x$ and evaluating it at $\frac{\pi}{4}\text{:}$</p>
+$$\kfprime(x)=-{\csc }^{2}x\;\text{and}\;\kfprime(\frac{\pi}{4})=-{\csc }^{2}(\frac{\pi}{4})=-2.$$
+<p>Using the point-slope equation of the line, we obtain</p>
+$$y-1=-2(x-\frac{\pi}{4})$$
+<p>or equivalently,</p>
+$$y=-2x+1+\frac{\pi}{2}.$$
+</div>
+<div class="example" id="fs-id1169736655845">
+<h3>Example 3.44 · Finding the Derivative of Trigonometric Functions</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="csc(x)+x*tan(x)">$\kf(x)=\csc x+x\;\tan x.$</span></p>
+<h4>Solution</h4>
+<p>To find this <span data-concept="derivative">derivative</span>, we must use both the <span data-concept="sum-rule">sum rule</span> and the <span data-concept="product-rule">product rule</span>. Using the <span data-concept="sum-rule">sum rule</span>, we find</p>
+$$\kfprime(x)=\frac{d}{dx}(\csc x)+\frac{d}{dx}(x\;\tan x).$$
+<p>In the first term, $\frac{d}{dx}(\csc x)=-\csc x\;\cot x,$ and by applying the <span data-concept="product-rule">product rule</span> to the second term we obtain</p>
+$$\frac{d}{dx}(x\;\tan x)=(1)(\tan x)+({\sec }^{2}x)(x).$$
+<p>Therefore, we have</p>
+$$\kfprime(x)=-\csc x\;\cot x+\tan x+x\;{\sec }^{2}x.$$
+</div>
+<div class="exercises" data-place="fs-id1169736655845"></div>
+</section>
+
+<section id="higher-order">
+<h2>Higher-Order Derivatives</h2>
+<p class="cite-target">The <span data-concept="higher-order-derivative">higher-order derivatives</span> of $\sin x$ and $\cos x$ follow a repeating pattern. By following the pattern, we can find any <span data-concept="higher-order-derivative">higher-order derivative</span> of $\sin x$ and $\cos x.$</p>
+<div class="example" id="fs-id1169739303827">
+<h3>Example 3.45 · Finding Higher-Order Derivatives of $y=\sin x$</h3>
+<p>Find the first four <span data-concept="derivative">derivatives</span> of $y=\sin x.$</p>
+<h4>Solution</h4>
+<p>Each step in the chain is straightforward:</p>
+$$\begin{array}{rll}y & = & \sin x \\ \frac{dy}{dx} & = & \cos x \\ \frac{d^{2}y}{dx^{2}} & = & -\sin x \\ \frac{d^{3}y}{dx^{3}} & = & -\cos x \\ \frac{d^{4}y}{dx^{4}} & = & \sin x.\end{array}$$
+<h4>Analysis</h4>
+<p id="sine-cycle">Once we recognize the pattern of <span data-concept="derivative">derivatives</span>, we can find any <span data-concept="higher-order-derivative">higher-order derivative</span> by determining the step in the pattern to which it corresponds. For example, every <span data-concept="higher-order-derivative">fourth derivative</span> of sin <em>x</em> equals sin <em>x</em>, so</p>
+$$\begin{array}{l}\frac{d^{4}}{dx^{4}}(\sin x)=\frac{d^{8}}{dx^{8}}(\sin x)=\frac{d^{12}}{dx^{12}}(\sin x)=\text{…}=\frac{d^{4n}}{dx^{4n}}(\sin x)=\sin x \\ \frac{d^{5}}{dx^{5}}(\sin x)=\frac{d^{9}}{dx^{9}}(\sin x)=\frac{d^{13}}{dx^{13}}(\sin x)=\text{…}=\frac{d^{4n+1}}{dx^{4n+1}}(\sin x)=\cos x.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169739303827"></div>
+<div class="example" id="fs-id1169739298086">
+<h3>Example 3.46 · Using the Pattern for Higher-Order Derivatives of $y=\sin x$</h3>
+<p>Find $\frac{d^{74}}{dx^{74}}(\sin x).$</p>
+<h4>Solution</h4>
+<p>We can see right away that for the 74th <span data-concept="derivative">derivative</span> of $\sin x,74=4(18)+2,$ so</p>
+$$\frac{d^{74}}{dx^{74}}(\sin x)=\frac{d^{72+2}}{dx^{72+2}}(\sin x)=\frac{d^{2}}{dx^{2}}(\sin x)=-\sin x.$$
+</div>
+<div class="exercises" data-place="fs-id1169739298086"></div>
+<div class="example" id="fs-id1169739376125">
+<h3>Example 3.47 · An Application to Acceleration</h3>
+<p>A particle moves along a coordinate axis in such a way that its position at time $t$ is given by <span data-fn="2-sin(x)">$\ks(t)=2-\sin t.$</span> Find $\kv(\pi /4)$ and $\ka(\pi /4).$ Compare these values and decide whether the particle is speeding up or slowing down.</p>
+<h4>Solution</h4>
+<p>First find $\kv(t)=\ksprime(t)\text{:}$</p>
+$$\kv(t)=\ksprime(t)=-\cos t.$$
+<p>Thus,</p>
+$$\kv(\frac{\pi}{4})=-\frac{1}{\sqrt{2}}.$$
+<p>Next, find $\ka(t)=\kvprime(t).$ Thus, $\ka(t)=\kvprime(t)=\sin t$ and we have</p>
+$$\ka(\frac{\pi}{4})=\frac{1}{\sqrt{2}}.$$
+<p>Since $\kv(\frac{\pi}{4})=-\frac{1}{\sqrt{2}}\lt 0$ and $\ka(\frac{\pi}{4})=\frac{1}{\sqrt{2}}\gt 0,$ we see that <span data-concept="velocity">velocity</span> and <span data-concept="acceleration">acceleration</span> are acting in opposite directions; that is, the object is being accelerated in the direction opposite to the direction in which it is travelling. Consequently, the particle is slowing down.</p>
+</div>
+<div class="exercises" data-place="fs-id1169739376125"></div>
+</section>

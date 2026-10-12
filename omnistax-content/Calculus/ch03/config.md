@@ -1,6 +1,6 @@
 # Chapter 3 config: Derivatives
 
-Status: agreed 2026-10-12 (Chen: continue building; defaults carried from Chapter 2, build through, report afterwards).
+Status: agreed 2026-10-12 by carry-over (Chen: continue building; defaults carried from Chapter 2, build through, report afterwards). Built 2026-10-12; the build changed the defaults below where marked.
 
 1. Start: `ch03/intro/`, then 3.1–3.9.
 2. Loop: prep / sections / chapter pass with no stops; plans and decisions reported to Chen afterwards (rule 5 review waived by Chen for this run).
@@ -25,5 +25,8 @@ Status: agreed 2026-10-12 (Chen: continue building; defaults carried from Chapte
 21. Types: the 18 of book.json on the hue-families palette; derivative is the chapter's main type beside function, tangent lines wear line, slopes and rates wear derivative; applied quantities wear their maths type (velocity, marginal cost → derivative).
 22. Sims (rule 15): the plan decides and builds its picks, reported afterwards.
 23. 3D: none.
-24. Reference sheets: link the Integral Calculator (derivative mode) and the Table of Derivatives where the text first applies a rule; no new sheets.
+24. Reference sheets: the Table of Derivatives and the Integral Calculator (derivative mode) are linked on the book's own words ("rules for finding derivatives", "derivative formulas", the word "derivative" in an example's problem); no words are added, so a section whose words do not name the step carries no link (3.2, 3.4, 3.8). No new sheets.
 25. Recolour: rerun `colours:default -- calculus` in the chapter pass.
+26. Equations: the book's numbered display equations (Equations 3.1–3.35) carry `\tag{3.N}`, so the text's "Equation 3.5" names a visible number (built).
+27. Review exercises: a review exercise goes with the section that introduces what it tests even against the prep's list where it needs a later rule (389, the chain rule, set in 3.6, not 3.5) (built).
+28. Two functions on one graph are referents (book `COLOR.md`): 3.3's Figure 3.18 (`const-f`, `const-g`); tangent lines the text names apart are referents (3.7) (built).

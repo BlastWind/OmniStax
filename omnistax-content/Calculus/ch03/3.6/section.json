@@ -1,0 +1,979 @@
+{
+ "id": "3.6",
+ "module": "m53581",
+ "chapter": "3",
+ "title": "The Chain Rule",
+ "short": "The Chain Rule",
+ "lead": "The <span data-concept=\"chain-rule\">chain rule</span> differentiates a <span data-concept=\"composite-function\">composite function</span>: the <span data-concept=\"derivative\">derivative</span> of the outer function, taken at the inner one, times the derivative of the inner one. It combines with the power, trigonometric, product and quotient rules, applies again to compositions of three or more functions, and reads most simply in <span data-concept=\"leibniz-notation\">Leibniz’s notation</span>.",
+ "objectives": [
+  "State the chain rule for the composition of two functions.",
+  "Apply the chain rule together with the power rule.",
+  "Apply the chain rule and the product/quotient rules correctly in combination when both are necessary.",
+  "Recognize the chain rule for a composition of three or more functions.",
+  "Describe the proof of the chain rule."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"chain-rule\">chain rule</span> allows us to differentiate compositions of two or more <span data-concept=\"function\">functions</span>. It states that for $\\kh(x)=\\kf(\\kg(x)),$ $$\\khprime(x)=\\kfprime(\\kg(x))\\kgprime(x).$$ In <span data-concept=\"leibniz-notation\">Leibniz’s notation</span> this rule takes the form $$\\kdydx=\\kdydu\\cdot \\kdudx.$$</li><li>We can use the <span data-concept=\"chain-rule\">chain rule</span> with other rules that we have learned, and we can derive formulas for some of them.</li><li>The <span data-concept=\"chain-rule\">chain rule</span> combines with the <span data-concept=\"power-rule\">power rule</span> to form a new rule: $$\\text{If}\\;\\kh(x)={(\\kg(x))}^{n},\\text{then}\\;\\khprime(x)=n{(\\kg(x))}^{n-1}\\kgprime(x).$$</li><li>When applied to the <span data-concept=\"composite-function\">composition of three functions</span>, the <span data-concept=\"chain-rule\">chain rule</span> can be expressed as follows: If $\\kh(x)=\\kf(\\kg(\\kk(x))),$ then $\\khprime(x)=\\kfprime(\\kg(\\kk(x))\\kgprime(\\kk(x))k^{\\prime}(x).$</li></ul>",
+ "notes": "The book’s link to an animation of the chain rule is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s. The 23 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: exercises 214 to 218 (derivatives in Leibniz’s notation), 220 to 226 (decompositions), 228 to 236 (derivatives), 238 and 240 (values from a derivative), 242 and 244 (tangent and normal lines), 246 to 252 (values from the table), 254 (the spring), 256 (the expanding circle) and 258 (the temperature in Phoenix). Review exercise 389 is printed at the end of 3.9 and set here, where the chain rule is introduced; review exercise 388 has no answer in the key and is left out.",
+ "figures": [
+  {
+   "id": "sim-chain-stretch",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "deriving",
+   "concept": "chain-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "chain-rule-strategy",
+   "concept": "applying-the-chain-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "power-composition-rule",
+   "concept": "power-rule-for-composition-of-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "chain-trig-theorem",
+   "concept": "chain-rule-with-trigonometric-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "three-rule",
+   "concept": "chain-rule-for-three-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "deriving",
+   "concept": "composite-function",
+   "verb": "uses"
+  },
+  {
+   "span": "chain-rule-note",
+   "concept": "composite-function",
+   "verb": "uses"
+  },
+  {
+   "span": "deriving",
+   "concept": "derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739302258",
+   "concept": "derivatives-of-sine-and-cosine",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736656617",
+   "concept": "derivatives-of-sine-and-cosine",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739333921",
+   "concept": "derivatives-of-the-other-trigonometric-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739274312",
+   "concept": "extended-power-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739190027",
+   "concept": "extended-power-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739190027",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739298047",
+   "concept": "product-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739264200",
+   "concept": "quotient-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "three-functions",
+   "concept": "differentiability-implies-continuity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736593542",
+   "concept": "velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "leibniz",
+   "concept": "leibniz-notation",
+   "verb": "uses"
+  },
+  {
+   "span": "leibniz-rule",
+   "concept": "chain-rule",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp34",
+   "source_id": "fs-id1169736662942",
+   "source_number": "Checkpoint 3.34",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739274312"
+   },
+   "cite": "power-composition-rule",
+   "prompt": "<p>Find the derivative of $h(x)={(2x^{3}+2x-1)}^{4}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use Equation 3.18 with $g(x)=2x^{3}+2x-1$",
+    "solution": "$h^{\\prime}(x)=4{(2x^{3}+2x-1)}^{3}(6x^{2}+2)=8(3x^{2}+1){(2x^{3}+2x-1)}^{3}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp35",
+   "source_id": "fs-id1169739301871",
+   "source_number": "Checkpoint 3.35",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739190027"
+   },
+   "cite": "power-composition-rule",
+   "prompt": "<p>Find an equation of the line tangent to the graph of $f(x)={(x^{2}-2)}^{3}$ at $x=-2.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use the preceding example as a guide.",
+    "solution": "$y=-48x-88$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp36",
+   "source_id": "fs-id1169739188147",
+   "source_number": "Checkpoint 3.36",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739333921"
+   },
+   "cite": "chain-trig-theorem",
+   "prompt": "<p>Find the derivative of $h(x)=\\sin (7x+2).$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Apply the chain rule to $h(x)=\\sin g(x)$ first and then use $g(x)=7x+2.$",
+    "solution": "$h^{\\prime}(x)=7\\;\\cos (7x+2)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp37",
+   "source_id": "fs-id1169736603465",
+   "source_number": "Checkpoint 3.37",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739298047"
+   },
+   "cite": "chain-other",
+   "prompt": "<p>Find the derivative of $h(x)=\\frac{x}{{(2x+3)}^{3}}.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Start out by applying the quotient rule. Remember to use the chain rule to differentiate the denominator.",
+    "solution": "$h^{\\prime}(x)=\\frac{3-4x}{{(2x+3)}^{4}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp38",
+   "source_id": "fs-id1169739350747",
+   "source_number": "Checkpoint 3.38",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736658580"
+   },
+   "cite": "three-rule",
+   "prompt": "<p>Find the derivative of $h(x)={\\sin }^{6}(x^{3}).$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Rewrite $h(x)={\\sin }^{6}(x^{3})={(\\sin (x^{3}))}^{6}$ and use Example 3.55 as a guide.",
+    "solution": "$h^{\\prime}(x)=18x^{2}{\\sin }^{5}(x^{3})\\;\\cos (x^{3})$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp39",
+   "source_id": "fs-id1169739266714",
+   "source_number": "Checkpoint 3.39",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736593542"
+   },
+   "cite": "three-functions",
+   "prompt": "<p>A particle moves along a coordinate axis. Its position at time $t$ is given by $s(t)=\\sin (4t).$ Find its acceleration at time $t.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Acceleration is the second derivative of position.",
+    "solution": "$a(t)=-16\\;\\sin (4t)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp40",
+   "source_id": "fs-id1169739341444",
+   "source_number": "Checkpoint 3.40",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736613849"
+   },
+   "cite": "chain-rule-note",
+   "prompt": "<p>Given $h(x)=f(g(x)).$ If $g(2)=-3,g^{\\prime}(2)=4,$ and $f^{\\prime}(-3)=7,$ find $h^{\\prime}(2).$</p>",
+   "answer": {
+    "type": "number",
+    "value": 28,
+    "hint": "Follow Example 3.56<sup class=\"fn\" data-note=\"cp40-hint\"></sup>.",
+    "solution": "$28$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp41",
+   "source_id": "fs-id1169739302086",
+   "source_number": "Checkpoint 3.41",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736592583"
+   },
+   "cite": "leibniz-rule",
+   "prompt": "<p>Use Leibniz’s notation to find the derivative of $y=\\cos (x^{3}).$ Make sure that the final answer is expressed entirely in terms of the variable $x.$</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Let $u=x^{3}.$",
+    "solution": "$\\frac{dy}{dx}=-3x^{2}\\sin (x^{3})$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e215",
+   "source_id": "fs-id1169736659427",
+   "source_number": "215",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "leibniz-rule",
+   "prompt": "<p>For the following exercises, given $y=f(u)$ and $u=g(x),$ find $\\frac{dy}{dx}$ by using Leibniz’s notation for the chain rule: $\\frac{dy}{dx}=\\frac{dy}{du}\\;\\frac{du}{dx}.$</p><p>$y=6u^{3},u=7x-4$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$18u^{2}\\cdot 7=18{(7x-4)}^{2}\\cdot 7$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e217",
+   "source_id": "fs-id1169739281115",
+   "source_number": "217",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "leibniz-rule",
+   "prompt": "<p>For the following exercises, given $y=f(u)$ and $u=g(x),$ find $\\frac{dy}{dx}$ by using Leibniz’s notation for the chain rule: $\\frac{dy}{dx}=\\frac{dy}{du}\\;\\frac{du}{dx}.$</p><p>$y=\\cos u,u=\\frac{-x}{8}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$-\\sin u\\cdot \\frac{-1}{8}=-\\sin (\\frac{-x}{8})\\cdot \\frac{-1}{8}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e219",
+   "source_id": "fs-id1169739262398",
+   "source_number": "219",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "leibniz-rule",
+   "prompt": "<p>For the following exercises, given $y=f(u)$ and $u=g(x),$ find $\\frac{dy}{dx}$ by using Leibniz’s notation for the chain rule: $\\frac{dy}{dx}=\\frac{dy}{du}\\;\\frac{du}{dx}.$</p><p>$y=\\sqrt{4u+3},u=x^{2}-6x$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{8x-24}{2\\sqrt{4u+3}}=\\frac{4x-12}{\\sqrt{4x^{2}-24x+3}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e221",
+   "source_id": "fs-id1169736602828",
+   "source_number": "221",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-rule-strategy",
+   "prompt": "<p>For each of the following exercises,</p><p>a. decompose each function in the form $y=f(u)$ and $u=g(x),$ and</p><p>b. find $\\frac{dy}{dx}$ as a function of $x.$</p><p>$y={(3x^{2}+1)}^{3}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $u=3x^{2}+1;$ b. $18x{(3x^{2}+1)}^{2}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e223",
+   "source_id": "fs-id1169736588943",
+   "source_number": "223",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-rule-strategy",
+   "prompt": "<p>For each of the following exercises,</p><p>a. decompose each function in the form $y=f(u)$ and $u=g(x),$ and</p><p>b. find $\\frac{dy}{dx}$ as a function of $x.$</p><p>$y={(\\frac{x}{7}+\\frac{7}{x})}^{7}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $f(u)=u^{7},u=\\frac{x}{7}+\\frac{7}{x};$ b. $7{(\\frac{x}{7}+\\frac{7}{x})}^{6}\\cdot (\\frac{1}{7}-\\frac{7}{x^{2}})$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e225",
+   "source_id": "fs-id1169739251116",
+   "source_number": "225",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-rule-strategy",
+   "prompt": "<p>For each of the following exercises,</p><p>a. decompose each function in the form $y=f(u)$ and $u=g(x),$ and</p><p>b. find $\\frac{dy}{dx}$ as a function of $x.$</p><p>$y=\\csc (\\pi x+1)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $f(u)=\\csc u,u=\\pi x+1;$ b. $-\\pi \\;\\csc (\\pi x+1)\\cdot \\cot (\\pi x+1)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e227",
+   "source_id": "fs-id1169739280417",
+   "source_number": "227",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-rule-strategy",
+   "prompt": "<p>For each of the following exercises,</p><p>a. decompose each function in the form $y=f(u)$ and $u=g(x),$ and</p><p>b. find $\\frac{dy}{dx}$ as a function of $x.$</p><p>$y=-6\\;{(sinx)}^{-3}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $f(u)=-6u^{-3},u=\\sin x,$ b. $18\\;{(\\sin )}^{-4}x\\cdot \\cos x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e229",
+   "source_id": "fs-id1169736653250",
+   "source_number": "229",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-composition-rule",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for each function.</p><p>$y={(5-2x)}^{-2}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\frac{4}{{(5-2x)}^{3}}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e231",
+   "source_id": "fs-id1169739195140",
+   "source_number": "231",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-composition-rule",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for each function.</p><p>$y={(2x^{3}-x^{2}+6x+1)}^{3}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$6{(2x^{3}-x^{2}+6x+1)}^{2}(3x^{2}-x+3)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e233",
+   "source_id": "fs-id1169739195337",
+   "source_number": "233",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-composition-rule",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for each function.</p><p>$y={(\\tan x+\\sin x)}^{-3}$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$-3{(\\tan x+\\sin x)}^{-4}\\cdot ({\\sec }^{2}x+\\cos x)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e235",
+   "source_id": "fs-id1169738989642",
+   "source_number": "235",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-rule",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for each function.</p><p>$y=\\sin (\\cos 7x)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$-7\\;\\cos (\\cos 7x)\\cdot \\sin 7x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e237",
+   "source_id": "fs-id1169736585115",
+   "source_number": "237",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-rule",
+   "prompt": "<p>For the following exercises, find $\\frac{dy}{dx}$ for each function.</p><p>$y={\\cot }^{3}(4x+1)$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$-12\\;{\\cot }^{2}(4x+1)\\cdot {\\csc }^{2}(4x+1)$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e239",
+   "source_id": "fs-id1169738988313",
+   "source_number": "239",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-rule-note",
+   "prompt": "<p>Let $y={(f(x)+5x^{2})}^{4}$ and suppose that $f(-1)=-4$ and $\\frac{dy}{dx}=3$ when $x=-1.$ Find $f^{\\prime}(-1)$</p>",
+   "answer": {
+    "type": "number",
+    "value": 10.75,
+    "solution": "$10\\frac{3}{4}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e241",
+   "source_id": "fs-id1169739374644",
+   "source_number": "241",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-trig-theorem",
+   "prompt": "<p><strong>[T]</strong> Find an equation of the tangent line to $y=-\\sin (\\frac{x}{2})$ at the origin. Use a calculator to graph the function and the tangent line together.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$y=\\frac{-1}{2}x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e243",
+   "source_id": "fs-id1169738991955",
+   "source_number": "243",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-composition-rule",
+   "prompt": "<p>Find the $x$-coordinates at which the tangent line to $y={(x-\\frac{6}{x})}^{8}$ is horizontal.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$x=\\pm \\sqrt{6}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e245",
+   "source_id": "fs-id1169739243334",
+   "source_number": "245",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-rule-note",
+   "prompt": "<p>For the following exercises, use the information in the following table to find $h^{\\prime}(a)$ at the given value for $a.$</p><div class=\"book-table\" id=\"fs-id1169736582646\"><table><thead><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr></thead><tbody><tr><td>0</td><td>2</td><td>5</td><td>0</td><td>2</td></tr><tr><td>1</td><td>1</td><td>−2</td><td>3</td><td>0</td></tr><tr><td>2</td><td>4</td><td>4</td><td>1</td><td>−1</td></tr><tr><td>3</td><td>3</td><td>−3</td><td>2</td><td>3</td></tr></tbody></table></div><p>$h(x)=f(g(x));a=0$</p>",
+   "answer": {
+    "type": "number",
+    "value": 10,
+    "solution": "10",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e247",
+   "source_id": "fs-id1169736662054",
+   "source_number": "247",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-composition-rule",
+   "prompt": "<p>For the following exercises, use the information in the following table to find $h^{\\prime}(a)$ at the given value for $a.$</p><div class=\"book-table\" id=\"fs-id1169736582646\"><table><thead><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr></thead><tbody><tr><td>0</td><td>2</td><td>5</td><td>0</td><td>2</td></tr><tr><td>1</td><td>1</td><td>−2</td><td>3</td><td>0</td></tr><tr><td>2</td><td>4</td><td>4</td><td>1</td><td>−1</td></tr><tr><td>3</td><td>3</td><td>−3</td><td>2</td><td>3</td></tr></tbody></table></div><p>$h(x)={(x^{4}+g(x))}^{-2};a=1$</p>",
+   "answer": {
+    "type": "number",
+    "value": -0.125,
+    "solution": "$-\\frac{1}{8}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e249",
+   "source_id": "fs-id1169736662220",
+   "source_number": "249",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-rule-note",
+   "prompt": "<p>For the following exercises, use the information in the following table to find $h^{\\prime}(a)$ at the given value for $a.$</p><div class=\"book-table\" id=\"fs-id1169736582646\"><table><thead><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr></thead><tbody><tr><td>0</td><td>2</td><td>5</td><td>0</td><td>2</td></tr><tr><td>1</td><td>1</td><td>−2</td><td>3</td><td>0</td></tr><tr><td>2</td><td>4</td><td>4</td><td>1</td><td>−1</td></tr><tr><td>3</td><td>3</td><td>−3</td><td>2</td><td>3</td></tr></tbody></table></div><p>$h(x)=f(x+f(x));a=1$</p>",
+   "answer": {
+    "type": "number",
+    "value": -4,
+    "solution": "$-4$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e251",
+   "source_id": "fs-id1169736608305",
+   "source_number": "251",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-rule",
+   "prompt": "<p>For the following exercises, use the information in the following table to find $h^{\\prime}(a)$ at the given value for $a.$</p><div class=\"book-table\" id=\"fs-id1169736582646\"><table><thead><tr><th>$x$</th><th>$f(x)$</th><th>$f'(x)$</th><th>$g(x)$</th><th>$g'(x)$</th></tr></thead><tbody><tr><td>0</td><td>2</td><td>5</td><td>0</td><td>2</td></tr><tr><td>1</td><td>1</td><td>−2</td><td>3</td><td>0</td></tr><tr><td>2</td><td>4</td><td>4</td><td>1</td><td>−1</td></tr><tr><td>3</td><td>3</td><td>−3</td><td>2</td><td>3</td></tr></tbody></table></div><p>$h(x)=g(2+f(x^{2}));a=1$</p>",
+   "answer": {
+    "type": "number",
+    "value": -12,
+    "solution": "$-12$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e253",
+   "source_id": "fs-id1169736608434",
+   "source_number": "253",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "power-composition-rule",
+   "prompt": "<p><strong>[T]</strong> The position function of a freight train is given by $s(t)=100{(t+1)}^{-2},$ with $s$ in meters and $t$ in seconds. At time $t=6$ s, find the train’s</p><p>a. velocity and</p><p>b. acceleration.</p><p>c. Using a. and b. is the train speeding up or slowing down?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $-\\frac{200}{343}$ m/s, b. $\\frac{600}{2401}$ m/s<sup>2</sup>, c. The train is slowing down since velocity and acceleration have opposite signs.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e255",
+   "source_id": "fs-id1169736592402",
+   "source_number": "255",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "leibniz-rule",
+   "prompt": "<p><strong>[T]</strong> The total cost to produce $x$ boxes of Thin Mint Girl Scout cookies is $C$ dollars, where $C=0.0001x^{3}-0.02x^{2}+3x+300.$ In $t$ weeks production is estimated to be $x=1600+100t$ boxes.</p><p>a. Find the marginal cost $C^{\\prime}(x).$</p><p>b. Use Leibniz’s notation for the chain rule, $\\frac{dC}{dt}=\\frac{dC}{dx}\\cdot \\frac{dx}{dt},$ to find the rate with respect to time $t$ that the cost is changing.</p><p>c. Use b. to determine how fast costs are increasing when $t=2$ weeks. Include units with the answer.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $C^{\\prime}(x)=0.0003x^{2}-0.04x+3$ b. $\\frac{dC}{dt}=100\\cdot (0.0003x^{2}-0.04x+3)$ c. Approximately ＄90,300 per week",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e257",
+   "source_id": "fs-id1169736618829",
+   "source_number": "257",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "leibniz-rule",
+   "prompt": "<p><strong>[T]</strong> The formula for the volume of a sphere is $S=\\frac{4}{3}\\pi r^{3},$ where $r$ (in feet) is the radius of the sphere. Suppose a spherical snowball is melting in the sun.</p><p>a. Suppose $r=\\frac{1}{{(t+1)}^{2}}-\\frac{1}{12}$ where $t$ is time in minutes. Use the chain rule $\\frac{dS}{dt}=\\frac{dS}{dr}\\cdot \\frac{dr}{dt}$ to find the rate at which the snowball is melting.</p><p>b. Use a. to find the rate at which the volume is changing at $t=1$ min.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $\\frac{dS}{dt}=-\\frac{8\\pi r^{2}}{{(t+1)}^{3}}$ b. The volume is decreasing at a rate of $-\\frac{\\pi}{36}$ ft<sup>3</sup>/min.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e259",
+   "source_id": "fs-id1169739296655",
+   "source_number": "259",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-trig-theorem",
+   "prompt": "<p><strong>[T]</strong> The depth (in feet) of water at a dock changes with the rise and fall of tides. The depth is modeled by the function $D(t)=5\\;\\sin (\\frac{\\pi}{6}t-\\frac{7\\pi}{6})+8,$ where $t$ is the number of hours after midnight. Find the rate at which the depth is changing at 6 a.m.</p>",
+   "answer": {
+    "type": "number",
+    "value": 2.3,
+    "unit": "ft/hr",
+    "tol": 0.03,
+    "solution": "$\\sim 2.3$ ft/hr",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "r389",
+   "source_id": "fs-id1169738138102",
+   "source_section": "3.9",
+   "source_number": "389",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "chain-trig-theorem",
+   "prompt": "<p>The following questions concern the water level in Ocean City, New Jersey, in January, which can be approximated by $w(t)=1.9+2.9\\;\\cos (\\frac{\\pi}{6}t),$ where <em>t</em> is measured in hours after midnight, and the height is measured in feet.</p><p>Find $w^{\\prime}(3).$ What is the physical meaning of this value?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$w^{\\prime}(3)=-\\frac{2.9\\pi}{6}.$ At 3 a.m. the tide is decreasing at a rate of 1.518 ft/hr.",
+    "generated_by": "source"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp34",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "cp35",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "cp35",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "cp36",
+   "concept": "chain-rule-with-trigonometric-functions"
+  },
+  {
+   "exercise": "cp37",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp37",
+   "concept": "quotient-rule"
+  },
+  {
+   "exercise": "cp38",
+   "concept": "chain-rule-for-three-functions"
+  },
+  {
+   "exercise": "cp38",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "cp39",
+   "concept": "chain-rule-with-trigonometric-functions"
+  },
+  {
+   "exercise": "cp39",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "cp39",
+   "concept": "higher-order-derivative"
+  },
+  {
+   "exercise": "cp40",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp41",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "cp41",
+   "concept": "leibniz-notation"
+  },
+  {
+   "exercise": "e215",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e215",
+   "concept": "leibniz-notation"
+  },
+  {
+   "exercise": "e217",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e217",
+   "concept": "leibniz-notation"
+  },
+  {
+   "exercise": "e219",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e219",
+   "concept": "leibniz-notation"
+  },
+  {
+   "exercise": "e221",
+   "concept": "applying-the-chain-rule"
+  },
+  {
+   "exercise": "e221",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e223",
+   "concept": "applying-the-chain-rule"
+  },
+  {
+   "exercise": "e223",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e225",
+   "concept": "applying-the-chain-rule"
+  },
+  {
+   "exercise": "e225",
+   "concept": "chain-rule-with-trigonometric-functions"
+  },
+  {
+   "exercise": "e227",
+   "concept": "applying-the-chain-rule"
+  },
+  {
+   "exercise": "e227",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e229",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e231",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e233",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e235",
+   "concept": "chain-rule-for-three-functions"
+  },
+  {
+   "exercise": "e235",
+   "concept": "chain-rule-with-trigonometric-functions"
+  },
+  {
+   "exercise": "e237",
+   "concept": "chain-rule-for-three-functions"
+  },
+  {
+   "exercise": "e237",
+   "concept": "chain-rule-with-trigonometric-functions"
+  },
+  {
+   "exercise": "e237",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e239",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e239",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e241",
+   "concept": "chain-rule-with-trigonometric-functions"
+  },
+  {
+   "exercise": "e241",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e243",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e243",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e245",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e247",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e249",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e251",
+   "concept": "chain-rule-for-three-functions"
+  },
+  {
+   "exercise": "e253",
+   "concept": "power-rule-for-composition-of-functions"
+  },
+  {
+   "exercise": "e253",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e253",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e253",
+   "concept": "speeding-up-and-slowing-down"
+  },
+  {
+   "exercise": "e255",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e255",
+   "concept": "leibniz-notation"
+  },
+  {
+   "exercise": "e255",
+   "concept": "marginal-cost"
+  },
+  {
+   "exercise": "e257",
+   "concept": "chain-rule"
+  },
+  {
+   "exercise": "e257",
+   "concept": "leibniz-notation"
+  },
+  {
+   "exercise": "e257",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e259",
+   "concept": "chain-rule-with-trigonometric-functions"
+  },
+  {
+   "exercise": "e259",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "r389",
+   "concept": "chain-rule-with-trigonometric-functions"
+  },
+  {
+   "exercise": "r389",
+   "concept": "derivatives-of-sine-and-cosine"
+  },
+  {
+   "exercise": "r389",
+   "concept": "instantaneous-rate-of-change"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "cp40-hint",
+   "kind": "correction",
+   "html": "The hint points to Example 3.56; the example that uses functional values, the guide here, is Example 3.57."
+  }
+ ]
+}

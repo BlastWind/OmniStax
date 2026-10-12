@@ -31,7 +31,9 @@
     "ch03",
     "ch04",
     "ch05",
-    "ch06"
+    "ch06",
+    "ch07",
+    "ch08"
   ],
   "intro": {
     "module": "m60027",
@@ -580,6 +582,86 @@
       "sym": "S_prime",
       "latex": "S'",
       "macro": "\\kSprime"
+    },
+    {
+      "sym": "f_4",
+      "latex": "f^{(4)}",
+      "macro": "\\kffour"
+    },
+    {
+      "sym": "G_prime",
+      "latex": "G'",
+      "macro": "\\kGprime"
+    },
+    {
+      "sym": "y_fn",
+      "latex": "y",
+      "macro": "\\kyfn"
+    },
+    {
+      "sym": "y_dprime",
+      "latex": "y''",
+      "macro": "\\kydprime"
+    },
+    {
+      "sym": "y_tprime",
+      "latex": "y'''",
+      "macro": "\\kytprime"
+    },
+    {
+      "sym": "y_4",
+      "latex": "y^{(4)}",
+      "macro": "\\kyfour"
+    },
+    {
+      "sym": "y_5",
+      "latex": "y^{(5)}",
+      "macro": "\\kyfive"
+    },
+    {
+      "sym": "dy/dt",
+      "latex": "\\frac{dy}{dt}",
+      "macro": "\\kdydt"
+    },
+    {
+      "sym": "dT/dt",
+      "latex": "\\frac{dT}{dt}",
+      "macro": "\\kdTdt"
+    },
+    {
+      "sym": "du/dt",
+      "latex": "\\frac{du}{dt}",
+      "macro": "\\kdudt"
+    },
+    {
+      "sym": "dP/dt",
+      "latex": "\\frac{dP}{dt}",
+      "macro": "\\kdPdt"
+    },
+    {
+      "sym": "dv/dt",
+      "latex": "\\frac{dv}{dt}",
+      "macro": "\\kdvdt"
+    },
+    {
+      "sym": "P_0",
+      "latex": "P_{0}",
+      "macro": "\\kPzero"
+    },
+    {
+      "sym": "K",
+      "latex": "K",
+      "macro": "\\kK"
+    },
+    {
+      "sym": "μ",
+      "latex": "\\mu",
+      "macro": "\\kmu"
+    },
+    {
+      "sym": "μ_prime",
+      "latex": "\\mu'",
+      "macro": "\\kmuprime"
     }
   ],
   "exercise_kinds": [
@@ -3500,7 +3582,8 @@
       "forms": [
         {
           "id": "eq-derivative-b-to-the-x",
-          "latex": "B'(x)=b^{x}B'(0)"
+          "latex": "B'(x)=b^{x}B'(0)",
+          "anchor": "3.9-bx-derivative"
         }
       ]
     },
@@ -3513,7 +3596,8 @@
       "forms": [
         {
           "id": "eq-e-slope-one",
-          "latex": "\\lim_{h\\to 0}\\frac{e^{h}-1}{h}=1"
+          "latex": "\\lim_{h\\to 0}\\frac{e^{h}-1}{h}=1",
+          "anchor": "3.9-e-defined"
         }
       ]
     },
@@ -3526,11 +3610,13 @@
       "forms": [
         {
           "id": "eq-derivative-exp",
-          "latex": "E'(x)=e^{x}"
+          "latex": "E'(x)=e^{x}",
+          "anchor": "3.9-exp-theorem"
         },
         {
           "id": "eq-derivative-exp-chain",
-          "latex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g'(x)"
+          "latex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g'(x)",
+          "anchor": "3.9-exp-theorem"
         }
       ]
     },
@@ -3543,11 +3629,13 @@
       "forms": [
         {
           "id": "eq-derivative-ln",
-          "latex": "\\frac{dy}{dx}=\\frac{1}{x}"
+          "latex": "\\frac{dy}{dx}=\\frac{1}{x}",
+          "anchor": "3.9-ln-theorem"
         },
         {
           "id": "eq-derivative-ln-chain",
-          "latex": "h'(x)=\\frac{1}{g(x)}g'(x)"
+          "latex": "h'(x)=\\frac{1}{g(x)}g'(x)",
+          "anchor": "3.9-ln-theorem"
         }
       ]
     },
@@ -3560,19 +3648,23 @@
       "forms": [
         {
           "id": "eq-derivative-log-b",
-          "latex": "\\frac{dy}{dx}=\\frac{1}{x\\ln b}"
+          "latex": "\\frac{dy}{dx}=\\frac{1}{x\\ln b}",
+          "anchor": "3.9-general-theorem"
         },
         {
           "id": "eq-derivative-log-b-chain",
-          "latex": "h'(x)=\\frac{g'(x)}{g(x)\\ln b}"
+          "latex": "h'(x)=\\frac{g'(x)}{g(x)\\ln b}",
+          "anchor": "3.9-general-theorem"
         },
         {
           "id": "eq-derivative-b-to-the-x-ln",
-          "latex": "\\frac{dy}{dx}=b^{x}\\ln b"
+          "latex": "\\frac{dy}{dx}=b^{x}\\ln b",
+          "anchor": "3.9-general-theorem"
         },
         {
           "id": "eq-derivative-b-to-the-g",
-          "latex": "h'(x)=b^{g(x)}g'(x)\\ln b"
+          "latex": "h'(x)=b^{g(x)}g'(x)\\ln b",
+          "anchor": "3.9-general-theorem"
         }
       ]
     },
@@ -3595,7 +3687,8 @@
       "forms": [
         {
           "id": "eq-power-rule-real",
-          "latex": "\\frac{d}{dx}x^{r}=rx^{r-1}"
+          "latex": "\\frac{d}{dx}x^{r}=rx^{r-1}",
+          "anchor": "3.9-fs-id1169738228453"
         }
       ]
     },
@@ -3633,7 +3726,8 @@
       "forms": [
         {
           "id": "eq-linear-approximation",
-          "latex": "L(x)=f(a)+f'(a)(x-a)"
+          "latex": "L(x)=f(a)+f'(a)(x-a)",
+          "anchor": "4.2-linear-approximation"
         }
       ]
     },
@@ -3651,7 +3745,8 @@
       "forms": [
         {
           "id": "eq-differential",
-          "latex": "dy=f'(x)dx"
+          "latex": "dy=f'(x)dx",
+          "anchor": "4.2-differentials"
         }
       ]
     },
@@ -3664,11 +3759,13 @@
       "forms": [
         {
           "id": "eq-actual-change",
-          "latex": "\\Delta y=f(a+dx)-f(a)"
+          "latex": "\\Delta y=f(a+dx)-f(a)",
+          "anchor": "4.2-differentials"
         },
         {
           "id": "eq-change-by-differential",
-          "latex": "\\Delta y\\approx dy=f'(a)dx"
+          "latex": "\\Delta y\\approx dy=f'(a)dx",
+          "anchor": "4.2-differentials"
         }
       ]
     },
@@ -3685,7 +3782,8 @@
       "forms": [
         {
           "id": "eq-propagated-error",
-          "latex": "\\Delta y\\approx dy=f'(x)dx"
+          "latex": "\\Delta y\\approx dy=f'(x)dx",
+          "anchor": "4.2-amount-of-error"
         }
       ]
     },
@@ -3702,7 +3800,8 @@
       "forms": [
         {
           "id": "eq-relative-error",
-          "latex": "\\text{relative error}=\\frac{\\Delta q}{q}"
+          "latex": "\\text{relative error}=\\frac{\\Delta q}{q}",
+          "anchor": "4.2-amount-of-error"
         }
       ]
     },
@@ -3812,7 +3911,8 @@
       "forms": [
         {
           "id": "eq-mean-value-theorem",
-          "latex": "f'(c)=\\frac{f(b)-f(a)}{b-a}"
+          "latex": "f'(c)=\\frac{f(b)-f(a)}{b-a}",
+          "anchor": "4.4-mean-value-theorem"
         }
       ]
     },
@@ -3832,7 +3932,8 @@
       "forms": [
         {
           "id": "eq-constant-difference",
-          "latex": "f(x)=g(x)+C"
+          "latex": "f(x)=g(x)+C",
+          "anchor": "4.4-corollary-2"
         }
       ]
     },
@@ -3917,11 +4018,13 @@
       "forms": [
         {
           "id": "eq-limit-at-infinity",
-          "latex": "\\lim_{x\\to\\infty}f(x)=L"
+          "latex": "\\lim_{x\\to\\infty}f(x)=L",
+          "anchor": "4.6-limit-at-infinity-definition"
         },
         {
           "id": "eq-limit-at-negative-infinity",
-          "latex": "\\lim_{x\\to-\\infty}f(x)=L"
+          "latex": "\\lim_{x\\to-\\infty}f(x)=L",
+          "anchor": "4.6-limit-at-infinity-definition"
         }
       ]
     },
@@ -3957,7 +4060,8 @@
       "forms": [
         {
           "id": "eq-formal-limit-at-infinity",
-          "latex": "|f(x)-L|<\\varepsilon\\;\\text{for all}\\;x>N"
+          "latex": "|f(x)-L|<\\varepsilon\\;\\text{for all}\\;x>N",
+          "anchor": "4.6-formal-limit-definition"
         }
       ]
     },
@@ -3971,7 +4075,8 @@
       "forms": [
         {
           "id": "eq-formal-infinite-limit-at-infinity",
-          "latex": "f(x)>M\\;\\text{for all}\\;x>N"
+          "latex": "f(x)>M\\;\\text{for all}\\;x>N",
+          "anchor": "4.6-formal-infinite-limit-definition"
         }
       ]
     },
@@ -4036,7 +4141,8 @@
       "forms": [
         {
           "id": "eq-lhopitals-rule",
-          "latex": "\\lim_{x\\to a}\\frac{f(x)}{g(x)}=\\lim_{x\\to a}\\frac{f'(x)}{g'(x)}"
+          "latex": "\\lim_{x\\to a}\\frac{f(x)}{g(x)}=\\lim_{x\\to a}\\frac{f'(x)}{g'(x)}",
+          "anchor": "4.8-lhopitals-rule"
         }
       ]
     },
@@ -4097,7 +4203,8 @@
       "forms": [
         {
           "id": "eq-newtons-method",
-          "latex": "x_n=x_{n-1}-\\frac{f(x_{n-1})}{f'(x_{n-1})}"
+          "latex": "x_n=x_{n-1}-\\frac{f(x_{n-1})}{f'(x_{n-1})}",
+          "anchor": "4.9-describing-newtons-method"
         }
       ]
     },
@@ -4120,7 +4227,8 @@
       "forms": [
         {
           "id": "eq-iterative-process",
-          "latex": "x_n=F(x_{n-1})"
+          "latex": "x_n=F(x_{n-1})",
+          "anchor": "4.9-other-iterative-processes"
         }
       ]
     },
@@ -4145,7 +4253,8 @@
       "forms": [
         {
           "id": "eq-antiderivative",
-          "latex": "F'(x)=f(x)"
+          "latex": "F'(x)=f(x)",
+          "anchor": "4.10-antiderivative-definition"
         }
       ]
     },
@@ -4158,7 +4267,8 @@
       "forms": [
         {
           "id": "eq-general-antiderivative",
-          "latex": "G(x)=F(x)+C"
+          "latex": "G(x)=F(x)+C",
+          "anchor": "4.10-general-antiderivative"
         }
       ]
     },
@@ -4175,7 +4285,8 @@
       "forms": [
         {
           "id": "eq-indefinite-integral",
-          "latex": "\\int f(x)dx=F(x)+C"
+          "latex": "\\int f(x)dx=F(x)+C",
+          "anchor": "4.10-indefinite-integral-definition"
         }
       ]
     },
@@ -4188,7 +4299,8 @@
       "forms": [
         {
           "id": "eq-power-rule-for-integrals",
-          "latex": "\\int x^{n}dx=\\frac{x^{n+1}}{n+1}+C"
+          "latex": "\\int x^{n}dx=\\frac{x^{n+1}}{n+1}+C",
+          "anchor": "4.10-power-rule-for-integrals"
         }
       ]
     },
@@ -4201,11 +4313,13 @@
       "forms": [
         {
           "id": "eq-integral-of-a-sum",
-          "latex": "\\int (f(x)\\pm g(x))dx=F(x)\\pm G(x)+C"
+          "latex": "\\int (f(x)\\pm g(x))dx=F(x)\\pm G(x)+C",
+          "anchor": "4.10-integral-properties"
         },
         {
           "id": "eq-integral-of-a-constant-multiple",
-          "latex": "\\int kf(x)dx=kF(x)+C"
+          "latex": "\\int kf(x)dx=kF(x)+C",
+          "anchor": "4.10-integral-properties"
         }
       ]
     },
@@ -4230,7 +4344,8 @@
       "forms": [
         {
           "id": "eq-initial-value-problem",
-          "latex": "\\frac{dy}{dx}=f(x),\\;y(x_0)=y_0"
+          "latex": "\\frac{dy}{dx}=f(x),\\;y(x_0)=y_0",
+          "anchor": "4.10-initial-value-problems"
         }
       ]
     },
@@ -5889,6 +6004,1068 @@
         {
           "id": "eq-catenary",
           "latex": "y=a\\cosh\\left(\\frac{x}{a}\\right)"
+        }
+      ]
+    },
+    {
+      "id": "integration-by-parts",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Integration by parts",
+      "terms": [
+        "integration by parts",
+        "integration-by-parts formula"
+      ],
+      "statement": "If u = f(x) and v = g(x) are functions with continuous derivatives, then ∫u dv = uv − ∫v du; the formula, which comes from integrating the product rule, exchanges one integral for another, possibly easier, integral.",
+      "forms": [
+        {
+          "id": "eq-integration-by-parts",
+          "latex": "\\int u\\,dv=uv-\\int v\\,du",
+          "anchor": "7.1-fs-id1165042232372"
+        },
+        {
+          "id": "eq-integration-by-parts-fg",
+          "latex": "\\int f(x)g'(x)\\,dx=f(x)g(x)-\\int g(x)f'(x)\\,dx",
+          "anchor": "7.1-formula"
+        }
+      ]
+    },
+    {
+      "id": "liate",
+      "kind": "skill",
+      "section": "7.1",
+      "name": "Choosing u with LIATE",
+      "terms": [
+        "LIATE"
+      ],
+      "statement": "To choose u for integration by parts, take the type of function that comes first in the list Logarithmic, Inverse trigonometric, Algebraic, Trigonometric, Exponential; dv is the remaining part of the integrand together with dx, and must be something we can integrate."
+    },
+    {
+      "id": "integrating-by-parts-more-than-once",
+      "kind": "skill",
+      "section": "7.1",
+      "name": "Integrating by parts more than once",
+      "statement": "When the new integral still cannot be evaluated directly, integration by parts may be applied to it again; if the original integral reappears, it is named I and the equation is solved for I."
+    },
+    {
+      "id": "integration-by-parts-for-definite-integrals",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Integration by parts for definite integrals",
+      "statement": "If u = f(x) and v = g(x) have continuous derivatives on [a, b], then ∫ₐᵇ u dv = uv|ₐᵇ − ∫ₐᵇ v du: the technique is the same, with the step of evaluating at the upper and lower limits of integration added.",
+      "forms": [
+        {
+          "id": "eq-integration-by-parts-definite",
+          "latex": "\\int_{a}^{b}u\\,dv=uv\\Big|_{a}^{b}-\\int_{a}^{b}v\\,du",
+          "anchor": "7.1-fs-id1165042231112"
+        }
+      ]
+    },
+    {
+      "id": "trigonometric-integral",
+      "kind": "definition",
+      "section": "7.2",
+      "name": "Trigonometric integral",
+      "terms": [
+        "trigonometric integral",
+        "trigonometric integrals"
+      ],
+      "type": "integral",
+      "statement": "A trigonometric integral is an integral involving powers and products of trigonometric functions."
+    },
+    {
+      "id": "power-reducing-identities",
+      "kind": "result",
+      "section": "7.2",
+      "name": "Power-reducing identities",
+      "terms": [
+        "power-reducing identities"
+      ],
+      "statement": "sin²x = 1/2 − (1/2)cos(2x) and cos²x = 1/2 + (1/2)cos(2x); they may be derived from the double-angle identity cos(2x) = cos²x − sin²x and the Pythagorean identity cos²x + sin²x = 1, and they turn even powers of sin x and cos x into lower powers.",
+      "forms": [
+        {
+          "id": "eq-sin-squared-reducing",
+          "latex": "\\sin^{2}x=\\frac{1}{2}-\\frac{1}{2}\\cos(2x)=\\frac{1-\\cos(2x)}{2}",
+          "anchor": "7.2-power-reducing"
+        },
+        {
+          "id": "eq-cos-squared-reducing",
+          "latex": "\\cos^{2}x=\\frac{1}{2}+\\frac{1}{2}\\cos(2x)=\\frac{1+\\cos(2x)}{2}",
+          "anchor": "7.2-power-reducing"
+        }
+      ]
+    },
+    {
+      "id": "integrating-products-and-powers-of-sine-and-cosine",
+      "kind": "skill",
+      "section": "7.2",
+      "name": "Integrating powers of sin x and cos x",
+      "statement": "To integrate ∫cosʲx sinᵏx dx: if k is odd, keep one sin x, rewrite the rest with sin²x = 1 − cos²x and substitute u = cos x; if j is odd, keep one cos x, rewrite the rest with cos²x = 1 − sin²x and substitute u = sin x; if both are even, use the power-reducing identities, simplify and apply the strategies again."
+    },
+    {
+      "id": "products-of-sines-and-cosines-of-different-angles",
+      "kind": "result",
+      "section": "7.2",
+      "name": "Products of sines and cosines of different angles",
+      "statement": "Products of sin(ax), sin(bx), cos(ax) and cos(bx) are integrated by rewriting each as half a sum or difference of sines or cosines of (a − b)x and (a + b)x; the formulas may be derived from the sum-of-angle formulas for sine and cosine.",
+      "forms": [
+        {
+          "id": "eq-sine-products",
+          "latex": "\\sin(ax)\\sin(bx)=\\frac{1}{2}\\cos((a-b)x)-\\frac{1}{2}\\cos((a+b)x)",
+          "anchor": "7.2-fs-id1165043229277"
+        },
+        {
+          "id": "eq-sine-cosine-products",
+          "latex": "\\sin(ax)\\cos(bx)=\\frac{1}{2}\\sin((a-b)x)+\\frac{1}{2}\\sin((a+b)x)",
+          "anchor": "7.2-fs-id1165042349512"
+        },
+        {
+          "id": "eq-cosine-products",
+          "latex": "\\cos(ax)\\cos(bx)=\\frac{1}{2}\\cos((a-b)x)+\\frac{1}{2}\\cos((a+b)x)",
+          "anchor": "7.2-fs-id1165042332192"
+        }
+      ]
+    },
+    {
+      "id": "integrating-products-and-powers-of-tangent-and-secant",
+      "kind": "skill",
+      "section": "7.2",
+      "name": "Integrating powers of tan x and sec x",
+      "statement": "To integrate ∫tanᵏx secʲx dx: if j is even and j ≥ 2, keep sec²x, rewrite the rest with sec²x = tan²x + 1 and substitute u = tan x; if k is odd and j ≥ 1, keep sec x tan x, rewrite the rest with tan²x = sec²x − 1 and substitute u = sec x; if k is odd, k ≥ 3 and j = 0, split off tan²x = sec²x − 1 and repeat; if k is even and j is odd, write tanᵏx in terms of sec x and integrate the odd powers of sec x by parts."
+    },
+    {
+      "id": "power-reduction-formulas",
+      "kind": "result",
+      "section": "7.2",
+      "name": "Power reduction formulas",
+      "terms": [
+        "power reduction formula",
+        "power reduction formulas"
+      ],
+      "statement": "A power reduction formula allows an integral of a power of a trigonometric function to be exchanged for an integral involving a lower power: ∫secⁿx dx = (1/(n − 1))secⁿ⁻²x tan x + ((n − 2)/(n − 1))∫secⁿ⁻²x dx and ∫tanⁿx dx = (1/(n − 1))tanⁿ⁻¹x − ∫tanⁿ⁻²x dx.",
+      "forms": [
+        {
+          "id": "eq-secant-reduction",
+          "latex": "\\int\\sec^{n}x\\,dx=\\frac{1}{n-1}\\sec^{n-2}x\\tan x+\\frac{n-2}{n-1}\\int\\sec^{n-2}x\\,dx",
+          "anchor": "7.2-fs-id1165043276273"
+        },
+        {
+          "id": "eq-tangent-reduction",
+          "latex": "\\int\\tan^{n}x\\,dx=\\frac{1}{n-1}\\tan^{n-1}x-\\int\\tan^{n-2}x\\,dx",
+          "anchor": "7.2-fs-id1165039565660"
+        }
+      ]
+    },
+    {
+      "id": "trigonometric-substitution",
+      "kind": "definition",
+      "section": "7.3",
+      "name": "Trigonometric substitution",
+      "terms": [
+        "trigonometric substitution"
+      ],
+      "statement": "Trigonometric substitution is an integration technique that converts an algebraic integral containing expressions of the form √(a² − x²), √(a² + x²) or √(x² − a²) into a trigonometric integral."
+    },
+    {
+      "id": "reference-triangle",
+      "kind": "idea",
+      "section": "7.3",
+      "name": "Reference triangle",
+      "terms": [
+        "reference triangle"
+      ],
+      "statement": "After a trigonometric substitution, a right triangle drawn from the substitution (for sin θ = x/a, hypotenuse a, the side opposite θ of length x and the third side √(a² − x²)) expresses the trigonometric functions of θ in terms of x, so a result in θ can be written in x; the radical is the length of one side."
+    },
+    {
+      "id": "sine-substitution",
+      "kind": "skill",
+      "section": "7.3",
+      "name": "Integrating with x = a sin θ",
+      "statement": "For an integral involving √(a² − x²), substitute x = a sin θ and dx = a cos θ dθ with −π/2 ≤ θ ≤ π/2, so that √(a² − x²) = a cos θ; evaluate the trigonometric integral and rewrite the result in x with the reference triangle and θ = sin⁻¹(x/a).",
+      "forms": [
+        {
+          "id": "eq-sine-substitution",
+          "latex": "\\sqrt{a^{2}-x^{2}}=a\\cos\\theta\\quad\\text{for}\\;x=a\\sin\\theta,\\;-\\frac{\\pi}{2}\\le\\theta\\le\\frac{\\pi}{2}",
+          "anchor": "7.3-sine-strategy"
+        }
+      ]
+    },
+    {
+      "id": "tangent-substitution",
+      "kind": "skill",
+      "section": "7.3",
+      "name": "Integrating with x = a tan θ",
+      "statement": "For an integral involving √(a² + x²), substitute x = a tan θ and dx = a sec²θ dθ with −π/2 < θ < π/2, so that √(a² + x²) = a sec θ; evaluate the trigonometric integral and rewrite the result in x with the reference triangle and θ = tan⁻¹(x/a).",
+      "forms": [
+        {
+          "id": "eq-tangent-substitution",
+          "latex": "\\sqrt{a^{2}+x^{2}}=a\\sec\\theta\\quad\\text{for}\\;x=a\\tan\\theta,\\;-\\frac{\\pi}{2}<\\theta<\\frac{\\pi}{2}",
+          "anchor": "7.3-tangent-strategy"
+        }
+      ]
+    },
+    {
+      "id": "secant-substitution",
+      "kind": "skill",
+      "section": "7.3",
+      "name": "Integrating with x = a sec θ",
+      "statement": "For an integral involving √(x² − a²), substitute x = a sec θ and dx = a sec θ tan θ dθ with 0 ≤ θ < π/2 or π/2 < θ ≤ π, so that √(x² − a²) = |a tan θ|, which is a tan θ for x ≥ a and −a tan θ for x ≤ −a; evaluate and rewrite in x with the reference triangle for the sign of x and θ = sec⁻¹(x/a).",
+      "forms": [
+        {
+          "id": "eq-secant-substitution",
+          "latex": "\\sqrt{x^{2}-a^{2}}=|a\\tan\\theta|\\quad\\text{for}\\;x=a\\sec\\theta",
+          "anchor": "7.3-secant-strategy"
+        }
+      ]
+    },
+    {
+      "id": "partial-fraction-decomposition",
+      "kind": "definition",
+      "section": "7.4",
+      "name": "Partial fraction decomposition",
+      "terms": [
+        "partial fraction decomposition",
+        "partial fractions"
+      ],
+      "statement": "Partial fraction decomposition is a technique used to break down a rational function into the sum of simple rational functions; it applies to P(x)/Q(x) only when deg(P(x)) < deg(Q(x)), and otherwise long division first gives A(x) + R(x)/Q(x) with deg(R(x)) < deg(Q(x))."
+    },
+    {
+      "id": "nonrepeated-linear-factors",
+      "kind": "result",
+      "section": "7.4",
+      "name": "Nonrepeated linear factors",
+      "statement": "If Q(x) factors as (a₁x + b₁)(a₂x + b₂)…(aₙx + bₙ) with each linear factor distinct and deg(P(x)) < deg(Q(x)), there are constants A₁, A₂, …, Aₙ with P(x)/Q(x) = A₁/(a₁x + b₁) + A₂/(a₂x + b₂) + ⋯ + Aₙ/(aₙx + bₙ).",
+      "forms": [
+        {
+          "id": "eq-nonrepeated-linear-factors",
+          "latex": "\\frac{P(x)}{Q(x)}=\\frac{A_{1}}{a_{1}x+b_{1}}+\\frac{A_{2}}{a_{2}x+b_{2}}+\\cdots+\\frac{A_{n}}{a_{n}x+b_{n}}",
+          "anchor": "7.4-nonrepeated"
+        }
+      ]
+    },
+    {
+      "id": "method-of-equating-coefficients",
+      "kind": "skill",
+      "section": "7.4",
+      "name": "Method of equating coefficients",
+      "terms": [
+        "method of equating coefficients"
+      ],
+      "statement": "After setting the numerators equal, collect each side by powers of x and equate the coefficients of like powers; the system of equations that results is solved for the unknown constants, and it is consistent if and only if the decomposition was set up correctly."
+    },
+    {
+      "id": "method-of-strategic-substitution",
+      "kind": "skill",
+      "section": "7.4",
+      "name": "Method of strategic substitution",
+      "terms": [
+        "method of strategic substitution"
+      ],
+      "statement": "Since the equation of numerators must hold for all values of x, substituting carefully chosen values (the zeros of the linear factors) makes all but one term vanish and gives the constants one at a time; the result should be checked by recombining the terms."
+    },
+    {
+      "id": "repeated-linear-factors",
+      "kind": "result",
+      "section": "7.4",
+      "name": "Repeated linear factors",
+      "statement": "If the denominator contains the repeated linear factor (ax + b)ⁿ, the decomposition must contain A₁/(ax + b) + A₂/(ax + b)² + ⋯ + Aₙ/(ax + b)ⁿ.",
+      "forms": [
+        {
+          "id": "eq-repeated-linear-factors",
+          "latex": "\\frac{A_{1}}{ax+b}+\\frac{A_{2}}{(ax+b)^{2}}+\\cdots+\\frac{A_{n}}{(ax+b)^{n}}",
+          "anchor": "7.4-repeated"
+        }
+      ]
+    },
+    {
+      "id": "irreducible-quadratic",
+      "kind": "definition",
+      "section": "7.4",
+      "name": "Irreducible quadratic",
+      "terms": [
+        "irreducible quadratic"
+      ],
+      "type": "function",
+      "statement": "A quadratic ax² + bx + c is irreducible if ax² + bx + c = 0 has no real zeros, that is, if b² − 4ac < 0."
+    },
+    {
+      "id": "quadratic-factors",
+      "kind": "result",
+      "section": "7.4",
+      "name": "Irreducible quadratic factors",
+      "statement": "For each irreducible quadratic factor ax² + bx + c of Q(x), the decomposition must include (Ax + B)/(ax² + bx + c); for each repeated irreducible quadratic factor (ax² + bx + c)ⁿ, it must include (A₁x + B₁)/(ax² + bx + c) + ⋯ + (Aₙx + Bₙ)/(ax² + bx + c)ⁿ.",
+      "forms": [
+        {
+          "id": "eq-quadratic-factor",
+          "latex": "\\frac{Ax+B}{ax^{2}+bx+c}",
+          "anchor": "7.4-general-strategy"
+        },
+        {
+          "id": "eq-repeated-quadratic-factors",
+          "latex": "\\frac{A_{1}x+B_{1}}{ax^{2}+bx+c}+\\frac{A_{2}x+B_{2}}{(ax^{2}+bx+c)^{2}}+\\cdots+\\frac{A_{n}x+B_{n}}{(ax^{2}+bx+c)^{n}}",
+          "anchor": "7.4-general-strategy"
+        }
+      ]
+    },
+    {
+      "id": "decomposing-a-rational-function",
+      "kind": "skill",
+      "section": "7.4",
+      "name": "Decomposing a rational function",
+      "statement": "To decompose P(x)/Q(x): make sure deg(P(x)) < deg(Q(x)), performing long division if not; factor Q(x) into linear and irreducible quadratic factors; let the factors determine the form of the decomposition; solve for the constants; and rewrite the integral in its decomposed form and evaluate it."
+    },
+    {
+      "id": "integration-table",
+      "kind": "definition",
+      "section": "7.5",
+      "name": "Integration table",
+      "terms": [
+        "integration table",
+        "integration tables"
+      ],
+      "statement": "An integration table is a table that lists integration formulas; used in the right manner, it is a handy way either to evaluate or to check an integral quickly."
+    },
+    {
+      "id": "computer-algebra-system",
+      "kind": "definition",
+      "section": "7.5",
+      "name": "Computer algebra system",
+      "terms": [
+        "computer algebra system",
+        "computer algebra systems (CAS)",
+        "CAS"
+      ],
+      "statement": "A computer algebra system (CAS) is technology used to perform many mathematical tasks, including integration; it is a faster alternative to a table for solving an integration problem."
+    },
+    {
+      "id": "reconciling-equivalent-antiderivatives",
+      "kind": "skill",
+      "section": "7.5",
+      "name": "Reconciling equivalent antiderivatives",
+      "statement": "Two completely correct antiderivatives found by different methods may look very different; they are equivalent as long as they differ by a constant, which identities, algebra or differentiation can show."
+    },
+    {
+      "id": "numerical-integration",
+      "kind": "definition",
+      "section": "7.6",
+      "name": "Numerical integration",
+      "terms": [
+        "numerical integration"
+      ],
+      "statement": "Numerical integration is the variety of numerical methods used to estimate the value of a definite integral, including the midpoint rule, the trapezoidal rule and Simpson’s rule, when an antiderivative cannot be expressed, or expressed easily, in closed form."
+    },
+    {
+      "id": "midpoint-rule",
+      "kind": "result",
+      "section": "7.6",
+      "name": "Midpoint rule",
+      "terms": [
+        "midpoint rule"
+      ],
+      "type": "integral",
+      "symbol": "M",
+      "statement": "If f(x) is continuous on [a, b], divided into n subintervals of length Δx = (b − a)/n with midpoints mᵢ, then Mₙ = Σ f(mᵢ)Δx, a Riemann sum with subintervals of equal width, satisfies lim Mₙ = ∫ₐᵇ f(x) dx as n → ∞.",
+      "forms": [
+        {
+          "id": "eq-midpoint-rule",
+          "latex": "M_{n}=\\sum_{i=1}^{n}f(m_{i})\\Delta x",
+          "anchor": "7.6-fs-id1165040697119"
+        }
+      ]
+    },
+    {
+      "id": "trapezoidal-rule",
+      "kind": "result",
+      "section": "7.6",
+      "name": "Trapezoidal rule",
+      "terms": [
+        "trapezoidal rule"
+      ],
+      "type": "integral",
+      "symbol": "T",
+      "statement": "If f(x) is continuous on [a, b], divided into n subintervals of length Δx = (b − a)/n with endpoints x₀, x₁, …, xₙ, then Tₙ = (1/2)Δx(f(x₀) + 2f(x₁) + ⋯ + 2f(xₙ₋₁) + f(xₙ)), the sum of the areas of trapezoids, satisfies lim Tₙ = ∫ₐᵇ f(x) dx as n → +∞; Tₙ is the average of the left and right endpoint sums.",
+      "forms": [
+        {
+          "id": "eq-trapezoidal-rule",
+          "latex": "T_{n}=\\frac{1}{2}\\Delta x\\left(f(x_{0})+2f(x_{1})+2f(x_{2})+\\cdots+2f(x_{n-1})+f(x_{n})\\right)",
+          "anchor": "7.6-fs-id1165041762506"
+        },
+        {
+          "id": "eq-trapezoidal-average",
+          "latex": "T_{n}=\\frac{1}{2}(L_{n}+R_{n})",
+          "anchor": "7.6-concavity-paragraph"
+        }
+      ]
+    },
+    {
+      "id": "concavity-and-the-trapezoidal-and-midpoint-rules",
+      "kind": "idea",
+      "section": "7.6",
+      "name": "Concavity and the trapezoidal and midpoint rules",
+      "statement": "For a nonnegative function, the trapezoidal rule tends to overestimate a definite integral over intervals where the function is concave up and to underestimate it where the function is concave down; the midpoint rule partly overestimates and partly underestimates over the same intervals, so it tends to be more accurate."
+    },
+    {
+      "id": "absolute-error",
+      "kind": "definition",
+      "section": "7.6",
+      "name": "Absolute error",
+      "terms": [
+        "absolute error"
+      ],
+      "type": "error",
+      "statement": "If B is an estimate of some quantity having an actual value of A, then the absolute error is |A − B|.",
+      "forms": [
+        {
+          "id": "eq-absolute-error",
+          "latex": "\\text{absolute error}=|A-B|",
+          "anchor": "7.6-error-definition"
+        }
+      ]
+    },
+    {
+      "id": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+      "kind": "result",
+      "section": "7.6",
+      "name": "Error bounds for the midpoint and trapezoidal rules",
+      "type": "error",
+      "statement": "If f(x) is continuous on [a, b] with a second derivative there and M is the maximum value of |f″(x)| over [a, b], then the error in Mₙ is at most M(b − a)³/(24n²) and the error in Tₙ at most M(b − a)³/(12n²); the bounds tell what n guarantees a given accuracy.",
+      "forms": [
+        {
+          "id": "eq-midpoint-error-bound",
+          "latex": "\\text{Error in}\\;M_{n}\\le\\frac{M(b-a)^{3}}{24n^{2}}",
+          "anchor": "7.6-fs-id1165041827796"
+        },
+        {
+          "id": "eq-trapezoidal-error-bound",
+          "latex": "\\text{Error in}\\;T_{n}\\le\\frac{M(b-a)^{3}}{12n^{2}}",
+          "anchor": "7.6-fs-id1165041814747"
+        }
+      ]
+    },
+    {
+      "id": "simpsons-rule",
+      "kind": "result",
+      "section": "7.6",
+      "name": "Simpson’s rule",
+      "terms": [
+        "Simpson’s rule"
+      ],
+      "type": "integral",
+      "symbol": "S",
+      "statement": "If f(x) is continuous on [a, b] and n is a positive even integer, with Δx = (b − a)/n and endpoints x₀, …, xₙ, then Sₙ = (Δx/3)(f(x₀) + 4f(x₁) + 2f(x₂) + 4f(x₃) + ⋯ + 2f(xₙ₋₂) + 4f(xₙ₋₁) + f(xₙ)), the integral of a piecewise quadratic function through the points of the graph, satisfies lim Sₙ = ∫ₐᵇ f(x) dx as n → +∞; S₂ₙ = (2/3)Mₙ + (1/3)Tₙ.",
+      "forms": [
+        {
+          "id": "eq-simpsons-rule",
+          "latex": "S_{n}=\\frac{\\Delta x}{3}\\left(f(x_{0})+4f(x_{1})+2f(x_{2})+4f(x_{3})+2f(x_{4})+\\cdots+2f(x_{n-2})+4f(x_{n-1})+f(x_{n})\\right)",
+          "anchor": "7.6-fs-id1165041953720"
+        },
+        {
+          "id": "eq-simpsons-weighted-average",
+          "latex": "S_{2n}=\\frac{2}{3}M_{n}+\\frac{1}{3}T_{n}",
+          "anchor": "7.6-simpson"
+        }
+      ]
+    },
+    {
+      "id": "error-bound-for-simpsons-rule",
+      "kind": "result",
+      "section": "7.6",
+      "name": "Error bound for Simpson’s rule",
+      "type": "error",
+      "statement": "If f(x) is continuous on [a, b] with a fourth derivative there and M is the maximum value of |f⁽⁴⁾(x)| over [a, b], then the error in Sₙ is at most M(b − a)⁵/(180n⁴).",
+      "forms": [
+        {
+          "id": "eq-simpsons-error-bound",
+          "latex": "\\text{Error in}\\;S_{n}\\le\\frac{M(b-a)^{5}}{180n^{4}}",
+          "anchor": "7.6-fs-id1165042109950"
+        }
+      ]
+    },
+    {
+      "id": "improper-integral",
+      "kind": "definition",
+      "section": "7.7",
+      "name": "Improper integral",
+      "terms": [
+        "improper integral",
+        "improper integrals"
+      ],
+      "type": "integral",
+      "statement": "An improper integral is an integral over an infinite interval or an integral of a function containing an infinite discontinuity on the interval; it is defined in terms of a limit, and it converges if this limit is a finite real number and diverges otherwise."
+    },
+    {
+      "id": "integral-over-an-infinite-interval",
+      "kind": "definition",
+      "section": "7.7",
+      "name": "Integral over an infinite interval",
+      "type": "integral",
+      "statement": "For f(x) continuous over [a, +∞), ∫ₐ^{+∞} f(x) dx = lim_{t→+∞} ∫ₐᵗ f(x) dx, provided this limit exists, and likewise over (−∞, b]; over (−∞, +∞) the integral is ∫_{−∞}^0 f(x) dx + ∫₀^{+∞} f(x) dx, provided both converge.",
+      "forms": [
+        {
+          "id": "eq-improper-to-infinity",
+          "latex": "\\int_{a}^{+\\infty}f(x)\\,dx=\\lim_{t\\to+\\infty}\\int_{a}^{t}f(x)\\,dx",
+          "anchor": "7.7-fs-id1165043372378"
+        },
+        {
+          "id": "eq-improper-from-minus-infinity",
+          "latex": "\\int_{-\\infty}^{b}f(x)\\,dx=\\lim_{t\\to-\\infty}\\int_{t}^{b}f(x)\\,dx",
+          "anchor": "7.7-fs-id1165043086270"
+        },
+        {
+          "id": "eq-improper-whole-line",
+          "latex": "\\int_{-\\infty}^{+\\infty}f(x)\\,dx=\\int_{-\\infty}^{0}f(x)\\,dx+\\int_{0}^{+\\infty}f(x)\\,dx",
+          "anchor": "7.7-fs-id1165042478832"
+        }
+      ]
+    },
+    {
+      "id": "integral-of-a-discontinuous-integrand",
+      "kind": "definition",
+      "section": "7.7",
+      "name": "Integral of a discontinuous integrand",
+      "type": "integral",
+      "statement": "For f(x) continuous over [a, b) and discontinuous at b, ∫ₐᵇ f(x) dx = lim_{t→b⁻} ∫ₐᵗ f(x) dx, and for f(x) continuous over (a, b], the limit is taken as t → a⁺; if f(x) is continuous over [a, b] except at a point c in (a, b), ∫ₐᵇ f(x) dx = ∫ₐᶜ f(x) dx + ∫꜀ᵇ f(x) dx, provided both converge.",
+      "forms": [
+        {
+          "id": "eq-improper-right-endpoint",
+          "latex": "\\int_{a}^{b}f(x)\\,dx=\\lim_{t\\to b^{-}}\\int_{a}^{t}f(x)\\,dx",
+          "anchor": "7.7-fs-id1165042617693"
+        },
+        {
+          "id": "eq-improper-left-endpoint",
+          "latex": "\\int_{a}^{b}f(x)\\,dx=\\lim_{t\\to a^{+}}\\int_{t}^{b}f(x)\\,dx",
+          "anchor": "7.7-fs-id1165042506827"
+        },
+        {
+          "id": "eq-improper-interior-point",
+          "latex": "\\int_{a}^{b}f(x)\\,dx=\\int_{a}^{c}f(x)\\,dx+\\int_{c}^{b}f(x)\\,dx",
+          "anchor": "7.7-fs-id1165043378015"
+        }
+      ]
+    },
+    {
+      "id": "gabriels-horn",
+      "kind": "idea",
+      "section": "7.7",
+      "name": "Gabriel’s Horn",
+      "terms": [
+        "Gabriel’s Horn"
+      ],
+      "type": "region",
+      "statement": "The solid generated by revolving about the x-axis the region between the graph of f(x) = 1/x and the x-axis over [1, +∞) has a finite volume, π, although the area of the region is infinite."
+    },
+    {
+      "id": "comparison-theorem-for-improper-integrals",
+      "kind": "result",
+      "section": "7.7",
+      "name": "Comparison theorem for improper integrals",
+      "statement": "If f(x) and g(x) are continuous over [a, +∞) with 0 ≤ f(x) ≤ g(x) for x ≥ a, then ∫ₐ^{+∞} f(x) dx = +∞ implies ∫ₐ^{+∞} g(x) dx = +∞, and ∫ₐ^{+∞} g(x) dx = L, a real number, implies ∫ₐ^{+∞} f(x) dx = M for some real number M ≤ L."
+    },
+    {
+      "id": "laplace-transform",
+      "kind": "definition",
+      "section": "7.7",
+      "name": "Laplace transform",
+      "terms": [
+        "Laplace transform"
+      ],
+      "type": "integral",
+      "statement": "The Laplace transform of a function f(t) is L{f(t)} = F(s) = ∫₀^∞ e^{−st} f(t) dt, an improper integral that transforms a function of time into a function of frequency; differentiation in the time domain becomes multiplication by s, and integration becomes division by s.",
+      "forms": [
+        {
+          "id": "eq-laplace-transform",
+          "latex": "L\\{f(t)\\}=F(s)=\\int_{0}^{\\infty}e^{-st}f(t)\\,dt",
+          "anchor": "7.7-laplace-project"
+        }
+      ]
+    },
+    {
+      "id": "solution-to-a-differential-equation",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Solution to a differential equation",
+      "terms": [
+        "solution to a differential equation",
+        "solution of the differential equation",
+        "solution to the differential equation"
+      ],
+      "symbol": "y_fn",
+      "type": "function",
+      "statement": "A solution to a differential equation is a function y = f(x) that satisfies the differential equation when f and its derivatives are substituted into the equation. A solution is not necessarily unique, since the derivative of a constant is zero."
+    },
+    {
+      "id": "order-of-a-differential-equation",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Order of a differential equation",
+      "terms": [
+        "order of a differential equation",
+        "order"
+      ],
+      "statement": "The order of a differential equation is the highest order of any derivative of the unknown function that appears in the equation."
+    },
+    {
+      "id": "general-solution",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "General solution",
+      "terms": [
+        "general solution",
+        "family of solutions"
+      ],
+      "type": "function",
+      "statement": "The general solution, or family of solutions, of a differential equation is the entire set of its solutions; for y′ = 2x it is every function y = x² + C, where C is any constant."
+    },
+    {
+      "id": "particular-solution",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Particular solution",
+      "terms": [
+        "particular solution"
+      ],
+      "type": "function",
+      "statement": "A particular solution is a member of a family of solutions to a differential equation that satisfies a particular initial condition; additional information, such as a point the solution passes through, can often identify it uniquely."
+    },
+    {
+      "id": "initial-value",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Initial value",
+      "terms": [
+        "initial value",
+        "initial values"
+      ],
+      "type": "point",
+      "statement": "An initial value is a value or set of values that a solution of a differential equation satisfies for a fixed value of the independent variable, an ordered pair used to find a particular solution. The number of initial values an initial-value problem needs equals the order of the differential equation, all given at the same value of the independent variable.",
+      "forms": [
+        {
+          "id": "eq-initial-value",
+          "latex": "y(x_0)=y_0"
+        }
+      ]
+    },
+    {
+      "id": "solving-an-initial-value-problem",
+      "kind": "skill",
+      "section": "8.1",
+      "name": "Solving an initial-value problem",
+      "statement": "To solve an initial-value problem, first find the general solution to the differential equation, then substitute the initial value or values to determine the value of the constant, which picks out the particular solution."
+    },
+    {
+      "id": "initial-velocity",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Initial velocity",
+      "terms": [
+        "initial velocity"
+      ],
+      "statement": "The initial velocity of an object is its velocity at time t = 0, denoted v(0) = v₀."
+    },
+    {
+      "id": "velocity-under-gravity",
+      "kind": "result",
+      "section": "8.1",
+      "name": "Velocity of an object under gravity",
+      "statement": "If the only force acting on an object near Earth's surface is gravity, Newton's second law gives m v′(t) = −mg, so v′(t) = −g, whatever the mass, where g ≈ 9.8 m/s²; with the initial velocity v(0) = v₀ the velocity is v(t) = −gt + v₀, and the height s(t) solves the initial-value problem s′(t) = v(t), s(0) = s₀.",
+      "forms": [
+        {
+          "id": "eq-velocity-under-gravity",
+          "latex": "v'(t)=-g"
+        },
+        {
+          "id": "eq-height-initial-value-problem",
+          "latex": "s'(t)=v(t),\\;s(0)=s_0"
+        }
+      ]
+    },
+    {
+      "id": "direction-field",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Direction field",
+      "terms": [
+        "direction field",
+        "slope field",
+        "directional field"
+      ],
+      "type": "derivative",
+      "statement": "A direction field, or slope field, is a mathematical object used to graphically represent solutions to a first-order differential equation y′ = f(x, y): at each point (x, y) a short line segment appears whose slope f(x, y) is equal to the slope of a solution to the differential equation passing through that point.",
+      "forms": [
+        {
+          "id": "eq-first-order-equation",
+          "latex": "y'=f(x,y)"
+        }
+      ]
+    },
+    {
+      "id": "solution-curve",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Solution curve",
+      "terms": [
+        "solution curve"
+      ],
+      "type": "function",
+      "statement": "A solution curve is a curve graphed in a direction field that corresponds to the solution to the initial-value problem passing through a given point in the field; at each of its points it follows the segment of the field."
+    },
+    {
+      "id": "equilibrium-solution",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Equilibrium solution",
+      "terms": [
+        "equilibrium solution",
+        "equilibrium solutions",
+        "constant solution",
+        "constant solutions",
+        "constant-valued solutions"
+      ],
+      "type": "function",
+      "statement": "An equilibrium solution of y′ = f(x, y) is any solution of the form y = k, where k is a constant; it is found by setting the right-hand side equal to zero, as any function y = k with f(x, k) = 0 for all x in the domain of f, and in a direction field it shows as horizontal segments all the way across."
+    },
+    {
+      "id": "asymptotically-stable-solution",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Asymptotically stable solution",
+      "terms": [
+        "asymptotically stable solution",
+        "asymptotically stable",
+        "stable equilibrium",
+        "stable"
+      ],
+      "statement": "An equilibrium solution y = k of y′ = f(x, y) is asymptotically stable if there exists ε > 0 such that for any value c in (k − ε, k + ε) the solution to the initial-value problem y′ = f(x, y), y(x₀) = c approaches k as x approaches infinity."
+    },
+    {
+      "id": "asymptotically-unstable-solution",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Asymptotically unstable solution",
+      "terms": [
+        "asymptotically unstable solution",
+        "asymptotically unstable",
+        "unstable equilibrium",
+        "unstable"
+      ],
+      "statement": "An equilibrium solution y = k of y′ = f(x, y) is asymptotically unstable if there exists ε > 0 such that for any value c in (k − ε, k + ε) the solution to the initial-value problem y′ = f(x, y), y(x₀) = c never approaches k as x approaches infinity."
+    },
+    {
+      "id": "asymptotically-semi-stable-solution",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Asymptotically semi-stable solution",
+      "terms": [
+        "asymptotically semi-stable solution",
+        "semi-stable"
+      ],
+      "statement": "An equilibrium solution y = k is asymptotically semi-stable if it is neither asymptotically stable nor asymptotically unstable: solutions starting on one side of it approach it, and solutions on the other side move away."
+    },
+    {
+      "id": "step-size",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Step size",
+      "terms": [
+        "step size"
+      ],
+      "symbol": "h",
+      "statement": "The step size h is the increment added to the x value at each step in Euler's Method, a small value, typically 0.1 or less; the smaller h, the more calculations and the greater the accuracy."
+    },
+    {
+      "id": "eulers-method",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Euler’s Method",
+      "terms": [
+        "Euler’s Method",
+        "Euler’s method"
+      ],
+      "statement": "Euler's Method is a numerical technique that approximates the solution to an initial-value problem y′ = f(x, y), y(x₀) = y₀: from each point it follows the linear approximation with the slope the differential equation gives there for one step h, so xₙ = x₀ + nh and yₙ = yₙ₋₁ + h f(xₙ₋₁, yₙ₋₁).",
+      "forms": [
+        {
+          "id": "eq-euler-x",
+          "latex": "x_n=x_0+nh"
+        },
+        {
+          "id": "eq-euler-y",
+          "latex": "y_n=y_{n-1}+hf(x_{n-1},y_{n-1})"
+        }
+      ]
+    },
+    {
+      "id": "separable-differential-equation",
+      "kind": "definition",
+      "section": "8.3",
+      "name": "Separable differential equation",
+      "terms": [
+        "separable differential equation",
+        "separable differential equations",
+        "separable equation",
+        "separable equations",
+        "separable"
+      ],
+      "statement": "A separable differential equation is any equation that can be written in the form y′ = f(x)g(y): its right-hand side separates into a function of x times a function of y.",
+      "forms": [
+        {
+          "id": "eq-separable",
+          "latex": "y'=f(x)g(y)"
+        }
+      ]
+    },
+    {
+      "id": "autonomous-differential-equation",
+      "kind": "definition",
+      "section": "8.3",
+      "name": "Autonomous differential equation",
+      "terms": [
+        "autonomous differential equation",
+        "autonomous"
+      ],
+      "statement": "An autonomous differential equation is an equation in which the right-hand side is a function of y alone, such as y′ = sec y + tan y."
+    },
+    {
+      "id": "separation-of-variables",
+      "kind": "skill",
+      "section": "8.3",
+      "name": "Separation of variables",
+      "terms": [
+        "separation of variables"
+      ],
+      "statement": "To solve a separable equation y′ = f(x)g(y) by separation of variables: find the values of y that make g(y) = 0, which give constant solutions; rewrite the equation as dy/g(y) = f(x) dx; integrate both sides; solve the resulting equation for y if possible, since often y is found only as an implicit function of x; and, if an initial condition exists, substitute it to find the constant."
+    },
+    {
+      "id": "solution-concentration",
+      "kind": "idea",
+      "section": "8.3",
+      "name": "Solution concentrations",
+      "terms": [
+        "solution concentrations",
+        "solution concentration"
+      ],
+      "statement": "The amount u(t) of a substance dissolved in a well-mixed tank changes at the rate it flows in minus the rate it flows out: du/dt = INFLOW RATE − OUTFLOW RATE, where the outflow rate is the concentration u(t)/V of the tank's volume V times the rate the solution drains.",
+      "forms": [
+        {
+          "id": "eq-solution-concentration",
+          "latex": "\\frac{du}{dt}=\\text{INFLOW RATE}-\\text{OUTFLOW RATE}"
+        }
+      ]
+    },
+    {
+      "id": "initial-population",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Initial population",
+      "terms": [
+        "initial population"
+      ],
+      "symbol": "P_0",
+      "type": "function",
+      "statement": "The initial population P₀ is the population at time t = 0."
+    },
+    {
+      "id": "growth-rate",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Growth rate",
+      "terms": [
+        "growth rate"
+      ],
+      "statement": "The growth rate is the constant r > 0 in the exponential growth function P(t) = P₀e^{rt}, a net (birth minus death) percent growth rate per unit time; in dP/dt = rP the rate at which the population increases is proportional to the population, with r the constant of proportionality.",
+      "forms": [
+        {
+          "id": "eq-exponential-growth-ivp",
+          "latex": "\\frac{dP}{dt}=rP,\\;P(0)=P_0"
+        }
+      ]
+    },
+    {
+      "id": "carrying-capacity",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Carrying capacity",
+      "terms": [
+        "carrying capacity"
+      ],
+      "symbol": "K",
+      "type": "limit",
+      "statement": "The carrying capacity K of an organism in a given environment is the maximum population of that organism that the environment can sustain indefinitely; a logistic population approaches it as t approaches infinity."
+    },
+    {
+      "id": "logistic-differential-equation",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Logistic differential equation",
+      "terms": [
+        "logistic differential equation",
+        "logistic equation",
+        "logistic model",
+        "logistic growth"
+      ],
+      "statement": "The logistic differential equation dP/dt = rP(1 − P/K) is a differential equation that incorporates the carrying capacity K and growth rate r into a population model: while P is small it resembles exponential growth, the growth rate falls as P nears K, the population decreases while P > K, and P = 0 and P = K are its constant solutions.",
+      "forms": [
+        {
+          "id": "eq-logistic",
+          "latex": "\\frac{dP}{dt}=rP\\left(1-\\frac{P}{K}\\right)"
+        }
+      ]
+    },
+    {
+      "id": "phase-line",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Phase line",
+      "terms": [
+        "phase line"
+      ],
+      "statement": "A phase line is a visual representation of the behavior of solutions to an autonomous differential equation subject to various initial conditions: a line of values of the unknown, marked at the constant solutions, with arrows showing where solutions increase and where they decrease."
+    },
+    {
+      "id": "solution-of-the-logistic-equation",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Solution of the logistic differential equation",
+      "type": "function",
+      "statement": "The solution of the logistic differential equation with initial population P₀, carrying capacity K and growth rate r is P(t) = P₀Ke^{rt}/((K − P₀) + P₀e^{rt}), found by separation of variables and partial fractions; K is a horizontal asymptote of its graph.",
+      "forms": [
+        {
+          "id": "eq-logistic-solution",
+          "latex": "P(t)=\\frac{P_0Ke^{rt}}{(K-P_0)+P_0e^{rt}}"
+        }
+      ]
+    },
+    {
+      "id": "inflection-point-of-the-logistic-curve",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Inflection point of the logistic curve",
+      "type": "point",
+      "statement": "As long as P₀ < K, the solution of the logistic equation has a point of inflection at t = (1/r) ln((K − P₀)/P₀), where its graph changes from concave up to concave down and the leveling off starts; if P₀ > K the graph has none.",
+      "forms": [
+        {
+          "id": "eq-logistic-inflection",
+          "latex": "t=\\frac{1}{r}\\ln\\frac{K-P_0}{P_0}"
+        }
+      ]
+    },
+    {
+      "id": "threshold-population",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Threshold population",
+      "terms": [
+        "threshold population"
+      ],
+      "statement": "The threshold population T is the minimum population that is necessary for a species to survive; the threshold population model dP/dt = −rP(1 − P/K)(1 − P/T) incorporates it beside the carrying capacity K.",
+      "forms": [
+        {
+          "id": "eq-threshold-model",
+          "latex": "\\frac{dP}{dt}=-rP\\left(1-\\frac{P}{K}\\right)\\left(1-\\frac{P}{T}\\right)"
+        }
+      ]
+    },
+    {
+      "id": "first-order-linear-differential-equation",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "First-order linear differential equation",
+      "terms": [
+        "linear",
+        "first-order linear differential equation",
+        "first-order linear differential equations",
+        "first-order linear equation",
+        "first-order linear equations"
+      ],
+      "statement": "A first-order differential equation is linear if it can be written in the form a(x)y′ + b(x)y = c(x), where a(x), b(x) and c(x) are arbitrary functions of x; terms such as (y′)⁴ or y³ make an equation nonlinear.",
+      "forms": [
+        {
+          "id": "eq-first-order-linear",
+          "latex": "a(x)y'+b(x)y=c(x)"
+        }
+      ]
+    },
+    {
+      "id": "standard-form-of-a-linear-equation",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "Standard form",
+      "terms": [
+        "standard form"
+      ],
+      "statement": "The standard form of a first-order linear differential equation is y′ + p(x)y = q(x), obtained by dividing a(x)y′ + b(x)y = c(x) by a(x), so that p(x) = b(x)/a(x) and q(x) = c(x)/a(x).",
+      "forms": [
+        {
+          "id": "eq-standard-form",
+          "latex": "y'+p(x)y=q(x)"
+        }
+      ]
+    },
+    {
+      "id": "integrating-factor",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "Integrating factor",
+      "terms": [
+        "integrating factor",
+        "integrating factors"
+      ],
+      "symbol": "μ",
+      "type": "function",
+      "statement": "An integrating factor is any function μ(x) that is multiplied on both sides of a differential equation to make the side involving the unknown function equal to the derivative of a product of two functions; for y′ + p(x)y = q(x) it is μ(x) = e^{∫p(x)dx}, which solves the separable equation μ′(x) = μ(x)p(x), so that μ(x)y′ + μ(x)p(x)y = (μ(x)y)′.",
+      "forms": [
+        {
+          "id": "eq-integrating-factor",
+          "latex": "\\mu(x)=e^{\\int p(x)\\,dx}"
+        }
+      ]
+    },
+    {
+      "id": "solving-a-first-order-linear-equation",
+      "kind": "skill",
+      "section": "8.5",
+      "name": "Solving a first-order linear differential equation",
+      "statement": "To solve a first-order linear differential equation: put it into standard form and identify p(x) and q(x); calculate the integrating factor μ(x) = e^{∫p(x)dx}; multiply both sides of the equation by μ(x); integrate both sides and divide by μ(x), giving y = (1/μ(x))[∫μ(x)q(x)dx + C]; and, if there is an initial condition, determine the value of C.",
+      "forms": [
+        {
+          "id": "eq-linear-solution",
+          "latex": "y=\\frac{1}{\\mu(x)}\\left[\\int\\mu(x)q(x)\\,dx+C\\right]"
+        }
+      ]
+    },
+    {
+      "id": "free-fall-with-air-resistance",
+      "kind": "result",
+      "section": "8.5",
+      "name": "Free fall with air resistance",
+      "statement": "With air resistance proportional to velocity, F_A = −kv for some k > 0, Newton's second law gives the first-order linear initial-value problem m dv/dt = −kv − mg, v(0) = v₀, for the velocity of a rising or falling object.",
+      "forms": [
+        {
+          "id": "eq-air-resistance",
+          "latex": "m\\frac{dv}{dt}=-kv-mg,\\;v(0)=v_0"
+        }
+      ]
+    },
+    {
+      "id": "kirchhoffs-loop-rule",
+      "kind": "result",
+      "section": "8.5",
+      "name": "Kirchhoff’s Loop Rule for a circuit",
+      "terms": [
+        "Kirchhoff’s Loop Rule"
+      ],
+      "statement": "Kirchhoff's Loop Rule states that the sum of the voltage drops across the resistors, inductors and capacitors of a closed circuit equals its total electromotive force E: with the drops E_R = Ri, E_L = Li′ and E_C = q/C, Li′ + Ri + q/C = E. With no capacitor it is the first-order linear equation Li′ + Ri = E of an LR circuit; with no inductor, Rq′ + q/C = E of an RC circuit, where i = q′.",
+      "forms": [
+        {
+          "id": "eq-kirchhoff-loop",
+          "latex": "Li'+Ri+\\frac{1}{C}q=E"
+        },
+        {
+          "id": "eq-lr-circuit",
+          "latex": "Li'+Ri=E"
+        },
+        {
+          "id": "eq-rc-circuit",
+          "latex": "Rq'+\\frac{1}{C}q=E"
         }
       ]
     }
@@ -8105,6 +9282,546 @@
     {
       "concept": "catenary",
       "prereq": "hyperbolic-functions"
+    },
+    {
+      "concept": "integration-by-parts",
+      "prereq": "product-rule"
+    },
+    {
+      "concept": "integration-by-parts",
+      "prereq": "indefinite-integral"
+    },
+    {
+      "concept": "liate",
+      "prereq": "integration-by-parts"
+    },
+    {
+      "concept": "liate",
+      "prereq": "logarithmic-function"
+    },
+    {
+      "concept": "liate",
+      "prereq": "inverse-trigonometric-functions"
+    },
+    {
+      "concept": "integrating-by-parts-more-than-once",
+      "prereq": "integration-by-parts"
+    },
+    {
+      "concept": "integration-by-parts-for-definite-integrals",
+      "prereq": "integration-by-parts"
+    },
+    {
+      "concept": "integration-by-parts-for-definite-integrals",
+      "prereq": "fundamental-theorem-of-calculus-part-2"
+    },
+    {
+      "concept": "trigonometric-integral",
+      "prereq": "trigonometric-functions"
+    },
+    {
+      "concept": "trigonometric-integral",
+      "prereq": "indefinite-integral"
+    },
+    {
+      "concept": "power-reducing-identities",
+      "prereq": "double-angle-formulas"
+    },
+    {
+      "concept": "power-reducing-identities",
+      "prereq": "pythagorean-identities"
+    },
+    {
+      "concept": "integrating-products-and-powers-of-sine-and-cosine",
+      "prereq": "trigonometric-integral"
+    },
+    {
+      "concept": "integrating-products-and-powers-of-sine-and-cosine",
+      "prereq": "power-reducing-identities"
+    },
+    {
+      "concept": "integrating-products-and-powers-of-sine-and-cosine",
+      "prereq": "integration-by-substitution"
+    },
+    {
+      "concept": "products-of-sines-and-cosines-of-different-angles",
+      "prereq": "trigonometric-integral"
+    },
+    {
+      "concept": "products-of-sines-and-cosines-of-different-angles",
+      "prereq": "addition-and-subtraction-formulas"
+    },
+    {
+      "concept": "integrating-products-and-powers-of-tangent-and-secant",
+      "prereq": "trigonometric-integral"
+    },
+    {
+      "concept": "integrating-products-and-powers-of-tangent-and-secant",
+      "prereq": "pythagorean-identities"
+    },
+    {
+      "concept": "integrating-products-and-powers-of-tangent-and-secant",
+      "prereq": "integration-by-substitution"
+    },
+    {
+      "concept": "integrating-products-and-powers-of-tangent-and-secant",
+      "prereq": "integration-by-parts"
+    },
+    {
+      "concept": "power-reduction-formulas",
+      "prereq": "integrating-products-and-powers-of-tangent-and-secant"
+    },
+    {
+      "concept": "trigonometric-substitution",
+      "prereq": "trigonometric-integral"
+    },
+    {
+      "concept": "trigonometric-substitution",
+      "prereq": "integration-by-substitution"
+    },
+    {
+      "concept": "reference-triangle",
+      "prereq": "inverse-trigonometric-functions"
+    },
+    {
+      "concept": "sine-substitution",
+      "prereq": "trigonometric-substitution"
+    },
+    {
+      "concept": "sine-substitution",
+      "prereq": "reference-triangle"
+    },
+    {
+      "concept": "sine-substitution",
+      "prereq": "integrating-products-and-powers-of-sine-and-cosine"
+    },
+    {
+      "concept": "tangent-substitution",
+      "prereq": "trigonometric-substitution"
+    },
+    {
+      "concept": "tangent-substitution",
+      "prereq": "reference-triangle"
+    },
+    {
+      "concept": "tangent-substitution",
+      "prereq": "integrating-products-and-powers-of-tangent-and-secant"
+    },
+    {
+      "concept": "secant-substitution",
+      "prereq": "trigonometric-substitution"
+    },
+    {
+      "concept": "secant-substitution",
+      "prereq": "reference-triangle"
+    },
+    {
+      "concept": "secant-substitution",
+      "prereq": "integrating-products-and-powers-of-tangent-and-secant"
+    },
+    {
+      "concept": "partial-fraction-decomposition",
+      "prereq": "rational-function"
+    },
+    {
+      "concept": "partial-fraction-decomposition",
+      "prereq": "indefinite-integral"
+    },
+    {
+      "concept": "nonrepeated-linear-factors",
+      "prereq": "partial-fraction-decomposition"
+    },
+    {
+      "concept": "method-of-equating-coefficients",
+      "prereq": "partial-fraction-decomposition"
+    },
+    {
+      "concept": "method-of-strategic-substitution",
+      "prereq": "partial-fraction-decomposition"
+    },
+    {
+      "concept": "repeated-linear-factors",
+      "prereq": "partial-fraction-decomposition"
+    },
+    {
+      "concept": "irreducible-quadratic",
+      "prereq": "quadratic-formula"
+    },
+    {
+      "concept": "quadratic-factors",
+      "prereq": "partial-fraction-decomposition"
+    },
+    {
+      "concept": "quadratic-factors",
+      "prereq": "irreducible-quadratic"
+    },
+    {
+      "concept": "decomposing-a-rational-function",
+      "prereq": "nonrepeated-linear-factors"
+    },
+    {
+      "concept": "decomposing-a-rational-function",
+      "prereq": "repeated-linear-factors"
+    },
+    {
+      "concept": "decomposing-a-rational-function",
+      "prereq": "quadratic-factors"
+    },
+    {
+      "concept": "decomposing-a-rational-function",
+      "prereq": "method-of-equating-coefficients"
+    },
+    {
+      "concept": "decomposing-a-rational-function",
+      "prereq": "method-of-strategic-substitution"
+    },
+    {
+      "concept": "integration-table",
+      "prereq": "indefinite-integral"
+    },
+    {
+      "concept": "computer-algebra-system",
+      "prereq": "indefinite-integral"
+    },
+    {
+      "concept": "reconciling-equivalent-antiderivatives",
+      "prereq": "general-form-of-an-antiderivative"
+    },
+    {
+      "concept": "numerical-integration",
+      "prereq": "definite-integral"
+    },
+    {
+      "concept": "midpoint-rule",
+      "prereq": "numerical-integration"
+    },
+    {
+      "concept": "trapezoidal-rule",
+      "prereq": "numerical-integration"
+    },
+    {
+      "concept": "concavity-and-the-trapezoidal-and-midpoint-rules",
+      "prereq": "midpoint-rule"
+    },
+    {
+      "concept": "concavity-and-the-trapezoidal-and-midpoint-rules",
+      "prereq": "trapezoidal-rule"
+    },
+    {
+      "concept": "concavity-and-the-trapezoidal-and-midpoint-rules",
+      "prereq": "concavity"
+    },
+    {
+      "concept": "absolute-error",
+      "prereq": "numerical-integration"
+    },
+    {
+      "concept": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+      "prereq": "midpoint-rule"
+    },
+    {
+      "concept": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+      "prereq": "trapezoidal-rule"
+    },
+    {
+      "concept": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+      "prereq": "absolute-error"
+    },
+    {
+      "concept": "error-bounds-for-the-midpoint-and-trapezoidal-rules",
+      "prereq": "higher-order-derivative"
+    },
+    {
+      "concept": "simpsons-rule",
+      "prereq": "numerical-integration"
+    },
+    {
+      "concept": "simpsons-rule",
+      "prereq": "quadratic-function"
+    },
+    {
+      "concept": "error-bound-for-simpsons-rule",
+      "prereq": "simpsons-rule"
+    },
+    {
+      "concept": "error-bound-for-simpsons-rule",
+      "prereq": "absolute-error"
+    },
+    {
+      "concept": "error-bound-for-simpsons-rule",
+      "prereq": "higher-order-derivative"
+    },
+    {
+      "concept": "improper-integral",
+      "prereq": "definite-integral"
+    },
+    {
+      "concept": "integral-over-an-infinite-interval",
+      "prereq": "improper-integral"
+    },
+    {
+      "concept": "integral-over-an-infinite-interval",
+      "prereq": "limit-at-infinity"
+    },
+    {
+      "concept": "integral-of-a-discontinuous-integrand",
+      "prereq": "improper-integral"
+    },
+    {
+      "concept": "integral-of-a-discontinuous-integrand",
+      "prereq": "infinite-discontinuity"
+    },
+    {
+      "concept": "gabriels-horn",
+      "prereq": "integral-over-an-infinite-interval"
+    },
+    {
+      "concept": "gabriels-horn",
+      "prereq": "disk-method"
+    },
+    {
+      "concept": "comparison-theorem-for-improper-integrals",
+      "prereq": "integral-over-an-infinite-interval"
+    },
+    {
+      "concept": "comparison-theorem-for-improper-integrals",
+      "prereq": "integral-comparison-theorem"
+    },
+    {
+      "concept": "laplace-transform",
+      "prereq": "integral-over-an-infinite-interval"
+    },
+    {
+      "concept": "solution-to-a-differential-equation",
+      "prereq": "differential-equation"
+    },
+    {
+      "concept": "order-of-a-differential-equation",
+      "prereq": "differential-equation"
+    },
+    {
+      "concept": "order-of-a-differential-equation",
+      "prereq": "higher-order-derivative"
+    },
+    {
+      "concept": "general-solution",
+      "prereq": "solution-to-a-differential-equation"
+    },
+    {
+      "concept": "particular-solution",
+      "prereq": "general-solution"
+    },
+    {
+      "concept": "initial-value",
+      "prereq": "solution-to-a-differential-equation"
+    },
+    {
+      "concept": "solving-an-initial-value-problem",
+      "prereq": "particular-solution"
+    },
+    {
+      "concept": "solving-an-initial-value-problem",
+      "prereq": "initial-value"
+    },
+    {
+      "concept": "solving-an-initial-value-problem",
+      "prereq": "initial-value-problem"
+    },
+    {
+      "concept": "initial-velocity",
+      "prereq": "velocity"
+    },
+    {
+      "concept": "velocity-under-gravity",
+      "prereq": "acceleration"
+    },
+    {
+      "concept": "velocity-under-gravity",
+      "prereq": "initial-velocity"
+    },
+    {
+      "concept": "velocity-under-gravity",
+      "prereq": "initial-value-problem"
+    },
+    {
+      "concept": "direction-field",
+      "prereq": "slope-of-the-tangent-line"
+    },
+    {
+      "concept": "direction-field",
+      "prereq": "solution-to-a-differential-equation"
+    },
+    {
+      "concept": "solution-curve",
+      "prereq": "direction-field"
+    },
+    {
+      "concept": "solution-curve",
+      "prereq": "initial-value-problem"
+    },
+    {
+      "concept": "equilibrium-solution",
+      "prereq": "solution-to-a-differential-equation"
+    },
+    {
+      "concept": "equilibrium-solution",
+      "prereq": "constant-function"
+    },
+    {
+      "concept": "asymptotically-stable-solution",
+      "prereq": "equilibrium-solution"
+    },
+    {
+      "concept": "asymptotically-stable-solution",
+      "prereq": "limit-at-infinity"
+    },
+    {
+      "concept": "asymptotically-unstable-solution",
+      "prereq": "equilibrium-solution"
+    },
+    {
+      "concept": "asymptotically-unstable-solution",
+      "prereq": "limit-at-infinity"
+    },
+    {
+      "concept": "asymptotically-semi-stable-solution",
+      "prereq": "asymptotically-stable-solution"
+    },
+    {
+      "concept": "asymptotically-semi-stable-solution",
+      "prereq": "asymptotically-unstable-solution"
+    },
+    {
+      "concept": "eulers-method",
+      "prereq": "linear-approximation"
+    },
+    {
+      "concept": "eulers-method",
+      "prereq": "step-size"
+    },
+    {
+      "concept": "eulers-method",
+      "prereq": "direction-field"
+    },
+    {
+      "concept": "eulers-method",
+      "prereq": "initial-value-problem"
+    },
+    {
+      "concept": "separable-differential-equation",
+      "prereq": "differential-equation"
+    },
+    {
+      "concept": "autonomous-differential-equation",
+      "prereq": "differential-equation"
+    },
+    {
+      "concept": "separation-of-variables",
+      "prereq": "separable-differential-equation"
+    },
+    {
+      "concept": "separation-of-variables",
+      "prereq": "indefinite-integral"
+    },
+    {
+      "concept": "separation-of-variables",
+      "prereq": "equilibrium-solution"
+    },
+    {
+      "concept": "solution-concentration",
+      "prereq": "instantaneous-rate-of-change"
+    },
+    {
+      "concept": "initial-population",
+      "prereq": "exponential-growth"
+    },
+    {
+      "concept": "growth-rate",
+      "prereq": "exponential-growth"
+    },
+    {
+      "concept": "logistic-differential-equation",
+      "prereq": "carrying-capacity"
+    },
+    {
+      "concept": "logistic-differential-equation",
+      "prereq": "growth-rate"
+    },
+    {
+      "concept": "logistic-differential-equation",
+      "prereq": "autonomous-differential-equation"
+    },
+    {
+      "concept": "phase-line",
+      "prereq": "autonomous-differential-equation"
+    },
+    {
+      "concept": "phase-line",
+      "prereq": "equilibrium-solution"
+    },
+    {
+      "concept": "solution-of-the-logistic-equation",
+      "prereq": "logistic-differential-equation"
+    },
+    {
+      "concept": "solution-of-the-logistic-equation",
+      "prereq": "separation-of-variables"
+    },
+    {
+      "concept": "solution-of-the-logistic-equation",
+      "prereq": "initial-population"
+    },
+    {
+      "concept": "solution-of-the-logistic-equation",
+      "prereq": "partial-fraction-decomposition"
+    },
+    {
+      "concept": "inflection-point-of-the-logistic-curve",
+      "prereq": "solution-of-the-logistic-equation"
+    },
+    {
+      "concept": "inflection-point-of-the-logistic-curve",
+      "prereq": "inflection-point"
+    },
+    {
+      "concept": "threshold-population",
+      "prereq": "logistic-differential-equation"
+    },
+    {
+      "concept": "first-order-linear-differential-equation",
+      "prereq": "order-of-a-differential-equation"
+    },
+    {
+      "concept": "standard-form-of-a-linear-equation",
+      "prereq": "first-order-linear-differential-equation"
+    },
+    {
+      "concept": "integrating-factor",
+      "prereq": "standard-form-of-a-linear-equation"
+    },
+    {
+      "concept": "integrating-factor",
+      "prereq": "product-rule"
+    },
+    {
+      "concept": "integrating-factor",
+      "prereq": "separation-of-variables"
+    },
+    {
+      "concept": "solving-a-first-order-linear-equation",
+      "prereq": "integrating-factor"
+    },
+    {
+      "concept": "free-fall-with-air-resistance",
+      "prereq": "velocity-under-gravity"
+    },
+    {
+      "concept": "free-fall-with-air-resistance",
+      "prereq": "first-order-linear-differential-equation"
+    },
+    {
+      "concept": "kirchhoffs-loop-rule",
+      "prereq": "first-order-linear-differential-equation"
     }
   ],
   "colours": {

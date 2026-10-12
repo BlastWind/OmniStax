@@ -1,0 +1,147 @@
+<p>In this section we explore the relationship between the <span data-concept="derivative">derivative</span> of a <span data-concept="function">function</span> and the <span data-concept="derivative">derivative</span> of its inverse. For <span data-concept="function">functions</span> whose <span data-concept="derivative">derivatives</span> we already know, we can use this relationship to find <span data-concept="derivative">derivatives</span> of inverses without having to use the <span data-concept="limit">limit</span> definition of the <span data-concept="derivative">derivative</span>. In particular, we will apply the formula for <span data-concept="derivative">derivatives</span> of <span data-concept="inverse-function">inverse functions</span> to <span data-concept="trigonometric-functions">trigonometric functions</span>. This formula may also be used to extend the <span data-concept="power-rule">power rule</span> to rational exponents.</p>
+
+<section id="inverse-derivative">
+<h2>The Derivative of an Inverse Function</h2>
+<p class="cite-target">We begin by considering a <span data-concept="function">function</span> and its inverse. If $\kf(x)$ is both invertible and differentiable, it seems reasonable that the inverse of $\kf(x)$ is also differentiable. Figure 3.28 shows the relationship between a <span data-concept="function">function</span> $\kf(x)$ and its inverse $\kfinv(x).$ Look at the point $(a,\kfinv(a))$ on the graph of $\kfinv(x)$ having <span data-ref="tangent-inverse">a <span data-concept="tangent-line">tangent line</span></span> with a <span data-concept="slope">slope</span> of $\kfinvprime(a)=\frac{p}{q}.$ This point corresponds to a point $(\kfinv(a),a)$ on the graph of $\kf(x)$ having <span data-ref="tangent-f">a <span data-concept="tangent-line">tangent line</span></span> with a <span data-concept="slope">slope</span> of $\kfprime(\kfinv(a))=\frac{q}{p}.$ Thus, if $\kfinv(x)$ is differentiable at $a,$ then it must be the case that</p>
+$$\kfinvprime(a)=\frac{1}{\kfprime(\kfinv(a))}.$$
+<figure class="sim" id="sim-inverse-tangents" data-figure="3.28" data-original="/media/ch03/CNX_Calc_Figure_03_07_001.jpg" data-original-caption="The tangent lines of a function and its inverse are related; so, too, are the derivatives of these functions.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.28</span><span>Drag the point along the graph of $\kf:$ its mirror image across the line $y=x$ rides the graph of $\kfinv,$ and so do the two <span data-concept="tangent-line">tangent lines</span>, <span data-ref="tangent-f">the tangent of $\kf$ at $(\kfinv(a),a)$</span> and <span data-ref="tangent-inverse">the tangent of $\kfinv$ at $(a,\kfinv(a))$</span>. The rise and run of one are the run and rise of the other, so their <span data-concept="slope">slopes</span> are reciprocals.</span></div>
+</figure>
+<p>We may also derive the formula for the <span data-concept="derivative">derivative</span> of the inverse by first recalling that $x=\kf(\kfinv(x)).$ Then by differentiating both sides of this equation (using the <span data-concept="chain-rule">chain rule</span> on the right), we obtain</p>
+$$1=\kfprime(\kfinv(x))\kfinvprime(x).$$
+<p>Solving for $\kfinvprime(x),$ we obtain</p>
+$$\kfinvprime(x)=\frac{1}{\kfprime(\kfinv(x))}.\tag{3.19}$$
+<p>We summarize this result in the following theorem.</p>
+<div class="note" id="inverse-function-theorem-note">
+<div class="eyebrow">Theorem</div>
+<h3>Inverse Function Theorem</h3>
+<p>Let $\kf(x)$ be a <span data-concept="function">function</span> that is both invertible and differentiable. Let $y=\kfinv(x)$ be the inverse of $\kf(x).$ For all $x$ satisfying $\kfprime(\kfinv(x))\ne 0,$</p>
+$$\kdydx=\frac{d}{dx}(\kfinv(x))=\kfinvprime(x)=\frac{1}{\kfprime(\kfinv(x))}.$$
+<p>Alternatively, if $y=\kg(x)$ is the inverse of $\kf(x),$ then</p>
+$$\kgprime(x)=\frac{1}{\kfprime(\kg(x))}.$$
+</div>
+<div class="example" id="fs-id1169739001941">
+<h3>Example 3.60 · Applying the Inverse Function Theorem</h3>
+<p>Use the <span data-concept="inverse-function-theorem">inverse function theorem</span> to find the <span data-concept="derivative">derivative</span> of <span data-fn="(x+2)/x">$\kg(x)=\frac{x+2}{x}.$</span> Compare the resulting <span data-concept="derivative">derivative</span> to that obtained by differentiating the <span data-concept="function">function</span> directly.</p>
+<h4>Solution</h4>
+<p>The inverse of $\kg(x)=\frac{x+2}{x}$ is <span data-fn="2/(x-1)">$\kf(x)=\frac{2}{x-1}.$</span> Since $\kgprime(x)=\frac{1}{\kfprime(\kg(x))},$ begin by finding $\kfprime(x).$ Thus,</p>
+$$\kfprime(x)=\frac{-2}{{(x-1)}^{2}}\;\text{and}\;\kfprime(\kg(x))=\frac{-2}{{(\kg(x)-1)}^{2}}=\frac{-2}{{(\frac{x+2}{x}-1)}^{2}}=-\frac{x^{2}}{2}.$$
+<p>Finally,</p>
+$$\kgprime(x)=\frac{1}{\kfprime(\kg(x))}=-\frac{2}{x^{2}}.$$
+<p>We can verify that this is the correct <span data-concept="derivative">derivative</span> by applying the <span data-concept="quotient-rule">quotient rule</span> to $\kg(x)$ to obtain</p>
+$$\kgprime(x)=-\frac{2}{x^{2}}.$$
+</div>
+<div class="exercises" data-place="fs-id1169739001941"></div>
+<div class="example" id="fs-id1169738977168">
+<h3>Example 3.61 · Applying the Inverse Function Theorem</h3>
+<p>Use the <span data-concept="inverse-function-theorem">inverse function theorem</span> to find the <span data-concept="derivative">derivative</span> of <span data-fn="cbrt(x)">$\kg(x)=\sqrt[3]{x}.$</span></p>
+<h4>Solution</h4>
+<p>The <span data-concept="function">function</span> $\kg(x)=\sqrt[3]{x}$ is the inverse of the <span data-concept="function">function</span> $\kf(x)=x^{3}.$ Since $\kgprime(x)=\frac{1}{\kfprime(\kg(x))},$ begin by finding $\kfprime(x).$ Thus,</p>
+$$\kfprime(x)=3x^{2}\;\text{and}\;\kfprime(\kg(x))=3{(\sqrt[3]{x})}^{2}=3x^{2/3}.$$
+<p>Finally,</p>
+$$\kgprime(x)=\frac{1}{3x^{2/3}}=\frac{1}{3}x^{-2/3}.$$
+</div>
+<div class="exercises" data-place="fs-id1169738977168"></div>
+<p>From the previous example, we see that we can use the <span data-concept="inverse-function-theorem">inverse function theorem</span> to extend the <span data-concept="power-rule">power rule</span> to exponents of the form $\frac{1}{n},$ where $n$ is a positive integer. This extension will ultimately allow us to differentiate $x^{q},$ where $q$ is any rational number.</p>
+<div class="note" id="rational-power-note">
+<div class="eyebrow">Theorem</div>
+<h3>Extending the Power Rule to Rational Exponents</h3>
+<p>The <span data-concept="power-rule">power rule</span> may be extended to rational exponents. That is, if $n$ is a positive integer, then</p>
+$$\frac{d}{dx}(x^{1/n})=\frac{1}{n}x^{(1/n)-1}.\tag{3.20}$$
+<p>Also, if $n$ is a positive integer and $m$ is an arbitrary integer, then</p>
+$$\frac{d}{dx}(x^{m/n})=\frac{m}{n}x^{(m/n)-1}.\tag{3.21}$$
+</div>
+<h3>Proof</h3>
+<p>The <span data-concept="function">function</span> $\kg(x)=x^{1/n}$ is the inverse of the <span data-concept="function">function</span> $\kf(x)=x^{n}.$ Since $\kgprime(x)=\frac{1}{\kfprime(\kg(x))},$ begin by finding $\kfprime(x).$ Thus,</p>
+$$\kfprime(x)=nx^{n-1}\;\text{and}\;\kfprime(\kg(x))=n{(x^{1/n})}^{n-1}=nx^{(n-1)/n}.$$
+<p>Finally,</p>
+$$\kgprime(x)=\frac{1}{nx^{(n-1)/n}}=\frac{1}{n}x^{(1-n)/n}=\frac{1}{n}x^{(1/n)-1}.$$
+<p>To differentiate $x^{m/n}$ we must rewrite it as ${(x^{1/n})}^{m}$ and apply the <span data-concept="chain-rule">chain rule</span>. Thus,</p>
+$$\frac{d}{dx}(x^{m/n})=\frac{d}{dx}({(x^{1/n})}^{m})=m{(x^{1/n})}^{m-1}\cdot \frac{1}{n}x^{(1/n)-1}=\frac{m}{n}x^{(m/n)-1}.$$
+<p>□</p>
+<div class="example" id="fs-id1169739298630">
+<h3>Example 3.62 · Applying the Power Rule to a Rational Power</h3>
+<p>Find an equation of the line tangent to the graph of <span data-fn="cbrt(x)^2">$y=x^{2/3}$</span> at $x=8.$</p>
+<h4>Solution</h4>
+<p>First find $\kdydx$ and evaluate it at $x=8.$ Since</p>
+$$\kdydx=\frac{2}{3}x^{-1/3}\;\text{and}\;\kdydx|\begin{array}{l} \\ {}_{x=8}\end{array}=\frac{1}{3}$$
+<p>the <span data-concept="slope-of-the-tangent-line">slope of the tangent line</span> to the graph at $x=8$ is $\frac{1}{3}.$</p>
+<p>Substituting $x=8$ into the original <span data-concept="function">function</span>, we obtain $y=4.$ Thus, the <span data-concept="tangent-line">tangent line</span> passes through the point $(8,4).$ Substituting into the point-slope formula for a line, we obtain the <span data-concept="tangent-line">tangent line</span></p>
+$$y=\frac{1}{3}x+\frac{4}{3}.$$
+</div>
+<div class="exercises" data-place="fs-id1169739298630"></div>
+</section>
+
+<section id="inverse-trig">
+<h2>Derivatives of Inverse Trigonometric Functions</h2>
+<p class="cite-target">We now turn our attention to finding <span data-concept="derivative">derivatives</span> of <span data-concept="inverse-trigonometric-functions">inverse trigonometric functions</span>. These <span data-concept="derivative">derivatives</span> will prove invaluable in the study of integration later in this text. The <span data-concept="derivative">derivatives</span> of <span data-concept="inverse-trigonometric-functions">inverse trigonometric functions</span> are quite surprising in that their <span data-concept="derivative">derivatives</span> are actually algebraic <span data-concept="function">functions</span>. Previously, <span data-concept="derivative">derivatives</span> of algebraic <span data-concept="function">functions</span> have proven to be algebraic <span data-concept="function">functions</span> and <span data-concept="derivative">derivatives</span> of <span data-concept="trigonometric-functions">trigonometric functions</span> have been shown to be <span data-concept="trigonometric-functions">trigonometric functions</span>. Here, for the first time, we see that the <span data-concept="derivative">derivative</span> of a <span data-concept="function">function</span> need not be of the same type as the original <span data-concept="function">function</span>.</p>
+<div class="example" id="fs-id1169739208944">
+<h3>Example 3.63 · Derivative of the Inverse Sine Function</h3>
+<p>Use the <span data-concept="inverse-function-theorem">inverse function theorem</span> to find the <span data-concept="derivative">derivative</span> of <span data-fn="asin(x)">$\kg(x)={\sin }^{-1}x.$</span></p>
+<h4>Solution</h4>
+<p>Since for $x$ in the interval $[-\frac{\pi}{2},\frac{\pi}{2}],\kf(x)=\sin x$ is the inverse of $\kg(x)={\sin }^{-1}x,$ begin by finding $\kfprime(x).$ Since</p>
+$$\kfprime(x)=\cos x\;\text{and}\;\kfprime(\kg(x))=\cos ({\sin }^{-1}x)=\sqrt{1-x^{2}},$$
+<p>we see that</p>
+$$\kgprime(x)=\frac{d}{dx}({\sin }^{-1}x)=\frac{1}{\kfprime(\kg(x))}=\frac{1}{\sqrt{1-x^{2}}}.$$
+<h4>Analysis</h4>
+<p>To see that $\cos ({\sin }^{-1}x)=\sqrt{1-x^{2}},$ consider the following argument. Set ${\sin }^{-1}x=\ktheta .$ In this case, $\sin \ktheta =x$ where $-\frac{\pi}{2}\le \ktheta \le \frac{\pi}{2}.$ We begin by considering the case where $0\lt \ktheta \lt \frac{\pi}{2}.$ Since $\ktheta$ is an acute angle, we may construct a right triangle having acute angle $\ktheta ,$ a hypotenuse of length $1$ and the side opposite angle $\ktheta$ having length $x.$ From the Pythagorean theorem, the side adjacent to angle $\ktheta$ has length $\sqrt{1-x^{2}}.$ This triangle is shown in Figure 3.29. Using the triangle, we see that $\cos ({\sin }^{-1}x)=\cos \ktheta =\sqrt{1-x^{2}}.$</p>
+<figure class="sim" id="fig-sin-inverse-triangle" data-figure="3.29" data-original="/media/ch03/CNX_Calc_Figure_03_07_002.jpg" data-original-caption="Using a right triangle having acute angle θ, a hypotenuse of length 1, and the side opposite angle θ having length x, we can see that cos(sin⁻¹x) = cos θ = √(1−x²).">
+  <div class="sim-head"><span class="eyebrow">Figure 3.29</span><span>Using a right triangle having acute angle $\ktheta ,$ a hypotenuse of length $1,$ and the side opposite angle $\ktheta$ having length $x,$ we can see that $\cos ({\sin }^{-1}x)=\cos \ktheta =\sqrt{1-x^{2}}.$</span></div>
+</figure>
+<p>In the case where $-\frac{\pi}{2}\lt \ktheta \lt 0,$ we make the observation that $0\lt -\ktheta \lt \frac{\pi}{2}$ and hence</p>
+$$\cos ({\sin }^{-1}x)=\cos \ktheta =\cos (-\ktheta )=\sqrt{1-x^{2}}.$$
+<p>Now if $\ktheta =\frac{\pi}{2}$ or $\ktheta =-\frac{\pi}{2},x=1$ or $x=-1,$ and since in either case $\cos \ktheta =0$ and $\sqrt{1-x^{2}}=0,$ we have</p>
+$$\cos ({\sin }^{-1}x)=\cos \ktheta =\sqrt{1-x^{2}}.$$
+<p>Finally, if $\ktheta =0$, $x=0$ and $\cos \ktheta =\sqrt{1-0}=1$.</p>
+<p>Consequently, in all cases, $\cos ({\sin }^{-1}x)=\sqrt{1-x^{2}}.$</p>
+</div>
+<div class="example" id="fs-id1169736662939">
+<h3>Example 3.64 · Applying the Chain Rule to the Inverse Sine Function</h3>
+<p>Apply the <span data-concept="chain-rule">chain rule</span> to the formula derived in Example 3.61<sup class="fn" data-note="ex364-ref"></sup> to find the <span data-concept="derivative">derivative</span> of $h(x)={\sin }^{-1}(\kg(x))$ and use this result to find the <span data-concept="derivative">derivative</span> of <span data-fn="asin(2x^3)">$h(x)={\sin }^{-1}(2x^{3}).$</span></p>
+<h4>Solution</h4>
+<p>Applying the <span data-concept="chain-rule">chain rule</span> to $h(x)={\sin }^{-1}(\kg(x)),$ we have</p>
+$$h^{\prime}(x)=\frac{1}{\sqrt{1-{(\kg(x))}^{2}}}\kgprime(x).$$
+<p>Now let $\kg(x)=2x^{3},$ so $\kgprime(x)=6x^{2}.$ Substituting into the previous result, we obtain</p>
+$$\begin{array}{rl}h^{\prime}(x) & =\frac{1}{\sqrt{1-4x^{6}}}\cdot 6x^{2} \\ & =\frac{6x^{2}}{\sqrt{1-4x^{6}}}.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169736662939"></div>
+<p>The <span data-concept="derivative">derivatives</span> of the remaining <span data-concept="inverse-trigonometric-functions">inverse trigonometric functions</span> may also be found by using the <span data-concept="inverse-function-theorem">inverse function theorem</span>. <a href="/calculus/sheets/derivatives/">These formulas</a> are provided in the following theorem.</p>
+<div class="note" id="inverse-trig-note">
+<div class="eyebrow">Theorem</div>
+<h3>Derivatives of Inverse Trigonometric Functions</h3>
+$$\;\frac{d}{dx}\;{\sin }^{-1}x=\frac{1}{\sqrt{1-x^{2}}}\tag{3.22}$$
+$$\;\frac{d}{dx}\;{\cos }^{-1}x=\frac{-1}{\sqrt{1-x^{2}}}\tag{3.23}$$
+$$\frac{d}{dx}\;{\tan }^{-1}x=\frac{1}{1+x^{2}}\tag{3.24}$$
+$$\;\frac{d}{dx}{\cot }^{-1}x=\frac{-1}{1+x^{2}}\tag{3.25}$$
+$$\hspace{1.5em}\frac{d}{dx}\;{\sec }^{-1}x=\frac{1}{|x|\sqrt{x^{2}-1}}\tag{3.26}$$
+$$\hspace{1.75em}\frac{d}{dx}\;{\csc }^{-1}x=\frac{-1}{|x|\sqrt{x^{2}-1}}\tag{3.27}$$
+</div>
+<div class="example" id="fs-id1169739282715">
+<h3>Example 3.65 · Applying Differentiation Formulas to an Inverse Tangent Function</h3>
+<p>Find the <a href="/calculus/sheets/integral-calculator/?op=derivative&amp;expr=atan(x%5E2)"><span data-concept="derivative">derivative</span></a> of <span data-fn="atan(x^2)">$\kf(x)={\tan }^{-1}(x^{2}).$</span></p>
+<h4>Solution</h4>
+<p>Let $\kg(x)=x^{2},$ so $\kgprime(x)=2x.$ Substituting into Equation 3.24, we obtain</p>
+$$\kfprime(x)=\frac{1}{1+{(x^{2})}^{2}}\cdot (2x).$$
+<p>Simplifying, we have</p>
+$$\kfprime(x)=\frac{2x}{1+x^{4}}.$$
+</div>
+<div class="example" id="fs-id1169739301501">
+<h3>Example 3.66 · Applying Differentiation Formulas to an Inverse Sine Function</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="x^2*asin(x)">$h(x)=x^{2}{\sin }^{-1}x.$</span></p>
+<h4>Solution</h4>
+<p>By applying the <span data-concept="product-rule">product rule</span>, we have</p>
+$$h^{\prime}(x)=2x\;{\sin }^{-1}x+\frac{1}{\sqrt{1-x^{2}}}\cdot x^{2}.$$
+</div>
+<div class="exercises" data-place="fs-id1169739301501"></div>
+<div class="example" id="fs-id1169736614197">
+<h3>Example 3.67 · Applying the Inverse Tangent Function</h3>
+<p>The position of a particle at time $t$ is given by <span data-fn="atan(1/x)">$\ks(t)={\tan }^{-1}(\frac{1}{t})$</span> for $t\ge \frac{1}{2}.$ Find the <span data-concept="velocity">velocity</span> of the particle at time $t=1.$</p>
+<h4>Solution</h4>
+<p>Begin by differentiating $\ks(t)$ in order to find $\kv(t).$ Thus,</p>
+$$\kv(t)=\ksprime(t)=\frac{1}{1+{(\frac{1}{t})}^{2}}\cdot \frac{-1}{t^{2}}.$$
+<p>Simplifying, we have</p>
+$$\kv(t)=-\frac{1}{t^{2}+1}.$$
+<p>Thus, $\kv(1)=-\frac{1}{2}.$</p>
+</div>
+<div class="exercises" data-place="fs-id1169736614197"></div>
+</section>

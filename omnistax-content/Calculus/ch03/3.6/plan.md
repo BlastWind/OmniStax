@@ -56,3 +56,11 @@ Ids confirmed with `ost ids calculus 3.6` after the build.
 
 - variables `3.6/h`, `3.6/h_prime` → `3.6-chain-rule-note`; `3.6/u`, `3.6/dy/du`, `3.6/du/dx` → `3.6-leibniz` (the derivation paragraph `leibniz-derivation`); `3.6/k` → `3.6-three-functions` (the paragraph `general-three`).
 - forms: `eq-chain-rule`, `eq-chain-rule-leibniz` → `3.6-chain-rule-note`; `eq-power-rule-composition` → `3.6-power-composition-rule`; `eq-chain-rule-sine`, `eq-chain-rule-cosine`, `eq-chain-rule-tangent`, `eq-chain-rule-cotangent`, `eq-chain-rule-secant`, `eq-chain-rule-cosecant` → `3.6-chain-trig-theorem`; `eq-chain-rule-three` → `3.6-three-rule`.
+
+## As built (2026-10-12)
+
+- `sim-chain-stretch` as planned: three number lines with the swept bands between them, factors g′(x) and f′(u) beside the bands in `derivative`, choice of sin(x³), (3x² + 1)⁻², cos(5x²); x on −1.5 to 1.5, Δx 0.01 to 0.5 (default 0.1); no special (Δx = 0 has no interval). The readout writes h′(x) = f′(g(x))g′(x) with the numbers beside the live Δy/Δx.
+- Review exercise 389 (moved from 3.5's plan) is set here: w(t) = 1.9 + 2.9 cos(πt/6) needs the chain rule.
+- New symbol k_prime (merged); variables rows added for f and g (outer and inner, `redefines`), f_prime, g_prime, dy/dx, k_prime, s, s_prime, v; anchors on every 3.6 row and the ten forms.
+- Sheet links on book words: "a list of derivative formulas" opens the Table of Derivatives; "derivative" in Example 3.48 opens the calculator.
+- Correction: Checkpoint 3.40's hint (Example 3.56 for 3.57). The Problem-Solving Strategy's steps are an ordered list.

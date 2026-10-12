@@ -54,3 +54,11 @@ Ids confirmed with `ost ids calculus 3.8` after the build.
 - forms: none (both concepts carry none).
 - exercise_notes for 3.8: "Review exercise 380, printed at the end of 3.9, has no answer in the key and is left out."
 - figlib: an implicit-curve plot is not needed; all three curves are parametrised.
+
+## As built (2026-10-12)
+
+- `sim-implicit-tangent`: the point is set by a "direction" slider (its polar angle, in degrees) rather than dragged, since a closed curve is not a graph over x; the folium runs −38° to 128° (its asymptote sits at −45° and 135°). Defaults are the examples' points, (3, −4), (3/2, 3/2) and (3, 8/5); the ellipse marks the tangent's x-intercept (25/3, 0) in `point`. Each curve sits in a box of equal units.
+- `sim-implicit-circle`: the choice of the book's three functions over the faint circle, ends drawn as the intervals write them.
+- No Table of Derivatives link: no book words in the strategy name the table's step.
+- Variables rows added: 3.8/dy/dx, 3.8/d2y/dx2; anchor on 3.8/y.
+- Corrections: the split function's domain (0 < x < 25 for 0 < x < 5), Example 3.70's d/dy for d/dx (marker after the display).

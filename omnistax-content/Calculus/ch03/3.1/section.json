@@ -1,0 +1,1212 @@
+{
+ "id": "3.1",
+ "module": "m53495",
+ "chapter": "3",
+ "title": "Defining the Derivative",
+ "short": "Defining the Derivative",
+ "lead": "The <span data-concept=\"derivative\">derivative</span> of a <span data-concept=\"function\">function</span> at a point is defined as the <span data-concept=\"limit\">limit</span> of a <span data-concept=\"difference-quotient\">difference quotient</span>, the <span data-concept=\"slope\">slope</span> of a <span data-concept=\"secant\">secant line</span> whose second point closes in on the first. The same limit is the <span data-concept=\"slope-of-the-tangent-line\">slope of the tangent line</span>, an <span data-concept=\"instantaneous-velocity\">instantaneous velocity</span> and, in general, an <span data-concept=\"instantaneous-rate-of-change\">instantaneous rate of change</span>.",
+ "objectives": [
+  "Recognize the meaning of the tangent to a curve at a point.",
+  "Calculate the slope of a tangent line.",
+  "Identify the derivative as the limit of a difference quotient.",
+  "Calculate the derivative of a given function at a point.",
+  "Describe the velocity as a rate of change.",
+  "Explain the difference between average velocity and instantaneous velocity.",
+  "Estimate the derivative from a table of values."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"slope-of-the-tangent-line\">slope of the tangent line</span> to a curve measures the <span data-concept=\"instantaneous-rate-of-change\">instantaneous rate of change</span> of a curve. We can calculate it by finding the <span data-concept=\"limit\">limit</span> of the <span data-concept=\"difference-quotient\">difference quotient</span> or the <span data-concept=\"difference-quotient\">difference quotient with increment</span> $h.$</li><li>The <span data-concept=\"derivative\">derivative</span> of a <span data-concept=\"function\">function</span> $\\kf(x)$ at a value $a$ is found using either of the definitions for the <span data-concept=\"slope-of-the-tangent-line\">slope of the tangent line</span>.</li><li><span data-concept=\"instantaneous-velocity\">Velocity</span> is the <span data-concept=\"rate-of-change\">rate of change</span> of position. As such, the <span data-concept=\"instantaneous-velocity\">velocity</span> $\\kv(t)$ at time $t$ is the <span data-concept=\"derivative\">derivative</span> of the position $\\ks(t)$ at time $t.$ <span data-concept=\"average-velocity\">Average velocity</span> is given by $$\\kv_{\\text{ave}}=\\frac{\\ks(t)-\\ks(a)}{t-a}.$$ <span data-concept=\"instantaneous-velocity\">Instantaneous velocity</span> is given by $$\\kv(a)=\\ksprime(a)=\\lim_{t\\to a}\\frac{\\ks(t)-\\ks(a)}{t-a}.$$</li><li>We may estimate a <span data-concept=\"derivative\">derivative</span> by using a table of values.</li></ul>",
+ "notes": "The book’s links to an applet on the development of the derivative and to a site for exploring tangent lines are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except those of exercises 42 and 44, which the key leaves unanswered and whose answers, with their reasoning, are AI suggestions. The other 24 even-numbered section exercises have no answer in the book’s key and are computational, so they are left out: exercises 2, 4, 6, 8 and 10 (secant slopes), 12, 14, 16, 18 and 20 (tangent lines), 22, 24, 26, 28 and 30 (derivatives at a point), 32 and 34 (tables of secant slopes), 36 and 38 (average velocities), 40 (derivatives read from a graph), 46 (the rolling ball), 48 (the cost of mayonnaise), 50 and 52 (graphing calculator work). Review exercise 391 is printed at the end of 3.9 and set here, beside the definition of the instantaneous rate of change; review exercise 390 has no answer in the key and is left out.",
+ "figures": [
+  {
+   "id": "fig-newton-leibniz",
+   "kind": "photo",
+   "number": "3.2",
+   "draws": []
+  },
+  {
+   "id": "sim-secant-to-tangent-h",
+   "kind": "sim",
+   "number": "3.3",
+   "folds": [
+    "3.4"
+   ],
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_01_002.jpg",
+    "/media/ch03/CNX_Calc_Figure_03_01_003.jpg"
+   ],
+   "original_caption": "(Figure 3.3) We can calculate the slope of a secant line in either of two ways. (Figure 3.4) The secant lines approach the tangent line (shown in green) as the second point approaches the first.",
+   "draws": [
+    "function",
+    "line",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-local-linearity",
+   "kind": "sim",
+   "number": "3.5",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_01_008.jpg"
+   ],
+   "original_caption": "For values of x close to 1, the graph of f(x)=√x and its tangent line appear to coincide.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-tangent-square",
+   "kind": "figure",
+   "number": "3.6",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_01_005.jpg"
+   ],
+   "original_caption": "The tangent line to f(x) at x=3.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-tangent-reciprocal",
+   "kind": "figure",
+   "number": "3.7",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_01_006.jpg"
+   ],
+   "original_caption": "The line is tangent to f(x) at x=2.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-velocity-secant-tangent",
+   "kind": "figure",
+   "number": "3.8",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_01_007.jpg"
+   ],
+   "original_caption": "The slope of the secant line is the average velocity over the interval [a,t]. The slope of the tangent line is the instantaneous velocity.",
+   "draws": [
+    "function",
+    "line"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-spring",
+   "kind": "figure",
+   "number": "3.9",
+   "originals": [
+    "/media/ch03/CNX_Calc_Figure_03_01_010.jpg"
+   ],
+   "original_caption": "A lead weight suspended from a spring in vertical oscillatory motion.",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-venom-again",
+   "kind": "photo",
+   "number": "3.10",
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "difference-quotient-definition",
+   "concept": "difference-quotient",
+   "verb": "introduces"
+  },
+  {
+   "span": "tangent-line-definition",
+   "concept": "slope-of-the-tangent-line",
+   "verb": "introduces"
+  },
+  {
+   "span": "local-linearity-paragraph",
+   "concept": "local-linearity",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169739298611",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "introduces"
+  },
+  {
+   "span": "derivative-paragraph",
+   "concept": "derivative",
+   "verb": "introduces"
+  },
+  {
+   "span": "derivative-paragraph",
+   "concept": "differentiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169739198956",
+   "concept": "estimating-a-derivative-from-a-table",
+   "verb": "introduces"
+  },
+  {
+   "span": "instantaneous-rate-definition",
+   "concept": "instantaneous-rate-of-change",
+   "verb": "introduces"
+  },
+  {
+   "span": "tangent-lines",
+   "concept": "secant",
+   "verb": "uses"
+  },
+  {
+   "span": "tangent-lines",
+   "concept": "tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "tangent-lines",
+   "concept": "rate-of-change",
+   "verb": "uses"
+  },
+  {
+   "span": "tangent-line-definition",
+   "concept": "limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739298611",
+   "concept": "point-slope-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738966727",
+   "concept": "point-slope-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738966727",
+   "concept": "equation-of-a-tangent-line",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169739298611",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738966727",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739044032",
+   "concept": "evaluating-a-limit-of-the-form-zero-over-zero",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739044032",
+   "concept": "derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739093789",
+   "concept": "derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "velocities",
+   "concept": "average-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "velocities",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739179204",
+   "concept": "important-trigonometric-limits",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739179204",
+   "concept": "estimating-a-derivative-from-a-table",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169739204154",
+   "concept": "instantaneous-rate-of-change",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739187343",
+   "concept": "instantaneous-rate-of-change",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739253544",
+   "concept": "instantaneous-rate-of-change",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169739038141",
+   "source_number": "Checkpoint 3.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738966727"
+   },
+   "cite": "tangent-line-definition",
+   "prompt": "<p>Find the slope of the line tangent to the graph of $f(x)=\\sqrt{x}$ at $x=4.$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.25,
+    "hint": "Use either Equation 3.3 or Equation 3.4. Multiply the numerator and the denominator by a conjugate.",
+    "solution": "$\\frac{1}{4}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169739298316",
+   "source_number": "Checkpoint 3.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739198956"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For $f(x)=x^{2},$ use a table to estimate $f^{\\prime}(3)$ using Equation 3.6.</p>",
+   "answer": {
+    "type": "number",
+    "value": 6,
+    "hint": "Evaluate $\\frac{(x+h)-x^{2}}{h}$<sup class=\"fn\" data-note=\"cp2-hint\"></sup> at $h=-0.1,-0.01,-0.001,0.001,0.01,0.1$",
+    "solution": "$6$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169739236874",
+   "source_number": "Checkpoint 3.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739093789"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For $f(x)=x^{2}+3x+2,$ find $f^{\\prime}(1).$</p>",
+   "answer": {
+    "type": "number",
+    "value": 5,
+    "hint": "Use either Equation 3.5, Equation 3.6, or try both. Use either Example 3.3 or Example 3.4 as a guide.",
+    "solution": "$f^{\\prime}(1)=5$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1169739220843",
+   "source_number": "Checkpoint 3.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739179204"
+   },
+   "cite": "instantaneous-velocity-paragraph",
+   "prompt": "<p>A rock is dropped from a height of $64$ feet. Its height above ground at time $t$ seconds later is given by $s(t)=-16t^{2}+64,0\\le t\\le 2.$ Find its instantaneous velocity $1$ second after it is dropped, using Equation 3.5.</p>",
+   "answer": {
+    "type": "number",
+    "value": -32,
+    "unit": "ft/s",
+    "hint": "$v(t)=s^{\\prime}(t).$ Follow the earlier examples of the derivative using Equation 3.5.",
+    "solution": "$-32$ ft/s",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1169739273081",
+   "source_number": "Checkpoint 3.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739253544"
+   },
+   "cite": "instantaneous-rate-definition",
+   "prompt": "<p>A coffee shop determines that the daily profit on scones obtained by charging $s$ dollars per scone is $P(s)=-20s^{2}+150s-10.$ The coffee shop currently charges $\\text{＄}3.25$ per scone. Find $P^{\\prime}(3.25),$ the rate of change of profit when the price is $\\text{＄}3.25$ and decide whether or not the coffee shop should consider raising or lowering its prices on scones.</p>",
+   "answer": {
+    "type": "open",
+    "hint": "Use Example 3.10 for a guide.",
+    "solution": "$P^{\\prime}(3.25)=20\\gt 0;$ raise prices",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1169736611315",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "difference-quotient-definition",
+   "prompt": "<p>For the following exercises, use Equation 3.1 to find the slope of the secant line between the values $x_{1}$ and $x_{2}$ for each function $y=f(x).$</p><p>$f(x)=4x+7;x_{1}=2,x_{2}=5$</p>",
+   "answer": {
+    "type": "number",
+    "value": 4,
+    "solution": "$4$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1169736589136",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "difference-quotient-definition",
+   "prompt": "<p>For the following exercises, use Equation 3.1 to find the slope of the secant line between the values $x_{1}$ and $x_{2}$ for each function $y=f(x).$</p><p>$f(x)=x^{2}+2x+1;x_{1}=3,x_{2}=3.5$</p>",
+   "answer": {
+    "type": "number",
+    "value": 8.5,
+    "solution": "$8.5$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1169739302881",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "difference-quotient-definition",
+   "prompt": "<p>For the following exercises, use Equation 3.1 to find the slope of the secant line between the values $x_{1}$ and $x_{2}$ for each function $y=f(x).$</p><p>$f(x)=\\frac{4}{3x-1};x_{1}=1,x_{2}=3$</p>",
+   "answer": {
+    "type": "number",
+    "value": -0.75,
+    "solution": "$-\\frac{3}{4}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1169739305157",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "difference-quotient-definition",
+   "prompt": "<p>For the following exercises, use Equation 3.1 to find the slope of the secant line between the values $x_{1}$ and $x_{2}$ for each function $y=f(x).$</p><p>$f(x)=\\sqrt{x};x_{1}=1,x_{2}=16$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.2,
+    "solution": "$0.2$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1169736594852",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "difference-quotient-definition",
+   "prompt": "<p>For the following exercises, use Equation 3.1 to find the slope of the secant line between the values $x_{1}$ and $x_{2}$ for each function $y=f(x).$</p><p>$f(x)=x^{1/3}+1;x_{1}=0,x_{2}=8$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.25,
+    "solution": "$0.25$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1169736610046",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-line-definition",
+   "prompt": "<p>For the following functions,</p><p>a. use Equation 3.4 to find the slope of the tangent line $m_{\\text{tan}}=f^{\\prime}(a),$ and</p><p>b. find an equation of the tangent line to $f$ at $x=a.$</p><p>$f(x)=3-4x,a=2$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $-4$ b. $y=3-4x$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1169739303246",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-line-definition",
+   "prompt": "<p>For the following functions,</p><p>a. use Equation 3.4 to find the slope of the tangent line $m_{\\text{tan}}=f^{\\prime}(a),$ and</p><p>b. find an equation of the tangent line to $f$ at $x=a.$</p><p>$f(x)=x^{2}+x,a=1$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $3$ b. $y=3x-1$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1169739302413",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-line-definition",
+   "prompt": "<p>For the following functions,</p><p>a. use Equation 3.4 to find the slope of the tangent line $m_{\\text{tan}}=f^{\\prime}(a),$ and</p><p>b. find an equation of the tangent line to $f$ at $x=a.$</p><p>$f(x)=\\frac{7}{x},a=3$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $\\frac{-7}{9}$ b. $y=\\frac{-7}{9}x+\\frac{14}{3}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1169739242365",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-line-definition",
+   "prompt": "<p>For the following functions,</p><p>a. use Equation 3.4 to find the slope of the tangent line $m_{\\text{tan}}=f^{\\prime}(a),$ and</p><p>b. find an equation of the tangent line to $f$ at $x=a.$</p><p>$f(x)=2-3x^{2},a=-2$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $12$ b. $y=12x+14$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1169739273188",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-line-definition",
+   "prompt": "<p>For the following functions,</p><p>a. use Equation 3.4 to find the slope of the tangent line $m_{\\text{tan}}=f^{\\prime}(a),$ and</p><p>b. find an equation of the tangent line to $f$ at $x=a.$</p><p>$f(x)=\\frac{2}{x+3},a=-4$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $-2$ b. $y=-2x-10$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1169739270650",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For the following functions $y=f(x),$ find $f^{\\prime}(a)$ using Equation 3.5.</p><p>$f(x)=5x+4,a=-1$</p>",
+   "answer": {
+    "type": "number",
+    "value": 5,
+    "solution": "$5$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1169739067661",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For the following functions $y=f(x),$ find $f^{\\prime}(a)$ using Equation 3.5.</p><p>$f(x)=x^{2}+9x,a=2$</p>",
+   "answer": {
+    "type": "number",
+    "value": 13,
+    "solution": "$13$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1169739194750",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For the following functions $y=f(x),$ find $f^{\\prime}(a)$ using Equation 3.5.</p><p>$f(x)=\\sqrt{x},a=4$</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.25,
+    "solution": "$\\frac{1}{4}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1169739304170",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For the following functions $y=f(x),$ find $f^{\\prime}(a)$ using Equation 3.5.</p><p>$f(x)=\\frac{1}{x},a=2$</p>",
+   "answer": {
+    "type": "number",
+    "value": -0.25,
+    "solution": "$-\\frac{1}{4}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1169736611380",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For the following functions $y=f(x),$ find $f^{\\prime}(a)$ using Equation 3.5.</p><p>$f(x)=\\frac{1}{x^{3}},a=1$</p>",
+   "answer": {
+    "type": "number",
+    "value": -3,
+    "solution": "$-3$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1169739187794",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-lines",
+   "prompt": "<p>For the following exercises, given the function $y=f(x),$</p><p>a. find the slope of the secant line $PQ$ for each point $Q(x,f(x))$ with $x$ value given in the table.</p><p>b. Use the answers from a. to estimate the value of the slope of the tangent line at $P.$</p><p>c. Use the answer from b. to find an equation of the tangent line to $f$ at point $P.$</p><p><strong>[T]</strong> $f(x)=x^{2}+3x+4,P(1,8)$ (Round to $6$ decimal places.)</p><div class=\"book-table\" id=\"fs-id1169739187857\"><table><thead><tr><th><em>x</em></th><th>Slope $m_{PQ}$</th><th><em>x</em></th><th>Slope $m_{PQ}$</th></tr></thead><tbody><tr><td>1.1</td><td>(i)</td><td>0.9</td><td>(vii)</td></tr><tr><td>1.01</td><td>(ii)</td><td>0.99</td><td>(viii)</td></tr><tr><td>1.001</td><td>(iii)</td><td>0.999</td><td>(ix)</td></tr><tr><td>1.0001</td><td>(iv)</td><td>0.9999</td><td>(x)</td></tr><tr><td>1.00001</td><td>(v)</td><td>0.99999</td><td>(xi)</td></tr><tr><td>1.000001</td><td>(vi)</td><td>0.999999</td><td>(xii)</td></tr></tbody></table></div>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $\\text{(i)}\\;5.100000,$ $\\text{(ii)}\\;5.010000,$ $\\text{(iii)}\\;5.001000,$ $\\text{(iv)}\\;5.000100,$ $\\text{(v)}\\;5.000010,$ $\\text{(vi)}\\;5.000001,$ $\\text{(vii)}\\;4.900000,$ $\\text{(viii)}\\;4.990000,$ $\\text{(ix)}\\;4.999000,$ $\\text{(x)}\\;4.999900,$ $\\text{(xi)}\\;4.999990,$ $\\text{(x)}\\;4.999999$ b. $m_{\\text{tan}}=5$ c. $y=5x+3$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1169739269671",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-lines",
+   "prompt": "<p>For the following exercises, given the function $y=f(x),$</p><p>a. find the slope of the secant line $PQ$ for each point $Q(x,f(x))$ with $x$ value given in the table.</p><p>b. Use the answers from a. to estimate the value of the slope of the tangent line at $P.$</p><p>c. Use the answer from b. to find an equation of the tangent line to $f$ at point $P.$</p><p><strong>[T]</strong> $f(x)=10e^{0.5x},P(0,10)$ (Round to $4$ decimal places.)</p><div class=\"book-table\" id=\"fs-id1169739270127\"><table><thead><tr><th><em>x</em></th><th>Slope $m_{PQ}$</th></tr></thead><tbody><tr><td>$-0.1$</td><td>(i)</td></tr><tr><td>$-0.01$</td><td>(ii)</td></tr><tr><td>$-0.001$</td><td>(iii)</td></tr><tr><td>$-0.0001$</td><td>(iv)</td></tr><tr><td>$-0.00001$</td><td>(v)</td></tr><tr><td>−0.000001</td><td>(vi)</td></tr></tbody></table></div>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $\\text{(i)}\\;4.8771,$ $\\text{(ii)}\\;4.9875\\;\\text{(iii)}\\;4.9988,$ $\\text{(iv)}\\;4.9999,$ $\\text{(v)}\\;4.9999,$ $\\text{(vi)}\\;4.9999$ b. $m_{\\text{tan}}=5$ c. $y=5x+10$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1169736616568",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "instantaneous-velocity-paragraph",
+   "prompt": "<p><strong>[T]</strong> For the following position functions $y=s(t),$ an object is moving along a straight line, where $t$ is in seconds and $s$ is in meters. Find</p><p>a. the simplified expression for the average velocity from $t=2$ to $t=2+h;$</p><p>b. the average velocity between $t=2$ and $t=2+h,$ where $\\text{(i)}\\;h=0.1,$ $\\text{(ii)}\\;h=0.01,$ $\\text{(iii)}\\;h=0.001,$ and $\\text{(iv)}\\;h=0.0001;$ and</p><p>c. use the answer from a. to estimate the instantaneous velocity at $t=2$ second.</p><p>$s(t)=\\frac{1}{3}t+5$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $\\frac{1}{3};$ b. $\\text{(i)}\\;0.\\bar{3}$ m/s, $\\text{(ii)}\\;0.\\bar{3}$ m/s, $\\text{(iii)}\\;0.\\bar{3}$ m/s, $\\text{(iv)}\\;0.\\bar{3}$ m/s; c. $0.\\bar{3}=\\frac{1}{3}$ m/s",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1169736617661",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "instantaneous-velocity-paragraph",
+   "prompt": "<p><strong>[T]</strong> For the following position functions $y=s(t),$ an object is moving along a straight line, where $t$ is in seconds and $s$ is in meters. Find</p><p>a. the simplified expression for the average velocity from $t=2$ to $t=2+h;$</p><p>b. the average velocity between $t=2$ and $t=2+h,$ where $\\text{(i)}\\;h=0.1,$ $\\text{(ii)}\\;h=0.01,$ $\\text{(iii)}\\;h=0.001,$ and $\\text{(iv)}\\;h=0.0001;$ and</p><p>c. use the answer from a. to estimate the instantaneous velocity at $t=2$ second.</p><p>$s(t)=2t^{3}+3$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $2(h^{2}+6h+12);$ b. $\\text{(i)}\\;25.22$ m/s, $\\text{(ii)}\\;24.12$ m/s, $\\text{(iii)}\\;24.01$ m/s, $\\text{(iv)}\\;24$ m/s; c. $24$ m/s",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1169739190079",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "figure": {
+    "src": "/media/ch03/CNX_Calc_Figure_03_01_201.jpg",
+    "alt": "This graph shows two connected line segments: one going from (1, 0) to (4, 6) and the other going from (4, 6) to (8, 8)."
+   },
+   "prompt": "<p>Use the following graph to evaluate a. $f^{\\prime}(1)$ and b. $f^{\\prime}(6).$</p>",
+   "answer": {
+    "type": "multi",
+    "parts": [
+     {
+      "part": "a",
+      "value": 1.25
+     },
+     {
+      "part": "b",
+      "value": 0.5
+     }
+    ],
+    "solution": "a. $1.25;$ b. $0.5$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1169739300121",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For the following exercises, use the limit definition of derivative to show that the derivative does not exist at $x=a$ for each of the given functions.</p><p>$f(x)=x^{1/3},x=0$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\lim_{x\\to 0^{-}}\\frac{x^{1/3}-0}{x-0}=\\lim_{x\\to 0^{-}}\\frac{1}{x^{2/3}}=\\infty$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e42",
+   "source_id": "fs-id1169739252080",
+   "source_number": "42",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For the following exercises, use the limit definition of derivative to show that the derivative does not exist at $x=a$ for each of the given functions.</p><p>$f(x)=x^{2/3},x=0$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Use the definition of the derivative at $a=0$ with $f(0)=0:$ $\\frac{f(x)-f(0)}{x-0}=\\frac{x^{2/3}}{x}=\\frac{1}{x^{1/3}}.$ As $x\\to 0^{+},$ $x^{1/3}\\to 0^{+},$ so $\\lim_{x\\to 0^{+}}\\frac{1}{x^{1/3}}=+\\infty;$ as $x\\to 0^{-},$ $x^{1/3}\\to 0^{-},$ so $\\lim_{x\\to 0^{-}}\\frac{1}{x^{1/3}}=-\\infty.$ The one-sided limits are infinite and of opposite signs, so $\\lim_{x\\to 0}\\frac{f(x)-f(0)}{x-0}$ does not exist, and $f^{\\prime}(0)$ does not exist.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1169739347174",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For the following exercises, use the limit definition of derivative to show that the derivative does not exist at $x=a$ for each of the given functions.</p><p>$f(x)=\\{\\begin{array}{l}1,x\\lt 1 \\\\ x,x\\ge 1\\end{array},x=1$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$\\lim_{x\\to 1^{-}}\\frac{1-1}{x-1}=0\\ne 1=\\lim_{x\\to 1^{+}}\\frac{x-1}{x-1}$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e44",
+   "source_id": "fs-id1169739274991",
+   "source_number": "44",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-definition",
+   "prompt": "<p>For the following exercises, use the limit definition of derivative to show that the derivative does not exist at $x=a$ for each of the given functions.</p><p>$f(x)=\\frac{|x|}{x},x=0$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "The derivative at $0$ is $\\lim_{x\\to 0}\\frac{f(x)-f(0)}{x-0},$ which needs $f$ to be defined on an open interval containing $0.$ Here $f(0)=\\frac{|0|}{0}$ is undefined, so the difference quotient cannot be formed and $f^{\\prime}(0)$ does not exist. Even if $f(0)$ were given some value $c,$ the quotient would be $\\frac{1-c}{x}$ for $x\\gt 0$ and $\\frac{-1-c}{x}$ for $x\\lt 0,$ and no choice of $c$ makes both one-sided limits finite and equal, so the limit still would not exist.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1169739348491",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "instantaneous-velocity-paragraph",
+   "prompt": "<p><strong>[T]</strong> The position in feet of a race car along a straight track after $t$ seconds is modeled by the function $s(t)=8t^{2}-\\frac{1}{16}t^{3}.$</p><p>a. Find the average velocity of the vehicle over the following time intervals to four decimal places:</p><p>1. [4, 4.1]</p><p>2. [4, 4.01]</p><p>3. [4, 4.001]</p><p>4. [4, 4.0001]</p><p>b. Use a. to draw a conclusion about the instantaneous velocity of the vehicle at $t=4$ seconds.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $\\text{(i)}\\;61.7244$ ft/s, $\\text{(ii)}\\;61.0725$ ft/s $\\text{(iii)}\\;61.0072$ ft/s $\\text{(iv)}\\;61.0007$ ft/s b. At $4$ seconds the race car is traveling at a rate/velocity of $61$ ft/s.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1169739270336",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocities",
+   "figure": {
+    "src": "/media/ch03/CNX_Calc_Figure_03_01_203.jpg",
+    "alt": "Two functions s = g(t) and s = f(t) are graphed. The first function s = g(t) starts at (0, 0) and arcs upward through roughly (2, 1) to (4, 4). The second function s = f(t) is a straight line passing through (0, 0) and (4, 4)."
+   },
+   "prompt": "<p>Two vehicles start out traveling side by side along a straight road. Their position functions, shown in the following graph, are given by $s=f(t)$ and $s=g(t),$ where $s$ is measured in feet and $t$ is measured in seconds.</p><p>a. Which vehicle has traveled farther at $t=2$ seconds?</p><p>b. What is the approximate velocity of each vehicle at $t=3$ seconds?</p><p>c. Which vehicle is traveling faster at $t=4$ seconds?</p><p>d. What is true about the positions of the vehicles at $t=4$ seconds?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. The vehicle represented by $f(t),$ because it has traveled $2$ feet, whereas $g(t)$ has traveled $1$ foot. b. The velocity of $f(t)$ is constant at $1$ ft/s, while the velocity of $g(t)$ is approximately $2$ ft/s. c. The vehicle represented by $g(t),$ with a velocity of approximately $4$ ft/s. d. Both have traveled $4$ feet in $4$ seconds.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1169736615092",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "instantaneous-rate-definition",
+   "prompt": "<p><strong>[T]</strong> For the function $f(x)=x^{3}-2x^{2}-11x+12,$ do the following.</p><p>a. Use a graphing calculator to graph <em>f</em> in an appropriate viewing window.</p><p>b. Use the ZOOM feature on the calculator to approximate the two values of $x=a$ for which $m_{\\text{tan}}=f^{\\prime}(a)=0.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a.</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_01_204.jpg\" alt=\"The function starts in the third quadrant, passes through the x axis at x = −3, increases to a maximum around y = 20, decreases and passes through the x axis at x = 1, continues decreasing to a minimum around y = −13, and then increases through the x axis at x = 4, after which it continues increasing.\"> <p>b. $a\\approx -1.361,2.694$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1169739111313",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "instantaneous-rate-definition",
+   "prompt": "<p>Suppose that $N(x)$ computes the number of gallons of gas used by a vehicle traveling $x$ miles. Suppose the vehicle gets $30$ mpg.</p><p>a. Find a mathematical expression for $N(x).$</p><p>b. What is $N(100\\text{)?}$ Explain the physical meaning.</p><p>c. What is $N^{\\prime}(100)?$ Explain the physical meaning.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a. $N(x)=\\frac{x}{30}$ b. $\\sim 3.3$ gallons. When the vehicle travels $100$ miles, it has used $3.3$ gallons of gas. c. $\\frac{1}{30}.$ The rate of gas consumption in gallons per mile that the vehicle is achieving after having traveled $100$ miles.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1169736589312",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "instantaneous-rate-definition",
+   "prompt": "<p><strong>[T]</strong> For the function $f(x)=\\frac{x^{2}}{x^{2}+1},$ do the following.</p><p>a. Use a graphing calculator to graph $f$ in an appropriate viewing window.</p><p>b. Use the $\\text{nDeriv}$ function on a graphing calculator to find $f^{\\prime}(-4),f^{\\prime}(-2),f^{\\prime}(2),$ and $f^{\\prime}(4).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "a.</p> <img src=\"/media/ch03/CNX_Calc_Figure_03_01_207.jpg\" alt=\"The function starts in the second quadrant and gently decreases, touches the origin, and then it increases gently.\"> <p>b. $-0.028,-0.16,0.16,0.028$",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "r391",
+   "source_id": "fs-id1169738074887",
+   "source_section": "3.9",
+   "source_number": "391",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "velocities",
+   "prompt": "<p>The following questions consider the wind speeds of Hurricane Katrina, which affected New Orleans, Louisiana, in August 2005. The data are displayed in a table.</p><div class=\"book-table\" id=\"fs-id1169738138171\"><div class=\"tcap\"><span class=\"eyebrow\">Table 3.9</span><span>Wind Speeds of Hurricane Katrina</span></div><table><thead><tr><th>Hours after Midnight, August 26</th><th>Wind Speed (mph)</th></tr></thead><tbody><tr><td>1</td><td>45</td></tr><tr><td>5</td><td>75</td></tr><tr><td>11</td><td>100</td></tr><tr><td>29</td><td>115</td></tr><tr><td>49</td><td>145</td></tr><tr><td>58</td><td>175</td></tr><tr><td>73</td><td>155</td></tr><tr><td>81</td><td>125</td></tr><tr><td>85</td><td>95</td></tr><tr><td>107</td><td>35</td></tr></tbody></table></div><p>Estimate the derivative of the wind speed at hour 83. What is the physical meaning?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "$-7.5.$ The wind speed is decreasing at a rate of 7.5 mph/hr",
+    "generated_by": "source"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "estimating-a-derivative-from-a-table"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "instantaneous-velocity"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e1",
+   "concept": "difference-quotient"
+  },
+  {
+   "exercise": "e1",
+   "concept": "secant"
+  },
+  {
+   "exercise": "e3",
+   "concept": "difference-quotient"
+  },
+  {
+   "exercise": "e3",
+   "concept": "secant"
+  },
+  {
+   "exercise": "e5",
+   "concept": "difference-quotient"
+  },
+  {
+   "exercise": "e5",
+   "concept": "secant"
+  },
+  {
+   "exercise": "e7",
+   "concept": "difference-quotient"
+  },
+  {
+   "exercise": "e7",
+   "concept": "secant"
+  },
+  {
+   "exercise": "e9",
+   "concept": "difference-quotient"
+  },
+  {
+   "exercise": "e9",
+   "concept": "secant"
+  },
+  {
+   "exercise": "e11",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e11",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e13",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e13",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e15",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e15",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e17",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e17",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e19",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e19",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e21",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e23",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e25",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e27",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e29",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e31",
+   "concept": "estimating-a-derivative-from-a-table"
+  },
+  {
+   "exercise": "e31",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e31",
+   "concept": "secant"
+  },
+  {
+   "exercise": "e33",
+   "concept": "estimating-a-derivative-from-a-table"
+  },
+  {
+   "exercise": "e33",
+   "concept": "equation-of-a-tangent-line"
+  },
+  {
+   "exercise": "e33",
+   "concept": "secant"
+  },
+  {
+   "exercise": "e35",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "e35",
+   "concept": "instantaneous-velocity"
+  },
+  {
+   "exercise": "e37",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "e37",
+   "concept": "instantaneous-velocity"
+  },
+  {
+   "exercise": "e39",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e39",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e41",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e41",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e42",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e42",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e43",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e43",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e44",
+   "concept": "derivative"
+  },
+  {
+   "exercise": "e44",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e45",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e45",
+   "concept": "instantaneous-velocity"
+  },
+  {
+   "exercise": "e45",
+   "concept": "average-velocity"
+  },
+  {
+   "exercise": "e47",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e47",
+   "concept": "instantaneous-velocity"
+  },
+  {
+   "exercise": "e49",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e49",
+   "concept": "slope-of-the-tangent-line"
+  },
+  {
+   "exercise": "e51",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "e53",
+   "concept": "instantaneous-rate-of-change"
+  },
+  {
+   "exercise": "r391",
+   "concept": "estimating-a-derivative-from-a-table"
+  },
+  {
+   "exercise": "r391",
+   "concept": "instantaneous-rate-of-change"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "cp2-hint",
+   "kind": "correction",
+   "html": "The hint prints $\\frac{(x+h)-x^{2}}{h};$ the difference quotient of $f(x)=x^{2}$ is $\\frac{(x+h)^{2}-x^{2}}{h},$ evaluated at $x=3.$"
+  }
+ ]
+}

@@ -171,6 +171,26 @@
    "sym": "E_prime",
    "latex": "E'",
    "macro": "\\kEprime"
+  },
+  {
+   "sym": "C_prime",
+   "latex": "C'",
+   "macro": "\\kCprime"
+  },
+  {
+   "sym": "R_prime",
+   "latex": "R'",
+   "macro": "\\kRprime"
+  },
+  {
+   "sym": "v_prime",
+   "latex": "v'",
+   "macro": "\\kvprime"
+  },
+  {
+   "sym": "k_prime",
+   "latex": "k'",
+   "macro": "\\kkprime"
   }
  ],
  "concepts": [
@@ -189,11 +209,13 @@
    "forms": [
     {
      "id": "eq-difference-quotient",
-     "latex": "Q=\\frac{f(x)-f(a)}{x-a}"
+     "latex": "Q=\\frac{f(x)-f(a)}{x-a}",
+     "anchor": "3.1-difference-quotient-definition"
     },
     {
      "id": "eq-difference-quotient-increment",
-     "latex": "Q=\\frac{f(a+h)-f(a)}{h}"
+     "latex": "Q=\\frac{f(a+h)-f(a)}{h}",
+     "anchor": "3.1-difference-quotient-definition"
     }
    ]
   },
@@ -211,11 +233,13 @@
    "forms": [
     {
      "id": "eq-tangent-slope",
-     "latex": "m_{\\text{tan}}=\\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}"
+     "latex": "m_{\\text{tan}}=\\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}",
+     "anchor": "3.1-tangent-line-definition"
     },
     {
      "id": "eq-tangent-slope-increment",
-     "latex": "m_{\\text{tan}}=\\lim_{h\\to 0}\\frac{f(a+h)-f(a)}{h}"
+     "latex": "m_{\\text{tan}}=\\lim_{h\\to 0}\\frac{f(a+h)-f(a)}{h}",
+     "anchor": "3.1-tangent-line-definition"
     }
    ]
   },
@@ -250,11 +274,13 @@
    "forms": [
     {
      "id": "eq-derivative-at-a",
-     "latex": "f'(a)=\\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}"
+     "latex": "f'(a)=\\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}",
+     "anchor": "3.1-derivative-definition"
     },
     {
      "id": "eq-derivative-at-a-increment",
-     "latex": "f'(a)=\\lim_{h\\to 0}\\frac{f(a+h)-f(a)}{h}"
+     "latex": "f'(a)=\\lim_{h\\to 0}\\frac{f(a+h)-f(a)}{h}",
+     "anchor": "3.1-derivative-definition"
     }
    ]
   },
@@ -300,7 +326,8 @@
    "forms": [
     {
      "id": "eq-derivative-function",
-     "latex": "f'(x)=\\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h}"
+     "latex": "f'(x)=\\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h}",
+     "anchor": "3.2-derivative-function-definition"
     }
    ]
   },
@@ -348,7 +375,8 @@
    "forms": [
     {
      "id": "eq-leibniz-notation",
-     "latex": "\\frac{dy}{dx}=\\lim_{\\Delta x\\to 0}\\frac{\\Delta y}{\\Delta x}"
+     "latex": "\\frac{dy}{dx}=\\lim_{\\Delta x\\to 0}\\frac{\\Delta y}{\\Delta x}",
+     "anchor": "3.2-leibniz-paragraph"
     }
    ]
   },
@@ -396,7 +424,8 @@
    "forms": [
     {
      "id": "eq-second-derivative-leibniz",
-     "latex": "\\frac{d^{2}y}{dx^{2}}=\\frac{d}{dx}\\left(\\frac{dy}{dx}\\right)"
+     "latex": "\\frac{d^{2}y}{dx^{2}}=\\frac{d}{dx}\\left(\\frac{dy}{dx}\\right)",
+     "anchor": "3.2-higher-order-paragraph"
     }
    ]
   },
@@ -412,7 +441,8 @@
    "forms": [
     {
      "id": "eq-constant-rule",
-     "latex": "\\frac{d}{dx}(c)=0"
+     "latex": "\\frac{d}{dx}(c)=0",
+     "anchor": "3.3-constant-rule-theorem"
     }
    ]
   },
@@ -428,7 +458,8 @@
    "forms": [
     {
      "id": "eq-power-rule",
-     "latex": "\\frac{d}{dx}x^{n}=nx^{n-1}"
+     "latex": "\\frac{d}{dx}x^{n}=nx^{n-1}",
+     "anchor": "3.3-power-rule-theorem"
     }
    ]
   },
@@ -444,7 +475,8 @@
    "forms": [
     {
      "id": "eq-sum-rule",
-     "latex": "\\frac{d}{dx}(f(x)+g(x))=\\frac{d}{dx}(f(x))+\\frac{d}{dx}(g(x))"
+     "latex": "\\frac{d}{dx}(f(x)+g(x))=\\frac{d}{dx}(f(x))+\\frac{d}{dx}(g(x))",
+     "anchor": "3.3-sum-difference-theorem"
     }
    ]
   },
@@ -460,7 +492,8 @@
    "forms": [
     {
      "id": "eq-difference-rule",
-     "latex": "\\frac{d}{dx}(f(x)-g(x))=\\frac{d}{dx}(f(x))-\\frac{d}{dx}(g(x))"
+     "latex": "\\frac{d}{dx}(f(x)-g(x))=\\frac{d}{dx}(f(x))-\\frac{d}{dx}(g(x))",
+     "anchor": "3.3-sum-difference-theorem"
     }
    ]
   },
@@ -476,7 +509,8 @@
    "forms": [
     {
      "id": "eq-constant-multiple-rule",
-     "latex": "\\frac{d}{dx}(kf(x))=k\\frac{d}{dx}(f(x))"
+     "latex": "\\frac{d}{dx}(kf(x))=k\\frac{d}{dx}(f(x))",
+     "anchor": "3.3-sum-difference-theorem"
     }
    ]
   },
@@ -492,7 +526,8 @@
    "forms": [
     {
      "id": "eq-product-rule",
-     "latex": "\\frac{d}{dx}(f(x)g(x))=\\frac{d}{dx}(f(x))\\cdot g(x)+\\frac{d}{dx}(g(x))\\cdot f(x)"
+     "latex": "\\frac{d}{dx}(f(x)g(x))=\\frac{d}{dx}(f(x))\\cdot g(x)+\\frac{d}{dx}(g(x))\\cdot f(x)",
+     "anchor": "3.3-product-rule-theorem"
     }
    ]
   },
@@ -508,7 +543,8 @@
    "forms": [
     {
      "id": "eq-quotient-rule",
-     "latex": "\\frac{d}{dx}\\left(\\frac{f(x)}{g(x)}\\right)=\\frac{\\frac{d}{dx}(f(x))\\cdot g(x)-\\frac{d}{dx}(g(x))\\cdot f(x)}{(g(x))^{2}}"
+     "latex": "\\frac{d}{dx}\\left(\\frac{f(x)}{g(x)}\\right)=\\frac{\\frac{d}{dx}(f(x))\\cdot g(x)-\\frac{d}{dx}(g(x))\\cdot f(x)}{(g(x))^{2}}",
+     "anchor": "3.3-quotient-rule-theorem"
     }
    ]
   },
@@ -524,7 +560,8 @@
    "forms": [
     {
      "id": "eq-extended-power-rule",
-     "latex": "\\frac{d}{dx}(x^{k})=kx^{k-1}"
+     "latex": "\\frac{d}{dx}(x^{k})=kx^{k-1}",
+     "anchor": "3.3-extended-power-rule-theorem"
     }
    ]
   },
@@ -547,7 +584,8 @@
    "forms": [
     {
      "id": "eq-amount-of-change",
-     "latex": "f(a+h)-f(a)"
+     "latex": "f(a+h)-f(a)",
+     "anchor": "3.4-amount-of-change"
     }
    ]
   },
@@ -564,7 +602,8 @@
    "forms": [
     {
      "id": "eq-average-rate-of-change",
-     "latex": "\\frac{f(a+h)-f(a)}{h}"
+     "latex": "\\frac{f(a+h)-f(a)}{h}",
+     "anchor": "3.4-amount-of-change"
     }
    ]
   },
@@ -580,7 +619,8 @@
    "forms": [
     {
      "id": "eq-amount-of-change-formula",
-     "latex": "f(a+h)\\approx f(a)+f'(a)h"
+     "latex": "f(a+h)\\approx f(a)+f'(a)h",
+     "anchor": "3.4-amount-of-change-formula"
     }
    ]
   },
@@ -598,7 +638,8 @@
    "forms": [
     {
      "id": "eq-velocity",
-     "latex": "v(t)=s'(t)"
+     "latex": "v(t)=s'(t)",
+     "anchor": "3.4-motion-definition"
     }
    ]
   },
@@ -615,7 +656,8 @@
    "forms": [
     {
      "id": "eq-speed",
-     "latex": "|v(t)|"
+     "latex": "|v(t)|",
+     "anchor": "3.4-motion-definition"
     }
    ]
   },
@@ -633,7 +675,8 @@
    "forms": [
     {
      "id": "eq-acceleration",
-     "latex": "a(t)=v'(t)=s''(t)"
+     "latex": "a(t)=v'(t)=s''(t)",
+     "anchor": "3.4-motion-definition"
     }
    ]
   },
@@ -658,7 +701,8 @@
    "forms": [
     {
      "id": "eq-population-growth-rate",
-     "latex": "P'(t)"
+     "latex": "P'(t)",
+     "anchor": "3.4-population-definition"
     }
    ]
   },
@@ -676,11 +720,13 @@
    "forms": [
     {
      "id": "eq-marginal-cost",
-     "latex": "MC(x)=C'(x)"
+     "latex": "MC(x)=C'(x)",
+     "anchor": "3.4-marginal-definition"
     },
     {
      "id": "eq-marginal-cost-estimate",
-     "latex": "MC(x)=C'(x)\\approx C(x+1)-C(x)"
+     "latex": "MC(x)=C'(x)\\approx C(x+1)-C(x)",
+     "anchor": "3.4-marginal-estimate"
     }
    ]
   },
@@ -698,7 +744,8 @@
    "forms": [
     {
      "id": "eq-marginal-revenue",
-     "latex": "MR(x)=R'(x)"
+     "latex": "MR(x)=R'(x)",
+     "anchor": "3.4-marginal-definition"
     }
    ]
   },
@@ -716,7 +763,8 @@
    "forms": [
     {
      "id": "eq-marginal-profit",
-     "latex": "MP(x)=P'(x)=MR(x)-MC(x)=R'(x)-C'(x)"
+     "latex": "MP(x)=P'(x)=MR(x)-MC(x)=R'(x)-C'(x)",
+     "anchor": "3.4-marginal-definition"
     }
    ]
   },
@@ -729,11 +777,13 @@
    "forms": [
     {
      "id": "eq-derivative-sine",
-     "latex": "\\frac{d}{dx}(\\sin x)=\\cos x"
+     "latex": "\\frac{d}{dx}(\\sin x)=\\cos x",
+     "anchor": "3.5-sine-cosine-theorem"
     },
     {
      "id": "eq-derivative-cosine",
-     "latex": "\\frac{d}{dx}(\\cos x)=-\\sin x"
+     "latex": "\\frac{d}{dx}(\\cos x)=-\\sin x",
+     "anchor": "3.5-sine-cosine-theorem"
     }
    ]
   },
@@ -746,19 +796,23 @@
    "forms": [
     {
      "id": "eq-derivative-tangent",
-     "latex": "\\frac{d}{dx}(\\tan x)=\\sec^{2}x"
+     "latex": "\\frac{d}{dx}(\\tan x)=\\sec^{2}x",
+     "anchor": "3.5-other-trig-theorem"
     },
     {
      "id": "eq-derivative-cotangent",
-     "latex": "\\frac{d}{dx}(\\cot x)=-\\csc^{2}x"
+     "latex": "\\frac{d}{dx}(\\cot x)=-\\csc^{2}x",
+     "anchor": "3.5-other-trig-theorem"
     },
     {
      "id": "eq-derivative-secant",
-     "latex": "\\frac{d}{dx}(\\sec x)=\\sec x\\tan x"
+     "latex": "\\frac{d}{dx}(\\sec x)=\\sec x\\tan x",
+     "anchor": "3.5-other-trig-theorem"
     },
     {
      "id": "eq-derivative-cosecant",
-     "latex": "\\frac{d}{dx}(\\csc x)=-\\csc x\\cot x"
+     "latex": "\\frac{d}{dx}(\\csc x)=-\\csc x\\cot x",
+     "anchor": "3.5-other-trig-theorem"
     }
    ]
   },
@@ -771,7 +825,8 @@
    "forms": [
     {
      "id": "eq-fourth-derivative-sine",
-     "latex": "\\frac{d^{4n}}{dx^{4n}}(\\sin x)=\\sin x"
+     "latex": "\\frac{d^{4n}}{dx^{4n}}(\\sin x)=\\sin x",
+     "anchor": "3.5-sine-cycle"
     }
    ]
   },
@@ -787,11 +842,13 @@
    "forms": [
     {
      "id": "eq-chain-rule",
-     "latex": "h'(x)=f'(g(x))g'(x)"
+     "latex": "h'(x)=f'(g(x))g'(x)",
+     "anchor": "3.6-chain-rule-note"
     },
     {
      "id": "eq-chain-rule-leibniz",
-     "latex": "\\frac{dy}{dx}=\\frac{dy}{du}\\cdot\\frac{du}{dx}"
+     "latex": "\\frac{dy}{dx}=\\frac{dy}{du}\\cdot\\frac{du}{dx}",
+     "anchor": "3.6-chain-rule-note"
     }
    ]
   },
@@ -814,7 +871,8 @@
    "forms": [
     {
      "id": "eq-power-rule-composition",
-     "latex": "h'(x)=n(g(x))^{n-1}g'(x)"
+     "latex": "h'(x)=n(g(x))^{n-1}g'(x)",
+     "anchor": "3.6-power-composition-rule"
     }
    ]
   },
@@ -827,27 +885,33 @@
    "forms": [
     {
      "id": "eq-chain-rule-sine",
-     "latex": "\\frac{d}{dx}(\\sin(g(x)))=\\cos(g(x))g'(x)"
+     "latex": "\\frac{d}{dx}(\\sin(g(x)))=\\cos(g(x))g'(x)",
+     "anchor": "3.6-chain-trig-theorem"
     },
     {
      "id": "eq-chain-rule-cosine",
-     "latex": "\\frac{d}{dx}(\\cos(g(x)))=-\\sin(g(x))g'(x)"
+     "latex": "\\frac{d}{dx}(\\cos(g(x)))=-\\sin(g(x))g'(x)",
+     "anchor": "3.6-chain-trig-theorem"
     },
     {
      "id": "eq-chain-rule-tangent",
-     "latex": "\\frac{d}{dx}(\\tan(g(x)))=\\sec^{2}(g(x))g'(x)"
+     "latex": "\\frac{d}{dx}(\\tan(g(x)))=\\sec^{2}(g(x))g'(x)",
+     "anchor": "3.6-chain-trig-theorem"
     },
     {
      "id": "eq-chain-rule-cotangent",
-     "latex": "\\frac{d}{dx}(\\cot(g(x)))=-\\csc^{2}(g(x))g'(x)"
+     "latex": "\\frac{d}{dx}(\\cot(g(x)))=-\\csc^{2}(g(x))g'(x)",
+     "anchor": "3.6-chain-trig-theorem"
     },
     {
      "id": "eq-chain-rule-secant",
-     "latex": "\\frac{d}{dx}(\\sec(g(x)))=\\sec(g(x))\\tan(g(x))g'(x)"
+     "latex": "\\frac{d}{dx}(\\sec(g(x)))=\\sec(g(x))\\tan(g(x))g'(x)",
+     "anchor": "3.6-chain-trig-theorem"
     },
     {
      "id": "eq-chain-rule-cosecant",
-     "latex": "\\frac{d}{dx}(\\csc(g(x)))=-\\csc(g(x))\\cot(g(x))g'(x)"
+     "latex": "\\frac{d}{dx}(\\csc(g(x)))=-\\csc(g(x))\\cot(g(x))g'(x)",
+     "anchor": "3.6-chain-trig-theorem"
     }
    ]
   },
@@ -860,7 +924,8 @@
    "forms": [
     {
      "id": "eq-chain-rule-three",
-     "latex": "k'(x)=h'(f(g(x)))f'(g(x))g'(x)"
+     "latex": "k'(x)=h'(f(g(x)))f'(g(x))g'(x)",
+     "anchor": "3.6-three-rule"
     }
    ]
   },
@@ -876,11 +941,13 @@
    "forms": [
     {
      "id": "eq-inverse-function-theorem",
-     "latex": "(f^{-1})'(x)=\\frac{1}{f'(f^{-1}(x))}"
+     "latex": "(f^{-1})'(x)=\\frac{1}{f'(f^{-1}(x))}",
+     "anchor": "3.7-inverse-function-theorem-note"
     },
     {
      "id": "eq-inverse-function-theorem-g",
-     "latex": "g'(x)=\\frac{1}{f'(g(x))}"
+     "latex": "g'(x)=\\frac{1}{f'(g(x))}",
+     "anchor": "3.7-inverse-function-theorem-note"
     }
    ]
   },
@@ -896,11 +963,13 @@
    "forms": [
     {
      "id": "eq-power-rule-rational",
-     "latex": "\\frac{d}{dx}(x^{m/n})=\\frac{m}{n}x^{(m/n)-1}"
+     "latex": "\\frac{d}{dx}(x^{m/n})=\\frac{m}{n}x^{(m/n)-1}",
+     "anchor": "3.7-rational-power-note"
     },
     {
      "id": "eq-power-rule-root",
-     "latex": "\\frac{d}{dx}(x^{1/n})=\\frac{1}{n}x^{(1/n)-1}"
+     "latex": "\\frac{d}{dx}(x^{1/n})=\\frac{1}{n}x^{(1/n)-1}",
+     "anchor": "3.7-rational-power-note"
     }
    ]
   },
@@ -913,27 +982,33 @@
    "forms": [
     {
      "id": "eq-derivative-arcsine",
-     "latex": "\\frac{d}{dx}\\sin^{-1}x=\\frac{1}{\\sqrt{1-x^{2}}}"
+     "latex": "\\frac{d}{dx}\\sin^{-1}x=\\frac{1}{\\sqrt{1-x^{2}}}",
+     "anchor": "3.7-inverse-trig-note"
     },
     {
      "id": "eq-derivative-arccosine",
-     "latex": "\\frac{d}{dx}\\cos^{-1}x=\\frac{-1}{\\sqrt{1-x^{2}}}"
+     "latex": "\\frac{d}{dx}\\cos^{-1}x=\\frac{-1}{\\sqrt{1-x^{2}}}",
+     "anchor": "3.7-inverse-trig-note"
     },
     {
      "id": "eq-derivative-arctangent",
-     "latex": "\\frac{d}{dx}\\tan^{-1}x=\\frac{1}{1+x^{2}}"
+     "latex": "\\frac{d}{dx}\\tan^{-1}x=\\frac{1}{1+x^{2}}",
+     "anchor": "3.7-inverse-trig-note"
     },
     {
      "id": "eq-derivative-arccotangent",
-     "latex": "\\frac{d}{dx}\\cot^{-1}x=\\frac{-1}{1+x^{2}}"
+     "latex": "\\frac{d}{dx}\\cot^{-1}x=\\frac{-1}{1+x^{2}}",
+     "anchor": "3.7-inverse-trig-note"
     },
     {
      "id": "eq-derivative-arcsecant",
-     "latex": "\\frac{d}{dx}\\sec^{-1}x=\\frac{1}{|x|\\sqrt{x^{2}-1}}"
+     "latex": "\\frac{d}{dx}\\sec^{-1}x=\\frac{1}{|x|\\sqrt{x^{2}-1}}",
+     "anchor": "3.7-inverse-trig-note"
     },
     {
      "id": "eq-derivative-arccosecant",
-     "latex": "\\frac{d}{dx}\\csc^{-1}x=\\frac{-1}{|x|\\sqrt{x^{2}-1}}"
+     "latex": "\\frac{d}{dx}\\csc^{-1}x=\\frac{-1}{|x|\\sqrt{x^{2}-1}}",
+     "anchor": "3.7-inverse-trig-note"
     }
    ]
   },
@@ -968,7 +1043,8 @@
    "forms": [
     {
      "id": "eq-derivative-b-to-the-x",
-     "latex": "B'(x)=b^{x}B'(0)"
+     "latex": "B'(x)=b^{x}B'(0)",
+     "anchor": "3.9-bx-derivative"
     }
    ]
   },
@@ -981,7 +1057,8 @@
    "forms": [
     {
      "id": "eq-e-slope-one",
-     "latex": "\\lim_{h\\to 0}\\frac{e^{h}-1}{h}=1"
+     "latex": "\\lim_{h\\to 0}\\frac{e^{h}-1}{h}=1",
+     "anchor": "3.9-e-defined"
     }
    ]
   },
@@ -994,11 +1071,13 @@
    "forms": [
     {
      "id": "eq-derivative-exp",
-     "latex": "E'(x)=e^{x}"
+     "latex": "E'(x)=e^{x}",
+     "anchor": "3.9-exp-theorem"
     },
     {
      "id": "eq-derivative-exp-chain",
-     "latex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g'(x)"
+     "latex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g'(x)",
+     "anchor": "3.9-exp-theorem"
     }
    ]
   },
@@ -1011,11 +1090,13 @@
    "forms": [
     {
      "id": "eq-derivative-ln",
-     "latex": "\\frac{dy}{dx}=\\frac{1}{x}"
+     "latex": "\\frac{dy}{dx}=\\frac{1}{x}",
+     "anchor": "3.9-ln-theorem"
     },
     {
      "id": "eq-derivative-ln-chain",
-     "latex": "h'(x)=\\frac{1}{g(x)}g'(x)"
+     "latex": "h'(x)=\\frac{1}{g(x)}g'(x)",
+     "anchor": "3.9-ln-theorem"
     }
    ]
   },
@@ -1028,19 +1109,23 @@
    "forms": [
     {
      "id": "eq-derivative-log-b",
-     "latex": "\\frac{dy}{dx}=\\frac{1}{x\\ln b}"
+     "latex": "\\frac{dy}{dx}=\\frac{1}{x\\ln b}",
+     "anchor": "3.9-general-theorem"
     },
     {
      "id": "eq-derivative-log-b-chain",
-     "latex": "h'(x)=\\frac{g'(x)}{g(x)\\ln b}"
+     "latex": "h'(x)=\\frac{g'(x)}{g(x)\\ln b}",
+     "anchor": "3.9-general-theorem"
     },
     {
      "id": "eq-derivative-b-to-the-x-ln",
-     "latex": "\\frac{dy}{dx}=b^{x}\\ln b"
+     "latex": "\\frac{dy}{dx}=b^{x}\\ln b",
+     "anchor": "3.9-general-theorem"
     },
     {
      "id": "eq-derivative-b-to-the-g",
-     "latex": "h'(x)=b^{g(x)}g'(x)\\ln b"
+     "latex": "h'(x)=b^{g(x)}g'(x)\\ln b",
+     "anchor": "3.9-general-theorem"
     }
    ]
   },
@@ -1063,7 +1148,8 @@
    "forms": [
     {
      "id": "eq-power-rule-real",
-     "latex": "\\frac{d}{dx}x^{r}=rx^{r-1}"
+     "latex": "\\frac{d}{dx}x^{r}=rx^{r-1}",
+     "anchor": "3.9-fs-id1169738228453"
     }
    ]
   }

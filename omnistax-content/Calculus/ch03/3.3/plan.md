@@ -67,3 +67,11 @@ Ids confirmed with `ost ids calculus 3.3` after the build.
 - App: the `op=derivative` query parameter of the Integral Calculator (the links above assume it).
 - Review exercise 373, once 3.9 is built: `ost add calculus exercises --section 3.3 '<row>'`, tags, and append to 3.3's `exercise_notes`: "Review exercise 373 is printed at the end of 3.9 and set here; 374 has no answer in the key and is left out." Row:
   - `{"id": "r373", "source_id": "fs-id1169738230392", "source_section": "3.9", "source_number": "373", "kind": "review-exercise", "bloom": "Apply", "place": {"at": "end"}, "cite": "combining-rules", "prompt": "<p>Find the derivatives of the following functions.</p><p>$f(x)=3x^{3}-\\frac{4}{x^{2}}$</p>", "answer": {"type": "open", "generated_by": "source", "solution": "$9x^{2}+\\frac{8}{x^{3}}$"}}` · tags `extended-power-rule`, `difference-rule`
+
+## As built (2026-10-12)
+
+- `fig-constant-multiple` draws f and g on one panel each, so they are referents `const-f`, `const-g` (book `COLOR.md`: two functions on one graph are referents), marked in Example 3.20 and the caption; f′ and g′ wear their referent's colour too.
+- `sim-product-rule-area`: x on 1.5 to 2.2, h on 0 to 0.2 (special 0), the two sides on their own fixed scales; the readout splits Δ(fg)/h into the two strips and the corner and, at h = 0, writes f′(x)g(x) + g′(x)f(x) with the numbers.
+- Sheet links: "rules for finding derivatives" in the opening paragraph opens the Table of Derivatives; the word "derivative" (or "differentiating") in the problems of Examples 3.19, 3.21, 3.24, 3.25 and 3.27 opens the Integral Calculator in derivative mode on that function. The book's words are kept; no words are added.
+- Variables rows added: 3.3/f, g, f_prime, s, s_prime, v; anchors on the 3.3 rows and the eight rule forms.
+- Correction: Checkpoint 3.17's answer (k′ for h′).

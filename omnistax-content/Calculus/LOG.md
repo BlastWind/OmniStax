@@ -172,3 +172,130 @@ is carried only by the exercises the book sets under it. Figures 5.1–5.39
 are numbered without gaps; six Sims of OmniStax’s own were added, two
 figure pairs became moving figures (the car of 5.20 + 5.21, the particle of
 5.33).
+
+
+## Pass 7 (2026-10-12): (2026-10-12): Chapter 7 pass
+
+Chapter 7, Techniques of Integration, was built whole by one agent: prep, the
+introduction and 7.1–7.7, and this pass. The chapter's 40 concepts and 77
+prerequisite edges were merged after Chapter 6's; one symbol was added, f⁽⁴⁾
+(`\kffour`). Mₙ, Tₙ and Sₙ are written `\kM_{n}`, `\kT_{n}`, `\kS_{n}` on the
+rows M, T and S of 7.6, which carry the three rules, as Chapter 5 writes Lₙ;
+the M of an error bound stays a plain letter. `relative-error` is Chapter 4's
+concept, which 7.6's definition reinforces. Every section's "Wanted at chapter
+level" was applied: the anchors of all 33 forms and of every variables row,
+and two 7.2 rows for a and b. The book numbers 21 equations here, the seven
+with `class="numbered"` and the fourteen with no class (Example 7.50 cites
+"Equation 7.17"); all keep their numbers as \tag{7.N} and every reference to
+one reads "Equation 7.N", linked. The chapter review exercises printed at the
+end of 7.7 landed with the section that introduces what each tests: 408
+(AI-marked) and 411 in 7.1; 413 and 419 in 7.3; 409, 415 and 421 in 7.4; 417 in
+7.5; 410 (AI-marked), 423 and 425 in 7.6; 427, 428 and 429 (AI-marked) stay in
+7.7. 431 is left out with 430, whose curve fit it integrates. Corrections added
+as notes: 7.2's exercise 77 (tan²(x/2)); 7.3's dx = a cos θ, Example 7.26
+(sec θ) and Example 7.27 (sec²θ − 1); 7.5's exercise 291 (about 1273.37) and
+review 417 (the term −sin⁻¹(sin x/2)); 7.6's Simpson derivation (∫ from x₀ to
+x₄, ≈), Example 7.45 (S₂), Checkpoint 7.24 (M₂), Checkpoint 7.25 (the midpoint
+bound, Equation 7.12) and exercise 333 (0.1554); 7.7's Example 7.49 ("Revise
+to:", and 0.0357 over 10 months for 3.8 × 10⁻¹¹ over 8) and Example 7.50 (t → −∞).
+The keyed antiderivatives (91) were checked by differentiation and some
+thirty numeric keys recomputed. Figures 7.1–7.22 are numbered without gaps;
+7.14 and 7.15 are folded; the solids of 7.3 and 7.19 are 3D on `F.revolve`;
+three Sims of OmniStax's own were added (products of sines and cosines, partial
+fractions, and Example 7.37 as a second state of Figure 7.12). The Integral
+Calculator and the Table of Integrals are linked where the text first uses a
+technique and where 7.5 names a table and a CAS.
+
+
+## Pass 8 (2026-10-12): Pass (2026-10-12): Chapter 3 pass
+
+Chapter 3, Derivatives, was built by one agent after the prep (9e1efd6e): the
+introduction and 3.1–3.9, and this pass. Every section's "Wanted at chapter
+level" was applied as the section was built: anchors on all the chapter's
+forms and variables rows, and rows for the letters each section writes with a
+macro (f, g, s, v and their primes, dy/dx, θ in 3.7). Four symbols were added
+through book-rows.json and merged: C′ (`\kCprime`), R′ (`\kRprime`), v′
+(`\kvprime`) and k′ (`\kkprime`). The form eq-instantaneous-velocity-derivative
+now belongs to 3.1, where it is stated. The book's numbered equations
+(3.1–3.35) carry their numbers as tags, so "Equation 3.5" in an example names
+what the reader sees.
+
+figlib gained a Chapter 3 block: `F.deriv`, the derivative tracer (f with its
+tangent above, f′ traced below on the same x-range), and `F.secants`, the
+secants to a − h and a + h; their pure parts are in src/lib/fig/deriv.ts with
+tests/deriv.test.ts, and docs/prompts/interactive-figures.md lists both. The
+tracer draws 3.2's Figures 3.12 + 3.13, 3.5's Figure 3.27 and 3.9's Figure
+3.35. ost.py's find_row now names a variables row whose symbol holds a slash
+(dy/dx).
+
+Folds: 3.3 + 3.4, 3.12 + 3.13, 3.14 + 3.15 + 3.16, 3.23 + 3.24 (a moving
+particle on the transport's clock), 3.31 + 3.32 (with Example 3.73's ellipse),
+3.33 + 3.34. Sims of OmniStax's own: the product rule as an area (3.3) and the
+chain rule as two stretchings on three number lines (3.6). Figures 3.1–3.35
+are numbered without gaps; Tables 3.1–3.9 too, Table 3.5 standing only in the
+left-out exercise 174. Photographs kept: 3.1, 3.2, 3.10, 3.20.
+
+The Chapter Review Exercises printed at the end of 3.9 landed with the
+section that introduces what each tests: 391 in 3.1; 367–371 and 387 in 3.2
+(368 and 370 with AI-marked answers); 373 in 3.3; 377 in 3.5; 389 in 3.6 (it
+needs the chain rule); 379 in 3.7; 375, 381, 383, 385 in 3.9. Unkeyed even
+section exercises were left out except those asking for a proof, a derivation
+or an explanation, kept with AI-marked answers: 42, 44; 74, 76, 90, 92, 94,
+98, 100; 205–208; 366.
+
+Corrections added as notes: 3.1 Checkpoint 3.2's hint; 3.2 Checkpoint 3.10's
+hint and exercise 105's key; 3.3 Checkpoint 3.17's answer; 3.4 Example 3.34's
+v(t) for v(2), exercises 153, 167 and 169's keys; 3.6 Checkpoint 3.40's hint;
+3.7 Example 3.64's reference and Checkpoint 3.43's answer; 3.8 the split
+function's domain and Example 3.70's d/dy; 3.9 Example 3.79's broken
+reference and exercise 361's key.
+
+
+## Pass 9 (2026-10-12): Chapter 4, Applications of Derivatives, was built by one agent in one run: the
+
+prep (exploration, config agreed by carry-over, colour plan, chapter.json, 55
+concepts and 109 prerequisite edges merged), the introduction and 4.1–4.10,
+and this pass. Each section's plan was written just before its build. A
+scratch converter turned each source.md into the page's draft and exercise
+rows, so the prose, examples, notes, tables and keys are the book's; concept
+spans, macros, function tokens, figures and captions were set per section.
+
+Symbols added through book-rows.json and merged: the related rates dV/dt,
+dr/dt, dx/dt, ds/dt, dh/dt, dθ/dt; V, V′, r′; F, F′, G, G′; S′ (R′ was
+already merged by another chapter and is shared). Every variables row the
+chapter gives a meaning to carries an anchor, and so does every form of its
+concepts. The book's numbered equations (4.1–4.11) carry their numbers as
+tags. `end-behavior` (1.2) and `indeterminate-form` (2.3) are reinforced here,
+not restated.
+
+Figures 4.1–4.86 and Tables 4.1–4.13 are numbered without gaps. Folds: 4.25 +
+4.26 (the MVT with its proof's g below), 4.62 + 4.63, 4.64 + 4.65, 4.69 + 4.70
+(each optimization scene with its graph). Required figures made live as Sims:
+the four related-rates scenes (moving, each holding on the example's instant),
+the four linear approximations and the differential, the local-extremum test
+on an interval, the closed-interval search, the stacked f, f′, f″ sign view,
+the ε–N and M–N games, the leading term and the oblique asymptote at growing
+windows, the five optimization scenes (the revenue as a rectangle under the
+demand line), L'Hôpital's zoom, eˣ against any power, Newton's steps as a
+story, two cobwebs, the family of antiderivatives with parallel tangents and
+the initial-value curve. No Sim of OmniStax's own was added: each candidate
+was judged and dropped in its plan. Stand-ins where the book prints no
+formula: 4.14, 4.15, 4.21, 4.25, 4.29, 4.31, 4.35, 4.37, 4.38, 4.41, 4.80,
+4.11 (chosen not to answer Checkpoint 4.9). Photographs kept: 4.1, 4.4; the
+Mandelbrot image 4.83 kept. No figlib change.
+
+The Chapter Review Exercises printed at the end of 4.10 landed with the
+section that introduces what each tests: 549 in 4.1; 531 in 4.2; 526, 533 in
+4.3; 525 in 4.4; 527, 528, 529, 535, 537 in 4.5; 539, 547 in 4.6; 551 in 4.7;
+541 in 4.8; 543 in 4.9; 545 in 4.10; 526 and 528 with AI-marked answers; the
+12 unkeyed computational ones left out. Unkeyed even section exercises were
+left out except explanations, proofs, interpretations and true-or-false
+justifications, kept with AI-marked answers, and keyed ones whose key reads
+only "Answers may vary" (4.3's 91, 93, 105, 107; 4.5's 217, 219).
+
+Corrections added as notes: 4.3 the critical-number definition; 4.4 the
+decreasing condition and exercise 193's key (the car proof moved to 191);
+4.5 "a local maximum at x"; 4.6 Example 4.27's limit, Example 4.29's
+interval, Checkpoints 4.22, 4.25 and 4.26; 4.7 Checkpoint 4.35's square; 4.8
+Example 4.43's "x ≥ ∞" and Figure 4.71's caption; 4.9 Checkpoint 4.48's
+index; 4.10 the constant-multiple line and Example 4.53's condition.

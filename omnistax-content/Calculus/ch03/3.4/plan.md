@@ -54,3 +54,13 @@ Ids confirmed with `ost ids calculus 3.4` after the build.
 
 - variables `3.4/v`, `3.4/a` → `3.4-motion-definition`; `3.4/P`, `3.4/P_prime` → `3.4-population-definition`; `3.4/MC`, `3.4/MR`, `3.4/MP` → `3.4-marginal-definition`.
 - forms: `eq-amount-of-change`, `eq-average-rate-of-change` → `3.4-amount-of-change` (the header's span holding the two displays); `eq-amount-of-change-formula` → `3.4-amount-of-change-formula`; `eq-velocity`, `eq-speed`, `eq-acceleration` → `3.4-motion-definition`; `eq-population-growth-rate` → `3.4-population-definition`; `eq-marginal-cost`, `eq-marginal-revenue`, `eq-marginal-profit` → `3.4-marginal-definition`; `eq-marginal-cost-estimate` → `3.4-marginal-estimate` (the h = 1 paragraph).
+
+## As built (2026-10-12)
+
+- `sim-amount-of-change` uses the stand-in f(x) = 1 + 4/(x + 1) at a = 1 (f(a) = 3, f′(a) = −1), decreasing and concave up like the book's sketch, not the rising 0.25x² + 1; h runs −0.8 to 2.5 with a special at 0; the gap is drawn in `error` (it is the book's "error in using f(a) + f′(a)h"), so the figure draws function, line, derivative, error. Until the chapter's recolour, error and function are close reds.
+- `fig-ball-drop`: Example 3.34's unnumbered graph, a still live copy (kind figure, eyebrow "Figure").
+- `sim-particle-path`: no t slider; the transport's scrubber is the clock (model 5 s in 5 s, hold 1.2 s). The path is lifted a lane at each turn as the book draws Figure 3.24.
+- No calculator link here: no book words name the step (the plan's link at v(t) = s′(t) = −32t would need added words).
+- New symbols C_prime, R_prime, v_prime (book-rows.json, merged); variables rows added for f, f_prime, s, s_prime, s_dprime, v_prime, v_ave, C, C_prime, R, R_prime, p; anchors on every 3.4 row and the eleven forms.
+- Corrections: Example 3.34 (v(t) for v(2)), exercise 153's key (ft/s² for ft/s), 167's key (the missing t), 169's key (x for t).
+- Checkpoint 3.22 is a choice of the two directions.

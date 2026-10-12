@@ -1,0 +1,228 @@
+<p>Now that we have both a conceptual understanding of a <span data-concept="limit">limit</span> and the practical ability to compute <span data-concept="limit">limits</span>, we have established the foundation for our study of calculus, the branch of mathematics in which we compute <span data-concept="derivative">derivatives</span> and integrals. Most mathematicians and historians agree that calculus was developed independently by the Englishman Isaac Newton $\text{(1643–1727)}$ and the German Gottfried Leibniz $\text{(1646–1716),}$ whose images appear in Figure 3.2. When we credit Newton and Leibniz with developing calculus, we are really referring to the fact that Newton and Leibniz were the first to understand the relationship between the <span data-concept="derivative">derivative</span> and the integral. Both mathematicians benefited from the work of predecessors, such as Barrow, Fermat, and Cavalieri. The initial relationship between the two mathematicians appears to have been amicable; however, in later years a bitter controversy erupted over whose work took precedence. Although it seems likely that Newton did, indeed, arrive at the ideas behind calculus first, we are indebted to Leibniz for the notation that we commonly use today.</p>
+<figure class="photo" id="fig-newton-leibniz" data-figure="3.2">
+  <img src="/media/ch03/CNX_Calc_Figure_03_01_001.jpg" alt="Photos of Newton and Leibniz.">
+  <figcaption><span class="eyebrow">Figure 3.2</span><span>Newton and Leibniz are credited with developing calculus independently.</span></figcaption>
+</figure>
+
+<section id="tangent-lines">
+<h2>Tangent Lines</h2>
+<p class="cite-target">We begin our study of calculus by revisiting the notion of <span data-concept="secant">secant lines</span> and <span data-concept="tangent-line">tangent lines</span>. Recall that we used the <span data-concept="slope">slope</span> of a <span data-concept="secant">secant line</span> to a <span data-concept="function">function</span> at a point $(a,\kf(a))$ to estimate the <span data-concept="rate-of-change">rate of change</span>, or the rate at which one variable changes in relation to another variable. We can obtain the <span data-concept="slope">slope</span> of the <span data-concept="secant">secant</span> by choosing a value of $x$ near $a$ and drawing a line through the points $(a,\kf(a))$ and $(x,\kf(x)),$ as shown in Figure 3.3. The <span data-concept="slope">slope</span> of this line is given by an equation in the form of a <span data-concept="difference-quotient">difference quotient</span>:</p>
+$$\kmsec=\frac{\kf(x)-\kf(a)}{x-a}.$$
+<p>We can also calculate the <span data-concept="slope">slope</span> of a <span data-concept="secant">secant line</span> to a <span data-concept="function">function</span> at a value <em>a</em> by using this equation and replacing $x$ with $a+h,$ where $h$ is a value close to 0. We can then calculate the <span data-concept="slope">slope</span> of the line through the points $(a,\kf(a))$ and $(a+h,\kf(a+h)).$ In this case, we find the <span data-concept="secant">secant line</span> has a <span data-concept="slope">slope</span> given by the following <span data-concept="difference-quotient">difference quotient with increment</span> $h\text{:}$</p>
+$$\kmsec=\frac{\kf(a+h)-\kf(a)}{a+h-a}=\frac{\kf(a+h)-\kf(a)}{h}.$$
+<div class="note" id="difference-quotient-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf$ be a <span data-concept="function">function</span> defined on an interval $\kI$ containing $a.$ If $x\ne a$ is in $\kI,$ then</p>
+$$\kQ=\frac{\kf(x)-\kf(a)}{x-a}\tag{3.1}$$
+<p>is a <strong><span data-concept="difference-quotient">difference quotient</span></strong>.</p>
+<p>Also, if $h\ne 0$ is chosen so that $a+h$ is in $\kI,$ then</p>
+$$\kQ=\frac{\kf(a+h)-\kf(a)}{h}\tag{3.2}$$
+<p>is a <span data-concept="difference-quotient">difference quotient with increment</span> $h.$</p>
+</div>
+<p>These two expressions for calculating the <span data-concept="slope">slope</span> of a <span data-concept="secant">secant line</span> are illustrated in Figure 3.3. We will see that each of these two methods for finding the <span data-concept="slope">slope</span> of a <span data-concept="secant">secant line</span> is of value. Depending on the setting, we can choose one or the other. The primary consideration in our choice usually depends on ease of calculation.</p>
+<figure class="sim" id="sim-secant-to-tangent-h" data-figure="3.3 + 3.4" data-original="/media/ch03/CNX_Calc_Figure_03_01_002.jpg,/media/ch03/CNX_Calc_Figure_03_01_003.jpg" data-original-caption="(Figure 3.3) We can calculate the slope of a secant line in either of two ways. (Figure 3.4) The secant lines approach the tangent line (shown in green) as the second point approaches the first.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.3 + 3.4</span><span>On <span data-fn="x^2">$\kf(x)=x^{2}$</span> with $a=3,$ drag the second point toward $(3,9)$ from either side, and choose how it is named: $(x,\kf(x)),$ with the <span data-concept="difference-quotient">difference quotient</span> taken over $x-a,$ or $(a+h,\kf(a+h)),$ with the quotient taken over the increment $h.$ The dashed <span data-concept="secant">secant line</span> swings toward the <span data-concept="tangent-line">tangent line</span> and its <span data-concept="slope">slope</span> closes in on $\kmtan=6;$ at $x=a,$ where $h=0,$ the secant has become the tangent.</span></div>
+</figure>
+<p>In Figure 3.4(a) we see that, as the values of $x$ approach $a,$ the <span data-concept="slope">slopes</span> of the <span data-concept="secant">secant lines</span> provide better estimates of the <span data-concept="rate-of-change">rate of change</span> of the <span data-concept="function">function</span> at $a.$ Furthermore, the <span data-concept="secant">secant lines</span> themselves approach the <span data-concept="tangent-line">tangent line</span> to the <span data-concept="function">function</span> at $a,$ which represents the <span data-concept="limit">limit</span> of the <span data-concept="secant">secant lines</span>. Similarly, Figure 3.4(b) shows that as the values of $h$ get closer to $0,$ the <span data-concept="secant">secant lines</span> also approach the <span data-concept="tangent-line">tangent line</span>. The <span data-concept="slope-of-the-tangent-line">slope of the tangent line</span> at $a$ is the <span data-concept="rate-of-change">rate of change</span> of the <span data-concept="function">function</span> at $a,$ as shown in Figure 3.4(c).</p>
+<p id="local-linearity-paragraph">In Figure 3.5 we show the graph of <span data-fn="sqrt(x)">$\kf(x)=\sqrt{x}$</span> and its <span data-concept="tangent-line">tangent line</span> at $(1,1)$ in a series of tighter intervals about $x=1.$ As the intervals become narrower, the <span data-concept="graph-of-a-function">graph of the function</span> and its <span data-concept="tangent-line">tangent line</span> appear to coincide, making the values on the <span data-concept="tangent-line">tangent line</span> a good approximation to the values of the <span data-concept="function">function</span> for choices of $x$ close to $1.$ In fact, the graph of $\kf(x)$ itself appears to be <span data-concept="local-linearity">locally linear</span> in the immediate vicinity of $x=1.$</p>
+<figure class="sim" id="sim-local-linearity" data-figure="3.5" data-original="/media/ch03/CNX_Calc_Figure_03_01_008.jpg" data-original-caption="For values of x close to 1, the graph of f(x)=√x and its tangent line appear to coincide.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.5</span><span>The graph of <span data-fn="sqrt(x)">$\kf(x)=\sqrt{x}$</span> and its <span data-concept="tangent-line">tangent line</span> <span data-fn="(x+1)/2">$y=\frac{x+1}{2}$</span> at $(1,1),$ seen in the window $1\pm w.$ Narrow the window from the book’s widest view, $w=2,$ toward $w=0.01:$ the curve straightens onto the line, and the largest gap between them shrinks far faster than the window does, until the graph is <span data-concept="local-linearity">locally linear</span> near $x=1.$</span></div>
+</figure>
+<p>Formally we may define the <span data-concept="tangent-line">tangent line</span> to the <span data-concept="graph-of-a-function">graph of a function</span> as follows.</p>
+<div class="note" id="tangent-line-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf(x)$ be a <span data-concept="function">function</span> defined in an open interval containing $a.$ The <em><span data-concept="tangent-line">tangent line</span></em> to $\kf(x)$ at $a$ is the line passing through the point $(a,\kf(a))$ having <span data-concept="slope">slope</span></p>
+$$\kmtan=\lim_{x\to a}\frac{\kf(x)-\kf(a)}{x-a}\tag{3.3}$$
+<p>provided this <span data-concept="limit">limit</span> exists.</p>
+<p>Equivalently, we may define the <span data-concept="tangent-line">tangent line</span> to $\kf(x)$ at $a$ to be the line passing through the point $(a,\kf(a))$ having <span data-concept="slope">slope</span></p>
+$$\kmtan=\lim_{h\to 0}\frac{\kf(a+h)-\kf(a)}{h}\tag{3.4}$$
+<p>provided this <span data-concept="limit">limit</span> exists.</p>
+</div>
+<p>Just as we have used two different expressions to define the <span data-concept="slope">slope</span> of a <span data-concept="secant">secant line</span>, we use two different forms to define the <span data-concept="slope-of-the-tangent-line">slope of the tangent line</span>. In this text we use both forms of the definition. As before, the choice of definition will depend on the setting. Now that we have formally defined a <span data-concept="tangent-line">tangent line</span> to a <span data-concept="function">function</span> at a point, we can use this definition to find equations of <span data-concept="tangent-line">tangent lines</span>.</p>
+<div class="example" id="fs-id1169739298611">
+<h3>Example 3.1 · Finding a Tangent Line</h3>
+<p>Find an equation of the line <span data-concept="tangent-line">tangent</span> to the graph of <span data-fn="x^2">$\kf(x)=x^{2}$</span> at $x=3.$</p>
+<h4>Solution</h4>
+<p>First find the <span data-concept="slope-of-the-tangent-line">slope of the tangent line</span>. In this example, use Equation 3.3.</p>
+$$\begin{array}{rllll}\kmtan & =\lim_{x\to 3}\frac{\kf(x)-\kf(3)}{x-3} & & & \text{Apply the definition.} \\ & =\lim_{x\to 3}\frac{x^{2}-9}{x-3} & & & \text{Substitute}\;\kf(x)=x^{2}\;\text{and}\;\kf(3)=9. \\ & =\lim_{x\to 3}\frac{(x-3)(x+3)}{x-3}=\lim_{x\to 3}(x+3)=6 & & & \text{Factor the numerator to evaluate the limit.}\end{array}$$
+<p>Next, find a point on the <span data-concept="tangent-line">tangent line</span>. Since the line is <span data-concept="tangent-line">tangent</span> to the graph of $\kf(x)$ at $x=3,$ it passes through the point $(3,\kf(3)).$ We have $\kf(3)=9,$ so the <span data-concept="tangent-line">tangent line</span> passes through the point $(3,9).$</p>
+<p>Using the <span data-concept="point-slope-equation">point-slope equation</span> of the line with the <span data-concept="slope">slope</span> $m=6$ and the point $(3,9),$ we obtain the line $y-9=6(x-3).$ Simplifying, we have <span data-fn="6x-9">$y=6x-9.$</span> The graph of $\kf(x)=x^{2}$ and its <span data-concept="tangent-line">tangent line</span> at $3$ are shown in Figure 3.6.</p>
+<figure class="sim" id="fig-tangent-square" data-figure="3.6" data-original="/media/ch03/CNX_Calc_Figure_03_01_005.jpg" data-original-caption="The tangent line to f(x) at x=3.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.6</span><span>The <span data-concept="tangent-line">tangent line</span> to $\kf(x)$ at $x=3.$</span></div>
+</figure>
+</div>
+<div class="example" id="fs-id1169739223534">
+<h3>Example 3.2 · The Slope of a Tangent Line Revisited</h3>
+<p>Use Equation 3.4 to find the <span data-concept="slope-of-the-tangent-line">slope of the line tangent</span> to the graph of <span data-fn="x^2">$\kf(x)=x^{2}$</span> at $x=3.$</p>
+<h4>Solution</h4>
+<p>The steps are very similar to Example 3.1. See Equation 3.4 for the definition.</p>
+$$\begin{array}{rllll}\kmtan & =\lim_{h\to 0}\frac{\kf(3+h)-\kf(3)}{h} & & & \text{Apply the definition.} \\ & =\lim_{h\to 0}\frac{{(3+h)}^{2}-9}{h} & & & \text{Substitute}\;\kf(3+h)={(3+h)}^{2}\;\text{and}\;\kf(3)=9. \\ & =\lim_{h\to 0}\frac{9+6h+h^{2}-9}{h} & & & \text{Expand and simplify to evaluate the limit.} \\ & =\lim_{h\to 0}\frac{h(6+h)}{h}=\lim_{h\to 0}(6+h)=6\end{array}$$
+<p>We obtained the same value for the <span data-concept="slope-of-the-tangent-line">slope of the tangent line</span> by using the other definition, demonstrating that the formulas can be interchanged.</p>
+</div>
+<div class="example" id="fs-id1169738966727">
+<h3>Example 3.3 · Finding the Equation of a Tangent Line</h3>
+<p>Find an equation of the line <span data-concept="tangent-line">tangent</span> to the graph of <span data-fn="1/x">$\kf(x)=1/x$</span> at $x=2.$</p>
+<h4>Solution</h4>
+<p>We can use Equation 3.3, but as we have seen, the results are the same if we use Equation 3.4.</p>
+$$\begin{array}{rllll}\kmtan & =\lim_{x\to 2}\frac{\kf(x)-\kf(2)}{x-2} & & & \text{Apply the definition.} \\ & =\lim_{x\to 2}\frac{\frac{1}{x}-\frac{1}{2}}{x-2} & & & \text{Substitute}\;\kf(x)=\frac{1}{x}\;\text{and}\;\kf(2)=\frac{1}{2}. \\ & =\lim_{x\to 2}\frac{\frac{1}{x}-\frac{1}{2}}{x-2}\cdot \frac{2x}{2x} & & & \begin{array}{l}\text{Multiply numerator and denominator by}\;2x\;\text{to} \\ \text{simplify fractions.}\end{array} \\ & =\lim_{x\to 2}\frac{(2-x)}{(x-2)(2x)} & & & \text{Simplify.} \\ & =\lim_{x\to 2}\frac{-1}{2x} & & & \text{Simplify using}\;\frac{2-x}{x-2}=-1,\text{for}\;x\ne 2. \\ & =-\frac{1}{4} & & & \text{Evaluate the limit.}\end{array}$$
+<p>We now know that the <span data-concept="slope-of-the-tangent-line">slope of the tangent line</span> is $-\frac{1}{4}.$ To find an equation of the <span data-concept="tangent-line">tangent line</span>, we also need a point on the line. We know that $\kf(2)=\frac{1}{2}.$ Since the <span data-concept="tangent-line">tangent line</span> passes through the point $(2,\frac{1}{2})$ we can use the <span data-concept="point-slope-equation">point-slope equation</span> of a line to find an equation of the <span data-concept="tangent-line">tangent line</span>. Thus the <span data-concept="tangent-line">tangent line</span> has the equation <span data-fn="-x/4+1">$y=-\frac{1}{4}x+1.$</span> The graphs of $\kf(x)=\frac{1}{x}$ and $y=-\frac{1}{4}x+1$ are shown in Figure 3.7.</p>
+<figure class="sim" id="fig-tangent-reciprocal" data-figure="3.7" data-original="/media/ch03/CNX_Calc_Figure_03_01_006.jpg" data-original-caption="The line is tangent to f(x) at x=2.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.7</span><span>The line is <span data-concept="tangent-line">tangent</span> to $\kf(x)$ at $x=2.$</span></div>
+</figure>
+</div>
+<div class="exercises" data-place="fs-id1169738966727"></div>
+</section>
+
+<section id="derivative-at-a-point">
+<h2>The Derivative of a Function at a Point</h2>
+<p class="cite-target" id="derivative-paragraph">The type of <span data-concept="limit">limit</span> we compute in order to find the <span data-concept="slope-of-the-tangent-line">slope of the line tangent</span> to a <span data-concept="function">function</span> at a point occurs in many applications across many disciplines. These applications include <span data-concept="instantaneous-velocity">velocity</span> and <span data-concept="acceleration">acceleration</span> in physics, marginal profit <span data-concept="function">functions</span> in business, and growth rates in biology. This <span data-concept="limit">limit</span> occurs so frequently that we give this value a special name: the <strong><span data-concept="derivative">derivative</span></strong>. The process of finding a <span data-concept="derivative">derivative</span> is called <strong><span data-concept="differentiation">differentiation</span></strong>.</p>
+<div class="note" id="derivative-definition">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf(x)$ be a <span data-concept="function">function</span> defined in an open interval containing $a.$ The <span data-concept="derivative">derivative</span> of the <span data-concept="function">function</span> $\kf(x)$ at $a,$ denoted by $\kfprime(a),$ is defined by</p>
+$$\kfprime(a)=\lim_{x\to a}\frac{\kf(x)-\kf(a)}{x-a}\tag{3.5}$$
+<p>provided this <span data-concept="limit">limit</span> exists.</p>
+<p>Alternatively, we may also define the <span data-concept="derivative">derivative</span> of $\kf(x)$ at $a$ as</p>
+$$\kfprime(a)=\lim_{h\to 0}\frac{\kf(a+h)-\kf(a)}{h}.\tag{3.6}$$
+</div>
+<div class="example" id="fs-id1169739198956">
+<h3>Example 3.4 · Estimating a Derivative</h3>
+<p>For <span data-fn="x^2">$\kf(x)=x^{2},$</span> use a table to estimate $\kfprime(3)$ using Equation 3.5.</p>
+<h4>Solution</h4>
+<p>Create a table using values of $x$ just below $3$ and just above $3.$</p>
+<div class="book-table" id="fs-id1169739301095">
+  <table>
+    <thead><tr><th>$x$</th><th>$\frac{x^{2}-9}{x-3}$</th></tr></thead>
+    <tbody>
+      <tr><td>$2.9$</td><td>$5.9$</td></tr>
+      <tr><td>$2.99$</td><td>$5.99$</td></tr>
+      <tr><td>$2.999$</td><td>$5.999$</td></tr>
+      <tr><td>$3.001$</td><td>$6.001$</td></tr>
+      <tr><td>$3.01$</td><td>$6.01$</td></tr>
+      <tr><td>$3.1$</td><td>$6.1$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>After examining the table, we see that a good estimate is $\kfprime(3)=6.$</p>
+</div>
+<div class="exercises" data-place="fs-id1169739198956"></div>
+<div class="example" id="fs-id1169739044032">
+<h3>Example 3.5 · Finding a Derivative</h3>
+<p>For <span data-fn="3x^2-4x+1">$\kf(x)=3x^{2}-4x+1,$</span> find $\kfprime(2)$ by using Equation 3.5.</p>
+<h4>Solution</h4>
+<p>Substitute the given <span data-concept="function">function</span> and value directly into the equation.</p>
+$$\begin{array}{rllll}\kfprime(2) & =\lim_{x\to 2}\frac{\kf(x)-\kf(2)}{x-2} & & & \text{Apply the definition.} \\ & =\lim_{x\to 2}\frac{(3x^{2}-4x+1)-5}{x-2} & & & \text{Substitute}\;\kf(x)=3x^{2}-4x+1\;\text{and}\;\kf(2)=5. \\ & =\lim_{x\to 2}\frac{(x-2)(3x+2)}{x-2} & & & \text{Simplify and factor the numerator.} \\ & =\lim_{x\to 2}(3x+2) & & & \text{Cancel the common factor.} \\ & =8 & & & \text{Evaluate the limit.}\end{array}$$
+</div>
+<div class="example" id="fs-id1169739093789">
+<h3>Example 3.6 · Revisiting the Derivative</h3>
+<p>For <span data-fn="3x^2-4x+1">$\kf(x)=3x^{2}-4x+1,$</span> find $\kfprime(2)$ by using Equation 3.6.</p>
+<h4>Solution</h4>
+<p>Using this equation, we can substitute two values of the <span data-concept="function">function</span> into the equation, and we should get the same value as in Example 3.5.</p>
+$$\begin{array}{rllll}\kfprime(2) & =\lim_{h\to 0}\frac{\kf(2+h)-\kf(2)}{h} & & & \text{Apply the definition.} \\ & =\lim_{h\to 0}\frac{(3{(2+h)}^{2}-4(2+h)+1)-5}{h} & & & \begin{array}{l}\text{Substitute}\;\kf(2)=5\;\text{and} \\ \kf(2+h)=3{(2+h)}^{2}-4(2+h)+1.\end{array} \\ & =\lim_{h\to 0}\frac{3h^{2}+8h}{h} & & & \text{Simplify the numerator.} \\ & =\lim_{h\to 0}\frac{h(3h+8)}{h} & & & \text{Factor the numerator.} \\ & =\lim_{h\to 0}(3h+8) & & & \text{Cancel the common factor.} \\ & =8 & & & \text{Evaluate the limit.}\end{array}$$
+<p>The results are the same whether we use Equation 3.5 or Equation 3.6.</p>
+</div>
+<div class="exercises" data-place="fs-id1169739093789"></div>
+</section>
+
+<section id="velocities">
+<h2>Velocities and Rates of Change</h2>
+<p class="cite-target">Now that we can evaluate a <span data-concept="derivative">derivative</span>, we can use it in <span data-concept="instantaneous-velocity">velocity</span> applications. Recall that if $\ks(t)$ is the position of an object moving along a coordinate axis, the <span data-concept="average-velocity">average velocity</span> of the object over a time interval $[a,t]$ if $t\gt a$ or $[t,a]$ if $t\lt a$ is given by the <span data-concept="difference-quotient">difference quotient</span></p>
+$$\kvave=\frac{\ks(t)-\ks(a)}{t-a}.\tag{3.7}$$
+<p id="instantaneous-velocity-paragraph">As the values of $t$ approach $a,$ the values of $\kvave$ approach the value we call the <span data-concept="instantaneous-velocity">instantaneous velocity</span> at $a.$ That is, <span data-concept="instantaneous-velocity">instantaneous velocity</span> at $a,$ denoted $\kv(a),$ is given by</p>
+$$\kv(a)=\ksprime(a)=\lim_{t\to a}\frac{\ks(t)-\ks(a)}{t-a}.\tag{3.8}$$
+<p>To better understand the relationship between <span data-concept="average-velocity">average velocity</span> and <span data-concept="instantaneous-velocity">instantaneous velocity</span>, see Figure 3.8. In this figure, the <span data-concept="slope-of-the-tangent-line">slope of the tangent line</span> (shown in red) is the <span data-concept="instantaneous-velocity">instantaneous velocity</span> of the object at time $t=a$ whose position at time $t$ is given by the <span data-concept="function">function</span> $\ks(t).$ The <span data-concept="slope">slope</span> of the <span data-concept="secant">secant line</span> (shown in green) is the <span data-concept="average-velocity">average velocity</span> of the object over the time interval $[a,t].$</p>
+<figure class="sim" id="fig-velocity-secant-tangent" data-figure="3.8" data-original="/media/ch03/CNX_Calc_Figure_03_01_007.jpg" data-original-caption="The slope of the secant line is the average velocity over the interval [a,t]. The slope of the tangent line is the instantaneous velocity.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.8</span><span>The <span data-concept="slope">slope</span> of the <span data-concept="secant">secant line</span> is the <span data-concept="average-velocity">average velocity</span> over the interval $[a,t].$ The <span data-concept="slope-of-the-tangent-line">slope of the tangent line</span> is the <span data-concept="instantaneous-velocity">instantaneous velocity</span>.</span></div>
+</figure>
+<p>We can use Equation 3.5 to calculate the <span data-concept="instantaneous-velocity">instantaneous velocity</span>, or we can estimate the <span data-concept="instantaneous-velocity">velocity</span> of a moving object by using a table of values. We can then confirm the estimate by using Equation 3.7.</p>
+<div class="example" id="fs-id1169739179204">
+<h3>Example 3.7 · Estimating Velocity</h3>
+<p>A lead weight on a spring is oscillating up and down. Its position at time $t$ with respect to a fixed horizontal line is given by <span data-fn="sin(x)">$\ks(t)=\sin t$</span> (Figure 3.9). Use a table of values to estimate $\kv(0).$ Check the estimate by using Equation 3.5.</p>
+<figure class="sim" id="fig-spring" data-figure="3.9" data-original="/media/ch03/CNX_Calc_Figure_03_01_010.jpg" data-original-caption="A lead weight suspended from a spring in vertical oscillatory motion.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.9</span><span>A lead weight suspended from a spring in vertical oscillatory motion.</span></div>
+</figure>
+<h4>Solution</h4>
+<p>We can estimate the <span data-concept="instantaneous-velocity">instantaneous velocity</span> at $t=0$ by computing a table of <span data-concept="average-velocity">average velocities</span> using values of $t$ approaching $0,$ as shown in Table 3.1.</p>
+<div class="book-table" id="fs-id1169739242675">
+  <div class="tcap"><span class="eyebrow">Table 3.1</span><span><span data-concept="average-velocity">Average velocities</span> using values of <em>t</em> approaching 0</span></div>
+  <table>
+    <thead><tr><th>$t$</th><th>$\frac{\sin t-\sin 0}{t-0}=\frac{\sin t}{t}$</th></tr></thead>
+    <tbody>
+      <tr><td>$-0.1$</td><td>$0.998334166$</td></tr>
+      <tr><td>$-0.01$</td><td>$0.9999833333$</td></tr>
+      <tr><td>$-0.001$</td><td>$0.999999833$</td></tr>
+      <tr><td>$0.001$</td><td>$0.999999833$</td></tr>
+      <tr><td>$0.01$</td><td>$0.9999833333$</td></tr>
+      <tr><td>$0.1$</td><td>$0.998334166$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>From the table we see that the <span data-concept="average-velocity">average velocity</span> over the time interval $[-0.1,0]$ is $0.998334166,$ the <span data-concept="average-velocity">average velocity</span> over the time interval $[-0.01,0]$ is $0.9999833333,$ and so forth. Using this table of values, it appears that a good estimate is $\kv(0)=1.$</p>
+<p>By using Equation 3.5, we can see that</p>
+$$\kv(0)=\ksprime(0)=\lim_{t\to 0}\frac{\sin t-\sin 0}{t-0}=\lim_{t\to 0}\frac{\sin t}{t}=1.$$
+<p>Thus, in fact, $\kv(0)=1.$</p>
+</div>
+<div class="exercises" data-place="fs-id1169739179204"></div>
+<p>As we have seen throughout this section, the <span data-concept="slope-of-the-tangent-line">slope of a tangent line</span> to a <span data-concept="function">function</span> and <span data-concept="instantaneous-velocity">instantaneous velocity</span> are related concepts. Each is calculated by computing a <span data-concept="derivative">derivative</span> and each measures the <span data-concept="instantaneous-rate-of-change">instantaneous rate of change</span> of a <span data-concept="function">function</span>, or the <span data-concept="rate-of-change">rate of change</span> of a <span data-concept="function">function</span> at any point along the <span data-concept="function">function</span>.</p>
+<div class="note" id="instantaneous-rate-definition">
+<div class="eyebrow">Definition</div>
+<p>The <strong><span data-concept="instantaneous-rate-of-change">instantaneous rate of change</span></strong> of a <span data-concept="function">function</span> $\kf(x)$ at a value $a$ is its <span data-concept="derivative">derivative</span> $\kfprime(a).$</p>
+</div>
+<div class="example" id="fs-id1169739204154">
+<h3>Example 3.8 · Chapter Opener: Estimating Rate of Change of Velocity</h3>
+<figure class="photo" id="fig-venom-again" data-figure="3.10">
+  <img src="/media/ch03/CNX_Calc_Figure_03_01_009.jpg" alt="The same sports car speeding along a winding road from the beginning of the chapter.">
+  <figcaption><span class="eyebrow">Figure 3.10</span><span>(credit: modification of work by Codex41, Flickr)</span></figcaption>
+</figure>
+<p>Reaching a top speed of $270.49$ mph, the Hennessey Venom GT is one of the fastest cars in the world. In tests it went from $0$ to $60$ mph in $3.05$ seconds, from $0\;\text{to}\;100$ mph in $5.88$ seconds, from $0\;\text{to}\;200$ mph in $14.51$ seconds, and from $0\;\text{to}\;229.9$ mph in $19.96$ seconds. Use this data to draw a conclusion about the <span data-concept="rate-of-change">rate of change</span> of <span data-concept="instantaneous-velocity">velocity</span> (that is, its <span data-concept="acceleration">acceleration</span>) as it approaches $229.9$ mph. Does the rate at which the car is accelerating appear to be increasing, decreasing, or constant?</p>
+<h4>Solution</h4>
+<p>First observe that $60$ mph = $88$ ft/s, $100$ mph $\approx 146.67$ ft/s, $200$ mph $\approx 293.33$ ft/s, and $229.9$ mph $\approx 337.19$ ft/s. We can summarize the information in a table.</p>
+<div class="book-table" id="fs-id1169739188462">
+  <div class="tcap"><span class="eyebrow">Table 3.2</span><span>$\kv(t)$ at different values of <em>t</em></span></div>
+  <table>
+    <thead><tr><th>$t$</th><th>$\kv(t)$</th></tr></thead>
+    <tbody>
+      <tr><td>$0$</td><td>$0$</td></tr>
+      <tr><td>$3.05$</td><td>$88$</td></tr>
+      <tr><td>$5.88$</td><td>$146.67$</td></tr>
+      <tr><td>$14.51$</td><td>$293.33$</td></tr>
+      <tr><td>$19.96$</td><td>$337.19$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Now compute the average <span data-concept="acceleration">acceleration</span> of the car in feet per second per second on intervals of the form $[t,19.96]$ as $t$ approaches $19.96,$ as shown in the following table.</p>
+<div class="book-table" id="fs-id1169739188868">
+  <div class="tcap"><span class="eyebrow">Table 3.3</span><span>Average acceleration</span></div>
+  <table>
+    <thead><tr><th>$t$</th><th>$\frac{\kv(t)-\kv(19.96)}{t-19.96}=\frac{\kv(t)-337.19}{t-19.96}$</th></tr></thead>
+    <tbody>
+      <tr><td>$0.0$</td><td>$16.89$</td></tr>
+      <tr><td>$3.05$</td><td>$14.74$</td></tr>
+      <tr><td>$5.88$</td><td>$13.53$</td></tr>
+      <tr><td>$14.51$</td><td>$8.05$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>The rate at which the car is accelerating is decreasing as its <span data-concept="instantaneous-velocity">velocity</span> approaches $229.9$ mph $\text{(}337.19$ ft/s).</p>
+</div>
+<div class="example" id="fs-id1169739187343">
+<h3>Example 3.9 · Rate of Change of Temperature</h3>
+<p>A homeowner sets the thermostat so that the temperature in the house begins to drop from $70^{\circ}\text{F}$ at $9$ p.m., reaches a low of $60^{\circ}$ during the night, and rises back to $70^{\circ}$ by $7$ a.m. the next morning. Suppose that the temperature in the house is given by <span data-fn="0.4x^2-4x+70">$\kT(t)=0.4t^{2}-4t+70$</span> for $0\le t\le 10,$ where $t$ is the number of hours past $9$ p.m. Find the <span data-concept="instantaneous-rate-of-change">instantaneous rate of change</span> of the temperature at midnight.</p>
+<h4>Solution</h4>
+<p>Since midnight is $3$ hours past $9$ p.m., we want to compute $\kTprime(3).$ Refer to Equation 3.5.</p>
+$$\begin{array}{rllll}\kTprime(3) & =\lim_{t\to 3}\frac{\kT(t)-\kT(3)}{t-3} & & & \text{Apply the definition.} \\ & =\lim_{t\to 3}\frac{0.4t^{2}-4t+70-61.6}{t-3} & & & \begin{array}{l}\text{Substitute}\;\kT(t)=0.4t^{2}-4t+70\;\text{and} \\ \kT(3)=61.6.\end{array} \\ & =\lim_{t\to 3}\frac{0.4t^{2}-4t+8.4}{t-3} & & & \text{Simplify.} \\ & =\lim_{t\to 3}\frac{0.4(t-3)(t-7)}{t-3} & & & =\lim_{t\to 3}\frac{0.4(t-3)(t-7)}{t-3} \\ & =\lim_{t\to 3}0.4(t-7) & & & \text{Cancel.} \\ & =-1.6 & & & \text{Evaluate the limit.}\end{array}$$
+<p>The <span data-concept="instantaneous-rate-of-change">instantaneous rate of change</span> of the temperature at midnight is $-1.6^{\circ}\text{F}$ per hour.</p>
+</div>
+<div class="example" id="fs-id1169739253544">
+<h3>Example 3.10 · Rate of Change of Profit</h3>
+<p>A toy company can sell $x$ electronic gaming systems at a price of $\kp=-0.01x+400$ dollars per gaming system. The cost of manufacturing $x$ systems is given by $\kC(x)=100x+10,000$ dollars. Find the <span data-concept="rate-of-change">rate of change</span> of profit when $10,000$ games are produced. Should the toy company increase or decrease production?</p>
+<h4>Solution</h4>
+<p>The profit $\kP(x)$ earned by producing $x$ gaming systems is $\kR(x)-\kC(x),$ where $\kR(x)$ is the revenue obtained from the sale of $x$ games. Since the company can sell $x$ games at $\kp=-0.01x+400$ per game,</p>
+$$\kR(x)=x\kp=x(-0.01x+400)=-0.01x^{2}+400x.$$
+<p>Consequently,</p>
+$$\kP(x)=-0.01x^{2}+300x-10,000.$$
+<p>Therefore, evaluating the <span data-concept="rate-of-change">rate of change</span> of profit gives</p>
+$$\begin{array}{rl}\kPprime(10000) & =\lim_{x\to 10000}\frac{\kP(x)-\kP(10000)}{x-10000} \\ & =\lim_{x\to 10000}\frac{-0.01x^{2}+300x-10000-1990000}{x-10000} \\ & =\lim_{x\to 10000}\frac{-0.01x^{2}+300x-2000000}{x-10000} \\ & =100.\end{array}$$
+<p>Since the <span data-concept="rate-of-change">rate of change</span> of profit $\kPprime(10,000)\gt 0$ and $\kP(10,000)\gt 0,$ the company should increase production.</p>
+</div>
+<div class="exercises" data-place="fs-id1169739253544"></div>
+</section>

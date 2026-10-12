@@ -1,0 +1,202 @@
+<p>So far, we have learned how to differentiate a variety of <span data-concept="function">functions</span>, including trigonometric, inverse, and implicit <span data-concept="function">functions</span>. In this section, we explore <span data-concept="derivative">derivatives</span> of exponential and <span data-concept="logarithmic-function">logarithmic functions</span>. As we discussed in Introduction to Functions and Graphs, <span data-concept="exponential-function">exponential functions</span> play an important role in modeling population growth and the decay of radioactive materials. <span data-concept="logarithmic-function">Logarithmic functions</span> can help rescale large quantities and are particularly helpful for rewriting complicated expressions.</p>
+
+<section id="exponential">
+<h2>Derivative of the Exponential Function</h2>
+<p class="cite-target">Just as when we found the <span data-concept="derivative">derivatives</span> of other <span data-concept="function">functions</span>, we can find the <span data-concept="derivative">derivatives</span> of exponential and <span data-concept="logarithmic-function">logarithmic functions</span> using formulas. As we develop these formulas, we need to make certain basic assumptions. The proofs that these assumptions hold are beyond the scope of this course.</p>
+<p>First of all, we begin with the assumption that the <span data-concept="function">function</span> $\kB(x)=b^{x},b\gt 0,$ is defined for every real number and is continuous. In previous courses, the values of <span data-concept="exponential-function">exponential functions</span> for all rational numbers were defined—beginning with the definition of $b^{n},$ where $n$ is a positive integer—as the product of $b$ multiplied by itself $n$ times. Later, we defined $b^{0}=1,b^{-n}=\frac{1}{b^{n}},$ for a positive integer $n,$ and $b^{s/t}=(\sqrt[t]{b}{)}^{s}$ for positive integers $s$ and $t.$ These definitions leave open the question of the value of $b^{r}$ where $r$ is an arbitrary real number. By assuming the <em>continuity</em> of $\kB(x)=b^{x},b\gt 0,$ we may interpret $b^{r}$ as $\lim_{x\to r}b^{x}$ where the values of $x$ as we take the <span data-concept="limit">limit</span> are rational. For example, we may view $4^{\pi}$ as the number satisfying</p>
+$$\begin{array}{l}4^{3}\lt 4^{\pi}\lt 4^{4},4^{3.1}\lt 4^{\pi}\lt 4^{3.2},4^{3.14}\lt 4^{\pi}\lt 4^{3.15}, \\ 4^{3.141}\lt 4^{\pi}\lt 4^{3.142},4^{3.1415}\lt 4^{\pi}\lt 4^{3.1416}\text{,}\text{…}.\end{array}$$
+<p>As we see in the following table, $4^{\pi}\approx 77.88.$</p>
+<div class="book-table" id="fs-id1169738222068">
+  <div class="tcap"><span class="eyebrow">Table 3.6</span><span>Approximating a Value of $4^{\pi}$</span></div>
+  <table>
+    <thead><tr><th>$x$</th><th>$4^{x}$</th><th>$x$</th><th>$4^{x}$</th></tr></thead>
+    <tbody>
+      <tr><td>$3$</td><td>64</td><td>$3.141593$</td><td>77.8802710486</td></tr>
+      <tr><td>$3.1$</td><td>73.5166947198</td><td>$3.1416$</td><td>77.8810268071</td></tr>
+      <tr><td>$3.14$</td><td>77.7084726013</td><td>$3.142$</td><td>77.9242251944</td></tr>
+      <tr><td>$3.141$</td><td>77.8162741237</td><td>$3.15$</td><td>78.7932424541</td></tr>
+      <tr><td>$3.1415$</td><td>77.8702309526</td><td>$3.2$</td><td>84.4485062895</td></tr>
+      <tr><td>$3.14159$</td><td>77.8799471543</td><td>$4$</td><td>256</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>We also assume that for $\kB(x)=b^{x},b\gt 0,$ the value $\kBprime(0)$ of the <span data-concept="derivative">derivative</span> exists. In this section, we show that by making this one additional assumption, it is possible to prove that the <span data-concept="function">function</span> $\kB(x)$ is differentiable everywhere.</p>
+<p id="e-defined">We make one final assumption: that there is a unique value of $b\gt 0$ for which $\kBprime(0)=1.$ We define $e$ to be this unique value, as we did in Introduction to Functions and Graphs. Figure 3.33 provides graphs of the <span data-concept="function">functions</span> $y=2^{x},y=3^{x},y={2.7}^{x},$ and $y={2.8}^{x}.$ A visual estimate of the <span data-concept="slope-of-the-tangent-line">slopes of the tangent</span> lines to these <span data-concept="function">functions</span> at 0 provides evidence that the value of <em>e</em> lies somewhere between 2.7 and 2.8. The <span data-concept="function">function</span> $\kE(x)=e^{x}$ is called the <strong><span data-concept="natural-exponential-function">natural exponential function</span></strong>. Its inverse, $\kL(x)={\log }_{e}x=\ln x$ is called the <strong><span data-concept="natural-logarithm">natural logarithmic function</span></strong>.</p>
+<figure class="sim" id="sim-find-e" data-figure="3.33 + 3.34" data-original="/media/ch03/CNX_Calc_Figure_03_09_001.jpg,/media/ch03/CNX_Calc_Figure_03_09_002.jpg" data-original-caption="(Figure 3.33) The graph of E(x)=eˣ is between y=2ˣ and y=3ˣ. (Figure 3.34) The tangent line to E(x)=eˣ at x=0 has slope 1.">
+  <div class="sim-head"><span class="eyebrow">Figure 3.33 + 3.34</span><span>The <span data-concept="exponential-function">exponential function</span> $\kB(x)=b^{x}$ and its <span data-concept="tangent-line">tangent line</span> at $(0,1),$ whose <span data-concept="slope">slope</span> is $\kBprime(0).$ Slide the base $b$ from $2$ to $3$ through the book’s $2.7$ and $2.8:$ the slope climbs past $1$ at one base only, $b=e,$ where the tangent is the line $y=x+1$ and $\kB$ is $\kE(x)=e^{x}.$</span></div>
+</figure>
+<p>For a better estimate of $e,$ we may construct a table of estimates of $\kBprime(0)$ for <span data-concept="function">functions</span> of the form $\kB(x)=b^{x}.$ Before doing this, recall that</p>
+$$\kBprime(0)=\lim_{x\to 0}\frac{b^{x}-b^{0}}{x-0}=\lim_{x\to 0}\frac{b^{x}-1}{x}\approx \frac{b^{x}-1}{x}$$
+<p>for values of $x$ very close to zero. For our estimates, we choose $x=0.00001$ and $x=-0.00001$ to obtain the estimate</p>
+$$\frac{b^{-0.00001}-1}{-0.00001}\lt \kBprime(0)\lt \frac{b^{0.00001}-1}{0.00001}.$$
+<p>See the following table.</p>
+<div class="book-table" id="fs-id1169738019199">
+  <div class="tcap"><span class="eyebrow">Table 3.7</span><span>Estimating a Value of $e$</span></div>
+  <table>
+    <thead><tr><th>$b$</th><th>$\frac{b^{-0.00001}-1}{-0.00001}\lt \kBprime(0)\lt \frac{b^{0.00001}-1}{0.00001}$</th><th>$b$</th><th>$\frac{b^{-0.00001}-1}{-0.00001}\lt \kBprime(0)\lt \frac{b^{0.00001}-1}{0.00001}$</th></tr></thead>
+    <tbody>
+      <tr><td>$2$</td><td>$0.693145\lt \kBprime(0)\lt 0.69315$</td><td>$2.7183$</td><td>$1.000002\lt \kBprime(0)\lt 1.000012$</td></tr>
+      <tr><td>$2.7$</td><td>$0.993247\lt \kBprime(0)\lt 0.993257$</td><td>$2.719$</td><td>$1.000259\lt \kBprime(0)\lt 1.000269$</td></tr>
+      <tr><td>$2.71$</td><td>$0.996944\lt \kBprime(0)\lt 0.996954$</td><td>$2.72$</td><td>$1.000627\lt \kBprime(0)\lt 1.000637$</td></tr>
+      <tr><td>$2.718$</td><td>$0.999891\lt \kBprime(0)\lt 0.999901$</td><td>$2.8$</td><td>$1.029614\lt \kBprime(0)\lt 1.029625$</td></tr>
+      <tr><td>$2.7182$</td><td>$0.999965\lt \kBprime(0)\lt 0.999975$</td><td>$3$</td><td>$1.098606\lt \kBprime(0)\lt 1.098618$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>The evidence from the table suggests that $2.7182\lt e\lt 2.7183.$</p>
+<p>The graph of $\kE(x)=e^{x}$ together with the line <span data-fn="x+1">$y=x+1$</span> are shown in Figure 3.34. This line is tangent to the graph of $\kE(x)=e^{x}$ at $x=0.$</p>
+<p>Now that we have laid out our basic assumptions, we begin our investigation by exploring the <span data-concept="derivative">derivative</span> of $\kB(x)=b^{x},b\gt 0.$ Recall that we have assumed that $\kBprime(0)$ exists. By applying the <span data-concept="limit">limit</span> definition to the <span data-concept="derivative">derivative</span> we conclude that</p>
+$$\kBprime(0)=\lim_{h\to 0}\frac{b^{0+h}-b^{0}}{h}=\lim_{h\to 0}\frac{b^{h}-1}{h}.\tag{3.28}$$
+<p>Turning to $\kBprime(x),$ we obtain the following.</p>
+$$\begin{array}{rllll}\kBprime(x) & =\lim_{h\to 0}\frac{b^{x+h}-b^{x}}{h} & & & \text{Apply the limit definition of the derivative.} \\ & =\lim_{h\to 0}\frac{b^{x}b^{h}-b^{x}}{h} & & & \text{Note that}\;b^{x+h}=b^{x}b^{h}. \\ & =\lim_{h\to 0}\frac{b^{x}(b^{h}-1)}{h} & & & \text{Factor out}\;b^{x}. \\ & =b^{x}\lim_{h\to 0}\frac{b^{h}-1}{h} & & & \text{Apply a property of limits.} \\ & =b^{x}\kBprime(0) & & & \text{Use}\;\kBprime(0)=\lim_{h\to 0}\frac{b^{0+h}-b^{0}}{h}=\lim_{h\to 0}\frac{b^{h}-1}{h}.\end{array}$$
+<p id="bx-derivative">We see that on the basis of the assumption that $\kB(x)=b^{x}$ is differentiable at $0,\kB(x)$ is not only differentiable everywhere, but its <span data-concept="derivative">derivative</span> is</p>
+$$\kBprime(x)=b^{x}\kBprime(0).\tag{3.29}$$
+<p>For $\kE(x)=e^{x},\kEprime(0)=1.$ Thus, we have $\kEprime(x)=e^{x}.$ (The value of $\kBprime(0)$ for an arbitrary <span data-concept="function">function</span> of the form $\kB(x)=b^{x},b\gt 0,$ will be derived later.)</p>
+<div class="note" id="exp-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Derivative of the Natural Exponential Function</h3>
+<p>Let $\kE(x)=e^{x}$ be the <span data-concept="natural-exponential-function">natural exponential function</span>. Then</p>
+$$\kEprime(x)=e^{x}.$$
+<p>In general,</p>
+$$\frac{d}{dx}(e^{g(x)})=e^{g(x)}g^{\prime}(x).$$
+</div>
+<div class="example" id="fs-id1169738223456">
+<h3>Example 3.74 · Derivative of an Exponential Function</h3>
+<p>Find the <a href="/calculus/sheets/integral-calculator/?op=derivative&amp;expr=e%5E(tan(2x))"><span data-concept="derivative">derivative</span></a> of <span data-fn="e^(tan(2x))">$\kf(x)=e^{\tan (2x)}.$</span></p>
+<h4>Solution</h4>
+<p>Using the <a href="/calculus/sheets/derivatives/"><span data-concept="derivative">derivative</span> formula</a> and the <span data-concept="chain-rule">chain rule</span>,</p>
+$$\begin{array}{rl}\kfprime(x) & =e^{\tan (2x)}\frac{d}{dx}(\tan (2x)) \\ & =e^{\tan (2x)}{\sec }^{2}(2x)\cdot 2.\end{array}$$
+</div>
+<div class="example" id="fs-id1169737140879">
+<h3>Example 3.75 · Combining Differentiation Rules</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="e^(x^2)/x">$y=\frac{e^{x^{2}}}{x}.$</span></p>
+<h4>Solution</h4>
+<p>Use the <span data-concept="derivative">derivative</span> of the <span data-concept="natural-exponential-function">natural exponential function</span>, the <span data-concept="quotient-rule">quotient rule</span>, and the <span data-concept="chain-rule">chain rule</span>.</p>
+$$\begin{array}{rllll}y^{\prime} & =\frac{(e^{x^{2}}\cdot 2)x\cdot x-1\cdot e^{x^{2}}}{x^{2}} & & & \text{Apply the quotient rule.} \\ & =\frac{e^{x^{2}}(2x^{2}-1)}{x^{2}} & & & \text{Simplify.}\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169737140879"></div>
+<div class="example" id="fs-id1169737949367">
+<h3>Example 3.76 · Applying the Natural Exponential Function</h3>
+<p>A colony of mosquitoes has an initial population of 1000. After $t$ days, the population is given by <span data-fn="1000e^(0.3x)">$\kA(t)=1000e^{0.3t}.$</span> Show that the ratio of the rate of change of the population, $\kAprime(t),$ to the population, $\kA(t)$ is constant.</p>
+<h4>Solution</h4>
+<p>First find $\kAprime(t).$ By using the <span data-concept="chain-rule">chain rule</span>, we have $\kAprime(t)=300e^{0.3t}.$ Thus, the ratio of the rate of change of the population to the population is given by</p>
+$$\frac{\kAprime(t)}{\kA(t)}=\frac{300e^{0.3t}}{1000e^{0.3t}}=0.3.$$
+<p>The ratio of the rate of change of the population to the population is the constant 0.3.</p>
+</div>
+<div class="exercises" data-place="fs-id1169737949367"></div>
+</section>
+
+<section id="logarithmic">
+<h2>Derivative of the Logarithmic Function</h2>
+<p class="cite-target">Now that we have the <span data-concept="derivative">derivative</span> of the <span data-concept="natural-exponential-function">natural exponential function</span>, we can use <span data-concept="implicit-differentiation">implicit differentiation</span> to find the <span data-concept="derivative">derivative</span> of its inverse, the <span data-concept="natural-logarithm">natural logarithmic function</span>.</p>
+<div class="note" id="ln-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>The Derivative of the Natural Logarithmic Function</h3>
+<p>If $x\gt 0$ and $y=\ln x,$ then</p>
+$$\kdydx=\frac{1}{x}.\tag{3.30}$$
+<p>More generally, let $g(x)$ be a differentiable <span data-concept="function">function</span>. For all values of $x$ for which $g(x)\gt 0,$ the <span data-concept="derivative">derivative</span> of $h(x)=\ln (g(x))$ is given by</p>
+$$h^{\prime}(x)=\frac{1}{g(x)}g^{\prime}(x).\tag{3.31}$$
+</div>
+<h3>Proof</h3>
+<p>If $x\gt 0$ and $y=\ln x,$ then $e^{y}=x.$ Differentiating both sides of this equation results in the equation</p>
+$$e^{y}\kdydx=1.$$
+<p>Solving for $\kdydx$ yields</p>
+$$\kdydx=\frac{1}{e^{y}}.$$
+<p>Finally, we substitute $x=e^{y}$ to obtain</p>
+$$\kdydx=\frac{1}{x}.$$
+<p>We may also derive this result by applying the <span data-concept="inverse-function-theorem">inverse function theorem</span>, as follows. Since $y=g(x)=\ln x$ is the inverse of $\kf(x)=e^{x},$ by applying the <span data-concept="inverse-function-theorem">inverse function theorem</span> we have</p>
+$$\kdydx=\frac{1}{\kfprime(g(x))}=\frac{1}{e^{\ln x}}=\frac{1}{x}.$$
+<p>Using this result and applying the <span data-concept="chain-rule">chain rule</span> to $h(x)=\ln (g(x))$ yields</p>
+$$h^{\prime}(x)=\frac{1}{g(x)}g^{\prime}(x).$$
+<p>□</p>
+<p>The graph of $y=\ln x$ and its <span data-concept="derivative">derivative</span> $\kdydx=\frac{1}{x}$ are shown in Figure 3.35.</p>
+<figure class="sim" id="sim-ln-derivative" data-figure="3.35" data-original="/media/ch03/CNX_Calc_Figure_03_09_003.jpg" data-original-caption="The function y=ln x is increasing on (0,+∞). Its derivative y′=1/x is greater than zero on (0,+∞).">
+  <div class="sim-head"><span class="eyebrow">Figure 3.35</span><span>Drag the point along <span data-fn="ln(x)">$y=\ln x:$</span> its <span data-concept="tangent-line">tangent line</span> rides with it, and below, the point $(x,\kdydx)$ traces the <span data-concept="derivative">derivative</span> <span data-fn="1/x">$\kdydx=\frac{1}{x}.$</span> The function is increasing on $(0,+\infty ),$ so the derivative stays above zero, steep near $0$ and flattening as $x$ grows.</span></div>
+</figure>
+<div class="example" id="fs-id1169738211098">
+<h3>Example 3.77 · Taking a Derivative of a Natural Logarithm</h3>
+<p>Find the <a href="/calculus/sheets/integral-calculator/?op=derivative&amp;expr=ln(x%5E3%2B3x-4)"><span data-concept="derivative">derivative</span></a> of <span data-fn="ln(x^3+3x-4)">$\kf(x)=\ln (x^{3}+3x-4).$</span></p>
+<h4>Solution</h4>
+<p>Use Equation 3.31 directly.</p>
+$$\begin{array}{rllll}\kfprime(x) & =\frac{1}{x^{3}+3x-4}\cdot (3x^{2}+3) & & & \text{Use}\;g(x)=x^{3}+3x-4\;\text{in}\;h^{\prime}(x)=\frac{1}{g(x)}g^{\prime}(x). \\ & =\frac{3x^{2}+3}{x^{3}+3x-4} & & & \text{Rewrite.}\end{array}$$
+</div>
+<div class="example" id="fs-id1169738244488">
+<h3>Example 3.78 · Using Properties of Logarithms in a Derivative</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="ln(x^2*sin(x)/(2x+1))">$\kf(x)=\ln (\frac{x^{2}\sin x}{2x+1}).$</span></p>
+<h4>Solution</h4>
+<p>At first glance, taking this <span data-concept="derivative">derivative</span> appears rather complicated. However, by using the <span data-concept="properties-of-logarithms">properties of logarithms</span> prior to finding the <span data-concept="derivative">derivative</span>, we can make the problem much simpler.</p>
+$$\begin{array}{rlllll}\kf(x) & = & \ln (\frac{x^{2}\sin x}{2x+1})=2\;\ln x+\ln (\sin x)-\ln (2x+1) & & & \text{Apply properties of logarithms.} \\ \kfprime(x) & = & \frac{2}{x}+\cot x-\frac{2}{2x+1} & & & \text{Apply sum rule and}\;h^{\prime}(x)=\frac{1}{g(x)}g^{\prime}(x).\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169738244488"></div>
+<p>Now that we can differentiate the <span data-concept="natural-logarithm">natural logarithmic function</span>, we can use this result to find the <span data-concept="derivative">derivatives</span> of $y={\log }_{b}x$ and $y=b^{x}$ for $b\gt 0,b\ne 1.$</p>
+<div class="note" id="general-theorem">
+<div class="eyebrow">Theorem</div>
+<h3>Derivatives of General Exponential and Logarithmic Functions</h3>
+<p>Let $b\gt 0,b\ne 1,$ and let $g(x)$ be a differentiable <span data-concept="function">function</span>.</p>
+<p>1. If, $y={\log }_{b}x,$ then</p>
+$$\kdydx=\frac{1}{x\;\ln b}.\tag{3.32}$$
+<p>More generally, if $h(x)={\log }_{b}(g(x)),$ then for all values of <em>x</em> for which $g(x)\gt 0,$</p>
+$$h^{\prime}(x)=\frac{g^{\prime}(x)}{g(x)\;\ln b}.\tag{3.33}$$
+<p>2. If $y=b^{x},$ then</p>
+$$\kdydx=b^{x}\ln b.\tag{3.34}$$
+<p>More generally, if $h(x)=b^{g(x)},$ then</p>
+$$h^{\prime}(x)=b^{g(x)}g^{\prime}(x)\;\ln b.\tag{3.35}$$
+</div>
+<h3>Proof</h3>
+<p>If $y={\log }_{b}x,$ then $b^{y}=x.$ It follows that $\ln (b^{y})=\ln x.$ Thus $y\;\ln b=\ln x.$ Solving for $y,$ we have $y=\frac{\ln x}{\ln b}.$ Differentiating and keeping in mind that $\ln b$ is a constant, we see that</p>
+$$\kdydx=\frac{1}{x\;\ln b}.$$
+<p>The <span data-concept="derivative">derivative</span> in Equation 3.32 now follows from the <span data-concept="chain-rule">chain rule</span>.</p>
+<p>If $y=b^{x},$ then $\ln y=x\;\ln b.$ Using <span data-concept="implicit-differentiation">implicit differentiation</span>, again keeping in mind that $\ln b$ is constant, it follows that $\frac{1}{y}\;\kdydx=\ln b.$ Solving for $\kdydx$ and substituting $y=b^{x},$ we see that</p>
+$$\kdydx=y\;\ln b=b^{x}\ln b.$$
+<p>The more general <span data-concept="derivative">derivative</span> (Equation 3.35) follows from the <span data-concept="chain-rule">chain rule</span>.</p>
+<p>□</p>
+<div class="example" id="fs-id1169737145066">
+<h3>Example 3.79 · Applying Derivative Formulas</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="3^x/(3^x+2)">$h(x)=\frac{3^{x}}{3^{x}+2}.$</span></p>
+<h4>Solution</h4>
+<p>Use the <span data-concept="quotient-rule">quotient rule</span> and Equation 3.34<sup class="fn" data-note="ex379-ref"></sup>.</p>
+$$\begin{array}{rllll}h^{\prime}(x) & =\frac{3^{x}\;\ln 3(3^{x}+2)-3^{x}\;\ln 3(3^{x})}{{(3^{x}+2)}^{2}} & & & \text{Apply the quotient rule.} \\ & =\frac{2\cdot 3^{x}\;\ln 3}{{(3^{x}+2)}^{2}} & & & \text{Simplify.}\end{array}$$
+</div>
+<div class="example" id="fs-id1169738219393">
+<h3>Example 3.80 · Finding the Slope of a Tangent Line</h3>
+<p>Find the <span data-concept="slope-of-the-tangent-line">slope of the line tangent</span> to the graph of $y={\log }_{2}(3x+1)$ at $x=1.$</p>
+<h4>Solution</h4>
+<p>To find the <span data-concept="slope">slope</span>, we must evaluate $\kdydx$ at $x=1.$ Using Equation 3.33, we see that</p>
+$$\kdydx=\frac{3}{(3x+1)\;\ln 2}.$$
+<p>By evaluating the <span data-concept="derivative">derivative</span> at $x=1,$ we see that the <span data-concept="tangent-line">tangent line</span> has <span data-concept="slope">slope</span></p>
+$$\kdydx|\begin{array}{l} \\ {}_{x=1}\end{array}=\frac{3}{4\;\ln 2}=\frac{3}{\;\ln 16}.$$
+</div>
+<div class="exercises" data-place="fs-id1169738219393"></div>
+</section>
+
+<section id="log-diff">
+<h2>Logarithmic Differentiation</h2>
+<p class="cite-target">At this point, we can take <span data-concept="derivative">derivatives</span> of <span data-concept="function">functions</span> of the form $y={(g(x))}^{n}$ for certain values of $n,$ as well as <span data-concept="function">functions</span> of the form $y=b^{g(x)},$ where $b\gt 0$ and $b\ne 1.$ Unfortunately, we still do not know the <span data-concept="derivative">derivatives</span> of <span data-concept="function">functions</span> such as $y=x^{x}$ or $y=x^{\pi}.$ These <span data-concept="function">functions</span> require a technique called <strong><span data-concept="logarithmic-differentiation">logarithmic differentiation</span></strong>, which allows us to differentiate any <span data-concept="function">function</span> of the form $h(x)=g{(x)}^{\kf(x)}.$ It can also be used to convert a very complex differentiation problem into a simpler one, such as finding the <span data-concept="derivative">derivative</span> of $y=\frac{x\sqrt{2x+1}}{e^{x}{\sin }^{3}x}.$ We outline this technique in the following problem-solving strategy.</p>
+<div class="note" id="log-diff-strategy">
+<div class="eyebrow">Problem-Solving Strategy</div>
+<h3>Using Logarithmic Differentiation</h3>
+<ol><li>To differentiate $y=h(x)$ using <span data-concept="logarithmic-differentiation">logarithmic differentiation</span>, take the <span data-concept="natural-logarithm">natural logarithm</span> of both sides of the equation to obtain $\ln y=\ln (h(x)).$</li><li>Use <span data-concept="properties-of-logarithms">properties of logarithms</span> to expand $\ln (h(x))$ as much as possible.</li><li>Differentiate both sides of the equation. On the left we will have $\frac{1}{y}\;\kdydx.$</li><li>Multiply both sides of the equation by $y$ to solve for $\kdydx.$</li><li>Replace $y$ by $h(x).$</li></ol>
+</div>
+<div class="example" id="fs-id1169738238112">
+<h3>Example 3.81 · Using Logarithmic Differentiation</h3>
+<p>Find the <a href="/calculus/sheets/integral-calculator/?op=derivative&amp;expr=(2x%5E4%2B1)%5E(tan(x))"><span data-concept="derivative">derivative</span></a> of <span data-fn="(2x^4+1)^(tan(x))">$y={(2x^{4}+1)}^{\tan x}.$</span></p>
+<h4>Solution</h4>
+<p>Use <span data-concept="logarithmic-differentiation">logarithmic differentiation</span> to find this <span data-concept="derivative">derivative</span>.</p>
+$$\begin{array}{rlllll}\ln y & = & \ln {(2x^{4}+1)}^{\tan x} & & & \text{Step 1. Take the natural logarithm of both sides.} \\ \ln y & = & \tan x\;\ln (2x^{4}+1) & & & \text{Step 2. Expand using properties of logarithms.} \\ \frac{1}{y}\;\kdydx & = & {\sec }^{2}x\;\ln (2x^{4}+1)+\frac{8x^{3}}{2x^{4}+1}\cdot \tan x & & & \begin{array}{l}\text{Step 3. Differentiate both sides. Use the} \\ \text{product rule on the right.}\end{array} \\ \kdydx & = & y\cdot ({\sec }^{2}x\;\ln (2x^{4}+1)+\frac{8x^{3}}{2x^{4}+1}\cdot \tan x) & & & \text{Step 4. Multiply by}\;y\;\text{on both sides.} \\ \kdydx & = & {(2x^{4}+1)}^{\tan x}({\sec }^{2}x\;\ln (2x^{4}+1)+\frac{8x^{3}}{2x^{4}+1}\cdot \tan x) & & & \text{Step 5. Substitute}\;y={(2x^{4}+1)}^{\tan x}.\end{array}$$
+</div>
+<div class="example" id="fs-id1169738068346">
+<h3>Example 3.82 · Using Logarithmic Differentiation</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="x*sqrt(2x+1)/(e^x*sin(x)^3)">$y=\frac{x\sqrt{2x+1}}{e^{x}{\sin }^{3}x}.$</span></p>
+<h4>Solution</h4>
+<p>This problem really makes use of the <span data-concept="properties-of-logarithms">properties of logarithms</span> and the differentiation rules given in this chapter.</p>
+$$\begin{array}{rlllll}\ln y & = & \ln \frac{x\sqrt{2x+1}}{e^{x}{\sin }^{3}x} & & & \text{Step 1. Take the natural logarithm of both sides.} \\ \ln y & = & \ln x+\frac{1}{2}\;\ln (2x+1)-x\;\ln e-3\;\ln \sin x & & & \text{Step 2. Expand using properties of logarithms.} \\ \frac{1}{y}\;\kdydx & = & \frac{1}{x}+\frac{1}{2x+1}-1-3\frac{\cos x}{\sin x} & & & \text{Step 3. Differentiate both sides.} \\ \kdydx & = & y(\frac{1}{x}+\frac{1}{2x+1}-1-3\;\cot x) & & & \text{Step 4. Multiply by}\;y\;\text{on both sides.} \\ \kdydx & = & \frac{x\sqrt{2x+1}}{e^{x}{\sin }^{3}x}(\frac{1}{x}+\frac{1}{2x+1}-1-3\;\cot x) & & & \text{Step 5. Substitute}\;y=\frac{x\sqrt{2x+1}}{e^{x}{\sin }^{3}x}.\end{array}$$
+</div>
+<div class="example" id="fs-id1169738228453">
+<h3>Example 3.83 · Extending the Power Rule</h3>
+<p>Find the <span data-concept="derivative">derivative</span> of $y=x^{r}$ where $r$ is an arbitrary real number.</p>
+<h4>Solution</h4>
+<p>The process is the same as in Example 3.82, though with fewer complications.</p>
+$$\begin{array}{rlllll}\ln y & = & \ln x^{r} & & & \text{Step 1. Take the natural logarithm of both sides.} \\ \ln y & = & r\;\ln x & & & \text{Step 2. Expand using properties of logarithms.} \\ \frac{1}{y}\;\kdydx & = & r\frac{1}{x} & & & \text{Step 3. Differentiate both sides.} \\ \kdydx & = & y\frac{r}{x} & & & \text{Step 4. Multiply by}\;y\;\text{on both sides.} \\ \kdydx & = & x^{r}\frac{r}{x} & & & \text{Step 5. Substitute}\;y=x^{r}. \\ \kdydx & = & rx^{r-1} & & & \text{Simplify.}\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169738228453"></div>
+</section>
