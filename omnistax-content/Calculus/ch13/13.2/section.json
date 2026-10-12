@@ -1,0 +1,1308 @@
+{
+ "id": "13.2",
+ "module": "m53916",
+ "chapter": "13",
+ "title": "Calculus of Vector-Valued Functions",
+ "short": "Calculus of Vector-Valued Functions",
+ "lead": "The <span data-concept=\"derivative-of-a-vector-valued-function\">derivative of a vector-valued function</span> $\\kvecr(t)$ is the limit of a difference quotient, found by differentiating its component functions; it is a <span data-concept=\"tangent-vector\">tangent vector</span> to the curve, and dividing it by its length gives the <span data-concept=\"principal-unit-tangent-vector\">principal unit tangent vector</span> $\\kvecT(t).$ The derivative rules carry over, with three product rules, and vector-valued functions are integrated component by component.",
+ "objectives": [
+  "Write an expression for the derivative of a vector-valued function.",
+  "Find the tangent vector at a point for a given position vector.",
+  "Find the unit tangent vector at a point for a given position vector and explain its significance.",
+  "Calculate the definite integral of a vector-valued function."
+ ],
+ "summary_html": "<ul><li>To calculate the <span data-concept=\"derivative-of-a-vector-valued-function\">derivative of a vector-valued function</span>, calculate the <span data-concept=\"derivative-of-a-vector-valued-function\">derivatives</span> of the <span data-concept=\"component-functions\">component functions</span>, then put them back into a new <span data-concept=\"vector-valued-function\">vector-valued function</span>.</li><li>Many of the properties of differentiation from the <a href=\"/calculus/ch03/intro/\">Introduction to Derivatives</a> also apply to <span data-concept=\"vector-valued-function\">vector-valued functions</span>.</li><li>The <span data-concept=\"derivative-of-a-vector-valued-function\">derivative of a vector-valued function</span> $\\kvecr(t)$ is also a <span data-concept=\"tangent-vector\">tangent vector</span> to the curve. The <span data-concept=\"principal-unit-tangent-vector\">unit tangent vector</span> $\\kvecT(t)$ is calculated by dividing the <span data-concept=\"derivative-of-a-vector-valued-function\">derivative of a vector-valued function</span> by its magnitude.</li><li>The <span data-concept=\"antiderivative\">antiderivative</span> of a <span data-concept=\"vector-valued-function\">vector-valued function</span> is found by finding the <span data-concept=\"antiderivative\">antiderivatives</span> of the <span data-concept=\"component-functions\">component functions</span>, then putting them back together in a <span data-concept=\"vector-valued-function\">vector-valued function</span>.</li><li>The <span data-concept=\"definite-integral-of-a-vector-valued-function\">definite integral of a vector-valued function</span> is found by finding the definite integrals of the <span data-concept=\"component-functions\">component functions</span>, then putting them back together in a <span data-concept=\"vector-valued-function\">vector-valued function</span>.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Exercises 68 (show that the speed is proportional to ω) and 96 (show that the product rule gives the same derivative) have no answer in the book’s key and are kept with AI-written suggested approaches. The other 28 even-numbered exercises have no answer in the key and are computational, so they are left out: 42–50 (derivatives), 52 and 54 (tangent vectors), 56 and 58 (unit tangent vectors), 60 and 62 (derivatives of products and higher derivatives), 64 (velocity and position from acceleration), 66 (velocity and speed), 70 and 72 (antiderivatives with initial conditions), 74 (a cross product’s derivative), 76 and 78 (a velocity, a curve to sketch), 80–92 (velocity, speed and acceleration of particles on given paths), 94 (a cross product), and 98 and 100 (a unit tangent and an integral). Review exercises 203, 213 and 215 from the end of the chapter are held here; 212 and 214, unkeyed, are left out. The keys to 73, 85, 95 and 213 are corrected under their cards.",
+ "figures": [
+  {
+   "id": "sim-difference-quotient",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "point",
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-tangent-vector",
+   "kind": "sim",
+   "number": "13.5",
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_02_001.jpg"
+   ],
+   "original_caption": "The tangent line at a point is calculated from the derivative of the vector-valued function r(t).",
+   "draws": [
+    "curve",
+    "point",
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-vector-integral",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "point",
+    "vector",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "calculus-vvf-intro",
+   "concept": "vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738955085",
+   "concept": "derivative-of-a-vector-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169738955085",
+   "concept": "limit-of-a-vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738955085",
+   "concept": "derivative",
+   "verb": "reinforces"
+  },
+  {
+   "span": "derivative-velocity",
+   "concept": "velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "derivative-velocity",
+   "concept": "tangent-line",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738904898",
+   "concept": "derivative-of-a-vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "componentwise",
+   "concept": "component-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739242722",
+   "concept": "differentiation-of-vector-valued-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169739242722",
+   "concept": "derivative-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739020349",
+   "concept": "differentiation-of-vector-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "rules-extend",
+   "concept": "constant-multiple-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "rules-extend",
+   "concept": "sum-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "rules-extend",
+   "concept": "product-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "rules-extend",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739260277",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169739260277",
+   "concept": "constant-magnitude-and-its-derivative",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169739260277",
+   "concept": "dot-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169739260277",
+   "concept": "cross-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736876498",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736876498",
+   "concept": "cross-product-by-determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "tangent-term",
+   "concept": "derivative-of-a-vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736941579",
+   "concept": "tangent-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169736941579",
+   "concept": "principal-unit-tangent-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169736941579",
+   "concept": "unit-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736941579",
+   "concept": "magnitude-of-a-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "three-steps",
+   "concept": "finding-a-unit-tangent-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169738935172",
+   "concept": "principal-unit-tangent-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "integral-intro",
+   "concept": "antiderivative",
+   "verb": "reinforces"
+  },
+  {
+   "span": "integral-intro",
+   "concept": "definite-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "integral-intro",
+   "concept": "fundamental-theorem-of-calculus",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169736616570",
+   "concept": "indefinite-integral-of-a-vector-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169736616570",
+   "concept": "definite-integral-of-a-vector-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-vector",
+   "concept": "indefinite-integral-of-a-vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738935680",
+   "concept": "definite-integral-of-a-vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738935680",
+   "concept": "indefinite-integral-of-a-vector-valued-function",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169739231027",
+   "source_number": "Checkpoint 13.4",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738904898"
+   },
+   "cite": "fs-id1169738955085",
+   "prompt": "Use the definition to calculate the derivative of the function $\\textbf{r}(t)=(2t^{2}+3)\\;\\textbf{i}+(5t-6)\\;\\textbf{j}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\mathbf{r^{\\prime}}(t)=4t\\;\\textbf{i}+5\\;\\textbf{j}$",
+    "hint": "Use <a href=\"#fs-id1169739012267\">Equation 13.5</a>."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169736661364",
+   "source_number": "Checkpoint 13.5",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169739020349"
+   },
+   "cite": "fs-id1169739242722",
+   "prompt": "<p>Calculate the derivative of the function</p>\n$$\\textbf{r}(t)=(t\\;\\ln t)\\;\\textbf{i}+(5e^{t})\\;\\textbf{j}+(\\cos t-\\sin t)\\;\\textbf{k}.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\mathbf{r^{\\prime}}(t)=(1+\\ln t)\\;\\textbf{i}+5e^{t}\\;\\textbf{j}-(\\sin t+\\cos t)\\;\\textbf{k}$",
+    "hint": "Identify the component functions and use <a href=\"#fs-id1169739242722\">Differentiation of Vector-Valued Functions</a>."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169736878051",
+   "source_number": "Checkpoint 13.6",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169736876498"
+   },
+   "cite": "fs-id1169739260277",
+   "prompt": "Given the vector-valued functions $\\textbf{r}(t)=\\cos t\\;\\textbf{i}+\\sin t\\;\\textbf{j}-e^{2t}\\;\\textbf{k}$ and $\\textbf{u}(t)=t\\;\\textbf{i}+\\sin t\\;\\textbf{j}+\\cos t\\;\\textbf{k},$ calculate $\\frac{d}{dt}[\\;\\textbf{r}(t)\\cdot \\;\\mathbf{r^{\\prime}}(t)]$ and $\\frac{d}{dt}[\\;\\textbf{u}(t)\\;\\times \\;\\textbf{r}(t)].$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{d}{dt}[\\;\\textbf{r}(t)\\cdot \\;\\mathbf{r^{\\prime}}(t)]=8e^{4t}$ $\\begin{array}{l}\\frac{d}{dt}[\\;\\textbf{u}(t)\\;\\times \\;\\textbf{r}(t)] \\\\ =-(e^{2t}(\\cos t+2\\;\\sin t)+\\cos 2t)\\;\\textbf{i}+(e^{2t}(2t+1)-\\sin 2t)\\;\\textbf{j}+(t\\;\\cos t+\\sin t-\\cos 2t)\\;\\textbf{k}\\end{array}$",
+    "hint": "Follow the same steps as in <a href=\"#fs-id1169736876498\">Example 13.6</a>."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1169737014560",
+   "source_number": "Checkpoint 13.7",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738935172"
+   },
+   "cite": "three-steps",
+   "prompt": "<p>Find the unit tangent vector for the vector-valued function</p>\n$$\\textbf{r}(t)=(t^{2}-3)\\;\\textbf{i}+(2t+1)\\;\\textbf{j}+(t-2)\\;\\textbf{k}.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{T}(t)=\\frac{2t}{\\sqrt{4t^{2}+5}}\\;\\textbf{i}+\\frac{2}{\\sqrt{4t^{2}+5}}\\;\\textbf{j}+\\frac{1}{\\sqrt{4t^{2}+5}}\\;\\textbf{k}$",
+    "hint": "Follow the same steps as in <a href=\"#fs-id1169738935172\">Example 13.7</a>."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1169736972921",
+   "source_number": "Checkpoint 13.8",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738935680"
+   },
+   "cite": "fs-id1169736616570",
+   "prompt": "<p>Calculate the following integral:</p>\n$$\\int_1^{3}[(2t+4)\\;\\textbf{i}+(3t^{2}-4t)\\;\\textbf{j}]dt .$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_1^{3}[(2t+4)\\;\\textbf{i}+(3t^{2}-4t)\\;\\textbf{j}]dt =16\\;\\textbf{i}+10\\;\\textbf{j}$",
+    "hint": "Use the definition of the definite integral of a plane curve."
+   }
+  },
+  {
+   "id": "e41",
+   "source_id": "fs-id1169736791095",
+   "source_number": "41",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739242722",
+   "prompt": "<p>Compute the derivatives of the vector-valued functions.</p><p>$\\textbf{r}(t)=t^{3}\\;\\textbf{i}+3t^{2}\\;\\textbf{j}+\\frac{t^{3}}{6}\\;\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 3t^{2},6t,\\frac{1}{2}t^{2}\\rangle$"
+   }
+  },
+  {
+   "id": "e43",
+   "source_id": "fs-id1169739066024",
+   "source_number": "43",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739242722",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_202.jpg",
+    "alt": "This figure is a 3 dimensional graph. It is a curve inside of a box. The curve starts at the bottom of the box and spirals around the middle, with upward orientation."
+   },
+   "prompt": "<p>Compute the derivatives of the vector-valued functions.</p><p>$\\textbf{r}(t)=e^{-t}\\;\\textbf{i}+\\sin (3t)\\;\\textbf{j}+10\\sqrt{t}\\;\\textbf{k}.$ A sketch of the graph is shown here. Notice the varying periodic nature of the graph.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle -e^{-t},3\\;\\cos (3t),\\frac{5}{\\sqrt{t}}\\rangle$"
+   }
+  },
+  {
+   "id": "e45",
+   "source_id": "fs-id1169736696589",
+   "source_number": "45",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739242722",
+   "prompt": "<p>Compute the derivatives of the vector-valued functions.</p><p>$\\textbf{r}(t)=\\textbf{i}+\\;\\textbf{j}+\\;\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 0,0,0\\rangle$"
+   }
+  },
+  {
+   "id": "e47",
+   "source_id": "fs-id1169736725438",
+   "source_number": "47",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739242722",
+   "prompt": "<p>Compute the derivatives of the vector-valued functions.</p><p>$\\textbf{r}(t)=\\frac{1}{t+1}\\;\\textbf{i}+\\operatorname{arctan}(t)\\;\\textbf{j}+\\ln t^{3}\\;\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle \\frac{-1}{{(t+1)}^{2}},\\frac{1}{1+t^{2}},\\frac{3}{t}\\rangle$"
+   }
+  },
+  {
+   "id": "e49",
+   "source_id": "fs-id1169737001541",
+   "source_number": "49",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739242722",
+   "prompt": "<p>Compute the derivatives of the vector-valued functions.</p><p>$\\textbf{r}(t)=3\\;\\textbf{i}+4\\;\\sin (3t)\\;\\textbf{j}+t\\;\\cos (t)\\;\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 0,12\\;\\cos (3t),\\cos t-t\\;\\sin t\\rangle$"
+   }
+  },
+  {
+   "id": "e51",
+   "source_id": "fs-id1169736699009",
+   "source_number": "51",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-term",
+   "prompt": "<p>For the following problems, find a tangent vector at the indicated value of <em>t</em>.</p><p>$\\textbf{r}(t)=t\\;\\textbf{i}+\\sin (2t)\\;\\textbf{j}+\\cos (3t)\\;\\textbf{k};t=\\frac{\\pi}{3}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 1,-1,0\\rangle$"
+   }
+  },
+  {
+   "id": "e53",
+   "source_id": "fs-id1169736873381",
+   "source_number": "53",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-term",
+   "prompt": "<p>For the following problems, find a tangent vector at the indicated value of <em>t</em>.</p><p>$\\textbf{r}(t)=3e^{t}\\;\\textbf{i}+2e^{-3t}\\;\\textbf{j}+4e^{2t}\\;\\textbf{k};$ $t=\\ln (2)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 6,-\\frac{3}{4},32\\rangle$"
+   }
+  },
+  {
+   "id": "e55",
+   "source_id": "fs-id1169736592024",
+   "source_number": "55",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-steps",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_203.jpg",
+    "alt": "This figure has two graphs. The first graph is inside a 3 dimensional box. It has a lattice-look to the graph in the middle of the box, crossing over itself. The second graph is the same as the first, with a different position of the box for a different perspective of the lattice-looking curve."
+   },
+   "prompt": "<p>Find the unit tangent vector for the following parameterized curves.</p><p>$\\textbf{r}(t)=6\\;\\textbf{i}+\\cos (3t)\\;\\textbf{j}+3\\;\\sin (4t)\\;\\textbf{k},$ $0\\le t\\lt 2\\pi$ . Two views of this curve are presented here:</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{\\sqrt{9\\;{\\sin }^{2}(3t)+144\\;{\\cos }^{2}(4t)}}\\langle 0,-3\\;\\sin (3t),12\\;\\cos (4t)\\rangle$"
+   }
+  },
+  {
+   "id": "e57",
+   "source_id": "fs-id1169737019457",
+   "source_number": "57",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-steps",
+   "prompt": "<p>Find the unit tangent vector for the following parameterized curves.</p><p>$\\textbf{r}(t)=3\\;\\cos (4t)\\;\\textbf{i}+3\\;\\sin (4t)\\;\\textbf{j}+5t\\;\\textbf{k},1\\le t\\le 2$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{T}(t)=\\frac{-12}{13}\\sin (4t)\\;\\textbf{i}+\\frac{12}{13}\\cos (4t)\\;\\textbf{j}+\\frac{5}{13}\\;\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e59",
+   "source_id": "fs-id1169739369109",
+   "source_number": "59",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_204.jpg",
+    "alt": "This figure is a 3 dimensional graph. It is inside of a box. The box represents an octant. The curve in the graph starts at the lower left corner of the box and bends upward and out towards the other end of the box."
+   },
+   "prompt": "<p>Let $\\textbf{r}(t)=t\\;\\textbf{i}+t^{2}\\;\\textbf{j}-t^{4}\\;\\textbf{k}$ and $\\textbf{s}(t)=\\sin (t)\\;\\textbf{i}+e^{t}\\;\\textbf{j}+\\cos (t)\\;\\textbf{k}.$ Here is the graph of the function:</p><p>Find the following.</p><p>$\\frac{d}{dt}[\\textbf{r}(t^{2})]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 2t,4t^{3},-8t^{7}\\rangle$"
+   }
+  },
+  {
+   "id": "e61",
+   "source_id": "fs-id1169736823665",
+   "source_number": "61",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_204.jpg",
+    "alt": "This figure is a 3 dimensional graph. It is inside of a box. The box represents an octant. The curve in the graph starts at the lower left corner of the box and bends upward and out towards the other end of the box."
+   },
+   "prompt": "<p>Let $\\textbf{r}(t)=t\\;\\textbf{i}+t^{2}\\;\\textbf{j}-t^{4}\\;\\textbf{k}$ and $\\textbf{s}(t)=\\sin (t)\\;\\textbf{i}+e^{t}\\;\\textbf{j}+\\cos (t)\\;\\textbf{k}.$ Here is the graph of the function:</p><p>Find the following.</p><p>$\\frac{d}{dt}[\\textbf{r}(t)\\cdot \\textbf{s}(t)]$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin (t)+2te^{t}-4t^{3}\\cos (t)+t\\;\\cos (t)+t^{2}e^{t}+t^{4}\\sin (t)$"
+   }
+  },
+  {
+   "id": "e63",
+   "source_id": "fs-id1169736654118",
+   "source_number": "63",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "prompt": "<p>Find $\\textbf{r}'(t)\\cdot \\;\\textbf{r}'' (t)\\;\\text{for}\\;\\textbf{r}(t)=-3t^{5}\\;\\textbf{i}+5t\\;\\textbf{j}+2t^{2}\\;\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$900t^{7}+16t$"
+   }
+  },
+  {
+   "id": "e65",
+   "source_id": "fs-id1169736983308",
+   "source_number": "65",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "prompt": "<p>The position vector of a particle is $\\textbf{r}(t)=5\\;\\sec (2t)\\;\\textbf{i}-4\\;\\tan (t)\\;\\textbf{j}+7t^{2}\\;\\textbf{k}.$</p><p>a. Graph the position function and display a view of the graph that illustrates the asymptotic behavior of the function.</p><p>b. Find the velocity as <em>t</em> approaches but is not equal to $\\pi /4$ (if it exists).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. </p>\n<img src=\"/media/ch13/CNX_Calc_Figure_13_02_205.jpg\" alt=\"This figure is a graph of a curve in 3 dimensions. The curve has asymptotes and from the above view, the curve resembles the secant function.\">\n<p>b. Undefined or infinite</p>"
+   }
+  },
+  {
+   "id": "e67",
+   "source_id": "fs-id1169739236404",
+   "source_number": "67",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_201.jpg",
+    "alt": "This figure is the graph of a circle centered at the origin with radius of 3. The orientation of the circle is counter-clockwise. Also, in the fourth quadrant there are two vectors. The first starts on the circle and terminates at the origin. The second vector is tangent at the same point in the fourth quadrant towards the x-axis."
+   },
+   "prompt": "<p>A particle moves on a circular path of radius <em>b</em> according to the function $\\textbf{r}(t)=b\\;\\cos (\\omega t)\\;\\textbf{i}+b\\;\\sin (\\omega t)\\;\\textbf{j},$ where $\\omega$ is the angular velocity, $d\\theta /dt.$</p><p>Find the velocity function and show that $\\textbf{v}(t)$ is always orthogonal to $\\textbf{r}(t).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}'(t)=-b\\omega \\;\\sin (\\omega t)\\;\\textbf{i}+b\\omega \\;\\cos (\\omega t)\\;\\textbf{j}.$ To show orthogonality, note that $\\textbf{r}'(t)\\cdot \\;\\textbf{r}(t)=0.$"
+   }
+  },
+  {
+   "id": "e68",
+   "source_id": "fs-id1169736959823",
+   "source_number": "68",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_201.jpg",
+    "alt": "This figure is the graph of a circle centered at the origin with radius of 3. The orientation of the circle is counter-clockwise. Also, in the fourth quadrant there are two vectors. The first starts on the circle and terminates at the origin. The second vector is tangent at the same point in the fourth quadrant towards the x-axis."
+   },
+   "prompt": "<p>A particle moves on a circular path of radius <em>b</em> according to the function $\\textbf{r}(t)=b\\;\\cos (\\omega t)\\;\\textbf{i}+b\\;\\sin (\\omega t)\\;\\textbf{j},$ where $\\omega$ is the angular velocity, $d\\theta /dt.$</p><p>Show that the speed of the particle is proportional to the angular velocity.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "With $\\mathbf{r}(t)=b\\cos(\\omega t)\\,\\mathbf{i}+b\\sin(\\omega t)\\,\\mathbf{j},$ the velocity is $\\mathbf{v}(t)=\\mathbf{r}\\'(t)=-b\\omega\\sin(\\omega t)\\,\\mathbf{i}+b\\omega\\cos(\\omega t)\\,\\mathbf{j},$ so the speed is $\\|\\mathbf{v}(t)\\|=\\sqrt{b^{2}\\omega^{2}\\sin^{2}(\\omega t)+b^{2}\\omega^{2}\\cos^{2}(\\omega t)}=\\sqrt{b^{2}\\omega^{2}}=b\\omega$ for $\\omega\\gt 0.$ The speed is the constant $b$ times the angular velocity $\\omega$: proportional to it, with the radius as the constant of proportionality.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e69",
+   "source_id": "fs-id1169736957743",
+   "source_number": "69",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "prompt": "<p>Evaluate $\\frac{d}{dt}[\\;\\textbf{u}(t)\\;\\times \\;\\mathbf{u^{\\prime}}(t)]$ given $\\textbf{u}(t)=t^{2}\\;\\textbf{i}-2t\\;\\textbf{j}+\\;\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$0\\;\\textbf{i}+2\\;\\textbf{j}+4t\\;\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e71",
+   "source_id": "fs-id1169738920696",
+   "source_number": "71",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169736616570",
+   "prompt": "<p>Evaluate $\\int_0^{3}\\| t\\;\\textbf{i}+t^{2}\\;\\textbf{j}\\| dt.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{3}({10}^{3/2}-1)$"
+   }
+  },
+  {
+   "id": "e73",
+   "source_id": "fs-id1169736976861",
+   "source_number": "73",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "prompt": "<p>Show that if the speed of a particle traveling along a curve represented by a vector-valued function is constant, then the velocity function is always perpendicular to the acceleration function.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{rll}\\| \\;\\textbf{v}(t)\\| & = & k \\\\ \\textbf{v}(t)\\cdot \\;\\textbf{v}(t) & = & k \\\\ \\frac{d}{dt}(\\;\\textbf{v}(t)\\cdot \\;\\textbf{v}(t)) & = & \\frac{d}{dt}k=0 \\\\ \\textbf{v}(t)\\cdot \\;\\textbf{v}'(t)+\\;\\textbf{v}'(t)\\cdot \\;\\textbf{v}(t) & = & 0 \\\\ 2\\;\\textbf{v}(t)\\cdot \\;\\textbf{v}'(t) & = & 0 \\\\ \\textbf{v}(t)\\cdot \\;\\textbf{v}'(t) & = & 0.\\end{array}$<sup class=\"fn\" data-note=\"c-e73\"></sup> The last statement implies that the velocity and acceleration are perpendicular or orthogonal."
+   }
+  },
+  {
+   "id": "e75",
+   "source_id": "fs-id1169736834990",
+   "source_number": "75",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "prompt": "<p>Given $\\textbf{r}(t)=\\langle t+\\cos t,t-\\sin t\\rangle ,$ find the velocity and the speed at any time.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}(t)=\\langle 1-\\sin t,1-\\cos t\\rangle ,$ $\\text{speed}\\;=\\| \\;\\textbf{v}(t)\\| =\\sqrt{3-2(\\sin t+\\cos t)}$"
+   }
+  },
+  {
+   "id": "e77",
+   "source_id": "fs-id1169736731192",
+   "source_number": "77",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tangent-term",
+   "prompt": "<p>Find an equation of the tangent line to the curve $\\textbf{r}(t)=\\langle e^{t},e^{-t},0\\rangle$ at $t=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x=t+1,y=-t+1,z=0$"
+   }
+  },
+  {
+   "id": "e79",
+   "source_id": "fs-id1169739279896",
+   "source_number": "79",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739242722",
+   "prompt": "<p>Locate the highest point on the curve $\\textbf{r}(t)=\\langle 6t,6t-t^{2}\\rangle$ and give the value of the function at this point.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(t)=\\langle 18,9\\rangle$ at $t=3$"
+   }
+  },
+  {
+   "id": "e81",
+   "source_id": "fs-id1169736970867",
+   "source_number": "81",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_207.jpg",
+    "alt": "This figure is the graph of a curve in 3 dimensions. The curve is inside of a box. The box represents an octant. The curve begins at the bottom of the box to the left and curves upward to the top right corner."
+   },
+   "prompt": "<p>The position vector for a particle is $\\textbf{r}(t)=t\\;\\textbf{i}+t^{2}\\;\\textbf{j}+t^{3}\\;\\textbf{k}.$ The graph is shown here:</p><p>Find the speed of the particle at time $t=2$ sec.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{161}$"
+   }
+  },
+  {
+   "id": "e83",
+   "source_id": "fs-id1169736917143",
+   "source_number": "83",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_208.jpg",
+    "alt": "This figure is the graph of a curve in 3 dimensions. The curve is inside of a box. The box represents an octant. The curve is a helix and begins at the bottom of the box to the right and spirals upward."
+   },
+   "prompt": "<p>A particle travels along the path of a helix with the equation $\\textbf{r}(t)=\\cos (t)\\;\\textbf{i}+\\sin (t)\\;\\textbf{j}+t\\;\\textbf{k}.$ See the graph presented here:</p><p>Find the following:</p><p>Velocity of the particle at any time</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}(t)=\\langle -\\sin t,\\cos t,1\\rangle$"
+   }
+  },
+  {
+   "id": "e85",
+   "source_id": "fs-id1169736858674",
+   "source_number": "85",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_208.jpg",
+    "alt": "This figure is the graph of a curve in 3 dimensions. The curve is inside of a box. The box represents an octant. The curve is a helix and begins at the bottom of the box to the right and spirals upward."
+   },
+   "prompt": "<p>A particle travels along the path of a helix with the equation $\\textbf{r}(t)=\\cos (t)\\;\\textbf{i}+\\sin (t)\\;\\textbf{j}+t\\;\\textbf{k}.$ See the graph presented here:</p><p>Find the following:</p><p>Acceleration of the particle at any time</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{a}(t)=-\\cos t\\;\\textbf{i}-\\sin t\\;\\textbf{j}+0\\;\\textbf{j}$<sup class=\"fn\" data-note=\"c-e85\"></sup>"
+   }
+  },
+  {
+   "id": "e87",
+   "source_id": "fs-id1169736851711",
+   "source_number": "87",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "prompt": "<p>A particle travels along the path of an ellipse with the equation $\\textbf{r}(t)=\\cos t\\;\\textbf{i}+2\\;\\sin t\\;\\textbf{j}+0\\;\\textbf{k}.$ Find the following:</p><p>Velocity of the particle</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}(t)=\\langle -\\sin t,2\\;\\cos t,0\\rangle$"
+   }
+  },
+  {
+   "id": "e89",
+   "source_id": "fs-id1169736963834",
+   "source_number": "89",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "prompt": "<p>A particle travels along the path of an ellipse with the equation $\\textbf{r}(t)=\\cos t\\;\\textbf{i}+2\\;\\sin t\\;\\textbf{j}+0\\;\\textbf{k}.$ Find the following:</p><p>Acceleration of the particle at $t=\\frac{\\pi}{4}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{a}(t)=\\langle -\\frac{\\sqrt{2}}{2},-\\sqrt{2},0\\rangle$"
+   }
+  },
+  {
+   "id": "e91",
+   "source_id": "fs-id1169736691005",
+   "source_number": "91",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_209.jpg",
+    "alt": "This figure is the graph of a curve in 3 dimensions. The curve is inside of a box. The box represents an octant. The curve has asymptotes that are the diagonals of the box. The curve is hyperbolic."
+   },
+   "prompt": "<p>Given the vector-valued function $\\textbf{r}(t)=\\langle \\tan t,\\sec t,0\\rangle$ (graph is shown here), find the following:</p><p>Speed</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\| \\;\\textbf{v}(t)\\| =\\sqrt{{\\sec }^{4}t+{\\sec }^{2}t\\;{\\tan }^{2}t}=\\sqrt{{\\sec }^{2}t({\\sec }^{2}t+{\\tan }^{2}t)}$"
+   }
+  },
+  {
+   "id": "e93",
+   "source_id": "fs-id1169736692410",
+   "source_number": "93",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivative-velocity",
+   "prompt": "<p>Find the minimum speed of a particle traveling along the curve $\\textbf{r}(t)=\\langle t+\\cos t,t-\\sin t\\rangle$ $t\\in [0,2\\pi ).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sqrt{3-2\\sqrt{2}}$"
+   }
+  },
+  {
+   "id": "e95",
+   "source_id": "fs-id1169736966866",
+   "source_number": "95",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "prompt": "<p>Given $\\textbf{r}(t)=t\\;\\textbf{i}+2\\;\\sin t\\;\\textbf{j}+2\\;\\cos t\\;\\textbf{k}$ and $\\textbf{u}(t)=\\frac{1}{t}\\;\\textbf{i}+2\\;\\sin t\\;\\textbf{j}+2\\;\\cos t\\;\\textbf{k},$ find the following:</p><p>$\\frac{d}{dt}(\\;\\textbf{r}(t)\\;\\times \\;\\textbf{u}(t))$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle 0,2\\;\\sin t(t-\\frac{1}{t})-2\\;\\cos t(1+\\frac{1}{t^{2}}),2\\;\\sin t(1+\\frac{1}{t^{2}})+2\\;\\cos t(t-\\frac{2}{t})\\rangle$<sup class=\"fn\" data-note=\"c-e95\"></sup>"
+   }
+  },
+  {
+   "id": "e96",
+   "source_id": "fs-id1169736588823",
+   "source_number": "96",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "prompt": "<p>Given $\\textbf{r}(t)=t\\;\\textbf{i}+2\\;\\sin t\\;\\textbf{j}+2\\;\\cos t\\;\\textbf{k}$ and $\\textbf{u}(t)=\\frac{1}{t}\\;\\textbf{i}+2\\;\\sin t\\;\\textbf{j}+2\\;\\cos t\\;\\textbf{k},$ find the following:</p><p>Now, use the product rule for the derivative of the cross product of two vectors and show this result is the same as the answer for the preceding problem.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "With $\\mathbf{r}\\'(t)=\\mathbf{i}+2\\cos t\\,\\mathbf{j}-2\\sin t\\,\\mathbf{k}$ and $\\mathbf{u}\\'(t)=-\\frac{1}{t^{2}}\\,\\mathbf{i}+2\\cos t\\,\\mathbf{j}-2\\sin t\\,\\mathbf{k},$ the product rule gives $\\frac{d}{dt}(\\mathbf{r}\\times\\mathbf{u})=\\mathbf{r}\\'\\times\\mathbf{u}+\\mathbf{r}\\times\\mathbf{u}\\'.$ Here $\\mathbf{r}\\'\\times\\mathbf{u}=\\langle 4,\\,-\\frac{2\\sin t}{t}-2\\cos t,\\,2\\sin t-\\frac{2\\cos t}{t}\\rangle$ and $\\mathbf{r}\\times\\mathbf{u}\\'=\\langle -4,\\,2t\\sin t-\\frac{2\\cos t}{t^{2}},\\,2t\\cos t+\\frac{2\\sin t}{t^{2}}\\rangle.$ Their sum is $\\langle 0,\\,2\\sin t\\,(t-\\frac{1}{t})-2\\cos t\\,(1+\\frac{1}{t^{2}}),\\,2\\sin t\\,(1+\\frac{1}{t^{2}})+2\\cos t\\,(t-\\frac{1}{t})\\rangle,$ the derivative of $\\mathbf{r}\\times\\mathbf{u}=\\langle 0,\\,2\\cos t\\,(\\frac{1}{t}-t),\\,2\\sin t\\,(t-\\frac{1}{t})\\rangle$ found directly.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e97",
+   "source_id": "fs-id1169736588839",
+   "source_number": "97",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-steps",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_02_210.jpg",
+    "alt": "This figure is the graph of a hyperbolic curve. The y-axis is a vertical asymptote and the x-axis is the horizontal asymptote."
+   },
+   "prompt": "<p>Find the unit tangent vector <strong>T</strong>(<em>t</em>) for the following vector-valued functions.</p><p>$\\textbf{r}(t)=\\langle t,\\frac{1}{t}\\rangle .$ The graph is shown here:</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{T}(t)=\\langle \\frac{t^{2}}{\\sqrt{t^{4}+1}},\\frac{-1}{\\sqrt{t^{4}+1}}\\rangle$"
+   }
+  },
+  {
+   "id": "e99",
+   "source_id": "fs-id1169736883333",
+   "source_number": "99",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-steps",
+   "prompt": "<p>Find the unit tangent vector <strong>T</strong>(<em>t</em>) for the following vector-valued functions.</p><p>$\\textbf{r}(t)=\\langle t+1,2t+1,2t+2\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{T}(t)=\\frac{1}{3}\\langle 1,2,2\\rangle$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "fs-id1169736992700",
+   "source_number": "101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169736616570",
+   "prompt": "<p>Evaluate the following integrals:</p><p>$\\int_0^{1}\\;\\textbf{r}(t)dt ,$ where $\\textbf{r}(t)=\\langle \\sqrt[3]{t},\\frac{1}{t+1},e^{-t}\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{3}{4}\\;\\text{i}+\\ln(2)\\;\\text{j}+(1-\\frac{1}{e})\\;\\text{k}$"
+   }
+  },
+  {
+   "id": "r203",
+   "source_id": "fs-id1169738133183",
+   "source_section": "13.4",
+   "source_number": "203",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>$\\frac{d}{dt}[\\textbf{u}(t)\\;\\times \\;\\textbf{u}(t)]=2\\mathbf{{\\textbf{u}}^{\\prime}}(t)\\;\\times \\;\\textbf{u}(t)$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False, $\\frac{d}{dt}[\\textbf{u}(t)\\;\\times \\;\\textbf{u}(t)]=0$"
+   }
+  },
+  {
+   "id": "r213",
+   "source_id": "fs-id1169738064352",
+   "source_section": "13.4",
+   "source_number": "213",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169739260277",
+   "prompt": "<p>Find the derivatives of $\\textbf{u}(t),$ $\\mathbf{{\\textbf{u}}^{\\prime}}(t),$ $\\mathbf{{\\textbf{u}}^{\\prime}}(t)\\;\\times \\;\\textbf{u}(t),$ $\\textbf{u}(t)\\;\\times \\;\\mathbf{{\\textbf{u}}^{\\prime}}(t),$ and $\\textbf{u}(t)\\cdot \\mathbf{{\\textbf{u}}^{\\prime}}(t).$ Find the unit tangent vector.</p><p>$\\textbf{u}(t)=\\langle t^{2},2t+6,4t^{5}-12\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\mathbf{{\\textbf{u}}^{\\prime}}(t)=\\langle 2t,2,20t^{4}\\rangle ,$ $\\mathbf{\\textbf{u}''}(t)=\\langle 2,0,80t^{3}\\rangle ,$ $\\frac{d}{dt}[\\mathbf{{\\textbf{u}}^{\\prime}}(t)\\;\\times \\;\\textbf{u}(t)]=\\langle -480t^{3}-160t^{4},24+75t^{2},12+4t\\rangle ,$ $\\frac{d}{dt}[\\textbf{u}(t)\\;\\times \\;\\mathbf{{\\textbf{u}}^{\\prime}}(t)]=\\langle 480t^{3}+160t^{4},-24-75t^{2},-12-4t\\rangle ,$ $\\frac{d}{dt}[\\textbf{u}(t)\\cdot \\mathbf{{\\textbf{u}}^{\\prime}}(t)]=720t^{8}-9600t^{3}+6t^{2}+4,$<sup class=\"fn\" data-note=\"c-r213\"></sup> unit tangent vector: $\\textbf{T}(t)=\\frac{2t}{\\sqrt{400t^{8}+4t^{2}+4}}\\;\\textbf{i}+\\frac{2}{\\sqrt{400t^{8}+4t^{2}+4}}\\;\\textbf{j}+\\frac{20t^{4}}{\\sqrt{400t^{8}+4t^{2}+4}}\\;\\textbf{k}$"
+   }
+  },
+  {
+   "id": "r215",
+   "source_id": "fs-id1169737383319",
+   "source_section": "13.4",
+   "source_number": "215",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169736616570",
+   "prompt": "<p>Evaluate the following integrals.</p><p>$\\int_1^{4} \\textbf{u}(t)dt ,$ with $\\textbf{u}(t)=\\langle \\frac{\\ln (t)}{t},\\frac{1}{\\sqrt{t}},\\sin (\\frac{t\\pi}{4})\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\ln {(4)}^{2}}{2}\\textbf{i}+2\\textbf{j}+\\frac{2(2+\\sqrt{2})}{\\pi}\\textbf{k}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "derivative-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "finding-a-unit-tangent-vector"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "definite-integral-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e41",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e43",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e45",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e47",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e49",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e51",
+   "concept": "tangent-vector"
+  },
+  {
+   "exercise": "e51",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e53",
+   "concept": "tangent-vector"
+  },
+  {
+   "exercise": "e53",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e55",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "e55",
+   "concept": "finding-a-unit-tangent-vector"
+  },
+  {
+   "exercise": "e57",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "e57",
+   "concept": "finding-a-unit-tangent-vector"
+  },
+  {
+   "exercise": "e59",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e61",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e63",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e63",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e65",
+   "concept": "derivative-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e65",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e67",
+   "concept": "constant-magnitude-and-its-derivative"
+  },
+  {
+   "exercise": "e67",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e68",
+   "concept": "speed"
+  },
+  {
+   "exercise": "e68",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e69",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e71",
+   "concept": "definite-integral-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e73",
+   "concept": "constant-magnitude-and-its-derivative"
+  },
+  {
+   "exercise": "e73",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e75",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e75",
+   "concept": "speed"
+  },
+  {
+   "exercise": "e77",
+   "concept": "tangent-vector"
+  },
+  {
+   "exercise": "e77",
+   "concept": "parametric-equations-of-a-line"
+  },
+  {
+   "exercise": "e79",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e81",
+   "concept": "speed"
+  },
+  {
+   "exercise": "e81",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e83",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e83",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e85",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e85",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e87",
+   "concept": "velocity"
+  },
+  {
+   "exercise": "e87",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e89",
+   "concept": "acceleration"
+  },
+  {
+   "exercise": "e89",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e91",
+   "concept": "speed"
+  },
+  {
+   "exercise": "e91",
+   "concept": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e93",
+   "concept": "speed"
+  },
+  {
+   "exercise": "e95",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e96",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e97",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "e97",
+   "concept": "finding-a-unit-tangent-vector"
+  },
+  {
+   "exercise": "e99",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "e99",
+   "concept": "finding-a-unit-tangent-vector"
+  },
+  {
+   "exercise": "e101",
+   "concept": "definite-integral-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "r203",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "r203",
+   "concept": "cross-product"
+  },
+  {
+   "exercise": "r213",
+   "concept": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "exercise": "r213",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "r215",
+   "concept": "definite-integral-of-a-vector-valued-function"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-e73",
+   "kind": "correction",
+   "html": "The key’s second line reads $\\mathbf{v}(t)\\cdot\\mathbf{v}(t)=k$; from $\\|\\mathbf{v}(t)\\|=k$ it is $\\mathbf{v}(t)\\cdot\\mathbf{v}(t)=k^{2},$ still a constant, so the rest of the argument stands."
+  },
+  {
+   "id": "c-e85",
+   "kind": "correction",
+   "html": "The key writes the last component as $0\\;\\mathbf{j}$; the third component of the acceleration is along $\\mathbf{k}$: $\\mathbf{a}(t)=-\\cos t\\;\\mathbf{i}-\\sin t\\;\\mathbf{j}+0\\;\\mathbf{k}.$"
+  },
+  {
+   "id": "c-e95",
+   "kind": "correction",
+   "html": "The key ends with $2\\cos t\\,(t-\\frac{2}{t})$; differentiating $2\\sin t\\,(t-\\frac{1}{t})$ gives $2\\cos t\\,(t-\\frac{1}{t})+2\\sin t\\,(1+\\frac{1}{t^{2}}),$ so the last component is $2\\sin t\\,(1+\\frac{1}{t^{2}})+2\\cos t\\,(t-\\frac{1}{t}).$"
+  },
+  {
+   "id": "c-r213",
+   "kind": "correction",
+   "html": "Three terms of the key are misprinted. The $\\mathbf{j}$-components of $\\frac{d}{dt}[\\mathbf{u}'(t)\\times\\mathbf{u}(t)]$ and $\\frac{d}{dt}[\\mathbf{u}(t)\\times\\mathbf{u}'(t)]$ are $72t^{5}+24$ and $-72t^{5}-24,$ not $24+75t^{2}$ and $-24-75t^{2},$ and $\\frac{d}{dt}[\\mathbf{u}(t)\\cdot\\mathbf{u}'(t)]=720t^{8}-960t^{3}+6t^{2}+4.$"
+  }
+ ]
+}

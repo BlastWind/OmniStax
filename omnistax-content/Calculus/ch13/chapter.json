@@ -1,0 +1,548 @@
+{
+ "id": "13",
+ "dir": "ch13",
+ "title": "Vector-Valued Functions",
+ "intro": {
+  "module": "m53907",
+  "slug": "calculus-volume-3/pages/3-introduction"
+ },
+ "sections": [
+  {
+   "id": "13.1",
+   "module": "m53913",
+   "title": "Vector-Valued Functions and Space Curves",
+   "slug": "calculus-volume-3/pages/3-1-vector-valued-functions-and-space-curves"
+  },
+  {
+   "id": "13.2",
+   "module": "m53916",
+   "title": "Calculus of Vector-Valued Functions",
+   "slug": "calculus-volume-3/pages/3-2-calculus-of-vector-valued-functions"
+  },
+  {
+   "id": "13.3",
+   "module": "m53919",
+   "title": "Arc Length and Curvature",
+   "slug": "calculus-volume-3/pages/3-3-arc-length-and-curvature"
+  },
+  {
+   "id": "13.4",
+   "module": "m53930",
+   "title": "Motion in Space",
+   "slug": "calculus-volume-3/pages/3-4-motion-in-space"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "r_vec",
+   "section": "13.1",
+   "concept": "vector-valued-function",
+   "meaning": "a vector-valued function r(t) of the parameter t, whose vectors in standard position trace a plane or space curve",
+   "redefines": true,
+   "anchor": "13.1-fs-id1169737987352"
+  },
+  {
+   "sym": "f",
+   "section": "13.1",
+   "concept": "component-functions",
+   "meaning": "the first component function f(t) of a vector-valued function, a real-valued function of the parameter t",
+   "redefines": true,
+   "anchor": "13.1-fs-id1169737987352"
+  },
+  {
+   "sym": "g",
+   "section": "13.1",
+   "concept": "component-functions",
+   "meaning": "the second component function g(t) of a vector-valued function, a real-valued function of the parameter t",
+   "redefines": true,
+   "anchor": "13.1-fs-id1169737987352"
+  },
+  {
+   "sym": "h",
+   "section": "13.1",
+   "concept": "component-functions",
+   "meaning": "the third component function h(t) of a vector-valued function, a real-valued function of the parameter t",
+   "redefines": true,
+   "anchor": "13.1-fs-id1169737987352"
+  },
+  {
+   "sym": "i_vec",
+   "section": "13.1",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "13.1-fs-id1169737987352"
+  },
+  {
+   "sym": "j_vec",
+   "section": "13.1",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "13.1-fs-id1169737987352"
+  },
+  {
+   "sym": "k_vec",
+   "section": "13.1",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "13.1-fs-id1169737987352"
+  },
+  {
+   "sym": "L_vec",
+   "section": "13.1",
+   "concept": "limit-of-a-vector-valued-function",
+   "meaning": "the limit L of a vector-valued function as t approaches a, the vector that r(t) approaches",
+   "anchor": "13.1-fs-id1169737394789"
+  },
+  {
+   "sym": "r_vec",
+   "section": "13.2",
+   "concept": "vector-valued-function",
+   "meaning": "a vector-valued function r(t) of the parameter t, whose vectors in standard position trace a plane or space curve",
+   "anchor": "13.2-fs-id1169738955085"
+  },
+  {
+   "sym": "r_vec_prime",
+   "section": "13.2",
+   "concept": "derivative-of-a-vector-valued-function",
+   "meaning": "the derivative r′(t) of a vector-valued function, a tangent vector to its curve at r(t)",
+   "anchor": "13.2-fs-id1169738955085"
+  },
+  {
+   "sym": "u_vec",
+   "section": "13.2",
+   "concept": "vector-valued-function",
+   "meaning": "a second vector-valued function u(t) of the parameter t, in the derivative rules and examples",
+   "redefines": true,
+   "anchor": "13.2-fs-id1169739260277"
+  },
+  {
+   "sym": "u_vec_prime",
+   "section": "13.2",
+   "concept": "derivative-of-a-vector-valued-function",
+   "meaning": "the derivative u′(t) of the vector-valued function u",
+   "anchor": "13.2-fs-id1169739260277"
+  },
+  {
+   "sym": "u_vec_dprime",
+   "section": "13.2",
+   "concept": "derivative-of-a-vector-valued-function",
+   "meaning": "the second derivative u″(t) of the vector-valued function u, the derivative of u′(t)",
+   "anchor": "13.2-fs-id1169739260277"
+  },
+  {
+   "sym": "f",
+   "section": "13.2",
+   "concept": "component-functions",
+   "meaning": "the first component function f(t) of a vector-valued function, a real-valued function of the parameter t; in the scalar product rule, a real-valued function multiplying u(t)",
+   "anchor": "13.2-fs-id1169739242722"
+  },
+  {
+   "sym": "g",
+   "section": "13.2",
+   "concept": "component-functions",
+   "meaning": "the second component function g(t) of a vector-valued function, a real-valued function of the parameter t",
+   "anchor": "13.2-fs-id1169739242722"
+  },
+  {
+   "sym": "h",
+   "section": "13.2",
+   "concept": "component-functions",
+   "meaning": "the third component function h(t) of a vector-valued function, a real-valued function of the parameter t",
+   "anchor": "13.2-fs-id1169739242722"
+  },
+  {
+   "sym": "f_prime",
+   "section": "13.2",
+   "concept": "derivative-function",
+   "meaning": "the derivative f′(t) of the component function f",
+   "redefines": true,
+   "anchor": "13.2-fs-id1169739242722"
+  },
+  {
+   "sym": "g_prime",
+   "section": "13.2",
+   "concept": "derivative-function",
+   "meaning": "the derivative g′(t) of the component function g",
+   "redefines": true,
+   "anchor": "13.2-fs-id1169739242722"
+  },
+  {
+   "sym": "h_prime",
+   "section": "13.2",
+   "concept": "derivative-function",
+   "meaning": "the derivative h′(t) of the component function h",
+   "redefines": true,
+   "anchor": "13.2-fs-id1169739242722"
+  },
+  {
+   "sym": "F",
+   "section": "13.2",
+   "concept": "antiderivative",
+   "meaning": "an antiderivative F(t) of the component function f",
+   "redefines": true,
+   "anchor": "13.2-constant-vector"
+  },
+  {
+   "sym": "G",
+   "section": "13.2",
+   "concept": "antiderivative",
+   "meaning": "an antiderivative of g, or a second antiderivative of f",
+   "anchor": "13.2-constant-vector"
+  },
+  {
+   "sym": "T_vec",
+   "section": "13.2",
+   "concept": "principal-unit-tangent-vector",
+   "meaning": "the principal unit tangent vector T(t) = r′(t)/‖r′(t)‖",
+   "anchor": "13.2-fs-id1169736941579"
+  },
+  {
+   "sym": "i_vec",
+   "section": "13.2",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "13.2-fs-id1169739242722"
+  },
+  {
+   "sym": "j_vec",
+   "section": "13.2",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "13.2-fs-id1169739242722"
+  },
+  {
+   "sym": "k_vec",
+   "section": "13.2",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "13.2-fs-id1169739242722"
+  },
+  {
+   "sym": "r_vec",
+   "section": "13.3",
+   "concept": "vector-valued-function",
+   "meaning": "a vector-valued function r(t) of the parameter t, whose vectors in standard position trace a plane or space curve",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "r_vec_prime",
+   "section": "13.3",
+   "concept": "derivative-of-a-vector-valued-function",
+   "meaning": "the derivative r′(t) of a vector-valued function, a tangent vector to its curve at r(t)",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "r_vec_dprime",
+   "section": "13.3",
+   "concept": "derivative-of-a-vector-valued-function",
+   "meaning": "the second derivative r″(t) of a vector-valued function, the derivative of r′(t)",
+   "anchor": "13.3-fs-id1169738214420"
+  },
+  {
+   "sym": "f",
+   "section": "13.3",
+   "concept": "component-functions",
+   "meaning": "the first component function f(t) of a vector-valued function, a real-valued function of the parameter t; in the curvature of a graph, the function y = f(x)",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "g",
+   "section": "13.3",
+   "concept": "component-functions",
+   "meaning": "the second component function g(t) of a vector-valued function, a real-valued function of the parameter t",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "h",
+   "section": "13.3",
+   "concept": "component-functions",
+   "meaning": "the third component function h(t) of a vector-valued function, a real-valued function of the parameter t",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "f_prime",
+   "section": "13.3",
+   "concept": "derivative-function",
+   "meaning": "the derivative f′ of the function f",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "f_dprime",
+   "section": "13.3",
+   "concept": "higher-order-derivative",
+   "meaning": "the second derivative of f, the derivative of its derivative f′",
+   "anchor": "13.3-fs-id1169738214420"
+  },
+  {
+   "sym": "g_prime",
+   "section": "13.3",
+   "concept": "derivative-function",
+   "meaning": "the derivative g′(t) of the component function g",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "h_prime",
+   "section": "13.3",
+   "concept": "derivative-function",
+   "meaning": "the derivative h′(t) of the component function h",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "y_prime",
+   "section": "13.3",
+   "concept": "derivative-function",
+   "meaning": "the derivative of y = f(x), the same function as f′(x)",
+   "anchor": "13.3-fs-id1169738214420"
+  },
+  {
+   "sym": "y_dprime",
+   "section": "13.3",
+   "concept": "higher-order-derivative",
+   "meaning": "the second derivative of y = f(x)",
+   "redefines": true,
+   "anchor": "13.3-fs-id1169738214420"
+  },
+  {
+   "sym": "s",
+   "section": "13.3",
+   "concept": "arc-length-function",
+   "meaning": "the arc length s of a curve; as s(t), the arc-length function ∫ₐᵗ ‖r′(u)‖ du, and the parameter of an arc-length parameterization r(s)",
+   "redefines": true,
+   "anchor": "13.3-fs-id1169738186040"
+  },
+  {
+   "sym": "s_prime",
+   "section": "13.3",
+   "type": "derivative",
+   "meaning": "the rate s′(t) = ‖r′(t)‖ at which the arc length grows, the speed of a particle on the curve",
+   "redefines": true,
+   "anchor": "13.3-speed-rate"
+  },
+  {
+   "sym": "T_vec",
+   "section": "13.3",
+   "concept": "principal-unit-tangent-vector",
+   "meaning": "the principal unit tangent vector T(t) = r′(t)/‖r′(t)‖",
+   "anchor": "13.3-fs-id1169737492877"
+  },
+  {
+   "sym": "T_vec_prime",
+   "section": "13.3",
+   "type": "vector",
+   "meaning": "the derivative T′ of the unit tangent vector, with respect to t or to the arc length s",
+   "anchor": "13.3-fs-id1169737492877"
+  },
+  {
+   "sym": "κ",
+   "section": "13.3",
+   "concept": "curvature",
+   "meaning": "the curvature κ = ‖dT/ds‖ of a smooth curve at a point",
+   "anchor": "13.3-fs-id1169737492877"
+  },
+  {
+   "sym": "N_vec",
+   "section": "13.3",
+   "concept": "principal-unit-normal-vector",
+   "meaning": "the principal unit normal vector N(t) = T′(t)/‖T′(t)‖",
+   "anchor": "13.3-fs-id1169737373970"
+  },
+  {
+   "sym": "B_vec",
+   "section": "13.3",
+   "concept": "binormal-vector",
+   "meaning": "the binormal vector B(t) = T(t) × N(t)",
+   "anchor": "13.3-fs-id1169737373970"
+  },
+  {
+   "sym": "θ",
+   "section": "13.3",
+   "type": "angle",
+   "meaning": "the angle between the vectors T(t) and N(t)",
+   "redefines": true,
+   "anchor": "13.3-binormal-unit"
+  },
+  {
+   "sym": "i_vec",
+   "section": "13.3",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "j_vec",
+   "section": "13.3",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "k_vec",
+   "section": "13.3",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "13.3-fs-id1169737844367"
+  },
+  {
+   "sym": "r_vec",
+   "section": "13.4",
+   "concept": "vector-valued-function",
+   "meaning": "a vector-valued function r(t) of the parameter t, whose vectors in standard position trace a plane or space curve",
+   "anchor": "13.4-fs-id1169737743731"
+  },
+  {
+   "sym": "r_vec_prime",
+   "section": "13.4",
+   "concept": "derivative-of-a-vector-valued-function",
+   "meaning": "the derivative r′(t) of a vector-valued function, a tangent vector to its curve at r(t)",
+   "anchor": "13.4-fs-id1169737743731"
+  },
+  {
+   "sym": "r_vec_dprime",
+   "section": "13.4",
+   "concept": "derivative-of-a-vector-valued-function",
+   "meaning": "the second derivative r″(t) of a vector-valued function, the derivative of r′(t)",
+   "anchor": "13.4-fs-id1169737743731"
+  },
+  {
+   "sym": "v_vec",
+   "section": "13.4",
+   "concept": "velocity-vector",
+   "meaning": "the velocity vector v(t) = r′(t) of an object whose position is r(t)",
+   "redefines": true,
+   "anchor": "13.4-fs-id1169737743731"
+  },
+  {
+   "sym": "v_vec_prime",
+   "section": "13.4",
+   "concept": "acceleration-vector",
+   "meaning": "the derivative v′(t) of the velocity, the acceleration of the object",
+   "anchor": "13.4-fs-id1169737743731"
+  },
+  {
+   "sym": "a_vec",
+   "section": "13.4",
+   "concept": "acceleration-vector",
+   "meaning": "the acceleration vector a(t) = v′(t) = r″(t) of an object whose position is r(t)",
+   "redefines": true,
+   "anchor": "13.4-fs-id1169737743731"
+  },
+  {
+   "sym": "v",
+   "section": "13.4",
+   "concept": "speed-of-a-moving-object",
+   "meaning": "the speed v(t) = ‖v(t)‖ = ds/dt of an object, the magnitude of its velocity vector",
+   "redefines": true,
+   "anchor": "13.4-fs-id1169737743731"
+  },
+  {
+   "sym": "v_prime",
+   "section": "13.4",
+   "type": "derivative",
+   "meaning": "the rate of change v′(t) of the speed, the tangential component of acceleration",
+   "redefines": true,
+   "anchor": "13.4-fs-id1169737814963"
+  },
+  {
+   "sym": "T_vec",
+   "section": "13.4",
+   "concept": "principal-unit-tangent-vector",
+   "meaning": "the principal unit tangent vector T(t) = r′(t)/‖r′(t)‖",
+   "anchor": "13.4-fs-id1169737814963"
+  },
+  {
+   "sym": "T_vec_prime",
+   "section": "13.4",
+   "type": "vector",
+   "meaning": "the derivative T′(t) of the unit tangent vector",
+   "anchor": "13.4-fs-id1169737814963"
+  },
+  {
+   "sym": "N_vec",
+   "section": "13.4",
+   "concept": "principal-unit-normal-vector",
+   "meaning": "the principal unit normal vector N(t) = T′(t)/‖T′(t)‖",
+   "anchor": "13.4-fs-id1169737814963"
+  },
+  {
+   "sym": "κ",
+   "section": "13.4",
+   "concept": "curvature",
+   "meaning": "the curvature κ of the curve traced out by r(t)",
+   "anchor": "13.4-fs-id1169737814963"
+  },
+  {
+   "sym": "s",
+   "section": "13.4",
+   "concept": "arc-length-function",
+   "meaning": "the arc length s along the path, whose rate ds/dt is the speed",
+   "anchor": "13.4-fs-id1169737743731"
+  },
+  {
+   "sym": "s_vec",
+   "section": "13.4",
+   "concept": "vector-valued-function",
+   "meaning": "the position s(t) of a projectile at time t, a vector-valued function",
+   "redefines": true,
+   "anchor": "13.4-projectile-angle"
+  },
+  {
+   "sym": "s_vec_prime",
+   "section": "13.4",
+   "concept": "velocity-vector",
+   "meaning": "the derivative s′(t) of the projectile's position, its velocity",
+   "anchor": "13.4-projectile-angle"
+  },
+  {
+   "sym": "v0_vec",
+   "section": "13.4",
+   "concept": "initial-velocity",
+   "type": "vector",
+   "meaning": "the initial velocity v₀ = v(0) of a projectile, v₀ cos θ i + v₀ sin θ j when thrown at an angle θ",
+   "anchor": "13.4-projectile-angle"
+  },
+  {
+   "sym": "s0_vec",
+   "section": "13.4",
+   "type": "curve",
+   "meaning": "the initial position s₀ = s(0) of a projectile",
+   "anchor": "13.4-projectile-angle"
+  },
+  {
+   "sym": "F_vec",
+   "section": "13.4",
+   "type": "vector",
+   "meaning": "the force on a planet, its mass times its acceleration; by Newton's law of universal gravitation, F = −(GmM/‖r‖²)(r/‖r‖)",
+   "redefines": true,
+   "anchor": "13.4-kepler-proof"
+  },
+  {
+   "sym": "θ",
+   "section": "13.4",
+   "type": "angle",
+   "meaning": "the angle above the horizontal at which a projectile is thrown; in the proof of Kepler's first law, the angle between r and D, the polar angle of the orbit",
+   "redefines": true,
+   "anchor": "13.4-projectile-angle"
+  },
+  {
+   "sym": "i_vec",
+   "section": "13.4",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector i = ⟨1, 0, 0⟩",
+   "anchor": "13.4-motion-table"
+  },
+  {
+   "sym": "j_vec",
+   "section": "13.4",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector j = ⟨0, 1, 0⟩",
+   "anchor": "13.4-motion-table"
+  },
+  {
+   "sym": "k_vec",
+   "section": "13.4",
+   "concept": "standard-unit-vectors",
+   "meaning": "the standard unit vector k = ⟨0, 0, 1⟩",
+   "anchor": "13.4-motion-table"
+  }
+ ]
+}

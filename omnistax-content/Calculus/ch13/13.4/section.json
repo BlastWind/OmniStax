@@ -1,0 +1,1317 @@
+{
+ "id": "13.4",
+ "module": "m53930",
+ "chapter": "13",
+ "title": "Motion in Space",
+ "short": "Motion in Space",
+ "lead": "An object whose position is $\\kvecr(t)$ has <span data-concept=\"velocity-vector\">velocity</span> $\\kvecrprime(t),$ <span data-concept=\"acceleration-vector\">acceleration</span> $\\kvecrdprime(t)$ and <span data-concept=\"speed-of-a-moving-object\">speed</span> $\\|\\kvecrprime(t)\\|.$ The acceleration splits into a part along the path and a part toward the inside of the turn. Gravity alone gives <span data-concept=\"projectile-motion\">projectile motion</span>, and Newton’s laws with the calculus of vector-valued functions give <span data-concept=\"keplers-laws-of-planetary-motion\">Kepler’s laws</span> for the planets.",
+ "objectives": [
+  "Describe the velocity and acceleration vectors of a particle moving in space.",
+  "Explain the tangential and normal components of acceleration.",
+  "State Kepler’s laws of planetary motion."
+ ],
+ "summary_html": "<ul><li>If $\\kvecr(t)$ represents the position of an object at time <em>t</em>, then $\\kvecrprime(t)$ represents the <span data-concept=\"velocity-vector\">velocity</span> and $\\kvecrdprime(t)$ represents the <span data-concept=\"acceleration-vector\">acceleration</span> of the object at time <em>t.</em> The magnitude of the <span data-concept=\"velocity-vector\">velocity vector</span> is <span data-concept=\"speed-of-a-moving-object\">speed</span>.</li><li>The <span data-concept=\"acceleration-vector\">acceleration vector</span> always points toward the concave side of the curve defined by $\\kvecr(t).$ The <span data-concept=\"plane-of-the-acceleration-vector\">tangential and normal components of acceleration</span> $a_{\\boldsymbol{T}}$ and $a_{\\boldsymbol{N}}$ are the projections of the <span data-concept=\"acceleration-vector\">acceleration vector</span> onto the unit tangent and <span data-concept=\"principal-unit-normal-vector\">unit normal vectors</span> to the curve.</li><li>Kepler’s three laws of planetary motion describe the motion of objects in orbit around the Sun. His third law can be modified to describe motion of objects in orbit around other celestial objects as well.</li><li>Newton was able to use his law of universal gravitation in conjunction with his second law of motion and calculus to prove Kepler’s three laws.</li></ul>",
+ "notes": "Two media links, a video of projectile motion and an explanation of the triple cross product, are not kept, and the photograph of Halley’s Comet that Example 13.18 repeats from the chapter opener is not shown again.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Exercise 199 (show that the particle moves on a circular cone) is odd but has no answer in the key, and exercises 164 (show that the acceleration is proportional to r) and 182 (prove that motion in a straight line at constant speed has zero acceleration) are even; the three are kept with AI-written suggested approaches. The other 21 even-numbered exercises have no answer in the key and are computational, so they are left out: 156–162 (velocity, acceleration and speed), 166–172 (the hang glider and the decaying spiral, a tire’s top speed), 174–180 (heights and ranges of projectiles), 184 (a position from acceleration), 186–194 (components of acceleration, a position from acceleration), 196 and 198 (friction on a turn, Pluto’s year) and 200 (an angle between velocity and acceleration). Review exercises 205, 223, 225 and 227 are set here, where the book prints the chapter review; 224, 226 and 228, unkeyed, are left out, and the others are set in the sections that introduce what they test. The keys to Checkpoint 13.15 and review exercise 227 are corrected under their cards.",
+ "figures": [
+  {
+   "id": "sim-parabola-motion",
+   "kind": "sim",
+   "number": "13.11",
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_04_001.jpg"
+   ],
+   "original_caption": "This graph depicts the velocity vector at time t=1 for a particle moving in a parabolic path.",
+   "draws": [
+    "curve",
+    "point",
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-road",
+   "kind": "sim",
+   "number": "13.12",
+   "folds": [
+    "13.13",
+    "13.14"
+   ],
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_04_002.jpg",
+    "/media/ch13/CNX_Calc_Figure_13_04_003.jpg",
+    "/media/ch13/CNX_Calc_Figure_13_04_004.jpg"
+   ],
+   "original_caption": "(Figure 13.12) At each point along a road traveled by a car, the velocity vector of the car is tangent to the path traveled by the car. (Figure 13.13) The dashed line represents the trajectory of an object (a car, for example). The acceleration vector points toward the inside of the turn at all times. (Figure 13.14) The tangential and normal components of acceleration can be used to describe the acceleration vector.",
+   "draws": [
+    "curve",
+    "point",
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-acceleration-plane",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "point",
+    "vector",
+    "plane"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-falling-ball",
+   "kind": "sim",
+   "number": "13.15",
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_04_005.jpg"
+   ],
+   "original_caption": "An object is falling under the influence of gravity.",
+   "draws": [
+    "point",
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-projectile",
+   "kind": "sim",
+   "number": "13.16",
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_04_006.jpg"
+   ],
+   "original_caption": "Projectile motion when the object is thrown upward at an angle θ. The horizontal motion is at constant velocity and the vertical motion is at constant acceleration.",
+   "draws": [
+    "curve",
+    "point",
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-cannonball",
+   "kind": "sim",
+   "number": "13.17",
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_04_007.jpg"
+   ],
+   "original_caption": "The flight of a cannonball (ignoring air resistance) is projectile motion.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-kepler",
+   "kind": "sim",
+   "number": "13.18",
+   "folds": [
+    "13.19"
+   ],
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_04_008.jpg",
+    "/media/ch13/CNX_Calc_Figure_13_04_009.jpg"
+   ],
+   "original_caption": "(Figure 13.18) Kepler’s first and second laws are pictured here. The Sun is located at a focus of the elliptical orbit of any planet. Furthermore, the shaded areas are all equal, assuming that the amount of time measured as the planet moves is the same for each region. (Figure 13.19) The gravitational force between Earth and the Sun is equal to the mass of the earth times its acceleration.",
+   "draws": [
+    "curve",
+    "point",
+    "vector",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-banked-turn",
+   "kind": "figure",
+   "number": "13.20",
+   "folds": [
+    "13.21"
+   ],
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_01_005.jpg",
+    "/media/ch13/CNX_Calc_Figure_13_01_006.jpg"
+   ],
+   "original_caption": "(Figure 13.20) Views of a race car moving around a track. (Figure 13.21) The car has three forces acting on it: gravity (denoted by mg), the friction force f, and the force exerted by the road N.",
+   "draws": [
+    "curve",
+    "point",
+    "vector",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-bristol",
+   "kind": "photo",
+   "number": "13.22",
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "motion-intro",
+   "concept": "arc-length-of-a-space-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "motion-intro",
+   "concept": "curvature",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737743731",
+   "concept": "velocity-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737743731",
+   "concept": "acceleration-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737743731",
+   "concept": "speed-of-a-moving-object",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737743731",
+   "concept": "derivative-of-a-vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737743731",
+   "concept": "arc-length-function",
+   "verb": "uses"
+  },
+  {
+   "span": "motion-table",
+   "concept": "velocity-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737160800",
+   "concept": "velocity-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737160800",
+   "concept": "acceleration-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "curvy-road",
+   "concept": "velocity-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "components-intro",
+   "concept": "osculating-plane",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169737814963",
+   "concept": "plane-of-the-acceleration-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737814963",
+   "concept": "curvature",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737814963",
+   "concept": "principal-unit-normal-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "components-term",
+   "concept": "tangential-component-of-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "components-term",
+   "concept": "normal-component-of-acceleration",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169738126019",
+   "concept": "tangential-component-of-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738126019",
+   "concept": "normal-component-of-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738126019",
+   "concept": "dot-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738126019",
+   "concept": "magnitude-of-the-cross-product",
+   "verb": "uses"
+  },
+  {
+   "span": "centripetal",
+   "concept": "normal-component-of-acceleration",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169737857156",
+   "concept": "tangential-component-of-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737857156",
+   "concept": "normal-component-of-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "projectile-term",
+   "concept": "projectile-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "gravity",
+   "concept": "acceleration-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "projectile-angle",
+   "concept": "initial-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "projectile-angle",
+   "concept": "indefinite-integral-of-a-vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738125890",
+   "concept": "projectile-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "range-question",
+   "concept": "range-of-a-projectile",
+   "verb": "introduces"
+  },
+  {
+   "span": "range-height",
+   "concept": "projectile-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "kepler-term",
+   "concept": "keplers-laws-of-planetary-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737817346",
+   "concept": "keplers-laws-of-planetary-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737817346",
+   "concept": "ellipse",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737817346",
+   "concept": "focus",
+   "verb": "uses"
+  },
+  {
+   "span": "au-term",
+   "concept": "astronomical-unit",
+   "verb": "introduces"
+  },
+  {
+   "span": "orbit-conic",
+   "concept": "orbit-as-a-conic",
+   "verb": "introduces"
+  },
+  {
+   "span": "orbit-conic",
+   "concept": "polar-equation-of-a-conic",
+   "verb": "uses"
+  },
+  {
+   "span": "orbit-conic",
+   "concept": "eccentricity",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737204126",
+   "concept": "keplers-third-law-for-other-orbits",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169738079729",
+   "concept": "keplers-laws-of-planetary-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738079729",
+   "concept": "eccentricity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169738215904",
+   "source_number": "Checkpoint 13.14",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737160800"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "A particle moves in a path defined by the vector-valued function $\\textbf{r}(t)=(t^{2}-3t)\\;\\textbf{i}+(2t-4)\\;\\textbf{j}+(t+2)\\textbf{k},$ where <em>t</em> measures time in seconds and where distance is measured in feet. Find the velocity, acceleration, and speed as functions of time.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{array}{l}\\textbf{v}(t)=\\mathbf{r^{\\prime}}(t)=(2t-3)\\;\\textbf{i}+2\\textbf{j}+\\textbf{k} \\\\ \\textbf{a}(t)=\\mathbf{v^{\\prime}}(t)=2\\textbf{i} \\\\ v(t)=\\| \\mathbf{r^{\\prime}}(t)\\| =\\sqrt{{(2t-3)}^{2}+2^{2}+1^{2}}=\\sqrt{4t^{2}-12t+14}\\end{array}$ The units for velocity and speed are feet per second, and the units for acceleration are feet per second squared.",
+    "hint": "Use <a href=\"#fs-id1169738144149\">Equation 13.20</a>, <a href=\"#fs-id1169738166350\">Equation 13.21</a>, and <a href=\"#fs-id1169737947455\">Equation 13.22</a>."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169737897825",
+   "source_number": "Checkpoint 13.15",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737857156"
+   },
+   "cite": "fs-id1169738126019",
+   "prompt": "An object moves in a path defined by the vector-valued function $\\textbf{r}(t)=4t\\;\\textbf{i}+t^{2}\\textbf{j},$ where <em>t</em> measures time in seconds. a. Find $a_{\\textbf{T}}$ and $a_{\\textbf{N}}$ as functions of <em>t</em>. b. Find $a_{\\textbf{T}}$ and $a_{\\textbf{N}}$ at time $t=-3.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\begin{array}{lll}\\text{v}(t) & = & r^{\\prime}(t)=4\\text{i}+2t\\;\\text{j} \\\\ \\text{a}(t) & = & v^{\\prime}(t)=2\\text{j} \\\\ a_{\\textbf{T}} & = & \\frac{2t}{\\sqrt{t^{2}+4}},a_{\\textbf{N}}=\\frac{4}{\\sqrt{4+t^{2}}}\\end{array}$ b. $a_{\\textbf{T}}(-3)=-\\frac{6\\sqrt{13}}{13},a_{\\textbf{N}}(-3)=\\frac{2\\sqrt{13}}{13}$<sup class=\"fn\" data-note=\"c-cp15\"></sup>",
+    "hint": "Use <a href=\"#fs-id1169738185179\">Equation 13.23</a> and <a href=\"#fs-id1169738191530\">Equation 13.24</a>."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169737301248",
+   "source_number": "Checkpoint 13.16",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738125890"
+   },
+   "cite": "projectile-angle",
+   "prompt": "An archer fires an arrow at an angle of 40° above the horizontal with an initial speed of 98 m/sec. The height of the archer is 171.5 cm. Find the horizontal distance the arrow travels before it hits the ground.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "967.15 m",
+    "hint": "The equation for the position vector needs to account for the height of the archer in meters."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1169737484459",
+   "source_number": "Checkpoint 13.17",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738104787"
+   },
+   "cite": "fs-id1169738104787",
+   "prompt": "Titan is the largest moon of Saturn. The mass of Titan is approximately $1.35\\;\\times \\;{10}^{23}$ kg. The mass of Saturn is approximately $5.68\\;\\times \\;{10}^{26}$ kg. Titan takes approximately 16 days to orbit Saturn. Use this information, along with the universal gravitation constant $G=6.67\\;\\times \\;{10}^{-11}{\\text{m}}^{3}/\\text{kg}\\cdot {\\sec }^{2}$ to estimate the distance from Titan to Saturn.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a=1.224\\;\\times \\;{10}^{9}\\text{m}\\approx 1,224,000\\;\\text{km}$",
+    "hint": "Make sure your units agree, then use <a href=\"#fs-id1169737204126\">Equation 13.30</a>."
+   }
+  },
+  {
+   "id": "e155",
+   "source_id": "fs-id1169737894430",
+   "source_number": "155",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_04_205.jpg",
+    "alt": "This figure is a curve in the xy plane. The curve begins in the fourth quadrant towards the y-axis, intersects below 0 to the x axis, then bends around to intersect the positive y-axis and increasing through the first quadrant."
+   },
+   "prompt": "<p>Given $\\textbf{r}(t)=(3t^{2}-2)\\textbf{i}+(2t-\\sin (t))\\textbf{j},$ find the velocity of a particle moving along this curve.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}(t)=(6t)\\textbf{i}+(2-\\cos (t))\\textbf{j}$"
+   }
+  },
+  {
+   "id": "e157",
+   "source_id": "fs-id1169738079621",
+   "source_number": "157",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p>Given the following position functions, find the velocity, acceleration, and speed in terms of the parameter <em>t</em>.</p><p>$\\textbf{r}(t)=\\langle 3\\;\\cos t,3\\;\\sin t,t^{2}\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}(t)=\\langle -3\\;\\sin t,3\\;\\cos t,2t\\rangle ,$ $\\textbf{a}(t)=\\langle -3\\;\\cos t,-3\\;\\sin t,2\\rangle ,$ $\\text{speed}=\\sqrt{9+4t^{2}}$"
+   }
+  },
+  {
+   "id": "e159",
+   "source_id": "fs-id1169737985374",
+   "source_number": "159",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p>Given the following position functions, find the velocity, acceleration, and speed in terms of the parameter <em>t</em>.</p><p>$\\textbf{r}(t)=2\\;\\cos t\\;\\textbf{j}+3\\;\\sin t\\;\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\mathbf{v}(t)=-2\\sin\\;t\\;\\mathbf{j}+3\\;\\cos\\;t\\;\\mathbf{k},$ $\\textbf{a}(t)=-2\\;\\cos t\\;\\textbf{j}-3\\;\\sin t\\;\\textbf{k},$ $\\text{speed}=\\sqrt{4\\;{\\sin }^{2}t+9{\\cos }^{2}t}$"
+   }
+  },
+  {
+   "id": "e161",
+   "source_id": "fs-id1169737253230",
+   "source_number": "161",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_04_207.jpg",
+    "alt": "This figure is a curve in 3 dimensions. It is inside of a box. The box represents an octant. The curve begins in the bottom of the box, from the lower left, and bends through the box to the other side, in the lower right."
+   },
+   "prompt": "<p>Find the velocity, acceleration, and speed of a particle with the given position function.</p><p>$\\textbf{r}(t)=\\langle e^{t},e^{-t}\\rangle$. The graph is shown here:</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}(t)=e^{t}\\textbf{i}-e^{-t}\\textbf{j},$ $\\textbf{a}(t)=e^{t}\\textbf{i}+e^{-t}\\textbf{j},$ speed = $\\| \\textbf{v}(t)\\| =\\sqrt{e^{2t}+e^{-2t}}$"
+   }
+  },
+  {
+   "id": "e163",
+   "source_id": "fs-id1169738216190",
+   "source_number": "163",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p>The position function of an object is given by $\\textbf{r}(t)=\\langle t^{2},5t,t^{2}-16t\\rangle .$ At what time is the speed a minimum?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$t=4$"
+   }
+  },
+  {
+   "id": "e164",
+   "source_id": "fs-id1169738253253",
+   "source_number": "164",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p>Let $\\textbf{r}(t)=r\\;\\operatorname{cosh}(\\omega t)\\textbf{i}+r\\;\\operatorname{sinh}(\\omega t)\\textbf{j}.$ Find the velocity and acceleration vectors and show that the acceleration is proportional to $\\textbf{r}(t).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "With $\\mathbf{r}(t)=r\\cosh(\\omega t)\\,\\mathbf{i}+r\\sinh(\\omega t)\\,\\mathbf{j},$ the velocity is $\\mathbf{v}(t)=\\mathbf{r}\\'(t)=r\\omega\\sinh(\\omega t)\\,\\mathbf{i}+r\\omega\\cosh(\\omega t)\\,\\mathbf{j}$ and the acceleration is $\\mathbf{a}(t)=\\mathbf{v}\\'(t)=r\\omega^{2}\\cosh(\\omega t)\\,\\mathbf{i}+r\\omega^{2}\\sinh(\\omega t)\\,\\mathbf{j}=\\omega^{2}\\,\\mathbf{r}(t).$ The acceleration is the constant $\\omega^{2}$ times the position, so it is proportional to $\\mathbf{r}(t),$ and it points directly away from the origin.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e165",
+   "source_id": "fs-id1169737931360",
+   "source_number": "165",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_04_201.jpg",
+    "alt": "This figure is a curve in the first octant. It is semicircles connected representing humps. It begins at the origin and touches the x axis at 4pi, and 8pi."
+   },
+   "prompt": "<p>Consider the motion of a point on the circumference of a rolling circle. As the circle rolls, it generates the cycloid $\\textbf{r}(t)=(\\omega t-\\sin (\\omega t))\\;\\textbf{i}+(1-\\cos (\\omega t))\\;\\textbf{j},$ where $\\omega$ is the angular velocity of the circle:</p><p>Find the equations for the velocity, acceleration, and speed of the particle at any time.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}(t)=(\\omega -\\omega \\;\\cos (\\omega t))\\;\\textbf{i}+(\\omega \\;\\sin (\\omega t))\\;\\textbf{j},$ $\\textbf{a}(t)=({\\omega}^{2}\\sin (\\omega t))\\;\\textbf{i}+({\\omega}^{2}\\cos (\\omega t))\\;\\textbf{j},$ $\\text{speed}=\\sqrt{{\\omega}^{2}-2{\\omega}^{2}\\cos (\\omega t)+{\\omega}^{2}{\\cos }^{2}(\\omega t)+{\\omega}^{2}{\\sin }^{2}(\\omega t)}\\;\\text{=}\\;\\sqrt{2{\\omega}^{2}(1-\\cos (\\omega t))}$"
+   }
+  },
+  {
+   "id": "e167",
+   "source_id": "fs-id1169737929308",
+   "source_number": "167",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_04_208.jpg",
+    "alt": "This figure is a curve in 3 dimensions. It is inside of a box. The box represents an octant. The curve is connected in the box, from the lower left, and bends through the box to the upper right."
+   },
+   "prompt": "<p>A person on a hang glider is spiraling upward as a result of the rapidly rising air on a path having position vector $\\textbf{r}(t)=(3\\;\\cos t)\\textbf{i}+(3\\;\\sin t)\\textbf{j}+t^{2}\\textbf{k}.$ The path is similar to that of a helix, although it is not a helix. The graph is shown here:</p><p>Find the following quantities:</p><p>The glider’s speed at any time</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\| \\textbf{v}(t)\\| =\\sqrt{9+4t^{2}}$"
+   }
+  },
+  {
+   "id": "e169",
+   "source_id": "fs-id1169737956311",
+   "source_number": "169",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p>Given that $\\textbf{r}(t)=\\langle e^{-5t}\\sin t,e^{-5t}\\cos t,4e^{-5t}\\rangle$ is the position vector of a moving particle, find the following quantities:</p><p>The velocity of the particle</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}(t)=\\langle e^{-5t}(\\cos t-5\\;\\sin t),-e^{-5t}(\\sin t+5\\;\\cos t),-20e^{-5t}\\rangle$"
+   }
+  },
+  {
+   "id": "e171",
+   "source_id": "fs-id1169737404637",
+   "source_number": "171",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p>Given that $\\textbf{r}(t)=\\langle e^{-5t}\\sin t,e^{-5t}\\cos t,4e^{-5t}\\rangle$ is the position vector of a moving particle, find the following quantities:</p><p>The acceleration of the particle</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{a}(t)={\\langle e}^{-5t}(-\\sin t-5\\;\\cos t)-5e^{-5t}(\\cos t-5\\;\\sin t),$ $-e^{-5t}(\\cos t-5\\;\\sin t)+5e^{-5t}(\\sin t+5\\;\\cos t),100e^{-5t}\\rangle$"
+   }
+  },
+  {
+   "id": "e173",
+   "source_id": "fs-id1169737270309",
+   "source_number": "173",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projectile-angle",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_04_209.jpg",
+    "alt": "This figure is a curve in the fourth quadrant. The curve is decreasing. It begins at the origin and decreases into the fourth quadrant. Answer the following questions."
+   },
+   "prompt": "<p>A projectile is shot in the air from ground level with an initial velocity of 500 m/sec at an angle of 60° with the horizontal. The graph is shown here:</p><p>At what time does the projectile reach maximum height?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "44.185 sec"
+   }
+  },
+  {
+   "id": "e175",
+   "source_id": "fs-id1169737270341",
+   "source_number": "175",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range-question",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_04_209.jpg",
+    "alt": "This figure is a curve in the fourth quadrant. The curve is decreasing. It begins at the origin and decreases into the fourth quadrant. Answer the following questions."
+   },
+   "prompt": "<p>A projectile is shot in the air from ground level with an initial velocity of 500 m/sec at an angle of 60° with the horizontal. The graph is shown here:</p><p>At what time is the maximum range of the projectile attained?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$t=88.37$ sec"
+   }
+  },
+  {
+   "id": "e177",
+   "source_id": "fs-id1169737270382",
+   "source_number": "177",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projectile-angle",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_04_209.jpg",
+    "alt": "This figure is a curve in the fourth quadrant. The curve is decreasing. It begins at the origin and decreases into the fourth quadrant. Answer the following questions."
+   },
+   "prompt": "<p>A projectile is shot in the air from ground level with an initial velocity of 500 m/sec at an angle of 60° with the horizontal. The graph is shown here:</p><p>What is the total flight time of the projectile?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "88.37 sec"
+   }
+  },
+  {
+   "id": "e179",
+   "source_id": "fs-id1169737270419",
+   "source_number": "179",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projectile-angle",
+   "prompt": "<p>A projectile is fired at a height of 1.5 m above the ground with an initial velocity of 100 m/sec and at an angle of 30° above the horizontal. Use this information to answer the following questions:</p><p>Determine the range of the projectile.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The range is approximately 886.29 m."
+   }
+  },
+  {
+   "id": "e181",
+   "source_id": "fs-id1169738022660",
+   "source_number": "181",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "range-question",
+   "prompt": "<p>A projectile is fired from ground level at an angle of 8° with the horizontal. The projectile is to have a range of 50 m. Find the minimum velocity necessary to achieve this range.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}=42.16$ m/sec"
+   }
+  },
+  {
+   "id": "e182",
+   "source_id": "fs-id1169738022692",
+   "source_number": "182",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p>A projectile is fired at a height of 1.5 m above the ground with an initial velocity of 100 m/sec and at an angle of 30° above the horizontal. Use this information to answer the following questions:</p><p>Prove that an object moving in a straight line at a constant speed has an acceleration of zero.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "An object moving in a straight line at a constant speed $c$ has position $\\mathbf{r}(t)=\\mathbf{r}_{0}+ct\\,\\mathbf{u},$ where $\\mathbf{r}_{0}$ is a point of the line and $\\mathbf{u}$ a fixed unit vector along it. Then $\\mathbf{v}(t)=\\mathbf{r}\\'(t)=c\\,\\mathbf{u},$ a constant vector, of magnitude $c,$ the speed. Differentiating once more, $\\mathbf{a}(t)=\\mathbf{v}\\'(t)=\\mathbf{0},$ because the derivative of each component of a constant vector is zero. In terms of components, $a_{\\mathbf{T}}=\\frac{dv}{dt}=0$ since the speed is constant, and $a_{\\mathbf{N}}=\\kappa v^{2}=0$ since a line has curvature $\\kappa=0.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e183",
+   "source_id": "fs-id1169737446397",
+   "source_number": "183",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gravity",
+   "prompt": "<p>The acceleration of an object is given by $\\textbf{a}(t)=t\\;\\textbf{j}+t\\;\\textbf{k}.$ The velocity at $t=1$ sec is $\\textbf{v}(1)=5\\textbf{j}$ and the position of the object at $t=1$ sec is $\\textbf{r}(1)=0\\textbf{i}+0\\textbf{j}+0\\textbf{k}.$ Find the object’s position at any time.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(t)=0\\textbf{i}+(\\frac{1}{6}t^{3}+4.5t-\\frac{14}{3})\\;\\textbf{j}+(\\frac{t^{3}}{6}-\\frac{1}{2}t+\\frac{1}{3})\\;\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e185",
+   "source_id": "fs-id1169737178708",
+   "source_number": "185",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738126019",
+   "prompt": "<p>Find the tangential and normal components of acceleration for $\\textbf{r}(t)=a\\;\\cos (\\omega t)\\textbf{i}+a\\;\\sin (\\omega t)\\textbf{j}$ at $t=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{T}=0,$ $a_{N}=a{\\omega}^{2}$"
+   }
+  },
+  {
+   "id": "e187",
+   "source_id": "fs-id1169737214970",
+   "source_number": "187",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738126019",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_04_210.jpg",
+    "alt": "This figure is a curve in 3 dimensions. It is inside of a box. The box represents an octant. The curve begins in the bottom of the box, from the lower left, and bends through the box to the other side, in the upper left."
+   },
+   "prompt": "<p>For each of the following problems, find the tangential and normal components of acceleration.</p><p>$\\textbf{r}(t)=\\langle e^{t}\\cos t,e^{t}\\sin t,e^{t}\\rangle .$ The graph is shown here:</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{T}=\\sqrt{3}e^{t},$ $a_{N}=\\sqrt{2}e^{t}$"
+   }
+  },
+  {
+   "id": "e189",
+   "source_id": "fs-id1169737359586",
+   "source_number": "189",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738126019",
+   "prompt": "<p>For each of the following problems, find the tangential and normal components of acceleration.</p><p>$\\textbf{r}(t)=\\langle 2t,t^{2},\\frac{t^{3}}{3}\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{T}=2t,$ $a_{N}=2$"
+   }
+  },
+  {
+   "id": "e191",
+   "source_id": "fs-id1169737423509",
+   "source_number": "191",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738126019",
+   "prompt": "<p>For each of the following problems, find the tangential and normal components of acceleration.</p><p>$\\textbf{r}(t)=\\langle 6t,3t^{2},2t^{3}\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{T}\\frac{6t+12t^{3}}{\\sqrt{1+t^{4}+t^{2}}},$ $a_{N}=6\\sqrt{\\frac{1+4t^{2}+t^{4}}{1+t^{2}+t^{4}}}$"
+   }
+  },
+  {
+   "id": "e193",
+   "source_id": "fs-id1169737231330",
+   "source_number": "193",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738126019",
+   "prompt": "<p>For each of the following problems, find the tangential and normal components of acceleration.</p><p>$\\textbf{r}(t)=3\\;\\cos (2\\pi t)\\;\\textbf{i}+3\\;\\sin (2\\pi t)\\;\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{T}=0,$ $a_{N}=12{\\pi}^{2}$"
+   }
+  },
+  {
+   "id": "e195",
+   "source_id": "fs-id1169738104909",
+   "source_number": "195",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gravity",
+   "prompt": "<p>The force on a particle is given by $\\textbf{f}(t)=(\\cos t)\\;\\textbf{i}+(\\sin t)\\;\\textbf{j}.$ The particle is located at point $(c,0)$ at $t=0.$ The initial velocity of the particle is given by $\\textbf{v}(0)=v_{0}\\textbf{j}.$ Find the path of the particle of mass <strong>m</strong>. (Recall, $\\textbf{F}=m\\cdot \\textbf{a}.)$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(t)=(\\frac{-1}{m}\\cos t+c+\\frac{1}{m})\\;\\textbf{i}+(\\frac{-\\sin t}{m}+(v_{0}+\\frac{1}{m})t)\\;\\textbf{j}$"
+   }
+  },
+  {
+   "id": "e197",
+   "source_id": "fs-id1169737165368",
+   "source_number": "197",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737817346",
+   "prompt": "<p>Using Kepler’s laws, it can be shown that $v_{0}=\\sqrt{\\frac{2GM}{r_{0}}}$ is the minimum speed needed when $\\theta =0$ so that an object will escape from the pull of a central force resulting from mass <em>M</em>. Use this result to find the minimum speed when $\\theta =0$ for a space capsule to escape from the gravitational pull of Earth if the probe is at an altitude of 300 km above Earth’s surface.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "10.94 km/sec"
+   }
+  },
+  {
+   "id": "e199",
+   "source_id": "fs-id1169738059793",
+   "source_number": "199",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p>Suppose that the position function for an object in three dimensions is given by the equation $\\textbf{r}(t)=t\\;\\cos (t)\\textbf{i}+t\\;\\sin (t)\\textbf{j}+3t\\;\\textbf{k}.$</p><p>Show that the particle moves on a circular cone.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "With $x=t\\cos t,$ $y=t\\sin t$ and $z=3t,$ we have $x^{2}+y^{2}=t^{2}(\\cos^{2}t+\\sin^{2}t)=t^{2},$ so $\\sqrt{x^{2}+y^{2}}=|t|$ and $z^{2}=9t^{2}=9(x^{2}+y^{2}).$ Every point of the path satisfies $z^{2}=9(x^{2}+y^{2}),$ the equation of a circular cone with its vertex at the origin and the $z$-axis as its axis: each horizontal cross-section $z=c$ is the circle $x^{2}+y^{2}=\\frac{c^{2}}{9}.$ For $t\\ge 0$ the particle climbs the upper nappe $z=3\\sqrt{x^{2}+y^{2}},$ circling the axis as it rises.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e201",
+   "source_id": "fs-id1169737524006",
+   "source_number": "201",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738126019",
+   "prompt": "<p>Suppose that the position function for an object in three dimensions is given by the equation $\\textbf{r}(t)=t\\;\\cos (t)\\textbf{i}+t\\;\\sin (t)\\textbf{j}+3t\\;\\textbf{k}.$</p><p>Find the tangential and normal components of acceleration when $t=1.5.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{T}=0.43\\;{\\text{m/sec}}^{2},$ $a_{N}=2.46\\;{\\text{m/sec}}^{2}$"
+   }
+  },
+  {
+   "id": "r205",
+   "source_id": "fs-id1169737220042",
+   "source_number": "205",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>The speed of a particle with a position function $\\textbf{r}(t)$ is $(\\mathbf{{\\textbf{r}}^{\\prime}}(t))/(|\\mathbf{{\\textbf{r}}^{\\prime}}(t)|).$</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "True",
+     "False"
+    ],
+    "correct": 1,
+    "solution": "False, it is $|\\mathbf{{\\textbf{r}}^{\\prime}}(t)|$"
+   }
+  },
+  {
+   "id": "r223",
+   "source_id": "fs-id1169737496250",
+   "source_number": "223",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738126019",
+   "prompt": "<p>Find the tangential and normal acceleration components with the position vector $\\textbf{r}(t)=\\langle \\cos t,\\sin t,e^{t}\\rangle .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$a_{T}=\\frac{e^{2t}}{\\sqrt{1+e^{2t}}},$ $a_{N}=\\frac{\\sqrt{2e^{2t}+1}}{\\sqrt{1+e^{2t}}}$"
+   }
+  },
+  {
+   "id": "r225",
+   "source_id": "fs-id1169737207562",
+   "source_number": "225",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737743731",
+   "prompt": "<p>The position of a particle is given by $\\textbf{r}(t)=\\langle t^{2},\\ln (t),\\sin (\\pi t)\\rangle ,$ where $t$ is measured in seconds and $\\textbf{r}$ is measured in meters. Find the velocity, acceleration, and speed functions. What are the position, velocity, speed, and acceleration of the particle at 1 sec?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{v}(t)=\\langle 2t,\\frac{1}{t},\\pi \\cos (\\pi t)\\rangle$ m/sec, $\\textbf{a}(t)=\\langle 2,-\\frac{1}{t^{2}},-{\\pi}^{2}\\sin (\\pi t)\\rangle {\\;\\text{m/sec}}^{2},$ $\\text{speed}=\\sqrt{4t^{2}+\\frac{1}{t^{2}}+{{\\pi}^{2}\\cos }^{2}(\\pi t)}$ m/sec; at $t=1,$ $\\textbf{r}(1)=\\langle 1,0,0\\rangle$ m, $\\textbf{v}(1)=\\langle 2,1,–π\\rangle$ m/sec, $\\textbf{a}(1)=\\langle 2,-1,0\\rangle$ m/sec<sup>2</sup>, and $\\text{speed}=\\sqrt{5+{\\pi}^{2}}$ m/sec"
+   }
+  },
+  {
+   "id": "r227",
+   "source_id": "fs-id1169737358843",
+   "source_number": "227",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projectile-angle",
+   "prompt": "<p>The following problems consider launching a cannonball out of a cannon. The cannonball is shot out of the cannon with an angle $\\theta$ and initial velocity ${\\text{v}}_{0}.$ The only force acting on the cannonball is gravity, so we begin with a constant acceleration $\\textbf{a}(t)=-g\\;\\textbf{j}.$</p><p>Find the position vector $\\textbf{r}(t)$ and the parametric representation for the position.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(t)={\\text{v}}_{0}t-\\frac{g}{2}t^{2}\\;\\textbf{j},$ $\\textbf{r}(t)=\\langle {\\text{v}}_{0}(\\cos \\theta )t,{\\text{v}}_{0}(\\sin \\theta )t,-\\frac{g}{2}t^{2}\\rangle$<sup class=\"fn\" data-note=\"c-r227\"></sup>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "speed-of-a-moving-object"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "tangential-component-of-acceleration"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "normal-component-of-acceleration"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "keplers-third-law-for-other-orbits"
+  },
+  {
+   "exercise": "e155",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "e157",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "e157",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "e157",
+   "concept": "speed-of-a-moving-object"
+  },
+  {
+   "exercise": "e159",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "e159",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "e159",
+   "concept": "speed-of-a-moving-object"
+  },
+  {
+   "exercise": "e161",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "e161",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "e161",
+   "concept": "speed-of-a-moving-object"
+  },
+  {
+   "exercise": "e163",
+   "concept": "speed-of-a-moving-object"
+  },
+  {
+   "exercise": "e164",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "e164",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "e165",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "e165",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "e165",
+   "concept": "speed-of-a-moving-object"
+  },
+  {
+   "exercise": "e167",
+   "concept": "speed-of-a-moving-object"
+  },
+  {
+   "exercise": "e169",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "e171",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "e173",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "e175",
+   "concept": "range-of-a-projectile"
+  },
+  {
+   "exercise": "e175",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "e177",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "e179",
+   "concept": "projectile-motion"
+  },
+  {
+   "exercise": "e181",
+   "concept": "range-of-a-projectile"
+  },
+  {
+   "exercise": "e182",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "e182",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "e183",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "e183",
+   "concept": "indefinite-integral-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e185",
+   "concept": "tangential-component-of-acceleration"
+  },
+  {
+   "exercise": "e185",
+   "concept": "normal-component-of-acceleration"
+  },
+  {
+   "exercise": "e187",
+   "concept": "tangential-component-of-acceleration"
+  },
+  {
+   "exercise": "e187",
+   "concept": "normal-component-of-acceleration"
+  },
+  {
+   "exercise": "e189",
+   "concept": "tangential-component-of-acceleration"
+  },
+  {
+   "exercise": "e189",
+   "concept": "normal-component-of-acceleration"
+  },
+  {
+   "exercise": "e191",
+   "concept": "tangential-component-of-acceleration"
+  },
+  {
+   "exercise": "e191",
+   "concept": "normal-component-of-acceleration"
+  },
+  {
+   "exercise": "e193",
+   "concept": "tangential-component-of-acceleration"
+  },
+  {
+   "exercise": "e193",
+   "concept": "normal-component-of-acceleration"
+  },
+  {
+   "exercise": "e195",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "e195",
+   "concept": "indefinite-integral-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e197",
+   "concept": "keplers-laws-of-planetary-motion"
+  },
+  {
+   "exercise": "e199",
+   "concept": "space-curve"
+  },
+  {
+   "exercise": "e201",
+   "concept": "tangential-component-of-acceleration"
+  },
+  {
+   "exercise": "e201",
+   "concept": "normal-component-of-acceleration"
+  },
+  {
+   "exercise": "r205",
+   "concept": "speed-of-a-moving-object"
+  },
+  {
+   "exercise": "r223",
+   "concept": "tangential-component-of-acceleration"
+  },
+  {
+   "exercise": "r223",
+   "concept": "normal-component-of-acceleration"
+  },
+  {
+   "exercise": "r225",
+   "concept": "velocity-vector"
+  },
+  {
+   "exercise": "r225",
+   "concept": "acceleration-vector"
+  },
+  {
+   "exercise": "r225",
+   "concept": "speed-of-a-moving-object"
+  },
+  {
+   "exercise": "r227",
+   "concept": "projectile-motion"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-max-height",
+   "kind": "correction",
+   "html": "The vertical component found just above is 1406.25 ft, so the maximum height is 1406.25 ft above the cannon, or 1506.25 ft above sea level."
+  },
+  {
+   "id": "c-range-j",
+   "kind": "correction",
+   "html": "The display ends with $\\frac{v_{0}^{2}}{g}\\mathbf{j};$ the distance lies along the horizontal, $\\frac{v_{0}^{2}}{g}\\mathbf{i},$ as the line before it has it."
+  },
+  {
+   "id": "c-cp15",
+   "kind": "correction",
+   "html": "From $a_{\\mathbf{N}}=\\frac{4}{\\sqrt{4+t^{2}}},$ $a_{\\mathbf{N}}(-3)=\\frac{4}{\\sqrt{13}}=\\frac{4\\sqrt{13}}{13},$ not $\\frac{2\\sqrt{13}}{13};$ the check $\\sqrt{\\|\\mathbf{a}\\|^{2}-a_{\\mathbf{T}}^{2}}=\\sqrt{4-\\frac{36}{13}}=\\frac{4}{\\sqrt{13}}$ agrees."
+  },
+  {
+   "id": "c-r227",
+   "kind": "correction",
+   "html": "The motion is in the plane, so the parametric representation has two components: $\\mathbf{r}(t)=\\langle v_{0}t\\cos\\theta,\\;v_{0}t\\sin\\theta-\\frac{g}{2}t^{2}\\rangle;$ the key splits the vertical component into two."
+  }
+ ]
+}

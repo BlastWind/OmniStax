@@ -1,0 +1,937 @@
+{
+ "id": "13.1",
+ "module": "m53913",
+ "chapter": "13",
+ "title": "Vector-Valued Functions and Space Curves",
+ "short": "Vector-Valued Functions and Space Curves",
+ "lead": "A <span data-concept=\"vector-valued-function\">vector-valued function</span> $\\kvecr(t)$ assigns a vector to each value of the parameter $t,$ its <span data-concept=\"component-functions\">component functions</span> real-valued functions of $t.$ Graphed in standard position, its vectors trace a <span data-concept=\"parametric-curve\">plane curve</span> or a <span data-concept=\"space-curve\">space curve</span> such as a <span data-concept=\"helix\">helix</span>. This section evaluates such functions, finds their domains, graphs them, and takes their limits component by component.",
+ "objectives": [
+  "Write the general equation of a vector-valued function in component form and unit-vector form.",
+  "Recognize parametric equations for a space curve.",
+  "Describe the shape of a helix and write its equation.",
+  "Define the limit of a vector-valued function."
+ ],
+ "summary_html": "<ul><li>A <span data-concept=\"vector-valued-function\">vector-valued function</span> is a function of the form $\\kvecr(t)=\\kf(t)\\;\\kveci+\\kg(t)\\;\\kvecj$ or $\\kvecr(t)=\\kf(t)\\;\\kveci+\\kg(t)\\;\\kvecj+\\kh(t)\\;\\kveck,$ where the <span data-concept=\"component-functions\">component functions</span> <em>f, g,</em> and <em>h</em> are real-valued functions of the <span data-concept=\"parameter\">parameter</span> <em>t</em>.</li><li>The graph of a <span data-concept=\"vector-valued-function\">vector-valued function</span> of the form $\\kvecr(t)=\\kf(t)\\;\\kveci+\\kg(t)\\;\\kvecj$ is called a <em><span data-concept=\"parametric-curve\">plane curve</span></em>. The graph of a <span data-concept=\"vector-valued-function\">vector-valued function</span> of the form $\\kvecr(t)=\\kf(t)\\;\\kveci+\\kg(t)\\;\\kvecj+\\kh(t)\\;\\kveck$ is called a <em><span data-concept=\"space-curve\">space curve</span></em>.</li><li>It is possible to represent an arbitrary <span data-concept=\"parametric-curve\">plane curve</span> by a <span data-concept=\"vector-valued-function\">vector-valued function</span>.</li><li>To calculate the <span data-concept=\"limit-of-a-vector-valued-function\">limit of a vector-valued function</span>, calculate the limits of the <span data-concept=\"component-functions\">component functions</span> separately.</li></ul>",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approaches marked as such. Exercise 36 (show that the curve lies on z = 5 − r/10) has no answer in the book’s key and is kept with an AI-written suggested approach. The other 19 even-numbered exercises have no answer in the key and are left out: 2, 4, 6, 8, 10 and 12 (values and limits), 14 (describe a line), 16, 18 and 20 (domains and continuity), 22, 24 and 26 (eliminate the parameter and sketch), 28 (a technology sketch), 30 and 32 (find a vector-valued function), 34 (a limit), and 38 and 40 (a roller coaster and a slinky drawn with technology). Review exercises 202, 207, 209 and 211 from the end of the chapter are held here; 202, true or false with no answer in the key, carries an AI-written approach; 206, 208 and 210, unkeyed, are left out. The keys to 207 and 211 are corrected under their cards.",
+ "figures": [
+  {
+   "id": "sim-ellipse",
+   "kind": "sim",
+   "number": "13.2",
+   "folds": [
+    "13.3"
+   ],
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_01_001.jpg",
+    "/media/ch13/CNX_Calc_Figure_13_01_002.jpg"
+   ],
+   "original_caption": "(Figure 13.2) The graph of the first vector-valued function is an ellipse. (Figure 13.3) The graph of the second vector-valued function is also an ellipse.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-helix",
+   "kind": "sim",
+   "number": "13.4",
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_01_003.jpg"
+   ],
+   "original_caption": "The graph of the third vector-valued function is a helix.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-vector-limit",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "point",
+    "vector",
+    "limit"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "vvf-intro",
+   "concept": "vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737987352",
+   "concept": "vector-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737987352",
+   "concept": "component-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737987352",
+   "concept": "function",
+   "verb": "uses"
+  },
+  {
+   "span": "parameter-t",
+   "concept": "parameter",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169737841797",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737841797",
+   "concept": "component-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "domain-range",
+   "concept": "domain",
+   "verb": "uses"
+  },
+  {
+   "span": "domain-range",
+   "concept": "range",
+   "verb": "uses"
+  },
+  {
+   "span": "domain-range",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "curves-term",
+   "concept": "space-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "curves-term",
+   "concept": "vector-parameterization",
+   "verb": "introduces"
+  },
+  {
+   "span": "curves-term",
+   "concept": "parametric-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "curves-term",
+   "concept": "standard-position-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "curves-term",
+   "concept": "initial-point",
+   "verb": "uses"
+  },
+  {
+   "span": "curves-term",
+   "concept": "terminal-point",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738008664",
+   "concept": "ellipse",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738008664",
+   "concept": "space-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "helix-term",
+   "concept": "helix",
+   "verb": "introduces"
+  },
+  {
+   "span": "reparameterization-term",
+   "concept": "reparameterization",
+   "verb": "introduces"
+  },
+  {
+   "span": "elliptical-helix",
+   "concept": "helix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "elliptical-helix",
+   "concept": "orientation",
+   "verb": "uses"
+  },
+  {
+   "span": "parameterized-curves",
+   "concept": "parametric-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "parameterized-curves",
+   "concept": "vector-parameterization",
+   "verb": "reinforces"
+  },
+  {
+   "span": "limit-intro",
+   "concept": "limit-of-a-vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737394789",
+   "concept": "limit-of-a-vector-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737394789",
+   "concept": "limit",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737394789",
+   "concept": "magnitude-of-a-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737946849",
+   "concept": "limit-of-a-vector-valued-function-by-components",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737282882",
+   "concept": "limit-of-a-vector-valued-function-by-components",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738219590",
+   "concept": "continuity-of-a-vector-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169738219590",
+   "concept": "continuity-at-a-point",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169737795579",
+   "source_number": "Checkpoint 13.1",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737841797"
+   },
+   "cite": "fs-id1169737987352",
+   "prompt": "For the vector-valued function $\\textbf{r}(t)=(t^{2}-3t)\\;\\textbf{i}+(4t+1)\\;\\textbf{j},$ evaluate $\\textbf{r}(0),\\;\\textbf{r}(1),\\text{and}\\;\\textbf{r}(-4).$ Does this function have any domain restrictions?",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(0)=\\textbf{j},\\;\\textbf{r}(1)=-2\\;\\textbf{i}+5\\;\\textbf{j},\\;\\textbf{r}(-4)=28\\;\\textbf{i}-15\\;\\textbf{j}$ The domain of $\\textbf{r}(t)=(t^{2}-3t)\\;\\textbf{i}+(4t+1)\\;\\textbf{j}$ is all real numbers.",
+    "hint": "Substitute the appropriate values of <em>t</em> into the function."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169738149748",
+   "source_number": "Checkpoint 13.2",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738008664"
+   },
+   "cite": "curves-term",
+   "prompt": "Create a graph of the vector-valued function $\\textbf{r}(t)=(t^{2}-1)\\;\\textbf{i}+(2t-3)\\;\\textbf{j},$ $0\\le t\\le 3.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch13/CNX_Calc_Figure_13_01_004.jpg\" alt=\"This figure is a graph of the function r(t) = (t^2-1)i + (2t-3)j, for the values of t from 0 to 3. The curve begins in the 3rd quadrant at the ordered pair (-1,-3) and increases up through the 1st quadrant. It is increasing and has arrows on the curve representing orientation to the right.\">",
+    "hint": "Start by making a table of values, then graph the vectors for each value of <em>t</em>."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169738221963",
+   "source_number": "Checkpoint 13.3",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737282882"
+   },
+   "cite": "fs-id1169737946849",
+   "prompt": "Calculate $\\lim_{t\\to -2}\\;\\textbf{r}(t)$ for the function $\\textbf{r}(t)=\\sqrt{t^{2}-3t-1}\\;\\textbf{i}+(4t+3)\\;\\textbf{j}+\\sin \\frac{(t+1)\\pi}{2}\\;\\textbf{k}.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\lim_{t\\to -2}\\;\\textbf{r}(t)=3\\;\\textbf{i}-5\\;\\textbf{j}-\\textbf{k}$",
+    "hint": "Use <a href=\"#fs-id1169737911304\">Equation 13.4</a> from the preceding theorem."
+   }
+  },
+  {
+   "id": "e1",
+   "source_id": "fs-id1169737792858",
+   "source_number": "1",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737987352",
+   "prompt": "<p>Give the component functions $x=f(t)$ and $y=g(t)$ for the vector-valued function $\\textbf{r}(t)=3\\;\\sec t\\;\\textbf{i}+2\\;\\tan t\\;\\textbf{j}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$f(t)=3\\;\\sec t,g(t)=2\\;\\tan t$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "fs-id1169737142156",
+   "source_number": "3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curves-term",
+   "prompt": "<p>Sketch the curve of the vector-valued function $\\textbf{r}(t)=3\\;\\sec t\\;\\textbf{i}+2\\;\\tan t\\;\\textbf{j}$ and give the orientation of the curve. Sketch asymptotes as a guide to the graph.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch13/CNX_Calc_Figure_13_01_201.jpg\" alt=\"This figure is the graph of the function r(t) = 3sect i + 2tant j. The graph has two slant asymptotes. They are diagonal and pass through the origin. The curve has two parts, one to the left of the y-axis with a hyperbolic bend. Also, there is a second part of the curve to the right of the y-axis with a hyperbolic bend. The orientation is represented by arrows on the curve. Both curves have orientation that is rising.\">"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "fs-id1169737300623",
+   "source_number": "5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738219590",
+   "prompt": "<p>Given the vector-valued function $\\textbf{r}(t)=\\langle \\cos t,\\sin t\\rangle ,$ find the following values:</p><p>a. $\\lim_{t\\to \\frac{\\pi}{3}}\\;\\textbf{r}(t)$</p><p>b. $\\textbf{r}(\\frac{\\pi}{3})$</p><p>c. Is $\\textbf{r}(t)$ continuous at $t=\\frac{\\pi}{3}?$</p><p>d. Graph $\\textbf{r}(t).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>a. $\\langle \\frac{1}{2},\\frac{\\sqrt{3}}{2}\\rangle ,$ b. $\\langle \\frac{1}{2},\\frac{\\sqrt{3}}{2}\\rangle ,$ c. Yes, the limit as <em>t</em> approaches $\\pi /3$ is equal to $\\textbf{r}(\\pi /3),$ d.</p>\n<img src=\"/media/ch13/CNX_Calc_Figure_13_01_202.jpg\" alt=\"This figure is a graph of a circle centered at the origin. The circle has radius of 1 and has counter-clockwise orientation with arrows representing the orientation.\">"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "fs-id1169737949241",
+   "source_number": "7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738219590",
+   "prompt": "<p>Let $\\textbf{r}(t)=e^{t}\\;\\textbf{i}+\\sin t\\;\\textbf{j}+\\ln t\\;\\textbf{k}.$ Find the following values:</p><p>a. $\\textbf{r}(\\frac{\\pi}{4})$</p><p>b. $\\lim_{t\\to \\pi /4}\\;\\textbf{r}(t)$</p><p>c. Is $\\textbf{r}(t)$ continuous at $t=\\frac{\\pi}{4}?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a. $\\langle e^{\\pi /4},\\frac{\\sqrt{2}}{2},\\ln (\\frac{\\pi}{4})\\rangle ;$ b. $\\langle e^{\\pi /4},\\frac{\\sqrt{2}}{2},\\ln (\\frac{\\pi}{4})\\rangle ;$ c. Yes"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "fs-id1169737399708",
+   "source_number": "9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737946849",
+   "prompt": "<p>Find the limit of the following vector-valued functions at the indicated value of <em>t</em>.</p><p>$\\lim_{t\\to \\pi /2}\\;\\textbf{r}(t)$ for $\\textbf{r}(t)=e^{t}\\;\\textbf{i}+\\sin t\\;\\textbf{j}+\\ln t\\;\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\langle e^{\\pi /2},1,\\ln (\\frac{\\pi}{2})\\rangle$"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "fs-id1169738023210",
+   "source_number": "11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737946849",
+   "prompt": "<p>Find the limit of the following vector-valued functions at the indicated value of <em>t</em>.</p><p>$\\lim_{t\\to e^{2}}\\langle t\\;\\ln (t),\\frac{\\ln t}{t^{2}},\\sqrt{\\ln (t^{2})}\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2e^{2}\\;\\textbf{i}+\\frac{2}{e^{4}}\\;\\textbf{j}+2\\;\\textbf{k}$"
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "fs-id1169737264017",
+   "source_number": "13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737946849",
+   "prompt": "<p>Find the limit of the following vector-valued functions at the indicated value of <em>t</em>.</p><p>$\\lim_{t\\to \\infty}\\;\\textbf{r}(t)$ for $\\textbf{r}(t)=2e^{-t}\\;\\textbf{i}+e^{-t}\\;\\textbf{j}+\\ln (t-1)\\;\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The limit does not exist because the limit of $\\ln (t-1)$ as <em>t</em> approaches infinity does not exist."
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "fs-id1169737394656",
+   "source_number": "15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "domain-range",
+   "prompt": "<p>Find the domain of the vector-valued functions.</p><p>Domain: $\\textbf{r}(t)=\\langle t^{2},\\tan t,\\ln t\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$t\\gt 0,t\\ne (2k+1)\\frac{\\pi}{2},$ where k is an integer"
+   }
+  },
+  {
+   "id": "e17",
+   "source_id": "fs-id1169737490912",
+   "source_number": "17",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "domain-range",
+   "prompt": "<p>Find the domain of the vector-valued functions.</p><p>Domain: $\\textbf{r}(t)=\\langle \\csc (t),\\frac{1}{\\sqrt{t-3}},\\ln (t-2)\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$t\\gt 3,t\\ne n\\pi ,$ where <em>n</em> is an integer"
+   }
+  },
+  {
+   "id": "e19",
+   "source_id": "fs-id1169737911233",
+   "source_number": "19",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curves-term",
+   "prompt": "<p>Let $\\textbf{r}(t)=\\langle \\cos t,t,\\sin t\\rangle$ and use it to answer the following questions.</p><p>Sketch the graph of $\\textbf{r}(t).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch13/CNX_Calc_Figure_13_01_203.jpg\" alt=\"This figure has two graphs. The first graph is labeled “cross section” and is a circle centered at the origin with radius of 1. It has counter-clockwise orientation. The section graph is labeled “side view” and is a 3 dimensional helix. The helix has counterclockwise orientation.\">"
+   }
+  },
+  {
+   "id": "e21",
+   "source_id": "fs-id1169738166893",
+   "source_number": "21",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738219590",
+   "prompt": "<p>For what values of <em>t</em> is $\\textbf{r}(t)=2e^{-t}\\;\\textbf{i}+e^{-t}\\;\\textbf{j}+\\ln (t-1)\\;\\textbf{k}$ continuous?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "All <em>t</em> such that $t\\in (1,\\infty )$"
+   }
+  },
+  {
+   "id": "e23",
+   "source_id": "fs-id1169737167230",
+   "source_number": "23",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parameterized-curves",
+   "prompt": "<p>Eliminate the parameter <em>t</em>, write the equation in Cartesian coordinates, then sketch the graphs of the vector-valued functions.</p><p>$\\textbf{r}(t)=t^{3}\\;\\textbf{i}+2t\\;\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$y=2\\sqrt[3]{x},$ a variation of the cube-root function</p>\n<img src=\"/media/ch13/CNX_Calc_Figure_13_01_205.jpg\" alt=\"This figure is the graph of y = 2 times the cube root of x. It is an increasing function passing through the origin. The curve becomes more vertical near the origin. It has orientation to the right represented with arrows on the curve.\">"
+   }
+  },
+  {
+   "id": "e25",
+   "source_id": "fs-id1169737950449",
+   "source_number": "25",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parameterized-curves",
+   "prompt": "<p>Eliminate the parameter <em>t</em>, write the equation in Cartesian coordinates, then sketch the graphs of the vector-valued functions.</p><p>$\\textbf{r}(t)=3(\\cos t)\\;\\textbf{i}+3(\\sin t)\\;\\textbf{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$x^{2}+y^{2}=9,$ a circle centered at $(0,0)$ with radius 3, and a counterclockwise orientation</p>\n<img src=\"/media/ch13/CNX_Calc_Figure_13_01_207.jpg\" alt=\"This figure is the graph of x^2 + y^2 = 9. It is a circle centered at the origin with radius 3. It has orientation counter-clockwise represented with arrows on the curve.\">"
+   }
+  },
+  {
+   "id": "e27",
+   "source_id": "fs-id1169737148326",
+   "source_number": "27",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curves-term",
+   "prompt": "<p>Use a graphing utility to sketch each of the following vector-valued functions:</p><p><strong>[T]</strong> $\\text{r}(t)=(2\\;{\\cos }^{2}\\;t)\\;\\text{i}+(2-\\sqrt{t})\\;\\text{j}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch13/CNX_Calc_Figure_13_01_208.jpg\" alt=\"This figure is the graph of r(t) = 2cost^2 i + (2 – the square root of t) j. The curve spirals in the first quadrant, touching the y-axis. As the curve gets closer to the x-axis, the spirals become tighter. It has the look of a spring being compressed. The arrows on the curve represent orientation going downward.\">"
+   }
+  },
+  {
+   "id": "e29",
+   "source_id": "fs-id1169737160691",
+   "source_number": "29",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curves-term",
+   "prompt": "<p>Use a graphing utility to sketch each of the following vector-valued functions:</p><p><strong>[T]</strong> $\\textbf{r}(t)=\\langle 2-\\sin (2t),3+2\\;\\cos t\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch13/CNX_Calc_Figure_13_01_210.jpg\" alt=\"This figure has two graphs. The first is 3 dimensional and is a curve making a figure eight on its side inside of a box. The box represents the first octant. The second graph is 2 dimensional. It represents the same curve from a “view in the yt plane”. The horizontal axis is labeled “t”. The curve is connected and crosses over itself in the first quadrant resembling a figure eight.\">\n"
+   }
+  },
+  {
+   "id": "e31",
+   "source_id": "fs-id1169737788723",
+   "source_number": "31",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parameterized-curves",
+   "prompt": "<p>Find a vector-valued function that traces out the given curve in the indicated direction.</p><p>$\\textbf{r}(t)=\\langle t,t^{2}\\rangle ;$ from left to right</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "For left to right, $y=x^{2},$ where t increases"
+   }
+  },
+  {
+   "id": "e33",
+   "source_id": "fs-id1169738133270",
+   "source_number": "33",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737987352",
+   "prompt": "<p>Consider the curve described by the vector-valued function $\\textbf{r}(t)=(50e^{-t}\\cos t)\\;\\textbf{i}+(50e^{-t}\\sin t)\\;\\textbf{j}+(5-5e^{-t})\\;\\textbf{k}.$</p><p>What is the initial point of the path corresponding to $\\textbf{r}(0)?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(50,0,0)$"
+   }
+  },
+  {
+   "id": "e35",
+   "source_id": "fs-id1169737399959",
+   "source_number": "35",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curves-term",
+   "prompt": "<p>Consider the curve described by the vector-valued function $\\textbf{r}(t)=(50e^{-t}\\cos t)\\;\\textbf{i}+(50e^{-t}\\sin t)\\;\\textbf{j}+(5-5e^{-t})\\;\\textbf{k}.$</p><p><strong>[T]</strong> Use technology to sketch the curve.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch13/CNX_Calc_Figure_13_01_211.jpg\" alt=\"This figure is a graph in the 3 dimensional coordinate system. It is a curve starting at the middle of the box and curving towards the upper left corner The box represents an octant of the coordinate system.\">"
+   }
+  },
+  {
+   "id": "e36",
+   "source_id": "fs-id1169738146069",
+   "source_number": "36",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parameterized-curves",
+   "prompt": "<p>Consider the curve described by the vector-valued function $\\textbf{r}(t)=(50e^{-t}\\cos t)\\;\\textbf{i}+(50e^{-t}\\sin t)\\;\\textbf{j}+(5-5e^{-t})\\;\\textbf{k}.$</p><p>Eliminate the parameter <em>t</em> to show that $z=5-\\frac{r}{10}$ where $r^{2}=x^{2}+y^{2}.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "With $x=50e^{-t}\\cos t$ and $y=50e^{-t}\\sin t,$ $x^{2}+y^{2}=2500e^{-2t}(\\cos^{2}t+\\sin^{2}t)=2500e^{-2t},$ so $r=\\sqrt{x^{2}+y^{2}}=50e^{-t}$ and $e^{-t}=\\frac{r}{50}.$ Substituting into the third component, $z=5-5e^{-t}=5-5\\cdot\\frac{r}{50}=5-\\frac{r}{10}.$ The curve lies on the cone $z=5-\\frac{r}{10},$ which it climbs from $(50,0,0)$ toward its apex $(0,0,5)$ as $t\\to\\infty.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e37",
+   "source_id": "fs-id1169738188924",
+   "source_number": "37",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curves-term",
+   "prompt": "<p><strong>[T]</strong> Let $r(t)=\\cos t\\;\\textbf{i}+\\sin t\\;\\textbf{j}+0.3\\;\\sin (2t)\\;\\textbf{k}.$ Use technology to graph the curve (called the <em>roller-coaster curve</em>) over the interval $[0,2\\pi ).$ Choose at least two views to determine the peaks and valleys.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch13/CNX_Calc_Figure_13_01_212.jpg\" alt=\"This figure has two graphs. The first is 3 dimensional and is a connected curve with counter-clockwise orientation inside of a box. The second graph is 3 dimensional. It represents the same curve from different view of the box. From the side of the box the curve is connected and has depth to it.\">"
+   }
+  },
+  {
+   "id": "e39",
+   "source_id": "fs-id1169737270469",
+   "source_number": "39",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curves-term",
+   "prompt": "<p>Use the results of the preceding two problems to construct an equation of a path of a roller coaster with more than two turning points (peaks and valleys).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>One possibility is $r(t)=\\cos t\\;\\textbf{i}+\\sin t\\;\\textbf{j}+\\sin (4t)\\;\\textbf{k}.$ By increasing the coefficient of <em>t</em> in the third component, the number of turning points will increase.</p>\n<img src=\"/media/ch13/CNX_Calc_Figure_13_01_214.jpg\" alt=\"This figure is a 3 dimensional graph. It is a connected curve inside of a box. The curve has orientation. As the orientation travels around the curve, it does go up and down in depth.\">"
+   }
+  },
+  {
+   "id": "r202",
+   "source_id": "fs-id1169737524082",
+   "source_section": "13.4",
+   "source_number": "202",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737987352",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>A parametric equation that passes through points P and Q can be given by $\\textbf{r}(t)=\\langle t^{2},3t+1,t-2\\rangle ,$ where $P(1,4,-1)$ and $Q(16,11,2).$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "False. At $t=1,$ $\\mathbf{r}(1)=\\langle 1,4,-1\\rangle,$ which is $P.$ For $\\mathbf{r}(t)$ to be $Q(16,11,2)$ we would need $t^{2}=16,$ $3t+1=11$ and $t-2=2$ at once, that is $t=\\pm 4,$ $t=\\frac{10}{3}$ and $t=4,$ and no single $t$ satisfies all three. At $t=4$ the curve is at $\\langle 16,13,2\\rangle,$ not $Q.$ The curve passes through $P$ but not through $Q.$",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r207",
+   "source_id": "fs-id1169737140434",
+   "source_section": "13.4",
+   "source_number": "207",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "domain-range",
+   "prompt": "<p>Find the domains of the vector-valued functions.</p><p>$\\textbf{r}(t)=\\langle e^{t},\\frac{1}{\\sqrt{4-t}},\\sec (t)\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$t\\lt 4,$ $t\\ne \\frac{n\\pi}{2}$<sup class=\"fn\" data-note=\"c-r207\"></sup>"
+   }
+  },
+  {
+   "id": "r209",
+   "source_id": "fs-id1169737778376",
+   "source_section": "13.4",
+   "source_number": "209",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "curves-term",
+   "prompt": "<p>Sketch the curves for the following vector equations. Use a calculator if needed.</p><p><strong>[T]</strong> $\\textbf{r}(t)=\\langle \\sin (20t)e^{-t},\\cos (20t)e^{-t},e^{-t}\\rangle$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch13/CNX_Calc_Figure_13_04_204.jpg\" alt=\"This figure is a curve in 3 dimensions. It is inside of a box. The box represents an octant. The curve begins in the center of the bottom of the box and spirals to the top of the box, increasing radius as it goes.\">"
+   }
+  },
+  {
+   "id": "r211",
+   "source_id": "fs-id1169737842807",
+   "source_section": "13.4",
+   "source_number": "211",
+   "kind": "review-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parameterized-curves",
+   "prompt": "<p>Find a vector function that describes the following curves.</p><p>Intersection of the cone $z=\\sqrt{x^{2}+y^{2}}$ and plane $z=y-4$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(t)=\\langle t,2-\\frac{t^{2}}{8},-2-\\frac{t^{2}}{8}\\rangle$<sup class=\"fn\" data-note=\"c-r211\"></sup>"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "vector-valued-function"
+  },
+  {
+   "exercise": "cp1",
+   "concept": "domain"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "vector-valued-function"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "limit-of-a-vector-valued-function-by-components"
+  },
+  {
+   "exercise": "e1",
+   "concept": "component-functions"
+  },
+  {
+   "exercise": "e3",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e3",
+   "concept": "orientation"
+  },
+  {
+   "exercise": "e5",
+   "concept": "limit-of-a-vector-valued-function-by-components"
+  },
+  {
+   "exercise": "e5",
+   "concept": "continuity-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e7",
+   "concept": "limit-of-a-vector-valued-function-by-components"
+  },
+  {
+   "exercise": "e7",
+   "concept": "continuity-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e9",
+   "concept": "limit-of-a-vector-valued-function-by-components"
+  },
+  {
+   "exercise": "e11",
+   "concept": "limit-of-a-vector-valued-function-by-components"
+  },
+  {
+   "exercise": "e13",
+   "concept": "limit-of-a-vector-valued-function-by-components"
+  },
+  {
+   "exercise": "e15",
+   "concept": "vector-valued-function"
+  },
+  {
+   "exercise": "e15",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e17",
+   "concept": "vector-valued-function"
+  },
+  {
+   "exercise": "e17",
+   "concept": "domain"
+  },
+  {
+   "exercise": "e19",
+   "concept": "space-curve"
+  },
+  {
+   "exercise": "e19",
+   "concept": "helix"
+  },
+  {
+   "exercise": "e21",
+   "concept": "continuity-of-a-vector-valued-function"
+  },
+  {
+   "exercise": "e23",
+   "concept": "vector-valued-function"
+  },
+  {
+   "exercise": "e23",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e25",
+   "concept": "vector-valued-function"
+  },
+  {
+   "exercise": "e25",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e27",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e29",
+   "concept": "parametric-curve"
+  },
+  {
+   "exercise": "e31",
+   "concept": "vector-parameterization"
+  },
+  {
+   "exercise": "e31",
+   "concept": "orientation"
+  },
+  {
+   "exercise": "e33",
+   "concept": "vector-valued-function"
+  },
+  {
+   "exercise": "e35",
+   "concept": "space-curve"
+  },
+  {
+   "exercise": "e36",
+   "concept": "space-curve"
+  },
+  {
+   "exercise": "e36",
+   "concept": "eliminating-the-parameter"
+  },
+  {
+   "exercise": "e37",
+   "concept": "space-curve"
+  },
+  {
+   "exercise": "e39",
+   "concept": "space-curve"
+  },
+  {
+   "exercise": "e39",
+   "concept": "vector-parameterization"
+  },
+  {
+   "exercise": "r202",
+   "concept": "vector-valued-function"
+  },
+  {
+   "exercise": "r207",
+   "concept": "vector-valued-function"
+  },
+  {
+   "exercise": "r207",
+   "concept": "domain"
+  },
+  {
+   "exercise": "r209",
+   "concept": "space-curve"
+  },
+  {
+   "exercise": "r211",
+   "concept": "space-curve"
+  },
+  {
+   "exercise": "r211",
+   "concept": "vector-parameterization"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-unit-circle",
+   "kind": "correction",
+   "html": "The book prints $\\mathbf{r}(t)=\\cos t\\;\\mathbf{i}+\\sin t\\;\\mathbf{j},$ “a unit circle centered at the origin”. Eliminating the $\\mathbf{k}$ component of $\\mathbf{r}(t)=4\\cos t\\;\\mathbf{i}+4\\sin t\\;\\mathbf{j}+t\\;\\mathbf{k}$ leaves $4\\cos t\\;\\mathbf{i}+4\\sin t\\;\\mathbf{j},$ the circle of radius 4 centered at the origin."
+  },
+  {
+   "id": "c-r207",
+   "kind": "correction",
+   "html": "The key prints $t\\ne \\frac{n\\pi}{2}.$ Of the three components only $\\sec t$ is undefined anywhere other than $t\\ge 4,$ and only at the odd multiples of $\\frac{\\pi}{2}$: the domain is $t\\lt 4,$ $t\\ne \\frac{(2n+1)\\pi}{2},$ where $n$ is an integer."
+  },
+  {
+   "id": "c-r211",
+   "kind": "correction",
+   "html": "This curve satisfies $z^{2}=x^{2}+y^{2}$ and $z=y-4,$ but its $z=-2-\\frac{t^{2}}{8}$ is negative: it is where the plane meets the lower nappe $z=-\\sqrt{x^{2}+y^{2}}.$ On the cone $z=\\sqrt{x^{2}+y^{2}}$ as printed, $z\\ge |y|\\gt y-4,$ so the cone and the plane do not meet."
+  }
+ ]
+}

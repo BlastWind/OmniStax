@@ -1,0 +1,1182 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "T_vec",
+   "latex": "\\mathbf{T}",
+   "macro": "\\kvecT"
+  },
+  {
+   "sym": "N_vec",
+   "latex": "\\mathbf{N}",
+   "macro": "\\kvecN"
+  },
+  {
+   "sym": "B_vec",
+   "latex": "\\mathbf{B}",
+   "macro": "\\kvecB"
+  },
+  {
+   "sym": "L_vec",
+   "latex": "\\mathbf{L}",
+   "macro": "\\kvecL"
+  },
+  {
+   "sym": "v0_vec",
+   "latex": "\\mathbf{v}_{0}",
+   "macro": "\\kvecvzero"
+  },
+  {
+   "sym": "s0_vec",
+   "latex": "\\mathbf{s}_{0}",
+   "macro": "\\kvecszero"
+  },
+  {
+   "sym": "r_vec_prime",
+   "latex": "\\mathbf{r}'",
+   "macro": "\\kvecrprime"
+  },
+  {
+   "sym": "r_vec_dprime",
+   "latex": "\\mathbf{r}''",
+   "macro": "\\kvecrdprime"
+  },
+  {
+   "sym": "u_vec_prime",
+   "latex": "\\mathbf{u}'",
+   "macro": "\\kvecuprime"
+  },
+  {
+   "sym": "u_vec_dprime",
+   "latex": "\\mathbf{u}''",
+   "macro": "\\kvecudprime"
+  },
+  {
+   "sym": "v_vec_prime",
+   "latex": "\\mathbf{v}'",
+   "macro": "\\kvecvprime"
+  },
+  {
+   "sym": "s_vec_prime",
+   "latex": "\\mathbf{s}'",
+   "macro": "\\kvecsprime"
+  },
+  {
+   "sym": "T_vec_prime",
+   "latex": "\\mathbf{T}'",
+   "macro": "\\kvecTprime"
+  },
+  {
+   "sym": "κ",
+   "latex": "\\kappa",
+   "macro": "\\kkappa"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "vector-valued-function",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "Vector-valued function",
+   "terms": [
+    "vector-valued function",
+    "vector-valued functions"
+   ],
+   "type": "curve",
+   "symbol": "r_vec",
+   "statement": "A vector-valued function is a function of the form r(t) = f(t) i + g(t) j or r(t) = f(t) i + g(t) j + h(t) k, also written r(t) = ⟨f(t), g(t)⟩ or ⟨f(t), g(t), h(t)⟩, where the component functions f, g and h are real-valued functions of the parameter t. Its domain consists of real numbers and its range of two- or three-dimensional vectors.",
+   "forms": [
+    {
+     "id": "eq-vvf-unit-vector-form",
+     "latex": "\\mathbf{r}(t)=f(t)\\,\\mathbf{i}+g(t)\\,\\mathbf{j}\\;\\text{or}\\;\\mathbf{r}(t)=f(t)\\,\\mathbf{i}+g(t)\\,\\mathbf{j}+h(t)\\,\\mathbf{k}",
+     "anchor": "13.1-fs-id1169737813537"
+    },
+    {
+     "id": "eq-vvf-component-form",
+     "latex": "\\mathbf{r}(t)=\\langle f(t),g(t)\\rangle\\;\\text{or}\\;\\mathbf{r}(t)=\\langle f(t),g(t),h(t)\\rangle",
+     "anchor": "13.1-fs-id1169737819432"
+    }
+   ]
+  },
+  {
+   "id": "component-functions",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "Component functions",
+   "terms": [
+    "component functions",
+    "component function"
+   ],
+   "type": "function",
+   "statement": "The component functions of the vector-valued function r(t) = f(t) i + g(t) j are f(t) and g(t), and the component functions of r(t) = f(t) i + g(t) j + h(t) k are f(t), g(t) and h(t); they are real-valued functions of the parameter t."
+  },
+  {
+   "id": "space-curve",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "Space curve",
+   "terms": [
+    "space curve",
+    "space curves"
+   ],
+   "type": "curve",
+   "statement": "The graph of a vector-valued function r(t) = f(t) i + g(t) j + h(t) k, its vectors graphed in standard position, traces a space curve: the set of ordered triples (f(t), g(t), h(t)) together with their defining parametric equations x = f(t), y = g(t) and z = h(t)."
+  },
+  {
+   "id": "vector-parameterization",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "Vector parameterization",
+   "terms": [
+    "vector parameterization"
+   ],
+   "type": "curve",
+   "statement": "Any representation of a plane curve or space curve using a vector-valued function is called a vector parameterization of the curve; an arbitrary plane curve can be represented by one."
+  },
+  {
+   "id": "helix",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "Helix",
+   "terms": [
+    "helix"
+   ],
+   "type": "curve",
+   "statement": "A helix is a three-dimensional curve in the shape of a spiral; r(t) = 4 cos t i + 4 sin t j + t k resembles a spring with a circular cross-section looking down along the z-axis, and a helix may also be elliptical in cross-section. A helix of radius R and height h that completes N turns is r(t) = R cos(2πNt/h) i + R sin(2πNt/h) j + t k, 0 ≤ t ≤ h.",
+   "forms": [
+    {
+     "id": "eq-helix-n-turns",
+     "latex": "\\mathbf{r}(t)=R\\cos\\left(\\frac{2\\pi Nt}{h}\\right)\\mathbf{i}+R\\sin\\left(\\frac{2\\pi Nt}{h}\\right)\\mathbf{j}+t\\,\\mathbf{k},\\;0\\le t\\le h",
+     "section": "13.3",
+     "anchor": "13.3-helix-form"
+    }
+   ]
+  },
+  {
+   "id": "reparameterization",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "Reparameterization",
+   "terms": [
+    "reparameterization",
+    "reparameterizations"
+   ],
+   "type": "curve",
+   "statement": "A reparameterization is an alternative parameterization of a given vector-valued function: replacing t with 2t, say, traces the same curve while the interval over which t is defined may change. Any curve has an infinite number of reparameterizations."
+  },
+  {
+   "id": "limit-of-a-vector-valued-function",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "Limit of a vector-valued function",
+   "terms": [
+    "limit of a vector-valued function"
+   ],
+   "type": "limit",
+   "symbol": "L_vec",
+   "statement": "A vector-valued function r approaches the limit L as t approaches a, written lim_{t→a} r(t) = L, provided lim_{t→a} ‖r(t) − L‖ = 0.",
+   "forms": [
+    {
+     "id": "eq-vvf-limit",
+     "latex": "\\lim_{t\\to a}\\mathbf{r}(t)=\\mathbf{L}\\;\\text{provided}\\;\\lim_{t\\to a}\\|\\mathbf{r}(t)-\\mathbf{L}\\|=0",
+     "anchor": "13.1-fs-id1169737394789"
+    }
+   ]
+  },
+  {
+   "id": "limit-of-a-vector-valued-function-by-components",
+   "kind": "result",
+   "section": "13.1",
+   "name": "Limit of a vector-valued function by components",
+   "type": "limit",
+   "statement": "Let f, g and h be functions of t. The limit of r(t) = f(t) i + g(t) j + h(t) k as t approaches a is [lim f(t)] i + [lim g(t)] j + [lim h(t)] k, provided the limits of the component functions exist; to calculate the limit of a vector-valued function, calculate the limits of the component functions separately.",
+   "forms": [
+    {
+     "id": "eq-vvf-limit-components-plane",
+     "latex": "\\lim_{t\\to a}\\mathbf{r}(t)=[\\lim_{t\\to a}f(t)]\\,\\mathbf{i}+[\\lim_{t\\to a}g(t)]\\,\\mathbf{j}",
+     "anchor": "13.1-fs-id1169737903941"
+    },
+    {
+     "id": "eq-vvf-limit-components-space",
+     "latex": "\\lim_{t\\to a}\\mathbf{r}(t)=[\\lim_{t\\to a}f(t)]\\,\\mathbf{i}+[\\lim_{t\\to a}g(t)]\\,\\mathbf{j}+[\\lim_{t\\to a}h(t)]\\,\\mathbf{k}",
+     "anchor": "13.1-fs-id1169737911304"
+    }
+   ]
+  },
+  {
+   "id": "continuity-of-a-vector-valued-function",
+   "kind": "definition",
+   "section": "13.1",
+   "name": "Continuity of a vector-valued function",
+   "statement": "A vector-valued function r(t) is continuous at the point t = a if r(a) exists, lim_{t→a} r(t) exists, and lim_{t→a} r(t) = r(a).",
+   "forms": [
+    {
+     "id": "eq-vvf-continuity",
+     "latex": "\\lim_{t\\to a}\\mathbf{r}(t)=\\mathbf{r}(a)",
+     "anchor": "13.1-fs-id1169738219590"
+    }
+   ]
+  },
+  {
+   "id": "derivative-of-a-vector-valued-function",
+   "kind": "definition",
+   "section": "13.2",
+   "name": "Derivative of a vector-valued function",
+   "terms": [
+    "derivative of a vector-valued function"
+   ],
+   "type": "vector",
+   "symbol": "r_vec_prime",
+   "statement": "The derivative of a vector-valued function r(t) is r′(t) = lim_{Δt→0} [r(t + Δt) − r(t)]/Δt, provided the limit exists; then r is differentiable at t. Its range consists of vectors, and when r represents the position of an object, r′ represents its velocity.",
+   "forms": [
+    {
+     "id": "eq-vvf-derivative",
+     "latex": "\\mathbf{r}'(t)=\\lim_{\\Delta t\\to 0}\\frac{\\mathbf{r}(t+\\Delta t)-\\mathbf{r}(t)}{\\Delta t}",
+     "anchor": "13.2-fs-id1169739012267"
+    }
+   ]
+  },
+  {
+   "id": "differentiation-of-vector-valued-functions",
+   "kind": "result",
+   "section": "13.2",
+   "name": "Differentiation of vector-valued functions",
+   "type": "vector",
+   "statement": "Let f, g and h be differentiable functions of t. If r(t) = f(t) i + g(t) j, then r′(t) = f′(t) i + g′(t) j; if r(t) = f(t) i + g(t) j + h(t) k, then r′(t) = f′(t) i + g′(t) j + h′(t) k. To calculate the derivative, differentiate the component functions.",
+   "forms": [
+    {
+     "id": "eq-vvf-derivative-components-plane",
+     "latex": "\\mathbf{r}'(t)=f'(t)\\,\\mathbf{i}+g'(t)\\,\\mathbf{j}",
+     "anchor": "13.2-fs-id1169739242722"
+    },
+    {
+     "id": "eq-vvf-derivative-components-space",
+     "latex": "\\mathbf{r}'(t)=f'(t)\\,\\mathbf{i}+g'(t)\\,\\mathbf{j}+h'(t)\\,\\mathbf{k}",
+     "anchor": "13.2-fs-id1169739242722"
+    }
+   ]
+  },
+  {
+   "id": "properties-of-the-derivative-of-vector-valued-functions",
+   "kind": "result",
+   "section": "13.2",
+   "name": "Properties of the derivative of vector-valued functions",
+   "statement": "Let r and u be differentiable vector-valued functions of t, f a differentiable real-valued function of t and c a scalar. Then d/dt[c r] = c r′, d/dt[r ± u] = r′ ± u′, d/dt[f u] = f′ u + f u′, d/dt[r · u] = r′ · u + r · u′, d/dt[r × u] = r′ × u + r × u′ and d/dt[r(f(t))] = r′(f(t)) · f′(t).",
+   "forms": [
+    {
+     "id": "eq-vvf-scalar-multiple",
+     "latex": "\\frac{d}{dt}[c\\,\\mathbf{r}(t)]=c\\,\\mathbf{r}'(t)",
+     "anchor": "13.2-fs-id1169739260277"
+    },
+    {
+     "id": "eq-vvf-sum-difference",
+     "latex": "\\frac{d}{dt}[\\mathbf{r}(t)\\pm\\mathbf{u}(t)]=\\mathbf{r}'(t)\\pm\\mathbf{u}'(t)",
+     "anchor": "13.2-fs-id1169739260277"
+    },
+    {
+     "id": "eq-vvf-scalar-product",
+     "latex": "\\frac{d}{dt}[f(t)\\,\\mathbf{u}(t)]=f'(t)\\,\\mathbf{u}(t)+f(t)\\,\\mathbf{u}'(t)",
+     "anchor": "13.2-fs-id1169739260277"
+    },
+    {
+     "id": "eq-vvf-dot-product-rule",
+     "latex": "\\frac{d}{dt}[\\mathbf{r}(t)\\cdot\\mathbf{u}(t)]=\\mathbf{r}'(t)\\cdot\\mathbf{u}(t)+\\mathbf{r}(t)\\cdot\\mathbf{u}'(t)",
+     "anchor": "13.2-fs-id1169739260277"
+    },
+    {
+     "id": "eq-vvf-cross-product-rule",
+     "latex": "\\frac{d}{dt}[\\mathbf{r}(t)\\times\\mathbf{u}(t)]=\\mathbf{r}'(t)\\times\\mathbf{u}(t)+\\mathbf{r}(t)\\times\\mathbf{u}'(t)",
+     "anchor": "13.2-fs-id1169739260277"
+    },
+    {
+     "id": "eq-vvf-chain-rule",
+     "latex": "\\frac{d}{dt}[\\mathbf{r}(f(t))]=\\mathbf{r}'(f(t))\\cdot f'(t)",
+     "anchor": "13.2-fs-id1169739260277"
+    }
+   ]
+  },
+  {
+   "id": "constant-magnitude-and-its-derivative",
+   "kind": "result",
+   "section": "13.2",
+   "name": "A vector-valued function of constant magnitude",
+   "statement": "If r(t) · r(t) = c, a constant, then r(t) · r′(t) = 0: a vector-valued function of constant magnitude is orthogonal to its derivative. It follows from the dot product rule, since 2 r(t) · r′(t) = d/dt[c] = 0.",
+   "forms": [
+    {
+     "id": "eq-vvf-constant-magnitude",
+     "latex": "\\mathbf{r}(t)\\cdot\\mathbf{r}(t)=c\\;\\Rightarrow\\;\\mathbf{r}(t)\\cdot\\mathbf{r}'(t)=0",
+     "anchor": "13.2-fs-id1169739260277"
+    }
+   ]
+  },
+  {
+   "id": "tangent-vector",
+   "kind": "definition",
+   "section": "13.2",
+   "name": "Tangent vector",
+   "terms": [
+    "tangent vector"
+   ],
+   "type": "vector",
+   "statement": "Let C be a curve defined by a vector-valued function r, and assume that r′(t₀) exists. A tangent vector v at t = t₀ is any vector such that, when the tail of the vector is placed at the point r(t₀) on the graph, v is tangent to the curve C; r′(t₀) is one."
+  },
+  {
+   "id": "principal-unit-tangent-vector",
+   "kind": "definition",
+   "section": "13.2",
+   "name": "Principal unit tangent vector",
+   "terms": [
+    "principal unit tangent vector",
+    "unit tangent vector"
+   ],
+   "type": "vector",
+   "symbol": "T_vec",
+   "statement": "Assume r′(t) ≠ 0. The principal unit tangent vector at t is T(t) = r′(t)/‖r′(t)‖, a unit vector tangent to the curve C.",
+   "forms": [
+    {
+     "id": "eq-unit-tangent-vector",
+     "latex": "\\mathbf{T}(t)=\\frac{\\mathbf{r}'(t)}{\\|\\mathbf{r}'(t)\\|}",
+     "anchor": "13.2-fs-id1169736889687"
+    }
+   ]
+  },
+  {
+   "id": "finding-a-unit-tangent-vector",
+   "kind": "skill",
+   "section": "13.2",
+   "name": "Finding a unit tangent vector",
+   "statement": "To calculate a unit tangent vector, first find the derivative r′(t), second calculate its magnitude ‖r′(t)‖, and third divide the derivative by its magnitude."
+  },
+  {
+   "id": "indefinite-integral-of-a-vector-valued-function",
+   "kind": "definition",
+   "section": "13.2",
+   "name": "Indefinite integral of a vector-valued function",
+   "terms": [
+    "indefinite integral of a vector-valued function"
+   ],
+   "type": "integral",
+   "statement": "The indefinite integral of a vector-valued function r(t) = f(t) i + g(t) j + h(t) k is [∫ f(t) dt] i + [∫ g(t) dt] j + [∫ h(t) dt] k, a vector-valued function whose derivative is r(t); each component integral contains its own constant, so the integration constant becomes a constant vector C.",
+   "forms": [
+    {
+     "id": "eq-vvf-indefinite-integral-plane",
+     "latex": "\\int[f(t)\\,\\mathbf{i}+g(t)\\,\\mathbf{j}]\\,dt=\\left[\\int f(t)\\,dt\\right]\\mathbf{i}+\\left[\\int g(t)\\,dt\\right]\\mathbf{j}",
+     "anchor": "13.2-fs-id1169736591974"
+    },
+    {
+     "id": "eq-vvf-indefinite-integral-space",
+     "latex": "\\int[f(t)\\,\\mathbf{i}+g(t)\\,\\mathbf{j}+h(t)\\,\\mathbf{k}]\\,dt=\\left[\\int f(t)\\,dt\\right]\\mathbf{i}+\\left[\\int g(t)\\,dt\\right]\\mathbf{j}+\\left[\\int h(t)\\,dt\\right]\\mathbf{k}",
+     "anchor": "13.2-fs-id1169739044371"
+    }
+   ]
+  },
+  {
+   "id": "definite-integral-of-a-vector-valued-function",
+   "kind": "definition",
+   "section": "13.2",
+   "name": "Definite integral of a vector-valued function",
+   "terms": [
+    "definite integral of a vector-valued function"
+   ],
+   "type": "integral",
+   "statement": "The definite integral of a vector-valued function over [a, b] is the vector obtained by calculating the definite integral of each of the component functions over [a, b], then using the results as the components of the resulting vector.",
+   "forms": [
+    {
+     "id": "eq-vvf-definite-integral-plane",
+     "latex": "\\int_{a}^{b}[f(t)\\,\\mathbf{i}+g(t)\\,\\mathbf{j}]\\,dt=\\left[\\int_{a}^{b}f(t)\\,dt\\right]\\mathbf{i}+\\left[\\int_{a}^{b}g(t)\\,dt\\right]\\mathbf{j}",
+     "anchor": "13.2-fs-id1169739062367"
+    },
+    {
+     "id": "eq-vvf-definite-integral-space",
+     "latex": "\\int_{a}^{b}[f(t)\\,\\mathbf{i}+g(t)\\,\\mathbf{j}+h(t)\\,\\mathbf{k}]\\,dt=\\left[\\int_{a}^{b}f(t)\\,dt\\right]\\mathbf{i}+\\left[\\int_{a}^{b}g(t)\\,dt\\right]\\mathbf{j}+\\left[\\int_{a}^{b}h(t)\\,dt\\right]\\mathbf{k}",
+     "anchor": "13.2-fs-id1169739182212"
+    }
+   ]
+  },
+  {
+   "id": "smooth-curve",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Smooth curve",
+   "terms": [
+    "smooth"
+   ],
+   "statement": "A smooth curve is one whose vector-valued function r(t) is continuously differentiable with a nonzero derivative; smoothness guarantees that the curve has no cusps or corners."
+  },
+  {
+   "id": "arc-length-of-a-space-curve",
+   "kind": "result",
+   "section": "13.3",
+   "name": "Arc length of a curve given by a vector-valued function",
+   "type": "integral",
+   "statement": "Given a smooth curve C defined by r(t) = f(t) i + g(t) j + h(t) k for t in [a, b], the arc length of C over the interval is s = ∫ₐᵇ √([f′(t)]² + [g′(t)]² + [h′(t)]²) dt = ∫ₐᵇ ‖r′(t)‖ dt; a plane curve has two component functions under the root instead of three.",
+   "forms": [
+    {
+     "id": "eq-arc-length-vvf-plane",
+     "latex": "s=\\int_{a}^{b}\\sqrt{[f'(t)]^{2}+[g'(t)]^{2}}\\,dt=\\int_{a}^{b}\\|\\mathbf{r}'(t)\\|\\,dt",
+     "anchor": "13.3-fs-id1169738187798"
+    },
+    {
+     "id": "eq-arc-length-vvf-space",
+     "latex": "s=\\int_{a}^{b}\\sqrt{[f'(t)]^{2}+[g'(t)]^{2}+[h'(t)]^{2}}\\,dt=\\int_{a}^{b}\\|\\mathbf{r}'(t)\\|\\,dt",
+     "anchor": "13.3-fs-id1169738053435"
+    }
+   ]
+  },
+  {
+   "id": "arc-length-of-a-helix",
+   "kind": "result",
+   "section": "13.3",
+   "name": "Arc length of a helix",
+   "type": "integral",
+   "statement": "The length of a wire needed to form a helix with N turns that has radius R and height h is s = √(4π²N²R² + h²), since ‖r′(t)‖ is constant along the helix.",
+   "forms": [
+    {
+     "id": "eq-arc-length-helix",
+     "latex": "s=\\sqrt{4\\pi^{2}N^{2}R^{2}+h^{2}}",
+     "anchor": "13.3-helix-wire"
+    }
+   ]
+  },
+  {
+   "id": "arc-length-function",
+   "kind": "result",
+   "section": "13.3",
+   "name": "Arc-length function",
+   "terms": [
+    "arc-length function"
+   ],
+   "type": "integral",
+   "symbol": "s",
+   "statement": "Let r(t) describe a smooth curve for t ≥ a. The arc-length function s(t) = ∫ₐᵗ ‖r′(u)‖ du measures the arc length of the curve as a function of t, how far a particle travels; ds/dt = ‖r′(t)‖ > 0, and if ‖r′(t)‖ = 1 for all t ≥ a, the parameter t represents the arc length from the starting point at t = a.",
+   "forms": [
+    {
+     "id": "eq-arc-length-function",
+     "latex": "s(t)=\\int_{a}^{t}\\|\\mathbf{r}'(u)\\|\\,du",
+     "anchor": "13.3-fs-id1169737151922"
+    },
+    {
+     "id": "eq-arc-length-function-components",
+     "latex": "s(t)=\\int_{a}^{t}\\sqrt{(f'(u))^{2}+(g'(u))^{2}+(h'(u))^{2}}\\,du",
+     "anchor": "13.3-fs-id1169737914271"
+    },
+    {
+     "id": "eq-arc-length-function-rate",
+     "latex": "\\frac{ds}{dt}=\\|\\mathbf{r}'(t)\\|",
+     "anchor": "13.3-fs-id1169738186040"
+    }
+   ]
+  },
+  {
+   "id": "arc-length-parameterization",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Arc-length parameterization",
+   "terms": [
+    "arc-length parameterization"
+   ],
+   "type": "curve",
+   "statement": "An arc-length parameterization is a reparameterization of a vector-valued function in which the parameter is equal to the arc length: solving the arc-length function s(t) for t and substituting into r(t) writes the curve as r(s), and the distance traveled along the curve starting from s = 0 equals s."
+  },
+  {
+   "id": "finding-an-arc-length-parameterization",
+   "kind": "skill",
+   "section": "13.3",
+   "name": "Finding an arc-length parameterization",
+   "statement": "Find the arc-length function s(t) = ∫ₐᵗ ‖r′(u)‖ du, solve it for t as a function of s, and replace t in r(t) with that expression; the restriction on t becomes a restriction on s."
+  },
+  {
+   "id": "curvature",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Curvature",
+   "terms": [
+    "curvature"
+   ],
+   "type": "derivative",
+   "symbol": "κ",
+   "statement": "Let C be a smooth curve in the plane or in space given by r(s), where s is the arc-length parameter. The curvature κ at s is κ = ‖dT/ds‖ = ‖T′(s)‖, the derivative of the unit tangent vector with respect to arc length. It measures how sharply the curve turns: the curvature of a circle is constant and equal to the reciprocal of its radius, and the curvature of a curve at a point is that of the circle that hugs it there.",
+   "forms": [
+    {
+     "id": "eq-curvature-definition",
+     "latex": "\\kappa=\\left\\|\\frac{d\\mathbf{T}}{ds}\\right\\|=\\|\\mathbf{T}'(s)\\|",
+     "anchor": "13.3-fs-id1169737492877"
+    }
+   ]
+  },
+  {
+   "id": "alternative-formulas-for-curvature",
+   "kind": "result",
+   "section": "13.3",
+   "name": "Alternative formulas for curvature",
+   "type": "derivative",
+   "statement": "If C is a smooth curve given by r(t), its curvature at t is κ = ‖T′(t)‖/‖r′(t)‖; if C is three-dimensional, κ = ‖r′(t) × r″(t)‖/‖r′(t)‖³; and if C is the graph of y = f(x) with y′ and y″ existing, κ = |y″|/[1 + (y′)²]^{3/2}.",
+   "forms": [
+    {
+     "id": "eq-curvature-unit-tangent",
+     "latex": "\\kappa=\\frac{\\|\\mathbf{T}'(t)\\|}{\\|\\mathbf{r}'(t)\\|}",
+     "anchor": "13.3-fs-id1169737287184"
+    },
+    {
+     "id": "eq-curvature-cross-product",
+     "latex": "\\kappa=\\frac{\\|\\mathbf{r}'(t)\\times\\mathbf{r}''(t)\\|}{\\|\\mathbf{r}'(t)\\|^{3}}",
+     "anchor": "13.3-fs-id1169738153497"
+    },
+    {
+     "id": "eq-curvature-graph",
+     "latex": "\\kappa=\\frac{|y''|}{[1+(y')^{2}]^{3/2}}",
+     "anchor": "13.3-fs-id1169738200809"
+    }
+   ]
+  },
+  {
+   "id": "principal-unit-normal-vector",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Principal unit normal vector",
+   "terms": [
+    "principal unit normal vector",
+    "unit normal vector"
+   ],
+   "type": "vector",
+   "symbol": "N_vec",
+   "statement": "Let C be a three-dimensional smooth curve represented by r over an open interval I. If T′(t) ≠ 0, the principal unit normal vector at t is N(t) = T′(t)/‖T′(t)‖, a unit vector orthogonal to the unit tangent vector, pointing toward the side the curve turns to.",
+   "forms": [
+    {
+     "id": "eq-unit-normal-vector",
+     "latex": "\\mathbf{N}(t)=\\frac{\\mathbf{T}'(t)}{\\|\\mathbf{T}'(t)\\|}",
+     "anchor": "13.3-fs-id1169737271064"
+    }
+   ]
+  },
+  {
+   "id": "binormal-vector",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Binormal vector",
+   "terms": [
+    "binormal vector"
+   ],
+   "type": "vector",
+   "symbol": "B_vec",
+   "statement": "The binormal vector at t is B(t) = T(t) × N(t), a unit vector orthogonal to both the unit tangent vector and the unit normal vector.",
+   "forms": [
+    {
+     "id": "eq-binormal-vector",
+     "latex": "\\mathbf{B}(t)=\\mathbf{T}(t)\\times\\mathbf{N}(t)",
+     "anchor": "13.3-fs-id1169737805867"
+    }
+   ]
+  },
+  {
+   "id": "normal-plane",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Normal plane",
+   "terms": [
+    "normal plane"
+   ],
+   "type": "plane",
+   "statement": "The unit normal vector and the binormal vector form a plane that is perpendicular to the curve at any point on the curve, called the normal plane."
+  },
+  {
+   "id": "frenet-frame-of-reference",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Frenet frame of reference",
+   "terms": [
+    "Frenet frame of reference",
+    "TNB frame"
+   ],
+   "type": "vector",
+   "statement": "At every point of a smooth curve in three dimensions the unit tangent vector T, the principal unit normal vector N and the binormal vector B form a frame of reference called the Frenet frame of reference, or the TNB frame."
+  },
+  {
+   "id": "osculating-plane",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Osculating plane",
+   "terms": [
+    "osculating plane"
+   ],
+   "type": "plane",
+   "statement": "The plane determined by the unit tangent vector T and the unit normal vector N is the osculating plane of C at a point P on the curve."
+  },
+  {
+   "id": "radius-of-curvature",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Radius of curvature",
+   "terms": [
+    "radius of curvature"
+   ],
+   "statement": "The radius of curvature of a curve at a point is the reciprocal of the curvature, r = 1/κ, the radius of the circle in the osculating plane that has the curve's curvature at that point."
+  },
+  {
+   "id": "osculating-circle",
+   "kind": "definition",
+   "section": "13.3",
+   "name": "Osculating circle",
+   "terms": [
+    "osculating circle"
+   ],
+   "type": "curve",
+   "statement": "The osculating circle of C at P is the circle in the osculating plane that lies on the concave side of the curve, is tangent to the curve at P and shares the curve's curvature there; its radius is the radius of curvature."
+  },
+  {
+   "id": "finding-an-osculating-circle",
+   "kind": "skill",
+   "section": "13.3",
+   "name": "Finding the equation of an osculating circle",
+   "statement": "To find an osculating circle of a curve y = f(x) in two dimensions, calculate the curvature at the point, take its reciprocal as the radius, locate the center that distance from the point along the normal on the concave side, and write (x − h)² + (y − k)² = r²."
+  },
+  {
+   "id": "velocity-vector",
+   "kind": "definition",
+   "section": "13.4",
+   "name": "Velocity vector",
+   "terms": [
+    "velocity vector"
+   ],
+   "type": "vector",
+   "symbol": "v_vec",
+   "statement": "Let r(t) be a twice-differentiable vector-valued function of the parameter t that represents the position of an object as a function of time. The velocity vector of the object is v(t) = r′(t), the derivative of the position vector; it is always tangent to the path.",
+   "forms": [
+    {
+     "id": "eq-velocity-vector",
+     "latex": "\\mathbf{v}(t)=\\mathbf{r}'(t)",
+     "anchor": "13.4-fs-id1169738144149"
+    }
+   ]
+  },
+  {
+   "id": "acceleration-vector",
+   "kind": "definition",
+   "section": "13.4",
+   "name": "Acceleration vector",
+   "terms": [
+    "acceleration vector"
+   ],
+   "type": "vector",
+   "symbol": "a_vec",
+   "statement": "The acceleration vector of an object with position r(t) is a(t) = v′(t) = r″(t), the second derivative of the position vector; it always points toward the concave side of the path.",
+   "forms": [
+    {
+     "id": "eq-acceleration-vector",
+     "latex": "\\mathbf{a}(t)=\\mathbf{v}'(t)=\\mathbf{r}''(t)",
+     "anchor": "13.4-fs-id1169738166350"
+    }
+   ]
+  },
+  {
+   "id": "speed-of-a-moving-object",
+   "kind": "definition",
+   "section": "13.4",
+   "name": "Speed along a path",
+   "type": "derivative",
+   "symbol": "v",
+   "statement": "The speed of an object with position r(t) is the magnitude of its velocity vector, v(t) = ‖v(t)‖ = ‖r′(t)‖ = ds/dt, the rate at which the arc length it travels grows.",
+   "forms": [
+    {
+     "id": "eq-speed-vector",
+     "latex": "v(t)=\\|\\mathbf{v}(t)\\|=\\|\\mathbf{r}'(t)\\|=\\frac{ds}{dt}",
+     "anchor": "13.4-fs-id1169737947455"
+    }
+   ]
+  },
+  {
+   "id": "plane-of-the-acceleration-vector",
+   "kind": "result",
+   "section": "13.4",
+   "name": "The plane of the acceleration vector",
+   "statement": "The acceleration vector a(t) of an object moving along a curve traced out by a twice-differentiable function r(t) lies in the plane formed by the unit tangent vector T(t) and the principal unit normal vector N(t), the osculating plane, and a(t) = v′(t) T(t) + [v(t)]² κ N(t), where v(t) is the speed and κ the curvature.",
+   "forms": [
+    {
+     "id": "eq-acceleration-in-tn",
+     "latex": "\\mathbf{a}(t)=v'(t)\\,\\mathbf{T}(t)+[v(t)]^{2}\\kappa\\,\\mathbf{N}(t)",
+     "anchor": "13.4-fs-id1169737814963"
+    },
+    {
+     "id": "eq-acceleration-components",
+     "latex": "\\mathbf{a}(t)=a_{\\mathbf{T}}\\mathbf{T}(t)+a_{\\mathbf{N}}\\mathbf{N}(t)",
+     "anchor": "13.4-fs-id1169737263883"
+    }
+   ]
+  },
+  {
+   "id": "tangential-component-of-acceleration",
+   "kind": "definition",
+   "section": "13.4",
+   "name": "Tangential component of acceleration",
+   "terms": [
+    "tangential component of acceleration"
+   ],
+   "statement": "The tangential component of acceleration a_T is the coefficient of the unit tangent vector T when the acceleration vector is written as a linear combination of T and N, the projection of a onto T: a_T = a · T = (v · a)/‖v‖.",
+   "forms": [
+    {
+     "id": "eq-tangential-acceleration",
+     "latex": "a_{\\mathbf{T}}=\\mathbf{a}\\cdot\\mathbf{T}=\\frac{\\mathbf{v}\\cdot\\mathbf{a}}{\\|\\mathbf{v}\\|}",
+     "anchor": "13.4-fs-id1169738185179"
+    }
+   ]
+  },
+  {
+   "id": "normal-component-of-acceleration",
+   "kind": "definition",
+   "section": "13.4",
+   "name": "Normal component of acceleration",
+   "terms": [
+    "normal component of acceleration",
+    "centripetal component of acceleration",
+    "radial component of acceleration"
+   ],
+   "statement": "The normal component of acceleration a_N, also called the centripetal or radial component, is the coefficient of the unit normal vector N when the acceleration vector is written as a linear combination of T and N: a_N = a · N = ‖v × a‖/‖v‖ = √(‖a‖² − a_T²).",
+   "forms": [
+    {
+     "id": "eq-normal-acceleration",
+     "latex": "a_{\\mathbf{N}}=\\mathbf{a}\\cdot\\mathbf{N}=\\frac{\\|\\mathbf{v}\\times\\mathbf{a}\\|}{\\|\\mathbf{v}\\|}=\\sqrt{\\|\\mathbf{a}\\|^{2}-a_{\\mathbf{T}}^{2}}",
+     "anchor": "13.4-fs-id1169738191530"
+    }
+   ]
+  },
+  {
+   "id": "projectile-motion",
+   "kind": "definition",
+   "section": "13.4",
+   "name": "Projectile motion",
+   "terms": [
+    "projectile motion"
+   ],
+   "statement": "Projectile motion is the motion of an object with an initial velocity but no force acting on it other than gravity, air resistance ignored. Its acceleration is a = −g j, so v(t) = −gt j + v₀ and s(t) = −½gt² j + v₀t + s₀; thrown from the origin at an angle θ with initial speed v₀, s(t) = v₀t cos θ i + (v₀t sin θ − ½gt²) j.",
+   "forms": [
+    {
+     "id": "eq-projectile-position",
+     "latex": "\\mathbf{s}(t)=-\\frac{1}{2}gt^{2}\\mathbf{j}+\\mathbf{v}_{0}t+\\mathbf{s}_{0}",
+     "anchor": "13.4-projectile-angle"
+    },
+    {
+     "id": "eq-projectile-position-angle",
+     "latex": "\\mathbf{s}(t)=v_{0}t\\cos\\theta\\,\\mathbf{i}+\\left(v_{0}t\\sin\\theta-\\frac{1}{2}gt^{2}\\right)\\mathbf{j}",
+     "anchor": "13.4-range-height"
+    }
+   ]
+  },
+  {
+   "id": "range-of-a-projectile",
+   "kind": "result",
+   "section": "13.4",
+   "name": "Range of a projectile",
+   "statement": "A projectile fired from ground level at an angle θ with initial speed v₀ returns to ground level at t = 2v₀ sin θ/g, a horizontal distance R = v₀² sin 2θ/g; the range is greatest at θ = 45°, where it is v₀²/g.",
+   "forms": [
+    {
+     "id": "eq-projectile-range",
+     "latex": "R=\\frac{v_{0}^{2}\\sin 2\\theta}{g}",
+     "anchor": "13.4-range-question"
+    }
+   ]
+  },
+  {
+   "id": "keplers-laws-of-planetary-motion",
+   "kind": "result",
+   "section": "13.4",
+   "name": "Kepler’s laws of planetary motion",
+   "terms": [
+    "Kepler’s laws of planetary motion",
+    "Kepler’s laws"
+   ],
+   "statement": "The path of any planet about the Sun is elliptical, with the center of the Sun at one focus (the law of ellipses); a line drawn from the center of the Sun to the center of a planet sweeps out equal areas in equal time intervals (the law of equal areas); and the ratio of the squares of the periods of any two planets equals the ratio of the cubes of the lengths of their semimajor axes (the law of harmonies), T_p² = D_p³ with the period in Earth years and the average distance in astronomical units.",
+   "forms": [
+    {
+     "id": "eq-keplers-third-law",
+     "latex": "T_{p}^{2}=D_{p}^{3}",
+     "anchor": "13.4-au-term"
+    }
+   ]
+  },
+  {
+   "id": "astronomical-unit",
+   "kind": "definition",
+   "section": "13.4",
+   "name": "Astronomical unit",
+   "statement": "One astronomical unit is the average distance from Earth to the Sun, 149,597,870,700 m, or approximately 93,000,000 mi."
+  },
+  {
+   "id": "orbit-as-a-conic",
+   "kind": "result",
+   "section": "13.4",
+   "name": "An orbit is a conic section",
+   "statement": "From Newton’s second law of motion and his law of universal gravitation, F = −(GmM/‖r‖²)(r/‖r‖), the vector r × v is a constant vector C, so the motion lies in a plane perpendicular to C, and ‖r‖ = (‖C‖²/GM)(1/(1 + e cos θ)), with e = ‖D‖/GM: the polar equation of a conic with a focus at the Sun, an ellipse when e < 1.",
+   "forms": [
+    {
+     "id": "eq-orbit-conic",
+     "latex": "\\|\\mathbf{r}\\|=\\frac{\\|\\mathbf{C}\\|^{2}}{GM}\\left(\\frac{1}{1+e\\cos\\theta}\\right)",
+     "anchor": "13.4-orbit-conic"
+    }
+   ]
+  },
+  {
+   "id": "keplers-third-law-for-other-orbits",
+   "kind": "result",
+   "section": "13.4",
+   "name": "Kepler’s third law for any two bodies",
+   "statement": "For one object of mass m in orbit around another of mass M, such as the Moon around Earth, Kepler’s third law becomes P² = 4π²a³/(G(m + M)), where a is the length of the major axis of the elliptical orbit and P is the period.",
+   "forms": [
+    {
+     "id": "eq-keplers-third-law-general",
+     "latex": "P^{2}=\\frac{4\\pi^{2}a^{3}}{G(m+M)}",
+     "anchor": "13.4-fs-id1169737204126"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "vector-valued-function",
+   "prereq": "vector"
+  },
+  {
+   "concept": "vector-valued-function",
+   "prereq": "parameter"
+  },
+  {
+   "concept": "component-functions",
+   "prereq": "vector-valued-function"
+  },
+  {
+   "concept": "space-curve",
+   "prereq": "vector-valued-function"
+  },
+  {
+   "concept": "space-curve",
+   "prereq": "standard-position-vector"
+  },
+  {
+   "concept": "vector-parameterization",
+   "prereq": "space-curve"
+  },
+  {
+   "concept": "vector-parameterization",
+   "prereq": "parametric-curve"
+  },
+  {
+   "concept": "helix",
+   "prereq": "space-curve"
+  },
+  {
+   "concept": "reparameterization",
+   "prereq": "vector-parameterization"
+  },
+  {
+   "concept": "limit-of-a-vector-valued-function",
+   "prereq": "vector-valued-function"
+  },
+  {
+   "concept": "limit-of-a-vector-valued-function",
+   "prereq": "magnitude-of-a-vector"
+  },
+  {
+   "concept": "limit-of-a-vector-valued-function-by-components",
+   "prereq": "limit-of-a-vector-valued-function"
+  },
+  {
+   "concept": "limit-of-a-vector-valued-function-by-components",
+   "prereq": "component-functions"
+  },
+  {
+   "concept": "continuity-of-a-vector-valued-function",
+   "prereq": "limit-of-a-vector-valued-function"
+  },
+  {
+   "concept": "derivative-of-a-vector-valued-function",
+   "prereq": "limit-of-a-vector-valued-function"
+  },
+  {
+   "concept": "derivative-of-a-vector-valued-function",
+   "prereq": "derivative"
+  },
+  {
+   "concept": "differentiation-of-vector-valued-functions",
+   "prereq": "derivative-of-a-vector-valued-function"
+  },
+  {
+   "concept": "differentiation-of-vector-valued-functions",
+   "prereq": "limit-of-a-vector-valued-function-by-components"
+  },
+  {
+   "concept": "properties-of-the-derivative-of-vector-valued-functions",
+   "prereq": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "concept": "properties-of-the-derivative-of-vector-valued-functions",
+   "prereq": "product-rule"
+  },
+  {
+   "concept": "properties-of-the-derivative-of-vector-valued-functions",
+   "prereq": "chain-rule"
+  },
+  {
+   "concept": "properties-of-the-derivative-of-vector-valued-functions",
+   "prereq": "sum-rule"
+  },
+  {
+   "concept": "properties-of-the-derivative-of-vector-valued-functions",
+   "prereq": "constant-multiple-rule"
+  },
+  {
+   "concept": "properties-of-the-derivative-of-vector-valued-functions",
+   "prereq": "cross-product"
+  },
+  {
+   "concept": "constant-magnitude-and-its-derivative",
+   "prereq": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "concept": "tangent-vector",
+   "prereq": "derivative-of-a-vector-valued-function"
+  },
+  {
+   "concept": "principal-unit-tangent-vector",
+   "prereq": "tangent-vector"
+  },
+  {
+   "concept": "principal-unit-tangent-vector",
+   "prereq": "unit-vector"
+  },
+  {
+   "concept": "finding-a-unit-tangent-vector",
+   "prereq": "principal-unit-tangent-vector"
+  },
+  {
+   "concept": "finding-a-unit-tangent-vector",
+   "prereq": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "concept": "indefinite-integral-of-a-vector-valued-function",
+   "prereq": "component-functions"
+  },
+  {
+   "concept": "indefinite-integral-of-a-vector-valued-function",
+   "prereq": "indefinite-integral"
+  },
+  {
+   "concept": "definite-integral-of-a-vector-valued-function",
+   "prereq": "component-functions"
+  },
+  {
+   "concept": "definite-integral-of-a-vector-valued-function",
+   "prereq": "definite-integral"
+  },
+  {
+   "concept": "smooth-curve",
+   "prereq": "derivative-of-a-vector-valued-function"
+  },
+  {
+   "concept": "smooth-curve",
+   "prereq": "continuity-of-a-vector-valued-function"
+  },
+  {
+   "concept": "arc-length-of-a-space-curve",
+   "prereq": "smooth-curve"
+  },
+  {
+   "concept": "arc-length-of-a-space-curve",
+   "prereq": "arc-length-of-a-parametric-curve"
+  },
+  {
+   "concept": "arc-length-of-a-space-curve",
+   "prereq": "differentiation-of-vector-valued-functions"
+  },
+  {
+   "concept": "arc-length-of-a-helix",
+   "prereq": "arc-length-of-a-space-curve"
+  },
+  {
+   "concept": "arc-length-of-a-helix",
+   "prereq": "helix"
+  },
+  {
+   "concept": "arc-length-function",
+   "prereq": "arc-length-of-a-space-curve"
+  },
+  {
+   "concept": "arc-length-function",
+   "prereq": "fundamental-theorem-of-calculus-part-1"
+  },
+  {
+   "concept": "arc-length-parameterization",
+   "prereq": "arc-length-function"
+  },
+  {
+   "concept": "arc-length-parameterization",
+   "prereq": "reparameterization"
+  },
+  {
+   "concept": "finding-an-arc-length-parameterization",
+   "prereq": "arc-length-parameterization"
+  },
+  {
+   "concept": "curvature",
+   "prereq": "principal-unit-tangent-vector"
+  },
+  {
+   "concept": "curvature",
+   "prereq": "arc-length-parameterization"
+  },
+  {
+   "concept": "alternative-formulas-for-curvature",
+   "prereq": "curvature"
+  },
+  {
+   "concept": "alternative-formulas-for-curvature",
+   "prereq": "constant-magnitude-and-its-derivative"
+  },
+  {
+   "concept": "alternative-formulas-for-curvature",
+   "prereq": "magnitude-of-the-cross-product"
+  },
+  {
+   "concept": "alternative-formulas-for-curvature",
+   "prereq": "higher-order-derivative"
+  },
+  {
+   "concept": "principal-unit-normal-vector",
+   "prereq": "principal-unit-tangent-vector"
+  },
+  {
+   "concept": "principal-unit-normal-vector",
+   "prereq": "constant-magnitude-and-its-derivative"
+  },
+  {
+   "concept": "binormal-vector",
+   "prereq": "principal-unit-normal-vector"
+  },
+  {
+   "concept": "normal-plane",
+   "prereq": "binormal-vector"
+  },
+  {
+   "concept": "normal-plane",
+   "prereq": "vector-equation-of-a-plane"
+  },
+  {
+   "concept": "frenet-frame-of-reference",
+   "prereq": "binormal-vector"
+  },
+  {
+   "concept": "osculating-plane",
+   "prereq": "principal-unit-normal-vector"
+  },
+  {
+   "concept": "osculating-plane",
+   "prereq": "vector-equation-of-a-plane"
+  },
+  {
+   "concept": "radius-of-curvature",
+   "prereq": "curvature"
+  },
+  {
+   "concept": "osculating-circle",
+   "prereq": "radius-of-curvature"
+  },
+  {
+   "concept": "osculating-circle",
+   "prereq": "osculating-plane"
+  },
+  {
+   "concept": "finding-an-osculating-circle",
+   "prereq": "osculating-circle"
+  },
+  {
+   "concept": "finding-an-osculating-circle",
+   "prereq": "alternative-formulas-for-curvature"
+  },
+  {
+   "concept": "velocity-vector",
+   "prereq": "derivative-of-a-vector-valued-function"
+  },
+  {
+   "concept": "velocity-vector",
+   "prereq": "velocity"
+  },
+  {
+   "concept": "acceleration-vector",
+   "prereq": "velocity-vector"
+  },
+  {
+   "concept": "acceleration-vector",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "speed-of-a-moving-object",
+   "prereq": "velocity-vector"
+  },
+  {
+   "concept": "speed-of-a-moving-object",
+   "prereq": "arc-length-function"
+  },
+  {
+   "concept": "speed-of-a-moving-object",
+   "prereq": "speed"
+  },
+  {
+   "concept": "plane-of-the-acceleration-vector",
+   "prereq": "acceleration-vector"
+  },
+  {
+   "concept": "plane-of-the-acceleration-vector",
+   "prereq": "speed-of-a-moving-object"
+  },
+  {
+   "concept": "plane-of-the-acceleration-vector",
+   "prereq": "alternative-formulas-for-curvature"
+  },
+  {
+   "concept": "plane-of-the-acceleration-vector",
+   "prereq": "principal-unit-normal-vector"
+  },
+  {
+   "concept": "tangential-component-of-acceleration",
+   "prereq": "plane-of-the-acceleration-vector"
+  },
+  {
+   "concept": "normal-component-of-acceleration",
+   "prereq": "plane-of-the-acceleration-vector"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "acceleration-vector"
+  },
+  {
+   "concept": "projectile-motion",
+   "prereq": "indefinite-integral-of-a-vector-valued-function"
+  },
+  {
+   "concept": "range-of-a-projectile",
+   "prereq": "projectile-motion"
+  },
+  {
+   "concept": "keplers-laws-of-planetary-motion",
+   "prereq": "ellipse"
+  },
+  {
+   "concept": "orbit-as-a-conic",
+   "prereq": "keplers-laws-of-planetary-motion"
+  },
+  {
+   "concept": "orbit-as-a-conic",
+   "prereq": "acceleration-vector"
+  },
+  {
+   "concept": "orbit-as-a-conic",
+   "prereq": "properties-of-the-derivative-of-vector-valued-functions"
+  },
+  {
+   "concept": "orbit-as-a-conic",
+   "prereq": "polar-equation-of-a-conic"
+  },
+  {
+   "concept": "keplers-third-law-for-other-orbits",
+   "prereq": "keplers-laws-of-planetary-motion"
+  }
+ ]
+}

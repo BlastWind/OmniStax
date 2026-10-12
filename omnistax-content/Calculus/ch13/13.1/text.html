@@ -1,0 +1,141 @@
+<p id="vvf-intro">Our study of <span data-concept="vector-valued-function">vector-valued functions</span> combines ideas from our earlier examination of single-variable calculus with our description of vectors in three dimensions from the preceding chapter. In this section we extend concepts from earlier chapters and also examine new ideas concerning curves in three-dimensional space. These definitions and theorems support the presentation of material in the rest of this chapter and also in the remaining chapters of the text.</p>
+<section id="definition">
+<h2>Definition of a Vector-Valued Function</h2>
+<p class="cite-target">Our first step in studying the calculus of <span data-concept="vector-valued-function">vector-valued functions</span> is to define what exactly a <span data-concept="vector-valued-function">vector-valued function</span> is. We can then look at graphs of <span data-concept="vector-valued-function">vector-valued functions</span> and see how they define curves in both two and three dimensions.</p>
+<div class="note" id="fs-id1169737987352">
+<div class="eyebrow">Definition</div>
+<p>A <strong><span data-concept="vector-valued-function">vector-valued function</span></strong> is a function of the form</p>
+<div class="equation" id="fs-id1169737813537">$$\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj\;\text{or}\;\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj+\kh(t)\;\kveck,\tag{13.1}$$</div>
+<p>where the <strong><span data-concept="component-functions">component functions</span></strong> $\kf,$ $\kg,$ and $\kh$, are real-valued functions of the <span data-concept="parameter">parameter</span> <em>t.</em> <span data-concept="vector-valued-function">Vector-valued functions</span> are also written in the form</p>
+<div class="equation" id="fs-id1169737819432">$$\kvecr(t)=\langle \kf(t),\kg(t)\rangle \;\text{or}\;\kvecr(t)=\langle \kf(t),\kg(t),\kh(t)\rangle .\tag{13.2}$$</div>
+<p>In both cases, the first form of the function defines a two-dimensional <span data-concept="vector-valued-function">vector-valued function</span>; the second form describes a three-dimensional <span data-concept="vector-valued-function">vector-valued function</span>.</p>
+</div>
+<p id="parameter-t">The <span data-concept="parameter">parameter</span> <em>t</em> can lie between two real numbers: $a\le t\le b.$ Another possibility is that the value of <em>t</em> might take on all real numbers. Last, the <span data-concept="component-functions">component functions</span> themselves may have <span data-concept="domain">domain restrictions</span> that enforce restrictions on the value of <em>t.</em> We often use <em>t</em> as a <span data-concept="parameter">parameter</span> because <em>t</em> can represent time.</p>
+<div class="example" id="fs-id1169737841797">
+<h3>Example 13.1 · Evaluating Vector-Valued Functions and Determining Domains</h3>
+<p>For each of the following <span data-concept="vector-valued-function">vector-valued functions</span>, evaluate $\kvecr(0),\;\kvecr(\frac{\pi}{2}),\text{and}\;\kvecr(\frac{2\pi}{3}).$ Do any of these functions have <span data-concept="domain">domain restrictions</span>?</p>
+<p>a. $\kvecr(t)=4\;\cos t\;\kveci+3\;\sin t\;\kvecj$</p>
+<p>b. $\kvecr(t)=3\;\tan t\;\kveci+4\;\sec t\;\kvecj+5t\;\kveck$</p>
+<h4>Solution</h4>
+<p>a. To calculate each of the function values, substitute the appropriate value of <em>t</em> into the function:</p>
+$$\begin{array}{rll}\kvecr(0) & = & 4\;\cos (0)\;\kveci+3\;\sin (0)\;\kvecj \\ & = & 4\;\kveci+0\;\kvecj=4\;\kveci \\ \kvecr(\frac{\pi}{2}) & = & 4\;\cos (\frac{\pi}{2})\;\kveci+3\;\sin (\frac{\pi}{2})\;\kvecj \\ & = & 0\;\kveci+3\;\kvecj=3\;\kvecj \\ \kvecr(\frac{2\pi}{3}) & = & 4\;\cos (\frac{2\pi}{3})\;\kveci+3\;\sin (\frac{2\pi}{3})\;\kvecj \\ & = & 4(-\frac{1}{2})\;\kveci+3(\frac{\sqrt{3}}{2})\;\kvecj=-2\;\kveci+\frac{3\sqrt{3}}{2}\;\kvecj.\end{array}$$
+<p>To determine whether this function has any <span data-concept="domain">domain restrictions</span>, consider the <span data-concept="component-functions">component functions</span> separately. The first <span data-concept="component-functions">component function</span> is $\kf(t)=4\;\cos t$ and the second <span data-concept="component-functions">component function</span> is $\kg(t)=3\;\sin t.$ Neither of these functions has a <span data-concept="domain">domain restriction</span>, so the <span data-concept="domain">domain</span> of $\kvecr(t)=4\;\cos t\;\kveci+3\;\sin t\;\kvecj$ is all real numbers.</p>
+<p>b. To calculate each of the function values, substitute the appropriate value of <em>t</em> into the function:</p>
+$$\begin{array}{rll}\;\kvecr(0) & = & 3\;\tan (0)\;\kveci+4\;\sec (0)\;\kvecj+5(0)\;\kveck \\ & = & 0\;\kveci+4\;\kvecj+0\;\kveck=4\;\kvecj \\ \;\kvecr(\frac{\pi}{2}) & = & 3\;\tan (\frac{\pi}{2})\;\kveci+4\;\sec (\frac{\pi}{2})\;\kvecj+5(\frac{\pi}{2})\;\kveck,\text{which does not exist} \\ \;\kvecr(\frac{2\pi}{3}) & = & 3\;\tan (\frac{2\pi}{3})\;\kveci+4\;\sec (\frac{2\pi}{3})\;\kvecj+5(\frac{2\pi}{3})\;\kveck \\ & = & 3(-\sqrt{3})\;\kveci+4(-2)\;\kvecj+\frac{10\pi}{3}\;\kveck \\ & = & -3\sqrt{3}\;\kveci-8\;\kvecj+\frac{10\pi}{3}\;\kveck.\end{array}$$
+<p>To determine whether this function has any <span data-concept="domain">domain restrictions</span>, consider the <span data-concept="component-functions">component functions</span> separately. The first <span data-concept="component-functions">component function</span> is $\kf(t)=3\;\tan t,$ the second <span data-concept="component-functions">component function</span> is $\kg(t)=4\;\sec t,$ and the third <span data-concept="component-functions">component function</span> is $\kh(t)=5t.$ The first two functions are not defined for odd multiples of $\pi /2,$ so the function is not defined for odd multiples of $\pi /2.$ Therefore, $\text{dom}(\;\kvecr(t))=\{t\;|t\ne \frac{(2n+1)\pi}{2}\},$ where <em>n</em> is any integer.</p>
+</div>
+<div class="exercises" data-place="fs-id1169737841797"></div>
+<p id="domain-range"><a href="#fs-id1169737841797">Example 13.1</a> illustrates an important concept. The <span data-concept="domain">domain</span> of a <span data-concept="vector-valued-function">vector-valued function</span> consists of real numbers. The <span data-concept="domain">domain</span> can be all real numbers or a subset of the real numbers. The <span data-concept="range">range</span> of a <span data-concept="vector-valued-function">vector-valued function</span> consists of vectors. Each real number in the <span data-concept="domain">domain</span> of a <span data-concept="vector-valued-function">vector-valued function</span> is mapped to either a two- or a three-dimensional vector.</p>
+</section>
+<section id="graphing">
+<h2>Graphing Vector-Valued Functions</h2>
+<p class="cite-target">Recall that a plane vector consists of two quantities: direction and <span data-concept="magnitude-of-a-vector">magnitude</span>. Given any point in the plane (the <em><span data-concept="initial-point">initial point</span></em>), if we move in a specific direction for a specific distance, we arrive at a second point. This represents the <em><span data-concept="terminal-point">terminal point</span></em> of the vector. We calculate the components of the vector by subtracting the coordinates of the <span data-concept="initial-point">initial point</span> from the coordinates of the <span data-concept="terminal-point">terminal point</span>.</p>
+<p id="curves-term">A vector is considered to be in <em><span data-concept="standard-position-vector">standard position</span></em> if the <span data-concept="initial-point">initial point</span> is located at the origin. When graphing a <span data-concept="vector-valued-function">vector-valued function</span>, we typically graph the vectors in the <span data-concept="domain">domain</span> of the function in <span data-concept="standard-position-vector">standard position</span>, because doing so guarantees the uniqueness of the graph. This convention applies to the graphs of three-dimensional <span data-concept="vector-valued-function">vector-valued functions</span> as well. The graph of a <span data-concept="vector-valued-function">vector-valued function</span> of the form $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj$ consists of the set of all $(t,\;\kvecr(t)),$ and the path it traces is called a <strong><span data-concept="parametric-curve">plane curve</span></strong>. The graph of a <span data-concept="vector-valued-function">vector-valued function</span> of the form $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj+\kh(t)\;\kveck$ consists of the set of all $(t,\;\kvecr(t)),$ and the path it traces is called a <strong><span data-concept="space-curve">space curve</span></strong>. Any representation of a <span data-concept="parametric-curve">plane curve</span> or <span data-concept="space-curve">space curve</span> using a <span data-concept="vector-valued-function">vector-valued function</span> is called a <strong><span data-concept="vector-parameterization">vector parameterization</span></strong> of the curve.</p>
+<div class="example" id="fs-id1169738008664">
+<h3>Example 13.2 · Graphing a Vector-Valued Function</h3>
+<p>Create a graph of each of the following <span data-concept="vector-valued-function">vector-valued functions</span>:</p>
+<p>a. The <span data-concept="parametric-curve">plane curve</span> represented by $\kvecr(t)=4\;\cos t\;\kveci+3\;\sin t\;\kvecj,$ $0\le t\le 2\pi$</p>
+<p>b. The <span data-concept="parametric-curve">plane curve</span> represented by $\kvecr(t)=4\;\cos 2t\;\kveci+3\;\sin 2t\;\kvecj,$ $0\le t\le \pi$</p>
+<p>c. The <span data-concept="space-curve">space curve</span> represented by $\kvecr(t)=4\cos t\;\kveci+4\sin t\;\kvecj+t\;\kveck,$ $0\le t\le 4\pi$</p>
+<h4>Solution</h4>
+<p>a. As with any graph, we start with a table of values. We then graph each of the vectors in the second column of the table in <span data-concept="standard-position-vector">standard position</span> and connect the terminal points of each vector to form a curve (<a href="#sim-ellipse">Figure 13.2</a>). This curve turns out to be an <span data-concept="ellipse">ellipse</span> centered at the origin.</p>
+<div class="book-table" id="fs-id1169738069805">
+  <div class="tcap"><span class="eyebrow">Table 13.1</span><span>Table of Values for $\kvecr(t)=4\;\cos t\;\kveci+3\;\sin t\;\kvecj,$ $0\le t\le 2\pi$</span></div>
+  <table>
+    <tbody>
+      <tr><td><em>t</em></td><td>$\kvecr(t)$</td><td><em>t</em></td><td>$\kvecr(t)$</td></tr>
+      <tr><td>0</td><td>$4\;\kveci$</td><td>$\pi$</td><td>$-4\;\kveci$</td></tr>
+      <tr><td>$\frac{\pi}{4}$</td><td>$2\sqrt{2}\;\kveci+\frac{3\sqrt{2}}{2}\;\kvecj$</td><td>$\frac{5\pi}{4}$</td><td>$-2\sqrt{2}\;\kveci-\frac{3\sqrt{2}}{2}\;\kvecj$</td></tr>
+      <tr><td>$\frac{\pi}{2}$</td><td>$3\;\kvecj$</td><td>$\frac{3\pi}{2}$</td><td>$-3\;\kvecj$</td></tr>
+      <tr><td>$\frac{3\pi}{4}$</td><td>$-2\sqrt{2}\;\kveci+\frac{3\sqrt{2}}{2}\;\kvecj$</td><td>$\frac{7\pi}{4}$</td><td>$2\sqrt{2}\;\kveci-\frac{3\sqrt{2}}{2}\;\kvecj$</td></tr>
+      <tr><td>$2\pi$</td><td>$4\;\kveci$</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="sim-ellipse" data-figure="13.2 + 13.3" data-original="/media/ch13/CNX_Calc_Figure_13_01_001.jpg,/media/ch13/CNX_Calc_Figure_13_01_002.jpg" data-original-caption="(Figure 13.2) The graph of the first vector-valued function is an ellipse. (Figure 13.3) The graph of the second vector-valued function is also an ellipse.">
+  <div class="sim-head"><span class="eyebrow">Figure 13.2 + 13.3</span><span>The <span data-concept="ellipse">ellipse</span> of <a href="#fs-id1169738008664">Example 13.2</a>, traced by the position vector $\kvecr(t)=4\cos t\,\kveci+3\sin t\,\kvecj$ in <span data-concept="standard-position-vector">standard position</span> as $t$ runs from $0$ to $2\pi$ (part a), the vectors of Table 13.1 drawn faint. Choose part b, $\kvecr(t)=4\cos 2t\,\kveci+3\sin 2t\,\kvecj$ for $0\le t\le \pi$: the same ellipse, traced twice as fast, a <span data-concept="reparameterization">reparameterization</span>.</span></div>
+</figure>
+<p>b. The table of values for $\kvecr(t)=4\cos 2t\;\kveci+3\;\sin 2t\;\kvecj,$ $0\le t\le \pi$ is as follows:</p>
+<div class="book-table" id="fs-id1169738148681">
+  <div class="tcap"><span class="eyebrow">Table 13.2</span><span>Table of Values for $\kvecr(t)=4\;\cos (2t)\;\kveci+3\;\sin (2t)\;\kvecj,$ $0\le t\le \pi$</span></div>
+  <table>
+    <tbody>
+      <tr><td><em>t</em></td><td>$\kvecr(t)$</td><td><em>t</em></td><td>$\kvecr(t)$</td></tr>
+      <tr><td>0</td><td>$4\;\kveci$</td><td>$\frac{\pi}{2}$</td><td>$-4\;\kveci$</td></tr>
+      <tr><td>$\frac{\pi}{8}$</td><td>$2\sqrt{2}\;\kveci+\frac{3\sqrt{2}}{2}\;\kvecj$</td><td>$\frac{5\pi}{8}$</td><td>$-2\sqrt{2}\;\kveci-\frac{3\sqrt{2}}{2}\;\kvecj$</td></tr>
+      <tr><td>$\frac{\pi}{4}$</td><td>$3\;\kvecj$</td><td>$\frac{3\pi}{4}$</td><td>$-3\;\kvecj$</td></tr>
+      <tr><td>$\frac{3\pi}{8}$</td><td>$-2\sqrt{2}\;\kveci+\frac{3\sqrt{2}}{2}\;\kvecj$</td><td>$\frac{7\pi}{8}$</td><td>$2\sqrt{2}\;\kveci-\frac{3\sqrt{2}}{2}\;\kvecj$</td></tr>
+      <tr><td></td><td></td><td>$\pi$</td><td>$4\;\kveci$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>The graph of this curve is also an <span data-concept="ellipse">ellipse</span> centered at the origin.</p>
+<p>c. We go through the same procedure for a three-dimensional vector function.</p>
+<div class="book-table" id="fs-id1169737424002">
+  <div class="tcap"><span class="eyebrow">Table 13.3</span><span>Table of Values for $\kvecr(t)=4\cos t\;\kveci+4\sin t\;\kvecj+t\;\kveck,$ $0\le t\le 4\pi$</span></div>
+  <table>
+    <tbody>
+      <tr><td><em>t</em></td><td>$\kvecr(t)$</td><td><em>t</em></td><td>$\kvecr(t)$</td></tr>
+      <tr><td>0</td><td>$4\;\kveci$</td><td>$\pi$</td><td>$-4\;\kvecj+\pi \;\kveck$</td></tr>
+      <tr><td>$\frac{\pi}{4}$</td><td>$2\sqrt{2}\;\kveci+2\sqrt{2}\;\kvecj+\frac{\pi}{4}\;\kveck$</td><td>$\frac{5\pi}{4}$</td><td>$-2\sqrt{2}\;\kveci-2\sqrt{2}\;\kvecj+\frac{5\pi}{4}\;\kveck$</td></tr>
+      <tr><td>$\frac{\pi}{2}$</td><td>$4\;\kvecj+\frac{\pi}{2}\;\kveck$</td><td>$\frac{3\pi}{2}$</td><td>$-4\;\kvecj+\frac{3\pi}{2}\;\kveck$</td></tr>
+      <tr><td>$\frac{3\pi}{4}$</td><td>$-2\sqrt{2}\;\kveci+2\sqrt{2}\;\kvecj+\frac{3\pi}{4}\;\kveck$</td><td>$\frac{7\pi}{4}$</td><td>$2\sqrt{2}\;\kveci-2\sqrt{2}\;\kvecj+\frac{7\pi}{4}\;\kveck$</td></tr>
+      <tr><td>$2\pi$</td><td>$4\;\kveci+2\pi \;\kveck$</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+<p id="helix-term">The values then repeat themselves, except for the fact that the coefficient of $\kveck$ is always increasing (<a href="#sim-helix">Figure 13.4</a>). This curve is called a <strong><span data-concept="helix">helix</span></strong>. Notice that if the $\kveck$ component is eliminated, then the function becomes $\kvecr(t)=\cos t\;\kveci+\sin t\;\kvecj,$ which is a unit circle centered at the origin.<sup class="fn" data-note="c-unit-circle"></sup></p>
+<figure class="sim" id="sim-helix" data-figure="13.4" data-original="/media/ch13/CNX_Calc_Figure_13_01_003.jpg" data-original-caption="The graph of the third vector-valued function is a helix.">
+  <div class="sim-head"><span class="eyebrow">Figure 13.4</span><span>The <span data-concept="helix">helix</span> $\kvecr(t)=4\cos t\,\kveci+4\sin t\,\kvecj+t\,\kveck,$ $0\le t\le 4\pi,$ of part c: the point climbs as the coefficient of $\kveck$ grows, while its shadow in the $xy$-plane runs round the circle of radius 4, once for every $2\pi$ of $t.$ Choose the elliptical cross-section for $\kvecr(t)=4\cos t\,\kveci+3\sin t\,\kvecj+t\,\kveck,$ whose shadow is an <span data-concept="ellipse">ellipse</span>, and turn the scene to look down the $z$-axis.</span></div>
+</figure>
+</div>
+<p id="reparameterization-term">You may notice that the graphs in parts a. and b. are identical. This happens because the function describing curve b is a so-called <strong><span data-concept="reparameterization">reparameterization</span></strong> of the function describing curve a. In fact, any curve has an infinite number of <span data-concept="reparameterization">reparameterizations</span>; for example, we can replace <em>t</em> with $2t$ in any of the three previous curves without changing the shape of the curve. The interval over which <em>t</em> is defined may change, but that is all. We return to this idea later in this chapter when we study <span data-concept="arc-length-parameterization">arc-length parameterization</span>.</p>
+<p id="elliptical-helix">As mentioned, the name of the shape of the curve of the graph in <a href="#fs-id1169738008664">Example 13.2</a>c. is a <strong><span data-concept="helix">helix</span></strong> (<a href="#sim-helix">Figure 13.4</a>). The curve resembles a spring, with a circular cross-section looking down along the <em>z</em>-axis. It is possible for a <span data-concept="helix">helix</span> to be elliptical in cross-section as well. For example, the <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr(t)=4\;\cos t\;\kveci+3\;\sin t\;\kvecj+t\;\kveck$ describes an <span data-concept="helix">elliptical helix</span>. The projection of this <span data-concept="helix">helix</span> into the $x,y\text{-plane}$ is an <span data-concept="ellipse">ellipse</span>. Last, the arrows in the graph of this <span data-concept="helix">helix</span> indicate the <span data-concept="orientation">orientation</span> of the curve as <em>t</em> progresses from 0 to $4\pi .$</p>
+<div class="exercises" data-place="fs-id1169738008664"></div>
+<p id="parameterized-curves">At this point, you may notice a similarity between <span data-concept="vector-valued-function">vector-valued functions</span> and <span data-concept="parametric-curve">parameterized curves</span>. Indeed, given a <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj,$ we can define $x=\kf(t)$ and $y=\kg(t).$ If a restriction exists on the values of <em>t</em> (for example, <em>t</em> is restricted to the interval $[a,b]$ for some constants $a\lt b),$ then this restriction is enforced on the <span data-concept="parameter">parameter</span>. The graph of the parameterized function would then agree with the graph of the <span data-concept="vector-valued-function">vector-valued function</span>, except that the vector-valued graph would represent vectors rather than points. Since we can parameterize a curve defined by a function $y=\kf(x),$ it is also possible to represent an arbitrary <span data-concept="parametric-curve">plane curve</span> by a <span data-concept="vector-valued-function">vector-valued function</span>.</p>
+</section>
+<section id="limits">
+<h2>Limits and Continuity of a Vector-Valued Function</h2>
+<p class="cite-target" id="limit-intro">We now take a look at the <strong><span data-concept="limit-of-a-vector-valued-function">limit of a vector-valued function</span></strong>. This is important to understand to study the calculus of <span data-concept="vector-valued-function">vector-valued functions</span>.</p>
+<div class="note" id="fs-id1169737394789">
+<div class="eyebrow">Definition</div>
+<p>A <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr$ approaches the limit $\kvecL$ as <em>t</em> approaches <em>a,</em> written</p>
+$$\lim_{t\to a}\;\kvecr(t)=\kvecL,$$
+<p>provided</p>
+$$\lim_{t\to a}\|\kvecr(t)-\kvecL\|=0.$$
+</div>
+<p>This is a rigorous definition of the <span data-concept="limit-of-a-vector-valued-function">limit of a vector-valued function</span>. In practice, we use the following theorem:</p>
+<div class="note" id="fs-id1169737946849">
+<div class="eyebrow">Theorem</div>
+<h3>Limit of a Vector-Valued Function</h3>
+<p>Let $\kf,$ $\kg,$ and $\kh$ be functions of <em>t.</em> Then the limit of the <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj$ as <em>t</em> approaches <em>a</em> is given by</p>
+<div class="equation" id="fs-id1169737903941">$$\lim_{t\to a}\;\kvecr(t)=[\lim_{t\to a}\kf(t)]\;\kveci+[\lim_{t\to a}\kg(t)]\;\kvecj,\tag{13.3}$$</div>
+<p>provided the limits $\lim_{t\to a}\kf(t)\;\text{and}\;\lim_{t\to a}\kg(t)$ exist. Similarly, the limit of the <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj+\kh(t)\;\kveck$ as <em>t</em> approaches <em>a</em> is given by</p>
+<div class="equation" id="fs-id1169737911304">$$\lim_{t\to a}\;\kvecr(t)=[\lim_{t\to a}\kf(t)]\;\kveci+[\lim_{t\to a}\kg(t)]\;\kvecj+[\lim_{t\to a}\kh(t)]\;\kveck,\tag{13.4}$$</div>
+<p>provided the limits $\lim_{t\to a}\kf(t),\;\lim_{t\to a}\kg(t)\text{and}\;\lim_{t\to a}\kh(t)$ exist.</p>
+</div>
+<p>In the following example, we show how to calculate the <span data-concept="limit-of-a-vector-valued-function">limit of a vector-valued function</span>.</p>
+<div class="example" id="fs-id1169737282882">
+<h3>Example 13.3 · Evaluating the Limit of a Vector-Valued Function</h3>
+<p>For each of the following <span data-concept="vector-valued-function">vector-valued functions</span>, calculate $\lim_{t\to 3}\;\kvecr(t)$ for</p>
+<p>a. $\kvecr(t)=(t^{2}-3t+4)\;\kveci+(4t+3)\;\kvecj$</p>
+<p>b. $\kvecr(t)=\frac{2t-4}{t+1}\;\kveci+\frac{t}{t^{2}+1}\;\kvecj+(4t-3)\;\kveck$</p>
+<h4>Solution</h4>
+<p>a. Use <a href="#fs-id1169737903941">Equation 13.3</a> and substitute the value $t=3$ into the two component expressions:</p>
+$$\begin{array}{rl}\lim_{t\to 3}\;\kvecr(t) & =\lim_{t\to 3}[(t^{2}-3t+4)\;\kveci+(4t+3)\;\kvecj] \\ & =[\lim_{t\to 3}(t^{2}-3t+4)]\;\kveci+[\lim_{t\to 3}(4t+3)]\;\kvecj \\ & =4\;\kveci+15\;\kvecj.\end{array}$$
+<p>b. Use <a href="#fs-id1169737911304">Equation 13.4</a> and substitute the value $t=3$ into the three component expressions:</p>
+$$\begin{array}{rl}\lim_{t\to 3}\;\kvecr(t) & =\lim_{t\to 3}(\frac{2t-4}{t+1}\;\kveci+\frac{t}{t^{2}+1}\;\kvecj+(4t-3)\;\kveck) \\ & =[\lim_{t\to 3}(\frac{2t-4}{t+1})]\;\kveci+[\lim_{t\to 3}(\frac{t}{t^{2}+1})]\;\kvecj+[\lim_{t\to 3}(4t-3)]\;\kveck \\ & =\frac{1}{2}\;\kveci+\frac{3}{10}\;\kvecj+9\;\kveck.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169737282882"></div>
+<figure class="sim" id="sim-vector-limit">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>As $t$ approaches 3, the point $\kvecr(t)=(t^{2}-3t+4)\,\kveci+(4t+3)\,\kvecj$ of <a href="#fs-id1169737282882">Example 13.3</a>a approaches $\kvecL=4\,\kveci+15\,\kvecj$: the gap $\kvecr(t)-\kvecL,$ drawn from $\kvecL$ to $\kvecr(t),$ shrinks to the zero vector, so $\|\kvecr(t)-\kvecL\|\to 0,$ while each component approaches its own limit. Slide $t$ toward 3 from either side.</span></div>
+</figure>
+<p>Now that we know how to calculate the <span data-concept="limit-of-a-vector-valued-function">limit of a vector-valued function</span>, we can define <span data-concept="continuity-of-a-vector-valued-function">continuity at a point</span> for such a function.</p>
+<div class="note" id="fs-id1169738219590">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf,$ $\kg,$ and $\kh$ be functions of <em>t.</em> Then, the <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj$ is continuous at point $t=a$ if the following three conditions hold:</p>
+<ol><li>$\kvecr(a)$ exists</li><li>$\lim_{t\to a}\;\kvecr(t)$ exists</li><li>$\lim_{t\to a}\;\kvecr(t)=\kvecr(a)$</li></ol>
+<p>Similarly, the <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj+\kh(t)\;\kveck$ is continuous at point $t=a$ if the following three conditions hold:</p>
+<ol><li>$\kvecr(a)$ exists</li><li>$\lim_{t\to a}\;\kvecr(t)$ exists</li><li>$\lim_{t\to a}\;\kvecr(t)=\kvecr(a)$</li></ol>
+</div>
+</section>

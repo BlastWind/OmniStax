@@ -1,0 +1,153 @@
+<p id="calculus-vvf-intro">To study the calculus of <span data-concept="vector-valued-function">vector-valued functions</span>, we follow a similar path to the one we took in studying <span data-concept="function">real-valued functions</span>. First, we define the <span data-concept="derivative-of-a-vector-valued-function">derivative</span>, then we examine applications of the <span data-concept="derivative-of-a-vector-valued-function">derivative</span>, then we move on to defining integrals. However, we will find some interesting new ideas along the way as a result of the vector nature of these functions and the properties of <span data-concept="space-curve">space curves</span>.</p>
+<section id="derivatives">
+<h2>Derivatives of Vector-Valued Functions</h2>
+<p class="cite-target">Now that we have seen what a <span data-concept="vector-valued-function">vector-valued function</span> is and how to take its limit, the next step is to learn how to differentiate a <span data-concept="vector-valued-function">vector-valued function</span>. The definition of the <span data-concept="derivative-of-a-vector-valued-function">derivative of a vector-valued function</span> is nearly identical to the definition of a <span data-concept="function">real-valued function</span> of one variable. However, because the range of a <span data-concept="vector-valued-function">vector-valued function</span> consists of vectors, the same is true for the range of the <span data-concept="derivative-of-a-vector-valued-function">derivative of a vector-valued function</span>.</p>
+<div class="note" id="fs-id1169738955085">
+<div class="eyebrow">Definition</div>
+<p>The <strong><span data-concept="derivative-of-a-vector-valued-function">derivative of a vector-valued function</span></strong> $\kvecr(t)$ is</p>
+<div class="equation" id="fs-id1169739012267">$$\kvecrprime(t)=\lim_{\Delta t\to 0}\frac{\kvecr(t+\Delta t)-\kvecr(t)}{\Delta t},\tag{13.5}$$</div>
+<p>provided the limit exists. If $\kvecrprime(t)$ exists, then $\kvecr$ is differentiable at <em>t.</em> If $\kvecrprime(t)$ exists for all <em>t</em> in an open interval $(a,b),$ then $\kvecr$ is differentiable over the interval $(a,b).$ For the function to be differentiable over the closed interval $[a,b],$ the following two limits must exist as well:</p>
+$$\kvecrprime(a)=\lim_{\Delta t\to 0^{+}}\frac{\kvecr(a+\Delta t)-\kvecr(a)}{\Delta t}\;\text{and}\;\kvecrprime(b)=\lim_{\Delta t\to 0^{-}}\frac{\kvecr(b+\Delta t)-\kvecr(b)}{\Delta t}.$$
+</div>
+<p id="derivative-velocity">Many of the rules for calculating <span data-concept="derivative-of-a-vector-valued-function">derivatives</span> of <span data-concept="function">real-valued functions</span> can be applied to calculating the <span data-concept="derivative-of-a-vector-valued-function">derivatives of vector-valued functions</span> as well. Recall that the <span data-concept="derivative">derivative</span> of a <span data-concept="function">real-valued function</span> can be interpreted as the slope of a <span data-concept="tangent-line">tangent line</span> or the <span data-concept="derivative">instantaneous rate of change</span> of the function. The <span data-concept="derivative-of-a-vector-valued-function">derivative of a vector-valued function</span> can be understood to be an <span data-concept="derivative">instantaneous rate of change</span> as well; for example, when the function represents the position of an object at a given point in time, the <span data-concept="derivative-of-a-vector-valued-function">derivative</span> represents its <span data-concept="velocity">velocity</span> at that same point in time.</p>
+<p>We now demonstrate taking the <span data-concept="derivative-of-a-vector-valued-function">derivative of a vector-valued function</span>.</p>
+<div class="example" id="fs-id1169738904898">
+<h3>Example 13.4 · Finding the Derivative of a Vector-Valued Function</h3>
+<p>Use the definition to calculate the <span data-concept="derivative-of-a-vector-valued-function">derivative</span> of the function</p>
+$$\kvecr(t)=(3t+4)\;\kveci+(t^{2}-4t+3)\;\kvecj.$$
+<h4>Solution</h4>
+<p>Let’s use <a href="#fs-id1169739012267">Equation 13.5</a>:</p>
+$$\begin{array}{rl}\kvecrprime(t) & =\lim_{\Delta t\to 0}\frac{\kvecr(t+\Delta t)-\kvecr(t)}{\Delta t} \\ & =\lim_{\Delta t\to 0}\frac{[(3(t+\Delta t)+4)\;\kveci+({(t+\Delta t)}^{2}-4(t+\Delta t)+3)\;\kvecj]-[(3t+4)\;\kveci+(t^{2}-4t+3)\;\kvecj]}{\Delta t} \\ & =\lim_{\Delta t\to 0}\frac{(3t+3\Delta t+4)\;\kveci-(3t+4)\;\kveci+(t^{2}+2t\Delta t+{(\Delta t)}^{2}-4t-4\Delta t+3)\;\kvecj-(t^{2}-4t+3)\;\kvecj}{\Delta t} \\ & =\lim_{\Delta t\to 0}\frac{(3\Delta t)\;\kveci+(2t\Delta t+{(\Delta t)}^{2}-4\Delta t)\;\kvecj}{\Delta t} \\ & =\lim_{\Delta t\to 0}(3\;\kveci+(2t+\Delta t-4)\;\kvecj) \\ & =3\;\kveci+(2t-4)\;\kvecj.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169738904898"></div>
+<figure class="sim" id="sim-difference-quotient">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>At the point $\kvecr(t)$ of the parabola $\kvecr(t)=(3t+4)\,\kveci+(t^{2}-4t+3)\,\kvecj$ of <a href="#fs-id1169738904898">Example 13.4</a>, the chord to $\kvecr(t+\Delta t)$ and the difference quotient $\frac{\kvecr(t+\Delta t)-\kvecr(t)}{\Delta t}$ drawn from $\kvecr(t).$ As $\Delta t$ shrinks toward 0 from either side, the quotient swings onto the <span data-concept="tangent-vector">tangent vector</span> $\kvecrprime(t)=3\,\kveci+(2t-4)\,\kvecj,$ dashed. Drag the point along the curve, or slide $t$ and $\Delta t.$</span></div>
+</figure>
+<p id="componentwise">Notice that in the calculations in <a href="#fs-id1169738904898">Example 13.4</a>, we could also obtain the answer by first calculating the <span data-concept="derivative-function">derivative</span> of each <span data-concept="component-functions">component function</span>, then putting these <span data-concept="derivative-of-a-vector-valued-function">derivatives</span> back into the <span data-concept="vector-valued-function">vector-valued function</span>. This is always true for calculating the <span data-concept="derivative-of-a-vector-valued-function">derivative of a vector-valued function</span>, whether it is in two or three dimensions. We state this in the following theorem. The proof of this theorem follows directly from the definitions of the limit of a <span data-concept="vector-valued-function">vector-valued function</span> and the <span data-concept="derivative-of-a-vector-valued-function">derivative of a vector-valued function</span>.</p>
+<div class="note" id="fs-id1169739242722">
+<div class="eyebrow">Theorem</div>
+<h3>Differentiation of Vector-Valued Functions</h3>
+<p>Let $\kf,$ $\kg,$ and $\kh$ be differentiable functions of <em>t.</em></p>
+<ol><li>If $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj,$ then $\kvecrprime(t)=\kfprime(t)\;\kveci+\kgprime(t)\;\kvecj.$</li><li>If $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj+\kh(t)\;\kveck,$ then $\kvecrprime(t)=\kfprime(t)\;\kveci+\kgprime(t)\;\kvecj+\khprime(t)\;\kveck.$</li></ol>
+</div>
+<div class="example" id="fs-id1169739020349">
+<h3>Example 13.5 · Calculating the Derivative of Vector-Valued Functions</h3>
+<p>Use <a href="#fs-id1169739242722">Differentiation of Vector-Valued Functions</a> to calculate the <span data-concept="derivative-of-a-vector-valued-function">derivative</span> of each of the following functions.</p>
+<p>a. $\kvecr(t)=(6t+8)\;\kveci+(4t^{2}+2t-3)\;\kvecj$</p>
+<p>b. $\kvecr(t)=3\;\cos t\;\kveci+4\;\sin t\;\kvecj$</p>
+<p>c. $\kvecr(t)=e^{t}\sin t\;\kveci+e^{t}\cos t\;\kvecj-e^{2t}\;\kveck$</p>
+<h4>Solution</h4>
+<p>We use <a href="#fs-id1169739242722">Differentiation of Vector-Valued Functions</a> and what we know about differentiating functions of one variable.</p>
+<p>a. The first component of $\kvecr(t)=(6t+8)\;\kveci+(4t^{2}+2t-3)\;\kvecj$ is $\kf(t)=6t+8.$ The second component is $\kg(t)=4t^{2}+2t-3.$ We have $\kfprime(t)=6$ and $\kgprime(t)=8t+2,$ so the theorem gives $\kvecrprime(t)=6\;\kveci+(8t+2)\;\kvecj.$</p>
+<p>b. The first component is $\kf(t)=3\;\cos t$ and the second component is $\kg(t)=4\;\sin t.$ We have $\kfprime(t)=-3\;\sin t$ and $\kgprime(t)=4\;\cos t,$ so we obtain $\kvecrprime(t)=-3\;\sin t\;\kveci+4\;\cos t\;\kvecj.$</p>
+<p>c. The first component of $\kvecr(t)=e^{t}\sin t\;\kveci+e^{t}\cos t\;\kvecj-e^{2t}\;\kveck$ is $\kf(t)=e^{t}\sin t,$ the second component is $\kg(t)=e^{t}\cos t,$ and the third component is $\kh(t)=-e^{2t}.$ We have $\kfprime(t)=e^{t}(\sin t+\cos t),$ $\kgprime(t)=e^{t}(\cos t-\sin t),$ and $\khprime(t)=-2e^{2t},$ so the theorem gives $\kvecrprime(t)=e^{t}(\sin t+\cos t)\;\kveci+e^{t}(\cos t-\sin t)\;\kvecj-2e^{2t}\;\kveck.$</p>
+</div>
+<div class="exercises" data-place="fs-id1169739020349"></div>
+<p id="rules-extend">We can extend to <span data-concept="vector-valued-function">vector-valued functions</span> the properties of the <span data-concept="derivative">derivative</span> that we presented in the <a href="/calculus/ch03/intro/">Introduction to Derivatives</a>. In particular, the <span data-concept="constant-multiple-rule">constant multiple rule</span>, the <span data-concept="sum-rule">sum and difference rules</span>, the <span data-concept="product-rule">product rule</span>, and the <span data-concept="chain-rule">chain rule</span> all extend to <span data-concept="vector-valued-function">vector-valued functions</span>. However, in the case of the <span data-concept="product-rule">product rule</span>, there are actually three extensions: (1) for a <span data-concept="function">real-valued function</span> multiplied by a <span data-concept="vector-valued-function">vector-valued function</span>, (2) for the <span data-concept="dot-product">dot product</span> of two <span data-concept="vector-valued-function">vector-valued functions</span>, and (3) for the <span data-concept="cross-product">cross product</span> of two <span data-concept="vector-valued-function">vector-valued functions</span>.</p>
+<div class="note" id="fs-id1169739260277">
+<div class="eyebrow">Theorem</div>
+<h3>Properties of the Derivative of Vector-Valued Functions</h3>
+<p>Let $\kvecr$ and $\kvecu$ be differentiable <span data-concept="vector-valued-function">vector-valued functions</span> of <em>t</em>, let $\kf$ be a differentiable <span data-concept="function">real-valued function</span> of <em>t,</em> and let <em>c</em> be a scalar.</p>
+$$\begin{array}{llrllll}\text{i.} & & \frac{d}{dt}[c\;\kvecr(t)] & = & c\;\kvecrprime(t) & & \text{Scalar multiple} \\ \text{ii.} & & \frac{d}{dt}[\;\kvecr(t)\pm \;\kvecu(t)] & = & \kvecrprime(t)\pm \;\kvecuprime(t) & & \text{Sum and difference} \\ \text{iii.} & & \frac{d}{dt}[\kf(t)\;\kvecu(t)] & = & \kfprime(t)\;\kvecu(t)+\kf(t)\;\kvecuprime(t) & & \text{Scalar product} \\ \text{iv.} & & \frac{d}{dt}[\;\kvecr(t)\cdot \;\kvecu(t)] & = & \kvecrprime(t)\cdot \;\kvecu(t)+\;\kvecr(t)\cdot \;\kvecuprime(t) & & \text{Dot product} \\ \text{v.} & & \frac{d}{dt}[\;\kvecr(t)\;\times \;\kvecu(t)] & = & \kvecrprime(t)\;\times \;\kvecu(t)+\;\kvecr(t)\;\times \;\kvecuprime(t) & & \text{Cross product} \\ \text{vi.} & & \frac{d}{dt}[\;\kvecr(\kf(t))] & = & \kvecrprime(\kf(t))\cdot \kfprime(t) & & \text{Chain rule} \\ \text{vii.} & & \text{If}\;\kvecr(t)\cdot \;\kvecr(t) & = & c,\;\text{then}\;\kvecr(t)\cdot \;\kvecrprime(t)=0. & & \end{array}$$
+</div>
+<h3>Proof</h3>
+<p>The proofs of the first two properties follow directly from the definition of the <span data-concept="derivative-of-a-vector-valued-function">derivative of a vector-valued function</span>. The third property can be derived from the first two properties, along with the <span data-concept="product-rule">product rule</span> from the <a href="/calculus/ch03/intro/">Introduction to Derivatives</a>. Let $\kvecu(t)=\kg(t)\;\kveci+\kh(t)\;\kvecj.$ Then</p>
+$$\begin{array}{rl}\frac{d}{dt}[\kf(t)\;\kvecu(t)] & =\frac{d}{dt}[\kf(t)(\kg(t)\;\kveci+\kh(t)\;\kvecj)] \\ & =\frac{d}{dt}[\kf(t)\kg(t)\;\kveci+\kf(t)\kh(t)\;\kvecj] \\ & =\frac{d}{dt}[\kf(t)\kg(t)]\;\kveci+\frac{d}{dt}[\kf(t)\kh(t)]\;\kvecj \\ & =(\kfprime(t)\kg(t)+\kf(t)\kgprime(t))\;\kveci+(\kfprime(t)\kh(t)+\kf(t)\khprime(t))\;\kvecj \\ & =\kfprime(t)\;\kvecu(t)+\kf(t)\;\kvecuprime(t).\end{array}$$
+<p>To prove property iv. let $\kvecr(t)=f_{1}(t)\;\kveci+g_{1}(t)\;\kvecj$ and $\kvecu(t)=f_{2}(t)\;\kveci+g_{2}(t)\;\kvecj.$ Then</p>
+$$\begin{array}{rl}\frac{d}{dt}[\;\kvecr(t)\cdot \;\kvecu(t)] & =\frac{d}{dt}[f_{1}(t)f_{2}(t)+g_{1}(t)g_{2}(t)] \\ & =f_{1}{}^{\prime}(t)f_{2}(t)+f_{1}(t)f_{2}{}^{\prime}(t)+g_{1}{}^{\prime}(t)g_{2}(t)+g_{1}(t)g_{2}{}^{\prime}(t) \\ & =f_{1}{}^{\prime}(t)f_{2}(t)+g_{1}{}^{\prime}(t)g_{2}(t)+f_{1}(t)f_{2}{}^{\prime}(t)+g_{1}(t)g_{2}{}^{\prime}(t) \\ & =(f_{1}{}^{\prime}\;\kveci+g_{1}{}^{\prime}\;\kvecj)\cdot (f_{2}\;\kveci+g_{2}\;\kvecj)+(f_{1}\;\kveci+g_{1}\;\kvecj)\cdot (f_{2}{}^{\prime}\;\kveci+g_{2}{}^{\prime}\;\kvecj) \\ & =\kvecrprime(t)\cdot \;\kvecu(t)+\;\kvecr(t)\cdot \;\kvecuprime(t).\end{array}$$
+<p>The proof of property v. is similar to that of property iv. Property vi. can be proved using the <span data-concept="chain-rule">chain rule</span>. Last, property vii. follows from property iv:</p>
+$$\begin{array}{rll}\frac{d}{dt}[\;\kvecr(t)\cdot \;\kvecr(t)] & = & \frac{d}{dt}[c] \\ \kvecrprime(t)\cdot \;\kvecr(t)+\;\kvecr(t)\cdot \;\kvecrprime(t) & = & 0 \\ 2\;\kvecr(t)\cdot \;\kvecrprime(t) & = & 0 \\ \kvecr(t)\cdot \;\kvecrprime(t) & = & 0.\end{array}$$
+<p>□</p>
+<p>Now for some examples using these properties.</p>
+<div class="example" id="fs-id1169736876498">
+<h3>Example 13.6 · Using the Properties of Derivatives of Vector-Valued Functions</h3>
+<p>Given the <span data-concept="vector-valued-function">vector-valued functions</span></p>
+$$\kvecr(t)=(6t+8)\;\kveci+(4t^{2}+2t-3)\;\kvecj+5t\;\kveck$$
+<p>and</p>
+$$\kvecu(t)=(t^{2}-3)\;\kveci+(2t+4)\;\kvecj+(t^{3}-3t)\;\kveck,$$
+<p>calculate each of the following <span data-concept="derivative-of-a-vector-valued-function">derivatives</span> using the properties of the <span data-concept="derivative-of-a-vector-valued-function">derivative</span> of <span data-concept="vector-valued-function">vector-valued functions</span>.</p>
+<p>a. $\frac{d}{dt}[\;\kvecr(t)\cdot \;\kvecu(t)]$</p>
+<p>b. $\frac{d}{dt}[\;\kvecu(t)\;\times \;\kvecuprime(t)]$</p>
+<h4>Solution</h4>
+<p>a. We have $\kvecrprime(t)=6\;\kveci+(8t+2)\;\kvecj+5\;\kveck$ and $\kvecuprime(t)=2t\;\kveci+2\;\kvecj+(3t^{2}-3)\;\kveck.$ Therefore, according to property iv.:</p>
+$$\begin{array}{rl}\frac{d}{dt}[\;\kvecr(t)\cdot \;\kvecu(t)] & =\kvecrprime(t)\cdot \;\kvecu(t)+\;\kvecr(t)\cdot \;\kvecuprime(t) \\ & =(6\;\kveci+(8t+2)\;\kvecj+5\;\kveck)\cdot ((t^{2}-3)\;\kveci+(2t+4)\;\kvecj+(t^{3}-3t)\;\kveck) \\ & \;+((6t+8)\;\kveci+(4t^{2}+2t-3)\;\kvecj+5t\;\kveck)\cdot (2t\;\kveci+2\;\kvecj+(3t^{2}-3)\;\kveck) \\ & =6(t^{2}-3)+(8t+2)(2t+4)+5(t^{3}-3t) \\ & \;+2t(6t+8)+2(4t^{2}+2t-3)+5t(3t^{2}-3) \\ & =20t^{3}+42t^{2}+26t-16.\end{array}$$
+<p>b. First, we need to adapt property v. for this problem:</p>
+$$\frac{d}{dt}[\;\kvecu(t)\;\times \;\kvecuprime(t)]=\kvecuprime(t)\;\times \;\kvecuprime(t)+\;\kvecu(t)\;\times \;\kvecudprime(t).$$
+<p>Recall that the <span data-concept="cross-product">cross product</span> of any vector with itself is zero. Furthermore, $\kvecudprime(t)$ represents the second <span data-concept="derivative-of-a-vector-valued-function">derivative</span> of $\kvecu(t)\text{:}$</p>
+$$\kvecudprime(t)=\frac{d}{dt}[\;\kvecuprime(t)]=\frac{d}{dt}[2t\;\kveci+2\;\kvecj+(3t^{2}-3)\;\kveck]=2\;\kveci+6t\;\kveck.$$
+<p>Therefore,</p>
+$$\begin{array}{rl}\frac{d}{dt}[\;\kvecu(t)\;\times \;\kvecuprime(t)] & =\kveczero+((t^{2}-3)\;\kveci+(2t+4)\;\kvecj+(t^{3}-3t)\;\kveck)\;\times \;(2\;\kveci+6t\;\kveck) \\ & =|\begin{array}{lll}\kveci & \kvecj & \kveck \\ t^{2}-3 & 2t+4 & t^{3}-3t \\ 2 & 0 & 6t\end{array}| \\ & =6t(2t+4)\;\kveci-(6t(t^{2}-3)-2(t^{3}-3t))\;\kvecj-2(2t+4)\;\kveck \\ & =(12t^{2}+24t)\;\kveci+(12t-4t^{3})\;\kvecj-(4t+8)\;\kveck.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169736876498"></div>
+</section>
+<section id="tangent-vectors">
+<h2>Tangent Vectors and Unit Tangent Vectors</h2>
+<p class="cite-target">Recall from the <a href="/calculus/ch03/intro/">Introduction to Derivatives</a> that the <span data-concept="derivative">derivative</span> at a point can be interpreted as the slope of the <span data-concept="tangent-line">tangent line</span> to the graph at that point. In the case of a <span data-concept="vector-valued-function">vector-valued function</span>, the <span data-concept="derivative-of-a-vector-valued-function">derivative</span> provides a <span data-concept="tangent-vector">tangent vector</span> to the curve represented by the function. Consider the <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr(t)=\cos t\;\kveci+\sin t\;\kvecj.$ The <span data-concept="derivative-of-a-vector-valued-function">derivative</span> of this function is $\kvecrprime(t)=-\sin t\;\kveci+\cos t\;\kvecj.$ If we substitute the value $t=\pi /6$ into both functions we get</p>
+$$\kvecr(\frac{\pi}{6})=\frac{\sqrt{3}}{2}\;\kveci+\frac{1}{2}\;\kvecj\;\text{and}\;\kvecrprime(\frac{\pi}{6})=-\frac{1}{2}\;\kveci+\frac{\sqrt{3}}{2}\;\kvecj.$$
+<p>The graph of this function appears in <a href="#sim-tangent-vector">Figure 13.5</a>, along with the vectors $\kvecr(\frac{\pi}{6})$ and $\kvecrprime(\frac{\pi}{6}).$</p>
+<figure class="sim" id="sim-tangent-vector" data-figure="13.5" data-original="/media/ch13/CNX_Calc_Figure_13_02_001.jpg" data-original-caption="The tangent line at a point is calculated from the derivative of the vector-valued function r(t).">
+  <div class="sim-head"><span class="eyebrow">Figure 13.5</span><span>The <span data-concept="tangent-vector">tangent vector</span> $\kvecrprime(t)$ at the tip of $\kvecr(t)=\cos t\,\kveci+\sin t\,\kvecj$ on the unit circle, at the book’s $t=\frac{\pi}{6}$ and wherever the point is dragged. On this circle $\|\kvecrprime(t)\|=1,$ so $\kvecrprime(t)$ is the <span data-concept="principal-unit-tangent-vector">unit tangent vector</span> $\kvecT(t)$ itself. Choose the ellipse $\kvecr(t)=4\cos t\,\kveci+3\sin t\,\kvecj$: there $\kvecrprime(t)$ grows and shrinks around the curve, while $\kvecT(t)=\frac{\kvecrprime(t)}{\|\kvecrprime(t)\|}$ keeps length 1.</span></div>
+</figure>
+<p id="tangent-term">Notice that the vector $\kvecrprime(\frac{\pi}{6})$ is tangent to the circle at the point corresponding to $t=\pi /6.$ This is an example of a <strong><span data-concept="tangent-vector">tangent vector</span></strong> to the <span data-concept="parametric-curve">plane curve</span> defined by $\kvecr(t)=\cos t\;\kveci+\sin t\;\kvecj.$</p>
+<div class="note" id="fs-id1169736941579">
+<div class="eyebrow">Definition</div>
+<p>Let C be a curve defined by a <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr,$ and assume that $\kvecrprime(t)$ exists when $t=t_{0}.$ A <span data-concept="tangent-vector">tangent vector</span> <strong>v</strong> at $t=t_{0}$ is any vector such that, when the tail of the vector is placed at point $\kvecr(t_{0})$ on the graph, vector <strong>v</strong> is tangent to curve <em>C.</em> Vector $\kvecrprime(t_{0})$ is an example of a <span data-concept="tangent-vector">tangent vector</span> at point $t=t_{0}.$ Furthermore, assume that $\kvecrprime(t)\ne \;\kveczero.$ The <strong><span data-concept="principal-unit-tangent-vector">principal unit tangent vector</span></strong> at <em>t</em> is defined to be</p>
+<div class="equation" id="fs-id1169736889687">$$\kvecT(t)=\frac{\kvecrprime(t)}{\| \;\kvecrprime(t)\|},\tag{13.6}$$</div>
+<p>provided $\| \;\kvecrprime(t)\| \ne 0.$</p>
+</div>
+<p id="three-steps">The <span data-concept="principal-unit-tangent-vector">unit tangent vector</span> is exactly what it sounds like: a <span data-concept="unit-vector">unit vector</span> that is tangent to the curve. To calculate a <span data-concept="principal-unit-tangent-vector">unit tangent vector</span>, first find the <span data-concept="derivative-of-a-vector-valued-function">derivative</span> $\kvecrprime(t).$ Second, calculate the magnitude of the <span data-concept="derivative-of-a-vector-valued-function">derivative</span>. The third step is to divide the <span data-concept="derivative-of-a-vector-valued-function">derivative</span> by its magnitude.</p>
+<div class="example" id="fs-id1169738935172">
+<h3>Example 13.7 · Finding a Unit Tangent Vector</h3>
+<p>Find the <span data-concept="principal-unit-tangent-vector">unit tangent vector</span> for each of the following <span data-concept="vector-valued-function">vector-valued functions</span>:</p>
+<p>a. $\kvecr(t)=\cos t\;\kveci+\sin t\;\kvecj$</p>
+<p>b. $\kvecu(t)=(3t^{2}+2t)\;\kveci+(2-4t^{3})\;\kvecj+(6t+5)\;\kveck$</p>
+<h4>Solution</h4>
+<p>a. </p>
+<p>$\begin{array}{lrll}\text{First step:} & \kvecrprime(t) & = & -\sin\;t\;\kveci+\cos t\;\kvecj \\ \text{Second step:} & \| \;\kvecrprime(t)\| & = & \sqrt{{(-\sin t)}^{2}+{(\cos t)}^{2}}=1 \\ \text{Third step:} & \kvecT(t) & = & \frac{\kvecrprime(t)}{\| \;\kvecrprime(t)\|}=\frac{\text{-\sin}\;t\;\kveci+\cos t\;\kvecj}{1}=\text{-\sin}\;t\;\kveci+\cos t\;\kvecj\end{array}$</p>
+<p>b. </p>
+<p>$\begin{array}{lrll}\text{First step:} & \kvecuprime(t) & = & (6t+2)\;\kveci-12t^{2}\;\kvecj+6\;\kveck \\ \text{Second step:} & \| \;\kvecuprime(t)\| & = & \sqrt{{(6t+2)}^{2}+{(-12t^{2})}^{2}+6^{2}} \\ & & = & \sqrt{144t^{4}+36t^{2}+24t+40} \\ & & = & 2\sqrt{36t^{4}+9t^{2}+6t+10} \\ \text{Third step:} & \kvecT(t) & = & \frac{\kvecuprime(t)}{\| \;\kvecuprime(t)\|}=\frac{(6t+2)\;\kveci-12t^{2}\;\kvecj+6\;\kveck}{2\sqrt{36t^{4}+9t^{2}+6t+10}} \\ & & = & \frac{3t+1}{\sqrt{36t^{4}+9t^{2}+6t+10}}\;\kveci-\frac{6t^{2}}{\sqrt{36t^{4}+9t^{2}+6t+10}}\;\kvecj+\frac{3}{\sqrt{36t^{4}+9t^{2}+6t+10}}\;\kveck\end{array}$</p>
+</div>
+<div class="exercises" data-place="fs-id1169738935172"></div>
+</section>
+<section id="integrals">
+<h2>Integrals of Vector-Valued Functions</h2>
+<p class="cite-target" id="integral-intro">We introduced <span data-concept="antiderivative">antiderivatives</span> of <span data-concept="function">real-valued functions</span> in <a href="/calculus/ch04/4.10/">Antiderivatives</a> and definite integrals of <span data-concept="function">real-valued functions</span> in <a href="/calculus/ch05/5.2/">The Definite Integral</a>. Each of these concepts can be extended to <span data-concept="vector-valued-function">vector-valued functions</span>. Also, just as we can calculate the <span data-concept="derivative-of-a-vector-valued-function">derivative of a vector-valued function</span> by differentiating the <span data-concept="component-functions">component functions</span> separately, we can calculate the <span data-concept="antiderivative">antiderivative</span> in the same manner. Furthermore, the <span data-concept="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</span> applies to <span data-concept="vector-valued-function">vector-valued functions</span> as well.</p>
+<p id="antiderivative-applications">The <span data-concept="antiderivative">antiderivative</span> of a <span data-concept="vector-valued-function">vector-valued function</span> appears in applications. For example, if a <span data-concept="vector-valued-function">vector-valued function</span> represents the <span data-concept="velocity">velocity</span> of an object at time <em>t</em>, then its <span data-concept="antiderivative">antiderivative</span> represents position. Or, if the function represents the acceleration of the object at a given time, then the <span data-concept="antiderivative">antiderivative</span> represents its <span data-concept="velocity">velocity</span>.</p>
+<div class="note" id="fs-id1169736616570">
+<div class="eyebrow">Definition</div>
+<p>Let $\kf,$ $\kg,$ and $\kh$ be integrable <span data-concept="function">real-valued functions</span> over the closed interval $[a,b].$</p>
+<ol><li>The <strong><span data-concept="indefinite-integral-of-a-vector-valued-function">indefinite integral of a vector-valued function</span></strong> $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj$ is</li></ol>
+<div class="equation" id="fs-id1169736591974">$$\int [\kf(t)\;\kveci+\kg(t)\;\kvecj]dt =[\;\int \kf(t)dt ]\;\kveci+[\;\int \kg(t)dt ]\;\kvecj.\tag{13.7}$$</div>
+<p>The <strong><span data-concept="definite-integral-of-a-vector-valued-function">definite integral of a vector-valued function</span></strong> is</p>
+<div class="equation" id="fs-id1169739062367">$$\int_a^{b}[\kf(t)\;\kveci+\kg(t)\;\kvecj]dt =[\;\int_a^{b}\kf(t)dt ]\;\kveci+[\;\int_a^{b}\kg(t)dt ]\;\kvecj.\tag{13.8}$$</div>
+<ol start="2"><li>The <span data-concept="indefinite-integral-of-a-vector-valued-function">indefinite integral of a vector-valued function</span> $\kvecr(t)=\kf(t)\;\kveci+\kg(t)\;\kvecj+\kh(t)\;\kveck$ is</li></ol>
+<div class="equation" id="fs-id1169739044371">$$\int [\kf(t)\;\kveci+\kg(t)\;\kvecj+\kh(t)\;\kveck]dt =[\;\int \kf(t)dt ]\;\kveci+[\;\int \kg(t)dt ]\;\kvecj+[\;\int \kh(t)dt ]\;\kveck.\tag{13.9}$$</div>
+<p>The definite integral of the <span data-concept="vector-valued-function">vector-valued function</span> is</p>
+<div class="equation" id="fs-id1169739182212">$$\int_a^{b}[\kf(t)\;\kveci+\kg(t)\;\kvecj+\kh(t)\;\kveck]dt =[\;\int_a^{b}\kf(t)dt ]\;\kveci+[\;\int_a^{b}\kg(t)dt ]\;\kvecj+[\;\int_a^{b}\kh(t)dt ]\;\kveck.\tag{13.10}$$</div>
+</div>
+<p id="constant-vector">Since the <span data-concept="indefinite-integral-of-a-vector-valued-function">indefinite integral of a vector-valued function</span> involves indefinite integrals of the <span data-concept="component-functions">component functions</span>, each of these component integrals contains an integration constant. They can all be different. For example, in the two-dimensional case, we can have</p>
+$$\int \kf(t)dt =\kF(t)+C_{1}\;\text{and}\;\int \kg(t)dt =\kG(t)+C_{2},$$
+<p>where $\kF$ and $\kG$ are <span data-concept="antiderivative">antiderivatives</span> of $\kf$ and $\kg,$ respectively. Then</p>
+$$\begin{array}{rl}\int [\kf(t)\;\kveci+\kg(t)\;\kvecj]dt & =[\;\int \kf(t)dt ]\;\kveci+[\;\int \kg(t)dt ]\;\kvecj \\ & =(\kF(t)+C_{1})\;\kveci+(\kG(t)+C_{2})\;\kvecj \\ & =\kF(t)\;\kveci+\kG(t)\;\kvecj+C_{1}\;\kveci+C_{2}\;\kvecj \\ & =\kF(t)\;\kveci+\kG(t)\;\kvecj+\;\textbf{C},\end{array}$$
+<p>where $\textbf{C}=C_{1}\;\kveci+C_{2}\;\kvecj.$ Therefore, the integration constant becomes a <span data-concept="vector">constant vector</span>.</p>
+<figure class="sim" id="sim-vector-integral">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The derivative $\kvecrprime(t)=3\,\kveci+(2t-4)\,\kvecj$ of <a href="#fs-id1169738904898">Example 13.4</a> integrated from 0 to $b$: the $n$ steps $\kvecrprime(t_{i})\Delta t,$ laid tip to tail from $\kvecr(0),$ follow the parabola $\kvecr(t)$ and add up to a vector that closes on $\int_{0}^{b}\kvecrprime(t)\,dt=\kvecr(b)-\kvecr(0),$ whose components are the <span data-concept="definite-integral">definite integrals</span> of the component functions. Raise $n$ and the sum settles on the integral; slide $b$ to move the end.</span></div>
+</figure>
+<div class="example" id="fs-id1169738935680">
+<h3>Example 13.8 · Integrating Vector-Valued Functions</h3>
+<p>Calculate each of the following integrals:</p>
+<p>a. $\int [(3t^{2}+2t)\;\kveci+(3t-6)\;\kvecj+(6t^{3}+5t^{2}-4)\;\kveck] \;dt$</p>
+<p>b. $\int [\langle t,t^{2},t^{3}\rangle \;\times \;\langle t^{3},t^{2},t\rangle ] \;dt$</p>
+<p>c. $\int_0^{\pi /3}[\sin 2t\;\kveci+\tan t\;\kvecj+e^{-2t}\;\kveck]\;dt$</p>
+<h4>Solution</h4>
+<p>a. We use the first part of the definition of the integral of a <span data-concept="space-curve">space curve</span>:</p>
+$$\begin{array}{l}\int [(3t^{2}+2t)\;\kveci+(3t-6)\;\kvecj+(6t^{3}+5t^{2}-4)\;\kveck] dt \\ \\ \hspace{3em}=[\;\int 3t^{2}+2t\;dt ]\;\kveci+[\;\int 3t-6 dt]\;\kvecj+[\;\int 6t^{3}+5t^{2}-4 dt]\;\kveck \\ \hspace{3em}=(t^{3}+t^{2})\;\kveci+(\frac{3}{2}t^{2}-6t)\;\kvecj+(\frac{3}{2}t^{4}+\frac{5}{3}t^{3}-4t)\;\kveck+\;\textbf{C}.\end{array}$$
+<p>b. First calculate $\langle t,t^{2},t^{3}\rangle \;\times \;\langle t^{3},t^{2},t\rangle \text{:}$</p>
+$$\begin{array}{rl}\langle t,t^{2},t^{3}\rangle \;\times \;\langle t^{3},t^{2},t\rangle & =|\begin{array}{lll}\kveci & \kvecj & \kveck \\ t & t^{2} & t^{3} \\ t^{3} & t^{2} & t\end{array}| \\ & =(t^{2}(t)-t^{3}(t^{2}))\;\kveci-(t^{2}-t^{3}(t^{3}))\;\kvecj+(t(t^{2})-t^{2}(t^{3}))\;\kveck \\ & =(t^{3}-t^{5})\;\kveci+(t^{6}-t^{2})\;\kvecj+(t^{3}-t^{5})\;\kveck.\end{array}$$
+<p>Next, substitute this back into the integral and integrate:</p>
+$$\begin{array}{rl}\int [\langle t,t^{2},t^{3}\rangle \;\times \;\langle t^{3},t^{2},t\rangle ] dt & =\int (t^{3}-t^{5})\;\kveci+(t^{6}-t^{2})\;\kvecj+(t^{3}-t^{5})\;\kveck\;dt \\ & =(\frac{t^{4}}{4}-\frac{t^{6}}{6})\;\kveci+(\frac{t^{7}}{7}-\frac{t^{3}}{3})\;\kvecj+(\frac{t^{4}}{4}-\frac{t^{6}}{6})\;\kveck+\;\textbf{C}.\end{array}$$
+<p>c. Use the second part of the definition of the integral of a <span data-concept="space-curve">space curve</span>:</p>
+$$\begin{array}{l}\int_0^{\pi /3}[\sin 2t\;\kveci+\tan t\;\kvecj+e^{-2t}\;\kveck]dt \\ \\ =[\;\int_0^{\pi /3}\sin 2t dt]\;\kveci+[\;\int_0^{\pi /3}\tan t dt]\;\kvecj+[\;\int_0^{\pi /3}e^{-2t} dt]\;\kveck \\ ={(-\frac{1}{2}\cos 2t)|}_0^{\pi /3}\;\kveci-{(\ln (\cos t))|}_0^{\pi /3}\;\kvecj-{(\frac{1}{2}e^{-2t})|}_0^{\pi /3}\;\kveck \\ =(-\frac{1}{2}\cos \frac{2\pi}{3}+\frac{1}{2}\cos 0)\;\kveci-(\ln (\cos \frac{\pi}{3})-\ln (\cos 0))\;\kvecj-(\frac{1}{2}e^{-2\pi /3}-\frac{1}{2}e^{-2(0)})\;\kveck \\ =(\frac{1}{4}+\frac{1}{2})\;\kveci-(-\ln 2)\;\kvecj-(\frac{1}{2}e^{-2\pi /3}-\frac{1}{2})\;\kveck \\ =\frac{3}{4}\;\kveci+(\ln 2)\;\kvecj+(\frac{1}{2}-\frac{1}{2}e^{-2\pi /3})\;\kveck.\end{array}$$
+</div>
+<div class="exercises" data-place="fs-id1169738935680"></div>
+</section>

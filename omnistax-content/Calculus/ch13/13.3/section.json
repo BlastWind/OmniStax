@@ -1,0 +1,1179 @@
+{
+ "id": "13.3",
+ "module": "m53919",
+ "chapter": "13",
+ "title": "Arc Length and Curvature",
+ "short": "Arc Length and Curvature",
+ "lead": "The <span data-concept=\"arc-length-of-a-space-curve\">arc length</span> of a curve $\\kvecr(t)$ is the integral of its speed $\\|\\kvecrprime(t)\\|$; measured from a starting point it becomes the <span data-concept=\"arc-length-function\">arc-length function</span> and a new parameter. <span data-concept=\"curvature\">Curvature</span> measures how sharply the curve turns, as the rate at which its unit tangent turns per unit of length, and the principal unit normal and binormal vectors complete a frame that rides along the curve.",
+ "objectives": [
+  "Determine the length of a particle’s path in space by using the arc-length function.",
+  "Explain the meaning of the curvature of a curve in space and state its formula.",
+  "Describe the meaning of the normal and binormal vectors of a curve in space."
+ ],
+ "summary_html": "<ul><li>The <span data-concept=\"arc-length-function\">arc-length function</span> for a <span data-concept=\"vector-valued-function\">vector-valued function</span> is calculated using the integral formula $\\ks(t)=\\int_a^{t}\\| \\kvecrprime(u)\\| \\;du .$ This formula is valid in both two and three dimensions.</li><li>The <span data-concept=\"curvature\">curvature</span> of a curve at a point in either two or three dimensions is defined to be the <span data-concept=\"curvature\">curvature</span> of the inscribed circle at that point. The <span data-concept=\"arc-length-parameterization\">arc-length parameterization</span> is used in the definition of <span data-concept=\"curvature\">curvature</span>.</li><li>There are several different formulas for <span data-concept=\"curvature\">curvature</span>. The <span data-concept=\"curvature\">curvature</span> of a circle is equal to the reciprocal of its radius.</li><li>The <span data-concept=\"principal-unit-normal-vector\">principal unit normal vector</span> at <em>t</em> is defined to be $$\\kvecN(t)=\\frac{\\kvecTprime(t)}{\\| \\kvecTprime(t)\\|}.$$</li><li>The <span data-concept=\"binormal-vector\">binormal vector</span> at <em>t</em> is defined as $\\kvecB(t)=\\kvecT(t)\\;\\times \\;\\kvecN(t),$ where $\\kvecT(t)$ is the <span data-concept=\"principal-unit-tangent-vector\">unit tangent vector</span>.</li><li>The <span data-concept=\"frenet-frame-of-reference\">Frenet frame of reference</span> is formed by the <span data-concept=\"principal-unit-tangent-vector\">unit tangent vector</span>, the <span data-concept=\"principal-unit-normal-vector\">principal unit normal vector</span>, and the <span data-concept=\"binormal-vector\">binormal vector</span>.</li><li>The <span data-concept=\"osculating-circle\">osculating circle</span> is tangent to a curve at a point and has the same <span data-concept=\"curvature\">curvature</span> as the tangent curve at that point.</li></ul>",
+ "notes": "Two media links, on the curvature of a space curve and on osculating circles, curvature and torsion, are not kept.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-12",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated; every answer is the book’s except the suggested approach marked as such. The 27 even-numbered exercises have no answer in the key and are left out: 102–112 (arc lengths), 114–126 (unit tangent, normal and binormal vectors), 128 (an arc-length parameterization), 130–140 (curvatures and their maxima), 142–148 (osculating circles and radii of curvature), 150 (curvatures at three times), and 152 and 154 (technology graphs of the cup and its curvature). Review exercises 204, 217, 219 and 221 from the end of the chapter are held here; 204, true or false with no answer in the key, carries an AI-written approach; 216, 218, 220 and 222, unkeyed, are left out. The keys to Checkpoint 13.12 and exercise 153 are corrected under their cards.",
+ "figures": [
+  {
+   "id": "sim-helix-length",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-arc-length-function",
+   "kind": "sim",
+   "draws": [
+    "curve",
+    "point",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-osculating",
+   "kind": "sim",
+   "number": "13.6",
+   "folds": [
+    "13.8"
+   ],
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_03_001.jpg",
+    "/media/ch13/CNX_Calc_Figure_13_03_007.jpg"
+   ],
+   "original_caption": "(Figure 13.6) The graph represents the curvature of a function y=f(x). The sharper the turn in the graph, the greater the curvature, and the smaller the radius of the inscribed circle. (Figure 13.8) In this osculating circle, the circle is tangent to curve C at point P and shares the same curvature.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-frenet",
+   "kind": "sim",
+   "number": "13.7",
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_03_006.jpg"
+   ],
+   "original_caption": "This figure depicts a Frenet frame of reference. At every point P on a three-dimensional curve, the unit tangent, unit normal, and binormal vectors form a three-dimensional frame of reference.",
+   "draws": [
+    "curve",
+    "vector",
+    "plane"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-osculating-cubic",
+   "kind": "figure",
+   "number": "13.9",
+   "folds": [
+    "13.10"
+   ],
+   "originals": [
+    "/media/ch13/CNX_Calc_Figure_13_03_008.jpg",
+    "/media/ch13/CNX_Calc_Figure_13_03_009.jpg"
+   ],
+   "original_caption": "(Figure 13.9) We want to find the osculating circle of this graph at the point where t=1. (Figure 13.10) The osculating circle has radius R=1/6.",
+   "draws": [
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "arc-curvature-intro",
+   "concept": "arc-length-of-a-space-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "arc-curvature-intro",
+   "concept": "curvature",
+   "verb": "uses"
+  },
+  {
+   "span": "arc-length-recall",
+   "concept": "arc-length-of-a-parametric-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169737844367",
+   "concept": "arc-length-of-a-space-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737844367",
+   "concept": "smooth-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "smooth-term",
+   "concept": "smooth-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "smooth-term",
+   "concept": "cusp",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737840905",
+   "concept": "arc-length-of-a-space-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "helix-form",
+   "concept": "helix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "helix-wire",
+   "concept": "arc-length-of-a-helix",
+   "verb": "introduces"
+  },
+  {
+   "span": "arc-length-function-intro",
+   "concept": "arc-length-function",
+   "verb": "uses"
+  },
+  {
+   "span": "speed-rate",
+   "concept": "speed",
+   "verb": "uses"
+  },
+  {
+   "span": "speed-rate",
+   "concept": "fundamental-theorem-of-calculus-part-1",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738186040",
+   "concept": "arc-length-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "parameterization-term",
+   "concept": "arc-length-parameterization",
+   "verb": "introduces"
+  },
+  {
+   "span": "parameterization-term",
+   "concept": "reparameterization",
+   "verb": "reinforces"
+  },
+  {
+   "span": "parameterization-steps",
+   "concept": "finding-an-arc-length-parameterization",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737497107",
+   "concept": "finding-an-arc-length-parameterization",
+   "verb": "uses"
+  },
+  {
+   "span": "curvature-intro",
+   "concept": "curvature",
+   "verb": "uses"
+  },
+  {
+   "span": "inscribed-circle",
+   "concept": "osculating-circle",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737492877",
+   "concept": "curvature",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737492877",
+   "concept": "principal-unit-tangent-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738214420",
+   "concept": "alternative-formulas-for-curvature",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169738214420",
+   "concept": "chain-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169738214420",
+   "concept": "cross-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737379326",
+   "concept": "alternative-formulas-for-curvature",
+   "verb": "uses"
+  },
+  {
+   "span": "normal-intro",
+   "concept": "principal-unit-tangent-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fs-id1169737373970",
+   "concept": "principal-unit-normal-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169737373970",
+   "concept": "binormal-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "binormal-unit",
+   "concept": "constant-magnitude-and-its-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "binormal-unit",
+   "concept": "magnitude-of-the-cross-product",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737378570",
+   "concept": "principal-unit-normal-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fs-id1169737378570",
+   "concept": "binormal-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "frenet-term",
+   "concept": "normal-plane",
+   "verb": "introduces"
+  },
+  {
+   "span": "frenet-term",
+   "concept": "frenet-frame-of-reference",
+   "verb": "introduces"
+  },
+  {
+   "span": "frenet-term",
+   "concept": "osculating-plane",
+   "verb": "introduces"
+  },
+  {
+   "span": "osculating-term",
+   "concept": "radius-of-curvature",
+   "verb": "introduces"
+  },
+  {
+   "span": "osculating-term",
+   "concept": "osculating-circle",
+   "verb": "introduces"
+  },
+  {
+   "span": "osculating-steps",
+   "concept": "finding-an-osculating-circle",
+   "verb": "introduces"
+  },
+  {
+   "span": "fs-id1169738056374",
+   "concept": "osculating-circle",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cp1",
+   "source_id": "fs-id1169738188910",
+   "source_number": "Checkpoint 13.9",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737840905"
+   },
+   "cite": "fs-id1169737844367",
+   "prompt": "<p>Calculate the arc length of the parameterized curve</p>\n$$\\textbf{r}(t)=\\langle 2t^{2}+1,2t^{2}-1,t^{3}\\rangle ,0\\le t\\le 3.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\mathbf{r^{\\prime}}(t)=\\langle 4t,4t,3t^{2}\\rangle ,$ so $s=\\frac{1}{27}({113}^{3/2}-{32}^{3/2})\\approx 37.785$",
+    "hint": "Use <a href=\"#fs-id1169738053435\">Equation 13.12</a>."
+   }
+  },
+  {
+   "id": "cp2",
+   "source_id": "fs-id1169738242941",
+   "source_number": "Checkpoint 13.10",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737497107"
+   },
+   "cite": "fs-id1169738186040",
+   "prompt": "<p>Find the arc-length function for the helix</p>\n$$\\textbf{r}(t)=\\langle 3\\;\\cos t,3\\;\\sin t,4t\\rangle ,t\\ge 0.$$\n<p>Then, use the relationship between the arc length and the parameter <em>t</em> to find an arc-length parameterization of $\\textbf{r}(t).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$s=5t,$ or $t=s/5.$ Substituting this into $\\textbf{r}(t)=\\langle 3\\;\\cos t,3\\;\\sin t,4t\\rangle$ gives $\\textbf{r}(s)=\\langle 3\\;\\cos (\\frac{s}{5}),\\;3\\;\\sin (\\frac{s}{5}),\\frac{4s}{5}\\rangle ,s\\ge 0.$",
+    "hint": "Start by finding the arc-length function."
+   }
+  },
+  {
+   "id": "cp3",
+   "source_id": "fs-id1169737569232",
+   "source_number": "Checkpoint 13.11",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737379326"
+   },
+   "cite": "fs-id1169738214420",
+   "prompt": "<p>Find the curvature of the curve defined by the function</p>\n$$y=3x^{2}-2x+4$$\n<p>at the point $x=2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kappa =\\frac{6}{{101}^{3/2}}\\approx 0.0059$",
+    "hint": "Use <a href=\"#fs-id1169738200809\">Equation 13.17</a>."
+   }
+  },
+  {
+   "id": "cp4",
+   "source_id": "fs-id1169737531300",
+   "source_number": "Checkpoint 13.12",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169737378570"
+   },
+   "cite": "fs-id1169737373970",
+   "prompt": "Find the unit normal vector for the vector-valued function $\\textbf{r}(t)=(t^{2}-3t)\\;\\textbf{i}+(4t+1)\\;\\textbf{j}$ and evaluate it at $t=2.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{N}(2)=\\frac{\\sqrt{2}}{2}(\\textbf{i}-\\textbf{j})$<sup class=\"fn\" data-note=\"c-cp12\"></sup>",
+    "hint": "First, find $\\textbf{T}(t),$ then use <a href=\"#fs-id1169737914271\">Equation 13.13</a>."
+   }
+  },
+  {
+   "id": "cp5",
+   "source_id": "fs-id1169737300014",
+   "source_number": "Checkpoint 13.13",
+   "kind": "checkpoint",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "fs-id1169738056374"
+   },
+   "cite": "osculating-steps",
+   "prompt": "Find an equation of the osculating circle of the curve defined by the vector-valued function $y=2x^{2}-4x+5$ at $x=1.$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<p>$\\kappa =\\frac{4}{{[1+{(4x-4)}^{2}]}^{3/2}}$</p>\n<p>At the point $x=1,$ the curvature is equal to 4. Therefore, the radius of the osculating circle is $\\frac{1}{4}.$</p>\n<p>A graph of this function appears next:</p>\n<img src=\"/media/ch13/CNX_Calc_Figure_13_03_010.jpg\" alt=\"This figure is the graph of the function y = 2x^2-4x+5. The curve is a parabola opening up with vertex at (1, 3).\">\n<p>The vertex of this parabola is located at the point $(1,3).$ Furthermore, the center of the osculating circle is directly above the vertex. Therefore, the coordinates of the center are $(1,\\frac{13}{4}).$ The equation of the osculating circle is</p>\n<p>${(x-1)}^{2}+{(y-\\frac{13}{4})}^{2}=\\frac{1}{16}.$</p>",
+    "hint": "Use <a href=\"#fs-id1169738200809\">Equation 13.17</a> to find the curvature of the graph, then draw a graph of the function around $x=1$ to help visualize the circle in relation to the graph."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "fs-id1169738244710",
+   "source_number": "103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737844367",
+   "prompt": "<p>Find the arc length of the curve on the given interval.</p><p>$\\textbf{r}(t)=t^{2}\\textbf{i}+(2t^{2}+1)\\textbf{j},\\;1\\le t\\le 3$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$8\\sqrt{5}$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "fs-id1169737248693",
+   "source_number": "105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737844367",
+   "prompt": "<p>Find the arc length of the curve on the given interval.</p><p>$\\textbf{r}(t)=\\langle t^{2}+1,4t^{3}+3\\rangle ,\\;-1\\le t\\le 0$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{54}({37}^{3/2}-1)$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "fs-id1169738159327",
+   "source_number": "107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737844367",
+   "prompt": "<p>Find the length of one turn of the helix given by $\\textbf{r}(t)=\\frac{1}{2}\\cos t\\textbf{i}+\\frac{1}{2}\\sin t\\textbf{j}+\\sqrt{\\frac{3}{4}}\\;t\\;\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Length $=2\\pi$"
+   }
+  },
+  {
+   "id": "e109",
+   "source_id": "fs-id1169738088757",
+   "source_number": "109",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737844367",
+   "prompt": "<p>A particle travels once around a circle with the equation of motion $\\textbf{r}(t)=3\\;\\cos t\\textbf{i}+3\\;\\sin t\\textbf{j}+0\\textbf{k}.$ Find the distance traveled around the circle by the particle.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$6\\pi$"
+   }
+  },
+  {
+   "id": "e111",
+   "source_id": "fs-id1169738208778",
+   "source_number": "111",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737844367",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_03_206.jpg",
+    "alt": "This figure is the graph of a curve in 3 dimensions. It is inside of a box. The box represents an octant. The curve begins in the upper left corner of the box and bends through the box to the bottom of the other side."
+   },
+   "prompt": "<p>Find the length of the curve $\\textbf{r}(t)=\\langle \\sqrt{2}t,e^{t},e^{-t}\\rangle$ over the interval $0\\le t\\le 1.$ The graph is shown here:</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e-\\frac{1}{e}$"
+   }
+  },
+  {
+   "id": "e113",
+   "source_id": "fs-id1169738094810",
+   "source_number": "113",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737373970",
+   "prompt": "<p>The position function for a particle is $\\textbf{r}(t)=a\\;\\cos (\\omega t)\\textbf{i}+b\\;\\sin (\\omega t)\\textbf{j}.$ Find the unit tangent vector and the unit normal vector at $t=0.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{T}(0)=\\textbf{j},$ $\\textbf{N}(0)=-\\textbf{i}$"
+   }
+  },
+  {
+   "id": "e115",
+   "source_id": "fs-id1169738216150",
+   "source_number": "115",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737373970",
+   "prompt": "<p>Given $\\textbf{r}(t)=\\langle 2e^{t},e^{t}\\cos t,e^{t}\\sin t\\rangle ,$ determine the tangent vector $\\textbf{T}(t).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{T}(t)=\\langle \\frac{2}{\\sqrt{6}},\\frac{\\cos t-\\sin t}{\\sqrt{6}},\\frac{\\cos t+\\sin t}{\\sqrt{6}}\\rangle$"
+   }
+  },
+  {
+   "id": "e117",
+   "source_id": "fs-id1169738253240",
+   "source_number": "117",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737373970",
+   "prompt": "<p>Given $\\textbf{r}(t)=\\langle 2e^{t},e^{t}\\cos t,e^{t}\\sin t\\rangle ,$ find the unit normal vector $\\textbf{N}(t)$ evaluated at $t=0,$ $\\textbf{N}(0).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\text{N}(0)=\\langle 0,-\\frac{\\sqrt{2}}{2},\\frac{\\sqrt{2}}{2}\\rangle$"
+   }
+  },
+  {
+   "id": "e119",
+   "source_id": "fs-id1169738202647",
+   "source_number": "119",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737373970",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_03_207.jpg",
+    "alt": "This figure is the graph of a curve in 3 dimensions. It is inside of a box. The box represents an octant. The curve begins in the bottom left corner of the box and bends through the box to the upper left side."
+   },
+   "prompt": "<p>Given $\\textbf{r}(t)=t\\textbf{i}+t^{2}\\textbf{j}+t\\textbf{k},$ find the unit tangent vector $\\textbf{T}(t).$ The graph is shown here:</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{T}(t)=\\frac{1}{\\sqrt{4t^{2}+2}}\\lt 1,2t,1\\gt$"
+   }
+  },
+  {
+   "id": "e121",
+   "source_id": "fs-id1169737368054",
+   "source_number": "121",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737373970",
+   "prompt": "<p>Find the unit tangent vector $\\textbf{T}(t)$ for $\\textbf{r}(t)=3t\\textbf{i}+5t^{2}\\textbf{j}+2t\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{T}(t)=\\frac{1}{\\sqrt{100t^{2}+13}}(3\\textbf{i}+10t\\textbf{j}+2\\textbf{k})$"
+   }
+  },
+  {
+   "id": "e123",
+   "source_id": "fs-id1169737286125",
+   "source_number": "123",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737373970",
+   "prompt": "<p>Find $\\textbf{T}(t)$ for the curve $\\textbf{r}(t)=(t^{3}-4t)\\;\\textbf{i}+(5t^{2}-2)\\;\\textbf{j}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{T}(t)=\\frac{1}{\\sqrt{9t^{4}+76t^{2}+16}}([3t^{2}-4]\\textbf{i}+10t\\textbf{j})$"
+   }
+  },
+  {
+   "id": "e125",
+   "source_id": "fs-id1169737929313",
+   "source_number": "125",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737373970",
+   "prompt": "<p>Find the unit normal vector $\\textbf{N}(t)$ for $\\textbf{r}(t)=\\langle 2\\;\\sin t,5t,2\\;\\cos t\\rangle .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{N}(t)=\\langle -\\sin t,0,-\\cos t\\rangle$"
+   }
+  },
+  {
+   "id": "e127",
+   "source_id": "fs-id1169737524273",
+   "source_number": "127",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parameterization-steps",
+   "prompt": "<p>Find the arc-length function $s(t)$ for the line segment given by $\\textbf{r}(t)=\\langle 3-3t,4t\\rangle .$ Write <em>r</em> as a parameter of <em>s.</em></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Arc-length function: $s(t)=5t;$ r as a parameter of <em>s</em>: $\\textbf{r}(s)=(3-\\frac{3s}{5})\\;\\textbf{i}+\\frac{4s}{5}\\textbf{j}$"
+   }
+  },
+  {
+   "id": "e129",
+   "source_id": "fs-id1169737180756",
+   "source_number": "129",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parameterization-steps",
+   "prompt": "<p>Parameterize the curve using the arc-length parameter <em>s</em>, at the point at which $t=0$ for $\\textbf{r}(t)=e^{t}\\sin t\\textbf{i}+e^{t}\\cos t\\textbf{j}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(s)=(1+\\frac{s}{\\sqrt{2}})\\;\\sin (\\ln (1+\\frac{s}{\\sqrt{2}}))\\;\\textbf{i}+(1+\\frac{s}{\\sqrt{2}})\\;\\cos [\\ln (1+\\frac{s}{\\sqrt{2}})]\\textbf{j}$"
+   }
+  },
+  {
+   "id": "e131",
+   "source_id": "fs-id1169737294027",
+   "source_number": "131",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738214420",
+   "prompt": "<p>Find the <em>x</em>-coordinate at which the curvature of the curve $y=1/x$ is a maximum value.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The maximum value of the curvature occurs at $x=1.$"
+   }
+  },
+  {
+   "id": "e133",
+   "source_id": "fs-id1169737905683",
+   "source_number": "133",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738214420",
+   "prompt": "<p>Find the curvature $\\kappa$ for the curve $y=x-\\frac{1}{4}x^{2}$ at the point $x=2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}$"
+   }
+  },
+  {
+   "id": "e135",
+   "source_id": "fs-id1169737274876",
+   "source_number": "135",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738214420",
+   "figure": {
+    "src": "/media/ch13/CNX_Calc_Figure_13_03_210.jpg",
+    "alt": "This figure is the graph of a curve in 3 dimensions. It is inside of a box. The box represents an octant. The curve has a parabolic shape in the middle of the box."
+   },
+   "prompt": "<p>Find the curvature $\\kappa$ of the curve $\\textbf{r}(t)=t\\textbf{i}+6t^{2}\\textbf{j}+4t\\;\\textbf{k}.$ The graph is shown here:</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kappa \\approx \\frac{49.477}{{(17+144t^{2})}^{3/2}}$"
+   }
+  },
+  {
+   "id": "e137",
+   "source_id": "fs-id1169737214960",
+   "source_number": "137",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738214420",
+   "prompt": "<p>Find the curvature of $\\textbf{r}(t)=\\sqrt{2}t\\textbf{i}+e^{t}\\textbf{j}+e^{-t}\\textbf{k}$ at point $P(0,1,1).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2\\sqrt{2}}$"
+   }
+  },
+  {
+   "id": "e139",
+   "source_id": "fs-id1169737170342",
+   "source_number": "139",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738214420",
+   "prompt": "<p>What happens to the curvature as $x\\to \\infty$ for the curve $y=e^{x}?$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The curvature approaches zero."
+   }
+  },
+  {
+   "id": "e141",
+   "source_id": "fs-id1169737170443",
+   "source_number": "141",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "frenet-term",
+   "prompt": "<p>Find the equations of the normal plane and the osculating plane of the curve $\\textbf{r}(t)=\\langle 2\\;\\sin (3t),t,2\\;\\cos (3t)\\rangle$ at point $(0,\\pi ,-2).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$y=6x+\\pi$ and $x+6y=6\\pi$"
+   }
+  },
+  {
+   "id": "e143",
+   "source_id": "fs-id1169737825776",
+   "source_number": "143",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "frenet-term",
+   "prompt": "<p>Find the equation for the osculating plane at point $t=\\pi /4$ on the curve $\\textbf{r}(t)=\\cos (2t)\\textbf{i}+\\sin (2t)\\textbf{j}+t\\textbf{k}.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$x+2z=\\frac{\\pi}{2}$"
+   }
+  },
+  {
+   "id": "e145",
+   "source_id": "fs-id1169737368202",
+   "source_number": "145",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738214420",
+   "prompt": "<p>Find the curvature at each point $(x,y)$ on the hyperbola $\\textbf{r}(t)=\\langle a\\;\\operatorname{cosh}(t),b\\;\\operatorname{sinh}(t)\\rangle .$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{a^{4}b^{4}}{{(b^{4}x^{2}+a^{4}y^{2})}^{3/2}}$"
+   }
+  },
+  {
+   "id": "e147",
+   "source_id": "fs-id1169737565320",
+   "source_number": "147",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "osculating-term",
+   "prompt": "<p>Find the radius of curvature of $y=\\ln (x+1)$ at point $(2,\\ln 3).$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{10\\sqrt{10}}{3}$"
+   }
+  },
+  {
+   "id": "e149",
+   "source_id": "fs-id1169737201424",
+   "source_number": "149",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737844367",
+   "prompt": "<p>A particle moves along the plane curve C described by $\\textbf{r}(t)=t\\textbf{i}+t^{2}\\textbf{j}.$ Solve the following problems.</p><p>Find the length of the curve over the interval $[0,2].$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{4}\\ln(\\sqrt{17}+4)+\\sqrt{17}\\approx 4.647$"
+   }
+  },
+  {
+   "id": "e151",
+   "source_id": "fs-id1169738059709",
+   "source_number": "151",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738214420",
+   "prompt": "<p>A particle moves along the plane curve C described by $\\textbf{r}(t)=t\\textbf{i}+t^{2}\\textbf{j}.$ Solve the following problems.</p><p>Describe the curvature as <em>t</em> increases from $t=0$ to $t=2.$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The curvature is decreasing over this interval."
+   }
+  },
+  {
+   "id": "e153",
+   "source_id": "fs-id1169738133111",
+   "source_number": "153",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738214420",
+   "prompt": "<p>The surface of a large cup is formed by revolving the graph of the function $y=0.25x^{1.6}$ from $x=0$ to $x=5$ about the <em>y</em>-axis (measured in centimeters).</p><p>Find the curvature $\\kappa$ of the generating curve as a function of <em>x.</em></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kappa =\\frac{6}{x^{2/5}(25+4x^{6/5})}$<sup class=\"fn\" data-note=\"c-e153\"></sup>"
+   }
+  },
+  {
+   "id": "r204",
+   "source_id": "fs-id1169737421649",
+   "source_section": "13.4",
+   "source_number": "204",
+   "kind": "review-exercise",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737492877",
+   "prompt": "<p><em>True or False</em>? Justify your answer with a proof or a counterexample.</p><p>The curvature of a circle of radius $r$ is constant everywhere. Furthermore, the curvature is equal to $1/r.$</p>",
+   "answer": {
+    "type": "open",
+    "solution": "True. The circle of radius $r$ is $\\mathbf{r}(t)=r\\cos t\\,\\mathbf{i}+r\\sin t\\,\\mathbf{j},$ with $\\mathbf{r}\\'(t)=-r\\sin t\\,\\mathbf{i}+r\\cos t\\,\\mathbf{j}$ and $\\|\\mathbf{r}\\'(t)\\|=r.$ Then $\\mathbf{T}(t)=-\\sin t\\,\\mathbf{i}+\\cos t\\,\\mathbf{j},$ $\\mathbf{T}\\'(t)=-\\cos t\\,\\mathbf{i}-\\sin t\\,\\mathbf{j}$ and $\\|\\mathbf{T}\\'(t)\\|=1,$ so $\\kappa=\\frac{\\|\\mathbf{T}\\'(t)\\|}{\\|\\mathbf{r}\\'(t)\\|}=\\frac{1}{r}$ for every $t$: the same at every point of the circle, and equal to the reciprocal of the radius.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "r217",
+   "source_id": "fs-id1169737162712",
+   "source_section": "13.4",
+   "source_number": "217",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169737844367",
+   "prompt": "<p>Find the length for the following curves.</p><p>$\\textbf{r}(t)=2\\textbf{i}+\\text{t}\\;\\textbf{j}+3t^{2}\\textbf{k}$ for $0\\le t\\le 1$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\sqrt{37}}{2}+\\frac{1}{12}{\\operatorname{sinh}}^{-1}(6)$"
+   }
+  },
+  {
+   "id": "r219",
+   "source_id": "fs-id1169737179373",
+   "source_section": "13.4",
+   "source_number": "219",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parameterization-steps",
+   "prompt": "<p>Reparameterize the following functions with respect to their arc length measured from $t=0$ in direction of increasing $t.$</p><p>$\\textbf{r}(t)=\\cos (2t)\\textbf{i}+8t\\;\\textbf{j}-\\sin (2t)\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\textbf{r}(t(s))=\\cos (\\frac{2s}{\\sqrt{68}})\\textbf{i}+\\frac{8s}{\\sqrt{68}}\\textbf{j}-\\sin (\\frac{2s}{\\sqrt{68}})\\textbf{k}$"
+   }
+  },
+  {
+   "id": "r221",
+   "source_id": "fs-id1169737790887",
+   "source_section": "13.4",
+   "source_number": "221",
+   "kind": "review-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fs-id1169738214420",
+   "prompt": "<p>Find the curvature for the following vector functions.</p><p>$\\textbf{r}(t)=\\sqrt{2}e^{t}\\textbf{i}+\\sqrt{2}e^{-t}\\textbf{j}+2t\\;\\textbf{k}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{e^{2t}}{{(e^{2t}+1)}^{2}}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cp1",
+   "concept": "arc-length-of-a-space-curve"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "arc-length-function"
+  },
+  {
+   "exercise": "cp2",
+   "concept": "finding-an-arc-length-parameterization"
+  },
+  {
+   "exercise": "cp3",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "cp4",
+   "concept": "principal-unit-normal-vector"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "finding-an-osculating-circle"
+  },
+  {
+   "exercise": "cp5",
+   "concept": "osculating-circle"
+  },
+  {
+   "exercise": "e103",
+   "concept": "arc-length-of-a-space-curve"
+  },
+  {
+   "exercise": "e105",
+   "concept": "arc-length-of-a-space-curve"
+  },
+  {
+   "exercise": "e107",
+   "concept": "arc-length-of-a-space-curve"
+  },
+  {
+   "exercise": "e107",
+   "concept": "helix"
+  },
+  {
+   "exercise": "e109",
+   "concept": "arc-length-of-a-space-curve"
+  },
+  {
+   "exercise": "e111",
+   "concept": "arc-length-of-a-space-curve"
+  },
+  {
+   "exercise": "e113",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "e113",
+   "concept": "principal-unit-normal-vector"
+  },
+  {
+   "exercise": "e115",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "e117",
+   "concept": "principal-unit-normal-vector"
+  },
+  {
+   "exercise": "e119",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "e121",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "e123",
+   "concept": "principal-unit-tangent-vector"
+  },
+  {
+   "exercise": "e125",
+   "concept": "principal-unit-normal-vector"
+  },
+  {
+   "exercise": "e127",
+   "concept": "arc-length-function"
+  },
+  {
+   "exercise": "e127",
+   "concept": "finding-an-arc-length-parameterization"
+  },
+  {
+   "exercise": "e129",
+   "concept": "finding-an-arc-length-parameterization"
+  },
+  {
+   "exercise": "e131",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "e133",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "e135",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "e137",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "e139",
+   "concept": "curvature"
+  },
+  {
+   "exercise": "e139",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "e141",
+   "concept": "normal-plane"
+  },
+  {
+   "exercise": "e141",
+   "concept": "osculating-plane"
+  },
+  {
+   "exercise": "e143",
+   "concept": "osculating-plane"
+  },
+  {
+   "exercise": "e143",
+   "concept": "binormal-vector"
+  },
+  {
+   "exercise": "e145",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "e147",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "e147",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "e149",
+   "concept": "arc-length-of-a-space-curve"
+  },
+  {
+   "exercise": "e151",
+   "concept": "curvature"
+  },
+  {
+   "exercise": "e151",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "e153",
+   "concept": "alternative-formulas-for-curvature"
+  },
+  {
+   "exercise": "r204",
+   "concept": "curvature"
+  },
+  {
+   "exercise": "r204",
+   "concept": "radius-of-curvature"
+  },
+  {
+   "exercise": "r217",
+   "concept": "arc-length-of-a-space-curve"
+  },
+  {
+   "exercise": "r219",
+   "concept": "finding-an-arc-length-parameterization"
+  },
+  {
+   "exercise": "r221",
+   "concept": "alternative-formulas-for-curvature"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-helix-h",
+   "kind": "correction",
+   "html": "As $t$ runs from $0$ to $h$ the helix completes $N$ turns, so $h$ is the height of the whole helix; two consecutive turns are $\\frac{h}{N}$ apart, and the two agree only when $N=1.$"
+  },
+  {
+   "id": "c-proof-cite",
+   "kind": "correction",
+   "html": "The book cites Alternative Formulas for Curvature, the theorem being proved. The step that follows is the dot product rule, property iv of <a href=\"/calculus/ch13/13.2/#13.2-fs-id1169739260277\">Properties of the Derivative of Vector-Valued Functions</a>."
+  },
+  {
+   "id": "c-ex12-binormal",
+   "kind": "correction",
+   "html": "Equation 13.17 is the curvature of a graph; the binormal vector is Equation 13.19, $\\mathbf{B}(t)=\\mathbf{T}(t)\\times\\mathbf{N}(t),$ which the calculation uses. Its $\\mathbf{k}$-component is printed $\\frac{-15-15t^{2}}{25(t^{2}+1)}$; the determinant gives $\\frac{15+15t^{2}}{25(t^{2}+1)},$ as the next line uses, and $\\mathbf{B}(t)=\\frac{4}{5}\\mathbf{i}+\\frac{3}{5}\\mathbf{k}.$"
+  },
+  {
+   "id": "c-cp12",
+   "kind": "correction",
+   "html": "Here $\\mathbf{r}'(t)=(2t-3)\\,\\mathbf{i}+4\\,\\mathbf{j},$ so $\\mathbf{r}'(2)=\\mathbf{i}+4\\mathbf{j},$ and the printed $\\mathbf{N}(2)=\\frac{\\sqrt{2}}{2}(\\mathbf{i}-\\mathbf{j})$ is not orthogonal to it. Since $\\mathbf{r}''(t)=2\\,\\mathbf{i}$ turns the curve clockwise, $\\mathbf{N}(2)=\\frac{1}{\\sqrt{17}}(4\\,\\mathbf{i}-\\mathbf{j}).$ The hint’s Equation 13.13 is the arc-length function; $\\mathbf{N}$ is Equation 13.18."
+  },
+  {
+   "id": "c-e153",
+   "kind": "correction",
+   "html": "For $y=0.25x^{1.6},$ $y'=0.4x^{0.6}$ and $y''=0.24x^{-0.4},$ so $\\kappa=\\frac{0.24x^{-0.4}}{(1+0.16x^{1.2})^{3/2}}=\\frac{30}{x^{2/5}(25+4x^{6/5})^{3/2}};$ the printed key has 6 for 30 and drops the power $\\frac{3}{2}.$"
+  },
+  {
+   "id": "c-fig-13-9",
+   "kind": "correction",
+   "figure": "fig-osculating-cubic",
+   "html": "The caption’s “the point where $t=1$” is the point where $x=1.$"
+  }
+ ]
+}
