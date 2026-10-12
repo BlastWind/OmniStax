@@ -8,6 +8,7 @@ const still = (d, draw) => register(d.fig, { update: () => {}, draw });
 /* a function's numbers set inside TeX: a minus as TeX writes one */
 const n = (v, dec = 2) => fmt(v, dec).replace('\u2212', '-');
 const set = (xs) => `\\{${xs.join(', ')}\\}`;
+const typed = (type, s) => `\\htmlClass{kv-${type}}{${s}}`;
 const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2); ctx.stroke(); ctx.restore(); };
 
 /* Figure 1.2: the input/output device, a faithful copy. */
@@ -40,14 +41,14 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
   const BOX = { l: 760, r: 1320, t: 110, b: 450 };
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('function'), xs = mode.value === 'map' ? [1, 2, 3, 4] : [1, 2, 3], ys = xs.map((x) => outs[x - 1].v);
+    const fc = C('function'), sc = C('set'), pc = C('point'), xs = mode.value === 'map' ? [1, 2, 3, 4] : [1, 2, 3], ys = xs.map((x) => outs[x - 1].v);
     const range = [...new Set(ys)].sort((a, b) => a - b), shared = range.find((y) => ys.filter((v) => v === y).length > 1);
     headline(ctx, `Domain {${xs.join(', ')}}, range {${range.join(', ')}}: ${shared === undefined ? 'every output comes from one input.' : `two inputs share the output ${shared}.`}`);
     /* the map: the domain bubble, the range bubble, one arrow per input */
     const DX = 150, RX = 470, CY = 300, slot = (i, k) => CY + (i - (k - 1) / 2) * Math.min(80, 280 / k);
-    ellipse(ctx, DX, CY, 80, 175, PAL.ink); ellipse(ctx, RX, CY, 80, 175, PAL.ink);
-    text(ctx, 'domain', DX, 105, PAL.ink, { size: 22, weight: 600, align: 'center' });
-    text(ctx, 'range', RX, 105, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    ellipse(ctx, DX, CY, 80, 175, sc); ellipse(ctx, RX, CY, 80, 175, sc);
+    text(ctx, 'domain', DX, 105, sc, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'range', RX, 105, sc, { size: 22, weight: 600, align: 'center' });
     text(ctx, '$\\kf$', (DX + RX) / 2, 105, fc, { size: 26, weight: 600, align: 'center', tex: true });
     xs.forEach((x, i) => {
       const y0 = slot(i, xs.length), y1 = slot(range.indexOf(ys[i]), range.length);
@@ -58,8 +59,8 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
     /* the graph: the points (x, f(x)), dropped to both axes */
     const ax = axes(ctx, BOX, [0, 5], [0, 7], { xl: 'independent variable, x', yl: 'dependent variable, y = f(x)', nx: 5, ny: 7 });
     xs.forEach((x, i) => { drop(ctx, ax.X(x), ax.Y(ys[i]), ax.X(x), ax.Y(0)); drop(ctx, ax.X(x), ax.Y(ys[i]), ax.X(0), ax.Y(ys[i])); });
-    range.forEach((y) => dot(ctx, ax.X(0), ax.Y(y), PAL.ink, true, 6));
-    xs.forEach((x, i) => { dot(ctx, ax.X(x), ax.Y(ys[i]), fc, true, 9); label(ctx, `(${x}, ${ys[i]})`, ax.X(x), ax.Y(ys[i]), { side: 'above', size: 20 }); });
+    range.forEach((y) => dot(ctx, ax.X(0), ax.Y(y), sc, true, 6));
+    xs.forEach((x, i) => { dot(ctx, ax.X(x), ax.Y(ys[i]), pc, true, 9); label(ctx, `(${x}, ${ys[i]})`, ax.X(x), ax.Y(ys[i]), { side: 'above', size: 20, gap: 30 }); });
     const pairs = xs.map((x, i) => `(${x}, ${ys[i]})`).join(', ');
     ro.set(mode.value === 'rule' ? `\\kf(x) = 3 - x:\\quad \\kf = ${set([pairs])}` : `\\kf = ${set([pairs])}`);
   }
@@ -81,7 +82,7 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
   const BOX = { l: 150, r: 1290, t: 100, b: 440 };
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('function'), x = hour.v, y = temp(x), whole = Math.abs(x - Math.round(x)) < 1e-9;
+    const fc = C('function'), pc = C('point'), x = hour.v, y = temp(x), whole = Math.abs(x - Math.round(x)) < 1e-9;
     headline(ctx, `${fmt(x, whole ? 0 : 2)} hours after midnight: ${whole ? '' : 'about '}${fmt(y, whole ? 0 : 1)} °F`);
     const ax = axes(ctx, BOX, [0, 24], [0, 90], { xl: 'hours after midnight', yl: 'temperature (°F)', nx: 6, ny: 9 });
     const line23 = () => plot(ctx, ax, temp, fc, { x: [0, 23], w: 4 });
@@ -89,9 +90,10 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
     else mode.only(ctx, 'connected', line23);
     T.forEach((t, i) => dot(ctx, ax.X(i), ax.Y(t), fc, true, 7));
     drop(ctx, ax.X(x), ax.Y(y), ax.X(x), ax.Y(0)); drop(ctx, ax.X(x), ax.Y(y), ax.X(0), ax.Y(y));
-    P.draw(ctx, ax, PAL.ink);
-    const where = x < 4 ? '\\text{decreasing on } (0, 4)' : x === 4 ? '\\text{between } (0, 4) \\text{ and } (4, 14)'
-      : x < 14 ? '\\text{increasing on } (4, 14)' : x === 14 ? '\\text{between } (4, 14) \\text{ and } (14, 23)' : '\\text{decreasing on } (14, 23)';
+    P.draw(ctx, ax, pc);
+    const [a, b, c] = ['(0, 4)', '(4, 14)', '(14, 23)'].map((s) => typed('set', s));
+    const where = x < 4 ? `\\text{decreasing on } ${a}` : x === 4 ? `\\text{between } ${a} \\text{ and } ${b}`
+      : x < 14 ? `\\text{increasing on } ${b}` : x === 14 ? `\\text{between } ${b} \\text{ and } ${c}` : `\\text{decreasing on } ${c}`;
     ro.set(`\\kf(${n(x, whole ? 0 : 2)}) ${whole ? '=' : '\\approx'} ${n(y, whole ? 0 : 1)} \\qquad ${where}`);
   }
   still(d, draw);
@@ -115,14 +117,14 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
   const BOX = { l: 250, r: 1150, t: 90, b: 460 };
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('function'), cv = c.v, a = pick.value === 'a';
+    const fc = C('function'), lc = C('line'), pc = C('point'), cv = c.v, a = pick.value === 'a';
     const ax = axes(ctx, BOX, [-4, 4], [-3, 3], { xl: 'x', yl: 'y', nx: 8, ny: 6 });
     pick.only(ctx, 'a', () => plot(ctx, ax, f, fc));
     pick.only(ctx, 'b', () => { ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip(); F.curve(ctx, (y) => y, -2.15, 2.15, (y) => ax.X(y ** 3 - 3 * y), ax.Y, PAL.ink, 5, 160); ctx.restore(); });
-    line(ctx, ax.X(cv), BOX.t, ax.X(cv), BOX.b, alpha(PAL.ink, 0.6), 3, [10, 10]);
+    line(ctx, ax.X(cv), BOX.t, ax.X(cv), BOX.b, lc, 3, [10, 10]);
     const ys = a ? [f(cv)] : roots(cv);
-    ys.filter((y) => y >= -3 && y <= 3).forEach((y) => dot(ctx, ax.X(cv), ax.Y(y), a ? fc : PAL.ink, true, 10));
-    P.draw(ctx, ax, PAL.ink);
+    ys.filter((y) => y >= -3 && y <= 3).forEach((y) => dot(ctx, ax.X(cv), ax.Y(y), pc, true, 10));
+    P.draw(ctx, ax, lc);
     const times = ['', 'once', 'twice', '3 times'][ys.length];
     headline(ctx, a ? `The line x = ${fmt(cv, 2)} meets the graph ${times}.` : `The line x = ${fmt(cv, 2)} meets the curve ${times}${ys.length > 1 ? ': the curve is not the graph of a function.' : '.'}`);
     ro.set(a ? `x = ${n(cv)}:\\quad y = \\kf(${n(cv)}) = ${n(f(cv))}` : `y^3 - 3y = ${n(cv)}:\\quad y = ${ys.map((y) => n(y)).join(',\\ ')}`);
@@ -139,7 +141,7 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
     const fc = C('function');
     const ax = axes(ctx, { l: 330, r: 1070, t: 40, b: 410 }, [-2, 5], [-2, 5], { xl: 'x', yl: 'y', nx: 7, ny: 7 });
     plot(ctx, ax, f, fc);
-    dot(ctx, ax.X(0.5), ax.Y(0), fc, true, 10); dot(ctx, ax.X(0), ax.Y(2), fc, true, 10);
+    dot(ctx, ax.X(0.5), ax.Y(0), C('point'), true, 10); dot(ctx, ax.X(0), ax.Y(2), C('point'), true, 10);
     label(ctx, '(1/2, 0)', ax.X(0.5), ax.Y(0), { side: 'right', gap: 22 });
     label(ctx, '(0, 2)', ax.X(0), ax.Y(2), { side: 'right', gap: 22 });
     text(ctx, '$\\kf(x) = -4x + 2$', ax.X(-0.85), ax.Y(4.4), fc, { size: 24, weight: 600, align: 'right', tex: true });
@@ -159,7 +161,7 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
     const ax = axes(ctx, { l: 330, r: 1070, t: 40, b: 410 }, [-4, 2], [-2, 4], { xl: 'x', yl: 'y', nx: 6, ny: 6 });
     plot(ctx, ax, [{ f, x: [-3, 2], ends: '[-' }], fc);
     const pts = [[-2, 2, '(−2, 2)'], [1, 3, '(1, 3)'], [0, 1 + Math.sqrt(3), '(0, 1 + √3)']];
-    pts.forEach(([x, y]) => dot(ctx, ax.X(x), ax.Y(y), fc, true, 9));
+    pts.forEach(([x, y]) => dot(ctx, ax.X(x), ax.Y(y), C('point'), true, 9));
     label(ctx, '(−3, 1)', ax.X(-3), ax.Y(1), { side: 'below', gap: 34 });
     label(ctx, '(0, 1 + √3)', ax.X(0), ax.Y(1 + Math.sqrt(3)), { side: 'below', gap: 56 });
     text(ctx, '$\\kf(x) = \\sqrt{x + 3} + 1$', ax.X(1.9), ax.Y(3.75), fc, { size: 24, weight: 600, align: 'right', tex: true });
@@ -177,16 +179,16 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
   const BOX = { l: 470, r: 1290, t: 100, b: 450 }, BX = 270, R = 18;
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('function'), t = cy.now(), h = s(t);
+    const fc = C('function'), pc = C('point'), t = cy.now(), h = s(t);
     const ax = axes(ctx, BOX, [0, 3], [0, 100], { xl: 't, time in seconds', yl: 's(t), height in feet', yc: fc, nx: 6, ny: 5, fx: (v) => fmt(v, 1) });
     line(ctx, BX - 90, ax.Y(0), BX + 90, ax.Y(0), PAL.ink, 3);
     plot(ctx, ax, s, alpha(fc, 0.25), { x: [0, END] });
     if (t > 0) plot(ctx, ax, s, fc, { x: [0, t] });
-    TABLE.forEach((ti) => dot(ctx, ax.X(ti), ax.Y(s(ti)), fc, t >= ti, 8));
+    TABLE.forEach((ti) => dot(ctx, ax.X(ti), ax.Y(s(ti)), pc, t >= ti, 8));
     drop(ctx, BX + R + 6, ax.Y(h), ax.X(t), ax.Y(h));
     dot(ctx, BX, ax.Y(h) - R, PAL.ink, true, R);
-    dot(ctx, ax.X(t), ax.Y(h), PAL.ink, true, 9);
-    headline(ctx, t >= END ? 'At t = 2.5 s the ball reaches the ground: the domain is [0, 2.5].' : `At t = ${fmt(t, 2)} s the ball is ${fmt(h, 1)} ft above the ground.`);
+    dot(ctx, ax.X(t), ax.Y(h), pc, true, 9);
+    headline(ctx, t >= END ? `At t = 2.5 s the ball reaches the ground: the domain is $${typed('set', '[0, 2.5]')}$.` : `At t = ${fmt(t, 2)} s the ball is ${fmt(h, 1)} ft above the ground.`);
     tex(d.readout, `\\ks(${n(t)}) = -16(${n(t)})^2 + 100 = ${n(h, 1)}`, false, { values: false });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
@@ -215,7 +217,7 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
       const x = s.v, y = f(x);
       drop(ctx, ax.X(x), ax.Y(y), ax.X(x), ax.Y(0)); drop(ctx, ax.X(x), ax.Y(y), ax.X(0), ax.Y(y));
       text(ctx, name, ax.X(x), ax.Y(0) + (y > 0 ? 24 : -24), PAL.ink, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
-      P.draw(ctx, ax, PAL.ink);
+      P.draw(ctx, ax, C('point'));
     });
     const y1 = f(x1.v), y2 = f(x2.v), dec = apart(y1, y2), rel = y1 < y2 ? '\\lt' : y1 > y2 ? '\\gt' : '=';
     ro.set(`x_1 = ${n(x1.v)} \\lt x_2 = ${n(x2.v)} \\qquad \\kf(x_1) = ${n(y1, dec)} ${rel} \\kf(x_2) = ${n(y2, dec)}`);
@@ -235,16 +237,16 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
   const grow = (ctx, x1, y1, x2, y2, color, k, w) => { if (k > 0) arrow(ctx, x1, y1, x1 + (x2 - x1) * k, y1 + (y2 - y1) * k, color, w); };
   function draw() {
     const { ctx } = begin(d.c);
-    const cf = F.ref('map-f'), cg = F.ref('map-g'), cc = C('function');
+    const cf = F.ref('map-f'), cg = F.ref('map-g'), cc = C('function'), sc = C('set');
     const x = +pick.value, fx = F_OF[x], gfx = G_OF[fx], k = pick.k * 3, k1 = clamp(k), k2 = clamp(k - 1), k3 = clamp(k - 2);
     headline(ctx, `First $\\kf$ sends ${x} to ${fx}, then $\\kg$ sends ${fx} to ${gfx}.`);
-    ellipse(ctx, L, 340, 100, 140, cf);
-    ellipse(ctx, M, 350, 140, 200, cg); ellipse(ctx, M, 300, 100, 100, cf);
-    ellipse(ctx, R, 350, 140, 200, cg); ellipse(ctx, R, 300, 100, 100, cc);
+    ellipse(ctx, L, 340, 100, 140, sc);
+    ellipse(ctx, M, 350, 140, 200, sc); ellipse(ctx, M, 300, 100, 100, sc, 2);
+    ellipse(ctx, R, 350, 140, 200, sc); ellipse(ctx, R, 300, 100, 100, sc, 2);
     const name = (s, x0, y0, color) => text(ctx, s, x0, y0, color, { size: 20, weight: 600, align: 'center', tex: true });
-    name('domain of $\\kf$', L, 178, cf); name('domain of $\\kg\\circ\\kf$', L, 508, cc);
-    name('domain of $\\kg$', M, 108, cg); name('range of $\\kf$', M, 240, cf);
-    name('range of $\\kg$', R, 108, cg); name('range of $\\kg\\circ\\kf$', R, 240, cc);
+    name('domain of $\\kf$', L, 178, sc); name('domain of $\\kg\\circ\\kf$', L, 508, sc);
+    name('domain of $\\kg$', M, 108, sc); name('range of $\\kf$', M, 240, sc);
+    name('range of $\\kg$', R, 108, sc); name('range of $\\kg\\circ\\kf$', R, 240, sc);
     Object.entries(AT).forEach(([col, ys]) => Object.entries(ys).forEach(([v, y]) => text(ctx, v, { L, M, R }[col], y, PAL.ink, { size: 24, align: 'center' })));
     Object.entries(F_OF).forEach(([a, b]) => { if (+a !== x) arrow(ctx, L + 22, AT.L[a], M - 22, AT.M[b], alpha(cf, 0.35), 3); });
     Object.entries(G_OF).forEach(([a, b]) => { if (+a !== fx) arrow(ctx, M + 22, AT.M[a], R - 22, AT.R[b], alpha(cg, 0.35), 3); });
@@ -287,8 +289,8 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
     const x = xs.v, y = f(x), ym = f(-x);
     const inside = (v) => v >= -6 && v <= 6;
     if (inside(y) && inside(ym)) line(ctx, ax.X(x), ax.Y(y), ax.X(-x), ax.Y(ym), alpha(PAL.ink, 0.5), 2.5, [10, 10]);
-    if (inside(ym)) dot(ctx, ax.X(-x), ax.Y(ym), PAL.ink, false, 9);
-    P.draw(ctx, ax, PAL.ink);
+    if (inside(ym)) dot(ctx, ax.X(-x), ax.Y(ym), C('point'), false, 9);
+    P.draw(ctx, ax, C('point'));
     headline(ctx, odd ? 'Odd: $\\kf(-x) = -\\kf(x)$, so $(-x, -y)$ is on the graph with $(x, y)$.' : 'Even: $\\kf(-x) = \\kf(x)$, so $(-x, y)$ is on the graph with $(x, y)$.');
     ro.set(odd ? `\\kf(${n(-x)}) = ${n(ym)} = -\\kf(${n(x)})` : `\\kf(${n(-x)}) = ${n(ym)} = \\kf(${n(x)})`, undefined, { form: odd });
   }
@@ -309,26 +311,26 @@ const ellipse = (ctx, x, y, rx, ry, color, w = 3) => { ctx.save(); ctx.strokeSty
   const P = drag(d, { x: xs, y: (x) => FN[pick.value].f(x) });
   const ro = readout(d);
   const BOX = { l: 230, r: 1230, t: 90, b: 470 };
-  const band = (ctx, x1, y1, x2, y2) => line(ctx, x1, y1, x2, y2, alpha(PAL.ink, 0.3), 12);
+  const band = (ctx, x1, y1, x2, y2) => line(ctx, x1, y1, x2, y2, alpha(C('set'), 0.35), 12);
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('function'), fn = FN[pick.value], x = xs.v, y = fn.f(x), ok = Number.isFinite(y);
+    const fc = C('function'), sc = C('set'), pc = C('point'), fn = FN[pick.value], x = xs.v, y = fn.f(x), ok = Number.isFinite(y);
     const ax = axes(ctx, BOX, [-4, 8], [-4, 12], { xl: 'x', yl: 'y', nx: 6, ny: 4 });
     const cx = (v) => ax.X(Math.min(8, Math.max(-4, v))), cyv = (v) => ax.Y(Math.min(12, Math.max(-4, v)));
-    const open = (px, py) => { dot(ctx, px, py, PAL.panel, true, 8); dot(ctx, px, py, PAL.ink, false, 8); };
+    const open = (px, py) => { dot(ctx, px, py, PAL.panel, true, 8); dot(ctx, px, py, sc, false, 8); };
     [...new Set([pick.from, pick.value])].forEach((v) => pick.only(ctx, v, () => {
       const g = FN[v];
       band(ctx, cx(g.dom[0]), ax.Y(0), cx(g.dom[1]), ax.Y(0)); band(ctx, ax.X(0), cyv(g.ran[0]), ax.X(0), cyv(g.ran[1]));
-      if (Number.isFinite(g.dom[0])) dot(ctx, ax.X(g.dom[0]), ax.Y(0), PAL.ink, true, 8);
-      if (Number.isFinite(g.ran[0])) dot(ctx, ax.X(0), ax.Y(g.ran[0]), PAL.ink, true, 8);
+      if (Number.isFinite(g.dom[0])) dot(ctx, ax.X(g.dom[0]), ax.Y(0), sc, true, 8);
+      if (Number.isFinite(g.ran[0])) dot(ctx, ax.X(0), ax.Y(g.ran[0]), sc, true, 8);
       if (g.hole) { open(ax.X(g.hole.x), ax.Y(0)); open(ax.X(0), ax.Y(g.hole.y)); }
       plot(ctx, ax, g.pieces ?? g.f, fc, g.opts);
     }));
-    if (ok) { drop(ctx, ax.X(x), ax.Y(y), ax.X(x), ax.Y(0)); drop(ctx, ax.X(x), ax.Y(y), ax.X(0), ax.Y(y)); P.draw(ctx, ax, PAL.ink); }
-    else { P.draw(ctx, ax, PAL.ink); dot(ctx, ax.X(x), ax.Y(0), PAL.ink, false, 10); }
+    if (ok) { drop(ctx, ax.X(x), ax.Y(y), ax.X(x), ax.Y(0)); drop(ctx, ax.X(x), ax.Y(y), ax.X(0), ax.Y(y)); P.draw(ctx, ax, pc); }
+    else { P.draw(ctx, ax, pc); dot(ctx, ax.X(x), ax.Y(0), PAL.ink, false, 10); }
     headline(ctx, ok ? `$x = ${n(x)}$ is in the domain, and $\\kf(${n(x)}) = ${n(y)}$ is in the range.` : `$x = ${n(x)}$ is not in the domain: ${fn.why}.`);
     ro.set(ok ? `\\kf(${n(x)}) = ${fn.at(x)} = ${n(y)}` : `\\kf(${n(x)}) = ${fn.at(x)}\\ \\text{is not a real number}`,
-      `domain $${fn.domS}$, range $${fn.ranS}$`, { form: pick.value });
+      `domain $${typed('set', fn.domS)}$, range $${typed('set', fn.ranS)}$`, { form: pick.value });
   }
   still(d, draw);
 })();

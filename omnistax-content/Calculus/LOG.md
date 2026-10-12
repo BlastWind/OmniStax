@@ -67,3 +67,46 @@ Left for the chapter passes: the converter's support for this bundle,
 `toc.md` and `modules.json` (a parallel pass); the Preface page; the two
 sheets; the figure-library parts; rerunning the colour default once pages
 exist; and the config list for Chapter 1, which this pass puts to Chen.
+
+
+## Pass 2 (2026-10-12): eighteen types
+
+Prompted by: Chen's ruling that the nine types of Pass 1 were too lean.
+Pass 1 had been told to keep the categories few; root rule 7 fits the
+palette to the categories, never the other way round.
+
+What was decided, in `RULES.md`, `COLOR.md` and `ch01/COLOR.md`:
+- nine types added, eighteen in all, in scheme order function,
+  derivative, integral, limit, point, set, line, angle, error, region,
+  sequence, series, curve, vector, plane, surface, vector field, matrix,
+  so the types of the early pages take the hues farthest apart in book
+  order;
+- `set` for a domain, a range, an interval and its notation, an interval
+  of convergence and a solution set; `point` for (a, f(a)), zeros,
+  intercepts and critical, inflection and extreme points; `line` for
+  tangent, secant and normal lines, asymptotes and lines in space;
+  `angle` for θ in radians or degrees, the polar θ and the angle between
+  two vectors; `error` for an approximation's error, the Taylor
+  remainder Rₙ and the trapezoid and Simpson error bounds; `matrix` for
+  the Jacobian and determinants; `plane` for planes in space and tangent
+  planes;
+- `curve` and `surface` are split out of `region`, which keeps only the
+  sets of the plane and of space that an integral is taken over and the
+  solids;
+- an applied quantity wears the mathematical type it is (a velocity is a
+  derivative, work, mass and a total change are integrals, a position or
+  a cost is a function), and the book has no physical quantity types;
+  variables, indices and the constants e, π and C stay in ink, and ε and
+  δ are bands in the colour of what they bound.
+
+Chapter 1 was retyped with `ost set`: `domain`, `range`,
+`interval-notation`, `natural-domain` and `restricted-domain` are `set`;
+`zeros-of-a-function` and `y-intercept` are `point`; the three forms of a
+line's equation in 1.2 are `line`; `radian` is `angle`. θ in 1.3 is an
+angle; b of the intercept (0, b) stays in ink as a coordinate; D, R, θ, A,
+B and the new E have macros, and A, B and E are sets in 1.1's definition
+of a composite. The 1.1 page marks its written domains, ranges, intervals
+and intercepts with `data-type`, and its figures draw the ovals of the
+maps and the bands of the domain finder in `set`, the marked and dragged
+points in `point` and the vertical line test's line in `line`.
+`npm run colours:default -- calculus` was rerun with 1.1 built.

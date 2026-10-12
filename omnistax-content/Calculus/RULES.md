@@ -59,7 +59,7 @@ CC BY-NC-SA 4.0, copyright Rice University, published by OpenStax; senior contri
 
 ## Types
 
-Nine types in `book.json`, in scheme order: function, derivative, integral, limit, sequence, series, vector, vector field, region. Untyped and in ink: a variable (x, y, t, θ, a point a), an index or count (n, k), a constant (e, π, a constant of integration C), ε and δ, a coordinate, a parameter of an application, a matrix or determinant other than a Jacobian. `COLOR.md` says why each type is there and what its variants are.
+Eighteen types in `book.json`, in scheme order: function, derivative, integral, limit, point, set, line, angle, error, region, sequence, series, curve, vector, plane, surface, vector field, matrix. An applied quantity wears the mathematical type it is (a velocity is a derivative, work, mass and a total change are integrals, a position or a cost is a function); the book has no physical quantity types. Untyped and in ink: a variable (x, y, t, and a, the number a function is evaluated at; θ is an angle), a coordinate, an index or count (n, k), a constant (e, π, a constant of integration C) and a parameter of an application; ε and δ are drawn as bands in the colour of what they bound. `COLOR.md` says why each type is there and what its variants are.
 
 A type is a role, not a letter: a symbol takes the type of the concept its variables row names in that section, so v(t) is a function where it is integrated and a derivative where it is s′(t). Every coloured symbol has a `symbols` row with its macro; macros are derived from the table, and a new symbol is a new row, never a new macro.
 
