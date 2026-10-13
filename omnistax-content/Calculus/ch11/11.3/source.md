@@ -542,7 +542,7 @@ $(2,\frac{5\pi}{4})$
 PROBLEM:
 $(−2,\frac{\pi}{6})$
 SOLUTION:
-$(\begin{array}{ll}\text{−}\sqrt{3}, & −1\end{array})$
+$\left(\begin{array}{ll}\text{−}\sqrt{3}, & −1\end{array}\right)$
 :::
 
 :::exercise {fs-id1167793244555} type= 
@@ -554,7 +554,7 @@ $(5,\frac{\pi}{3})$
 PROBLEM:
 $(1,\frac{7\pi}{6})$
 SOLUTION:
-$(\begin{array}{ll}-\frac{\sqrt{3}}{2}, & \frac{−1}{2}\end{array})$
+$\left(\begin{array}{ll}-\frac{\sqrt{3}}{2}, & \frac{−1}{2}\end{array}\right)$
 :::
 
 :::exercise {fs-id1167794172656} type= 
@@ -566,7 +566,7 @@ $(−3,\frac{3\pi}{4})$
 PROBLEM:
 $(0,\frac{\pi}{2})$
 SOLUTION:
-$(\begin{array}{ll}0, & 0\end{array})$
+$\left(\begin{array}{ll}0, & 0\end{array}\right)$
 :::
 
 :::exercise {fs-id1167794172789} type= 

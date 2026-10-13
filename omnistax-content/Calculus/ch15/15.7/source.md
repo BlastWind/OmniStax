@@ -112,14 +112,14 @@ ${\mathbf{r}}_{v}=\lim_{\text{Δ}v\to 0}\frac{\mathbf{r}({u}_{0},{v}_{0}+\text{�
 
 This allows us to estimate the area $\text{Δ}A$ of the image $R$ by finding the area of the parallelogram formed by the sides $\text{Δ}v{\mathbf{r}}_{v}$ and $\text{Δ}u{\mathbf{r}}_{u}.$ By using the cross product of these two vectors by adding the **k** component as $0,$ the area $\text{Δ}A$ of the image $R$ (refer to [The Cross Product](module:m53903)) is approximately $\mathbf{||\textbf{Δ}{ur}_{u}\;\times \;\textbf{Δ}{vr}_{v}||}=\mathbf{||{r}_{u}\;\times \;{r}_{v}||}\text{Δ}u\text{Δ}v.$ In determinant form, the cross product is
 
-${\mathbf{r}}_{u}\;\times \;{\mathbf{r}}_{v}=|\begin{array}{clclc}\mathbf{i} & & \mathbf{j} & & \mathbf{k} \\ \frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} & & 0 \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v} & & 0\end{array}|=|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}|\mathbf{k}=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u})\mathbf{k}.$  {eq:fs-id1167794329003}
+${\mathbf{r}}_{u}\;\times \;{\mathbf{r}}_{v}=\left|\begin{array}{clclc}\mathbf{i} & & \mathbf{j} & & \mathbf{k} \\ \frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} & & 0 \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v} & & 0\end{array}\right|=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}\right|\mathbf{k}=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u})\mathbf{k}.$  {eq:fs-id1167794329003}
 
 Since $\mathbf{||k||}=1,$ we have $\text{Δ}A\approx \mathbf{||{r}_{u}\;\times \;{r}_{v}||}\text{Δ}u\text{Δ}v=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u})\text{Δ}u\text{Δ}v.$
 
 :::note [definition] Definition
 The {term:Jacobian} of the ${C}^{1}$ transformation $T(u,v)=(g(u,v),h(u,v))$ is denoted by $J(u,v)$ and is defined by the $2\;\times \;2$ determinant
 
-$J(u,v)=|\frac{\partial (x,y)}{\partial (u,v)}|=|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}|=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u}).$  {eq:fs-id1167793509039}
+$J(u,v)=|\frac{\partial (x,y)}{\partial (u,v)}|=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}\right|=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u}).$  {eq:fs-id1167793509039}
 
 :::
 Using the definition, we have
@@ -132,7 +132,7 @@ $J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}.$  {eq:fs-id1167793369280}
 
 Note also that
 
-$|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}|=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u})=|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}|.$  {eq:fs-id1167793280498}
+$\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}\right|=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u})=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}\right|.$  {eq:fs-id1167793280498}
 
 Hence the notation $J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}$ suggests that we can write the Jacobian determinant with partials of $x$ in the first row and partials of $y$ in the second row.
 
@@ -144,7 +144,7 @@ Find the Jacobian of the transformation given in [ref:fs-id1167794063017].
 SOLUTION:
 The transformation in the example is $T(r,\theta )=(r\;\text{cos}\;\theta ,r\;\text{sin}\;\theta )$ where $x=r\;\text{cos}\;\theta$ and $y=r\;\text{sin}\;\theta .$ Thus the Jacobian is
 
-$\begin{array}{rl}J(r,\theta ) & =\frac{\partial (x,y)}{\partial (r,\theta )}=|\begin{array}{lll}\frac{\partial x}{\partial r} & & \frac{\partial x}{\partial \theta} \\ \frac{\partial y}{\partial r} & & \frac{\partial y}{\partial \theta}\end{array}|=|\begin{array}{llr}\text{cos}\;\theta & & -r\;\text{sin}\;\theta \\ \text{sin}\;\theta & & r\;\text{cos}\;\theta \end{array}| \\ & =r\;{\text{cos}}^{2}\theta +r\;{\text{sin}}^{2}\theta =r({\text{cos}}^{2}\theta +{\text{sin}}^{2}\theta )=r.\end{array}$  {eq:fs-id1167793268219}
+$\begin{array}{rl}J(r,\theta ) & =\frac{\partial (x,y)}{\partial (r,\theta )}=\left|\begin{array}{lll}\frac{\partial x}{\partial r} & & \frac{\partial x}{\partial \theta} \\ \frac{\partial y}{\partial r} & & \frac{\partial y}{\partial \theta}\end{array}\right|=\left|\begin{array}{llr}\text{cos}\;\theta & & -r\;\text{sin}\;\theta \\ \text{sin}\;\theta & & r\;\text{cos}\;\theta \end{array}\right| \\ & =r\;{\text{cos}}^{2}\theta +r\;{\text{sin}}^{2}\theta =r({\text{cos}}^{2}\theta +{\text{sin}}^{2}\theta )=r.\end{array}$  {eq:fs-id1167793268219}
 
 :::
 :::
@@ -157,7 +157,7 @@ Find the Jacobian of the transformation given in [ref:fs-id1167793925654].
 SOLUTION:
 The transformation in the example is $T(u,v)=({u}^{2}-{v}^{2},uv)$ where $x={u}^{2}-{v}^{2}$ and $y=uv.$ Thus the Jacobian is
 
-$J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}|=|\begin{array}{lll}2u & & v \\ -2v & & u\end{array}|=2{u}^{2}+2{v}^{2}.$  {eq:fs-id1167793927684}
+$J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}\right|=\left|\begin{array}{lll}2u & & v \\ -2v & & u\end{array}\right|=2{u}^{2}+2{v}^{2}.$  {eq:fs-id1167793927684}
 
 :::
 :::
@@ -168,7 +168,7 @@ $J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=|\begin{array}{lll}\frac{\partial 
 PROBLEM:
 Find the Jacobian of the transformation: $T(u,v)=(u+v,2v).$
 SOLUTION:
-$J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}|=|\begin{array}{lll}1 & & 1 \\ 0 & & 2\end{array}|=2$
+$J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}\right|=\left|\begin{array}{lll}1 & & 1 \\ 0 & & 2\end{array}\right|=2$
 COMMENTARY: Hint
 Follow the steps in the previous two examples.
 :::
@@ -273,7 +273,7 @@ $T(u,v)=(\frac{3u-v}{2},\frac{u-v}{2})$  {eq:fs-id1167794031267}
 
 and compute the Jacobian $J(u,v).$ We have
 
-$J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}|=|\begin{array}{lll}3\text{/}2 & & -1\text{/}2 \\ 1\text{/}2 & & -1\text{/}2\end{array}|=-\frac{3}{4}+\frac{1}{4}=-\frac{1}{2}.$  {eq:fs-id1167794056861}
+$J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}\right|=\left|\begin{array}{lll}3\text{/}2 & & -1\text{/}2 \\ 1\text{/}2 & & -1\text{/}2\end{array}\right|=-\frac{3}{4}+\frac{1}{4}=-\frac{1}{2}.$  {eq:fs-id1167794056861}
 
 Therefore, $|J(u,v)|=\frac{1}{2}.$ Also, the original integrand becomes
 
@@ -333,7 +333,7 @@ $S=\{(u,v)|1\le v\le 3,\frac{−1}{v}\le u\le \frac{1}{v}\}.$  {eq:fs-id11677935
 
 The Jacobian for this transformation is
 
-$J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}|=|\begin{array}{lll}1\text{/}2 & & -1\text{/}2 \\ 1\text{/}2 & & 1\text{/}2\end{array}|=\frac{1}{2}.$  {eq:fs-id1167793452881}
+$J(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v}\end{array}\right|=\left|\begin{array}{lll}1\text{/}2 & & -1\text{/}2 \\ 1\text{/}2 & & 1\text{/}2\end{array}\right|=\frac{1}{2}.$  {eq:fs-id1167793452881}
 
 Therefore, by using the transformation $T,$ the integral changes to
 
@@ -375,11 +375,11 @@ Now we need to define the Jacobian for three variables.
 :::note [definition] Definition
 The Jacobian determinant $J(u,v,w)$ in three variables is defined as follows:
 
-$J(u,v,w)=|\begin{array}{lllll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} & & \frac{\partial z}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v} & & \frac{\partial z}{\partial v} \\ \frac{\partial x}{\partial w} & & \frac{\partial y}{\partial w} & & \frac{\partial z}{\partial w}\end{array}|.$  {eq:fs-id1167793299685}
+$J(u,v,w)=\left|\begin{array}{lllll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} & & \frac{\partial z}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v} & & \frac{\partial z}{\partial v} \\ \frac{\partial x}{\partial w} & & \frac{\partial y}{\partial w} & & \frac{\partial z}{\partial w}\end{array}\right|.$  {eq:fs-id1167793299685}
 
 This is also the same as
 
-$J(u,v,w)=|\begin{array}{lllll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} & & \frac{\partial x}{\partial w} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v} & & \frac{\partial y}{\partial w} \\ \frac{\partial z}{\partial u} & & \frac{\partial z}{\partial v} & & \frac{\partial z}{\partial w}\end{array}|.$  {eq:fs-id1167793618042}
+$J(u,v,w)=\left|\begin{array}{lllll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} & & \frac{\partial x}{\partial w} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v} & & \frac{\partial y}{\partial w} \\ \frac{\partial z}{\partial u} & & \frac{\partial z}{\partial v} & & \frac{\partial z}{\partial w}\end{array}\right|.$  {eq:fs-id1167793618042}
 
 The Jacobian can also be simply denoted as $\frac{\partial (x,y,z)}{\partial (u,v,w)}.$
 :::
@@ -403,7 +403,7 @@ b. spherical coordinates.
 SOLUTION:
 a. For cylindrical coordinates, the transformation is $T(r,\theta ,z)=(x,y,z)$ from the Cartesian $r\theta z\text{-plane}$ to the Cartesian $xyz\text{-plane}$ ([ref:CNX_Calc_Figure_15_07_011]). Here $x=r\;\text{cos}\;\theta ,$ $y=r\;\text{sin}\;\theta ,$ and $z=z.$ The Jacobian for the transformation is
 
-$\begin{array}{rl}J(r,\theta ,z) & =\frac{\partial (x,y,z)}{\partial (r,\theta ,z)}=|\begin{array}{lllll}\frac{\partial x}{\partial r} & & \frac{\partial x}{\partial \theta} & & \frac{\partial x}{\partial z} \\ \frac{\partial y}{\partial r} & & \frac{\partial y}{\partial \theta} & & \frac{\partial y}{\partial z} \\ \frac{\partial z}{\partial r} & & \frac{\partial z}{\partial \theta} & & \frac{\partial z}{\partial z}\end{array}| \\ & =|\begin{array}{lllll}\text{cos}\;\theta & & -r\;\text{sin}\;\theta & & 0 \\ \text{sin}\;\theta & & r\;\text{cos}\;\theta & & 0 \\ 0 & & 0 & & 1\end{array}|=r\;{\text{cos}}^{2}\theta +r\;{\text{sin}}^{2}\theta =r({\text{cos}}^{2}\theta +{\text{sin}}^{2}\theta )=r.\end{array}$  {eq:fs-id1167794284179}
+$\begin{array}{rl}J(r,\theta ,z) & =\frac{\partial (x,y,z)}{\partial (r,\theta ,z)}=\left|\begin{array}{lllll}\frac{\partial x}{\partial r} & & \frac{\partial x}{\partial \theta} & & \frac{\partial x}{\partial z} \\ \frac{\partial y}{\partial r} & & \frac{\partial y}{\partial \theta} & & \frac{\partial y}{\partial z} \\ \frac{\partial z}{\partial r} & & \frac{\partial z}{\partial \theta} & & \frac{\partial z}{\partial z}\end{array}\right| \\ & =\left|\begin{array}{lllll}\text{cos}\;\theta & & -r\;\text{sin}\;\theta & & 0 \\ \text{sin}\;\theta & & r\;\text{cos}\;\theta & & 0 \\ 0 & & 0 & & 1\end{array}\right|=r\;{\text{cos}}^{2}\theta +r\;{\text{sin}}^{2}\theta =r({\text{cos}}^{2}\theta +{\text{sin}}^{2}\theta )=r.\end{array}$  {eq:fs-id1167794284179}
 
 We know that $r\ge 0,$ so $|J(r,\theta ,z)|=r.$ Then the triple integral is
 
@@ -415,11 +415,11 @@ ${\displaystyle \iiint\limits_{D}f(x,y,z)dV={\displaystyle \iiint\limits_{G}f(r\
 
 b. For spherical coordinates, the transformation is $T(ρ,\theta ,φ)=(x,y,z)$ from the Cartesian $p\theta φ\text{-plane}$ to the Cartesian $xyz\text{-plane}$ ([ref:CNX_Calc_Figure_15_07_012]). Here $x=ρ\;\text{sin}\;φ\;\text{cos}\;\theta ,$ $y=ρ\;\text{sin}\;φ\;\text{sin}\;\theta ,$ and $z=ρ\;\text{cos}\;φ.$ The Jacobian for the transformation is
 
-$J(ρ,\theta ,φ)=\frac{\partial (x,y,z)}{\partial (ρ,\theta ,φ)}=|\begin{array}{lllll}\frac{\partial x}{\partial ρ} & & \frac{\partial x}{\partial \theta} & & \frac{\partial x}{\partial φ} \\ \frac{\partial y}{\partial ρ} & & \frac{\partial y}{\partial \theta} & & \frac{\partial y}{\partial φ} \\ \frac{\partial z}{\partial ρ} & & \frac{\partial z}{\partial \theta} & & \frac{\partial z}{\partial φ}\end{array}|=|\begin{array}{lllll}\text{sin}\;φ\;\text{cos}\;\theta & & ρ\;\text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{cos}\;φ\;\text{cos}\;\theta \\ \text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{sin}\;φ\;\text{cos}\;\theta & & ρ\;\text{cos}\;φ\;\text{sin}\;\theta \\ \text{cos}\;ϕ & & 0 & & -ρ\;\text{sin}\;φ\end{array}|.$  {eq:fs-id1167793373656}
+$J(ρ,\theta ,φ)=\frac{\partial (x,y,z)}{\partial (ρ,\theta ,φ)}=\left|\begin{array}{lllll}\frac{\partial x}{\partial ρ} & & \frac{\partial x}{\partial \theta} & & \frac{\partial x}{\partial φ} \\ \frac{\partial y}{\partial ρ} & & \frac{\partial y}{\partial \theta} & & \frac{\partial y}{\partial φ} \\ \frac{\partial z}{\partial ρ} & & \frac{\partial z}{\partial \theta} & & \frac{\partial z}{\partial φ}\end{array}\right|=\left|\begin{array}{lllll}\text{sin}\;φ\;\text{cos}\;\theta & & ρ\;\text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{cos}\;φ\;\text{cos}\;\theta \\ \text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{sin}\;φ\;\text{cos}\;\theta & & ρ\;\text{cos}\;φ\;\text{sin}\;\theta \\ \text{cos}\;ϕ & & 0 & & -ρ\;\text{sin}\;φ\end{array}\right|.$  {eq:fs-id1167793373656}
 
 Expanding the determinant with respect to the third row:
 
-$\begin{array}{r} \\ \\ =\text{cos}\;φ|\begin{array}{lll}-ρ\;\text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{cos}\;φ\;\text{cos}\;\theta \\ ρ\;\text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{cos}\;φ\;\text{sin}\;\theta \end{array}|-ρ\;\text{sin}\;φ|\begin{array}{lll}\text{sin}\;φ\;\text{cos}\;\theta & & -ρ\;\text{sin}\;φ\;\text{sin}\;\theta \\ \text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{sin}\;φ\;\text{cos}\;\theta \end{array}| \\ =\text{cos}\;φ(\text{−}{ρ}^{2}\text{sin}\;φ\;\text{cos}\;φ\;{\text{sin}}^{2}\theta -{ρ}^{2}\text{sin}\;φ\;\text{cos}\;φ\;{\text{cos}}^{2}\theta ) \\ \;-ρ\;\text{sin}\;φ(ρ\;{\text{sin}}^{2}φ\;{\text{cos}}^{2}\theta +ρ\;{\text{sin}}^{2}φ\;{\text{sin}}^{2}\theta ) \\ =\text{−}{ρ}^{2}\text{sin}\;φ\;{\text{cos}}^{2}φ({\text{sin}}^{2}\theta +{\text{cos}}^{2}\theta )-{ρ}^{2}\text{sin}\;φ\;{\text{sin}}^{2}φ({\text{sin}}^{2}\theta +{\text{cos}}^{2}\theta ) \\ =\text{−}{ρ}^{2}\text{sin}\;φ\;{\text{cos}}^{2}φ-{ρ}^{2}\text{sin}\;φ\;{\text{sin}}^{2}φ \\ =\text{−}{ρ}^{2}\text{sin}\;φ({\text{cos}}^{2}φ+{\text{sin}}^{2}φ)=\text{−}{ρ}^{2}\text{sin}\;φ.\end{array}$  {eq:fs-id1167794327638}
+$\begin{array}{r} \\ \\ =\text{cos}\;φ\left|\begin{array}{lll}-ρ\;\text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{cos}\;φ\;\text{cos}\;\theta \\ ρ\;\text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{cos}\;φ\;\text{sin}\;\theta \end{array}\right|-ρ\;\text{sin}\;φ\left|\begin{array}{lll}\text{sin}\;φ\;\text{cos}\;\theta & & -ρ\;\text{sin}\;φ\;\text{sin}\;\theta \\ \text{sin}\;φ\;\text{sin}\;\theta & & ρ\;\text{sin}\;φ\;\text{cos}\;\theta \end{array}\right| \\ =\text{cos}\;φ(\text{−}{ρ}^{2}\text{sin}\;φ\;\text{cos}\;φ\;{\text{sin}}^{2}\theta -{ρ}^{2}\text{sin}\;φ\;\text{cos}\;φ\;{\text{cos}}^{2}\theta ) \\ \;-ρ\;\text{sin}\;φ(ρ\;{\text{sin}}^{2}φ\;{\text{cos}}^{2}\theta +ρ\;{\text{sin}}^{2}φ\;{\text{sin}}^{2}\theta ) \\ =\text{−}{ρ}^{2}\text{sin}\;φ\;{\text{cos}}^{2}φ({\text{sin}}^{2}\theta +{\text{cos}}^{2}\theta )-{ρ}^{2}\text{sin}\;φ\;{\text{sin}}^{2}φ({\text{sin}}^{2}\theta +{\text{cos}}^{2}\theta ) \\ =\text{−}{ρ}^{2}\text{sin}\;φ\;{\text{cos}}^{2}φ-{ρ}^{2}\text{sin}\;φ\;{\text{sin}}^{2}φ \\ =\text{−}{ρ}^{2}\text{sin}\;φ({\text{cos}}^{2}φ+{\text{sin}}^{2}φ)=\text{−}{ρ}^{2}\text{sin}\;φ.\end{array}$  {eq:fs-id1167794327638}
 
 Since $0\le φ\le \pi ,$ we must have $\text{sin}\;φ\ge 0.$ Thus $|J(ρ,\theta ,φ)|=|\text{−}{ρ}^{2}\text{sin}\;φ|={ρ}^{2}\text{sin}\;φ.$
 
@@ -470,7 +470,7 @@ Using elementary algebra, we can find the corresponding surfaces for the region 
 
 Now we can calculate the Jacobian for the transformation:
 
-$J(u,v,w)=|\begin{array}{lllll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} & & \frac{\partial x}{\partial w} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v} & & \frac{\partial y}{\partial w} \\ \frac{\partial z}{\partial u} & & \frac{\partial z}{\partial v} & & \frac{\partial z}{\partial w}\end{array}|=|\begin{array}{lllll}1 & & 1 & & 0 \\ 0 & & 2 & & 0 \\ 0 & & 0 & & 3\end{array}|=6.$  {eq:fs-id1167793607341}
+$J(u,v,w)=\left|\begin{array}{lllll}\frac{\partial x}{\partial u} & & \frac{\partial x}{\partial v} & & \frac{\partial x}{\partial w} \\ \frac{\partial y}{\partial u} & & \frac{\partial y}{\partial v} & & \frac{\partial y}{\partial w} \\ \frac{\partial z}{\partial u} & & \frac{\partial z}{\partial v} & & \frac{\partial z}{\partial w}\end{array}\right|=\left|\begin{array}{lllll}1 & & 1 & & 0 \\ 0 & & 2 & & 0 \\ 0 & & 0 & & 3\end{array}\right|=6.$  {eq:fs-id1167793607341}
 
 The function to be integrated becomes
 
@@ -1149,11 +1149,11 @@ Find the volume when you revolve the region around the $y\text{-axis.}$
 ## Glossary
 - {def} **Jacobian**: the Jacobian $J(u,v)$ in two variables is a $2\;\times \;2$ determinant:
 
-$J(u,v)=|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}|;$  {eq:fs-id1167794222640}
+$J(u,v)=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}\right|;$  {eq:fs-id1167794222640}
 
 the Jacobian $J(u,v,w)$ in three variables is a $3\;\times \;3$ determinant:
 
-$J(u,v,w)=|\begin{array}{lllll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} & & \frac{\partial z}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v} & & \frac{\partial z}{\partial v} \\ \frac{\partial x}{\partial w} & & \frac{\partial y}{\partial w} & & \frac{\partial z}{\partial w}\end{array}|$  {eq:fs-id1167793384794}
+$J(u,v,w)=\left|\begin{array}{lllll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} & & \frac{\partial z}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v} & & \frac{\partial z}{\partial v} \\ \frac{\partial x}{\partial w} & & \frac{\partial y}{\partial w} & & \frac{\partial z}{\partial w}\end{array}\right|$  {eq:fs-id1167793384794}
 
 - {def} **one-to-one transformation**: a transformation $T:G\to R$ defined as $T(u,v)=(x,y)$ is said to be one-to-one if no two points map to the same image point
 - {def} **planar transformation**: a function $T$ that transforms a region $G$ in one plane into a region $R$ in another plane by a change of variables

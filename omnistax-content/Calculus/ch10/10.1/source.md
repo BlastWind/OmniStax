@@ -436,9 +436,9 @@ ${\displaystyle \sum_{k=1}^{\infty} \frac{2\cdot 4\cdot 6\text{⋯}2k}{(2k)\text
 
 :::exercise {fs-id1170571779959} type= 
 PROBLEM:
-${\displaystyle \sum_{n=1}^{\infty} \frac{{x}^{n}}{(\begin{array}{l}2n \\ n\end{array})}}$ where $(\begin{array}{l}n \\ k\end{array})=\frac{n\text{!}}{k\text{!}(n-k)\text{!}}$
+${\displaystyle \sum_{n=1}^{\infty} \frac{{x}^{n}}{\left(\begin{array}{l}2n \\ n\end{array}\right)}}$ where $\left(\begin{array}{l}n \\ k\end{array}\right)=\frac{n\text{!}}{k\text{!}(n-k)\text{!}}$
 SOLUTION:
-${a}_{n}=\frac{1}{(\begin{array}{l}2n \\ n\end{array})}$ so $\frac{{a}_{n+1}}{{a}_{n}}=\frac{{((n+1)\text{!})}^{2}}{(2n+2)\text{!}}\;\frac{2n\text{!}}{{(n\text{!})}^{2}}=\frac{{(n+1)}^{2}}{(2n+2)(2n+1)}\to \frac{1}{4}$ so $R=4$
+${a}_{n}=\frac{1}{\left(\begin{array}{l}2n \\ n\end{array}\right)}$ so $\frac{{a}_{n+1}}{{a}_{n}}=\frac{{((n+1)\text{!})}^{2}}{(2n+2)\text{!}}\;\frac{2n\text{!}}{{(n\text{!})}^{2}}=\frac{{(n+1)}^{2}}{(2n+2)(2n+1)}\to \frac{1}{4}$ so $R=4$
 :::
 
 :::exercise {fs-id1170571613632} type= 

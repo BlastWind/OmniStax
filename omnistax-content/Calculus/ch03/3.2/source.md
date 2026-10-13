@@ -62,7 +62,7 @@ We use a variety of different notations to express the derivative of a function.
 
 ${f}^{'}(x), \;\frac{dy}{dx}, \;{y}^{'}, \;\frac{d}{dx}(f(x)).$  {eq:fs-id1169738144185}
 
-In place of ${f}^{'}(a)$ we may also use $\frac{dy}{dx}|\begin{array}{l} \\ {}_{x=a}\end{array}$ Use of the $\frac{dy}{dx}$ notation (called Leibniz notation) is quite common in engineering and physics. To understand this notation better, recall that the derivative of a function at a point is the limit of the slopes of secant lines as the secant lines approach the tangent line. The slopes of these secant lines are often expressed in the form $\frac{\text{Δ}y}{\text{Δ}x}$ where $\text{Δ}y$ is the difference in the $y$ values corresponding to the difference in the $x$ values, which are expressed as $\text{Δ}x$ ([ref:CNX_Calc_Figure_03_02_001]). Thus the derivative, which can be thought of as the instantaneous rate of change of $y$ with respect to $x,$ is expressed as
+In place of ${f}^{'}(a)$ we may also use $\frac{dy}{dx}\left|\begin{array}{l} \\ {}_{x=a}\end{array}\right.$ Use of the $\frac{dy}{dx}$ notation (called Leibniz notation) is quite common in engineering and physics. To understand this notation better, recall that the derivative of a function at a point is the limit of the slopes of secant lines as the secant lines approach the tangent line. The slopes of these secant lines are often expressed in the form $\frac{\text{Δ}y}{\text{Δ}x}$ where $\text{Δ}y$ is the difference in the $y$ values corresponding to the difference in the $x$ values, which are expressed as $\text{Δ}x$ ([ref:CNX_Calc_Figure_03_02_001]). Thus the derivative, which can be thought of as the instantaneous rate of change of $y$ with respect to $x,$ is expressed as
 
 $\frac{dy}{dx}=\lim_{\text{Δ}x\to 0}\frac{\text{Δ}y}{\text{Δ}x}.$  {eq:fs-id1169738041612}
 
@@ -156,7 +156,7 @@ Thus ${f}^{'}(0)$ does not exist. A quick look at the graph of $f(x)=\sqrt[3]{x}
 > alt: The function f(x) = the cube root of x is graphed. It has a vertical tangent at x = 0.
 > caption: The function $f(x)=\sqrt[3]{x}$ has a vertical tangent at $x=0.$ It is continuous at $0$ but is not differentiable at $0.$
 
-The function $f(x)=\{\begin{array}{l}x\;\text{sin}\;(\frac{1}{x})\;\text{if}\;x≠0 \\ 0\;\text{if}\;x=0\end{array}$ also has a derivative that exhibits interesting behavior at $0.$ We see that
+The function $f(x)=\left\{\begin{array}{l}x\;\text{sin}\;(\frac{1}{x})\;\text{if}\;x≠0 \\ 0\;\text{if}\;x=0\end{array}\right.$ also has a derivative that exhibits interesting behavior at $0.$ We see that
 
 ${f}^{'}(0)=\lim_{x\to 0}\frac{x\;\text{sin}\;(1\text{/}x)-0}{x-0}=\lim_{x\to 0}\text{sin}\;(\frac{1}{x}).$  {eq:fs-id1169738225665}
 
@@ -164,19 +164,19 @@ This limit does not exist, essentially because the slopes of the secant lines co
 
 > FIGURE {fig:CNX_Calc_Figure_03_02_008} src=../../media/CNX_Calc_Figure_03_02_008.jpg
 > alt: The function f(x) = x sin (1/2) if x does not equal 0 and f(x) = 0 if x = 0 is graphed. It looks like a rapidly oscillating sinusoidal function with amplitude decreasing to 0 at the origin.
-> caption: The function $f(x)=\{\begin{array}{l}x\;\text{sin}\;(\frac{1}{x})\;\text{if}\;x≠0 \\ 0\;\text{if}\;x=0\end{array}$ is not differentiable at $0.$
+> caption: The function $f(x)=\left\{\begin{array}{l}x\;\text{sin}\;(\frac{1}{x})\;\text{if}\;x≠0 \\ 0\;\text{if}\;x=0\end{array}\right.$ is not differentiable at $0.$
 
 In summary:
 1. We observe that if a function is not continuous, it cannot be differentiable, since every differentiable function must be continuous. However, if a function is continuous, it may still fail to be differentiable.
 2. We saw that $f(x)=|x|$ failed to be differentiable at $0$ because the limit of the slopes of the tangent lines on the left and right were not the same. Visually, this resulted in a sharp corner on the graph of the function at $0.$ From this we conclude that in order to be differentiable at a point, a function must be “smooth” at that point.
 3. As we saw in the example of $f(x)=\sqrt[3]{x},$ a function fails to be differentiable at a point where there is a vertical tangent line.
-4. As we saw with $f(x)=\{\begin{array}{l}x\;\text{sin}\;(\frac{1}{x})\;\text{if}\;x≠0 \\ 0\;\text{if}\;x=0\end{array}$ a function may fail to be differentiable at a point in more complicated ways as well.
+4. As we saw with $f(x)=\left\{\begin{array}{l}x\;\text{sin}\;(\frac{1}{x})\;\text{if}\;x≠0 \\ 0\;\text{if}\;x=0\end{array}\right.$ a function may fail to be differentiable at a point in more complicated ways as well.
 
 :::example {ex:fs-id1169738218186} A Piecewise Function that is Continuous and Differentiable
 
 :::exercise {fs-id1169738218188} type= 
 PROBLEM:
-A toy company wants to design a track for a toy car that starts out along a parabolic curve and then converts to a straight line ([ref:CNX_Calc_Figure_03_02_009]). The function that describes the track is to have the form $f(x)=\{\begin{array}{l}\frac{1}{10}{x}^{2}+bx+c\;\text{if}\;x<−10 \\ -\frac{1}{4}x+\frac{5}{2}\;\text{if}\;x\ge −10\end{array}$ where $x$ and $f(x)$ are in inches. For the car to move smoothly along the track, the function $f(x)$ must be both continuous and differentiable at $−10.$ Find values of $b$ and $c$ that make $f(x)$ both continuous and differentiable.
+A toy company wants to design a track for a toy car that starts out along a parabolic curve and then converts to a straight line ([ref:CNX_Calc_Figure_03_02_009]). The function that describes the track is to have the form $f(x)=\left\{\begin{array}{l}\frac{1}{10}{x}^{2}+bx+c\;\text{if}\;x<−10 \\ -\frac{1}{4}x+\frac{5}{2}\;\text{if}\;x\ge −10\end{array}\right.$ where $x$ and $f(x)$ are in inches. For the car to move smoothly along the track, the function $f(x)$ must be both continuous and differentiable at $−10.$ Find values of $b$ and $c$ that make $f(x)$ both continuous and differentiable.
 
 > FIGURE {fig:CNX_Calc_Figure_03_02_009} src=../../media/CNX_Calc_Figure_03_02_009.jpg
 > alt: A cart is drawn on a line that curves through (−10, 5) to (10, 0) with y-intercept roughly (0, 2).
@@ -208,7 +208,7 @@ This gives us $b-2=-\frac{1}{4}.$ Thus $b=\frac{7}{4}$ and $c=10(\frac{7}{4})-5=
 
 :::exercise {fs-id1169738185319} type= 
 PROBLEM:
-Find values of $a$ and $b$ that make $f(x)=\{\begin{array}{l}ax+b\;\text{if}\;x<3 \\ {x}^{2}\;\text{if}\;x\ge 3\end{array}$ both continuous and differentiable at $3.$
+Find values of $a$ and $b$ that make $f(x)=\left\{\begin{array}{l}ax+b\;\text{if}\;x<3 \\ {x}^{2}\;\text{if}\;x\ge 3\end{array}\right.$ both continuous and differentiable at $3.$
 SOLUTION:
 $a=6$ and $b=−9$
 COMMENTARY: Hint
@@ -449,12 +449,12 @@ b. use the definition of a derivative to show that the function is not different
 
 :::exercise {fs-id1169738071318} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}2\sqrt{x},0\le x\le 1 \\ 3x-1,x>1\end{array}$
+$f(x)=\left\{\begin{array}{l}2\sqrt{x},0\le x\le 1 \\ 3x-1,x>1\end{array}\right.$
 :::
 
 :::exercise {fs-id1169738071477} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}3,x<1 \\ 3x,x\ge 1\end{array}$
+$f(x)=\left\{\begin{array}{l}3,x<1 \\ 3x,x\ge 1\end{array}\right.$
 SOLUTION:
 a.
 
@@ -468,12 +468,12 @@ $\lim_{h\to {0}^{-}}\frac{f(1+h)-f(1)}{h}≠\lim_{h\to {0}^{+}}\frac{f(1+h)-f(1)
 
 :::exercise {fs-id1169738191183} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}-{x}^{2}+2,x\le 1 \\ x,x>1\end{array}$
+$f(x)=\left\{\begin{array}{l}-{x}^{2}+2,x\le 1 \\ x,x>1\end{array}\right.$
 :::
 
 :::exercise {fs-id1169737954177} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}2x,x\le 1 \\ \frac{2}{x},x>1\end{array}$
+$f(x)=\left\{\begin{array}{l}2x,x\le 1 \\ \frac{2}{x},x>1\end{array}\right.$
 SOLUTION:
 a.
 

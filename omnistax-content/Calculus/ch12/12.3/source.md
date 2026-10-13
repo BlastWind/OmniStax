@@ -480,7 +480,7 @@ From physics, we know that work is done when an object is moved by a force. When
 :::note [definition] Definition
 When a constant force is applied to an object so the object moves in a straight line from point *P* to point *Q*, the work *W* done by the force **F**, acting at an angle *θ* from the line of motion, is given by
 
-$$ W=\textbf{F}\cdot \vec{PQ}=\| \textbf{F}\| \| \vec{PQ}\| \text{cos}\;\theta . $$  {eq:fs-id1163724120330}
+$$ W=\textbf{F}\cdot \overrightarrow{PQ}=\| \textbf{F}\| \| \overrightarrow{PQ}\| \text{cos}\;\theta . $$  {eq:fs-id1163724120330}
 
 :::
 Let’s revisit the problem of the child’s wagon introduced earlier. Suppose a child is pulling a wagon with a force having a magnitude of 8 lb on the handle at an angle of 55°. If the child pulls the wagon 50 ft, find the work done by the force ([ref:CNX_Calc_Figure_12_03_010]).
@@ -491,9 +491,9 @@ Let’s revisit the problem of the child’s wagon introduced earlier. Suppose a
 
 We have
 
-$W=\| \textbf{F}\| \| \vec{PQ}\| \text{cos}\;\theta =8(50)(\text{cos}(55\text{°}))\approx 229\;\text{ft}\cdot \text{lb}.$  {eq:fs-id1163723110205}
+$W=\| \textbf{F}\| \| \overrightarrow{PQ}\| \text{cos}\;\theta =8(50)(\text{cos}(55\text{°}))\approx 229\;\text{ft}\cdot \text{lb}.$  {eq:fs-id1163723110205}
 
-In U.S. standard units, we measure the magnitude of force $\| \textbf{F}\|$ in pounds. The magnitude of the displacement vector $\| \vec{PQ}\|$ tells us how far the object moved, and it is measured in feet. The customary unit of measure for work, then, is the foot-pound. One foot-pound is the amount of work required to move an object weighing 1 lb a distance of 1 ft straight up. In the metric system, the unit of measure for force is the newton (N), and the unit of measure of magnitude for work is a newton-meter (N·m), or a joule (J).
+In U.S. standard units, we measure the magnitude of force $\| \textbf{F}\|$ in pounds. The magnitude of the displacement vector $\| \overrightarrow{PQ}\|$ tells us how far the object moved, and it is measured in feet. The customary unit of measure for work, then, is the foot-pound. One foot-pound is the amount of work required to move an object weighing 1 lb a distance of 1 ft straight up. In the metric system, the unit of measure for force is the newton (N), and the unit of measure of magnitude for work is a newton-meter (N·m), or a joule (J).
 
 :::example {ex:fs-id1163723110347} Calculating Work
 
@@ -501,13 +501,13 @@ In U.S. standard units, we measure the magnitude of force $\| \textbf{F}\|$ in p
 PROBLEM:
 A conveyor belt generates a force $\textbf{F}=5\textbf{i}-3\textbf{j}+\textbf{k}$ that moves a suitcase from point $(1,1,1)$ to point $(9,4,7)$ along a straight line. Find the work done by the conveyor belt. The distance is measured in meters and the force is measured in newtons.
 SOLUTION:
-The displacement vector $\vec{PQ}$ has initial point $(1,1,1)$ and terminal point $(9,4,7)\text{:}$
+The displacement vector $\overrightarrow{PQ}$ has initial point $(1,1,1)$ and terminal point $(9,4,7)\text{:}$
 
-$\vec{PQ}=\langle 9-1,4-1,7-1\rangle =\langle 8,3,6\rangle =8\textbf{i}+3\textbf{j}+6\textbf{k}.$  {eq:fs-id1163723995447}
+$\overrightarrow{PQ}=\langle 9-1,4-1,7-1\rangle =\langle 8,3,6\rangle =8\textbf{i}+3\textbf{j}+6\textbf{k}.$  {eq:fs-id1163723995447}
 
 Work is the dot product of force and displacement:
 
-$\begin{array}{rl}W & =\textbf{F}\cdot \vec{PQ} \\ & =(5\textbf{i}-3\textbf{j}+\textbf{k})\cdot (8\textbf{i}+3\textbf{j}+6\textbf{k}) \\ & =5(8)+(−3)(3)+1(6) \\ & =37\text{N}\cdot \text{m} \\ & =37\;\text{J}.\end{array}$  {eq:fs-id1163724082267}
+$\begin{array}{rl}W & =\textbf{F}\cdot \overrightarrow{PQ} \\ & =(5\textbf{i}-3\textbf{j}+\textbf{k})\cdot (8\textbf{i}+3\textbf{j}+6\textbf{k}) \\ & =5(8)+(−3)(3)+1(6) \\ & =37\text{N}\cdot \text{m} \\ & =37\;\text{J}.\end{array}$  {eq:fs-id1163724082267}
 
 :::
 :::
@@ -555,7 +555,7 @@ Use the definition of work as the dot product of force and distance.
 | **Cosine of the angle formed by**$\textbf{u}$ and $\textbf{v}$ | $\text{cos}\;\theta =\frac{\textbf{u}\cdot \textbf{v}}{\| \textbf{u}\| \| \textbf{v}\|}$ |
 | **Vector projection of**$\textbf{v}$ onto $\textbf{u}$ | ${\text{proj}}_{\textbf{u}}\textbf{v}=\frac{\textbf{u}\cdot \textbf{v}}{{\| \textbf{u}\|}^{2}}\textbf{u}$ |
 | **Scalar projection of**$\textbf{v}$ onto $\textbf{u}$ | ${\text{comp}}_{\textbf{u}}\textbf{v}=\frac{\textbf{u}\cdot \textbf{v}}{\| \textbf{u}\|}$ |
-| **Work done by a force F to move an object through displacement vector** $\vec{PQ}$ | $W=\textbf{F}\cdot \vec{PQ}=\| \textbf{F}\| \| \vec{PQ}\| \text{cos}\;\theta$ |
+| **Work done by a force F to move an object through displacement vector** $\overrightarrow{PQ}$ | $W=\textbf{F}\cdot \overrightarrow{PQ}=\| \textbf{F}\| \| \overrightarrow{PQ}\| \text{cos}\;\theta$ |
 
 ##  {section:section-exercises}
 For the following exercises, the vectors $\text{u}$ and $\text{v}$ are given. Calculate the dot product $\textbf{u}\cdot \textbf{v}.$
@@ -737,16 +737,16 @@ Determine the real number $\alpha$ such that vectors $\textbf{a}=−3\textbf{i}+
 :::exercise {fs-id1163723295694} type= 
 PROBLEM:
 **[T]** Consider the points $P(4,5)$ and $Q(5,−7).$
-a. Determine vectors $\vec{OP}$ and $\vec{OQ}.$ Express the answer by using standard unit vectors.
+a. Determine vectors $\overrightarrow{OP}$ and $\overrightarrow{OQ}.$ Express the answer by using standard unit vectors.
 b. Determine the measure of angle *O* in triangle *OPQ*. Express the answer in degrees rounded to two decimal places.
 SOLUTION:
-a. $\vec{OP}=4\textbf{i}+5\textbf{j},$ $\vec{OQ}=5\textbf{i}-7\text{j};$ b. $105.8\text{°}$
+a. $\overrightarrow{OP}=4\textbf{i}+5\textbf{j},$ $\overrightarrow{OQ}=5\textbf{i}-7\text{j};$ b. $105.8\text{°}$
 :::
 
 :::exercise {fs-id1163723093342} type= 
 PROBLEM:
 **[T]** Consider points $A(1,1),$ $B(2,−7),$ and $C(6,3).$
-a. Determine vectors $\vec{BA}$ and $\vec{BC}.$ Express the answer in component form.
+a. Determine vectors $\overrightarrow{BA}$ and $\overrightarrow{BC}.$ Express the answer in component form.
 b. Determine the measure of angle *B* in triangle *ABC*. Express the answer in degrees rounded to two decimal places.
 :::
 
@@ -759,7 +759,7 @@ $68.33\text{°}$
 
 :::exercise {fs-id1163724050252} type= 
 PROBLEM:
-Consider points $P(3,7,−2)$ and $Q(1,1,−3).$ Determine the angle between vectors $\vec{OP}$ and $\vec{OQ}.$ Express the answer in degrees rounded to two decimal places.
+Consider points $P(3,7,−2)$ and $Q(1,1,−3).$ Determine the angle between vectors $\overrightarrow{OP}$ and $\overrightarrow{OQ}.$ Express the answer in degrees rounded to two decimal places.
 :::
 For the following exercises, determine which (if any) pairs of the following vectors are orthogonal.
 
@@ -879,7 +879,7 @@ b. Write the decomposition $\textbf{v}=\text{w}+\text{q}$ of vector $\text{v}$ i
 PROBLEM:
 A methane molecule has a carbon atom situated at the origin and four hydrogen atoms located at points $P(1,1,−1),Q(1,−1,1),R(−1,1,1),\;\text{and}\;S(−1,−1,−1)$ (see figure).
 a. Find the distance between the hydrogen atoms located at *P* and *R*.
-b. Find the angle between vectors $\vec{OS}$ and $\vec{OR}$ that connect the carbon atom with the hydrogen atoms located at *S* and *R*, which is also called the *bond angle*. Express the answer in degrees rounded to two decimal places.
+b. Find the angle between vectors $\overrightarrow{OS}$ and $\overrightarrow{OR}$ that connect the carbon atom with the hydrogen atoms located at *S* and *R*, which is also called the *bond angle*. Express the answer in degrees rounded to two decimal places.
 
 > IMAGE {img:fs-id1163723139879} src=../../media/CNX_Calc_Figure_12_03_012.jpg
 > alt: This figure is the 3-dimensional coordinate system. There are four points plotted. The first point is labeled “P(1, 1, -1),” the second point is labeled “Q(1, -1, 1),” the third point is labeled “R(-1, 1, 1),” and the fourth point is labeled “S(-1, -1, -1).” There are line segments from Q to P, P to R and R to P. There are also two vectors in standard position. The first has terminal point of R and the second has terminal point of S. The angle between them is represented with an arc.
@@ -944,8 +944,8 @@ a. $\| {\textbf{F}}_{1}+{\text{F}}_{2}\| =52.9$ lb; b. The direction angles are 
 
 :::exercise {fs-id1163723090903} type= 
 PROBLEM:
-**[T]** Consider $\text{r}(t)=\langle \text{cos}\;t,\text{sin}\;t,2t\rangle$ the position vector of a particle at time $t\in [0,30],$ where the components of **r** are expressed in centimeters and time in seconds. Let $\vec{OP}$ be the position vector of the particle after 1 sec.
-a. Show that all vectors $\vec{PQ},$ where $Q(x,y,z)$ is an arbitrary point, orthogonal to the instantaneous velocity vector $\textbf{v}(1)$ of the particle after 1 sec, can be expressed as $\vec{PQ}=\langle x-\text{cos}\;1,y-\text{sin}\;1,z-2\rangle ,$ where $x\;\text{sin}\;1-y\;\text{cos}\;1-2z+4=0.$ The set of point *Q* describes a plane called the *normal plane* to the path of the particle at point *P*.
+**[T]** Consider $\text{r}(t)=\langle \text{cos}\;t,\text{sin}\;t,2t\rangle$ the position vector of a particle at time $t\in [0,30],$ where the components of **r** are expressed in centimeters and time in seconds. Let $\overrightarrow{OP}$ be the position vector of the particle after 1 sec.
+a. Show that all vectors $\overrightarrow{PQ},$ where $Q(x,y,z)$ is an arbitrary point, orthogonal to the instantaneous velocity vector $\textbf{v}(1)$ of the particle after 1 sec, can be expressed as $\overrightarrow{PQ}=\langle x-\text{cos}\;1,y-\text{sin}\;1,z-2\rangle ,$ where $x\;\text{sin}\;1-y\;\text{cos}\;1-2z+4=0.$ The set of point *Q* describes a plane called the *normal plane* to the path of the particle at point *P*.
 b. Use a CAS to visualize the instantaneous velocity vector and the normal plane at point *P* along with the path of the particle.
 :::
 

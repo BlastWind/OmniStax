@@ -582,12 +582,12 @@ Find the critical points, maxima, and minima for the following piecewise functio
 
 :::exercise {fs-id1165042304267} type= 
 PROBLEM:
-$y=\{\begin{array}{ll}{x}^{2}-4x & 0\le x\le 1 \\ {x}^{2}-4 & 1<x\le 2\end{array}$
+$y=\left\{\begin{array}{ll}{x}^{2}-4x & 0\le x\le 1 \\ {x}^{2}-4 & 1<x\le 2\end{array}\right.$
 :::
 
 :::exercise {fs-id1165042304403} type= 
 PROBLEM:
-$y=\{\begin{array}{ll}{x}^{2}+1 & x\le 1 \\ {x}^{2}-4x+5 & x>1\end{array}$
+$y=\left\{\begin{array}{ll}{x}^{2}+1 & x\le 1 \\ {x}^{2}-4x+5 & x>1\end{array}\right.$
 SOLUTION:
 Absolute minima: $x=0,$ $x=2,$ $y=1;$ local maximum at $x=1,$ $y=2$
 :::

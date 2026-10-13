@@ -971,12 +971,12 @@ ${\displaystyle \int_{0}^{N}f(t)dt}={\displaystyle \sum_{i=1}^{N} {\displaystyle
 
 :::exercise {fs-id1170572447510} type= 
 PROBLEM:
-**[T]** Compute the left and right Riemann sums *L*<sub>10</sub> and *R*<sub>10</sub> and their average $\frac{{L}_{10}+{R}_{10}}{2}$ for $f(t)={t}^{2}$ over $[0,1].$ Given that ${\displaystyle \int_{0}^{1}{t}^{2}dt}=0.\bar{33},$ to how many decimal places is $\frac{{L}_{10}+{R}_{10}}{2}$ accurate?
+**[T]** Compute the left and right Riemann sums *L*<sub>10</sub> and *R*<sub>10</sub> and their average $\frac{{L}_{10}+{R}_{10}}{2}$ for $f(t)={t}^{2}$ over $[0,1].$ Given that ${\displaystyle \int_{0}^{1}{t}^{2}dt}=0.\overline{33},$ to how many decimal places is $\frac{{L}_{10}+{R}_{10}}{2}$ accurate?
 :::
 
 :::exercise {fs-id1170572370440} type= 
 PROBLEM:
-**[T]** Compute the left and right Riemann sums, *L*<sub>10</sub> and *R*<sub>10</sub>, and their average $\frac{{L}_{10}+{R}_{10}}{2}$ for $f(t)=(4-{t}^{2})$ over $[1,2].$ Given that ${\displaystyle \int_{1}^{2}(4-{t}^{2})dt}=1.\bar{66},$ to how many decimal places is $\frac{{L}_{10}+{R}_{10}}{2}$ accurate?
+**[T]** Compute the left and right Riemann sums, *L*<sub>10</sub> and *R*<sub>10</sub>, and their average $\frac{{L}_{10}+{R}_{10}}{2}$ for $f(t)=(4-{t}^{2})$ over $[1,2].$ Given that ${\displaystyle \int_{1}^{2}(4-{t}^{2})dt}=1.\overline{66},$ to how many decimal places is $\frac{{L}_{10}+{R}_{10}}{2}$ accurate?
 SOLUTION:
 ${L}_{10}=1.815,{R}_{10}=1.515,\frac{{L}_{10}+{R}_{10}}{2}=1.665,$ so the estimate is accurate to two decimal places.
 :::

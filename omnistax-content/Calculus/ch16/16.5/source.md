@@ -188,7 +188,7 @@ Note that the curl of a vector field is a vector field, in contrast to divergenc
 :::
 The definition of curl can be difficult to remember. To help with remembering, we use the notation $\nabla \;\times \;\textbf{F}$ to stand for a “determinant” that gives the curl formula:
 
-$|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ P & Q & R\end{array}|.$  {eq:fs-id1167794025214}
+$\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ P & Q & R\end{array}\right|.$  {eq:fs-id1167794025214}
 
 The determinant of this matrix is
 
@@ -207,7 +207,7 @@ Find the curl of $\textbf{F}(P,Q,R)=\langle {x}^{2}z,{e}^{y}+xz,xyz\rangle .$
 SOLUTION:
 The curl is
 
-$\begin{array}{rl}\text{curl}\;\textbf{F} & =\nabla \;\times \;\textbf{F} \\ & =|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \partial \text{/}\partial x & \partial \text{/}\partial y & \partial \text{/}\partial z \\ P & Q & R\end{array}| \\ & =({R}_{y}-{Q}_{z})\textbf{i}+({P}_{z}-{R}_{x})\textbf{j}+({Q}_{x}-{P}_{y})\textbf{k} \\ & =(xz-x)\textbf{i}+({x}^{2}-yz)\textbf{j}+z\textbf{k}.\end{array}$  {eq:fs-id1167793959781}
+$\begin{array}{rl}\text{curl}\;\textbf{F} & =\nabla \;\times \;\textbf{F} \\ & =\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \partial \text{/}\partial x & \partial \text{/}\partial y & \partial \text{/}\partial z \\ P & Q & R\end{array}\right| \\ & =({R}_{y}-{Q}_{z})\textbf{i}+({P}_{z}-{R}_{x})\textbf{j}+({Q}_{x}-{P}_{y})\textbf{k} \\ & =(xz-x)\textbf{i}+({x}^{2}-yz)\textbf{j}+z\textbf{k}.\end{array}$  {eq:fs-id1167793959781}
 
 :::
 :::
@@ -259,7 +259,7 @@ Show that a gravitational field has no spin.
 SOLUTION:
 To show that **F** has no spin, we calculate its curl. Let $P(x,y,z)=\frac{x}{{({x}^{2}+{y}^{2}+{z}^{2})}^{3\text{/}2}},$ $Q(x,y,z)=\frac{y}{{({x}^{2}+{y}^{2}+{z}^{2})}^{3\text{/}2}},$ and $R(x,y,z)=\frac{z}{{({x}^{2}+{y}^{2}+{z}^{2})}^{3\text{/}2}}.$ Then,
 
-$\begin{array}{rl}\text{curl}\;\textbf{F} & =\text{−}G{m}_{1}{m}_{2}[({R}_{y}-{Q}_{z})\textbf{i}+({P}_{z}-{R}_{x})\textbf{j}+({Q}_{x}-{P}_{y})\textbf{k}] \\ & =\text{−}G{m}_{1}{m}_{2}[\begin{array}{l}(\frac{−3yz}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}-(\frac{−3yz}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}))\textbf{i} \\ +(\frac{−3xz}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}-(\frac{−3xz}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}))\textbf{j} \\ +(\frac{−3xy}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}-(\frac{−3xy}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}))\textbf{k}\end{array}] \\ & =0.\end{array}$  {eq:fs-id1167793354822}
+$\begin{array}{rl}\text{curl}\;\textbf{F} & =\text{−}G{m}_{1}{m}_{2}[({R}_{y}-{Q}_{z})\textbf{i}+({P}_{z}-{R}_{x})\textbf{j}+({Q}_{x}-{P}_{y})\textbf{k}] \\ & =\text{−}G{m}_{1}{m}_{2}\left[\begin{array}{l}(\frac{−3yz}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}-(\frac{−3yz}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}))\textbf{i} \\ +(\frac{−3xz}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}-(\frac{−3xz}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}))\textbf{j} \\ +(\frac{−3xy}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}-(\frac{−3xy}{{({x}^{2}+{y}^{2}+{z}^{2})}^{5\text{/}2}}))\textbf{k}\end{array}\right] \\ & =0.\end{array}$  {eq:fs-id1167793354822}
 
 Since the curl of the gravitational field is zero, the field has no spin.
 :::
@@ -805,5 +805,5 @@ PROBLEM:
 :::
 
 ## Glossary
-- {def} **curl**: the curl of vector field $\textbf{F}=\langle P,Q,R\rangle ,$ denoted $\nabla \;\times \;\textbf{F},$ is the “determinant” of the matrix $|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ P & Q & R\end{array}|$ and is given by the expression $({R}_{y}-{Q}_{z})\textbf{i}+({P}_{z}-{R}_{x})\textbf{j}+({Q}_{x}-{P}_{y})\textbf{k};$ it measures the tendency of particles at a point to rotate about the axis that points in the direction of the curl at the point
+- {def} **curl**: the curl of vector field $\textbf{F}=\langle P,Q,R\rangle ,$ denoted $\nabla \;\times \;\textbf{F},$ is the “determinant” of the matrix $\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ P & Q & R\end{array}\right|$ and is given by the expression $({R}_{y}-{Q}_{z})\textbf{i}+({P}_{z}-{R}_{x})\textbf{j}+({Q}_{x}-{P}_{y})\textbf{k};$ it measures the tendency of particles at a point to rotate about the axis that points in the direction of the curl at the point
 - {def} **divergence**: the divergence of a vector field $\textbf{F}=\langle P,Q,R\rangle ,$ denoted $\nabla \;⋅\;\textbf{F},$ is ${P}_{x}+{Q}_{y}+{R}_{z};$ it measures the “outflowing-ness” of a vector field

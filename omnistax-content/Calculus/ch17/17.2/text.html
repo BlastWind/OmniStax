@@ -180,7 +180,7 @@ $$\begin{array}{rll}\kuprime\kyone+\kvprime\kytwo & = & 0 \\ \kuprime\kyoneprime
 <p>The system of equations</p>
 $$\begin{array}{rll}a_{1}z_{1}+b_{1}z_{2} & = & r_{1} \\ a_{2}z_{1}+b_{2}z_{2} & = & r_{2}\end{array}$$
 <p>has a unique solution if and only if the <span data-concept="determinant">determinant</span> of the coefficients is not zero. In this case, the solution is given by</p>
-$$z_{1}=\frac{|\begin{array}{ll}r_{1} & b_{1} \\ r_{2} & b_{2}\end{array}|}{|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}|}\hspace{2em}\text{and}\hspace{2em}z_{2}=\frac{|\begin{array}{ll}a_{1} & r_{1} \\ a_{2} & r_{2}\end{array}|}{|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}|}.$$
+$$z_{1}=\frac{\left|\begin{array}{ll}r_{1} & b_{1} \\ r_{2} & b_{2}\end{array}\right|}{\left|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}\right|}\hspace{2em}\text{and}\hspace{2em}z_{2}=\frac{\left|\begin{array}{ll}a_{1} & r_{1} \\ a_{2} & r_{2}\end{array}\right|}{\left|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}\right|}.$$
 </div>
 <div class="example" id="fs-id1170572504518">
 <h3>Example 17.15 · Using Cramer’s Rule</h3>
@@ -190,15 +190,15 @@ $$\begin{array}{rll}x^{2}z_{1}+2xz_{2} & = & 0 \\ z_{1}-3x^{2}z_{2} & = & 2x\end
 <p>We have</p>
 $$\begin{array}{rll} \\ \\ a_{1}(x) & = & x^{2} \\ a_{2}(x) & = & 1 \\ b_{1}(x) & = & 2x \\ b_{2}(x) & = & -3x^{2} \\ r_{1}(x) & = & 0 \\ r_{2}(x) & = & 2x\text{.}\end{array}$$
 <p>Then,</p>
-$$|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}|=|\begin{array}{ll}x^{2} & \;2x \\ 1 & -3x^{2}\end{array}|=-3x^{4}-2x$$
+$$\left|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}\right|=\left|\begin{array}{ll}x^{2} & \;2x \\ 1 & -3x^{2}\end{array}\right|=-3x^{4}-2x$$
 <p>and</p>
-$$|\begin{array}{ll}r_{1} & b_{1} \\ r_{2} & b_{2}\end{array}|=|\begin{array}{ll}0 & \;2x \\ 2x & -3x^{2}\end{array}|=0-4x^{2}=-4x^{2}.$$
+$$\left|\begin{array}{ll}r_{1} & b_{1} \\ r_{2} & b_{2}\end{array}\right|=\left|\begin{array}{ll}0 & \;2x \\ 2x & -3x^{2}\end{array}\right|=0-4x^{2}=-4x^{2}.$$
 <p>Thus,</p>
-$$z_{1}=\frac{|\begin{array}{ll}r_{1} & b_{1} \\ r_{2} & b_{2}\end{array}|}{|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}|}=\frac{-4x^{2}}{-3x^{4}-2x}=\frac{4x}{3x^{3}+2}.$$
+$$z_{1}=\frac{\left|\begin{array}{ll}r_{1} & b_{1} \\ r_{2} & b_{2}\end{array}\right|}{\left|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}\right|}=\frac{-4x^{2}}{-3x^{4}-2x}=\frac{4x}{3x^{3}+2}.$$
 <p>In addition,</p>
-$$|\begin{array}{ll}a_{1} & r_{1} \\ a_{2} & r_{2}\end{array}|=|\begin{array}{ll}x^{2} & 0 \\ 1 & 2x\end{array}|=2x^{3}-0=2x^{3}.$$
+$$\left|\begin{array}{ll}a_{1} & r_{1} \\ a_{2} & r_{2}\end{array}\right|=\left|\begin{array}{ll}x^{2} & 0 \\ 1 & 2x\end{array}\right|=2x^{3}-0=2x^{3}.$$
 <p>Thus,</p>
-$$z_{2}=\frac{|\begin{array}{ll}a_{1} & r_{1} \\ a_{2} & r_{2}\end{array}|}{|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}|}=\frac{2x^{3}}{-3x^{4}-2x}=\frac{-2x^{2}}{3x^{3}+2}.$$
+$$z_{2}=\frac{\left|\begin{array}{ll}a_{1} & r_{1} \\ a_{2} & r_{2}\end{array}\right|}{\left|\begin{array}{ll}a_{1} & b_{1} \\ a_{2} & b_{2}\end{array}\right|}=\frac{2x^{3}}{-3x^{4}-2x}=\frac{-2x^{2}}{3x^{3}+2}.$$
 </div>
 <div class="exercises" data-place="fs-id1170572504518"></div>
 <div class="note" id="fs-id1170571789080">
@@ -219,9 +219,9 @@ $$\begin{array}{rll}\kuprime\kyone+\kvprime\kytwo & = & 0 \\ \kuprime\kyoneprime
 <p>a. The <span data-concept="complementary-equation">complementary equation</span> is $\kydprime-2\kyprime+\kyfn=0$ with associated <span data-concept="general-solution">general solution</span> $c_{1}e^{t}+c_{2}te^{t}.$ Therefore, $\kyone(t)=e^{t}$ and $\kytwo(t)=te^{t}.$ Calculating the derivatives, we get $\kyoneprime(t)=e^{t}$ and $\kytwoprime(t)=e^{t}+te^{t}$ (step 1). Then, we want to find functions $\kuprime(t)$ and $\kvprime(t)$ so that</p>
 $$\begin{array}{rll}u^{\prime}e^{t}+v^{\prime}te^{t} & = & 0 \\ u^{\prime}e^{t}+\kvprime(e^{t}+te^{t}) & = & \frac{e^{t}}{t^{2}}.\end{array}$$
 <p>Applying <span data-concept="cramers-rule">Cramer’s rule</span>, we have</p>
-$$\kuprime=\frac{|\begin{array}{lc}0 & te^{t} \\ \frac{e^{t}}{t^{2}} & e^{t}+te^{t}\end{array}|}{|\begin{array}{lc}e^{t} & te^{t} \\ e^{t} & e^{t}+te^{t}\end{array}|}=\frac{0-te^{t}(\frac{e^{t}}{t^{2}})}{e^{t}(e^{t}+te^{t})-e^{t}te^{t}}=\frac{-\frac{e^{2t}}{t}}{e^{2t}}=-\frac{1}{t}$$
+$$\kuprime=\frac{\left|\begin{array}{lc}0 & te^{t} \\ \frac{e^{t}}{t^{2}} & e^{t}+te^{t}\end{array}\right|}{\left|\begin{array}{lc}e^{t} & te^{t} \\ e^{t} & e^{t}+te^{t}\end{array}\right|}=\frac{0-te^{t}(\frac{e^{t}}{t^{2}})}{e^{t}(e^{t}+te^{t})-e^{t}te^{t}}=\frac{-\frac{e^{2t}}{t}}{e^{2t}}=-\frac{1}{t}$$
 <p>and</p>
-$$\kvprime=\frac{|\begin{array}{ll}e^{t} & 0 \\ e^{t} & \frac{e^{t}}{t^{2}}\end{array}|}{|\begin{array}{lc}e^{t} & te^{t} \\ e^{t} & e^{t}+te^{t}\end{array}|}=\frac{e^{t}(\frac{e^{t}}{t^{2}})}{e^{2t}}=\frac{1}{t^{2}}\;\text{(step 2).}$$
+$$\kvprime=\frac{\left|\begin{array}{ll}e^{t} & 0 \\ e^{t} & \frac{e^{t}}{t^{2}}\end{array}\right|}{\left|\begin{array}{lc}e^{t} & te^{t} \\ e^{t} & e^{t}+te^{t}\end{array}\right|}=\frac{e^{t}(\frac{e^{t}}{t^{2}})}{e^{2t}}=\frac{1}{t^{2}}\;\text{(step 2).}$$
 <p>Integrating, we get</p>
 $$\begin{array}{l} \\ \\ \kufn=-\int \frac{1}{t}dt =-\ln |t| \\ \kv=\int \frac{1}{t^{2}} dt=-\frac{1}{t}\;\text{(step 3).}\end{array}$$
 <p>Then we have</p>
@@ -231,9 +231,9 @@ $$\kyfn(t)=c_{1}e^{t}+c_{2}te^{t}-e^{t}\ln |t|\;\text{(step 5).}$$
 <p>b. The <span data-concept="complementary-equation">complementary equation</span> is $\kydprime+\kyfn=0$ with associated <span data-concept="general-solution">general solution</span> $c_{1}\cos x+c_{2}\sin x\text{.}$ So, $\kyone(x)=\cos x$ and $\kytwo(x)=\sin x$ (step 1). Then, we want to find functions $\kuprime(x)$ and $\kvprime(x)$ such that</p>
 $$\begin{array}{lll}\kuprime\cos x+\kvprime\sin x & = & 0 \\ -\kuprime\sin x+\kvprime\cos x & = & 3\;{\sin }^{2}x\text{.}\end{array}$$
 <p>Applying <span data-concept="cramers-rule">Cramer’s rule</span>, we have</p>
-$$\kuprime=\frac{|\begin{array}{cl}0 & \sin x \\ 3\;{\sin }^{2}x & \cos x\end{array}|}{|\begin{array}{ll}\cos x & \sin x \\ -\sin x & \cos x\end{array}|}=\frac{0-3\;{\sin }^{3}x}{{\cos }^{2}x+{\sin }^{2}x}=-3\;{\sin }^{3}x$$
+$$\kuprime=\frac{\left|\begin{array}{cl}0 & \sin x \\ 3\;{\sin }^{2}x & \cos x\end{array}\right|}{\left|\begin{array}{ll}\cos x & \sin x \\ -\sin x & \cos x\end{array}\right|}=\frac{0-3\;{\sin }^{3}x}{{\cos }^{2}x+{\sin }^{2}x}=-3\;{\sin }^{3}x$$
 <p>and</p>
-$$\kvprime=\frac{|\begin{array}{lc}\cos x & 0 \\ -\sin x & 3\;{\sin }^{2}x\end{array}|}{|\begin{array}{ll}\cos x & \sin x \\ -\sin x & \cos x\end{array}|}=\frac{3\;{\sin }^{2}x\;\cos x}{1}=3\;{\sin }^{2}x\;\cos x\;\text{(step 2).}$$
+$$\kvprime=\frac{\left|\begin{array}{lc}\cos x & 0 \\ -\sin x & 3\;{\sin }^{2}x\end{array}\right|}{\left|\begin{array}{ll}\cos x & \sin x \\ -\sin x & \cos x\end{array}\right|}=\frac{3\;{\sin }^{2}x\;\cos x}{1}=3\;{\sin }^{2}x\;\cos x\;\text{(step 2).}$$
 <p>Integrating first to find <em>u</em>, we get</p>
 $$\kufn=\int -3\;{\sin }^{3}x dx=-3[-\frac{1}{3}{\sin }^{2}x\;\cos x+\frac{2}{3}\int \sin x dx]={\sin }^{2}x\;\cos x+2\;\cos x\text{.}$$
 <p>Now, we integrate to find <em>v</em>. Using substitution (with $w=\sin x$), we get</p>

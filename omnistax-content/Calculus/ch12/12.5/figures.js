@@ -53,14 +53,14 @@ const square = (p, a, b, s = 0.45) => { const A = SP.mul(SP.unit(a), s), B = SP.
     line(ctx, X(M), Y(M), X(foot), Y(foot), PAL.ink, 3, [4, 8]);
     text(ctx, '$d$', (X(M) + X(foot)) / 2 + 16, (Y(M) + Y(foot)) / 2, PAL.ink, { size: 22, align: 'left', tex: true, bg: PAL.panel });
     arrow(ctx, X(P), Y(P), X(M), Y(M), col, 5); arrow(ctx, X(P), Y(P), X(c[1]), Y(c[1]), col, 5);
-    text(ctx, '$\\vec{PM}$', (X(P) + X(M)) / 2 - 30, (Y(P) + Y(M)) / 2, col, { size: 22, align: 'right', tex: true, bg: PAL.panel });
+    text(ctx, '$\\kPM$', (X(P) + X(M)) / 2 - 30, (Y(P) + Y(M)) / 2, col, { size: 22, align: 'right', tex: true, bg: PAL.panel });
     text(ctx, '$\\kvecv$', (X(P) + X(c[1])) / 2, (Y(P) + Y(c[1])) / 2 + 26, col, { size: 24, weight: 600, align: 'center', tex: true, bg: PAL.panel });
     dot(ctx, X(P), Y(P), C('point'), true, 8); dot(ctx, X(M), Y(M), C('point'), true, 8);
     text(ctx, '$P$', X(P) - 14, Y(P) + 22, C('point'), { size: 22, align: 'right', tex: true, bg: PAL.panel }); text(ctx, '$M$', X(M) + 14, Y(M) - 16, C('point'), { size: 22, align: 'left', tex: true, bg: PAL.panel });
     text(ctx, '$L$', X([A[0] + 3.6 * V[0], 0]), Y([0, A[1] + 3.6 * V[1]]) + 24, C('line'), { size: 22, align: 'center', tex: true, bg: PAL.panel });
     const area = Math.abs(PM[0] * V[1] - PM[1] * V[0]), nv = Math.sqrt(vv);
     headline(ctx, `Wherever $P$ sits on $L$, the parallelogram has area ${n(area, 2)} over base ${n(nv, 2)}: $d=${n(area / nv, 2)}$.`);
-    tex(d.readout, `d=\\frac{\\|\\vec{PM}\\times\\kvecv\\|}{\\|\\kvecv\\|}=\\frac{${n(area, 2)}}{${n(nv, 3)}}=${n(area / nv, 3)}`);
+    tex(d.readout, `d=\\frac{\\|\\kPM\\times\\kvecv\\|}{\\|\\kvecv\\|}=\\frac{${n(area, 2)}}{${n(nv, 3)}}=${n(area / nv, 3)}`);
   });
 })();
 
@@ -153,9 +153,9 @@ const square = (p, a, b, s = 0.45) => { const A = SP.mul(SP.unit(a), s), B = SP.
     const Q = SP.add(Q0, SP.add(SP.mul(e1, ss.v), SP.mul(e2, ts.v))), QP = SP.sub(P, Q), k = SP.dot(QP, N) / SP.dot(N, N), pr = SP.mul(N, k), R = SP.sub(P, pr), col = C('vector');
     S.set('axes', SP.axes(box, { ticks: 2 }));
     S.set('plane', SP.plane(Q0, N, C('plane'), { size: 3.2, alpha: 0.35 }));
-    S.set('vec', [...SP.vector(Q, P, col, { name: '$\\vec{QP}$' }), ...SP.vector(Q, SP.add(Q, pr), alpha(col, 0.6), { name: '$\\text{proj}_{\\kvecn}\\vec{QP}$', w: 4 }),
+    S.set('vec', [...SP.vector(Q, P, col, { name: '$\\kQP$' }), ...SP.vector(Q, SP.add(Q, pr), alpha(col, 0.6), { name: '$\\text{proj}_{\\kvecn}\\kQP$', w: 4 }),
       seg(R, P, 'ink', 3, [4, 8]), seg(SP.add(Q, pr), P, 'guide', 2, [10, 10]), ...SP.point(P, C('point'), { name: '$P$' }), ...SP.point(Q, C('point'), { name: '$Q$' }), ...SP.point(R, C('point'), { name: '$R$' })]);
-    tex(d.readout, `d=\\frac{|\\vec{QP}\\cdot\\kvecn|}{\\|\\kvecn\\|}=\\frac{|${n(SP.dot(QP, N), 2)}|}{\\sqrt{6}}=${n(Math.abs(SP.dot(QP, N)) / Math.sqrt(6), 3)}`);
+    tex(d.readout, `d=\\frac{|\\kQP\\cdot\\kvecn|}{\\|\\kvecn\\|}=\\frac{|${n(SP.dot(QP, N), 2)}|}{\\sqrt{6}}=${n(Math.abs(SP.dot(QP, N)) / Math.sqrt(6), 3)}`);
   });
 })();
 

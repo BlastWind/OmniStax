@@ -171,7 +171,7 @@ In the Cartesian coordinate system, the location of a point in space is describe
 In the {term:spherical coordinate system}, a point $P$ in space ([ref:CNX_Calc_Figure_12_07_011]) is represented by the ordered triple $(ρ,\theta ,φ)$ where
 - $ρ$ (the Greek letter rho) is the distance between $P$ and the origin $(ρ≠0);$
 - $\theta$ is the same angle used to describe the location in cylindrical coordinates;
-- $φ$ (the Greek letter phi) is the angle formed by the positive *z*-axis and line segment $\bar{OP},$ where $O$ is the origin and $0\le φ\le \pi .$
+- $φ$ (the Greek letter phi) is the angle formed by the positive *z*-axis and line segment $\overline{OP},$ where $O$ is the origin and $0\le φ\le \pi .$
 :::
 
 > FIGURE {fig:CNX_Calc_Figure_12_07_011} src=../../media/CNX_Calc_Figure_12_07_009.jpg
@@ -397,7 +397,7 @@ What kinds of symmetry are present in this situation?
 - In the cylindrical coordinate system, a point in space is represented by the ordered triple $(r,\theta ,z),$ where $(r,\theta )$ represents the polar coordinates of the point’s projection in the *xy*-plane and $z$ represents the point’s projection onto the *z*-axis.
 - To convert a point from cylindrical coordinates to Cartesian coordinates, use equations $x=r\;\text{cos}\;\theta ,$ $y=r\;\text{sin}\;\theta ,$ and $z=z.$
 - To convert a point from Cartesian coordinates to cylindrical coordinates, use equations ${r}^{2}={x}^{2}+{y}^{2},$ $\text{tan}\;\theta =\frac{y}{x},$ and $z=z.$
-- In the spherical coordinate system, a point $P$ in space is represented by the ordered triple $(ρ,\theta ,φ),$ where $ρ$ is the distance between $P$ and the origin $(ρ≠0),$ $\theta$ is the same angle used to describe the location in cylindrical coordinates, and $φ$ is the angle formed by the positive *z*-axis and line segment $\bar{OP},$ where $O$ is the origin and $0\le φ\le \pi .$
+- In the spherical coordinate system, a point $P$ in space is represented by the ordered triple $(ρ,\theta ,φ),$ where $ρ$ is the distance between $P$ and the origin $(ρ≠0),$ $\theta$ is the same angle used to describe the location in cylindrical coordinates, and $φ$ is the angle formed by the positive *z*-axis and line segment $\overline{OP},$ where $O$ is the origin and $0\le φ\le \pi .$
 - To convert a point from spherical coordinates to Cartesian coordinates, use equations $x=ρ\;\text{sin}\;φ\;\text{cos}\;\theta ,$ $y=ρ\;\text{sin}\;φ\;\text{sin}\;\theta ,$ and $z=ρ\;\text{cos}\;φ.$
 - To convert a point from Cartesian coordinates to spherical coordinates, use equations ${ρ}^{2}={x}^{2}+{y}^{2}+{z}^{2},$ $\text{tan}\;\theta =\frac{y}{x},$ and $φ=\text{arccos}(\frac{z}{\sqrt{{x}^{2}+{y}^{2}+{z}^{2}}}).$
 - To convert a point from spherical coordinates to cylindrical coordinates, use equations $r=ρ\;\text{sin}\;φ,$ $\theta =\theta ,$ and $z=ρ\;\text{cos}\;φ.$
@@ -754,7 +754,7 @@ A spherical shell determined by the region between two concentric spheres center
 PROBLEM:
 A solid inside sphere ${x}^{2}+{y}^{2}+{z}^{2}=9$ and outside cylinder ${(x-\frac{3}{2})}^{2}+{y}^{2}=\frac{9}{4}$
 SOLUTION:
-Cylindrical system, $\{\begin{array}{l}(r,\theta ,z)|{r}^{2}+{z}^{2}\le 9,r\ge 0,\frac{\pi}{2}\le \theta \le \frac{3\pi}{2} \\ ,(r\ge 3cos\theta ,-\frac{\pi}{2}\le \theta \le \frac{\pi}{2})\end{array}\}$
+Cylindrical system, $\left\{\begin{array}{l}(r,\theta ,z)|{r}^{2}+{z}^{2}\le 9,r\ge 0,\frac{\pi}{2}\le \theta \le \frac{3\pi}{2} \\ ,(r\ge 3cos\theta ,-\frac{\pi}{2}\le \theta \le \frac{\pi}{2})\end{array}\right\}$
 :::
 
 :::exercise {fs-id1163723073200} type= 
@@ -1028,4 +1028,4 @@ More, $59.09$ J
 
 ## Glossary
 - {def} **cylindrical coordinate system**: a way to describe a location in space with an ordered triple $(r,\theta ,z),$ where $(r,\theta )$ represents the polar coordinates of the point’s projection in the *xy*-plane, and $z$ represents the point’s projection onto the *z*-axis
-- {def} **spherical coordinate system**: a way to describe a location in space with an ordered triple $(ρ,\theta ,φ),$ where $ρ$ is the distance between $P$ and the origin $(ρ≠0),$ $\theta$ is the same angle used to describe the location in cylindrical coordinates, and $φ$ is the angle formed by the positive *z*-axis and line segment $\bar{OP},$ where $O$ is the origin and $0\le φ\le \pi$
+- {def} **spherical coordinate system**: a way to describe a location in space with an ordered triple $(ρ,\theta ,φ),$ where $ρ$ is the distance between $P$ and the origin $(ρ≠0),$ $\theta$ is the same angle used to describe the location in cylindrical coordinates, and $φ$ is the angle formed by the positive *z*-axis and line segment $\overline{OP},$ where $O$ is the origin and $0\le φ\le \pi$

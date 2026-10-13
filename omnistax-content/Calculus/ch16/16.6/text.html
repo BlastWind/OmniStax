@@ -95,7 +95,7 @@ $$\kvecr(u,v)=\langle (2+\cos v)\cos u,(2+\cos v)\sin u,\sin v\rangle ,0\le u\lt
 <p>(we can use technology to verify). Notice that vectors</p>
 $${\kvecr}_{u}=\langle -(2+\cos v)\sin u,(2+\cos v)\cos u,0\rangle \;\text{and}\;{\kvecr}_{v}=\langle -\sin v\;\cos u,-\sin v\;\sin u,\cos v\rangle$$
 <p>exist for any choice of $u$ and $v$ in the <span data-concept="parameter-domain">parameter domain</span>, and</p>
-$$\begin{array}{rl}{\kvecr}_{u}\;\times \;{\kvecr}_{v} & =|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ -(2+\cos v)\sin u & (2+\cos v)\cos u & 0 \\ -\sin v\;\cos u & -\sin v\;\sin u & \cos v\end{array}| \\ & =[(2+\cos v)\cos u\;\cos v]\kveci+[(2+\cos v)\sin u\;\cos v]\kvecj \\ & \;+[(2+\cos v)\sin v\;{\sin }^{2}u+(2+\cos v)\sin v\;{\cos }^{2}u]\kveck \\ & =[(2+\cos v)\cos u\;\cos v]\kveci+[(2+\cos v)\sin u\;\cos v]\kvecj+[(2+\cos v)\sin v]\kveck.\end{array}$$
+$$\begin{array}{rl}{\kvecr}_{u}\;\times \;{\kvecr}_{v} & =\left|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ -(2+\cos v)\sin u & (2+\cos v)\cos u & 0 \\ -\sin v\;\cos u & -\sin v\;\sin u & \cos v\end{array}\right| \\ & =[(2+\cos v)\cos u\;\cos v]\kveci+[(2+\cos v)\sin u\;\cos v]\kvecj \\ & \;+[(2+\cos v)\sin v\;{\sin }^{2}u+(2+\cos v)\sin v\;{\cos }^{2}u]\kveck \\ & =[(2+\cos v)\cos u\;\cos v]\kveci+[(2+\cos v)\sin u\;\cos v]\kvecj+[(2+\cos v)\sin v]\kveck.\end{array}$$
 <p>The <strong>k</strong> component of this vector is zero only if $v=0$ or $v=\pi .$ If $v=0$ or $v=\pi ,$ then the only choices for $u$ that make the <strong>j</strong> component zero are $u=0$ or $u=\pi .$ But, these choices of $u$ do not make the <strong>i</strong> component zero. Therefore, ${\kvecr}_{u}\;\times \;{\kvecr}_{v}$ is not zero for any choice of $u$ and $v$ in the <span data-concept="parameter-domain">parameter domain</span>, and the parameterization is smooth. Notice that the corresponding surface has no sharp corners.</p>
 <p>In the pyramid in Figure 16.64(b), the sharpness of the corners ensures that directional derivatives do not exist at those locations. Therefore, the pyramid has no smooth parameterization. However, the pyramid consists of five smooth faces, and thus this surface is <span data-concept="regular-parameterization">piecewise smooth</span>.</p>
 </div>
@@ -137,7 +137,7 @@ $$\mathbf{s}(u,v)=\langle kv\;\cos u,kv\;\sin u,v\rangle ,0\le u\lt 2\pi ,0\le v
   <div class="sim-head"><span class="eyebrow">Figure 16.68</span><span>The right circular cone with radius $r=kh$ and height $h$ has parameterization $\mathbf{s}(u,v)=\langle kv\;\cos u,kv\;\sin u,v\rangle ,0\le u\lt 2\pi ,0\le v\le h.$ Change $r$ and $h$ and its lateral <span data-concept="surface-area-of-a-parametric-surface">surface area</span> follows $\pi r\sqrt{h^{2}+r^{2}}.$</span></div>
 </figure>
 <p>With a parameterization in hand, we can calculate the <span data-concept="surface-area-of-a-parametric-surface">surface area</span> of the cone using <a href="#fs-id1167793991244">Equation 16.18</a>. The tangent vectors are $\kvectu=\langle -kv\;\sin u,kv\;\cos u,0\rangle$ and $\kvectv=\langle k\;\cos u,k\;\sin u,1\rangle .$ Therefore,</p>
-$$\begin{array}{rl}\kvectu\;\times \;\kvectv & =|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ -kv\;\sin u & kv\;\cos u & 0 \\ k\;\cos u & k\;\sin u & 1\end{array}| \\ & =\langle kv\;\cos u,kv\;\sin u,-k^{2}v\;{\sin }^{2}u-k^{2}v\;{\cos }^{2}u\rangle \\ & =\langle kv\;\cos u,kv\;\sin u,-k^{2}v\rangle .\end{array}$$
+$$\begin{array}{rl}\kvectu\;\times \;\kvectv & =\left|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ -kv\;\sin u & kv\;\cos u & 0 \\ k\;\cos u & k\;\sin u & 1\end{array}\right| \\ & =\langle kv\;\cos u,kv\;\sin u,-k^{2}v\;{\sin }^{2}u-k^{2}v\;{\cos }^{2}u\rangle \\ & =\langle kv\;\cos u,kv\;\sin u,-k^{2}v\rangle .\end{array}$$
 <p>The magnitude of this vector is</p>
 $$\begin{array}{rl}\| \langle kv\;\cos u,kv\;\sin u,-k^{2}v\rangle \| & =\sqrt{k^{2}v^{2}{\cos }^{2}u+k^{2}v^{2}{\sin }^{2}u+k^{4}v^{2}} \\ & =\sqrt{k^{2}v^{2}+k^{4}v^{2}} \\ & =kv\sqrt{1+k^{2}}.\end{array}$$
 <p>By <a href="#fs-id1167793991244">Equation 16.18</a>, the <span data-concept="surface-area-of-a-parametric-surface">surface area</span> of the cone is</p>
@@ -221,7 +221,7 @@ $$\int_{C}\kf(x,y,z)ds =\int_a^{b}f(\kvecr(t)) \| \kvecrprime(t)\| dt.$$
 <h4>Solution</h4>
 <p>Notice that this <span data-concept="parameter-domain">parameter domain</span> $\kD$ is a triangle, and therefore the <span data-concept="parameter-domain">parameter domain</span> is not rectangular. This is not an issue though, because <a href="#fs-id1167793757749">Equation 16.19</a> does not place any restrictions on the shape of the <span data-concept="parameter-domain">parameter domain</span>.</p>
 <p>To use <a href="#fs-id1167793757749">Equation 16.19</a> to calculate the <span data-concept="surface-integral">surface integral</span>, we first find vector $\kvectu$ and $\kvectv.$ Note that $\kvectu=\langle 1,2u,0\rangle$ and $\kvectv=\langle 0,0,1\rangle .$ Therefore,</p>
-$$\kvectu\;\times \;\kvectv=|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ 1 & 2u & 0 \\ 0 & 0 & 1\end{array}|=\langle 2u,-1,0\rangle$$
+$$\kvectu\;\times \;\kvectv=\left|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ 1 & 2u & 0 \\ 0 & 0 & 1\end{array}\right|=\langle 2u,-1,0\rangle$$
 <p>and</p>
 $$\| \kvectu\;\times \;\kvectv\| =\sqrt{1+4u^{2}}.$$
 <p>By <a href="#fs-id1167793757749">Equation 16.19</a>,</p>
@@ -237,7 +237,7 @@ $$\begin{array}{rl}\iint_{S}5 dS & =5\iint_{D}\sqrt{1+4u^{2}} dA \\ & =5\int_0^{
 <p>To calculate the <span data-concept="surface-integral">surface integral</span>, we first need a parameterization of the cylinder. Following <a href="#fs-id1167793711076">Example 16.58</a>, a parameterization is</p>
 $$\kvecr(u,v)=\langle 2\cos u,2\sin u,v\rangle ,0\le u\le 2\pi ,0\le v\le 3.$$
 <p>The tangent vectors are $\kvectu=\langle -2\sin u,2\cos u,0\rangle$ and $\kvectv=\langle 0,0,1\rangle .$ Then,</p>
-$$\kvectu\;\times \;\kvectv=|\begin{array}{lll}\kveci & \kvecj & \kveck \\ -2\sin u & 2\cos u & 0 \\ 0 & 0 & 1\end{array}|=\langle 2\cos u,2\sin u,0\rangle$$
+$$\kvectu\;\times \;\kvectv=\left|\begin{array}{lll}\kveci & \kvecj & \kveck \\ -2\sin u & 2\cos u & 0 \\ 0 & 0 & 1\end{array}\right|=\langle 2\cos u,2\sin u,0\rangle$$
 <p>and $\| \kvectu\;\times \;\kvectv\| =\sqrt{{4\cos }^{2}u+{4\sin }^{2}u}=2.$ By <a href="#fs-id1167793757749">Equation 16.19</a>,</p>
 $$\begin{array}{l}\; \\ \; \\ \; \\ \hspace{1.2em}\iint_{S}\kf(x,y,z)dS=\iint_{D}f(\kvecr(u,v))\| \kvectu\;\times \;\kvectv\| \;dA \\ =\int_0^{3}\int_0^{2\pi}(2\cos u+4{\sin }^{2}u)2dudv \\ =2\int_0^{3}{[2\sin u+2u-\sin(2u)]}_0^{2\pi}dv=2\int_0^{3}4\pi dv=24\pi .\end{array}$$
 </div>
@@ -253,7 +253,7 @@ $$\begin{array}{l}\; \\ \; \\ \; \\ \hspace{1.2em}\iint_{S}\kf(x,y,z)dS=\iint_{D
 <p>First, we calculate $\iint_{S_{1}}z^{2}dS .$ To calculate this integral we need a parameterization of $S_{1}.$ This surface is a disk in plane $z=1$ centered at $(0,0,1).$ To parameterize this disk, we need to know its radius. Since the disk is formed where plane $z=1$ intersects sphere $x^{2}+y^{2}+z^{2}=4,$ we can substitute $z=1$ into equation $x^{2}+y^{2}+z^{2}=4\text{:}$</p>
 $$x^{2}+y^{2}+1=4⇒x^{2}+y^{2}=3.$$
 <p>Therefore, the radius of the disk is $\sqrt{3}$ and a parameterization of $S_{1}$ is $\kvecr(u,v)=\langle u\;\cos v,u\;\sin v,1\rangle ,0\le u\le \sqrt{3},0\le v\le 2\pi .$ The tangent vectors are $\kvectu=\langle \cos v,\sin v,0\rangle$ and $\kvectv=\langle -u\;\sin v,ucosv,0\rangle ,$ and thus</p>
-$$\kvectu\;\times \;\kvectv=|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ \cos v & \sin v & 0 \\ -u\;\sin v & u\;\cos v & 0\end{array}|=\langle 0,0,u\;{\cos }^{2}v+u\;{\sin }^{2}v\rangle =\langle 0,0,u\rangle .$$
+$$\kvectu\;\times \;\kvectv=\left|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ \cos v & \sin v & 0 \\ -u\;\sin v & u\;\cos v & 0\end{array}\right|=\langle 0,0,u\;{\cos }^{2}v+u\;{\sin }^{2}v\rangle =\langle 0,0,u\rangle .$$
 <p>The magnitude of this vector is $u$. Therefore,</p>
 $$\begin{array}{rl}\iint_{S_{1}}z^{2}dS & =\int_0^{\sqrt{3}}\int_0^{2\pi}f(\kvecr(u,v)) \| \kvectu\;\times \;\kvectv\| \;dv\;du \\ & =\int_0^{\sqrt{3}}\int_0^{2\pi}u \;dv\;du \\ & =2\pi \int_0^{\sqrt{3}}udu \\ & =3\pi .\end{array}$$
 <p>Now we calculate $\iint_{S_{2}}dS .$<sup class="fn" data-note="c-sphere-piece"></sup> To calculate this integral, we need a parameterization of $S_{2}.$ The parameterization of full sphere $x^{2}+y^{2}+z^{2}=4$ is</p>
@@ -267,7 +267,7 @@ $$\kvecr(\varphi ,\theta )=\langle 2\;\cos \theta \;\sin \varphi ,2\;\sin \theta
 <p>The tangent vectors are</p>
 $${\mathbf{t}}_{\varphi }=\langle 2\;\cos \theta \;\cos \varphi ,2\;\sin \theta \;\cos \varphi ,-2\;\sin \varphi \rangle \;\text{and}\;{\mathbf{t}}_{\theta}=\langle -2\;\sin \theta \;\sin \varphi ,u\;\cos \theta \;\sin \varphi ,0\rangle ,$$
 <p>and thus</p>
-$$\begin{array}{rl}{\mathbf{t}}_{\varphi }\;\times \;{\mathbf{t}}_{\theta} & =|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ 2\;\cos \theta \;\cos \varphi  & 2\;\sin \theta \;\cos \varphi  & -2\;\sin \varphi \\ -2\;\sin \theta \;\sin \varphi  & 2\;\cos \theta \;\sin \varphi  & 0\end{array}| \\ & =\langle 4\;\cos \theta \;{\sin }^{2}\varphi ,4\;\sin \theta \;{\sin }^{2}\varphi ,4\;{\cos }^{2}\theta \;\cos \varphi \;\sin \varphi +4\;{\sin }^{2}\theta \;\cos \varphi \;\sin \varphi \rangle \\ & =\langle 4\;\cos \theta \;{\sin }^{2}\varphi ,4\;\sin \theta \;{\sin }^{2}\varphi ,4\;\cos \varphi \;\sin \varphi \rangle .\end{array}$$
+$$\begin{array}{rl}{\mathbf{t}}_{\varphi }\;\times \;{\mathbf{t}}_{\theta} & =\left|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ 2\;\cos \theta \;\cos \varphi  & 2\;\sin \theta \;\cos \varphi  & -2\;\sin \varphi \\ -2\;\sin \theta \;\sin \varphi  & 2\;\cos \theta \;\sin \varphi  & 0\end{array}\right| \\ & =\langle 4\;\cos \theta \;{\sin }^{2}\varphi ,4\;\sin \theta \;{\sin }^{2}\varphi ,4\;{\cos }^{2}\theta \;\cos \varphi \;\sin \varphi +4\;{\sin }^{2}\theta \;\cos \varphi \;\sin \varphi \rangle \\ & =\langle 4\;\cos \theta \;{\sin }^{2}\varphi ,4\;\sin \theta \;{\sin }^{2}\varphi ,4\;\cos \varphi \;\sin \varphi \rangle .\end{array}$$
 <p>The magnitude of this vector is</p>
 $$\begin{array}{rl}\| {\mathbf{t}}_{\varphi }\;\times \;{\mathbf{t}}_{\theta}\| & =\sqrt{16\;{\cos }^{2}\theta \;{\sin }^{4}\varphi +16\;{\sin }^{2}\theta \;{\sin }^{4}\varphi +16\;{\cos }^{2}\varphi \;{\sin }^{2}\varphi } \\ & =4\sqrt{{\sin }^{4}\varphi +{\cos }^{2}\varphi \;{\sin }^{2}\varphi }.\end{array}$$
 <p>Therefore,</p>

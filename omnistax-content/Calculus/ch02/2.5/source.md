@@ -513,12 +513,12 @@ Let $δ={ε}^{2}.$ If $5-{ε}^{2}<x<5,$ then $|\sqrt{5-x}|=\sqrt{5-x}<ε.$
 
 :::exercise {fs-id1170572217461} type= 
 PROBLEM:
-$\lim_{x\to {0}^{+}}f(x)=−2,\;\text{where}\;f(x)=\{\begin{array}{l}8x-3,\;\text{if}\;x<0 \\ 4x-2,\;\text{if}\;x\ge 0\end{array}.$
+$\lim_{x\to {0}^{+}}f(x)=−2,\;\text{where}\;f(x)=\left\{\begin{array}{l}8x-3,\;\text{if}\;x<0 \\ 4x-2,\;\text{if}\;x\ge 0\end{array}\right..$
 :::
 
 :::exercise {fs-id1170571547600} type= 
 PROBLEM:
-$\lim_{x\to {1}^{-}}f(x)=3,\;\text{where}\;f(x)=\{\begin{array}{l}5x-2,\;\text{if}\;x<1 \\ 7x-1,\;\text{if}\;x\ge 1\end{array}.$
+$\lim_{x\to {1}^{-}}f(x)=3,\;\text{where}\;f(x)=\left\{\begin{array}{l}5x-2,\;\text{if}\;x<1 \\ 7x-1,\;\text{if}\;x\ge 1\end{array}\right..$
 SOLUTION:
 Let $δ=ε\text{/}5.$ If $1-ε\text{/}5<x<1,$ then $|f(x)-3|=5x-5<ε.$
 :::
@@ -562,12 +562,12 @@ Answers may vary.
 
 :::exercise {fs-id1170571699078} type= 
 PROBLEM:
-Using precise definitions of limits, prove that $\lim_{x\to 0}f(x)$ does not exist: $f(x)=\{\begin{array}{l}1\;\text{if}\;x\;\text{is rational} \\ 0\;\text{if}\;x\;\text{is irrational}\end{array}.$ (*Hint*: Think about how you can always choose a rational number $0<r<d,$ but $|f(r)-0|=1\text{.)}$
+Using precise definitions of limits, prove that $\lim_{x\to 0}f(x)$ does not exist: $f(x)=\left\{\begin{array}{l}1\;\text{if}\;x\;\text{is rational} \\ 0\;\text{if}\;x\;\text{is irrational}\end{array}\right..$ (*Hint*: Think about how you can always choose a rational number $0<r<d,$ but $|f(r)-0|=1\text{.)}$
 :::
 
 :::exercise {fs-id1170572444404} type= 
 PROBLEM:
-Using precise definitions of limits, determine $\lim_{x\to 0}f(x)$ for $f(x)=\{\begin{array}{l}x\;\text{if}\;x\;\text{is rational} \\ 0\;\text{if}\;x\;\text{is irrational}\end{array}.$ (*Hint*: Break into two cases, *x* rational and *x* irrational.)
+Using precise definitions of limits, determine $\lim_{x\to 0}f(x)$ for $f(x)=\left\{\begin{array}{l}x\;\text{if}\;x\;\text{is rational} \\ 0\;\text{if}\;x\;\text{is irrational}\end{array}\right..$ (*Hint*: Break into two cases, *x* rational and *x* irrational.)
 SOLUTION:
 0
 :::
@@ -721,12 +721,12 @@ In the following exercises, determine the value of *c* such that the function re
 
 :::exercise {fs-id1170571697209} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}{x}^{2}+1,x>c \\ 2x,x\le c\end{array}$
+$f(x)=\left\{\begin{array}{l}{x}^{2}+1,x>c \\ 2x,x\le c\end{array}\right.$
 :::
 
 :::exercise {fs-id1170571539172} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}\sqrt{x+1},x>\text{−}1 \\ {x}^{2}+c,x\le -1\end{array}$
+$f(x)=\left\{\begin{array}{l}\sqrt{x+1},x>\text{−}1 \\ {x}^{2}+c,x\le -1\end{array}\right.$
 SOLUTION:
 $c=−1$
 :::

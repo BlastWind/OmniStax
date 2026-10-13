@@ -73,7 +73,7 @@ Let’s begin by trying to calculate $f(2).$ We can see that $f(2)=0\text{/}0,$ 
 
 :::exercise {fs-id1170571098221} type= 
 PROBLEM:
-Using the definition, determine whether the function $f(x)=\{\begin{array}{ll}-{x}^{2}+4 & \text{if}\;x\le 3 \\ 4x-8 & \text{if}\;x>3\end{array}$ is continuous at $x=3.$ Justify the conclusion.
+Using the definition, determine whether the function $f(x)=\left\{\begin{array}{ll}-{x}^{2}+4 & \text{if}\;x\le 3 \\ 4x-8 & \text{if}\;x>3\end{array}\right.$ is continuous at $x=3.$ Justify the conclusion.
 SOLUTION:
 Let’s begin by trying to calculate $f(3).$
 
@@ -100,7 +100,7 @@ Therefore, $\lim_{x\to 3}f(x)$ does not exist. Thus, $f(x)$ is not continuous at
 
 :::exercise {fs-id1170571048204} type= 
 PROBLEM:
-Using the definition, determine whether the function $f(x)=\{\begin{array}{ll}\frac{\text{sin}\;x}{x} & \text{if}\;x≠0 \\ 1 & \text{if}\;x=0\end{array}$ is continuous at $x=0.$
+Using the definition, determine whether the function $f(x)=\left\{\begin{array}{ll}\frac{\text{sin}\;x}{x} & \text{if}\;x≠0 \\ 1 & \text{if}\;x=0\end{array}\right.$ is continuous at $x=0.$
 SOLUTION:
 First, observe that
 
@@ -122,7 +122,7 @@ Since all three of the conditions in the definition of continuity are satisfied,
 
 :::exercise {fs-id1170573288457} type= 
 PROBLEM:
-Using the definition, determine whether the function $f(x)=\{\begin{array}{ll}2x+1 & \text{if}\;x<1 \\ 2 & \text{if}\;x=1 \\ -x+4 & \text{if}\;x>1\end{array}$ is continuous at $x=1.$ If the function is not continuous at 1, indicate the condition for continuity at a point that fails to hold.
+Using the definition, determine whether the function $f(x)=\left\{\begin{array}{ll}2x+1 & \text{if}\;x<1 \\ 2 & \text{if}\;x=1 \\ -x+4 & \text{if}\;x>1\end{array}\right.$ is continuous at $x=1.$ If the function is not continuous at 1, indicate the condition for continuity at a point that fails to hold.
 SOLUTION:
 *f* is not continuous at 1 because $f(1)=2≠3=\lim_{x\to 1}f(x).$
 COMMENTARY: Hint
@@ -196,7 +196,7 @@ Since *f* is discontinuous at 2 and $\lim_{x\to 2}f(x)$ exists, *f* has a remova
 
 :::exercise {fs-id1170573507547} type= 
 PROBLEM:
-In [ref:fs-id1170573389760], we showed that $f(x)=\{\begin{array}{ll}-{x}^{2}+4 & \text{if}\;x\le 3 \\ 4x-8 & \text{if}\;x>3\end{array}$ is discontinuous at $x=3.$ Classify this discontinuity as removable, jump, or infinite.
+In [ref:fs-id1170573389760], we showed that $f(x)=\left\{\begin{array}{ll}-{x}^{2}+4 & \text{if}\;x\le 3 \\ 4x-8 & \text{if}\;x>3\end{array}\right.$ is discontinuous at $x=3.$ Classify this discontinuity as removable, jump, or infinite.
 SOLUTION:
 Earlier, we showed that *f* is discontinuous at 3 because $\lim_{x\to 3}f(x)$ does not exist. However, since $\lim_{x\to {3}^{-}}f(x)=−5$ and $\lim_{x\to {3}^{+}}f(x)=4$ both exist, we conclude that the function has a jump discontinuity at 3.
 :::
@@ -216,7 +216,7 @@ The function value $f(−1)$ is undefined. Therefore, the function is not contin
 
 :::exercise {fs-id1170570998828} type= 
 PROBLEM:
-For $f(x)=\{\begin{array}{ll}{x}^{2} & \text{if}\;x≠1 \\ 3 & \text{if}\;x=1\end{array},$ decide whether *f* is continuous at 1. If *f* is not continuous at 1, classify the discontinuity as removable, jump, or infinite.
+For $f(x)=\left\{\begin{array}{ll}{x}^{2} & \text{if}\;x≠1 \\ 3 & \text{if}\;x=1\end{array}\right.,$ decide whether *f* is continuous at 1. If *f* is not continuous at 1, classify the discontinuity as removable, jump, or infinite.
 SOLUTION:
 Discontinuous at 1; removable
 COMMENTARY: Hint
@@ -447,7 +447,7 @@ $h(\theta )=\frac{\text{sin}\;\theta -\text{cos}\;\theta}{\text{tan}\;\theta}$ a
 
 :::exercise {fs-id1170573580625} type= 
 PROBLEM:
-$g(u)=\{\begin{array}{ll}\frac{6{u}^{2}+u-2}{2u-1} & \text{if}\;u≠\frac{1}{2} \\ \frac{7}{2} & \text{if}\;u=\frac{1}{2}\end{array},$ at $u=\frac{1}{2}$
+$g(u)=\left\{\begin{array}{ll}\frac{6{u}^{2}+u-2}{2u-1} & \text{if}\;u≠\frac{1}{2} \\ \frac{7}{2} & \text{if}\;u=\frac{1}{2}\end{array}\right.,$ at $u=\frac{1}{2}$
 SOLUTION:
 Yes. It is continuous.
 :::
@@ -459,44 +459,44 @@ $f(y)=\frac{\text{sin}\;(\pi y)}{\text{tan}\;(\pi y)},$ at $y=1$
 
 :::exercise {fs-id1170571120812} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{ll}{x}^{2}-{e}^{x} & \text{if}\;x<0 \\ x-1 & \text{if}\;x\ge 0\end{array},$ at $x=0$
+$f(x)=\left\{\begin{array}{ll}{x}^{2}-{e}^{x} & \text{if}\;x<0 \\ x-1 & \text{if}\;x\ge 0\end{array}\right.,$ at $x=0$
 SOLUTION:
 Yes. It is continuous.
 :::
 
 :::exercise {fs-id1170573381217} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}x\;\text{sin}\;(x)\;\text{if}\;x\le \pi \\ x\;\text{tan}\;(x)\;\text{if}\;x>\pi \end{array},$ at $x=\pi$
+$f(x)=\left\{\begin{array}{l}x\;\text{sin}\;(x)\;\text{if}\;x\le \pi \\ x\;\text{tan}\;(x)\;\text{if}\;x>\pi \end{array}\right.,$ at $x=\pi$
 :::
 In the following exercises, find the value(s) of *k* that makes each function continuous over the given interval.
 
 :::exercise {fs-id1170573413991} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{ll}3x+2, & x<k \\ 2x-3, & k\le x\le 8\end{array}$
+$f(x)=\left\{\begin{array}{ll}3x+2, & x<k \\ 2x-3, & k\le x\le 8\end{array}\right.$
 SOLUTION:
 $k=−5$
 :::
 
 :::exercise {fs-id1170571068186} type= 
 PROBLEM:
-$f(\theta )=\{\begin{array}{rl}\text{sin}\;\theta , & 0\le \theta <\frac{\pi}{2} \\ \text{cos}\;(\theta +k), & \frac{\pi}{2}\le \theta \le \pi \end{array}$
+$f(\theta )=\left\{\begin{array}{rl}\text{sin}\;\theta , & 0\le \theta <\frac{\pi}{2} \\ \text{cos}\;(\theta +k), & \frac{\pi}{2}\le \theta \le \pi \end{array}\right.$
 :::
 
 :::exercise {fs-id1170573575226} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{ll}\frac{{x}^{2}+3x+2}{x+2}, & x≠-2 \\ k, & x=−2\end{array}$
+$f(x)=\left\{\begin{array}{ll}\frac{{x}^{2}+3x+2}{x+2}, & x≠-2 \\ k, & x=−2\end{array}\right.$
 SOLUTION:
 $k=−1$
 :::
 
 :::exercise {fs-id1170573589731} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{rl}{e}^{kx}, & 0\le x<4 \\ x+3, & 4\le x\le 8\end{array}$
+$f(x)=\left\{\begin{array}{rl}{e}^{kx}, & 0\le x<4 \\ x+3, & 4\le x\le 8\end{array}\right.$
 :::
 
 :::exercise {fs-id1170573449551} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{rl}\sqrt{kx}, & 0\le x\le 3 \\ x+1, & 3<x\le 10\end{array}$
+$f(x)=\left\{\begin{array}{rl}\sqrt{kx}, & 0\le x\le 3 \\ x+1, & 3<x\le 10\end{array}\right.$
 SOLUTION:
 $k=\frac{16}{3}$
 :::
@@ -504,7 +504,7 @@ In the following exercises, use the Intermediate Value Theorem (IVT).
 
 :::exercise {fs-id1170571121705} type= 
 PROBLEM:
-Let $h(x)=\{\begin{array}{ll}3{x}^{2}-4, & x\le 2 \\ 5+4x, & x>2\end{array}$ Over the interval $[0,4],$ there is no value of *x* such that $h(x)=10,$ although $h(0)<10$ and $h(4)>10.$ Explain why this does not contradict the IVT.
+Let $h(x)=\left\{\begin{array}{ll}3{x}^{2}-4, & x\le 2 \\ 5+4x, & x>2\end{array}\right.$ Over the interval $[0,4],$ there is no value of *x* such that $h(x)=10,$ although $h(0)<10$ and $h(4)>10.$ Explain why this does not contradict the IVT.
 :::
 
 :::exercise {fs-id1170571087121} type= 
@@ -543,7 +543,7 @@ c. Classify each discontinuity as either jump, removable, or infinite.
 
 :::exercise {fs-id1170571290233} type= 
 PROBLEM:
-Let $f(x)=\{\begin{array}{l}3x,x>1 \\ {x}^{3},x<1\end{array}.$
+Let $f(x)=\left\{\begin{array}{l}3x,x>1 \\ {x}^{3},x<1\end{array}\right..$
 a. Sketch the graph of *f*.
 b. Is it possible to find a value *k* such that $f(1)=k,$ which makes $f(x)$ continuous for all real numbers? Briefly explain.
 SOLUTION:
@@ -622,7 +622,7 @@ If the left- and right-hand limits of $f(x)$ as $x\to a$ exist and are equal, th
 PROBLEM:
 If a function is not continuous at a point, then it is not defined at that point.
 SOLUTION:
-False. Consider $f(x)=\{\begin{array}{l}x\;\text{if}\;x≠0 \\ 4\;\text{if}\;x=0\end{array}.$
+False. Consider $f(x)=\left\{\begin{array}{l}x\;\text{if}\;x≠0 \\ 4\;\text{if}\;x=0\end{array}\right..$
 :::
 
 :::exercise {fs-id1170571131867} type= 
@@ -674,14 +674,14 @@ PROBLEM:
 
 :::exercise {fs-id1170573571185} type= 
 PROBLEM:
-**[T]** After a certain distance *D* has passed, the gravitational effect of Earth becomes quite negligible, so we can approximate the force function by $F(d)=\{\begin{array}{ll}-\frac{mk}{{d}^{2}} & \text{if}\;d<D \\ 10,000 & \text{if}\;d\ge D\end{array}.$ Using the value of k found in the previous exercise, find the necessary condition *D* such that the force function remains continuous.
+**[T]** After a certain distance *D* has passed, the gravitational effect of Earth becomes quite negligible, so we can approximate the force function by $F(d)=\left\{\begin{array}{ll}-\frac{mk}{{d}^{2}} & \text{if}\;d<D \\ 10,000 & \text{if}\;d\ge D\end{array}\right..$ Using the value of k found in the previous exercise, find the necessary condition *D* such that the force function remains continuous.
 SOLUTION:
 $D=345,826\;\text{km}$
 :::
 
 :::exercise {fs-id1170571124644} type= 
 PROBLEM:
-As the rocket travels away from Earth’s surface, there is a distance *D* where the rocket sheds some of its mass, since it no longer needs the excess fuel storage. We can write this function as $F(d)=\{\begin{array}{l}-\frac{{m}_{1}k}{{d}^{2}}\;\text{if}\;d<D \\ -\frac{{m}_{2}k}{{d}^{2}}\;\text{if}\;d\ge D\end{array}.$ Is there a *D* value such that this function is continuous, assuming ${m}_{1}≠{m}_{2}?$
+As the rocket travels away from Earth’s surface, there is a distance *D* where the rocket sheds some of its mass, since it no longer needs the excess fuel storage. We can write this function as $F(d)=\left\{\begin{array}{l}-\frac{{m}_{1}k}{{d}^{2}}\;\text{if}\;d<D \\ -\frac{{m}_{2}k}{{d}^{2}}\;\text{if}\;d\ge D\end{array}\right..$ Is there a *D* value such that this function is continuous, assuming ${m}_{1}≠{m}_{2}?$
 :::
 Prove the following functions are continuous everywhere
 
@@ -699,7 +699,7 @@ $g(x)=|x|$
 
 :::exercise {fs-id1170573414086} type= 
 PROBLEM:
-Where is $f(x)=\{\begin{array}{l}0\;\text{if}\;x\;\text{is irrational} \\ 1\;\text{if}\;x\;\text{is rational}\end{array}$ continuous?
+Where is $f(x)=\left\{\begin{array}{l}0\;\text{if}\;x\;\text{is irrational} \\ 1\;\text{if}\;x\;\text{is rational}\end{array}\right.$ continuous?
 SOLUTION:
 Nowhere
 :::

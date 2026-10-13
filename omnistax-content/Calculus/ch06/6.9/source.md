@@ -157,7 +157,7 @@ We can derive differentiation formulas for the other inverse hyperbolic function
 
 Note that the derivatives of ${\text{tanh}}^{−1}\;x$ and ${\text{coth}}^{−1}\;x$ are the same. Thus, when we integrate $1\text{/}(1-{x}^{2}),$ we need to select the proper antiderivative based on the domain of the functions and the values of $x.$ Integration formulas involving the inverse hyperbolic functions are summarized as follows.
 
-$\begin{array}{rllllrll}{\displaystyle \int \frac{1}{\sqrt{1+{u}^{2}}}d}u & = & {\text{sinh}}^{−1}u+C & & & {\displaystyle \int \frac{1}{u\sqrt{1-{u}^{2}}}}du & = & \text{−}{\text{sech}}^{−1}|u|+C \\ {\displaystyle \int \frac{1}{\sqrt{{u}^{2}-1}}}du & = & {\text{cosh}}^{−1}u+C & & & {\displaystyle \int \frac{1}{u\sqrt{1+{u}^{2}}}}du & = & \text{−}{\text{csch}}^{−1}|u|+C \\ {\displaystyle \int \frac{1}{1-{u}^{2}}}du & = & \{\begin{array}{l}{\text{tanh}}^{−1}u+C\;\text{if}\;|u|<1 \\ {\text{coth}}^{−1}u+C\;\text{if}\;|u|>1\end{array} & & & & & \end{array}$  {eq:fs-id1167793951927}
+$\begin{array}{rllllrll}{\displaystyle \int \frac{1}{\sqrt{1+{u}^{2}}}d}u & = & {\text{sinh}}^{−1}u+C & & & {\displaystyle \int \frac{1}{u\sqrt{1-{u}^{2}}}}du & = & \text{−}{\text{sech}}^{−1}|u|+C \\ {\displaystyle \int \frac{1}{\sqrt{{u}^{2}-1}}}du & = & {\text{cosh}}^{−1}u+C & & & {\displaystyle \int \frac{1}{u\sqrt{1+{u}^{2}}}}du & = & \text{−}{\text{csch}}^{−1}|u|+C \\ {\displaystyle \int \frac{1}{1-{u}^{2}}}du & = & \left\{\begin{array}{l}{\text{tanh}}^{−1}u+C\;\text{if}\;|u|<1 \\ {\text{coth}}^{−1}u+C\;\text{if}\;|u|>1\end{array}\right. & & & & & \end{array}$  {eq:fs-id1167793951927}
 
 :::example {ex:fs-id1167793984979} Differentiating Inverse Hyperbolic Functions
 

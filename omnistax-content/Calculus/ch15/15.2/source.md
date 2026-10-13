@@ -19,7 +19,7 @@ An example of a general bounded region $D$ on a plane is shown in [ref:CNX_Calc_
 
 Suppose $z=f(x,y)$ is defined on a general planar bounded region $D$ as in [ref:CNX_Calc_Figure_15_02_001]. In order to develop double integrals of $f$ over $D,$ we extend the definition of the function to include all points on the rectangular region $R$ and then use the concepts and tools from the preceding section. But how do we extend the definition of $f$ to include all the points on $R?$ We do this by defining a new function $g(x,y)$ on $R$ as follows:
 
-$g(x,y)=\{\begin{array}{ll}f(x,y) & \text{if}\;(x,y)\;\text{is in}\;D \\ 0 & \text{if}\;(x,y)\;\text{is in}\;R\;\text{but not in}\;D\end{array}$  {eq:fs-id1167793292241}
+$g(x,y)=\left\{\begin{array}{ll}f(x,y) & \text{if}\;(x,y)\;\text{is in}\;D \\ 0 & \text{if}\;(x,y)\;\text{is in}\;R\;\text{but not in}\;D\end{array}\right.$  {eq:fs-id1167793292241}
 
 Note that we might have some technical difficulties if the boundary of $D$ is complicated. So we assume the boundary to be a piecewise smooth and continuous simple closed curve. Also, since all the results developed in [Double Integrals over Rectangular Regions](module:m53949) used an integrable function $f(x,y),$ we must be careful about $g(x,y)$ and verify that $g(x,y)$ is an integrable function over the rectangular region $R.$ This happens as long as the region $D$ is bounded by simple closed curves. For now we will concentrate on the descriptions of the regions rather than the function and extend our theory appropriately for integration.
 We consider two types of planar bounded regions.
@@ -504,15 +504,15 @@ At Sydney’s Restaurant, customers must wait an average of $15$ minutes for a t
 SOLUTION:
 Waiting times are mathematically modeled by exponential density functions, with $m$ being the average waiting time, as
 
-$f(t)=\{\begin{array}{ll}0 & \text{if}\;t<0, \\ \frac{1}{m}{e}^{\text{−}t\text{/}m} & \text{if}\;t\ge 0.\end{array}$  {eq:fs-id1167793581635}
+$f(t)=\left\{\begin{array}{ll}0 & \text{if}\;t<0, \\ \frac{1}{m}{e}^{\text{−}t\text{/}m} & \text{if}\;t\ge 0.\end{array}\right.$  {eq:fs-id1167793581635}
 
 If $X$ and $Y$ are random variables for ‘waiting for a table’ and ‘completing the meal,’ then the probability density functions are, respectively,
 
-${f}_{1}(x)=\{\begin{array}{ll}0 & \text{if}\;x<0, \\ \frac{1}{15}{e}^{\text{−}x\text{/}15} & \text{if}\;x\ge 0.\end{array}\;\text{and}\;{f}_{2}(y)=\{\begin{array}{ll}0 & \text{if}\;y<0, \\ \frac{1}{40}{e}^{\text{−}y\text{/}40} & \text{if}\;y\ge 0.\end{array}$  {eq:fs-id1167793376182}
+${f}_{1}(x)=\left\{\begin{array}{ll}0 & \text{if}\;x<0, \\ \frac{1}{15}{e}^{\text{−}x\text{/}15} & \text{if}\;x\ge 0.\end{array}\right.\;\text{and}\;{f}_{2}(y)=\left\{\begin{array}{ll}0 & \text{if}\;y<0, \\ \frac{1}{40}{e}^{\text{−}y\text{/}40} & \text{if}\;y\ge 0.\end{array}\right.$  {eq:fs-id1167793376182}
 
 Clearly, the events are independent and hence the joint density function is the product of the individual functions
 
-$f(x,y)={f}_{1}(x){f}_{2}(y)=\{\begin{array}{ll}0 & \text{if}\;x<0\;\text{or}\;y<0, \\ \frac{1}{600}{e}^{\text{−}x\text{/}15}{e}^{\text{−}y\text{/}60} & \text{if}\;x,y\ge 0.\end{array}$  {eq:fs-id1167793619911}
+$f(x,y)={f}_{1}(x){f}_{2}(y)=\left\{\begin{array}{ll}0 & \text{if}\;x<0\;\text{or}\;y<0, \\ \frac{1}{600}{e}^{\text{−}x\text{/}15}{e}^{\text{−}y\text{/}60} & \text{if}\;x,y\ge 0.\end{array}\right.$  {eq:fs-id1167793619911}
 
 We want to find the probability that the combined time $X+Y$ is less than $90$ minutes. In terms of geometry, it means that the region $D$ is in the first quadrant bounded by the line $x+y=90$ ([ref:CNX_Calc_Figure_15_02_016]).
 
@@ -1007,14 +1007,14 @@ $0\;\text{and}\;0.865474;$ $A(D)=0.621135$
 :::exercise {fs-id1167793338647} type= 
 PROBLEM:
 Suppose that $(X,Y)$ is the outcome of an experiment that must occur in a particular region $S$ in the $xy$-plane. In this context, the region $S$ is called the sample space of the experiment and $X\;\text{and}\;Y$ are random variables. If $D$ is a region included in $S,$ then the probability of $(X,Y)$ being in $D$ is defined as $P[(X,Y)\in D]={\displaystyle \iint\limits_{D}p(x,y)dx\;dy},$ where $p(x,y)$ is the joint probability density of the experiment. Here, $p(x,y)$ is a nonnegative function for which ${\displaystyle \iint\limits_{S}p(x,y)dx\;dy=1}.$ Assume that a point $(X,Y)$ is chosen arbitrarily in the square $[0,3]\;\times \;[0,3]$ with the probability density
-$p(x,y)=\{\begin{array}{ll}\frac{1}{9} & (x,y)\in [0,3]\;\times \;[0,3], \\ 0 & \text{otherwise}\text{.}\end{array}$
+$p(x,y)=\left\{\begin{array}{ll}\frac{1}{9} & (x,y)\in [0,3]\;\times \;[0,3], \\ 0 & \text{otherwise}\text{.}\end{array}\right.$
 Find the probability that the point $(X,Y)$ is inside the unit square and interpret the result.
 :::
 
 :::exercise {fs-id1167793930116} type= 
 PROBLEM:
 Consider $X\;\text{and}\;Y$ two random variables of probability densities ${p}_{1}(x)$ and ${p}_{2}(y),$ respectively. The random variables $X\;\text{and}\;Y$ are said to be independent if their joint density function is given by $p(x,y)={p}_{1}(x){p}_{2}(y).$ At a drive-thru restaurant, customers spend, on average, $3$ minutes placing their orders and an additional $5$ minutes paying for and picking up their meals. Assume that placing the order and paying for/picking up the meal are two independent events $X$ and $Y.$ If the waiting times are modeled by the exponential probability densities
-$\begin{array}{lllllll}{p}_{1}(x)=\{\begin{array}{ll}\frac{1}{3}{e}^{\text{−}x\text{/}3} & x\ge 0, \\ 0 & \text{otherwise,}\end{array} & & & \text{and} & & & {p}_{2}(y)=\{\begin{array}{ll}\frac{1}{5}{e}^{\text{−}y\text{/}5} & y\ge 0, \\ 0 & \text{otherwise,}\end{array}\end{array}$
+$\begin{array}{lllllll}{p}_{1}(x)=\left\{\begin{array}{ll}\frac{1}{3}{e}^{\text{−}x\text{/}3} & x\ge 0, \\ 0 & \text{otherwise,}\end{array}\right. & & & \text{and} & & & {p}_{2}(y)=\left\{\begin{array}{ll}\frac{1}{5}{e}^{\text{−}y\text{/}5} & y\ge 0, \\ 0 & \text{otherwise,}\end{array}\right.\end{array}$
 respectively, the probability that a customer will spend less than 6 minutes in the drive-thru line is given by $P[X+Y\le 6]={\displaystyle \iint\limits_{D}p(x,y)dx\;dy},$ where $D=\{(x,y)\}|x\ge 0,y\ge 0,x+y\le 6\}.$ Find $P[X+Y\le 6]$ and interpret the result.
 SOLUTION:
 $P[X+Y\le 6]=1+\frac{3}{2{e}^{2}}-\frac{5}{{e}^{6\text{/}5}}\approx 0.45;$ there is a $45\text{\%}$ chance that a customer will spend $6$ minutes in the drive-thru line.

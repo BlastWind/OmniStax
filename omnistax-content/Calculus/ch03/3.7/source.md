@@ -133,7 +133,7 @@ Find an equation of the line tangent to the graph of $y={x}^{2\text{/}3}$ at $x=
 SOLUTION:
 First find $\frac{dy}{dx}$ and evaluate it at $x=8.$ Since
 
-$\frac{dy}{dx}=\frac{2}{3}{x}^{−1\text{/}3}\;\text{and}\;\frac{dy}{dx}|\begin{array}{l} \\ {}_{x=8}\end{array}=\frac{1}{3}$  {eq:fs-id1169739342007}
+$\frac{dy}{dx}=\frac{2}{3}{x}^{−1\text{/}3}\;\text{and}\;\frac{dy}{dx}\left|\begin{array}{l} \\ {}_{x=8}\end{array}\right.=\frac{1}{3}$  {eq:fs-id1169739342007}
 
 the slope of the tangent line to the graph at $x=8$ is $\frac{1}{3}.$
 Substituting $x=8$ into the original function, we obtain $y=4.$ Thus, the tangent line passes through the point $(8,4).$ Substituting into the point-slope formula for a line, we obtain the tangent line

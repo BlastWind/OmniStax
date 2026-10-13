@@ -347,7 +347,7 @@ $\textbf{v}=\langle x,y,z\rangle =x\textbf{i}+y\textbf{j}+z\textbf{k}.$  {eq:fs-
 
 :::exercise {fs-id1163723893590} type= 
 PROBLEM:
-Let $\vec{PQ}$ be the vector with initial point $P=(3,12,6)$ and terminal point $Q=(−4,−3,2)$ as shown in [ref:CNX_Calc_Figure_12_02_022]. Express $\vec{PQ}$ in both component form and using standard unit vectors.
+Let $\overrightarrow{PQ}$ be the vector with initial point $P=(3,12,6)$ and terminal point $Q=(−4,−3,2)$ as shown in [ref:CNX_Calc_Figure_12_02_022]. Express $\overrightarrow{PQ}$ in both component form and using standard unit vectors.
 
 > FIGURE {fig:CNX_Calc_Figure_12_02_022} src=../../media/CNX_Calc_Figure_12_02_022.jpg
 > alt: This figure is the 3-dimensional coordinate system. It has two points labeled. The first point is P = (3, 12, 6). The second point is Q = (-4, -3, 2). There is a vector from P to Q.
@@ -356,11 +356,11 @@ Let $\vec{PQ}$ be the vector with initial point $P=(3,12,6)$ and terminal point 
 SOLUTION:
 In component form,
 
-$\begin{array}{rl}\vec{PQ} & =\langle {x}_{2}-{x}_{1},{y}_{2}-{y}_{1},{z}_{2}-{z}_{1}\rangle \\ & =\langle −4-3,−3-12,2-6\rangle =\langle −7,−15,−4\rangle .\end{array}$  {eq:fs-id1163723674690}
+$\begin{array}{rl}\overrightarrow{PQ} & =\langle {x}_{2}-{x}_{1},{y}_{2}-{y}_{1},{z}_{2}-{z}_{1}\rangle \\ & =\langle −4-3,−3-12,2-6\rangle =\langle −7,−15,−4\rangle .\end{array}$  {eq:fs-id1163723674690}
 
 In standard unit form,
 
-$\vec{PQ}=−7\textbf{i}-15\textbf{j}-4\textbf{k}.$  {eq:fs-id1163723340590}
+$\overrightarrow{PQ}=−7\textbf{i}-15\textbf{j}-4\textbf{k}.$  {eq:fs-id1163723340590}
 
 :::
 :::
@@ -369,11 +369,11 @@ $\vec{PQ}=−7\textbf{i}-15\textbf{j}-4\textbf{k}.$  {eq:fs-id1163723340590}
 
 :::exercise {fs-id1163723281642} type= 
 PROBLEM:
-Let $S=(3,8,2)$ and $T=(2,−1,3).$ Express $\vec{ST}$ in component form and in standard unit form.
+Let $S=(3,8,2)$ and $T=(2,−1,3).$ Express $\overrightarrow{ST}$ in component form and in standard unit form.
 SOLUTION:
-$\vec{ST}=\langle −1,−9,1\rangle =\text{−}\textbf{i}-9\textbf{j}+\textbf{k}$
+$\overrightarrow{ST}=\langle −1,−9,1\rangle =\text{−}\textbf{i}-9\textbf{j}+\textbf{k}$
 COMMENTARY: Hint
-Write $\vec{ST}$ in component form first. $T$ is the terminal point of $\vec{ST}.$
+Write $\overrightarrow{ST}$ in component form first. $T$ is the terminal point of $\overrightarrow{ST}.$
 :::
 :::
 As described earlier, vectors in three dimensions behave in the same way as vectors in a plane. The geometric interpretation of vector addition, for example, is the same in both two- and three-dimensional space ([ref:CNX_Calc_Figure_12_02_011]).
@@ -648,7 +648,7 @@ Center $C(0,0,2)$ and radius $1$
 PROBLEM:
 ${x}^{2}+{y}^{2}+{z}^{2}-6x+8y-10z+25=0$
 :::
-For the following exercises, express vector $\vec{PQ}$ with the initial point at $P$ and the terminal point at $Q$
+For the following exercises, express vector $\overrightarrow{PQ}$ with the initial point at $P$ and the terminal point at $Q$
 a. in component form and
 b. by using standard unit vectors.
 
@@ -656,7 +656,7 @@ b. by using standard unit vectors.
 PROBLEM:
 $P(3,0,2)$ and $Q(−1,−1,4)$
 SOLUTION:
-a. $\vec{PQ}=\langle −4,−1,2\rangle ;$ b. $\vec{PQ}=−4\textbf{i}-\textbf{j}+2\textbf{k}$
+a. $\overrightarrow{PQ}=\langle −4,−1,2\rangle ;$ b. $\overrightarrow{PQ}=−4\textbf{i}-\textbf{j}+2\textbf{k}$
 :::
 
 :::exercise {fs-id1163723295464} type= 
@@ -668,7 +668,7 @@ $P(0,10,5)$ and $Q(1,1,−3)$
 PROBLEM:
 $P(−2,5,−8)$ and $M(1,−7,4),$ where $M$ is the midpoint of the line segment $PQ$
 SOLUTION:
-a. $\vec{PQ}=\langle 6,−24,24\rangle ;$ b. $\vec{PQ}=6\textbf{i}-24\text{j}+24\textbf{k}$
+a. $\overrightarrow{PQ}=\langle 6,−24,24\rangle ;$ b. $\overrightarrow{PQ}=6\textbf{i}-24\text{j}+24\textbf{k}$
 :::
 
 :::exercise {fs-id1163724017606} type= 
@@ -678,14 +678,14 @@ $Q(0,7,−6)$ and $M(−1,3,2),$ where $M$ is the midpoint of the line segment $
 
 :::exercise {fs-id1163724048218} type= 
 PROBLEM:
-Find terminal point $Q$ of vector $\vec{PQ}=\langle 7,−1,3\rangle$ with the initial point at $P(−2,3,5).$
+Find terminal point $Q$ of vector $\overrightarrow{PQ}=\langle 7,−1,3\rangle$ with the initial point at $P(−2,3,5).$
 SOLUTION:
 $Q(5,2,8)$
 :::
 
 :::exercise {fs-id1163723652909} type= 
 PROBLEM:
-Find initial point $P$ of vector $\vec{PQ}=\langle −9,1,2\rangle$ with the terminal point at $Q(10,0,−1).$
+Find initial point $P$ of vector $\overrightarrow{PQ}=\langle −9,1,2\rangle$ with the terminal point at $Q(10,0,−1).$
 :::
 For the following exercises, use the given vectors $\textbf{a}$ and $\textbf{b}$ to find and express the vectors $\textbf{a}+\text{b},$ $4\textbf{a},$ and $−5\textbf{a}+3\textbf{b}$ in component form.
 
@@ -753,14 +753,14 @@ $\textbf{a}=\langle 4,−3,6\rangle$
 
 :::exercise {fs-id1163724138209} type= 
 PROBLEM:
-$\textbf{a}=\vec{PQ},$ where $P(−2,3,1)$ and $Q(0,−4,4)$
+$\textbf{a}=\overrightarrow{PQ},$ where $P(−2,3,1)$ and $Q(0,−4,4)$
 SOLUTION:
 $\langle \frac{2}{\sqrt{62}},\frac{7}{\sqrt{62}},\frac{3}{\sqrt{62}}\rangle$
 :::
 
 :::exercise {fs-id1163724072400} type= 
 PROBLEM:
-$\textbf{a}=\vec{OP},$ where $P(−1,−1,1)$
+$\textbf{a}=\overrightarrow{OP},$ where $P(−1,−1,1)$
 :::
 
 :::exercise {fs-id1163723120767} type= 
@@ -777,14 +777,14 @@ $\textbf{a}=2\textbf{u}+\textbf{v}-\text{w},$ where $\textbf{u}=\textbf{i}-\text
 
 :::exercise {fs-id1163723239424} type= 
 PROBLEM:
-Determine whether $\vec{AB}$ and $\vec{PQ}$ are equivalent vectors, where $A(1,1,1),B(3,3,3),P(1,4,5),$ and $Q(3,6,7).$
+Determine whether $\overrightarrow{AB}$ and $\overrightarrow{PQ}$ are equivalent vectors, where $A(1,1,1),B(3,3,3),P(1,4,5),$ and $Q(3,6,7).$
 SOLUTION:
 Equivalent vectors
 :::
 
 :::exercise {fs-id1163723286476} type= 
 PROBLEM:
-Determine whether the vectors $\vec{AB}$ and $\vec{PQ}$ are equivalent, where $A(1,4,1),$ $B(−2,2,0),$ $P(2,5,7),$ and $Q(−3,2,1).$
+Determine whether the vectors $\overrightarrow{AB}$ and $\overrightarrow{PQ}$ are equivalent, where $A(1,4,1),$ $B(−2,2,0),$ $P(2,5,7),$ and $Q(−3,2,1).$
 :::
 For the following exercises, find vector $\textbf{u}$ with a magnitude that is given and satisfies the given conditions.
 
@@ -814,26 +814,26 @@ $\textbf{v}=\langle 3\;\text{sinh}\;t,0,3\rangle ,$ $\| \textbf{u}\| =5,$ $\text
 
 :::exercise {fs-id1163724037681} type= 
 PROBLEM:
-Determine a vector of magnitude $5$ in the direction of vector $\vec{AB},$ where $A(2,1,5)$ and $B(3,4,−7).$
+Determine a vector of magnitude $5$ in the direction of vector $\overrightarrow{AB},$ where $A(2,1,5)$ and $B(3,4,−7).$
 SOLUTION:
 $\langle \frac{5}{\sqrt{154}},\frac{15}{\sqrt{154}},-\frac{60}{\sqrt{154}}\rangle$
 :::
 
 :::exercise {fs-id1163723754825} type= 
 PROBLEM:
-Find a vector of magnitude $2$ that points in the opposite direction than vector $\vec{AB},$ where $A(−1,−1,1)$ and $B(0,1,1).$ Express the answer in component form.
+Find a vector of magnitude $2$ that points in the opposite direction than vector $\overrightarrow{AB},$ where $A(−1,−1,1)$ and $B(0,1,1).$ Express the answer in component form.
 :::
 
 :::exercise {fs-id1163724037798} type= 
 PROBLEM:
-Consider the points $A(2,\alpha ,0),B(0,1,β),$ and $C(1,1,β),$ where $\alpha$ and $β$ are negative real numbers. Find $\alpha$ and $β$ such that $\| \vec{OA}-\vec{OB}+\vec{OC}\| =\| \vec{OB}\| =4.$
+Consider the points $A(2,\alpha ,0),B(0,1,β),$ and $C(1,1,β),$ where $\alpha$ and $β$ are negative real numbers. Find $\alpha$ and $β$ such that $\| \overrightarrow{OA}-\overrightarrow{OB}+\overrightarrow{OC}\| =\| \overrightarrow{OB}\| =4.$
 SOLUTION:
 $\alpha =\text{−}\sqrt{7},$ $β=\text{−}\sqrt{15}$
 :::
 
 :::exercise {fs-id1163723140800} type= 
 PROBLEM:
-Consider points $A(\alpha ,0,0),B(0,β,0),$ and $C(\alpha ,β,β),$ where $\alpha$ and $β$ are positive real numbers. Find $\alpha$ and $β$ such that $\| \bar{OA}+\bar{OB}\| =\sqrt{2}\;\text{and}\;\| \bar{OC}\| =\sqrt{3}.$
+Consider points $A(\alpha ,0,0),B(0,β,0),$ and $C(\alpha ,β,β),$ where $\alpha$ and $β$ are positive real numbers. Find $\alpha$ and $β$ such that $\| \overline{OA}+\overline{OB}\| =\sqrt{2}\;\text{and}\;\| \overline{OC}\| =\sqrt{3}.$
 :::
 
 :::exercise {fs-id1163724027815} type= 
@@ -848,7 +848,7 @@ Let $P(x,y,z)$ be a point situated at an equal distance from the origin and poin
 
 :::exercise {fs-id1163724043366} type= 
 PROBLEM:
-The points $A,B,$ and $C$ are collinear (in this order) if the relation $\| \vec{AB}\| +\| \vec{BC}\| =\| \vec{AC}\|$ is satisfied. Show that $A(5,3,−1),$ $B(−5,−3,1),$ and $C(−15,−9,3)$ are collinear points.
+The points $A,B,$ and $C$ are collinear (in this order) if the relation $\| \overrightarrow{AB}\| +\| \overrightarrow{BC}\| =\| \overrightarrow{AC}\|$ is satisfied. Show that $A(5,3,−1),$ $B(−5,−3,1),$ and $C(−15,−9,3)$ are collinear points.
 :::
 
 :::exercise {fs-id1163724079502} type= 
@@ -858,7 +858,7 @@ Show that points $A(1,0,1),$ $B(0,1,1),$ and $C(1,1,1)$ are not collinear.
 
 :::exercise {fs-id1163724037997} type= 
 PROBLEM:
-**[T]** A force $\textbf{F}$ of $50\;\text{N}$ acts on a particle in the direction of the vector $\vec{OP},$ where $P(3,4,0).$
+**[T]** A force $\textbf{F}$ of $50\;\text{N}$ acts on a particle in the direction of the vector $\overrightarrow{OP},$ where $P(3,4,0).$
 a. Express the force as a vector in component form.
 b. Find the angle between force $\textbf{F}$ and the positive direction of the *x*-axis. Express the answer in degrees rounded to the nearest integer.
 SOLUTION:
@@ -867,7 +867,7 @@ a. $\textbf{F}=\langle 30,40,0\rangle ;$ b. $53\text{°}$
 
 :::exercise {fs-id1163723153259} type= 
 PROBLEM:
-**[T]** A force $\textbf{F}$ of $40\;\text{N}$ acts on a box in the direction of the vector $\vec{OP},$ where $P(1,0,2).$
+**[T]** A force $\textbf{F}$ of $40\;\text{N}$ acts on a box in the direction of the vector $\overrightarrow{OP},$ where $P(1,0,2).$
 a. Express the force as a vector by using standard unit vectors.
 b. Find the angle between force $\textbf{F}$ and the positive direction of the *x*-axis.
 :::

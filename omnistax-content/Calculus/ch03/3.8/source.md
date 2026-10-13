@@ -10,7 +10,7 @@ We have already studied how to find equations of tangent lines to functions and 
 In most discussions of math, if the dependent variable $y$ is a function of the independent variable $x,$ we express *y* in terms of $x.$ If this is the case, we say that $y$ is an explicit function of $x.$ For example, when we write the equation $y={x}^{2}+1,$ we are defining *y* explicitly in terms of $x.$ On the other hand, if the relationship between the function $y$ and the variable $x$ is expressed by an equation where $y$ is not expressed entirely in terms of $x,$ we say that the equation defines *y* implicitly in terms of $x.$ For example, the equation $y-{x}^{2}=1$ defines the function $y={x}^{2}+1$ implicitly.
 Implicit differentiation allows us to find slopes of tangents to curves that are clearly not functions (they fail the vertical line test). We are using the idea that portions of $y$ are functions that satisfy the given equation, but that $y$ is not actually a function of $x.$
 In general, an equation defines a function implicitly if the function satisfies that equation. An equation may define many different functions implicitly. For example, the functions
-$y=\sqrt{25-{x}^{2}},y=-\sqrt{25-{x}^{2}},$ and $y=\{\begin{array}{l}\sqrt{25-{x}^{2}}\;\text{if}-5<x<0 \\ \text{−}\sqrt{25-{x}^{2}}\;\text{if}\;0<x<25\end{array},$ which are illustrated in [ref:CNX_Calc_Figure_03_08_001], are just three of the many functions defined implicitly by the equation ${x}^{2}+{y}^{2}=25.$
+$y=\sqrt{25-{x}^{2}},y=-\sqrt{25-{x}^{2}},$ and $y=\left\{\begin{array}{l}\sqrt{25-{x}^{2}}\;\text{if}-5<x<0 \\ \text{−}\sqrt{25-{x}^{2}}\;\text{if}\;0<x<25\end{array}\right.,$ which are illustrated in [ref:CNX_Calc_Figure_03_08_001], are just three of the many functions defined implicitly by the equation ${x}^{2}+{y}^{2}=25.$
 
 > FIGURE {fig:CNX_Calc_Figure_03_08_001} src=../../media/CNX_Calc_Figure_03_08_001.jpg
 > alt: The circle with radius 5 and center at the origin is graphed fully in one picture. Then, only its segments in quadrants I and II are graphed. Then, only its segments in quadrants III and IV are graphed. Lastly, only its segments in quadrants II and IV are graphed.
@@ -89,7 +89,7 @@ PROBLEM:
 Find an equation of the line tangent to the curve ${x}^{2}+{y}^{2}=25$ at the point $(3,−4).$
 SOLUTION:
 Although we could find this equation without using implicit differentiation, using that method makes it much easier. In [ref:fs-id1169737819953], we found $\frac{dy}{dx}=-\frac{x}{y}.$
-The slope of the tangent line is found by substituting $(3,−4)$ into this expression. Consequently, the slope of the tangent line is $\frac{dy}{dx}|\begin{array}{l} \\ {}_{(3,−4)}\end{array}=-\frac{3}{−4}=\frac{3}{4}.$
+The slope of the tangent line is found by substituting $(3,−4)$ into this expression. Consequently, the slope of the tangent line is $\frac{dy}{dx}\left|\begin{array}{l} \\ {}_{(3,−4)}\end{array}\right.=-\frac{3}{−4}=\frac{3}{4}.$
 Using the point $(3,−4)$ and the slope $\frac{3}{4}$ in the point-slope equation of the line, we obtain the equation $y=\frac{3}{4}x-\frac{25}{4}$ ([ref:CNX_Calc_Figure_03_08_002]).
 
 > FIGURE {fig:CNX_Calc_Figure_03_08_002} src=../../media/CNX_Calc_Figure_03_08_002.jpg
@@ -116,7 +116,7 @@ $\begin{array}{rll}\frac{d}{dx}({y}^{3}+{x}^{3}-3xy) & = & \frac{d}{dx}(0) \\ 3{
 
 Next, substitute $(\frac{3}{2},\frac{3}{2})$ into $\frac{dy}{dx}=\frac{3y-3{x}^{2}}{3{y}^{2}-3x}$ to find the slope of the tangent line:
 
-$\frac{dy}{dx}|\begin{array}{l} \\ {}_{(\frac{3}{2},\frac{3}{2})}\end{array}=−1.$  {eq:fs-id1169738045102}
+$\frac{dy}{dx}\left|\begin{array}{l} \\ {}_{(\frac{3}{2},\frac{3}{2})}\end{array}\right.=−1.$  {eq:fs-id1169738045102}
 
 Finally, substitute into the point-slope equation of the line to obtain
 

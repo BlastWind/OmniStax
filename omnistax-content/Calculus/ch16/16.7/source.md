@@ -81,7 +81,7 @@ Verify that Stokes’ theorem is true for vector field $\textbf{F}(x,y,z)=\langl
 SOLUTION:
 As a surface integral, you have $g(x,y)=4-{x}^{2}-{y}^{2},{g}_{x}=−2x$ and ${g}_{y}=−2y$
 
-$\begin{array}{rl}\text{curl}\mathbf{F}\; & =|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ y & 2z & {x}^{2}\end{array}|\end{array}=\langle −2,−2x,−1\rangle \text{.}$  {eq:fs-id1167793261948}
+$\begin{array}{rl}\text{curl}\mathbf{F}\; & =\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ y & 2z & {x}^{2}\end{array}\right|\end{array}=\langle −2,−2x,−1\rangle \text{.}$  {eq:fs-id1167793261948}
 
 By [ref:fs-id1167793757749](module:m54004),
 

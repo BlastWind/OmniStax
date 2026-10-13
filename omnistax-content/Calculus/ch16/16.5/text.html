@@ -98,7 +98,7 @@ $$\text{div}(\kvecv)=\frac{\partial}{\partial x}(-xy)+\frac{\partial}{\partial y
 <p>Note that the <span data-concept="curl">curl</span> of a <span data-concept="vector-field">vector field</span> is a <span data-concept="vector-field">vector field</span>, in contrast to <span data-concept="divergence">divergence</span>.</p>
 </div>
 <p>The definition of <span data-concept="curl">curl</span> can be difficult to remember. To help with remembering, we use the notation $\nabla \;\times \;\kvecF$ to stand for a “determinant” that gives the <span data-concept="curl">curl</span> formula:</p>
-$$|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ \kP & \kQ & \kR\end{array}|.$$
+$$\left|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ \kP & \kQ & \kR\end{array}\right|.$$
 <p>The determinant of this matrix is</p>
 $$(R_{y}-Q_{z})\kveci-(R_{x}-P_{z})\kvecj+(Q_{x}-P_{y})\kveck=(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck=\kcurlF.$$
 <p>Thus, this matrix is a way to help remember the formula for <span data-concept="curl">curl</span>. Keep in mind, though, that the word <em>determinant</em> is used very loosely. A determinant is not really defined on a matrix with entries that are three vectors, three operators, and three functions.</p>
@@ -109,7 +109,7 @@ $$\kcurlF=(Q_{x}-P_{y})\kveck=(\frac{\partial Q}{\partial x}-\frac{\partial P}{\
 <p>Find the <span data-concept="curl">curl</span> of $\kvecF(\kP,\kQ,\kR)=\langle x^{2}z,e^{y}+xz,xyz\rangle .$</p>
 <h4>Solution</h4>
 <p>The <span data-concept="curl">curl</span> is</p>
-$$\begin{array}{rl}\kcurlF & =\nabla \;\times \;\kvecF \\ & =|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ \partial /\partial x & \partial /\partial y & \partial /\partial z \\ \kP & \kQ & \kR\end{array}| \\ & =(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck \\ & =(xz-x)\kveci+(x^{2}-yz)\kvecj+z{\kveck}.\end{array}$$
+$$\begin{array}{rl}\kcurlF & =\nabla \;\times \;\kvecF \\ & =\left|\begin{array}{ccc}\kveci & \kvecj & \kveck \\ \partial /\partial x & \partial /\partial y & \partial /\partial z \\ \kP & \kQ & \kR\end{array}\right| \\ & =(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck \\ & =(xz-x)\kveci+(x^{2}-yz)\kvecj+z{\kveck}.\end{array}$$
 </div>
 <div class="exercises" data-place="fs-id1167794026966"></div>
 <div class="example" id="fs-id1167794046590">
@@ -131,7 +131,7 @@ $$\kvecF(x,y,z)=-Gm_{1}m_{2}\langle \frac{x}{{(x^{2}+y^{2}+z^{2})}^{3/2}},\frac{
 <p>Show that a gravitational field has no spin.</p>
 <h4>Solution</h4>
 <p>To show that $\kvecF$ has no spin, we calculate its <span data-concept="curl">curl</span>. Let $\kP(x,y,z)=\frac{x}{{(x^{2}+y^{2}+z^{2})}^{3/2}},$ $\kQ(x,y,z)=\frac{y}{{(x^{2}+y^{2}+z^{2})}^{3/2}},$ and $\kR(x,y,z)=\frac{z}{{(x^{2}+y^{2}+z^{2})}^{3/2}}.$ Then,</p>
-$$\begin{array}{rl}\kcurlF & =-Gm_{1}m_{2}[(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck] \\ & =-Gm_{1}m_{2}[\begin{array}{l}(\frac{-3yz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}-(\frac{-3yz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}))\kveci \\ +(\frac{-3xz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}-(\frac{-3xz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}))\kvecj \\ +(\frac{-3xy}{{(x^{2}+y^{2}+z^{2})}^{5/2}}-(\frac{-3xy}{{(x^{2}+y^{2}+z^{2})}^{5/2}}))\kveck\end{array}] \\ & =0.\end{array}$$
+$$\begin{array}{rl}\kcurlF & =-Gm_{1}m_{2}[(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck] \\ & =-Gm_{1}m_{2}\left[\begin{array}{l}(\frac{-3yz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}-(\frac{-3yz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}))\kveci \\ +(\frac{-3xz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}-(\frac{-3xz}{{(x^{2}+y^{2}+z^{2})}^{5/2}}))\kvecj \\ +(\frac{-3xy}{{(x^{2}+y^{2}+z^{2})}^{5/2}}-(\frac{-3xy}{{(x^{2}+y^{2}+z^{2})}^{5/2}}))\kveck\end{array}\right] \\ & =0.\end{array}$$
 <p>Since the <span data-concept="curl">curl</span> of the gravitational field is zero, the field has no spin.</p>
 </div>
 <div class="exercises" data-place="fs-id1167793505725"></div>

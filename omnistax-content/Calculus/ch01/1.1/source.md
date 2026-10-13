@@ -78,7 +78,7 @@ $(\text{−}\infty ,\infty )=\{x|x\;\text{is any real number}\}$  {eq:fs-id11705
 refers to the set of all real numbers.
 Some functions are defined using different equations for different parts of their domain. These types of functions are known as {index:*piecewise-defined functions*}. For example, suppose we want to define a function $f$ with a domain that is the set of all real numbers such that $f(x)=3x+1$ for $x\ge 2$ and $f(x)={x}^{2}$ for $x<2.$ We denote this function by writing
 
-$f(x)=\{\begin{array}{l}3x+1\hspace{1.5em}x\ge 2 \\ {x}^{2}\hspace{3em}x<2\end{array}.$  {eq:fs-id1170573422541}
+$f(x)=\left\{\begin{array}{l}3x+1\hspace{1.5em}x\ge 2 \\ {x}^{2}\hspace{3em}x<2\end{array}\right..$  {eq:fs-id1170573422541}
 
 When evaluating this function for an input $x,$ the equation to use depends on whether $x\ge 2$ or $x<2.$ For example, since $5>2,$ we use the fact that $f(x)=3x+1$ for $x\ge 2$ and see that $f(5)=3(5)+1=16.$ On the other hand, for $x=−1,$ we use the fact that $f(x)={x}^{2}$ for $x<2$ and see that $f(−1)=1.$
 
@@ -602,7 +602,7 @@ Compare $f(\text{−}x)$ with $f(x)$ and $\text{−}f(x)\text{.}$
 :::
 One symmetric function that arises frequently is the {term:absolute value function}, written as $|x|.$ The absolute value function is defined as
 
-$$ f(x)=\{\begin{array}{l}\text{−}x,x<0 \\ x,x\ge 0\end{array}. $$  {eq:fs-id1170572547420}
+$$ f(x)=\left\{\begin{array}{l}\text{−}x,x<0 \\ x,x\ge 0\end{array}\right.. $$  {eq:fs-id1170572547420}
 
 Some students describe this function by stating that it “makes everything positive.” By the definition of the absolute value function, we see that if $x<0,$ then $|x|=\text{−}x>0,$ and if $x>0,$ then $|x|=x>0.$ However, for $x=0,|x|=0.$ Therefore, it is more accurate to say that for all nonzero inputs, the output is positive, but if $x=0,$ the output $|x|=0.$ We conclude that the range of the absolute value function is $\{y|y\ge 0\}.$ In [ref:CNX_Calc_Figure_01_01_013], we see that the absolute value function is symmetric about the *y*-axis and is therefore an even function.
 
@@ -626,7 +626,7 @@ $|x-3|=\frac{1}{2}(y-4).$  {eq:fs-id1170572551151}
 
 Since $y\ge 4,$ we know $y-4\ge 0,$ and thus the right-hand side of the equation is nonnegative, so it is possible that there is a solution. Furthermore,
 
-$|x-3|=\{\begin{array}{l}-(x-3)\;\text{if}\;x<3 \\ x-3\hspace{2em}\text{if}\;x\ge 3\end{array}.$  {eq:fs-id1170572366200}
+$|x-3|=\left\{\begin{array}{l}-(x-3)\;\text{if}\;x<3 \\ x-3\hspace{2em}\text{if}\;x\ge 3\end{array}\right..$  {eq:fs-id1170572366200}
 
 Therefore, we see there are two solutions:
 
@@ -664,7 +664,7 @@ $|x+2|\ge 0$ for all real numbers $x\text{.}$
 |  |  |
 | --- | --- |
 | **Composition of two functions** | $(g\circ f)(x)=g(f(x))$ |
-| **Absolute value function** | $f(x)=\{\begin{array}{l}\text{−}x,x<0 \\ x,x\ge 0\end{array}$ |
+| **Absolute value function** | $f(x)=\left\{\begin{array}{l}\text{−}x,x<0 \\ x,x\ge 0\end{array}\right.$ |
 
 ##  {section:section-exercises}
 For the following exercises, (a) determine the domain and the range of each relation, and (b) state whether the relation is a function.
@@ -1242,7 +1242,7 @@ PROBLEM:
 :::
 
 ## Glossary
-- {def} **absolute value function**: $f(x)=\{\begin{array}{l}\text{−}x,x<0 \\ x,x\ge 0\end{array}$
+- {def} **absolute value function**: $f(x)=\left\{\begin{array}{l}\text{−}x,x<0 \\ x,x\ge 0\end{array}\right.$
 - {def} **composite function**: given two functions $f$ and $g,$ a new function, denoted $g\circ f,$ such that $(g\circ f)(x)=g(f(x))$
 - {def} **decreasing on the interval $I$**: a function decreasing on the interval $I$ if, for all ${x}_{1},{x}_{2}\in I,f({x}_{1})\ge f({x}_{2})$ if ${x}_{1}<{x}_{2}$
 - {def} **dependent variable**: the output variable for a function

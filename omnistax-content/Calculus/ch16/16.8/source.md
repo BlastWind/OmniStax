@@ -269,7 +269,7 @@ Notice that since the divergence of ${\textbf{F}}_{r}$ is zero and **E** is ${\t
 :::note [theorem] Flux across a Smooth Surface
 Let *S* be a connected, piecewise smooth closed surface and let ${\textbf{F}}_{r}=\frac{1}{{r}^{2}}\langle \frac{x}{r},\frac{y}{r},\frac{z}{r}\rangle .$ Then,
 
-${\displaystyle \iint_{S}{\textbf{F}}_{r}\cdot d\textbf{S}}=\{\begin{array}{llll}0 & & & \text{if}\;S\;\text{does not encompass the origin} \\ 4\pi & & & \text{if}\;S\;\text{encompasses the origin.}\end{array}$  {eq:fs-id1167793287560}
+${\displaystyle \iint_{S}{\textbf{F}}_{r}\cdot d\textbf{S}}=\left\{\begin{array}{llll}0 & & & \text{if}\;S\;\text{does not encompass the origin} \\ 4\pi & & & \text{if}\;S\;\text{encompasses the origin.}\end{array}\right.$  {eq:fs-id1167793287560}
 
 :::
 In other words, this theorem says that the flux of ${\textbf{F}}_{r}$ across any piecewise smooth closed surface *S* depends only on whether the origin is inside of *S*.

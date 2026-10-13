@@ -710,7 +710,7 @@ The function is discontinuous at $(0,0)$ since $(0,0)$ is not in the domain.
 
 :::exercise {fs-id1167793417293} type= 
 PROBLEM:
-Determine whether $f(x,y)$ is continuous at $(0,0)$. $f(x,y)=\{\begin{array}{ll}\frac{{x}^{2}y}{{x}^{2}+{y}^{2}} & \text{if}\;(x,y)≠(0,0) \\ 0 & \text{if}\;(x,y)=(0,0)\end{array}\}$
+Determine whether $f(x,y)$ is continuous at $(0,0)$. $f(x,y)=\left\{\begin{array}{ll}\frac{{x}^{2}y}{{x}^{2}+{y}^{2}} & \text{if}\;(x,y)≠(0,0) \\ 0 & \text{if}\;(x,y)=(0,0)\end{array}\right\}$
 :::
 
 :::exercise {fs-id1167793432455} type= 

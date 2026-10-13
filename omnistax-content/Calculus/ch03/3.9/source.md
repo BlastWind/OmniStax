@@ -292,7 +292,7 @@ $\frac{dy}{dx}=\frac{3}{(3x+1)\;\text{ln}\;2}.$  {eq:fs-id1169738197861}
 
 By evaluating the derivative at $x=1,$ we see that the tangent line has slope
 
-$\frac{dy}{dx}|\begin{array}{l} \\ {}_{x=1}\end{array}=\frac{3}{4\;\text{ln}\;2}=\frac{3}{\;\text{ln}\;16}.$  {eq:fs-id1169738187002}
+$\frac{dy}{dx}\left|\begin{array}{l} \\ {}_{x=1}\end{array}\right.=\frac{3}{4\;\text{ln}\;2}=\frac{3}{\;\text{ln}\;16}.$  {eq:fs-id1169738187002}
 
 :::
 :::

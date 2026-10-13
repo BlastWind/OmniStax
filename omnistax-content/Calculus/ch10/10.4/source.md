@@ -16,15 +16,15 @@ $\begin{array}{l} \\ f(x)={(1+x)}^{0}=1, \\ f(x)={(1+x)}^{1}=1+x, \\ f(x)={(1+x)
 
 The expressions on the right-hand side are known as binomial expansions and the coefficients are known as binomial coefficients. More generally, for any nonnegative integer $r,$ the binomial coefficient of ${x}^{n}$ in the binomial expansion of ${(1+x)}^{r}$ is given by
 
-$$ (\begin{array}{l}r \\ n\end{array})=\frac{r\text{!}}{n\text{!}(r-n)\text{!}} $$  {eq:fs-id1167023717125}
+$$ \left(\begin{array}{l}r \\ n\end{array}\right)=\frac{r\text{!}}{n\text{!}(r-n)\text{!}} $$  {eq:fs-id1167023717125}
 
 and
 
-$$ \begin{array}{rl}f(x) & ={(1+x)}^{r} \\ & =(\begin{array}{l}r \\ 0\end{array})1+(\begin{array}{l}r \\ 1\end{array})x+(\begin{array}{l}r \\ 2\end{array}){x}^{2}+(\begin{array}{l}r \\ 3\end{array}){x}^{3}+\text{⋯}+(\begin{array}{l}r \\ r-1\end{array}){x}^{r-1}+(\begin{array}{l}r \\ r\end{array}){x}^{r} \\ & ={\displaystyle \sum_{n=0}^{r} (\begin{array}{l}r \\ n\end{array}){x}^{n}}.\end{array} $$  {eq:fs-id1167023919069}
+$$ \begin{array}{rl}f(x) & ={(1+x)}^{r} \\ & =\left(\begin{array}{l}r \\ 0\end{array}\right)1+\left(\begin{array}{l}r \\ 1\end{array}\right)x+\left(\begin{array}{l}r \\ 2\end{array}\right){x}^{2}+\left(\begin{array}{l}r \\ 3\end{array}\right){x}^{3}+\text{⋯}+\left(\begin{array}{l}r \\ r-1\end{array}\right){x}^{r-1}+\left(\begin{array}{l}r \\ r\end{array}\right){x}^{r} \\ & ={\displaystyle \sum_{n=0}^{r} \left(\begin{array}{l}r \\ n\end{array}\right){x}^{n}}.\end{array} $$  {eq:fs-id1167023919069}
 
 For example, using this formula for $r=5,$ we see that
 
-$\begin{array}{rl}f(x) & ={(1+x)}^{5} \\ & =(\begin{array}{l}5 \\ 0\end{array})1+(\begin{array}{l}5 \\ 1\end{array})x+(\begin{array}{l}5 \\ 2\end{array}){x}^{2}+(\begin{array}{l}5 \\ 3\end{array}){x}^{3}+(\begin{array}{l}5 \\ 4\end{array}){x}^{4}+(\begin{array}{l}5 \\ 5\end{array}){x}^{5} \\ & =\frac{5\text{!}}{0\text{!}5\text{!}}1+\frac{5\text{!}}{1\text{!}4\text{!}}x+\frac{5\text{!}}{2\text{!}3\text{!}}{x}^{2}+\frac{5\text{!}}{3\text{!}2\text{!}}{x}^{3}+\frac{5\text{!}}{4\text{!}1\text{!}}{x}^{4}+\frac{5\text{!}}{5\text{!}0\text{!}}{x}^{5} \\ & =1+5x+10{x}^{2}+10{x}^{3}+5{x}^{4}+{x}^{5}.\end{array}$  {eq:fs-id1167023731125}
+$\begin{array}{rl}f(x) & ={(1+x)}^{5} \\ & =\left(\begin{array}{l}5 \\ 0\end{array}\right)1+\left(\begin{array}{l}5 \\ 1\end{array}\right)x+\left(\begin{array}{l}5 \\ 2\end{array}\right){x}^{2}+\left(\begin{array}{l}5 \\ 3\end{array}\right){x}^{3}+\left(\begin{array}{l}5 \\ 4\end{array}\right){x}^{4}+\left(\begin{array}{l}5 \\ 5\end{array}\right){x}^{5} \\ & =\frac{5\text{!}}{0\text{!}5\text{!}}1+\frac{5\text{!}}{1\text{!}4\text{!}}x+\frac{5\text{!}}{2\text{!}3\text{!}}{x}^{2}+\frac{5\text{!}}{3\text{!}2\text{!}}{x}^{3}+\frac{5\text{!}}{4\text{!}1\text{!}}{x}^{4}+\frac{5\text{!}}{5\text{!}0\text{!}}{x}^{5} \\ & =1+5x+10{x}^{2}+10{x}^{3}+5{x}^{4}+{x}^{5}.\end{array}$  {eq:fs-id1167023731125}
 
 We now consider the case when the exponent $r$ is any real number, not necessarily a nonnegative integer. If $r$ is not a nonnegative integer, then $f(x)={(1+x)}^{r}$ cannot be written as a finite polynomial. However, we can find a power series for $f.$ Specifically, we look for the Maclaurin series for $f.$ To do this, we find the derivatives of $f$ and evaluate them at $x=0.$
 
@@ -36,11 +36,11 @@ $$ \frac{{f}^{(n)}(0)}{n\text{!}}=\frac{r(r-1)(r-2)\text{⋯}(r-n+1)}{n\text{!}}
 
 We note that if $r$ is a nonnegative integer, then the $(r+1)\text{st}$ derivative ${f}^{(r+1)}$ is the zero function, and the series terminates. In addition, if $r$ is a nonnegative integer, then [ref:fs-id1167023896721] for the coefficients agrees with [ref:fs-id1167023717125] for the coefficients, and the formula for the binomial series agrees with [ref:fs-id1167023919069] for the finite binomial expansion. More generally, to denote the binomial coefficients for any real number $r,$ we define
 
-$(\begin{array}{l}r \\ n\end{array})=\frac{r(r-1)(r-2)\text{⋯}(r-n+1)}{n\text{!}}.$  {eq:fs-id1167024038814}
+$\left(\begin{array}{l}r \\ n\end{array}\right)=\frac{r(r-1)(r-2)\text{⋯}(r-n+1)}{n\text{!}}.$  {eq:fs-id1167024038814}
 
 With this notation, we can write the binomial series for ${(1+x)}^{r}$ as
 
-$$ {\displaystyle \sum_{n=0}^{\infty} (\begin{array}{l}r \\ n\end{array}){x}^{n}=1+rx+\frac{r(r-1)}{2\text{!}}{x}^{2}+\text{⋯}+\frac{r(r-1)\text{⋯}(r-n+1)}{n\text{!}}{x}^{n}+\text{⋯}.} $$  {eq:fs-id1167024036610}
+$$ {\displaystyle \sum_{n=0}^{\infty} \left(\begin{array}{l}r \\ n\end{array}\right){x}^{n}=1+rx+\frac{r(r-1)}{2\text{!}}{x}^{2}+\text{⋯}+\frac{r(r-1)\text{⋯}(r-n+1)}{n\text{!}}{x}^{n}+\text{⋯}.} $$  {eq:fs-id1167024036610}
 
 We now need to determine the interval of convergence for the binomial series [ref:fs-id1167024036610]. We apply the ratio test. Consequently, we consider
 
@@ -55,7 +55,7 @@ if and only if $|x|<1,$ we conclude that the interval of convergence for the bin
 :::note [definition] Definition
 For any real number $r,$ the Maclaurin series for $f(x)={(1+x)}^{r}$ is the binomial series. It converges to $f$ for $|x|<1,$ and we write
 
-$\begin{array}{rl}{(1+x)}^{r} & ={\displaystyle \sum_{n=0}^{\infty} (\begin{array}{l}r \\ n\end{array}){x}^{n}} \\ & =1+rx+\frac{r(r-1)}{2\text{!}}{x}^{2}+\text{⋯}+\frac{r(r-1)\text{⋯}(r-n+1)}{n\text{!}}{x}^{n}+\text{⋯}\end{array}$  {eq:fs-id1167023823038}
+$\begin{array}{rl}{(1+x)}^{r} & ={\displaystyle \sum_{n=0}^{\infty} \left(\begin{array}{l}r \\ n\end{array}\right){x}^{n}} \\ & =1+rx+\frac{r(r-1)}{2\text{!}}{x}^{2}+\text{⋯}+\frac{r(r-1)\text{⋯}(r-n+1)}{n\text{!}}{x}^{n}+\text{⋯}\end{array}$  {eq:fs-id1167023823038}
 
 for $|x|<1.$
 :::
@@ -124,7 +124,7 @@ At this point, we have derived Maclaurin series for exponential, trigonometric, 
 | $f(x)=\text{cos}\;x$ | ${\displaystyle \sum_{n=0}^{\infty} {(−1)}^{n}\frac{{x}^{2n}}{(2n)\text{!}}}$ | $\text{−}\infty <x<\infty$ |
 | $f(x)=\text{ln}\;(1+x)$ | ${\displaystyle \sum_{n=1}^{\infty} {(−1)}^{n+1}\frac{{x}^{n}}{n}}$ | $−1<x\le 1$ |
 | $f(x)={\text{tan}}^{−1}x$ | ${\displaystyle \sum_{n=0}^{\infty} {(−1)}^{n}\frac{{x}^{2n+1}}{2n+1}}$ | $−1\le x\le 1$ |
-| $f(x)={(1+x)}^{r}$ | ${\displaystyle \sum_{n=0}^{\infty} (\begin{array}{l}r \\ n\end{array}){x}^{n}}$ | $−1<x<1$ |
+| $f(x)={(1+x)}^{r}$ | ${\displaystyle \sum_{n=0}^{\infty} \left(\begin{array}{l}r \\ n\end{array}\right){x}^{n}}$ | $−1<x<1$ |
 
 Earlier in the chapter, we showed how you could combine power series to create new power series. Here we use these properties, combined with the Maclaurin series in [ref:fs-id1167024047165], to create Maclaurin series for other functions.
 
@@ -492,7 +492,7 @@ ${(1-x)}^{1\text{/}3}$
 PROBLEM:
 ${(1+{x}^{2})}^{−1\text{/}3}$
 SOLUTION:
-${(1+{x}^{2})}^{−1\text{/}3}={\displaystyle \sum_{n=0}^{\infty} (\begin{array}{l}-\frac{1}{3} \\ n\end{array}){x}^{2n}}$
+${(1+{x}^{2})}^{−1\text{/}3}={\displaystyle \sum_{n=0}^{\infty} \left(\begin{array}{l}-\frac{1}{3} \\ n\end{array}\right){x}^{2n}}$
 :::
 
 :::exercise {fs-id1167023851577} type= 
@@ -504,7 +504,7 @@ ${(1-x)}^{1.01}$
 PROBLEM:
 ${(1-2x)}^{2\text{/}3}$
 SOLUTION:
-${(1-2x)}^{2\text{/}3}={\displaystyle \sum_{n=0}^{\infty} {(−1)}^{n}{2}^{n}}(\begin{array}{l}\frac{2}{3} \\ n\end{array}){x}^{n}$
+${(1-2x)}^{2\text{/}3}={\displaystyle \sum_{n=0}^{\infty} {(−1)}^{n}{2}^{n}}\left(\begin{array}{l}\frac{2}{3} \\ n\end{array}\right){x}^{n}$
 :::
 In the following exercises, use the substitution ${(b+x)}^{r}={(b+a)}^{r}{(1+\frac{x-a}{b+a})}^{r}$ in the binomial expansion to find the Taylor series of each function with the given center.
 
@@ -517,7 +517,7 @@ $\sqrt{x+2}$ at $a=0$
 PROBLEM:
 $\sqrt{{x}^{2}+2}$ at $a=0$
 SOLUTION:
-$\sqrt{2+{x}^{2}}={\displaystyle \sum_{n=0}^{\infty} {2}^{(1\text{/}2)-n}}(\begin{array}{l}\frac{1}{2} \\ n\end{array}){x}^{2n};(|{x}^{2}|<2)$
+$\sqrt{2+{x}^{2}}={\displaystyle \sum_{n=0}^{\infty} {2}^{(1\text{/}2)-n}}\left(\begin{array}{l}\frac{1}{2} \\ n\end{array}\right){x}^{2n};(|{x}^{2}|<2)$
 :::
 
 :::exercise {fs-id1167023863292} type= 
@@ -529,7 +529,7 @@ $\sqrt{x+2}$ at $a=1$
 PROBLEM:
 $\sqrt{2x-{x}^{2}}$ at $a=1$ (*Hint:* $2x-{x}^{2}=1-{(x-1)}^{2})$
 SOLUTION:
-$\sqrt{2x-{x}^{2}}=\sqrt{1-{(x-1)}^{2}}$ so $\sqrt{2x-{x}^{2}}={\displaystyle \sum_{n=0}^{\infty} {(−1)}^{n}}(\begin{array}{l}\frac{1}{2} \\ n\end{array}){(x-1)}^{2n}$
+$\sqrt{2x-{x}^{2}}=\sqrt{1-{(x-1)}^{2}}$ so $\sqrt{2x-{x}^{2}}={\displaystyle \sum_{n=0}^{\infty} {(−1)}^{n}}\left(\begin{array}{l}\frac{1}{2} \\ n\end{array}\right){(x-1)}^{2n}$
 :::
 
 :::exercise {fs-id1167023765440} type= 
@@ -541,7 +541,7 @@ ${(x-8)}^{1\text{/}3}$ at $a=9$
 PROBLEM:
 $\sqrt{x}$ at $a=4$
 SOLUTION:
-$\sqrt{x}=2\sqrt{1+\frac{x-4}{4}}$ so $\sqrt{x}={\displaystyle \sum_{n=0}^{\infty} {2}^{1-2n}(\begin{array}{l}\frac{1}{2} \\ n\end{array}){(x-4)}^{n}}$
+$\sqrt{x}=2\sqrt{1+\frac{x-4}{4}}$ so $\sqrt{x}={\displaystyle \sum_{n=0}^{\infty} {2}^{1-2n}\left(\begin{array}{l}\frac{1}{2} \\ n\end{array}\right){(x-4)}^{n}}$
 :::
 
 :::exercise {fs-id1167023921356} type= 
@@ -566,7 +566,7 @@ PROBLEM:
 PROBLEM:
 **[T]** ${(1001)}^{1\text{/}3}$ using ${(1000+x)}^{1\text{/}3}$
 SOLUTION:
-$10{(1+\frac{x}{1000})}^{1\text{/}3}={\displaystyle \sum_{n=0}^{\infty} {10}^{1-3n}}(\begin{array}{l}\frac{1}{3} \\ n\end{array}){x}^{n}.$ Using, for example, a fourth-degree estimate at $x=1$ gives $\begin{array}{rl}{(1001)}^{1\text{/}3} & \approx 10(1+(\begin{array}{l}\frac{1}{3} \\ 1\end{array}){10}^{−3}+(\begin{array}{l}\frac{1}{3} \\ 2\end{array}){10}^{−6}+(\begin{array}{l}\frac{1}{3} \\ 3\end{array}){10}^{−9}+(\begin{array}{l}\frac{1}{3} \\ 4\end{array}){10}^{−12}) \\ & =10(1+\frac{1}{{3.10}^{3}}-\frac{1}{{9.10}^{6}}+\frac{5}{{81.10}^{9}}-\frac{10}{{243.10}^{12}})=10.00333222...\end{array}$ whereas ${(1001)}^{1\text{/}3}=10.00332222839093....$ Two terms would suffice for three-digit accuracy.
+$10{(1+\frac{x}{1000})}^{1\text{/}3}={\displaystyle \sum_{n=0}^{\infty} {10}^{1-3n}}\left(\begin{array}{l}\frac{1}{3} \\ n\end{array}\right){x}^{n}.$ Using, for example, a fourth-degree estimate at $x=1$ gives $\begin{array}{rl}{(1001)}^{1\text{/}3} & \approx 10(1+\left(\begin{array}{l}\frac{1}{3} \\ 1\end{array}\right){10}^{−3}+\left(\begin{array}{l}\frac{1}{3} \\ 2\end{array}\right){10}^{−6}+\left(\begin{array}{l}\frac{1}{3} \\ 3\end{array}\right){10}^{−9}+\left(\begin{array}{l}\frac{1}{3} \\ 4\end{array}\right){10}^{−12}) \\ & =10(1+\frac{1}{{3.10}^{3}}-\frac{1}{{9.10}^{6}}+\frac{5}{{81.10}^{9}}-\frac{10}{{243.10}^{12}})=10.00333222...\end{array}$ whereas ${(1001)}^{1\text{/}3}=10.00332222839093....$ Two terms would suffice for three-digit accuracy.
 :::
 In the following exercises, use the binomial approximation $\sqrt{1-x}\approx 1-\frac{x}{2}-\frac{{x}^{2}}{8}-\frac{{x}^{3}}{16}-\frac{5{x}^{4}}{128}-\frac{7{x}^{5}}{256}$ for $|x|<1$ to approximate each number. Compare this value to the value given by a scientific calculator.
 
@@ -726,9 +726,9 @@ $F(x)={\text{tanh}}^{−1}x;\;f(t)=\frac{1}{1-{t}^{2}}={\displaystyle \sum_{n=0}
 
 :::exercise {fs-id1167023776912} type= 
 PROBLEM:
-$F(x)={\text{sin}}^{−1}x;\;f(t)=\frac{1}{\sqrt{1-{t}^{2}}}={\displaystyle \sum_{k=0}^{\infty} (\begin{array}{l}\frac{1}{2} \\ k\end{array})\frac{{t}^{2k}}{k\text{!}}}$
+$F(x)={\text{sin}}^{−1}x;\;f(t)=\frac{1}{\sqrt{1-{t}^{2}}}={\displaystyle \sum_{k=0}^{\infty} \left(\begin{array}{l}\frac{1}{2} \\ k\end{array}\right)\frac{{t}^{2k}}{k\text{!}}}$
 SOLUTION:
-${\text{sin}}^{−1}x={\displaystyle \sum_{n=0}^{\infty} (\begin{array}{l}\frac{1}{2} \\ n\end{array})\frac{{x}^{2n+1}}{(2n+1)n\text{!}}}$
+${\text{sin}}^{−1}x={\displaystyle \sum_{n=0}^{\infty} \left(\begin{array}{l}\frac{1}{2} \\ n\end{array}\right)\frac{{x}^{2n+1}}{(2n+1)n\text{!}}}$
 :::
 
 :::exercise {fs-id1167023922347} type= 
@@ -1155,5 +1155,5 @@ Calculate the necessary present value of an annuity in order to support annual p
 ## Glossary
 - {def} **binomial series**: the Maclaurin series for $f(x)={(1+x)}^{r};$ it is given by
 
-${(1+x)}^{r}={\displaystyle \sum_{n=0}^{\infty} (\begin{array}{l}r \\ n\end{array}){x}^{n}}=1+rx+\frac{r(r-1)}{2\text{!}}{x}^{2}+\text{⋯}+\frac{r(r-1)\text{⋯}(r-n+1)}{n\text{!}}{x}^{n}+\text{⋯}$ for $|x|<1$
+${(1+x)}^{r}={\displaystyle \sum_{n=0}^{\infty} \left(\begin{array}{l}r \\ n\end{array}\right){x}^{n}}=1+rx+\frac{r(r-1)}{2\text{!}}{x}^{2}+\text{⋯}+\frac{r(r-1)\text{⋯}(r-n+1)}{n\text{!}}{x}^{n}+\text{⋯}$ for $|x|<1$
 - {def} **nonelementary integral**: an integral for which the antiderivative of the integrand cannot be expressed as an elementary function

@@ -278,7 +278,7 @@ $0\le \frac{1}{x{e}^{x}}\le \frac{1}{{e}^{x}}={e}^{\text{−}x},$  {eq:fs-id1165
 
 so if ${\displaystyle \int_{1}^{+\infty}{e}^{\text{−}x}dx}$ converges, then so does ${\displaystyle \int_{1}^{+\infty}\frac{1}{x{e}^{x}}dx}.$ To evaluate ${\displaystyle \int_{1}^{+\infty}{e}^{\text{−}x}dx},$ first rewrite it as a limit:
 
-$\begin{array}{rl}{\displaystyle \int_{1}^{+\infty}{e}^{\text{−}x}}dx & =\lim_{t\to \text{+}\infty}{\displaystyle \int_{1}^{t}{e}^{\text{−}x}dx} \\ & =\lim_{t\to \text{+}\infty}(\text{−}{e}^{\text{−}x})|\begin{array}{l}t \\ 1\end{array} \\ & =\lim_{t\to \text{+}\infty}(\text{−}{e}^{\text{−}t}+{e}^{–1}) \\ & ={e}^{–1}.\end{array}$  {eq:fs-id1165042634862}
+$\begin{array}{rl}{\displaystyle \int_{1}^{+\infty}{e}^{\text{−}x}}dx & =\lim_{t\to \text{+}\infty}{\displaystyle \int_{1}^{t}{e}^{\text{−}x}dx} \\ & =\lim_{t\to \text{+}\infty}(\text{−}{e}^{\text{−}x})\left|\begin{array}{l}t \\ 1\end{array}\right. \\ & =\lim_{t\to \text{+}\infty}(\text{−}{e}^{\text{−}t}+{e}^{–1}) \\ & ={e}^{–1}.\end{array}$  {eq:fs-id1165042634862}
 
 Since ${\displaystyle \int_{1}^{+\infty}{e}^{\text{−}x}dx}$ converges, so does ${\displaystyle \int_{1}^{+\infty}\frac{1}{x{e}^{x}}dx}.$
 :::
@@ -744,7 +744,7 @@ A non-negative function is a {index:probability density function} if it satisfie
 
 :::exercise {fs-id1165042649241} type= 
 PROBLEM:
-Show that $f(x)=\{\begin{array}{l}0\;\text{if}\;x<0 \\ 7{e}^{−7x}\text{if}\;x\ge 0\end{array}$ is a probability density function.
+Show that $f(x)=\left\{\begin{array}{l}0\;\text{if}\;x<0 \\ 7{e}^{−7x}\text{if}\;x\ge 0\end{array}\right.$ is a probability density function.
 :::
 
 :::exercise {fs-id1165042796871} type= 

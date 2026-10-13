@@ -146,7 +146,7 @@ PROBLEM:
 
 As we saw at the beginning of the chapter, top {index:iceboat} racers ([ref:CNX_BMath_Figure_05_00_001](module:m53623)) can attain speeds of up to five times the wind speed. Andrew is an intermediate iceboater, though, so he attains speeds equal to only twice the wind speed. Suppose Andrew takes his iceboat out one morning when a light 5-mph breeze has been blowing all morning. As Andrew gets his iceboat set up, though, the wind begins to pick up. During his first half hour of iceboating, the wind speed increases according to the function $v(t)=20t+5.$ For the second half hour of Andrew’s outing, the wind remains steady at 15 mph. In other words, the wind speed is given by
 
-$v(t)=\{\begin{array}{lll}20t+5 & \text{for} & 0\le t\le \frac{1}{2} \\ 15 & \text{for} & \frac{1}{2}\le t\le 1.\end{array}$  {eq:fs-id1170571600706}
+$v(t)=\left\{\begin{array}{lll}20t+5 & \text{for} & 0\le t\le \frac{1}{2} \\ 15 & \text{for} & \frac{1}{2}\le t\le 1.\end{array}\right.$  {eq:fs-id1170571600706}
 
 Recalling that Andrew’s iceboat travels at twice the wind speed, and assuming he moves in a straight line away from his starting point, how far is Andrew from his starting point after 1 hour?
 SOLUTION:
@@ -166,7 +166,7 @@ Andrew is 25 mi from his starting point after 1 hour.
 PROBLEM:
 Suppose that, instead of remaining steady during the second half hour of Andrew’s outing, the wind starts to die down according to the function $v(t)=−10t+20.$ In other words, the wind speed is given by
 
-$v(t)=\{\begin{array}{lll}20t+5 & \text{for} & 0\le t\le \frac{1}{2} \\ -10t+15 & \text{for} & \frac{1}{2}\le t\le 1.\end{array}$  {eq:fs-id1170571609306}
+$v(t)=\left\{\begin{array}{lll}20t+5 & \text{for} & 0\le t\le \frac{1}{2} \\ -10t+15 & \text{for} & \frac{1}{2}\le t\le 1.\end{array}\right.$  {eq:fs-id1170571609306}
 
 Under these conditions, how far from his starting point is Andrew after 1 hour?
 SOLUTION:

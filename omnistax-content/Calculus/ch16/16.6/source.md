@@ -201,7 +201,7 @@ ${\textbf{r}}_{u}=\langle \text{−}(2+\text{cos}\;v)\text{sin}\;u,(2+\text{cos}
 
 exist for any choice of *u* and *v* in the parameter domain, and
 
-$\begin{array}{rl}{\textbf{r}}_{u}\;\times \;{\textbf{r}}_{v} & =|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \text{−}(2+\text{cos}\;v)\text{sin}\;u & (2+\text{cos}\;v)\text{cos}\;u & 0 \\ \text{−}\text{sin}\;v\;\text{cos}\;u & \text{−}\text{sin}\;v\;\text{sin}\;u & \text{cos}\;v\end{array}| \\ & =[(2+\text{cos}\;v)\text{cos}\;u\;\text{cos}\;v]\textbf{i}+[(2+\text{cos}\;v)\text{sin}\;u\;\text{cos}\;v]\textbf{j} \\ & \;+[(2+\text{cos}\;v)\text{sin}\;v\;{\text{sin}}^{2}u+(2+\text{cos}\;v)\text{sin}\;v\;{\text{cos}}^{2}u]\textbf{k} \\ & =[(2+\text{cos}\;v)\text{cos}\;u\;\text{cos}\;v]\textbf{i}+[(2+\text{cos}\;v)\text{sin}\;u\;\text{cos}\;v]\textbf{j}+[(2+\text{cos}\;v)\text{sin}\;v]\textbf{k}.\end{array}$  {eq:fs-id1167793371575}
+$\begin{array}{rl}{\textbf{r}}_{u}\;\times \;{\textbf{r}}_{v} & =\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \text{−}(2+\text{cos}\;v)\text{sin}\;u & (2+\text{cos}\;v)\text{cos}\;u & 0 \\ \text{−}\text{sin}\;v\;\text{cos}\;u & \text{−}\text{sin}\;v\;\text{sin}\;u & \text{cos}\;v\end{array}\right| \\ & =[(2+\text{cos}\;v)\text{cos}\;u\;\text{cos}\;v]\textbf{i}+[(2+\text{cos}\;v)\text{sin}\;u\;\text{cos}\;v]\textbf{j} \\ & \;+[(2+\text{cos}\;v)\text{sin}\;v\;{\text{sin}}^{2}u+(2+\text{cos}\;v)\text{sin}\;v\;{\text{cos}}^{2}u]\textbf{k} \\ & =[(2+\text{cos}\;v)\text{cos}\;u\;\text{cos}\;v]\textbf{i}+[(2+\text{cos}\;v)\text{sin}\;u\;\text{cos}\;v]\textbf{j}+[(2+\text{cos}\;v)\text{sin}\;v]\textbf{k}.\end{array}$  {eq:fs-id1167793371575}
 
 The **k** component of this vector is zero only if $v=0$ or $v=\pi .$ If $v=0$ or $v=\pi ,$ then the only choices for *u* that make the **j** component zero are $u=0$ or $u=\pi .$ But, these choices of *u* do not make the **i** component zero. Therefore, ${\textbf{r}}_{u}\;\times \;{\textbf{r}}_{v}$ is not zero for any choice of *u* and *v* in the parameter domain, and the parameterization is smooth. Notice that the corresponding surface has no sharp corners.
 In the pyramid in [ref:CNX_Calc_Figure_16_06_008](b), the sharpness of the corners ensures that directional derivatives do not exist at those locations. Therefore, the pyramid has no smooth parameterization. However, the pyramid consists of five smooth faces, and thus this surface is piecewise smooth.
@@ -279,7 +279,7 @@ The idea behind this parameterization is that for a fixed *v* value, the circle 
 
 With a parameterization in hand, we can calculate the surface area of the cone using [ref:fs-id1167793991244]. The tangent vectors are ${\textbf{t}}_{u}=\langle \text{−}kv\;\text{sin}\;u,kv\;\text{cos}\;u,0\rangle$ and ${\textbf{t}}_{v}=\langle k\;\text{cos}\;u,k\;\text{sin}\;u,1\rangle .$ Therefore,
 
-$\begin{array}{rl}{\textbf{t}}_{u}\;\times \;{\textbf{t}}_{v} & =|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \text{−}kv\;\text{sin}\;u & kv\;\text{cos}\;u & 0 \\ k\;\text{cos}\;u & k\;\text{sin}\;u & 1\end{array}| \\ & =\langle kv\;\text{cos}\;u,kv\;\text{sin}\;u,\text{−}{k}^{2}v\;{\text{sin}}^{2}u-{k}^{2}v\;{\text{cos}}^{2}u\rangle \\ & =\langle kv\;\text{cos}\;u,kv\;\text{sin}\;u,\text{−}{k}^{2}v\rangle .\end{array}$  {eq:fs-id1167793262752}
+$\begin{array}{rl}{\textbf{t}}_{u}\;\times \;{\textbf{t}}_{v} & =\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \text{−}kv\;\text{sin}\;u & kv\;\text{cos}\;u & 0 \\ k\;\text{cos}\;u & k\;\text{sin}\;u & 1\end{array}\right| \\ & =\langle kv\;\text{cos}\;u,kv\;\text{sin}\;u,\text{−}{k}^{2}v\;{\text{sin}}^{2}u-{k}^{2}v\;{\text{cos}}^{2}u\rangle \\ & =\langle kv\;\text{cos}\;u,kv\;\text{sin}\;u,\text{−}{k}^{2}v\rangle .\end{array}$  {eq:fs-id1167793262752}
 
 The magnitude of this vector is
 
@@ -449,7 +449,7 @@ SOLUTION:
 Notice that this parameter domain *D* is a triangle, and therefore the parameter domain is not rectangular. This is not an issue though, because [ref:fs-id1167793757749] does not place any restrictions on the shape of the parameter domain.
 To use [ref:fs-id1167793757749] to calculate the surface integral, we first find vector ${\textbf{t}}_{u}$ and ${\textbf{t}}_{v}.$ Note that ${\textbf{t}}_{u}=\langle 1,2u,0\rangle$ and ${\textbf{t}}_{v}=\langle 0,0,1\rangle .$ Therefore,
 
-${\textbf{t}}_{u}\;\times \;{\textbf{t}}_{v}=|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ 1 & 2u & 0 \\ 0 & 0 & 1\end{array}|=\langle 2u,−1,0\rangle$  {eq:fs-id1167793286889}
+${\textbf{t}}_{u}\;\times \;{\textbf{t}}_{v}=\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ 1 & 2u & 0 \\ 0 & 0 & 1\end{array}\right|=\langle 2u,−1,0\rangle$  {eq:fs-id1167793286889}
 
 and
 
@@ -479,7 +479,7 @@ $\textbf{r}(u,v)=\langle 2\text{cos}\;u,2\text{sin}\;u,v\rangle ,0\le u\le 2\pi 
 
 The tangent vectors are ${\textbf{t}}_{u}=\langle -2\text{sin}\;u,2\text{cos}\;u,0\rangle$ and ${\textbf{t}}_{v}=\langle 0,0,1\rangle .$ Then,
 
-${\text{t}}_{u}\;\times \;{\text{t}}_{v}=|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ -2\text{sin}\;u & 2\text{cos}\;u & 0 \\ 0 & 0 & 1\end{array}|=\langle 2\text{cos}\;u,2\text{sin}\;u,0\rangle$  {eq:fs-id1167794094407}
+${\text{t}}_{u}\;\times \;{\text{t}}_{v}=\left|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ -2\text{sin}\;u & 2\text{cos}\;u & 0 \\ 0 & 0 & 1\end{array}\right|=\langle 2\text{cos}\;u,2\text{sin}\;u,0\rangle$  {eq:fs-id1167794094407}
 
 and $\| {\textbf{t}}_{u}\;\times \;{\textbf{t}}_{v}\| =\sqrt{{4\text{cos}}^{2}u+{4\text{sin}}^{2}u}=2.$ By [ref:fs-id1167793757749],
 
@@ -518,7 +518,7 @@ ${x}^{2}+{y}^{2}+1=4⇒{x}^{2}+{y}^{2}=3.$  {eq:fs-id1167793294063}
 
 Therefore, the radius of the disk is $\sqrt{3}$ and a parameterization of ${S}_{1}$ is $\textbf{r}(u,v)=\langle u\;\text{cos}\;v,u\;\text{sin}\;v,1\rangle ,0\le u\le \sqrt{3},0\le v\le 2\pi .$ The tangent vectors are ${\textbf{t}}_{u}=\langle \text{cos}\;v,\text{sin}\;v,0\rangle$ and ${\textbf{t}}_{v}=\langle \text{−}u\;\text{sin}\;v,ucosv,0\rangle ,$ and thus
 
-${\textbf{t}}_{u}\;\times \;{\textbf{t}}_{v}=|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \text{cos}\;v & \text{sin}\;v & 0 \\ \text{−}u\;\text{sin}\;v & u\;\text{cos}\;v & 0\end{array}|=\langle 0,0,u\;{\text{cos}}^{2}v+u\;{\text{sin}}^{2}v\rangle =\langle 0,0,u\rangle .$  {eq:fs-id1167794200463}
+${\textbf{t}}_{u}\;\times \;{\textbf{t}}_{v}=\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ \text{cos}\;v & \text{sin}\;v & 0 \\ \text{−}u\;\text{sin}\;v & u\;\text{cos}\;v & 0\end{array}\right|=\langle 0,0,u\;{\text{cos}}^{2}v+u\;{\text{sin}}^{2}v\rangle =\langle 0,0,u\rangle .$  {eq:fs-id1167794200463}
 
 The magnitude of this vector is *u*. Therefore,
 
@@ -542,7 +542,7 @@ ${\textbf{t}}_{ϕ}=\langle 2\;\text{cos}\;\theta \;\text{cos}\;ϕ,2\;\text{sin}\
 
 and thus
 
-$\begin{array}{rl}{\textbf{t}}_{ϕ}\;\times \;{\textbf{t}}_{\theta} & =|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ 2\;\text{cos}\;\theta \;\text{cos}\;ϕ & 2\;\text{sin}\;\theta \;\text{cos}\;ϕ & −2\;\text{sin}\;ϕ \\ −2\;\text{sin}\;\theta \;\text{sin}\;ϕ & 2\;\text{cos}\;\theta \;\text{sin}\;ϕ & 0\end{array}| \\ & =\langle 4\;\text{cos}\;\theta \;{\text{sin}}^{2}ϕ,4\;\text{sin}\;\theta \;{\text{sin}}^{2}ϕ,4\;{\text{cos}}^{2}\theta \;\text{cos}\;ϕ\;\text{sin}\;ϕ+4\;{\text{sin}}^{2}\theta \;\text{cos}\;ϕ\;\text{sin}\;ϕ\rangle \\ & =\langle 4\;\text{cos}\;\theta \;{\text{sin}}^{2}ϕ,4\;\text{sin}\;\theta \;{\text{sin}}^{2}ϕ,4\;\text{cos}\;ϕ\;\text{sin}\;ϕ\rangle .\end{array}$  {eq:fs-id1167793545079}
+$\begin{array}{rl}{\textbf{t}}_{ϕ}\;\times \;{\textbf{t}}_{\theta} & =\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ 2\;\text{cos}\;\theta \;\text{cos}\;ϕ & 2\;\text{sin}\;\theta \;\text{cos}\;ϕ & −2\;\text{sin}\;ϕ \\ −2\;\text{sin}\;\theta \;\text{sin}\;ϕ & 2\;\text{cos}\;\theta \;\text{sin}\;ϕ & 0\end{array}\right| \\ & =\langle 4\;\text{cos}\;\theta \;{\text{sin}}^{2}ϕ,4\;\text{sin}\;\theta \;{\text{sin}}^{2}ϕ,4\;{\text{cos}}^{2}\theta \;\text{cos}\;ϕ\;\text{sin}\;ϕ+4\;{\text{sin}}^{2}\theta \;\text{cos}\;ϕ\;\text{sin}\;ϕ\rangle \\ & =\langle 4\;\text{cos}\;\theta \;{\text{sin}}^{2}ϕ,4\;\text{sin}\;\theta \;{\text{sin}}^{2}ϕ,4\;\text{cos}\;ϕ\;\text{sin}\;ϕ\rangle .\end{array}$  {eq:fs-id1167793545079}
 
 The magnitude of this vector is
 

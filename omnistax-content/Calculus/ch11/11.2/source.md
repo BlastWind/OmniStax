@@ -416,7 +416,7 @@ ${\displaystyle \int \sqrt{{a}^{2}+{u}^{2}}du}=\frac{u}{2}\sqrt{{a}^{2}+{u}^{2}}
 
 We set $a=140$ and $u=−32v+2.$ This gives $du=−32dv,$ so $dv=-\frac{1}{32}du.$ Therefore
 
-$\begin{array}{rl}{\displaystyle \int \sqrt{{140}^{2}+{(−32v+2)}^{2}}dv} & =-\frac{1}{32}{\displaystyle \int \sqrt{{a}^{2}+{u}^{2}}du} \\ & =-\frac{1}{32}[\begin{array}{l}\frac{(−32v+2)}{2}\sqrt{{140}^{2}+{(−32v+2)}^{2}} \\ +\frac{{140}^{2}}{2}\text{ln}|(−32v+2)+\sqrt{{140}^{2}+{(−32v+2)}^{2}}|\end{array}]+C\end{array}$  {eq:fs-id1167794094341}
+$\begin{array}{rl}{\displaystyle \int \sqrt{{140}^{2}+{(−32v+2)}^{2}}dv} & =-\frac{1}{32}{\displaystyle \int \sqrt{{a}^{2}+{u}^{2}}du} \\ & =-\frac{1}{32}\left[\begin{array}{l}\frac{(−32v+2)}{2}\sqrt{{140}^{2}+{(−32v+2)}^{2}} \\ +\frac{{140}^{2}}{2}\text{ln}|(−32v+2)+\sqrt{{140}^{2}+{(−32v+2)}^{2}}|\end{array}\right]+C\end{array}$  {eq:fs-id1167794094341}
 
 and
 

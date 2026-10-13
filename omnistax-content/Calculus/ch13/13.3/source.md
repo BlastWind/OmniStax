@@ -237,7 +237,7 @@ $κ=\frac{\| \mathbf{{T}^{'}}(t)\|}{\| \mathbf{{r}^{'}}(t)\|}=\frac{\| \mathbf{{
 
 This proves [ref:fs-id1169738153497]. To prove [ref:fs-id1169738200809], we start with the assumption that curve *C* is defined by the function $y=f(x).$ Then, we can define $\textbf{r}(t)=x\;\textbf{i}+f(x)\;\textbf{j}+0\;\textbf{k}.$ Using the previous formula for curvature:
 
-$\begin{array}{rl}\mathbf{{r}^{'}}(t) & =\textbf{i}+{f}^{'}(x)\;\textbf{j} \\ \mathbf{{r}^{''}}(t) & ={f}^{''}(x)\;\textbf{j} \\ \mathbf{{r}^{'}}(t)\;\times \;\mathbf{{r}^{''}}(t) & =|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ 1 & {f}^{'}(x) & 0 \\ 0 & {f}^{''}(x) & 0\end{array}|={f}^{''}(x)\;\textbf{k}.\end{array}$  {eq:fs-id1169738157871}
+$\begin{array}{rl}\mathbf{{r}^{'}}(t) & =\textbf{i}+{f}^{'}(x)\;\textbf{j} \\ \mathbf{{r}^{''}}(t) & ={f}^{''}(x)\;\textbf{j} \\ \mathbf{{r}^{'}}(t)\;\times \;\mathbf{{r}^{''}}(t) & =\left|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ 1 & {f}^{'}(x) & 0 \\ 0 & {f}^{''}(x) & 0\end{array}\right|={f}^{''}(x)\;\textbf{k}.\end{array}$  {eq:fs-id1169738157871}
 
 Therefore,
 
@@ -378,7 +378,7 @@ $\begin{array}{rl}\textbf{T}(t)\cdot \textbf{N}(t) & =(\frac{3\;\textbf{i}+5t\;\
 
 Last, since $\textbf{r}(t)$ represents a three-dimensional curve, we can calculate the binormal vector using [ref:fs-id1169738200809]:
 
-$\begin{array}{ll}\text{B}(t) & =\text{T}(t)\;\times \;\text{N}(t) \\ & =|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ \frac{3}{5\sqrt{{t}^{2}+1}} & +\frac{5t}{5\sqrt{{t}^{2}+1}} & -\frac{4}{5\sqrt{{t}^{2}+1}} \\ -\frac{3t}{5\sqrt{{t}^{2}+1}} & +\frac{5}{5\sqrt{{t}^{2}+1}} & \frac{4t}{5\sqrt{{t}^{2}+1}}\end{array}| \\ & =((+\frac{5t}{5\sqrt{{t}^{2}+1}})(\frac{4t}{5\sqrt{{t}^{2}+1}})-(-\frac{4}{5\sqrt{{t}^{2}+1}})(+\frac{5}{5\sqrt{{t}^{2}+1}}))\;\text{i} \\ & \;+((\frac{3}{5\sqrt{{t}^{2}+1}})(\frac{4t}{5\sqrt{{t}^{2}+1}})-(-\frac{4}{5\sqrt{{t}^{2}+1}})(-\frac{3t}{5\sqrt{{t}^{2}+1}}))\;\text{j} \\ & \;+((\frac{3}{5\sqrt{{t}^{2}+1}})(+\frac{5}{5\sqrt{{t}^{2}+1}})-(+\frac{5t}{5\sqrt{{t}^{2}+1}})(-\frac{3t}{5\sqrt{{t}^{2}+1}}))\;\text{k} \\ & =(\frac{20{t}^{2}+20}{25({t}^{2}+1)})\;\text{i}+(\frac{−15-15{t}^{2}}{25({t}^{2}+1)})\;\text{k} \\ & =20(\frac{{t}^{2}+1}{25({t}^{2}+1)})\;\text{i+}15(\frac{{t}^{2}+1}{25({t}^{2}+1)})\;\text{k} \\ & =\frac{4}{5}\text{i+}\frac{3}{5}\text{k}.\end{array}$  {eq:fs-id1169736833869}
+$\begin{array}{ll}\text{B}(t) & =\text{T}(t)\;\times \;\text{N}(t) \\ & =\left|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ \frac{3}{5\sqrt{{t}^{2}+1}} & +\frac{5t}{5\sqrt{{t}^{2}+1}} & -\frac{4}{5\sqrt{{t}^{2}+1}} \\ -\frac{3t}{5\sqrt{{t}^{2}+1}} & +\frac{5}{5\sqrt{{t}^{2}+1}} & \frac{4t}{5\sqrt{{t}^{2}+1}}\end{array}\right| \\ & =((+\frac{5t}{5\sqrt{{t}^{2}+1}})(\frac{4t}{5\sqrt{{t}^{2}+1}})-(-\frac{4}{5\sqrt{{t}^{2}+1}})(+\frac{5}{5\sqrt{{t}^{2}+1}}))\;\text{i} \\ & \;+((\frac{3}{5\sqrt{{t}^{2}+1}})(\frac{4t}{5\sqrt{{t}^{2}+1}})-(-\frac{4}{5\sqrt{{t}^{2}+1}})(-\frac{3t}{5\sqrt{{t}^{2}+1}}))\;\text{j} \\ & \;+((\frac{3}{5\sqrt{{t}^{2}+1}})(+\frac{5}{5\sqrt{{t}^{2}+1}})-(+\frac{5t}{5\sqrt{{t}^{2}+1}})(-\frac{3t}{5\sqrt{{t}^{2}+1}}))\;\text{k} \\ & =(\frac{20{t}^{2}+20}{25({t}^{2}+1)})\;\text{i}+(\frac{−15-15{t}^{2}}{25({t}^{2}+1)})\;\text{k} \\ & =20(\frac{{t}^{2}+1}{25({t}^{2}+1)})\;\text{i+}15(\frac{{t}^{2}+1}{25({t}^{2}+1)})\;\text{k} \\ & =\frac{4}{5}\text{i+}\frac{3}{5}\text{k}.\end{array}$  {eq:fs-id1169736833869}
 
 :::
 :::

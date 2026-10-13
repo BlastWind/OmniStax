@@ -76,7 +76,7 @@ $$\frac{d}{dt}[\;\kvecu(t)\;\times \;\kvecuprime(t)]=\kvecuprime(t)\;\times \;\k
 <p>Recall that the <span data-concept="cross-product">cross product</span> of any vector with itself is zero. Furthermore, $\kvecudprime(t)$ represents the second <span data-concept="derivative-of-a-vector-valued-function">derivative</span> of $\kvecu(t)\text{:}$</p>
 $$\kvecudprime(t)=\frac{d}{dt}[\;\kvecuprime(t)]=\frac{d}{dt}[2t\;\kveci+2\;\kvecj+(3t^{2}-3)\;\kveck]=2\;\kveci+6t\;\kveck.$$
 <p>Therefore,</p>
-$$\begin{array}{rl}\frac{d}{dt}[\;\kvecu(t)\;\times \;\kvecuprime(t)] & =\kveczero+((t^{2}-3)\;\kveci+(2t+4)\;\kvecj+(t^{3}-3t)\;\kveck)\;\times \;(2\;\kveci+6t\;\kveck) \\ & =|\begin{array}{lll}\kveci & \kvecj & \kveck \\ t^{2}-3 & 2t+4 & t^{3}-3t \\ 2 & 0 & 6t\end{array}| \\ & =6t(2t+4)\;\kveci-(6t(t^{2}-3)-2(t^{3}-3t))\;\kvecj-2(2t+4)\;\kveck \\ & =(12t^{2}+24t)\;\kveci+(12t-4t^{3})\;\kvecj-(4t+8)\;\kveck.\end{array}$$
+$$\begin{array}{rl}\frac{d}{dt}[\;\kvecu(t)\;\times \;\kvecuprime(t)] & =\kveczero+((t^{2}-3)\;\kveci+(2t+4)\;\kvecj+(t^{3}-3t)\;\kveck)\;\times \;(2\;\kveci+6t\;\kveck) \\ & =\left|\begin{array}{lll}\kveci & \kvecj & \kveck \\ t^{2}-3 & 2t+4 & t^{3}-3t \\ 2 & 0 & 6t\end{array}\right| \\ & =6t(2t+4)\;\kveci-(6t(t^{2}-3)-2(t^{3}-3t))\;\kvecj-2(2t+4)\;\kveck \\ & =(12t^{2}+24t)\;\kveci+(12t-4t^{3})\;\kvecj-(4t+8)\;\kveck.\end{array}$$
 </div>
 <div class="exercises" data-place="fs-id1169736876498"></div>
 </section>
@@ -143,7 +143,7 @@ $$\begin{array}{rl}\int [\kf(t)\;\kveci+\kg(t)\;\kvecj]dt & =[\;\int \kf(t)dt ]\
 <p>a. We use the first part of the definition of the integral of a <span data-concept="space-curve">space curve</span>:</p>
 $$\begin{array}{l}\int [(3t^{2}+2t)\;\kveci+(3t-6)\;\kvecj+(6t^{3}+5t^{2}-4)\;\kveck] dt \\ \\ \hspace{3em}=[\;\int 3t^{2}+2t\;dt ]\;\kveci+[\;\int 3t-6 dt]\;\kvecj+[\;\int 6t^{3}+5t^{2}-4 dt]\;\kveck \\ \hspace{3em}=(t^{3}+t^{2})\;\kveci+(\frac{3}{2}t^{2}-6t)\;\kvecj+(\frac{3}{2}t^{4}+\frac{5}{3}t^{3}-4t)\;\kveck+\;\textbf{C}.\end{array}$$
 <p>b. First calculate $\langle t,t^{2},t^{3}\rangle \;\times \;\langle t^{3},t^{2},t\rangle \text{:}$</p>
-$$\begin{array}{rl}\langle t,t^{2},t^{3}\rangle \;\times \;\langle t^{3},t^{2},t\rangle & =|\begin{array}{lll}\kveci & \kvecj & \kveck \\ t & t^{2} & t^{3} \\ t^{3} & t^{2} & t\end{array}| \\ & =(t^{2}(t)-t^{3}(t^{2}))\;\kveci-(t^{2}-t^{3}(t^{3}))\;\kvecj+(t(t^{2})-t^{2}(t^{3}))\;\kveck \\ & =(t^{3}-t^{5})\;\kveci+(t^{6}-t^{2})\;\kvecj+(t^{3}-t^{5})\;\kveck.\end{array}$$
+$$\begin{array}{rl}\langle t,t^{2},t^{3}\rangle \;\times \;\langle t^{3},t^{2},t\rangle & =\left|\begin{array}{lll}\kveci & \kvecj & \kveck \\ t & t^{2} & t^{3} \\ t^{3} & t^{2} & t\end{array}\right| \\ & =(t^{2}(t)-t^{3}(t^{2}))\;\kveci-(t^{2}-t^{3}(t^{3}))\;\kvecj+(t(t^{2})-t^{2}(t^{3}))\;\kveck \\ & =(t^{3}-t^{5})\;\kveci+(t^{6}-t^{2})\;\kvecj+(t^{3}-t^{5})\;\kveck.\end{array}$$
 <p>Next, substitute this back into the integral and integrate:</p>
 $$\begin{array}{rl}\int [\langle t,t^{2},t^{3}\rangle \;\times \;\langle t^{3},t^{2},t\rangle ] dt & =\int (t^{3}-t^{5})\;\kveci+(t^{6}-t^{2})\;\kvecj+(t^{3}-t^{5})\;\kveck\;dt \\ & =(\frac{t^{4}}{4}-\frac{t^{6}}{6})\;\kveci+(\frac{t^{7}}{7}-\frac{t^{3}}{3})\;\kvecj+(\frac{t^{4}}{4}-\frac{t^{6}}{6})\;\kveck+\;\textbf{C}.\end{array}$$
 <p>c. Use the second part of the definition of the integral of a <span data-concept="space-curve">space curve</span>:</p>

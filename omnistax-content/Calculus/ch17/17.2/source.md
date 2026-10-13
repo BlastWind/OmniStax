@@ -317,7 +317,7 @@ $\begin{array}{rll}{a}_{1}{z}_{1}+{b}_{1}{z}_{2} & = & {r}_{1} \\ {a}_{2}{z}_{1}
 
 has a unique solution if and only if the determinant of the coefficients is not zero. In this case, the solution is given by
 
-${z}_{1}=\frac{|\begin{array}{ll}{r}_{1} & {b}_{1} \\ {r}_{2} & {b}_{2}\end{array}|}{|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}|}\hspace{2em}\text{and}\hspace{2em}{z}_{2}=\frac{|\begin{array}{ll}{a}_{1} & {r}_{1} \\ {a}_{2} & {r}_{2}\end{array}|}{|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}|}.$  {eq:fs-id1170572387644}
+${z}_{1}=\frac{\left|\begin{array}{ll}{r}_{1} & {b}_{1} \\ {r}_{2} & {b}_{2}\end{array}\right|}{\left|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}\right|}\hspace{2em}\text{and}\hspace{2em}{z}_{2}=\frac{\left|\begin{array}{ll}{a}_{1} & {r}_{1} \\ {a}_{2} & {r}_{2}\end{array}\right|}{\left|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}\right|}.$  {eq:fs-id1170572387644}
 
 :::
 
@@ -336,23 +336,23 @@ $\begin{array}{rll} \\ \\ {a}_{1}(x) & = & {x}^{2} \\ {a}_{2}(x) & = & 1 \\ {b}_
 
 Then,
 
-$|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}|=|\begin{array}{ll}{x}^{2} & \;2x \\ 1 & −3{x}^{2}\end{array}|=−3{x}^{4}-2x$  {eq:fs-id1170571748975}
+$\left|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}\right|=\left|\begin{array}{ll}{x}^{2} & \;2x \\ 1 & −3{x}^{2}\end{array}\right|=−3{x}^{4}-2x$  {eq:fs-id1170571748975}
 
 and
 
-$|\begin{array}{ll}{r}_{1} & {b}_{1} \\ {r}_{2} & {b}_{2}\end{array}|=|\begin{array}{ll}0 & \;2x \\ 2x & −3{x}^{2}\end{array}|=0-4{x}^{2}=−4{x}^{2}.$  {eq:fs-id1170572088610}
+$\left|\begin{array}{ll}{r}_{1} & {b}_{1} \\ {r}_{2} & {b}_{2}\end{array}\right|=\left|\begin{array}{ll}0 & \;2x \\ 2x & −3{x}^{2}\end{array}\right|=0-4{x}^{2}=−4{x}^{2}.$  {eq:fs-id1170572088610}
 
 Thus,
 
-${z}_{1}=\frac{|\begin{array}{ll}{r}_{1} & {b}_{1} \\ {r}_{2} & {b}_{2}\end{array}|}{|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}|}=\frac{−4{x}^{2}}{−3{x}^{4}-2x}=\frac{4x}{3{x}^{3}+2}.$  {eq:fs-id1170571688226}
+${z}_{1}=\frac{\left|\begin{array}{ll}{r}_{1} & {b}_{1} \\ {r}_{2} & {b}_{2}\end{array}\right|}{\left|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}\right|}=\frac{−4{x}^{2}}{−3{x}^{4}-2x}=\frac{4x}{3{x}^{3}+2}.$  {eq:fs-id1170571688226}
 
 In addition,
 
-$|\begin{array}{ll}{a}_{1} & {r}_{1} \\ {a}_{2} & {r}_{2}\end{array}|=|\begin{array}{ll}{x}^{2} & 0 \\ 1 & 2x\end{array}|=2{x}^{3}-0=2{x}^{3}.$  {eq:fs-id1170571611313}
+$\left|\begin{array}{ll}{a}_{1} & {r}_{1} \\ {a}_{2} & {r}_{2}\end{array}\right|=\left|\begin{array}{ll}{x}^{2} & 0 \\ 1 & 2x\end{array}\right|=2{x}^{3}-0=2{x}^{3}.$  {eq:fs-id1170571611313}
 
 Thus,
 
-${z}_{2}=\frac{|\begin{array}{ll}{a}_{1} & {r}_{1} \\ {a}_{2} & {r}_{2}\end{array}|}{|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}|}=\frac{2{x}^{3}}{−3{x}^{4}-2x}=\frac{−2{x}^{2}}{3{x}^{3}+2}.$  {eq:fs-id1170572330222}
+${z}_{2}=\frac{\left|\begin{array}{ll}{a}_{1} & {r}_{1} \\ {a}_{2} & {r}_{2}\end{array}\right|}{\left|\begin{array}{ll}{a}_{1} & {b}_{1} \\ {a}_{2} & {b}_{2}\end{array}\right|}=\frac{2{x}^{3}}{−3{x}^{4}-2x}=\frac{−2{x}^{2}}{3{x}^{3}+2}.$  {eq:fs-id1170572330222}
 
 :::
 :::
@@ -399,11 +399,11 @@ $\begin{array}{rll}{u}^{'}{e}^{t}+{v}^{'}t{e}^{t} & = & 0 \\ {u}^{'}{e}^{t}+{v}^
 
 Applying Cramer’s rule, we have
 
-${u}^{'}=\frac{|\begin{array}{lc}0 & t{e}^{t} \\ \frac{{e}^{t}}{{t}^{2}} & {e}^{t}+t{e}^{t}\end{array}|}{|\begin{array}{lc}{e}^{t} & t{e}^{t} \\ {e}^{t} & {e}^{t}+t{e}^{t}\end{array}|}=\frac{0-t{e}^{t}(\frac{{e}^{t}}{{t}^{2}})}{{e}^{t}({e}^{t}+t{e}^{t})-{e}^{t}t{e}^{t}}=\frac{-\frac{{e}^{2t}}{t}}{{e}^{2t}}=-\frac{1}{t}$  {eq:fs-id1170572598653}
+${u}^{'}=\frac{\left|\begin{array}{lc}0 & t{e}^{t} \\ \frac{{e}^{t}}{{t}^{2}} & {e}^{t}+t{e}^{t}\end{array}\right|}{\left|\begin{array}{lc}{e}^{t} & t{e}^{t} \\ {e}^{t} & {e}^{t}+t{e}^{t}\end{array}\right|}=\frac{0-t{e}^{t}(\frac{{e}^{t}}{{t}^{2}})}{{e}^{t}({e}^{t}+t{e}^{t})-{e}^{t}t{e}^{t}}=\frac{-\frac{{e}^{2t}}{t}}{{e}^{2t}}=-\frac{1}{t}$  {eq:fs-id1170572598653}
 
 and
 
-${v}^{'}=\frac{|\begin{array}{ll}{e}^{t} & 0 \\ {e}^{t} & \frac{{e}^{t}}{{t}^{2}}\end{array}|}{|\begin{array}{lc}{e}^{t} & t{e}^{t} \\ {e}^{t} & {e}^{t}+t{e}^{t}\end{array}|}=\frac{{e}^{t}(\frac{{e}^{t}}{{t}^{2}})}{{e}^{2t}}=\frac{1}{{t}^{2}}\;\text{(step 2).}$  {eq:fs-id1170572296671}
+${v}^{'}=\frac{\left|\begin{array}{ll}{e}^{t} & 0 \\ {e}^{t} & \frac{{e}^{t}}{{t}^{2}}\end{array}\right|}{\left|\begin{array}{lc}{e}^{t} & t{e}^{t} \\ {e}^{t} & {e}^{t}+t{e}^{t}\end{array}\right|}=\frac{{e}^{t}(\frac{{e}^{t}}{{t}^{2}})}{{e}^{2t}}=\frac{1}{{t}^{2}}\;\text{(step 2).}$  {eq:fs-id1170572296671}
 
 Integrating, we get
 
@@ -423,11 +423,11 @@ $\begin{array}{lll}{u}^{'}\text{cos}\;x+{v}^{'}\text{sin}\;x & = & 0 \\ \text{�
 
 Applying Cramer’s rule, we have
 
-${u}^{'}=\frac{|\begin{array}{cl}0 & \text{sin}\;x \\ 3\;{\text{sin}}^{2}x & \text{cos}\;x\end{array}|}{|\begin{array}{ll}\text{cos}\;x & \text{sin}\;x \\ \text{−}\text{sin}\;x & \text{cos}\;x\end{array}|}=\frac{0-3\;{\text{sin}}^{3}x}{{\text{cos}}^{2}x+{\text{sin}}^{2}x}=−3\;{\text{sin}}^{3}x$  {eq:fs-id1170571639232}
+${u}^{'}=\frac{\left|\begin{array}{cl}0 & \text{sin}\;x \\ 3\;{\text{sin}}^{2}x & \text{cos}\;x\end{array}\right|}{\left|\begin{array}{ll}\text{cos}\;x & \text{sin}\;x \\ \text{−}\text{sin}\;x & \text{cos}\;x\end{array}\right|}=\frac{0-3\;{\text{sin}}^{3}x}{{\text{cos}}^{2}x+{\text{sin}}^{2}x}=−3\;{\text{sin}}^{3}x$  {eq:fs-id1170571639232}
 
 and
 
-${v}^{'}=\frac{|\begin{array}{lc}\text{cos}\;x & 0 \\ \text{−}\text{sin}\;x & 3\;{\text{sin}}^{2}x\end{array}|}{|\begin{array}{ll}\text{cos}\;x & \text{sin}\;x \\ \text{−}\text{sin}\;x & \text{cos}\;x\end{array}|}=\frac{3\;{\text{sin}}^{2}x\;\text{cos}\;x}{1}=3\;{\text{sin}}^{2}x\;\text{cos}\;x\;\text{(step 2).}$  {eq:fs-id1170572218499}
+${v}^{'}=\frac{\left|\begin{array}{lc}\text{cos}\;x & 0 \\ \text{−}\text{sin}\;x & 3\;{\text{sin}}^{2}x\end{array}\right|}{\left|\begin{array}{ll}\text{cos}\;x & \text{sin}\;x \\ \text{−}\text{sin}\;x & \text{cos}\;x\end{array}\right|}=\frac{3\;{\text{sin}}^{2}x\;\text{cos}\;x}{1}=3\;{\text{sin}}^{2}x\;\text{cos}\;x\;\text{(step 2).}$  {eq:fs-id1170572218499}
 
 Integrating first to find *u*, we get
 

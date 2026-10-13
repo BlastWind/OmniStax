@@ -245,15 +245,15 @@ Vectors $\textbf{u}$ and $\textbf{v}$ are orthogonal.
 Using [ref:fs-id1163723754200] to find the cross product of two vectors is straightforward, and it presents the cross product in the useful component form. The formula, however, is complicated and difficult to remember. Fortunately, we have an alternative. We can calculate the cross product of two vectors using {term:determinant} notation.
 A $2\;\times \;2$ determinant is defined by
 
-$|\begin{array}{ll}{a}_{1} & {a}_{2} \\ {b}_{1} & {b}_{2}\end{array}|={a}_{1}{b}_{2}-{b}_{1}{a}_{2}.$  {eq:fs-id1163723093355}
+$\left|\begin{array}{ll}{a}_{1} & {a}_{2} \\ {b}_{1} & {b}_{2}\end{array}\right|={a}_{1}{b}_{2}-{b}_{1}{a}_{2}.$  {eq:fs-id1163723093355}
 
 For example,
 
-$|\begin{array}{lr}3 & −2 \\ 5 & 1\end{array}|=3(1)-5(−2)=3+10=13.$  {eq:fs-id1163724065995}
+$\left|\begin{array}{lr}3 & −2 \\ 5 & 1\end{array}\right|=3(1)-5(−2)=3+10=13.$  {eq:fs-id1163724065995}
 
 A $3\;\times \;3$ determinant is defined in terms of $2\;\times \;2$ determinants as follows:
 
-$$ |\begin{array}{lll}{a}_{1} & {a}_{2} & {a}_{3} \\ {b}_{1} & {b}_{2} & {b}_{3} \\ {c}_{1} & {c}_{2} & {c}_{3}\end{array}|={a}_{1}|\begin{array}{ll}{b}_{2} & {b}_{3} \\ {c}_{2} & {c}_{3}\end{array}|-{a}_{2}|\begin{array}{ll}{b}_{1} & {b}_{3} \\ {c}_{1} & {c}_{3}\end{array}|+{a}_{3}|\begin{array}{ll}{b}_{1} & {b}_{2} \\ {c}_{1} & {c}_{2}\end{array}|. $$  {eq:fs-id1163724066100}
+$$ \left|\begin{array}{lll}{a}_{1} & {a}_{2} & {a}_{3} \\ {b}_{1} & {b}_{2} & {b}_{3} \\ {c}_{1} & {c}_{2} & {c}_{3}\end{array}\right|={a}_{1}\left|\begin{array}{ll}{b}_{2} & {b}_{3} \\ {c}_{2} & {c}_{3}\end{array}\right|-{a}_{2}\left|\begin{array}{ll}{b}_{1} & {b}_{3} \\ {c}_{1} & {c}_{3}\end{array}\right|+{a}_{3}\left|\begin{array}{ll}{b}_{1} & {b}_{2} \\ {c}_{1} & {c}_{2}\end{array}\right|. $$  {eq:fs-id1163724066100}
 
 [ref:fs-id1163724066100] is referred to as the *expansion of the determinant along the first row*. Notice that the multipliers of each of the $2\;\times \;2$ determinants on the right side of this expression are the entries in the first row of the $3\;\times \;3$ determinant. Furthermore, each of the $2\;\times \;2$ determinants contains the entries from the $3\;\times \;3$ determinant that would remain if you crossed out the row and column containing the multiplier. Thus, for the first term on the right, ${a}_{1}$ is the multiplier, and the $2\;\times \;2$ determinant contains the entries that remain if you cross out the first row and first column of the $3\;\times \;3$ determinant. Similarly, for the second term, the multiplier is ${a}_{2},$ and the $2\;\times \;2$ determinant contains the entries that remain if you cross out the first row and second column of the $3\;\times \;3$ determinant. Notice, however, that the coefficient of the second term is negative. The third term can be calculated in similar fashion.
 
@@ -261,11 +261,11 @@ $$ |\begin{array}{lll}{a}_{1} & {a}_{2} & {a}_{3} \\ {b}_{1} & {b}_{2} & {b}_{3}
 
 :::exercise {fs-id1163723183798} type= 
 PROBLEM:
-Evaluate the determinant $|\begin{array}{rrr}2 & 5 & −1 \\ −1 & 1 & 3 \\ −2 & 3 & 4\end{array}|.$
+Evaluate the determinant $\left|\begin{array}{rrr}2 & 5 & −1 \\ −1 & 1 & 3 \\ −2 & 3 & 4\end{array}\right|.$
 SOLUTION:
 We have
 
-$\begin{array}{rl}|\begin{array}{rrr}2 & 5 & −1 \\ −1 & 1 & 3 \\ −2 & 3 & 4\end{array}| & =2|\begin{array}{ll}1 & 3 \\ 3 & 4\end{array}|-5|\begin{array}{ll}−1 & 3 \\ −2 & 4\end{array}|-1|\begin{array}{ll}−1 & 1 \\ −2 & 3\end{array}| \\ & =2(4-9)-5(−4+6)-1(−3+2) \\ & =2(−5)-5(2)-1(−1)=−10-10+1 \\ & =−19.\end{array}$  {eq:fs-id1163723183877}
+$\begin{array}{rl}\left|\begin{array}{rrr}2 & 5 & −1 \\ −1 & 1 & 3 \\ −2 & 3 & 4\end{array}\right| & =2\left|\begin{array}{ll}1 & 3 \\ 3 & 4\end{array}\right|-5\left|\begin{array}{ll}−1 & 3 \\ −2 & 4\end{array}\right|-1\left|\begin{array}{ll}−1 & 1 \\ −2 & 3\end{array}\right| \\ & =2(4-9)-5(−4+6)-1(−3+2) \\ & =2(−5)-5(2)-1(−1)=−10-10+1 \\ & =−19.\end{array}$  {eq:fs-id1163723183877}
 
 :::
 :::
@@ -274,7 +274,7 @@ $\begin{array}{rl}|\begin{array}{rrr}2 & 5 & −1 \\ −1 & 1 & 3 \\ −2 & 3 & 
 
 :::exercise {fs-id1163723298916} type= 
 PROBLEM:
-Evaluate the determinant $|\begin{array}{rrr}1 & −2 & −1 \\ 3 & 2 & −3 \\ 1 & 5 & 4\end{array}|.$
+Evaluate the determinant $\left|\begin{array}{rrr}1 & −2 & −1 \\ 3 & 2 & −3 \\ 1 & 5 & 4\end{array}\right|.$
 SOLUTION:
 $40$
 COMMENTARY: Hint
@@ -286,7 +286,7 @@ Technically, determinants are defined only in terms of arrays of real numbers. H
 :::note [rule] Rule: Cross Product Calculated by a Determinant
 Let $\textbf{u}=\langle {u}_{1},{u}_{2},{u}_{3}\rangle$ and $\textbf{v}=\langle {v}_{1},{v}_{2},{v}_{3}\rangle$ be vectors. Then the cross product $\textbf{u}\;\times \;\textbf{v}$ is given by
 
-$\textbf{u}\;\times \;\textbf{v}=|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ {u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3}\end{array}|=|\begin{array}{ll}{u}_{2} & {u}_{3} \\ {v}_{2} & {v}_{3}\end{array}|\textbf{i}-|\begin{array}{ll}{u}_{1} & {u}_{3} \\ {v}_{1} & {v}_{3}\end{array}|\textbf{j}+|\begin{array}{ll}{u}_{1} & {u}_{2} \\ {v}_{1} & {v}_{2}\end{array}|\textbf{k}.$  {eq:fs-id1163723279404}
+$\textbf{u}\;\times \;\textbf{v}=\left|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ {u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3}\end{array}\right|=\left|\begin{array}{ll}{u}_{2} & {u}_{3} \\ {v}_{2} & {v}_{3}\end{array}\right|\textbf{i}-\left|\begin{array}{ll}{u}_{1} & {u}_{3} \\ {v}_{1} & {v}_{3}\end{array}\right|\textbf{j}+\left|\begin{array}{ll}{u}_{1} & {u}_{2} \\ {v}_{1} & {v}_{2}\end{array}\right|\textbf{k}.$  {eq:fs-id1163723279404}
 
 :::
 
@@ -298,7 +298,7 @@ Let $\textbf{p}=\langle −1,2,5\rangle$ and $\textbf{q}=\langle 4,0,−3\rangle
 SOLUTION:
 We set up our determinant by putting the standard unit vectors across the first row, the components of $\textbf{u}$ in the second row, and the components of $\textbf{v}$ in the third row. Then, we have
 
-$\begin{array}{rl}\textbf{p}\;\times \;\textbf{q} & =|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ −1 & 2 & 5 \\ 4 & 0 & −3\end{array}|=|\begin{array}{rr}2 & 5 \\ 0 & −3\end{array}|\textbf{i}-|\begin{array}{rr}−1 & 5 \\ 4 & −3\end{array}|\textbf{j}+|\begin{array}{rr}−1 & 2 \\ 4 & 0\end{array}|\textbf{k} \\ & =(−6-0)\textbf{i}-(3-20)\textbf{j}+(0-8)\textbf{k} \\ & =−6\textbf{i}+17\textbf{j}-8\textbf{k}.\end{array}$  {eq:fs-id1163724057849}
+$\begin{array}{rl}\textbf{p}\;\times \;\textbf{q} & =\left|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ −1 & 2 & 5 \\ 4 & 0 & −3\end{array}\right|=\left|\begin{array}{rr}2 & 5 \\ 0 & −3\end{array}\right|\textbf{i}-\left|\begin{array}{rr}−1 & 5 \\ 4 & −3\end{array}\right|\textbf{j}+\left|\begin{array}{rr}−1 & 2 \\ 4 & 0\end{array}\right|\textbf{k} \\ & =(−6-0)\textbf{i}-(3-20)\textbf{j}+(0-8)\textbf{k} \\ & =−6\textbf{i}+17\textbf{j}-8\textbf{k}.\end{array}$  {eq:fs-id1163724057849}
 
 Notice that this answer confirms the calculation of the cross product in [ref:fs-id1163723497714].
 :::
@@ -312,7 +312,7 @@ Use determinant notation to find $\textbf{a}\;\times \;\textbf{b},$ where $\text
 SOLUTION:
 $8\textbf{i}-35\textbf{j}+2\textbf{k}$
 COMMENTARY: Hint
-Calculate the determinant $|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 8 & 2 & 3 \\ −1 & 0 & 4\end{array}|.$
+Calculate the determinant $\left|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 8 & 2 & 3 \\ −1 & 0 & 4\end{array}\right|.$
 :::
 :::
 
@@ -327,7 +327,7 @@ Let $\textbf{a}=\langle 5,2,−1\rangle$ and $\textbf{b}=\langle 0,−1,4\rangle
 SOLUTION:
 The cross product $\textbf{a}\;\times \;\textbf{b}$ is orthogonal to both vectors $\textbf{a}$ and $\textbf{b}.$ We can calculate it with a determinant:
 
-$\begin{array}{rl}\textbf{a}\;\times \;\textbf{b} & =|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 5 & 2 & −1 \\ 0 & −1 & 4\end{array}|=|\begin{array}{rr}2 & −1 \\ −1 & 4\end{array}|\textbf{i}-|\begin{array}{rr}5 & −1 \\ 0 & 4\end{array}|\textbf{j}+|\begin{array}{rr}5 & 2 \\ 0 & −1\end{array}|\textbf{k} \\ & =(8-1)\textbf{i}-(20-0)\textbf{j}+(−5-0)\textbf{k} \\ & =7\textbf{i}-20\textbf{j}-5\textbf{k}.\end{array}$  {eq:fs-id1163724138548}
+$\begin{array}{rl}\textbf{a}\;\times \;\textbf{b} & =\left|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 5 & 2 & −1 \\ 0 & −1 & 4\end{array}\right|=\left|\begin{array}{rr}2 & −1 \\ −1 & 4\end{array}\right|\textbf{i}-\left|\begin{array}{rr}5 & −1 \\ 0 & 4\end{array}\right|\textbf{j}+\left|\begin{array}{rr}5 & 2 \\ 0 & −1\end{array}\right|\textbf{k} \\ & =(8-1)\textbf{i}-(20-0)\textbf{j}+(−5-0)\textbf{k} \\ & =7\textbf{i}-20\textbf{j}-5\textbf{k}.\end{array}$  {eq:fs-id1163724138548}
 
 Normalize this vector to find a unit vector in the same direction:
 
@@ -376,9 +376,9 @@ Let $P=(1,0,0),Q=(0,1,0),\;\text{and}\;R=(0,0,1)$ be the vertices of a triangle 
 > caption: Finding the area of a triangle by using the cross product.
 
 SOLUTION:
-We have $\vec{PQ}=\langle 0-1,1-0,0-0\rangle =\langle −1,1,0\rangle$ and $\vec{PR}=\langle 0-1,0-0,1-0\rangle =\langle −1,0,1\rangle .$ The area of the parallelogram with adjacent sides $\vec{PQ}$ and $\vec{PR}$ is given by $\| \vec{PQ}\;\times \;\vec{PR}\| \text{:}$
+We have $\overrightarrow{PQ}=\langle 0-1,1-0,0-0\rangle =\langle −1,1,0\rangle$ and $\overrightarrow{PR}=\langle 0-1,0-0,1-0\rangle =\langle −1,0,1\rangle .$ The area of the parallelogram with adjacent sides $\overrightarrow{PQ}$ and $\overrightarrow{PR}$ is given by $\| \overrightarrow{PQ}\;\times \;\overrightarrow{PR}\| \text{:}$
 
-$\begin{array}{rll}\vec{PQ}\;\times \;\vec{PR} & = & |\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ −1 & 1 & 0 \\ −1 & 0 & 1\end{array}|=(1-0)\textbf{i}-(−1-0)\textbf{j}+(0-(−1))\textbf{k}=\textbf{i}+\textbf{j}+\textbf{k} \\ \| \vec{PQ}\;\times \;\vec{PR}\| & = & \| \langle 1,1,1\rangle \| =\sqrt{{1}^{2}+{1}^{2}+{1}^{2}}=\sqrt{3}.\end{array}$  {eq:fs-id1163723113364}
+$\begin{array}{rll}\overrightarrow{PQ}\;\times \;\overrightarrow{PR} & = & \left|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ −1 & 1 & 0 \\ −1 & 0 & 1\end{array}\right|=(1-0)\textbf{i}-(−1-0)\textbf{j}+(0-(−1))\textbf{k}=\textbf{i}+\textbf{j}+\textbf{k} \\ \| \overrightarrow{PQ}\;\times \;\overrightarrow{PR}\| & = & \| \langle 1,1,1\rangle \| =\sqrt{{1}^{2}+{1}^{2}+{1}^{2}}=\sqrt{3}.\end{array}$  {eq:fs-id1163723113364}
 
 The area of $\text{Δ}PQR$ is half the area of the parallelogram, or $\sqrt{3}\text{/}2.$
 :::
@@ -406,14 +406,14 @@ The {term:triple scalar product} of vectors $\textbf{u},$ $\textbf{v},$ and $\te
 :::note [theorem] Calculating a Triple Scalar Product
 The triple scalar product of vectors $\textbf{u}={u}_{1}\textbf{i}+{u}_{2}\textbf{j}+{u}_{3}\textbf{k},$ $\textbf{v}={v}_{1}\textbf{i}+{v}_{2}\textbf{j}+{v}_{3}\textbf{k},$ and $\textbf{w}={w}_{1}\textbf{i}+{w}_{2}\textbf{j}+{w}_{3}\textbf{k}$ is the determinant of the $3\;\times \;3$ matrix formed by the components of the vectors:
 
-$\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w})=|\begin{array}{lll}{u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3} \\ {w}_{1} & {w}_{2} & {w}_{3}\end{array}|.$  {eq:fs-id1163724053926}
+$\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w})=\left|\begin{array}{lll}{u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3} \\ {w}_{1} & {w}_{2} & {w}_{3}\end{array}\right|.$  {eq:fs-id1163724053926}
 
 :::
 
 ### Proof
 The calculation is straightforward.
 
-$\begin{array}{rl}\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}) & =\langle {u}_{1},{u}_{2},{u}_{3}\rangle \cdot \langle {v}_{2}{w}_{3}-{v}_{3}{w}_{2},\text{−}{v}_{1}{w}_{3}+{v}_{3}{w}_{1},{v}_{1}{w}_{2}-{v}_{2}{w}_{1}\rangle \\ & ={u}_{1}({v}_{2}{w}_{3}-{v}_{3}{w}_{2})+{u}_{2}(\text{−}{v}_{1}{w}_{3}+{v}_{3}{w}_{1})+{u}_{3}({v}_{1}{w}_{2}-{v}_{2}{w}_{1}) \\ & ={u}_{1}({v}_{2}{w}_{3}-{v}_{3}{w}_{2})-{u}_{2}({v}_{1}{w}_{3}-{v}_{3}{w}_{1})+{u}_{3}({v}_{1}{w}_{2}-{v}_{2}{w}_{1}) \\ & =|\begin{array}{lll}{u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3} \\ {w}_{1} & {w}_{2} & {w}_{3}\end{array}|\end{array}$  {eq:fs-id1163723477918}
+$\begin{array}{rl}\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}) & =\langle {u}_{1},{u}_{2},{u}_{3}\rangle \cdot \langle {v}_{2}{w}_{3}-{v}_{3}{w}_{2},\text{−}{v}_{1}{w}_{3}+{v}_{3}{w}_{1},{v}_{1}{w}_{2}-{v}_{2}{w}_{1}\rangle \\ & ={u}_{1}({v}_{2}{w}_{3}-{v}_{3}{w}_{2})+{u}_{2}(\text{−}{v}_{1}{w}_{3}+{v}_{3}{w}_{1})+{u}_{3}({v}_{1}{w}_{2}-{v}_{2}{w}_{1}) \\ & ={u}_{1}({v}_{2}{w}_{3}-{v}_{3}{w}_{2})-{u}_{2}({v}_{1}{w}_{3}-{v}_{3}{w}_{1})+{u}_{3}({v}_{1}{w}_{2}-{v}_{2}{w}_{1}) \\ & =\left|\begin{array}{lll}{u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3} \\ {w}_{1} & {w}_{2} & {w}_{3}\end{array}\right|\end{array}$  {eq:fs-id1163723477918}
 
 □
 
@@ -425,7 +425,7 @@ Let $\textbf{u}=\langle 1,3,5\rangle ,\textbf{v}=\langle 2,−1,0\rangle \;\text
 SOLUTION:
 Apply [ref:fs-id1163723326854] directly:
 
-$\begin{array}{rl}\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}) & =|\begin{array}{rrr}1 & 3 & 5 \\ 2 & −1 & 0 \\ −3 & 0 & −1\end{array}| \\ & =1|\begin{array}{rr}−1 & 0 \\ 0 & −1\end{array}|-3|\begin{array}{rr}2 & 0 \\ −3 & −1\end{array}|+5|\begin{array}{rr}2 & −1 \\ −3 & 0\end{array}| \\ & =(1-0)-3(−2-0)+5(0-3) \\ & =1+6-15=−8.\end{array}$  {eq:fs-id1163724066385}
+$\begin{array}{rl}\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}) & =\left|\begin{array}{rrr}1 & 3 & 5 \\ 2 & −1 & 0 \\ −3 & 0 & −1\end{array}\right| \\ & =1\left|\begin{array}{rr}−1 & 0 \\ 0 & −1\end{array}\right|-3\left|\begin{array}{rr}2 & 0 \\ −3 & −1\end{array}\right|+5\left|\begin{array}{rr}2 & −1 \\ −3 & 0\end{array}\right| \\ & =(1-0)-3(−2-0)+5(0-3) \\ & =1+6-15=−8.\end{array}$  {eq:fs-id1163724066385}
 
 :::
 :::
@@ -443,19 +443,19 @@ Place the vectors as the rows of a $3\;\times \;3$ matrix, then calculate the de
 :::
 When we create a matrix from three vectors, we must be careful about the order in which we list the vectors. If we list them in a matrix in one order and then rearrange the rows, the absolute value of the determinant remains unchanged. However, each time two rows switch places, the determinant changes sign:
 
-$|\begin{array}{lll}{a}_{1} & {a}_{2} & {a}_{3} \\ {b}_{1} & {b}_{2} & {b}_{3} \\ {c}_{1} & {c}_{2} & {c}_{3}\end{array}|=d\hspace{2em}|\begin{array}{lll}{b}_{1} & {b}_{2} & {b}_{3} \\ {a}_{1} & {a}_{2} & {a}_{3} \\ {c}_{1} & {c}_{2} & {c}_{3}\end{array}|=\text{−}d\hspace{2em}|\begin{array}{lll}{b}_{1} & {b}_{2} & {b}_{3} \\ {c}_{1} & {c}_{2} & {c}_{3} \\ {a}_{1} & {a}_{2} & {a}_{3}\end{array}|=d\hspace{2em}|\begin{array}{lll}{c}_{1} & {c}_{2} & {c}_{3} \\ {b}_{1} & {b}_{2} & {b}_{3} \\ {a}_{1} & {a}_{2} & {a}_{3}\end{array}|=\text{−}d.$  {eq:fs-id1163724060994}
+$\left|\begin{array}{lll}{a}_{1} & {a}_{2} & {a}_{3} \\ {b}_{1} & {b}_{2} & {b}_{3} \\ {c}_{1} & {c}_{2} & {c}_{3}\end{array}\right|=d\hspace{2em}\left|\begin{array}{lll}{b}_{1} & {b}_{2} & {b}_{3} \\ {a}_{1} & {a}_{2} & {a}_{3} \\ {c}_{1} & {c}_{2} & {c}_{3}\end{array}\right|=\text{−}d\hspace{2em}\left|\begin{array}{lll}{b}_{1} & {b}_{2} & {b}_{3} \\ {c}_{1} & {c}_{2} & {c}_{3} \\ {a}_{1} & {a}_{2} & {a}_{3}\end{array}\right|=d\hspace{2em}\left|\begin{array}{lll}{c}_{1} & {c}_{2} & {c}_{3} \\ {b}_{1} & {b}_{2} & {b}_{3} \\ {a}_{1} & {a}_{2} & {a}_{3}\end{array}\right|=\text{−}d.$  {eq:fs-id1163724060994}
 
 Verifying this fact is straightforward, but rather messy. Let’s take a look at this with an example:
 
-$\begin{array}{rl}|\begin{array}{rlr}1 & 2 & 1 \\ −2 & 0 & 3 \\ 4 & 1 & −1\end{array}| & =|\begin{array}{lr}0 & 3 \\ 1 & −1\end{array}|-2|\begin{array}{rr}−2 & 3 \\ 4 & −1\end{array}|+|\begin{array}{rl}−2 & 0 \\ 4 & 1\end{array}| \\ & =(0-3)-2(2-12)+(−2-0)=−3+20-2=15.\end{array}$  {eq:fs-id1163724153226}
+$\begin{array}{rl}\left|\begin{array}{rlr}1 & 2 & 1 \\ −2 & 0 & 3 \\ 4 & 1 & −1\end{array}\right| & =\left|\begin{array}{lr}0 & 3 \\ 1 & −1\end{array}\right|-2\left|\begin{array}{rr}−2 & 3 \\ 4 & −1\end{array}\right|+\left|\begin{array}{rl}−2 & 0 \\ 4 & 1\end{array}\right| \\ & =(0-3)-2(2-12)+(−2-0)=−3+20-2=15.\end{array}$  {eq:fs-id1163724153226}
 
 Switching the top two rows we have
 
-$|\begin{array}{rlr}−2 & 0 & 3 \\ 1 & 2 & 1 \\ 4 & 1 & −1\end{array}|=−2|\begin{array}{lr}2 & 1 \\ 1 & −1\end{array}|+3|\begin{array}{ll}1 & 2 \\ 4 & 1\end{array}|=−2(−2-1)+3(1-8)=6-21=−15.$  {eq:fs-id1163723979963}
+$\left|\begin{array}{rlr}−2 & 0 & 3 \\ 1 & 2 & 1 \\ 4 & 1 & −1\end{array}\right|=−2\left|\begin{array}{lr}2 & 1 \\ 1 & −1\end{array}\right|+3\left|\begin{array}{ll}1 & 2 \\ 4 & 1\end{array}\right|=−2(−2-1)+3(1-8)=6-21=−15.$  {eq:fs-id1163723979963}
 
 Rearranging vectors in the triple products is equivalent to reordering the rows in the matrix of the determinant. Let $\textbf{u}={u}_{1}\textbf{i}+{u}_{2}\textbf{j}+{u}_{3}\textbf{k},$ $\textbf{v}={v}_{1}\textbf{i}+{v}_{2}\textbf{j}+{v}_{3}\textbf{k},$ and $\textbf{w}={w}_{1}\textbf{i}+{w}_{2}\textbf{j}+{w}_{3}\textbf{k}.$ Applying [ref:fs-id1163723326854], we have
 
-$\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w})=|\begin{array}{lll}{u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3} \\ {w}_{1} & {w}_{2} & {w}_{3}\end{array}|\;\text{and}\;\textbf{u}\cdot (\textbf{w}\;\times \;\textbf{v})=|\begin{array}{lll}{u}_{1} & {u}_{2} & {u}_{3} \\ {w}_{1} & {w}_{2} & {w}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3}\end{array}|.$  {eq:fs-id1163724062243}
+$\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w})=\left|\begin{array}{lll}{u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3} \\ {w}_{1} & {w}_{2} & {w}_{3}\end{array}\right|\;\text{and}\;\textbf{u}\cdot (\textbf{w}\;\times \;\textbf{v})=\left|\begin{array}{lll}{u}_{1} & {u}_{2} & {u}_{3} \\ {w}_{1} & {w}_{2} & {w}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3}\end{array}\right|.$  {eq:fs-id1163724062243}
 
 We can obtain the determinant for calculating $\textbf{u}\cdot (\textbf{w}\;\times \;\textbf{v})$ by switching the bottom two rows of $\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}).$ Therefore, $\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w})=\text{−}\textbf{u}\cdot (\textbf{w}\;\times \;\textbf{v}).$
 Following this reasoning and exploring the different ways we can interchange variables in the triple scalar product lead to the following identities:
@@ -497,7 +497,7 @@ Let $\textbf{u}=\langle −1,−2,1\rangle ,\textbf{v}=\langle 4,3,2\rangle ,\;\
 SOLUTION:
 We have
 
-$\begin{array}{rl}\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}) & =|\begin{array}{rrr}−1 & −2 & 1 \\ 4 & 3 & 2 \\ 0 & −5 & −2\end{array}|=(−1)|\begin{array}{rr}3 & 2 \\ −5 & −2\end{array}|+2|\begin{array}{rr}4 & 2 \\ 0 & −2\end{array}|+|\begin{array}{rr}4 & 3 \\ 0 & −5\end{array}| \\ & =(−1)(−6+10)+2(−8-0)+(−20-0) \\ & =−4-16-20 \\ & =−40.\end{array}$  {eq:fs-id1163724159281}
+$\begin{array}{rl}\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}) & =\left|\begin{array}{rrr}−1 & −2 & 1 \\ 4 & 3 & 2 \\ 0 & −5 & −2\end{array}\right|=(−1)\left|\begin{array}{rr}3 & 2 \\ −5 & −2\end{array}\right|+2\left|\begin{array}{rr}4 & 2 \\ 0 & −2\end{array}\right|+\left|\begin{array}{rr}4 & 3 \\ 0 & −5\end{array}\right| \\ & =(−1)(−6+10)+2(−8-0)+(−20-0) \\ & =−4-16-20 \\ & =−40.\end{array}$  {eq:fs-id1163724159281}
 
 Thus, the volume of the parallelepiped is $|−40|=40$ units<sup>3</sup>.
 :::
@@ -526,7 +526,7 @@ Use the triple scalar product to show that vectors $\textbf{u}=\langle 2,0,5\ran
 SOLUTION:
 Start by calculating the triple scalar product to find the volume of the parallelepiped defined by $\textbf{u},\textbf{v},\;\text{and}\;\textbf{w}\text{:}$
 
-$\begin{array}{rl}\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}) & =|\begin{array}{rrr}2 & 0 & 5 \\ 2 & 2 & 4 \\ 1 & −1 & 3\end{array}| \\ & =[2(2)(3)+(0)(4)(1)+5(2)(−1)]-[5(2)(1)+(2)(4)(−1)+(0)(2)(3)] \\ & =2-2 \\ & =0.\end{array}$  {eq:fs-id1163724182558}
+$\begin{array}{rl}\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}) & =\left|\begin{array}{rrr}2 & 0 & 5 \\ 2 & 2 & 4 \\ 1 & −1 & 3\end{array}\right| \\ & =[2(2)(3)+(0)(4)(1)+5(2)(−1)]-[5(2)(1)+(2)(4)(−1)+(0)(2)(3)] \\ & =2-2 \\ & =0.\end{array}$  {eq:fs-id1163724182558}
 
 The volume of the parallelepiped is $0$ units<sup>3</sup>, so one of the dimensions must be zero. Therefore, the three vectors all lie in the same plane.
 :::
@@ -550,13 +550,13 @@ Calculate the triple scalar product.
 PROBLEM:
 Only a single plane can pass through any set of three noncolinear points. Find a vector orthogonal to the plane containing points $P=(9,−3,−2),Q=(1,3,0),$ and $R=(−2,5,0).$
 SOLUTION:
-The plane must contain vectors $\vec{PQ}$ and $\vec{QR}\text{:}$
+The plane must contain vectors $\overrightarrow{PQ}$ and $\overrightarrow{QR}\text{:}$
 
-$\begin{array}{l}\vec{PQ}=\langle 1-9,3-(−3),0-(−2)\rangle =\langle −8,6,2\rangle \\ \vec{QR}=\langle −2-1,5-3,0-0\rangle =\langle −3,2,0\rangle .\end{array}$  {eq:fs-id1163723475262}
+$\begin{array}{l}\overrightarrow{PQ}=\langle 1-9,3-(−3),0-(−2)\rangle =\langle −8,6,2\rangle \\ \overrightarrow{QR}=\langle −2-1,5-3,0-0\rangle =\langle −3,2,0\rangle .\end{array}$  {eq:fs-id1163723475262}
 
-The cross product $\vec{PQ}\;\times \;\vec{QR}$ produces a vector orthogonal to both $\vec{PQ}$ and $\vec{QR}.$ Therefore, the cross product is orthogonal to the plane that contains these two vectors:
+The cross product $\overrightarrow{PQ}\;\times \;\overrightarrow{QR}$ produces a vector orthogonal to both $\overrightarrow{PQ}$ and $\overrightarrow{QR}.$ Therefore, the cross product is orthogonal to the plane that contains these two vectors:
 
-$\begin{array}{rl}\vec{PQ}\;\times \;\vec{QR} & =|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ -8 & 6 & 2 \\ -3 & 2 & 0\end{array}| \\ & =0\textbf{i}-6\textbf{j}-16\textbf{k}-(−18\textbf{k}+4\textbf{i}+0\textbf{j}) \\ & =−4\textbf{i}-6\textbf{j}+2\textbf{k}.\end{array}$  {eq:fs-id1163724062760}
+$\begin{array}{rl}\overrightarrow{PQ}\;\times \;\overrightarrow{QR} & =|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ -8 & 6 & 2 \\ -3 & 2 & 0\end{array}| \\ & =0\textbf{i}-6\textbf{j}-16\textbf{k}-(−18\textbf{k}+4\textbf{i}+0\textbf{j}) \\ & =−4\textbf{i}-6\textbf{j}+2\textbf{k}.\end{array}$  {eq:fs-id1163724062760}
 
 :::
 :::
@@ -621,7 +621,7 @@ $\textbf{u}\;\times \;\textbf{v}=({u}_{2}{v}_{3}-{u}_{3}{v}_{2})\textbf{i}-({u}_
 - $\textbf{v}\;\times \;\textbf{v}=0$
 - $\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w})=(\textbf{u}\;\times \;\textbf{v})\cdot \textbf{w}$
 
-- The cross product of vectors $\textbf{u}=\langle {u}_{1},{u}_{2},{u}_{3}\rangle$ and $\textbf{v}=\langle {v}_{1},{v}_{2},{v}_{3}\rangle$ is the determinant $|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ {u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3}\end{array}|.$
+- The cross product of vectors $\textbf{u}=\langle {u}_{1},{u}_{2},{u}_{3}\rangle$ and $\textbf{v}=\langle {v}_{1},{v}_{2},{v}_{3}\rangle$ is the determinant $\left|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ {u}_{1} & {u}_{2} & {u}_{3} \\ {v}_{1} & {v}_{2} & {v}_{3}\end{array}\right|.$
 - If vectors $\textbf{u}$ and $\textbf{v}$ form adjacent sides of a parallelogram, then the area of the parallelogram is given by $\| \textbf{u}\;\times \;\textbf{v}\| .$
 - The triple scalar product of vectors $\textbf{u},$ $\textbf{v},$ and $\textbf{w}$ is $\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w}).$
 - The volume of a parallelepiped with adjacent edges given by vectors $\textbf{u},\textbf{v},\;\text{and}\;\textbf{w}$ is $V=|\textbf{u}\cdot (\textbf{v}\;\times \;\textbf{w})|.$
@@ -704,14 +704,14 @@ $\textbf{u}=\langle 2,6,1\rangle ,$ $\textbf{v}=\langle 3,0,1\rangle$
 
 :::exercise {fs-id1163724155426} type= 
 PROBLEM:
-$\textbf{u}=\vec{AB},$ $\textbf{v}=\vec{AC},$ where $A(1,0,1),$ $B(1,−1,3),$ and $C(0,0,5)$
+$\textbf{u}=\overrightarrow{AB},$ $\textbf{v}=\overrightarrow{AC},$ where $A(1,0,1),$ $B(1,−1,3),$ and $C(0,0,5)$
 SOLUTION:
 $\textbf{w}=-\frac{4}{\sqrt{21}}\textbf{i}-\frac{2}{\sqrt{21}}\textbf{j}-\frac{1}{\sqrt{21}}\textbf{k}$
 :::
 
 :::exercise {fs-id1163723108561} type= 
 PROBLEM:
-$\textbf{u}=\vec{OP},$ $\textbf{v}=\vec{PQ},$ where $P(−1,1,0)$ and $Q(0,2,1)$
+$\textbf{u}=\overrightarrow{OP},$ $\textbf{v}=\overrightarrow{PQ},$ where $P(−1,1,0)$ and $Q(0,2,1)$
 :::
 
 :::exercise {fs-id1163724161871} type= 
@@ -738,14 +738,14 @@ Show that $\textbf{v}\;\times \;\textbf{u}$ is orthogonal to $(\textbf{u}\cdot \
 
 :::exercise {fs-id1163723246484} type= 
 PROBLEM:
-Calculate the determinant $|\begin{array}{lrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 1 & −1 & 7 \\ 2 & 0 & 3\end{array}|.$
+Calculate the determinant $\left|\begin{array}{lrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 1 & −1 & 7 \\ 2 & 0 & 3\end{array}\right|.$
 SOLUTION:
 $−3\textbf{i}+11\textbf{j}+2\textbf{k}$
 :::
 
 :::exercise {fs-id1163723246593} type= 
 PROBLEM:
-Calculate the determinant $|\begin{array}{lrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 0 & 3 & −4 \\ 1 & 6 & −1\end{array}|.$
+Calculate the determinant $\left|\begin{array}{lrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 0 & 3 & −4 \\ 1 & 6 & −1\end{array}\right|.$
 :::
 For the following exercises, the vectors $\textbf{u}$ and $\textbf{v}$ are given. Use determinant notation to find vector $\textbf{w}$ orthogonal to vectors $\textbf{u}$ and $\textbf{v}.$
 
@@ -763,14 +763,14 @@ $\textbf{u}=\langle 1,0,x\rangle ,$ $\textbf{v}=\langle \frac{2}{x},1,0\rangle ,
 
 :::exercise {fs-id1163723315218} type= 
 PROBLEM:
-Find vector $(\textbf{a}-2\text{b})\;\times \;\text{c},$ where $\textbf{a}=|\begin{array}{lrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 2 & −1 & 5 \\ 0 & 1 & 8\end{array}|,$ $\text{b}=|\begin{array}{lrr}\text{i} & \text{j} & \text{k} \\ 0 & 1 & 1 \\ 2 & −1 & −2\end{array}|,$ and $\text{c}=\textbf{i}+\textbf{j}+\text{k}.$
+Find vector $(\textbf{a}-2\text{b})\;\times \;\text{c},$ where $\textbf{a}=\left|\begin{array}{lrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 2 & −1 & 5 \\ 0 & 1 & 8\end{array}\right|,$ $\text{b}=\left|\begin{array}{lrr}\text{i} & \text{j} & \text{k} \\ 0 & 1 & 1 \\ 2 & −1 & −2\end{array}\right|,$ and $\text{c}=\textbf{i}+\textbf{j}+\text{k}.$
 SOLUTION:
 $−26\textbf{i}+17\textbf{j}+9\textbf{k}$
 :::
 
 :::exercise {fs-id1163723127285} type= 
 PROBLEM:
-Find vector $\text{c}\;\times \;(\textbf{a}+3\text{b}),$ where $\textbf{a}=|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ 5 & 0 & 9 \\ 0 & 1 & 0\end{array}|,$ $\text{b}=|\begin{array}{lrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 0 & −1 & 1 \\ 7 & 1 & −1\end{array}|,$ and $\text{c}=\textbf{i}-\textbf{k}.$
+Find vector $\text{c}\;\times \;(\textbf{a}+3\text{b}),$ where $\textbf{a}=\left|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ 5 & 0 & 9 \\ 0 & 1 & 0\end{array}\right|,$ $\text{b}=\left|\begin{array}{lrr}\textbf{i} & \textbf{j} & \textbf{k} \\ 0 & −1 & 1 \\ 7 & 1 & −1\end{array}\right|,$ and $\text{c}=\textbf{i}-\textbf{k}.$
 :::
 
 :::exercise {fs-id1163724077712} type= 
@@ -802,7 +802,7 @@ Nonzero vectors $\textbf{u}$ and $\textbf{v}$ are called *collinear* if there ex
 
 :::exercise {fs-id1163723479284} type= 
 PROBLEM:
-Nonzero vectors $\textbf{u}$ and $\textbf{v}$ are called *collinear* if there exists a nonzero scalar $\alpha$ such that $\textbf{v}=\alpha \textbf{u}.$ Show that vectors $\vec{AB}$ and $\vec{AC}$ are collinear, where $A(4,1,0),$ $B(6,5,−2),$ and $C(5,3,−1).$
+Nonzero vectors $\textbf{u}$ and $\textbf{v}$ are called *collinear* if there exists a nonzero scalar $\alpha$ such that $\textbf{v}=\alpha \textbf{u}.$ Show that vectors $\overrightarrow{AB}$ and $\overrightarrow{AC}$ are collinear, where $A(4,1,0),$ $B(6,5,−2),$ and $C(5,3,−1).$
 :::
 
 :::exercise {fs-id1163723479450} type= 
@@ -820,7 +820,7 @@ Find the area of the parallelogram with adjacent sides $\textbf{u}=\textbf{i}+\t
 :::exercise {fs-id1163723307470} type= 
 PROBLEM:
 Consider points $A(3,−1,2),B(2,1,5),$ and $C(1,−2,−2).$
-a. Find the area of parallelogram $ABCD$ with adjacent sides $\vec{AB}$ and $\vec{AC}.$
+a. Find the area of parallelogram $ABCD$ with adjacent sides $\overrightarrow{AB}$ and $\overrightarrow{AC}.$
 b. Find the area of triangle $ABC.$
 c. Find the distance from point $A$ to line $BC.$
 SOLUTION:
@@ -830,7 +830,7 @@ a. $5\sqrt{6};$ b. $\frac{5\sqrt{6}}{2};$ c. $\frac{5\sqrt{6}}{\sqrt{59}}$
 :::exercise {fs-id1163724150234} type= 
 PROBLEM:
 Consider points $A(2,−3,4),B(0,1,2),$ and $C(−1,2,0).$
-a. Find the area of parallelogram $ABCD$ with adjacent sides $\vec{AB}$ and $\vec{AC}.$
+a. Find the area of parallelogram $ABCD$ with adjacent sides $\overrightarrow{AB}$ and $\overrightarrow{AC}.$
 b. Find the area of triangle $ABC.$
 c. Find the distance from point $B$ to line $AC.$
 :::
@@ -865,7 +865,7 @@ Calculate the triple scalar products $\textbf{w}\cdot (\textbf{v}\;\times \;\tex
 :::exercise {fs-id1163724066849} type= 
 PROBLEM:
 Find vectors $\textbf{a},\textbf{b},\;\text{and}\;\textbf{c}$ with a triple scalar product given by the determinant
-$|\begin{array}{lll}1 & 2 & 3 \\ 0 & 2 & 5 \\ 8 & 9 & 2\end{array}|.$ Determine their triple scalar product.
+$\left|\begin{array}{lll}1 & 2 & 3 \\ 0 & 2 & 5 \\ 8 & 9 & 2\end{array}\right|.$ Determine their triple scalar product.
 SOLUTION:
 $\textbf{a}=\langle 1,2,3\rangle ,$ $\text{b}=\langle 0,2,5\rangle ,$ $\text{c}=\langle 8,9,2\rangle ;$ $\textbf{a}\cdot (\text{b}\;\times \;\text{c})=−9$
 :::
@@ -873,7 +873,7 @@ $\textbf{a}=\langle 1,2,3\rangle ,$ $\text{b}=\langle 0,2,5\rangle ,$ $\text{c}=
 :::exercise {fs-id1163724075698} type= 
 PROBLEM:
 The triple scalar product of vectors $\textbf{a},\textbf{b},\;\text{and}\;\textbf{c}$ is given by the determinant
-$|\begin{array}{rrr}0 & −2 & 1 \\ 0 & 1 & 4 \\ 1 & −3 & 7\end{array}|.$ Find vector $\textbf{a}-\text{b}+\text{c}.$
+$\left|\begin{array}{rrr}0 & −2 & 1 \\ 0 & 1 & 4 \\ 1 & −3 & 7\end{array}\right|.$ Find vector $\textbf{a}-\text{b}+\text{c}.$
 :::
 
 :::exercise {fs-id1163724075847} type= 
@@ -892,7 +892,7 @@ a. $\alpha =1;$ b. $h=1,$
 :::exercise {fs-id1163723323448} type= 
 PROBLEM:
 Consider points $A(\alpha ,0,0),B(0,β,0),$ and $C(0,0,γ),$ with $\alpha ,$ $β,$ and $γ$ positive real numbers.
-a. Determine the volume of the parallelepiped with adjacent sides $\vec{OA},$ $\vec{OB},$ and $\vec{OC}.$
+a. Determine the volume of the parallelepiped with adjacent sides $\overrightarrow{OA},$ $\overrightarrow{OB},$ and $\overrightarrow{OC}.$
 b. Find the volume of the tetrahedron with vertices $O,A,B,\;\text{and}\;C.$ (*Hint*: The volume of the tetrahedron is $1\text{/}6$ of the volume of the parallelepiped.)
 c. Find the distance from the origin to the plane determined by $A,B,\;\text{and}\;C.$ Sketch the parallelepiped and tetrahedron.
 :::
@@ -930,9 +930,9 @@ c. Show that $\textbf{u},\textbf{v},\;\text{and}\;\textbf{p}$ are linearly indep
 
 :::exercise {fs-id1163723323772} type= 
 PROBLEM:
-Consider points $A(0,0,2),$ $B(1,0,2),$ $C(1,1,2),$ and $D(0,1,2).$ Are vectors $\vec{AB},$ $\vec{AC},$ and $\vec{AD}$ linearly dependent (that is, one of the vectors is a linear combination of the other two)?
+Consider points $A(0,0,2),$ $B(1,0,2),$ $C(1,1,2),$ and $D(0,1,2).$ Are vectors $\overrightarrow{AB},$ $\overrightarrow{AC},$ and $\overrightarrow{AD}$ linearly dependent (that is, one of the vectors is a linear combination of the other two)?
 SOLUTION:
-Yes, $\vec{AD}=\alpha \vec{AB}+β\vec{AC},$ where $\alpha =−1$ and $β=1.$
+Yes, $\overrightarrow{AD}=\alpha \overrightarrow{AB}+β\overrightarrow{AC},$ where $\alpha =−1$ and $β=1.$
 :::
 
 :::exercise {fs-id1163724043045} type= 
@@ -944,7 +944,7 @@ Show that vectors $\textbf{i}+\textbf{j},$ $\textbf{i}-\textbf{j},$ and $\textbf
 PROBLEM:
 Let $\textbf{u}=\langle {u}_{1},{u}_{2}\rangle$ and $\textbf{v}=\langle {v}_{1},{v}_{2}\rangle$ be two-dimensional vectors. The cross product of vectors $\textbf{u}$ and $\textbf{v}$ is not defined. However, if the vectors are regarded as the three-dimensional vectors $\tilde{\textbf{u}}=\langle {u}_{1},{u}_{2},0\rangle$ and $\tilde{\textbf{v}}=\langle {v}_{1},{v}_{2},0\rangle ,$ respectively, then, in this case, we can define the cross product of $\tilde{\textbf{u}}$ and $\tilde{\textbf{v}}.$ In particular, in determinant notation, the cross product of $\tilde{\textbf{u}}$ and $\tilde{\textbf{v}}$ is given by
 
-$\tilde{\textbf{u}}\;\times \;\tilde{\textbf{v}}=|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ {u}_{1} & {u}_{2} & 0 \\ {v}_{1} & {v}_{2} & 0\end{array}|.$  {eq:fs-id1163724181491}
+$\tilde{\textbf{u}}\;\times \;\tilde{\textbf{v}}=\left|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ {u}_{1} & {u}_{2} & 0 \\ {v}_{1} & {v}_{2} & 0\end{array}\right|.$  {eq:fs-id1163724181491}
 
 Use this result to compute $(\textbf{i}\text{cos}\;\theta +\textbf{j}\text{sin}\;\theta )\;\times \;(\textbf{i}sin\theta -\textbf{j}cos\theta ),$ where $\theta$ is a real number.
 SOLUTION:
@@ -1041,7 +1041,7 @@ PROBLEM:
 
 :::exercise {fs-id1163723072215} type= 
 PROBLEM:
-**[T]** Consider $\text{r}(t)=\langle \text{cos}\;t,\text{sin}\;t,2t\rangle$ the position vector of a particle at time $t\in [0,30],$ where the components of $\textbf{r}$ are expressed in centimeters and time in seconds. Let $\vec{OP}$ be the position vector of the particle after $1$ sec.
+**[T]** Consider $\text{r}(t)=\langle \text{cos}\;t,\text{sin}\;t,2t\rangle$ the position vector of a particle at time $t\in [0,30],$ where the components of $\textbf{r}$ are expressed in centimeters and time in seconds. Let $\overrightarrow{OP}$ be the position vector of the particle after $1$ sec.
 a. Determine unit vector $\text{B}(t)$ (called the *binormal unit vector*) that has the direction of cross product vector $\textbf{v}(t)\;\times \;\text{a}(t),$ where $\textbf{v}(t)$ and $\textbf{a}(t)$ are the instantaneous velocity vector and, respectively, the acceleration vector of the particle after $t$ seconds.
 b. Use a CAS to visualize vectors $\textbf{v}(1),$ $\textbf{a}(1),$ and $\text{B}(1)$ as vectors starting at point $P$ along with the path of the particle.
 SOLUTION:
@@ -1060,7 +1060,7 @@ A solar panel is mounted on the roof of a house. The panel may be regarded as po
 > IMAGE {img:fs-id1163723340262} src=../../media/CNX_Calc_Figure_12_04_214.jpg
 > alt: This figure shows a rectangular set of solar panels on a roof. The corners are labeled “A, B, C, D.” Also there is a vector drawn from A to D. There is another vector along the bottom of the rectangle from A to B.
 
-a. Find vector $\text{n}=\vec{AB}\;\times \;\vec{AD}$ perpendicular to the surface of the solar panels. Express the answer using standard unit vectors.
+a. Find vector $\text{n}=\overrightarrow{AB}\;\times \;\overrightarrow{AD}$ perpendicular to the surface of the solar panels. Express the answer using standard unit vectors.
 b. Assume unit vector $\text{s}=\frac{1}{\sqrt{3}}\textbf{i}+\frac{1}{\sqrt{3}}\textbf{j}+\frac{1}{\sqrt{3}}\textbf{k}$ points toward the Sun at a particular time of the day and the flow of solar energy is $\textbf{F}=900\text{s}$ (in watts per square meter [${\text{W/m}}^{2}$]). Find the predicted amount of electrical power the panel can produce, which is given by the dot product of vectors $\textbf{F}$ and $\textbf{n}$ (expressed in watts).
 c. Determine the angle of elevation of the Sun above the solar panel. Express the answer in degrees rounded to the nearest whole number. (*Hint*: The angle between vectors $\textbf{n}$ and $\textbf{s}$ and the angle of elevation are complementary.)
 :::

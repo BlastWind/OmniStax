@@ -29,7 +29,7 @@ The arrows in [ref:CNX_Calc_Figure_12_01_001](b) are equivalent. Each arrow has 
 > alt: This figure has two images. The first is labeled “a” and has a line segment representing vector v. The line segment begins at the initial point and goes to the terminal point. There is an arrowhead at the terminal point. The second image is labeled “b” and is five vectors, each labeled v sub 1, v sub 2, v sub 3, v sub 4, v sub 5. They all are pointing in the same direction and have the same length.
 > caption: (a) A vector is represented by a directed line segment from its initial point to its terminal point. (b) Vectors ${\textbf{v}}_{1}$ through ${\textbf{v}}_{5}$ are equivalent.
 
-The use of boldface, lowercase letters to name vectors is a common representation in print, but there are alternative notations. When writing the name of a vector by hand, for example, it is easier to sketch an arrow over the variable than to simulate boldface type: $\vec{v}.$ When a vector has initial point $P$ and terminal point $Q,$ the notation $\vec{PQ}$ is useful because it indicates the direction and location of the vector.
+The use of boldface, lowercase letters to name vectors is a common representation in print, but there are alternative notations. When writing the name of a vector by hand, for example, it is easier to sketch an arrow over the variable than to simulate boldface type: $\vec{v}.$ When a vector has initial point $P$ and terminal point $Q,$ the notation $\overrightarrow{PQ}$ is useful because it indicates the direction and location of the vector.
 
 :::example {ex:fs-id1167794177131} Sketching Vectors
 
@@ -37,11 +37,11 @@ The use of boldface, lowercase letters to name vectors is a common representatio
 PROBLEM:
 Sketch a vector in the plane from initial point $P(1,1)$ to terminal point $Q(8,5).$
 SOLUTION:
-See [ref:CNX_Calc_Figure_12_01_002]. Because the vector goes from point $P$ to point $Q,$ we name it $\vec{PQ}.$
+See [ref:CNX_Calc_Figure_12_01_002]. Because the vector goes from point $P$ to point $Q,$ we name it $\overrightarrow{PQ}.$
 
 > FIGURE {fig:CNX_Calc_Figure_12_01_002} src=../../media/CNX_Calc_Figure_12_01_002.jpg
 > alt: This figure is a graph of the first quadrant. There is a line segment beginning at the ordered pair (1, 1). Also, this point is labeled “P.” The line segment ends at the ordered pair (8, 5) and is labeled “Q.” The line segment is labeled “PQ.”
-> caption: The vector with initial point $(1,1)$ and terminal point $(8,5)$ is named $\vec{PQ}.$
+> caption: The vector with initial point $(1,1)$ and terminal point $(8,5)$ is named $\overrightarrow{PQ}.$
 
 :::
 :::
@@ -50,7 +50,7 @@ See [ref:CNX_Calc_Figure_12_01_002]. Because the vector goes from point $P$ to p
 
 :::exercise {fs-id1167794147220} type= 
 PROBLEM:
-Sketch the vector $\vec{ST}$ where $S$ is point $(3,−1)$ and $T$ is point $(−2,3).$
+Sketch the vector $\overrightarrow{ST}$ where $S$ is point $(3,−1)$ and $T$ is point $(−2,3).$
 SOLUTION:
 
 > IMAGE {img:fs-id1167793639052} src=../../media/CNX_Calc_Figure_12_01_003.jpg
@@ -574,62 +574,62 @@ For the following exercises, consider points $P(−1,3),$ $Q(1,5),$ and $R(−3,
 
 :::exercise {fs-id1167794059494} type= 
 PROBLEM:
-$\vec{PQ}$
+$\overrightarrow{PQ}$
 SOLUTION:
-a. $\vec{PQ}=\langle 2,2\rangle ;$ b. $\vec{PQ}=2\text{i}+2\text{j}$
+a. $\overrightarrow{PQ}=\langle 2,2\rangle ;$ b. $\overrightarrow{PQ}=2\text{i}+2\text{j}$
 :::
 
 :::exercise {fs-id1167793992368} type= 
 PROBLEM:
-$\vec{PR}$
+$\overrightarrow{PR}$
 :::
 
 :::exercise {fs-id1167793301149} type= 
 PROBLEM:
-$\vec{QP}$
+$\overrightarrow{QP}$
 SOLUTION:
-a. $\vec{QP}=\langle −2,−2\rangle ;$ b. $\vec{QP}=−2\text{i}-2\text{j}$
+a. $\overrightarrow{QP}=\langle −2,−2\rangle ;$ b. $\overrightarrow{QP}=−2\text{i}-2\text{j}$
 :::
 
 :::exercise {fs-id1167793722626} type= 
 PROBLEM:
-$\vec{RP}$
+$\overrightarrow{RP}$
 :::
 
 :::exercise {fs-id1167793771062} type= 
 PROBLEM:
-$\vec{PQ}+\vec{PR}$
+$\overrightarrow{PQ}+\overrightarrow{PR}$
 SOLUTION:
-a. $\vec{PQ}+\vec{PR}=\langle 0,6\rangle ;$ b. $\vec{PQ}+\vec{PR}=6\text{j}$
+a. $\overrightarrow{PQ}+\overrightarrow{PR}=\langle 0,6\rangle ;$ b. $\overrightarrow{PQ}+\overrightarrow{PR}=6\text{j}$
 :::
 
 :::exercise {fs-id1167794040152} type= 
 PROBLEM:
-$\vec{PQ}-\vec{PR}$
+$\overrightarrow{PQ}-\overrightarrow{PR}$
 :::
 
 :::exercise {fs-id1167793912933} type= 
 PROBLEM:
-$2\vec{PQ}-2\vec{PR}$
+$2\overrightarrow{PQ}-2\overrightarrow{PR}$
 SOLUTION:
-a. $2\vec{PQ}-2\vec{PR}=\langle 8,−4\rangle ;$ b. $2\vec{PQ}-2\vec{PR}=8\text{i}-4\text{j}$
+a. $2\overrightarrow{PQ}-2\overrightarrow{PR}=\langle 8,−4\rangle ;$ b. $2\overrightarrow{PQ}-2\overrightarrow{PR}=8\text{i}-4\text{j}$
 :::
 
 :::exercise {fs-id1167793280451} type= 
 PROBLEM:
-$2\vec{PQ}+\frac{1}{2}\vec{PR}$
+$2\overrightarrow{PQ}+\frac{1}{2}\overrightarrow{PR}$
 :::
 
 :::exercise {fs-id1167793516171} type= 
 PROBLEM:
-The unit vector in the direction of $\vec{PQ}$
+The unit vector in the direction of $\overrightarrow{PQ}$
 SOLUTION:
 a. $\langle \frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\rangle ;$ b. $\frac{1}{\sqrt{2}}\text{i}+\frac{1}{\sqrt{2}}\text{j}$
 :::
 
 :::exercise {fs-id1167794097299} type= 
 PROBLEM:
-The unit vector in the direction of $\vec{PR}$
+The unit vector in the direction of $\overrightarrow{PR}$
 :::
 
 :::exercise {fs-id1167793948426} type= 
@@ -849,7 +849,7 @@ $D(6,1)$
 
 :::exercise {fs-id1167793953368} type= 
 PROBLEM:
-Consider the points $A(2,1),$ $B(10,6),$ $C(13,4),$ and $D(16,−2).$ Determine the component form of vector $\vec{AD}.$
+Consider the points $A(2,1),$ $B(10,6),$ $C(13,4),$ and $D(16,−2).$ Determine the component form of vector $\overrightarrow{AD}.$
 :::
 
 :::exercise {fs-id1167793892953} type= 

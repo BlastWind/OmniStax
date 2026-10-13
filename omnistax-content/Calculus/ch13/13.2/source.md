@@ -144,7 +144,7 @@ $\mathbf{\textbf{u}''}(t)=\frac{d}{dt}[\;\mathbf{{u}^{'}}(t)]=\frac{d}{dt}[2t\;\
 
 Therefore,
 
-$\begin{array}{rl}\frac{d}{dt}[\;\textbf{u}(t)\;\times \;\mathbf{{u}^{'}}(t)] & =\mathbf{0}+(({t}^{2}-3)\;\textbf{i}+(2t+4)\;\textbf{j}+({t}^{3}-3t)\;\textbf{k})\;\times \;(2\;\textbf{i}+6t\;\textbf{k}) \\ & =|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ {t}^{2}-3 & 2t+4 & {t}^{3}-3t \\ 2 & 0 & 6t\end{array}| \\ & =6t(2t+4)\;\textbf{i}-(6t({t}^{2}-3)-2({t}^{3}-3t))\;\textbf{j}-2(2t+4)\;\textbf{k} \\ & =(12{t}^{2}+24t)\;\textbf{i}+(12t-4{t}^{3})\;\textbf{j}-(4t+8)\;\textbf{k}.\end{array}$  {eq:fs-id1169739281913}
+$\begin{array}{rl}\frac{d}{dt}[\;\textbf{u}(t)\;\times \;\mathbf{{u}^{'}}(t)] & =\mathbf{0}+(({t}^{2}-3)\;\textbf{i}+(2t+4)\;\textbf{j}+({t}^{3}-3t)\;\textbf{k})\;\times \;(2\;\textbf{i}+6t\;\textbf{k}) \\ & =\left|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ {t}^{2}-3 & 2t+4 & {t}^{3}-3t \\ 2 & 0 & 6t\end{array}\right| \\ & =6t(2t+4)\;\textbf{i}-(6t({t}^{2}-3)-2({t}^{3}-3t))\;\textbf{j}-2(2t+4)\;\textbf{k} \\ & =(12{t}^{2}+24t)\;\textbf{i}+(12t-4{t}^{3})\;\textbf{j}-(4t+8)\;\textbf{k}.\end{array}$  {eq:fs-id1169739281913}
 
 :::
 :::
@@ -264,7 +264,7 @@ $\begin{array}{l}{\displaystyle \int [(3{t}^{2}+2t)\;\textbf{i}+(3t-6)\;\textbf{
 
 b. First calculate $\langle t,{t}^{2},{t}^{3}\rangle \;\times \;\langle {t}^{3},{t}^{2},t\rangle \text{:}$
 
-$\begin{array}{rl}\langle t,{t}^{2},{t}^{3}\rangle \;\times \;\langle {t}^{3},{t}^{2},t\rangle & =|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ t & {t}^{2} & {t}^{3} \\ {t}^{3} & {t}^{2} & t\end{array}| \\ & =({t}^{2}(t)-{t}^{3}({t}^{2}))\;\textbf{i}-({t}^{2}-{t}^{3}({t}^{3}))\;\textbf{j}+(t({t}^{2})-{t}^{2}({t}^{3}))\;\textbf{k} \\ & =({t}^{3}-{t}^{5})\;\textbf{i}+({t}^{6}-{t}^{2})\;\textbf{j}+({t}^{3}-{t}^{5})\;\textbf{k}.\end{array}$  {eq:fs-id1169739352194}
+$\begin{array}{rl}\langle t,{t}^{2},{t}^{3}\rangle \;\times \;\langle {t}^{3},{t}^{2},t\rangle & =\left|\begin{array}{lll}\textbf{i} & \textbf{j} & \textbf{k} \\ t & {t}^{2} & {t}^{3} \\ {t}^{3} & {t}^{2} & t\end{array}\right| \\ & =({t}^{2}(t)-{t}^{3}({t}^{2}))\;\textbf{i}-({t}^{2}-{t}^{3}({t}^{3}))\;\textbf{j}+(t({t}^{2})-{t}^{2}({t}^{3}))\;\textbf{k} \\ & =({t}^{3}-{t}^{5})\;\textbf{i}+({t}^{6}-{t}^{2})\;\textbf{j}+({t}^{3}-{t}^{5})\;\textbf{k}.\end{array}$  {eq:fs-id1169739352194}
 
 Next, substitute this back into the integral and integrate:
 

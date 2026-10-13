@@ -213,7 +213,7 @@ ${\displaystyle \int_{1}^{\infty}\frac{1}{{x}^{p}}dx}=\{\begin{array}{l}\frac{1}
 Therefore, $\overset{\infty}{\underset{n=1}{{\displaystyle \sum}}}1\text{/}{n}^{p}$ converges if $p>1$ and diverges if $0<p<1.$
 In summary,
 
-$$ {\displaystyle \sum_{n=1}^{\infty} \frac{1}{{n}^{p}}}\;\{\begin{array}{l}\text{converges if}\;p>1 \\ \text{diverges if}\;p\le 1\end{array}. $$  {eq:fs-id1169738111511}
+$$ {\displaystyle \sum_{n=1}^{\infty} \frac{1}{{n}^{p}}}\;\left\{\begin{array}{l}\text{converges if}\;p>1 \\ \text{diverges if}\;p\le 1\end{array}\right.. $$  {eq:fs-id1169738111511}
 
 :::example {ex:fs-id1169737151882} Testing for Convergence of *p*-series
 
@@ -341,7 +341,7 @@ either both converge or both diverge. Furthermore, if $\overset{\infty}{\underse
 |  |  |
 | --- | --- |
 | **Divergence test** | $\text{If}\;{a}_{n}\nrightarrow 0\;\text{as}\;n\to \infty ,{\displaystyle \sum_{n=1}^{\infty} {a}_{n}}\;\text{diverges}.$ |
-| ***p*-series** | ${\displaystyle \sum_{n=1}^{\infty} \frac{1}{{n}^{p}}}\{\begin{array}{l}\text{converges if}\;p>1 \\ \text{diverges if}\;p\le 1\end{array}$ |
+| ***p*-series** | ${\displaystyle \sum_{n=1}^{\infty} \frac{1}{{n}^{p}}}\left\{\begin{array}{l}\text{converges if}\;p>1 \\ \text{diverges if}\;p\le 1\end{array}\right.$ |
 | **Remainder estimate from the integral test** | ${\displaystyle \int_{N+1}^{\infty}f(x)dx}<{R}_{N}<{\displaystyle \int_{N}^{\infty}f(x)dx}$ |
 
 ##  {section:section-exercises}

@@ -264,14 +264,14 @@ $$ \lim_{x\to {a}^{+}}f(x)=L. $$  {eq:fs-id1170572453163}
 
 :::exercise {fs-id1170571614882} type= 
 PROBLEM:
-For the function $f(x)=\{\begin{array}{ll}x+1 & \text{if}\;x<2 \\ {x}^{2}-4 & \text{if}\;x\ge 2\end{array},$ evaluate each of the following limits.
+For the function $f(x)=\left\{\begin{array}{ll}x+1 & \text{if}\;x<2 \\ {x}^{2}-4 & \text{if}\;x\ge 2\end{array}\right.,$ evaluate each of the following limits.
 a. $\lim_{x\to {2}^{-}}f(x)$
 b. $\lim_{x\to {2}^{+}}f(x)$
 SOLUTION:
 We can use tables of functional values again [ref:fs-id1170572347185]. Observe that for values of *x* less than 2, we use $f(x)=x+1$ and for values of *x* greater than 2, we use $f(x)={x}^{2}-4.$
 
 > TABLE {tab:fs-id1170572347185} cols=5 irregular
-> title: Table of Functional Values for $f(x)=\{\begin{array}{l}x+1\;\text{if}\;x<2 \\ {x}^{2}-4\;\text{if}\;x\ge 2\end{array}$
+> title: Table of Functional Values for $f(x)=\left\{\begin{array}{l}x+1\;\text{if}\;x<2 \\ {x}^{2}-4\;\text{if}\;x\ge 2\end{array}\right.$
 > summary: Two tables side by side, each with two columns and six rows. The headers are the same, x and f(x) = x+1 in the first row. In the first table, the values in the first column under x are 1.9, 1.99, 1.999, 1.9999, and 1.99999. The values in the second column under the header are 2.9, 2.99, 2.999, 2.9999, and 2.99999. In the second column, the values in the first column under x are 2.1, 2.01, 2.001, 2.0001, and 2.00001. The values in the second column under the header are 0.41, 0.0401, 0.004001, 0.00040001, and 0.0000400001.
 
 | *x* | $f(x)=x+1$ |  | *x* | $f(x)={x}^{2}−4$ |
@@ -285,7 +285,7 @@ Based on this table, we can conclude that a. $\lim_{x\to {2}^{-}}f(x)=3$ and b. 
 
 > FIGURE {fig:CNX_Calc_Figure_02_02_010} src=../../media/CNX_Calc_Figure_02_02_010.jpg
 > alt: The graph of the given piecewise function. The first piece is f(x) = x+1 if x < 2. The second piece is x^2 – 4 if x >= 2. The first piece is a line with x intercept at (-1, 0) and y intercept at (0,1). There is an open circle at (2,3), where the endpoint would be. The second piece is the right half of a parabola opening upward. The vertex at (2,0) is a solid circle.
-> caption: The graph of $f(x)=\{\begin{array}{l}x+1\;\text{if}\;x<2 \\ {x}^{2}-4\;\text{if}\;x\ge 2\end{array}$ has a break at $x=2.$
+> caption: The graph of $f(x)=\left\{\begin{array}{l}x+1\;\text{if}\;x<2 \\ {x}^{2}-4\;\text{if}\;x\ge 2\end{array}\right.$ has a break at $x=2.$
 
 :::
 :::

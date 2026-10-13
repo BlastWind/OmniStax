@@ -748,7 +748,7 @@ $f(x)={x}^{2\text{/}3},x=0$
 
 :::exercise {fs-id1169739347174} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}1,x<1 \\ x,x\ge 1\end{array},x=1$
+$f(x)=\left\{\begin{array}{l}1,x<1 \\ x,x\ge 1\end{array}\right.,x=1$
 SOLUTION:
 $\lim_{x\to {1}^{-}}\frac{1-1}{x-1}=0≠1=\lim_{x\to {1}^{+}}\frac{x-1}{x-1}$
 :::

@@ -577,19 +577,19 @@ ${a}_{k}={2}^{\text{−}\text{sin}(1\text{/}k)}$
 
 :::exercise {fs-id1169736728883} type= 
 PROBLEM:
-${a}_{n}=1\text{/}(\begin{array}{l}n+2 \\ n\end{array})$ where $(\begin{array}{l}n \\ k\end{array})=\frac{n\text{!}}{k\text{!}(n-k)\text{!}}$
+${a}_{n}=1\text{/}\left(\begin{array}{l}n+2 \\ n\end{array}\right)$ where $\left(\begin{array}{l}n \\ k\end{array}\right)=\frac{n\text{!}}{k\text{!}(n-k)\text{!}}$
 SOLUTION:
 ${a}_{n}=\frac{2}{(n+1)(n+2)},$ which converges by comparison with $p-\text{series}$ for $p=2.$
 :::
 
 :::exercise {fs-id1169736720771} type= 
 PROBLEM:
-${a}_{k}=1\text{/}(\begin{array}{l}2k \\ k\end{array})$
+${a}_{k}=1\text{/}\left(\begin{array}{l}2k \\ k\end{array}\right)$
 :::
 
 :::exercise {fs-id1169736659407} type= 
 PROBLEM:
-${a}_{k}={2}^{k}\text{/}(\begin{array}{l}3k \\ k\end{array})$
+${a}_{k}={2}^{k}\text{/}\left(\begin{array}{l}3k \\ k\end{array}\right)$
 SOLUTION:
 ${a}_{k}=\frac{{2}^{k}1\cdot 2\text{⋯}k}{(2k+1)(2k+2)\text{⋯}3k}\le {(2\text{/}3)}^{k}$ converges by comparison with geometric series.
 :::

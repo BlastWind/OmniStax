@@ -102,23 +102,23 @@ For $f(x)={x}^{n}$ where $n$ is a positive integer, we have
 
 ${f}^{'}(x)=\lim_{h\to 0}\frac{{(x+h)}^{n}-{x}^{n}}{h}.$  {eq:fs-id1169739010866}
 
-$\text{Since}\;{(x+h)}^{n}={x}^{n}+n{x}^{n-1}h+(\begin{array}{l}n \\ 2\end{array})\;{x}^{n-2}{h}^{2}+(\begin{array}{l}n \\ 3\end{array})\;{x}^{n-3}{h}^{3}+\text{…}+nx{h}^{n-1}+{h}^{n},$  {eq:fs-id1169738108118}
+$\text{Since}\;{(x+h)}^{n}={x}^{n}+n{x}^{n-1}h+\left(\begin{array}{l}n \\ 2\end{array}\right)\;{x}^{n-2}{h}^{2}+\left(\begin{array}{l}n \\ 3\end{array}\right)\;{x}^{n-3}{h}^{3}+\text{…}+nx{h}^{n-1}+{h}^{n},$  {eq:fs-id1169738108118}
 
 we see that
 
-${(x+h)}^{n}-{x}^{n}=n{x}^{n-1}h+(\begin{array}{l}n \\ 2\end{array})\;{x}^{n-2}{h}^{2}+(\begin{array}{l}n \\ 3\end{array})\;{x}^{n-3}{h}^{3}+\text{…}+nx{h}^{n-1}+{h}^{n}.$  {eq:fs-id1169736614176}
+${(x+h)}^{n}-{x}^{n}=n{x}^{n-1}h+\left(\begin{array}{l}n \\ 2\end{array}\right)\;{x}^{n-2}{h}^{2}+\left(\begin{array}{l}n \\ 3\end{array}\right)\;{x}^{n-3}{h}^{3}+\text{…}+nx{h}^{n-1}+{h}^{n}.$  {eq:fs-id1169736614176}
 
 Next, divide both sides by *h*:
 
-$\frac{{(x+h)}^{n}-{x}^{n}}{h}=\frac{n{x}^{n-1}h+(\begin{array}{l}n \\ 2\end{array})\;{x}^{n-2}{h}^{2}+(\begin{array}{l}n \\ 3\end{array})\;{x}^{n-3}{h}^{3}+\text{…}+nx{h}^{n-1}+{h}^{n}}{h}.$  {eq:fs-id1169739190480}
+$\frac{{(x+h)}^{n}-{x}^{n}}{h}=\frac{n{x}^{n-1}h+\left(\begin{array}{l}n \\ 2\end{array}\right)\;{x}^{n-2}{h}^{2}+\left(\begin{array}{l}n \\ 3\end{array}\right)\;{x}^{n-3}{h}^{3}+\text{…}+nx{h}^{n-1}+{h}^{n}}{h}.$  {eq:fs-id1169739190480}
 
 Thus,
 
-$\frac{{(x+h)}^{n}-{x}^{n}}{h}=n{x}^{n-1}+(\begin{array}{l}n \\ 2\end{array})\;{x}^{n-2}h+(\begin{array}{l}n \\ 3\end{array})\;{x}^{n-3}{h}^{2}+\text{…}+nx{h}^{n-2}+{h}^{n-1}.$  {eq:fs-id1169739014535}
+$\frac{{(x+h)}^{n}-{x}^{n}}{h}=n{x}^{n-1}+\left(\begin{array}{l}n \\ 2\end{array}\right)\;{x}^{n-2}h+\left(\begin{array}{l}n \\ 3\end{array}\right)\;{x}^{n-3}{h}^{2}+\text{…}+nx{h}^{n-2}+{h}^{n-1}.$  {eq:fs-id1169739014535}
 
 Finally,
 
-$\begin{array}{rl}{f}^{'}(x) & =\lim_{h\to 0}(n{x}^{n-1}+(\begin{array}{l}n \\ 2\end{array})\;{x}^{n-2}h+(\begin{array}{l}n \\ 3\end{array})\;{x}^{n-3}{h}^{2}+\text{…}+nx{h}^{n-2}+{h}^{n-1}) \\ & =n{x}^{n-1}.\end{array}$  {eq:fs-id1169739302946}
+$\begin{array}{rl}{f}^{'}(x) & =\lim_{h\to 0}(n{x}^{n-1}+\left(\begin{array}{l}n \\ 2\end{array}\right)\;{x}^{n-2}h+\left(\begin{array}{l}n \\ 3\end{array}\right)\;{x}^{n-3}{h}^{2}+\text{…}+nx{h}^{n-2}+{h}^{n-1}) \\ & =n{x}^{n-1}.\end{array}$  {eq:fs-id1169739302946}
 
 □
 

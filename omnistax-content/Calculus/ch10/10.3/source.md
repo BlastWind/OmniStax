@@ -618,7 +618,7 @@ PROBLEM:
 PROBLEM:
 **[T]** ${(28)}^{1\text{/}3};a=27,n=1$
 SOLUTION:
-$\frac{{d}^{2}}{d{x}^{2}}{x}^{1\text{/}3}=-\frac{2}{9{x}^{5\text{/}3}}\ge −0.00092\text{…}$ when $x\ge 28$ so the remainder estimate applies to the linear approximation ${x}^{1\text{/}3}\approx {p}_{1}(27)=3+\frac{x-27}{27},$ which gives ${(28)}^{1\text{/}3}\approx 3+\frac{1}{27}=3.\bar{037},$ while ${(28)}^{1\text{/}3}\approx 3.03658.$
+$\frac{{d}^{2}}{d{x}^{2}}{x}^{1\text{/}3}=-\frac{2}{9{x}^{5\text{/}3}}\ge −0.00092\text{…}$ when $x\ge 28$ so the remainder estimate applies to the linear approximation ${x}^{1\text{/}3}\approx {p}_{1}(27)=3+\frac{x-27}{27},$ which gives ${(28)}^{1\text{/}3}\approx 3+\frac{1}{27}=3.\overline{037},$ while ${(28)}^{1\text{/}3}\approx 3.03658.$
 :::
 
 :::exercise {fs-id1167025090800} type= 

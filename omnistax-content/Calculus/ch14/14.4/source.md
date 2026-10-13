@@ -29,7 +29,7 @@ $$ z=f({x}_{0},{y}_{0})+{f}_{x}({x}_{0},{y}_{0})(x-{x}_{0})+{f}_{y}({x}_{0},{y}_
 :::
 To see why this formula is correct, let’s first find two tangent lines to the surface $S.$ The equation of the tangent line to the curve that is represented by the intersection of $S$ with the vertical trace given by $x={x}_{0}$ is $z=f({x}_{0},{y}_{0})+{f}_{y}({x}_{0},{y}_{0})(y-{y}_{0}).$ Similarly, the equation of the tangent line to the curve that is represented by the intersection of $S$ with the vertical trace given by $y={y}_{0}$ is $z=f({x}_{0},{y}_{0})+{f}_{x}({x}_{0},{y}_{0})(x-{x}_{0}).$ A parallel vector to the first tangent line is $\mathbf{a}=\mathbf{j}+{f}_{y}({x}_{0},{y}_{0})\mathbf{k;}$ a parallel vector to the second tangent line is $\mathbf{b}=\mathbf{i}+{f}_{x}({x}_{0},{y}_{0})\mathbf{k}.$ We can take the cross product of these two vectors:
 
-$\begin{array}{rl}\mathbf{a}\;\times \;\mathbf{b} & =(\mathbf{j}+{f}_{y}({x}_{0},{y}_{0})\mathbf{k})\;\times \;(\mathbf{i}+{f}_{x}({x}_{0},{y}_{0})\mathbf{k}) \\ & =|\begin{array}{lll}\mathbf{i} & \mathbf{j} & \mathbf{k} \\ 0 & 1 & {f}_{y}({x}_{0},{y}_{0}) \\ 1 & 0 & {f}_{x}({x}_{0},{y}_{0})\end{array}| \\ & ={f}_{x}({x}_{0},{y}_{0})\mathbf{i}+{f}_{y}({x}_{0},{y}_{0})\mathbf{j}-\mathbf{k}.\end{array}$  {eq:fs-id1167793930547}
+$\begin{array}{rl}\mathbf{a}\;\times \;\mathbf{b} & =(\mathbf{j}+{f}_{y}({x}_{0},{y}_{0})\mathbf{k})\;\times \;(\mathbf{i}+{f}_{x}({x}_{0},{y}_{0})\mathbf{k}) \\ & =\left|\begin{array}{lll}\mathbf{i} & \mathbf{j} & \mathbf{k} \\ 0 & 1 & {f}_{y}({x}_{0},{y}_{0}) \\ 1 & 0 & {f}_{x}({x}_{0},{y}_{0})\end{array}\right| \\ & ={f}_{x}({x}_{0},{y}_{0})\mathbf{i}+{f}_{y}({x}_{0},{y}_{0})\mathbf{j}-\mathbf{k}.\end{array}$  {eq:fs-id1167793930547}
 
 This vector is perpendicular to both lines and is therefore perpendicular to the tangent plane. We can use this vector as a normal vector to the tangent plane, along with the point ${P}_{0}=({x}_{0},{y}_{0},f({x}_{0},{y}_{0}))$ in the equation for a plane:
 
@@ -90,7 +90,7 @@ $\begin{array}{l} \\ z=f({x}_{0},{y}_{0})+{f}_{x}({x}_{0},{y}_{0})(x-{x}_{0})+{f
 :::
 A tangent plane to a surface does not always exist at every point on the surface. Consider the function
 
-$f(x,y)=\{\begin{array}{ll}\frac{xy}{\sqrt{{x}^{2}+{y}^{2}}} & (x,y)≠(0,0) \\ 0 & (x,y)=(0,0).\end{array}$  {eq:fs-id1167794061743}
+$f(x,y)=\left\{\begin{array}{ll}\frac{xy}{\sqrt{{x}^{2}+{y}^{2}}} & (x,y)≠(0,0) \\ 0 & (x,y)=(0,0).\end{array}\right.$  {eq:fs-id1167794061743}
 
 The graph of this function follows.
 
@@ -221,7 +221,7 @@ COMMENTARY: Hint
 First, calculate $f({x}_{0},{y}_{0}),{f}_{x}({x}_{0},{y}_{0}),\;\text{and}\;{f}_{y}({x}_{0},{y}_{0})$ using ${x}_{0}=−1$ and ${y}_{0}=2,$ then use [ref:fs-id1167793514508] to find $E(x,y).$ Last, calculate the limit.
 :::
 :::
-The function $f(x,y)=\{\begin{array}{ll}\frac{xy}{\sqrt{{x}^{2}+{y}^{2}}} & (x,y)≠(0,0) \\ 0 & (x,y)=(0,0)\end{array}$ is not differentiable at the origin. We can see this by calculating the partial derivatives. This function appeared earlier in the section, where we showed that ${f}_{x}(0,0)={f}_{y}(0,0)=0.$ Substituting this information into [ref:fs-id1167793514508] using ${x}_{0}=0$ and ${y}_{0}=0,$ we get
+The function $f(x,y)=\left\{\begin{array}{ll}\frac{xy}{\sqrt{{x}^{2}+{y}^{2}}} & (x,y)≠(0,0) \\ 0 & (x,y)=(0,0)\end{array}\right.$ is not differentiable at the origin. We can see this by calculating the partial derivatives. This function appeared earlier in the section, where we showed that ${f}_{x}(0,0)={f}_{y}(0,0)=0.$ Substituting this information into [ref:fs-id1167793514508] using ${x}_{0}=0$ and ${y}_{0}=0,$ we get
 
 $\begin{array}{rll}f(x,y) & = & f(0,0)+{f}_{x}(0,0)(x-0)+{f}_{y}(0,0)(y-0)+E(x,y) \\ E(x,y) & = & \frac{xy}{\sqrt{{x}^{2}+{y}^{2}}}.\end{array}$  {eq:fs-id1167793510072}
 
@@ -242,7 +242,7 @@ Let $z=f(x,y)$ be a function of two variables with $({x}_{0},{y}_{0})$ in the do
 :::
 [ref:fs-id1167793618110] shows that if a function is differentiable at a point, then it is continuous there. However, if a function is continuous at a point, then it is not necessarily differentiable at that point. For example,
 
-$f(x,y)=\{\begin{array}{ll}\frac{xy}{\sqrt{{x}^{2}+{y}^{2}}} & (x,y)≠(0,0) \\ 0 & (x,y)=(0,0)\end{array}$  {eq:fs-id1167793288599}
+$f(x,y)=\left\{\begin{array}{ll}\frac{xy}{\sqrt{{x}^{2}+{y}^{2}}} & (x,y)≠(0,0) \\ 0 & (x,y)=(0,0)\end{array}\right.$  {eq:fs-id1167793288599}
 
 is continuous at the origin, but it is not differentiable at the origin. This observation is also similar to the situation in single-variable calculus.
 [ref:fs-id1167793960614] further explores the connection between continuity and differentiability at a point. This theorem says that if the function and its partial derivatives are continuous at a point, the function is differentiable.
@@ -252,7 +252,7 @@ Let $z=f(x,y)$ be a function of two variables with $({x}_{0},{y}_{0})$ in the do
 :::
 Recall that earlier we showed that the function
 
-$f(x,y)=\{\begin{array}{ll}\frac{xy}{\sqrt{{x}^{2}+{y}^{2}}} & (x,y)≠(0,0) \\ 0 & (x,y)=(0,0)\end{array}$  {eq:fs-id1167793960575}
+$f(x,y)=\left\{\begin{array}{ll}\frac{xy}{\sqrt{{x}^{2}+{y}^{2}}} & (x,y)≠(0,0) \\ 0 & (x,y)=(0,0)\end{array}\right.$  {eq:fs-id1167793960575}
 
 was not differentiable at the origin. Let’s calculate the partial derivatives ${f}_{x}$ and ${f}_{y}\text{:}$
 

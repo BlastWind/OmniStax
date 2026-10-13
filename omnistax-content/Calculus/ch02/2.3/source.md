@@ -331,7 +331,7 @@ In [ref:fs-id1170571558882] we look at one-sided limits of a piecewise-defined f
 
 :::exercise {fs-id1170571558884} type= 
 PROBLEM:
-For $f(x)=\{\begin{array}{ll}4x-3 & \text{if}\;x<2 \\ {(x-3)}^{2} & \text{if}\;x\ge 2\end{array},$ evaluate each of the following limits:
+For $f(x)=\left\{\begin{array}{ll}4x-3 & \text{if}\;x<2 \\ {(x-3)}^{2} & \text{if}\;x\ge 2\end{array}\right.,$ evaluate each of the following limits:
 a. $\lim_{x\to {2}^{-}}f(x)$
 b. $\lim_{x\to {2}^{+}}f(x)$
 c. $\lim_{x\to 2}f(x)$
@@ -358,7 +358,7 @@ c. Since $\lim_{x\to {2}^{-}}f(x)=5$ and $\lim_{x\to {2}^{+}}f(x)=1,$ we conclud
 
 :::exercise {fs-id1170572235173} type= 
 PROBLEM:
-Graph $f(x)=\{\begin{array}{l}-x-2\;\text{if}\;x<\text{−}1 \\ 2\;\text{if}\;x=−1 \\ {x}^{3}\;\text{if}\;x>\text{−}1\end{array}$ and evaluate $\lim_{x\to {−1}^{-}}f(x).$
+Graph $f(x)=\left\{\begin{array}{l}-x-2\;\text{if}\;x<\text{−}1 \\ 2\;\text{if}\;x=−1 \\ {x}^{3}\;\text{if}\;x>\text{−}1\end{array}\right.$ and evaluate $\lim_{x\to {−1}^{-}}f(x).$
 SOLUTION:
 
 > IMAGE {img:fs-id1170572559760} src=../../media/CNX_Calc_Figure_02_03_004.jpg
@@ -751,7 +751,7 @@ $\lim_{x\to 6}(f(x)\cdot g(x)-h(x))$
 
 :::exercise {fs-id1170572624112} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{ll}{x}^{2}, & x\le 3 \\ x+4, & x>3\end{array}$
+$f(x)=\left\{\begin{array}{ll}{x}^{2}, & x\le 3 \\ x+4, & x>3\end{array}\right.$
 a. $\lim_{x\to {3}^{-}}f(x)$
 b. $\lim_{x\to {3}^{+}}f(x)$
 SOLUTION:
@@ -764,14 +764,14 @@ a. 9; b. 7
 
 :::exercise {fs-id1170572380907} type= 
 PROBLEM:
-$g(x)=\{\begin{array}{ll}{x}^{3}-1, & x\le 0 \\ 1, & x>0\end{array}$
+$g(x)=\left\{\begin{array}{ll}{x}^{3}-1, & x\le 0 \\ 1, & x>0\end{array}\right.$
 a. $\lim_{x\to {0}^{-}}g(x)$
 b. $\lim_{x\to {0}^{+}}g(x)$
 :::
 
 :::exercise {fs-id1170572381069} type= 
 PROBLEM:
-$h(x)=\{\begin{array}{ll}{x}^{2}-2x+1, & x<2 \\ 3-x, & x\ge 2\end{array}$
+$h(x)=\left\{\begin{array}{ll}{x}^{2}-2x+1, & x<2 \\ 3-x, & x\ge 2\end{array}\right.$
 a. $\lim_{x\to {2}^{-}}h(x)$
 b. $\lim_{x\to {2}^{+}}h(x)$
 SOLUTION:
@@ -853,7 +853,7 @@ The limit is zero.
 
 :::exercise {fs-id1170571625966} type= 
 PROBLEM:
-$\lim_{x\to 0}f(x),$ where $f(x)=\{\begin{array}{ll}0, & x\;\text{rational} \\ {x}^{2}, & x\;\text{irrational}\end{array}$
+$\lim_{x\to 0}f(x),$ where $f(x)=\left\{\begin{array}{ll}0, & x\;\text{rational} \\ {x}^{2}, & x\;\text{irrational}\end{array}\right.$
 :::
 
 :::exercise {fs-id1170571626094} type= 

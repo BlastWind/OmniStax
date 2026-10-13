@@ -54,7 +54,7 @@ $3,7,11,15,19\text{,…}\;\text{.}$  {eq:fs-id1169738824405}
 
 You can see that the difference between every consecutive pair of terms is $4.$ Assuming that this pattern continues, this sequence is an arithmetic sequence. It can be described by using the recurrence relation
 
-$\{\begin{array}{l}{a}_{1}=3 \\ {a}_{n}={a}_{n-1}+4\;\text{for}\;n\ge 2.\end{array}$  {eq:fs-id1169739274427}
+$\left\{\begin{array}{l}{a}_{1}=3 \\ {a}_{n}={a}_{n-1}+4\;\text{for}\;n\ge 2.\end{array}\right.$  {eq:fs-id1169739274427}
 
 Note that
 

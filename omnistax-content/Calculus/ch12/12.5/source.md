@@ -11,13 +11,13 @@ By now, we are familiar with writing equations that describe a line in two dimen
 
 ## Equations for a Line in Space
 Let’s first explore what it means for two vectors to be parallel. Recall that parallel vectors must have the same or opposite directions. If two nonzero vectors, $\textbf{u}$ and $\textbf{v},$ are parallel, we claim there must be a scalar, $k,$ such that $\textbf{u}=k\textbf{v}.$ If $\textbf{u}$ and $\textbf{v}$ have the same direction, simply choose $k=\frac{\| \textbf{u}\|}{\| \textbf{v}\|}.$ If $\textbf{u}$ and $\textbf{v}$ have opposite directions, choose $k=-\frac{\| \textbf{u}\|}{\| \textbf{v}\|}.$ Note that the converse holds as well. If $\textbf{u}=k\textbf{v}$ for some scalar $\text{k},$ then either $\textbf{u}$ and $\textbf{v}$ have the same direction $(k>0)$ or opposite directions $(k<0),$ so $\textbf{u}$ and $\textbf{v}$ are parallel. Therefore, two nonzero vectors $\textbf{u}$ and $\textbf{v}$ are parallel if and only if $\textbf{u}=k\textbf{v}$ for some scalar $\text{k}.$ By convention, the zero vector $\mathbf{0}$ is considered to be parallel to all vectors.
-As in two dimensions, we can describe a line in space using a point on the line and the direction of the line, or a parallel vector, which we call the {term:direction vector} ([ref:CNX_Calc_Figure_12_05_001]). Let $L$ be a line in space passing through point $P({x}_{0},{y}_{0},{z}_{0}).$ Let $\textbf{v}=\langle a,b,c\rangle$ be a vector parallel to $L.$ Then, for any point $Q(x,y,z)$ on line $L$, we know that $\vec{PQ}$ is parallel to $\textbf{v}.$ Thus, as we just discussed, there is a scalar, $t,$ such that $\vec{PQ}=t\textbf{v},$ which gives
+As in two dimensions, we can describe a line in space using a point on the line and the direction of the line, or a parallel vector, which we call the {term:direction vector} ([ref:CNX_Calc_Figure_12_05_001]). Let $L$ be a line in space passing through point $P({x}_{0},{y}_{0},{z}_{0}).$ Let $\textbf{v}=\langle a,b,c\rangle$ be a vector parallel to $L.$ Then, for any point $Q(x,y,z)$ on line $L$, we know that $\overrightarrow{PQ}$ is parallel to $\textbf{v}.$ Thus, as we just discussed, there is a scalar, $t,$ such that $\overrightarrow{PQ}=t\textbf{v},$ which gives
 
-$$ \begin{array}{rll}\vec{PQ} & = & t\textbf{v} \\ \langle x-{x}_{0},y-{y}_{0},z-{z}_{0}\rangle & = & t\langle a,b,c\rangle \\ \langle x-{x}_{0},y-{y}_{0},z-{z}_{0}\rangle & = & \langle ta,tb,tc\rangle .\end{array} $$  {eq:fs-id1163723690717}
+$$ \begin{array}{rll}\overrightarrow{PQ} & = & t\textbf{v} \\ \langle x-{x}_{0},y-{y}_{0},z-{z}_{0}\rangle & = & t\langle a,b,c\rangle \\ \langle x-{x}_{0},y-{y}_{0},z-{z}_{0}\rangle & = & \langle ta,tb,tc\rangle .\end{array} $$  {eq:fs-id1163723690717}
 
 > FIGURE {fig:CNX_Calc_Figure_12_05_001} src=../../media/CNX_Calc_Figure_12_05_001.jpg
 > alt: This figure is the first octant of the 3-dimensional coordinate system. There is a line segment passing through two points. The points are labeled “P = (x sub 0, y sub 0, z sub 0)” and “Q = (x, y, z).” There is also a vector in standard position drawn. The vector is labeled “v = <a, b, c>.”
-> caption: Vector **v** is the direction vector for $\vec{PQ}.$
+> caption: Vector **v** is the direction vector for $\overrightarrow{PQ}.$
 
 Using vector operations, we can rewrite [ref:fs-id1163723690717] as
 
@@ -86,13 +86,13 @@ COMMENTARY: Hint
 Start by finding a vector parallel to the line.
 :::
 :::
-Sometimes we don’t want the equation of a whole line, just a line segment. In this case, we limit the values of our parameter $t.$ For example, let $P({x}_{0},{y}_{0},{z}_{0})$ and $Q({x}_{1},{y}_{1},{z}_{1})$ be points on a line, and let $\textbf{p}=\langle {x}_{0},{y}_{0},{z}_{0}\rangle$ and $\textbf{q}=\langle {x}_{1},{y}_{1},{z}_{1}\rangle$ be the associated position vectors. In addition, let $\textbf{r}=\langle x,y,z\rangle .$ We want to find a vector equation for the line segment between $P$ and $Q.$ Using $P$ as our known point on the line, and $\vec{PQ}=\langle {x}_{1}-{x}_{0},{y}_{1}-{y}_{0},{z}_{1}-{z}_{0}\rangle$ as the direction vector equation, [ref:fs-id1163724080297] gives
+Sometimes we don’t want the equation of a whole line, just a line segment. In this case, we limit the values of our parameter $t.$ For example, let $P({x}_{0},{y}_{0},{z}_{0})$ and $Q({x}_{1},{y}_{1},{z}_{1})$ be points on a line, and let $\textbf{p}=\langle {x}_{0},{y}_{0},{z}_{0}\rangle$ and $\textbf{q}=\langle {x}_{1},{y}_{1},{z}_{1}\rangle$ be the associated position vectors. In addition, let $\textbf{r}=\langle x,y,z\rangle .$ We want to find a vector equation for the line segment between $P$ and $Q.$ Using $P$ as our known point on the line, and $\overrightarrow{PQ}=\langle {x}_{1}-{x}_{0},{y}_{1}-{y}_{0},{z}_{1}-{z}_{0}\rangle$ as the direction vector equation, [ref:fs-id1163724080297] gives
 
-$\textbf{r}=\textbf{p}+t(\vec{PQ}).$  {eq:fs-id1163723334359}
+$\textbf{r}=\textbf{p}+t(\overrightarrow{PQ}).$  {eq:fs-id1163723334359}
 
 Using properties of vectors, then
 
-$\begin{array}{rl}\textbf{r} & =\textbf{p}+t(\vec{PQ}) \\ & =\langle {x}_{0},{y}_{0},{z}_{0}\rangle +t\langle {x}_{1}-{x}_{0},{y}_{1}-{y}_{0},{z}_{1}-{z}_{0}\rangle \\ & =\langle {x}_{0},{y}_{0},{z}_{0}\rangle +t(\langle {x}_{1},{y}_{1},{z}_{1}\rangle -\langle {x}_{0},{y}_{0},{z}_{0}\rangle ) \\ & =\langle {x}_{0},{y}_{0},{z}_{0}\rangle +t\langle {x}_{1},{y}_{1},{z}_{1}\rangle -t\langle {x}_{0},{y}_{0},{z}_{0}\rangle \\ & =(1-t)\langle {x}_{0},{y}_{0},{z}_{0}\rangle +t\langle {x}_{1},{y}_{1},{z}_{1}\rangle \\ & =(1-t)\textbf{p}+t\textbf{q}.\end{array}$  {eq:fs-id1163723211105}
+$\begin{array}{rl}\textbf{r} & =\textbf{p}+t(\overrightarrow{PQ}) \\ & =\langle {x}_{0},{y}_{0},{z}_{0}\rangle +t\langle {x}_{1}-{x}_{0},{y}_{1}-{y}_{0},{z}_{1}-{z}_{0}\rangle \\ & =\langle {x}_{0},{y}_{0},{z}_{0}\rangle +t(\langle {x}_{1},{y}_{1},{z}_{1}\rangle -\langle {x}_{0},{y}_{0},{z}_{0}\rangle ) \\ & =\langle {x}_{0},{y}_{0},{z}_{0}\rangle +t\langle {x}_{1},{y}_{1},{z}_{1}\rangle -t\langle {x}_{0},{y}_{0},{z}_{0}\rangle \\ & =(1-t)\langle {x}_{0},{y}_{0},{z}_{0}\rangle +t\langle {x}_{1},{y}_{1},{z}_{1}\rangle \\ & =(1-t)\textbf{p}+t\textbf{q}.\end{array}$  {eq:fs-id1163723211105}
 
 Thus, the vector equation of the line passing through $P$ and $Q$ is
 
@@ -104,7 +104,7 @@ $$ \textbf{r}=(1-t)\textbf{p}+t\textbf{q},0\le t\le 1. $$  {eq:fs-id116372331106
 
 Going back to [ref:fs-id1163724080297], we can also find parametric equations for this line segment. We have
 
-$\begin{array}{rll}\textbf{r} & = & \textbf{p}+t(\vec{PQ}) \\ \langle x,y,z\rangle & = & \langle {x}_{0},{y}_{0},{z}_{0}\rangle +t\langle {x}_{1}-{x}_{0},{y}_{1}-{y}_{0},{z}_{1}-{z}_{0}\rangle \\ & = & \langle {x}_{0}+t({x}_{1}-{x}_{0}),{y}_{0}+t({y}_{1}-{y}_{0}),{z}_{0}+t({z}_{1}-{z}_{0})\rangle .\end{array}$  {eq:fs-id1163724104679}
+$\begin{array}{rll}\textbf{r} & = & \textbf{p}+t(\overrightarrow{PQ}) \\ \langle x,y,z\rangle & = & \langle {x}_{0},{y}_{0},{z}_{0}\rangle +t\langle {x}_{1}-{x}_{0},{y}_{1}-{y}_{0},{z}_{1}-{z}_{0}\rangle \\ & = & \langle {x}_{0}+t({x}_{1}-{x}_{0}),{y}_{0}+t({y}_{1}-{y}_{0}),{z}_{0}+t({z}_{1}-{z}_{0})\rangle .\end{array}$  {eq:fs-id1163724104679}
 
 Then, the parametric equations are
 
@@ -151,28 +151,28 @@ Use [ref:fs-id1163723756804].
 
 ## Distance between a Point and a Line
 We already know how to calculate the distance between two points in space. We now expand this definition to describe the distance between a point and a line in space. Several real-world contexts exist when it is important to be able to calculate these distances. When building a home, for example, builders must consider “setback” requirements, when structures or fixtures have to be a certain distance from the property line. Air travel offers another example. Airlines are concerned about the distances between populated areas and proposed flight paths.
-Let $L$ be a line in the plane and let $M$ be any point not on the line. Then, we define distance $d$ from $M$ to $L$ as the length of line segment $\bar{MP},$ where $P$ is a point on $L$ such that $\bar{MP}$ is perpendicular to $L$ ([ref:CNX_Calc_Figure_12_05_002]).
+Let $L$ be a line in the plane and let $M$ be any point not on the line. Then, we define distance $d$ from $M$ to $L$ as the length of line segment $\overline{MP},$ where $P$ is a point on $L$ such that $\overline{MP}$ is perpendicular to $L$ ([ref:CNX_Calc_Figure_12_05_002]).
 
 > FIGURE {fig:CNX_Calc_Figure_12_05_002} src=../../media/CNX_Calc_Figure_12_05_002.jpg
 > alt: This figure has two line segments. The first line is labeled “L” and has point P on the segment. The second line segment is drawn from point P to point M and is perpendicular to line L. The second line segment is labeled “d.”
-> caption: The distance from point $M$ to line $L$ is the length of $\bar{MP}.$
+> caption: The distance from point $M$ to line $L$ is the length of $\overline{MP}.$
 
 When we’re looking for the distance between a line and a point in space, [ref:CNX_Calc_Figure_12_05_002] still applies. We still define the distance as the length of the perpendicular line segment connecting the point to the line. In space, however, there is no clear way to know which point on the line creates such a perpendicular line segment, so we select an arbitrary point on the line and use properties of vectors to calculate the distance. Therefore, let $P$ be an arbitrary point on line $L$ and let $\textbf{v}$ be a direction vector for $L$ ([ref:CNX_Calc_Figure_12_05_003]).
 
 > FIGURE {fig:CNX_Calc_Figure_12_05_003} src=../../media/CNX_Calc_Figure_12_05_003.jpg
 > alt: This figure has a line segment labeled “L.” On the line segment L there is point P. There is a vector drawn from point P to another point M. Also, from M there is a line segment drawn to line L. This segment is perpendicular to line L. There is also a vector labeled “v” on line segment L. A parallelogram has been formed with vector v, line segment P M, and two other segments back to line L.
-> caption: Vectors $\vec{PM}$ and **v** form two sides of a parallelogram with base $\| \textbf{v}\|$ and height $d,$ which is the distance between a line and a point in space.
+> caption: Vectors $\overrightarrow{PM}$ and **v** form two sides of a parallelogram with base $\| \textbf{v}\|$ and height $d,$ which is the distance between a line and a point in space.
 
-By [ref:fs-id1163723995104](module:m53903), vectors $\vec{PM}$ and $\textbf{v}$ form two sides of a parallelogram with area $\| \vec{PM}\;\times \;\textbf{v}\| .$ Using a formula from geometry, the area of this parallelogram can also be calculated as the product of its base and height:
+By [ref:fs-id1163723995104](module:m53903), vectors $\overrightarrow{PM}$ and $\textbf{v}$ form two sides of a parallelogram with area $\| \overrightarrow{PM}\;\times \;\textbf{v}\| .$ Using a formula from geometry, the area of this parallelogram can also be calculated as the product of its base and height:
 
-$\| \vec{PM}\;\times \;\textbf{v}\| =\| \textbf{v}\| d.$  {eq:fs-id1163724087211}
+$\| \overrightarrow{PM}\;\times \;\textbf{v}\| =\| \textbf{v}\| d.$  {eq:fs-id1163724087211}
 
 We can use this formula to find a general formula for the distance between a line in space and any point not on the line.
 
 :::note [theorem] Distance from a Point to a Line
 Let $L$ be a line in space passing through point $P$ with direction vector $\textbf{v}.$ If $M$ is any point not on $L,$ then the distance from $M$ to $L$ is
 
-$d=\frac{\| \vec{PM}\;\times \;\textbf{v}\|}{\| \textbf{v}\|}.$  {eq:fs-id1163724077443}
+$d=\frac{\| \overrightarrow{PM}\;\times \;\textbf{v}\|}{\| \textbf{v}\|}.$  {eq:fs-id1163724077443}
 
 :::
 
@@ -184,15 +184,15 @@ Find the distance between the point $M=(1,1,3)$ and line $\frac{x-3}{4}=\frac{y+
 SOLUTION:
 From the symmetric equations of the line, we know that vector $\textbf{v}=\langle 4,2,1\rangle$ is a direction vector for the line. Setting the symmetric equations of the line equal to zero, we see that point $P(3,−1,3)$ lies on the line. Then,
 
-$\vec{PM}=\langle 1-3,1-(−1),3-3\rangle =\langle −2,2,0\rangle .$  {eq:fs-id1163724069395}
+$\overrightarrow{PM}=\langle 1-3,1-(−1),3-3\rangle =\langle −2,2,0\rangle .$  {eq:fs-id1163724069395}
 
-To calculate the distance, we need to find $\vec{PM}\;\times \;\textbf{v}\text{:}$
+To calculate the distance, we need to find $\overrightarrow{PM}\;\times \;\textbf{v}\text{:}$
 
-$\begin{array}{rl}\vec{PM}\;\times \;\textbf{v} & =|\begin{array}{rcc}\textbf{i} & \textbf{j} & \textbf{k} \\ −2 & 2 & 0 \\ 4 & 2 & 1\end{array}| \\ & =(2-0)\textbf{i}-(−2-0)\textbf{j}+(−4-8)\textbf{k} \\ & =2\textbf{i}+2\textbf{j}-12\textbf{k}.\end{array}$  {eq:fs-id1163724069667}
+$\begin{array}{rl}\overrightarrow{PM}\;\times \;\textbf{v} & =\left|\begin{array}{rcc}\textbf{i} & \textbf{j} & \textbf{k} \\ −2 & 2 & 0 \\ 4 & 2 & 1\end{array}\right| \\ & =(2-0)\textbf{i}-(−2-0)\textbf{j}+(−4-8)\textbf{k} \\ & =2\textbf{i}+2\textbf{j}-12\textbf{k}.\end{array}$  {eq:fs-id1163724069667}
 
 Therefore, the distance between the point and the line is ([ref:CNX_Calc_Figure_12_05_004])
 
-$\begin{array}{rl}d & =\frac{\| \vec{PM}\;\times \;\textbf{v}\|}{\| \textbf{v}\|} \\ & =\frac{\sqrt{{2}^{2}+{2}^{2}+{12}^{2}}}{\sqrt{{4}^{2}+{2}^{2}+{1}^{2}}} \\ & =\frac{2\sqrt{38}}{\sqrt{21}}.\end{array}$  {eq:fs-id1163724147277}
+$\begin{array}{rl}d & =\frac{\| \overrightarrow{PM}\;\times \;\textbf{v}\|}{\| \textbf{v}\|} \\ & =\frac{\sqrt{{2}^{2}+{2}^{2}+{12}^{2}}}{\sqrt{{4}^{2}+{2}^{2}+{1}^{2}}} \\ & =\frac{2\sqrt{38}}{\sqrt{21}}.\end{array}$  {eq:fs-id1163724147277}
 
 > FIGURE {fig:CNX_Calc_Figure_12_05_004} src=../../media/CNX_Calc_Figure_12_05_004.jpg
 > alt: This figure is the first octant of the 3-dimensional coordinate system. There is a 3-dimensional box drawn in the octant. There is a point labeled at (1, 1, 3). There is a line segment labeled “L” inside of the box. Also, there is a perpendicular line segment from the point to line L.
@@ -295,18 +295,18 @@ Start by identifying direction vectors for each line. Is one a multiple of the o
 ## Equations for a Plane
 We know that a line is determined by two points. In other words, for any two distinct points, there is exactly one line that passes through those points, whether in two dimensions or three. Similarly, given any three points that do not all lie on the same line, there is a unique plane that passes through these points. Just as a line is determined by two points, a plane is determined by three.
 This may be the simplest way to characterize a plane, but we can use other descriptions as well. For example, given two distinct, intersecting lines, there is exactly one plane containing both lines. A plane is also determined by a line and any point that does not lie on the line. These characterizations arise naturally from the idea that a plane is determined by three points. Perhaps the most surprising characterization of a plane is actually the most useful.
-Imagine a pair of orthogonal vectors that share an initial point. Visualize grabbing one of the vectors and twisting it. As you twist, the other vector spins around and sweeps out a plane. Here, we describe that concept mathematically. Let $\textbf{n}=\langle a,b,c\rangle$ be a vector and $P=({x}_{0},{y}_{0},{z}_{0})$ be a point. Then the set of all points $Q=(x,y,z)$ such that $\vec{PQ}$ is orthogonal to $\textbf{n}$ forms a plane ([ref:CNX_Calc_Figure_12_05_010]). We say that $\textbf{n}$ is a {term:normal vector}, or perpendicular to the plane. Remember, the dot product of orthogonal vectors is zero. This fact generates the {term:vector equation of a plane}: $\textbf{n}\cdot \vec{PQ}=0.$ Rewriting this equation provides additional ways to describe the plane:
+Imagine a pair of orthogonal vectors that share an initial point. Visualize grabbing one of the vectors and twisting it. As you twist, the other vector spins around and sweeps out a plane. Here, we describe that concept mathematically. Let $\textbf{n}=\langle a,b,c\rangle$ be a vector and $P=({x}_{0},{y}_{0},{z}_{0})$ be a point. Then the set of all points $Q=(x,y,z)$ such that $\overrightarrow{PQ}$ is orthogonal to $\textbf{n}$ forms a plane ([ref:CNX_Calc_Figure_12_05_010]). We say that $\textbf{n}$ is a {term:normal vector}, or perpendicular to the plane. Remember, the dot product of orthogonal vectors is zero. This fact generates the {term:vector equation of a plane}: $\textbf{n}\cdot \overrightarrow{PQ}=0.$ Rewriting this equation provides additional ways to describe the plane:
 
-$\begin{array}{rll} \\ \textbf{n}\cdot \vec{PQ} & = & 0 \\ \langle a,b,c\rangle \cdot \langle x-{x}_{0},y-{y}_{0},z-{z}_{0}\rangle & = & 0 \\ a(x-{x}_{0})+b(y-{y}_{0})+c(z-{z}_{0}) & = & 0.\end{array}$  {eq:fs-id1163724069787}
+$\begin{array}{rll} \\ \textbf{n}\cdot \overrightarrow{PQ} & = & 0 \\ \langle a,b,c\rangle \cdot \langle x-{x}_{0},y-{y}_{0},z-{z}_{0}\rangle & = & 0 \\ a(x-{x}_{0})+b(y-{y}_{0})+c(z-{z}_{0}) & = & 0.\end{array}$  {eq:fs-id1163724069787}
 
 > FIGURE {fig:CNX_Calc_Figure_12_05_010} src=../../media/CNX_Calc_Figure_12_05_007.jpg
 > alt: This figure is a parallelogram representing a plane. In the plane is a vector from point P to point Q. Perpendicular to the vector P Q is the vector n.
-> caption: Given a point $P$ and vector $\textbf{n},$ the set of all points $Q$ with $\vec{PQ}$ orthogonal to $\textbf{n}$ forms a plane.
+> caption: Given a point $P$ and vector $\textbf{n},$ the set of all points $Q$ with $\overrightarrow{PQ}$ orthogonal to $\textbf{n}$ forms a plane.
 
 :::note [definition] Definition
-Given a point $P$ and vector $\textbf{n},$ the set of all points $Q$ satisfying the equation $\textbf{n}\cdot \vec{PQ}=0$ forms a plane. The equation
+Given a point $P$ and vector $\textbf{n},$ the set of all points $Q$ satisfying the equation $\textbf{n}\cdot \overrightarrow{PQ}=0$ forms a plane. The equation
 
-$$ \textbf{n}\cdot \vec{PQ}=0 $$  {eq:fs-id1163724147330}
+$$ \textbf{n}\cdot \overrightarrow{PQ}=0 $$  {eq:fs-id1163724147330}
 
 is known as the vector equation of a plane.
 The {term:scalar equation of a plane} containing point $P=({x}_{0},{y}_{0},{z}_{0})$ with normal vector $\textbf{n}=\langle a,b,c\rangle$ is
@@ -325,11 +325,11 @@ Write an equation for the plane containing points $P=(1,1,−2),$ $Q=(0,2,1),$ a
 SOLUTION:
 To write an equation for a plane, we must find a normal vector for the plane. We start by identifying two vectors in the plane:
 
-$\begin{array}{rll}\vec{PQ} & = & \langle 0-1,2-1,1-(−2)\rangle =\langle −1,1,3\rangle \\ \vec{QR} & = & \langle −1-0,−1-2,0-1\rangle =\langle −1,−3,−1\rangle .\end{array}$  {eq:fs-id1163723246709}
+$\begin{array}{rll}\overrightarrow{PQ} & = & \langle 0-1,2-1,1-(−2)\rangle =\langle −1,1,3\rangle \\ \overrightarrow{QR} & = & \langle −1-0,−1-2,0-1\rangle =\langle −1,−3,−1\rangle .\end{array}$  {eq:fs-id1163723246709}
 
-The cross product $\vec{PQ}\;\times \;\vec{QR}$ is orthogonal to both $\vec{PQ}$ and $\vec{QR},$ so it is normal to the plane that contains these two vectors:
+The cross product $\overrightarrow{PQ}\;\times \;\overrightarrow{QR}$ is orthogonal to both $\overrightarrow{PQ}$ and $\overrightarrow{QR},$ so it is normal to the plane that contains these two vectors:
 
-$\begin{array}{rl}\textbf{n} & =\vec{PQ}\;\times \;\vec{QR} \\ & =|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ −1 & 1 & 3 \\ −1 & −3 & −1\end{array}| \\ & =(−1+9)\textbf{i}-(1+3)\textbf{j}+(3+1)\textbf{k} \\ & =8\textbf{i}-4\textbf{j}+4\textbf{k}.\end{array}$  {eq:fs-id1163724081560}
+$\begin{array}{rl}\textbf{n} & =\overrightarrow{PQ}\;\times \;\overrightarrow{QR} \\ & =\left|\begin{array}{rrr}\textbf{i} & \textbf{j} & \textbf{k} \\ −1 & 1 & 3 \\ −1 & −3 & −1\end{array}\right| \\ & =(−1+9)\textbf{i}-(1+3)\textbf{j}+(3+1)\textbf{k} \\ & =8\textbf{i}-4\textbf{j}+4\textbf{k}.\end{array}$  {eq:fs-id1163724081560}
 
 Thus, $\textbf{n}=\langle 8,−4,4\rangle ,$ and we can choose any of the three given points to write an equation of the plane:
 
@@ -351,7 +351,7 @@ ${\textbf{v}}_{2}=\langle 1-0,4-1,3-(−1)\rangle =\langle 1,3,4\rangle .$  {eq:
 
 Use the cross product of these vectors to identify a normal vector for the plane:
 
-$\begin{array}{rl}\textbf{n} & ={\textbf{v}}_{1}\;\times \;{\textbf{v}}_{2} \\ & =|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ 1 & 2 & 1 \\ 1 & 3 & 4\end{array}| \\ & =(8-3)\textbf{i}-(4-1)\textbf{j}+(3-2)\textbf{k} \\ & =5\textbf{i}-3\textbf{j}+\textbf{k}.\end{array}$  {eq:fs-id1163723199149}
+$\begin{array}{rl}\textbf{n} & ={\textbf{v}}_{1}\;\times \;{\textbf{v}}_{2} \\ & =\left|\begin{array}{ccc}\textbf{i} & \textbf{j} & \textbf{k} \\ 1 & 2 & 1 \\ 1 & 3 & 4\end{array}\right| \\ & =(8-3)\textbf{i}-(4-1)\textbf{j}+(3-2)\textbf{k} \\ & =5\textbf{i}-3\textbf{j}+\textbf{k}.\end{array}$  {eq:fs-id1163723199149}
 
 The scalar equations for the plane are $5x-3(y-1)+(z+1)=0$ and $5x-3y+z+4=0.$
 
@@ -379,14 +379,14 @@ Now that we can write an equation for a plane, we can use the equation to find t
 
 > FIGURE {fig:CNX_Calc_Figure_12_05_012} src=../../media/CNX_Calc_Figure_12_05_008.jpg
 > alt: This figure is the sketch of a parallelogram representing a plane. In the plane are points Q and R. there is a broken line from Q to R on the plane. There is a vector n out of the plane at point Q. Also, there is a vector labeled “R P” from point R to point P which is above the plane. This vector is perpendicular to the plane.
-> caption: We want to find the shortest distance from point *P* to the plane. Let point $R$ be the point in the plane such that, for any other point in the plane $Q,$ $\| \vec{RP}\| <\| \vec{QP}\| .$
+> caption: We want to find the shortest distance from point *P* to the plane. Let point $R$ be the point in the plane such that, for any other point in the plane $Q,$ $\| \overrightarrow{RP}\| <\| \overrightarrow{QP}\| .$
 
-Just as we find the two-dimensional distance between a point and a line by calculating the length of a line segment perpendicular to the line, we find the three-dimensional distance between a point and a plane by calculating the length of a line segment perpendicular to the plane. Let $R$ be the point in the plane such that $\vec{RP}$ is orthogonal to the plane, and let $Q$ be an arbitrary point in the plane. Then the projection of vector $\vec{QP}$ onto the normal vector describes vector $\vec{RP},$ as shown in [ref:CNX_Calc_Figure_12_05_012].
+Just as we find the two-dimensional distance between a point and a line by calculating the length of a line segment perpendicular to the line, we find the three-dimensional distance between a point and a plane by calculating the length of a line segment perpendicular to the plane. Let $R$ be the point in the plane such that $\overrightarrow{RP}$ is orthogonal to the plane, and let $Q$ be an arbitrary point in the plane. Then the projection of vector $\overrightarrow{QP}$ onto the normal vector describes vector $\overrightarrow{RP},$ as shown in [ref:CNX_Calc_Figure_12_05_012].
 
 :::note [theorem] The Distance between a Plane and a Point
 Suppose a plane with normal vector $\textbf{n}$ passes through point $Q.$ The distance $d$ from the plane to a point $P$ not in the plane is given by
 
-$$ d=\| {\text{proj}}_{\textbf{n}}\vec{QP}\| =|{\text{comp}}_{\textbf{n}}\vec{QP}|=\frac{|\vec{QP}\cdot \textbf{n}|}{\| \textbf{n}\|}. $$  {eq:fs-id1163724183136}
+$$ d=\| {\text{proj}}_{\textbf{n}}\overrightarrow{QP}\| =|{\text{comp}}_{\textbf{n}}\overrightarrow{QP}|=\frac{|\overrightarrow{QP}\cdot \textbf{n}|}{\| \textbf{n}\|}. $$  {eq:fs-id1163724183136}
 
 :::
 
@@ -400,13 +400,13 @@ Find the distance between point $P=(3,1,2)$ and the plane given by $x-2y+z=5$ (s
 > alt: This figure is the 3-dimensional coordinate system. There is a point drawn at (3, 1, 2). The point is labeled “P(3, 1, 2).” There is a plane drawn. There is a perpendicular line from the plane to point P(3, 1, 2).
 
 SOLUTION:
-The coefficients of the plane’s equation provide a normal vector for the plane: $\textbf{n}=\langle 1,−2,1\rangle .$ To find vector $\vec{QP},$ we need a point in the plane. Any point will work, so set $y=z=0$ to see that point $Q=(5,0,0)$ lies in the plane. Find the component form of the vector from $Q\;\text{to}\;P\text{:}$
+The coefficients of the plane’s equation provide a normal vector for the plane: $\textbf{n}=\langle 1,−2,1\rangle .$ To find vector $\overrightarrow{QP},$ we need a point in the plane. Any point will work, so set $y=z=0$ to see that point $Q=(5,0,0)$ lies in the plane. Find the component form of the vector from $Q\;\text{to}\;P\text{:}$
 
-$\vec{QP}=\langle 3-5,1-0,2-0\rangle =\langle −2,1,2\rangle .$  {eq:fs-id1163724120303}
+$\overrightarrow{QP}=\langle 3-5,1-0,2-0\rangle =\langle −2,1,2\rangle .$  {eq:fs-id1163724120303}
 
 Apply the distance formula from [ref:fs-id1163724183136]:
 
-$\begin{array}{rl}d & =\frac{|\vec{QP}\cdot \textbf{n}|}{\| \textbf{n}\|} \\ & =\frac{|\langle −2,1,2\rangle \cdot \langle 1,−2,1\rangle |}{\sqrt{{1}^{2}+{(−2)}^{2}+{1}^{2}}} \\ & =\frac{|−2-2+2|}{\sqrt{6}} \\ & =\frac{2}{\sqrt{6}}.\end{array}$  {eq:fs-id1163724120383}
+$\begin{array}{rl}d & =\frac{|\overrightarrow{QP}\cdot \textbf{n}|}{\| \textbf{n}\|} \\ & =\frac{|\langle −2,1,2\rangle \cdot \langle 1,−2,1\rangle |}{\sqrt{{1}^{2}+{(−2)}^{2}+{1}^{2}}} \\ & =\frac{|−2-2+2|}{\sqrt{6}} \\ & =\frac{2}{\sqrt{6}}.\end{array}$  {eq:fs-id1163724120383}
 
 :::
 :::
@@ -514,7 +514,7 @@ Use the coefficients of the variables in each equation to find a normal vector f
 When we find that two planes are parallel, we may need to find the distance between them. To find this distance, we simply select a point in one of the planes. The distance from this point to the other plane is the distance between the planes.
 Previously, we introduced the formula for calculating this distance in [ref:fs-id1163724183136]:
 
-$d=\frac{\vec{QP}\cdot \textbf{n}}{\| \textbf{n}\|},$  {eq:fs-id1163724081843}
+$d=\frac{\overrightarrow{QP}\cdot \textbf{n}}{\| \textbf{n}\|},$  {eq:fs-id1163724081843}
 
 where $Q$ is a point on the plane, $P$ is a point not on the plane, and $\textbf{n}$ is the normal vector that passes through point $Q.$ Consider the distance from point $({x}_{0},{y}_{0},{z}_{0})$ to plane $ax+by+cz+k=0.$ Let $({x}_{1},{y}_{1},{z}_{1})$ be any point in the plane. Substituting into the formula yields
 
@@ -590,13 +590,13 @@ Write down the vectors along the lines representing those pipes, find the cross 
 
 ## Key Concepts {section:key-concepts}
 - In three dimensions, the direction of a line is described by a direction vector. The vector equation of a line with direction vector $\textbf{v}=\langle a,b,c\rangle$ passing through point $P=({x}_{0},{y}_{0},{z}_{0})$ is $\textbf{r}={\textbf{r}}_{0}+t\textbf{v},$ where ${\textbf{r}}_{0}=\langle {x}_{0},{y}_{0},{z}_{0}\rangle$ is the position vector of point $P.$ This equation can be rewritten to form the parametric equations of the line: $x={x}_{0}+ta,$ $y={y}_{0}+tb,$ and $z={z}_{0}+tc.$ The line can also be described with the symmetric equations $\frac{x-{x}_{0}}{a}=\frac{y-{y}_{0}}{b}=\frac{z-{z}_{0}}{c}.$
-- Let $L$ be a line in space passing through point $P$ with direction vector $\textbf{v}.$ If $Q$ is any point not on $L,$ then the distance from $Q$ to $L$ is $d=\frac{\| \vec{PQ}\;\times \;\textbf{v}\|}{\| \textbf{v}\|}.$
+- Let $L$ be a line in space passing through point $P$ with direction vector $\textbf{v}.$ If $Q$ is any point not on $L,$ then the distance from $Q$ to $L$ is $d=\frac{\| \overrightarrow{PQ}\;\times \;\textbf{v}\|}{\| \textbf{v}\|}.$
 - In three dimensions, two lines may be parallel but not equal, equal, intersecting, or skew.
-- Given a point $P$ and vector $\textbf{n},$ the set of all points $Q$ satisfying equation $\textbf{n}\cdot \vec{PQ}=0$ forms a plane. Equation $\textbf{n}\cdot \vec{PQ}=0$ is known as the *vector equation of a plane.*
+- Given a point $P$ and vector $\textbf{n},$ the set of all points $Q$ satisfying equation $\textbf{n}\cdot \overrightarrow{PQ}=0$ forms a plane. Equation $\textbf{n}\cdot \overrightarrow{PQ}=0$ is known as the *vector equation of a plane.*
 - The scalar equation of a plane containing point $P=({x}_{0},{y}_{0},{z}_{0})$ with normal vector $\textbf{n}=\langle a,b,c\rangle$ is $a(x-{x}_{0})+b(y-{y}_{0})+c(z-{z}_{0})=0.$ This equation can be expressed as $ax+by+cz+d=0,$ where $d=\text{−}a{x}_{0}-b{y}_{0}-c{z}_{0}.$ This form of the equation is sometimes called the *general form of the equation of a plane*.
 - Suppose a plane with normal vector **n** passes through point $Q.$ The distance $D$ from the plane to point $P$ not in the plane is given by
 
-$D=\| {\text{proj}}_{\textbf{n}}\vec{QP}\| =|{\text{comp}}_{\textbf{n}}\vec{QP}|=\frac{|\vec{QP}\cdot \textbf{n}|}{\| \textbf{n}\|}.$  {eq:fs-id1163724072686}
+$D=\| {\text{proj}}_{\textbf{n}}\overrightarrow{QP}\| =|{\text{comp}}_{\textbf{n}}\overrightarrow{QP}|=\frac{|\overrightarrow{QP}\cdot \textbf{n}|}{\| \textbf{n}\|}.$  {eq:fs-id1163724072686}
 
 - The normal vectors of parallel planes are parallel. When two planes intersect, they form a line.
 - The measure of the angle $\theta$ between two intersecting planes can be found using the equation: $\text{cos}\;\theta =\frac{|{\textbf{n}}_{1}\cdot {\textbf{n}}_{2}|}{\| {\textbf{n}}_{1}\| \| {\textbf{n}}_{2}\|},$ where ${\textbf{n}}_{1}$ and ${\textbf{n}}_{2}$ are normal vectors to the planes.
@@ -613,9 +613,9 @@ $D=\frac{|a({x}_{0}-{x}_{1})+b({y}_{0}-{y}_{1})+c({z}_{0}-{z}_{1})|}{\sqrt{{a}^{
 | --- | --- |
 | **Vector Equation of a Line** | $\textbf{r}={\textbf{r}}_{0}+t\textbf{v}$ |
 | **Parametric Equations of a Line** | $\frac{x-{x}_{0}}{a}=\frac{y-{y}_{0}}{b}=\frac{z-{z}_{0}}{c}$ |
-| **Vector Equation of a Plane** | $\textbf{n}\cdot \vec{PQ}=0$ |
+| **Vector Equation of a Plane** | $\textbf{n}\cdot \overrightarrow{PQ}=0$ |
 | **Scalar Equation of a Plane** | $a(x-{x}_{0})+b(y-{y}_{0})+c(z-{z}_{0})=0$ |
-| **Distance between a Plane and a Point** | $d=\| {\text{proj}}_{\textbf{n}}\vec{QP}\| =|{\text{comp}}_{\textbf{n}}\vec{QP}|=\frac{|\vec{QP}\cdot \textbf{n}|}{\| \textbf{n}\|}$ |
+| **Distance between a Plane and a Point** | $d=\| {\text{proj}}_{\textbf{n}}\overrightarrow{QP}\| =|{\text{comp}}_{\textbf{n}}\overrightarrow{QP}|=\frac{|\overrightarrow{QP}\cdot \textbf{n}|}{\| \textbf{n}\|}$ |
 
 ##  {section:section-exercises}
 In the following exercises, points $P$ and $Q$ are given. Let $L$ be the line passing through points $P$ and $Q.$
@@ -666,14 +666,14 @@ $P(3,1,5),$ $\textbf{v}=\langle 1,1,1\rangle$
 
 :::exercise {fs-id1163723789662} type= 
 PROBLEM:
-$P(3,1,5),$ $\textbf{v}=\vec{QR},$ where $Q(2,2,3)$ and $R(3,2,3)$
+$P(3,1,5),$ $\textbf{v}=\overrightarrow{QR},$ where $Q(2,2,3)$ and $R(3,2,3)$
 SOLUTION:
 a. $x=3+t,y=1,z=5,$ $t\in \mathbb{R};$ b. $y=1,z=5;$ c. The line does not intersect the *xy*-plane.
 :::
 
 :::exercise {fs-id1163723298912} type= 
 PROBLEM:
-$P(2,3,0),$ $\textbf{v}=\vec{QR},$ where $Q(0,4,5)$ and $R(0,4,6)$
+$P(2,3,0),$ $\textbf{v}=\overrightarrow{QR},$ where $Q(0,4,5)$ and $R(0,4,6)$
 :::
 For the following exercises, line $L$ is given.
 a. Find point $P$ that belongs to the line and direction vector $\textbf{v}$ of the line. Express $\textbf{v}$ in component form.
@@ -853,7 +853,7 @@ $x+z=0$
 
 :::exercise {fs-id1163724022903} type= 
 PROBLEM:
-Given point $P(1,2,3)$ and vector $\textbf{n}=\textbf{i}+\textbf{j},$ find point $Q$ on the *x*-axis such that $\vec{PQ}$ and $\textbf{n}$ are orthogonal.
+Given point $P(1,2,3)$ and vector $\textbf{n}=\textbf{i}+\textbf{j},$ find point $Q$ on the *x*-axis such that $\overrightarrow{PQ}$ and $\textbf{n}$ are orthogonal.
 SOLUTION:
 $(3,0,0)$
 :::
@@ -886,7 +886,7 @@ Find the real number $\alpha$ such that the line of parametric equations $x=t,y=
 :::
 For the following exercises, points $P,Q,\;\text{and}\;R$ are given.
 a. Find the general equation of the plane passing through $P,Q,\;\text{and}\;R.$
-b. Write the vector equation $\textbf{n}\cdot \vec{PS}=0$ of the plane at a., where $S(x,y,z)$ is an arbitrary point of the plane.
+b. Write the vector equation $\textbf{n}\cdot \overrightarrow{PS}=0$ of the plane at a., where $S(x,y,z)$ is an arbitrary point of the plane.
 c. Find parametric equations of the line passing through the origin that is perpendicular to the plane passing through $P,Q,\;\text{and}\;R.$
 
 :::exercise {fs-id1163723124284} type= 
@@ -1030,7 +1030,7 @@ b. For $z=25,$ find the new budget equation and graph the budget set in the same
 
 :::exercise {fs-id1163724182678} type= 
 PROBLEM:
-**[T]** Consider $\textbf{r}(t)=\langle \text{sin}\;t,\text{cos}\;t,2t\rangle$ the position vector of a particle at time $t\in [0,3],$ where the components of **r** are expressed in centimeters and time is measured in seconds. Let $\vec{OP}$ be the position vector of the particle after $1$ sec.
+**[T]** Consider $\textbf{r}(t)=\langle \text{sin}\;t,\text{cos}\;t,2t\rangle$ the position vector of a particle at time $t\in [0,3],$ where the components of **r** are expressed in centimeters and time is measured in seconds. Let $\overrightarrow{OP}$ be the position vector of the particle after $1$ sec.
 a. Determine the velocity vector $\textbf{v}(1)$ of the particle after $1$ sec.
 b. Find the scalar equation of the plane that is perpendicular to $\textbf{v}(1)$ and passes through point $P.$ This plane is called the *normal plane* to the path of the particle at point $P.$
 c. Use a CAS to visualize the path of the particle along with the velocity vector and normal plane at point $P.$
@@ -1050,7 +1050,7 @@ PROBLEM:
 > IMAGE {img:fs-id1163723335992} src=../../media/CNX_Calc_Figure_12_04_214.jpg
 > alt: This figure is a picture of a rectangular solar grid on a roof. The corners of the rectangle are labeled A, B, C, D. There are two vectors, the first is from A to D. The second is from A to B.
 
-a. Find the general form of the equation of the plane that contains the solar panel by using points $A,B,\;\text{and}\;C,$ and show that its normal vector is equivalent to $\vec{AB}\;\times \;\vec{AD}.$
+a. Find the general form of the equation of the plane that contains the solar panel by using points $A,B,\;\text{and}\;C,$ and show that its normal vector is equivalent to $\overrightarrow{AB}\;\times \;\overrightarrow{AD}.$
 b. Find parametric equations of line ${L}_{1}$ that passes through the center of the solar panel and has direction vector $\textbf{s}=\frac{1}{\sqrt{3}}\textbf{i}+\frac{1}{\sqrt{3}}\textbf{j}+\frac{1}{\sqrt{3}}\textbf{k},$ which points toward the position of the Sun at a particular time of day.
 c. Find symmetric equations of line ${L}_{2}$ that passes through the center of the solar panel and is perpendicular to it.
 d. Determine the angle of elevation of the Sun above the solar panel by using the angle between lines ${L}_{1}$ and ${L}_{2}.$
@@ -1065,4 +1065,4 @@ d. Determine the angle of elevation of the Sun above the solar panel by using th
 - {def} **skew lines**: two lines that are not parallel but do not intersect
 - {def} **symmetric equations of $\textbf{a}$ line**: the equations $\frac{x-{x}_{0}}{a}=\frac{y-{y}_{0}}{b}=\frac{z-{z}_{0}}{c}$ describing the line with direction vector $\textbf{v}=\langle a,b,c\rangle$ passing through point $({x}_{0},{y}_{0},{z}_{0})$
 - {def} **vector equation of a line**: the equation $\textbf{r}={\textbf{r}}_{0}+t\textbf{v}$ used to describe a line with direction vector $\textbf{v}=\langle a,b,c\rangle$ passing through point $P=({x}_{0},{y}_{0},{z}_{0}),$ where ${\textbf{r}}_{0}=\langle {x}_{0},{y}_{0},{z}_{0}\rangle ,$ is the position vector of point $P$
-- {def} **vector equation of a plane**: the equation $\textbf{n}\cdot \vec{PQ}=0,$ where $P$ is a given point in the plane, $Q$ is any point in the plane, and $\textbf{n}$ is a normal vector of the plane
+- {def} **vector equation of a plane**: the equation $\textbf{n}\cdot \overrightarrow{PQ}=0,$ where $P$ is a given point in the plane, $Q$ is any point in the plane, and $\textbf{n}$ is a normal vector of the plane

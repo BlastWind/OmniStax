@@ -428,7 +428,7 @@ Algebraic
 ## Piecewise-Defined Functions
 Sometimes a function is defined by different formulas on different parts of its domain. A function with this property is known as a {term:piecewise-defined function}. The absolute value function is an example of a piecewise-defined function because the formula changes with the sign of $x\text{:}$
 
-$f(x)=\{\begin{array}{l}\text{−}x,x<0 \\ x,x\ge 0\end{array}.$  {eq:fs-id1170573534060}
+$f(x)=\left\{\begin{array}{l}\text{−}x,x<0 \\ x,x\ge 0\end{array}\right..$  {eq:fs-id1170573534060}
 
 Other piecewise-defined functions may be represented by completely different formulas, depending on the part of the domain in which a point falls. To graph a piecewise-defined function, we graph each part of the function in its respective domain, on the same coordinate system. If the formula for a function is different for $x<a$ and $x>a,$ we need to pay special attention to what happens at $x=a$ when we graph the function. Sometimes the graph needs to include an open or closed circle to indicate the value of the function at $x=a.$ We examine this in the next example.
 
@@ -438,7 +438,7 @@ Other piecewise-defined functions may be represented by completely different for
 PROBLEM:
 Sketch a graph of the following piecewise-defined function:
 
-$f(x)=\{\begin{array}{l}x+3,\hspace{3em}x<1 \\ {(x-2)}^{2},\hspace{1.5em}x\ge 1\end{array}.$  {eq:fs-id1170573574382}
+$f(x)=\left\{\begin{array}{l}x+3,\hspace{3em}x<1 \\ {(x-2)}^{2},\hspace{1.5em}x\ge 1\end{array}\right..$  {eq:fs-id1170573574382}
 
 SOLUTION:
 Graph the linear function $y=x+3$ on the interval $(\text{−∞},1)$ and graph the quadratic function $y={(x-2)}^{2}$ on the interval $[1,\infty ).$ Since the value of the function at $x=1$ is given by the formula $f(x)={(x-2)}^{2},$ we see that $f(1)=1.$ To indicate this on the graph, we draw a closed circle at the point $(1,1).$ The value of the function is given by $f(x)=x+3$ for all $x<1,$ but not at $x=1.$ To indicate this on the graph, we draw an open circle at $(1,4).$
@@ -478,7 +478,7 @@ b. Sketch a graph of this function $C(x).$
 SOLUTION:
 a. Since the parking garage is open 18 hours each day, the domain for this function is $\text{\{}x|0<x\le 18\}.$ The cost to park a car at this parking garage can be described piecewise by the function
 
-$C(x)=\{\begin{array}{l}10,0<x\le 1 \\ 12,1<x\le 2 \\ 14,2<x\le 3 \\ 16,3<x\le 4 \\ \vdots \\ 30,10<x\le 18\end{array}.$  {eq:fs-id1170573583373}
+$C(x)=\left\{\begin{array}{l}10,0<x\le 1 \\ 12,1<x\le 2 \\ 14,2<x\le 3 \\ 16,3<x\le 4 \\ \vdots \\ 30,10<x\le 18\end{array}\right..$  {eq:fs-id1170573583373}
 
 b. The graph of the function consists of several horizontal line segments.
 
@@ -494,7 +494,7 @@ b. The graph of the function consists of several horizontal line segments.
 PROBLEM:
 The cost of mailing a letter is a function of the weight of the letter. Suppose the cost of mailing a letter is $49\text{¢}$ for the first ounce and $21\text{¢}$ for each additional ounce. Write a piecewise-defined function describing the cost $C$ as a function of the weight $x$ for $0<x\le 3,$ where $C$ is measured in cents and $x$ is measured in ounces.
 SOLUTION:
-$C(x)=\{\begin{array}{l}49,0<x\le 1 \\ 70,1<x\le 2 \\ 91,2<x\le 3\end{array}$
+$C(x)=\left\{\begin{array}{l}49,0<x\le 1 \\ 70,1<x\le 2 \\ 91,2<x\le 3\end{array}\right.$
 COMMENTARY: Hint
 The piecewise-defined function is constant on the intervals $(0,1],(1,2]\text{,….}$
 :::
@@ -862,12 +862,12 @@ For the following exercises, for each of the piecewise-defined functions, a. eva
 
 :::exercise {fs-id1170573589890} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}4x+3,x\le 0 \\ \text{−}x+1,x>0\end{array};\;f(−3);f(0);f(2)$
+$f(x)=\left\{\begin{array}{l}4x+3,x\le 0 \\ \text{−}x+1,x>0\end{array}\right.;\;f(−3);f(0);f(2)$
 :::
 
 :::exercise {fs-id1170573590037} type= 
 PROBLEM:
-$f(x)=\{\begin{array}{l}{x}^{2}-3,x<0 \\ 4x-3,x\ge 0\end{array};\;f(−4);f(0);f(2)$
+$f(x)=\left\{\begin{array}{l}{x}^{2}-3,x<0 \\ 4x-3,x\ge 0\end{array}\right.;\;f(−4);f(0);f(2)$
 SOLUTION:
 a. $13,−3,5$ b.
 
@@ -878,12 +878,12 @@ a. $13,−3,5$ b.
 
 :::exercise {fs-id1170573590186} type= 
 PROBLEM:
-$h(x)=\{\begin{array}{l}x+1,x\le 5 \\ 4,x>5\end{array};\;h(0);h(\pi );h(5)$
+$h(x)=\left\{\begin{array}{l}x+1,x\le 5 \\ 4,x>5\end{array}\right.;\;h(0);h(\pi );h(5)$
 :::
 
 :::exercise {fs-id1170573590319} type= 
 PROBLEM:
-$g(x)=\{\begin{array}{l}\frac{3}{x-2},x≠2 \\ 4,x=2\end{array};g(0);g(−4);g(2)$
+$g(x)=\left\{\begin{array}{l}\frac{3}{x-2},x≠2 \\ 4,x=2\end{array}\right.;g(0);g(−4);g(2)$
 SOLUTION:
 a. $\frac{−3}{2},\frac{−1}{2},4$ b.
 
