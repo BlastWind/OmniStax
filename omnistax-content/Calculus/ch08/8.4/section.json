@@ -825,5 +825,406 @@
    "kind": "correction",
    "html": "The key prints no number of months."
   }
+ ],
+ "derivations": [
+  {
+   "id": "logistic-solution",
+   "what": "the solution of the logistic differential equation",
+   "source": "Calculus, 8.4 The Logistic Equation, Solving the Logistic Differential Equation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Separation of variables: an equation $\\frac{dy}{dx}=g(x)h(y)$ is rewritten as $\\frac{dy}{h(y)}=g(x)\\,dx$ and both sides are integrated.",
+       "src": "8.3"
+      },
+      {
+       "tex": "\\frac{\\kK}{\\kP(\\kK-\\kP)}=\\frac{1}{\\kP}+\\frac{1}{\\kK-\\kP}",
+       "src": "7.4"
+      },
+      {
+       "tex": "\\int x^{-1}\\,dx=\\ln|x|+C",
+       "src": "5.6"
+      },
+      {
+       "text": "$\\kK,\\kP\\gt 0$ and $\\kP\\lt \\kK$, so that $\\frac{\\kP}{\\kK-\\kP}\\gt 0$.",
+       "src": "8.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kdPdt}=\\mk{r}{r}\\mk{P}{\\kP}\\mk{f}{(1-\\frac{\\kP}{\\kK})}",
+      "uses": [],
+      "src": "(8.8)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kdPdt}=\\frac{\\mk{r}{r}\\mk{P}{\\kP}\\mk{f}{(\\kK-\\kP)}}{\\mk{K}{\\kK}}",
+       "uses": [],
+       "map": {
+        "f": [
+         "f",
+         "K"
+        ]
+       }
+      },
+      {
+       "tex": "\\frac{\\mk{d}{dP}}{\\mk{P}{\\kP}\\mk{f}{(\\kK-\\kP)}}=\\frac{\\mk{r}{r}}{\\mk{K}{\\kK}}\\mk{dt}{dt}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "d": [
+         "d",
+         "dt"
+        ]
+       },
+       "cap": "Multiply both sides by $dt$ and divide both sides by $\\kP(\\kK-\\kP)$."
+      },
+      {
+       "tex": "\\mk{i1}{\\int} \\frac{\\mk{K}{\\kK}}{\\mk{P}{\\kP}\\mk{f}{(\\kK-\\kP)}}\\mk{d}{dP}=\\mk{i2}{\\int} \\mk{r}{r}\\,\\mk{dt}{dt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{i1}{\\int} \\mk{pf}{\\frac{1}{\\kP}+\\frac{1}{\\kK-\\kP}}\\mk{d}{dP}=\\mk{i2}{\\int} \\mk{r}{r}\\,\\mk{dt}{dt}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "K": "pf",
+        "P": "pf",
+        "f": "pf"
+       }
+      },
+      {
+       "tex": "\\mk{pf}{\\ln|\\kP|-\\ln|\\kK-\\kP|}=\\mk{r}{rt}+\\mk{c}{C}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "i1": "pf",
+        "d": "pf",
+        "i2": [
+         "r",
+         "c"
+        ],
+        "dt": "r"
+       },
+       "cap": "The antiderivative of $\\frac{1}{\\kK-\\kP}$ is $-\\ln|\\kK-\\kP|$, since the derivative of $\\kK-\\kP$ is $-1$."
+      },
+      {
+       "tex": "\\mk{pf}{\\ln|\\frac{\\kP}{\\kK-\\kP}|}=\\mk{r}{rt}+\\mk{c}{C}",
+       "uses": [],
+       "cap": "A difference of logarithms is the logarithm of the quotient: $\\ln a-\\ln b=\\ln\\frac{a}{b}$."
+      },
+      {
+       "tex": "\\mk{e1}{e}^{\\mk{pf}{\\ln|\\frac{\\kP}{\\kK-\\kP}|}}=\\mk{e2}{e}^{\\mk{r}{rt}+\\mk{c}{C}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{pf}{|\\frac{\\kP}{\\kK-\\kP}|}=\\mk{c}{e^{C}}\\mk{r}{e^{rt}}",
+       "uses": [],
+       "map": {
+        "e1": "pf",
+        "e2": [
+         "c",
+         "r"
+        ]
+       },
+       "cap": "$e^{\\ln u}=u$, and $e^{a+b}=e^{a}e^{b}$."
+      },
+      {
+       "tex": "\\frac{\\mk{q}{\\kP}}{\\mk{k}{\\kK-\\kP}}=\\mk{c}{C_{1}}\\mk{e}{e^{rt}}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "pf": [
+         "q",
+         "k"
+        ],
+        "r": "e"
+       },
+       "cap": "Define $C_{1}=e^{C}$; the quotient is positive, so the absolute value sign can be dropped."
+      }
+     ],
+     "num": "(8.9)",
+     "src": "8.4",
+     "note": "The book defines $C_{1}=e^{c}$ with a lower-case $c$; the constant is the $C$ of the integration."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\frac{\\mk{q}{\\kP}}{\\mk{k}{\\kK-\\kP}}=\\mk{c}{C_{1}}\\mk{e}{e^{rt}}",
+      "src": "(8.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{q}{\\kP}=\\mk{c}{C_{1}}\\mk{e}{e^{rt}}\\mk{k}{(\\kK-\\kP)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{q}{\\kP}=\\mk{c}{C_{1}}\\mk{K}{\\kK}\\mk{e}{e^{rt}}-\\mk{c2}{C_{1}}\\mk{P2}{\\kP}\\mk{e2}{e^{rt}}",
+       "uses": [],
+       "map": {
+        "c": [
+         "c",
+         "c2"
+        ],
+        "e": [
+         "e",
+         "e2"
+        ],
+        "k": [
+         "K",
+         "P2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{q}{\\kP}+\\mk{c2}{C_{1}}\\mk{P2}{\\kP}\\mk{e2}{e^{rt}}=\\mk{c}{C_{1}}\\mk{K}{\\kK}\\mk{e}{e^{rt}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{q}{\\kP}(\\mk{one}{1}+\\mk{c2}{C_{1}}\\mk{e2}{e^{rt}})=\\mk{c}{C_{1}}\\mk{K}{\\kK}\\mk{e}{e^{rt}}",
+       "uses": [],
+       "map": {
+        "P2": "q"
+       }
+      },
+      {
+       "tex": "\\mk{q}{\\kP(t)}=\\frac{\\mk{c}{C_{1}}\\mk{K}{\\kK}\\mk{e}{e^{rt}}}{\\mk{one}{1}+\\mk{c2}{C_{1}}\\mk{e2}{e^{rt}}}",
+       "uses": []
+      }
+     ],
+     "num": "(8.10)",
+     "src": "8.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kP(0)=\\kPzero",
+       "src": "8.4"
+      }
+     ],
+     "then": {
+      "tex": "\\frac{\\mk{q}{\\kP}}{\\mk{k}{\\kK-\\kP}}=\\mk{c}{C_{1}}\\mk{e}{e^{rt}}",
+      "src": "(8.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\frac{\\mk{q}{\\kPzero}}{\\mk{k}{\\kK-\\kPzero}}=\\mk{c}{C_{1}}\\mk{e}{e^{r(0)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{c}{C_{1}}=\\frac{\\mk{q}{\\kPzero}}{\\mk{k}{\\kK-\\kPzero}}",
+       "uses": [],
+       "cap": "$e^{0}=1$."
+      }
+     ],
+     "src": "8.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{q}{\\kP(t)}=\\frac{\\mk{c}{C_{1}}\\mk{K}{\\kK}\\mk{e}{e^{rt}}}{\\mk{one}{1}+\\mk{c2}{C_{1}}\\mk{e2}{e^{rt}}}",
+      "src": "(8.10)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{q}{\\kP(t)}=\\frac{\\mk{c}{\\frac{\\kPzero}{\\kK-\\kPzero}}\\mk{K}{\\kK}\\mk{e}{e^{rt}}}{\\mk{one}{1}+\\mk{c2}{\\frac{\\kPzero}{\\kK-\\kPzero}}\\mk{e2}{e^{rt}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{q}{\\kP(t)}=\\frac{\\mk{c}{\\frac{\\kPzero}{\\kK-\\kPzero}}\\mk{K}{\\kK}\\mk{e}{e^{rt}}}{\\mk{one}{1}+\\mk{c2}{\\frac{\\kPzero}{\\kK-\\kPzero}}\\mk{e2}{e^{rt}}}\\cdot \\mk{m}{\\frac{\\kK-\\kPzero}{\\kK-\\kPzero}}",
+       "uses": [],
+       "cap": "Multiply the numerator and denominator by $\\kK-\\kPzero$."
+      },
+      {
+       "tex": "\\mk{q}{\\kP(t)}=\\frac{\\mk{c}{\\kPzero}\\mk{K}{\\kK}\\mk{e}{e^{rt}}}{\\mk{one}{(\\kK-\\kPzero)}+\\mk{c2}{\\kPzero}\\mk{e2}{e^{rt}}}",
+       "uses": [],
+       "map": {
+        "m": [
+         "c",
+         "one",
+         "c2"
+        ]
+       }
+      }
+     ],
+     "num": "(8.11)",
+     "src": "8.4, Solution of the Logistic Differential Equation"
+    }
+   ]
+  },
+  {
+   "id": "logistic-inflection",
+   "what": "the point of inflection of the logistic curve",
+   "source": "Calculus, 8.4 The Logistic Equation, Solving the Logistic Differential Equation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The quotient rule: $\\left(\\frac{f}{g}\\right)'=\\frac{f'g-g'f}{g^{2}}$.",
+       "src": "3.3"
+      },
+      {
+       "tex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g'(x)",
+       "src": "3.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kP(t)} = \\frac{\\mk{n}{\\kPzero \\kK e^{rt}}}{\\mk{d}{(\\kK-\\kPzero)+\\kPzero e^{rt}}}",
+      "src": "(8.11)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kPprime(t)} = \\frac{\\mk{n}{r\\kPzero \\kK e^{rt}((\\kK-\\kPzero)+\\kPzero e^{rt})-\\kPzero \\kK e^{rt}\\cdot r\\kPzero e^{rt}}}{\\mk{d}{((\\kK-\\kPzero)+\\kPzero e^{rt})^{2}}}",
+       "uses": [0, 1],
+       "cap": "The quotient rule, with $\\frac{d}{dt}e^{rt}=re^{rt}$."
+      },
+      {
+       "tex": "\\mk{P}{\\kPprime(t)} = \\frac{\\mk{n}{r\\kPzero\\kK(\\kK-\\kPzero)e^{rt}}}{\\mk{d}{((\\kK-\\kPzero)+\\kPzero e^{rt})^{2}}}",
+       "uses": []
+      }
+     ],
+     "src": "8.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The quotient rule: $\\left(\\frac{f}{g}\\right)'=\\frac{f'g-g'f}{g^{2}}$.",
+       "src": "3.3"
+      },
+      {
+       "tex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g'(x)",
+       "src": "3.9"
+      },
+      {
+       "text": "The chain rule: $\\frac{d}{dx}(g(x))^{n}=n(g(x))^{n-1}g'(x)$.",
+       "src": "3.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kPprime(t)} = \\frac{\\mk{n}{r\\kPzero\\kK(\\kK-\\kPzero)e^{rt}}}{\\mk{d}{((\\kK-\\kPzero)+\\kPzero e^{rt})^{2}}}",
+      "src": "8.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kPdprime(t)} = \\frac{\\mk{n}{r^{2}\\kPzero\\kK(\\kK-\\kPzero)e^{rt}((\\kK-\\kPzero)+\\kPzero e^{rt})^{2}-r\\kPzero\\kK(\\kK-\\kPzero)e^{rt}\\cdot 2((\\kK-\\kPzero)+\\kPzero e^{rt})r\\kPzero e^{rt}}}{\\mk{d}{((\\kK-\\kPzero)+\\kPzero e^{rt})^{4}}}",
+       "uses": [1, 2, 3],
+       "cap": "The quotient rule again; the chain rule differentiates the squared denominator to $2((\\kK-\\kPzero)+\\kPzero e^{rt})\\cdot r\\kPzero e^{rt}$."
+      },
+      {
+       "tex": "\\mk{P}{\\kPdprime(t)} = \\frac{\\mk{n}{r^{2}\\kPzero\\kK(\\kK-\\kPzero)e^{rt}((\\kK-\\kPzero)+\\kPzero e^{rt})-2r^{2}\\kPzero{}^{2}\\kK(\\kK-\\kPzero)e^{2rt}}}{\\mk{d}{((\\kK-\\kPzero)+\\kPzero e^{rt})^{3}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{P}{\\kPdprime(t)} = \\frac{\\mk{n}{r^{2}\\kPzero \\kK{(\\kK-\\kPzero)}^{2}e^{rt}-r^{2}\\kPzero{}^{2}\\kK(\\kK-\\kPzero)e^{2rt}}}{\\mk{d}{{((\\kK-\\kPzero)+\\kPzero e^{rt})}^{3}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{P}{\\kPdprime(t)} = \\frac{\\mk{n}{r^{2}\\kPzero \\kK(\\kK-\\kPzero)e^{rt}((\\kK-\\kPzero)-\\kPzero e^{rt})}}{\\mk{d}{{((\\kK-\\kPzero)+\\kPzero e^{rt})}^{3}}}",
+       "uses": []
+      }
+     ],
+     "src": "8.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "At a point of inflection the second derivative is zero.",
+       "src": "4.5"
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "As long as $\\kPzero\\ne \\kK,$ the entire quantity before and including $e^{rt}$ is nonzero.",
+       "src": "8.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kPdprime(t)} = \\mk{z}{0}",
+      "uses": [
+       0
+      ],
+      "src": "8.4"
+     },
+     "steps": [
+      {
+       "tex": "\\frac{\\mk{a}{r^{2}\\kPzero \\kK(\\kK-\\kPzero)e^{rt}}\\mk{b}{((\\kK-\\kPzero)-\\kPzero e^{rt})}}{\\mk{d}{{((\\kK-\\kPzero)+\\kPzero e^{rt})}^{3}}} = \\mk{z}{0}",
+       "uses": [1],
+       "map": {
+        "P": [
+         "a",
+         "b",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{a}{r^{2}\\kPzero \\kK(\\kK-\\kPzero)e^{rt}}\\mk{b}{((\\kK-\\kPzero)-\\kPzero e^{rt})} = \\mk{z}{0}",
+       "uses": [],
+       "cap": "A fraction is zero only where its numerator is zero."
+      },
+      {
+       "tex": "\\mk{b}{(\\kK-\\kPzero)-\\kPzero e^{rt}} = \\mk{z}{0}",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{e}{\\kPzero e^{rt}} = \\mk{k}{\\kK-\\kPzero}",
+       "uses": [],
+       "map": {
+        "b": [
+         "e",
+         "k"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{e}{e^{rt}} = \\mk{k}{\\frac{\\kK-\\kPzero}{\\kPzero}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{\\ln e^{rt}} = \\mk{k}{\\ln\\frac{\\kK-\\kPzero}{\\kPzero}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{rt} = \\mk{k}{\\ln\\frac{\\kK-\\kPzero}{\\kPzero}}",
+       "uses": [],
+       "cap": "$\\ln e^{u}=u$."
+      },
+      {
+       "tex": "\\mk{e}{t} = \\mk{k}{\\frac{1}{r}\\;\\ln\\frac{\\kK-\\kPzero}{\\kPzero}}",
+       "uses": []
+      }
+     ],
+     "src": "8.4"
+    }
+   ]
+  }
  ]
 }

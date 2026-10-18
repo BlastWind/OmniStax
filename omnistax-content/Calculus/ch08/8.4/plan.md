@@ -45,3 +45,9 @@ None. A Sim of the threshold model was weighed and dropped: the Student Project 
 ## Wanted at chapter level
 
 - Anchors: variables P, P_prime, dP/dt → `8.4-carrying-capacity`; P_0, K → `8.4-logistic-definition`. Forms: `eq-exponential-growth-ivp` → `8.4-carrying-capacity`; `eq-logistic` → `8.4-logistic-definition`; `eq-logistic-solution` → `8.4-logistic-solution`; `eq-logistic-inflection` → `8.4-solving-logistic`; `eq-threshold-model` → `8.4-threshold-project`.
+
+## Derivations
+
+- Example 8.14 · score 4 · not built: a worked example of 8.3's separation of variables with the deer numbers; the general block that follows is the same work in letters and is built
+- Solving the Logistic Differential Equation · the general solution, (8.9) to (8.11) · score 5 · built as drv-logistic-solution (replaces the block from Step 2 to the line before "We state this result as a theorem"; the theorem keeps its (8.11); the book's $C_{1}=e^{c}$ is a note on the node)
+- Solving the Logistic Differential Equation · the point of inflection · score 4 · built as drv-logistic-inflection (replaces the block after "set the second derivative equal to zero"; the quotient-rule lines for $P'$ and $P''$ and the cancellation of one factor inserted; form `eq-logistic-inflection` re-anchored to it; new symbol `P_dprime`)

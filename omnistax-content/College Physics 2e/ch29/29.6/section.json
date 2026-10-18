@@ -390,5 +390,47 @@
       "kind": "correction",
       "html": "The book’s key gives the unit as m. The answer is a velocity, $7.28\\times 10^{-4}$ m/s."
     }
+  ],
+  "derivations": [
+    {
+      "id": "bragg-equation",
+      "what": "the Bragg equation",
+      "source": "College Physics 2e, 29.6 The Wave Nature of Matter",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "Electrons scattered from the second plane travel the extra path $\\text{AB} + \\text{BC}$, and $\\text{AB} = \\text{BC} = \\kd\\sin\\ktheta$.",
+              "src": "Figure 29.20"
+            },
+            {
+              "text": "The scattered waves interfere constructively when the path length difference is a whole number of wavelengths: $\\text{PLD} = n\\klam\\;(n = 1, 2, 3, \\ldots)$.",
+              "src": "29.6"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{P}{\\text{PLD}} = \\mk{a}{\\text{AB} + \\text{BC}}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{P}{\\text{PLD}} = \\mk{a}{2\\kd\\sin\\ktheta}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{P}{n\\klam} = \\mk{a}{2\\kd\\sin\\ktheta}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "29.6"
+        }
+      ]
+    }
   ]
 }

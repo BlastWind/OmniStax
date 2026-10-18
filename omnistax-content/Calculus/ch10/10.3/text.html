@@ -4,22 +4,8 @@
 <h2>Overview of Taylor/Maclaurin Series</h2>
 <p class="cite-target">Consider a function $f$ that has a <span data-concept="power-series">power series representation</span> at $x=a.$ Then the series has the form</p>
 <div class="equation" id="fs-id1167025118355">$$\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} =c_{0}+c_{1}(x-a)+c_{2}{(x-a)}^{2}+\cdots .\tag{10.4}$$</div>
-<p>What should the coefficients be? For now, we ignore issues of convergence, but instead focus on what the series should be, if one exists. We return to discuss convergence later in this section. If the series <a href="#fs-id1167025118355">Equation 10.4</a> is a representation for $f$ at $x=a,$ we certainly want the series to equal $\kf(a)$ at $x=a.$ Evaluating the series at $x=a,$ we see that</p>
-$$\begin{array}{rl}\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} & =c_{0}+c_{1}(a-a)+c_{2}{(a-a)}^{2}+\cdots  \\ & =c_{0}.\end{array}$$
-<p>Thus, the series equals $\kf(a)$ if the coefficient $c_{0}=\kf(a).$ In addition, we would like the first derivative of the <span data-concept="power-series">power series</span> to equal $\kfprime(a)$ at $x=a.$ Differentiating <a href="#fs-id1167025118355">Equation 10.4</a> term-by-term, we see that</p>
-$$\frac{d}{dx}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} )=c_{1}+2c_{2}(x-a)+3c_{3}{(x-a)}^{2}+\cdots .$$
-<p>Therefore, at $x=a,$ the derivative is</p>
-$$\begin{array}{rl} \\ \\ \frac{d}{dx}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} ) & =c_{1}+2c_{2}(a-a)+3c_{3}{(a-a)}^{2}+\cdots  \\ & =c_{1}.\end{array}$$
-<p>Therefore, the derivative of the series equals $\kfprime(a)$ if the coefficient $c_{1}=\kfprime(a).$ Continuing in this way, we look for coefficients <em>c<sub>n</sub></em> such that all the derivatives of the <span data-concept="power-series">power series</span> <a href="#fs-id1167025118355">Equation 10.4</a> will agree with all the corresponding derivatives of $f$ at $x=a.$ The second and third derivatives of <a href="#fs-id1167025118355">Equation 10.4</a> are given by</p>
-$$\frac{d^{2}}{dx^{2}}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} )=2c_{2}+3\cdot 2c_{3}(x-a)+4\cdot 3c_{4}{(x-a)}^{2}+\cdots$$
-<p>and</p>
-$$\frac{d^{3}}{dx^{3}}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} )=3\cdot 2c_{3}+4\cdot 3\cdot 2c_{4}(x-a)+5\cdot 4\cdot 3c_{5}{(x-a)}^{2}+\cdots .$$
-<p>Therefore, at $x=a,$ the second and third derivatives</p>
-$$\begin{array}{rl}\frac{d^{2}}{dx^{2}}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} ) & =2c_{2}+3\cdot 2c_{3}(a-a)+4\cdot 3c_{4}{(a-a)}^{2}+\cdots  \\ & =2c_{2}\end{array}$$
-<p>and</p>
-$$\begin{array}{rl}\frac{d^{3}}{dx^{3}}(\sum_{n=0}^{\infty} c_{n}{(x-a)}^{n} ) & =3\cdot 2c_{3}+4\cdot 3\cdot 2c_{4}(a-a)+5\cdot 4\cdot 3c_{5}{(a-a)}^{2}+\cdots  \\ & =3\cdot 2c_{3}\end{array}$$
-<p>equal $\kfdprime(a)$ and $\kftprime(a),$ respectively, if $c_{2}=\frac{\kfdprime(a)}{2}$ and $c_{3}=\frac{\kftprime(a)}{3\cdot 2}.$ More generally, we see that if $f$ has a <span data-concept="power-series">power series representation</span> at $x=a,$ then the coefficients should be given by $c_{n}=\frac{\kfn(a)}{n!}.$ That is, the series should be</p>
-$$\sum_{n=0}^{\infty} \frac{\kfn(a)}{n!} {(x-a)}^{n}=\kf(a)+\kfprime(a)(x-a)+\frac{\kfdprime(a)}{2!}{(x-a)}^{2}+\frac{\kftprime(a)}{3!}{(x-a)}^{3}+\cdots .$$
+<p>What should the coefficients be? For now, we ignore issues of convergence, but instead focus on what the series should be, if one exists. We return to discuss convergence later in this section. If the series <a href="#fs-id1167025118355">Equation 10.4</a> is a representation for $f$ at $x=a,$ we certainly want the series to equal $\kf(a)$ at $x=a.$ In addition, we would like the first derivative of the <span data-concept="power-series">power series</span> to equal $\kfprime(a)$ at $x=a.$ Continuing in this way, we look for coefficients <em>c<sub>n</sub></em> such that all the derivatives of the <span data-concept="power-series">power series</span> <a href="#fs-id1167025118355">Equation 10.4</a> will agree with all the corresponding derivatives of $f$ at $x=a.$</p>
+<figure class="dv" id="drv-taylor-coefficients"></figure>
 <p>This <span data-concept="power-series">power series</span> for $f$ is known as the <span data-concept="taylor-series">Taylor series</span> for $f$ at $a.$ If $a=0,$ then this series is known as the <span data-concept="maclaurin-series">Maclaurin series</span> for $f.$</p>
 <div class="note" id="fs-id1167024973208">
 <div class="eyebrow">Definition</div>
@@ -130,24 +116,7 @@ $$|\kR_{n}(x)|\le \frac{M}{(n+1)!}{|x-a|}^{n+1}$$
 <p>for all <em>x</em> in <em>I</em>.</p>
 </div>
 <h3>Proof</h3>
-<p>Fix a point $x\in I$ and introduce the function <em>g</em> such that</p>
-$$\kg(t)=\kf(x)-\kf(t)-\kfprime(t)(x-t)-\frac{\kfdprime(t)}{2!}{(x-t)}^{2}-\cdots -\frac{\kfn(t)}{n!}{(x-t)}^{n}-\kR_{n}(x)\frac{{(x-t)}^{n+1}}{{(x-a)}^{n+1}}.$$
-<p>We claim that <em>g</em> satisfies the criteria of <span data-concept="rolles-theorem">Rolle’s theorem</span>. Since <em>g</em> is a polynomial function (in <em>t</em>), it is a differentiable function. Also, <em>g</em> is zero at $t=a$ and $t=x$ because</p>
-$$\begin{array}{rll}\kg(a) & = & \kf(x)-\kf(a)-\kfprime(a)(x-a)-\frac{\kfdprime(a)}{2!}{(x-a)}^{2}+\cdots +\frac{\kfn(a)}{n!}{(x-a)}^{n}-\kR_{n}(x) \\ & = & \kf(x)-\kp_{n}(x)-\kR_{n}(x) \\ & = & 0, \\ \kg(x) & = & \kf(x)-\kf(x)-0-\cdots -0 \\ & = & 0.\end{array}$$
-<p>Therefore, <em>g</em> satisfies <span data-concept="rolles-theorem">Rolle’s theorem</span>, and consequently, there exists <em>c</em> between <em>a</em> and <em>x</em> such that $\kgprime(c)=0.$ We now calculate $\kgprime.$ Using the product rule, we note that</p>
-$$\frac{d}{dt}[\frac{\kfn(t)}{n!}{(x-t)}^{n}]=\frac{-\kfn(t)}{(n-1)!}{(x-t)}^{n-1}+\frac{\kfnplusone(t)}{n!}{(x-t)}^{n}.$$
-<p>Consequently,</p>
-$$\begin{array}{ll}\kgprime(t) & =-\kfprime(t)+[\kfprime(t)-\kfdprime(t)(x-t)]+[\kfdprime(t)(x-t)-\frac{\kftprime(t)}{2!}{(x-t)}^{2}]+\cdots  \\ & \hspace{1.4em}+[\frac{\kfn(t)}{(n-1)!}{(x-t)}^{n-1}-\frac{\kfnplusone(t)}{n!}{(x-t)}^{n}]+(n+1)\kR_{n}(x)\frac{{(x-t)}^{n}}{{(x-a)}^{n+1}}.\end{array}$$
-<p>Notice that there is a telescoping effect. Therefore,</p>
-$$\kgprime(t)=-\frac{\kfnplusone(t)}{n!}{(x-t)}^{n}+(n+1)\kR_{n}(x)\frac{{(x-t)}^{n}}{{(x-a)}^{n+1}}.$$
-<p>By <span data-concept="rolles-theorem">Rolle’s theorem</span>, we conclude that there exists a number <em>c</em> between <em>a</em> and <em>x</em> such that $\kgprime(c)=0.$ Since</p>
-$$\kgprime(c)=-\frac{\kfnplusone(c)}{n!}{(x-c)}^{n}+(n+1)\kR_{n}(x)\frac{{(x-c)}^{n}}{{(x-a)}^{n+1}}$$
-<p>we conclude that</p>
-$$-\frac{\kfnplusone(c)}{n!}{(x-c)}^{n}+(n+1)\kR_{n}(x)\frac{{(x-c)}^{n}}{{(x-a)}^{n+1}}=0.$$
-<p>Adding the first term on the left-hand side to both sides of the equation and dividing both sides of the equation by $\frac{(n+1){(x-c)}^{n}}{{(x-a)}^{n+1}},$ we conclude that</p>
-$$\kR_{n}(x)=\frac{\kfnplusone(c)}{(n+1)!}{(x-a)}^{n+1}$$
-<p>as desired. From this fact, it follows that if there exists <em>M</em> such that $|\kfnplusone(x)|\le M$ for all <em>x</em> in <em>I</em>, then</p>
-$$|\kR_{n}(x)|\le \frac{M}{(n+1)!}{|x-a|}^{n+1}.$$
+<figure class="dv" id="drv-taylors-theorem-with-remainder"></figure>
 <p>□</p>
 <p>Not only does <span data-concept="taylors-theorem-with-remainder">Taylor’s theorem</span> allow us to prove that a <span data-concept="taylor-series">Taylor series</span> converges to a function, but it also allows us to estimate the accuracy of <span data-concept="taylor-polynomial">Taylor polynomials</span> in approximating function values. We begin by looking at <span data-concept="linear-approximation">linear and quadratic approximations</span> of $\kf(x)=\sqrt[3]{x}$ at $x=8$ and determine how accurate these approximations are at estimating $\sqrt[3]{11}.$</p>
 <div class="example" id="fs-id1167024999614">
@@ -226,10 +195,8 @@ $$\sum_{n=0}^{\infty} {(-1)}^{n}{(0-1)}^{n} =\sum_{n=0}^{\infty} {(-1)}^{2n} =\s
 <p>We know that the <span data-concept="taylor-series">Taylor series</span> found in this example converges on the interval $(0,2),$ but how do we know it actually converges to $f?$ We consider this question in more generality in a moment, but for this example, we can answer this question by writing</p>
 $$\kf(x)=\frac{1}{x}=\frac{1}{1-(1-x)}.$$
 <p>That is, $f$ can be represented by the <span data-concept="geometric-series">geometric series</span> $\sum_{n=0}^{\infty} {(1-x)}^{n} .$ Since this is a <span data-concept="geometric-series">geometric series</span>, it converges to $\frac{1}{x}$ as long as $|1-x|\lt 1.$ Therefore, the <span data-concept="taylor-series">Taylor series</span> found in <a href="#fs-id1167025009066">Example 10.15</a> does converge to $\kf(x)=\frac{1}{x}$ on $(0,2).$</p>
-<p>We now consider the more general question: if a <span data-concept="taylor-series">Taylor series</span> for a function $f$ converges on some interval, how can we determine if it actually converges to $f?$ To answer this question, recall that a series converges to a particular value if and only if its sequence of <span data-concept="partial-sum">partial sums</span> converges to that value. Given a <span data-concept="taylor-series">Taylor series</span> for $f$ at <em>a</em>, the <em>n</em>th <span data-concept="partial-sum">partial sum</span> is given by the <em>n</em>th <span data-concept="taylor-polynomial">Taylor polynomial</span> $\kp_{n}$. Therefore, to determine if the <span data-concept="taylor-series">Taylor series</span> converges to $f,$ we need to determine whether</p>
-$$\lim_{n\to \infty}\kp_{n}(x)=\kf(x).$$
-<p>Since the <span data-concept="taylor-remainder">remainder</span> $\kR_{n}(x)=\kf(x)-\kp_{n}(x),$ the <span data-concept="taylor-series">Taylor series</span> converges to $f$ if and only if</p>
-$$\lim_{n\to \infty}\kR_{n}(x)=0.$$
+<p>We now consider the more general question: if a <span data-concept="taylor-series">Taylor series</span> for a function $f$ converges on some interval, how can we determine if it actually converges to $f?$ To answer this question, recall that a series converges to a particular value if and only if its sequence of <span data-concept="partial-sum">partial sums</span> converges to that value. Given a <span data-concept="taylor-series">Taylor series</span> for $f$ at <em>a</em>, the <em>n</em>th <span data-concept="partial-sum">partial sum</span> is given by the <em>n</em>th <span data-concept="taylor-polynomial">Taylor polynomial</span> $\kp_{n}$.</p>
+<figure class="dv" id="drv-convergence-of-taylor-series"></figure>
 <p>We now state this theorem formally.</p>
 <div class="note" id="fs-id1167025166976">
 <div class="eyebrow">Theorem</div>
@@ -250,32 +217,13 @@ $$|\kR_{n}(x)|\le \frac{M}{(n+1)!}{|x-a|}^{n+1}$$
 <p>a. <em>e<sup>x</sup></em></p>
 <p>b. $\sin x$</p>
 <h4>Solution</h4>
-<p>a. Using the <em>n</em>th <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> for <em>e<sup>x</sup></em> found in <a href="#fs-id1167025118487">Example 10.12</a>a., we find that the <span data-concept="maclaurin-series">Maclaurin series</span> for <em>e<sup>x</sup></em> is given by</p>
-$$\sum_{n=0}^{\infty} \frac{x^{n}}{n!} .$$
-<p>To determine the <span data-concept="interval-of-convergence">interval of convergence</span>, we use the <span data-concept="ratio-test">ratio test</span>. Since</p>
-$$\frac{|a_{n+1}|}{|a_{n}|}=\frac{{|x|}^{n+1}}{(n+1)!}\cdot \frac{n!}{{|x|}^{n}}=\frac{|x|}{n+1},$$
-<p>we have</p>
-$$\lim_{n\to \infty}\frac{|a_{n+1}|}{|a_{n}|}=\lim_{n\to \infty}\frac{|x|}{n+1}=0$$
-<p>for all <em>x</em>. Therefore, the series converges absolutely for all <em>x</em>, and thus, the <span data-concept="interval-of-convergence">interval of convergence</span> is <span data-type="set">$(-\infty ,\infty )$</span>. To show that the series converges to <em>e<sup>x</sup></em> for all <em>x</em>, we use the fact that $\kfn(x)=e^{x}$ for all $n\ge 0$ and <em>e<sup>x</sup></em> is an increasing function on $(-\infty ,\infty ).$ Therefore, for any real number <em>b</em>, the maximum value of <em>e<sup>x</sup></em> for all $|x|\le b$ is <em>e<sup>b</sup></em>. Thus,</p>
-$$|\kR_{n}(x)|\le \frac{e^{b}}{(n+1)!}{|x|}^{n+1}.$$
-<p>Since we just showed that</p>
-$$\sum_{n=0}^{\infty} \frac{|x{|}^{n}}{n!}$$
-<p>converges for all <em>x</em>, by the <span data-concept="divergence-test">divergence test</span>, we know that</p>
-$$\lim_{n\to \infty}\frac{{|x|}^{n+1}}{(n+1)!}=0$$
-<p>for any real number <em>x</em>. By combining this fact with the <span data-concept="squeeze-theorem">squeeze theorem</span>, the result is $\lim_{n\to \infty}\kR_{n}(x)=0.$</p>
-<p>b. Using the <em>n</em>th <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> for $\sin x$ found in <a href="#fs-id1167025118487">Example 10.12</a>b., we find that the <span data-concept="maclaurin-series">Maclaurin series</span> for $\sin x$ is given by</p>
-$$\sum_{n=0}^{\infty} {(-1)}^{n}\frac{x^{2n+1}}{(2n+1)!} .$$
-<p>In order to apply the <span data-concept="ratio-test">ratio test</span>, consider</p>
-$$\frac{|a_{n+1}|}{|a_{n}|}=\frac{{|x|}^{2n+3}}{(2n+3)!}\cdot \frac{(2n+1)!}{{|x|}^{2n+1}}=\frac{{|x|}^{2}}{(2n+3)(2n+2)}.$$
-<p>Since</p>
-$$\lim_{n\to \infty}\frac{{|x|}^{2}}{(2n+3)(2n+2)}=0$$
-<p>for all <em>x</em>, we obtain the <span data-concept="interval-of-convergence">interval of convergence</span> as <span data-type="set">$(-\infty ,\infty )$</span>. To show that the <span data-concept="maclaurin-series">Maclaurin series</span> converges to $\sin x,$ look at $\kR_{n}(x).$ For each <em>x</em> there exists a real number <em>c</em> between 0 and <em>x</em> such that</p>
-$$\kR_{n}(x)=\frac{\kfnplusone(c)}{(n+1)!}x^{n+1}.$$
-<p>Since $|\kfnplusone(c)|\le 1$ for all integers <em>n</em> and all real numbers <em>c</em>, we have</p>
-$$|\kR_{n}(x)|\le \frac{{|x|}^{n+1}}{(n+1)!}$$
-<p>for all real numbers <em>x</em>. Using the same idea as in part a., the result is $\lim_{n\to \infty}\kR_{n}(x)=0$ for all <em>x</em>, and therefore, the <span data-concept="maclaurin-series">Maclaurin series</span> for $\sin x$ converges to $\sin x$ for all real <em>x</em>.</p>
+<p>a. Using the <em>n</em>th <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> for <em>e<sup>x</sup></em> found in <a href="#fs-id1167025118487">Example 10.12</a>a., we find that the <span data-concept="maclaurin-series">Maclaurin series</span> for <em>e<sup>x</sup></em> is given by $\sum_{n=0}^{\infty} \frac{x^{n}}{n!} .$ To determine the <span data-concept="interval-of-convergence">interval of convergence</span>, we use the <span data-concept="ratio-test">ratio test</span>. To show that the series converges to <em>e<sup>x</sup></em> for all <em>x</em>, we use the fact that $\kfn(x)=e^{x}$ for all $n\ge 0$ and <em>e<sup>x</sup></em> is an increasing function on $(-\infty ,\infty ).$ Therefore, for any real number <em>b</em>, the maximum value of <em>e<sup>x</sup></em> for all $|x|\le b$ is <em>e<sup>b</sup></em>.</p>
+<figure class="dv" id="drv-maclaurin-series-for-exp"></figure>
+<p>b. Using the <em>n</em>th <span data-concept="maclaurin-polynomial">Maclaurin polynomial</span> for $\sin x$ found in <a href="#fs-id1167025118487">Example 10.12</a>b., we find that the <span data-concept="maclaurin-series">Maclaurin series</span> for $\sin x$ is given by $\sum_{n=0}^{\infty} {(-1)}^{n}\frac{x^{2n+1}}{(2n+1)!} .$</p>
+<figure class="dv" id="drv-maclaurin-series-for-sine"></figure>
 </div>
 <div class="exercises" data-place="fs-id1167025117785"></div>
+<figure class="dv" id="drv-alternating-harmonic-series-sum"></figure>
 <div class="note" id="fs-id1167025241347">
 <div class="eyebrow">Student Project</div>
 <h3>Proving that <em>e</em> is Irrational</h3>

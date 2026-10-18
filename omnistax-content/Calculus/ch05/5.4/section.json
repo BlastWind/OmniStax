@@ -980,5 +980,137 @@
   }
  ],
  "referents": [],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "integrals-of-even-and-odd-functions",
+   "what": "the integrals of even and odd functions",
+   "source": "Calculus, 5.4 Integration Formulas and the Net Change Theorem, Integrating Even and Odd Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)dx=\\int_{a}^{c}\\kf(x)dx+\\int_{c}^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      },
+      {
+       "text": "$\\kf$ is continuous over $[-a,a].$",
+       "src": "5.4, Integrals of Even and Odd Functions"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(\\kg(x))\\kgprime(x)dx=\\int_{\\kg(a)}^{\\kg(b)}\\kf(u)du",
+       "src": "5.5, Substitution with Definite Integrals"
+      },
+      {
+       "tex": "\\int_{b}^{a}\\kf(x)dx=-\\int_{a}^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)dx=\\int_{a}^{b}\\kf(t)dt=\\int_{a}^{b}\\kf(u)du",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{L}{\\int_{-a}^{0}\\kf(x)dx}+\\mk{R}{\\int_{0}^{a}\\kf(x)dx}",
+      "uses": [
+       0
+      ],
+      "src": "5.2, Properties of the Definite Integral"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{L}{-\\int_{a}^{0}\\kf(-u)du}+\\mk{R}{\\int_{0}^{a}\\kf(x)dx}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Substitute $u=-x,$ so $x=-u$ and $du=-dx;$ when $x=-a,$ $u=a,$ and when $x=0,$ $u=0.$"
+      },
+      {
+       "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{L}{\\int_{0}^{a}\\kf(-u)du}+\\mk{R}{\\int_{0}^{a}\\kf(x)dx}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{L}{\\int_{0}^{a}\\kf(-x)dx}+\\mk{R}{\\int_{0}^{a}\\kf(x)dx}",
+       "uses": [
+        4
+       ]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kf(-x)=\\kf(x)",
+       "src": "5.4, Integrals of Even and Odd Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{L}{\\int_{0}^{a}\\kf(-x)dx}+\\mk{R}{\\int_{0}^{a}\\kf(x)dx}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{L}{\\int_{0}^{a}\\kf(x)dx}+\\mk{R}{\\int_{0}^{a}\\kf(x)dx}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{R}{2\\int_{0}^{a}\\kf(x)dx}",
+       "uses": [],
+       "map": {
+        "L": "R"
+       }
+      }
+     ],
+     "src": "5.4, Integrals of Even and Odd Functions"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kf(-x)=-\\kf(x)",
+       "src": "5.4, Integrals of Even and Odd Functions"
+      },
+      {
+       "tex": "\\int_{a}^{b}c\\kf(x)dx=c\\int_{a}^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{L}{\\int_{0}^{a}\\kf(-x)dx}+\\mk{R}{\\int_{0}^{a}\\kf(x)dx}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{L}{\\int_{0}^{a}-\\kf(x)dx}+\\mk{R}{\\int_{0}^{a}\\kf(x)dx}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{L}{-\\int_{0}^{a}\\kf(x)dx}+\\mk{R}{\\int_{0}^{a}\\kf(x)dx}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{-a}^{a}\\kf(x)dx}=\\mk{R}{0}",
+       "uses": [],
+       "map": {
+        "L": "R"
+       }
+      }
+     ],
+     "src": "5.4, Integrals of Even and Odd Functions"
+    }
+   ]
+  }
+ ]
 }

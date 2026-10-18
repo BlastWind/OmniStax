@@ -465,5 +465,53 @@
     "sim-brakes"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "hydraulic-forces",
+   "what": "the forces in a hydraulic system",
+   "source": "College Physics 2e, 11.5 Pascal’s Principle",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The two pistons are at the same height, so there is no difference in pressure due to a difference in depth.",
+       "src": "11.5, Figure 11.11"
+      },
+      {
+       "text": "Pascal’s principle: a change in pressure applied to an enclosed fluid is transmitted undiminished to all portions of the fluid and to the walls of its container.",
+       "src": "11.5"
+      },
+      {
+       "tex": "\\kPr = \\frac{\\kF}{\\karea}",
+       "src": "11.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p1}{\\kProne} = \\mk{p2}{\\kPrtwo}",
+      "src": "11.5",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p1}{\\frac{\\kFone}{\\kareaone}} = \\mk{p2}{\\kPrtwo}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p1}{\\frac{\\kFone}{\\kareaone}} = \\mk{p2}{\\frac{\\kFtwo}{\\kareatwo}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "11.5"
+    }
+   ]
+  }
  ]
 }

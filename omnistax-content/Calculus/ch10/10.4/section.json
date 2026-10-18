@@ -1520,11 +1520,6 @@
    "html": "The problem asks for the first six terms, and the stated accuracy, 0.00546, is the size of the seventh term. The first six terms give $\\frac{1}{\\sqrt{2\\pi}}(2-\\frac{8}{6}+\\frac{32}{40}-\\frac{128}{336}+\\frac{512}{3456}-\\frac{2^{11}}{11\\cdot 2^{5}\\cdot 5!})\\approx 0.4729,$ within 0.00546 of the probability, about 0.4772; the first five give 0.4922, which is not within the stated accuracy."
   },
   {
-   "id": "c-ex1024-dot",
-   "kind": "correction",
-   "html": "In the first coefficient of $k^{4},$ “1.3” is printed for $1\\cdot 3,$ as the right side has it."
-  },
-  {
    "id": "c-e185-binomial",
    "kind": "correction",
    "html": "The factor printed $(\\frac{1}{2}n)$ is the binomial coefficient $\\binom{\\frac{1}{2}}{n},$ as in exercise 183."
@@ -1578,6 +1573,262 @@
    "id": "c-r267-factorial",
    "kind": "correction",
    "html": "The denominator is $(2n)!$; $2n!$ is printed."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "binomial-series-coefficients",
+   "what": "the coefficients of the binomial series",
+   "source": "Calculus, 10.4 Working with Taylor Series, The Binomial Series",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}{(1+x)}^{k}=k{(1+x)}^{k-1}",
+       "src": "3.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kf(x)}=\\mk{v}{{(1+x)}^{r}}",
+      "src": "10.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kfprime(x)}=\\mk{v}{r{(1+x)}^{r-1}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kfdprime(x)}=\\mk{v}{r(r-1){(1+x)}^{r-2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kftprime(x)}=\\mk{v}{r(r-1)(r-2){(1+x)}^{r-3}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kfn(x)}=\\mk{v}{r(r-1)(r-2)\\cdots (r-n+1){(1+x)}^{r-n}}",
+       "uses": [
+        0
+       ],
+       "cap": "Each derivative brings down the power and lowers it by one, so after $n$ of them the factors run from $r$ down to $r-n+1.$"
+      }
+     ],
+     "src": "10.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The coefficients of the Maclaurin series for $f$ are $\\frac{\\kfn(0)}{n!}.$",
+       "src": "10.3, (10.5)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kfn(x)}=\\mk{v}{r(r-1)(r-2)\\cdots (r-n+1){(1+x)}^{r-n}}",
+      "src": "10.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kfn(0)}=\\mk{v}{r(r-1)(r-2)\\cdots (r-n+1)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\frac{\\kfn(0)}{n!}}=\\mk{v}{\\frac{r(r-1)(r-2)\\cdots (r-n+1)}{n!}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(10.8)",
+     "src": "10.4"
+    }
+   ]
+  },
+  {
+   "id": "binomial-series-interval",
+   "what": "the interval of convergence of the binomial series",
+   "source": "Calculus, 10.4 Working with Taylor Series, The Binomial Series",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\sum_{n=0}^{\\infty} \\binom{r}{n}x^{n},\\quad \\binom{r}{n}=\\frac{r(r-1)(r-2)\\cdots (r-n+1)}{n!}",
+       "src": "(10.9)"
+      },
+      {
+       "text": "If $\\lim_{n\\to \\infty}\\frac{|a_{n+1}|}{|a_{n}|}\\lt 1,$ then $\\sum a_{n}$ converges; if the limit is greater than $1,$ it diverges.",
+       "src": "9.6, Ratio Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\frac{|a_{n+1}|}{|a_{n}|}}=\\mk{q}{\\frac{|r(r-1)(r-2)\\cdots (r-n)|{|x|}^{n+1}}{(n+1)!}\\cdot \\frac{n!}{|r(r-1)(r-2)\\cdots (r-n+1)|{|x|}^{n}}}",
+      "uses": [
+       0
+      ],
+      "src": "10.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\frac{|a_{n+1}|}{|a_{n}|}}=\\mk{q}{\\frac{|r-n||x|}{|n+1|}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\lim_{n\\to \\infty}\\frac{|a_{n+1}|}{|a_{n}|}}=\\mk{q}{|x|}",
+       "uses": [],
+       "cap": "As $n$ grows, $\\frac{|r-n|}{n+1}$ tends to $1.$"
+      },
+      {
+       "tex": "\\mk{r}{\\sum_{n=0}^{\\infty} \\binom{r}{n}x^{n}}\\;\\mk{q}{\\text{converges for}\\;|x|\\lt 1\\;\\text{and diverges for}\\;|x|\\gt 1}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "10.4"
+    }
+   ]
+  },
+  {
+   "id": "pendulum-period",
+   "what": "the period of a pendulum",
+   "source": "Calculus, 10.4 Working with Taylor Series, Example 10.24",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{1}{\\sqrt{1+x}}=1+\\sum_{n=1}^{\\infty} \\frac{{(-1)}^{n}}{n!} \\;\\frac{1\\cdot 3\\cdot 5\\cdots (2n-1)}{2^{n}}x^{n}\\;\\text{for}\\;|x|\\lt 1",
+       "src": "Example 10.19"
+      },
+      {
+       "tex": "0\\le k^{2}{\\sin }^{2}\\ktheta \\lt 1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{T=4\\sqrt{\\frac{L}{g}}}\\mk{i}{\\int_0^{\\pi /2}\\frac{d\\theta}{\\sqrt{1-k^{2}{\\sin }^{2}\\ktheta}}}",
+      "src": "Example 10.24"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{T=4\\sqrt{\\frac{L}{g}}}\\mk{i}{\\int_0^{\\pi /2}(1+\\frac{1}{2}k^{2}{\\sin }^{2}\\ktheta +\\frac{1\\cdot 3}{2!2^{2}}k^{4}{\\sin }^{4}\\ktheta +\\cdots )\\;d\\theta}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "With $x=-k^{2}{\\sin }^{2}\\theta,$ the signs ${(-1)}^{n}$ of the series and of $x^{n}$ cancel, so every term is positive."
+      }
+     ],
+     "src": "Example 10.24"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{T=4\\sqrt{\\frac{L}{g}}}\\mk{i}{\\int_0^{\\pi /2}(1+\\frac{1}{2}k^{2}{\\sin }^{2}\\ktheta +\\frac{1\\cdot 3}{2!2^{2}}k^{4}{\\sin }^{4}\\ktheta +\\cdots )\\;d\\theta}",
+      "src": "Example 10.24"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{T\\approx 4\\sqrt{\\frac{L}{g}}}\\mk{i}{\\int_0^{\\pi /2}d\\theta}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{T}{T\\approx 2\\pi \\sqrt{\\frac{L}{g}}}",
+       "uses": [],
+       "map": {
+        "i": "T"
+       }
+      }
+     ],
+     "src": "Example 10.24"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "|\\sin \\ktheta |\\le 1",
+       "src": "Example 10.24"
+      },
+      {
+       "text": "Each coefficient $\\frac{1\\cdot 3\\cdot 5\\cdots (2n-1)}{n!\\,2^{n}}=\\frac{1}{2}\\cdot \\frac{3}{4}\\cdots \\frac{2n-1}{2n}$ is less than $1.$",
+       "src": "Example 10.24"
+      },
+      {
+       "tex": "1+k^{2}+k^{4}+\\cdots =\\frac{1}{1-k^{2}}\\;\\text{for}\\;k^{2}\\lt 1",
+       "src": "9.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\int_0^{\\pi /2}(\\frac{1}{2}k^{2}{\\sin }^{2}\\ktheta +\\frac{1\\cdot 3}{2!2^{2}}k^{4}{\\sin }^{4}\\ktheta +\\cdots )\\;d\\theta}",
+      "src": "Example 10.24",
+      "why": "These are the terms the first-order estimate leaves out."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\int_0^{\\pi /2}(\\frac{1}{2}k^{2}{\\sin }^{2}\\ktheta +\\frac{1\\cdot 3}{2!2^{2}}k^{4}{\\sin }^{4}\\ktheta +\\cdots )\\;d\\theta}\\lt \\mk{B}{\\frac{\\pi}{2}(\\frac{1}{2}k^{2}+\\frac{1\\cdot 3}{2!2^{2}}k^{4}+\\cdots )}",
+       "uses": [
+        0
+       ],
+       "cap": "Every term is at most its value with ${\\sin }^{2}\\theta$ replaced by $1,$ and an integral of a constant over $[0,\\frac{\\pi}{2}]$ is $\\frac{\\pi}{2}$ times it."
+      },
+      {
+       "tex": "\\mk{E}{\\int_0^{\\pi /2}(\\frac{1}{2}k^{2}{\\sin }^{2}\\ktheta +\\frac{1\\cdot 3}{2!2^{2}}k^{4}{\\sin }^{4}\\ktheta +\\cdots )\\;d\\theta}\\lt \\mk{B}{\\frac{\\pi k^{2}}{2}(1+k^{2}+k^{4}+\\cdots )}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\int_0^{\\pi /2}(\\frac{1}{2}k^{2}{\\sin }^{2}\\ktheta +\\frac{1\\cdot 3}{2!2^{2}}k^{4}{\\sin }^{4}\\ktheta +\\cdots )\\;d\\theta}\\lt \\mk{B}{\\frac{\\pi k^{2}}{2}\\cdot \\frac{1}{1-k^{2}}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "Example 10.24",
+     "note": "The book bounds the whole integral $\\int_0^{\\pi /2}(1+\\frac{1}{2}k^{2}{\\sin }^{2}\\theta +\\cdots )\\,d\\theta$ by the integral of its terms after the first; the bound is for those terms, which the first-order estimate leaves out. In the first coefficient of $k^{4}$ the book prints “1.3” for $1\\cdot 3.$"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int {\\sin }^{2}\\ktheta \\,d\\theta =\\frac{\\ktheta}{2}-\\frac{\\sin (2\\ktheta )}{4}+C",
+       "src": "7.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{T=4\\sqrt{\\frac{L}{g}}}\\mk{i}{\\int_0^{\\pi /2}(1+\\frac{1}{2}k^{2}{\\sin }^{2}\\ktheta +\\frac{1\\cdot 3}{2!2^{2}}k^{4}{\\sin }^{4}\\ktheta +\\cdots )\\;d\\theta}",
+      "src": "Example 10.24"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{T\\approx 4\\sqrt{\\frac{L}{g}}}\\mk{i}{\\int_0^{\\pi /2}(1+\\frac{1}{2}k^{2}{\\sin }^{2}\\ktheta )d \\ktheta}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{T}{T\\approx 4\\sqrt{\\frac{L}{g}}}\\mk{i}{(\\frac{\\pi}{2}+\\frac{1}{2}k^{2}\\cdot \\frac{\\pi}{4})}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{T}{T\\approx 2\\pi \\sqrt{\\frac{L}{g}}}\\mk{i}{(1+\\frac{k^{2}}{4})}",
+       "uses": []
+      }
+     ],
+     "src": "Example 10.24"
+    }
+   ]
   }
  ]
 }

@@ -156,3 +156,8 @@ Judged against `docs/prompts/manim-style.md`; only the figures below changed.
 - `sim-amplitude-squared` · Figure 24.22 · still, **flat only**: the 2D/3D view choice and its scene are removed (26.7; root 28.5, since Figure 24.7 already shows the arrangement in space); a dashed circle on E₀′ at twice E₀, the book's doubling (manim 8).
 - `sim-intensity-three-ways` · Sim · value add now also the morph by meaning (manim 11): the choice of amplitude bends the readout from cε₀E₀²/2 into cB₀²/(2μ₀) and into E₀B₀/(2μ₀), E₀² and B₀² bending into each other, ε₀ and μ₀ fading where one has no counterpart; the dimming of the bar the form does not use blends (manim 15). Still.
 - `sim-oven-intensity` · the intensity label is measured with `F.measure` (26.8).
+
+## Derivations
+
+- The average intensity of a sinusoidal wave, $I_{\text{ave}} = c\varepsilon_0E_0^2/2$ · score 10 · not built: it rests on the energy densities of the electric and magnetic fields, which the book never states
+- The other two forms, $cB_0^2/2\mu_0$ and $E_0B_0/2\mu_0$ · score 5 · built as drv-intensity-from-magnetic-field

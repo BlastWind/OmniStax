@@ -490,5 +490,95 @@
     "sim-tether"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "motional-emf",
+   "what": "the motional emf of a rod on rails",
+   "source": "College Physics 2e, 23.3 Motional Emf",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "N = 1",
+       "src": "23.3"
+      },
+      {
+       "tex": "\\kPhi = \\kBmag \\karea\\cos\\ktheta",
+       "src": "23.1"
+      },
+      {
+       "text": "$\\kBmag$ is perpendicular to $\\karea$, so $\\ktheta = 0^\\circ$ and $\\cos\\ktheta = 1$.",
+       "src": "23.3"
+      },
+      {
+       "text": "$\\kBmag$ is uniform.",
+       "src": "23.3"
+      },
+      {
+       "tex": "\\kdarea = \\ell\\kdx",
+       "src": "23.3"
+      },
+      {
+       "tex": "\\dfrac{\\kdx}{\\kdt} = \\kv",
+       "src": "23.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\kemf} = \\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{t}{\\kdt}}",
+      "src": "23.2",
+      "why": "Faraday’s law of induction without the sign: here “emf” means the magnitude of the emf."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\kemf} = \\dfrac{\\mk{P}{\\kdPhi}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\dfrac{\\mk{P}{\\Delta(\\kBmag\\karea\\cos\\ktheta)}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\dfrac{\\mk{P}{\\Delta(\\kBmag\\karea)}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\dfrac{\\mk{P}{\\kBmag\\kdarea}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{B}{\\kBmag}\\dfrac{\\mk{P}{\\ell\\kdx}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        4
+       ],
+       "map": {
+        "P": [
+         "B",
+         "P"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{B}{\\kBmag}\\mk{P}{\\ell\\kv} \\qquad (\\kBmag\\text{, } \\ell \\text{, and } \\kv \\text{ perpendicular})",
+       "uses": [
+        5
+       ],
+       "map": {
+        "t": "P"
+       }
+      }
+     ],
+     "src": "23.3"
+    }
+   ]
+  }
  ]
 }

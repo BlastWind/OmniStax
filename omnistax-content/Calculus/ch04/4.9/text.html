@@ -8,16 +8,8 @@ $$\kf(x)={x}^{5}+8{x}^{4}+4{x}^{3}-2x-7.$$
 <figure class="sim" id="sim-newton" data-figure="4.77" data-original="/media/ch04/CNX_Calc_Figure_04_09_001.jpg" data-original-caption="The approximations x₀,x₁,x₂,… approach the actual root x*. The approximations are derived by looking at tangent lines to the graph of f.">
   <div class="sim-head"><span class="eyebrow">Figure 4.77</span><span><span data-concept="newtons-method">Newton’s method</span> on $\kf(x)=x^3-3x+1$ (Example 4.46). From $x_0$, go up to the graph and down its <span data-concept="tangent-line">tangent line</span> to the $x$-axis: that crossing is $x_1$, and the next tangent gives $x_2$. Play the steps, or move $x_0$: the approximations close on the root $x^*\approx 1.532088886$ within a few steps.</span></div>
 </figure>
-<p>Now let’s look at how to calculate the approximations ${x}_{0},{x}_{1},{x}_{2}\text{,\ldots}.$ If ${x}_{0}$ is our first approximation, the approximation ${x}_{1}$ is defined by letting $({x}_{1},0)$ be the $x$-intercept of the <span data-concept="tangent-line">tangent line</span> to $\kf$ at ${x}_{0}.$ The equation of this <span data-concept="tangent-line">tangent line</span> is given by</p>
-$$y=\kf({x}_{0})+\kfprime({x}_{0})(x-{x}_{0}).$$
-<p>Therefore, ${x}_{1}$ must satisfy</p>
-$$\kf({x}_{0})+\kfprime({x}_{0})({x}_{1}-{x}_{0})=0.$$
-<p>Solving this equation for ${x}_{1},$ we conclude that</p>
-$${x}_{1}={x}_{0}-\frac{f({x}_{0})}{f'({x}_{0})}.$$
-<p>Similarly, the point $({x}_{2},0)$ is the $x$-intercept of the <span data-concept="tangent-line">tangent line</span> to $\kf$ at ${x}_{1}.$ Therefore, ${x}_{2}$ satisfies the equation</p>
-$${x}_{2}={x}_{1}-\frac{f({x}_{1})}{f'({x}_{1})}.$$
-<p>In general, for $n\gt 0,{x}_{n}$ satisfies</p>
-$${x}_{n}={x}_{n-1}-\frac{f({x}_{n-1})}{f'({x}_{n-1})}.\tag{4.8}$$
+<p>Now let’s look at how to calculate the approximations ${x}_{0},{x}_{1},{x}_{2}\text{,\ldots}.$ If ${x}_{0}$ is our first approximation, the approximation ${x}_{1}$ is defined by letting $({x}_{1},0)$ be the $x$-intercept of the <span data-concept="tangent-line">tangent line</span> to $\kf$ at ${x}_{0}.$</p>
+<figure class="dv" id="drv-newtons-method"></figure>
 <p>Next we see how to make use of this technique to approximate the root of the <span data-concept="polynomial-function">polynomial</span> <span data-fn="x^3-3x+1">$\kf(x)={x}^{3}-3x+1.$</span></p>
 <div class="example" id="fs-id1165043423917">
 <h3>Example 4.46 · Finding a Root of a Polynomial</h3>

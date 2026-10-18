@@ -288,5 +288,128 @@
     "sim-circle-triangles"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "projection-position",
+   "what": "the position of the projection of uniform circular motion",
+   "source": "College Physics 2e, 16.6 Uniform Circular Motion and Simple Harmonic Motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\ktheta = \\kw\\kt",
+       "src": "16.6"
+      },
+      {
+       "tex": "\\kw = \\dfrac{2\\pi}{\\kT}",
+       "src": "16.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{X}{\\kX}\\mk{c}{\\cos\\ktheta}",
+      "uses": [],
+      "src": "16.6, Figure 16.17"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{X}{\\kX}\\mk{c}{\\cos\\kw\\kt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx(\\kt)} = \\mk{X}{\\kX}\\mk{c}{\\cos\\left(\\dfrac{2\\pi\\kt}{\\kT}\\right)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "16.6"
+    }
+   ]
+  },
+  {
+   "id": "shm-speed-from-circle",
+   "what": "the speed of a simple harmonic oscillator from the circle",
+   "source": "College Physics 2e, 16.6 Uniform Circular Motion and Simple Harmonic Motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The triangle formed by the velocities and the triangle formed by the displacements ($\\kX$, $\\kx$ and $\\sqrt{\\kX^{2} - \\kx^{2}}$) are similar right triangles.",
+       "src": "16.6, Figure 16.17"
+      }
+     ],
+     "then": {
+      "tex": "\\dfrac{\\mk{v}{\\kv}}{\\mk{vm}{\\kvmax}} = \\dfrac{\\mk{r}{\\sqrt{\\kX^{2} - \\kx^{2}}}}{\\mk{X}{\\kX}}",
+      "uses": [0],
+      "src": "16.6",
+      "why": "Ratios of corresponding sides of similar triangles are equal."
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{v}{\\kv}}{\\mk{vm}{\\kvmax}} = \\mk{r}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+       "uses": [],
+       "map": {
+        "X": "r"
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kv} = \\mk{vm}{\\kvmax}\\mk{r}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+       "uses": []
+      }
+     ],
+     "src": "16.6"
+    }
+   ]
+  },
+  {
+   "id": "shm-period-from-circle",
+   "what": "the period of a simple harmonic oscillator from the circle",
+   "source": "College Physics 2e, 16.6 Uniform Circular Motion and Simple Harmonic Motion",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{v}{\\kvmax} = \\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}\\,\\mk{X}{\\kX}",
+      "uses": [],
+      "src": "16.5"
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{X}{\\kX}}{\\mk{v}{\\kvmax}} = \\mk{r}{\\sqrt{\\dfrac{\\km}{\\kk}}}",
+       "uses": []
+      }
+     ],
+     "src": "16.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\kT} = \\dfrac{\\mk{tp}{2\\pi}\\mk{X}{\\kX}}{\\mk{v}{\\kvmax}}",
+      "uses": [],
+      "src": "16.6",
+      "why": "The period is the time for P to go once around the circle: the circumference $2\\pi\\kX$ divided by the speed around it, $\\kvmax$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\mk{X}{\\sqrt{\\dfrac{\\km}{\\kk}}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "v": "X"
+       }
+      }
+     ],
+     "src": "16.6"
+    }
+   ]
+  }
  ]
 }

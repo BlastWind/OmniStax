@@ -260,3 +260,8 @@ one image, and its "What the build changed" block records it. The five AP
 items taken from 10.6 were already named by id in `exercise_notes`, and
 `exploration.md` is corrected to the split the tables hold: the seesaw stays
 in 10.6 and the question on why the shape matters (fs-id1519591) comes here.
+
+## Derivations
+
+- $\text{net}\,\tau = \Delta L/\Delta t$ from $\text{net}\,\tau = I\alpha$ · score 4 · not built: the book states the relation as the rotational form of the second law and claims no derivation; three moves even if it did
+- Conservation of angular momentum (printed block, "we can see this rigorously") · score 0 · built as drv-angular-momentum-conservation: one node from $\text{net}\,\tau = \Delta L/\Delta t$ with zero torque to $L = L'$; replaces the four displayed lines

@@ -1011,5 +1011,72 @@
     "fig-ice"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "friction-coefficient-slope",
+   "what": "the coefficient of kinetic friction from the angle of a slope",
+   "source": "College Physics 2e, 5.1 Friction",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The object slides down the incline at constant velocity, so the net force on it is zero.",
+       "src": "5.1"
+      },
+      {
+       "text": "Kinetic friction and the component of the weight down the slope act in opposite directions.",
+       "src": "Figure 5.4"
+      },
+      {
+       "tex": "\\kfk = \\mu_{\\text{k}}\\km\\kg\\ \\text{cos}\\ \\ktheta",
+       "src": "Example 5.1"
+      },
+      {
+       "tex": "\\km\\kg_{\\text{x}} = \\km\\kg\\ \\text{sin}\\ \\ktheta",
+       "src": "Figure 5.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfk} = \\mk{w}{\\km\\kg_{\\text{x}}}",
+      "src": "5.1",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\mu_{\\text{k}}\\km\\kg\\ \\text{cos}\\ \\ktheta} = \\mk{w}{\\km\\kg_{\\text{x}}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\mu_{\\text{k}}\\km\\kg\\ \\text{cos}\\ \\ktheta} = \\mk{w}{\\km\\kg\\ \\text{sin}\\ \\ktheta}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{mu}{\\mu_{\\text{k}}} = \\frac{\\mk{w}{\\km\\kg\\ \\text{sin}\\ \\ktheta}}{\\mk{f}{\\km\\kg\\ \\text{cos}\\ \\ktheta}}",
+       "uses": [],
+       "map": {
+        "f": [
+         "mu",
+         "f"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{mu}{\\mu_{\\text{k}}} = \\frac{\\mk{w}{\\km\\kg\\ \\text{sin}\\ \\ktheta}}{\\mk{f}{\\km\\kg\\ \\text{cos}\\ \\ktheta}} = \\mk{t}{\\text{tan}\\ \\ktheta}",
+       "uses": [],
+       "cap": "$\\km\\kg$ cancels, and $\\sin\\ktheta/\\cos\\ktheta = \\tan\\ktheta$."
+      }
+     ],
+     "src": "5.1"
+    }
+   ]
+  }
  ]
 }

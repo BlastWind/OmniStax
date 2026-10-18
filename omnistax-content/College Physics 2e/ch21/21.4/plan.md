@@ -110,3 +110,7 @@ sim-meter-connection · Figure 21.27 + 21.28 · as above · the meter glides rou
 sim-galvanometer · Sim · as above · dashed special circles on I_G at half and at full scale, the readings the text names, moved by the sensitivity slider (26.1, manim 8) · still
 sim-galvanometer-meters · Figure 21.29 + 21.30 · as above · the voltmeter readout is one equation, R_tot = R + r = V/I_G, with R in the small line (manim 12) · still
 sim-meter-disturbs · Figure 21.31 + 21.32 · as above · the voltmeter readout is one equation, the reading V, with R_p in the small line (manim 12) · still
+
+## Derivations
+
+- The shunt resistance that turns a galvanometer into an ammeter (inline chain, then a numbered line) · score 2 · built as drv-shunt-resistance: two nodes, the equal $IR$ drops of the parallel shunt and galvanometer solved for $R$, then the book's numbers; replaces the inline chain and its display, the voltmeter case beside it is pure substitution and stays

@@ -338,3 +338,9 @@ anchored at `lifting`, where $\kW = \kF\kd = m\kg\kh$ first gives the symbol
 its meaning, and not at `landing`, where the same symbol is the knee bend.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-ladder` picks its two rungs from two dropdowns rather than two count sliders (rule 26.1). The crate and the bracket glide from the old rung to the new one through `mix`. `sim-landing` marks its two worked landings, 0.005 m and 0.500 m, as dashed circles on the knee-bend slider in place of soft detents.
+
+## Derivations
+
+- Work done against gravity, $\Delta\text{PE}_\text{g} = mgh$ (prose, Work Done Against Gravity) · score 2 · not built: two inline moves, below the hidden bar
+- Example 7.6, The Force to Stop Falling · score 3 · not built: a worked example whose lines are all printed and whose score is under the bar
+- Example 7.7, the speed from the height, $v = \sqrt{2g|h| + v_0^2}$ · score 2 · not built: a worked example that substitutes into the section's conservation equation

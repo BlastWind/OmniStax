@@ -257,3 +257,7 @@ of the problems and the counts of revolutions stay in ink.
   length, all of which 6.1 introduces, so rule 12 puts it there rather than
   where the book prints it. It carries `source_section: "6.2"` on 6.1's page
   and is gone from this one, and both sections' `exercise_notes` say so.
+
+## Derivations
+
+- The magnitude of the centripetal acceleration (similar triangles) · score 2 · built as drv-centripetal-acceleration: one node, the inserted line $a_c = (v/r)\,v$ between the book's last two; replaces the four displays and their connecting sentences; the inline $a_c = r\omega^2$ paragraph and the two-form display stay as printed

@@ -675,5 +675,151 @@
     "sim-two-booms"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "doppler-shift",
+   "what": "the Doppler shift for a moving source and for a moving observer",
+   "source": "College Physics 2e, 17.4 Doppler Effect and Sonic Booms",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{v}{\\kvw} = \\mk{f}{\\kfsrc}\\mk{l}{\\klam}",
+      "uses": [],
+      "src": "17.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\klam} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{f}{\\kfsrc}}",
+       "uses": []
+      }
+     ],
+     "src": "17.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Each compression spreads out from the point where it was emitted, but the source moves between emissions, so the compressions are closer together ahead of it and farther apart behind it.",
+       "src": "17.4, Figure 17.14"
+      },
+      {
+       "tex": "\\kT = \\dfrac{1}{\\kfsrc}",
+       "src": "16.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{lp}{\\klamprime} = \\mk{l}{\\klam} \\pm \\mk{s}{\\kvs\\kT}",
+      "uses": [
+       1
+      ],
+      "why": "The source emits a compression every period $\\kT$ and moves $\\kvs\\kT$ in that time; the minus sign is for a source moving toward the observer, the plus sign for one moving away."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{lp}{\\klamprime} = \\mk{l}{\\dfrac{\\kvw}{\\kfsrc}} \\pm \\mk{s}{\\kvs\\kT}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{lp}{\\klamprime} = \\mk{l}{\\dfrac{\\kvw}{\\kfsrc}} \\pm \\mk{s}{\\dfrac{\\kvs}{\\kfsrc}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{lp}{\\klamprime} = \\mk{l}{\\dfrac{\\kvw \\pm \\kvs}{\\kfsrc}}",
+       "uses": [],
+       "map": {
+        "s": "l"
+       }
+      }
+     ],
+     "src": "17.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "Sound moves through the air at the same speed $\\kvw$ whether the source is moving or not.",
+       "src": "17.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvw} = \\mk{f}{\\kfobs}\\mk{lp}{\\klamprime}",
+      "uses": [
+       1
+      ],
+      "src": "17.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{lp}{\\klamprime}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{lp}{(\\kvw \\pm \\kvs)/\\kfsrc}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\mk{fs}{\\kfsrc}\\left(\\dfrac{\\mk{v}{\\kvw}}{\\mk{lp}{\\kvw \\pm \\kvs}}\\right)",
+       "uses": [],
+       "map": {
+        "lp": [
+         "fs",
+         "lp"
+        ]
+       }
+      }
+     ],
+     "src": "17.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "An observer moving toward the source at $\\kvobs$ meets the compressions at the speed $\\kvw + \\kvobs$, and one moving away at $\\kvw - \\kvobs$.",
+       "src": "17.4, Figure 17.15"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfobs} = \\dfrac{\\mk{v}{\\kvw \\pm \\kvobs}}{\\mk{l}{\\klam}}",
+      "uses": [
+       1
+      ],
+      "why": "The compressions, $\\klam$ apart, pass the observer at the speed $\\kvw \\pm \\kvobs$, and the frequency is how many pass each second."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\dfrac{\\mk{v}{\\kvw \\pm \\kvobs}}{\\mk{l}{\\kvw/\\kfsrc}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\mk{fs}{\\kfsrc}\\left(\\dfrac{\\mk{v}{\\kvw \\pm \\kvobs}}{\\mk{l}{\\kvw}}\\right)",
+       "uses": [],
+       "map": {
+        "l": [
+         "fs",
+         "l"
+        ]
+       }
+      }
+     ],
+     "src": "17.4"
+    }
+   ]
+  }
  ]
 }

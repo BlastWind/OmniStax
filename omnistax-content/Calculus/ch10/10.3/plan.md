@@ -50,3 +50,18 @@ None: a Sim of Example 10.14's tolerance window (where p₅ approximates sin x t
 - forms `eq-taylor-series` → `10.3-fs-id1167025228678`; `eq-taylor-polynomial` → `10.3-fs-id1167025242377`; `eq-taylor-remainder` → `10.3-remainder-term`; `eq-lagrange-remainder`, `eq-remainder-bound` → `10.3-fs-id1167025239317`; `eq-taylor-series-converges` → `10.3-fs-id1167025166976`.
 - variables of 10.3: f, f′, f″, f‴, f⁽ⁿ⁾ → `10.3-overview`; p → `10.3-fs-id1167025242377`; R → `10.3-remainder-term`; f⁽ⁿ⁺¹⁾, I, g, g′ → `10.3-fs-id1167025239317`.
 - Applied in the chapter pass (2026-10-13): every anchor above set with `ost set`; review rows landed with `mksection.py --with-review`.
+
+## Derivations
+
+- Overview of Taylor/Maclaurin Series · the coefficients c_n = f⁽ⁿ⁾(a)/n! · score 2 · built as drv-taylor-coefficients (replaces the block; c₀ to c₃ and the general c_n each a node, the nth derivative line inserted, the Taylor series the last node)
+- Example 10.12 b · score 1 · not built: a worked example of the definition
+- Taylor's Theorem with Remainder · the case n = 0 and the bound before the theorem · score 3 · not built: under the bar; the general case is the proof below
+- Theorem · Taylor's Theorem with Remainder, Proof · score 5 · built as drv-taylors-theorem-with-remainder (g(a) = 0 corrected from the book's "+ ⋯ +"; the product-rule term, the telescoping, Rolle and the bound; the note on "g is a polynomial in t")
+- Example 10.13 c · score 2 · not built: a worked example substituting into the theorem's bound
+- Example 10.14 · score 2 · not built: a worked example substituting into the bound
+- Example 10.15 and the paragraph after it · score 5 · not built: a worked example of the definition and the ratio test; the geometric-series check after it is one line
+- Representing Functions with Taylor and Maclaurin Series · the criterion Rₙ → 0 · score 1 · built as drv-convergence-of-taylor-series (a thin printed block that derives the theorem stated after it: partial sums, Rₙ = f − pₙ, the limit)
+- Example 10.16 a · score 6 · built as drv-maclaurin-series-for-exp (a proof the example sets: ratio test, Taylor's bound with e^b, the divergence test on Σ|x|ⁿ/n! and the squeeze theorem join)
+- Example 10.16 b · score 7 · built as drv-maclaurin-series-for-sine (the same, citing part a's limit)
+- Student Project · Proving that e is Irrational · score 11 · not built: set for the reader
+- From 9.5 · "It can also be shown that S = ln 2" · score 8 · built here as drv-alternating-harmonic-series-sum, after Example 10.16: the nth derivative of ln(1 + x), Taylor's remainder at x = 1 bounded by 1/(n + 1), the squeeze theorem and the convergence criterion. Every fact is in Chapter 10 (10.3's theorem, Example 10.10's series), so the derivation is built where its last fact is stated

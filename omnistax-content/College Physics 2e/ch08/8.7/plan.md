@@ -256,3 +256,8 @@ had the label dropped altogether rather than kept; all six now carry it as a
 `tag`, which is the chapter's convention.
 
 Figure pass, 2026-09-15 (Claude Fable 5.1). Both figures looked at in light and dark at every extreme and left as built.
+
+## Derivations
+
+- The acceleration of a rocket ("can be shown") · score 10 · built as drv-rocket-acceleration: one node from the impulse of gravity through the momenta before and after to $a = \frac{v_e}{m}\frac{\Delta m}{\Delta t} - g$; with the gas's velocity taken relative to the rocket after ejection the algebra is exact; prose-first, so it stands after the paragraph naming "the rocket"
+- The final velocity of a one-stage rocket, $v = v_e \ln(m_0/m_r)$ ("It can be shown") · score 5 · not built: the step from the sum of small changes to the logarithm is an integral the book never states

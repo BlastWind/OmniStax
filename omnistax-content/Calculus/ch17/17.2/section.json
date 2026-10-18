@@ -834,5 +834,346 @@
    "concept": "general-solution-to-a-nonhomogeneous-equation"
   }
  ],
- "referents": []
+ "referents": [],
+ "derivations": [
+  {
+   "id": "general-solution-nonhomogeneous",
+   "what": "the general solution to a nonhomogeneous equation",
+   "source": "Calculus, 17.2 Nonhomogeneous Linear Equations, General Solution to a Nonhomogeneous Linear Equation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kyfn(x)=c_{1}\\kyone(x)+c_{2}\\kytwo(x)+\\kyp(x)",
+       "src": "(17.4)"
+      },
+      {
+       "text": "The derivative of a sum is the sum of the derivatives, and a constant factor passes through a derivative.",
+       "src": "3.3, Sum, Difference, and Constant Multiple Rules"
+      },
+      {
+       "text": "$c_{1}\\kyone(x)+c_{2}\\kytwo(x)$ is the general solution to the complementary equation (17.3), so it solves it.",
+       "src": "17.2"
+      },
+      {
+       "text": "$\\kyp$ is a particular solution: $a_{2}(x)\\kypdprime+a_{1}(x)\\kypprime+a_{0}(x)\\kyp=\\krfn(x).$",
+       "src": "17.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{a_{2}(x)\\kydprime+a_{1}(x)\\kyprime+a_{0}(x)\\kyfn}=a_{2}(x)\\mk{ydd}{\\kydprime}+a_{1}(x)\\mk{yd}{\\kyprime}+a_{0}(x)\\mk{y}{\\kyfn}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{a_{2}(x)\\kydprime+a_{1}(x)\\kyprime+a_{0}(x)\\kyfn}=a_{2}(x)\\mk{ydd}{(c_{1}\\kyone+c_{2}\\kytwo+\\kyp)^{\\prime\\prime}}+a_{1}(x)\\mk{yd}{{(c_{1}\\kyone+c_{2}\\kytwo+\\kyp)}^{\\prime}}+a_{0}(x)\\mk{y}{(c_{1}\\kyone+c_{2}\\kytwo+\\kyp)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{a_{2}(x)\\kydprime+a_{1}(x)\\kyprime+a_{0}(x)\\kyfn}=\\mk{c}{[a_{2}(x)(c_{1}\\kyone+c_{2}\\kytwo)^{\\prime\\prime}+a_{1}(x){(c_{1}\\kyone+c_{2}\\kytwo)}^{\\prime}+a_{0}(x)(c_{1}\\kyone+c_{2}\\kytwo)]}+\\mk{p}{a_{2}(x)\\kypdprime+a_{1}(x)\\kypprime+a_{0}(x)\\kyp}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "ydd": [
+         "c",
+         "p"
+        ],
+        "yd": [
+         "c",
+         "p"
+        ],
+        "y": [
+         "c",
+         "p"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{a_{2}(x)\\kydprime+a_{1}(x)\\kyprime+a_{0}(x)\\kyfn}=\\mk{c}{0}+\\mk{p}{\\krfn(x)}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{a_{2}(x)\\kydprime+a_{1}(x)\\kyprime+a_{0}(x)\\kyfn}=\\mk{p}{\\krfn(x)}",
+       "uses": []
+      }
+     ],
+     "src": "17.2"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$z(x)$ is any solution: $a_{2}(x)z^{\\prime\\prime}+a_{1}(x)z^{\\prime}+a_{0}(x)z=\\krfn(x).$"
+      },
+      {
+       "text": "The derivative of a sum is the sum of the derivatives, and a constant factor passes through a derivative.",
+       "src": "3.3, Sum, Difference, and Constant Multiple Rules"
+      },
+      {
+       "text": "$\\kyp$ is a particular solution: $a_{2}(x)\\kypdprime+a_{1}(x)\\kypprime+a_{0}(x)\\kyp=\\krfn(x).$",
+       "src": "17.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{a_{2}(x)(z-\\kyp)^{\\prime\\prime}+a_{1}(x){(z-\\kyp)}^{\\prime}+a_{0}(x)(z-\\kyp)}=a_{2}(x)\\mk{dd}{(z-\\kyp)^{\\prime\\prime}}+a_{1}(x)\\mk{d}{{(z-\\kyp)}^{\\prime}}+a_{0}(x)\\mk{v}{(z-\\kyp)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{a_{2}(x)(z-\\kyp)^{\\prime\\prime}+a_{1}(x){(z-\\kyp)}^{\\prime}+a_{0}(x)(z-\\kyp)}=\\mk{z}{(a_{2}(x)z^{\\prime\\prime}+a_{1}(x)z^{\\prime}+a_{0}(x)z)}-\\mk{p}{(a_{2}(x)\\kypdprime+a_{1}(x)\\kypprime+a_{0}(x)\\kyp)}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "dd": [
+         "z",
+         "p"
+        ],
+        "d": [
+         "z",
+         "p"
+        ],
+        "v": [
+         "z",
+         "p"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{a_{2}(x)(z-\\kyp)^{\\prime\\prime}+a_{1}(x){(z-\\kyp)}^{\\prime}+a_{0}(x)(z-\\kyp)}=\\mk{z}{\\krfn(x)}-\\mk{p}{\\krfn(x)}",
+       "uses": [
+        0,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{a_{2}(x)(z-\\kyp)^{\\prime\\prime}+a_{1}(x){(z-\\kyp)}^{\\prime}+a_{0}(x)(z-\\kyp)}=\\mk{n}{0}",
+       "uses": [],
+       "map": {
+        "z": "n",
+        "p": "n"
+       }
+      }
+     ],
+     "src": "17.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "Every solution of the complementary equation can be written $c_{1}\\kyone(x)+c_{2}\\kytwo(x)$ for some constants $c_{1}$ and $c_{2}.$",
+       "src": "17.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{a_{2}(x)(z-\\kyp)^{\\prime\\prime}+a_{1}(x){(z-\\kyp)}^{\\prime}+a_{0}(x)(z-\\kyp)}=\\mk{n}{0}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{z(x)}\\mk{p}{-\\kyp(x)}=\\mk{c}{c_{1}\\kyone(x)+c_{2}\\kytwo(x)}",
+       "uses": [
+        1
+       ],
+       "cap": "The line before says $z-\\kyp$ solves the complementary equation."
+      },
+      {
+       "tex": "\\mk{v}{z(x)}=\\mk{c}{c_{1}\\kyone(x)+c_{2}\\kytwo(x)}+\\mk{p}{\\kyp(x)}",
+       "uses": []
+      }
+     ],
+     "src": "17.2"
+    }
+   ]
+  },
+  {
+   "id": "variation-of-parameters",
+   "what": "the system of variation of parameters",
+   "source": "Calculus, 17.2 Nonhomogeneous Linear Equations, Variation of Parameters",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The derivative of a product: $(fg)^{\\prime}=f^{\\prime}g+fg^{\\prime}.$",
+       "src": "3.3, Product Rule"
+      },
+      {
+       "text": "The derivative of a sum is the sum of the derivatives.",
+       "src": "3.3, Sum Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyp}=\\mk{a}{\\kufn\\kyone}+\\mk{b}{\\kv\\kytwo}",
+      "uses": [],
+      "src": "17.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kypprime}=\\mk{a}{\\kuprime\\kyone+\\kufn\\kyoneprime}+\\mk{b}{\\kvprime\\kytwo+\\kv\\kytwoprime}",
+       "uses": [
+        0,
+        1
+       ]
+      }
+     ],
+     "src": "17.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The derivative of a product: $(fg)^{\\prime}=f^{\\prime}g+fg^{\\prime}.$",
+       "src": "3.3, Product Rule"
+      },
+      {
+       "text": "The derivative of a sum is the sum of the derivatives.",
+       "src": "3.3, Sum Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kypprime}=\\mk{a}{\\kuprime\\kyone+\\kufn\\kyoneprime}+\\mk{b}{\\kvprime\\kytwo+\\kv\\kytwoprime}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kypprime}=\\mk{g}{(\\kuprime\\kyone+\\kvprime\\kytwo)}+\\mk{h}{(\\kufn\\kyoneprime+\\kv\\kytwoprime)}",
+       "uses": [],
+       "map": {
+        "a": [
+         "g",
+         "h"
+        ],
+        "b": [
+         "g",
+         "h"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\kypdprime}=\\mk{g}{{(\\kuprime\\kyone+\\kvprime\\kytwo)}^{\\prime}}+\\mk{h}{\\kuprime\\kyoneprime+\\kufn\\kyonedprime+\\kvprime\\kytwoprime+\\kv\\kytwodprime}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "The first group is kept whole, its derivative left unexpanded."
+      }
+     ],
+     "src": "17.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kyp=\\kufn\\kyone+\\kv\\kytwo",
+       "src": "17.2"
+      },
+      {
+       "text": "$\\kyone$ and $\\kytwo$ solve the complementary equation $\\kydprime+p\\kyprime+q\\kyfn=0.$",
+       "src": "17.2"
+      },
+      {
+       "text": "$\\kyp$ is to solve $\\kydprime+p\\kyprime+q\\kyfn=\\krfn(x).$",
+       "src": "17.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kypdprime+p\\kypprime+q\\kyp}=\\mk{ydd}{\\kypdprime}+p\\mk{yd}{\\kypprime}+q\\mk{y}{\\kyp}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kypdprime+p\\kypprime+q\\kyp}=\\mk{ydd}{[{(\\kuprime\\kyone+\\kvprime\\kytwo)}^{\\prime}+\\kuprime\\kyoneprime+\\kufn\\kyonedprime+\\kvprime\\kytwoprime+\\kv\\kytwodprime]}+p\\mk{yd}{[\\kuprime\\kyone+\\kufn\\kyoneprime+\\kvprime\\kytwo+\\kv\\kytwoprime]}+q\\mk{y}{[\\kufn\\kyone+\\kv\\kytwo]}",
+       "uses": [
+        0,
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kypdprime+p\\kypprime+q\\kyp}=\\mk{u}{\\kufn[\\kyonedprime+p\\kyoneprime+q\\kyone]}+\\mk{v}{\\kv[\\kytwodprime+p\\kytwoprime+q\\kytwo]}+\\mk{g1}{{(\\kuprime\\kyone+\\kvprime\\kytwo)}^{\\prime}}+\\mk{g2}{p(\\kuprime\\kyone+\\kvprime\\kytwo)}+\\mk{g3}{(\\kuprime\\kyoneprime+\\kvprime\\kytwoprime)}",
+       "uses": [],
+       "map": {
+        "ydd": [
+         "u",
+         "v",
+         "g1",
+         "g3"
+        ],
+        "yd": [
+         "u",
+         "v",
+         "g2"
+        ],
+        "y": [
+         "u",
+         "v"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\kypdprime+p\\kypprime+q\\kyp}=\\mk{g1}{{(\\kuprime\\kyone+\\kvprime\\kytwo)}^{\\prime}}+\\mk{g2}{p(\\kuprime\\kyone+\\kvprime\\kytwo)}+\\mk{g3}{(\\kuprime\\kyoneprime+\\kvprime\\kytwoprime)}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{g1}{{(\\kuprime\\kyone+\\kvprime\\kytwo)}^{\\prime}}+\\mk{g2}{p(\\kuprime\\kyone+\\kvprime\\kytwo)}+\\mk{g3}{(\\kuprime\\kyoneprime+\\kvprime\\kytwoprime)}=\\mk{L}{\\krfn(x)}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "17.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kuprime\\kyone+\\kvprime\\kytwo=0",
+       "src": "17.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g1}{{(\\kuprime\\kyone+\\kvprime\\kytwo)}^{\\prime}}+\\mk{g2}{p(\\kuprime\\kyone+\\kvprime\\kytwo)}+\\mk{g3}{(\\kuprime\\kyoneprime+\\kvprime\\kytwoprime)}=\\mk{L}{\\krfn(x)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g1}{{(0)}^{\\prime}}+\\mk{g2}{p(0)}+\\mk{g3}{(\\kuprime\\kyoneprime+\\kvprime\\kytwoprime)}=\\mk{L}{\\krfn(x)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{g3}{\\kuprime\\kyoneprime+\\kvprime\\kytwoprime}=\\mk{L}{\\krfn(x)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{\\kuprime\\kyone+\\kvprime\\kytwo=0},\\quad \\mk{g3}{\\kuprime\\kyoneprime+\\kvprime\\kytwoprime}=\\mk{L}{\\krfn(x)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "17.2"
+    }
+   ]
+  }
+ ]
 }

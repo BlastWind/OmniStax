@@ -35,3 +35,7 @@ None: the Integral Calculator sheet is the CAS of the section.
 ## Wanted at chapter level
 
 - No forms. No variables beyond chapter-level defaults.
+
+## Derivations
+
+- Example 7.38 · score 3 · not built: a printed check that two answers agree, under the bar and every line printed

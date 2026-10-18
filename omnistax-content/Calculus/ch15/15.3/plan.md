@@ -52,3 +52,8 @@ None: the Riemann boxes in polar form, the rays of the general region and the vo
 - forms: `eq-polar-subrectangle-area` → `15.3-subrectangle-area`; `eq-double-integral-polar-rectangle` → `15.3-fs-id1167793270734`; `eq-polar-iterated-integral`, `eq-polar-double-integral-conversion` → `15.3-polar-iterated`; `eq-general-polar-region` → `15.3-fs-id1167793367134`; `eq-polar-volume`, `eq-polar-area-double` → `15.3-polar-areas-volumes`.
 - variables of 15.3 anchored at build.
 - Review 429, 431 placed here.
+
+## Derivations
+
+- Polar Rectangular Regions of Integration, ‘the area of the polar subrectangle R_ij is …’ · score 2 · built as drv-polar-subrectangle-area, the area ΔA = r*ΔrΔθ and the thin box’s volume; the double Riemann sum and its limit are the book’s definitions and stay, as does the one-line substitution into ∬f(r cos θ, r sin θ) r dr dθ
+- Example 15.32, Analysis: the volume of an arbitrary cone · score 3 · not built: three hidden moves of the section’s own method, under the bar

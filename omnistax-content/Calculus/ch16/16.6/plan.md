@@ -47,3 +47,12 @@ Example 16.64's θ bound printed π; Figure 16.69's caption "0 ≤ x < 2π"; "sc
 
 - forms: `eq-parametric-surface` → `16.6-parametric`; `eq-tangent-vectors-of-a-surface` → `16.6-grid-term`; `eq-surface-area-parametric` → `16.6-fs-id1167793991244`; `eq-scalar-surface-integral` → `16.6-fs-id1167794160159`; `eq-scalar-surface-integral-calculation` → `16.6-fs-id1167793757749`; `eq-orientation-normal` → `16.6-orientation-term`; `eq-mass-flow-rate` → `16.6-mass-flux-term`; `eq-flux-integral` → `16.6-fs-id1167793385095`; `eq-flux-integral-calculation` → `16.6-fs-id1167793617076`; `eq-heat-flow` → `16.6-heat-flow-term`.
 - variables: r_vec_prime of 16.6 added.
+
+## Derivations
+
+- Surface Area of a Parametric Surface, ‘the area of the parallelogram used to approximate the area of S_ij’ · score 2 · built as drv-area-of-a-surface-piece
+- Example 16.62 · Calculating Surface Area (the lateral area of a cone) · score 0 · not built: a worked example that substitutes into Equation 16.18
+- Example 16.63 · Calculating Surface Area (the sphere) · score 1 · not built: a worked example that substitutes into Equation 16.18
+- Surface Integral of a Scalar-Valued Function, ‘we approximate surface areas ΔS_ij with small pieces of a tangent plane’ · score 0 · built as drv-scalar-surface-integral, ending on Equation 16.19, which now lives in it
+- Orientation of a Surface, ‘A portion of the graph of any smooth function z = f(x,y) is also orientable’ · score 2 · built as drv-upward-normal-of-a-graph
+- Surface Integral of a Vector Field, the block before Equation 16.21 · score 0 · built as drv-flux-integral-in-parameters; Equation 16.21 is the book’s own restatement and stays as printed

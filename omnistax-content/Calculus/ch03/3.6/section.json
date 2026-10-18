@@ -975,5 +975,436 @@
    "kind": "correction",
    "html": "The hint points to Example 3.56; the example that uses functional values, the guide here, is Example 3.57."
   }
+ ],
+ "derivations": [
+  {
+   "id": "chain-rule-special-case",
+   "what": "a special case of the chain rule",
+   "source": "Calculus, 3.6 The Chain Rule, Deriving the Chain Rule",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kfprime(a)=\\lim_{x\\to a}\\frac{\\kf(x)-\\kf(a)}{x-a}",
+       "src": "(3.5)"
+      },
+      {
+       "tex": "\\frac{d}{dx}x^{n}=nx^{n-1}",
+       "src": "3.3, The Power Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{x^{3}-a^{3}}{x-a}}=\\mk{R}{\\frac{d}{dx}{(x^{3})}_{x=a}}",
+      "uses": [
+       0
+      ],
+      "src": "3.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{x^{3}-a^{3}}{x-a}}=\\mk{R}{3a^{2}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "3.6"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "u=x^{3}"
+      },
+      {
+       "text": "As $x\\to a,$ $u\\to a^{3}.$"
+      },
+      {
+       "tex": "\\kfprime(a)=\\lim_{x\\to a}\\frac{\\kf(x)-\\kf(a)}{x-a}",
+       "src": "(3.5)"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\sin x)=\\cos x",
+       "src": "(3.11)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\sin (x^{3})-\\sin (a^{3})}{x^{3}-a^{3}}}=\\mk{R}{\\lim_{u\\to a^{3}}\\frac{\\sin u-\\sin (a^{3})}{u-a^{3}}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "3.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\sin (x^{3})-\\sin (a^{3})}{x^{3}-a^{3}}}=\\mk{R}{\\frac{d}{du}{(\\sin u)}_{u=a^{3}}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\sin (x^{3})-\\sin (a^{3})}{x^{3}-a^{3}}}=\\mk{R}{\\cos (a^{3})}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "3.6"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kh(x)=\\sin (x^{3})"
+      },
+      {
+       "text": "The limit of a product is the product of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{hp}{\\khprime(a)}=\\mk{lim}{\\lim_{x\\to a}}\\frac{\\mk{n}{\\kh(x)-\\kh(a)}}{\\mk{d}{x-a}}",
+      "uses": [],
+      "src": "(3.5)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{hp}{\\khprime(a)}=\\mk{lim}{\\lim_{x\\to a}}\\frac{\\mk{n}{\\sin (x^{3})-\\sin (a^{3})}}{\\mk{d}{x-a}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{hp}{\\khprime(a)}=\\mk{lim}{\\lim_{x\\to a}}\\mk{p}{\\frac{\\sin (x^{3})-\\sin (a^{3})}{x^{3}-a^{3}}}\\cdot \\mk{q}{\\frac{x^{3}-a^{3}}{x-a}}",
+       "uses": [],
+       "map": {
+        "n": "p",
+        "d": "q"
+       }
+      },
+      {
+       "tex": "\\mk{hp}{\\khprime(a)}=\\mk{p}{\\lim_{x\\to a}\\frac{\\sin (x^{3})-\\sin (a^{3})}{x^{3}-a^{3}}}\\cdot \\mk{q}{\\lim_{x\\to a}\\frac{x^{3}-a^{3}}{x-a}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "cap": "Both limits exist, as the two results before show, so the law applies.",
+       "map": {
+        "lim": [
+         "p",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{hp}{\\khprime(a)}=\\mk{p}{\\cos (a^{3})}\\cdot \\mk{q}{3a^{2}}",
+       "uses": [
+        2,
+        3
+       ]
+      }
+     ],
+     "src": "3.6"
+    }
+   ]
+  },
+  {
+   "id": "chain-rule-cosine",
+   "what": "the derivative of the cosine of a function",
+   "source": "Calculus, 3.6 The Chain Rule, Example 3.51",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}(\\cos x)=-\\sin x",
+       "src": "(3.12)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{c}{\\cos x}",
+      "uses": [],
+      "src": "Example 3.51"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{c}{-\\sin x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(\\kg(x))}=\\mk{c}{-\\sin (\\kg(x))}",
+       "uses": []
+      }
+     ],
+     "src": "Example 3.51"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\kh(x)=\\cos (\\kg(x))$ is $\\kf(\\kg(x))$ with $\\kf(x)=\\cos x.$"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{hp}{\\khprime(x)}=\\mk{fp}{\\kfprime(\\kg(x))}\\mk{gp}{\\kgprime(x)}",
+      "uses": [
+       1
+      ],
+      "src": "(3.17)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{hp}{\\khprime(x)}=\\mk{fp}{-\\sin (\\kg(x))}\\mk{gp}{\\kgprime(x)}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "Example 3.51"
+    }
+   ]
+  },
+  {
+   "id": "chain-rule-three-functions",
+   "what": "the chain rule for a composition of three functions",
+   "source": "Calculus, 3.6 The Chain Rule, Composites of Three or More Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The chain rule: the derivative of $\\kf(\\kg(x))$ is $\\kfprime(\\kg(x))\\kgprime(x).$",
+       "src": "(3.17)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k}{\\kk(x)}=\\mk{r}{\\kh(\\kf(\\kg(x)))}",
+      "uses": [],
+      "src": "3.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k}{\\kkprime(x)}=\\mk{r}{\\frac{d}{dx}(\\kh(\\kf(\\kg(x))))}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{k}{\\kkprime(x)}=\\mk{h}{\\khprime(\\kf(\\kg(x)))}\\cdot \\mk{fg}{\\frac{d}{dx}\\kf(\\kg(x))}",
+       "uses": [
+        0
+       ],
+       "cap": "The chain rule with $\\kh$ as the outer function and $\\kf(\\kg(x))$ as the inner one.",
+       "map": {
+        "r": [
+         "h",
+         "fg"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{k}{\\kkprime(x)}=\\mk{h}{\\khprime(\\kf(\\kg(x)))}\\mk{f}{\\kfprime(\\kg(x))}\\mk{g}{\\kgprime(x)}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "fg": [
+         "f",
+         "g"
+        ]
+       }
+      }
+     ],
+     "src": "3.6, Chain Rule for a Composition of Three Functions",
+     "note": "The book prints $\\frac{d}{dx}(h(f(g(x)))$ with a closing parenthesis missing, and the result as $k'(x)=h'(f(g(x))f'(g(x))g'(x)),$ with the closing parenthesis of $h'$ misplaced after $g'(x).$"
+    }
+   ]
+  },
+  {
+   "id": "chain-rule",
+   "what": "the chain rule",
+   "source": "Calculus, 3.6 The Chain Rule, Composites of Three or More Functions, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "y=\\kg(x),\\quad b=\\kg(a)"
+      },
+      {
+       "tex": "\\lim_{x\\to a}\\kg(x)=\\kg(a)",
+       "src": "3.2, Differentiability Implies Continuity"
+      },
+      {
+       "text": "$\\kg(x)\\ne \\kg(a)$ for $x\\ne a$ in some open interval containing $a.$"
+      },
+      {
+       "tex": "\\kfprime(b)=\\lim_{y\\to b}\\frac{\\kf(y)-\\kf(b)}{y-b}",
+       "src": "(3.5)"
+      },
+      {
+       "text": "$\\kg$ is differentiable at $a$ and $\\kf$ is differentiable at $\\kg(a).$",
+       "src": "3.6, The Chain Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kf(\\kg(x))-\\kf(\\kg(a))}{\\kg(x)-\\kg(a)}}=\\mk{R}{\\lim_{y\\to b}\\frac{\\kf(y)-\\kf(b)}{y-b}}",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "src": "3.6",
+      "why": "As $x\\to a,$ $y=\\kg(x)$ tends to $\\kg(a)=b,$ since $\\kg$ is continuous at $a,$ and $y\\ne b$ while $x\\ne a.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kf(\\kg(x))-\\kf(\\kg(a))}{\\kg(x)-\\kg(a)}}=\\mk{R}{\\kfprime(b)}",
+       "uses": [
+        3,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kf(\\kg(x))-\\kf(\\kg(a))}{\\kg(x)-\\kg(a)}}=\\mk{R}{\\kfprime(\\kg(a))}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "3.6"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kh(x)=\\kf(\\kg(x))",
+       "src": "3.6, The Chain Rule"
+      },
+      {
+       "text": "$\\kg(x)\\ne \\kg(a)$ for $x\\ne a$ in some open interval containing $a.$"
+      },
+      {
+       "text": "The limit of a product is the product of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kgprime(a)=\\lim_{x\\to a}\\frac{\\kg(x)-\\kg(a)}{x-a}",
+       "src": "(3.5)"
+      },
+      {
+       "text": "$\\kg$ is differentiable at $a$ and $\\kf$ is differentiable at $\\kg(a).$",
+       "src": "3.6, The Chain Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{hp}{\\khprime(a)}=\\mk{lim}{\\lim_{x\\to a}}\\frac{\\mk{n}{\\kh(x)-\\kh(a)}}{\\mk{d}{x-a}}",
+      "uses": [],
+      "src": "(3.5)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{hp}{\\khprime(a)}=\\mk{lim}{\\lim_{x\\to a}}\\frac{\\mk{n}{\\kf(\\kg(x))-\\kf(\\kg(a))}}{\\mk{d}{x-a}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{hp}{\\khprime(a)}=\\mk{lim}{\\lim_{x\\to a}}\\mk{p}{\\frac{\\kf(\\kg(x))-\\kf(\\kg(a))}{\\kg(x)-\\kg(a)}}\\cdot \\mk{q}{\\frac{\\kg(x)-\\kg(a)}{x-a}}",
+       "uses": [
+        1
+       ],
+       "cap": "Multiplying and dividing by $\\kg(x)-\\kg(a)$ is allowed because it is not zero for $x$ near $a.$",
+       "map": {
+        "n": "p",
+        "d": "q"
+       }
+      },
+      {
+       "tex": "\\mk{hp}{\\khprime(a)}=\\mk{p}{\\lim_{x\\to a}\\frac{\\kf(\\kg(x))-\\kf(\\kg(a))}{\\kg(x)-\\kg(a)}}\\cdot \\mk{q}{\\lim_{x\\to a}\\frac{\\kg(x)-\\kg(a)}{x-a}}",
+       "uses": [
+        2,
+        3,
+        5
+       ],
+       "cap": "Both limits exist, the second because $\\kg$ is differentiable at $a,$ so the law applies.",
+       "map": {
+        "lim": [
+         "p",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{hp}{\\khprime(a)}=\\mk{p}{\\kfprime(\\kg(a))}\\mk{q}{\\kgprime(a)}",
+       "uses": [
+        3,
+        4
+       ]
+      }
+     ],
+     "num": "(3.17)",
+     "src": "3.6, The Chain Rule"
+    }
+   ]
+  },
+  {
+   "id": "chain-rule-leibniz",
+   "what": "the chain rule in Leibniz’s notation",
+   "source": "Calculus, 3.6 The Chain Rule, The Chain Rule Using Leibniz’s Notation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "u=\\kg(x),\\quad y=\\kh(x)=\\kf(u)"
+      },
+      {
+       "tex": "\\khprime(x)=\\kdydx"
+      },
+      {
+       "tex": "\\kfprime(\\kg(x))=\\kfprime(u)=\\kdydu"
+      },
+      {
+       "tex": "\\kgprime(x)=\\kdudx"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{hp}{\\khprime(x)}=\\mk{fp}{\\kfprime(\\kg(x))}\\mk{gp}{\\kgprime(x)}",
+      "uses": [
+       0
+      ],
+      "src": "(3.17)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{hp}{\\kdydx}=\\mk{fp}{\\kfprime(\\kg(x))}\\mk{gp}{\\kgprime(x)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{hp}{\\kdydx}=\\mk{fp}{\\kdydu}\\mk{gp}{\\kgprime(x)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{hp}{\\kdydx}=\\mk{fp}{\\kdydu}\\cdot \\mk{gp}{\\kdudx}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "3.6, Chain Rule Using Leibniz’s Notation"
+    }
+   ]
+  }
  ]
 }

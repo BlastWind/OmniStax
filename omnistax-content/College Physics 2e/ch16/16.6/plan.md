@@ -144,3 +144,9 @@ two-dimensional, with no 3D, and their labels on.
 **Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-turntable` draws 8 units to the centimetre rather than 9, so the widest turntable and its ω stay clear of the lights above them, and its floor marks step apart at the smallest radius. `sim-circle-triangles` hands its seven names (P, X, x, the height, θ, v_max and v) to the labeller, which sets each beside its thing and steps it out with a leader where the slot is taken, at 20 to 22 px in place of 17 and 18; before they crowded and overlapped at the smallest radius.
 
 **Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-turntable` (value add, manim 1): a choice turns the turntable from above to edge-on over two seconds; the circle closes into a line and the ball is seen moving back and forth directly above its shadow, the relation the section states. Motion unchanged: the physical clock runs throughout.
+
+## Derivations
+
+- The projection of uniform circular motion, $x(t) = X\cos(2\pi t/T)$ (printed block) · score 2 · built as drv-projection-position
+- The speed from similar triangles (printed block) · score 1 · built as drv-shm-speed-from-circle: a second route to 16.5's result, by geometry rather than energy, so not a restatement
+- The period from the circle, $T = 2\pi\sqrt{m/k}$ (printed block) · score 3 · built as drv-shm-period-from-circle: two nodes, $X/v_\text{max}$ from 16.5 and the time for one revolution

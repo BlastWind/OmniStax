@@ -1084,5 +1084,544 @@
    ]
   }
  ],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "properties-of-the-natural-logarithm",
+   "what": "the properties of the natural logarithm",
+   "source": "Calculus, 6.7 Integrals, Exponential Functions, and Logarithms, Properties of the Natural Logarithm",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\int_a^{a}\\kf(x)dx=0",
+       "src": "5.2, Properties of the Definite Integral"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\ln1}=\\mk{i}{\\int_1^{1}\\frac{1}{t}dt}",
+      "src": "(6.24)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\ln1}=\\mk{i}{0}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "6.7, Properties of the Natural Logarithm"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\int_a^{c}\\kf(x)dx+\\int_c^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      },
+      {
+       "text": "Let $u=t/a.$ Then $du=(1/a)dt;$ when $t=a,$ $u=1,$ and when $t=ab,$ $u=b.$"
+      },
+      {
+       "text": "Substitution with definite integrals: $\\int_{a}^{b}\\kf(\\kg(x))\\kgprime(x)dx=\\int_{\\kg(a)}^{\\kg(b)}\\kf(u)du.$",
+       "src": "5.5, Substitution with Definite Integrals"
+      },
+      {
+       "tex": "\\ln x=\\int_1^{x}\\frac{1}{t}dt",
+       "src": "(6.24)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\ln(ab)}=\\mk{i}{\\int_1^{ab}\\frac{1}{t}dt}",
+      "src": "(6.24)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\ln(ab)}=\\mk{p}{\\int_1^{a}\\frac{1}{t}dt}+\\mk{q}{\\int_a^{ab}\\frac{1}{t}dt}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "i": [
+         "p",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\ln(ab)}=\\mk{p}{\\int_1^{a}\\frac{1}{t}dt}+\\mk{q}{\\int_a^{ab}\\frac{a}{t}\\cdot \\frac{1}{a}dt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\ln(ab)}=\\mk{p}{\\int_1^{a}\\frac{1}{t}dt}+\\mk{q}{\\int_1^{b}\\frac{1}{u}du}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\ln(ab)}=\\mk{p}{\\ln a}+\\mk{q}{\\ln b}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "6.7, Properties of the Natural Logarithm"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}\\ln x=\\frac{1}{x}",
+       "src": "6.7, Derivative of the Natural Logarithm"
+      },
+      {
+       "text": "The chain rule: $\\frac{d}{dx}\\kf(\\kg(x))=\\kfprime(\\kg(x))\\kgprime(x).$",
+       "src": "3.6, The Chain Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(x^{m/n})=\\frac{m}{n}x^{(m/n)-1}",
+       "src": "(3.21)"
+      },
+      {
+       "text": "$r$ is a rational number.",
+       "src": "6.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\frac{d}{dx}\\ln(x^{r})}=\\mk{a}{\\frac{1}{x^{r}}}\\mk{b}{\\frac{d}{dx}(x^{r})}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "The chain rule, with the derivative $\\frac{1}{u}$ of $\\ln u$ taken at $u=x^{r}.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}\\ln(x^{r})}=\\frac{\\mk{b}{rx^{r-1}}}{\\mk{a}{x^{r}}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}\\ln(x^{r})}=\\mk{R}{\\frac{r}{x}}",
+       "uses": [],
+       "map": {
+        "a": "R",
+        "b": "R"
+       }
+      }
+     ],
+     "src": "6.7, Properties of the Natural Logarithm"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The constant multiple rule: $\\frac{d}{dx}(c\\kf(x))=c\\frac{d}{dx}(\\kf(x)).$",
+       "src": "3.3, Sum, Difference, and Constant Multiple Rules"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\ln x=\\frac{1}{x}",
+       "src": "6.7, Derivative of the Natural Logarithm"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\frac{d}{dx}(r\\;\\ln x)}=\\mk{r}{r}\\mk{b}{\\frac{d}{dx}\\ln x}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(r\\;\\ln x)}=\\mk{r}{r}\\mk{b}{\\frac{1}{x}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(r\\;\\ln x)}=\\mk{R}{\\frac{r}{x}}",
+       "uses": [],
+       "map": {
+        "r": "R",
+        "b": "R"
+       }
+      }
+     ],
+     "src": "6.7, Properties of the Natural Logarithm"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      },
+      {
+       "text": "If $\\kf$ and $\\kg$ are differentiable over an interval $\\kI$ and $\\kfprime(x)=\\kgprime(x)$ for all $x\\in \\kI,$ then $\\kf(x)=\\kg(x)+C$ for some constant $C.$",
+       "src": "4.4, Corollary 2: Constant Difference Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{dx}\\ln(x^{r})}=\\mk{R}{\\frac{d}{dx}(r\\;\\ln x)}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "Both derivatives are $\\frac{r}{x}.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\ln(x^{r})}=\\mk{R}{r\\;\\ln x}+\\mk{C}{C}",
+       "uses": [
+        2
+       ],
+       "cap": "Since the derivatives of these two functions are the same, they must differ by a constant."
+      }
+     ],
+     "src": "6.7, Properties of the Natural Logarithm"
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\ln(x^{r})}=\\mk{R}{r\\;\\ln x}+\\mk{C}{C}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\ln(1^{r})}=\\mk{R}{r\\;\\ln(1)}+\\mk{C}{C}",
+       "uses": [],
+       "cap": "Take $x=1.$"
+      },
+      {
+       "tex": "\\mk{L}{0}=\\mk{R}{r(0)}+\\mk{C}{C}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{C}{C}=\\mk{L}{0}",
+       "uses": [],
+       "map": {
+        "R": "L"
+       }
+      }
+     ],
+     "src": "6.7, Properties of the Natural Logarithm"
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "step": 5
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\ln(x^{r})}=\\mk{R}{r\\;\\ln x}+\\mk{C}{C}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\ln(x^{r})}=\\mk{R}{r\\;\\ln x}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "6.7, Properties of the Natural Logarithm"
+    }
+   ]
+  },
+  {
+   "id": "existence-of-e",
+   "what": "the existence and uniqueness of $e$",
+   "source": "Calculus, 6.7 Integrals, Exponential Functions, and Logarithms, Defining the Number e",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\int_a^{c}\\kf(x)dx+\\int_c^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      },
+      {
+       "text": "If $m$ and $M$ are constants such that $m\\le \\kf(x)\\le M$ for $a\\le x\\le b,$ then $m(b-a)\\le\\int_{a}^{b}\\kf(x)dx\\le M(b-a).$",
+       "src": "5.2, Comparison Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\ln4}=\\mk{i}{\\int_1^{4}\\frac{1}{t}dt}",
+      "src": "(6.24)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\ln4}=\\mk{a}{\\int_1^{2}\\frac{1}{t}dt}+\\mk{b}{\\int_2^{3}\\frac{1}{t}dt}+\\mk{c}{\\int_3^{4}\\frac{1}{t}dt}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "i": [
+         "a",
+         "b",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\ln4}\\ge \\mk{a}{\\frac{1}{2}}+\\mk{b}{\\frac{1}{3}}+\\mk{c}{\\frac{1}{4}}",
+       "uses": [
+        1
+       ],
+       "cap": "On each piece $\\frac{1}{t}$ is at least its value at the right end, and each piece has length $1.$"
+      },
+      {
+       "tex": "\\mk{l}{\\ln4}\\ge \\mk{a}{\\frac{13}{12}}",
+       "uses": [],
+       "map": {
+        "b": "a",
+        "c": "a"
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\ln4}>\\mk{a}{1}",
+       "uses": []
+      }
+     ],
+     "src": "6.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The function $\\ln x$ is differentiable; therefore, it is continuous.",
+       "src": "6.7, Corollary to the Derivative of the Natural Logarithm"
+      },
+      {
+       "text": "If $\\kf$ is continuous over $[a,b]$ and $z$ is any real number between $\\kf(a)$ and $\\kf(b),$ then there is a number $c$ in $[a,b]$ satisfying $\\kf(c)=z.$",
+       "src": "2.4, The Intermediate Value Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\ln1}=\\mk{z}{0}",
+      "src": "6.7, Properties of the Natural Logarithm",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\ln1}=\\mk{z}{0}<\\mk{o}{1}<\\mk{b}{\\ln4}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\ln e}=\\mk{o}{1},\\quad 1<e<4",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "The Intermediate Value Theorem over $[1,4]:$ the value $1$ lies between $\\ln1$ and $\\ln4.$"
+      }
+     ],
+     "src": "6.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "Suppose $b>0$ also has $\\ln b=1.$"
+      },
+      {
+       "text": "$\\ln x$ is increasing for $x>0.$",
+       "src": "6.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\ln b}=\\mk{o}{1}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\ln b}=\\mk{o}{\\ln e}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{b}=\\mk{o}{e}",
+       "uses": [
+        2
+       ],
+       "cap": "An increasing function never takes the same value twice."
+      }
+     ],
+     "src": "6.7"
+    }
+   ]
+  },
+  {
+   "id": "product-of-exponentials",
+   "what": "the law $e^{p}e^{q}=e^{p+q}$",
+   "source": "Calculus, 6.7 Integrals, Exponential Functions, and Logarithms, Properties of the Exponential Function",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\ln(ab)=\\ln a+\\ln b",
+       "src": "6.7, Properties of the Natural Logarithm"
+      },
+      {
+       "tex": "\\ln(e^{x})=x",
+       "src": "(6.26)"
+      },
+      {
+       "text": "$\\ln x$ is one-to-one.",
+       "src": "6.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\ln(e^{p}e^{q})}=\\mk{p}{\\ln(e^{p})}+\\mk{q}{\\ln(e^{q})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\ln(e^{p}e^{q})}=\\mk{p}{p}+\\mk{q}{q}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\ln(e^{p}e^{q})}=\\mk{R}{\\ln(e^{p+q})}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "p": "R",
+        "q": "R"
+       }
+      },
+      {
+       "tex": "\\mk{L}{e^{p}e^{q}}=\\mk{R}{e^{p+q}}",
+       "uses": [
+        2
+       ],
+       "cap": "A one-to-one function gives equal values only at equal inputs."
+      }
+     ],
+     "src": "6.7, Properties of the Exponential Function"
+    }
+   ]
+  },
+  {
+   "id": "derivative-of-the-exponential-function",
+   "what": "the derivative of $e^{x}$",
+   "source": "Calculus, 6.7 Integrals, Exponential Functions, and Logarithms, Properties of the Exponential Function",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Let $y=e^{x}.$"
+      },
+      {
+       "tex": "\\ln(e^{x})=x",
+       "src": "(6.26)"
+      },
+      {
+       "text": "The chain rule: $\\frac{d}{dx}\\kf(\\kg(x))=\\kfprime(\\kg(x))\\kgprime(x).$",
+       "src": "3.6, The Chain Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\ln x=\\frac{1}{x}",
+       "src": "6.7, Derivative of the Natural Logarithm"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\ln y}=\\mk{x}{x}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{d}{dx}\\ln y}=\\mk{x}{\\frac{d}{dx}x}",
+       "uses": [],
+       "cap": "Differentiate both sides implicitly, with $y$ a function of $x.$"
+      },
+      {
+       "tex": "\\mk{i}{\\frac{1}{y}}\\;\\mk{l}{\\kdydx}=\\mk{x}{1}",
+       "uses": [
+        2,
+        3
+       ],
+       "map": {
+        "l": [
+         "i",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\kdydx}=\\mk{i}{y}",
+       "uses": [],
+       "map": {
+        "x": "i"
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dx}e^{x}}=\\mk{i}{e^{x}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "6.7, Properties of the Exponential Function"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "If $\\kF$ is an antiderivative of $\\kf,$ then $\\int\\kf(x)dx=\\kF(x)+C.$",
+       "src": "4.10, Indefinite Integrals"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dx}e^{x}}=\\mk{e}{e^{x}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\int e^{x}dx}=\\mk{e}{e^{x}+C}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "6.7, Properties of the Exponential Function"
+    }
+   ]
+  }
+ ]
 }

@@ -1207,5 +1207,46 @@
    "kind": "correction",
    "html": "With $t\\ge 1,$ $x=t^{n}\\ge 1,$ so the domain is $x\\in [1,\\infty ),$ as in exercise 33."
   }
+ ],
+ "derivations": [
+  {
+   "id": "cycloid",
+   "what": "the parametric equations of a cycloid",
+   "source": "Calculus, 11.1 Parametric Equations, Cycloids and Other Parametric Curves",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "x(t)=at,\\;y(t)=a",
+       "src": "11.1"
+      },
+      {
+       "tex": "x(t)=-a\\;\\sin t,\\;y(t)=-a\\;\\cos t",
+       "src": "11.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{x(t)}=\\mk{xc}{at}+\\mk{xa}{(-a\\;\\sin t)},\\;\\mk{y}{y(t)}=\\mk{yc}{a}+\\mk{ya}{(-a\\;\\cos t)}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.1",
+      "why": "The ant’s position is the position of the center plus the ant’s position relative to the center."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{x(t)}=\\mk{xc}{a(t-\\sin t)},\\;\\mk{y}{y(t)}=\\mk{yc}{a(1-\\cos t)}",
+       "uses": [],
+       "map": {
+        "xa": "xc",
+        "ya": "yc"
+       }
+      }
+     ],
+     "src": "11.1"
+    }
+   ]
+  }
  ]
 }

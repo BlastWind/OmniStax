@@ -51,3 +51,9 @@ None: `sim-second-derivative-test` gives the one view the examples do not, the f
 
 - forms: `eq-discriminant` → `14.7-fs-id1167793873509`.
 - variables anchored at build. Review 397 placed here.
+
+## Derivations
+
+- Second Derivative Test, stated without proof · score 11 · not built: its proof rests on a second-order Taylor expansion in two variables, which the book never states
+- Finding Extreme Values of a Function of Two Variables, "a direct consequence of the extreme value theorem and Fermat's theorem" · score 3 · not built: a proof in prose with no equation to work
+- Fermat's Theorem for Functions of Two Variables, stated without proof · score 4 · not built: three hidden moves, under the four-move floor

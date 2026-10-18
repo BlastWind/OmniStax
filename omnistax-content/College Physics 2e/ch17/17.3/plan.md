@@ -299,3 +299,8 @@ the reader in place of the stick figure. The ladder, the pressure amplitude
 and the decibel ladder are unchanged.
 
 **Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-many-sources` (value add, manim 11): the readout is one line β_N = β + 10 log₁₀N = … and at N = 1 the 10 log₁₀N term fades out, leaving β_N = β. `sim-pressure-amplitude`: Δp = 0 is a special value. `sim-decibel-ladder`: β₂ carries a circle at β₁.
+
+## Derivations
+
+- Intensity from pressure amplitude, $I = (\Delta p)^2/2\rho v_\text{w}$ · score 12 if built · not built: needs the wave relations between pressure and displacement, beyond the book
+- Example 17.3, twice as intense is 3 dB higher (a "show that") · score 4 · built as drv-decibel-difference: the general $\beta_2 - \beta_1 = 10\log_{10}(I_2/I_1)$ from the definition and the log rule the example states, then the numbers; three skipped lines inserted

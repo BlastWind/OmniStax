@@ -256,3 +256,7 @@ or position: the section is about amounts of heat, not rates.
 Applied by the chapter pass (2026-09-14): the anchors are set as listed,
 except `PE_g`, whose row is dropped, since the page writes $Mgh$ and never
 $\text{PE}_\text{g}$, and a variable row names a symbol the page prints.
+
+## Derivations
+
+- Example 14.3, cold water in a hot pan · score 4 · not built: a calorimetry example worked entirely in the section's method ($Q = mc\Delta T$ and $Q_\text{cold} + Q_\text{hot} = 0$)

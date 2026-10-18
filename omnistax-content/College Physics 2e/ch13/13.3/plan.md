@@ -338,3 +338,8 @@ row, thirteen variables and nine equations, `M` on `molar-volume` as the note
 asks. No symbol row was changed.
 
 Phase 2 (2026-09-28, Claude Opus 5.5). sim-gas-molecules: the gas choice stays because the text teaches Avogadro's hypothesis; the two canvas lines now state it. sim-tire: a special on N where the tube just fills; the readout morphs V = NkT/P into P = NkT/V there, and into PV = NkT = 0 at N = 0.
+
+## Derivations
+
+- Example 13.4, tire pressure · score 0 · not built: the section's law written for two states and divided, a worked example
+- The ideal gas law in moles, $PV = nRT$ (printed block) · score 0 · built as drv-ideal-gas-law-moles: one node, multiply and divide by $N_\text{A}$, then $n = N/N_\text{A}$ and $R = N_\text{A}k$; the boxed statement of $PV = nRT$ and the value of $R$ stay

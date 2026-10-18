@@ -44,3 +44,9 @@ None beyond the folds: the Euler applet's view is `sim-euler`, the slope-field s
 ## Wanted at chapter level
 
 - Anchors: variables y_fn, y_prime, f → `8.2-creating`; T, T_prime → `8.2-creating`; L → `8.2-using`; h → `8.2-euler-theorem`. Forms: `eq-first-order-equation` → `8.2-creating`; `eq-euler-x`, `eq-euler-y` → `8.2-euler-theorem`.
+
+## Derivations
+
+- Using Direction Fields · the exact solution of $y'=3x+2y-4,$ $y(0)=1$ · score 9 · not built: stated as a fact beside Figure 8.8; working it is 8.5's integrating-factor method on one equation, which would not qualify as an example there
+- Using Direction Fields · the constant solutions of $y'=(x-3)(y^{2}-4)$ · score 0 · not built: three moves, under the bar
+- Euler's Method · from the linear approximation to Equation 8.2 · score 3 · not built: the book works two steps with numbers and states (8.2); no general chain, under the bar

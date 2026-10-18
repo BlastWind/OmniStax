@@ -165,3 +165,7 @@ behind a button on the first and on for the other two.
 **Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-pendulum-force` names its two curves with clamped `label()`s at points inside the box, Hooke's line above its visible left end and the true curve below its right end, where before both names sat on the curves. `sim-pendulum-period` names its curve in the top left corner, which the curve never reaches. `sim-measure-g` hangs its longest pendulum to y = 410, clear of the time line at 500, which the 2.000 m bob sat on before.
 
 **Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-pendulum-force` loses its Labels on/off choice (26.7): the restoring force mg sin θ is named on the canvas and every other part under the pointer. `sim-pendulum-period`: the Moon and Earth values of g are special values, and L₂ carries a dashed circle at L₁, where the two periods agree whatever the masses.
+
+## Derivations
+
+- The restoring force and period of a simple pendulum (printed block over three subsections) · score 5 · built as drv-pendulum-restoring-force ($k = mg/L$ from $F \approx -mg\theta$, $s = L\theta$ and Hooke's law, four nodes, the sandbox record's shape) and drv-pendulum-period ($T = 2\pi\sqrt{L/g}$, one node, a skipped line inserted), one per subsection

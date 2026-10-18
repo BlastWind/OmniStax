@@ -1304,5 +1304,270 @@
    "kind": "correction",
    "html": "Three terms of the key are misprinted. The $\\mathbf{j}$-components of $\\frac{d}{dt}[\\mathbf{u}'(t)\\times\\mathbf{u}(t)]$ and $\\frac{d}{dt}[\\mathbf{u}(t)\\times\\mathbf{u}'(t)]$ are $72t^{5}+24$ and $-72t^{5}-24,$ not $24+75t^{2}$ and $-24-75t^{2},$ and $\\frac{d}{dt}[\\mathbf{u}(t)\\cdot\\mathbf{u}'(t)]=720t^{8}-960t^{3}+6t^{2}+4.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "derivative-properties",
+   "what": "the product rules and constant-magnitude property of the derivative",
+   "source": "Calculus, 13.2 Calculus of Vector-Valued Functions, Properties of the Derivative of Vector-Valued Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecu(t)=\\kg(t)\\;\\kveci+\\kh(t)\\;\\kvecj"
+      },
+      {
+       "text": "A vector-valued function is differentiated component by component: if $\\kvecr(t)=\\kf(t)\\,\\kveci+\\kg(t)\\,\\kvecj$, then $\\kvecrprime(t)=\\kfprime(t)\\,\\kveci+\\kgprime(t)\\,\\kvecj$.",
+       "src": "13.2, Differentiation of Vector-Valued Functions"
+      },
+      {
+       "text": "The product rule: $\\frac{d}{dt}[\\kf(t)\\kg(t)]=\\kfprime(t)\\kg(t)+\\kf(t)\\kgprime(t)$.",
+       "src": "3.3, Product Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d}{dt}[\\kf(t)\\;\\kvecu(t)]}=\\frac{d}{dt}[\\mk{f}{\\kf(t)}(\\mk{g}{\\kg(t)\\;\\kveci}+\\mk{h}{\\kh(t)\\;\\kvecj})]",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\kf(t)\\;\\kvecu(t)]}=\\frac{d}{dt}[\\mk{g}{\\kf(t)\\kg(t)\\;\\kveci}+\\mk{h}{\\kf(t)\\kh(t)\\;\\kvecj}]",
+       "uses": [],
+       "map": {
+        "f": [
+         "g",
+         "h"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\kf(t)\\;\\kvecu(t)]}=\\mk{g}{\\frac{d}{dt}[\\kf(t)\\kg(t)]\\;\\kveci}+\\mk{h}{\\frac{d}{dt}[\\kf(t)\\kh(t)]\\;\\kvecj}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\kf(t)\\;\\kvecu(t)]}=\\mk{g}{(\\kfprime(t)\\kg(t)+\\kf(t)\\kgprime(t))\\;\\kveci}+\\mk{h}{(\\kfprime(t)\\kh(t)+\\kf(t)\\khprime(t))\\;\\kvecj}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\kf(t)\\;\\kvecu(t)]}=\\mk{a}{\\kfprime(t)(\\kg(t)\\;\\kveci+\\kh(t)\\;\\kvecj)}+\\mk{b}{\\kf(t)(\\kgprime(t)\\;\\kveci+\\khprime(t)\\;\\kvecj)}",
+       "uses": [],
+       "map": {
+        "g": [
+         "a",
+         "b"
+        ],
+        "h": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\kf(t)\\;\\kvecu(t)]}=\\mk{a}{\\kfprime(t)\\;\\kvecu(t)}+\\mk{b}{\\kf(t)\\;\\kvecuprime(t)}",
+       "uses": [
+        0,
+        1
+       ]
+      }
+     ],
+     "src": "13.2, Properties of the Derivative of Vector-Valued Functions, iii"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecr(t)=f_{1}(t)\\;\\kveci+g_{1}(t)\\;\\kvecj,\\quad \\kvecu(t)=f_{2}(t)\\;\\kveci+g_{2}(t)\\;\\kvecj"
+      },
+      {
+       "text": "The dot product is the sum of the products of the components: $(a_{1}\\kveci+a_{2}\\kvecj)\\cdot(b_{1}\\kveci+b_{2}\\kvecj)=a_{1}b_{1}+a_{2}b_{2}$.",
+       "src": "12.3"
+      },
+      {
+       "text": "The derivative of a sum is the sum of the derivatives.",
+       "src": "3.3, Sum, Difference, and Constant Multiple Rules"
+      },
+      {
+       "text": "The product rule: $\\frac{d}{dt}[\\kf(t)\\kg(t)]=\\kfprime(t)\\kg(t)+\\kf(t)\\kgprime(t)$.",
+       "src": "3.3, Product Rule"
+      },
+      {
+       "text": "A vector-valued function is differentiated component by component: if $\\kvecr(t)=\\kf(t)\\,\\kveci+\\kg(t)\\,\\kvecj$, then $\\kvecrprime(t)=\\kfprime(t)\\,\\kveci+\\kgprime(t)\\,\\kvecj$.",
+       "src": "13.2, Differentiation of Vector-Valued Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d}{dt}[\\;\\kvecr(t)\\cdot \\;\\kvecu(t)]}=\\mk{r}{\\frac{d}{dt}[f_{1}(t)f_{2}(t)+g_{1}(t)g_{2}(t)]}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\;\\kvecr(t)\\cdot \\;\\kvecu(t)]}=\\mk{a}{\\frac{d}{dt}[f_{1}(t)f_{2}(t)]}+\\mk{b}{\\frac{d}{dt}[g_{1}(t)g_{2}(t)]}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "r": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\;\\kvecr(t)\\cdot \\;\\kvecu(t)]}=\\mk{a1}{f_{1}{}^{\\prime}(t)f_{2}(t)}+\\mk{a2}{f_{1}(t)f_{2}{}^{\\prime}(t)}+\\mk{b1}{g_{1}{}^{\\prime}(t)g_{2}(t)}+\\mk{b2}{g_{1}(t)g_{2}{}^{\\prime}(t)}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "a": [
+         "a1",
+         "a2"
+        ],
+        "b": [
+         "b1",
+         "b2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\;\\kvecr(t)\\cdot \\;\\kvecu(t)]}=\\mk{p}{f_{1}{}^{\\prime}(t)f_{2}(t)+g_{1}{}^{\\prime}(t)g_{2}(t)}+\\mk{q}{f_{1}(t)f_{2}{}^{\\prime}(t)+g_{1}(t)g_{2}{}^{\\prime}(t)}",
+       "uses": [],
+       "map": {
+        "a1": "p",
+        "b1": "p",
+        "a2": "q",
+        "b2": "q"
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\;\\kvecr(t)\\cdot \\;\\kvecu(t)]}=\\mk{p}{(f_{1}{}^{\\prime}\\;\\kveci+g_{1}{}^{\\prime}\\;\\kvecj)\\cdot (f_{2}\\;\\kveci+g_{2}\\;\\kvecj)}+\\mk{q}{(f_{1}\\;\\kveci+g_{1}\\;\\kvecj)\\cdot (f_{2}{}^{\\prime}\\;\\kveci+g_{2}{}^{\\prime}\\;\\kvecj)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}[\\;\\kvecr(t)\\cdot \\;\\kvecu(t)]}=\\mk{p}{\\kvecrprime(t)\\cdot \\;\\kvecu(t)}+\\mk{q}{\\;\\kvecr(t)\\cdot \\;\\kvecuprime(t)}",
+       "uses": [
+        0,
+        4
+       ]
+      }
+     ],
+     "src": "13.2, Properties of the Derivative of Vector-Valued Functions, iv"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecr(t)\\cdot \\;\\kvecr(t)=c"
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The derivative of a constant is zero.",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "text": "The dot product is commutative: $\\kvecu\\cdot\\kvecv=\\kvecv\\cdot\\kvecu$.",
+       "src": "12.3, Properties of the Dot Product"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d}{dt}[\\;\\kvecr(t)\\cdot \\;\\kvecr(t)]}=\\mk{r}{\\frac{d}{dt}[c]}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kvecrprime(t)\\cdot \\;\\kvecr(t)+\\;\\kvecr(t)\\cdot \\;\\kvecrprime(t)}=\\mk{r}{\\frac{d}{dt}[c]}",
+       "uses": [
+        1
+       ],
+       "cap": "Property iv with $\\kvecu=\\kvecr$."
+      },
+      {
+       "tex": "\\mk{l}{\\kvecrprime(t)\\cdot \\;\\kvecr(t)+\\;\\kvecr(t)\\cdot \\;\\kvecrprime(t)}=\\mk{r}{0}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{2\\;\\kvecr(t)\\cdot \\;\\kvecrprime(t)}=\\mk{r}{0}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kvecr(t)\\cdot \\;\\kvecrprime(t)}=\\mk{r}{0}",
+       "uses": []
+      }
+     ],
+     "src": "13.2, Properties of the Derivative of Vector-Valued Functions, vii"
+    }
+   ]
+  },
+  {
+   "id": "integration-constant-vector",
+   "what": "the constant vector of integration",
+   "source": "Calculus, 13.2 Calculus of Vector-Valued Functions, Integrals of Vector-Valued Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "With $\\kF$ and $\\kG$ antiderivatives of $\\kf$ and $\\kg$, $\\int \\kf(t)dt=\\kF(t)+C_{1}$ and $\\int \\kg(t)dt=\\kG(t)+C_{2}$, where the two constants can be different.",
+       "src": "13.2"
+      },
+      {
+       "tex": "\\textbf{C}=C_{1}\\;\\kveci+C_{2}\\;\\kvecj"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\int [\\kf(t)\\;\\kveci+\\kg(t)\\;\\kvecj]dt}=\\mk{a}{[\\;\\int \\kf(t)dt ]\\;\\kveci}+\\mk{b}{[\\;\\int \\kg(t)dt ]\\;\\kvecj}",
+      "src": "(13.7)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\int [\\kf(t)\\;\\kveci+\\kg(t)\\;\\kvecj]dt}=\\mk{a}{(\\kF(t)+C_{1})\\;\\kveci}+\\mk{b}{(\\kG(t)+C_{2})\\;\\kvecj}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\int [\\kf(t)\\;\\kveci+\\kg(t)\\;\\kvecj]dt}=\\mk{F}{\\kF(t)\\;\\kveci}+\\mk{G}{\\kG(t)\\;\\kvecj}+\\mk{c1}{C_{1}\\;\\kveci}+\\mk{c2}{C_{2}\\;\\kvecj}",
+       "uses": [],
+       "map": {
+        "a": [
+         "F",
+         "c1"
+        ],
+        "b": [
+         "G",
+         "c2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\int [\\kf(t)\\;\\kveci+\\kg(t)\\;\\kvecj]dt}=\\mk{F}{\\kF(t)\\;\\kveci}+\\mk{G}{\\kG(t)\\;\\kvecj}+\\mk{c1}{\\;\\textbf{C}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "c2": "c1"
+       }
+      }
+     ],
+     "src": "13.2, Integrals of Vector-Valued Functions"
+    }
+   ]
+  }
  ]
 }

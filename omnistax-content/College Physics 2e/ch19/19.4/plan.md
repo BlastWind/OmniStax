@@ -280,3 +280,7 @@ build changed" so that Chen may override it and keep them as open sketching
 items with their images on the cards.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-equipotential-map` loses its choice of which lines to draw (rule 26.7): both sets are always drawn. A change of arrangement blends two charges' places and sizes, the lone charge sliding aside as its partner grows, and the contours and field lines are traced from the blend (manim-style 16). `sim-plate-equipotentials`: the step between lines is a slider with soft detents at 5, 10, 20 and 25 V, not a choice (rule 26.1).
+
+## Derivations
+
+- Why equipotential lines are perpendicular to field lines (printed argument) · score 3 · built as drv-equipotential-perpendicular: two nodes, $W = -q\Delta V = 0$ along an equipotential, then $W = qEd\cos\theta = 0$ giving $\theta = 90^\circ$; replaces the two displayed lines and the reasoning between them, the opening statement and the qualitative argument stay

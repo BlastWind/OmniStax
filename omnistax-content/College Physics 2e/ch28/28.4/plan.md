@@ -72,3 +72,8 @@ Photographs: Figure 28.13 (`Figure_29_04_01a.jpg`, the kayak on the Deerfield Ri
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass: The chapter pass set every anchor listed above and gathered the errata in `exploration.md` and the chapter log; 28.5's `exercise_notes` already agreed on `fs-id3762172`.
+
+## Derivations
+
+- Relativistic velocity addition · score 6 · not built: it rests on the Lorentz transformation, which the book never writes
+- The relativistic Doppler shift · score 10 · built as drv-relativistic-doppler: the formula is stated outright; time dilation (28.2) joined with the spacing of crests from a moving source (17.4) and $c = f\lambda$ (24.3)

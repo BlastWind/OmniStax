@@ -83,11 +83,6 @@
    "verb": "introduces"
   },
   {
-   "span": "bx-derivative",
-   "concept": "derivative-of-an-exponential-function",
-   "verb": "introduces"
-  },
-  {
    "span": "exp-theorem",
    "concept": "derivative-of-the-natural-exponential-function",
    "verb": "introduces"
@@ -186,6 +181,11 @@
    "span": "fs-id1169738238112",
    "concept": "product-rule",
    "verb": "uses"
+  },
+  {
+   "span": "drv-derivative-of-exponential-function",
+   "concept": "derivative-of-an-exponential-function",
+   "verb": "introduces"
   }
  ],
  "exercises": [
@@ -947,6 +947,492 @@
    "id": "e361-key",
    "kind": "correction",
    "html": "The model counts cases in New York City; the key’s “in the United States” means New York City."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "derivative-of-exponential-function",
+   "what": "the derivative of an exponential function",
+   "source": "Calculus, 3.9 Derivatives of Exponential and Logarithmic Functions, Derivative of the Exponential Function",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kBprime(0)$ exists.",
+       "src": "3.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{B}{\\kBprime(0)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{b^{0+h}}-\\mk{b}{b^{0}}}{\\mk{h}{h}}",
+      "uses": [
+       0
+      ],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{B}{\\kBprime(0)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{b^{h}}-\\mk{b}{1}}{\\mk{h}{h}}",
+       "uses": []
+      }
+     ],
+     "num": "(3.28)",
+     "src": "3.9"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "b^{x+h}=b^{x}b^{h}"
+      },
+      {
+       "text": "The limit of a constant times a function is the constant times the limit.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{B}{\\kBprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{b^{x+h}}-\\mk{b}{b^{x}}}{\\mk{h}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{B}{\\kBprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{b^{x}b^{h}}-\\mk{b}{b^{x}}}{\\mk{h}{h}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{B}{\\kBprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{bx}{b^{x}}\\mk{q}{(b^{h}-1)}}{\\mk{h}{h}}",
+       "uses": [],
+       "map": {
+        "a": [
+         "bx",
+         "q"
+        ],
+        "b": [
+         "bx",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{B}{\\kBprime(x)}=\\mk{bx}{b^{x}}\\mk{q}{\\lim_{h\\to 0}\\frac{b^{h}-1}{h}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$b^{x}$ does not change with $h,$ and the limit that is left exists, since it is $\\kBprime(0).$",
+       "map": {
+        "lim": "q",
+        "h": "q"
+       }
+      },
+      {
+       "tex": "\\mk{B}{\\kBprime(x)}=\\mk{bx}{b^{x}}\\mk{q}{\\kBprime(0)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(3.29)",
+     "src": "3.9"
+    }
+   ]
+  },
+  {
+   "id": "derivative-of-natural-logarithm",
+   "what": "the derivative of the natural logarithm",
+   "source": "Calculus, 3.9 Derivatives of Exponential and Logarithmic Functions, The Derivative of the Natural Logarithmic Function",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$x\\gt 0$ and $y=\\ln x,$ the inverse of $e^{x}.$",
+       "src": "3.9"
+      },
+      {
+       "tex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g^{\\prime}(x)",
+       "src": "3.9, Derivative of the Natural Exponential Function"
+      },
+      {
+       "tex": "\\frac{d}{dx}x=1",
+       "src": "3.3, The Power Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{e^{y}}=\\mk{x}{x}",
+      "uses": [
+       0
+      ],
+      "src": "3.9"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{e^{y}\\kdydx}=\\mk{x}{1}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Both sides are differentiated with respect to $x;$ on the left $y$ is a function of $x,$ so the chain rule brings in $\\kdydx.$"
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{x}{1}}{\\mk{e}{e^{y}}}",
+       "uses": [],
+       "map": {
+        "e": [
+         "e",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{x}{1}}{\\mk{e}{x}}",
+       "uses": []
+      }
+     ],
+     "num": "(3.30)",
+     "src": "3.9, The Derivative of the Natural Logarithmic Function"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$y=g(x)=\\ln x$ is the inverse of $\\kf(x)=e^{x}.$",
+       "src": "3.9"
+      },
+      {
+       "tex": "\\kEprime(x)=e^{x}",
+       "src": "3.9, Derivative of the Natural Exponential Function"
+      },
+      {
+       "tex": "e^{\\ln x}=x",
+       "src": "3.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime(g(x))}}",
+      "uses": [
+       0
+      ],
+      "src": "3.7, Inverse Function Theorem"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{one}{1}}{\\mk{fp}{e^{\\ln x}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{one}{1}}{\\mk{fp}{x}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "3.9, The Derivative of the Natural Logarithmic Function"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The chain rule: the derivative of $\\kf(g(x))$ is $\\kfprime(g(x))g^{\\prime}(x).$",
+       "src": "(3.17)"
+      },
+      {
+       "text": "$g(x)$ is differentiable and $g(x)\\gt 0.$",
+       "src": "3.9, The Derivative of the Natural Logarithmic Function"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{h}{h(x)}=\\mk{r}{\\ln (g(x))}",
+      "uses": [
+       2
+      ],
+      "src": "3.9"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{h}{h^{\\prime}(x)}=\\mk{r}{\\frac{1}{g(x)}g^{\\prime}(x)}",
+       "uses": [
+        0,
+        1
+       ]
+      }
+     ],
+     "num": "(3.31)",
+     "src": "3.9, The Derivative of the Natural Logarithmic Function"
+    }
+   ]
+  },
+  {
+   "id": "derivatives-of-general-exponential-and-logarithmic-functions",
+   "what": "the derivatives of general exponential and logarithmic functions",
+   "source": "Calculus, 3.9 Derivatives of Exponential and Logarithmic Functions, Derivatives of General Exponential and Logarithmic Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "y={\\log }_{b}x",
+       "src": "3.9, Derivatives of General Exponential and Logarithmic Functions"
+      },
+      {
+       "tex": "\\ln (a^{r})=r\\ln a",
+       "src": "1.5, Properties of Logarithms"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\ln x)=\\frac{1}{x}",
+       "src": "(3.30)"
+      },
+      {
+       "text": "$\\ln b$ is a constant."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{b}{b^{y}}=\\mk{x}{x}",
+      "uses": [
+       0
+      ],
+      "src": "1.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{b}{\\ln (b^{y})}=\\mk{x}{\\ln x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{b}{y\\;\\ln b}=\\mk{x}{\\ln x}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{y}=\\frac{\\mk{x}{\\ln x}}{\\mk{b}{\\ln b}}",
+       "uses": [],
+       "map": {
+        "b": [
+         "y",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\kdydx}=\\frac{\\mk{x}{1}}{\\mk{b}{x\\;\\ln b}}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "Since $\\ln b$ is a constant, only $\\ln x$ is differentiated, and its derivative is $\\frac{1}{x}.$",
+       "map": {
+        "x": [
+         "x",
+         "b"
+        ]
+       }
+      }
+     ],
+     "num": "(3.32)",
+     "src": "3.9, Derivatives of General Exponential and Logarithmic Functions"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The chain rule: the derivative of $\\kf(g(x))$ is $\\kfprime(g(x))g^{\\prime}(x).$",
+       "src": "(3.17)"
+      },
+      {
+       "text": "$g(x)$ is differentiable and $g(x)\\gt 0.$",
+       "src": "3.9, Derivatives of General Exponential and Logarithmic Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{h}{h(x)}=\\mk{r}{{\\log }_{b}(g(x))}",
+      "uses": [
+       2
+      ],
+      "src": "3.9, Derivatives of General Exponential and Logarithmic Functions"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{h}{h^{\\prime}(x)}=\\mk{r}{\\frac{1}{g(x)\\;\\ln b}}\\mk{g}{g^{\\prime}(x)}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "r": [
+         "r",
+         "g"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{h}{h^{\\prime}(x)}=\\frac{\\mk{g}{g^{\\prime}(x)}}{\\mk{r}{g(x)\\;\\ln b}}",
+       "uses": []
+      }
+     ],
+     "num": "(3.33)",
+     "src": "3.9, Derivatives of General Exponential and Logarithmic Functions",
+     "note": "The book says this derivative is the one in Equation 3.32; the chain rule gives the more general Equation 3.33."
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\ln (a^{r})=r\\ln a",
+       "src": "1.5, Properties of Logarithms"
+      },
+      {
+       "tex": "h^{\\prime}(x)=\\frac{1}{g(x)}g^{\\prime}(x)",
+       "src": "(3.31)"
+      },
+      {
+       "text": "$\\ln b$ is a constant."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{r}{b^{x}}",
+      "uses": [],
+      "src": "3.9, Derivatives of General Exponential and Logarithmic Functions"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\ln y}=\\mk{r}{x\\;\\ln b}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\frac{1}{y}\\;\\kdydx}=\\mk{r}{\\ln b}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Implicit differentiation: $y$ is a function of $x,$ so the derivative of $\\ln y$ is $\\frac{1}{y}\\kdydx;$ $\\ln b$ is a constant."
+      },
+      {
+       "tex": "\\mk{y}{\\kdydx}=\\mk{r}{y\\;\\ln b}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\kdydx}=\\mk{r}{b^{x}\\ln b}",
+       "uses": []
+      }
+     ],
+     "num": "(3.34)",
+     "src": "3.9, Derivatives of General Exponential and Logarithmic Functions"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "The chain rule: the derivative of $\\kf(g(x))$ is $\\kfprime(g(x))g^{\\prime}(x).$",
+       "src": "(3.17)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{h}{h(x)}=\\mk{r}{b^{g(x)}}",
+      "uses": [],
+      "src": "3.9, Derivatives of General Exponential and Logarithmic Functions"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{h}{h^{\\prime}(x)}=\\mk{r}{b^{g(x)}\\ln b}\\cdot \\mk{g}{g^{\\prime}(x)}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "r": [
+         "r",
+         "g"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{h}{h^{\\prime}(x)}=\\mk{r}{b^{g(x)}}\\mk{g}{g^{\\prime}(x)}\\;\\mk{l}{\\ln b}",
+       "uses": [],
+       "map": {
+        "r": [
+         "r",
+         "l"
+        ]
+       }
+      }
+     ],
+     "num": "(3.35)",
+     "src": "3.9, Derivatives of General Exponential and Logarithmic Functions"
+    }
+   ]
+  },
+  {
+   "id": "power-rule-real-exponents",
+   "what": "the power rule for real exponents",
+   "source": "Calculus, 3.9 Derivatives of Exponential and Logarithmic Functions, Example 3.83",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\ln (a^{r})=r\\ln a",
+       "src": "1.5, Properties of Logarithms"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\ln x)=\\frac{1}{x}",
+       "src": "(3.30)"
+      },
+      {
+       "tex": "h^{\\prime}(x)=\\frac{1}{g(x)}g^{\\prime}(x)",
+       "src": "(3.31)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{r}{x^{r}}",
+      "uses": [],
+      "src": "Example 3.83"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\ln y}=\\mk{r}{\\ln x^{r}}",
+       "uses": [],
+       "cap": "This holds for $x\\gt 0,$ where the logarithm is defined."
+      },
+      {
+       "tex": "\\mk{y}{\\ln y}=\\mk{r}{r\\;\\ln x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\frac{1}{y}\\;\\kdydx}=\\mk{r}{r\\frac{1}{x}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Implicit differentiation: $y$ is a function of $x,$ so the derivative of $\\ln y$ is $\\frac{1}{y}\\kdydx.$"
+      },
+      {
+       "tex": "\\mk{y}{\\kdydx}=\\mk{r}{y\\frac{r}{x}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\kdydx}=\\mk{r}{x^{r}\\frac{r}{x}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\kdydx}=\\mk{r}{rx^{r-1}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 3.83"
+    }
+   ]
   }
  ]
 }

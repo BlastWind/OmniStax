@@ -43,3 +43,12 @@ None.
 
 - forms: `eq-divergence` → `16.5-fs-id1167794139077`; `eq-divergence-nabla` → `16.5-divergence`; `eq-curl` → `16.5-fs-id1167793965993`; `eq-curl-nabla` → `16.5-curl`; `eq-divergence-of-curl` → `16.5-fs-id1167794029307`; `eq-curl-of-gradient` → `16.5-fs-id1167793635932`; `eq-laplace-operator` → `16.5-laplace-term`.
 - variables: G_vec of 16.5 added.
+
+## Derivations
+
+- Divergence of a Source-Free Vector Field, Proof · score 1 · built as drv-divergence-of-source-free-field
+- Divergence Test for Source-Free Vector Fields, ‘the proof is too technical to include here’ · score 7 · not built: the converse needs a stream function built from zero flux on a simply connected region, which the book never states
+- Example 16.54 · Determining the Spin of a Gravitational Field · score 1 · not built: a worked example that substitutes into the curl
+- Divergence of the Curl, Proof · score 1 · built as drv-divergence-of-curl
+- Curl of a Conservative Vector Field, Proof · score 1 · built as drv-curl-of-conservative-field
+- Curl Test for a Conservative Field, Proof · score 1 · not built: one sentence citing the Cross-Partial Test, its only equations read off the components of curl F = 0, no move to work

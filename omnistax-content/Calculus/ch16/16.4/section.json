@@ -242,11 +242,6 @@
    "verb": "uses"
   },
   {
-   "span": "fs-id1167793965702",
-   "concept": "area-by-greens-theorem",
-   "verb": "introduces"
-  },
-  {
    "span": "fs-id1167793944640",
    "concept": "greens-theorem-flux-form",
    "verb": "introduces"
@@ -325,6 +320,11 @@
    "span": "fs-id1167793632701",
    "concept": "area-by-greens-theorem",
    "verb": "uses"
+  },
+  {
+   "span": "drv-area-from-boundary",
+   "concept": "area-by-greens-theorem",
+   "verb": "introduces"
   }
  ],
  "exercises": [
@@ -363,7 +363,7 @@
     "type": "open",
     "generated_by": "source",
     "solution": "$\\frac{2}{3}$",
-    "hint": "Use <a href=\"#fs-id1167793965702\">Equation 16.14</a>."
+    "hint": "Use <a href=\"#drv-area-from-boundary\">Equation 16.14</a>."
    }
   },
   {
@@ -1195,6 +1195,416 @@
    "id": "c-triangle",
    "kind": "correction",
    "html": "Here and in the computation below, $\\int_{C}$ stands for the flux across the clockwise triangle $S,$ and the computation’s first line is printed without its minus sign: $\\int_{S}\\mathbf{F}\\cdot\\mathbf{N}\\,ds=-\\int_{-S}\\mathbf{F}\\cdot\\mathbf{N}\\,ds=-\\iint_{D}(P_{x}+Q_{y})\\,dA,$ as the next line has it."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "greens-theorem-rectangle",
+   "what": "Green’s theorem on a rectangle",
+   "source": "Calculus, 16.4 Green’s Theorem, Green’s Theorem, Circulation Form, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}+\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}+\\cdots+\\int_{C_{n}}\\kvecF\\cdot d\\mathbf{r}",
+       "src": "16.2, Properties of Vector Line Integrals"
+      },
+      {
+       "tex": "\\int_{-C}\\kvecF\\cdot d\\mathbf{r}=-\\int_{C}\\kvecF\\cdot d\\mathbf{r}",
+       "src": "16.2, Properties of Vector Line Integrals"
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\int_{a}^{b}\\kvecF(\\kvecr(t))\\cdot\\kvecrprime(t)dt",
+       "src": "(16.9)"
+      },
+      {
+       "tex": "\\begin{array}{l}C_{1}:\\ \\kvecr_{1}(t)=\\langle t,c\\rangle,\\ a\\le t\\le b\\\\ C_{2}:\\ \\kvecr_{2}(t)=\\langle b,t\\rangle,\\ c\\le t\\le d\\\\ -C_{3}:\\ \\kvecr_{3}(t)=\\langle t,d\\rangle,\\ a\\le t\\le b\\\\ -C_{4}:\\ \\kvecr_{4}(t)=\\langle a,t\\rangle,\\ c\\le t\\le d\\end{array}"
+      },
+      {
+       "tex": "\\kvecF=\\langle \\kP,\\kQ\\rangle"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{c1}{\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{c2}{\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{c3}{\\int_{C_{3}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{c4}{\\int_{C_{4}}\\kvecF\\cdot d\\mathbf{r}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{c1}{\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{c2}{\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}}-\\mk{c3}{\\int_{-C_{3}}\\kvecF\\cdot d\\mathbf{r}}-\\mk{c4}{\\int_{-C_{4}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{c1}{\\int_{a}^{b}\\kvecF(\\kvecr_{1}(t))\\cdot\\kvecr_{1}'(t)dt}+\\mk{c2}{\\int_{c}^{d}\\kvecF(\\kvecr_{2}(t))\\cdot\\kvecr_{2}'(t)dt}-\\mk{c3}{\\int_{a}^{b}\\kvecF(\\kvecr_{3}(t))\\cdot\\kvecr_{3}'(t)dt}-\\mk{c4}{\\int_{c}^{d}\\kvecF(\\kvecr_{4}(t))\\cdot\\kvecr_{4}'(t)dt}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{c1}{\\int_{a}^{b}\\kP(t,c)dt}+\\mk{c2}{\\int_{c}^{d}\\kQ(b,t)dt}-\\mk{c3}{\\int_{a}^{b}\\kP(t,d)dt}-\\mk{c4}{\\int_{c}^{d}\\kQ(a,t)dt}",
+       "uses": [
+        3,
+        4
+       ],
+       "cap": "Along $C_{1}$ and $-C_{3}$ the derivative of the parameterization is $\\langle 1,0\\rangle,$ which picks out $\\kP;$ along $C_{2}$ and $-C_{4}$ it is $\\langle 0,1\\rangle,$ which picks out $\\kQ.$"
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\int_{a}^{b}\\mk{p}{(\\kP(t,c)-\\kP(t,d))}dt+\\int_{c}^{d}\\mk{q}{(\\kQ(b,t)-\\kQ(a,t))}dt",
+       "uses": [],
+       "map": {
+        "c1": "p",
+        "c3": "p",
+        "c2": "q",
+        "c4": "q"
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=-\\int_{a}^{b}\\mk{p}{(\\kP(t,d)-\\kP(t,c))}dt+\\int_{c}^{d}\\mk{q}{(\\kQ(b,t)-\\kQ(a,t))}dt",
+       "uses": []
+      }
+     ],
+     "src": "16.4",
+     "note": "The book prints the derivatives $\\mathbf{r}_{1}'(t),\\ldots,\\mathbf{r}_{4}'(t)$ as $\\mathbf{r}_{1'}(t),\\ldots,\\mathbf{r}_{4'}(t)$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kP(t,d)-\\kP(t,c)=\\int_{c}^{d}\\frac{\\partial}{\\partial y}\\kP(t,y)dy",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 2"
+      },
+      {
+       "tex": "\\kQ(b,t)-\\kQ(a,t)=\\int_{a}^{b}\\frac{\\partial}{\\partial x}\\kQ(x,t)dx",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 2"
+      },
+      {
+       "tex": "\\iint_{D}g(x,y)dA=\\int_{a}^{b}\\int_{c}^{d}g(x,y)dy\\,dx=\\int_{c}^{d}\\int_{a}^{b}g(x,y)dx\\,dy",
+       "src": "15.1, Fubini’s Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=-\\int_{a}^{b}\\mk{p}{(\\kP(t,d)-\\kP(t,c))}dt+\\int_{c}^{d}\\mk{q}{(\\kQ(b,t)-\\kQ(a,t))}dt",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=-\\int_{a}^{b}\\mk{p}{\\int_{c}^{d}\\frac{\\partial}{\\partial y}\\kP(t,y)dy}dt+\\int_{c}^{d}\\mk{q}{\\int_{a}^{b}\\frac{\\partial}{\\partial x}\\kQ(x,t)dx}dt",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=-\\mk{p}{\\int_{a}^{b}\\int_{c}^{d}\\frac{\\partial}{\\partial y}\\kP(x,y)dy\\,dx}+\\mk{q}{\\int_{c}^{d}\\int_{a}^{b}\\frac{\\partial}{\\partial x}\\kQ(x,y)dx\\,dy}",
+       "uses": [],
+       "cap": "The variable of integration $t$ is a dummy variable: it is renamed $x$ in the first integral and $y$ in the second."
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{r}{\\int_{a}^{b}\\int_{c}^{d}(Q_{x}-P_{y})dy\\,dx}",
+       "uses": [
+        3
+       ],
+       "cap": "Fubini’s theorem lets the second integral be taken in the order $dy\\,dx$ as well, so the two combine into one.",
+       "map": {
+        "p": "r",
+        "q": "r"
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{r}{\\iint_{D}(Q_{x}-P_{y})dA}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "16.4"
+    }
+   ]
+  },
+  {
+   "id": "area-from-boundary",
+   "what": "the area of a region from its boundary",
+   "source": "Calculus, 16.4 Green’s Theorem, Circulation Form of Green’s Theorem",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecF(x,y)=\\langle \\kP,\\kQ\\rangle =\\langle -\\frac{y}{2},\\frac{x}{2}\\rangle",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{Q_{x}-P_{y}}=\\mk{q}{\\frac{\\partial}{\\partial x}\\left(\\frac{x}{2}\\right)}-\\mk{p}{\\frac{\\partial}{\\partial y}\\left(-\\frac{y}{2}\\right)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{Q_{x}-P_{y}}=\\mk{q}{\\frac{1}{2}}-\\mk{p}{\\left(-\\frac{1}{2}\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{Q_{x}-P_{y}}=\\mk{o}{1}",
+       "uses": [],
+       "map": {
+        "q": "o",
+        "p": "o"
+       }
+      }
+     ],
+     "src": "16.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\iint_{D}(Q_{x}-P_{y})dA",
+       "src": "(16.13)"
+      },
+      {
+       "text": "$\\kD$ is a region whose boundary is a simple closed curve $\\kC$ oriented counterclockwise.",
+       "src": "16.4"
+      },
+      {
+       "tex": "\\kvecF\\cdot d\\mathbf{r}=\\kP\\,dx+\\kQ\\,dy",
+       "src": "16.2"
+      },
+      {
+       "tex": "\\kvecF(x,y)=\\langle \\kP,\\kQ\\rangle =\\langle -\\frac{y}{2},\\frac{x}{2}\\rangle",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\text{area of}\\;D}=\\mk{I}{\\iint_{D}dA}",
+      "uses": [],
+      "src": "15.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\text{area of}\\;D}=\\mk{I}{\\iint_{D}(Q_{x}-P_{y})dA}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{A}{\\text{area of}\\;D}=\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{A}{\\text{area of}\\;D}=\\mk{I}{\\int_{C}-\\frac{y}{2}dx+\\frac{x}{2}dy}",
+       "uses": [
+        3,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{A}{\\text{area of}\\;D}=\\mk{h}{\\frac{1}{2}}\\mk{I}{\\int_{C}-y\\,dx+x\\,dy}",
+       "uses": []
+      }
+     ],
+     "num": "(16.14)",
+     "src": "16.4"
+    }
+   ]
+  },
+  {
+   "id": "greens-theorem-flux-form",
+   "what": "Green’s theorem, flux form",
+   "source": "Calculus, 16.4 Green’s Theorem, Green’s Theorem, Flux Form, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot\\kvecN ds=\\int_{C}-Q\\,dx+P\\,dy",
+       "src": "16.2"
+      },
+      {
+       "tex": "M=-\\kQ,\\quad N=\\kP"
+      },
+      {
+       "tex": "\\int_{C}M\\,dx+N\\,dy=\\iint_{D}(N_{x}-M_{y})dA",
+       "src": "(16.13)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\int_{C}-Q\\,dx+P\\,dy}=\\mk{R}{\\int_{C}M\\,dx+N\\,dy}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\int_{C}-Q\\,dx+P\\,dy}=\\iint_{D}\\mk{n}{N_{x}}-\\mk{m}{M_{y}}\\,dA",
+       "uses": [
+        2
+       ],
+       "map": {
+        "R": [
+         "n",
+         "m"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C}-Q\\,dx+P\\,dy}=\\iint_{D}\\mk{n}{P_{x}}-\\mk{m}{(-\\kQ)_{y}}\\,dA",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C}-Q\\,dx+P\\,dy}=\\iint_{D}\\mk{n}{P_{x}}+\\mk{m}{Q_{y}}\\,dA",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot\\kvecN ds}=\\iint_{D}\\mk{n}{P_{x}}+\\mk{m}{Q_{y}}\\,dA",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(16.15)",
+     "src": "16.4, Green’s Theorem, Flux Form"
+    }
+   ]
+  },
+  {
+   "id": "harmonic-potential",
+   "what": "the potential of a conservative, source-free field is harmonic",
+   "source": "Calculus, 16.4 Green’s Theorem, Flux Form of Green’s Theorem",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ is a potential function of $\\kvecF=\\langle \\kP,\\kQ\\rangle$: $\\kgradf=\\kvecF$, so $\\kfx=\\kP$ and $\\kfy=\\kQ$.",
+       "src": "16.1"
+      },
+      {
+       "text": "$\\kvecF$ is source free, so $P_{x}+Q_{y}=0$.",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kfxx+\\kfyy}=\\mk{x}{\\frac{\\partial}{\\partial x}\\kfx}+\\mk{y}{\\frac{\\partial}{\\partial y}\\kfy}",
+      "uses": [],
+      "src": "14.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kfxx+\\kfyy}=\\mk{x}{\\frac{\\partial}{\\partial x}\\kP}+\\mk{y}{\\frac{\\partial}{\\partial y}\\kQ}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kfxx+\\kfyy}=\\mk{x}{P_{x}}+\\mk{y}{Q_{y}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\kfxx+\\kfyy}=\\mk{z}{0}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "x": "z",
+        "y": "z"
+       }
+      }
+     ],
+     "src": "16.4"
+    }
+   ]
+  },
+  {
+   "id": "greens-theorem-with-holes",
+   "what": "Green’s theorem on a region with holes",
+   "source": "Calculus, 16.4 Green’s Theorem, Green’s Theorem on General Regions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The boundary of the upper half $D_{1}$ of the annulus is $P_{1}\\cup P_{2}\\cup P_{3}\\cup P_{4}$ and the boundary of the lower half $D_{2}$ is $-P_{4}\\cup P_{5}\\cup -P_{2}\\cup P_{6}$; the path traverses one and then the other.",
+       "src": "16.4"
+      },
+      {
+       "tex": "\\int_{-C}\\kvecF\\cdot d\\mathbf{r}=-\\int_{C}\\kvecF\\cdot d\\mathbf{r}",
+       "src": "16.2, Properties of Vector Line Integrals"
+      },
+      {
+       "text": "Neither $D_{1}$ nor $D_{2}$ has holes, so each is simply connected, with its boundary positively oriented.",
+       "src": "16.4"
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\iint_{D}(Q_{x}-P_{y})dA",
+       "src": "(16.13)"
+      },
+      {
+       "tex": "\\iint_{D}g\\,dA=\\iint_{D_{1}}g\\,dA+\\iint_{D_{2}}g\\,dA",
+       "src": "15.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{\\partial D}\\kvecF\\cdot d\\mathbf{r}}=\\mk{p1}{\\int_{P_{1}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p2}{\\int_{P_{2}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p3}{\\int_{P_{3}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p4}{\\int_{P_{4}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{m4}{\\int_{-P_{4}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p5}{\\int_{P_{5}}\\kvecF\\cdot d\\mathbf{r}}-\\mk{m2}{\\int_{P_{2}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p6}{\\int_{P_{6}}\\kvecF\\cdot d\\mathbf{r}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{\\partial D}\\kvecF\\cdot d\\mathbf{r}}=\\mk{p1}{\\int_{P_{1}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p2}{\\int_{P_{2}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p3}{\\int_{P_{3}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p4}{\\int_{P_{4}}\\kvecF\\cdot d\\mathbf{r}}-\\mk{m4}{\\int_{P_{4}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p5}{\\int_{P_{5}}\\kvecF\\cdot d\\mathbf{r}}-\\mk{m2}{\\int_{P_{2}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p6}{\\int_{P_{6}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{\\partial D}\\kvecF\\cdot d\\mathbf{r}}=\\mk{p1}{\\int_{P_{1}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p3}{\\int_{P_{3}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p5}{\\int_{P_{5}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{p6}{\\int_{P_{6}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{I}{\\int_{\\partial D}\\kvecF\\cdot d\\mathbf{r}}=\\mk{d1}{\\int_{\\partial D_{1}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{d2}{\\int_{\\partial D_{2}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        0
+       ],
+       "cap": "Adding back $\\int_{P_{2}}-\\int_{P_{2}}$ and $\\int_{P_{4}}-\\int_{P_{4}}$ regroups the pieces into the boundaries of $D_{1}$ and $D_{2}.$",
+       "map": {
+        "p1": "d1",
+        "p3": "d1",
+        "p5": "d2",
+        "p6": "d2"
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_{\\partial D}\\kvecF\\cdot d\\mathbf{r}}=\\mk{d1}{\\iint_{D_{1}}(Q_{x}-P_{y})dA}+\\mk{d2}{\\iint_{D_{2}}(Q_{x}-P_{y})dA}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{\\partial D}\\kvecF\\cdot d\\mathbf{r}}=\\mk{d}{\\iint_{D}(Q_{x}-P_{y})dA}",
+       "uses": [
+        4
+       ],
+       "map": {
+        "d1": "d",
+        "d2": "d"
+       }
+      }
+     ],
+     "src": "16.4"
+    }
+   ]
   }
  ]
 }

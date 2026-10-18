@@ -88,3 +88,7 @@ Table 30.2 Shell and Subshell Symbols (the spanned header and its footnote on $l
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass (2026-10-05): both forms anchored; rows `Z`, `m_l` (ink, as in 30.8), `m_s`, `s_spin` added and `n`, `l` anchored at `multiple-electron-atoms`; the atomic number of `sim-shell-filling` is a dropdown of the twenty elements, a discrete state (rule 26.1); Examples 30.5 and 30.6 are renumbered 30.4 and 30.5.
+
+## Derivations
+
+- The capacity of subshells and shells, $2n^2$ · score 4 · not built: "some algebra shows", three moves, under the four the hidden bar needs

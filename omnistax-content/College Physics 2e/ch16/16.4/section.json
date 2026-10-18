@@ -483,5 +483,169 @@
     "sim-measure-g"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "pendulum-restoring-force",
+   "what": "the restoring force on a pendulum at small angles",
+   "source": "College Physics 2e, 16.4 The Simple Pendulum",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\sin\\ktheta \\approx \\ktheta",
+       "src": "16.4"
+      },
+      {
+       "text": "The angle is less than about $15°$.",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = -\\mk{mg}{\\km\\kg}\\,\\mk{th}{\\sin\\ktheta}",
+      "uses": [],
+      "src": "16.4, Figure 16.13"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} \\approx -\\mk{mg}{\\km\\kg}\\,\\mk{th}{\\ktheta}",
+       "uses": [
+        0,
+        1
+       ]
+      }
+     ],
+     "src": "16.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The angle $\\ktheta$ is expressed in radians.",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks} = \\mk{L}{\\kL}\\,\\mk{th}{\\ktheta}",
+      "uses": [
+       0
+      ],
+      "src": "16.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{th}{\\ktheta} = \\dfrac{\\mk{s}{\\ks}}{\\mk{L}{\\kL}}",
+       "uses": []
+      }
+     ],
+     "src": "16.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} \\approx -\\mk{mg}{\\km\\kg}\\,\\mk{th}{\\ktheta}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} \\approx -\\mk{mg}{\\km\\kg}\\,\\mk{th}{\\dfrac{\\ks}{\\kL}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} \\approx -\\dfrac{\\mk{mg}{\\km\\kg}}{\\mk{L}{\\kL}}\\,\\mk{s}{\\ks}",
+       "uses": [],
+       "map": {
+        "th": [
+         "s",
+         "L"
+        ]
+       }
+      }
+     ],
+     "src": "16.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kx = \\ks",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = -\\mk{k}{\\kk}\\,\\mk{x}{\\kx}",
+      "uses": [],
+      "src": "16.1"
+     },
+     "steps": [
+      {
+       "tex": "-\\mk{F}{\\dfrac{\\km\\kg}{\\kL}\\,\\ks} \\approx -\\mk{k}{\\kk}\\,\\mk{x}{\\kx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "-\\mk{F}{\\dfrac{\\km\\kg}{\\kL}\\,\\ks} \\approx -\\mk{k}{\\kk}\\,\\mk{x}{\\ks}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{k}{\\kk} = \\mk{F}{\\dfrac{\\km\\kg}{\\kL}}",
+       "uses": [],
+       "cap": "Both sides agree for every small $\\ks$, so the coefficients of $\\ks$ match."
+      }
+     ],
+     "src": "16.4"
+    }
+   ]
+  },
+  {
+   "id": "pendulum-period",
+   "what": "the period of a simple pendulum",
+   "source": "College Physics 2e, 16.4 The Simple Pendulum",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kk = \\dfrac{\\km\\kg}{\\kL}",
+       "src": "16.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\sqrt{\\dfrac{\\mk{m}{\\km}}{\\mk{k}{\\kk}}}",
+      "uses": [],
+      "src": "16.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\sqrt{\\dfrac{\\mk{m}{\\km}}{\\mk{k}{\\km\\kg/\\kL}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\sqrt{\\dfrac{\\mk{m}{\\km}\\,\\mk{L}{\\kL}}{\\mk{k}{\\km\\kg}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{tp}{2\\pi}\\sqrt{\\dfrac{\\mk{L}{\\kL}}{\\mk{k}{\\kg}}}",
+       "uses": []
+      }
+     ],
+     "src": "16.4"
+    }
+   ]
+  }
  ]
 }

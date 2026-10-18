@@ -17,19 +17,7 @@ $$\sum_{n=1}^{\infty} {(-1)}^{n}\kbseq_{n}=-\kbseq_{1}+\kbseq_{2}-\kbseq_{3}+\kb
 <p>Series (1), shown in Equation 9.11, is a <span data-concept="geometric-series">geometric series</span>. Since $|r|=|-1/2|\lt 1,$ the <span data-concept="infinite-series">series</span> <span data-concept="convergence-of-a-series">converges</span>. Series (2), shown in Equation 9.12, is called the <span data-concept="alternating-harmonic-series">alternating harmonic series</span>. We will show that whereas the <span data-concept="harmonic-series">harmonic series</span> <span data-concept="divergence-of-a-series">diverges</span>, the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> <span data-concept="convergence-of-a-series">converges</span>.</p>
 <p>To prove this, we look at the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ (Figure 9.17).</p>
 <h3>Proof</h3>
-<p>Consider the odd <span data-concept="term-of-a-sequence">terms</span> $\kS_{2k+1}$ for $k\ge0.$ Since $1/(2k+1)\lt 1/2k,$</p>
-$$\kS_{2k+1}=\kS_{2k-1}-\frac{1}{2k}+\frac{1}{2k+1}\lt \kS_{2k-1}.$$
-<p>Therefore, $\{\kS_{2k+1}\}$ is a <span data-concept="monotone-sequence">decreasing sequence</span>. Also,</p>
-$$\kS_{2k+1}=(1-\frac{1}{2})+(\frac{1}{3}-\frac{1}{4})+\cdots+(\frac{1}{2k-1}-\frac{1}{2k})+\frac{1}{2k+1}\gt 0.$$
-<p>Therefore, $\{\kS_{2k+1}\}$ is <span data-concept="bounded-sequence">bounded below</span>. Since $\{\kS_{2k+1}\}$ is a <span data-concept="monotone-sequence">decreasing sequence</span> that is <span data-concept="bounded-sequence">bounded below</span>, by the <span data-concept="monotone-convergence-theorem">Monotone Convergence Theorem</span>, $\{\kS_{2k+1}\}$ <span data-concept="convergence-of-a-series">converges</span>. Similarly, the even <span data-concept="term-of-a-sequence">terms</span> $\{\kS_{2k}\}$ form an <span data-concept="monotone-sequence">increasing sequence</span> that is <span data-concept="bounded-sequence">bounded above</span> because</p>
-$$\kS_{2k}=\kS_{2k-2}+\frac{1}{2k-1}-\frac{1}{2k}\gt \kS_{2k-2}$$
-<p>and</p>
-$$\kS_{2k}=1+(-\frac{1}{2}+\frac{1}{3})+\cdots+(-\frac{1}{2k-2}+\frac{1}{2k-1})-\frac{1}{2k}\lt 1.$$
-<p>Therefore, by the <span data-concept="monotone-convergence-theorem">Monotone Convergence Theorem</span>, the <span data-concept="sequence">sequence</span> $\{\kS_{2k}\}$ also <span data-concept="convergence-of-a-series">converges</span>. Since</p>
-$$\kS_{2k+1}=\kS_{2k}+\frac{1}{2k+1},$$
-<p>we know that</p>
-$$\lim_{k\to \infty}\kS_{2k+1}=\lim_{k\to \infty}\kS_{2k}+\lim_{k\to \infty}\frac{1}{2k+1}.$$
-<p>Letting $\kSsum=\lim_{k\to \infty}\kS_{2k+1}$ and using the fact that $1/(2k+1)\to 0,$ we conclude that $\lim_{k\to \infty}\kS_{2k}=\kSsum.$ Since the odd <span data-concept="term-of-a-sequence">terms</span> and the even <span data-concept="term-of-a-sequence">terms</span> in the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converge</span> to the same limit $\kSsum,$ it can be shown that the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converges</span> to $\kSsum,$ and therefore the <span data-concept="alternating-harmonic-series">alternating harmonic series</span> <span data-concept="convergence-of-a-series">converges</span> to $\kSsum.$</p>
+<figure class="dv" id="drv-alternating-harmonic-series"></figure>
 <p>It can also be shown that $\kSsum=\ln2,$ and we can write</p>
 $$\sum_{n=1}^{\infty}\frac{{(-1)}^{n+1}}{n}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots=\ln(2).$$
 <figure class="sim" id="sim-alternating" data-figure="9.17 + 9.18" data-original="/media/ch09/CNX_Calc_Figure_09_05_001.jpg,/media/ch09/CNX_Calc_Figure_09_05_002.jpg" data-original-caption="(Figure 9.17) For the alternating harmonic series, the odd terms S_(2k+1) in the sequence of partial sums are decreasing and bounded below. The even terms S_(2k) are increasing and bounded above. (Figure 9.18) For an alternating series b₁−b₂+b₃−⋯ in which b₁&gt; b₂&gt; b₃&gt; ⋯, the odd terms S_(2k+1) in the sequence of partial sums are decreasing and bounded below. The even terms S_(2k) are increasing and bounded above.">
@@ -101,11 +89,8 @@ $$\sum_{n=1}^{\infty} \frac{{(-1)}^{n+1}}{n^{2}}.$$
 <p>If $\sum_{n=1}^{\infty}|\kaseq_{n}|$ <span data-concept="convergence-of-a-series">converges</span>, then $\sum_{n=1}^{\infty}\kaseq_{n}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
 </div>
 <h3>Proof</h3>
-<p>Suppose that $\sum_{n=1}^{\infty} |\kaseq_{n}|$ <span data-concept="convergence-of-a-series">converges</span>. We show this by using the fact that $\kaseq_{n}=|\kaseq_{n}|$ or $\kaseq_{n}=-|\kaseq_{n}|$ and therefore $|\kaseq_{n}|+\kaseq_{n}=2|\kaseq_{n}|$ or $|\kaseq_{n}|+\kaseq_{n}=0.$ Therefore, $0\le|\kaseq_{n}|+\kaseq_{n}\le2|\kaseq_{n}|.$ Consequently, by the <span data-concept="comparison-test">comparison test</span>, since $2\sum_{n=1}^{\infty}|\kaseq_{n}|$ <span data-concept="convergence-of-a-series">converges</span>, the <span data-concept="infinite-series">series</span></p>
-$$\sum_{n=1}^{\infty}(|\kaseq_{n}|+\kaseq_{n})$$
-<p><span data-concept="convergence-of-a-series">converges</span>. By using the <span data-concept="algebraic-properties-of-convergent-series">algebraic properties for convergent series</span>, we conclude that</p>
-$$\sum_{n=1}^{\infty}\kaseq_{n}=\sum_{n=1}^{\infty}(|\kaseq_{n}|+\kaseq_{n})-\sum_{n=1}^{\infty}|\kaseq_{n}|$$
-<p><span data-concept="convergence-of-a-series">converges</span>.</p>
+<p>Suppose that $\sum_{n=1}^{\infty} |\kaseq_{n}|$ <span data-concept="convergence-of-a-series">converges</span>. We show this by using the fact that $\kaseq_{n}=|\kaseq_{n}|$ or $\kaseq_{n}=-|\kaseq_{n}|$ and therefore $|\kaseq_{n}|+\kaseq_{n}=2|\kaseq_{n}|$ or $|\kaseq_{n}|+\kaseq_{n}=0.$ Therefore, $0\le|\kaseq_{n}|+\kaseq_{n}\le2|\kaseq_{n}|.$</p>
+<figure class="dv" id="drv-absolute-convergence"></figure>
 <p>□</p>
 <div class="example" id="fs-id1169738153895">
 <h3>Example 9.21 · Absolute versus Conditional Convergence</h3>

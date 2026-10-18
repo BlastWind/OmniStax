@@ -1213,5 +1213,383 @@
    "kind": "correction",
    "html": "The first line prints $\\lim_{x\\to -\\infty};$ the limit is taken as $t\\to -\\infty,$ as in the lines that follow."
   }
+ ],
+ "derivations": [
+  {
+   "id": "improper-integral-split-point",
+   "what": "any split point of $\\int_{-\\infty}^{+\\infty}f(x)dx$",
+   "source": "Calculus, 7.7 Improper Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\int_{-\\infty}^{0}\\kf(x)dx$ and $\\int_0^{+\\infty}\\kf(x)dx$ both converge.",
+       "src": "7.7"
+      },
+      {
+       "tex": "\\int_a^{+\\infty}\\kf(x)dx=\\lim_{t\\to +\\infty}\\int_a^{t}\\kf(x)dx",
+       "src": "(7.16)"
+      },
+      {
+       "tex": "\\int_{-\\infty}^{b}\\kf(x)dx=\\lim_{t\\to -\\infty}\\int_t^{b}\\kf(x)dx",
+       "src": "(7.17)"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)dx=\\int_{a}^{c}\\kf(x)dx+\\int_{c}^{b}\\kf(x)dx",
+       "src": "5.2"
+      },
+      {
+       "text": "The limit of a sum is the sum of the limits, and the limit of a constant is the constant.",
+       "src": "2.3"
+      },
+      {
+       "tex": "\\int_{b}^{a}\\kf(x)dx=-\\int_{a}^{b}\\kf(x)dx",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\int_{-\\infty}^{+\\infty}\\kf(x)dx}=\\mk{A}{\\int_{-\\infty}^{0}\\kf(x)dx}+\\mk{B}{\\int_0^{+\\infty}\\kf(x)dx}",
+      "src": "(7.18)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\int_{-\\infty}^{+\\infty}\\kf(x)dx}=\\mk{A}{\\lim_{t\\to -\\infty}\\int_t^{0}\\kf(x)dx}+\\mk{B}{\\lim_{t\\to +\\infty}\\int_0^{t}\\kf(x)dx}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\int_{-\\infty}^{+\\infty}\\kf(x)dx}=\\mk{A}{\\lim_{t\\to -\\infty}\\Big(\\int_t^{a}\\kf(x)dx+\\int_a^{0}\\kf(x)dx\\Big)}+\\mk{B}{\\lim_{t\\to +\\infty}\\Big(\\int_0^{a}\\kf(x)dx+\\int_a^{t}\\kf(x)dx\\Big)}",
+       "uses": [
+        3
+       ],
+       "cap": "The splitting holds for every $a$, wherever it lies."
+      },
+      {
+       "tex": "\\mk{W}{\\int_{-\\infty}^{+\\infty}\\kf(x)dx}=\\mk{A}{\\lim_{t\\to -\\infty}\\int_t^{a}\\kf(x)dx}+\\mk{p}{\\int_a^{0}\\kf(x)dx}+\\mk{q}{\\int_0^{a}\\kf(x)dx}+\\mk{B}{\\lim_{t\\to +\\infty}\\int_a^{t}\\kf(x)dx}",
+       "uses": [
+        0,
+        4
+       ],
+       "cap": "Each limit splits because the integrals from $-\\infty$ to $0$ and from $0$ to $+\\infty$ converge, and $\\int_a^{0}f(x)dx$ and $\\int_0^{a}f(x)dx$ do not depend on $t$.",
+       "map": {
+        "A": [
+         "A",
+         "p"
+        ],
+        "B": [
+         "q",
+         "B"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{W}{\\int_{-\\infty}^{+\\infty}\\kf(x)dx}=\\mk{A}{\\lim_{t\\to -\\infty}\\int_t^{a}\\kf(x)dx}+\\mk{B}{\\lim_{t\\to +\\infty}\\int_a^{t}\\kf(x)dx}",
+       "uses": [
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\int_{-\\infty}^{+\\infty}\\kf(x)dx}=\\mk{A}{\\int_{-\\infty}^{a}\\kf(x)dx}+\\mk{B}{\\int_a^{+\\infty}\\kf(x)dx}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "7.7"
+    }
+   ]
+  },
+  {
+   "id": "integral-of-x-ln-x",
+   "what": "$\\int_0^{2}x\\ln x\\,dx$",
+   "source": "Calculus, 7.7 Improper Integrals, Example 7.53",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "u=\\ln x,\\quad dv=x\\,dx"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\ln x=\\frac{1}{x}",
+       "src": "3.9"
+      },
+      {
+       "text": "An antiderivative of $x^{n}$ is $\\frac{x^{n+1}}{n+1}$.",
+       "src": "4.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\int u\\;dv}=\\mk{b}{uv}-\\mk{c}{\\int v\\;du}",
+      "src": "(7.1)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\int x\\;\\ln x\\;dx}=\\mk{b}{\\frac{1}{2}x^{2}\\ln x}-\\mk{c}{\\int \\frac{1}{2}x^{2}\\cdot \\frac{1}{x}\\,dx}",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "cap": "With $u=\\ln x$ and $dv=x\\,dx$, $du=\\frac{1}{x}dx$ and $v=\\frac{1}{2}x^{2}$."
+      },
+      {
+       "tex": "\\mk{a}{\\int x\\;\\ln x\\;dx}=\\mk{b}{\\frac{1}{2}x^{2}\\ln x}-\\mk{c}{\\int \\frac{1}{2}x\\,dx}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\int x\\;\\ln x\\;dx}=\\mk{b}{\\frac{1}{2}x^{2}\\ln x}-\\mk{c}{\\frac{1}{4}x^{2}}+C",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "Example 7.53"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\lim_{x\\to a}\\frac{\\kf(x)}{\\kg(x)}=\\lim_{x\\to a}\\frac{\\kfprime(x)}{\\kgprime(x)}",
+       "src": "4.8, L’Hôpital’s Rule (∞/∞ Case)"
+      },
+      {
+       "text": "$\\ln t\\to -\\infty$ and $t^{-2}\\to +\\infty$ as $t\\to 0^{+}$.",
+       "src": "Example 4.41"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\ln x=\\frac{1}{x}",
+       "src": "3.9"
+      },
+      {
+       "tex": "\\frac{d}{dx}(x^{k})=kx^{k-1}",
+       "src": "3.3"
+      },
+      {
+       "tex": "\\lim_{x\\to a}p(x)=p(a)",
+       "src": "2.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\lim_{t\\to 0^{+}}t^{2}\\ln t}=\\mk{b}{\\lim_{t\\to 0^{+}}\\frac{\\ln t}{t^{-2}}}",
+      "src": "Example 7.53"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\lim_{t\\to 0^{+}}t^{2}\\ln t}=\\mk{b}{\\lim_{t\\to 0^{+}}\\frac{1/t}{-2t^{-3}}}",
+       "uses": [
+        0,
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\lim_{t\\to 0^{+}}t^{2}\\ln t}=\\mk{b}{\\lim_{t\\to 0^{+}}\\left(-\\frac{t^{2}}{2}\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\lim_{t\\to 0^{+}}t^{2}\\ln t}=\\mk{b}{0}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "Example 7.53"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf(x)=x\\;\\ln x$ is continuous over $(0,2]$ and is discontinuous at zero."
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{t\\to a^{+}}\\int_t^{b}\\kf(x)dx",
+       "src": "(7.20)"
+      },
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)\\,dx=\\kF(x)\\Big|_{a}^{b}=\\kF(b)-\\kF(a)",
+       "src": "5.3"
+      },
+      {
+       "text": "The limit of a sum is the sum of the limits, and a constant multiple can be taken out of a limit.",
+       "src": "2.3"
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\lim_{x\\to a}p(x)=p(a)",
+       "src": "2.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_0^{2}x\\;\\ln x\\;dx}=\\mk{L}{\\lim_{t\\to 0^{+}}\\int_t^{2}x\\;\\ln x\\;dx}",
+      "src": "(7.20)",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_0^{2}x\\;\\ln x\\;dx}=\\mk{L}{\\lim_{t\\to 0^{+}}\\Big(\\frac{1}{2}x^{2}\\ln x-\\frac{1}{4}x^{2}\\Big)\\Big|_{t}^{2}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_0^{2}x\\;\\ln x\\;dx}=\\mk{L}{\\lim_{t\\to 0^{+}}(2\\;\\ln 2-1-\\frac{1}{2}t^{2}\\ln t+\\frac{1}{4}t^{2})}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_0^{2}x\\;\\ln x\\;dx}=\\mk{c}{2\\;\\ln 2-1}-\\mk{p}{\\frac{1}{2}\\lim_{t\\to 0^{+}}t^{2}\\ln t}+\\mk{q}{\\frac{1}{4}\\lim_{t\\to 0^{+}}t^{2}}",
+       "uses": [
+        4
+       ],
+       "map": {
+        "L": [
+         "c",
+         "p",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_0^{2}x\\;\\ln x\\;dx}=\\mk{c}{2\\;\\ln 2-1}",
+       "uses": [
+        5,
+        6
+       ]
+      }
+     ],
+     "src": "Example 7.53"
+    }
+   ]
+  },
+  {
+   "id": "comparison-theorem",
+   "what": "a comparison theorem",
+   "source": "Calculus, 7.7 Improper Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kf(x)\\ge 0\\;\\text{on}\\;[a,b]\\;\\Rightarrow\\;\\int_{a}^{b}\\kf(x)dx\\ge 0",
+       "src": "5.2, Comparison Theorem"
+      },
+      {
+       "tex": "\\kf(x)\\ge \\kg(x)\\;\\text{on}\\;[a,b]\\;\\Rightarrow\\;\\int_{a}^{b}\\kf(x)dx\\ge \\int_{a}^{b}\\kg(x)dx",
+       "src": "5.2, Comparison Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0}\\le \\mk{f}{\\kf(x)}\\le \\mk{g}{\\kg(x)}\\;\\text{for}\\;x\\ge a",
+      "src": "7.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0}\\le \\mk{f}{\\int_a^{t}\\kf(x)dx}\\le \\mk{g}{\\int_a^{t}\\kg(x)dx}\\;\\text{for}\\;t\\ge a",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "Both parts of the comparison theorem, over $[a,t]$."
+      }
+     ],
+     "src": "7.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\lim_{t\\to +\\infty}\\int_a^{t}\\kf(x)dx=+\\infty"
+      },
+      {
+       "tex": "\\int_a^{+\\infty}\\kf(x)dx=\\lim_{t\\to +\\infty}\\int_a^{t}\\kf(x)dx",
+       "src": "(7.16)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0}\\le \\mk{f}{\\int_a^{t}\\kf(x)dx}\\le \\mk{g}{\\int_a^{t}\\kg(x)dx}\\;\\text{for}\\;t\\ge a"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\lim_{t\\to +\\infty}\\int_a^{t}\\kg(x)dx}=\\mk{f}{+\\infty}",
+       "uses": [
+        1
+       ],
+       "cap": "$\\int_a^{t}g(x)dx$ is never less than $\\int_a^{t}f(x)dx$, which grows without bound, so it grows without bound too."
+      },
+      {
+       "tex": "\\mk{d}{\\int_a^{+\\infty}\\kg(x)dx}=\\mk{g}{\\lim_{t\\to +\\infty}\\int_a^{t}\\kg(x)dx}=\\mk{f}{+\\infty}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "7.7, A Comparison Theorem"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\lim_{t\\to +\\infty}\\int_a^{t}\\kg(x)dx=L"
+      },
+      {
+       "text": "Since $\\kf(x)\\ge 0$ and $\\kg(x)\\ge 0,$ $\\int_a^{t}\\kf(x)dx$ and $\\int_a^{t}\\kg(x)dx$ increase as $t$ increases.",
+       "src": "7.7"
+      },
+      {
+       "text": "A quantity that increases with $t$ and stays at or below $L$ approaches a limit no larger than $L$.",
+       "src": "7.7"
+      },
+      {
+       "tex": "\\int_a^{+\\infty}\\kf(x)dx=\\lim_{t\\to +\\infty}\\int_a^{t}\\kf(x)dx",
+       "src": "(7.16)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0}\\le \\mk{f}{\\int_a^{t}\\kf(x)dx}\\le \\mk{g}{\\int_a^{t}\\kg(x)dx}\\;\\text{for}\\;t\\ge a"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0}\\le \\mk{f}{\\int_a^{t}\\kf(x)dx}\\le \\mk{g}{\\int_a^{t}\\kg(x)dx}\\le \\mk{L}{L}\\;\\text{for}\\;t\\ge a",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$\\int_a^{t}g(x)dx$ increases toward its limit $L$, so it never exceeds $L$."
+      },
+      {
+       "tex": "\\mk{f}{\\int_a^{t}\\kf(x)dx}\\le \\mk{L}{L}\\;\\text{for all}\\;t\\ge a",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\int_a^{+\\infty}\\kf(x)dx}=\\mk{f}{\\lim_{t\\to +\\infty}\\int_a^{t}\\kf(x)dx}=\\mk{L}{M}\\le L",
+       "uses": [
+        2,
+        3,
+        4
+       ]
+      }
+     ],
+     "src": "7.7, A Comparison Theorem"
+    }
+   ]
+  }
  ]
 }

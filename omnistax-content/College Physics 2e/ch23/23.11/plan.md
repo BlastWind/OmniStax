@@ -245,3 +245,8 @@ categorical or the element palette.
   is right about the questions.
 - The flux and inductance hues were checked against voltage and capacitance on
   this page in the browser, in both themes; they read apart.
+
+## Derivations
+
+- The inductive reactance $X_L = 2\pi fL$ and the 90° lag of the current · score 9 · not built: the book says the loop rule and calculus produce it; calculus is not in the book (rule 29.3)
+- The capacitive reactance $X_C = 1/2\pi fC$ and the 90° lead of the current · score 8 · not built: the same reason

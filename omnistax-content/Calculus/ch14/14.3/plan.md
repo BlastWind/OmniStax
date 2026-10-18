@@ -50,3 +50,9 @@ None: `sim-partial-secant` carries the interpretation, and Clairaut's theorem ha
 
 - forms: `eq-partial-x`, `eq-partial-y` → `14.3-fs-id1167793902985`; the three-variable forms → `14.3-fs-id1167793607547`; `eq-second-partials` → `14.3-second-partials`; `eq-clairaut` → `14.3-fs-id1167793605902`; heat, wave, Laplace forms → `14.3-pde-term`; `eq-heat-equation-1d` → `14.3-heat-1d`; `eq-heat-solution-1d` → `14.3-fs-id1167793929398`; `eq-heat-equation-radial` → `14.3-fs-id1167794139867`.
 - variables anchored at build. Review 395, 407 placed here.
+
+## Derivations
+
+- Derivatives of a Function of Two Variables, g(x) = f(x, y) with y fixed · score 0 · built as drv-partial-derivatives-as-ordinary-derivatives, node 1; the same for h(y) with x fixed (the book's next display) as node 2, one family of thin printed blocks, hosted after the second set-up paragraph. The book's h′(x) and h(x + k) for a function of y are node 2's note
+- Equality of Mixed Partial Derivatives (Clairaut's Theorem), stated with its proof left to advanced calculus books · score 9 · built as drv-clairauts-theorem after the paragraph that says so: the double difference Δ worked by the Mean Value Theorem of 4.4 twice in each order, the two lines joined, then h → 0 with the continuity of f_xy and f_yx
+- Student Project · Lord Kelvin and the Age of Earth · score 12 · not built: the project poses the steps for the reader, and its Fourier step lies outside the book

@@ -763,5 +763,108 @@
    "kind": "correction",
    "html": "The book points at Figure 19.23, which is the calculator whose memory a capacitor preserves; the defibrillator is Figure 19.24."
   }
+ ],
+ "derivations": [
+  {
+   "id": "capacitor-energy",
+   "what": "the energy stored in a capacitor",
+   "source": "College Physics 2e, 19.7 Energy Stored in Capacitors",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The energy stored in a capacitor is the electrical potential energy of the charge $\\kQch$ placed on it.",
+       "src": "19.7"
+      },
+      {
+       "text": "The voltage rises steadily from $0$ to $\\kV$ as the capacitor charges, so the average voltage the full charge goes through is $\\kV/2$.",
+       "src": "19.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kdPE} = \\mk{q}{\\kq}\\mk{V}{\\kdV}",
+      "src": "19.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\mk{q}{\\kQch}\\mk{V}{\\kdV}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\mk{q}{\\kQch}\\mk{V}{\\dfrac{\\kV}{2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch}\\mk{V}{\\kV}}{2}",
+       "uses": []
+      }
+     ],
+     "src": "19.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kQch = \\kCap\\kV",
+       "src": "19.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch}\\mk{V}{\\kV}}{2}",
+      "src": "19.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kCap\\kV}\\,\\mk{V}{\\kV}}{2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kCap\\kV^2}}{2}",
+       "uses": [],
+       "map": {
+        "V": "q"
+       }
+      }
+     ],
+     "src": "19.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kQch = \\kCap\\kV",
+       "src": "19.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch}\\mk{V}{\\kV}}{2}",
+      "src": "19.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch}\\,\\mk{V}{\\dfrac{\\kQch}{\\kCap}}}{2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch^2}}{\\mk{V}{2\\kCap}}",
+       "uses": []
+      }
+     ],
+     "src": "19.7"
+    }
+   ]
+  }
  ]
 }

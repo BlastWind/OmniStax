@@ -45,3 +45,15 @@ Two picked, besides `sim-term-by-term` for the section's main result: `sim-cauch
 - variables of 10.2: f, g, S, T → `10.2-fs-id1167023714096`; R, f′ → `10.2-fs-id1167023789599`; G → `10.2-term-by-term-term`; P → `10.2-present-value-term`.
 - Review 253 placed here, not in 10.1 as the prep listed: Σnaₙxⁿ⁻¹ is the differentiated series.
 - Applied in the chapter pass (2026-10-13): every anchor above set with `ost set`; review rows landed with `mksection.py --with-review`.
+
+## Derivations
+
+- Theorem · Combining Power Series, Proof of i. · score 3 · built as drv-combining-power-series (replaces the two displays; the partial sums split, then the limit law)
+- Example 10.5 b · score 4 · not built: a worked example of Combining Power Series on the geometric series; the partial fractions are one printed line
+- Example 10.7 c · score 2 · not built: a worked example, the geometric series summed
+- Multiplication of Power Series · the Cauchy product coefficients · score 2 · not built: a heuristic ("it appears that"), one multiplication collected by powers, before a theorem whose proof the book omits
+- Example 10.9 a · score 2 · not built: a worked example, one term-by-term differentiation
+- Example 10.10 a · score 4 · built as drv-power-series-for-ln (an equation-first block that derives the series of Table 10.1; the antiderivative and the constant C = 0 join the integrated series)
+- Example 10.10 b · score 4 · built as drv-power-series-for-arctan (the same shape for tan⁻¹x)
+- Theorem · Uniqueness of Power Series, Proof · score 1 · built as drv-uniqueness-of-power-series (a proof; the nth derivative line the book summarises as "more generally" is inserted)
+- From 9.5 (the ch09 candidate "S = ln 2"): built in 10.3 as drv-alternating-harmonic-series-sum; Example 10.10 a's sentence that the sum at x = 1 needs "more advanced techniques" stays as printed with a correction note (c-ln2-remainder) pointing to it

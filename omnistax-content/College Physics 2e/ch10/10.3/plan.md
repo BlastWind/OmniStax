@@ -329,3 +329,7 @@ chapter that no page shows. 10.1's grindstone problem (fs-id3225958) is set
 here as `p12` with `source_section: "10.1"`, tagged
 `newtons-second-law-rotation` with `choosing-a-moment-of-inertia` and 10.2's
 `rotational-kinematic-equations` at weight 2, and `exercise_notes` says so.
+
+## Derivations
+
+- The rotational analog of Newton's second law for a point mass, $\tau = mr^2\alpha$ (printed block) · score 3 · built as drv-torque-point-mass: one node from $F = ma$ through $a = r\alpha$ and $\tau = rF$; replaces the inline chain and the three displayed lines

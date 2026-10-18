@@ -1062,5 +1062,499 @@
    "kind": "correction",
    "html": "In place of an answer to this exercise, the key prints the proof about the two cars, which belongs to exercise 191 and is set there."
   }
+ ],
+ "derivations": [
+  {
+   "id": "rolles-theorem",
+   "what": "Rolle’s theorem",
+   "source": "Calculus, 4.4 The Mean Value Theorem, Rolle’s Theorem",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The derivative of a constant function is zero.",
+       "src": "3.3, The Constant Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{k}{k}\\;\\text{for all}\\;x\\in (a,b)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{k}{0}\\;\\text{for all}\\;x\\in (a,b)",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "4.4, Case 1"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ is continuous over $[a,b].$"
+      },
+      {
+       "text": "A function continuous over a closed, bounded interval has an absolute maximum there.",
+       "src": "4.3, Extreme Value Theorem"
+      },
+      {
+       "tex": "\\kf(x_0)\\gt k\\;\\text{for some}\\;x_0\\in (a,b)"
+      },
+      {
+       "tex": "k=\\kf(a)=\\kf(b)"
+      },
+      {
+       "text": "$\\kf$ is differentiable over $(a,b).$"
+      },
+      {
+       "text": "If $\\kf$ has a local extremum at $c$ and is differentiable at $c,$ then $\\kfprime(c)=0.$",
+       "src": "4.3, Fermat’s Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{M}{\\kf(c)}\\ge \\mk{x}{\\kf(x)}\\;\\text{for all}\\;x\\in [a,b]",
+      "src": "4.3, Extreme Value Theorem",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "The absolute maximum is taken at some point $c$ of $[a,b].$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{M}{\\kf(c)}\\ge \\mk{x}{\\kf(x_0)}\\gt \\mk{k}{k}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{M}{\\kf(c)}\\gt \\mk{k}{\\kf(a)},\\quad \\mk{M2}{\\kf(c)}\\gt \\mk{k2}{\\kf(b)}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "M": [
+         "M",
+         "M2"
+        ],
+        "k": [
+         "k",
+         "k2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{M}{c}\\in \\mk{k}{(a,b)}",
+       "uses": [],
+       "cap": "The maximum is greater than the values at both endpoints, so it is taken at neither; at the interior point $c$ the absolute maximum is also a local maximum.",
+       "map": {
+        "M2": "M",
+        "k2": "k"
+       }
+      },
+      {
+       "tex": "\\mk{M}{\\kfprime(c)}=\\mk{k}{0}",
+       "uses": [
+        4,
+        5
+       ]
+      }
+     ],
+     "src": "4.4, Case 2"
+    }
+   ]
+  },
+  {
+   "id": "mean-value-theorem",
+   "what": "the mean value theorem",
+   "source": "Calculus, 4.4 The Mean Value Theorem, Mean Value Theorem",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The line passes through $(a,\\kf(a))$ and $(b,\\kf(b)).$"
+      },
+      {
+       "tex": "\\km=\\frac{y_{2}-y_{1}}{x_{2}-x_{1}}",
+       "src": "(1.3)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}-\\mk{y1}{\\kf(a)}=\\mk{m}{\\km}(\\mk{x}{x-a})",
+      "src": "(1.4)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{y}-\\mk{y1}{\\kf(a)}=\\mk{m}{\\frac{\\kf(b)-\\kf(a)}{b-a}}(\\mk{x}{x-a})",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{y}=\\mk{m}{\\frac{\\kf(b)-\\kf(a)}{b-a}}(\\mk{x}{x-a})+\\mk{y1}{\\kf(a)}",
+       "uses": []
+      }
+     ],
+     "src": "4.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\kg(x)$ is the vertical difference between the point $(x,\\kf(x))$ and the point $(x,y)$ on the line."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kg(x)}=\\mk{f}{\\kf(x)}-\\mk{y}{y}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kg(x)}=\\mk{f}{\\kf(x)}-\\mk{y}{[\\frac{\\kf(b)-\\kf(a)}{b-a}(x-a)+\\kf(a)]}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "4.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kg(x)}=\\mk{f}{\\kf(x)}-\\mk{y}{[\\frac{\\kf(b)-\\kf(a)}{b-a}(x-a)+\\kf(a)]}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kg(a)}=\\mk{f}{\\kf(a)}-\\mk{y}{[\\frac{\\kf(b)-\\kf(a)}{b-a}(a-a)+\\kf(a)]}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{g}{\\kg(a)}=\\mk{f}{\\kf(a)}-\\mk{y}{\\kf(a)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{g}{\\kg(a)}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "f": "z",
+        "y": "z"
+       }
+      }
+     ],
+     "src": "4.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kg(x)}=\\mk{f}{\\kf(x)}-\\mk{y}{[\\frac{\\kf(b)-\\kf(a)}{b-a}(x-a)+\\kf(a)]}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kg(b)}=\\mk{f}{\\kf(b)}-\\mk{y}{[\\frac{\\kf(b)-\\kf(a)}{b-a}(b-a)+\\kf(a)]}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{g}{\\kg(b)}=\\mk{f}{\\kf(b)}-\\mk{y}{[\\kf(b)-\\kf(a)+\\kf(a)]}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{g}{\\kg(b)}=\\mk{f}{\\kf(b)}-\\mk{y}{\\kf(b)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{g}{\\kg(b)}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "f": "z",
+        "y": "z"
+       }
+      }
+     ],
+     "src": "4.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\kf(x)-\\kg(x))=\\kfprime(x)-\\kgprime(x)",
+       "src": "3.3, Difference Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(k\\kf(x))=k\\kfprime(x)",
+       "src": "3.3, Constant Multiple Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(c)=0",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(x)=1",
+       "src": "3.3, The Power Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kg(x)}=\\mk{f}{\\kf(x)}-\\mk{y}{[\\frac{\\kf(b)-\\kf(a)}{b-a}(x-a)+\\kf(a)]}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kgprime(x)}=\\mk{f}{\\kfprime(x)}-\\mk{y}{\\frac{d}{dx}[\\frac{\\kf(b)-\\kf(a)}{b-a}(x-a)+\\kf(a)]}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{g}{\\kgprime(x)}=\\mk{f}{\\kfprime(x)}-\\mk{y}{[\\frac{\\kf(b)-\\kf(a)}{b-a}(1)+0]}",
+       "uses": [
+        2,
+        3,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{g}{\\kgprime(x)}=\\mk{f}{\\kfprime(x)}-\\mk{y}{\\frac{\\kf(b)-\\kf(a)}{b-a}}",
+       "uses": []
+      }
+     ],
+     "src": "4.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      },
+      {
+       "text": "$\\kg$ is continuous over $[a,b]$ and differentiable over $(a,b),$ as $\\kf$ is.",
+       "src": "4.4"
+      },
+      {
+       "text": "If $\\kg$ is continuous over $[a,b],$ differentiable over $(a,b)$ and $\\kg(a)=\\kg(b),$ there is a $c\\in (a,b)$ with $\\kgprime(c)=0.$",
+       "src": "4.4, Rolle’s Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kgprime(x)}=\\mk{f}{\\kfprime(x)}-\\mk{y}{\\frac{\\kf(b)-\\kf(a)}{b-a}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kgprime(c)}=\\mk{f}{\\kfprime(c)}-\\mk{y}{\\frac{\\kf(b)-\\kf(a)}{b-a}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{g}{0}=\\mk{f}{\\kfprime(c)}-\\mk{y}{\\frac{\\kf(b)-\\kf(a)}{b-a}}",
+       "uses": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "cap": "Rolle’s theorem gives a point $c\\in (a,b)$ at which $\\kgprime(c)=0.$"
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(c)}=\\mk{y}{\\frac{\\kf(b)-\\kf(a)}{b-a}}",
+       "uses": []
+      }
+     ],
+     "src": "4.4, Mean Value Theorem"
+    }
+   ]
+  },
+  {
+   "id": "functions-with-zero-derivative",
+   "what": "a function with a derivative of zero",
+   "source": "Calculus, 4.4 The Mean Value Theorem, Corollary 1: Functions with a Derivative of Zero",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "a\\lt b"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fb}{\\kf(b)}\\ne \\mk{fa}{\\kf(a)}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{fb}{\\kf(b)}-\\mk{fa}{\\kf(a)}\\ne \\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\frac{\\mk{fb}{\\kf(b)}-\\mk{fa}{\\kf(a)}}{\\mk{d}{b-a}}\\ne \\mk{z}{0}",
+       "uses": [0]
+      }
+     ],
+     "src": "4.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\kf$ is differentiable over $\\kI.$"
+      },
+      {
+       "text": "A function differentiable at a point is continuous there.",
+       "src": "3.2"
+      },
+      {
+       "text": "If $\\kf$ is continuous over $[a,b]$ and differentiable over $(a,b),$ there is a $c\\in (a,b)$ with $\\kfprime(c)=\\frac{\\kf(b)-\\kf(a)}{b-a}.$",
+       "src": "4.4, Mean Value Theorem"
+      },
+      {
+       "tex": "\\kfprime(x)=0\\;\\text{for all}\\;x\\in \\kI"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fp}{\\kfprime(c)}=\\mk{q}{\\frac{\\kf(b)-\\kf(a)}{b-a}}",
+      "src": "4.4, Mean Value Theorem",
+      "uses": [
+       1,
+       2,
+       3
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{fp}{\\kfprime(c)}\\ne \\mk{q}{0}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{fp}{\\kf(x)}=\\mk{q}{\\text{constant}}\\;\\text{for all}\\;x\\in \\kI",
+       "uses": [4],
+       "cap": "A point $c\\in \\kI$ with $\\kfprime(c)\\ne 0$ contradicts $\\kfprime(x)=0$ for all $x\\in \\kI,$ so $\\kf$ cannot take two different values over $\\kI.$"
+      }
+     ],
+     "src": "4.4, Corollary 1"
+    }
+   ]
+  },
+  {
+   "id": "constant-difference-theorem",
+   "what": "the constant difference theorem",
+   "source": "Calculus, 4.4 The Mean Value Theorem, Corollary 2: Constant Difference Theorem",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}(\\kf(x)-\\kg(x))=\\kfprime(x)-\\kgprime(x)",
+       "src": "3.3, Difference Rule"
+      },
+      {
+       "tex": "\\kfprime(x)=\\kgprime(x)\\;\\text{for all}\\;x\\in \\kI"
+      },
+      {
+       "text": "If $\\kfprime(x)=0$ for all $x\\in \\kI,$ then $\\kf(x)$ is constant over $\\kI.$",
+       "src": "4.4, Corollary 1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{h}{\\kh(x)}=\\mk{d}{\\kf(x)-\\kg(x)}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{h}{\\khprime(x)}=\\mk{d}{\\kfprime(x)-\\kgprime(x)}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{h}{\\khprime(x)}=\\mk{d}{0}\\;\\text{for all}\\;x\\in \\kI",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{h}{\\kh(x)}=\\mk{d}{C}\\;\\text{for all}\\;x\\in \\kI",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{h}{\\kf(x)-\\kg(x)}=\\mk{d}{C}\\;\\text{for all}\\;x\\in \\kI",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\kf(x)}=\\mk{g}{\\kg(x)}+\\mk{d}{C}\\;\\text{for all}\\;x\\in \\kI",
+       "uses": [],
+       "map": {
+        "h": [
+         "f",
+         "g"
+        ]
+       }
+      }
+     ],
+     "src": "4.4, Corollary 2"
+    }
+   ]
+  },
+  {
+   "id": "increasing-functions",
+   "what": "a function with a positive derivative is increasing",
+   "source": "Calculus, 4.4 The Mean Value Theorem, Corollary 3: Increasing and Decreasing Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "a\\lt b"
+      },
+      {
+       "tex": "\\kf(a)\\ge \\kf(b)"
+      },
+      {
+       "text": "$\\kf$ is continuous and differentiable over $\\kI.$"
+      },
+      {
+       "text": "If $\\kf$ is continuous over $[a,b]$ and differentiable over $(a,b),$ there is a $c\\in (a,b)$ with $\\kfprime(c)=\\frac{\\kf(b)-\\kf(a)}{b-a}.$",
+       "src": "4.4, Mean Value Theorem"
+      },
+      {
+       "tex": "\\kfprime(x)\\gt 0\\;\\text{for all}\\;x\\in \\kI"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fp}{\\kfprime(c)}=\\mk{q}{\\frac{\\kf(b)-\\kf(a)}{b-a}}",
+      "src": "4.4, Mean Value Theorem",
+      "uses": [
+       2,
+       3
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{fp}{\\kfprime(c)}=\\mk{q}{\\frac{\\kf(b)-\\kf(a)}{b-a}}\\le \\mk{z}{0}",
+       "uses": [0, 1],
+       "cap": "Now $b-a\\gt 0$ and $\\kf(b)-\\kf(a)\\le 0,$ so their quotient is at most $0.$"
+      },
+      {
+       "tex": "\\mk{fp}{\\kf(x_{1})}\\lt \\mk{q}{\\kf(x_{2})}\\;\\text{whenever}\\;x_{1}\\lt x_{2}\\;\\text{in}\\;\\kI",
+       "uses": [4],
+       "cap": "$\\kfprime(c)\\le 0$ contradicts $\\kfprime(x)\\gt 0$ for all $x\\in \\kI,$ $c$ included, so no such $a$ and $b$ exist and $\\kf$ is increasing over $\\kI.$"
+      }
+     ],
+     "src": "4.4, Corollary 3",
+     "note": "The book supposes $\\kf(a)\\gt \\kf(b)$ and concludes $\\kfprime(c)\\lt 0.$ A function that is not increasing has $a\\lt b$ with $\\kf(a)\\ge \\kf(b),$ the equal case included, which gives $\\kfprime(c)\\le 0,$ still a contradiction."
+    }
+   ]
+  }
  ]
 }

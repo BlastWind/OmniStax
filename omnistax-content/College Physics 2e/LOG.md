@@ -4710,3 +4710,620 @@ masses"; in 34.4 speeds that "decrease as the square root" and WIMPs called
 leptons; in 34.6 the summary's 250 K against 270 K and Figure 34.23's resistance
 under a caption on resistivity; in 34.7 a universe "just barely closed" against
 34.4's "just barely open".
+
+
+### Pass 60 (2026-10-16): Chapter 2, Kinematics: derivations
+
+Rule 29 was applied to the chapter's seven candidates. The four derivation
+boxes of 2.5 are built, each in place of its box: the final position from the
+average velocity (`drv-position-from-average-velocity`), the final velocity
+(`drv-final-velocity`), the final position when the velocity is not constant
+(`drv-position-constant-acceleration`) and the final velocity without time
+(`drv-velocity-without-time`). The book prints them as four boxes under four
+headings, with examples between, so they are four derivations rather than one
+family; each later one cites the earlier results as facts of 2.5. The first
+box closes on $\bar v = (v_0 + v)/2$, which the book asserts and does not
+derive, so that line stays printed after its host. The fourth box prints only
+$t = (v - v_0)/a$ and the result, and the five lines between are inserted,
+the difference of squares among them with its reason.
+
+Judged out: Example 2.13, which substitutes into the section's equation and
+solves the quadratic, and the two straight-line graphs of 2.8, which reach
+$x = x_0 + \bar v t$ and $v = v_0 + at$ again after 2.5 has worked them, so they
+stay as printed. Each section's `plan.md` lists the candidates with their
+scores.
+
+
+### Pass 61 (2026-10-16): Chapter 3, Two-Dimensional Kinematics: derivations
+
+Rule 29 was applied to the chapter's two candidates, both in 3.4. The maximum
+height of a projectile is built as `drv-maximum-height` in place of the three
+symbolic lines of Example 3.4 (a): the book works it there in symbols and then
+names it valid for any projectile, so it is built where the book first works
+it, and the numbers of the example and the later $h = v_{0y}^2/2g$ stay as
+printed. The range $R = v_0^2 \sin 2\theta_0/g$ is judged out, since the book
+leaves its proof to an end-of-chapter problem.
+
+
+### Pass 62 (2026-10-16): Chapter 4, Dynamics: Force and Newton's Laws of Motion: derivations
+
+Rule 29 was applied to the chapter's seven candidates. Four are built. In 4.5,
+the note on resolving weight into components becomes `drv-weight-components`,
+two nodes from the right triangle of the weight vectors, in place of the
+note's two closing blocks; the proof that the tension in a rope holding a mass
+at rest equals its weight becomes `drv-rope-tension`; and Example 4.6, the
+tightrope, becomes `drv-tightrope-tension`, the settled record of the figure
+sandbox carried into this book's macros. The tightrope's lines are all printed
+and its score of 3 is under the hidden bar, but the example works in symbols to
+$T = w/(2\sin\theta)$, which the next subsection prints as a general formula,
+so it is built as an equation-first block. In 4.7 the strategy of Example 4.9,
+$F_s = ma + mg$, becomes `drv-scale-reading`, since the book says it holds for
+any acceleration.
+
+Judged out: the weight equation of 4.3, two inline moves in prose, under the
+bar; Example 4.5, worked at 25° with its general result only stated; and
+Example 4.8, a worked example of the section's method. The tightrope's general
+formula and the scale's numbers stay as printed.
+
+
+### Pass 63 (2026-10-16): Chapter 5, Further Applications of Newton's Laws: derivations
+
+Rule 29 was applied to the chapter's four candidates. Three are built:
+$\mu_k = \tan\theta$ from sliding at constant velocity (5.1,
+`drv-friction-coefficient-slope`), whose work the book prints inside the
+Take-Home Experiment before setting the reader the coin and the book; the
+terminal velocity $v = \sqrt{2mg/\rho CA}$ (5.2, `drv-terminal-velocity`), with
+the skydiver's numbers and Example 5.2's restatement left printed; and the force
+constant of a rod, $k = YA/L_0$ (5.3, `drv-rod-force-constant`), which replaces
+only the last two displays, since the prose around the first two defines stress
+and strain. The book's $f_k = mg_x$ is kept as printed, with
+$mg_x = mg\sin\theta$ as a fact from Figure 5.4.
+
+Judged out: the constant acceleration of a body sliding down a slope with
+friction, which Example 5.1 leaves to the chapter's problems.
+
+
+### Pass 64 (2026-10-16): Chapter 6, Uniform Circular Motion and Gravitation: derivations
+
+Rule 29 was applied to the chapter's eight candidates. Five are built: the
+relation $v = r\omega$ (6.1, `drv-linear-angular-velocity`); the magnitude of
+the centripetal acceleration by similar triangles (6.2,
+`drv-centripetal-acceleration`), with the line $a_c = (v/r)\,v$ the book skips
+inserted; the ideal banking angle (6.3, `drv-ideal-banking-angle`), whose
+horizontal and vertical lines join to eliminate $N$; the acceleration due to
+gravity from the law of gravitation, with Earth's numbers as its last node (6.5,
+`drv-gravity-acceleration`); and Kepler's third law for circular orbits (6.6,
+`drv-kepler-third-law`), the settled sandbox record carried into this book's
+macros. Where the book's reasons sat between its displays (the vertical forces
+on the banked car, the period as the time of one orbit) they became facts; the
+paragraphs that say more than the lines, on the mass cancelling, the symbols of
+the law of gravitation and one parent body, stay.
+
+Judged out: the radian of 6.1, a unit and a conversion; Example 6.4 (b), a
+worked example of the section's method; Example 6.6, two substitutions
+compared. The Cavendish subsection repeats the two lines to $g = GM/r^2$ and
+the next subsection of 6.6 rearranges $T^2$ for $M$; both stay as printed.
+
+
+### Pass 65 (2026-10-16): Chapter 7, Work, Energy, and Energy Resources: derivations
+
+Rule 29 was applied to the chapter's eight candidates. Three printed blocks are
+built, each in place of its displayed lines: the work-energy theorem (7.2,
+`drv-work-energy-theorem`), three nodes that join the net-work line through
+Newton's second law to the kinematic line solved for $a$, with the boxed note
+left as printed; the conservation of mechanical energy (7.4,
+`drv-conservation-of-mechanical-energy`), from the theorem through
+$W_\text{c} = -\Delta\text{PE}$ to $\text{KE}_\text{i} + \text{PE}_\text{i} =
+\text{KE}_\text{f} + \text{PE}_\text{f}$; and the work done by nonconservative
+forces (7.5, `drv-nonconservative-work`), where the expansion of the two
+changes the book skips is inserted with $\Delta$ as 2.1 defines it. The prose
+on Figure 7.15 stays after its host.
+
+Judged out: work against gravity (7.3), two inline moves; Examples 7.6, 7.7 and
+7.10, worked examples under the bar that substitute into the section's
+equations; and the potential energy of a spring (7.4), four inline moves with
+only Hooke's law imported and nothing hidden. Each section's `plan.md` lists
+the candidates with their scores.
+
+
+### Pass 66 (2026-10-16): Chapter 8, Linear Momentum and Collisions: derivations
+
+Rule 29 was applied to the chapter's eleven candidates. Seven derivations are
+built. $F_\text{net} = ma$ from the momentum form of the second law (8.1,
+`drv-second-law-constant-mass`) and the two cars' conservation of momentum
+(8.3, `drv-two-car-momentum`, the two impulses joined by Newton's third law)
+replace their printed blocks; the remark that the collision time is the same
+for both cars only at ordinary speeds stays after its host. The book's two
+component equations of 8.6 sit under two headers, so they are two derivations,
+`drv-momentum-along-x` and `drv-momentum-along-y`, each with its boxed note
+left as printed. The acceleration of a rocket (8.7, `drv-rocket-acceleration`),
+which the book says "can be shown", is built after the paragraph that names
+"the rocket": taking the gas's velocity relative to the rocket after ejection,
+the momentum bookkeeping reaches $a = \frac{v_e}{m}\frac{\Delta m}{\Delta t} - g$
+with no term dropped.
+
+Example 8.4's algebra, which the book leaves to the reader, is built as
+`drv-elastic-collision-velocities` in place of its Solution up to the two
+roots: the momentum line solved for $v_2'$ joins the kinetic-energy line in a
+quadratic for $v_1'$, solved with the quadratic formula of 2.5; the Sim of the
+two solutions, the discarded root and $v_2'$ stay as printed. The 90°
+separation of equal masses (8.6), whose algebra the book also leaves to the
+reader, is built as `drv-equal-mass-separation` after the paragraph that states
+it: the two component equations with equal masses are squared and added, with
+$\cos^2\theta + \sin^2\theta = 1$ and the cosine of a difference as reasons
+on their moves, and joined with the kinetic-energy equation to
+$mv_1'v_2'\cos(\theta_1 - \theta_2) = 0$.
+
+Judged out: Example 8.3, a worked example of components; the momentum of the
+centre of mass (8.3), three moves on a fact the book never states; the
+coefficient of restitution, inside a Take-Home Experiment; Example 8.7, the
+section's two equations solved with one trigonometric identity; and the rocket's final velocity, whose logarithm is an integral the
+book never states.
+
+
+### Pass 67 (2026-10-16): Chapter 9, Statics and Torque: derivations
+
+Rule 29 was applied to the chapter's three candidates. The mechanical advantage
+of a lever (9.5, `drv-lever-mechanical-advantage`) is built in place of its
+three displayed lines, from the balanced torques of $F_\text{i}$ and
+$F_\text{nail}$ through the perpendicular lever arms; it stands before "This
+equation is true for levers in general", and the paragraph on Figure 9.21
+stays.
+
+Judged out: the independence of the pivot (9.2), whose proof needs torque in
+components, which the book never writes; and Example 9.5 (b), a worked example
+under the bar.
+
+
+### Pass 68 (2026-10-16): Chapter 10, Rotational Motion and Angular Momentum: derivations
+
+Rule 29 was applied to the chapter's ten candidates and one block the scan did
+not list. Ten derivations are built. The printed blocks are replaced in place:
+the tangential acceleration (10.1, `drv-tangential-acceleration`);
+$\omega = \omega_0 + \alpha t$ (10.2, `drv-angular-velocity-time`); the rotational
+analog of the second law for a point mass (10.3, `drv-torque-point-mass`);
+rotational work and the rotational work-energy theorem (10.4,
+`drv-rotational-work` and `drv-rotational-work-energy-theorem`, the second
+joining the dynamics line to the kinematics line); the energy of a rolling can,
+$mgh = \tfrac{1}{2}mv^2 + \tfrac{1}{2}I\omega^2$ (10.4, `drv-rolling-energy`, the
+block the scan missed); and the conservation of angular momentum (10.5,
+`drv-angular-momentum-conservation`). The other three equations of Table 10.2,
+which the book says "we can derive" and does not print, are one derivation of
+four nodes (10.2, `drv-rotational-kinematic-equations`) after the definitions
+of $\bar\omega$ and $\bar v$, since the book claims them together; the table
+stays. Example 10.10 works $v = (4gh/3)^{1/2}$ in symbols and names it valid for
+any solid cylinder, so its Solution becomes `drv-rolling-cylinder-speed`, with
+the numbers as its last node. Example 10.15 (a) joins the disk's angular
+momentum to the combined moment of inertia from Figure 10.12 and becomes
+`drv-collision-angular-velocity`; its parts (b) and (c) stay as printed.
+
+Judged out: $\text{net}\,\tau = \Delta L/\Delta t$ (10.5), which the book states
+as the rotational form of the second law without claiming a derivation.
+
+
+### Pass 69 (2026-10-16): Chapter 11, Fluid Statics: derivations
+
+Rule 29 was applied to the chapter's six candidates. Three are built: the
+pressure due to the weight of a fluid, $P = h\rho g$ (11.4,
+`drv-pressure-depth`), in place of its six displayed lines; the forces in a
+hydraulic system (11.5, `drv-hydraulic-forces`), printed inline, so it stands
+after the paragraph that completes it; and the fraction submerged (11.7,
+`drv-fraction-submerged`), with the skipped $m_\text{fl} = m_\text{obj}$ from
+floating inserted as its first node. Figure 11.8's sim also runs the steps of
+$P = h\rho g$ beside the container, so those steps now show twice; the sim is
+left as it is for its owner to decide.
+
+Judged out: Archimedes' principle from the pressure difference (11.7), since
+the book argues it in two moves of words and never computes $(P_2 - P_1)A$;
+the pressure inside a bubble (11.8), whose force balance needs the pressure
+force on a hemisphere; and the capillary rise (11.8), whose force balance needs
+surface tension pulling at the contact angle, which the book never states.
+
+
+### Pass 70 (2026-10-16): Chapter 18, Electric Charge and Electric Field: derivations
+
+Rule 29 was applied to the chapter's three candidates. One is built, in place
+of its printed lines: the field of a point charge (18.4,
+`drv-point-charge-field`), one node from $E = |F/q|$ with Coulomb's law brought
+in and the test charge cancelled; the remark that the field is independent of
+$q$ stays as printed.
+
+Judged out: Example 18.1, the ratio of the Coulomb force to gravity, and
+Example 18.5, the charged drop of gasoline, both worked examples that
+substitute the givens into one formula at a time.
+
+
+### Pass 71 (2026-10-16): Chapter 19, Electric Potential and Electric Field: derivations
+
+Rule 29 was applied to the chapter's nine candidates. Six are built, each in
+place of its printed lines: the voltage between two parallel plates (19.2,
+`drv-voltage-uniform-field`), five nodes joining the energy line
+$W = -q\Delta V = qV_\text{AB}$ with the force line $W = qEd$; why
+equipotential lines are perpendicular to field lines (19.4,
+`drv-equipotential-perpendicular`), two nodes ending at $\theta = 90^\circ$,
+the qualitative argument kept as prose; the charge stored is proportional to
+the voltage (19.5, `drv-charge-proportional-voltage`); capacitance in series
+and in parallel (19.6, `drv-capacitance-in-series`,
+`drv-capacitance-in-parallel`); and the energy stored in a capacitor (19.7,
+`drv-capacitor-energy`), three nodes, the average voltage $V/2$ giving
+$QV/2$ and two branches through $Q = CV$, with the book's note that the
+energy is not $QV$ kept beside the units sentence.
+
+Judged out: Example 19.3, the section's conservation of energy applied once;
+the potential of a point charge, $V = kQ/r$, which the book obtains "using
+calculus"; and the parallel-plate capacitance $C = \varepsilon_0A/d$, which
+needs the field of a charged plate the book never states.
+
+
+### Pass 72 (2026-10-16): Chapter 20, Electric Current, Resistance, and Ohm's Law: derivations
+
+Rule 29 was applied to the chapter's six candidates. Three are built, each in
+place of its printed lines: the current in terms of the drift velocity,
+$I = nqAv_d$ (20.1, `drv-current-drift-velocity`), after the paragraph that
+counts the charges in a segment; the three expressions for electric power
+(20.4, `drv-electric-power`), $P = IV$ and two branches through Ohm's law to
+$V^2/R$ and $I^2R$; and the average power from rms values (20.5,
+`drv-average-power-rms`), with "as stated above" dropped from the sentence
+after it.
+
+Judged out: Example 20.3, unit conversions feeding one substitution into
+$I = nqAv_d$; $I = V/R$, where combining two proportionalities defines the
+resistance rather than deriving it; and the average power
+$P_\text{ave} = \tfrac{1}{2}I_0V_0$ itself, which the book reads off the equal
+areas of Figure 20.16 and says "can also be proven using trigonometric
+identities" it never states.
+
+
+### Pass 73 (2026-10-16): Chapter 21, Circuits and DC Instruments: derivations
+
+Rule 29 was applied to the chapter's nine candidates. Five are built, each in
+place of its printed lines: resistors in series (21.1,
+`drv-resistance-in-series`), three nodes, energy conservation giving
+$V = V_1 + V_2 + V_3$, the $IR$ drops with one current, and the join with
+$V = IR_\text{s}$, the Connections note kept before it; resistors in parallel
+(21.1, `drv-resistance-in-parallel`); the shunt resistance of an ammeter
+(21.4, `drv-shunt-resistance`), the general relation and then the book's
+numbers; the emf measured by a potentiometer and the unknown resistance of a
+balanced Wheatstone bridge (21.5, `drv-potentiometer-emf`,
+`drv-wheatstone-bridge`).
+
+Judged out: the current a source with internal resistance supplies (one
+displayed line); Example 21.5, Kirchhoff's rules applied to one circuit; and
+the charging and discharging capacitor of 21.6, both "derived using
+calculus".
+
+
+### Pass 74 (2026-10-16): Chapter 22, Magnetism: derivations
+
+Rule 29 was applied to the chapter's eight candidates. Five are built, each in
+place of its printed lines: the radius of a charged particle's circle (22.5,
+`drv-radius-in-magnetic-field`); the Hall emf (22.6, `drv-hall-emf`), the
+force balance to $E = vB$ and then $E = \text{emf}/l$; the force on a
+current-carrying wire (22.7, `drv-force-on-wire`), after the prose chain the
+book calls a derivation; the torque on a current loop (22.8,
+`drv-torque-on-loop`), the claim that it holds for any loop shape kept as
+printed; and the force between two parallel currents (22.10,
+`drv-force-between-wires`), whose field display before Figure 22.40 now
+enters as a fact from 22.9.
+
+Judged out: the fields of a circular loop and of a solenoid (22.9), stated
+without the Biot–Savart law or Ampère's law the book declines to teach; and
+the velocity selector's $v = E/B$ (22.11), the same balance the Hall emf
+already works, left as printed.
+
+
+### Pass 75 (2026-10-16): Chapter 23, Electromagnetic Induction, AC Circuits, and Electrical Technologies: derivations
+
+Rule 29 was applied to the chapter's fifteen candidates. Eight are built, each
+in place of its printed lines: the motional emf of a rod on rails (23.3,
+`drv-motional-emf`); the emf of a generator coil (23.5, `drv-generator-emf`),
+$\text{emf} = NAB\omega\sin\omega t$, with the peak-emf naming kept as printed;
+the transformer equation and the current ratio of a transformer (23.7,
+`drv-transformer-equation`, `drv-transformer-currents`); self-inductance from
+the change in flux and the self-inductance of a solenoid (23.9,
+`drv-inductance-from-flux`, `drv-solenoid-inductance`); and the impedance and
+the resonant frequency of an RLC series circuit (23.12, `drv-rlc-impedance`,
+`drv-resonant-frequency`), the impedance from the peak-voltage relation the
+book states without derivation. Where a sentence after a replaced block began
+mid-clause on the removed line ("is the emf induced", "which is the
+impedance", "where $f_0$ is the resonant frequency"), it now opens "This is"
+or "Here", so its defined term stays.
+
+Judged out: the energy stored in an inductor, for which the book gives no
+route ("it can be shown"); the RL currents switched on and off, and the
+inductive and capacitive reactances with their phases, all from calculus the
+book never states; and the power factor and average power of an RLC circuit,
+which rest on averaging out-of-phase sinusoids.
+
+
+### Pass 76 (2026-10-16): Chapter 12, Fluid Dynamics and Its Biological and Medical Applications: derivations
+
+Rule 29 was applied to the chapter's eleven candidates. Five are built, each in
+place of its printed lines: the flow rate as area times average speed (12.1,
+`drv-flow-rate-velocity`), after the opening statement of $Q = A\bar{v}$; the
+terms of Bernoulli's equation as energies per unit volume (12.2,
+`drv-energy-per-volume`, which the book calls a proof), two nodes sharing
+$\rho = m/V$, with the units argument for $P$ kept as prose; Bernoulli's
+equation for a static fluid (12.2, `drv-bernoulli-static-fluid`); the speed
+read by a manometer, $v_2 \propto \sqrt{h}$ (12.2, `drv-manometer-speed`);
+and Torricelli's theorem (12.3, `drv-torricelli`). Figure 12.2's sim also
+steps through $Q = A\bar{v}$, so those steps now show twice, as with
+Figure 11.8; the sim is left for its owner.
+
+Judged out: Bernoulli's principle at constant depth (one move); Example 12.5
+and Example 12.7, worked examples in the section's own method; the power in
+fluid flow (one move after a units argument); Poiseuille's law, which needs
+the velocity profile and an integral the book never gives; and
+$x_\text{rms} = \sqrt{2Dt}$, which rests on random-walk statistics the book
+never states. Example 12.5 prints $P_2 = P_1 + \tfrac{1}{2}\rho(v_1^2 - v_2^2) -
+\rho g h_2$ and then evaluates it with the signs of
+$P_1 = \tfrac{1}{2}\rho(v_2^2 - v_1^2) + \rho g h_2$; the slip is outside any
+derivation and is left for a correction pass.
+
+
+### Pass 77 (2026-10-16): Chapter 13, Temperature, Kinetic Theory, and the Gas Laws: derivations
+
+Rule 29 was applied to the chapter's five candidates. Three are built: the
+ideal gas law in moles (13.3, `drv-ideal-gas-law-moles`), in place of its two
+displays, with the boxed $PV = nRT$ and the value of $R$ kept; the Things Great
+and Small box (13.4, `drv-pressure-from-molecules`), whose lines become six
+nodes, the force of one molecule and of $N$ molecules joined by the isotropy
+line $\overline{v^2} = 3\overline{v_x^2}$ before pressure is formed, while the
+box's opening paragraphs and closing sentence stay; and the average kinetic
+energy of a molecule (13.4, `drv-thermal-energy`), whose lines the book splits
+around the box, so the derivation stands at the head of the thermal-energy
+subsection and "This calculation produces the result" follows it. The
+rearrangement to $v_\text{rms}$ is two moves and stays as printed.
+
+Judged out: the area and volume expansion of 13.2, which the book states
+("is given by", "very nearly") without claiming they follow from anything; and
+Example 13.4, the section's law written for two states.
+
+
+### Pass 78 (2026-10-16): Chapter 14, Heat and Heat Transfer Methods: derivations
+
+Rule 29 was applied to the chapter's four candidates and none is built.
+Examples 14.3 and 14.4 solve a calorimetry balance for $T_\text{f}$ in symbols
+before the numbers, but every fact they use is the section's own method
+($Q = mc\Delta T$, $Q = mL_\text{f}$ and the heat balance), so they are worked
+examples. Examples 14.5 and 14.6 chain two formulas with every line printed.
+
+
+### Pass 79 (2026-10-16): Chapter 15, Thermodynamics: derivations
+
+Rule 29 was applied to the chapter's eight candidates. Six derivations are
+built, the printed ones in place of their lines: the work of an isobaric
+process, $W = P\Delta V$ (15.2, `drv-isobaric-work`); the internal energy of a
+monatomic ideal gas and $Q = W$ for an isothermal process (15.2,
+`drv-isothermal-first-law`), the adiabatic $\Delta E_\text{int} = -W$ being two
+moves in a later paragraph and kept as printed; the net work of a cycle,
+$W = Q_\text{h} - Q_\text{c}$, and the efficiency
+$\text{Eff} = 1 - Q_\text{c}/Q_\text{h}$ (15.3, `drv-cyclical-work` and
+`drv-heat-engine-efficiency`, one per subsection); and the total entropy change
+of a Carnot engine and its reservoirs (15.6, `drv-reversible-entropy`). The
+book's "it can be shown" for $W_\text{unavail} = \Delta S \cdot T_0$ (15.6,
+`drv-unavailable-work`) is built after the paragraph that checks it against
+933 J: the two Carnot engines of Example 15.7 joined with the entropy change of
+Example 15.6.
+
+Judged out: the Carnot efficiency (15.4), whose derivation needs the isothermal
+work $nRT\ln(V_2/V_1)$ and the adiabatic relation, neither in the book; the
+coefficients of performance (15.5), left to the problems; and Boltzmann's
+$S = k\ln W$ (15.7), statistical mechanics the book never gives.
+
+
+### Pass 80 (2026-10-16): Chapter 16, Oscillatory Motion and Waves: derivations
+
+Rule 29 was applied to the chapter's fourteen candidates. Seven derivations are
+built. The pendulum's printed block, which runs over two subsections, is two
+derivations, one per subsection: the restoring force at small angles,
+$k = mg/L$ (16.4, `drv-pendulum-restoring-force`, four nodes in the shape of the
+sandbox record), and the period $T = 2\pi\sqrt{L/g}$ (16.4,
+`drv-pendulum-period`). The speed of a simple harmonic oscillator (16.5,
+`drv-shm-speed`) is three nodes, with the skipped algebra inserted; the
+pendulum's $\omega_\text{max}$, "a similar calculation", stays as printed.
+16.6 has three printed blocks, each built: the projection's position
+(`drv-projection-position`), the speed from similar triangles
+(`drv-shm-speed-from-circle`), a second route to 16.5's result by geometry and
+so not a restatement, and the period from the circle
+(`drv-shm-period-from-circle`). Example 16.7 joins the stopping balance, the
+energy line and the friction-work line into a general formula for the distance
+before the numbers, and becomes `drv-friction-damped-distance`; its part (a)
+and the first three "known" bullets stay.
+
+Judged out: the elastic potential energy of 16.1 (inline, under the bar, and
+7.4's spring energy again); $v(t)$ and $a(t)$ of 16.3, the first needing a
+derivative the book never takes; the pendulum's energy (16.5, three
+substitutions in prose); the harmonics of a string (16.10, inline, nothing
+hidden); the beats of 16.10, whose sum-to-product identity the book never
+states, Appendix C included; and $W \propto kx^2$ (16.11). 16.3 prints
+$a = F/m = kx/m$ without the minus sign its next line carries; the slip is
+outside any derivation and is left for a correction pass.
+
+
+### Pass 81 (2026-10-16): Chapter 17, Physics of Hearing: derivations
+
+Rule 29 was applied to the chapter's eight candidates. Three derivations are
+built. Example 17.3's "show that" becomes `drv-decibel-difference` (17.3): the
+general $\beta_2 - \beta_1 = 10\log_{10}(I_2/I_1)$ from the definition and the
+log rule the example states, then the numbers. The Doppler shifts for a moving
+source and a moving observer (17.4), which the book says "can be shown" and
+states together, are one derivation, `drv-doppler-shift`, after the paragraph
+that completes them: the emitted wavelength is shared by the source line
+(compressions closer ahead, Figure 17.14) and the observer line (meeting them
+at $v_\text{w} \pm v_\text{obs}$, Figure 17.15). The closed tube's fundamental
+and first overtone (17.5, `drv-closed-tube-resonances`) replace their printed
+lines; the generalization to $f_n = nv_\text{w}/4L$ stays as the book's prose.
+
+Judged out: the temperature dependence of the speed of sound (17.2), a
+plausibility argument needing the bulk modulus of a gas; the intensity from the
+pressure amplitude (17.3), beyond the book; Example 17.4 (b), a worked example;
+and the open tube's resonances (17.5), three moves to the fundamental and the
+rest read off Figure 17.30.
+
+
+### Pass 82 (2026-10-16): Chapter 24, Electromagnetic Waves: derivations
+
+Rule 29 was applied to the chapter's five candidates. Two derivations are
+built. Example 24.3, an Integrated Concept Problem, joins heating (14.2),
+vaporization (14.3) and density (11.2) along three independent lines, none of
+them the section's own method, and becomes `drv-laser-cornea-energy` in place of
+its solution. The other two forms of the average intensity (24.4), which the
+book reaches by "algebraic manipulation" from $I_\text{ave} = c\varepsilon_0E_0^2/2$
+with $B = E/c$ and $\varepsilon_0 = 1/\mu_0c^2$, become
+`drv-intensity-from-magnetic-field` in place of their two displays.
+
+Judged out: $c = 1/\sqrt{\mu_0\varepsilon_0}$ (24.1), which rests on Maxwell's
+equations in a form the book says is beyond its level; $E/B = c$ (24.2), whose
+loop argument needs the emf as a line integral of the field, never stated; and
+$I_\text{ave} = c\varepsilon_0E_0^2/2$ itself (24.4), which rests on field
+energy densities the book never gives.
+
+
+### Pass 83 (2026-10-16): Chapter 25, Geometric Optics: derivations
+
+Rule 29 was applied to the chapter's four candidates, and all four are built.
+The critical angle (25.4) replaces its printed block as `drv-critical-angle`.
+The thin lens equations (25.6), which "can be derived from a geometric analysis
+of ray tracing", become `drv-thin-lens-equations` after the paragraph that
+states them: the central ray and the parallel ray of Figure 25.31 give two
+ratios that join into $1/d_\text{o} + 1/d_\text{i} = 1/f$, and the central ray
+alone gives the magnification with its sign. The mirror's $f = R/2$ (25.7, "it
+can be shown") is `drv-mirror-focal-length`, from the law of reflection, the
+isosceles triangle it makes and the section's small-mirror approximation.
+Example 25.10, an Integrated Concept Problem joining the mirror, the trough's
+geometry, intensity (24.4), density (11.2) and heat (14.2), becomes
+`drv-solar-trough` in place of its three solutions; the book's unit for the
+specific heat of mineral oil, J·kg/°C, now lives inside the derivation, and the
+node's note gives it as J/(kg·°C).
+
+
+### Pass 84 (2026-10-16): Chapter 26, Vision and Optical Instruments: derivations
+
+Rule 29 was applied to the chapter's two candidates, both in 26.5, and both are
+built. The proof that a distant object's image lies at the focal length ("To
+prove this") replaces its printed lines as `drv-first-image-at-focal-length`.
+The angular magnification $M = -f_\text{o}/f_\text{e}$, which "can be shown",
+is `drv-telescope-angular-magnification` after its paragraph: the central rays
+through the objective and the eyepiece with the small-angle approximation
+(stated in 27.6) give the two angles, and their ratio carries the minus sign of
+the inverted image.
+
+
+### Pass 85 (2026-10-16): Chapter 27, Wave Optics: derivations
+
+Rule 29 was applied to the chapter's nine candidates. Four derivations are
+built: the wavelength in a medium (27.1, `drv-wavelength-in-a-medium`, prose
+first, in place of the displayed result), the double slit conditions (27.3,
+`drv-double-slit-conditions`, one node for each condition from the path
+difference $d\sin\theta$), the resolving power of a lens (27.6,
+`drv-resolving-power`, the Rayleigh angle, the small-angle approximation and the
+numerical aperture of 26.4 joined in place of the printed block) and Malus's law
+(27.8, `drv-malus-law`, a thin block from the transmitted amplitude
+$E\cos\theta$ and intensity as amplitude squared).
+
+Judged out: Snell's law from Huygens's principle (27.2), left "as an exercise
+for ambitious readers"; the grating condition (27.4), the double slit argument
+again; the single slit minima (27.5), argued in prose by pairing rays, under
+the bar; the Rayleigh criterion's $1.22\lambda/D$ (27.6), which needs a
+diffraction integral and a Bessel zero; and Brewster's law (27.8), which rests
+on the reflected and refracted rays being perpendicular, for reasons the book
+calls beyond its scope.
+
+
+### Pass 86 (2026-10-16): Chapter 28, Special Relativity: derivations
+
+Rule 29 was applied to the chapter's seven candidates. Six derivations are
+built. Time dilation (28.2, `drv-time-dilation`) replaces the printed block
+from the Pythagorean theorem to $\Delta t = \gamma\Delta t_0$; the two
+light-clock times stay printed above it with the proper-time box, as its facts,
+and $\gamma$'s definition stays after it. Length contraction (28.3,
+`drv-length-contraction`) replaces its block and ends at $L = L_0/\gamma$, the
+box keeping the form with the root. The relativistic Doppler shift (28.4,
+`drv-relativistic-doppler`), stated outright by the book, joins time dilation
+with the spacing of crests from a moving source (17.4) and $c = f\lambda$, and
+gives the frequency form as its own node. In 28.6 the kinetic energy from the
+work-energy theorem (`drv-relativistic-kinetic-energy`) and its classical limit
+(`drv-classical-kinetic-energy-limit`) are two derivations, since the book
+prints its box and the rest case between them; the second follows the book's
+binomial expansion with $\approx$, and its note says the book writes those lines
+with an equals sign. $E^2 = (pc)^2 + (mc^2)^2$, "algebraically manipulating
+their definitions", is `drv-energy-momentum-relation`.
+
+Judged out: relativistic velocity addition (28.4), which rests on the Lorentz
+transformation the book never writes.
+
+
+### Pass 87 (2026-10-16): Chapter 29, Quantum Physics: derivations
+
+Rule 29 was applied to the chapter's four candidates. Three thin printed
+derivations are built: the photon's momentum $p = E/c$ and its check against
+$p = h/\lambda$ (29.4, `drv-photon-momentum`, in place of the block), the Bragg
+equation (29.6, `drv-bragg-equation`, after the prose that works it), and
+$\Delta x\Delta p \approx h$ (29.7, `drv-uncertainty-estimate`, its three
+displays replaced by one derivation with the prose kept between).
+
+Judged out: the exact bound $\Delta x\Delta p \ge h/4\pi$ (29.7), which the
+book reaches "with the use of advanced mathematics" it never gives.
+
+
+### Pass 88 (2026-10-16): Chapter 30, Atomic Physics: derivations
+
+Rule 29 was applied to the chapter's seven candidates. Five derivations are
+built. Thomson's $q_e/m_e = a/E$ (30.2, `drv-electron-charge-to-mass`) and
+Millikan's drop charge (30.2, `drv-oil-drop-charge`) replace their blocks; the
+second's note records that the book writes the balance with $q_e$ where the
+drop's charge is $q$. The orbital energies of hydrogen-like atoms (30.3,
+`drv-hydrogen-like-energies`) join the energy sum with the force balance and
+substitute $r_n$ and $a_B$ as the section states them, in place of the lines
+before "Algebraic manipulation yields"; the 30.3 correction of
+$\text{PE} = -kZq_e/r_n$ stays on the printed prose and the derivation carries
+the square. Bohr's formula for the spectrum (30.3, `drv-rydberg-formula`)
+replaces its block, with the evaluation of $R$ as its own node. The quantization
+of angular momentum from the electron's wavelength (30.6,
+`drv-angular-momentum-quantization`) replaces its block.
+
+Judged out: the radii of the allowed orbits (30.3), whose algebra is the
+Problems and Exercises item the book sets for the Bohr radius; and the $2n^2$
+capacity of a shell (30.9), three moves, under the bar.
+
+
+### Pass 89 (2026-10-16): Chapter 31, Radioactivity and Nuclear Physics: derivations
+
+Rule 29 was applied to the chapter's three candidates. One derivation is built:
+the binding energy from atomic masses (31.6, `drv-binding-energy`), in place of
+its block, with the electrons added to both terms as two facts in the book's
+own words.
+
+Judged out: the decay constant $0.693/t_{1/2}$ (31.5), three unprinted moves;
+and the activity $R = 0.693N/t_{1/2}$ (31.5), which needs the rate of change of
+an exponential, calculus the book never gives.
+
+
+### Pass 90 (2026-10-16): Chapter 32, Medical Applications of Nuclear Physics: derivations
+
+Rule 29 was applied to the chapter's one candidate. The overall effect of the
+proton-proton cycle (32.5) is built as `drv-proton-proton-cycle` in place of its
+displayed net equation: the second and first reactions run twice, the two
+protons given back and the two annihilations combine into
+$2e^- + 4\,{}^1\text{H} \to {}^4\text{He} + 2v_\text{e} + 6\gamma$, and the 26.7
+MeV is added up as its own node from the reactions' energies and the two
+0.511 MeV photons of each annihilation (32.1). The three reactions stay printed
+as its facts.
+
+
+### Pass 91 (2026-10-16): Chapter 33, Particle Physics: derivations
+
+Rule 29 was applied to the chapter's one candidate. Example 33.1, the mass of
+the pion from the range of the strong force, substitutes into the uncertainty
+principle and $E = mc^2$ with a score of 3, under the bar, and stays as
+printed. Nothing is built.
+
+
+### Pass 92 (2026-10-16): Chapter 34, Frontiers of Physics: derivations
+
+Rule 29 was applied to the chapter's two candidates, and neither is built. The
+Schwarzschild radius (34.2) is stated as "given by" with no claim that it
+follows, and the escape argument behind it is three moves. The critical density
+(34.4) is given only as an estimate, $\rho_c \approx 10^{-26}$ kg/m³; the book
+never writes the formula a derivation would reach.

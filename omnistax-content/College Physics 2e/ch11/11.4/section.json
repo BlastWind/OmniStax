@@ -647,5 +647,66 @@
     "sim-atmosphere"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "pressure-depth",
+   "what": "the pressure due to the weight of a fluid",
+   "source": "College Physics 2e, 11.4 Variation of Pressure with Depth in a Fluid",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvol = \\karea\\kh",
+       "src": "11.4, Figure 11.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\kvol}",
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\karea\\kh}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "11.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The bottom of the container supports the entire weight $\\km\\kg$ of the fluid.",
+       "src": "11.4, Figure 11.8"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kPr} = \\frac{\\mk{w}{\\km\\kg}}{\\mk{A}{\\karea}}",
+      "src": "11.3",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kPr} = \\frac{\\mk{w}{(\\krho\\karea\\kh)\\kg}}{\\mk{A}{\\karea}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kPr} = \\mk{w}{\\kh\\krho\\kg}",
+       "uses": []
+      }
+     ],
+     "src": "11.4"
+    }
+   ]
+  }
  ]
 }

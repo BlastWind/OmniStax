@@ -85,3 +85,7 @@ questions.
 - Errata: none found in m42505.
 
 Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed, and `COLOR.md` binds `frequency` on 27.2. The doorway paragraph's $\klam=\kc/\kf$ for sound, whose speed is 330 m/s, now reads $\klam=\kv/\kf$, since `\kc` is the speed of light. The glossary lines are not written, since a glossary row carries no anchor field; each term is found on its section's page.
+
+## Derivations
+
+- Huygens's principle and the law of refraction · score 6 · not built: the book leaves it "as an exercise for ambitious readers"

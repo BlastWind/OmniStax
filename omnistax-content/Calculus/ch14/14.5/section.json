@@ -892,5 +892,391 @@
    "kind": "correction",
    "html": "With $xyz=4t(1-3t)e^{1-t},$ the chain rule gives $\\frac{dw}{dt}=\\cos (xyz)\\,(-3yz-xze^{1-t}+4xy)=\\left(-12te^{1-t}-4t(1-3t)e^{1-t}+4(1-3t)e^{1-t}\\right)\\cos \\left(4t(1-3t)e^{1-t}\\right)$: the key’s second and third terms carry the wrong signs."
   }
+ ],
+ "derivations": [
+  {
+   "id": "chain-rule-one-variable",
+   "what": "the chain rule for one independent variable",
+   "source": "Calculus, 14.5 The Chain Rule, Chain Rules for One or Two Independent Variables",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "z(t)=\\kf(x,y)=\\kf(x_{0},y_{0})+\\kfx(x_{0},y_{0})(x-x_{0})+\\kfy(x_{0},y_{0})(y-y_{0})+E(x,y)",
+       "src": "(14.30)"
+      },
+      {
+       "text": "$x_{0}=x(t_{0})$, $y_{0}=y(t_{0})$ and $z(t_{0})=\\kf(x_{0},y_{0})$.",
+       "src": "14.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{z(t)-z(t_{0})}=\\mk{f}{\\kf(x(t),y(t))-\\kf(x(t_{0}),y(t_{0}))}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{z(t)-z(t_{0})}=\\mk{a}{\\kfx(x_{0},y_{0})(x(t)-x(t_{0}))}+\\mk{b}{\\kfy(x_{0},y_{0})(y(t)-y(t_{0}))}+\\mk{e}{E(x(t),y(t))}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "f": [
+         "a",
+         "b",
+         "e"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{z}{\\frac{z(t)-z(t_{0})}{t-t_{0}}}=\\mk{a}{\\kfx(x_{0},y_{0})(\\frac{x(t)-x(t_{0})}{t-t_{0}})}+\\mk{b}{\\kfy(x_{0},y_{0})(\\frac{y(t)-y(t_{0})}{t-t_{0}})}+\\mk{e}{\\frac{E(x(t),y(t))}{t-t_{0}}}",
+       "uses": []
+      }
+     ],
+     "src": "14.5"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$x=\\kg(t)$ and $y=\\kh(t)$ are differentiable at $t_{0}$, with $x_{0}=x(t_{0})$ and $y_{0}=y(t_{0})$.",
+       "src": "14.5, Chain Rule for One Independent Variable"
+      },
+      {
+       "text": "The limit laws: the limit of a sum, a constant multiple, a product, a power or a root is the sum, multiple, product, power or root of the limits, where these exist.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\kfprime(a)=\\lim_{x\\to a}\\frac{\\kf(x)-\\kf(a)}{x-a}",
+       "src": "3.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{|t-t_{0}|}}=\\mk{r}{\\sqrt{\\frac{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}{{(t-t_{0})}^{2}}}}",
+      "why": "$|t-t_{0}|=\\sqrt{{(t-t_{0})}^{2}}$; here $x=x(t)$ and $y=y(t)$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{|t-t_{0}|}}=\\mk{r}{\\sqrt{{(\\frac{x-x_{0}}{t-t_{0}})}^{2}+{(\\frac{y-y_{0}}{t-t_{0}})}^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\lim_{t\\to t_{0}}\\frac{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{|t-t_{0}|}}=\\mk{r}{\\sqrt{{(\\lim_{t\\to t_{0}}\\frac{x-x_{0}}{t-t_{0}})}^{2}+{(\\lim_{t\\to t_{0}}\\frac{y-y_{0}}{t-t_{0}})}^{2}}}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "Both limits inside the radical exist, since $x(t)$ and $y(t)$ are differentiable."
+      },
+      {
+       "tex": "\\mk{l}{\\lim_{t\\to t_{0}}\\frac{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{|t-t_{0}|}}=\\mk{r}{\\sqrt{{(\\kdxdt)}^{2}+{(\\kdydt)}^{2}}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "14.5",
+     "note": "The book writes $\\frac{\\sqrt{(x-x_{0})^{2}+(y-y_{0})^{2}}}{t-t_{0}}$ as $\\sqrt{\\frac{(x-x_{0})^{2}+(y-y_{0})^{2}}{(t-t_{0})^{2}}}$, which is its absolute value; for $t<t_{0}$ the two differ in sign and the quotient itself has no limit, so the work bounds its absolute value instead. The book also writes these limits as $(x,y)\\to(x_{0},y_{0})$; they are taken as $t\\to t_{0}$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\lim_{(x,y)\\to (x_{0},y_{0})}\\frac{E(x,y)}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}=0",
+       "src": "14.5"
+      },
+      {
+       "text": "Differentiable functions are continuous, so $(x(t),y(t))\\to(x_{0},y_{0})$ as $t\\to t_{0}$.",
+       "src": "3.2, Differentiability Implies Continuity"
+      },
+      {
+       "text": "The limit laws: the limit of a sum, a constant multiple, a product, a power or a root is the sum, multiple, product, power or root of the limits, where these exist.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "text": "The squeeze theorem: a function caught between two functions with the same limit has that limit too.",
+       "src": "2.3, The Squeeze Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{|\\frac{E(x(t),y(t))}{t-t_{0}}|}=\\mk{q}{|\\frac{E(x,y)}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}|}\\;\\mk{l}{\\frac{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{|t-t_{0}|}}",
+      "why": "Multiplying and dividing by the root, for $t$ with $(x(t),y(t))\\ne(x_{0},y_{0})$; at any other $t$, (14.30) at $(x_{0},y_{0})$ gives $E=0$ and the quotient is $0$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\lim_{t\\to t_{0}}|\\frac{E(x(t),y(t))}{t-t_{0}}|}=\\mk{q}{\\lim_{t\\to t_{0}}|\\frac{E(x,y)}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}|}\\;\\mk{l}{\\lim_{t\\to t_{0}}\\frac{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{|t-t_{0}|}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\lim_{t\\to t_{0}}|\\frac{E(x(t),y(t))}{t-t_{0}}|}=\\mk{q}{0}\\cdot \\mk{l}{\\sqrt{{(\\kdxdt)}^{2}+{(\\kdydt)}^{2}}}",
+       "uses": [
+        0,
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\lim_{t\\to t_{0}}\\frac{E(x(t),y(t))}{t-t_{0}}}=\\mk{q}{0}",
+       "uses": [
+        4
+       ],
+       "cap": "$-|u|\\le u\\le|u|$, and both bounds tend to $0$."
+      }
+     ],
+     "src": "14.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 2
+      },
+      {
+       "text": "The limit laws: the limit of a sum, a constant multiple, a product, a power or a root is the sum, multiple, product, power or root of the limits, where these exist.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "text": "$x=\\kg(t)$ and $y=\\kh(t)$ are differentiable at $t_{0}$, with $x_{0}=x(t_{0})$ and $y_{0}=y(t_{0})$.",
+       "src": "14.5, Chain Rule for One Independent Variable"
+      },
+      {
+       "tex": "\\kfprime(a)=\\lim_{x\\to a}\\frac{\\kf(x)-\\kf(a)}{x-a}",
+       "src": "3.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{\\frac{z(t)-z(t_{0})}{t-t_{0}}}=\\mk{a}{\\kfx(x_{0},y_{0})(\\frac{x(t)-x(t_{0})}{t-t_{0}})}+\\mk{b}{\\kfy(x_{0},y_{0})(\\frac{y(t)-y(t_{0})}{t-t_{0}})}+\\mk{e}{\\frac{E(x(t),y(t))}{t-t_{0}}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{\\lim_{t\\to t_{0}}\\frac{z(t)-z(t_{0})}{t-t_{0}}}=\\mk{a}{\\kfx(x_{0},y_{0})\\lim_{t\\to t_{0}}(\\frac{x(t)-x(t_{0})}{t-t_{0}})}+\\mk{b}{\\kfy(x_{0},y_{0})\\lim_{t\\to t_{0}}(\\frac{y(t)-y(t_{0})}{t-t_{0}})}+\\mk{e}{\\lim_{t\\to t_{0}}\\frac{E(x(t),y(t))}{t-t_{0}}}",
+       "uses": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{z}{\\kdzdt}=\\mk{a}{\\kfx(x_{0},y_{0})\\kdxdt}+\\mk{b}{\\kfy(x_{0},y_{0})\\kdydt}+\\mk{e}{\\lim_{t\\to t_{0}}\\frac{E(x(t),y(t))}{t-t_{0}}}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{z}{\\kdzdt}=\\mk{a}{\\kfx(x_{0},y_{0})\\kdxdt}+\\mk{b}{\\kfy(x_{0},y_{0})\\kdydt}+\\mk{e}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{z}{\\kdzdt}=\\mk{a}{\\kfx(x_{0},y_{0})\\kdxdt}+\\mk{b}{\\kfy(x_{0},y_{0})\\kdydt}",
+       "uses": []
+      }
+     ],
+     "num": "(14.29)",
+     "src": "14.5, Chain Rule for One Independent Variable"
+    }
+   ]
+  },
+  {
+   "id": "implicit-differentiation",
+   "what": "implicit differentiation by partial derivatives",
+   "source": "Calculus, 14.5 The Chain Rule, Implicit Differentiation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf(x,y)=0$ defines $y$ implicitly as a function $y=\\kg(x)$.",
+       "src": "14.5, Implicit Differentiation of a Function of Two or More Variables"
+      },
+      {
+       "text": "The chain rule for one independent variable, (14.29), with $x$ in the place of $t$.",
+       "src": "(14.29)"
+      },
+      {
+       "text": "The derivative of a constant is zero.",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "tex": "\\kfy(x,y)\\ne 0",
+       "src": "14.5, Implicit Differentiation of a Function of Two or More Variables"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d}{dx}\\kf(x,y)}=\\mk{r}{\\frac{d}{dx}(0)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kdfdx\\cdot \\frac{dx}{dx}}+\\mk{y}{\\kdfdy\\cdot \\frac{dy}{dx}}=\\mk{r}{0}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "l": [
+         "x",
+         "y"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\kdfdx}+\\mk{y}{\\kdfdy\\cdot \\frac{dy}{dx}}=\\mk{r}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\kdfdy\\cdot \\frac{dy}{dx}}=-\\mk{x}{\\kdfdx}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\frac{dy}{dx}}=-\\frac{\\mk{x}{\\kdfdxin}}{\\mk{f}{\\kdfdyin}}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "y": [
+         "y",
+         "f"
+        ]
+       }
+      }
+     ],
+     "num": "(14.34)",
+     "src": "14.5, Implicit Differentiation of a Function of Two or More Variables"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf(x,y,z)=0$ defines $z$ implicitly as a differentiable function of $x$ and $y$.",
+       "src": "14.5, Implicit Differentiation of a Function of Two or More Variables"
+      },
+      {
+       "text": "The generalized chain rule, with $x,$ $y$ and $z$ functions of the independent variables $x$ and $y$.",
+       "src": "14.5, Generalized Chain Rule"
+      },
+      {
+       "text": "The derivative of a constant is zero.",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "tex": "\\kfz(x,y,z)\\ne 0",
+       "src": "14.5, Implicit Differentiation of a Function of Two or More Variables"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{\\partial}{\\partial x}\\kf(x,y,z)}=\\mk{r}{\\frac{\\partial}{\\partial x}(0)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kdfdx\\cdot \\frac{\\partial x}{\\partial x}}+\\mk{y}{\\kdfdy\\cdot \\frac{\\partial y}{\\partial x}}+\\mk{z}{\\kdfdz\\cdot \\kdzdx}=\\mk{r}{0}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "l": [
+         "x",
+         "y",
+         "z"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\kdfdx}+\\mk{z}{\\kdfdz\\cdot \\kdzdx}=\\mk{r}{0}",
+       "uses": [],
+       "cap": "$x$ and $y$ are independent: $\\frac{\\partial x}{\\partial x}=1$ and $\\frac{\\partial y}{\\partial x}=0$."
+      },
+      {
+       "tex": "\\mk{z}{\\kdzdx}=-\\frac{\\mk{x}{\\kdfdxin}}{\\mk{f}{\\kdfdzin}}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "z": [
+         "z",
+         "f"
+        ]
+       }
+      }
+     ],
+     "num": "(14.35)",
+     "src": "14.5, Implicit Differentiation of a Function of Two or More Variables"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf(x,y,z)=0$ defines $z$ implicitly as a differentiable function of $x$ and $y$.",
+       "src": "14.5, Implicit Differentiation of a Function of Two or More Variables"
+      },
+      {
+       "text": "The generalized chain rule, with $x,$ $y$ and $z$ functions of the independent variables $x$ and $y$.",
+       "src": "14.5, Generalized Chain Rule"
+      },
+      {
+       "text": "The derivative of a constant is zero.",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "tex": "\\kfz(x,y,z)\\ne 0",
+       "src": "14.5, Implicit Differentiation of a Function of Two or More Variables"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{\\partial}{\\partial y}\\kf(x,y,z)}=\\mk{r}{\\frac{\\partial}{\\partial y}(0)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kdfdx\\cdot \\frac{\\partial x}{\\partial y}}+\\mk{y}{\\kdfdy\\cdot \\frac{\\partial y}{\\partial y}}+\\mk{z}{\\kdfdz\\cdot \\kdzdy}=\\mk{r}{0}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "l": [
+         "x",
+         "y",
+         "z"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\kdfdy}+\\mk{z}{\\kdfdz\\cdot \\kdzdy}=\\mk{r}{0}",
+       "uses": [],
+       "cap": "$x$ and $y$ are independent: $\\frac{\\partial x}{\\partial y}=0$ and $\\frac{\\partial y}{\\partial y}=1$."
+      },
+      {
+       "tex": "\\mk{z}{\\kdzdy}=-\\frac{\\mk{y}{\\kdfdyin}}{\\mk{f}{\\kdfdzin}}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "z": [
+         "z",
+         "f"
+        ]
+       }
+      }
+     ],
+     "num": "(14.35)",
+     "src": "14.5, Implicit Differentiation of a Function of Two or More Variables"
+    }
+   ]
+  }
  ]
 }

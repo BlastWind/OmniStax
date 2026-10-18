@@ -1634,5 +1634,53 @@
    "kind": "correction",
    "html": "The book’s answer prints $\\theta$ in place of every function in the chain. It reads $1+\\cot^{2}\\theta=1+\\frac{\\cos^{2}\\theta}{\\sin^{2}\\theta}=\\frac{\\sin^{2}\\theta}{\\sin^{2}\\theta}+\\frac{\\cos^{2}\\theta}{\\sin^{2}\\theta}=\\frac{\\sin^{2}\\theta+\\cos^{2}\\theta}{\\sin^{2}\\theta}=\\frac{1}{\\sin^{2}\\theta}=\\csc^{2}\\theta.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "tangent-secant-identity",
+   "what": "the identity 1 + tan²θ = sec²θ",
+   "source": "Calculus, 1.3 Trigonometric Functions, Example 1.26",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\tan\\ktheta=\\dfrac{\\sin\\ktheta}{\\cos\\ktheta}",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "tex": "\\sec\\ktheta=\\dfrac{1}{\\cos\\ktheta}",
+       "src": "1.3, Trigonometric Identities"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sin^{2}\\ktheta}+\\mk{c}{\\cos^{2}\\ktheta}=\\mk{o}{1}",
+      "src": "1.3, Trigonometric Identities"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\frac{\\sin^{2}\\ktheta}{\\cos^{2}\\ktheta}}+\\mk{c}{\\frac{\\cos^{2}\\ktheta}{\\cos^{2}\\ktheta}}=\\mk{o}{\\frac{1}{\\cos^{2}\\ktheta}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\frac{\\sin^{2}\\ktheta}{\\cos^{2}\\ktheta}}+\\mk{c}{1}=\\mk{o}{\\frac{1}{\\cos^{2}\\ktheta}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\tan^{2}\\ktheta}+\\mk{c}{1}=\\mk{o}{\\frac{1}{\\cos^{2}\\ktheta}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\tan^{2}\\ktheta}+\\mk{c}{1}=\\mk{o}{\\sec^{2}\\ktheta}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 1.26"
+    }
+   ]
+  }
  ]
 }

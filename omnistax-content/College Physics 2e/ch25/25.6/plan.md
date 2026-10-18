@@ -132,3 +132,7 @@ Applied by the chapter pass (2026-09-28):
 
 - The five equation anchors and seven variable anchors are written as listed.
 - The two AP items whose solutions are commented out of the CNXML are gathered in `ch25/exploration.md`.
+
+## Derivations
+
+- The thin lens equations · score 8 · built as drv-thin-lens-equations: hidden behind "can be derived from a geometric analysis of ray tracing"; the central ray and the parallel ray of Figure 25.31 give two ratios that join into the lens equation, and the central ray alone gives the magnification

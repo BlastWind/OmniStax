@@ -61,3 +61,10 @@ None beyond the folds and the symmetry Sim: a cardioid-as-rolling-circle (the gl
 - variables `11.3/x`, `/y`, `/r`, `/θ`, `/P` → `11.3-fs-id1167793948751`; `/f` → `11.3-polar-curves-intro`; `/a`, `/b` → `11.3-common-curves`; `/k` → `11.3-fs-id1167794047292`.
 
 Applied in the chapter pass (2026-10-13): every form and variables anchor above set with `ost set` (anchors resolve, `ost check` clean); the review rows written into section.json with `source_section` 11.5.
+
+## Derivations
+
+- Defining Polar Coordinates · (11.7) and (11.8) · score 2 · built as drv-polar-conversion (a thin printed block; x and y from cosine and sine, and the book's unexplained r² = x² + y² and tan θ = y/x derived from them with the Pythagorean identity and tan = sin/cos)
+- Example 11.12 · score 1 · not built: a worked example converting one equation
+- Example 11.14 · score 1 · not built: a worked example
+- Example 11.15 · score 2 · not built: a worked example of the symmetry tests

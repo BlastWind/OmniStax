@@ -12,12 +12,8 @@ $$\kf[\kg(x)]\kgprime(x)={(x^{2}-3)}^{3}(2x),$$
 $$\begin{aligned}\int \kf[\kg(x)]\kgprime(x)dx &=\int \kf(u)du \\ &=\kF(u)+C \\ &=\kF(\kg(x))+C.\end{aligned}$$
 </div>
 <h3>Proof</h3>
-<p>Let $\kf$, $\kg$, <em>u</em>, and $\kF$ be as specified in the theorem. Then</p>
-$$\begin{aligned}\frac{d}{dx}\kF(\kg(x)) &=\kFprime(\kg(x))\kgprime(x) \\ &=\kf[\kg(x)]\kgprime(x).\end{aligned}$$
-<p>Integrating both sides with respect to <em>x</em>, we see that</p>
-$$\int \kf[\kg(x)]\kgprime(x)dx=\kF(\kg(x))+C.$$
-<p>If we now substitute $u=\kg(x),$ and $du=\kgprime(x)dx,$ we get</p>
-$$\begin{aligned}\int \kf[\kg(x)]\kgprime(x)dx &=\int \kf(u)du \\ &=\kF(u)+C \\ &=\kF(\kg(x))+C.\end{aligned}$$
+<p>Let $\kf$, $\kg$, <em>u</em>, and $\kF$ be as specified in the theorem.</p>
+<figure class="dv" id="drv-substitution-indefinite"></figure>
 <p>□</p>
 <p>Returning to the problem we looked at originally, we let $u=x^{2}-3$ and then $du=2xdx.$ Rewrite the integral in terms of <em>u</em>:</p>
 $$\int {\underset{u}{\underbrace{(x^{2}-3)}}}^{3}\underset{du}{\underbrace{(2xdx)}}=\int u^{3}du.$$
@@ -94,11 +90,8 @@ $$\begin{aligned}\int (u^{1/2}+u^{-1/2})du &=\frac{2}{3}u^{3/2}+2u^{1/2}+C \\ &=
 <p>Let $u=\kg(x)$ and let $\kgprime$ be <span data-concept="continuity-over-an-interval">continuous</span> over an interval $[a,b],$ and let $\kf$ be <span data-concept="continuity-over-an-interval">continuous</span> over the range of $u=\kg(x).$ Then,</p>
 $$\int_{a}^{b}\kf(\kg(x))\kgprime(x)dx=\int_{\kg(a)}^{\kg(b)}\kf(u)du.$$
 </div>
-<p>Although we will not formally prove this theorem, we justify it with some calculations here. From the <span data-concept="substitution-with-indefinite-integrals">substitution rule for indefinite integrals</span>, if $\kF(x)$ is an <span data-concept="antiderivative">antiderivative</span> of $\kf(x),$ we have</p>
-$$\int \kf(\kg(x))\kgprime(x)dx=\kF(\kg(x))+C.$$
-<p>Then</p>
-$$\begin{aligned}\int_{a}^{b}\kf[\kg(x)]\kgprime(x)dx &={\kF(\kg(x))|}_{x=a}^{x=b} \\ &=\kF(\kg(b))-\kF(\kg(a)) \\ &={\kF(u)|}_{u=\kg(a)}^{u=\kg(b)} \\ &=\int_{\kg(a)}^{\kg(b)}\kf(u)du,\end{aligned}$$
-<p>and we have the desired result.</p>
+<p>Although we will not formally prove this theorem, we justify it with some calculations here.</p>
+<figure class="dv" id="drv-substitution-definite"></figure>
 <figure class="sim" id="sim-substitution">
   <div class="sim-head"><span class="eyebrow">Sim</span><span>Example 5.34’s <span data-concept="integrand">integrand</span> $x^{2}(1+2x^{3})^{5}$ over $[0,b]$ (left) and, after the <span data-concept="integration-by-substitution">substitution</span> $u=1+2x^{3},$ $\frac{1}{6}u^{5}$ over $[1,1+2b^{3}]$ (right): one region tall and narrow, the other low and wide, with the same area for every $b.$ The darker strip at the top of $[0,b]$ and the strip it becomes in $u$ share an area too, since $x^{2}(1+2x^{3})^{5}\,dx=\frac{1}{6}u^{5}\,du$ strip by strip. At $b=1$ the area is $\frac{182}{9}.$</span></div>
 </figure>

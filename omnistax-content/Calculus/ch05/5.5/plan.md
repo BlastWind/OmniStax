@@ -29,3 +29,9 @@ f, g wear `function`, g′ and F′ `derivative` (a new 5.5 row for F′ on `der
 ## Wanted at chapter level
 
 Applied by this chapter's agent: the variables row F′ for 5.5 (`derivative-function`, `redefines`), variables anchors (f, g, g′, u, F, C → `5.5-substitution-indefinite`; F′ → `5.5-indefinite`) and forms anchors (`eq-substitution-indefinite`, `eq-substitution-definite`). Done.
+
+
+## Derivations
+
+- Substitution with Indefinite Integrals · Proof · score 1 · built as drv-substitution-indefinite (the opening sentence and □ kept, the three displays replaced)
+- Substitution with Definite Integrals · the justification · score 1 · built as drv-substitution-definite ("we justify it with some calculations here" kept, the displays and their connecting sentences replaced)

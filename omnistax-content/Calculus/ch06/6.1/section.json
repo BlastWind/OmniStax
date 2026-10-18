@@ -1235,5 +1235,97 @@
    ]
   }
  ],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "area-between-two-curves",
+   "what": "the area between two curves",
+   "source": "Calculus, 6.1 Areas between Curves, Area of a Region between Two Curves",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The height of each rectangle is $\\kf(x_i^{*})-\\kg(x_i^{*})$ and its width is $\\Delta x.$",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kA}\\approx\\mk{s}{\\sum_{i=1}^{n}[\\kf(x_i^{*})-\\kg(x_i^{*})]\\Delta x}",
+      "src": "6.1",
+      "uses": [
+       0
+      ],
+      "why": "Adding the areas of all the rectangles approximates the area between the curves."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kA}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}[\\kf(x_i^{*})-\\kg(x_i^{*})]\\Delta x}",
+       "uses": [],
+       "cap": "This is a Riemann sum, so we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\kA}=\\mk{s}{\\int_a^{b}[\\kf(x)-\\kg(x)]dx}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.1)",
+     "src": "6.1, Finding the Area between Two Curves"
+    }
+   ]
+  },
+  {
+   "id": "area-between-two-curves-along-y",
+   "what": "the area between two curves, integrating along the $y$-axis",
+   "source": "Calculus, 6.1 Areas between Curves, Regions Defined with Respect to y",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The height of each rectangle is $\\Delta y$ and its width is $\\kufn(y_i^{*})-\\kv(y_i^{*}).$",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kA}\\approx\\mk{s}{\\sum_{i=1}^{n}[\\kufn(y_i^{*})-\\kv(y_i^{*})]\\Delta y}",
+      "src": "6.1",
+      "uses": [
+       0
+      ],
+      "why": "Adding the areas of all the horizontal rectangles approximates the area between the curves."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kA}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}[\\kufn(y_i^{*})-\\kv(y_i^{*})]\\Delta y}",
+       "uses": [],
+       "cap": "This is a Riemann sum, so we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\kA}=\\mk{s}{\\int_c^{d}[\\kufn(y)-\\kv(y)]dy}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.2)",
+     "src": "6.1, Finding the Area between Two Curves, Integrating along the y-axis"
+    }
+   ]
+  }
+ ]
 }

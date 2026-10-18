@@ -98,3 +98,9 @@ Moved in with `source_section`: 30.9 → `fs-id2378650` (receding galaxy), `fs-i
 - No concept or symbol row needs changing.
 
 Applied by the chapter pass (2026-10-05): all ten forms and fourteen rows anchored as listed; the new rows added as listed, with `m_e` and `m` besides (the text's $m_{\text{e}}$ and the $m$ of $L = mvr$ now written `\kme` and `\km`), `V_volt` and `d` marked `redefines` beside 30.2's; edges `bohr-transition-energy` ← `photon-energy` (dropping `conservation-of-energy`, now reached through it) and `discrete-atomic-spectra` ← `atomic-spectra-quantized` (dropping `atomic-spectra` and `electromagnetic-spectrum`); no edge from the double slit into `hydrogen-spectrum-wavelengths`, since the law does not rest on it and Example 30.1's block already uses `double-slit-constructive` and `diffraction-grating`; `COLOR.md` row as asked, with mass.
+
+## Derivations
+
+- The radii of the allowed orbits, $r_n = (n^2/Z)a_B$ · score 7 · not built: the algebra is the Problems and Exercises item the book sets (to show the Bohr radius is $h^2/4\pi^2m_ekq_e^2$), which the radius formula is with $n = Z = 1$
+- The orbital energies, $E_n = -(Z^2/n^2)E_0$ · score 8 · built as drv-hydrogen-like-energies: a printed block whose last moves are "algebraic manipulation yields"; the energy sum and the force balance join, with $r_n$ and $a_B$ as the section states them
+- Bohr's formula for the spectrum · score 2 · built as drv-rydberg-formula: a printed block, replaced, with the evaluation of $R$ as its own node

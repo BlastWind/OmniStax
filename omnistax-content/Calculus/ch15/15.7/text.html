@@ -59,16 +59,13 @@ $${\mathbf{r}}_{v}=g_{v}(u_{0},v_{0})\mathbf{i}+h_{v}(u_{0},v_{0})\mathbf{j}=\fr
 $${\mathbf{r}}_{u}=\lim_{\Delta u\to 0}\frac{\mathbf{r}(u_{0}+\Delta u,v_{0})-\mathbf{r}(u_{0},v_{0})}{\Delta u}\;\text{so}\;\mathbf{r}(u_{0}+\Delta u,v_{0})-\mathbf{r}(u_{0},v_{0})\approx \Delta u{\mathbf{r}}_{u}.$$
 <p>Similarly,</p>
 $${\mathbf{r}}_{v}=\lim_{\Delta v\to 0}\frac{\mathbf{r}(u_{0},v_{0}+\Delta v)-\mathbf{r}(u_{0},v_{0})}{\Delta v}\;\text{so}\;\mathbf{r}(u_{0},v_{0}+\Delta v)-\mathbf{r}(u_{0},v_{0})\approx \Delta v{\mathbf{r}}_{v}.$$
-<p>This allows us to estimate the area $\Delta A$ of the image $\kR$ by finding the area of the parallelogram formed by the sides $\Delta v{\mathbf{r}}_{v}$ and $\Delta u{\mathbf{r}}_{u}.$ By using the <span data-concept="cross-product">cross product</span> of these two vectors by adding the <strong>k</strong> component as $0,$ the area $\Delta A$ of the image $\kR$ (refer to <a href="/calculus/ch12/12.4/">The Cross Product</a>) is approximately $\|\Delta u\,\mathbf{r}_{u}\;\times \;\Delta v\,\mathbf{r}_{v}\|=\|\mathbf{r}_{u}\;\times \;\mathbf{r}_{v}\|\,\Delta u\,\Delta v.$ In determinant form, the <span data-concept="cross-product">cross product</span> is</p>
-$${\mathbf{r}}_{u}\;\times \;{\mathbf{r}}_{v}=\left|\begin{array}{clclc}\mathbf{i} & & \mathbf{j} & & \mathbf{k} \\ \frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} & & 0 \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v} & & 0\end{array}\right|=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}\right|\mathbf{k}=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u})\mathbf{k}.$$
-<p>Since $\mathbf{||k||}=1,$ we have $\Delta A\approx \mathbf{||r_{u}\;\times \;r_{v}||}\Delta u\Delta v=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u})\Delta u\Delta v.$</p>
+<p>This allows us to estimate the area $\Delta A$ of the image $\kR$ by finding the area of the parallelogram formed by the sides $\Delta v{\mathbf{r}}_{v}$ and $\Delta u{\mathbf{r}}_{u}.$</p>
+<figure class="dv" id="drv-area-of-a-transformed-rectangle"></figure>
 <div class="note" id="fs-id1167793642159">
 <div class="eyebrow">Definition</div>
 <p>The <strong><span data-concept="jacobian">Jacobian</span></strong> of the $C^{1}$ <span data-concept="transformation">transformation</span> $\kT(u,v)=(\kg(u,v),\kh(u,v))$ is denoted by $\kJ(u,v)$ and is defined by the $2\;\times \;2$ determinant</p>
 $$\kJ(u,v)=|\frac{\partial (x,y)}{\partial (u,v)}|=\left|\begin{array}{lll}\frac{\partial x}{\partial u} & & \frac{\partial y}{\partial u} \\ \frac{\partial x}{\partial v} & & \frac{\partial y}{\partial v}\end{array}\right|=(\frac{\partial x}{\partial u}\;\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\;\frac{\partial y}{\partial u}).$$
 </div>
-<p>Using the definition, we have</p>
-$$\Delta A\approx \kJ(u,v)\Delta u\Delta v=|\frac{\partial (x,y)}{\partial (u,v)}|\Delta u\Delta v.$$
 <p>Note that the <span data-concept="jacobian">Jacobian</span> is frequently denoted simply by</p>
 $$\kJ(u,v)=\frac{\partial (x,y)}{\partial (u,v)}.$$
 <p>Note also that</p>
@@ -93,16 +90,10 @@ $$\kJ(u,v)=\frac{\partial (x,y)}{\partial (u,v)}=\left|\begin{array}{lll}\frac{\
 
 <section id="cov-double">
 <h2>Change of Variables for Double Integrals</h2>
-<p class="cite-target">We have already seen that, under the change of variables $\kT(u,v)=(x,y)$ where $x=\kg(u,v)$ and $y=\kh(u,v),$ a small <span data-concept="region">region</span> $\Delta A$ in the $xy\text{-plane}$ is related to the area formed by the product $\Delta u\Delta v$ in the $uv\text{-plane}$ by the approximation</p>
+<p class="cite-target">We have already seen that, under the change of variables $\kT(u,v)=(x,y)$ where $x=\kg(u,v)$ and $y=\kh(u,v),$ a small <span data-concept="region">region</span> $\Delta A$ in the $xy\text{-plane}$ is related to the area formed by the product $\Delta u\Delta v$ in the $uv\text{-plane}$ by the approximation<sup class="fn" data-note="c-cov-abs"></sup></p>
 $$\Delta A\approx \kJ(u,v)\Delta u,\Delta v.$$
-<p>Now let’s go back to the definition of <span data-concept="double-integral">double integral</span> for a minute:</p>
-$$\iint\limits_{\kR}\kf(x,y)dA=\lim_{m,n\to \infty}\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(x_{ij},y_{ij}) \Delta A.$$
 <p>Referring to Figure 15.75, observe that we divided the <span data-concept="region">region</span> $\kS$ in the $uv\text{-plane}$ into small subrectangles $\kS_{ij}$ and we let the subrectangles $\kR_{ij}$ in the $xy\text{-plane}$ be the images of $\kS_{ij}$ under the <span data-concept="transformation">transformation</span> $\kT(u,v)=(x,y).$</p>
-
-<p>Then the <span data-concept="double-integral">double integral</span> becomes</p>
-$$\iint\limits_{\kR}\kf(x,y)dA=\lim_{m,n\to \infty}\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(x_{ij},y_{ij}) \Delta A=\lim_{m,n\to \infty}\sum_{i=1}^{m} \sum_{j=1}^{n} \kf(\kg(u_{ij},v_{ij}),\kh(u_{ij},v_{ij})) |\kJ(u_{ij},v_{ij})|\Delta u\Delta v.$$
-<p>Notice this is exactly the double Riemann sum for the integral</p>
-$$\iint\limits_{\kS}\kf(\kg(u,v),\kh(u,v)) |\frac{\partial (x,y)}{\partial (u,v)}|du\;dv.$$
+<figure class="dv" id="drv-change-of-variables-for-double-integrals"></figure>
 <div class="note" id="fs-id1167793925892">
 <div class="eyebrow">Theorem</div>
 <h3>Change of Variables for Double Integrals</h3>
@@ -214,19 +205,11 @@ $$\begin{array}{rl}\iiint\limits_{\kR}\kF(x,y,z)dV & =\iiint\limits_{\kG}\kF(\kg
 <p>a. cylindrical and</p>
 <p>b. <span data-concept="spherical-coordinate-system">spherical coordinates</span>.</p>
 <h4>Solution</h4>
-<p>a. For <span data-concept="cylindrical-coordinate-system">cylindrical coordinates</span>, the <span data-concept="transformation">transformation</span> is $\kT(r,\theta ,z)=(x,y,z)$ from the Cartesian $r\theta z\text{-plane}$ to the Cartesian $xyz\text{-plane}$ (Figure 15.81). Here $x=r\;\cos \theta ,$ $y=r\;\sin \theta ,$ and $z=z.$ The <span data-concept="jacobian">Jacobian</span> for the <span data-concept="transformation">transformation</span> is</p>
-$$\begin{array}{rl}\kJ(r,\theta ,z) & =\frac{\partial (x,y,z)}{\partial (r,\theta ,z)}=\left|\begin{array}{lllll}\frac{\partial x}{\partial r} & & \frac{\partial x}{\partial \theta} & & \frac{\partial x}{\partial z} \\ \frac{\partial y}{\partial r} & & \frac{\partial y}{\partial \theta} & & \frac{\partial y}{\partial z} \\ \frac{\partial z}{\partial r} & & \frac{\partial z}{\partial \theta} & & \frac{\partial z}{\partial z}\end{array}\right| \\ & =\left|\begin{array}{lllll}\cos \theta & & -r\;\sin \theta & & 0 \\ \sin \theta & & r\;\cos \theta & & 0 \\ 0 & & 0 & & 1\end{array}\right|=r\;{\cos }^{2}\theta +r\;{\sin }^{2}\theta =r({\cos }^{2}\theta +{\sin }^{2}\theta )=r.\end{array}$$
-<p>We know that $r\ge 0,$ so $|\kJ(r,\theta ,z)|=r.$ Then the <span data-concept="triple-integral">triple integral</span> is</p>
-$$\iiint\limits_{\kD}\kf(x,y,z)dV=\iiint\limits_{\kG}\kf(r\;\cos \theta ,r\;\sin \theta ,z) r\;dr\;d\theta \;dz.$$
+<p>a. For <span data-concept="cylindrical-coordinate-system">cylindrical coordinates</span>, the <span data-concept="transformation">transformation</span> is $\kT(r,\theta ,z)=(x,y,z)$ from the Cartesian $r\theta z\text{-plane}$ to the Cartesian $xyz\text{-plane}$ (Figure 15.81). Here $x=r\;\cos \theta ,$ $y=r\;\sin \theta ,$ and $z=z.$</p>
+<figure class="dv" id="drv-triple-integral-in-cylindrical-coordinates"></figure>
 
-<p>b. For <span data-concept="spherical-coordinate-system">spherical coordinates</span>, the <span data-concept="transformation">transformation</span> is $\kT(\rho ,\theta ,\varphi )=(x,y,z)$ from the Cartesian $p\theta \varphi \text{-plane}$ to the Cartesian $xyz\text{-plane}$ (Figure 15.82). Here $x=\rho \;\sin \varphi \;\cos \theta ,$ $y=\rho \;\sin \varphi \;\sin \theta ,$ and $z=\rho \;\cos \varphi .$ The <span data-concept="jacobian">Jacobian</span> for the <span data-concept="transformation">transformation</span> is</p>
-$$\kJ(\rho ,\theta ,\varphi )=\frac{\partial (x,y,z)}{\partial (\rho ,\theta ,\varphi )}=\left|\begin{array}{lllll}\frac{\partial x}{\partial \rho } & & \frac{\partial x}{\partial \theta} & & \frac{\partial x}{\partial \varphi } \\ \frac{\partial y}{\partial \rho } & & \frac{\partial y}{\partial \theta} & & \frac{\partial y}{\partial \varphi } \\ \frac{\partial z}{\partial \rho } & & \frac{\partial z}{\partial \theta} & & \frac{\partial z}{\partial \varphi }\end{array}\right|=\left|\begin{array}{lllll}\sin \varphi \;\cos \theta & & \rho \;\sin \varphi \;\sin \theta & & \rho \;\cos \varphi \;\cos \theta \\ \sin \varphi \;\sin \theta & & \rho \;\sin \varphi \;\cos \theta & & \rho \;\cos \varphi \;\sin \theta \\ \cos \varphi  & & 0 & & -\rho \;\sin \varphi \end{array}\right|.$$
-<p>Expanding the determinant with respect to the third row:</p>
-$$\begin{array}{r} \\ \\ =\cos \varphi \left|\begin{array}{lll}-\rho \;\sin \varphi \;\sin \theta & & \rho \;\cos \varphi \;\cos \theta \\ \rho \;\sin \varphi \;\sin \theta & & \rho \;\cos \varphi \;\sin \theta \end{array}\right|-\rho \;\sin \varphi \left|\begin{array}{lll}\sin \varphi \;\cos \theta & & -\rho \;\sin \varphi \;\sin \theta \\ \sin \varphi \;\sin \theta & & \rho \;\sin \varphi \;\cos \theta \end{array}\right| \\ =\cos \varphi (-{\rho }^{2}\sin \varphi \;\cos \varphi \;{\sin }^{2}\theta -{\rho }^{2}\sin \varphi \;\cos \varphi \;{\cos }^{2}\theta ) \\ \;-\rho \;\sin \varphi (\rho \;{\sin }^{2}\varphi \;{\cos }^{2}\theta +\rho \;{\sin }^{2}\varphi \;{\sin }^{2}\theta ) \\ =-{\rho }^{2}\sin \varphi \;{\cos }^{2}\varphi ({\sin }^{2}\theta +{\cos }^{2}\theta )-{\rho }^{2}\sin \varphi \;{\sin }^{2}\varphi ({\sin }^{2}\theta +{\cos }^{2}\theta ) \\ =-{\rho }^{2}\sin \varphi \;{\cos }^{2}\varphi -{\rho }^{2}\sin \varphi \;{\sin }^{2}\varphi \\ =-{\rho }^{2}\sin \varphi ({\cos }^{2}\varphi +{\sin }^{2}\varphi )=-{\rho }^{2}\sin \varphi .\end{array}$$
-<p>Since $0\le \varphi \le \pi ,$ we must have $\sin \varphi \ge 0.$ Thus $|\kJ(\rho ,\theta ,\varphi )|=|-{\rho }^{2}\sin \varphi |={\rho }^{2}\sin \varphi .$</p>
-
-<p>Then the <span data-concept="triple-integral">triple integral</span> becomes</p>
-$$\iiint\limits_{\kD}\kf(x,y,z) dV=\iiint\limits_{\kG}\kf(\rho \;\sin \varphi \;\cos \theta ,\rho \;\sin \varphi \;\sin \theta ,\rho \;\cos \varphi ) {\rho }^{2}\sin \varphi \;d\rho \;d\varphi \;d\theta .$$
+<p>b. For <span data-concept="spherical-coordinate-system">spherical coordinates</span>, the <span data-concept="transformation">transformation</span> is $\kT(\rho ,\theta ,\varphi )=(x,y,z)$ from the Cartesian $p\theta \varphi \text{-plane}$ to the Cartesian $xyz\text{-plane}$ (Figure 15.82). Here $x=\rho \;\sin \varphi \;\cos \theta ,$ $y=\rho \;\sin \varphi \;\sin \theta ,$ and $z=\rho \;\cos \varphi .$</p>
+<figure class="dv" id="drv-triple-integral-in-spherical-coordinates"></figure>
 </div>
 <p>Let’s try another example with a different substitution.</p>
 <div class="example" id="fs-id1167793376266">

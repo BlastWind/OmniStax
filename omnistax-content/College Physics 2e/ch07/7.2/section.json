@@ -969,5 +969,127 @@
         "sim-package"
       ]
     }
+  ],
+  "derivations": [
+    {
+      "id": "work-energy-theorem",
+      "what": "the work-energy theorem",
+      "source": "College Physics 2e, 7.2 Kinetic Energy and the Work-Energy Theorem",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "The net force is parallel to the displacement, so $\\ktheta = 0^\\circ$ and $\\cos\\ktheta = 1$.",
+              "src": "7.2"
+            },
+            {
+              "tex": "\\kFnet = \\km\\ka",
+              "src": "4.3"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{W}{\\kWnet} = \\mk{F}{\\kFnet}\\,\\mk{d}{\\kd}\\,\\mk{c}{\\cos\\ktheta}",
+            "src": "7.2"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{W}{\\kWnet} = \\mk{F}{\\kFnet}\\,\\mk{d}{\\kd}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{W}{\\kWnet} = \\mk{m}{\\km}\\mk{a}{\\ka}\\mk{d}{\\kd}",
+              "uses": [
+                1
+              ],
+              "map": {
+                "F": [
+                  "m",
+                  "a"
+                ]
+              }
+            }
+          ],
+          "src": "7.2"
+        },
+        {
+          "assumes": [
+            {
+              "text": "The acceleration has the constant value $\\ka$.",
+              "src": "7.2"
+            },
+            {
+              "tex": "\\kd = \\kx - \\kxo",
+              "src": "7.2"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{v}{\\kv^2} = \\mk{vo}{\\kvo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{d}{(\\kx - \\kxo)}",
+            "src": "2.5",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{v}{\\kv^2} = \\mk{vo}{\\kvo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{d}{\\kd}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{two}{2}\\mk{a}{\\ka}\\mk{d}{\\kd} = \\mk{v}{\\kv^2} - \\mk{vo}{\\kvo^2}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{a}{\\ka} = \\dfrac{\\mk{v}{\\kv^2} - \\mk{vo}{\\kvo^2}}{\\mk{two}{2}\\mk{d}{\\kd}}",
+              "uses": []
+            }
+          ],
+          "src": "7.2"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "step": 1
+            }
+          ],
+          "then": {
+            "tex": "\\mk{W}{\\kWnet} = \\mk{m}{\\km}\\mk{a}{\\ka}\\mk{d}{\\kd}"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{W}{\\kWnet} = \\mk{m}{\\km}\\mk{a}{\\left(\\dfrac{\\kv^2 - \\kvo^2}{2\\kd}\\right)}\\mk{d}{\\kd}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{W}{\\kWnet} = \\mk{m}{\\km}\\mk{a}{\\left(\\dfrac{\\kv^2 - \\kvo^2}{2}\\right)}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{W}{\\kWnet} = \\mk{k}{\\tfrac{1}{2}\\km\\kv^2} - \\mk{k0}{\\tfrac{1}{2}\\km\\kvo^2}",
+              "uses": [],
+              "map": {
+                "m": [
+                  "k",
+                  "k0"
+                ],
+                "a": [
+                  "k",
+                  "k0"
+                ]
+              }
+            }
+          ],
+          "src": "7.2"
+        }
+      ]
+    }
   ]
 }

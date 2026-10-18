@@ -1152,5 +1152,240 @@
    "kind": "correction",
    "html": "Equation 14.13 is the definition of $\\partial f/\\partial y$; the form $T(r,t)=R(r)f(t)$ is substituted into the radial diffusion equation, <a href=\"#fs-id1167794139867\">Equation 14.23</a>."
   }
+ ],
+ "derivations": [
+  {
+   "id": "partial-derivatives-as-ordinary-derivatives",
+   "what": "partial derivatives as ordinary derivatives",
+   "source": "Calculus, 14.3 Partial Derivatives, Derivatives of a Function of Two Variables",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "With $y$ fixed, $\\kg(x)=\\kf(x,y)$."
+      },
+      {
+       "tex": "\\kdfdx=\\lim_{h\\to 0}\\frac{\\kf(x+h,y)-\\kf(x,y)}{h}",
+       "src": "(14.12)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kg^{\\prime}(x)}=\\mk{L}{\\lim_{h\\to 0}\\frac{\\kg(x+h)-\\kg(x)}{h}}",
+      "src": "3.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kg^{\\prime}(x)}=\\mk{L}{\\lim_{h\\to 0}\\frac{\\kf(x+h,y)-\\kf(x,y)}{h}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{g}{\\kg^{\\prime}(x)}=\\mk{L}{\\kdfdx}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "14.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "With $x$ fixed, $\\kh(y)=\\kf(x,y)$."
+      },
+      {
+       "tex": "\\kdfdy=\\lim_{k\\to 0}\\frac{\\kf(x,y+k)-\\kf(x,y)}{k}",
+       "src": "(14.13)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kh^{\\prime}(y)}=\\mk{L}{\\lim_{k\\to 0}\\frac{\\kh(y+k)-\\kh(y)}{k}}",
+      "src": "3.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kh^{\\prime}(y)}=\\mk{L}{\\lim_{k\\to 0}\\frac{\\kf(x,y+k)-\\kf(x,y)}{k}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{g}{\\kh^{\\prime}(y)}=\\mk{L}{\\kdfdy}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "14.3",
+     "note": "The book writes $h^{\\prime}(x)=\\lim_{k\\to 0}\\frac{h(x+k)-h(x)}{k}$; $h$ is a function of $y$, so the line is $h^{\\prime}(y)=\\lim_{k\\to 0}\\frac{h(y+k)-h(y)}{k}$."
+    }
+   ]
+  },
+  {
+   "id": "clairauts-theorem",
+   "what": "Clairaut’s theorem",
+   "source": "Calculus, 14.3 Partial Derivatives, Higher-Order Partial Derivatives",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\Delta=\\kf(a+h,b+h)-\\kf(a+h,b)-\\kf(a,b+h)+\\kf(a,b)"
+      },
+      {
+       "tex": "G(x)=\\kf(x,b+h)-\\kf(x,b)"
+      },
+      {
+       "text": "$h>0$ is small enough that the square with corners $(a,b)$ and $(a+h,b+h)$ lies in $D$."
+      },
+      {
+       "text": "$\\kfxy$ and $\\kfyx$ are continuous on the open disk $D$, so $\\kfx$ and $\\kfy$ exist there.",
+       "src": "14.3, Equality of Mixed Partial Derivatives (Clairaut’s Theorem)"
+      },
+      {
+       "text": "The Mean Value Theorem: if $\\kf$ is continuous over $[a,b]$ and differentiable over $(a,b)$, then $\\kfprime(c)=\\frac{\\kf(b)-\\kf(a)}{b-a}$ for some $c$ in $(a,b)$.",
+       "src": "4.4, Mean Value Theorem"
+      },
+      {
+       "text": "A partial derivative is the derivative in one variable with the other held fixed.",
+       "src": "14.3"
+      },
+      {
+       "tex": "\\kfxy=\\frac{\\partial}{\\partial y}[\\kdfdx]",
+       "src": "14.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\Delta}=\\mk{G}{G(a+h)-G(a)}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\Delta}=\\mk{G}{G^{\\prime}(c_{1})\\,h}",
+       "uses": [
+        2,
+        3,
+        4
+       ],
+       "cap": "The Mean Value Theorem on $G$ over $[a,a+h]$, for some $c_{1}$ between $a$ and $a+h$; $G$ is differentiable there because $\\kfx$ exists."
+      },
+      {
+       "tex": "\\mk{D}{\\Delta}=\\mk{G}{[\\kfx(c_{1},b+h)-\\kfx(c_{1},b)]\\,h}",
+       "uses": [
+        1,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\Delta}=\\mk{G}{\\kfxy(c_{1},d_{1})\\,h^{2}}",
+       "uses": [
+        4,
+        6
+       ],
+       "cap": "The Mean Value Theorem again, on $y\\mapsto\\kfx(c_{1},y)$ over $[b,b+h]$, for some $d_{1}$ between $b$ and $b+h$."
+      }
+     ],
+     "src": "14.3"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\Delta=\\kf(a+h,b+h)-\\kf(a+h,b)-\\kf(a,b+h)+\\kf(a,b)"
+      },
+      {
+       "tex": "H(y)=\\kf(a+h,y)-\\kf(a,y)"
+      },
+      {
+       "text": "$\\kfxy$ and $\\kfyx$ are continuous on the open disk $D$, so $\\kfx$ and $\\kfy$ exist there.",
+       "src": "14.3, Equality of Mixed Partial Derivatives (Clairaut’s Theorem)"
+      },
+      {
+       "text": "The Mean Value Theorem: if $\\kf$ is continuous over $[a,b]$ and differentiable over $(a,b)$, then $\\kfprime(c)=\\frac{\\kf(b)-\\kf(a)}{b-a}$ for some $c$ in $(a,b)$.",
+       "src": "4.4, Mean Value Theorem"
+      },
+      {
+       "text": "A partial derivative is the derivative in one variable with the other held fixed.",
+       "src": "14.3"
+      },
+      {
+       "tex": "\\kfyx=\\frac{\\partial}{\\partial x}[\\kdfdy]",
+       "src": "14.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\Delta}=\\mk{G}{H(b+h)-H(b)}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\Delta}=\\mk{G}{H^{\\prime}(d_{2})\\,h}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "The Mean Value Theorem on $H$ over $[b,b+h]$, for some $d_{2}$ between $b$ and $b+h$."
+      },
+      {
+       "tex": "\\mk{D}{\\Delta}=\\mk{G}{[\\kfy(a+h,d_{2})-\\kfy(a,d_{2})]\\,h}",
+       "uses": [
+        1,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\Delta}=\\mk{G}{\\kfyx(c_{2},d_{2})\\,h^{2}}",
+       "uses": [
+        3,
+        5
+       ],
+       "cap": "The Mean Value Theorem on $x\\mapsto\\kfy(x,d_{2})$ over $[a,a+h]$, for some $c_{2}$ between $a$ and $a+h$."
+      }
+     ],
+     "src": "14.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "$\\kfxy$ and $\\kfyx$ are continuous at $(a,b)$: their limits as $(x,y)\\to(a,b)$ are their values there.",
+       "src": "14.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kfxy(c_{1},d_{1})\\,h^{2}}=\\mk{y}{\\kfyx(c_{2},d_{2})\\,h^{2}}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "Both are $\\Delta$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kfxy(c_{1},d_{1})}=\\mk{y}{\\kfyx(c_{2},d_{2})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{x}{\\kfxy(a,b)}=\\mk{y}{\\kfyx(a,b)}",
+       "uses": [
+        2
+       ],
+       "cap": "Let $h\\to 0$: the points $(c_{1},d_{1})$ and $(c_{2},d_{2})$ lie within the shrinking square, so they approach $(a,b)$."
+      }
+     ],
+     "src": "14.3, Equality of Mixed Partial Derivatives (Clairaut’s Theorem)"
+    }
+   ]
+  }
  ]
 }

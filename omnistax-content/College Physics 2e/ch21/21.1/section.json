@@ -1104,5 +1104,200 @@
     "sim-three-resistors"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "resistance-in-series",
+   "what": "the total resistance in series",
+   "source": "College Physics 2e, 21.1 Resistors in Series and Parallel",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\text{PE} = \\kq\\kV",
+       "src": "19.1"
+      },
+      {
+       "text": "There is no other source and no other destination for energy in the circuit.",
+       "src": "21.1"
+      },
+      {
+       "text": "The same amount of charge $\\kq$ passes through the battery and each resistor in a given amount of time, since there is no capacitance to store charge and no place for charge to leak.",
+       "src": "21.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kq\\kV} = \\mk{a}{\\kq\\kVone} + \\mk{b}{\\kq\\kVtwo} + \\mk{c}{\\kq\\kVthree}",
+      "src": "21.1",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "why": "The energy the source supplies equals the energy the resistors dissipate."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV} = \\mk{a}{\\kVone} + \\mk{b}{\\kVtwo} + \\mk{c}{\\kVthree}",
+       "uses": []
+      }
+     ],
+     "src": "21.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kV = \\kIcur\\kRes",
+       "src": "20.2"
+      },
+      {
+       "text": "In series the current has to pass through each resistor in sequence, so the same current $\\kIcur$ flows through each.",
+       "src": "21.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kV} = \\mk{a}{\\kVone} + \\mk{b}{\\kVtwo} + \\mk{c}{\\kVthree}",
+      "src": "21.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV} = \\mk{a}{\\kIcur\\kResone} + \\mk{b}{\\kIcur\\kRestwo} + \\mk{c}{\\kIcur\\kResthree}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kV} = \\mk{I}{\\kIcur}(\\mk{a}{\\kResone} + \\mk{b}{\\kRestwo} + \\mk{c}{\\kResthree})",
+       "uses": []
+      }
+     ],
+     "src": "21.1"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The equivalent single series resistance $\\kRess$ draws the same current from the source as the three resistors.",
+       "src": "21.1"
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kV} = \\mk{I}{\\kIcur}\\mk{R}{\\kRess}",
+      "src": "21.1",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIcur}\\mk{R}{\\kRess} = \\mk{V}{\\kIcur(\\kResone + \\kRestwo + \\kResthree)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{R}{\\kRess} = \\mk{V}{\\kResone + \\kRestwo + \\kResthree}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{\\kRess} = \\mk{V}{\\kResone + \\kRestwo + \\kResthree} + \\mk{n}{\\ldots}",
+       "uses": [],
+       "cap": "The same logic holds for any number of resistors in series."
+      }
+     ],
+     "src": "21.1"
+    }
+   ]
+  },
+  {
+   "id": "resistance-in-parallel",
+   "what": "the total resistance in parallel",
+   "source": "College Physics 2e, 21.1 Resistors in Series and Parallel",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Conservation of charge: the current the source produces is the sum of the currents through the resistors.",
+       "src": "21.1"
+      },
+      {
+       "text": "Each resistor is connected directly to the source, so each has the full voltage $\\kV$ across it.",
+       "src": "21.1"
+      },
+      {
+       "tex": "\\kIcur = \\dfrac{\\kV}{\\kRes}",
+       "src": "20.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIcur} = \\mk{a}{\\kIcurone} + \\mk{b}{\\kIcurtwo} + \\mk{c}{\\kIcurthree}",
+      "src": "21.1",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\mk{a}{\\dfrac{\\kV}{\\kResone}} + \\mk{b}{\\dfrac{\\kV}{\\kRestwo}} + \\mk{c}{\\dfrac{\\kV}{\\kResthree}}",
+       "uses": [1, 2]
+      },
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\mk{V}{\\kV}\\left(\\mk{a}{\\dfrac{1}{\\kResone}} + \\mk{b}{\\dfrac{1}{\\kRestwo}} + \\mk{c}{\\dfrac{1}{\\kResthree}}\\right)",
+       "uses": []
+      }
+     ],
+     "src": "21.1"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The equivalent single resistance $\\kResp$ draws the same current from the source as the three resistors.",
+       "src": "21.1"
+      },
+      {
+       "tex": "\\kIcur = \\dfrac{\\kV}{\\kRes}",
+       "src": "20.2"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIcur} = \\dfrac{\\mk{V}{\\kV}}{\\mk{R}{\\kResp}}",
+      "src": "21.1",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\mk{V}{\\kV}\\left(\\mk{R}{\\dfrac{1}{\\kResp}}\\right)",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{I}{\\kV\\left(\\dfrac{1}{\\kResone} + \\dfrac{1}{\\kRestwo} + \\dfrac{1}{\\kResthree}\\right)} = \\mk{V}{\\kV}\\left(\\mk{R}{\\dfrac{1}{\\kResp}}\\right)",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{R}{\\dfrac{1}{\\kResp}} = \\mk{I}{\\dfrac{1}{\\kResone} + \\dfrac{1}{\\kRestwo} + \\dfrac{1}{\\kResthree}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{\\dfrac{1}{\\kResp}} = \\mk{I}{\\dfrac{1}{\\kResone} + \\dfrac{1}{\\kRestwo} + \\dfrac{1}{\\kResthree}} + \\mk{n}{\\ldots}",
+       "uses": [],
+       "cap": "The same holds for any number of resistors in parallel."
+      }
+     ],
+     "src": "21.1"
+    }
+   ]
+  }
  ]
 }

@@ -31,14 +31,9 @@ $$\begin{array}{rl}\kvecp\cdot \kvecq & =u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3} \\ & =
 $$\begin{array}{lllrlllll}\text{i.} & & & \kvecu\cdot \kvecv & = & \kvecv\cdot \kvecu & & & \text{Commutative property} \\ \text{ii.} & & & \kvecu\cdot (\kvecv+\kvecw) & = & \kvecu\cdot \kvecv+\kvecu\cdot \kvecw & & & \text{Distributive property} \\ \text{iii.} & & & c(\kvecu\cdot \kvecv) & = & (c\kvecu)\cdot \kvecv=\kvecu\cdot (c\kvecv) & & & \text{Associative property} \\ \text{iv.} & & & \kvecv\cdot \kvecv & = & {\| \kvecv\|}^{2} & & & \text{Property of magnitude}\end{array}$$
 </div>
 <h3>Proof</h3>
-<p>Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle$ and $\kvecv=\langle v_{1},v_{2},v_{3}\rangle .$ Then</p>
-$$\begin{array}{rl}\kvecu\cdot \kvecv & =\langle u_{1},u_{2},u_{3}\rangle \cdot \langle v_{1},v_{2},v_{3}\rangle \\ & =u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3} \\ & =v_{1}u_{1}+v_{2}u_{2}+v_{3}u_{3} \\ & =\langle v_{1},v_{2},v_{3}\rangle \cdot \langle u_{1},u_{2},u_{3}\rangle \\ & =\kvecv\cdot \kvecu.\end{array}$$
-<p>The associative property looks like the associative property for real-number multiplication, but pay close attention to the difference between scalar and <span data-concept="vector">vector</span> objects:</p>
-$$\begin{array}{rl}c(\kvecu\cdot \kvecv) & =c(u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3}) \\ & =c(u_{1}v_{1})+c(u_{2}v_{2})+c(u_{3}v_{3}) \\ & =(cu_{1})v_{1}+(cu_{2})v_{2}+(cu_{3})v_{3} \\ & =\langle cu_{1},cu_{2},cu_{3}\rangle \cdot \langle v_{1},v_{2},v_{3}\rangle \\ & =c\langle u_{1},u_{2},u_{3}\rangle \cdot \langle v_{1},v_{2},v_{3}\rangle \\ & =(c\kvecu)\cdot \kvecv.\end{array}$$
-<p>The proof that $c(\kvecu\cdot \kvecv)=\kvecu\cdot (c\kvecv)$ is similar.</p>
-<p>The fourth property shows the relationship between the <span data-concept="magnitude-of-a-vector">magnitude</span> of a <span data-concept="vector">vector</span> and its <span data-concept="dot-product">dot product</span> with itself:</p>
-$$\begin{array}{rl}\kvecv\cdot \kvecv & =\langle v_{1},v_{2},v_{3}\rangle \cdot \langle v_{1},v_{2},v_{3}\rangle \\ & ={(v_{1})}^{2}+{(v_{2})}^{2}+{(v_{3})}^{2} \\ & ={[\sqrt{{(v_{1})}^{2}+{(v_{2})}^{2}+{(v_{3})}^{2}}]}^{2} \\ & ={\| \kvecv\|}^{2}.\end{array}$$
-<p>□</p>
+<figure class="dv" id="drv-dot-product-properties"></figure>
+<p>The associative property looks like the associative property for real-number multiplication, but pay close attention to the difference between scalar and <span data-concept="vector">vector</span> objects. The proof that $c(\kvecu\cdot \kvecv)=\kvecu\cdot (c\kvecv)$ is similar.</p>
+<p>The fourth property shows the relationship between the <span data-concept="magnitude-of-a-vector">magnitude</span> of a <span data-concept="vector">vector</span> and its <span data-concept="dot-product">dot product</span> with itself.</p>
 <p>Note that the definition of the <span data-concept="dot-product">dot product</span> yields $\kveczero\cdot \kvecv=0.$ By property iv., if $\kvecv\cdot \kvecv=0,$ then $\kvecv=\kveczero.$</p>
 <div class="example" id="fs-id1163723089891">
 <h3>Example 12.22 · Using Properties of the Dot Product</h3>
@@ -70,14 +65,7 @@ $${\| \kvecb\|}^{2}=\kvecb\cdot \kvecb=\langle 0,2,4\rangle \cdot \langle 0,2,4\
 <div class="equation" id="fs-id1163724054275">$$\kvecu\cdot \kvecv=\| \kvecu\| \| \kvecv\| \cos \ktheta .\tag{12.4}$$</div>
 </div>
 <h3>Proof</h3>
-<p>Place <span data-concept="vector">vectors</span> $\kvecu $ and $\kvecv $ in <span data-concept="standard-position-vector">standard position</span> and consider the <span data-concept="vector">vector</span> $\kvecv-\kvecu $ (Figure 12.45). These three <span data-concept="vector">vectors</span> form a triangle with side lengths $\| \kvecu\| ,\| \kvecv\| ,\;\text{and}\;\| \kvecv-\kvecu\| .$</p>
-<p>Recall from trigonometry that the law of cosines describes the relationship among the side lengths of the triangle and the angle <em>θ</em>. Applying the law of cosines here gives</p>
-$${\| \kvecv-\kvecu\|}^{2}={\| \kvecu\|}^{2}+{\| \kvecv\|}^{2}-2\| \kvecu\| \| \kvecv\| \cos \ktheta .$$
-<p>The <span data-concept="dot-product">dot product</span> provides a way to rewrite the left side of this equation:</p>
-$$\begin{array}{rl}{\| \kvecv-\kvecu\|}^{2} & =(\kvecv-\kvecu)\cdot (\kvecv-\kvecu) \\ & =(\kvecv-\kvecu)\cdot \kvecv-(\kvecv-\kvecu)\cdot \kvecu \\ & =\kvecv\cdot \kvecv-\kvecu\cdot \kvecv-\kvecv\cdot \kvecu+\kvecu\cdot \kvecu \\ & =\kvecv\cdot \kvecv-\kvecu\cdot \kvecv-\kvecu\cdot \kvecv+\kvecu\cdot \kvecu \\ & ={\| \kvecv\|}^{2}-2\kvecu\cdot \kvecv+{\| \kvecu\|}^{2}.\end{array}$$
-<p>Substituting into the law of cosines yields</p>
-$$\begin{array}{rll}{\| \kvecv-\kvecu\|}^{2} & = & {\| \kvecu\|}^{2}+{\| \kvecv\|}^{2}-2\| \kvecu\| \| \kvecv\| \cos \ktheta \\ {\| \kvecv\|}^{2}-2\kvecu\cdot \kvecv+{\| \kvecu\|}^{2} & = & {\| \kvecu\|}^{2}+{\| \kvecv\|}^{2}-2\| \kvecu\| \| \kvecv\| \cos \ktheta \\ -2\kvecu\cdot \kvecv & = & -2\| \kvecu\| \| \kvecv\| \cos \ktheta \\ \kvecu\cdot \kvecv & = & \| \kvecu\| \| \kvecv\| \cos \ktheta .\end{array}$$
-<p>□</p>
+<figure class="dv" id="drv-dot-product-and-angle"></figure>
 <p>We can use this form of the <span data-concept="dot-product">dot product</span> to find the measure of the angle between two nonzero <span data-concept="vector">vectors</span>. The following equation rearranges <a href="#fs-id1163723335787">Equation 12.3</a><sup class="fn" data-note="c-rearranges"></sup> to solve for the cosine of the angle:</p>
 <div class="equation" id="fs-id1163723122506">$$\cos \ktheta =\frac{\kvecu\cdot \kvecv}{\| \kvecu\| \| \kvecv\|}.\tag{12.5}$$</div>
 <p>Using this equation, we can find the cosine of the angle between two nonzero <span data-concept="vector">vectors</span>. Since we are considering the smallest angle between the <span data-concept="vector">vectors</span>, we assume $0^{\circ}\le \ktheta \le 180^{\circ}$ (or $0\le \ktheta \le \pi$ if we are working in radians). The inverse cosine is unique over this range, so we are then able to determine the measure of the angle $\ktheta .$</p>
@@ -102,12 +90,7 @@ $$\begin{array}{rl}\cos \ktheta & =\frac{\langle 2,5,6\rangle \cdot \langle -2,-
 <p>The nonzero <span data-concept="vector">vectors</span> $\kvecu $ and $\kvecv $ are <strong><span data-concept="orthogonal-vectors">orthogonal vectors</span></strong> if and only if $\kvecu\cdot \kvecv=0.$</p>
 </div>
 <h3>Proof</h3>
-<p>Let $\kvecu $ and $\kvecv $ be nonzero <span data-concept="vector">vectors</span>, and let $\ktheta$ denote the angle between them. First, assume $\kvecu\cdot \kvecv=0.$ Then</p>
-$$\| \kvecu\| \| \kvecv\| \cos \ktheta =0.$$
-<p>However, $\| \kvecu\| \ne 0$ and $\| \kvecv\| \ne 0,$ so we must have $\cos \ktheta =0.$ Hence, $\ktheta =90^{\circ},$ and the <span data-concept="vector">vectors</span> are orthogonal.</p>
-<p>Now assume $\kvecu $ and $\kvecv $ are orthogonal. Then $\ktheta =90^{\circ}$ and we have</p>
-$$\kvecu\cdot \kvecv=\| \kvecu\| \| \kvecv\| \cos \ktheta =\| \kvecu\| \| \kvecv\| \cos 90^{\circ}=\| \kvecu\| \| \kvecv\| (0)=0.$$
-<p>□</p>
+<figure class="dv" id="drv-orthogonal-vectors"></figure>
 <p id="orthogonal-words">The terms <em>orthogonal</em>, <em>perpendicular</em>, and <em>normal</em> each indicate that mathematical objects are intersecting at right angles. The use of each term is determined mainly by its context. We say that <span data-concept="vector">vectors</span> are orthogonal and lines are perpendicular. The term <em>normal</em> is used most often when measuring the angle made with a plane or other surface.</p>
 <div class="example" id="fs-id1163724056700">
 <h3>Example 12.24 · Identifying Orthogonal Vectors</h3>
@@ -178,10 +161,8 @@ $$\begin{array}{rl}\kvecp\cdot \kvecq-\kvecc\cdot \kvecq & =16267.5-1883.8 \\ & 
 </figure>
 <div class="note" id="fs-id1163724097629">
 <div class="eyebrow">Definition</div>
-<p>The <strong><span data-concept="vector-projection">vector projection</span></strong> of $\kvecv $ onto $\kvecu $ is the <span data-concept="vector">vector</span> labeled $\text{proj}_{\kvecu}\kvecv$ in Figure 12.50. It has the same <span data-concept="initial-point">initial point</span> as $\kvecu $ and $\kvecv $ and the same direction as $\kvecu $, and represents the component of $\kvecv $ that acts in the direction of $\kvecu $. If $\ktheta$ represents the angle between $\kvecu $ and $\kvecv $, then, by properties of triangles, we know the length of ${\text{proj}}_{\kvecu}\kvecv $ is $\| {\text{proj}}_{\kvecu}\kvecv\| =\| \kvecv\| \cdot |\cos |\;\ktheta .$ Note that when the angle $\ktheta$ between $\kvecu $ and $\kvecv $ is an obtuse angle, the projection will be in the opposite direction of $\kvecu $.  When expressing $\cos \ktheta$ in terms of the <span data-concept="dot-product">dot product</span>, this becomes</p>
-$$\begin{array}{ll}\| {\text{proj}}_{\kvecu}\kvecv\| & =\| \kvecv\| \cdot |\cos |\;\ktheta \\ & =\| \kvecv\| (\frac{|\kvecu\cdot \kvecv |}{\| \kvecu\| \| \kvecv\|}) \\ & =\frac{|\kvecu\cdot \kvecv |}{\| \kvecu\|}.\end{array}$$
-<p>We now multiply by a <span data-concept="unit-vector">unit vector</span> in the direction of $\kvecu $ to get ${\text{proj}}_{\kvecu}\kvecv\text{:}$</p>
-<div class="equation" id="fs-id1163724077546">$${\text{proj}}_{\kvecu}\kvecv=\frac{\kvecu\cdot \kvecv}{\| \kvecu\|}(\frac{1}{\| \kvecu\|}\kvecu)=\frac{\kvecu\cdot \kvecv}{{\| \kvecu\|}^{2}}\kvecu.\tag{12.6}$$</div>
+<p>The <strong><span data-concept="vector-projection">vector projection</span></strong> of $\kvecv $ onto $\kvecu $ is the <span data-concept="vector">vector</span> labeled $\text{proj}_{\kvecu}\kvecv$ in Figure 12.50. It has the same <span data-concept="initial-point">initial point</span> as $\kvecu $ and $\kvecv $ and the same direction as $\kvecu $, and represents the component of $\kvecv $ that acts in the direction of $\kvecu $. If $\ktheta$ represents the angle between $\kvecu $ and $\kvecv $, then, by properties of triangles, we know the length of ${\text{proj}}_{\kvecu}\kvecv $ is $\| {\text{proj}}_{\kvecu}\kvecv\| =\| \kvecv\| \cdot |\cos |\;\ktheta .$<sup class="fn" data-note="c-abs-cos"></sup> Note that when the angle $\ktheta$ between $\kvecu $ and $\kvecv $ is an obtuse angle, the projection will be in the opposite direction of $\kvecu $. </p>
+<figure class="dv" id="drv-vector-projection"></figure>
 <p>The length of this <span data-concept="vector">vector</span> is also known as the <strong><span data-concept="scalar-projection">scalar projection</span></strong> of $\kvecv $ onto $\kvecu $ and is denoted by</p>
 <div class="equation" id="fs-id1163723141410">$${\text{comp}}_{\kvecu}\kvecv=\frac{\kvecu\cdot \kvecv}{\| \kvecu\|}.\tag{12.7}$$</div>
 </div>

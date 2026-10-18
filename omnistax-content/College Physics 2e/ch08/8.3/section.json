@@ -908,5 +908,113 @@
     "fig-cart-graph"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "two-car-momentum",
+   "what": "the conservation of momentum for two colliding cars",
+   "source": "College Physics 2e, 8.3 Conservation of Momentum",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The only unbalanced force on car 1 is the force $\\kFone$ of the collision, exerted by car 2.",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kdp} = \\mk{F}{\\kFnet}\\mk{t}{\\kdt}",
+      "src": "8.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\Delta\\kpone} = \\mk{F}{\\kFone}\\mk{t}{\\kdt}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "8.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The only unbalanced force on car 2 is the force $\\kFtwo$ of the collision, exerted by car 1.",
+       "src": "8.3"
+      },
+      {
+       "text": "At ordinary speeds the collision lasts the same time $\\kdt$ for both cars.",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kdp} = \\mk{F}{\\kFnet}\\mk{t}{\\kdt}",
+      "src": "8.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\Delta\\kptwo} = \\mk{F}{\\kFtwo}\\mk{t}{\\kdt}",
+       "uses": [
+        0,
+        1
+       ]
+      }
+     ],
+     "src": "8.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kFtwo = -\\kFone",
+       "src": "4.4"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "Primes denote the momenta after the collision.",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p2}{\\Delta\\kptwo} = \\mk{F}{\\kFtwo}\\mk{t}{\\kdt}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p2}{\\Delta\\kptwo} = \\mk{F}{-\\kFone}\\mk{t}{\\kdt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{p2}{\\Delta\\kptwo} = \\mk{F}{-\\kFone}\\mk{t}{\\kdt} = \\mk{p1}{-\\Delta\\kpone}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p1}{\\Delta\\kpone} + \\mk{p2}{\\Delta\\kptwo} = \\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p1}{\\kpone} + \\mk{p2}{\\kptwo} = \\mk{z}{\\text{constant}}",
+       "uses": [],
+       "cap": "The two changes add to zero, so the sum of the two momenta does not change."
+      },
+      {
+       "tex": "\\mk{p1}{\\kpone} + \\mk{p2}{\\kptwo} = \\mk{z}{\\kponeprime + \\kptwoprime}",
+       "uses": [
+        3
+       ],
+       "cap": "A constant total is the same after the collision as before it."
+      }
+     ],
+     "src": "8.3"
+    }
+   ]
+  }
  ]
 }

@@ -1429,5 +1429,174 @@
    ]
   }
  ],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "volume-by-slicing",
+   "what": "the volume of a solid by slicing",
+   "source": "Calculus, 6.2 Determining Volumes by Slicing, Volume and the Slicing Method",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The volume of slice $\\kS_{i}$ can be estimated by $\\kV(\\kS_{i})\\approx \\kA(x_i^{*})\\Delta x.$",
+       "src": "6.2"
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kV(\\kS)}\\approx\\mk{s}{\\sum_{i=1}^{n}\\kA(x_i^{*})\\Delta x}",
+      "src": "6.2",
+      "uses": [
+       0
+      ],
+      "why": "Adding the estimates for all the slices approximates the volume of the entire solid."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kV(\\kS)}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}\\kA(x_i^{*})\\Delta x}",
+       "uses": [],
+       "cap": "By now we recognize this as a Riemann sum, and we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\kV(\\kS)}=\\mk{s}{\\int_a^{b}\\kA(x)dx}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "src": "6.2"
+    }
+   ]
+  },
+  {
+   "id": "volume-of-a-pyramid",
+   "what": "the volume of a pyramid",
+   "source": "Calculus, 6.2 Determining Volumes by Slicing, Example 6.6",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The two triangles of Figure 6.14(b) are similar.",
+       "src": "Figure 6.14"
+      }
+     ],
+     "then": {
+      "tex": "\\frac{\\mk{s}{s}}{\\mk{a}{a}}=\\frac{\\mk{x}{x}}{\\mk{h}{h}}",
+      "src": "Example 6.6",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{s}=\\frac{\\mk{a}{a}\\mk{x}{x}}{\\mk{h}{h}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 6.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The base is a square, so the cross-sections are squares as well, of side $s.$"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kA(x)}=\\mk{s}{s^{2}}",
+      "src": "Example 6.6",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kA(x)}=\\mk{s}{{(\\frac{ax}{h})}^{2}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 6.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The pyramid lies along the $x$-axis from its tip at $x=0$ to its base at $x=h.$",
+       "src": "Figure 6.14"
+      },
+      {
+       "tex": "\\int_a^{b}c\\kf(x)dx=c\\int_a^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      },
+      {
+       "tex": "\\int x^{n}dx=\\frac{x^{n+1}}{n+1}+C,\\;n\\ne-1",
+       "src": "4.10, Power Rule for Integrals"
+      },
+      {
+       "text": "If $\\kF$ is an antiderivative of $\\kf$ over $[a,b],$ then $\\int_a^{b}\\kf(x)dx=\\kF(b)-\\kF(a).$",
+       "src": "5.3, The Fundamental Theorem of Calculus, Part 2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kV}=\\mk{i}{\\int_0^{h}\\kA(x)dx}",
+      "src": "6.2",
+      "uses": [
+       1
+      ],
+      "why": "The slicing method integrates the area of a cross-section over the length of the solid."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV}=\\mk{i}{\\int_0^{h}{(\\frac{ax}{h})}^{2}dx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kV}=\\mk{c}{\\frac{a^{2}}{h^{2}}}\\mk{i}{\\int_0^{h}x^{2}dx}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "i": [
+         "c",
+         "i"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{V}{\\kV}=\\mk{e}{{[\\frac{a^{2}}{h^{2}}(\\frac{1}{3}x^{3})]\\;|}_0^{h}}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "c": "e",
+        "i": "e"
+       }
+      },
+      {
+       "tex": "\\mk{V}{\\kV}=\\mk{e}{\\frac{1}{3}a^{2}h}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "Example 6.6"
+    }
+   ]
+  }
+ ]
 }

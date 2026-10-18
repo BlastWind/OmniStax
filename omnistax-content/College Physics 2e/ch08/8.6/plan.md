@@ -343,3 +343,9 @@ and is now the degree sign; the two angle units in the exercise answers went
 with it.
 
 Figure pass, 2026-09-15 (Claude Fable 5.1). All three figures use `F.angleArc` and the labeller for their angle names and their velocity and momentum labels, so no name sits on an arrow at any angle. `sim-scatter`: the scene is half again as large (radius 250) and the momentum arrows are on 240 units per kg·m/s. `sim-dark-room`: the room is 400 by 420 and the arrows on 32 units per m/s. `sim-billiards`: the balls are 26 in radius, the arrows leave from the rim on 18 units per m/s, and the guide lines stop at the cushions.
+
+## Derivations
+
+- Conservation of momentum along the $x$- and $y$-axes (printed blocks under two headers) · score 2 · built as drv-momentum-along-x and drv-momentum-along-y: one node each, in the book's two headed parts, so each part keeps its own; they share only $p = mv$ and the two initial conditions, and each replaces its section's displayed lines while the boxed notes stay
+- Example 8.7, the unseen object's velocity · score 4 · not built: a worked example that solves the section's two component equations, the only outside fact being $\tan\theta = \sin\theta/\cos\theta$
+- Why equal masses separate at 90° ("Algebraic manipulation (left to the reader)") · score 8 · built as drv-equal-mass-separation: four nodes, the $x$ and $y$ momentum equations with $m_1 = m_2 = m$, then squared and added to the book's $\tfrac{1}{2}mv_1^2 = \tfrac{1}{2}mv_1'^2 + \tfrac{1}{2}mv_2'^2 + mv_1'v_2'\cos(\theta_1 - \theta_2)$ (the identities $\cos^2\theta + \sin^2\theta = 1$ and the cosine of a difference as reasons on their moves), then joined with the kinetic-energy equation to $mv_1'v_2'\cos(\theta_1 - \theta_2) = 0$; prose-first, so it stands after the paragraph that states the result, and both printed displays and the three-way list stay

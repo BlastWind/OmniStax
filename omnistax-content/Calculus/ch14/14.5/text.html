@@ -15,21 +15,9 @@ $$\frac{d}{dx}(\kf(\kg(x)))=\kf'(\kg(x))\kg'(x).$$
 <p>The proof of this theorem uses the definition of <span data-concept="differentiable-function-of-two-variables">differentiability</span> of a <span data-concept="function-of-two-variables">function of two variables</span>. Suppose that <em>f</em> is differentiable at the point $P(x_{0},y_{0}),$ where $x_{0}=\kg(t_{0})$ and $y_{0}=\kh(t_{0})$ for a fixed value of $t_{0}.$ We wish to prove that $z=\kf(x(t),y(t))$ is differentiable at $t=t_{0}$ and that <a href="#fs-id1167794005848">Equation 14.29</a> holds at that point as well.</p>
 <p>Since $\kf$ is differentiable at $P,$ we know that</p>
 <div class="equation" id="fs-id1167793966705">$$z(t)=\kf(x,y)=\kf(x_{0},y_{0})+\kfx(x_{0},y_{0})(x-x_{0})+\kfy(x_{0},y_{0})(y-y_{0})+E(x,y),\tag{14.30}$$</div>
-<p>where $\lim_{(x,y)\to (x_{0},y_{0})}\frac{E(x,y)}{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}=0.$ We then subtract $z_{0}=\kf(x_{0},y_{0})$ from both sides of this equation:</p>
-$$\begin{array}{rl}z(t)-z(t_{0}) & =\kf(x(t),y(t))-\kf(x(t_{0}),y(t_{0})) \\ & =\kfx(x_{0},y_{0})(x(t)-x(t_{0}))+\kfy(x_{0},y_{0})(y(t)-y(t_{0}))+E(x(t),y(t)).\end{array}$$
-<p>Next, we divide both sides by $t-t_{0}\text{:}$</p>
-$$\frac{z(t)-z(t_{0})}{t-t_{0}}=\kfx(x_{0},y_{0})(\frac{x(t)-x(t_{0})}{t-t_{0}})+\kfy(x_{0},y_{0})(\frac{y(t)-y(t_{0})}{t-t_{0}})+\frac{E(x(t),y(t))}{t-t_{0}}.$$
-<p>Then we take the limit as $t$ approaches $t_{0}\text{:}$</p>
-$$\begin{array}{rl}\lim_{t\to t_{0}}\frac{z(t)-z(t_{0})}{t-t_{0}} & =\kfx(x_{0},y_{0})\lim_{t\to t_{0}}(\frac{x(t)-x(t_{0})}{t-t_{0}})+\kfy(x_{0},y_{0})\lim_{t\to t_{0}}(\frac{y(t)-y(t_{0})}{t-t_{0}}) \\ & \;+\lim_{t\to t_{0}}\frac{E(x(t),y(t))}{t-t_{0}}.\end{array}$$
-<p>The left-hand side of this equation is equal to $dz/dt,$ which leads to</p>
-$$\kdzdt=\kfx(x_{0},y_{0})\kdxdt+\kfy(x_{0},y_{0})\kdydt+\lim_{t\to t_{0}}\frac{E(x(t),y(t))}{t-t_{0}}.$$
-<p>The last term can be rewritten as</p>
-$$\begin{array}{rl}\lim_{t\to t_{0}}\frac{E(x(t),y(t))}{t-t_{0}} & =\lim_{t\to t_{0}}(\frac{E(x,y)}{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}\;\frac{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{t-t_{0}}) \\ & =\lim_{t\to t_{0}}(\frac{E(x,y)}{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}})\lim_{t\to t_{0}}(\frac{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{t-t_{0}}).\end{array}$$
-<p>As $t$ approaches $t_{0},$ $(x(t),y(t))$ approaches $(x(t_{0}),y(t_{0})),$ so we can rewrite the last product as</p>
-$$\lim_{(x,y)\to (x_{0},y_{0})}(\frac{E(x,y)}{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}})\lim_{(x,y)\to (x_{0},y_{0})}(\frac{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{t-t_{0}}).$$
-<p>Since the first limit is equal to zero, we need only show that the second limit is finite:</p>
-$$\begin{array}{rl}\lim_{(x,y)\to (x_{0},y_{0})}(\frac{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}{t-t_{0}}) & =\lim_{(x,y)\to (x_{0},y_{0})}(\sqrt{\frac{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}{{(t-t_{0})}^{2}}}) \\ & =\lim_{(x,y)\to (x_{0},y_{0})}(\sqrt{{(\frac{x-x_{0}}{t-t_{0}})}^{2}+{(\frac{y-y_{0}}{t-t_{0}})}^{2}}) \\ & =\sqrt{{(\lim_{(x,y)\to (x_{0},y_{0})}(\frac{x-x_{0}}{t-t_{0}}))}^{2}+{(\lim_{(x,y)\to (x_{0},y_{0})}(\frac{y-y_{0}}{t-t_{0}}))}^{2}}.\end{array}$$
-<p>Since $x(t)$ and $y(t)$ are both differentiable functions of $t,$ both limits inside the last radical exist. Therefore, this value is finite. This proves the <span data-concept="chain-rule">chain rule</span> at $t=t_{0};$ the rest of the theorem follows from the assumption that all functions are differentiable over their entire domains.</p>
+<p>where $\lim_{(x,y)\to (x_{0},y_{0})}\frac{E(x,y)}{\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}=0.$</p>
+<figure class="dv" id="drv-chain-rule-one-variable"></figure>
+<p>This proves the <span data-concept="chain-rule">chain rule</span> at $t=t_{0};$ the rest of the theorem follows from the assumption that all functions are differentiable over their entire domains.</p>
 <p>□</p>
 <p id="intermediate-term">Closer examination of <a href="#fs-id1167794005848">Equation 14.29</a> reveals an interesting pattern. The first term in the equation is $\kdfdx\cdot \kdxdt$ and the second term is $\kdfdy\cdot \kdydt.$ Recall that when multiplying fractions, cancelation can be used. If we treat these derivatives as fractions, then each product “simplifies” to something resembling $\partial \kf/dt.$ The variables $x\;\text{and}\;y$ that disappear in this simplification are often called <strong><span data-concept="intermediate-variable">intermediate variables</span></strong>: they are independent variables for the function $\kf,$ but are dependent variables for the variable $t.$ Two terms appear on the right-hand side of the formula, and $\kf$ is a <span data-concept="function-of-two-variables">function of two variables</span>. This pattern works with functions of more than two variables as well, as we see later in this section.</p>
 <div class="example" id="fs-id1167793221931">
@@ -170,9 +158,8 @@ $$\begin{array}{rll}\frac{d}{dx}(x^{2}+3y^{2}+4y-4) & = & \frac{d}{dx}(0) \\ 2x+
 <div class="equation" id="fs-id1167794214311">$$\kdzdx=-\frac{\kdfdxin}{\kdfdzin}\;\text{and}\;\kdzdy=-\frac{\kdfdyin}{\kdfdzin}\tag{14.35}$$</div>
 <p>as long as $\kfz(x,y,z)\ne 0.$</p>
 </div>
-<p id="implicit-derivation"><a href="#fs-id1167793547437">Equation 14.34</a> is a direct consequence of <a href="#fs-id1167793501898">Equation 14.31</a>. In particular, if we assume that $y$ is defined implicitly as a function of $x$ via the equation $\kf(x,y)=0,$ we can apply the <span data-concept="chain-rule">chain rule</span> to find $dy/dx\text{:}$</p>
-$$\begin{array}{rll}\frac{d}{dx}\kf(x,y) & = & \frac{d}{dx}(0) \\ \kdfdx\cdot \frac{dx}{dx}+\kdfdy\cdot \frac{dy}{dx} & = & 0 \\ \kdfdx+\kdfdy\cdot \frac{dy}{dx} & = & 0.\end{array}$$
-<p>Solving this equation for $dy/dx$ gives <a href="#fs-id1167793547437">Equation 14.34</a>. <a href="#fs-id1167794214311">Equation 14.35</a> can be derived in a similar fashion.</p>
+<p id="implicit-derivation"><a href="#fs-id1167793547437">Equation 14.34</a> is a direct consequence of <a href="#fs-id1167793501898">Equation 14.31</a>. In particular, if we assume that $y$ is defined implicitly as a function of $x$ via the equation $\kf(x,y)=0,$ we can apply the <span data-concept="chain-rule">chain rule</span> to find $dy/dx.$</p>
+<figure class="dv" id="drv-implicit-differentiation"></figure>
 <p>Let’s now return to the problem that we started before the previous theorem. Using <a href="#fs-id1167793376409">Implicit Differentiation of a Function of Two or More Variables</a> and the function $\kf(x,y)=x^{2}+3y^{2}+4y-4,$ we obtain</p>
 $$\begin{array}{l}\kdfdx=2x \\ \kdfdy=6y+4.\end{array}$$
 <p>Then <a href="#fs-id1167793547437">Equation 14.34</a> gives</p>

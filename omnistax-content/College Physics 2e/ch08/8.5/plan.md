@@ -237,3 +237,7 @@ are tagged with 6.5's `center-of-mass`, which is the whole of what the brief
 asks for on a page that cannot cite across sections.
 
 Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-collision`: a faint leader ties each velocity and momentum row to its own object, every arrow label goes through `F.label` so that the longest arrows of Figure 8.9 no longer run their labels off either edge, and the names of the three lines in the momentum graph take their turn through the labeller instead of overprinting where two lines end together. `sim-recoil` looked at and left.
+
+## Derivations
+
+- The coefficient of restitution $c = (h/H)^{1/2}$ ("can be shown") · score 7 · not built: it sits inside the Take-Home Experiment, a project set for the reader

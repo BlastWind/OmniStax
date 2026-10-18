@@ -64,3 +64,8 @@ Ids confirmed with `ost ids calculus 3.4` after the build.
 - New symbols C_prime, R_prime, v_prime (book-rows.json, merged); variables rows added for f, f_prime, s, s_prime, s_dprime, v_prime, v_ave, C, C_prime, R, R_prime, p; anchors on every 3.4 row and the eleven forms.
 - Corrections: Example 3.34 (v(t) for v(2)), exercise 153's key (ft/s² for ft/s), 167's key (the missing t), 169's key (x for t).
 - Checkpoint 3.22 is a choice of the two directions.
+
+
+## Derivations
+
+- Amount of Change Formula (3.10) · score 0 · not built: prose-first, the approximation and the solve told in one sentence, under the hidden bar; stays as printed with its number

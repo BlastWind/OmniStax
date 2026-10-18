@@ -62,10 +62,8 @@ $$\kdydx=\lim_{\Delta x\to 0}\frac{\Delta y}{\Delta x}.$$
 <p>Let $\kf(x)$ be a <span data-concept="function">function</span> and $a$ be in its domain. If $\kf(x)$ is <span data-concept="differentiable-at-a-point">differentiable</span> at $a,$ then $\kf$ is <span data-concept="continuity-at-a-point">continuous at</span> $a.$</p>
 </div>
 <h3>Proof</h3>
-<p>If $\kf(x)$ is <span data-concept="differentiable-at-a-point">differentiable</span> at $a,$ then $\kfprime(a)$ exists and</p>
-$$\kfprime(a)=\lim_{x\to a}\frac{\kf(x)-\kf(a)}{x-a}.$$
-<p>We want to show that $\kf(x)$ is <span data-concept="continuity-at-a-point">continuous at</span> $a$ by showing that $\lim_{x\to a}\kf(x)=\kf(a).$ Thus,</p>
-$$\begin{array}{rllll}\lim_{x\to a}\kf(x) & =\lim_{x\to a}(\kf(x)-\kf(a)+\kf(a)) & & & \\ & =\lim_{x\to a}(\frac{\kf(x)-\kf(a)}{x-a}\cdot (x-a)+\kf(a)) & & & \text{Multiply and divide}\;\kf(x)-\kf(a)\;\text{by}\;x-a. \\ & =(\lim_{x\to a}\frac{\kf(x)-\kf(a)}{x-a})\cdot (\lim_{x\to a}(x-a))+\lim_{x\to a}\kf(a) & & & \\ & =\kfprime(a)\cdot 0+\kf(a) & & & \\ & =\kf(a). & & & \end{array}$$
+<p>We want to show that $\kf(x)$ is <span data-concept="continuity-at-a-point">continuous at</span> $a$ by showing that $\lim_{x\to a}\kf(x)=\kf(a).$</p>
+<figure class="dv" id="drv-differentiability-implies-continuity"></figure>
 <p>Therefore, since $\kf(a)$ is defined and $\lim_{x\to a}\kf(x)=\kf(a),$ we conclude that $\kf$ is <span data-concept="continuity-at-a-point">continuous at</span> $a.$</p>
 <p>□</p>
 <p>We have just proven that <span data-concept="differentiable-at-a-point">differentiability</span> implies <span data-concept="continuity-at-a-point">continuity</span>, but now we consider whether <span data-concept="continuity-at-a-point">continuity</span> implies <span data-concept="differentiable-at-a-point">differentiability</span>. To determine an answer to this question, we examine the <span data-concept="function">function</span> <span data-fn="abs(x)">$\kf(x)=|x|.$</span> This <span data-concept="function">function</span> is <span data-concept="continuity-at-a-point">continuous</span> everywhere; however, $\kfprime(0)$ is undefined. This observation leads us to believe that <span data-concept="continuity-at-a-point">continuity</span> does not imply <span data-concept="differentiable-at-a-point">differentiability</span>. Let’s explore further. For $\kf(x)=|x|,$</p>

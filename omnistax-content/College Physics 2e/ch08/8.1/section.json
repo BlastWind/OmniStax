@@ -521,5 +521,75 @@
     "sim-force"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "second-law-constant-mass",
+   "what": "Newton’s second law for a constant mass",
+   "source": "College Physics 2e, 8.1 Linear Momentum and Force",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The mass of the system is constant.",
+       "src": "8.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kdp} = \\mk{mv}{\\Delta(\\km\\kv)}",
+      "src": "8.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kdp} = \\mk{mv}{\\km\\kdv}",
+       "uses": [
+        0
+       ],
+       "cap": "With $\\km$ fixed, only $\\kv$ changes."
+      }
+     ],
+     "src": "8.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\ka = \\dfrac{\\kdv}{\\kdt}",
+       "src": "2.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnet} = \\dfrac{\\mk{p}{\\kdp}}{\\mk{t}{\\kdt}}",
+      "src": "8.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFnet} = \\dfrac{\\mk{m}{\\km}\\mk{v}{\\kdv}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "p": [
+         "m",
+         "v"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{F}{\\kFnet} = \\mk{m}{\\km}\\mk{v}{\\ka}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "t": "v"
+       }
+      }
+     ],
+     "src": "8.1"
+    }
+   ]
+  }
  ]
 }

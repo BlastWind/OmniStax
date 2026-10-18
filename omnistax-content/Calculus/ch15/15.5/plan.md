@@ -54,3 +54,9 @@ None beyond the figures: the coordinate points, boxes, constant surfaces and vol
 - forms: `eq-cylindrical-riemann`, `eq-cylindrical-conversion` → `15.5-fs-id1167793784735`; `eq-fubini-cylindrical` → `15.5-fs-id1167794226649`; `eq-cylindrical-general-region` → `15.5-cylindrical-general`; `eq-spherical-volume-element` → `15.5-volume-element`; `eq-spherical-riemann` → `15.5-fs-id1167793456296`; `eq-fubini-spherical` → `15.5-fs-id1167793424399`; `eq-spherical-general-region` → `15.5-spherical-general`.
 - variables of 15.5 anchored at build.
 - Review 418, 427, 437, 439 placed here.
+
+## Derivations
+
+- Integration in Spherical Coordinates, the volume element ΔV ≈ ρ² sin φ ΔρΔφΔθ · score 2 · not built: under the bar; the book works the same element in 15.7, Example 15.72, built there
+- Example 15.52 · Finding the Volume of l’Hemisphèric · score 0 · not built: a worked example that integrates by the section’s own formula
+- Example 15.53 · Finding the Volume of an Ellipsoid · score 2 · not built: a worked example under the bar

@@ -65,3 +65,16 @@ The dish and mirror Sims replace the book's own images; no others: a discriminan
 - variables `11.5/F`, `/P`, `/p`, `/h`, `/k` → `11.5-parabolas`; `/a`, `/b`, `/c` → `11.5-ellipses`; `/e` → `11.5-eccentricity`; `/r` → `11.5-polar-conics`; `/θ` → `11.5-rotation`.
 
 Applied in the chapter pass (2026-10-13): every form and variables anchor above set with `ost set` (anchors resolve, `ost check` clean); the review rows written into section.json with `source_section` 11.5.
+
+## Derivations
+
+- Parabolas · x² = 4py and the shifted form (11.11) · score 4 · built as drv-equation-of-a-parabola (the printed block, then "going through the same derivation" inserted for the vertex (h, k), solved for y; form eq-parabola-at-origin and a coverage row re-anchored)
+- Ellipses · the equation in standard form · score 4 · built as drv-equation-of-an-ellipse (the printed block; b² + c² = a² a fact card, the book's misprinted Pythagorean line keeps its note c-pythagoras in the text)
+- Ellipses · the directrices x = ±a²/c and the constant ratio · score 7 · not built: the theorem states the directrices with no claim that they follow
+- Hyperbolas · the equation in standard form · score 2 · built as drv-equation-of-a-hyperbola (the book adds the radicals the wrong way round from its second line; the derivation keeps them in place and the notes give what is printed)
+- Hyperbolas · the asymptotes · score 5 · not built: stated in the theorem, no claim that they follow
+- Eccentricity and Directrix · e = c/a · score 4 · built as drv-eccentricity-of-ellipse-and-hyperbola (the printed ellipse line, and the hyperbola's "similar calculation" inserted; form eq-eccentricity re-anchored)
+- Polar Equations of Conic Sections · Table 11.1 · score 4 · not built: the focal parameters are stated in a table, no claim that they follow
+- Theorem · Polar Equation of Conic Sections · score 7 · built as drv-polar-equation-of-a-conic, after the theorem ("it is possible to prove"): the eccentricity's definition, the focus at the pole and the directrix x = ±p or y = ±p
+- General Equations of Degree Two · rotation of axes, cot 2θ and the rotated coefficients · score 12 · not built: stated, and the rotation x = x′cos θ − y′sin θ they rest on is never stated in the book
+- The reflective properties · score 10 · not built: stated, and their proofs rest on mathematics the book never gives

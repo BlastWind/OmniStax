@@ -212,3 +212,7 @@ Judged against `docs/prompts/manim-style.md`; only the figures below changed.
 - `sim-visible` · 380 nm and 750 nm, the ends of the visible range the text names, are dashed circles on λ (manim 8).
 - `sim-xray` · the mechanism choice no longer cuts: the striking electron and its bar hold, each scene fades and drifts, and the X-ray bar bends from the atom's fixed bar into the braking spread up to E (manim 15/16); readout one equation, the arriving energy in the sentence (manim 12).
 - `sim-antenna-length` · the mount choice slides the point from the λ/2 line down to the λ/4 line and hands the emphasis across (manim 15/16); readout one chain, L = λ/k = c/(kf) = … m (manim 12).
+
+## Derivations
+
+- Example 24.3, the energy a laser burst puts into the cornea · score 5 · built as drv-laser-cornea-energy: the solution joins heating (14.2), vaporization (14.3) and density (11.2), none of them this section's method, along three independent lines

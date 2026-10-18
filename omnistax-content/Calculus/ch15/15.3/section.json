@@ -1355,5 +1355,101 @@
    "kind": "correction",
    "html": "In the last line $8\\cos^{2}\\theta-4\\cos^{4}\\theta=\\frac{5}{2}+2\\cos 2\\theta-\\frac{1}{2}\\cos 4\\theta,$ whose antiderivative is $\\frac{5}{2}\\theta+\\sin 2\\theta-\\frac{1}{8}\\sin 4\\theta$ (printed with $\\frac{5}{2}\\sin 2\\theta$); both sine terms vanish at $\\pm\\frac{\\pi}{2},$ so the volume $\\frac{5}{2}\\pi$ stands."
   }
+ ],
+ "derivations": [
+  {
+   "id": "polar-subrectangle-area",
+   "what": "the area of a polar subrectangle",
+   "source": "Calculus, 15.3 Double Integrals in Polar Coordinates, Polar Rectangular Regions of Integration",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "In a circle of radius $r,$ the length $s$ of an arc subtended by a central angle of $\\ktheta$ radians is $s=r\\ktheta.$",
+       "src": "15.3"
+      },
+      {
+       "text": "The polar subrectangle $\\kR_{ij}$ looks a lot like a trapezoid of width $\\Delta r$ whose parallel sides are the arcs of the circles $r=r_{i-1}$ and $r=r_{i}$ cut off by the angle $\\Delta\\ktheta.$",
+       "src": "15.3"
+      },
+      {
+       "tex": "r_{ij}^{*}=\\frac{1}{2}(r_{i-1}+r_{i})",
+       "src": "15.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\Delta\\kA}=\\mk{h}{\\frac{1}{2}}\\mk{w}{\\Delta r}(\\mk{a}{r_{i-1}\\Delta\\ktheta}+\\mk{b}{r_{i}\\Delta\\ktheta})",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "15.3",
+      "why": "The area of a trapezoid is half its width times the sum of its parallel sides, and the arcs have lengths $r_{i-1}\\Delta\\ktheta$ and $r_{i}\\Delta\\ktheta.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\Delta\\kA}=\\mk{h}{\\frac{1}{2}}(\\mk{a}{r_{i-1}}+\\mk{b}{r_{i}})\\mk{w}{\\Delta r}\\mk{t}{\\Delta\\ktheta}",
+       "uses": [],
+       "map": {
+        "a": [
+         "a",
+         "t"
+        ],
+        "b": [
+         "b",
+         "t"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{A}{\\Delta\\kA}=\\mk{r}{r_{ij}^{*}}\\mk{w}{\\Delta r}\\mk{t}{\\Delta\\ktheta}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "h": "r",
+        "a": "r",
+        "b": "r"
+       }
+      }
+     ],
+     "src": "15.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The thin box above $\\kR_{ij}$ has height $\\kf(r_{ij}^{*},\\ktheta_{ij}^{*})$ and base area $\\Delta\\kA.$",
+       "src": "15.3, Figure 15.29"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\text{volume of the box}}=\\mk{f}{\\kf(r_{ij}^{*},{\\ktheta}_{ij}^{*})}\\mk{A}{\\Delta\\kA}",
+      "uses": [
+       1
+      ],
+      "src": "15.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\text{volume of the box}}=\\mk{f}{\\kf(r_{ij}^{*},{\\ktheta}_{ij}^{*})}\\mk{r}{r_{ij}^{*}}\\mk{w}{\\Delta r}\\mk{t}{\\Delta\\ktheta}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "A": [
+         "r",
+         "w",
+         "t"
+        ]
+       }
+      }
+     ],
+     "src": "15.3"
+    }
+   ]
+  }
  ]
 }

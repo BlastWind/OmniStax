@@ -265,5 +265,240 @@
     "sim-fly"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "angular-velocity-time",
+   "what": "the angular velocity under constant angular acceleration",
+   "source": "College Physics 2e, 10.2 Kinematics of Rotational Motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The acceleration $\\ka$ is constant.",
+       "src": "10.2"
+      },
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\ka = \\kr\\kalpha",
+       "src": "10.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\mk{vo}{\\kvo} + \\mk{a}{\\ka}\\mk{t}{\\kt}",
+      "src": "2.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kr\\kw} = \\mk{vo}{\\kr\\kwo} + \\mk{a}{\\ka}\\mk{t}{\\kt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kr\\kw} = \\mk{vo}{\\kr\\kwo} + \\mk{a}{\\kr\\kalpha}\\mk{t}{\\kt}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kw} = \\mk{vo}{\\kwo} + \\mk{a}{\\kalpha}\\mk{t}{\\kt}",
+       "uses": []
+      }
+     ],
+     "src": "10.2"
+    }
+   ]
+  },
+  {
+   "id": "rotational-kinematic-equations",
+   "what": "the other three rotational kinematic equations",
+   "source": "College Physics 2e, 10.2 Kinematics of Rotational Motion, Table 10.2",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\kwb = \\dfrac{\\kwo + \\kw}{2}",
+       "src": "10.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{vb}{\\kvb} = \\dfrac{\\mk{vo}{\\kvo} + \\mk{v}{\\kv}}{\\mk{two}{2}}",
+      "src": "2.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{vb}{\\kvb} = \\dfrac{\\mk{vo}{\\kr\\kwo} + \\mk{v}{\\kr\\kw}}{\\mk{two}{2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{vb}{\\kvb} = \\mk{r}{\\kr}\\,\\dfrac{\\mk{vo}{\\kwo} + \\mk{v}{\\kw}}{\\mk{two}{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{vb}{\\kvb} = \\mk{r}{\\kr}\\mk{v}{\\kwb}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "vo": "v",
+        "two": "v"
+       }
+      }
+     ],
+     "src": "10.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The distance moved along the circle is $\\kx = \\kr\\ktheta$.",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{vb}{\\kvb}\\mk{t}{\\kt}",
+      "src": "Table 10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vb}{\\kvb}\\mk{t}{\\kt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vb}{\\kr\\kwb}\\mk{t}{\\kt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\ktheta} = \\mk{vb}{\\kwb}\\mk{t}{\\kt}",
+       "uses": []
+      }
+     ],
+     "src": "10.2, Table 10.2"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The acceleration $\\ka$ is constant.",
+       "src": "10.2"
+      },
+      {
+       "text": "The distance moved along the circle is $\\kx = \\kr\\ktheta$.",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\ka = \\kr\\kalpha",
+       "src": "10.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{vo}{\\kvo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt^2}",
+      "src": "Table 10.2",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vo}{\\kvo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt^2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vo}{\\kr\\kwo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt^2}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kr\\ktheta} = \\mk{vo}{\\kr\\kwo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\kr\\kalpha\\kt^2}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\ktheta} = \\mk{vo}{\\kwo}\\mk{t}{\\kt} + \\mk{a}{\\tfrac{1}{2}\\kalpha\\kt^2}",
+       "uses": []
+      }
+     ],
+     "src": "10.2, Table 10.2"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The acceleration $\\ka$ is constant.",
+       "src": "10.2"
+      },
+      {
+       "text": "The distance moved along the circle is $\\kx = \\kr\\ktheta$.",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\ka = \\kr\\kalpha",
+       "src": "10.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv^2} = \\mk{vo}{\\kvo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{x}{\\kx}",
+      "src": "Table 10.2",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kv^2} = \\mk{vo}{\\kvo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{x}{\\kr\\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kr^2\\kw^2} = \\mk{vo}{\\kr^2\\kwo^2} + \\mk{two}{2}\\mk{a}{\\ka}\\mk{x}{\\kr\\ktheta}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kr^2\\kw^2} = \\mk{vo}{\\kr^2\\kwo^2} + \\mk{two}{2}\\mk{a}{\\kr\\kalpha}\\mk{x}{\\kr\\ktheta}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kw^2} = \\mk{vo}{\\kwo^2} + \\mk{two}{2}\\mk{a}{\\kalpha}\\mk{x}{\\ktheta}",
+       "uses": []
+      }
+     ],
+     "src": "10.2, Table 10.2"
+    }
+   ]
+  }
  ]
 }

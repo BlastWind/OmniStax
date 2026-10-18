@@ -47,3 +47,11 @@ The four Sims above are required figures made live. Judged and dropped: a Sim of
 - variables `4.6/L` → `4.6-limit-at-infinity-definition`.
 - forms `eq-limit-at-infinity`, `eq-limit-at-negative-infinity` → `4.6-limit-at-infinity-definition`; `eq-formal-limit-at-infinity` → `4.6-formal-limit-definition`; `eq-formal-infinite-limit-at-infinity` → `4.6-formal-infinite-limit-definition`.
 - Review 539, 547 land in the chapter pass.
+
+
+## Derivations
+
+- Examples 4.22 and 4.23 · formal limits at infinity · score 0 · not built: two-move instances of the formal definitions
+- End Behavior for Polynomial Functions · the limits of cxⁿ · score 1 · not built: each line is one statement read off a stretched or reflected graph, not a chain
+- End Behavior for Polynomial Functions · lim f(x) = lim aₙxⁿ · score 1 · built as drv-polynomial-end-behavior (the factoring block; "Consider a polynomial function … We conclude that" replaced, the sentence on the parentheses as the last move's reason)
+- End Behavior for Algebraic Functions · the rational-function summary · score 6 · built as drv-rational-end-behavior after the paragraph on the oblique asymptote: n = m and n < m worked by dividing by xᵐ, and lim r(x)/q(x) = 0 resting on the n < m node; the ±∞ claim for n > m stays as printed

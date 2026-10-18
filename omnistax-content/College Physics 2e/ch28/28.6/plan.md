@@ -89,3 +89,9 @@ The chapter notes count 15 keyed problems here; the CNXML carries 14 solutions a
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass: The chapter pass set every anchor listed above and gathered the errata in `exploration.md` and the chapter log; the keyed count of 14 stands.
+
+## Derivations
+
+- Relativistic kinetic energy, $(\gamma - 1)mc^2$ · score 1 · built as drv-relativistic-kinetic-energy: a printed block from the work-energy theorem, replaced
+- The classical limit of the kinetic energy · score 2 · built as drv-classical-kinetic-energy-limit: a printed block, separate from the first since the book prints the box and the rest case between them; the binomial expansion is the book's own statement here, and the node's note records that the book writes its approximate lines with an equals sign
+- Relativistic energy and momentum, $E^2 = (pc)^2 + (mc^2)^2$ · score 5 · built as drv-energy-momentum-relation: hidden behind "algebraically manipulating their definitions"

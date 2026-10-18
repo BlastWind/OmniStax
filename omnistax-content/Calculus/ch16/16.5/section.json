@@ -1288,5 +1288,166 @@
    "kind": "correction",
    "html": "The $\\mathbf{j}$ and $\\mathbf{k}$ components are printed with the derivatives of the $\\mathbf{i}$ component, $\\frac{\\partial}{\\partial y}$ and $\\frac{\\partial}{\\partial z};$ by the definition of curl they are $\\frac{\\partial}{\\partial z}yz-\\frac{\\partial}{\\partial x}xy=y-y$ and $\\frac{\\partial}{\\partial x}xz-\\frac{\\partial}{\\partial y}yz=z-z,$ the values the line gives."
   }
+ ],
+ "derivations": [
+  {
+   "id": "divergence-of-source-free-field",
+   "what": "the divergence of a source-free field",
+   "source": "Calculus, 16.5 Divergence and Curl, Divergence of a Source-Free Vector Field, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kvecF$ is source free, so it has a stream function $\\kg(x,y)$ with $g_{y}=\\kP$ and $-g_{x}=\\kQ$.",
+       "src": "16.4"
+      },
+      {
+       "tex": "g_{xy}=g_{yx}",
+       "src": "14.3, Clairaut’s Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kdivF}=\\mk{x}{P_{x}}+\\mk{y}{Q_{y}}",
+      "uses": [],
+      "src": "16.5, Definition"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kdivF}=\\mk{x}{(g_{y})_{x}}+\\mk{y}{(-g_{x})_{y}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdivF}=\\mk{x}{g_{yx}}-\\mk{y}{g_{xy}}",
+       "uses": [],
+       "cap": "$g_{yx}$ is the derivative of $g_{y}$ with respect to $x,$ and $g_{xy}$ that of $g_{x}$ with respect to $y.$"
+      },
+      {
+       "tex": "\\mk{d}{\\kdivF}=\\mk{z}{0}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "x": "z",
+        "y": "z"
+       }
+      }
+     ],
+     "src": "16.5, Divergence of a Source-Free Vector Field"
+    }
+   ]
+  },
+  {
+   "id": "divergence-of-curl",
+   "what": "the divergence of a curl",
+   "source": "Calculus, 16.5 Divergence and Curl, Divergence of the Curl, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kcurlF=(R_{y}-Q_{z})\\kveci+(P_{z}-R_{x})\\kvecj+(Q_{x}-P_{y})\\kveck",
+       "src": "(16.17)"
+      },
+      {
+       "tex": "\\text{div}\\,\\langle A,B,C\\rangle=A_{x}+B_{y}+C_{z}",
+       "src": "(16.16)"
+      },
+      {
+       "text": "The component functions of $\\kvecF$ have continuous second-order partial derivatives.",
+       "src": "16.5, Divergence of the Curl"
+      },
+      {
+       "tex": "R_{xy}=R_{yx},\\quad Q_{xz}=Q_{zx},\\quad P_{yz}=P_{zy}",
+       "src": "14.3, Clairaut’s Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\text{div curl}\\;\\kvecF}=\\text{div}[\\mk{i}{(R_{y}-Q_{z})}\\kveci+\\mk{j}{(P_{z}-R_{x})}\\kvecj+\\mk{k}{(Q_{x}-P_{y})}\\kveck]",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\text{div curl}\\;\\kvecF}=\\mk{a}{R_{yx}}-\\mk{b}{Q_{zx}}+\\mk{c}{P_{zy}}-\\mk{d}{R_{xy}}+\\mk{e}{Q_{xz}}-\\mk{f}{P_{yz}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "i": [
+         "a",
+         "b"
+        ],
+        "j": [
+         "c",
+         "d"
+        ],
+        "k": [
+         "e",
+         "f"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\text{div curl}\\;\\kvecF}=\\mk{a}{R_{yx}}-\\mk{b}{Q_{xz}}+\\mk{c}{P_{yz}}-\\mk{d}{R_{yx}}+\\mk{e}{Q_{zx}}-\\mk{f}{P_{zy}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\text{div curl}\\;\\kvecF}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "a": "z",
+        "b": "z",
+        "c": "z",
+        "d": "z",
+        "e": "z",
+        "f": "z"
+       }
+      }
+     ],
+     "src": "16.5, Divergence of the Curl"
+    }
+   ]
+  },
+  {
+   "id": "curl-of-conservative-field",
+   "what": "the curl of a conservative field",
+   "source": "Calculus, 16.5 Divergence and Curl, Curl of a Conservative Vector Field, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A conservative field satisfies the cross-partial property: $P_{y}=Q_{x},$ $Q_{z}=R_{y}$ and $R_{x}=P_{z}$.",
+       "src": "16.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\kcurlF}=\\mk{i}{(R_{y}-Q_{z})}\\kveci+\\mk{j}{(P_{z}-R_{x})}\\kvecj+\\mk{k}{(Q_{x}-P_{y})}\\kveck",
+      "uses": [],
+      "src": "(16.17)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\kcurlF}=\\mk{i}{(R_{y}-R_{y})}\\kveci+\\mk{j}{(P_{z}-P_{z})}\\kvecj+\\mk{k}{(Q_{x}-Q_{x})}\\kveck",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\kcurlF}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "i": "z",
+        "j": "z",
+        "k": "z"
+       }
+      }
+     ],
+     "src": "16.5, Curl of a Conservative Vector Field"
+    }
+   ]
+  }
  ]
 }

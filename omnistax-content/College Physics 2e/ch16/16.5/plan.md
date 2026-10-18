@@ -144,3 +144,8 @@ stiffness and velocity; neither draws the angular rate, and `sim-max-speed`
 draws no energy. Both are two-dimensional, with no 3D, and their labels on.
 
 **Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-energy-transfer`: the total's name sits above the pair of bars instead of across them, with its dashed level running between the bars; the three curves of the energy graph are named in a legend row above the box, clear of the axis title, where before the names sat on the curves; the floor marks step apart at the smallest amplitude as in 16.3. `sim-max-speed` writes the mass on the car's body, where it can no longer climb into the headline at the largest amplitude.
+
+## Derivations
+
+- Conservation of energy written for a pendulum, $\tfrac{1}{2}mL^2\omega^2 + \tfrac{1}{2}mgL\theta^2$ · score 2 · not built: three substitutions named in prose, under the bar
+- The speed of a simple harmonic oscillator, $v = \pm v_\text{max}\sqrt{1 - x^2/X^2}$ (printed block) · score 2 · built as drv-shm-speed: three nodes, the speed at any displacement, $v_\text{max}$ and the speed in terms of $v_\text{max}$; skipped lines inserted; the pendulum's $\omega_\text{max}$ ("a similar calculation") stays as printed

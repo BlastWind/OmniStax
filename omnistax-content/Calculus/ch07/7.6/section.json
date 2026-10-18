@@ -1111,11 +1111,6 @@
    "html": "The key prints 0.1544; Simpson’s rule with four subdivisions gives $S_{4}\\approx 0.1554,$ which agrees with the integral, $0.15542,$ to four places."
   },
   {
-   "id": "c-simpson-combined",
-   "kind": "correction",
-   "html": "The left side is printed as $\\int_{x_{2}}^{x_{4}}f(x)dx$ with an equals sign; combining the two approximations gives $\\int_{x_{0}}^{x_{4}}f(x)dx\\approx \\frac{\\Delta x}{3}(f(x_{0})+4f(x_{1})+2f(x_{2})+4f(x_{3})+f(x_{4})).$"
-  },
-  {
    "id": "c-ex745-s2",
    "kind": "correction",
    "html": "$S_{4}$ is printed for $S_{2}$: the interval $[0,1]$ is divided into two subintervals, and the sum computed is $S_{2}.$"
@@ -1129,6 +1124,405 @@
    "id": "c-cp25-bound",
    "kind": "correction",
    "html": "The error in $M_{4}$ is bounded by Equation 7.12, the bound for the midpoint rule, which gives $\\frac{2{(1-0)}^{3}}{24\\cdot 4^{2}}=\\frac{1}{192},$ the answer; Equation 7.13, the trapezoidal bound, would give $\\frac{1}{96}.$"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "trapezoidal-rule",
+   "what": "the trapezoidal rule",
+   "source": "Calculus, 7.6 Numerical Integration",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The first trapezoid has height $\\Delta x$ and parallel bases of length $\\kf(x_{0})$ and $\\kf(x_{1})$.",
+       "src": "Figure 7.14"
+      }
+     ],
+     "then": {
+      "tex": "\\text{Area}=\\frac{1}{2}\\mk{h}{h}(\\mk{b}{b_{1}+b_{2}})",
+      "src": "7.6"
+     },
+     "steps": [
+      {
+       "tex": "\\text{Area}=\\frac{1}{2}\\mk{h}{\\Delta x}(\\mk{b}{\\kf(x_{0})+\\kf(x_{1})})",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "7.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The areas of the remaining three trapezoids are $\\frac{1}{2}\\Delta x(\\kf(x_{1})+\\kf(x_{2})),$ $\\frac{1}{2}\\Delta x(\\kf(x_{2})+\\kf(x_{3})),$ and $\\frac{1}{2}\\Delta x(\\kf(x_{3})+\\kf(x_{4}))$.",
+       "src": "7.6"
+      },
+      {
+       "text": "The four trapezoids approximate the area beneath the curve over $[a,b]$.",
+       "src": "Figure 7.14"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_a^{b}\\kf(x)dx}\\approx \\mk{t1}{\\frac{1}{2}\\Delta x(\\kf(x_{0})+\\kf(x_{1}))}+\\mk{t2}{\\frac{1}{2}\\Delta x(\\kf(x_{1})+\\kf(x_{2}))}+\\mk{t3}{\\frac{1}{2}\\Delta x(\\kf(x_{2})+\\kf(x_{3}))}+\\mk{t4}{\\frac{1}{2}\\Delta x(\\kf(x_{3})+\\kf(x_{4}))}",
+      "uses": [
+       0,
+       1,
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_a^{b}\\kf(x)dx}\\approx \\mk{c}{\\frac{1}{2}\\Delta x}(\\mk{t1}{(\\kf(x_{0})+\\kf(x_{1}))}+\\mk{t2}{(\\kf(x_{1})+\\kf(x_{2}))}+\\mk{t3}{(\\kf(x_{2})+\\kf(x_{3}))}+\\mk{t4}{(\\kf(x_{3})+\\kf(x_{4}))})",
+       "uses": [],
+       "map": {
+        "t1": [
+         "c",
+         "t1"
+        ],
+        "t2": [
+         "c",
+         "t2"
+        ],
+        "t3": [
+         "c",
+         "t3"
+        ],
+        "t4": [
+         "c",
+         "t4"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_a^{b}\\kf(x)dx}\\approx \\mk{c}{\\frac{1}{2}\\Delta x}(\\mk{f0}{\\kf(x_{0})}+\\mk{f1}{2\\kf(x_{1})}+\\mk{f2}{2\\kf(x_{2})}+\\mk{f3}{2\\kf(x_{3})}+\\mk{f4}{\\kf(x_{4})})",
+       "uses": [],
+       "map": {
+        "t1": [
+         "f0",
+         "f1"
+        ],
+        "t2": [
+         "f1",
+         "f2"
+        ],
+        "t3": [
+         "f2",
+         "f3"
+        ],
+        "t4": [
+         "f3",
+         "f4"
+        ]
+       }
+      }
+     ],
+     "src": "7.6"
+    }
+   ]
+  },
+  {
+   "id": "simpsons-rule",
+   "what": "Simpson’s rule",
+   "source": "Calculus, 7.6 Numerical Integration",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kp(x)=Ax^{2}+Bx+C",
+       "src": "7.6, Figure 7.16"
+      },
+      {
+       "text": "An antiderivative of $x^{n}$ is $\\frac{x^{n+1}}{n+1}$.",
+       "src": "4.10"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)\\,dx=\\kF(x)\\Big|_{a}^{b}=\\kF(b)-\\kF(a)",
+       "src": "5.3"
+      },
+      {
+       "tex": "x_{2}-x_{0}=2\\Delta x",
+       "src": "7.6"
+      },
+      {
+       "tex": "\\kf(x_{2})=\\kp(x_{2})=Ax_{2}{}^{2}+Bx_{2}+C",
+       "src": "7.6"
+      },
+      {
+       "tex": "\\kf(x_{0})=\\kp(x_{0})=Ax_{0}{}^{2}+Bx_{0}+C",
+       "src": "7.6"
+      },
+      {
+       "tex": "x_{2}+x_{0}=2x_{1},\\;\\text{since}\\;x_{1}=\\frac{(x_{2}+x_{0})}{2}",
+       "src": "7.6"
+      },
+      {
+       "tex": "\\kf(x_{1})=\\kp(x_{1})=Ax_{1}{}^{2}+Bx_{1}+C",
+       "src": "7.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{P}{\\int_{x_{0}}^{x_{2}}\\kp(x)dx}",
+      "src": "7.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{P}{\\int_{x_{0}}^{x_{2}}(Ax^{2}+Bx+C)dx}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{P}{\\frac{A}{3}x^{3}+\\frac{B}{2}x^{2}+Cx\\Big|_{x_{0}}^{x_{2}}}",
+       "uses": [1, 2]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{a}{\\frac{A}{3}(x_{2}{}^{3}-x_{0}{}^{3})}+\\mk{b}{\\frac{B}{2}(x_{2}{}^{2}-x_{0}{}^{2})}+\\mk{c}{C(x_{2}-x_{0})}",
+       "uses": [2],
+       "map": {
+        "P": [
+         "a",
+         "b",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{a}{\\frac{A}{3}(x_{2}-x_{0})(x_{2}{}^{2}+x_{2}x_{0}+x_{0}{}^{2})}+\\mk{b}{\\frac{B}{2}(x_{2}-x_{0})(x_{2}+x_{0})}+\\mk{c}{C(x_{2}-x_{0})}",
+       "uses": [],
+       "cap": "A difference of cubes and a difference of squares: $x_{2}{}^{3}-x_{0}{}^{3}=(x_{2}-x_{0})(x_{2}{}^{2}+x_{2}x_{0}+x_{0}{}^{2})$ and $x_{2}{}^{2}-x_{0}{}^{2}=(x_{2}-x_{0})(x_{2}+x_{0})$."
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{d}{\\frac{x_{2}-x_{0}}{6}}(\\mk{a}{2A(x_{2}{}^{2}+x_{2}x_{0}+x_{0}{}^{2})}+\\mk{b}{3B(x_{2}+x_{0})}+\\mk{c}{6C})",
+       "uses": [],
+       "map": {
+        "a": [
+         "d",
+         "a"
+        ],
+        "b": [
+         "d",
+         "b"
+        ],
+        "c": [
+         "d",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{a}{2A(x_{2}{}^{2}+x_{2}x_{0}+x_{0}{}^{2})}+\\mk{b}{3B(x_{2}+x_{0})}+\\mk{c}{6C})",
+       "uses": [3]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{f2}{(Ax_{2}{}^{2}+Bx_{2}+C)}+\\mk{f0}{(Ax_{0}{}^{2}+Bx_{0}+C)}+\\mk{a}{A(x_{2}{}^{2}+2x_{2}x_{0}+x_{0}{}^{2})}+\\mk{b}{2B(x_{2}+x_{0})}+\\mk{c}{4C})",
+       "uses": [],
+       "map": {
+        "a": [
+         "f2",
+         "f0",
+         "a"
+        ],
+        "b": [
+         "f2",
+         "f0",
+         "b"
+        ],
+        "c": [
+         "f2",
+         "f0",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{f2}{\\kf(x_{2})}+\\mk{f0}{\\kf(x_{0})}+\\mk{a}{A(x_{2}{}^{2}+2x_{2}x_{0}+x_{0}{}^{2})}+\\mk{b}{2B(x_{2}+x_{0})}+\\mk{c}{4C})",
+       "uses": [4, 5]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{f2}{\\kf(x_{2})}+\\mk{f0}{\\kf(x_{0})}+\\mk{a}{A{(x_{2}+x_{0})}^{2}}+\\mk{b}{2B(x_{2}+x_{0})}+\\mk{c}{4C})",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{f2}{\\kf(x_{2})}+\\mk{f0}{\\kf(x_{0})}+\\mk{a}{A{(2x_{1})}^{2}}+\\mk{b}{2B(2x_{1})}+\\mk{c}{4C})",
+       "uses": [6]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{f2}{\\kf(x_{2})}+\\mk{f0}{\\kf(x_{0})}+\\mk{a}{4(Ax_{1}{}^{2}+Bx_{1}+C)})",
+       "uses": [],
+       "map": {
+        "b": "a",
+        "c": "a"
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{f2}{\\kf(x_{2})}+\\mk{a}{4\\kf(x_{1})}+\\mk{f0}{\\kf(x_{0})})",
+       "uses": [7]
+      }
+     ],
+     "src": "7.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Over the next pair of subintervals the quadratic passes through $(x_{2},\\kf(x_{2})),$ $(x_{3},\\kf(x_{3})),$ and $(x_{4},\\kf(x_{4}))$, so the same relationships hold with every index raised by 2.",
+       "src": "7.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{f2}{\\kf(x_{2})}+\\mk{a}{4\\kf(x_{1})}+\\mk{f0}{\\kf(x_{0})})"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{x_{2}}^{x_{4}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{f2}{\\kf(x_{4})}+\\mk{a}{4\\kf(x_{3})}+\\mk{f0}{\\kf(x_{2})})",
+       "uses": [1]
+      }
+     ],
+     "src": "7.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)\\,dx=\\int_{a}^{c}\\kf(x)\\,dx+\\int_{c}^{b}\\kf(x)\\,dx",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{x_{0}}^{x_{4}}\\kf(x)dx}=\\mk{p}{\\int_{x_{0}}^{x_{2}}\\kf(x)dx}+\\mk{q}{\\int_{x_{2}}^{x_{4}}\\kf(x)dx}",
+      "src": "5.2",
+      "uses": [
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{4}}\\kf(x)dx}\\approx \\mk{p}{\\frac{\\Delta x}{3}(\\kf(x_{2})+4\\kf(x_{1})+\\kf(x_{0}))}+\\mk{q}{\\frac{\\Delta x}{3}(\\kf(x_{4})+4\\kf(x_{3})+\\kf(x_{2}))}",
+       "uses": [0, 1]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{x_{0}}^{x_{4}}\\kf(x)dx}\\approx \\mk{d}{\\frac{\\Delta x}{3}}(\\mk{g0}{\\kf(x_{0})}+\\mk{g1}{4\\kf(x_{1})}+\\mk{g2}{2\\kf(x_{2})}+\\mk{g3}{4\\kf(x_{3})}+\\mk{g4}{\\kf(x_{4})})",
+       "uses": [],
+       "map": {
+        "p": [
+         "d",
+         "g0",
+         "g1",
+         "g2"
+        ],
+        "q": [
+         "d",
+         "g2",
+         "g3",
+         "g4"
+        ]
+       }
+      }
+     ],
+     "src": "7.6",
+     "note": "The book prints the left side as $\\int_{x_{2}}^{x_{4}}f(x)dx$ with an equals sign; the two pairs of subintervals together cover $[x_{0},x_{4}]$, and the sum only approximates the integral."
+    }
+   ]
+  },
+  {
+   "id": "simpson-as-weighted-average",
+   "what": "Simpson’s rule as a weighted average",
+   "source": "Calculus, 7.6 Numerical Integration",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{M}{\\kM_{n}}=\\mk{s}{\\sum_{i=1}^{n}\\kf(m_{i})}\\mk{d}{\\Delta x}",
+      "src": "(7.10)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{M}{\\frac{2}{3}\\kM_{n}}=\\mk{c}{\\frac{2}{3}}\\mk{d}{\\Delta x}\\mk{s}{\\sum_{i=1}^{n}\\kf(m_{i})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{M}{\\frac{2}{3}\\kM_{n}}=\\mk{d}{\\frac{\\Delta x}{6}}\\cdot \\mk{s}{4\\sum_{i=1}^{n}\\kf(m_{i})}",
+       "uses": [],
+       "map": {
+        "c": [
+         "d",
+         "s"
+        ]
+       }
+      }
+     ],
+     "src": "7.6"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{T}{\\kT_{n}}=\\mk{d}{\\frac{1}{2}\\Delta x}\\mk{s}{(\\kf(x_{0})+2\\kf(x_{1})+\\cdots +2\\kf(x_{n-1})+\\kf(x_{n}))}",
+      "src": "(7.11)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\frac{1}{3}\\kT_{n}}=\\mk{d}{\\frac{\\Delta x}{6}}\\mk{s}{(\\kf(x_{0})+2\\kf(x_{1})+\\cdots +2\\kf(x_{n-1})+\\kf(x_{n}))}",
+       "uses": []
+      }
+     ],
+     "src": "7.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "Splitting each of the $n$ subintervals at its midpoint $m_{i}$ gives $2n$ subintervals, each of length $\\frac{\\Delta x}{2},$ with endpoints $x_{0},m_{1},x_{1},m_{2},\\ldots ,m_{n},x_{n}$.",
+       "src": "7.6"
+      },
+      {
+       "tex": "\\kS_{n}=\\frac{\\Delta x}{3}(\\kf(x_{0})+4\\kf(x_{1})+2\\kf(x_{2})+\\cdots +4\\kf(x_{n-1})+\\kf(x_{n}))",
+       "src": "(7.14)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{M}{\\frac{2}{3}\\kM_{n}}=\\mk{d}{\\frac{\\Delta x}{6}}\\cdot \\mk{s}{4\\sum_{i=1}^{n}\\kf(m_{i})}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{M}{\\frac{2}{3}\\kM_{n}}+\\mk{T}{\\frac{1}{3}\\kT_{n}}=\\mk{d}{\\frac{\\Delta x}{6}}\\cdot \\mk{s}{4\\sum_{i=1}^{n}\\kf(m_{i})}+\\mk{d2}{\\frac{\\Delta x}{6}}\\mk{t}{(\\kf(x_{0})+2\\kf(x_{1})+\\cdots +2\\kf(x_{n-1})+\\kf(x_{n}))}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{M}{\\frac{2}{3}\\kM_{n}}+\\mk{T}{\\frac{1}{3}\\kT_{n}}=\\mk{d}{\\frac{\\Delta x}{6}}\\mk{u}{(\\kf(x_{0})+4\\kf(m_{1})+2\\kf(x_{1})+4\\kf(m_{2})+\\cdots +2\\kf(x_{n-1})+4\\kf(m_{n})+\\kf(x_{n}))}",
+       "uses": [],
+       "map": {
+        "d2": "d",
+        "s": "u",
+        "t": "u"
+       }
+      },
+      {
+       "tex": "\\mk{u}{\\kS_{2n}}=\\mk{M}{(\\frac{2}{3})\\kM_{n}}+\\mk{T}{(\\frac{1}{3})\\kT_{n}}",
+       "uses": [2, 3],
+       "map": {
+        "d": "u"
+       },
+       "cap": "The sum runs over the $2n+1$ endpoints of the finer partition with the weights $1,4,2,4,\\ldots ,2,4,1$ of Simpson’s rule, and $\\frac{\\Delta x}{6}$ is $\\frac{1}{3}$ of its width $\\frac{\\Delta x}{2}$."
+      }
+     ],
+     "src": "7.6"
+    }
+   ]
   }
  ]
 }

@@ -53,3 +53,10 @@ None beyond the folds: the work-sum figure already shows orientation and the sig
 
 - forms: `eq-scalar-line-integral` → `16.2-fs-id1167793929737`; `eq-scalar-line-integral-r-prime` → `16.2-fs-id1167793886491`; `eq-scalar-line-integral-calculation` → `16.2-fs-id1167793952322`; `eq-scalar-line-integral-plane` → `16.2-fs-id1167793380173`; `eq-arc-length-line-integral` → `16.2-arc-length-term`; `eq-vector-line-integral` → `16.2-fs-id1167794097258`; `eq-vector-line-integral-calculation` → `16.2-fs-id1167793635294`; `eq-vector-line-integral-differential` → `16.2-fs-id1167794127155`; `eq-work-line-integral` → `16.2-work-term`; `eq-line-integral-sum`, `-constant`, `-reversed`, `-pieces` → `16.2-fs-id1167793559384`; `eq-mass-of-a-wire` → `16.2-wire-term`; `eq-flux-across-a-curve` → `16.2-fs-id1167793460505`; `eq-flux-calculation` → `16.2-fs-id1167793671510`; `eq-circulation` → `16.2-circulation-term`.
 - variables: v_vec of 16.2 added (the velocity field).
+
+## Derivations
+
+- Scalar Line Integrals, ‘we can translate ∫_C f ds to an integral … in t’, Equations 16.6 and 16.7 · score 2 · built as drv-scalar-line-integral-in-t
+- Scalar Line Integrals, ‘If f(x,y,z) = 1, then …’, arc length as a line integral · score 0 · built as drv-arc-length-line-integral
+- Vector Line Integrals, ‘To translate the integral ∫_C F·T ds in terms of t’ · score 1 · built as drv-vector-line-integral-in-t
+- Calculating Flux across a Curve, Proof of Equation 16.11 · score 0 · built as drv-flux-across-a-curve

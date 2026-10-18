@@ -770,5 +770,91 @@
    "kind": "correction",
    "html": "The book points here at Figure 17.12, which shows the gauge pressure of two sounds and no screaming mouth; no figure of the section draws the cartoon the sentence describes."
   }
+ ],
+ "derivations": [
+  {
+   "id": "decibel-difference",
+   "what": "the sound level of a sound twice as intense",
+   "source": "College Physics 2e, 17.3 Sound Intensity and Sound Level, Example 17.3",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\dfrac{\\kIntens}{\\kIo}\\right)",
+       "src": "17.3"
+      },
+      {
+       "tex": "\\log_{10}b - \\log_{10}a = \\log_{10}\\left(\\dfrac{b}{a}\\right)",
+       "src": "Example 17.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\beta_2 - \\beta_1} = \\mk{a}{10\\log_{10}\\left(\\dfrac{\\kItwo}{\\kIo}\\right)} - \\mk{b}{10\\log_{10}\\left(\\dfrac{\\kIone}{\\kIo}\\right)}",
+      "uses": [
+       0
+      ],
+      "src": "Example 17.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\left[\\mk{a}{\\log_{10}\\left(\\dfrac{\\kItwo}{\\kIo}\\right)} - \\mk{b}{\\log_{10}\\left(\\dfrac{\\kIone}{\\kIo}\\right)}\\right]",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\log_{10}\\left(\\mk{a}{\\dfrac{\\kItwo/\\kIo}{\\kIone/\\kIo}}\\right)",
+       "uses": [
+        1
+       ],
+       "cap": "The difference of two logarithms is the logarithm of their quotient.",
+       "map": {
+        "b": "a"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\log_{10}\\left(\\mk{a}{\\dfrac{\\kItwo}{\\kIone}}\\right)",
+       "uses": []
+      }
+     ],
+     "src": "Example 17.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\dfrac{\\kItwo}{\\kIone} = 2.00",
+       "src": "Example 17.3"
+      },
+      {
+       "tex": "\\log_{10}2.00 = 0.301"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\log_{10}\\left(\\mk{a}{\\dfrac{\\kItwo}{\\kIone}}\\right)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\,\\mk{a}{\\log_{10}2.00}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\,\\mk{a}{(0.301)}\\ \\text{dB}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = \\mk{a}{3.01\\ \\text{dB}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 17.3"
+    }
+   ]
+  }
  ]
 }

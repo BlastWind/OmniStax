@@ -774,5 +774,193 @@
     "sim-elastic-collision"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "elastic-collision-velocities",
+   "what": "the final velocities of an elastic collision",
+   "source": "College Physics 2e, 8.4 Elastic Collisions in One Dimension, Example 8.4",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Object 2 is initially at rest, $\\kvtwo = 0$."
+      },
+      {
+       "tex": "\\kp = \\km\\kv",
+       "src": "8.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kpone} + \\mk{b}{\\kptwo} = \\mk{c}{\\kponeprime} + \\mk{d}{\\kptwoprime}",
+      "src": "8.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kpone} = \\mk{c}{\\kponeprime} + \\mk{d}{\\kptwoprime}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kmone\\kvone} = \\mk{c}{\\kmone\\kvoneprime} + \\mk{d}{\\kmtwo\\kvtwoprime}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kmtwo\\kvtwoprime} = \\mk{a}{\\kmone\\kvone} - \\mk{c}{\\kmone\\kvoneprime}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\kvtwoprime} = \\mk{a}{\\frac{\\kmone}{\\kmtwo}(\\kvone - \\kvoneprime)}",
+       "uses": [],
+       "map": {
+        "c": "a"
+       }
+      }
+     ],
+     "src": "Example 8.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "An elastic collision conserves internal kinetic energy.",
+       "src": "8.4"
+      },
+      {
+       "text": "Object 2 is initially at rest, $\\kvtwo = 0$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k1}{\\tfrac{1}{2}\\kmone{\\kvone}^2} + \\mk{k2}{\\tfrac{1}{2}\\kmtwo{\\kvtwo}^2} = \\mk{k1p}{\\tfrac{1}{2}\\kmone{\\kvoneprime}^2} + \\mk{k2p}{\\tfrac{1}{2}\\kmtwo{\\kvtwoprime}^2}",
+      "src": "8.4",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k1}{\\tfrac{1}{2}\\kmone{\\kvone}^2} = \\mk{k1p}{\\tfrac{1}{2}\\kmone{\\kvoneprime}^2} + \\mk{k2p}{\\tfrac{1}{2}\\kmtwo{\\kvtwoprime}^2}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 8.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k1}{\\tfrac{1}{2}\\kmone{\\kvone}^2} = \\mk{k1p}{\\tfrac{1}{2}\\kmone{\\kvoneprime}^2} + \\mk{k2p}{\\tfrac{1}{2}\\kmtwo{\\kvtwoprime}^2}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k1}{\\tfrac{1}{2}\\kmone{\\kvone}^2} = \\mk{k1p}{\\tfrac{1}{2}\\kmone{\\kvoneprime}^2} + \\mk{k2p}{\\tfrac{1}{2}\\kmtwo\\left(\\frac{\\kmone}{\\kmtwo}(\\kvone - \\kvoneprime)\\right)^2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{k1}{\\kmtwo{\\kvone}^2} = \\mk{k1p}{\\kmtwo{\\kvoneprime}^2} + \\mk{k2p}{\\kmone(\\kvone - \\kvoneprime)^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{k1}{\\kmtwo{\\kvone}^2} = \\mk{k1p}{\\kmtwo{\\kvoneprime}^2} + \\mk{k2p}{\\kmone{\\kvone}^2 - 2\\kmone\\kvone\\kvoneprime + \\kmone{\\kvoneprime}^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{q2}{(\\kmone + \\kmtwo){\\kvoneprime}^2} \\mk{q1}{- 2\\kmone\\kvone\\kvoneprime} + \\mk{q0}{(\\kmone - \\kmtwo){\\kvone}^2} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "k1": "q0",
+        "k1p": "q2",
+        "k2p": [
+         "q2",
+         "q1",
+         "q0"
+        ]
+       }
+      }
+     ],
+     "src": "Example 8.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kmone = 0.500\\ \\text{kg},\\quad \\kmtwo = 3.50\\ \\text{kg},\\quad \\kvone = 4.00\\ \\text{m/s}"
+      },
+      {
+       "text": "A quadratic $ax^2 + bx + c = 0$ has the two solutions $x = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$.",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{q2}{(\\kmone + \\kmtwo){\\kvoneprime}^2} \\mk{q1}{- 2\\kmone\\kvone\\kvoneprime} + \\mk{q0}{(\\kmone - \\kmtwo){\\kvone}^2} = \\mk{z}{0}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{q2}{(0.500\\ \\text{kg} + 3.50\\ \\text{kg}){\\kvoneprime}^2} \\mk{q1}{- 2(0.500\\ \\text{kg})(4.00\\ \\text{m/s})\\kvoneprime} + \\mk{q0}{(0.500\\ \\text{kg} - 3.50\\ \\text{kg})(4.00\\ \\text{m/s})^2} = \\mk{z}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{q2}{(4.00\\ \\text{kg}){\\kvoneprime}^2} \\mk{q1}{- (4.00\\ \\text{kg}\\cdot\\text{m/s})\\kvoneprime} \\mk{q0}{- 48.0\\ \\text{kg}\\cdot\\text{m}^2/\\text{s}^2} = \\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{q2}{{\\kvoneprime}^2} \\mk{q1}{- (1.00\\ \\text{m/s})\\kvoneprime} \\mk{q0}{- 12.0\\ \\text{m}^2/\\text{s}^2} = \\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{\\kvoneprime} = \\mk{r}{\\frac{1.00\\ \\text{m/s} \\pm \\sqrt{(1.00\\ \\text{m/s})^2 + 48.0\\ \\text{m}^2/\\text{s}^2}}{2}}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "q2": [
+         "v",
+         "r"
+        ],
+        "q1": "r",
+        "q0": "r",
+        "z": "r"
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kvoneprime} = \\mk{r}{\\frac{1.00 \\pm 7.00}{2}\\ \\text{m/s}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{\\kvoneprime} = \\mk{r}{4.00\\ \\text{m/s}} \\quad\\text{or}\\quad \\mk{v2}{\\kvoneprime} = \\mk{r2}{-3.00\\ \\text{m/s}}",
+       "uses": [],
+       "map": {
+        "r": [
+         "r",
+         "r2"
+        ],
+        "v": [
+         "v",
+         "v2"
+        ]
+       }
+      }
+     ],
+     "src": "Example 8.4"
+    }
+   ]
+  }
  ]
 }

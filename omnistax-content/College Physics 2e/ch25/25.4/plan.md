@@ -111,3 +111,7 @@ Applied by the chapter pass (2026-09-28):
 
 - Both equation anchors and the five variable anchors are written as listed.
 - The erratum on Example 25.4's figure reference is gathered in `ch25/exploration.md`. The rainbow question is set with 25.5 with `source_section: "25.4"`, and both notes agree. The two rows numbered 25.15 (the sim for (a), the photograph for (b)) stand as built.
+
+## Derivations
+
+- The critical angle, $\theta_c = \sin^{-1}(n_2/n_1)$ · score 1 · built as drv-critical-angle: a printed block of equations, replaced

@@ -44,3 +44,10 @@ None: the differentiability limit of Example 14.24 is a computation the readout 
 
 - forms: `eq-tangent-plane` → `14.4-fs-id1167793903025`; `eq-linear-approximation-2v` → `14.4-fs-id1167793928374`; `eq-differentiability-2v` → `14.4-fs-id1167794136381`; total differential forms → `14.4-fs-id1167793951229`; `eq-differentiability-3v` → `14.4-fs-id1167793219325`.
 - variables anchored at build. Review 396, 409, 411, 419 placed here.
+
+## Derivations
+
+- Tangent Planes, "To see why this formula is correct" · score 4 · built as drv-tangent-plane-normal (a × b by the determinant) and drv-tangent-plane-equation (n · (P − P₀) = 0 solved for z, (14.24)): the book's sentence that a × b is normal to the tangent plane stands between the two displays and keeps its place, so the derivation is split there; "Solving this equation for z gives Equation 14.24" dropped, the inserted solving lines carrying the number
+- Differentiability Implies Continuity, stated without proof · score 5 · built as drv-differentiability-implies-continuity after the theorem: the error term's limit by the product law, then the limit of (14.26) by the limit laws of 14.2
+- Continuity of First Partials Implies Differentiability, stated without proof · score 9 · built as drv-continuous-partials-imply-differentiability after the theorem: the Mean Value Theorem in each variable, the error term rewritten, bounded by the two differences of partial derivatives, then squeezed to 0 by their continuity
+- Example 14.24 and the non-differentiable example after it · not built: worked examples of the definition, one function each

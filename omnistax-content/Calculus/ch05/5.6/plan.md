@@ -34,3 +34,8 @@ Extra simulations weighed and dropped: the bacteria and fruit-fly cultures growi
 ## Wanted at chapter level
 
 Applied by this chapter's agent: variables anchors (f, a, C → `5.6-exp-rule`; u → Example 5.37; p, p′ → `5.6-exponential`; q, Q → Example 5.42; g, G → Example 5.43) and forms anchors (the exponential forms → `5.6-exp-rule`, the logarithmic forms → `5.6-log-rule`). Done.
+
+
+## Derivations
+
+- Integration Formulas Involving Logarithmic Functions · ∫ln x dx and ∫log_a x dx · score 6 · not built: the rule states the formulas with no claim that they follow from anything; the book works ∫ln x dx by parts in 7.1

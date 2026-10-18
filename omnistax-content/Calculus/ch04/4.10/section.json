@@ -1143,14 +1143,210 @@
  ],
  "footnotes": [
   {
-   "id": "c-constant-multiple",
-   "kind": "correction",
-   "html": "The book prints $\\frac{d}{dx}(kf(x))=k\\frac{d}{dx}F(x)=kf'(x);$ meant is $\\frac{d}{dx}(kF(x))=k\\frac{d}{dx}F(x)=kf(x),$ since $F'=f.$"
-  },
-  {
    "id": "c-initial-at-zero",
    "kind": "correction",
    "html": "The condition is taken at $x=0:$ $-\\cos 0+C=5,$ as the next line computes."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "derivative-of-ln-abs-x",
+   "what": "the derivative of $\\ln |x|$",
+   "source": "Calculus, 4.10 Antiderivatives, Example 4.50",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}(\\ln x)=\\frac{1}{x}",
+       "src": "(3.30)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{l}{\\ln (x)}\\;\\text{for}\\;x\\gt 0",
+      "src": "Example 4.50"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{l}{\\frac{1}{x}}\\;\\text{for}\\;x\\gt 0",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "Example 4.50"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}(\\ln x)=\\frac{1}{x}",
+       "src": "(3.30)"
+      },
+      {
+       "tex": "\\khprime(x)=\\kfprime(\\kg(x))\\kgprime(x)",
+       "src": "(3.17)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{l}{\\ln (-x)}\\;\\text{for}\\;x\\lt 0",
+      "src": "Example 4.50"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{l}{\\frac{1}{-x}}\\cdot \\mk{c}{(-1)}\\;\\text{for}\\;x\\lt 0",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "The chain rule, with $\\ln u$ outside and $u=-x$ inside, whose derivative is $-1.$"
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{l}{-\\frac{1}{-x}}\\;\\text{for}\\;x\\lt 0",
+       "uses": [],
+       "map": {
+        "c": "l"
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{l}{\\frac{1}{x}}\\;\\text{for}\\;x\\lt 0",
+       "uses": []
+      }
+     ],
+     "src": "Example 4.50"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kf(x)=\\ln |x|",
+       "src": "Example 4.50"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfprime(x)}=\\mk{l}{\\frac{1}{x}}\\;\\text{for}\\;x\\gt 0"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{l}{\\frac{1}{x}}\\;\\mk{w}{\\text{for}\\;x\\ne 0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\frac{d}{dx}(\\ln |x|)}=\\mk{l}{\\frac{1}{x}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "Example 4.50"
+    }
+   ]
+  },
+  {
+   "id": "properties-of-indefinite-integrals",
+   "what": "the properties of indefinite integrals",
+   "source": "Calculus, 4.10 Antiderivatives, Properties of Indefinite Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kFprime(x)=\\kf(x),\\quad \\kGprime(x)=\\kg(x)",
+       "src": "4.10, Definition"
+      },
+      {
+       "text": "If $\\kF$ is an antiderivative of $\\kf,$ then $\\int \\kf(x)dx=\\kF(x)+C.$",
+       "src": "4.10, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dx}(\\kF(x)+\\kG(x))}=\\mk{s}{\\kFprime(x)+\\kGprime(x)}",
+      "src": "3.3, Sum Rule"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dx}(\\kF(x)+\\kG(x))}=\\mk{s}{\\kf(x)+\\kg(x)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{{\\displaystyle \\int (\\kf(x)+\\kg(x))}dx}=\\mk{d}{\\kF(x)+\\kG(x)}+C",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "4.10"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kFprime(x)=\\kf(x),\\quad \\kGprime(x)=\\kg(x)",
+       "src": "4.10, Definition"
+      },
+      {
+       "text": "If $\\kF$ is an antiderivative of $\\kf,$ then $\\int \\kf(x)dx=\\kF(x)+C.$",
+       "src": "4.10, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dx}(\\kF(x)-\\kG(x))}=\\mk{s}{\\kFprime(x)-\\kGprime(x)}",
+      "src": "3.3, Difference Rule"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dx}(\\kF(x)-\\kG(x))}=\\mk{s}{\\kf(x)-\\kg(x)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{{\\displaystyle \\int (\\kf(x)-\\kg(x))}dx}=\\mk{d}{\\kF(x)-\\kG(x)}+C",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "4.10"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kFprime(x)=\\kf(x)",
+       "src": "4.10, Definition"
+      },
+      {
+       "text": "If $\\kF$ is an antiderivative of $\\kf,$ then $\\int \\kf(x)dx=\\kF(x)+C.$",
+       "src": "4.10, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dx}(k\\kF(x))}=\\mk{s}{k\\frac{d}{dx}\\kF(x)}",
+      "src": "3.3, Constant Multiple Rule"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dx}(k\\kF(x))}=\\mk{s}{k\\kf(x)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{{\\displaystyle \\int k\\kf(x)dx}}=\\mk{d}{k\\kF(x)}+C",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "4.10",
+     "note": "The book prints $\\frac{d}{dx}(kf(x))=k\\frac{d}{dx}F(x)=kf^{\\prime}(x);$ the function differentiated is $k\\kF(x),$ and its derivative is $k\\kFprime(x)=k\\kf(x).$"
+    }
+   ]
   }
  ]
 }

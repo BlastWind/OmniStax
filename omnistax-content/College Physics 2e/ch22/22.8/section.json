@@ -293,5 +293,96 @@
    "kind": "correction",
    "html": "The book prints the area as $0.100\\;\\text{m}^2$. A square loop $10.0\\;\\text{cm}$ on a side has an area of $0.0100\\;\\text{m}^2$, which is the area that gives the $30.0\\;\\text{N}\\cdot\\text{m}$ the example reaches."
   }
+ ],
+ "derivations": [
+  {
+   "id": "torque-on-loop",
+   "what": "the torque on a current loop",
+   "source": "College Physics 2e, 22.8 Torque on a Current Loop: Motors and Meters",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Each vertical segment is a distance $\\kwloop/2$ from the shaft.",
+       "src": "22.8, Figure 22.34"
+      },
+      {
+       "text": "The forces on the two vertical segments each produce a clockwise torque, so the two torques add.",
+       "src": "22.8"
+      },
+      {
+       "text": "Each vertical segment has a length $\\kl$ perpendicular to $\\kBmag$.",
+       "src": "22.8"
+      },
+      {
+       "tex": "\\kF = \\kIcur\\kl\\kBmag",
+       "src": "22.7"
+      },
+      {
+       "text": "A loop of $N$ turns feels $N$ times the torque of one loop.",
+       "src": "22.8"
+      },
+      {
+       "tex": "\\karea = \\kwloop\\kl",
+       "src": "22.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\krad}\\mk{F}{\\kF}\\mk{s}{\\sin\\ktheta}",
+      "src": "9.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\dfrac{\\kwloop}{2}}\\mk{F}{\\kF}\\mk{s}{\\sin\\ktheta}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\dfrac{\\kwloop}{2}}\\mk{F}{\\kF}\\mk{s}{\\sin\\ktheta} + \\mk{r2}{\\dfrac{\\kwloop}{2}}\\mk{F2}{\\kF}\\mk{s2}{\\sin\\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\kwloop}\\mk{F}{\\kF}\\mk{s}{\\sin\\ktheta}",
+       "uses": [],
+       "map": {
+        "r2": "r",
+        "F2": "F",
+        "s2": "s"
+       }
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{r}{\\kwloop}\\mk{F}{\\kIcur \\kl\\kBmag}\\mk{s}{\\sin\\ktheta}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{N}{N}\\mk{r}{\\kwloop}\\mk{F}{\\kIcur \\kl\\kBmag}\\mk{s}{\\sin\\ktheta}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\ktau} = \\mk{N}{N}\\mk{F}{\\kIcur}\\mk{r}{\\karea}\\mk{B}{\\kBmag}\\mk{s}{\\sin\\ktheta}",
+       "uses": [
+        5
+       ],
+       "map": {
+        "F": [
+         "F",
+         "r",
+         "B"
+        ]
+       }
+      }
+     ],
+     "src": "22.8"
+    }
+   ]
+  }
  ]
 }

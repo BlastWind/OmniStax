@@ -928,5 +928,53 @@
     "sim-mole"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "ideal-gas-law-moles",
+   "what": "the ideal gas law in terms of moles",
+   "source": "College Physics 2e, 13.3 The Ideal Gas Law",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "n = \\dfrac{N}{N_{\\text{A}}}",
+       "src": "13.3"
+      },
+      {
+       "tex": "R = N_{\\text{A}}k",
+       "src": "13.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{N}\\mk{k}{k}\\mk{T}{\\kTemp}",
+      "uses": [],
+      "src": "13.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{\\dfrac{N}{N_{\\text{A}}}}\\mk{NA}{N_{\\text{A}}}\\mk{k}{k}\\mk{T}{\\kTemp}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{n}\\mk{NA}{N_{\\text{A}}}\\mk{k}{k}\\mk{T}{\\kTemp}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{n}\\mk{NA}{R}\\mk{T}{\\kTemp}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "k": "NA"
+       }
+      }
+     ],
+     "src": "13.3"
+    }
+   ]
+  }
  ]
 }

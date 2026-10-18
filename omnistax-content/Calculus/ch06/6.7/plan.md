@@ -41,3 +41,15 @@ Judged: ln(ab) = ln a + ln b as the area from a to ab equal to the area from 1 t
 - forms `eq-ln-as-integral` → `6.7-ln-definition`; `eq-e-by-area` → `6.7-e-definition`; `eq-exp-as-inverse`, `eq-exp-ln-inverse` → `6.7-exp-definition`; `eq-general-exponential` → `6.7-general-exponential-definition`.
 
 Applied in the chapter pass (2026-10-13): every anchor above set with `ost set` (tmp/ch06/anchors6.py; a few spans moved to the nearest id the text has, such as the section header where the plan named a note); review exercises held here landed with `source_section` 6.9.
+
+## Derivations
+
+- Derivative of the Natural Logarithm (from the integral definition) · score 1 · not built: one move ("falls out immediately" from the Fundamental Theorem), no equation worked
+- Properties of the Natural Logarithm · Proof, part ii · score 2 · built as a node of drv-properties-of-the-natural-logarithm, after part i (ln 1 = 0) as its first node
+- Properties of the Natural Logarithm · Proof, part iv · score 2 · built as the last five nodes of the same derivation (the two derivative lines joined by the constant difference theorem of 4.4, then x = 1)
+- part iii left to the reader · score 3 · not built: three moves, under the floor
+- Properties of the Exponential Function · Proof (property i) · score 0 · built as drv-product-of-exponentials
+- the derivative of e^x · score 1 · built as drv-derivative-of-the-exponential-function, with ∫e^x dx = e^x + C as its second node (3.9 states E'(x) = e^x in prose, not worked)
+- d/dx a^x · score 1 · not built: a restatement of (3.34), built in 3.9; stays as printed
+- log_a x = ln x/ln a and its derivative · score 0 · not built: restatements of 1.5's change-of-base formula and (3.32), both built there; stay as printed
+- Defining the Number e · existence and uniqueness ("left to you") · score 8 · built as drv-existence-of-e after the paragraph (ln 4 ≥ 13/12 by the comparison theorem, then the Intermediate Value Theorem and ln increasing, as the hint says)

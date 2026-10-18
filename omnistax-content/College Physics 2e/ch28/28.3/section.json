@@ -203,5 +203,60 @@
    "kind": "correction",
    "html": "The book prints $L_0 - 4.300$ ly among the knowns, where it means $L_0 = 4.300$ ly, the proper distance the solution divides by $\\gamma$."
   }
+ ],
+ "derivations": [
+  {
+   "id": "length-contraction",
+   "what": "length contraction",
+   "source": "College Physics 2e, 28.3 Length Contraction",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kv = \\frac{\\kLrel}{\\kdto}",
+       "src": "28.3"
+      },
+      {
+       "tex": "\\kdt = \\gamma\\kdto",
+       "src": "28.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\frac{\\mk{L}{\\kLo}}{\\mk{t}{\\kdt}}",
+      "uses": [],
+      "src": "28.3"
+     },
+     "steps": [
+      {
+       "tex": "\\frac{\\mk{v}{\\kLrel}}{\\mk{w}{\\kdto}} = \\frac{\\mk{L}{\\kLo}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ],
+       "cap": "The two observers measure the same relative speed $\\kv$.",
+       "map": {
+        "v": [
+         "v",
+         "w"
+        ]
+       }
+      },
+      {
+       "tex": "\\frac{\\mk{v}{\\kLrel}}{\\mk{w}{\\kdto}} = \\frac{\\mk{L}{\\kLo}}{\\mk{t}{\\gamma\\kdto}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kLrel} = \\frac{\\mk{L}{\\kLo}}{\\mk{t}{\\gamma}}",
+       "uses": [],
+       "map": {
+        "w": "t"
+       }
+      }
+     ],
+     "src": "28.3"
+    }
+   ]
+  }
  ]
 }

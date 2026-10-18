@@ -1095,5 +1095,274 @@
    "kind": "correction",
    "html": "The side note prints ${\\tan }^{2}\\theta =1-{\\sec }^{2}\\theta;$ the identity used in the next line is ${\\tan }^{2}\\theta ={\\sec }^{2}\\theta -1.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "sine-substitution",
+   "what": "$\\sqrt{a^{2}-x^{2}}$ under $x=a\\sin\\theta$",
+   "source": "Calculus, 7.3 Trigonometric Substitution",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "x=a\\;\\sin \\ktheta ,\\quad -\\frac{\\pi}{2}\\le \\ktheta \\le \\frac{\\pi}{2}",
+       "src": "7.3"
+      },
+      {
+       "tex": "{\\sin }^{2}\\ktheta +{\\cos }^{2}\\ktheta =1",
+       "src": "1.3"
+      },
+      {
+       "text": "$\\cos \\ktheta \\ge 0$ on $-\\frac{\\pi}{2}\\le \\ktheta \\le \\frac{\\pi}{2}$.",
+       "src": "7.3"
+      },
+      {
+       "tex": "a\\gt 0",
+       "src": "7.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\sqrt{a^{2}-x^{2}}}=\\sqrt{\\mk{a}{a^{2}}-\\mk{s}{{(a\\;\\sin \\ktheta )}^{2}}}",
+      "src": "7.3",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}-x^{2}}}=\\sqrt{\\mk{a}{a^{2}}-\\mk{s}{a^{2}{\\sin }^{2}\\ktheta}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}-x^{2}}}=\\sqrt{\\mk{a}{a^{2}}\\mk{s}{(1-{\\sin }^{2}\\ktheta )}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}-x^{2}}}=\\sqrt{\\mk{a}{a^{2}}\\mk{s}{{\\cos }^{2}\\ktheta}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}-x^{2}}}=\\mk{a}{|a\\;\\cos \\ktheta |}",
+       "uses": [],
+       "map": {
+        "s": "a"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}-x^{2}}}=\\mk{a}{a\\;\\cos \\ktheta}",
+       "uses": [
+        2,
+        3
+       ]
+      }
+     ],
+     "src": "7.3"
+    }
+   ]
+  },
+  {
+   "id": "tangent-substitution",
+   "what": "$\\sqrt{a^{2}+x^{2}}$ under $x=a\\tan\\theta$",
+   "source": "Calculus, 7.3 Trigonometric Substitution",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "x=a\\;\\tan \\ktheta ,\\quad -\\frac{\\pi}{2}\\lt \\ktheta \\lt \\frac{\\pi}{2}",
+       "src": "7.3"
+      },
+      {
+       "tex": "1+{\\tan }^{2}\\ktheta ={\\sec }^{2}\\ktheta",
+       "src": "1.3"
+      },
+      {
+       "text": "$\\sec \\ktheta \\gt 0$ over $-\\frac{\\pi}{2}\\lt \\ktheta \\lt \\frac{\\pi}{2}$.",
+       "src": "7.3"
+      },
+      {
+       "tex": "a\\gt 0",
+       "src": "7.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\sqrt{a^{2}+x^{2}}}=\\sqrt{\\mk{a}{a^{2}}+\\mk{s}{{(a\\;\\tan \\ktheta )}^{2}}}",
+      "src": "7.3",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}+x^{2}}}=\\sqrt{\\mk{a}{a^{2}}+\\mk{s}{a^{2}{\\tan }^{2}\\ktheta}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}+x^{2}}}=\\sqrt{\\mk{a}{a^{2}}\\mk{s}{(1+{\\tan }^{2}\\ktheta )}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}+x^{2}}}=\\sqrt{\\mk{a}{a^{2}}\\mk{s}{{\\sec }^{2}\\ktheta}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}+x^{2}}}=\\mk{a}{|a\\;\\sec \\ktheta |}",
+       "uses": [],
+       "map": {
+        "s": "a"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{a^{2}+x^{2}}}=\\mk{a}{a\\;\\sec \\ktheta}",
+       "uses": [2, 3]
+      }
+     ],
+     "src": "7.3"
+    }
+   ]
+  },
+  {
+   "id": "inverse-sinh-as-a-logarithm",
+   "what": "$\\sinh^{-1}x$ as a logarithm",
+   "source": "Calculus, 7.3 Trigonometric Substitution, Example 7.25",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "y={\\operatorname{sinh}}^{-1}x"
+      },
+      {
+       "tex": "\\operatorname{sinh}\\;y=\\frac{e^{y}-e^{-y}}{2}",
+       "src": "1.5"
+      },
+      {
+       "tex": "x=\\frac{-b\\pm \\sqrt{b^{2}-4ac}}{2a}\\;\\text{solves}\\;ax^{2}+bx+c=0",
+       "src": "1.2"
+      },
+      {
+       "tex": "x-\\sqrt{x^{2}+1}\\lt 0"
+      },
+      {
+       "text": "$e^{y}\\gt 0$ for every $y$.",
+       "src": "1.5"
+      },
+      {
+       "text": "$e^{y}=z$ exactly when $y=\\ln z$.",
+       "src": "1.5"
+      },
+      {
+       "tex": "x+\\sqrt{x^{2}+1}\\gt 0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\operatorname{sinh}\\;y}=\\mk{x}{x}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\frac{e^{y}-e^{-y}}{2}}=\\mk{x}{x}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{s}{e^{2y}-1}=\\mk{x}{2xe^{y}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{e^{2y}}-\\mk{x}{2xe^{y}}-\\mk{one}{1}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "s": [
+         "s",
+         "one"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{e}{e^{y}}=\\mk{r}{\\frac{2x\\pm \\sqrt{4x^{2}+4}}{2}}",
+       "uses": [2],
+       "cap": "The quadratic formula in $e^{y}$, with $a=1$, $b=-2x$ and $c=-1$.",
+       "map": {
+        "s": "e",
+        "x": "r",
+        "one": "r"
+       }
+      },
+      {
+       "tex": "\\mk{e}{e^{y}}=\\mk{r}{x\\pm \\sqrt{x^{2}+1}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{e^{y}}=\\mk{r}{x+\\sqrt{x^{2}+1}}",
+       "uses": [3, 4],
+       "cap": "The root with the minus sign is negative, and $e^{y}$ is not."
+      },
+      {
+       "tex": "\\mk{e}{y}=\\mk{r}{\\ln (x+\\sqrt{x^{2}+1})}",
+       "uses": [5]
+      },
+      {
+       "tex": "\\mk{e}{{\\operatorname{sinh}}^{-1}x}=\\mk{r}{\\ln (x+\\sqrt{x^{2}+1})}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{e}{{\\operatorname{sinh}}^{-1}x}=\\mk{r}{\\ln (x+\\sqrt{x^{2}+1})}=\\mk{b}{\\ln |\\sqrt{1+x^{2}}+x|}",
+       "uses": [6]
+      }
+     ],
+     "src": "Example 7.25"
+    }
+   ]
+  },
+  {
+   "id": "secant-substitution",
+   "what": "$\\sqrt{x^{2}-a^{2}}$ under $x=a\\sec\\theta$",
+   "source": "Calculus, 7.3 Trigonometric Substitution",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "x=a\\;\\sec \\ktheta ,\\quad 0\\le \\ktheta \\lt \\frac{\\pi}{2}\\;\\text{or}\\;\\frac{\\pi}{2}\\lt \\ktheta \\le \\pi",
+       "src": "7.3"
+      },
+      {
+       "tex": "1+{\\tan }^{2}\\ktheta ={\\sec }^{2}\\ktheta",
+       "src": "1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\sqrt{x^{2}-a^{2}}}=\\sqrt{\\mk{s}{{(a\\;\\sec \\ktheta )}^{2}}-\\mk{a}{a^{2}}}",
+      "src": "7.3",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\sqrt{x^{2}-a^{2}}}=\\sqrt{\\mk{s}{a^{2}{\\sec }^{2}\\ktheta}-\\mk{a}{a^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{x^{2}-a^{2}}}=\\sqrt{\\mk{a}{a^{2}}\\mk{s}{({\\sec }^{2}\\ktheta -1)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{x^{2}-a^{2}}}=\\sqrt{\\mk{a}{a^{2}}\\mk{s}{{\\tan }^{2}\\ktheta}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{x^{2}-a^{2}}}=\\mk{a}{|a\\;\\tan \\ktheta |}",
+       "uses": [],
+       "map": {
+        "s": "a"
+       }
+      }
+     ],
+     "src": "7.3"
+    }
+   ]
+  }
  ]
 }

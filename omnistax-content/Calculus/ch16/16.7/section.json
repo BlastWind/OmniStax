@@ -901,5 +901,488 @@
    "figure": "sim-stokes",
    "html": "Figure 16.83’s caption calls the surface a hemisphere; it is the paraboloid $z=4-x^{2}-y^{2},$ $z\\ge 0.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "stokes-small-squares",
+   "what": "Stokes’ theorem by small squares",
+   "source": "Calculus, 16.7 Stokes’ Theorem, Stokes’ Theorem, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A small piece of $\\kS$ is approximated by an oriented square $E$ with sides $E_{l},$ $E_{d},$ $E_{r}$ and $E_{u},$ which inherits its orientation from $\\kS$.",
+       "src": "16.7"
+      },
+      {
+       "text": "On a flat square, the circulation form of Green’s theorem reads $\\int_{\\partial E}\\kvecF\\cdot d\\mathbf{r}=\\iint_{E}\\kcurlF\\cdot\\kvecN dS$, with $\\kvecN$ the unit normal of the square.",
+       "src": "16.4, 16.7"
+      },
+      {
+       "tex": "\\iint_{S}\\kvecF\\cdot d\\mathbf{S}=\\iint_{S}\\kvecF\\cdot\\kvecN dS",
+       "src": "(16.20)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\int_{E_{l}+E_{d}+E_{r}+E_{u}}\\kvecF\\cdot d\\mathbf{r}}=\\mk{R}{\\iint_{E}\\kcurlF\\cdot\\kvecN dS}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\int_{E_{l}+E_{d}+E_{r}+E_{u}}\\kvecF\\cdot d\\mathbf{r}}=\\mk{R}{\\iint_{E}\\kcurlF\\cdot d\\mathbf{S}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "16.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The approximating square $F$ to the left of $E$ has the same orientation, and its right side is the left side of $E$ traversed the other way: $E_{l}=-F_{r}$.",
+       "src": "16.7"
+      },
+      {
+       "tex": "\\int_{-C}\\kvecF\\cdot d\\mathbf{r}=-\\int_{C}\\kvecF\\cdot d\\mathbf{r}",
+       "src": "16.2, Properties of Vector Line Integrals"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\int_{E_{l}}\\kvecF\\cdot d\\mathbf{r}}=\\mk{r}{\\int_{-F_{r}}\\kvecF\\cdot d\\mathbf{r}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\int_{E_{l}}\\kvecF\\cdot d\\mathbf{r}}=-\\mk{r}{\\int_{F_{r}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "16.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "Every side of an approximating square that does not approximate the boundary of $\\kS$ is shared with an adjacent square, and the same holds for the other three sides of $E$.",
+       "src": "16.7"
+      },
+      {
+       "text": "As the areas of the approximating squares go to zero, the sum of the fluxes approaches the flux across $\\kS$ and the sides along the boundary approach $\\kC$.",
+       "src": "16.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\sum_{E}\\iint_{E}\\kcurlF\\cdot d\\mathbf{S}}=\\mk{R}{\\sum_{E}\\int_{\\partial E}\\kvecF\\cdot d\\mathbf{r}}",
+      "uses": [
+       0
+      ],
+      "why": "Each square’s flux is the line integral around its boundary; add over all the squares."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\sum_{E}\\iint_{E}\\kcurlF\\cdot d\\mathbf{S}}\\approx\\mk{R}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Each shared side is traversed once in each direction, and the two line integrals cancel; only the sides approximating the boundary of $\\kS$ survive."
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kcurlF\\cdot d\\mathbf{S}}=\\mk{R}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "16.7, Stokes’ Theorem"
+    }
+   ]
+  },
+  {
+   "id": "stokes-theorem-for-a-graph",
+   "what": "Stokes’ theorem for the graph of a function",
+   "source": "Calculus, 16.7 Stokes’ Theorem, Stokes’ Theorem, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kS$ is the graph of $z=g(x,y)$ over $\\kD$, oriented upward, with the standard parameterization $x=x,$ $y=y,$ $z=g(x,y)$; so $z_{x}=g_{x}$ and $z_{y}=g_{y}$.",
+       "src": "16.7"
+      },
+      {
+       "tex": "\\mathbf{t}_{x}\\times\\mathbf{t}_{y}=\\langle -g_{x},-g_{y},1\\rangle",
+       "src": "16.6"
+      },
+      {
+       "tex": "\\iint_{S}\\kvecF\\cdot d\\mathbf{S}=\\iint_{D}\\kvecF(\\kvecr(u,v))\\cdot(\\kvectu\\times\\kvectv)dA",
+       "src": "(16.21)"
+      },
+      {
+       "tex": "\\kcurlF=(R_{y}-Q_{z})\\kveci+(P_{z}-R_{x})\\kvecj+(Q_{x}-P_{y})\\kveck",
+       "src": "(16.17)"
+      },
+      {
+       "tex": "\\langle a_{1},a_{2},a_{3}\\rangle\\cdot\\langle b_{1},b_{2},b_{3}\\rangle=a_{1}b_{1}+a_{2}b_{2}+a_{3}b_{3}",
+       "src": "12.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\iint_{S}\\kcurlF\\cdot d\\mathbf{S}}=\\iint_{D}\\mk{c}{\\kcurlF}\\cdot\\mk{n}{(\\mathbf{t}_{x}\\times\\mathbf{t}_{y})}dA",
+      "uses": [
+       0,
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kcurlF\\cdot d\\mathbf{S}}=\\iint_{D}\\mk{c}{\\langle R_{y}-Q_{z},P_{z}-R_{x},Q_{x}-P_{y}\\rangle}\\cdot\\mk{n}{\\langle -z_{x},-z_{y},1\\rangle}dA",
+       "uses": [
+        0,
+        1,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kcurlF\\cdot d\\mathbf{S}}=\\iint_{D}[\\mk{a}{-(R_{y}-Q_{z})z_{x}}\\mk{b}{-(P_{z}-R_{x})z_{y}}+\\mk{e}{(Q_{x}-P_{y})}]dA",
+       "uses": [
+        4
+       ],
+       "map": {
+        "c": [
+         "a",
+         "b",
+         "e"
+        ],
+        "n": [
+         "a",
+         "b",
+         "e"
+        ]
+       }
+      }
+     ],
+     "src": "16.7",
+     "note": "The book cites Equation 16.19, the scalar surface integral, for this line; the flux integral is (16.21)."
+    },
+    {
+     "assumes": [
+      {
+       "text": "If $\\langle x(t),y(t)\\rangle,$ $a\\le t\\le b,$ parameterizes $C'$, the boundary of $\\kD$, then $\\langle x(t),y(t),g(x(t),y(t))\\rangle,$ $a\\le t\\le b,$ parameterizes $\\kC$.",
+       "src": "16.7"
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\int_{a}^{b}\\kvecF(\\kvecr(t))\\cdot\\kvecrprime(t)dt",
+       "src": "(16.9)"
+      },
+      {
+       "tex": "\\frac{dz}{dt}=\\frac{\\partial z}{\\partial x}\\,\\frac{dx}{dt}+\\frac{\\partial z}{\\partial y}\\,\\frac{dy}{dt}",
+       "src": "14.5, Chain Rule for One Independent Variable"
+      },
+      {
+       "tex": "\\int_{C'}M\\,dx+N\\,dy=\\int_{a}^{b}(M\\,x'(t)+N\\,y'(t))dt",
+       "src": "16.2"
+      },
+      {
+       "tex": "\\int_{C'}M\\,dx+N\\,dy=\\iint_{D}(N_{x}-M_{y})dA",
+       "src": "(16.13)"
+      },
+      {
+       "text": "$\\kP,$ $\\kQ$ and $\\kR$ are evaluated at $(x,y,g(x,y))$, so each depends on $x$ and $y$ both directly and through $z$.",
+       "src": "16.7"
+      },
+      {
+       "tex": "\\frac{\\partial}{\\partial x}\\kQ(x,y,z(x,y))=\\frac{\\partial Q}{\\partial x}+\\frac{\\partial Q}{\\partial z}\\,\\frac{\\partial z}{\\partial x}",
+       "src": "14.5, Chain Rule for Two Independent Variables"
+      },
+      {
+       "tex": "(fg)'=f'g+fg'",
+       "src": "3.3, Product Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\int_{a}^{b}(\\mk{p}{Px'(t)}+\\mk{q}{Qy'(t)}+\\mk{r}{Rz'(t)})dt",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "Along $\\kC,$ $\\kvecF\\cdot\\kvecrprime(t)=Px'(t)+Qy'(t)+Rz'(t).$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\int_{a}^{b}[\\mk{p}{Px'(t)}+\\mk{q}{Qy'(t)}+\\mk{r}{R(\\frac{\\partial z}{\\partial x}\\;\\frac{dx}{dt}+\\frac{\\partial z}{\\partial y}\\;\\frac{dy}{dt})}]dt",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\int_{a}^{b}[\\mk{p}{(P+R\\frac{\\partial z}{\\partial x})x'(t)}+\\mk{q}{(Q+R\\frac{\\partial z}{\\partial y})y'(t)}]dt",
+       "uses": [],
+       "map": {
+        "r": [
+         "p",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{i}{\\int_{C'}}\\mk{p}{(P+R\\frac{\\partial z}{\\partial x})dx}+\\mk{q}{(Q+R\\frac{\\partial z}{\\partial y})dy}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\iint_{D}[\\mk{q}{\\frac{\\partial}{\\partial x}(Q+R\\frac{\\partial z}{\\partial y})}-\\mk{p}{\\frac{\\partial}{\\partial y}(P+R\\frac{\\partial z}{\\partial x})}]dA",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\iint_{D}\\begin{array}{l}\\mk{q}{(\\frac{\\partial Q}{\\partial x}+\\frac{\\partial Q}{\\partial z}\\,\\frac{\\partial z}{\\partial x}+\\frac{\\partial R}{\\partial x}\\,\\frac{\\partial z}{\\partial y}+\\frac{\\partial R}{\\partial z}\\,\\frac{\\partial z}{\\partial x}\\,\\frac{\\partial z}{\\partial y}+R\\frac{\\partial^{2}z}{\\partial x\\partial y})}\\\\ -\\mk{p}{(\\frac{\\partial P}{\\partial y}+\\frac{\\partial P}{\\partial z}\\,\\frac{\\partial z}{\\partial y}+\\frac{\\partial R}{\\partial y}\\,\\frac{\\partial z}{\\partial x}+\\frac{\\partial R}{\\partial z}\\,\\frac{\\partial z}{\\partial y}\\,\\frac{\\partial z}{\\partial x}+R\\frac{\\partial^{2}z}{\\partial y\\partial x})}\\end{array}dA",
+       "uses": [
+        5,
+        6,
+        7
+       ],
+       "cap": "Each component depends on $x$ through $z$ as well, so the chain rule adds a term $\\frac{\\partial Q}{\\partial z}\\frac{\\partial z}{\\partial x}$; the product $R\\frac{\\partial z}{\\partial y}$ is differentiated by the product rule."
+      }
+     ],
+     "src": "16.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\frac{\\partial^{2}z}{\\partial x\\partial y}=\\frac{\\partial^{2}z}{\\partial y\\partial x}",
+       "src": "14.3, Clairaut’s Theorem"
+      },
+      {
+       "text": "$g$ has continuous second-order partial derivatives.",
+       "src": "16.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\iint_{D}\\begin{array}{l}\\mk{q}{(\\frac{\\partial Q}{\\partial x}+\\frac{\\partial Q}{\\partial z}\\,\\frac{\\partial z}{\\partial x}+\\frac{\\partial R}{\\partial x}\\,\\frac{\\partial z}{\\partial y}+\\frac{\\partial R}{\\partial z}\\,\\frac{\\partial z}{\\partial x}\\,\\frac{\\partial z}{\\partial y}+R\\frac{\\partial^{2}z}{\\partial x\\partial y})}\\\\ -\\mk{p}{(\\frac{\\partial P}{\\partial y}+\\frac{\\partial P}{\\partial z}\\,\\frac{\\partial z}{\\partial y}+\\frac{\\partial R}{\\partial y}\\,\\frac{\\partial z}{\\partial x}+\\frac{\\partial R}{\\partial z}\\,\\frac{\\partial z}{\\partial y}\\,\\frac{\\partial z}{\\partial x}+R\\frac{\\partial^{2}z}{\\partial y\\partial x})}\\end{array}dA",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\iint_{D}[\\mk{x}{Q_{x}}+\\mk{a}{Q_{z}z_{x}}+\\mk{b}{R_{x}z_{y}}-\\mk{y}{P_{y}}-\\mk{c}{P_{z}z_{y}}-\\mk{d}{R_{y}z_{x}}]dA",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "With $\\frac{\\partial^{2}z}{\\partial x\\partial y}=\\frac{\\partial^{2}z}{\\partial y\\partial x},$ four of the terms appear once with each sign and disappear.",
+       "map": {
+        "q": [
+         "x",
+         "a",
+         "b"
+        ],
+        "p": [
+         "y",
+         "c",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\iint_{D}[\\mk{a}{-(R_{y}-Q_{z})z_{x}}\\mk{b}{-(P_{z}-R_{x})z_{y}}+\\mk{x}{(Q_{x}-P_{y})}]dA",
+       "uses": [],
+       "map": {
+        "d": "a",
+        "c": "b",
+        "y": "x"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{S}{\\iint_{S}\\kcurlF\\cdot d\\mathbf{S}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "a": "S",
+        "b": "S",
+        "x": "S"
+       }
+      }
+     ],
+     "src": "16.7, Stokes’ Theorem"
+    }
+   ]
+  },
+  {
+   "id": "curl-as-circulation",
+   "what": "the curl as circulation per unit area",
+   "source": "Calculus, 16.7 Stokes’ Theorem, Interpretation of Curl",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\iint_{S}\\kcurlF\\cdot d\\mathbf{S}",
+       "src": "16.7, Stokes’ Theorem"
+      },
+      {
+       "tex": "\\iint_{S}\\kvecF\\cdot d\\mathbf{S}=\\iint_{S}\\kvecF\\cdot\\kvecN dS",
+       "src": "(16.20)"
+      },
+      {
+       "text": "If $D_{r}$ is small enough, $(\\kcurlF)(P)\\approx(\\kcurlF)(P_{0})$ for all points $P$ in $D_{r}$, because the curl is continuous; on the flat disk the unit normal is $\\kvecN(P_{0})$ throughout.",
+       "src": "16.7"
+      },
+      {
+       "text": "The area of the disk $D_{r}$ is $\\pi r^{2}$.",
+       "src": "16.7"
+      },
+      {
+       "text": "The approximation gets arbitrarily close as the radius shrinks to zero.",
+       "src": "16.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\int_{C_{r}}\\kvecF\\cdot d\\mathbf{r}}=\\mk{R}{\\iint_{D_{r}}\\kcurlF\\cdot\\kvecN dS}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\int_{C_{r}}\\kvecF\\cdot d\\mathbf{r}}\\approx\\mk{R}{\\iint_{D_{r}}(\\kcurlF)(P_{0})\\cdot\\kvecN(P_{0})\\,dS}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\int_{C_{r}}\\kvecF\\cdot d\\mathbf{r}}\\approx\\mk{a}{\\pi r^{2}}\\mk{R}{[(\\kcurlF)(P_{0})\\cdot\\kvecN(P_{0})]}",
+       "uses": [
+        3
+       ],
+       "cap": "The quantity $(\\kcurlF)(P_{0})\\cdot\\kvecN(P_{0})$ is constant, so it comes out of the integral, and what is left is the area of the disk."
+      },
+      {
+       "tex": "\\mk{R}{(\\kcurlF)(P_{0})\\cdot\\kvecN(P_{0})}\\approx\\frac{1}{\\mk{a}{\\pi r^{2}}}\\mk{L}{\\int_{C_{r}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{(\\kcurlF)(P_{0})\\cdot\\kvecN(P_{0})}=\\mk{lim}{\\lim_{r\\to 0^{+}}}\\frac{1}{\\mk{a}{\\pi r^{2}}}\\mk{L}{\\int_{C_{r}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "16.7"
+    }
+   ]
+  },
+  {
+   "id": "faraday-flux-integrals",
+   "what": "the flux integrals of Faraday’s law",
+   "source": "Calculus, 16.7 Stokes’ Theorem, Interpretation of Curl",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\text{Work}=\\int_{C(t)}\\kvecE(t)\\cdot d\\mathbf{r}=-\\frac{\\partial\\varphi}{\\partial t}",
+       "src": "16.7"
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\iint_{S}\\kcurlF\\cdot d\\mathbf{S}",
+       "src": "16.7, Stokes’ Theorem"
+      },
+      {
+       "text": "$D(t)$ is a surface with $C(t)$ as its boundary, and $C(t)$ is oriented so that $D(t)$ has positive orientation.",
+       "src": "16.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{-\\frac{\\partial\\varphi}{\\partial t}}=\\mk{w}{\\int_{C(t)}\\kvecE(t)\\cdot d\\mathbf{r}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{-\\frac{\\partial\\varphi}{\\partial t}}=\\mk{w}{\\int_{C(t)}\\kvecE(t)\\cdot d\\mathbf{r}}=\\mk{s}{\\iint_{D(t)}\\text{curl}\\;\\kvecE(t)\\cdot d\\mathbf{S}}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "16.7"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\varphi(t)=\\iint_{D(t)}\\kvecB(t)\\cdot d\\mathbf{S}",
+       "src": "16.7"
+      },
+      {
+       "text": "The surface of integration does not vary with time, so the derivative in $t$ passes inside the integral.",
+       "src": "16.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{-\\frac{\\partial\\varphi}{\\partial t}}=\\mk{d}{-\\frac{\\partial}{\\partial t}}\\mk{f}{\\iint_{D(t)}\\kvecB(t)\\cdot d\\mathbf{S}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{-\\frac{\\partial\\varphi}{\\partial t}}=\\mk{f}{\\iint_{D(t)}-\\frac{\\partial\\kvecB}{\\partial t}\\cdot d\\mathbf{S}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "d": "f"
+       }
+      }
+     ],
+     "src": "16.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{-\\frac{\\partial\\varphi}{\\partial t}}=\\mk{f}{\\iint_{D(t)}-\\frac{\\partial\\kvecB}{\\partial t}\\cdot d\\mathbf{S}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\iint_{D(t)}-\\frac{\\partial\\kvecB}{\\partial t}\\cdot d\\mathbf{S}}=\\mk{s}{\\iint_{D(t)}\\text{curl}\\;\\kvecE\\cdot d\\mathbf{S}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "16.7"
+    }
+   ]
+  }
  ]
 }

@@ -37,15 +37,7 @@ $$\begin{array}{rl}\kDuf(-1,2) & =\frac{2(-1)+21(2)}{5} \\ & =\frac{-2+42}{5} \\
 <div class="equation" id="fs-id1167794071305">$$\kDuf(x,y)=\kfx(x,y)\cos \ktheta +\kfy(x,y)\sin \ktheta .\tag{14.37}$$</div>
 </div>
 <h3>Proof</h3>
-<p><a href="#fs-id1167794091761">Equation 14.36</a> states that the <span data-concept="directional-derivative">directional derivative</span> of <em>f</em> in the direction of $\kvecu=\cos \ktheta \kveci+\sin \ktheta \kvecj$ is given by</p>
-$$\kDuf(a,b)=\lim_{t\to 0}\frac{\kf(a+t\;\cos \ktheta ,b+t\;\sin \ktheta )-\kf(a,b)}{t}.$$
-<p>Let $x=a+t\;\cos \ktheta$ and $y=b+t\;\sin \ktheta ,$ and define $g(t)=\kf(x,y).$ Since $\kfx$ and $\kfy$ both exist, and therefore $\kf$ is differentiable, we can use the <span data-concept="chain-rule-for-one-independent-variable">chain rule for functions of two variables</span> to calculate $g^{\prime}(t)\text{:}$</p>
-$$\begin{array}{rl}g^{\prime}(t) & =\frac{\partial \text{\kf}}{\partial \text{x}}\;\frac{dx}{dt}+\frac{\partial \text{\kf}}{\partial \text{y}}\;\frac{dy}{dt} \\ & =\kfx(x,y)\cos \ktheta +\kfy(x,y)\sin \ktheta .\end{array}$$
-<p>If $t=0,$ then $x=x_{0}(=a)$ and $y=y_{0}(=b),$ so</p>
-$$g^{\prime}(0)=\kfx(x_{0},y_{0})\cos \ktheta +\kfy(x_{0},y_{0})\sin \ktheta .$$
-<p>By the definition of $g^{\prime}(t),$ it is also true that</p>
-$$\begin{array}{rl}g^{\prime}(0) & =\lim_{t\to 0}\frac{g(t)-g(0)}{t} \\ & =\lim_{t\to 0}\frac{\kf(x_{0}+t\;\cos \ktheta ,y_{0}+t\;\sin \ktheta )-\kf(x_{0},y_{0})}{t}.\end{array}$$
-<p>Therefore, $\kDuf(x_{0},y_{0})=\kfx(x,y)\cos \ktheta +\kfy(x,y)\sin \ktheta .$</p>
+<figure class="dv" id="drv-directional-derivative-formula"></figure>
 <p>□</p>
 <div class="example" id="fs-id1167793638600">
 <h3>Example 14.32 · Finding a Directional Derivative: Alternative Method</h3>
@@ -87,9 +79,9 @@ $$\begin{array}{rl}\kDuf(x,y) & =\kgradf(x,y)\cdot \kvecu \\ & =-\frac{5}{13}(2x
 <p>$\begin{array}{rll}\kfx(x,y) & = & 3\;\cos 3x\;\cos 3y\;\text{and}\;\kfy(x,y)=-3\;\sin 3x\;\sin 3y,\;\text{so} \\ \kgradf(x,y) & = & \kfx(x,y)\kveci+\kfy(x,y)\kvecj \\ & = & (3\;\cos 3x\;\cos 3y)\kveci-(3\;\sin 3x\;\sin 3y)\kvecj.\end{array}$</p>
 </div>
 <div class="exercises" data-place="fs-id1167793990054"></div>
-<p id="gradient-angle">The <span data-concept="gradient">gradient</span> has some important properties. We have already seen one formula that uses the <span data-concept="gradient">gradient</span>: the formula for the <span data-concept="directional-derivative">directional derivative</span>. Recall from <a href="/calculus/ch12/12.3/">The Dot Product</a> that if the angle between two vectors $\mathbf{a}$ and $\mathbf{b}$ is $\kphi ,$ then $\mathbf{a}\cdot \text{b}=\| \mathbf{a}\| \| \text{b}\| \cos \kphi .$ Therefore, if the angle between $\kgradf(x_{0},y_{0})$ and $\kvecu=(\cos \ktheta )\kveci+(\sin \ktheta )\kvecj$ is $\kphi ,$ we have</p>
-$$\kDuf(x_{0},y_{0})=\kgradf(x_{0},y_{0})\cdot \kvecu=\| \kgradf(x_{0},y_{0})\| \| \kvecu\| \cos \kphi =\| \kgradf(x_{0},y_{0})\| \cos \kphi .$$
-<p>The $\| \kvecu\|$ disappears because $\kvecu$ is a <span data-concept="unit-vector">unit vector</span>. Therefore, the <span data-concept="directional-derivative">directional derivative</span> is equal to the magnitude of the <span data-concept="gradient">gradient</span> evaluated at $(x_{0},y_{0})$ multiplied by $\cos \kphi .$ Recall that $\cos \kphi $ ranges from $-1$ to $1.$ If $\kphi =0,$ then $\cos \kphi =1$ and $\kgradf(x_{0},y_{0})$ and $\kvecu$ both point in the same direction. If $\kphi =\pi ,$ then $\cos \kphi =-1$ and $\kgradf(x_{0},y_{0})$ and $\kvecu$ point in opposite directions. In the first case, the value of $D_{\text{u}}\kf(x_{0},y_{0})$ is maximized; in the second case, the value of $D_{\text{u}}\kf(x_{0},y_{0})$ is minimized. If $\kgradf(x_{0},y_{0})=0,$ then $\kDuf(x_{0},y_{0})=\kgradf(x_{0},y_{0})\cdot \kvecu=0$ for any vector $\kvecu.$ These three cases are outlined in the following theorem.</p>
+<p id="gradient-angle">The <span data-concept="gradient">gradient</span> has some important properties. We have already seen one formula that uses the <span data-concept="gradient">gradient</span>: the formula for the <span data-concept="directional-derivative">directional derivative</span>. Recall from <a href="/calculus/ch12/12.3/">The Dot Product</a> that if the angle between two vectors $\mathbf{a}$ and $\mathbf{b}$ is $\kphi ,$ then $\mathbf{a}\cdot \text{b}=\| \mathbf{a}\| \| \text{b}\| \cos \kphi .$</p>
+<figure class="dv" id="drv-directional-derivative-and-gradient-angle"></figure>
+<p>Therefore, the <span data-concept="directional-derivative">directional derivative</span> is equal to the magnitude of the <span data-concept="gradient">gradient</span> evaluated at $(x_{0},y_{0})$ multiplied by $\cos \kphi .$ Recall that $\cos \kphi $ ranges from $-1$ to $1.$ If $\kphi =0,$ then $\cos \kphi =1$ and $\kgradf(x_{0},y_{0})$ and $\kvecu$ both point in the same direction. If $\kphi =\pi ,$ then $\cos \kphi =-1$ and $\kgradf(x_{0},y_{0})$ and $\kvecu$ point in opposite directions. In the first case, the value of $D_{\text{u}}\kf(x_{0},y_{0})$ is maximized; in the second case, the value of $D_{\text{u}}\kf(x_{0},y_{0})$ is minimized. If $\kgradf(x_{0},y_{0})=0,$ then $\kDuf(x_{0},y_{0})=\kgradf(x_{0},y_{0})\cdot \kvecu=0$ for any vector $\kvecu.$ These three cases are outlined in the following theorem.</p>
 <div class="note" id="fs-id1167794067004">
 <div class="eyebrow">Theorem</div>
 <h3>Properties of the Gradient</h3>
@@ -126,14 +118,8 @@ $$\cos \ktheta =\frac{-6\sqrt{61}}{61}\;\text{and}\;\sin \ktheta =\frac{5\sqrt{6
 </section>
 <section id="level-curves">
 <h2>Gradients and Level Curves</h2>
-<p class="cite-target">Recall that if a curve is defined parametrically by the function pair $(x(t),y(t)),$ then the vector $x^{\prime}(t)\kveci+y^{\prime}(t)\kvecj$ is tangent to the curve for every value of $t$ in the domain. Now let’s assume $z=\kf(x,y)$ is a differentiable function of $x\;\text{and}\;y,$ and $(x_{0},y_{0})$ is in its domain. Let’s suppose further that $x_{0}=x(t_{0})$ and $y_{0}=y(t_{0})$ for some value of $t,$ and consider the <span data-concept="level-curve">level curve</span> $\kf(x,y)=k.$ Define $g(t)=\kf(x(t),y(t))$ and calculate $g^{\prime}(t)$ on the <span data-concept="level-curve">level curve</span>. By the <span data-concept="chain-rule-for-one-independent-variable">chain Rule</span>,</p>
-$$g^{\prime}(t)=\kfx(x(t),y(t))x^{\prime}(t)+\kfy(x(t),y(t))y^{\prime}(t).$$
-<p>But $g^{\prime}(t)=0$ because $g(t)=k$ for all $t.$ Therefore, on the one hand,</p>
-$$\kfx(x(t),y(t))x^{\prime}(t)+\kfy(x(t),y(t))y^{\prime}(t)=0;$$
-<p>on the other hand,</p>
-$$\kfx(x(t),y(t))x^{\prime}(t)+\kfy(x(t),y(t))y^{\prime}(t)=\kgradf(x,y)\cdot \langle x^{\prime}(t),y^{\prime}(t)\rangle \text{.}$$
-<p>Therefore,</p>
-$$\kgradf(x,y)\cdot \langle x^{\prime}(t),y^{\prime}(t)\rangle =0.$$
+<p class="cite-target">Recall that if a curve is defined parametrically by the function pair $(x(t),y(t)),$ then the vector $x^{\prime}(t)\kveci+y^{\prime}(t)\kvecj$ is tangent to the curve for every value of $t$ in the domain. Now let’s assume $z=\kf(x,y)$ is a differentiable function of $x\;\text{and}\;y,$ and $(x_{0},y_{0})$ is in its domain. Let’s suppose further that $x_{0}=x(t_{0})$ and $y_{0}=y(t_{0})$ for some value of $t,$ and consider the <span data-concept="level-curve">level curve</span> $\kf(x,y)=k.$ Define $g(t)=\kf(x(t),y(t))$ and calculate $g^{\prime}(t)$ on the <span data-concept="level-curve">level curve</span>.</p>
+<figure class="dv" id="drv-gradient-normal-to-level-curve"></figure>
 <p>Thus, the <span data-concept="dot-product">dot product</span> of these vectors is equal to zero, which implies they are orthogonal. However, the second vector is tangent to the <span data-concept="level-curve">level curve</span>, which implies the <span data-concept="gradient">gradient</span> must be normal to the <span data-concept="level-curve">level curve</span>, which gives rise to the following theorem.</p>
 <div class="note" id="fs-id1167793628079">
 <div class="eyebrow">Theorem</div>

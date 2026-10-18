@@ -192,3 +192,7 @@ that only the keyed one of the two problems that belong in 18.5 is set
 there, the unkeyed one being left out as every unkeyed problem is.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-coulomb-versus-gravity`: the readout is one equation, F/F_G = (kqₑ²/r²)/(GmM/r²) = the ratio with both forces' numbers in it (manim-style 12); the small line no longer speaks of the drawing.
+
+## Derivations
+
+- Example 18.1, the ratio of the Coulomb force to gravity between an electron and a proton · score 4 · not built: a worked example that evaluates Coulomb's law and the law of gravitation with the given numbers and divides; the one unprinted move (taking the ratio before the numbers) is mentioned in the Discussion, not worked

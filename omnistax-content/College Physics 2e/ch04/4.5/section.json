@@ -887,5 +887,295 @@
     "sim-incline"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "weight-components",
+   "what": "the components of weight on an incline",
+   "source": "College Physics 2e, 4.5 Normal, Tension, and Other Examples of Forces",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The angle $\\ktheta$ of the incline is the same as the angle between $\\kwgt$ and $\\kwperp$.",
+       "src": "4.5"
+      },
+      {
+       "text": "The three weight vectors form a right triangle with $\\kwgt$ as its hypotenuse.",
+       "src": "Figure 4.13"
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\cos(\\ktheta)} = \\frac{\\mk{p}{\\kwperp}}{\\mk{w}{\\kwgt}}",
+      "src": "4.5",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "$\\kwperp$ is the side of the triangle next to $\\ktheta$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kwperp} = \\mk{w}{\\kwgt}\\mk{c}{\\cos(\\ktheta)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p}{\\kwperp} = \\mk{w}{\\kwgt}\\mk{c}{\\cos(\\ktheta)} = \\mk{m}{\\km\\kg\\cos(\\ktheta)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "4.5"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The angle $\\ktheta$ of the incline is the same as the angle between $\\kwgt$ and $\\kwperp$.",
+       "src": "4.5"
+      },
+      {
+       "text": "The three weight vectors form a right triangle with $\\kwgt$ as its hypotenuse.",
+       "src": "Figure 4.13"
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sin(\\ktheta)} = \\frac{\\mk{p}{\\kwpar}}{\\mk{w}{\\kwgt}}",
+      "src": "4.5",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "$\\kwpar$ is the side of the triangle opposite $\\ktheta$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kwpar} = \\mk{w}{\\kwgt}\\mk{s}{\\sin(\\ktheta)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p}{\\kwpar} = \\mk{w}{\\kwgt}\\mk{s}{\\sin(\\ktheta)} = \\mk{m}{\\km\\kg\\sin(\\ktheta)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "4.5"
+    }
+   ]
+  },
+  {
+   "id": "rope-tension",
+   "what": "the tension in a rope supporting a mass",
+   "source": "College Physics 2e, 4.5 Normal, Tension, and Other Examples of Forces",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The mass is stationary, so its acceleration is zero and $\\kFnet = 0$."
+      },
+      {
+       "text": "The only external forces on the mass are its weight $\\kwgt$ and the tension $\\kTf$ of the rope, with up positive."
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnet} = \\mk{T}{\\kTf} - \\mk{w}{\\kwgt}",
+      "src": "4.5",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFnet} = \\mk{T}{\\kTf} - \\mk{w}{\\kwgt} = \\mk{z}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kTf} = \\mk{w}{\\kwgt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{T}{\\kTf} = \\mk{w}{\\kwgt} = \\mk{m}{\\km\\kg}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "4.5"
+    }
+   ]
+  },
+  {
+   "id": "tightrope-tension",
+   "what": "the tension in a tightrope",
+   "source": "College Physics 2e, 4.5 Normal, Tension, and Other Examples of Forces, Example 4.6",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The walker is stationary, so the net external force on the walker is zero.",
+       "src": "Example 4.6"
+      },
+      {
+       "tex": "\\kTL{}_{x} = \\kTL\\cos(5.0^\\circ),\\quad \\kTR{}_{x} = \\kTR\\cos(5.0^\\circ)",
+       "src": "Figure 4.17"
+      },
+      {
+       "tex": "\\cos(5.0^\\circ) \\neq 0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnetx} = \\mk{Lx}{\\kTL{}_{x}} - \\mk{Rx}{\\kTR{}_{x}}",
+      "src": "Example 4.6",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFnetx} = \\mk{z}{0} = \\mk{Lx}{\\kTL{}_{x}} - \\mk{Rx}{\\kTR{}_{x}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{Lx}{\\kTL{}_{x}} = \\mk{Rx}{\\kTR{}_{x}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{Lx}{\\kTL\\cos(5.0^\\circ)} = \\mk{Rx}{\\kTR\\cos(5.0^\\circ)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{Lx}{\\kTL} = \\mk{Rx}{\\kTR}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{Lx}{\\kTL} = \\mk{Rx}{\\kTR} = \\mk{T}{\\kTf}",
+       "uses": []
+      }
+     ],
+     "src": "Example 4.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The walker is stationary, so the net external force on the walker is zero.",
+       "src": "Example 4.6"
+      },
+      {
+       "tex": "\\kTL{}_{y} = \\kTL\\sin(5.0^\\circ),\\quad \\kTR{}_{y} = \\kTR\\sin(5.0^\\circ)",
+       "src": "Figure 4.17"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnety} = \\mk{Ly}{\\kTL{}_{y}} + \\mk{Ry}{\\kTR{}_{y}} - \\mk{w}{\\kwgt}",
+      "src": "Example 4.6",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFnety} = \\mk{Ly}{\\kTL{}_{y}} + \\mk{Ry}{\\kTR{}_{y}} - \\mk{w}{\\kwgt} = \\mk{z}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kFnety} = \\mk{Ly}{\\kTf\\sin(5.0^\\circ)} + \\mk{Ry}{\\kTf\\sin(5.0^\\circ)} - \\mk{w}{\\kwgt} = \\mk{z}{0}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{Ly}{2\\kTf\\sin(5.0^\\circ)} - \\mk{w}{\\kwgt} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "Ry": "Ly"
+       }
+      },
+      {
+       "tex": "\\mk{Ly}{2\\kTf\\sin(5.0^\\circ)} = \\mk{w}{\\kwgt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{Ly}{\\kTf} = \\frac{\\mk{w}{\\kwgt}}{\\mk{d}{2\\sin(5.0^\\circ)}}",
+       "uses": [],
+       "map": {
+        "Ly": [
+         "Ly",
+         "d"
+        ]
+       }
+      }
+     ],
+     "src": "Example 4.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\km = 70.0\\ \\text{kg},\\quad \\kg = 9.80\\ \\text{m/s}^2"
+      },
+      {
+       "tex": "\\sin(5.0^\\circ) = 0.0872"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\kTf} = \\frac{\\mk{w}{\\kwgt}}{\\mk{d}{2\\sin(5.0^\\circ)}}",
+      "src": "Example 4.6",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kTf} = \\frac{\\mk{w}{\\kwgt}}{\\mk{d}{2\\sin(5.0^\\circ)}} = \\frac{\\mk{m}{\\km\\kg}}{\\mk{d2}{2\\sin(5.0^\\circ)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kTf} = \\frac{\\mk{m}{(70.0\\ \\text{kg})(9.80\\ \\text{m/s}^2)}}{\\mk{d2}{2(0.0872)}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kTf} = \\mk{m}{3900\\ \\text{N}}",
+       "uses": [],
+       "map": {
+        "d2": "m"
+       }
+      }
+     ],
+     "src": "Example 4.6"
+    }
+   ]
+  }
  ]
 }

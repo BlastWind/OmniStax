@@ -53,3 +53,9 @@ Judged and not built: a slider on the slicing direction (x or y) for one solid (
 - Review exercises 437, 439, 441 (spec in tmp/ch06/sec_6_2.py, `RV`).
 
 Applied in the chapter pass (2026-10-13): every anchor above set with `ost set` (tmp/ch06/anchors6.py; a few spans moved to the nearest id the text has, such as the section header where the plan named a note); review exercises held here landed with `source_section` 6.9.
+
+## Derivations
+
+- Volume and the Slicing Method · score 2 · built as drv-volume-by-slicing (the sum and its limit replaced)
+- Example 6.6 · Deriving the Formula for the Volume of a Pyramid · score 1 · built as drv-volume-of-a-pyramid (a block deriving a general result; its three displays replaced, the similar triangles and the square cross-section as facts)
+- The Disk Method and the Washer Method · score 1 · not built: the book prints only V = ∫A(x)dx again and states (6.3)–(6.5) as rules, one substitution each; the worked 412π/15 and 9π/2 substitute into the section's formula

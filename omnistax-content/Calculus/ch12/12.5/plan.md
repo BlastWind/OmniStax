@@ -56,3 +56,17 @@ Images: Example 12.48's three images (011, 012, 013) stay in the solution; 014, 
 
 - forms anchored to their equations' ids: `eq-vector-line` → `12.5-fs-id1163724080297`, `eq-parametric-line` and `eq-symmetric-line` → the theorem note, `eq-segment-vector` → `12.5-fs-id1163723311060`, `eq-segment-parametric` → `12.5-fs-id1163723756804`, `eq-point-line-distance` → its theorem, `eq-vector-plane`, `eq-scalar-plane`, `eq-general-plane` → the plane definition, `eq-point-plane-distance` → `12.5-fs-id1163724183136`'s note, `eq-point-plane-distance-coordinates` → the later theorem, `eq-angle-between-planes` → `12.5-fs-id1163723281425`.
 - variables of 12.5 anchored at build.
+
+## Derivations
+
+- Parallel vectors as scalar multiples (the section's opening) · score 2 · not built: a prose argument of three moves, below the bar.
+- Vector, parametric and symmetric equations of a line ((12.11) to (12.14)) · score 1 · built as drv-equations-of-a-line, one family of four results sharing PQ = tv: (12.11) and (12.12) keep their numbers; the displays replaced at (12.11)'s place, the term paragraphs kept with their colons closed, the Theorem's (12.13) and (12.14) kept; the citations of Equations 12.11 and 12.12 link to the derivation, and `eq-vector-line` is anchored to it.
+- Equation of a line segment ((12.15), (12.16)) · score 0 · built as drv-line-segment, both forms from (12.12); the displays and their connecting lines replaced, "Remember that … r = q" kept; `eq-segment-vector`, `eq-segment-parametric`, the text's and Checkpoint 12.44's citations of Equation 12.16 point to the derivation.
+- Distance from a point to a line (before the Theorem) · score 3 · built as drv-distance-point-to-line: the parallelogram's area two ways, joined and solved; the display replaced, the Theorem kept.
+- Example 12.48(a), skew lines · score 1 · not built: the section's classification procedure worked through.
+- Vector and scalar equation of a plane ((12.17), (12.18)) · score 2 · built as drv-equation-of-a-plane, with the general form as a second result; the display replaced, the Definition kept.
+- The Distance between a Plane and a Point ((12.19)) · score 2 · not built: a theorem stated with one hidden move, below the bar.
+- Distance from a point to a plane in general form (before the Theorem) · score 1 · built as drv-distance-point-to-plane from (12.19); the display replaced. The book's restatement of (12.19) without the absolute value stays as printed with a correction (footnote c-abs-12-19).
+- Example 12.52, line of intersection · score 2 · not built: elimination and back-substitution in the section's method.
+- Angle between two planes (before Example 12.53) · score 2 · not built: two moves.
+- Student Project, Distance between Two Skew Lines · score 10 · not built: a project left to the reader.

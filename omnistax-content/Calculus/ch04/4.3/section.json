@@ -1276,5 +1276,212 @@
    "kind": "correction",
    "html": "The point $(c,f(c))$ is a <em>critical point</em> of $f,$ as the glossary has it; the book prints “critical number” for both words here."
   }
+ ],
+ "derivations": [
+  {
+   "id": "fermats-theorem",
+   "what": "Fermat’s theorem",
+   "source": "Calculus, 4.3 Maxima and Minima, Fermat’s Theorem",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ is differentiable at $c.$"
+      },
+      {
+       "text": "$\\lim_{x\\to c}$ of a function is $\\kL$ if and only if both one-sided limits at $c$ are $\\kL.$",
+       "src": "2.2, Relating One-Sided and Two-Sided Limits"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fp}{\\kfprime(c)}=\\mk{lim}{\\lim_{x\\to c}}\\mk{q}{\\frac{\\kf(x)-\\kf(c)}{x-c}}",
+      "src": "(3.5)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{fp}{\\kfprime(c)}=\\mk{lim}{\\lim_{x\\to {c}^{+}}}\\mk{q}{\\frac{\\kf(x)-\\kf(c)}{x-c}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(4.4)",
+     "src": "4.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ is differentiable at $c.$"
+      },
+      {
+       "text": "$\\lim_{x\\to c}$ of a function is $\\kL$ if and only if both one-sided limits at $c$ are $\\kL.$",
+       "src": "2.2, Relating One-Sided and Two-Sided Limits"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fp}{\\kfprime(c)}=\\mk{lim}{\\lim_{x\\to c}}\\mk{q}{\\frac{\\kf(x)-\\kf(c)}{x-c}}",
+      "src": "(3.5)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{fp}{\\kfprime(c)}=\\mk{lim}{\\lim_{x\\to {c}^{-}}}\\mk{q}{\\frac{\\kf(x)-\\kf(c)}{x-c}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(4.5)",
+     "src": "4.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ has a local maximum at $c,$ over an open interval $\\kI$ about $c.$"
+      },
+      {
+       "text": "$x\\in \\kI$ and $x\\gt c.$"
+      },
+      {
+       "text": "A one-sided limit of values that are all $\\le 0$ is $\\le 0,$ and of values all $\\ge 0$ is $\\ge 0.$",
+       "src": "4.3"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fc}{\\kf(c)}\\ge \\mk{fx}{\\kf(x)}",
+      "src": "4.3, Definition",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kf(x)-\\kf(c)}\\le \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "fc": "d",
+        "fx": "d"
+       }
+      },
+      {
+       "tex": "\\frac{\\mk{d}{\\kf(x)-\\kf(c)}}{\\mk{den}{x-c}}\\le \\mk{z}{0}",
+       "uses": [
+        1
+       ],
+       "cap": "Dividing by the positive number $x-c$ keeps the direction of the inequality."
+      },
+      {
+       "tex": "\\mk{lim}{\\lim_{x\\to {c}^{+}}}\\frac{\\mk{d}{\\kf(x)-\\kf(c)}}{\\mk{den}{x-c}}\\le \\mk{z}{0}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{lim}{\\kfprime(c)}\\le \\mk{z}{0}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "d": "lim",
+        "den": "lim"
+       }
+      }
+     ],
+     "src": "4.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ has a local maximum at $c,$ over an open interval $\\kI$ about $c.$"
+      },
+      {
+       "text": "$x\\in \\kI$ and $x\\lt c.$"
+      },
+      {
+       "text": "A one-sided limit of values that are all $\\le 0$ is $\\le 0,$ and of values all $\\ge 0$ is $\\ge 0.$",
+       "src": "4.3"
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fc}{\\kf(c)}\\ge \\mk{fx}{\\kf(x)}",
+      "src": "4.3, Definition",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kf(x)-\\kf(c)}\\le \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "fc": "d",
+        "fx": "d"
+       }
+      },
+      {
+       "tex": "\\frac{\\mk{d}{\\kf(x)-\\kf(c)}}{\\mk{den}{x-c}}\\ge \\mk{z}{0}",
+       "uses": [
+        1
+       ],
+       "cap": "Dividing by the negative number $x-c$ reverses the inequality."
+      },
+      {
+       "tex": "\\mk{lim}{\\lim_{x\\to {c}^{-}}}\\frac{\\mk{d}{\\kf(x)-\\kf(c)}}{\\mk{den}{x-c}}\\ge \\mk{z}{0}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{lim}{\\kfprime(c)}\\ge \\mk{z}{0}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "d": "lim",
+        "den": "lim"
+       }
+      }
+     ],
+     "src": "4.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fp}{\\kfprime(c)}\\ge \\mk{z}{0}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0}\\le \\mk{fp}{\\kfprime(c)}\\le \\mk{u}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{fp}{\\kfprime(c)}=\\mk{u}{0}",
+       "uses": []
+      }
+     ],
+     "src": "4.3, Fermat’s Theorem"
+    }
+   ]
+  }
  ]
 }

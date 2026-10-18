@@ -49,3 +49,13 @@ Images: checkpoint and exercise images stay in their cards. No WebGL.
 
 - forms: `eq-greens-theorem-circulation` → `16.4-fs-id1167793370454`; `eq-area-by-greens-theorem` → `16.4-fs-id1167793965702`; `eq-greens-theorem-flux` → `16.4-fs-id1167793796153`; `eq-stream-function` → `16.4-source-free-term`; `eq-harmonic-function` → `16.4-harmonic-term`; `eq-greens-theorem-extended`, `eq-greens-theorem-extended-flux` → `16.4-general`.
 - `COLOR.md`: 16.4 has no referents.
+
+## Derivations
+
+- Green’s Theorem, Circulation Form, Proof (the rectangle) · score 4 · built as drv-greens-theorem-rectangle
+- Example 16.40 and Equation 16.14, the area of a region from its boundary · score 2 · built as drv-area-from-boundary, the general formula where the book derives it; Example 16.40’s ellipse substitutes a parameterization and stays as printed
+- Green’s Theorem, Flux Form, Proof · score 1 · built as drv-greens-theorem-flux-form
+- ‘To see that any potential function of a conservative and source-free vector field … is harmonic’ · score 0 · built as drv-harmonic-potential
+- Green’s Theorem on General Regions, the annulus · score 1 · built as drv-greens-theorem-with-holes
+- Example 16.47 · Using the Extended Form of Green’s Theorem · score 3 · not built: a worked example under the bar
+- Student Project · Measuring Area from a Boundary: The Planimeter · score 14 · not built: the project only poses it, the book states no result in its exposition

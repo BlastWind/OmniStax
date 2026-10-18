@@ -1842,5 +1842,91 @@
    "kind": "correction",
    "html": "The book prints $a\\lt c\\lt b;$ for $[a,b]$ and $[b,c]$ to be adjacent intervals and $[a,c]$ their union, the order is $a\\lt b\\lt c.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "average-value",
+   "what": "the average value of a function",
+   "source": "Calculus, 5.2 The Definite Integral, Average Value of a Function",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\Delta x=\\frac{b-a}{n}",
+       "src": "5.2"
+      },
+      {
+       "tex": "\\sum_{i=1}^{n} a_{i}=a_{1}+a_{2}+\\cdots+a_{n}",
+       "src": "5.1"
+      },
+      {
+       "tex": "\\sum_{i=1}^{n} ca_{i}=c\\sum_{i=1}^{n} a_{i}",
+       "src": "5.1, Properties of Sigma Notation"
+      },
+      {
+       "text": "$\\kf(x)$ is continuous over $[a,b].$",
+       "src": "5.2"
+      },
+      {
+       "text": "If $\\kf(x)$ is continuous on $[a,b],$ then $\\kf$ is integrable on $[a,b].$",
+       "src": "5.2, Continuous Functions Are Integrable"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n} \\kf(x_{i}^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kfave}\\approx\\frac{\\mk{n}{\\kf(x_{1}^{*})+\\kf(x_{2}^{*})+\\cdots+\\kf(x_{n}^{*})}}{\\mk{d}{n}}",
+      "src": "5.2",
+      "why": "Each $\\kf(x_{i}^{*})$ is a sampling of the function over its subinterval, and this is basically the same expression used to calculate the average of discrete values."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kfave}\\approx\\frac{\\mk{n}{\\kf(x_{1}^{*})+\\kf(x_{2}^{*})+\\cdots+\\kf(x_{n}^{*})}}{\\mk{d}{\\frac{(b-a)}{\\Delta x}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kfave}\\approx\\frac{\\mk{n}{\\sum_{i=1}^{n} \\kf(x_{i}^{*})}}{\\mk{d}{\\frac{(b-a)}{\\Delta x}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kfave}\\approx\\mk{d}{(\\frac{\\Delta x}{b-a})}\\mk{n}{\\sum_{i=1}^{n} \\kf(x_{i}^{*})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\kfave}\\approx\\mk{d}{(\\frac{1}{b-a})}\\mk{n}{\\sum_{i=1}^{n} \\kf(x_{i}^{*})\\Delta x}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "d": [
+         "d",
+         "n"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{a}{\\kfave}=\\mk{d}{\\frac{1}{b-a}}\\mk{n}{\\lim_{n\\to \\infty}\\sum_{i=1}^{n} \\kf(x_{i}^{*})\\Delta x}",
+       "uses": [],
+       "cap": "This is a Riemann sum. To get the exact average value, take the limit as $n$ goes to infinity."
+      },
+      {
+       "tex": "\\mk{a}{\\kfave}=\\mk{d}{\\frac{1}{b-a}}\\mk{n}{\\int_{a}^{b}\\kf(x)dx}",
+       "uses": [
+        3,
+        4,
+        5
+       ]
+      }
+     ],
+     "src": "5.2, Definition"
+    }
+   ]
+  }
  ]
 }

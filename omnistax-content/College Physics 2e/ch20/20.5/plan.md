@@ -121,3 +121,8 @@ Each line supersedes the figure's line above where they differ.
 
 sim-ac-versus-dc · Figure 20.14 + 20.15 · as above · the DC/AC choice bends the flat trace into the sine (`mix` of the oscillating part) and the two source symbols cross-fade (manim 15, 16); the DC readout is one equation, I = V/R, with the steady V in the small line (manim 12) · moving, as above
 sim-transmission · Sim · as above · the readout is one equation, the loss P = I²R, with the current I = P/V in the small line (manim 12) · still
+
+## Derivations
+
+- The average power of an alternating current, $P_\text{ave} = \tfrac{1}{2}I_0V_0$ · score 4 · not built: the book reads it off the equal areas of Figure 20.16 and says only that it "can also be proven using trigonometric identities", an identity for $\sin^2$ it never states; at exactly the bar, leaning to not building, so the display stays
+- The average power from rms values (printed block, "Now ... which gives") · score 0 · built as drv-average-power-rms: one node, $P_\text{ave} = I_\text{rms}V_\text{rms}$ with the definitions of the rms values substituted to give $\tfrac{1}{2}I_0V_0$; replaces the two displayed lines, "as stated above" dropped with them

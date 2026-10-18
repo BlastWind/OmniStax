@@ -358,3 +358,8 @@ says.
   velocity anywhere, so the type is removed from the row.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-radius`, `sim-level-curve`, `sim-banked` and `fig-centrifuge` set their subscripted labels through figlib's `text()` (the file's `lab()` is now a thin call to it), so no string is painted into a canvas (rule 26.8). `sim-loop` marks the text's threshold on both sliders it involves: a dashed circle on v at √(g r) and on r at v²/g, each recomputed from the other, where the top of the loop needs nothing from the track. The readout is driven by the clock, so it takes no formula morph (manim-style 13).
+
+## Derivations
+
+- Example 6.4 (Strategy for (b)), the minimum coefficient of friction on a flat curve · score 3 · not built: a worked example of the section's method whose result the book does not offer as general, under the bar
+- Banked curves and the ideal banking angle ('We will derive an expression for θ') · score 3 · built as drv-ideal-banking-angle: three nodes, the horizontal and vertical lines joined to eliminate $N$; replaces the five displays and the sentences between them, whose reasons become facts

@@ -1836,5 +1836,229 @@
    "kind": "correction",
    "html": "The second limit is as $x\\to-\\infty:$ $\\lim_{x\\to-\\infty}e^{x}=0.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "polynomial-end-behavior",
+   "what": "the end behavior of a polynomial",
+   "source": "Calculus, 4.6 Limits at Infinity and Asymptotes, End Behavior for Polynomial Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ has degree $n\\ge 1,$ so ${a}_{n}\\ne 0.$"
+      },
+      {
+       "tex": "\\lim_{x\\to \\pm \\infty}\\frac{1}{x}=0",
+       "src": "4.6"
+      },
+      {
+       "text": "The algebraic limit laws apply to limits at infinity.",
+       "src": "2.3, 4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{p}{{a}_{n}{x}^{n}+{a}_{n-1}{x}^{n-1}+\\ldots+{a}_{1}x+{a}_{0}}",
+      "src": "4.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(x)}=\\mk{lead}{{a}_{n}{x}^{n}}(\\mk{par}{1+\\frac{{a}_{n-1}}{{a}_{n}}\\;\\frac{1}{x}+\\ldots+\\frac{{a}_{1}}{{a}_{n}}\\;\\frac{1}{{x}^{n-1}}+\\frac{{a}_{0}}{{a}_{n}}\\frac{1}{{x}^{n}}})",
+       "uses": [
+        0
+       ],
+       "map": {
+        "p": [
+         "lead",
+         "par"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{x\\to \\pm \\infty}\\kf(x)}=\\mk{lim}{\\lim_{x\\to \\pm \\infty}}\\mk{lead}{{a}_{n}{x}^{n}}(\\mk{par}{1+\\frac{{a}_{n-1}}{{a}_{n}}\\;\\frac{1}{x}+\\ldots+\\frac{{a}_{1}}{{a}_{n}}\\;\\frac{1}{{x}^{n-1}}+\\frac{{a}_{0}}{{a}_{n}}\\frac{1}{{x}^{n}}})",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{x\\to \\pm \\infty}\\kf(x)}=\\mk{lim}{\\lim_{x\\to \\pm \\infty}}\\mk{lead}{{a}_{n}{x}^{n}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Every term in the parentheses but the first tends to $0,$ so the parentheses tend to $1$ and leave the limit of ${a}_{n}{x}^{n}$ as it is."
+      }
+     ],
+     "src": "4.6, End Behavior for Polynomial Functions"
+    }
+   ]
+  },
+  {
+   "id": "rational-end-behavior",
+   "what": "the end behavior of a rational function",
+   "source": "Calculus, 4.6 Limits at Infinity and Asymptotes, End Behavior for Algebraic Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "n=m"
+      },
+      {
+       "tex": "{b}_{m}\\ne 0",
+       "src": "4.6"
+      },
+      {
+       "tex": "\\lim_{x\\to \\pm \\infty}\\frac{1}{x}=0",
+       "src": "4.6"
+      },
+      {
+       "text": "The algebraic limit laws apply to limits at infinity.",
+       "src": "2.3, 4.6"
+      },
+      {
+       "text": "The limit of a quotient is the quotient of the limits, when the limit of the denominator is not $0.$",
+       "src": "2.3, Limit Laws"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\frac{\\mk{p}{{a}_{n}{x}^{n}+{a}_{n-1}{x}^{n-1}+\\ldots+{a}_{1}x+{a}_{0}}}{\\mk{q}{{b}_{m}{x}^{m}+{b}_{m-1}{x}^{m-1}+\\ldots+{b}_{1}x+{b}_{0}}}",
+      "src": "4.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(x)}=\\frac{\\mk{p}{\\frac{{a}_{n}{x}^{n}+{a}_{n-1}{x}^{n-1}+\\ldots+{a}_{1}x+{a}_{0}}{{x}^{m}}}}{\\mk{q}{{b}_{m}+\\frac{{b}_{m-1}}{x}+\\ldots+\\frac{{b}_{1}}{{x}^{m-1}}+\\frac{{b}_{0}}{{x}^{m}}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\kf(x)}=\\frac{\\mk{p}{{a}_{n}+\\frac{{a}_{n-1}}{x}+\\ldots+\\frac{{a}_{1}}{{x}^{n-1}}+\\frac{{a}_{0}}{{x}^{n}}}}{\\mk{q}{{b}_{m}+\\frac{{b}_{m-1}}{x}+\\ldots+\\frac{{b}_{1}}{{x}^{m-1}}+\\frac{{b}_{0}}{{x}^{m}}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{x\\to \\pm \\infty}\\kf(x)}=\\frac{\\mk{p}{\\lim_{x\\to \\pm \\infty}({a}_{n}+\\frac{{a}_{n-1}}{x}+\\ldots+\\frac{{a}_{0}}{{x}^{n}})}}{\\mk{q}{\\lim_{x\\to \\pm \\infty}({b}_{m}+\\frac{{b}_{m-1}}{x}+\\ldots+\\frac{{b}_{1}}{{x}^{m-1}}+\\frac{{b}_{0}}{{x}^{m}})}}",
+       "uses": [
+        1,
+        4
+       ],
+       "cap": "The denominator tends to ${b}_{m}\\ne 0,$ so the limit of the quotient is the quotient of the limits."
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{x\\to \\pm \\infty}\\kf(x)}=\\frac{\\mk{p}{{a}_{n}+0+\\ldots+0}}{\\mk{q}{{b}_{m}+0+\\ldots+0}}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "Each term $c/{x}^{k}$ is $c$ times $k$ factors of $1/x,$ so it tends to $0.$"
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{x\\to \\pm \\infty}\\kf(x)}=\\mk{r}{\\frac{{a}_{n}}{{b}_{m}}}",
+       "uses": [],
+       "map": {
+        "p": "r",
+        "q": "r"
+       }
+      }
+     ],
+     "src": "4.6"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "n\\lt m"
+      },
+      {
+       "tex": "{b}_{m}\\ne 0",
+       "src": "4.6"
+      },
+      {
+       "tex": "\\lim_{x\\to \\pm \\infty}\\frac{1}{x}=0",
+       "src": "4.6"
+      },
+      {
+       "text": "The algebraic limit laws apply to limits at infinity.",
+       "src": "2.3, 4.6"
+      },
+      {
+       "text": "The limit of a quotient is the quotient of the limits, when the limit of the denominator is not $0.$",
+       "src": "2.3, Limit Laws"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\frac{\\mk{p}{{a}_{n}{x}^{n}+{a}_{n-1}{x}^{n-1}+\\ldots+{a}_{1}x+{a}_{0}}}{\\mk{q}{{b}_{m}{x}^{m}+{b}_{m-1}{x}^{m-1}+\\ldots+{b}_{1}x+{b}_{0}}}",
+      "src": "4.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(x)}=\\frac{\\mk{p}{\\frac{{a}_{n}{x}^{n}+{a}_{n-1}{x}^{n-1}+\\ldots+{a}_{1}x+{a}_{0}}{{x}^{m}}}}{\\mk{q}{{b}_{m}+\\frac{{b}_{m-1}}{x}+\\ldots+\\frac{{b}_{1}}{{x}^{m-1}}+\\frac{{b}_{0}}{{x}^{m}}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\kf(x)}=\\frac{\\mk{p}{\\frac{{a}_{n}}{{x}^{m-n}}+\\frac{{a}_{n-1}}{{x}^{m-n+1}}+\\ldots+\\frac{{a}_{0}}{{x}^{m}}}}{\\mk{q}{{b}_{m}+\\frac{{b}_{m-1}}{x}+\\ldots+\\frac{{b}_{1}}{{x}^{m-1}}+\\frac{{b}_{0}}{{x}^{m}}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{x\\to \\pm \\infty}\\kf(x)}=\\frac{\\mk{p}{\\lim_{x\\to \\pm \\infty}(\\frac{{a}_{n}}{{x}^{m-n}}+\\ldots+\\frac{{a}_{0}}{{x}^{m}})}}{\\mk{q}{\\lim_{x\\to \\pm \\infty}({b}_{m}+\\frac{{b}_{m-1}}{x}+\\ldots+\\frac{{b}_{1}}{{x}^{m-1}}+\\frac{{b}_{0}}{{x}^{m}})}}",
+       "uses": [
+        1,
+        4
+       ],
+       "cap": "The denominator tends to ${b}_{m}\\ne 0,$ so the limit of the quotient is the quotient of the limits."
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{x\\to \\pm \\infty}\\kf(x)}=\\frac{\\mk{p}{0+0+\\ldots+0}}{\\mk{q}{{b}_{m}+0+\\ldots+0}}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "As $n\\lt m,$ every term of the numerator is a constant over a positive power of $x;$ each term $c/{x}^{k}$ is $c$ times $k$ factors of $1/x,$ so it tends to $0.$"
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{x\\to \\pm \\infty}\\kf(x)}=\\mk{r}{0}",
+       "uses": [],
+       "map": {
+        "p": "r",
+        "q": "r"
+       }
+      }
+     ],
+     "src": "4.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The degree of $r(x)$ is less than the degree of $q(x).$",
+       "src": "4.6"
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{g}{\\kg(x)}+\\mk{r}{\\frac{r(x)}{q(x)}}",
+      "src": "4.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(x)}-\\mk{g}{\\kg(x)}=\\mk{r}{\\frac{r(x)}{q(x)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{lim}{\\lim_{x\\to \\pm \\infty}}[\\mk{f}{\\kf(x)}-\\mk{g}{\\kg(x)}]=\\mk{r}{\\lim_{x\\to \\pm \\infty}\\frac{r(x)}{q(x)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{lim}{\\lim_{x\\to \\pm \\infty}}[\\mk{f}{\\kf(x)}-\\mk{g}{\\kg(x)}]=\\mk{r}{0}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "With the degree of $r$ below that of $q,$ the quotient $r(x)/q(x)$ is the case $n\\lt m.$"
+      }
+     ],
+     "src": "4.6"
+    }
+   ]
+  }
  ]
 }

@@ -972,5 +972,328 @@
    "kind": "correction",
    "html": "The book’s key is (b), 10 cm. An upright image twice the size of the object needs $\\kdimg = -20$ cm, and $1/\\kffoc = 1/(10\\ \\text{cm}) - 1/(20\\ \\text{cm})$ gives $\\kffoc = +20$ cm, choice (c), the answer the card checks."
   }
+ ],
+ "derivations": [
+  {
+   "id": "mirror-focal-length",
+   "what": "the focal length of a spherical mirror",
+   "source": "College Physics 2e, 25.7 Image Formation by Mirrors",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A ray parallel to the axis strikes the mirror at P. The radius $CP$ from the center of curvature C is perpendicular to the mirror there, so the incoming ray makes the angle $\\kthetai$ with it and the reflected ray $PF$ makes $\\kthetar = \\angle CPF$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kthetar} = \\mk{i}{\\kthetai}",
+      "uses": [],
+      "src": "25.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\angle CPF} = \\mk{i}{\\kthetai}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "25.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The incoming ray runs parallel to the axis through C and the vertex V.",
+       "src": "Figure 25.39"
+      },
+      {
+       "text": "The mirror is small compared with its radius of curvature, so P lies so close to V that $FP = FV$.",
+       "src": "25.7"
+      },
+      {
+       "tex": "CF + FV = \\kRcur"
+      },
+      {
+       "text": "The focal length is the distance from the mirror to F: $\\kffoc = FV$.",
+       "src": "25.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\angle PCF} = \\mk{t}{\\kthetai}",
+      "uses": [
+       1
+      ],
+      "why": "The line $CP$ crosses the incoming ray and the axis, which are parallel, so the alternate angles it makes with them are equal."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\angle PCF} = \\mk{t}{\\angle CPF}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{CF} = \\mk{t}{FP}",
+       "uses": [],
+       "cap": "The triangle $CPF$ has two equal angles, so the sides opposite them are equal too."
+      },
+      {
+       "tex": "\\mk{a}{CF} = \\mk{t}{FV}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kRcur - FV} = \\mk{t}{FV}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kRcur} = \\mk{t}{2FV}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{FV} = \\frac{\\mk{a}{\\kRcur}}{2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{\\kffoc} = \\frac{\\mk{a}{\\kRcur}}{2}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "25.7"
+    }
+   ]
+  },
+  {
+   "id": "solar-trough",
+   "what": "the heating of the oil in a solar trough",
+   "source": "College Physics 2e, 25.7 Image Formation by Mirrors, Example 25.10",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kffoc = 40.0\\text{ cm}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kffoc} = \\frac{\\mk{R}{\\kRcur}}{2}",
+      "uses": [],
+      "src": "25.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kRcur} = \\mk{f}{2\\kffoc}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{\\kRcur} = \\mk{f}{2\\kffoc = 80.0\\text{ cm}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "Example 25.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The mirror is one-quarter of a full cylinder of radius $\\kRcur$ and length $\\kLlen$."
+      },
+      {
+       "tex": "\\kLlen = 1.00\\text{ m}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\karea} = \\mk{q}{\\frac{1}{4}(2\\pi \\kRcur)}\\mk{L}{\\kLlen}",
+      "uses": [
+       1
+      ],
+      "why": "The mirror’s width is a quarter of the circumference $2\\pi\\kRcur$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\karea} = \\mk{q}{\\frac{\\pi}{2}\\kRcur}\\mk{L}{\\kLlen}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{A}{\\karea} = \\mk{q}{\\frac{\\pi}{2}\\kRcur}\\mk{L}{(1.00\\text{ m})}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{A}{\\karea} = \\mk{q}{\\frac{(3.14)}{2}(0.800\\text{ m})}\\mk{L}{(1.00\\text{ m})}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{A}{\\karea} = \\mk{v}{1.26\\text{ m}^2}",
+       "uses": [],
+       "map": {
+        "q": "v",
+        "L": "v"
+       }
+      }
+     ],
+     "src": "Example 25.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kIntens = 9.00\\times10^{2}\\ \\text{W/m}^2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIntens} = \\frac{\\mk{P}{\\kP}}{\\mk{A}{\\karea}}",
+      "uses": [],
+      "src": "24.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{I}{\\kIntens}\\mk{A}{\\karea}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{I}{\\left(9.00\\times10^{2}\\ \\frac{\\text{W}}{\\text{m}^2}\\right)}\\mk{A}{\\karea}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{I}{\\left(9.00\\times10^{2}\\ \\frac{\\text{W}}{\\text{m}^2}\\right)}\\mk{A}{(1.26\\text{ m}^2)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kP} = \\mk{v}{1130\\text{ W}}",
+       "uses": [],
+       "map": {
+        "I": "v",
+        "A": "v"
+       }
+      }
+     ],
+     "src": "Example 25.10"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\krho = 8.00\\times10^{2}\\text{ kg/m}^3"
+      },
+      {
+       "text": "The oil fills a pipe of diameter $\\kd = 2.00\\text{ cm}$ along a length of $1.00\\text{ m}$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krho} = \\frac{\\mk{m}{\\km}}{\\mk{V}{\\kvol}}",
+      "uses": [],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\kvol}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\pi\\left(\\frac{\\kd}{2}\\right)^2(1.00\\text{ m})}",
+       "uses": [
+        1
+       ],
+       "cap": "The oil is a cylinder of radius $\\kd/2$, whose volume is $\\pi(\\kd/2)^2$ times its length."
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{(8.00\\times10^{2}\\text{ kg/m}^3)}\\mk{V}{(3.14)(0.0100\\text{ m})^2(1.00\\text{ m})}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{v}{0.251\\text{ kg}}",
+       "uses": [],
+       "map": {
+        "r": "v",
+        "V": "v"
+       }
+      }
+     ],
+     "src": "Example 25.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      },
+      {
+       "text": "All the sunlight on the reflector is absorbed by the pipe for $\\kt = 60.0\\text{ s}$."
+      },
+      {
+       "tex": "\\kQh = \\kP\\kt",
+       "src": "7.7"
+      },
+      {
+       "tex": "\\kcspec = 1670\\ \\text{J/(kg}\\cdot{}^\\circ\\text{C)}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{\\kcspec}\\mk{T}{\\kdTemp}",
+      "uses": [],
+      "src": "14.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kdTemp} = \\mk{Q}{\\kQh}/\\mk{m}{\\km}\\mk{c}{\\kcspec}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{T}{\\kdTemp} = \\frac{\\mk{Q}{\\kP\\kt}}{\\mk{m}{\\km}\\mk{c}{\\kcspec}}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "The power the pipe absorbs, kept up for the time $\\kt$, is the heat it takes in."
+      },
+      {
+       "tex": "\\mk{T}{\\kdTemp} = \\frac{\\mk{Q}{(1130\\text{ W})(60.0\\text{ s})}}{\\mk{m}{(0.251\\text{ kg})}\\mk{c}{(1670\\ \\text{J/(kg}\\cdot{}^\\circ\\text{C)})}}",
+       "uses": [
+        0,
+        1,
+        2,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kdTemp} = \\mk{v}{162^\\circ\\text{C}}",
+       "uses": [],
+       "map": {
+        "Q": "v",
+        "m": "v",
+        "c": "v"
+       }
+      }
+     ],
+     "src": "Example 25.10",
+     "note": "The book prints the specific heat of mineral oil as 1670 J·kg/°C; the unit is J/(kg·°C)."
+    }
+   ]
+  }
  ]
 }

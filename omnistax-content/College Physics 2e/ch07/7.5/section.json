@@ -592,5 +592,73 @@
     "fig-skier"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "nonconservative-work",
+   "what": "the work done by nonconservative forces",
+   "source": "College Physics 2e, 7.5 Nonconservative Forces",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kWnet = \\kdKE",
+       "src": "7.2"
+      },
+      {
+       "tex": "\\kWc = -\\kdPE",
+       "src": "7.4"
+      },
+      {
+       "text": "$\\Delta$ means change in the quantity that follows it, its final value less its initial value.",
+       "src": "2.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWnet} = \\mk{nc}{\\kWnc} + \\mk{c}{\\kWc}",
+      "src": "7.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{nc}{\\kWnc} + \\mk{c}{\\kWc} = \\mk{W}{\\kdKE}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{nc}{\\kWnc} - \\mk{c}{\\kdPE} = \\mk{W}{\\kdKE}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{nc}{\\kWnc} = \\mk{W}{\\kdKE} + \\mk{c}{\\kdPE}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{nc}{\\kWnc} = (\\mk{kf}{\\kKEf} - \\mk{ki}{\\kKEi}) + (\\mk{pf}{\\kPEf} - \\mk{pi}{\\kPEi})",
+       "uses": [
+        2
+       ],
+       "map": {
+        "W": [
+         "kf",
+         "ki"
+        ],
+        "c": [
+         "pf",
+         "pi"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{ki}{\\kKEi} + \\mk{pi}{\\kPEi} + \\mk{nc}{\\kWnc} = \\mk{kf}{\\kKEf} + \\mk{pf}{\\kPEf}",
+       "uses": []
+      }
+     ],
+     "src": "7.5"
+    }
+   ]
+  }
  ]
 }

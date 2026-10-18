@@ -118,3 +118,7 @@ the book prints them.
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass (2026-10-05): `eq-critical-density` and `ρ_c` anchored to 34.4-closure. Added: `v` (velocity), `r` (concept `distance`, in ly) and `M` (mass) at 34.4-evidence; `ρ_bar` (density) at 34.4-closure. `ch34/COLOR.md` records the bindings, the two shift facts and the two referents.
+
+## Derivations
+
+- The critical density · score 10 · not built: the book gives only an estimate, $\rho_c \approx 10^{-26}$ kg/m³, and never writes the formula a derivation would reach

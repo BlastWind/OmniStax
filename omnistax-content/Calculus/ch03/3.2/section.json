@@ -1430,5 +1430,86 @@
    "kind": "correction",
    "html": "The key writes $f^{\\prime\\prime}(t);$ the cubic fit is $F,$ so it means $F^{\\prime\\prime}(t)=1.222t+5.912.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "differentiability-implies-continuity",
+   "what": "differentiability implies continuity",
+   "source": "Calculus, 3.2 The Derivative as a Function, Differentiability Implies Continuity",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf(x)$ is differentiable at $a,$ so $\\kfprime(a)$ exists.",
+       "src": "3.2, Differentiability Implies Continuity"
+      },
+      {
+       "tex": "\\kfprime(a)=\\lim_{x\\to a}\\frac{\\kf(x)-\\kf(a)}{x-a}",
+       "src": "(3.5)"
+      },
+      {
+       "text": "The limit of a sum is the sum of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "text": "The limit of a product is the product of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{x\\to a}(x-a)=0",
+       "src": "2.3, Limits of Polynomial and Rational Functions"
+      },
+      {
+       "tex": "\\lim_{x\\to a}c=c",
+       "src": "(2.15)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{x\\to a}\\kf(x)} = \\mk{lim}{\\lim_{x\\to a}}(\\mk{d}{\\kf(x)-\\kf(a)}+\\mk{c}{\\kf(a)})",
+      "uses": [],
+      "src": "3.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\kf(x)} = \\mk{lim}{\\lim_{x\\to a}}(\\mk{d}{\\frac{\\kf(x)-\\kf(a)}{x-a}\\cdot (x-a)}+\\mk{c}{\\kf(a)})",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\kf(x)} = \\mk{q}{(\\lim_{x\\to a}\\frac{\\kf(x)-\\kf(a)}{x-a})}\\cdot \\mk{z}{(\\lim_{x\\to a}(x-a))}+\\mk{c}{\\lim_{x\\to a}\\kf(a)}",
+       "uses": [
+        0,
+        2,
+        3
+       ],
+       "cap": "The laws apply because each limit exists, the first since $\\kf$ is differentiable at $a.$",
+       "map": {
+        "lim": [
+         "q",
+         "z",
+         "c"
+        ],
+        "d": [
+         "q",
+         "z"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\kf(x)} = \\mk{q}{\\kfprime(a)}\\cdot \\mk{z}{0}+\\mk{c}{\\kf(a)}",
+       "uses": [
+        1,
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\kf(x)} = \\mk{c}{\\kf(a)}",
+       "uses": []
+      }
+     ],
+     "src": "3.2, Differentiability Implies Continuity"
+    }
+   ]
+  }
  ]
 }

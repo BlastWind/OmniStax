@@ -1036,5 +1036,168 @@
         "sim-projected-image"
       ]
     }
+  ],
+  "derivations": [
+    {
+      "id": "thin-lens-equations",
+      "what": "the thin lens equations",
+      "source": "College Physics 2e, 25.6 Image Formation by Lenses",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "A ray passing through the center of a lens does not change direction.",
+              "src": "25.6"
+            },
+            {
+              "text": "The ray from the top of the object through the center of the lens makes the same angle with the axis on both sides; its tangent is $\\khobj/\\kdobj$ on the object side and $|\\khimg|/\\kdimg$ on the image side.",
+              "src": "Figure 25.31"
+            }
+          ],
+          "then": {
+            "tex": "\\frac{\\mk{h}{|\\khimg|}}{\\mk{i}{\\kdimg}} = \\frac{\\mk{o}{\\khobj}}{\\mk{d}{\\kdobj}}",
+            "uses": [
+              0,
+              1
+            ],
+            "src": "25.6"
+          },
+          "steps": [
+            {
+              "tex": "\\frac{\\mk{h}{|\\khimg|}}{\\mk{o}{\\khobj}} = \\frac{\\mk{i}{\\kdimg}}{\\mk{d}{\\kdobj}}",
+              "uses": []
+            }
+          ],
+          "src": "25.6"
+        },
+        {
+          "assumes": [
+            {
+              "text": "A ray entering a converging lens parallel to its axis passes through the focal point F, a distance $\\kffoc$ behind the lens.",
+              "src": "25.6"
+            },
+            {
+              "text": "That ray meets the lens at the height $\\khobj$ and crosses the axis at F; the tangent of the angle it then makes with the axis is $\\khobj/\\kffoc$ before F and $|\\khimg|/(\\kdimg - \\kffoc)$ beyond it.",
+              "src": "Figure 25.31"
+            }
+          ],
+          "then": {
+            "tex": "\\frac{\\mk{h}{|\\khimg|}}{\\mk{a}{\\kdimg - \\kffoc}} = \\frac{\\mk{o}{\\khobj}}{\\mk{f}{\\kffoc}}",
+            "uses": [
+              0,
+              1
+            ],
+            "src": "25.6"
+          },
+          "steps": [
+            {
+              "tex": "\\frac{\\mk{h}{|\\khimg|}}{\\mk{o}{\\khobj}} = \\frac{\\mk{a}{\\kdimg - \\kffoc}}{\\mk{f}{\\kffoc}}",
+              "uses": []
+            }
+          ],
+          "src": "25.6"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "step": 1
+            }
+          ],
+          "then": {
+            "tex": "\\frac{\\mk{a}{\\kdimg - \\kffoc}}{\\mk{f}{\\kffoc}} = \\mk{h}{\\frac{|\\khimg|}{\\khobj}}",
+            "uses": [
+              1
+            ],
+            "src": "25.6"
+          },
+          "steps": [
+            {
+              "tex": "\\frac{\\mk{a}{\\kdimg - \\kffoc}}{\\mk{f}{\\kffoc}} = \\frac{\\mk{i}{\\kdimg}}{\\mk{d}{\\kdobj}}",
+              "uses": [
+                0
+              ],
+              "map": {
+                "h": [
+                  "i",
+                  "d"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{d}{\\kdobj}\\mk{a}{(\\kdimg - \\kffoc)} = \\mk{f}{\\kffoc}\\mk{i}{\\kdimg}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{a}{\\kdobj\\kdimg - \\kdobj\\kffoc} = \\mk{f}{\\kffoc\\kdimg}",
+              "uses": [],
+              "map": {
+                "d": "a",
+                "i": "f"
+              }
+            },
+            {
+              "tex": "\\mk{a}{\\frac{1}{\\kffoc} - \\frac{1}{\\kdimg}} = \\mk{f}{\\frac{1}{\\kdobj}}",
+              "uses": [],
+              "cap": "Dividing every term by $\\kdobj\\kdimg\\kffoc$."
+            },
+            {
+              "tex": "\\mk{f}{\\frac{1}{\\kdobj}} + \\mk{j}{\\frac{1}{\\kdimg}} = \\mk{a}{\\frac{1}{\\kffoc}}",
+              "uses": [],
+              "map": {
+                "a": [
+                  "a",
+                  "j"
+                ]
+              }
+            }
+          ],
+          "src": "25.6"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "An inverted image has a negative height, so here $|\\khimg| = -\\khimg$.",
+              "src": "25.6"
+            },
+            {
+              "tex": "m = \\khimg/\\khobj",
+              "src": "25.6"
+            }
+          ],
+          "then": {
+            "tex": "\\frac{\\mk{h}{|\\khimg|}}{\\mk{o}{\\khobj}} = \\mk{r}{\\frac{\\kdimg}{\\kdobj}}",
+            "uses": [
+              0
+            ],
+            "src": "25.6"
+          },
+          "steps": [
+            {
+              "tex": "\\frac{\\mk{h}{-\\khimg}}{\\mk{o}{\\khobj}} = \\mk{r}{\\frac{\\kdimg}{\\kdobj}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\frac{\\mk{h}{\\khimg}}{\\mk{o}{\\khobj}} = \\mk{r}{-\\frac{\\kdimg}{\\kdobj}}",
+              "uses": []
+            },
+            {
+              "tex": "\\frac{\\mk{h}{\\khimg}}{\\mk{o}{\\khobj}} = \\mk{r}{-\\frac{\\kdimg}{\\kdobj}} = \\mk{m}{m}",
+              "uses": [
+                2
+              ]
+            }
+          ],
+          "src": "25.6"
+        }
+      ]
+    }
   ]
 }

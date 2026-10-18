@@ -768,5 +768,162 @@
     "sim-manometer"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "energy-per-volume",
+   "what": "the terms of Bernoulli’s equation as energies per unit volume",
+   "source": "College Physics 2e, 12.2 Bernoulli’s Equation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kKE = \\tfrac{1}{2}\\km\\kv^2",
+       "src": "7.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krho} = \\dfrac{\\mk{m}{\\km}}{\\mk{V}{\\kvol}}",
+      "uses": [],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\tfrac{1}{2}\\mk{r}{\\krho}\\mk{v}{\\kv^2} = \\dfrac{\\tfrac{1}{2}\\mk{m}{\\km}\\mk{v2}{\\kv^2}}{\\mk{V}{\\kvol}}",
+       "uses": []
+      },
+      {
+       "tex": "\\tfrac{1}{2}\\mk{r}{\\krho}\\mk{v}{\\kv^2} = \\dfrac{\\mk{m}{\\kKE}}{\\mk{V}{\\kvol}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "v2": "m"
+       }
+      }
+     ],
+     "src": "12.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kPEg = \\km\\kg\\kh",
+       "src": "7.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krho} = \\dfrac{\\mk{m}{\\km}}{\\mk{V}{\\kvol}}",
+      "uses": [],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\krho}\\mk{gh}{\\kg\\kh} = \\dfrac{\\mk{m}{\\km}\\mk{gh2}{\\kg\\kh}}{\\mk{V}{\\kvol}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\krho}\\mk{gh}{\\kg\\kh} = \\dfrac{\\mk{m}{\\kPEg}}{\\mk{V}{\\kvol}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "gh2": "m"
+       }
+      }
+     ],
+     "src": "12.2"
+    }
+   ]
+  },
+  {
+   "id": "bernoulli-static-fluid",
+   "what": "the pressure in a static fluid from Bernoulli’s equation",
+   "source": "College Physics 2e, 12.2 Bernoulli’s Equation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvone = \\kvtwo = 0",
+       "src": "12.2"
+      },
+      {
+       "text": "Any height may be chosen as zero and the others measured from it, so take $\\khtwo = 0$.",
+       "src": "12.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P1}{\\kProne} + \\mk{k1}{\\frac{1}{2}\\krho\\kvone^2} + \\mk{g1}{\\krho\\kg\\khone} = \\mk{P2}{\\kPrtwo} + \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2} + \\mk{g2}{\\krho\\kg\\khtwo}",
+      "uses": [],
+      "src": "12.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P1}{\\kProne} + \\mk{g1}{\\krho\\kg\\khone} = \\mk{P2}{\\kPrtwo} + \\mk{g2}{\\krho\\kg\\khtwo}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{P2}{\\kPrtwo} = \\mk{P1}{\\kProne} + \\mk{g1}{\\krho\\kg\\khone}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "12.2"
+    }
+   ]
+  },
+  {
+   "id": "manometer-speed",
+   "what": "the fluid speed read by a manometer",
+   "source": "College Physics 2e, 12.2 Bernoulli’s Equation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The tube facing the oncoming fluid makes a dead spot of zero velocity in front of it: $\\kvone = 0$.",
+       "src": "12.2, Figure 12.8"
+      },
+      {
+       "text": "The fluid in a manometer rises by a height proportional to the pressure difference across it.",
+       "src": "11.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P1}{\\kProne} + \\mk{k1}{\\frac{1}{2}\\krho\\kvone^2} = \\mk{P2}{\\kPrtwo} + \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2}",
+      "uses": [],
+      "src": "12.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P1}{\\kProne} = \\mk{P2}{\\kPrtwo} + \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{dP}{\\kProne - \\kPrtwo} = \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2}",
+       "uses": [],
+       "map": {
+        "P1": "dP",
+        "P2": "dP"
+       }
+      },
+      {
+       "tex": "\\mk{dP}{\\kh} \\propto \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{k2}{\\kvtwo} \\propto \\mk{dP}{\\sqrt{\\kh}}",
+       "uses": []
+      }
+     ],
+     "src": "12.2"
+    }
+   ]
+  }
  ]
 }

@@ -217,3 +217,8 @@ sign; none carries one.
 **Figure pass, 2026-09-15 (Claude Fable 5.1).** `sim-beats` names its beat bracket under the bracket rather than above it, where the name sat on the tick labels. `sim-superposition`, `sim-standing-wave` and `sim-string-harmonics` were looked at in light and dark at every slider extreme, every choice and three points of the cycle, and left as built.
 
 **Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-superposition`: phases 0° and 180° (in step, out of step) and λ₂ = λ₁ are special values. `sim-beats`: f₂ carries a circle at f₁ (no beats). `sim-string-harmonics`: the loops bend from one harmonic into the next and the nodes fade across, instead of cutting; the display-speed sentence is gone from the note.
+
+## Derivations
+
+- The harmonics of a string fixed at both ends (inline) · score 1 · not built: inline lines with nothing hidden, under the bar
+- Beats, $x = 2X\cos(\pi f_\text{B}t)\cos(2\pi f_\text{ave}t)$ ("using a trigonometric identity, it can be shown") · score 5 · not built: the sum-to-product identity is stated nowhere in the book, Appendix C included

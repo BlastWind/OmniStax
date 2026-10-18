@@ -902,5 +902,721 @@
    "kind": "correction",
    "html": "The arguments are $\\frac{(\\omega_{0}-\\omega)t}{2}$ and $\\frac{(\\omega_{0}+\\omega)t}{2}$: $y=\\frac{2}{a(\\omega_{0}^{2}-\\omega^{2})}\\sin (\\frac{(\\omega_{0}-\\omega)t}{2})\\sin (\\frac{(\\omega_{0}+\\omega)t}{2}).$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "spring-mass-equation",
+   "what": "the equation of a spring-mass system",
+   "source": "Calculus, 17.3 Applications, Simple Harmonic Motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Gravity pulls the mass down with the force $mg.$",
+       "src": "17.3"
+      },
+      {
+       "text": "Hooke’s law: the spring pulls back with the restoring force $-k(s+\\kxfn).$",
+       "src": "17.3"
+      },
+      {
+       "text": "Newton’s second law: the sum of the forces on the mass equals its mass times its acceleration $\\kxdprime.$",
+       "src": "17.3"
+      },
+      {
+       "text": "At the equilibrium position the two forces balance: $mg=ks.$",
+       "src": "17.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ma}{m\\kxdprime}=\\mk{k}{-k(s+\\kxfn)}+\\mk{g}{mg}",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "src": "17.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ma}{m\\kxdprime}=\\mk{ks}{-ks}\\mk{kx}{-k\\kxfn}+\\mk{g}{mg}",
+       "uses": [],
+       "map": {
+        "k": [
+         "ks",
+         "kx"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{ma}{m\\kxdprime}=\\mk{kx}{-k\\kxfn}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{ma}{m\\kxdprime}+\\mk{kx}{k\\kxfn}=0",
+       "uses": []
+      }
+     ],
+     "src": "17.3"
+    }
+   ]
+  },
+  {
+   "id": "amplitude-and-phase-shift",
+   "what": "the amplitude and phase shift",
+   "source": "Calculus, 17.3 Applications, Simple Harmonic Motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kxfn(t)=c_{1}\\cos \\omega t+c_{2}\\sin \\omega t",
+       "src": "(17.6)"
+      },
+      {
+       "tex": "\\kxfn(t)=A\\;\\sin (\\omega t+\\varphi )",
+       "src": "(17.7)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c1}{c_{1}}\\mk{cos}{\\cos (\\omega t)}+\\mk{c2}{c_{2}}\\mk{sin}{\\sin (\\omega t)}=\\mk{A}{A}\\;\\mk{s}{\\sin (\\omega t+\\varphi )}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "17.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c1}{c_{1}}\\mk{cos}{\\cos (\\omega t)}+\\mk{c2}{c_{2}}\\mk{sin}{\\sin (\\omega t)}=\\mk{A}{A}(\\mk{s}{\\sin (\\omega t)\\;\\cos \\varphi +\\cos (\\omega t)\\;\\sin \\varphi })",
+       "uses": [],
+       "cap": "The identity $\\sin (\\alpha +\\beta )=\\sin \\alpha \\;\\cos \\beta +\\cos \\alpha \\;\\sin \\beta.$"
+      },
+      {
+       "tex": "\\mk{c1}{c_{1}}\\mk{cos}{\\cos (\\omega t)}+\\mk{c2}{c_{2}}\\mk{sin}{\\sin (\\omega t)}=\\mk{as}{A\\;\\sin \\varphi }\\mk{cos2}{(\\cos (\\omega t))}+\\mk{ac}{A\\;\\cos \\varphi }\\mk{sin2}{(\\sin (\\omega t))}",
+       "uses": [],
+       "map": {
+        "A": [
+         "as",
+         "ac"
+        ],
+        "s": [
+         "as",
+         "ac",
+         "cos2",
+         "sin2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{c1}{c_{1}}=\\mk{as}{A\\;\\sin \\varphi }\\;\\text{and}\\;\\mk{c2}{c_{2}}=\\mk{ac}{A\\;\\cos \\varphi }",
+       "uses": [],
+       "cap": "The two sides agree for every $t$ only if the coefficients of $\\cos (\\omega t)$ match and those of $\\sin (\\omega t)$ match."
+      }
+     ],
+     "src": "17.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c1}{c_{1}}=\\mk{as}{A\\;\\sin \\varphi }\\;\\text{and}\\;\\mk{c2}{c_{2}}=\\mk{ac}{A\\;\\cos \\varphi }",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c1}{c_1^{2}}=\\mk{as}{A^{2}{\\sin }^{2}\\varphi }\\;\\text{and}\\;\\mk{c2}{c_2^{2}}=\\mk{ac}{A^{2}{\\cos }^{2}\\varphi }",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{c_1^{2}+c_2^{2}}=\\mk{s}{A^{2}{\\sin }^{2}\\varphi +A^{2}{\\cos }^{2}\\varphi }",
+       "uses": [],
+       "map": {
+        "c1": "c",
+        "c2": "c",
+        "as": "s",
+        "ac": "s"
+       }
+      },
+      {
+       "tex": "\\mk{c}{c_1^{2}+c_2^{2}}=\\mk{s}{A^{2}({\\sin }^{2}\\varphi +{\\cos }^{2}\\varphi )}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{c_1^{2}+c_2^{2}}=\\mk{s}{A^{2}}",
+       "uses": [],
+       "cap": "${\\sin }^{2}\\varphi +{\\cos }^{2}\\varphi =1.$"
+      },
+      {
+       "tex": "\\mk{s}{A}=\\mk{c}{\\sqrt{c_1^{2}+c_2^{2}}}",
+       "uses": [],
+       "cap": "The amplitude $A$ is the positive root."
+      }
+     ],
+     "src": "17.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c1}{c_{1}}=\\mk{as}{A\\;\\sin \\varphi }\\;\\text{and}\\;\\mk{c2}{c_{2}}=\\mk{ac}{A\\;\\cos \\varphi }",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{q}{\\frac{c_{1}}{c_{2}}}=\\mk{r}{\\frac{A\\;\\sin \\varphi }{A\\;\\cos \\varphi }}",
+       "uses": [],
+       "map": {
+        "c1": "q",
+        "c2": "q",
+        "as": "r",
+        "ac": "r"
+       }
+      },
+      {
+       "tex": "\\mk{r}{\\tan \\varphi }=\\mk{q}{\\frac{c_{1}}{c_{2}}}",
+       "uses": [],
+       "cap": "$A$ cancels, and $\\frac{\\sin \\varphi }{\\cos \\varphi }=\\tan \\varphi.$"
+      }
+     ],
+     "src": "17.3"
+    }
+   ]
+  },
+  {
+   "id": "damped-spring-mass",
+   "what": "the damped spring-mass equation",
+   "source": "Calculus, 17.3 Applications, Damped Vibrations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Gravity pulls the mass down with the force $mg.$",
+       "src": "17.3"
+      },
+      {
+       "text": "Hooke’s law: the spring pulls back with the restoring force $-k(s+\\kxfn).$",
+       "src": "17.3"
+      },
+      {
+       "text": "The damping force is $-b\\kxprime$ for some constant $b\\gt 0.$",
+       "src": "17.3"
+      },
+      {
+       "text": "Newton’s second law: the sum of the forces on the mass equals its mass times its acceleration $\\kxdprime.$",
+       "src": "17.3"
+      },
+      {
+       "text": "At the equilibrium position the two forces balance: $mg=ks.$",
+       "src": "17.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ma}{m\\kxdprime}=\\mk{k}{-k(s+\\kxfn)}+\\mk{g}{mg}\\mk{b}{-b\\kxprime}",
+      "uses": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "src": "17.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ma}{m\\kxdprime}=\\mk{ks}{-ks}\\mk{kx}{-k\\kxfn}+\\mk{g}{mg}\\mk{b}{-b\\kxprime}",
+       "uses": [],
+       "map": {
+        "k": [
+         "ks",
+         "kx"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{ma}{m\\kxdprime}=\\mk{kx}{-k\\kxfn}\\mk{b}{-b\\kxprime}",
+       "uses": [4]
+      },
+      {
+       "tex": "\\mk{ma}{m\\kxdprime}+\\mk{b}{b\\kxprime}+\\mk{kx}{k\\kxfn}=0",
+       "uses": []
+      }
+     ],
+     "src": "17.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "An equation $a\\kxdprime+b\\kxprime+c\\kxfn=0$ has the characteristic equation $a{\\lambda }^{2}+b\\lambda +c=0.$",
+       "src": "17.1"
+      },
+      {
+       "tex": "\\lambda =\\frac{-b\\pm \\sqrt{b^{2}-4ac}}{2a}",
+       "src": "17.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ma}{m\\kxdprime}+\\mk{b}{b\\kxprime}+\\mk{kx}{k\\kxfn}=0",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ma}{m{\\lambda }^{2}}+\\mk{b}{b\\lambda }+\\mk{kx}{k}=0",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{l}{\\lambda }=\\frac{\\mk{b}{-b}\\pm \\sqrt{\\mk{b2}{b^{2}}-\\mk{mk}{4mk}}}{\\mk{m}{2m}}",
+       "uses": [2],
+       "map": {
+        "ma": [
+         "l",
+         "m",
+         "mk"
+        ],
+        "b": [
+         "b",
+         "b2"
+        ],
+        "kx": "mk"
+       }
+      }
+     ],
+     "src": "17.3"
+    }
+   ]
+  },
+  {
+   "id": "underdamped-spring",
+   "what": "the motion of an underdamped spring",
+   "source": "Calculus, 17.3 Applications",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "W = mg",
+       "src": "17.3, Example 17.17"
+      },
+      {
+       "tex": "W = 16",
+       "src": "Example 17.21"
+      },
+      {
+       "tex": "s = 3.2",
+       "src": "Example 17.21"
+      },
+      {
+       "text": "The stretch $s$ is measured with the mass at rest at equilibrium.",
+       "src": "17.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{mg} = \\mk{k}{k}\\,\\mk{s}{s}",
+      "uses": [
+       3
+      ],
+      "src": "17.3",
+      "why": "At equilibrium the spring's pull $ks$ balances the pull of gravity $mg$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{w}{W} = \\mk{k}{k}\\,\\mk{s}{s}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{w}{16} = \\mk{k}{k}\\,\\mk{s}{(3.2)}",
+       "uses": [1, 2]
+      },
+      {
+       "tex": "\\mk{k}{k} = \\dfrac{\\mk{w}{16}}{\\mk{s}{3.2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{k}{k} = \\mk{v}{5}",
+       "uses": [],
+       "map": {
+        "w": "v",
+        "s": "v"
+       }
+      }
+     ],
+     "src": "Example 17.21"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "W = 16",
+       "src": "Example 17.21"
+      },
+      {
+       "tex": "g = 32",
+       "src": "17.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{W} = \\mk{m}{m}\\,\\mk{g}{g}",
+      "uses": [],
+      "src": "17.3, Example 17.17"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{w}{16} = \\mk{m}{m}\\,\\mk{g}{(32)}",
+       "uses": [0, 1]
+      },
+      {
+       "tex": "\\mk{m}{m} = \\dfrac{\\mk{w}{16}}{\\mk{g}{32}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{m} = \\mk{v}{\\dfrac{1}{2}}",
+       "uses": [],
+       "map": {
+        "w": "v",
+        "g": "v"
+       }
+      }
+     ],
+     "src": "Example 17.21"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "b = 1",
+       "src": "Example 17.21"
+      },
+      {
+       "text": "The damping force is $-b\\kxprime$ for a constant $b > 0$.",
+       "src": "17.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{m}\\mk{xdd}{\\kxdprime} + \\mk{b}{b}\\mk{xd}{\\kxprime} + \\mk{k}{k}\\mk{x}{\\kxfn} = \\mk{z}{0}",
+      "uses": [
+       3
+      ],
+      "src": "17.3",
+      "why": "Newton's second law with gravity, the spring's pull and the damping force $-b\\kxprime$; at equilibrium $mg = ks$, so those two terms cancel."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\tfrac{1}{2}}\\mk{xdd}{\\kxdprime} + \\mk{b}{b}\\mk{xd}{\\kxprime} + \\mk{k}{k}\\mk{x}{\\kxfn} = \\mk{z}{0}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{m}{\\tfrac{1}{2}}\\mk{xdd}{\\kxdprime} + \\mk{b}{b}\\mk{xd}{\\kxprime} + \\mk{k}{5}\\mk{x}{\\kxfn} = \\mk{z}{0}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{m}{\\tfrac{1}{2}}\\mk{xdd}{\\kxdprime} + \\mk{xd}{\\kxprime} + \\mk{k}{5}\\mk{x}{\\kxfn} = \\mk{z}{0}",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{xdd}{\\kxdprime} + \\mk{two}{2}\\mk{xd}{\\kxprime} + \\mk{k}{10}\\mk{x}{\\kxfn} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "m": "two"
+       }
+      }
+     ],
+     "src": "Example 17.21"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "An equation $a\\kxdprime + b\\kxprime + c\\kxfn = 0$ has the characteristic equation $a\\lambda^2 + b\\lambda + c = 0$.",
+       "src": "17.1"
+      },
+      {
+       "tex": "\\lambda = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+       "src": "17.1, 17.3"
+      },
+      {
+       "tex": "i = \\sqrt{-1}",
+       "src": "17.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{xdd}{\\kxdprime} + \\mk{two}{2}\\mk{xd}{\\kxprime} + \\mk{k}{10}\\mk{x}{\\kxfn} = \\mk{z}{0}",
+      "uses": [],
+      "src": "Example 17.21"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xdd}{\\lambda^2} + \\mk{two}{2}\\mk{xd}{\\lambda} + \\mk{k}{10} = \\mk{z}{0}",
+       "uses": [1],
+       "cap": "Each derivative becomes a power of $\\lambda$: $x''$ becomes $\\lambda^2$, $x'$ becomes $\\lambda$ and $x$ becomes $1$."
+      },
+      {
+       "tex": "\\mk{lam}{\\lambda} = \\dfrac{-\\mk{two}{2} \\pm \\sqrt{\\mk{two2}{2^2} - 4(1)(\\mk{k}{10})}}{\\mk{den}{2(1)}}",
+       "uses": [2],
+       "cap": "The quadratic formula, with $a = 1$, $b = 2$ and $c = 10$.",
+       "map": {
+        "xdd": "lam",
+        "xd": "lam"
+       }
+      },
+      {
+       "tex": "\\mk{lam}{\\lambda} = \\dfrac{-\\mk{two}{2} \\pm \\mk{rt}{\\sqrt{-36}}}{\\mk{den}{2}}",
+       "uses": [],
+       "cap": "Here $b^2 < 4mk$, as $4 < 40$, so the number under the root is negative and the roots are complex.",
+       "map": {
+        "two2": "rt",
+        "k": "rt"
+       }
+      },
+      {
+       "tex": "\\mk{lam}{\\lambda} = \\dfrac{-\\mk{two}{2} \\pm \\mk{rt}{6i}}{\\mk{den}{2}}",
+       "uses": [3],
+       "cap": "$\\sqrt{-36} = \\sqrt{36}\\,\\sqrt{-1} = 6i$."
+      },
+      {
+       "tex": "\\mk{lam}{\\lambda} = -\\mk{two}{1} \\pm \\mk{rt}{3i}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "text": "When the characteristic equation has complex roots $\\alpha \\pm \\beta i$, the general solution is $e^{\\alpha t}(c_1\\cos\\beta t + c_2\\sin\\beta t)$.",
+       "src": "17.1, Table 17.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kxfn(t)} = \\mk{exp}{e^{\\alpha t}}(\\mk{c1}{c_1}\\mk{cos}{\\cos\\beta t} + \\mk{c2}{c_2}\\mk{sin}{\\sin\\beta t})",
+      "uses": [
+       1
+      ],
+      "src": "17.3, Case 3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kxfn(t)} = \\mk{exp}{e^{-t}}(\\mk{c1}{c_1}\\mk{cos}{\\cos 3t} + \\mk{c2}{c_2}\\mk{sin}{\\sin 3t})",
+       "uses": [0],
+       "cap": "Matching $-1 \\pm 3i$ with $\\alpha \\pm \\beta i$ gives $\\alpha = -1$ and $\\beta = 3$."
+      }
+     ],
+     "src": "Example 17.21"
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "tex": "\\kxfn(0) = \\dfrac{3}{4}",
+       "src": "Example 17.21"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kxfn(t)} = \\mk{exp}{e^{-t}}(\\mk{c1}{c_1}\\mk{cos}{\\cos 3t} + \\mk{c2}{c_2}\\mk{sin}{\\sin 3t})",
+      "uses": [],
+      "src": "Example 17.21"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kxfn(0)} = \\mk{exp}{e^{0}}(\\mk{c1}{c_1}\\mk{cos}{\\cos 0} + \\mk{c2}{c_2}\\mk{sin}{\\sin 0})",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{x}{\\kxfn(0)} = \\mk{c1}{c_1}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c1}{c_1} = \\mk{x}{\\dfrac{3}{4}}",
+       "uses": [1]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "text": "The product rule: $(fg)' = f'g + fg'$.",
+       "src": "3.3"
+      },
+      {
+       "text": "The chain rule, which gives $(e^{-t})' = -e^{-t}$, $(\\cos 3t)' = -3\\sin 3t$ and $(\\sin 3t)' = 3\\cos 3t$.",
+       "src": "3.6"
+      },
+      {
+       "tex": "\\kxprime(0) = 0",
+       "src": "Example 17.21"
+      },
+      {
+       "step": 5
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kxfn(t)} = \\mk{exp}{e^{-t}}(\\mk{c1}{c_1}\\mk{cos}{\\cos 3t} + \\mk{c2}{c_2}\\mk{sin}{\\sin 3t})",
+      "uses": [],
+      "src": "Example 17.21"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kxprime(t)} = -\\mk{exp}{e^{-t}}(\\mk{c1}{c_1}\\mk{cos}{\\cos 3t} + \\mk{c2}{c_2}\\mk{sin}{\\sin 3t}) + \\mk{exp2}{e^{-t}}(-\\mk{c1b}{3c_1}\\mk{sinB}{\\sin 3t} + \\mk{c2b}{3c_2}\\mk{cosB}{\\cos 3t})",
+       "uses": [1, 2],
+       "cap": "The product rule: differentiate $e^{-t}$ and keep the bracket, then keep $e^{-t}$ and differentiate the bracket.",
+       "map": {
+        "exp": [
+         "exp",
+         "exp2"
+        ],
+        "c1": [
+         "c1",
+         "c1b"
+        ],
+        "c2": [
+         "c2",
+         "c2b"
+        ],
+        "cos": [
+         "cos",
+         "cosB"
+        ],
+        "sin": [
+         "sin",
+         "sinB"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\kxprime(t)} = \\mk{exp}{e^{-t}}\\big(\\mk{cc}{(-c_1 + 3c_2)}\\mk{cos}{\\cos 3t} + \\mk{sc}{(-c_2 - 3c_1)}\\mk{sin}{\\sin 3t}\\big)",
+       "uses": [],
+       "map": {
+        "exp2": "exp",
+        "c1": "cc",
+        "c2b": "cc",
+        "c2": "sc",
+        "c1b": "sc",
+        "cosB": "cos",
+        "sinB": "sin"
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\kxprime(0)} = -\\mk{c1}{c_1} + \\mk{c2}{3c_2}",
+       "uses": [],
+       "map": {
+        "cc": [
+         "c1",
+         "c2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{x}{0} = -\\mk{c1}{c_1} + \\mk{c2}{3c_2}",
+       "uses": [3]
+      },
+      {
+       "tex": "\\mk{x}{0} = -\\mk{c1}{\\dfrac{3}{4}} + \\mk{c2}{3c_2}",
+       "uses": [4]
+      },
+      {
+       "tex": "\\mk{c2}{3c_2} = \\mk{c1}{\\dfrac{3}{4}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c2}{c_2} = \\mk{c1}{\\dfrac{1}{4}}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "step": 5
+      },
+      {
+       "step": 6
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kxfn(t)} = \\mk{exp}{e^{-t}}(\\mk{c1}{c_1}\\mk{cos}{\\cos 3t} + \\mk{c2}{c_2}\\mk{sin}{\\sin 3t})",
+      "uses": [],
+      "src": "Example 17.21"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kxfn(t)} = \\mk{exp}{e^{-t}}(\\mk{c1}{\\tfrac{3}{4}}\\mk{cos}{\\cos 3t} + \\mk{c2}{c_2}\\mk{sin}{\\sin 3t})",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{x}{\\kxfn(t)} = \\mk{exp}{e^{-t}}(\\mk{c1}{\\tfrac{3}{4}}\\mk{cos}{\\cos 3t} + \\mk{c2}{\\tfrac{1}{4}}\\mk{sin}{\\sin 3t})",
+       "uses": [2]
+      }
+     ],
+     "src": "Example 17.21"
+    }
+   ]
+  },
+  {
+   "id": "rlc-circuit-equation",
+   "what": "the equation of an RLC series circuit",
+   "source": "Calculus, 17.3 Applications, The RLC Series Circuit",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "E_{L}=L\\frac{dI}{dt}",
+       "src": "17.3"
+      },
+      {
+       "tex": "E_{R}=R\\kI",
+       "src": "17.3"
+      },
+      {
+       "tex": "E_{C}=\\frac{1}{C}\\kq",
+       "src": "17.3"
+      },
+      {
+       "tex": "\\kI=\\frac{dq}{dt}",
+       "src": "17.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{E_{L}}+\\mk{R}{E_{R}}+\\mk{C}{E_{C}}=\\mk{E}{\\kE(t)}",
+      "uses": [],
+      "src": "17.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{L\\frac{dI}{dt}}+\\mk{R}{R\\kI}+\\mk{C}{\\frac{1}{C}\\kq}=\\mk{E}{\\kE(t)}",
+       "uses": [0, 1, 2]
+      },
+      {
+       "tex": "\\mk{L}{L\\frac{d^{2}q}{dt^{2}}}+\\mk{R}{R\\frac{dq}{dt}}+\\mk{C}{\\frac{1}{C}\\kq}=\\mk{E}{\\kE(t)}",
+       "uses": [3]
+      }
+     ],
+     "num": "(17.9)",
+     "src": "17.3"
+    }
+   ]
+  }
  ]
 }

@@ -606,5 +606,70 @@
     "sim-stokes"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "terminal-velocity",
+   "what": "the terminal velocity of a falling body",
+   "source": "College Physics 2e, 5.2 Drag Forces",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "At terminal velocity the velocity is constant, so there is no acceleration: $\\ka = 0$.",
+       "src": "5.2"
+      },
+      {
+       "text": "The only forces on the skydiver are gravity, $\\km\\kg$, down and the drag force $\\kFD$, up.",
+       "src": "5.2"
+      },
+      {
+       "tex": "\\kFD = \\frac{1}{2}C\\krhomat \\karea\\kv^2",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnet} = \\mk{g}{\\km\\kg} - \\mk{D}{\\kFD} = \\mk{a}{\\km\\ka}",
+      "src": "4.3",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFnet} = \\mk{g}{\\km\\kg} - \\mk{D}{\\kFD} = \\mk{a}{\\km\\ka} = \\mk{z}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{g}{\\km\\kg} = \\mk{D}{\\kFD}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{g}{\\km\\kg} = \\mk{D}{\\frac{1}{2}\\krhomat C \\karea\\kv^2}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kv^2} = \\frac{\\mk{g}{2\\km\\kg}}{\\mk{D}{\\krhomat C \\karea}}",
+       "uses": [],
+       "map": {
+        "D": [
+         "v",
+         "D"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kv} = \\sqrt{\\frac{\\mk{g}{2\\km\\kg}}{\\mk{D}{\\krhomat C \\karea}}}",
+       "uses": []
+      }
+     ],
+     "src": "5.2"
+    }
+   ]
+  }
  ]
 }

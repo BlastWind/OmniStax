@@ -5,14 +5,7 @@
 <p class="cite-target">When we have a <span data-concept="function">function</span> that is a composition of two or more <span data-concept="function">functions</span>, we could use all of the techniques we have already learned to differentiate it. However, using all of those techniques to break down a <span data-concept="function">function</span> into simpler parts that we are able to differentiate can get cumbersome. Instead, we use the <strong><span data-concept="chain-rule">chain rule</span></strong>, which states that the <span data-concept="derivative">derivative</span> of a <span data-concept="composite-function">composite function</span> is the <span data-concept="derivative">derivative</span> of the outer <span data-concept="function">function</span> evaluated at the inner <span data-concept="function">function</span> times the <span data-concept="derivative">derivative</span> of the inner <span data-concept="function">function</span>.</p>
 <p>To put this rule into context, let’s take a look at an example: <span data-fn="sin(x^3)">$\kh(x)=\sin (x^{3}).$</span> We can think of the <span data-concept="derivative">derivative</span> of this <span data-concept="function">function</span> with respect to <em>x</em> as the rate of change of $\sin (x^{3})$ relative to the change in $x.$ Consequently, we want to know how $\sin (x^{3})$ changes as $x$ changes. We can think of this event as a chain reaction: As $x$ changes, $x^{3}$ changes, which leads to a change in $\sin (x^{3}).$ This chain reaction gives us hints as to what is involved in computing the <span data-concept="derivative">derivative</span> of $\;\sin (x^{3}).$ First of all, a change in $x$ forcing a change in $x^{3}$ suggests that somehow the <span data-concept="derivative">derivative</span> of $x^{3}$ is involved. In addition, the change in $x^{3}$ forcing a change in $\sin (x^{3})$ suggests that the <span data-concept="derivative">derivative</span> of $\sin (u)$ with respect to $u,$ where $u=x^{3},$ is also part of the final <span data-concept="derivative">derivative</span>.</p>
 <p>We can take a more formal look at the <span data-concept="derivative">derivative</span> of $\kh(x)=\sin (x^{3})$ by setting up the <span data-concept="limit">limit</span> that would give us the <span data-concept="derivative">derivative</span> at a specific value $a$ in the domain of $\kh(x)=\sin (x^{3}).$</p>
-$$\khprime(a)=\lim_{x\to a}\frac{\sin (x^{3})-\sin (a^{3})}{x-a}.$$
-<p>This expression does not seem particularly helpful; however, we can modify it by multiplying and dividing by the expression $x^{3}-a^{3}$ to obtain</p>
-$$\khprime(a)=\lim_{x\to a}\frac{\sin (x^{3})-\sin (a^{3})}{x^{3}-a^{3}}\cdot \frac{x^{3}-a^{3}}{x-a}.$$
-<p>From the definition of the <span data-concept="derivative">derivative</span>, we can see that the second factor is the <span data-concept="derivative">derivative</span> of $x^{3}$ at $x=a.$ That is,</p>
-$$\lim_{x\to a}\frac{x^{3}-a^{3}}{x-a}=\frac{d}{dx}{(x^{3})}_{x=a}=3a^{2}.$$
-<p>However, it might be a little more challenging to recognize that the first term is also a <span data-concept="derivative">derivative</span>. We can see this by letting $u=x^{3}$ and observing that as $x\to a,u\to a^{3}\text{:}$</p>
-$$\begin{array}{rl}\lim_{x\to a}\frac{\sin (x^{3})-\sin (a^{3})}{x^{3}-a^{3}} & =\lim_{u\to a^{3}}\frac{\sin u-\sin (a^{3})}{u-a^{3}} \\ & =\frac{d}{du}{(\sin u)}_{u=a^{3}} \\ & =\cos (a^{3}).\end{array}$$
-<p>Thus, $\khprime(a)=\cos (a^{3})\cdot 3a^{2}.$</p>
+<figure class="dv" id="drv-chain-rule-special-case"></figure>
 <p>In other words, if $\kh(x)=\sin (x^{3}),$ then $\khprime(x)=\cos (x^{3})\cdot 3x^{2}.$ Thus, if we think of $\kh(x)=\sin (x^{3})$ as the composition $(\kf\circ \kg)(x)=\kf(\kg(x))$ where $\kf(x)=$ sin $x$ and $\kg(x)=x^{3},$ then the <span data-concept="derivative">derivative</span> of $\kh(x)=\sin (x^{3})$ is the product of the <span data-concept="derivative">derivative</span> of $\kg(x)=x^{3}$ and the <span data-concept="derivative">derivative</span> of the <span data-concept="function">function</span> $\kf(x)=\sin x$ evaluated at the <span data-concept="function">function</span> $\kg(x)=x^{3}.$ At this point, we anticipate that for $\kh(x)=\sin (\kg(x)),$ it is quite likely that $\khprime(x)=\cos (\kg(x))\kgprime(x).$ As we determined above, this is the case for $\kh(x)=\sin (x^{3}).$</p>
 <p>Now that we have derived a special case of the <span data-concept="chain-rule">chain rule</span>, we state the general case and then apply it in a general form to other <span data-concept="composite-function">composite functions</span>. An informal proof is provided at the end of the section.</p>
 <div class="note" id="chain-rule-note">
@@ -86,8 +79,8 @@ $$\khprime(x)=-2{(3x-5)}^{-3}(3)=-6{(3x-5)}^{-3}.$$
 <h3>Example 3.51 · Using the Chain Rule on a General Cosine Function</h3>
 <p>Find the <span data-concept="derivative">derivative</span> of $\kh(x)=\cos (\kg(x)).$</p>
 <h4>Solution</h4>
-<p>Think of $\kh(x)=\cos (\kg(x))$ as $\kf(\kg(x))$ where $\kf(x)=\cos x.$ Since $\kfprime(x)=-\sin x.$ we have $\kfprime(\kg(x))=-\sin (\kg(x)).$ Then we do the following calculation.</p>
-$$\begin{array}{rllll}\khprime(x) & =\kfprime(\kg(x))\kgprime(x) & & & \text{Apply the chain rule.} \\ & =-\sin (\kg(x))\kgprime(x) & & & \text{Substitute}\;\kfprime(\kg(x))=-\sin (\kg(x)).\end{array}$$
+<p>Think of $\kh(x)=\cos (\kg(x))$ as $\kf(\kg(x))$ where $\kf(x)=\cos x.$</p>
+<figure class="dv" id="drv-chain-rule-cosine"></figure>
 <p>Thus, the <span data-concept="derivative">derivative</span> of $\kh(x)=\cos (\kg(x))$ is given by $\khprime(x)=-\sin (\kg(x))\kgprime(x).$</p>
 </div>
 <p>In the following example we apply the rule that we have just derived.</p>
@@ -128,12 +121,7 @@ $$\begin{array}{rllll}\khprime(x) & =\frac{d}{dx}({(2x+1)}^{5})\cdot {(3x-2)}^{7
 <section id="three-functions">
 <h2>Composites of Three or More Functions</h2>
 <p class="cite-target">We can now combine the <span data-concept="chain-rule">chain rule</span> with other rules for differentiating <span data-concept="function">functions</span>, but when we are differentiating the composition of three or more <span data-concept="function">functions</span>, we need to apply the <span data-concept="chain-rule">chain rule</span> more than once. If we look at this situation in general terms, we can generate a formula, but we do not need to remember it, as we can simply apply the <span data-concept="chain-rule">chain rule</span> multiple times.</p>
-<p id="general-three">In general terms, first we let</p>
-$$\kk(x)=\kh(\kf(\kg(x))).$$
-<p>Then, applying the <span data-concept="chain-rule">chain rule</span> once we obtain</p>
-$$\kkprime(x)=\frac{d}{dx}(\kh(\kf(\kg(x)))=\khprime(\kf(\kg(x)))\cdot \frac{d}{dx}\kf((\kg(x))).$$
-<p>Applying the <span data-concept="chain-rule">chain rule</span> again, we obtain</p>
-$$\kkprime(x)=\khprime(\kf(\kg(x))\kfprime(\kg(x))\kgprime(x)).$$
+<figure class="dv" id="drv-chain-rule-three-functions"></figure>
 <div class="note" id="three-rule">
 <div class="eyebrow">Rule</div>
 <h3>Chain Rule for a Composition of Three Functions</h3>
@@ -164,20 +152,8 @@ $$\kv(t)=\ksprime(t)=2\;\cos (2t)-3\;\sin (3t).$$
 </div>
 <div class="exercises" data-place="fs-id1169736593542"></div>
 <h3>Proof</h3>
-<p>At this point, we present a very informal proof of the <span data-concept="chain-rule">chain rule</span>. For simplicity’s sake we ignore certain issues: For example, we assume that $\kg(x)\ne \kg(a)$ for $x\ne a$ in some open interval containing $a.$ We begin by applying the <span data-concept="limit">limit</span> definition of the <span data-concept="derivative">derivative</span> to the <span data-concept="function">function</span> $\kh(x)$ to obtain $\khprime(a)\text{:}$</p>
-$$\khprime(a)=\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{x-a}.$$
-<p>Rewriting, we obtain</p>
-$$\khprime(a)=\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{\kg(x)-\kg(a)}\cdot \frac{\kg(x)-\kg(a)}{x-a}.$$
-<p>Although it is clear that</p>
-$$\lim_{x\to a}\frac{\kg(x)-\kg(a)}{x-a}=\kgprime(a),$$
-<p>it is not obvious that</p>
-$$\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{\kg(x)-\kg(a)}=\kfprime(\kg(a)).$$
-<p>To see that this is true, first recall that since <em>g</em> is differentiable at $a,\kg$ is also continuous at $a.$ Thus,</p>
-$$\lim_{x\to a}\kg(x)=\kg(a).$$
-<p>Next, make the substitution $y=\kg(x)$ and $b=\kg(a)$ and use change of variables in the <span data-concept="limit">limit</span> to obtain</p>
-$$\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{\kg(x)-\kg(a)}=\lim_{y\to b}\frac{\kf(y)-\kf(b)}{y-b}=\kfprime(b)=\kfprime(\kg(a)).$$
-<p>Finally,</p>
-$$\khprime(a)=\lim_{x\to a}\frac{\kf(\kg(x))-\kf(\kg(a))}{\kg(x)-\kg(a)}\cdot \frac{\kg(x)-\kg(a)}{x-a}=\kfprime(\kg(a))\kgprime(a).$$
+<p>At this point, we present a very informal proof of the <span data-concept="chain-rule">chain rule</span>. For simplicity’s sake we ignore certain issues: For example, we assume that $\kg(x)\ne \kg(a)$ for $x\ne a$ in some open interval containing $a.$</p>
+<figure class="dv" id="drv-chain-rule"></figure>
 <p>□</p>
 <div class="example" id="fs-id1169736613849">
 <h3>Example 3.57 · Using the Chain Rule with Functional Values</h3>
@@ -192,10 +168,7 @@ $$\begin{array}{rllll}\khprime(1) & =\kfprime(\kg(1))\kgprime(1) & & & \text{App
 <section id="leibniz">
 <h2>The Chain Rule Using Leibniz’s Notation</h2>
 <p class="cite-target">As with other <span data-concept="derivative">derivatives</span> that we have seen, we can express the <span data-concept="chain-rule">chain rule</span> using <span data-concept="leibniz-notation">Leibniz’s notation</span>. This notation for the <span data-concept="chain-rule">chain rule</span> is used heavily in physics applications.</p>
-<p id="leibniz-derivation">$\text{For}\;\kh(x)=\kf(\kg(x)),$ let $u=\kg(x)$ and $y=\kh(x)=\kf(u).$ Thus,</p>
-$$\khprime(x)=\kdydx,\kfprime(\kg(x))=\kfprime(u)=\kdydu\;\text{and}\;\kgprime(x)=\kdudx.$$
-<p>Consequently,</p>
-$$\kdydx=\khprime(x)=\kfprime(\kg(x))\kgprime(x)=\kdydu\cdot \kdudx.$$
+<figure class="dv" id="drv-chain-rule-leibniz"></figure>
 <div class="note" id="leibniz-rule">
 <div class="eyebrow">Rule</div>
 <h3>Chain Rule Using Leibniz’s Notation</h3>

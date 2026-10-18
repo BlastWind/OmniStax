@@ -304,3 +304,8 @@ of the keyed problem, which is what 3.5 does with its galaxies.
 Revised in the Manim pass of 2026-09-28:
 - `sim-traffic-light` · the readout is the vertical balance alone with its numbers; the horizontal balance moves to the line beneath as a sentence (manim-style 12).
 - `sim-soccer` · the readout is one equation, F_net = m Δv/Δt; the average acceleration moves to the line beneath (manim-style 12).
+
+## Derivations
+
+- Example 4.8, Different Tensions at Different Angles · score 3 · not built: a worked example of the section's method, every line printed, under the bar
+- Example 4.9 (Strategy), the scale reading in an accelerating elevator · score 2 · built as drv-scale-reading: one node, Newton's second law with the free-body diagram to $F_s = ma + mg$, which the book says holds for any acceleration; replaces the strategy's four displays

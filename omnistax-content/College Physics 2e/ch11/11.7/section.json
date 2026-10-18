@@ -669,5 +669,111 @@
    "kind": "correction",
    "html": "The book prints the steel’s weight as $m_{\\text{s}}w$; $m_{\\text{s}}g$ is meant, the mass of the steel times the acceleration due to gravity."
   }
+ ],
+ "derivations": [
+  {
+   "id": "fraction-submerged",
+   "what": "the fraction of a floating object that is submerged",
+   "source": "College Physics 2e, 11.7 Archimedes’ Principle",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The object floats, so the buoyant force on it balances its weight.",
+       "src": "11.7"
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\kFB = \\kwfl",
+       "src": "11.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{B}{\\kFB} = \\mk{w}{\\kmobj\\kg}",
+      "src": "11.7",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{B}{\\kwfl} = \\mk{w}{\\kmobj\\kg}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{B}{\\kmfl\\kg} = \\mk{w}{\\kmobj\\kg}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{B}{\\kmfl} = \\mk{w}{\\kmobj}",
+       "uses": []
+      }
+     ],
+     "src": "11.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The volume submerged equals the volume of fluid displaced.",
+       "src": "11.7"
+      },
+      {
+       "tex": "\\krho = \\frac{\\km}{\\kvol}",
+       "src": "11.2"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\text{fraction submerged}} = \\frac{\\mk{s}{\\kvolsub}}{\\mk{o}{\\kvolobj}}",
+      "src": "11.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\text{fraction submerged}} = \\frac{\\mk{s}{\\kvolfl}}{\\mk{o}{\\kvolobj}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\text{fraction submerged}} = \\frac{\\mk{s}{\\kmfl/\\krhofl}}{\\mk{o}{\\kmobj/\\krhoobj}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\text{fraction submerged}} = \\frac{\\mk{mf}{\\kmfl}\\,\\mk{o}{\\krhoobj}}{\\mk{mo}{\\kmobj}\\,\\mk{s}{\\krhofl}}",
+       "uses": [],
+       "map": {
+        "s": [
+         "mf",
+         "s"
+        ],
+        "o": [
+         "mo",
+         "o"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\text{fraction submerged}} = \\frac{\\mk{o}{\\krhoobj}}{\\mk{s}{\\krhofl}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "11.7"
+    }
+   ]
+  }
  ]
 }

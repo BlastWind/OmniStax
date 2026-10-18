@@ -46,3 +46,16 @@ None: a cobweb for a recursion and the Fibonacci ratio settling on φ were weigh
 ## Wanted at chapter level
 
 - Anchors: variables a_seq, n, f → `9.1-sequence-definition`; L → `9.1-limit-informal`; ε → `9.1-limit-formal`; A, B, c → `9.1-limit-laws`; b_seq, c_seq → `9.1-squeeze-sequences`; r → `9.1-terminology`; M → `9.1-bounded-definition`; F → `9.1-fibonacci`. Forms: eq-sequence-list, eq-explicit-formula → `9.1-sequence-definition`; eq-arithmetic-sequence, eq-geometric-sequence → `9.1-terminology`; eq-limit-of-a-sequence → `9.1-limit-informal`; eq-formal-limit-of-a-sequence → `9.1-limit-formal`; eq-sequence-by-function → `9.1-sequence-by-function`; eq-geometric-sequence-to-zero/-one/-infinity/-diverges → `9.1-limit-of-a-sequence`; eq-sequence-*-law → `9.1-limit-laws`; eq-continuous-on-sequence → `9.1-continuous-on-sequences`; eq-sequence-squeeze → `9.1-squeeze-sequences`; eq-increasing-sequence, eq-decreasing-sequence → `9.1-monotone-definition`; eq-fibonacci → `9.1-fibonacci`.
+
+## Derivations
+
+- Terminology of Sequences · the explicit formulas of an arithmetic and a geometric sequence · score 1 · not built: a pattern read off listed terms, three moves, under the bar
+- Algebraic Limit Laws · Proof (part iii) · score 2 · built as drv-limit-sum-law (a printed proof; the setup prose kept, the chain line replaced by the host; the regrouping line inserted)
+- Limit of a Sequence · the geometric sequence $\{r^{n}\},$ (9.1)–(9.4) · score 3 · not built: a summary drawn from Example 9.5 and prose, no chain
+- Example 9.3d · the limit of $(1+4/n)^{n}$ · score 5 · not built: a worked example of 4.8's $1^{\infty}$ method along one line, every line printed but one derivative
+- Continuous Functions Defined on Convergent Sequences · Proof · score 2 · built as drv-continuous-function-of-sequence (a printed proof, prose-first; the paragraph kept, the host after it)
+- Squeeze Theorem for Sequences · Proof · score 2 · built as drv-squeeze-theorem-sequences (the chain replaced by the host, the closing sentence trimmed to its conclusion)
+- Convergent Sequences Are Bounded · no proof printed · score 6 · built as drv-convergent-sequences-bounded (hidden: $\varepsilon=1,$ the triangle inequality of 2.5, the maximum of the first $N-1$ terms; host after the theorem)
+- Monotone Convergence Theorem · "beyond the scope of this text" · score 7 · not built: the proof rests on the completeness of the real numbers, which the book never states
+- Example 9.6a and 9.6b · scores 1 and 2 · not built: worked examples of the Monotone Convergence Theorem
+- Student Project · Fibonacci Numbers · score 12 · not built: a project set for the reader

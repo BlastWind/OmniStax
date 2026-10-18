@@ -42,3 +42,8 @@ Both Sims above are extras (the book has no figure to replace): `sim-nonhomogene
 
 - forms `eq-complementary-equation` → `17.2-fs-id1170572140518`, `eq-general-solution-nonhomogeneous` → `17.2-fs-id1170571626655`, `eq-cramers-rule` → `17.2-fs-id1170572548183`, `eq-variation-of-parameters` → `17.2-fs-id1170571789080`, `eq-variation-particular` → `17.2-fs-id1170571789080`.
 - variables of 17.2: y, y′, y″, r → `17.2-general-solution`; y₁, y₂, y_p → `17.2-fs-id1170571626655`; y₁′, y₂′, y₁″, y₂″, u, v, u′, v′, y_p′, y_p″ → `17.2-variation-of-parameters`.
+
+## Derivations
+
+- General Solution to a Nonhomogeneous Equation, Proof · score 3 · built as drv-general-solution-nonhomogeneous, the proof's lines replaced under its heading and its opening sentence kept: y solves the equation; z − y_p solves the complementary equation; z − y_p = c₁y₁ + c₂y₂ from the hypothesis, rearranged to z.
+- Variation of Parameters, the block after "We want to find functions u(x) and v(x)" · score 1 · built as drv-variation-of-parameters, the block replaced through the system: y_p′, y_p″ (the regrouping line inserted), the substitution and the vanishing brackets, then the condition u′y₁ + v′y₂ = 0 and the system it leaves.

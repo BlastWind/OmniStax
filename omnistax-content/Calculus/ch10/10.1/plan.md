@@ -43,3 +43,10 @@ None beyond the two: a Sim of Example 10.3's substitutions (1/(1 + x³), x²/(4 
 - forms `eq-power-series-at-zero` → `10.1-fs-id1170572644191`, `eq-power-series-at-a` → `10.1-fs-id1170572295618`, `eq-geometric-power-series` → `10.1-geometric-representation`.
 - variables of 10.1: f → `10.1-geometric-representation`, S → `10.1-fs-id1170572498722`, R → `10.1-interval-term`.
 - Applied in the chapter pass (2026-10-13): every anchor above set with `ost set`; review rows landed with `mksection.py --with-review`.
+
+## Derivations
+
+- Theorem · Convergence of a Power Series, Proof · score 6 · built as drv-convergence-of-a-power-series (replaces the proof's lines: the lemma |x| < |d| by the divergence test, a bound on the terms and comparison with a geometric series, then case iii from the least upper bound; the skipped steps inserted, among them why R > 0, why the series converges for |x| < R and why it diverges for |x| > R)
+- Example 10.1 c · score 4 · not built: a worked example of the section's method, the ratio test and two endpoint checks
+- Representing Functions as Power Series · 1/(1 − x) as the geometric series · score 1 · not built: one substitution (a = 1, r = x) into 9.2's sum
+- Example 10.3 b · score 1 · not built: a worked example of the section's method

@@ -661,5 +661,57 @@
    "exercise": "p5",
    "concept": "binding-energy"
   }
+ ],
+ "derivations": [
+  {
+   "id": "binding-energy",
+   "what": "the binding energy of a nuclide from atomic masses",
+   "source": "College Physics 2e, 31.6 Binding Energy",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The nuclide ${}^{A}\\text{X}$ has $Z$ protons and $N$ neutrons, and the mass defect is the mass of these separate nucleons less the mass $\\kmtot$ of the nucleus: $\\kdm = (Z\\kmp + N\\kmn) - \\kmtot$.",
+       "src": "31.6"
+      },
+      {
+       "text": "Adding $Z$ electrons to the nucleus gives the neutral atom: $\\kmtot + Z\\kme = m({}^{A}\\text{X})$.",
+       "src": "31.6"
+      },
+      {
+       "text": "Adding an electron to a proton gives a hydrogen atom: $\\kmp + \\kme = m({}^{1}\\text{H})$.",
+       "src": "31.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{B}{\\kBE} = \\mk{d}{(\\kdm)}\\mk{c}{\\kc^{2}}",
+      "uses": [],
+      "src": "31.6",
+      "why": "The energy put in to pull the nucleus apart raises the rest mass of its pieces by $\\kdm = \\kBE/\\kc^{2}$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{B}{\\kBE} = (\\kdm)\\kc^{2} = \\mk{d}{[(Z\\kmp + N\\kmn) - \\kmtot]}\\mk{c}{\\kc^{2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{B}{\\kBE} = \\mk{d}{[(Z\\kmp + Z\\kme + N\\kmn) - (\\kmtot + Z\\kme)]}\\mk{c}{\\kc^{2}}",
+       "uses": [],
+       "cap": "Adding the mass of $Z$ electrons to both terms leaves their difference unchanged."
+      },
+      {
+       "tex": "\\mk{B}{\\kBE} = \\mk{d}{\\{[Zm({}^{1}\\text{H}) + N\\kmn] - m({}^{A}\\text{X})\\}}\\mk{c}{\\kc^{2}}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "31.6"
+    }
+   ]
+  }
  ]
 }

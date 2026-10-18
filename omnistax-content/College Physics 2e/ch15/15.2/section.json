@@ -623,5 +623,121 @@
     "sim-isotherm-adiabat"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "isobaric-work",
+   "what": "the work done by a gas at constant pressure",
+   "source": "College Physics 2e, 15.2 The First Law of Thermodynamics and Some Simple Processes",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The pressure is constant, so the force the gas exerts on the piston is constant.",
+       "src": "15.2"
+      },
+      {
+       "tex": "\\kF = \\kPr\\karea",
+       "src": "11.3"
+      },
+      {
+       "tex": "\\karea\\kd = \\kdvol",
+       "src": "15.2, Figure 15.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}",
+      "uses": [
+       0
+      ],
+      "src": "7.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{P}{\\kPr}\\mk{A}{\\karea}\\mk{d}{\\kd}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "F": [
+         "P",
+         "A"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{P}{\\kPr}\\mk{A}{\\kdvol}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "d": "A"
+       }
+      }
+     ],
+     "src": "15.2"
+    }
+   ]
+  },
+  {
+   "id": "isothermal-first-law",
+   "what": "heat and work in an isothermal process",
+   "source": "College Physics 2e, 15.2 The First Law of Thermodynamics and Some Simple Processes",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The kinetic energy of its atoms is the only form of internal energy of a monatomic ideal gas, so the internal energy of $N$ atoms is $N$ times the average kinetic energy of one.",
+       "src": "15.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kvb^2} = \\mk{kT}{\\tfrac{3}{2}k\\kTemp}",
+      "uses": [],
+      "src": "13.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEint} = \\mk{ke}{N\\tfrac{1}{2}\\km\\kvb^2} = \\mk{kT}{\\tfrac{3}{2}Nk\\kTemp}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "15.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "In an isothermal process the temperature $\\kTemp$ is kept constant.",
+       "src": "15.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dE}{\\kdEint} = \\mk{Q}{\\kQh} - \\mk{W}{\\kW}",
+      "uses": [],
+      "src": "15.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{dE}{0} = \\mk{Q}{\\kQh} - \\mk{W}{\\kW}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "With $\\kTemp$ constant, $\\kEint = \\tfrac{3}{2}Nk\\kTemp$ does not change."
+      },
+      {
+       "tex": "\\mk{Q}{\\kQh} = \\mk{W}{\\kW}",
+       "uses": []
+      }
+     ],
+     "src": "15.2"
+    }
+   ]
+  }
  ]
 }

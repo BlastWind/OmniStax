@@ -409,5 +409,170 @@
         "sim-sun-earth"
       ]
     }
+  ],
+  "derivations": [
+    {
+      "id": "reversible-entropy",
+      "what": "the entropy change of a Carnot engine and its reservoirs",
+      "source": "College Physics 2e, 15.6 Entropy and the Second Law of Thermodynamics: Disorder and the Unavailability of Energy",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "\\kdSh = -\\dfrac{\\kQH}{\\kTemph}",
+              "src": "15.6"
+            },
+            {
+              "tex": "\\kdSc = \\dfrac{\\kQC}{\\kTempc}",
+              "src": "15.6"
+            },
+            {
+              "tex": "\\dfrac{\\kQC}{\\kTempc} = \\dfrac{\\kQH}{\\kTemph}",
+              "src": "15.6"
+            },
+            {
+              "text": "The reservoirs are large enough that their temperatures stay constant.",
+              "src": "15.6"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{S}{\\kdStot} = \\mk{h}{\\kdSh} + \\mk{c}{\\kdSc}",
+            "uses": [],
+            "src": "15.6"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{S}{\\kdStot} = \\mk{h}{-\\dfrac{\\kQH}{\\kTemph}} + \\mk{c}{\\dfrac{\\kQC}{\\kTempc}}",
+              "uses": [
+                0,
+                1,
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{S}{\\kdStot} = \\mk{h}{-\\dfrac{\\kQH}{\\kTemph}} + \\mk{c}{\\dfrac{\\kQH}{\\kTemph}}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{S}{\\kdStot} = \\mk{h}{0}",
+              "uses": [],
+              "map": {
+                "c": "h"
+              }
+            }
+          ],
+          "src": "15.6"
+        }
+      ]
+    },
+    {
+      "id": "unavailable-work",
+      "what": "the energy made unavailable for work",
+      "source": "College Physics 2e, 15.6 Entropy and the Second Law of Thermodynamics: Disorder and the Unavailability of Energy",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "The heat transfer $\\kQH$ runs a Carnot engine from $\\kTemph$ down to the lowest temperature utilized, $\\kTempo$.",
+              "src": "Example 15.7"
+            },
+            {
+              "tex": "\\text{Eff}_{\\text{C}} = 1 - \\dfrac{\\kTempc}{\\kTemph}",
+              "src": "15.4"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{W}{\\kW} = \\mk{E}{\\text{Eff}_{\\text{C}}}\\mk{Q}{\\kQH}",
+            "uses": [0],
+            "src": "Example 15.7"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{W}{\\kW} = \\mk{E}{\\left(1 - \\dfrac{\\kTempo}{\\kTemph}\\right)}\\mk{Q}{\\kQH}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "Example 15.7"
+        },
+        {
+          "assumes": [
+            {
+              "text": "The same $\\kQH$ first flows from $\\kTemph$ to a reservoir at $\\kTempcprime$, doing no work, and then runs a Carnot engine from $\\kTempcprime$ down to $\\kTempo$.",
+              "src": "Example 15.7"
+            },
+            {
+              "tex": "\\text{Eff}_{\\text{C}} = 1 - \\dfrac{\\kTempc}{\\kTemph}",
+              "src": "15.4"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{W}{\\kWprime} = \\mk{E}{{\\text{Eff}'}_{\\text{C}}}\\mk{Q}{\\kQH}",
+            "uses": [0],
+            "src": "Example 15.7"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{W}{\\kWprime} = \\mk{E}{\\left(1 - \\dfrac{\\kTempo}{\\kTempcprime}\\right)}\\mk{Q}{\\kQH}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "Example 15.7"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "step": 1
+            },
+            {
+              "tex": "\\kdS = -\\dfrac{\\kQH}{\\kTemph} + \\dfrac{\\kQH}{\\kTempcprime}",
+              "src": "15.6, Example 15.6"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{U}{\\kWunavail} = \\mk{W}{\\kW} - \\mk{Wp}{\\kWprime}",
+            "uses": [],
+            "src": "15.6",
+            "why": "The energy made unavailable is the work the same heat transfer can no longer do."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{U}{\\kWunavail} = \\mk{W}{\\left(1 - \\dfrac{\\kTempo}{\\kTemph}\\right)\\kQH} - \\mk{Wp}{\\left(1 - \\dfrac{\\kTempo}{\\kTempcprime}\\right)\\kQH}",
+              "uses": [
+                0,
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{U}{\\kWunavail} = \\mk{Wp}{\\dfrac{\\kTempo\\kQH}{\\kTempcprime}} - \\mk{W}{\\dfrac{\\kTempo\\kQH}{\\kTemph}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{U}{\\kWunavail} = \\mk{T}{\\kTempo}\\left(\\mk{W}{-\\dfrac{\\kQH}{\\kTemph}} + \\mk{Wp}{\\dfrac{\\kQH}{\\kTempcprime}}\\right)",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{U}{\\kWunavail} = \\mk{S}{\\kdS} \\cdot \\mk{T}{\\kTempo}",
+              "uses": [
+                2
+              ],
+              "map": {
+                "W": "S",
+                "Wp": "S"
+              }
+            }
+          ],
+          "src": "15.6"
+        }
+      ]
+    }
   ]
 }

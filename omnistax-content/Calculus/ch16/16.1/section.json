@@ -1279,5 +1279,277 @@
    "kind": "correction",
    "html": "The book’s sentence joins two: a vector field assigns a vector $\\kvecF(x,y)$ to each point $(x,y)$ in a subset $\\kD$ of $\\mathbb{R}^{2},$ or a vector $\\kvecF(x,y,z)$ to each point $(x,y,z)$ in a subset $\\kD$ of $\\mathbb{R}^{3}.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "cross-partial-property",
+   "what": "the cross-partial property of conservative vector fields",
+   "source": "Calculus, 16.1 Vector Fields, The Cross-Partial Property of Conservative Vector Fields, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kvecF$ is conservative, so there is a function $\\kf$ such that $\\kgradf=\\kvecF$.",
+       "src": "16.1, Definition"
+      },
+      {
+       "tex": "\\kgradf=\\langle \\kfx,\\kfy\\rangle",
+       "src": "14.6"
+      },
+      {
+       "tex": "\\kvecF(x,y)=\\langle \\kP(x,y),\\kQ(x,y)\\rangle",
+       "src": "16.1, The Cross-Partial Property of Conservative Vector Fields"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kgradf}=\\mk{F}{\\kvecF}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\langle \\mk{x}{\\kfx},\\mk{y}{\\kfy}\\rangle =\\mk{F}{\\kvecF}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "g": [
+         "x",
+         "y"
+        ]
+       }
+      },
+      {
+       "tex": "\\langle \\mk{x}{\\kfx},\\mk{y}{\\kfy}\\rangle =\\langle \\mk{P}{\\kP},\\mk{Q}{\\kQ}\\rangle",
+       "uses": [
+        2
+       ],
+       "map": {
+        "F": [
+         "P",
+         "Q"
+        ]
+       }
+      }
+     ],
+     "src": "16.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The component functions of $\\kvecF$ have continuous first-order partial derivatives, so $\\kfxy$ and $\\kfyx$ are continuous.",
+       "src": "16.1, The Cross-Partial Property of Conservative Vector Fields"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{xy}{\\kfxy}=\\mk{yx}{\\kfyx}",
+      "uses": [
+       1
+      ],
+      "src": "14.3, Clairaut’s Theorem"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xy}{(\\kfx)_{y}}=\\mk{yx}{(\\kfy)_{x}}",
+       "uses": [],
+       "cap": "$f_{xy}$ is the derivative of $f_{x}$ with respect to $y,$ and $f_{yx}$ the derivative of $f_{y}$ with respect to $x.$"
+      },
+      {
+       "tex": "\\mk{xy}{P_{y}}=\\mk{yx}{Q_{x}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "16.1, The Cross-Partial Property of Conservative Vector Fields"
+    }
+   ]
+  },
+  {
+   "id": "uniqueness-of-potential-functions",
+   "what": "the uniqueness of potential functions",
+   "source": "Calculus, 16.1 Vector Fields, Uniqueness of Potential Functions, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kgradf=\\kvecF,\\quad \\nabla\\kg=\\kvecF",
+       "src": "16.1, Uniqueness of Potential Functions"
+      },
+      {
+       "tex": "h=\\kf-\\kg"
+      },
+      {
+       "tex": "\\nabla h=\\langle h_{x},h_{y}\\rangle",
+       "src": "14.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\nabla(\\kf-\\kg)}=\\mk{f}{\\kgradf}-\\mk{g}{\\nabla\\kg}",
+      "uses": [],
+      "src": "14.6",
+      "why": "Each partial derivative of a difference is the difference of the partial derivatives, so the gradient is too."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\nabla(\\kf-\\kg)}=\\mk{f}{\\kvecF}-\\mk{g}{\\kvecF}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\nabla(\\kf-\\kg)}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "f": "z",
+        "g": "z"
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\nabla h}=\\mk{z}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\langle \\mk{x}{h_{x}},\\mk{y}{h_{y}}\\rangle =\\langle \\mk{zx}{0},\\mk{zy}{0}\\rangle",
+       "uses": [
+        2
+       ],
+       "map": {
+        "l": [
+         "x",
+         "y"
+        ],
+        "z": [
+         "zx",
+         "zy"
+        ]
+       }
+      }
+     ],
+     "src": "16.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "If $\\kfprime(x)=0$ for all $x$ in an interval, then $\\kf(x)$ is constant over that interval.",
+       "src": "4.4, Corollary 1"
+      }
+     ],
+     "then": {
+      "tex": "\\langle \\mk{x}{h_{x}},\\mk{y}{h_{y}}\\rangle =\\langle \\mk{zx}{0},\\mk{zy}{0}\\rangle",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{h_{x}}=\\mk{zx}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{x}{h(x,y)}=\\mk{zx}{k_{1}(y)}",
+       "uses": [
+        1
+       ],
+       "cap": "With $y$ held fixed, $h$ is a function of $x$ alone whose derivative is zero, so it is constant in $x$; the constant may change with $y$."
+      }
+     ],
+     "src": "16.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "If $\\kfprime(x)=0$ for all $x$ in an interval, then $\\kf(x)$ is constant over that interval.",
+       "src": "4.4, Corollary 1"
+      }
+     ],
+     "then": {
+      "tex": "\\langle \\mk{x}{h_{x}},\\mk{y}{h_{y}}\\rangle =\\langle \\mk{zx}{0},\\mk{zy}{0}\\rangle",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{h_{y}}=\\mk{zy}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{h(x,y)}=\\mk{zy}{k_{2}(x)}",
+       "uses": [
+        1
+       ],
+       "cap": "With $x$ held fixed, $h$ is a function of $y$ alone whose derivative is zero, so it is constant in $y$; the constant may change with $x$."
+      }
+     ],
+     "src": "16.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "text": "The domain of $\\kvecF$ is open and connected.",
+       "src": "16.1, Uniqueness of Potential Functions"
+      },
+      {
+       "tex": "h=\\kf-\\kg"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{h}{h(x,y)}=\\mk{k}{k_{1}(y)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{h}{h(x,y)}=\\mk{k}{k_{1}(y)}=\\mk{k2}{k_{2}(x)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{h}{h(x,y)}=\\mk{c}{C}",
+       "uses": [
+        2
+       ],
+       "cap": "Function $h$ depends only on $y$ and also only on $x$, so it depends on neither; on a connected domain it is one constant $C$.",
+       "map": {
+        "k": "c",
+        "k2": "c"
+       }
+      },
+      {
+       "tex": "\\mk{h}{\\kf-\\kg}=\\mk{c}{C}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kf}=\\mk{g}{\\kg}+\\mk{c}{C}",
+       "uses": [],
+       "map": {
+        "h": [
+         "f",
+         "g"
+        ]
+       }
+      }
+     ],
+     "src": "16.1, Uniqueness of Potential Functions"
+    }
+   ]
+  }
  ]
 }

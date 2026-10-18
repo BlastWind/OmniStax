@@ -893,5 +893,56 @@
     "fig-rescue"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "scale-reading",
+   "what": "the scale reading in an accelerating elevator",
+   "source": "College Physics 2e, 4.7 Further Applications of Newton’s Laws of Motion, Example 4.9",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The only forces on the person are his weight $\\kwgt$, down, and the force of the scale $\\kFs$, up.",
+       "src": "Figure 4.23"
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnet} = \\mk{m}{\\km\\ka}",
+      "src": "4.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kFs} - \\mk{w}{\\kwgt} = \\mk{m}{\\km\\ka}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "F": [
+         "s",
+         "w"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\kFs} = \\mk{m}{\\km\\ka} + \\mk{w}{\\kwgt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\kFs} = \\mk{m}{\\km\\ka} + \\mk{w}{\\km\\kg}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 4.9"
+    }
+   ]
+  }
  ]
 }

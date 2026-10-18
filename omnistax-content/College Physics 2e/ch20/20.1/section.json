@@ -1033,5 +1033,63 @@
     "sim-drift-count"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "current-drift-velocity",
+   "what": "the current in terms of the drift velocity",
+   "source": "College Physics 2e, 20.1 Current",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "All the free charges in the shaded segment move out of it in the time $\\kdt$.",
+       "src": "20.1, Figure 20.7"
+      },
+      {
+       "tex": "\\kdQch = \\kq n\\karea\\kx",
+       "src": "20.1"
+      },
+      {
+       "text": "The charges move an average distance $\\kx$ in the time $\\kdt$, so $\\kx/\\kdt$ is the magnitude of the drift velocity $\\kvd$.",
+       "src": "20.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIcur} = \\dfrac{\\mk{Q}{\\kdQch}}{\\mk{t}{\\kdt}}",
+      "src": "20.1",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\dfrac{\\mk{q}{\\kq}\\,\\mk{n}{n}\\,\\mk{A}{\\karea}\\,\\mk{x}{\\kx}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "Q": [
+         "q",
+         "n",
+         "A",
+         "x"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\mk{n}{n}\\,\\mk{q}{\\kq}\\,\\mk{A}{\\karea}\\,\\mk{x}{\\kvd}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "t": "x"
+       }
+      }
+     ],
+     "src": "20.1"
+    }
+   ]
+  }
  ]
 }

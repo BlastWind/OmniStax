@@ -572,5 +572,314 @@
     "sim-cans-race"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "rotational-work",
+   "what": "the work done in rotational motion",
+   "source": "College Physics 2e, 10.4 Rotational Kinetic Energy: Work and Energy Revisited",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The net force is exerted perpendicular to the radius of the disk and stays perpendicular as the disk turns.",
+       "src": "10.4, Figure 10.17"
+      },
+      {
+       "tex": "\\ktau = \\krperp\\kF",
+       "src": "9.2"
+      },
+      {
+       "text": "The angle turned is the arc length divided by the radius, $\\ktheta = \\kds/\\kr$.",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\text{net}\\;\\kW} = \\mk{F}{(\\text{net}\\;\\kF)}\\mk{s}{\\kds}",
+      "src": "7.1",
+      "uses": [
+       0
+      ],
+      "why": "A force perpendicular to the radius is parallel to the displacement along the arc, so the work is the force times the arc length."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\text{net}\\;\\kW} = \\mk{F}{(\\kr\\;\\text{net}\\;\\kF)}\\mk{s}{\\dfrac{\\kds}{\\kr}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{W}{\\text{net}\\;\\kW} = \\mk{F}{(\\text{net}\\;\\ktau)}\\mk{s}{\\dfrac{\\kds}{\\kr}}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "The force is perpendicular to the radius, so its lever arm is $\\kr$."
+      },
+      {
+       "tex": "\\mk{W}{\\text{net}\\;\\kW} = \\mk{F}{(\\text{net}\\;\\ktau)}\\mk{s}{\\ktheta}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "10.4"
+    }
+   ]
+  },
+  {
+   "id": "rotational-work-energy-theorem",
+   "what": "the work-energy theorem for rotational motion",
+   "source": "College Physics 2e, 10.4 Rotational Kinetic Energy: Work and Energy Revisited",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\text{net}\\;\\ktau = \\kI\\kalpha",
+       "src": "10.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\text{net}\\;\\kW} = \\mk{t}{(\\text{net}\\;\\ktau)}\\mk{th}{\\ktheta}",
+      "src": "10.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\text{net}\\;\\kW} = \\mk{I}{\\kI}\\mk{at}{\\kalpha\\ktheta}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "t": [
+         "I",
+         "at"
+        ],
+        "th": "at"
+       }
+      }
+     ],
+     "src": "10.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The angular acceleration $\\kalpha$ is constant.",
+       "src": "10.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\kw^2} = \\mk{wo}{{\\kwo}^2} + \\mk{two}{2}\\mk{at}{\\kalpha\\ktheta}",
+      "src": "10.2, Table 10.2",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{two}{2}\\mk{at}{\\kalpha\\ktheta} = \\mk{w}{\\kw^2} - \\mk{wo}{{\\kwo}^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{at}{\\kalpha\\ktheta} = \\dfrac{\\mk{w}{\\kw^2} - \\mk{wo}{{\\kwo}^2}}{\\mk{two}{2}}",
+       "uses": []
+      }
+     ],
+     "src": "10.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\text{net}\\;\\kW} = \\mk{I}{\\kI}\\mk{at}{\\kalpha\\ktheta}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\text{net}\\;\\kW} = \\mk{I}{\\kI}\\mk{at}{\\dfrac{\\kw^2 - {\\kwo}^2}{2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\text{net}\\;\\kW} = \\mk{k}{\\frac{1}{2}\\kI\\kw^2} - \\mk{k0}{\\frac{1}{2}\\kI{\\kwo}^2}",
+       "uses": [],
+       "map": {
+        "I": [
+         "k",
+         "k0"
+        ],
+        "at": [
+         "k",
+         "k0"
+        ]
+       }
+      }
+     ],
+     "src": "10.4"
+    }
+   ]
+  },
+  {
+   "id": "rolling-energy",
+   "what": "the energy of a can rolling down a ramp",
+   "source": "College Physics 2e, 10.4 Rotational Kinetic Energy: Work and Energy Revisited",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "With no losses to friction, the can’s gravitational potential energy is converted entirely to kinetic energy.",
+       "src": "10.4"
+      },
+      {
+       "text": "Total kinetic energy is the sum of translational and rotational kinetic energy.",
+       "src": "10.4"
+      },
+      {
+       "tex": "\\kPEgrav = \\km\\kg\\kh",
+       "src": "7.3"
+      },
+      {
+       "tex": "\\kKEtrans = \\frac{1}{2}\\km\\kv^2",
+       "src": "7.2"
+      },
+      {
+       "tex": "\\kKErot = \\frac{1}{2}\\kI\\kw^2",
+       "src": "10.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kPEi} = \\mk{k}{\\kKEf}",
+      "src": "10.4",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kPEgrav} = \\mk{t}{\\kKEtrans} + \\mk{r}{\\kKErot}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "k": [
+         "t",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\kKEtrans} + \\mk{r}{\\kKErot}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\kKErot}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{2}\\kI\\kw^2}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "10.4"
+    }
+   ]
+  },
+  {
+   "id": "rolling-cylinder-speed",
+   "what": "the speed of a cylinder rolling down an incline",
+   "source": "College Physics 2e, 10.4 Rotational Kinetic Energy: Work and Energy Revisited, Example 10.10",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kI = \\frac{1}{2}\\km\\kR^2",
+       "src": "10.3, Figure 10.12"
+      },
+      {
+       "text": "The cylinder rolls without slipping."
+      },
+      {
+       "tex": "\\kw = \\frac{\\kv}{\\kR}",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{2}\\kI\\kw^2}",
+      "src": "10.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{2}\\left(\\frac{1}{2}\\km\\kR^2\\right)\\kw^2}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{2}\\left(\\frac{1}{2}\\km\\kR^2\\right)\\left(\\frac{\\kv^2}{\\kR^2}\\right)}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\km\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\km\\kv^2} + \\mk{r}{\\frac{1}{4}\\km\\kv^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p}{\\kg\\kh} = \\mk{t}{\\frac{1}{2}\\kv^2} + \\mk{r}{\\frac{1}{4}\\kv^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p}{\\kg\\kh} = \\mk{t}{\\frac{3}{4}\\kv^2}",
+       "uses": [],
+       "map": {
+        "r": "t"
+       }
+      },
+      {
+       "tex": "\\mk{t}{\\kv} = \\mk{p}{\\left(\\frac{4\\kg\\kh}{3}\\right)^{1/2}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kg = 9.80\\ \\text{m/s}^2,\\quad \\kh = 2.00\\ \\text{m}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\kv} = \\mk{p}{\\left(\\frac{4\\kg\\kh}{3}\\right)^{1/2}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\kv} = \\mk{p}{\\left[\\frac{4(9.80\\ \\text{m/s}^2)(2.00\\ \\text{m})}{3}\\right]^{1/2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\kv} = \\mk{p}{5.11\\ \\text{m/s}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 10.10"
+    }
+   ]
+  }
  ]
 }

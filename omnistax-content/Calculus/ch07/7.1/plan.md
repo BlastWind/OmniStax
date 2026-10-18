@@ -53,3 +53,12 @@ Anchors confirmed with `ost ids calculus 7.1` after the build.
 - forms `eq-integration-by-parts` → `7.1-fs-id1165042232372`, `eq-integration-by-parts-fg` → `7.1-formula`, `eq-integration-by-parts-definite` → `7.1-fs-id1165042231112`.
 - variables `7.1/f`, `7.1/g`, `7.1/h`, `7.1/u`, `7.1/v`, `7.1/x` → `7.1-formula`; a variables row `7.1/I` (concept `indefinite-integral`, meaning "the integral ∫sin(ln x) dx, named so that the equation it appears in can be solved for it", `redefines`, after `ost meanings calculus I`) → Example 7.5's id.
 - Review 408 and 411 rows are added in the chapter pass once 7.7 is built.
+
+## Derivations
+
+- The Integration-by-Parts Formula, the block before Theorem · Integration by Parts · score 2 · built as drv-integration-by-parts (replaces the block; the theorem stays and its (7.1) is the result's number; form `eq-integration-by-parts-fg` re-anchored to it)
+- Theorem · Integration by Parts for Definite Integrals (7.2) · score 3 · not built: stated, two moves from (7.1) by the Fundamental Theorem, under the bar
+- Example 7.3 · score 3 · not built: a worked example applying (7.1) twice
+- Example 7.5 · score 4 · not built: a worked example of the section's own method (parts twice until the integral reappears); its two differentiations are routine
+- Example 7.6 · score 5 · not built: a worked example of (7.2); the substitution for ∫x/(x²+1) dx is one printed routine line, not an independent line
+- Example 7.7 · score 4 · not built: a worked example that sets up Chapter 6's shell formula and evaluates it by parts

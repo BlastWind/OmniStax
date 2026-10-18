@@ -80,3 +80,7 @@ The module prints none.
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass: The chapter pass set every anchor listed above, gathered the errata in `exploration.md` and the chapter log, and gave `fs-id1310375` (b) a tolerance of 0.000005, so 0.99995c is checked to its printed digits and $\kc$ itself is marked wrong.
+
+## Derivations
+
+- Time dilation, from the light clock to $\Delta t = \gamma\Delta t_0$ · score 3 · built as drv-time-dilation: the printed block from the Pythagorean theorem to $\gamma$, replaced; the two light-clock times stay printed above it with the proper-time box and are its facts

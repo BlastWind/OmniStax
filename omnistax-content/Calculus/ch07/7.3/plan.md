@@ -44,3 +44,13 @@ None beyond the three triangle Sims: an arc-length or sinh Sim would repeat Exam
 
 - forms `eq-sine-substitution` → `7.3-sine-strategy`, `eq-tangent-substitution` → `7.3-tangent-strategy`, `eq-secant-substitution` → `7.3-secant-strategy`.
 - variables `7.3/x`, `7.3/θ`, `7.3/a` → `7.3-sine`; `7.3/A`, `7.3/f` → Example 7.27's id.
+
+## Derivations
+
+- Integrals Involving √(a²−x²), the block under x = a sin θ · score 1 · built as drv-sine-substitution (replaces the block and the sentence that justified its last line, which is now its facts)
+- Problem-Solving Strategy · √(a²+x²), step 2, the inline chain · score 1 · built as drv-tangent-substitution (replaces the paragraph, its parenthesis now a fact)
+- Problem-Solving Strategy · √(x²−a²), step 2 · score 1 · built as drv-secant-substitution (replaces the display; the sign split after it stays)
+- Example 7.21 · score 2 · not built: a worked example of the section's strategy
+- Example 7.25 · Analysis (sinh⁻¹x as a logarithm) · score 3 · built as drv-inverse-sinh-as-a-logarithm (the book states the form in 1.5 without working it; here is where it is first worked)
+- Example 7.26 · score 4 · not built: a worked example that sets up Chapter 6's arc length and uses the antiderivative of sec³θ from 7.2
+- Example 7.27 · score 4 · not built: a worked example of the section's strategy

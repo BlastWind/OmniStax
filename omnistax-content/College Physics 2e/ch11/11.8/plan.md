@@ -421,3 +421,8 @@ Figure 11.29's caption and readout, which now states the three values taken
 instead.
 
 Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-surface-sheet`: the two surface pulls are drawn at least 120 units long and the angle arc is smaller, so the contact-angle label no longer sits on the right pull's label; the net pull is capped short of the headline and labelled above its tip. `sim-negative-pressure`: the piston's rod is thinner than the force arrow that pulls it, the arrow is heavier and longer with the force and stops short of the headline. The other five figures unchanged.
+
+## Derivations
+
+- The gauge pressure inside a bubble, $P = 4\gamma/r$ ("It can be shown") · score 9 · not built: the force balance needs the net pressure force on a hemisphere, $P\pi r^2$, which the book never states
+- The height of capillary rise, $h = 2\gamma\cos\theta/(\rho g r)$ ("It can be shown") · score 10 · not built: the force balance needs surface tension pulling along the liquid surface at the contact angle, which the book never states; it explains the rise by the surface flattening (Figures 11.31 and 11.32)

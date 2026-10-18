@@ -57,3 +57,8 @@ None: the probe on the radial, rotational and gradient fields already shows what
 
 - forms: `eq-vector-field-plane` → `16.1-fs-id1167793951458`; `eq-vector-field-plane-ij` → `16.1-fs-id1167793252274`; `eq-vector-field-space` → `16.1-fs-id1167793948412`; `eq-vector-field-space-ijk` → `16.1-fs-id1167793977405`; `eq-gradient-field` → `16.1-fs-id1167793266865`; `eq-cross-partial-plane`, `eq-cross-partial-space` → `16.1-fs-id1167794327427`; `eq-uniqueness-of-potential-functions` → `16.1-fs-id1167794097175`; `eq-unit-vector-field` → `16.1-unit-field`.
 - variables of 16.1: add i_vec, j_vec, k_vec (the standard unit vectors, 13.4's meaning).
+
+## Derivations
+
+- Uniqueness of Potential Functions, Proof · score 2 · built as drv-uniqueness-of-potential-functions
+- The Cross-Partial Property of Conservative Vector Fields, Proof · score 1 · built as drv-cross-partial-property

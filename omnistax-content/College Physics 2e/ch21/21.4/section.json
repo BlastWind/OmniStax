@@ -768,5 +768,92 @@
     "sim-galvanometer-meters"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "shunt-resistance",
+   "what": "the shunt resistance of an ammeter",
+   "source": "College Physics 2e, 21.4 DC Voltmeters and Ammeters",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The shunt $\\kRes$ and the galvanometer's resistance $\\krint$ are in parallel, so the voltage across them is the same.",
+       "src": "21.4"
+      },
+      {
+       "tex": "\\kV = \\kIcur\\kRes",
+       "src": "20.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{IR}{\\kIcur\\kRes} = \\mk{G}{\\kIcurG\\krint}",
+      "src": "21.4",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{IG}{\\kIcurG}}{\\mk{I}{\\kIcur}} = \\dfrac{\\mk{R}{\\kRes}}{\\mk{r}{\\krint}}",
+       "uses": [],
+       "map": {
+        "IR": [
+         "I",
+         "R"
+        ],
+        "G": [
+         "IG",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{R}{\\kRes} = \\mk{r}{\\krint}\\dfrac{\\mk{IG}{\\kIcurG}}{\\mk{I}{\\kIcur}}",
+       "uses": []
+      }
+     ],
+     "src": "21.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\krint = 25\\ \\Omega,\\quad \\kIcurG = 50\\ \\mu\\text{A}",
+       "src": "21.4"
+      },
+      {
+       "text": "The shunt carries the rest of the full-scale 1.0 A, so $\\kIcur = 1.0\\ \\text{A} - 50\\ \\mu\\text{A} = 0.999950\\ \\text{A}$.",
+       "src": "21.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{\\kRes} = \\mk{r}{\\krint}\\dfrac{\\mk{IG}{\\kIcurG}}{\\mk{I}{\\kIcur}}",
+      "src": "21.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kRes} = \\mk{r}{(25\\ \\Omega)}\\dfrac{\\mk{IG}{50\\ \\mu\\text{A}}}{\\mk{I}{0.999950\\ \\text{A}}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{R}{\\kRes} = \\mk{r}{1.25 \\times 10^{-3}\\ \\Omega}",
+       "uses": [],
+       "map": {
+        "IG": "r",
+        "I": "r"
+       }
+      }
+     ],
+     "src": "21.4"
+    }
+   ]
+  }
  ]
 }

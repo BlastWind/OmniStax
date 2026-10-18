@@ -369,5 +369,103 @@
     "sim-plate-equipotentials"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "equipotential-perpendicular",
+   "what": "why equipotential lines are perpendicular to field lines",
+   "source": "College Physics 2e, 19.4 Equipotential Lines",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The electrostatic force is conservative.",
+       "src": "19.1"
+      },
+      {
+       "tex": "\\kdPE = \\kq\\kdV",
+       "src": "19.1"
+      },
+      {
+       "text": "Along an equipotential, $\\kdV = 0$.",
+       "src": "19.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = -\\mk{PE}{\\kdPE}",
+      "src": "19.1",
+      "uses": [
+       0
+      ],
+      "why": "The work a conservative force does is the negative of the change in potential energy."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = -\\mk{PE}{\\kq\\kdV}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{PE}{0}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "19.4"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kF = \\kq\\kEf",
+       "src": "18.4"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "Neither $\\kq$ nor $\\kEf$ nor $\\kd$ is zero.",
+       "src": "19.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta}",
+      "src": "7.1",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kq\\kEf}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{W}{0} = \\mk{F}{\\kq\\kEf}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\cos\\ktheta} = \\mk{W}{0}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "F": "W",
+        "d": "W"
+       }
+      },
+      {
+       "tex": "\\mk{c}{\\ktheta} = \\mk{W}{90^\\circ}",
+       "uses": [],
+       "cap": "The angle between two directions lies between $0^\\circ$ and $180^\\circ$, and of those angles only $90^\\circ$ has a cosine of zero."
+      }
+     ],
+     "src": "19.4"
+    }
+   ]
+  }
  ]
 }

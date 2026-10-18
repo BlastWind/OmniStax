@@ -64,3 +64,7 @@ Labels: the slit drawn at one size whatever its width, the wavelength drawn to t
 - No concept, edge or symbol fix.
 
 Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed.
+
+## Derivations
+
+- Where the single slit minima fall · score 2 · not built: the book argues it in prose by pairing rays, with only the result displayed; as a hidden derivation it falls short of the bar

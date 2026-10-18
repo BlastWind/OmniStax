@@ -310,3 +310,7 @@ caption of Figure 13.13 in the book overstates the density difference between
 4 °C and 2 °C (0.0075% for about 0.003%), recorded in `exploration.md`.
 
 Phase 2 (2026-09-28, Claude Opus 5.5). sim-water-density: 4 °C is a special; the end detents are gone. The three drawn × life sliders stay (root 28.4); each readout states the factor.
+
+## Derivations
+
+- Area and volume expansion, $\Delta A = 2\alpha A\Delta T$ and $\beta \approx 3\alpha$ (boxed statements) · score 7 if hidden · not built: the book states both ("is given by", "very nearly") with no claim that they follow from anything

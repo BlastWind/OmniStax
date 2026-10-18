@@ -314,3 +314,7 @@ the section's `exercise_concepts` rows carry a weight and each now carries
 `weights_by: "ai"` as well. The seven AP items and the Unreasonable Results
 problem that go to 19.3 are on 19.3's page with `source_section: "19.1"`, and
 both sections' `exercise_notes` name the move.
+
+## Derivations
+
+- Example 19.3, the speed of an electron accelerated through 100 V · score 1 · not built: the section's own conservation of energy applied once, solved for $v$ and the numbers substituted; a worked example of the section's method

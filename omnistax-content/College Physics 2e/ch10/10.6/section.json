@@ -382,5 +382,229 @@
     "sim-percussion"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "collision-angular-velocity",
+   "what": "the angular velocity of the stick and disk after the collision",
+   "source": "College Physics 2e, 10.6 Collisions of Extended Bodies in Two Dimensions, Example 10.15",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Before the collision the angular momentum of the stick and disk about the pivot is that of the disk alone."
+      },
+      {
+       "text": "The disk is taken to be approximately a point mass."
+      },
+      {
+       "tex": "\\kI = \\km\\kr^2",
+       "src": "10.3"
+      },
+      {
+       "tex": "\\kw = \\frac{\\kv}{\\kr}",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kL} = \\mk{I}{\\kI}\\mk{w}{\\kw}",
+      "src": "10.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{I}{\\km\\kr^2}\\mk{w}{\\kw}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{I}{\\km\\kr^2}\\mk{w}{\\frac{\\kv}{\\kr}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{I}{\\km\\kv\\kr}",
+       "uses": [],
+       "map": {
+        "w": "I"
+       }
+      }
+     ],
+     "src": "Example 10.15"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The surface is frictionless.",
+       "src": "10.6"
+      },
+      {
+       "text": "The unbalanced external force at the nail exerts no torque about the nail.",
+       "src": "10.6"
+      },
+      {
+       "tex": "\\kL = \\kI\\kw",
+       "src": "10.5"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kL} = \\mk{Lp}{\\kLprime}",
+      "src": "10.5",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{Lp}{\\kIprime\\kwprime}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\km\\kv\\kr} = \\mk{Lp}{\\kIprime\\kwprime}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{w}{\\kwprime} = \\frac{\\mk{L}{\\km\\kv\\kr}}{\\mk{Lp}{\\kIprime}}",
+       "uses": [],
+       "map": {
+        "Lp": [
+         "w",
+         "Lp"
+        ]
+       }
+      }
+     ],
+     "src": "Example 10.15"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The moment of inertia of the stick and disk stuck together is the sum of their moments of inertia about the nail."
+      },
+      {
+       "tex": "\\kI = \\km\\kr^2",
+       "src": "10.3"
+      },
+      {
+       "tex": "\\kI = \\frac{\\kM\\kr^2}{3}",
+       "src": "10.3, Figure 10.12"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIprime} = \\mk{d}{\\kI_{\\text{disk}}} + \\mk{s}{\\kI_{\\text{stick}}}",
+      "src": "Example 10.15",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIprime} = \\mk{d}{\\km\\kr^2} + \\mk{s}{\\kI_{\\text{stick}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\kIprime} = \\mk{d}{\\km\\kr^2} + \\mk{s}{\\frac{\\kM\\kr^2}{3}}",
+       "uses": [
+        2
+       ],
+       "cap": "The stick is a rod rotating around one end."
+      },
+      {
+       "tex": "\\mk{I}{\\kIprime} = \\left(\\mk{d}{\\km} + \\mk{s}{\\frac{\\kM}{3}}\\right)\\mk{r}{\\kr^2}",
+       "uses": [],
+       "map": {
+        "d": [
+         "d",
+         "r"
+        ],
+        "s": [
+         "s",
+         "r"
+        ]
+       }
+      }
+     ],
+     "src": "Example 10.15"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\km = 0.0500\\ \\text{kg},\\quad \\kM = 2.00\\ \\text{kg},\\quad \\kr = 1.20\\ \\text{m}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIprime} = \\left(\\mk{d}{\\km} + \\mk{s}{\\frac{\\kM}{3}}\\right)\\mk{r}{\\kr^2}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIprime} = (\\mk{d}{0.0500\\ \\text{kg}} + \\mk{s}{0.667\\ \\text{kg}})\\mk{r}{(1.20\\ \\text{m})^2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\kIprime} = \\mk{d}{1.032\\ \\text{kg}\\cdot\\text{m}^2}",
+       "uses": [],
+       "map": {
+        "s": "d",
+        "r": "d"
+       }
+      }
+     ],
+     "src": "Example 10.15"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\km = 0.0500\\ \\text{kg},\\quad \\kv = 30.0\\ \\text{m/s},\\quad \\kr = 1.20\\ \\text{m}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\kwprime} = \\frac{\\mk{L}{\\km\\kv\\kr}}{\\mk{Lp}{\\kIprime}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{w}{\\kwprime} = \\frac{\\mk{L}{(0.0500\\ \\text{kg})(30.0\\ \\text{m/s})(1.20\\ \\text{m})}}{\\mk{Lp}{1.032\\ \\text{kg}\\cdot\\text{m}^2}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{w}{\\kwprime} = \\mk{L}{1.744\\ \\text{rad/s}} \\approx \\mk{a}{1.74\\ \\text{rad/s}}",
+       "uses": [],
+       "map": {
+        "Lp": "L"
+       }
+      }
+     ],
+     "src": "Example 10.15"
+    }
+   ]
+  }
  ]
 }

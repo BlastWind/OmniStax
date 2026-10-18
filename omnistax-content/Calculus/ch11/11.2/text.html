@@ -20,11 +20,8 @@ $$\begin{array}{rll}y(t) & = & 3t-4 \\ y & = & 3(\frac{x-3}{2})-4 \\ y & = & \fr
 <div class="equation" id="fs-id1167793881791">$$\kdydx=\frac{dy/dt}{dx/dt}=\frac{\kyprime(t)}{\kxprime(t)}.\tag{11.1}$$</div>
 </div>
 <h3>Proof</h3>
-<p>This theorem can be proven using the <span data-concept="chain-rule">Chain Rule</span>. In particular, assume that the <span data-concept="parameter">parameter</span> <em>t</em> can be eliminated, yielding a differentiable function $y=F(x).$ Then $y(t)=F(x(t)).$ Differentiating both sides of this equation using the <span data-concept="chain-rule">Chain Rule</span> yields</p>
-$$\kyprime(t)=F^{\prime}(x(t))\kxprime(t),$$
-<p>so</p>
-$$F^{\prime}(x(t))=\frac{\kyprime(t)}{\kxprime(t)}.$$
-<p>But $F^{\prime}(x(t))=\kdydx,$ which proves the theorem.</p>
+<p>This theorem can be proven using the <span data-concept="chain-rule">Chain Rule</span>. In particular, assume that the <span data-concept="parameter">parameter</span> <em>t</em> can be eliminated, yielding a differentiable function $y=F(x).$</p>
+<figure class="dv" id="drv-derivative-of-parametric-equations"></figure>
 <p>□</p>
 <p><a href="#fs-id1167793881791">Equation 11.1</a> can be used to calculate <span data-concept="derivative">derivatives</span> of <span data-concept="parametric-curve">plane curves</span>, as well as <span data-concept="critical-point">critical points</span>. Recall that a <span data-concept="critical-point">critical point</span> of a differentiable function $y=f(x)$ is any point $x=x_{0}$ such that either $f^{\prime}(x_{0})=0$ or $f^{\prime}(x_{0})$ does not exist. <a href="#fs-id1167793881791">Equation 11.1</a> gives a formula for the <span data-concept="slope">slope</span> of a <span data-concept="tangent-line">tangent line</span> to a curve defined parametrically regardless of whether the curve can be described by a function $y=f(x)$ or not.</p>
 <div class="example" id="fs-id1167793984213">
@@ -98,16 +95,14 @@ $$\begin{array}{rll}y-y_{0} & = & m(x-x_{0}) \\ y-3 & = & \frac{1}{2}(x-1) \\ y-
 </section>
 <section id="second-order">
 <h2>Second-Order Derivatives</h2>
-<p class="cite-target">Our next goal is to see how to take the <span data-concept="higher-order-derivative">second derivative</span> of a function defined parametrically. The <span data-concept="higher-order-derivative">second derivative</span> of a function $y=f(x)$ is defined to be the <span data-concept="derivative">derivative</span> of the first <span data-concept="derivative">derivative</span>; that is,</p>
-$$\kdtwoydx=\frac{d}{dx}[\kdydx].$$
-<p>Since $\kdydx=\frac{dy/dt}{dx/dt},$ we can replace the $y$ on both sides of this equation with $\kdydx.$ This gives us</p>
-<div class="equation" id="fs-id1167794072159">$$\kdtwoydx=\frac{d}{dx}(\kdydx)=\frac{(d/dt)(dy/dx)}{dx/dt}.\tag{11.2}$$</div>
+<p class="cite-target">Our next goal is to see how to take the <span data-concept="higher-order-derivative">second derivative</span> of a function defined parametrically. The <span data-concept="higher-order-derivative">second derivative</span> of a function $y=f(x)$ is defined to be the <span data-concept="derivative">derivative</span> of the first <span data-concept="derivative">derivative</span>.</p>
+<figure class="dv" id="drv-second-derivative-of-parametric-equations"></figure>
 <p>If we know $dy/dx$ as a function of <em>t,</em> then this formula is straightforward to apply.</p>
 <div class="example" id="fs-id1167794044408">
 <h3>Example 11.6 · Finding a Second Derivative</h3>
 <p>Calculate the <span data-concept="higher-order-derivative">second derivative</span> $d^{2}y/dx^{2}$ for the <span data-concept="parametric-curve">plane curve</span> defined by the <span data-concept="parametric-equations">parametric equations</span> $x(t)=t^{2}-3,y(t)=2t-1,-3\le t\le 4.$</p>
 <h4>Solution</h4>
-<p>From <a href="#fs-id1167793984213">Example 11.4</a> we know that $\kdydx=\frac{2}{2t}=\frac{1}{t}.$ Using <a href="#fs-id1167794072159">Equation 11.2</a>, we obtain</p>
+<p>From <a href="#fs-id1167793984213">Example 11.4</a> we know that $\kdydx=\frac{2}{2t}=\frac{1}{t}.$ Using <a href="#drv-second-derivative-of-parametric-equations">Equation 11.2</a>, we obtain</p>
 $$\kdtwoydx=\frac{(d/dt)(dy/dx)}{dx/dt}=\frac{(d/dt)(1/t)}{2t}=\frac{-t^{-2}}{2t}=-\frac{1}{2t^{3}}.$$
 </div>
 <div class="exercises" data-place="fs-id1167794044408"></div>
@@ -121,15 +116,9 @@ $$\kdtwoydx=\frac{(d/dt)(dy/dx)}{dx/dt}=\frac{(d/dt)(1/t)}{2t}=\frac{-t^{-2}}{2t
 <p>To derive a formula for the area under the curve defined by the functions</p>
 $$x=x(t),\;y=y(t),\;a\le t\le b,$$
 <p>we assume that $x(t)$ is increasing on the interval $t\in [a,b]$ and $x(t)$ is differentiable and start with an equal partition of the interval $a\le t\le b.$ Suppose $t_{0}=a\lt t_{1}\lt t_{2}\lt \cdots \lt t_{n}=b$ and consider the following graph.</p>
-<p>We use rectangles to approximate the area under the curve. The height of the $i$th rectangle is $y(t_{i-1})$, so an approximation to the area is</p>
-$$\begin{array}{l}\begin{array}{ll} & \sum_{i=1}^{n} y(t_{i-1})(x(t_{i})-x(t_{i-1})) \\ = & \sum_{i=1}^{n} y(t_{i-1})\frac{(x(t_{i})-x(t_{i-1}))}{(t_{i}-t_{i-1})}(t_{i}-t_{i-1}) \\ & \to \int_a^{b}y(t)\kxprime(t)dt\text{as max}\{(t_{i}-t_{i-1})\}\to 0\end{array}\end{array}$$
+<p>We use rectangles to approximate the area under the curve. The height of the $i$th rectangle is $y(t_{i-1})$.</p>
+<figure class="dv" id="drv-area-under-a-parametric-curve"></figure>
 <p>This follows from results obtained in <a href="/calculus/ch05/intro/">Chapter 5</a><sup class="fn" data-note="c-calculus-1"></sup> for the function $y(t_{i-1})\frac{(x(t_{i})-x(t_{i-1}))}{(t_{i}-t_{i-1})}.$</p>
-<p>Then a <span data-concept="riemann-sum">Riemann sum</span> for the area is</p>
-$$\kA_{n}=\sum_{i=1}^{n} y(\bar{t_{i}})\;(x(t_{i})-x(t_{i-1})).$$
-<p>Multiplying and dividing each area by $t_{i}-t_{i-1}$ gives</p>
-$$\kA_{n}=\sum_{i=1}^{n} y(x({\bar{t}}_{i}))\;(\frac{x(t_{i})-x(t_{i-1})}{t_{i}-t_{i-1}}) (t_{i}-t_{i-1})=\sum_{i=1}^{n} y(x({\bar{t}}_{i}))\;(\frac{x(t_{i})-x(t_{i-1})}{\Delta t}) \Delta t.$$
-<p>Taking the limit as $n$ approaches infinity gives</p>
-$$\kA=\lim_{n\to \infty}\kA_{n}=\int_a^{b}y(t)\kxprime(t)\;dt .$$
 <p>If $x$ is a decreasing function for $a\le t\le b$, a similar derivation will show that the area is given by $-\int_a^{b}y(t)\kxprime(t)dt=\int_a^{b}y(t)\kxprime(t)dt$<sup class="fn" data-note="c-decreasing"></sup></p>
 <p>This leads to the following theorem.</p>
 <div class="note" id="fs-id1167794038315">
@@ -154,18 +143,12 @@ $$\begin{array}{rl}A & =\int_a^{b}y(t)\kxprime(t)\;dt \\ & =\int_0^{2\pi}(1-\cos
 <h2>Arc Length of a Parametric Curve</h2>
 <p class="cite-target">In addition to finding the area under a <span data-concept="parametric-curve">parametric curve</span>, we sometimes need to find the <span data-concept="arc-length">arc length</span> of a <span data-concept="parametric-curve">parametric curve</span>. In the case of a line segment, <span data-concept="arc-length">arc length</span> is the same as the distance between the endpoints. If a particle travels from point <em>A</em> to point <em>B</em> along a curve, then the distance that particle travels is the <span data-concept="arc-length">arc length</span>. To develop a formula for <span data-concept="arc-length">arc length</span>, we start with an approximation by line segments as shown in the following graph.</p>
 <figure class="sim" id="sim-chords" data-figure="11.23 + 11.24" data-original="/media/ch11/CNX_Calc_Figure_11_02_008.jpg,/media/ch11/CNX_Calc_Figure_11_02_009.jpg" data-original-caption="(Figure 11.23) Approximation of a curve by line segments. (Figure 11.24) The arc length of the semicircle is equal to its radius times π.">
-  <div class="sim-head"><span class="eyebrow">Figure 11.23 + 11.24</span><span>The semicircle $x(t)=3\cos t,$ $y(t)=3\sin t$ from $A$ at $t=0$ to $B$ at $t=\pi,$ approximated by $n$ line segments joining the points of equal steps of $t.$ Raise $n$ and the sum of their lengths of <a href="#fs-id1167794027155">Equation 11.4</a> closes on the <span data-concept="arc-length">arc length</span> $3\pi,$ the radius times $\pi.$</span></div>
+  <div class="sim-head"><span class="eyebrow">Figure 11.23 + 11.24</span><span>The semicircle $x(t)=3\cos t,$ $y(t)=3\sin t$ from $A$ at $t=0$ to $B$ at $t=\pi,$ approximated by $n$ line segments joining the points of equal steps of $t.$ Raise $n$ and the sum of their lengths of <a href="#drv-arc-length-of-a-parametric-curve">Equation 11.4</a> closes on the <span data-concept="arc-length">arc length</span> $3\pi,$ the radius times $\pi.$</span></div>
 </figure>
-<p>Given a <span data-concept="parametric-curve">plane curve</span> defined by the functions $x=x(t),y=y(t),a\le t\le b,$ we start by partitioning the interval $[a,b]$ into <em>n</em> equal subintervals: $t_{0}=a\lt t_{1}\lt t_{2}\lt \cdots \lt t_{n}=b.$ The width of each subinterval is given by $\Delta t=(b-a)/n.$ We can calculate the length of each line segment:</p>
-$$\begin{array}{l} \\ d_{1}=\sqrt{{(x(t_{1})-x(t_{0}))}^{2}+{(y(t_{1})-y(t_{0}))}^{2}} \\ d_{2}=\sqrt{{(x(t_{2})-x(t_{1}))}^{2}+{(y(t_{2})-y(t_{1}))}^{2}}\;\text{etc}.\end{array}$$
-<p>Then add these up. We let <em>s</em> denote the exact <span data-concept="arc-length">arc length</span> and $\ks_{n}$ denote the approximation by <em>n</em> line segments:</p>
-<div class="equation" id="fs-id1167794027155">$$\ks\approx \sum_{k=1}^{n} \ks_{k} =\sum_{k=1}^{n} \sqrt{{(x(t_{k})-x(t_{k-1}))}^{2}+{(y(t_{k})-y(t_{k-1}))}^{2}} .\tag{11.4}$$</div>
-<p>If we assume that $x(t)$ and $y(t)$ are differentiable functions of <em>t,</em> then the <span data-concept="mean-value-theorem">Mean Value Theorem</span> (<a href="/calculus/ch04/intro/">Introduction to the Applications of Derivatives</a>) applies, so in each subinterval $[t_{k-1},t_{k}]$ there exist ${\overset{\wedge}{t}}_{k}$ and ${\tilde{t}}_{k}$ such that</p>
-$$\begin{array}{l} \\ x(t_{k})-x(t_{k-1})=\kxprime({\overset{\wedge}{t}}_{k})(t_{k}-t_{k-1})=\kxprime({\overset{\wedge}{t}}_{k})\Delta t \\ y(t_{k})-y(t_{k-1})=\kyprime({\tilde{t}}_{k})(t_{k}-t_{k-1})=\kyprime({\tilde{t}}_{k})\Delta t.\end{array}$$
-<p>Therefore <a href="#fs-id1167794027155">Equation 11.4</a> becomes</p>
-$$\begin{array}{rl}s & \approx \sum_{k=1}^{n} \ks_{k} \\ & =\sum_{k=1}^{n} \sqrt{{(\kxprime({\overset{\wedge}{t}}_{k})\Delta t)}^{2}+{(\kyprime({\tilde{t}}_{k})\Delta t)}^{2}} \\ & =\sum_{k=1}^{n} \sqrt{{(\kxprime({\overset{\wedge}{t}}_{k}))}^{2}{(\Delta t)}^{2}+{(\kyprime({\tilde{t}}_{k}))}^{2}{(\Delta t)}^{2}} \\ & =(\sum_{k=1}^{n} \sqrt{{(\kxprime({\overset{\wedge}{t}}_{k}))}^{2}+{(\kyprime({\tilde{t}}_{k}))}^{2}} )\Delta t.\end{array}$$
-<p>This is a <span data-concept="riemann-sum">Riemann sum</span> that approximates the <span data-concept="arc-length">arc length</span> over a partition of the interval $[a,b].$ If we further assume that the <span data-concept="derivative">derivatives</span> are continuous and let the number of points in the partition increase without bound, the approximation approaches the exact <span data-concept="arc-length">arc length</span>. This gives</p>
-$$\begin{array}{rl}s & =\lim_{n\to \infty}\sum_{k=1}^{n} \ks_{k} \\ & =\lim_{n\to \infty}(\sum_{k=1}^{n} \sqrt{{(\kxprime({\overset{\wedge}{t}}_{k}))}^{2}+{(\kyprime({\tilde{t}}_{k}))}^{2}} )\Delta t \\ & =\int_a^{b}\sqrt{{(\kxprime(t))}^{2}+{(\kyprime(t))}^{2}}dt .\end{array}$$
+<p>Given a <span data-concept="parametric-curve">plane curve</span> defined by the functions $x=x(t),y=y(t),a\le t\le b,$ we start by partitioning the interval $[a,b]$ into <em>n</em> equal subintervals: $t_{0}=a\lt t_{1}\lt t_{2}\lt \cdots \lt t_{n}=b.$ The width of each subinterval is given by $\Delta t=(b-a)/n.$</p>
+<p>If we assume that $x(t)$ and $y(t)$ are differentiable functions of <em>t,</em> then the <span data-concept="mean-value-theorem">Mean Value Theorem</span> (<a href="/calculus/ch04/intro/">Introduction to the Applications of Derivatives</a>) applies.</p>
+<figure class="dv" id="drv-arc-length-of-a-parametric-curve"></figure>
+<p>This is a <span data-concept="riemann-sum">Riemann sum</span> that approximates the <span data-concept="arc-length">arc length</span> over a partition of the interval $[a,b].$ If we further assume that the <span data-concept="derivative">derivatives</span> are continuous and let the number of points in the partition increase without bound, the approximation approaches the exact <span data-concept="arc-length">arc length</span>.</p>
 <p>When taking the limit, the values of ${\overset{\wedge}{t}}_{k}$ and ${\tilde{t}}_{k}$ are both contained within the same ever-shrinking interval of width $\Delta t,$ so they must converge to the same value.</p>
 <p>We can summarize this method in the following theorem.</p>
 <div class="note" id="fs-id1167794065177">
@@ -176,11 +159,10 @@ $$x=x(t),\;y=y(t),\;t_{1}\le t\le t_{2}$$
 <p>and assume that $x(t)$ and $y(t)$ are differentiable functions of <em>t.</em> Then the <span data-concept="arc-length">arc length</span> of this curve is given by</p>
 <div class="equation" id="fs-id1167794023197">$$\ks=\int_{t_{1}}^{t_{2}}\sqrt{{(\kdxdt)}^{2}+{(\kdydt)}^{2}}dt .\tag{11.5}$$</div>
 </div>
-<p>At this point a side derivation leads to a previous formula for <span data-concept="arc-length">arc length</span>. In particular, suppose the <span data-concept="parameter">parameter</span> can be eliminated, leading to a function $y=F(x).$ Then $y(t)=F(x(t))$ and the <span data-concept="chain-rule">Chain Rule</span> gives $\kyprime(t)=F^{\prime}(x(t))\kxprime(t).$ Substituting this into <a href="#fs-id1167794023197">Equation 11.5</a> gives</p>
-$$\begin{array}{rl}s & =\int_{t_{1}}^{t_{2}}\sqrt{{(\kdxdt)}^{2}+{(\kdydt)}^{2}}dt \\ & =\int_{t_{1}}^{t_{2}}\sqrt{{(\kdxdt)}^{2}+{(F^{\prime}(x)\kdxdt)}^{2}}dt \\ & =\int_{t_{1}}^{t_{2}}\sqrt{{(\kdxdt)}^{2}(1+{(F^{\prime}(x))}^{2})}dt \\ & =\int_{t_{1}}^{t_{2}}\kxprime(t)\sqrt{1+{(\kdydx)}^{2}}dt .\end{array}$$
-<p>Here we have assumed that $\kxprime(t)\gt 0,$ which is a reasonable assumption. The <span data-concept="chain-rule">Chain Rule</span> gives $dx=\kxprime(t)\;dt,$ and letting $a=x(t_{1})$ and $b=x(t_{2})$ we obtain the formula</p>
-$$\ks=\int_a^{b}\sqrt{1+{(\kdydx)}^{2}}dx ,$$
-<p>which is the formula for <span data-concept="arc-length">arc length</span> obtained in the <a href="/calculus/ch06/intro/">Introduction to the Applications of Integration</a>.</p>
+<p>At this point a side derivation leads to a previous formula for <span data-concept="arc-length">arc length</span>. In particular, suppose the <span data-concept="parameter">parameter</span> can be eliminated, leading to a function $y=F(x).$ Then $y(t)=F(x(t))$ and the <span data-concept="chain-rule">Chain Rule</span> gives $\kyprime(t)=F^{\prime}(x(t))\kxprime(t).$</p>
+<figure class="dv" id="drv-arc-length-in-cartesian-form"></figure>
+<p>Here we have assumed that $\kxprime(t)\gt 0,$ which is a reasonable assumption.</p>
+<p>This is the formula for <span data-concept="arc-length">arc length</span> obtained in the <a href="/calculus/ch06/intro/">Introduction to the Applications of Integration</a>.</p>
 <div class="example" id="fs-id1167794100414">
 <h3>Example 11.8 · Finding the Arc Length of a Parametric Curve</h3>
 <p>Find the <span data-concept="arc-length">arc length</span> of the semicircle defined by the equations</p>

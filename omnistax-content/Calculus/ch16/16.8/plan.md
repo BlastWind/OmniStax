@@ -41,3 +41,11 @@ Example 16.77's t_v, integrand and total; Example 16.81's power of ten; Checkpoi
 
 - forms: `eq-divergence-theorem` → `16.8-fs-id1167794295927`; `eq-divergence-as-flux` → `16.8-div-flux`; `eq-gauss-law` → `16.8-gauss-term`; `eq-inverse-square-field` → `16.8-inverse-square-term`; `eq-flux-inverse-square` → `16.8-fs-id1167794029720`.
 - variables: N_vec, r_vec, t_u_vec, t_v_vec, ∇f of 16.8 added.
+
+## Derivations
+
+- The Divergence Theorem, Proof (informal, by small boxes) · score 2 · built as drv-divergence-small-boxes
+- Stating the Divergence Theorem, ‘let B_r be a ball of small radius r centered at P’ · score 1 · built as drv-divergence-as-flux
+- Example 16.80 · The Divergence of F_r Is Zero · score 2 · built as drv-divergence-of-inverse-square-field
+- Flux across a Smooth Surface, Proof · score 4 · built as drv-flux-of-inverse-square-field
+- Application to Electrostatic Fields, Gauss’ law for a point charge · score 1 · built as drv-gauss-law-point-charge

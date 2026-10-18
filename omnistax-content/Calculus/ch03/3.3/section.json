@@ -1129,5 +1129,710 @@
    "kind": "correction",
    "html": "The answer is written $k^{\\prime}(x);$ the function of the checkpoint is $h,$ so it means $h^{\\prime}(x)=-\\frac{13}{{(4x-3)}^{2}}.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "constant-rule",
+   "what": "the constant rule",
+   "source": "Calculus, 3.3 Differentiation Rules, The Constant Rule",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kf(x)=c"
+      },
+      {
+       "tex": "\\kf(x+h)=c"
+      },
+      {
+       "tex": "\\lim_{h\\to 0}c=c",
+       "src": "(2.15)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fp}{\\kfprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kf(x+h)}-\\mk{b}{\\kf(x)}}{\\mk{h}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{fp}{\\kfprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{c}-\\mk{b}{c}}{\\mk{h}{h}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{fp}{\\kfprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{n}{0}}{\\mk{h}{h}}",
+       "uses": [],
+       "map": {
+        "a": "n",
+        "b": "n"
+       }
+      },
+      {
+       "tex": "\\mk{fp}{\\kfprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\mk{n}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{fp}{\\kfprime(x)}=\\mk{n}{0}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "3.3, The Constant Rule"
+    }
+   ]
+  },
+  {
+   "id": "power-rule",
+   "what": "the power rule",
+   "source": "Calculus, 3.3 Differentiation Rules, The Power Rule",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{p}{{(x+h)}^{n}}=\\mk{x}{x^{n}}+\\mk{t}{nx^{n-1}h}+\\mk{r}{\\binom{n}{2}x^{n-2}h^{2}+\\binom{n}{3}x^{n-3}h^{3}+\\text{…}+nxh^{n-1}+h^{n}}",
+      "uses": [],
+      "src": "3.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{{(x+h)}^{n}}-\\mk{x}{x^{n}}=\\mk{t}{nx^{n-1}h}+\\mk{r}{\\binom{n}{2}x^{n-2}h^{2}+\\binom{n}{3}x^{n-3}h^{3}+\\text{…}+nxh^{n-1}+h^{n}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{p}{\\frac{{(x+h)}^{n}-x^{n}}{h}}=\\frac{\\mk{t}{nx^{n-1}h}+\\mk{r}{\\binom{n}{2}x^{n-2}h^{2}+\\binom{n}{3}x^{n-3}h^{3}+\\text{…}+nxh^{n-1}+h^{n}}}{\\mk{d}{h}}",
+       "uses": [],
+       "map": {
+        "x": "p"
+       }
+      },
+      {
+       "tex": "\\mk{p}{\\frac{{(x+h)}^{n}-x^{n}}{h}}=\\mk{t}{nx^{n-1}}+\\mk{r}{\\binom{n}{2}x^{n-2}h+\\binom{n}{3}x^{n-3}h^{2}+\\text{…}+nxh^{n-2}+h^{n-1}}",
+       "uses": []
+      }
+     ],
+     "src": "3.3, The Power Rule"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kf(x)=x^{n}"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "For a polynomial $\\kp,$ $\\lim_{x\\to a}\\kp(x)=\\kp(a).$",
+       "src": "2.3, Limits of Polynomial and Rational Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fp}{\\kfprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\mk{q}{\\frac{\\kf(x+h)-\\kf(x)}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{fp}{\\kfprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\mk{q}{\\frac{{(x+h)}^{n}-x^{n}}{h}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{fp}{\\kfprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}(\\mk{t}{nx^{n-1}}+\\mk{r}{\\binom{n}{2}x^{n-2}h+\\binom{n}{3}x^{n-3}h^{2}+\\text{…}+nxh^{n-2}+h^{n-1}})",
+       "uses": [
+        1
+       ],
+       "map": {
+        "q": [
+         "t",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{fp}{\\kfprime(x)}=\\mk{t}{nx^{n-1}}",
+       "uses": [
+        2
+       ],
+       "cap": "The bracket is a polynomial in $h,$ and every term after the first carries a power of $h,$ so at $h=0$ only $nx^{n-1}$ is left."
+      }
+     ],
+     "src": "3.3, The Power Rule"
+    }
+   ]
+  },
+  {
+   "id": "sum-difference-constant-multiple-rules",
+   "what": "the sum, difference and constant multiple rules",
+   "source": "Calculus, 3.3 Differentiation Rules, Sum, Difference, and Constant Multiple Rules",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kj(x)=\\kf(x)+\\kg(x)"
+      },
+      {
+       "text": "The limit of a sum is the sum of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\kfprime(x)=\\lim_{h\\to 0}\\frac{\\kf(x+h)-\\kf(x)}{h},\\quad \\kgprime(x)=\\lim_{h\\to 0}\\frac{\\kg(x+h)-\\kg(x)}{h}",
+       "src": "3.2, (3.9)"
+      },
+      {
+       "text": "$\\kf(x)$ and $\\kg(x)$ are differentiable.",
+       "src": "3.3, Sum, Difference, and Constant Multiple Rules"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kj(x+h)}-\\mk{b}{\\kj(x)}}{\\mk{h}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{(\\kf(x+h)+\\kg(x+h))}-\\mk{b}{(\\kf(x)+\\kg(x))}}{\\mk{h}{h}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}(\\mk{f}{\\frac{\\kf(x+h)-\\kf(x)}{h}}+\\mk{g}{\\frac{\\kg(x+h)-\\kg(x)}{h}})",
+       "uses": [],
+       "map": {
+        "a": [
+         "f",
+         "g"
+        ],
+        "b": [
+         "f",
+         "g"
+        ],
+        "h": [
+         "f",
+         "g"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{f}{\\lim_{h\\to 0}(\\frac{\\kf(x+h)-\\kf(x)}{h})}+\\mk{g}{\\lim_{h\\to 0}(\\frac{\\kg(x+h)-\\kg(x)}{h})}",
+       "uses": [
+        1,
+        3
+       ],
+       "cap": "Both limits exist, since $\\kf$ and $\\kg$ are differentiable, so the law applies.",
+       "map": {
+        "lim": [
+         "f",
+         "g"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{f}{\\kfprime(x)}+\\mk{g}{\\kgprime(x)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "3.3, Sum Rule"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kj(x)=\\kf(x)-\\kg(x)",
+       "src": "3.3, Difference Rule"
+      },
+      {
+       "text": "The limit of a difference is the difference of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\kfprime(x)=\\lim_{h\\to 0}\\frac{\\kf(x+h)-\\kf(x)}{h},\\quad \\kgprime(x)=\\lim_{h\\to 0}\\frac{\\kg(x+h)-\\kg(x)}{h}",
+       "src": "3.2, (3.9)"
+      },
+      {
+       "text": "$\\kf(x)$ and $\\kg(x)$ are differentiable.",
+       "src": "3.3, Sum, Difference, and Constant Multiple Rules"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kj(x+h)}-\\mk{b}{\\kj(x)}}{\\mk{h}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{(\\kf(x+h)-\\kg(x+h))}-\\mk{b}{(\\kf(x)-\\kg(x))}}{\\mk{h}{h}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}(\\mk{f}{\\frac{\\kf(x+h)-\\kf(x)}{h}}-\\mk{g}{\\frac{\\kg(x+h)-\\kg(x)}{h}})",
+       "uses": [],
+       "map": {
+        "a": [
+         "f",
+         "g"
+        ],
+        "b": [
+         "f",
+         "g"
+        ],
+        "h": [
+         "f",
+         "g"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{f}{\\lim_{h\\to 0}(\\frac{\\kf(x+h)-\\kf(x)}{h})}-\\mk{g}{\\lim_{h\\to 0}(\\frac{\\kg(x+h)-\\kg(x)}{h})}",
+       "uses": [
+        1,
+        3
+       ],
+       "cap": "Both limits exist, since $\\kf$ and $\\kg$ are differentiable, so the law applies.",
+       "map": {
+        "lim": [
+         "f",
+         "g"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{f}{\\kfprime(x)}-\\mk{g}{\\kgprime(x)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "3.3, Difference Rule"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kj(x)=k\\kf(x)",
+       "src": "3.3, Constant Multiple Rule"
+      },
+      {
+       "text": "The limit of a constant times a function is the constant times the limit.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\kfprime(x)=\\lim_{h\\to 0}\\frac{\\kf(x+h)-\\kf(x)}{h}",
+       "src": "3.2, (3.9)"
+      },
+      {
+       "text": "$\\kf(x)$ is differentiable and $k$ is a constant.",
+       "src": "3.3, Sum, Difference, and Constant Multiple Rules"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kj(x+h)}-\\mk{b}{\\kj(x)}}{\\mk{h}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{k\\kf(x+h)}-\\mk{b}{k\\kf(x)}}{\\mk{h}{h}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\mk{k}{k}\\cdot\\mk{f}{\\frac{\\kf(x+h)-\\kf(x)}{h}}",
+       "uses": [],
+       "map": {
+        "a": [
+         "k",
+         "f"
+        ],
+        "b": [
+         "k",
+         "f"
+        ],
+        "h": "f"
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{k}{k}\\cdot\\mk{f}{\\lim_{h\\to 0}\\frac{\\kf(x+h)-\\kf(x)}{h}}",
+       "uses": [
+        1,
+        3
+       ],
+       "map": {
+        "lim": "f"
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{k}{k}\\mk{f}{\\kfprime(x)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "3.3, Constant Multiple Rule"
+    }
+   ]
+  },
+  {
+   "id": "product-rule",
+   "what": "the product rule",
+   "source": "Calculus, 3.3 Differentiation Rules, Product Rule",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf(x)$ and $\\kg(x)$ are differentiable.",
+       "src": "3.3, Product Rule"
+      },
+      {
+       "tex": "\\kj(x)=\\kf(x)\\kg(x)"
+      },
+      {
+       "tex": "\\lim_{h\\to 0}\\kg(x+h)=\\kg(x)",
+       "src": "3.2, Differentiability Implies Continuity"
+      },
+      {
+       "text": "The limit of a sum is the sum of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\kfprime(x)=\\lim_{h\\to 0}\\frac{\\kf(x+h)-\\kf(x)}{h},\\quad \\kgprime(x)=\\lim_{h\\to 0}\\frac{\\kg(x+h)-\\kg(x)}{h}",
+       "src": "3.2, (3.9)"
+      },
+      {
+       "text": "The limit of a product is the product of the limits.",
+       "src": "2.3, Limit Laws"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kj(x+h)}-\\mk{b}{\\kj(x)}}{\\mk{h}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kf(x+h)\\kg(x+h)}-\\mk{b}{\\kf(x)\\kg(x)}}{\\mk{h}{h}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kf(x+h)\\kg(x+h)}-\\mk{m}{\\kf(x)\\kg(x+h)}+\\mk{p}{\\kf(x)\\kg(x+h)}-\\mk{b}{\\kf(x)\\kg(x)}}{\\mk{h}{h}}",
+       "uses": [],
+       "cap": "Adding and subtracting $\\kf(x)\\kg(x+h)$ leaves the numerator unchanged."
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}(\\mk{a}{\\frac{\\kf(x+h)\\kg(x+h)-\\kf(x)\\kg(x+h)}{h}})+\\mk{lim2}{\\lim_{h\\to 0}}(\\mk{p}{\\frac{\\kf(x)\\kg(x+h)-\\kf(x)\\kg(x)}{h}})",
+       "uses": [
+        3
+       ],
+       "map": {
+        "m": "a",
+        "b": "p",
+        "h": [
+         "a",
+         "p"
+        ],
+        "lim": [
+         "lim",
+         "lim2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}(\\mk{a}{\\frac{\\kf(x+h)-\\kf(x)}{h}}\\cdot \\mk{g}{\\kg(x+h)})+\\mk{lim2}{\\lim_{h\\to 0}}(\\mk{p}{\\frac{\\kg(x+h)-\\kg(x)}{h}}\\cdot \\mk{f}{\\kf(x)})",
+       "uses": [],
+       "map": {
+        "a": [
+         "a",
+         "g"
+        ],
+        "p": [
+         "p",
+         "f"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{a}{\\lim_{h\\to 0}\\frac{\\kf(x+h)-\\kf(x)}{h}}\\cdot \\mk{g}{\\lim_{h\\to 0}\\kg(x+h)}+\\mk{p}{\\lim_{h\\to 0}\\frac{\\kg(x+h)-\\kg(x)}{h}}\\cdot \\mk{f}{\\kf(x)}",
+       "uses": [
+        5
+       ],
+       "map": {
+        "lim": [
+         "a",
+         "g"
+        ],
+        "lim2": "p"
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{a}{\\kfprime(x)}\\mk{g}{\\kg(x)}+\\mk{p}{\\kgprime(x)}\\mk{f}{\\kf(x)}",
+       "uses": [
+        0,
+        2,
+        4
+       ]
+      }
+     ],
+     "src": "3.3, Product Rule"
+    }
+   ]
+  },
+  {
+   "id": "quotient-rule",
+   "what": "the quotient rule",
+   "source": "Calculus, 3.3 Differentiation Rules, The Quotient Rule",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kj(x)=\\frac{\\kf(x)}{\\kg(x)}",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "text": "$\\kj(x)$ is defined, so $\\kg(x)\\ne 0.$"
+      },
+      {
+       "text": "The limit of a difference is the difference of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "text": "$\\kf(x)$ and $\\kg(x)$ are differentiable.",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "text": "The limit of a quotient is the quotient of the limits, when the limit of the denominator is not zero.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "text": "The limit of a product is the product of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{h\\to 0}\\kg(x+h)=\\kg(x)",
+       "src": "3.2, Differentiability Implies Continuity"
+      },
+      {
+       "tex": "\\kfprime(x)=\\lim_{h\\to 0}\\frac{\\kf(x+h)-\\kf(x)}{h},\\quad \\kgprime(x)=\\lim_{h\\to 0}\\frac{\\kg(x+h)-\\kg(x)}{h}",
+       "src": "3.2, (3.9)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kj(x+h)}-\\mk{b}{\\kj(x)}}{\\mk{h}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\frac{\\kf(x+h)}{\\kg(x+h)}}-\\mk{b}{\\frac{\\kf(x)}{\\kg(x)}}}{\\mk{h}{h}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kf(x+h)\\kg(x)}-\\mk{b}{\\kf(x)\\kg(x+h)}}{\\mk{h}{h\\,\\kg(x+h)\\kg(x)}}",
+       "uses": [],
+       "cap": "Both fractions are written over the common denominator $\\kg(x+h)\\kg(x).$"
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\kf(x+h)\\kg(x)}-\\mk{m}{\\kf(x)\\kg(x)}+\\mk{p}{\\kf(x)\\kg(x)}-\\mk{b}{\\kf(x)\\kg(x+h)}}{\\mk{h}{h\\,\\kg(x+h)\\kg(x)}}",
+       "uses": [],
+       "cap": "Adding and subtracting $\\kf(x)\\kg(x)$ leaves the numerator unchanged."
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\frac{\\kf(x+h)-\\kf(x)}{h}\\cdot \\kg(x)}-\\mk{b}{\\frac{\\kg(x+h)-\\kg(x)}{h}\\cdot \\kf(x)}}{\\mk{h}{\\kg(x+h)\\kg(x)}}",
+       "uses": [],
+       "map": {
+        "m": "a",
+        "p": "b"
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\frac{\\mk{a}{(\\lim_{h\\to 0}\\frac{\\kf(x+h)-\\kf(x)}{h})\\cdot \\kg(x)}-\\mk{b}{(\\lim_{h\\to 0}\\frac{\\kg(x+h)-\\kg(x)}{h})\\cdot \\kf(x)}}{\\mk{h}{(\\lim_{h\\to 0}\\kg(x+h))\\cdot \\kg(x)}}",
+       "uses": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+       ],
+       "cap": "Every limit here exists, and the limit of the denominator is $\\kg(x)\\kg(x),$ which is not zero, so the quotient law applies.",
+       "map": {
+        "lim": [
+         "a",
+         "b",
+         "h"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{jp}{\\kjprime(x)}=\\frac{\\mk{a}{\\kfprime(x)\\kg(x)}-\\mk{b}{\\kgprime(x)\\kf(x)}}{\\mk{h}{{(\\kg(x))}^{2}}}",
+       "uses": [
+        6,
+        7
+       ]
+      }
+     ],
+     "src": "3.3, The Quotient Rule"
+    }
+   ]
+  },
+  {
+   "id": "extended-power-rule",
+   "what": "the extended power rule",
+   "source": "Calculus, 3.3 Differentiation Rules, Extended Power Rule",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kf(x)=1,\\quad \\kg(x)=x^{n}"
+      },
+      {
+       "tex": "\\frac{d}{dx}(c)=0",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}x^{n}=nx^{n-1}",
+       "src": "3.3, The Power Rule"
+      },
+      {
+       "text": "$n=-k$ is a positive integer."
+      },
+      {
+       "tex": "x^{-n}=\\frac{1}{x^{n}}"
+      },
+      {
+       "tex": "k=-n"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{dx}(\\frac{\\kf(x)}{\\kg(x)})}=\\frac{\\mk{fp}{\\kfprime(x)}\\mk{g}{\\kg(x)}-\\mk{gp}{\\kgprime(x)}\\mk{f}{\\kf(x)}}{\\mk{gg}{{(\\kg(x))}^{2}}}",
+      "uses": [],
+      "src": "3.3, The Quotient Rule"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\frac{1}{x^{n}})}=\\frac{\\mk{fp}{\\kfprime(x)}\\mk{g}{(x^{n})}-\\mk{gp}{\\kgprime(x)}\\mk{f}{(1)}}{\\mk{gg}{{(x^{n})}^{2}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\frac{1}{x^{n}})}=\\frac{\\mk{fp}{0}\\mk{g}{(x^{n})}-\\mk{f}{1}\\mk{gp}{(nx^{n-1})}}{\\mk{gg}{{(x^{n})}^{2}}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "cap": "The power rule holds for $x^{n}$ because $n$ is a positive integer."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(x^{-n})}=\\frac{\\mk{fp}{0}\\mk{g}{(x^{n})}-\\mk{f}{1}\\mk{gp}{(nx^{n-1})}}{\\mk{gg}{{(x^{n})}^{2}}}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(x^{-n})}=\\frac{\\mk{gp}{-nx^{n-1}}}{\\mk{gg}{x^{2n}}}",
+       "uses": [],
+       "map": {
+        "fp": "gp",
+        "g": "gp",
+        "f": "gp"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(x^{-n})}=\\mk{gp}{-nx^{(n-1)-2n}}",
+       "uses": [],
+       "map": {
+        "gg": "gp"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(x^{-n})}=\\mk{gp}{-nx^{-n-1}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(x^{k})}=\\mk{gp}{kx^{k-1}}",
+       "uses": [
+        5
+       ]
+      }
+     ],
+     "src": "3.3, Extended Power Rule"
+    }
+   ]
+  },
+  {
+   "id": "three-factor-product-rule",
+   "what": "the product rule for three factors",
+   "source": "Calculus, 3.3 Differentiation Rules, Example 3.29",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}(\\kf(x)\\kg(x))=\\frac{d}{dx}(\\kf(x))\\cdot \\kg(x)+\\frac{d}{dx}(\\kg(x))\\cdot \\kf(x)",
+       "src": "3.3, Product Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k}{k(x)}=\\mk{fg}{(\\kf(x)\\kg(x))}\\cdot \\mk{h}{h(x)}",
+      "uses": [],
+      "src": "Example 3.29"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k}{k^{\\prime}(x)}=\\mk{dfg}{\\frac{d}{dx}(\\kf(x)\\kg(x))}\\cdot \\mk{h}{h(x)}+\\mk{dh}{\\frac{d}{dx}(h(x))}\\cdot \\mk{fg}{(\\kf(x)\\kg(x))}",
+       "uses": [
+        0
+       ],
+       "cap": "The product rule with $\\kf(x)\\kg(x)$ as the first function and $h(x)$ as the second.",
+       "map": {
+        "fg": [
+         "dfg",
+         "fg"
+        ],
+        "h": [
+         "h",
+         "dh"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{k}{k^{\\prime}(x)}=\\mk{dfg}{(\\kfprime(x)\\kg(x)+\\kgprime(x)\\kf(x))}\\mk{h}{h(x)}+\\mk{dh}{h^{\\prime}(x)}\\mk{fg}{\\kf(x)\\kg(x)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{k}{k^{\\prime}(x)}=\\mk{t1}{\\kfprime(x)\\kg(x)h(x)}+\\mk{t2}{\\kf(x)\\kgprime(x)h(x)}+\\mk{t3}{\\kf(x)\\kg(x)h^{\\prime}(x)}",
+       "uses": [],
+       "map": {
+        "dfg": [
+         "t1",
+         "t2"
+        ],
+        "h": [
+         "t1",
+         "t2"
+        ],
+        "dh": "t3",
+        "fg": "t3"
+       }
+      }
+     ],
+     "src": "Example 3.29"
+    }
+   ]
+  }
  ]
 }

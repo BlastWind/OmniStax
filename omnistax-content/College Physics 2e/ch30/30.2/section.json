@@ -621,5 +621,91 @@
    "kind": "correction",
    "html": "The summary prints $9.57\times10^{7}$ C/kg; the proton’s charge-to-mass ratio is $9.58\times10^{7}$ C/kg, as the section gives it."
   }
+ ],
+ "derivations": [
+  {
+   "id": "electron-charge-to-mass",
+   "what": "the charge-to-mass ratio of the electron from its deflection",
+   "source": "College Physics 2e, 30.2 Discovery of the Parts of the Atom: Electrons and Nuclei",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kF=\\kqe\\kEf",
+       "src": "18.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\ka}=\\frac{\\mk{F}{\\kF}}{\\mk{m}{\\kme}}",
+      "uses": [],
+      "src": "4.3",
+      "why": "Newton’s second law for the electron."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\ka}=\\frac{\\kF}{\\kme}=\\frac{\\mk{F}{\\kqe\\kEf}}{\\mk{m}{\\kme}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\frac{\\mk{F}{\\kqe}}{\\mk{m}{\\kme}}=\\frac{\\mk{a}{\\ka}}{\\mk{E}{\\kEf}}",
+       "uses": [],
+       "map": {
+        "F": [
+         "F",
+         "E"
+        ]
+       }
+      }
+     ],
+     "src": "30.2"
+    }
+   ]
+  },
+  {
+   "id": "oil-drop-charge",
+   "what": "the charge on a suspended oil drop",
+   "source": "College Physics 2e, 30.2 Discovery of the Parts of the Atom: Electrons and Nuclei",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The drop hangs motionless, so its weight $\\kmdrop\\kg$ is balanced by the electric force $\\kq\\kEf$ on it.",
+       "src": "30.2"
+      },
+      {
+       "tex": "\\kEf=\\kV/\\kd",
+       "src": "19.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\kmdrop\\kg}=\\mk{q}{\\kq}\\mk{E}{\\kEf}",
+      "uses": [0],
+      "src": "30.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{q}{\\kq}=\\frac{\\mk{w}{\\kmdrop\\kg}}{\\mk{E}{\\kEf}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{q}{\\kq}=\\frac{\\kmdrop\\kg}{\\kEf}=\\frac{\\mk{w}{\\kmdrop\\kg}\\mk{E}{\\kd}}{\\mk{V}{\\kV}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "E": [
+         "E",
+         "V"
+        ]
+       }
+      }
+     ],
+     "src": "30.2",
+     "note": "The book writes the balance as $\\kmdrop\\kg = \\kqe\\kEf$, with the electron’s charge; the charge that balances the weight is the drop’s, $\\kq$, a whole number of electron charges, as the next line of the book has it."
+    }
+   ]
+  }
  ]
 }

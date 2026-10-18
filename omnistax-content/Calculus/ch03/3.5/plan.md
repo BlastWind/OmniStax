@@ -64,3 +64,11 @@ Ids confirmed with `ost ids calculus 3.5` after the build.
 - Sheet links on book words: "derivative formulas" in the opening paragraph opens the Table of Derivatives; "derivative" in Example 3.39's problem opens the Integral Calculator on 5x³ sin x.
 - Review exercise 389 (w′(3) for w(t) = 1.9 + 2.9 cos(πt/6)) needs the chain rule, so it is set in 3.6, not here (root rule 12); 377 stays here.
 - Variables rows added: 3.5/f, f_prime, g, g_prime, s, s_prime, v, v_prime, a; anchors on D and the seven forms.
+
+
+## Derivations
+
+- The Derivatives of sin x and cos x · Proof (sine) · score 3 · built as drv-derivatives-of-sine-and-cosine, ending on (3.11) (the identity and the proof's array replaced; the two limits stay with Figure 3.26)
+- cosine ("we provide only the proof for sine") · score 9 · built as node 2 of the same derivation, ending on (3.12), with the cosine addition formula of 1.3
+- Example 3.42 · The Derivative of the Tangent Function · score 3 · built as drv-derivative-of-tangent, ending on (3.13)
+- cot x, sec x, csc x ("may be obtained by using similar techniques") · score 7 each · built as drv-derivatives-of-cotangent-secant-cosecant after the theorem, one node each ending on (3.14), (3.15), (3.16)

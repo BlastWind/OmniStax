@@ -25,10 +25,9 @@ $$\begin{array}{ll}\kf(x,y+k) & =x^{2}-3x(y+k)+2{(y+k)}^{2}-4x+5(y+k)-12 \\ & =x
 $$\begin{array}{rl}\kdfdy & =\lim_{k\to 0}\frac{\kf(x,y+k)-\kf(x,y)}{k} \\ & =\lim_{k\to 0}\frac{(x^{2}-3xy-3xk+2y^{2}+4yk+2k^{2}-4x+5y+5k-12)-(x^{2}-3xy+2y^{2}-4x+5y-12)}{k} \\ & =\lim_{k\to 0}\frac{x^{2}-3xy-3xk+2y^{2}+4yk+2k^{2}-4x+5y+5k-12-x^{2}+3xy-2y^{2}+4x-5y+12}{k} \\ & =\lim_{k\to 0}\frac{-3xk+4yk+2k^{2}+5k}{k} \\ & =\lim_{k\to 0}\frac{h(-3x+4y+2k+5)}{k} \\ & =\lim_{k\to 0}(-3x+4y+2k+5) \\ & =-3x+4y+5.\end{array}$$
 </div>
 <div class="exercises" data-place="fs-id1167793858583"></div>
-<p id="holding-constant">The idea to keep in mind when calculating <span data-concept="partial-derivative">partial derivatives</span> is to treat all independent variables, other than the variable with respect to which we are differentiating, as constants. Then proceed to differentiate as with a function of a single variable. To see why this is true, first fix $y$ and define $\kg(x)=\kf(x,y)$ as a function of $x.$ Then</p>
-$$\kg^{\prime}(x)=\lim_{h\to 0}\frac{\kg(x+h)-\kg(x)}{h}=\lim_{h\to 0}\frac{\kf(x+h,y)-\kf(x,y)}{h}=\kdfdx.$$
-<p>The same is true for calculating the <span data-concept="partial-derivative">partial derivative</span> of $\kf$ with respect to $y.$ This time, fix $x$ and define $h(y)=\kf(x,y)$ as a function of $y.$ Then</p>
-$$h^{\prime}(x)=\lim_{k\to 0}\frac{h(x+k)-h(x)}{k}=\lim_{k\to 0}\frac{\kf(x,y+k)-\kf(x,y)}{k}=\kdfdy.$$
+<p id="holding-constant">The idea to keep in mind when calculating <span data-concept="partial-derivative">partial derivatives</span> is to treat all independent variables, other than the variable with respect to which we are differentiating, as constants. Then proceed to differentiate as with a function of a single variable. To see why this is true, first fix $y$ and define $\kg(x)=\kf(x,y)$ as a function of $x.$</p>
+<p>The same is true for calculating the <span data-concept="partial-derivative">partial derivative</span> of $\kf$ with respect to $y.$ This time, fix $x$ and define $h(y)=\kf(x,y)$ as a function of $y.$</p>
+<figure class="dv" id="drv-partial-derivatives-as-ordinary-derivatives"></figure>
 <p>All differentiation rules from <a href="/calculus/ch03/intro/">Introduction to Derivatives</a> apply.</p>
 <div class="example" id="fs-id1167793627691">
 <h3>Example 14.15 · Calculating Partial Derivatives</h3>
@@ -154,6 +153,7 @@ $$\begin{array}{rl}\frac{{\partial}^{2}\kf}{\partial y^{2}} & =\frac{\partial}{\
 <p>Suppose that $\kf(x,y)$ is defined on an open disk $D$ that contains the point $(a,b).$ If the functions $\kfxy$ and $\kfyx$ are continuous on $D,$ then $\kfxy=\kfyx.$</p>
 </div>
 <p><span data-concept="clairauts-theorem">Clairaut’s theorem</span> guarantees that as long as mixed second-order derivatives are continuous, the order in which we choose to differentiate the functions (i.e., which variable goes first, then second, and so on) does not matter. It can be extended to higher-order derivatives as well. The proof of <span data-concept="clairauts-theorem">Clairaut’s theorem</span> can be found in most advanced calculus books.</p>
+<figure class="dv" id="drv-clairauts-theorem"></figure>
 <p>Two other second-order <span data-concept="partial-derivative">partial derivatives</span> can be calculated for any function $\kf(x,y).$ The <span data-concept="partial-derivative">partial derivative</span> $\kfxx$ is equal to the <span data-concept="partial-derivative">partial derivative</span> of $\kfx$ with respect to $x,$ and $\kfyy$ is equal to the <span data-concept="partial-derivative">partial derivative</span> of $\kfy$ with respect to $y.$</p>
 </section>
 <section id="pdes">

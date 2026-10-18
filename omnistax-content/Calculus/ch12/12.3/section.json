@@ -1388,6 +1388,491 @@
    "id": "c-rearranges",
    "kind": "correction",
    "html": "The book cites Equation 12.3 here, the dot product in components; the equation that follows rearranges Equation 12.4, $\\mathbf{u}\\cdot\\mathbf{v}=\\|\\mathbf{u}\\|\\|\\mathbf{v}\\|\\cos\\theta.$"
+  },
+  {
+   "id": "c-abs-cos",
+   "kind": "correction",
+   "html": "The book prints $\\|\\mathbf{v}\\|\\cdot|\\cos|\\;\\theta;$ the absolute value is of $\\cos\\theta,$ so the length is $\\|\\mathbf{v}\\|\\,|\\cos\\theta|.$"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "dot-product-properties",
+   "what": "the commutative, associative and magnitude properties of the dot product",
+   "source": "Calculus, 12.3 The Dot Product, Properties of the Dot Product",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecu=\\langle u_{1},u_{2},u_{3}\\rangle,\\quad \\kvecv=\\langle v_{1},v_{2},v_{3}\\rangle"
+      },
+      {
+       "tex": "\\kvecu\\cdot\\kvecv=u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3}",
+       "src": "(12.3)"
+      },
+      {
+       "text": "Multiplication of real numbers is commutative."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecu\\cdot\\kvecv}=\\mk{r}{\\langle u_{1},u_{2},u_{3}\\rangle\\cdot \\langle v_{1},v_{2},v_{3}\\rangle}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kvecu\\cdot\\kvecv}=\\mk{a}{u_{1}v_{1}}+\\mk{b}{u_{2}v_{2}}+\\mk{c}{u_{3}v_{3}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r": [
+         "a",
+         "b",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\kvecu\\cdot\\kvecv}=\\mk{a}{v_{1}u_{1}}+\\mk{b}{v_{2}u_{2}}+\\mk{c}{v_{3}u_{3}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kvecu\\cdot\\kvecv}=\\mk{q}{\\langle v_{1},v_{2},v_{3}\\rangle\\cdot \\langle u_{1},u_{2},u_{3}\\rangle}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "a": "q",
+        "b": "q",
+        "c": "q"
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\kvecu\\cdot\\kvecv}=\\mk{q}{\\kvecv\\cdot\\kvecu}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "12.3, Properties of the Dot Product"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecu=\\langle u_{1},u_{2},u_{3}\\rangle,\\quad \\kvecv=\\langle v_{1},v_{2},v_{3}\\rangle"
+      },
+      {
+       "tex": "\\kvecu\\cdot\\kvecv=u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3}",
+       "src": "(12.3)"
+      },
+      {
+       "text": "Multiplication of real numbers distributes over addition."
+      },
+      {
+       "text": "Multiplication of real numbers is associative."
+      },
+      {
+       "text": "A scalar multiplies each component: $c\\langle u_{1},u_{2},u_{3}\\rangle=\\langle cu_{1},cu_{2},cu_{3}\\rangle$.",
+       "src": "12.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{c(\\kvecu\\cdot\\kvecv)}=\\mk{c}{c}\\mk{r}{(u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3})}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{c(\\kvecu\\cdot\\kvecv)}=\\mk{a}{c(u_{1}v_{1})}+\\mk{b}{c(u_{2}v_{2})}+\\mk{d}{c(u_{3}v_{3})}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "c": [
+         "a",
+         "b",
+         "d"
+        ],
+        "r": [
+         "a",
+         "b",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{c(\\kvecu\\cdot\\kvecv)}=\\mk{a}{(cu_{1})v_{1}}+\\mk{b}{(cu_{2})v_{2}}+\\mk{d}{(cu_{3})v_{3}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{l}{c(\\kvecu\\cdot\\kvecv)}=\\mk{q}{\\langle cu_{1},cu_{2},cu_{3}\\rangle\\cdot \\langle v_{1},v_{2},v_{3}\\rangle}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "a": "q",
+        "b": "q",
+        "d": "q"
+       }
+      },
+      {
+       "tex": "\\mk{l}{c(\\kvecu\\cdot\\kvecv)}=\\mk{q}{c\\langle u_{1},u_{2},u_{3}\\rangle\\cdot \\langle v_{1},v_{2},v_{3}\\rangle}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{l}{c(\\kvecu\\cdot\\kvecv)}=\\mk{q}{(c\\kvecu)\\cdot\\kvecv}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "12.3, Properties of the Dot Product"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecu=\\langle u_{1},u_{2},u_{3}\\rangle,\\quad \\kvecv=\\langle v_{1},v_{2},v_{3}\\rangle"
+      },
+      {
+       "tex": "\\kvecu\\cdot\\kvecv=u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3}",
+       "src": "(12.3)"
+      },
+      {
+       "tex": "\\|\\kvecv\\|=\\sqrt{v_{1}^{2}+v_{2}^{2}+v_{3}^{2}}",
+       "src": "12.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecv\\cdot\\kvecv}=\\mk{r}{\\langle v_{1},v_{2},v_{3}\\rangle\\cdot \\langle v_{1},v_{2},v_{3}\\rangle}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kvecv\\cdot\\kvecv}=\\mk{r}{(v_{1})^{2}+(v_{2})^{2}+(v_{3})^{2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kvecv\\cdot\\kvecv}=\\mk{r}{\\left[\\sqrt{(v_{1})^{2}+(v_{2})^{2}+(v_{3})^{2}}\\right]^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\kvecv\\cdot\\kvecv}=\\mk{r}{\\|\\kvecv\\|^{2}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "12.3, Properties of the Dot Product"
+    }
+   ]
+  },
+  {
+   "id": "dot-product-and-angle",
+   "what": "the dot product from the magnitudes and the angle",
+   "source": "Calculus, 12.3 The Dot Product, Evaluating a Dot Product",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Placed in standard position, $\\kvecu$, $\\kvecv$ and $\\kvecv-\\kvecu$ form a triangle with side lengths $\\|\\kvecu\\|$, $\\|\\kvecv\\|$ and $\\|\\kvecv-\\kvecu\\|$, with the angle $\\ktheta$ between $\\kvecu$ and $\\kvecv$.",
+       "src": "12.3, Figure 12.45"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{c^{2}}=\\mk{a}{a^{2}}+\\mk{b}{b^{2}}-\\mk{m}{2ab\\cos C}",
+      "src": "Appendix C, Law of Cosines"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\|\\kvecv-\\kvecu\\|^{2}}=\\mk{a}{\\|\\kvecu\\|^{2}}+\\mk{b}{\\|\\kvecv\\|^{2}}-\\mk{m}{2\\|\\kvecu\\|\\|\\kvecv\\|\\cos\\ktheta}",
+       "uses": [
+        0
+       ],
+       "cap": "The side $\\|\\kvecv-\\kvecu\\|$ is opposite the angle $\\ktheta$."
+      }
+     ],
+     "src": "12.3, Evaluating a Dot Product"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecv\\cdot\\kvecv=\\|\\kvecv\\|^{2}",
+       "src": "12.3, Properties of the Dot Product"
+      },
+      {
+       "text": "The dot product distributes over vector addition.",
+       "src": "12.3, Properties of the Dot Product"
+      },
+      {
+       "text": "The dot product is commutative.",
+       "src": "12.3, Properties of the Dot Product"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\|\\kvecv-\\kvecu\\|^{2}}=\\mk{r}{(\\kvecv-\\kvecu)\\cdot(\\kvecv-\\kvecu)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\|\\kvecv-\\kvecu\\|^{2}}=\\mk{a}{(\\kvecv-\\kvecu)\\cdot\\kvecv}-\\mk{b}{(\\kvecv-\\kvecu)\\cdot\\kvecu}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\|\\kvecv-\\kvecu\\|^{2}}=\\mk{a}{\\kvecv\\cdot\\kvecv}-\\mk{x}{\\kvecu\\cdot\\kvecv}-\\mk{y}{\\kvecv\\cdot\\kvecu}+\\mk{b}{\\kvecu\\cdot\\kvecu}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "a": [
+         "a",
+         "x"
+        ],
+        "b": [
+         "y",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\|\\kvecv-\\kvecu\\|^{2}}=\\mk{a}{\\kvecv\\cdot\\kvecv}-\\mk{x}{\\kvecu\\cdot\\kvecv}-\\mk{y}{\\kvecu\\cdot\\kvecv}+\\mk{b}{\\kvecu\\cdot\\kvecu}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\|\\kvecv-\\kvecu\\|^{2}}=\\mk{a}{\\|\\kvecv\\|^{2}}-\\mk{x}{2\\kvecu\\cdot\\kvecv}+\\mk{b}{\\|\\kvecu\\|^{2}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "y": "x"
+       }
+      }
+     ],
+     "src": "12.3, Evaluating a Dot Product"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\|\\kvecv-\\kvecu\\|^{2}}=\\mk{a}{\\|\\kvecu\\|^{2}}+\\mk{b}{\\|\\kvecv\\|^{2}}-\\mk{m}{2\\|\\kvecu\\|\\|\\kvecv\\|\\cos\\ktheta}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\|\\kvecv\\|^{2}-2\\kvecu\\cdot\\kvecv+\\|\\kvecu\\|^{2}}=\\mk{a}{\\|\\kvecu\\|^{2}}+\\mk{b}{\\|\\kvecv\\|^{2}}-\\mk{m}{2\\|\\kvecu\\|\\|\\kvecv\\|\\cos\\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{c}{-2\\kvecu\\cdot\\kvecv}=\\mk{m}{-2\\|\\kvecu\\|\\|\\kvecv\\|\\cos\\ktheta}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{\\kvecu\\cdot\\kvecv}=\\mk{m}{\\|\\kvecu\\|\\|\\kvecv\\|\\cos\\ktheta}",
+       "uses": []
+      }
+     ],
+     "num": "(12.4)",
+     "src": "12.3, Evaluating a Dot Product"
+    }
+   ]
+  },
+  {
+   "id": "orthogonal-vectors",
+   "what": "the dot-product test for orthogonal vectors",
+   "source": "Calculus, 12.3 The Dot Product, Orthogonal Vectors",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecu\\cdot\\kvecv=0"
+      },
+      {
+       "text": "$\\kvecu$ and $\\kvecv$ are nonzero, so $\\|\\kvecu\\|\\ne 0$ and $\\|\\kvecv\\|\\ne 0$."
+      },
+      {
+       "text": "The angle between two vectors has $0\\le\\ktheta\\le\\pi$, where $\\cos\\ktheta=0$ only at $\\ktheta=90^{\\circ}$.",
+       "src": "12.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kvecu\\cdot\\kvecv}=\\mk{m}{\\|\\kvecu\\|\\|\\kvecv\\|}\\mk{c}{\\cos\\ktheta}",
+      "src": "(12.4)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\|\\kvecu\\|\\|\\kvecv\\|}\\mk{c}{\\cos\\ktheta}=\\mk{d}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\cos\\ktheta}=\\mk{d}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\ktheta}=\\mk{d}{90^{\\circ}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "12.3, Orthogonal Vectors"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kvecu$ and $\\kvecv$ are orthogonal, so $\\ktheta=90^{\\circ}$."
+      },
+      {
+       "tex": "\\cos 90^{\\circ}=0",
+       "src": "1.3, Table 1.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kvecu\\cdot\\kvecv}=\\mk{m}{\\|\\kvecu\\|\\|\\kvecv\\|}\\mk{c}{\\cos\\ktheta}",
+      "src": "(12.4)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kvecu\\cdot\\kvecv}=\\mk{m}{\\|\\kvecu\\|\\|\\kvecv\\|}\\mk{c}{\\cos 90^{\\circ}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kvecu\\cdot\\kvecv}=\\mk{m}{\\|\\kvecu\\|\\|\\kvecv\\|}\\mk{c}{(0)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kvecu\\cdot\\kvecv}=\\mk{c}{0}",
+       "uses": [],
+       "map": {
+        "m": "c"
+       }
+      }
+     ],
+     "src": "12.3, Orthogonal Vectors"
+    }
+   ]
+  },
+  {
+   "id": "vector-projection",
+   "what": "the vector projection of v onto u",
+   "source": "Calculus, 12.3 The Dot Product, Projections",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\cos\\ktheta=\\dfrac{\\kvecu\\cdot\\kvecv}{\\|\\kvecu\\|\\|\\kvecv\\|}",
+       "src": "(12.5)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\|\\text{proj}_{\\kvecu}\\kvecv\\|}=\\mk{v}{\\|\\kvecv\\|}\\cdot\\mk{c}{|\\cos\\ktheta|}",
+      "src": "12.3, Definition",
+      "why": "$\\kvecv$ is the hypotenuse of a right triangle whose leg along the line of $\\kvecu$ is the projection."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\|\\text{proj}_{\\kvecu}\\kvecv\\|}=\\mk{v}{\\|\\kvecv\\|}\\left(\\mk{c}{\\dfrac{|\\kvecu\\cdot\\kvecv|}{\\|\\kvecu\\|\\|\\kvecv\\|}}\\right)",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\|\\text{proj}_{\\kvecu}\\kvecv\\|}=\\mk{c}{\\dfrac{|\\kvecu\\cdot\\kvecv|}{\\|\\kvecu\\|}}",
+       "uses": [],
+       "map": {
+        "v": "c"
+       }
+      }
+     ],
+     "src": "12.3, Definition",
+     "note": "The book prints the first line as $\\|\\text{proj}_{\\mathbf{u}}\\mathbf{v}\\|=\\|\\mathbf{v}\\|\\cdot|\\cos|\\;\\theta$; the absolute value is of $\\cos\\theta$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\dfrac{1}{\\|\\kvecu\\|}\\kvecu$ is the unit vector in the direction of $\\kvecu$.",
+       "src": "12.1"
+      },
+      {
+       "text": "The projection has the direction of $\\kvecu$, and the opposite direction when $\\ktheta$ is obtuse.",
+       "src": "12.3, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\text{proj}_{\\kvecu}\\kvecv}=\\mk{s}{\\left(\\pm\\|\\text{proj}_{\\kvecu}\\kvecv\\|\\right)}\\mk{e}{\\left(\\dfrac{1}{\\|\\kvecu\\|}\\kvecu\\right)}",
+      "uses": [
+       1,
+       2
+      ],
+      "why": "A vector is its length times the unit vector in its direction; the sign is $+$ for an acute $\\ktheta$ and $-$ for an obtuse one."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\text{proj}_{\\kvecu}\\kvecv}=\\mk{s}{\\left(\\pm\\dfrac{|\\kvecu\\cdot\\kvecv|}{\\|\\kvecu\\|}\\right)}\\mk{e}{\\left(\\dfrac{1}{\\|\\kvecu\\|}\\kvecu\\right)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\text{proj}_{\\kvecu}\\kvecv}=\\mk{s}{\\dfrac{\\kvecu\\cdot\\kvecv}{\\|\\kvecu\\|}}\\mk{e}{\\left(\\dfrac{1}{\\|\\kvecu\\|}\\kvecu\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\kvecu\\cdot\\kvecv$ has the sign of $\\cos\\ktheta$, positive for an acute angle and negative for an obtuse one, so it carries the sign itself."
+      },
+      {
+       "tex": "\\mk{p}{\\text{proj}_{\\kvecu}\\kvecv}=\\mk{s}{\\dfrac{\\kvecu\\cdot\\kvecv}{\\|\\kvecu\\|^{2}}}\\mk{e}{\\kvecu}",
+       "uses": []
+      }
+     ],
+     "num": "(12.6)",
+     "src": "12.3, Definition"
+    }
+   ]
   }
  ]
 }

@@ -9,12 +9,11 @@
 <ol><li> $$\int \frac{du}{\sqrt{a^{2}-u^{2}}}=\sin^{-1}(\frac{u}{a})+C$$</li><li> $$\int \frac{du}{a^{2}+u^{2}}=\frac{1}{a}\;\tan^{-1}\frac{u}{a}+C$$</li><li> $$\int \frac{du}{u\sqrt{u^{2}-a^{2}}}=\frac{1}{a}\;\sec^{-1}\frac{|u|}{a}+C$$</li></ol>
 </div>
 <h3>Proof</h3>
-<p>Let $y=\sin^{-1}\frac{x}{a}.$ Then $a\;\sin y=x.$ Now let’s use <span data-concept="implicit-differentiation">implicit differentiation</span>. We obtain</p>
-$$\begin{aligned}\frac{d}{dx}\;(a\;\sin y) &= \frac{d}{dx}\;(x) \\ a\;\cos y\;\frac{dy}{dx} &= 1 \\ \frac{dy}{dx} &= \frac{1}{a\;\cos y}.\end{aligned}$$
-<p>For $-\frac{\pi}{2}\le y\le\frac{\pi}{2},\cos y\ge0.$ Thus, applying the <span data-concept="pythagorean-identities">Pythagorean identity</span> $\sin^{2}y+\cos^{2}y=1,$ we have $\cos y=\sqrt{1-\sin^{2}y}.$ This gives</p>
-$$\begin{aligned}\frac{1}{a\;\cos y} &=\frac{1}{a\sqrt{1-\sin^{2}y}} \\ &=\frac{1}{\sqrt{a^{2}-a^{2}\sin^{2}y}} \\ &=\frac{1}{\sqrt{a^{2}-x^{2}}}.\end{aligned}$$
-<p>Then for $-a\le x\le a,$ and generalizing to <em>u</em>, we have</p>
-$$\int \frac{1}{\sqrt{a^{2}-u^{2}}}du=\sin^{-1}(\frac{u}{a})+C.$$
+<figure class="dv" id="drv-inverse-sine-integral"></figure>
+<p>The second formula follows in the same way from the derivative of the inverse tangent.</p>
+<figure class="dv" id="drv-inverse-tangent-integral"></figure>
+<p>The third follows from the derivative of the inverse secant.</p>
+<figure class="dv" id="drv-inverse-secant-integral"></figure>
 <p>□</p>
 <figure class="sim" id="sim-inverse-trig">
   <div class="sim-head"><span class="eyebrow">Sim</span><span>The area under $\frac{1}{\sqrt{1-t^{2}}}$ or $\frac{1}{1+t^{2}}$ from 0 to $x$ (left) is an angle $\ktheta$ of the unit circle (right): the angle whose sine is $x,$ or whose tangent is $x,$ drawn as the segment of length $x.$ The area under $\frac{1}{1+t^{2}}$ never passes $\frac{\pi}{2}$ however far $x$ goes, and the area under $\frac{1}{\sqrt{1-t^{2}}}$ reaches $\frac{\pi}{2}$ as $x$ approaches 1.</span></div>

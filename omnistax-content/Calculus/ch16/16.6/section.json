@@ -13,7 +13,7 @@
   "Describe the surface integral of a vector field.",
   "Use surface integrals to solve applied problems."
  ],
- "summary_html": "<ul><li>Surfaces can be parameterized, just as curves can be parameterized. In general, surfaces must be parameterized with two parameters.</li><li>Surfaces can sometimes be oriented, just as curves can be oriented. Some surfaces, such as a Möbius strip, cannot be oriented.</li><li>A <span data-concept=\"surface-integral\">surface integral</span> is like a <span data-concept=\"line-integral\">line integral</span> in one higher dimension. The domain of integration of a <span data-concept=\"surface-integral\">surface integral</span> is a surface in a plane or space, rather than a curve in a plane or space.</li><li>The integrand of a <span data-concept=\"surface-integral\">surface integral</span> can be a scalar function or a <span data-concept=\"vector-field\">vector field</span>. To calculate a <span data-concept=\"surface-integral\">surface integral</span> with an integrand that is a function, use <a href=\"#fs-id1167793757749\">Equation 16.19</a>. To calculate a <span data-concept=\"surface-integral\">surface integral</span> with an integrand that is a <span data-concept=\"vector-field\">vector field</span>, use <a href=\"#fs-id1167793385095\">Equation 16.20</a>.</li><li>If <em>S</em> is a surface, then the area of <em>S</em> is $\\int \\int_{S}dS .$</li></ul>",
+ "summary_html": "<ul><li>Surfaces can be parameterized, just as curves can be parameterized. In general, surfaces must be parameterized with two parameters.</li><li>Surfaces can sometimes be oriented, just as curves can be oriented. Some surfaces, such as a Möbius strip, cannot be oriented.</li><li>A <span data-concept=\"surface-integral\">surface integral</span> is like a <span data-concept=\"line-integral\">line integral</span> in one higher dimension. The domain of integration of a <span data-concept=\"surface-integral\">surface integral</span> is a surface in a plane or space, rather than a curve in a plane or space.</li><li>The integrand of a <span data-concept=\"surface-integral\">surface integral</span> can be a scalar function or a <span data-concept=\"vector-field\">vector field</span>. To calculate a <span data-concept=\"surface-integral\">surface integral</span> with an integrand that is a function, use <a href=\"#drv-scalar-surface-integral\">Equation 16.19</a>. To calculate a <span data-concept=\"surface-integral\">surface integral</span> with an integrand that is a <span data-concept=\"vector-field\">vector field</span>, use <a href=\"#fs-id1167793385095\">Equation 16.20</a>.</li><li>If <em>S</em> is a surface, then the area of <em>S</em> is $\\int \\int_{S}dS .$</li></ul>",
  "ai": {
   "text": [
    {
@@ -589,7 +589,7 @@
     "type": "open",
     "generated_by": "source",
     "solution": "24",
-    "hint": "Use <a href=\"#fs-id1167793757749\">Equation 16.19</a>."
+    "hint": "Use <a href=\"#drv-scalar-surface-integral\">Equation 16.19</a>."
    }
   },
   {
@@ -1518,6 +1518,247 @@
    "id": "c-rev-caption",
    "kind": "correction",
    "html": "The caption’s second bound is printed $0\\le x\\lt 2\\pi;$ it is $0\\le\\theta\\lt 2\\pi.$"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "area-of-a-surface-piece",
+   "what": "the area of a small piece of a parametric surface",
+   "source": "Calculus, 16.6 Surface Integrals, Surface Area of a Parametric Surface",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The piece $S_{ij}$ is approximated by the parallelogram in the tangent plane at $P_{ij}$ spanned by $\\Delta u\\,\\kvectu(P_{ij})$ and $\\Delta v\\,\\kvectv(P_{ij})$.",
+       "src": "16.6"
+      },
+      {
+       "text": "The area of the parallelogram with adjacent sides $\\kvecu$ and $\\kvecv$ is $\\|\\kvecu\\times\\kvecv\\|$.",
+       "src": "12.4, Area of a Parallelogram"
+      },
+      {
+       "tex": "c(\\kvecu\\times\\kvecv)=(c\\kvecu)\\times\\kvecv=\\kvecu\\times(c\\kvecv)",
+       "src": "12.4, Properties of the Cross Product"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\Delta S_{ij}}\\approx\\mk{A}{\\|(\\Delta u\\,\\kvectu(P_{ij}))\\times(\\Delta v\\,\\kvectv(P_{ij}))\\|}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\Delta S_{ij}}\\approx\\mk{A}{\\|\\Delta u\\,\\Delta v\\,(\\kvectu(P_{ij})\\times\\kvectv(P_{ij}))\\|}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\Delta S_{ij}}\\approx\\mk{A}{\\|\\kvectu(P_{ij})\\times\\kvectv(P_{ij})\\|\\Delta u\\Delta v}",
+       "uses": [],
+       "cap": "$\\Delta u$ and $\\Delta v$ are positive, so they come out of the magnitude as they are."
+      }
+     ],
+     "src": "16.6"
+    }
+   ]
+  },
+  {
+   "id": "scalar-surface-integral",
+   "what": "the scalar surface integral as a double integral",
+   "source": "Calculus, 16.6 Surface Integrals, Surface Integral of a Scalar-Valued Function",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\Delta S_{ij}\\approx\\|\\kvectu(P_{ij})\\times\\kvectv(P_{ij})\\|\\Delta u\\Delta v",
+       "src": "16.6"
+      },
+      {
+       "text": "Point $P_{ij}$ corresponds to the point $(u_{i},v_{j})$ of the parameter domain $\\kD$: $P_{ij}=\\kvecr(u_{i},v_{j})$.",
+       "src": "16.6"
+      },
+      {
+       "text": "The limit of a double Riemann sum $\\sum_{i=1}^{m}\\sum_{j=1}^{n}g(u_{i},v_{j})\\Delta u\\Delta v$ over $\\kD$ is the double integral $\\iint_{D}g(u,v)dA$.",
+       "src": "15.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\iint_{S}\\kf(x,y,z)dS}=\\mk{lim}{\\lim_{m,n\\to\\infty}}\\mk{S}{\\sum_{i=1}^{m}\\sum_{j=1}^{n} f(P_{ij})\\Delta S_{ij}}",
+      "uses": [],
+      "src": "16.6, Definition"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\iint_{S}\\kf(x,y,z)dS}\\approx\\mk{lim}{\\lim_{m,n\\to\\infty}}\\mk{S}{\\sum_{i=1}^{m}\\sum_{j=1}^{n} f(P_{ij})\\|\\kvectu(P_{ij})\\times\\kvectv(P_{ij})\\|\\Delta u\\Delta v}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\iint_{S}\\kf(x,y,z)dS}=\\mk{S}{\\iint_{D}f(\\kvecr(u,v))\\|\\kvectu\\times\\kvectv\\|dA}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "The approximation becomes arbitrarily close as $m$ and $n$ go to infinity, and the limit of the double Riemann sum is a double integral over $\\kD.$",
+       "map": {
+        "lim": "S"
+       }
+      }
+     ],
+     "num": "(16.19)",
+     "src": "16.6"
+    }
+   ]
+  },
+  {
+   "id": "upward-normal-of-a-graph",
+   "what": "the upward normal of a graph",
+   "source": "Calculus, 16.6 Surface Integrals, Orientation of a Surface",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecr(x,y)=\\langle x,y,\\kf(x,y)\\rangle",
+       "src": "16.6"
+      },
+      {
+       "text": "The tangent vectors of the grid curves are the partial derivatives of the parameterization.",
+       "src": "16.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\mathbf{t}_{x}}=\\mk{r}{\\kvecr_{x}(x,y)}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\mathbf{t}_{x}}=\\mk{r}{\\frac{\\partial}{\\partial x}\\langle x,y,\\kf(x,y)\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\mathbf{t}_{x}}=\\mk{r}{\\langle 1,0,\\kfx\\rangle}",
+       "uses": []
+      }
+     ],
+     "src": "16.6"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecr(x,y)=\\langle x,y,\\kf(x,y)\\rangle",
+       "src": "16.6"
+      },
+      {
+       "text": "The tangent vectors of the grid curves are the partial derivatives of the parameterization.",
+       "src": "16.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\mathbf{t}_{y}}=\\mk{r}{\\kvecr_{y}(x,y)}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\mathbf{t}_{y}}=\\mk{r}{\\frac{\\partial}{\\partial y}\\langle x,y,\\kf(x,y)\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\mathbf{t}_{y}}=\\mk{r}{\\langle 0,1,\\kfy\\rangle}",
+       "uses": []
+      }
+     ],
+     "src": "16.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kvecu\\times\\kvecv=(u_{2}v_{3}-u_{3}v_{2})\\kveci-(u_{1}v_{3}-u_{3}v_{1})\\kvecj+(u_{1}v_{2}-u_{2}v_{1})\\kveck",
+       "src": "12.4, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\mathbf{t}_{x}\\times\\mathbf{t}_{y}}=\\mk{d}{\\langle 1,0,\\kfx\\rangle\\times\\langle 0,1,\\kfy\\rangle}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\mathbf{t}_{x}\\times\\mathbf{t}_{y}}=\\mk{d}{(0\\cdot\\kfy-\\kfx\\cdot 1)\\kveci-(1\\cdot\\kfy-\\kfx\\cdot 0)\\kvecj+(1\\cdot 1-0\\cdot 0)\\kveck}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\mathbf{t}_{x}\\times\\mathbf{t}_{y}}=\\mk{d}{\\langle -\\kfx,-\\kfy,1\\rangle}",
+       "uses": []
+      }
+     ],
+     "src": "16.6"
+    }
+   ]
+  },
+  {
+   "id": "flux-integral-in-parameters",
+   "what": "the flux integral over the parameter domain",
+   "source": "Calculus, 16.6 Surface Integrals, Surface Integral of a Vector Field",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecN=\\frac{\\kvectu\\times\\kvectv}{\\|\\kvectu\\times\\kvectv\\|}",
+       "src": "16.6"
+      },
+      {
+       "tex": "\\iint_{S}g\\,dS=\\iint_{D}g(\\kvecr(u,v))\\|\\kvectu\\times\\kvectv\\|dA",
+       "src": "(16.19)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\iint_{S}\\kvecF\\cdot d\\mathbf{S}}=\\mk{i}{\\iint_{S}}\\kvecF\\cdot\\mk{N}{\\kvecN}\\mk{d}{dS}",
+      "uses": [],
+      "src": "(16.20)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecF\\cdot d\\mathbf{S}}=\\mk{i}{\\iint_{S}}\\kvecF\\cdot\\mk{N}{\\frac{\\kvectu\\times\\kvectv}{\\|\\kvectu\\times\\kvectv\\|}}\\mk{d}{dS}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecF\\cdot d\\mathbf{S}}=\\mk{i}{\\iint_{D}}(\\mk{F}{\\kvecF(\\kvecr(u,v))}\\cdot\\mk{N}{\\frac{\\kvectu\\times\\kvectv}{\\|\\kvectu\\times\\kvectv\\|}})\\mk{d}{\\|\\kvectu\\times\\kvectv\\|dA}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecF\\cdot d\\mathbf{S}}=\\mk{i}{\\iint_{D}}(\\mk{F}{\\kvecF(\\kvecr(u,v))}\\cdot\\mk{N}{(\\kvectu\\times\\kvectv)})\\mk{d}{dA}",
+       "uses": []
+      }
+     ],
+     "src": "16.6"
+    }
+   ]
   }
  ]
 }

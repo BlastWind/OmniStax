@@ -42,3 +42,9 @@ None: separation of variables is algebra, and the three figures carry the three 
 
 - Anchors: variables y_fn, y_prime, f, g → `8.3-separable-definition`; C → `8.3-separation-strategy`; u_fn, du/dt → `8.3-solution-concentrations` (the h3's example); T, dT/dt → `8.3-newtons-law`. Forms: `eq-separable` → `8.3-separable-definition`; `eq-solution-concentration` → the brine example.
 - Form `dT/dt = k(T − T_s)` and `dT/dt = k(T − T_s), T(0) = T₀` on `newtons-law-of-cooling` (6.8, owned by Chapter 6), anchored at `8.3-newtons-law`: left to the orchestrator if Chapter 6's agent is still working.
+
+## Derivations
+
+- Example 8.11 · score 3 · not built: a worked example of the section's separation of variables
+- Example 8.12 · score 3 · not built: a worked example of the section's method on a mixing problem
+- Example 8.13 · score 1 · not built: a worked example of Newton's law of cooling, substituting into the section's solution

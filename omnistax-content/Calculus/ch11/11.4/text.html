@@ -10,14 +10,8 @@
 <figure class="sim" id="sim-sector" data-figure="11.40" data-original="/media/ch11/CNX_Calc_Figure_11_04_002.jpg" data-original-caption="The area of a sector of a circle is given by A=1/2θ r².">
   <div class="sim-head"><span class="eyebrow">Figure 11.40</span><span>The area of a <span data-concept="area-of-a-sector">sector</span> of a circle is given by $\kA=\frac{1}{2}\ktheta r^{2}$: the sector is the fraction $\frac{\ktheta}{2\pi}$ of the circle’s area $\pi r^{2}.$ Change the angle and the radius.</span></div>
 </figure>
-<p id="sector-term">Recall that the area of a circle is $\kA=\pi r^{2}.$ When measuring angles in radians, 360 degrees is equal to $2\pi$ radians. Therefore a fraction of a circle can be measured by the central angle $\ktheta .$ The fraction of the circle is given by $\frac{\ktheta}{2\pi},$ so the area of the <span data-concept="area-of-a-sector">sector</span> is this fraction multiplied by the total area:</p>
-$$\kA=(\frac{\ktheta}{2\pi})\;\pi r^{2}=\frac{1}{2}\ktheta r^{2}.$$
-<p>Since the radius of a typical <span data-concept="area-of-a-sector">sector</span> in Figure 11.39 is given by $r_{i}=\kf({\ktheta}_{i}),$ the area of the <em>i</em>th <span data-concept="area-of-a-sector">sector</span> is given by</p>
-$$\kA_{i}=\frac{1}{2}(\Delta \ktheta ){(\kf({\ktheta}_{i}))}^{2}.$$
-<p>Therefore a <span data-concept="riemann-sum">Riemann sum</span> that approximates the area is given by</p>
-$$\kA_{n}=\sum_{i=1}^{n} \kA_{i} \approx \sum_{i=1}^{n} \frac{1}{2}(\Delta \ktheta ){(\kf({\ktheta}_{i}))}^{2} .$$
-<p id="polar-area-limit">We take the limit as $n\to \infty$ to get the exact area:</p>
-$$\kA=\lim_{n\to \infty}\kA_{n}=\frac{1}{2}\int_{\alpha}^{\beta }{(\kf(\ktheta ))}^{2}d\theta .$$
+<p id="sector-term">Recall that the area of a circle is $\kA=\pi r^{2}.$ When measuring angles in radians, 360 degrees is equal to $2\pi$ radians. Therefore a fraction of a circle can be measured by the central angle $\ktheta .$ The fraction of the circle is given by $\frac{\ktheta}{2\pi}.$</p>
+<figure class="dv" id="drv-area-bounded-by-a-polar-curve"></figure>
 <p>This gives the following theorem.</p>
 <div class="note" id="fs-id1167794048381">
 <div class="eyebrow">Theorem</div>
@@ -63,14 +57,8 @@ $$6\;\sin \ktheta =0.$$
 <section id="arc-length">
 <h2>Arc Length in Polar Curves</h2>
 <p class="cite-target" id="arc-length-intro">Here we derive a formula for the <span data-concept="arc-length">arc length</span> of a curve defined in <span data-concept="polar-coordinate-system">polar coordinates</span>.</p>
-<p>In rectangular coordinates, the <span data-concept="arc-length">arc length</span> of a <span data-concept="parametric-curve">parameterized curve</span> $(x(t),y(t))$ for $a\le t\le b$ is given by</p>
-$$\kL=\int_a^{b}\sqrt{{(\frac{dx}{dt})}^{2}+{(\frac{dy}{dt})}^{2}}dt .$$
-<p>In <span data-concept="polar-coordinate-system">polar coordinates</span> we define the curve by the equation $r=\kf(\ktheta ),$ where $\alpha \le \ktheta \le β.$ In order to adapt the <span data-concept="arc-length">arc length</span> formula for a <span data-concept="polar-equation">polar curve</span>, we use the equations</p>
-$$x=r\;\cos \ktheta =\kf(\ktheta )\;\cos \ktheta \;\text{and}\;y=r\;\sin \ktheta =\kf(\ktheta )\;\sin \ktheta ,$$
-<p>and we replace the parameter <em>t</em> by $\ktheta .$ Then</p>
-$$\begin{array}{l}\frac{dx}{d\theta}=\kfprime(\ktheta )\;\cos \ktheta -\kf(\ktheta )\;\sin \ktheta \\ \frac{dy}{d\theta}=\kfprime(\ktheta )\;\sin \ktheta +\kf(\ktheta )\;\cos \ktheta .\end{array}$$
-<p>We replace $dt$ by $d\theta ,$ and the lower and upper limits of integration are $\alpha$ and $β,$ respectively. Then the <span data-concept="arc-length">arc length</span> formula becomes</p>
-$$\begin{array}{rl}L & =\int_a^{b}\sqrt{{(\frac{dx}{dt})}^{2}+{(\frac{dy}{dt})}^{2}}dt \\ & =\int_{\alpha}^{\beta }\sqrt{{(\frac{dx}{d\theta})}^{2}+{(\frac{dy}{d\theta})}^{2}}d\theta \\ & =\int_{\alpha}^{\beta }\sqrt{{(\kfprime(\ktheta )\;\cos \ktheta -\kf(\ktheta )\;\sin \ktheta )}^{2}+{(\kfprime(\ktheta )\;\sin \ktheta +\kf(\ktheta )\;\cos \ktheta )}^{2}}d\theta \\ & =\int_{\alpha}^{\beta }\sqrt{{(\kfprime(\ktheta ))}^{2}({\cos }^{2}\ktheta +{\sin }^{2}\ktheta )+{(\kf(\ktheta ))}^{2}({\cos }^{2}\ktheta +{\sin }^{2}\ktheta )}d\theta \\ & =\int_{\alpha}^{\beta }\sqrt{{(\kfprime(\ktheta ))}^{2}+{(\kf(\ktheta ))}^{2}}d\theta \\ & =\int_{\alpha}^{\beta }\sqrt{r^{2}+{(\frac{dr}{d\theta})}^{2}}d\theta .\end{array}$$
+<p>In <span data-concept="polar-coordinate-system">polar coordinates</span> we define the curve by the equation $r=\kf(\ktheta ),$ where $\alpha \le \ktheta \le β.$</p>
+<figure class="dv" id="drv-arc-length-of-a-polar-curve"></figure>
 <p>This gives us the following theorem.</p>
 <div class="note" id="fs-id1167793367213">
 <div class="eyebrow">Theorem</div>

@@ -1523,5 +1523,267 @@
    "kind": "correction",
    "html": "The recursion is used from n = 1 on, since a₂ = a₁/2 + 1/(2a₁) = 5/4: it holds for all n ≥ 1, not only n ≥ 2."
   }
+ ],
+ "derivations": [
+  {
+   "id": "limit-sum-law",
+   "what": "the sum law for limits of sequences",
+   "source": "Calculus, 9.1 Sequences, Algebraic Limit Laws, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "|a+b|\\le|a|+|b|",
+       "src": "2.5"
+      },
+      {
+       "text": "Since $\\lim_{n\\to \\infty}\\kaseq_{n}=\\kA,$ there is an integer $N_{1}$ with $|\\kaseq_{n}-\\kA|\\lt \\frac{\\varepsilon }{2}$ for all $n\\ge N_{1}.$",
+       "src": "9.1"
+      },
+      {
+       "text": "Since $\\lim_{n\\to \\infty}\\kbseq_{n}=\\kB,$ there is an integer $N_{2}$ with $|\\kbseq_{n}-\\kB|\\lt \\frac{\\varepsilon }{2}$ for all $n\\ge N_{2}.$",
+       "src": "9.1"
+      },
+      {
+       "text": "$N$ is the larger of $N_{1}$ and $N_{2},$ and $n\\ge N.$",
+       "src": "9.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{|(\\kaseq_{n}+\\kbseq_{n})-(\\kA+\\kB)|}=\\mk{r}{|(\\kaseq_{n}-\\kA)+(\\kbseq_{n}-\\kB)|}",
+      "src": "9.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{|(\\kaseq_{n}+\\kbseq_{n})-(\\kA+\\kB)|}\\le\\mk{a}{|\\kaseq_{n}-\\kA|}+\\mk{b}{|\\kbseq_{n}-\\kB|}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "r": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{s}{|(\\kaseq_{n}+\\kbseq_{n})-(\\kA+\\kB)|}\\le\\mk{a}{|\\kaseq_{n}-\\kA|}+\\mk{b}{|\\kbseq_{n}-\\kB|}\\lt \\mk{e1}{\\frac{\\varepsilon }{2}}+\\mk{e2}{\\frac{\\varepsilon }{2}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "cap": "Both bounds hold at once because $n$ is at least as large as $N_{1}$ and $N_{2}.$"
+      },
+      {
+       "tex": "\\mk{s}{|(\\kaseq_{n}+\\kbseq_{n})-(\\kA+\\kB)|}\\le\\mk{a}{|\\kaseq_{n}-\\kA|}+\\mk{b}{|\\kbseq_{n}-\\kB|}\\lt \\mk{e1}{\\frac{\\varepsilon }{2}}+\\mk{e2}{\\frac{\\varepsilon }{2}}=\\mk{e}{\\varepsilon}",
+       "uses": []
+      }
+     ],
+     "src": "9.1, Algebraic Limit Laws"
+    }
+   ]
+  },
+  {
+   "id": "continuous-function-of-sequence",
+   "what": "a continuous function of a convergent sequence",
+   "source": "Calculus, 9.1 Sequences, Continuous Functions Defined on Convergent Sequences, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Since $\\kf$ is continuous at $\\kL,$ there exists $\\delta \\gt 0$ such that $|\\kf(x)-\\kf(\\kL)|\\lt \\varepsilon$ if $|x-\\kL|\\lt \\delta .$",
+       "src": "2.4, 2.5"
+      },
+      {
+       "text": "Since $\\{\\kaseq_{n}\\}$ converges to $\\kL,$ there exists $N$ such that $|\\kaseq_{n}-\\kL|\\lt \\delta$ for all $n\\ge N.$",
+       "src": "9.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{|\\kaseq_{n}-\\kL|}\\lt \\mk{d}{\\delta}\\;\\text{for all}\\;n\\ge N",
+      "uses": [
+       1
+      ],
+      "src": "9.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{|\\kf(\\kaseq_{n})-\\kf(\\kL)|}\\lt \\mk{d}{\\varepsilon}\\;\\text{for all}\\;n\\ge N",
+       "uses": [
+        0
+       ],
+       "cap": "Continuity at $\\kL$ applies with $x=\\kaseq_{n}$."
+      }
+     ],
+     "src": "9.1, Continuous Functions Defined on Convergent Sequences"
+    }
+   ]
+  },
+  {
+   "id": "squeeze-theorem-sequences",
+   "what": "the squeeze theorem for sequences",
+   "source": "Calculus, 9.1 Sequences, Squeeze Theorem for Sequences, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "There exists an integer $N$ such that $\\kaseq_{n}\\le \\kbseq_{n}\\le \\kcseq_{n}$ for all $n\\ge N.$",
+       "src": "9.1, Squeeze Theorem for Sequences"
+      },
+      {
+       "text": "Since $\\{\\kaseq_{n}\\}$ converges to $\\kL,$ there exists an integer $N_{1}$ such that $|\\kaseq_{n}-\\kL|\\lt \\varepsilon$ for all $n\\ge N_{1}.$",
+       "src": "9.1"
+      },
+      {
+       "text": "Since $\\{\\kcseq_{n}\\}$ converges to $\\kL,$ there exists an integer $N_{2}$ such that $|\\kcseq_{n}-\\kL|\\lt \\varepsilon$ for all $n\\ge N_{2}.$",
+       "src": "9.1"
+      },
+      {
+       "text": "$M$ is the largest of $N_{1},N_{2},$ and $N,$ and $n\\ge M.$",
+       "src": "9.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kaseq_{n}}\\le \\mk{b}{\\kbseq_{n}}\\le \\mk{c}{\\kcseq_{n}}",
+      "uses": [
+       0,
+       3
+      ],
+      "src": "9.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kaseq_{n}-\\kL}\\le \\mk{b}{\\kbseq_{n}-\\kL}\\le \\mk{c}{\\kcseq_{n}-\\kL}",
+       "uses": []
+      },
+      {
+       "tex": "-\\mk{pa}{|\\kaseq_{n}-\\kL|}\\le \\mk{a}{\\kaseq_{n}-\\kL}\\le \\mk{b}{\\kbseq_{n}-\\kL}\\le \\mk{c}{\\kcseq_{n}-\\kL}\\le\\mk{pc}{|\\kcseq_{n}-\\kL|}",
+       "uses": [],
+       "cap": "Any number lies between minus its absolute value and its absolute value: $-|x|\\le x\\le|x|.$"
+      },
+      {
+       "tex": "-\\mk{e1}{\\varepsilon} \\lt -\\mk{pa}{|\\kaseq_{n}-\\kL|}\\le \\mk{a}{\\kaseq_{n}-\\kL}\\le \\mk{b}{\\kbseq_{n}-\\kL}\\le \\mk{c}{\\kcseq_{n}-\\kL}\\le\\mk{pc}{|\\kcseq_{n}-\\kL|}\\lt \\mk{e2}{\\varepsilon}",
+       "uses": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "-\\mk{e1}{\\varepsilon} \\lt \\mk{b}{\\kbseq_{n}-\\kL}\\lt \\mk{e2}{\\varepsilon}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{b}{|\\kbseq_{n}-\\kL|}\\lt \\mk{e2}{\\varepsilon}",
+       "uses": [],
+       "map": {
+        "e1": "e2"
+       }
+      }
+     ],
+     "src": "9.1, Squeeze Theorem for Sequences"
+    }
+   ]
+  },
+  {
+   "id": "convergent-sequences-bounded",
+   "what": "convergent sequences are bounded",
+   "source": "Calculus, 9.1 Sequences, Convergent Sequences Are Bounded",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\{\\kaseq_{n}\\}$ converges to a real number $\\kL.$",
+       "src": "9.1, Convergent Sequences Are Bounded"
+      },
+      {
+       "text": "For every $\\varepsilon\\gt 0$ there exists an integer $N$ such that $|\\kaseq_{n}-\\kL|\\lt \\varepsilon$ for all $n\\ge N.$",
+       "src": "9.1, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{|\\kaseq_{n}-\\kL|}\\lt \\mk{e}{\\varepsilon}\\;\\text{for all}\\;n\\ge N",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "9.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{|\\kaseq_{n}-\\kL|}\\lt \\mk{e}{1}\\;\\text{for all}\\;n\\ge N",
+       "uses": [],
+       "cap": "Take $\\varepsilon=1.$"
+      }
+     ],
+     "src": "9.1"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "|a+b|\\le|a|+|b|",
+       "src": "2.5"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{|\\kaseq_{n}|}=\\mk{r}{|(\\kaseq_{n}-\\kL)+\\kL|}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{|\\kaseq_{n}|}\\le\\mk{d}{|\\kaseq_{n}-\\kL|}+\\mk{l}{|\\kL|}",
+       "uses": [0],
+       "map": {
+        "r": [
+         "d",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{a}{|\\kaseq_{n}|}\\lt \\mk{e}{1+|\\kL|}\\;\\text{for all}\\;n\\ge N",
+       "uses": [1],
+       "map": {
+        "d": "e",
+        "l": "e"
+       }
+      }
+     ],
+     "src": "9.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "$\\{\\kaseq_{n}\\}$ is bounded if it is bounded above and bounded below: $M'\\le \\kaseq_{n}\\le M$ for all positive integers $n.$",
+       "src": "9.1, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{M}{M}=\\mk{m}{\\max\\{|\\kaseq_{1}|,|\\kaseq_{2}|,\\ldots,|\\kaseq_{N-1}|,1+|\\kL|\\}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{|\\kaseq_{n}|}\\le \\mk{M}{M}\\;\\text{for all}\\;n\\ge1",
+       "uses": [0],
+       "map": {
+        "m": "a"
+       },
+       "cap": "Each of the first $N-1$ terms is one of the numbers in the maximum, and every later term is less than $1+|\\kL|.$"
+      },
+      {
+       "tex": "-\\mk{M2}{M}\\le\\mk{a}{\\kaseq_{n}}\\le \\mk{M}{M}\\;\\text{for all}\\;n\\ge1",
+       "uses": [1]
+      }
+     ],
+     "src": "9.1, Convergent Sequences Are Bounded"
+    }
+   ]
+  }
  ]
 }

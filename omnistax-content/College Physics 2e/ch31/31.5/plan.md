@@ -108,3 +108,8 @@ Applied by the chapter pass (2026-10-05):
 - "rate of decay" is already a term of `activity`; "lifetime" stays ink.
 - `radioactive-dating-technique` and `radioactive-dating` both kept: one is the definition, the other the skill of Example 31.4.
 - No edge from `half-life` to a probability concept: 29.7's `probability-distribution` is the wave's intensity, not a chance of decay.
+
+## Derivations
+
+- Half-life, the decay constant $\lambda = 0.693/t_{1/2}$ · score 4 · not built: stated, with three unprinted moves, under the four the hidden bar needs
+- Activity, $R = 0.693N/t_{1/2}$ · score 7 · not built: it rests on the rate of change of an exponential, calculus the book never gives

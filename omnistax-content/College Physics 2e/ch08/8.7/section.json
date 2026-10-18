@@ -476,5 +476,97 @@
     "sim-mass-ratio"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "rocket-acceleration",
+   "what": "the acceleration of a rocket",
+   "source": "College Physics 2e, 8.7 Introduction to Rocket Propulsion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Impulse, the net external force on a system multiplied by the time it acts, equals the change in momentum of the system.",
+       "src": "8.2"
+      },
+      {
+       "text": "$\\Delta$ means change in the quantity that follows it, its final value less its initial value.",
+       "src": "2.1"
+      },
+      {
+       "tex": "\\kp = \\km\\kv",
+       "src": "8.1"
+      },
+      {
+       "text": "After a time $\\kdt$ the rest of the rocket, of mass $\\km - \\kdm$, moves at $\\kv + \\kdv$.",
+       "src": "8.7, Figure 8.12"
+      },
+      {
+       "text": "The gas, of mass $\\kdm$, is ejected at a velocity $\\kve$ relative to the rocket.",
+       "src": "8.7"
+      },
+      {
+       "text": "Velocities add as vectors: a velocity relative to Earth is the velocity relative to a moving object plus that object’s velocity relative to Earth.",
+       "src": "3.5"
+      },
+      {
+       "tex": "\\ka = \\dfrac{\\kdv}{\\kdt}",
+       "src": "2.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dp}{\\kdp} = \\mk{J}{-\\km\\kg\\kdt}",
+      "src": "8.7",
+      "uses": [
+       0
+      ],
+      "why": "Gravity, $-\\km\\kg$, is the net external force on the rocket and its gas, and it acts for the time $\\kdt$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{(\\km - \\kdm)(\\kv + \\kdv)} + \\mk{gas}{\\kdm(\\kv + \\kdv - \\kve)} - \\mk{b}{\\km\\kv} = \\mk{J}{-\\km\\kg\\kdt}",
+       "uses": [
+        1,
+        2,
+        3,
+        4,
+        5
+       ],
+       "map": {
+        "dp": [
+         "r",
+         "gas",
+         "b"
+        ]
+       },
+       "cap": "The change is the momentum after, of the rocket and the gas, less the momentum $\\km\\kv$ before. The gas moves at $\\kv + \\kdv - \\kve$ relative to Earth."
+      },
+      {
+       "tex": "\\mk{r}{\\km\\kv + \\km\\kdv - \\kdm\\,\\kv - \\kdm\\,\\kdv} + \\mk{gas}{\\kdm\\,\\kv + \\kdm\\,\\kdv - \\kdm\\,\\kve} - \\mk{b}{\\km\\kv} = \\mk{J}{-\\km\\kg\\kdt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\km\\kdv} - \\mk{gas}{\\kdm\\,\\kve} = \\mk{J}{-\\km\\kg\\kdt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\km\\kdv} = \\mk{gas}{\\kdm\\,\\kve} - \\mk{J}{\\km\\kg\\kdt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\dfrac{\\kdv}{\\kdt}} = \\mk{gas}{\\dfrac{\\kve}{\\km}\\;\\dfrac{\\kdm}{\\kdt}} - \\mk{J}{\\kg}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\ka} = \\mk{gas}{\\dfrac{\\kve}{\\km}\\;\\dfrac{\\kdm}{\\kdt}} - \\mk{J}{\\kg}",
+       "uses": [
+        6
+       ]
+      }
+     ],
+     "src": "8.7"
+    }
+   ]
+  }
  ]
 }

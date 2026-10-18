@@ -43,3 +43,14 @@ None beyond the three: an error-versus-n log plot was weighed and left out, sinc
 
 - forms `eq-midpoint-rule` → `7.6-fs-id1165040697119`, `eq-trapezoidal-rule` → `7.6-fs-id1165041762506`, `eq-trapezoidal-average` → `7.6-concavity-paragraph`, `eq-absolute-error` → `7.6-error-definition`, `eq-midpoint-error-bound` → `7.6-fs-id1165041827796`, `eq-trapezoidal-error-bound` → `7.6-fs-id1165041814747`, `eq-simpsons-rule` → `7.6-fs-id1165041953720`, `eq-simpsons-weighted-average` → `7.6-simpson`, `eq-simpsons-error-bound` → `7.6-fs-id1165042109950`.
 - variables of 7.6 (M, T, S, L, R, P, p, Δx, n, f, f″, f⁽⁴⁾) → `7.6-midpoint` and the theorem ids.
+
+## Derivations
+
+- The Trapezoidal Rule, the block before the theorem (four trapezoids, n = 4) · score 1 · built as drv-trapezoidal-rule (replaces the block and the recalled area formula, now its start; "Generalizing" and the theorem stay)
+- The remark T_n = ½(L_n + R_n) · score 4 · not built: three moves, under the four-move floor
+- Theorem · Error Bounds for the Midpoint and Trapezoidal Rules (7.12, 7.13), stated without proof · score 12 · not built: the proof rests on mathematics the book never states (an error term for interpolation and a mean value theorem for integrals beyond Taylor's theorem of 10.3)
+- Example 7.44 · score 3 · not built: a worked example substituting into (7.12)
+- Simpson's Rule, the derivation before the theorem · score 2 · built as drv-simpsons-rule (three nodes: the first pair, the next pair, the two combined; the combined line follows the correction c-simpson-combined, whose marker now stands after the derivation)
+- The remark S_2n = (2/3)M_n + (1/3)T_n ("it can be shown") · score 6 · built as drv-simpson-as-weighted-average, after the remark
+- Rule · Error Bound for Simpson's Rule (7.15), stated without proof · score 11 · not built: as 7.12 and 7.13, its proof rests on mathematics the book never states
+- Ruling (coordinator): the Simpson correction is carried by the derivation node's `note` alone; the marker after the derivation and the `c-simpson-combined` footnotes row were removed.

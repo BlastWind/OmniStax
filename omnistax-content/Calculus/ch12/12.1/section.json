@@ -1646,5 +1646,229 @@
    "kind": "correction",
    "html": "The book cites Figure 12.15 here, the right triangle of the components; the vector $\\langle 6,8\\rangle$ moved to the origin is drawn in Figure 12.14."
   }
+ ],
+ "derivations": [
+  {
+   "id": "commutative-property",
+   "what": "the commutative property of vector addition",
+   "source": "Calculus, 12.1 Vectors in the Plane, Properties of Vector Operations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecu=\\langle x_{1},y_{1}\\rangle,\\quad \\kvecv=\\langle x_{2},y_{2}\\rangle"
+      },
+      {
+       "text": "Vectors in component form add component by component: $\\langle a_{1},a_{2}\\rangle+\\langle b_{1},b_{2}\\rangle=\\langle a_{1}+b_{1},a_{2}+b_{2}\\rangle$.",
+       "src": "12.1, Definition"
+      },
+      {
+       "text": "Addition of real numbers is commutative: $a+b=b+a$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kvecu+\\kvecv}=\\langle \\mk{a}{x_{1}+x_{2}},\\mk{b}{y_{1}+y_{2}}\\rangle",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kvecu+\\kvecv}=\\langle \\mk{a}{x_{2}+x_{1}},\\mk{b}{y_{2}+y_{1}}\\rangle",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\kvecu+\\kvecv}=\\mk{a}{\\kvecv+\\kvecu}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "b": "a"
+       },
+       "cap": "Read backward, the sum of $\\kvecv=\\langle x_{2},y_{2}\\rangle$ and $\\kvecu=\\langle x_{1},y_{1}\\rangle$ is $\\langle x_{2}+x_{1},y_{2}+y_{1}\\rangle$."
+      }
+     ],
+     "src": "12.1, Properties of Vector Operations"
+    }
+   ]
+  },
+  {
+   "id": "distributive-property",
+   "what": "the distributive property of a scalar over a sum of vectors",
+   "source": "Calculus, 12.1 Vectors in the Plane, Properties of Vector Operations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecu=\\langle x_{1},y_{1}\\rangle,\\quad \\kvecv=\\langle x_{2},y_{2}\\rangle"
+      },
+      {
+       "text": "Vectors in component form add component by component: $\\langle a_{1},a_{2}\\rangle+\\langle b_{1},b_{2}\\rangle=\\langle a_{1}+b_{1},a_{2}+b_{2}\\rangle$.",
+       "src": "12.1, Definition"
+      },
+      {
+       "text": "A scalar multiplies each component: $k\\langle a_{1},a_{2}\\rangle=\\langle ka_{1},ka_{2}\\rangle$.",
+       "src": "12.1, Definition"
+      },
+      {
+       "text": "Multiplication of real numbers distributes over addition: $r(a+b)=ra+rb$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{r(\\kvecu+\\kvecv)}=\\mk{r}{r}\\cdot\\langle \\mk{a}{x_{1}+x_{2}},\\mk{b}{y_{1}+y_{2}}\\rangle",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{r(\\kvecu+\\kvecv)}=\\langle \\mk{a}{r(x_{1}+x_{2})},\\mk{b}{r(y_{1}+y_{2})}\\rangle",
+       "uses": [
+        2
+       ],
+       "map": {
+        "r": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{r(\\kvecu+\\kvecv)}=\\langle \\mk{a}{rx_{1}+rx_{2}},\\mk{b}{ry_{1}+ry_{2}}\\rangle",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{l}{r(\\kvecu+\\kvecv)}=\\langle \\mk{a1}{rx_{1}},\\mk{b1}{ry_{1}}\\rangle+\\langle \\mk{a2}{rx_{2}},\\mk{b2}{ry_{2}}\\rangle",
+       "uses": [
+        1
+       ],
+       "map": {
+        "a": [
+         "a1",
+         "a2"
+        ],
+        "b": [
+         "b1",
+         "b2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{r(\\kvecu+\\kvecv)}=\\mk{a1}{r\\kvecu}+\\mk{a2}{r\\kvecv}",
+       "uses": [
+        0,
+        2
+       ],
+       "map": {
+        "b1": "a1",
+        "b2": "a2"
+       }
+      }
+     ],
+     "src": "12.1, Properties of Vector Operations"
+    }
+   ]
+  },
+  {
+   "id": "linear-combination",
+   "what": "a vector as a linear combination of i and j",
+   "source": "Calculus, 12.1 Vectors in the Plane",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Vectors in component form add component by component: $\\langle a_{1},a_{2}\\rangle+\\langle b_{1},b_{2}\\rangle=\\langle a_{1}+b_{1},a_{2}+b_{2}\\rangle$.",
+       "src": "12.1, Definition"
+      },
+      {
+       "text": "A scalar multiplies each component: $k\\langle a_{1},a_{2}\\rangle=\\langle ka_{1},ka_{2}\\rangle$.",
+       "src": "12.1, Definition"
+      },
+      {
+       "tex": "\\kveci=\\langle 1,0\\rangle,\\quad \\kvecj=\\langle 0,1\\rangle",
+       "src": "12.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvecv}=\\mk{c}{\\langle x,y\\rangle}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kvecv}=\\mk{x}{\\langle x,0\\rangle}+\\mk{y}{\\langle 0,y\\rangle}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "c": [
+         "x",
+         "y"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kvecv}=\\mk{x}{x\\langle 1,0\\rangle}+\\mk{y}{y\\langle 0,1\\rangle}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kvecv}=\\mk{x}{x\\kveci}+\\mk{y}{y\\kvecj}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "12.1"
+    }
+   ]
+  },
+  {
+   "id": "magnitude-of-a-vector",
+   "what": "the magnitude of a vector in component form",
+   "source": "Calculus, 12.1 Vectors in the Plane",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The magnitude of a vector is the distance between its initial point and its terminal point.",
+       "src": "12.1"
+      },
+      {
+       "text": "Written in component form, $\\kvecv=\\langle x,y\\rangle$ is a vector in standard position, from $(0,0)$ to $(x,y)$.",
+       "src": "12.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\|\\kvecv\\|}=\\sqrt{\\mk{x}{(x_{2}-x_{1})^{2}}+\\mk{y}{(y_{2}-y_{1})^{2}}}",
+      "src": "12.2",
+      "uses": [
+       0
+      ],
+      "why": "The distance formula in the plane, from the initial point $(x_{1},y_{1})$ to the terminal point $(x_{2},y_{2})$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\|\\kvecv\\|}=\\sqrt{\\mk{x}{(x-0)^{2}}+\\mk{y}{(y-0)^{2}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\|\\kvecv\\|}=\\sqrt{\\mk{x}{x^{2}}+\\mk{y}{y^{2}}}",
+       "uses": []
+      }
+     ],
+     "src": "12.1"
+    }
+   ]
+  }
  ]
 }

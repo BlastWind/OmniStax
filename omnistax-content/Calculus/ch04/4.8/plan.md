@@ -45,3 +45,13 @@ Judged and dropped: an ∞ − ∞ Sim on 3xⁿ − (3x² + 5) with n as a choic
 - forms `eq-lhopitals-rule` → `4.8-lhopitals-rule`.
 - chapter `COLOR.md`: 4.8's compared curves are `F.cat` instances, not referents.
 - Review 541 lands in the chapter pass.
+
+
+## Derivations
+
+- Applying L'Hôpital's Rule · the linear-approximation heuristic · score 1 · not built: an approximate idea whose closing line it does not derive; the result is derived by the proof that follows
+- L'Hôpital's Rule (0/0 Case) · Proof · score 3 · built as drv-lhopitals-rule: f(a) = 0 = g(a) as its own node, then the book's chain with its column of reasons as uses; its note says the limit of the quotient needs g′(a) ≠ 0, which the proof leaves out
+- L'Hôpital's Rule (∞/∞ Case) · score 9 · not built: its proof rests on Cauchy's mean value theorem, which the book never states
+- Other Indeterminate Forms · f(x)^g(x) through the logarithm · score 3 · built as drv-exponent-indeterminate-forms (the displays and connectives replaced; the 0·∞ remark kept after it)
+- Growth Rates · eˣ grows faster than xᵖ ("it is not difficult to show") · score 5 · built as drv-exponential-outgrows-powers after that paragraph: L'Hôpital's rule n times for a positive integer n, then any p > 0 by the squeeze theorem
+- Growth Rates · xᵖ grows faster than ln x · score 5 · not built: three moves, under the four-move floor

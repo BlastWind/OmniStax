@@ -8,10 +8,8 @@
   <div class="sim-head"><span class="eyebrow">Figure 6.37 + 6.38</span><span>Raise <em>n</em>: the line segments joining points of the graph straighten into the curve, and the sum of their lengths closes in on its <span data-concept="arc-length">arc length</span>. Drag along the <em>x</em>-axis to pick a segment and see its Δ<em>x</em> and Δ<em>y</em><sub><em>i</em></sub>.</span></div>
 </figure>
 <p>To help us find the length of each line segment, we look at the change in vertical distance as well as the change in horizontal distance over each interval. Because we have used a <span data-concept="regular-partition">regular partition</span>, the change in horizontal distance over each interval is given by $\Delta x.$ The change in vertical distance varies from interval to interval, though, so we use $\Delta y_{i}=\kf(x_{i})-\kf(x_{i-1})$ to represent the change in vertical distance over the interval $[x_{i-1},x_{i}],$ as shown in Figure 6.38. Note that some (or all) $\Delta y_{i}$ may be negative.</p>
-<p>By the Pythagorean theorem, the length of the line segment is $\sqrt{{(\Delta x)}^{2}+{(\Delta y_{i})}^{2}}.$ We can also write this as $\Delta x\sqrt{1+{((\Delta y_{i})/(\Delta x))}^{2}}.$ Now, by the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, there is a point $x_i^{*}\in [x_{i-1},x_{i}]$ such that $\kfprime(x_i^{*})=(\Delta y_{i})/(\Delta x).$ Then the length of the line segment is given by $\Delta x\sqrt{1+{[\kfprime(x_i^{*})]}^{2}}.$ Adding up the lengths of all the line segments, we get</p>
-$$\text{Arc Length}\;\approx \sum_{i=1}^{n} \sqrt{1+{[\kfprime(x_i^{*})]}^{2}}\;\Delta x.$$
-<p>This is a <span data-concept="riemann-sum">Riemann sum</span>. Taking the <span data-concept="limit">limit</span> as $n\to \infty,$ we have</p>
-$$\text{Arc Length}=\lim_{n\to \infty}\sum_{i=1}^{n} \sqrt{1+{[\kfprime(x_i^{*})]}^{2}}\;\Delta x=\int_a^{b}\sqrt{1+{[\kfprime(x)]}^{2}}\;dx.$$
+<p>By the Pythagorean theorem, the length of the line segment is $\sqrt{{(\Delta x)}^{2}+{(\Delta y_{i})}^{2}}.$ We can also write this as $\Delta x\sqrt{1+{((\Delta y_{i})/(\Delta x))}^{2}}.$ Now, by the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, there is a point $x_i^{*}\in [x_{i-1},x_{i}]$ such that $\kfprime(x_i^{*})=(\Delta y_{i})/(\Delta x).$ Then the length of the line segment is given by $\Delta x\sqrt{1+{[\kfprime(x_i^{*})]}^{2}}.$</p>
+<figure class="dv" id="drv-arc-length-of-a-function-of-x"></figure>
 <p>We summarize these findings in the following theorem.</p>
 <div class="note" id="arc-length-x-theorem">
 <div class="eyebrow">Theorem</div>
@@ -50,6 +48,7 @@ $$\int_1^{3}\sqrt{1+4x^{2}}\;dx\approx 8.26815.$$
   <div class="sim-head"><span class="eyebrow">Figure 6.39</span><span>A representative line segment over the interval $[y_{i-1},y_{i}].$</span></div>
 </figure>
 <p>Then the length of the line segment is $\sqrt{{(\Delta y)}^{2}+{(\Delta x_{i})}^{2}},$ which can also be written as $\Delta y\sqrt{1+{((\Delta x_{i})/(\Delta y))}^{2}}.$ If we now follow the same development we did earlier, we get a formula for <span data-concept="arc-length">arc length</span> of a <span data-concept="function">function</span> $x=\kg(y).$</p>
+<figure class="dv" id="drv-arc-length-of-a-function-of-y"></figure>
 <div class="note" id="arc-length-y-theorem">
 <div class="eyebrow">Theorem</div>
 <h3><span data-concept="arc-length-of-a-function-of-y">Arc Length for <em>x</em> = <em>g</em>(<em>y</em>)</span></h3>
@@ -84,27 +83,15 @@ $$\int_1^{2}\sqrt{1+81y^{4}}\;dy\approx 21.0277.$$
 $$\text{Lateral Surface Area}=\pi rs,$$
 <p>where $r$ is the radius of the base of the cone and $s$ is the slant height (see the following figure).</p>
 <p>Since a <span data-concept="frustum">frustum</span> can be thought of as a piece of a cone, the <span data-concept="lateral-surface-area-of-a-frustum">lateral surface area</span> of the <span data-concept="frustum">frustum</span> is given by the <span data-concept="lateral-surface-area-of-a-frustum">lateral surface area</span> of the whole cone less the <span data-concept="lateral-surface-area-of-a-frustum">lateral surface area</span> of the smaller cone (the pointy tip) that was cut off (see the following figure).</p>
-<p>The cross-sections of the small cone and the large cone are similar triangles, so we see that</p>
-$$\frac{r_{2}}{r_{1}}=\frac{s-l}{s}.$$
-<p>Solving for $s,$ we get</p>
-$$\begin{aligned}\frac{r_{2}}{r_{1}} &= \frac{s-l}{s} \\ r_{2}s &= r_{1}(s-l) \\ r_{2}s &= r_{1}s-r_{1}l \\ r_{1}l &= r_{1}s-r_{2}s \\ r_{1}l &= (r_{1}-r_{2})s\end{aligned}$$
-<p>Then the <span data-concept="lateral-surface-area-of-a-frustum">lateral surface area</span> (SA) of the <span data-concept="frustum">frustum</span> is</p>
-$$\begin{aligned}\kS &=\;\text{(Lateral SA of large cone)}-\text{(Lateral SA of small cone)} \\ &=\pi r_{1}s-\pi r_{2}(s-l) \\ &=\pi r_{1}s-\pi r_{2}s+\pi r_{2}l \\ &=\pi(r_{1}-r_{2})s+\pi r_{2}l \\ &=\pi r_{1}l+\pi r_{2}l \\ &=\pi(r_{1}+r_{2})l.\end{aligned}$$
+<p>The cross-sections of the small cone and the large cone are similar triangles.</p>
+<figure class="dv" id="drv-lateral-surface-area-of-a-frustum"></figure>
 <p>Let’s now use this formula to calculate the <span data-concept="surface-area">surface area</span> of each of the bands formed by revolving the line segments around the $x\text{-axis}.$ A representative band is shown in the following figure.</p>
 <figure class="sim" id="fig-band" data-figure="6.45" data-original="/media/ch06/CNX_Calc_Figure_06_04_009.jpg" data-original-caption="A representative band used for determining surface area.">
   <div class="sim-head"><span class="eyebrow">Figure 6.45</span><span>A representative band used for determining surface area.</span></div>
 </figure>
-<p>Note that the slant height of this <span data-concept="frustum">frustum</span> is just the length of the line segment used to generate it. So, applying the <span data-concept="surface-area">surface area</span> formula, we have</p>
-$$\begin{aligned}\kS &=\pi(r_{1}+r_{2})l \\ &=\pi(\kf(x_{i-1})+\kf(x_{i}))\sqrt{\Delta x^{2}+{(\Delta y_{i})}^{2}} \\ &=\pi(\kf(x_{i-1})+\kf(x_{i}))\Delta x\sqrt{1+{(\frac{\Delta y_{i}}{\Delta x})}^{2}}.\end{aligned}$$
-<p>Now, as we did in the development of the <span data-concept="arc-length">arc length</span> formula, we apply the <span data-concept="mean-value-theorem">Mean Value Theorem</span> to select $x_i^{*}\in [x_{i-1},x_{i}]$ such that $\kfprime(x_i^{*})=(\Delta y_{i})/\Delta x.$ This gives us</p>
-$$\kS=\pi(\kf(x_{i-1})+\kf(x_{i}))\Delta x\sqrt{1+{(\kfprime(x_i^{*}))}^{2}}.$$
-<p>Furthermore, since $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous</span>, by the <span data-concept="intermediate-value-theorem">Intermediate Value Theorem</span>, there is a point $x_i^{**}\in [x_{i-1},x_{i}]$ such that $\kf(x_i^{**})=(1/2)[\kf(x_{i-1})+\kf(x_{i})],$ so we get</p>
-$$\kS=2\pi \kf(x_i^{**})\Delta x\sqrt{1+{(\kfprime(x_i^{*}))}^{2}}.$$
-<p>Then the approximate <span data-concept="surface-area">surface area</span> of the whole <span data-concept="surface-of-revolution">surface of revolution</span> is given by</p>
-$$\text{Surface Area}\approx \sum_{i=1}^{n}2\pi \kf(x_i^{**})\Delta x\sqrt{1+{(\kfprime(x_i^{*}))}^{2}}.$$
+<p>Note that the slant height of this <span data-concept="frustum">frustum</span> is just the length of the line segment used to generate it.</p>
+<figure class="dv" id="drv-surface-area-of-a-surface-of-revolution"></figure>
 <p>This <em>almost</em> looks like a <span data-concept="riemann-sum">Riemann sum</span>, except we have <span data-concept="function">functions</span> evaluated at two different points, $x_i^{*}$ and $x_i^{**},$ over the interval $[x_{i-1},x_{i}].$ Although we do not examine the details here, it turns out that because $\kf(x)$ is smooth, if we let $n\to \infty,$ the <span data-concept="limit">limit</span> works the same as a <span data-concept="riemann-sum">Riemann sum</span> even with the two different evaluation points. This makes sense intuitively. Both $x_i^{*}$ and $x_i^{**}$ are in the interval $[x_{i-1},x_{i}],$ so it makes sense that as $n\to \infty,$ both $x_i^{*}$ and $x_i^{**}$ approach $x.$ Those of you who are interested in the details should consult an advanced calculus text.</p>
-<p>Taking the <span data-concept="limit">limit</span> as $n\to \infty,$ we get</p>
-$$\text{Surface Area}=\lim_{n\to \infty}\sum_{i=1}^{n}2\pi \kf(x_i^{**})\Delta x\sqrt{1+{(\kfprime(x_i^{*}))}^{2}}=\int_a^{b}(2\pi \kf(x)\sqrt{1+{(\kfprime(x))}^{2}})dx.$$
 <p>As with <span data-concept="arc-length">arc length</span>, we can conduct a similar development for <span data-concept="function">functions</span> of $y$ to get a formula for the <span data-concept="surface-area">surface area</span> of <span data-concept="surface-of-revolution">surfaces of revolution</span> about the $y\text{-axis}.$ These findings are summarized in the following theorem.</p>
 <div class="note" id="surface-area-theorem">
 <div class="eyebrow">Theorem</div>

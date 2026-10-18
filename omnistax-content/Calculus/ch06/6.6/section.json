@@ -1237,5 +1237,325 @@
    "kind": "correction",
    "html": "The book prints “on a number line”; the three masses are placed at points of the <em>xy</em>-plane, as in Example 6.30."
   }
+ ],
+ "derivations": [
+  {
+   "id": "center-of-mass-of-two-masses",
+   "what": "the center of mass of two point masses",
+   "source": "Calculus, 6.6 Moments and Centers of Mass, Center of Mass and Moments",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The masses balance each other if and only if $\\km_{1}d_{1}=\\km_{2}d_{2}.$",
+       "src": "6.6"
+      },
+      {
+       "text": "With the fulcrum at $\\kxbar,$ the distances to the masses are $d_{1}=|\\kxbar-x_{1}|$ and $d_{2}=|x_{2}-\\kxbar|.$",
+       "src": "Figure 6.63"
+      },
+      {
+       "text": "The fulcrum lies between the masses: $x_{1}\\le \\kxbar\\le x_{2}.$",
+       "src": "Figure 6.63"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\km_{1}d_{1}}=\\mk{b}{\\km_{2}d_{2}}",
+      "src": "6.6",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\km_{1}|\\kxbar-x_{1}|}=\\mk{b}{\\km_{2}|x_{2}-\\kxbar|}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\km_{1}(\\kxbar-x_{1})}=\\mk{b}{\\km_{2}(x_{2}-\\kxbar)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a1}{\\km_{1}\\kxbar}-\\mk{a2}{\\km_{1}x_{1}}=\\mk{b1}{\\km_{2}x_{2}}-\\mk{b2}{\\km_{2}\\kxbar}",
+       "uses": [],
+       "map": {
+        "a": [
+         "a1",
+         "a2"
+        ],
+        "b": [
+         "b1",
+         "b2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\kxbar(\\km_{1}+\\km_{2})}=\\mk{n}{\\km_{1}x_{1}+\\km_{2}x_{2}}",
+       "uses": [],
+       "map": {
+        "a1": "x",
+        "b2": "x",
+        "a2": "n",
+        "b1": "n"
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\kxbar}=\\frac{\\mk{n}{\\km_{1}x_{1}+\\km_{2}x_{2}}}{\\mk{d}{\\km_{1}+\\km_{2}}}",
+       "uses": [],
+       "map": {
+        "x": [
+         "x",
+         "d"
+        ]
+       }
+      }
+     ],
+     "src": "6.6"
+    }
+   ]
+  },
+  {
+   "id": "center-of-mass-of-a-thin-plate",
+   "what": "the mass and moments of a thin plate",
+   "source": "Calculus, 6.6 Moments and Centers of Mass, Center of Mass of Thin Plates",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The mass of the rectangle is its area multiplied by the constant density $\\krho,$ that is, $\\krho \\kf(x_i^{*})\\Delta x.$",
+       "src": "6.6"
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      },
+      {
+       "tex": "\\int_a^{b}c\\kf(x)dx=c\\int_a^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\km}\\approx\\mk{s}{\\sum_{i=1}^{n}\\krho \\kf(x_i^{*})\\Delta x}",
+      "src": "6.6",
+      "uses": [
+       0
+      ],
+      "why": "Adding the masses of all the rectangles approximates the mass of the lamina."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\km}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}\\krho \\kf(x_i^{*})\\Delta x}",
+       "uses": [],
+       "cap": "This is a Riemann sum, so we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\km}=\\mk{s}{\\krho\\int _a^{b}\\kf(x)dx}",
+       "uses": [1, 2],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.18)",
+     "src": "6.6, Center of Mass of a Thin Plate in the xy-Plane"
+    },
+    {
+     "assumes": [
+      {
+       "text": "Treating the rectangle as a point mass at its center of mass $(x_i^{*},(\\kf(x_i^{*}))/2)$ does not change the moment.",
+       "src": "6.6"
+      },
+      {
+       "text": "The moment with respect to the $x$-axis is the mass multiplied by the distance to the $x$-axis.",
+       "src": "6.6"
+      },
+      {
+       "text": "The mass of the rectangle is its area multiplied by the constant density $\\krho,$ that is, $\\krho \\kf(x_i^{*})\\Delta x.$",
+       "src": "6.6"
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      },
+      {
+       "tex": "\\int_a^{b}c\\kf(x)dx=c\\int_a^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kMx}\\approx\\mk{s}{\\sum_{i=1}^{n}\\krho \\kf(x_i^{*})\\Delta x\\cdot \\frac{\\kf(x_i^{*})}{2}}",
+      "src": "6.6",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "why": "The moment of each rectangle is its mass multiplied by the distance from its center of mass to the $x$-axis."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kMx}\\approx\\mk{s}{\\sum_{i=1}^{n}\\krho\\frac{{[\\kf(x_i^{*})]}^{2}}{2}\\Delta x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{A}{\\kMx}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}\\krho\\frac{{[\\kf(x_i^{*})]}^{2}}{2}\\Delta x}",
+       "uses": [],
+       "cap": "Adding the moments of the rectangles gives a Riemann sum, and we take its limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\kMx}=\\mk{s}{\\krho\\int_a^{b}\\frac{{[\\kf(x)]}^{2}}{2}dx}",
+       "uses": [3, 4],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.19)",
+     "src": "6.6, Center of Mass of a Thin Plate in the xy-Plane"
+    },
+    {
+     "assumes": [
+      {
+       "text": "Treating the rectangle as a point mass at its center of mass $(x_i^{*},(\\kf(x_i^{*}))/2)$ does not change the moment.",
+       "src": "6.6"
+      },
+      {
+       "text": "The moment with respect to the $y$-axis is the mass multiplied by the distance to the $y$-axis.",
+       "src": "6.6"
+      },
+      {
+       "text": "The mass of the rectangle is its area multiplied by the constant density $\\krho,$ that is, $\\krho \\kf(x_i^{*})\\Delta x.$",
+       "src": "6.6"
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      },
+      {
+       "tex": "\\int_a^{b}c\\kf(x)dx=c\\int_a^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kMy}\\approx\\mk{s}{\\sum_{i=1}^{n}\\krho \\kf(x_i^{*})\\Delta x\\cdot x_i^{*}}",
+      "src": "6.6",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "why": "The distance from the center of mass of the rectangle to the $y$-axis is $x_i^{*}.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kMy}\\approx\\mk{s}{\\sum_{i=1}^{n}\\krho x_i^{*}\\kf(x_i^{*})\\Delta x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{A}{\\kMy}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}\\krho x_i^{*}\\kf(x_i^{*})\\Delta x}",
+       "uses": [],
+       "cap": "Adding the moments of the rectangles gives a Riemann sum, and we take its limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\kMy}=\\mk{s}{\\krho\\int_a^{b}x\\kf(x)dx}",
+       "uses": [3, 4],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.19)",
+     "src": "6.6, Center of Mass of a Thin Plate in the xy-Plane"
+    }
+   ]
+  },
+  {
+   "id": "theorem-of-pappus",
+   "what": "the theorem of Pappus for volume",
+   "source": "Calculus, 6.6 Moments and Centers of Mass, Theorem of Pappus",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Since the axis of rotation is the $y$-axis, the distance traveled by the centroid depends only on its $x$-coordinate, $\\kxbar.$",
+       "src": "6.6"
+      },
+      {
+       "tex": "\\kxbar=\\frac{\\kMy}{\\km}",
+       "src": "(6.23)"
+      },
+      {
+       "tex": "\\km=\\krho\\int _a^{b}[\\kf(x)-\\kg(x)]dx",
+       "src": "(6.21)"
+      },
+      {
+       "tex": "\\kMy=\\krho\\int_a^{b}x[\\kf(x)-\\kg(x)]dx",
+       "src": "(6.22)"
+      },
+      {
+       "tex": "\\kA=\\int _a^{b}[\\kf(x)-\\kg(x)]dx",
+       "src": "(6.1)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{d}=\\mk{t}{2\\pi}\\mk{x}{\\kxbar}",
+      "src": "6.6",
+      "uses": [
+       0
+      ],
+      "why": "The centroid travels once around a circle of radius $\\kxbar.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{d}=\\mk{t}{2\\pi}\\mk{x}{\\frac{\\kMy}{\\km}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{d}{d}=\\mk{t}{2\\pi}\\frac{\\mk{x}{\\krho\\int_a^{b}x[\\kf(x)-\\kg(x)]dx}}{\\mk{A}{\\krho\\int _a^{b}[\\kf(x)-\\kg(x)]dx}}",
+       "uses": [2, 3],
+       "map": {
+        "x": [
+         "x",
+         "A"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{d}=\\mk{t}{2\\pi}\\frac{\\mk{x}{\\int_a^{b}x[\\kf(x)-\\kg(x)]dx}}{\\mk{A}{\\int _a^{b}[\\kf(x)-\\kg(x)]dx}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{d}\\cdot \\mk{A}{\\kA}=\\mk{t}{2\\pi}\\mk{x}{\\int_a^{b}x[\\kf(x)-\\kg(x)]dx}",
+       "uses": [4]
+      }
+     ],
+     "src": "6.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kV}=\\mk{i}{2\\pi\\int_a^{b}x[\\kf(x)-\\kg(x)]dx}",
+      "src": "6.3, Example 6.16",
+      "uses": [],
+      "why": "The method of cylindrical shells, each shell of height $\\kf(x)-\\kg(x).$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV}=\\mk{i}{d\\cdot \\kA}",
+       "uses": [0]
+      }
+     ],
+     "src": "6.6, Theorem of Pappus for Volume"
+    }
+   ]
+  }
  ]
 }

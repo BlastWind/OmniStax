@@ -252,5 +252,145 @@
     "sim-relativistic-doppler"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "relativistic-doppler",
+   "what": "the relativistic Doppler shift",
+   "source": "College Physics 2e, 28.4 Relativistic Addition of Velocities",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "In its own frame the source emits one crest every $1/\\kfsrc$; that interval is a proper time.",
+       "src": "28.4"
+      },
+      {
+       "tex": "\\kdt = \\gamma\\kdto",
+       "src": "28.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\kdto} = \\mk{f}{\\frac{1}{\\kfsrc}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\kdt} = \\mk{f}{\\frac{\\gamma}{\\kfsrc}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "28.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Between two emissions the source moves $\\ku\\kdt$ away from the observer while the earlier crest travels $\\kc\\kdt$ toward it, so successive crests lie $(\\kc + \\ku)\\kdt$ apart.",
+       "src": "17.4"
+      },
+      {
+       "tex": "\\kc = \\kfsrc\\klams",
+       "src": "24.3"
+      },
+      {
+       "tex": "\\gamma = \\frac{1}{\\sqrt{1 - \\frac{\\ku^{2}}{\\kc^{2}}}}",
+       "src": "28.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\klamobs} = \\mk{u}{(\\kc + \\ku)}\\mk{t}{\\kdt}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{u}{(\\kc + \\ku)}\\mk{t}{\\frac{\\gamma}{\\kfsrc}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\frac{\\kc}{\\kfsrc}}\\,\\mk{u}{\\gamma\\left(1 + \\frac{\\ku}{\\kc}\\right)}",
+       "uses": [],
+       "map": {
+        "t": [
+         "s",
+         "u"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\klams}\\,\\mk{u}{\\gamma\\left(1 + \\frac{\\ku}{\\kc}\\right)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\klams}\\,\\mk{u}{\\frac{1 + \\frac{\\ku}{\\kc}}{\\sqrt{1 - \\frac{\\ku^{2}}{\\kc^{2}}}}}",
+       "uses": [
+        3
+       ],
+       "cap": "Here the relative speed is $\\ku$."
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\klams}\\,\\mk{u}{\\frac{1 + \\frac{\\ku}{\\kc}}{\\sqrt{\\left(1 - \\frac{\\ku}{\\kc}\\right)\\left(1 + \\frac{\\ku}{\\kc}\\right)}}}",
+       "uses": [],
+       "cap": "A difference of squares: $1 - \\ku^{2}/\\kc^{2} = (1 - \\ku/\\kc)(1 + \\ku/\\kc)$."
+      },
+      {
+       "tex": "\\mk{l}{\\klamobs} = \\mk{s}{\\klams}\\mk{u}{\\sqrt{\\frac{1 + \\frac{\\ku}{\\kc}}{1 - \\frac{\\ku}{\\kc}}}}",
+       "uses": [],
+       "cap": "Since $1 + \\ku/\\kc = \\sqrt{1 + \\ku/\\kc}\\,\\sqrt{1 + \\ku/\\kc}$, one factor of $\\sqrt{1 + \\ku/\\kc}$ cancels."
+      }
+     ],
+     "src": "28.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "Light keeps the speed $\\kc$ for both, so $\\kc = \\kfobs\\klamobs = \\kfsrc\\klams$.",
+       "src": "24.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfobs} = \\frac{\\mk{c}{\\kc}}{\\mk{l}{\\klamobs}}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\frac{\\mk{c}{\\kc}}{\\mk{l}{\\klams\\sqrt{\\frac{1 + \\frac{\\ku}{\\kc}}{1 - \\frac{\\ku}{\\kc}}}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\mk{c}{\\kfsrc}\\,\\frac{1}{\\mk{l}{\\sqrt{\\frac{1 + \\frac{\\ku}{\\kc}}{1 - \\frac{\\ku}{\\kc}}}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfobs} = \\mk{c}{\\kfsrc}\\mk{l}{\\sqrt{\\frac{1 - \\frac{\\ku}{\\kc}}{1 + \\frac{\\ku}{\\kc}}}}",
+       "uses": [],
+       "cap": "The reciprocal of a square root of a fraction is the square root of the fraction turned over."
+      }
+     ],
+     "src": "28.4"
+    }
+   ]
+  }
  ]
 }

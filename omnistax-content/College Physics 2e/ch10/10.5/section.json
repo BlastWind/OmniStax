@@ -1349,5 +1349,52 @@
     "sim-cloud"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "angular-momentum-conservation",
+   "what": "the law of conservation of angular momentum",
+   "source": "College Physics 2e, 10.5 Angular Momentum and Its Conservation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The net torque is zero.",
+       "src": "10.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\text{net}\\;\\ktau} = \\dfrac{\\mk{L}{\\kdLang}}{\\mk{dt}{\\kdt}}",
+      "src": "10.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{0} = \\dfrac{\\mk{L}{\\kdLang}}{\\mk{dt}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kdLang} = \\mk{t}{0}",
+       "uses": [],
+       "map": {
+        "dt": "t"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{t}{\\text{constant}}",
+       "uses": [],
+       "cap": "If the change in angular momentum is zero, the angular momentum keeps one value."
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{t}{\\kLprime}",
+       "uses": [],
+       "cap": "The value $\\kLprime$ at a later time is the same as the value $\\kL$ before."
+      }
+     ],
+     "src": "10.5"
+    }
+   ]
+  }
  ]
 }

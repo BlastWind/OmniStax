@@ -42,3 +42,11 @@ None built. Weighed: a slider on c for property 6 (the text's algebra says it), 
 ## Wanted at chapter level
 
 Applied by this chapter's agent: variables anchors (f, a, b → `5.2-definite-integral-definition`; g, c → `5.2-integral-properties`; A, v → `5.2-area-integral`; m, M → `5.2-comparison-theorem`; f_ave → `5.2-average-value-definition`) and forms anchors (`eq-definite-integral`, `eq-dummy-variable`, `eq-net-signed-area`, `eq-total-area`, the six `eq-integral-*`, the three `eq-comparison-*`, `eq-average-value`). Done. r440 and r441 in the chapter pass.
+
+
+## Derivations
+
+- Continuous Functions Are Integrable (stated without proof) · score 9 · not built: the proof rests on uniform continuity and completeness, which the book never states
+- Example 5.7 · Evaluating an Integral Using the Definition · score 1 · not built: a worked example applying the section's definition, every line printed
+- Average Value of a Function · score 0 · built as drv-average-value (a printed block; the sampling sentence stays, the displays and their connecting sentences replaced, the book's "This is a Riemann sum…" kept as the limit move's reason)
+- Comparison Theorem (stated without proof) · score 4 · not built: three moves per part, under the four-move floor

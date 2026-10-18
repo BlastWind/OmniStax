@@ -30,3 +30,10 @@ a, u and C ink; the angle θ in the Sim `angle` (`\ktheta`). No referents, no fu
 ## Wanted at chapter level
 
 Applied by this chapter's agent: variables anchors (a, u, C → `5.7-inverse-trig-rule`) and the three forms' anchors. Done.
+
+
+## Derivations
+
+- Integration Formulas Resulting in Inverse Trigonometric Functions · Proof (inverse sine) · score 3 · built as drv-inverse-sine-integral (the whole proof body replaced, □ kept; the book's −a ≤ x ≤ a is corrected to −a < x < a in the node's note)
+- the inverse tangent formula (stated only) · score 9 · built as drv-inverse-tangent-integral, after the proof: the section's opening says the formulas of 3.7 give rise to these directly, so the chain rule on (3.24)
+- the inverse secant formula (stated only) · score 10 · built as drv-inverse-secant-integral, after the inverse tangent: the chain rule on (3.26), then u > a and u < −a as two lines joined, since the book's form carries |u|

@@ -133,3 +133,7 @@ all five variable anchors are written exactly as listed. No concept or
 symbol row was changed.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-force-field` and `sim-point-charge-field`: one equation each in the readout (manim-style 12), F₁ = k|q₁Q|/r² with F₂ in the small line, and F = |q|E with its numbers.
+
+## Derivations
+
+- The field of a point charge (printed block) · score 1 · built as drv-point-charge-field: one node, the definition $E = |F/q|$ with Coulomb's law brought in and the test charge cancelled; replaces the two displayed lines and the connecting phrases, the remark that the field is independent of $q$ stays as printed

@@ -10,12 +10,8 @@
 <figure class="sim" id="fig-shell-rectangle" data-figure="6.27" data-original="/media/ch06/CNX_Calc_Figure_06_03_003.jpg" data-original-caption="Calculating the volume of the shell.">
   <div class="sim-head"><span class="eyebrow">Figure 6.27</span><span>Calculating the volume of the shell.</span></div>
 </figure>
-<p>The shell is a <span data-concept="cylinder">cylinder</span>, so its volume is the cross-sectional area multiplied by the height of the <span data-concept="cylinder">cylinder</span>. The <span data-concept="cross-section">cross-sections</span> are annuli (ring-shaped regions—essentially, circles with a hole in the center), with outer radius $x_{i}$ and inner radius $x_{i-1}.$ Thus, the cross-sectional area is $\pi x_i^{2}-\pi x_{i-1}^{2}.$ The height of the <span data-concept="cylinder">cylinder</span> is $\kf(x_i^{*}).$ Then the volume of the shell is</p>
-$$\begin{aligned}\kVshell &=\kf(x_i^{*})(\pi x_i^{2}-\pi x_{i-1}^{2}) \\ &=\pi \kf(x_i^{*})(x_i^{2}-x_{i-1}^{2}) \\ &=\pi \kf(x_i^{*})(x_{i}+x_{i-1})(x_{i}-x_{i-1}) \\ &=2\pi \kf(x_i^{*})(\frac{x_{i}+x_{i-1}}{2})(x_{i}-x_{i-1}).\end{aligned}$$
-<p>Note that $x_{i}-x_{i-1}=\Delta x,$ so we have</p>
-$$\kVshell=2\pi \kf(x_i^{*})(\frac{x_{i}+x_{i-1}}{2})\Delta x.$$
-<p>Furthermore, $\frac{x_{i}+x_{i-1}}{2}$ is both the midpoint of the interval $[x_{i-1},x_{i}]$ and the average radius of the shell, and we can approximate this by $x_i^{*}.$ We then have</p>
-$$\kVshell\approx 2\pi \kf(x_i^{*})x_i^{*}\Delta x.$$
+<p>The shell is a <span data-concept="cylinder">cylinder</span>, so its volume is the cross-sectional area multiplied by the height of the <span data-concept="cylinder">cylinder</span>. The <span data-concept="cross-section">cross-sections</span> are annuli (ring-shaped regions—essentially, circles with a hole in the center), with outer radius $x_{i}$ and inner radius $x_{i-1}.$ Thus, the cross-sectional area is $\pi x_i^{2}-\pi x_{i-1}^{2}.$ The height of the <span data-concept="cylinder">cylinder</span> is $\kf(x_i^{*}).$</p>
+<figure class="dv" id="drv-method-of-cylindrical-shells"></figure>
 <p>Another way to think of this is to think of making a vertical cut in the shell and then opening it up to form a flat plate (Figure 6.28).</p>
 <figure class="sim" id="sim-unroll-shell" data-figure="6.28" data-original="/media/ch06/CNX_Calc_Figure_06_03_012.jpg" data-original-caption="(a) Make a vertical cut in a representative shell. (b) Open the shell up to form a flat plate.">
   <div class="sim-head"><span class="eyebrow">Figure 6.28</span><span>Play it, or drag the slider: the shell is cut along a vertical line and opened out into a flat plate of height $\kf(x_i^{*}),$ width $2\pi x_i^{*}$ and thickness Δ<em>x</em>, whose volume is nearly the shell’s.</span></div>
@@ -23,10 +19,6 @@ $$\kVshell\approx 2\pi \kf(x_i^{*})x_i^{*}\Delta x.$$
 <p>In reality, the outer radius of the shell is greater than the inner radius, and hence the back edge of the plate would be slightly longer than the front edge of the plate. However, we can approximate the flattened shell by a flat plate of height $\kf(x_i^{*}),$ width $2\pi x_i^{*},$ and thickness $\Delta x$ (Figure 6.28). The volume of the shell, then, is approximately the volume of the flat plate. Multiplying the height, width, and depth of the plate, we get</p>
 $$\kVshell\approx \kf(x_i^{*})(2\pi x_i^{*})\Delta x,$$
 <p>which is the same formula we had before.</p>
-<p>To calculate the volume of the entire solid, we then add the volumes of all the shells and obtain</p>
-$$\kV\approx \sum_{i=1}^{n}(2\pi x_i^{*}\kf(x_i^{*})\Delta x).$$
-<p>Here we have another <span data-concept="riemann-sum">Riemann sum</span>, this time for the <span data-concept="function">function</span> $2\pi xf(x).$ Taking the <span data-concept="limit">limit</span> as $n\to \infty$ gives us</p>
-$$\kV=\lim_{n\to \infty}\sum_{i=1}^{n}(2\pi x_i^{*}\kf(x_i^{*})\Delta x)=\int_a^{b}(2\pi xf(x))dx.$$
 <p>This leads to the following rule for the <strong><span data-concept="method-of-cylindrical-shells">method of cylindrical shells</span></strong>.</p>
 <div class="note" id="shell-method-rule">
 <div class="eyebrow">Rule</div>
@@ -80,12 +72,8 @@ $$\begin{aligned}\kV &=\int_c^{d}(2\pi yg(y))dy \\ &=\int_0^{4}(2\pi y(2\sqrt{y}
 <div class="exercises" data-place="fs-id1167793625602"></div>
 <p>For the next example, we look at a <span data-concept="solid-of-revolution">solid of revolution</span> for which the <span data-concept="graph-of-a-function">graph of</span> a <span data-concept="function">function</span> is revolved around a line other than one of the two coordinate axes. To set this up, we need to revisit the development of the <span data-concept="method-of-cylindrical-shells">method of cylindrical shells</span>. Recall that we found the volume of one of the shells to be given by</p>
 $$\begin{aligned}\kVshell &=\kf(x_i^{*})(\pi x_i^{2}-\pi x_{i-1}^{2}) \\ &=\pi \kf(x_i^{*})(x_i^{2}-x_{i-1}^{2}) \\ &=\pi \kf(x_i^{*})(x_{i}+x_{i-1})(x_{i}-x_{i-1}) \\ &=2\pi \kf(x_i^{*})(\frac{x_{i}+x_{i-1}}{2})(x_{i}-x_{i-1}).\end{aligned}$$
-<p>This was based on a shell with an outer radius of $x_{i}$ and an inner radius of $x_{i-1}.$ If, however, we rotate the region around a line other than the $y\text{-axis},$ we have a different outer and inner radius. Suppose, for example, that we rotate the region around the line $x=-k,$ where $k$ is some positive constant. Then, the outer radius of the shell is $x_{i}+k$ and the inner radius of the shell is $x_{i-1}+k.$ Substituting these terms into the expression for volume, we see that when a plane region is rotated around the line $x=-k,$ the volume of a shell is given by</p>
-$$\begin{aligned}\kVshell &=2\pi \kf(x_i^{*})(\frac{(x_{i}+k)+(x_{i-1}+k)}{2})((x_{i}+k)-(x_{i-1}+k)) \\ &=2\pi \kf(x_i^{*})((\frac{x_{i}+x_{i-1}}{2})+k)\Delta x.\end{aligned}$$
-<p>As before, we notice that $\frac{x_{i}+x_{i-1}}{2}$ is the midpoint of the interval $[x_{i-1},x_{i}]$ and can be approximated by $x_i^{*}.$ Then, the approximate volume of the shell is</p>
-$$\kVshell\approx 2\pi(x_i^{*}+k)\kf(x_i^{*})\Delta x.$$
-<p>The remainder of the development proceeds as before, and we see that</p>
-$$\kV=\int_a^{b}(2\pi(x+k)\kf(x))dx.$$
+<p>This was based on a shell with an outer radius of $x_{i}$ and an inner radius of $x_{i-1}.$ If, however, we rotate the region around a line other than the $y\text{-axis},$ we have a different outer and inner radius. Suppose, for example, that we rotate the region around the line $x=-k,$ where $k$ is some positive constant. Then, the outer radius of the shell is $x_{i}+k$ and the inner radius of the shell is $x_{i-1}+k.$</p>
+<figure class="dv" id="drv-shells-around-a-vertical-line"></figure>
 <p>We could also rotate the region around other horizontal or vertical lines, such as a vertical line in the right half plane. In each case, the volume formula must be adjusted accordingly. Specifically, the $x\text{-term}$ in the integral must be replaced with an expression representing the radius of a shell. To see how this works, consider the following example.</p>
 <div class="example" id="fs-id1167794326041">
 <h3>Example 6.15 · A Region of Revolution Revolved around a Line</h3>

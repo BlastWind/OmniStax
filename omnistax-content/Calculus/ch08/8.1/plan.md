@@ -36,3 +36,8 @@ None: the three figures cover the family, the constant and the initial value; a 
 
 - Anchors: variables y_fn, f → `8.1-de-definition`; y_prime, dy/dx, dy/dt → `8.1-general-de`; y_dprime, y_tprime, y_4, y_5, d2y/dx2 → `8.1-order-definition`; C → `8.1-general-particular`; v, v_prime, s, s_prime → `8.1-initial-value-problems`. Forms: `eq-initial-value` → `8.1-initial-value-problems`; `eq-velocity-under-gravity`, `eq-height-initial-value-problem` → `8.1-initial-value-problems`.
 - Terms "differential equation" for `differential-equation` (4.10, owned by Chapter 4): the glossary word of 8.1. Left to the orchestrator.
+
+## Derivations
+
+- Initial-Value Problems · the baseball's equation of motion, before Example 8.6 · score 4 · built as drv-velocity-under-gravity (prose kept, host after its paragraph; the display $v'(t)=-g$ and the sentence leading to it moved into the derivation; form `eq-velocity-under-gravity` re-anchored to it)
+- Examples 8.6 and 8.7 · score 1 · not built: worked examples that integrate and substitute the initial value

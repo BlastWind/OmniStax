@@ -48,3 +48,10 @@ Labels: one formula per graph; extrema named by hover. Photographs: none. Exerci
 - forms none: the section's concepts carry no form (Fermat's one-sided limits are proof steps).
 - footnote `c-critical-point` (correction) in section.json.
 - Review 526, 533 land in the chapter pass.
+
+
+## Derivations
+
+- Extreme Value Theorem · score 9 · not built: the book says its proof is beyond the scope of the text and needs completeness, which the book never states
+- Fermat's Theorem · Proof · score 3 · built as drv-fermats-theorem: (4.4) and (4.5) from the one-sided limits of 2.2, the x > c side to f′(c) ≤ 0, the hidden x < c side ("similarly, it can be shown") to f′(c) ≥ 0, joined in f′(c) = 0; the minimum case, left as similar, stays in the book's words
+- Location of Absolute Extrema · score 0 · not built: a three-sentence argument in prose with no chain of equations, under the four-move floor

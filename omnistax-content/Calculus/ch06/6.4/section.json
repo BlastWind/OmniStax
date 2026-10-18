@@ -1171,5 +1171,501 @@
   }
  ],
  "referents": [],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "arc-length-of-a-function-of-x",
+   "what": "the arc length of $y=f(x)$",
+   "source": "Calculus, 6.4 Arc Length of a Curve and Surface Area, Arc Length of the Curve y = f(x)",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Over $[x_{i-1},x_{i}]$ the line segment has horizontal change $\\Delta x$ and vertical change $\\Delta y_{i}=\\kf(x_{i})-\\kf(x_{i-1}).$",
+       "src": "6.4"
+      },
+      {
+       "text": "$\\kf$ is smooth over $[a,b].$",
+       "src": "6.4"
+      },
+      {
+       "text": "By the Mean Value Theorem, there is a point $x_i^{*}\\in [x_{i-1},x_{i}]$ such that $\\kfprime(x_i^{*})=(\\Delta y_{i})/(\\Delta x).$",
+       "src": "4.4, Mean Value Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\text{Length}_{i}}=\\mk{r}{\\sqrt{{(\\Delta x)}^{2}+{(\\Delta y_{i})}^{2}}}",
+      "src": "6.4",
+      "uses": [
+       0
+      ],
+      "why": "By the Pythagorean theorem."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\text{Length}_{i}}=\\mk{dx}{\\Delta x}\\mk{r}{\\sqrt{1+{((\\Delta y_{i})/(\\Delta x))}^{2}}}",
+       "uses": [],
+       "cap": "Factor ${(\\Delta x)}^{2}$ out of the root; $\\Delta x>0.$",
+       "map": {
+        "r": [
+         "dx",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\text{Length}_{i}}=\\mk{dx}{\\Delta x}\\mk{r}{\\sqrt{1+{[\\kfprime(x_i^{*})]}^{2}}}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "6.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\text{Arc Length}}\\approx\\mk{s}{\\sum_{i=1}^{n}\\sqrt{1+{[\\kfprime(x_i^{*})]}^{2}}\\;\\Delta x}",
+      "src": "6.4",
+      "uses": [
+       0
+      ],
+      "why": "Adding up the lengths of all the line segments approximates the length of the curve."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\text{Arc Length}}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}\\sqrt{1+{[\\kfprime(x_i^{*})]}^{2}}\\;\\Delta x}",
+       "uses": [],
+       "cap": "This is a Riemann sum, so we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\text{Arc Length}}=\\mk{s}{\\int_a^{b}\\sqrt{1+{[\\kfprime(x)]}^{2}}\\;dx}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.7)",
+     "src": "6.4, Arc Length for y = f(x)"
+    }
+   ]
+  },
+  {
+   "id": "arc-length-of-a-function-of-y",
+   "what": "the arc length of $x=g(y)$",
+   "source": "Calculus, 6.4 Arc Length of a Curve and Surface Area, Arc Length of the Curve x = g(y)",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Over $[y_{i-1},y_{i}]$ the line segment has vertical change $\\Delta y$ and horizontal change $\\Delta x_{i}=\\kg(y_{i})-\\kg(y_{i-1}).$",
+       "src": "6.4"
+      },
+      {
+       "text": "$\\kg$ is smooth over $[c,d].$",
+       "src": "6.4"
+      },
+      {
+       "text": "By the Mean Value Theorem, there is a point $y_i^{*}\\in [y_{i-1},y_{i}]$ such that $\\kgprime(y_i^{*})=(\\Delta x_{i})/(\\Delta y).$",
+       "src": "4.4, Mean Value Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\text{Length}_{i}}=\\mk{r}{\\sqrt{{(\\Delta y)}^{2}+{(\\Delta x_{i})}^{2}}}",
+      "src": "6.4",
+      "uses": [
+       0
+      ],
+      "why": "By the Pythagorean theorem."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\text{Length}_{i}}=\\mk{dx}{\\Delta y}\\mk{r}{\\sqrt{1+{((\\Delta x_{i})/(\\Delta y))}^{2}}}",
+       "uses": [],
+       "cap": "Factor ${(\\Delta y)}^{2}$ out of the root; $\\Delta y>0.$",
+       "map": {
+        "r": [
+         "dx",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\text{Length}_{i}}=\\mk{dx}{\\Delta y}\\mk{r}{\\sqrt{1+{[\\kgprime(y_i^{*})]}^{2}}}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "6.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\text{Arc Length}}\\approx\\mk{s}{\\sum_{i=1}^{n}\\sqrt{1+{[\\kgprime(y_i^{*})]}^{2}}\\;\\Delta y}",
+      "src": "6.4",
+      "uses": [
+       0
+      ],
+      "why": "Adding up the lengths of all the line segments approximates the length of the curve."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\text{Arc Length}}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}\\sqrt{1+{[\\kgprime(y_i^{*})]}^{2}}\\;\\Delta y}",
+       "uses": [],
+       "cap": "This is a Riemann sum, so we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\text{Arc Length}}=\\mk{s}{\\int_c^{d}\\sqrt{1+{[\\kgprime(y)]}^{2}}\\;dy}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.8)",
+     "src": "6.4, Arc Length for x = g(y)"
+    }
+   ]
+  },
+  {
+   "id": "lateral-surface-area-of-a-frustum",
+   "what": "the lateral surface area of a frustum",
+   "source": "Calculus, 6.4 Arc Length of a Curve and Surface Area, Area of a Surface of Revolution",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The cross-sections of the small cone and the large cone are similar triangles.",
+       "src": "6.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{r_{2}}{r_{1}}}=\\mk{R}{\\frac{s-l}{s}}",
+      "src": "6.4",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{r_{2}s}=\\mk{R}{r_{1}(s-l)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{r_{2}s}=\\mk{A}{r_{1}s}-\\mk{B}{r_{1}l}",
+       "uses": [],
+       "map": {
+        "R": [
+         "A",
+         "B"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{B}{r_{1}l}=\\mk{A}{r_{1}s}-\\mk{L}{r_{2}s}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{B}{r_{1}l}=\\mk{A}{(r_{1}-r_{2})s}",
+       "uses": [],
+       "map": {
+        "L": "A"
+       }
+      }
+     ],
+     "src": "6.4"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\text{Lateral Surface Area}=\\pi rs",
+       "src": "6.4"
+      },
+      {
+       "text": "The lateral surface area of the frustum is the lateral surface area of the whole cone less the lateral surface area of the smaller cone that was cut off.",
+       "src": "6.4"
+      },
+      {
+       "text": "The large cone has base radius $r_{1}$ and slant height $s;$ the small cone has base radius $r_{2}$ and slant height $s-l.$",
+       "src": "Figure 6.44"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS}=\\mk{b}{\\text{(Lateral SA of large cone)}}-\\mk{c}{\\text{(Lateral SA of small cone)}}",
+      "src": "6.4",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{b}{\\pi r_{1}s}-\\mk{c}{\\pi r_{2}(s-l)}",
+       "uses": [
+        0,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{b}{\\pi r_{1}s}-\\mk{c}{\\pi r_{2}s}+\\mk{d}{\\pi r_{2}l}",
+       "uses": [],
+       "map": {
+        "c": [
+         "c",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{b}{\\pi(r_{1}-r_{2})s}+\\mk{d}{\\pi r_{2}l}",
+       "uses": [],
+       "map": {
+        "c": "b"
+       }
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{b}{\\pi r_{1}l}+\\mk{d}{\\pi r_{2}l}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{b}{\\pi(r_{1}+r_{2})l}",
+       "uses": [],
+       "map": {
+        "d": "b"
+       }
+      }
+     ],
+     "src": "6.4"
+    }
+   ]
+  },
+  {
+   "id": "surface-area-of-a-surface-of-revolution",
+   "what": "the surface area of a surface of revolution",
+   "source": "Calculus, 6.4 Arc Length of a Curve and Surface Area, Area of a Surface of Revolution",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The band over $[x_{i-1},x_{i}]$ has radii $\\kf(x_{i-1})$ and $\\kf(x_{i}).$",
+       "src": "Figure 6.45"
+      },
+      {
+       "text": "The slant height of the band is the length of the line segment used to generate it, $\\sqrt{\\Delta x^{2}+{(\\Delta y_{i})}^{2}}.$",
+       "src": "6.4"
+      },
+      {
+       "text": "$\\kf$ is a nonnegative smooth function over $[a,b].$",
+       "src": "6.4"
+      },
+      {
+       "text": "By the Mean Value Theorem, there is $x_i^{*}\\in [x_{i-1},x_{i}]$ such that $\\kfprime(x_i^{*})=(\\Delta y_{i})/\\Delta x.$",
+       "src": "4.4, Mean Value Theorem"
+      },
+      {
+       "text": "By the Intermediate Value Theorem, there is $x_i^{**}\\in [x_{i-1},x_{i}]$ such that $\\kf(x_i^{**})=(1/2)[\\kf(x_{i-1})+\\kf(x_{i})].$",
+       "src": "2.4, The Intermediate Value Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(r_{1}+r_{2})}\\mk{l}{l}",
+      "src": "6.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(\\kf(x_{i-1})+\\kf(x_{i}))}\\mk{l}{l}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(\\kf(x_{i-1})+\\kf(x_{i}))}\\mk{l}{\\sqrt{\\Delta x^{2}+{(\\Delta y_{i})}^{2}}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(\\kf(x_{i-1})+\\kf(x_{i}))}\\mk{dx}{\\Delta x}\\mk{l}{\\sqrt{1+{(\\frac{\\Delta y_{i}}{\\Delta x})}^{2}}}",
+       "uses": [],
+       "cap": "Factor $\\Delta x^{2}$ out of the root; $\\Delta x>0.$",
+       "map": {
+        "l": [
+         "dx",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(\\kf(x_{i-1})+\\kf(x_{i}))}\\mk{dx}{\\Delta x}\\mk{l}{\\sqrt{1+{(\\kfprime(x_i^{*}))}^{2}}}",
+       "uses": [2, 3]
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{2\\pi \\kf(x_i^{**})}\\mk{dx}{\\Delta x}\\mk{l}{\\sqrt{1+{(\\kfprime(x_i^{*}))}^{2}}}",
+       "uses": [2, 4]
+      }
+     ],
+     "src": "6.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      },
+      {
+       "text": "Because $\\kf(x)$ is smooth, as $n\\to \\infty$ the limit works the same as a Riemann sum even with the two different evaluation points $x_i^{*}$ and $x_i^{**}.$",
+       "src": "6.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\text{Surface Area}}\\approx\\mk{s}{\\sum_{i=1}^{n}2\\pi \\kf(x_i^{**})\\Delta x\\sqrt{1+{(\\kfprime(x_i^{*}))}^{2}}}",
+      "src": "6.4",
+      "uses": [
+       0
+      ],
+      "why": "Adding the areas of all the bands approximates the area of the whole surface of revolution."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\text{Surface Area}}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}2\\pi \\kf(x_i^{**})\\Delta x\\sqrt{1+{(\\kfprime(x_i^{*}))}^{2}}}",
+       "uses": [],
+       "cap": "This almost looks like a Riemann sum, except the functions are evaluated at two different points of $[x_{i-1},x_{i}];$ we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\text{Surface Area}}=\\mk{s}{\\int_a^{b}(2\\pi \\kf(x)\\sqrt{1+{(\\kfprime(x))}^{2}})dx}",
+       "uses": [1, 2],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.9)",
+     "src": "6.4, Surface Area of a Surface of Revolution"
+    },
+    {
+     "assumes": [
+      {
+       "text": "Revolving $x=\\kg(y)$ around the $y$-axis, the band over $[y_{i-1},y_{i}]$ has radii $\\kg(y_{i-1})$ and $\\kg(y_{i}).$",
+       "src": "6.4"
+      },
+      {
+       "text": "The slant height of the band is the length of the line segment used to generate it, $\\sqrt{\\Delta y^{2}+{(\\Delta x_{i})}^{2}}.$",
+       "src": "6.4"
+      },
+      {
+       "text": "$\\kg$ is a nonnegative smooth function over $[c,d].$",
+       "src": "6.4"
+      },
+      {
+       "text": "By the Mean Value Theorem, there is $y_i^{*}\\in [y_{i-1},y_{i}]$ such that $\\kgprime(y_i^{*})=(\\Delta x_{i})/\\Delta y.$",
+       "src": "4.4, Mean Value Theorem"
+      },
+      {
+       "text": "By the Intermediate Value Theorem, there is $y_i^{**}\\in [y_{i-1},y_{i}]$ such that $\\kg(y_i^{**})=(1/2)[\\kg(y_{i-1})+\\kg(y_{i})].$",
+       "src": "2.4, The Intermediate Value Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(r_{1}+r_{2})}\\mk{l}{l}",
+      "src": "6.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(\\kg(y_{i-1})+\\kg(y_{i}))}\\mk{l}{l}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(\\kg(y_{i-1})+\\kg(y_{i}))}\\mk{l}{\\sqrt{\\Delta y^{2}+{(\\Delta x_{i})}^{2}}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(\\kg(y_{i-1})+\\kg(y_{i}))}\\mk{dx}{\\Delta y}\\mk{l}{\\sqrt{1+{(\\frac{\\Delta x_{i}}{\\Delta y})}^{2}}}",
+       "uses": [],
+       "cap": "Factor $\\Delta y^{2}$ out of the root; $\\Delta y>0.$",
+       "map": {
+        "l": [
+         "dx",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{\\pi(\\kg(y_{i-1})+\\kg(y_{i}))}\\mk{dx}{\\Delta y}\\mk{l}{\\sqrt{1+{(\\kgprime(y_i^{*}))}^{2}}}",
+       "uses": [2, 3]
+      },
+      {
+       "tex": "\\mk{S}{\\kS}=\\mk{r}{2\\pi \\kg(y_i^{**})}\\mk{dx}{\\Delta y}\\mk{l}{\\sqrt{1+{(\\kgprime(y_i^{*}))}^{2}}}",
+       "uses": [2, 4]
+      }
+     ],
+     "src": "6.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      },
+      {
+       "text": "Because $\\kg(y)$ is smooth, as $n\\to \\infty$ the limit works the same as a Riemann sum even with the two different evaluation points $y_i^{*}$ and $y_i^{**}.$",
+       "src": "6.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\text{Surface Area}}\\approx\\mk{s}{\\sum_{i=1}^{n}2\\pi \\kg(y_i^{**})\\Delta y\\sqrt{1+{(\\kgprime(y_i^{*}))}^{2}}}",
+      "src": "6.4",
+      "uses": [
+       0
+      ],
+      "why": "Adding the areas of all the bands approximates the area of the whole surface of revolution."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\text{Surface Area}}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}2\\pi \\kg(y_i^{**})\\Delta y\\sqrt{1+{(\\kgprime(y_i^{*}))}^{2}}}",
+       "uses": [],
+       "cap": "This almost looks like a Riemann sum, except the functions are evaluated at two different points of $[y_{i-1},y_{i}];$ we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\text{Surface Area}}=\\mk{s}{\\int_c^{d}(2\\pi \\kg(y)\\sqrt{1+{(\\kgprime(y))}^{2}})dy}",
+       "uses": [1, 2],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "src": "6.4, Surface Area of a Surface of Revolution"
+    }
+   ]
+  }
+ ]
 }

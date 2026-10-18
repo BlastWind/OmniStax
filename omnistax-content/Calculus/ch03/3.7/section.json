@@ -874,5 +874,683 @@
    "kind": "correction",
    "html": "The answer is the derivative: $g^{\\prime}(x)=\\frac{1}{5}x^{-4/5}.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "inverse-function-derivative",
+   "what": "the derivative of an inverse function",
+   "source": "Calculus, 3.7 Derivatives of Inverse Functions, The Derivative of an Inverse Function",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf(x)$ is invertible and differentiable.",
+       "src": "3.7, Inverse Function Theorem"
+      },
+      {
+       "text": "The chain rule: the derivative of $\\kf(\\kg(x))$ is $\\kfprime(\\kg(x))\\kgprime(x).$",
+       "src": "(3.17)"
+      },
+      {
+       "tex": "\\frac{d}{dx}x=1",
+       "src": "3.3, The Power Rule"
+      },
+      {
+       "tex": "\\kfprime(\\kfinv(x))\\ne 0",
+       "src": "3.7, Inverse Function Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{x}=\\mk{r}{\\kf(\\kfinv(x))}",
+      "uses": [
+       0
+      ],
+      "src": "3.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{1}=\\mk{r}{\\kfprime(\\kfinv(x))\\kfinvprime(x)}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Both sides are differentiated, the right by the chain rule with $\\kfinv$ as the inner function."
+      },
+      {
+       "tex": "\\mk{r}{\\kfinvprime(x)}=\\frac{\\mk{x}{1}}{\\mk{fp}{\\kfprime(\\kfinv(x))}}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "r": [
+         "r",
+         "fp"
+        ]
+       }
+      }
+     ],
+     "num": "(3.19)",
+     "src": "3.7"
+    }
+   ]
+  },
+  {
+   "id": "power-rule-rational-exponents",
+   "what": "the power rule for rational exponents",
+   "source": "Calculus, 3.7 Derivatives of Inverse Functions, Extending the Power Rule to Rational Exponents",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}x^{n}=nx^{n-1}",
+       "src": "3.3, The Power Rule"
+      },
+      {
+       "tex": "\\kg(x)=x^{1/n}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{r}{x^{n}}",
+      "uses": [],
+      "src": "3.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{r}{nx^{n-1}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(\\kg(x))}=\\mk{r}{n{(x^{1/n})}^{n-1}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(\\kg(x))}=\\mk{r}{nx^{(n-1)/n}}",
+       "uses": []
+      }
+     ],
+     "src": "3.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kg(x)=x^{1/n}$ is the inverse of $\\kf(x)=x^{n}.$",
+       "src": "3.7"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{gp}{\\kgprime(x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime(\\kg(x))}}",
+      "uses": [
+       0
+      ],
+      "src": "3.7, Inverse Function Theorem"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{gp}{\\kgprime(x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{nx^{(n-1)/n}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\kgprime(x)}=\\mk{fp}{\\frac{1}{n}x^{(1-n)/n}}",
+       "uses": [],
+       "map": {
+        "one": "fp"
+       }
+      },
+      {
+       "tex": "\\mk{gp}{\\kgprime(x)}=\\mk{fp}{\\frac{1}{n}x^{(1/n)-1}}",
+       "uses": []
+      }
+     ],
+     "num": "(3.20)",
+     "src": "3.7, Extending the Power Rule to Rational Exponents"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The power rule for composition: the derivative of $(u(x))^{m}$ is $m(u(x))^{m-1}u'(x)$ for an integer $m.$",
+       "src": "(3.18)"
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{dx}(x^{m/n})}=\\mk{R}{\\frac{d}{dx}({(x^{1/n})}^{m})}",
+      "uses": [],
+      "src": "3.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(x^{m/n})}=\\mk{a}{m{(x^{1/n})}^{m-1}}\\cdot \\mk{b}{\\frac{d}{dx}(x^{1/n})}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "R": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(x^{m/n})}=\\mk{a}{m{(x^{1/n})}^{m-1}}\\cdot \\mk{b}{\\frac{1}{n}x^{(1/n)-1}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(x^{m/n})}=\\mk{a}{\\frac{m}{n}x^{(m/n)-1}}",
+       "uses": [],
+       "map": {
+        "b": "a"
+       }
+      }
+     ],
+     "num": "(3.21)",
+     "src": "3.7, Extending the Power Rule to Rational Exponents"
+    }
+   ]
+  },
+  {
+   "id": "derivative-of-inverse-sine",
+   "what": "the derivative of the inverse sine",
+   "source": "Calculus, 3.7 Derivatives of Inverse Functions, Example 3.63",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}(\\sin x)=\\cos x",
+       "src": "(3.11)"
+      },
+      {
+       "tex": "\\kg(x)={\\sin }^{-1}x"
+      },
+      {
+       "tex": "\\cos ({\\sin }^{-1}x)=\\sqrt{1-x^{2}}",
+       "src": "Example 3.63, Analysis"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{r}{\\sin x}",
+      "uses": [],
+      "src": "Example 3.63"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{r}{\\cos x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(\\kg(x))}=\\mk{r}{\\cos ({\\sin }^{-1}x)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(\\kg(x))}=\\mk{r}{\\sqrt{1-x^{2}}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "Example 3.63"
+    },
+    {
+     "assumes": [
+      {
+       "text": "For $x$ in $[-\\frac{\\pi}{2},\\frac{\\pi}{2}],$ $\\kf(x)=\\sin x$ is the inverse of $\\kg(x)={\\sin }^{-1}x.$"
+      },
+      {
+       "tex": "\\kg(x)={\\sin }^{-1}x"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{gp}{\\kgprime(x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime(\\kg(x))}}",
+      "uses": [
+       0
+      ],
+      "src": "3.7, Inverse Function Theorem"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}({\\sin }^{-1}x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime(\\kg(x))}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}({\\sin }^{-1}x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\sqrt{1-x^{2}}}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(3.22)",
+     "src": "Example 3.63"
+    }
+   ]
+  },
+  {
+   "id": "derivatives-of-other-inverse-trigonometric-functions",
+   "what": "the derivatives of the other inverse trigonometric functions",
+   "source": "Calculus, 3.7 Derivatives of Inverse Functions, Derivatives of Inverse Trigonometric Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "{\\cos }^{-1}(x)=y\\;\\text{if and only if}\\;\\cos(y)=x\\;\\text{and}\\;0\\le y\\le \\pi",
+       "src": "(1.12)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{{\\sin }^{2}\\ktheta}+\\mk{c}{{\\cos }^{2}\\ktheta}=\\mk{one}{1}",
+      "uses": [],
+      "src": "1.3, Trigonometric Identities"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{{\\sin }^{2}\\ktheta}=\\mk{one}{1}-\\mk{c}{{\\cos }^{2}\\ktheta}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\sin \\ktheta}=\\sqrt{\\mk{one}{1}-\\mk{c}{{\\cos }^{2}\\ktheta}}",
+       "uses": [
+        0
+       ],
+       "cap": "With $\\ktheta={\\cos }^{-1}x$ we have $0\\le \\ktheta\\le \\pi,$ where $\\sin \\ktheta\\ge 0,$ so the positive root is taken."
+      },
+      {
+       "tex": "\\mk{s}{\\sin \\ktheta}=\\sqrt{\\mk{one}{1}-\\mk{c}{x^{2}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\sin ({\\cos }^{-1}x)}=\\sqrt{\\mk{one}{1}-\\mk{c}{x^{2}}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "3.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kg(x)={\\cos }^{-1}x$ is the inverse of $\\kf(x)=\\cos x$ for $x$ in $[0,\\pi].$",
+       "src": "(1.12)"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\cos x)=-\\sin x",
+       "src": "(3.12)"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{gp}{\\kgprime(x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime(\\kg(x))}}",
+      "uses": [
+       0
+      ],
+      "src": "3.7, Inverse Function Theorem"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\cos }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime({\\cos }^{-1}x)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\cos }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{-\\sin ({\\cos }^{-1}x)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\cos }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{-\\sqrt{1-x^{2}}}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\cos }^{-1}x}=\\frac{\\mk{one}{-1}}{\\mk{fp}{\\sqrt{1-x^{2}}}}",
+       "uses": []
+      }
+     ],
+     "num": "(3.23)",
+     "src": "3.7, Derivatives of Inverse Trigonometric Functions"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kg(x)={\\tan }^{-1}x$ is the inverse of $\\kf(x)=\\tan x$ for $x$ in $(-\\frac{\\pi}{2},\\frac{\\pi}{2}).$",
+       "src": "(1.13)"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\tan x)={\\sec }^{2}x",
+       "src": "(3.13)"
+      },
+      {
+       "tex": "1+{\\tan }^{2}\\ktheta={\\sec }^{2}\\ktheta",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "tex": "\\tan ({\\tan }^{-1}x)=x",
+       "src": "(1.13)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{gp}{\\kgprime(x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime(\\kg(x))}}",
+      "uses": [
+       0
+      ],
+      "src": "3.7, Inverse Function Theorem"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\tan }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime({\\tan }^{-1}x)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\tan }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{{\\sec }^{2}({\\tan }^{-1}x)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\tan }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{1+{\\tan }^{2}({\\tan }^{-1}x)}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\tan }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{1+x^{2}}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(3.24)",
+     "src": "3.7, Derivatives of Inverse Trigonometric Functions"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kg(x)={\\cot }^{-1}x$ is the inverse of $\\kf(x)=\\cot x$ for $x$ in $(0,\\pi).$",
+       "src": "(1.13)"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\cot x)=-{\\csc }^{2}x",
+       "src": "(3.14)"
+      },
+      {
+       "tex": "1+{\\cot }^{2}\\ktheta={\\csc }^{2}\\ktheta",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "tex": "\\cot ({\\cot }^{-1}x)=x",
+       "src": "(1.13)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{gp}{\\kgprime(x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime(\\kg(x))}}",
+      "uses": [
+       0
+      ],
+      "src": "3.7, Inverse Function Theorem"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\cot }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime({\\cot }^{-1}x)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\cot }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{-{\\csc }^{2}({\\cot }^{-1}x)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\cot }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{-(1+{\\cot }^{2}({\\cot }^{-1}x))}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\cot }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{-(1+x^{2})}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\cot }^{-1}x}=\\frac{\\mk{one}{-1}}{\\mk{fp}{1+x^{2}}}",
+       "uses": []
+      }
+     ],
+     "num": "(3.25)",
+     "src": "3.7, Derivatives of Inverse Trigonometric Functions"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "{\\sec }^{-1}(x)=y\\;\\text{if and only if}\\;\\sec(y)=x\\;\\text{and}\\;0\\le y\\le \\pi,\\ y\\ne \\pi/2",
+       "src": "(1.14)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{one}{1}+\\mk{t}{{\\tan }^{2}\\ktheta}=\\mk{s}{{\\sec }^{2}\\ktheta}",
+      "uses": [],
+      "src": "1.3, Trigonometric Identities"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{{\\tan }^{2}\\ktheta}=\\mk{s}{{\\sec }^{2}\\ktheta}-\\mk{one}{1}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{{\\tan }^{2}\\ktheta}=\\mk{s}{x^{2}}-\\mk{one}{1}",
+       "uses": [
+        0
+       ],
+       "cap": "Here $\\ktheta={\\sec }^{-1}x,$ so $\\sec \\ktheta=x.$"
+      },
+      {
+       "tex": "\\mk{t}{|\\tan \\ktheta|}=\\sqrt{\\mk{s}{x^{2}}-\\mk{one}{1}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{x\\tan \\ktheta}=|x|\\sqrt{\\mk{s}{x^{2}}-\\mk{one}{1}}",
+       "uses": [
+        0
+       ],
+       "cap": "For $0\\le \\ktheta\\lt \\frac{\\pi}{2},$ $\\tan \\ktheta\\ge 0$ and $x=\\sec \\ktheta\\ge 1;$ for $\\frac{\\pi}{2}\\lt \\ktheta\\le \\pi,$ $\\tan \\ktheta\\le 0$ and $x\\le -1.$ Either way $x\\tan \\ktheta=|x|\\,|\\tan \\ktheta|.$"
+      },
+      {
+       "tex": "\\mk{t}{x\\tan ({\\sec }^{-1}x)}=|x|\\sqrt{\\mk{s}{x^{2}}-\\mk{one}{1}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "3.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kg(x)={\\sec }^{-1}x$ is the inverse of $\\kf(x)=\\sec x$ for $x$ in $[0,\\pi],$ $x\\ne \\frac{\\pi}{2}.$",
+       "src": "(1.14)"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\sec x)=\\sec x\\;\\tan x",
+       "src": "(3.15)"
+      },
+      {
+       "tex": "\\sec ({\\sec }^{-1}x)=x",
+       "src": "(1.14)"
+      },
+      {
+       "step": 4
+      }
+     ],
+     "then": {
+      "tex": "\\mk{gp}{\\kgprime(x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime(\\kg(x))}}",
+      "uses": [
+       0
+      ],
+      "src": "3.7, Inverse Function Theorem"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\sec }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime({\\sec }^{-1}x)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\sec }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\sec ({\\sec }^{-1}x)\\tan ({\\sec }^{-1}x)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\sec }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{x\\tan ({\\sec }^{-1}x)}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\sec }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{|x|\\sqrt{x^{2}-1}}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(3.26)",
+     "src": "3.7, Derivatives of Inverse Trigonometric Functions"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "{\\csc }^{-1}(x)=y\\;\\text{if and only if}\\;\\csc(y)=x\\;\\text{and}\\;-\\frac{\\pi}{2}\\le y\\le \\frac{\\pi}{2},\\ y\\ne 0",
+       "src": "(1.14)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{one}{1}+\\mk{t}{{\\cot }^{2}\\ktheta}=\\mk{s}{{\\csc }^{2}\\ktheta}",
+      "uses": [],
+      "src": "1.3, Trigonometric Identities"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{{\\cot }^{2}\\ktheta}=\\mk{s}{{\\csc }^{2}\\ktheta}-\\mk{one}{1}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{{\\cot }^{2}\\ktheta}=\\mk{s}{x^{2}}-\\mk{one}{1}",
+       "uses": [
+        0
+       ],
+       "cap": "Here $\\ktheta={\\csc }^{-1}x,$ so $\\csc \\ktheta=x.$"
+      },
+      {
+       "tex": "\\mk{t}{|\\cot \\ktheta|}=\\sqrt{\\mk{s}{x^{2}}-\\mk{one}{1}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{x\\cot \\ktheta}=|x|\\sqrt{\\mk{s}{x^{2}}-\\mk{one}{1}}",
+       "uses": [
+        0
+       ],
+       "cap": "For $0\\lt \\ktheta\\le \\frac{\\pi}{2},$ $\\cot \\ktheta\\ge 0$ and $x=\\csc \\ktheta\\ge 1;$ for $-\\frac{\\pi}{2}\\le \\ktheta\\lt 0,$ $\\cot \\ktheta\\le 0$ and $x\\le -1.$ Either way $x\\cot \\ktheta=|x|\\,|\\cot \\ktheta|.$"
+      },
+      {
+       "tex": "\\mk{t}{x\\cot ({\\csc }^{-1}x)}=|x|\\sqrt{\\mk{s}{x^{2}}-\\mk{one}{1}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "3.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kg(x)={\\csc }^{-1}x$ is the inverse of $\\kf(x)=\\csc x$ for $x$ in $[-\\frac{\\pi}{2},\\frac{\\pi}{2}],$ $x\\ne 0.$",
+       "src": "(1.14)"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\csc x)=-\\csc x\\;\\cot x",
+       "src": "(3.16)"
+      },
+      {
+       "tex": "\\csc ({\\csc }^{-1}x)=x",
+       "src": "(1.14)"
+      },
+      {
+       "step": 6
+      }
+     ],
+     "then": {
+      "tex": "\\mk{gp}{\\kgprime(x)}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime(\\kg(x))}}",
+      "uses": [
+       0
+      ],
+      "src": "3.7, Inverse Function Theorem"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\csc }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{\\kfprime({\\csc }^{-1}x)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\csc }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{-\\csc ({\\csc }^{-1}x)\\cot ({\\csc }^{-1}x)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\csc }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{-x\\cot ({\\csc }^{-1}x)}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\csc }^{-1}x}=\\frac{\\mk{one}{1}}{\\mk{fp}{-|x|\\sqrt{x^{2}-1}}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{gp}{\\frac{d}{dx}{\\csc }^{-1}x}=\\frac{\\mk{one}{-1}}{\\mk{fp}{|x|\\sqrt{x^{2}-1}}}",
+       "uses": []
+      }
+     ],
+     "num": "(3.27)",
+     "src": "3.7, Derivatives of Inverse Trigonometric Functions"
+    }
+   ]
+  }
  ]
 }

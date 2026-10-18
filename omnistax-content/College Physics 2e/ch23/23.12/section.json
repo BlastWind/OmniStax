@@ -898,5 +898,114 @@
    "kind": "correction",
    "html": "The book’s key divides by 100 for the quarter cycle. At 400 cycles per second a quarter cycle lasts $\\Delta t = 1/1600\\ \\text{s}$, so the average emf is $32.0\\ \\text{V}$ for one loop in (a) and $16.0\\ \\text{V}$ for two in (b), the values the card checks."
   }
+ ],
+ "derivations": [
+  {
+   "id": "rlc-impedance",
+   "what": "the impedance of an RLC series circuit",
+   "source": "College Physics 2e, 23.12 RLC Series AC Circuits",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kVR$ is in phase with the current, $\\kVL$ leads it by $90^\\circ$ and $\\kVC$ follows it by $90^\\circ$, so the peak voltages are not aligned.",
+       "src": "23.12, Figure 23.47"
+      },
+      {
+       "tex": "\\kIocur = \\dfrac{\\kVo}{\\kZimp}",
+       "src": "23.12"
+      },
+      {
+       "tex": "\\kVoR = \\kIocur\\kRes",
+       "src": "20.2"
+      },
+      {
+       "tex": "\\kVoL = \\kIocur\\kXL,\\quad \\kVoC = \\kIocur\\kXC",
+       "src": "23.11"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kVo} = \\sqrt{\\mk{R}{\\kVoR^{2}} + (\\mk{L}{\\kVoL} - \\mk{C}{\\kVoC})^{2}}",
+      "src": "23.12",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kIocur\\kZimp} = \\sqrt{\\mk{R}{\\kVoR^{2}} + (\\mk{L}{\\kVoL} - \\mk{C}{\\kVoC})^{2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kIocur\\kZimp} = \\sqrt{\\mk{R}{\\kIocur^{2}\\kRes^{2}} + (\\mk{L}{\\kIocur\\kXL} - \\mk{C}{\\kIocur\\kXC})^{2}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kIocur\\kZimp} = \\mk{I}{\\kIocur}\\sqrt{\\mk{R}{\\kRes^{2}} + (\\mk{L}{\\kXL} - \\mk{C}{\\kXC})^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{V}{\\kZimp} = \\sqrt{\\mk{R}{\\kRes^{2}} + (\\mk{L}{\\kXL} - \\mk{C}{\\kXC})^{2}}",
+       "uses": []
+      }
+     ],
+     "src": "23.12"
+    }
+   ]
+  },
+  {
+   "id": "resonant-frequency",
+   "what": "the resonant frequency of an RLC series circuit",
+   "source": "College Physics 2e, 23.12 RLC Series AC Circuits",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "At the resonant frequency $\\kfo$ the two reactances are equal and cancel.",
+       "src": "23.12"
+      },
+      {
+       "tex": "\\kXL = 2\\pi \\kf\\kLind",
+       "src": "23.11"
+      },
+      {
+       "tex": "\\kXC = \\dfrac{1}{2\\pi \\kf\\kCap}",
+       "src": "23.11"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kXL} = \\mk{C}{\\kXC}",
+      "src": "23.12",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{2\\pi\\kfo\\kLind} = \\mk{C}{\\dfrac{1}{2\\pi\\kfo\\kCap}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kfo^{2}} = \\mk{C}{\\dfrac{1}{4\\pi^{2}\\kLind\\kCap}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\kfo} = \\mk{C}{\\dfrac{1}{2\\pi\\sqrt{\\kLind\\kCap}}}",
+       "uses": [],
+       "cap": "A frequency is positive, so only the positive square root applies."
+      }
+     ],
+     "src": "23.12"
+    }
+   ]
+  }
  ]
 }

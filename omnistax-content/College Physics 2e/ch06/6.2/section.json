@@ -669,5 +669,79 @@
    "kind": "correction",
    "html": "The book’s key gives the acceleration in m/s. A centripetal acceleration is in m/s²: 39.2 m/s²."
   }
+ ],
+ "derivations": [
+  {
+   "id": "centripetal-acceleration",
+   "what": "the magnitude of the centripetal acceleration",
+   "source": "College Physics 2e, 6.2 Centripetal Acceleration",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The triangle formed by the velocity vectors and the one formed by the radii $\\kr$ and $\\kds$ are similar.",
+       "src": "Figure 6.7"
+      },
+      {
+       "text": "Both triangles are isosceles; the two equal sides of the velocity triangle are the speeds $\\kvone = \\kvtwo = \\kv$.",
+       "src": "6.2"
+      },
+      {
+       "tex": "\\frac{\\kdv}{\\kdt} = \\kac",
+       "src": "Figure 6.7"
+      },
+      {
+       "tex": "\\frac{\\kds}{\\kdt} = \\kv",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\frac{\\mk{dv}{\\kdv}}{\\mk{v}{\\kv}} = \\frac{\\mk{ds}{\\kds}}{\\mk{r}{\\kr}}",
+      "src": "6.2",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "Corresponding sides of similar triangles are in proportion."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{dv}{\\kdv} = \\frac{\\mk{v}{\\kv}}{\\mk{r}{\\kr}}\\mk{ds}{\\kds}",
+       "uses": []
+      },
+      {
+       "tex": "\\frac{\\mk{dv}{\\kdv}}{\\mk{dt}{\\kdt}} = \\frac{\\mk{v}{\\kv}}{\\mk{r}{\\kr}} \\times \\frac{\\mk{ds}{\\kds}}{\\mk{dt2}{\\kdt}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{dv}{\\kac} = \\frac{\\mk{v}{\\kv}}{\\mk{r}{\\kr}} \\times \\frac{\\mk{ds}{\\kds}}{\\mk{dt2}{\\kdt}}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "dt": "dv"
+       }
+      },
+      {
+       "tex": "\\mk{dv}{\\kac} = \\frac{\\mk{v}{\\kv}}{\\mk{r}{\\kr}} \\times \\mk{ds}{\\kv}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "dt2": "ds"
+       }
+      },
+      {
+       "tex": "\\mk{dv}{\\kac} = \\frac{\\mk{v}{\\kv^2}}{\\mk{r}{\\kr}}",
+       "uses": [],
+       "map": {
+        "ds": "v"
+       }
+      }
+     ],
+     "src": "6.2"
+    }
+   ]
+  }
  ]
 }

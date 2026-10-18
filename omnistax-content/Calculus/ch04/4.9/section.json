@@ -1134,5 +1134,96 @@
    "kind": "correction",
    "html": "The process starts at $x_{1}=F(x_{0}),$ so the rule holds for $n\\ge 1.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "newtons-method",
+   "what": "Newton’s method",
+   "source": "Calculus, 4.9 Newton’s Method, Describing Newton’s Method",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$({x}_{1},0)$ is the $x$-intercept of the tangent line to $\\kf$ at ${x}_{0}.$",
+       "src": "4.9"
+      },
+      {
+       "tex": "\\kfprime({x}_{0})\\ne 0",
+       "src": "4.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{t}{\\kf({x}_{0})+\\kfprime({x}_{0})(x-{x}_{0})}",
+      "src": "4.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\kf({x}_{0})+\\kfprime({x}_{0})({x}_{1}-{x}_{0})}=\\mk{y}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kfprime({x}_{0})({x}_{1}-{x}_{0})}=\\mk{y}{-\\kf({x}_{0})}",
+       "uses": [],
+       "map": {
+        "t": [
+         "d",
+         "y"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{{x}_{1}-{x}_{0}}=\\mk{y}{-\\frac{\\kf({x}_{0})}{\\kfprime({x}_{0})}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{{x}_{1}}=\\mk{x0}{{x}_{0}}\\mk{y}{-\\frac{\\kf({x}_{0})}{\\kfprime({x}_{0})}}",
+       "uses": [],
+       "map": {
+        "d": [
+         "d",
+         "x0"
+        ]
+       }
+      }
+     ],
+     "src": "4.9"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Each ${x}_{n}$ is the $x$-intercept of the tangent line to $\\kf$ at ${x}_{n-1},$ where $\\kfprime({x}_{n-1})\\ne 0.$",
+       "src": "4.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{{x}_{1}}=\\mk{x0}{{x}_{0}}\\mk{y}{-\\frac{\\kf({x}_{0})}{\\kfprime({x}_{0})}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{{x}_{2}}=\\mk{x0}{{x}_{1}}\\mk{y}{-\\frac{\\kf({x}_{1})}{\\kfprime({x}_{1})}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{{x}_{n}}=\\mk{x0}{{x}_{n-1}}\\mk{y}{-\\frac{\\kf({x}_{n-1})}{\\kfprime({x}_{n-1})}}",
+       "uses": [
+        1
+       ],
+       "cap": "Each step repeats the first, from ${x}_{n-1}$ in place of ${x}_{0}.$"
+      }
+     ],
+     "num": "(4.8)",
+     "src": "4.9"
+    }
+   ]
+  }
  ]
 }

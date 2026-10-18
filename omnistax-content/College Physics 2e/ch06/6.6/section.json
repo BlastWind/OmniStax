@@ -355,5 +355,128 @@
         "sim-frames"
       ]
     }
+  ],
+  "derivations": [
+    {
+      "id": "kepler-third-law",
+      "what": "Kepler’s third law for circular orbits",
+      "source": "College Physics 2e, 6.6 Satellites and Kepler’s Laws: An Argument for Simplicity",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "A small mass $\\km$ runs a circular orbit about a much larger mass $\\kM$.",
+              "src": "6.6"
+            },
+            {
+              "tex": "\\kac = \\frac{\\kv^2}{\\kr}",
+              "src": "6.2"
+            },
+            {
+              "text": "The net external force on mass $\\km$ is gravity, $G\\km\\kM/\\kr^2$.",
+              "src": "6.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{F}{\\kFnet} = \\mk{m}{\\km\\kac}",
+            "src": "6.6",
+            "uses": [
+              0
+            ],
+            "why": "On a circular orbit $\\km$ has the centripetal acceleration $\\kac$, so by Newton’s second law the net force on it is $\\km\\kac$."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{F}{\\kFnet} = \\mk{m}{\\km\\kac} = \\mk{ac}{\\km\\frac{\\kv^2}{\\kr}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{F}{G\\frac{\\km\\kM}{\\kr^2}} = \\mk{ac}{\\km\\frac{\\kv^2}{\\kr}}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{F}{G\\frac{\\kM}{\\kr}} = \\mk{ac}{\\kv^2}",
+              "uses": []
+            }
+          ],
+          "src": "6.6"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "The period $\\kT$ is the time for one complete orbit, so the average speed is the circumference divided by the period: $\\kv = 2\\pi\\kr/\\kT$.",
+              "src": "6.6"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{F}{G\\frac{\\kM}{\\kr}} = \\mk{v}{\\kv^2}",
+            "src": "6.6",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{F}{G\\frac{\\kM}{\\kr}} = \\mk{v}{\\frac{4\\pi^2 \\kr^2}{\\kT^2}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{T}{\\kT^2} = \\mk{c}{\\frac{4\\pi^2}{G\\kM}}\\mk{r}{\\kr^3}",
+              "uses": [],
+              "map": {
+                "F": [
+                  "c",
+                  "r"
+                ],
+                "v": [
+                  "T",
+                  "c",
+                  "r"
+                ]
+              }
+            }
+          ],
+          "src": "6.6"
+        },
+        {
+          "assumes": [
+            {
+              "step": 1
+            },
+            {
+              "text": "Satellites 1 and 2 orbit the same parent body, so $\\kM$ is the same for both.",
+              "src": "6.6"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{T}{\\kT^2} = \\mk{c}{\\frac{4\\pi^2}{G\\kM}}\\mk{r}{\\kr^3}",
+            "src": "6.6",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\frac{\\mk{T}{\\kTorbone^2}}{\\mk{T2}{\\kTorbtwo^2}} = \\frac{\\mk{c}{\\tfrac{4\\pi^2}{G\\kM}}\\mk{r}{\\krone^3}}{\\mk{c2}{\\tfrac{4\\pi^2}{G\\kM}}\\mk{r2}{\\krtwo^3}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\frac{\\mk{T}{\\kTorbone^2}}{\\mk{T2}{\\kTorbtwo^2}} = \\frac{\\mk{r}{\\krone^3}}{\\mk{r2}{\\krtwo^3}}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "6.6"
+        }
+      ]
+    }
   ]
 }

@@ -115,3 +115,8 @@ The proton’s ratio is printed $9.58 \times 10^{7}$ C/kg in the text and $9.57 
 - No concept or edge row needs changing.
 
 Applied by the chapter pass (2026-10-05): the seven forms and twelve variables rows anchored as listed; new rows `F`, `g` (acceleration, the book's 9.80 m/s²) and `m` (concept `electron-mass`); symbol `F_mag` with macro `\kFmag` and its row, and the text's `\kF_{\text{mag}}` swapped for it; the forms' $m_{\text{e}}$, $m_{\text{p}}$ and $m_{\text{drop}}$ written with their macros, since the book types mass; `COLOR.md` row as asked.
+
+## Derivations
+
+- Thomson's charge-to-mass ratio, $q_e/m_e = a/E$ · score 2 · built as drv-electron-charge-to-mass: a printed block, replaced; the magnetic version stays in the book's prose
+- Millikan's oil drop experiment, $q = m_{\text{drop}}gd/V$ · score 4 · built as drv-oil-drop-charge: a printed block, replaced; the node's note records that the book writes the balance with $q_e$ where the drop's charge is $q$

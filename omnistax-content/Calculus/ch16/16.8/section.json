@@ -889,5 +889,680 @@
    "kind": "correction",
    "html": "The link names Example 16.6, a unit vector field; the gravitational field is described in Example 16.8."
   }
+ ],
+ "derivations": [
+  {
+   "id": "divergence-small-boxes",
+   "what": "the divergence theorem by small boxes",
+   "source": "Calculus, 16.8 The Divergence Theorem, The Divergence Theorem, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The flux out of the top of the box is approximately $R(x,y,z+\\frac{\\Delta z}{2})\\Delta x\\Delta y$ and the flux out of the bottom is $-R(x,y,z-\\frac{\\Delta z}{2})\\Delta x\\Delta y$; their difference is $\\Delta R\\,\\Delta x\\Delta y$.",
+       "src": "16.8"
+      },
+      {
+       "text": "The volume of the box is $\\Delta V=\\Delta x\\Delta y\\Delta z$.",
+       "src": "16.8"
+      },
+      {
+       "text": "For a small $\\Delta z$, the difference quotient $\\frac{\\Delta R}{\\Delta z}$ is close to the partial derivative $\\frac{\\partial R}{\\partial z}$.",
+       "src": "14.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\text{Vertical flux}}\\approx\\mk{R}{\\Delta R}\\,\\mk{A}{\\Delta x\\Delta y}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\text{Vertical flux}}\\approx\\mk{R}{(\\frac{\\Delta R}{\\Delta z})}\\mk{A}{\\Delta x\\Delta y\\Delta z}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{\\text{Vertical flux}}\\approx\\mk{R}{(\\frac{\\partial R}{\\partial z})}\\mk{A}{\\Delta V}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "16.8"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Similarly, the net flux in the $x$-direction is approximately $(\\frac{\\partial P}{\\partial x})\\Delta V$ and the net flux in the $y$-direction is approximately $(\\frac{\\partial Q}{\\partial y})\\Delta V$.",
+       "src": "16.8"
+      },
+      {
+       "tex": "\\kdivF=P_{x}+Q_{y}+R_{z}",
+       "src": "(16.16)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\text{Total flux}}\\approx\\mk{x}{(\\frac{\\partial P}{\\partial x})\\Delta V}+\\mk{y}{(\\frac{\\partial Q}{\\partial y})\\Delta V}+\\mk{z}{(\\frac{\\partial R}{\\partial z})\\Delta V}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "Adding the fluxes in all three directions gives an approximation of the total flux out of the box."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\text{Total flux}}\\approx\\mk{d}{(\\frac{\\partial P}{\\partial x}+\\frac{\\partial Q}{\\partial y}+\\frac{\\partial R}{\\partial z})}\\Delta V",
+       "uses": [],
+       "map": {
+        "x": "d",
+        "y": "d",
+        "z": "d"
+       }
+      },
+      {
+       "tex": "\\mk{T}{\\text{Total flux}}\\approx\\mk{d}{\\text{div}\\;\\kvecF}\\,\\Delta V",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "16.8"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "A face shared by two approximating boxes carries opposite fluxes for the two of them, which cancel, so only the faces approximating the boundary of $\\kE$ survive.",
+       "src": "16.8"
+      },
+      {
+       "text": "As the volumes of the approximating boxes shrink to zero, the sum of $\\text{div}\\;\\kvecF\\,\\Delta V$ approaches $\\iiint_{E}\\kdivF dV$ and the surviving fluxes approach the flux over $\\kS$.",
+       "src": "16.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\sum\\text{div}\\;\\kvecF\\,\\Delta V}\\approx\\mk{T}{\\sum\\text{Total flux}}",
+      "uses": [
+       0
+      ],
+      "why": "Add over all the small boxes approximating $\\kE.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\sum\\text{div}\\;\\kvecF\\,\\Delta V}\\approx\\mk{T}{\\iint_{S}\\kvecF\\cdot d\\mathbf{S}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\iiint_{E}\\kdivF dV}=\\mk{T}{\\iint_{S}\\kvecF\\cdot d\\mathbf{S}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(16.24)",
+     "src": "16.8, The Divergence Theorem"
+    }
+   ]
+  },
+  {
+   "id": "divergence-as-flux",
+   "what": "the divergence as flux per unit volume",
+   "source": "Calculus, 16.8 The Divergence Theorem, Stating the Divergence Theorem",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\iiint_{E}\\kdivF dV=\\iint_{S}\\kvecF\\cdot d\\mathbf{S}",
+       "src": "(16.24)"
+      },
+      {
+       "text": "Since the radius is small and $\\kvecF$ is continuous, $\\text{div}\\;\\kvecF(Q)\\approx\\text{div}\\;\\kvecF(P)$ for all other points $Q$ in the ball $B_{r}$.",
+       "src": "16.8"
+      },
+      {
+       "text": "The triple integral of $1$ over the ball is its volume: $\\iiint_{B_{r}}dV=V(B_{r})$.",
+       "src": "15.4"
+      },
+      {
+       "text": "The approximation gets better as the radius shrinks to zero.",
+       "src": "16.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\iint_{S_{r}}\\kvecF\\cdot d\\mathbf{S}}=\\mk{R}{\\iiint_{B_{r}}\\text{div}\\;\\kvecF dV}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\iint_{S_{r}}\\kvecF\\cdot d\\mathbf{S}}\\approx\\mk{R}{\\iiint_{B_{r}}\\text{div}\\;\\kvecF(P) dV}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S_{r}}\\kvecF\\cdot d\\mathbf{S}}\\approx\\mk{R}{\\text{div}\\;\\kvecF(P)}\\mk{V}{V(B_{r})}",
+       "uses": [
+        2
+       ],
+       "cap": "Since $\\text{div}\\;\\kvecF(P)$ is a constant, it comes out of the integral."
+      },
+      {
+       "tex": "\\mk{R}{\\text{div}\\;\\kvecF(P)}\\approx\\frac{1}{\\mk{V}{V(B_{r})}}\\mk{L}{\\iint_{S_{r}}\\kvecF\\cdot d\\mathbf{S}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{\\text{div}\\;\\kvecF(P)}=\\mk{lim}{\\lim_{r\\to 0}}\\frac{1}{\\mk{V}{V(B_{r})}}\\mk{L}{\\iint_{S_{r}}\\kvecF\\cdot d\\mathbf{S}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "16.8"
+    }
+   ]
+  },
+  {
+   "id": "divergence-of-inverse-square-field",
+   "what": "the divergence of the inverse-square field",
+   "source": "Calculus, 16.8 The Divergence Theorem, Example 16.80",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "r=\\sqrt{x^{2}+y^{2}+z^{2}}",
+       "src": "16.8"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\left(\\frac{f(x)}{g(x)}\\right)=\\frac{f'(x)g(x)-f(x)g'(x)}{(g(x))^{2}}",
+       "src": "3.3, Quotient Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(g(x))^{n}=n(g(x))^{n-1}g'(x)",
+       "src": "3.6, Power Rule for Composition of Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\partial}{\\partial x}(\\frac{x}{r^{3}})}=\\mk{R}{\\frac{\\partial}{\\partial x}(\\frac{x}{(x^{2}+y^{2}+z^{2})^{3/2}})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\partial}{\\partial x}(\\frac{x}{r^{3}})}=\\mk{R}{\\frac{(x^{2}+y^{2}+z^{2})^{3/2}-x[\\frac{3}{2}(x^{2}+y^{2}+z^{2})^{1/2}2x]}{(x^{2}+y^{2}+z^{2})^{3}}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial}{\\partial x}(\\frac{x}{r^{3}})}=\\mk{R}{\\frac{r^{3}-3x^{2}r}{r^{6}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial}{\\partial x}(\\frac{x}{r^{3}})}=\\mk{R}{\\frac{r^{2}-3x^{2}}{r^{5}}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 16.80"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "r=\\sqrt{x^{2}+y^{2}+z^{2}}",
+       "src": "16.8"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\left(\\frac{f(x)}{g(x)}\\right)=\\frac{f'(x)g(x)-f(x)g'(x)}{(g(x))^{2}}",
+       "src": "3.3, Quotient Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(g(x))^{n}=n(g(x))^{n-1}g'(x)",
+       "src": "3.6, Power Rule for Composition of Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\partial}{\\partial y}(\\frac{y}{r^{3}})}=\\mk{R}{\\frac{\\partial}{\\partial y}(\\frac{y}{(x^{2}+y^{2}+z^{2})^{3/2}})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\partial}{\\partial y}(\\frac{y}{r^{3}})}=\\mk{R}{\\frac{(x^{2}+y^{2}+z^{2})^{3/2}-y[\\frac{3}{2}(x^{2}+y^{2}+z^{2})^{1/2}2y]}{(x^{2}+y^{2}+z^{2})^{3}}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial}{\\partial y}(\\frac{y}{r^{3}})}=\\mk{R}{\\frac{r^{3}-3y^{2}r}{r^{6}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial}{\\partial y}(\\frac{y}{r^{3}})}=\\mk{R}{\\frac{r^{2}-3y^{2}}{r^{5}}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 16.80"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "r=\\sqrt{x^{2}+y^{2}+z^{2}}",
+       "src": "16.8"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\left(\\frac{f(x)}{g(x)}\\right)=\\frac{f'(x)g(x)-f(x)g'(x)}{(g(x))^{2}}",
+       "src": "3.3, Quotient Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(g(x))^{n}=n(g(x))^{n-1}g'(x)",
+       "src": "3.6, Power Rule for Composition of Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\partial}{\\partial z}(\\frac{z}{r^{3}})}=\\mk{R}{\\frac{\\partial}{\\partial z}(\\frac{z}{(x^{2}+y^{2}+z^{2})^{3/2}})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\partial}{\\partial z}(\\frac{z}{r^{3}})}=\\mk{R}{\\frac{(x^{2}+y^{2}+z^{2})^{3/2}-z[\\frac{3}{2}(x^{2}+y^{2}+z^{2})^{1/2}2z]}{(x^{2}+y^{2}+z^{2})^{3}}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial}{\\partial z}(\\frac{z}{r^{3}})}=\\mk{R}{\\frac{r^{3}-3z^{2}r}{r^{6}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial}{\\partial z}(\\frac{z}{r^{3}})}=\\mk{R}{\\frac{r^{2}-3z^{2}}{r^{5}}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 16.80"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kvecFr=\\frac{1}{r^{2}}\\langle \\frac{x}{r},\\frac{y}{r},\\frac{z}{r}\\rangle=\\langle \\frac{x}{r^{3}},\\frac{y}{r^{3}},\\frac{z}{r^{3}}\\rangle",
+       "src": "16.8"
+      },
+      {
+       "tex": "\\kdivF=P_{x}+Q_{y}+R_{z}",
+       "src": "(16.16)"
+      },
+      {
+       "tex": "r=\\sqrt{x^{2}+y^{2}+z^{2}}",
+       "src": "16.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\text{div}\\;\\kvecFr}=\\mk{a}{\\frac{\\partial}{\\partial x}(\\frac{x}{r^{3}})}+\\mk{b}{\\frac{\\partial}{\\partial y}(\\frac{y}{r^{3}})}+\\mk{c}{\\frac{\\partial}{\\partial z}(\\frac{z}{r^{3}})}",
+      "uses": [
+       3,
+       4
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\text{div}\\;\\kvecFr}=\\mk{a}{\\frac{r^{2}-3x^{2}}{r^{5}}}+\\mk{b}{\\frac{r^{2}-3y^{2}}{r^{5}}}+\\mk{c}{\\frac{r^{2}-3z^{2}}{r^{5}}}",
+       "uses": [
+        0,
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\text{div}\\;\\kvecFr}=\\mk{s}{\\frac{3r^{2}-3(x^{2}+y^{2}+z^{2})}{r^{5}}}",
+       "uses": [],
+       "map": {
+        "a": "s",
+        "b": "s",
+        "c": "s"
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\text{div}\\;\\kvecFr}=\\mk{s}{\\frac{3r^{2}-3r^{2}}{r^{5}}}",
+       "uses": [
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\text{div}\\;\\kvecFr}=\\mk{s}{0}",
+       "uses": []
+      }
+     ],
+     "src": "Example 16.80"
+    }
+   ]
+  },
+  {
+   "id": "flux-of-inverse-square-field",
+   "what": "the flux of the inverse-square field across a closed surface",
+   "source": "Calculus, 16.8 The Divergence Theorem, Flux across a Smooth Surface, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "If $\\kS$ does not encompass the origin, the solid $\\kE$ that $\\kS$ encloses lies in the domain of $\\kvecFr$.",
+       "src": "16.8"
+      },
+      {
+       "tex": "\\iiint_{E}\\kdivF dV=\\iint_{S}\\kvecF\\cdot d\\mathbf{S}",
+       "src": "(16.24)"
+      },
+      {
+       "tex": "\\text{div}\\;\\kvecFr=0",
+       "src": "Example 16.80"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{R}{\\iiint_{E}\\text{div}\\;\\kvecFr\\,dV}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{R}{\\iiint_{E}0\\,dV}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{R}{0}",
+       "uses": []
+      }
+     ],
+     "src": "16.8"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\mathbf{t}_{\\varphi}\\times\\mathbf{t}_{\\theta}=\\langle a^{2}\\cos\\theta\\sin^{2}\\varphi,a^{2}\\sin\\theta\\sin^{2}\\varphi,a^{2}\\sin\\varphi\\cos\\varphi\\rangle",
+       "src": "Example 16.64"
+      },
+      {
+       "text": "On the sphere $S_{a}$ of radius $a$ centered at the origin, $x=a\\sin\\varphi\\cos\\theta,$ $y=a\\sin\\varphi\\sin\\theta,$ $z=a\\cos\\varphi$ and $r=a$.",
+       "src": "12.7"
+      },
+      {
+       "tex": "\\kvecFr=\\langle \\frac{x}{r^{3}},\\frac{y}{r^{3}},\\frac{z}{r^{3}}\\rangle",
+       "src": "16.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kvecFr\\cdot(\\mathbf{t}_{\\varphi}\\times\\mathbf{t}_{\\theta})}=\\mk{F}{\\langle \\frac{x}{r^{3}},\\frac{y}{r^{3}},\\frac{z}{r^{3}}\\rangle}\\cdot\\mk{N}{\\langle a^{2}\\cos\\theta\\sin^{2}\\varphi,a^{2}\\sin\\theta\\sin^{2}\\varphi,a^{2}\\sin\\varphi\\cos\\varphi\\rangle}",
+      "uses": [
+       0,
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kvecFr\\cdot(\\mathbf{t}_{\\varphi}\\times\\mathbf{t}_{\\theta})}=\\mk{F}{\\langle \\frac{\\sin\\varphi\\cos\\theta}{a^{2}},\\frac{\\sin\\varphi\\sin\\theta}{a^{2}},\\frac{\\cos\\varphi}{a^{2}}\\rangle}\\cdot\\mk{N}{\\langle a^{2}\\cos\\theta\\sin^{2}\\varphi,a^{2}\\sin\\theta\\sin^{2}\\varphi,a^{2}\\sin\\varphi\\cos\\varphi\\rangle}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kvecFr\\cdot(\\mathbf{t}_{\\varphi}\\times\\mathbf{t}_{\\theta})}=\\mk{s}{\\sin\\varphi}(\\mk{F}{\\langle \\sin\\varphi\\cos\\theta,\\sin\\varphi\\sin\\theta,\\cos\\varphi\\rangle}\\cdot\\mk{N}{\\langle \\sin\\varphi\\cos\\theta,\\sin\\varphi\\sin\\theta,\\cos\\varphi\\rangle})",
+       "uses": [],
+       "cap": "Each component of the normal is $a^{2}\\sin\\varphi$ times the matching component of $\\langle \\sin\\varphi\\cos\\theta,\\sin\\varphi\\sin\\theta,\\cos\\varphi\\rangle,$ and the $a^{2}$ cancels the $\\frac{1}{a^{2}}$ of the field."
+      },
+      {
+       "tex": "\\mk{L}{\\kvecFr\\cdot(\\mathbf{t}_{\\varphi}\\times\\mathbf{t}_{\\theta})}=\\mk{s}{\\sin\\varphi}",
+       "uses": [],
+       "cap": "The dot product is $\\sin^{2}\\varphi\\cos^{2}\\theta+\\sin^{2}\\varphi\\sin^{2}\\theta+\\cos^{2}\\varphi=\\sin^{2}\\varphi+\\cos^{2}\\varphi=1.$",
+       "map": {
+        "F": "s",
+        "N": "s"
+       }
+      }
+     ],
+     "src": "16.8",
+     "note": "The book writes this product as $\\mathbf{F}_{r}\\cdot\\mathbf{N}$, with $\\mathbf{N}$ standing for the normal $\\mathbf{t}_{\\varphi}\\times\\mathbf{t}_{\\theta}$ rather than for the unit normal."
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\iint_{S}\\kvecF\\cdot d\\mathbf{S}=\\iint_{D}\\kvecF(\\kvecr(u,v))\\cdot(\\kvectu\\times\\kvectv)dA",
+       "src": "(16.21)"
+      },
+      {
+       "text": "The sphere $S_{a}$ is parameterized over $0\\le\\theta\\le 2\\pi,$ $0\\le\\varphi\\le\\pi$, and $\\mathbf{t}_{\\varphi}\\times\\mathbf{t}_{\\theta}$ points outward.",
+       "src": "Example 16.64"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{R}{\\iint_{D}\\kvecFr\\cdot(\\mathbf{t}_{\\varphi}\\times\\mathbf{t}_{\\theta})dA}",
+      "uses": [
+       1,
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{R}{\\int_{0}^{2\\pi}\\int_{0}^{\\pi}\\sin\\varphi\\,d\\varphi\\,d\\theta}",
+       "uses": [
+        0,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{R}{\\int_{0}^{2\\pi}2\\,d\\theta}",
+       "uses": [],
+       "cap": "$\\int_{0}^{\\pi}\\sin\\varphi\\,d\\varphi=[-\\cos\\varphi]_{0}^{\\pi}=2.$"
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{R}{4\\pi}",
+       "uses": []
+      }
+     ],
+     "src": "16.8"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kE$ is the solid between $S_{a}$ and $\\kS$; its boundary $S-S_{a}$ is $\\kS$ oriented outward and $S_{a}$ oriented inward, so the flux across it is the flux across $\\kS$ less the flux across $S_{a}$.",
+       "src": "16.8"
+      },
+      {
+       "text": "The divergence theorem extends to solids with holes, just as Green’s theorem extends to regions with holes.",
+       "src": "16.8"
+      },
+      {
+       "tex": "\\iiint_{E}\\kdivF dV=\\iint_{S}\\kvecF\\cdot d\\mathbf{S}",
+       "src": "(16.24)"
+      },
+      {
+       "tex": "\\text{div}\\;\\kvecFr=0",
+       "src": "Example 16.80"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}-\\mk{a}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{L}{\\iint_{S-S_{a}}\\kvecFr\\cdot d\\mathbf{S}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}-\\mk{a}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{L}{\\iiint_{E}\\text{div}\\;\\kvecFr\\,dV}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}-\\mk{a}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{L}{\\iiint_{E}0\\,dV}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}-\\mk{a}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{L}{0}",
+       "uses": []
+      }
+     ],
+     "src": "16.8"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}-\\mk{a}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{L}{0}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{a}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{a}{\\iint_{S_{a}}\\kvecFr\\cdot d\\mathbf{S}}=\\mk{v}{4\\pi}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "16.8, Flux across a Smooth Surface"
+    }
+   ]
+  },
+  {
+   "id": "gauss-law-point-charge",
+   "what": "Gauss’ law for a point charge",
+   "source": "Calculus, 16.8 The Divergence Theorem, Application to Electrostatic Fields",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecE=\\frac{q}{4\\pi\\varepsilon_{0}}\\kvecFr",
+       "src": "16.8"
+      },
+      {
+       "text": "$\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}$ is $0$ if $\\kS$ does not encompass the origin and $4\\pi$ if it does.",
+       "src": "16.8, Flux across a Smooth Surface"
+      },
+      {
+       "text": "$\\kS$ encompasses the origin."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\iint_{S}\\kvecE\\cdot d\\mathbf{S}}=\\mk{R}{\\iint_{S}\\frac{q}{4\\pi\\varepsilon_{0}}\\kvecFr\\cdot d\\mathbf{S}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecE\\cdot d\\mathbf{S}}=\\mk{c}{\\frac{q}{4\\pi\\varepsilon_{0}}}\\mk{R}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}",
+       "uses": [],
+       "cap": "A constant factor comes out of the integral."
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecE\\cdot d\\mathbf{S}}=\\mk{c}{\\frac{q}{4\\pi\\varepsilon_{0}}}\\mk{R}{(4\\pi)}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecE\\cdot d\\mathbf{S}}=\\mk{c}{\\frac{q}{\\varepsilon_{0}}}",
+       "uses": [],
+       "map": {
+        "R": "c"
+       }
+      }
+     ],
+     "src": "16.8"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecE=\\frac{q}{4\\pi\\varepsilon_{0}}\\kvecFr",
+       "src": "16.8"
+      },
+      {
+       "text": "$\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}$ is $0$ if $\\kS$ does not encompass the origin and $4\\pi$ if it does.",
+       "src": "16.8, Flux across a Smooth Surface"
+      },
+      {
+       "text": "$\\kS$ does not encompass the origin."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\iint_{S}\\kvecE\\cdot d\\mathbf{S}}=\\mk{R}{\\iint_{S}\\frac{q}{4\\pi\\varepsilon_{0}}\\kvecFr\\cdot d\\mathbf{S}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecE\\cdot d\\mathbf{S}}=\\mk{c}{\\frac{q}{4\\pi\\varepsilon_{0}}}\\mk{R}{\\iint_{S}\\kvecFr\\cdot d\\mathbf{S}}",
+       "uses": [],
+       "cap": "A constant factor comes out of the integral."
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecE\\cdot d\\mathbf{S}}=\\mk{c}{\\frac{q}{4\\pi\\varepsilon_{0}}}\\mk{R}{(0)}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iint_{S}\\kvecE\\cdot d\\mathbf{S}}=\\mk{c}{0}",
+       "uses": [],
+       "map": {
+        "R": "c"
+       }
+      }
+     ],
+     "src": "16.8"
+    }
+   ]
+  }
  ]
 }

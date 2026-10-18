@@ -47,3 +47,10 @@ Table 4.1 stays in the text beside `sim-shape-signs`. Photographs: none. Exercis
 
 - No forms or variables rows: the section's concepts carry no form.
 - Review 527, 528, 529, 535, 537 land in the chapter pass.
+
+
+## Derivations
+
+- The First Derivative Test · score 1 · not built: the prose argues only that extrema sit at critical points, and the test itself is summarized from Figure 4.31, not proved
+- Test for Concavity · score 1 · built as drv-concavity-test after the paragraph that argues it, a node for concave up and one for concave down (Corollary 3 applied to f′, then the definition)
+- The Second Derivative Test · score 2 · built as drv-second-derivative-test after the paragraph that argues it, the maximum at a and the minimum at b; the book's "f″(x) < 0 for all x ∈ I" holds only near the point, marked c-second-test-interval in the text and noted on both nodes

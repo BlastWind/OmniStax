@@ -996,5 +996,73 @@
    "exercise": "r531",
    "concept": "linear-approximation"
   }
+ ],
+ "derivations": [
+  {
+   "id": "change-by-differential",
+   "what": "the differential as an approximation to the change in $y$",
+   "source": "Calculus, 4.2 Linear Approximations and Differentials, Differentials",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$dx$ is small, so $a+dx$ is near $a.$"
+      },
+      {
+       "tex": "\\kf(x)\\approx \\kL(x)\\;\\text{for}\\;x\\;\\text{near}\\;a",
+       "src": "4.2"
+      },
+      {
+       "tex": "\\kL(x)=\\kf(a)+\\kfprime(a)(x-a)",
+       "src": "(4.1)"
+      },
+      {
+       "tex": "dy=\\kfprime(x)dx",
+       "src": "(4.2)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\Delta y}=\\mk{fa}{\\kf(a+dx)}-\\mk{f0}{\\kf(a)}",
+      "src": "4.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\Delta y}\\approx \\mk{fa}{\\kL(a+dx)}-\\mk{f0}{\\kf(a)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\Delta y}\\approx \\mk{c}{\\kf(a)}+\\mk{lin}{\\kfprime(a)(a+dx-a)}-\\mk{f0}{\\kf(a)}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "fa": [
+         "c",
+         "lin"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\Delta y}\\approx \\mk{lin}{\\kfprime(a)(a+dx-a)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{D}{\\Delta y}\\approx \\mk{lin}{\\kfprime(a)dx}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{D}{\\Delta y}\\approx \\mk{lin}{dy}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "4.2, Differentials"
+    }
+   ]
+  }
  ]
 }

@@ -49,3 +49,11 @@ Judged: a cable wound up (exercises 240–242, computational); a pumping sim whe
 - Review exercises 435, 436, 449 (tmp/ch06/sec_6_5.py, `RV`).
 
 Applied in the chapter pass (2026-10-13): every anchor above set with `ost set` (tmp/ch06/anchors6.py; a few spans moved to the nearest id the text has, such as the section header where the plan named a note); review exercises held here landed with `source_section` 6.9.
+
+## Derivations
+
+- Mass–Density Formula of a One-Dimensional Object (6.10) · score 1 · built as drv-mass-of-a-rod, ending on (6.10)
+- Mass–Density Formula of a Circular Object (6.11) · score 2 · built as drv-mass-of-a-disk, ending on (6.11) (washer area, washer mass, then the sum)
+- Work Done by a Force (6.12) · score 1 · built as drv-work-done-by-a-force, ending on (6.12)
+- Work Done in Pumping · the cylindrical tank · score 3 · not built: the section's own method worked to a number, a worked problem
+- Hydrostatic Force and Pressure (6.13) · score 2 · built as drv-hydrostatic-force-on-a-plate, ending on (6.13); Equation 6.13 in the strategy left as cited

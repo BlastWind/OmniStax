@@ -318,3 +318,7 @@ reads that the first AP item keeps the stem's circuit-and-energy graph alone
 and writes its four answer graphs out in words, since an exercise card
 carries one image; the schema is left as it is, because one image per card is
 the rule the other chapters of this book have built to.
+
+## Derivations
+
+- The three expressions for electric power (printed block, the last two in prose) · score 3 · built as drv-electric-power: three nodes, $P = \text{PE}/t = qV/t = IV$, then two branches through Ohm's law giving $V^2/R$ and $I^2R$; replaces the two displayed lines, the substitution sentence and the list of three, the units paragraph and the note on which form holds when stay

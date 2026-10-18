@@ -1324,5 +1324,351 @@
    "kind": "correction",
    "html": "The checkpoint’s interval is $[0,\\pi]$; over it $x(t)=3\\cos t+\\cos 3t$ decreases from 4 to −4, so the integral gives $-3\\pi$ and the area is $3\\pi.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "derivative-of-parametric-equations",
+   "what": "the derivative of parametric equations",
+   "source": "Calculus, 11.2 Calculus of Parametric Curves, Derivative of Parametric Equations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The parameter $t$ can be eliminated, giving a differentiable function $y=F(x).$",
+       "src": "11.2"
+      },
+      {
+       "text": "The derivative of $F(x(t))$ is $F^{\\prime}(x(t))\\kxprime(t).$",
+       "src": "3.6, Chain Rule"
+      },
+      {
+       "tex": "\\kxprime(t)\\ne 0",
+       "src": "11.2"
+      },
+      {
+       "tex": "F^{\\prime}(x(t))=\\kdydx",
+       "src": "11.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y(t)}=\\mk{F}{F(x(t))}",
+      "uses": [
+       0
+      ],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyprime(t)}=\\mk{F}{F^{\\prime}(x(t))}\\mk{x}{\\kxprime(t)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{F^{\\prime}(x(t))}=\\frac{\\mk{y}{\\kyprime(t)}}{\\mk{x}{\\kxprime(t)}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kdydx}=\\frac{\\mk{y}{\\kyprime(t)}}{\\mk{x}{\\kxprime(t)}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(11.1)",
+     "src": "11.2, Derivative of Parametric Equations"
+    }
+   ]
+  },
+  {
+   "id": "second-derivative-of-parametric-equations",
+   "what": "the second derivative of parametric equations",
+   "source": "Calculus, 11.2 Calculus of Parametric Curves, Second-Order Derivatives",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kdydx=\\frac{dy/dt}{dx/dt}",
+       "src": "(11.1)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kdtwoydx}=\\mk{q}{\\frac{d}{dx}(\\kdydx)}",
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kdtwoydx}=\\mk{q}{\\frac{d}{dx}(\\kdydx)}=\\mk{r}{\\frac{(d/dt)(dy/dx)}{dx/dt}}",
+       "uses": [
+        0
+       ],
+       "cap": "Equation 11.1 holds for any function of $t$ in place of $y,$ so it holds for $\\frac{dy}{dx}.$"
+      }
+     ],
+     "num": "(11.2)",
+     "src": "11.2"
+    }
+   ]
+  },
+  {
+   "id": "area-under-a-parametric-curve",
+   "what": "the area under a parametric curve",
+   "source": "Calculus, 11.2 Calculus of Parametric Curves, Integrals Involving Parametric Equations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$x(t)$ is increasing and differentiable on $[a,b],$ and $t_{0}=a\\lt t_{1}\\lt \\cdots \\lt t_{n}=b$ is an equal partition.",
+       "src": "11.2"
+      },
+      {
+       "text": "The $i$th rectangle has height $y(t_{i-1})$ and width $x(t_{i})-x(t_{i-1}).$",
+       "src": "11.2"
+      },
+      {
+       "text": "A difference quotient $\\frac{x(t_{i})-x(t_{i-1})}{t_{i}-t_{i-1}}$ approaches $\\kxprime(t)$ as $t_{i}-t_{i-1}\\to 0.$",
+       "src": "3.1"
+      },
+      {
+       "text": "A Riemann sum $\\sum g(t_{i-1})(t_{i}-t_{i-1})$ approaches $\\int_a^{b}g(t)dt$ as the widths go to zero.",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kA}\\approx \\mk{s}{\\sum_{i=1}^{n} y(t_{i-1})(x(t_{i})-x(t_{i-1}))}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kA}\\approx \\mk{s}{\\sum_{i=1}^{n} y(t_{i-1})\\frac{(x(t_{i})-x(t_{i-1}))}{(t_{i}-t_{i-1})}(t_{i}-t_{i-1})}",
+       "uses": [],
+       "cap": "Multiplying and dividing each term by $t_{i}-t_{i-1}$ leaves it unchanged."
+      },
+      {
+       "tex": "\\mk{A}{\\kA}=\\mk{s}{\\int_a^{b}y(t)\\kxprime(t)\\;dt}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "As $\\max \\{(t_{i}-t_{i-1})\\}\\to 0$ the approximation becomes exact."
+      }
+     ],
+     "num": "(11.3)",
+     "src": "11.2, Area under a Parametric Curve",
+     "note": "The book repeats the argument with a Riemann sum $\\kA_{n}=\\sum_{i=1}^{n} y(\\bar{t_{i}})(x(t_{i})-x(t_{i-1}))$ whose height it then prints as $y(x({\\bar{t}}_{i}));$ the height is $y({\\bar{t}}_{i}).$"
+    }
+   ]
+  },
+  {
+   "id": "arc-length-of-a-parametric-curve",
+   "what": "the arc length of a parametric curve",
+   "source": "Calculus, 11.2 Calculus of Parametric Curves, Arc Length of a Parametric Curve",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\ks_{k}$ is the length of the line segment from $(x(t_{k-1}),y(t_{k-1}))$ to $(x(t_{k}),y(t_{k})),$ and the sum of these lengths approximates $\\ks.$",
+       "src": "11.2"
+      },
+      {
+       "tex": "d(P,Q)=\\sqrt{{(x_{2}-x_{1})}^{2}+{(y_{2}-y_{1})}^{2}}",
+       "src": "11.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks}\\approx \\mk{k}{\\sum_{k=1}^{n} \\ks_{k}}",
+      "uses": [
+       0
+      ],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ks}\\approx \\mk{k}{\\sum_{k=1}^{n} \\ks_{k}}=\\mk{d}{\\sum_{k=1}^{n} \\sqrt{{(x(t_{k})-x(t_{k-1}))}^{2}+{(y(t_{k})-y(t_{k-1}))}^{2}}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(11.4)",
+     "src": "11.2"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$x(t)$ and $y(t)$ are differentiable functions of $t.$",
+       "src": "11.2"
+      },
+      {
+       "text": "A function differentiable on $[t_{k-1},t_{k}]$ changes by its derivative at some point of the interval times $t_{k}-t_{k-1}.$",
+       "src": "4.4, Mean Value Theorem"
+      },
+      {
+       "tex": "t_{k}-t_{k-1}=\\Delta t",
+       "src": "11.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{x(t_{k})-x(t_{k-1})}=\\mk{a}{\\kxprime({\\overset{\\wedge}{t}}_{k})(t_{k}-t_{k-1})},\\;\\mk{y}{y(t_{k})-y(t_{k-1})}=\\mk{b}{\\kyprime({\\tilde{t}}_{k})(t_{k}-t_{k-1})}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{x(t_{k})-x(t_{k-1})}=\\mk{a}{\\kxprime({\\overset{\\wedge}{t}}_{k})\\Delta t},\\;\\mk{y}{y(t_{k})-y(t_{k-1})}=\\mk{b}{\\kyprime({\\tilde{t}}_{k})\\Delta t}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "11.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks}\\approx \\mk{k}{\\sum_{k=1}^{n} \\ks_{k}}=\\mk{d}{\\sum_{k=1}^{n} \\sqrt{{(x(t_{k})-x(t_{k-1}))}^{2}+{(y(t_{k})-y(t_{k-1}))}^{2}}}",
+      "src": "(11.4)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ks}\\approx \\mk{k}{\\sum_{k=1}^{n} \\ks_{k}}=\\mk{d}{\\sum_{k=1}^{n} \\sqrt{{(\\kxprime({\\overset{\\wedge}{t}}_{k})\\Delta t)}^{2}+{(\\kyprime({\\tilde{t}}_{k})\\Delta t)}^{2}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\ks}\\approx \\mk{k}{\\sum_{k=1}^{n} \\ks_{k}}=\\mk{d}{\\sum_{k=1}^{n} \\sqrt{{(\\kxprime({\\overset{\\wedge}{t}}_{k}))}^{2}{(\\Delta t)}^{2}+{(\\kyprime({\\tilde{t}}_{k}))}^{2}{(\\Delta t)}^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ks}\\approx \\mk{k}{\\sum_{k=1}^{n} \\ks_{k}}=\\mk{d}{(\\sum_{k=1}^{n} \\sqrt{{(\\kxprime({\\overset{\\wedge}{t}}_{k}))}^{2}+{(\\kyprime({\\tilde{t}}_{k}))}^{2}} )\\Delta t}",
+       "uses": [],
+       "cap": "${(\\Delta t)}^{2}$ is a common factor under the root, and $\\sqrt{{(\\Delta t)}^{2}}=\\Delta t.$"
+      }
+     ],
+     "src": "11.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "With continuous derivatives, the sums approach the exact arc length as the number of points in the partition increases without bound.",
+       "src": "11.2"
+      },
+      {
+       "text": "${\\overset{\\wedge}{t}}_{k}$ and ${\\tilde{t}}_{k}$ lie in the same ever-shrinking interval of width $\\Delta t,$ so they converge to the same value.",
+       "src": "11.2"
+      },
+      {
+       "text": "A Riemann sum $\\sum g(t_{k})\\Delta t$ approaches $\\int_a^{b}g(t)dt$ as $n\\to \\infty .$",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks}\\approx \\mk{k}{\\sum_{k=1}^{n} \\ks_{k}}=\\mk{d}{(\\sum_{k=1}^{n} \\sqrt{{(\\kxprime({\\overset{\\wedge}{t}}_{k}))}^{2}+{(\\kyprime({\\tilde{t}}_{k}))}^{2}} )\\Delta t}",
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{k}{\\lim_{n\\to \\infty}\\sum_{k=1}^{n} \\ks_{k}}=\\mk{d}{\\lim_{n\\to \\infty}(\\sum_{k=1}^{n} \\sqrt{{(\\kxprime({\\overset{\\wedge}{t}}_{k}))}^{2}+{(\\kyprime({\\tilde{t}}_{k}))}^{2}} )\\Delta t}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{d}{\\int_a^{b}\\sqrt{{(\\kxprime(t))}^{2}+{(\\kyprime(t))}^{2}}dt}",
+       "uses": [
+        2,
+        3
+       ],
+       "map": {
+        "k": "d"
+       }
+      }
+     ],
+     "num": "(11.5)",
+     "src": "11.2, Arc Length of a Parametric Curve"
+    }
+   ]
+  },
+  {
+   "id": "arc-length-in-cartesian-form",
+   "what": "the arc length formula for $y=F(x)$ from the parametric one",
+   "source": "Calculus, 11.2 Calculus of Parametric Curves, Arc Length of a Parametric Curve",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kyprime(t)=F^{\\prime}(x(t))\\kxprime(t)",
+       "src": "11.2, Chain Rule"
+      },
+      {
+       "tex": "\\kxprime(t)\\gt 0",
+       "src": "11.2"
+      },
+      {
+       "tex": "F^{\\prime}(x)=\\kdydx",
+       "src": "11.2"
+      },
+      {
+       "text": "With $x=x(t),$ $dx=\\kxprime(t)\\,dt,$ and $x$ runs from $a=x(t_{1})$ to $b=x(t_{2}).$",
+       "src": "5.5, Substitution"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks}=\\mk{i}{\\int_{t_{1}}^{t_{2}}}\\sqrt{\\mk{x}{{(\\kdxdt)}^{2}}+\\mk{y}{{(\\kdydt)}^{2}}}\\mk{t}{dt}",
+      "src": "(11.5)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{i}{\\int_{t_{1}}^{t_{2}}}\\sqrt{\\mk{x}{{(\\kdxdt)}^{2}}+\\mk{y}{{(F^{\\prime}(x)\\kdxdt)}^{2}}}\\mk{t}{dt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{i}{\\int_{t_{1}}^{t_{2}}}\\sqrt{\\mk{x}{{(\\kdxdt)}^{2}}\\mk{y}{(1+{(F^{\\prime}(x))}^{2})}}\\mk{t}{dt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{i}{\\int_{t_{1}}^{t_{2}}}\\mk{x}{\\kxprime(t)}\\sqrt{\\mk{y}{1+{(\\kdydx)}^{2}}}\\mk{t}{dt}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$\\sqrt{{(\\frac{dx}{dt})}^{2}}=\\frac{dx}{dt}$ because $\\frac{dx}{dt}=x^{\\prime}(t)\\gt 0.$"
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{i}{\\int_a^{b}}\\sqrt{\\mk{y}{1+{(\\kdydx)}^{2}}}\\mk{t}{dx}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "x": "t"
+       }
+      }
+     ],
+     "src": "6.4"
+    }
+   ]
+  }
  ]
 }

@@ -1171,5 +1171,49 @@
     "sim-orbit"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "maximum-height",
+   "what": "the maximum height of a projectile",
+   "source": "College Physics 2e, 3.4 Projectile Motion, Example 3.4",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Air resistance is negligible and up is positive, so $\\kay = -\\kg$.",
+       "src": "3.4"
+      },
+      {
+       "text": "The highest point, the apex, is reached when $\\kvy = 0$."
+      },
+      {
+       "tex": "\\kyo = 0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{vy}{\\kvy^2} = \\mk{voy}{\\kvoy^2} - \\mk{g}{2\\kg}(\\mk{y}{\\ky} - \\mk{y0}{\\kyo})",
+      "src": "3.4",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{vy}{0} = \\mk{voy}{\\kvoy^2} - \\mk{g}{2\\kg}\\mk{y}{\\ky}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\ky} = \\frac{\\mk{voy}{\\kvoy^2}}{\\mk{g}{2\\kg}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 3.4"
+    }
+   ]
+  }
  ]
 }

@@ -45,3 +45,9 @@ Judged and dropped: a cube with a measured side ± dx and the band of computed v
 - variables `4.2/L` → `4.2-linear-approximation`.
 - forms `eq-linear-approximation` → `4.2-linear-approximation`; `eq-differential` → `4.2-differentials`; `eq-actual-change`, `eq-change-by-differential` → `4.2-differentials`; `eq-propagated-error`, `eq-relative-error` → `4.2-amount-of-error`.
 - Review 531 lands in the chapter pass.
+
+
+## Derivations
+
+- Differentials · the differential approximates the change, Δy ≈ dy · score 0 · built as drv-change-by-differential (a printed block deriving a general result; the displays and "Therefore, if dx is small", "That is", "In summary" replaced, the prose kept, "the linear approximation" now ends on $\kL(x)$)
+- Example 4.7 · Approximating Roots and Powers · score 1 · not built: substitutes (1 + x)ⁿ into (4.1); three moves of the section's own formula

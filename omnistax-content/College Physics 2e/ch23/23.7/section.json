@@ -614,5 +614,123 @@
     "sim-transformer"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "transformer-equation",
+   "what": "the transformer equation",
+   "source": "College Physics 2e, 23.7 Transformers",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The coil resistance is small, so the output voltage equals the induced emf, $\\kVsec = {\\text{emf}}_{\\text{s}}$.",
+       "src": "23.7"
+      },
+      {
+       "text": "With negligible coil resistance, Kirchhoff’s loop rule makes the emf induced in the primary exactly equal the input voltage, and by Lenz’s law it opposes the change in flux.",
+       "src": "23.7"
+      },
+      {
+       "tex": "\\kVprim = -N_{\\text{p}}\\dfrac{\\kdPhi}{\\kdt}",
+       "src": "23.7"
+      },
+      {
+       "text": "The cross-sectional area of the coils and the magnetic field strength are the same on either side, so $\\kdPhi/\\kdt$ is the same on either side.",
+       "src": "23.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kVsec} = -\\mk{N}{N_{\\text{s}}}\\mk{P}{\\dfrac{\\kdPhi}{\\kdt}}",
+      "src": "23.2",
+      "uses": [
+       0
+      ],
+      "why": "Faraday’s law of induction for the secondary coil."
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{V}{\\kVsec}}{\\mk{Vp}{\\kVprim}} = \\dfrac{-\\mk{N}{N_{\\text{s}}}\\mk{P}{\\dfrac{\\kdPhi}{\\kdt}}}{-\\mk{Np}{N_{\\text{p}}}\\mk{Pp}{\\dfrac{\\kdPhi}{\\kdt}}}",
+       "uses": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{V}{\\kVsec}}{\\mk{Vp}{\\kVprim}} = \\dfrac{\\mk{N}{N_{\\text{s}}}}{\\mk{Np}{N_{\\text{p}}}}",
+       "uses": []
+      }
+     ],
+     "src": "23.7"
+    }
+   ]
+  },
+  {
+   "id": "transformer-currents",
+   "what": "the ratio of a transformer's currents",
+   "source": "College Physics 2e, 23.7 Transformers",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "With negligible resistance, the electrical power output of a transformer equals its input.",
+       "src": "23.7"
+      },
+      {
+       "tex": "\\kP = \\kIcur\\kV",
+       "src": "20.4"
+      },
+      {
+       "tex": "\\dfrac{\\kVsec}{\\kVprim} = \\dfrac{N_{\\text{s}}}{N_{\\text{p}}}",
+       "src": "23.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Pp}{\\kPprim} = \\mk{Ps}{\\kPsec}",
+      "src": "23.7",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Pp}{\\kPprim} = \\mk{IpVp}{\\kIprim\\kVprim} = \\mk{IsVs}{\\kIsec\\kVsec} = \\mk{Ps}{\\kPsec}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{Vs}{\\kVsec}}{\\mk{Vp}{\\kVprim}} = \\dfrac{\\mk{Ip}{\\kIprim}}{\\mk{Is}{\\kIsec}}",
+       "uses": [],
+       "map": {
+        "IpVp": [
+         "Ip",
+         "Vp"
+        ],
+        "IsVs": [
+         "Is",
+         "Vs"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{Vs}{\\dfrac{N_{\\text{s}}}{N_{\\text{p}}}} = \\dfrac{\\mk{Ip}{\\kIprim}}{\\mk{Is}{\\kIsec}}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "Vp": "Vs"
+       }
+      },
+      {
+       "tex": "\\dfrac{\\mk{Is}{\\kIsec}}{\\mk{Ip}{\\kIprim}} = \\mk{Vs}{\\dfrac{N_{\\text{p}}}{N_{\\text{s}}}}",
+       "uses": []
+      }
+     ],
+     "src": "23.7"
+    }
+   ]
+  }
  ]
 }

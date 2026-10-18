@@ -42,3 +42,11 @@ Judged and dropped: a slope-field Sim for dy/dx = 6x² (Chapter 8 draws directio
 - variables `4.10/F`, `4.10/F_prime`, `4.10/G`, `4.10/G_prime` → `4.10-antiderivative-definition` (F, F′) and `4.10-integral-properties` (G, G′).
 - forms `eq-antiderivative` → `4.10-antiderivative-definition`; `eq-general-antiderivative` → `4.10-general-antiderivative`; `eq-indefinite-integral` → `4.10-indefinite-integral-definition`; `eq-power-rule-for-integrals` → `4.10-power-rule-for-integrals`; `eq-integral-of-a-sum`, `eq-integral-of-a-constant-multiple` → `4.10-integral-properties`; `eq-initial-value-problem` → `4.10-initial-value-problems`.
 - The review exercises of 4.1–4.9 land in the chapter pass.
+
+
+## Derivations
+
+- General Form of an Antiderivative · score 1 · not built: two moves in prose, under the four-move floor
+- Example 4.50b · the derivative of ln|x| · score 2 · built as drv-derivative-of-ln-abs-x (a printed block deriving the general formula of Table 4.13; x > 0 and x < 0 joined)
+- Power Rule for Integrals · score 1 · not built: one move, no chain
+- Properties of Indefinite Integrals · score 1 · built as drv-properties-of-indefinite-integrals, a node each for sums, differences ("Similarly") and constant multiples; the book's d/dx(kf(x)) = k f′(x) is followed by the correct line and the node's note, so footnote c-constant-multiple and its marker were removed

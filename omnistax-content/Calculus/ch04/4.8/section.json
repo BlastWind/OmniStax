@@ -1151,5 +1151,316 @@
    "figure": "sim-lhopital-zoom",
    "html": "The caption prints $\\lim_{x\\to a}f(x)=\\lim_{x\\to a}g(x);$ the case shown is $\\lim_{x\\to a}f(x)=\\lim_{x\\to a}g(x)=0.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "lhopitals-rule",
+   "what": "L’Hôpital’s rule for the form $\\frac{0}{0}$",
+   "source": "Calculus, 4.8 L’Hôpital’s Rule, L’Hôpital’s Rule (0/0 Case)",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf,$ $\\kg,$ $\\kfprime$ and $\\kgprime$ are continuous over an open interval containing $a.$"
+      },
+      {
+       "tex": "\\lim_{x\\to a}\\kf(x)=0=\\lim_{x\\to a}\\kg(x)",
+       "src": "4.8, L’Hôpital’s Rule (0/0 Case)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{fa}{\\kf(a)}=\\mk{lf}{\\lim_{x\\to a}\\kf(x)},\\quad \\mk{ga}{\\kg(a)}=\\mk{lg}{\\lim_{x\\to a}\\kg(x)}",
+      "src": "2.4, Definition",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{fa}{\\kf(a)}=\\mk{lf}{0}=\\mk{ga}{\\kg(a)}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "lg": "lf"
+       }
+      }
+     ],
+     "src": "4.8"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The limit of a quotient is the quotient of the limits, when the limit of the denominator is not $0.$",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\kfprime(a)=\\lim_{x\\to a}\\frac{\\kf(x)-\\kf(a)}{x-a}",
+       "src": "(3.5)"
+      },
+      {
+       "text": "$\\kf,$ $\\kg,$ $\\kfprime$ and $\\kgprime$ are continuous over an open interval containing $a.$"
+      },
+      {
+       "text": "A function $h$ is continuous at $a$ when $\\lim_{x\\to a}h(x)=h(a).$",
+       "src": "2.4, Definition"
+      },
+      {
+       "tex": "\\kgprime(a)\\ne 0",
+       "src": "4.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kf(x)}{\\kg(x)}}=\\mk{lim}{\\lim_{x\\to a}}\\frac{\\mk{n}{\\kf(x)-\\kf(a)}}{\\mk{d}{\\kg(x)-\\kg(a)}}",
+      "src": "4.8",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kf(x)}{\\kg(x)}}=\\mk{lim}{\\lim_{x\\to a}}\\frac{\\mk{n}{\\frac{\\kf(x)-\\kf(a)}{x-a}}}{\\mk{d}{\\frac{\\kg(x)-\\kg(a)}{x-a}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kf(x)}{\\kg(x)}}=\\frac{\\mk{n}{\\lim_{x\\to a}\\frac{\\kf(x)-\\kf(a)}{x-a}}}{\\mk{d}{\\lim_{x\\to a}\\frac{\\kg(x)-\\kg(a)}{x-a}}}",
+       "uses": [
+        1,
+        5
+       ],
+       "map": {
+        "lim": [
+         "n",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kf(x)}{\\kg(x)}}=\\frac{\\mk{n}{\\kfprime(a)}}{\\mk{d}{\\kgprime(a)}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kf(x)}{\\kg(x)}}=\\frac{\\mk{n}{\\lim_{x\\to a}\\kfprime(x)}}{\\mk{d}{\\lim_{x\\to a}\\kgprime(x)}}",
+       "uses": [
+        3,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kf(x)}{\\kg(x)}}=\\mk{l2}{\\lim_{x\\to a}}\\frac{\\mk{n}{\\kfprime(x)}}{\\mk{d}{\\kgprime(x)}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "n": [
+         "l2",
+         "n"
+        ],
+        "d": [
+         "l2",
+         "d"
+        ]
+       }
+      }
+     ],
+     "src": "4.8, L’Hôpital’s Rule (0/0 Case)",
+     "note": "The book’s proof does not say that the limit of the quotient needs $\\kgprime(a)\\ne 0;$ the paragraph before the theorem assumes it, and the proof holds under it."
+    }
+   ]
+  },
+  {
+   "id": "exponent-indeterminate-forms",
+   "what": "a limit of the form $\\kf(x)^{\\kg(x)}$ through the logarithm",
+   "source": "Calculus, 4.8 L’Hôpital’s Rule, Other Indeterminate Forms",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\lim_{x\\to a}\\kg(x)\\ln (\\kf(x))=L,$ where $L$ may be $\\infty$ or $-\\infty.$"
+      },
+      {
+       "text": "The natural logarithm function is continuous.",
+       "src": "4.8"
+      },
+      {
+       "text": "If $\\lim_{x\\to a}u=M$ and $h$ is continuous at $M,$ then $\\lim_{x\\to a}h(u)=h(M).$",
+       "src": "2.4, Composite Function Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{p}{\\kf{(x)}^{\\kg(x)}}",
+      "src": "4.8"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\ln y}=\\mk{p}{\\ln (\\kf{(x)}^{\\kg(x)})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\ln y}=\\mk{p}{\\kg(x)\\ln (\\kf(x))}",
+       "uses": [],
+       "cap": "A log rule: $\\ln ({u}^{v})=v\\ln u.$"
+      },
+      {
+       "tex": "\\mk{lim}{\\lim_{x\\to a}}[\\mk{y}{\\ln (y)}]=\\mk{l2}{\\lim_{x\\to a}}[\\mk{p}{\\kg(x)\\ln (\\kf(x))}]",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{lim}{\\lim_{x\\to a}}[\\mk{y}{\\ln (y)}]=\\mk{p}{L}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "l2": "p"
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\ln (\\lim_{x\\to a}y)}=\\mk{p}{L}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "lim": "y"
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\lim_{x\\to a}y}=\\mk{p}{{e}^{L}}",
+       "uses": [],
+       "cap": "The exponential undoes the natural logarithm: $\\ln u=L$ means $u={e}^{L}.$"
+      },
+      {
+       "tex": "\\mk{y}{\\lim_{x\\to a}\\kf{(x)}^{\\kg(x)}}=\\mk{p}{{e}^{L}}",
+       "uses": []
+      }
+     ],
+     "src": "4.8"
+    }
+   ]
+  },
+  {
+   "id": "exponential-outgrows-powers",
+   "what": "${e}^{x}$ grows more rapidly than ${x}^{p}$",
+   "source": "Calculus, 4.8 L’Hôpital’s Rule, Growth Rates of Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "If $\\kf(x)\\to \\infty$ and $\\kg(x)\\to \\infty$ as $x\\to \\infty,$ then $\\lim_{x\\to \\infty}\\frac{\\kf(x)}{\\kg(x)}=\\lim_{x\\to \\infty}\\frac{\\kfprime(x)}{\\kgprime(x)}.$",
+       "src": "4.8, L’Hôpital’s Rule (∞/∞ Case)"
+      },
+      {
+       "text": "${x}^{k}\\to \\infty$ for every positive integer $k,$ and ${e}^{x}\\to \\infty,$ as $x\\to \\infty.$",
+       "src": "4.6"
+      },
+      {
+       "tex": "\\frac{d}{dx}({x}^{k})=k{x}^{k-1}",
+       "src": "3.3, The Power Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}({e}^{x})={e}^{x}",
+       "src": "(3.28)"
+      },
+      {
+       "tex": "\\lim_{x\\to \\infty}\\frac{2}{{e}^{x}}=0",
+       "src": "Example 4.45"
+      },
+      {
+       "text": "A constant multiple can be taken out of a limit.",
+       "src": "2.3, Limit Laws"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{x\\to \\infty}\\frac{{x}^{n}}{{e}^{x}}}=\\mk{R}{\\lim_{x\\to \\infty}\\frac{n{x}^{n-1}}{{e}^{x}}}",
+      "src": "4.8, L’Hôpital’s Rule (∞/∞ Case)",
+      "uses": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "why": "Here $n$ is a positive integer, and ${x}^{n}$ and ${e}^{x}$ both grow without bound."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to \\infty}\\frac{{x}^{n}}{{e}^{x}}}=\\mk{R}{\\lim_{x\\to \\infty}\\frac{n(n-1){x}^{n-2}}{{e}^{x}}}",
+       "uses": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "cap": "While the power of $x$ on top is positive, top and bottom both still grow without bound, so the rule applies again."
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to \\infty}\\frac{{x}^{n}}{{e}^{x}}}=\\mk{R}{\\lim_{x\\to \\infty}\\frac{n(n-1)\\cdots 2\\cdot 1}{{e}^{x}}}",
+       "uses": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "cap": "After $n$ applications in all, the power of $x$ is used up and the top is a constant."
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to \\infty}\\frac{{x}^{n}}{{e}^{x}}}=\\mk{R}{0}",
+       "uses": [
+        4,
+        5
+       ]
+      }
+     ],
+     "src": "4.8"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$p\\gt 0,$ and $n$ is a positive integer with $n\\ge p.$"
+      },
+      {
+       "text": "If $\\kf(x)\\le \\kg(x)\\le \\kh(x)$ and $\\kf$ and $\\kh$ have the same limit, then $\\kg$ has that limit too.",
+       "src": "2.3, The Squeeze Theorem; 4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0}\\lt \\mk{p}{\\frac{{x}^{p}}{{e}^{x}}}\\le \\mk{n}{\\frac{{x}^{n}}{{e}^{x}}}\\;\\text{for}\\;x\\ge 1",
+      "uses": [
+       1
+      ],
+      "why": "For $x\\ge 1$ a power of $x$ never shrinks as the exponent grows, so ${x}^{p}\\le {x}^{n}.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0}\\le \\mk{p}{\\lim_{x\\to \\infty}\\frac{{x}^{p}}{{e}^{x}}}\\le \\mk{n}{\\lim_{x\\to \\infty}\\frac{{x}^{n}}{{e}^{x}}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{z}{0}\\le \\mk{p}{\\lim_{x\\to \\infty}\\frac{{x}^{p}}{{e}^{x}}}\\le \\mk{n}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\lim_{x\\to \\infty}\\frac{{x}^{p}}{{e}^{x}}}=\\mk{n}{0}",
+       "uses": [],
+       "map": {
+        "z": "n"
+       }
+      }
+     ],
+     "src": "4.8"
+    }
+   ]
+  }
  ]
 }

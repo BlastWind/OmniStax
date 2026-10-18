@@ -83,3 +83,7 @@ None.
 - No concept or symbol row needs changing.
 
 Applied by the chapter pass (2026-10-05): both forms and both rows anchored; the rows added as listed, with `r` besides, the summary's `ΔE`, `E_ini`, `E_fin`, `f` anchored at `orbit-condition`; edges `electron-standing-wave-orbit` ← `de-broglie-wavelength` (dropping `constructive-interference`) and `probability-cloud` ← `position-momentum-uncertainty`.
+
+## Derivations
+
+- The condition for an allowed orbit, $L = m_evr_n = nh/2\pi$ · score 3 · built as drv-angular-momentum-quantization: a printed block, replaced

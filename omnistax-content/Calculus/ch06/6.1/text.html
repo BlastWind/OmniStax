@@ -6,10 +6,8 @@
   <div class="sim-head"><span class="eyebrow">Figure 6.2 + 6.3</span><span>Drag $x^{*}$ to pick a rectangle, and raise $n$: each rectangle runs from <span data-ref="curve-g">$\kg(x^{*})$</span> up to <span data-ref="curve-f">$\kf(x^{*})$</span>, and the sum of their areas closes in on the area between the two curves.</span></div>
 </figure>
 <p>As we did before, we are going to partition the interval on the $x\text{-axis}$ and approximate the <span data-concept="area-between-two-curves">area between the graphs of the functions</span> with rectangles. So, for $i=0,1,2\text{,\ldots},n,$ let $P=\{x_{i}\}$ be a <span data-concept="regular-partition">regular partition</span> of $[a,b].$ Then, for $i=1,2\text{,\ldots},n,$ choose a point $x_i^{*}\in [x_{i-1},x_{i}],$ and on each interval $[x_{i-1},x_{i}]$ construct a rectangle that extends vertically from <span data-ref="curve-g">$\kg(x_i^{*})$</span> to <span data-ref="curve-f">$\kf(x_i^{*}).$</span> Figure 6.3(a) shows the rectangles when $x_i^{*}$ is selected to be the left endpoint of the interval and $n=10.$ Figure 6.3(b) shows a representative rectangle in detail.</p>
-<p>The height of each individual rectangle is $\kf(x_i^{*})-\kg(x_i^{*})$ and the width of each rectangle is $\Delta x.$ Adding the areas of all the rectangles, we see that the <span data-concept="area-between-two-curves">area between the curves</span> is approximated by</p>
-$$\kA\approx \sum_{i=1}^{n}[\kf(x_i^{*})-\kg(x_i^{*})]\Delta x.$$
-<p>This is a <span data-concept="riemann-sum">Riemann sum</span>, so we take the <span data-concept="limit">limit</span> as $n\to \infty$ and we get</p>
-$$\kA=\lim_{n\to \infty}\sum_{i=1}^{n}[\kf(x_i^{*})-\kg(x_i^{*})]\Delta x=\int_a^{b}[\kf(x)-\kg(x)]dx.$$
+<p>The height of each individual rectangle is $\kf(x_i^{*})-\kg(x_i^{*})$ and the width of each rectangle is $\Delta x.$</p>
+<figure class="dv" id="drv-area-between-two-curves"></figure>
 <p>These findings are summarized in the following theorem.</p>
 <div class="note" id="area-between-curves-theorem">
 <div class="eyebrow">Theorem</div>
@@ -103,10 +101,8 @@ $$\kA=\kA_{1}+\kA_{2}=\frac{1}{3}+\frac{1}{2}=\frac{5}{6}.$$
   <div class="sim-head"><span class="eyebrow">Figure 6.8 + 6.9</span><span>Drag $y^{*}$ to pick a horizontal rectangle, and raise $n$: each runs from <span data-ref="curve-v">$\kv(y^{*})$</span> across to <span data-ref="curve-u">$\kufn(y^{*})$</span>, and their areas sum toward the area of the region.</span></div>
 </figure>
 <p>This time, we are going to partition the interval on the $y\text{-axis}$ and use horizontal rectangles to approximate the <span data-concept="area-between-two-curves">area between the functions</span>. So, for $i=0,1,2\text{,\ldots},n,$ let $Q=\{y_{i}\}$ be a <span data-concept="regular-partition">regular partition</span> of $[c,d].$ Then, for $i=1,2\text{,\ldots},n,$ choose a point $y_i^{*}\in [y_{i-1},y_{i}],$ then over each interval $[y_{i-1},y_{i}]$ construct a rectangle that extends horizontally from <span data-ref="curve-v">$\kv(y_i^{*})$</span> to <span data-ref="curve-u">$\kufn(y_i^{*}).$</span> Figure 6.9(a) shows the rectangles when $y_i^{*}$ is selected to be the lower endpoint of the interval and $n=10.$ Figure 6.9(b) shows a representative rectangle in detail.</p>
-<p>The height of each individual rectangle is $\Delta y$ and the width of each rectangle is $\kufn(y_i^{*})-\kv(y_i^{*}).$ Therefore, the <span data-concept="area-between-two-curves">area between the curves</span> is approximately</p>
-$$\kA\approx \sum_{i=1}^{n}[\kufn(y_i^{*})-\kv(y_i^{*})]\Delta y.$$
-<p>This is a <span data-concept="riemann-sum">Riemann sum</span>, so we take the <span data-concept="limit">limit</span> as $n\to \infty,$ obtaining</p>
-$$\kA=\lim_{n\to \infty}\sum_{i=1}^{n}[\kufn(y_i^{*})-\kv(y_i^{*})]\Delta y=\int_c^{d}[\kufn(y)-\kv(y)]dy.$$
+<p>The height of each individual rectangle is $\Delta y$ and the width of each rectangle is $\kufn(y_i^{*})-\kv(y_i^{*}).$</p>
+<figure class="dv" id="drv-area-between-two-curves-along-y"></figure>
 <p>These findings are summarized in the following theorem.</p>
 <div class="note" id="area-along-y-theorem">
 <div class="eyebrow">Theorem</div>

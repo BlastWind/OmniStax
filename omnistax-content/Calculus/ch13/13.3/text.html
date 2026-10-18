@@ -34,10 +34,8 @@ $$\begin{array}{rl}\int_0^{2\pi}\sqrt{t^{2}+5}\;dt & =\frac{1}{2}{(t\sqrt{t^{2}+
 <div class="exercises" data-place="fs-id1169737840905"></div>
 <p id="helix-form">We now return to the <span data-concept="helix">helix</span> introduced earlier in this chapter. A <span data-concept="vector-valued-function">vector-valued function</span> that describes a <span data-concept="helix">helix</span> can be written in the form</p>
 $$\kvecr(t)=R\;\cos (\frac{2\pi Nt}{h})\;\kveci+R\;\sin (\frac{2\pi Nt}{h})\;\kvecj+t\;\kveck,\;0\le t\le h,$$
-<p>where <em>R</em> represents the radius of the <span data-concept="helix">helix</span>, <em>h</em> represents the height (distance between two consecutive turns)<sup class="fn" data-note="c-helix-h"></sup>, and the <span data-concept="helix">helix</span> completes <em>N</em> turns. Let’s derive a formula for the <span data-concept="arc-length-of-a-space-curve">arc length</span> of this <span data-concept="helix">helix</span> using <a href="#fs-id1169738053435">Equation 13.12</a>. First of all,</p>
-$$\kvecrprime(t)=-\frac{2\pi NR}{h}\sin (\frac{2\pi Nt}{h})\;\kveci+\frac{2\pi NR}{h}\cos (\frac{2\pi Nt}{h})\;\kvecj+\kveck.$$
-<p>Therefore,</p>
-$$\begin{array}{rl}\ks & =\int_a^{b}\| \kvecrprime(t)\| \;dt \\ & =\int_0^{h}\sqrt{{(-\frac{2\pi NR}{h}\sin (\frac{2\pi Nt}{h}))}^{2}+{(\frac{2\pi NR}{h}\cos (\frac{2\pi Nt}{h}))}^{2}+1^{2}}dt \\ & =\int_0^{h}\sqrt{\frac{4{\pi}^{2}N^{2}R^{2}}{h^{2}}({\sin }^{2}(\frac{2\pi Nt}{h})+{\cos }^{2}(\frac{2\pi Nt}{h}))+1} dt \\ & =\int_0^{h}\sqrt{\frac{4{\pi}^{2}N^{2}R^{2}}{h^{2}}+1} dt \\ & ={[t\sqrt{\frac{4{\pi}^{2}N^{2}R^{2}}{h^{2}}+1}]}_0^{h} \\ & =h\sqrt{\frac{4{\pi}^{2}N^{2}R^{2}+h^{2}}{h^{2}}} \\ & =\sqrt{4{\pi}^{2}N^{2}R^{2}+h^{2}}.\end{array}$$
+<p>where <em>R</em> represents the radius of the <span data-concept="helix">helix</span>, <em>h</em> represents the height (distance between two consecutive turns)<sup class="fn" data-note="c-helix-h"></sup>, and the <span data-concept="helix">helix</span> completes <em>N</em> turns. Let’s derive a formula for the <span data-concept="arc-length-of-a-space-curve">arc length</span> of this <span data-concept="helix">helix</span> using <a href="#fs-id1169738053435">Equation 13.12</a>.</p>
+<figure class="dv" id="drv-helix-arc-length"></figure>
 <p id="helix-wire">This gives a formula for the length of a wire needed to form a <span data-concept="helix">helix</span> with <em>N</em> turns that has radius <em>R</em> and height <em>h.</em></p>
 <figure class="sim" id="sim-helix-length">
   <div class="sim-head"><span class="eyebrow">Sim</span><span>A <span data-concept="helix">helix</span> of radius $R$ that completes $N$ turns over the height $h,$ $\kvecr(t)=R\cos (\frac{2\pi Nt}{h})\,\kveci+R\sin (\frac{2\pi Nt}{h})\,\kvecj+t\,\kveck,$ $0\le t\le h,$ wound on its cylinder. Its speed $\|\kvecrprime(t)\|$ is the same everywhere along it, so the wire is $\ks=\sqrt{4\pi^{2}N^{2}R^{2}+h^{2}}$ long. Change the radius, the height and the number of turns and turn the scene.</span></div>
@@ -48,11 +46,10 @@ $$\begin{array}{rl}\ks & =\int_a^{b}\| \kvecrprime(t)\| \;dt \\ & =\int_0^{h}\sq
 <p class="cite-target" id="arc-length-function-intro">We now have a formula for the <span data-concept="arc-length-of-a-space-curve">arc length</span> of a curve defined by a <span data-concept="vector-valued-function">vector-valued function</span>. Let’s take this one step further and examine what an <strong><span data-concept="arc-length-function">arc-length function</span></strong> is.</p>
 <p>If a <span data-concept="vector-valued-function">vector-valued function</span> represents the position of a particle in space as a function of time, then the <span data-concept="arc-length-function">arc-length function</span> measures how far that particle travels as a function of time. The formula for the <span data-concept="arc-length-function">arc-length function</span> follows directly from the formula for <span data-concept="arc-length-of-a-space-curve">arc length</span>:</p>
 <div class="equation" id="fs-id1169737914271">$$\ks(t)=\int_a^{t}\sqrt{{(\kfprime(u))}^{2}+{(\kgprime(u))}^{2}+{(\khprime(u))}^{2}} du.\tag{13.13}$$</div>
-<p id="speed-rate">If the curve is in two dimensions, then only two terms appear under the square root inside the integral. The reason for using the independent variable <em>u</em> is to distinguish between time and the variable of integration. Since $\ks(t)$ measures distance traveled as a function of time, $\ksprime(t)$ measures the speed of the particle at any given time. Since we have a formula for $\ks(t)$ in <a href="#fs-id1169737914271">Equation 13.13</a>, we can differentiate both sides of the equation:</p>
-$$\begin{array}{rl}\ksprime(t) & =\frac{d}{dt}[\int_a^{t}\sqrt{{(\kfprime(u))}^{2}+{(\kgprime(u))}^{2}+{(\khprime(u))}^{2}} du] \\ & =\frac{d}{dt}[\int_a^{t}\| \kvecrprime(u)\| \;du ] \\ & =\| \kvecrprime(t)\| .\end{array}$$
-<p>If we assume that $\kvecr(t)$ defines a <span data-concept="smooth-curve">smooth curve</span>, then the <span data-concept="arc-length-of-a-space-curve">arc length</span> is always increasing, so $\ksprime(t)\gt 0$ for $t\gt a.$ Last, if $\kvecr(t)$ is a curve on which $\| \kvecrprime(t)\| =1$ for all <em>t</em>, then</p>
-$$\ks(t)=\int_a^{t}\| \kvecrprime(u)\| \;du =\int_a^{t}1\;du =t-a,$$
-<p>which means that <em>t</em> represents the <span data-concept="arc-length-of-a-space-curve">arc length</span> as long as $a=0.$</p>
+<p id="speed-rate">If the curve is in two dimensions, then only two terms appear under the square root inside the integral. The reason for using the independent variable <em>u</em> is to distinguish between time and the variable of integration. Since $\ks(t)$ measures distance traveled as a function of time, $\ksprime(t)$ measures the speed of the particle at any given time. Since we have a formula for $\ks(t)$ in <a href="#fs-id1169737914271">Equation 13.13</a>, we can differentiate both sides of the equation.</p>
+<figure class="dv" id="drv-speed-along-a-curve"></figure>
+<p>If we assume that $\kvecr(t)$ defines a <span data-concept="smooth-curve">smooth curve</span>, then the <span data-concept="arc-length-of-a-space-curve">arc length</span> is always increasing, so $\ksprime(t)\gt 0$ for $t\gt a.$</p>
+<figure class="dv" id="drv-unit-speed-arc-length"></figure>
 <div class="note" id="fs-id1169738186040">
 <div class="eyebrow">Theorem</div>
 <h3>Arc-Length Function</h3>
@@ -108,32 +105,7 @@ $$\kkappa =\| \frac{d\;\kvecT}{ds}\| =\| \kvecTprime(\ks)\| .$$
 <div class="equation" id="fs-id1169738200809">$$\kkappa =\frac{|\kydprime|}{{[1+{(\kyprime)}^{2}]}^{3/2}}.\tag{13.17}$$</div>
 </div>
 <h3>Proof</h3>
-<p>The first formula follows directly from the <span data-concept="chain-rule">chain rule</span>:</p>
-$$\frac{d\textbf{T}}{dt}=\frac{d\textbf{T}}{ds}\;\frac{ds}{dt},$$
-<p>where <em>s</em> is the <span data-concept="arc-length-of-a-space-curve">arc length</span> along the curve <em>C.</em> Dividing both sides by $ds/dt,$ and taking the magnitude of both sides gives</p>
-$$\| \frac{d\textbf{T}}{ds}\| =\| \frac{\kvecTprime(t)}{\frac{ds}{dt}}\| .$$
-<p>Since $ds/dt=\| \kvecrprime(t)\| ,$ this gives the formula for the <span data-concept="curvature">curvature</span> $\kkappa$ of a curve <em>C</em> in terms of any parameterization of <em>C</em>:</p>
-$$\kkappa =\frac{\| \kvecTprime(t)\|}{\| \kvecrprime(t)\|}.$$
-<p>In the case of a three-dimensional curve, we start with the formulas $\kvecT(t)=(\kvecrprime(t))/\| \kvecrprime(t)\|$ and $ds/dt=\| \kvecrprime(t)\| .$ Therefore, $\kvecrprime(t)=(ds/dt)\;\kvecT(t).$ We can take the derivative of this function using the <span data-concept="properties-of-the-derivative-of-vector-valued-functions">scalar product formula</span>:</p>
-$$\kvecrdprime(t)=\frac{d^{2}\ks}{dt^{2}}\kvecT(t)+\frac{ds}{dt}\kvecTprime(t).$$
-<p>Using these last two equations we get</p>
-$$\begin{array}{rl}\kvecrprime(t)\;\times \;\kvecrdprime(t) & =\frac{ds}{dt}\kvecT(t)\;\times \;(\frac{d^{2}\ks}{dt^{2}}\kvecT(t)+\frac{ds}{dt}\kvecTprime(t)) \\ & =\frac{ds}{dt}\;\frac{d^{2}\ks}{dt^{2}}\kvecT(t)\;\times \;\kvecT(t)+{(\frac{ds}{dt})}^{2}\kvecT(t)\;\times \;\kvecTprime(t).\end{array}$$
-<p>Since $\kvecT(t)\;\times \;\kvecT(t)=\kveczero,$ this reduces to</p>
-$$\kvecrprime(t)\;\times \;\kvecrdprime(t)={(\frac{ds}{dt})}^{2}\kvecT(t)\;\times \;\kvecTprime(t).$$
-<p>Because $\kvecT(t)$ is a <span data-concept="unit-vector">unit vector</span>, $\|\kvecT(t)\| =1$ for all values of $t$. So, $\kvecT(t)\cdot \kvecT(t)={\|\kvecT(t)\|}^{2}=1$.</p>
-<p>By <a href="#fs-id1169738214420">Alternative Formulas for Curvature</a><sup class="fn" data-note="c-proof-cite"></sup>, we have</p>
-$$0=\frac{d}{dt}(\kvecT(t)\cdot \kvecT(t))=\kvecTprime(t)\cdot \kvecT(t)+\kvecT(t)\cdot \kvecTprime(t)=2\kvecTprime(t)\cdot \kvecT(t).$$
-<p>Therefore, $\kvecTprime\cdot \kvecT=0$ showing that $\kvecT$ and $\kvecTprime$ are perpendicular. This means that</p>
-$$\|\kvecT\times \kvecTprime\| =\|\kvecT\|\,\|\kvecTprime\|\sin \frac{\pi}{2}=\|\kvecTprime\|,\text{ so}$$
-$$\|\kvecrprime(t)\;\times \;\kvecrdprime(t)\| ={(\frac{ds}{dt})}^{2}\|\kvecTprime(t)\| .$$
-<p>Now we solve this equation for $\| \kvecTprime(t)\|$ and use the fact that $ds/dt=\| \kvecrprime(t)\| \text{:}$</p>
-$$\| \kvecTprime(t)\| =\frac{\| \kvecrprime(t)\;\times \;\kvecrdprime(t)\|}{{\| \kvecrprime(t)\|}^{2}}.$$
-<p>Then, we divide both sides by $\| \kvecrprime(t)\| .$ This gives</p>
-$$\kkappa =\frac{\| \kvecTprime(t)\|}{\| \kvecrprime(t)\|}=\frac{\| \kvecrprime(t)\;\times \;\kvecrdprime(t)\|}{{\| \kvecrprime(t)\|}^{3}}.$$
-<p>This proves <a href="#fs-id1169738153497">Equation 13.16</a>. To prove <a href="#fs-id1169738200809">Equation 13.17</a>, we start with the assumption that curve <em>C</em> is defined by the function $y=\kf(x).$ Then, we can define $\kvecr(t)=x\;\kveci+\kf(x)\;\kvecj+0\;\kveck.$ Using the previous formula for <span data-concept="curvature">curvature</span>:</p>
-$$\begin{array}{rl}\kvecrprime(t) & =\kveci+\kfprime(x)\;\kvecj \\ \kvecrdprime(t) & =\kfdprime(x)\;\kvecj \\ \kvecrprime(t)\;\times \;\kvecrdprime(t) & =\left|\begin{array}{lll}\kveci & \kvecj & \kveck \\ 1 & \kfprime(x) & 0 \\ 0 & \kfdprime(x) & 0\end{array}\right|=\kfdprime(x)\;\kveck.\end{array}$$
-<p>Therefore,</p>
-$$\kkappa =\frac{\| \kvecrprime(t)\;\times \;\kvecrdprime(t)\|}{{\| \kvecrprime(t)\|}^{3}}=\frac{|\kfdprime(x)|}{{(1+[{(\kfprime(x))}^{2}])}^{3/2}}.$$
+<figure class="dv" id="drv-alternative-curvature-formulas"></figure>
 <p>□</p>
 <div class="example" id="fs-id1169737379326">
 <h3>Example 13.11 · Finding Curvature</h3>

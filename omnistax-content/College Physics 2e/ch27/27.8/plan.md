@@ -89,3 +89,8 @@ Labels: each figure names at most six things (source, the filters, E, axis); the
 - No concept, edge or symbol fix.
 
 Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed. The two worked examples, which the page had numbered 27.3 and 27.4, are renumbered 27.8 and 27.9 as the publisher counts them, in the headings, the Malus figure's special and the problem that cites Example 27.8. The rope figure's locked view is raised from a pitch of −0.14 to −0.4 so that the horizontal wave no longer reads edge-on. The glossary lines are not written, since a glossary row carries no anchor field; each term is found on its section's page.
+
+## Derivations
+
+- Malus's law · score 1 · built as drv-malus-law: a thin printed block, the amplitude $E\cos\theta$ and intensity as amplitude squared (24.4)
+- Brewster's law · score 7 · not built: it rests on the reflected and refracted rays being perpendicular at full polarization, whose reasons the book says are beyond its scope

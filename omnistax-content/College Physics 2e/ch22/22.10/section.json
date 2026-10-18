@@ -399,5 +399,62 @@
     "sim-current-balance"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "force-between-wires",
+   "what": "the force between two parallel currents",
+   "source": "College Physics 2e, 22.10 Magnetic Force between Two Parallel Conductors",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The field of wire 1 is uniform along wire 2 and perpendicular to it, so $\\sin\\ktheta = 1$.",
+       "src": "22.10"
+      },
+      {
+       "text": "By Newton’s third law the forces on the wires are equal in magnitude ($\\kFone = -\\kFtwo$), so $\\kF$ stands for the magnitude of $\\kFtwo$.",
+       "src": "22.10"
+      },
+      {
+       "tex": "\\kBmagone = \\dfrac{\\mu_0\\kIcurone}{2\\pi\\kr}",
+       "src": "22.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{I}{\\kIcur} \\mk{l}{\\kl}\\mk{B}{\\kBmag}\\mk{s}{\\sin\\ktheta}",
+      "src": "22.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFtwo} = \\mk{I}{\\kIcurtwo} \\mk{l}{\\kl}\\mk{B}{\\kBmagone}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{I}{\\kIcurtwo} \\mk{l}{\\kl}\\mk{B}{\\kBmagone}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{I}{\\kIcurtwo} \\mk{l}{\\kl}\\mk{B}{\\dfrac{\\mu_0\\kIcurone}{2\\pi\\kr}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{F}{\\kF}}{\\mk{l}{\\kl}} = \\mk{B}{\\dfrac{\\mu_0\\kIcurone\\kIcurtwo}{2\\pi\\kr}}",
+       "uses": [],
+       "map": {
+        "I": "B"
+       }
+      }
+     ],
+     "src": "22.10"
+    }
+   ]
+  }
  ]
 }

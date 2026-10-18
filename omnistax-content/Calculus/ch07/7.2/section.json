@@ -1089,5 +1089,424 @@
    "kind": "correction",
    "html": "The key prints $(\\frac{x}{2})(\\frac{x}{2})+C_{1}$ for the first form; it is ${\\tan }^{2}(\\frac{x}{2})+C_{1},$ since $u=\\tan (\\frac{x}{2})$ gives $\\int 2u\\;du=u^{2}+C_{1}.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "power-reducing-identities",
+   "what": "the power-reducing identities",
+   "source": "Calculus, 7.2 Trigonometric Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "{\\cos }^{2}x+{\\sin }^{2}x=1",
+       "src": "1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c2}{\\cos (2x)}=\\mk{cc}{{\\cos }^{2}x}-\\mk{ss}{{\\sin }^{2}x}",
+      "src": "1.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c2}{\\cos (2x)}=\\mk{cc}{(1-{\\sin }^{2}x)}-\\mk{ss}{{\\sin }^{2}x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{c2}{\\cos (2x)}=\\mk{one}{1}-\\mk{ss}{2{\\sin }^{2}x}",
+       "uses": [],
+       "map": {
+        "cc": [
+         "one",
+         "ss"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{ss}{2{\\sin }^{2}x}=\\mk{one}{1}-\\mk{c2}{\\cos (2x)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{ss}{{\\sin }^{2}x}=\\mk{one}{\\frac{1}{2}}-\\mk{c2}{\\frac{1}{2}\\cos (2x)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{ss}{{\\sin }^{2}x}=\\mk{one}{\\frac{1}{2}}-\\mk{c2}{\\frac{1}{2}\\cos (2x)}=\\mk{q}{\\frac{1-\\cos (2x)}{2}}",
+       "uses": []
+      }
+     ],
+     "src": "7.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "{\\cos }^{2}x+{\\sin }^{2}x=1",
+       "src": "1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c2}{\\cos (2x)}=\\mk{cc}{{\\cos }^{2}x}-\\mk{ss}{{\\sin }^{2}x}",
+      "src": "1.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c2}{\\cos (2x)}=\\mk{cc}{{\\cos }^{2}x}-\\mk{ss}{(1-{\\cos }^{2}x)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{c2}{\\cos (2x)}=\\mk{cc}{2{\\cos }^{2}x}-\\mk{one}{1}",
+       "uses": [],
+       "map": {
+        "ss": [
+         "cc",
+         "one"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{cc}{2{\\cos }^{2}x}=\\mk{one}{1}+\\mk{c2}{\\cos (2x)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{cc}{{\\cos }^{2}x}=\\mk{one}{\\frac{1}{2}}+\\mk{c2}{\\frac{1}{2}\\cos (2x)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{cc}{{\\cos }^{2}x}=\\mk{one}{\\frac{1}{2}}+\\mk{c2}{\\frac{1}{2}\\cos (2x)}=\\mk{q}{\\frac{1+\\cos (2x)}{2}}",
+       "uses": []
+      }
+     ],
+     "src": "7.2"
+    }
+   ]
+  },
+  {
+   "id": "products-of-sines-and-cosines",
+   "what": "the products of sines and cosines of different angles",
+   "source": "Calculus, 7.2 Trigonometric Integrals",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{l}{\\cos (\\alpha -\\beta )}=\\mk{p}{\\cos \\alpha \\cos \\beta}+\\mk{q}{\\sin \\alpha \\sin \\beta}",
+      "src": "1.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\cos (ax-bx)}=\\mk{p}{\\cos (ax)\\cos (bx)}+\\mk{q}{\\sin (ax)\\sin (bx)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\cos ((a-b)x)}=\\mk{p}{\\cos (ax)\\cos (bx)}+\\mk{q}{\\sin (ax)\\sin (bx)}",
+       "uses": []
+      }
+     ],
+     "src": "7.2"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{l}{\\cos (\\alpha +\\beta )}=\\mk{p}{\\cos \\alpha \\cos \\beta}-\\mk{q}{\\sin \\alpha \\sin \\beta}",
+      "src": "1.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\cos (ax+bx)}=\\mk{p}{\\cos (ax)\\cos (bx)}-\\mk{q}{\\sin (ax)\\sin (bx)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\cos ((a+b)x)}=\\mk{p}{\\cos (ax)\\cos (bx)}-\\mk{q}{\\sin (ax)\\sin (bx)}",
+       "uses": []
+      }
+     ],
+     "src": "7.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\cos ((a-b)x)}=\\mk{p}{\\cos (ax)\\cos (bx)}+\\mk{q}{\\sin (ax)\\sin (bx)}",
+      "src": "7.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\cos ((a-b)x)}-\\mk{s}{\\cos ((a+b)x)}=\\mk{p}{\\cos (ax)\\cos (bx)}+\\mk{q}{\\sin (ax)\\sin (bx)}-(\\mk{p2}{\\cos (ax)\\cos (bx)}-\\mk{q2}{\\sin (ax)\\sin (bx)})",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{d}{\\cos ((a-b)x)}-\\mk{s}{\\cos ((a+b)x)}=\\mk{q}{2\\sin (ax)\\sin (bx)}",
+       "uses": [],
+       "map": {
+        "q2": "q"
+       }
+      },
+      {
+       "tex": "\\mk{q}{\\sin (ax)\\sin (bx)}=\\mk{d}{\\frac{1}{2}\\cos ((a-b)x)}-\\mk{s}{\\frac{1}{2}\\cos ((a+b)x)}",
+       "uses": []
+      }
+     ],
+     "num": "(7.3)",
+     "src": "7.2, Integrating Products of Sines and Cosines of Different Angles"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{l}{\\sin (\\alpha -\\beta )}=\\mk{p}{\\sin \\alpha \\cos \\beta}-\\mk{q}{\\cos \\alpha \\sin \\beta}",
+      "src": "1.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\sin (ax-bx)}=\\mk{p}{\\sin (ax)\\cos (bx)}-\\mk{q}{\\cos (ax)\\sin (bx)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\sin ((a-b)x)}=\\mk{p}{\\sin (ax)\\cos (bx)}-\\mk{q}{\\cos (ax)\\sin (bx)}",
+       "uses": []
+      }
+     ],
+     "src": "7.2"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{l}{\\sin (\\alpha +\\beta )}=\\mk{p}{\\sin \\alpha \\cos \\beta}+\\mk{q}{\\cos \\alpha \\sin \\beta}",
+      "src": "1.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\sin (ax+bx)}=\\mk{p}{\\sin (ax)\\cos (bx)}+\\mk{q}{\\cos (ax)\\sin (bx)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\sin ((a+b)x)}=\\mk{p}{\\sin (ax)\\cos (bx)}+\\mk{q}{\\cos (ax)\\sin (bx)}",
+       "uses": []
+      }
+     ],
+     "src": "7.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "step": 4
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\sin ((a-b)x)}=\\mk{p}{\\sin (ax)\\cos (bx)}-\\mk{q}{\\cos (ax)\\sin (bx)}",
+      "src": "7.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\sin ((a-b)x)}+\\mk{s}{\\sin ((a+b)x)}=\\mk{p}{\\sin (ax)\\cos (bx)}-\\mk{q}{\\cos (ax)\\sin (bx)}+\\mk{p2}{\\sin (ax)\\cos (bx)}+\\mk{q2}{\\cos (ax)\\sin (bx)}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{d}{\\sin ((a-b)x)}+\\mk{s}{\\sin ((a+b)x)}=\\mk{p}{2\\sin (ax)\\cos (bx)}",
+       "uses": [],
+       "map": {
+        "p2": "p"
+       }
+      },
+      {
+       "tex": "\\mk{p}{\\sin (ax)\\cos (bx)}=\\mk{d}{\\frac{1}{2}\\sin ((a-b)x)}+\\mk{s}{\\frac{1}{2}\\sin ((a+b)x)}",
+       "uses": []
+      }
+     ],
+     "num": "(7.4)",
+     "src": "7.2, Integrating Products of Sines and Cosines of Different Angles"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\cos ((a-b)x)}=\\mk{p}{\\cos (ax)\\cos (bx)}+\\mk{q}{\\sin (ax)\\sin (bx)}",
+      "src": "7.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\cos ((a-b)x)}+\\mk{s}{\\cos ((a+b)x)}=\\mk{p}{\\cos (ax)\\cos (bx)}+\\mk{q}{\\sin (ax)\\sin (bx)}+\\mk{p2}{\\cos (ax)\\cos (bx)}-\\mk{q2}{\\sin (ax)\\sin (bx)}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{d}{\\cos ((a-b)x)}+\\mk{s}{\\cos ((a+b)x)}=\\mk{p}{2\\cos (ax)\\cos (bx)}",
+       "uses": [],
+       "map": {
+        "p2": "p"
+       }
+      },
+      {
+       "tex": "\\mk{p}{\\cos (ax)\\cos (bx)}=\\mk{d}{\\frac{1}{2}\\cos ((a-b)x)}+\\mk{s}{\\frac{1}{2}\\cos ((a+b)x)}",
+       "uses": []
+      }
+     ],
+     "num": "(7.5)",
+     "src": "7.2, Integrating Products of Sines and Cosines of Different Angles"
+    }
+   ]
+  },
+  {
+   "id": "reduction-formulas",
+   "what": "the reduction formulas for $\\int \\sec^{n}x\\,dx$ and $\\int \\tan^{n}x\\,dx$",
+   "source": "Calculus, 7.2 Trigonometric Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\int u\\;dv=uv-\\int v\\;du",
+       "src": "(7.1)"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\sec x)=\\sec x\\tan x",
+       "src": "3.5"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\big(\\kg(x)\\big)^{n}=n\\big(\\kg(x)\\big)^{n-1}\\kgprime(x)",
+       "src": "3.6"
+      },
+      {
+       "tex": "\\int {\\sec }^{2}x\\;dx=\\tan x+C",
+       "src": "7.2"
+      },
+      {
+       "tex": "{\\tan }^{2}x={\\sec }^{2}x-1",
+       "src": "1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\int {\\sec }^{n}x\\;dx}=\\mk{R}{\\int {\\sec }^{n-2}x\\;{\\sec }^{2}x\\;dx}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\int {\\sec }^{n}x\\;dx}=\\mk{uv}{{\\sec }^{n-2}x\\;\\tan x}-\\mk{vdu}{\\int \\tan x\\,(n-2){\\sec }^{n-3}x\\;\\sec x\\;\\tan x\\;dx}",
+       "uses": [0, 1, 2, 3],
+       "cap": "Integration by parts with $u={\\sec }^{n-2}x$ and $dv={\\sec }^{2}x\\;dx$, so that $du=(n-2){\\sec }^{n-3}x\\;\\sec x\\;\\tan x\\;dx$ and $v=\\tan x$.",
+       "map": {
+        "R": [
+         "uv",
+         "vdu"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\int {\\sec }^{n}x\\;dx}=\\mk{uv}{{\\sec }^{n-2}x\\;\\tan x}-\\mk{c}{(n-2)}\\mk{vdu}{\\int {\\sec }^{n-2}x\\;{\\tan }^{2}x\\;dx}",
+       "uses": [],
+       "map": {
+        "vdu": [
+         "c",
+         "vdu"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\int {\\sec }^{n}x\\;dx}=\\mk{uv}{{\\sec }^{n-2}x\\;\\tan x}-\\mk{c}{(n-2)}\\mk{vdu}{\\int {\\sec }^{n-2}x\\;({\\sec }^{2}x-1)\\;dx}",
+       "uses": [4]
+      },
+      {
+       "tex": "\\mk{L}{\\int {\\sec }^{n}x\\;dx}=\\mk{uv}{{\\sec }^{n-2}x\\;\\tan x}-\\mk{c}{(n-2)}\\mk{sn}{\\int {\\sec }^{n}x\\;dx}+\\mk{c2}{(n-2)}\\mk{snm}{\\int {\\sec }^{n-2}x\\;dx}",
+       "uses": [],
+       "cap": "The integral of a difference is the difference of the integrals.",
+       "map": {
+        "vdu": [
+         "sn",
+         "snm"
+        ],
+        "c": [
+         "c",
+         "c2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{(n-1)\\int {\\sec }^{n}x\\;dx}=\\mk{uv}{{\\sec }^{n-2}x\\;\\tan x}+\\mk{c2}{(n-2)}\\mk{snm}{\\int {\\sec }^{n-2}x\\;dx}",
+       "uses": [],
+       "map": {
+        "c": "L",
+        "sn": "L"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\int {\\sec }^{n}x\\;dx}=\\mk{uv}{\\frac{1}{n-1}{\\sec }^{n-2}x\\;\\tan x}+\\mk{c2}{\\frac{n-2}{n-1}}\\mk{snm}{\\int {\\sec }^{n-2}x\\;dx}",
+       "uses": []
+      }
+     ],
+     "num": "(7.6)",
+     "src": "7.2, Reduction Formulas"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "{\\tan }^{2}x={\\sec }^{2}x-1",
+       "src": "1.3"
+      },
+      {
+       "tex": "\\int f[\\kg(x)]\\kgprime(x)\\,dx=\\int f(u)\\,du",
+       "src": "5.5"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\tan x)={\\sec }^{2}x",
+       "src": "3.5"
+      },
+      {
+       "tex": "\\int x^{n}dx=\\frac{x^{n+1}}{n+1}+C",
+       "src": "4.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\int {\\tan }^{n}x\\;dx}=\\mk{R}{\\int {\\tan }^{n-2}x\\;{\\tan }^{2}x\\;dx}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\int {\\tan }^{n}x\\;dx}=\\mk{R}{\\int {\\tan }^{n-2}x\\;({\\sec }^{2}x-1)\\;dx}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{\\int {\\tan }^{n}x\\;dx}=\\mk{p}{\\int {\\tan }^{n-2}x\\;{\\sec }^{2}x\\;dx}-\\mk{m}{\\int {\\tan }^{n-2}x\\;dx}",
+       "uses": [],
+       "cap": "The integral of a difference is the difference of the integrals.",
+       "map": {
+        "R": [
+         "p",
+         "m"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\int {\\tan }^{n}x\\;dx}=\\mk{p}{\\int u^{n-2}du}-\\mk{m}{\\int {\\tan }^{n-2}x\\;dx}",
+       "uses": [1, 2],
+       "cap": "With $u=\\tan x$, $du={\\sec }^{2}x\\;dx$."
+      },
+      {
+       "tex": "\\mk{L}{\\int {\\tan }^{n}x\\;dx}=\\mk{p}{\\frac{u^{n-1}}{n-1}}-\\mk{m}{\\int {\\tan }^{n-2}x\\;dx}",
+       "uses": [3],
+       "cap": "Its constant of integration is carried by the integral that remains."
+      },
+      {
+       "tex": "\\mk{L}{\\int {\\tan }^{n}x\\;dx}=\\mk{p}{\\frac{1}{n-1}{\\tan }^{n-1}x}-\\mk{m}{\\int {\\tan }^{n-2}x\\;dx}",
+       "uses": [1]
+      }
+     ],
+     "num": "(7.7)",
+     "src": "7.2, Reduction Formulas"
+    }
+   ]
+  }
  ]
 }

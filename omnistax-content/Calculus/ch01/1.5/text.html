@@ -76,20 +76,8 @@ $$\frac{(x^{3}y^{-1})^{2}}{(xy^{2})^{-2}}=\frac{(x^{3})^{2}(y^{-1})^{2}}{x^{-2}(
 
 <section id="number-e">
 <h2>The Number <em>e</em></h2>
-<p class="cite-target">A special type of <span data-concept="exponential-function">exponential function</span> appears frequently in real-world applications. To describe it, consider the following example of exponential growth, which arises from <span data-concept="compound-interest">compounding interest</span> in a savings account. Suppose a person invests $P$ dollars in a savings account with an annual interest rate $r,$ compounded annually. The amount of money after 1 year is</p>
-$$A(1)=P+rP=P(1+r).$$
-<p>The amount of money after $2$ years is</p>
-$$A(2)=A(1)+rA(1)=P(1+r)+rP(1+r)=P(1+r)^{2}.$$
-<p>More generally, the amount after $t$ years is</p>
-$$A(t)=P(1+r)^{t}.$$
-<p>If the money is compounded 2 times per year, the amount of money after half a year is</p>
-$$A\left(\frac{1}{2}\right)=P+\left(\frac{r}{2}\right)P=P\left(1+\left(\frac{r}{2}\right)\right).$$
-<p>The amount of money after $1$ year is</p>
-$$A(1)=A\left(\frac{1}{2}\right)+\left(\frac{r}{2}\right)A\left(\frac{1}{2}\right)=P\left(1+\frac{r}{2}\right)+\frac{r}{2}\left(P\left(1+\frac{r}{2}\right)\right)=P\left(1+\frac{r}{2}\right)^{2}.$$
-<p>After $t$ years, the amount of money in the account is</p>
-$$A(t)=P\left(1+\frac{r}{2}\right)^{2t}.$$
-<p>More generally, if the money is compounded $n$ times per year, the amount of money in the account after $t$ years is given by the <span data-concept="function">function</span></p>
-$$A(t)=P\left(1+\frac{r}{n}\right)^{nt}.$$
+<p class="cite-target">A special type of <span data-concept="exponential-function">exponential function</span> appears frequently in real-world applications. To describe it, consider the following example of exponential growth, which arises from <span data-concept="compound-interest">compounding interest</span> in a savings account. Suppose a person invests $P$ dollars in a savings account with an annual interest rate $r,$ compounded annually.</p>
+<figure class="dv" id="drv-compound-interest"></figure>
 <p>What happens as $n\to\infty?$ To answer this question, we let $m=n/r$ and write</p>
 $$\left(1+\frac{r}{n}\right)^{nt}=\left(1+\frac{1}{m}\right)^{mrt},$$
 <p>and examine the behavior of $(1+1/m)^{m}$ as $m\to\infty,$ using a table of values (Table 1.12).</p>
@@ -208,16 +196,7 @@ $$\ln\left(\frac{2}{x^{5}}\right)=0.$$
 </ol>
 </div>
 <h3 id="change-of-base-proof">Proof</h3>
-<p>For the first <span data-concept="change-of-base-formulas">change-of-base formula</span>, we begin by making use of the power property of <span data-concept="logarithmic-function">logarithmic functions</span>. We know that for any <span data-concept="base">base</span> $b\gt 0,b\ne 1,$ $\log_{b}(a^{x})=x\log_{b}a.$ Therefore,</p>
-$$b^{\log_{b}(a^{x})}=b^{x\log_{b}a}.$$
-<p>In addition, we know that $b^{x}$ and $\log_{b}(x)$ are <span data-concept="inverse-function">inverse functions</span>. Therefore,</p>
-$$b^{\log_{b}(a^{x})}=a^{x}.$$
-<p>Combining these last two equalities, we conclude that $a^{x}=b^{x\log_{b}a}.$</p>
-<p>To prove the second property, we show that</p>
-$$(\log_{b}a)\cdot(\log_{a}x)=\log_{b}x.$$
-<p>Let $u=\log_{b}a,v=\log_{a}x,$ and $w=\log_{b}x.$ We will show that $u\cdot v=w.$ By the definition of <span data-concept="logarithmic-function">logarithmic functions</span>, we know that $b^{u}=a,a^{v}=x,$ and $b^{w}=x.$ From the previous equations, we see that</p>
-$$b^{uv}=(b^{u})^{v}=a^{v}=x=b^{w}.$$
-<p>Therefore, $b^{uv}=b^{w}.$ Since <span data-concept="exponential-function">exponential functions</span> are <span data-concept="one-to-one-function">one-to-one</span>, we can conclude that $u\cdot v=w.$</p>
+<figure class="dv" id="drv-change-of-base-formulas"></figure>
 <p>□</p>
 <div class="example" id="fs-id1170572434970">
 <h3>Example 1.38 · Changing Bases</h3>
@@ -281,8 +260,8 @@ $$\coth x=\frac{\cosh x}{\sinh x}=\frac{e^{x}+e^{-x}}{e^{x}-e^{-x}}$$
 <figure class="sim" id="sim-catenary">
   <div class="sim-head"><span class="eyebrow">Sim</span><span>A chain hangs between two supports $8$ units apart and $5$ units high, its height the <span data-concept="function">function</span> $h(x)=a\cosh(x/a)+c$, with $c$ set so that both ends stay on the supports. Slide $a$: a small $a$ lets the chain sag deep, and as $a$ grows the chain pulls nearly straight, its low point always on the $y$-axis.</span></div>
 </figure>
-<p>But why are these <span data-concept="function">functions</span> called <em><span data-concept="hyperbolic-functions">hyperbolic functions</span></em>? To answer this question, consider the quantity $\cosh^{2}t-\sinh^{2}t.$ Using the definition of $\cosh$ and $\sinh,$ we see that</p>
-$$\cosh^{2}t-\sinh^{2}t=\frac{e^{2t}+2+e^{-2t}}{4}-\frac{e^{2t}-2+e^{-2t}}{4}=1.$$
+<p>But why are these <span data-concept="function">functions</span> called <em><span data-concept="hyperbolic-functions">hyperbolic functions</span></em>? To answer this question, consider the quantity $\cosh^{2}t-\sinh^{2}t.$</p>
+<figure class="dv" id="drv-hyperbolic-identity"></figure>
 <p>This identity is the analog of the <span data-concept="trigonometric-identity">trigonometric identity</span> $\cos^{2}t+\sin^{2}t=1.$ Here, given a value $t,$ the point $(x,y)=(\cosh t,\sinh t)$ lies on the unit hyperbola $x^{2}-y^{2}=1$ (Figure 1.50).</p>
 <figure class="sim" id="sim-unit-hyperbola" data-figure="1.50" data-original="/media/ch01/CNX_Calc_Figure_01_05_007.jpg" data-original-caption="The unit hyperbola cosh²t − sinh²t = 1.">
   <div class="sim-head"><span class="eyebrow">Figure 1.50</span><span>The unit hyperbola $\cosh^{2}t-\sinh^{2}t=1.$ Slide $t$ and the point $(\cosh t,\sinh t)$ runs along the right branch of $x^{2}-y^{2}=1$, through $(1,0)$ at $t=0$ and up or down as $t$ grows or falls; its two coordinates change, but the difference of their squares is always $1$.</span></div>
@@ -327,14 +306,10 @@ $$\cosh^{2}x=1+\left(\frac{3}{4}\right)^{2}=\frac{25}{16}.$$
 <p><strong><span data-concept="inverse-hyperbolic-functions">Inverse Hyperbolic Functions</span></strong></p>
 $$\begin{array}{llll}\sinh^{-1}x=\operatorname{arcsinh}x=\ln\left(x+\sqrt{x^{2}+1}\right) & & & \cosh^{-1}x=\operatorname{arccosh}x=\ln\left(x+\sqrt{x^{2}-1}\right) \\ \tanh^{-1}x=\operatorname{arctanh}x=\dfrac{1}{2}\ln\left(\dfrac{1+x}{1-x}\right) & & & \coth^{-1}x=\operatorname{arccoth}x=\dfrac{1}{2}\ln\left(\dfrac{x+1}{x-1}\right) \\ \operatorname{sech}^{-1}x=\operatorname{arcsech}x=\ln\left(\dfrac{1+\sqrt{1-x^{2}}}{x}\right) & & & \operatorname{csch}^{-1}x=\operatorname{arccsch}x=\ln\left(\dfrac{1}{x}+\dfrac{\sqrt{1+x^{2}}}{|x|}\right)\end{array}$$
 </div>
-<p>Let’s look at how to derive the first equation. The others follow similarly. Suppose <span data-fn="ln(x+sqrt(x^2+1))">$y=\sinh^{-1}x.$</span> Then, $x=\sinh y$ and, by the definition of the <span data-concept="hyperbolic-functions">hyperbolic sine function</span>, $x=\dfrac{e^{y}-e^{-y}}{2}.$ Therefore,</p>
-$$e^{y}-2x-e^{-y}=0.$$
-<p>Multiplying this equation by $e^{y},$ we obtain</p>
-$$e^{2y}-2xe^{y}-1=0.$$
-<p>This can be solved like a quadratic equation, with the solution</p>
-$$e^{y}=\frac{2x\pm\sqrt{4x^{2}+4}}{2}=x\pm\sqrt{x^{2}+1}.$$
-<p>Since $e^{y}\gt 0,$ the only solution is the one with the positive sign. Applying the <span data-concept="natural-logarithm">natural logarithm</span> to both sides of the equation, we conclude that</p>
-$$y=\ln\left(x+\sqrt{x^{2}+1}\right).$$
+<p>Let’s look at how to derive the first equation. The others follow similarly.</p>
+<figure class="dv" id="drv-inverse-hyperbolic-sine"></figure>
+<p>The other five are derived the same way, each from its own definition.</p>
+<figure class="dv" id="drv-other-inverse-hyperbolic-functions"></figure>
 <div class="example" id="fs-id1170572482234">
 <h3>Example 1.41 · Evaluating Inverse Hyperbolic Functions</h3>
 <p>Evaluate each of the following expressions.</p>

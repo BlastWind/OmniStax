@@ -1035,5 +1035,390 @@
    "kind": "correction",
    "html": "The book prints $A=(\\pi r^{2}h^{2})/H^{3};$ at the bottom of the tank, $h=H,$ the area is the base’s, $\\pi r^{2},$ so the area at depth $h$ is $A=(\\pi r^{2}h^{2})/H^{2}.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "mass-of-a-rod",
+   "what": "the mass of a thin rod from its density",
+   "source": "Calculus, 6.5 Physical Applications, Mass and Density",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A rod of constant density $\\rho$ has mass the product of the density and the length of the rod.",
+       "src": "6.5"
+      },
+      {
+       "tex": "x_{i}-x_{i-1}=\\Delta x",
+       "src": "6.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{\\km_{i}}\\approx\\mk{r}{\\krho(x_i^{*})}\\mk{d}{(x_{i}-x_{i-1})}",
+      "src": "6.5",
+      "uses": [
+       0
+      ],
+      "why": "Over the short segment from $x_{i-1}$ to $x_{i}$ the density is nearly $\\krho(x_i^{*})$ throughout."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\km_{i}}\\approx\\mk{r}{\\krho(x_i^{*})}\\mk{d}{\\Delta x}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "6.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      },
+      {
+       "text": "$\\krho(x)$ is integrable.",
+       "src": "6.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\km}\\approx\\mk{s}{\\sum_{i=1}^{n}\\krho(x_i^{*})\\Delta x}",
+      "src": "6.5",
+      "uses": [
+       0
+      ],
+      "why": "Adding the masses of all the segments approximates the mass of the entire rod."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\km}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}\\krho(x_i^{*})\\Delta x}",
+       "uses": [],
+       "cap": "This is a Riemann sum, so we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\km}=\\mk{s}{\\int_a^{b}\\krho(x)dx}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.10)",
+     "src": "6.5, Mass–Density Formula of a One-Dimensional Object"
+    }
+   ]
+  },
+  {
+   "id": "mass-of-a-disk",
+   "what": "the mass of a disk from its radial density",
+   "source": "Calculus, 6.5 Physical Applications, Mass and Density",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The washer has outer radius $x_{i}$ and inner radius $x_{i-1}.$",
+       "src": "Figure 6.50"
+      },
+      {
+       "tex": "x_{i}-x_{i-1}=\\Delta x",
+       "src": "6.5"
+      },
+      {
+       "text": "As with shells, $x_i^{*}\\approx (x_{i}+x_{i-1})/2$ approximates the average radius of the washer.",
+       "src": "6.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{A_{i}}=\\mk{o}{\\pi{(x_{i})}^{2}}-\\mk{n}{\\pi{(x_{i-1})}^{2}}",
+      "src": "6.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{A_{i}}=\\mk{p}{\\pi}\\mk{q}{[x_i^{2}-x_{i-1}^{2}]}",
+       "uses": [],
+       "map": {
+        "o": [
+         "p",
+         "q"
+        ],
+        "n": [
+         "p",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{A}{A_{i}}=\\mk{p}{\\pi}\\mk{m}{(x_{i}+x_{i-1})}\\mk{d}{(x_{i}-x_{i-1})}",
+       "uses": [],
+       "cap": "A difference of squares: $a^{2}-b^{2}=(a+b)(a-b).$",
+       "map": {
+        "q": [
+         "m",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{A}{A_{i}}=\\mk{p}{\\pi}\\mk{m}{(x_{i}+x_{i-1})}\\mk{d}{\\Delta x}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{A}{A_{i}}\\approx\\mk{p}{2\\pi}\\mk{m}{x_i^{*}}\\mk{d}{\\Delta x}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "6.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The density is given in terms of mass per unit area.",
+       "src": "6.5"
+      },
+      {
+       "text": "We use $\\krho(x_i^{*})$ to approximate the density of the washer.",
+       "src": "6.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{\\km_{i}}\\approx\\mk{r}{\\krho(x_i^{*})}\\mk{A}{A_{i}}",
+      "src": "6.5",
+      "uses": [
+       1,
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\km_{i}}\\approx\\mk{A}{2\\pi x_i^{*}}\\mk{r}{\\krho(x_i^{*})}\\mk{d}{\\Delta x}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "A": [
+         "A",
+         "d"
+        ]
+       }
+      }
+     ],
+     "src": "6.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      },
+      {
+       "text": "$\\krho(x)$ is integrable.",
+       "src": "6.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\km}\\approx\\mk{s}{\\sum_{i=1}^{n}2\\pi x_i^{*}\\krho(x_i^{*})\\Delta x}",
+      "src": "6.5",
+      "uses": [
+       0
+      ],
+      "why": "Adding up the masses of the washers approximates the mass of the entire disk."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\km}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}2\\pi x_i^{*}\\krho(x_i^{*})\\Delta x}",
+       "uses": [],
+       "cap": "We again recognize this as a Riemann sum, and take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\km}=\\mk{s}{\\int_0^{r}2\\pi x\\krho(x)dx}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.11)",
+     "src": "6.5, Mass–Density Formula of a Circular Object"
+    }
+   ]
+  },
+  {
+   "id": "work-done-by-a-force",
+   "what": "the work done by a variable force",
+   "source": "Calculus, 6.5 Physical Applications, Work Done by a Force",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "When the force is constant, work is the product of force and distance.",
+       "src": "6.5"
+      },
+      {
+       "text": "Over $[x_{i-1},x_{i}]$ the force is roughly constant, and $\\kF(x_i^{*})$ approximates it.",
+       "src": "6.5"
+      },
+      {
+       "tex": "x_{i}-x_{i-1}=\\Delta x",
+       "src": "6.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW_{i}}\\approx\\mk{F}{\\kF(x_i^{*})}\\mk{d}{(x_{i}-x_{i-1})}",
+      "src": "6.5",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW_{i}}\\approx\\mk{F}{\\kF(x_i^{*})}\\mk{d}{\\Delta x}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "6.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kW}\\approx\\mk{s}{\\sum_{i=1}^{n}\\kF(x_i^{*})\\Delta x}",
+      "src": "6.5",
+      "uses": [
+       0
+      ],
+      "why": "The work done over $[a,b]$ is the sum of the work done over the subintervals."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kW}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}\\kF(x_i^{*})\\Delta x}",
+       "uses": [],
+       "cap": "Taking the limit of this Riemann sum as $n\\to \\infty$ gives the exact value for work."
+      },
+      {
+       "tex": "\\mk{A}{\\kW}=\\mk{s}{\\int_a^{b}\\kF(x)dx}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.12)",
+     "src": "6.5, Work Done by a Force"
+    }
+   ]
+  },
+  {
+   "id": "hydrostatic-force-on-a-plate",
+   "what": "the hydrostatic force on a vertical plate",
+   "source": "Calculus, 6.5 Physical Applications, Hydrostatic Force and Pressure",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "By Pascal’s principle, the pressure at a given depth is the same in all directions.",
+       "src": "6.5"
+      },
+      {
+       "text": "A thin strip can be treated as if it is at the constant depth $\\ks(x_i^{*}).$",
+       "src": "6.5"
+      },
+      {
+       "text": "The strip has width $\\kw(x_i^{*})$ and height $\\Delta x.$",
+       "src": "Figure 6.57"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFh_{i}}=\\mk{r}{\\rho}\\mk{A}{A}\\mk{s}{s}",
+      "src": "6.5",
+      "uses": [
+       0
+      ],
+      "why": "The force on a plate of area $A$ at depth $s$ is the weight of the water above it, $\\rho As.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFh_{i}}=\\mk{r}{\\rho}\\mk{A}{[\\kw(x_i^{*})\\Delta x]}\\mk{s}{\\ks(x_i^{*})}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "6.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kFh}\\approx\\mk{s}{\\sum_{i=1}^{n}\\rho[\\kw(x_i^{*})\\Delta x]\\ks(x_i^{*})}",
+      "src": "6.5",
+      "uses": [
+       0
+      ],
+      "why": "Adding the forces on all the strips estimates the force on the plate."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kFh}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}\\rho[\\kw(x_i^{*})\\Delta x]\\ks(x_i^{*})}",
+       "uses": [],
+       "cap": "This is a Riemann sum, so we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\kFh}=\\mk{s}{\\int_a^{b}\\rho \\kw(x)\\ks(x)dx}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.13)",
+     "src": "6.5, Hydrostatic Force and Pressure"
+    }
+   ]
+  }
  ]
 }

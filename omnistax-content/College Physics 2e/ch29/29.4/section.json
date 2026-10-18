@@ -386,5 +386,84 @@
       "kind": "correction",
       "html": "The book prints $E = \\gamma mc^{2} mc^{2}$ and calls it the rest energy. The energy in the ratio is the total energy $E = \\gamma mc^{2}$; the rest energy is $mc^{2}$."
     }
+  ],
+  "derivations": [
+    {
+      "id": "photon-momentum",
+      "what": "the momentum of a photon from its energy",
+      "source": "College Physics 2e, 29.4 Photon Momentum",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "A photon has no mass: $\\km = 0$, while $\\kp$ is not zero.",
+              "src": "29.4"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{E}{\\kE^{2}} = \\mk{p}{(\\kp\\kc)^{2}} + \\mk{m}{(\\km\\kc^{2})^{2}}",
+            "uses": [],
+            "src": "28.6"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{E}{\\kE^{2}} = \\mk{p}{(\\kp\\kc)^{2}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{E}{\\kE} = \\mk{p}{\\kp\\kc}",
+              "uses": [],
+              "cap": "Both $\\kE$ and $\\kp\\kc$ are positive, so the square roots are equal."
+            },
+            {
+              "tex": "\\mk{p}{\\kp} = \\frac{\\mk{E}{\\kE}}{\\mk{c}{\\kc}}\\;\\mk{t}{\\text{(photons)}}",
+              "uses": [],
+              "map": {
+                "p": [
+                  "p",
+                  "c"
+                ]
+              }
+            }
+          ],
+          "src": "29.4"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "tex": "\\kE = h\\kc/\\klam",
+              "src": "29.3"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{p}{\\kp} = \\frac{\\mk{E}{\\kE}}{\\mk{c}{\\kc}}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{p}{\\kp} = \\mk{E}{(h\\kc/\\klam)}/\\mk{c}{\\kc}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{p}{\\kp} = (h\\kc/\\klam)/\\kc = \\mk{E}{\\frac{h}{\\klam}}",
+              "uses": [],
+              "map": {
+                "c": "E"
+              }
+            }
+          ],
+          "src": "29.4"
+        }
+      ]
+    }
   ]
 }

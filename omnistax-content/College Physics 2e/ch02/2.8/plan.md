@@ -294,3 +294,8 @@ chapter config says for untyped quantities. No new hue, no new macro.
 
 The chapter pass wrote every anchor above into `chapter.json`, each one
 checked against the ids of this section's `text.html`.
+
+## Derivations
+
+- The position equation read from a straight-line graph ($x = x_0 + \bar v t$ from $y = mx + b$) · score 1 · not built: the same result 2.5 works first and builds as drv-position-from-average-velocity; the restatement stays as printed
+- The velocity equation read from the graph of velocity against time ($v = v_0 + at$) · score 1 · not built: the result of 2.5's drv-final-velocity reached again; stays as printed

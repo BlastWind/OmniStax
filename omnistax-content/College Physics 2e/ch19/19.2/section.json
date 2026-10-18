@@ -643,5 +643,173 @@
     "sim-plates-voltage-field"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "voltage-uniform-field",
+   "what": "the voltage between two parallel plates",
+   "source": "College Physics 2e, 19.2 Electric Potential in a Uniform Electric Field",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The electrostatic force is conservative.",
+       "src": "19.1"
+      },
+      {
+       "tex": "\\kdPE = \\kq\\kdV",
+       "src": "19.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = -\\mk{PE}{\\kdPE}",
+      "src": "19.1",
+      "uses": [
+       0
+      ],
+      "why": "The work a conservative force does is the negative of the change in potential energy."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = -\\mk{q}{\\kq}\\mk{V}{\\kdV}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "PE": [
+         "q",
+         "V"
+        ]
+       }
+      }
+     ],
+     "src": "19.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kVAB = \\kVA - \\kVB",
+       "src": "19.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dV}{\\kdV} = \\mk{d}{\\kVB - \\kVA}",
+      "src": "19.1",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "-\\mk{dV}{\\kdV} = -\\mk{d}{(\\kVB - \\kVA)}",
+       "uses": []
+      },
+      {
+       "tex": "-\\mk{dV}{\\kdV} = \\mk{d}{\\kVA - \\kVB}",
+       "uses": []
+      },
+      {
+       "tex": "-\\mk{dV}{\\kdV} = \\mk{d}{\\kVAB}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "19.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = -\\mk{q}{\\kq}\\mk{V}{\\kdV}",
+      "src": "19.2",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{q}{\\kq}\\mk{V}{\\kVAB}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "19.2"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The path from A to B is parallel to the field, so $\\ktheta = 0^\\circ$ and $\\cos\\ktheta = 1$.",
+       "src": "19.2"
+      },
+      {
+       "tex": "\\kF = \\kq\\kEf",
+       "src": "18.4"
+      },
+      {
+       "text": "The field between the plates is uniform, so the force on the charge is the same all along its path.",
+       "src": "19.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta}",
+      "src": "7.1",
+      "uses": [
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kq\\kEf}\\mk{d}{\\kd}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "19.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = \\mk{q}{\\kq}\\mk{V}{\\kVAB}",
+      "src": "19.2",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kq\\kEf\\kd} = \\mk{q}{\\kq}\\mk{V}{\\kVAB}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kVAB} = \\mk{W}{\\kEf\\kd}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{V}{\\kVAB} = \\mk{W}{\\kEf\\kd},\\quad \\mk{E}{\\kEf} = \\dfrac{\\mk{V2}{\\kVAB}}{\\mk{d}{\\kd}}\\quad\\text{(uniform }\\kEf\\text{-field only)}",
+       "uses": []
+      }
+     ],
+     "src": "19.2"
+    }
+   ]
+  }
  ]
 }

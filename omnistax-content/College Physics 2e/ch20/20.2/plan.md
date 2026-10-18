@@ -168,3 +168,7 @@ Each line supersedes the figure's line above where they differ.
 
 sim-simple-circuit · Figure 20.8 + 20.9 · as above · value add: the pictured circuit becomes its analogy (manim 2): the wire swells into the pipe, the battery shrinks as the pump grows where it stood, the zigzag straightens into the narrow section, the carriers give way to the water; the voltmeter arrives and leaves with `a('meter')` · moving, the flow is a steady flow (24.1)
 sim-ohmic · Sim · as above · the material choice keeps the graph's frame and the I–V curve bends from the straight line into the filament's (`mix` of the warming coefficient); the dashed ohmic line arrives only with the filament (manim 15) · still
+
+## Derivations
+
+- Ohm's law as $I = V/R$ (two proportionalities combined) · score 1 · not built: going from $I \propto V$ and $I \propto 1/R$ to $I = V/R$ defines the resistance and its unit rather than deriving anything, and the two proportionalities sit in different passages

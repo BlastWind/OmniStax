@@ -350,5 +350,85 @@
     "sim-mhd-pump"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "force-on-wire",
+   "what": "the magnetic force on a current-carrying wire",
+   "source": "College Physics 2e, 22.7 Magnetic Force on a Current-Carrying Conductor",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The forces on the individual charges add, because they are in the same direction.",
+       "src": "22.7"
+      },
+      {
+       "text": "$\\kBmag$ is uniform over a length of wire $\\kl$ and zero elsewhere, and $N$ charge carriers lie in that length.",
+       "src": "22.7"
+      },
+      {
+       "tex": "N = n\\kvol",
+       "src": "22.7"
+      },
+      {
+       "tex": "\\kvol = \\karea\\kl",
+       "src": "22.7"
+      },
+      {
+       "tex": "n\\kq\\karea\\kvd = \\kIcur",
+       "src": "20.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{f}{\\kq\\kvd\\kBmag\\sin\\ktheta}",
+      "src": "22.4",
+      "why": "The force on one charge moving at the drift velocity."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{f}{(\\kq\\kvd\\kBmag\\sin\\ktheta)}\\mk{N}{(N)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{f}{(\\kq\\kvd\\kBmag\\sin\\ktheta)}\\mk{N}{(n\\kvol)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{f}{(\\kq\\kvd\\kBmag\\sin\\ktheta)}\\mk{N}{(n\\karea\\kl)}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{I}{(n\\kq\\karea\\kvd)}\\mk{l}{\\kl}\\mk{B}{\\kBmag\\sin\\ktheta}",
+       "uses": [],
+       "map": {
+        "f": [
+         "I",
+         "B"
+        ],
+        "N": [
+         "I",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{I}{\\kIcur}\\mk{l}{\\kl}\\mk{B}{\\kBmag\\sin\\ktheta}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "22.7"
+    }
+   ]
+  }
  ]
 }

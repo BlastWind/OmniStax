@@ -847,5 +847,68 @@
     "sim-path-difference"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "double-slit-conditions",
+   "what": "the conditions for double slit interference",
+   "source": "College Physics 2e, 27.3 Young’s Double Slit Experiment",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The screen is far away compared with the distance $\\kd$ between the slits, so the two paths are nearly parallel and differ in length by $\\kd\\;\\text{sin}\\;\\ktheta$.",
+       "src": "Figure 27.14"
+      },
+      {
+       "text": "Two waves that leave in phase arrive in phase, and interfere constructively, when their paths differ by a whole number of wavelengths.",
+       "src": "27.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\text{path difference}} = \\mk{d}{\\kd\\;\\text{sin}\\;\\ktheta}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kd\\;\\text{sin}\\;\\ktheta} = \\mk{p}{m\\klam},\\;\\mk{c}{\\text{for}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots\\;\\;\\text{(constructive)}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "27.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The screen is far away compared with the distance $\\kd$ between the slits, so the two paths are nearly parallel and differ in length by $\\kd\\;\\text{sin}\\;\\ktheta$.",
+       "src": "Figure 27.14"
+      },
+      {
+       "text": "Two waves that leave in phase arrive out of phase, and interfere destructively, when their paths differ by a half-integral number of wavelengths.",
+       "src": "27.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\text{path difference}} = \\mk{d}{\\kd\\;\\text{sin}\\;\\ktheta}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kd\\;\\text{sin}\\;\\ktheta} = \\mk{p}{\\left(m+\\frac{1}{2}\\right)\\klam},\\;\\mk{c}{\\text{for}\\;m=0,\\;1,\\;-1,\\;2,\\;-2,\\;\\ldots\\;\\;\\text{(destructive)}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "27.3"
+    }
+   ]
+  }
  ]
 }

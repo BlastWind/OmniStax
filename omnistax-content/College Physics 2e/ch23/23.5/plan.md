@@ -310,3 +310,7 @@ problems, of which the book keys six problems and one AP item.
   `exploration.md` § Errata and is not used.
 - The generator, the chapter's one moving 3D scene, was checked in the browser
   with WebGL and with it refused; it draws and turns either way.
+
+## Derivations
+
+- The emf of a rotating generator coil (prose, then a printed block) · score 2 · built as drv-generator-emf: one node, the motional emf of each side wire with $v\sin\theta$, the two sides added, $\theta = \omega t$, $v = r\omega$ with $r = w/2$, $A = \ell w$ and $N$ turns; replaces the four displayed lines and the prose between them; "is the emf induced in a generator coil" after it now reads "This is the emf …", and $\text{emf} = \text{emf}_0\sin\omega t$ with the peak emf stays as printed, a naming rather than a move

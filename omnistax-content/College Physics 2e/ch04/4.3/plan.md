@@ -355,3 +355,7 @@ Revised in the Manim pass of 2026-09-28:
 - `sim-wagon` · at rest the friction holds only as much as the two pushes ask of it, so the free-body diagram, the scene and the readout show F_net = 0 when the wagon stays (manim-style 14).
 - `sim-mass` · the readout is one equation, the ball's; the SUV's acceleration moves to the line beneath it (manim-style 12).
 - `sim-sled` · merged with the former sim-sled-morph under the number 4.8. The figure is the story slider picture → free-body diagram (rail, rider and flames fade, the sled bends into a dot, each force re-roots on it, the rockets light and grow from the tail, dashed circles at Example 4.2 on T and f), and the graph of the acceleration against the rockets burning, with the dashed "simply proportional" line, arrives beside the diagram as the story reaches it; the marker slides along the line when the count changes. The clocked 2 s run is dropped: a story and a clock cannot share the figure, and the run added nothing Example 4.2 asks.
+
+## Derivations
+
+- Weight from Newton's second law and Galileo's result ($w = mg$) · score 1 · not built: a prose-first passage of two inline moves, below the hidden bar

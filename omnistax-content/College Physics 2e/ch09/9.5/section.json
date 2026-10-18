@@ -809,5 +809,88 @@
     "sim-pulleys"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "lever-mechanical-advantage",
+   "what": "the mechanical advantage of a lever",
+   "source": "College Physics 2e, 9.5 Simple Machines",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The nail is not moving.",
+       "src": "9.5"
+      },
+      {
+       "text": "The second condition for equilibrium: the net external torque is zero.",
+       "src": "9.2"
+      },
+      {
+       "text": "$\\kN$ is exerted at the pivot, so its torque is zero.",
+       "src": "9.5"
+      },
+      {
+       "tex": "\\ktau = \\krperp\\kF",
+       "src": "9.2"
+      },
+      {
+       "text": "$\\kFnail$ is equal and opposite to $\\kFo$.",
+       "src": "9.5, Figure 9.21"
+      },
+      {
+       "tex": "\\text{MA} = \\dfrac{\\kFo}{\\kFi}",
+       "src": "9.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{\\ktau_{\\text{i}}} = \\mk{o}{\\ktau_{\\text{nail}}}",
+      "src": "9.5",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "why": "Only $\\kFi$ and $\\kFnail$ exert torques, turning the puller opposite ways, so the two must be equal."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{\\kli\\kFi} = \\mk{o}{\\klo\\kFnail}",
+       "uses": [
+        3
+       ],
+       "cap": "The perpendicular lever arms of $\\kFi$ and $\\kFnail$ are $\\kli$ and $\\klo$."
+      },
+      {
+       "tex": "\\mk{i}{\\kli\\kFi} = \\mk{o}{\\klo\\kFo}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{o}{\\kFo}}{\\mk{i}{\\kFi}} = \\dfrac{\\mk{li}{\\kli}}{\\mk{lo}{\\klo}}",
+       "uses": [],
+       "map": {
+        "i": [
+         "i",
+         "li"
+        ],
+        "o": [
+         "o",
+         "lo"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{ma}{\\text{MA}} = \\dfrac{\\mk{o}{\\kFo}}{\\mk{i}{\\kFi}} = \\dfrac{\\mk{li}{\\kli}}{\\mk{lo}{\\klo}}",
+       "uses": [
+        5
+       ]
+      }
+     ],
+     "src": "9.5"
+    }
+   ]
+  }
  ]
 }

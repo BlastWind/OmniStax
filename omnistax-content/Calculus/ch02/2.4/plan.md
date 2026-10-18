@@ -85,3 +85,9 @@ Ids confirmed with `ost ids calculus 2.4` after the build.
 ```
 
 - Chapter pass (2026-10-12): all applied, both corrections as notes under their cards.
+
+## Derivations
+
+- Continuity of Polynomials and Rational Functions · Proof · score 1 · not built: the proof is one sentence citing 2.3's theorem, with no equation to work; a derivation would only restate that theorem as the definition of continuity
+- The Intermediate Value Theorem · score 9 · not built: a proof needs the completeness of the real numbers, which the book never states
+- Continuity of Trigonometric Functions · Proof · score 4 · built as drv-continuity-of-sine-and-cosine, a node for cos x (the printed chain) and one for sin x ("analogous"); the opening sentence and the one on the quotient law for the other four functions stay

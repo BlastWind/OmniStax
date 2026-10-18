@@ -262,3 +262,7 @@ the sentence now names the symbol in words instead; the erratum itself is
 unchanged and is recorded in `exploration.md`.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-potential-gradient`: the choice between an even and an uneven fall keeps the graph's frame and bends its curve into the other, the chord, the window's bracket and the arrows beneath following (manim-style 15); the small line and the label under the arrows no longer speak of the drawing.
+
+## Derivations
+
+- The voltage between two parallel plates (printed block) · score 3 · built as drv-voltage-uniform-field: five nodes, the energy line ($W = -\Delta\text{PE} = -q\Delta V$), the book's line for $-\Delta V = V_\text{AB}$, their join $W = qV_\text{AB}$, the force line ($W = Fd\cos\theta = qEd$) and the join $V_\text{AB} = Ed$, $E = V_\text{AB}/d$; replaces the block's five displayed lines and their connecting prose, the units remark and the boxed note stay as printed

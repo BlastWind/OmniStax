@@ -1196,5 +1196,117 @@
     "fig-centrifuge"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "ideal-banking-angle",
+   "what": "the ideal banking angle of a curve",
+   "source": "College Physics 2e, 6.3 Centripetal Force",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "On a frictionless banked curve only the normal force has a horizontal component, so it must equal the centripetal force.",
+       "src": "6.3"
+      },
+      {
+       "text": "The horizontal component of the normal force is $\\kN\\ \\sin\\ \\ktheta$.",
+       "src": "Figure 6.11"
+      },
+      {
+       "tex": "\\kFc = \\km\\frac{\\kv^2}{\\kr}",
+       "src": "6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{N}{\\kN\\ \\sin\\ \\ktheta} = \\mk{c}{\\kFc}",
+      "src": "6.3",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{N}{\\kN\\ \\sin\\ \\ktheta} = \\mk{c}{\\frac{\\km\\kv^2}{\\kr}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "6.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The car does not leave the surface of the road, so the net vertical force is zero.",
+       "src": "6.3"
+      },
+      {
+       "text": "The vertical component of the normal force is $\\kN\\ \\cos\\ \\ktheta$, and the only other vertical force is the weight $\\km\\kg$.",
+       "src": "Figure 6.11"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{N}{\\kN\\ \\cos\\ \\ktheta} = \\mk{w}{\\km\\kg}",
+      "src": "6.3",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{N}{\\kN} = \\frac{\\mk{w}{\\km\\kg}}{\\mk{c}{\\cos\\ \\ktheta}}",
+       "uses": [],
+       "map": {
+        "N": [
+         "N",
+         "c"
+        ]
+       }
+      }
+     ],
+     "src": "6.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kN\\ \\sin\\ \\ktheta} = \\mk{R}{\\frac{\\km\\kv^2}{\\kr}}",
+      "src": "6.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\km\\kg\\frac{\\sin\\ \\ktheta}{\\cos\\ \\ktheta}} = \\mk{R}{\\frac{\\km\\kv^2}{\\kr}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\km\\kg\\ \\tan(\\ktheta)} = \\mk{R}{\\frac{\\km\\kv^2}{\\kr}}",
+       "uses": [],
+       "cap": "$\\sin\\ktheta/\\cos\\ktheta = \\tan\\ktheta$."
+      },
+      {
+       "tex": "\\mk{L}{\\tan\\ \\ktheta} = \\mk{R}{\\frac{\\kv^2}{\\kr\\kg}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\ktheta} = \\mk{R}{\\tan^{-1}\\left(\\frac{\\kv^2}{\\kr\\kg}\\right)}\\ \\text{(ideally banked curve, no friction)}",
+       "uses": []
+      }
+     ],
+     "src": "6.3"
+    }
+   ]
+  }
  ]
 }

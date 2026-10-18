@@ -308,3 +308,7 @@ built, the node carries its `why` and its `evidence`, and the edge holds.
 The wheelbarrow AP item keeps the number this edition gives the wheelbarrow,
 Figure 9.22, with the note that the AP Physics edition prints it as Figure
 9.24(a).
+
+## Derivations
+
+- The mechanical advantage of a lever, $\text{MA} = l_\text{i}/l_\text{o}$ (printed block, three lines) · score 2 · built as drv-lever-mechanical-advantage: one node from the balanced torques of $F_\text{i}$ and $F_\text{nail}$ to $\text{MA}$; replaces the three displayed lines and stands before "This equation is true for levers in general"

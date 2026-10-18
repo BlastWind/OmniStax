@@ -371,5 +371,111 @@
     "sim-max-speed"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "shm-speed",
+   "what": "the speed of a simple harmonic oscillator",
+   "source": "College Physics 2e, 16.5 Energy and the Simple Harmonic Oscillator",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The motion starts with zero velocity at maximum displacement, $\\kx = \\kX$, so the total energy is $\\tfrac{1}{2}\\kk\\kX^{2}$; it is constant, shifted back and forth between kinetic and potential energy.",
+       "src": "16.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kv^{2}} + \\mk{pe}{\\tfrac{1}{2}\\kk\\kx^{2}} = \\mk{c}{\\text{constant}}",
+      "uses": [],
+      "src": "16.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kv^{2}} + \\mk{pe}{\\tfrac{1}{2}\\kk\\kx^{2}} = \\mk{c}{\\tfrac{1}{2}\\kk\\kX^{2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kv^{2}} = \\mk{c}{\\tfrac{1}{2}\\kk\\kX^{2}} - \\mk{pe}{\\tfrac{1}{2}\\kk\\kx^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{ke}{\\tfrac{1}{2}\\km\\kv^{2}} = \\mk{c}{\\tfrac{1}{2}\\kk(\\kX^{2} - \\kx^{2})}",
+       "uses": [],
+       "map": {
+        "pe": "c"
+       }
+      },
+      {
+       "tex": "\\mk{ke}{\\kv^{2}} = \\mk{c}{\\dfrac{\\kk}{\\km}(\\kX^{2} - \\kx^{2})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{ke}{\\kv} = \\pm\\sqrt{\\mk{c}{\\dfrac{\\kk}{\\km}(\\kX^{2} - \\kx^{2})}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{ke}{\\kv} = \\pm\\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}\\,\\mk{X}{\\kX}\\mk{c}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+       "uses": [],
+       "map": {
+        "c": [
+         "r",
+         "X",
+         "c"
+        ]
+       }
+      }
+     ],
+     "src": "16.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ke}{\\kv} = \\pm\\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}\\,\\mk{X}{\\kX}\\mk{c}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ke}{\\kvmax} = \\mk{X}{\\kX}\\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}",
+       "uses": [],
+       "cap": "The speed is greatest at $\\kx = 0$, where the last root is 1."
+      }
+     ],
+     "src": "16.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ke}{\\kv} = \\pm\\mk{r}{\\sqrt{\\dfrac{\\kk}{\\km}}}\\,\\mk{X}{\\kX}\\mk{c}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ke}{\\kv} = \\pm\\mk{r}{\\kvmax}\\mk{c}{\\sqrt{1 - \\dfrac{\\kx^{2}}{\\kX^{2}}}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "X": "r"
+       }
+      }
+     ],
+     "src": "16.5"
+    }
+   ]
+  }
  ]
 }

@@ -34,18 +34,12 @@ $$\begin{array}{ll}\int_{C}fds & =\lim_{n\to \infty}\sum_{i=1}^{n} \kf(\kvecr(t_
 </div>
 <div class="exercises" data-place="fs-id1167793501665"></div>
 <p>Note that in a <span data-concept="scalar-line-integral">scalar line integral</span>, the integration is done with respect to arc length $s$, which can make a <span data-concept="scalar-line-integral">scalar line integral</span> difficult to calculate. To make the calculations easier, we can translate $\int_{C}fds$ to an integral with a variable of integration that is $t$.</p>
-<p>Let $\kvecr(t)=\langle x(t),y(t),z(t)\rangle$ for $a\le t\le b$ be a <span data-concept="vector-parameterization">parameterization</span> of $C.$ Since we are assuming that $C$ is smooth, $\kvecrprime(t)=\langle x^{\prime}(t),y^{\prime}(t),z^{\prime}(t)\rangle$ is continuous for all $t$ in $[a,b].$ In particular, $x\text{′}(t),y\text{′}(t),$ and $z\text{′}(t)$ exist for all $t$ in $[a,b].$ According to the <span data-concept="arc-length-of-a-space-curve">arc length formula</span>, we have</p>
-$$\text{length}(C_{i})=\Delta s_{i}=\int_{t_{i-1}}^{t_{i}}\| \kvecrprime(t)\| dt.$$
-<p>If width $\Delta t_{i}=t_{i}-t_{i-1}$ is small, then function $\int_{t_{i-1}}^{t_{i}}\| \kvecrprime(t)\| dt\approx \| r^{\prime}(t_i^{*})\| \Delta t_{i},$ $\| \kvecrprime(t)\|$ is almost constant over the interval $[t_{i-1},t_{i}].$ Therefore,</p>
-$$\int_{t_{i-1}}^{t_{i}}\| \kvecrprime(t)\| dt \approx \| \kvecrprime(t_i^{*})\| \Delta t_{i},$$
-<p>and we have</p>
-<div class="equation" id="fs-id1167794213153">$$\sum_{i=1}^{n} \kf(\kvecr(t_i^{*}))\Delta s_{i} =\sum_{i=1}^{n} \kf(\kvecr(t_i^{*}))\| \kvecrprime(t_i^{*})\| \Delta t_{i}.\tag{16.6}$$</div>
+<p>Let $\kvecr(t)=\langle x(t),y(t),z(t)\rangle$ for $a\le t\le b$ be a <span data-concept="vector-parameterization">parameterization</span> of $C.$ Since we are assuming that $C$ is smooth, $\kvecrprime(t)=\langle x^{\prime}(t),y^{\prime}(t),z^{\prime}(t)\rangle$ is continuous for all $t$ in $[a,b].$ In particular, $x\text{′}(t),y\text{′}(t),$ and $z\text{′}(t)$ exist for all $t$ in $[a,b].$</p>
+<figure class="dv" id="drv-scalar-line-integral-in-t"></figure>
 <p>See Figure 16.15.</p>
 <figure class="sim" id="sim-arc-piece" data-figure="16.15" data-original="/media/ch16/CNX_Calc_Figure_16_02_004.jpg" data-original-caption="If we zoom in on the curve enough by making Δtᵢ very small, then the corresponding piece of the curve is approximately linear.">
   <div class="sim-head"><span class="eyebrow">Figure 16.15</span><span>One piece of the curve $\kvecr(t)=\langle t,\frac{t^{2}}{2}\rangle$ from $t$ to $t+\Delta t$ beside the vector $\kvecrprime(t^{*})\,\Delta t.$ Shrink $\Delta t$ and the piece becomes nearly straight: its length $\Delta s$ and $\|\kvecrprime(t^{*})\|\,\Delta t$ agree.</span></div>
 </figure>
-<p>Note that</p>
-$$\lim_{n\to \infty}\sum_{i=1}^{n} \kf(\kvecr(t_i^{*})) \| \kvecrprime(t_i^{*})\| \Delta t_{i}=\int_a^{b}\kf(\kvecr(t)) \| \kvecrprime(t)\| dt.$$
 <p>In other words, as the widths of intervals $[t_{i-1},t_{i}]$ shrink to zero, the sum $\sum_{i=1}^{n} \kf(\kvecr(t_i^{*})) \| \kvecrprime(t_i^{*})\| \Delta t_{i}$ converges to the integral $\int_a^{b}\kf(\kvecr(t)) \| \kvecrprime(t)\| dt.$ Therefore, we have the following theorem.</p>
 <div class="note" id="fs-id1167794058922">
 <div class="eyebrow">Theorem</div>
@@ -53,7 +47,7 @@ $$\lim_{n\to \infty}\sum_{i=1}^{n} \kf(\kvecr(t_i^{*})) \| \kvecrprime(t_i^{*})\
 <p>Let $\kf$ be a continuous function with a domain that includes the <span data-concept="smooth-curve">smooth curve</span> $C$ with <span data-concept="vector-parameterization">parameterization</span> $\kvecr(t),a\le t\le b.$ Then</p>
 <div class="equation" id="fs-id1167793886491">$$\int_{C}fds=\int_a^{b}\kf(\kvecr(t)) \| \kvecrprime(t)\| dt .\tag{16.7}$$</div>
 </div>
-<p>Although we have labeled <a href="#fs-id1167794213153">Equation 16.6</a> as an equation, it is more accurately considered an approximation because we can show that the left-hand side of <a href="#fs-id1167794213153">Equation 16.6</a> approaches the right-hand side as $n\to \infty .$ In other words, letting the widths of the pieces shrink to zero makes the right-hand sum arbitrarily close to the left-hand sum. Since</p>
+<p>Although we have labeled <a href="#drv-scalar-line-integral-in-t">Equation 16.6</a> as an equation, it is more accurately considered an approximation because we can show that the left-hand side of <a href="#drv-scalar-line-integral-in-t">Equation 16.6</a> approaches the right-hand side as $n\to \infty .$ In other words, letting the widths of the pieces shrink to zero makes the right-hand sum arbitrarily close to the left-hand sum. Since</p>
 $$\| \kvecrprime(t)\| =\sqrt{{(x'(t))}^{2}+{(y'(t))}^{2}+{(z'(t))}^{2},}$$
 <p>we obtain the following theorem, which we use to compute <span data-concept="scalar-line-integral">scalar line integrals</span>.</p>
 <div class="note" id="fs-id1167793380173">
@@ -91,8 +85,8 @@ $$\begin{array}{rl}\int_{C}(x^{2}+y^{2}+z)ds & =2\sqrt{2}\int_0^{\pi}(1+2t)dt \\
 <p>Notice that this agrees with the answer in the previous example. Changing the <span data-concept="vector-parameterization">parameterization</span> did not change the value of the <span data-concept="line-integral">line integral</span>. <span data-concept="scalar-line-integral">Scalar line integrals</span> are independent of <span data-concept="vector-parameterization">parameterization</span>, as long as the curve is traversed exactly once by the <span data-concept="vector-parameterization">parameterization</span>.</p>
 </div>
 <div class="exercises" data-place="fs-id1167793925140"></div>
-<p id="arc-length-term">Now that we can evaluate <span data-concept="line-integral">line integrals</span>, we can use them to calculate arc length. If $\kf(x,y,z)=1,$ then</p>
-$$\begin{array}{ll}\int_{C}\kf(x,y,z)ds & =\lim_{n\to \infty}\sum_{i=1}^{n} \kf(P_i^{*})\Delta s_{i} \\ & =\lim_{n\to \infty}\sum_{i=1}^{n} \Delta s_{i} \\ & =\lim_{n\to \infty}\text{length}(C) \\ & =\text{length}(C).\end{array}$$
+<p id="arc-length-term">Now that we can evaluate <span data-concept="line-integral">line integrals</span>, we can use them to calculate arc length.</p>
+<figure class="dv" id="drv-arc-length-line-integral"></figure>
 <p>Therefore, $\int_{C}1ds$ is the arc length of $C.$</p>
 <div class="example" id="fs-id1167793951920">
 <h3>Example 16.17 · Calculating Arc Length</h3>
@@ -130,8 +124,8 @@ $$\int_{C}\kvecF\cdot {\kvecT}ds= \lim_{n\to \infty}\sum_{i=1}^{n} \kvecF(P_i^{*
 <p>if that limit exists.</p>
 </div>
 <p>With <span data-concept="scalar-line-integral">scalar line integrals</span>, neither the orientation nor the <span data-concept="vector-parameterization">parameterization</span> of the curve matters. As long as the curve is traversed exactly once by the <span data-concept="vector-parameterization">parameterization</span>, the value of the <span data-concept="line-integral">line integral</span> is unchanged. With <span data-concept="vector-line-integral">vector line integrals</span>, the orientation of the curve does matter. If we think of the <span data-concept="line-integral">line integral</span> as computing work, then this makes sense: if you hike up a mountain, then the gravitational force of Earth does negative work on you. If you walk down the mountain by the exact same path, then Earth’s gravitational force does positive work on you. In other words, reversing the path changes the work value from negative to positive in this case. Note that if $\kC$ is an <span data-concept="orientation-of-a-curve">oriented curve</span>, then we let $-\kC$ represent the same curve but with opposite orientation.</p>
-<p>As with <span data-concept="scalar-line-integral">scalar line integrals</span>, it is easier to compute a <span data-concept="vector-line-integral">vector line integral</span> if we express it in terms of the <span data-concept="vector-parameterization">parameterization</span> function $\kvecr$ and the variable $t$. To translate the integral $\int_{C}\kvecF\cdot {\kvecT}ds$ in terms of $t$, note that <span data-concept="principal-unit-tangent-vector">unit tangent vector</span> $\kvecT$ along $\kC$ is given by $\kvecT=\frac{\kvecrprime(t)}{\| \kvecrprime(t)\|}$ (assuming $\| \kvecrprime(t)\| \ne 0).$ Since $ds=\| \kvecrprime(t)\| dt,$ as we saw when discussing <span data-concept="scalar-line-integral">scalar line integrals</span>, we have</p>
-$$\kvecF\cdot {\kvecT}ds=\kvecF(\kvecr(t))\cdot \frac{\kvecrprime(t)}{\| \kvecrprime(t)\|}\| \kvecrprime(t)\| dt=\kvecF(\kvecr(t))\cdot \kvecrprime(t)dt.$$
+<p>As with <span data-concept="scalar-line-integral">scalar line integrals</span>, it is easier to compute a <span data-concept="vector-line-integral">vector line integral</span> if we express it in terms of the <span data-concept="vector-parameterization">parameterization</span> function $\kvecr$ and the variable $t$. To translate the integral $\int_{C}\kvecF\cdot {\kvecT}ds$ in terms of $t$, note that <span data-concept="principal-unit-tangent-vector">unit tangent vector</span> $\kvecT$ along $\kC$ is given by $\kvecT=\frac{\kvecrprime(t)}{\| \kvecrprime(t)\|}$ (assuming $\| \kvecrprime(t)\| \ne 0).$</p>
+<figure class="dv" id="drv-vector-line-integral-in-t"></figure>
 <p>Thus, we have the following formula for computing <span data-concept="vector-line-integral">vector line integrals</span>:</p>
 <div class="equation" id="fs-id1167793635294">$$\int_{C}\kvecF\cdot {\kvecT}ds =\int_a^{b}\kvecF(\kvecr(t)) \cdot \kvecrprime(t)dt.\tag{16.9}$$</div>
 <p>Because of <a href="#fs-id1167793635294">Equation 16.9</a>, we often use the notation $\int_{C}\kvecF\cdot d\mathbf{r}$ for the <span data-concept="line-integral">line integral</span> $\int_{C}\kvecF\cdot {\kvecT}ds.$</p>
@@ -264,8 +258,8 @@ $$\int_{C}\kvecF\cdot {\kvecN}ds= \lim_{n\to \infty}\sum_{i=1}^{n} \kvecF(P_i^{*
 <div class="equation" id="fs-id1167793671510">$$\int_{C}\kvecF\cdot {\kvecN}ds=\int_a^{b}\kvecF(\kvecr(t))\cdot \kvecn(t)dt\tag{16.11}$$</div>
 </div>
 <h3>Proof</h3>
-<p>The proof of <a href="#fs-id1167793671510">Equation 16.11</a> is similar to the proof of <a href="#fs-id1167793952322">Equation 16.8</a>. Before deriving the formula, note that $\| \kvecn(t)\| =\| \langle y'(t),-x'(t)\rangle \| =\sqrt{{(y'(t))}^{2}+{(x'(t))}^{2}}=\| \kvecrprime(t)\| .$ Therefore,</p>
-$$\begin{array}{rl}\int_{C}\kvecF \cdot {\kvecN}ds & =\int_{C}\kvecF\cdot \frac{\kvecn(t)}{\| \kvecn(t)\|}ds \\ & =\int_a^{b}\kvecF\cdot \frac{\kvecn(t)}{\| \kvecn(t)\|}\| \kvecrprime(t)\| dt \\ & =\int_a^{b}\kvecF(\kvecr(t))\cdot \kvecn(t)dt .\end{array}$$
+<p>The proof of <a href="#fs-id1167793671510">Equation 16.11</a> is similar to the proof of <a href="#fs-id1167793952322">Equation 16.8</a>.</p>
+<figure class="dv" id="drv-flux-across-a-curve"></figure>
 <p>□</p>
 <div class="example" id="fs-id1167793385066">
 <h3>Example 16.24 · Flux across a Curve</h3>

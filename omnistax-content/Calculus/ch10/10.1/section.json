@@ -1204,5 +1204,224 @@
    "kind": "correction",
    "html": "Since $p$ converges on $(-1,1],$ the series $p(2x-1)$ converges when $-1\\lt 2x-1\\le 1,$ that is on $(0,1];$ at $x=0,$ $y=-1$ is outside $(-1,1].$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "convergence-of-a-power-series",
+   "what": "the convergence of a power series",
+   "source": "Calculus, 10.1 Power Series and Functions, Convergence of a Power Series",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\sum_{n=0}^{\\infty} c_{n}d^{n}$ converges for some real number $d\\ne 0.$",
+       "src": "10.1"
+      },
+      {
+       "text": "If $\\sum_{n=1}^{\\infty} a_{n}$ converges, then $\\lim_{n\\to \\infty}a_{n}=0.$",
+       "src": "9.3, Divergence Test"
+      },
+      {
+       "text": "A sequence with limit $0$ has all its terms within any distance of $0$ from some index on.",
+       "src": "9.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{lim}{\\lim_{n\\to \\infty}}\\mk{t}{c_{n}d^{n}}=\\mk{z}{0}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "10.1"
+     },
+     "steps": [
+      {
+       "tex": "|\\mk{t}{c_{n}d^{n}}|\\le \\mk{z}{1}\\;\\mk{N}{\\text{for all}\\;n\\ge N}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "lim": "N"
+       },
+       "cap": "Taking the distance $1$ gives an integer $N$ past which every term is within $1$ of $0.$"
+      }
+     ],
+     "src": "10.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{|c_{n}x^{n}|}=\\mk{b}{|c_{n}d^{n}|}\\mk{r}{{|\\frac{x}{d}|}^{n}}",
+      "src": "10.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{|c_{n}x^{n}|}\\le \\mk{r}{{|\\frac{x}{d}|}^{n}}\\;\\mk{N}{\\text{for all}\\;n\\ge N}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "10.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "$|x|\\lt |d|.$",
+       "src": "10.1"
+      },
+      {
+       "text": "A geometric series $\\sum ar^{n}$ converges if $|r|\\lt 1.$",
+       "src": "9.2"
+      },
+      {
+       "text": "If $0\\le a_{n}\\le b_{n}$ for all $n\\ge N$ and $\\sum b_{n}$ converges, then $\\sum a_{n}$ converges.",
+       "src": "9.4, Comparison Test"
+      },
+      {
+       "text": "Adding a finite number of terms to a convergent series leaves it convergent.",
+       "src": "9.2"
+      },
+      {
+       "text": "A series $\\sum a_{n}$ converges absolutely if $\\sum |a_{n}|$ converges.",
+       "src": "9.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sum_{n=N}^{\\infty} {|\\frac{x}{d}|}^{n}}\\;\\mk{c}{\\text{converges}}",
+      "uses": [
+       1,
+       2
+      ],
+      "src": "10.1",
+      "why": "Since $|x|\\lt |d|,$ the ratio $|\\frac{x}{d}|$ is less than $1.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\sum_{n=N}^{\\infty} |c_{n}x^{n}|}\\;\\mk{c}{\\text{converges}}",
+       "uses": [
+        0,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\sum_{n=0}^{\\infty} |c_{n}x^{n}|}\\;\\mk{c}{\\text{converges}}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\sum_{n=0}^{\\infty} c_{n}x^{n}}\\;\\mk{c}{\\text{converges absolutely for}\\;|x|\\lt |d|}",
+       "uses": [
+        5
+       ]
+      }
+     ],
+     "src": "10.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "$S$ is the set of real numbers $x$ for which $\\sum_{n=0}^{\\infty} c_{n}x^{n}$ converges, and $S$ is not the set of all real numbers.",
+       "src": "10.1"
+      },
+      {
+       "text": "A set of real numbers with an upper bound has a smallest upper bound.",
+       "src": "10.1, Least Upper Bound Property"
+      },
+      {
+       "tex": "S\\ne \\{0\\}",
+       "src": "10.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sum_{n=0}^{\\infty} c_{n}{(x^{*})}^{n}}\\;\\mk{c}{\\text{diverges for some}\\;x^{*}\\ne 0}",
+      "uses": [
+       1
+      ],
+      "src": "10.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\sum_{n=0}^{\\infty} c_{n}x^{n}}\\;\\mk{c}{\\text{diverges for}\\;|x|\\gt |x^{*}|}",
+       "uses": [
+        0
+       ],
+       "cap": "If it converged at such an $x,$ it would converge at $x^{*},$ since $|x^{*}|\\lt |x|.$"
+      },
+      {
+       "tex": "\\mk{S}{S}\\subseteq \\mk{c}{[-|x^{*}|,|x^{*}|]}",
+       "uses": [],
+       "map": {
+        "s": "S"
+       }
+      },
+      {
+       "tex": "\\mk{R}{R}=\\mk{S}{\\text{the smallest upper bound of}\\;S}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "c": "R"
+       }
+      },
+      {
+       "tex": "\\mk{R}{R}=\\mk{S}{\\text{the smallest upper bound of}\\;S}\\gt \\mk{p}{0}",
+       "uses": [
+        3
+       ],
+       "cap": "$S$ holds a number other than $0,$ and with it its negative, so its smallest upper bound is positive."
+      }
+     ],
+     "src": "10.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{R}=\\mk{S}{\\text{the smallest upper bound of}\\;S}\\gt \\mk{p}{0}",
+      "src": "10.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\sum_{n=0}^{\\infty} c_{n}x^{n}}\\;\\mk{c}{\\text{converges for}\\;|x|\\lt R}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "R": "c",
+        "S": "s"
+       },
+       "cap": "For $|x|\\lt R$ there is a $d$ in $S$ with $|x|\\lt |d|,$ since $|x|$ is not an upper bound of $S.$"
+      },
+      {
+       "tex": "\\mk{s}{\\sum_{n=0}^{\\infty} c_{n}x^{n}}\\;\\mk{c}{\\text{converges for}\\;|x|\\lt R\\;\\text{and diverges for}\\;|x|\\gt R}",
+       "uses": [
+        0
+       ],
+       "cap": "If it converged at an $x$ with $|x|\\gt R,$ it would converge at every $y$ with $R\\lt y\\lt |x|,$ putting $y$ in $S$ above $R.$"
+      }
+     ],
+     "src": "10.1, Convergence of a Power Series"
+    }
+   ]
+  }
  ]
 }

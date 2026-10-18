@@ -71,3 +71,7 @@ Labels: every figure names under six things; the orders of 27.16 + 27.20 are nam
 - No concept, edge or symbol fix.
 
 Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed, and `p12` (`exer-00001`, `source_section` 27.8) is added with its two `exercise_concepts` rows. Example 27.3's printed 0.815 m against the 0.822 m that $(2.00\;\text{m})\tan 22.33^\circ$ gives is named in `notes` and `exploration.md`; the example stays as printed and the figure, which computes its distances, shows 0.822 m. The key's centimeters for lines per centimeter in the 30,000-line problem is named there too.
+
+## Derivations
+
+- The condition for constructive interference of a grating · score 1 · not built: the book repeats the double slit argument, built once in 27.3

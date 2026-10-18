@@ -227,3 +227,8 @@ in the line wear their own hues.
   drawn in ink.
 - The second AP item's commented-out key, "120 W, 17.14 A", is recorded in
   `exploration.md` § Errata and is not used.
+
+## Derivations
+
+- The transformer equation (printed block) · score 3 · built as drv-transformer-equation: one node, Faraday's law for the secondary divided by the primary's $V_\text{p} = -N_\text{p}\Delta\Phi/\Delta t$ with the same $\Delta\Phi/\Delta t$ on either side; replaces the three displayed lines and the prose between them, the naming sentence after it stays
+- The current ratio of a transformer (printed block) · score 3 · built as drv-transformer-currents: one node, power in equals power out with $P = IV$, joined with the transformer equation; replaces the three displayed lines and the connecting phrases

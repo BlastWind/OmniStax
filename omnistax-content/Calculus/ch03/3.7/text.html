@@ -7,10 +7,8 @@ $$\kfinvprime(a)=\frac{1}{\kfprime(\kfinv(a))}.$$
 <figure class="sim" id="sim-inverse-tangents" data-figure="3.28" data-original="/media/ch03/CNX_Calc_Figure_03_07_001.jpg" data-original-caption="The tangent lines of a function and its inverse are related; so, too, are the derivatives of these functions.">
   <div class="sim-head"><span class="eyebrow">Figure 3.28</span><span>Drag the point along the graph of $\kf:$ its mirror image across the line $y=x$ rides the graph of $\kfinv,$ and so do the two <span data-concept="tangent-line">tangent lines</span>, <span data-ref="tangent-f">the tangent of $\kf$ at $(\kfinv(a),a)$</span> and <span data-ref="tangent-inverse">the tangent of $\kfinv$ at $(a,\kfinv(a))$</span>. The rise and run of one are the run and rise of the other, so their <span data-concept="slope">slopes</span> are reciprocals.</span></div>
 </figure>
-<p>We may also derive the formula for the <span data-concept="derivative">derivative</span> of the inverse by first recalling that $x=\kf(\kfinv(x)).$ Then by differentiating both sides of this equation (using the <span data-concept="chain-rule">chain rule</span> on the right), we obtain</p>
-$$1=\kfprime(\kfinv(x))\kfinvprime(x).$$
-<p>Solving for $\kfinvprime(x),$ we obtain</p>
-$$\kfinvprime(x)=\frac{1}{\kfprime(\kfinv(x))}.\tag{3.19}$$
+<p>We may also derive the formula for the <span data-concept="derivative">derivative</span> of the inverse by first recalling that $x=\kf(\kfinv(x)).$</p>
+<figure class="dv" id="drv-inverse-function-derivative"></figure>
 <p>We summarize this result in the following theorem.</p>
 <div class="note" id="inverse-function-theorem-note">
 <div class="eyebrow">Theorem</div>
@@ -52,12 +50,7 @@ $$\frac{d}{dx}(x^{1/n})=\frac{1}{n}x^{(1/n)-1}.\tag{3.20}$$
 $$\frac{d}{dx}(x^{m/n})=\frac{m}{n}x^{(m/n)-1}.\tag{3.21}$$
 </div>
 <h3>Proof</h3>
-<p>The <span data-concept="function">function</span> $\kg(x)=x^{1/n}$ is the inverse of the <span data-concept="function">function</span> $\kf(x)=x^{n}.$ Since $\kgprime(x)=\frac{1}{\kfprime(\kg(x))},$ begin by finding $\kfprime(x).$ Thus,</p>
-$$\kfprime(x)=nx^{n-1}\;\text{and}\;\kfprime(\kg(x))=n{(x^{1/n})}^{n-1}=nx^{(n-1)/n}.$$
-<p>Finally,</p>
-$$\kgprime(x)=\frac{1}{nx^{(n-1)/n}}=\frac{1}{n}x^{(1-n)/n}=\frac{1}{n}x^{(1/n)-1}.$$
-<p>To differentiate $x^{m/n}$ we must rewrite it as ${(x^{1/n})}^{m}$ and apply the <span data-concept="chain-rule">chain rule</span>. Thus,</p>
-$$\frac{d}{dx}(x^{m/n})=\frac{d}{dx}({(x^{1/n})}^{m})=m{(x^{1/n})}^{m-1}\cdot \frac{1}{n}x^{(1/n)-1}=\frac{m}{n}x^{(m/n)-1}.$$
+<figure class="dv" id="drv-power-rule-rational-exponents"></figure>
 <p>□</p>
 <div class="example" id="fs-id1169739298630">
 <h3>Example 3.62 · Applying the Power Rule to a Rational Power</h3>
@@ -79,10 +72,8 @@ $$y=\frac{1}{3}x+\frac{4}{3}.$$
 <h3>Example 3.63 · Derivative of the Inverse Sine Function</h3>
 <p>Use the <span data-concept="inverse-function-theorem">inverse function theorem</span> to find the <span data-concept="derivative">derivative</span> of <span data-fn="asin(x)">$\kg(x)={\sin }^{-1}x.$</span></p>
 <h4>Solution</h4>
-<p>Since for $x$ in the interval $[-\frac{\pi}{2},\frac{\pi}{2}],\kf(x)=\sin x$ is the inverse of $\kg(x)={\sin }^{-1}x,$ begin by finding $\kfprime(x).$ Since</p>
-$$\kfprime(x)=\cos x\;\text{and}\;\kfprime(\kg(x))=\cos ({\sin }^{-1}x)=\sqrt{1-x^{2}},$$
-<p>we see that</p>
-$$\kgprime(x)=\frac{d}{dx}({\sin }^{-1}x)=\frac{1}{\kfprime(\kg(x))}=\frac{1}{\sqrt{1-x^{2}}}.$$
+<p>Since for $x$ in the interval $[-\frac{\pi}{2},\frac{\pi}{2}],\kf(x)=\sin x$ is the inverse of $\kg(x)={\sin }^{-1}x,$ begin by finding $\kfprime(x).$</p>
+<figure class="dv" id="drv-derivative-of-inverse-sine"></figure>
 <h4>Analysis</h4>
 <p>To see that $\cos ({\sin }^{-1}x)=\sqrt{1-x^{2}},$ consider the following argument. Set ${\sin }^{-1}x=\ktheta .$ In this case, $\sin \ktheta =x$ where $-\frac{\pi}{2}\le \ktheta \le \frac{\pi}{2}.$ We begin by considering the case where $0\lt \ktheta \lt \frac{\pi}{2}.$ Since $\ktheta$ is an acute angle, we may construct a right triangle having acute angle $\ktheta ,$ a hypotenuse of length $1$ and the side opposite angle $\ktheta$ having length $x.$ From the Pythagorean theorem, the side adjacent to angle $\ktheta$ has length $\sqrt{1-x^{2}}.$ This triangle is shown in Figure 3.29. Using the triangle, we see that $\cos ({\sin }^{-1}x)=\cos \ktheta =\sqrt{1-x^{2}}.$</p>
 <figure class="sim" id="fig-sin-inverse-triangle" data-figure="3.29" data-original="/media/ch03/CNX_Calc_Figure_03_07_002.jpg" data-original-caption="Using a right triangle having acute angle θ, a hypotenuse of length 1, and the side opposite angle θ having length x, we can see that cos(sin⁻¹x) = cos θ = √(1−x²).">
@@ -116,6 +107,7 @@ $$\;\frac{d}{dx}{\cot }^{-1}x=\frac{-1}{1+x^{2}}\tag{3.25}$$
 $$\hspace{1.5em}\frac{d}{dx}\;{\sec }^{-1}x=\frac{1}{|x|\sqrt{x^{2}-1}}\tag{3.26}$$
 $$\hspace{1.75em}\frac{d}{dx}\;{\csc }^{-1}x=\frac{-1}{|x|\sqrt{x^{2}-1}}\tag{3.27}$$
 </div>
+<figure class="dv" id="drv-derivatives-of-other-inverse-trigonometric-functions"></figure>
 <div class="example" id="fs-id1169739282715">
 <h3>Example 3.65 · Applying Differentiation Formulas to an Inverse Tangent Function</h3>
 <p>Find the <a href="/calculus/sheets/integral-calculator/?op=derivative&amp;expr=atan(x%5E2)"><span data-concept="derivative">derivative</span></a> of <span data-fn="atan(x^2)">$\kf(x)={\tan }^{-1}(x^{2}).$</span></p>

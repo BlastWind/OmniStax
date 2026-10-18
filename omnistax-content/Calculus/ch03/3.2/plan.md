@@ -78,3 +78,9 @@ Ids confirmed with `ost ids calculus 3.2` after the build.
 - `ost.py`: a variables key whose symbol holds a slash (dy/dx) could not be named; `find_row` now splits the key only as many times as the table has key fields.
 - Corrections: Checkpoint 3.10's hint (Example 3.13 for 3.16), exercise 105's key (f″ for F″).
 - Review rows 367–371 and 387 are written by mk.py once 3.9 is built.
+
+
+## Derivations
+
+- Differentiability Implies Continuity · Proof · score 2 · built as drv-differentiability-implies-continuity (the displayed definition and the proof's array replaced; "We want to show…" and the conclusion stay)
+- Derivatives and Continuity, f(x) = |x| at 0 (with the cube root and x sin(1/x) beside it) · score 1 · not built: two-move counterexamples worked in place, under the floor; they stay as printed

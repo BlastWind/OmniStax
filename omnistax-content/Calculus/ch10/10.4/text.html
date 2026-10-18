@@ -11,18 +11,14 @@ $$\begin{array}{l} \\ \kf(x)={(1+x)}^{0}=1, \\ \kf(x)={(1+x)}^{1}=1+x, \\ \kf(x)
 <p>For example, using this formula for $r=5,$ we see that</p>
 $$\begin{array}{rl}\kf(x) & ={(1+x)}^{5} \\ & =\binom{5}{0}1+\binom{5}{1}x+\binom{5}{2}x^{2}+\binom{5}{3}x^{3}+\binom{5}{4}x^{4}+\binom{5}{5}x^{5} \\ & =\frac{5!}{0!5!}1+\frac{5!}{1!4!}x+\frac{5!}{2!3!}x^{2}+\frac{5!}{3!2!}x^{3}+\frac{5!}{4!1!}x^{4}+\frac{5!}{5!0!}x^{5} \\ & =1+5x+10x^{2}+10x^{3}+5x^{4}+x^{5}.\end{array}$$
 <p>We now consider the case when the exponent $r$ is any real number, not necessarily a nonnegative integer. If $r$ is not a nonnegative integer, then $\kf(x)={(1+x)}^{r}$ cannot be written as a finite polynomial. However, we can find a <span data-concept="power-series">power series</span> for $f.$ Specifically, we look for the <span data-concept="maclaurin-series">Maclaurin series</span> for $f.$ To do this, we find the derivatives of $f$ and evaluate them at $x=0.$</p>
-$$\begin{array}{rllllrll}\kf(x) & = & {(1+x)}^{r} & & & \kf(0) & = & 1 \\ \kfprime(x) & = & r{(1+x)}^{r-1} & & & \kfprime(0) & = & r \\ \kfdprime(x) & = & r(r-1){(1+x)}^{r-2} & & & \kfdprime(0) & = & r(r-1) \\ \kftprime(x) & = & r(r-1)(r-2){(1+x)}^{r-3} & & & \kftprime(0) & = & r(r-1)(r-2) \\ \kfn(x) & = & r(r-1)(r-2)\cdots (r-n+1){(1+x)}^{r-n} & & & \kfn(0) & = & r(r-1)(r-2)\cdots (r-n+1)\end{array}$$
-<p>We conclude that the coefficients in the <span data-concept="binomial-series">binomial series</span> are given by</p>
-<div class="equation" id="fs-id1167023896721">$$\frac{\kfn(0)}{n!}=\frac{r(r-1)(r-2)\cdots (r-n+1)}{n!}.\tag{10.8}$$</div>
-<p>We note that if $r$ is a nonnegative integer, then the $(r+1)\text{st}$ derivative $f^{(r+1)}$ is the zero function, and the series terminates. In addition, if $r$ is a nonnegative integer, then <a href="#fs-id1167023896721">Equation 10.8</a> for the coefficients agrees with <a href="#fs-id1167023717125">Equation 10.6</a> for the coefficients, and the formula for the <span data-concept="binomial-series">binomial series</span> agrees with <a href="#fs-id1167023919069">Equation 10.7</a> for the finite <span data-concept="binomial-coefficient">binomial expansion</span>. More generally, to denote the <span data-concept="binomial-coefficient">binomial coefficients</span> for any real number $r,$ we define</p>
+<figure class="dv" id="drv-binomial-series-coefficients"></figure>
+<p>We note that if $r$ is a nonnegative integer, then the $(r+1)\text{st}$ derivative $f^{(r+1)}$ is the zero function, and the series terminates. In addition, if $r$ is a nonnegative integer, then <a href="#drv-binomial-series-coefficients">Equation 10.8</a> for the coefficients agrees with <a href="#fs-id1167023717125">Equation 10.6</a> for the coefficients, and the formula for the <span data-concept="binomial-series">binomial series</span> agrees with <a href="#fs-id1167023919069">Equation 10.7</a> for the finite <span data-concept="binomial-coefficient">binomial expansion</span>. More generally, to denote the <span data-concept="binomial-coefficient">binomial coefficients</span> for any real number $r,$ we define</p>
 <div class="equation" id="binomial-coefficient-general">$$\binom{r}{n}=\frac{r(r-1)(r-2)\cdots (r-n+1)}{n!}.$$</div>
 <p>With this notation, we can write the <span data-concept="binomial-series">binomial series</span> for ${(1+x)}^{r}$ as</p>
 <div class="equation" id="fs-id1167024036610">$$\sum_{n=0}^{\infty} \binom{r}{n}x^{n}=1+rx+\frac{r(r-1)}{2!}x^{2}+\cdots +\frac{r(r-1)\cdots (r-n+1)}{n!}x^{n}+\cdots .\tag{10.9}$$</div>
-<p>We now need to determine the <span data-concept="interval-of-convergence">interval of convergence</span> for the <span data-concept="binomial-series">binomial series</span> <a href="#fs-id1167024036610">Equation 10.9</a>. We apply the <span data-concept="ratio-test">ratio test</span>. Consequently, we consider</p>
-$$\begin{array}{rl}\frac{|a_{n+1}|}{|a_{n}|} & =\frac{|r(r-1)(r-2)\cdots (r-n)|{|x|}^{n+1}}{(n+1)!}\cdot \frac{n!}{|r(r-1)(r-2)\cdots (r-n+1)|{|x|}^{n}} \\ & =\frac{|r-n||x|}{|n+1|}.\end{array}$$
-<p>Since</p>
-$$\lim_{n\to \infty}\frac{|a_{n+1}|}{|a_{n}|}=|x|\lt 1$$
-<p>if and only if $|x|\lt 1,$ we conclude that the <span data-concept="interval-of-convergence">interval of convergence</span> for the <span data-concept="binomial-series">binomial series</span> is $(-1,1).$ The behavior at the endpoints depends on $r.$ It can be shown that for $r\ge 0$ the series converges at both endpoints; for $-1\lt r\lt 0,$ the series converges at $x=1$ and diverges at $x=-1;$ and for $r\lt -1,$ the series diverges at both endpoints. The <span data-concept="binomial-series">binomial series</span> does converge to ${(1+x)}^{r}$ in $(-1,1)$ for all real numbers $r,$ but proving this fact by showing that the remainder $\kR_{n}(x)\to 0$ is difficult.</p>
+<p>We now need to determine the <span data-concept="interval-of-convergence">interval of convergence</span> for the <span data-concept="binomial-series">binomial series</span> <a href="#fs-id1167024036610">Equation 10.9</a>.</p>
+<figure class="dv" id="drv-binomial-series-interval"></figure>
+<p>The behavior at the endpoints depends on $r.$ It can be shown that for $r\ge 0$ the series converges at both endpoints; for $-1\lt r\lt 0,$ the series converges at $x=1$ and diverges at $x=-1;$ and for $r\lt -1,$ the series diverges at both endpoints. The <span data-concept="binomial-series">binomial series</span> does converge to ${(1+x)}^{r}$ in $(-1,1)$ for all real numbers $r,$ but proving this fact by showing that the remainder $\kR_{n}(x)\to 0$ is difficult.</p>
 <div class="note" id="fs-id1167023778748">
 <div class="eyebrow">Definition</div>
 <p>For any real number $r,$ the <span data-concept="maclaurin-series">Maclaurin series</span> for $\kf(x)={(1+x)}^{r}$ is the <span data-concept="binomial-series">binomial series</span>. It converges to $f$ for $|x|\lt 1,$ and we write</p>
@@ -224,19 +220,10 @@ $$\frac{1}{\sqrt{1+x}}=1+\sum_{n=1}^{\infty} \frac{{(-1)}^{n}}{n!} \;\frac{1\cdo
   <div class="sim-head"><span class="eyebrow">Figure 10.12</span><span>A pendulum of length $L$ swinging between $-{\ktheta}_{\text{max}}$ and ${\ktheta}_{\text{max}}$ about its equilibrium position, and its period plotted against ${\ktheta}_{\text{max}}.$ Drag the angle: the one-term estimate $2\pi \sqrt{\frac{L}{g}}$ ignores the amplitude, the two-term estimate follows the true period for moderate angles, and both fall short as the swing approaches the top.</span></div>
 </figure>
 <h4>Solution</h4>
-<p>We use the <span data-concept="binomial-series">binomial series</span>, replacing $x$ with $-k^{2}{\sin }^{2}\ktheta .$ Then we can write the period as</p>
-$$T=4\sqrt{\frac{L}{g}}\int_0^{\pi /2}(1+\frac{1}{2}k^{2}{\sin }^{2}\ktheta +\frac{1\cdot 3}{2!2^{2}}k^{4}{\sin }^{4}\ktheta +\cdots )\;d\theta .$$
-<p>a. Using just the first term in the integrand, the first-order estimate is</p>
-$$T\approx 4\sqrt{\frac{L}{g}}\int_0^{\pi /2}d\theta =2\pi \sqrt{\frac{L}{g}}.$$
-<p>If ${\ktheta}_{\text{max}}$ is small, then $k=\sin (\frac{{\ktheta}_{\text{max}}}{2})$ is small. We claim that when $k$ is small, this is a good estimate. To justify this claim, consider</p>
-$$\int_0^{\pi /2}(1+\frac{1}{2}k^{2}{\sin }^{2}\ktheta +\frac{1\cdot 3}{2!2^{2}}k^{4}{\sin }^{4}\ktheta +\cdots )\;d\theta .$$
-<p>Since $|\sin x|\le 1,$ this integral is bounded by</p>
-<div class="equation">$$\int_0^{\pi /2}(\frac{1}{2}k^{2}+\frac{1.3}{2!2^{2}}k^{4}+\cdots )\;d\theta \lt \frac{\pi}{2}(\frac{1}{2}k^{2}+\frac{1\cdot 3}{2!2^{2}}k^{4}+\cdots ).$$<sup class="fn" data-note="c-ex1024-dot"></sup></div>
-<p>Furthermore, it can be shown that each coefficient on the right-hand side is less than $1$ and, therefore, that this expression is bounded by</p>
-$$\frac{\pi k^{2}}{2}(1+k^{2}+k^{4}+\cdots )=\frac{\pi k^{2}}{2}\cdot \frac{1}{1-k^{2}},$$
-<p>which is small for $k$ small.</p>
-<p>b. For larger values of ${\ktheta}_{\text{max}},$ we can approximate $T$ by using more terms in the integrand. By using the first two terms in the integral, we arrive at the estimate</p>
-$$\begin{array}{rl}T & \approx 4\sqrt{\frac{L}{g}}\int_0^{\pi /2}(1+\frac{1}{2}k^{2}{\sin }^{2}\ktheta )d \ktheta \\ & =2\pi \sqrt{\frac{L}{g}}(1+\frac{k^{2}}{4}).\end{array}$$
+<p>We use the <span data-concept="binomial-series">binomial series</span>, replacing $x$ with $-k^{2}{\sin }^{2}\ktheta .$</p>
+<p>a. If ${\ktheta}_{\text{max}}$ is small, then $k=\sin (\frac{{\ktheta}_{\text{max}}}{2})$ is small. We claim that when $k$ is small, the first-order estimate is a good estimate.</p>
+<p>b. For larger values of ${\ktheta}_{\text{max}},$ we can approximate $T$ by using more terms in the integrand.</p>
+<figure class="dv" id="drv-pendulum-period"></figure>
 </div>
 <p>The applications of <span data-concept="taylor-series">Taylor series</span> in this section are intended to highlight their importance. In general, <span data-concept="taylor-series">Taylor series</span> are useful because they allow us to represent known functions using polynomials, thus providing us a tool for approximating function values and estimating complicated integrals. In addition, they allow us to define new functions as <span data-concept="power-series">power series</span>, thus providing us with a powerful tool for solving <span data-concept="differential-equation">differential equations</span>.</p>
 </section>

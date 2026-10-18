@@ -886,5 +886,118 @@
         "sim-cost-of-lighting"
       ]
     }
+  ],
+  "derivations": [
+    {
+      "id": "electric-power",
+      "what": "the three expressions for electric power",
+      "source": "College Physics 2e, 20.4 Electric Power and Energy",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "\\kPEtot = \\kq\\kV",
+              "src": "20.4"
+            },
+            {
+              "tex": "\\kIcur = \\dfrac{\\kq}{\\kt}",
+              "src": "20.1"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{P}{\\kP} = \\dfrac{\\mk{E}{\\kPEtot}}{\\mk{t}{\\kt}}",
+            "src": "7.7",
+            "why": "Power is the rate at which energy is moved."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{P}{\\kP} = \\dfrac{\\mk{q}{\\kq}\\mk{E}{\\kV}}{\\mk{t}{\\kt}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur}\\mk{E}{\\kV}",
+              "uses": [
+                1
+              ],
+              "map": {
+                "t": "q"
+              }
+            }
+          ],
+          "src": "20.4"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "tex": "\\kIcur = \\dfrac{\\kV}{\\kRes}",
+              "src": "20.2"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur}\\mk{E}{\\kV}",
+            "src": "20.4"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{P}{\\kP} = \\mk{q}{(\\kV/\\kRes)}\\mk{E}{\\kV}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{P}{\\kP} = \\dfrac{\\mk{q}{\\kV^{2}}}{\\mk{R}{\\kRes}}",
+              "uses": [],
+              "map": {
+                "E": "q",
+                "q": [
+                  "q",
+                  "R"
+                ]
+              }
+            }
+          ],
+          "src": "20.4"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "tex": "\\kV = \\kIcur\\kRes",
+              "src": "20.2"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur}\\mk{E}{\\kV}",
+            "src": "20.4"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur}\\mk{E}{(\\kIcur\\kRes)}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{P}{\\kP} = \\mk{q}{\\kIcur^{2}}\\mk{R}{\\kRes}",
+              "uses": [],
+              "map": {
+                "E": [
+                  "q",
+                  "R"
+                ]
+              }
+            }
+          ],
+          "src": "20.4"
+        }
+      ]
+    }
   ]
 }

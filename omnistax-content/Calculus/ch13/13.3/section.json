@@ -1150,11 +1150,6 @@
    "html": "As $t$ runs from $0$ to $h$ the helix completes $N$ turns, so $h$ is the height of the whole helix; two consecutive turns are $\\frac{h}{N}$ apart, and the two agree only when $N=1.$"
   },
   {
-   "id": "c-proof-cite",
-   "kind": "correction",
-   "html": "The book cites Alternative Formulas for Curvature, the theorem being proved. The step that follows is the dot product rule, property iv of <a href=\"/calculus/ch13/13.2/#13.2-fs-id1169739260277\">Properties of the Derivative of Vector-Valued Functions</a>."
-  },
-  {
    "id": "c-ex12-binormal",
    "kind": "correction",
    "html": "Equation 13.17 is the curvature of a graph; the binormal vector is Equation 13.19, $\\mathbf{B}(t)=\\mathbf{T}(t)\\times\\mathbf{N}(t),$ which the calculation uses. Its $\\mathbf{k}$-component is printed $\\frac{-15-15t^{2}}{25(t^{2}+1)}$; the determinant gives $\\frac{15+15t^{2}}{25(t^{2}+1)},$ as the next line uses, and $\\mathbf{B}(t)=\\frac{4}{5}\\mathbf{i}+\\frac{3}{5}\\mathbf{k}.$"
@@ -1174,6 +1169,697 @@
    "kind": "correction",
    "figure": "fig-osculating-cubic",
    "html": "The caption’s “the point where $t=1$” is the point where $x=1.$"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "alternative-curvature-formulas",
+   "what": "the alternative formulas for curvature",
+   "source": "Calculus, 13.3 Arc Length and Curvature, Curvature",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dt}[\\;\\kvecr(\\kf(t))]=\\kvecrprime(\\kf(t))\\cdot \\kfprime(t)",
+       "src": "13.2, Properties of the Derivative of Vector-Valued Functions, vi"
+      },
+      {
+       "tex": "\\frac{ds}{dt}>0",
+       "src": "13.3, Arc-Length Function"
+      },
+      {
+       "tex": "\\kkappa =\\| \\frac{d\\;\\kvecT}{ds}\\|",
+       "src": "13.3, Definition"
+      },
+      {
+       "tex": "\\| k\\kvecv\\| =|k|\\cdot \\| \\kvecv\\|",
+       "src": "12.1"
+      },
+      {
+       "tex": "\\frac{ds}{dt}=\\| \\kvecrprime(t)\\|",
+       "src": "13.3, Arc-Length Function"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\frac{d\\textbf{T}}{dt}}=\\mk{b}{\\frac{d\\textbf{T}}{ds}}\\;\\mk{c}{\\frac{ds}{dt}}",
+      "uses": [
+       0
+      ],
+      "why": "$\\kvecT$ depends on $t$ through the arc length $\\ks$ along $C$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{b}{\\frac{d\\textbf{T}}{ds}}=\\frac{\\mk{a}{\\kvecTprime(t)}}{\\mk{c}{\\frac{ds}{dt}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{b}{\\| \\frac{d\\textbf{T}}{ds}\\|}=\\| \\frac{\\mk{a}{\\kvecTprime(t)}}{\\mk{c}{\\frac{ds}{dt}}}\\|",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{b}{\\kkappa}=\\| \\frac{\\mk{a}{\\kvecTprime(t)}}{\\mk{c}{\\frac{ds}{dt}}}\\|",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{b}{\\kkappa}=\\frac{\\mk{a}{\\| \\kvecTprime(t)\\|}}{\\mk{c}{\\frac{ds}{dt}}}",
+       "uses": [
+        3,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{b}{\\kkappa}=\\frac{\\mk{a}{\\| \\kvecTprime(t)\\|}}{\\mk{c}{\\| \\kvecrprime(t)\\|}}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "num": "(13.15)",
+     "src": "13.3, Alternative Formulas for Curvature"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{ds}{dt}=\\| \\kvecrprime(t)\\|",
+       "src": "13.3, Arc-Length Function"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\kvecT(t)}=\\frac{\\mk{r}{\\kvecrprime(t)}}{\\mk{n}{\\| \\kvecrprime(t)\\|}}",
+      "src": "13.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kvecT(t)}=\\frac{\\mk{r}{\\kvecrprime(t)}}{\\mk{n}{\\frac{ds}{dt}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\kvecrprime(t)}=\\mk{n}{\\frac{ds}{dt}}\\mk{T}{\\kvecT(t)}",
+       "uses": []
+      }
+     ],
+     "src": "13.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\frac{d}{dt}[\\kf(t)\\;\\kvecu(t)]=\\kfprime(t)\\;\\kvecu(t)+\\kf(t)\\;\\kvecuprime(t)",
+       "src": "13.2, Properties of the Derivative of Vector-Valued Functions, iii"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kvecrprime(t)}=\\mk{n}{\\frac{ds}{dt}}\\mk{T}{\\kvecT(t)}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\kvecrdprime(t)}=\\mk{a}{\\frac{d^{2}\\ks}{dt^{2}}\\kvecT(t)}+\\mk{b}{\\frac{ds}{dt}\\kvecTprime(t)}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "n": [
+         "a",
+         "b"
+        ],
+        "T": [
+         "a",
+         "b"
+        ]
+       }
+      }
+     ],
+     "src": "13.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kvecu\\;\\times \\;(\\kvecv+\\kvecw)=\\kvecu\\;\\times \\;\\kvecv+\\kvecu\\;\\times \\;\\kvecw",
+       "src": "12.4, Properties of the Cross Product, ii"
+      },
+      {
+       "tex": "c(\\kvecu\\;\\times \\;\\kvecv)=(c\\kvecu)\\;\\times \\;\\kvecv=\\kvecu\\;\\times \\;(c\\kvecv)",
+       "src": "12.4, Properties of the Cross Product, iii"
+      },
+      {
+       "tex": "\\kvecv\\;\\times \\;\\kvecv=\\kveczero",
+       "src": "12.4, Properties of the Cross Product, v"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)}=\\mk{a}{\\frac{ds}{dt}\\kvecT(t)}\\;\\times \\;\\mk{b}{(\\frac{d^{2}\\ks}{dt^{2}}\\kvecT(t)+\\frac{ds}{dt}\\kvecTprime(t))}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)}=\\mk{p}{\\frac{ds}{dt}\\;\\frac{d^{2}\\ks}{dt^{2}}\\kvecT(t)\\;\\times \\;\\kvecT(t)}+\\mk{q}{{(\\frac{ds}{dt})}^{2}\\kvecT(t)\\;\\times \\;\\kvecTprime(t)}",
+       "uses": [
+        2,
+        3
+       ],
+       "map": {
+        "a": [
+         "p",
+         "q"
+        ],
+        "b": [
+         "p",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)}=\\mk{q}{{(\\frac{ds}{dt})}^{2}\\kvecT(t)\\;\\times \\;\\kvecTprime(t)}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "13.3"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\|\\kvecT(t)\\|=1",
+       "src": "13.2"
+      },
+      {
+       "tex": "\\kvecv\\cdot \\kvecv={\\| \\kvecv\\|}^{2}",
+       "src": "12.3, Properties of the Dot Product"
+      },
+      {
+       "tex": "\\frac{d}{dt}[\\;\\kvecr(t)\\cdot \\;\\kvecu(t)]=\\kvecrprime(t)\\cdot \\;\\kvecu(t)+\\;\\kvecr(t)\\cdot \\;\\kvecuprime(t)",
+       "src": "13.2, Properties of the Derivative of Vector-Valued Functions, iv"
+      },
+      {
+       "text": "The derivative of a constant is zero.",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "text": "The dot product is commutative: $\\kvecu\\cdot\\kvecv=\\kvecv\\cdot\\kvecu$.",
+       "src": "12.3, Properties of the Dot Product"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kvecT(t)\\cdot \\kvecT(t)}=\\mk{n}{{\\|\\kvecT(t)\\|}^{2}}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kvecT(t)\\cdot \\kvecT(t)}=\\mk{n}{1}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{z}{0}=\\mk{d}{\\frac{d}{dt}(\\kvecT(t)\\cdot \\kvecT(t))}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "n": "z"
+       }
+      },
+      {
+       "tex": "\\mk{z}{0}=\\mk{d}{\\kvecTprime(t)\\cdot \\kvecT(t)+\\kvecT(t)\\cdot \\kvecTprime(t)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{z}{0}=\\mk{d}{2\\kvecTprime(t)\\cdot \\kvecT(t)}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kvecTprime\\cdot \\kvecT}=\\mk{z}{0}",
+       "uses": []
+      }
+     ],
+     "src": "13.3",
+     "note": "The book cites Alternative Formulas for Curvature, the theorem being proved, for the derivative of $\\kvecT(t)\\cdot\\kvecT(t)$; it is property iv of the derivative, the dot product rule (13.2)."
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "text": "Nonzero vectors are orthogonal exactly when their dot product is zero.",
+       "src": "12.3, Orthogonal Vectors"
+      },
+      {
+       "tex": "\\| \\kvecu\\;\\times \\;\\kvecv\\| =\\| \\kvecu\\| \\cdot \\| \\kvecv\\| \\cdot \\sin \\ktheta",
+       "src": "12.4, Magnitude of the Cross Product"
+      },
+      {
+       "tex": "\\|\\kvecT(t)\\|=1",
+       "src": "13.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\|\\kvecT\\times \\kvecTprime\\|}=\\mk{a}{\\|\\kvecT\\|}\\,\\mk{b}{\\|\\kvecTprime\\|}\\mk{s}{\\sin \\ktheta}",
+      "uses": [
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\|\\kvecT\\times \\kvecTprime\\|}=\\mk{a}{\\|\\kvecT\\|}\\,\\mk{b}{\\|\\kvecTprime\\|}\\mk{s}{\\sin \\frac{\\pi}{2}}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "$\\kvecTprime\\cdot\\kvecT=0$, so $\\kvecT$ and $\\kvecTprime$ are perpendicular and the angle between them is $\\frac{\\pi}{2}$."
+      },
+      {
+       "tex": "\\mk{l}{\\|\\kvecT\\times \\kvecTprime\\|}=\\mk{b}{\\|\\kvecTprime\\|}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "13.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "step": 5
+      },
+      {
+       "tex": "\\| k\\kvecv\\| =|k|\\cdot \\| \\kvecv\\|",
+       "src": "12.1"
+      },
+      {
+       "tex": "\\frac{ds}{dt}=\\| \\kvecrprime(t)\\|",
+       "src": "13.3, Arc-Length Function"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)}=\\mk{q}{{(\\frac{ds}{dt})}^{2}\\kvecT(t)\\;\\times \\;\\kvecTprime(t)}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\|\\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)\\|}=\\mk{c}{{(\\frac{ds}{dt})}^{2}}\\mk{x}{\\|\\kvecT(t)\\;\\times \\;\\kvecTprime(t)\\|}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "q": [
+         "c",
+         "x"
+        ]
+       },
+       "cap": "Taking magnitudes; the factor ${(\\frac{ds}{dt})}^{2}$ is not negative, so it comes out unchanged."
+      },
+      {
+       "tex": "\\mk{l}{\\|\\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)\\|}=\\mk{c}{{(\\frac{ds}{dt})}^{2}}\\mk{x}{\\|\\kvecTprime(t)\\|}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\| \\kvecTprime(t)\\|}=\\frac{\\mk{l}{\\| \\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)\\|}}{\\mk{c}{{(\\frac{ds}{dt})}^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{x}{\\| \\kvecTprime(t)\\|}=\\frac{\\mk{l}{\\| \\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)\\|}}{\\mk{c}{{\\| \\kvecrprime(t)\\|}^{2}}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "13.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 6
+      }
+     ],
+     "then": {
+      "tex": "\\mk{b}{\\kkappa}=\\frac{\\mk{a}{\\| \\kvecTprime(t)\\|}}{\\mk{c}{\\| \\kvecrprime(t)\\|}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{b}{\\kkappa}=\\frac{\\mk{a}{\\frac{\\| \\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)\\|}{{\\| \\kvecrprime(t)\\|}^{2}}}}{\\mk{c}{\\| \\kvecrprime(t)\\|}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{b}{\\kkappa}=\\frac{\\mk{a}{\\| \\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)\\|}}{\\mk{c}{{\\| \\kvecrprime(t)\\|}^{3}}}",
+       "uses": []
+      }
+     ],
+     "num": "(13.16)",
+     "src": "13.3, Alternative Formulas for Curvature"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The graph of $y=\\kf(x)$ is traced by $\\kvecr(t)=x\\;\\kveci+\\kf(x)\\;\\kvecj+0\\;\\kveck$ with $x=t$.",
+       "src": "13.3"
+      },
+      {
+       "text": "A vector-valued function is differentiated component by component: if $\\kvecr(t)=\\kf(t)\\,\\kveci+\\kg(t)\\,\\kvecj+\\kh(t)\\,\\kveck$, then $\\kvecrprime(t)=\\kfprime(t)\\,\\kveci+\\kgprime(t)\\,\\kvecj+\\khprime(t)\\,\\kveck$.",
+       "src": "13.2, Differentiation of Vector-Valued Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kvecr(t)}=\\mk{x}{x\\;\\kveci}+\\mk{y}{\\kf(x)\\;\\kvecj}+\\mk{z}{0\\;\\kveck}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\kvecrprime(t)}=\\mk{x}{\\kveci}+\\mk{y}{\\kfprime(x)\\;\\kvecj}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 8
+      },
+      {
+       "text": "A vector-valued function is differentiated component by component: if $\\kvecr(t)=\\kf(t)\\,\\kveci+\\kg(t)\\,\\kvecj+\\kh(t)\\,\\kveck$, then $\\kvecrprime(t)=\\kfprime(t)\\,\\kveci+\\kgprime(t)\\,\\kvecj+\\khprime(t)\\,\\kveck$.",
+       "src": "13.2, Differentiation of Vector-Valued Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kvecrprime(t)}=\\mk{x}{\\kveci}+\\mk{y}{\\kfprime(x)\\;\\kvecj}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\kvecrdprime(t)}=\\mk{y}{\\kfdprime(x)\\;\\kvecj}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 8
+      },
+      {
+       "step": 9
+      },
+      {
+       "tex": "\\kvecu\\;\\times \\;\\kvecv=\\left|\\begin{array}{lll}\\kveci & \\kvecj & \\kveck \\\\ u_{1} & u_{2} & u_{3} \\\\ v_{1} & v_{2} & v_{3}\\end{array}\\right|",
+       "src": "12.4, Cross Product Calculated by a Determinant"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)}=\\mk{d}{\\left|\\begin{array}{lll}\\kveci & \\kvecj & \\kveck \\\\ 1 & \\kfprime(x) & 0 \\\\ 0 & \\kfdprime(x) & 0\\end{array}\\right|}",
+      "uses": [
+       0,
+       1,
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)}=\\mk{d}{\\kfdprime(x)\\;\\kveck}",
+       "uses": [],
+       "cap": "Expanding along the first row, only the $\\kveck$ term survives: $\\kveck\\,(1\\cdot\\kfdprime(x)-\\kfprime(x)\\cdot 0)$."
+      }
+     ],
+     "src": "13.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 7
+      },
+      {
+       "step": 8
+      },
+      {
+       "step": 10
+      },
+      {
+       "tex": "\\|x\\kveci+y\\kvecj+z\\kveck\\|=\\sqrt{x^{2}+y^{2}+z^{2}}",
+       "src": "12.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{b}{\\kkappa}=\\frac{\\mk{a}{\\| \\kvecrprime(t)\\;\\times \\;\\kvecrdprime(t)\\|}}{\\mk{c}{{\\| \\kvecrprime(t)\\|}^{3}}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{b}{\\kkappa}=\\frac{\\mk{a}{\\| \\kfdprime(x)\\;\\kveck\\|}}{\\mk{c}{{\\| \\kveci+\\kfprime(x)\\;\\kvecj\\|}^{3}}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{b}{\\kkappa}=\\frac{\\mk{a}{|\\kfdprime(x)|}}{\\mk{c}{{(1+{(\\kfprime(x))}^{2})}^{3/2}}}",
+       "uses": [
+        3
+       ],
+       "cap": "$\\| \\kveci+\\kfprime(x)\\kvecj\\|=\\sqrt{1+{(\\kfprime(x))}^{2}}$, whose cube is ${(1+{(\\kfprime(x))}^{2})}^{3/2}$."
+      }
+     ],
+     "num": "(13.17)",
+     "src": "13.3, Alternative Formulas for Curvature"
+    }
+   ]
+  },
+  {
+   "id": "helix-arc-length",
+   "what": "the arc length of a helix",
+   "source": "Calculus, 13.3 Arc Length and Curvature, Arc Length for Vector Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A vector-valued function is differentiated component by component: if $\\kvecr(t)=\\kf(t)\\,\\kveci+\\kg(t)\\,\\kvecj+\\kh(t)\\,\\kveck$, then $\\kvecrprime(t)=\\kfprime(t)\\,\\kveci+\\kgprime(t)\\,\\kvecj+\\khprime(t)\\,\\kveck$.",
+       "src": "13.2, Differentiation of Vector-Valued Functions"
+      },
+      {
+       "text": "The derivatives $\\frac{d}{dt}\\sin t=\\cos t$ and $\\frac{d}{dt}\\cos t=-\\sin t$.",
+       "src": "3.5"
+      },
+      {
+       "text": "The chain rule: $\\frac{d}{dt}\\kf(\\kg(t))=\\kfprime(\\kg(t))\\kgprime(t)$.",
+       "src": "3.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kvecr(t)}=\\mk{x}{R\\;\\cos (\\frac{2\\pi Nt}{h})\\;\\kveci}+\\mk{y}{R\\;\\sin (\\frac{2\\pi Nt}{h})\\;\\kvecj}+\\mk{z}{t\\;\\kveck}",
+      "src": "13.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\kvecrprime(t)}=\\mk{x}{-\\frac{2\\pi NR}{h}\\sin (\\frac{2\\pi Nt}{h})\\;\\kveci}+\\mk{y}{\\frac{2\\pi NR}{h}\\cos (\\frac{2\\pi Nt}{h})\\;\\kvecj}+\\mk{z}{\\kveck}",
+       "uses": [
+        0,
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "13.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "0\\le t\\le h",
+       "src": "13.3"
+      },
+      {
+       "tex": "\\|x\\kveci+y\\kvecj+z\\kveck\\|=\\sqrt{x^{2}+y^{2}+z^{2}}",
+       "src": "12.2"
+      },
+      {
+       "text": "If $F$ is an antiderivative of $f$ over $[a,b]$, then $\\int_a^{b}f(t)\\,dt=F(b)-F(a)$.",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 2"
+      },
+      {
+       "tex": "h>0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks}=\\mk{I}{\\int_a^{b}\\| \\kvecrprime(t)\\| \\;dt}",
+      "src": "(13.12)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{I}{\\int_0^{h}\\| \\kvecrprime(t)\\| \\;dt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{I}{\\int_0^{h}\\sqrt{{(-\\frac{2\\pi NR}{h}\\sin (\\frac{2\\pi Nt}{h}))}^{2}+{(\\frac{2\\pi NR}{h}\\cos (\\frac{2\\pi Nt}{h}))}^{2}+1^{2}}dt}",
+       "uses": [
+        0,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{I}{\\int_0^{h}\\sqrt{\\frac{4{\\pi}^{2}N^{2}R^{2}}{h^{2}}({\\sin }^{2}(\\frac{2\\pi Nt}{h})+{\\cos }^{2}(\\frac{2\\pi Nt}{h}))+1} dt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{I}{\\int_0^{h}\\sqrt{\\frac{4{\\pi}^{2}N^{2}R^{2}}{h^{2}}+1} dt}",
+       "uses": [],
+       "cap": "$\\sin^{2}\\ktheta+\\cos^{2}\\ktheta=1$ for every angle."
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{I}{{[t\\sqrt{\\frac{4{\\pi}^{2}N^{2}R^{2}}{h^{2}}+1}]}_0^{h}}",
+       "uses": [
+        3
+       ],
+       "cap": "The integrand does not depend on $t$, so $t\\sqrt{\\frac{4{\\pi}^{2}N^{2}R^{2}}{h^{2}}+1}$ is an antiderivative."
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{I}{h\\sqrt{\\frac{4{\\pi}^{2}N^{2}R^{2}}{h^{2}}+1}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{I}{h\\sqrt{\\frac{4{\\pi}^{2}N^{2}R^{2}+h^{2}}{h^{2}}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\mk{I}{\\sqrt{4{\\pi}^{2}N^{2}R^{2}+h^{2}}}",
+       "uses": [
+        4
+       ],
+       "cap": "Since $h>0,$ $\\sqrt{h^{2}}=h$, which cancels the factor $h$."
+      }
+     ],
+     "src": "13.3"
+    }
+   ]
+  },
+  {
+   "id": "speed-along-a-curve",
+   "what": "the rate of change of arc length",
+   "source": "Calculus, 13.3 Arc Length and Curvature, Arc-Length Parameterization",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A vector-valued function is differentiated component by component: if $\\kvecr(t)=\\kf(t)\\,\\kveci+\\kg(t)\\,\\kvecj+\\kh(t)\\,\\kveck$, then $\\kvecrprime(t)=\\kfprime(t)\\,\\kveci+\\kgprime(t)\\,\\kvecj+\\khprime(t)\\,\\kveck$.",
+       "src": "13.2, Differentiation of Vector-Valued Functions"
+      },
+      {
+       "tex": "\\|x\\kveci+y\\kvecj+z\\kveck\\|=\\sqrt{x^{2}+y^{2}+z^{2}}",
+       "src": "12.2"
+      },
+      {
+       "text": "If $f$ is continuous, then $\\frac{d}{dt}\\int_a^{t}f(u)\\,du=f(t)$.",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 1"
+      },
+      {
+       "text": "On a smooth curve $\\kvecr(t)$ is continuously differentiable, so $\\| \\kvecrprime(t)\\|$ is continuous.",
+       "src": "13.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks(t)}=\\mk{I}{\\int_a^{t}\\sqrt{{(\\kfprime(u))}^{2}+{(\\kgprime(u))}^{2}+{(\\khprime(u))}^{2}} du}",
+      "src": "(13.13)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ksprime(t)}=\\mk{I}{\\frac{d}{dt}[\\int_a^{t}\\sqrt{{(\\kfprime(u))}^{2}+{(\\kgprime(u))}^{2}+{(\\khprime(u))}^{2}} du]}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ksprime(t)}=\\mk{I}{\\frac{d}{dt}[\\int_a^{t}\\| \\kvecrprime(u)\\| \\;du ]}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\ksprime(t)}=\\mk{I}{\\| \\kvecrprime(t)\\|}",
+       "uses": [
+        2,
+        3
+       ]
+      }
+     ],
+     "src": "13.3, Arc-Length Function"
+    }
+   ]
+  },
+  {
+   "id": "unit-speed-arc-length",
+   "what": "the arc length along a curve traced at unit speed",
+   "source": "Calculus, 13.3 Arc Length and Curvature, Arc-Length Parameterization",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\| \\kvecrprime(t)\\| =1$ for all $t$."
+      },
+      {
+       "text": "If $F$ is an antiderivative of $f$ over $[a,t]$, then $\\int_a^{t}f(u)\\,du=F(t)-F(a)$.",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks(t)}=\\mk{I}{\\int_a^{t}\\| \\kvecrprime(u)\\| \\;du}",
+      "src": "(13.14)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ks(t)}=\\mk{I}{\\int_a^{t}1\\;du}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\ks(t)}=\\mk{I}{t-a}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.3, Arc-Length Function"
+    }
+   ]
   }
  ]
 }

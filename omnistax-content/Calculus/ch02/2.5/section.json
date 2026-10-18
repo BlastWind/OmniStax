@@ -1061,5 +1061,108 @@
    "concept": "epsilon-delta-definition-of-the-limit"
   }
  ],
- "referents": []
+ "referents": [],
+ "derivations": [
+  {
+   "id": "sum-law-for-limits",
+   "what": "the sum law for limits",
+   "source": "Calculus, 2.5 The Precise Definition of a Limit, Proving Limit Laws",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\delta=\\min\\{\\delta_{1},\\delta_{2}\\}"
+      }
+     ],
+     "then": {
+      "tex": "0\\lt\\mk{d}{|x-a|}\\lt\\mk{e}{\\delta}",
+      "why": "Let $\\varepsilon\\gt 0$, and assume $0\\lt|x-a|\\lt\\delta$."
+     },
+     "steps": [
+      {
+       "tex": "0\\lt\\mk{d}{|x-a|}\\lt\\mk{e}{\\delta_{1}}\\;\\text{and}\\;0\\lt\\mk{f}{|x-a|}\\lt\\mk{g}{\\delta_{2}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "d": [
+         "d",
+         "f"
+        ],
+        "e": [
+         "e",
+         "g"
+        ]
+       }
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Since $\\lim_{x\\to a}\\kf(x)=\\kL$, there is a $\\delta_{1}\\gt 0$ so that if $0\\lt|x-a|\\lt\\delta_{1}$, then $|\\kf(x)-\\kL|\\lt\\varepsilon/2$.",
+       "src": "2.5"
+      },
+      {
+       "text": "Since $\\lim_{x\\to a}\\kg(x)=M$, there is a $\\delta_{2}\\gt 0$ so that if $0\\lt|x-a|\\lt\\delta_{2}$, then $|\\kg(x)-M|\\lt\\varepsilon/2$.",
+       "src": "2.5"
+      },
+      {
+       "tex": "|a+b|\\le|a|+|b|",
+       "src": "2.5, The Triangle Inequality"
+      },
+      {
+       "text": "$\\lim_{x\\to a}\\kf(x)=\\kL$ if, for every $\\varepsilon\\gt 0$, there exists a $\\delta\\gt 0$ such that if $0\\lt|x-a|\\lt\\delta$, then $|\\kf(x)-\\kL|\\lt\\varepsilon$.",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{|(\\kf(x)+\\kg(x))-(\\kL+M)|}=\\mk{R}{|(\\kf(x)-\\kL)+(\\kg(x)-M)|}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|(\\kf(x)+\\kg(x))-(\\kL+M)|}\\le\\mk{a}{|\\kf(x)-\\kL|}+\\mk{b}{|\\kg(x)-M|}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "R": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{|(\\kf(x)+\\kg(x))-(\\kL+M)|}\\lt\\mk{a}{\\frac{\\varepsilon}{2}}+\\mk{b}{\\frac{\\varepsilon}{2}}",
+       "uses": [
+        0,
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{|(\\kf(x)+\\kg(x))-(\\kL+M)|}\\lt\\mk{e}{\\varepsilon}",
+       "uses": [],
+       "map": {
+        "a": "e",
+        "b": "e"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}(\\kf(x)+\\kg(x))}=\\mk{e}{\\kL+M}",
+       "uses": [
+        4
+       ],
+       "cap": "The $\\varepsilon\\gt 0$ was any, and $\\delta=\\min\\{\\delta_{1},\\delta_{2}\\}$ answers it, which is what the definition asks."
+      }
+     ],
+     "src": "2.5, Proving Limit Laws"
+    }
+   ]
+  }
+ ]
 }

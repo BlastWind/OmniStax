@@ -965,5 +965,47 @@
    "kind": "correction",
    "html": "The book’s key prints 80.0 mC. Example 19.8 stores $Q = CV = (8.85\\ \\text{nF})(3.00\\ \\text{kV}) = 26.6\\ \\mu\\text{C}$, the charge the card checks."
   }
+ ],
+ "derivations": [
+  {
+   "id": "charge-proportional-voltage",
+   "what": "why the charge stored is proportional to the voltage",
+   "source": "College Physics 2e, 19.5 Capacitors and Dielectrics",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The plates of a given capacitor stay a fixed distance $\\kd$ apart.",
+       "src": "19.5"
+      },
+      {
+       "tex": "\\kEf \\propto \\kQch",
+       "src": "19.5, Figure 19.13"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kV} = \\mk{E}{\\kEf}\\mk{d}{\\kd}",
+      "src": "19.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV} \\propto \\mk{E}{\\kEf}",
+       "uses": [
+        0
+       ],
+       "cap": "The symbol $\\propto$ means “proportional to”: with $\\kd$ fixed, $\\kV$ grows in step with $\\kEf$."
+      },
+      {
+       "tex": "\\mk{E}{\\kQch} \\propto \\mk{V}{\\kV}",
+       "uses": [
+        1
+       ],
+       "cap": "Each grows in step with the field, so they grow in step with each other."
+      }
+     ],
+     "src": "19.5"
+    }
+   ]
+  }
  ]
 }

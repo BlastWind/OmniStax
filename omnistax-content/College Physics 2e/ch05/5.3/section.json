@@ -938,5 +938,54 @@
     "sim-cube"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "rod-force-constant",
+   "what": "the force constant of a stretched rod",
+   "source": "College Physics 2e, 5.3 Elasticity: Stress and Strain",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kF = \\kk\\kdL",
+       "src": "5.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{FA}{\\frac{\\kF}{\\karea}} = \\mk{Y}{\\kY}\\mk{L}{\\frac{\\kdL}{\\kLo}}",
+      "src": "5.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{Y}{\\kY \\karea}\\mk{L}{\\frac{\\kdL}{\\kLo}}",
+       "uses": [],
+       "map": {
+        "FA": [
+         "F",
+         "Y"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{F}{\\kk\\kdL} = \\mk{Y}{\\kY \\karea}\\mk{L}{\\frac{\\kdL}{\\kLo}}",
+       "uses": [
+        0
+       ],
+       "cap": "In this form the equation is Hooke’s law, so its constant of proportionality is the force constant $\\kk$."
+      },
+      {
+       "tex": "\\mk{F}{\\kk} = \\mk{Y}{\\frac{\\kY \\karea}{\\kLo}}",
+       "uses": [],
+       "map": {
+        "L": "Y"
+       }
+      }
+     ],
+     "src": "5.3"
+    }
+   ]
+  }
  ]
 }

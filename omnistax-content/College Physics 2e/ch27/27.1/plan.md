@@ -78,3 +78,7 @@ None.
 - Erratum carried as printed: the Making Connections box sends matter waves to "Special Relativity" (they are in a later chapter).
 
 Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed. 27.2's `exercise_notes` already names the moved question, and the matter-waves erratum is gathered in `exploration.md`.
+
+## Derivations
+
+- Light in a medium, $\lambda_n = \lambda/n$ · score 2 · built as drv-wavelength-in-a-medium: a short printed block, prose first; the prose stays and the derivation takes the place of the displayed result

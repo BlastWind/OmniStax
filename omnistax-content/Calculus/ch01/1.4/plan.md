@@ -78,3 +78,7 @@ Ids confirmed with `ost ids calculus 1.4` after the build.
   - Left out and named: 326 ($x^{2}+2x+1$), 328 ($\sqrt{9-x}$) and 332 (the T-shirt inverse), which have no answer in the key and are computational. Then append to 1.4's `exercise_notes`: "Review exercises 310, 312, 313, 327 and 329 are held here from the chapter review; 310 and 312 keep an AI-suggested justification, and 326, 328 and 332, which have no answer in the key, are left out." and say so in 1.5's notes.
 - Recolour: `colours:default -- calculus` after the chapter's pages (config 25).
 - Applied in the chapter pass (2026-10-12): the anchors and five variables rows above; r310, r312 (AI-marked), r313, r327, r329 landed with this plan's rows and the corrections c-r327-variable and c-r329-variable under their cards; the tags are the union of this plan's and 1.5's.
+
+## Derivations
+
+- Student Project · The Maximum Value of a Function · score 10 · not built: the project only poses it, the book states no result in its exposition

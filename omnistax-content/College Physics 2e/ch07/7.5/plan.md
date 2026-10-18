@@ -331,3 +331,8 @@ written into `ch07/chapter.json`, the sixteen variable rows and the three
 equation rows.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-ramp` marks the text's third case: a dashed circle on θ at 0 and, while the ramp is level, on the push at the friction's value, where W_nc is zero. `sim-slide` marks level ground and 5.00° on the slope slider as dashed circles in place of detents. Its readout is an `F.morph`: on the level the m g sin θ term leaves the denominator, d = ½ m vᵢ²/f, and it returns as the slope rises (manim-style 14).
+
+## Derivations
+
+- The work done by nonconservative forces (printed block, The Work-Energy Theorem with Both Kinds of Force) · score 2 · built as drv-nonconservative-work: one node from $W_\text{net} = W_\text{nc} + W_\text{c}$ to $\text{KE}_\text{i} + \text{PE}_\text{i} + W_\text{nc} = \text{KE}_\text{f} + \text{PE}_\text{f}$, the skipped expansion of the two changes inserted; replaces the four displayed lines, the prose on Figure 7.15 stays
+- Example 7.10, Sliding Up an Incline · score 1 · not built: substitution into the section's equation

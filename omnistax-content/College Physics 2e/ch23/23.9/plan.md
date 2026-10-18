@@ -331,3 +331,9 @@ flux counted through a turn is in the flux hue, never the same one.
 - `ch23/COLOR.md` now gives 23.9 `time` as well as its six.
 - The inductance hue was checked against voltage and capacitance on this page
   in the browser, in both themes; the three read apart.
+
+## Derivations
+
+- Self-inductance from the change in flux, $L = N\Delta\Phi/\Delta I$ (printed block) · score 2 · built as drv-inductance-from-flux: one node, Faraday's law equated with the definition of self-inductance; replaces the two displayed lines and the connecting phrases, the remark that it always holds stays
+- The self-inductance of a solenoid (printed block, "it is instructive to derive") · score 3 · built as drv-solenoid-inductance: one node from $L = N\Delta\Phi/\Delta I$ with a fixed area and the solenoid's field $\mu_0NI/\ell$ from 22.9; replaces the two displayed lines and the inline chain
+- The energy stored in an inductor, $E_\text{ind} = \tfrac{1}{2}LI^2$ · score 6 · not built: "it can be shown", and no route the book gives exists; the capacitor's average-voltage argument of 19.7 is never made for an inductor, and calculus is not in the book (rule 29.3)

@@ -476,5 +476,56 @@
     "sim-tokamak"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "radius-in-magnetic-field",
+   "what": "the radius of a charged particle's circle in a magnetic field",
+   "source": "College Physics 2e, 22.5 Force on a Moving Charge in a Magnetic Field: Examples and Applications",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The magnetic force supplies the centripetal force.",
+       "src": "22.5"
+      },
+      {
+       "tex": "\\kF = \\kq\\kv\\kBmag",
+       "src": "22.5"
+      },
+      {
+       "tex": "\\kFc = \\dfrac{\\km\\kv^2}{\\kr}",
+       "src": "6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{Fc}{\\kFc}",
+      "src": "22.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kq\\kv\\kBmag} = \\mk{Fc}{\\kFc}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kq\\kv\\kBmag} = \\mk{Fc}{\\dfrac{\\km\\kv^2}{\\kr}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\kr} = \\dfrac{\\mk{Fc}{\\km\\kv}}{\\mk{F}{\\kq\\kBmag}}",
+       "uses": []
+      }
+     ],
+     "src": "22.5"
+    }
+   ]
+  }
  ]
 }

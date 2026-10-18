@@ -39,3 +39,14 @@ Sₖ `series`, S `limit`, bₙ and aₙ `sequence`, R_N `error`; N, k, M in ink.
 ## Wanted at chapter level
 
 - Anchors: variables a_seq, b_seq, n, S, S_sum → `9.5-alternating-definition` (b_seq), `9.5-alternating-series-test` (others); R → `9.5-remainder`. Forms: eq-alternating-series-plus, -minus → `9.5-alternating-definition`; eq-alternating-harmonic-series → `9.5-alternating-series-test`; eq-alternating-remainder → `9.5-alternating-remainder-theorem`.
+
+## Derivations
+
+- The Alternating Series Test · Proof for the alternating harmonic series · score 4 · built as drv-alternating-harmonic-series (replaces the proof's body; the hidden last step, odd and even partial sums sharing a limit, inserted)
+- "It can also be shown that $S=\ln 2$" · score 8 · not built: every fact it needs is Chapter 10's power series; better built there
+- Alternating Series Test · "the proof is similar" · score 11 · not built: its lines are the printed proof's with $b_{n}$ for $1/n;$ the graph would repeat the one above
+- Remainder of an Alternating Series · score 2 · not built: under the bar
+- Absolute Convergence Implies Convergence · Proof · score 3 · built as drv-absolute-convergence (prose kept to $0\le|a_{n}|+a_{n}\le2|a_{n}|,$ the rest replaced)
+- Rearranging the alternating harmonic series to diverge · score 2 · not built: a construction in prose, under the bar
+- Riemann Rearrangement Theorem · score 8 · not built: "beyond the scope of this book"; a greedy construction, not a chain of equations, and the section's sim walks it
+- Example 9.22 · score 2 · not built: a worked example

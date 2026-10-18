@@ -46,3 +46,9 @@ None beyond the required six: each problem's own picture already carries its sli
 
 - variables rows 4.7 A, V, T, R, S (merged in prep) and A′, V′, T′, R′, S′ (added here), anchors → `4.7-closed-interval` (A, V, T, R and their primes), `4.7-open-interval` (S, S′).
 - Review 551 lands in the chapter pass.
+
+
+## Derivations
+
+- Example 4.34 · Minimizing Travel Time · score 5 · not built: an optimization worked example applying the section's strategy; the Pythagorean distance is part of setting up the function
+- Example 4.36 · Maximizing the Area of an Inscribed Rectangle · score 2 · not built: everything printed, the section's method

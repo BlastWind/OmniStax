@@ -292,3 +292,8 @@ hue, as the outer one does.
   an arc length from a rotation angle, which is this section's own idea, so
   it is set on this page as `p-earth-orbit` with `source_section: "6.2"`.
   Both sections' `exercise_notes` say so.
+
+## Derivations
+
+- The radian ($\Delta\theta = 2\pi$ for one revolution, 1 rad ≈ 57.3°) · score 1 · not built: the definition of a unit and a conversion, not a result
+- Linear velocity and angular velocity ($v = r\omega$) · score 0 · built as drv-linear-angular-velocity: two nodes, $\Delta s = r\Delta\theta$ from the rotation angle and its substitution into $v = \Delta s/\Delta t$; replaces the three displays and the connecting sentences

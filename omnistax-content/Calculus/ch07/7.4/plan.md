@@ -41,3 +41,12 @@ Introduced: `partial-fraction-decomposition`, `nonrepeated-linear-factors` (form
 
 - forms `eq-nonrepeated-linear-factors` → `7.4-nonrepeated`, `eq-repeated-linear-factors` → `7.4-repeated`, `eq-quadratic-factor` and `eq-repeated-quadratic-factors` → `7.4-general-strategy`.
 - variables `7.4/P`, `7.4/Q`, `7.4/x` → `7.4-pfd-intro`.
+
+## Derivations
+
+- Example 7.30 · score 4 · not built: a worked example of the section's method (divide, then decompose); solving for A and B is algebra, not an imported fact
+- Example 7.31 · score 4 · not built: a worked example of the section's method after a substitution
+- Example 7.32 · score 5 · not built: a worked example of the section's method; the three-coefficient solve is algebra
+- Example 7.33 · score 5 · not built: a worked example of the section's method
+- Example 7.34 · score 8 · not built: a worked example of the section's method; completing the square and the arctangent integral are routine lines of its own technique, and the coefficient solve is algebra
+- Example 7.35 · score 6 · not built: a worked example that sets up Chapter 6's shell formula and evaluates it by the section's method

@@ -32,8 +32,8 @@ $$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{\kfprime(x)}{\kgprime(x)},$$
 <p>assuming the limit on the right exists or is $\infty$ or $-\infty.$ This result also holds if we are considering one-sided limits, or if $a=\infty \;\text{and}\;-\infty.$</p>
 </div>
 <h3 id="lhopital-proof">Proof</h3>
-<p>We provide a proof of this theorem in the special case when $\kf,\kg,\kfprime,$ and $\kgprime$ are all continuous over an open interval containing $a.$ In that case, since $\lim_{x\to a}\kf(x)=0=\lim_{x\to a}\kg(x)$ and $\kf$ and $\kg$ are continuous at $a,$ it follows that $\kf(a)=0=\kg(a).$ Therefore,</p>
-$$\begin{array}{rllll}\lim_{x\to a}\frac{f(x)}{g(x)} &=\lim_{x\to a}\frac{f(x)-\kf(a)}{g(x)-\kg(a)} & & & \text{since}\;\kf(a)=0=\kg(a) \\ &=\lim_{x\to a}\frac{\frac{f(x)-\kf(a)}{x-a}}{\frac{g(x)-\kg(a)}{x-a}} & & & \text{algebra} \\ &=\frac{\lim_{x\to a}\frac{f(x)-\kf(a)}{x-a}}{\lim_{x\to a}\frac{g(x)-\kg(a)}{x-a}} & & & \text{limit of a quotient} \\ &=\frac{\kfprime(a)}{\kgprime(a)} & & & \text{definition of the derivative} \\ &=\frac{\lim_{x\to a}\kfprime(x)}{\lim_{x\to a}\kgprime(x)} & & & \text{continuity of}\;\kfprime\;\text{and}\;\kgprime \\ &=\lim_{x\to a}\frac{\kfprime(x)}{\kgprime(x)}. & & & \text{limit of a quotient}\end{array}$$
+<p>We provide a proof of this theorem in the special case when $\kf,\kg,\kfprime,$ and $\kgprime$ are all continuous over an open interval containing $a.$</p>
+<figure class="dv" id="drv-lhopitals-rule"></figure>
 <p>Note that <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> states we can calculate the limit of a quotient $\frac{f}{g}$ by considering the limit of the quotient of the <span data-concept="derivative">derivatives</span> $\frac{\kfprime}{\kgprime}.$ It is important to realize that we are not calculating the <span data-concept="derivative">derivative</span> of the quotient $\frac{f}{g}.$</p>
 <p>□</p>
 <div class="example" id="fs-id1165043397578">
@@ -151,18 +151,9 @@ $$\lim_{x\to {0}^{+}}(\frac{1}{{x}^{2}}-\frac{1}{\tan x})=\infty.$$
 </div>
 <div class="exercises" data-place="fs-id1165043323875"></div>
 <p>Another type of <span data-concept="indeterminate-forms">indeterminate form</span> that arises when evaluating limits involves exponents. The expressions ${0}^{0},$ ${\infty}^{0},$ and ${1}^{\infty}$ are all <span data-concept="indeterminate-forms">indeterminate forms</span>. On their own, these expressions are meaningless because we cannot actually evaluate these expressions as we would evaluate an expression involving real numbers. Rather, these expressions represent forms that arise when finding limits. Now we examine how <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> can be used to evaluate limits involving these <span data-concept="indeterminate-forms">indeterminate forms</span>.</p>
-<p>Since <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> applies to quotients, we use the <span data-concept="natural-logarithm">natural logarithm function</span> and its properties to reduce a problem evaluating a limit involving exponents to a related problem involving a limit of a quotient. For example, suppose we want to evaluate $\lim_{x\to a}\kf{(x)}^{g(x)}$ and we arrive at the <span data-concept="indeterminate-forms">indeterminate form</span> ${\infty}^{0}.$ (The <span data-concept="indeterminate-forms">indeterminate forms</span> ${0}^{0}$ and ${1}^{\infty}$ can be handled similarly.) We proceed as follows. Let</p>
-$$y=\kf{(x)}^{g(x)}.$$
-<p>Then,</p>
-$$\ln y=\ln (\kf{(x)}^{g(x)})=\kg(x)\ln (\kf(x)).$$
-<p>Therefore,</p>
-$$\lim_{x\to a}[\ln (y)]=\lim_{x\to a}[\kg(x)\ln (\kf(x))].$$
-<p>Since $\lim_{x\to a}\kf(x)=\infty,$ we know that $\lim_{x\to a}\ln (\kf(x))=\infty.$ Therefore, $\lim_{x\to a}\kg(x)\ln (\kf(x))$ is of the <span data-concept="indeterminate-forms">indeterminate form</span> $0\cdot \infty,$ and we can use the techniques discussed earlier to rewrite the expression $\kg(x)\ln (\kf(x))$ in a form so that we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>. Suppose $\lim_{x\to a}\kg(x)\ln (\kf(x))=L,$ where $L$ may be $\infty$ or $-\infty.$ Then</p>
-$$\lim_{x\to a}[\ln (y)]=L.$$
-<p>Since the <span data-concept="natural-logarithm">natural logarithm function</span> is continuous, we conclude that</p>
-$$\ln (\lim_{x\to a}y)=L,$$
-<p>which gives us</p>
-$$\lim_{x\to a}y=\lim_{x\to a}\kf{(x)}^{g(x)}={e}^{L}.$$
+<p>Since <span data-concept="lhopitals-rule">L’Hôpital’s rule</span> applies to quotients, we use the <span data-concept="natural-logarithm">natural logarithm function</span> and its properties to reduce a problem evaluating a limit involving exponents to a related problem involving a limit of a quotient. For example, suppose we want to evaluate $\lim_{x\to a}\kf{(x)}^{g(x)}$ and we arrive at the <span data-concept="indeterminate-forms">indeterminate form</span> ${\infty}^{0}.$ (The <span data-concept="indeterminate-forms">indeterminate forms</span> ${0}^{0}$ and ${1}^{\infty}$ can be handled similarly.) We proceed as follows.</p>
+<figure class="dv" id="drv-exponent-indeterminate-forms"></figure>
+<p>Since $\lim_{x\to a}\kf(x)=\infty,$ we know that $\lim_{x\to a}\ln (\kf(x))=\infty.$ Therefore, $\lim_{x\to a}\kg(x)\ln (\kf(x))$ is of the <span data-concept="indeterminate-forms">indeterminate form</span> $0\cdot \infty,$ and we can use the techniques discussed earlier to rewrite the expression $\kg(x)\ln (\kf(x))$ in a form so that we can apply <span data-concept="lhopitals-rule">L’Hôpital’s rule</span>.</p>
 <div class="example" id="fs-id1165043390815">
 <h3>Example 4.43 · Indeterminate Form of Type ${\infty}^{0}$</h3>
 <p>Evaluate $\lim_{x\to \infty}{x}^{1/x}.$</p>
@@ -286,6 +277,7 @@ $$\lim_{x\to \infty}\frac{\ln x}{{x}^{2}}=\lim_{x\to \infty}\frac{1/x}{2x}=\lim_
 </div>
 <div class="exercises" data-place="fs-id1165043422462"></div>
 <p>Using the same ideas as in Example 4.45a. it is not difficult to show that ${e}^{x}$ <span data-concept="growth-rates-of-functions">grows more rapidly</span> than ${x}^{p}$ for any $p\gt 0.$ In Figure 4.75 and Table 4.11, we compare ${e}^{x}$ with ${x}^{3}$ and ${x}^{4}$ as $x\to \infty.$</p>
+<figure class="dv" id="drv-exponential-outgrows-powers"></figure>
 <figure class="sim" id="sim-exp-vs-power" data-figure="4.75" data-original="/media/ch04/CNX_Calc_Figure_04_08_001.jpg" data-original-caption="The exponential function e^(x) grows faster than x^(p) for any p&gt;0. (a) A comparison of e^(x) with x³. (b) A comparison of e^(x) with x⁴.">
   <div class="sim-head"><span class="eyebrow">Figure 4.75</span><span>The <span data-concept="exponential-function">exponential function</span> $e^x$ against a <span data-concept="power-function">power function</span> $x^p$. Choose $p$: for every $p\gt 0$ the power may lead for a while, but after the last crossing, marked, $e^x$ stays above it and the ratio $x^p/e^x$ goes to $0$. The book’s two comparisons are $p=3$ and $p=4$.</span></div>
 </figure>

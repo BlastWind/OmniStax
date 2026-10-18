@@ -69,3 +69,12 @@ Ids confirmed with `ost ids calculus 3.9` after the build.
 - Review exercises: 375, 381, 383, 385 set here; the others written into 3.1 (391), 3.2 (367–371, 387), 3.3 (373), 3.5 (377), 3.6 (389, moved from 3.5: it needs the chain rule) and 3.7 (379); 372, 374, 376, 378, 380, 382, 384, 386, 388, 390 unkeyed and left out.
 - 366 kept with an AI-marked answer; variables rows added for f, f_prime, dy/dx; anchors on every 3.9 row and the eleven forms (E_prime already had its symbol and row).
 - Corrections: Example 3.79's broken reference (Equation 3.34), exercise 361's key ("United States" for New York City).
+
+
+## Derivations
+
+- Derivative of the Exponential Function, B′(0) (3.28) and B′(x) (3.29) · score 2 · built as drv-derivative-of-exponential-function (the "We see that… its derivative is" sentence and the two displays went into it; B′ and the form re-anchored to it, E′ to the theorem); E′(x) = eˣ stays in the prose, one substitution
+- The Derivative of the Natural Logarithmic Function · Proof · score 3 · built as drv-derivative-of-natural-logarithm: both ways to (3.30), then (3.31) by the chain rule
+- Derivatives of General Exponential and Logarithmic Functions · Proof, part 1 (log_b x) · score 1 · built as drv-derivatives-of-general-exponential-and-logarithmic-functions, nodes for (3.32) and (3.33); the book's "Equation 3.32 now follows from the chain rule" means (3.33), said in that node's note
+- Proof, part 2 (bˣ) · score 2 · built as the same derivation's nodes for (3.34) and (3.35): one Proof heading, two results sharing the power property of logarithms and the chain rule
+- Example 3.83 · Extending the Power Rule · score 1 · built as drv-power-rule-real-exponents (a printed block deriving the general rule; a reason notes x > 0 where the logarithm is taken)

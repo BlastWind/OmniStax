@@ -518,5 +518,198 @@
         "sim-friction-damped"
       ]
     }
+  ],
+  "derivations": [
+    {
+      "id": "friction-damped-distance",
+      "what": "the distance a spring-held object slides against friction",
+      "source": "College Physics 2e, 16.7 Damped Harmonic Motion, Example 16.7",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "When the system stops moving, the friction force balances the force exerted by the spring.",
+              "src": "Example 16.7"
+            },
+            {
+              "tex": "\\kF_{\\text{el}} = \\kk\\kx",
+              "src": "16.1"
+            },
+            {
+              "tex": "\\kff = \\mu_{\\text{k}}\\km\\kg",
+              "src": "Example 16.7"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{F}{\\kF_{\\text{el}}} = \\mk{f}{\\kff}",
+            "uses": [
+              0
+            ],
+            "src": "Example 16.7"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{F}{\\kk\\kx} = \\mk{f}{\\mu_{\\text{k}}\\km\\kg}",
+              "uses": [
+                1,
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{F}{\\kx} = \\mk{f}{\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}}",
+              "uses": []
+            }
+          ],
+          "src": "Example 16.7"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "The object starts and ends at rest, and the motion is horizontal, so only the elastic potential energy changes.",
+              "src": "Example 16.7"
+            },
+            {
+              "tex": "\\text{PE}_{\\text{el,i}} = \\tfrac{1}{2}\\kk\\kX^{2}",
+              "src": "Example 16.7"
+            },
+            {
+              "tex": "\\text{PE}_{\\text{el,f}} = \\tfrac{1}{2}\\kk\\kx^{2}",
+              "src": "Example 16.7"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{W}{\\kWnc} = \\mk{d}{\\Delta(\\kKE + \\kPEtot)}",
+            "uses": [],
+            "src": "16.7"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{W}{\\kWnc} = \\mk{f}{\\text{PE}_{\\text{el,f}}} - \\mk{i}{\\text{PE}_{\\text{el,i}}}",
+              "uses": [
+                1
+              ],
+              "map": {
+                "d": [
+                  "f",
+                  "i"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{W}{\\kWnc} = \\mk{f}{\\tfrac{1}{2}\\kk\\kx^{2}} - \\mk{i}{\\tfrac{1}{2}\\kk\\kX^{2}}",
+              "uses": [
+                2,
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{W}{\\kWnc} = \\tfrac{1}{2}\\kk\\left(\\mk{f}{\\kx^{2}} - \\mk{i}{\\kX^{2}}\\right)",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{W}{\\kWnc} = \\tfrac{1}{2}\\kk\\left(\\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}} - \\mk{i}{\\kX^{2}}\\right)",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "src": "Example 16.7"
+        },
+        {
+          "assumes": [
+            {
+              "tex": "\\kff = \\mu_{\\text{k}}\\km\\kg",
+              "src": "Example 16.7"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{W}{\\kWnc} = -\\mk{f}{\\kff}\\mk{d}{\\kd}",
+            "uses": [],
+            "src": "Example 16.7",
+            "why": "Friction opposes the motion over the whole distance $\\kd$ traveled."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{W}{\\kWnc} = -\\mk{f}{\\mu_{\\text{k}}\\km\\kg}\\mk{d}{\\kd}",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "src": "Example 16.7"
+        },
+        {
+          "assumes": [
+            {
+              "step": 1
+            },
+            {
+              "step": 2
+            }
+          ],
+          "then": {
+            "tex": "\\mk{W}{\\kWnc} = \\tfrac{1}{2}\\kk\\left(\\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}} - \\mk{i}{\\kX^{2}}\\right)",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\tfrac{1}{2}\\kk\\left(\\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}} - \\mk{i}{\\kX^{2}}\\right) = \\mk{W}{-\\mu_{\\text{k}}\\km\\kg\\kd}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{W}{\\kd} = \\dfrac{\\kk}{2\\mu_{\\text{k}}\\km\\kg}\\left(\\mk{i}{\\kX^{2}} - \\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}}\\right)",
+              "uses": []
+            }
+          ],
+          "src": "Example 16.7"
+        },
+        {
+          "assumes": [
+            {
+              "step": 3
+            },
+            {
+              "tex": "\\km = 0.200\\ \\text{kg},\\quad \\mu_{\\text{k}} = 0.0800",
+              "src": "Example 16.7"
+            },
+            {
+              "tex": "\\kk = 50.0\\ \\text{N/m},\\quad \\kX = 0.100\\ \\text{m}",
+              "src": "Example 16.7"
+            },
+            {
+              "tex": "\\kg = 9.80\\ \\text{m/s}^{2}",
+              "src": "2.7"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{W}{\\kd} = \\dfrac{\\kk}{2\\mu_{\\text{k}}\\km\\kg}\\left(\\mk{i}{\\kX^{2}} - \\mk{f}{\\left(\\dfrac{\\mu_{\\text{k}}\\km\\kg}{\\kk}\\right)^{2}}\\right)",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{W}{\\kd} = \\dfrac{50.0\\ \\text{N/m}}{2(0.0800)(0.200\\ \\text{kg})(9.80\\ \\text{m/s}^{2})}\\left(\\mk{i}{(0.100\\ \\text{m})^{2}} - \\mk{f}{\\left(\\dfrac{(0.0800)(0.200\\ \\text{kg})(9.80\\ \\text{m/s}^{2})}{50.0\\ \\text{N/m}}\\right)^{2}}\\right)",
+              "uses": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{W}{\\kd} = \\mk{i}{1.59\\ \\text{m}}",
+              "uses": [],
+              "map": {
+                "f": "i"
+              }
+            }
+          ],
+          "src": "Example 16.7"
+        }
+      ]
+    }
   ]
 }

@@ -37,3 +37,10 @@ Built: `sim-cooling`, an added Sim after Example 6.45: the coffee's T(t) = 130e^
 - Review exercises 438, 457, 458 (tmp/ch06/sec_6_8.py, `RV`).
 
 Applied in the chapter pass (2026-10-13): every anchor above set with `ost set` (tmp/ch06/anchors6.py; a few spans moved to the nearest id the text has, such as the section header where the plan named a note); review exercises held here landed with `source_section` 6.9.
+
+## Derivations
+
+- Exponential Growth Model · continuous compounding · score 1 · built as drv-continuous-compounding (1.5 states A(t) = Pe^{rt} without working it; the limit passing inside the power inserted)
+- Doubling time · score 0 · built as drv-doubling-time
+- Exponential Decay Model · Newton's law of cooling · score 1 · built as drv-newtons-law-of-cooling (T' = −k(T − Ta) stays printed as the law; y' = −ky, y = y0e^{−kt} and the T block replaced)
+- Half-life · score 0 · built as drv-half-life, with ln(1/2) = −kt inserted

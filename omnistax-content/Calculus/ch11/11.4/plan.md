@@ -54,3 +54,10 @@ Exercise figures: none. Photographs: none.
 - variables `11.4/f`, `/r`, `/θ`, `/n` → `11.4-partition`; `/A` → `11.4-fs-id1167794048381`; `/L`, `/f_prime` → `11.4-fs-id1167793367213`.
 
 Applied in the chapter pass (2026-10-13): every form and variables anchor above set with `ost set` (anchors resolve, `ost check` clean); the review rows written into section.json with `source_section` 11.5.
+
+## Derivations
+
+- Areas of Regions Bounded by Polar Curves · (11.9) · score 3 · built as drv-area-bounded-by-a-polar-curve (the sector's area, the ith sector, the Riemann sum and its limit; form eq-polar-area-sum and the coverage row of riemann-sum re-anchored to it)
+- Example 11.17 · score 2 · not built: a worked example of (11.9)
+- Arc Length in Polar Curves · (11.10) · score 3 · built as drv-arc-length-of-a-polar-curve
+- Example 11.18 · score 2 · not built: a worked example of (11.10)

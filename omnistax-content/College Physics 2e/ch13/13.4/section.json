@@ -829,5 +829,247 @@
     "sim-box"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "pressure-from-molecules",
+   "what": "the ideal gas law from molecular collisions",
+   "source": "College Physics 2e, 13.4 Kinetic Theory: Atomic and Molecular Explanation of Pressure and Temperature, Things Great and Small",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The wall is rigid and the molecule’s speed does not change, so its velocity along $x$ reverses from $-\\kvx$ to $+\\kvx$.",
+       "src": "13.4, Figure 13.22"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dp}{\\Delta(\\km\\kv)} = \\mk{a}{+\\km\\kvx} - \\mk{b}{(-\\km\\kvx)}",
+      "uses": [
+       0
+      ],
+      "src": "13.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{dp}{\\Delta(\\km\\kv)} = \\mk{a}{2\\km\\kvx}",
+       "uses": [],
+       "map": {
+        "b": "a"
+       }
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kdt = \\dfrac{2\\kl}{\\kvx}",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{\\kdp}}{\\mk{dt}{\\kdt}}",
+      "uses": [],
+      "src": "8.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{2\\km\\kvx}}{\\mk{dt}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{2\\km\\kvx}}{\\mk{dt}{2\\kl/\\kvx}}",
+       "uses": [
+        1
+       ],
+       "cap": "For the average force, $\\kdt$ is the time between collisions with this wall: the trip across the box and back, a distance $2\\kl$, at the speed $\\kvx$."
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{\\km\\kvx^2}}{\\mk{dt}{\\kl}}",
+       "uses": []
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The force from $N$ molecules is $N$ times the force from one, with $\\kvx^2$ replaced by its average $\\overline{v_x^2}$.",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\dfrac{\\mk{dp}{\\km\\kvx^2}}{\\mk{dt}{\\kl}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{N}{N}\\dfrac{\\mk{dp}{\\km\\overline{v_x^2}}}{\\mk{dt}{\\kl}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\overline{v_x^2} = \\overline{v_y^2} = \\overline{v_z^2}",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\overline{v^2}} = \\mk{x}{\\overline{v_x^2}} + \\mk{y}{\\overline{v_y^2}} + \\mk{z}{\\overline{v_z^2}}",
+      "uses": [],
+      "src": "13.4",
+      "why": "The total velocity squared is the sum of the squares of its components."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\overline{v^2}} = \\mk{x}{3\\overline{v_x^2}}",
+       "uses": [
+        0
+       ],
+       "cap": "The velocities are random, so their average components in all directions are the same.",
+       "map": {
+        "y": "x",
+        "z": "x"
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\overline{v_x^2}} = \\mk{v}{\\tfrac{1}{3}\\overline{v^2}}",
+       "uses": []
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{N}{N}\\dfrac{\\mk{dp}{\\km\\overline{v_x^2}}}{\\mk{dt}{\\kl}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{N}{N}\\dfrac{\\mk{dp}{\\km\\overline{v^2}}}{\\mk{dt}{3\\kl}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "tex": "\\kvol = \\karea\\kl",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kPr} = \\dfrac{\\mk{F}{\\kF}}{\\mk{A}{\\karea}}",
+      "uses": [],
+      "src": "11.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kPr} = \\mk{N}{N}\\dfrac{\\mk{dp}{\\km\\overline{v^2}}}{\\mk{dt}{3}\\mk{A}{\\karea}\\mk{l}{\\kl}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "F": [
+         "N",
+         "dp",
+         "dt",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{P}{\\kPr} = \\mk{dt}{\\tfrac{1}{3}}\\dfrac{\\mk{N}{N}\\mk{dp}{\\km\\overline{v^2}}}{\\mk{A}{\\kvol}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "l": "A"
+       }
+      },
+      {
+       "tex": "\\mk{P}{\\kPr}\\mk{A}{\\kvol} = \\mk{dt}{\\tfrac{1}{3}}\\mk{N}{N}\\mk{dp}{\\km\\overline{v^2}}",
+       "uses": []
+      }
+     ],
+     "src": "13.4"
+    }
+   ]
+  },
+  {
+   "id": "thermal-energy",
+   "what": "the average kinetic energy of a gas molecule",
+   "source": "College Physics 2e, 13.4 Kinetic Theory: Atomic and Molecular Explanation of Pressure and Temperature",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kPr \\kvol = \\tfrac{1}{3}N\\km\\overline{v^2}",
+       "src": "13.4"
+      },
+      {
+       "text": "The average kinetic energy of a molecule is $\\kKEbar = \\tfrac{1}{2}\\km\\overline{v^2}$.",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{PV}{\\kPr \\kvol} = \\mk{N}{N}\\mk{kT}{k\\kTemp}",
+      "uses": [],
+      "src": "13.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{PV}{\\tfrac{1}{3}N\\km\\overline{v^2}} = \\mk{N}{N}\\mk{kT}{k\\kTemp}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{PV}{\\tfrac{1}{3}\\km\\overline{v^2}} = \\mk{kT}{k\\kTemp}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{PV}{\\tfrac{1}{2}\\km\\overline{v^2}} = \\mk{kT}{\\tfrac{3}{2}k\\kTemp}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{KE}{\\kKEbar} = \\mk{PV}{\\tfrac{1}{2}\\km\\overline{v^2}} = \\mk{kT}{\\tfrac{3}{2}k\\kTemp}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.4"
+    }
+   ]
+  }
  ]
 }

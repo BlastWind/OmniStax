@@ -1166,6 +1166,548 @@
    "id": "c-e89-sign",
    "kind": "correction",
    "html": "The prompt’s series and the key are each off by a sign. Differentiating $\\frac{1}{1+x^{2}}=\\sum_{n=0}^{\\infty} {(-1)}^{n}x^{2n}$ gives $\\frac{2x}{{(1+x^{2})}^{2}}=\\sum_{n=1}^{\\infty} {(-1)}^{n+1}(2n)x^{2n-1},$ and the indefinite integral of $\\frac{2x}{{(1+x^{2})}^{2}}$ is $-\\frac{1}{1+x^{2}}+C=\\sum_{n=0}^{\\infty} {(-1)}^{n+1}x^{2n}+C.$"
+  },
+  {
+   "id": "c-ln2-remainder",
+   "kind": "correction",
+   "html": "At $x=1$ the remainder of <a href=\"/calculus/ch10/10.3/#10.3-fs-id1167025239317\">Taylor’s Theorem with Remainder</a> is enough: there $|R_{n}(1)|\\le \\frac{1}{n+1},$ so the series converges to $\\ln 2$ (<a href=\"/calculus/ch10/10.3/#10.3-drv-alternating-harmonic-series-sum\">the sum of the alternating harmonic series</a>). Abel’s theorem is needed for the endpoints of power series in general."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "combining-power-series",
+   "what": "the sum of two power series",
+   "source": "Calculus, 10.2 Properties of Power Series, Combining Power Series",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kS_{N}(x)$ and $\\kT_{N}(x)$ are the $N$th partial sums of $\\sum_{n=0}^{\\infty} c_{n}x^{n}$ and $\\sum_{n=0}^{\\infty} d_{n}x^{n}.$",
+       "src": "10.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\sum_{n=0}^{N} (c_{n}x^{n}+d_{n}x^{n})}=\\mk{c}{\\sum_{n=0}^{N} c_{n}x^{n}}+\\mk{d}{\\sum_{n=0}^{N} d_{n}x^{n}}",
+      "src": "10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\sum_{n=0}^{N} (c_{n}x^{n}+d_{n}x^{n})}=\\mk{c}{\\kS_{N}(x)}+\\mk{d}{\\kT_{N}(x)}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "10.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The limit of a sum of two convergent sequences is the sum of their limits.",
+       "src": "9.1"
+      },
+      {
+       "text": "$\\{\\kS_{N}(x)\\}$ converges to $\\kf(x)$ and $\\{\\kT_{N}(x)\\}$ converges to $\\kg(x)$ for $x$ in $I.$",
+       "src": "10.2"
+      },
+      {
+       "text": "A series converges to the limit of its sequence of partial sums.",
+       "src": "9.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{N\\to \\infty}(\\kS_{N}(x)+\\kT_{N}(x))}=\\mk{c}{\\lim_{N\\to \\infty}\\kS_{N}(x)}+\\mk{d}{\\lim_{N\\to \\infty}\\kT_{N}(x)}",
+      "uses": [
+       1
+      ],
+      "src": "10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{N\\to \\infty}(\\kS_{N}(x)+\\kT_{N}(x))}=\\mk{c}{\\kf(x)}+\\mk{d}{\\kg(x)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\sum_{n=0}^{\\infty} (c_{n}x^{n}+d_{n}x^{n})}=\\mk{c}{\\kf(x)}+\\mk{d}{\\kg(x)}\\;\\text{on}\\;I",
+       "uses": [
+        0,
+        3
+       ]
+      }
+     ],
+     "src": "10.2, Combining Power Series"
+    }
+   ]
+  },
+  {
+   "id": "power-series-for-ln",
+   "what": "the power series for $\\ln (1+x)$",
+   "source": "Calculus, 10.2 Properties of Power Series, Example 10.10",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{1}{1-x}=\\sum_{n=0}^{\\infty} x^{n}\\;\\text{for}\\;|x|\\lt 1",
+       "src": "10.1"
+      },
+      {
+       "text": "A power series in $x$ may be evaluated at $bx^{m}$ wherever $bx^{m}$ lies in its interval.",
+       "src": "10.2, Combining Power Series"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\frac{1}{1+x}}=\\mk{g}{\\frac{1}{1-(-x)}}",
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\frac{1}{1+x}}=\\mk{g}{\\sum_{n=0}^{\\infty} {(-x)}^{n}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\frac{1}{1+x}}=\\mk{g}{1-x+x^{2}-x^{3}+\\cdots}\\;\\text{for}\\;|x|\\lt 1",
+       "uses": []
+      }
+     ],
+     "src": "Example 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kfprime(x)=\\frac{1}{1+x}",
+       "src": "3.9"
+      },
+      {
+       "text": "A power series may be differentiated and integrated term by term on its open interval of convergence.",
+       "src": "10.2, Term-by-Term Differentiation and Integration for Power Series"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{\\int \\kfprime(x)\\;dx}=\\mk{f}{\\int \\frac{1}{1+x}\\;dx}",
+      "uses": [
+       1
+      ],
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{\\int \\kfprime(x)\\;dx}=\\mk{f}{\\int (1-x+x^{2}-x^{3}+\\cdots)\\;dx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{i}{\\int \\kfprime(x)\\;dx}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{2}}{2}+\\frac{x^{3}}{3}-\\frac{x^{4}}{4}+\\cdots}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "Example 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "$\\kf(x)=\\ln (1+x)$ is an antiderivative of $\\frac{1}{1+x}.$",
+       "src": "Example 10.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{\\int \\kfprime(x)\\;dx}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{2}}{2}+\\frac{x^{3}}{3}-\\frac{x^{4}}{4}+\\cdots}",
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{\\ln (1+x)}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{2}}{2}+\\frac{x^{3}}{3}-\\frac{x^{4}}{4}+\\cdots}",
+       "uses": [
+        1
+       ],
+       "cap": "Every antiderivative of $\\frac{1}{1+x}$ is one of these for some $C.$"
+      }
+     ],
+     "src": "Example 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\ln 1=0",
+       "src": "1.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{\\ln (1+x)}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{2}}{2}+\\frac{x^{3}}{3}-\\frac{x^{4}}{4}+\\cdots}",
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{\\ln (1+0)}=\\mk{C}{C}+\\mk{f}{0}",
+       "uses": [],
+       "cap": "At $x=0$ every term of the series is zero."
+      },
+      {
+       "tex": "\\mk{i}{0}=\\mk{C}{C}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{\\ln (1+x)}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{2}}{2}+\\frac{x^{3}}{3}-\\frac{x^{4}}{4}+\\cdots}",
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{\\ln (1+x)}=\\mk{f}{x-\\frac{x^{2}}{2}+\\frac{x^{3}}{3}-\\frac{x^{4}}{4}+\\cdots}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{i}{\\ln (1+x)}=\\mk{f}{\\sum_{n=1}^{\\infty} {(-1)}^{n+1}\\frac{x^{n}}{n}}\\;\\text{for}\\;|x|\\lt 1",
+       "uses": []
+      }
+     ],
+     "src": "Example 10.10"
+    }
+   ]
+  },
+  {
+   "id": "power-series-for-arctan",
+   "what": "the power series for ${\\tan }^{-1}x$",
+   "source": "Calculus, 10.2 Properties of Power Series, Example 10.10",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{1}{1-x}=\\sum_{n=0}^{\\infty} x^{n}\\;\\text{for}\\;|x|\\lt 1",
+       "src": "10.1"
+      },
+      {
+       "text": "A power series in $x$ may be evaluated at $bx^{m}$ wherever $bx^{m}$ lies in its interval.",
+       "src": "10.2, Combining Power Series"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\frac{1}{1+x^{2}}}=\\mk{g}{\\frac{1}{1-(-x^{2})}}",
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\frac{1}{1+x^{2}}}=\\mk{g}{\\sum_{n=0}^{\\infty} {(-x^{2})}^{n}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\frac{1}{1+x^{2}}}=\\mk{g}{1-x^{2}+x^{4}-x^{6}+\\cdots}\\;\\text{for}\\;|x|\\lt 1",
+       "uses": []
+      }
+     ],
+     "src": "Example 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kfprime(x)=\\frac{1}{1+x^{2}}",
+       "src": "3.7"
+      },
+      {
+       "text": "A power series may be differentiated and integrated term by term on its open interval of convergence.",
+       "src": "10.2, Term-by-Term Differentiation and Integration for Power Series"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{\\int \\kfprime(x)\\;dx}=\\mk{f}{\\int \\frac{1}{1+x^{2}}\\;dx}",
+      "uses": [
+       1
+      ],
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{\\int \\kfprime(x)\\;dx}=\\mk{f}{\\int (1-x^{2}+x^{4}-x^{6}+\\cdots)\\;dx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{i}{\\int \\kfprime(x)\\;dx}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{3}}{3}+\\frac{x^{5}}{5}-\\frac{x^{7}}{7}+\\cdots}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "Example 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "$\\kf(x)={\\tan }^{-1}x$ is an antiderivative of $\\frac{1}{1+x^{2}}.$",
+       "src": "Example 10.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{\\int \\kfprime(x)\\;dx}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{3}}{3}+\\frac{x^{5}}{5}-\\frac{x^{7}}{7}+\\cdots}",
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{{\\tan }^{-1}x}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{3}}{3}+\\frac{x^{5}}{5}-\\frac{x^{7}}{7}+\\cdots}",
+       "uses": [
+        1
+       ],
+       "cap": "Every antiderivative of $\\frac{1}{1+x^{2}}$ is one of these for some $C.$"
+      }
+     ],
+     "src": "Example 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "{\\tan }^{-1}0=0",
+       "src": "1.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{{\\tan }^{-1}x}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{3}}{3}+\\frac{x^{5}}{5}-\\frac{x^{7}}{7}+\\cdots}",
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{{\\tan }^{-1}0}=\\mk{C}{C}+\\mk{f}{0}",
+       "uses": [],
+       "cap": "At $x=0$ every term of the series is zero."
+      },
+      {
+       "tex": "\\mk{i}{0}=\\mk{C}{C}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 10.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{{\\tan }^{-1}x}=\\mk{C}{C}+\\mk{f}{x-\\frac{x^{3}}{3}+\\frac{x^{5}}{5}-\\frac{x^{7}}{7}+\\cdots}",
+      "src": "Example 10.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{{\\tan }^{-1}x}=\\mk{f}{x-\\frac{x^{3}}{3}+\\frac{x^{5}}{5}-\\frac{x^{7}}{7}+\\cdots}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{i}{{\\tan }^{-1}x}=\\mk{f}{\\sum_{n=0}^{\\infty} {(-1)}^{n}\\frac{x^{2n+1}}{2n+1}}\\;\\text{for}\\;|x|\\lt 1",
+       "uses": []
+      }
+     ],
+     "src": "Example 10.10"
+    }
+   ]
+  },
+  {
+   "id": "uniqueness-of-power-series",
+   "what": "the uniqueness of power series",
+   "source": "Calculus, 10.2 Properties of Power Series, Uniqueness of Power Series",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The two series are equal for all $x$ in an open interval containing $a.$",
+       "src": "10.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sum_{n=0}^{\\infty} c_{n}{(x-a)}^{n}}=\\mk{t}{\\sum_{n=0}^{\\infty} d_{n}{(x-a)}^{n}}",
+      "uses": [
+       0
+      ],
+      "src": "10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(x)}=\\mk{s}{c_{0}+c_{1}(x-a)+c_{2}{(x-a)}^{2}+c_{3}{(x-a)}^{3}+\\cdots}=\\mk{t}{d_{0}+d_{1}(x-a)+d_{2}{(x-a)}^{2}+d_{3}{(x-a)}^{3}+\\cdots}",
+       "uses": []
+      }
+     ],
+     "src": "10.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{s}{c_{0}+c_{1}(x-a)+c_{2}{(x-a)}^{2}+c_{3}{(x-a)}^{3}+\\cdots}=\\mk{t}{d_{0}+d_{1}(x-a)+d_{2}{(x-a)}^{2}+d_{3}{(x-a)}^{3}+\\cdots}",
+      "src": "10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(a)}=\\mk{s}{c_{0}}=\\mk{t}{d_{0}}",
+       "uses": [],
+       "cap": "At $x=a$ every power of $x-a$ is zero."
+      }
+     ],
+     "src": "10.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "A power series may be differentiated and integrated term by term on its open interval of convergence.",
+       "src": "10.2, Term-by-Term Differentiation and Integration for Power Series"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{s}{c_{0}+c_{1}(x-a)+c_{2}{(x-a)}^{2}+c_{3}{(x-a)}^{3}+\\cdots}=\\mk{t}{d_{0}+d_{1}(x-a)+d_{2}{(x-a)}^{2}+d_{3}{(x-a)}^{3}+\\cdots}",
+      "src": "10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{s}{c_{1}+2c_{2}(x-a)+3c_{3}{(x-a)}^{2}+\\cdots}=\\mk{t}{d_{1}+2d_{2}(x-a)+3d_{3}{(x-a)}^{2}+\\cdots}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "10.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfprime(x)}=\\mk{s}{c_{1}+2c_{2}(x-a)+3c_{3}{(x-a)}^{2}+\\cdots}=\\mk{t}{d_{1}+2d_{2}(x-a)+3d_{3}{(x-a)}^{2}+\\cdots}",
+      "src": "10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime(a)}=\\mk{s}{c_{1}}=\\mk{t}{d_{1}}",
+       "uses": []
+      }
+     ],
+     "src": "10.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "A power series may be differentiated and integrated term by term on its open interval of convergence.",
+       "src": "10.2, Term-by-Term Differentiation and Integration for Power Series"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfprime(x)}=\\mk{s}{c_{1}+2c_{2}(x-a)+3c_{3}{(x-a)}^{2}+\\cdots}=\\mk{t}{d_{1}+2d_{2}(x-a)+3d_{3}{(x-a)}^{2}+\\cdots}",
+      "src": "10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfdprime(x)}=\\mk{s}{2c_{2}+3\\cdot 2c_{3}(x-a)+\\cdots}=\\mk{t}{2d_{2}+3\\cdot 2d_{3}(x-a)+\\cdots}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfdprime(a)}=\\mk{s}{2c_{2}}=\\mk{t}{2d_{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{c_{2}}=\\mk{t}{d_{2}}",
+       "uses": []
+      }
+     ],
+     "src": "10.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "A power series may be differentiated and integrated term by term on its open interval of convergence.",
+       "src": "10.2, Term-by-Term Differentiation and Integration for Power Series"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{s}{c_{0}+c_{1}(x-a)+c_{2}{(x-a)}^{2}+c_{3}{(x-a)}^{3}+\\cdots}=\\mk{t}{d_{0}+d_{1}(x-a)+d_{2}{(x-a)}^{2}+d_{3}{(x-a)}^{3}+\\cdots}",
+      "src": "10.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfn(x)}=\\mk{s}{n!c_{n}+(n+1)!c_{n+1}(x-a)+\\cdots}=\\mk{t}{n!d_{n}+(n+1)!d_{n+1}(x-a)+\\cdots}",
+       "uses": [
+        1
+       ],
+       "cap": "Differentiating $n$ times takes the terms before $c_{n}{(x-a)}^{n}$ to zero and $c_{n}{(x-a)}^{n}$ itself to $n!c_{n}.$"
+      },
+      {
+       "tex": "\\mk{f}{\\kfn(a)}=\\mk{s}{n!c_{n}}=\\mk{t}{n!d_{n}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{c_{n}}=\\mk{t}{d_{n}}\\;\\text{for all}\\;n\\ge 0",
+       "uses": []
+      }
+     ],
+     "src": "10.2, Uniqueness of Power Series"
+    }
+   ]
   }
  ]
 }

@@ -102,3 +102,8 @@ page colours are already in `book.json` as the prep pass staged them.
 Each line supersedes the figure's line above where they differ.
 
 sim-rc-charge-discharge · Figure 21.37 + 21.38 · as above · value add: switching between charging and discharging keeps the graph's frame and bends one curve into the other (`mix`), and the law morphs by meaning, ε renamed V₀ in place, the exponential keeping its key and the "1 −" leaving (`F.morphAt` over the choice's progress, manim 11, 15); the source cross-fades; the clock-driven numbers are never highlighted (manim 13) · moving, as above
+
+## Derivations
+
+- The voltage on a charging capacitor, $V = \text{emf}(1 - e^{-t/RC})$ · score 10 · not built: "derived using calculus", which the book never states (rule 29.3)
+- The voltage on a discharging capacitor, $V = V_0e^{-t/RC}$ · score 9 · not built: "using calculus ... is found to be", the same reason

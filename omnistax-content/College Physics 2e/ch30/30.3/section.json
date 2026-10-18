@@ -1045,5 +1045,255 @@
       "kind": "correction",
       "html": "The book’s key labels all three differences $E_{3} - E_{2}$. The second is $E_{2} - E_{1}$ and the one in (b) is $E_{3} - E_{1}$."
     }
+  ],
+  "derivations": [
+    {
+      "id": "hydrogen-like-energies",
+      "what": "the orbital energies of hydrogen-like atoms",
+      "source": "College Physics 2e, 30.3 Bohr’s Theory of the Hydrogen Atom",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "\\kKE = (1/2)\\kme\\kv^{2}",
+              "src": "7.2"
+            },
+            {
+              "text": "Potential energy for the electron is electrical: its charge times the potential $\\kV$ due to the nucleus.",
+              "src": "19.1"
+            },
+            {
+              "text": "The electron’s charge is negative, $-\\kqe$.",
+              "src": "30.3"
+            },
+            {
+              "text": "The nucleus, a point charge $Z\\kqe$, has the potential $\\kV = kZ\\kqe/\\krn$ at the orbit.",
+              "src": "19.3"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{E}{\\kEn} = \\mk{K}{\\kKE} + \\mk{P}{\\kPEtot}",
+            "uses": [],
+            "src": "30.3",
+            "why": "The electron’s energy is the sum of its kinetic and potential energy."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{E}{\\kEn} = \\mk{K}{\\frac{1}{2}\\kme\\kv^{2}} + \\mk{P}{\\kPEtot}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{E}{\\kEn} = \\mk{K}{\\frac{1}{2}\\kme\\kv^{2}} + \\mk{P}{(-\\kqe)\\kV}",
+              "uses": [
+                1,
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{E}{\\kEn} = \\mk{K}{\\frac{1}{2}\\kme\\kv^{2}} \\mk{P}{- k\\frac{Z\\kqe^{2}}{\\krn}}",
+              "uses": [
+                3
+              ]
+            }
+          ],
+          "src": "30.3"
+        },
+        {
+          "assumes": [],
+          "then": {
+            "tex": "\\mk{C}{k\\frac{Z\\kqe^{2}}{\\krn^{2}}} = \\mk{c}{\\frac{\\kme\\kv^{2}}{\\krn}}",
+            "uses": [],
+            "src": "30.3",
+            "why": "The Coulomb force of the nucleus supplies the centripetal force."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{c}{\\kme\\kv^{2}} = \\mk{C}{k\\frac{Z\\kqe^{2}}{\\krn}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{c}{\\frac{1}{2}\\kme\\kv^{2}} = \\mk{C}{k\\frac{Z\\kqe^{2}}{2\\krn}}",
+              "uses": []
+            }
+          ],
+          "src": "30.3"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "step": 1
+            },
+            {
+              "tex": "\\krn = \\frac{n^{2}}{Z}\\kaB",
+              "src": "30.3"
+            },
+            {
+              "tex": "\\kaB = \\frac{h^{2}}{4\\pi^{2} \\kme k \\kqe^{2}}",
+              "src": "30.3"
+            },
+            {
+              "tex": "\\kEobohr = \\frac{2\\pi^{2}\\kqe^{4} \\kme k^{2}}{h^{2}}",
+              "src": "30.3"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{E}{\\kEn} = \\mk{K}{\\frac{1}{2}\\kme\\kv^{2}} \\mk{P}{- k\\frac{Z\\kqe^{2}}{\\krn}}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{E}{\\kEn} = \\mk{K}{k\\frac{Z\\kqe^{2}}{2\\krn}} \\mk{P}{- k\\frac{Z\\kqe^{2}}{\\krn}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{E}{\\kEn} = \\mk{P}{-k\\frac{Z\\kqe^{2}}{2\\krn}}",
+              "uses": [],
+              "map": {
+                "K": "P"
+              }
+            },
+            {
+              "tex": "\\mk{E}{\\kEn} = \\mk{P}{-k\\frac{Z^{2}\\kqe^{2}}{2n^{2}\\kaB}}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{E}{\\kEn} = \\mk{P}{-\\frac{kZ^{2}\\kqe^{2}}{2n^{2}}\\cdot\\frac{4\\pi^{2}\\kme k\\kqe^{2}}{h^{2}}}",
+              "uses": [
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{E}{\\kEn} = \\mk{P}{-\\frac{Z^{2}}{n^{2}}\\cdot\\frac{2\\pi^{2}\\kqe^{4}\\kme k^{2}}{h^{2}}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{E}{\\kEn} = \\mk{P}{-\\frac{Z^{2}}{n^{2}}\\kEobohr}\\;(n = 1, 2, 3, \\ldots)",
+              "uses": [
+                4
+              ]
+            }
+          ],
+          "src": "30.3"
+        }
+      ]
+    },
+    {
+      "id": "rydberg-formula",
+      "what": "the Rydberg formula from Bohr’s energy levels",
+      "source": "College Physics 2e, 30.3 Bohr’s Theory of the Hydrogen Atom",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "\\kEn = -13.6\\;\\text{eV}/n^{2}",
+              "src": "30.3"
+            },
+            {
+              "tex": "\\kc = \\kf\\klam",
+              "src": "24.3"
+            }
+          ],
+          "then": {
+            "tex": "\\kdE = \\mk{h}{h\\kf} = \\mk{E}{\\kEini - \\kEfin}",
+            "uses": [],
+            "src": "30.3",
+            "why": "The photon carries away the energy the electron loses in the downward transition."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{h}{h\\kf} = \\mk{E}{-\\frac{13.6\\;\\text{eV}}{n_{\\text{i}}^{2}} + \\frac{13.6\\;\\text{eV}}{n_{\\text{f}}^{2}}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{h}{h\\kf} = \\mk{E}{(13.6\\;\\text{eV})\\left(\\frac{1}{n_{\\text{f}}^{2}} - \\frac{1}{n_{\\text{i}}^{2}}\\right)}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{h}{\\frac{h\\kf}{h\\kc}} = \\mk{E}{\\frac{(13.6\\;\\text{eV})}{h\\kc}\\left(\\frac{1}{n_{\\text{f}}^{2}} - \\frac{1}{n_{\\text{i}}^{2}}\\right)}",
+              "uses": []
+            },
+            {
+              "tex": "\\frac{h\\kf}{h\\kc} = \\frac{\\kf}{\\kc} = \\mk{h}{\\frac{1}{\\klam}} = \\mk{E}{\\frac{(13.6\\;\\text{eV})}{h\\kc}\\left(\\frac{1}{n_{\\text{f}}^{2}} - \\frac{1}{n_{\\text{i}}^{2}}\\right)}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "30.3"
+        },
+        {
+          "assumes": [
+            {
+              "tex": "1\\;\\text{eV} = 1.602\\times 10^{-19}\\;\\text{J}",
+              "src": "19.1"
+            },
+            {
+              "tex": "h = 6.626\\times 10^{-34}\\;\\text{J}\\cdot\\text{s}",
+              "src": "29.1"
+            },
+            {
+              "tex": "\\kc = 2.998\\times 10^{8}\\;\\text{m/s}",
+              "src": "24.1"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{R}{\\left(\\frac{13.6\\;\\text{eV}}{h\\kc}\\right)}",
+            "uses": [],
+            "why": "The factor in front of the bracket, which the book names the Rydberg constant $R$."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{R}{\\left(\\frac{13.6\\;\\text{eV}}{h\\kc}\\right)} = \\mk{n}{\\frac{(13.6\\;\\text{eV})(1.602\\times 10^{-19}\\;\\text{J/eV})}{(6.626\\times 10^{-34}\\;\\text{J}\\cdot\\text{s})(2.998\\times 10^{8}\\;\\text{m/s})}}",
+              "uses": [
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{R}{\\left(\\frac{13.6\\;\\text{eV}}{h\\kc}\\right)} = \\mk{n}{1.097\\times 10^{7}\\;\\text{m}^{-1}} = \\mk{r}{R}",
+              "uses": []
+            }
+          ],
+          "src": "30.3"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "step": 1
+            }
+          ],
+          "then": {
+            "tex": "\\mk{h}{\\frac{1}{\\klam}} = \\mk{E}{\\frac{(13.6\\;\\text{eV})}{h\\kc}}\\mk{N}{\\left(\\frac{1}{n_{\\text{f}}^{2}} - \\frac{1}{n_{\\text{i}}^{2}}\\right)}",
+            "uses": [0]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{h}{\\frac{1}{\\klam}} = \\mk{E}{R}\\mk{N}{\\left(\\frac{1}{n_{\\text{f}}^{2}} - \\frac{1}{n_{\\text{i}}^{2}}\\right)}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "30.3"
+        }
+      ]
+    }
   ]
 }

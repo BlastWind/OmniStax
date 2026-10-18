@@ -225,3 +225,7 @@ with `source_section: "19.6"`. The book's "(Review Figure 19.23.)" in the
 opening paragraph points at the calculator rather than at the defibrillator
 of Figure 19.24; the text is kept as printed and the erratum is recorded in
 `exploration.md`.
+
+## Derivations
+
+- The energy stored in a capacitor (prose argument, then the displayed forms) · score 3 · built as drv-capacitor-energy: three nodes, $\Delta\text{PE} = q\Delta V$ at the average voltage $V/2$ giving $QV/2$, then two branches through $Q = CV$ giving $CV^2/2$ and $Q^2/2C$; replaces the two displayed lines and the connecting phrases, the book's note that the energy is not $QV$ and the units sentence kept in one paragraph after it

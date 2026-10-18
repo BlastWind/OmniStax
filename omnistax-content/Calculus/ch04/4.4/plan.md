@@ -45,3 +45,12 @@ Photographs: none. Exercise figures: none.
 
 - forms `eq-mean-value-theorem` → `4.4-mean-value-theorem`; `eq-constant-difference` → `4.4-corollary-2`.
 - Review 525 lands in the chapter pass.
+
+
+## Derivations
+
+- Rolle's Theorem · Proof · score 3 · built as drv-rolles-theorem, cases 1 and 2 as two nodes (the constant rule; the extreme value theorem and Fermat's theorem); the case list stays above it and case 3, left as analogous, below
+- Mean Value Theorem · Proof · score 1 · built as drv-mean-value-theorem: the secant line from (1.3) and (1.4), g(x), g(a) = 0 and g(b) = 0 (hidden, worked), g′(x) and Rolle's theorem joined at c; the paragraph defining g and its continuity kept above
+- Corollary 1 · Proof · score 1 · built as drv-functions-with-zero-derivative (the set-up sentences kept above; the contradiction is the last move)
+- Corollary 2 · Proof · score 0 · built as drv-constant-difference-theorem (a thin printed proof, one node)
+- Corollary 3 · Proof · score 1 · built as drv-increasing-functions; the book's f(a) > f(b) is corrected to f(a) ≥ f(b) in the derivation, its note saying what the book printed; part ii, left as similar, stays in the book's words

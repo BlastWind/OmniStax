@@ -58,3 +58,14 @@ None beyond the folds: `sim-vector-sum`, `sim-component-form` and the force/velo
 - forms: `eq-vector-magnitude-plane` → `12.1-magnitude-term`; `eq-scalar-multiple-plane`, `eq-vector-sum-plane` → `12.1-operations-definition`; `eq-vector-difference` → `12.1-difference-term`; `eq-vector-triangle-inequality` → `12.1-triangle-inequality`; `eq-component-form-plane` → the component-form definition note; `eq-component-form-from-points` → the rule note; `eq-components-from-angle` → `12.1-trig-components`; `eq-unit-vector` → `12.1-unit-vector-term`; `eq-standard-unit-plane` → `12.1-linear-combination`.
 - variables of 12.1 anchored at build (`ost set … variables`).
 - Review 427, 445 placed here.
+
+## Derivations
+
+- Magnitude of a vector (the block after "Using the distance formula") · score 1 · built as drv-magnitude-of-a-vector, the block replaced.
+- Triangle inequality (after Figure 12.6) · score 2 · not built: a geometric fact read off in two moves, below the bar.
+- Proof of Commutative Property · score 1 · built as drv-commutative-property, the proof's body replaced under its heading.
+- Proof of Distributive Property · score 1 · built as drv-distributive-property, the proof's body replaced under its heading.
+- Unit vector in the direction of v (before Figure 12.17) · score 0 · not built: two inline moves from ‖kv‖ = |k|‖v‖, below the bar.
+- Linear combination of i and j (before Example 12.8) · score 0 · built as drv-linear-combination, the block replaced.
+- Example 12.9, resultant force · score 2 · not built: components and magnitude from the section's own formulas.
+- Example 12.10, resultant velocity · score 2 · not built: the section's component, addition and magnitude formulas substituted.

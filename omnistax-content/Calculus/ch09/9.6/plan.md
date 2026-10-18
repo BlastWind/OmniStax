@@ -38,3 +38,11 @@ None: a test chooser is a sheet planned for later (Table 9.3 stays the book's ta
 ## Wanted at chapter level
 
 - Anchors: variables a_seq, n, S → `9.6-ratio-test`; ρ → `9.6-ratio-theorem`; b_seq → `9.6-root-test`. Forms: eq-ratio-test → `9.6-ratio-theorem`; eq-root-test → `9.6-root-theorem`.
+
+## Derivations
+
+- Ratio Test · Proof (parts i–iii) · score 6 · built as drv-ratio-test (replaces the proof's body; part ii's garbled lines followed by the correct ones, the correction now the node's note and the `ratio-proof` footnote removed)
+- Root Test · parts i and ii "as in the ratio test" · score 11 · not built: the ratio test's proof with $|a_{n}|\lt R^{n}$ in place of its chain; the graph would repeat drv-ratio-test
+- Root Test · part iii, $\rho=1$ for a $p$-series · score 4 · built as drv-root-test-p-series (a printed block; the L'Hôpital step the book skips inserted)
+- Example 9.23b, c · score 2 · not built: worked examples of the section's test
+- Student Project · Series Converging to $\pi$ and $1/\pi$ · score 6 · not built: a project set for the reader

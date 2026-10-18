@@ -17,8 +17,7 @@
 <li>There exists $x\in (a,b)$ such that $\kf(x)\gt k.$</li>
 <li>There exists $x\in (a,b)$ such that $\kf(x)\lt k.$</li>
 </ol>
-<p>Case 1: If $\kf(x)=k$ for all $x\in (a,b),$ then $\kfprime(x)=0$ for all $x\in (a,b).$</p>
-<p>Case 2: Since $\kf$ is a continuous <span data-concept="function">function</span> over the closed, bounded interval $[a,b],$ by the <span data-concept="extreme-value-theorem">extreme value theorem</span>, it has an <span data-concept="absolute-extremum">absolute maximum</span>. Also, since there is a point $x\in (a,b)$ such that $\kf(x)\gt k,$ the <span data-concept="absolute-extremum">absolute maximum</span> is greater than $k.$ Therefore, the <span data-concept="absolute-extremum">absolute maximum</span> does not occur at either endpoint. As a result, the <span data-concept="absolute-extremum">absolute maximum</span> must occur at an interior point $c\in (a,b).$ Because $\kf$ has a maximum at an interior point $c,$ and $\kf$ is differentiable at $c,$ by <span data-concept="fermats-theorem">Fermat’s theorem</span>, $\kfprime(c)=0.$</p>
+<figure class="dv" id="drv-rolles-theorem"></figure>
 <p>Case 3: The case when there exists a point $x\in (a,b)$ such that $\kf(x)\lt k$ is analogous to case 2, with maximum replaced by minimum.</p>
 <p>□</p>
 <p>An important point about <span data-concept="rolles-theorem">Rolle’s theorem</span> is that the differentiability of the <span data-concept="function">function</span> $\kf$ is critical. If $\kf$ is not differentiable, even at a single point, the result may not hold. For example, the <span data-concept="function">function</span> <span data-fn="|x|-1">$\kf(x)=|x|-1$</span> is continuous over $[-1,1]$ and $\kf(-1)=0=\kf(1),$ but $\kfprime(c)\ne 0$ for any $c\in (-1,1)$ as shown in the following figure.</p>
@@ -57,18 +56,9 @@
 $$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
 </div>
 <h3 id="mvt-proof">Proof</h3>
-<p>The proof follows from <span data-concept="rolles-theorem">Rolle’s theorem</span> by introducing an appropriate <span data-concept="function">function</span> that satisfies the criteria of <span data-concept="rolles-theorem">Rolle’s theorem</span>. Consider the line connecting $(a,\kf(a))$ and $(b,\kf(b)).$ Since the slope of that line is</p>
-$$\frac{f(b)-\kf(a)}{b-a}$$
-<p>and the line passes through the point $(a,\kf(a)),$ the equation of that line can be written as</p>
-$$y=\frac{f(b)-\kf(a)}{b-a}(x-a)+\kf(a).$$
-<p>Let $\kg(x)$ denote the vertical difference between the point $(x,\kf(x))$ and the point $(x,y)$ on that line. Therefore,</p>
-$$\kg(x)=\kf(x)-[\frac{f(b)-\kf(a)}{b-a}(x-a)+\kf(a)]\text{.}$$
-<p>Since the graph of $\kf$ intersects the <span data-concept="secant">secant line</span> when $x=a$ and $x=b,$ we see that $\kg(a)=0=\kg(b).$ Since $\kf$ is a <span data-concept="differentiable-function">differentiable function</span> over $(a,b),$ $\kg$ is also a <span data-concept="differentiable-function">differentiable function</span> over $(a,b).$ Furthermore, since $\kf$ is continuous over $[a,b],$ $\kg$ is also continuous over $[a,b].$ Therefore, $\kg$ satisfies the criteria of <span data-concept="rolles-theorem">Rolle’s theorem</span>. Consequently, there exists a point $c\in (a,b)$ such that $\kgprime(c)=0.$ Since</p>
-$$\kgprime(x)=\kfprime(x)-\frac{f(b)-\kf(a)}{b-a},$$
-<p>we see that</p>
-$$\kgprime(c)=\kfprime(c)-\frac{f(b)-\kf(a)}{b-a}.$$
-<p>Since $\kgprime(c)=0,$ we conclude that</p>
-$$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
+<p>The proof follows from <span data-concept="rolles-theorem">Rolle’s theorem</span> by introducing an appropriate <span data-concept="function">function</span> that satisfies the criteria of <span data-concept="rolles-theorem">Rolle’s theorem</span>. Consider the line connecting $(a,\kf(a))$ and $(b,\kf(b)).$</p>
+<p>Let $\kg(x)$ denote the vertical difference between the point $(x,\kf(x))$ and the point $(x,y)$ on that line. Since $\kf$ is a <span data-concept="differentiable-function">differentiable function</span> over $(a,b),$ $\kg$ is also a <span data-concept="differentiable-function">differentiable function</span> over $(a,b).$ Furthermore, since $\kf$ is continuous over $[a,b],$ $\kg$ is also continuous over $[a,b].$</p>
+<figure class="dv" id="drv-mean-value-theorem"></figure>
 <p>□</p>
 <div class="example" id="fs-id1165042979713">
 <h3>Example 4.15 · Verifying that the Mean Value Theorem Applies</h3>
@@ -115,11 +105,8 @@ $$\ksprime(c)=\frac{s(5/2)-\ks(0)}{5/2-0}=-40.$$
 <p>Let $\kf$ be differentiable over an interval $\kI.$ If $\kfprime(x)=0$ for all $x\in \kI,$ then $\kf(x)=$ constant for all $x\in \kI.$</p>
 </div>
 <h3 id="corollary-1-proof">Proof</h3>
-<p>Since $\kf$ is differentiable over $\kI,$ $\kf$ must be continuous over $\kI.$ Suppose $\kf(x)$ is not constant for all $x$ in $\kI.$ Then there exist $a,b\in \kI,$ where $a\ne b$ and $\kf(a)\ne \kf(b).$ Choose the notation so that $a\lt b.$ Therefore,</p>
-$$\frac{f(b)-\kf(a)}{b-a}\ne 0.$$
-<p>Since $\kf$ is a <span data-concept="differentiable-function">differentiable function</span>, by the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, there exists $c\in (a,b)$ such that</p>
-$$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
-<p>Therefore, there exists $c\in \kI$ such that $\kfprime(c)\ne 0,$ which contradicts the assumption that $\kfprime(x)=0$ for all $x\in \kI.$</p>
+<p>Since $\kf$ is differentiable over $\kI,$ $\kf$ must be continuous over $\kI.$ Suppose $\kf(x)$ is not constant for all $x$ in $\kI.$ Then there exist $a,b\in \kI,$ where $a\ne b$ and $\kf(a)\ne \kf(b).$ Choose the notation so that $a\lt b.$</p>
+<figure class="dv" id="drv-functions-with-zero-derivative"></figure>
 <p>□</p>
 <p>From Corollary 1: <span data-concept="functions-with-a-derivative-of-zero">Functions with a Derivative of Zero</span>, it follows that if two <span data-concept="function">functions</span> have the same <span data-concept="derivative">derivative</span>, they differ by, at most, a constant.</p>
 <div class="note" id="corollary-2">
@@ -128,7 +115,7 @@ $$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
 <p>If $\kf$ and $\kg$ are differentiable over an interval $\kI$ and $\kfprime(x)=\kgprime(x)$ for all $x\in \kI,$ then $\kf(x)=\kg(x)+C$ for some constant $C.$</p>
 </div>
 <h3 id="corollary-2-proof">Proof</h3>
-<p>Let $h(x)=\kf(x)-\kg(x).$ Then, ${h}^{'}(x)=\kfprime(x)-\kgprime(x)=0$ for all $x\in \kI.$ By Corollary 1, there is a constant $C$ such that $h(x)=C$ for all $x\in \kI.$ Therefore, $\kf(x)=\kg(x)+C$ for all $x\in \kI.$</p>
+<figure class="dv" id="drv-constant-difference-theorem"></figure>
 <p>□</p>
 <p>This fact is important because it means that for a given <span data-concept="function">function</span> $\kf,$ if there exists a <span data-concept="function">function</span> $F$ such that ${F}^{'}(x)=\kf(x);$ then, the only other <span data-concept="function">functions</span> that have a <span data-concept="derivative">derivative</span> equal to $\kf$ are $F(x)+C$ for some constant $C.$ We discuss this result in more detail later in the chapter.</p>
 <p>The third corollary of the <span data-concept="mean-value-theorem">Mean Value Theorem</span> discusses when a <span data-concept="function">function</span> is increasing and when it is decreasing. Recall that a <span data-concept="function">function</span> $\kf$ is increasing over $\kI$ if $\kf({x}_{1})\lt \kf({x}_{2})$ whenever ${x}_{1}\lt {x}_{2},$ whereas $\kf$ is decreasing over $\kI$ if $\kf{(x)}_{1}\gt \kf({x}_{2})$<sup class="fn" data-note="c-decreasing"></sup> whenever ${x}_{1}\lt {x}_{2}.$ Using the <span data-concept="mean-value-theorem">Mean Value Theorem</span>, we can show that if the <span data-concept="derivative">derivative</span> of a <span data-concept="function">function</span> is positive, then the <span data-concept="function">function</span> is increasing; if the <span data-concept="derivative">derivative</span> is negative, then the <span data-concept="function">function</span> is decreasing (Figure 4.29). We make use of this fact in the next section, where we show how to use the <span data-concept="derivative">derivative</span> of a <span data-concept="function">function</span> to locate local maximum and minimum values of the <span data-concept="function">function</span>, and how to determine the shape of the graph.</p>
@@ -145,10 +132,7 @@ $$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
 </ol>
 </div>
 <h3 id="corollary-3-proof">Proof</h3>
-<p>We will prove i.; the proof of ii. is similar. Suppose $\kf$ is continuous and differentiable over an interval $\kI$ and $\kfprime(x)\gt 0$ for all $x\in \kI$. By way of contradiction, suppose that $\kf$ is not an <span data-concept="increasing-function">increasing function</span> on $\kI$. Then there exist $a$ and $b$ in $\kI$ such that $a\lt b$, but $\kf(a)\gt \kf(b)$. Since $\kf$ is a <span data-concept="differentiable-function">differentiable function</span> over $\kI$, the <span data-concept="mean-value-theorem">Mean Value Theorem</span> guarantees that there is some value $c\in (a,b)$ such that</p>
-$$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}.$$
-<p>Now $a\lt b$, so $b-a\gt 0$. Because $\kf(a)\gt \kf(b)$, it follows that $\kf(b)-\kf(a)\lt 0$. It follows that the quotient of $\kf(b)-\kf(a)$ and $b-a$ is negative. So, for c,</p>
-$$\kfprime(c)=\frac{f(b)-\kf(a)}{b-a}\lt 0.$$
-<p>However, $\kfprime(x)\gt 0$ for all $x\in \kI$ including $c$. This is a contradiction. The assumption that $\kf$ is not an <span data-concept="increasing-function">increasing function</span> on $\kI$ is false. Therefore, $\kf$ must be increasing throughout $\kI$.</p>
+<p>We will prove i.; the proof of ii. is similar. Suppose $\kf$ is continuous and differentiable over an interval $\kI$ and $\kfprime(x)\gt 0$ for all $x\in \kI$. By way of contradiction, suppose that $\kf$ is not an <span data-concept="increasing-function">increasing function</span> on $\kI$.</p>
+<figure class="dv" id="drv-increasing-functions"></figure>
 <p>□</p>
 </section>

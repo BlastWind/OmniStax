@@ -102,16 +102,10 @@ $$dy=-\sin x\;dx.$$
 $$dy=-\sin (3)(0.1)=-0.1\;\sin (3).$$
 </div>
 <div class="exercises" data-place="fs-id1165043166548"></div>
-<p>We now connect <span data-concept="differential">differentials</span> to <span data-concept="linear-approximation">linear approximations</span>. <span data-concept="differential">Differentials</span> can be used to estimate the change in the value of a <span data-concept="function">function</span> resulting from a small change in input values. Consider a <span data-concept="function">function</span> $\kf$ that is differentiable at point $a.$ Suppose the input $x$ changes by a small amount. We are interested in how much the output $y$ changes. If $x$ changes from $a$ to $a+dx,$ then the change in $x$ is $dx$ (also denoted $\Delta x),$ and the change in $y$ is given by</p>
-$$\Delta y=\kf(a+dx)-\kf(a).$$
-<p>Instead of calculating the exact change in $y,$ however, it is often easier to approximate the change in $y$ by using a <span data-concept="linear-approximation">linear approximation</span>. For $x$ near $a,$ $\kf(x)$ can be approximated by the <span data-concept="linear-approximation">linear approximation</span></p>
-$$\kL(x)=\kf(a)+\kfprime(a)(x-a).$$
-<p>Therefore, if $dx$ is small,</p>
-$$\kf(a+dx)\approx \kL(a+dx)=\kf(a)+\kfprime(a)(a+dx-a).$$
-<p>That is,</p>
-$$\kf(a+dx)-\kf(a)\approx \kL(a+dx)-\kf(a)=\kfprime(a)dx.$$
-<p>In other words, the actual change in the <span data-concept="function">function</span> $\kf$ if $x$ increases from $a$ to $a+dx$ is approximately the difference between $\kL(a+dx)$ and $\kf(a),$ where $\kL(x)$ is the <span data-concept="linear-approximation">linear approximation</span> of $\kf$ at $a.$ By definition of $\kL(x),$ this difference is equal to $\kfprime(a)dx.$ In summary,</p>
-$$\Delta y=\kf(a+dx)-\kf(a)\approx \kL(a+dx)-\kf(a)=\kfprime(a)dx=dy.$$
+<p>We now connect <span data-concept="differential">differentials</span> to <span data-concept="linear-approximation">linear approximations</span>. <span data-concept="differential">Differentials</span> can be used to estimate the change in the value of a <span data-concept="function">function</span> resulting from a small change in input values. Consider a <span data-concept="function">function</span> $\kf$ that is differentiable at point $a.$ Suppose the input $x$ changes by a small amount. We are interested in how much the output $y$ changes. If $x$ changes from $a$ to $a+dx,$ then the change in $x$ is $dx$ (also denoted $\Delta x).$</p>
+<p>Instead of calculating the exact change in $y,$ however, it is often easier to approximate the change in $y$ by using a <span data-concept="linear-approximation">linear approximation</span>. For $x$ near $a,$ $\kf(x)$ can be approximated by the <span data-concept="linear-approximation">linear approximation</span> $\kL(x).$</p>
+<figure class="dv" id="drv-change-by-differential"></figure>
+<p>In other words, the actual change in the <span data-concept="function">function</span> $\kf$ if $x$ increases from $a$ to $a+dx$ is approximately the difference between $\kL(a+dx)$ and $\kf(a),$ where $\kL(x)$ is the <span data-concept="linear-approximation">linear approximation</span> of $\kf$ at $a.$ By definition of $\kL(x),$ this difference is equal to $\kfprime(a)dx.$</p>
 <p>Therefore, we can use the <span data-concept="differential">differential</span> $dy=\kfprime(a)dx$ to approximate the change in $y$ if $x$ increases from $x=a$ to $x=a+dx.$ We can see this in the following graph.</p>
 <figure class="sim" id="sim-differential" data-figure="4.11" data-original="/media/ch04/CNX_Calc_Figure_04_02_005.jpg" data-original-caption="The differential dy=f′(a)dx is used to approximate the actual change in y if x increases from a to a+dx.">
   <div class="sim-head"><span class="eyebrow">Figure 4.11</span><span>The <span data-concept="differential">differential</span> $dy=\kfprime(a)dx$ is the rise of the <span data-concept="tangent-line">tangent line</span> over $dx$; the actual change $\Delta y=\kf(a+dx)-\kf(a)$ is the rise of the curve. Shrink $dx$ and the two close in on each other, the error between them vanishing faster than $dx$.</span></div>

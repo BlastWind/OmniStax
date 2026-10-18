@@ -810,5 +810,103 @@
    "kind": "correction",
    "html": "The level curve that touches the budget line is $\\kf(x,y)=540,$ at $(10,4),$ as Example 14.43 finds: along the line $y=54-5x$ the profit is $-216x^{2}+4320x-21{,}060,$ largest at $x=10.$ The value $395$ and the point with both coordinates just under $5$ do not satisfy $20x+4y=216$ at a tangency, and the book’s Figure 14.60 is drawn for them."
   }
+ ],
+ "derivations": [
+  {
+   "id": "lagrange-one-constraint",
+   "what": "the method of Lagrange multipliers with one constraint",
+   "source": "Calculus, 14.8 Lagrange Multipliers",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The constraint curve $\\kg(x,y)=0$ is parameterized smoothly as $x=x(s)$ and $y=y(s)$, with $s$ an arc length parameter and $(x_{0},y_{0})$ at $s=0$.",
+       "src": "14.8"
+      },
+      {
+       "text": "$z=\\kf(x(s),y(s))$ has a relative maximum or relative minimum at $s=0$, where the constrained extremum occurs.",
+       "src": "14.8"
+      },
+      {
+       "text": "If a function has a local extremum at $c$ and is differentiable there, its derivative at $c$ is $0$.",
+       "src": "4.3, Fermat’s Theorem"
+      },
+      {
+       "tex": "(a_{1}\\kveci+a_{2}\\kvecj)\\cdot (b_{1}\\kveci+b_{2}\\kvecj)=a_{1}b_{1}+a_{2}b_{2}",
+       "src": "12.3"
+      },
+      {
+       "tex": "\\kgradf(x,y)=\\kfx(x,y)\\kveci+\\kfy(x,y)\\kvecj",
+       "src": "(14.39)"
+      },
+      {
+       "text": "With an arc length parameter, $\\|\\kvecrprime(s)\\|=1$, so $\\kvecrprime(s)$ is the unit tangent vector $\\kvecT(s)$.",
+       "src": "13.3, Arc-Length Function"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{\\frac{dz}{ds}}=\\mk{p}{\\frac{\\partial \\kf}{\\partial x}\\cdot \\frac{dx}{ds}+\\frac{\\partial \\kf}{\\partial y}\\cdot \\frac{dy}{ds}}",
+      "src": "(14.29)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{\\frac{dz}{ds}}=\\mk{p}{(\\frac{\\partial \\kf}{\\partial x}\\kveci+\\frac{\\partial \\kf}{\\partial y}\\kvecj)\\cdot (\\frac{dx}{ds}\\kveci+\\frac{dy}{ds}\\kvecj)}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{p}{(\\frac{\\partial \\kf}{\\partial x}\\kveci+\\frac{\\partial \\kf}{\\partial y}\\kvecj)\\cdot (\\frac{dx}{ds}\\kveci+\\frac{dy}{ds}\\kvecj)}=\\mk{z}{0}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\kgradf(x_{0},y_{0})\\cdot \\text{T}(0)}=\\mk{z}{0}",
+       "uses": [
+        0,
+        4,
+        5
+       ],
+       "cap": "At $s=0$ the partial derivatives are taken at $(x_{0},y_{0})$, and the second factor is the unit tangent vector to the constraint curve there."
+      }
+     ],
+     "src": "14.8"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Nonzero vectors are orthogonal exactly when their dot product is zero.",
+       "src": "12.3, Orthogonal Vectors"
+      },
+      {
+       "text": "$\\kg(x,y)=0$ is a level curve of $\\kg$, and $\\kgradg(x_{0},y_{0})\\ne 0$ is normal to it at $(x_{0},y_{0})$.",
+       "src": "14.6, Gradient Is Normal to the Level Curve"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kgradf(x_{0},y_{0})\\cdot \\text{T}(0)}=\\mk{z}{0}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kgradf(x_{0},y_{0})}=\\mk{z}{\\lambda \\kgradg(x_{0},y_{0})}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$\\kgradf(x_{0},y_{0})$ is $\\mathbf{0}$ or orthogonal to $\\text{T}(0)$, and in the plane every vector orthogonal to $\\text{T}(0)$ is a multiple of the nonzero normal $\\kgradg(x_{0},y_{0})$; $\\lambda=0$ when $\\kgradf(x_{0},y_{0})=\\mathbf{0}$."
+      }
+     ],
+     "src": "14.8, Method of Lagrange Multipliers: One Constraint"
+    }
+   ]
+  }
  ]
 }

@@ -85,15 +85,8 @@ $$x^{\prime\prime}+7x^{\prime}+12x=0.$$
 </div>
 <p>In this chapter, we usually test sets of only two functions for <span data-concept="linear-independence">linear independence</span>, which allows us to simplify this definition. From a practical perspective, we see that two functions are <span data-concept="linear-independence">linearly dependent</span> if either one of them is identically zero or if they are constant multiples of each other.</p>
 <p>First we show that if the functions meet the conditions given previously, then they are <span data-concept="linear-independence">linearly dependent</span>. If one of the functions is identically zero—say, $\kf_{2}(x)\equiv 0$—then choose $c_{1}=0$ and $c_{2}=1,$ and the condition for <span data-concept="linear-independence">linear dependence</span> is satisfied. If, on the other hand, neither $\kf_{1}(x)$ nor $\kf_{2}(x)$ is identically zero, but $\kf_{1}(x)=C\kf_{2}(x)$ for some constant $C,$ then choose $c_{1}=\frac{1}{C}$ and $c_{2}=-1,$ and again, the condition is satisfied.</p>
-<p>Next, we show that if two functions are <span data-concept="linear-independence">linearly dependent</span>, then either one is identically zero or they are constant multiples of one another. Assume $\kf_{1}(x)$ and $\kf_{2}(x)$ are <span data-concept="linear-independence">linearly independent</span>.<sup class="fn" data-note="c-dependent"></sup> Then, there are constants, $c_{1}$ and $c_{2},$ not both zero, such that</p>
-$$c_{1}\kf_{1}(x)+c_{2}\kf_{2}(x)=0$$
-<p>for all <em>x</em> over the interval of interest. Then,</p>
-$$c_{1}\kf_{1}(x)=-c_{2}\kf_{2}(x).$$
-<p>Now, since we stated that $c_{1}$ and $c_{2}$ can’t both be zero, assume $c_{2}\ne 0.$ Then, there are two cases: either $c_{1}=0$ or $c_{1}\ne 0.$ If $c_{1}=0,$ then</p>
-$$\begin{array}{l}0=-c_{2}\kf_{2}(x) \\ 0=\kf_{2}(x),\end{array}$$
-<p>so one of the functions is identically zero. Now suppose $c_{1}\ne 0.$ Then,</p>
-$$\kf_{1}(x)=(-\frac{c_{2}}{c_{1}})\kf_{2}(x)$$
-<p>and we see that the functions are constant multiples of one another.</p>
+<p>Next, we show that if two functions are <span data-concept="linear-independence">linearly dependent</span>, then either one is identically zero or they are constant multiples of one another.</p>
+<figure class="dv" id="drv-linear-dependence-of-two-functions"></figure>
 <div class="note" id="fs-id1170572448486">
 <div class="eyebrow">Theorem</div>
 <h3>Linear Dependence of Two Functions</h3>
@@ -137,10 +130,7 @@ $$\kyfn(x)=c_{1}\kyone(x)+c_{2}\kytwo(x),$$
 <div class="equation" id="fs-id1170572185074">$$a\kydprime+b\kyprime+c\kyfn=0,\tag{17.2}$$</div>
 <p>where $a,$ $b,$ and $c$ are constants.</p>
 <p>Since all the coefficients are constants, the solutions are probably going to be functions with derivatives that are constant multiples of themselves. We need all the terms to cancel out, and if taking a derivative introduces a term that is not a constant multiple of the original function, it is difficult to see how that term cancels out. <span data-concept="exponential-function">Exponential functions</span> have derivatives that are constant multiples of the original function, so let’s see what happens when we try a solution of the form $\kyfn(x)=e^{\lambda x},$ where $\lambda$ (the lowercase Greek letter lambda) is some constant.</p>
-<p>If $\kyfn(x)=e^{\lambda x},$ then $\kyprime(x)=\lambda e^{\lambda x}$ and $\kydprime={\lambda }^{2}e^{\lambda x}.$ Substituting these expressions into <a href="#fs-id1170572251008">Equation 17.1</a><sup class="fn" data-note="c-eq-17-1"></sup>, we get</p>
-$$\begin{array}{rl}a\kydprime+b\kyprime+c\kyfn & =a({\lambda }^{2}e^{\lambda x})+b(\lambda e^{\lambda x})+ce^{\lambda x} \\ & =e^{\lambda x}(a{\lambda }^{2}+b\lambda +c).\end{array}$$
-<p>Since $e^{\lambda x}$ is never zero, this expression can be equal to zero for all <em>x</em> only if</p>
-$$a{\lambda }^{2}+b\lambda +c=0.$$
+<figure class="dv" id="drv-characteristic-equation"></figure>
 <p>We call this the <span data-concept="characteristic-equation">characteristic equation</span> of the <span data-concept="differential-equation">differential equation</span>.</p>
 <div class="note" id="fs-id1170572168702">
 <div class="eyebrow">Definition</div>
@@ -156,12 +146,8 @@ $$\kyfn(x)=c_{1}e^{{\lambda }_{1}x}+c_{2}e^{{\lambda }_{2}x},$$
 <p>For example, the <span data-concept="differential-equation">differential equation</span> $\kydprime+9\kyprime+14\kyfn=0$ has the associated <span data-concept="characteristic-equation">characteristic equation</span> ${\lambda }^{2}+9\lambda +14=0.$ This factors into $(\lambda +2)(\lambda +7)=0,$ which has roots ${\lambda }_{1}=-2$ and ${\lambda }_{2}=-7.$ Therefore, the general <span data-concept="solution-to-a-differential-equation">solution to this differential equation</span> is</p>
 $$\kyfn(x)=c_{1}e^{-2x}+c_{2}e^{-7x}.$$
 <h3>Single Repeated Real Root</h3>
-<p>Things are a little more complicated if the <span data-concept="characteristic-equation">characteristic equation</span> has a repeated real root, $\lambda \text{.}$ In this case, we know $e^{\lambda x}$ is a solution to <a href="#fs-id1170572251008">Equation 17.1</a>, but it is only one solution and we need two <span data-concept="linear-independence">linearly independent</span> solutions to determine the <span data-concept="general-solution">general solution</span>. We might be tempted to try a function of the form $ke^{\lambda x},$ where <em>k</em> is some constant, but it would not be <span data-concept="linear-independence">linearly independent</span> of $e^{\lambda x}.$ Therefore, let’s try $xe^{\lambda x}$ as the second solution. First, note that by the <span data-concept="quadratic-formula">quadratic formula</span>,</p>
-$$\lambda =\frac{-b\pm \sqrt{b^{2}-4ac}}{2a}.$$
-<p>But, $\lambda$ is a repeated root, so $b^{2}-4ac=0$ and $\lambda =\frac{-b}{2a}.$ Thus, if $\kyfn=xe^{\lambda x},$ we have</p>
-$$\kyprime=e^{\lambda x}+\lambda xe^{\lambda x}\;\text{and}\;\kydprime=2\lambda e^{\lambda x}+{\lambda }^{2}xe^{\lambda x}.$$
-<p>Substituting these expressions into <a href="#fs-id1170572251008">Equation 17.1</a>, we see that</p>
-$$\begin{array}{rl}a\kydprime+b\kyprime+c\kyfn & =a(2\lambda e^{\lambda x}+{\lambda }^{2}xe^{\lambda x})+b(e^{\lambda x}+\lambda xe^{\lambda x})+cxe^{\lambda x} \\ & =xe^{\lambda x}(a{\lambda }^{2}+b\lambda +c)+e^{\lambda x}(2a\lambda +b) \\ & =xe^{\lambda x}(0)+e^{\lambda x}(2a(\frac{-b}{2a})+b) \\ & =0+e^{\lambda x}(0) \\ & =0.\end{array}$$
+<p>Things are a little more complicated if the <span data-concept="characteristic-equation">characteristic equation</span> has a repeated real root, $\lambda \text{.}$ In this case, we know $e^{\lambda x}$ is a solution to <a href="#fs-id1170572251008">Equation 17.1</a><sup class="fn" data-note="c-eq-17-1"></sup>, but it is only one solution and we need two <span data-concept="linear-independence">linearly independent</span> solutions to determine the <span data-concept="general-solution">general solution</span>. We might be tempted to try a function of the form $ke^{\lambda x},$ where <em>k</em> is some constant, but it would not be <span data-concept="linear-independence">linearly independent</span> of $e^{\lambda x}.$ Therefore, let’s try $xe^{\lambda x}$ as the second solution.</p>
+<figure class="dv" id="drv-repeated-root"></figure>
 <p id="repeated-root">This shows that $xe^{\lambda x}$ is a solution to <a href="#fs-id1170572251008">Equation 17.1</a>. Since $e^{\lambda x}$ and $xe^{\lambda x}$ are <span data-concept="linear-independence">linearly independent</span>, when the <span data-concept="characteristic-equation">characteristic equation</span> has a repeated root $\lambda ,$ the <span data-concept="general-solution">general solution</span> to <a href="#fs-id1170572251008">Equation 17.1</a> is given by</p>
 $$\kyfn(x)=c_{1}e^{\lambda x}+c_{2}xe^{\lambda x},$$
 <p>where $c_{1}$ and $c_{2}$ are constants.</p>
@@ -176,15 +162,7 @@ $$\kyfn(x)=c_{1}e^{(\alpha +\beta i)x}+c_{2}e^{(\alpha -\beta i)x}.$$
 <p id="euler-formula">We encountered <span data-concept="exponential-function">exponential functions</span> with complex exponents earlier. One of the key tools we used to express these <span data-concept="exponential-function">exponential functions</span> in terms of sines and cosines was <span data-concept="eulers-formula">Euler’s formula</span>, which tells us that</p>
 $$e^{i\theta}=\cos \theta +i\;\sin \theta$$
 <p>for all real numbers $\theta \text{.}$</p>
-<p>Going back to the <span data-concept="general-solution">general solution</span>, we have</p>
-$$\begin{array}{rl}\kyfn(x) & =c_{1}e^{(\alpha +\beta i)x}+c_{2}e^{(\alpha -\beta i)x} \\ & =c_{1}e^{\alpha x}e^{\beta ix}+c_{2}e^{\alpha x}e^{-\beta ix} \\ & =e^{\alpha x}(c_{1}e^{\beta ix}+c_{2}e^{-\beta ix}).\end{array}$$
-<p>Applying <span data-concept="eulers-formula">Euler’s formula</span> together with the identities $\cos (-x)=\cos x$ and $\sin (-x)=-\sin x,$ we get</p>
-$$\begin{array}{rl}\kyfn(x) & =e^{\alpha x}[c_{1}(\cos \beta x+i\;\sin \beta x)+c_{2}(\cos (-\beta x)+i\;\sin (-\beta x))] \\ & =e^{\alpha x}[(c_{1}+c_{2})\cos \beta x+(c_{1}-c_{2})i\;\sin \beta x].\end{array}$$
-<p>Now, if we choose $c_{1}=c_{2}=\frac{1}{2},$ the second term is zero and we get</p>
-$$\kyfn(x)=e^{\alpha x}\cos \beta x$$
-<p>as a real-value solution to <a href="#fs-id1170572251008">Equation 17.1</a>. Similarly, if we choose $c_{1}=-\frac{i}{2}$ and $c_{2}=\frac{i}{2},$ the first term is zero and we get</p>
-$$\kyfn(x)=e^{\alpha x}\sin \beta x$$
-<p>as a second, <span data-concept="linear-independence">linearly independent</span>, real-value solution to <a href="#fs-id1170572251008">Equation 17.1</a>.</p>
+<figure class="dv" id="drv-complex-conjugate-roots"></figure>
 <p id="complex-roots">Based on this, we see that if the <span data-concept="characteristic-equation">characteristic equation</span> has complex conjugate roots $\alpha \pm \beta i,$ then the <span data-concept="general-solution">general solution</span> to <a href="#fs-id1170572251008">Equation 17.1</a> is given by</p>
 $$\begin{array}{rl}\kyfn(x) & =c_{1}e^{\alpha x}\cos \beta x+c_{2}e^{\alpha x}\sin \beta x \\ & =e^{\alpha x}(c_{1}\cos \beta x+c_{2}\sin \beta x),\end{array}$$
 <p>where $c_{1}$ and $c_{2}$ are constants.</p>

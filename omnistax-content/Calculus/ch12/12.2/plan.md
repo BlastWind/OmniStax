@@ -60,3 +60,10 @@ Images: checkpoint answer images (004, 018, 020) stay in their answers; Example 
 - forms `eq-distance-in-space` → the theorem note; `eq-sphere` → the sphere rule note; `eq-vector-in-space` → `12.2-ijk`; `eq-magnitude-in-space`, `eq-sum-in-space` → the properties rule note.
 - variables of 12.2 anchored at build.
 - Review 431 placed here.
+
+## Derivations
+
+- Theorem, The Distance between Two Points in Space · score 8 · not built: the book leaves the proof as an exercise.
+- Rule, Equation of a Sphere · score 2 · not built: two moves (the distance set to r, then squared), below the bar.
+- Example 12.15, the sphere on diameter PQ · score 2 · not built: midpoint and distance substituted into the sphere's equation.
+- Example 12.20, Throwing a Forward Pass · score 5 · built as drv-forward-pass: the distance along the ground, then two right triangles (cos 30° for ‖w‖, sin 30° for the height, 1.3 and Table 1.9) and an independent scaling by ‖kw‖ = |k|‖w‖ (12.1), joined in v = kw; the solution's working replaced, the opening strategy and the closing check kept.

@@ -275,3 +275,7 @@ The caption of Figure 8.6 said the objects "collide elastically, as in Figure
 8.6", the figure pointing at itself; the clause is gone.
 
 Figure pass, 2026-09-15 (Claude Fable 5.1). Both figures looked at in light and dark at every extreme and left as built: the blocks, arrows and bars of `sim-elastic-collision` read cleanly and the plane of `sim-two-solutions` has no collisions.
+
+## Derivations
+
+- Example 8.4, the final velocities of an elastic collision · score 6 · built as drv-elastic-collision-velocities: four nodes, the momentum line solved for $v_2'$ and the kinetic-energy line joined into the quadratic in $v_1'$ the book leaves to the reader ("the algebra is left as an exercise for the reader"), then the numbers through the quadratic formula of 2.5 to $4.00$ and $-3.00$ m/s; replaces the Solution up to the two roots, and the Sim, the discarding of the first root and $v_2' = 1.00$ m/s stay as printed

@@ -63,10 +63,7 @@ $$\begin{aligned}\lim_{x\to 2}\frac{2x^{2}-3x+1}{x^{3}+4}&=\frac{\lim_{x\to 2}(2
 $$\lim_{x\to a}\kp(x)=\kp(a)$$
 $$\lim_{x\to a}\frac{\kp(x)}{\kq(x)}=\frac{\kp(a)}{\kq(a)}\;\text{when}\;\kq(a)\ne 0.$$
 </div>
-<p>To see that this theorem holds, consider the <span data-concept="polynomial-function">polynomial</span> $\kp(x)=c_{n}x^{n}+c_{n-1}x^{n-1}+\cdots+c_{1}x+c_{0}.$ By applying the <span data-concept="sum-law-for-limits">sum</span>, <span data-concept="constant-multiple-law-for-limits">constant multiple</span>, and <span data-concept="power-law-for-limits">power laws</span>, we end up with</p>
-$$\begin{aligned}\lim_{x\to a}\kp(x)&=\lim_{x\to a}(c_{n}x^{n}+c_{n-1}x^{n-1}+\cdots+c_{1}x+c_{0})\\&=c_{n}\left(\lim_{x\to a}x\right)^{n}+c_{n-1}\left(\lim_{x\to a}x\right)^{n-1}+\cdots+c_{1}\left(\lim_{x\to a}x\right)+\lim_{x\to a}c_{0}\\&=c_{n}a^{n}+c_{n-1}a^{n-1}+\cdots+c_{1}a+c_{0}\\&=\kp(a).\end{aligned}$$
-<p>It now follows from the <span data-concept="quotient-law-for-limits">quotient law</span> that if $\kp(x)$ and $\kq(x)$ are <span data-concept="polynomial-function">polynomials</span> for which $\kq(a)\ne 0,$ then</p>
-$$\lim_{x\to a}\frac{\kp(x)}{\kq(x)}=\frac{\kp(a)}{\kq(a)}.$$
+<figure class="dv" id="drv-limits-of-polynomial-and-rational-functions"></figure>
 <p>Example 2.16 applies this result.</p>
 <div class="example" id="fs-id1170572305829">
 <h3>Example 2.16 · Evaluating a Limit of a Rational Function</h3>
@@ -237,28 +234,16 @@ $$\lim_{x\to a}\kf(x)=\kL=\lim_{x\to a}\kh(x)$$
 <figure class="sim" id="sim-unit-circle-squeeze" data-figure="2.29 + 2.30" data-original="/media/ch02/CNX_Calc_Figure_02_03_007.jpg,/media/ch02/CNX_Calc_Figure_02_03_008.jpg" data-original-caption="(Figure 2.29) The sine function is shown as a line on the unit circle. (Figure 2.30) The sine and tangent functions are shown as lines on the unit circle.">
   <div class="sim-head"><span class="eyebrow">Figure 2.29 + 2.30</span><span>On the unit circle, <span data-ref="sine-segment">the segment $\sin\ktheta$</span> rises from the $x$-axis to the circle, the arc of length $\ktheta$ runs from <span data-type="point">$(1,0)$</span> to the same point, and <span data-ref="tangent-segment">the segment $\tan\ktheta$</span> stands at <span data-type="point">$(1,0)$</span> up to the extended radius, so $\sin\ktheta\lt\ktheta\lt\tan\ktheta$ for $0\lt\ktheta\lt\pi/2$. Beside it, $\sin\ktheta/\ktheta$ is held between $\cos\ktheta$ and 1. Slide $\ktheta$ toward 0: the three lengths shrink together, and $\sin\ktheta/\ktheta$ climbs to its <span data-concept="limit">limit</span>, 1.</span></div>
 </figure>
-<p>Because $\lim_{\ktheta\to 0^{+}}0=0$ and $\lim_{\ktheta\to 0^{+}}\ktheta=0,$ by using the <span data-concept="squeeze-theorem">squeeze theorem</span> we conclude that</p>
-$$\lim_{\ktheta\to 0^{+}}\sin\ktheta=0.$$
-<p>To see that $\lim_{\ktheta\to 0^{-}}\sin\ktheta=0$ as well, observe that for $-\dfrac{\pi}{2}\lt\ktheta\lt 0,\ 0\lt-\ktheta\lt\dfrac{\pi}{2}$ and hence, $0\lt\sin(-\ktheta)\lt-\ktheta.$ Consequently, $0\lt-\sin\ktheta\lt-\ktheta.$ It follows that $0\gt\sin\ktheta\gt\ktheta.$ An application of the <span data-concept="squeeze-theorem">squeeze theorem</span> produces the desired <span data-concept="limit">limit</span>. Thus, since $\lim_{\ktheta\to 0^{+}}\sin\ktheta=0$ and $\lim_{\ktheta\to 0^{-}}\sin\ktheta=0,$</p>
-$$\lim_{\ktheta\to 0}\sin\ktheta=0.\tag{2.16}$$
-<p>Next, using the identity $\cos\ktheta=\sqrt{1-\sin^{2}\ktheta}$ for $-\dfrac{\pi}{2}\lt\ktheta\lt\dfrac{\pi}{2},$ we see that</p>
-$$\lim_{\ktheta\to 0}\cos\ktheta=\lim_{\ktheta\to 0}\sqrt{1-\sin^{2}\ktheta}=1.\tag{2.17}$$
+<figure class="dv" id="drv-limits-of-sine-and-cosine"></figure>
 <p>We now take a look at a <span data-concept="limit">limit</span> that plays an important role in later chapters—namely, <span data-fn="sin(x)/x">$\lim_{\ktheta\to 0}\dfrac{\sin\ktheta}{\ktheta}.$</span> To evaluate this <span data-concept="limit">limit</span>, we use the unit circle in Figure 2.30. Notice that this figure adds one additional triangle to Figure 2.30.<sup class="fn" data-note="added-triangle"></sup> We see that the length of <span data-ref="tangent-segment">the side opposite angle $\ktheta$ in this new triangle</span> is $\tan\ktheta.$ Thus, we see that for $0\lt\ktheta\lt\dfrac{\pi}{2},\ \sin\ktheta\lt\ktheta\lt\tan\ktheta.$</p>
-<p>By dividing by $\sin\ktheta$ in all parts of the inequality, we obtain</p>
-$$1\lt\frac{\ktheta}{\sin\ktheta}\lt\frac{1}{\cos\ktheta}.$$
-<p>Equivalently, we have</p>
-$$1\gt\frac{\sin\ktheta}{\ktheta}\gt\cos\ktheta.$$
-<p>Since $\lim_{\ktheta\to 0^{+}}1=1=\lim_{\ktheta\to 0^{+}}\cos\ktheta,$ we conclude that $\lim_{\ktheta\to 0^{+}}\dfrac{\sin\ktheta}{\ktheta}=1.$ By applying a manipulation similar to that used in demonstrating that $\lim_{\ktheta\to 0^{-}}\sin\ktheta=0,$ we can show that $\lim_{\ktheta\to 0^{-}}\dfrac{\sin\ktheta}{\ktheta}=1.$ Thus,</p>
-$$\lim_{\ktheta\to 0}\frac{\sin\ktheta}{\ktheta}=1.\tag{2.18}$$
+<figure class="dv" id="drv-limit-of-sine-over-theta"></figure>
 <p>In Example 2.25 we use this <span data-concept="limit">limit</span> to establish <span data-fn="(1-cos(x))/x">$\lim_{\ktheta\to 0}\dfrac{1-\cos\ktheta}{\ktheta}=0.$</span> This <span data-concept="limit">limit</span> also proves useful in later chapters.</p>
 <div class="example" id="fs-id1170572243714">
 <h3>Example 2.25 · Evaluating an Important Trigonometric Limit</h3>
 <p>Evaluate <span data-fn="(1-cos(x))/x">$\lim_{\ktheta\to 0}\dfrac{1-\cos\ktheta}{\ktheta}.$</span></p>
 <h4>Solution</h4>
-<p>In the first step, we multiply by the conjugate so that we can use a <span data-concept="trigonometric-identity">trigonometric identity</span> to convert the cosine in the numerator to a sine:</p>
-$$\begin{aligned}\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}&=\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}\cdot\frac{1+\cos\ktheta}{1+\cos\ktheta}\\&=\lim_{\ktheta\to 0}\frac{1-\cos^{2}\ktheta}{\ktheta(1+\cos\ktheta)}\\&=\lim_{\ktheta\to 0}\frac{\sin^{2}\ktheta}{\ktheta(1+\cos\ktheta)}\\&=\lim_{\ktheta\to 0}\frac{\sin\ktheta}{\ktheta}\cdot\frac{\sin\ktheta}{1+\cos\ktheta}\\&=1\cdot\frac{0}{2}=0.\end{aligned}$$
-<p>Therefore,</p>
-$$\lim_{\ktheta\to 0}\frac{1-\cos\ktheta}{\ktheta}=0.\tag{2.19}$$
+<p>In the first step, we multiply by the conjugate so that we can use a <span data-concept="trigonometric-identity">trigonometric identity</span> to convert the cosine in the numerator to a sine.</p>
+<figure class="dv" id="drv-limit-of-one-minus-cosine-over-theta"></figure>
 </div>
 <div class="exercises" data-place="fs-id1170572243714"></div>
 <div class="note" id="area-of-a-circle-project">

@@ -551,5 +551,66 @@
    "kind": "correction",
    "html": "The book points to Figure 25.14 for the index of refraction of polystyrene. The value 1.49 is listed in Table 25.1, in Section 25.3."
   }
+ ],
+ "derivations": [
+  {
+   "id": "critical-angle",
+   "what": "the critical angle",
+   "source": "College Physics 2e, 25.4 Total Internal Reflection",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "At the critical angle the angle of refraction is $90^\\circ$: $\\kthetatwo = 90^\\circ$ when $\\kthetaone = \\kthetac$.",
+       "src": "25.4"
+      },
+      {
+       "tex": "\\sin 90^\\circ = 1"
+      },
+      {
+       "tex": "n_1 > n_2",
+       "src": "25.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n1}{n_1} \\mk{s1}{\\sin\\kthetaone} = \\mk{n2}{n_2} \\mk{s2}{\\sin\\kthetatwo}",
+      "uses": [],
+      "src": "25.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n1}{n_1} \\mk{s1}{\\sin\\kthetaone} = \\mk{n2}{n_2} \\mk{s2}{\\sin 90^\\circ}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{n1}{n_1} \\mk{s1}{\\sin\\kthetaone} = \\mk{n2}{n_2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s1}{\\sin\\kthetac} = \\frac{\\mk{n2}{n_2}}{\\mk{n1}{n_1}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s1}{\\kthetac} = \\mk{q}{\\sin^{-1}(n_2/n_1)}\\;\\mk{c}{\\text{for}\\;n_1 > n_2}",
+       "uses": [
+        2
+       ],
+       "cap": "The inverse sine undoes the sine; it exists only while $n_2/n_1$ is less than 1, that is, for $n_1 > n_2$.",
+       "map": {
+        "n2": "q",
+        "n1": "q"
+       }
+      }
+     ],
+     "src": "25.4"
+    }
+   ]
+  }
  ]
 }

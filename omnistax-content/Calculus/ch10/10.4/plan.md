@@ -47,3 +47,17 @@ One picked: `sim-airy`, the view of a solution that exists only as a series. Wei
 - variables of 10.4: f, f′, f″, f‴, f⁽⁴⁾, f⁽ⁿ⁾ → `10.4-binomial`; p, R → `10.4-fs-id1167023918533`; y, y′, y″ → `10.4-differential`; θ → `10.4-fs-id1167024040533`.
 - Review exercises land in all four sections with `mksection.py --with-review`.
 - Applied in the chapter pass (2026-10-13): every anchor above set with `ost set`; review rows landed with `mksection.py --with-review`.
+
+## Derivations
+
+- The Binomial Series · the derivatives of (1 + x)^r and the coefficients (10.8) · score 5 · built as drv-binomial-series-coefficients (replaces the table of derivatives and (10.8); form eq-binomial-series-coefficients re-anchored to it)
+- The Binomial Series · the ratio test for its interval · built as drv-binomial-series-interval (a thin printed block; the endpoint sentence stays as printed)
+- Example 10.17 a · score 1 · not built: a worked example of the definition
+- Example 10.18 b · score 4 · not built: a worked example combining two known series, every line printed
+- Example 10.19 · score 4 · not built: a worked example, one term-by-term differentiation of Example 10.17's series
+- Example 10.20 · score 5 · not built: a worked example of the section's own method (a power-series solution), every line printed
+- Example 10.21 · score 4 · not built: the same method on Airy's equation, every line printed
+- Example 10.22 · score 3 · not built: a worked example of the section's method
+- Evaluating Nonelementary Integrals · (10.11) from (10.10) · score 4 · not built: one substitution z = (x − μ)/σ, under four moves
+- Example 10.23 · score 3 · not built: a worked example of the section's method
+- Example 10.24 · score 7 · built as drv-pendulum-period (the binomial series in the integrand, the first-order estimate, the bound on the terms it leaves out with the skipped "each coefficient is less than 1" and the geometric sum, and the two-term estimate through ∫sin²θ dθ; the footnote c-ex1024-dot became the node's note with the book's dropped first term)

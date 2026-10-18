@@ -244,3 +244,8 @@ is set in. Two captions on this page began with a fragment (the distribution
 and the escape Sim) and are full sentences now.
 
 Phase 2 (2026-09-28, Claude Opus 5.5). sim-box: the Labels choice is gone, the velocity goes to hover. sim-speeds and sim-distribution: the gas choice blends the mass, so the arrows, the rms arrow, the speed axis and the curves reshape. sim-escape: helium's escape temperature is a special; the world blends the escape level.
+
+## Derivations
+
+- The ideal gas law from molecular collisions, $PV = \tfrac{1}{3}Nm\overline{v^2}$ (Things Great and Small box) · score 5 · built as drv-pressure-from-molecules: six nodes, the momentum change, the force of one molecule, of $N$ molecules, the isotropy line joined in, then pressure; replaces the box's lines, its opening paragraphs and closing sentence stay
+- The average kinetic energy of a molecule, $\overline{\text{KE}} = \tfrac{3}{2}kT$ (printed block) · score 2 · built as drv-thermal-energy: one node equating the two forms of the ideal gas law; hosted at the head of the thermal-energy subsection, where the result was printed; the rearrangement to $v_\text{rms}$ (two moves) stays as printed

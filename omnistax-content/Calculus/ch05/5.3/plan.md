@@ -38,3 +38,10 @@ Extra simulations weighed and dropped: the roller-skating race of Example 5.22 a
 ## Wanted at chapter level
 
 Applied by this chapter's agent: variables anchors (f, a, b, c, f_ave → `5.3-mvt-integrals`; m, M → `5.3-mvt`; F, F′ → `5.3-ftc-part-1`; g, g′ → Example 5.17; u → Example 5.18) and forms anchors (the two MVT forms, the two Part 1 forms, `eq-ftc-part-2` → `5.3-ftc-part-2`, `eq-evaluation-notation` → `5.3-ftc2`). Done. Review exercises in the chapter pass.
+
+
+## Derivations
+
+- The Mean Value Theorem for Integrals · Proof · score 3 · built as drv-mean-value-theorem-for-integrals (the extreme-value sentence stays; the comparison, division and intermediate-value lines are the derivation)
+- Fundamental Theorem of Calculus, Part 1 · Proof · score 3 · built as drv-fundamental-theorem-part-1 (the difference quotient worked to the average over [x, x + h], the mean value theorem for integrals beside it, joined in the limit; the book's ∫ f(x)dx from x to x + h is written with t, the node's note says so)
+- The Fundamental Theorem of Calculus, Part 2 · Proof · score 2 · built as drv-fundamental-theorem-part-2 (the telescoping sum and the Mean Value Theorem on each subinterval joined, then the limit; the partition sentence stays; the book's i = 0, 1, …, n for the subintervals is corrected in the node's note)

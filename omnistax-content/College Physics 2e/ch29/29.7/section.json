@@ -303,5 +303,74 @@
       "kind": "correction",
       "html": "The book cites Photon Energies and the Electromagnetic Spectrum; the double-slit relation $d\\sin\\theta = m\\lambda$ is developed in Wave Optics."
     }
+  ],
+  "derivations": [
+    {
+      "id": "uncertainty-estimate",
+      "what": "the product of the uncertainties in position and momentum",
+      "source": "College Physics 2e, 29.7 Probability: The Heisenberg Uncertainty Principle",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "Detecting the particle takes a collision, in which it may lose anything from close to zero to all of its momentum.",
+              "src": "29.7"
+            },
+            {
+              "tex": "\\kp = h/\\klam",
+              "src": "29.6"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{d}{\\kdp} \\approx \\mk{p}{\\kp}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{d}{\\kdp} \\approx \\mk{p}{\\frac{h}{\\klam}}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "29.7"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "A wave is not located at one point in space, so the uncertainty in position is about the wavelength of the particle.",
+              "src": "29.7"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{x}{\\kdx} \\approx \\mk{l}{\\klam}",
+            "uses": [
+              1
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{x}{\\kdx}\\,\\mk{p}{\\kdp} \\approx \\mk{l}{\\klam}\\cdot\\mk{q}{\\frac{h}{\\klam}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{x}{\\kdx}\\,\\mk{p}{\\kdp} \\approx \\mk{q}{h}",
+              "uses": [],
+              "map": {
+                "l": "q"
+              }
+            }
+          ],
+          "src": "29.7"
+        }
+      ]
+    }
   ]
 }

@@ -294,3 +294,7 @@ Figure 22.40's row keeps its one original, since the book's two panels ship as
 a single image file, and `config.md` now says so.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-parallel-wires`: the choice of view is gone (rule 26.7); the book's two panels stand side by side, the locked perspective on the left and the end view on the right; reversing wire 2 turns its current, its field line and both forces over through nothing. `sim-pinch-effect`: the note speaks of the model, not the drawing.
+
+## Derivations
+
+- The force per unit length between two parallel currents (printed block) · score 4 · built as drv-force-between-wires: one node, $F = IlB\sin\theta$ on wire 2 in the field $\mu_0I_1/2\pi r$ of wire 1 with Newton's third law; replaces the two displays after the figure and the connecting prose, and the field's display before the figure, which now enters as a fact from 22.9

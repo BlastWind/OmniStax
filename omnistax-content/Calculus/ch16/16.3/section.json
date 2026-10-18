@@ -1243,5 +1243,450 @@
    "kind": "correction",
    "html": "The book prints “all of $\\mathbb{R}^{2}$ and $\\mathbb{R}^{3}$ is simply connected”; the field is defined in space, and its domain is all of $\\mathbb{R}^{3},$ which is simply connected."
   }
+ ],
+ "derivations": [
+  {
+   "id": "fundamental-theorem-for-line-integrals",
+   "what": "the Fundamental Theorem for Line Integrals",
+   "source": "Calculus, 16.3 Conservative Vector Fields, The Fundamental Theorem for Line Integrals, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ has first-order partial derivatives that exist and are continuous on $\\kC$.",
+       "src": "16.3, The Fundamental Theorem for Line Integrals"
+      },
+      {
+       "tex": "\\langle a_{1},a_{2},a_{3}\\rangle\\cdot\\langle b_{1},b_{2},b_{3}\\rangle=a_{1}b_{1}+a_{2}b_{2}+a_{3}b_{3}",
+       "src": "12.3"
+      },
+      {
+       "tex": "\\kgradf=\\langle \\kfx,\\kfy,\\kfz\\rangle",
+       "src": "14.6"
+      },
+      {
+       "tex": "\\kvecrprime(t)=\\langle x'(t),y'(t),z'(t)\\rangle",
+       "src": "13.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dt}\\kf(\\kvecr(t))}=\\mk{c}{\\kfx\\frac{dx}{dt}+\\kfy\\frac{dy}{dt}+\\kfz\\frac{dz}{dt}}",
+      "uses": [
+       0
+      ],
+      "src": "14.5",
+      "why": "The chain rule, with $x,$ $y$ and $z$ all functions of $t$ along $\\kvecr(t)$ and the partial derivatives taken there."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}\\kf(\\kvecr(t))}=\\mk{c}{\\langle \\kfx,\\kfy,\\kfz\\rangle\\cdot\\langle x'(t),y'(t),z'(t)\\rangle}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}\\kf(\\kvecr(t))}=\\mk{g}{\\kgradf(\\kvecr(t))}\\cdot\\mk{r}{\\kvecrprime(t)}",
+       "uses": [
+        2,
+        3
+       ],
+       "map": {
+        "c": [
+         "g",
+         "r"
+        ]
+       }
+      }
+     ],
+     "src": "16.3",
+     "note": "The book prints the left side as $\\frac{d}{dt}(f(\\mathbf{r}(t))$, with a parenthesis left open."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\int_{a}^{b}\\kvecF(\\kvecr(t))\\cdot\\kvecrprime(t)dt",
+       "src": "(16.9)"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)dx=\\kF(b)-\\kF(a),\\ \\text{where}\\ \\kFprime=\\kf",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{C}\\kgradf\\cdot d\\mathbf{r}}=\\mk{R}{\\int_{a}^{b}\\kgradf(\\kvecr(t))\\cdot\\kvecrprime(t)dt}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kgradf\\cdot d\\mathbf{r}}=\\mk{R}{\\int_{a}^{b}\\frac{d}{dt}\\kf(\\kvecr(t))dt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kgradf\\cdot d\\mathbf{r}}=\\mk{R}{[\\kf(\\kvecr(t))]_{t=a}^{t=b}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kgradf\\cdot d\\mathbf{r}}=\\mk{R}{\\kf(\\kvecr(b))-\\kf(\\kvecr(a))}",
+       "uses": []
+      }
+     ],
+     "num": "(16.12)",
+     "src": "16.3, The Fundamental Theorem for Line Integrals"
+    }
+   ]
+  },
+  {
+   "id": "zero-circulation",
+   "what": "the circulation of a conservative field around a closed curve",
+   "source": "Calculus, 16.3 Conservative Vector Fields, Fundamental Theorem for Line Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ is a potential function for $\\kvecF$: $\\kgradf=\\kvecF$.",
+       "src": "16.1"
+      },
+      {
+       "tex": "\\int_{C}\\kgradf\\cdot d\\mathbf{r}=\\kf(\\kvecr(b))-\\kf(\\kvecr(a))",
+       "src": "(16.12)"
+      },
+      {
+       "text": "$\\kC$ is a closed curve, so its terminal point is its initial point: $\\kvecr(a)=\\kvecr(b)$.",
+       "src": "16.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{R}{\\int_{C}\\kgradf\\cdot d\\mathbf{r}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{b}{\\kf(\\kvecr(b))}-\\mk{a}{\\kf(\\kvecr(a))}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "R": [
+         "b",
+         "a"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{b}{\\kf(\\kvecr(b))}-\\mk{a}{\\kf(\\kvecr(b))}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "a": "z",
+        "b": "z"
+       }
+      }
+     ],
+     "src": "16.3"
+    }
+   ]
+  },
+  {
+   "id": "path-independence",
+   "what": "the path independence of conservative fields",
+   "source": "Calculus, 16.3 Conservative Vector Fields, Path Independence of Conservative Fields, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kvecF$ is conservative, so there is a potential function $\\kf$ for $\\kvecF$: $\\kgradf=\\kvecF$.",
+       "src": "16.1"
+      },
+      {
+       "tex": "\\int_{C}\\kgradf\\cdot d\\mathbf{r}=\\kf(\\kvecr(b))-\\kf(\\kvecr(a))",
+       "src": "(16.12)"
+      },
+      {
+       "text": "$C_{1}$ and $C_{2}$ both start at $P_{1}$ and end at $P_{2}$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c1}{\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}}=\\mk{g}{\\int_{C_{1}}\\kgradf\\cdot d\\mathbf{r}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c1}{\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}}=\\mk{g}{\\kf(P_{2})-\\kf(P_{1})}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{c1}{\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}}=\\mk{g}{\\kf(P_{2})-\\kf(P_{1})}=\\mk{c2}{\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "cap": "The same theorem, read backward along $C_{2},$ which has the same endpoints."
+      }
+     ],
+     "src": "16.3, Path Independence of Conservative Fields"
+    }
+   ]
+  },
+  {
+   "id": "path-independence-test",
+   "what": "the path independence test for conservative fields",
+   "source": "Calculus, 16.3 Conservative Vector Fields, The Path Independence Test for Conservative Fields, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For a fixed point $X$ in $\\kD$ and a path $\\kC$ from $X$ to $(x,y)$, $\\kf(x,y)=\\int_{C}\\kvecF\\cdot d\\mathbf{r}$; the value does not depend on the path, since $\\kvecF$ is independent of path."
+      },
+      {
+       "text": "Since $\\kD$ is open, a disk centered at $(x,y)$ lies inside it; with $(a,y)$ a point of that disk and $a<x$, path $\\kC$ runs along $C_{1}$ from $X$ to $(a,y)$, then along the horizontal line segment $C_{2}$ from $(a,y)$ to $(x,y)$."
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}+\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}+\\cdots+\\int_{C_{n}}\\kvecF\\cdot d\\mathbf{r}",
+       "src": "16.2, Properties of Vector Line Integrals"
+      },
+      {
+       "text": "The first integral does not depend on $x$."
+      },
+      {
+       "tex": "\\kvecr(t)=\\langle t,y\\rangle,\\quad a\\le t\\le x"
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\int_{a}^{b}\\kvecF(\\kvecr(t))\\cdot\\kvecrprime(t)dt",
+       "src": "(16.9)"
+      },
+      {
+       "tex": "\\kvecF=\\langle \\kP,\\kQ\\rangle"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\int_{a}^{x}\\kf(t)dt=\\kf(x)",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x,y)}=\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(x,y)}=\\mk{I1}{\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{I2}{\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "I": [
+         "I1",
+         "I2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\kfx}=\\mk{D}{\\frac{\\partial}{\\partial x}}\\mk{I2}{\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfx}=\\mk{D}{\\frac{\\partial}{\\partial x}}\\mk{I2}{\\int_{a}^{x}}\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{r}{\\kvecrprime(t)}dt",
+       "uses": [
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfx}=\\mk{D}{\\frac{\\partial}{\\partial x}}\\mk{I2}{\\int_{a}^{x}}\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{r}{\\frac{d}{dt}(\\langle t,y\\rangle)}dt",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfx}=\\mk{D}{\\frac{\\partial}{\\partial x}}\\mk{I2}{\\int_{a}^{x}}\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{r}{\\langle 1,0\\rangle}dt",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\kfx}=\\mk{D}{\\frac{\\partial}{\\partial x}}\\mk{I2}{\\int_{a}^{x}}\\mk{F}{\\kP(t,y)}dt",
+       "uses": [
+        6
+       ],
+       "cap": "The dot product with $\\langle 1,0\\rangle$ keeps the first component of $\\kvecF,$ which is $\\kP.$",
+       "map": {
+        "r": "F"
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\kfx}=\\mk{P}{\\kP(x,y)}",
+       "uses": [
+        7
+       ],
+       "map": {
+        "D": "P",
+        "I2": "P",
+        "F": "P"
+       }
+      }
+     ],
+     "src": "16.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "For a fixed point $X$ in $\\kD$ and a path $\\kC$ from $X$ to $(x,y)$, $\\kf(x,y)=\\int_{C}\\kvecF\\cdot d\\mathbf{r}$; the value does not depend on the path, since $\\kvecF$ is independent of path."
+      },
+      {
+       "text": "Since $\\kD$ is open, a disk centered at $(x,y)$ lies inside it; with $(x,b)$ a point of that disk and $b<y$, path $\\kC$ runs along $C_{1}$ from $X$ to $(x,b)$, then along the vertical line segment $C_{2}$ from $(x,b)$ to $(x,y)$."
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}+\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}+\\cdots+\\int_{C_{n}}\\kvecF\\cdot d\\mathbf{r}",
+       "src": "16.2, Properties of Vector Line Integrals"
+      },
+      {
+       "text": "The first integral does not depend on $y$."
+      },
+      {
+       "tex": "\\kvecr(t)=\\langle x,t\\rangle,\\quad b\\le t\\le y"
+      },
+      {
+       "tex": "\\int_{C}\\kvecF\\cdot d\\mathbf{r}=\\int_{a}^{b}\\kvecF(\\kvecr(t))\\cdot\\kvecrprime(t)dt",
+       "src": "(16.9)"
+      },
+      {
+       "tex": "\\kvecF=\\langle \\kP,\\kQ\\rangle"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\int_{a}^{x}\\kf(t)dt=\\kf(x)",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x,y)}=\\mk{I}{\\int_{C}\\kvecF\\cdot d\\mathbf{r}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(x,y)}=\\mk{I1}{\\int_{C_{1}}\\kvecF\\cdot d\\mathbf{r}}+\\mk{I2}{\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "I": [
+         "I1",
+         "I2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\kfy}=\\mk{D}{\\frac{\\partial}{\\partial y}}\\mk{I2}{\\int_{C_{2}}\\kvecF\\cdot d\\mathbf{r}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfy}=\\mk{D}{\\frac{\\partial}{\\partial y}}\\mk{I2}{\\int_{b}^{y}}\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{r}{\\kvecrprime(t)}dt",
+       "uses": [
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfy}=\\mk{D}{\\frac{\\partial}{\\partial y}}\\mk{I2}{\\int_{b}^{y}}\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{r}{\\frac{d}{dt}(\\langle x,t\\rangle)}dt",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfy}=\\mk{D}{\\frac{\\partial}{\\partial y}}\\mk{I2}{\\int_{b}^{y}}\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{r}{\\langle 0,1\\rangle}dt",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\kfy}=\\mk{D}{\\frac{\\partial}{\\partial y}}\\mk{I2}{\\int_{b}^{y}}\\mk{F}{\\kQ(x,t)}dt",
+       "uses": [
+        6
+       ],
+       "cap": "The dot product with $\\langle 0,1\\rangle$ keeps the second component of $\\kvecF,$ which is $\\kQ.$",
+       "map": {
+        "r": "F"
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\kfy}=\\mk{P}{\\kQ(x,y)}",
+       "uses": [
+        7
+       ],
+       "map": {
+        "D": "P",
+        "I2": "P",
+        "F": "P"
+       }
+      }
+     ],
+     "src": "16.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kvecF=\\langle \\kP,\\kQ\\rangle"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kgradf}=\\langle \\mk{x}{\\kfx},\\mk{y}{\\kfy}\\rangle",
+      "uses": [],
+      "src": "14.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kgradf}=\\langle \\mk{x}{\\kP(x,y)},\\mk{y}{\\kQ(x,y)}\\rangle",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{g}{\\kgradf}=\\mk{F}{\\kvecF}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "x": "F",
+        "y": "F"
+       }
+      }
+     ],
+     "src": "16.3, The Path Independence Test for Conservative Fields"
+    }
+   ]
+  }
  ]
 }

@@ -45,3 +45,9 @@ Judged and dropped: a secant-method Sim beside Newton's (the exercises introduce
 - forms `eq-newtons-method` → `4.9-describing-newtons-method`; `eq-iterative-process` → `4.9-other-iterative-processes`.
 - variables `4.9/F` → `4.9-describing-newtons-method`.
 - Review 543 lands in the chapter pass.
+
+
+## Derivations
+
+- Describing Newton's Method · the iteration (4.8) · score 1 · built as drv-newtons-method (the tangent line of 4.2 solved for x₁, then x₂ and (4.8))
+- Example 4.47 · Finding a Square Root · score 0 · not built: substitutes one function into (4.8)

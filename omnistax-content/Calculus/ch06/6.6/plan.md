@@ -46,3 +46,10 @@ Judged: dragging point masses in the plane to see the center move (Example 6.30 
 - Review exercise 451 (tmp/ch06/sec_6_6.py, `RV`).
 
 Applied in the chapter pass (2026-10-13): every anchor above set with `ost set` (tmp/ch06/anchors6.py; a few spans moved to the nearest id the text has, such as the section header where the plan named a note); review exercises held here landed with `source_section` 6.9.
+
+## Derivations
+
+- Center of Mass and Moments · two point masses on a line · score 1 · built as drv-center-of-mass-of-two-masses (the n-mass formula after it is stated, not derived, and stays)
+- Center of Mass of a Thin Plate (6.18)–(6.20) · score 2 · built as drv-center-of-mass-of-a-thin-plate, a node each for m (6.18), Mx and My (6.19); (6.20) is (6.17) restated, no move
+- Center of Mass of a Lamina Bounded by Two Functions (6.21)–(6.23) · score 3 · not built: hidden ("we won't go through all the details") and under the bar, its moves the plate's own development
+- Theorem of Pappus for Volume · Proof · score 3 · built as drv-theorem-of-pappus (d·A from (6.21)–(6.23), joined with the shell volume of 6.3)

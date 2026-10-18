@@ -35,3 +35,9 @@ Extra simulations weighed and dropped: the iceboat run of Example 5.27 (5.2's ca
 ## Wanted at chapter level
 
 Applied by this chapter's agent: variables anchors (f → `5.4-basic-formulas`; F, F′ → `5.4-net-change`; v → `5.4-net-change-theorem`; v's meaning reworded with `redefines`) and forms anchors (`eq-net-change`, `eq-net-change-difference` → `5.4-net-change`; `eq-net-displacement`, `eq-total-distance` → `5.4-net-change-theorem`; the two even/odd forms → `5.4-even-odd-rule`). Done.
+
+
+## Derivations
+
+- Net Change Theorem · score 1 · not built: one move, a restatement of the Fundamental Theorem of Calculus, Part 2
+- Integrals of Even and Odd Functions · score 7 · built as drv-integrals-of-even-and-odd-functions, after the rule (the book gives only the two-equal-areas picture; the split, the substitution u = −x of 5.5, the reversed limits and the dummy variable, then a node each for even and odd)

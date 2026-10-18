@@ -1491,5 +1491,339 @@
    "kind": "correction",
    "html": "The book prints “find $12=1-\\frac{1}{2^{2}}+\\cdots$” and “$S\\sum_{n=1}^{\\infty}\\frac{(-1)^{n-1}}{n^{2}}$”; it means find $S=1-\\frac{1}{2^{2}}+\\frac{1}{3^{2}}-\\cdots$ and compare $6\\sum\\frac{1}{n^{2}}$ with $12\\sum\\frac{(-1)^{n-1}}{n^{2}},$ as the key does."
   }
+ ],
+ "derivations": [
+  {
+   "id": "alternating-harmonic-series",
+   "what": "the convergence of the alternating harmonic series",
+   "source": "Calculus, 9.5 Alternating Series, The Alternating Series Test, Proof",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{2k+1}}=\\mk{p}{\\kS_{2k-1}}-\\mk{a}{\\frac{1}{2k}}+\\mk{b}{\\frac{1}{2k+1}}",
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{2k+1}}=\\mk{p}{\\kS_{2k-1}}-\\mk{a}{\\frac{1}{2k}}+\\mk{b}{\\frac{1}{2k+1}}\\lt \\mk{q}{\\kS_{2k-1}}",
+       "uses": [],
+       "cap": "Since $\\frac{1}{2k+1}\\lt \\frac{1}{2k},$ the odd terms $\\{\\kS_{2k+1}\\}$ form a decreasing sequence."
+      }
+     ],
+     "src": "9.5"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{2k+1}}=\\mk{g}{(1-\\frac{1}{2})+(\\frac{1}{3}-\\frac{1}{4})+\\cdots+(\\frac{1}{2k-1}-\\frac{1}{2k})}+\\mk{b}{\\frac{1}{2k+1}}",
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{2k+1}}=\\mk{g}{(1-\\frac{1}{2})+(\\frac{1}{3}-\\frac{1}{4})+\\cdots+(\\frac{1}{2k-1}-\\frac{1}{2k})}+\\mk{b}{\\frac{1}{2k+1}}\\gt \\mk{z}{0}",
+       "uses": [],
+       "cap": "Each bracket is positive, so $\\{\\kS_{2k+1}\\}$ is bounded below."
+      }
+     ],
+     "src": "9.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "A monotone sequence that is bounded converges.",
+       "src": "9.1, Monotone Convergence Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\{\\kS_{2k+1}\\}}\\;\\mk{p}{\\text{is decreasing and bounded below}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\{\\kS_{2k+1}\\}}\\;\\mk{p}{\\text{converges}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kSsum}=\\mk{l}{\\lim_{k\\to \\infty}\\kS_{2k+1}}",
+       "uses": [],
+       "map": {
+        "p": "l"
+       },
+       "cap": "Let $\\kSsum$ be its limit."
+      }
+     ],
+     "src": "9.5"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{2k}}=\\mk{p}{\\kS_{2k-2}}+\\mk{a}{\\frac{1}{2k-1}}-\\mk{b}{\\frac{1}{2k}}",
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{2k}}=\\mk{p}{\\kS_{2k-2}}+\\mk{a}{\\frac{1}{2k-1}}-\\mk{b}{\\frac{1}{2k}}\\gt \\mk{q}{\\kS_{2k-2}}",
+       "uses": [],
+       "cap": "Since $\\frac{1}{2k-1}\\gt \\frac{1}{2k},$ the even terms $\\{\\kS_{2k}\\}$ form an increasing sequence."
+      }
+     ],
+     "src": "9.5"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{2k}}=\\mk{o}{1}+\\mk{g}{(-\\frac{1}{2}+\\frac{1}{3})+\\cdots+(-\\frac{1}{2k-2}+\\frac{1}{2k-1})}-\\mk{b}{\\frac{1}{2k}}",
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{2k}}=\\mk{o}{1}+\\mk{g}{(-\\frac{1}{2}+\\frac{1}{3})+\\cdots+(-\\frac{1}{2k-2}+\\frac{1}{2k-1})}-\\mk{b}{\\frac{1}{2k}}\\lt \\mk{t}{1}",
+       "uses": [],
+       "cap": "Each bracket is negative, so $\\{\\kS_{2k}\\}$ is bounded above."
+      }
+     ],
+     "src": "9.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "step": 4
+      },
+      {
+       "text": "A monotone sequence that is bounded converges.",
+       "src": "9.1, Monotone Convergence Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\{\\kS_{2k}\\}}\\;\\mk{p}{\\text{is increasing and bounded above}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\{\\kS_{2k}\\}}\\;\\mk{p}{\\text{converges}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "9.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 5
+      },
+      {
+       "text": "The limit of a sum of convergent sequences is the sum of the limits.",
+       "src": "9.1, Algebraic Limit Laws"
+      },
+      {
+       "tex": "\\frac{1}{2k+1}\\to 0",
+       "src": "9.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{o}{\\kS_{2k+1}}=\\mk{e}{\\kS_{2k}}+\\mk{f}{\\frac{1}{2k+1}}",
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{o}{\\lim_{k\\to \\infty}\\kS_{2k+1}}=\\mk{e}{\\lim_{k\\to \\infty}\\kS_{2k}}+\\mk{f}{\\lim_{k\\to \\infty}\\frac{1}{2k+1}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{o}{\\kSsum}=\\mk{e}{\\lim_{k\\to \\infty}\\kS_{2k}}+\\mk{f}{0}",
+       "uses": [
+        0,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\lim_{k\\to \\infty}\\kS_{2k}}=\\mk{o}{\\kSsum}",
+       "uses": []
+      }
+     ],
+     "src": "9.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 6
+      },
+      {
+       "text": "$\\{\\kS_{k}\\}$ converges to $\\kSsum$ if for every $\\varepsilon\\gt 0$ there exists $N$ such that $|\\kS_{k}-\\kSsum|\\lt \\varepsilon$ for all $k\\ge N.$",
+       "src": "9.1, Definition"
+      },
+      {
+       "text": "The sum of an infinite series is the limit of its sequence of partial sums.",
+       "src": "9.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{o}{\\kS_{2k+1}}\\to \\mk{S}{\\kSsum}\\;\\text{and}\\;\\mk{e}{\\kS_{2k}}\\to \\mk{S2}{\\kSsum}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{o}{|\\kS_{n}-\\kSsum|}\\lt \\mk{S}{\\varepsilon}\\;\\text{for all}\\;n\\ge 2K+1",
+       "uses": [
+        2
+       ],
+       "map": {
+        "e": "o",
+        "S2": "S"
+       },
+       "cap": "Given $\\varepsilon\\gt 0,$ take $K$ past the point where both $|\\kS_{2k+1}-\\kSsum|$ and $|\\kS_{2k}-\\kSsum|$ are less than $\\varepsilon;$ every $n\\ge 2K+1$ is an odd or an even index past it."
+      },
+      {
+       "tex": "\\mk{o}{\\kS_{n}}\\to \\mk{S}{\\kSsum}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{o}{\\sum_{n=1}^{\\infty}\\frac{{(-1)}^{n+1}}{n}}=\\mk{S}{\\kSsum}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "9.5"
+    }
+   ]
+  },
+  {
+   "id": "absolute-convergence",
+   "what": "absolute convergence implies convergence",
+   "source": "Calculus, 9.5 Alternating Series, Absolute Convergence Implies Convergence, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kaseq_{n}=|\\kaseq_{n}|$ or $\\kaseq_{n}=-|\\kaseq_{n}|.$",
+       "src": "9.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{|\\kaseq_{n}|+\\kaseq_{n}}=\\mk{t}{2|\\kaseq_{n}|}\\;\\text{or}\\;\\mk{a2}{|\\kaseq_{n}|+\\kaseq_{n}}=\\mk{z}{0}",
+      "uses": [
+       0
+      ],
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0}\\le\\mk{a}{|\\kaseq_{n}|+\\kaseq_{n}}\\le\\mk{t}{2|\\kaseq_{n}|}",
+       "uses": [],
+       "map": {
+        "a2": "a"
+       }
+      }
+     ],
+     "src": "9.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\sum_{n=1}^{\\infty}|\\kaseq_{n}|$ converges.",
+       "src": "9.5, Absolute Convergence Implies Convergence"
+      },
+      {
+       "text": "For any real number $c,$ if $\\sum \\kaseq_{n}$ converges, then $\\sum c\\kaseq_{n}$ converges.",
+       "src": "9.2, Algebraic Properties of Convergent Series"
+      },
+      {
+       "text": "If $0\\le \\kaseq_{n}\\le \\kbseq_{n}$ for all $n\\ge N$ and $\\sum \\kbseq_{n}$ converges, then $\\sum \\kaseq_{n}$ converges.",
+       "src": "9.4, Comparison Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0}\\le\\mk{a}{|\\kaseq_{n}|+\\kaseq_{n}}\\le\\mk{t}{2|\\kaseq_{n}|}",
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\sum_{n=1}^{\\infty}(|\\kaseq_{n}|+\\kaseq_{n})}\\;\\mk{t}{\\text{converges}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "cap": "$2\\sum_{n=1}^{\\infty}|\\kaseq_{n}|$ converges, and the comparison test applies."
+      }
+     ],
+     "src": "9.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "$\\sum_{n=1}^{\\infty}|\\kaseq_{n}|$ converges.",
+       "src": "9.5, Absolute Convergence Implies Convergence"
+      },
+      {
+       "text": "If $\\sum \\kaseq_{n}$ and $\\sum \\kbseq_{n}$ converge, then $\\sum(\\kaseq_{n}-\\kbseq_{n})$ converges and equals $\\sum \\kaseq_{n}-\\sum \\kbseq_{n}.$",
+       "src": "9.2, Algebraic Properties of Convergent Series"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}=\\mk{a}{\\sum_{n=1}^{\\infty}(|\\kaseq_{n}|+\\kaseq_{n})}-\\mk{b}{\\sum_{n=1}^{\\infty}|\\kaseq_{n}|}",
+      "src": "9.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}\\;\\mk{a}{\\text{converges}}",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "map": {
+        "b": "a"
+       }
+      }
+     ],
+     "src": "9.5, Absolute Convergence Implies Convergence"
+    }
+   ]
+  }
  ]
 }

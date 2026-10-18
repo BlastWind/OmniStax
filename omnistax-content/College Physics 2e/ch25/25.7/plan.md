@@ -111,3 +111,8 @@ Applied by the chapter pass (2026-09-28):
 - The equation anchor and the eight variable anchors are written as listed.
 - The summary's "Image length", Example 25.11's $R = 2|f| = -0.800$ cm and the AP item `fs-id1560818`, keyed (b) 10 cm where the arithmetic gives +20 cm (c) and set open, are gathered in `ch25/exploration.md`.
 - Figures 25.43 and 25.44 are kept whole as photo rows, drawing and photograph together as the bundle file prints them; the drawings are not folded into `sim-mirror-images`, since the sim already draws both cases and splitting the files would add two images for no new view.
+
+## Derivations
+
+- The focal length of a spherical mirror, $f = R/2$ · score 7 · built as drv-mirror-focal-length: hidden behind "it can be shown"; the law of reflection and the small-mirror approximation the section states
+- Example 25.10, Solar Electric Generating System · score 5 · built as drv-solar-trough: an Integrated Concept Problem whose solution joins the mirror, the trough's geometry, intensity (24.4), density (11.2) and heat (14.2); the book's unit for the specific heat, J·kg/°C, is corrected in the node's note

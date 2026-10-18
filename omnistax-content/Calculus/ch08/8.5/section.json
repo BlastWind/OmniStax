@@ -1106,16 +1106,6 @@
  "referents": [],
  "footnotes": [
   {
-   "id": "rl-initial",
-   "kind": "correction",
-   "html": "The circuit’s initial condition is $i(0)=0,$ which the step uses; $v(0)=2$ is the racquetball’s, from Example 8.18."
-  },
-  {
-   "id": "rc-equation",
-   "kind": "correction",
-   "html": "The equation rewritten is Equation 8.24, $L i'+Ri+\\frac{1}{C}q=E,$ with $L=0;$ Equation 8.23 is the general solution of a linear equation."
-  },
-  {
    "id": "cp818-hint",
    "kind": "correction",
    "html": "The example to follow is Example 8.18, the ball with air resistance; Example 8.15 puts equations in standard form."
@@ -1129,6 +1119,686 @@
    "id": "e221-key",
    "kind": "correction",
    "html": "The key gives $\\int p(x)\\,dx=-\\ln(\\cosh x);$ the integrating factor is $\\kmu(x)=e^{-\\ln(\\cosh x)}=\\frac{1}{\\cosh x}.$"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "integrating-factor",
+   "what": "the integrating factor",
+   "source": "Calculus, 8.5 First-Order Linear Equations, Integrating Factors",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{y}{\\kyprime}+\\mk{py}{\\kp(x)\\kyfn}=\\mk{q}{\\kq(x)}",
+      "src": "(8.18)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kmu(x)\\kyprime}+\\mk{py}{\\kmu(x)\\kp(x)\\kyfn}=\\mk{q}{\\kmu(x)\\kq(x)}",
+       "uses": [],
+       "cap": "Here $\\kmu(x)$ is a function yet to be determined, chosen next so that the left-hand side becomes a derivative."
+      }
+     ],
+     "num": "(8.19)",
+     "src": "8.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\frac{d}{dx}[\\kf(x)\\kg(x)]=\\kfprime(x)\\kg(x)+\\kf(x)\\kgprime(x)",
+       "src": "3.3"
+      },
+      {
+       "tex": "\\kg(x)=\\kmu(x)",
+       "src": "8.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kgprime(x)}=\\mk{m}{\\kmu(x)}\\mk{p}{\\kp(x)}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "8.5",
+      "why": "Matching $\\kmu(x)\\kyprime+\\kmu(x)\\kp(x)\\kyfn$ term by term to $\\kfprime(x)\\kg(x)+\\kf(x)\\kgprime(x)$ gives $\\kyfn=\\kf(x),$ $\\kg(x)=\\kmu(x)$ and $\\kgprime(x)=\\kmu(x)\\kp(x).$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kmuprime(x)}=\\mk{m}{\\kmu(x)}\\mk{p}{\\kp(x)}",
+       "uses": [
+        2
+       ],
+       "cap": "Take the derivative of $\\kg(x)=\\kmu(x)$."
+      }
+     ],
+     "src": "8.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "Separation of variables: an equation $\\frac{dy}{dx}=g(x)h(y)$ is rewritten as $\\frac{dy}{h(y)}=g(x)\\,dx$ and both sides are integrated.",
+       "src": "8.3"
+      },
+      {
+       "tex": "\\int x^{-1}\\,dx=\\ln|x|+C",
+       "src": "5.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kmuprime(x)}=\\mk{m}{\\kmu(x)}\\mk{p}{\\kp(x)}",
+      "src": "8.5"
+     },
+     "steps": [
+      {
+       "tex": "\\frac{\\mk{g}{\\kmuprime(x)}}{\\mk{m}{\\kmu(x)}}=\\mk{p}{\\kp(x)}",
+       "uses": [
+        1
+       ],
+       "cap": "This is a first-order, separable differential equation for $\\kmu(x)$; we know $\\kp(x)$ because it appears in the equation we are solving."
+      },
+      {
+       "tex": "\\mk{i1}{\\int} \\frac{\\mk{g}{\\kmuprime(x)}}{\\mk{m}{\\kmu(x)}}\\mk{d1}{dx}=\\mk{i2}{\\int} \\mk{p}{\\kp(x)}\\;\\mk{d2}{dx}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\ln|\\kmu(x)|}=\\mk{p}{\\int \\kp(x)\\;dx}+\\mk{c}{C}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "i1": "l",
+        "g": "l",
+        "m": "l",
+        "d1": "l",
+        "i2": [
+         "p",
+         "c"
+        ],
+        "d2": "p"
+       },
+       "cap": "With $u=\\kmu(x)$ and $du=\\kmuprime(x)\\,dx$, the left side is $\\int u^{-1}\\,du$."
+      },
+      {
+       "tex": "\\mk{e1}{e}^{\\mk{l}{\\ln|\\kmu(x)|}}=\\mk{e2}{e}^{\\mk{p}{\\int \\kp(x)\\;dx}+\\mk{c}{C}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{|\\kmu(x)|}=\\mk{c}{C_{1}}\\mk{p}{e^{\\int \\kp(x)\\;dx}}",
+       "uses": [],
+       "map": {
+        "e1": "l",
+        "e2": [
+         "c",
+         "p"
+        ]
+       },
+       "cap": "$e^{\\ln u}=u$ and $e^{a+b}=e^{a}e^{b}$, with $C_{1}=e^{C}$."
+      },
+      {
+       "tex": "\\mk{l}{\\kmu(x)}=\\mk{c}{C_{2}}\\mk{p}{e^{\\int \\kp(x)\\;dx}}",
+       "uses": [],
+       "cap": "Dropping the absolute value, $C_{2}$ can be an arbitrary (positive or negative) constant."
+      }
+     ],
+     "src": "8.5"
+    }
+   ]
+  },
+  {
+   "id": "first-order-linear-solution",
+   "what": "the general solution of a first-order linear equation",
+   "source": "Calculus, 8.5 First-Order Linear Equations, Integrating Factors",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kmuprime(x)=\\kmu(x)\\kp(x)",
+       "src": "8.5"
+      },
+      {
+       "tex": "\\frac{d}{dx}[\\kf(x)\\kg(x)]=\\kfprime(x)\\kg(x)+\\kf(x)\\kgprime(x)",
+       "src": "3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kmu(x)\\kyprime}+\\mk{py}{\\kmu(x)\\kp(x)\\kyfn}=\\mk{q}{\\kmu(x)\\kq(x)}",
+      "src": "(8.20)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kmu(x)\\kyprime}+\\mk{py}{\\kmuprime(x)\\kyfn}=\\mk{q}{\\kmu(x)\\kq(x)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dx}(\\kmu(x)\\kyfn)}=\\mk{q}{\\kmu(x)\\kq(x)}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "y": "d",
+        "py": "d"
+       },
+       "cap": "The product rule read backward, with $\\kf(x)=\\kyfn$ and $\\kg(x)=\\kmu(x)$."
+      }
+     ],
+     "num": "(8.21)",
+     "src": "8.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int \\kFprime(x)\\,dx=\\kF(x)+C",
+       "src": "4.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dx}(\\kmu(x)\\kyfn)}=\\mk{q}{\\kmu(x)\\kq(x)}",
+      "src": "(8.21)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i1}{\\int} \\mk{d}{\\frac{d}{dx}(\\kmu(x)\\kyfn)}\\;\\mk{x1}{dx}=\\mk{q}{\\int \\kmu(x)\\kq(x)\\;dx}",
+       "uses": [],
+       "cap": "Integrate both sides with respect to $x$."
+      },
+      {
+       "tex": "\\mk{l}{\\kmu(x)\\kyfn}=\\mk{q}{\\int \\kmu(x)\\kq(x)\\;dx}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "i1": "l",
+        "d": "l",
+        "x1": "l"
+       }
+      }
+     ],
+     "num": "(8.22)",
+     "src": "8.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kmu(x)\\kyfn}=\\mk{q}{\\int \\kmu(x)\\kq(x)\\;dx}",
+      "src": "(8.22)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kmu(x)\\kyfn}=\\mk{q}{\\int \\kmu(x)\\kq(x)\\;dx}+\\mk{c}{C}",
+       "uses": [],
+       "cap": "The constant of integration of the integral on the right is written out, to keep the whole family of solutions."
+      },
+      {
+       "tex": "\\mk{l}{\\kyfn}=\\mk{m}{\\frac{1}{\\kmu(x)}}[\\mk{q}{\\int \\kmu(x)\\kq(x)\\;dx}+\\mk{c}{C}]",
+       "uses": []
+      }
+     ],
+     "num": "(8.23)",
+     "src": "8.5"
+    }
+   ]
+  },
+  {
+   "id": "circuit-equations",
+   "what": "the equations of an LR and an RC circuit",
+   "source": "Calculus, 8.5 First-Order Linear Equations, Electrical Circuits",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Kirchhoff's Loop Rule: the sum of the voltage drops across resistors, inductors, and capacitors is equal to the total electromotive force in a closed circuit.",
+       "src": "8.5"
+      },
+      {
+       "tex": "E_{L}=Li'",
+       "src": "8.5"
+      },
+      {
+       "tex": "E_{R}=Ri",
+       "src": "8.5"
+      },
+      {
+       "tex": "E_{C}=\\frac{1}{C}q",
+       "src": "8.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{E_{L}}+\\mk{R}{E_{R}}+\\mk{C}{E_{C}}=\\mk{E}{E}",
+      "uses": [
+       0
+      ],
+      "src": "8.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{Li'}+\\mk{R}{Ri}+\\mk{C}{\\frac{1}{C}q}=\\mk{E}{E}",
+       "uses": [
+        1,
+        2,
+        3
+       ]
+      }
+     ],
+     "num": "(8.24)",
+     "src": "8.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "There is no capacitor in the circuit, so there is no voltage drop $E_{C}$.",
+       "src": "8.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{Li'}+\\mk{R}{Ri}+\\mk{C}{\\frac{1}{C}q}=\\mk{E}{E}",
+      "src": "(8.24)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{Li'}+\\mk{R}{Ri}=\\mk{E}{E}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(8.25)",
+     "src": "8.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "There is no inductor in the circuit, but there is a capacitor and a resistor, so $L=0,$ $R\\ne0,$ and $C\\ne0.$",
+       "src": "8.5"
+      },
+      {
+       "tex": "i=q'",
+       "src": "8.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{Li'}+\\mk{R}{Ri}+\\mk{C}{\\frac{1}{C}q}=\\mk{E}{E}",
+      "src": "(8.24)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{Ri}+\\mk{C}{\\frac{1}{C}q}=\\mk{E}{E}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{R}{Rq'}+\\mk{C}{\\frac{1}{C}q}=\\mk{E}{E}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(8.26)",
+     "src": "8.5",
+     "note": "The book introduces this equation as a rewriting of Equation 8.23; the equation rewritten is Equation 8.24 with $L=0$."
+    }
+   ]
+  },
+  {
+   "id": "rl-circuit-current",
+   "what": "the current in an RL circuit driven by 50 sin 20t",
+   "source": "Calculus, 8.5 First-Order Linear Equations, Example 8.19",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "L=0.4\\;\\text{H}"
+      },
+      {
+       "tex": "R=5\\;\\Omega"
+      },
+      {
+       "tex": "E=50\\;\\sin20t\\;\\text{V}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{Li'}+\\mk{r}{Ri}=\\mk{e}{E}",
+      "src": "(8.25)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{0.4i'}+\\mk{r}{5i}=\\mk{e}{50\\;\\sin20t}",
+       "uses": [
+        0,
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{i'}+\\mk{r}{12.5i}=\\mk{e}{125\\;\\sin20t}",
+       "uses": []
+      }
+     ],
+     "src": "Example 8.19"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{\\kmu(t)}=\\mk{x}{e^{\\int \\kp(t)\\;dt}}",
+      "src": "8.5, Problem-Solving Strategy"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\kmu(t)}=\\mk{x}{e^{\\int 12.5dt}}",
+       "uses": [
+        0
+       ],
+       "cap": "Here $\\kp(t)=12.5$."
+      },
+      {
+       "tex": "\\mk{m}{\\kmu(t)}=\\mk{x}{e^{12.5t}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 8.19"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\frac{d}{dx}[\\kf(x)\\kg(x)]=\\kfprime(x)\\kg(x)+\\kf(x)\\kgprime(x)",
+       "src": "3.3"
+      },
+      {
+       "tex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g'(x)",
+       "src": "3.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{i'}+\\mk{r}{12.5i}=\\mk{e}{125\\;\\sin20t}",
+      "src": "Example 8.19"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{e^{12.5t}i'}+\\mk{r}{12.5e^{12.5t}i}=\\mk{e}{125e^{12.5t}\\sin20t}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}\\;[ie^{12.5t}]}=\\mk{e}{125e^{12.5t}\\sin20t}",
+       "uses": [
+        2,
+        3
+       ],
+       "map": {
+        "r": "d"
+       },
+       "cap": "The product rule read backward: $\\frac{d}{dt}e^{12.5t}=12.5e^{12.5t}$."
+      }
+     ],
+     "src": "Example 8.19"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\int u\\;dv=uv-\\int v\\;du",
+       "src": "(7.1)"
+      },
+      {
+       "tex": "\\frac{d}{dt}\\sin20t=20\\cos20t,\\quad \\frac{d}{dt}\\cos20t=-20\\sin20t",
+       "src": "3.6"
+      },
+      {
+       "tex": "\\int e^{12.5t}\\,dt=\\frac{1}{12.5}e^{12.5t}+C",
+       "src": "5.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{I}=\\mk{s}{\\int e^{12.5t}\\sin20t\\;dt}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{I}=\\mk{s}{\\frac{1}{12.5}e^{12.5t}\\sin20t}-\\mk{k}{\\int \\frac{1}{12.5}e^{12.5t}\\cdot 20\\cos20t\\;dt}",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "map": {
+        "s": [
+         "s",
+         "k"
+        ]
+       },
+       "cap": "Integration by parts with $u=\\sin20t$ and $dv=e^{12.5t}\\,dt$, so $du=20\\cos20t\\,dt$ and $v=\\frac{1}{12.5}e^{12.5t}$."
+      },
+      {
+       "tex": "\\mk{I}{I}=\\mk{s}{\\frac{2}{25}e^{12.5t}\\sin20t}-\\mk{k}{\\frac{8}{5}\\int e^{12.5t}\\cos20t\\;dt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{I}{I}=\\mk{s}{\\frac{2}{25}e^{12.5t}\\sin20t}-\\mk{k}{\\frac{8}{5}}[\\mk{c}{\\frac{2}{25}e^{12.5t}\\cos20t}+\\mk{j}{\\frac{8}{5}\\int e^{12.5t}\\sin20t\\;dt}]",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "map": {
+        "k": [
+         "k",
+         "c",
+         "j"
+        ]
+       },
+       "cap": "Integration by parts again, with $u=\\cos20t$ and $dv=e^{12.5t}\\,dt$; the integral we started with returns."
+      },
+      {
+       "tex": "\\mk{I}{I}=\\mk{s}{\\frac{2}{25}e^{12.5t}\\sin20t}-\\mk{c}{\\frac{16}{125}e^{12.5t}\\cos20t}-\\mk{j}{\\frac{64}{25}I}",
+       "uses": [],
+       "map": {
+        "k": [
+         "c",
+         "j"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\frac{89}{25}I}=\\mk{s}{\\frac{2}{25}e^{12.5t}\\sin20t}-\\mk{c}{\\frac{16}{125}e^{12.5t}\\cos20t}",
+       "uses": [],
+       "map": {
+        "j": "I"
+       }
+      },
+      {
+       "tex": "\\mk{I}{I}=\\mk{s}{\\frac{10\\sin20t-16\\cos20t}{445}e^{12.5t}}",
+       "uses": [],
+       "map": {
+        "c": "s"
+       }
+      }
+     ],
+     "src": "Example 8.19"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\int \\kFprime(x)\\,dx=\\kF(x)+C",
+       "src": "4.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dt}\\;[ie^{12.5t}]}=\\mk{e}{125e^{12.5t}\\sin20t}",
+      "src": "Example 8.19"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n}{\\int} \\mk{d}{\\frac{d}{dt}\\;[ie^{12.5t}]}\\;\\mk{t}{dt}=\\mk{e}{\\int 125e^{12.5t}\\sin20t\\;dt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{ie^{12.5t}}=\\mk{e}{125\\cdot\\frac{10\\sin20t-16\\cos20t}{445}e^{12.5t}}+\\mk{c}{C}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "n": "d",
+        "t": "d"
+       }
+      },
+      {
+       "tex": "\\mk{d}{ie^{12.5t}}=\\mk{e}{(\\frac{250\\;\\sin20t-400\\;\\cos20t}{89})\\;e^{12.5t}}+\\mk{c}{C}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{i(t)}=\\mk{a}{\\frac{250\\;\\sin20t-400\\;\\cos20t}{89}}+\\mk{c}{Ce^{-12.5t}}",
+       "uses": [],
+       "map": {
+        "e": "a"
+       }
+      }
+     ],
+     "src": "Example 8.19"
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "tex": "i(0)=0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{i(t)}=\\mk{a}{\\frac{250\\;\\sin20t-400\\;\\cos20t}{89}}+\\mk{c}{Ce^{-12.5t}}",
+      "src": "Example 8.19"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{i(0)}=\\mk{a}{\\frac{250\\;\\sin20(0)-400\\;\\cos20(0)}{89}}+\\mk{c}{Ce^{-12.5(0)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{0}=\\mk{a}{-\\frac{400}{89}}+\\mk{c}{C}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{c}{C}=\\mk{a}{\\frac{400}{89}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 8.19",
+     "note": "The book solves for $C$ “using the initial condition $v(0)=2$,” which is the racquetball’s of Example 8.18; the circuit’s initial condition is $i(0)=0$, which the lines use."
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "step": 5
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{i(t)}=\\mk{a}{\\frac{250\\;\\sin20t-400\\;\\cos20t}{89}}+\\mk{c}{Ce^{-12.5t}}",
+      "src": "Example 8.19"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{i(t)}=\\mk{a}{\\frac{250\\;\\sin20t-400\\;\\cos20t}{89}}+\\mk{c}{\\frac{400e^{-12.5t}}{89}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 8.19"
+    },
+    {
+     "assumes": [
+      {
+       "step": 6
+      },
+      {
+       "text": "$\\varphi$ is the acute angle such that $\\cos\\varphi =\\frac{8}{\\sqrt{89}};$ then $\\sin\\varphi =\\frac{5}{\\sqrt{89}}.$"
+      },
+      {
+       "tex": "\\cos(\\alpha+\\beta)=\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta",
+       "src": "1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{i(t)}=\\mk{a}{\\frac{250\\;\\sin20t-400\\;\\cos20t}{89}}+\\mk{c}{\\frac{400e^{-12.5t}}{89}}",
+      "src": "Example 8.19"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{i(t)}=\\mk{A}{\\frac{50\\sqrt{89}}{89}}\\mk{a}{(\\frac{250\\;\\sin20t-400\\;\\cos20t}{50\\sqrt{89}})}+\\mk{c}{\\frac{400e^{-12.5t}}{89}}",
+       "uses": [],
+       "map": {
+        "a": [
+         "A",
+         "a"
+        ]
+       },
+       "cap": "Multiply and divide by $\\sqrt{{250}^{2}+{400}^{2}}=50\\sqrt{89}$."
+      },
+      {
+       "tex": "\\mk{d}{i(t)}=-\\mk{A}{\\frac{50\\sqrt{89}}{89}}\\mk{a}{(\\frac{8\\;\\cos20t}{\\sqrt{89}}-\\frac{5\\;\\sin20t}{\\sqrt{89}})}+\\mk{c}{\\frac{400e^{-12.5t}}{89}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{i(t)}=-\\mk{A}{\\frac{50\\sqrt{89}}{89}}\\mk{a}{(\\cos\\varphi \\;\\cos20t-\\sin\\varphi \\;\\sin20t)}+\\mk{c}{\\frac{400e^{-12.5t}}{89}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{i(t)}=-\\mk{A}{\\frac{50\\sqrt{89}}{89}}\\;\\mk{a}{\\cos(20t+\\varphi )}+\\mk{c}{\\frac{400e^{-12.5t}}{89}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "Example 8.19"
+    }
+   ]
   }
  ]
 }

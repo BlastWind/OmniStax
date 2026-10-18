@@ -379,3 +379,8 @@ exercises list now says.
   circle the result is keyed as the circular speed, the same number, so
   it moves); only drags change the string, so the flight's clock never
   morphs it · flat, no 3D.
+
+## Derivations
+
+- Maximum height of a projectile (Example 3.4 (a), named in the paragraph after the example) · score 1 · built as drv-maximum-height: one node, the vertical kinematic equation with $y_0 = 0$ and $v_y = 0$ at the apex solved for $y$; replaces the three symbolic lines of Solution (a), the numbers and the later $h = v_{0y}^2/2g$ stay as printed
+- The range of a projectile ('The proof of this equation is left as an end-of-chapter problem') · score 11 · not built: set for the reader as an end-of-chapter problem

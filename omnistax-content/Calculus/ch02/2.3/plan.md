@@ -78,3 +78,11 @@ Ids confirmed with `ost ids calculus 2.3` after the build.
   - `{"id": "r224", "source_id": "fs-id1170572401275", "source_section": "2.5", "source_number": "224", "kind": "review-exercise", "bloom": "Apply", "place": {"at": "end"}, "cite": "squeeze", "prompt": "<p>Use the squeeze theorem to prove the limit.</p><p>$\\lim_{x\\to 0}x^{3}\\sin\\left(\\frac{\\pi}{x}\\right)=0$</p>", "answer": {"type": "open", "generated_by": "ai", "solution": "For every $x\\ne 0,$ $-1\\le\\sin(\\pi/x)\\le 1,$ and multiplying by $|x|^{3}\\ge 0$ gives $-|x|^{3}\\le |x|^{3}\\sin(\\pi/x)\\le |x|^{3}.$ Since $x^{3}\\sin(\\pi/x)$ is $|x|^{3}\\sin(\\pi/x)$ or its negative, it lies between $-|x|^{3}$ and $|x|^{3}$ as well. By the power law and the limit of $|x|$, $\\lim_{x\\to 0}|x|^{3}=0=\\lim_{x\\to 0}(-|x|^{3}),$ so by the squeeze theorem $\\lim_{x\\to 0}x^{3}\\sin(\\pi/x)=0.$"}}` · tag `squeeze-theorem`
 
 - Chapter pass (2026-10-12): all applied with the 2.3 rows above; p stays plain, its symbol belongs to Chapter 1 (`\\kp` asked of that pass).
+
+## Derivations
+
+- Limits of Polynomial and Rational Functions · "To see that this theorem holds" · score 0 · built as drv-limits-of-polynomial-and-rational-functions (the sum and constant multiple laws split into their own moves, then the quotient law for the rational case)
+- The Squeeze Theorem · lim sin θ = 0 (2.16) and lim cos θ = 1 (2.17) · score 3 · built as drv-limits-of-sine-and-cosine, after Figure 2.29 + 2.30 (the right- and left-hand limits joined by 2.2's theorem, then (2.17) by the root, difference and power laws); the paragraph giving 0 < sin θ < θ stays
+- The Squeeze Theorem · lim sin θ/θ = 1 (2.18) · score 2 · built as drv-limit-of-sine-over-theta, after the paragraph giving sin θ < θ < tan θ (its marker `added-triangle` kept); the left-hand limit the book waves through ("a manipulation similar to …") worked from the right-hand inequality at −θ
+- Example 2.25 · lim (1 − cos θ)/θ = 0 (2.19) · score 1 · built as drv-limit-of-one-minus-cosine-over-theta (a numbered general limit; the sentence on multiplying by the conjugate stays)
+- Student Project · Deriving the Formula for the Area of a Circle · score 10 · not built: the project poses the steps for the reader and states no result in the exposition

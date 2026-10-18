@@ -778,5 +778,64 @@
         "sim-toy-car"
       ]
     }
+  ],
+  "derivations": [
+    {
+      "id": "conservation-of-mechanical-energy",
+      "what": "the conservation of mechanical energy",
+      "source": "College Physics 2e, 7.4 Conservative Forces and Potential Energy",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "Only conservative forces act.",
+              "src": "7.4"
+            },
+            {
+              "tex": "\\kWnet = \\kWc",
+              "src": "7.4"
+            },
+            {
+              "tex": "\\kWc = -\\kdPE",
+              "src": "7.4"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{W}{\\kWnet} = \\mk{ke}{\\frac{1}{2}\\km\\kv^2 - \\frac{1}{2}\\km\\kvo^2} = \\mk{dk}{\\kdKE}",
+            "src": "7.2"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{W}{\\kWc} = \\mk{dk}{\\kdKE}",
+              "uses": [
+                0,
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{W}{-\\kdPE} = \\mk{dk}{\\kdKE}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{dk}{\\kdKE} + \\mk{W}{\\kdPE} = \\mk{z}{0}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{dk}{\\kKE} + \\mk{W}{\\kPEtot} = \\mk{z}{\\text{constant}}",
+              "uses": [],
+              "cap": "A sum that changes by zero in every process involving only conservative forces keeps one value throughout."
+            },
+            {
+              "tex": "\\mk{dk}{\\kKEi} + \\mk{W}{\\kPEi} = \\mk{z}{\\kKEf + \\kPEf}",
+              "uses": [],
+              "cap": "The constant total has the same value at the start and at the end."
+            }
+          ],
+          "src": "7.4"
+        }
+      ]
+    }
   ]
 }

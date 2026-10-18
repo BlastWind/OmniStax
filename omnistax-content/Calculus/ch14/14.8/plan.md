@@ -38,3 +38,8 @@ Introduced: `constraint`, `objective-function`, `method-of-lagrange-multipliers`
 
 - forms: `eq-lagrange-one-constraint` → `14.8-fs-id1167794055797`; `eq-lagrange-two-constraints` → `14.8-two-constraints`.
 - variables anchored at build.
+
+## Derivations
+
+- Method of Lagrange Multipliers: One Constraint · Proof · score 4 · built as drv-lagrange-one-constraint: dz/ds = 0 by the chain rule and Fermat's theorem worked to ∇f · T(0) = 0, then joined with the gradient's normality to the level curve g = 0 (14.6) in ∇f = λ∇g; the whole proof body replaced, its assumptions the facts
+- Problems with Two Constraints, the system ∇f = λ₁∇g + λ₂∇h · score 7 · not built: stated by analogy with no claim that it follows, and its proof needs the independence of ∇g and ∇h, which the book never states

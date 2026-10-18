@@ -300,3 +300,7 @@ right edge of the canvas at 1400 wide were shortened (`sim-posture`,
 `sim-lift` and `sim-lever-arm-trade`), and the weight label in `sim-lift`
 took the panel background the other two force labels already had, because
 the muscle's arrow crossed it.
+
+## Derivations
+
+- Example 9.5 (b), the force on the vertebrae when lifting with the back · score 3 · not built: a worked example, every line printed, under the bar

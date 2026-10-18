@@ -41,3 +41,12 @@ The book draws none.
 
 - forms: `eq-sin-squared-reducing`, `eq-cos-squared-reducing` → `7.2-power-reducing`; `eq-sine-products` → `7.2-fs-id1165043229277`, `eq-sine-cosine-products` → `7.2-fs-id1165042349512`, `eq-cosine-products` → `7.2-fs-id1165042332192`; `eq-secant-reduction` → `7.2-fs-id1165043276273`, `eq-tangent-reduction` → `7.2-fs-id1165039565660`.
 - variables `7.2/u`, `7.2/j`, `7.2/k`, `7.2/n` → `7.2-sin-cos`; add `7.2/a`, `7.2/b` (ink, the factors of x in sin(ax), cos(bx), `redefines`) → `7.2-products-rule`.
+
+## Derivations
+
+- Integrating Products and Powers of sin x and cos x, the power-reducing identities ("may be derived from" the double-angle and Pythagorean identities, nothing printed) · score 8 · built as drv-power-reducing-identities (after the paragraph that names the identities; one node per identity)
+- Rule · Integrating Products of Sines and Cosines of Different Angles (7.3–7.5), "may be derived from the sum-of-angle formulas" · score 11 · built as drv-products-of-sines-and-cosines (after that sentence; the four angle formulas of 1.3, then (7.3), (7.4) and (7.5) each joining two of them)
+- Example 7.17 · score 3 · not built: a worked example of the section's strategy 3
+- Example 7.18 (∫sec³x dx) · score 2 · not built: a worked example of integration by parts, every line printed; its result is one antiderivative, the n = 3 case of (7.6), whose general derivation is built
+- Rule · Reduction Formulas, (7.6) for ∫secⁿx dx ("may be verified by applying integration by parts") · score 9 · built with (7.7) as drv-reduction-formulas, after the rule
+- Rule · Reduction Formulas, (7.7) for ∫tanⁿx dx ("may be verified by following the strategy") · score 5 · built as the second node of drv-reduction-formulas (one rule, two results sharing the identity tan²x = sec²x − 1)

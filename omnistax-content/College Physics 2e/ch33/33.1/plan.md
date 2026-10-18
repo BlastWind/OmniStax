@@ -94,3 +94,7 @@ its card its own id; the example's anchor here is unchanged.
 - `ch33/COLOR.md` 33.1 row: the page binds `energy`, `time`, `position`, `velocity` and `mass`.
 
 Applied by the chapter pass (2026-10-05): All seven form anchors and the six variable anchors as asked; `eq-virtual-particle-energy` and `eq-pion-mass` now write `\km` in their `ktex`, and so does 33.3's `eq-mass-from-energy-33`. The edge `meson` → `hadron` is gone and `meson` rests on `mass`; its statement is now the 33.1 glossary's, a particle whose mass is intermediate between the electron and nucleon masses, the name now covering a class, and 33.4's `mesons-and-baryons` rests on `meson`, so the quark-antiquark make-up stays with 33.5's `quark-composition-of-hadrons`. `ch33/COLOR.md` binds mass in 33.1.
+
+## Derivations
+
+- Example 33.1, Calculating the Mass of a Pion · score 3 · not built: a worked example that substitutes into the uncertainty principle and $E = mc^2$, under the bar

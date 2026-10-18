@@ -1043,5 +1043,243 @@
    "kind": "correction",
    "html": "The display that follows prints $-\\frac{5}{13}(2x-\\frac{77}{12}y)+\\frac{12}{13}(-x+6y)=-\\frac{22}{13}x+\\frac{17}{13}y.$ With $\\nabla f(x,y)=(2x-y)\\mathbf{i}+(-x+6y)\\mathbf{j}$ it is $-\\frac{5}{13}(2x-y)+\\frac{12}{13}(-x+6y)=-\\frac{22}{13}x+\\frac{77}{13}y.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "directional-derivative-formula",
+   "what": "the directional derivative in terms of partial derivatives",
+   "source": "Calculus, 14.6 Directional Derivatives and the Gradient, Directional Derivatives",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "x=a+t\\;\\cos \\ktheta ,\\quad y=b+t\\;\\sin \\ktheta ,\\quad g(t)=\\kf(x,y)"
+      },
+      {
+       "text": "$\\kf(x,y)$ is differentiable everywhere.",
+       "src": "14.6, Directional Derivative of a Function of Two Variables"
+      },
+      {
+       "text": "At $t=0,$ $x=x_{0}(=a)$ and $y=y_{0}(=b)$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{g^{\\prime}(t)}=\\mk{a}{\\frac{\\partial \\kf}{\\partial x}\\;\\frac{dx}{dt}}+\\mk{b}{\\frac{\\partial \\kf}{\\partial y}\\;\\frac{dy}{dt}}",
+      "src": "(14.29)",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{g^{\\prime}(t)}=\\mk{a}{\\kfx(x,y)\\cos \\ktheta}+\\mk{b}{\\kfy(x,y)\\sin \\ktheta}",
+       "uses": [
+        0
+       ],
+       "cap": "$\\frac{dx}{dt}=\\cos\\ktheta$ and $\\frac{dy}{dt}=\\sin\\ktheta$."
+      },
+      {
+       "tex": "\\mk{g}{g^{\\prime}(0)}=\\mk{a}{\\kfx(x_{0},y_{0})\\cos \\ktheta}+\\mk{b}{\\kfy(x_{0},y_{0})\\sin \\ktheta}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "14.6",
+     "note": "The book says $\\kf$ is differentiable because $\\kfx$ and $\\kfy$ exist; that does not follow (14.4), and the theorem assumes it."
+    },
+    {
+     "assumes": [
+      {
+       "tex": "g(t)=\\kf(x_{0}+t\\;\\cos \\ktheta ,y_{0}+t\\;\\sin \\ktheta )"
+      },
+      {
+       "tex": "\\kDuf(a,b)=\\lim_{h\\to 0}\\frac{\\kf(a+h\\;\\cos \\ktheta ,b+h\\;\\sin \\ktheta )-\\kf(a,b)}{h}",
+       "src": "(14.36)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{g^{\\prime}(0)}=\\mk{L}{\\lim_{t\\to 0}\\frac{g(t)-g(0)}{t}}",
+      "src": "3.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{g^{\\prime}(0)}=\\mk{L}{\\lim_{t\\to 0}\\frac{\\kf(x_{0}+t\\;\\cos \\ktheta ,y_{0}+t\\;\\sin \\ktheta )-\\kf(x_{0},y_{0})}{t}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{g}{g^{\\prime}(0)}=\\mk{L}{\\kDuf(x_{0},y_{0})}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "14.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{g^{\\prime}(0)}=\\mk{L}{\\kDuf(x_{0},y_{0})}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kDuf(x_{0},y_{0})}=\\mk{a}{\\kfx(x_{0},y_{0})\\cos \\ktheta}+\\mk{b}{\\kfy(x_{0},y_{0})\\sin \\ktheta}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "g": [
+         "a",
+         "b"
+        ]
+       }
+      }
+     ],
+     "num": "(14.37)",
+     "src": "14.6, Directional Derivative of a Function of Two Variables",
+     "note": "The book's last line takes the partial derivatives at $(x,y)$, $\\kDuf(x_{0},y_{0})=\\kfx(x,y)\\cos\\ktheta+\\kfy(x,y)\\sin\\ktheta$; they are taken at $(x_{0},y_{0})$."
+    }
+   ]
+  },
+  {
+   "id": "directional-derivative-and-gradient-angle",
+   "what": "the directional derivative in terms of the angle to the gradient",
+   "source": "Calculus, 14.6 Directional Derivatives and the Gradient, Gradient",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\mathbf{a}\\cdot \\mathbf{b}=\\| \\mathbf{a}\\| \\| \\mathbf{b}\\| \\cos \\kphi",
+       "src": "12.3, (12.4)"
+      },
+      {
+       "text": "$\\kphi$ is the angle between $\\kgradf(x_{0},y_{0})$ and $\\kvecu=(\\cos \\ktheta )\\kveci+(\\sin \\ktheta )\\kvecj$."
+      },
+      {
+       "tex": "\\| \\kvecu\\| =1",
+       "src": "14.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\kDuf(x_{0},y_{0})}=\\mk{g}{\\kgradf(x_{0},y_{0})}\\cdot \\mk{u}{\\kvecu}",
+      "src": "(14.38)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\kDuf(x_{0},y_{0})}=\\mk{g}{\\| \\kgradf(x_{0},y_{0})\\|}\\mk{u}{\\| \\kvecu\\|}\\mk{c}{\\cos \\kphi}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\kDuf(x_{0},y_{0})}=\\mk{g}{\\| \\kgradf(x_{0},y_{0})\\|}\\mk{c}{\\cos \\kphi}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\kvecu$ is a unit vector."
+      }
+     ],
+     "src": "14.6"
+    }
+   ]
+  },
+  {
+   "id": "gradient-normal-to-level-curve",
+   "what": "the gradient normal to a level curve",
+   "source": "Calculus, 14.6 Directional Derivatives and the Gradient, Gradients and Level Curves",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "g(t)=\\kf(x(t),y(t))"
+      },
+      {
+       "text": "$g(t)=k$ for all $t$ on the level curve $\\kf(x,y)=k$."
+      },
+      {
+       "text": "The derivative of a constant is zero.",
+       "src": "3.3, The Constant Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{g^{\\prime}(t)}=\\mk{s}{\\kfx(x(t),y(t))x^{\\prime}(t)+\\kfy(x(t),y(t))y^{\\prime}(t)}",
+      "src": "(14.29)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kfx(x(t),y(t))x^{\\prime}(t)+\\kfy(x(t),y(t))y^{\\prime}(t)}=\\mk{g}{0}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "14.6"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\langle a_{1},a_{2}\\rangle \\cdot \\langle b_{1},b_{2}\\rangle =a_{1}b_{1}+a_{2}b_{2}",
+       "src": "12.3"
+      },
+      {
+       "tex": "\\kgradf(x,y)=\\kfx(x,y)\\kveci+\\kfy(x,y)\\kvecj",
+       "src": "(14.39)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kfx(x(t),y(t))x^{\\prime}(t)+\\kfy(x(t),y(t))y^{\\prime}(t)}=\\mk{d}{\\langle \\kfx(x,y),\\kfy(x,y)\\rangle \\cdot \\langle x^{\\prime}(t),y^{\\prime}(t)\\rangle}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kfx(x(t),y(t))x^{\\prime}(t)+\\kfy(x(t),y(t))y^{\\prime}(t)}=\\mk{d}{\\kgradf(x,y)\\cdot \\langle x^{\\prime}(t),y^{\\prime}(t)\\rangle}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "14.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kfx(x(t),y(t))x^{\\prime}(t)+\\kfy(x(t),y(t))y^{\\prime}(t)}=\\mk{g}{0}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kgradf(x,y)\\cdot \\langle x^{\\prime}(t),y^{\\prime}(t)\\rangle}=\\mk{g}{0}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "14.6"
+    }
+   ]
+  }
  ]
 }

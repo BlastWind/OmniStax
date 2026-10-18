@@ -20,6 +20,7 @@
 <div class="equation" id="fs-id1165042478832">$$\int_{-\infty}^{+\infty}\kf(x)dx=\int_{-\infty}^{0}\kf(x)dx+\int_0^{+\infty}\kf(x)dx,\tag{7.18}$$</div>
 <p>provided that $\int_{-\infty}^{0}\kf(x)dx$ and $\int_0^{+\infty}\kf(x)dx$ both converge. If either one or both of these two <span data-concept="definite-integral">integrals</span> diverge, then $\int_{-\infty}^{+\infty}\kf(x)dx$ diverges. (It can be shown that, in fact, $\int_{-\infty}^{+\infty}\kf(x)dx=\int_{-\infty}^{a}\kf(x)dx+\int_a^{+\infty}\kf(x)dx$ for any value of $a.)$</p>
 </div>
+<figure class="dv" id="drv-improper-integral-split-point"></figure>
 <p>In our first example, we return to the question we posed at the start of this section: Is the <span data-concept="area-under-the-curve">area</span> between the graph of $\kf(x)=\frac{1}{x}$ and the $x$-axis over the interval $[1,+\infty )$ finite or infinite?</p>
 <div class="example" id="fs-id1165043428127">
 <h3>Example 7.47 · Finding an Area</h3>
@@ -116,7 +117,7 @@ $$\begin{array}{rllll}\int_0^{4}\frac{1}{\sqrt{4-x}}dx & =\lim_{t\to 4^{-}}\int_
 <p>Evaluate $\int_0^{2}x\;\ln x\;dx .$ State whether the <span data-concept="definite-integral">integral</span> converges or diverges.</p>
 <h4>Solution</h4>
 <p>Since $\kf(x)=x\;\ln x$ is continuous over $(0,2]$ and is discontinuous at zero, we can rewrite the <span data-concept="definite-integral">integral</span> in limit form using <a href="#fs-id1165042506827">Equation 7.20</a>:</p>
-$$\begin{array}{rllll}\int_0^{2}x\;\ln x\;dx & =\lim_{t\to 0^{+}}\int_t^{2}x\;\ln x\;dx & & & \text{Rewrite as a limit.} \\ & =\lim_{t\to 0^{+}}(\frac{1}{2}x^{2}\ln x-\frac{1}{4}x^{2})|{}_{\begin{array}{l} \\ t\end{array}}^{\begin{array}{l}2 \\ \end{array}} & & & \begin{array}{l}\text{Evaluate}\;\int x\;\ln x\;dx\;\text{using integration by parts} \\ \text{with}\;u=\ln x\;\text{and}\;dv=xdx.\end{array} \\ & =\lim_{t\to 0^{+}}(2\;\ln 2-1-\frac{1}{2}t^{2}\ln t+\frac{1}{4}t^{2}). & & & \text{Evaluate the antiderivative.} \\ & =2\;\ln 2-1. & & & \begin{array}{l}\text{Evaluate the limit.}\;\lim_{t\to 0^{+}}t^{2}\ln t\;\text{is indeterminate.} \\ \text{To evaluate it, rewrite as a quotient and apply} \\ \text{L’Hôpital’s rule.}\end{array}\end{array}$$
+<figure class="dv" id="drv-integral-of-x-ln-x"></figure>
 <p>The <span data-concept="improper-integral">improper integral</span> converges.</p>
 </div>
 <div class="example" id="fs-id1165043423550">
@@ -147,6 +148,7 @@ $$\int_a^{+\infty}\kf(x)dx=\lim_{t\to +\infty}\int_a^{t}\kf(x)dx=+\infty ,$$
 <p>$\int_a^{+\infty}\kg(x)dx=\lim_{t\to +\infty}\int_a^{t}\kg(x)dx=L$ for some real number $L,$ then</p>
 <p>$\int_a^{+\infty}\kf(x)dx=\lim_{t\to +\infty}\int_a^{t}\kf(x)dx$ must converge to some value less than or equal to $L,$ since $\int_a^{t}\kf(x)dx$ increases as $t$ increases and $\int_a^{t}\kf(x)dx\le L$ for all $t\ge a.$</p>
 <p>If the <span data-concept="area-under-the-curve">area</span> of the region between the graph of $\kg(x)$ and the <em>x</em>-axis over $[a,+\infty )$ is finite, then the <span data-concept="area-under-the-curve">area</span> of the region between the graph of $\kf(x)$ and the <em>x</em>-axis over $[a,+\infty )$ is also finite.</p>
+<figure class="dv" id="drv-comparison-theorem"></figure>
 <p>These conclusions are summarized in the following theorem.</p>
 <div class="note" id="comparison-theorem">
 <div class="eyebrow">Theorem</div>

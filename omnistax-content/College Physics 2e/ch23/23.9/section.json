@@ -489,5 +489,97 @@
         "sim-inductor-energy"
       ]
     }
+  ],
+  "derivations": [
+    {
+      "id": "inductance-from-flux",
+      "what": "self-inductance from the change in flux",
+      "source": "College Physics 2e, 23.9 Inductance",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "\\kemf = -\\kLind\\dfrac{\\kdIcur}{\\kdt}",
+              "src": "23.9"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{e}{\\kemf} = -\\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{t}{\\kdt}}",
+            "src": "23.2"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{e}{\\kemf} = -\\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{t}{\\kdt}} = -\\mk{L}{\\kLind}\\dfrac{\\mk{I}{\\kdIcur}}{\\mk{t2}{\\kdt}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{L}{\\kLind} = \\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{I}{\\kdIcur}}",
+              "uses": []
+            }
+          ],
+          "src": "23.9"
+        }
+      ]
+    },
+    {
+      "id": "solenoid-inductance",
+      "what": "the self-inductance of a solenoid",
+      "source": "College Physics 2e, 23.9 Inductance",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "The area $\\karea$ of a solenoid is fixed.",
+              "src": "23.9"
+            },
+            {
+              "tex": "\\kdPhi = \\Delta(\\kBmag \\karea)",
+              "src": "23.1, 23.9"
+            },
+            {
+              "tex": "\\kBmag = \\mu_0 n\\kIcur = \\mu_0\\dfrac{N\\kIcur}{\\ell}",
+              "src": "22.9"
+            },
+            {
+              "text": "Only the current changes.",
+              "src": "23.9"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{\\kLind} = \\mk{N}{N}\\dfrac{\\mk{P}{\\kdPhi}}{\\mk{I}{\\kdIcur}}",
+            "src": "23.9"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{\\kLind} = \\mk{N}{N}\\dfrac{\\mk{P}{\\karea\\Delta \\kBmag}}{\\mk{I}{\\kdIcur}}",
+              "uses": [
+                0,
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{L}{\\kLind} = \\mk{N}{N}\\dfrac{\\mk{P}{\\mu_0 N\\karea\\frac{\\kdIcur}{\\ell}}}{\\mk{I}{\\kdIcur}}",
+              "uses": [
+                2,
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{L}{\\kLind} = \\dfrac{\\mk{N}{\\mu_0 N^2 \\karea}}{\\mk{l}{\\ell}}\\;\\text{(solenoid)}",
+              "uses": [],
+              "map": {
+                "P": [
+                  "N",
+                  "l"
+                ]
+              }
+            }
+          ],
+          "src": "23.9"
+        }
+      ]
+    }
   ]
 }

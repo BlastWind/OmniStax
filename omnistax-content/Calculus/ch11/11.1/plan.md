@@ -64,3 +64,9 @@ Anchors confirmed with `ost ids calculus 11.1` after the build.
 - Review 323, 327, 329 rows go into this page's exercises when it is built (11.5's ex.json holds them).
 
 Applied in the chapter pass (2026-10-13): every form and variables anchor above set with `ost set` (anchors resolve, `ost check` clean); the review rows written into section.json with `source_section` 11.5.
+
+## Derivations
+
+- Cycloids and Other Parametric Curves · the cycloid (and the Student Project "Travels with My Ant", which repeats it) · score 2 · built as drv-cycloid (a thin printed block: the center's path and the ant's circle added; the prose and its two fact equations stay, the result display is replaced; the project is set for the reader)
+- Cycloids and Other Parametric Curves · the hypocycloid · score 9 · not built: the book states the equations ("somewhat similar"); the angle the small circle turns through rests on the rolling condition, which the book never states
+- Student Project · The Witch of Agnesi · score 12 · not built: set for the reader

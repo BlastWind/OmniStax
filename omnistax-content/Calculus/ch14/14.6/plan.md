@@ -46,3 +46,9 @@ None: the five figures cover the definition, the extremes, steepest ascent and n
 
 - forms: `eq-directional-derivative-definition` → `14.6-fs-id1167794159722`; the two-variable theorem forms → `14.6-fs-id1167793882858`; `eq-gradient-2d` → `14.6-fs-id1167794122930`; `eq-directional-derivative-angle` → `14.6-gradient-angle`; `eq-gradient-3d` → `14.6-fs-id1167793932636`; the three-dimensional forms → `14.6-fs-id1167793277385`.
 - variables anchored at build. Review 413, 415 placed here.
+
+## Derivations
+
+- Directional Derivative of a Function of Two Variables · Proof · score 2 · built as drv-directional-derivative-formula: g′ by the chain rule and at t = 0, g′(0) by the definition and (14.36), joined in (14.37). Two book slips are the nodes' notes: "since f_x and f_y both exist, and therefore f is differentiable" (the theorem assumes differentiability; existence of the partials does not give it) and the last line's partials at (x, y) for (x₀, y₀)
+- Gradient, D_u f = ‖∇f‖ cos φ before Properties of the Gradient · score 1 · built as drv-directional-derivative-and-gradient-angle (a thin printed block; "The ‖u‖ disappears because u is a unit vector" became the reason of its move, the paragraph on the three cases stays after it)
+- Gradients and Level Curves, g′(t) on the level curve · score 3 · built as drv-gradient-normal-to-level-curve: g′(t) = 0 and the dot-product form as two lines, joined in ∇f · ⟨x′, y′⟩ = 0; "Thus, the dot product … gives rise to the following theorem" stays after it

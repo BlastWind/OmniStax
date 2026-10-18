@@ -1342,5 +1342,88 @@
   }
  ],
  "referents": [],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "sigma-notation-properties",
+   "what": "the constant multiple and sum properties of sigma notation",
+   "source": "Calculus, 5.1 Approximating Areas, Properties of Sigma Notation, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\sum_{i=1}^{n} a_{i}=a_{1}+a_{2}+a_{3}+\\cdots+a_{n}",
+       "src": "5.1"
+      },
+      {
+       "text": "$c$ is a constant.",
+       "src": "5.1, Properties of Sigma Notation"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sum_{i=1}^{n} ca_{i}}=\\mk{r}{ca_{1}+ca_{2}+ca_{3}+\\cdots+ca_{n}}",
+      "uses": [
+       0
+      ],
+      "src": "5.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\sum_{i=1}^{n} ca_{i}}=\\mk{c}{c}\\mk{r}{(a_{1}+a_{2}+a_{3}+\\cdots+a_{n})}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r": [
+         "c",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\sum_{i=1}^{n} ca_{i}}=\\mk{c}{c}\\mk{r}{\\sum_{i=1}^{n} a_{i}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "5.1, Properties of Sigma Notation"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\sum_{i=1}^{n} a_{i}=a_{1}+a_{2}+a_{3}+\\cdots+a_{n}",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sum_{i=1}^{n} (a_{i}+b_{i})}=\\mk{r}{(a_{1}+b_{1})+(a_{2}+b_{2})+(a_{3}+b_{3})+\\cdots+(a_{n}+b_{n})}",
+      "uses": [
+       0
+      ],
+      "src": "5.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\sum_{i=1}^{n} (a_{i}+b_{i})}=\\mk{a}{(a_{1}+a_{2}+a_{3}+\\cdots+a_{n})}+\\mk{b}{(b_{1}+b_{2}+b_{3}+\\cdots+b_{n})}",
+       "uses": [],
+       "map": {
+        "r": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\sum_{i=1}^{n} (a_{i}+b_{i})}=\\mk{a}{\\sum_{i=1}^{n} a_{i}}+\\mk{b}{\\sum_{i=1}^{n} b_{i}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "5.1, Properties of Sigma Notation"
+    }
+   ]
+  }
+ ]
 }

@@ -243,5 +243,131 @@
     "sim-twins"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "time-dilation",
+   "what": "time dilation",
+   "source": "College Physics 2e, 28.2 Simultaneity And Time Dilation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kLlen=\\frac{\\kv\\kdt}{2}",
+       "src": "28.2"
+      },
+      {
+       "text": "$\\kD$ and $\\kLlen$ are the legs of a right triangle whose hypotenuse is $\\ks$.",
+       "src": "Figure 28.6(c)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ks^{2}}=\\mk{D}{\\kD^{2}}+\\mk{L}{\\kLlen^{2}}",
+      "uses": [
+       1
+      ],
+      "why": "The Pythagorean theorem."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ks}=\\sqrt{\\mk{D}{\\kD^{2}}+\\mk{L}{\\kLlen^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ks}=\\sqrt{\\mk{D}{\\kD^{2}}+\\mk{L}{\\left(\\frac{\\kv\\kdt}{2}\\right)^{2}}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "28.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kdt=\\frac{2\\ks}{\\kc}",
+       "src": "28.2"
+      },
+      {
+       "tex": "\\kdto=\\frac{2\\kD}{\\kc}",
+       "src": "28.2"
+      },
+      {
+       "tex": "\\gamma=\\frac{1}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}",
+       "src": "28.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{\\ks}=\\sqrt{\\kD^{2}+\\left(\\frac{\\kv\\kdt}{2}\\right)^{2}}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\kdt}=\\frac{2\\ks}{\\kc}=\\frac{\\mk{n}{2\\sqrt{\\kD^{2}+\\left(\\frac{\\kv\\kdt}{2}\\right)^{2}}}}{\\mk{c}{\\kc}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}}=\\frac{\\mk{n}{4\\left(\\kD^{2}+\\frac{\\kv^{2}(\\kdt)^{2}}{4}\\right)}}{\\mk{c}{\\kc^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}}=\\mk{a}{\\frac{4\\kD^{2}}{\\kc^{2}}}+\\mk{b}{\\frac{\\kv^{2}}{\\kc^{2}}(\\kdt)^{2}}",
+       "uses": [],
+       "map": {
+        "n": [
+         "a",
+         "b"
+        ],
+        "c": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}}=\\mk{a}{(\\kdto)^{2}}+\\mk{b}{\\frac{\\kv^{2}}{\\kc^{2}}(\\kdt)^{2}}",
+       "uses": [
+        2
+       ],
+       "cap": "Squaring $\\kdto = 2\\kD/\\kc$ gives $(\\kdto)^{2} = 4\\kD^{2}/\\kc^{2}$."
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}\\left(1-\\frac{\\kv^{2}}{\\kc^{2}}\\right)}=\\mk{a}{(\\kdto)^{2}}",
+       "uses": [],
+       "map": {
+        "b": "t"
+       }
+      },
+      {
+       "tex": "\\mk{t}{(\\kdt)^{2}}=\\frac{\\mk{a}{(\\kdto)^{2}}}{\\mk{g}{1-\\frac{\\kv^{2}}{\\kc^{2}}}}",
+       "uses": [],
+       "map": {
+        "t": [
+         "t",
+         "g"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{t}{\\kdt}=\\frac{\\mk{a}{\\kdto}}{\\mk{g}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}}",
+       "uses": [],
+       "cap": "Taking the square root of both sides; both time intervals are positive."
+      },
+      {
+       "tex": "\\mk{t}{\\kdt}=\\frac{\\mk{a}{\\kdto}}{\\mk{g}{\\sqrt{1-\\frac{\\kv^{2}}{\\kc^{2}}}}}=\\mk{G}{\\gamma\\kdto}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "28.2"
+    }
+   ]
+  }
  ]
 }

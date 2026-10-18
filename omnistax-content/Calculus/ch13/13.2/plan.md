@@ -50,3 +50,10 @@ Applied in the chapter pass (tmp/ch13/anchors13.py).
 
 - forms `eq-vvf-derivative` → `13.2-fs-id1169739012267`; `eq-vvf-derivative-components-plane`, `-space` → the Differentiation theorem note; the six `eq-vvf-…` property forms and `eq-vvf-constant-magnitude` → `13.2-fs-id1169736863566`; `eq-unit-tangent-vector` → `13.2-fs-id1169736889687`; `eq-vvf-indefinite-integral-plane` → `13.2-fs-id1169736591974`, `-space` → `13.2-fs-id1169739044371`; `eq-vvf-definite-integral-plane` → `13.2-fs-id1169739062367`, `-space` → `13.2-fs-id1169739182212`.
 - variables `13.2/r_vec`, `/r_vec_prime` → the derivative definition note; `/f`, `/g`, `/h`, `/f_prime`, `/g_prime`, `/h_prime` → the Differentiation theorem note; `/u_vec`, `/u_vec_prime`, `/u_vec_dprime` → the Properties theorem note; `/T_vec` → the unit tangent definition note; `/F`, `/G` → `13.2-fs-id1169736882460`; `/i_vec`, `/j_vec`, `/k_vec` → the Differentiation theorem note.
+
+## Derivations
+
+- Properties of the Derivative of Vector-Valued Functions · Proof of property iii (scalar product) · score 1 · built as drv-derivative-properties, node 1 (the regrouping into f′u + fu′ inserted)
+- the same Proof, property iv (dot product) · score 1 · built as node 2 of the same derivation, the sum rule given its own move and the reordered line keyed as the two dot products it becomes
+- the same Proof, property vii from property iv · score 0 · built as node 3, resting on node 2; the remark on properties v and vi stays after the derivation
+- Integrals of Vector-Valued Functions, the constant of integration · score 0 · built as drv-integration-constant-vector (a thin printed block; the display of the two component antiderivatives went into its facts, "Therefore, the integration constant becomes a constant vector" stays after it)

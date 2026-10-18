@@ -38,3 +38,12 @@ None found in the text.
 ## Wanted at chapter level
 
 - Anchors: variables a_seq, n, S, S_sum → `9.3-divergence-test`; f → `9.3-integral-test`; p → `9.3-p-series-definition`; R → `9.3-estimating`. Forms: eq-divergence-test → `9.3-divergence-test`; eq-integral-test → `9.3-integral-theorem`; eq-p-series → `9.3-p-series-definition`; eq-p-series-test → `9.3-p-series`; eq-remainder → `9.3-estimating`; eq-integral-remainder-estimate → `9.3-remainder-theorem`.
+
+## Derivations
+
+- Divergence Test · (9.8) · score 1 · built as drv-divergence-test (a printed block and its contrapositive; form `eq-divergence-test` re-anchored to it)
+- Integral Test · the harmonic series by $\int dx/x$ · score 2 · built as drv-harmonic-series-integral (a second printed proof, the model for the test; the first, by grouping, is 9.2's)
+- Integral Test · $\sum 1/n^{2}$ by $\int dx/x^{2}$ · score 3 · built as drv-reciprocal-squares-convergence
+- Integral Test · the argument before the theorem box · score 2 · built as drv-integral-test
+- The p-Series · (9.9) · score 3 · built as drv-p-series (form `eq-p-series-test` re-anchored to it)
+- Remainder Estimate from the Integral Test · the argument after the box · score 0 · built as drv-remainder-estimate (a printed block; the box keeps its (9.10))

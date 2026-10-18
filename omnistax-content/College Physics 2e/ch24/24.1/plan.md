@@ -132,3 +132,7 @@ Judged against `docs/prompts/manim-style.md`; only the figures below changed.
 
 - `sim-maxwell-four` · the notes speak of the physics, not the controls (root 17); nothing else changed.
 - `sim-hertz` · the far loop's spark fades in and out as the receiver is retuned rather than cutting (manim 15); the loops' 12.0 m spacing is stated as a fact, without a note on the drawing's scale.
+
+## Derivations
+
+- The wave Maxwell predicted, $c = 1/\sqrt{\mu_0\varepsilon_0}$ · score 10 · not built: it rests on Maxwell's equations in differential form, which the book says are beyond its level and never states

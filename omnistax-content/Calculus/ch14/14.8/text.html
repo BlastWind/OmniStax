@@ -14,14 +14,7 @@
 $$\kgradf(x_{0},y_{0})=\lambda \kgradg(x_{0},y_{0}).$$
 </div>
 <h3>Proof</h3>
-<p>Assume that a constrained extremum occurs at the point $(x_{0},y_{0}).$ Furthermore, we assume that the equation $\kg(x,y)=0$ can be smoothly parameterized as</p>
-$$x=x(s)\;\text{and}\;y=y(s)$$
-<p>where <em>s</em> is an <span data-concept="arc-length-parameterization">arc length parameter</span> with reference point $(x_{0},y_{0})$ at $s=0.$ Therefore, the quantity $z=\kf(x(s),y(s))$ has a relative maximum or relative minimum at $s=0,$ and this implies that $\frac{dz}{ds}=0$ at that point. From the <span data-concept="chain-rule-for-one-independent-variable">chain rule</span>,</p>
-$$\frac{dz}{ds}=\frac{\partial \kf}{\partial x}\cdot \frac{dx}{ds}+\frac{\partial \kf}{\partial y}\cdot \frac{dy}{ds}=(\frac{\partial \kf}{\partial x}\overset{\wedge}{i}+\frac{\partial \kf}{\partial y}\overset{\wedge}{j})\cdot (\frac{dx}{ds}\overset{\wedge}{i}+\frac{dy}{ds}\overset{\wedge}{j})=0,$$
-<p>where the derivatives are all evaluated at $s=0.$ However, the first factor in the dot product is the <span data-concept="gradient">gradient</span> of $\kf,$ and the second factor is the <span data-concept="principal-unit-tangent-vector">unit tangent vector</span> $\text{T}(0)$ to the <span data-concept="constraint">constraint</span> curve. Since the point $(x_{0},y_{0})$ corresponds to $s=0,$ it follows from this equation that</p>
-$$\kgradf(x_{0},y_{0})\cdot \text{T}(0)=0,$$
-<p>which implies that the <span data-concept="gradient">gradient</span> is either $\mathbf{0}$ or is normal to the <span data-concept="constraint">constraint</span> curve at a constrained relative extremum. However, the <span data-concept="constraint">constraint</span> curve $\kg(x,y)=0$ is a <span data-concept="level-curve">level curve</span> for the function $\kg(x,y)$ so that if $\kgradg(x_{0},y_{0})\ne 0$ then $\kgradg(x_{0},y_{0})$ is normal to this curve at $(x_{0},y_{0})$ It follows, then, that there is some scalar $\lambda$ such that</p>
-$$\kgradf(x_{0},y_{0})=\lambda \kgradg(x_{0},y_{0})$$
+<figure class="dv" id="drv-lagrange-one-constraint"></figure>
 <p>□</p>
 <p>To apply <a href="#fs-id1167794055797">Method of Lagrange Multipliers: One Constraint</a> to an <span data-concept="optimization-problem">optimization problem</span> similar to that for the golf ball manufacturer, we need a problem-solving strategy.</p>
 <div class="note" id="fs-id1167793879387">

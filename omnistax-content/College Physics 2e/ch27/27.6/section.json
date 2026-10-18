@@ -241,5 +241,119 @@
     "sim-focal-spot"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "resolving-power",
+   "what": "the resolving power of a lens",
+   "source": "College Physics 2e, 27.6 Limits of Resolution: The Rayleigh Criterion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The two points, a distance $\\kx$ apart, lie a distance $\\kd$ from the objective lens, with $\\kx$ much smaller than $\\kd$, so $\\text{tan}\\;\\ktheta = \\kx/\\kd$.",
+       "src": "Figure 27.30"
+      },
+      {
+       "tex": "\\text{tan}\\;\\ktheta \\approx \\text{sin}\\;\\ktheta \\approx \\ktheta",
+       "src": "27.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\ktheta} = \\mk{r}{1.22\\frac{\\klam}{\\kDap}}",
+      "uses": [],
+      "src": "27.6",
+      "why": "By the Rayleigh criterion, two points can just be resolved when their angular separation is the angle of the first diffraction minimum."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\ktheta} = \\mk{r}{1.22\\frac{\\klam}{\\kDap}} = \\mk{x}{\\frac{\\kx}{\\kd}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}}",
+       "uses": [],
+       "map": {
+        "t": "r"
+       }
+      }
+     ],
+     "src": "27.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The lens of diameter $\\kDap$ subtends the half-angle $\\kalphahalf$ at the point P a distance $\\kd$ away, so $\\text{tan}\\;\\kalphahalf = (\\kDap/2)/\\kd$.",
+       "src": "Figure 27.30(b)"
+      },
+      {
+       "tex": "\\text{tan}\\;\\ktheta \\approx \\text{sin}\\;\\ktheta \\approx \\ktheta",
+       "src": "27.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\text{tan}\\;\\kalphahalf} = \\mk{f}{\\frac{\\kDap/2}{\\kd}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\text{sin}\\;\\kalphahalf} = \\mk{f}{\\frac{\\kDap/2}{\\kd}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\text{sin}\\;\\kalphahalf} = \\mk{f}{\\frac{\\kDap/2}{\\kd}} = \\mk{g}{\\frac{\\kDap}{2\\kd}}",
+       "uses": []
+      }
+     ],
+     "src": "27.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\text{NA} = n\\;\\text{sin}\\;\\kalphahalf",
+       "src": "26.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}}",
+      "uses": [],
+      "src": "27.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}} = \\mk{s}{1.22\\frac{\\klam}{2\\;\\text{sin}\\;\\kalphahalf}}",
+       "uses": [
+        1
+       ],
+       "cap": "From $\\text{sin}\\;\\kalphahalf = \\kDap/2\\kd$, the ratio $\\kd/\\kDap$ is $1/(2\\;\\text{sin}\\;\\kalphahalf)$."
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}} = \\mk{s}{1.22\\frac{\\klam}{2\\;\\text{sin}\\;\\kalphahalf}} = \\mk{n}{0.61\\frac{\\klam n}{n\\;\\text{sin}\\;\\kalphahalf}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{r}{1.22\\frac{\\klam\\kd}{\\kDap}} = \\mk{s}{1.22\\frac{\\klam}{2\\;\\text{sin}\\;\\kalphahalf}} = \\mk{n}{0.61\\frac{\\klam n}{\\text{NA}}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "27.6"
+    }
+   ]
+  }
  ]
 }

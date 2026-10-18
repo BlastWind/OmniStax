@@ -573,5 +573,64 @@
    "kind": "correction",
    "html": "The book’s key is (a), 12 m/s. The plunger’s pressure is $440\\ \\text{N}/\\pi(0.028\\ \\text{m})^2 = 1.79\\times 10^{5}\\ \\text{N/m}^2$, and $\\frac{1}{2}\\rho v^2$ equal to it gives $v = 19$ m/s, choice (b), the answer the card checks."
   }
+ ],
+ "derivations": [
+  {
+   "id": "torricelli",
+   "what": "Torricelli’s theorem",
+   "source": "College Physics 2e, 12.3 The Most General Applications of Bernoulli’s Equation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Both $\\kProne$ and $\\kPrtwo$ equal atmospheric pressure: point 1 is the top of the reservoir, and the water emerging at point 2 is surrounded by the atmosphere.",
+       "src": "12.3"
+      },
+      {
+       "text": "The fluid is incompressible, so the density $\\krho$ is the same at both points.",
+       "src": "12.3"
+      },
+      {
+       "tex": "\\kh = \\khone - \\khtwo",
+       "src": "12.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P1}{\\kProne} + \\mk{k1}{\\frac{1}{2}\\krho\\kvone^2} + \\mk{g1}{\\krho\\kg\\khone} = \\mk{P2}{\\kPrtwo} + \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2} + \\mk{g2}{\\krho\\kg\\khtwo}",
+      "uses": [],
+      "src": "12.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k1}{\\frac{1}{2}\\krho\\kvone^2} + \\mk{g1}{\\krho\\kg\\khone} = \\mk{k2}{\\frac{1}{2}\\krho\\kvtwo^2} + \\mk{g2}{\\krho\\kg\\khtwo}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{k1}{\\kvone^2} + \\mk{g1}{2\\kg\\khone} = \\mk{k2}{\\kvtwo^2} + \\mk{g2}{2\\kg\\khtwo}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{k2}{\\kvtwo^2} = \\mk{k1}{\\kvone^2} + \\mk{g}{2\\kg(\\khone - \\khtwo)}",
+       "uses": [],
+       "map": {
+        "g1": "g",
+        "g2": "g"
+       }
+      },
+      {
+       "tex": "\\mk{k2}{\\kvtwo^2} = \\mk{k1}{\\kvone^2} + \\mk{g}{2\\kg\\kh}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "12.3"
+    }
+   ]
+  }
  ]
 }

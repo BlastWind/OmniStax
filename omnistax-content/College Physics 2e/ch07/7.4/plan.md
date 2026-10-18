@@ -354,3 +354,8 @@ the relationship of mechanical energy to nonconservative forces is, now also
 tags `nonconservative-force`, which 7.5 introduces and which is a built node
 now that the whole chapter stands; the tag carries a weight of 1, because the
 question is about mechanical energy and only names the other idea.
+
+## Derivations
+
+- The potential energy of a spring, $\tfrac{1}{2}kx^2$ (prose with inline lines) · score 2 · not built: four inline moves but only Hooke's law imported and nothing hidden, under the bar
+- Conservation of mechanical energy (printed block) · score 1 · built as drv-conservation-of-mechanical-energy: one node from the work-energy theorem through $W_\text{c} = -\Delta\text{PE}$ to $\text{KE}_\text{i} + \text{PE}_\text{i} = \text{KE}_\text{f} + \text{PE}_\text{f}$; replaces the block's six displayed lines

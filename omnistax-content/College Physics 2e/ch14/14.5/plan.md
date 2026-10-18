@@ -269,3 +269,8 @@ worked examples 14.5 and 14.6 (three in 14.2, one in 14.3), not 14.6 and
 prompt, the slab's caption, the notes, this plan and the concept rows that
 name them carry the publisher's numbers now. The collision figure's headline
 is written as a full sentence, and the slab's ends with a full stop.
+
+## Derivations
+
+- Example 14.5, the ice box · score 2 · not built: two formulas chained, every line printed
+- Example 14.6, the aluminum pan · score 2 · not built: two formulas chained, every line printed

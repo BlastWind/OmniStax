@@ -413,3 +413,8 @@ change of theme.
   AI-marked approaches, exactly as the section built them.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-earth-moon` marks Newton's test: a dashed circle on T at the period Earth's gravity gives at the set radius, 2π(r³/GM)^{1/2}, and on r at the radius that matches the set period; landing there makes the two accelerations of the readout equal. `sim-tides` marks 0° (spring tides) and 90° (neap tides) on the Sun's angle. `sim-cavendish` loses its Labels choice (rule 26.7): r and F stay on the drawing and every part is named by hover. Its wood, brass, lead, lamp and paper textures keep their hex colours, which are the physical colours of those materials (root rule 7) and not type hues.
+
+## Derivations
+
+- The acceleration due to gravity ('We can now determine why this is so') · score 1 · built as drv-gravity-acceleration: two nodes, $g = GM/r^2$ and the numbers last; replaces the displays and connecting sentences, the paragraph naming $m$, $M$ and $r$ stays after the host; the Cavendish subsection repeats the same two lines and adds $M = gr^2/G$, and stays as printed
+- Example 6.6, the Moon's centripetal acceleration against gravity · score 4 · not built: two numerical substitutions into earlier formulas compared, a worked example

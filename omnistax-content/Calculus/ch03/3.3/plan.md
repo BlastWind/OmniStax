@@ -75,3 +75,16 @@ Ids confirmed with `ost ids calculus 3.3` after the build.
 - Sheet links: "rules for finding derivatives" in the opening paragraph opens the Table of Derivatives; the word "derivative" (or "differentiating") in the problems of Examples 3.19, 3.21, 3.24, 3.25 and 3.27 opens the Integral Calculator in derivative mode on that function. The book's words are kept; no words are added.
 - Variables rows added: 3.3/f, g, f_prime, s, s_prime, v; anchors on the 3.3 rows and the eight rule forms.
 - Correction: Checkpoint 3.17's answer (k′ for h′).
+
+
+## Derivations
+
+- The Constant Rule, the limit computation before the theorem · score 0 · built as drv-constant-rule (a thin printed block; the sentence giving f(x) = c and f(x + h) = c went into its facts)
+- Example 3.18 · Differentiating x³ · score 1 · not built: the n = 3 case of the power-rule proof built below, worked by the limit definition; stays as printed
+- The Power Rule · Proof · score 1 · built as drv-power-rule (the binomial expansion worked to the difference quotient, then the limit)
+- Sum, Difference, and Constant Multiple Rules · Proof of the sum rule · score 1 · built as drv-sum-difference-constant-multiple-rules, node 1
+- the difference rule ("the rest follow in a similar manner") · score 5 · built as node 2 of the same derivation; the constant multiple rule (four moves, score 4) as node 3: one Proof heading, three results sharing the limit definition and the laws
+- Product Rule · Proof · score 2 · built as drv-product-rule (the paragraph on continuity stays; the display chain replaced)
+- The Quotient Rule ("the proof … is omitted here") · score 10 · built as drv-quotient-rule, after that paragraph; the product rule's add-and-subtract on the common denominator, every fact from 2.3 and 3.2
+- Extended Power Rule · Proof · score 0 · built as drv-extended-power-rule (the set-up paragraph stays, the three displays replaced)
+- Example 3.29 · Extending the Product Rule · score 0 · built as drv-three-factor-product-rule (a thin printed block deriving a general formula)

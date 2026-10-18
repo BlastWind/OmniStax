@@ -1498,5 +1498,293 @@
    "kind": "correction",
    "html": "The book prints the integral sign without its circle, which the next sentence describes: the notation is $\\oint_{C}\\mathbf{F}\\cdot\\mathbf{T}\\,ds.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "scalar-line-integral-in-t",
+   "what": "the scalar line integral as an integral in t",
+   "source": "Calculus, 16.2 Line Integrals, Scalar Line Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "s=\\int_{a}^{b}\\|\\kvecrprime(t)\\|dt",
+       "src": "13.3, Arc-Length Formulas"
+      },
+      {
+       "text": "If width $\\Delta t_{i}=t_{i}-t_{i-1}$ is small, $\\|\\kvecrprime(t)\\|$ is almost constant over the interval $[t_{i-1},t_{i}]$.",
+       "src": "16.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\Delta s_{i}}=\\mk{L}{\\text{length}(C_{i})}",
+      "uses": [],
+      "src": "16.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\Delta s_{i}}=\\mk{L}{\\int_{t_{i-1}}^{t_{i}}\\|\\kvecrprime(t)\\|dt}",
+       "uses": [
+        0
+       ],
+       "cap": "The arc-length formula over the piece $C_{i},$ from $t_{i-1}$ to $t_{i}.$"
+      },
+      {
+       "tex": "\\mk{s}{\\Delta s_{i}}\\approx\\mk{L}{\\|\\kvecrprime(t_i^{*})\\|\\Delta t_{i}}",
+       "uses": [
+        1
+       ],
+       "cap": "An integrand that is almost constant over an interval of width $\\Delta t_{i}$ integrates to about its value at $t_i^{*}$ times $\\Delta t_{i}.$"
+      }
+     ],
+     "src": "16.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\Delta s_{i}}\\approx\\mk{L}{\\|\\kvecrprime(t_i^{*})\\|\\Delta t_{i}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(\\kvecr(t_i^{*}))}\\mk{s}{\\Delta s_{i}}\\approx\\mk{f2}{\\kf(\\kvecr(t_i^{*}))}\\mk{L}{\\|\\kvecrprime(t_i^{*})\\|\\Delta t_{i}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{S}{\\sum_{i=1}^{n}\\kf(\\kvecr(t_i^{*}))\\Delta s_{i}}\\approx\\mk{R}{\\sum_{i=1}^{n}\\kf(\\kvecr(t_i^{*}))\\|\\kvecrprime(t_i^{*})\\|\\Delta t_{i}}",
+       "uses": [],
+       "map": {
+        "f": "S",
+        "s": "S",
+        "f2": "R",
+        "L": "R"
+       }
+      }
+     ],
+     "num": "(16.6)",
+     "src": "16.2",
+     "note": "The book prints (16.6) with an equals sign; as it says after the theorem, the left side only approaches the right side as $n\\to\\infty.$"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "Point $P_i^{*}$ is the endpoint of $\\kvecr(t_i^{*})$.",
+       "src": "16.2"
+      },
+      {
+       "text": "As the widths of the subintervals shrink to zero, a Riemann sum $\\sum_{i=1}^{n}g(t_i^{*})\\Delta t_{i}$ converges to the integral $\\int_{a}^{b}g(t)dt$.",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{C}\\kf\\,ds}=\\mk{lim}{\\lim_{n\\to\\infty}}\\mk{S}{\\sum_{i=1}^{n}\\kf(P_i^{*})\\Delta s_{i}}",
+      "uses": [],
+      "src": "(16.5)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kf\\,ds}=\\mk{lim}{\\lim_{n\\to\\infty}}\\mk{S}{\\sum_{i=1}^{n}\\kf(\\kvecr(t_i^{*}))\\Delta s_{i}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kf\\,ds}=\\mk{lim}{\\lim_{n\\to\\infty}}\\mk{S}{\\sum_{i=1}^{n}\\kf(\\kvecr(t_i^{*}))\\|\\kvecrprime(t_i^{*})\\|\\Delta t_{i}}",
+       "uses": [
+        0
+       ],
+       "cap": "The left side of (16.6) approaches its right side as $n\\to\\infty,$ so the two limits are equal."
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kf\\,ds}=\\mk{S}{\\int_{a}^{b}\\kf(\\kvecr(t))\\|\\kvecrprime(t)\\|dt}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "lim": "S"
+       }
+      }
+     ],
+     "num": "(16.7)",
+     "src": "16.2, Evaluating a Scalar Line Integral"
+    }
+   ]
+  },
+  {
+   "id": "arc-length-line-integral",
+   "what": "the arc length as a line integral",
+   "source": "Calculus, 16.2 Line Integrals, Scalar Line Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kf(x,y,z)=1"
+      },
+      {
+       "text": "The pieces $C_{1},\\ldots,C_{n}$ of lengths $\\Delta s_{1},\\ldots,\\Delta s_{n}$ make up the whole of $C$.",
+       "src": "16.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{C}\\kf(x,y,z)ds}=\\mk{lim}{\\lim_{n\\to\\infty}}\\mk{S}{\\sum_{i=1}^{n}\\kf(P_i^{*})\\Delta s_{i}}",
+      "uses": [],
+      "src": "(16.5)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kf(x,y,z)ds}=\\mk{lim}{\\lim_{n\\to\\infty}}\\mk{S}{\\sum_{i=1}^{n}\\Delta s_{i}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kf(x,y,z)ds}=\\mk{lim}{\\lim_{n\\to\\infty}}\\mk{S}{\\text{length}(C)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kf(x,y,z)ds}=\\mk{S}{\\text{length}(C)}",
+       "uses": [],
+       "cap": "The length of $C$ does not change with $n,$ so the limit is that length.",
+       "map": {
+        "lim": "S"
+       }
+      }
+     ],
+     "src": "16.2"
+    }
+   ]
+  },
+  {
+   "id": "vector-line-integral-in-t",
+   "what": "the vector line integral in terms of t",
+   "source": "Calculus, 16.2 Line Integrals, Vector Line Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecT=\\frac{\\kvecrprime(t)}{\\|\\kvecrprime(t)\\|}",
+       "src": "13.2"
+      },
+      {
+       "text": "$\\|\\kvecrprime(t)\\|\\ne 0$",
+       "src": "16.2"
+      },
+      {
+       "tex": "ds=\\|\\kvecrprime(t)\\|dt",
+       "src": "16.2"
+      }
+     ],
+     "then": {
+      "tex": "\\kvecF\\cdot\\kvecT\\,ds=\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{T}{\\kvecT}\\,\\mk{d}{ds}",
+      "uses": [],
+      "src": "16.2",
+      "why": "Along $\\kC,$ the field is evaluated at the point $\\kvecr(t).$"
+     },
+     "steps": [
+      {
+       "tex": "\\kvecF\\cdot\\kvecT\\,ds=\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{T}{\\frac{\\kvecrprime(t)}{\\|\\kvecrprime(t)\\|}}\\mk{d}{\\|\\kvecrprime(t)\\|dt}",
+       "uses": [
+        0,
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\kvecF\\cdot\\kvecT\\,ds=\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{T}{\\kvecrprime(t)}\\mk{d}{dt}",
+       "uses": []
+      }
+     ],
+     "src": "16.2"
+    }
+   ]
+  },
+  {
+   "id": "flux-across-a-curve",
+   "what": "the flux across a curve",
+   "source": "Calculus, 16.2 Line Integrals, Calculating Flux across a Curve, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecn(t)=\\langle y'(t),-x'(t)\\rangle",
+       "src": "16.2"
+      },
+      {
+       "tex": "\\|\\langle a,b\\rangle\\|=\\sqrt{a^{2}+b^{2}}",
+       "src": "12.1"
+      },
+      {
+       "tex": "\\kvecrprime(t)=\\langle x'(t),y'(t)\\rangle",
+       "src": "13.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{\\|\\kvecn(t)\\|}=\\mk{v}{\\|\\langle y'(t),-x'(t)\\rangle\\|}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n}{\\|\\kvecn(t)\\|}=\\mk{v}{\\sqrt{(y'(t))^{2}+(x'(t))^{2}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{n}{\\|\\kvecn(t)\\|}=\\mk{v}{\\|\\kvecrprime(t)\\|}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "16.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kvecN(t)=\\frac{\\kvecn(t)}{\\|\\kvecn(t)\\|}",
+       "src": "16.2"
+      },
+      {
+       "tex": "ds=\\|\\kvecrprime(t)\\|dt",
+       "src": "16.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot\\kvecN ds}=\\mk{i}{\\int_{C}}\\kvecF\\cdot\\mk{N}{\\frac{\\kvecn(t)}{\\|\\kvecn(t)\\|}}\\mk{d}{ds}",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot\\kvecN ds}=\\mk{i}{\\int_{a}^{b}}\\kvecF\\cdot\\mk{N}{\\frac{\\kvecn(t)}{\\|\\kvecn(t)\\|}}\\mk{d}{\\|\\kvecrprime(t)\\|dt}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{C}\\kvecF\\cdot\\kvecN ds}=\\mk{i}{\\int_{a}^{b}}\\mk{F}{\\kvecF(\\kvecr(t))}\\cdot\\mk{N}{\\kvecn(t)}\\mk{d}{dt}",
+       "uses": [
+        0
+       ],
+       "cap": "The magnitudes $\\|\\kvecn(t)\\|$ and $\\|\\kvecrprime(t)\\|$ are equal and cancel; along $\\kC$ the field is evaluated at $\\kvecr(t).$"
+      }
+     ],
+     "num": "(16.11)",
+     "src": "16.2, Calculating Flux across a Curve"
+    }
+   ]
+  }
  ]
 }

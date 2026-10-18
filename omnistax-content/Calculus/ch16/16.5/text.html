@@ -49,6 +49,7 @@ $$\frac{\partial}{\partial x}(x^{2}y)+\frac{\partial}{\partial y}(y-xy^{2})=2xy+
 </div>
 <h3>Proof</h3>
 <p>Since $\kvecF$ is <span data-concept="source-free-vector-field">source free</span>, there is a function $\kg(x,y)$ with $g_{y}=\kP$ and $-g_{x}=\kQ.$ Therefore, $\kvecF=\langle g_{y},-g_{x}\rangle$ and $\kdivF=g_{yx}-g_{xy}=0$ by <span data-concept="clairauts-theorem">Clairaut’s theorem</span>.</p>
+<figure class="dv" id="drv-divergence-of-source-free-field"></figure>
 <p>□</p>
 <p>The converse of <a href="#fs-id1167793397658">Divergence of a Source-Free Vector Field</a> is true on <span data-concept="simply-connected-region">simply connected</span> regions, but the proof is too technical to include here. Thus, we have the following theorem, which can test whether a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{2}$ is <span data-concept="source-free-vector-field">source free</span>.</p>
 <div class="note" id="fs-id1167794127411">
@@ -147,8 +148,7 @@ $$\begin{array}{rl}\kcurlF & =-Gm_{1}m_{2}[(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kve
 <p>Let $\kvecF=\langle \kP,\kQ,\kR\rangle$ be a <span data-concept="vector-field">vector field</span> in ${\mathbb{R}}^{3}$ such that the component functions all have continuous second-order partial derivatives. Then, $\text{div}\;\text{curl}\;(\kvecF)=\nabla \cdot (\nabla \;\times \;\kvecF)=0.$</p>
 </div>
 <h3>Proof</h3>
-<p>By the definitions of <span data-concept="divergence">divergence</span> and <span data-concept="curl">curl</span>, and by <span data-concept="clairauts-theorem">Clairaut’s theorem</span>,</p>
-$$\begin{array}{rl}\text{div curl}\;\kvecF & =\text{div}[(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck] \\ & =R_{yx}-Q_{xz}+P_{yz}-R_{yx}+Q_{zx}-P_{zy} \\ & =0.\end{array}$$
+<figure class="dv" id="drv-divergence-of-curl"></figure>
 <p>□</p>
 <div class="example" id="fs-id1167793568775">
 <h3>Example 16.55 · Showing That a Vector Field Is Not the Curl of Another</h3>
@@ -165,8 +165,8 @@ $$\begin{array}{rl}\text{div curl}\;\kvecF & =\text{div}[(R_{y}-Q_{z})\kveci+(P_
 <p>If $\kvecF=\langle \kP,\kQ,\kR\rangle$ is conservative, then $\kcurlF=0.$</p>
 </div>
 <h3>Proof</h3>
-<p>Since <span data-concept="conservative-vector-field">conservative vector fields</span> satisfy the <span data-concept="cross-partial-property">cross-partials property</span>, all the cross-partials of $\kvecF$ are equal. Therefore,</p>
-$$\begin{array}{rl}\kcurlF & =(R_{y}-Q_{z})\kveci+(P_{z}-R_{x})\kvecj+(Q_{x}-P_{y})\kveck \\ & =0.\end{array}$$
+<p>Since <span data-concept="conservative-vector-field">conservative vector fields</span> satisfy the <span data-concept="cross-partial-property">cross-partials property</span>, all the cross-partials of $\kvecF$ are equal.</p>
+<figure class="dv" id="drv-curl-of-conservative-field"></figure>
 <p>□</p>
 <p>The same theorem is true for <span data-concept="vector-field">vector fields</span> in a plane.</p>
 <p>Since a <span data-concept="conservative-vector-field">conservative vector field</span> is the <span data-concept="gradient">gradient</span> of a scalar function, the previous theorem says that $\text{curl}\;(\kgradf)=0$ for any scalar function $\kf.$ In terms of our <span data-concept="curl">curl</span> notation, $\nabla \;\times \;\nabla (f)=0.$ This equation makes sense because the <span data-concept="cross-product">cross product</span> of a vector with itself is always the zero vector. Sometimes equation $\nabla \;\times \;\nabla (f)=0$ is simplified as $\nabla \;\times \;\nabla =0.$</p>

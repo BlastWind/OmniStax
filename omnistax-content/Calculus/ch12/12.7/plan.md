@@ -54,3 +54,10 @@ None beyond the folds.
 
 - forms anchored to the two theorems' notes.
 - variables of 12.7 anchored at build.
+
+## Derivations
+
+- Theorem, Conversion between Cylindrical and Cartesian Coordinates · score 5 · not built: the polar conversion of 11.3 with z carried along, a restatement of a result the book works there.
+- Converting among Spherical, Cylindrical, and Rectangular Coordinates (the paragraph after the Theorem) · score 5 · built as drv-spherical-conversion: x and y through r = ρ sin φ and the cylindrical conversion, ρ² through the second triangle, and φ solved from z = ρ cos φ with ρ = √(r² + z²) substituted (the rectangular form of the Theorem added as the last line); the prose kept, the derivation after it.
+- Example 12.65(b), the half-cone φ = 5π/6 · score 1 · not built: the section's conversion substituted.
+- Example 12.65(d), ρ = sin θ sin φ · score 1 · not built: the section's conversion substituted.

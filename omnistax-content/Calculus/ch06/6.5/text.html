@@ -6,12 +6,7 @@
   <div class="sim-head"><span class="eyebrow">Figure 6.48 + 6.49</span><span>Raise <em>n</em>: the rod, shaded darker where it is denser, is cut into <em>n</em> segments, each weighed as if its density were $\krho(x_i^{*})$ throughout. Their masses add up to the area under the graph of the <span data-concept="density-function">density function</span> below.</span></div>
 </figure>
 <p>If the rod has constant density $\rho,$ given in terms of mass per unit length, then the mass of the rod is just the product of the density and the length of the rod: $(b-a)\rho.$ If the density of the rod is not constant, however, the problem becomes a little more challenging. When the density of the rod varies from point to point, we use a linear <strong><span data-concept="density-function">density function</span></strong>, $\krho(x),$ to denote the density of the rod at any point, $x.$ Let $\krho(x)$ be an <span data-concept="integrable-function">integrable</span> <span data-concept="density-function">linear density function</span>. Now, for $i=0,1,2\text{,\ldots},n$ let $P=\{x_{i}\}$ be a <span data-concept="regular-partition">regular partition</span> of the interval $[a,b],$ and for $i=1,2\text{,\ldots},n$ choose an arbitrary point $x_i^{*}\in [x_{i-1},x_{i}].$ Figure 6.49 shows a representative segment of the rod.</p>
-<p>The mass $\km_{i}$ of the segment of the rod from $x_{i-1}$ to $x_{i}$ is approximated by</p>
-$$\km_{i}\approx \krho(x_i^{*})(x_{i}-x_{i-1})=\krho(x_i^{*})\Delta x.$$
-<p>Adding the masses of all the segments gives us an approximation for the mass of the entire rod:</p>
-$$\km=\sum_{i=1}^{n} \km_{i}\approx \sum_{i=1}^{n} \krho(x_i^{*})\Delta x.$$
-<p>This is a <span data-concept="riemann-sum">Riemann sum</span>. Taking the <span data-concept="limit">limit</span> as $n\to \infty,$ we get an expression for the exact mass of the rod:</p>
-$$\km=\lim_{n\to \infty}\sum_{i=1}^{n}\krho(x_i^{*})\Delta x=\int_a^{b}\krho(x)dx.$$
+<figure class="dv" id="drv-mass-of-a-rod"></figure>
 <p>We state this result in the following theorem.</p>
 <div class="note" id="mass-1d-theorem">
 <div class="eyebrow">Theorem</div>
@@ -32,16 +27,8 @@ $$\km=\int_a^{b}\krho(x)dx=\int _{\pi/2}^{\pi}\sin x\;dx={-\cos x|}_{\pi/2}^{\pi
 <figure class="sim" id="sim-radial-density" data-figure="6.50" data-original="/media/ch06/CNX_Calc_Figure_06_05_003.jpg" data-original-caption="(a) A thin disk in the xy-plane. (b) A representative washer.">
   <div class="sim-head"><span class="eyebrow">Figure 6.50</span><span>Raise <em>n</em>: the disk, shaded darker where it is denser, is cut into <em>n</em> thin washers, each of area about $2\pi x_i^{*}\Delta x$ and density $\krho(x_i^{*}),$ and their masses add up to the mass of the disk.</span></div>
 </figure>
-<p>We now approximate the density and area of the washer to calculate an approximate mass, $\km_{i}.$ Note that the area of the washer is given by</p>
-$$\begin{aligned}A_{i} &=\pi{(x_{i})}^{2}-\pi{(x_{i-1})}^{2} \\ &=\pi[x_i^{2}-x_{i-1}^{2}] \\ &=\pi(x_{i}+x_{i-1})(x_{i}-x_{i-1}) \\ &=\pi(x_{i}+x_{i-1})\Delta x.\end{aligned}$$
-<p>You may recall that we had an expression similar to this when we were computing volumes by shells. As we did there, we use $x_i^{*}\approx (x_{i}+x_{i-1})/2$ to approximate the average radius of the washer. We obtain</p>
-$$A_{i}=\pi(x_{i}+x_{i-1})\Delta x\approx 2\pi x_i^{*}\Delta x.$$
-<p>Using $\krho(x_i^{*})$ to approximate the density of the washer, we approximate the mass of the washer by</p>
-$$\km_{i}\approx 2\pi x_i^{*}\krho(x_i^{*})\Delta x.$$
-<p>Adding up the masses of the washers, we see the mass $\km$ of the entire disk is approximated by</p>
-$$\km=\sum_{i=1}^{n} \km_{i}\approx \sum_{i=1}^{n} 2\pi x_i^{*}\krho(x_i^{*})\Delta x.$$
-<p>We again recognize this as a <span data-concept="riemann-sum">Riemann sum</span>, and take the <span data-concept="limit">limit</span> as $n\to \infty.$ This gives us</p>
-$$\km=\lim_{n\to \infty}\sum_{i=1}^{n}2\pi x_i^{*}\krho(x_i^{*})\Delta x=\int_0^{r}2\pi x\rho(x)dx.$$
+<p>We now approximate the density and area of the washer to calculate an approximate mass, $\km_{i}.$</p>
+<figure class="dv" id="drv-mass-of-a-disk"></figure>
 <p>We summarize these findings in the following theorem.</p>
 <div class="note" id="mass-circular-theorem">
 <div class="eyebrow">Theorem</div>
@@ -64,12 +51,8 @@ $$\begin{aligned}m &=\int_0^{r}2\pi x\rho(x)dx \\ &=\int_0^{4}2\pi x\sqrt{x}dx=2
 <p class="cite-target">We now consider <span data-concept="work">work</span>. In physics, <span data-concept="work">work</span> is related to force, which is often intuitively defined as a push or pull on an object. When a force moves an object, we say the force does <span data-concept="work">work</span> on the object. In other words, <span data-concept="work">work</span> can be thought of as the amount of energy it takes to move an object. According to physics, when we have a constant force, <span data-concept="work">work</span> can be expressed as the product of force and distance.</p>
 <p>In the English system, the unit of force is the pound and the unit of distance is the foot, so <span data-concept="work">work</span> is given in foot-pounds. In the metric system, kilograms and meters are used. One newton is the force needed to accelerate $1$ kilogram of mass at the rate of $1$ m/sec<sup>2</sup>. Thus, the most common unit of <span data-concept="work">work</span> is the newton-meter. This same unit is also called the <em>joule</em>. Both are defined as kilograms times meters squared over seconds squared $(\text{kg}\cdot {\text{m}}^{2}/{\text{s}}^{2}).$</p>
 <p>When we have a constant force, things are pretty easy. It is rare, however, for a force to be constant. The <span data-concept="work">work</span> done to compress (or elongate) a spring, for example, varies depending on how far the spring has already been compressed (or stretched). We look at springs in more detail later in this section.</p>
-<p>Suppose we have a variable force $\kF(x)$ that moves an object in a positive direction along the <em>x</em>-axis from point $a$ to point $b.$ To calculate the <span data-concept="work">work</span> done, we partition the interval $[a,b]$ and estimate the <span data-concept="work">work</span> done over each subinterval. So, for $i=0,1,2\text{,\ldots},n,$ let $P=\{x_{i}\}$ be a <span data-concept="regular-partition">regular partition</span> of the interval $[a,b],$ and for $i=1,2\text{,\ldots},n,$ choose an arbitrary point $x_i^{*}\in [x_{i-1},x_{i}].$ To calculate the <span data-concept="work">work</span> done to move an object from point $x_{i-1}$ to point $x_{i},$ we assume the force is roughly constant over the interval, and use $\kF(x_i^{*})$ to approximate the force. The <span data-concept="work">work</span> done over the interval $[x_{i-1},x_{i}],$ then, is given by</p>
-$$\kW_{i}\approx \kF(x_i^{*})(x_{i}-x_{i-1})=\kF(x_i^{*})\Delta x.$$
-<p>Therefore, the <span data-concept="work">work</span> done over the interval $[a,b]$ is approximately</p>
-$$\kW=\sum_{i=1}^{n} \kW_{i}\approx \sum_{i=1}^{n} \kF(x_i^{*})\Delta x.$$
-<p>Taking the <span data-concept="limit">limit</span> of this expression as $n\to \infty$ gives us the exact value for <span data-concept="work">work</span>:</p>
-$$\kW=\lim_{n\to \infty}\sum_{i=1}^{n} \kF(x_i^{*})\Delta x=\int_a^{b}\kF(x)dx.$$
+<p>Suppose we have a variable force $\kF(x)$ that moves an object in a positive direction along the <em>x</em>-axis from point $a$ to point $b.$ To calculate the <span data-concept="work">work</span> done, we partition the interval $[a,b]$ and estimate the <span data-concept="work">work</span> done over each subinterval. So, for $i=0,1,2\text{,\ldots},n,$ let $P=\{x_{i}\}$ be a <span data-concept="regular-partition">regular partition</span> of the interval $[a,b],$ and for $i=1,2\text{,\ldots},n,$ choose an arbitrary point $x_i^{*}\in [x_{i-1},x_{i}].$ To calculate the <span data-concept="work">work</span> done to move an object from point $x_{i-1}$ to point $x_{i},$ we assume the force is roughly constant over the interval, and use $\kF(x_i^{*})$ to approximate the force.</p>
+<figure class="dv" id="drv-work-done-by-a-force"></figure>
 <p>Thus, we can define <span data-concept="work">work</span> as follows.</p>
 <div class="note" id="work-definition">
 <div class="eyebrow">Definition</div>
@@ -162,12 +145,8 @@ $$\begin{aligned}W &=\lim_{n\to \infty}\sum_{i=1}^{n}62.4\pi x_i^{*}{(4-\frac{x_
 <figure class="sim" id="fig-vertical-plate" data-figure="6.57" data-original="/media/ch06/CNX_Calc_Figure_06_05_010.jpg" data-original-caption="A thin plate submerged vertically in water.">
   <div class="sim-head"><span class="eyebrow">Figure 6.57</span><span>A thin plate submerged vertically in water.</span></div>
 </figure>
-<p>Let’s now estimate the force on a representative strip. If the strip is thin enough, we can treat it as if it is at a constant depth, $\ks(x_i^{*}).$ We then have</p>
-$$\kFh_{i}=\rho As=\rho[\kw(x_i^{*})\Delta x]\ks(x_i^{*}).$$
-<p>Adding the forces, we get an estimate for the force on the plate:</p>
-$$\kFh\approx \sum_{i=1}^{n} \kFh_{i}=\sum_{i=1}^{n}\rho[\kw(x_i^{*})\Delta x]\ks(x_i^{*}).$$
-<p>This is a <span data-concept="riemann-sum">Riemann sum</span>, so taking the <span data-concept="limit">limit</span> gives us the exact force. We obtain</p>
-$$\kFh=\lim_{n\to \infty}\sum_{i=1}^{n}\rho[\kw(x_i^{*})\Delta x]\ks(x_i^{*})=\int_a^{b}\rho \kw(x)\ks(x)dx.\tag{6.13}$$
+<p>Let’s now estimate the force on a representative strip. If the strip is thin enough, we can treat it as if it is at a constant depth, $\ks(x_i^{*}).$</p>
+<figure class="dv" id="drv-hydrostatic-force-on-a-plate"></figure>
 <p>Evaluating this integral gives us the force on the plate. We summarize this in the following problem-solving strategy.</p>
 <div class="note" id="hydrostatic-strategy">
 <div class="eyebrow">Problem-Solving Strategy</div>

@@ -67,3 +67,7 @@ Labels: each strip figure names the two frame tags, $\kLo$ or $\kLrel$ on the br
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass: The chapter pass set every anchor listed above and gathered the errata in `exploration.md` and the chapter log; 28.6's `exercise_notes` already agreed on `exer-00001`.
+
+## Derivations
+
+- Length contraction, $L = L_0/\gamma$ · score 1 · built as drv-length-contraction: a printed block, replaced; it ends at $L_0/\gamma$ and the box keeps the form with the square root

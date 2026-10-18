@@ -887,5 +887,128 @@
    "kind": "correction",
    "html": "The book prints $n + {}^{1}\\text{H} \\to {}^{2}\\text{H} + \\gamma\\;(20.68\\;\\text{MeV})$, which repeats the next reaction with another energy. The reaction meant is $n + {}^{3}\\text{He} \\to {}^{4}\\text{He} + \\gamma$, which releases 20.58 MeV, the energy the text later gives it."
   }
+ ],
+ "derivations": [
+  {
+   "id": "proton-proton-cycle",
+   "what": "the overall effect of the proton-proton cycle",
+   "source": "College Physics 2e, 32.5 Fusion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "{}^{1}\\text{H}+{}^{1}\\text{H}\\to {}^{2}\\text{H}+e^{+}+v_{\\text{e}}\\;(0.42\\;\\text{MeV})",
+       "src": "32.5"
+      },
+      {
+       "tex": "{}^{1}\\text{H}+{}^{2}\\text{H}\\to {}^{3}\\text{He}+\\gamma\\;(5.49\\;\\text{MeV})",
+       "src": "32.5"
+      },
+      {
+       "text": "The two positrons find two electrons and annihilate to form four more $\\gamma$ rays: $2e^{+} + 2e^{-} \\to 4\\gamma$.",
+       "src": "32.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{{}^{3}\\text{He}+{}^{3}\\text{He}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{p}{{}^{1}\\text{H}+{}^{1}\\text{H}}",
+      "uses": [],
+      "src": "32.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{2\\,{}^{1}\\text{H}+2\\,{}^{2}\\text{H}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{p}{2\\,{}^{1}\\text{H}}+\\mk{g}{2\\gamma}",
+       "uses": [
+        1
+       ],
+       "cap": "The second reaction, run twice, makes the two ${}^{3}\\text{He}$ and gives off two $\\gamma$ rays."
+      },
+      {
+       "tex": "\\mk{a}{6\\,{}^{1}\\text{H}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{p}{2\\,{}^{1}\\text{H}}+\\mk{e}{2e^{+}+2v_{\\text{e}}}+\\mk{g}{2\\gamma}",
+       "uses": [
+        0
+       ],
+       "cap": "The first reaction, run twice, makes the two ${}^{2}\\text{H}$, so the cycle consumes six protons."
+      },
+      {
+       "tex": "\\mk{a}{4\\,{}^{1}\\text{H}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{e}{2e^{+}+2v_{\\text{e}}}+\\mk{g}{2\\gamma}",
+       "uses": [],
+       "cap": "Two of the six protons are given back.",
+       "map": {
+        "p": "a"
+       }
+      },
+      {
+       "tex": "\\mk{n}{2e^{-}}+\\mk{a}{4\\,{}^{1}\\text{H}}\\to \\mk{h}{{}^{4}\\text{He}}+\\mk{e}{2v_{\\text{e}}}+\\mk{g}{6\\gamma}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "e": [
+         "e",
+         "g",
+         "n"
+        ]
+       }
+      }
+     ],
+     "src": "32.5"
+    },
+    {
+     "assumes": [
+      {
+       "text": "Each of the first two reactions occurs twice, releasing $0.42\\;\\text{MeV}$ and $5.49\\;\\text{MeV}$ each time, and the third releases $12.86\\;\\text{MeV}$.",
+       "src": "32.5"
+      },
+      {
+       "text": "Each annihilation of a positron with an electron produces two $\\gamma$ rays of $0.511\\;\\text{MeV}$.",
+       "src": "32.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{E} = \\mk{r}{2(0.42\\;\\text{MeV}) + 2(5.49\\;\\text{MeV}) + 12.86\\;\\text{MeV}} + \\mk{x}{2(2)(0.511\\;\\text{MeV})}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "The energy of the cycle is the energy its reactions release, the two annihilations included."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{E} = \\mk{r}{26.7\\;\\text{MeV}}",
+       "uses": [],
+       "map": {
+        "x": "r"
+       }
+      }
+     ],
+     "src": "32.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{2e^{-}+4\\,{}^{1}\\text{H}\\to {}^{4}\\text{He}+2v_{\\text{e}}+6\\gamma}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n}{2e^{-}+4\\,{}^{1}\\text{H}\\to {}^{4}\\text{He}+2v_{\\text{e}}+6\\gamma}\\;\\mk{E}{(26.7\\;\\text{MeV})}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "32.5"
+    }
+   ]
+  }
  ]
 }

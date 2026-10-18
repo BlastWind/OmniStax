@@ -13,10 +13,8 @@
 </figure>
 <p>We want to divide $\kS$ into slices perpendicular to the $x\text{-axis}.$ As we see later in the chapter, there may be times when we want to slice the solid in some other direction—say, with slices perpendicular to the <em>y</em>-axis. The decision of which way to slice the solid is very important. If we make the wrong choice, the computations can get quite messy. Later in the chapter, we examine some of these situations in detail and look at how to decide which way to slice the solid. For the purposes of this section, however, we use slices perpendicular to the $x\text{-axis}.$</p>
 <p>Because the cross-sectional area is not constant, we let $\kA(x)$ represent the area of the <span data-concept="cross-section">cross-section</span> at point $x.$ Now let $P=\{x_{0},x_{1}\ldots,X_{n}\}$ be a <span data-concept="regular-partition">regular partition</span> of $[a,b],$ and for $i=1,2\text{,\ldots}n,$ let $\kS_{i}$ represent the slice of $\kS$ stretching from $x_{i-1}\text{to}\;x_{i}.$ The following figure shows the sliced solid with $n=3.$</p>
-<p>Finally, for $i=1,2\text{,\ldots}n,$ let $x_i^{*}$ be an arbitrary point in $[x_{i-1},x_{i}].$ Then the volume of slice $\kS_{i}$ can be estimated by $\kV(\kS_{i})\approx \kA(x_i^{*})\Delta x.$ Adding these approximations together, we see the volume of the entire solid $\kS$ can be approximated by</p>
-$$\kV(\kS)\approx \sum_{i=1}^{n} \kA(x_i^{*})\Delta x.$$
-<p>By now, we can recognize this as a <span data-concept="riemann-sum">Riemann sum</span>, and our next step is to take the <span data-concept="limit">limit</span> as $n\to \infty.$ Then we have</p>
-$$\kV(\kS)=\lim_{n\to \infty}\sum_{i=1}^{n} \kA(x_i^{*})\Delta x=\int_a^{b} \kA(x)dx.$$
+<p>Finally, for $i=1,2\text{,\ldots}n,$ let $x_i^{*}$ be an arbitrary point in $[x_{i-1},x_{i}].$ Then the volume of slice $\kS_{i}$ can be estimated by $\kV(\kS_{i})\approx \kA(x_i^{*})\Delta x.$</p>
+<figure class="dv" id="drv-volume-by-slicing"></figure>
 <p>The technique we have just described is called the <strong><span data-concept="slicing-method">slicing method</span></strong>. To apply it, we use the following strategy.</p>
 <div class="note" id="slicing-strategy">
 <div class="eyebrow">Problem-Solving Strategy</div>
@@ -32,12 +30,8 @@ $$\kV(\kS)=\lim_{n\to \infty}\sum_{i=1}^{n} \kA(x_i^{*})\Delta x=\int_a^{b} \kA(
 <figure class="sim" id="sim-pyramid" data-figure="6.14" data-original="/media/ch06/CNX_Calc_Figure_06_02_004.jpg" data-original-caption="(a) A pyramid with a square base is oriented along the x-axis. (b) A two-dimensional view of the pyramid is seen from the side.">
   <div class="sim-head"><span class="eyebrow">Figure 6.14</span><span>Slide the square <span data-concept="cross-section">cross-section</span> from the tip of the pyramid to its base: by similar triangles its side is <em>s</em> = <em>ax</em>/<em>h</em>, and its area grows as the square of <em>x</em>. Change <em>a</em> and <em>h</em> to see the formula hold for any square pyramid.</span></div>
 </figure>
-<p>We first want to determine the shape of a <span data-concept="cross-section">cross-section</span> of the pyramid. We know the base is a square, so the <span data-concept="cross-section">cross-sections</span> are squares as well (step 1). Now we want to determine a formula for the area of one of these cross-sectional squares. Looking at Figure 6.14(b), and using a proportion, since these are similar triangles, we have</p>
-$$\frac{s}{a}=\frac{x}{h}\;\text{or}\;s=\frac{ax}{h}.$$
-<p>Therefore, the area of one of the cross-sectional squares is</p>
-$$\kA(x)=s^{2}={(\frac{ax}{h})}^{2}(\text{step}\;2).$$
-<p>Then we find the volume of the pyramid by integrating from $0\;\text{to}\;h$ (step $3)\text{:}$</p>
-$$\begin{aligned}\kV &=\int_0^{h} \kA(x)dx \\ &=\int_0^{h} {(\frac{ax}{h})}^{2}dx=\frac{a^{2}}{h^{2}}\int_0^{h} x^{2}dx \\ &={[\frac{a^{2}}{h^{2}}(\frac{1}{3}x^{3})]\;|}_0^{h}=\frac{1}{3}a^{2}h.\end{aligned}$$
+<p>We first want to determine the shape of a <span data-concept="cross-section">cross-section</span> of the pyramid. We know the base is a square, so the <span data-concept="cross-section">cross-sections</span> are squares as well (step 1). Now we want to determine a formula for the area of one of these cross-sectional squares.</p>
+<figure class="dv" id="drv-volume-of-a-pyramid"></figure>
 <p>This is the formula we were looking for.</p>
 </div>
 <div class="exercises" data-place="fs-id1167793579586"></div>

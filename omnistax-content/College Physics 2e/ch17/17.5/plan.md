@@ -210,3 +210,8 @@ the small square one; its name sits on a panel above it. The other three
 figures are unchanged.
 
 **Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-noise-cancelling`: φ = 180° and Δp₂ = 1.00 Pa (full cancellation) are special values. `sim-tube-resonance`: L carries a circle at the nearest resonant length for the fork's frequency. `sim-harmonic-ladder`: the closed/open choice bends each tube's standing wave into the other's, the wall and the nodes fading across; the chosen harmonic's emphasis fades across. `sim-tube-length`'s note no longer speaks of the drawing.
+
+## Derivations
+
+- The resonant frequencies of a tube closed at one end (printed block) · score 2 · built as drv-closed-tube-resonances: two nodes, the fundamental $v_\text{w}/4L$ and the first overtone $3f$; the generalization to $f_n = nv_\text{w}/4L$ is a pattern the prose states and stays as printed
+- Tubes open at both ends, $f_n = nv_\text{w}/2L$ ("we can see") · score 4 · not built: three moves to the fundamental, the rest read off Figure 17.30; under the bar

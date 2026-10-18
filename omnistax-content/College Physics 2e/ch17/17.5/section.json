@@ -1452,5 +1452,84 @@
     "sim-tube-length"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "closed-tube-resonances",
+   "what": "the resonant frequencies of a tube closed at one end",
+   "source": "College Physics 2e, 17.5 Sound Interference and Resonance: Standing Waves in Air Columns",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\klam = 4\\kLlen",
+       "src": "17.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvw} = \\mk{f}{\\kf}\\mk{l}{\\klam}",
+      "uses": [],
+      "src": "17.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{l}{\\klam}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{f}{\\kf} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{l}{4\\kLlen}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "17.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\klamprime = \\dfrac{4\\kLlen}{3}",
+       "src": "17.5, Figure 17.27"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfprime} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{l}{\\klamprime}}",
+      "uses": [],
+      "src": "17.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfprime} = \\dfrac{\\mk{v}{\\kvw}}{\\mk{l}{4\\kLlen/3}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime} = \\mk{l}{3}\\dfrac{\\mk{v}{\\kvw}}{\\mk{l2}{4\\kLlen}}",
+       "uses": [],
+       "map": {
+        "l": [
+         "l",
+         "l2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime} = \\mk{l}{3}\\mk{v}{\\kf}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "l2": "v"
+       }
+      }
+     ],
+     "src": "17.5"
+    }
+   ]
+  }
  ]
 }

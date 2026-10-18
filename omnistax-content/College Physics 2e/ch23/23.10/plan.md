@@ -247,3 +247,8 @@ and every bar by the percentage written above it.
 - All three `variables` rows and all four `equations` rows are anchored as
   asked, the three growth equations and the three variables to
   `23.10-current-turning-on` and the decay to `23.10-current-turning-off`.
+
+## Derivations
+
+- The current in an RL circuit switched on, $I = I_0(1 - e^{-t/\tau})$ · score 8 · not built: "it can be shown with calculus", which the book never states (rule 29.3)
+- The current in an RL circuit switched off, $I = I_0e^{-t/\tau}$ · score 7 · not built: the same reason

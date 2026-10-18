@@ -58,24 +58,11 @@ $$\kyprime-\frac{1}{3}\kyfn=\frac{4}{3}x^{2}-\frac{5}{3}.$$
 
 <section id="integrating-factors">
 <h2>Integrating Factors</h2>
-<p>We now develop a solution technique for any <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>. We start with the <span data-concept="standard-form-of-a-linear-equation">standard form</span> of a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>:</p>
-$$\kyprime+\kp(x)\kyfn=\kq(x).\tag{8.18}$$
-<p>The first term on the left-hand side of Equation 8.15 is the <span data-concept="derivative">derivative</span> of the unknown <span data-concept="function">function</span>, and the second term is the product of a known <span data-concept="function">function</span> with the unknown <span data-concept="function">function</span>. This is somewhat reminiscent of the <span data-concept="product-rule">product rule</span> from the <a href="/calculus/ch03/3.3/">Differentiation Rules</a> section. If we multiply Equation 8.16 by a yet-to-be-determined <span data-concept="function">function</span> $\kmu(x),$ then the equation becomes</p>
-$$\kmu(x)\kyprime+\kmu(x)\kp(x)\kyfn=\kmu(x)\kq(x).\tag{8.19}$$
-<p>The left-hand side Equation 8.18 can be matched perfectly to the <span data-concept="product-rule">product rule</span>:</p>
-$$\frac{d}{dx}[\kf(x)\kg(x)]=\kfprime(x)\kg(x)+\kf(x)\kgprime(x).$$
-<p>Matching term by term gives $\kyfn=\kf(x),\kg(x)=\kmu(x),$ and $\kgprime(x)=\kmu(x)\kp(x).$ Taking the <span data-concept="derivative">derivative</span> of $\kg(x)=\kmu(x)$ and setting it equal to the right-hand side of $\kgprime(x)=\kmu(x)\kp(x)$ leads to</p>
-$$\kmuprime(x)=\kmu(x)\kp(x).$$
-<p>This is a first-order, <span data-concept="separable-differential-equation">separable</span> <span data-concept="differential-equation">differential equation</span> for $\kmu(x).$ We know $\kp(x)$ because it appears in the <span data-concept="differential-equation">differential equation</span> we are solving. Separating variables and integrating yields</p>
-$$\begin{aligned}\frac{\kmuprime(x)}{\kmu(x)} &= \kp(x) \\ \int \frac{\kmuprime(x)}{\kmu(x)}dx &= \int \kp(x)\;dx \\ \ln|\kmu(x)| &= \int \kp(x)\;dx+C \\ e^{\ln|\kmu(x)|} &= e^{\int \kp(x)\;dx+C} \\ |\kmu(x)| &= C_{1}e^{\int \kp(x)\;dx} \\ \kmu(x) &= C_{2}e^{\int \kp(x)\;dx}.\end{aligned}$$
-<p>Here $C_{2}$ can be an arbitrary (positive or negative) constant. This leads to a general method for solving a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>. We first multiply both sides of Equation 8.16 by the <strong><span data-concept="integrating-factor">integrating factor</span></strong> $\kmu(x).$ This gives</p>
-$$\kmu(x)\kyprime+\kmu(x)\kp(x)\kyfn=\kmu(x)\kq(x).\tag{8.20}$$
-<p>The left-hand side of Equation 8.20 can be rewritten as $\frac{d}{dx}(\kmu(x)\kyfn).$</p>
-$$\frac{d}{dx}(\kmu(x)\kyfn)=\kmu(x)\kq(x).\tag{8.21}$$
-<p>Next integrate both sides of Equation 8.21 with respect to $x.$</p>
-$$\begin{aligned}\int \frac{d}{dx}(\kmu(x)\kyfn)\;dx &= \int \kmu(x)\kq(x)\;dx \\ \kmu(x)\kyfn &= \int \kmu(x)\kq(x)\;dx.\end{aligned}\tag{8.22}$$
-<p>Divide both sides of Equation 8.22 by $\kmu(x)\text{:}$</p>
-$$\kyfn=\frac{1}{\kmu(x)}[\int \kmu(x)\kq(x)\;dx+C].\tag{8.23}$$
+<p>We now develop a solution technique for any <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>.</p>
+<p>The first term on the left-hand side of Equation 8.15 is the <span data-concept="derivative">derivative</span> of the unknown <span data-concept="function">function</span>, and the second term is the product of a known <span data-concept="function">function</span> with the unknown <span data-concept="function">function</span>. This is somewhat reminiscent of the <span data-concept="product-rule">product rule</span> from the <a href="/calculus/ch03/3.3/">Differentiation Rules</a> section.</p>
+<figure class="dv" id="drv-integrating-factor"></figure>
+<p>This leads to a general method for solving a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>. We first multiply both sides of Equation 8.16 by the <strong><span data-concept="integrating-factor">integrating factor</span></strong> $\kmu(x).$</p>
+<figure class="dv" id="drv-first-order-linear-solution"></figure>
 <p>Since $\kmu(x)$ was previously calculated, we are now finished. An important note about the integrating constant $C\text{:}$ It may seem that we are inconsistent in the usage of the integrating constant. However, the integral involving $\kp(x)$ is necessary in order to find an <span data-concept="integrating-factor">integrating factor</span> for Equation 8.15. Only one <span data-concept="integrating-factor">integrating factor</span> is needed in order to solve the equation; therefore, it is safe to assign a value for $C$ for this integral. We chose $C=0.$ When calculating the integral inside the brackets in Equation 8.21, it is necessary to keep our options open for the value of the integrating constant, because our goal is to find a general <span data-concept="general-solution">family of solutions</span> to Equation 8.15. This <span data-concept="integrating-factor">integrating factor</span> guarantees just that.</p>
 <div class="note" id="linear-strategy">
 <div class="eyebrow">Problem-Solving Strategy</div>
@@ -153,40 +140,15 @@ $$h(t)=-0.2423e^{-11.7096t}-0.8369t+1.2423.$$
 <figure class="sim" id="fig-circuit" data-figure="8.25" data-original="/media/ch08/CNX_Calc_Figure_08_05_003.jpg" data-original-caption="A typical electric circuit, containing a voltage generator (V_S), capacitor (C), inductor (L), and resistor (R).">
   <div class="sim-head"><span class="eyebrow">Figure 8.25</span><span>A typical electric circuit, containing a voltage generator $(V_{S}),$ capacitor $(C),$ inductor $(L),$ and resistor $(R).$</span></div>
 </figure>
-<p>Applying <span data-concept="kirchhoffs-loop-rule">Kirchhoff’s Loop Rule</span> to this circuit, we let $E$ denote the electromotive force supplied by the voltage generator. Then</p>
-$$E_{L}+E_{R}+E_{C}=E.$$
-<p>Substituting the expressions for $E_{L},E_{R},$ and $E_{C}$ into this equation, we obtain</p>
-$$Li'+Ri+\frac{1}{C}q=E.\tag{8.24}$$
-<p>If there is no capacitor in the circuit, then the equation becomes</p>
-$$Li'+Ri=E.\tag{8.25}$$
-<p>This is a first-order <span data-concept="differential-equation">differential equation</span> in $i.$ The circuit is referred to as an $LR$ circuit.</p>
-<p>Next, suppose there is no inductor in the circuit, but there is a capacitor and a resistor, so $L=0,R\ne0,$ and $C\ne0.$ Then Equation 8.23<sup class="fn" data-note="rc-equation"></sup> can be rewritten as</p>
-$$Rq'+\frac{1}{C}q=E,\tag{8.26}$$
-<p>which is a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>. This is referred to as an <em>RC</em> circuit. In either case, we can set up and solve an <span data-concept="initial-value-problem">initial-value problem</span>.</p>
+<p>Applying <span data-concept="kirchhoffs-loop-rule">Kirchhoff’s Loop Rule</span> to this circuit, we let $E$ denote the electromotive force supplied by the voltage generator.</p>
+<figure class="dv" id="drv-circuit-equations"></figure>
+<p>Equation 8.25 is a first-order <span data-concept="differential-equation">differential equation</span> in $i;$ its circuit is referred to as an $LR$ circuit. Equation 8.26 is a <span data-concept="first-order-linear-differential-equation">first-order linear differential equation</span>; its circuit is referred to as an <em>RC</em> circuit. In either case, we can set up and solve an <span data-concept="initial-value-problem">initial-value problem</span>.</p>
 <div class="example" id="fs-id1170571553391">
 <h3>Example 8.19 · Finding Current in an <em>RL</em> Electric Circuit</h3>
 <p>A circuit has in series an electromotive force given by $E=50\;\sin20t\;\text{V},$ a resistor of $5\text{Ω},$ and an inductor of $0.4\;\text{H}.$ If the initial current is $0,$ find the current at time $t\gt 0.$</p>
 <h4>Solution</h4>
-<p>We have a resistor and an inductor in the circuit, so we use Equation 8.24. The voltage drop across the resistor is given by $E_{R}=Ri=5i.$ The voltage drop across the inductor is given by $E_{L}=Li'=0.4i'.$ The electromotive force becomes the right-hand side of Equation 8.24. Therefore Equation 8.24 becomes</p>
-$$0.4i'+5i=50\;\sin20t.$$
-<p>Dividing both sides by $0.4$ gives the equation</p>
-$$i'+12.5i=125\;\sin20t.$$
-<p>Since the initial current is 0, this result gives an <span data-concept="initial-value">initial condition</span> of $i(0)=0.$ We can solve this <span data-concept="initial-value-problem">initial-value problem</span> using the five-step strategy for solving first-order <span data-concept="differential-equation">differential equations</span>.</p>
-<p>Step 1. Rewrite the <span data-concept="differential-equation">differential equation</span> as $i'+12.5i=125\;\sin20t.$ This gives $\kp(t)=12.5$ and $q(t)=125\;\sin20t.$</p>
-<p>Step 2. The <span data-concept="integrating-factor">integrating factor</span> is $\kmu(t)=e^{\int 12.5dt}=e^{12.5t}.$</p>
-<p>Step 3. Multiply the <span data-concept="differential-equation">differential equation</span> by $\kmu(t)\text{:}$</p>
-$$\begin{aligned}e^{12.5t}i'+12.5e^{12.5t}i &= 125e^{12.5t}\sin20t \\ \frac{d}{dt}\;[ie^{12.5t}] &= 125e^{12.5t}\sin20t.\end{aligned}$$
-<p>Step 4. Integrate both sides:</p>
-$$\begin{aligned}\int \frac{d}{dt}\;[ie^{12.5t}]\;dt &= \int 125e^{12.5t}\sin20t\;dt \\ ie^{12.5t} &= (\frac{250\;\sin20t-400\;\cos20t}{89})\;e^{12.5t}+C \\ i(t) &= \frac{250\;\sin20t-400\;\cos20t}{89}+Ce^{-12.5t}.\end{aligned}$$
-<p>Step 5. Solve for $C$ using the <span data-concept="initial-value">initial condition</span> $\kv(0)=2\text{:}$<sup class="fn" data-note="rl-initial"></sup></p>
-$$\begin{aligned}i(t) &= \frac{250\;\sin20t-400\;\cos20t}{89}+Ce^{-12.5t} \\ i(0) &= \frac{250\;\sin20(0)-400\;\cos20(0)}{89}+Ce^{-12.5(0)} \\ 0 &= -\frac{400}{89}+C \\ C &= \frac{400}{89}.\end{aligned}$$
-<p>Therefore the solution to the <span data-concept="initial-value-problem">initial-value problem</span> is $i(t)=\frac{250\;\sin20t-400\;\cos20t+400e^{-12.5t}}{89}=\frac{250\;\sin20t-400\;\cos20t}{89}+\frac{400e^{-12.5t}}{89}.$</p>
-<p>The first term can be rewritten as a single cosine <span data-concept="function">function</span>. First, multiply and divide by $\sqrt{{250}^{2}+{400}^{2}}=50\sqrt{89}\text{:}$</p>
-$$\begin{aligned}\frac{250\;\sin20t-400\;\cos20t}{89} &=\frac{50\sqrt{89}}{89}(\frac{250\;\sin20t-400\;\cos20t}{50\sqrt{89}}) \\ &=-\frac{50\sqrt{89}}{89}(\frac{8\;\cos20t}{\sqrt{89}}-\frac{5\;\sin20t}{\sqrt{89}}).\end{aligned}$$
-<p>Next, define $\varphi$ to be an acute angle such that $\cos\varphi =\frac{8}{\sqrt{89}}.$ Then $\sin\varphi =\frac{5}{\sqrt{89}}$ and</p>
-$$\begin{aligned}-\frac{50\sqrt{89}}{89}(\frac{8\;\cos20t}{\sqrt{89}}-\frac{5\;\sin20t}{\sqrt{89}}) &=-\frac{50\sqrt{89}}{89}\;(\cos\varphi \;\cos20t-\sin\varphi \;\sin20t) \\ &=-\frac{50\sqrt{89}}{89}\cos(20t+\varphi ).\end{aligned}$$
-<p>Therefore the solution can be written as</p>
-$$i(t)=-\frac{50\sqrt{89}}{89}\;\cos(20t+\varphi )+\frac{400e^{-12.5t}}{89}.$$
+<p>We have a resistor and an inductor in the circuit, so we use Equation 8.24. The voltage drop across the resistor is given by $E_{R}=Ri=5i.$ The voltage drop across the inductor is given by $E_{L}=Li'=0.4i'.$ The electromotive force becomes the right-hand side of Equation 8.24. The initial current is $0,$ which gives the <span data-concept="initial-value">initial condition</span> $i(0)=0.$ We can solve this <span data-concept="initial-value-problem">initial-value problem</span> using the five-step strategy for solving first-order <span data-concept="differential-equation">differential equations</span>.</p>
+<figure class="dv" id="drv-rl-circuit-current"></figure>
 <p>The second term is called the <em>attenuation</em> term, because it disappears rapidly as <em>t</em> grows larger. The phase shift is given by $\varphi ,$ and the amplitude of the steady-state current is given by $\frac{50\sqrt{89}}{89}.$ The graph of this solution appears in Figure 8.26:</p>
 <figure class="sim" id="fig-rl-current" data-figure="8.26" data-original="/media/ch08/CNX_Calc_Figure_08_05_004.jpg" data-original-caption="">
   <div class="sim-head"><span class="eyebrow">Figure 8.26</span><span>The current $i(t)$ of Example 8.19: the attenuation term dies out within a fraction of a second, and the current settles into the steady-state oscillation of amplitude $\frac{50\sqrt{89}}{89}.$</span></div>

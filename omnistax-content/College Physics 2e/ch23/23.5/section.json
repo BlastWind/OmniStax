@@ -354,5 +354,103 @@
     "sim-generator"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "generator-emf",
+   "what": "the emf of a generator coil",
+   "source": "College Physics 2e, 23.5 Electric Generators",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The velocity of each side wire is at an angle $\\ktheta$ with $\\kBmag$, so its component perpendicular to $\\kBmag$ is $\\kv\\sin\\ktheta$.",
+       "src": "23.5, Figure 23.20"
+      },
+      {
+       "text": "The emfs induced on the two side wires are in the same direction; the top and bottom segments add none.",
+       "src": "23.5"
+      },
+      {
+       "text": "The coil rotates at a constant angular velocity $\\kw$.",
+       "src": "23.5"
+      },
+      {
+       "tex": "\\ktheta = \\kw\\kt",
+       "src": "23.5"
+      },
+      {
+       "tex": "\\kv = \\krad\\kw",
+       "src": "6.1"
+      },
+      {
+       "tex": "\\krad = \\kwloop/2",
+       "src": "23.5"
+      },
+      {
+       "tex": "\\karea = \\ell\\kwloop",
+       "src": "23.5"
+      },
+      {
+       "text": "A coil of $N$ loops has $N$ times the emf of one loop.",
+       "src": "23.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\kemf} = \\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\kv}",
+      "src": "23.3",
+      "why": "The motional emf, with $\\kv$ perpendicular to $\\kBmag$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\kv\\sin\\ktheta}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{two}{2}\\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\kv\\sin\\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{two}{2}\\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\kv\\sin\\kw\\kt}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{two}{2}\\mk{B}{\\kBmag}\\mk{l}{\\ell}\\mk{v}{\\dfrac{\\kwloop}{2}\\kw\\sin\\kw\\kt}",
+       "uses": [
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{l}{(\\ell \\kwloop)}\\mk{B}{\\kBmag}\\mk{v}{\\kw\\sin\\kw\\kt}",
+       "uses": [],
+       "map": {
+        "two": "v"
+       }
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{l}{\\karea}\\mk{B}{\\kBmag}\\mk{v}{\\kw\\sin\\kw\\kt}",
+       "uses": [
+        6
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemf} = \\mk{N}{N}\\mk{l}{\\karea}\\mk{B}{\\kBmag}\\mk{v}{\\kw\\sin\\kw\\kt}",
+       "uses": [
+        7
+       ]
+      }
+     ],
+     "src": "23.5"
+    }
+   ]
+  }
  ]
 }

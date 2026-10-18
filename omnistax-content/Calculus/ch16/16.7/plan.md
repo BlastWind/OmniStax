@@ -40,3 +40,10 @@ The informal proof's "flux form" (circulation form); Example 16.73's lower limit
 
 - forms: `eq-stokes-theorem` → `16.7-fs-id1167793603786`; `eq-surface-independence` → `16.7-fs-id1167793856659`; `eq-curl-as-circulation` → `16.7-curl-circulation`; `eq-faradays-law-differential` → `16.7-faraday-term`.
 - variables: G_vec, T_vec, r_vec of 16.7 added.
+
+## Derivations
+
+- Stokes’ Theorem, Proof (informal, by small squares) · score 2 · built as drv-stokes-small-squares
+- Stokes’ Theorem, Proof (S the graph of z = g(x,y)) · score 6 · built as drv-stokes-theorem-for-a-graph
+- Interpretation of Curl, ‘let D_r be a small disk of radius r’ · score 1 · built as drv-curl-as-circulation
+- Interpretation of Curl, Faraday’s law in differential form · score 4 · built as drv-faraday-flux-integrals

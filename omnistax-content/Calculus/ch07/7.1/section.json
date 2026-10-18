@@ -1266,5 +1266,92 @@
     "sim-parts-area"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "integration-by-parts",
+   "what": "the integration-by-parts formula",
+   "source": "Calculus, 7.1 Integration by Parts",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$f(x)$ and $g(x)$ have continuous derivatives.",
+       "src": "7.1, Integration by Parts"
+      },
+      {
+       "tex": "\\kh(x)=\\kf(x)\\kg(x)",
+       "src": "7.1"
+      },
+      {
+       "tex": "\\int \\khprime(x)\\,dx=\\kh(x)+C",
+       "src": "4.10"
+      },
+      {
+       "tex": "u=\\kf(x),\\quad v=\\kg(x)",
+       "src": "7.1"
+      },
+      {
+       "tex": "du=\\kfprime(x)\\,dx,\\quad dv=\\kgprime(x)\\,dx",
+       "src": "7.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{hp}{\\khprime(x)}=\\mk{a}{\\kfprime(x)\\kg(x)}+\\mk{b}{\\kgprime(x)\\kf(x)}",
+      "src": "3.3, Product Rule",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{il}{\\int} \\mk{hp}{\\khprime(x)}\\mk{dl}{dx}=\\mk{ir}{\\int} (\\mk{a}{\\kg(x)\\kfprime(x)}+\\mk{b}{\\kf(x)\\kgprime(x)})\\mk{dr}{dx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{hp}{\\kh(x)}=\\mk{a}{\\int \\kg(x)\\kfprime(x)dx}+\\mk{b}{\\int \\kf(x)\\kgprime(x)dx}",
+       "uses": [
+        2
+       ],
+       "cap": "The integral of a sum is the sum of the integrals; the constant of integration is carried by the integrals on the right.",
+       "map": {
+        "il": "hp",
+        "dl": "hp",
+        "ir": [
+         "a",
+         "b"
+        ],
+        "dr": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{hp}{\\kh(x)}=\\mk{fg}{\\kf(x)\\kg(x)}=\\mk{a}{\\int \\kg(x)\\kfprime(x)dx}+\\mk{b}{\\int \\kf(x)\\kgprime(x)dx}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{b}{\\int \\kf(x)\\kgprime(x)dx}=\\mk{fg}{\\kf(x)\\kg(x)}-\\mk{a}{\\int \\kg(x)\\kfprime(x)dx}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{b}{\\int u\\;dv}=\\mk{fg}{uv}-\\mk{a}{\\int v\\;du}",
+       "uses": [
+        3,
+        4
+       ]
+      }
+     ],
+     "num": "(7.1)",
+     "src": "7.1, Integration by Parts"
+    }
+   ]
+  }
  ]
 }

@@ -100,5 +100,60 @@
    "kind": "correction",
    "html": "The book refers to Special Relativity here. The interference of matter waves, such as electrons scattered from a crystal, is treated in The Wave Nature of Matter, Section 29.6."
   }
+ ],
+ "derivations": [
+  {
+   "id": "wavelength-in-a-medium",
+   "what": "the wavelength of light in a medium",
+   "source": "College Physics 2e, 27.1 The Wave Aspect of Light: Interference",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kv=\\kc/n",
+       "src": "25.3"
+      },
+      {
+       "text": "In the medium the light travels at $\\kv$ with the wavelength $\\klamn$, so $\\kv=\\kf\\klamn$.",
+       "src": "16.9"
+      },
+      {
+       "text": "The frequency $\\kf$ in the medium is the same as in vacuum.",
+       "src": "27.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\kc}=\\mk{f}{\\kf\\klam}",
+      "uses": [],
+      "src": "24.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\kc/n}=\\mk{f}{\\kf\\klam/n}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{\\kc/n=\\kv}=\\mk{f}{\\kf\\klam/n}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\kf\\klamn}=\\mk{f}{\\kf\\klam/n}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\klamn}=\\mk{f}{\\frac{\\klam}{n}}",
+       "uses": [],
+       "cap": "The same frequency $\\kf$ stands on both sides and divides out."
+      }
+     ],
+     "src": "27.1"
+    }
+   ]
+  }
  ]
 }

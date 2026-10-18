@@ -1180,5 +1180,859 @@
    "kind": "correction",
    "html": "The book prints “Recall from Section 2.4”; the formula for arc length is in Section 6.4, Arc Length of a Curve and Surface Area."
   }
+ ],
+ "derivations": [
+  {
+   "id": "derivatives-of-hyperbolic-functions",
+   "what": "the derivatives of the hyperbolic functions",
+   "source": "Calculus, 6.9 Calculus of the Hyperbolic Functions, Derivatives and Integrals of the Hyperbolic Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\sinh x=\\frac{e^{x}-e^{-x}}{2}",
+       "src": "1.5, Definition"
+      },
+      {
+       "text": "The derivative of a sum or difference is the sum or difference of the derivatives, and the derivative of a constant multiple is the constant multiple of the derivative.",
+       "src": "3.3, Sum, Difference, and Constant Multiple Rules"
+      },
+      {
+       "tex": "\\frac{d}{dx}e^{x}=e^{x}",
+       "src": "6.7, Properties of the Exponential Function"
+      },
+      {
+       "text": "The chain rule: $\\frac{d}{dx}\\kf(\\kg(x))=\\kfprime(\\kg(x))\\kgprime(x).$",
+       "src": "3.6, The Chain Rule"
+      },
+      {
+       "tex": "\\cosh x=\\frac{e^{x}+e^{-x}}{2}",
+       "src": "1.5, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\frac{d}{dx}(\\sinh x)}=\\mk{R}{\\frac{d}{dx}(\\frac{e^{x}-e^{-x}}{2})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\sinh x)}=\\mk{h}{\\frac{1}{2}}[\\mk{a}{\\frac{d}{dx}(e^{x})}-\\mk{b}{\\frac{d}{dx}(e^{-x})}]",
+       "uses": [
+        1
+       ],
+       "map": {
+        "R": [
+         "h",
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\sinh x)}=\\mk{h}{\\frac{1}{2}}[\\mk{a}{e^{x}}-\\mk{b}{\\frac{d}{dx}(e^{-x})}]",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\sinh x)}=\\mk{h}{\\frac{1}{2}}[\\mk{a}{e^{x}}+\\mk{b}{e^{-x}}]",
+       "uses": [
+        3
+       ],
+       "cap": "By the chain rule, $\\frac{d}{dx}(e^{-x})=-e^{-x}.$"
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\sinh x)}=\\mk{r}{\\cosh x}",
+       "uses": [
+        4
+       ],
+       "map": {
+        "h": "r",
+        "a": "r",
+        "b": "r"
+       }
+      }
+     ],
+     "src": "6.9"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\cosh x=\\frac{e^{x}+e^{-x}}{2}",
+       "src": "1.5, Definition"
+      },
+      {
+       "text": "The derivative of a sum or difference is the sum or difference of the derivatives, and the derivative of a constant multiple is the constant multiple of the derivative.",
+       "src": "3.3, Sum, Difference, and Constant Multiple Rules"
+      },
+      {
+       "tex": "\\frac{d}{dx}e^{x}=e^{x}",
+       "src": "6.7, Properties of the Exponential Function"
+      },
+      {
+       "text": "The chain rule: $\\frac{d}{dx}\\kf(\\kg(x))=\\kfprime(\\kg(x))\\kgprime(x).$",
+       "src": "3.6, The Chain Rule"
+      },
+      {
+       "tex": "\\sinh x=\\frac{e^{x}-e^{-x}}{2}",
+       "src": "1.5, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\frac{d}{dx}(\\cosh x)}=\\mk{R}{\\frac{d}{dx}(\\frac{e^{x}+e^{-x}}{2})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\cosh x)}=\\mk{h}{\\frac{1}{2}}[\\mk{a}{\\frac{d}{dx}(e^{x})}+\\mk{b}{\\frac{d}{dx}(e^{-x})}]",
+       "uses": [
+        1
+       ],
+       "map": {
+        "R": [
+         "h",
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\cosh x)}=\\mk{h}{\\frac{1}{2}}[\\mk{a}{e^{x}}+\\mk{b}{\\frac{d}{dx}(e^{-x})}]",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\cosh x)}=\\mk{h}{\\frac{1}{2}}[\\mk{a}{e^{x}}-\\mk{b}{e^{-x}}]",
+       "uses": [
+        3
+       ],
+       "cap": "By the chain rule, $\\frac{d}{dx}(e^{-x})=-e^{-x}.$"
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\cosh x)}=\\mk{r}{\\sinh x}",
+       "uses": [
+        4
+       ],
+       "map": {
+        "h": "r",
+        "a": "r",
+        "b": "r"
+       }
+      }
+     ],
+     "src": "6.9, Table 6.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\tanh x=\\frac{\\sinh x}{\\cosh x}",
+       "src": "1.5, Definition"
+      },
+      {
+       "text": "The quotient rule: $\\frac{d}{dx}(\\frac{\\kf(x)}{\\kg(x)})=\\frac{\\kfprime(x)\\kg(x)-\\kgprime(x)\\kf(x)}{{(\\kg(x))}^{2}}.$",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\cosh^{2}x-\\sinh^{2}x=1",
+       "src": "1.5, Identities Involving Hyperbolic Functions"
+      },
+      {
+       "tex": "\\operatorname{sech}x=\\frac{1}{\\cosh x}",
+       "src": "1.5, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\frac{d}{dx}(\\tanh x)}=\\mk{R}{\\frac{d}{dx}(\\frac{\\sinh x}{\\cosh x})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\tanh x)}=\\frac{\\mk{n}{\\cosh x\\cosh x-\\sinh x\\sinh x}}{\\mk{d}{\\cosh^{2}x}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "map": {
+        "R": [
+         "n",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\tanh x)}=\\frac{\\mk{n}{\\cosh^{2}x-\\sinh^{2}x}}{\\mk{d}{\\cosh^{2}x}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\tanh x)}=\\frac{\\mk{n}{1}}{\\mk{d}{\\cosh^{2}x}}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\tanh x)}=\\mk{r}{\\operatorname{sech}^{2}x}",
+       "uses": [
+        5
+       ],
+       "map": {
+        "n": "r",
+        "d": "r"
+       }
+      }
+     ],
+     "src": "6.9, Table 6.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\coth x=\\frac{\\cosh x}{\\sinh x}",
+       "src": "1.5, Definition"
+      },
+      {
+       "text": "The quotient rule: $\\frac{d}{dx}(\\frac{\\kf(x)}{\\kg(x)})=\\frac{\\kfprime(x)\\kg(x)-\\kgprime(x)\\kf(x)}{{(\\kg(x))}^{2}}.$",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\cosh^{2}x-\\sinh^{2}x=1",
+       "src": "1.5, Identities Involving Hyperbolic Functions"
+      },
+      {
+       "tex": "\\operatorname{csch}x=\\frac{1}{\\sinh x}",
+       "src": "1.5, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\frac{d}{dx}(\\coth x)}=\\mk{R}{\\frac{d}{dx}(\\frac{\\cosh x}{\\sinh x})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\coth x)}=\\frac{\\mk{n}{\\sinh x\\sinh x-\\cosh x\\cosh x}}{\\mk{d}{\\sinh^{2}x}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "map": {
+        "R": [
+         "n",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\coth x)}=\\frac{\\mk{n}{\\sinh^{2}x-\\cosh^{2}x}}{\\mk{d}{\\sinh^{2}x}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\coth x)}=\\frac{\\mk{n}{-1}}{\\mk{d}{\\sinh^{2}x}}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\coth x)}=\\mk{r}{-\\operatorname{csch}^{2}x}",
+       "uses": [
+        5
+       ],
+       "map": {
+        "n": "r",
+        "d": "r"
+       }
+      }
+     ],
+     "src": "6.9, Table 6.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\operatorname{sech}x=\\frac{1}{\\cosh x}",
+       "src": "1.5, Definition"
+      },
+      {
+       "text": "The quotient rule: $\\frac{d}{dx}(\\frac{\\kf(x)}{\\kg(x)})=\\frac{\\kfprime(x)\\kg(x)-\\kgprime(x)\\kf(x)}{{(\\kg(x))}^{2}}.$",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "text": "The derivative of a constant is zero.",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\tanh x=\\frac{\\sinh x}{\\cosh x}",
+       "src": "1.5, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{sech}x)}=\\mk{R}{\\frac{d}{dx}(\\frac{1}{\\cosh x})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{sech}x)}=\\frac{\\mk{n}{0\\cdot \\cosh x-1\\cdot \\sinh x}}{\\mk{d}{\\cosh^{2}x}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "map": {
+        "R": [
+         "n",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{sech}x)}=\\frac{\\mk{n}{-\\sinh x}}{\\mk{d}{\\cosh^{2}x}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{sech}x)}=-\\mk{a}{\\frac{1}{\\cosh x}}\\mk{b}{\\frac{\\sinh x}{\\cosh x}}",
+       "uses": [],
+       "map": {
+        "n": "b",
+        "d": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{sech}x)}=-\\mk{a}{\\operatorname{sech}x}\\mk{b}{\\tanh x}",
+       "uses": [
+        0,
+        4
+       ]
+      }
+     ],
+     "src": "6.9, Table 6.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\operatorname{csch}x=\\frac{1}{\\sinh x}",
+       "src": "1.5, Definition"
+      },
+      {
+       "text": "The quotient rule: $\\frac{d}{dx}(\\frac{\\kf(x)}{\\kg(x)})=\\frac{\\kfprime(x)\\kg(x)-\\kgprime(x)\\kf(x)}{{(\\kg(x))}^{2}}.$",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "text": "The derivative of a constant is zero.",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\coth x=\\frac{\\cosh x}{\\sinh x}",
+       "src": "1.5, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{csch}x)}=\\mk{R}{\\frac{d}{dx}(\\frac{1}{\\sinh x})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{csch}x)}=\\frac{\\mk{n}{0\\cdot \\sinh x-1\\cdot \\cosh x}}{\\mk{d}{\\sinh^{2}x}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "map": {
+        "R": [
+         "n",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{csch}x)}=\\frac{\\mk{n}{-\\cosh x}}{\\mk{d}{\\sinh^{2}x}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{csch}x)}=-\\mk{a}{\\frac{1}{\\sinh x}}\\mk{b}{\\frac{\\cosh x}{\\sinh x}}",
+       "uses": [],
+       "map": {
+        "n": "b",
+        "d": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\frac{d}{dx}(\\operatorname{csch}x)}=-\\mk{a}{\\operatorname{csch}x}\\mk{b}{\\coth x}",
+       "uses": [
+        0,
+        4
+       ]
+      }
+     ],
+     "src": "6.9, Table 6.2"
+    }
+   ]
+  },
+  {
+   "id": "derivatives-of-inverse-hyperbolic-functions",
+   "what": "the derivatives of the inverse hyperbolic functions",
+   "source": "Calculus, 6.9 Calculus of the Hyperbolic Functions, Calculus of Inverse Hyperbolic Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$y=f^{-1}(x)$ if and only if $f(y)=x.$",
+       "src": "1.4"
+      },
+      {
+       "text": "Differentiating $f(y)$ implicitly, with $y$ a function of $x,$ gives $f'(y)\\kdydx$ by the chain rule.",
+       "src": "3.8, Implicit Differentiation"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\sinh x)=\\cosh x",
+       "src": "6.9, Table 6.2"
+      },
+      {
+       "tex": "\\cosh^{2}x-\\sinh^{2}x=1",
+       "src": "1.5, Identities Involving Hyperbolic Functions"
+      },
+      {
+       "text": "$\\cosh y>0$ for every $y.$",
+       "src": "Figure 6.81"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{f}{{\\sinh}^{-1}x}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\sinh y}=\\mk{f}{x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\frac{d}{dx}\\sinh y}=\\mk{f}{\\frac{d}{dx}x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\cosh y\\kdydx}=\\mk{f}{1}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{\\cosh y}}",
+       "uses": [],
+       "map": {
+        "y": [
+         "d",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{\\sqrt{1+\\sinh^{2}y}}}",
+       "uses": [
+        3,
+        4
+       ],
+       "cap": "From $\\cosh^{2}y-\\sinh^{2}y=1,$ $\\cosh y=\\sqrt{1+\\sinh^{2}y},$ the positive root as $\\cosh y>0.$"
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{\\sqrt{1+x^{2}}}}",
+       "uses": []
+      }
+     ],
+     "src": "6.9"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$y=f^{-1}(x)$ if and only if $f(y)=x.$",
+       "src": "1.4"
+      },
+      {
+       "text": "Differentiating $f(y)$ implicitly, with $y$ a function of $x,$ gives $f'(y)\\kdydx$ by the chain rule.",
+       "src": "3.8, Implicit Differentiation"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\cosh x)=\\sinh x",
+       "src": "6.9, Table 6.2"
+      },
+      {
+       "tex": "\\cosh^{2}x-\\sinh^{2}x=1",
+       "src": "1.5, Identities Involving Hyperbolic Functions"
+      },
+      {
+       "text": "The range of ${\\cosh}^{-1}x$ is $[0,\\infty),$ so $y\\ge 0.$",
+       "src": "Table 6.3"
+      },
+      {
+       "text": "$\\sinh y\\ge 0$ for $y\\ge 0.$",
+       "src": "Figure 6.81"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{f}{{\\cosh}^{-1}x}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\cosh y}=\\mk{f}{x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\frac{d}{dx}\\cosh y}=\\mk{f}{\\frac{d}{dx}x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\sinh y\\kdydx}=\\mk{f}{1}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{\\sinh y}}",
+       "uses": [],
+       "map": {
+        "y": [
+         "d",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{\\sqrt{\\cosh^{2}y-1}}}",
+       "uses": [
+        3,
+        4,
+        5
+       ],
+       "cap": "From $\\cosh^{2}y-\\sinh^{2}y=1,$ $\\sinh y=\\sqrt{\\cosh^{2}y-1},$ the root that is not negative as $y\\ge 0.$"
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{\\sqrt{x^{2}-1}}}",
+       "uses": []
+      }
+     ],
+     "src": "6.9, Table 6.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$y=f^{-1}(x)$ if and only if $f(y)=x.$",
+       "src": "1.4"
+      },
+      {
+       "text": "Differentiating $f(y)$ implicitly, with $y$ a function of $x,$ gives $f'(y)\\kdydx$ by the chain rule.",
+       "src": "3.8, Implicit Differentiation"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\tanh x)=\\operatorname{sech}^{2}x",
+       "src": "6.9, Table 6.2"
+      },
+      {
+       "tex": "1-\\tanh^{2}x=\\operatorname{sech}^{2}x",
+       "src": "1.5, Identities Involving Hyperbolic Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{f}{{\\tanh}^{-1}x}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\tanh y}=\\mk{f}{x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\frac{d}{dx}\\tanh y}=\\mk{f}{\\frac{d}{dx}x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\operatorname{sech}^{2}y\\kdydx}=\\mk{f}{1}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{\\operatorname{sech}^{2}y}}",
+       "uses": [],
+       "map": {
+        "y": [
+         "d",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{1-\\tanh^{2}y}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{1-x^{2}}}",
+       "uses": []
+      }
+     ],
+     "src": "6.9, Table 6.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$y=f^{-1}(x)$ if and only if $f(y)=x.$",
+       "src": "1.4"
+      },
+      {
+       "text": "Differentiating $f(y)$ implicitly, with $y$ a function of $x,$ gives $f'(y)\\kdydx$ by the chain rule.",
+       "src": "3.8, Implicit Differentiation"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\coth x)=(-\\operatorname{csch}^{2}x)",
+       "src": "6.9, Table 6.2"
+      },
+      {
+       "tex": "\\coth^{2}x-1=\\operatorname{csch}^{2}x",
+       "src": "1.5, Identities Involving Hyperbolic Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{f}{{\\coth}^{-1}x}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\coth y}=\\mk{f}{x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\frac{d}{dx}\\coth y}=\\mk{f}{\\frac{d}{dx}x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{(-\\operatorname{csch}^{2}y)\\kdydx}=\\mk{f}{1}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{(-\\operatorname{csch}^{2}y)}}",
+       "uses": [],
+       "map": {
+        "y": [
+         "d",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{-(\\coth^{2}y-1)}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{-(x^{2}-1)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{1-x^{2}}}",
+       "uses": []
+      }
+     ],
+     "src": "6.9, Table 6.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$y=f^{-1}(x)$ if and only if $f(y)=x.$",
+       "src": "1.4"
+      },
+      {
+       "text": "Differentiating $f(y)$ implicitly, with $y$ a function of $x,$ gives $f'(y)\\kdydx$ by the chain rule.",
+       "src": "3.8, Implicit Differentiation"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\operatorname{sech}x)=(-\\operatorname{sech}x\\tanh x)",
+       "src": "6.9, Table 6.2"
+      },
+      {
+       "tex": "1-\\tanh^{2}x=\\operatorname{sech}^{2}x",
+       "src": "1.5, Identities Involving Hyperbolic Functions"
+      },
+      {
+       "text": "The range of ${\\operatorname{sech}}^{-1}x$ is $[0,\\infty),$ so $y\\ge 0.$",
+       "src": "Table 6.3"
+      },
+      {
+       "text": "$\\tanh y\\ge 0$ for $y\\ge 0.$",
+       "src": "Figure 6.81"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{f}{{\\operatorname{sech}}^{-1}x}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\operatorname{sech}y}=\\mk{f}{x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\frac{d}{dx}\\operatorname{sech}y}=\\mk{f}{\\frac{d}{dx}x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{(-\\operatorname{sech}y\\tanh y)\\kdydx}=\\mk{f}{1}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{-\\operatorname{sech}y\\tanh y}}",
+       "uses": [],
+       "map": {
+        "y": [
+         "d",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{-\\operatorname{sech}y\\sqrt{1-\\operatorname{sech}^{2}y}}}",
+       "uses": [
+        3,
+        4,
+        5
+       ],
+       "cap": "From $1-\\tanh^{2}y=\\operatorname{sech}^{2}y,$ $\\tanh y=\\sqrt{1-\\operatorname{sech}^{2}y},$ the root that is not negative as $y\\ge 0.$"
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{-x\\sqrt{1-x^{2}}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{-1}}{\\mk{c}{x\\sqrt{1-x^{2}}}}",
+       "uses": []
+      }
+     ],
+     "src": "6.9, Table 6.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$y=f^{-1}(x)$ if and only if $f(y)=x.$",
+       "src": "1.4"
+      },
+      {
+       "text": "Differentiating $f(y)$ implicitly, with $y$ a function of $x,$ gives $f'(y)\\kdydx$ by the chain rule.",
+       "src": "3.8, Implicit Differentiation"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\operatorname{csch}x)=(-\\operatorname{csch}x\\coth x)",
+       "src": "6.9, Table 6.2"
+      },
+      {
+       "tex": "\\coth^{2}x-1=\\operatorname{csch}^{2}x",
+       "src": "1.5, Identities Involving Hyperbolic Functions"
+      },
+      {
+       "text": "$\\coth y$ and $\\operatorname{csch}y$ have the sign of $y.$",
+       "src": "Figure 6.81"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{f}{{\\operatorname{csch}}^{-1}x}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\operatorname{csch}y}=\\mk{f}{x}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\frac{d}{dx}\\operatorname{csch}y}=\\mk{f}{\\frac{d}{dx}x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{(-\\operatorname{csch}y\\coth y)\\kdydx}=\\mk{f}{1}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{-\\operatorname{csch}y\\coth y}}",
+       "uses": [],
+       "map": {
+        "y": [
+         "d",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{-|\\operatorname{csch}y|\\sqrt{1+\\operatorname{csch}^{2}y}}}",
+       "uses": [
+        3,
+        4
+       ],
+       "cap": "From $\\coth^{2}y-1=\\operatorname{csch}^{2}y,$ $|\\coth y|=\\sqrt{1+\\operatorname{csch}^{2}y};$ $\\coth y$ and $\\operatorname{csch}y$ share a sign, so their product is $|\\operatorname{csch}y|\\,|\\coth y|.$"
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{1}}{\\mk{c}{-|x|\\sqrt{1+x^{2}}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\kdydx}=\\frac{\\mk{f}{-1}}{\\mk{c}{|x|\\sqrt{1+x^{2}}}}",
+       "uses": []
+      }
+     ],
+     "src": "6.9, Table 6.4"
+    }
+   ]
+  }
  ]
 }

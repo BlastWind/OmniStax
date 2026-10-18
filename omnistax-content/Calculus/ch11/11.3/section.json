@@ -1370,5 +1370,138 @@
    "kind": "correction",
    "html": "The book links this to Example 11.14, the spiral of the chapter opener; the examples of polar equations transformed to rectangular coordinates are Example 11.13’s."
   }
+ ],
+ "derivations": [
+  {
+   "id": "polar-conversion",
+   "what": "the conversion formulas between rectangular and polar coordinates",
+   "source": "Calculus, 11.3 Polar Coordinates, Defining Polar Coordinates",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "In the right triangle of Figure 11.27 the hypotenuse is $r,$ the side adjacent to $\\ktheta$ is $x$ and the side opposite is $y.$",
+       "src": "11.3, Figure 11.27"
+      },
+      {
+       "text": "The cosine of an angle of a right triangle is the adjacent side over the hypotenuse.",
+       "src": "1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\cos \\ktheta}=\\mk{q}{\\frac{x}{r}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{q}{x}=\\mk{c}{r\\;\\cos \\ktheta}",
+       "uses": []
+      }
+     ],
+     "src": "11.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "In the right triangle of Figure 11.27 the hypotenuse is $r,$ the side adjacent to $\\ktheta$ is $x$ and the side opposite is $y.$",
+       "src": "11.3, Figure 11.27"
+      },
+      {
+       "text": "The sine of an angle of a right triangle is the opposite side over the hypotenuse.",
+       "src": "1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\sin \\ktheta}=\\mk{q}{\\frac{y}{r}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{q}{y}=\\mk{c}{r\\;\\sin \\ktheta}",
+       "uses": []
+      }
+     ],
+     "src": "11.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "{\\cos }^{2}\\ktheta +{\\sin }^{2}\\ktheta =1",
+       "src": "1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{x^{2}+y^{2}}=\\mk{r}{{(r\\;\\cos \\ktheta )}^{2}+{(r\\;\\sin \\ktheta )}^{2}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{x^{2}+y^{2}}=\\mk{r}{r^{2}({\\cos }^{2}\\ktheta +{\\sin }^{2}\\ktheta )}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{r^{2}}=\\mk{s}{x^{2}+y^{2}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "11.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\tan \\ktheta =\\frac{\\sin \\ktheta}{\\cos \\ktheta}",
+       "src": "1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\frac{y}{x}}=\\mk{r}{\\frac{r\\;\\sin \\ktheta}{r\\;\\cos \\ktheta}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\frac{y}{x}}=\\mk{r}{\\frac{\\sin \\ktheta}{\\cos \\ktheta}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\tan \\ktheta}=\\mk{s}{\\frac{y}{x}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "11.3"
+    }
+   ]
+  }
  ]
 }

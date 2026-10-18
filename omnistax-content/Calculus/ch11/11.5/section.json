@@ -361,11 +361,6 @@
    "verb": "introduces"
   },
   {
-   "span": "parabola-derivation",
-   "concept": "parabola",
-   "verb": "reinforces"
-  },
-  {
    "span": "fs-id1167794039458",
    "concept": "standard-form-of-a-parabola",
    "verb": "introduces"
@@ -479,6 +474,11 @@
    "span": "rotation",
    "concept": "double-angle-formulas",
    "verb": "uses"
+  },
+  {
+   "span": "drv-equation-of-a-parabola",
+   "concept": "parabola",
+   "verb": "reinforces"
   }
  ],
  "exercises": [
@@ -1610,6 +1610,648 @@
    "id": "c-e319",
    "kind": "correction",
    "html": "With $a=\\frac{525.91}{2}=262.955$ and $e=0.995,$ $ep=a(1-e^{2})=262.955(1-{0.995}^{2})\\approx 2.623,$ so $r=\\frac{2.623}{1+0.995\\cos \\theta}.$"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "equation-of-a-parabola",
+   "what": "the equation of a parabola",
+   "source": "Calculus, 11.5 Conic Sections, Parabolas",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A point of a parabola is as far from the focus as from the directrix.",
+       "src": "11.5, Definition"
+      },
+      {
+       "tex": "d(P,Q)=\\sqrt{{(x_{2}-x_{1})}^{2}+{(y_{2}-y_{1})}^{2}}",
+       "src": "11.5"
+      },
+      {
+       "text": "The focus is $F(0,p),$ the directrix is $y=-p,$ and $Q(x,-p)$ is the point of the directrix below $P(x,y).$",
+       "src": "11.5, Figure 11.45"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{d(F,P)}=\\mk{Q}{d(P,Q)}",
+      "uses": [
+       0
+      ],
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\sqrt{{(0-x)}^{2}+{(p-y)}^{2}}}=\\mk{Q}{\\sqrt{{(x-x)}^{2}+{(-p-y)}^{2}}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{F}{x^{2}+{(p-y)}^{2}}=\\mk{Q}{0^{2}+{(-p-y)}^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{x^{2}+p^{2}-2py+y^{2}}=\\mk{Q}{p^{2}+2py+y^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{x^{2}-2py}=\\mk{Q}{2py}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{x^{2}}=\\mk{Q}{4py}",
+       "uses": []
+      }
+     ],
+     "src": "11.5"
+    },
+    {
+     "assumes": [
+      {
+       "text": "A point of a parabola is as far from the focus as from the directrix.",
+       "src": "11.5, Definition"
+      },
+      {
+       "tex": "d(P,Q)=\\sqrt{{(x_{2}-x_{1})}^{2}+{(y_{2}-y_{1})}^{2}}",
+       "src": "11.5"
+      },
+      {
+       "text": "With the vertex at $(h,k),$ the focus is $F(h,k+p),$ the directrix is $y=k-p,$ and $Q(x,k-p)$ is the point of the directrix below $P(x,y).$",
+       "src": "11.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{d(F,P)}=\\mk{Q}{d(P,Q)}",
+      "uses": [
+       0
+      ],
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\sqrt{{(x-h)}^{2}+{(y-k-p)}^{2}}}=\\mk{Q}{\\sqrt{{(x-x)}^{2}+{(y-k+p)}^{2}}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{F}{{(x-h)}^{2}+{(y-k-p)}^{2}}=\\mk{Q}{{(y-k+p)}^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{{(x-h)}^{2}+{(y-k)}^{2}-2p(y-k)+p^{2}}=\\mk{Q}{{(y-k)}^{2}+2p(y-k)+p^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{{(x-h)}^{2}}=\\mk{Q}{4p(y-k)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{y}=\\mk{F}{\\frac{1}{4p}{(x-h)}^{2}}+\\mk{k}{k}",
+       "uses": [],
+       "map": {
+        "Q": [
+         "y",
+         "k"
+        ]
+       }
+      }
+     ],
+     "num": "(11.11)",
+     "src": "11.5, Equations for Parabolas"
+    }
+   ]
+  },
+  {
+   "id": "equation-of-an-ellipse",
+   "what": "the equation of an ellipse",
+   "source": "Calculus, 11.5 Conic Sections, Ellipses",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The foci are $F(c,0)$ and $F^{\\prime}(-c,0),$ and $P(a,0)$ is the end of the major axis.",
+       "src": "11.5, Figure 11.48"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{d(P,F)+d(P,F^{\\prime})}=\\mk{d}{(a-c)+(a+c)}",
+      "uses": [
+       0
+      ],
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{d(P,F)+d(P,F^{\\prime})}=\\mk{d}{2a}",
+       "uses": []
+      }
+     ],
+     "src": "11.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The sum of the distances from a point of an ellipse to the foci is the same for every point.",
+       "src": "11.5, Definition"
+      },
+      {
+       "tex": "d(P,Q)=\\sqrt{{(x_{2}-x_{1})}^{2}+{(y_{2}-y_{1})}^{2}}",
+       "src": "11.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{d(A,F)+d(A,F^{\\prime})}=\\mk{d}{2a}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\sqrt{{(x-c)}^{2}+y^{2}}}+\\mk{M}{\\sqrt{{(x+c)}^{2}+y^{2}}}=\\mk{d}{2a}",
+       "uses": [2],
+       "map": {
+        "s": [
+         "L",
+         "M"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\sqrt{{(x-c)}^{2}+y^{2}}}=\\mk{d}{2a}\\mk{M}{-\\sqrt{{(x+c)}^{2}+y^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{{(x-c)}^{2}+y^{2}}=\\mk{d}{4a^{2}}\\mk{m}{-4a\\sqrt{{(x+c)}^{2}+y^{2}}}\\mk{M}{+{(x+c)}^{2}+y^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{x^{2}-2cx+c^{2}+y^{2}}=\\mk{d}{4a^{2}}\\mk{m}{-4a\\sqrt{{(x+c)}^{2}+y^{2}}}\\mk{M}{+x^{2}+2cx+c^{2}+y^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{-2cx}=\\mk{d}{4a^{2}}\\mk{m}{-4a\\sqrt{{(x+c)}^{2}+y^{2}}}\\mk{M}{+2cx}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{4a\\sqrt{{(x+c)}^{2}+y^{2}}}=\\mk{d}{4a^{2}}\\mk{M}{+4cx}",
+       "uses": [],
+       "map": {
+        "L": "M"
+       }
+      },
+      {
+       "tex": "\\mk{m}{\\sqrt{{(x+c)}^{2}+y^{2}}}=\\mk{d}{a}\\mk{M}{+\\frac{cx}{a}}",
+       "uses": []
+      }
+     ],
+     "src": "11.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The right triangle at $Q$ in Figure 11.48 has hypotenuse $a$ and legs $b$ and $c,$ so $b^{2}+c^{2}=a^{2}.$",
+       "src": "11.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{\\sqrt{{(x+c)}^{2}+y^{2}}}=\\mk{d}{a}\\mk{M}{+\\frac{cx}{a}}",
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{{(x+c)}^{2}+y^{2}}=\\mk{d}{a^{2}}\\mk{M}{+2cx+\\frac{c^{2}x^{2}}{a^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{x^{2}+2cx+c^{2}+y^{2}}=\\mk{d}{a^{2}}\\mk{M}{+2cx+\\frac{c^{2}x^{2}}{a^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{x^{2}+c^{2}+y^{2}}=\\mk{d}{a^{2}}\\mk{M}{+\\frac{c^{2}x^{2}}{a^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{x^{2}}\\mk{M}{-\\frac{c^{2}x^{2}}{a^{2}}}\\mk{y}{+y^{2}}=\\mk{d}{a^{2}}\\mk{c}{-c^{2}}",
+       "uses": [],
+       "map": {
+        "m": [
+         "m",
+         "y",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{m}{\\frac{(a^{2}-c^{2})x^{2}}{a^{2}}}\\mk{y}{+y^{2}}=\\mk{d}{a^{2}}\\mk{c}{-c^{2}}",
+       "uses": [],
+       "map": {
+        "M": "m"
+       }
+      },
+      {
+       "tex": "\\mk{m}{\\frac{x^{2}}{a^{2}}}+\\mk{y}{\\frac{y^{2}}{a^{2}-c^{2}}}=\\mk{d}{1}",
+       "uses": [],
+       "map": {
+        "c": "d"
+       }
+      },
+      {
+       "tex": "\\mk{m}{\\frac{x^{2}}{a^{2}}}+\\mk{y}{\\frac{y^{2}}{b^{2}}}=\\mk{d}{1}",
+       "uses": [1]
+      }
+     ],
+     "src": "11.5"
+    }
+   ]
+  },
+  {
+   "id": "equation-of-a-hyperbola",
+   "what": "the equation of a hyperbola",
+   "source": "Calculus, 11.5 Conic Sections, Hyperbolas",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The foci are $F_{1}(-c,0)$ and $F_{2}(c,0),$ and the vertex of the right branch is $(a,0).$",
+       "src": "11.5, Figure 11.51"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{d(P,F_{1})-d(P,F_{2})}=\\mk{d}{(c+a)-(c-a)}",
+      "uses": [
+       0
+      ],
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{d(P,F_{1})-d(P,F_{2})}=\\mk{d}{2a}",
+       "uses": []
+      }
+     ],
+     "src": "11.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The difference of the distances from a point of a hyperbola to the foci is the same for every point; on the right branch the absolute value bars drop.",
+       "src": "11.5, Definition"
+      },
+      {
+       "tex": "d(P,Q)=\\sqrt{{(x_{2}-x_{1})}^{2}+{(y_{2}-y_{1})}^{2}}",
+       "src": "11.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{d(P,F_{1})-d(P,F_{2})}=\\mk{d}{2a}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{M}{\\sqrt{{(x+c)}^{2}+y^{2}}}\\mk{L}{-\\sqrt{{(x-c)}^{2}+y^{2}}}=\\mk{d}{2a}",
+       "uses": [2],
+       "map": {
+        "s": [
+         "M",
+         "L"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{M}{\\sqrt{{(x+c)}^{2}+y^{2}}}=\\mk{d}{2a}\\mk{L}{+\\sqrt{{(x-c)}^{2}+y^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{M}{{(x+c)}^{2}+y^{2}}=\\mk{d}{4a^{2}}\\mk{m}{+4a\\sqrt{{(x-c)}^{2}+y^{2}}}\\mk{L}{+{(x-c)}^{2}+y^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{M}{x^{2}+2cx+c^{2}+y^{2}}=\\mk{d}{4a^{2}}\\mk{m}{+4a\\sqrt{{(x-c)}^{2}+y^{2}}}\\mk{L}{+x^{2}-2cx+c^{2}+y^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{M}{2cx}=\\mk{d}{4a^{2}}\\mk{m}{+4a\\sqrt{{(x-c)}^{2}+y^{2}}}\\mk{L}{-2cx}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{M}{4cx}\\mk{d}{-4a^{2}}=\\mk{m}{4a\\sqrt{{(x-c)}^{2}+y^{2}}}",
+       "uses": [],
+       "map": {
+        "L": "M"
+       }
+      },
+      {
+       "tex": "\\mk{m}{\\sqrt{{(x-c)}^{2}+y^{2}}}=\\mk{M}{\\frac{cx}{a}}\\mk{d}{-a}",
+       "uses": []
+      }
+     ],
+     "src": "11.5",
+     "note": "The book adds the radicals the other way round, printing $\\sqrt{{(x-c)}^{2}+y^{2}}=2a+\\sqrt{{(x+c)}^{2}+y^{2}},$ which does not follow from the line above it, and carries the swap through to $\\sqrt{{(x+c)}^{2}+y^{2}}=-a-\\frac{cx}{a}.$ Kept in place, the radicals give the lines here."
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "Since $c\\gt a,$ a number $b$ can be defined with $b^{2}=c^{2}-a^{2}.$",
+       "src": "11.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{\\sqrt{{(x-c)}^{2}+y^{2}}}=\\mk{M}{\\frac{cx}{a}}\\mk{d}{-a}",
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{{(x-c)}^{2}+y^{2}}=\\mk{M}{\\frac{c^{2}x^{2}}{a^{2}}-2cx}\\mk{d}{+a^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{x^{2}-2cx+c^{2}+y^{2}}=\\mk{M}{\\frac{c^{2}x^{2}}{a^{2}}-2cx}\\mk{d}{+a^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{x^{2}+c^{2}+y^{2}}=\\mk{d}{a^{2}}\\mk{M}{+\\frac{c^{2}x^{2}}{a^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{x^{2}}\\mk{M}{-\\frac{c^{2}x^{2}}{a^{2}}}\\mk{y}{+y^{2}}=\\mk{d}{a^{2}}\\mk{c}{-c^{2}}",
+       "uses": [],
+       "map": {
+        "m": [
+         "m",
+         "y",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{m}{\\frac{(a^{2}-c^{2})x^{2}}{a^{2}}}\\mk{y}{+y^{2}}=\\mk{d}{a^{2}}\\mk{c}{-c^{2}}",
+       "uses": [],
+       "map": {
+        "M": "m"
+       }
+      },
+      {
+       "tex": "\\mk{m}{\\frac{x^{2}}{a^{2}}}+\\mk{y}{\\frac{y^{2}}{a^{2}-c^{2}}}=\\mk{d}{1}",
+       "uses": [],
+       "map": {
+        "c": "d"
+       }
+      },
+      {
+       "tex": "\\mk{m}{\\frac{x^{2}}{a^{2}}}\\mk{y}{-\\frac{y^{2}}{b^{2}}}=\\mk{d}{1}",
+       "uses": [1]
+      }
+     ],
+     "src": "11.5",
+     "note": "The book squares $\\sqrt{{(x+c)}^{2}+y^{2}}=-a-\\frac{cx}{a}$ here; the same equation $x^{2}+c^{2}+y^{2}=a^{2}+\\frac{c^{2}x^{2}}{a^{2}}$ follows from the line above."
+    }
+   ]
+  },
+  {
+   "id": "eccentricity-of-ellipse-and-hyperbola",
+   "what": "the eccentricity $e=\\frac{c}{a}$",
+   "source": "Calculus, 11.5 Conic Sections, Eccentricity and Directrix",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The eccentricity is the distance from a point of the conic to its focus divided by the distance from the point to the nearest directrix.",
+       "src": "11.5, Definition"
+      },
+      {
+       "text": "For a horizontal ellipse the right vertex is $(a,0),$ the right focus $(c,0)$ and the right directrix $x=\\frac{a^{2}}{c}.$",
+       "src": "11.5"
+      },
+      {
+       "text": "For an ellipse $c\\lt a.$",
+       "src": "11.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{e}=\\mk{q}{\\frac{a-c}{\\frac{a^{2}}{c}-a}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.5",
+      "why": "From the vertex, the focus is $a-c$ away and the directrix $\\frac{a^{2}}{c}-a.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{e}=\\mk{q}{\\frac{c(a-c)}{a^{2}-ac}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{e}=\\mk{q}{\\frac{c(a-c)}{a(a-c)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{e}=\\mk{q}{\\frac{c}{a}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{e}=\\mk{q}{\\frac{c}{a}}\\lt \\mk{o}{1}",
+       "uses": [2]
+      }
+     ],
+     "src": "11.5"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The eccentricity is the distance from a point of the conic to its focus divided by the distance from the point to the nearest directrix.",
+       "src": "11.5, Definition"
+      },
+      {
+       "text": "For a horizontal hyperbola the right vertex is $(a,0),$ the right focus $(c,0)$ and the right directrix $x=\\frac{a^{2}}{c}.$",
+       "src": "11.5"
+      },
+      {
+       "text": "For a hyperbola $c\\gt a.$",
+       "src": "11.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{e}=\\mk{q}{\\frac{c-a}{a-\\frac{a^{2}}{c}}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.5",
+      "why": "From the vertex, the focus is $c-a$ away and the directrix $a-\\frac{a^{2}}{c}.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{e}=\\mk{q}{\\frac{c(c-a)}{ac-a^{2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{e}=\\mk{q}{\\frac{c(c-a)}{a(c-a)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{e}=\\mk{q}{\\frac{c}{a}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{e}=\\mk{q}{\\frac{c}{a}}\\gt \\mk{o}{1}",
+       "uses": [2]
+      }
+     ],
+     "src": "11.5"
+    }
+   ]
+  },
+  {
+   "id": "polar-equation-of-a-conic",
+   "what": "the polar equation of a conic section",
+   "source": "Calculus, 11.5 Conic Sections, Polar Equations of Conic Sections",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The eccentricity is the distance from a point of the conic to its focus divided by the distance from the point to the nearest directrix.",
+       "src": "11.5, Definition"
+      },
+      {
+       "text": "One focus is at the pole, so the distance from $P(r,\\ktheta )$ to it is $r.$",
+       "src": "11.5"
+      },
+      {
+       "text": "The directrix is the line $x=\\pm p,$ the focal parameter $p$ away from the focus, with $P$ on the focus side of it.",
+       "src": "11.5"
+      },
+      {
+       "tex": "x=r\\;\\cos \\ktheta",
+       "src": "(11.7)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{e}=\\frac{\\mk{F}{d(P,F)}}{\\mk{D}{d(P,D)}}",
+      "uses": [
+       0
+      ],
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{e}=\\frac{\\mk{F}{r}}{\\mk{D}{p\\mp x}}",
+       "uses": [1, 2]
+      },
+      {
+       "tex": "\\mk{e}{e}=\\frac{\\mk{F}{r}}{\\mk{D}{p\\mp r\\;\\cos \\ktheta}}",
+       "uses": [3]
+      },
+      {
+       "tex": "\\mk{F}{r}=\\mk{e}{e}\\mk{D}{(p\\mp r\\;\\cos \\ktheta)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{r}=\\mk{e}{ep}\\mk{D}{\\mp er\\;\\cos \\ktheta}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{r}\\mk{D}{\\pm er\\;\\cos \\ktheta}=\\mk{e}{ep}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{r(1\\pm e\\;\\cos \\ktheta)}=\\mk{e}{ep}",
+       "uses": [],
+       "map": {
+        "D": "F"
+       }
+      },
+      {
+       "tex": "\\mk{F}{r}=\\mk{e}{\\frac{ep}{1\\pm e\\;\\cos \\ktheta}}",
+       "uses": []
+      }
+     ],
+     "src": "11.5, Polar Equation of Conic Sections"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The eccentricity is the distance from a point of the conic to its focus divided by the distance from the point to the nearest directrix.",
+       "src": "11.5, Definition"
+      },
+      {
+       "text": "One focus is at the pole, so the distance from $P(r,\\ktheta )$ to it is $r.$",
+       "src": "11.5"
+      },
+      {
+       "text": "The directrix is the line $y=\\pm p,$ the focal parameter $p$ away from the focus, with $P$ on the focus side of it.",
+       "src": "11.5"
+      },
+      {
+       "tex": "y=r\\;\\sin \\ktheta",
+       "src": "(11.7)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{e}=\\frac{\\mk{F}{d(P,F)}}{\\mk{D}{d(P,D)}}",
+      "uses": [
+       0
+      ],
+      "src": "11.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{e}=\\frac{\\mk{F}{r}}{\\mk{D}{p\\mp y}}",
+       "uses": [1, 2]
+      },
+      {
+       "tex": "\\mk{e}{e}=\\frac{\\mk{F}{r}}{\\mk{D}{p\\mp r\\;\\sin \\ktheta}}",
+       "uses": [3]
+      },
+      {
+       "tex": "\\mk{F}{r}=\\mk{e}{e}\\mk{D}{(p\\mp r\\;\\sin \\ktheta)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{r}=\\mk{e}{ep}\\mk{D}{\\mp er\\;\\sin \\ktheta}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{r}\\mk{D}{\\pm er\\;\\sin \\ktheta}=\\mk{e}{ep}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{r(1\\pm e\\;\\sin \\ktheta)}=\\mk{e}{ep}",
+       "uses": [],
+       "map": {
+        "D": "F"
+       }
+      },
+      {
+       "tex": "\\mk{F}{r}=\\mk{e}{\\frac{ep}{1\\pm e\\;\\sin \\ktheta}}",
+       "uses": []
+      }
+     ],
+     "src": "11.5, Polar Equation of Conic Sections"
+    }
+   ]
   }
  ]
 }

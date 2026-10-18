@@ -28,10 +28,7 @@ $$\lim_{h\to 0}\frac{\sin h}{h}=1\;\text{and}\;\lim_{h\to 0}\frac{\cos h-1}{h}=0
 <figure class="sim" id="fig-two-trig-limits" data-figure="3.26" data-original="/media/ch03/CNX_Calc_Figure_03_05_002.jpg" data-original-caption="These graphs show two important limits needed to establish the derivative formulas for the sine and cosine functions.">
   <div class="sim-head"><span class="eyebrow">Figure 3.26</span><span>These graphs show two important <span data-concept="limit">limits</span> needed to establish the <span data-concept="derivative">derivative</span> formulas for the sine and cosine <span data-concept="function">functions</span>.</span></div>
 </figure>
-<p>We also recall the following <span data-concept="trigonometric-identity">trigonometric identity</span> for the sine of the sum of two angles:</p>
-$$\sin (x+h)=\sin x\;\cos h+\cos x\;\sin h.$$
-<p>Now that we have gathered all the necessary equations and identities, we proceed with the proof.</p>
-$$\begin{array}{rllll}\frac{d}{dx}\;\sin x & =\lim_{h\to 0}\frac{\sin (x+h)-\sin x}{h} & & & \text{Apply the definition}\;\text{of the derivative.} \\ & =\lim_{h\to 0}\frac{\sin x\;\cos h+\cos x\;\sin h-\sin x}{h} & & & \text{Use trig identity for the sine of the sum of two angles.} \\ & =\lim_{h\to 0}(\frac{\sin x\;\cos h-\sin x}{h}+\frac{\cos x\;\sin h}{h}) & & & \text{Regroup.} \\ & =\lim_{h\to 0}(\sin x(\frac{\cos h-1}{h})+\cos x(\frac{\sin h}{h})) & & & \text{Factor out}\;\sin x\;\text{and}\;\cos x. \\ & =\sin x\cdot 0+\cos x\cdot 1 & & & \text{Apply trig limit formulas.} \\ & =\cos x & & & \text{Simplify.}\end{array}$$
+<figure class="dv" id="drv-derivatives-of-sine-and-cosine"></figure>
 <p>□</p>
 <p>Figure 3.27 shows the relationship between the graph of $\kf(x)=\sin x$ and its <span data-concept="derivative">derivative</span> $\kfprime(x)=\cos x.$ Notice that at the points where $\kf(x)=\sin x$ has a horizontal <span data-concept="tangent-line">tangent</span>, its <span data-concept="derivative">derivative</span> $\kfprime(x)=\cos x$ takes on the value zero. We also see that where $\kf(x)=\sin x$ is increasing, $\kfprime(x)=\cos x\gt 0$ and where $\kf(x)=\sin x$ is decreasing, $\kfprime(x)=\cos x\lt 0.$</p>
 <figure class="sim" id="sim-sine-derivative-trace" data-figure="3.27" data-original="/media/ch03/CNX_Calc_Figure_03_05_003.jpg" data-original-caption="Where f(x) has a maximum or a minimum, f′(x)=0 that is, f′(x)=0 where f(x) has a horizontal tangent. These points are noted with dots on the graphs.">
@@ -77,16 +74,7 @@ $$2\;\cos t-1=0\;\text{for}\;0\le t\le 2\pi .$$
 <h3>Example 3.42 · The Derivative of the Tangent Function</h3>
 <p>Find the <span data-concept="derivative">derivative</span> of <span data-fn="tan(x)">$\kf(x)=\tan x.$</span></p>
 <h4>Solution</h4>
-<p>Start by expressing $\tan x$ as the quotient of $\sin x$ and $\cos x:$</p>
-$$\kf(x)=\tan x=\frac{\sin x}{\cos x}.$$
-<p>Now apply the <span data-concept="quotient-rule">quotient rule</span> to obtain</p>
-$$\kfprime(x)=\frac{\cos x\;\cos x-(-\sin x)\sin x}{{(\cos x)}^{2}}.$$
-<p>Simplifying, we obtain</p>
-$$\kfprime(x)=\frac{{\cos }^{2}x+{\;\sin }^{2}x}{{\cos }^{2}x}.$$
-<p>Recognizing that ${\cos }^{2}x+{\sin }^{2}x=1,$ by the Pythagorean theorem, we now have</p>
-$$\kfprime(x)=\frac{1}{{\cos }^{2}x}.$$
-<p>Finally, use the identity $\sec x=\frac{1}{\cos x}$ to obtain</p>
-$$\kfprime(x)={\sec }^{2}x.$$
+<figure class="dv" id="drv-derivative-of-tangent"></figure>
 </div>
 <div class="exercises" data-place="fs-id1169736589199"></div>
 <p>The <span data-concept="derivative">derivatives</span> of the remaining <span data-concept="trigonometric-functions">trigonometric functions</span> may be obtained by using similar techniques. We provide these formulas in the following theorem.</p>
@@ -99,6 +87,7 @@ $$\;\frac{d}{dx}(\cot x)=-{\csc }^{2}x\tag{3.14}$$
 $$\hspace{1.4em}\frac{d}{dx}(\sec x)=\sec x\;\tan x\tag{3.15}$$
 $$\hspace{2.2em}\frac{d}{dx}(\csc x)=-\csc x\;\cot x.\tag{3.16}$$
 </div>
+<figure class="dv" id="drv-derivatives-of-cotangent-secant-cosecant"></figure>
 <div class="example" id="fs-id1169739111296">
 <h3>Example 3.43 · Finding the Equation of a Tangent Line</h3>
 <p>Find the equation of a line <span data-concept="tangent-line">tangent</span> to the graph of <span data-fn="cot(x)">$\kf(x)=\cot x$</span> at $x=\frac{\pi}{4}.$</p>

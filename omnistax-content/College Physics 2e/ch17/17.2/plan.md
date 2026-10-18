@@ -245,3 +245,7 @@ bottom right, where the tweeter's wavelength bracket no longer meets them.
 cap, so a compression is three times as dense as a rarefaction whatever the
 wavelength, and the dots are larger and darker; the compressions were
 invisible in sea water before.
+
+## Derivations
+
+- The speed of sound in air, $v_\text{w} = (331\ \text{m/s})\sqrt{T/273\ \text{K}}$ · score 5 · not built: a plausibility argument; the formula needs the bulk modulus of a gas, which the book never gives

@@ -1308,5 +1308,89 @@
    "kind": "correction",
    "html": "The independent variable is $t,$ so the solution of $\\kyprime=1,$ $\\kyfn(0)=0$ is $\\kyfn=t.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "velocity-under-gravity",
+   "what": "the velocity equation of a ball under gravity alone",
+   "source": "Calculus, 8.1 Basics of Differential Equations, Initial-Value Problems",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Newton's second law: the force acting on an object is equal to its mass times its acceleration, $F = ma$.",
+       "src": "8.1"
+      },
+      {
+       "tex": "a(t) = \\kvprime(t)",
+       "src": "3.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{F} = \\mk{m}{m}\\,\\mk{a}{a(t)}",
+      "uses": [
+       0
+      ],
+      "src": "8.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{F} = \\mk{m}{m}\\,\\mk{a}{\\kvprime(t)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "8.1"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The only force acting on the ball is gravity, so the force on it equals the force of gravity, $F = F_{g}$.",
+       "src": "8.1"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "The force of gravity acts in a downward direction: $F_{g} = -mg$.",
+       "src": "8.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{F} = \\mk{g}{F_{g}}",
+      "uses": [
+       0
+      ],
+      "src": "8.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{m}\\,\\mk{v}{\\kvprime(t)} = \\mk{g}{F_{g}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "F": [
+         "m",
+         "v"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{m}{m}\\,\\mk{v}{\\kvprime(t)} = -\\mk{m2}{m}\\mk{g}{g}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kvprime(t)} = -\\mk{g}{g}",
+       "uses": []
+      }
+     ],
+     "src": "8.1"
+    }
+   ]
+  }
  ]
 }

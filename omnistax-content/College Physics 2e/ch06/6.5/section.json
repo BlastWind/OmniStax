@@ -1016,5 +1016,82 @@
         "sim-tides"
       ]
     }
+  ],
+  "derivations": [
+    {
+      "id": "gravity-acceleration",
+      "what": "the acceleration due to gravity",
+      "source": "College Physics 2e, 6.5 Newton’s Universal Law of Gravitation",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "The weight $\\km\\kg$ of an object is the gravitational force between it and Earth.",
+              "src": "6.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{F}{\\kF} = \\mk{G}{G}\\frac{\\mk{M}{\\km\\kM}}{\\mk{r}{\\kr^2}}",
+            "src": "6.5",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{F}{\\km\\kg} = \\mk{G}{G}\\frac{\\mk{M}{\\km\\kM}}{\\mk{r}{\\kr^2}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{F}{\\kg} = \\mk{G}{G}\\frac{\\mk{M}{\\kM}}{\\mk{r}{\\kr^2}}",
+              "uses": []
+            }
+          ],
+          "src": "6.5"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "tex": "G = 6.67 \\times 10^{-11}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{kg}^2}",
+              "src": "6.5"
+            },
+            {
+              "tex": "\\kM = 5.98 \\times 10^{24}\\ \\text{kg},\\quad \\kr = 6.38 \\times 10^{6}\\ \\text{m}"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{F}{\\kg} = \\mk{G}{G}\\frac{\\mk{M}{\\kM}}{\\mk{r}{\\kr^2}}",
+            "src": "6.5",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{F}{\\kg} = \\mk{G}{\\left(6.67 \\times 10^{-11}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{kg}^2}\\right)} \\times \\frac{\\mk{M}{\\kM}}{\\mk{r}{\\kr^2}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{F}{\\kg} = \\mk{G}{\\left(6.67 \\times 10^{-11}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{kg}^2}\\right)} \\times \\frac{\\mk{M}{5.98 \\times 10^{24}\\ \\text{kg}}}{\\mk{r}{(6.38 \\times 10^{6}\\ \\text{m})^2}}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{F}{\\kg} = \\mk{G}{9.80\\ \\text{m/s}^2}",
+              "uses": [],
+              "map": {
+                "M": "G",
+                "r": "G"
+              }
+            }
+          ],
+          "src": "6.5"
+        }
+      ]
+    }
   ]
 }

@@ -49,3 +49,14 @@ None beyond `sim-projection`: the fruit vendor's dot product is a sum of four pr
 
 - forms `eq-dot-product` → the definition note; `eq-dot-magnitude` → the properties theorem; `eq-dot-cosine` → the theorem note; `eq-cosine-of-angle` → `12.3-fs-id1163723122506`; `eq-vector-projection`, `eq-scalar-projection` → the projection definition; `eq-work-dot-product` → the work definition.
 - variables of 12.3 anchored at build.
+
+## Derivations
+
+- Properties of the Dot Product, Proof of i (commutative), iii (associative) and iv (magnitude), one Proof heading · score 1 · built as drv-dot-product-properties, one node per property sharing the components and (12.3); the proof's body replaced, "The proof that c(u·v) = u·(cv) is similar" kept after it.
+- Evaluating a Dot Product, Proof · score 2 · built as drv-dot-product-and-angle: the law of cosines (Appendix C) and the expansion of ‖v − u‖² by the dot product's properties, joined into (12.4); the proof's body replaced.
+- Equation 12.5, the rearrangement of (12.4) · score 0 · not built: one move.
+- Orthogonal Vectors, Proof · score 1 · built as drv-orthogonal-vectors, one node per direction of the if and only if; the proof's body replaced.
+- Vector and scalar projection (the block in the Definition) · score 2 · built as drv-vector-projection: the length, then the signed multiple of the unit vector giving (12.6); the block replaced inside the Definition, (12.7) kept. The book's |cos| θ is corrected in the work and marked in the prose (footnote c-abs-cos).
+- Resolution into orthogonal components (after Example 12.27) · score 1 · not built: (12.6) substituted, then a numerical check.
+- Example 12.29, scalar projection of velocity · score 1 · not built: (12.7) and (12.4) substituted.
+- Work of the wagon · score 0 · not built: one substitution into (12.8).

@@ -170,11 +170,6 @@
    "verb": "uses"
   },
   {
-   "span": "polar-area-limit",
-   "concept": "riemann-sum",
-   "verb": "uses"
-  },
-  {
    "span": "fs-id1167794048381",
    "concept": "area-of-a-region-bounded-by-a-polar-curve",
    "verb": "introduces"
@@ -222,6 +217,11 @@
   {
    "span": "fs-id1167793301176",
    "concept": "double-angle-formulas",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-area-bounded-by-a-polar-curve",
+   "concept": "riemann-sum",
    "verb": "uses"
   }
  ],
@@ -1190,6 +1190,207 @@
    "id": "c-e243-slope",
    "kind": "correction",
    "html": "The slope is defined there: $\\frac{dy}{dx}=\\frac{2\\sin \\theta +2\\theta \\cos \\theta}{2\\cos \\theta -2\\theta \\sin \\theta}$ at $\\theta =\\frac{\\pi}{4}$ is $\\frac{4+\\pi}{4-\\pi}\\approx 8.32.$"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "area-bounded-by-a-polar-curve",
+   "what": "the area of a region bounded by a polar curve",
+   "source": "Calculus, 11.4 Area and Arc Length in Polar Coordinates, Areas of Regions Bounded by Polar Curves",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kA=\\pi r^{2}",
+       "src": "11.4"
+      },
+      {
+       "text": "A sector with central angle $\\ktheta$ radians is the fraction $\\frac{\\ktheta}{2\\pi}$ of its circle.",
+       "src": "11.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kA}=\\mk{f}{(\\frac{\\ktheta}{2\\pi})}\\;\\mk{c}{\\pi r^{2}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "11.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kA}=\\mk{f}{\\frac{1}{2}\\ktheta}\\mk{c}{r^{2}}",
+       "uses": []
+      }
+     ],
+     "src": "11.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The $i$th sector has central angle $\\Delta \\ktheta$ and radius $r_{i}=\\kf({\\ktheta}_{i}).$",
+       "src": "11.4, Figure 11.39"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kA}=\\mk{f}{\\frac{1}{2}\\ktheta}\\mk{c}{r^{2}}",
+      "src": "11.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kA_{i}}=\\mk{f}{\\frac{1}{2}(\\Delta \\ktheta )}\\mk{c}{{(\\kf({\\ktheta}_{i}))}^{2}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "11.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The sectors together approximate the region, and the approximation becomes exact as $n\\to \\infty .$",
+       "src": "11.4"
+      },
+      {
+       "text": "A Riemann sum $\\sum g({\\ktheta}_{i})\\Delta \\ktheta$ approaches $\\int_{\\alpha}^{\\beta }g(\\ktheta )d\\theta$ as $n\\to \\infty .$",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kA}\\approx \\mk{n}{\\kA_{n}}=\\mk{s}{\\sum_{i=1}^{n} \\kA_{i}}",
+      "uses": [
+       1
+      ],
+      "src": "11.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kA}\\approx \\mk{n}{\\kA_{n}}=\\mk{s}{\\sum_{i=1}^{n} \\frac{1}{2}(\\Delta \\ktheta ){(\\kf({\\ktheta}_{i}))}^{2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{A}{\\kA}=\\mk{n}{\\lim_{n\\to \\infty}\\kA_{n}}=\\mk{s}{\\frac{1}{2}\\int_{\\alpha}^{\\beta }{(\\kf(\\ktheta ))}^{2}d\\theta}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "num": "(11.9)",
+     "src": "11.4, Area of a Region Bounded by a Polar Curve"
+    }
+   ]
+  },
+  {
+   "id": "arc-length-of-a-polar-curve",
+   "what": "the arc length of a polar curve",
+   "source": "Calculus, 11.4 Area and Arc Length in Polar Coordinates, Arc Length in Polar Curves",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "x=r\\;\\cos \\ktheta ,\\;y=r\\;\\sin \\ktheta",
+       "src": "(11.7)"
+      },
+      {
+       "tex": "r=\\kf(\\ktheta )",
+       "src": "11.4"
+      },
+      {
+       "text": "The derivative of a product $uv$ is $u^{\\prime}v+uv^{\\prime}.$",
+       "src": "3.3, Product Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{x}=\\mk{a}{r\\;\\cos \\ktheta}\\;\\text{and}\\;\\mk{y}{y}=\\mk{b}{r\\;\\sin \\ktheta}",
+      "uses": [
+       0
+      ],
+      "src": "11.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{x}=\\mk{a}{\\kf(\\ktheta )\\;\\cos \\ktheta}\\;\\text{and}\\;\\mk{y}{y}=\\mk{b}{\\kf(\\ktheta )\\;\\sin \\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\frac{dx}{d\\theta}}=\\mk{a}{\\kfprime(\\ktheta )\\;\\cos \\ktheta -\\kf(\\ktheta )\\;\\sin \\ktheta}\\;\\text{and}\\;\\mk{y}{\\frac{dy}{d\\theta}}=\\mk{b}{\\kfprime(\\ktheta )\\;\\sin \\ktheta +\\kf(\\ktheta )\\;\\cos \\ktheta}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "11.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The parameter is $\\ktheta ,$ running from $\\alpha$ to $\\beta .$",
+       "src": "11.4"
+      },
+      {
+       "tex": "{\\cos }^{2}\\ktheta +{\\sin }^{2}\\ktheta =1",
+       "src": "1.3"
+      },
+      {
+       "tex": "r=\\kf(\\ktheta )",
+       "src": "11.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kL}=\\mk{i}{\\int_a^{b}\\sqrt{{(\\frac{dx}{dt})}^{2}+{(\\frac{dy}{dt})}^{2}}dt}",
+      "uses": [],
+      "src": "(11.5)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kL}=\\mk{i}{\\int_{\\alpha}^{\\beta }\\sqrt{{(\\frac{dx}{d\\theta})}^{2}+{(\\frac{dy}{d\\theta})}^{2}}d\\theta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kL}=\\mk{i}{\\int_{\\alpha}^{\\beta }\\sqrt{{(\\kfprime(\\ktheta )\\;\\cos \\ktheta -\\kf(\\ktheta )\\;\\sin \\ktheta)}^{2}+{(\\kfprime(\\ktheta )\\;\\sin \\ktheta +\\kf(\\ktheta )\\;\\cos \\ktheta)}^{2}}d\\theta}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kL}=\\mk{i}{\\int_{\\alpha}^{\\beta }\\sqrt{{(\\kfprime(\\ktheta ))}^{2}({\\cos }^{2}\\ktheta +{\\sin }^{2}\\ktheta )+{(\\kf(\\ktheta ))}^{2}({\\cos }^{2}\\ktheta +{\\sin }^{2}\\ktheta )}d\\theta}",
+       "uses": [],
+       "cap": "Squaring out, the cross terms $\\mp 2f^{\\prime}(\\theta )f(\\theta )\\sin \\theta \\cos \\theta$ cancel."
+      },
+      {
+       "tex": "\\mk{L}{\\kL}=\\mk{i}{\\int_{\\alpha}^{\\beta }\\sqrt{{(\\kfprime(\\ktheta ))}^{2}+{(\\kf(\\ktheta ))}^{2}}d\\theta}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kL}=\\mk{i}{\\int_{\\alpha}^{\\beta }\\sqrt{r^{2}+{(\\frac{dr}{d\\theta})}^{2}}d\\theta}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(11.10)",
+     "src": "11.4, Arc Length of a Curve Defined by a Polar Function"
+    }
+   ]
   }
  ]
 }

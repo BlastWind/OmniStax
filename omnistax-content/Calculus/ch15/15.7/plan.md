@@ -46,3 +46,10 @@ None beyond the figures: the planar map, the Jacobian's parallelogram and the so
 - forms: `eq-jacobian-two-variables` → `15.7-fs-id1167793642159`; `eq-jacobian-area` → `15.7-jacobians`; `eq-change-of-variables-double` → `15.7-fs-id1167793925892`; `eq-change-of-variables-da` → `15.7-cov-double`; `eq-jacobian-three-variables` → `15.7-fs-id1167793957157`; `eq-change-of-variables-triple` → `15.7-fs-id1167793285192`.
 - variables of 15.7 anchored at build.
 - Review 419 placed here.
+
+## Derivations
+
+- Jacobians, ‘We want to see how it transforms a small rectangular region S’ to ‘Using the definition, we have’ · score 4 · built as drv-area-of-a-transformed-rectangle, ending on ΔA ≈ |J(u,v)|ΔuΔv; the tangent vectors and their limit approximations stay printed as the facts it cites
+- Change of Variables for Double Integrals, the Riemann sum to the theorem · score 4 (with the block above) · built as drv-change-of-variables-for-double-integrals, split from the block above at the Definition, the two examples and the section heading; the book’s restated ΔA ≈ J(u,v)Δu,Δv stays with correction c-cov-abs
+- Example 15.72 · Obtaining Formulas in Triple Integrals for Cylindrical Coordinates (part a) · score 1 · built as drv-triple-integral-in-cylindrical-coordinates: an equation block deriving a general formula, which 15.5 only states
+- Example 15.72 · Obtaining Formulas in Triple Integrals for Spherical Coordinates (part b) · score 2 · built as drv-triple-integral-in-spherical-coordinates, split from part a at the book’s ‘b.’ paragraph

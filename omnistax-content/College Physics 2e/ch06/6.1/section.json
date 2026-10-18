@@ -650,5 +650,64 @@
     "sim-record"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "linear-angular-velocity",
+   "what": "the relation between linear and angular velocity",
+   "source": "College Physics 2e, 6.1 Rotation Angle and Angular Velocity",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{th}{\\kdtheta} = \\frac{\\mk{s}{\\kds}}{\\mk{r}{\\kr}}",
+      "src": "6.1",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kds} = \\mk{r}{\\kr}\\mk{th}{\\kdtheta}",
+       "uses": []
+      }
+     ],
+     "src": "6.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kw = \\frac{\\kdtheta}{\\kdt}",
+       "src": "6.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\frac{\\mk{s}{\\kds}}{\\mk{t}{\\kdt}}",
+      "src": "6.1",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kv} = \\frac{\\mk{s}{\\kr\\kdtheta}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kv} = \\frac{\\mk{s}{\\kr\\kdtheta}}{\\mk{t}{\\kdt}} = \\mk{w}{\\kr\\kw}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kv} = \\mk{w}{\\kr\\kw} \\quad\\text{or}\\quad \\mk{w2}{\\kw} = \\frac{\\mk{v2}{\\kv}}{\\mk{r}{\\kr}}",
+       "uses": []
+      }
+     ],
+     "src": "6.1"
+    }
+   ]
+  }
  ]
 }

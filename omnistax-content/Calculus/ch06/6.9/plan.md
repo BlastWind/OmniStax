@@ -41,3 +41,10 @@ Judged: the catenoid of review exercises 459–460 (its volume is the exercise);
 - forms of `derivatives-of-hyperbolic-functions` → `6.9-fs-id1167793363804` (Table 6.2); `integrals-of-hyperbolic-functions` → `6.9-hyperbolic`; `derivatives-of-inverse-hyperbolic-functions` → `6.9-fs-id1167794020892` (Table 6.4); `integrals-involving-inverse-hyperbolic-functions` → `6.9-inverse-hyperbolic`; `eq-catenary` → `6.9-applications`.
 
 Applied in the chapter pass (2026-10-13): every anchor above set with `ost set` (tmp/ch06/anchors6.py; a few spans moved to the nearest id the text has, such as the section header where the plan named a note); review exercises held here landed with `source_section` 6.9.
+
+## Derivations
+
+- Derivatives of the Hyperbolic Functions · d/dx sinh x · score 1 · built as the first node of drv-derivatives-of-hyperbolic-functions; cosh ("Similarly") as its second
+- tanh x, coth x, sech x, csch x (Table 6.2, no derivation) · score 6 each · built as the next four nodes of the same derivation, by the quotient rule and the identities of 1.5
+- Calculus of Inverse Hyperbolic Functions · d/dx sinh⁻¹x · score 2 · built as the first node of drv-derivatives-of-inverse-hyperbolic-functions
+- cosh⁻¹x, tanh⁻¹x, coth⁻¹x, sech⁻¹x, csch⁻¹x ("in a similar fashion", Table 6.4) · score 6 each · built as its next five nodes; the signs of the roots from the ranges of Table 6.3 and the graphs of Figure 6.81

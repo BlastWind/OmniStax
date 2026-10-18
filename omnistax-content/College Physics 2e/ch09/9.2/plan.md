@@ -289,3 +289,7 @@ forces about one point" and the paragraph says what the scene is and what
 decides the torque each force makes; the figure and the item are untouched.
 The book's own image still travels on the item's card as well, as 4.7's
 rescue image does, so the reader meets it in both places.
+
+## Derivations
+
+- Why the choice of pivot does not matter when the net force is zero (asserted rule) · score 7 · not built: the proof needs torque in components, $\tau = xF_y - yF_x$, which the book never states

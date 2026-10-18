@@ -1046,5 +1046,717 @@
   }
  ],
  "referents": [],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "divergence-test",
+   "what": "the divergence test",
+   "source": "Calculus, 9.3 The Divergence and Integral Tests, Divergence Test",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kaseq_{k}=\\kS_{k}-\\kS_{k-1}",
+       "src": "9.2"
+      },
+      {
+       "text": "The limit of a difference of convergent sequences is the difference of the limits.",
+       "src": "9.1, Algebraic Limit Laws"
+      },
+      {
+       "text": "$\\sum_{n=1}^{\\infty}\\kaseq_{n}$ converges to $\\kSsum,$ so $\\kS_{k}\\to \\kSsum$ and $\\kS_{k-1}\\to \\kSsum.$",
+       "src": "9.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\lim_{k\\to \\infty}\\kaseq_{k}}=\\mk{d}{\\lim_{k\\to \\infty}(\\kS_{k}-\\kS_{k-1})}",
+      "uses": [
+       0
+      ],
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\lim_{k\\to \\infty}\\kaseq_{k}}=\\mk{d}{\\lim_{k\\to \\infty}(\\kS_{k}-\\kS_{k-1})}=\\mk{l}{\\lim_{k\\to \\infty}\\kS_{k}-\\lim_{k\\to \\infty}\\kS_{k-1}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\lim_{k\\to \\infty}\\kaseq_{k}}=\\mk{d}{\\lim_{k\\to \\infty}(\\kS_{k}-\\kS_{k-1})}=\\mk{l}{\\lim_{k\\to \\infty}\\kS_{k}-\\lim_{k\\to \\infty}\\kS_{k-1}}=\\mk{s}{\\kSsum-\\kSsum}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\lim_{k\\to \\infty}\\kaseq_{k}}=\\mk{d}{\\lim_{k\\to \\infty}(\\kS_{k}-\\kS_{k-1})}=\\mk{l}{\\lim_{k\\to \\infty}\\kS_{k}-\\lim_{k\\to \\infty}\\kS_{k-1}}=\\mk{s}{\\kSsum-\\kSsum}=\\mk{z}{0}",
+       "uses": []
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\text{If}\\;\\sum_{n=1}^{\\infty}\\kaseq_{n}\\;\\text{converges},}\\;\\mk{a}{\\kaseq_{n}\\to 0\\;\\text{as}\\;n\\to \\infty}",
+      "uses": [
+       0
+      ],
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\text{If}\\;\\kaseq_{n}\\nrightarrow 0\\;\\text{as}\\;n\\to \\infty,}\\mk{c}{\\sum_{n=1}^{\\infty} \\kaseq_{n}\\;\\text{diverges}}",
+       "uses": [],
+       "cap": "The contrapositive: a series whose terms do not tend to $0$ cannot converge."
+      }
+     ],
+     "num": "(9.8)",
+     "src": "9.3"
+    }
+   ]
+  },
+  {
+   "id": "harmonic-series-integral",
+   "what": "the divergence of the harmonic series by an integral",
+   "source": "Calculus, 9.3 The Divergence and Integral Tests, Integral Test",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The rectangles of areas $1,\\frac{1}{2},\\ldots,\\frac{1}{k}$ cover the region under $\\kf(x)=\\frac{1}{x}$ from $x=1$ to $x=k+1.$",
+       "src": "Figure 9.12"
+      },
+      {
+       "tex": "\\int x^{-1}\\,dx=\\ln|x|+C",
+       "src": "5.6"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)\\,dx=\\kF(b)-\\kF(a)",
+       "src": "5.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n}}",
+      "src": "9.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n}}\\gt \\mk{i}{\\int_{1}^{k+1}\\frac{1}{x}dx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n}}\\gt \\mk{i}{\\int_{1}^{k+1}\\frac{1}{x}dx}=\\mk{f}{\\ln x\\;{|}_{1}^{k+1}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n}}\\gt \\mk{i}{\\int_{1}^{k+1}\\frac{1}{x}dx}=\\mk{f}{\\ln x\\;{|}_{1}^{k+1}}=\\mk{g}{\\ln(k+1)-\\ln(1)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n}}\\gt \\mk{i}{\\int_{1}^{k+1}\\frac{1}{x}dx}=\\mk{f}{\\ln x\\;{|}_{1}^{k+1}}=\\mk{g}{\\ln(k+1)-\\ln(1)}=\\mk{h}{\\ln(k+1)}",
+       "uses": [],
+       "cap": "$\\ln 1=0.$"
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "An unbounded sequence diverges, since convergent sequences are bounded.",
+       "src": "9.1, Convergent Sequences Are Bounded"
+      },
+      {
+       "text": "A series converges when its sequence of partial sums converges, and diverges otherwise.",
+       "src": "9.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n}}\\gt \\mk{i}{\\int_{1}^{k+1}\\frac{1}{x}dx}=\\mk{f}{\\ln x\\;{|}_{1}^{k+1}}=\\mk{g}{\\ln(k+1)-\\ln(1)}=\\mk{h}{\\ln(k+1)}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{h}{\\text{is unbounded}}",
+       "uses": [],
+       "map": {
+        "s": "S",
+        "i": "h",
+        "f": "h",
+        "g": "h"
+       },
+       "cap": "$\\lim_{k\\to \\infty}\\ln(k+1)=\\infty.$"
+      },
+      {
+       "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{h}{\\text{diverges}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\sum_{n=1}^{\\infty} \\frac{1}{n}}\\;\\mk{h}{\\text{diverges}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "9.3"
+    }
+   ]
+  },
+  {
+   "id": "reciprocal-squares-convergence",
+   "what": "the convergence of $\\sum 1/n^{2}$",
+   "source": "Calculus, 9.3 The Divergence and Integral Tests, Integral Test",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Past the first, the rectangles of areas $\\frac{1}{2^{2}},\\frac{1}{3^{2}},\\ldots,\\frac{1}{k^{2}}$ lie under the curve $\\kf(x)=\\frac{1}{x^{2}}$ from $x=1$ to $x=k.$",
+       "src": "Figure 9.13"
+      },
+      {
+       "tex": "\\int x^{-2}\\,dx=-\\frac{1}{x}+C",
+       "src": "4.10"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)\\,dx=\\kF(b)-\\kF(a)",
+       "src": "5.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n^{2}}}",
+      "src": "9.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n^{2}}}\\lt \\mk{i}{1+\\int_{1}^{k}\\frac{1}{x^{2}}dx}",
+       "uses": [
+        0
+       ],
+       "cap": "The first rectangle has area $1;$ the others fit under the curve."
+      },
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n^{2}}}\\lt \\mk{i}{1+\\int_{1}^{k}\\frac{1}{x^{2}}dx}=\\mk{f}{1-{\\frac{1}{x}|}_{1}^{k}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n^{2}}}\\lt \\mk{i}{1+\\int_{1}^{k}\\frac{1}{x^{2}}dx}=\\mk{f}{1-{\\frac{1}{x}|}_{1}^{k}}=\\mk{g}{1-\\frac{1}{k}+1}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n^{2}}}\\lt \\mk{i}{1+\\int_{1}^{k}\\frac{1}{x^{2}}dx}=\\mk{f}{1-{\\frac{1}{x}|}_{1}^{k}}=\\mk{g}{1-\\frac{1}{k}+1}=\\mk{h}{2-\\frac{1}{k}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\sum_{n=1}^{k} \\frac{1}{n^{2}}}\\lt \\mk{i}{1+\\int_{1}^{k}\\frac{1}{x^{2}}dx}=\\mk{f}{1-{\\frac{1}{x}|}_{1}^{k}}=\\mk{g}{1-\\frac{1}{k}+1}=\\mk{h}{2-\\frac{1}{k}}\\lt \\mk{t}{2}",
+       "uses": []
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{p}{\\kS_{k-1}}+\\mk{t}{\\frac{1}{k^{2}}}\\;\\text{for}\\;k\\ge2",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{k}}\\gt \\mk{p}{\\kS_{k-1}}\\;\\text{for}\\;k\\ge2",
+       "uses": [],
+       "cap": "$\\frac{1}{k^{2}}\\gt 0,$ so $\\{\\kS_{k}\\}$ is an increasing sequence."
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "A sequence that is increasing and bounded above converges.",
+       "src": "9.1, Monotone Convergence Theorem"
+      },
+      {
+       "text": "The sum of an infinite series is the limit of its sequence of partial sums.",
+       "src": "9.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{p}{\\text{is increasing and bounded}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{p}{\\text{converges}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\sum_{n=1}^{\\infty} \\frac{1}{n^{2}}}\\;\\mk{p}{\\text{converges}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "9.3"
+    }
+   ]
+  },
+  {
+   "id": "integral-test",
+   "what": "the integral test",
+   "source": "Calculus, 9.3 The Divergence and Integral Tests, Integral Test",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\sum_{n=1}^{\\infty}\\kaseq_{n}$ has positive terms, and $\\kf$ is a continuous, positive, decreasing function with $\\kf(n)=\\kaseq_{n}$ for all positive integers $n.$",
+       "src": "9.3"
+      },
+      {
+       "text": "Past the first, the rectangles of areas $\\kaseq_{2},\\ldots,\\kaseq_{k}$ are inscribed in the region under $y=\\kf(x)$ from $x=1$ to $x=k.$",
+       "src": "Figure 9.14(a)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\kaseq_{1}+\\kaseq_{2}+\\kaseq_{3}+\\cdots+\\kaseq_{k}}",
+      "src": "9.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\kaseq_{1}+\\kaseq_{2}+\\kaseq_{3}+\\cdots+\\kaseq_{k}}\\lt \\mk{i}{\\kaseq_{1}+\\int_{1}^{k}\\kf(x)dx}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\kaseq_{1}+\\kaseq_{2}+\\kaseq_{3}+\\cdots+\\kaseq_{k}}\\lt \\mk{i}{\\kaseq_{1}+\\int_{1}^{k}\\kf(x)dx}\\lt \\mk{j}{\\kaseq_{1}+\\int_{1}^{\\infty}\\kf(x)dx}",
+       "uses": [
+        0
+       ],
+       "cap": "$\\kf$ is positive, so the area under it beyond $x=k$ only adds to the integral."
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\int_{1}^{\\infty}\\kf(x)dx$ converges.",
+       "src": "9.3"
+      },
+      {
+       "text": "A sequence that is increasing and bounded above converges.",
+       "src": "9.1, Monotone Convergence Theorem"
+      },
+      {
+       "text": "A series converges when its sequence of partial sums converges, and diverges otherwise.",
+       "src": "9.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\kaseq_{1}+\\kaseq_{2}+\\kaseq_{3}+\\cdots+\\kaseq_{k}}\\lt \\mk{i}{\\kaseq_{1}+\\int_{1}^{k}\\kf(x)dx}\\lt \\mk{j}{\\kaseq_{1}+\\int_{1}^{\\infty}\\kf(x)dx}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{j}{\\text{is bounded}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "s": "S",
+        "i": "j"
+       }
+      },
+      {
+       "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{j}{\\text{converges}}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\{\\kS_{k}\\}$ is an increasing sequence, since every term $\\kaseq_{n}$ is positive."
+      },
+      {
+       "tex": "\\mk{S}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}\\;\\mk{j}{\\text{converges}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\sum_{n=1}^{\\infty}\\kaseq_{n}$ has positive terms, and $\\kf$ is a continuous, positive, decreasing function with $\\kf(n)=\\kaseq_{n}$ for all positive integers $n.$",
+       "src": "9.3"
+      },
+      {
+       "text": "The rectangles of areas $\\kaseq_{1},\\ldots,\\kaseq_{k}$ circumscribe the region under $y=\\kf(x)$ from $x=1$ to $x=k+1.$",
+       "src": "Figure 9.14(b)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\kaseq_{1}+\\kaseq_{2}+\\kaseq_{3}+\\cdots+\\kaseq_{k}}",
+      "src": "9.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\kaseq_{1}+\\kaseq_{2}+\\kaseq_{3}+\\cdots+\\kaseq_{k}}\\gt \\mk{i}{\\int_{1}^{k+1}\\kf(x)dx}",
+       "uses": [
+        0,
+        1
+       ]
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\lim_{k\\to \\infty}\\int_{1}^{k+1}\\kf(x)dx=\\infty",
+       "src": "9.3"
+      },
+      {
+       "text": "An unbounded sequence diverges, since convergent sequences are bounded.",
+       "src": "9.1, Convergent Sequences Are Bounded"
+      },
+      {
+       "text": "A series converges when its sequence of partial sums converges, and diverges otherwise.",
+       "src": "9.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\kaseq_{1}+\\kaseq_{2}+\\kaseq_{3}+\\cdots+\\kaseq_{k}}\\gt \\mk{i}{\\int_{1}^{k+1}\\kf(x)dx}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{i}{\\text{is unbounded}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "s": "S"
+       }
+      },
+      {
+       "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{i}{\\text{diverges}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}\\;\\mk{i}{\\text{diverges}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "9.3"
+    }
+   ]
+  },
+  {
+   "id": "p-series",
+   "what": "the convergence of the p-series",
+   "source": "Calculus, 9.3 The Divergence and Integral Tests, The p-Series",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "If $p\\lt 0,$ then $1/n^{p}\\to \\infty,$ and if $p=0,$ then $1/n^{p}\\to 1.$",
+       "src": "9.3"
+      },
+      {
+       "tex": "\\text{If}\\;\\kaseq_{n}\\nrightarrow 0\\;\\text{as}\\;n\\to \\infty,\\sum_{n=1}^{\\infty} \\kaseq_{n}\\;\\text{diverges}",
+       "src": "(9.8)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\frac{1}{n^{p}}}\\nrightarrow \\mk{c}{0}\\;\\text{if}\\;p\\le 0",
+      "uses": [
+       0
+      ],
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\sum_{n=1}^{\\infty}1/n^{p}}\\;\\mk{c}{\\text{diverges if}\\;p\\le0}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\int_{a}^{\\infty}\\kf(x)dx=\\lim_{t\\to \\infty}\\int_{a}^{t}\\kf(x)dx",
+       "src": "7.7"
+      },
+      {
+       "tex": "\\int x^{n}\\,dx=\\frac{x^{n+1}}{n+1}+C,\\;n\\ne-1",
+       "src": "4.10"
+      },
+      {
+       "tex": "p\\gt 0,\\;p\\ne1",
+       "src": "9.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{1}^{\\infty}\\frac{1}{x^{p}}dx}=\\mk{a}{\\lim_{b\\to \\infty}\\int_{1}^{b}\\frac{1}{x^{p}}dx}",
+      "uses": [
+       0
+      ],
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{1}^{\\infty}\\frac{1}{x^{p}}dx}=\\mk{a}{\\lim_{b\\to \\infty}\\int_{1}^{b}\\frac{1}{x^{p}}dx}=\\mk{b}{\\lim_{b\\to \\infty}\\frac{1}{1-p}x^{1-p}{|}_{1}^{b}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{1}^{\\infty}\\frac{1}{x^{p}}dx}=\\mk{a}{\\lim_{b\\to \\infty}\\int_{1}^{b}\\frac{1}{x^{p}}dx}=\\mk{b}{\\lim_{b\\to \\infty}\\frac{1}{1-p}x^{1-p}{|}_{1}^{b}}=\\mk{c}{\\lim_{b\\to \\infty}\\frac{1}{1-p}[b^{1-p}-1]}",
+       "uses": []
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "b^{1-p}\\to 0\\;\\text{if}\\;p\\gt 1\\;\\text{and}\\;b^{1-p}\\to \\infty\\;\\text{if}\\;p\\lt 1",
+       "src": "9.3"
+      },
+      {
+       "text": "$\\int_{1}^{\\infty}\\frac{1}{x}dx$ diverges, since $\\int_{1}^{k+1}\\frac{1}{x}dx=\\ln(k+1)\\to\\infty.$",
+       "src": "9.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{1}^{\\infty}\\frac{1}{x^{p}}dx}=\\mk{a}{\\lim_{b\\to \\infty}\\int_{1}^{b}\\frac{1}{x^{p}}dx}=\\mk{b}{\\lim_{b\\to \\infty}\\frac{1}{1-p}x^{1-p}{|}_{1}^{b}}=\\mk{c}{\\lim_{b\\to \\infty}\\frac{1}{1-p}[b^{1-p}-1]}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{1}^{\\infty}\\frac{1}{x^{p}}dx}=\\mk{c}{\\begin{cases}\\frac{1}{p-1}\\;\\text{if}\\;p\\gt 1 \\\\ \\infty\\;\\text{if}\\;p\\le1\\end{cases}}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "a": "c",
+        "b": "c"
+       },
+       "cap": "For $p\\gt 1$ the limit is $\\frac{1}{1-p}(0-1)=\\frac{1}{p-1};$ the case $p=1$ is the harmonic series' integral."
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "If $p\\gt 0,$ then $\\kf(x)=1/x^{p}$ is a positive, continuous, decreasing function.",
+       "src": "9.3"
+      },
+      {
+       "text": "For a continuous, decreasing $\\kf$ with $\\kf(n)=\\kaseq_{n},$ the series $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ and $\\int_{1}^{\\infty}\\kf(x)dx$ both converge or both diverge.",
+       "src": "9.3, Integral Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{1}^{\\infty}\\frac{1}{x^{p}}dx}=\\mk{c}{\\begin{cases}\\frac{1}{p-1}\\;\\text{if}\\;p\\gt 1 \\\\ \\infty\\;\\text{if}\\;p\\le1\\end{cases}}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\sum_{n=1}^{\\infty}1/n^{p}}\\;\\mk{c}{\\text{converges if}\\;p\\gt 1\\;\\text{and diverges if}\\;0\\lt p\\le 1}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "I": "S"
+       }
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\sum_{n=1}^{\\infty}1/n^{p}}\\;\\mk{c}{\\text{converges if}\\;p\\gt 1\\;\\text{and diverges if}\\;0\\lt p\\le 1}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\sum_{n=1}^{\\infty} \\frac{1}{n^{p}}}\\;\\mk{c}{\\begin{cases}\\text{converges if}\\;p\\gt 1 \\\\ \\text{diverges if}\\;p\\le1\\end{cases}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(9.9)",
+     "src": "9.3"
+    }
+   ]
+  },
+  {
+   "id": "remainder-estimate",
+   "what": "the remainder estimate for the integral test",
+   "source": "Calculus, 9.3 The Divergence and Integral Tests, Estimating the Value of a Series",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The rectangles of areas $\\kaseq_{N+1},\\kaseq_{N+2},\\ldots$ circumscribe the region under $y=\\kf(x)$ for $x\\ge N+1.$",
+       "src": "Figure 9.15(b)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{\\kR_{N}}=\\mk{s}{\\kaseq_{N+1}+\\kaseq_{N+2}+\\kaseq_{N+3}+\\cdots}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kR_{N}}=\\mk{s}{\\kaseq_{N+1}+\\kaseq_{N+2}+\\kaseq_{N+3}+\\cdots}\\gt \\mk{l}{\\int_{N+1}^{\\infty}\\kf(x)dx}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The rectangles of areas $\\kaseq_{N+1},\\kaseq_{N+2},\\ldots$ are inscribed in the region under $y=\\kf(x)$ for $x\\ge N.$",
+       "src": "Figure 9.15(a)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{\\kR_{N}}=\\mk{s}{\\kaseq_{N+1}+\\kaseq_{N+2}+\\kaseq_{N+3}+\\cdots}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kR_{N}}=\\mk{s}{\\kaseq_{N+1}+\\kaseq_{N+2}+\\kaseq_{N+3}+\\cdots}\\lt \\mk{u}{\\int_{N}^{\\infty}\\kf(x)dx}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "9.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{\\kR_{N}}=\\mk{s}{\\kaseq_{N+1}+\\kaseq_{N+2}+\\kaseq_{N+3}+\\cdots}\\gt \\mk{l}{\\int_{N+1}^{\\infty}\\kf(x)dx}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\int_{N+1}^{\\infty}\\kf(x)dx}\\lt \\mk{R}{\\kR_{N}}\\lt \\mk{u}{\\int_{N}^{\\infty}\\kf(x)dx}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(9.10)",
+     "src": "9.3, Remainder Estimate from the Integral Test"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}=\\mk{S}{\\kS_{N}}+\\mk{R}{\\kR_{N}}",
+      "src": "9.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{N}}+\\mk{l}{\\int_{N+1}^{\\infty}\\kf(x)dx}\\lt \\mk{a}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}\\lt \\mk{S2}{\\kS_{N}}+\\mk{u}{\\int_{N}^{\\infty}\\kf(x)dx}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "R": [
+         "l",
+         "u"
+        ],
+        "S": [
+         "S",
+         "S2"
+        ]
+       },
+       "cap": "Add $\\kS_{N}$ to each part of (9.10)."
+      }
+     ],
+     "src": "9.3, Remainder Estimate from the Integral Test"
+    }
+   ]
+  }
+ ]
 }

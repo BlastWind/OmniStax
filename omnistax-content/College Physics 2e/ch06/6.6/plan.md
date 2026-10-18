@@ -314,3 +314,7 @@ angles stay in ink, as the book's rules say.
   chapter's row is touched.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-ellipse` marks e = 0 on its slider, the circle the caption names, where the two foci meet at the center. `sim-third-law` marks M = 1.00 Earth mass, where the line of periods runs through the Moon's observed point, which is how the parent body is weighed.
+
+## Derivations
+
+- Derivation of Kepler's Third Law for Circular Orbits · score 4 · built as drv-kepler-third-law: the settled sandbox record in this book's macros, three nodes (force line, speed from the period joined, ratio of two satellites); replaces the seven displays; the paragraph on $m$ cancelling, the sim and the note on one parent body stay; the parent-mass rearrangement in the next subsection stays as printed

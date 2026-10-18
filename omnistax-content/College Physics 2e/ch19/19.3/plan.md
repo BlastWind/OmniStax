@@ -301,3 +301,7 @@ arrow, never by a hue.
 equation rows carry their anchors. Twenty-one weighted `exercise_concepts`
 rows were given `weights_by: "ai"`. The eight items held for this page from
 19.1 are here with `source_section: "19.1"` and both sections' notes say so.
+
+## Derivations
+
+- The potential of a point charge, $V = kQ/r$ · score 10 · not built: the book says it comes from "using calculus to find the work", and the book states no calculus, so the facts cannot be cited (rule 29.3); stays a statement

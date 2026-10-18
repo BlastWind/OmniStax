@@ -1882,5 +1882,917 @@
       "kind": "correction",
       "html": "The second change-of-base equation is used here with $a=3$ and $b=e,$ as the natural logarithms that follow show."
     }
+  ],
+  "derivations": [
+    {
+      "id": "change-of-base-formulas",
+      "what": "the change-of-base formulas",
+      "source": "Calculus, 1.5 Exponential and Logarithmic Functions, Change-of-Base Formulas",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "b^{\\log_{b}(x)}=x",
+              "src": "1.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{l}{\\log_{b}(a^{x})}=\\mk{r}{x\\log_{b}a}",
+            "src": "1.5, Properties of Logarithms"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{l}{b^{\\log_{b}(a^{x})}}=\\mk{r}{b^{x\\log_{b}a}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{l}{a^{x}}=\\mk{r}{b^{x\\log_{b}a}}",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "src": "1.5, Change-of-Base Formulas"
+        },
+        {
+          "assumes": [
+            {
+              "tex": "u=\\log_{b}a,\\quad v=\\log_{a}x,\\quad w=\\log_{b}x"
+            },
+            {
+              "tex": "b^{\\log_{b}(x)}=x",
+              "src": "1.5"
+            },
+            {
+              "text": "Exponential functions are one-to-one.",
+              "src": "1.5"
+            },
+            {
+              "tex": "a\\ne 1",
+              "src": "1.5, Change-of-Base Formulas"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{l}{b^{uv}}=\\mk{r}{(b^{u})^{v}}",
+            "src": "1.5, Laws of Exponents"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{l}{b^{uv}}=\\mk{r}{a^{v}}",
+              "uses": [
+                0,
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{l}{b^{uv}}=\\mk{r}{x}",
+              "uses": [
+                0,
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{l}{b^{uv}}=\\mk{r}{b^{w}}",
+              "uses": [
+                0,
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{l}{uv}=\\mk{r}{w}",
+              "uses": [
+                2
+              ],
+              "cap": "Equal powers of $b$ have equal exponents, because $b^{x}$ is one-to-one."
+            },
+            {
+              "tex": "\\mk{l}{(\\log_{b}a)(\\log_{a}x)}=\\mk{r}{\\log_{b}x}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{l}{\\log_{a}x}=\\mk{r}{\\dfrac{\\log_{b}x}{\\log_{b}a}}",
+              "uses": [
+                3
+              ],
+              "cap": "Dividing by $\\log_{b}a$ is allowed: $a\\ne 1$, so $\\log_{b}a\\ne 0$."
+            }
+          ],
+          "src": "1.5, Change-of-Base Formulas"
+        }
+      ]
+    },
+    {
+      "id": "compound-interest",
+      "what": "the amount in an account compounded n times a year",
+      "source": "Calculus, 1.5 Exponential and Logarithmic Functions, The Number e",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "Compounded annually, each year adds interest of $r$ times the amount held at its start."
+            }
+          ],
+          "then": {
+            "tex": "\\mk{A}{A(1)}=\\mk{a}{P+rP}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{A}{A(1)}=\\mk{a}{P(1+r)}",
+              "uses": []
+            }
+          ],
+          "src": "1.5"
+        },
+        {
+          "assumes": [
+            {
+              "text": "Compounded annually, each year adds interest of $r$ times the amount held at its start."
+            },
+            {
+              "step": 0
+            }
+          ],
+          "then": {
+            "tex": "\\mk{A}{A(2)}=\\mk{a}{A(1)}+\\mk{b}{rA(1)}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{A}{A(2)}=\\mk{a}{P(1+r)}+\\mk{b}{rP(1+r)}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{A}{A(2)}=\\mk{a}{P(1+r)^{2}}",
+              "uses": [],
+              "map": {
+                "b": "a"
+              }
+            },
+            {
+              "tex": "\\mk{A}{A(t)}=\\mk{a}{P(1+r)^{t}}",
+              "uses": [],
+              "cap": "Each year multiplies the amount by $1+r$, so after $t$ years it has been multiplied by $1+r$ a total of $t$ times."
+            }
+          ],
+          "src": "1.5"
+        },
+        {
+          "assumes": [
+            {
+              "text": "Compounded twice a year, each half year adds interest of $\\frac{r}{2}$ times the amount held at its start."
+            }
+          ],
+          "then": {
+            "tex": "\\mk{A}{A\\left(\\frac{1}{2}\\right)}=\\mk{a}{P+\\left(\\frac{r}{2}\\right)P}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{A}{A\\left(\\frac{1}{2}\\right)}=\\mk{a}{P\\left(1+\\left(\\frac{r}{2}\\right)\\right)}",
+              "uses": []
+            }
+          ],
+          "src": "1.5"
+        },
+        {
+          "assumes": [
+            {
+              "text": "Compounded twice a year, each half year adds interest of $\\frac{r}{2}$ times the amount held at its start."
+            },
+            {
+              "step": 2
+            }
+          ],
+          "then": {
+            "tex": "\\mk{A}{A(1)}=\\mk{a}{A\\left(\\frac{1}{2}\\right)}+\\mk{b}{\\left(\\frac{r}{2}\\right)A\\left(\\frac{1}{2}\\right)}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{A}{A(1)}=\\mk{a}{P\\left(1+\\frac{r}{2}\\right)}+\\mk{b}{\\frac{r}{2}\\left(P\\left(1+\\frac{r}{2}\\right)\\right)}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{A}{A(1)}=\\mk{a}{P\\left(1+\\frac{r}{2}\\right)^{2}}",
+              "uses": [],
+              "map": {
+                "b": "a"
+              }
+            },
+            {
+              "tex": "\\mk{A}{A(t)}=\\mk{a}{P\\left(1+\\frac{r}{2}\\right)^{2t}}",
+              "uses": [],
+              "cap": "Each year holds two half years, so after $t$ years the amount has been multiplied by $1+\\frac{r}{2}$ a total of $2t$ times."
+            }
+          ],
+          "src": "1.5"
+        },
+        {
+          "assumes": [
+            {
+              "step": 1
+            },
+            {
+              "step": 3
+            }
+          ],
+          "then": {
+            "tex": "\\mk{A}{A(t)}=\\mk{P}{P}\\mk{base}{\\left(1+\\frac{r}{2}\\right)}^{\\mk{ex}{2t}}",
+            "uses": [
+              1
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{A}{A(t)}=\\mk{P}{P}\\mk{base}{\\left(1+\\frac{r}{n}\\right)}^{\\mk{ex}{nt}}",
+              "uses": [
+                0,
+                1
+              ],
+              "cap": "Compounded $n$ times a year, each period multiplies the amount by $1+\\frac{r}{n}$, as each year multiplied it by $1+r$ and each half year by $1+\\frac{r}{2}$; $t$ years hold $nt$ periods."
+            }
+          ],
+          "src": "1.5"
+        }
+      ]
+    },
+    {
+      "id": "hyperbolic-identity",
+      "what": "the identity cosh²t − sinh²t = 1",
+      "source": "Calculus, 1.5 Exponential and Logarithmic Functions, Hyperbolic Functions",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "\\cosh x=\\dfrac{e^{x}+e^{-x}}{2}",
+              "src": "1.5, Hyperbolic Functions"
+            },
+            {
+              "tex": "\\sinh x=\\dfrac{e^{x}-e^{-x}}{2}",
+              "src": "1.5, Hyperbolic Functions"
+            },
+            {
+              "tex": "b^{x}\\cdot b^{y}=b^{x+y}",
+              "src": "1.5, Laws of Exponents"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{\\cosh^{2}t-\\sinh^{2}t}=\\mk{c}{\\cosh^{2}t}-\\mk{s}{\\sinh^{2}t}"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{\\cosh^{2}t-\\sinh^{2}t}=\\mk{c}{\\left(\\frac{e^{t}+e^{-t}}{2}\\right)^{2}}-\\mk{s}{\\left(\\frac{e^{t}-e^{-t}}{2}\\right)^{2}}",
+              "uses": [
+                0,
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{L}{\\cosh^{2}t-\\sinh^{2}t}=\\mk{c}{\\frac{e^{2t}+2+e^{-2t}}{4}}-\\mk{s}{\\frac{e^{2t}-2+e^{-2t}}{4}}",
+              "uses": [
+                2
+              ],
+              "cap": "Squaring, $e^{t}\\cdot e^{t}=e^{2t}$, $e^{-t}\\cdot e^{-t}=e^{-2t}$ and $e^{t}\\cdot e^{-t}=e^{0}=1$."
+            },
+            {
+              "tex": "\\mk{L}{\\cosh^{2}t-\\sinh^{2}t}=\\mk{o}{1}",
+              "uses": [],
+              "map": {
+                "c": "o",
+                "s": "o"
+              }
+            }
+          ],
+          "src": "1.5"
+        }
+      ]
+    },
+    {
+      "id": "inverse-hyperbolic-sine",
+      "what": "the inverse hyperbolic sine as a logarithm",
+      "source": "Calculus, 1.5 Exponential and Logarithmic Functions, Inverse Hyperbolic Functions",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "y=\\sinh^{-1}x"
+            },
+            {
+              "tex": "\\sinh x=\\dfrac{e^{x}-e^{-x}}{2}",
+              "src": "1.5, Hyperbolic Functions"
+            },
+            {
+              "tex": "b^{x}\\cdot b^{y}=b^{x+y}",
+              "src": "1.5, Laws of Exponents"
+            },
+            {
+              "tex": "ax^{2}+bx+c=0\\;\\Rightarrow\\;x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}",
+              "src": "1.2"
+            },
+            {
+              "text": "The range of $e^{x}$ is $(0,\\infty)$, so $e^{y}\\gt 0$.",
+              "src": "1.5"
+            },
+            {
+              "tex": "\\ln(e^{x})=x",
+              "src": "1.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{x}{x}=\\mk{s}{\\sinh y}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{x}{x}=\\mk{s}{\\dfrac{e^{y}-e^{-y}}{2}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{x}{2x}=\\mk{s}{e^{y}-e^{-y}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{p}{e^{y}}-\\mk{x}{2x}-\\mk{m}{e^{-y}}=\\mk{z}{0}",
+              "uses": [],
+              "map": {
+                "s": [
+                  "p",
+                  "m"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{p}{e^{2y}}-\\mk{x}{2xe^{y}}-\\mk{m}{1}=\\mk{z}{0}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{\\frac{2x\\pm\\sqrt{4x^{2}+4}}{2}}",
+              "uses": [
+                3
+              ],
+              "cap": "A quadratic equation in $e^{y}$, with $a=1$, $b=-2x$ and $c=-1$.",
+              "map": {
+                "p": "e",
+                "x": "q",
+                "m": "q",
+                "z": "q"
+              }
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{x\\pm\\sqrt{x^{2}+1}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{x+\\sqrt{x^{2}+1}}",
+              "uses": [
+                4
+              ],
+              "cap": "As $\\sqrt{x^{2}+1}\\gt|x|$, the minus sign would make $e^{y}$ negative."
+            },
+            {
+              "tex": "\\mk{e}{y}=\\mk{q}{\\ln\\left(x+\\sqrt{x^{2}+1}\\right)}",
+              "uses": [
+                5
+              ]
+            },
+            {
+              "tex": "\\mk{e}{\\sinh^{-1}x}=\\mk{q}{\\ln\\left(x+\\sqrt{x^{2}+1}\\right)}",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "src": "1.5, Inverse Hyperbolic Functions"
+        }
+      ]
+    },
+    {
+      "id": "other-inverse-hyperbolic-functions",
+      "what": "the other inverse hyperbolic functions as logarithms",
+      "source": "Calculus, 1.5 Exponential and Logarithmic Functions, Inverse Hyperbolic Functions",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "y=\\cosh^{-1}x"
+            },
+            {
+              "text": "The domains of $\\cosh x$ and $\\operatorname{sech}x$ are restricted to $[0,\\infty)$.",
+              "src": "1.5"
+            },
+            {
+              "tex": "\\cosh x=\\dfrac{e^{x}+e^{-x}}{2}",
+              "src": "1.5, Hyperbolic Functions"
+            },
+            {
+              "tex": "b^{x}\\cdot b^{y}=b^{x+y}",
+              "src": "1.5, Laws of Exponents"
+            },
+            {
+              "tex": "ax^{2}+bx+c=0\\;\\Rightarrow\\;x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}",
+              "src": "1.2"
+            },
+            {
+              "text": "$e^{x}$ is increasing.",
+              "src": "1.5, Figure 1.44"
+            },
+            {
+              "tex": "\\ln(e^{x})=x",
+              "src": "1.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{x}{x}=\\mk{s}{\\cosh y}",
+            "uses": [
+              0,
+              1
+            ],
+            "why": "The restricted domain makes $y\\ge 0$."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{x}{x}=\\mk{s}{\\dfrac{e^{y}+e^{-y}}{2}}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{x}{2x}=\\mk{s}{e^{y}+e^{-y}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{x}{2xe^{y}}=\\mk{s}{e^{2y}+1}",
+              "uses": [
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{s}{e^{2y}}-\\mk{x}{2xe^{y}}+\\mk{o}{1}=\\mk{z}{0}",
+              "uses": [],
+              "map": {
+                "s": [
+                  "s",
+                  "o"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{\\frac{2x\\pm\\sqrt{4x^{2}-4}}{2}}",
+              "uses": [
+                4
+              ],
+              "cap": "A quadratic equation in $e^{y}$, with $a=1$, $b=-2x$ and $c=1$.",
+              "map": {
+                "s": "e",
+                "x": "q",
+                "o": "q",
+                "z": "q"
+              }
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{x\\pm\\sqrt{x^{2}-1}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{x+\\sqrt{x^{2}-1}}",
+              "uses": [
+                1,
+                5
+              ],
+              "cap": "The two roots multiply to $x^{2}-(x^{2}-1)=1$, so the one with the minus sign is at most $1$, while $y\\ge 0$ makes $e^{y}\\ge e^{0}=1$."
+            },
+            {
+              "tex": "\\mk{e}{y}=\\mk{q}{\\ln\\left(x+\\sqrt{x^{2}-1}\\right)}",
+              "uses": [
+                6
+              ]
+            },
+            {
+              "tex": "\\mk{e}{\\cosh^{-1}x}=\\mk{q}{\\ln\\left(x+\\sqrt{x^{2}-1}\\right)}",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "src": "1.5, Inverse Hyperbolic Functions"
+        },
+        {
+          "assumes": [
+            {
+              "tex": "y=\\tanh^{-1}x"
+            },
+            {
+              "tex": "\\tanh x=\\dfrac{e^{x}-e^{-x}}{e^{x}+e^{-x}}",
+              "src": "1.5, Hyperbolic Functions"
+            },
+            {
+              "tex": "b^{x}\\cdot b^{y}=b^{x+y}",
+              "src": "1.5, Laws of Exponents"
+            },
+            {
+              "tex": "\\ln(e^{x})=x",
+              "src": "1.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{x}{x}=\\mk{s}{\\tanh y}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{x}{x}=\\mk{s}{\\dfrac{e^{y}-e^{-y}}{e^{y}+e^{-y}}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{x}{x}=\\mk{s}{\\dfrac{e^{2y}-1}{e^{2y}+1}}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{x}{x(e^{2y}+1)}=\\mk{s}{e^{2y}-1}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{x}{xe^{2y}}+\\mk{c}{x}=\\mk{s}{e^{2y}}-\\mk{o}{1}",
+              "uses": [],
+              "map": {
+                "x": [
+                  "x",
+                  "c"
+                ],
+                "s": [
+                  "s",
+                  "o"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{o}{1}+\\mk{c}{x}=\\mk{s}{e^{2y}}-\\mk{x}{xe^{2y}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{o}{1}+\\mk{c}{x}=\\mk{s}{e^{2y}(1-x)}",
+              "uses": [],
+              "map": {
+                "x": "s"
+              }
+            },
+            {
+              "tex": "\\mk{s}{e^{2y}}=\\mk{f}{\\dfrac{1+x}{1-x}}",
+              "uses": [],
+              "map": {
+                "o": "f",
+                "c": "f"
+              }
+            },
+            {
+              "tex": "\\mk{s}{2y}=\\mk{f}{\\ln\\left(\\dfrac{1+x}{1-x}\\right)}",
+              "uses": [
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{s}{y}=\\mk{f}{\\dfrac{1}{2}\\ln\\left(\\dfrac{1+x}{1-x}\\right)}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{s}{\\tanh^{-1}x}=\\mk{f}{\\dfrac{1}{2}\\ln\\left(\\dfrac{1+x}{1-x}\\right)}",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "src": "1.5, Inverse Hyperbolic Functions"
+        },
+        {
+          "assumes": [
+            {
+              "tex": "y=\\coth^{-1}x"
+            },
+            {
+              "tex": "\\coth x=\\dfrac{e^{x}+e^{-x}}{e^{x}-e^{-x}}",
+              "src": "1.5, Hyperbolic Functions"
+            },
+            {
+              "tex": "b^{x}\\cdot b^{y}=b^{x+y}",
+              "src": "1.5, Laws of Exponents"
+            },
+            {
+              "tex": "\\ln(e^{x})=x",
+              "src": "1.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{x}{x}=\\mk{s}{\\coth y}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{x}{x}=\\mk{s}{\\dfrac{e^{y}+e^{-y}}{e^{y}-e^{-y}}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{x}{x}=\\mk{s}{\\dfrac{e^{2y}+1}{e^{2y}-1}}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{x}{x(e^{2y}-1)}=\\mk{s}{e^{2y}+1}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{x}{xe^{2y}}-\\mk{c}{x}=\\mk{s}{e^{2y}}+\\mk{o}{1}",
+              "uses": [],
+              "map": {
+                "x": [
+                  "x",
+                  "c"
+                ],
+                "s": [
+                  "s",
+                  "o"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{x}{xe^{2y}}-\\mk{s}{e^{2y}}=\\mk{c}{x}+\\mk{o}{1}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{s}{e^{2y}(x-1)}=\\mk{c}{x}+\\mk{o}{1}",
+              "uses": [],
+              "map": {
+                "x": "s"
+              }
+            },
+            {
+              "tex": "\\mk{s}{e^{2y}}=\\mk{f}{\\dfrac{x+1}{x-1}}",
+              "uses": [],
+              "map": {
+                "o": "f",
+                "c": "f"
+              }
+            },
+            {
+              "tex": "\\mk{s}{2y}=\\mk{f}{\\ln\\left(\\dfrac{x+1}{x-1}\\right)}",
+              "uses": [
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{s}{y}=\\mk{f}{\\dfrac{1}{2}\\ln\\left(\\dfrac{x+1}{x-1}\\right)}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{s}{\\coth^{-1}x}=\\mk{f}{\\dfrac{1}{2}\\ln\\left(\\dfrac{x+1}{x-1}\\right)}",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "src": "1.5, Inverse Hyperbolic Functions"
+        },
+        {
+          "assumes": [
+            {
+              "tex": "y=\\operatorname{sech}^{-1}x"
+            },
+            {
+              "text": "The domains of $\\cosh x$ and $\\operatorname{sech}x$ are restricted to $[0,\\infty)$.",
+              "src": "1.5"
+            },
+            {
+              "tex": "\\operatorname{sech}x=\\dfrac{2}{e^{x}+e^{-x}}",
+              "src": "1.5, Hyperbolic Functions"
+            },
+            {
+              "tex": "b^{x}\\cdot b^{y}=b^{x+y}",
+              "src": "1.5, Laws of Exponents"
+            },
+            {
+              "tex": "ax^{2}+bx+c=0\\;\\Rightarrow\\;x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}",
+              "src": "1.2"
+            },
+            {
+              "text": "$e^{x}$ is increasing.",
+              "src": "1.5, Figure 1.44"
+            },
+            {
+              "tex": "\\ln(e^{x})=x",
+              "src": "1.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{x}{x}=\\mk{s}{\\operatorname{sech}y}",
+            "uses": [
+              0,
+              1
+            ],
+            "why": "The restricted domain makes $y\\ge 0$."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{x}{x}=\\mk{s}{\\dfrac{2}{e^{y}+e^{-y}}}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{x}{x(e^{y}+e^{-y})}=\\mk{s}{2}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{x}{xe^{2y}+x}=\\mk{s}{2e^{y}}",
+              "uses": [
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{x}{xe^{2y}}-\\mk{s}{2e^{y}}+\\mk{c}{x}=\\mk{z}{0}",
+              "uses": [],
+              "map": {
+                "x": [
+                  "x",
+                  "c"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{\\frac{2\\pm\\sqrt{4-4x^{2}}}{2x}}",
+              "uses": [
+                4
+              ],
+              "cap": "A quadratic equation in $e^{y}$, with $a=x$, $b=-2$ and $c=x$; $x\\ne 0$, as $x$ is $2$ over a sum.",
+              "map": {
+                "x": [
+                  "e",
+                  "q"
+                ],
+                "s": "q",
+                "c": "q",
+                "z": "q"
+              }
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{\\frac{1\\pm\\sqrt{1-x^{2}}}{x}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{\\frac{1+\\sqrt{1-x^{2}}}{x}}",
+              "uses": [
+                1,
+                5
+              ],
+              "cap": "The two roots multiply to $\\frac{x}{x}=1$, so the one with the minus sign is at most $1$, while $y\\ge 0$ makes $e^{y}\\ge e^{0}=1$."
+            },
+            {
+              "tex": "\\mk{e}{y}=\\mk{q}{\\ln\\left(\\frac{1+\\sqrt{1-x^{2}}}{x}\\right)}",
+              "uses": [
+                6
+              ]
+            },
+            {
+              "tex": "\\mk{e}{\\operatorname{sech}^{-1}x}=\\mk{q}{\\ln\\left(\\frac{1+\\sqrt{1-x^{2}}}{x}\\right)}",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "src": "1.5, Inverse Hyperbolic Functions"
+        },
+        {
+          "assumes": [
+            {
+              "tex": "y=\\operatorname{csch}^{-1}x"
+            },
+            {
+              "tex": "\\operatorname{csch}x=\\dfrac{2}{e^{x}-e^{-x}}",
+              "src": "1.5, Hyperbolic Functions"
+            },
+            {
+              "tex": "b^{x}\\cdot b^{y}=b^{x+y}",
+              "src": "1.5, Laws of Exponents"
+            },
+            {
+              "tex": "ax^{2}+bx+c=0\\;\\Rightarrow\\;x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}",
+              "src": "1.2"
+            },
+            {
+              "text": "The range of $e^{x}$ is $(0,\\infty)$, so $e^{y}\\gt 0$.",
+              "src": "1.5"
+            },
+            {
+              "tex": "\\ln(e^{x})=x",
+              "src": "1.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{x}{x}=\\mk{s}{\\operatorname{csch}y}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{x}{x}=\\mk{s}{\\dfrac{2}{e^{y}-e^{-y}}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{x}{x(e^{y}-e^{-y})}=\\mk{s}{2}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{x}{xe^{2y}-x}=\\mk{s}{2e^{y}}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{x}{xe^{2y}}-\\mk{s}{2e^{y}}-\\mk{c}{x}=\\mk{z}{0}",
+              "uses": [],
+              "map": {
+                "x": [
+                  "x",
+                  "c"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{\\frac{2\\pm\\sqrt{4+4x^{2}}}{2x}}",
+              "uses": [
+                3
+              ],
+              "cap": "A quadratic equation in $e^{y}$, with $a=x$, $b=-2$ and $c=-x$; $x\\ne 0$, as $x$ is $2$ over a difference.",
+              "map": {
+                "x": [
+                  "e",
+                  "q"
+                ],
+                "s": "q",
+                "c": "q",
+                "z": "q"
+              }
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{\\frac{1\\pm\\sqrt{1+x^{2}}}{x}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{e}{e^{y}}=\\mk{q}{\\frac{1}{x}+\\frac{\\sqrt{1+x^{2}}}{|x|}}",
+              "uses": [
+                4
+              ],
+              "cap": "As $\\sqrt{1+x^{2}}\\gt 1$, $e^{y}\\gt 0$ takes the plus sign when $x\\gt 0$ and the minus sign when $x\\lt 0$. Both are $\\frac{1}{x}+\\frac{\\sqrt{1+x^{2}}}{|x|}$."
+            },
+            {
+              "tex": "\\mk{e}{y}=\\mk{q}{\\ln\\left(\\frac{1}{x}+\\frac{\\sqrt{1+x^{2}}}{|x|}\\right)}",
+              "uses": [
+                5
+              ]
+            },
+            {
+              "tex": "\\mk{e}{\\operatorname{csch}^{-1}x}=\\mk{q}{\\ln\\left(\\frac{1}{x}+\\frac{\\sqrt{1+x^{2}}}{|x|}\\right)}",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "src": "1.5, Inverse Hyperbolic Functions"
+        }
+      ]
+    }
   ]
 }

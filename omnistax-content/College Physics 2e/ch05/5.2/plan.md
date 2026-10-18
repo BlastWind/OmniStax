@@ -350,3 +350,7 @@ config decided and what the book's own type table allows.
 - `sim-stokes` plots the steady speed against the radius of the bead and
   colours no clock, so `time` comes out of its `draws`; the page binds the
   type through `sim-terminal` and `sim-size` as before.
+
+## Derivations
+
+- Terminal velocity ('Let's see how this works out more quantitatively') · score 2 · built as drv-terminal-velocity: one node from Newton's second law and the drag equation, $v^2$ inserted before the root; replaces the four displays, the skydiver's numbers and Example 5.2's restatement stay as printed

@@ -378,5 +378,44 @@
     "sim-transmission"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "average-power-rms",
+   "what": "the average power from rms values",
+   "source": "College Physics 2e, 20.5 Alternating Current versus Direct Current",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kIrms = \\dfrac{\\kIocur}{\\sqrt{2}}",
+       "src": "20.5"
+      },
+      {
+       "tex": "\\kVrms = \\dfrac{\\kVo}{\\sqrt{2}}",
+       "src": "20.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kPave} = \\mk{I}{\\kIrms}\\mk{V}{\\kVrms}",
+      "src": "20.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kPave} = \\mk{I}{\\dfrac{\\kIocur}{\\sqrt{2}}}\\cdot\\mk{V}{\\dfrac{\\kVo}{\\sqrt{2}}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kPave} = \\mk{h}{\\dfrac{1}{2}}\\mk{I}{\\kIocur}\\mk{V}{\\kVo}",
+       "uses": []
+      }
+     ],
+     "src": "20.5"
+    }
+   ]
+  }
  ]
 }

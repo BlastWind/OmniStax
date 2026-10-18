@@ -131,3 +131,7 @@ there.
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass (2026-10-05): every existing row anchored (`BE`, `A_nuc`, `m_i`, `m_f`, `c` at `32.5-nuclear-fusion`, `E_gamma` at `32.5-proton-proton-cycle`, `T_temp` at `32.5-fusion-by-tunneling`, `P`, `t` at `32.5-fusion-energy-and-power`); rows added for `E` at `32.5-nuclear-fusion` and `KE`, `PE` (`electric-potential-energy`), `r` (`distance`) at `32.5-coulomb-barrier`; the ten forms anchored as asked; `ch32/COLOR.md` records `position` and `velocity` among 32.5's bindings.
+
+## Derivations
+
+- The proton-proton cycle and its overall effect · score 3 · built as drv-proton-proton-cycle: the reactions combined, the protons given back and the annihilations joined into the net equation, with the 26.7 MeV added up as its own node from the reactions' energies and two 0.511 MeV photons per annihilation (32.1)

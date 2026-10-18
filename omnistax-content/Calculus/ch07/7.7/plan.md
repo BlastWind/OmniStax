@@ -46,3 +46,15 @@ None beyond the figures: a Laplace-transform Sim was weighed and left out, since
 - forms `eq-improper-to-infinity` → `7.7-fs-id1165043372378`, `eq-improper-from-minus-infinity` → `7.7-fs-id1165043086270`, `eq-improper-whole-line` → `7.7-fs-id1165042478832`, `eq-improper-right-endpoint` → `7.7-fs-id1165042617693`, `eq-improper-left-endpoint` → `7.7-fs-id1165042506827`, `eq-improper-interior-point` → `7.7-fs-id1165043378015`, `eq-laplace-transform` → `7.7-laplace-project`.
 - variables `7.7/f`, `7.7/g`, `7.7/t` → `7.7-infinite`; `7.7/A` → Example 7.47; `7.7/V` → Example 7.48; `7.7/λ` → Example 7.49; `7.7/F`, `7.7/s` → `7.7-laplace-project`.
 - The chapter's review rows: 408, 411 → 7.1; 413, 419 → 7.3; 409, 415, 421 → 7.4; 417 → 7.5; 410, 423, 425 → 7.6; 427–429 → 7.7.
+
+## Derivations
+
+- Definition (7.16–7.18), "it can be shown" that the split point of ∫ from −∞ to +∞ is arbitrary · score 6 · built as drv-improper-integral-split-point, after the definition (additivity, the reversed-limits rule and the limit laws of 5.2 and 2.3)
+- Example 7.48 (Gabriel's horn) · score 2 · not built: a worked example substituting into (7.16)
+- Example 7.49 · score 3 · not built: a worked example substituting into the definition
+- Example 7.51 · score 4 · not built: a worked example of the definition; its two halves are one procedure, and an exactly-4 case leans out
+- Example 7.53 (∫ from 0 to 2 of x ln x) · score 5 · built as drv-integral-of-x-ln-x (replaces the block): the parts antiderivative the book names but does not work and the L'Hôpital limit it hides are two independent lines joined in the evaluation
+- A Comparison Theorem, the argument before the theorem · score 2 · built as drv-comparison-theorem, after the argument (a proof the book prints in prose; the prose stays)
+- Student Project · Laplace Transforms, L{t} = 1/s² · score 3 · not built: a student project, which the rulings treat as an exercise
+- Student Project · question 4, L{f′} = sL{f} − f(0) · score 6 · not built: set for the reader
+- Student Project · question 5, L{g} = (1/s)L{f} · score 8 · not built: set for the reader

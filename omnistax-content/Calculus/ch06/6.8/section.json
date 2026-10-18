@@ -756,5 +756,302 @@
    "kind": "correction",
    "html": "The key adds $k=\\frac{\\ln(2)}{t};$ that is the constant of the decay model written $y=e^{-kt}.$ For $y=e^{kt}$ as the exercise writes it, $k=\\frac{\\ln(1/2)}{t}=-\\frac{\\ln(2)}{t},$ which is why the statement is true."
   }
+ ],
+ "derivations": [
+  {
+   "id": "continuous-compounding",
+   "what": "the balance under continuous compounding",
+   "source": "Calculus, 6.8 Exponential Growth and Decay, Exponential Growth Model",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Compounded $n$ times a year at an annual rate $r,$ a balance $P$ grows to $P{(1+\\frac{r}{n})}^{nt}$ after $t$ years.",
+       "src": "1.5, The Number e"
+      },
+      {
+       "text": "Let $n=0.02m.$ As $n\\to \\infty,$ $m\\to \\infty$ as well."
+      },
+      {
+       "text": "If $\\kf(x)$ is continuous at $\\kL$ and $\\lim_{x\\to a}\\kg(x)=\\kL,$ then $\\lim_{x\\to a}\\kf(\\kg(x))=\\kf(\\lim_{x\\to a}\\kg(x)).$",
+       "src": "2.4, Composite Function Theorem"
+      },
+      {
+       "tex": "e=\\lim_{m\\to \\infty}{(1+\\frac{1}{m})}^{m}",
+       "src": "1.5, The Number e"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{B}{\\text{Balance}}=\\mk{c}{1000}\\mk{L}{\\lim_{n\\to \\infty}{(1+\\frac{0.02}{n})}^{nt}}",
+      "src": "6.8",
+      "uses": [
+       0
+      ],
+      "why": "Interest compounded continuously is compounded $n$ times a year with $n\\to \\infty.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{B}{\\text{Balance}}=\\mk{c}{1000}\\mk{L}{\\lim_{m\\to \\infty}{(1+\\frac{0.02}{0.02m})}^{0.02mt}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{B}{\\text{Balance}}=\\mk{c}{1000}\\mk{L}{\\lim_{m\\to \\infty}{[{(1+\\frac{1}{m})}^{m}]}^{0.02t}}",
+       "uses": [],
+       "cap": "A law of exponents: $a^{mc}={(a^{m})}^{c}.$"
+      },
+      {
+       "tex": "\\mk{B}{\\text{Balance}}=\\mk{c}{1000}\\mk{L}{{[\\lim_{m\\to \\infty}{(1+\\frac{1}{m})}^{m}]}^{0.02t}}",
+       "uses": [
+        2
+       ],
+       "cap": "The power $u^{0.02t}$ is continuous, so the limit passes inside it."
+      },
+      {
+       "tex": "\\mk{B}{\\text{Balance}}=\\mk{c}{1000}\\mk{L}{e^{0.02t}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{B}{\\text{Balance}}=\\mk{c}{P}\\mk{L}{e^{rt}}",
+       "uses": [],
+       "cap": "The same steps hold with an initial balance $P$ in place of $1000$ and a rate $r$ in place of $0.02.$"
+      }
+     ],
+     "src": "6.8"
+    }
+   ]
+  },
+  {
+   "id": "doubling-time",
+   "what": "the doubling time",
+   "source": "Calculus, 6.8 Exponential Growth and Decay, Exponential Growth Model",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The quantity has doubled when it reaches twice its original size, $y=2y_{0}.$",
+       "src": "6.8"
+      },
+      {
+       "tex": "\\ln(e^{x})=x",
+       "src": "(6.26)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{r}{y_{0}e^{kt}}",
+      "src": "6.8, Exponential Growth Model"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{2y_{0}}=\\mk{r}{y_{0}e^{kt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{2}=\\mk{r}{e^{kt}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\ln2}=\\mk{r}{kt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{t}{t}=\\frac{\\mk{y}{\\ln2}}{\\mk{k}{k}}",
+       "uses": [],
+       "map": {
+        "r": [
+         "t",
+         "k"
+        ]
+       }
+      }
+     ],
+     "src": "6.8, Doubling Time"
+    }
+   ]
+  },
+  {
+   "id": "half-life",
+   "what": "the half-life",
+   "source": "Calculus, 6.8 Exponential Growth and Decay, Exponential Decay Model",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The quantity has halved when it reaches half its original size, $y=\\frac{y_{0}}{2}.$",
+       "src": "6.8"
+      },
+      {
+       "tex": "\\ln(e^{x})=x",
+       "src": "(6.26)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{r}{y_{0}e^{-kt}}",
+      "src": "6.8, Exponential Decay Model"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\frac{y_{0}}{2}}=\\mk{r}{y_{0}e^{-kt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\frac{1}{2}}=\\mk{r}{e^{-kt}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\ln\\frac{1}{2}}=\\mk{r}{-kt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{-\\ln2}=\\mk{r}{-kt}",
+       "uses": [],
+       "cap": "A log rule: $\\ln\\frac{1}{2}=\\ln1-\\ln2=-\\ln2.$"
+      },
+      {
+       "tex": "\\mk{t}{t}=\\frac{\\mk{y}{\\ln2}}{\\mk{k}{k}}",
+       "uses": [],
+       "map": {
+        "r": [
+         "t",
+         "k"
+        ]
+       }
+      }
+     ],
+     "src": "6.8, Half-Life"
+    }
+   ]
+  },
+  {
+   "id": "newtons-law-of-cooling",
+   "what": "the temperature of a cooling object",
+   "source": "Calculus, 6.8 Exponential Growth and Decay, Exponential Decay Model",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Let $y(t)=\\kT(t)-T_{a}.$"
+      },
+      {
+       "text": "The derivative of a constant is zero.",
+       "src": "3.3, The Constant Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyprime(t)}=\\mk{T}{\\frac{d}{dt}(\\kT(t)-T_{a})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyprime(t)}=\\mk{T}{\\kTprime(t)}-\\mk{z}{0}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "T": [
+         "T",
+         "z"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\kyprime(t)}=\\mk{T}{\\kTprime(t)}",
+       "uses": []
+      }
+     ],
+     "src": "6.8"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Let $y(t)=\\kT(t)-T_{a}.$"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kTprime}=\\mk{k}{-k}\\mk{d}{(\\kT-T_{a})}",
+      "src": "6.8",
+      "uses": [],
+      "why": "Newton’s law of cooling: an object cools at a rate proportional to the difference between the temperature of the object and the temperature of the surroundings."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kyprime}=\\mk{k}{-k}\\mk{d}{(\\kT-T_{a})}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kyprime}=\\mk{k}{-k}\\mk{d}{y}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "6.8"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "A function whose derivative is $-k$ times itself is in exponential decay.",
+       "src": "6.8"
+      },
+      {
+       "text": "Let $y(t)=\\kT(t)-T_{a}.$"
+      },
+      {
+       "text": "$T_{0}$ represents the initial temperature, so $y_{0}=T_{0}-T_{a}.$",
+       "src": "6.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{y}=\\mk{r}{y_{0}e^{-kt}}",
+      "src": "6.8, Exponential Decay Model",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kT-T_{a}}=\\mk{r}{(T_{0}-T_{a})e^{-kt}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kT}=\\mk{r}{(T_{0}-T_{a})e^{-kt}}+\\mk{a}{T_{a}}",
+       "uses": [],
+       "map": {
+        "y": [
+         "y",
+         "a"
+        ]
+       }
+      }
+     ],
+     "src": "6.8"
+    }
+   ]
+  }
  ]
 }

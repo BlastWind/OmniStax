@@ -122,3 +122,7 @@ Applied by the chapter pass (2026-10-05):
 
 - Variables rows `Δm` (`mass-defect`, typed mass), `m_p`, `m_n`, `Z`, `N_neut`, `A_nuc`, `c` at `mass-defect`; `E` at `binding-energy`; `t`, `t_half`, `R_act`, `R_0act` at `earths-hot-interior`. `BE` and `m_tot` anchored.
 - The three forms anchored at `mass-defect`.
+
+## Derivations
+
+- Mass defect and the binding energy from atomic masses · score 1 · built as drv-binding-energy: a printed block, replaced; the electrons added to both terms are the book's own words, kept as two facts

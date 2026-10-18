@@ -126,3 +126,7 @@ sim-series-sources · Figure 21.15 · as above · value add: turning the second 
 sim-charging · Figure 21.17 · as above · a dashed special circle on each emf slider at the other's value, equal emfs being where the text has the current turn round (26.1, manim 8); one equation, I, the battery's terminal voltage in the small line (manim 12) · still
 sim-flashlight · Figure 21.18 · as above · one equation, I, the bulb's power in the small line (manim 12) · still
 sim-parallel-sources · Figure 21.19 · as above · value add: the first source steps aside as the second arrives beside it (`mix`, `a('two')`), and r_tot = r₁ bends into r_tot = (1/r₁ + 1/r₂)⁻¹ with r₁ keeping its key (manim 11, 15); the current in the small line (manim 12) · still
+
+## Derivations
+
+- The current a source with internal resistance supplies to a load, $I = \text{emf}/(R_\text{load} + r)$ · score 2 · not built: one application of Ohm's law to the series total, one displayed line and no chain

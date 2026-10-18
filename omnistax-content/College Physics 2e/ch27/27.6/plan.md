@@ -78,3 +78,8 @@ Labels: every figure under six entity labels (object 1, object 2, D, θ, x, d, �
 - No concept, edge or symbol fix.
 
 Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed. The glossary lines are not written, since a glossary row carries no anchor field; each term is found on its section's page.
+
+## Derivations
+
+- The Rayleigh criterion, $\theta = 1.22\lambda/D$ · score 8 · not built: it rests on the diffraction integral over a circular aperture and a zero of a Bessel function, which the book never gives
+- The resolving power of a lens · score 4 · built as drv-resolving-power: a printed block joining the Rayleigh angle, the small-angle approximation and the numerical aperture (26.4)

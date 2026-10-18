@@ -50,3 +50,8 @@ Images: Checkpoint 12.52's answer image (004) and Checkpoint 12.53's (012) stay 
 
 - forms `eq-quadric-surface` → the definition note; each surface's form → the paragraph or figure that introduces it.
 - Concept `reflective-properties-of-conics` used here (11.5's).
+
+## Derivations
+
+- Example 12.58, the focus of a parabolic reflector · score 2 · not built: one trace, the conic form of 11.5 substituted, one solve.
+- Example 12.59(b), a shifted elliptic paraboloid · score 1 · not built: completing the square in the section's method.

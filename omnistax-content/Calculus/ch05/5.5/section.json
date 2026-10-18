@@ -1204,5 +1204,126 @@
   }
  ],
  "referents": [],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "substitution-indefinite",
+   "what": "substitution with indefinite integrals",
+   "source": "Calculus, 5.5 Substitution, Substitution with Indefinite Integrals, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kF(x)$ is an antiderivative of $\\kf(x).$",
+       "src": "5.5, Substitution with Indefinite Integrals"
+      },
+      {
+       "tex": "\\kFprime(x)=\\kf(x)",
+       "src": "4.10"
+      },
+      {
+       "text": "If $\\kF$ is an antiderivative of $\\kf,$ then ${\\displaystyle \\int \\kf(x)dx}=\\kF(x)+C.$",
+       "src": "4.10, Definition"
+      },
+      {
+       "tex": "u=\\kg(x),\\quad du=\\kgprime(x)dx",
+       "src": "5.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dx}\\kF(\\kg(x))}=\\mk{r}{\\kFprime(\\kg(x))\\kgprime(x)}",
+      "src": "3.6, (3.17)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dx}\\kF(\\kg(x))}=\\mk{r}{\\kf[\\kg(x)]\\kgprime(x)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\int \\kf[\\kg(x)]\\kgprime(x)dx}=\\mk{d}{\\kF(\\kg(x))+C}",
+       "uses": [
+        2
+       ],
+       "cap": "Integrating both sides with respect to $x$: $\\kF(\\kg(x))$ is an antiderivative of $\\kf[\\kg(x)]\\kgprime(x).$"
+      },
+      {
+       "tex": "\\mk{r}{\\int \\kf[\\kg(x)]\\kgprime(x)dx}=\\mk{u}{\\int \\kf(u)du}=\\mk{Fu}{\\kF(u)+C}=\\mk{d}{\\kF(\\kg(x))+C}",
+       "uses": [
+        3,
+        2
+       ]
+      }
+     ],
+     "src": "5.5, Substitution with Indefinite Integrals"
+    }
+   ]
+  },
+  {
+   "id": "substitution-definite",
+   "what": "substitution with definite integrals",
+   "source": "Calculus, 5.5 Substitution, Substitution for Definite Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\int \\kf(\\kg(x))\\kgprime(x)dx=\\kF(\\kg(x))+C",
+       "src": "5.5, Substitution with Indefinite Integrals"
+      },
+      {
+       "text": "$\\kgprime$ is continuous over $[a,b],$ and $\\kf$ is continuous over the range of $u=\\kg(x).$",
+       "src": "5.5, Substitution with Definite Integrals"
+      },
+      {
+       "text": "If $\\kf$ is continuous over $[a,b]$ and $\\kF(x)$ is any antiderivative of $\\kf(x),$ then $\\int_{a}^{b}\\kf(x)dx=\\kF(b)-\\kF(a).$",
+       "src": "5.3, The Fundamental Theorem of Calculus, Part 2"
+      },
+      {
+       "tex": "{\\kF(x)|}_{a}^{b}=\\kF(b)-\\kF(a)",
+       "src": "5.3"
+      },
+      {
+       "text": "$\\kF(x)$ is an antiderivative of $\\kf(x).$",
+       "src": "5.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_{a}^{b}\\kf[\\kg(x)]\\kgprime(x)dx}=\\mk{R}{{\\kF(\\kg(x))|}_{x=a}^{x=b}}",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "src": "5.3, The Fundamental Theorem of Calculus, Part 2",
+      "why": "By the substitution rule for indefinite integrals, $\\kF(\\kg(x))$ is an antiderivative of the integrand."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_{a}^{b}\\kf[\\kg(x)]\\kgprime(x)dx}=\\mk{R}{\\kF(\\kg(b))-\\kF(\\kg(a))}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{a}^{b}\\kf[\\kg(x)]\\kgprime(x)dx}=\\mk{R}{{\\kF(u)|}_{u=\\kg(a)}^{u=\\kg(b)}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_{a}^{b}\\kf[\\kg(x)]\\kgprime(x)dx}=\\mk{R}{\\int_{\\kg(a)}^{\\kg(b)}\\kf(u)du}",
+       "uses": [
+        1,
+        2,
+        4
+       ]
+      }
+     ],
+     "src": "5.5, Substitution with Definite Integrals"
+    }
+   ]
+  }
+ ]
 }

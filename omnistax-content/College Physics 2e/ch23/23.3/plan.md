@@ -118,3 +118,7 @@ hue.
 - Both `equations` rows and all three `variables` rows are anchored to
   `23.3-rod-on-rails`, as asked.
 - `ch23/COLOR.md` now gives 23.3 `time` and `power` as well as its seven.
+
+## Derivations
+
+- The motional emf of a rod on rails (printed block) · score 2 · built as drv-motional-emf: one node, Faraday's law without the sign with $N = 1$, $\Phi = BA\cos\theta$, a uniform field, $\Delta A = \ell\Delta x$ and $\Delta x/\Delta t = v$; replaces the three displayed lines and the prose between them, the remark that it matches the Hall emf stays (a different route to the same expression, so drv-hall-emf of 22.6 is not reused)

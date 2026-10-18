@@ -64,3 +64,13 @@ Ids confirmed with `ost ids calculus 3.6` after the build.
 - New symbol k_prime (merged); variables rows added for f and g (outer and inner, `redefines`), f_prime, g_prime, dy/dx, k_prime, s, s_prime, v; anchors on every 3.6 row and the ten forms.
 - Sheet links on book words: "a list of derivative formulas" opens the Table of Derivatives; "derivative" in Example 3.48 opens the calculator.
 - Correction: Checkpoint 3.40's hint (Example 3.56 for 3.57). The Problem-Solving Strategy's steps are an ordered list.
+
+
+## Derivations
+
+- Deriving the Chain Rule, the special case h(x) = sin(x³) · score 6 · built as drv-chain-rule-special-case: the scan folded it into the proof, but the book prints it as its own block with its own result, two factor limits joined; the result line "Thus, h′(a) = …" went into it
+- Power Rule for Composition of Functions (3.18) · score 0 · not built: prose-first, three moves in inline equations, under the bar
+- Example 3.51 · score 0 · built as drv-chain-rule-cosine (a thin printed block deriving a general formula); the six-formula theorem after Example 3.53 not built: stated as applications, two moves each, nothing printed
+- Chain Rule for a Composition of Three Functions · score 0 · built as drv-chain-rule-three-functions (a thin printed block, general result); the book's misplaced parenthesis in k′(x) is followed by the correct line and the node's note; k and k′ re-anchored to it
+- The Chain Rule · Proof (informal) · score 2 · built as drv-chain-rule, ending on (3.17) at a (the set-up sentence with its assumption g(x) ≠ g(a) stays)
+- The Chain Rule Using Leibniz's Notation · score 0 · built as drv-chain-rule-leibniz (a thin printed block, general result: the chain rule rewritten through the three notations); u, dy/du and du/dx re-anchored to it

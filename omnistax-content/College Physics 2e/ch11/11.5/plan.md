@@ -267,3 +267,7 @@ Applied in the chapter pass (2026-09-14). The six variable anchors and
 the three equation anchors are written as listed. 11.9's `exercise_notes`
 says the backhoe (fs-id3077567) is set here with `source_section` 11.9, and
 this section's says where it came from.
+
+## Derivations
+
+- The forces in a hydraulic system, $F_1/A_1 = F_2/A_2$ ("We can derive", printed inline) · score 1 · built as drv-hydraulic-forces: one node from $P_1 = P_2$ (same height, Pascal's principle) and $P = F/A$; prose-first, so it stands after the paragraph that completes it

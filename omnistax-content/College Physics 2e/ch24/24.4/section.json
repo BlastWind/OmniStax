@@ -750,5 +750,96 @@
       "kind": "correction",
       "html": "The book’s key prints “E would increase”, answering for the electric field. The question asks about the magnetic field, and since $\\kBmag = \\kEf/\\kc$, $B$ increases with $E$."
     }
+  ],
+  "derivations": [
+    {
+      "id": "intensity-from-magnetic-field",
+      "what": "the average intensity from the magnetic field strength",
+      "source": "College Physics 2e, 24.4 Energy in Electromagnetic Waves",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "The wave is a continuous sinusoidal electromagnetic wave.",
+              "src": "24.4"
+            },
+            {
+              "tex": "\\kBmag = \\kEf/\\kc",
+              "src": "24.2"
+            },
+            {
+              "tex": "\\varepsilon_0 = 1/\\mu_0\\kc^2",
+              "src": "24.4"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{e}{\\varepsilon_0}\\mk{E}{\\kEfo^2}}{2}",
+            "uses": [
+              0
+            ],
+            "src": "24.4"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{e}{\\varepsilon_0}\\mk{E}{(\\kc\\kBmago)^2}}{2}",
+              "uses": [
+                1
+              ],
+              "cap": "The ratio holds at all times, so it holds for the maximum field strengths too: $\\kEfo = \\kc\\kBmago$."
+            },
+            {
+              "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{e}{\\varepsilon_0}\\mk{E}{\\kc^2\\kBmago^2}}{2}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{e}{\\dfrac{1}{\\mu_0\\kc^2}}\\mk{E}{\\kc^2\\kBmago^2}}{2}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{E}{\\kBmago^2}}{2\\mk{e}{\\mu_0}}",
+              "uses": []
+            }
+          ],
+          "src": "24.4"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "tex": "\\kc\\cdot\\kBmago = \\kEfo",
+              "src": "24.4"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc}\\mk{E}{\\kBmago^2}}{2\\mk{e}{\\mu_0}}",
+            "uses": [],
+            "src": "24.4"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kc\\kBmago}\\,\\mk{B}{\\kBmago}}{2\\mk{e}{\\mu_0}}",
+              "uses": [],
+              "map": {
+                "E": [
+                  "c",
+                  "B"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{I}{\\kIave} = \\frac{\\mk{c}{\\kEfo}\\mk{B}{\\kBmago}}{2\\mk{e}{\\mu_0}}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "24.4"
+        }
+      ]
+    }
   ]
 }

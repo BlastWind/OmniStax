@@ -123,3 +123,8 @@ Each line supersedes the figure's line above where they differ.
 
 sim-potentiometer · Figure 21.34 · as above · a dashed special circle on R_x at the balance for the cell in the branch, the null the method rests on (26.1, manim 8) · still
 sim-wheatstone · Figure 21.36 · as above · a dashed special circle on R₃ at the balance, R_x R₁/R₂ (26.1, manim 8) · still
+
+## Derivations
+
+- The emf measured by a potentiometer (printed block) · score 2 · built as drv-potentiometer-emf: one node, the two balances divided so the current cancels; replaces the two displayed lines and the connecting phrases
+- The unknown resistance of a balanced Wheatstone bridge (printed block) · score 3 · built as drv-wheatstone-bridge: one node, the equal drops along ad and ab divided by those along dc and bc, the currents cancelled; replaces the four displayed lines and the connecting phrases

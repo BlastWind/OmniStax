@@ -194,3 +194,8 @@ Example 19.8's worked 26.6 µC and the answer key's 80.0 mC is recorded in
 is the setting of Figure 19.19 beside the paragraph on the membrane.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-capacitor`: the rolled capacitor is the parallel plate one rolled up, so a change of kind bends each plate into its sheet of the roll (`F.lerpPts`) and the wires follow their ends (manim-style 2, 16). `sim-dielectric`: one equation, C = κε₀A/d with its numbers, the reduced field in the small line (manim-style 12).
+
+## Derivations
+
+- The charge stored is proportional to the voltage (printed chain of proportionalities) · score 2 · built as drv-charge-proportional-voltage: one node, $V = Ed$ with $d$ fixed and $E \propto Q$ giving $Q \propto V$; replaces the three displayed lines and the connecting phrases
+- The capacitance of a parallel plate capacitor, $C = \varepsilon_0 A/d$ · score 9 · not built: "it can be shown", and the derivation needs the field of a charged plate ($E = \sigma/\varepsilon_0$, Gauss's law), which the book never states (rule 29.3)

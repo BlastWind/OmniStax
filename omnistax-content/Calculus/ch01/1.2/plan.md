@@ -72,3 +72,7 @@ Ids confirmed with `ost ids calculus 1.2` after the build.
   `ost add calculus exercises --section 1.2 '<the row below>'`, then `ost add calculus exercise_concepts --section 1.2 '{"exercise": "r319", "concept": "degree"}'` and the same for `y-intercept` and `zeros-of-a-function`, and name it in 1.5's notes.
   `{"id": "r319", "source_id": "fs-id1170572212641", "source_section": "1.5", "source_number": "319", "kind": "review-exercise", "bloom": "Apply", "place": {"at": "end"}, "cite": "zeros-of-polynomials", "prompt": "<p>Find the degree, <em>y</em>-intercept, and zeros for the following polynomial functions.</p><p>$f(x)=x^{3}+2x^{2}-2x$</p>", "answer": {"type": "open", "generated_by": "source", "solution": "Degree of 3, $y$-intercept: 0, zeros: 0, $\\sqrt{3}-1,-1-\\sqrt{3}$"}}`
 - Applied in the chapter pass (2026-10-12): the anchors above; r319 landed (tags `polynomial-function`, `degree`, `y-intercept`, `zeros-of-a-function`) and r331 from 1.5's row (tags `linear-function`, `mathematical-model`, cite `linear-functions`, its ＄10 written as the ＄440 is so it stays out of the maths); 314 and 318 named as left out.
+
+## Derivations
+
+- Linear Functions and Slope · slope of f(x) = ax + b and the point-slope equation · score 0 · not built: prose-first, each display a single line inside the prose (the slope worked from two points, then the point-slope form), under the four-move floor; stays as printed

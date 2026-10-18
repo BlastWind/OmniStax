@@ -247,3 +247,7 @@ from the solution the publisher commented out is recorded in
 `ch22/exploration.md` under Errata.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5, house style). `sim-hall-carriers`: a change of carrier turns every sign over by a crossfade and swings the drift arrow round through nothing (manim 16). `sim-hall-balance`: the readout is the Hall emf alone, qE = qvB and E = vB going to the small line. `sim-flow-probe`: caption reworded to the reading, not the scale.
+
+## Derivations
+
+- The Hall emf (printed block) · score 4 · built as drv-hall-emf: one node, the electric and magnetic forces balanced to give $E = vB$, then $E = \text{emf}/l$ for the uniform field and solved for the emf; replaces the four displayed lines and the prose between them

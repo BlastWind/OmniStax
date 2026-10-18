@@ -333,3 +333,10 @@ Decided in the chapter pass (2026-09-14): every anchor above is written on
 its row; the two variable rows `10.4/r_curv` (anchored at
 `10.4-rotational-work`) and `10.4/R` (anchored at `10.4-rolling`) are added
 with the meanings given; `ch10/COLOR.md`'s row for 10.4 now lists `force`.
+
+## Derivations
+
+- Rotational work, $\text{net}\,W = (\text{net}\,\tau)\theta$ (printed block) · score 3 · built as drv-rotational-work: one node; replaces the three displayed lines
+- The work-energy theorem for rotation (printed block) · score 3 · built as drv-rotational-work-energy-theorem: three nodes, the dynamics line ($\text{net}\,\tau = I\alpha$) and the kinematics line ($\alpha\theta$ from Table 10.2) joined; replaces the four displayed lines, the definition of $\text{KE}_\text{rot}$ stays
+- The energy of a rolling can, $mgh = \tfrac{1}{2}mv^2 + \tfrac{1}{2}I\omega^2$ (printed block, not in the scan) · score 1 · built as drv-rolling-energy: one node, the three energies substituted one per move; replaces the three displayed lines
+- Example 10.10, the speed of a cylinder rolling down an incline (equation-first, a general result "valid for any solid cylinder") · score 3 · built as drv-rolling-cylinder-speed: two nodes, the general $v = (4gh/3)^{1/2}$ and then the numbers; it starts from the result of drv-rolling-energy, and replaces the whole Solution

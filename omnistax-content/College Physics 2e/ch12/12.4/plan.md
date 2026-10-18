@@ -374,3 +374,8 @@ sections. Table 12.1's header writes $\keta$ with the macro, as the prose
 does, since the page binds viscosity.
 
 Manim pass (2026-09-28, Claude Opus 5.5). `sim-laminar-turbulent`: the obstruction slider, dead in laminar flow, is gone; the obstruction (40 % of the depth) rises out of the bed with the choice through `mix`, while the channel and the layer boundaries stay, lifting over it and, below its top, breaking off behind it as the eddies arrive through `a(v)`. The one speed slider works in both states. Still, no clock. The other figures kept.
+
+## Derivations
+
+- Poiseuille's law, $R = 8\eta l/\pi r^4$ (stated) · score 12 if built · not built: the result is stated, and its derivation needs the velocity profile and an integral over shells the book never gives
+- Example 12.7, plaque deposits · score 0 · not built: a ratio of the section's own law in three moves

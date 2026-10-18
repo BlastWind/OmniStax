@@ -548,5 +548,96 @@
     "sim-potentiometer"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "potentiometer-emf",
+   "what": "the emf measured by a potentiometer",
+   "source": "College Physics 2e, 21.5 Null Measurements",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "At balance no current flows through the galvanometer, so none flows through the unknown emf, and $\\kemfx$ equals the $\\kIcur\\kRes$ drop along the wire up to the contact point.",
+       "src": "21.5"
+      },
+      {
+       "tex": "\\kemfs = \\kIcur\\kRess",
+       "src": "21.5"
+      },
+      {
+       "text": "No current passes through the galvanometer in either case, so the current $\\kIcur$ through the long wire is the same.",
+       "src": "21.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Ex}{\\kemfx} = \\mk{Ix}{\\kIcur\\kResx}",
+      "src": "21.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{Ex}{\\kemfx}}{\\mk{Es}{\\kemfs}} = \\dfrac{\\mk{Ix}{\\kIcur\\kResx}}{\\mk{Is}{\\kIcur\\kRess}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{Ex}{\\kemfx}}{\\mk{Es}{\\kemfs}} = \\dfrac{\\mk{Ix}{\\kResx}}{\\mk{Is}{\\kRess}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{Ex}{\\kemfx} = \\mk{Es}{\\kemfs}\\dfrac{\\mk{Ix}{\\kResx}}{\\mk{Is}{\\kRess}}",
+       "uses": []
+      }
+     ],
+     "src": "21.5"
+    }
+   ]
+  },
+  {
+   "id": "wheatstone-bridge",
+   "what": "the unknown resistance in a balanced Wheatstone bridge",
+   "source": "College Physics 2e, 21.5 Null Measurements",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "At balance b and d are at the same potential, so the $\\kIcur\\kRes$ drops along ad and ab are equal, and so are those along dc and bc.",
+       "src": "21.5"
+      },
+      {
+       "tex": "\\kIcurone\\kRestwo = \\kIcurtwo\\kResx",
+       "src": "21.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kIcurone\\kResone} = \\mk{b}{\\kIcurtwo\\kResthree}",
+      "src": "21.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{a}{\\kIcurone\\kResone}}{\\mk{c}{\\kIcurone\\kRestwo}} = \\dfrac{\\mk{b}{\\kIcurtwo\\kResthree}}{\\mk{d}{\\kIcurtwo\\kResx}}",
+       "uses": [0, 1]
+      },
+      {
+       "tex": "\\dfrac{\\mk{a}{\\kResone}}{\\mk{c}{\\kRestwo}} = \\dfrac{\\mk{b}{\\kResthree}}{\\mk{d}{\\kResx}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\kResx} = \\mk{b}{\\kResthree}\\dfrac{\\mk{c}{\\kRestwo}}{\\mk{a}{\\kResone}}",
+       "uses": []
+      }
+     ],
+     "src": "21.5"
+    }
+   ]
+  }
  ]
 }

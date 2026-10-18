@@ -1569,11 +1569,6 @@
    "html": "The book cites Example 17.1, the classification of equations; the equation meant is $a\\kydprime+b\\kyprime+c\\kyfn=0,$ <a href=\"#fs-id1170572185074\">Equation 17.2</a>."
   },
   {
-   "id": "c-dependent",
-   "kind": "correction",
-   "html": "The argument starts from functions that are linearly dependent, as the next sentence uses: there are constants $c_{1}$ and $c_{2},$ not both zero, with $c_{1}\\kf_{1}(x)+c_{2}\\kf_{2}(x)=0.$"
-  },
-  {
    "id": "c-functions-of-x",
    "kind": "correction",
    "html": "Parts b, c and f give their answers as functions of $t;$ as functions of $x$ they are $\\kyfn(x)=e^{-3x}(c_{1}\\cos 2x+c_{2}\\sin 2x),$ $\\kyfn(x)=c_{1}e^{-x}+c_{2}xe^{-x}$ and $\\kyfn(x)=c_{1}\\cos 4x+c_{2}\\sin 4x.$"
@@ -1587,6 +1582,570 @@
    "id": "c-r119-equation",
    "kind": "correction",
    "html": "The equation is printed with $10$ for $10\\kyfn;$ the answer is False for $\\kydprime+2\\kyprime+10\\kyfn=0$ too, whose solutions are $e^{-x}(c_{1}\\cos 3x+c_{2}\\sin 3x).$"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "linear-dependence-of-two-functions",
+   "what": "the linear dependence of two functions",
+   "source": "Calculus, 17.1 Second-Order Linear Equations, Homogeneous Linear Equations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf_{1}(x)$ and $\\kf_{2}(x)$ are linearly dependent."
+      },
+      {
+       "text": "A set of functions is linearly dependent if there are constants $c_{1},c_{2},\\ldots,c_{n},$ not all zero, such that $c_{1}\\kf_{1}(x)+c_{2}\\kf_{2}(x)+\\cdots +c_{n}\\kf_{n}(x)=0$ for all $x$ over the interval of interest.",
+       "src": "17.1, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{c_{1}\\kf_{1}(x)}+\\mk{b}{c_{2}\\kf_{2}(x)}=\\mk{z}{0}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "17.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{c_{1}\\kf_{1}(x)}=\\mk{b}{-c_{2}\\kf_{2}(x)}",
+       "uses": []
+      }
+     ],
+     "src": "17.1",
+     "note": "The book begins “Assume $\\kf_{1}(x)$ and $\\kf_{2}(x)$ are linearly independent”; the argument starts from functions that are linearly dependent, as its next line uses."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Since $c_{1}$ and $c_{2}$ are not both zero, take $c_{2}\\ne 0.$"
+      },
+      {
+       "tex": "c_{1}=0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{c_{1}\\kf_{1}(x)}=\\mk{b}{-c_{2}\\kf_{2}(x)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{0}=\\mk{b}{-c_{2}\\kf_{2}(x)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{0}=\\mk{b}{\\kf_{2}(x)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "17.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "c_{1}\\ne 0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{c_{1}\\kf_{1}(x)}=\\mk{b}{-c_{2}\\kf_{2}(x)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kf_{1}(x)}=\\mk{b}{(-\\frac{c_{2}}{c_{1}})\\kf_{2}(x)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "17.1"
+    }
+   ]
+  },
+  {
+   "id": "characteristic-equation",
+   "what": "the characteristic equation",
+   "source": "Calculus, 17.1 Second-Order Linear Equations, Second-Order Equations with Constant Coefficients",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g^{\\prime}(x)",
+       "src": "3.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyfn(x)}=\\mk{e}{e^{\\lambda x}}",
+      "uses": [],
+      "src": "17.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyprime(x)}=\\mk{e}{\\lambda e^{\\lambda x}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "17.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g^{\\prime}(x)",
+       "src": "3.9"
+      },
+      {
+       "text": "A constant factor passes through a derivative: $\\frac{d}{dx}(kf(x))=k\\frac{d}{dx}(f(x)).$",
+       "src": "3.3, Constant Multiple Rule"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyprime(x)}=\\mk{e}{\\lambda e^{\\lambda x}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kydprime}=\\mk{e}{{\\lambda }^{2}e^{\\lambda x}}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "17.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kyfn(x)=e^{\\lambda x}",
+       "src": "17.1"
+      },
+      {
+       "text": "$\\kyfn$ is to solve $a\\kydprime+b\\kyprime+c\\kyfn=0.$",
+       "src": "(17.2)"
+      },
+      {
+       "text": "$e^{\\lambda x}$ is never zero.",
+       "src": "17.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{a\\kydprime+b\\kyprime+c\\kyfn}=a\\mk{ydd}{\\kydprime}+b\\mk{yd}{\\kyprime}+c\\mk{y}{\\kyfn}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{a\\kydprime+b\\kyprime+c\\kyfn}=a\\mk{ydd}{({\\lambda }^{2}e^{\\lambda x})}+b\\mk{yd}{(\\lambda e^{\\lambda x})}+c\\mk{y}{e^{\\lambda x}}",
+       "uses": [
+        0,
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{a\\kydprime+b\\kyprime+c\\kyfn}=\\mk{e}{e^{\\lambda x}}\\mk{p}{(a{\\lambda }^{2}+b\\lambda +c)}",
+       "uses": [],
+       "map": {
+        "ydd": [
+         "e",
+         "p"
+        ],
+        "yd": [
+         "e",
+         "p"
+        ],
+        "y": [
+         "e",
+         "p"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{0}=\\mk{e}{e^{\\lambda x}}\\mk{p}{(a{\\lambda }^{2}+b\\lambda +c)}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{p}{a{\\lambda }^{2}+b\\lambda +c}=\\mk{L}{0}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "17.1"
+    }
+   ]
+  },
+  {
+   "id": "repeated-root",
+   "what": "the second solution for a repeated root",
+   "source": "Calculus, 17.1 Second-Order Linear Equations, Single Repeated Real Root",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\lambda$ is a repeated root, so $b^{2}-4ac=0.$",
+       "src": "17.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\lambda }=\\frac{\\mk{b}{-b}\\pm \\mk{r}{\\sqrt{b^{2}-4ac}}}{\\mk{d}{2a}}",
+      "uses": [],
+      "src": "17.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\lambda }=\\frac{\\mk{b}{-b}\\pm \\mk{r}{\\sqrt{0}}}{\\mk{d}{2a}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\lambda }=\\frac{\\mk{b}{-b}}{\\mk{d}{2a}}",
+       "uses": []
+      }
+     ],
+     "src": "17.1"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The derivative of a product: $(fg)^{\\prime}=f^{\\prime}g+fg^{\\prime}.$",
+       "src": "3.3, Product Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g^{\\prime}(x)",
+       "src": "3.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyfn}=\\mk{x}{x}\\mk{e}{e^{\\lambda x}}",
+      "uses": [],
+      "src": "17.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyprime}=\\mk{a}{e^{\\lambda x}}+\\mk{b}{\\lambda xe^{\\lambda x}}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "x": [
+         "a",
+         "b"
+        ],
+        "e": [
+         "a",
+         "b"
+        ]
+       }
+      }
+     ],
+     "src": "17.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The derivative of a product: $(fg)^{\\prime}=f^{\\prime}g+fg^{\\prime}.$",
+       "src": "3.3, Product Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(e^{g(x)})=e^{g(x)}g^{\\prime}(x)",
+       "src": "3.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyprime}=\\mk{a}{e^{\\lambda x}}+\\mk{b}{\\lambda xe^{\\lambda x}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kydprime}=\\mk{a}{\\lambda e^{\\lambda x}}+\\mk{b}{\\lambda e^{\\lambda x}+{\\lambda }^{2}xe^{\\lambda x}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kydprime}=\\mk{a}{2\\lambda e^{\\lambda x}}+\\mk{b}{{\\lambda }^{2}xe^{\\lambda x}}",
+       "uses": []
+      }
+     ],
+     "src": "17.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kyfn=xe^{\\lambda x}",
+       "src": "17.1"
+      },
+      {
+       "text": "$\\lambda$ is a root of the characteristic equation: $a{\\lambda }^{2}+b\\lambda +c=0.$",
+       "src": "17.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{a\\kydprime+b\\kyprime+c\\kyfn}=a\\mk{ydd}{\\kydprime}+b\\mk{yd}{\\kyprime}+c\\mk{y}{\\kyfn}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{a\\kydprime+b\\kyprime+c\\kyfn}=a\\mk{ydd}{(2\\lambda e^{\\lambda x}+{\\lambda }^{2}xe^{\\lambda x})}+b\\mk{yd}{(e^{\\lambda x}+\\lambda xe^{\\lambda x})}+c\\mk{y}{xe^{\\lambda x}}",
+       "uses": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{a\\kydprime+b\\kyprime+c\\kyfn}=\\mk{x}{xe^{\\lambda x}}\\mk{p}{(a{\\lambda }^{2}+b\\lambda +c)}+\\mk{e}{e^{\\lambda x}}\\mk{q}{(2a\\lambda +b)}",
+       "uses": [],
+       "map": {
+        "ydd": [
+         "x",
+         "p",
+         "e",
+         "q"
+        ],
+        "yd": [
+         "x",
+         "p",
+         "e",
+         "q"
+        ],
+        "y": [
+         "x",
+         "p"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{a\\kydprime+b\\kyprime+c\\kyfn}=\\mk{x}{xe^{\\lambda x}}\\mk{p}{(0)}+\\mk{e}{e^{\\lambda x}}\\mk{q}{(2a(\\frac{-b}{2a})+b)}",
+       "uses": [
+        0,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{L}{a\\kydprime+b\\kyprime+c\\kyfn}=\\mk{x}{0}+\\mk{e}{e^{\\lambda x}}\\mk{q}{(0)}",
+       "uses": [],
+       "map": {
+        "p": "x"
+       }
+      },
+      {
+       "tex": "\\mk{L}{a\\kydprime+b\\kyprime+c\\kyfn}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "x": "z",
+        "e": "z",
+        "q": "z"
+       }
+      }
+     ],
+     "src": "17.1"
+    }
+   ]
+  },
+  {
+   "id": "complex-conjugate-roots",
+   "what": "real solutions for complex conjugate roots",
+   "source": "Calculus, 17.1 Second-Order Linear Equations, Complex Conjugate Roots",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "e^{i\\theta}=\\cos \\theta +i\\;\\sin \\theta",
+       "src": "17.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyfn(x)}=\\mk{c1}{c_{1}}\\mk{e1}{e^{(\\alpha +\\beta i)x}}+\\mk{c2}{c_{2}}\\mk{e2}{e^{(\\alpha -\\beta i)x}}",
+      "uses": [],
+      "src": "17.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{c1}{c_{1}}\\mk{a}{e^{\\alpha x}}\\mk{e1}{e^{\\beta ix}}+\\mk{c2}{c_{2}}\\mk{a2}{e^{\\alpha x}}\\mk{e2}{e^{-\\beta ix}}",
+       "uses": [],
+       "cap": "A law of exponents: $e^{u+v}=e^{u}e^{v}.$",
+       "map": {
+        "e1": [
+         "a",
+         "e1"
+        ],
+        "e2": [
+         "a2",
+         "e2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}(\\mk{c1}{c_{1}}\\mk{e1}{e^{\\beta ix}}+\\mk{c2}{c_{2}}\\mk{e2}{e^{-\\beta ix}})",
+       "uses": [],
+       "map": {
+        "a2": "a"
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{c1}{c_{1}}(\\mk{cos}{\\cos \\beta x}+\\mk{sin}{i\\;\\sin \\beta x})+\\mk{c2}{c_{2}}(\\mk{cos2}{\\cos (-\\beta x)}+\\mk{sin2}{i\\;\\sin (-\\beta x)})]",
+       "uses": [
+        0
+       ],
+       "map": {
+        "e1": [
+         "cos",
+         "sin"
+        ],
+        "e2": [
+         "cos2",
+         "sin2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{c1}{c_{1}}(\\mk{cos}{\\cos \\beta x}+\\mk{sin}{i\\;\\sin \\beta x})+\\mk{c2}{c_{2}}(\\mk{cos2}{\\cos \\beta x}-\\mk{sin2}{i\\;\\sin \\beta x})]",
+       "uses": [],
+       "cap": "$\\cos (-x)=\\cos x$ and $\\sin (-x)=-\\sin x.$"
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{cc}{(c_{1}+c_{2})}\\mk{cos}{\\cos \\beta x}+\\mk{sc}{(c_{1}-c_{2})}\\mk{sin}{i\\;\\sin \\beta x}]",
+       "uses": [],
+       "map": {
+        "c1": [
+         "cc",
+         "sc"
+        ],
+        "c2": [
+         "cc",
+         "sc"
+        ],
+        "cos2": "cos",
+        "sin2": "sin"
+       }
+      }
+     ],
+     "src": "17.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "c_{1}=c_{2}=\\frac{1}{2}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{cc}{(c_{1}+c_{2})}\\mk{cos}{\\cos \\beta x}+\\mk{sc}{(c_{1}-c_{2})}\\mk{sin}{i\\;\\sin \\beta x}]",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{cc}{(\\frac{1}{2}+\\frac{1}{2})}\\mk{cos}{\\cos \\beta x}+\\mk{sc}{(\\frac{1}{2}-\\frac{1}{2})}\\mk{sin}{i\\;\\sin \\beta x}]",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{cc}{(1)}\\mk{cos}{\\cos \\beta x}+\\mk{sc}{(0)}\\mk{sin}{i\\;\\sin \\beta x}]",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}\\mk{cos}{\\cos \\beta x}",
+       "uses": [],
+       "map": {
+        "cc": "cos"
+       }
+      }
+     ],
+     "src": "17.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "c_{1}=-\\frac{i}{2},\\;c_{2}=\\frac{i}{2}"
+      },
+      {
+       "tex": "i=\\sqrt{-1}",
+       "src": "17.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{cc}{(c_{1}+c_{2})}\\mk{cos}{\\cos \\beta x}+\\mk{sc}{(c_{1}-c_{2})}\\mk{sin}{i\\;\\sin \\beta x}]",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{cc}{(-\\frac{i}{2}+\\frac{i}{2})}\\mk{cos}{\\cos \\beta x}+\\mk{sc}{(-\\frac{i}{2}-\\frac{i}{2})}\\mk{sin}{i\\;\\sin \\beta x}]",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{cc}{(0)}\\mk{cos}{\\cos \\beta x}+\\mk{sc}{(-i)}\\mk{sin}{i\\;\\sin \\beta x}]",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{cc}{(0)}\\mk{cos}{\\cos \\beta x}+\\mk{sc}{(-i^{2})}\\mk{sin}{\\sin \\beta x}]",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}[\\mk{cc}{(0)}\\mk{cos}{\\cos \\beta x}+\\mk{sc}{(1)}\\mk{sin}{\\sin \\beta x}]",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kyfn(x)}=\\mk{a}{e^{\\alpha x}}\\mk{sin}{\\sin \\beta x}",
+       "uses": [],
+       "map": {
+        "sc": "sin"
+       }
+      }
+     ],
+     "src": "17.1"
+    }
+   ]
   }
  ]
 }

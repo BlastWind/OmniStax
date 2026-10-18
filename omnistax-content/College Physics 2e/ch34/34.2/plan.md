@@ -145,3 +145,7 @@ gravitational waves "not yet observed" against the text's LIGO detection; "Steph
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass (2026-10-05): `eq-schwarzschild-radius` and the rows `R_S`, `G`, `M`, `c` anchored to 34.2-black-holes. Added: `a`, `g` (concept `acceleration-due-to-gravity`) and `t` at 34.2-general-relativity; `θ` and `r` (concept `distance`) at 34.2-light-bent-by-the-sun. `Δy` is not added: the figure writes the drops as $\tfrac{1}{2}\ka\kt^{2}$ and $\tfrac{1}{2}\kg\kt^{2}$ and never writes $\Delta y$. `ch34/COLOR.md` records angle, mass, velocity and time with the four referents.
+
+## Derivations
+
+- Black holes, the Schwarzschild radius $R_S = 2GM/c^2$ · score 5 · not built: the book states it as "given by" with no claim that it follows, and the escape argument is three moves

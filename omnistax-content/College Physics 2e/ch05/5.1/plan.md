@@ -400,3 +400,8 @@ contestant's head.
 Revised in the Manim pass of 2026-09-28:
 - `sim-interface` · the applied force carries a dashed circle at f_s(max) = μ_s mg, the breakaway the text names, recomputed from the mass (rule 26.1); the readout is that one equation (manim-style 12).
 - `sim-probe` · the headline no longer speaks of the drawing (root rule 17).
+
+## Derivations
+
+- Take-Home Experiment after Example 5.1, $\mu_k = \tan\theta$ for sliding at constant velocity · score 2 · built as drv-friction-coefficient-slope: one node; the book prints the work for the reader, the experiment is only what follows it; the two substitutions the book makes in one line are two moves; replaces the three displays and 'Solving for $\mu_k$'
+- Example 5.1 discussion, constant acceleration down a slope with friction ('Proof of this is left for this chapter's Problems and Exercises') · score 8 · not built: set for the reader as a problem

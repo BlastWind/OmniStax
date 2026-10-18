@@ -258,3 +258,7 @@ prints only the handlebar and the guidance gyroscope; it is set here as
 weight 2, and `exercise_notes` is corrected: of the three conceptual
 questions the first two are set here and the handlebar (fs-id2578076) is set
 with 10.7. Figure 10.12 resolves, since 10.3's `sim-inertias` row is built.
+
+## Derivations
+
+- Example 10.15 (a), the angular velocity after the disk strikes the stick · score 5 · built as drv-collision-angular-velocity: five nodes, the disk's angular momentum ($I = mr^2$, $\omega = v/r$) and the combined moment of inertia (Figure 10.12's rod) as independent lines joined by conservation of angular momentum, then the numbers; replaces the Solution for (a). Parts (b) and (c) stay as printed: (b) substitutes into the two kinetic energies and (c) is a three-move chain scoring 3

@@ -59,11 +59,7 @@ $$\kveca(t)=\kvprime(t)\;\kvecT(t)+{[\kv(t)]}^{2}\kkappa \;\kvecN(t).$$
 <p>Here, $\kv(t)$ is the <span data-concept="speed-of-a-moving-object">speed</span> of the object and $\kkappa$ is the <span data-concept="curvature">curvature</span> of <em>C</em> traced out by $\kvecr(t).$</p>
 </div>
 <h3>Proof</h3>
-<p>Because $\kvecv(t)=\kvecrprime(t)$ and $\kvecT(t)=\frac{\kvecrprime(t)}{\| \kvecrprime(t)\|},$ we have $\kvecv(t)=\| \kvecrprime(t)\| \kvecT(t)=\kv(t)\;\kvecT(t).$ Now we differentiate this equation:</p>
-$$\kveca(t)=\kvecvprime(t)=\frac{d}{dt}(\kv(t)\;\kvecT(t))=\kvprime(t)\;\kvecT(t)+\kv(t)\;\kvecTprime(t).$$
-<p>Since $\kvecN(t)=\frac{\kvecTprime(t)}{\| \kvecTprime(t)\|},$ we know $\kvecTprime(t)=\| \kvecTprime(t)\| \kvecN(t),$ so</p>
-$$\kveca(t)=\kvprime(t)\;\kvecT(t)+\kv(t)\| \kvecTprime(t)\| \kvecN(t).$$
-<p>A formula for <span data-concept="curvature">curvature</span> is $\kkappa =\frac{\| \kvecTprime(t)\|}{\| \kvecrprime(t)\|},$ so $\| \kvecTprime(t)\| =\kkappa \| \kvecrprime(t)\| =\kkappa \kv(t).$ This gives $\kveca(t)=\kvprime(t)\;\kvecT(t)+\kkappa {(\kv(t))}^{2}\kvecN(t).$</p>
+<figure class="dv" id="drv-plane-of-acceleration"></figure>
 <p>□</p>
 <p id="components-term">The coefficients of $\kvecT(t)$ and $\kvecN(t)$ are referred to as the <strong><span data-concept="tangential-component-of-acceleration">tangential component of acceleration</span></strong> and the <strong><span data-concept="normal-component-of-acceleration">normal component of acceleration</span></strong>, respectively. We write $a_{\boldsymbol{T}}$ to denote the tangential component and $a_{\boldsymbol{N}}$ to denote the normal component.</p>
 <div class="note" id="fs-id1169738126019">
@@ -105,25 +101,19 @@ $$\begin{array}{rll}a_{\boldsymbol{T}}(2) & = & \frac{40(2)-18}{\sqrt{40{(2)}^{2
 <figure class="sim" id="sim-falling-ball" data-figure="13.15" data-original="/media/ch13/CNX_Calc_Figure_13_04_005.jpg" data-original-caption="An object is falling under the influence of gravity.">
   <div class="sim-head"><span class="eyebrow">Figure 13.15</span><span>A ball dropped from rest falls under gravity: its <span data-concept="acceleration-vector">acceleration</span> $\kveca=-g\kvecj$ never changes, while its <span data-concept="velocity-vector">velocity</span> $\kvecv(t)=-gt\kvecj$ grows and the distance it has fallen, $\frac{1}{2}gt^{2},$ grows faster still; here $g=9.8$ m/sec<sup>2</sup>.</span></div>
 </figure>
-<p>Newton’s second law also tells us that $F=m\;\kveca,$ where $\kveca$ represents the <span data-concept="acceleration-vector">acceleration vector</span> of the object. This force must be equal to the force of gravity at all times, so we therefore know that</p>
-$$\begin{array}{rll}F & = & F_{g} \\ m\;\kveca & = & -mg\;\kvecj \\ \kveca & = & -g\;\kvecj.\end{array}$$
-<p>Now we use the fact that the <span data-concept="acceleration-vector">acceleration vector</span> is the first derivative of the <span data-concept="velocity-vector">velocity vector</span>. Therefore, we can rewrite the last equation in the form</p>
-$$\kvecvprime(t)=-g\;\kvecj.$$
-<p>By taking the <span data-concept="antiderivative">antiderivative</span> of each side of this equation we obtain</p>
-$$\begin{array}{rl}\kvecv(t) & =\int -g\;\kvecj\,dt \\ & =-gt\;\kvecj+{\textbf{C}}_{1}\end{array}$$
-<p>for some constant vector ${\textbf{C}}_{1}.$ To determine the value of this vector, we can use the <span data-concept="velocity-vector">velocity</span> of the object at a fixed time, say at time $t=0.$ We call this <span data-concept="velocity-vector">velocity</span> the <em><span data-concept="initial-velocity">initial velocity</span></em>: $\kvecv(0)=\kvecvzero.$ Therefore, $\kvecv(0)=-g(0)\;\kvecj+{\textbf{C}}_{1}=\kvecvzero$ and ${\textbf{C}}_{1}=\kvecvzero.$ This gives the <span data-concept="velocity-vector">velocity vector</span> as $\kvecv(t)=-gt\;\kvecj+\kvecvzero.$</p>
-<p>Next we use the fact that <span data-concept="velocity-vector">velocity</span> $\kvecv(t)$ is the derivative of position $\kvecs(t).$ This gives the equation</p>
-$$\kvecsprime(t)=-gt\;\kvecj+\kvecvzero.$$
-<p>Taking the <span data-concept="antiderivative">antiderivative</span> of both sides of this equation leads to</p>
-$$\begin{array}{rl}\kvecs(t) & =\int -gt\;\kvecj+{\kvecv}_{0}dt \\ & =-\frac{1}{2}gt^{2}\kvecj+{\kvecv}_{0}t+{\textbf{C}}_{2},\end{array}$$
-<p>with another unknown constant vector ${\textbf{C}}_{2}.$ To determine the value of ${\textbf{C}}_{2},$ we can use the position of the object at a given time, say at time $t=0.$ We call this position the <em>initial position</em>: $\kvecs(0)=\kvecszero.$ Therefore, $\kvecs(0)=-(1/2)g{(0)}^{2}\kvecj+\kvecvzero(0)+{\textbf{C}}_{2}=\kvecszero$ and ${\textbf{C}}_{2}=\kvecszero.$ This gives the position of the object at any time as</p>
+<p>Newton’s second law also tells us that $F=m\;\kveca,$ where $\kveca$ represents the <span data-concept="acceleration-vector">acceleration vector</span> of the object. This force must be equal to the force of gravity at all times.</p>
+<figure class="dv" id="drv-projectile-velocity"></figure>
+<p>To determine the value of this vector, we can use the <span data-concept="velocity-vector">velocity</span> of the object at a fixed time, say at time $t=0.$ We call this <span data-concept="velocity-vector">velocity</span> the <em><span data-concept="initial-velocity">initial velocity</span></em>: $\kvecv(0)=\kvecvzero.$ Therefore, $\kvecv(0)=-g(0)\;\kvecj+{\textbf{C}}_{1}=\kvecvzero$ and ${\textbf{C}}_{1}=\kvecvzero.$ This gives the <span data-concept="velocity-vector">velocity vector</span> as $\kvecv(t)=-gt\;\kvecj+\kvecvzero.$</p>
+<p>Next we use the fact that <span data-concept="velocity-vector">velocity</span> $\kvecv(t)$ is the derivative of position $\kvecs(t).$</p>
+<figure class="dv" id="drv-projectile-position"></figure>
+<p>To determine the value of ${\textbf{C}}_{2},$ we can use the position of the object at a given time, say at time $t=0.$ We call this position the <em>initial position</em>: $\kvecs(0)=\kvecszero.$ Therefore, $\kvecs(0)=-(1/2)g{(0)}^{2}\kvecj+\kvecvzero(0)+{\textbf{C}}_{2}=\kvecszero$ and ${\textbf{C}}_{2}=\kvecszero.$ This gives the position of the object at any time as</p>
 $$\kvecs(t)=-\frac{1}{2}gt^{2}\kvecj+{\kvecv}_{0}t+\kvecszero.$$
 <p id="projectile-angle">Let’s take a closer look at the <span data-concept="initial-velocity">initial velocity</span> and initial position. In particular, suppose the object is thrown upward from the origin at an angle $\ktheta$ to the horizontal, with initial <span data-concept="speed-of-a-moving-object">speed</span> $v_{0}.$ How can we modify the previous result to reflect this scenario? First, we can assume it is thrown from the origin. If not, then we can move the origin to the point from where it is thrown. Therefore, $\kvecszero=\kveczero,$ as shown in the following figure.</p>
 <figure class="sim" id="sim-projectile" data-figure="13.16" data-original="/media/ch13/CNX_Calc_Figure_13_04_006.jpg" data-original-caption="Projectile motion when the object is thrown upward at an angle θ. The horizontal motion is at constant velocity and the vertical motion is at constant acceleration.">
   <div class="sim-head"><span class="eyebrow">Figure 13.16</span><span>A projectile thrown from the origin at the angle $\ktheta$ with initial speed $v_{0}$ flies along $\kvecs(t)=v_{0}t\cos \ktheta \,\kveci+(v_{0}t\sin \ktheta -\frac{1}{2}gt^{2})\kvecj,$ with $g=9.8$ m/sec<sup>2</sup>. Its <span data-concept="velocity-vector">velocity</span>, shown at five instants, keeps a constant horizontal part while its vertical part shrinks, vanishes at the height $H$ and reverses. The range $R=\frac{v_{0}^{2}\sin 2\ktheta}{g}$ is longest at $\ktheta =45^{\circ}.$</span></div>
 </figure>
-<p>We can rewrite the initial <span data-concept="velocity-vector">velocity vector</span> in the form $\kvecvzero=v_{0}\cos \ktheta \;\kveci+v_{0}\sin \ktheta \;\kvecj.$ Then the equation for the position function $\kvecs(t)$ becomes</p>
-$$\begin{array}{rl}\kvecs(t) & =-\frac{1}{2}gt^{2}\;\kvecj+v_{0}t\;\cos \ktheta \;\kveci+v_{0}t\;\sin \ktheta \;\kvecj \\ & =v_{0}t\;\cos \ktheta \;\kveci+v_{0}t\;\sin \ktheta \;\kvecj-\frac{1}{2}gt^{2}\;\kvecj \\ & =v_{0}t\;\cos \ktheta \;\kveci+(v_{0}t\;\sin \ktheta \;-\frac{1}{2}gt^{2})\;\kvecj.\end{array}$$
+<p>We can rewrite the initial <span data-concept="velocity-vector">velocity vector</span> in the form $\kvecvzero=v_{0}\cos \ktheta \;\kveci+v_{0}\sin \ktheta \;\kvecj.$</p>
+<figure class="dv" id="drv-projectile-at-an-angle"></figure>
 <p id="range-height">The coefficient of $\kveci$ represents the horizontal component of $\kvecs(t)$ and is the horizontal distance of the object from the origin at time <em>t.</em> The maximum value of the horizontal distance (measured at the same initial and final altitude) is called the range <em>R</em>. The coefficient of $\kvecj$ represents the vertical component of $\kvecs(t)$ and is the altitude of the object at time <em>t.</em> The maximum value of the vertical distance is the height <em>H</em>.</p>
 <div class="example" id="fs-id1169738125890">
 <h3>Example 13.16 · Motion of a Cannonball</h3>
@@ -152,19 +142,9 @@ $$\begin{array}{rl}\kvecs(19.08) & =300(19.08)\sqrt{3}\kveci+(300(19.08)-16{(19.
 <p>Therefore, the ball hits the water about 9914.26 ft away from the base of the cliff. Notice that the vertical component of the position vector is very close to $-100,$ which tells us that the ball just hit the water. Note that 9914.26 feet is not the true range of the cannon since the cannonball lands in the ocean at a location below the cannon. The range of the cannon would be determined by finding how far out the cannonball is when its height is 100 ft above the water (the same as the altitude of the cannon).</p>
 </div>
 <div class="exercises" data-place="fs-id1169738125890"></div>
-<p id="range-question">One final question remains: In general, what is the maximum distance a projectile can travel, given its initial <span data-concept="speed-of-a-moving-object">speed</span>? To determine this distance, we assume the projectile is fired from ground level and we wish it to return to ground level. In other words, we want to determine an equation for the range. In this case, the equation of <span data-concept="projectile-motion">projectile motion</span> is</p>
-$$\kvecs(t)=v_{0}t\;\cos \ktheta \;\kveci+(v_{0}t\;\sin \ktheta -\frac{1}{2}gt^{2})\;\kvecj.$$
-<p>Setting the second component equal to zero and solving for <em>t</em> yields</p>
-$$\begin{array}{rll}v_{0}t\;\sin \ktheta -\frac{1}{2}gt^{2} & = & 0 \\ t(v_{0}\sin \ktheta -\frac{1}{2}gt) & = & 0.\end{array}$$
-<p>Therefore, either $t=0$ or $t=\frac{2v_{0}\sin \ktheta}{g}.$ We are interested in the second value of <em>t</em>, so we substitute this into $\kvecs(t),$ which gives</p>
-$$\begin{array}{rl}\kvecs(\frac{2v_{0}\sin \ktheta}{g}) & =v_{0}(\frac{2v_{0}\sin \ktheta}{g})\cos \ktheta \;\kveci+(v_{0}(\frac{2v_{0}\sin \ktheta}{g})\sin \ktheta -\frac{1}{2}g{(\frac{2v_{0}\sin \ktheta}{g})}^{2})\;\kvecj \\ & =(\frac{2v_0^{2}\sin \ktheta \;\cos \ktheta}{g})\;\kveci \\ & =\frac{v_0^{2}\sin 2\ktheta}{g}\kveci.\end{array}$$
-<p>Thus, the expression for the range of a projectile fired at an angle $\ktheta$ is</p>
-$$R=\frac{v_0^{2}\sin 2\ktheta}{g}\kveci.$$
-<p>The only variable in this expression is $\ktheta .$ To maximize the distance traveled, take the derivative of the coefficient of $\kveci$ with respect to $\ktheta$ and set it equal to zero:</p>
-$$\begin{array}{rll}\frac{d}{d\ktheta}(\frac{v_0^{2}\sin 2\ktheta}{g}) & = & 0 \\ \frac{2v_0^{2}\cos 2\ktheta}{g} & = & 0 \\ \ktheta & = & 45^{\circ}.\end{array}$$
-<p>This value of $\ktheta$ is the smallest positive value that makes the derivative equal to zero. Therefore, in the absence of air resistance, the best angle to fire a projectile (to maximize the range) is at a $45^{\circ}$ angle. The distance it travels is given by<sup class="fn" data-note="c-range-j"></sup></p>
-$$\kvecs(\frac{2v_{0}\sin 45}{g})=\frac{v_0^{2}\sin 90}{g}\kveci=\frac{v_0^{2}}{g}\kvecj.$$
-<p>Therefore, the range for an angle of $45^{\circ}$ is $v_0^{2}/g.$</p>
+<p id="range-question">One final question remains: In general, what is the maximum distance a projectile can travel, given its initial <span data-concept="speed-of-a-moving-object">speed</span>? To determine this distance, we assume the projectile is fired from ground level and we wish it to return to ground level. In other words, we want to determine an equation for the range.</p>
+<figure class="dv" id="drv-projectile-range"></figure>
+<p>This value of $\ktheta$ is the smallest positive value that makes the derivative equal to zero. Therefore, in the absence of air resistance, the best angle to fire a projectile (to maximize the range) is at a $45^{\circ}$ angle.</p>
 </section>
 <section id="keplers-laws">
 <h2>Kepler’s Laws</h2>
@@ -183,42 +163,13 @@ $$T_p^{2}=D_p^{3}$$
 <p><span data-concept="keplers-laws-of-planetary-motion">Kepler’s laws</span> were formulated based on observations from Brahe; however, they were not proved formally until Sir Isaac Newton was able to apply calculus. Furthermore, Newton was able to generalize <span data-concept="keplers-laws-of-planetary-motion">Kepler’s third law</span> to other orbital systems, such as a moon orbiting around a planet. Kepler’s original third law only applies to objects orbiting the Sun.</p>
 <h3>Proof</h3>
 <p id="kepler-proof">Let’s now prove <span data-concept="keplers-laws-of-planetary-motion">Kepler’s first law</span> using the calculus of <span data-concept="vector-valued-function">vector-valued functions</span>. First we need a coordinate system. Let’s place the Sun at the origin of the coordinate system and let the <span data-concept="vector-valued-function">vector-valued function</span> $\kvecr(t)$ represent the location of a planet as a function of time. Newton proved Kepler’s law using his second law of motion and his law of universal gravitation. Newton’s second law of motion can be written as $\kvecF=m\;\kveca,$ where $\kvecF$ represents the net force acting on the planet. His law of universal gravitation can be written in the form $\kvecF=-\frac{GmM}{{\| \kvecr\|}^{2}}\cdot \frac{\kvecr}{\| \kvecr\|},$ which indicates that the force resulting from the gravitational attraction of the Sun points back toward the Sun, and has magnitude $\frac{GmM}{{\| \kvecr\|}^{2}}$ (<a href="#sim-kepler">Figure 13.19</a>).</p>
-<p>Setting these two forces equal to each other, and using the fact that $\kveca(t)=\kvecvprime(t),$ we obtain</p>
-$$m\;\kvecvprime(t)=-\frac{GmM}{{\| \kvecr\|}^{2}}\cdot \frac{\kvecr}{\| \kvecr\|},$$
-<p>which can be rewritten as</p>
-$$\frac{d\;\kvecv}{dt}=-\frac{GM}{{\| \kvecr\|}^{3}}\kvecr.$$
-<p>This equation shows that the vectors $d\;\kvecv/dt$ and $\kvecr$ are parallel to each other, so $d\;\kvecv/dt\;\times \;\kvecr=\kveczero.$ Next, let’s differentiate $\kvecr\;\times \;\kvecv$ with respect to time:</p>
-$$\frac{d}{dt}(\kvecr\;\times \;\kvecv)=\frac{d\;\kvecr}{dt}\;\times \;\kvecv+\kvecr\;\times \;\frac{d\;\kvecv}{dt}=\kvecv\;\times \;\kvecv+\kveczero=\kveczero.$$
+<figure class="dv" id="drv-kepler-constant-vector"></figure>
 <p>This proves that $\kvecr\;\times \;\kvecv$ is a constant vector, which we call <strong>C</strong>. Since $\kvecr$ and $\kvecv$ are both perpendicular to <strong>C</strong> for all values of <em>t</em>, they must lie in a plane perpendicular to <strong>C</strong>. Therefore, the motion of the planet lies in a plane.</p>
-<p>Next we calculate the expression $d\;\kvecv/dt\;\times \;\textbf{C}\text{:}$</p>
-<div class="equation" id="fs-id1169737178273">$$\frac{d\;\kvecv}{dt}\;\times \;\textbf{C}=-\frac{GM}{{\| \kvecr\|}^{3}}\kvecr\;\times \;(\kvecr\;\times \;\kvecv)=-\frac{GM}{{\| \kvecr\|}^{3}}[(\kvecr\cdot \kvecv)\;\kvecr-(\kvecr\cdot \kvecr)\;\kvecv].\tag{13.26}$$</div>
-<p>The last equality in <a href="#fs-id1169737178273">Equation 13.26</a> is from the <span data-concept="cross-product">triple cross product</span> formula.</p>
-<p>We need an expression for $\kvecr\cdot \kvecv.$ To calculate this, we differentiate $\kvecr\cdot \kvecr$ with respect to time:</p>
-<div class="equation" id="fs-id1169737757050">$$\frac{d}{dt}(\kvecr\cdot \kvecr)=\frac{d\;\kvecr}{dt}\cdot \kvecr+\kvecr\cdot \frac{d\;\kvecr}{dt}=2\kvecr\cdot \frac{d\;\kvecr}{dt}=2\kvecr\cdot \kvecv.\tag{13.27}$$</div>
-<p>Since $\kvecr\cdot \kvecr={\| \kvecr\|}^{2},$ we also have</p>
-<div class="equation" id="fs-id1169737831128">$$\frac{d}{dt}(\kvecr\cdot \kvecr)=\frac{d}{dt}{\| \kvecr\|}^{2}=2\| \kvecr\| \frac{d}{dt}\| \kvecr\| .\tag{13.28}$$</div>
-<p>Combining <a href="#fs-id1169737757050">Equation 13.27</a> and <a href="#fs-id1169737831128">Equation 13.28</a>, we get</p>
-$$\begin{array}{rll}2\kvecr\cdot \kvecv & = & 2\| \kvecr\| \frac{d}{dt}\| \kvecr\| \\ \kvecr\cdot \kvecv & = & \| \kvecr\| \frac{d}{dt}\| \kvecr\| .\end{array}$$
-<p>Substituting this into <a href="#fs-id1169737178273">Equation 13.26</a> gives us</p>
-<div class="equation" id="fs-id1169738184865">$$\begin{array}{rl}\frac{d\;\kvecv}{dt}\;\times \;\textbf{C} & =-\frac{GM}{{\| \kvecr\|}^{3}}[(\kvecr\cdot \kvecv)\;\kvecr-(\kvecr\cdot \kvecr)\;\kvecv] \\ & =-\frac{GM}{{\| \kvecr\|}^{3}}[\| \kvecr\| (\frac{d}{dt}\| \kvecr\| )\;\kvecr-{\| \kvecr\|}^{2}\kvecv] \\ & =-GM[\frac{1}{{\| \kvecr\|}^{2}}(\frac{d}{dt}\| \kvecr\| )\;\kvecr-\frac{1}{\| \kvecr\|}\kvecv] \\ & =GM[\frac{\kvecv}{\| \kvecr\|}-\frac{\kvecr}{{\| \kvecr\|}^{2}}(\frac{d}{dt}\| \kvecr\| )].\end{array}\tag{13.29}$$</div>
-<p>However,</p>
-$$\begin{array}{rl}\frac{d}{dt}\;\frac{\kvecr}{\| \kvecr\|} & =\frac{\frac{d}{dt}(\kvecr)\| \kvecr\| -\kvecr\frac{d}{dt}\| \kvecr\|}{{\| \kvecr\|}^{2}} \\ & =\frac{\frac{d\;\kvecr}{dt}}{\| \kvecr\|}-\frac{\kvecr}{{\| \kvecr\|}^{2}}\;\frac{d}{dt}\| \kvecr\| \\ & =\frac{\kvecv}{\| \kvecr\|}-\frac{\kvecr}{{\| \kvecr\|}^{2}}\;\frac{d}{dt}\| \kvecr\| .\end{array}$$
-<p>Therefore, <a href="#fs-id1169738184865">Equation 13.29</a> becomes</p>
-$$\frac{d\;\kvecv}{dt}\;\times \;\textbf{C}=GM(\frac{d}{dt}\;\frac{\kvecr}{\| \kvecr\|}).$$
-<p>Since <strong>C</strong> is a constant vector, we can integrate both sides and obtain</p>
-$$\kvecv\;\times \;\textbf{C}=GM\frac{\kvecr}{\| \kvecr\|}+\textbf{D},$$
-<p>where <strong>D</strong> is a constant vector. Our goal is to solve for $\| \kvecr\| .$ Let’s start by calculating $\kvecr\cdot (\kvecv\;\times \;\textbf{C})\text{:}$</p>
-$$\kvecr\cdot (\kvecv\;\times \;\textbf{C})=\kvecr\cdot (GM\frac{\kvecr}{\| \kvecr\|}+\textbf{D})=GM\frac{{\| \kvecr\|}^{2}}{\| \kvecr\|}+\kvecr\cdot \textbf{D}=GM\| \kvecr\| +\kvecr\cdot \textbf{D}.$$
-<p>However, $\kvecr\cdot (\kvecv\;\times \;\textbf{C})=(\kvecr\;\times \;\kvecv)\cdot \textbf{C},$ so</p>
-$$(\kvecr\;\times \;\kvecv)\cdot \textbf{C}=GM\| \kvecr\| +\kvecr\cdot \textbf{D}.$$
-<p>Since $\kvecr\;\times \;\kvecv=\textbf{C},$ we have</p>
-$${\| \textbf{C}\|}^{2}=GM\| \kvecr\| +\kvecr\cdot \textbf{D}.$$
-<p>Note that $\kvecr\cdot \textbf{D}=\| \kvecr\| \| \textbf{D}\| \cos \ktheta ,$ where $\ktheta$ is the angle between $\kvecr$ and <strong>D.</strong> Therefore,</p>
-$${\| \textbf{C}\|}^{2}=GM\| \kvecr\| +\| \kvecr\| \| \textbf{D}\| \cos \ktheta .$$
-<p>Solving for $\| \kvecr\| ,$</p>
-$$\| \kvecr\| =\frac{{\| \textbf{C}\|}^{2}}{GM+\| \textbf{D}\| \cos \ktheta}=\frac{{\| \textbf{C}\|}^{2}}{GM}(\frac{1}{1+e\;\cos \ktheta}),$$
-<p id="orbit-conic">where $e=\| \textbf{D}\| /GM.$ This is the <span data-concept="polar-equation-of-a-conic">polar equation of a conic</span> with a <span data-concept="focus">focus</span> at the origin, which we set up to be the Sun. It is a <span data-concept="hyperbola">hyperbola</span> if $e\gt 1,$ a <span data-concept="parabola">parabola</span> if $e=1,$ or an <span data-concept="ellipse">ellipse</span> if $e\lt 1.$ Since planets have closed orbits, the only possibility is an <span data-concept="ellipse">ellipse</span>. However, at this point it should be mentioned that <span data-concept="hyperbola">hyperbolic</span> comets do exist. These are objects that are merely passing through the solar system at speeds too great to be trapped into orbit around the Sun. As they pass close enough to the Sun, the gravitational field of the Sun deflects the trajectory enough so the path becomes <span data-concept="hyperbola">hyperbolic</span>.</p>
+<figure class="dv" id="drv-keplers-first-law"></figure>
+<p id="orbit-conic">This is the <span data-concept="polar-equation-of-a-conic">polar equation of a conic</span> with a <span data-concept="focus">focus</span> at the origin, which we set up to be the Sun. It is a <span data-concept="hyperbola">hyperbola</span> if $e\gt 1,$ a <span data-concept="parabola">parabola</span> if $e=1,$ or an <span data-concept="ellipse">ellipse</span> if $e\lt 1.$ Since planets have closed orbits, the only possibility is an <span data-concept="ellipse">ellipse</span>. However, at this point it should be mentioned that <span data-concept="hyperbola">hyperbolic</span> comets do exist. These are objects that are merely passing through the solar system at speeds too great to be trapped into orbit around the Sun. As they pass close enough to the Sun, the gravitational field of the Sun deflects the trajectory enough so the path becomes <span data-concept="hyperbola">hyperbolic</span>.</p>
 <p>□</p>
+<p>The law of equal areas follows from the same constant vector <strong>C</strong>: in polar coordinates it fixes the rate at which the line from the Sun to the planet sweeps out area.</p>
+<figure class="dv" id="drv-kepler-equal-areas"></figure>
 <div class="example" id="fs-id1169738104787">
 <h3>Example 13.17 · Using Kepler’s Third Law for Nonheliocentric Orbits</h3>
 <p><span data-concept="keplers-laws-of-planetary-motion">Kepler’s third law</span> of planetary motion can be modified to the case of one object in orbit around an object other than the Sun, such as the Moon around the Earth. In this case, <span data-concept="keplers-laws-of-planetary-motion">Kepler’s third law</span> becomes</p>

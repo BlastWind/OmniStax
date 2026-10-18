@@ -4,8 +4,8 @@
 <h2>The Basic Rules</h2>
 <p class="cite-target">The <span data-concept="function">functions</span> $\kf(x)=c$ and $\kg(x)=x^{n}$ where $n$ is a positive integer are the building blocks from which all <span data-concept="polynomial-function">polynomials</span> and <span data-concept="rational-function">rational functions</span> are constructed. To find <span data-concept="derivative">derivatives</span> of <span data-concept="polynomial-function">polynomials</span> and <span data-concept="rational-function">rational functions</span> efficiently without resorting to the <span data-concept="limit">limit</span> definition of the <span data-concept="derivative">derivative</span>, we must first develop formulas for differentiating these basic <span data-concept="function">functions</span>.</p>
 <h3>The Constant Rule</h3>
-<p>We first apply the <span data-concept="limit">limit</span> definition of the <span data-concept="derivative">derivative</span> to find the <span data-concept="derivative">derivative</span> of the constant <span data-concept="function">function</span>, $\kf(x)=c.$ For this <span data-concept="function">function</span>, both $\kf(x)=c$ and $\kf(x+h)=c,$ so we obtain the following result:</p>
-$$\begin{array}{rl}\kfprime(x) & =\lim_{h\to 0}\frac{\kf(x+h)-\kf(x)}{h} \\ & =\lim_{h\to 0}\frac{c-c}{h} \\ & =\lim_{h\to 0}\frac{0}{h} \\ & =\lim_{h\to 0}0=0.\end{array}$$
+<p>We first apply the <span data-concept="limit">limit</span> definition of the <span data-concept="derivative">derivative</span> to find the <span data-concept="derivative">derivative</span> of the constant <span data-concept="function">function</span>, $\kf(x)=c.$</p>
+<figure class="dv" id="drv-constant-rule"></figure>
 <p>The rule for differentiating constant <span data-concept="function">functions</span> is called the <strong><span data-concept="constant-rule">constant rule</span></strong>. It states that the <span data-concept="derivative">derivative</span> of a constant <span data-concept="function">function</span> is zero; that is, since a constant <span data-concept="function">function</span> is a horizontal line, the <span data-concept="slope">slope</span>, or the rate of change, of a constant <span data-concept="function">function</span> is $0.$ We restate this rule in the following theorem.</p>
 <div class="note" id="constant-rule-theorem">
 <div class="eyebrow">Theorem</div>
@@ -47,17 +47,7 @@ $$\kfprime(x)=nx^{n-1}.$$
 $$\frac{d}{dx}x^{n}=nx^{n-1}.$$
 </div>
 <h3>Proof</h3>
-<p>For $\kf(x)=x^{n}$ where $n$ is a positive integer, we have</p>
-$$\kfprime(x)=\lim_{h\to 0}\frac{{(x+h)}^{n}-x^{n}}{h}.$$
-$$\text{Since}\;{(x+h)}^{n}=x^{n}+nx^{n-1}h+\left(\begin{array}{l}n \\ 2\end{array}\right)\;x^{n-2}h^{2}+\left(\begin{array}{l}n \\ 3\end{array}\right)\;x^{n-3}h^{3}+\text{…}+nxh^{n-1}+h^{n},$$
-<p>we see that</p>
-$${(x+h)}^{n}-x^{n}=nx^{n-1}h+\left(\begin{array}{l}n \\ 2\end{array}\right)\;x^{n-2}h^{2}+\left(\begin{array}{l}n \\ 3\end{array}\right)\;x^{n-3}h^{3}+\text{…}+nxh^{n-1}+h^{n}.$$
-<p>Next, divide both sides by <em>h</em>:</p>
-$$\frac{{(x+h)}^{n}-x^{n}}{h}=\frac{nx^{n-1}h+\left(\begin{array}{l}n \\ 2\end{array}\right)\;x^{n-2}h^{2}+\left(\begin{array}{l}n \\ 3\end{array}\right)\;x^{n-3}h^{3}+\text{…}+nxh^{n-1}+h^{n}}{h}.$$
-<p>Thus,</p>
-$$\frac{{(x+h)}^{n}-x^{n}}{h}=nx^{n-1}+\left(\begin{array}{l}n \\ 2\end{array}\right)\;x^{n-2}h+\left(\begin{array}{l}n \\ 3\end{array}\right)\;x^{n-3}h^{2}+\text{…}+nxh^{n-2}+h^{n-1}.$$
-<p>Finally,</p>
-$$\begin{array}{rl}\kfprime(x) & =\lim_{h\to 0}(nx^{n-1}+\left(\begin{array}{l}n \\ 2\end{array}\right)\;x^{n-2}h+\left(\begin{array}{l}n \\ 3\end{array}\right)\;x^{n-3}h^{2}+\text{…}+nxh^{n-2}+h^{n-1}) \\ & =nx^{n-1}.\end{array}$$
+<figure class="dv" id="drv-power-rule"></figure>
 <p>□</p>
 <div class="example" id="fs-id1169739190555">
 <h3>Example 3.19 · Applying the Power Rule</h3>
@@ -91,14 +81,7 @@ $$\text{for}\;\kj(x)=kf(x),\kjprime(x)=kf^{\prime}(x).$$
 </div>
 <h3>Proof</h3>
 <p>We provide only the proof of the <span data-concept="sum-rule">sum rule</span> here. The rest follow in a similar manner.</p>
-<p>For differentiable <span data-concept="function">functions</span> $\kf(x)$ and $\kg(x),$ we set $\kj(x)=\kf(x)+\kg(x).$ Using the <span data-concept="limit">limit</span> definition of the <span data-concept="derivative">derivative</span> we have</p>
-$$\kjprime(x)=\lim_{h\to 0}\frac{\kj(x+h)-\kj(x)}{h}.$$
-<p>By substituting $\kj(x+h)=\kf(x+h)+\kg(x+h)$ and $\kj(x)=\kf(x)+\kg(x),$ we obtain</p>
-$$\kjprime(x)=\lim_{h\to 0}\frac{(\kf(x+h)+\kg(x+h))-(\kf(x)+\kg(x))}{h}.$$
-<p>Rearranging and regrouping the terms, we have</p>
-$$\kjprime(x)=\lim_{h\to 0}(\frac{\kf(x+h)-\kf(x)}{h}+\frac{\kg(x+h)-\kg(x)}{h}).$$
-<p>We now apply the sum law for <span data-concept="limit">limits</span> and the definition of the <span data-concept="derivative">derivative</span> to obtain</p>
-$$\kjprime(x)=\lim_{h\to 0}(\frac{\kf(x+h)-\kf(x)}{h})+\lim_{h\to 0}(\frac{\kg(x+h)-\kg(x)}{h})=\kfprime(x)+\kgprime(x).$$
+<figure class="dv" id="drv-sum-difference-constant-multiple-rules"></figure>
 <p>□</p>
 <div class="example" id="fs-id1169739269764">
 <h3>Example 3.20 · Applying the Constant Multiple Rule</h3>
@@ -152,16 +135,7 @@ $$\text{if}\;\kj(x)=\kf(x)\kg(x),\text{then}\;\kjprime(x)=\kfprime(x)\kg(x)+\kgp
 </figure>
 <h3>Proof</h3>
 <p>We begin by assuming that $\kf(x)$ and $\kg(x)$ are differentiable <span data-concept="function">functions</span>. At a key point in this proof we need to use the fact that, since $\kg(x)$ is differentiable, it is also continuous. In particular, we use the fact that since $\kg(x)$ is continuous, $\lim_{h\to 0}\kg(x+h)=\kg(x).$</p>
-<p>By applying the <span data-concept="limit">limit</span> definition of the <span data-concept="derivative">derivative</span> to $\kj(x)=\kf(x)\kg(x),$ we obtain</p>
-$$\kjprime(x)=\lim_{h\to 0}\frac{\kf(x+h)\kg(x+h)-\kf(x)\kg(x)}{h}.$$
-<p>By adding and subtracting $\kf(x)\kg(x+h)$ in the numerator, we have</p>
-$$\kjprime(x)=\lim_{h\to 0}\frac{\kf(x+h)\kg(x+h)-\kf(x)\kg(x+h)+\kf(x)\kg(x+h)-\kf(x)\kg(x)}{h}.$$
-<p>After breaking apart this quotient and applying the sum law for <span data-concept="limit">limits</span>, the <span data-concept="derivative">derivative</span> becomes</p>
-$$\kjprime(x)=\lim_{h\to 0}(\frac{\kf(x+h)\kg(x+h)-\kf(x)\kg(x+h)}{h})+\lim_{h\to 0}(\frac{\kf(x)\kg(x+h)-\kf(x)\kg(x)}{h}).$$
-<p>Rearranging, we obtain</p>
-$$\kjprime(x)=\lim_{h\to 0}(\frac{\kf(x+h)-\kf(x)}{h}\cdot \kg(x+h))+\lim_{h\to 0}(\frac{\kg(x+h)-\kg(x)}{h}\cdot \kf(x)).$$
-<p>By using the continuity of $\kg(x),$ the definition of the <span data-concept="derivative">derivatives</span> of $\kf(x)$ and $\kg(x),$ and applying the <span data-concept="limit">limit</span> laws, we arrive at the <span data-concept="product-rule">product rule</span>,</p>
-$$\kjprime(x)=\kfprime(x)\kg(x)+\kgprime(x)\kf(x).$$
+<figure class="dv" id="drv-product-rule"></figure>
 <p>□</p>
 <div class="example" id="fs-id1169736659557">
 <h3>Example 3.23 · Applying the Product Rule to Functions at a Point</h3>
@@ -196,6 +170,7 @@ $$\frac{d}{dx}(\frac{\kf(x)}{\kg(x)})=\frac{\frac{d}{dx}(\kf(x))\cdot \kg(x)-\fr
 $$\text{if}\;\kj(x)=\frac{\kf(x)}{\kg(x)},\text{then}\;\kjprime(x)=\frac{\kfprime(x)\kg(x)-\kgprime(x)\kf(x)}{{(\kg(x))}^{2}}.$$
 </div>
 <p>The proof of the <strong><span data-concept="quotient-rule">quotient rule</span></strong> is very similar to the proof of the <span data-concept="product-rule">product rule</span>, so it is omitted here. Instead, we apply this new rule for finding <span data-concept="derivative">derivatives</span> in the next example.</p>
+<figure class="dv" id="drv-quotient-rule"></figure>
 <div class="example" id="fs-id1169739305225">
 <h3>Example 3.25 · Applying the Quotient Rule</h3>
 <p>Use the <span data-concept="quotient-rule">quotient rule</span> to find the <a href="/calculus/sheets/integral-calculator/?op=derivative&amp;expr=5x%5E2%2F(4x%2B3)"><span data-concept="derivative">derivative</span></a> of <span data-fn="5x^2/(4x+3)">$k(x)=\frac{5x^{2}}{4x+3}.$</span></p>
@@ -214,12 +189,8 @@ $$k^{\prime}(x)=\frac{20x^{2}+30x}{{(4x+3)}^{2}}.$$
 $$\frac{d}{dx}(x^{k})=kx^{k-1}.$$
 </div>
 <h3>Proof</h3>
-<p>If $k$ is a negative integer, we may set $n=-k,$ so that <em>n</em> is a positive integer with $k=-n.$ Since for each positive integer $n,x^{-n}=\frac{1}{x^{n}},$ we may now apply the <span data-concept="quotient-rule">quotient rule</span> by setting $\kf(x)=1$ and $\kg(x)=x^{n}.$ In this case, $\kfprime(x)=0$ and $\kgprime(x)=nx^{n-1}.$ Thus,</p>
-$$\frac{d}{dx}(x^{-n})=\frac{0(x^{n})-1(nx^{n-1})}{{(x^{n})}^{2}}.$$
-<p>Simplifying, we see that</p>
-$$\frac{d}{dx}(x^{-n})=\frac{-nx^{n-1}}{x^{2n}}=-nx^{(n-1)-2n}=-nx^{-n-1}.$$
-<p>Finally, observe that since $k=-n,$ by substituting we have</p>
-$$\frac{d}{dx}(x^{k})=kx^{k-1}.$$
+<p>If $k$ is a negative integer, we may set $n=-k,$ so that <em>n</em> is a positive integer with $k=-n.$ Since for each positive integer $n,x^{-n}=\frac{1}{x^{n}},$ we may now apply the <span data-concept="quotient-rule">quotient rule</span> by setting $\kf(x)=1$ and $\kg(x)=x^{n}.$ In this case, $\kfprime(x)=0$ and $\kgprime(x)=nx^{n-1}.$</p>
+<figure class="dv" id="drv-extended-power-rule"></figure>
 <p>□</p>
 <div class="example" id="fs-id1169736614308">
 <h3>Example 3.26 · Using the Extended Power Rule</h3>
@@ -252,8 +223,8 @@ $$\begin{array}{rllll}k^{\prime}(x) & =\frac{d}{dx}(3h(x)+x^{2}\kg(x))=\frac{d}{
 <h3>Example 3.29 · Extending the Product Rule</h3>
 <p>For $k(x)=\kf(x)\kg(x)h(x),$ express $k^{\prime}(x)$ in terms of $\kf(x),\kg(x),h(x),$ and their <span data-concept="derivative">derivatives</span>.</p>
 <h4>Solution</h4>
-<p>We can think of the <span data-concept="function">function</span> $k(x)$ as the product of the <span data-concept="function">function</span> $\kf(x)\kg(x)$ and the <span data-concept="function">function</span> $h(x).$ That is, $k(x)=(\kf(x)\kg(x))\cdot h(x).$ Thus,</p>
-$$\begin{array}{rllll}k^{\prime}(x) & =\frac{d}{dx}(\kf(x)\kg(x))\cdot h(x)+\frac{d}{dx}(h(x))\cdot (\kf(x)\kg(x)) & & & \begin{array}{l}\text{Apply the product rule to the product} \\ \text{of}\;\kf(x)\kg(x)\;\text{and}\;h(x).\end{array} \\ & =(\kfprime(x)\kg(x)+\kgprime(x)\kf(x))h(x)+h^{\prime}(x)\kf(x)\kg(x) & & & \text{Apply the product rule to}\;\kf(x)\kg(x). \\ & =\kfprime(x)\kg(x)h(x)+\kf(x)\kgprime(x)h(x)+\kf(x)\kg(x)h^{\prime}(x). & & & \text{Simplify.}\end{array}$$
+<p>We can think of the <span data-concept="function">function</span> $k(x)$ as the product of the <span data-concept="function">function</span> $\kf(x)\kg(x)$ and the <span data-concept="function">function</span> $h(x).$ That is, $k(x)=(\kf(x)\kg(x))\cdot h(x).$</p>
+<figure class="dv" id="drv-three-factor-product-rule"></figure>
 </div>
 <div class="example" id="fs-id1169736658392">
 <h3>Example 3.30 · Combining the Quotient Rule and the Product Rule</h3>

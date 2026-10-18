@@ -1573,6 +1573,219 @@
    "id": "c-local-maximum-at-0",
    "kind": "correction",
    "html": "The book prints “at $x$”; meant is at $x=0,$ the critical point of all three functions."
+  },
+  {
+   "id": "c-second-test-interval",
+   "kind": "correction",
+   "html": "The book prints $f''(x)\\lt 0$ for all $x\\in I,$ and below $f''(x)\\gt 0$ for all $x\\in I;$ continuity of $f''$ gives the sign only over some open interval about the point inside $I,$ which is all the argument needs, as the caption of Figure 4.38 says."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "concavity-test",
+   "what": "the test for concavity",
+   "source": "Calculus, 4.5 Derivatives and the Shape of a Graph, Test for Concavity",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ is twice differentiable over $\\kI,$ so $\\kfdprime$ is the derivative of $\\kfprime.$"
+      },
+      {
+       "text": "If a function’s derivative is positive over an interval, the function is increasing there; if negative, decreasing.",
+       "src": "4.4, Corollary 3"
+      },
+      {
+       "text": "$\\kf$ is concave up over $\\kI$ if $\\kfprime$ is increasing over $\\kI,$ and concave down if $\\kfprime$ is decreasing.",
+       "src": "4.5, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kfdprime(x)}\\gt \\mk{z}{0}\\;\\text{for all}\\;x\\in \\kI"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kfprime}\\;\\mk{z}{\\text{is increasing over}\\;\\kI}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\kf}\\;\\mk{z}{\\text{is concave up over}\\;\\kI}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "4.5, Test for Concavity"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ is twice differentiable over $\\kI,$ so $\\kfdprime$ is the derivative of $\\kfprime.$"
+      },
+      {
+       "text": "If a function’s derivative is positive over an interval, the function is increasing there; if negative, decreasing.",
+       "src": "4.4, Corollary 3"
+      },
+      {
+       "text": "$\\kf$ is concave up over $\\kI$ if $\\kfprime$ is increasing over $\\kI,$ and concave down if $\\kfprime$ is decreasing.",
+       "src": "4.5, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kfdprime(x)}\\lt \\mk{z}{0}\\;\\text{for all}\\;x\\in \\kI"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kfprime}\\;\\mk{z}{\\text{is decreasing over}\\;\\kI}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\kf}\\;\\mk{z}{\\text{is concave down over}\\;\\kI}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "4.5, Test for Concavity"
+    }
+   ]
+  },
+  {
+   "id": "second-derivative-test",
+   "what": "the second derivative test",
+   "source": "Calculus, 4.5 Derivatives and the Shape of a Graph, The Second Derivative Test",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kfdprime$ is continuous over an open interval $\\kI$ containing $a.$"
+      },
+      {
+       "text": "A continuous function that is negative at a point stays negative over an open interval about it, and one that is positive stays positive.",
+       "src": "4.5"
+      },
+      {
+       "text": "If a function’s derivative is positive over an interval, the function is increasing there; if negative, decreasing.",
+       "src": "4.4, Corollary 3"
+      },
+      {
+       "tex": "\\kfprime(a)=0"
+      },
+      {
+       "text": "If $\\kfprime$ changes sign from positive to negative as $x$ increases through $c,$ $\\kf(c)$ is a local maximum; from negative to positive, a local minimum.",
+       "src": "4.5, First Derivative Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kfdprime(a)}\\lt \\mk{z}{0}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kfdprime(x)}\\lt \\mk{z}{0}\\;\\text{for all}\\;x\\in J",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "Here $J\\subseteq \\kI$ is an open interval about $a.$"
+      },
+      {
+       "tex": "\\mk{s}{\\kfprime}\\;\\mk{z}{\\text{is decreasing over}\\;J}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\kfprime(x)\\gt 0\\;\\text{if}\\;x\\lt a}\\;\\text{and}\\;\\mk{t}{\\kfprime(x)\\lt 0\\;\\text{if}\\;x\\gt a}",
+       "uses": [
+        3
+       ],
+       "cap": "A decreasing function that is $0$ at $a$ is positive before $a$ and negative after it.",
+       "map": {
+        "s": [
+         "s",
+         "t"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\kf}\\;\\mk{t}{\\text{has a local maximum at}\\;x=a}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "4.5",
+     "note": "The book prints $\\kfdprime(x)\\lt 0$ for all $x\\in \\kI$ (and $\\kfdprime(x)\\gt 0$ for the minimum); continuity gives the sign only over some open interval $J$ about the point inside $\\kI,$ so the argument runs over $J,$ as the caption of Figure 4.38 has it."
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kfdprime$ is continuous over an open interval $\\kI$ containing $b.$"
+      },
+      {
+       "text": "A continuous function that is negative at a point stays negative over an open interval about it, and one that is positive stays positive.",
+       "src": "4.5"
+      },
+      {
+       "text": "If a function’s derivative is positive over an interval, the function is increasing there; if negative, decreasing.",
+       "src": "4.4, Corollary 3"
+      },
+      {
+       "tex": "\\kfprime(b)=0"
+      },
+      {
+       "text": "If $\\kfprime$ changes sign from positive to negative as $x$ increases through $c,$ $\\kf(c)$ is a local maximum; from negative to positive, a local minimum.",
+       "src": "4.5, First Derivative Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kfdprime(b)}\\gt \\mk{z}{0}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kfdprime(x)}\\gt \\mk{z}{0}\\;\\text{for all}\\;x\\in J",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "Here $J\\subseteq \\kI$ is an open interval about $b.$"
+      },
+      {
+       "tex": "\\mk{s}{\\kfprime}\\;\\mk{z}{\\text{is increasing over}\\;J}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\kfprime(x)\\lt 0\\;\\text{if}\\;x\\lt b}\\;\\text{and}\\;\\mk{t}{\\kfprime(x)\\gt 0\\;\\text{if}\\;x\\gt b}",
+       "uses": [
+        3
+       ],
+       "cap": "An increasing function that is $0$ at $b$ is negative before $b$ and positive after it.",
+       "map": {
+        "s": [
+         "s",
+         "t"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\kf}\\;\\mk{t}{\\text{has a local minimum at}\\;x=b}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "4.5",
+     "note": "The book prints $\\kfdprime(x)\\lt 0$ for all $x\\in \\kI$ (and $\\kfdprime(x)\\gt 0$ for the minimum); continuity gives the sign only over some open interval $J$ about the point inside $\\kI,$ so the argument runs over $J,$ as the caption of Figure 4.38 has it."
+    }
+   ]
   }
  ]
 }

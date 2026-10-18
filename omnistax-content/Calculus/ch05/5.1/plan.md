@@ -53,3 +53,9 @@ Applied by this chapter's own agent (it owns `chapter.json` and `book-rows.json`
 - variables anchors: f, A, a, b, n, Δx → `5.1-approximating-area`; c → `5.1-sigma-properties`; P → `5.1-partition-definition`; L → `5.1-left-endpoint-rule`; R → `5.1-right-endpoint-rule`. Done.
 - forms anchors: `eq-sigma-notation` → `5.1-sigma`; the five `eq-sigma-*` → `5.1-sigma-properties`; `eq-sum-of-*` → `5.1-sums-of-powers`; `eq-subinterval-width`, `eq-regular-partition-points` → `5.1-approximating-area`; `eq-left-endpoint`, `eq-right-endpoint` → their rules; `eq-riemann-sum` → `5.1-riemann-sum-definition`; `eq-area-under-curve` → `5.1-area-definition`. Done.
 - r439 in the chapter pass.
+
+
+## Derivations
+
+- Properties of Sigma Notation · Proof (properties 2 and 3) · score 0 · built as drv-sigma-notation-properties (one Proof heading, a node per property; the two-item display list replaced, the opening sentence and □ kept)
+- Sums and Powers of Integers · score 9 · not built: the rule states the three formulas with no claim that they follow from anything; a statement, not a hidden derivation

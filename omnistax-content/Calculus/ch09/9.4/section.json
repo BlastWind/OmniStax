@@ -1079,5 +1079,348 @@
    "kind": "correction",
    "html": "The key writes $\\sqrt{n+1/2}$ for $\\sqrt{n+1}:$ $\\sqrt{n+1}-\\sqrt{n}=\\frac{1}{\\sqrt{n+1}+\\sqrt{n}}.$"
   }
+ ],
+ "derivations": [
+  {
+   "id": "comparison-test",
+   "what": "the comparison test",
+   "source": "Calculus, 9.4 Comparison Tests, Comparison Test, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$0\\le \\kaseq_{n}\\le \\kbseq_{n}$ for all $n\\ge N.$",
+       "src": "9.4, Comparison Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\kaseq_{1}+\\kaseq_{2}+\\cdots+\\kaseq_{k}}",
+      "src": "9.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{s}{\\kaseq_{1}+\\kaseq_{2}+\\cdots+\\kaseq_{k}}\\le \\mk{t}{\\kaseq_{1}+\\kaseq_{2}+\\cdots+\\kaseq_{k}+\\kaseq_{k+1}}=\\mk{U}{\\kS_{k+1}}\\;\\text{for}\\;k\\ge N",
+       "uses": [
+        0
+       ],
+       "cap": "The added term $\\kaseq_{k+1}$ is not negative, so the partial sums increase."
+      }
+     ],
+     "src": "9.4",
+     "note": "The book writes $\\kS_{k}\\le \\kS_{k+1}$ “since the terms $\\kaseq_{n}\\ge0$”; the hypothesis gives $\\kaseq_{n}\\ge0$ only for $n\\ge N,$ so the partial sums increase from $k=N$ on, which is all the Monotone Convergence Theorem needs."
+    },
+    {
+     "assumes": [
+      {
+       "text": "$0\\le \\kaseq_{n}\\le \\kbseq_{n}$ for all $n\\ge N.$",
+       "src": "9.4, Comparison Test"
+      },
+      {
+       "tex": "\\kL=\\sum_{n=1}^{\\infty}\\kbseq_{n}",
+       "src": "9.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\sum_{n=N}^{k} \\kaseq_{n}}\\le\\mk{b}{\\sum_{n=N}^{k} \\kbseq_{n}}",
+      "uses": [
+       0
+      ],
+      "src": "9.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\sum_{n=N}^{k} \\kaseq_{n}}\\le\\mk{b}{\\sum_{n=N}^{k} \\kbseq_{n}}\\le\\mk{c}{\\sum_{n=1}^{\\infty} \\kbseq_{n}}",
+       "uses": [
+        0
+       ],
+       "cap": "Every $\\kbseq_{n}$ is at least $\\kaseq_{n}\\ge 0$ from $n=N$ on, so the sum from $N$ to $k$ is at most the sum of the whole series."
+      },
+      {
+       "tex": "\\mk{a}{\\sum_{n=N}^{k} \\kaseq_{n}}\\le\\mk{b}{\\sum_{n=N}^{k} \\kbseq_{n}}\\le\\mk{c}{\\sum_{n=1}^{\\infty} \\kbseq_{n}}=\\mk{L}{\\kL}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "9.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kS_{k}}=\\mk{h}{(\\kaseq_{1}+\\kaseq_{2}+\\cdots+\\kaseq_{N-1})}+\\mk{a}{\\sum_{n=N}^{k} \\kaseq_{n}}",
+      "src": "9.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kS_{k}}=\\mk{h}{(\\kaseq_{1}+\\kaseq_{2}+\\cdots+\\kaseq_{N-1})}+\\mk{a}{\\sum_{n=N}^{k} \\kaseq_{n}}\\le\\mk{h2}{(\\kaseq_{1}+\\kaseq_{2}+\\cdots+\\kaseq_{N-1})}+\\mk{L}{\\kL}",
+       "uses": [
+        0
+       ],
+       "cap": "The head $\\kaseq_{1}+\\kaseq_{2}+\\cdots+\\kaseq_{N-1}$ is a finite number, so $\\{\\kS_{k}\\}$ is bounded above."
+      }
+     ],
+     "src": "9.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 2
+      },
+      {
+       "text": "A sequence that is increasing (from some term on) and bounded above converges.",
+       "src": "9.1, Monotone Convergence Theorem"
+      },
+      {
+       "text": "The sum of an infinite series is the limit of its sequence of partial sums.",
+       "src": "9.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{p}{\\text{is increasing and bounded above}}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "9.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\{\\kS_{k}\\}}\\;\\mk{p}{\\text{converges}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{S}{\\sum_{n=1}^{\\infty} \\kaseq_{n}}\\;\\mk{p}{\\text{converges}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "9.4, Comparison Test"
+    }
+   ]
+  },
+  {
+   "id": "limit-comparison-test",
+   "what": "the limit comparison test",
+   "source": "Calculus, 9.4 Comparison Tests, Limit Comparison Test",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\lim_{n\\to \\infty}\\kaseq_{n}/\\kbseq_{n}=\\kL\\ne0,$ with positive terms $\\kaseq_{n}$ and $\\kbseq_{n},$ so $\\kL\\gt 0.$",
+       "src": "9.4, Limit Comparison Test"
+      },
+      {
+       "text": "$\\{\\kaseq_{n}\\}$ converges to $\\kL$ if for every $\\varepsilon\\gt 0$ there exists an integer $N$ such that $|\\kaseq_{n}-\\kL|\\lt \\varepsilon$ for all $n\\ge N.$",
+       "src": "9.1, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{|\\frac{\\kaseq_{n}}{\\kbseq_{n}}-\\kL|}\\lt \\mk{e}{\\frac{\\kL}{2}}\\;\\text{for}\\;n\\ge N",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "9.4",
+      "why": "The definition of the limit, for the sequence $\\{\\kaseq_{n}/\\kbseq_{n}\\}$ and $\\varepsilon=\\frac{\\kL}{2}.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{\\kL}{2}}\\lt \\mk{a}{\\frac{\\kaseq_{n}}{\\kbseq_{n}}}\\lt \\mk{u}{\\frac{3\\kL}{2}}\\;\\text{for}\\;n\\ge N",
+       "uses": [],
+       "map": {
+        "e": [
+         "l",
+         "u"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{\\kL}{2}\\kbseq_{n}}\\lt \\mk{a}{\\kaseq_{n}}\\lt \\mk{u}{\\frac{3\\kL}{2}\\kbseq_{n}}\\;\\text{for}\\;n\\ge N",
+       "uses": [
+        0
+       ],
+       "cap": "Multiply through by $\\kbseq_{n}\\gt 0.$"
+      }
+     ],
+     "src": "9.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\sum_{n=1}^{\\infty}\\kbseq_{n}$ converges.",
+       "src": "9.4"
+      },
+      {
+       "text": "For any real number $c,$ if $\\sum \\kaseq_{n}$ converges, then $\\sum c\\kaseq_{n}$ converges and $\\sum c\\kaseq_{n}=c\\sum \\kaseq_{n}.$",
+       "src": "9.2, Algebraic Properties of Convergent Series"
+      },
+      {
+       "text": "If $0\\le \\kaseq_{n}\\le \\kbseq_{n}$ for all $n\\ge N$ and $\\sum \\kbseq_{n}$ converges, then $\\sum \\kaseq_{n}$ converges.",
+       "src": "9.4, Comparison Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{\\kL}{2}\\kbseq_{n}}\\lt \\mk{a}{\\kaseq_{n}}\\lt \\mk{u}{\\frac{3\\kL}{2}\\kbseq_{n}}\\;\\text{for}\\;n\\ge N",
+      "src": "9.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kaseq_{n}}\\lt \\mk{u}{\\frac{3\\kL}{2}\\kbseq_{n}}\\;\\text{for}\\;n\\ge N",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}\\;\\mk{u}{\\text{converges}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "cap": "$\\sum \\frac{3\\kL}{2}\\kbseq_{n}$ converges, and the comparison test applies."
+      }
+     ],
+     "src": "9.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\sum_{n=1}^{\\infty}\\kbseq_{n}$ diverges.",
+       "src": "9.4"
+      },
+      {
+       "text": "For any real number $c,$ if $\\sum \\kaseq_{n}$ converges, then $\\sum c\\kaseq_{n}$ converges and $\\sum c\\kaseq_{n}=c\\sum \\kaseq_{n}.$",
+       "src": "9.2, Algebraic Properties of Convergent Series"
+      },
+      {
+       "text": "If $\\kaseq_{n}\\ge \\kbseq_{n}\\ge0$ for all $n\\ge N$ and $\\sum \\kbseq_{n}$ diverges, then $\\sum \\kaseq_{n}$ diverges.",
+       "src": "9.4, Comparison Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{\\kL}{2}\\kbseq_{n}}\\lt \\mk{a}{\\kaseq_{n}}\\lt \\mk{u}{\\frac{3\\kL}{2}\\kbseq_{n}}\\;\\text{for}\\;n\\ge N",
+      "src": "9.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kaseq_{n}}\\gt \\mk{l}{\\frac{\\kL}{2}\\kbseq_{n}}\\;\\text{for}\\;n\\ge N",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}\\;\\mk{l}{\\text{diverges}}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "cap": "$\\sum \\frac{\\kL}{2}\\kbseq_{n}$ diverges, since if it converged, so would $\\sum \\kbseq_{n}=\\frac{2}{\\kL}\\sum \\frac{\\kL}{2}\\kbseq_{n};$ the comparison test applies."
+      }
+     ],
+     "src": "9.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\lim_{n\\to \\infty}\\kaseq_{n}/\\kbseq_{n}=0$ and $\\sum_{n=1}^{\\infty}\\kbseq_{n}$ converges.",
+       "src": "9.4, Limit Comparison Test"
+      },
+      {
+       "text": "Convergent sequences are bounded.",
+       "src": "9.1, Convergent Sequences Are Bounded"
+      },
+      {
+       "text": "For any real number $c,$ if $\\sum \\kaseq_{n}$ converges, then $\\sum c\\kaseq_{n}$ converges and $\\sum c\\kaseq_{n}=c\\sum \\kaseq_{n}.$",
+       "src": "9.2, Algebraic Properties of Convergent Series"
+      },
+      {
+       "text": "If $0\\le \\kaseq_{n}\\le \\kbseq_{n}$ for all $n\\ge N$ and $\\sum \\kbseq_{n}$ converges, then $\\sum \\kaseq_{n}$ converges.",
+       "src": "9.4, Comparison Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\lim_{n\\to \\infty}\\frac{\\kaseq_{n}}{\\kbseq_{n}}}=\\mk{z}{0}",
+      "uses": [
+       0
+      ],
+      "src": "9.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\frac{\\kaseq_{n}}{\\kbseq_{n}}}\\le \\mk{z}{M}\\;\\text{for all}\\;n",
+       "uses": [
+        1
+       ],
+       "cap": "$\\{\\kaseq_{n}/\\kbseq_{n}\\}$ converges, so it is a bounded sequence."
+      },
+      {
+       "tex": "\\mk{a}{\\kaseq_{n}}\\le \\mk{z}{M\\kbseq_{n}}\\;\\text{for all}\\;n",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}\\;\\mk{z}{\\text{converges}}",
+       "uses": [
+        0,
+        2,
+        3
+       ],
+       "cap": "$\\sum M\\kbseq_{n}$ converges, and the comparison test applies."
+      }
+     ],
+     "src": "9.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\lim_{n\\to \\infty}\\kaseq_{n}/\\kbseq_{n}=\\infty$ and $\\sum_{n=1}^{\\infty}\\kbseq_{n}$ diverges.",
+       "src": "9.4, Limit Comparison Test"
+      },
+      {
+       "text": "If $\\kaseq_{n}\\ge \\kbseq_{n}\\ge0$ for all $n\\ge N$ and $\\sum \\kbseq_{n}$ diverges, then $\\sum \\kaseq_{n}$ diverges.",
+       "src": "9.4, Comparison Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\lim_{n\\to \\infty}\\frac{\\kaseq_{n}}{\\kbseq_{n}}}=\\mk{z}{\\infty}",
+      "uses": [
+       0
+      ],
+      "src": "9.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\frac{\\kaseq_{n}}{\\kbseq_{n}}}\\ge \\mk{z}{1}\\;\\text{for all}\\;n\\ge N",
+       "uses": [],
+       "cap": "The ratios are unbounded: for every constant $M$ there is an $N$ past which they exceed $M;$ take $M=1.$"
+      },
+      {
+       "tex": "\\mk{a}{\\kaseq_{n}}\\ge \\mk{z}{\\kbseq_{n}}\\;\\text{for all}\\;n\\ge N",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\sum_{n=1}^{\\infty}\\kaseq_{n}}\\;\\mk{z}{\\text{diverges}}",
+       "uses": [
+        0,
+        1
+       ]
+      }
+     ],
+     "src": "9.4"
+    }
+   ]
+  }
  ]
 }

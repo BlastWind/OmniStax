@@ -99,3 +99,8 @@ excited state with 2.0 eV (`fs-id2715464`), the derivation of ΔEΔt ≈ h
 - `fs-id2715464` is also an id in 29.4 (unkeyed there too); it is left out here, so no clash of source ids arises on this page.
 
 Applied by the chapter pass (2026-09-28): all five equation anchors and five variable anchors as asked. The edge `probability-distribution` ← `double-slit-constructive` was already in `book.json` from the prep pass, so nothing was added.
+
+## Derivations
+
+- Heisenberg uncertainty, $\Delta x\Delta p \approx h$ · score 2 · built as drv-uncertainty-estimate: a printed block, the three displays replaced by one derivation
+- The exact bound $\Delta x\Delta p \ge h/4\pi$ · score 7 · not built: "with the use of advanced mathematics", Fourier analysis of a wave packet that the book never gives

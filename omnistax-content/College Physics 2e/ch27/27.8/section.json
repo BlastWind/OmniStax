@@ -953,5 +953,53 @@
     "sim-rotator"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "malus-law",
+   "what": "Malus’s law",
+   "source": "College Physics 2e, 27.8 Polarization",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Only the component of the field parallel to the axis of a filter is passed; for a wave of amplitude $\\kEf$ at the angle $\\ktheta$ to the axis it is $\\kEf\\;\\cos\\;\\ktheta$.",
+       "src": "27.8"
+      },
+      {
+       "text": "The intensity of a wave is proportional to its amplitude squared.",
+       "src": "24.4"
+      },
+      {
+       "text": "$\\kIopol$ is the intensity of the polarized wave before it passes through the filter, where its amplitude is $\\kEf$.",
+       "src": "27.8"
+      }
+     ],
+     "then": {
+      "tex": "\\frac{\\mk{I}{\\kIntens}}{\\mk{o}{\\kIopol}} = \\frac{\\mk{t}{(\\kEf\\;\\cos\\;\\ktheta)^2}}{\\mk{e}{\\kEf^2}}",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "why": "The ratio of the two intensities is the ratio of the squares of the amplitudes after and before the filter."
+     },
+     "steps": [
+      {
+       "tex": "\\frac{\\mk{I}{\\kIntens}}{\\mk{o}{\\kIopol}} = \\mk{t}{\\cos^{2}\\;\\ktheta}",
+       "uses": [],
+       "map": {
+        "e": "t"
+       }
+      },
+      {
+       "tex": "\\mk{I}{\\kIntens} = \\mk{o}{\\kIopol}\\mk{t}{\\;\\cos^{2}\\;\\ktheta}",
+       "uses": []
+      }
+     ],
+     "src": "27.8"
+    }
+   ]
+  }
  ]
 }

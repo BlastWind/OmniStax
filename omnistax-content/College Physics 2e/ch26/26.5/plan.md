@@ -89,3 +89,8 @@ as is the stray line on the lens-to-retina distance above the problems.
 - App: an exercise card holds one `figure`, so AP item `fs-id2542348` shows only part (a)'s drawing; part (b)'s `Figure_27_05_07.jpg` is copied to `media/ch26/` for when a card can hold two.
 
 Applied by the chapter pass: the two equation anchors and the seven variable anchors as listed. The mirror's radius in `sim-reflecting-telescope` now takes Chapter 25's typed symbol `R_curv` (`\kRcur`, position), and a variable row `R_curv` anchored at `reflecting-telescopes` defines it; no symbol row changed. The second drawing of `fs-id2542348` waits on the app.
+
+## Derivations
+
+- Two-lens telescopes, the first image at the focal point · score 1 · built as drv-first-image-at-focal-length: a proof the book prints ("To prove this")
+- Angular magnification, $M = -f_o/f_e$ · score 7 · built as drv-telescope-angular-magnification: hidden behind "it can be shown"; the central rays through the two lenses and the small-angle approximation (27.6)

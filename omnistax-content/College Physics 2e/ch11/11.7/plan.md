@@ -413,3 +413,8 @@ figure line above now says in place of the 0.80 m and 1.00 m first
 planned.
 
 Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-ship`: the buoyant force and the weight are drawn in a free-body diagram beside the hull rather than through it, since with cargo on deck the two arrows ran through the boxes and their labels; the surface and density labels move to the left end of the water, and the cargo label sits above a long row of boxes so nothing reaches the diagram. The other four figures unchanged.
+
+## Derivations
+
+- Archimedes' principle from the pressure difference across a submerged body (Figures 11.18, 11.19) · score 6 · not built: the book's own argument is the two-move replacement of the object by fluid, in words; the computation from $(P_2 - P_1)A$ is one the book never makes
+- The fraction of a floating object that is submerged, $\rho_\text{obj}/\rho_\text{fl}$ ("We can derive", printed block) · score 2 · built as drv-fraction-submerged: two nodes, the skipped $m_\text{fl} = m_\text{obj}$ from floating and Archimedes' principle, then the volume ratio; replaces the three displayed lines

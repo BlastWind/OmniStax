@@ -51,3 +51,9 @@ Judged and dropped: a "substitute too soon" toggle on the plane (the book's note
 - variables `4.1/dV/dt`, `4.1/dr/dt`, `4.1/V_prime`, `4.1/r_prime` → `4.1-setting-up`; `4.1/dx/dt`, `4.1/ds/dt` → `4.1-fs-id1165043105132`; `4.1/dh/dt`, `4.1/dθ/dt`, `4.1/θ` → `4.1-fs-id1165043116552`.
 - symbols `V_prime` (V′, `\kVprime`) and `r_prime` (r′, `\krprime`), and variables rows for them and for θ (the camera's angle, type angle).
 - Review 549 waits for 4.10's build only in that the checker refuses a `source_section` the app has not built; added in the chapter pass if refused here.
+
+
+## Derivations
+
+- Example 4.3 · Chapter Opener: A Rocket Launch · score 5 · not built: a related-rates worked example that applies the section's strategy (triangle, equation, differentiate, substitute); the Pythagorean side line is part of that method, so it stays as printed
+- Example 4.4 · Water Draining from a Funnel · score 4 · not built: the same, the cone's volume and similar triangles set up by the strategy and the numbers substituted

@@ -211,3 +211,11 @@ Figure pass, 2026-09-14 (Claude Fable 5.1). `sim-avg`: the average-velocity labe
 
 position, velocity, acceleration, time. Mass and length stay in ink, as
 the book's rules say.
+
+## Derivations
+
+- Solving for Displacement and Final Position from Average Velocity when Acceleration is Constant (derivation box) · score 1 · built as drv-position-from-average-velocity: one node, the definition of average velocity through the notation to $x = x_0 + \bar v t$; the box is replaced whole and its closing line, $\bar v = (v_0 + v)/2$, which the book asserts rather than derives, stays printed after the host
+- Solving for Final Velocity (derivation box) · score 1 · built as drv-final-velocity: one node from the definition of acceleration; the box is replaced whole
+- Solving for Final Position When Velocity is Not Constant (derivation box) · score 2 · built as drv-position-constant-acceleration: two nodes, $\bar v = v_0 + \tfrac12 at$ and its substitution into $x = x_0 + \bar v t$, with the book's add-and-halve split into two moves and the expansion inserted; the box is replaced whole
+- Solving for Final Velocity when Velocity Is Not Constant (derivation box) · score 5 · built as drv-velocity-without-time: two nodes, $t$ from $v = v_0 + at$ and the substitution into $x = x_0 + \bar v t$; the five lines the book skips between $t = (v - v_0)/a$ and the result are inserted; the box is replaced whole
+- Example 2.13, Calculating Time: A Car Merges into Traffic · score 2 · not built: a worked example that substitutes into the section's equation and solves the quadratic

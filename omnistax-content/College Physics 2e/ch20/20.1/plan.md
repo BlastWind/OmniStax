@@ -132,3 +132,8 @@ Each line supersedes the figure's line above where they differ.
 sim-current-in-a-wire · Figure 20.2 + 20.4 · as above · the carriers choice no longer cuts: the one set of carriers blends between positive charges, electrons and both signs (`mix` of each sign's presence), each legend entry keeping its own place (manim 15, 16) · moving, as above
 sim-simple-circuit · Figure 20.3 · as above · the situation choice rescales the battery and the lamp from one situation's into the other's (`mix`) while the schematic holds still, which is the point of the figure; the headline no longer speaks of the figure (root 17) · moving, as above (motion pass of 2026-10-05)
 sim-drift-and-signal · Figure 20.5 + 20.6 · as above · the "follow" choice cross-fades the three states over the wire and lattice they share (`a(v)`) instead of cutting (manim 15) · moving, as above; the "drawn × life" slider and its stated factor stay (28.4)
+
+## Derivations
+
+- Current and drift velocity, $I = nqAv_d$ (prose, then a printed block) · score 0 · built as drv-current-drift-velocity: one node, $I = \Delta Q/\Delta t$ with the segment's charge $qnAx$ and $x/\Delta t = v_d$; the paragraph that counts the charges stays, the two displayed lines and the connecting phrases are replaced
+- Example 20.3, the drift velocity of electrons in a copper wire · score 4 · not built: a worked example whose unit conversions for $n$ and the area feed one substitution into the section's $I = nqAv_d$; leaning to not building at exactly 4

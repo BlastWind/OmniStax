@@ -295,5 +295,80 @@
     "sim-flow-probe"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "hall-emf",
+   "what": "the Hall emf",
+   "source": "College Physics 2e, 22.6 The Hall Effect",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The separated charges build up until the electric force on a moving charge equals the magnetic force.",
+       "src": "22.6"
+      },
+      {
+       "tex": "\\kF_{\\text{e}} = \\kq\\kEf",
+       "src": "18.4"
+      },
+      {
+       "tex": "\\kF = \\kq\\kv\\kBmag",
+       "src": "22.4"
+      },
+      {
+       "text": "$\\kBmag$, $\\kv$ and $\\kl$ are mutually perpendicular.",
+       "src": "22.6, Figure 22.27"
+      },
+      {
+       "text": "The field $\\kEf$ is uniform across the conductor, because $\\kBmag$ and the conductor are uniform.",
+       "src": "22.6"
+      },
+      {
+       "tex": "\\kEf = \\dfrac{\\kemfhall}{\\kl}",
+       "src": "19.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\kF_{\\text{e}}} = \\mk{m}{\\kF}",
+      "src": "22.6",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\kq\\kEf} = \\mk{m}{\\kF}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kq\\kEf} = \\mk{m}{\\kq\\kv\\kBmag}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kEf} = \\mk{m}{\\kv\\kBmag}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{\\dfrac{\\kemfhall}{\\kl}} = \\mk{m}{\\kv\\kBmag}",
+       "uses": [
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\kemfhall} = \\mk{m}{\\kBmag \\kl \\kv} \\quad (\\kBmag,\\ \\kv,\\ \\text{and}\\ \\kl,\\ \\text{mutually perpendicular})",
+       "uses": []
+      }
+     ],
+     "src": "22.6"
+    }
+   ]
+  }
  ]
 }

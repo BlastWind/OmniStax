@@ -77,3 +77,7 @@ None.
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass (2026-09-28): both equation anchors and both variable anchors as asked; the edges `photon-momentum` ← `relativistic-momentum` and `photon-momentum-and-energy` ← `energy-momentum-relation` (Chapter 28) were added and merged.
+
+## Derivations
+
+- Relativistic photon momentum, $p = E/c$ and the check against $p = h/\lambda$ · score 3 · built as drv-photon-momentum: a printed block, replaced

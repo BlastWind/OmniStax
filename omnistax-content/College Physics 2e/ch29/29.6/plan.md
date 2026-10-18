@@ -81,3 +81,7 @@ None.
 - No concept, edge or symbol row needs changing.
 
 Applied by the chapter pass (2026-09-28): all three equation anchors and four variable anchors as asked. Example 29.7 is the 54.0-eV, 0.167-nm electron that 29.8's first problem cites.
+
+## Derivations
+
+- Making Connections, the Bragg equation $n\lambda = 2d\sin\theta$ · score 2 · built as drv-bragg-equation: a short derivation the book prints in its prose; the prose stays and the derivation follows it

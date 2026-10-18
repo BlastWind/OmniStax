@@ -50,3 +50,12 @@ None: the path figure with its non-conservative choice already shows Example 16.
 ## Wanted at chapter level
 
 - forms: `eq-fundamental-theorem-for-line-integrals` → `16.3-fs-id1167794058636`; `eq-circulation-of-a-conservative-field` → `16.3-zero-circulation`; `eq-cross-partial-test` → `16.3-fs-id1167793927474`.
+
+## Derivations
+
+- The Fundamental Theorem for Line Integrals, Proof · score 2 · built as drv-fundamental-theorem-for-line-integrals
+- ‘The first consequence … the circulation of F along C is zero’ · score 0 · built as drv-zero-circulation
+- Path Independence of Conservative Fields, Proof · score 0 · built as drv-path-independence
+- The Path Independence Test for Conservative Fields, Proof · score 4 · built as drv-path-independence-test
+- Example 16.33 · Finding a Potential Function (the gravitational field) · score 1 · not built: a worked example under the bar, one antiderivative per component
+- The Cross-Partial Test for Conservative Fields, ‘a proof of this theorem is beyond the scope of the text’ · score 7 · not built: the proof needs that a closed curve in a simply connected region bounds a surface inside it (or Stokes’ theorem on such a surface), which the book never states

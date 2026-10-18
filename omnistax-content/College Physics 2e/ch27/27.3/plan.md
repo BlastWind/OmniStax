@@ -84,3 +84,7 @@ Labels: every figure names under six things; the fringes of 27.10 and 27.15 are 
 - No concept, edge or symbol fix.
 
 Applied by the chapter pass (2026-09-28): The equation and variable anchors are written as listed.
+
+## Derivations
+
+- The path length difference and the double slit conditions · score 2 · built as drv-double-slit-conditions: a thin printed block, one node for each condition, both from the path difference $d\sin\theta$

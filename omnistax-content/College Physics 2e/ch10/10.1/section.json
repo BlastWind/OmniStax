@@ -376,5 +376,69 @@
     "sim-motorcycle"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "tangential-acceleration",
+   "what": "the tangential acceleration",
+   "source": "College Physics 2e, 10.1 Angular Acceleration",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kv = \\kr\\kw",
+       "src": "6.1"
+      },
+      {
+       "text": "The radius $\\kr$ is constant for circular motion.",
+       "src": "10.1"
+      },
+      {
+       "tex": "\\kalpha = \\dfrac{\\kdw}{\\kdt}",
+       "src": "10.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kat} = \\dfrac{\\mk{v}{\\kdv}}{\\mk{t}{\\kdt}}",
+      "src": "2.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kat} = \\dfrac{\\mk{v}{\\Delta(\\kr\\kw)}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kat} = \\mk{r}{\\kr}\\dfrac{\\mk{v}{\\kdw}}{\\mk{t}{\\kdt}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "v": [
+         "r",
+         "v"
+        ]
+       },
+       "cap": "With $\\kr$ fixed, only $\\kw$ changes, so $\\Delta(\\kr\\kw) = \\kr(\\kdw)$."
+      },
+      {
+       "tex": "\\mk{a}{\\kat} = \\mk{r}{\\kr}\\mk{v}{\\kalpha}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "t": "v"
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kalpha} = \\dfrac{\\mk{a}{\\kat}}{\\mk{r}{\\kr}}",
+       "uses": []
+      }
+     ],
+     "src": "10.1"
+    }
+   ]
+  }
  ]
 }

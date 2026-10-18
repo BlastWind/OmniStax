@@ -42,3 +42,13 @@ Sₖ wears `series` (`\kS_{k}`), the sum S `limit` (`\kSsum`), aₙ and bₙ `se
 ## Wanted at chapter level
 
 - Anchors: variables a_seq, n, S, S_sum → `9.2-series-definition`; a, r → `9.2-geometric-series`; b_seq → `9.2-telescoping`; c → `9.2-series-properties`. Forms: eq-infinite-series, eq-partial-sum, eq-sum-of-a-series → `9.2-series-definition`; eq-harmonic-series → `9.2-harmonic-series`; eq-harmonic-partial-sum-bound → `9.2-harmonic-series`; eq-series-sum-rule, -difference-rule, -constant-multiple-rule → `9.2-series-properties`; eq-geometric-series → `9.2-geometric-series`; eq-geometric-series-sum, eq-geometric-partial-sum → `9.2-geometric-definition`; eq-telescoping-partial-sum, eq-telescoping-sum → `9.2-telescoping`; eq-eulers-constant → `9.2-eulers-constant`.
+
+## Derivations
+
+- The Harmonic Series · divergence · score 3 · built as drv-harmonic-series-divergence (a printed proof; $S_{4},$ $S_{8},$ the hidden general $S_{2^{j}}\gt 1+j(\frac{1}{2})$ and the conclusion; the paragraph that restated them dropped)
+- Algebraic Properties of Convergent Series · "follow directly" · score 4 · not built: three moves, under the bar
+- Geometric Series · the sum, (9.7) · score 1 · built as drv-geometric-series-sum (a printed block; the cases $r=1,$ $r\ne1,$ $|r|\lt1$ and $|r|\ge1$ as a branching graph; the definition box keeps its (9.7))
+- Example 9.11a · the perimeter of the Koch snowflake · score 2 · not built: a worked example
+- Example 9.11b · the area of the Koch snowflake · score 5 · not built: a worked example of the section's geometric sum, every line printed; its one join (part a's side count) is the example's own
+- Telescoping Series · the sum of a telescoping series · score 2 · built as drv-telescoping-series (the general block: $S_{k}=b_{1}-b_{k+1}$ and the sum $b_{1}-B;$ the worked $\sum 1/(n(n+1))$ before the definition and the $S_{1}$–$S_{3}$ lines stay as printed)
+- Student Project · Euler's Constant · score 14 · not built: a project set for the reader

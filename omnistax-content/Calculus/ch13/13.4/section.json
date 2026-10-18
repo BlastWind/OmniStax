@@ -1299,11 +1299,6 @@
    "html": "The vertical component found just above is 1406.25 ft, so the maximum height is 1406.25 ft above the cannon, or 1506.25 ft above sea level."
   },
   {
-   "id": "c-range-j",
-   "kind": "correction",
-   "html": "The display ends with $\\frac{v_{0}^{2}}{g}\\mathbf{j};$ the distance lies along the horizontal, $\\frac{v_{0}^{2}}{g}\\mathbf{i},$ as the line before it has it."
-  },
-  {
    "id": "c-cp15",
    "kind": "correction",
    "html": "From $a_{\\mathbf{N}}=\\frac{4}{\\sqrt{4+t^{2}}},$ $a_{\\mathbf{N}}(-3)=\\frac{4}{\\sqrt{13}}=\\frac{4\\sqrt{13}}{13},$ not $\\frac{2\\sqrt{13}}{13};$ the check $\\sqrt{\\|\\mathbf{a}\\|^{2}-a_{\\mathbf{T}}^{2}}=\\sqrt{4-\\frac{36}{13}}=\\frac{4}{\\sqrt{13}}$ agrees."
@@ -1312,6 +1307,1200 @@
    "id": "c-r227",
    "kind": "correction",
    "html": "The motion is in the plane, so the parametric representation has two components: $\\mathbf{r}(t)=\\langle v_{0}t\\cos\\theta,\\;v_{0}t\\sin\\theta-\\frac{g}{2}t^{2}\\rangle;$ the key splits the vertical component into two."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "plane-of-acceleration",
+   "what": "the plane of the acceleration vector",
+   "source": "Calculus, 13.4 Motion in Space, Components of the Acceleration Vector",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecv(t)=\\kvecrprime(t)",
+       "src": "(13.20)"
+      },
+      {
+       "tex": "\\kv(t)=\\| \\kvecrprime(t)\\|",
+       "src": "(13.22)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\kvecT(t)}=\\frac{\\mk{r}{\\kvecrprime(t)}}{\\mk{n}{\\| \\kvecrprime(t)\\|}}",
+      "src": "13.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\kvecrprime(t)}=\\mk{n}{\\| \\kvecrprime(t)\\|}\\mk{T}{\\kvecT(t)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\kvecv(t)}=\\mk{n}{\\| \\kvecrprime(t)\\|}\\mk{T}{\\kvecT(t)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\kvecv(t)}=\\mk{n}{\\kv(t)}\\;\\mk{T}{\\kvecT(t)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kveca(t)=\\kvecvprime(t)",
+       "src": "(13.21)"
+      },
+      {
+       "tex": "\\frac{d}{dt}[\\kf(t)\\;\\kvecu(t)]=\\kfprime(t)\\;\\kvecu(t)+\\kf(t)\\;\\kvecuprime(t)",
+       "src": "13.2, Properties of the Derivative of Vector-Valued Functions, iii"
+      },
+      {
+       "tex": "\\kvecN(t)=\\frac{\\kvecTprime(t)}{\\| \\kvecTprime(t)\\|}",
+       "src": "(13.18)"
+      },
+      {
+       "tex": "\\kkappa =\\frac{\\| \\kvecTprime(t)\\|}{\\| \\kvecrprime(t)\\|}",
+       "src": "(13.15)"
+      },
+      {
+       "tex": "\\kv(t)=\\| \\kvecrprime(t)\\|",
+       "src": "(13.22)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kvecv(t)}=\\mk{n}{\\kv(t)}\\;\\mk{T}{\\kvecT(t)}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\kvecvprime(t)}=\\mk{d}{\\frac{d}{dt}(\\kv(t)\\;\\kvecT(t))}",
+       "uses": [],
+       "map": {
+        "n": "d",
+        "T": "d"
+       }
+      },
+      {
+       "tex": "\\mk{a}{\\kveca(t)}=\\mk{r}{\\kvecvprime(t)}=\\mk{d}{\\frac{d}{dt}(\\kv(t)\\;\\kvecT(t))}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kveca(t)}=\\mk{r}{\\kvecvprime(t)}=\\mk{d}{\\frac{d}{dt}(\\kv(t)\\;\\kvecT(t))}=\\mk{p}{\\kvprime(t)\\;\\kvecT(t)}+\\mk{q}{\\kv(t)\\;\\kvecTprime(t)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kveca(t)}=\\mk{p}{\\kvprime(t)\\;\\kvecT(t)}+\\mk{q}{\\kv(t)\\| \\kvecTprime(t)\\| \\kvecN(t)}",
+       "uses": [
+        3
+       ],
+       "cap": "From (13.18), $\\kvecTprime(t)=\\| \\kvecTprime(t)\\| \\kvecN(t)$."
+      },
+      {
+       "tex": "\\mk{a}{\\kveca(t)}=\\mk{p}{\\kvprime(t)\\;\\kvecT(t)}+\\mk{q}{\\kv(t)\\,\\kkappa \\| \\kvecrprime(t)\\| \\kvecN(t)}",
+       "uses": [
+        4
+       ],
+       "cap": "From (13.15), $\\| \\kvecTprime(t)\\| =\\kkappa \\| \\kvecrprime(t)\\|$."
+      },
+      {
+       "tex": "\\mk{a}{\\kveca(t)}=\\mk{p}{\\kvprime(t)\\;\\kvecT(t)}+\\mk{q}{\\kv(t)\\,\\kkappa \\kv(t)\\kvecN(t)}",
+       "uses": [
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kveca(t)}=\\mk{p}{\\kvprime(t)\\;\\kvecT(t)}+\\mk{q}{\\kkappa {(\\kv(t))}^{2}\\kvecN(t)}",
+       "uses": []
+      }
+     ],
+     "src": "13.4, The Plane of the Acceleration Vector"
+    }
+   ]
+  },
+  {
+   "id": "projectile-velocity",
+   "what": "the velocity of a projectile",
+   "source": "Calculus, 13.4 Motion in Space, Projectile Motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "F=m\\;\\kveca",
+       "src": "13.4"
+      },
+      {
+       "text": "Gravity is the only force acting on the object.",
+       "src": "13.4"
+      },
+      {
+       "tex": "F_{g}=-mg\\;\\kvecj",
+       "src": "13.4"
+      },
+      {
+       "tex": "\\kveca(t)=\\kvecvprime(t)",
+       "src": "(13.21)"
+      },
+      {
+       "text": "A vector-valued function is antidifferentiated component by component, its indefinite integral (13.7).",
+       "src": "13.2"
+      },
+      {
+       "text": "$\\int k\\,dt=kt+C$ for a constant $k$.",
+       "src": "4.10"
+      },
+      {
+       "text": "The integration constant of a vector-valued function is a constant vector.",
+       "src": "13.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{F}=\\mk{G}{F_{g}}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{m\\;\\kveca}=\\mk{G}{-mg\\;\\kvecj}",
+       "uses": [
+        0,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kveca}=\\mk{G}{-g\\;\\kvecj}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{\\kvecvprime(t)}=\\mk{G}{-g\\;\\kvecj}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kvecv(t)}=\\mk{G}{\\int -g\\;\\kvecj\\,dt}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kvecv(t)}=\\mk{G}{-gt\\;\\kvecj+{\\textbf{C}}_{1}}",
+       "uses": [
+        5,
+        6
+       ]
+      }
+     ],
+     "src": "13.4, Projectile Motion"
+    }
+   ]
+  },
+  {
+   "id": "projectile-position",
+   "what": "the position of a projectile",
+   "source": "Calculus, 13.4 Motion in Space, Projectile Motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecv(t)=\\kvecsprime(t)",
+       "src": "13.4"
+      },
+      {
+       "text": "A vector-valued function is antidifferentiated component by component, its indefinite integral (13.7).",
+       "src": "13.2"
+      },
+      {
+       "text": "$\\int t\\,dt=\\frac{1}{2}t^{2}+C$ and $\\int k\\,dt=kt+C$ for a constant $k$.",
+       "src": "4.10"
+      },
+      {
+       "text": "The integration constant of a vector-valued function is a constant vector.",
+       "src": "13.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvecv(t)}=\\mk{G}{-gt\\;\\kvecj+\\kvecvzero}",
+      "src": "13.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kvecsprime(t)}=\\mk{G}{-gt\\;\\kvecj+\\kvecvzero}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kvecs(t)}=\\mk{G}{\\int -gt\\;\\kvecj+{\\kvecv}_{0}dt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kvecs(t)}=\\mk{G}{-\\frac{1}{2}gt^{2}\\kvecj+{\\kvecv}_{0}t+{\\textbf{C}}_{2}}",
+       "uses": [
+        2,
+        3
+       ]
+      }
+     ],
+     "src": "13.4, Projectile Motion"
+    }
+   ]
+  },
+  {
+   "id": "projectile-at-an-angle",
+   "what": "the position of a projectile thrown at an angle",
+   "source": "Calculus, 13.4 Motion in Space, Projectile Motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecszero=\\kveczero",
+       "src": "13.4"
+      },
+      {
+       "tex": "\\kvecvzero=v_{0}\\cos \\ktheta \\;\\kveci+v_{0}\\sin \\ktheta \\;\\kvecj",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kvecs(t)}=\\mk{g}{-\\frac{1}{2}gt^{2}\\kvecj}+\\mk{v}{{\\kvecv}_{0}t}+\\mk{z}{\\kvecszero}",
+      "src": "13.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kvecs(t)}=\\mk{g}{-\\frac{1}{2}gt^{2}\\;\\kvecj}+\\mk{v}{{\\kvecv}_{0}t}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\kvecs(t)}=\\mk{g}{-\\frac{1}{2}gt^{2}\\;\\kvecj}+\\mk{x}{v_{0}t\\;\\cos \\ktheta \\;\\kveci}+\\mk{y}{v_{0}t\\;\\sin \\ktheta \\;\\kvecj}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "v": [
+         "x",
+         "y"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\kvecs(t)}=\\mk{x}{v_{0}t\\;\\cos \\ktheta \\;\\kveci}+\\mk{y}{(v_{0}t\\;\\sin \\ktheta \\;-\\frac{1}{2}gt^{2})\\;\\kvecj}",
+       "uses": [],
+       "map": {
+        "g": "y"
+       }
+      }
+     ],
+     "src": "13.4, Projectile Motion"
+    }
+   ]
+  },
+  {
+   "id": "projectile-range",
+   "what": "the range of a projectile",
+   "source": "Calculus, 13.4 Motion in Space, Projectile Motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Fired from ground level, the projectile lands when the second component of $\\kvecs(t)$ returns to zero.",
+       "src": "13.4"
+      },
+      {
+       "text": "At landing, $t\\ne 0$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kvecs(t)}=\\mk{x}{v_{0}t\\;\\cos \\ktheta \\;\\kveci}+\\mk{y}{(v_{0}t\\;\\sin \\ktheta -\\frac{1}{2}gt^{2})\\;\\kvecj}",
+      "src": "13.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{v_{0}t\\;\\sin \\ktheta -\\frac{1}{2}gt^{2}}=\\mk{z}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{t(v_{0}\\sin \\ktheta -\\frac{1}{2}gt)}=\\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{v_{0}\\sin \\ktheta -\\frac{1}{2}gt}=\\mk{z}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{t}{t}=\\mk{y}{\\frac{2v_{0}\\sin \\ktheta}{g}}",
+       "uses": []
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kvecs(t)}=\\mk{x}{v_{0}t\\;\\cos \\ktheta \\;\\kveci}+\\mk{y}{(v_{0}t\\;\\sin \\ktheta -\\frac{1}{2}gt^{2})\\;\\kvecj}",
+      "src": "13.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kvecs(\\frac{2v_{0}\\sin \\ktheta}{g})}=\\mk{x}{v_{0}(\\frac{2v_{0}\\sin \\ktheta}{g})\\cos \\ktheta \\;\\kveci}+\\mk{y}{(v_{0}(\\frac{2v_{0}\\sin \\ktheta}{g})\\sin \\ktheta -\\frac{1}{2}g{(\\frac{2v_{0}\\sin \\ktheta}{g})}^{2})\\;\\kvecj}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\kvecs(\\frac{2v_{0}\\sin \\ktheta}{g})}=\\mk{x}{(\\frac{2v_0^{2}\\sin \\ktheta \\;\\cos \\ktheta}{g})\\;\\kveci}+\\mk{y}{(\\frac{2v_0^{2}\\sin^{2}\\ktheta}{g}-\\frac{2v_0^{2}\\sin^{2}\\ktheta}{g})\\;\\kvecj}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\kvecs(\\frac{2v_{0}\\sin \\ktheta}{g})}=\\mk{x}{(\\frac{2v_0^{2}\\sin \\ktheta \\;\\cos \\ktheta}{g})\\;\\kveci}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\kvecs(\\frac{2v_{0}\\sin \\ktheta}{g})}=\\mk{x}{\\frac{v_0^{2}\\sin 2\\ktheta}{g}\\kveci}",
+       "uses": [],
+       "cap": "The double-angle formula $\\sin 2\\ktheta=2\\sin \\ktheta\\cos \\ktheta$."
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The range $R$ is the horizontal distance from the origin at landing, the coefficient of $\\kveci$.",
+       "src": "13.4"
+      },
+      {
+       "text": "Where a differentiable function has a local extremum, its derivative is zero.",
+       "src": "4.3, Fermat’s Theorem"
+      },
+      {
+       "text": "$\\frac{d}{d\\ktheta}\\sin 2\\ktheta=2\\cos 2\\ktheta$, by the chain rule.",
+       "src": "3.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kvecs(\\frac{2v_{0}\\sin \\ktheta}{g})}=\\mk{x}{\\frac{v_0^{2}\\sin 2\\ktheta}{g}\\kveci}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{R}=\\mk{x}{\\frac{v_0^{2}\\sin 2\\ktheta}{g}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\frac{d}{d\\ktheta}(\\frac{v_0^{2}\\sin 2\\ktheta}{g})}=\\mk{z}{0}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "x": "s"
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\frac{2v_0^{2}\\cos 2\\ktheta}{g}}=\\mk{z}{0}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\cos 2\\ktheta}=\\mk{z}{0}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ktheta}=\\mk{z}{45^{\\circ}}",
+       "uses": [],
+       "cap": "The smallest positive angle with $\\cos 2\\ktheta=0$ has $2\\ktheta=90^{\\circ}$."
+      }
+     ],
+     "src": "13.4",
+     "note": "The book writes the range as the vector $R=\\frac{v_0^{2}\\sin 2\\ktheta}{g}\\kveci$; the range is a distance, the coefficient of $\\kveci$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kvecs(\\frac{2v_{0}\\sin \\ktheta}{g})}=\\mk{x}{\\frac{v_0^{2}\\sin 2\\ktheta}{g}\\kveci}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kvecs(\\frac{2v_{0}\\sin 45^{\\circ}}{g})}=\\mk{x}{\\frac{v_0^{2}\\sin 90^{\\circ}}{g}\\kveci}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\kvecs(\\frac{2v_{0}\\sin 45^{\\circ}}{g})}=\\mk{x}{\\frac{v_0^{2}}{g}\\kveci}",
+       "uses": []
+      }
+     ],
+     "src": "13.4",
+     "note": "The book ends with $\\frac{v_{0}^{2}}{g}\\kvecj$; the distance lies along the horizontal, $\\frac{v_{0}^{2}}{g}\\kveci$, as the line before it has it. It also writes the angles without degree signs, $\\sin 45$ and $\\sin 90$."
+    }
+   ]
+  },
+  {
+   "id": "kepler-constant-vector",
+   "what": "the constant vector r × v of a planet",
+   "source": "Calculus, 13.4 Motion in Space, Kepler’s Laws, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecF=-\\frac{GmM}{{\\| \\kvecr\\|}^{2}}\\cdot \\frac{\\kvecr}{\\| \\kvecr\\|}",
+       "src": "13.4"
+      },
+      {
+       "tex": "\\kveca(t)=\\kvecvprime(t)",
+       "src": "(13.21)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kvecF}=\\mk{G}{m\\;\\kveca}",
+      "src": "13.4",
+      "why": "Newton’s second law of motion."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{-\\frac{GmM}{{\\| \\kvecr\\|}^{2}}\\cdot \\frac{\\kvecr}{\\| \\kvecr\\|}}=\\mk{G}{m\\;\\kveca}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{G}{m\\;\\kvecvprime(t)}=\\mk{F}{-\\frac{GmM}{{\\| \\kvecr\\|}^{2}}\\cdot \\frac{\\kvecr}{\\| \\kvecr\\|}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{G}{\\frac{d\\;\\kvecv}{dt}}=\\mk{F}{-\\frac{GM}{{\\| \\kvecr\\|}^{3}}\\kvecr}",
+       "uses": []
+      }
+     ],
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "c(\\kvecu\\;\\times \\;\\kvecv)=(c\\kvecu)\\;\\times \\;\\kvecv=\\kvecu\\;\\times \\;(c\\kvecv)",
+       "src": "12.4, Properties of the Cross Product, iii"
+      },
+      {
+       "tex": "\\kvecv\\;\\times \\;\\kvecv=\\kveczero",
+       "src": "12.4, Properties of the Cross Product, v"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{G}{\\frac{d\\;\\kvecv}{dt}}=\\mk{F}{-\\frac{GM}{{\\| \\kvecr\\|}^{3}}\\kvecr}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{G}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\kvecr}=\\mk{F}{-\\frac{GM}{{\\| \\kvecr\\|}^{3}}(\\kvecr\\;\\times \\;\\kvecr)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{G}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\kvecr}=\\mk{F}{\\kveczero}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dt}[\\;\\kvecr(t)\\;\\times \\;\\kvecu(t)]=\\kvecrprime(t)\\;\\times \\;\\kvecu(t)+\\;\\kvecr(t)\\;\\times \\;\\kvecuprime(t)",
+       "src": "13.2, Properties of the Derivative of Vector-Valued Functions, v"
+      },
+      {
+       "tex": "\\frac{d\\;\\kvecr}{dt}=\\kvecv",
+       "src": "(13.20)"
+      },
+      {
+       "tex": "\\kvecv\\;\\times \\;\\kvecv=\\kveczero",
+       "src": "12.4, Properties of the Cross Product, v"
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kvecu\\;\\times \\;\\kvecv=-(\\kvecv\\;\\times \\;\\kvecu)",
+       "src": "12.4, Properties of the Cross Product, i"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\;\\times \\;\\kvecv)}=\\mk{a}{\\frac{d\\;\\kvecr}{dt}\\;\\times \\;\\kvecv}+\\mk{b}{\\kvecr\\;\\times \\;\\frac{d\\;\\kvecv}{dt}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\;\\times \\;\\kvecv)}=\\mk{a}{\\kvecv\\;\\times \\;\\kvecv}+\\mk{b}{\\kvecr\\;\\times \\;\\frac{d\\;\\kvecv}{dt}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\;\\times \\;\\kvecv)}=\\mk{a}{\\kvecv\\;\\times \\;\\kvecv}+\\mk{b}{\\kveczero}",
+       "uses": [
+        3,
+        4
+       ],
+       "cap": "$\\kvecr\\times\\frac{d\\kvecv}{dt}=-(\\frac{d\\kvecv}{dt}\\times\\kvecr)=\\kveczero$."
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\;\\times \\;\\kvecv)}=\\mk{a}{\\kveczero}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "13.4, Proof"
+    }
+   ]
+  },
+  {
+   "id": "keplers-first-law",
+   "what": "Kepler’s first law",
+   "source": "Calculus, 13.4 Motion in Space, Kepler’s Laws, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecr\\;\\times \\;\\kvecv=\\textbf{C}",
+       "src": "13.4"
+      },
+      {
+       "tex": "c(\\kvecu\\;\\times \\;\\kvecv)=(c\\kvecu)\\;\\times \\;\\kvecv=\\kvecu\\;\\times \\;(c\\kvecv)",
+       "src": "12.4, Properties of the Cross Product, iii"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}}=\\mk{r}{-\\frac{GM}{{\\| \\kvecr\\|}^{3}}\\kvecr}",
+      "src": "13.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{-\\frac{GM}{{\\| \\kvecr\\|}^{3}}}\\mk{r}{\\kvecr}\\;\\times \\;\\mk{c}{\\textbf{C}}",
+       "uses": [],
+       "map": {
+        "r": [
+         "k",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{-\\frac{GM}{{\\| \\kvecr\\|}^{3}}}\\mk{r}{\\kvecr}\\;\\times \\;\\mk{c}{(\\kvecr\\;\\times \\;\\kvecv)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{-\\frac{GM}{{\\| \\kvecr\\|}^{3}}}\\mk{t}{[(\\kvecr\\cdot \\kvecv)\\;\\kvecr-(\\kvecr\\cdot \\kvecr)\\;\\kvecv]}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r": "t",
+        "c": "t"
+       },
+       "cap": "The triple cross product formula: $\\kvecu\\times(\\kvecv\\times\\kvecw)=(\\kvecu\\cdot\\kvecw)\\kvecv-(\\kvecu\\cdot\\kvecv)\\kvecw$."
+      }
+     ],
+     "num": "(13.26)",
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{dt}[\\;\\kvecr(t)\\cdot \\;\\kvecu(t)]=\\kvecrprime(t)\\cdot \\;\\kvecu(t)+\\;\\kvecr(t)\\cdot \\;\\kvecuprime(t)",
+       "src": "13.2, Properties of the Derivative of Vector-Valued Functions, iv"
+      },
+      {
+       "text": "The dot product is commutative: $\\kvecu\\cdot\\kvecv=\\kvecv\\cdot\\kvecu$.",
+       "src": "12.3, Properties of the Dot Product"
+      },
+      {
+       "tex": "\\frac{d\\;\\kvecr}{dt}=\\kvecv",
+       "src": "(13.20)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\cdot \\kvecr)}=\\mk{p}{\\frac{d\\;\\kvecr}{dt}\\cdot \\kvecr+\\kvecr\\cdot \\frac{d\\;\\kvecr}{dt}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\cdot \\kvecr)}=\\mk{p}{2\\kvecr\\cdot \\frac{d\\;\\kvecr}{dt}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\cdot \\kvecr)}=\\mk{p}{2\\kvecr\\cdot \\kvecv}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(13.27)",
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The chain rule: $\\frac{d}{dt}{[u(t)]}^{2}=2u(t)\\,u'(t)$.",
+       "src": "3.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kvecr\\cdot \\kvecr}=\\mk{n}{{\\| \\kvecr\\|}^{2}}",
+      "src": "12.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\cdot \\kvecr)}=\\mk{n}{\\frac{d}{dt}{\\| \\kvecr\\|}^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\cdot \\kvecr)}=\\mk{n}{2\\| \\kvecr\\| \\frac{d}{dt}\\| \\kvecr\\|}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(13.28)",
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dt}(\\kvecr\\cdot \\kvecr)}=\\mk{p}{2\\kvecr\\cdot \\kvecv}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{2\\kvecr\\cdot \\kvecv}=\\mk{n}{2\\| \\kvecr\\| \\frac{d}{dt}\\| \\kvecr\\|}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\kvecr\\cdot \\kvecv}=\\mk{n}{\\| \\kvecr\\| \\frac{d}{dt}\\| \\kvecr\\|}",
+       "uses": []
+      }
+     ],
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\kvecr\\cdot \\kvecr={\\| \\kvecr\\|}^{2}",
+       "src": "12.3, Properties of the Dot Product"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{-\\frac{GM}{{\\| \\kvecr\\|}^{3}}}\\mk{t}{[(\\kvecr\\cdot \\kvecv)\\;\\kvecr-(\\kvecr\\cdot \\kvecr)\\;\\kvecv]}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{-\\frac{GM}{{\\| \\kvecr\\|}^{3}}}[\\mk{a}{\\| \\kvecr\\| (\\frac{d}{dt}\\| \\kvecr\\| )\\;\\kvecr}-\\mk{b}{{\\| \\kvecr\\|}^{2}\\kvecv}]",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "t": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{-GM}[\\mk{a}{\\frac{1}{{\\| \\kvecr\\|}^{2}}(\\frac{d}{dt}\\| \\kvecr\\| )\\;\\kvecr}-\\mk{b}{\\frac{1}{\\| \\kvecr\\|}\\kvecv}]",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{GM}[\\mk{b}{\\frac{\\kvecv}{\\| \\kvecr\\|}}-\\mk{a}{\\frac{\\kvecr}{{\\| \\kvecr\\|}^{2}}(\\frac{d}{dt}\\| \\kvecr\\| )}]",
+       "uses": []
+      }
+     ],
+     "num": "(13.29)",
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The quotient rule: $(\\frac{\\kf}{\\kg})'=\\frac{\\kfprime\\kg-\\kf\\kgprime}{\\kg^{2}}$.",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "text": "A vector-valued function is differentiated component by component.",
+       "src": "13.2, Differentiation of Vector-Valued Functions"
+      },
+      {
+       "tex": "\\frac{d\\;\\kvecr}{dt}=\\kvecv",
+       "src": "(13.20)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dt}\\;\\frac{\\kvecr}{\\| \\kvecr\\|}}=\\mk{q}{\\frac{\\frac{d}{dt}(\\kvecr)\\| \\kvecr\\| -\\kvecr\\frac{d}{dt}\\| \\kvecr\\|}{{\\| \\kvecr\\|}^{2}}}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "The quotient rule, applied to each component of $\\kvecr$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}\\;\\frac{\\kvecr}{\\| \\kvecr\\|}}=\\mk{b}{\\frac{\\frac{d\\;\\kvecr}{dt}}{\\| \\kvecr\\|}}-\\mk{a}{\\frac{\\kvecr}{{\\| \\kvecr\\|}^{2}}\\;\\frac{d}{dt}\\| \\kvecr\\|}",
+       "uses": [],
+       "map": {
+        "q": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}\\;\\frac{\\kvecr}{\\| \\kvecr\\|}}=\\mk{b}{\\frac{\\kvecv}{\\| \\kvecr\\|}}-\\mk{a}{\\frac{\\kvecr}{{\\| \\kvecr\\|}^{2}}\\;\\frac{d}{dt}\\| \\kvecr\\|}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "step": 5
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{GM}[\\mk{b}{\\frac{\\kvecv}{\\| \\kvecr\\|}}-\\mk{a}{\\frac{\\kvecr}{{\\| \\kvecr\\|}^{2}}(\\frac{d}{dt}\\| \\kvecr\\| )}]"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{GM}\\mk{d}{(\\frac{d}{dt}\\;\\frac{\\kvecr}{\\| \\kvecr\\|})}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "a": "d",
+        "b": "d"
+       }
+      }
+     ],
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "step": 6
+      },
+      {
+       "text": "$\\textbf{C}$ is a constant vector.",
+       "src": "13.4"
+      },
+      {
+       "tex": "\\frac{d}{dt}[\\;\\kvecr(t)\\;\\times \\;\\kvecu(t)]=\\kvecrprime(t)\\;\\times \\;\\kvecu(t)+\\;\\kvecr(t)\\;\\times \\;\\kvecuprime(t)",
+       "src": "13.2, Properties of the Derivative of Vector-Valued Functions, v"
+      },
+      {
+       "text": "Two vector-valued functions with the same derivative differ by a constant vector.",
+       "src": "13.2, Integrals of Vector-Valued Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d\\;\\kvecv}{dt}\\;\\times \\;\\textbf{C}}=\\mk{k}{GM}\\mk{d}{(\\frac{d}{dt}\\;\\frac{\\kvecr}{\\| \\kvecr\\|})}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt}(\\kvecv\\;\\times \\;\\textbf{C})}=\\mk{k}{GM}\\mk{d}{(\\frac{d}{dt}\\;\\frac{\\kvecr}{\\| \\kvecr\\|})}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$\\textbf{C}$ is constant, so its derivative is $\\kveczero$ and $\\frac{d}{dt}(\\kvecv\\times\\textbf{C})=\\frac{d\\kvecv}{dt}\\times\\textbf{C}$."
+      },
+      {
+       "tex": "\\mk{l}{\\kvecv\\;\\times \\;\\textbf{C}}=\\mk{k}{GM}\\mk{d}{\\frac{\\kvecr}{\\| \\kvecr\\|}}+\\mk{D}{\\textbf{D}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "step": 7
+      },
+      {
+       "text": "The dot product distributes over addition and lets scalars out: $\\kvecu\\cdot(c\\kvecv+\\kvecw)=c(\\kvecu\\cdot\\kvecv)+\\kvecu\\cdot\\kvecw$.",
+       "src": "12.3, Properties of the Dot Product"
+      },
+      {
+       "tex": "\\kvecr\\cdot \\kvecr={\\| \\kvecr\\|}^{2}",
+       "src": "12.3, Properties of the Dot Product"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecv\\;\\times \\;\\textbf{C}}=\\mk{k}{GM}\\mk{d}{\\frac{\\kvecr}{\\| \\kvecr\\|}}+\\mk{D}{\\textbf{D}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kvecr\\cdot (\\kvecv\\;\\times \\;\\textbf{C})}=\\kvecr\\cdot (\\mk{k}{GM}\\mk{d}{\\frac{\\kvecr}{\\| \\kvecr\\|}}+\\mk{D}{\\textbf{D}})",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\kvecr\\cdot (\\kvecv\\;\\times \\;\\textbf{C})}=\\mk{k}{GM}\\mk{d}{\\frac{\\kvecr\\cdot \\kvecr}{\\| \\kvecr\\|}}+\\mk{D}{\\kvecr\\cdot \\textbf{D}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kvecr\\cdot (\\kvecv\\;\\times \\;\\textbf{C})}=\\mk{k}{GM}\\mk{d}{\\frac{{\\| \\kvecr\\|}^{2}}{\\| \\kvecr\\|}}+\\mk{D}{\\kvecr\\cdot \\textbf{D}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kvecr\\cdot (\\kvecv\\;\\times \\;\\textbf{C})}=\\mk{k}{GM}\\mk{d}{\\| \\kvecr\\|}+\\mk{D}{\\kvecr\\cdot \\textbf{D}}",
+       "uses": []
+      }
+     ],
+     "src": "13.4, Proof"
+    },
+    {
+     "assumes": [
+      {
+       "step": 8
+      },
+      {
+       "tex": "\\kvecu\\cdot (\\kvecv\\;\\times \\;\\kvecw)=(\\kvecu\\;\\times \\;\\kvecv)\\cdot \\kvecw",
+       "src": "12.4, Properties of the Cross Product, vi"
+      },
+      {
+       "tex": "\\kvecr\\;\\times \\;\\kvecv=\\textbf{C}",
+       "src": "13.4"
+      },
+      {
+       "tex": "\\kvecv\\cdot \\kvecv={\\| \\kvecv\\|}^{2}",
+       "src": "12.3, Properties of the Dot Product"
+      },
+      {
+       "tex": "\\kvecu\\cdot \\kvecv=\\| \\kvecu\\| \\| \\kvecv\\| \\cos \\ktheta",
+       "src": "(12.4)"
+      },
+      {
+       "text": "$\\ktheta$ is the angle between $\\kvecr$ and $\\textbf{D}$."
+      },
+      {
+       "tex": "e=\\| \\textbf{D}\\| /GM"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecr\\cdot (\\kvecv\\;\\times \\;\\textbf{C})}=\\mk{k}{GM}\\mk{d}{\\| \\kvecr\\|}+\\mk{D}{\\kvecr\\cdot \\textbf{D}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{(\\kvecr\\;\\times \\;\\kvecv)\\cdot \\textbf{C}}=\\mk{k}{GM}\\mk{d}{\\| \\kvecr\\|}+\\mk{D}{\\kvecr\\cdot \\textbf{D}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\textbf{C}\\cdot \\textbf{C}}=\\mk{k}{GM}\\mk{d}{\\| \\kvecr\\|}+\\mk{D}{\\kvecr\\cdot \\textbf{D}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{{\\| \\textbf{C}\\|}^{2}}=\\mk{k}{GM}\\mk{d}{\\| \\kvecr\\|}+\\mk{D}{\\kvecr\\cdot \\textbf{D}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{l}{{\\| \\textbf{C}\\|}^{2}}=\\mk{k}{GM}\\mk{d}{\\| \\kvecr\\|}+\\mk{D}{\\| \\kvecr\\| \\| \\textbf{D}\\| \\cos \\ktheta}",
+       "uses": [
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{l}{{\\| \\textbf{C}\\|}^{2}}=\\mk{d}{\\| \\kvecr\\|}(\\mk{k}{GM}+\\mk{D}{\\| \\textbf{D}\\| \\cos \\ktheta})",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\| \\kvecr\\|}=\\frac{\\mk{l}{{\\| \\textbf{C}\\|}^{2}}}{\\mk{k}{GM}+\\mk{D}{\\| \\textbf{D}\\| \\cos \\ktheta}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\| \\kvecr\\|}=\\mk{l}{\\frac{{\\| \\textbf{C}\\|}^{2}}{GM}}\\mk{e}{(\\frac{1}{1+e\\;\\cos \\ktheta})}",
+       "uses": [
+        6
+       ],
+       "map": {
+        "k": [
+         "l",
+         "e"
+        ],
+        "D": "e"
+       }
+      }
+     ],
+     "src": "13.4, Proof"
+    }
+   ]
+  },
+  {
+   "id": "kepler-equal-areas",
+   "what": "Kepler’s law of equal areas",
+   "source": "Calculus, 13.4 Motion in Space, Kepler’s Laws",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The planet moves in the plane through the Sun perpendicular to the constant vector $\\textbf{C}=\\kvecr\\times\\kvecv$; take it as the $xy$-plane, with $\\textbf{C}$ pointing along $\\kveck$.",
+       "src": "13.4"
+      },
+      {
+       "text": "In polar coordinates $x=r\\cos\\ktheta$ and $y=r\\sin\\ktheta$; here $r=\\| \\kvecr\\|$ and $\\ktheta(t)$ is the planet’s polar angle.",
+       "src": "11.3"
+      },
+      {
+       "tex": "\\kvecv(t)=\\kvecrprime(t)",
+       "src": "(13.20)"
+      },
+      {
+       "text": "A vector-valued function is differentiated component by component.",
+       "src": "13.2, Differentiation of Vector-Valued Functions"
+      },
+      {
+       "text": "The product rule: $(\\kf\\kg)'=\\kfprime\\kg+\\kf\\kgprime$.",
+       "src": "3.3, Product Rule"
+      },
+      {
+       "text": "The chain rule, with $\\frac{d}{dt}\\cos\\ktheta=-\\sin\\ktheta\\,\\frac{d\\ktheta}{dt}$ and $\\frac{d}{dt}\\sin\\ktheta=\\cos\\ktheta\\,\\frac{d\\ktheta}{dt}$.",
+       "src": "3.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kvecr(t)}=\\mk{x}{\\| \\kvecr\\|\\cos \\ktheta \\;\\kveci}+\\mk{y}{\\| \\kvecr\\|\\sin \\ktheta \\;\\kvecj}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\kvecv(t)}=\\mk{x}{(\\frac{d}{dt}\\| \\kvecr\\|\\cos \\ktheta -\\| \\kvecr\\|\\sin \\ktheta \\,\\frac{d\\ktheta}{dt})\\kveci}+\\mk{y}{(\\frac{d}{dt}\\| \\kvecr\\|\\sin \\ktheta +\\| \\kvecr\\|\\cos \\ktheta \\,\\frac{d\\ktheta}{dt})\\kvecj}",
+       "uses": [
+        2,
+        3,
+        4,
+        5
+       ]
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "In polar coordinates $x=r\\cos\\ktheta$ and $y=r\\sin\\ktheta$; here $r=\\| \\kvecr\\|$ and $\\ktheta(t)$ is the planet’s polar angle.",
+       "src": "11.3"
+      },
+      {
+       "tex": "\\kvecu\\;\\times \\;\\kvecv=\\left|\\begin{array}{lll}\\kveci & \\kvecj & \\kveck \\\\ u_{1} & u_{2} & u_{3} \\\\ v_{1} & v_{2} & v_{3}\\end{array}\\right|",
+       "src": "12.4, Cross Product Calculated by a Determinant"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecr\\;\\times \\;\\kvecv}=\\mk{d}{\\left|\\begin{array}{lll}\\kveci & \\kvecj & \\kveck \\\\ \\| \\kvecr\\|\\cos \\ktheta & \\| \\kvecr\\|\\sin \\ktheta & 0 \\\\ \\frac{d}{dt}\\| \\kvecr\\|\\cos \\ktheta -\\| \\kvecr\\|\\sin \\ktheta \\,\\frac{d\\ktheta}{dt} & \\frac{d}{dt}\\| \\kvecr\\|\\sin \\ktheta +\\| \\kvecr\\|\\cos \\ktheta \\,\\frac{d\\ktheta}{dt} & 0\\end{array}\\right|}",
+      "uses": [
+       0,
+       1,
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kvecr\\;\\times \\;\\kvecv}=\\mk{d}{[\\| \\kvecr\\|\\cos \\ktheta (\\frac{d}{dt}\\| \\kvecr\\|\\sin \\ktheta +\\| \\kvecr\\|\\cos \\ktheta \\,\\frac{d\\ktheta}{dt})-\\| \\kvecr\\|\\sin \\ktheta (\\frac{d}{dt}\\| \\kvecr\\|\\cos \\ktheta -\\| \\kvecr\\|\\sin \\ktheta \\,\\frac{d\\ktheta}{dt})]\\;\\kveck}",
+       "uses": [],
+       "cap": "Both third components are $0$, so only the $\\kveck$ term of the determinant survives."
+      },
+      {
+       "tex": "\\mk{l}{\\kvecr\\;\\times \\;\\kvecv}=\\mk{d}{{\\| \\kvecr\\|}^{2}({\\cos }^{2}\\ktheta +{\\sin }^{2}\\ktheta )\\frac{d\\ktheta}{dt}\\;\\kveck}",
+       "uses": [],
+       "cap": "The two terms with $\\| \\kvecr\\|\\frac{d}{dt}\\| \\kvecr\\|\\sin\\ktheta\\cos\\ktheta$ cancel."
+      },
+      {
+       "tex": "\\mk{l}{\\kvecr\\;\\times \\;\\kvecv}=\\mk{d}{{\\| \\kvecr\\|}^{2}\\frac{d\\ktheta}{dt}\\;\\kveck}",
+       "uses": [],
+       "cap": "$\\cos^{2}\\ktheta+\\sin^{2}\\ktheta=1$."
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kvecr\\;\\times \\;\\kvecv=\\textbf{C}",
+       "src": "13.4"
+      },
+      {
+       "text": "$\\textbf{C}$ points along $\\kveck$.",
+       "src": "13.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecr\\;\\times \\;\\kvecv}=\\mk{d}{{\\| \\kvecr\\|}^{2}\\frac{d\\ktheta}{dt}\\;\\kveck}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\textbf{C}}=\\mk{d}{{\\| \\kvecr\\|}^{2}\\frac{d\\ktheta}{dt}\\;\\kveck}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\| \\textbf{C}\\|}=\\mk{d}{{\\| \\kvecr\\|}^{2}\\frac{d\\ktheta}{dt}}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\textbf{C}$ points along $\\kveck$, so its coefficient ${\\| \\kvecr\\|}^{2}\\frac{d\\ktheta}{dt}$ is positive and is its length."
+      }
+     ],
+     "src": "13.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "The area bounded by a polar curve $r=f(\\ktheta)$ and the rays $\\ktheta=\\alpha$ and $\\ktheta=\\beta$ is $A=\\frac{1}{2}\\int_{\\alpha}^{\\beta}r^{2}\\,d\\ktheta$.",
+       "src": "11.4, Area of a Region Bounded by a Polar Curve"
+      },
+      {
+       "text": "By Kepler’s first law the orbit is a polar curve, $\\| \\kvecr\\|=\\frac{{\\| \\textbf{C}\\|}^{2}}{GM}(\\frac{1}{1+e\\;\\cos \\ktheta})$.",
+       "src": "13.4, Proof"
+      },
+      {
+       "text": "Substitution in a definite integral: $\\int_{a}^{b}f(\\kg(t))\\kgprime(t)\\,dt=\\int_{\\kg(a)}^{\\kg(b)}f(u)\\,du$.",
+       "src": "5.5"
+      },
+      {
+       "text": "$\\textbf{C}$ is a constant vector.",
+       "src": "13.4"
+      },
+      {
+       "text": "$\\int_{a}^{b}k\\,dt=k(b-a)$ for a constant $k$.",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{A}=\\mk{I}{\\frac{1}{2}\\int_{\\ktheta (t_{1})}^{\\ktheta (t_{2})}{\\| \\kvecr\\|}^{2}\\,d\\ktheta}",
+      "uses": [
+       1,
+       2
+      ],
+      "why": "The area swept out from time $t_{1}$ to $t_{2}$ lies between the orbit and the rays from the Sun at the polar angles $\\ktheta(t_{1})$ and $\\ktheta(t_{2})$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{A}=\\mk{I}{\\frac{1}{2}\\int_{t_{1}}^{t_{2}}{\\| \\kvecr\\|}^{2}\\frac{d\\ktheta}{dt}\\,dt}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{A}{A}=\\mk{I}{\\frac{1}{2}\\int_{t_{1}}^{t_{2}}\\| \\textbf{C}\\| \\,dt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{A}{A}=\\mk{I}{\\frac{1}{2}\\| \\textbf{C}\\| (t_{2}-t_{1})}",
+       "uses": [
+        4,
+        5
+       ]
+      }
+     ],
+     "src": "13.4, Kepler’s Laws of Planetary Motion"
+    }
+   ]
   }
  ]
 }

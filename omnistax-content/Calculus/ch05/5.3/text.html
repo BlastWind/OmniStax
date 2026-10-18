@@ -13,13 +13,8 @@ $$\kf(c)=\frac{1}{b-a}\int_{a}^{b}\kf(x)dx.$$
 $$\int_{a}^{b}\kf(x)dx=\kf(c)(b-a).$$
 </div>
 <h3>Proof</h3>
-<p>Since $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous</span> on $[a,b],$ by the <span data-concept="extreme-value-theorem">extreme value theorem</span> (see <a href="/calculus/ch04/4.3/">Maxima and Minima</a>), it assumes <span data-concept="absolute-extremum">minimum and maximum values</span>—<em>m</em> and <em>M</em>, respectively—on $[a,b].$ Then, for all <em>x</em> in $[a,b],$ we have $m\le \kf(x)\le M.$ Therefore, by the <span data-concept="integral-comparison-theorem">comparison theorem</span> (see <a href="/calculus/ch05/5.2/">The Definite Integral</a>), we have</p>
-$$m(b-a)\le\int_{a}^{b}\kf(x)dx\le M(b-a).$$
-<p>Dividing by $b-a$ gives us</p>
-$$m\le\frac{1}{b-a}\int_{a}^{b}\kf(x)dx\le M.$$
-<p>Since $\frac{1}{b-a}\int_{a}^{b}\kf(x)dx$ is a number between <em>m</em> and <em>M</em>, and since $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous</span> and assumes the values <em>m</em> and <em>M</em> over $[a,b],$ by the <span data-concept="intermediate-value-theorem">Intermediate Value Theorem</span> (see <a href="/calculus/ch02/2.4/">Continuity</a>), there is a number <em>c</em> over $[a,b]$ such that</p>
-$$\kf(c)=\frac{1}{b-a}\int_{a}^{b}\kf(x)dx,$$
-<p>and the proof is complete.</p>
+<p>Since $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous</span> on $[a,b],$ by the <span data-concept="extreme-value-theorem">extreme value theorem</span> (see <a href="/calculus/ch04/4.3/">Maxima and Minima</a>), it assumes <span data-concept="absolute-extremum">minimum and maximum values</span>—<em>m</em> and <em>M</em>, respectively—on $[a,b].$</p>
+<figure class="dv" id="drv-mean-value-theorem-for-integrals"></figure>
 <p>□</p>
 <figure class="sim" id="sim-mean-value">
   <div class="sim-head"><span class="eyebrow">Sim</span><span>The curve of Figure 5.2, $\kf(x)=0.15(x-3)^{3}-0.9(x-3)+3,$ over an interval $[a,b]$ that the sliders move. The dashed rectangle of height $\kfave$ has the same area as the region under the curve, and its top meets the curve at every point $c$ where $\kf(c)=\kfave$: one point or two, but always at least one, since the <span data-concept="average-value-of-a-function">average value</span> lies between the <span data-concept="absolute-extremum">minimum</span> $m$ and the <span data-concept="absolute-extremum">maximum</span> $M$ of $\kf$ on the interval.</span></div>
@@ -71,13 +66,7 @@ $$\kF(x)=\int_{a}^{x}\kf(t)dt,$$
 <p>Before we delve into the proof, a couple of subtleties are worth mentioning here. First, a comment on the notation. Note that we have defined a <span data-concept="function">function</span>, $\kF(x),$ as the <span data-concept="definite-integral">definite integral</span> of another <span data-concept="function">function</span>, $\kf(t),$ from the point <em>a</em> to the point <em>x</em>. At first glance, this is confusing, because we have said several times that a <span data-concept="definite-integral">definite integral</span> is a number, and here it looks like it’s a <span data-concept="function">function</span>. The key here is to notice that for any particular value of <em>x</em>, the <span data-concept="definite-integral">definite integral</span> is a number. So the <span data-concept="function">function</span> $\kF(x)$ returns a number (the value of the <span data-concept="definite-integral">definite integral</span>) for each value of <em>x</em>.</p>
 <p>Second, it is worth commenting on some of the key implications of this theorem. There is a reason it is called the <em>Fundamental</em> Theorem of Calculus. Not only does it establish a relationship between integration and <span data-concept="differentiation">differentiation</span>, but also it guarantees that any <span data-concept="integrable-function">integrable function</span> has an <span data-concept="antiderivative">antiderivative</span>.</p>
 <h3>Proof</h3>
-<p>Applying the <span data-concept="derivative">definition of the derivative</span>, we have</p>
-$$\begin{aligned}\kFprime(x) &=\lim_{h\to 0}\;\frac{\kF(x+h)-\kF(x)}{h} \\ &=\lim_{h\to 0}\;\frac{1}{h}[\int_{a}^{x+h}\kf(t)dt-\int_{a}^{x}\kf(t)dt] \\ &=\lim_{h\to 0}\;\frac{1}{h}[\int_{a}^{x+h}\kf(t)dt+\int_{x}^{a}\kf(t)dt] \\ &=\lim_{h\to 0}\;\frac{1}{h}\int_{x}^{x+h}\kf(t)dt.\end{aligned}$$
-<p>Looking carefully at this last expression, we see $\frac{1}{h}\int_{x}^{x+h}\kf(t)dt$ is just the <span data-concept="average-value-of-a-function">average value of the function</span> $\kf(x)$ over the interval $[x,x+h].$ Therefore, by the <span data-concept="mean-value-theorem-for-integrals">Mean Value Theorem for Integrals</span>, there is some number <em>c</em> in $[x,x+h]$ such that</p>
-$$\frac{1}{h}\int_{x}^{x+h}\kf(x)dx=\kf(c).$$
-<p>In addition, since <em>c</em> is between <em>x</em> and <em>x</em> + <em>h</em>, <em>c</em> approaches <em>x</em> as <em>h</em> approaches zero. Also, since $\kf(x)$ is <span data-concept="continuity-over-an-interval">continuous</span>, we have $\lim_{h\to 0}\kf(c)=\lim_{c\to x}\kf(c)=\kf(x).$ Putting all these pieces together, we have</p>
-$$\begin{aligned}\kFprime(x) &=\lim_{h\to 0}\;\frac{1}{h}\int_{x}^{x+h}\kf(x)dx \\ &=\lim_{h\to 0}\kf(c) \\ &=\kf(x),\end{aligned}$$
-<p>and the proof is complete.</p>
+<figure class="dv" id="drv-fundamental-theorem-part-1"></figure>
 <p>□</p>
 <figure class="sim" id="sim-ftc">
   <div class="sim-head"><span class="eyebrow">Sim</span><span>Above, the <span data-concept="integrand">integrand</span> $\kf(t)$ of Example 5.17 or of Example 5.20 and the area under it from $a$ to $x$; below, that area drawn as the function $\kF(x)=\int_{a}^{x}\kf(t)dt.$ Drag $x$: where $\kf$ is positive the area grows and $\kF$ climbs, where $\kf$ is negative it falls, and the slope of the line <span data-concept="tangent-line">tangent</span> to $\kF$ at $x$ is always the height $\kf(x),$ which is what Part 1 of the theorem says.</span></div>
@@ -128,14 +117,8 @@ $$\int_{a}^{b}\kf(x)dx=\kF(b)-\kF(a).$$
 <p>We often see the notation ${\kF(x)|}_{a}^{b}$ to denote the expression $\kF(b)-\kF(a).$ We use this vertical bar and associated <span data-concept="limits-of-integration">limits</span> <em>a</em> and <em>b</em> to indicate that we should evaluate the <span data-concept="function">function</span> $\kF(x)$ at the <span data-concept="limits-of-integration">upper limit</span> (in this case, <em>b</em>), and subtract the value of the <span data-concept="function">function</span> $\kF(x)$ evaluated at the <span data-concept="limits-of-integration">lower limit</span> (in this case, <em>a</em>).</p>
 <p>The <strong><span data-concept="fundamental-theorem-of-calculus-part-2">Fundamental Theorem of Calculus, Part 2</span></strong> (also known as the <strong><span data-concept="fundamental-theorem-of-calculus-part-2">evaluation theorem</span></strong>) states that if we can find an <span data-concept="antiderivative">antiderivative</span> for the <span data-concept="integrand">integrand</span>, then we can evaluate the <span data-concept="definite-integral">definite integral</span> by evaluating the <span data-concept="antiderivative">antiderivative</span> at the endpoints of the interval and subtracting.</p>
 <h3>Proof</h3>
-<p>Let $P=\{x_{i}\},i=0,1,\ldots,n$ be a <span data-concept="regular-partition">regular partition</span> of $[a,b].$ Then, we can write</p>
-$$\begin{aligned}\kF(b)-\kF(a) &=\kF(x_{n})-\kF(x_{0}) \\ &=[\kF(x_{n})-\kF(x_{n-1})]+[\kF(x_{n-1})-\kF(x_{n-2})]+\ldots+[\kF(x_{1})-\kF(x_{0})] \\ &=\sum_{i=1}^{n}[\kF(x_{i})-\kF(x_{i-1})].\end{aligned}$$
-<p>Now, we know $\kF$ is an <span data-concept="antiderivative">antiderivative</span> of $\kf$ over $[a,b],$ so by the <span data-concept="mean-value-theorem">Mean Value Theorem</span> (see <a href="/calculus/ch04/4.4/">The Mean Value Theorem</a>) for $i=0,1,\ldots,n$ we can find $c_{i}$ in $[x_{i-1},x_{i}]$ such that</p>
-$$\kF(x_{i})-\kF(x_{i-1})=\kFprime(c_{i})(x_{i}-x_{i-1})=\kf(c_{i})\Delta x.$$
-<p>Then, substituting into the previous equation, we have</p>
-$$\kF(b)-\kF(a)=\sum_{i=1}^{n} \kf(c_{i})\Delta x.$$
-<p>Taking the <span data-concept="limit">limit</span> of both sides as $n\to \infty,$ we obtain</p>
-$$\begin{aligned}\kF(b)-\kF(a) &=\lim_{n\to \infty}\sum_{i=1}^{n} \kf(c_{i})\Delta x \\ &=\int_{a}^{b}\kf(x)dx.\end{aligned}$$
+<p>Let $P=\{x_{i}\},i=0,1,\ldots,n$ be a <span data-concept="regular-partition">regular partition</span> of $[a,b].$</p>
+<figure class="dv" id="drv-fundamental-theorem-part-2"></figure>
 <p>□</p>
 <div class="example" id="fs-id1170571678911">
 <h3>Example 5.20 · Evaluating an Integral with the Fundamental Theorem of Calculus</h3>

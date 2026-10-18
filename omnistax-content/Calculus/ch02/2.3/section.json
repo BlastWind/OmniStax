@@ -1593,5 +1593,620 @@
    "kind": "correction",
    "html": "The book prints “this figure adds one additional triangle to Figure 2.30”; the triangle is added to Figure 2.29, the unit circle with $\\sin\\theta$ alone."
   }
+ ],
+ "derivations": [
+  {
+   "id": "limit-of-one-minus-cosine-over-theta",
+   "what": "the limit of (1 − cos θ)/θ at 0",
+   "source": "Calculus, 2.3 The Limit Laws, Example 2.25",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\sin^{2}\\ktheta+\\cos^{2}\\ktheta=1",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "tex": "\\lim_{x\\to a}(\\kf(x)\\cdot\\kg(x))=\\lim_{x\\to a}\\kf(x)\\cdot\\lim_{x\\to a}\\kg(x)",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{\\ktheta\\to 0}\\dfrac{\\sin\\ktheta}{\\ktheta}=1",
+       "src": "(2.18)"
+      },
+      {
+       "tex": "\\lim_{x\\to a}\\dfrac{\\kf(x)}{\\kg(x)}=\\dfrac{\\lim_{x\\to a}\\kf(x)}{\\lim_{x\\to a}\\kg(x)}",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{x\\to a}(\\kf(x)+\\kg(x))=\\lim_{x\\to a}\\kf(x)+\\lim_{x\\to a}\\kg(x)",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{\\ktheta\\to 0}\\sin\\ktheta=0",
+       "src": "(2.16)"
+      },
+      {
+       "tex": "\\lim_{x\\to a}c=c",
+       "src": "(2.15)"
+      },
+      {
+       "tex": "\\lim_{\\ktheta\\to 0}\\cos\\ktheta=1",
+       "src": "(2.17)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos\\ktheta}{\\ktheta}}=\\mk{R}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos\\ktheta}{\\ktheta}\\cdot\\frac{1+\\cos\\ktheta}{1+\\cos\\ktheta}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos\\ktheta}{\\ktheta}}=\\mk{R}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos^{2}\\ktheta}{\\ktheta(1+\\cos\\ktheta)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos\\ktheta}{\\ktheta}}=\\mk{R}{\\lim_{\\ktheta\\to 0}\\frac{\\sin^{2}\\ktheta}{\\ktheta(1+\\cos\\ktheta)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos\\ktheta}{\\ktheta}}=\\mk{R}{\\lim_{\\ktheta\\to 0}\\frac{\\sin\\ktheta}{\\ktheta}\\cdot\\frac{\\sin\\ktheta}{1+\\cos\\ktheta}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos\\ktheta}{\\ktheta}}=\\mk{a}{\\lim_{\\ktheta\\to 0}\\frac{\\sin\\ktheta}{\\ktheta}}\\cdot\\mk{b}{\\lim_{\\ktheta\\to 0}\\frac{\\sin\\ktheta}{1+\\cos\\ktheta}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "R": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos\\ktheta}{\\ktheta}}=\\mk{a}{1}\\cdot\\mk{b}{\\frac{\\lim_{\\ktheta\\to 0}\\sin\\ktheta}{\\lim_{\\ktheta\\to 0}1+\\lim_{\\ktheta\\to 0}\\cos\\ktheta}}",
+       "uses": [
+        2,
+        3,
+        4
+       ],
+       "cap": "The quotient law applies, as the limit of the denominator turns out to be $2$, not $0$."
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos\\ktheta}{\\ktheta}}=\\mk{a}{1}\\cdot\\mk{b}{\\frac{0}{2}}",
+       "uses": [
+        5,
+        6,
+        7
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{\\ktheta\\to 0}\\frac{1-\\cos\\ktheta}{\\ktheta}}=\\mk{v}{0}",
+       "uses": [],
+       "map": {
+        "a": "v",
+        "b": "v"
+       }
+      }
+     ],
+     "num": "(2.19)",
+     "src": "Example 2.25"
+    }
+   ]
+  },
+  {
+   "id": "limit-of-sine-over-theta",
+   "what": "the limit of sin θ/θ at 0",
+   "source": "Calculus, 2.3 The Limit Laws, The Squeeze Theorem",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "0\\lt\\ktheta\\lt\\dfrac{\\pi}{2}"
+      },
+      {
+       "tex": "\\tan\\ktheta=\\dfrac{\\sin\\ktheta}{\\cos\\ktheta}",
+       "src": "1.3, Trigonometric Identities"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sin\\ktheta}\\lt\\mk{t}{\\ktheta}\\lt\\mk{n}{\\tan\\ktheta}",
+      "src": "2.3, Figure 2.30",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{1}\\lt\\mk{t}{\\frac{\\ktheta}{\\sin\\ktheta}}\\lt\\mk{n}{\\frac{\\tan\\ktheta}{\\sin\\ktheta}}",
+       "uses": [],
+       "cap": "Dividing by $\\sin\\theta$, which is positive here, keeps the order."
+      },
+      {
+       "tex": "\\mk{s}{1}\\lt\\mk{t}{\\frac{\\ktheta}{\\sin\\ktheta}}\\lt\\mk{n}{\\frac{1}{\\cos\\ktheta}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{1}\\gt\\mk{t}{\\frac{\\sin\\ktheta}{\\ktheta}}\\gt\\mk{n}{\\cos\\ktheta}",
+       "uses": [],
+       "cap": "Taking reciprocals of positive numbers reverses the inequalities."
+      }
+     ],
+     "src": "2.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The squeeze theorem: if $\\kf(x)\\le\\kg(x)\\le\\kh(x)$ near $a$ and $\\kf(x)$ and $\\kh(x)$ both have the limit $\\kL$ at $a$, then so does $\\kg(x)$.",
+       "src": "2.3, The Squeeze Theorem"
+      },
+      {
+       "tex": "\\lim_{\\ktheta\\to 0^{+}}1=1=\\lim_{\\ktheta\\to 0^{+}}\\cos\\ktheta",
+       "src": "(2.17)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{1}\\gt\\mk{t}{\\frac{\\sin\\ktheta}{\\ktheta}}\\gt\\mk{n}{\\cos\\ktheta}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\lim_{\\ktheta\\to 0^{+}}\\frac{\\sin\\ktheta}{\\ktheta}}=\\mk{s}{1}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "n": "s"
+       }
+      }
+     ],
+     "src": "2.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "-\\dfrac{\\pi}{2}\\lt\\ktheta\\lt 0"
+      },
+      {
+       "tex": "\\sin(-\\ktheta)=-\\sin\\ktheta",
+       "src": "2.3"
+      },
+      {
+       "tex": "\\cos\\ktheta=\\sqrt{1-\\sin^{2}\\ktheta}\\;\\text{ for }\\;-\\dfrac{\\pi}{2}\\lt\\ktheta\\lt\\dfrac{\\pi}{2}",
+       "src": "2.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{1}\\gt\\mk{t}{\\frac{\\sin(-\\ktheta)}{-\\ktheta}}\\gt\\mk{n}{\\cos(-\\ktheta)}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "For $-\\frac{\\pi}{2}\\lt\\theta\\lt 0$, the angle $-\\theta$ lies between $0$ and $\\frac{\\pi}{2}$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{1}\\gt\\mk{t}{\\frac{-\\sin\\ktheta}{-\\ktheta}}\\gt\\mk{n}{\\cos(-\\ktheta)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{s}{1}\\gt\\mk{t}{\\frac{\\sin\\ktheta}{\\ktheta}}\\gt\\mk{n}{\\cos(-\\ktheta)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{1}\\gt\\mk{t}{\\frac{\\sin\\ktheta}{\\ktheta}}\\gt\\mk{n}{\\cos\\ktheta}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "$\\cos(-\\theta)=\\sqrt{1-\\sin^{2}(-\\theta)}=\\sqrt{1-\\sin^{2}\\theta}=\\cos\\theta$."
+      }
+     ],
+     "src": "2.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "The squeeze theorem: if $\\kf(x)\\le\\kg(x)\\le\\kh(x)$ near $a$ and $\\kf(x)$ and $\\kh(x)$ both have the limit $\\kL$ at $a$, then so does $\\kg(x)$.",
+       "src": "2.3, The Squeeze Theorem"
+      },
+      {
+       "tex": "\\lim_{\\ktheta\\to 0^{-}}1=1=\\lim_{\\ktheta\\to 0^{-}}\\cos\\ktheta",
+       "src": "(2.17)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{1}\\gt\\mk{t}{\\frac{\\sin\\ktheta}{\\ktheta}}\\gt\\mk{n}{\\cos\\ktheta}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\lim_{\\ktheta\\to 0^{-}}\\frac{\\sin\\ktheta}{\\ktheta}}=\\mk{s}{1}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "n": "s"
+       }
+      }
+     ],
+     "src": "2.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 3
+      },
+      {
+       "text": "A limit at $a$ is $\\kL$ exactly when the limits from the left and from the right are both $\\kL$.",
+       "src": "2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\lim_{\\ktheta\\to 0^{+}}\\frac{\\sin\\ktheta}{\\ktheta}}=\\mk{s}{1}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\lim_{\\ktheta\\to 0}\\frac{\\sin\\ktheta}{\\ktheta}}=\\mk{s}{1}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "num": "(2.18)",
+     "src": "2.3"
+    }
+   ]
+  },
+  {
+   "id": "limits-of-polynomial-and-rational-functions",
+   "what": "the limits of polynomial and rational functions",
+   "source": "Calculus, 2.3 The Limit Laws, Limits of Polynomial and Rational Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kp(x)=c_{n}x^{n}+c_{n-1}x^{n-1}+\\cdots+c_{1}x+c_{0}"
+      },
+      {
+       "tex": "\\lim_{x\\to a}(\\kf(x)+\\kg(x))=\\lim_{x\\to a}\\kf(x)+\\lim_{x\\to a}\\kg(x)",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{x\\to a}c\\kf(x)=c\\cdot\\lim_{x\\to a}\\kf(x)",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{x\\to a}(\\kf(x))^{n}=\\left(\\lim_{x\\to a}\\kf(x)\\right)^{n}",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{x\\to a}x=a",
+       "src": "(2.14)"
+      },
+      {
+       "tex": "\\lim_{x\\to a}c=c",
+       "src": "(2.15)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{x\\to a}\\kp(x)}=\\mk{R}{\\lim_{x\\to a}(c_{n}x^{n}+c_{n-1}x^{n-1}+\\cdots+c_{1}x+c_{0})}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\kp(x)}=\\mk{n}{\\lim_{x\\to a}c_{n}x^{n}}+\\mk{m}{\\lim_{x\\to a}c_{n-1}x^{n-1}}+\\cdots+\\mk{o}{\\lim_{x\\to a}c_{1}x}+\\mk{z}{\\lim_{x\\to a}c_{0}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "R": [
+         "n",
+         "m",
+         "o",
+         "z"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\kp(x)}=\\mk{n}{c_{n}\\lim_{x\\to a}x^{n}}+\\mk{m}{c_{n-1}\\lim_{x\\to a}x^{n-1}}+\\cdots+\\mk{o}{c_{1}\\lim_{x\\to a}x}+\\mk{z}{\\lim_{x\\to a}c_{0}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\kp(x)}=\\mk{n}{c_{n}\\left(\\lim_{x\\to a}x\\right)^{n}}+\\mk{m}{c_{n-1}\\left(\\lim_{x\\to a}x\\right)^{n-1}}+\\cdots+\\mk{o}{c_{1}\\left(\\lim_{x\\to a}x\\right)}+\\mk{z}{\\lim_{x\\to a}c_{0}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\kp(x)}=\\mk{n}{c_{n}a^{n}}+\\mk{m}{c_{n-1}a^{n-1}}+\\cdots+\\mk{o}{c_{1}a}+\\mk{z}{c_{0}}",
+       "uses": [
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\kp(x)}=\\mk{P}{\\kp(a)}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "n": "P",
+        "m": "P",
+        "o": "P",
+        "z": "P"
+       }
+      }
+     ],
+     "src": "2.3, Limits of Polynomial and Rational Functions"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kq(a)\\ne 0"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kp(x)}{\\kq(x)}}=\\frac{\\mk{p}{\\lim_{x\\to a}\\kp(x)}}{\\mk{q}{\\lim_{x\\to a}\\kq(x)}}",
+      "src": "2.3, Limit Laws",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "The quotient law applies, as the limit of the denominator is $\\kq(a)\\ne 0$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{x\\to a}\\frac{\\kp(x)}{\\kq(x)}}=\\frac{\\mk{p}{\\kp(a)}}{\\mk{q}{\\kq(a)}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "2.3, Limits of Polynomial and Rational Functions"
+    }
+   ]
+  },
+  {
+   "id": "limits-of-sine-and-cosine",
+   "what": "the limits of sine and cosine at 0",
+   "source": "Calculus, 2.3 The Limit Laws, The Squeeze Theorem",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "0\\lt\\ktheta\\lt\\dfrac{\\pi}{2}"
+      },
+      {
+       "text": "The squeeze theorem: if $\\kf(x)\\le\\kg(x)\\le\\kh(x)$ near $a$ and $\\kf(x)$ and $\\kh(x)$ both have the limit $\\kL$ at $a$, then so does $\\kg(x)$.",
+       "src": "2.3, The Squeeze Theorem"
+      },
+      {
+       "tex": "\\lim_{\\ktheta\\to 0^{+}}0=0,\\quad\\lim_{\\ktheta\\to 0^{+}}\\ktheta=0",
+       "src": "2.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0}\\lt\\mk{s}{\\sin\\ktheta}\\lt\\mk{t}{\\ktheta}",
+      "src": "2.3, Figure 2.29",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\lim_{\\ktheta\\to 0^{+}}\\sin\\ktheta}=\\mk{z}{0}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "t": "z"
+       }
+      }
+     ],
+     "src": "2.3"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "-\\dfrac{\\pi}{2}\\lt\\ktheta\\lt 0"
+      },
+      {
+       "tex": "\\sin(-\\ktheta)=-\\sin\\ktheta",
+       "src": "2.3"
+      },
+      {
+       "text": "The squeeze theorem: if $\\kf(x)\\le\\kg(x)\\le\\kh(x)$ near $a$ and $\\kf(x)$ and $\\kh(x)$ both have the limit $\\kL$ at $a$, then so does $\\kg(x)$.",
+       "src": "2.3, The Squeeze Theorem"
+      },
+      {
+       "tex": "\\lim_{\\ktheta\\to 0^{-}}0=0,\\quad\\lim_{\\ktheta\\to 0^{-}}\\ktheta=0",
+       "src": "2.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0}\\lt\\mk{s}{\\sin(-\\ktheta)}\\lt\\mk{t}{-\\ktheta}",
+      "src": "2.3, Figure 2.29",
+      "uses": [
+       0
+      ],
+      "why": "For $-\\frac{\\pi}{2}\\lt\\theta\\lt 0$, the angle $-\\theta$ lies between $0$ and $\\frac{\\pi}{2}$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0}\\lt\\mk{s}{-\\sin\\ktheta}\\lt\\mk{t}{-\\ktheta}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{z}{0}\\gt\\mk{s}{\\sin\\ktheta}\\gt\\mk{t}{\\ktheta}",
+       "uses": [],
+       "cap": "Multiplying by $-1$ reverses the inequalities."
+      },
+      {
+       "tex": "\\mk{s}{\\lim_{\\ktheta\\to 0^{-}}\\sin\\ktheta}=\\mk{z}{0}",
+       "uses": [
+        2,
+        3
+       ],
+       "map": {
+        "t": "z"
+       }
+      }
+     ],
+     "src": "2.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "A limit at $a$ is $\\kL$ exactly when the limits from the left and from the right are both $\\kL$.",
+       "src": "2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\lim_{\\ktheta\\to 0^{+}}\\sin\\ktheta}=\\mk{z}{0}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\lim_{\\ktheta\\to 0}\\sin\\ktheta}=\\mk{z}{0}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "num": "(2.16)",
+     "src": "2.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\cos\\ktheta=\\sqrt{1-\\sin^{2}\\ktheta}\\;\\text{ for }\\;-\\dfrac{\\pi}{2}\\lt\\ktheta\\lt\\dfrac{\\pi}{2}",
+       "src": "2.3"
+      },
+      {
+       "tex": "\\lim_{x\\to a}\\sqrt[n]{\\kf(x)}=\\sqrt[n]{\\lim_{x\\to a}\\kf(x)}",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{x\\to a}(\\kf(x)-\\kg(x))=\\lim_{x\\to a}\\kf(x)-\\lim_{x\\to a}\\kg(x)",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{x\\to a}(\\kf(x))^{n}=\\left(\\lim_{x\\to a}\\kf(x)\\right)^{n}",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{x\\to a}c=c",
+       "src": "(2.15)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\cos\\ktheta}=\\mk{R}{\\sqrt{1-\\sin^{2}\\ktheta}}",
+      "src": "2.3",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\lim_{\\ktheta\\to 0}\\cos\\ktheta}=\\mk{R}{\\lim_{\\ktheta\\to 0}\\sqrt{1-\\sin^{2}\\ktheta}}",
+       "uses": [],
+       "cap": "Near $0$ the two sides are the same function, so they have the same limit."
+      },
+      {
+       "tex": "\\mk{c}{\\lim_{\\ktheta\\to 0}\\cos\\ktheta}=\\mk{R}{\\sqrt{\\lim_{\\ktheta\\to 0}(1-\\sin^{2}\\ktheta)}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\lim_{\\ktheta\\to 0}\\cos\\ktheta}=\\sqrt{\\mk{o}{\\lim_{\\ktheta\\to 0}1}-\\mk{s}{\\lim_{\\ktheta\\to 0}\\sin^{2}\\ktheta}}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "R": [
+         "o",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{c}{\\lim_{\\ktheta\\to 0}\\cos\\ktheta}=\\sqrt{\\mk{o}{1}-\\mk{s}{\\left(\\lim_{\\ktheta\\to 0}\\sin\\ktheta\\right)^{2}}}",
+       "uses": [
+        4,
+        5
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\lim_{\\ktheta\\to 0}\\cos\\ktheta}=\\sqrt{\\mk{o}{1}-\\mk{s}{0^{2}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\lim_{\\ktheta\\to 0}\\cos\\ktheta}=\\mk{v}{1}",
+       "uses": [],
+       "map": {
+        "o": "v",
+        "s": "v"
+       }
+      }
+     ],
+     "num": "(2.17)",
+     "src": "2.3"
+    }
+   ]
+  }
  ]
 }

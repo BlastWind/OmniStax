@@ -620,5 +620,272 @@
     "sim-dark-room"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "momentum-along-x",
+   "what": "conservation of momentum along the x-axis",
+   "source": "College Physics 2e, 8.6 Collisions of Point Masses in Two Dimensions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kp = \\km\\kv",
+       "src": "8.1"
+      },
+      {
+       "text": "Particle 2 is initially at rest.",
+       "src": "8.6"
+      },
+      {
+       "text": "Particle 1 initially moves along the $x$-axis.",
+       "src": "8.6"
+      },
+      {
+       "text": "The components of the velocities along the $x$-axis have the form $v\\cos\\ktheta$.",
+       "src": "8.6, Figure 8.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kponex} + \\mk{b}{\\kptwox} = \\mk{c}{{p'}_{1x}} + \\mk{d}{{p'}_{2x}}",
+      "src": "8.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kmone v_{1x}} + \\mk{b}{\\kmtwo v_{2x}} = \\mk{c}{\\kmone {v'}_{1x}} + \\mk{d}{\\kmtwo {v'}_{2x}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kmone v_{1x}} = \\mk{c}{\\kmone {v'}_{1x}} + \\mk{d}{\\kmtwo {v'}_{2x}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kmone\\kvone} = \\mk{c}{\\kmone {v'}_{1x}} + \\mk{d}{\\kmtwo {v'}_{2x}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kmone\\kvone} = \\mk{c}{\\kmone\\kvoneprime\\cos\\kthetaone} + \\mk{d}{\\kmtwo\\kvtwoprime\\cos\\kthetatwo}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "8.6"
+    }
+   ]
+  },
+  {
+   "id": "momentum-along-y",
+   "what": "conservation of momentum along the y-axis",
+   "source": "College Physics 2e, 8.6 Collisions of Point Masses in Two Dimensions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kp = \\km\\kv",
+       "src": "8.1"
+      },
+      {
+       "text": "Particle 1 initially moves along the $x$-axis.",
+       "src": "8.6"
+      },
+      {
+       "text": "Particle 2 is initially at rest.",
+       "src": "8.6"
+      },
+      {
+       "text": "The components of the velocities along the $y$-axis have the form $v\\sin\\ktheta$.",
+       "src": "8.6, Figure 8.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kponey} + \\mk{b}{\\kptwoy} = \\mk{c}{{p'}_{1y}} + \\mk{d}{{p'}_{2y}}",
+      "src": "8.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kmone v_{1y}} + \\mk{b}{\\kmtwo v_{2y}} = \\mk{c}{\\kmone {v'}_{1y}} + \\mk{d}{\\kmtwo {v'}_{2y}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{0} = \\mk{c}{\\kmone {v'}_{1y}} + \\mk{d}{\\kmtwo {v'}_{2y}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{0} = \\mk{c}{\\kmone\\kvoneprime\\sin\\kthetaone} + \\mk{d}{\\kmtwo\\kvtwoprime\\sin\\kthetatwo}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "8.6"
+    }
+   ]
+  },
+  {
+   "id": "equal-mass-separation",
+   "what": "why equal masses separate at ninety degrees",
+   "source": "College Physics 2e, 8.6 Collisions of Point Masses in Two Dimensions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The masses are equal, $\\kmone = \\kmtwo = \\km$.",
+       "src": "8.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kmone\\kvone} = \\mk{c}{\\kmone\\kvoneprime\\cos\\kthetaone} + \\mk{d}{\\kmtwo\\kvtwoprime\\cos\\kthetatwo}",
+      "src": "8.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\km\\kvone} = \\mk{c}{\\km\\kvoneprime\\cos\\kthetaone} + \\mk{d}{\\km\\kvtwoprime\\cos\\kthetatwo}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kvone} = \\mk{c}{\\kvoneprime\\cos\\kthetaone} + \\mk{d}{\\kvtwoprime\\cos\\kthetatwo}",
+       "uses": []
+      }
+     ],
+     "src": "8.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The masses are equal, $\\kmone = \\kmtwo = \\km$.",
+       "src": "8.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{0} = \\mk{c}{\\kmone\\kvoneprime\\sin\\kthetaone} + \\mk{d}{\\kmtwo\\kvtwoprime\\sin\\kthetatwo}",
+      "src": "8.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{0} = \\mk{c}{\\km\\kvoneprime\\sin\\kthetaone} + \\mk{d}{\\km\\kvtwoprime\\sin\\kthetatwo}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{0} = \\mk{c}{\\kvoneprime\\sin\\kthetaone} + \\mk{d}{\\kvtwoprime\\sin\\kthetatwo}",
+       "uses": []
+      }
+     ],
+     "src": "8.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvone} = \\mk{p}{\\kvoneprime\\cos\\kthetaone} + \\mk{q}{\\kvtwoprime\\cos\\kthetatwo}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{cx}{(\\kvoneprime\\cos\\kthetaone + \\kvtwoprime\\cos\\kthetatwo)^2}",
+       "uses": [],
+       "map": {
+        "p": "cx",
+        "q": "cx"
+       }
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{cx}{(\\kvoneprime\\cos\\kthetaone + \\kvtwoprime\\cos\\kthetatwo)^2} + \\mk{sy}{(\\kvoneprime\\sin\\kthetaone + \\kvtwoprime\\sin\\kthetatwo)^2}",
+       "uses": [
+        1
+       ],
+       "cap": "The second bracket is zero, so adding its square adds nothing."
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{cx}{{\\kvoneprime}^2\\cos^2\\kthetaone + 2\\kvoneprime\\kvtwoprime\\cos\\kthetaone\\cos\\kthetatwo + {\\kvtwoprime}^2\\cos^2\\kthetatwo} + \\mk{sy}{{\\kvoneprime}^2\\sin^2\\kthetaone + 2\\kvoneprime\\kvtwoprime\\sin\\kthetaone\\sin\\kthetatwo + {\\kvtwoprime}^2\\sin^2\\kthetatwo}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{a}{{\\kvoneprime}^2(\\cos^2\\kthetaone + \\sin^2\\kthetaone)} + \\mk{b}{{\\kvtwoprime}^2(\\cos^2\\kthetatwo + \\sin^2\\kthetatwo)} + \\mk{x}{2\\kvoneprime\\kvtwoprime(\\cos\\kthetaone\\cos\\kthetatwo + \\sin\\kthetaone\\sin\\kthetatwo)}",
+       "uses": [],
+       "map": {
+        "cx": [
+         "a",
+         "b",
+         "x"
+        ],
+        "sy": [
+         "a",
+         "b",
+         "x"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{a}{{\\kvoneprime}^2} + \\mk{b}{{\\kvtwoprime}^2} + \\mk{x}{2\\kvoneprime\\kvtwoprime(\\cos\\kthetaone\\cos\\kthetatwo + \\sin\\kthetaone\\sin\\kthetatwo)}",
+       "uses": [],
+       "cap": "For any angle, $\\cos^2\\ktheta + \\sin^2\\ktheta = 1$."
+      },
+      {
+       "tex": "\\mk{v}{{\\kvone}^2} = \\mk{a}{{\\kvoneprime}^2} + \\mk{b}{{\\kvtwoprime}^2} + \\mk{x}{2\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)}",
+       "uses": [],
+       "cap": "A trigonometric identity: $\\cos(\\kthetaone - \\kthetatwo) = \\cos\\kthetaone\\cos\\kthetatwo + \\sin\\kthetaone\\sin\\kthetatwo$."
+      },
+      {
+       "tex": "\\mk{v}{\\tfrac{1}{2}\\km{\\kvone}^2} = \\mk{a}{\\tfrac{1}{2}\\km{\\kvoneprime}^2} + \\mk{b}{\\tfrac{1}{2}\\km{\\kvtwoprime}^2} + \\mk{x}{\\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)}",
+       "uses": []
+      }
+     ],
+     "src": "8.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\tfrac{1}{2}\\km{\\kvone}^2 = \\tfrac{1}{2}\\km{\\kvoneprime}^2 + \\tfrac{1}{2}\\km{\\kvtwoprime}^2",
+       "src": "8.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\tfrac{1}{2}\\km{\\kvone}^2} = \\mk{a}{\\tfrac{1}{2}\\km{\\kvoneprime}^2} + \\mk{b}{\\tfrac{1}{2}\\km{\\kvtwoprime}^2} + \\mk{x}{\\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\tfrac{1}{2}\\km{\\kvoneprime}^2 + \\tfrac{1}{2}\\km{\\kvtwoprime}^2} = \\mk{a}{\\tfrac{1}{2}\\km{\\kvoneprime}^2} + \\mk{b}{\\tfrac{1}{2}\\km{\\kvtwoprime}^2} + \\mk{x}{\\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\km\\kvoneprime\\kvtwoprime\\cos(\\kthetaone - \\kthetatwo)} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "v": "z",
+        "a": "z",
+        "b": "z"
+       }
+      }
+     ],
+     "src": "8.6"
+    }
+   ]
+  }
  ]
 }

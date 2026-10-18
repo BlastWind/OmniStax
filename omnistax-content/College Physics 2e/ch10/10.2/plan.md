@@ -136,3 +136,8 @@ stay in ink.
 
 Decided in the chapter pass (2026-09-14): every anchor above is written on
 its row. Nothing else was wanted.
+
+## Derivations
+
+- $\omega = \omega_0 + \alpha t$ from $v = v_0 + at$ (printed block) · score 3 · built as drv-angular-velocity-time: one node, the two substitutions printed as one line split into two moves; replaces the three displayed lines, the note on $a = a_\text{t}$ stays before it
+- The other three rotational kinematic equations of Table 10.2 ("we can derive", nothing printed) · score 6 as one passage (the three translational equations, $x = r\theta$, $v = r\omega$ and $a = r\alpha$ imported; six hidden moves) · built as drv-rotational-kinematic-equations: four nodes, $\bar{v} = r\bar{\omega}$ first and then one node per equation; the scan counted each equation alone (two moves, under the bar), but the book claims the three as one derivation and the ruling folds a family printed together; the table stays and the derivation stands after the definitions of $\bar{\omega}$ and $\bar{v}$

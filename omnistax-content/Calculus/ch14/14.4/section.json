@@ -1092,5 +1092,376 @@
    "concept": "propagated-error"
   }
  ],
- "referents": []
+ "referents": [],
+ "derivations": [
+  {
+   "id": "tangent-plane-normal",
+   "what": "a normal vector to the tangent plane",
+   "source": "Calculus, 14.4 Tangent Planes and Linear Approximations, Tangent Planes",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kveca=\\kvecj+\\kfy(x_{0},y_{0})\\kveck",
+       "src": "14.4"
+      },
+      {
+       "tex": "\\kvecb=\\kveci+\\kfx(x_{0},y_{0})\\kveck",
+       "src": "14.4"
+      },
+      {
+       "tex": "\\kvecu\\;\\times \\;\\kvecv=\\left|\\begin{array}{lll}\\kveci & \\kvecj & \\kveck \\\\ u_{1} & u_{2} & u_{3} \\\\ v_{1} & v_{2} & v_{3}\\end{array}\\right|",
+       "src": "12.4, Cross Product Calculated by a Determinant"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kveca\\;\\times \\;\\kvecb}=\\mk{d}{(\\kvecj+\\kfy(x_{0},y_{0})\\kveck)\\;\\times \\;(\\kveci+\\kfx(x_{0},y_{0})\\kveck)}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kveca\\;\\times \\;\\kvecb}=\\mk{d}{\\left|\\begin{array}{lll}\\kveci & \\kvecj & \\kveck \\\\ 0 & 1 & \\kfy(x_{0},y_{0}) \\\\ 1 & 0 & \\kfx(x_{0},y_{0})\\end{array}\\right|}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kveca\\;\\times \\;\\kvecb}=\\mk{d}{\\kfx(x_{0},y_{0})\\kveci+\\kfy(x_{0},y_{0})\\kvecj-\\kveck}",
+       "uses": [],
+       "cap": "Expanding along the first row: $\\kveci(1\\cdot f_{x}-f_{y}\\cdot 0)-\\kvecj(0\\cdot f_{x}-f_{y}\\cdot 1)+\\kveck(0\\cdot 0-1\\cdot 1)$."
+      }
+     ],
+     "src": "14.4"
+    }
+   ]
+  },
+  {
+   "id": "tangent-plane-equation",
+   "what": "the equation of the tangent plane",
+   "source": "Calculus, 14.4 Tangent Planes and Linear Approximations, Tangent Planes",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A plane through $P_{0}$ with normal vector $\\kvecn$ is the set of points $P$ with $\\kvecn\\cdot\\overrightarrow{P_{0}P}=0$.",
+       "src": "12.5"
+      },
+      {
+       "tex": "P_{0}=(x_{0},y_{0},\\kf(x_{0},y_{0}))",
+       "src": "14.4"
+      },
+      {
+       "tex": "\\kvecn=\\kfx(x_{0},y_{0})\\kveci+\\kfy(x_{0},y_{0})\\kvecj-\\kveck",
+       "src": "14.4"
+      },
+      {
+       "tex": "(a_{1}\\kveci+a_{2}\\kvecj+a_{3}\\kveck)\\cdot (b_{1}\\kveci+b_{2}\\kvecj+b_{3}\\kveck)=a_{1}b_{1}+a_{2}b_{2}+a_{3}b_{3}",
+       "src": "(12.3)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{\\kvecn}\\cdot \\mk{v}{((x-x_{0})\\kveci+(y-y_{0})\\kvecj+(z-\\kf(x_{0},y_{0}))\\kveck)}=\\mk{z}{0}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n}{(\\kfx(x_{0},y_{0})\\kveci+\\kfy(x_{0},y_{0})\\kvecj-\\kveck)}\\cdot \\mk{v}{((x-x_{0})\\kveci+(y-y_{0})\\kvecj+(z-\\kf(x_{0},y_{0}))\\kveck)}=\\mk{z}{0}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kfx(x_{0},y_{0})(x-x_{0})}+\\mk{b}{\\kfy(x_{0},y_{0})(y-y_{0})}-\\mk{c}{(z-\\kf(x_{0},y_{0}))}=\\mk{z}{0}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "n": [
+         "a",
+         "b",
+         "c"
+        ],
+        "v": [
+         "a",
+         "b",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{c}{z-\\kf(x_{0},y_{0})}=\\mk{a}{\\kfx(x_{0},y_{0})(x-x_{0})}+\\mk{b}{\\kfy(x_{0},y_{0})(y-y_{0})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{z}=\\mk{f}{\\kf(x_{0},y_{0})}+\\mk{a}{\\kfx(x_{0},y_{0})(x-x_{0})}+\\mk{b}{\\kfy(x_{0},y_{0})(y-y_{0})}",
+       "uses": [],
+       "map": {
+        "c": [
+         "c",
+         "f"
+        ]
+       }
+      }
+     ],
+     "num": "(14.24)",
+     "src": "14.4"
+    }
+   ]
+  },
+  {
+   "id": "differentiability-implies-continuity",
+   "what": "differentiability implies continuity",
+   "source": "Calculus, 14.4 Tangent Planes and Linear Approximations, Differentiability",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The limit of a sum, a difference, a constant multiple or a product is the sum, difference, multiple or product of the limits, where these exist.",
+       "src": "14.2, Limit laws for functions of two variables"
+      },
+      {
+       "tex": "\\lim_{(x,y)\\to (x_{0},y_{0})}\\frac{\\kE(x,y)}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}=0",
+       "src": "14.4, Definition"
+      },
+      {
+       "tex": "\\lim_{(x,y)\\to (x_{0},y_{0})}\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}=0",
+       "src": "14.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kE(x,y)}=\\mk{q}{\\frac{\\kE(x,y)}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}}\\cdot \\mk{r}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}",
+      "why": "For $(x,y)\\ne(x_{0},y_{0})$ the root is not zero."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\kE(x,y)}=\\mk{q}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\frac{\\kE(x,y)}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}}\\cdot \\mk{r}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\kE(x,y)}=\\mk{q}{0}\\cdot \\mk{r}{0}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\kE(x,y)}=\\mk{q}{0}",
+       "uses": []
+      }
+     ],
+     "src": "14.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf$ is differentiable at $(x_{0},y_{0})$.",
+       "src": "14.4, Differentiability Implies Continuity"
+      },
+      {
+       "text": "The limit of a sum, a difference, a constant multiple or a product is the sum, difference, multiple or product of the limits, where these exist.",
+       "src": "14.2, Limit laws for functions of two variables"
+      },
+      {
+       "tex": "\\lim_{(x,y)\\to (x_{0},y_{0})}x=x_{0},\\quad \\lim_{(x,y)\\to (x_{0},y_{0})}y=y_{0}",
+       "src": "(14.3), (14.4)"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\kf$ is continuous at $(x_{0},y_{0})$ when $\\lim_{(x,y)\\to (x_{0},y_{0})}\\kf(x,y)=\\kf(x_{0},y_{0})$.",
+       "src": "14.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x,y)}=\\mk{c}{\\kf(x_{0},y_{0})}+\\mk{a}{\\kfx(x_{0},y_{0})(x-x_{0})}+\\mk{b}{\\kfy(x_{0},y_{0})(y-y_{0})}+\\mk{E}{\\kE(x,y)}",
+      "src": "(14.26)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\kf(x,y)}=\\mk{c}{\\kf(x_{0},y_{0})}+\\mk{a}{\\kfx(x_{0},y_{0})\\lim_{(x,y)\\to (x_{0},y_{0})}(x-x_{0})}+\\mk{b}{\\kfy(x_{0},y_{0})\\lim_{(x,y)\\to (x_{0},y_{0})}(y-y_{0})}+\\mk{E}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\kE(x,y)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\kf(x,y)}=\\mk{c}{\\kf(x_{0},y_{0})}+\\mk{a}{0}+\\mk{b}{0}+\\mk{E}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\kE(x,y)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\kf(x,y)}=\\mk{c}{\\kf(x_{0},y_{0})}",
+       "uses": [
+        3,
+        4
+       ],
+       "cap": "The limit is the value $\\kf(x_{0},y_{0})$, which is what continuity at $(x_{0},y_{0})$ asks."
+      }
+     ],
+     "src": "14.4, Differentiability Implies Continuity"
+    }
+   ]
+  },
+  {
+   "id": "continuous-partials-imply-differentiability",
+   "what": "continuity of first partials implies differentiability",
+   "source": "Calculus, 14.4 Tangent Planes and Linear Approximations, Differentiability",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf,$ $\\kfx$ and $\\kfy$ exist in a neighborhood of $(x_{0},y_{0})$, and $(x,y)$ lies in it.",
+       "src": "14.4, Continuity of First Partials Implies Differentiability"
+      },
+      {
+       "text": "The Mean Value Theorem: if $\\kf$ is continuous over $[a,b]$ and differentiable over $(a,b)$, then $\\kfprime(c)=\\frac{\\kf(b)-\\kf(a)}{b-a}$ for some $c$ in $(a,b)$.",
+       "src": "4.4, Mean Value Theorem"
+      },
+      {
+       "text": "A partial derivative is the derivative in one variable with the other held fixed.",
+       "src": "14.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kf(x,y)-\\kf(x_{0},y_{0})}=\\mk{p}{[\\kf(x,y)-\\kf(x_{0},y)]}+\\mk{q}{[\\kf(x_{0},y)-\\kf(x_{0},y_{0})]}",
+      "why": "Subtracting and adding $\\kf(x_{0},y)$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kf(x,y)-\\kf(x_{0},y_{0})}=\\mk{p}{\\kfx(c,y)(x-x_{0})}+\\mk{q}{[\\kf(x_{0},y)-\\kf(x_{0},y_{0})]}",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "cap": "The Mean Value Theorem on $t\\mapsto\\kf(t,y)$ between $x_{0}$ and $x$, whose derivative is $\\kfx(t,y)$, for some $c$ between them."
+      },
+      {
+       "tex": "\\mk{d}{\\kf(x,y)-\\kf(x_{0},y_{0})}=\\mk{p}{\\kfx(c,y)(x-x_{0})}+\\mk{q}{\\kfy(x_{0},d)(y-y_{0})}",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "cap": "The Mean Value Theorem on $t\\mapsto\\kf(x_{0},t)$ between $y_{0}$ and $y$, for some $d$ between them."
+      }
+     ],
+     "src": "14.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kE(x,y)}=\\mk{d}{\\kf(x,y)-\\kf(x_{0},y_{0})}-\\mk{a}{\\kfx(x_{0},y_{0})(x-x_{0})}-\\mk{b}{\\kfy(x_{0},y_{0})(y-y_{0})}",
+      "src": "(14.26)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kE(x,y)}=\\mk{p}{\\kfx(c,y)(x-x_{0})}+\\mk{q}{\\kfy(x_{0},d)(y-y_{0})}-\\mk{a}{\\kfx(x_{0},y_{0})(x-x_{0})}-\\mk{b}{\\kfy(x_{0},y_{0})(y-y_{0})}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "d": [
+         "p",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{E}{\\kE(x,y)}=\\mk{p}{[\\kfx(c,y)-\\kfx(x_{0},y_{0})](x-x_{0})}+\\mk{q}{[\\kfy(x_{0},d)-\\kfy(x_{0},y_{0})](y-y_{0})}",
+       "uses": [],
+       "map": {
+        "a": "p",
+        "b": "q"
+       }
+      }
+     ],
+     "src": "14.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kE(x,y)}=\\mk{p}{[\\kfx(c,y)-\\kfx(x_{0},y_{0})](x-x_{0})}+\\mk{q}{[\\kfy(x_{0},d)-\\kfy(x_{0},y_{0})](y-y_{0})}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\frac{|\\kE(x,y)|}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}}\\le \\mk{p}{|\\kfx(c,y)-\\kfx(x_{0},y_{0})|\\,\\frac{|x-x_{0}|}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}}+\\mk{q}{|\\kfy(x_{0},d)-\\kfy(x_{0},y_{0})|\\,\\frac{|y-y_{0}|}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}}",
+       "uses": [],
+       "cap": "Dividing by the distance from $(x_{0},y_{0})$ and using $|u+v|\\le|u|+|v|$."
+      },
+      {
+       "tex": "\\mk{E}{\\frac{|\\kE(x,y)|}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}}\\le \\mk{p}{|\\kfx(c,y)-\\kfx(x_{0},y_{0})|}+\\mk{q}{|\\kfy(x_{0},d)-\\kfy(x_{0},y_{0})|}",
+       "uses": [],
+       "cap": "$|x-x_{0}|$ and $|y-y_{0}|$ are at most the distance $\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}$."
+      }
+     ],
+     "src": "14.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "$\\kfx$ and $\\kfy$ are continuous at $(x_{0},y_{0})$.",
+       "src": "14.4, Continuity of First Partials Implies Differentiability"
+      },
+      {
+       "text": "The squeeze theorem: a function caught between two functions with the same limit has that limit too.",
+       "src": "2.3, The Squeeze Theorem"
+      },
+      {
+       "text": "$\\kf$ is differentiable at $(x_{0},y_{0})$ when its error term $\\kE$ in (14.26) has $\\frac{\\kE(x,y)}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}\\to 0$ as $(x,y)\\to(x_{0},y_{0})$.",
+       "src": "14.4, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\frac{|\\kE(x,y)|}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}}\\le \\mk{p}{|\\kfx(c,y)-\\kfx(x_{0},y_{0})|}+\\mk{q}{|\\kfy(x_{0},d)-\\kfy(x_{0},y_{0})|}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\frac{|\\kE(x,y)|}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}}=\\mk{p}{0}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "q": "p"
+       },
+       "cap": "As $(x,y)\\to(x_{0},y_{0})$, the points $(c,y)$ and $(x_{0},d)$ approach $(x_{0},y_{0})$, where $\\kfx$ and $\\kfy$ are continuous, so the right side tends to $0$; the left side is never negative."
+      },
+      {
+       "tex": "\\mk{E}{\\lim_{(x,y)\\to (x_{0},y_{0})}\\frac{\\kE(x,y)}{\\sqrt{{(x-x_{0})}^{2}+{(y-y_{0})}^{2}}}}=\\mk{p}{0}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "$-|\\kE|\\le\\kE\\le|\\kE|$, so the quotient itself is squeezed to $0$, and the error term meets the definition of differentiability."
+      }
+     ],
+     "src": "14.4, Continuity of First Partials Implies Differentiability"
+    }
+   ]
+  }
+ ]
 }

@@ -595,5 +595,50 @@
     "sim-point-charge-field"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "point-charge-field",
+   "what": "the electric field of a point charge",
+   "source": "College Physics 2e, 18.4 Electric Field: Concept of a Field Revisited",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kF = k\\dfrac{|\\kq\\kQch|}{\\krad^2}",
+       "src": "18.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEf} = \\left|\\dfrac{\\mk{F}{\\kF}}{\\mk{q}{\\kq}}\\right|",
+      "src": "18.4",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEf} = \\mk{k}{k}\\left|\\dfrac{\\mk{qQ}{\\kq\\kQch}}{\\mk{q}{\\kq}\\,\\mk{r}{\\krad^2}}\\right|",
+       "uses": [
+        0
+       ],
+       "map": {
+        "F": [
+         "k",
+         "qQ",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{E}{\\kEf} = \\mk{k}{k}\\dfrac{\\mk{qQ}{|\\kQch|}}{\\mk{r}{\\krad^2}}",
+       "uses": [],
+       "map": {
+        "q": "qQ"
+       }
+      }
+     ],
+     "src": "18.4"
+    }
+   ]
+  }
  ]
 }

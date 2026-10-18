@@ -39,3 +39,8 @@ None beyond `sim-bessel`. Weighed and left out: the partial sums of Example 17.2
 - forms `eq-bessel-equation` → `17.4-bessel-term`, `eq-bessel-order-zero` → `17.4-eip-id1171281740360`.
 - variables of 17.4: y, y′, y″ → `17.4-power-series-solutions`.
 - The chapter's review exercises: placed by `mksection.py --with-review` in 17.1–17.3 (above).
+
+## Derivations
+
+- Example 17.25 a, Analysis, the series as c₀eˣ + c₁e⁻ˣ · score 3 · not built: three printed moves in a worked example's analysis, under the bar.
+- Example 17.26, the Bessel equation of order 0 (17.10) · score 1 · not built: the section's strategy applied to one equation, every line printed but the closed form of a₂ₖ.

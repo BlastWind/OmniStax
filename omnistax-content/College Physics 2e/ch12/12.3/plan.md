@@ -281,3 +281,9 @@ Applied in the chapter pass (2026-09-14): every anchor above is written on its
 row. The key to `ap1` is recorded in `ch12/exploration.md` under the chapter's
 errata, beside 12.1's, 12.2's and 12.6's, and `ch12/config.md` no longer calls
 Figure 12.12 dropped.
+
+## Derivations
+
+- Torricelli's theorem (printed block) · score 1 · built as drv-torricelli: one node from Bernoulli's equation, atmospheric pressure at both ends, $\rho$ cancelled and $h = h_1 - h_2$; one skipped line inserted
+- Example 12.5, the fire hose nozzle · score 4 · not built: a worked example that identifies knowns and substitutes into continuity and Bernoulli's equation, the section's own method
+- Power in fluid flow, $(P + \tfrac{1}{2}\rho v^2 + \rho g h)Q$ (prose with one display) · score 1 · not built: one move, multiplying by $Q$ after a units argument

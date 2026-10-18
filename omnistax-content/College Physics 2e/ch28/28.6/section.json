@@ -166,5 +166,173 @@
    "kind": "correction",
    "html": "The book prints $v = c$, where $\\gamma$ has no finite value. The two kinetic energies agree in the limit $v \\ll c$, as the solution concludes."
   }
+ ],
+ "derivations": [
+  {
+   "id": "classical-kinetic-energy-limit",
+   "what": "classical kinetic energy as the low-velocity limit",
+   "source": "College Physics 2e, 28.6 Relativistic Energy",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{g}{\\gamma} \\approx \\mk{e}{1 + \\frac{1}{2}\\frac{\\kv^{2}}{\\kc^{2}}}",
+      "uses": [],
+      "src": "28.6",
+      "why": "The binomial expansion of $\\gamma$, cut short where the terms become very small for $\\kv \\ll \\kc$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\gamma - 1} \\approx \\mk{e}{\\frac{1}{2}\\frac{\\kv^{2}}{\\kc^{2}}}",
+       "uses": []
+      }
+     ],
+     "src": "28.6",
+     "note": "The book writes this line and the next with an equals sign; they hold only approximately, at low velocities, as the book itself says of the expansion."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kKEclass = \\frac{1}{2}\\km\\kv^{2}",
+       "src": "7.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{K}{\\kKErel} = \\mk{g}{(\\gamma - 1)}\\mk{m}{\\km\\kc^{2}}",
+      "uses": [],
+      "src": "28.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{K}{\\kKErel} \\approx \\mk{g}{\\left[\\frac{1}{2}\\frac{\\kv^{2}}{\\kc^{2}}\\right]}\\mk{m}{\\km\\kc^{2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{K}{\\kKErel} \\approx \\mk{g}{\\left[\\frac{1}{2}\\frac{\\kv^{2}}{\\kc^{2}}\\right]}\\mk{m}{\\km\\kc^{2}} = \\mk{h}{\\frac{1}{2}\\km\\kv^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{K}{\\kKErel} \\approx \\mk{g}{\\left[\\frac{1}{2}\\frac{\\kv^{2}}{\\kc^{2}}\\right]}\\mk{m}{\\km\\kc^{2}} = \\mk{h}{\\frac{1}{2}\\km\\kv^{2} = \\kKEclass}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "28.6"
+    }
+   ]
+  },
+  {
+   "id": "energy-momentum-relation",
+   "what": "the relation between relativistic energy and momentum",
+   "source": "College Physics 2e, 28.6 Relativistic Energy",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kp = \\gamma\\km\\ku",
+       "src": "28.5"
+      },
+      {
+       "tex": "\\gamma = \\frac{1}{\\sqrt{1 - \\frac{\\ku^{2}}{\\kc^{2}}}}",
+       "src": "28.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kE} = \\mk{g}{\\gamma\\km\\kc^{2}}",
+      "uses": [],
+      "src": "28.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kE^{2}} = \\mk{g}{\\gamma^{2}\\km^{2}\\kc^{4}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{E}{\\kE^{2}} - \\mk{p}{(\\kp\\kc)^{2}} = \\mk{g}{\\gamma^{2}\\km^{2}\\kc^{4}} - \\mk{q}{\\gamma^{2}\\km^{2}\\ku^{2}\\kc^{2}}",
+       "uses": [
+        0
+       ],
+       "cap": "Subtracting $(\\kp\\kc)^{2} = \\gamma^{2}\\km^{2}\\ku^{2}\\kc^{2}$ from both sides."
+      },
+      {
+       "tex": "\\mk{E}{\\kE^{2}} - \\mk{p}{(\\kp\\kc)^{2}} = \\mk{g}{\\gamma^{2}\\km^{2}\\kc^{4}\\left(1 - \\frac{\\ku^{2}}{\\kc^{2}}\\right)}",
+       "uses": [],
+       "map": {
+        "q": "g"
+       }
+      },
+      {
+       "tex": "\\mk{E}{\\kE^{2}} - \\mk{p}{(\\kp\\kc)^{2}} = \\mk{g}{\\km^{2}\\kc^{4}}",
+       "uses": [
+        1
+       ],
+       "cap": "Since $\\gamma^{2} = 1/(1 - \\ku^{2}/\\kc^{2})$, the product $\\gamma^{2}(1 - \\ku^{2}/\\kc^{2})$ is 1."
+      },
+      {
+       "tex": "\\mk{E}{\\kE^{2}} = \\mk{p}{(\\kp\\kc)^{2}} + \\mk{g}{(\\km\\kc^{2})^{2}}",
+       "uses": []
+      }
+     ],
+     "src": "28.6"
+    }
+   ]
+  },
+  {
+   "id": "relativistic-kinetic-energy",
+   "what": "relativistic kinetic energy",
+   "source": "College Physics 2e, 28.6 Relativistic Energy",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The system starts from rest, so the net work on it goes into kinetic energy.",
+       "src": "7.2"
+      },
+      {
+       "text": "The work raises the rest energy to the total energy.",
+       "src": "28.6"
+      },
+      {
+       "tex": "\\kErest = \\km\\kc^{2}",
+       "src": "28.6"
+      },
+      {
+       "tex": "\\kE = \\gamma \\km\\kc^{2}",
+       "src": "28.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kWnet} = \\mk{K}{\\kKE}",
+      "uses": [0],
+      "src": "7.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kWnet} = \\mk{K}{\\kE - \\kErest}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{W}{\\kWnet} = \\mk{K}{\\kE - \\kErest = \\gamma \\km\\kc^{2} - \\km\\kc^{2}}",
+       "uses": [2, 3]
+      },
+      {
+       "tex": "\\mk{W}{\\kWnet} = \\mk{K}{\\kE - \\kErest = \\gamma \\km\\kc^{2} - \\km\\kc^{2} = (\\gamma - 1)\\km\\kc^{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{W}{\\kKErel} = \\mk{K}{(\\gamma - 1)\\km\\kc^{2}}",
+       "uses": [0]
+      }
+     ],
+     "src": "28.6"
+    }
+   ]
+  }
  ]
 }

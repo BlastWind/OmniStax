@@ -231,5 +231,183 @@
       "kind": "correction",
       "html": "Two concave (diverging) lenses form no telescope. The key’s 25× is the ratio of the focal lengths, $500\\ \\text{mm}/20\\ \\text{mm}$, the magnification two convex lenses of these focal lengths would give."
     }
+  ],
+  "derivations": [
+    {
+      "id": "first-image-at-focal-length",
+      "what": "the first image of a distant object at the focal length",
+      "source": "College Physics 2e, 26.5 Telescopes",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "\\kdobj\\approx \\infty",
+              "src": "26.5"
+            },
+            {
+              "tex": "1/\\infty = 0"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{o}{\\frac{1}{\\kdobj}} + \\mk{i}{\\frac{1}{\\kdimg}} = \\mk{f}{\\frac{1}{\\kfobj}}",
+            "uses": [],
+            "src": "25.6"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{i}{\\frac{1}{\\kdimg}}=\\mk{f}{\\frac{1}{\\kfobj}}\\mk{o}{-\\frac{1}{\\kdobj}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{i}{\\frac{1}{\\kdimg}}=\\mk{f}{\\frac{1}{\\kfobj}}\\mk{o}{-\\frac{1}{\\kdobj}}=\\mk{f2}{\\frac{1}{\\kfobj}}\\mk{z}{-\\frac{1}{\\infty}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{i}{\\frac{1}{\\kdimg}}=\\mk{f}{\\frac{1}{\\kfobj}}",
+              "uses": [
+                1
+              ],
+              "cap": "As $\\kdobj$ grows without bound, $1/\\kdobj$ shrinks to zero."
+            },
+            {
+              "tex": "\\mk{i}{\\kdimg}=\\mk{f}{\\kfobj}",
+              "uses": []
+            }
+          ],
+          "src": "26.5"
+        }
+      ]
+    },
+    {
+      "id": "telescope-angular-magnification",
+      "what": "the angular magnification of a telescope",
+      "source": "College Physics 2e, 26.5 Telescopes",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "The objective forms the first image, of size $h$, at its focal length: $\\kdimg = \\kfobj$.",
+              "src": "26.5"
+            },
+            {
+              "text": "A ray passing through the center of a lens does not change direction.",
+              "src": "25.6"
+            },
+            {
+              "tex": "\\tan\\ktheta \\approx \\ktheta",
+              "src": "27.6"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{t}{\\tan\\ktheta} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kdimg}}",
+            "uses": [1],
+            "why": "The ray from the top of the distant object through the center of the objective keeps the angle $\\ktheta$ and ends at the top of the first image."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{t}{\\tan\\ktheta} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kfobj}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{t}{\\ktheta} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kfobj}}",
+              "uses": [
+                2
+              ],
+              "cap": "The angle is small, as for any object far away."
+            }
+          ],
+          "src": "26.5"
+        },
+        {
+          "assumes": [
+            {
+              "text": "The first image lies just inside the focal length of the eyepiece: $\\kdobjp \\approx \\kfeye$.",
+              "src": "26.5"
+            },
+            {
+              "text": "A ray passing through the center of a lens does not change direction.",
+              "src": "25.6"
+            },
+            {
+              "tex": "\\tan\\ktheta \\approx \\ktheta",
+              "src": "27.6"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{t}{\\tan\\kthetaprime} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kdobjp}}",
+            "uses": [1],
+            "why": "The ray from the top of the first image through the center of the eyepiece leaves at the angle $\\kthetaprime$, the angle the final image subtends."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{t}{\\tan\\kthetaprime} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kfeye}}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{t}{\\kthetaprime} = \\frac{\\mk{h}{h}}{\\mk{d}{\\kfeye}}",
+              "uses": [
+                2
+              ]
+            }
+          ],
+          "src": "26.5"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "step": 1
+            },
+            {
+              "text": "The telescope’s image is inverted, and the minus sign of $M$ says so.",
+              "src": "26.5"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{M}{|M|}=\\frac{\\mk{p}{\\kthetaprime}}{\\mk{q}{\\ktheta}}",
+            "uses": [],
+            "src": "26.5"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{M}{|M|}=\\frac{\\mk{p}{h/\\kfeye}}{\\mk{q}{h/\\kfobj}}",
+              "uses": [
+                0,
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{M}{|M|}=\\frac{\\mk{q}{\\kfobj}}{\\mk{p}{\\kfeye}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{M}{M}=\\frac{\\mk{p}{\\kthetaprime}}{\\mk{q}{\\ktheta}}=\\mk{f}{-\\frac{\\kfobj}{\\kfeye}}",
+              "uses": [
+                2
+              ],
+              "map": {
+                "p": [
+                  "p",
+                  "f"
+                ],
+                "q": [
+                  "q",
+                  "f"
+                ]
+              }
+            }
+          ],
+          "src": "26.5"
+        }
+      ]
+    }
   ]
 }

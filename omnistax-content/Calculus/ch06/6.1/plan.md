@@ -55,3 +55,8 @@ Candidates judged: an applet-style "area calculator" (the media note) adds nothi
 - forms `eq-area-between-curves`, `eq-area-between-curves-sum` → `6.1-area-between-curves-theorem`; `eq-area-between-crossing-curves` → `6.1-curves-that-cross-theorem`; `eq-area-between-curves-y` → `6.1-area-along-y-theorem`.
 
 Applied in the chapter pass (2026-10-13): every anchor above set with `ost set` (tmp/ch06/anchors6.py; a few spans moved to the nearest id the text has, such as the section header where the plan named a note); review exercises held here landed with `source_section` 6.9.
+
+## Derivations
+
+- Area of a Region between Two Curves (6.1) · score 1 · built as drv-area-between-two-curves, ending on (6.1) (the printed sum and its limit replaced; the theorem stays)
+- Regions Defined with Respect to y (6.2) · score 1 · built as drv-area-between-two-curves-along-y, ending on (6.2)

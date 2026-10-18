@@ -1048,5 +1048,434 @@
   }
  ],
  "referents": [],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "derivatives-of-sine-and-cosine",
+   "what": "the derivatives of sine and cosine",
+   "source": "Calculus, 3.5 Derivatives of Trigonometric Functions, The Derivatives of sin x and cos x",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\sin (x+h)=\\sin x\\;\\cos h+\\cos x\\;\\sin h",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "text": "The limit of a sum is the sum of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "text": "The limit of a constant times a function is the constant times the limit.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{h\\to 0}\\frac{\\cos h-1}{h}=0",
+       "src": "(2.19)"
+      },
+      {
+       "tex": "\\lim_{h\\to 0}\\frac{\\sin h}{h}=1",
+       "src": "(2.18)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{dx}\\;\\sin x}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\sin (x+h)}-\\mk{b}{\\sin x}}{\\mk{h}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\sin x}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a1}{\\sin x\\;\\cos h}+\\mk{a2}{\\cos x\\;\\sin h}-\\mk{b}{\\sin x}}{\\mk{h}{h}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "a": [
+         "a1",
+         "a2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\sin x}=\\mk{lim}{\\lim_{h\\to 0}}(\\mk{s}{\\frac{\\sin x\\;\\cos h-\\sin x}{h}}+\\mk{c}{\\frac{\\cos x\\;\\sin h}{h}})",
+       "uses": [],
+       "map": {
+        "a1": "s",
+        "b": "s",
+        "a2": "c",
+        "h": [
+         "s",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\sin x}=\\mk{lim}{\\lim_{h\\to 0}}(\\mk{s}{\\sin x(\\frac{\\cos h-1}{h})}+\\mk{c}{\\cos x(\\frac{\\sin h}{h})})",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\sin x}=\\mk{s}{\\sin x\\cdot 0}+\\mk{c}{\\cos x\\cdot 1}",
+       "uses": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "cap": "Since $\\sin x$ and $\\cos x$ do not change with $h,$ each comes out of its limit.",
+       "map": {
+        "lim": [
+         "s",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\sin x}=\\mk{c}{\\cos x}",
+       "uses": []
+      }
+     ],
+     "num": "(3.11)",
+     "src": "3.5, The Derivatives of sin x and cos x"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\cos (x+h)=\\cos x\\;\\cos h-\\sin x\\;\\sin h",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "text": "The limit of a difference is the difference of the limits.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "text": "The limit of a constant times a function is the constant times the limit.",
+       "src": "2.3, Limit Laws"
+      },
+      {
+       "tex": "\\lim_{h\\to 0}\\frac{\\cos h-1}{h}=0",
+       "src": "(2.19)"
+      },
+      {
+       "tex": "\\lim_{h\\to 0}\\frac{\\sin h}{h}=1",
+       "src": "(2.18)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{dx}\\;\\cos x}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a}{\\cos (x+h)}-\\mk{b}{\\cos x}}{\\mk{h}{h}}",
+      "uses": [],
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\cos x}=\\mk{lim}{\\lim_{h\\to 0}}\\frac{\\mk{a1}{\\cos x\\;\\cos h}-\\mk{a2}{\\sin x\\;\\sin h}-\\mk{b}{\\cos x}}{\\mk{h}{h}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "a": [
+         "a1",
+         "a2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\cos x}=\\mk{lim}{\\lim_{h\\to 0}}(\\mk{s}{\\frac{\\cos x\\;\\cos h-\\cos x}{h}}-\\mk{c}{\\frac{\\sin x\\;\\sin h}{h}})",
+       "uses": [],
+       "map": {
+        "a1": "s",
+        "b": "s",
+        "a2": "c",
+        "h": [
+         "s",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\cos x}=\\mk{lim}{\\lim_{h\\to 0}}(\\mk{s}{\\cos x(\\frac{\\cos h-1}{h})}-\\mk{c}{\\sin x(\\frac{\\sin h}{h})})",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\cos x}=\\mk{s}{\\cos x\\cdot 0}-\\mk{c}{\\sin x\\cdot 1}",
+       "uses": [
+        1,
+        2,
+        3,
+        4
+       ],
+       "cap": "Since $\\sin x$ and $\\cos x$ do not change with $h,$ each comes out of its limit.",
+       "map": {
+        "lim": [
+         "s",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}\\;\\cos x}=-\\mk{c}{\\sin x}",
+       "uses": []
+      }
+     ],
+     "num": "(3.12)",
+     "src": "3.5, The Derivatives of sin x and cos x"
+    }
+   ]
+  },
+  {
+   "id": "derivative-of-tangent",
+   "what": "the derivative of the tangent",
+   "source": "Calculus, 3.5 Derivatives of Trigonometric Functions, Example 3.42",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\tan x=\\frac{\\sin x}{\\cos x}",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "text": "The quotient rule: $\\left(\\dfrac{f}{g}\\right)'=\\dfrac{f'g-g'f}{g^{2}}.$",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\sin x)=\\cos x",
+       "src": "(3.11)"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\cos x)=-\\sin x",
+       "src": "(3.12)"
+      },
+      {
+       "tex": "{\\cos }^{2}x+{\\sin }^{2}x=1",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "tex": "\\sec x=\\frac{1}{\\cos x}",
+       "src": "1.3, Trigonometric Identities"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)}=\\mk{t}{\\tan x}",
+      "uses": [],
+      "src": "Example 3.42"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(x)}=\\frac{\\mk{n}{\\sin x}}{\\mk{d}{\\cos x}}",
+       "uses": [0],
+       "map": {
+        "t": [
+         "n",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\frac{\\mk{n}{\\cos x\\;\\cos x}-\\mk{m}{(-\\sin x)\\sin x}}{\\mk{d}{{(\\cos x)}^{2}}}",
+       "uses": [1, 2, 3]
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\frac{\\mk{n}{{\\cos }^{2}x+{\\;\\sin }^{2}x}}{\\mk{d}{{\\cos }^{2}x}}",
+       "uses": [],
+       "map": {
+        "m": "n"
+       }
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\frac{\\mk{n}{1}}{\\mk{d}{{\\cos }^{2}x}}",
+       "uses": [4]
+      },
+      {
+       "tex": "\\mk{f}{\\kfprime(x)}=\\mk{n}{{\\sec }^{2}x}",
+       "uses": [5],
+       "map": {
+        "d": "n"
+       }
+      }
+     ],
+     "num": "(3.13)",
+     "src": "Example 3.42"
+    }
+   ]
+  },
+  {
+   "id": "derivatives-of-cotangent-secant-cosecant",
+   "what": "the derivatives of cotangent, secant and cosecant",
+   "source": "Calculus, 3.5 Derivatives of Trigonometric Functions, Derivatives of Other Trigonometric Functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The quotient rule: $\\left(\\dfrac{f}{g}\\right)'=\\dfrac{f'g-g'f}{g^{2}}.$",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\sin x)=\\cos x",
+       "src": "(3.11)"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\cos x)=-\\sin x",
+       "src": "(3.12)"
+      },
+      {
+       "tex": "{\\cos }^{2}x+{\\sin }^{2}x=1",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "tex": "\\csc x=\\frac{1}{\\sin x}",
+       "src": "1.3, Trigonometric Identities"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\cot x}=\\frac{\\mk{n}{\\cos x}}{\\mk{d}{\\sin x}}",
+      "uses": [],
+      "src": "1.3, Trigonometric Identities"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\cot x)}=\\frac{\\mk{n}{(-\\sin x)\\sin x}-\\mk{m}{\\cos x\\;\\cos x}}{\\mk{d}{{(\\sin x)}^{2}}}",
+       "uses": [0, 1, 2]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\cot x)}=\\frac{\\mk{n}{-({\\sin }^{2}x+{\\cos }^{2}x)}}{\\mk{d}{{\\sin }^{2}x}}",
+       "uses": [],
+       "map": {
+        "m": "n"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\cot x)}=\\frac{\\mk{n}{-1}}{\\mk{d}{{\\sin }^{2}x}}",
+       "uses": [3]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\cot x)}=\\mk{n}{-{\\csc }^{2}x}",
+       "uses": [4],
+       "map": {
+        "d": "n"
+       }
+      }
+     ],
+     "num": "(3.14)",
+     "src": "3.5, Derivatives of tan x, cot x, sec x, and csc x"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The quotient rule: $\\left(\\dfrac{f}{g}\\right)'=\\dfrac{f'g-g'f}{g^{2}}.$",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(c)=0",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\cos x)=-\\sin x",
+       "src": "(3.12)"
+      },
+      {
+       "tex": "\\sec x=\\frac{1}{\\cos x}",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "tex": "\\tan x=\\frac{\\sin x}{\\cos x}",
+       "src": "1.3, Trigonometric Identities"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\sec x}=\\frac{\\mk{n}{1}}{\\mk{d}{\\cos x}}",
+      "uses": [],
+      "src": "1.3, Trigonometric Identities"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\sec x)}=\\frac{\\mk{n}{0\\cdot \\cos x}-\\mk{m}{(-\\sin x)\\cdot 1}}{\\mk{d}{{(\\cos x)}^{2}}}",
+       "uses": [0, 1, 2]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\sec x)}=\\frac{\\mk{m}{\\sin x}}{\\mk{d}{{\\cos }^{2}x}}",
+       "uses": [],
+       "map": {
+        "n": "m"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\sec x)}=\\mk{a}{\\frac{1}{\\cos x}}\\cdot \\mk{b}{\\frac{\\sin x}{\\cos x}}",
+       "uses": [],
+       "map": {
+        "m": "b",
+        "d": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\sec x)}=\\mk{a}{\\sec x}\\;\\mk{b}{\\tan x}",
+       "uses": [3, 4]
+      }
+     ],
+     "num": "(3.15)",
+     "src": "3.5, Derivatives of tan x, cot x, sec x, and csc x"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The quotient rule: $\\left(\\dfrac{f}{g}\\right)'=\\dfrac{f'g-g'f}{g^{2}}.$",
+       "src": "3.3, The Quotient Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(c)=0",
+       "src": "3.3, The Constant Rule"
+      },
+      {
+       "tex": "\\frac{d}{dx}(\\sin x)=\\cos x",
+       "src": "(3.11)"
+      },
+      {
+       "tex": "\\csc x=\\frac{1}{\\sin x}",
+       "src": "1.3, Trigonometric Identities"
+      },
+      {
+       "tex": "\\cot x=\\frac{\\cos x}{\\sin x}",
+       "src": "1.3, Trigonometric Identities"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\csc x}=\\frac{\\mk{n}{1}}{\\mk{d}{\\sin x}}",
+      "uses": [],
+      "src": "1.3, Trigonometric Identities"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\csc x)}=\\frac{\\mk{n}{0\\cdot \\sin x}-\\mk{m}{\\cos x\\cdot 1}}{\\mk{d}{{(\\sin x)}^{2}}}",
+       "uses": [0, 1, 2]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\csc x)}=\\frac{\\mk{m}{-\\cos x}}{\\mk{d}{{\\sin }^{2}x}}",
+       "uses": [],
+       "map": {
+        "n": "m"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\csc x)}=-\\mk{a}{\\frac{1}{\\sin x}}\\cdot \\mk{b}{\\frac{\\cos x}{\\sin x}}",
+       "uses": [],
+       "map": {
+        "m": "b",
+        "d": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{dx}(\\csc x)}=-\\mk{a}{\\csc x}\\;\\mk{b}{\\cot x}",
+       "uses": [3, 4]
+      }
+     ],
+     "num": "(3.16)",
+     "src": "3.5, Derivatives of tan x, cot x, sec x, and csc x"
+    }
+   ]
+  }
+ ]
 }

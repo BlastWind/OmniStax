@@ -3,24 +3,16 @@
 
 <section id="cross-product">
 <h2>The Cross Product and Its Properties</h2>
-<p class="cite-target">The <span data-concept="dot-product">dot product</span> is a multiplication of two <span data-concept="vector">vectors</span> that results in a scalar. In this section, we introduce a product of two <span data-concept="vector">vectors</span> that generates a third <span data-concept="vector">vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to the first two. Consider how we might find such a <span data-concept="vector">vector</span>. Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle$ and $\kvecv=\langle v_{1},v_{2},v_{3}\rangle$ be nonzero <span data-concept="vector">vectors</span>. We want to find a <span data-concept="vector">vector</span> $\kvecw=\langle w_{1},w_{2},w_{3}\rangle$ <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kvecu $ and $\kvecv $—that is, we want to find $\kvecw $ such that $\kvecu\cdot \kvecw=0$ and $\kvecv\cdot \kvecw=0.$ Therefore, $w_{1},$ $w_{2},$ and $w_{3}$ must satisfy</p>
-$$\begin{array}{rll}u_{1}w_{1}+u_{2}w_{2}+u_{3}w_{3} & = & 0 \\ v_{1}w_{1}+v_{2}w_{2}+v_{3}w_{3} & = & 0.\end{array}$$
-<p>If we multiply the top equation by $v_{3}$ and the bottom equation by $u_{3}$ and subtract, we can eliminate the variable $w_{3},$ which gives</p>
-$$(u_{1}v_{3}-v_{1}u_{3})w_{1}+(u_{2}v_{3}-v_{2}u_{3})w_{2}=0.$$
-<p>If we select</p>
-$$\begin{array}{rll}w_{1} & = & u_{2}v_{3}-u_{3}v_{2} \\ w_{2} & = & -(u_{1}v_{3}-u_{3}v_{1}),\end{array}$$
-<p>we get a possible solution <span data-concept="vector">vector</span>. Substituting these values back into the original equations gives</p>
-$$w_{3}=u_{1}v_{2}-u_{2}v_{1}.$$
-<p>That is, <span data-concept="vector">vector</span></p>
-$$\kvecw=\langle u_{2}v_{3}-u_{3}v_{2},-(u_{1}v_{3}-u_{3}v_{1}),u_{1}v_{2}-u_{2}v_{1}\rangle$$
-<p>is <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kvecu $ and $\kvecv,$ which leads us to define the following operation, called the <span data-concept="cross-product">cross product</span>.</p>
+<p class="cite-target">The <span data-concept="dot-product">dot product</span> is a multiplication of two <span data-concept="vector">vectors</span> that results in a scalar. In this section, we introduce a product of two <span data-concept="vector">vectors</span> that generates a third <span data-concept="vector">vector</span> <span data-concept="orthogonal-vectors">orthogonal</span> to the first two. Consider how we might find such a <span data-concept="vector">vector</span>. Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle$ and $\kvecv=\langle v_{1},v_{2},v_{3}\rangle$ be nonzero <span data-concept="vector">vectors</span>. We want to find a <span data-concept="vector">vector</span> $\kvecw=\langle w_{1},w_{2},w_{3}\rangle$ <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kvecu $ and $\kvecv $—that is, we want to find $\kvecw $ such that $\kvecu\cdot \kvecw=0$ and $\kvecv\cdot \kvecw=0.$ Therefore, $w_{1},$ $w_{2},$ and $w_{3}$ must satisfy both equations at once.</p>
+<figure class="dv" id="drv-orthogonal-to-two-vectors"></figure>
+<p>That is, <span data-concept="vector">vector</span> $\kvecw$ is <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kvecu $ and $\kvecv,$ which leads us to define the following operation, called the <span data-concept="cross-product">cross product</span>.</p>
 <div class="note" id="fs-id1163723831482">
 <div class="eyebrow">Definition</div>
 <p>Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle \;\text{and}\;\kvecv=\langle v_{1},v_{2},v_{3}\rangle .$ Then, the <strong><span data-concept="cross-product">cross product</span></strong> $\kvecu\;\times \;\kvecv $ is <span data-concept="vector">vector</span></p>
 <div class="equation" id="fs-id1163723754200">$$\begin{array}{rl}\kvecu\;\times \;\kvecv & =(u_{2}v_{3}-u_{3}v_{2})\kveci-(u_{1}v_{3}-u_{3}v_{1})\kvecj+(u_{1}v_{2}-u_{2}v_{1})\kveck \\ & =\langle u_{2}v_{3}-u_{3}v_{2},-(u_{1}v_{3}-u_{3}v_{1}),u_{1}v_{2}-u_{2}v_{1}\rangle .\end{array}\tag{12.9}$$</div>
 </div>
 <p>From the way we have developed $\kvecu\;\times \;\kvecv,$ it should be clear that the <span data-concept="cross-product">cross product</span> is <span data-concept="orthogonal-vectors">orthogonal</span> to both $\kvecu $ and $\kvecv.$ However, it never hurts to check. To show that $\kvecu\;\times \;\kvecv $ is <span data-concept="orthogonal-vectors">orthogonal</span> to $\kvecu,$ we calculate the <span data-concept="dot-product">dot product</span> of $\kvecu $ and $\kvecu\;\times \;\kvecv.$</p>
-$$\begin{array}{rl}\kvecu\cdot (\kvecu\;\times \;\kvecv) & =\langle u_{1},u_{2},u_{3}\rangle \cdot \langle u_{2}v_{3}-u_{3}v_{2},-u_{1}v_{3}+u_{3}v_{1},u_{1}v_{2}-u_{2}v_{1}\rangle \\ & =u_{1}(u_{2}v_{3}-u_{3}v_{2})+u_{2}(-u_{1}v_{3}+u_{3}v_{1})+u_{3}(u_{1}v_{2}-u_{2}v_{1}) \\ & =u_{1}u_{2}v_{3}-u_{1}u_{3}v_{2}-u_{1}u_{2}v_{3}+u_{2}u_{3}v_{1}+u_{1}u_{3}v_{2}-u_{2}u_{3}v_{1} \\ & =(u_{1}u_{2}v_{3}-u_{1}u_{2}v_{3})+(-u_{1}u_{3}v_{2}+u_{1}u_{3}v_{2})+(u_{2}u_{3}v_{1}-u_{2}u_{3}v_{1}) \\ & =0\end{array}$$
+<figure class="dv" id="drv-cross-product-orthogonal"></figure>
 <p>In a similar manner, we can show that the <span data-concept="cross-product">cross product</span> is also <span data-concept="orthogonal-vectors">orthogonal</span> to $\kvecv.$</p>
 <div class="example" id="fs-id1163723497714">
 <h3>Example 12.31 · Finding a Cross Product</h3>
@@ -68,15 +60,10 @@ $$\begin{array}{rllllrll}\kveci\;\times \;\kvecj & = & \kveck & & & \kvecj\;\tim
 $$\begin{array}{lllrllll}\text{i.} & & & \kvecu\;\times \;\kvecv & = & -(\kvecv\;\times \;\kvecu) & & \text{Anticommutative property} \\ \text{ii.} & & & \kvecu\;\times \;(\kvecv+\kvecw) & = & \kvecu\;\times \;\kvecv+\kvecu\;\times \;\kvecw & & \text{Distributive property} \\ \text{iii.} & & & c(\kvecu\;\times \;\kvecv) & = & (c\kvecu)\;\times \;\kvecv=\kvecu\;\times \;(c\kvecv) & & \text{Multiplication by a constant} \\ \text{iv.} & & & \kvecu\;\times \;\kveczero & = & \kveczero\;\times \;\kvecu=\kveczero & & \text{Cross product of the zero vector} \\ \text{v.} & & & \kvecv\;\times \;\kvecv & = & \kveczero & & \text{Cross product of a vector with itself} \\ \text{vi.} & & & \kvecu\cdot (\kvecv\;\times \;\kvecw) & = & (\kvecu\;\times \;\kvecv)\cdot \kvecw & & \text{Scalar triple product}\end{array}$$
 </div>
 <h3>Proof</h3>
-<p>For property $\kveci.,$ we want to show $\kvecu\;\times \;\kvecv=-(\kvecv\;\times \;\kvecu).$ We have</p>
-$$\begin{array}{rl}\kvecu\;\times \;\kvecv & =\langle u_{1},u_{2},u_{3}\rangle \;\times \;\langle v_{1},v_{2},v_{3}\rangle \\ & =\langle u_{2}v_{3}-u_{3}v_{2},-u_{1}v_{3}+u_{3}v_{1},u_{1}v_{2}-u_{2}v_{1}\rangle \\ & =-\langle u_{3}v_{2}-u_{2}v_{3},-u_{3}v_{1}+u_{1}v_{3},u_{2}v_{1}-u_{1}v_{2}\rangle \\ & =-\langle v_{1},v_{2},v_{3}\rangle \;\times \;\langle u_{1},u_{2},u_{3}\rangle \\ & =-(\kvecv\;\times \;\kvecu).\end{array}$$
+<figure class="dv" id="drv-cross-product-properties"></figure>
 <p>Unlike most operations we’ve seen, the <span data-concept="cross-product">cross product</span> is not commutative. This makes sense if we think about the <span data-concept="right-hand-rule">right-hand rule</span>.</p>
-<p>For property $\text{iv}.,$ this follows directly from the definition of the <span data-concept="cross-product">cross product</span>. We have</p>
-$$\begin{array}{rl}\kvecu\;\times \;\kveczero & =\langle u_{2}(0)-u_{3}(0),-(u_{2}(0)-u_{3}(0)),u_{1}(0)-u_{2}(0)\rangle \\ & =\langle 0,0,0\rangle =\kveczero.\end{array}$$
-<p>Then, by property i., $\kveczero\;\times \;\kvecu=\kveczero$ as well. Remember that the <span data-concept="dot-product">dot product</span> of a <span data-concept="vector">vector</span> and the <span data-concept="zero-vector">zero vector</span> is the <em>scalar</em> $0,$ whereas the <span data-concept="cross-product">cross product</span> of a <span data-concept="vector">vector</span> with the <span data-concept="zero-vector">zero vector</span> is the <em><span data-concept="vector">vector</span></em> $\kveczero.$</p>
-<p>Property $\text{vi}.$ looks like the associative property, but note the change in operations:</p>
-$$\begin{array}{rl}\kvecu\cdot (\kvecv\;\times \;\kvecw) & =\kvecu\cdot \langle v_{2}w_{3}-v_{3}w_{2},-v_{1}w_{3}+v_{3}w_{1},v_{1}w_{2}-v_{2}w_{1}\rangle \\ & =u_{1}(v_{2}w_{3}-v_{3}w_{2})+u_{2}(-v_{1}w_{3}+v_{3}w_{1})+u_{3}(v_{1}w_{2}-v_{2}w_{1}) \\ & =u_{1}v_{2}w_{3}-u_{1}v_{3}w_{2}-u_{2}v_{1}w_{3}+u_{2}v_{3}w_{1}+u_{3}v_{1}w_{2}-u_{3}v_{2}w_{1} \\ & =(u_{2}v_{3}-u_{3}v_{2})w_{1}+(u_{3}v_{1}-u_{1}v_{3})w_{2}+(u_{1}v_{2}-u_{2}v_{1})w_{3} \\ & =\langle u_{2}v_{3}-u_{3}v_{2},u_{3}v_{1}-u_{1}v_{3},u_{1}v_{2}-u_{2}v_{1}\rangle \cdot \langle w_{1},w_{2},w_{3}\rangle \\ & =(\kvecu\;\times \;\kvecv)\cdot \kvecw.\end{array}$$
-<p>□</p>
+<p>Remember that the <span data-concept="dot-product">dot product</span> of a <span data-concept="vector">vector</span> and the <span data-concept="zero-vector">zero vector</span> is the <em>scalar</em> $0,$ whereas the <span data-concept="cross-product">cross product</span> of a <span data-concept="vector">vector</span> with the <span data-concept="zero-vector">zero vector</span> is the <em><span data-concept="vector">vector</span></em> $\kveczero.$</p>
+<p>Property $\text{vi}.$ looks like the associative property, but note the change in operations.</p>
 <div class="example" id="fs-id1163723500201">
 <h3>Example 12.34 · Using the Properties of the Cross Product</h3>
 <p>Use the <span data-concept="cross-product">cross product</span> properties to calculate $(2\kveci\;\times \;3\kvecj)\;\times \;\kvecj.$</p>
@@ -91,11 +78,7 @@ $$\begin{array}{rl}(2\kveci\;\times \;3\kvecj)\;\times \;\kvecj & =2(\kveci\;\ti
 <p>Let $\kvecu $ and $\kvecv $ be <span data-concept="vector">vectors</span>, and let $\ktheta$ be the angle between them. Then, $\| \kvecu\;\times \;\kvecv\| =\| \kvecu\| \cdot \| \kvecv\| \cdot \sin \ktheta .$</p>
 </div>
 <h3>Proof</h3>
-<p>Let $\kvecu=\langle u_{1},u_{2},u_{3}\rangle$ and $\kvecv=\langle v_{1},v_{2},v_{3}\rangle$ be <span data-concept="vector">vectors</span>, and let $\ktheta$ denote the angle between them. Then</p>
-$$\begin{array}{rl}{\| \kvecu\;\times \;\kvecv\|}^{2} & ={(u_{2}v_{3}-u_{3}v_{2})}^{2}+{(u_{3}v_{1}-u_{1}v_{3})}^{2}+{(u_{1}v_{2}-u_{2}v_{1})}^{2} \\ & =u_2^{2}v_3^{2}-2u_{2}u_{3}v_{2}v_{3}+u_3^{2}v_2^{2}+u_3^{2}v_1^{2}-2u_{1}u_{3}v_{1}v_{3}+u_1^{2}v_3^{2}+u_1^{2}v_2^{2}-2u_{1}u_{2}v_{1}v_{2}+u_2^{2}v_1^{2} \\ & =u_1^{2}v_1^{2}+u_1^{2}v_2^{2}+u_1^{2}v_3^{2}+u_2^{2}v_1^{2}+u_2^{2}v_2^{2}+u_2^{2}v_3^{2}+u_3^{2}v_1^{2}+u_3^{2}v_2^{2}+u_3^{2}v_3^{2} \\ & \hspace{2em}-(u_1^{2}v_1^{2}+u_2^{2}v_2^{2}+u_3^{2}v_3^{2}+2u_{1}u_{2}v_{1}v_{2}+2u_{1}u_{3}v_{1}v_{3}+2u_{2}u_{3}v_{2}v_{3}) \\ & =(u_1^{2}+u_2^{2}+u_3^{2})(v_1^{2}+v_2^{2}+v_3^{2})-{(u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3})}^{2} \\ & ={\| \kvecu\|}^{2}{\| \kvecv\|}^{2}-{(\kvecu\cdot \kvecv)}^{2} \\ & ={\| \kvecu\|}^{2}{\| \kvecv\|}^{2}-{\| \kvecu\|}^{2}{\| \kvecv\|}^{2}{\cos }^{2}\ktheta \\ & ={\| \kvecu\|}^{2}{\| \kvecv\|}^{2}(1-{\cos }^{2}\ktheta ) \\ & ={\| \kvecu\|}^{2}{\| \kvecv\|}^{2}({\sin }^{2}\ktheta ).\end{array}$$
-<p>Taking square roots and noting that $\sqrt{{\sin }^{2}\ktheta}=\sin \ktheta$ for $0\le \ktheta \le 180^{\circ},$ we have the desired result:</p>
-$$\| \kvecu\;\times \;\kvecv\| =\| \kvecu\| \| \kvecv\| \sin \ktheta .$$
-<p>□</p>
+<figure class="dv" id="drv-magnitude-of-cross-product"></figure>
 <p>This definition of the <span data-concept="cross-product">cross product</span> allows us to visualize or interpret the product geometrically. It is clear, for example, that the <span data-concept="cross-product">cross product</span> is defined only for <span data-concept="vector">vectors</span> in three dimensions, not for <span data-concept="vector">vectors</span> in two dimensions. In two dimensions, it is impossible to generate a <span data-concept="vector">vector</span> simultaneously <span data-concept="orthogonal-vectors">orthogonal</span> to two nonparallel <span data-concept="vector">vectors</span>.</p>
 <div class="example" id="fs-id1163724074775">
 <h3>Example 12.35 · Calculating the Cross Product</h3>
@@ -170,9 +153,7 @@ $$\| \kveca\;\times \;\kvecb\| =\sqrt{{(7)}^{2}+{(-20)}^{2}+{(-5)}^{2}}=\sqrt{47
   <div class="sim-head"><span class="eyebrow">Figure 12.57</span><span>The parallelogram with adjacent sides $\kvecu$ and $\kvecv$ has base $\|\kvecu\|$ and height $\|\kvecv\|\sin\ktheta.$ Slide the angle and the two lengths: the area $\|\kvecu\|\|\kvecv\|\sin\ktheta=\|\kvecu\times\kvecv\|$ is greatest when the sides are orthogonal and shrinks to 0 as they line up.</span></div>
 </figure>
 <h3>Proof</h3>
-<p>We show that the <span data-concept="magnitude-of-a-vector">magnitude</span> of the <span data-concept="cross-product">cross product</span> is equal to the base times height of the parallelogram.</p>
-$$\begin{array}{rl}\text{Area of a parallelogram} & =\text{base}\;\times \;\text{height} \\ & =\| \kvecu\| (\| \kvecv\| \sin \ktheta ) \\ & =\| \kvecu\;\times \;\kvecv\| \end{array}$$
-<p>□</p>
+<figure class="dv" id="drv-area-of-parallelogram"></figure>
 <div class="example" id="fs-id1163723362004">
 <h3>Example 12.39 · Finding the Area of a Triangle</h3>
 <p>Let $P=(1,0,0),Q=(0,1,0),\;\text{and}\;R=(0,0,1)$ be the vertices of a triangle (Figure 12.58). Find its area.</p>
@@ -201,9 +182,7 @@ $$\begin{array}{rll}\kPQ \;\times \;\kPR & = & \left|\begin{array}{rrr}\kveci & 
 $$\kvecu\cdot (\kvecv\;\times \;\kvecw)=\left|\begin{array}{lll}u_{1} & u_{2} & u_{3} \\ v_{1} & v_{2} & v_{3} \\ w_{1} & w_{2} & w_{3}\end{array}\right|.$$
 </div>
 <h3>Proof</h3>
-<p>The calculation is straightforward.</p>
-$$\begin{array}{rl}\kvecu\cdot (\kvecv\;\times \;\kvecw) & =\langle u_{1},u_{2},u_{3}\rangle \cdot \langle v_{2}w_{3}-v_{3}w_{2},-v_{1}w_{3}+v_{3}w_{1},v_{1}w_{2}-v_{2}w_{1}\rangle \\ & =u_{1}(v_{2}w_{3}-v_{3}w_{2})+u_{2}(-v_{1}w_{3}+v_{3}w_{1})+u_{3}(v_{1}w_{2}-v_{2}w_{1}) \\ & =u_{1}(v_{2}w_{3}-v_{3}w_{2})-u_{2}(v_{1}w_{3}-v_{3}w_{1})+u_{3}(v_{1}w_{2}-v_{2}w_{1}) \\ & =\left|\begin{array}{lll}u_{1} & u_{2} & u_{3} \\ v_{1} & v_{2} & v_{3} \\ w_{1} & w_{2} & w_{3}\end{array}\right|\end{array}$$
-<p>□</p>
+<figure class="dv" id="drv-triple-scalar-product"></figure>
 <div class="example" id="fs-id1163724066224">
 <h3>Example 12.40 · Calculating the Triple Scalar Product</h3>
 <p>Let $\kvecu=\langle 1,3,5\rangle ,\kvecv=\langle 2,-1,0\rangle \;\text{and}\;\kvecw=\langle -3,0,-1\rangle .$ Calculate the <span data-concept="triple-scalar-product">triple scalar product</span> $\kvecu\cdot (\kvecv\;\times \;\kvecw).$</p>
@@ -222,7 +201,7 @@ $$\left|\begin{array}{rlr}-2 & 0 & 3 \\ 1 & 2 & 1 \\ 4 & 1 & -1\end{array}\right
 $$\kvecu\cdot (\kvecv\;\times \;\kvecw)=\left|\begin{array}{lll}u_{1} & u_{2} & u_{3} \\ v_{1} & v_{2} & v_{3} \\ w_{1} & w_{2} & w_{3}\end{array}\right|\;\text{and}\;\kvecu\cdot (\kvecw\;\times \;\kvecv)=\left|\begin{array}{lll}u_{1} & u_{2} & u_{3} \\ w_{1} & w_{2} & w_{3} \\ v_{1} & v_{2} & v_{3}\end{array}\right|.$$
 <p>We can obtain the <span data-concept="determinant">determinant</span> for calculating $\kvecu\cdot (\kvecw\;\times \;\kvecv)$ by switching the bottom two rows of $\kvecu\cdot (\kvecv\;\times \;\kvecw).$ Therefore, $\kvecu\cdot (\kvecv\;\times \;\kvecw)=-\kvecu\cdot (\kvecw\;\times \;\kvecv).$</p>
 <p>Following this reasoning and exploring the different ways we can interchange variables in the <span data-concept="triple-scalar-product">triple scalar product</span> lead to the following identities:</p>
-$$\begin{array}{rll}\kvecu\cdot (\kvecv\;\times \;\kvecw) & = & -\kvecu\cdot (\kvecw\;\times \;\kvecv) \\ \kvecu\cdot (\kvecv\;\times \;\kvecw) & = & \kvecv\cdot (\kvecw\;\times \;\kvecu)=\kvecw\cdot (\kvecu\;\times \;\kvecv).\end{array}$$
+<figure class="dv" id="drv-triple-product-reordering"></figure>
 <p id="parallelepiped-term">Let $\kvecu $ and $\kvecv $ be two <span data-concept="vector">vectors</span> in standard position. If $\kvecu $ and $\kvecv $ are not scalar multiples of each other, then these <span data-concept="vector">vectors</span> form adjacent sides of a parallelogram. We saw in <a href="#fs-id1163723995104">Area of a Parallelogram</a> that the area of this parallelogram is $\| \kvecu\;\times \;\kvecv\| .$ Now suppose we add a third <span data-concept="vector">vector</span> $\kvecw $ that does not lie in the same plane as $\kvecu $ and $\kvecv $ but still shares the same initial point. Then these <span data-concept="vector">vectors</span> form three edges of a <strong><span data-concept="parallelepiped">parallelepiped</span></strong>, a three-dimensional prism with six faces that are each parallelograms, as shown in Figure 12.59. The volume of this prism is the product of the figure’s height and the area of its base. The <span data-concept="triple-scalar-product">triple scalar product</span> of $\kvecu,\kvecv,$ and $\kvecw $ provides a simple method for calculating the volume of the <span data-concept="parallelepiped">parallelepiped</span> defined by these <span data-concept="vector">vectors</span>.</p>
 <div class="note" id="fs-id1163724035005">
 <div class="eyebrow">Theorem</div>
@@ -236,9 +215,7 @@ $$V=|\kvecu\cdot (\kvecv\;\times \;\kvecw)|.$$
   <div class="sim-head"><span class="eyebrow">Figure 12.59 + 12.60</span><span>The height of the <span data-concept="parallelepiped">parallelepiped</span> is given by $\|\text{proj}_{\kvecv\times\kvecw}\kvecu\|,$ and its base has area $\|\kvecv\times\kvecw\|,$ so its volume is $|\kvecu\cdot(\kvecv\times\kvecw)|.$ Example 12.41’s edges give 40 cubic units; choose Example 12.42’s and the solid flattens into one plane, its volume 0.</span></div>
 </figure>
 <h3>Proof</h3>
-<p>The area of the base of the <span data-concept="parallelepiped">parallelepiped</span> is given by $\| \kvecv\;\times \;\kvecw\| .$ The height of the figure is given by $\| {\text{proj}}_{\text{v×w}}\kvecu\| .$ The volume of the <span data-concept="parallelepiped">parallelepiped</span> is the product of the height and the area of the base, so we have</p>
-$$\begin{array}{rl}V & =\| {\text{proj}}_{\kvecv\;\times \;\kvecw}\kvecu\| \| \kvecv\;\times \;\kvecw\| \\ & =|\frac{\kvecu\cdot (\kvecv\;\times \;\kvecw)}{\| \kvecv\;\times \;\kvecw\|}|\| \kvecv\;\times \;\kvecw\| \\ & =|\kvecu\cdot (\kvecv\;\times \;\kvecw)|.\end{array}$$
-<p>□</p>
+<figure class="dv" id="drv-volume-of-parallelepiped"></figure>
 <div class="example" id="fs-id1163724066558">
 <h3>Example 12.41 · Calculating the Volume of a Parallelepiped</h3>
 <p>Let $\kvecu=\langle -1,-2,1\rangle ,\kvecv=\langle 4,3,2\rangle ,\;\text{and}\;\kvecw=\langle 0,-5,-2\rangle .$ Find the volume of the <span data-concept="parallelepiped">parallelepiped</span> with adjacent edges $\kvecu,\kvecv,\;\text{and}\;\kvecw $ (Figure 12.60).</p>

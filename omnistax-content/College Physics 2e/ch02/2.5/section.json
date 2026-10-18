@@ -899,5 +899,262 @@
     "sim-merge"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "position-from-average-velocity",
+   "what": "displacement ($\\kdx$) and final position ($\\kx$) from average velocity when acceleration ($\\ka$) is constant",
+   "source": "College Physics 2e, 2.5 Motion Equations for Constant Acceleration in One Dimension",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kdx = \\kx - \\kxo",
+       "src": "2.5"
+      },
+      {
+       "tex": "\\kdt = \\kt",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvb} = \\frac{\\mk{x}{\\kdx}}{\\mk{t}{\\kdt}}",
+      "src": "2.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kvb} = \\frac{\\mk{x}{\\kx - \\kxo}}{\\mk{t}{\\kt}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{v}{\\kvb}\\mk{t}{\\kt}",
+       "uses": [],
+       "map": {
+        "x": [
+         "x",
+         "x0"
+        ]
+       }
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  },
+  {
+   "id": "final-velocity",
+   "what": "final velocity",
+   "source": "College Physics 2e, 2.5 Motion Equations for Constant Acceleration in One Dimension",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kab = \\ka = \\text{constant}",
+       "src": "2.5"
+      },
+      {
+       "tex": "\\kdv = \\kv - \\kvo",
+       "src": "2.5"
+      },
+      {
+       "tex": "\\kdt = \\kt",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\ka} = \\frac{\\mk{dv}{\\kdv}}{\\mk{t}{\\kdt}}",
+      "src": "2.4",
+      "uses": [0],
+      "why": "Average acceleration is $\\kdv/\\kdt$, and when acceleration is constant the average and instantaneous accelerations are equal."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\ka} = \\frac{\\mk{v}{\\kv} - \\mk{v0}{\\kvo}}{\\mk{t}{\\kt}}\\;(\\text{constant }\\ka)",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "dv": [
+         "v",
+         "v0"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kv} = \\mk{v0}{\\kvo} + \\mk{a}{\\ka}\\mk{t}{\\kt}\\;(\\text{constant }\\ka)",
+       "uses": []
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  },
+  {
+   "id": "position-constant-acceleration",
+   "what": "final position when velocity is not constant ($\\ka \\neq 0$)",
+   "source": "College Physics 2e, 2.5 Motion Equations for Constant Acceleration in One Dimension",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvb = \\frac{\\kvo + \\kv}{2}\\;(\\text{constant }\\ka)",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\mk{v0}{\\kvo} + \\mk{a}{\\ka\\kt}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v0b}{\\kvo} + \\mk{v}{\\kv} = \\mk{v0}{2\\kvo} + \\mk{a}{\\ka\\kt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{vb}{\\frac{\\kvo + \\kv}{2}} = \\mk{v0}{\\kvo} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt}",
+       "uses": [],
+       "map": {
+        "v0b": "vb",
+        "v": "vb"
+       }
+      },
+      {
+       "tex": "\\mk{vb}{\\kvb} = \\mk{v0}{\\kvo} + \\mk{a}{\\tfrac{1}{2}\\ka\\kt}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{\\kvb}\\mk{t}{\\kt}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{(\\kvo + \\tfrac{1}{2}\\ka\\kt)}\\mk{t}{\\kt}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{v0t}{\\kvo\\kt} + \\mk{at}{\\tfrac{1}{2}\\ka\\kt^2}\\;(\\text{constant }\\ka)",
+       "uses": [],
+       "map": {
+        "vb": [
+         "v0t",
+         "at"
+        ],
+        "t": [
+         "v0t",
+         "at"
+        ]
+       }
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  },
+  {
+   "id": "velocity-without-time",
+   "what": "final velocity when velocity is not constant ($\\ka \\neq 0$)",
+   "source": "College Physics 2e, 2.5 Motion Equations for Constant Acceleration in One Dimension",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{v}{\\kv} = \\mk{v0}{\\kvo} + \\mk{a}{\\ka}\\mk{t}{\\kt}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kv} - \\mk{v0}{\\kvo} = \\mk{a}{\\ka}\\mk{t}{\\kt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{t}{\\kt} = \\frac{\\mk{v}{\\kv} - \\mk{v0}{\\kvo}}{\\mk{a}{\\ka}}",
+       "uses": []
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvb = \\frac{\\kvo + \\kv}{2}\\;(\\text{constant }\\ka)",
+       "src": "2.5"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{\\kvb}\\mk{t}{\\kt}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{\\left(\\frac{\\kvo + \\kv}{2}\\right)}\\mk{t}{\\kt}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\mk{vb}{\\left(\\frac{\\kvo + \\kv}{2}\\right)}\\mk{t}{\\left(\\frac{\\kv - \\kvo}{\\ka}\\right)}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{x}{\\kx} = \\mk{x0}{\\kxo} + \\frac{\\mk{sq}{\\kv^2 - \\kvo^2}}{\\mk{den}{2\\ka}}",
+       "uses": [],
+       "map": {
+        "vb": [
+         "sq",
+         "den"
+        ],
+        "t": [
+         "sq",
+         "den"
+        ]
+       },
+       "cap": "The numerators multiply as a difference of squares: $(\\kv + \\kvo)(\\kv - \\kvo) = \\kv^2 - \\kvo^2$."
+      },
+      {
+       "tex": "\\mk{x}{\\kx} - \\mk{x0}{\\kxo} = \\frac{\\mk{sq}{\\kv^2 - \\kvo^2}}{\\mk{den}{2\\ka}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{den}{2\\ka}(\\mk{x}{\\kx} - \\mk{x0}{\\kxo}) = \\mk{sq}{\\kv^2 - \\kvo^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{\\kv^2} = \\mk{v0}{\\kvo^2} + \\mk{den}{2\\ka}(\\mk{x}{\\kx} - \\mk{x0}{\\kxo})\\;(\\text{constant }\\ka)",
+       "uses": [],
+       "map": {
+        "sq": [
+         "v",
+         "v0"
+        ]
+       }
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  }
  ]
 }

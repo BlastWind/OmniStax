@@ -331,5 +331,56 @@
    "concept": "de-broglie-wavelength"
   }
  ],
- "referents": []
+ "referents": [],
+ "derivations": [
+  {
+   "id": "angular-momentum-quantization",
+   "what": "the quantization of angular momentum from the electron’s wavelength",
+   "source": "College Physics 2e, 30.6 The Wave Nature of Matter Causes Quantization",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Constructive interference, and an allowed orbit, needs a whole number of the electron’s wavelengths to fit the circumference of the orbit.",
+       "src": "30.6"
+      },
+      {
+       "tex": "\\klam = h/\\kme\\kv",
+       "src": "29.6"
+      },
+      {
+       "text": "For a circular orbit, $\\kL = \\km\\kv\\krad$.",
+       "src": "30.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{n\\klamorb} = \\mk{r}{2\\pi\\krn}\\;\\mk{k}{(n = 1, 2, 3, \\ldots)}",
+      "uses": [
+       0
+      ],
+      "src": "30.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n}{\\frac{nh}{\\kme\\kv}} = \\mk{r}{2\\pi\\krn}\\;\\mk{k}{(n = 1, 2, 3, \\ldots)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\kme\\kv\\krn} = \\mk{n}{n\\frac{h}{2\\pi}}\\;\\mk{k}{(n = 1, 2, 3, \\ldots)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\kL} = \\mk{r}{\\kme\\kv\\krn} = \\mk{n}{n\\frac{h}{2\\pi}}\\;\\mk{k}{(n = 1, 2, 3, \\ldots)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "30.6"
+    }
+   ]
+  }
+ ]
 }

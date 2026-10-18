@@ -1473,5 +1473,335 @@
    "kind": "correction",
    "html": "The key writes the upper limit as 3; the interval is $[-4,2],$ and $48$ is the integral over it."
   }
+ ],
+ "derivations": [
+  {
+   "id": "mean-value-theorem-for-integrals",
+   "what": "the mean value theorem for integrals",
+   "source": "Calculus, 5.3 The Fundamental Theorem of Calculus, The Mean Value Theorem for Integrals, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kf(x)$ is continuous on $[a,b].$",
+       "src": "5.3, The Mean Value Theorem for Integrals"
+      },
+      {
+       "text": "If $\\kf$ is a continuous function over the closed, bounded interval $[a,b],$ then $\\kf$ has an absolute maximum and an absolute minimum over $[a,b].$",
+       "src": "4.3, Extreme Value Theorem"
+      },
+      {
+       "text": "If $m\\le \\kf(x)\\le M$ for $a\\le x\\le b,$ then $m(b-a)\\le\\int_{a}^{b}\\kf(x)dx\\le M(b-a).$",
+       "src": "5.2, Comparison Theorem"
+      },
+      {
+       "text": "If $\\kf$ is continuous over $[a,b]$ and $z$ is any real number between $\\kf(a)$ and $\\kf(b),$ then there is a number $c$ in $[a,b]$ satisfying $\\kf(c)=z.$",
+       "src": "2.4, The Intermediate Value Theorem"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{m}\\le \\mk{f}{\\kf(x)}\\le \\mk{M}{M}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "5.3",
+      "why": "$m$ and $M$ are the minimum and maximum values that $\\kf$ assumes on $[a,b],$ so they bound it for all $x$ in $[a,b].$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{m(b-a)}\\le\\mk{f}{\\int_{a}^{b}\\kf(x)dx}\\le \\mk{M}{M(b-a)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{m}{m}\\le\\mk{f}{\\frac{1}{b-a}\\int_{a}^{b}\\kf(x)dx}\\le \\mk{M}{M}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{\\kf(c)}=\\mk{f}{\\frac{1}{b-a}\\int_{a}^{b}\\kf(x)dx}",
+       "uses": [
+        0,
+        3
+       ],
+       "cap": "The average is a number between $m$ and $M,$ and $\\kf$ is continuous and assumes the values $m$ and $M$ over $[a,b],$ so there is a number $c$ in $[a,b]$ where $\\kf$ takes it."
+      }
+     ],
+     "src": "5.3, The Mean Value Theorem for Integrals"
+    }
+   ]
+  },
+  {
+   "id": "fundamental-theorem-part-1",
+   "what": "the Fundamental Theorem of Calculus, Part 1",
+   "source": "Calculus, 5.3 The Fundamental Theorem of Calculus, Fundamental Theorem of Calculus, Part 1, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kF(x)=\\int_{a}^{x}\\kf(t)dt",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 1"
+      },
+      {
+       "tex": "\\int_{b}^{a}\\kf(x)dx=-\\int_{a}^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)dx=\\int_{a}^{c}\\kf(x)dx+\\int_{c}^{b}\\kf(x)dx",
+       "src": "5.2, Properties of the Definite Integral"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Fp}{\\kFprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\;\\frac{\\mk{n}{\\kF(x+h)-\\kF(x)}}{\\mk{h}{h}}",
+      "src": "3.2, (3.9)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Fp}{\\kFprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\;\\mk{h}{\\frac{1}{h}}\\mk{n}{[\\int_{a}^{x+h}\\kf(t)dt-\\int_{a}^{x}\\kf(t)dt]}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{Fp}{\\kFprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\;\\mk{h}{\\frac{1}{h}}\\mk{n}{[\\int_{a}^{x+h}\\kf(t)dt+\\int_{x}^{a}\\kf(t)dt]}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{Fp}{\\kFprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\;\\mk{h}{\\frac{1}{h}}\\mk{n}{\\int_{x}^{x+h}\\kf(t)dt}",
+       "uses": [
+        2
+       ],
+       "cap": "Taken from $x$ to $a$ and then from $a$ to $x+h,$ the two integrals join end to end."
+      }
+     ],
+     "src": "5.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kf(x)$ is continuous over $[a,b].$",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 1"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)dx=\\int_{a}^{b}\\kf(t)dt=\\int_{a}^{b}\\kf(u)du",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\kf(c)}=\\mk{w}{\\frac{1}{b-a}}\\mk{i}{\\int_{a}^{b}\\kf(x)dx}",
+      "uses": [
+       0
+      ],
+      "src": "5.3, The Mean Value Theorem for Integrals",
+      "why": "$\\frac{1}{h}\\int_{x}^{x+h}\\kf(t)dt$ is just the average value of the function $\\kf(x)$ over the interval $[x,x+h],$ and the theorem gives a number $c$ in that interval where $\\kf$ takes it."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\kf(c)}=\\mk{w}{\\frac{1}{(x+h)-x}}\\mk{i}{\\int_{x}^{x+h}\\kf(t)dt}",
+       "uses": [
+        1
+       ],
+       "cap": "The theorem applied over $[x,x+h],$ with the variable of integration written $t.$"
+      },
+      {
+       "tex": "\\mk{w}{\\frac{1}{h}}\\mk{i}{\\int_{x}^{x+h}\\kf(t)dt}=\\mk{c}{\\kf(c)}",
+       "uses": []
+      }
+     ],
+     "src": "5.3",
+     "note": "The book prints this integral, here and in the closing chain, as $\\int_{x}^{x+h}\\kf(x)dx,$ with $x$ both a limit of integration and the variable of integration."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "Since $c$ is between $x$ and $x+h,$ $c$ approaches $x$ as $h$ approaches zero.",
+       "src": "5.3"
+      },
+      {
+       "text": "$\\kf(x)$ is continuous.",
+       "src": "5.3, Fundamental Theorem of Calculus, Part 1"
+      },
+      {
+       "tex": "\\lim_{c\\to x}\\kf(c)=\\kf(x)",
+       "src": "2.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Fp}{\\kFprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\;\\mk{h}{\\frac{1}{h}}\\mk{n}{\\int_{x}^{x+h}\\kf(t)dt}",
+      "src": "5.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Fp}{\\kFprime(x)}=\\mk{lim}{\\lim_{h\\to 0}}\\mk{n}{\\kf(c)}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "h": "n"
+       }
+      },
+      {
+       "tex": "\\mk{Fp}{\\kFprime(x)}=\\mk{lim}{\\lim_{c\\to x}}\\mk{n}{\\kf(c)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{Fp}{\\kFprime(x)}=\\mk{n}{\\kf(x)}",
+       "uses": [
+        3,
+        4
+       ],
+       "map": {
+        "lim": "n"
+       }
+      }
+     ],
+     "src": "5.3, Fundamental Theorem of Calculus, Part 1"
+    }
+   ]
+  },
+  {
+   "id": "fundamental-theorem-part-2",
+   "what": "the Fundamental Theorem of Calculus, Part 2",
+   "source": "Calculus, 5.3 The Fundamental Theorem of Calculus, The Fundamental Theorem of Calculus, Part 2, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "a=x_{0}\\lt x_{1}\\lt x_{2}\\lt \\cdots\\lt x_{n}=b",
+       "src": "5.1"
+      },
+      {
+       "tex": "\\sum_{i=1}^{n} a_{i}=a_{1}+a_{2}+\\cdots+a_{n}",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kF(b)-\\kF(a)}=\\mk{R}{\\kF(x_{n})-\\kF(x_{0})}",
+      "uses": [
+       0
+      ],
+      "src": "5.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kF(b)-\\kF(a)}=\\mk{R}{[\\kF(x_{n})-\\kF(x_{n-1})]+[\\kF(x_{n-1})-\\kF(x_{n-2})]+\\ldots+[\\kF(x_{1})-\\kF(x_{0})]}",
+       "uses": [],
+       "cap": "Subtracting and adding back each of $\\kF(x_{n-1}),\\ldots,\\kF(x_{1})$ leaves the value unchanged."
+      },
+      {
+       "tex": "\\mk{L}{\\kF(b)-\\kF(a)}=\\mk{R}{\\sum_{i=1}^{n}[\\kF(x_{i})-\\kF(x_{i-1})]}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "5.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kF$ is an antiderivative of $\\kf$ over $[a,b].$",
+       "src": "5.3, The Fundamental Theorem of Calculus, Part 2"
+      },
+      {
+       "tex": "\\kFprime(x)=\\kf(x)",
+       "src": "4.10"
+      },
+      {
+       "tex": "x_{i}-x_{i-1}=\\Delta x",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kFprime(c_{i})}=\\frac{\\mk{d}{\\kF(x_{i})-\\kF(x_{i-1})}}{\\mk{w}{x_{i}-x_{i-1}}}",
+      "uses": [
+       0
+      ],
+      "src": "4.4, Mean Value Theorem",
+      "why": "$\\kF$ is differentiable, being an antiderivative, so the Mean Value Theorem over each $[x_{i-1},x_{i}],$ for $i=1,2,\\ldots,n,$ gives a $c_{i}$ in that subinterval."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kF(x_{i})-\\kF(x_{i-1})}=\\mk{p}{\\kFprime(c_{i})}\\mk{w}{(x_{i}-x_{i-1})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\kF(x_{i})-\\kF(x_{i-1})}=\\mk{p}{\\kf(c_{i})}\\mk{w}{(x_{i}-x_{i-1})}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kF(x_{i})-\\kF(x_{i-1})}=\\mk{p}{\\kf(c_{i})}\\mk{w}{\\Delta x}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "5.3",
+     "note": "The book takes $i=0,1,\\ldots,n$ here; there is no $x_{-1},$ and the subintervals are those of $i=1,2,\\ldots,n.$"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "$\\kf$ is continuous over the interval $[a,b].$",
+       "src": "5.3, The Fundamental Theorem of Calculus, Part 2"
+      },
+      {
+       "text": "If $\\kf(x)$ is continuous on $[a,b],$ then $\\kf$ is integrable on $[a,b].$",
+       "src": "5.2, Continuous Functions Are Integrable"
+      },
+      {
+       "tex": "\\int_{a}^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n} \\kf(x_{i}^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kF(b)-\\kF(a)}=\\mk{R}{\\sum_{i=1}^{n}[\\kF(x_{i})-\\kF(x_{i-1})]}",
+      "src": "5.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kF(b)-\\kF(a)}=\\mk{R}{\\sum_{i=1}^{n} \\kf(c_{i})\\Delta x}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kF(b)-\\kF(a)}=\\mk{R}{\\lim_{n\\to \\infty}\\sum_{i=1}^{n} \\kf(c_{i})\\Delta x}",
+       "uses": [],
+       "cap": "The left side does not depend on $n,$ so taking the limit of both sides as $n\\to \\infty$ leaves it as it is."
+      },
+      {
+       "tex": "\\mk{L}{\\kF(b)-\\kF(a)}=\\mk{R}{\\int_{a}^{b}\\kf(x)dx}",
+       "uses": [
+        2,
+        3,
+        4
+       ],
+       "cap": "Each $c_{i}$ lies in $[x_{i-1},x_{i}],$ so the sum is a Riemann sum of $\\kf.$"
+      }
+     ],
+     "src": "5.3, The Fundamental Theorem of Calculus, Part 2"
+    }
+   ]
+  }
  ]
 }

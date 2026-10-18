@@ -242,3 +242,8 @@ to the labeller, and the speed label clears the axis title. `sim-sonic-boom`
 is unchanged.
 
 **Manim pass, 2026-09-28 (Claude Opus 5.5).** `sim-sonic-boom`: the speed of sound is a special value on v_s; above it the readout morphs to θ = 2 arcsin(v_w/v_s), v_s and v_w moving into the arcsine, and below it reads v_s as a multiple of v_w. `sim-shift` is unchanged: its slider stops at 330 m/s, short of v_w, where the moving-source formula diverges.
+
+## Derivations
+
+- The Doppler shifts for a moving source and for a moving observer ("can be shown", stated together) · scores 7 and 5 · built as drv-doppler-shift: one derivation, four nodes, the emitted wavelength shared by the source line (shortened wavelength, Figure 17.14) and the observer line (relative speed, Figure 17.15); after the paragraph that completes them
+- Example 17.4(b), the engineer hears the horn unshifted · score 0 · not built: composes the two formulas, a worked example

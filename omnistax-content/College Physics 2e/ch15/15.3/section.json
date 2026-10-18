@@ -704,5 +704,86 @@
     "sim-four-stroke"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "cyclical-work",
+   "what": "the net work of a cyclical process",
+   "source": "College Physics 2e, 15.3 Introduction to the Second Law of Thermodynamics: Heat Engines and Their Efficiency",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A cyclical process brings the system back to its original state, so its internal energy is the same at the beginning and end of every cycle: $\\kdEint = 0$.",
+       "src": "15.3"
+      },
+      {
+       "tex": "\\kQh = \\kQH - \\kQC",
+       "src": "15.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dE}{\\kdEint} = \\mk{Q}{\\kQh} - \\mk{W}{\\kW}",
+      "uses": [],
+      "src": "15.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{dE}{0} = \\mk{Q}{\\kQh} - \\mk{W}{\\kW}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{Q}{\\kQh}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{Q}{\\kQH - \\kQC}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "15.3"
+    }
+   ]
+  },
+  {
+   "id": "heat-engine-efficiency",
+   "what": "the efficiency of a cyclical heat engine",
+   "source": "College Physics 2e, 15.3 Introduction to the Second Law of Thermodynamics: Heat Engines and Their Efficiency",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kW = \\kQH - \\kQC",
+       "src": "15.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\text{Eff}} = \\dfrac{\\mk{W}{\\kW}}{\\mk{H}{\\kQH}}",
+      "uses": [],
+      "src": "15.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\text{Eff}} = \\dfrac{\\mk{W}{\\kQH - \\kQC}}{\\mk{H}{\\kQH}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\text{Eff}} = \\mk{W}{1 - \\dfrac{\\kQC}{\\kQH}}",
+       "uses": [],
+       "map": {
+        "H": "W"
+       }
+      }
+     ],
+     "src": "15.3"
+    }
+   ]
+  }
  ]
 }

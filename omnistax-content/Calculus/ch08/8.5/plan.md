@@ -43,3 +43,13 @@ None: the integrating factor is algebra; the ball and the circuit are the sectio
 ## Wanted at chapter level
 
 - Anchors: variables y_fn, y_prime → `8.5-linear-definition`; p, q → `8.5-standard-form`; μ, μ_prime → `8.5-integrating-factors`; v, dv/dt → `8.5-linear-intro`. Forms: `eq-first-order-linear` → `8.5-linear-definition`; `eq-standard-form` → `8.5-standard-form`; `eq-integrating-factor`, `eq-linear-solution` → `8.5-linear-strategy`; `eq-air-resistance` → `8.5-linear-intro`; the three circuit forms → `8.5-electrical-circuits`.
+
+## Derivations
+
+- Free fall with air resistance · the initial-value problem (8.13) · score 3 · not built: three moves told in prose, under the bar
+- Integrating Factors · (8.18) to (8.23) · score 5 · built as two derivations: drv-integrating-factor ((8.19), $\mu'=\mu p$ and $\mu=C_{2}e^{\int p\,dx}$) and drv-first-order-linear-solution ((8.21) to (8.23)); the bold "integrating factor" sentence stands between them, the connecting phrases moved into the work
+- Example 8.16 · score 1 · not built: a worked example of the five-step strategy
+- Example 8.17 · score 2 · not built: a worked example of the five-step strategy
+- Example 8.18 · score 2 · not built: a worked example of the five-step strategy with numbers
+- Electrical Circuits · Kirchhoff's loop rule to (8.24) to (8.26) · score 1 · built as drv-circuit-equations (a printed block, thin, the three equations one family); the misprinted "Equation 8.23" is now the node's note and the `rc-equation` footnote is removed
+- Example 8.19 · score 8 · built as drv-rl-circuit-current: beyond the strategy it joins an integral the book skips (by parts twice, 7.1) and the amplitude-phase rewrite (1.3); the book's "initial condition $v(0)=2$" is now the node's note and the `rl-initial` footnote is removed

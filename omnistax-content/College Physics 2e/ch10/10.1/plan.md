@@ -279,3 +279,7 @@ introduces; its hints are rewritten to say so and both sections'
 `exercise_notes` record the move. With it gone,
 `tangential-angular-acceleration` is tested on this page by no exercise of
 its own and by 10.2's yo-yo problem at weight 2; no question is generated.
+
+## Derivations
+
+- The tangential acceleration $a_\text{t} = r\alpha$ (printed block, Linking Linear and Angular Acceleration) · score 2 · built as drv-tangential-acceleration: one node from $a_\text{t} = \Delta v/\Delta t$ through $v = r\omega$ to $\alpha = a_\text{t}/r$; replaces the block's five displayed lines

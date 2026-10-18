@@ -62,3 +62,11 @@ Ids confirmed with `ost ids calculus 3.7` after the build.
 - Sheet links on book words: "These formulas" before the inverse-trig theorem opens the Table of Derivatives; "derivative" in Example 3.65 opens the calculator on tan⁻¹(x²).
 - Variables rows added: 3.7/f, f_inv, f_prime, g_prime, dy/dx, s, s_prime, v, θ (angle); anchors on every 3.7 row and the ten forms.
 - Corrections: Example 3.64's reference (Example 3.61 for 3.63), Checkpoint 3.43's answer (g for g′).
+
+
+## Derivations
+
+- The Derivative of an Inverse Function (3.19) · score 2 · built as drv-inverse-function-derivative (the graphical argument before it stays as prose)
+- Extending the Power Rule to Rational Exponents · Proof · score 2 · built as drv-power-rule-rational-exponents, ending on (3.20) and (3.21)
+- Example 3.63 · Derivative of the Inverse Sine Function · score 3 · built as drv-derivative-of-inverse-sine, ending on (3.22); the Analysis's case argument stays as printed and is the fact cos(sin⁻¹x) = √(1 − x²)
+- cos⁻¹, tan⁻¹, cot⁻¹, sec⁻¹, csc⁻¹ ("may also be found by using the inverse function theorem") · scores 6, 6, 6, 7, 7 · built as drv-derivatives-of-other-inverse-trigonometric-functions after the theorem: one node per result, (3.23)–(3.27), plus nodes for sin(cos⁻¹x), x tan(sec⁻¹x) and x cot(csc⁻¹x) from the Pythagorean identities of 1.3 and the ranges (1.12)–(1.14)

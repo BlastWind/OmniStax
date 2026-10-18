@@ -1216,6 +1216,366 @@
    "id": "c-e400-integrand",
    "kind": "correction",
    "html": "For the region inside the ellipse $5x^{2}+3y^{2}=15,$ that is $\\frac{x^{2}}{3}+\\frac{y^{2}}{5}\\le 1,$ the identity holds with the integrand $f(\\sqrt{\\frac{x^{2}}{3}+\\frac{y^{2}}{5}}),$ printed with $\\frac{y^{2}}{3}.$"
+  },
+  {
+   "id": "c-cov-abs",
+   "kind": "correction",
+   "html": "The approximation is $\\Delta A\\approx|J(u,v)|\\,\\Delta u\\,\\Delta v,$ with the absolute value of the Jacobian, since an area is never negative; the book prints $J(u,v)\\Delta u,\\Delta v,$ without it and with a stray comma."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "area-of-a-transformed-rectangle",
+   "what": "the area of the image of a small rectangle",
+   "source": "Calculus, 15.7 Change of Variables in Multiple Integrals, Jacobians",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The image $\\kR$ of the small rectangle is approximately the parallelogram with sides $\\Delta u\\,\\mathbf{r}_{u}$ and $\\Delta v\\,\\mathbf{r}_{v},$ since $\\mathbf{r}(u_{0}+\\Delta u,v_{0})-\\mathbf{r}(u_{0},v_{0})\\approx \\Delta u\\,\\mathbf{r}_{u}$ and $\\mathbf{r}(u_{0},v_{0}+\\Delta v)-\\mathbf{r}(u_{0},v_{0})\\approx \\Delta v\\,\\mathbf{r}_{v}.$",
+       "src": "15.7"
+      },
+      {
+       "text": "The area of the parallelogram with adjacent sides $\\kvecu$ and $\\kvecv$ is $\\|\\kvecu\\times\\kvecv\\|.$",
+       "src": "12.4, Area of a Parallelogram"
+      },
+      {
+       "tex": "c(\\kvecu\\times\\kvecv)=(c\\kvecu)\\times\\kvecv=\\kvecu\\times(c\\kvecv)",
+       "src": "12.4, Properties of the Cross Product"
+      },
+      {
+       "tex": "\\mathbf{r}_{u}=\\frac{\\partial x}{\\partial u}\\kveci+\\frac{\\partial y}{\\partial u}\\kvecj+0\\kveck,\\quad \\mathbf{r}_{v}=\\frac{\\partial x}{\\partial v}\\kveci+\\frac{\\partial y}{\\partial v}\\kvecj+0\\kveck",
+       "src": "15.7"
+      },
+      {
+       "tex": "\\kvecu\\times\\kvecv=\\left|\\begin{array}{ccc}\\kveci & \\kvecj & \\kveck\\\\ u_{1} & u_{2} & u_{3}\\\\ v_{1} & v_{2} & v_{3}\\end{array}\\right|",
+       "src": "12.4"
+      },
+      {
+       "tex": "\\kJ(u,v)=\\left|\\begin{array}{cc}\\frac{\\partial x}{\\partial u} & \\frac{\\partial y}{\\partial u}\\\\ \\frac{\\partial x}{\\partial v} & \\frac{\\partial y}{\\partial v}\\end{array}\\right|=\\frac{\\partial x}{\\partial u}\\,\\frac{\\partial y}{\\partial v}-\\frac{\\partial x}{\\partial v}\\,\\frac{\\partial y}{\\partial u}",
+       "src": "15.7, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\Delta A}\\approx\\mk{n}{\\|\\Delta u\\,\\mathbf{r}_{u}\\times\\Delta v\\,\\mathbf{r}_{v}\\|}",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "15.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\Delta A}\\approx\\mk{n}{\\|\\mathbf{r}_{u}\\times\\mathbf{r}_{v}\\|}\\,\\mk{d}{\\Delta u\\,\\Delta v}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\Delta u$ and $\\Delta v$ are positive, so they come out of the magnitude as they are.",
+       "map": {
+        "n": [
+         "n",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{A}{\\Delta A}\\approx\\mk{n}{\\left\\|\\left|\\begin{array}{ccc}\\kveci & \\kvecj & \\kveck\\\\ \\frac{\\partial x}{\\partial u} & \\frac{\\partial y}{\\partial u} & 0\\\\ \\frac{\\partial x}{\\partial v} & \\frac{\\partial y}{\\partial v} & 0\\end{array}\\right|\\right\\|}\\,\\mk{d}{\\Delta u\\,\\Delta v}",
+       "uses": [
+        3,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{A}{\\Delta A}\\approx\\mk{n}{\\left\\|\\left|\\begin{array}{cc}\\frac{\\partial x}{\\partial u} & \\frac{\\partial y}{\\partial u}\\\\ \\frac{\\partial x}{\\partial v} & \\frac{\\partial y}{\\partial v}\\end{array}\\right|\\kveck\\right\\|}\\,\\mk{d}{\\Delta u\\,\\Delta v}",
+       "uses": [],
+       "cap": "Expanding along the first row, the minors of $\\mathbf{i}$ and $\\mathbf{j}$ each have a column of zeros and vanish, which leaves the minor of $\\mathbf{k}.$"
+      },
+      {
+       "tex": "\\mk{A}{\\Delta A}\\approx\\mk{n}{\\left\\|(\\frac{\\partial x}{\\partial u}\\,\\frac{\\partial y}{\\partial v}-\\frac{\\partial x}{\\partial v}\\,\\frac{\\partial y}{\\partial u})\\kveck\\right\\|}\\,\\mk{d}{\\Delta u\\,\\Delta v}",
+       "uses": [],
+       "cap": "A $2\\times 2$ determinant is $\\left|\\begin{array}{cc}a & b\\\\ c & d\\end{array}\\right|=ad-bc.$"
+      },
+      {
+       "tex": "\\mk{A}{\\Delta A}\\approx\\mk{n}{\\left|\\frac{\\partial x}{\\partial u}\\,\\frac{\\partial y}{\\partial v}-\\frac{\\partial x}{\\partial v}\\,\\frac{\\partial y}{\\partial u}\\right|}\\,\\mk{d}{\\Delta u\\,\\Delta v}",
+       "uses": [],
+       "cap": "The magnitude of $c\\,\\mathbf{k}$ is $|c|\\,\\|\\mathbf{k}\\|=|c|,$ since $\\|\\mathbf{k}\\|=1.$"
+      },
+      {
+       "tex": "\\mk{A}{\\Delta A}\\approx\\mk{n}{|\\kJ(u,v)|}\\,\\mk{d}{\\Delta u\\,\\Delta v}",
+       "uses": [
+        5
+       ]
+      }
+     ],
+     "src": "15.7",
+     "note": "The book prints this area as $(\\frac{\\partial x}{\\partial u}\\frac{\\partial y}{\\partial v}-\\frac{\\partial x}{\\partial v}\\frac{\\partial y}{\\partial u})\\Delta u\\Delta v$ and as $J(u,v)\\Delta u\\Delta v,$ without the absolute value; an area is never negative, and the Jacobian can be."
+    }
+   ]
+  },
+  {
+   "id": "change-of-variables-for-double-integrals",
+   "what": "change of variables for double integrals",
+   "source": "Calculus, 15.7 Change of Variables in Multiple Integrals, Change of Variables for Double Integrals",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The subrectangles $\\kR_{ij}$ in the $xy$-plane are the images of the subrectangles $\\kS_{ij}$ in the $uv$-plane under $\\kT(u,v)=(x,y),$ so $x_{ij}=\\kg(u_{ij},v_{ij})$ and $y_{ij}=\\kh(u_{ij},v_{ij}).$",
+       "src": "15.7, Figure 15.75"
+      },
+      {
+       "tex": "\\Delta A\\approx|\\kJ(u,v)|\\,\\Delta u\\,\\Delta v",
+       "src": "15.7"
+      },
+      {
+       "text": "The limit of a double Riemann sum $\\sum_{i=1}^{m}\\sum_{j=1}^{n}g(u_{ij},v_{ij})\\Delta u\\Delta v$ over $\\kS$ is the double integral $\\iint_{S}g(u,v)\\,du\\,dv.$",
+       "src": "15.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\iint\\limits_{\\kR}\\kf(x,y)dA}=\\mk{L}{\\lim_{m,n\\to \\infty}}\\mk{S}{\\sum_{i=1}^{m}\\sum_{j=1}^{n}}\\mk{f}{\\kf(x_{ij},y_{ij})}\\,\\mk{A}{\\Delta A}",
+      "uses": [],
+      "src": "15.1, Definition"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\iint\\limits_{\\kR}\\kf(x,y)dA}=\\mk{L}{\\lim_{m,n\\to \\infty}}\\mk{S}{\\sum_{i=1}^{m}\\sum_{j=1}^{n}}\\mk{f}{\\kf(\\kg(u_{ij},v_{ij}),\\kh(u_{ij},v_{ij}))}\\,\\mk{A}{\\Delta A}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\iint\\limits_{\\kR}\\kf(x,y)dA}=\\mk{L}{\\lim_{m,n\\to \\infty}}\\mk{S}{\\sum_{i=1}^{m}\\sum_{j=1}^{n}}\\mk{f}{\\kf(\\kg(u_{ij},v_{ij}),\\kh(u_{ij},v_{ij}))}\\,\\mk{A}{|\\kJ(u_{ij},v_{ij})|\\Delta u\\Delta v}",
+       "uses": [
+        1
+       ],
+       "cap": "As $m$ and $n$ grow the subrectangles shrink, and the approximation becomes arbitrarily close, so the two limits are equal."
+      },
+      {
+       "tex": "\\mk{I}{\\iint\\limits_{\\kR}\\kf(x,y)dA}=\\mk{T}{\\iint\\limits_{\\kS}}\\mk{f}{\\kf(\\kg(u,v),\\kh(u,v))}\\,\\mk{A}{|\\frac{\\partial (x,y)}{\\partial (u,v)}|du\\;dv}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "L": "T",
+        "S": "T"
+       }
+      }
+     ],
+     "src": "15.7, Change of Variables for Double Integrals"
+    }
+   ]
+  },
+  {
+   "id": "triple-integral-in-cylindrical-coordinates",
+   "what": "the triple integral in cylindrical coordinates",
+   "source": "Calculus, 15.7 Change of Variables in Multiple Integrals, Example 15.72",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "x=r\\;\\cos\\theta,\\quad y=r\\;\\sin\\theta,\\quad z=z"
+      },
+      {
+       "tex": "\\kJ(u,v,w)=\\left|\\begin{array}{ccc}\\frac{\\partial x}{\\partial u} & \\frac{\\partial x}{\\partial v} & \\frac{\\partial x}{\\partial w}\\\\ \\frac{\\partial y}{\\partial u} & \\frac{\\partial y}{\\partial v} & \\frac{\\partial y}{\\partial w}\\\\ \\frac{\\partial z}{\\partial u} & \\frac{\\partial z}{\\partial v} & \\frac{\\partial z}{\\partial w}\\end{array}\\right|",
+       "src": "15.7, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{J}{\\kJ(r,\\theta,z)}=\\mk{d}{\\frac{\\partial (x,y,z)}{\\partial (r,\\theta ,z)}}",
+      "uses": [],
+      "src": "Example 15.72"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{J}{\\kJ(r,\\theta,z)}=\\mk{d}{\\left|\\begin{array}{ccc}\\frac{\\partial x}{\\partial r} & \\frac{\\partial x}{\\partial \\theta} & \\frac{\\partial x}{\\partial z}\\\\ \\frac{\\partial y}{\\partial r} & \\frac{\\partial y}{\\partial \\theta} & \\frac{\\partial y}{\\partial z}\\\\ \\frac{\\partial z}{\\partial r} & \\frac{\\partial z}{\\partial \\theta} & \\frac{\\partial z}{\\partial z}\\end{array}\\right|}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(r,\\theta,z)}=\\mk{d}{\\left|\\begin{array}{ccc}\\cos\\theta & -r\\;\\sin\\theta & 0\\\\ \\sin\\theta & r\\;\\cos\\theta & 0\\\\ 0 & 0 & 1\\end{array}\\right|}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(r,\\theta,z)}=\\mk{d}{r\\;\\cos^{2}\\theta+r\\;\\sin^{2}\\theta}",
+       "uses": [],
+       "cap": "Expanding along the third row, only the entry $1$ contributes, times its minor $\\cos\\theta\\cdot r\\cos\\theta-(-r\\sin\\theta)\\sin\\theta.$"
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(r,\\theta,z)}=\\mk{d}{r(\\cos^{2}\\theta+\\sin^{2}\\theta)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(r,\\theta,z)}=\\mk{d}{r}",
+       "uses": [],
+       "cap": "$\\cos^{2}\\theta+\\sin^{2}\\theta=1.$"
+      }
+     ],
+     "src": "Example 15.72"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "r\\ge 0"
+      },
+      {
+       "tex": "\\iiint\\limits_{\\kR}\\kF(x,y,z)dV=\\iiint\\limits_{\\kG}\\kF(\\kg(u,v,w),\\kh(u,v,w),k(u,v,w))|\\frac{\\partial (x,y,z)}{\\partial (u,v,w)}|du\\;dv\\;dw",
+       "src": "15.7, Change of Variables for Triple Integrals"
+      },
+      {
+       "tex": "x=r\\;\\cos\\theta,\\quad y=r\\;\\sin\\theta,\\quad z=z"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\iiint\\limits_{\\kD}\\kf(x,y,z)dV}=\\mk{G}{\\iiint\\limits_{\\kG}}\\mk{f}{\\kf(x,y,z)}\\,\\mk{J}{|\\kJ(r,\\theta,z)|}\\,\\mk{d}{dr\\;d\\theta\\;dz}",
+      "uses": [
+       2
+      ],
+      "src": "15.7, Change of Variables for Triple Integrals"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\iiint\\limits_{\\kD}\\kf(x,y,z)dV}=\\mk{G}{\\iiint\\limits_{\\kG}}\\mk{f}{\\kf(r\\;\\cos\\theta,r\\;\\sin\\theta,z)}\\,\\mk{J}{|\\kJ(r,\\theta,z)|}\\,\\mk{d}{dr\\;d\\theta\\;dz}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iiint\\limits_{\\kD}\\kf(x,y,z)dV}=\\mk{G}{\\iiint\\limits_{\\kG}}\\mk{f}{\\kf(r\\;\\cos\\theta,r\\;\\sin\\theta,z)}\\,\\mk{J}{|r|}\\,\\mk{d}{dr\\;d\\theta\\;dz}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iiint\\limits_{\\kD}\\kf(x,y,z)dV}=\\mk{G}{\\iiint\\limits_{\\kG}}\\mk{f}{\\kf(r\\;\\cos\\theta,r\\;\\sin\\theta,z)}\\,\\mk{J}{r}\\,\\mk{d}{dr\\;d\\theta\\;dz}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 15.72"
+    }
+   ]
+  },
+  {
+   "id": "triple-integral-in-spherical-coordinates",
+   "what": "the triple integral in spherical coordinates",
+   "source": "Calculus, 15.7 Change of Variables in Multiple Integrals, Example 15.72",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "x=\\rho\\;\\sin\\varphi\\;\\cos\\theta,\\quad y=\\rho\\;\\sin\\varphi\\;\\sin\\theta,\\quad z=\\rho\\;\\cos\\varphi"
+      },
+      {
+       "tex": "\\kJ(u,v,w)=\\left|\\begin{array}{ccc}\\frac{\\partial x}{\\partial u} & \\frac{\\partial x}{\\partial v} & \\frac{\\partial x}{\\partial w}\\\\ \\frac{\\partial y}{\\partial u} & \\frac{\\partial y}{\\partial v} & \\frac{\\partial y}{\\partial w}\\\\ \\frac{\\partial z}{\\partial u} & \\frac{\\partial z}{\\partial v} & \\frac{\\partial z}{\\partial w}\\end{array}\\right|",
+       "src": "15.7, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{J}{\\kJ(\\rho,\\theta,\\varphi)}=\\mk{d}{\\frac{\\partial (x,y,z)}{\\partial (\\rho ,\\theta ,\\varphi )}}",
+      "uses": [],
+      "src": "Example 15.72"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{J}{\\kJ(\\rho,\\theta,\\varphi)}=\\mk{d}{\\left|\\begin{array}{ccc}\\frac{\\partial x}{\\partial \\rho } & \\frac{\\partial x}{\\partial \\theta} & \\frac{\\partial x}{\\partial \\varphi }\\\\ \\frac{\\partial y}{\\partial \\rho } & \\frac{\\partial y}{\\partial \\theta} & \\frac{\\partial y}{\\partial \\varphi }\\\\ \\frac{\\partial z}{\\partial \\rho } & \\frac{\\partial z}{\\partial \\theta} & \\frac{\\partial z}{\\partial \\varphi }\\end{array}\\right|}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(\\rho,\\theta,\\varphi)}=\\mk{d}{\\left|\\begin{array}{ccc}\\sin\\varphi\\;\\cos\\theta & -\\rho\\;\\sin\\varphi\\;\\sin\\theta & \\rho\\;\\cos\\varphi\\;\\cos\\theta\\\\ \\sin\\varphi\\;\\sin\\theta & \\rho\\;\\sin\\varphi\\;\\cos\\theta & \\rho\\;\\cos\\varphi\\;\\sin\\theta\\\\ \\cos\\varphi & 0 & -\\rho\\;\\sin\\varphi\\end{array}\\right|}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(\\rho,\\theta,\\varphi)}=\\mk{d}{\\cos\\varphi\\left|\\begin{array}{cc}-\\rho\\;\\sin\\varphi\\;\\sin\\theta & \\rho\\;\\cos\\varphi\\;\\cos\\theta\\\\ \\rho\\;\\sin\\varphi\\;\\cos\\theta & \\rho\\;\\cos\\varphi\\;\\sin\\theta\\end{array}\\right|-\\rho\\;\\sin\\varphi\\left|\\begin{array}{cc}\\sin\\varphi\\;\\cos\\theta & -\\rho\\;\\sin\\varphi\\;\\sin\\theta\\\\ \\sin\\varphi\\;\\sin\\theta & \\rho\\;\\sin\\varphi\\;\\cos\\theta\\end{array}\\right|}",
+       "uses": [],
+       "cap": "Expanding along the third row: its middle entry is $0,$ and each other entry keeps its sign and multiplies its minor."
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(\\rho,\\theta,\\varphi)}=\\mk{d}{\\cos\\varphi(-\\rho^{2}\\sin\\varphi\\;\\cos\\varphi\\;\\sin^{2}\\theta-\\rho^{2}\\sin\\varphi\\;\\cos\\varphi\\;\\cos^{2}\\theta)-\\rho\\;\\sin\\varphi(\\rho\\;\\sin^{2}\\varphi\\;\\cos^{2}\\theta+\\rho\\;\\sin^{2}\\varphi\\;\\sin^{2}\\theta)}",
+       "uses": [],
+       "cap": "A $2\\times 2$ determinant is $\\left|\\begin{array}{cc}a & b\\\\ c & d\\end{array}\\right|=ad-bc.$"
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(\\rho,\\theta,\\varphi)}=\\mk{d}{-\\rho^{2}\\sin\\varphi\\;\\cos^{2}\\varphi(\\sin^{2}\\theta+\\cos^{2}\\theta)-\\rho^{2}\\sin\\varphi\\;\\sin^{2}\\varphi(\\sin^{2}\\theta+\\cos^{2}\\theta)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(\\rho,\\theta,\\varphi)}=\\mk{d}{-\\rho^{2}\\sin\\varphi\\;\\cos^{2}\\varphi-\\rho^{2}\\sin\\varphi\\;\\sin^{2}\\varphi}",
+       "uses": [],
+       "cap": "$\\sin^{2}\\theta+\\cos^{2}\\theta=1.$"
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(\\rho,\\theta,\\varphi)}=\\mk{d}{-\\rho^{2}\\sin\\varphi(\\cos^{2}\\varphi+\\sin^{2}\\varphi)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{J}{\\kJ(\\rho,\\theta,\\varphi)}=\\mk{d}{-\\rho^{2}\\sin\\varphi}",
+       "uses": [],
+       "cap": "$\\cos^{2}\\varphi+\\sin^{2}\\varphi=1.$"
+      }
+     ],
+     "src": "Example 15.72",
+     "note": "The book prints the entry $\\frac{\\partial x}{\\partial \\theta}$ as $\\rho\\sin\\varphi\\sin\\theta,$ without its minus sign, and the second row of the first minor as $\\rho\\sin\\varphi\\sin\\theta,\\ \\rho\\cos\\varphi\\sin\\theta;$ its first entry is $\\rho\\sin\\varphi\\cos\\theta.$ The values that follow are right."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "0\\le\\varphi\\le\\pi",
+       "src": "15.5"
+      },
+      {
+       "tex": "\\iiint\\limits_{\\kR}\\kF(x,y,z)dV=\\iiint\\limits_{\\kG}\\kF(\\kg(u,v,w),\\kh(u,v,w),k(u,v,w))|\\frac{\\partial (x,y,z)}{\\partial (u,v,w)}|du\\;dv\\;dw",
+       "src": "15.7, Change of Variables for Triple Integrals"
+      },
+      {
+       "tex": "x=\\rho\\;\\sin\\varphi\\;\\cos\\theta,\\quad y=\\rho\\;\\sin\\varphi\\;\\sin\\theta,\\quad z=\\rho\\;\\cos\\varphi"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\iiint\\limits_{\\kD}\\kf(x,y,z)dV}=\\mk{G}{\\iiint\\limits_{\\kG}}\\mk{f}{\\kf(x,y,z)}\\,\\mk{J}{|\\kJ(\\rho,\\theta,\\varphi)|}\\,\\mk{d}{d\\rho\\;d\\varphi\\;d\\theta}",
+      "uses": [
+       2
+      ],
+      "src": "15.7, Change of Variables for Triple Integrals"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\iiint\\limits_{\\kD}\\kf(x,y,z)dV}=\\mk{G}{\\iiint\\limits_{\\kG}}\\mk{f}{\\kf(\\rho\\;\\sin\\varphi\\;\\cos\\theta,\\rho\\;\\sin\\varphi\\;\\sin\\theta,\\rho\\;\\cos\\varphi)}\\,\\mk{J}{|\\kJ(\\rho,\\theta,\\varphi)|}\\,\\mk{d}{d\\rho\\;d\\varphi\\;d\\theta}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iiint\\limits_{\\kD}\\kf(x,y,z)dV}=\\mk{G}{\\iiint\\limits_{\\kG}}\\mk{f}{\\kf(\\rho\\;\\sin\\varphi\\;\\cos\\theta,\\rho\\;\\sin\\varphi\\;\\sin\\theta,\\rho\\;\\cos\\varphi)}\\,\\mk{J}{|-\\rho^{2}\\sin\\varphi|}\\,\\mk{d}{d\\rho\\;d\\varphi\\;d\\theta}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\iiint\\limits_{\\kD}\\kf(x,y,z)dV}=\\mk{G}{\\iiint\\limits_{\\kG}}\\mk{f}{\\kf(\\rho\\;\\sin\\varphi\\;\\cos\\theta,\\rho\\;\\sin\\varphi\\;\\sin\\theta,\\rho\\;\\cos\\varphi)}\\,\\mk{J}{\\rho^{2}\\sin\\varphi}\\,\\mk{d}{d\\rho\\;d\\varphi\\;d\\theta}",
+       "uses": [
+        1
+       ],
+       "cap": "On $0\\le\\varphi\\le\\pi,$ $\\sin\\varphi\\ge 0,$ so $-\\rho^{2}\\sin\\varphi\\le 0$ and its absolute value is $\\rho^{2}\\sin\\varphi.$"
+      }
+     ],
+     "src": "Example 15.72"
+    }
+   ]
   }
  ]
 }

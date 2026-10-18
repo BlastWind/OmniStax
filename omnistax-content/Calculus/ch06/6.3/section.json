@@ -1311,5 +1311,212 @@
    ]
   }
  ],
- "footnotes": []
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "method-of-cylindrical-shells",
+   "what": "the method of cylindrical shells",
+   "source": "Calculus, 6.3 Volumes of Revolution: Cylindrical Shells, The Method of Cylindrical Shells",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kV=\\kA\\cdot h",
+       "src": "6.2"
+      },
+      {
+       "text": "The cross-sections of the shell are annuli with outer radius $x_{i}$ and inner radius $x_{i-1},$ so the cross-sectional area is $\\pi x_i^{2}-\\pi x_{i-1}^{2}.$",
+       "src": "6.3"
+      },
+      {
+       "text": "The height of the shell is $\\kf(x_i^{*}).$",
+       "src": "6.3"
+      },
+      {
+       "tex": "x_{i}-x_{i-1}=\\Delta x",
+       "src": "6.3"
+      },
+      {
+       "text": "$\\frac{x_{i}+x_{i-1}}{2}$ is both the midpoint of $[x_{i-1},x_{i}]$ and the average radius of the shell, and we can approximate it by $x_i^{*}.$",
+       "src": "6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kVshell}=\\mk{h}{\\kf(x_i^{*})}\\mk{A}{(\\pi x_i^{2}-\\pi x_{i-1}^{2})}",
+      "src": "6.3",
+      "uses": [
+       0,
+       1,
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kVshell}=\\mk{p}{\\pi}\\mk{h}{\\kf(x_i^{*})}\\mk{A}{(x_i^{2}-x_{i-1}^{2})}",
+       "uses": [],
+       "map": {
+        "A": [
+         "p",
+         "A"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{V}{\\kVshell}=\\mk{p}{\\pi}\\mk{h}{\\kf(x_i^{*})}\\mk{m}{(x_{i}+x_{i-1})}\\mk{d}{(x_{i}-x_{i-1})}",
+       "uses": [],
+       "cap": "A difference of squares: $a^{2}-b^{2}=(a+b)(a-b).$",
+       "map": {
+        "A": [
+         "m",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{V}{\\kVshell}=\\mk{p}{2\\pi}\\mk{h}{\\kf(x_i^{*})}\\mk{m}{(\\frac{x_{i}+x_{i-1}}{2})}\\mk{d}{(x_{i}-x_{i-1})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{V}{\\kVshell}=\\mk{p}{2\\pi}\\mk{h}{\\kf(x_i^{*})}\\mk{m}{(\\frac{x_{i}+x_{i-1}}{2})}\\mk{d}{\\Delta x}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kVshell}\\approx\\mk{p}{2\\pi}\\mk{h}{\\kf(x_i^{*})}\\mk{m}{x_i^{*}}\\mk{d}{\\Delta x}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "src": "6.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kV}\\approx\\mk{s}{\\sum_{i=1}^{n}(2\\pi x_i^{*}\\kf(x_i^{*})\\Delta x)}",
+      "src": "6.3",
+      "uses": [
+       0
+      ],
+      "why": "To calculate the volume of the entire solid, we add the volumes of all the shells."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kV}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}(2\\pi x_i^{*}\\kf(x_i^{*})\\Delta x)}",
+       "uses": [],
+       "cap": "Here we have another Riemann sum, this time for the function $2\\pi x\\kf(x),$ so we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\kV}=\\mk{s}{\\int_a^{b}(2\\pi x\\kf(x))dx}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "num": "(6.6)",
+     "src": "6.3, The Method of Cylindrical Shells"
+    }
+   ]
+  },
+  {
+   "id": "shells-around-a-vertical-line",
+   "what": "the method of cylindrical shells around the line $x=-k$",
+   "source": "Calculus, 6.3 Volumes of Revolution: Cylindrical Shells, The Method of Cylindrical Shells",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Rotated around the line $x=-k,$ the outer radius of the shell is $x_{i}+k$ and the inner radius is $x_{i-1}+k.$",
+       "src": "6.3"
+      },
+      {
+       "tex": "x_{i}-x_{i-1}=\\Delta x",
+       "src": "6.3"
+      },
+      {
+       "text": "$\\frac{x_{i}+x_{i-1}}{2}$ is the midpoint of the interval $[x_{i-1},x_{i}]$ and can be approximated by $x_i^{*}.$",
+       "src": "6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kVshell}=\\mk{t}{2\\pi \\kf(x_i^{*})}\\mk{m}{(\\frac{x_{i}+x_{i-1}}{2})}\\mk{d}{(x_{i}-x_{i-1})}",
+      "src": "6.3",
+      "uses": [],
+      "why": "This was based on a shell with an outer radius of $x_{i}$ and an inner radius of $x_{i-1}.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kVshell}=\\mk{t}{2\\pi \\kf(x_i^{*})}\\mk{m}{(\\frac{(x_{i}+k)+(x_{i-1}+k)}{2})}\\mk{d}{((x_{i}+k)-(x_{i-1}+k))}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{V}{\\kVshell}=\\mk{t}{2\\pi \\kf(x_i^{*})}\\mk{m}{((\\frac{x_{i}+x_{i-1}}{2})+k)}\\mk{d}{(x_{i}-x_{i-1})}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{V}{\\kVshell}=\\mk{t}{2\\pi \\kf(x_i^{*})}\\mk{m}{((\\frac{x_{i}+x_{i-1}}{2})+k)}\\mk{d}{\\Delta x}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{V}{\\kVshell}\\approx\\mk{t2}{2\\pi}\\mk{m}{(x_i^{*}+k)}\\mk{tf}{\\kf(x_i^{*})}\\mk{d}{\\Delta x}",
+       "uses": [2],
+       "map": {
+        "t": [
+         "t2",
+         "tf"
+        ]
+       }
+      }
+     ],
+     "src": "6.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\int_a^{b}\\kf(x)dx=\\lim_{n\\to \\infty}\\sum_{i=1}^{n}\\kf(x_i^{*})\\Delta x",
+       "src": "5.2, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\kV}\\approx\\mk{s}{\\sum_{i=1}^{n}2\\pi(x_i^{*}+k)\\kf(x_i^{*})\\Delta x}",
+      "src": "6.3",
+      "uses": [
+       0
+      ],
+      "why": "The remainder of the development proceeds as before: we add the volumes of all the shells."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\kV}=\\mk{L}{\\lim_{n\\to \\infty}}\\mk{s}{\\sum_{i=1}^{n}2\\pi(x_i^{*}+k)\\kf(x_i^{*})\\Delta x}",
+       "uses": [],
+       "cap": "This is a Riemann sum, so we take the limit as $n\\to \\infty.$"
+      },
+      {
+       "tex": "\\mk{A}{\\kV}=\\mk{s}{\\int_a^{b}(2\\pi(x+k)\\kf(x))dx}",
+       "uses": [1],
+       "map": {
+        "L": "s"
+       }
+      }
+     ],
+     "src": "6.3"
+    }
+   ]
+  }
+ ]
 }

@@ -91,3 +91,9 @@ Ids confirmed with `ost ids calculus 2.5` after the build.
   Commands, for each row R in section N.M: `ost add calculus exercises --section N.M 'R'`, then one `ost add calculus exercise_concepts --section N.M '{"exercise": "<id>", "concept": "<tag>"}'` per tag.
 
 - Chapter pass (2026-10-12): anchors applied; the three edges were already staged; review rows landed as the section plans give them; every figure checked in a fresh build, light and dark.
+
+## Derivations
+
+- Example 2.41 · lim x² = 4 by the geometric approach · score 1 · not built: a worked example applying the section's ε-δ method to one limit (Examples 2.39, 2.40, 2.42 and 2.44 the same)
+- Example 2.43 · lim |x|/x does not exist · score 1 · not built: a worked example applying the negated definition of Table 2.10
+- Proving Limit Laws · Proof of the sum law · score 0 · built as drv-sum-law-for-limits (the δ choices as facts, the "Thus" line its own node, the chain, then the definition closing it)

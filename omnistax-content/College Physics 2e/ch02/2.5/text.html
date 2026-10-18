@@ -20,17 +20,9 @@ $$\kab = \ka = \text{constant},$$
 
 <section id="avg-velocity">
 <h2>Displacement from average velocity</h2>
-<div class="derivation">
-<h3>Solving for Displacement ($\kdx$) and Final Position ($\kx$) from Average Velocity when Acceleration ($\ka$) is Constant</h3>
-<p>To get our first two new equations, we start with the definition of <span data-concept="average-velocity">average velocity</span>:</p>
-$$\kvb = \frac{\kdx}{\kdt}.$$
-<p>Substituting the simplified notation for $\kdx$ and $\kdt$ yields</p>
-$$\kvb = \frac{\kx - \kxo}{\kt}.$$
-<p>Solving for $\kx$ yields</p>
-$$\kx = \kxo + \kvb\kt,$$
-<p>where the <span data-concept="average-velocity">average velocity</span> is</p>
+<figure class="dv" id="drv-position-from-average-velocity"></figure>
+<p>Here the <span data-concept="average-velocity">average velocity</span> is</p>
 $$\kvb = \frac{\kvo + \kv}{2}\;(\text{constant }\ka).$$
-</div>
 <p class="cite-target">The equation $\kvb = \frac{\kvo + \kv}{2}$ reflects the fact that, when <span data-concept="acceleration">acceleration</span> is constant, $\kv$ is just the simple average of the initial and final <span data-concept="velocity">velocities</span>. For example, if you steadily increase your <span data-type="velocity"><span data-concept="velocity">velocity</span></span> (that is, with constant <span data-concept="acceleration">acceleration</span>) from 30 to 60 km/h, then your <span data-type="velocity"><span data-concept="average-velocity">average velocity</span></span> during this steady increase is 45 km/h. Using the equation $\kvb = \frac{\kvo + \kv}{2}$ to check this, we see that</p>
 $$\kvb = \frac{\kvo + \kv}{2} = \frac{30\ \text{km/h} + 60\ \text{km/h}}{2} = 45\ \text{km/h},$$
 <p>which seems logical.</p>
@@ -66,15 +58,7 @@ $$\kx = \kxo + \kvb\kt = 0 + (4.00\ \text{m/s})(120\ \text{s}) = 480\ \text{m}$$
 
 <section id="final-velocity">
 <h2>Final velocity</h2>
-<div class="derivation">
-<h3>Solving for Final Velocity</h3>
-<p>We can derive another useful equation by manipulating the definition of <span data-concept="acceleration">acceleration</span>.</p>
-$$\ka = \frac{\kdv}{\kdt}$$
-<p>Substituting the simplified notation for $\kdv$ and $\kdt$ gives us</p>
-$$\ka = \frac{\kv - \kvo}{\kt}\;(\text{constant }\ka).$$
-<p>Solving for $\kv$ yields</p>
-$$\kv = \kvo + \ka\kt\;(\text{constant }\ka).$$
-</div>
+<figure class="dv" id="drv-final-velocity"></figure>
 
 <div class="example" id="ex-airplane">
 <h3>Example 2.9 · Calculating Final Velocity: An Airplane Slowing Down after Landing</h3>
@@ -118,17 +102,7 @@ $$\kv = \kvo + \ka\kt = 70.0\ \text{m/s} + (-1.50\ \text{m/s}^2)(40.0\ \text{s})
 
 <section id="position-quadratic">
 <h2>Final position when velocity is not constant</h2>
-<div class="derivation">
-<h3>Solving for Final Position When Velocity is Not Constant ($\ka \neq 0$)</h3>
-<p>We can combine the equations above to find a third equation that allows us to calculate the final <span data-concept="position">position</span> of an object experiencing constant <span data-concept="acceleration">acceleration</span>. We start with</p>
-$$\kv = \kvo + \ka\kt.$$
-<p>Adding $\kvo$ to each side of this equation and dividing by 2 gives</p>
-$$\frac{\kvo + \kv}{2} = \kvo + \tfrac{1}{2}\ka\kt.$$
-<p>Since $\frac{\kvo + \kv}{2} = \kvb$ for constant <span data-concept="acceleration">acceleration</span>, then</p>
-$$\kvb = \kvo + \tfrac{1}{2}\ka\kt.$$
-<p>Now we substitute this expression for $\kvb$ into the equation for <span data-concept="displacement">displacement</span>, $\kx = \kxo + \kvb\kt$, yielding</p>
-$$\kx = \kxo + \kvo\kt + \tfrac{1}{2}\ka\kt^2\;(\text{constant }\ka).$$
-</div>
+<figure class="dv" id="drv-position-constant-acceleration"></figure>
 
 <div class="example" id="ex-dragster">
 <h3>Example 2.10 · Calculating Displacement of an Accelerating Object: Dragsters</h3>
@@ -165,13 +139,7 @@ $$\kx = 402\ \text{m}.$$</li>
 
 <section id="velocity-squared">
 <h2>Final velocity without time</h2>
-<div class="derivation">
-<h3>Solving for Final Velocity when Velocity Is Not Constant ($\ka \neq 0$)</h3>
-<p>A fourth useful equation can be obtained from another algebraic manipulation of previous equations. If we solve $\kv = \kvo + \ka\kt$ for $\kt$, we get</p>
-$$\kt = \frac{\kv - \kvo}{\ka}.$$
-<p>Substituting this and $\kvb = \frac{\kvo + \kv}{2}$ into $\kx = \kxo + \kvb\kt$, we get</p>
-$$\kv^2 = \kvo^2 + 2\ka(\kx - \kxo)\;(\text{constant }\ka).$$
-</div>
+<figure class="dv" id="drv-velocity-without-time"></figure>
 
 <div class="example" id="ex-dragster2">
 <h3>Example 2.11 · Calculating Final Velocity: Dragsters</h3>

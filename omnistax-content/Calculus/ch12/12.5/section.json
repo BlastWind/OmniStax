@@ -438,7 +438,7 @@
     "type": "open",
     "generated_by": "source",
     "solution": "$x=-1-7t,y=3-t,z=6-2t,0\\le t\\le 1$",
-    "hint": "Use <a href=\"#fs-id1163723756804\">Equation 12.16</a>."
+    "hint": "Use <a href=\"#drv-line-segment\">Equation 12.16</a>."
    }
   },
   {
@@ -1486,5 +1486,552 @@
    "concept": "cross-product"
   }
  ],
- "referents": []
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-abs-12-19",
+   "kind": "correction",
+   "html": "The book prints $d=\\frac{\\overrightarrow{QP}\\cdot\\mathbf{n}}{\\|\\mathbf{n}\\|}$ here; Equation 12.19 takes the absolute value of the dot product, $d=\\frac{|\\overrightarrow{QP}\\cdot\\mathbf{n}|}{\\|\\mathbf{n}\\|},$ as the line that follows does."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "equations-of-a-line",
+   "what": "the vector, parametric and symmetric equations of a line",
+   "source": "Calculus, 12.5 Equations of Lines and Planes in Space, Equations for a Line in Space",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$L$ passes through $P(x_{0},y_{0},z_{0})$ parallel to $\\kvecv$, and $Q(x,y,z)$ is any point on $L$, so $\\kPQ$ is parallel to $\\kvecv$.",
+       "src": "12.5"
+      },
+      {
+       "text": "Nonzero vectors $\\kvecu$ and $\\kvecv$ are parallel if and only if $\\kvecu=k\\kvecv$ for some scalar $k$.",
+       "src": "12.5"
+      },
+      {
+       "tex": "\\kvecv=\\langle a,b,c\\rangle",
+       "src": "12.5"
+      },
+      {
+       "tex": "\\kPQ=\\langle x-x_{0},y-y_{0},z-z_{0}\\rangle",
+       "src": "12.2"
+      },
+      {
+       "text": "A scalar multiplies each component: $k\\langle a,b,c\\rangle=\\langle ka,kb,kc\\rangle$.",
+       "src": "12.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kPQ}=\\mk{t}{t\\kvecv}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\langle x-x_{0},y-y_{0},z-z_{0}\\rangle}=\\mk{t}{t\\langle a,b,c\\rangle}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\langle x-x_{0},y-y_{0},z-z_{0}\\rangle}=\\mk{t}{\\langle ta,tb,tc\\rangle}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "num": "(12.11)",
+     "src": "12.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Vectors in space add and subtract component by component.",
+       "src": "12.2"
+      },
+      {
+       "text": "A scalar multiplies each component: $k\\langle a,b,c\\rangle=\\langle ka,kb,kc\\rangle$.",
+       "src": "12.2"
+      },
+      {
+       "tex": "\\kvecr=\\langle x,y,z\\rangle,\\quad \\kvecr_{0}=\\langle x_{0},y_{0},z_{0}\\rangle",
+       "src": "12.5"
+      },
+      {
+       "tex": "\\kvecv=\\langle a,b,c\\rangle",
+       "src": "12.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\langle x-x_{0},y-y_{0},z-z_{0}\\rangle}=\\mk{t}{\\langle ta,tb,tc\\rangle}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\langle x,y,z\\rangle-\\langle x_{0},y_{0},z_{0}\\rangle}=\\mk{t}{t\\langle a,b,c\\rangle}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\langle x,y,z\\rangle}=\\mk{r0}{\\langle x_{0},y_{0},z_{0}\\rangle}+\\mk{t}{t\\langle a,b,c\\rangle}",
+       "uses": [],
+       "map": {
+        "p": [
+         "r",
+         "r0"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{r}{\\kvecr}=\\mk{r0}{\\kvecr_{0}}+\\mk{t}{t\\kvecv}",
+       "uses": [
+        3,
+        4
+       ]
+      }
+     ],
+     "num": "(12.12)",
+     "src": "12.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Two vectors are equal exactly when their components are equal.",
+       "src": "12.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\langle x-x_{0},y-y_{0},z-z_{0}\\rangle}=\\mk{t}{\\langle ta,tb,tc\\rangle}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "{\\mk{x}{x-x_{0}}=\\mk{a}{ta}},\\quad {\\mk{y}{y-y_{0}}=\\mk{b}{tb}},\\quad {\\mk{z}{z-z_{0}}=\\mk{c}{tc}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "p": [
+         "x",
+         "y",
+         "z"
+        ],
+        "t": [
+         "a",
+         "b",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "{\\mk{x}{x}=\\mk{a}{x_{0}+ta}},\\quad {\\mk{y}{y}=\\mk{b}{y_{0}+tb}},\\quad {\\mk{z}{z}=\\mk{c}{z_{0}+tc}}",
+       "uses": []
+      }
+     ],
+     "src": "12.5, Parametric and Symmetric Equations of a Line"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "$a$, $b$ and $c$ are nonzero.",
+       "src": "12.5, Parametric and Symmetric Equations of a Line"
+      }
+     ],
+     "then": {
+      "tex": "{\\mk{x}{x}=\\mk{a}{x_{0}+ta}},\\quad {\\mk{y}{y}=\\mk{b}{y_{0}+tb}},\\quad {\\mk{z}{z}=\\mk{c}{z_{0}+tc}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "{\\mk{x}{\\dfrac{x-x_{0}}{a}}=\\mk{a}{t}},\\quad {\\mk{y}{\\dfrac{y-y_{0}}{b}}=\\mk{b}{t}},\\quad {\\mk{z}{\\dfrac{z-z_{0}}{c}}=\\mk{c}{t}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\dfrac{x-x_{0}}{a}}=\\mk{y}{\\dfrac{y-y_{0}}{b}}=\\mk{z}{\\dfrac{z-z_{0}}{c}}",
+       "uses": []
+      }
+     ],
+     "src": "12.5, Parametric and Symmetric Equations of a Line"
+    }
+   ]
+  },
+  {
+   "id": "line-segment",
+   "what": "the vector and parametric equations of a line segment",
+   "source": "Calculus, 12.5 Equations of Lines and Planes in Space, Equations for a Line in Space",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecp=\\langle x_{0},y_{0},z_{0}\\rangle,\\quad \\kvecq=\\langle x_{1},y_{1},z_{1}\\rangle",
+       "src": "12.5"
+      },
+      {
+       "tex": "\\kPQ=\\langle x_{1}-x_{0},y_{1}-y_{0},z_{1}-z_{0}\\rangle",
+       "src": "12.5"
+      },
+      {
+       "text": "Vectors in space add and subtract component by component.",
+       "src": "12.2"
+      },
+      {
+       "text": "Scalar multiplication distributes over vector addition and subtraction.",
+       "src": "12.1, Properties of Vector Operations"
+      },
+      {
+       "text": "The segment is the part of the line from $\\kvecr=\\kvecp$ at $t=0$ to $\\kvecr=\\kvecq$ at $t=1$.",
+       "src": "12.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kvecr}=\\mk{p}{\\kvecr_{0}}+\\mk{t}{t\\kvecv}",
+      "src": "(12.12)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\kvecr}=\\mk{p}{\\kvecp}+\\mk{t}{t(\\kPQ)}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "$P$ is the known point on the line and $\\kPQ$ its direction vector."
+      },
+      {
+       "tex": "\\mk{r}{\\kvecr}=\\mk{p}{\\langle x_{0},y_{0},z_{0}\\rangle}+\\mk{t}{t\\langle x_{1}-x_{0},y_{1}-y_{0},z_{1}-z_{0}\\rangle}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\kvecr}=\\mk{p}{\\langle x_{0},y_{0},z_{0}\\rangle}+\\mk{t}{t(\\langle x_{1},y_{1},z_{1}\\rangle-\\langle x_{0},y_{0},z_{0}\\rangle)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\kvecr}=\\mk{p}{\\langle x_{0},y_{0},z_{0}\\rangle}+\\mk{t}{t\\langle x_{1},y_{1},z_{1}\\rangle}-\\mk{s}{t\\langle x_{0},y_{0},z_{0}\\rangle}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "t": [
+         "t",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{r}{\\kvecr}=\\mk{p}{(1-t)\\langle x_{0},y_{0},z_{0}\\rangle}+\\mk{t}{t\\langle x_{1},y_{1},z_{1}\\rangle}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "s": "p"
+       }
+      },
+      {
+       "tex": "\\mk{r}{\\kvecr}=\\mk{p}{(1-t)\\kvecp}+\\mk{t}{t\\kvecq}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\kvecr}=\\mk{p}{(1-t)\\kvecp}+\\mk{t}{t\\kvecq},\\quad\\mk{i}{0\\le t\\le 1}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "num": "(12.15)",
+     "src": "12.5"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecp=\\langle x_{0},y_{0},z_{0}\\rangle,\\quad \\kvecq=\\langle x_{1},y_{1},z_{1}\\rangle",
+       "src": "12.5"
+      },
+      {
+       "tex": "\\kPQ=\\langle x_{1}-x_{0},y_{1}-y_{0},z_{1}-z_{0}\\rangle",
+       "src": "12.5"
+      },
+      {
+       "tex": "\\kvecr=\\langle x,y,z\\rangle",
+       "src": "12.5"
+      },
+      {
+       "text": "Vectors in space add and subtract component by component.",
+       "src": "12.2"
+      },
+      {
+       "text": "A scalar multiplies each component: $k\\langle a,b,c\\rangle=\\langle ka,kb,kc\\rangle$.",
+       "src": "12.2"
+      },
+      {
+       "text": "Two vectors are equal exactly when their components are equal.",
+       "src": "12.1"
+      },
+      {
+       "text": "The segment is the part of the line from $\\kvecr=\\kvecp$ at $t=0$ to $\\kvecr=\\kvecq$ at $t=1$.",
+       "src": "12.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\kvecr}=\\mk{p}{\\kvecr_{0}}+\\mk{t}{t\\kvecv}",
+      "src": "(12.12)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\kvecr}=\\mk{p}{\\kvecp}+\\mk{t}{t(\\kPQ)}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "$P$ is the known point on the line and $\\kPQ$ its direction vector."
+      },
+      {
+       "tex": "\\mk{r}{\\langle x,y,z\\rangle}=\\mk{p}{\\langle x_{0},y_{0},z_{0}\\rangle}+\\mk{t}{t\\langle x_{1}-x_{0},y_{1}-y_{0},z_{1}-z_{0}\\rangle}",
+       "uses": [
+        0,
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\langle x,y,z\\rangle}=\\mk{p}{\\langle x_{0}+t(x_{1}-x_{0}),y_{0}+t(y_{1}-y_{0}),z_{0}+t(z_{1}-z_{0})\\rangle}",
+       "uses": [
+        3,
+        4
+       ],
+       "map": {
+        "t": "p"
+       }
+      },
+      {
+       "tex": "{\\mk{x}{x}=\\mk{a}{x_{0}+t(x_{1}-x_{0})}},\\quad {\\mk{y}{y}=\\mk{b}{y_{0}+t(y_{1}-y_{0})}},\\quad {\\mk{z}{z}=\\mk{c}{z_{0}+t(z_{1}-z_{0})}},\\quad {\\mk{i}{0\\le t\\le 1}}",
+       "uses": [
+        5,
+        6
+       ],
+       "map": {
+        "r": [
+         "x",
+         "y",
+         "z"
+        ],
+        "p": [
+         "a",
+         "b",
+         "c"
+        ]
+       }
+      }
+     ],
+     "num": "(12.16)",
+     "src": "12.5"
+    }
+   ]
+  },
+  {
+   "id": "distance-point-to-line",
+   "what": "the distance from a point to a line",
+   "source": "Calculus, 12.5 Equations of Lines and Planes in Space, Distance between a Point and a Line",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kPM$ and $\\kvecv$ form two sides of a parallelogram with area $\\|\\kPM\\times\\kvecv\\|$.",
+       "src": "12.4, Area of a Parallelogram"
+      },
+      {
+       "text": "The parallelogram has base $\\|\\kvecv\\|$ and height $d$, the distance from $M$ to $L$.",
+       "src": "Figure 12.65"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{A}{\\text{area}}=\\mk{b}{\\text{base}}\\times\\mk{h}{\\text{height}}",
+      "src": "Appendix C, Formulas from Geometry"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{A}{\\|\\kPM\\times\\kvecv\\|}=\\mk{b}{\\|\\kvecv\\|}\\,\\mk{h}{d}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{h}{d}=\\dfrac{\\mk{A}{\\|\\kPM\\times\\kvecv\\|}}{\\mk{b}{\\|\\kvecv\\|}}",
+       "uses": []
+      }
+     ],
+     "src": "12.5, Distance from a Point to a Line"
+    }
+   ]
+  },
+  {
+   "id": "equation-of-a-plane",
+   "what": "the scalar equation of a plane",
+   "source": "Calculus, 12.5 Equations of Lines and Planes in Space, Equations for a Plane",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$Q=(x,y,z)$ lies in the plane exactly when $\\kPQ$ is orthogonal to $\\kvecn$.",
+       "src": "12.5"
+      },
+      {
+       "text": "Orthogonal vectors have a dot product of zero.",
+       "src": "12.3, Orthogonal Vectors"
+      },
+      {
+       "tex": "\\kvecn=\\langle a,b,c\\rangle,\\quad \\kPQ=\\langle x-x_{0},y-y_{0},z-z_{0}\\rangle",
+       "src": "12.5"
+      },
+      {
+       "tex": "\\kvecu\\cdot\\kvecv=u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3}",
+       "src": "(12.3)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kvecn\\cdot\\kPQ}=\\mk{z}{0}",
+      "src": "(12.17)",
+      "uses": [0, 1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\langle a,b,c\\rangle\\cdot\\langle x-x_{0},y-y_{0},z-z_{0}\\rangle}=\\mk{z}{0}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{a(x-x_{0})+b(y-y_{0})+c(z-z_{0})}=\\mk{z}{0}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "12.5, Definition"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "d=-ax_{0}-by_{0}-cz_{0}",
+       "src": "12.5, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{a(x-x_{0})+b(y-y_{0})+c(z-z_{0})}=\\mk{z}{0}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{ax}+\\mk{b}{by}+\\mk{c}{cz}\\mk{k}{-ax_{0}-by_{0}-cz_{0}}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "d": [
+         "a",
+         "b",
+         "c",
+         "k"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{a}{ax}+\\mk{b}{by}+\\mk{c}{cz}+\\mk{k}{d}=\\mk{z}{0}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "12.5, Definition"
+    }
+   ]
+  },
+  {
+   "id": "distance-point-to-plane",
+   "what": "the distance from a point to a plane in general form",
+   "source": "Calculus, 12.5 Equations of Lines and Planes in Space, Parallel and Intersecting Planes",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "ax_{1}+by_{1}+cz_{1}+k=0"
+      },
+      {
+       "tex": "\\kQP=\\langle x_{0}-x_{1},y_{0}-y_{1},z_{0}-z_{1}\\rangle",
+       "src": "12.2"
+      },
+      {
+       "text": "The plane $ax+by+cz+k=0$ has normal vector $\\kvecn=\\langle a,b,c\\rangle$.",
+       "src": "12.5"
+      },
+      {
+       "tex": "\\kvecu\\cdot\\kvecv=u_{1}v_{1}+u_{2}v_{2}+u_{3}v_{3}",
+       "src": "(12.3)"
+      },
+      {
+       "tex": "\\|\\kvecv\\|=\\sqrt{v_{1}^{2}+v_{2}^{2}+v_{3}^{2}}",
+       "src": "12.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{d}=\\dfrac{\\mk{n}{|\\kQP\\cdot\\kvecn|}}{\\mk{m}{\\|\\kvecn\\|}}",
+      "src": "(12.19)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{d}=\\dfrac{\\mk{n}{|\\langle x_{0}-x_{1},y_{0}-y_{1},z_{0}-z_{1}\\rangle\\cdot\\langle a,b,c\\rangle|}}{\\mk{m}{\\|\\langle a,b,c\\rangle\\|}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{d}=\\dfrac{\\mk{n}{|a(x_{0}-x_{1})+b(y_{0}-y_{1})+c(z_{0}-z_{1})|}}{\\mk{m}{\\sqrt{a^{2}+b^{2}+c^{2}}}}",
+       "uses": [
+        3,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{d}{d}=\\dfrac{\\mk{n}{|ax_{0}+by_{0}+cz_{0}-(ax_{1}+by_{1}+cz_{1})|}}{\\mk{m}{\\sqrt{a^{2}+b^{2}+c^{2}}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{d}=\\dfrac{\\mk{n}{|ax_{0}+by_{0}+cz_{0}+k|}}{\\mk{m}{\\sqrt{a^{2}+b^{2}+c^{2}}}}",
+       "uses": [
+        0
+       ],
+       "cap": "$(x_{1},y_{1},z_{1})$ lies in the plane, so $ax_{1}+by_{1}+cz_{1}=-k$."
+      }
+     ],
+     "src": "12.5, Distance from a Point to a Plane"
+    }
+   ]
+  }
+ ]
 }

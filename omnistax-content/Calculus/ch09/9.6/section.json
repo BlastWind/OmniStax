@@ -1040,14 +1040,344 @@
  "referents": [],
  "footnotes": [
   {
-   "id": "ratio-proof",
-   "kind": "correction",
-   "html": "The book prints $|a_{n-}|\\gt|a_{n}|$ twice and “It follows that $|a_{n}|\\ne 0$”; meant are $|a_{n+1}|\\gt|a_{n}|$ for all $n\\ge N$ and, since the terms then grow in size, $\\lim_{n\\to\\infty}a_{n}\\ne 0.$"
-  },
-  {
    "id": "ex327-key",
    "kind": "correction",
    "html": "The key writes $\\frac{a_{n}}{a_{n+1}}\\to\\frac{1}{e^{2}};$ the ratio that tends to $\\frac{1}{e^{2}}$ is $\\frac{a_{n+1}}{a_{n}}.$"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "ratio-test",
+   "what": "the ratio test",
+   "source": "Calculus, 9.6 Ratio and Root Tests, Ratio Test, Proof",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\krho =\\lim_{n\\to \\infty}|\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}|\\lt 1,$ so there exists $R$ with $0\\le\\krho \\lt R\\lt 1;$ let $\\varepsilon =R-\\krho \\gt 0.$",
+       "src": "9.6"
+      },
+      {
+       "text": "$\\{x_{n}\\}$ converges to $\\krho$ if for every $\\varepsilon\\gt 0$ there exists an integer $N$ such that $|x_{n}-\\krho|\\lt \\varepsilon$ for all $n\\ge N.$",
+       "src": "9.1, Definition"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{||\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}|-\\krho |}\\lt \\mk{e}{\\varepsilon }\\;\\text{for all}\\;n\\ge N",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "9.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{|\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}|}\\lt \\mk{e}{\\krho +\\varepsilon }=\\mk{R}{R}\\;\\text{for all}\\;n\\ge N",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{|\\kaseq_{n+1}|}\\lt \\mk{r}{R|\\kaseq_{n}|}\\;\\text{for all}\\;n\\ge N",
+       "uses": [],
+       "map": {
+        "e": "r",
+        "R": "r"
+       },
+       "cap": "Multiply by $|\\kaseq_{n}|\\gt 0;$ the terms are nonzero."
+      }
+     ],
+     "src": "9.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{|\\kaseq_{N+2}|}\\lt \\mk{r}{R|\\kaseq_{N+1}|}",
+      "uses": [
+       0
+      ],
+      "src": "9.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{|\\kaseq_{N+2}|}\\lt \\mk{r}{R|\\kaseq_{N+1}|}\\lt \\mk{s}{R^{2}|\\kaseq_{N}|}",
+       "uses": [
+        0
+       ],
+       "cap": "$|\\kaseq_{N+1}|\\lt R|\\kaseq_{N}|,$ the same bound one step earlier."
+      },
+      {
+       "tex": "\\mk{a}{|\\kaseq_{N+k}|}\\lt \\mk{r}{R^{k}|\\kaseq_{N}|}\\;\\text{for all}\\;k\\ge1",
+       "uses": [
+        0
+       ],
+       "map": {
+        "r": "a",
+        "s": "r"
+       },
+       "cap": "Each step back to $|\\kaseq_{N}|$ adds one factor of $R:$ $|\\kaseq_{N+3}|\\lt R^{3}|\\kaseq_{N}|,$ $|\\kaseq_{N+4}|\\lt R^{4}|\\kaseq_{N}|,$ and so on."
+      }
+     ],
+     "src": "9.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\sum_{n=1}^{\\infty}ar^{n-1}=\\frac{a}{1-r}\\;\\text{for}\\;|r|\\lt 1",
+       "src": "(9.7)"
+      },
+      {
+       "text": "If $0\\le \\kaseq_{n}\\le \\kbseq_{n}$ for all $n\\ge N$ and $\\sum \\kbseq_{n}$ converges, then $\\sum \\kaseq_{n}$ converges.",
+       "src": "9.4, Comparison Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{R|\\kaseq_{N}|+R^{2}|\\kaseq_{N}|+R^{3}|\\kaseq_{N}|+\\cdots}\\;\\mk{c}{\\text{converges}}",
+      "uses": [
+       1
+      ],
+      "src": "9.6",
+      "why": "A geometric series with ratio $R\\lt 1.$"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{|\\kaseq_{N+1}|+|\\kaseq_{N+2}|+|\\kaseq_{N+3}|+|\\kaseq_{N+4}|+\\cdots}\\;\\mk{c}{\\text{converges}}",
+       "uses": [
+        0,
+        2
+       ]
+      }
+     ],
+     "src": "9.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sum_{n=1}^{\\infty} |\\kaseq_{n}|}=\\mk{h}{\\sum_{n=1}^{N} |\\kaseq_{n}|}+\\mk{a}{\\sum_{n=N+1}^{\\infty} |\\kaseq_{n}|}",
+      "src": "9.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\sum_{n=1}^{\\infty} |\\kaseq_{n}|}\\;\\mk{a}{\\text{converges}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "h": "a"
+       },
+       "cap": "$\\sum_{n=1}^{N} |\\kaseq_{n}|$ is a finite sum and $\\sum_{n=N+1}^{\\infty} |\\kaseq_{n}|$ converges."
+      }
+     ],
+     "src": "9.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\krho =\\lim_{n\\to \\infty}|\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}|\\gt 1.$",
+       "src": "9.6"
+      },
+      {
+       "text": "$\\{x_{n}\\}$ converges to $\\krho$ if for every $\\varepsilon\\gt 0$ there exists an integer $N$ such that $|x_{n}-\\krho|\\lt \\varepsilon$ for all $n\\ge N.$",
+       "src": "9.1, Definition"
+      },
+      {
+       "text": "If $\\lim_{n\\to \\infty}\\kaseq_{n}=c\\ne0$ or $\\lim_{n\\to \\infty}\\kaseq_{n}$ does not exist, then $\\sum_{n=1}^{\\infty}\\kaseq_{n}$ diverges.",
+       "src": "9.3, Divergence Test"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{|\\frac{\\kaseq_{n+1}}{\\kaseq_{n}}|}\\gt \\mk{o}{1}\\;\\text{for all}\\;n\\ge N",
+      "uses": [
+       0,
+       1
+      ],
+      "src": "9.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{|\\kaseq_{n+1}|}\\gt \\mk{o}{|\\kaseq_{n}|}\\;\\text{for all}\\;n\\ge N",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{|\\kaseq_{n}|}\\ge \\mk{o}{|\\kaseq_{N}|}\\gt \\mk{z}{0}\\;\\text{for all}\\;n\\ge N",
+       "uses": [],
+       "cap": "From $n=N$ on the terms only grow in size, and $\\kaseq_{N}\\ne 0.$"
+      },
+      {
+       "tex": "\\mk{a}{\\lim_{n\\to \\infty}\\kaseq_{n}}\\ne\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "o": "z"
+       }
+      },
+      {
+       "tex": "\\mk{a}{\\sum_{n=1}^{\\infty} \\kaseq_{n}}\\;\\mk{z}{\\text{diverges}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "9.6",
+     "note": "The book prints $|\\kaseq_{n-}|\\gt |\\kaseq_{n}|$ twice and “It follows that $|\\kaseq_{n}|\\ne0$”; meant are $|\\kaseq_{n+1}|\\gt |\\kaseq_{n}|$ for all $n\\ge N$ and, since the terms then grow in size, $\\lim_{n\\to\\infty}\\kaseq_{n}\\ne 0.$"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{r}{\\krho}=\\mk{a}{\\lim_{n\\to \\infty}\\frac{1/{(n+1)}^{p}}{1/n^{p}}}",
+      "src": "9.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\krho}=\\mk{a}{\\lim_{n\\to \\infty}\\frac{1/{(n+1)}^{p}}{1/n^{p}}}=\\mk{b}{\\lim_{n\\to \\infty}\\frac{n^{p}}{{(n+1)}^{p}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\krho}=\\mk{a}{\\lim_{n\\to \\infty}\\frac{1/{(n+1)}^{p}}{1/n^{p}}}=\\mk{b}{\\lim_{n\\to \\infty}\\frac{n^{p}}{{(n+1)}^{p}}}=\\mk{o}{1}",
+       "uses": [],
+       "cap": "$\\frac{n^{p}}{(n+1)^{p}}=(\\frac{n}{n+1})^{p}$ and $\\frac{n}{n+1}\\to 1.$"
+      }
+     ],
+     "src": "9.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 5
+      },
+      {
+       "tex": "\\sum_{n=1}^{\\infty} \\frac{1}{n^{p}}\\;\\begin{cases}\\text{converges if}\\;p\\gt 1 \\\\ \\text{diverges if}\\;p\\le1\\end{cases}",
+       "src": "(9.9)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krho}=\\mk{a}{\\lim_{n\\to \\infty}\\frac{1/{(n+1)}^{p}}{1/n^{p}}}=\\mk{b}{\\lim_{n\\to \\infty}\\frac{n^{p}}{{(n+1)}^{p}}}=\\mk{o}{1}",
+      "src": "9.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\krho=1}\\;\\mk{o}{\\text{for every}\\;p,}\\;\\mk{b}{\\text{yet}\\;\\sum 1/n^{p}\\;\\text{converges only if}\\;p\\gt 1}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "a": "r"
+       },
+       "cap": "So when $\\krho=1$ the test does not provide any information."
+      }
+     ],
+     "src": "9.6"
+    }
+   ]
+  },
+  {
+   "id": "root-test-p-series",
+   "what": "the root-test limit of a p-series",
+   "source": "Calculus, 9.6 Ratio and Root Tests, Root Test",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{r}{\\krho}=\\mk{a}{\\lim_{n\\to \\infty}\\sqrt[n]{|\\frac{1}{n^{p}}|}}",
+      "src": "9.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\krho}=\\mk{a}{\\lim_{n\\to \\infty}\\sqrt[n]{|\\frac{1}{n^{p}}|}}=\\mk{b}{\\lim_{n\\to \\infty}\\frac{1}{n^{p/n}}}",
+       "uses": [],
+       "cap": "$\\sqrt[n]{1/n^{p}}=(n^{-p})^{1/n}=n^{-p/n}.$"
+      }
+     ],
+     "src": "9.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The function $\\ln x$ is continuous on its domain, so a limit and the natural logarithm can be interchanged.",
+       "src": "9.1, Example 9.3"
+      },
+      {
+       "tex": "\\lim_{x\\to \\infty}\\frac{\\kf(x)}{\\kg(x)}=\\lim_{x\\to \\infty}\\frac{\\kfprime(x)}{\\kgprime(x)}\\;\\text{for the form}\\;\\frac{\\infty}{\\infty}",
+       "src": "4.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\ln\\krho}=\\mk{a}{\\ln(\\lim_{n\\to \\infty}\\frac{1}{n^{p/n}})}",
+      "uses": [
+       0
+      ],
+      "src": "9.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\ln\\krho}=\\mk{a}{\\ln(\\lim_{n\\to \\infty}\\frac{1}{n^{p/n}})}=\\mk{b}{\\lim_{n\\to \\infty}\\ln{(\\frac{1}{n})}^{p/n}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\ln\\krho}=\\mk{a}{\\ln(\\lim_{n\\to \\infty}\\frac{1}{n^{p/n}})}=\\mk{b}{\\lim_{n\\to \\infty}\\ln{(\\frac{1}{n})}^{p/n}}=\\mk{c}{\\lim_{n\\to \\infty}\\frac{p}{n}\\cdot \\ln(\\frac{1}{n})}",
+       "uses": [],
+       "cap": "$\\ln a^{b}=b\\ln a.$"
+      },
+      {
+       "tex": "\\mk{r}{\\ln\\krho}=\\mk{a}{\\ln(\\lim_{n\\to \\infty}\\frac{1}{n^{p/n}})}=\\mk{b}{\\lim_{n\\to \\infty}\\ln{(\\frac{1}{n})}^{p/n}}=\\mk{c}{\\lim_{n\\to \\infty}\\frac{p}{n}\\cdot \\ln(\\frac{1}{n})}=\\mk{d}{\\lim_{n\\to \\infty}\\frac{p\\;\\ln(1/n)}{n}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\ln\\krho}=\\mk{a}{\\ln(\\lim_{n\\to \\infty}\\frac{1}{n^{p/n}})}=\\mk{b}{\\lim_{n\\to \\infty}\\ln{(\\frac{1}{n})}^{p/n}}=\\mk{c}{\\lim_{n\\to \\infty}\\frac{p}{n}\\cdot \\ln(\\frac{1}{n})}=\\mk{d}{\\lim_{n\\to \\infty}\\frac{p\\;\\ln(1/n)}{n}}=\\mk{e}{\\lim_{n\\to \\infty}\\frac{-p/n}{1}}",
+       "uses": [
+        2
+       ],
+       "cap": "L’Hôpital’s rule: the numerator $p\\ln(1/x)=-p\\ln x$ has derivative $-p/x,$ the denominator $x$ has derivative $1.$"
+      },
+      {
+       "tex": "\\mk{r}{\\ln\\krho}=\\mk{a}{\\ln(\\lim_{n\\to \\infty}\\frac{1}{n^{p/n}})}=\\mk{b}{\\lim_{n\\to \\infty}\\ln{(\\frac{1}{n})}^{p/n}}=\\mk{c}{\\lim_{n\\to \\infty}\\frac{p}{n}\\cdot \\ln(\\frac{1}{n})}=\\mk{d}{\\lim_{n\\to \\infty}\\frac{p\\;\\ln(1/n)}{n}}=\\mk{e}{\\lim_{n\\to \\infty}\\frac{-p/n}{1}}=\\mk{z}{0}",
+       "uses": []
+      }
+     ],
+     "src": "9.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\ln\\krho}=\\mk{a}{\\ln(\\lim_{n\\to \\infty}\\frac{1}{n^{p/n}})}=\\mk{b}{\\lim_{n\\to \\infty}\\ln{(\\frac{1}{n})}^{p/n}}=\\mk{c}{\\lim_{n\\to \\infty}\\frac{p}{n}\\cdot \\ln(\\frac{1}{n})}=\\mk{d}{\\lim_{n\\to \\infty}\\frac{p\\;\\ln(1/n)}{n}}=\\mk{e}{\\lim_{n\\to \\infty}\\frac{-p/n}{1}}=\\mk{z}{0}",
+      "src": "9.6"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\ln\\krho}=\\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "a": "r"
+       }
+      },
+      {
+       "tex": "\\mk{r}{\\krho}=\\mk{z}{1}\\;\\text{for all}\\;p",
+       "uses": [],
+       "cap": "$\\krho=e^{0}=1.$"
+      }
+     ],
+     "src": "9.6"
+    }
+   ]
   }
  ]
 }

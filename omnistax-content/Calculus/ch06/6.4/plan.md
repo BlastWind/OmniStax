@@ -48,3 +48,10 @@ Judged: a curve the reader draws to compare lengths (exercises 213, 214 would be
 - Review exercises 453, 455 (tmp/ch06/sec_6_4.py, `RV`).
 
 Applied in the chapter pass (2026-10-13): every anchor above set with `ost set` (tmp/ch06/anchors6.py; a few spans moved to the nearest id the text has, such as the section header where the plan named a note); review exercises held here landed with `source_section` 6.9.
+
+## Derivations
+
+- Arc Length of the Curve y = f(x) (6.7) · score 2 · built as drv-arc-length-of-a-function-of-x, ending on (6.7) (prose-first: the prose stays, the sum and its limit replaced)
+- Arc Length of the Curve x = g(y) (6.8) · score 6 · built as drv-arc-length-of-a-function-of-y, ending on (6.8) (hidden: "follow the same development"; host after the paragraph)
+- lateral surface area of a frustum · score 2 · built as drv-lateral-surface-area-of-a-frustum (both printed blocks replaced; the cone's πrs stays as printed and is a fact)
+- Area of a Surface of Revolution (6.9) · score 5 · built as drv-surface-area-of-a-surface-of-revolution, ending on (6.9); the theorem's y-axis formula ("a similar development for functions of y", not in the scan, score 7) built as its last two nodes; the "almost a Riemann sum" paragraph stays

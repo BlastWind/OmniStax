@@ -39,3 +39,9 @@ Every first derivative in the formulas wears `derivative` (`\kdzdx`, `\kdzdy`, `
 
 - forms: `eq-chain-rule-one-variable` → `14.5-fs-id1167793362088`; the two-variable forms → `14.5-fs-id1167794044156`; `eq-generalized-chain-rule` → `14.5-fs-id1167793261542`; the implicit forms → `14.5-fs-id1167793376409`.
 - variables anchored at build. Review 405 placed here.
+
+## Derivations
+
+- Chain Rule for One Independent Variable · Proof · score 4 · built as drv-chain-rule-one-variable: the difference quotient from (14.30), which stays printed with its sentence; the bound on the root quotient; the error term's limit; then the joined limit, (14.29). The book takes √(…)/(t − t₀) as √(…/(t − t₀)²), its absolute value, and writes the limits as (x, y) → (x₀, y₀); the work bounds the absolute value as t → t₀, and the node's note says so. "This proves the chain rule at t = t₀ …" stays after it
+- Chain Rule for Two Independent Variables, stated without proof · score 2 · not built: two hidden moves, holding v fixed in (14.29)
+- Implicit Differentiation, "Equation 14.34 is a direct consequence of Equation 14.31" · score 1 · built as drv-implicit-differentiation, (14.34) worked to dy/dx (the chain rule cited as (14.29), which is the form the book's line uses); (14.35), "derived in a similar fashion", as two more nodes, ∂z/∂x and ∂z/∂y, by the generalized chain rule

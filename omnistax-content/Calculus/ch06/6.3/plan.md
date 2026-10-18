@@ -51,3 +51,8 @@ Judged: a shell sliding through the solid (the nested shells already show it); n
 - Review exercises 443, 445, 447 (spec in tmp/ch06/sec_6_3.py, `RV`).
 
 Applied in the chapter pass (2026-10-13): every anchor above set with `ost set` (tmp/ch06/anchors6.py; a few spans moved to the nearest id the text has, such as the section header where the plan named a note); review exercises held here landed with `source_section` 6.9.
+
+## Derivations
+
+- The Method of Cylindrical Shells (6.6) · score 2 · built as drv-method-of-cylindrical-shells, ending on (6.6) (the shell's block, Δx, the midpoint, the sum and its limit replaced; the flat-plate paragraph and its line stay as printed, a second view of the same formula)
+- revolving around the line x = −k · score 0 · built as drv-shells-around-a-vertical-line (a thin printed block with the development "as before" inserted; the recalled shell volume above it stays as printed, a restatement)

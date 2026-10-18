@@ -301,3 +301,10 @@ colours force and nothing else; the page still binds acceleration, because
 the skier, the incline and the rope all draw it.
 
 Every `º` in the section's text, figures and rows is now the degree sign `°`.
+
+## Derivations
+
+- Example 4.5 (a), the acceleration down a frictionless incline, and the discussion's general $a = g\sin\theta$ · score 2 · not built: a worked example at 25° whose general result the discussion states without working
+- Resolving Weight into Components (note after Example 4.5) · score 2 · built as drv-weight-components: two nodes, $w_\perp$ and $w_\parallel$ from the right triangle of the weight vectors, each with the skipped $w_\perp = w\cos\theta$ line inserted; replaces the note's two closing blocks, the formulas the note states first stay
+- Tension equals weight for a rope holding a mass at rest ('as we can prove using Newton's second law') · score 1 · built as drv-rope-tension: a printed proof, one node; replaces the two displays and the sign-convention sentence between them, which becomes a fact
+- Example 4.6, What Is the Tension in a Tightrope? · score 3 · built as drv-tightrope-tension: the settled sandbox record in this book's macros (three nodes, horizontal and vertical lines joined, numbers last); every line is printed and the score is under the hidden bar, but the example works in symbols to $T = w/(2\sin\theta)$, which Creating a large tension prints as a general formula; replaces the solution's lines, the general formula there stays

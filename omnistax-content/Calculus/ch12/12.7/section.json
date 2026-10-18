@@ -1272,5 +1272,130 @@
    "kind": "correction",
    "html": "With $\\theta$ restricted to $[0,2\\pi),$ as this section does, the angle is $\\theta=\\frac{7\\pi}{4};$ $-\\frac{\\pi}{4}$ names the same angle."
   }
+ ],
+ "derivations": [
+  {
+   "id": "spherical-conversion",
+   "what": "the conversion from spherical coordinates",
+   "source": "Calculus, 12.7 Cylindrical and Spherical Coordinates",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "r=\\rho\\sin\\kphi",
+       "src": "Figure 12.98"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{x}=\\mk{r}{r}\\,\\mk{c}{\\cos\\ktheta}",
+      "src": "12.7, Conversion between Cylindrical and Cartesian Coordinates",
+      "why": "The triangle in the $xy$-plane with $r$ as its hypotenuse."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{x}=\\mk{r}{\\rho\\sin\\kphi}\\,\\mk{c}{\\cos\\ktheta}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "12.7, Converting among Spherical, Cylindrical, and Rectangular Coordinates"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "r=\\rho\\sin\\kphi",
+       "src": "Figure 12.98"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{y}=\\mk{r}{r}\\,\\mk{c}{\\sin\\ktheta}",
+      "src": "12.7, Conversion between Cylindrical and Cartesian Coordinates",
+      "why": "The triangle in the $xy$-plane with $r$ as its hypotenuse."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{y}=\\mk{r}{\\rho\\sin\\kphi}\\,\\mk{c}{\\sin\\ktheta}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "12.7, Converting among Spherical, Cylindrical, and Rectangular Coordinates"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "r^{2}=x^{2}+y^{2}",
+       "src": "12.7, Conversion between Cylindrical and Cartesian Coordinates"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\rho^{2}}=\\mk{r}{r^{2}}+\\mk{z}{z^{2}}",
+      "src": "Figure 12.98"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\rho^{2}}=\\mk{r}{x^{2}+y^{2}}+\\mk{z}{z^{2}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "12.7, Converting among Spherical, Cylindrical, and Rectangular Coordinates"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$0\\le\\kphi\\le\\pi$, where the cosine takes each of its values once.",
+       "src": "12.7"
+      },
+      {
+       "tex": "\\rho^{2}=r^{2}+z^{2}",
+       "src": "Figure 12.98"
+      },
+      {
+       "text": "$\\rho$ is a distance from the origin, and $\\rho\\ne 0$.",
+       "src": "12.7"
+      },
+      {
+       "tex": "r^{2}=x^{2}+y^{2}",
+       "src": "12.7, Conversion between Cylindrical and Cartesian Coordinates"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{z}=\\mk{p}{\\rho}\\,\\mk{c}{\\cos\\kphi}",
+      "src": "Figure 12.98"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\cos\\kphi}=\\dfrac{\\mk{z}{z}}{\\mk{p}{\\rho}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{\\kphi}=\\operatorname{arccos}\\left(\\dfrac{\\mk{z}{z}}{\\mk{p}{\\rho}}\\right)",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\kphi}=\\operatorname{arccos}\\left(\\dfrac{\\mk{z}{z}}{\\mk{p}{\\sqrt{r^{2}+z^{2}}}}\\right)",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$\\rho$ is the positive square root of $\\rho^{2}=r^{2}+z^{2}$."
+      },
+      {
+       "tex": "\\mk{c}{\\kphi}=\\operatorname{arccos}\\left(\\dfrac{\\mk{z}{z}}{\\mk{p}{\\sqrt{x^{2}+y^{2}+z^{2}}}}\\right)",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "12.7, Converting among Spherical, Cylindrical, and Rectangular Coordinates"
+    }
+   ]
+  }
  ]
 }

@@ -1676,5 +1676,172 @@
     "sim-xray"
    ]
   }
+ ],
+ "derivations": [
+  {
+   "id": "laser-cornea-energy",
+   "what": "the energy a laser burst puts into the cornea",
+   "source": "College Physics 2e, 24.3 The Electromagnetic Spectrum, Example 24.3",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kcspec = 4186\\ \\text{J/kg/K}"
+      },
+      {
+       "tex": "\\kdTemp = 100^\\circ\\text{C} - 34^\\circ\\text{C}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{\\kcspec}\\mk{T}{\\kdTemp}",
+      "uses": [],
+      "src": "14.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{(4186\\ \\text{J/kg/K})}\\mk{T}{(100^\\circ\\text{C} - 34^\\circ\\text{C})}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{(276{,}276\\ \\text{J/kg})}",
+       "uses": [],
+       "map": {
+        "T": "c"
+       }
+      },
+      {
+       "tex": "\\mk{Q}{\\kQh} = \\mk{m}{\\km}\\mk{c}{(276\\ \\text{kJ/kg})}",
+       "uses": []
+      }
+     ],
+     "src": "Example 24.3"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kLv = 2256\\ \\text{kJ/kg}",
+       "src": "Table 14.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Q}{\\kQv} = \\mk{m}{\\km}\\mk{L}{\\kLv}",
+      "uses": [],
+      "src": "14.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Q}{\\kQv} = \\mk{m}{\\km}\\mk{L}{(2256\\ \\text{kJ/kg})}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "Example 24.3"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\krho = 1000\\ \\text{kg/m}^{3}"
+      },
+      {
+       "text": "The evaporated layer is a disk $0.80\\ \\text{mm}$ in diameter and $0.30\\ \\mu\\text{m}$ thick."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krho} = \\frac{\\mk{m}{\\km}}{\\mk{V}{\\kvol}}",
+      "uses": [],
+      "src": "11.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{\\krho}\\mk{V}{\\kvol}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{(1000\\ \\text{kg/m}^{3})}\\mk{V}{(\\text{area} \\times \\text{thickness}\\ (\\text{m}^{3}))}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{r}{(1000\\ \\text{kg/m}^{3})}\\mk{V}{(\\pi (0.80 \\times 10^{-3}\\ \\text{m})^{2}/4)(0.30 \\times 10^{-6}\\ \\text{m})}",
+       "uses": [
+        1
+       ],
+       "cap": "A disk of diameter $d$ has area $\\pi d^2/4$."
+      },
+      {
+       "tex": "\\mk{m}{\\km} = \\mk{v}{0.151 \\times 10^{-9}\\ \\text{kg}}",
+       "uses": [],
+       "map": {
+        "r": "v",
+        "V": "v"
+       }
+      }
+     ],
+     "src": "Example 24.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Q}{\\kQtot} = \\mk{h}{\\kQh} + \\mk{v}{\\kQv}",
+      "uses": [],
+      "why": "The light’s energy goes both to raising the temperature of the tissue and to evaporating it."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Q}{\\kQtot} = \\mk{h}{\\km(276\\ \\text{kJ/kg})} + \\mk{v}{\\km(2256\\ \\text{kJ/kg})}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\kQtot} = \\mk{m}{\\km}(\\mk{h}{276\\ \\text{kJ/kg}} + \\mk{v}{2256\\ \\text{kJ/kg}})",
+       "uses": [],
+       "map": {
+        "h": [
+         "m",
+         "h"
+        ],
+        "v": [
+         "m",
+         "v"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{Q}{\\kQtot} = \\mk{m}{(0.151 \\times 10^{-9}\\ \\text{kg})}(\\mk{h}{276\\ \\text{kJ/kg}} + \\mk{v}{2256\\ \\text{kJ/kg}})",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\kQtot} = \\mk{r}{382 \\times 10^{-9}\\ \\text{kJ}}",
+       "uses": [],
+       "map": {
+        "m": "r",
+        "h": "r",
+        "v": "r"
+       }
+      }
+     ],
+     "src": "Example 24.3"
+    }
+   ]
+  }
  ]
 }

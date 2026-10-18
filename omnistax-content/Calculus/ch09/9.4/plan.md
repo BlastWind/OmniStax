@@ -39,3 +39,9 @@ aₙ, bₙ `sequence`, Sₖ `series`, L `limit`; M, N in ink. Referents: `cmp-gi
 ## Wanted at chapter level
 
 - Anchors: variables a_seq, b_seq, n, S → `9.4-comparison-test`; L, M → `9.4-limit-comparison-test`. Forms: eq-limit-comparison → `9.4-limit-comparison-theorem`.
+
+## Derivations
+
+- Comparison Test · Proof (part i) · score 3 · built as drv-comparison-test (part ii, "the contrapositive", left as the book's sentence; the book's "since the terms $a_{n}\ge0$" holds only from $n=N,$ a note on the node)
+- Limit Comparison Test · justified in prose · score 6 · built as drv-limit-comparison-test (hidden: $\varepsilon=L/2$ for the case $L\ne0,$ then the book's own cases $0$ and $\infty;$ the prose kept, the host after the theorem)
+- Example 9.18c · score 3 · not built: a worked example of the section's test

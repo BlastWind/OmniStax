@@ -730,5 +730,62 @@
    "kind": "correction",
    "html": "The book prints $n_1A_1\\bar{v}_1 = n_2A_2\\bar{v}_1$. The equation of continuity for the branching vessels is $n_1A_1\\bar{v}_1 = n_2A_2\\bar{v}_2$, with the speed in the capillaries on the right, as the solution for $n_2$ that follows uses."
   }
+ ],
+ "derivations": [
+  {
+   "id": "flow-rate-velocity",
+   "what": "the flow rate as area times average speed",
+   "source": "College Physics 2e, 12.1 Flow Rate and Its Relation to Velocity",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The shaded cylinder of fluid flows past the point $\\text{P}$ in a time $\\kt$.",
+       "src": "12.1, Figure 12.2"
+      },
+      {
+       "tex": "\\kQ = \\dfrac{\\kvol}{\\kt}",
+       "src": "12.1"
+      },
+      {
+       "tex": "\\kvb = \\dfrac{\\kd}{\\kt}",
+       "src": "12.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kvol} = \\mk{A}{\\karea}\\mk{d}{\\kd}",
+      "uses": [],
+      "src": "12.1, Figure 12.2"
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{V}{\\kvol}}{\\mk{t1}{\\kt}} = \\dfrac{\\mk{A}{\\karea}\\mk{d}{\\kd}}{\\mk{t2}{\\kt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kQ} = \\dfrac{\\mk{A}{\\karea}\\mk{d}{\\kd}}{\\mk{t2}{\\kt}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "t1": "V"
+       }
+      },
+      {
+       "tex": "\\mk{V}{\\kQ} = \\mk{A}{\\karea}\\mk{d}{\\kvb}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "t2": "d"
+       }
+      }
+     ],
+     "src": "12.1"
+    }
+   ]
+  }
  ]
 }

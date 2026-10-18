@@ -321,3 +321,7 @@ cross-reference line is corrected to say so.
 Figure pass, 2026-09-15 (Claude Fable 5.1). `sim-dam`: the force arrow is longer and heavier and its label sits below and to the right of its tail, off the water's surface; the average-depth label steps down and to the right of its bracket's foot, off the pressure arrows; the water's label moves toward the far end of the reservoir so the two no longer meet; the pressure arrows on the face are half again as long. `sim-column` and `sim-atmosphere` unchanged.
 
 Figure pass, 2026-09-28 (Claude Opus 5.5). `sim-column`: a story slider walks the book's derivation, P = F/A, then mg/A, then ρVg/A, then ρAhg/A, and the two areas cancel into P = hρg; the formula morphs by meaning, each factor splitting into the two that replace it. The fluid fills the container as its mass enters, the depth bracket comes forward as V becomes Ah, and the pressure arrows grow in a cascade and the line of the graph draws as the areas cancel. The reader's depth, density and area sliders work at every stop and the story never moves them. `sim-dam` and `sim-atmosphere` unchanged.
+
+## Derivations
+
+- The pressure due to the weight of a fluid, $P = h\rho g$ (printed block) · score 3 · built as drv-pressure-depth: two nodes, the fluid's mass $m = \rho Ah$ and then the pressure on the bottom; replaces the six displayed lines and stands before Figure 11.8. Figure 11.8's sim also runs these steps beside the container, so the reader now meets them twice; whether the sim drops its steps is a call for the figure's owner

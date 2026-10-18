@@ -72,15 +72,8 @@ $$\sum_{n=1}^{\infty} \frac{1}{n}=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots.\
   <table><tbody><tr><td>$k$</td><td>$10$</td><td>$100$</td><td>$1000$</td><td>$10,000$</td><td>$100,000$</td><td>$1,000,000$</td></tr><tr><td>$\kS_{k}$</td><td>$2.92897$</td><td>$5.18738$</td><td>$7.48547$</td><td>$9.78761$</td><td>$12.09015$</td><td>$14.39273$</td></tr></tbody></table>
 </div>
 <p>Even after $1,000,000$ <span data-concept="term-of-a-sequence">terms</span>, the <span data-concept="partial-sum">partial sum</span> is still relatively small. From this table, it is not clear that this <span data-concept="infinite-series">series</span> actually <span data-concept="divergence-of-a-series">diverges</span>. However, we can show analytically that the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="divergence-of-a-series">diverges</span>, and therefore the <span data-concept="infinite-series">series</span> <span data-concept="divergence-of-a-series">diverges</span>.</p>
-<p>To show that the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="divergence-of-a-series">diverges</span>, we show that the <span data-concept="partial-sum">sequence of partial sums</span> is <span data-concept="unbounded-sequence">unbounded</span>. We begin by writing the first several <span data-concept="partial-sum">partial sums</span>:</p>
-$$\begin{gathered}\kS_{1}=1 \\ \kS_{2}=1+\frac{1}{2} \\ \kS_{3}=1+\frac{1}{2}+\frac{1}{3} \\ \kS_{4}=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}.\end{gathered}$$
-<p>Notice that for the last two <span data-concept="term-of-a-sequence">terms</span> in $\kS_{4},$</p>
-$$\frac{1}{3}+\frac{1}{4}\gt \frac{1}{4}+\frac{1}{4}.$$
-<p>Therefore, we conclude that</p>
-$$\kS_{4}\gt 1+\frac{1}{2}+(\frac{1}{4}+\frac{1}{4})=1+\frac{1}{2}+\frac{1}{2}=1+2(\frac{1}{2}).$$
-<p>Using the same idea for $\kS_{8},$ we see that</p>
-$$\begin{aligned}\kS_{8} &=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\frac{1}{6}+\frac{1}{7}+\frac{1}{8}\gt 1+\frac{1}{2}+(\frac{1}{4}+\frac{1}{4})+(\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\frac{1}{8}) \\ &=1+\frac{1}{2}+\frac{1}{2}+\frac{1}{2}=1+3(\frac{1}{2}).\end{aligned}$$
-<p>From this pattern, we see that $\kS_{1}=1,$ $\kS_{2}=1+1/2,$ $\kS_{4}\gt 1+2(1/2),$ and $\kS_{8}\gt 1+3(1/2).$ More generally, it can be shown that $\kS_{2^{j}}\gt 1+j(1/2)$ for all $j\gt 1.$ Since $1+j(1/2)\to \infty,$ we conclude that the <span data-concept="sequence">sequence</span> $\{\kS_{k}\}$ is <span data-concept="unbounded-sequence">unbounded</span> and therefore <span data-concept="divergence-of-a-series">diverges</span>. In the previous section, we stated that <span data-concept="convergent-sequence">convergent sequences</span> are <span data-concept="bounded-sequence">bounded</span>. Consequently, since $\{\kS_{k}\}$ is <span data-concept="unbounded-sequence">unbounded</span>, it <span data-concept="divergence-of-a-series">diverges</span>. Thus, the <span data-concept="harmonic-series">harmonic series</span> <span data-concept="divergence-of-a-series">diverges</span>.</p>
+<p>To show that the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="divergence-of-a-series">diverges</span>, we show that the <span data-concept="partial-sum">sequence of partial sums</span> is <span data-concept="unbounded-sequence">unbounded</span>.</p>
+<figure class="dv" id="drv-harmonic-series-divergence"></figure>
 <h3 id="algebraic-properties">Algebraic Properties of Convergent Series</h3>
 <p>Since the sum of a <span data-concept="convergence-of-a-series">convergent</span> <span data-concept="infinite-series">infinite series</span> is defined as a <span data-concept="limit-of-a-sequence">limit</span> of a <span data-concept="sequence">sequence</span>, the algebraic properties for <span data-concept="infinite-series">series</span> listed below follow directly from the <span data-concept="algebraic-limit-laws-for-sequences">algebraic properties for sequences</span>.</p>
 <div class="note" id="series-properties">
@@ -112,21 +105,8 @@ $$a+ar+ar^{2}+ar^{3}+\cdots=\sum_{n=1}^{\infty}ar^{n-1}.\tag{9.6}$$
 <p>Because the ratio of each <span data-concept="term-of-a-sequence">term</span> in this <span data-concept="infinite-series">series</span> to the previous <span data-concept="term-of-a-sequence">term</span> is <em>r</em>, the number <em>r</em> is called the ratio. We refer to <em>a</em> as the initial <span data-concept="term-of-a-sequence">term</span> because it is the first <span data-concept="term-of-a-sequence">term</span> in the <span data-concept="infinite-series">series</span>. For example, the <span data-concept="infinite-series">series</span></p>
 $$\sum_{n=1}^{\infty}{(\frac{1}{2})}^{n-1}=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\cdots$$
 <p>is a <span data-concept="geometric-series">geometric series</span> with initial <span data-concept="term-of-a-sequence">term</span> $a=1$ and ratio $r=1/2.$</p>
-<p>In general, when does a <span data-concept="geometric-series">geometric series</span> <span data-concept="convergence-of-a-series">converge</span>? Consider the <span data-concept="geometric-series">geometric series</span></p>
-$$\sum_{n=1}^{\infty}ar^{n-1}$$
-<p>when $a\gt 0.$ Its <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ is given by</p>
-$$\kS_{k}=\sum_{n=1}^{k}ar^{n-1}=a+ar+ar^{2}+\cdots+ar^{k-1}.$$
-<p>Consider the case when $r=1.$ In that case,</p>
-$$\kS_{k}=a+a(1)+a{(1)}^{2}+\cdots+a{(1)}^{k-1}=ak.$$
-<p>Since $a\gt 0,$ we know $ak\to \infty$ as $k\to \infty.$ Therefore, the <span data-concept="partial-sum">sequence of partial sums</span> is <span data-concept="unbounded-sequence">unbounded</span> and thus <span data-concept="divergence-of-a-series">diverges</span>. Consequently, the <span data-concept="infinite-series">infinite series</span> <span data-concept="divergence-of-a-series">diverges</span> for $r=1.$ For $r\ne1,$ to find the <span data-concept="limit-of-a-sequence">limit</span> of $\{\kS_{k}\},$ multiply Equation 9.6 by $1-r.$ Doing so, we see that</p>
-$$\begin{aligned}(1-r)\kS_{k} &=a(1-r)(1+r+r^{2}+r^{3}+\cdots+r^{k-1}) \\ &=a[(1+r+r^{2}+r^{3}+\cdots+r^{k-1})-(r+r^{2}+r^{3}+\cdots+r^{k})] \\ &=a(1-r^{k}).\end{aligned}$$
-<p>All the other <span data-concept="term-of-a-sequence">terms</span> cancel out.</p>
-<p>Therefore,</p>
-$$\kS_{k}=\frac{a(1-r^{k})}{1-r}\;\text{for}\;r\ne1.$$
-<p>From our discussion in the previous section, we know that the <span data-concept="geometric-sequence">geometric sequence</span> $r^{k}\to 0$ if $|r|\lt 1$ and that $r^{k}$ <span data-concept="divergent-sequence">diverges</span> if $|r|\gt 1$ or $r=\pm1.$ Therefore, for $|r|\lt 1,$ $\kS_{k}\to a/(1-r)$ and we have</p>
-$$\sum_{n=1}^{\infty}ar^{n-1}=\frac{a}{1-r}\;\text{if}\;|r|\lt 1.$$
-<p>If $|r|\ge1,$ $\kS_{k}$ <span data-concept="divergence-of-a-series">diverges</span>, and therefore</p>
-$$\sum_{n=1}^{\infty}ar^{n-1}\text{diverges if}\;|r|\ge1.$$
+<p>In general, when does a <span data-concept="geometric-series">geometric series</span> <span data-concept="convergence-of-a-series">converge</span>? Consider the <span data-concept="geometric-series">geometric series</span> $\sum_{n=1}^{\infty}ar^{n-1}$ when $a\gt 0.$</p>
+<figure class="dv" id="drv-geometric-series-sum"></figure>
 <div class="note" id="geometric-definition">
 <div class="eyebrow">Definition</div>
 <p>A <span data-concept="geometric-series">geometric series</span> is a <span data-concept="infinite-series">series</span> of the form</p>
@@ -238,10 +218,8 @@ $$\kS_{k}=(1-\frac{1}{2})+(\frac{1}{2}-\frac{1}{3})+(\frac{1}{3}-\frac{1}{4})+\c
 $$\sum_{n=1}^{\infty}[\kbseq_{n}-\kbseq_{n+1}]=(\kbseq_{1}-\kbseq_{2})+(\kbseq_{2}-\kbseq_{3})+(\kbseq_{3}-\kbseq_{4})+\cdots$$
 <p>is a <span data-concept="telescoping-series">telescoping series</span>. We can see this by writing out some of the <span data-concept="partial-sum">partial sums</span>. In particular, we see that</p>
 $$\begin{gathered}\kS_{1}=\kbseq_{1}-\kbseq_{2} \\ \kS_{2}=(\kbseq_{1}-\kbseq_{2})+(\kbseq_{2}-\kbseq_{3})=\kbseq_{1}-\kbseq_{3} \\ \kS_{3}=(\kbseq_{1}-\kbseq_{2})+(\kbseq_{2}-\kbseq_{3})+(\kbseq_{3}-\kbseq_{4})=\kbseq_{1}-\kbseq_{4}.\end{gathered}$$
-<p>In general, the $k$th <span data-concept="partial-sum">partial sum</span> of this <span data-concept="infinite-series">series</span> is</p>
-$$\kS_{k}=\kbseq_{1}-\kbseq_{k+1}.$$
-<p>Since the $k$th <span data-concept="partial-sum">partial sum</span> can be simplified to the difference of these two <span data-concept="term-of-a-sequence">terms</span>, the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ will <span data-concept="convergence-of-a-series">converge</span> if and only if the <span data-concept="sequence">sequence</span> $\{\kbseq_{k+1}\}$ <span data-concept="convergence-of-a-series">converges</span>. Moreover, if the <span data-concept="sequence">sequence</span> $\kbseq_{k+1}$ <span data-concept="convergence-of-a-series">converges</span> to some finite number $B,$ then the <span data-concept="partial-sum">sequence of partial sums</span> <span data-concept="convergence-of-a-series">converges</span> to $\kbseq_{1}-B,$ and therefore</p>
-$$\sum_{n=1}^{\infty}[\kbseq_{n}-\kbseq_{n+1}]=\kbseq_{1}-B.$$
+<figure class="dv" id="drv-telescoping-series"></figure>
+<p>Since the $k$th <span data-concept="partial-sum">partial sum</span> can be simplified to the difference of these two <span data-concept="term-of-a-sequence">terms</span>, the <span data-concept="partial-sum">sequence of partial sums</span> $\{\kS_{k}\}$ will <span data-concept="convergence-of-a-series">converge</span> if and only if the <span data-concept="sequence">sequence</span> $\{\kbseq_{k+1}\}$ <span data-concept="convergence-of-a-series">converges</span>.</p>
 <p>In the next example, we show how to use these ideas to analyze a <span data-concept="telescoping-series">telescoping series</span> of this form.</p>
 <div class="example" id="fs-id1169737264640">
 <h3>Example 9.12 · Evaluating a Telescoping Series</h3>
