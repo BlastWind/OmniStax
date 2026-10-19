@@ -20,7 +20,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     { value: 'pow', label: 'y = xʳ' }, { value: 'log', label: 'y = xʳ ln x' }] });
   const rs = ctl(d.controls, { label: '\\kr', cls: 'eigenvalue', key: 'r', min: -1, max: 2, step: 0.05, value: 0.5, unit: '', dec: 2,
     specials: [{ at: 0 }, { at: 0.5 }, { at: 1 }] });
-  const xs = ctl(d.controls, { label: 'x', cls: '', key: 'x', min: 0.05, max: 3, step: 0.01, value: 0.25, unit: '', dec: 2 });
+  const xs = ctl(d.controls, { label: 'x', cls: '', key: 'x', min: 0.05, max: 3, step: 0.01, value: 0.1, unit: '', dec: 2 });
   const Y = { pow: (r) => (x) => Math.pow(x, r), log: (r) => (x) => Math.pow(x, r) * Math.log(x) };
   const DY = { pow: (r) => (x) => r * Math.pow(x, r - 1), log: (r) => (x) => Math.pow(x, r - 1) * (r * Math.log(x) + 1) };
   const rNow = () => Math.round(rs.v * 100) / 100;
@@ -123,12 +123,15 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     for (let x = 0.8; x <= 9.6; x += 0.05) { const y = f(x); if (y > ax.yr[0] + 0.08 && y < ax.yr[1] - 0.12 && (!best || y > best[1])) best = [x, y]; }
     return best;
   }
+  /* two label spots close enough to collide: the first label goes left of its peak and the second right of its own */
+  const nearAt = (ax, at) => !!(at[0] && at[1] && Math.abs(ax.X(at[1][0]) - ax.X(at[0][0])) < 90 && Math.abs(ax.Y(at[1][1]) - ax.Y(at[0][1])) < 40);
   function labels(ctx, ax, list, color) {
     const at = list.map(([f]) => spot(f, ax));
     list.forEach(([, s], i) => {
       const p = at[i]; if (!p) return;
-      const near = i > 0 && at[0] && Math.abs(ax.X(p[0]) - ax.X(at[0][0])) < 90 && Math.abs(ax.Y(p[1]) - ax.Y(at[0][1])) < 40;
-      label(ctx, s, ax.X(p[0]), ax.Y(p[1]), { side: near ? 'below' : 'above', color, size: 22, weight: 600 });
+      const near = i > 0 && nearAt(ax, at);
+      const side = near ? 'right' : list.length > 1 && i === 0 && nearAt(ax, at) ? 'left' : 'above';
+      label(ctx, s, ax.X(p[0]), ax.Y(p[1]), { side, color, size: 22, weight: 600 });
     });
   }
   let hits = [];

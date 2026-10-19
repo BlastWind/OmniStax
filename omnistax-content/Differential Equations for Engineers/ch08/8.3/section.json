@@ -1,0 +1,982 @@
+{
+ "id": "8.3",
+ "module": "nlinapps:section",
+ "chapter": "8",
+ "title": "Applications of nonlinear systems",
+ "short": "Pendulum and predator-prey",
+ "lead": "Two standard nonlinear systems: the <span data-concept=\"pendulum-equation\">pendulum</span> at large angles, read through its phase plane, its energy and the time one swing takes, and the <span data-concept=\"predator-prey-system\">Lotka–Volterra model</span> of hares and foxes in a forest, read through its equilibria and a quantity that stays fixed along its trajectories.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 8.3.101–8.3.103 carry the book’s own answers. The book answers no exercise below 101; each of 8.3.1–8.3.5 carries an AI-marked solution stating the answer and the reasoning, every critical point, Jacobian and eigenvalue checked with SymPy first, the phase diagrams of 8.3.2 described in words.",
+ "figures": [
+  {
+   "id": "sim-pendulum-phase",
+   "kind": "sim",
+   "number": "8.6",
+   "folds": [
+    "8.7"
+   ],
+   "originals": [
+    "/media/ch08/nlin-pend-phasediag.svg",
+    "/media/ch08/nlin-pend.svg",
+    "/media/ch08/mv-pend.svg"
+   ],
+   "original_caption": "(Figure 8.6) Phase plane diagram and some trajectories of the nonlinear pendulum equation. (Figure 8.7) Various possibilities for the motion of the pendulum.",
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-period",
+   "kind": "sim",
+   "number": "8.8",
+   "originals": [
+    "/media/ch08/nlin-T-vs-T0-abs-relerr.svg"
+   ],
+   "original_caption": "The plot of T and T_linear with g/L = 1 (left), and the plot of the relative error (T − T_linear)/T (right), for θ₀ between 0 and π/2.",
+   "widths": [
+    864
+   ],
+   "draws": [
+    "error",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-predator-prey",
+   "kind": "sim",
+   "number": "8.9",
+   "originals": [
+    "/media/ch08/nlin-pred-prey-phase-graphs.svg"
+   ],
+   "original_caption": "The phase portrait (left) and graphs of x and y for a sample solution (right).",
+   "widths": [
+    864
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "hares",
+   "label": "the hares",
+   "figures": [
+    "sim-predator-prey"
+   ]
+  },
+  {
+   "id": "foxes",
+   "label": "the foxes",
+   "figures": [
+    "sim-predator-prey"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "pendulum-system",
+   "concept": "nonlinear-pendulum",
+   "verb": "introduces"
+  },
+  {
+   "span": "pendulum-motions",
+   "concept": "pendulum-motions",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-conserved",
+   "concept": "pendulum-trajectories",
+   "verb": "introduces"
+  },
+  {
+   "span": "period",
+   "concept": "period-of-the-nonlinear-pendulum",
+   "verb": "introduces"
+  },
+  {
+   "span": "lotka-volterra",
+   "concept": "predator-prey-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "pp-critical-points",
+   "concept": "predator-prey-critical-points",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-of-motion",
+   "concept": "constant-of-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-of-motion",
+   "concept": "checking-a-constant-of-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "apps-intro",
+   "concept": "pendulum-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "apps-intro",
+   "concept": "small-angle-approximation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "apps-intro",
+   "concept": "predator-prey-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-equation",
+   "concept": "pendulum-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pendulum-system",
+   "concept": "conservative-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-critical-points",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-critical-points",
+   "concept": "isolated-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-critical-points",
+   "concept": "critical-points-of-a-conservative-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pendulum-critical-points",
+   "concept": "stable-center",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-critical-points",
+   "concept": "saddle-point",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-jacobian",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-classification",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-classification",
+   "concept": "stable-center",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pendulum-classification",
+   "concept": "saddle-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pendulum-classification",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-classification",
+   "concept": "nonlinear-pendulum",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pendulum-phase",
+   "concept": "nonlinear-pendulum",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pendulum-phase",
+   "concept": "pendulum-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pendulum-phase",
+   "concept": "pendulum-trajectories",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pendulum-phase",
+   "concept": "stable-center",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pendulum-phase",
+   "concept": "saddle-point",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pendulum-phase",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pendulum-phase",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pendulum-phase",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-motions",
+   "concept": "small-angle-approximation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pendulum-motions",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-motions",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-spinning",
+   "concept": "pendulum-motions",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-spinning",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-stable",
+   "concept": "equilibrium-solution-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-stable",
+   "concept": "stable-critical-point-of-a-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pendulum-unstable",
+   "concept": "equilibrium-solution-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-unstable",
+   "concept": "unstable-critical-point-of-a-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pendulum-pictures",
+   "concept": "stable-critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-pictures",
+   "concept": "unstable-critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-pictures",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-conserved",
+   "concept": "hamiltonian",
+   "verb": "reinforces"
+  },
+  {
+   "span": "trajectories",
+   "concept": "trajectories-of-a-conservative-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "trajectories",
+   "concept": "conservative-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "trajectory-from-rest",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "period",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "period-integral",
+   "concept": "period-of-the-nonlinear-pendulum",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-pendulum-period",
+   "concept": "period-of-the-nonlinear-pendulum",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-pendulum-period",
+   "concept": "pendulum-trajectories",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-period",
+   "concept": "period",
+   "verb": "reinforces"
+  },
+  {
+   "span": "relative-error",
+   "concept": "period-of-the-nonlinear-pendulum",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-period",
+   "concept": "period-of-the-nonlinear-pendulum",
+   "verb": "uses"
+  },
+  {
+   "span": "period-limit",
+   "concept": "period-of-the-nonlinear-pendulum",
+   "verb": "uses"
+  },
+  {
+   "span": "period-limit",
+   "concept": "unstable-critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "model-idea",
+   "concept": "predator-prey-system",
+   "verb": "uses"
+  },
+  {
+   "span": "model-analysis",
+   "concept": "exponential-growth",
+   "verb": "reinforces"
+  },
+  {
+   "span": "prey-growth",
+   "concept": "exponential-growth",
+   "verb": "uses"
+  },
+  {
+   "span": "example-graphs",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-predator-prey",
+   "concept": "predator-prey-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-predator-prey",
+   "concept": "predator-prey-critical-points",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-predator-prey",
+   "concept": "constant-of-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-predator-prey",
+   "concept": "stable-center",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-predator-prey",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-predator-prey",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-predator-prey",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-critical-points",
+   "concept": "equilibrium-solution-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-critical-points",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-jacobian",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-origin",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-origin",
+   "concept": "saddle-point",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-origin",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-center",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-eigenvalues",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-eigenvalues",
+   "concept": "linearization-with-a-center",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pp-eigenvalues",
+   "concept": "stable-center",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-eigenvalues",
+   "concept": "spiral-sink",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-eigenvalues",
+   "concept": "spiral-source",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-eigenvalues",
+   "concept": "asymptotically-stable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-eigenvalues",
+   "concept": "stable-critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-eigenvalues",
+   "concept": "unstable-critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pp-eigenvalues",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-trial",
+   "concept": "conservative-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-trial",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-constant-of-motion",
+   "concept": "checking-a-constant-of-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-constant-of-motion",
+   "concept": "constant-of-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-maximum",
+   "concept": "constant-of-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-maximum",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-maximum",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-maximum",
+   "concept": "stable-critical-point-of-a-system",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "pendulum-period",
+   "what": "the period of the pendulum",
+   "source": "Differential Equations for Engineers, 8.3 Applications of nonlinear systems",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "We stay in the region where $\\komega$ is positive.",
+       "src": "8.3"
+      },
+      {
+       "tex": "\\komega = \\frac{d\\ktheta}{dt}",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\komega} = \\mk{c}{\\pm \\sqrt{ \\frac{2g}{L}}} \\mk{r}{\\sqrt{ \\cos \\ktheta - \\cos \\theta_0 }}",
+      "src": "8.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{w}{\\komega} = \\mk{c}{\\sqrt{ \\frac{2g}{L}}} \\mk{r}{\\sqrt{ \\cos \\ktheta - \\cos \\theta_0 }}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{w}{\\frac{d\\ktheta}{dt}} = \\mk{c}{\\sqrt{ \\frac{2g}{L}}} \\mk{r}{\\sqrt{ \\cos \\ktheta - \\cos \\theta_0 }}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{w}{\\frac{dt}{d\\ktheta}} = \\mk{c}{\\frac{1}{\\sqrt{2g/L}}} \\mk{r}{\\frac{1}{\\sqrt{ \\cos \\ktheta - \\cos \\theta_0 }}}",
+       "uses": [
+        0
+       ],
+       "cap": "Where $\\theta$ increases with $t$, inverting turns the rate into its reciprocal: $\\frac{dt}{d\\theta} = 1 \\big/ \\frac{d\\theta}{dt}$."
+      },
+      {
+       "tex": "\\mk{w}{\\frac{dt}{d\\ktheta}} = \\mk{c}{\\sqrt{\\frac{L}{2g}}} \\mk{r}{\\frac{1}{\\sqrt{ \\cos \\ktheta - \\cos \\theta_0 }}}"
+      }
+     ],
+     "src": "8.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The trajectory about the origin is symmetric about both the $\\theta$ and the $\\omega$-axis, so going from angle $0$ to angle $\\theta_0$ takes a quarter of the full oscillation.",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\kT} = \\mk{f}{4} \\mk{i}{\\int_0^{\\theta_0} \\frac{dt}{d\\ktheta}\\, d\\ktheta}",
+      "uses": [
+       1
+      ],
+      "why": "We find how long it takes to go from angle $0$ to angle $\\theta_0$ by integrating $\\frac{dt}{d\\theta}$ from $0$ to $\\theta_0$; the period is four times this integral."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{f}{4} \\mk{i}{\\int_0^{\\theta_0} \\sqrt{\\frac{L}{2g}} \\frac{1}{\\sqrt{\\cos \\ktheta - \\cos \\theta_0 }}\\, d\\ktheta}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kT} = \\mk{f}{4 \\sqrt{\\frac{L}{2g}}} \\mk{i}{\\int_0^{\\theta_0} \\frac{1}{\\sqrt{\\cos \\ktheta - \\cos \\theta_0 }}\\, d\\ktheta}"
+      }
+     ],
+     "src": "8.3"
+    }
+   ]
+  },
+  {
+   "id": "constant-of-motion",
+   "what": "the derivative of the constant of motion",
+   "source": "Differential Equations for Engineers, 8.3 Applications of nonlinear systems",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "C = \\ky^a \\kx^d e^{-c\\kx-b\\ky}",
+       "src": "8.3"
+      },
+      {
+       "tex": "\\kxprime = (a-b\\ky)\\kx",
+       "src": "8.3"
+      },
+      {
+       "tex": "\\kyprime = (c\\kx-d)\\ky",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{C}{C'} = \\mk{D}{\\frac{d}{dt} \\bigl( \\ky^a \\kx^d e^{-c\\kx-b\\ky} \\bigr)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{C}{C'} = \\mk{a}{a \\ky^{a-1}\\kyprime \\kx^d e^{-c\\kx-b\\ky}} + \\mk{b}{\\ky^a d \\kx^{d-1} \\kxprime e^{-c\\kx-b\\ky}} + \\mk{e}{\\ky^a \\kx^d e^{-c\\kx-b\\ky} (-c\\kxprime-b\\kyprime)}",
+       "map": {
+        "D": [
+         "a",
+         "b",
+         "e"
+        ]
+       },
+       "cap": "The product rule on the three factors, with the chain rule on each: $(y^a)' = a y^{a-1} y'$, $(x^d)' = d x^{d-1} x'$ and $(e^{-cx-by})' = e^{-cx-by}(-cx'-by')$."
+      },
+      {
+       "tex": "\\mk{C}{C'} = \\mk{a}{a \\ky^{a-1} (c\\kx-d)\\ky \\kx^d e^{-c\\kx-b\\ky}} + \\mk{b}{\\ky^a d \\kx^{d-1} (a-b\\ky)\\kx e^{-c\\kx-b\\ky}} + \\mk{e}{\\ky^a \\kx^d e^{-c\\kx-b\\ky} \\bigl(-c(a-b\\ky)\\kx-b(c\\kx-d)\\ky\\bigr)}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Our equations give us what $x'$ and $y'$ are, so we plug those in."
+      },
+      {
+       "tex": "\\mk{C}{C'} = \\mk{E}{\\ky^a \\kx^d e^{-c\\kx-b\\ky}} \\mk{B}{\\Bigl( a (c\\kx-d) + d (a-b\\ky) + \\bigl(-c(a-b\\ky)\\kx-b(c\\kx-d)\\ky\\bigr) \\Bigr)}",
+       "map": {
+        "a": [
+         "E",
+         "B"
+        ],
+        "b": [
+         "E",
+         "B"
+        ],
+        "e": [
+         "E",
+         "B"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{C}{C'} = \\mk{E}{\\ky^a \\kx^d e^{-c\\kx-b\\ky}} \\mk{B}{\\bigl( ac\\kx - ad + ad - bd\\ky - ac\\kx + bc\\kx\\ky - bc\\kx\\ky + bd\\ky \\bigr)}"
+      },
+      {
+       "tex": "\\mk{C}{C'} = \\mk{B}{0}"
+      }
+     ],
+     "src": "8.3"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "8.3.1",
+   "source_number": "8.3.1",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pendulum-classification",
+   "prompt": "<p>Take the <em>damped nonlinear pendulum equation</em> $\\kthetadprime + \\mu \\kthetaprime + ({g}/{L}) \\sin \\ktheta = 0$ for some $\\mu &gt; 0$ (that is, there is some friction).</p><ol type=\"a\"><li>Suppose $\\mu = 1$ and ${g}/{L} = 1$ for simplicity. Find and classify the critical points.</li><li>Do the same for any $\\mu &gt; 0$ and any $g$ and $L$, but such that the damping is small, in particular, $\\mu^2 &lt; 4({g}/{L})$.</li><li>Explain what your findings mean, and if it agrees with what you expect in reality.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\komega = \\kthetaprime$ the system is $\\ktheta' = \\komega$, $\\komega' = -\\mu\\komega - \\frac{g}{L}\\sin\\ktheta$. The critical points are where $\\komega = 0$ and $\\sin\\ktheta = 0$: the points $(k\\pi, 0)$ for every integer $k$, all isolated. The Jacobian matrix is $\\left[ \\begin{smallmatrix} 0 & 1 \\\\ -\\frac{g}{L}\\cos\\ktheta & -\\mu \\end{smallmatrix} \\right]$. a) At an even multiple of $\\pi$ it is $\\left[ \\begin{smallmatrix} 0 & 1 \\\\ -1 & -1 \\end{smallmatrix} \\right]$, with $\\klambda^2 + \\klambda + 1 = 0$, so $\\klambda = -\\frac{1}{2} \\pm \\frac{\\sqrt{3}}{2} i$: complex with negative real part, a spiral sink, asymptotically stable. At an odd multiple of $\\pi$ it is $\\left[ \\begin{smallmatrix} 0 & 1 \\\\ 1 & -1 \\end{smallmatrix} \\right]$, with $\\klambda^2 + \\klambda - 1 = 0$, so $\\klambda = \\frac{-1 \\pm \\sqrt{5}}{2}$: real of opposite signs, a saddle, unstable. b) At an even multiple $\\klambda^2 + \\mu\\klambda + \\frac{g}{L} = 0$, so $\\klambda = \\frac{-\\mu \\pm i\\sqrt{4g/L - \\mu^2}}{2}$, complex since $\\mu^2 &lt; 4g/L$, with real part $-\\mu/2 &lt; 0$: again spiral sinks. At an odd multiple $\\klambda^2 + \\mu\\klambda - \\frac{g}{L} = 0$, so $\\klambda = \\frac{-\\mu \\pm \\sqrt{\\mu^2 + 4g/L}}{2}$, one positive and one negative: again saddles. c) The centers of the frictionless pendulum have become spiral sinks: a pendulum with a little friction still swings back and forth, but each swing is smaller, and it settles hanging straight down. The upside-down positions are still saddles, so a pendulum balanced upside down falls away at the slightest push. A big push may still carry it over the top a few times, but friction takes its energy away until it swings and settles at some $\\ktheta = 2k\\pi$, which is the same position as hanging straight down. This agrees with what a real pendulum does."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "8.3.2",
+   "source_number": "8.3.2",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pp-critical-points",
+   "prompt": "<p>Suppose the hares do not grow exponentially, but logistically. In particular consider</p>$$ \\kxprime = (0.4-0.01\\ky)\\kx - \\gamma \\kx^2, \\qquad \\kyprime = (0.003\\kx-0.3)\\ky . $$<p>For the following two values of $\\gamma$, find and classify all the critical points in the positive quadrant, that is, for $x \\geq 0$ and $y \\geq 0$. Then sketch the phase diagram. Discuss the implication for the long-term behavior of the population.</p><ol type=\"a\"><li>$\\gamma=0.001$,</li><li>$\\gamma=0.01$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The critical points: $\\kyprime = 0$ when $\\ky = 0$ or $\\kx = 100$. With $\\ky = 0$, $\\kxprime = (0.4 - \\gamma\\kx)\\kx = 0$ gives $\\kx = 0$ or $\\kx = 0.4/\\gamma$. With $\\kx = 100$, $0.4 - 0.01\\ky - 100\\gamma = 0$ gives $\\ky = 40 - 10000\\gamma$. The Jacobian matrix is $\\left[ \\begin{smallmatrix} 0.4 - 0.01\\ky - 2\\gamma\\kx & -0.01\\kx \\\\ 0.003\\ky & 0.003\\kx - 0.3 \\end{smallmatrix} \\right]$. At $(0,0)$ it is $\\left[ \\begin{smallmatrix} 0.4 & 0 \\\\ 0 & -0.3 \\end{smallmatrix} \\right]$ for either $\\gamma$: eigenvalues $0.4$ and $-0.3$, a saddle. a) $\\gamma = 0.001$: the critical points are $(0,0)$, $(400, 0)$ and $(100, 30)$. At $(400,0)$ the Jacobian is $\\left[ \\begin{smallmatrix} -0.4 & -4 \\\\ 0 & 0.9 \\end{smallmatrix} \\right]$, eigenvalues $-0.4$ and $0.9$: a saddle. At $(100, 30)$ it is $\\left[ \\begin{smallmatrix} -0.1 & -1 \\\\ 0.09 & 0 \\end{smallmatrix} \\right]$, with $\\klambda^2 + 0.1\\klambda + 0.09 = 0$, so $\\klambda = -0.05 \\pm \\frac{\\sqrt{35}}{20} i \\approx -0.05 \\pm 0.296 i$: a spiral sink. In the phase diagram the trajectories in the open quadrant spiral in toward $(100, 30)$; along the $x$-axis the hares alone grow toward 400. In the long run the populations oscillate with dying amplitude and settle at 100 hares and 30 foxes. b) $\\gamma = 0.01$: the critical points are $(0,0)$, $(40, 0)$ and $(100, -60)$, and the last is outside the quadrant. At $(40,0)$ the Jacobian is $\\left[ \\begin{smallmatrix} -0.4 & -0.4 \\\\ 0 & -0.18 \\end{smallmatrix} \\right]$, eigenvalues $-0.4$ and $-0.18$: a sink. Whenever $\\kx &gt; 40$ the hares decrease, since $\\kxprime \\leq (0.4 - 0.01\\kx)\\kx &lt; 0$, so before long $\\kx &lt; 100$, $0.003\\kx - 0.3 &lt; 0$, and the foxes decline for good; every trajectory in the quadrant with some hares goes to $(40,0)$. In the long run the foxes die out and the hares settle at 40: there are too few hares for the foxes to live on."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "8.3.3",
+   "source_number": "8.3.3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-maximum",
+   "prompt": "<ol type=\"a\"><li>Suppose $x$ and $y$ are positive variables. Show $\\frac{y x}{e^{x+y}}$ attains a maximum at $(1,1)$.</li><li>Suppose $a,b,c,d$ are positive constants, and also suppose $x$ and $y$ are positive variables. Show $\\frac{y^a x^d}{e^{cx+by}}$ attains a maximum at $({d}/{c},{a}/{b})$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "b) The function splits into a factor in $x$ alone and one in $y$ alone: $\\frac{y^a x^d}{e^{cx+by}} = \\bigl(x^d e^{-cx}\\bigr)\\bigl(y^a e^{-by}\\bigr)$, both positive. For $p(x) = x^d e^{-cx}$ we get $p'(x) = x^{d-1} e^{-cx} (d - cx)$, positive for $0 &lt; x &lt; d/c$ and negative for $x &gt; d/c$, so $p$ increases up to $x = d/c$ and decreases after: its maximum over $x &gt; 0$ is at $x = d/c$. In the same way $q(y) = y^a e^{-by}$ has $q'(y) = y^{a-1}e^{-by}(a - by)$ and its maximum over $y &gt; 0$ is at $y = a/b$. A product of two positive factors, each largest at its own point, is largest when both are, so the maximum is at $(d/c, a/b)$, and nowhere else: it is the only point where both partial derivatives vanish. a) This is b) with $a = b = c = d = 1$: $\\frac{yx}{e^{x+y}} = (xe^{-x})(ye^{-y})$, and $u e^{-u}$ has derivative $(1-u)e^{-u}$, positive below $u = 1$ and negative above it. So the maximum is at $(1,1)$, with the value $e^{-2}$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "8.3.4",
+   "source_number": "8.3.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "period-integral",
+   "prompt": "<p>Suppose that for the pendulum equation we take a trajectory giving the spinning-around motion, for example $\\komega = \\sqrt{\\frac{2g}{L} \\cos \\ktheta + \\frac{2g}{L} + \\omega_0^2}$. This is the trajectory where the lowest angular velocity is $\\omega_0$. Find an integral expression for how long it takes the pendulum to go all the way around.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "On this trajectory $\\komega &gt; 0$ for every $\\ktheta$ (the expression under the root is at least $\\omega_0^2$, its value at $\\ktheta = \\pi$), so $\\ktheta$ increases all the time and, as in the computation of the period, $\\frac{dt}{d\\ktheta} = \\frac{1}{\\komega}$. Going all the way around means $\\ktheta$ runs from $0$ to $2\\pi$, so the time is $$ \\int_0^{2\\pi} \\frac{d\\ktheta}{\\sqrt{\\frac{2g}{L} \\cos \\ktheta + \\frac{2g}{L} + \\omega_0^2}} = 2\\int_0^{\\pi} \\frac{d\\ktheta}{\\sqrt{\\frac{2g}{L} \\cos \\ktheta + \\frac{2g}{L} + \\omega_0^2}} , $$ the second form by the symmetry of $\\cos\\ktheta$ about $\\ktheta = \\pi$. For $\\omega_0 &gt; 0$ the integrand is bounded, so unlike the swinging period this integral is not improper."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "8.3.5",
+   "source_number": "8.3.5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "tag": "challenging",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trajectory-from-rest",
+   "prompt": "<p>Take the pendulum, suppose the initial position is $\\ktheta = 0$.</p><ol type=\"a\"><li>Find the expression for $\\komega$ giving the trajectory with initial condition $(0,\\omega_0)$. Hint: Figure out what $C$ should be in terms of $\\omega_0$.</li><li>Find the crucial angular velocity $\\omega_1$, such that for any higher initial angular velocity, the pendulum will keep going around its axis, and for any lower initial angular velocity, the pendulum will simply swing back and forth. Hint: When the pendulum doesn’t go over the top, the expression for $\\komega$ will be undefined for some $\\ktheta$s.</li><li>What do you think happens if the initial condition is $(0,\\omega_1)$, that is, the initial angle is 0, and the initial angular velocity is exactly $\\omega_1$?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Put $(0, \\omega_0)$ into $\\komega = \\pm\\sqrt{\\frac{2g}{L}\\cos\\ktheta + C}$: $\\omega_0^2 = \\frac{2g}{L} + C$, so $C = \\omega_0^2 - \\frac{2g}{L}$ and $$ \\komega = \\pm\\sqrt{\\frac{2g}{L}\\cos\\ktheta + \\omega_0^2 - \\frac{2g}{L}} = \\pm\\sqrt{\\omega_0^2 - \\frac{2g}{L}(1 - \\cos\\ktheta)} . $$ b) The expression under the root is smallest at $\\ktheta = \\pi$, where it is $\\omega_0^2 - \\frac{4g}{L}$. If $\\omega_0^2 &gt; \\frac{4g}{L}$ it stays positive for every $\\ktheta$, so $\\komega$ never reaches zero and the pendulum keeps going around. If $\\omega_0^2 &lt; \\frac{4g}{L}$ it reaches zero at some angle before $\\pi$, beyond which $\\komega$ is undefined: the pendulum stops there and swings back. So $\\omega_1 = 2\\sqrt{\\frac{g}{L}}$. c) With $\\omega_0 = \\omega_1$ the trajectory is $\\komega = \\pm 2\\sqrt{\\frac{g}{L}}\\cos\\frac{\\ktheta}{2}$, the curve through the saddle at $(\\pi, 0)$ in Figure 8.6. The pendulum rises toward the upside-down position, slowing as it goes, and never quite gets there: the time to reach it, $\\int_0^{\\pi} \\frac{d\\ktheta}{2\\sqrt{g/L}\\cos(\\ktheta/2)}$, is infinite. It approaches the unstable equilibrium forever, neither going over the top nor falling back (in reality the slightest disturbance decides which)."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "8.3.101",
+   "source_number": "8.3.101",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pendulum-classification",
+   "prompt": "<p>Take the damped nonlinear pendulum equation $\\kthetadprime + \\mu \\kthetaprime + ({g}/{L}) \\sin \\ktheta = 0$ for some $\\mu &gt; 0$ (that is, there is friction). Suppose the friction is large, in particular $\\mu^2 &gt; 4 ({g}/{L})$.</p><ol type=\"a\"><li>Find and classify the critical points.</li><li>Explain what your findings mean, and if it agrees with what you expect in reality.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) Critical points are $\\komega=0$, $\\ktheta=k\\pi$ for any integer $k$. When $k$ is odd, we have a saddle point. When $k$ is even we get a sink. b) The findings mean the pendulum will simply go to one of the sinks, for example $(0,0)$ and it will not swing back and forth. The friction is too high for it to oscillate, just like an overdamped mass-spring system."
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "8.3.102",
+   "source_number": "8.3.102",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pp-critical-points",
+   "prompt": "<p>Suppose we have the predator-prey system where the foxes are also killed at a constant rate $h$ ($h$ foxes killed per unit time): $\\kxprime = (a-b\\ky)\\kx,$ $\\kyprime = (c\\kx-d)\\ky - h$.</p><ol type=\"a\"><li>Find the critical points and the Jacobian matrices of the system.</li><li>Put in the constants $a=0.4$, $b=0.01$, $c=0.003$, $d=0.3$, $h=10$. Analyze the critical points. What do you think it says about the forest?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) Solving for the critical points we get $(0,-{h}/{d})$ and $(\\frac{bh+ad}{ac},\\frac{a}{b})$. The Jacobian matrix at $(0,-{h}/{d})$ is $\\left[ \\begin{smallmatrix} a+bh/d & 0 \\\\ -ch/d & -d \\end{smallmatrix} \\right]$ whose eigenvalues are $a+bh/d$ and $-d$. The eigenvalues are real of opposite signs and we get a saddle. (In the application, however, we are only looking at the positive quadrant so this critical point is irrelevant.) At $(\\frac{bh+ad}{ac},\\frac{a}{b})$ we get Jacobian matrix $\\left[ \\begin{smallmatrix} 0 & -\\frac{b \\left( b h+a d\\right) }{a c}\\\\ \\frac{a c}{b} & \\frac{b h+a d}{a}-d \\end{smallmatrix} \\right]$. b) For the specific numbers given, the second critical point is $(\\frac{550}{3},40)$ the matrix is $\\left[ \\begin{smallmatrix} 0 & -11/6 \\\\ 3/25 & 1/4 \\end{smallmatrix} \\right]$, which has eigenvalues $\\frac{5\\pm i \\sqrt{327}}{40}$. Therefore there is a spiral source; the solution spirals outwards. The solution eventually hits one of the axes, $x=0$ or $y=0$, so something will die out in the forest."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "8.3.103",
+   "source_number": "8.3.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "tag": "challenging",
+   "place": {
+    "at": "end"
+   },
+   "cite": "constant-of-motion",
+   "prompt": "<p>Suppose the foxes never die. That is, we have the system $\\kxprime = (a-b\\ky)\\kx,$ $\\kyprime = c\\kx\\ky$. Find the critical points and notice they are not isolated. What will happen to the population in the forest if it starts at some positive numbers. Hint: Think of the constant of motion.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The critical points are on the line $x=0$. In the positive quadrant the $\\kyprime$ is always positive and so the fox population always grows. The constant of motion is $C = y^ae^{-cx-by}$. For any $C$, this curve must hit the $y$-axis (why?), so the trajectory will simply approach a point on the $y$ axis somewhere and the number of hares will go to zero."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "nonlinear-pendulum"
+  },
+  {
+   "exercise": "e1",
+   "concept": "classifying-critical-points-of-a-system"
+  },
+  {
+   "exercise": "e1",
+   "concept": "spiral-sink"
+  },
+  {
+   "exercise": "e1",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e2",
+   "concept": "predator-prey-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "predator-prey-critical-points"
+  },
+  {
+   "exercise": "e2",
+   "concept": "classifying-critical-points-of-a-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "spiral-sink"
+  },
+  {
+   "exercise": "e3",
+   "concept": "constant-of-motion"
+  },
+  {
+   "exercise": "e3",
+   "concept": "predator-prey-critical-points"
+  },
+  {
+   "exercise": "e4",
+   "concept": "period-of-the-nonlinear-pendulum"
+  },
+  {
+   "exercise": "e4",
+   "concept": "pendulum-trajectories"
+  },
+  {
+   "exercise": "e5",
+   "concept": "pendulum-trajectories"
+  },
+  {
+   "exercise": "e5",
+   "concept": "pendulum-motions"
+  },
+  {
+   "exercise": "e101",
+   "concept": "nonlinear-pendulum"
+  },
+  {
+   "exercise": "e101",
+   "concept": "classifying-critical-points-of-a-system"
+  },
+  {
+   "exercise": "e102",
+   "concept": "predator-prey-critical-points"
+  },
+  {
+   "exercise": "e102",
+   "concept": "classifying-critical-points-of-a-system"
+  },
+  {
+   "exercise": "e102",
+   "concept": "spiral-source"
+  },
+  {
+   "exercise": "e103",
+   "concept": "constant-of-motion"
+  },
+  {
+   "exercise": "e103",
+   "concept": "isolated-critical-point"
+  },
+  {
+   "exercise": "e103",
+   "concept": "predator-prey-system"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-lotka-volterra",
+   "kind": "book",
+   "number": "47",
+   "html": "Named for the American mathematician, chemist, and statistician <a href=\"https://en.wikipedia.org/wiki/Alfred_J._Lotka\">Alfred James Lotka</a> (1880–1949) and the Italian mathematician and physicist <a href=\"https://en.wikipedia.org/wiki/Vito_Volterra\">Vito Volterra</a> (1860–1940)."
+  },
+  {
+   "id": "fn-hare",
+   "kind": "book",
+   "number": "48",
+   "html": "This interaction does not end well for the hare."
+  }
+ ]
+}
