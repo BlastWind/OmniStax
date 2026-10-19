@@ -69,7 +69,7 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
     const x = [r1(s1.v), r1(s2.v)], zero = x[0] === 0 && x[1] === 0;
     const k = ease.smooth(arrival(d));
     hits = [];
-    const taken = [];
+    const taken = [], arcs = [];
     const clash = (b) => taken.some((o) => b.l < o.r + 2 && o.l < b.r + 2 && b.t < o.b + 2 && o.t < b.b + 2);
     /* a name set beside the point it names: out along (ux, uy), stepping further out, then turning, where the slot is taken */
     const name = (s, px, py, ux, uy, color, size = 24) => {
@@ -123,23 +123,29 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
       const at = grips[pi].draw(ctx, ax, vc);
       const keep = (q) => taken.push({ l: q[0] - 5, r: q[0] + 5, t: q[1] - 5, b: q[1] + 5 });
       [hx, hw].forEach((h) => { const L = Math.hypot(h[0] - O[0], h[1] - O[1]); for (let t = 20; t < L - 6; t += 14) keep([O[0] + ((h[0] - O[0]) * t) / L, O[1] + ((h[1] - O[1]) * t) / L]); });
-      [h1, h2, h3].forEach((h) => h && h[4].forEach(keep));
+      [h1, h2, h3].forEach((h) => h && arcs.push(...h[4]));
       return { P, ax, x, v, w, hx, hv, hw, h1, h2, h3, at, out: pinned(w) };
     });
     /* names last, above the arrows: the vectors' at their heads (the reader's x⃗ first), then the hops' */
     const unit = (p, q) => { const dx = q[0] - p[0], dy = q[1] - p[1], L = Math.hypot(dx, dy) || 1; return [dx / L, dy / L]; };
+    /* a vector is named only where it is long enough to tell from the others, a hop only where it is long
+       enough to carry a name; the vectors take their slots first, over the hops if need be, then the hops
+       take what is left */
+    const far = (h, O) => Math.hypot(h[0] - O[0], h[1] - O[1]) > 40;
     if (k > 0.98) results.forEach((R) => {
       const { P, ax, hx, hv, hw } = R, O = [ax.X(0), ax.Y(0)];
       const out = (h) => (Math.hypot(h[0] - O[0], h[1] - O[1]) > 4 ? unit(O, h) : [0.7, -0.7]);
       name('$\\kvecx$', hx[0], hx[1], ...out(hx), C('vector'));
-      name(`$${P.s}(${P.f}\\kvecx)$`, hw[0], hw[1], ...out(hw), C('vector'));
-      name(`$${P.f}\\kvecx$`, hv[0], hv[1], ...out(hv), C('vector'));
+      if (far(hw, O)) name(`$${P.s}(${P.f}\\kvecx)$`, hw[0], hw[1], ...out(hw), C('vector'));
+      if (far(hv, O) && far(hv, hx) && far(hv, hw)) name(`$${P.f}\\kvecx$`, hv[0], hv[1], ...out(hv), C('vector'));
     });
+    arcs.forEach((q) => taken.push({ l: q[0] - 5, r: q[0] + 5, t: q[1] - 5, b: q[1] + 5 }));
+    const long = (h, p, q) => h && Math.hypot(q[0] - p[0], q[1] - p[1]) > 50;
     if (k > 0.98) results.forEach((R) => {
-      const { P, h1, h2, h3 } = R;
-      if (h1) name(`$${P.f}$`, h1[0] - h1[2] * 24, h1[1] - h1[3] * 24, h1[2], h1[3], C('matrix'));
-      if (h2) name(`$${P.s}$`, h2[0] - h2[2] * 24, h2[1] - h2[3] * 24, h2[2], h2[3], C('matrix'));
-      if (h3) name(`$${P.s}${P.f}$`, h3[0] - h3[2] * 24, h3[1] - h3[3] * 24, h3[2], h3[3], C('matrix'));
+      const { P, h1, h2, h3, hx, hv, hw } = R;
+      if (long(h1, hx, hv)) name(`$${P.f}$`, h1[0] - h1[2] * 24, h1[1] - h1[3] * 24, h1[2], h1[3], C('matrix'));
+      if (long(h2, hv, hw)) name(`$${P.s}$`, h2[0] - h2[2] * 24, h2[1] - h2[3] * 24, h2[2], h2[3], C('matrix'));
+      if (long(h3, hx, hw)) name(`$${P.s}${P.f}$`, h3[0] - h3[2] * 24, h3[1] - h3[3] * 24, h3[2], h3[3], C('matrix'));
     });
     results.forEach((R) => {
       const { P, x: xx, v, w, hx, hv, hw } = R;

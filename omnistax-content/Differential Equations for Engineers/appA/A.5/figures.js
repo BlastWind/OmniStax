@@ -34,11 +34,11 @@ const onGrid = (x, other = 1) => (x !== null && Number.isFinite(x) && Math.abs(x
 /* the plane ℝ², one scale for both axes: x and y from −5 to 5, U units to 1, centred in the canvas.
    Every slider runs −4 to 4, so every vector drawn stays inside; a projection can be longer than that
    (a long w⃗ on a short v⃗ keeps its length along the line) and is clipped at the box. */
-const U = 66, OX = 700, OY = 440, BOX = { l: OX - 5 * U, r: OX + 5 * U, t: OY - 5 * U, b: OY + 5 * U };
+const U = 72, OX = 700, OY = 470, BOX = { l: OX - 5 * U, r: OX + 5 * U, t: OY - 5 * U, b: OY + 5 * U };
 const PL = { box: BOX, X: (x) => OX + U * x, Y: (y) => OY - U * y, xr: [-5, 5], yr: [-5, 5] };
 const P = (p) => [PL.X(p[0]), PL.Y(p[1])];
 function clip(ctx, draw) { ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip(); draw(); ctx.restore(); }
-function plane(ctx) {
+function plane(ctx, ticks = [-4, -2, 2, 4]) {
   const mu = PAL.muted;
   clip(ctx, () => {
     for (let i = -5; i <= 5; i++) {
@@ -48,7 +48,7 @@ function plane(ctx) {
   });
   line(ctx, BOX.l, OY, BOX.r, OY, alpha(mu, 0.8), 2);
   line(ctx, OX, BOX.t, OX, BOX.b, alpha(mu, 0.8), 2);
-  [-4, -2, 2, 4].forEach((v) => {
+  ticks.forEach((v) => {
     text(ctx, tm(v, 0), PL.X(v), OY + 20, mu, { size: 19, align: 'center' });
     text(ctx, tm(v, 0), OX - 12, PL.Y(v), mu, { size: 19, align: 'right' });
   });
@@ -91,7 +91,7 @@ const slider = (d, label, key, value, aria, at, name) =>
    idea has a clock. Defaults: Example A.5.1, x⃗ = (3, 0), y⃗ = (1, 1), θ = π/4. Each slider's dashed circle sits
    where ⟨x⃗, y⃗⟩ = 0 given the other three, where that value is on the slider's grid. */
 (function () {
-  const d = sim('sim-angle-between-vectors', 800);
+  const d = sim('sim-angle-between-vectors', 850);
   let x1 = null, x2 = null, y1 = null, y2 = null;
   const ready = () => x1 && x2 && y1 && y2;
   x1 = slider(d, 'x_1', 'x1', 3, 'the first component x₁ of x⃗', () => (ready() && y1.v ? onGrid((-x2.v * y2.v) / y1.v, x2.v) : null), 'orthogonal');
@@ -109,7 +109,7 @@ const slider = (d, label, key, value, aria, at, name) =>
     const x = [x1.v, x2.v], y = [y1.v, y2.v];
     const sx = ipH(x, x), sy = ipH(y, y), ip = ipH(x, y);              /* hundredths */
     hits = [];
-    plane(ctx);
+    plane(ctx, [-4, 4]);   /* ±2 would sit under the arcs' names */
     const zx = sx === 0, zy = sy === 0;
     let th = null;
     if (!zx && !zy) {
@@ -118,7 +118,7 @@ const slider = (d, label, key, value, aria, at, name) =>
       th = Math.acos(Math.max(-1, Math.min(1, ip / Math.sqrt(sx * sy))));
       /* the short way runs counterclockwise from `a` to `b`: y⃗ to x⃗ as the book draws it, else x⃗ to y⃗ */
       const [a, b] = dd >= 0 ? [ay, ax] : [ax, ay];
-      const sh = th, R1 = 120, R2 = 68, R3 = 40;
+      const sh = th, R1 = 132, R2 = 78, R3 = 44;
       const faint = alpha(ink, 0.45);
       if (ip === 0) square(ctx, [OX, OY], [Math.cos(a), Math.sin(a)], [Math.cos(b), Math.sin(b)], ink, 22);
       if (sh > 1e-9) turn(ctx, a, a + sh, R1, ink, 2.5);
@@ -128,7 +128,7 @@ const slider = (d, label, key, value, aria, at, name) =>
       const put = (s, ang, r, c) => { const ux = Math.cos(ang), uy = Math.sin(ang); mark(ctx, s, OX + r * ux, OY - r * uy, c, { size: 24, align: ux < -0.35 ? 'right' : ux > 0.35 ? 'left' : 'center' }); };
       if (sh > 0.12) put('$\\ktheta$', mid, R1 + 16, ink);
       if (sh > 0.25) put('$-\\ktheta$', mid, R2 - 4 > 30 ? (R1 + R2) / 2 - 6 : R2, faint);
-      put('$2\\pi - \\ktheta$', far, R3 + 22, faint);
+      put('$2\\pi - \\ktheta$', far, R3 + 26, faint);
       hits.push({ x: OX + R1 * Math.cos(mid), y: OY - R1 * Math.sin(mid), r: 14, name: `θ ≈ ${tm(th, 3)}, the angle between x⃗ and y⃗` });
       hits.push({ x: OX + R2 * Math.cos(mid), y: OY - R2 * Math.sin(mid), r: 12, name: `−θ ≈ ${tm(-th, 3)}: the same turn read the other way, with the same cosine` });
       hits.push({ x: OX + R3 * Math.cos(far), y: OY - R3 * Math.sin(far), r: 12, name: `2π − θ ≈ ${tm(2 * Math.PI - th, 3)}: the long way round, with the same cosine` });
@@ -149,9 +149,9 @@ const slider = (d, label, key, value, aria, at, name) =>
       return;
     }
     const cs = ip / Math.sqrt(sx * sy), eq = exact(cs, 3) ? '=' : '\\approx';
-    const pf = piFrac(th), thT = pf !== null ? `${pf}${pf === '0' ? '' : ` \\approx ${nm(th, 3)}`}` : `\\approx ${nm(th, 3)}`;
+    const pf = piFrac(th), thT = pf !== null ? `= ${pf}${pf === '0' ? '' : ` \\approx ${nm(th, 3)}`}` : `\\approx ${nm(th, 3)}`;
     if (ip === 0) headline(ctx, `$\\langle \\kvecx, \\kvecy \\rangle = 0$: $\\kvecx$ and $\\kvecy$ are orthogonal, at the right angle $\\ktheta = \\pi/2$.`);
-    else headline(ctx, `$\\cos \\ktheta ${eq} ${nm(cs, 3)}$, so $\\ktheta = ${thT}$; the turns $-\\ktheta$ and $2\\pi - \\ktheta$ have the same cosine.`);
+    else headline(ctx, `$\\cos \\ktheta ${eq} ${nm(cs, 3)}$, so $\\ktheta ${thT}$; the turns $-\\ktheta$ and $2\\pi - \\ktheta$ have the same cosine.`);
     ro.set(`\\cos \\ktheta = \\frac{\\langle \\kvecx, \\kvecy \\rangle}{\\lVert \\kvecx \\rVert \\lVert \\kvecy \\rVert} = \\frac{${prods}}{${times(sqrtH(sx), sqrtH(sy))}} ${eq} ${nm(cs, 3)}`,
       `$\\ktheta = \\cos^{-1}(\\cos \\ktheta) ${pf !== null ? `= ${pf}` : ''} \\approx ${nm(th, 3)}$, while $-\\ktheta \\approx ${nm(-th, 3)}$ and $2\\pi - \\ktheta \\approx ${nm(2 * Math.PI - th, 3)}$ have the same cosine.`,
       { form: 'angle' });
@@ -169,7 +169,7 @@ const slider = (d, label, key, value, aria, at, name) =>
    slider's dashed circle sits where ⟨w⃗, v⃗⟩ = 0 given the other three (no shadow). Inner products are exact
    hundredths; a projection that does not come out in hundredths is written with ≈. */
 (function () {
-  const d = sim('sim-projection', 800);
+  const d = sim('sim-projection', 850);
   let v1 = null, v2 = null, w1 = null, w2 = null;
   const ready = () => v1 && v2 && w1 && w2;
   v1 = slider(d, 'v_1', 'v1', 4, 'the first component v₁ of v⃗', () => (ready() && w1.v ? onGrid((-v2.v * w2.v) / w1.v, v2.v) : null), 'orthogonal');
@@ -276,7 +276,7 @@ const slider = (d, label, key, value, aria, at, name) =>
    unit circle. Still: the steps are a discrete state (a choice), not a clock. Dashed circles on all four sliders
    where v⃗₂ lies on the line of v⃗₁ (w⃗₂ = 0⃗), where that value is on the grid. Default step 3, the book's result. */
 (function () {
-  const d = sim('sim-gram-schmidt', 800);
+  const d = sim('sim-gram-schmidt', 850);
   const STEPS = ['w1', 'proj', 'w2', 'unit'], IDX = { w1: 0, proj: 1, w2: 2, unit: 3 };
   const pick = choice(d.controls, { label: 'step', key: 'step', value: 'w2', options: [
     { value: 'w1', label: '1 · keep' }, { value: 'proj', label: '2 · project' }, { value: 'w2', label: '3 · subtract' }, { value: 'unit', label: '4 · normalize' }] });
@@ -346,7 +346,14 @@ const slider = (d, label, key, value, aria, at, name) =>
       const tail = [pr[0] * (1 - k2), pr[1] * (1 - k2)], W2 = [tail[0] + w2[0] * sc2, tail[1] + w2[1] * sc2];
       clip(ctx, () => arrow(ctx, ...P(tail), ...P(W2), alpha(vc, Math.min(1, 0.4 + k2)), 3.5 + 2.5 * k2));
       if (k2 > 0.95) {
-        tipLabel(ctx, k3 > 0.5 ? '$\\kvecw_2 / \\lVert \\kvecw_2 \\rVert$' : '$\\kvecw_2$', W2, vc, 30);
+        /* beside its head, or square to it where v⃗₂'s head and label are close by */
+        const s2 = k3 > 0.5 ? '$\\kvecw_2 / \\lVert \\kvecw_2 \\rVert$' : '$\\kvecw_2$';
+        if (Math.hypot(W2[0] - v2[0], W2[1] - v2[1]) > 1.1) tipLabel(ctx, s2, W2, vc, 30);
+        else {
+          const nn = [-w2[1] / L2, w2[0] / L2], away = (v2[0] - W2[0]) * nn[0] + (v2[1] - W2[1]) * nn[1] > 0 ? -1 : 1;
+          const at = P([W2[0] * 0.6 + nn[0] * away * 0.55, W2[1] * 0.6 + nn[1] * away * 0.55]);
+          mark(ctx, s2, at[0], at[1], vc, { align: nn[0] * away < -0.3 ? 'right' : nn[0] * away > 0.3 ? 'left' : 'center' });
+        }
         square(ctx, [OX, OY], [v1[0] / L1, v1[1] / L1], [w2[0] / L2, w2[1] / L2], alpha(ink, 0.85), 20);
         hits.push({ x: P(W2)[0], y: P(W2)[1], r: 16, name: k3 > 0.5 ? `w⃗₂/‖w⃗₂‖ ≈ ${vecP([w2[0] / L2, w2[1] / L2])}` : `w⃗₂ = v⃗₂ − proj_w⃗₁(v⃗₂) ${exact(pr[0]) && exact(pr[1]) ? '=' : '≈'} ${vecP(w2)}, square to w⃗₁` });
       }
