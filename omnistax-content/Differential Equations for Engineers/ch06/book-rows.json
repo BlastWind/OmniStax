@@ -1,15 +1,46 @@
 {
   "types": [],
   "symbols": [
-    {"sym": "F_prime", "latex": "F'", "macro": "\\kFprime"},
-    {"sym": "Y_prime", "latex": "Y'", "macro": "\\kYprime"},
-    {"sym": "g_prime", "latex": "g'", "macro": "\\kgprime"},
-    {"sym": "g_dprime", "latex": "g''", "macro": "\\kgdprime"},
-    {"sym": "g_tprime", "latex": "g'''", "macro": "\\kgtprime"},
-    {"sym": "f*g", "latex": "f * g", "macro": "\\kfconvg"},
-    {"sym": "δ", "latex": "\\delta", "macro": "\\kdelta"},
-    {"sym": "φ", "latex": "\\varphi", "macro": "\\kvarphi"},
-    {"sym": "y_tprime", "latex": "y'''", "macro": "\\kytprime"},
+    {
+      "sym": "F_prime",
+      "latex": "F'",
+      "macro": "\\kFprime"
+    },
+    {
+      "sym": "Y_prime",
+      "latex": "Y'",
+      "macro": "\\kYprime"
+    },
+    {
+      "sym": "g_prime",
+      "latex": "g'",
+      "macro": "\\kgprime"
+    },
+    {
+      "sym": "g_dprime",
+      "latex": "g''",
+      "macro": "\\kgdprime"
+    },
+    {
+      "sym": "g_tprime",
+      "latex": "g'''",
+      "macro": "\\kgtprime"
+    },
+    {
+      "sym": "f*g",
+      "latex": "f * g",
+      "macro": "\\kfconvg"
+    },
+    {
+      "sym": "δ",
+      "latex": "\\delta",
+      "macro": "\\kdelta"
+    },
+    {
+      "sym": "φ",
+      "latex": "\\varphi",
+      "macro": "\\kvarphi"
+    },
     {
       "sym": "d4y/dx4",
       "latex": "\\frac{d^4 y}{dx^4}",
@@ -324,7 +355,12 @@
       "name": "Writing piecewise functions with the Heaviside function",
       "statement": "A function switched on at t = a is f(t)u(t − a), a step that is 1 on [a, b) and 0 elsewhere is u(t − a) − u(t − b), and a function defined piecewise is a sum of its pieces each multiplied by the difference of steps that cuts out its interval.",
       "forms": [
-        {"id": "eq-heaviside-window", "latex": "u(t - a) - u(t-b)", "ktex": "\\ku(t - a) - \\ku(t-b)", "condition": "1 on [a, b), 0 elsewhere"}
+        {
+          "id": "eq-heaviside-window",
+          "latex": "u(t - a) - u(t-b)",
+          "ktex": "\\ku(t - a) - \\ku(t-b)",
+          "condition": "1 on [a, b), 0 elsewhere"
+        }
       ]
     },
     {
@@ -375,7 +411,11 @@
           "ktex": "\\kH(s) = \\frac{\\kX(s)}{\\kF(s)}",
           "condition": "zero initial conditions"
         },
-        {"id": "eq-transfer-output", "latex": "X(s) = H(s) F(s)", "ktex": "\\kX(s) = \\kH(s) \\kF(s)"}
+        {
+          "id": "eq-transfer-output",
+          "latex": "X(s) = H(s) F(s)",
+          "ktex": "\\kX(s) = \\kH(s) \\kF(s)"
+        }
       ]
     },
     {
@@ -426,7 +466,7 @@
       "id": "sawtooth-function",
       "kind": "definition",
       "section": "6.2",
-      "name": "Sawtooth",
+      "name": "Sawtooth of period 1",
       "terms": [
         "sawtooth"
       ],
@@ -449,7 +489,11 @@
           "latex": "(f * g)(t) \\overset{\\text{def}}{=} \\int_0^t f(\\tau) g(t-\\tau) \\, d\\tau",
           "ktex": "(\\kfconvg)(t) \\overset{\\text{def}}{=} \\int_0^t \\kf(\\tau) \\kg(t-\\tau) \\, d\\tau"
         },
-        {"id": "eq-convolution-commuted", "latex": "(f * g)(t) = \\int_0^t f(t-\\tau) g(\\tau) \\, d\\tau", "ktex": "(\\kfconvg)(t) = \\int_0^t \\kf(t-\\tau) \\kg(\\tau) \\, d\\tau"}
+        {
+          "id": "eq-convolution-commuted",
+          "latex": "(f * g)(t) = \\int_0^t f(t-\\tau) g(\\tau) \\, d\\tau",
+          "ktex": "(\\kfconvg)(t) = \\int_0^t \\kf(t-\\tau) \\kg(\\tau) \\, d\\tau"
+        }
       ]
     },
     {
@@ -459,10 +503,22 @@
       "name": "Properties of convolution",
       "statement": "Convolution behaves like a product: it is commutative, f ∗ g = g ∗ f; a constant comes out, (cf) ∗ g = f ∗ (cg) = c(f ∗ g); it distributes over addition, (f + g) ∗ h = f ∗ h + g ∗ h; and it is associative, (f ∗ g) ∗ h = f ∗ (g ∗ h).",
       "forms": [
-        {"id": "eq-convolution-commutative", "latex": "f * g = g * f"},
-        {"id": "eq-convolution-scalar", "latex": "(c f) * g = f * (c g) = c (f*g)"},
-        {"id": "eq-convolution-distributive", "latex": "(f+g) * h = f * h + g * h"},
-        {"id": "eq-convolution-associative", "latex": "( f * g ) * h = f * ( g * h )"}
+        {
+          "id": "eq-convolution-commutative",
+          "latex": "f * g = g * f"
+        },
+        {
+          "id": "eq-convolution-scalar",
+          "latex": "(c f) * g = f * (c g) = c (f*g)"
+        },
+        {
+          "id": "eq-convolution-distributive",
+          "latex": "(f+g) * h = f * h + g * h"
+        },
+        {
+          "id": "eq-convolution-associative",
+          "latex": "( f * g ) * h = f * ( g * h )"
+        }
       ]
     },
     {
@@ -522,7 +578,11 @@
       ],
       "statement": "A Volterra integral equation is x(t) = f(t) + ∫ from 0 to t of g(t − τ) x(τ) dτ with f and g known, that is x = f + g ∗ x; it comes up in systems with memory effects, and transforming it gives X(s) = F(s) + G(s)X(s), so X(s) = F(s)/(1 − G(s)) and x is its inverse transform.",
       "forms": [
-        {"id": "eq-volterra", "latex": "x(t) = f(t) + \\int_0^t g(t-\\tau) x(\\tau) \\, d\\tau", "ktex": "\\kx(t) = \\kf(t) + \\int_0^t \\kg(t-\\tau) \\kx(\\tau) \\, d\\tau"},
+        {
+          "id": "eq-volterra",
+          "latex": "x(t) = f(t) + \\int_0^t g(t-\\tau) x(\\tau) \\, d\\tau",
+          "ktex": "\\kx(t) = \\kf(t) + \\int_0^t \\kg(t-\\tau) \\kx(\\tau) \\, d\\tau"
+        },
         {
           "id": "eq-volterra-transform",
           "latex": "X(s) = \\frac{F(s)}{1-G(s)}",
@@ -542,7 +602,12 @@
       "type": "function",
       "statement": "The impulse response of a system Lx = f(t) is what the system does when the input is a short pulse: the solution h of Lx = δ(t) with zero initial conditions, which is the inverse transform of the transfer function, h(t) = ℒ⁻¹{H(s)}; knowing it tells how the system responds to any input.",
       "forms": [
-        {"id": "eq-impulse-response-equation", "latex": "L x = \\delta(t)", "ktex": "L \\kx = \\kdelta(t)", "condition": "x(0) = x′(0) = 0"},
+        {
+          "id": "eq-impulse-response-equation",
+          "latex": "L x = \\delta(t)",
+          "ktex": "L \\kx = \\kdelta(t)",
+          "condition": "x(0) = x′(0) = 0"
+        },
         {
           "id": "eq-impulse-response-transfer",
           "latex": "h(t) = {\\mathcal{L}}^{-1} \\bigl\\{ H(s) \\bigr\\}",
@@ -568,7 +633,11 @@
           "latex": "\\varphi(t) = \\begin{cases} 0 & \\text{if } \\; t < a , \\\\ M & \\text{if } \\; a \\leq t < b , \\\\ 0 & \\text{if } \\; b \\leq t . \\end{cases}",
           "ktex": "\\kvarphi(t) = \\begin{cases} 0 & \\text{if } \\; t < a , \\\\ M & \\text{if } \\; a \\leq t < b , \\\\ 0 & \\text{if } \\; b \\leq t . \\end{cases}"
         },
-        {"id": "eq-rectangular-pulse-steps", "latex": "\\varphi(t) = M \\bigl( u(t-a) - u(t-b) \\bigr)", "ktex": "\\kvarphi(t) = M \\bigl( \\ku(t-a) - \\ku(t-b) \\bigr)"},
+        {
+          "id": "eq-rectangular-pulse-steps",
+          "latex": "\\varphi(t) = M \\bigl( u(t-a) - u(t-b) \\bigr)",
+          "ktex": "\\kvarphi(t) = M \\bigl( \\ku(t-a) - \\ku(t-b) \\bigr)"
+        },
         {
           "id": "eq-lt-rectangular-pulse",
           "latex": "{\\mathcal{L}} \\bigl\\{ \\varphi(t) \\bigr\\} = M \\frac{e^{-as} - e^{-bs}}{s}",
@@ -683,7 +752,11 @@
           "ktex": "\\frac{d}{dt} \\Bigl[ \\ku(t-a) \\Bigr] = \\kdelta(t-a)",
           "condition": "in the sense of generalized functions"
         },
-        {"id": "eq-delta-integral", "latex": "\\int_0^t \\delta(\\tau-a)\\,d\\tau = u(t-a)", "ktex": "\\int_0^t \\kdelta(\\tau-a)\\,d\\tau = \\ku(t-a)"}
+        {
+          "id": "eq-delta-integral",
+          "latex": "\\int_0^t \\delta(\\tau-a)\\,d\\tau = u(t-a)",
+          "ktex": "\\int_0^t \\kdelta(\\tau-a)\\,d\\tau = \\ku(t-a)"
+        }
       ]
     },
     {
@@ -748,7 +821,12 @@
           "latex": "EI \\frac{d^4 y}{dx^4} = -F \\delta(x-a)",
           "ktex": "EI \\kdfourydx = -F \\kdelta(x-a)"
         },
-        {"id": "eq-beam-simply-supported", "latex": "y(0) = 0, \\quad y''(0) = 0, \\quad y(L) = 0, \\quad y''(L) = 0", "ktex": "\\ky(0) = 0, \\quad \\kydprime(0) = 0, \\quad \\ky(L) = 0, \\quad \\kydprime(L) = 0", "condition": "simple supports at both ends"}
+        {
+          "id": "eq-beam-simply-supported",
+          "latex": "y(0) = 0, \\quad y''(0) = 0, \\quad y(L) = 0, \\quad y''(L) = 0",
+          "ktex": "\\ky(0) = 0, \\quad \\kydprime(0) = 0, \\quad \\ky(L) = 0, \\quad \\kydprime(L) = 0",
+          "condition": "simple supports at both ends"
+        }
       ]
     },
     {
@@ -841,90 +919,337 @@
     }
   ],
   "concept_prereqs": [
-    {"concept": "frequency-domain", "prereq": "laplace-transform"},
-    {"concept": "frequency-domain", "prereq": "mass-spring-system"},
-    {"concept": "laplace-transform-table", "prereq": "laplace-transform"},
-    {"concept": "laplace-transform-table", "prereq": "unit-step-function"},
-    {"concept": "linearity-of-the-laplace-transform", "prereq": "laplace-transform"},
-    {"concept": "existence-of-the-laplace-transform", "prereq": "laplace-transform"},
-    {"concept": "existence-of-the-laplace-transform", "prereq": "exponential-order"},
-    {"concept": "laplace-transform-decay", "prereq": "existence-of-the-laplace-transform"},
-    {"concept": "uniqueness-of-the-laplace-transform", "prereq": "existence-of-the-laplace-transform"},
-    {"concept": "uniqueness-of-the-laplace-transform", "prereq": "piecewise-continuous-function"},
-    {"concept": "inverse-laplace-transform", "prereq": "uniqueness-of-the-laplace-transform"},
-    {"concept": "partial-fraction-decomposition", "prereq": "inverse-laplace-transform"},
-    {"concept": "first-shifting-property", "prereq": "laplace-transform"},
-    {"concept": "proper-rational-function", "prereq": "laplace-transform-decay"},
-    {"concept": "proper-rational-function", "prereq": "partial-fraction-decomposition"},
-    {"concept": "computing-a-laplace-transform", "prereq": "linearity-of-the-laplace-transform"},
-    {"concept": "computing-a-laplace-transform", "prereq": "laplace-transform-table"},
-    {"concept": "inverting-with-the-table", "prereq": "laplace-transform-table"},
-    {"concept": "inverting-with-the-table", "prereq": "partial-fraction-decomposition"},
-    {"concept": "inverting-with-the-table", "prereq": "first-shifting-property"},
-    {"concept": "transform-of-a-derivative", "prereq": "laplace-transform"},
-    {"concept": "transform-of-a-derivative", "prereq": "exponential-order"},
-    {"concept": "solving-odes-with-the-laplace-transform", "prereq": "transform-of-a-derivative"},
-    {"concept": "solving-odes-with-the-laplace-transform", "prereq": "inverting-with-the-table"},
-    {"concept": "solving-odes-with-the-laplace-transform", "prereq": "constant-coefficient-equation"},
-    {"concept": "solving-odes-with-the-laplace-transform", "prereq": "solving-an-initial-value-problem"},
-    {"concept": "writing-piecewise-functions-with-the-heaviside-function", "prereq": "unit-step-function"},
-    {"concept": "second-shifting-property", "prereq": "laplace-transform-table"},
-    {"concept": "input-and-output", "prereq": "linear-operator"},
-    {"concept": "transfer-function", "prereq": "input-and-output"},
-    {"concept": "transfer-function", "prereq": "transform-of-a-derivative"},
-    {"concept": "transform-of-an-integral", "prereq": "laplace-transform"},
-    {"concept": "integral-equation", "prereq": "transform-of-an-integral"},
-    {"concept": "transform-of-a-periodic-function", "prereq": "laplace-transform"},
-    {"concept": "sawtooth-function", "prereq": "transform-of-a-periodic-function"},
-    {"concept": "properties-of-convolution", "prereq": "convolution"},
-    {"concept": "convolution-theorem", "prereq": "convolution"},
-    {"concept": "convolution-theorem", "prereq": "laplace-transform"},
-    {"concept": "convolution-theorem", "prereq": "exponential-order"},
-    {"concept": "inverting-a-product-by-convolution", "prereq": "convolution-theorem"},
-    {"concept": "inverting-a-product-by-convolution", "prereq": "inverting-with-the-table"},
-    {"concept": "convolution-solution", "prereq": "convolution-theorem"},
-    {"concept": "convolution-solution", "prereq": "transfer-function"},
-    {"concept": "convolution-solution", "prereq": "natural-frequency"},
-    {"concept": "volterra-integral-equation", "prereq": "integral-equation"},
-    {"concept": "volterra-integral-equation", "prereq": "convolution-theorem"},
-    {"concept": "rectangular-pulse", "prereq": "laplace-transform-table"},
-    {"concept": "dirac-delta-function", "prereq": "generalized-function"},
-    {"concept": "delta-as-a-limit-of-pulses", "prereq": "dirac-delta-function"},
-    {"concept": "delta-as-a-limit-of-pulses", "prereq": "rectangular-pulse"},
-    {"concept": "convolution-with-the-delta-function", "prereq": "dirac-delta-function"},
-    {"concept": "convolution-with-the-delta-function", "prereq": "convolution"},
-    {"concept": "transform-of-the-delta-function", "prereq": "dirac-delta-function"},
-    {"concept": "transform-of-the-delta-function", "prereq": "laplace-transform"},
-    {"concept": "derivative-of-the-heaviside-function", "prereq": "transform-of-the-delta-function"},
-    {"concept": "derivative-of-the-heaviside-function", "prereq": "laplace-transform-table"},
-    {"concept": "derivative-of-the-heaviside-function", "prereq": "transform-of-a-derivative"},
-    {"concept": "inverting-improper-rational-functions", "prereq": "transform-of-the-delta-function"},
-    {"concept": "inverting-improper-rational-functions", "prereq": "proper-rational-function"},
-    {"concept": "inverting-improper-rational-functions", "prereq": "inverting-with-the-table"},
-    {"concept": "impulse-response", "prereq": "dirac-delta-function"},
-    {"concept": "impulse-response", "prereq": "transfer-function"},
-    {"concept": "finding-the-impulse-response", "prereq": "impulse-response"},
-    {"concept": "finding-the-impulse-response", "prereq": "solving-odes-with-the-laplace-transform"},
-    {"concept": "finding-the-impulse-response", "prereq": "transform-of-the-delta-function"},
-    {"concept": "derivative-of-a-convolution", "prereq": "impulse-response"},
-    {"concept": "derivative-of-a-convolution", "prereq": "convolution-with-the-delta-function"},
-    {"concept": "derivative-of-a-convolution", "prereq": "convolution-solution"},
-    {"concept": "euler-bernoulli-equation", "prereq": "linear-differential-equation"},
-    {"concept": "three-point-bending", "prereq": "euler-bernoulli-equation"},
-    {"concept": "three-point-bending", "prereq": "dirac-delta-function"},
-    {"concept": "three-point-bending", "prereq": "hinged-end-of-a-beam"},
-    {"concept": "transform-of-a-partial-derivative", "prereq": "transform-of-a-derivative"},
-    {"concept": "solving-pdes-with-the-laplace-transform", "prereq": "transform-of-a-partial-derivative"},
-    {"concept": "solving-pdes-with-the-laplace-transform", "prereq": "solving-odes-with-the-laplace-transform"},
-    {"concept": "solving-pdes-with-the-laplace-transform", "prereq": "second-shifting-property"},
-    {"concept": "solving-pdes-with-the-laplace-transform", "prereq": "partial-differential-equation"},
-    {"concept": "transport-on-a-half-line", "prereq": "solving-pdes-with-the-laplace-transform"},
-    {"concept": "transport-on-a-half-line", "prereq": "transport-equation"},
-    {"concept": "wavefront", "prereq": "transport-on-a-half-line"},
-    {"concept": "ill-posed-problem", "prereq": "solving-pdes-with-the-laplace-transform"},
-    {"concept": "ill-posed-problem", "prereq": "laplace-transform-decay"},
-    {"concept": "ill-posed-problem", "prereq": "method-of-characteristics"},
-    {"concept": "boundedness-condition", "prereq": "solving-pdes-with-the-laplace-transform"},
-    {"concept": "boundedness-condition", "prereq": "heat-equation"}
+    {
+      "concept": "frequency-domain",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "frequency-domain",
+      "prereq": "mass-spring-system"
+    },
+    {
+      "concept": "laplace-transform-table",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "laplace-transform-table",
+      "prereq": "unit-step-function"
+    },
+    {
+      "concept": "linearity-of-the-laplace-transform",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "existence-of-the-laplace-transform",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "existence-of-the-laplace-transform",
+      "prereq": "exponential-order"
+    },
+    {
+      "concept": "laplace-transform-decay",
+      "prereq": "existence-of-the-laplace-transform"
+    },
+    {
+      "concept": "uniqueness-of-the-laplace-transform",
+      "prereq": "existence-of-the-laplace-transform"
+    },
+    {
+      "concept": "uniqueness-of-the-laplace-transform",
+      "prereq": "piecewise-continuous-function"
+    },
+    {
+      "concept": "inverse-laplace-transform",
+      "prereq": "uniqueness-of-the-laplace-transform"
+    },
+    {
+      "concept": "partial-fraction-decomposition",
+      "prereq": "inverse-laplace-transform"
+    },
+    {
+      "concept": "first-shifting-property",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "proper-rational-function",
+      "prereq": "laplace-transform-decay"
+    },
+    {
+      "concept": "proper-rational-function",
+      "prereq": "partial-fraction-decomposition"
+    },
+    {
+      "concept": "computing-a-laplace-transform",
+      "prereq": "linearity-of-the-laplace-transform"
+    },
+    {
+      "concept": "computing-a-laplace-transform",
+      "prereq": "laplace-transform-table"
+    },
+    {
+      "concept": "inverting-with-the-table",
+      "prereq": "laplace-transform-table"
+    },
+    {
+      "concept": "inverting-with-the-table",
+      "prereq": "partial-fraction-decomposition"
+    },
+    {
+      "concept": "inverting-with-the-table",
+      "prereq": "first-shifting-property"
+    },
+    {
+      "concept": "transform-of-a-derivative",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "transform-of-a-derivative",
+      "prereq": "exponential-order"
+    },
+    {
+      "concept": "solving-odes-with-the-laplace-transform",
+      "prereq": "transform-of-a-derivative"
+    },
+    {
+      "concept": "solving-odes-with-the-laplace-transform",
+      "prereq": "inverting-with-the-table"
+    },
+    {
+      "concept": "writing-piecewise-functions-with-the-heaviside-function",
+      "prereq": "unit-step-function"
+    },
+    {
+      "concept": "second-shifting-property",
+      "prereq": "laplace-transform-table"
+    },
+    {
+      "concept": "input-and-output",
+      "prereq": "linear-operator"
+    },
+    {
+      "concept": "transfer-function",
+      "prereq": "input-and-output"
+    },
+    {
+      "concept": "transfer-function",
+      "prereq": "transform-of-a-derivative"
+    },
+    {
+      "concept": "transform-of-an-integral",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "integral-equation",
+      "prereq": "transform-of-an-integral"
+    },
+    {
+      "concept": "transform-of-a-periodic-function",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "sawtooth-function",
+      "prereq": "transform-of-a-periodic-function"
+    },
+    {
+      "concept": "properties-of-convolution",
+      "prereq": "convolution"
+    },
+    {
+      "concept": "convolution-theorem",
+      "prereq": "convolution"
+    },
+    {
+      "concept": "convolution-theorem",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "convolution-theorem",
+      "prereq": "exponential-order"
+    },
+    {
+      "concept": "inverting-a-product-by-convolution",
+      "prereq": "convolution-theorem"
+    },
+    {
+      "concept": "inverting-a-product-by-convolution",
+      "prereq": "inverting-with-the-table"
+    },
+    {
+      "concept": "convolution-solution",
+      "prereq": "convolution-theorem"
+    },
+    {
+      "concept": "convolution-solution",
+      "prereq": "transfer-function"
+    },
+    {
+      "concept": "convolution-solution",
+      "prereq": "natural-frequency"
+    },
+    {
+      "concept": "volterra-integral-equation",
+      "prereq": "integral-equation"
+    },
+    {
+      "concept": "volterra-integral-equation",
+      "prereq": "convolution-theorem"
+    },
+    {
+      "concept": "rectangular-pulse",
+      "prereq": "laplace-transform-table"
+    },
+    {
+      "concept": "dirac-delta-function",
+      "prereq": "generalized-function"
+    },
+    {
+      "concept": "delta-as-a-limit-of-pulses",
+      "prereq": "dirac-delta-function"
+    },
+    {
+      "concept": "delta-as-a-limit-of-pulses",
+      "prereq": "rectangular-pulse"
+    },
+    {
+      "concept": "convolution-with-the-delta-function",
+      "prereq": "dirac-delta-function"
+    },
+    {
+      "concept": "convolution-with-the-delta-function",
+      "prereq": "convolution"
+    },
+    {
+      "concept": "transform-of-the-delta-function",
+      "prereq": "dirac-delta-function"
+    },
+    {
+      "concept": "transform-of-the-delta-function",
+      "prereq": "laplace-transform"
+    },
+    {
+      "concept": "derivative-of-the-heaviside-function",
+      "prereq": "transform-of-the-delta-function"
+    },
+    {
+      "concept": "derivative-of-the-heaviside-function",
+      "prereq": "laplace-transform-table"
+    },
+    {
+      "concept": "derivative-of-the-heaviside-function",
+      "prereq": "transform-of-a-derivative"
+    },
+    {
+      "concept": "inverting-improper-rational-functions",
+      "prereq": "transform-of-the-delta-function"
+    },
+    {
+      "concept": "inverting-improper-rational-functions",
+      "prereq": "proper-rational-function"
+    },
+    {
+      "concept": "inverting-improper-rational-functions",
+      "prereq": "inverting-with-the-table"
+    },
+    {
+      "concept": "impulse-response",
+      "prereq": "dirac-delta-function"
+    },
+    {
+      "concept": "impulse-response",
+      "prereq": "transfer-function"
+    },
+    {
+      "concept": "finding-the-impulse-response",
+      "prereq": "impulse-response"
+    },
+    {
+      "concept": "finding-the-impulse-response",
+      "prereq": "solving-odes-with-the-laplace-transform"
+    },
+    {
+      "concept": "finding-the-impulse-response",
+      "prereq": "transform-of-the-delta-function"
+    },
+    {
+      "concept": "derivative-of-a-convolution",
+      "prereq": "impulse-response"
+    },
+    {
+      "concept": "derivative-of-a-convolution",
+      "prereq": "convolution-with-the-delta-function"
+    },
+    {
+      "concept": "derivative-of-a-convolution",
+      "prereq": "convolution-solution"
+    },
+    {
+      "concept": "euler-bernoulli-equation",
+      "prereq": "linear-differential-equation"
+    },
+    {
+      "concept": "three-point-bending",
+      "prereq": "euler-bernoulli-equation"
+    },
+    {
+      "concept": "three-point-bending",
+      "prereq": "dirac-delta-function"
+    },
+    {
+      "concept": "three-point-bending",
+      "prereq": "hinged-end-of-a-beam"
+    },
+    {
+      "concept": "transform-of-a-partial-derivative",
+      "prereq": "transform-of-a-derivative"
+    },
+    {
+      "concept": "solving-pdes-with-the-laplace-transform",
+      "prereq": "transform-of-a-partial-derivative"
+    },
+    {
+      "concept": "solving-pdes-with-the-laplace-transform",
+      "prereq": "solving-odes-with-the-laplace-transform"
+    },
+    {
+      "concept": "solving-pdes-with-the-laplace-transform",
+      "prereq": "second-shifting-property"
+    },
+    {
+      "concept": "solving-pdes-with-the-laplace-transform",
+      "prereq": "partial-differential-equation"
+    },
+    {
+      "concept": "transport-on-a-half-line",
+      "prereq": "solving-pdes-with-the-laplace-transform"
+    },
+    {
+      "concept": "transport-on-a-half-line",
+      "prereq": "transport-equation"
+    },
+    {
+      "concept": "wavefront",
+      "prereq": "transport-on-a-half-line"
+    },
+    {
+      "concept": "ill-posed-problem",
+      "prereq": "solving-pdes-with-the-laplace-transform"
+    },
+    {
+      "concept": "ill-posed-problem",
+      "prereq": "laplace-transform-decay"
+    },
+    {
+      "concept": "ill-posed-problem",
+      "prereq": "method-of-characteristics"
+    },
+    {
+      "concept": "boundedness-condition",
+      "prereq": "solving-pdes-with-the-laplace-transform"
+    },
+    {
+      "concept": "boundedness-condition",
+      "prereq": "heat-equation"
+    }
   ]
 }

@@ -2,11 +2,6 @@
   "types": [],
   "symbols": [
     {
-      "sym": "x_vec",
-      "latex": "\\vec{x}",
-      "macro": "\\kvecx"
-    },
-    {
       "sym": "y_vec",
       "latex": "\\vec{y}",
       "macro": "\\kvecy"
@@ -17,79 +12,14 @@
       "macro": "\\kvecz"
     },
     {
-      "sym": "u_vec",
-      "latex": "\\vec{u}",
-      "macro": "\\kvecu"
-    },
-    {
-      "sym": "w_vec",
-      "latex": "\\vec{w}",
-      "macro": "\\kvecw"
-    },
-    {
-      "sym": "b_vec",
-      "latex": "\\vec{b}",
-      "macro": "\\kvecb"
-    },
-    {
-      "sym": "e_vec",
-      "latex": "\\vec{e}",
-      "macro": "\\kvece"
-    },
-    {
       "sym": "zero_vec",
       "latex": "\\vec{0}",
       "macro": "\\kveczero"
     },
     {
-      "sym": "A",
-      "latex": "A",
-      "macro": "\\kA"
-    },
-    {
-      "sym": "B",
-      "latex": "B",
-      "macro": "\\kB"
-    },
-    {
-      "sym": "C",
-      "latex": "C",
-      "macro": "\\kC"
-    },
-    {
-      "sym": "I",
-      "latex": "I",
-      "macro": "\\kI"
-    },
-    {
       "sym": "L",
       "latex": "L",
       "macro": "\\kL"
-    },
-    {
-      "sym": "A_inv",
-      "latex": "A^{-1}",
-      "macro": "\\kAinv"
-    },
-    {
-      "sym": "A_T",
-      "latex": "A^T",
-      "macro": "\\kAT"
-    },
-    {
-      "sym": "A_ij",
-      "latex": "A_{ij}",
-      "macro": "\\kAij"
-    },
-    {
-      "sym": "a_ij",
-      "latex": "a_{ij}",
-      "macro": "\\kaij"
-    },
-    {
-      "sym": "S",
-      "latex": "S",
-      "macro": "\\kS"
     },
     {
       "sym": "proj",
@@ -353,7 +283,7 @@
           "ktex": "(\\alpha \\kA) \\kvecx = \\alpha (\\kA \\kvecx)"
         },
         {
-          "id": "eq-matrix-addition-rules",
+          "id": "eq-matrix-addition-properties",
           "latex": "\\begin{aligned} A + 0 & = A = 0 + A , \\\\ A + B & = B + A , \\\\ (A + B) + C & = A + (B + C) , \\\\ \\alpha(A+B) & = \\alpha A+\\alpha B, \\\\ (\\alpha+\\beta)A & = \\alpha A + \\beta A. \\end{aligned}",
           "ktex": "\\begin{aligned} \\kA + 0 & = \\kA = 0 + \\kA , \\\\ \\kA + \\kB & = \\kB + \\kA , \\\\ (\\kA + \\kB) + \\kC & = \\kA + (\\kB + \\kC) , \\\\ \\alpha(\\kA+\\kB) & = \\alpha \\kA+\\alpha \\kB, \\\\ (\\alpha+\\beta)\\kA & = \\alpha \\kA + \\beta \\kA. \\end{aligned}"
         }
@@ -376,7 +306,7 @@
           "latex": "[ m \\times n ] \\, [ n \\times p ] = [ m \\times p ]"
         },
         {
-          "id": "eq-matrix-product-entry",
+          "id": "eq-product-entry-as-composition",
           "latex": "\\operatorname{row}_i(A) \\cdot \\operatorname{column}_j(B)",
           "ktex": "\\operatorname{row}_i(\\kA) \\cdot \\operatorname{column}_j(\\kB)"
         },
@@ -419,17 +349,6 @@
           "condition": "A invertible"
         }
       ]
-    },
-    {
-      "id": "diagonal-matrix",
-      "kind": "definition",
-      "section": "A.2",
-      "name": "Diagonal matrix",
-      "terms": [
-        "diagonal matrix"
-      ],
-      "type": "matrix",
-      "statement": "A diagonal matrix is a square matrix whose entries are all zero except those on the main diagonal from top left to bottom right; it multiplies the kth entry of a vector by d_k, multiplies the rows of a matrix by d_k from the left and the columns from the right, and two diagonal matrices multiply entry by entry. Much of linear algebra reduces a problem to the diagonal case."
     },
     {
       "id": "inverse-of-a-diagonal-matrix",
@@ -478,25 +397,6 @@
       ]
     },
     {
-      "id": "symmetric-matrix",
-      "kind": "definition",
-      "section": "A.2",
-      "name": "Symmetric matrix",
-      "terms": [
-        "symmetric",
-        "symmetric matrix"
-      ],
-      "type": "matrix",
-      "statement": "A matrix A is symmetric if A = Aᵀ; a symmetric matrix is always square, and symmetric matrices come up often in applications.",
-      "forms": [
-        {
-          "id": "eq-symmetric",
-          "latex": "A = A^T",
-          "ktex": "\\kA = \\kA^T"
-        }
-      ]
-    },
-    {
       "id": "linear-system-of-equations",
       "kind": "definition",
       "section": "A.3",
@@ -517,7 +417,7 @@
           "latex": "\\begin{aligned} 2 x_1 + 2 x_2 + 2 x_3 & = 2 , \\\\ x_1 + x_2 + 3 x_3 & = 5 , \\\\ x_1 + 4 x_2 + x_3 & = 10 . \\end{aligned}"
         },
         {
-          "id": "eq-solution-by-inverse",
+          "id": "eq-linear-system-solution-by-inverse",
           "latex": "\\vec{x} = A^{-1} A \\vec{x} = A^{-1} \\vec{b}",
           "ktex": "\\kvecx = \\kAinv \\kA \\kvecx = \\kAinv \\kvecb",
           "condition": "A invertible"
@@ -861,10 +761,10 @@
       ]
     },
     {
-      "id": "fredholm-alternative",
+      "id": "fredholm-alternative-for-matrices",
       "kind": "result",
       "section": "A.4",
-      "name": "Fredholm alternative",
+      "name": "Fredholm alternative for matrices",
       "terms": [
         "Fredholm alternative"
       ],
@@ -882,7 +782,7 @@
       "statement": "The standard inner product of two column vectors in ℝⁿ is the dot product, ⟨x⃗, y⃗⟩ = x⃗ · y⃗ = y⃗ᵀx⃗ = x₁y₁ + ⋯ + xₙyₙ; the new notation leaves room for other inner products, such as ⟨f(t), g(t)⟩ = ∫ₐᵇ f(t)g(t) dt on spaces of functions, and anything satisfying the four rules of the inner product may be called one.",
       "forms": [
         {
-          "id": "eq-inner-product",
+          "id": "eq-vector-inner-product",
           "latex": "\\langle \\vec{x} , \\vec{y} \\rangle = \\vec{x} \\cdot \\vec{y} = \\vec{y}^T \\vec{x} = x_1 y_1 + x_2 y_2 + \\cdots + x_n y_n = \\sum_{i=1}^n x_i y_i",
           "ktex": "\\langle \\kvecx , \\kvecy \\rangle = \\kvecx \\cdot \\kvecy = \\kvecy^T \\kvecx = x_1 y_1 + x_2 y_2 + \\cdots + x_n y_n = \\sum_{i=1}^n x_i y_i"
         },
@@ -1060,7 +960,7 @@
       "statement": "The parallelogram with vertices (0, 0), (a, c), (b, d) and (a + b, c + d) has area |ad − bc|, the absolute value of the determinant of [a b; c d], the matrix that carries the unit square to it; the image of a square under a 2 × 2 matrix is in general a parallelogram, and the sign of the determinant tells whether the axes get flipped. For A = [1 1; −1 1], det(A) = 2 and the unit square goes to the square with vertices (0, 0), (1, −1), (2, 0), (1, 1), of side √2 and area 2.",
       "forms": [
         {
-          "id": "eq-parallelogram-area",
+          "id": "eq-parallelogram-area-determinant",
           "latex": "\\left\\lvert \\, \\det \\left( \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\right) \\, \\right\\rvert = \\lvert a d - b c \\rvert"
         }
       ]
@@ -1199,10 +1099,6 @@
     },
     {
       "concept": "matrix-of-a-linear-mapping",
-      "prereq": "matrix"
-    },
-    {
-      "concept": "matrix-of-a-linear-mapping",
       "prereq": "standard-unit-vectors"
     },
     {
@@ -1239,10 +1135,6 @@
     },
     {
       "concept": "matrix-product-as-composition",
-      "prereq": "dot-product"
-    },
-    {
-      "concept": "matrix-product-as-composition",
       "prereq": "matrix-of-a-linear-mapping"
     },
     {
@@ -1254,24 +1146,8 @@
       "prereq": "invertible-matrix"
     },
     {
-      "concept": "cancellation-with-an-inverse",
-      "prereq": "matrix-inverse"
-    },
-    {
-      "concept": "diagonal-matrix",
-      "prereq": "square-matrix"
-    },
-    {
-      "concept": "diagonal-matrix",
-      "prereq": "matrix-product"
-    },
-    {
       "concept": "inverse-of-a-diagonal-matrix",
       "prereq": "diagonal-matrix"
-    },
-    {
-      "concept": "inverse-of-a-diagonal-matrix",
-      "prereq": "matrix-inverse"
     },
     {
       "concept": "transpose-of-a-product",
@@ -1288,14 +1164,6 @@
     {
       "concept": "dot-product-via-transpose",
       "prereq": "dot-product"
-    },
-    {
-      "concept": "symmetric-matrix",
-      "prereq": "transpose"
-    },
-    {
-      "concept": "symmetric-matrix",
-      "prereq": "square-matrix"
     },
     {
       "concept": "linear-system-of-equations",
@@ -1324,10 +1192,6 @@
     {
       "concept": "gauss-jordan-elimination",
       "prereq": "linear-system-of-equations"
-    },
-    {
-      "concept": "gauss-jordan-elimination",
-      "prereq": "augmented-matrix"
     },
     {
       "concept": "gauss-jordan-elimination",
@@ -1439,10 +1303,6 @@
     },
     {
       "concept": "invertibility-and-rank",
-      "prereq": "invertible-matrix"
-    },
-    {
-      "concept": "invertibility-and-rank",
       "prereq": "computing-a-matrix-inverse"
     },
     {
@@ -1514,7 +1374,7 @@
       "prereq": "basis-of-the-kernel"
     },
     {
-      "concept": "fredholm-alternative",
+      "concept": "fredholm-alternative-for-matrices",
       "prereq": "rank-nullity-theorem"
     },
     {
@@ -1600,10 +1460,6 @@
     {
       "concept": "determinant-of-a-triangular-matrix",
       "prereq": "cofactor-expansion"
-    },
-    {
-      "concept": "determinant-of-an-inverse",
-      "prereq": "determinant-of-a-product"
     },
     {
       "concept": "determinant-of-an-inverse",

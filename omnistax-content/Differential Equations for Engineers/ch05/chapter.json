@@ -27,19 +27,22 @@
       "sym": "X",
       "type": "function",
       "meaning": "the unknown X(x) of an eigenvalue problem X″ + λX = 0 with its boundary conditions, the factor of x in a separated solution",
-      "section": "5.1"
+      "section": "5.1",
+      "redefines": true
     },
     {
       "sym": "X_n",
       "type": "function",
       "meaning": "the eigenfunction Xₙ(x) belonging to the nth eigenvalue of the eigenvalue problem in x",
-      "section": "5.1"
+      "section": "5.1",
+      "redefines": true
     },
     {
       "sym": "T_n",
       "type": "function",
       "meaning": "the factor Tₙ(t) of t with Tₙ(0) = 1 such that Tₙ(t)Xₙ(x) solves the heat equation",
-      "section": "5.1"
+      "section": "5.1",
+      "redefines": true
     },
     {
       "sym": "u",
@@ -59,7 +62,8 @@
       "sym": "y",
       "concept": "dependent-variable",
       "meaning": "the dependent variable, an unknown function",
-      "section": "5.1"
+      "section": "5.1",
+      "redefines": true
     },
     {
       "sym": "y_prime",
@@ -98,23 +102,25 @@
       "sym": "λ",
       "concept": "eigenvalue-of-a-boundary-value-problem",
       "meaning": "the parameter of the Sturm–Liouville problem; the values that admit a nontrivial solution are its eigenvalues",
-      "section": "5.1"
+      "section": "5.1",
+      "redefines": true
     },
     {
       "sym": "λ_n",
       "concept": "eigenvalue-of-a-boundary-value-problem",
       "meaning": "the nth eigenvalue of a regular Sturm–Liouville problem, in the increasing sequence λ₁ < λ₂ < λ₃ < ⋯ (labelled from λ₀ when zero is an eigenvalue)",
-      "section": "5.1"
+      "section": "5.1",
+      "redefines": true
     },
     {
       "sym": "y_n",
       "concept": "eigenfunction",
       "meaning": "the eigenfunction yₙ(x) belonging to λₙ, unique up to a constant multiple",
-      "section": "5.1"
+      "section": "5.1",
+      "redefines": true
     },
     {
       "sym": "h",
-      "type": null,
       "meaning": "the constant of the Robin boundary conditions hX(0) − X′(0) = 0, hX(L) + X′(L) = 0, positive in Example 5.1.3",
       "section": "5.1"
     },
@@ -136,7 +142,8 @@
       "sym": "c_n",
       "type": "sequence",
       "meaning": "the coefficients of the eigenfunction decomposition f(x) = Σ cₙyₙ(x), cₘ = ⟨f, yₘ⟩/⟨yₘ, yₘ⟩",
-      "section": "5.1"
+      "section": "5.1",
+      "redefines": true
     },
     {
       "sym": "y",
@@ -235,7 +242,6 @@
     },
     {
       "sym": "ω",
-      "type": null,
       "meaning": "the fourth root ω = ⁴√λ of the eigenvalue, introduced to avoid writing the fourth root; positive",
       "section": "5.2",
       "redefines": true
@@ -265,7 +271,8 @@
       "sym": "b_n",
       "type": "sequence",
       "meaning": "the coefficients of the sine series f(x) = Σ bₙ sin(nπx) of the initial shape",
-      "section": "5.2"
+      "section": "5.2",
+      "redefines": true
     },
     {
       "sym": "y",
@@ -327,15 +334,13 @@
     },
     {
       "sym": "y_p",
-      "concept": "particular-solution",
-      "ref": "yp",
+      "concept": "particular-solution-of-the-forced-string",
       "meaning": "the particular solution y_p(x, t) = X(x) cos(ωt) of the forced wave equation (5.7) satisfying only y(0, t) = y(L, t) = 0",
       "section": "5.3"
     },
     {
       "sym": "y_c",
       "concept": "complementary-solution",
-      "ref": "yc",
       "meaning": "the solution y_c of the free problem (5.6) with f = −y_p(x, 0) and g = −∂y_p/∂t(x, 0), so that y = y_c + y_p satisfies (5.7) and (5.8)",
       "section": "5.3"
     },
@@ -356,7 +361,8 @@
       "sym": "w",
       "type": "function",
       "meaning": "the solution w(x, t) of the free string problem of Example 5.3.1, set to y_c",
-      "section": "5.3"
+      "section": "5.3",
+      "redefines": true
     },
     {
       "sym": "F",
@@ -367,10 +373,10 @@
     },
     {
       "sym": "u",
-      "type": "function",
       "meaning": "the temperature u(x, t) at depth x underground at time t",
       "section": "5.3",
-      "redefines": true
+      "redefines": true,
+      "concept": "underground-temperature-solution"
     },
     {
       "sym": "u_t",

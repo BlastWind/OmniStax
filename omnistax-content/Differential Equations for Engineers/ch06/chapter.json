@@ -3,81 +3,453 @@
   "dir": "ch06",
   "title": "The Laplace transform",
   "sections": [
-    {"id": "6.1", "module": "laplace:section", "title": "The Laplace transform"},
-    {"id": "6.2", "module": "transformsofders:section", "title": "Transforms of derivatives and ODEs"},
-    {"id": "6.3", "module": "convolution:section", "title": "Convolution"},
-    {"id": "6.4", "module": "diracdelta:section", "title": "Dirac delta and impulse response"},
-    {"id": "6.5", "module": "laplacepde:section", "title": "Solving PDEs with the Laplace transform"}
+    {
+      "id": "6.1",
+      "module": "laplace:section",
+      "title": "The Laplace transform"
+    },
+    {
+      "id": "6.2",
+      "module": "transformsofders:section",
+      "title": "Transforms of derivatives and ODEs"
+    },
+    {
+      "id": "6.3",
+      "module": "convolution:section",
+      "title": "Convolution"
+    },
+    {
+      "id": "6.4",
+      "module": "diracdelta:section",
+      "title": "Dirac delta and impulse response"
+    },
+    {
+      "id": "6.5",
+      "module": "laplacepde:section",
+      "title": "Solving PDEs with the Laplace transform"
+    }
   ],
   "variables": [
-    {"sym": "f", "type": "function", "meaning": "a function of t ≥ 0 in the time domain, the function whose Laplace transform is taken", "section": "6.1"},
-    {"sym": "F", "concept": "laplace-transform", "meaning": "the Laplace transform F(s) = ℒ{f(t)} of f(t), a function of the frequency variable s", "section": "6.1"},
-    {"sym": "g", "type": "function", "meaning": "a second function of t, the other summand in the linearity theorem and the other function in the uniqueness theorem", "section": "6.1"},
-    {"sym": "G", "type": "transform", "meaning": "the Laplace transform G(s) = ℒ{g(t)} of g(t)", "section": "6.1"},
-    {"sym": "u", "concept": "unit-step-function", "meaning": "the unit step (Heaviside) function, 0 for t < 0 and 1 for t ≥ 0; u(t − a) is the step at t = a", "section": "6.1"},
-    {"sym": "x", "type": "function", "meaning": "the displacement x(t) of the mass–spring equation mx″ + cx′ + kx = f(t), the unknown function of time", "section": "6.1"},
-    {"sym": "x_prime", "type": "derivative", "meaning": "the derivative of x with respect to t", "section": "6.1"},
-    {"sym": "x_dprime", "type": "derivative", "meaning": "the second derivative of x with respect to t", "section": "6.1"},
-
-    {"sym": "g", "type": "function", "meaning": "a differentiable function of exponential order whose derivatives are transformed, with G(s) = ℒ{g(t)}", "section": "6.2"},
-    {"sym": "g_prime", "type": "derivative", "meaning": "the derivative of g with respect to t", "section": "6.2"},
-    {"sym": "g_dprime", "type": "derivative", "meaning": "the second derivative of g with respect to t", "section": "6.2"},
-    {"sym": "g_tprime", "type": "derivative", "meaning": "the third derivative of g with respect to t", "section": "6.2"},
-    {"sym": "G", "type": "transform", "meaning": "the Laplace transform G(s) = ℒ{g(t)} of g(t)", "section": "6.2"},
-    {"sym": "x", "type": "function", "meaning": "the unknown function x(t) of the differential equation, the output of the system when f(t) is its input", "section": "6.2"},
-    {"sym": "x_prime", "type": "derivative", "meaning": "the derivative of x with respect to t", "section": "6.2"},
-    {"sym": "x_dprime", "type": "derivative", "meaning": "the second derivative of x with respect to t", "section": "6.2"},
-    {"sym": "x_tprime", "type": "derivative", "meaning": "the third derivative of x with respect to t", "section": "6.2"},
-    {"sym": "X", "type": "transform", "meaning": "the Laplace transform X(s) = ℒ{x(t)} of the unknown x(t)", "section": "6.2"},
-    {"sym": "f", "type": "function", "meaning": "a function of t in the time domain: the right-hand side of the equation, a signal or the input of the system, or a periodic function with period P", "section": "6.2"},
-    {"sym": "F", "concept": "laplace-transform", "meaning": "the Laplace transform F(s) = ℒ{f(t)} of f(t); for a periodic f, F(s) = (1/(1 − e^(−Ps))) ∫ from 0 to P of e^(−st) f(t) dt", "section": "6.2"},
-    {"sym": "F_prime", "type": "derivative", "meaning": "the derivative of the transform F(s) with respect to s, the transform of −t f(t)", "section": "6.2"},
-    {"sym": "u", "concept": "unit-step-function", "meaning": "the Heaviside (unit step) function, 0 for t < 0 and 1 for t ≥ 0; u(t − a) switches on at t = a", "section": "6.2"},
-    {"sym": "H", "concept": "transfer-function", "meaning": "the transfer function H(s) = X(s)/F(s) of the system Lx = f(t) with zero initial conditions, so that X(s) = H(s)F(s)", "section": "6.2"},
-
-    {"sym": "f", "type": "function", "meaning": "a function of t ≥ 0, the first factor of the convolution f ∗ g; in Lx = f(t), the forcing function", "section": "6.3"},
-    {"sym": "g", "type": "function", "meaning": "a function of t ≥ 0, the second factor of the convolution f ∗ g; in the Volterra equation, the known kernel g(t − τ)", "section": "6.3"},
-    {"sym": "f*g", "concept": "convolution", "meaning": "the convolution (f ∗ g)(t) = ∫ from 0 to t of f(τ) g(t − τ) dτ, another function of t", "section": "6.3"},
-    {"sym": "F", "concept": "laplace-transform", "meaning": "the Laplace transform F(s) = ℒ{f(t)} of f(t)", "section": "6.3"},
-    {"sym": "G", "type": "transform", "meaning": "the Laplace transform G(s) = ℒ{g(t)} of g(t)", "section": "6.3"},
-    {"sym": "x", "type": "function", "meaning": "the unknown function x(t): the solution of the forced oscillation x″ + ω₀²x = f(t) or of a Volterra integral equation", "section": "6.3"},
-    {"sym": "x_prime", "type": "derivative", "meaning": "the derivative of x with respect to t", "section": "6.3"},
-    {"sym": "x_dprime", "type": "derivative", "meaning": "the second derivative of x with respect to t", "section": "6.3"},
-    {"sym": "x_tprime", "type": "derivative", "meaning": "the third derivative of x with respect to t", "section": "6.3"},
-    {"sym": "X", "type": "transform", "meaning": "the Laplace transform X(s) = ℒ{x(t)} of the unknown x(t)", "section": "6.3"},
-    {"sym": "h", "type": "function", "meaning": "the function h(t) = ℒ⁻¹{H(s)}, the inverse transform of the transfer function, so that x = f ∗ h", "section": "6.3"},
-    {"sym": "H", "concept": "transfer-function", "meaning": "the transfer function H(s) of the equation Lx = f(t), with X(s) = H(s)F(s)", "section": "6.3"},
-
-    {"sym": "φ", "concept": "rectangular-pulse", "meaning": "the rectangular pulse φ(t), equal to M for a ≤ t < b and 0 otherwise; with a = 0 and M = 1/b a pulse of unit mass", "section": "6.4"},
-    {"sym": "δ", "concept": "dirac-delta-function", "meaning": "the Dirac delta function, the generalized function with ∫ δ(t) f(t) dt = f(0); δ(t − a) is the impulse at t = a", "section": "6.4"},
-    {"sym": "u", "concept": "unit-step-function", "meaning": "the unit step function; the delta function is, in a certain sense, its derivative", "section": "6.4"},
-    {"sym": "f", "type": "function", "meaning": "a continuous function of t integrated against the delta function, or the input of the system Lx = f(t)", "section": "6.4"},
-    {"sym": "x", "type": "function", "meaning": "the unknown function x(t), the output of the system Lx = f(t); for f = δ it is the impulse response", "section": "6.4"},
-    {"sym": "x_prime", "type": "derivative", "meaning": "the derivative of x with respect to t", "section": "6.4"},
-    {"sym": "x_dprime", "type": "derivative", "meaning": "the second derivative of x with respect to t", "section": "6.4"},
-    {"sym": "X", "type": "transform", "meaning": "the Laplace transform X(s) = ℒ{x(t)} of the unknown x(t)", "section": "6.4"},
-    {"sym": "h", "concept": "impulse-response", "meaning": "the impulse response h(t), the solution of Lh = δ(t) with zero initial conditions, which is ℒ⁻¹{H(s)}", "section": "6.4"},
-    {"sym": "H", "concept": "transfer-function", "meaning": "the transfer function H(s) of Lx = f(t); its inverse transform is the impulse response", "section": "6.4"},
-    {"sym": "F", "type": null, "meaning": "the force applied to the beam at the point x = a; in the Euler–Bernoulli equation EI y⁗ = F(x), F(x) is the force per unit length at x", "section": "6.4", "redefines": true},
-    {"sym": "y", "type": "function", "meaning": "the deflection y(x) of the beam in the vertical direction at the position x along the beam", "section": "6.4"},
-    {"sym": "y_prime", "type": "derivative", "meaning": "the derivative of the deflection y with respect to x", "section": "6.4"},
-    {"sym": "y_dprime", "type": "derivative", "meaning": "the second derivative of the deflection y with respect to x", "section": "6.4"},
-    {"sym": "y_tprime", "type": "derivative", "meaning": "the third derivative of the deflection y with respect to x", "section": "6.4"},
-    {"sym": "d4y/dx4", "type": "derivative", "meaning": "the fourth derivative of the deflection y with respect to x", "section": "6.4"},
-    {"sym": "Y", "type": "transform", "meaning": "the Laplace transform Y(s) of the deflection y(x), taken in the x variable", "section": "6.4"},
-
-    {"sym": "y", "type": "function", "meaning": "the unknown function y(x, t) of a PDE in the position x and the time t: the concentration of the toxic substance in the river, or the temperature of the rod", "section": "6.5"},
-    {"sym": "y_t", "type": "derivative", "meaning": "the partial derivative of y with respect to t", "section": "6.5"},
-    {"sym": "y_x", "type": "derivative", "meaning": "the partial derivative of y with respect to x", "section": "6.5"},
-    {"sym": "y_xx", "type": "derivative", "meaning": "the second partial derivative of y with respect to x", "section": "6.5"},
-    {"sym": "y_tt", "type": "derivative", "meaning": "the second partial derivative of y with respect to t", "section": "6.5"},
-    {"sym": "y_xt", "type": "derivative", "meaning": "the mixed partial derivative of y, with respect to x and then t", "section": "6.5"},
-    {"sym": "Y", "type": "transform", "meaning": "the transform Y(x) = ℒ{y(x, t)} of y in the t variable, treated as a function of x with s as a parameter", "section": "6.5"},
-    {"sym": "Y_prime", "type": "derivative", "meaning": "the derivative of the transformed function Y(x) with respect to x, the transform of y_x", "section": "6.5"},
-    {"sym": "Y_dprime", "type": "derivative", "meaning": "the second derivative of the transformed function Y(x) with respect to x, the transform of y_xx", "section": "6.5"},
-    {"sym": "u", "concept": "unit-step-function", "meaning": "the Heaviside function, 0 for t < 0 and 1 otherwise; the solution C u(t − x/α) switches on when the wavefront passes", "section": "6.5"},
-    {"sym": "f", "type": "function", "meaning": "the given heat flux f(t) at the end x = 0 of the rod, a function of t", "section": "6.5"},
-    {"sym": "F", "concept": "laplace-transform", "meaning": "the Laplace transform F(s) = ℒ{f(t)} of the flux f(t)", "section": "6.5"},
-    {"sym": "δ", "concept": "dirac-delta-function", "meaning": "the delta function, the derivative of the Heaviside function, which is what y_t and y_x become along the wavefront", "section": "6.5"}
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "a function of t ≥ 0 in the time domain, the function whose Laplace transform is taken",
+      "section": "6.1",
+      "redefines": true
+    },
+    {
+      "sym": "F",
+      "concept": "laplace-transform",
+      "meaning": "the Laplace transform F(s) = ℒ{f(t)} of f(t), a function of the frequency variable s",
+      "section": "6.1",
+      "redefines": true
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "a second function of t, the other summand in the linearity theorem and the other function in the uniqueness theorem",
+      "section": "6.1",
+      "redefines": true
+    },
+    {
+      "sym": "G",
+      "type": "transform",
+      "meaning": "the Laplace transform G(s) = ℒ{g(t)} of g(t)",
+      "section": "6.1",
+      "redefines": true
+    },
+    {
+      "sym": "u",
+      "concept": "unit-step-function",
+      "meaning": "the unit step (Heaviside) function, 0 for t < 0 and 1 for t ≥ 0; u(t − a) is the step at t = a",
+      "section": "6.1",
+      "redefines": true
+    },
+    {
+      "sym": "x",
+      "type": "function",
+      "meaning": "the displacement x(t) of the mass–spring equation mx″ + cx′ + kx = f(t), the unknown function of time",
+      "section": "6.1",
+      "redefines": true
+    },
+    {
+      "sym": "x_prime",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t",
+      "section": "6.1"
+    },
+    {
+      "sym": "x_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of x with respect to t",
+      "section": "6.1"
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "a differentiable function of exponential order whose derivatives are transformed, with G(s) = ℒ{g(t)}",
+      "section": "6.2"
+    },
+    {
+      "sym": "g_prime",
+      "type": "derivative",
+      "meaning": "the derivative of g with respect to t",
+      "section": "6.2"
+    },
+    {
+      "sym": "g_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of g with respect to t",
+      "section": "6.2"
+    },
+    {
+      "sym": "g_tprime",
+      "type": "derivative",
+      "meaning": "the third derivative of g with respect to t",
+      "section": "6.2"
+    },
+    {
+      "sym": "G",
+      "type": "transform",
+      "meaning": "the Laplace transform G(s) = ℒ{g(t)} of g(t)",
+      "section": "6.2"
+    },
+    {
+      "sym": "x",
+      "type": "function",
+      "meaning": "the unknown function x(t) of the differential equation, the output of the system when f(t) is its input",
+      "section": "6.2"
+    },
+    {
+      "sym": "x_prime",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t",
+      "section": "6.2"
+    },
+    {
+      "sym": "x_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of x with respect to t",
+      "section": "6.2"
+    },
+    {
+      "sym": "x_tprime",
+      "type": "derivative",
+      "meaning": "the third derivative of x with respect to t",
+      "section": "6.2"
+    },
+    {
+      "sym": "X",
+      "type": "transform",
+      "meaning": "the Laplace transform X(s) = ℒ{x(t)} of the unknown x(t)",
+      "section": "6.2",
+      "redefines": true
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "a function of t in the time domain: the right-hand side of the equation, a signal or the input of the system, or a periodic function with period P",
+      "section": "6.2"
+    },
+    {
+      "sym": "F",
+      "concept": "laplace-transform",
+      "meaning": "the Laplace transform F(s) = ℒ{f(t)} of f(t); for a periodic f, F(s) = (1/(1 − e^(−Ps))) ∫ from 0 to P of e^(−st) f(t) dt",
+      "section": "6.2"
+    },
+    {
+      "sym": "F_prime",
+      "type": "derivative",
+      "meaning": "the derivative of the transform F(s) with respect to s, the transform of −t f(t)",
+      "section": "6.2"
+    },
+    {
+      "sym": "u",
+      "concept": "unit-step-function",
+      "meaning": "the unit step (Heaviside) function, 0 for t < 0 and 1 for t ≥ 0; u(t − a) is the step at t = a",
+      "section": "6.2"
+    },
+    {
+      "sym": "H",
+      "concept": "transfer-function",
+      "meaning": "the transfer function H(s) = X(s)/F(s) of the system Lx = f(t) with zero initial conditions, so that X(s) = H(s)F(s)",
+      "section": "6.2",
+      "redefines": true
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "a function of t ≥ 0, the first factor of the convolution f ∗ g; in Lx = f(t), the forcing function",
+      "section": "6.3"
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "a function of t ≥ 0, the second factor of the convolution f ∗ g; in the Volterra equation, the known kernel g(t − τ)",
+      "section": "6.3"
+    },
+    {
+      "sym": "f*g",
+      "concept": "convolution",
+      "meaning": "the convolution (f ∗ g)(t) = ∫ from 0 to t of f(τ) g(t − τ) dτ, another function of t",
+      "section": "6.3"
+    },
+    {
+      "sym": "F",
+      "concept": "laplace-transform",
+      "meaning": "the Laplace transform F(s) = ℒ{f(t)} of f(t)",
+      "section": "6.3"
+    },
+    {
+      "sym": "G",
+      "type": "transform",
+      "meaning": "the Laplace transform G(s) = ℒ{g(t)} of g(t)",
+      "section": "6.3"
+    },
+    {
+      "sym": "x",
+      "type": "function",
+      "meaning": "the unknown function x(t): the solution of the forced oscillation x″ + ω₀²x = f(t) or of a Volterra integral equation",
+      "section": "6.3"
+    },
+    {
+      "sym": "x_prime",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t",
+      "section": "6.3"
+    },
+    {
+      "sym": "x_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of x with respect to t",
+      "section": "6.3"
+    },
+    {
+      "sym": "x_tprime",
+      "type": "derivative",
+      "meaning": "the third derivative of x with respect to t",
+      "section": "6.3"
+    },
+    {
+      "sym": "X",
+      "type": "transform",
+      "meaning": "the Laplace transform X(s) = ℒ{x(t)} of the unknown x(t)",
+      "section": "6.3"
+    },
+    {
+      "sym": "h",
+      "type": "function",
+      "meaning": "the function h(t) = ℒ⁻¹{H(s)}, the inverse transform of the transfer function, so that x = f ∗ h",
+      "section": "6.3",
+      "redefines": true
+    },
+    {
+      "sym": "H",
+      "concept": "transfer-function",
+      "meaning": "the transfer function H(s) of the equation Lx = f(t), with X(s) = H(s)F(s)",
+      "section": "6.3"
+    },
+    {
+      "sym": "φ",
+      "concept": "rectangular-pulse",
+      "meaning": "the rectangular pulse φ(t), equal to M for a ≤ t < b and 0 otherwise; with a = 0 and M = 1/b a pulse of unit mass",
+      "section": "6.4"
+    },
+    {
+      "sym": "δ",
+      "concept": "dirac-delta-function",
+      "meaning": "the Dirac delta function, the generalized function with ∫ δ(t) f(t) dt = f(0); δ(t − a) is the impulse at t = a",
+      "section": "6.4"
+    },
+    {
+      "sym": "u",
+      "concept": "unit-step-function",
+      "meaning": "the unit step (Heaviside) function, 0 for t < 0 and 1 for t ≥ 0; u(t − a) is the step at t = a",
+      "section": "6.4"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "a continuous function of t integrated against the delta function, or the input of the system Lx = f(t)",
+      "section": "6.4"
+    },
+    {
+      "sym": "x",
+      "type": "function",
+      "meaning": "the unknown function x(t), the output of the system Lx = f(t); for f = δ it is the impulse response",
+      "section": "6.4"
+    },
+    {
+      "sym": "x_prime",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t",
+      "section": "6.4"
+    },
+    {
+      "sym": "x_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of x with respect to t",
+      "section": "6.4"
+    },
+    {
+      "sym": "X",
+      "type": "transform",
+      "meaning": "the Laplace transform X(s) = ℒ{x(t)} of the unknown x(t)",
+      "section": "6.4"
+    },
+    {
+      "sym": "h",
+      "concept": "impulse-response",
+      "meaning": "the impulse response h(t), the solution of Lh = δ(t) with zero initial conditions, which is ℒ⁻¹{H(s)}",
+      "section": "6.4",
+      "redefines": true
+    },
+    {
+      "sym": "H",
+      "concept": "transfer-function",
+      "meaning": "the transfer function H(s) of Lx = f(t); its inverse transform is the impulse response",
+      "section": "6.4"
+    },
+    {
+      "sym": "F",
+      "meaning": "the force applied to the beam at the point x = a; in the Euler–Bernoulli equation EI y⁗ = F(x), F(x) is the force per unit length at x",
+      "section": "6.4",
+      "redefines": true
+    },
+    {
+      "sym": "y",
+      "type": "function",
+      "meaning": "the deflection y(x) of the beam in the vertical direction at the position x along the beam",
+      "section": "6.4",
+      "redefines": true
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of the deflection y with respect to x",
+      "section": "6.4"
+    },
+    {
+      "sym": "y_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of the deflection y with respect to x",
+      "section": "6.4"
+    },
+    {
+      "sym": "y_tprime",
+      "type": "derivative",
+      "meaning": "the third derivative of the deflection y with respect to x",
+      "section": "6.4"
+    },
+    {
+      "sym": "d4y/dx4",
+      "type": "derivative",
+      "meaning": "the fourth derivative of the deflection y with respect to x",
+      "section": "6.4"
+    },
+    {
+      "sym": "Y",
+      "type": "transform",
+      "meaning": "the Laplace transform Y(s) of the deflection y(x), taken in the x variable",
+      "section": "6.4",
+      "redefines": true
+    },
+    {
+      "sym": "y",
+      "type": "function",
+      "meaning": "the unknown function y(x, t) of a PDE in the position x and the time t: the concentration of the toxic substance in the river, or the temperature of the rod",
+      "section": "6.5"
+    },
+    {
+      "sym": "y_t",
+      "type": "derivative",
+      "meaning": "the partial derivative of y with respect to t",
+      "section": "6.5"
+    },
+    {
+      "sym": "y_x",
+      "type": "derivative",
+      "meaning": "the partial derivative of y with respect to x",
+      "section": "6.5"
+    },
+    {
+      "sym": "y_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative of y with respect to x",
+      "section": "6.5"
+    },
+    {
+      "sym": "y_tt",
+      "type": "derivative",
+      "meaning": "the second partial derivative of y with respect to t",
+      "section": "6.5"
+    },
+    {
+      "sym": "y_xt",
+      "type": "derivative",
+      "meaning": "the mixed partial derivative of y, with respect to x and then t",
+      "section": "6.5"
+    },
+    {
+      "sym": "Y",
+      "type": "transform",
+      "meaning": "the transform Y(x) = ℒ{y(x, t)} of y in the t variable, treated as a function of x with s as a parameter",
+      "section": "6.5"
+    },
+    {
+      "sym": "Y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of the transformed function Y(x) with respect to x, the transform of y_x",
+      "section": "6.5"
+    },
+    {
+      "sym": "Y_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of the transformed function Y(x) with respect to x, the transform of y_xx",
+      "section": "6.5"
+    },
+    {
+      "sym": "u",
+      "concept": "unit-step-function",
+      "meaning": "the unit step (Heaviside) function, 0 for t < 0 and 1 for t ≥ 0; u(t − a) is the step at t = a",
+      "section": "6.5"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the given heat flux f(t) at the end x = 0 of the rod, a function of t",
+      "section": "6.5"
+    },
+    {
+      "sym": "F",
+      "concept": "laplace-transform",
+      "meaning": "the Laplace transform F(s) = ℒ{f(t)} of the flux f(t)",
+      "section": "6.5",
+      "redefines": true
+    },
+    {
+      "sym": "δ",
+      "concept": "dirac-delta-function",
+      "meaning": "the delta function, the derivative of the Heaviside function, which is what y_t and y_x become along the wavefront",
+      "section": "6.5"
+    },
+    {
+      "sym": "ω_0",
+      "section": "6.2",
+      "concept": "natural-frequency",
+      "meaning": "the natural (angular) frequency ω₀ = √(k/m) of the mass–spring system, in radians per unit time"
+    },
+    {
+      "sym": "ω_0",
+      "section": "6.3",
+      "concept": "natural-frequency",
+      "meaning": "the natural (angular) frequency ω₀ = √(k/m) of the mass–spring system, in radians per unit time"
+    },
+    {
+      "sym": "ω_0",
+      "section": "6.4",
+      "concept": "natural-frequency",
+      "meaning": "the natural (angular) frequency ω₀ = √(k/m) of the mass–spring system, in radians per unit time"
+    }
   ]
 }
