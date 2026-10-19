@@ -1,8 +1,25 @@
 # Chapter 1 build status
 
 Done (prep, 2026-10-19): sources (converted before), config.md, COLOR.md, exploration.md, plan.md for 1.1–1.9, chapter.json (sections and 85 variables rows with their concepts, no anchors), book-rows.json reviewed and completed against every source.md and plan.md, `ost merge diffyqs 1` (62 concepts, 96 edges, 28 symbols). `ost check diffyqs`: no error names ch01/chapter.json or a Chapter 1 row of book.json except the two coverage errors of the partial 1.1 (`interval-of-existence`, `integrating-twice` need their introducing spans) and its footnote number; the 0.2/0.3 anchor errors are Chapter 0's.
-In progress: nothing; the section agents start now.
-Next: sections 1.1 → 1.9 (1.1 from its partial section.json/text.html), then the chapter pass: anchors on every variables row and form (each plan's "Wanted at chapter level" lists them), the Hasse check rerun, `ost log diffyqs 1`.
+In progress: nothing.
+Next: nothing; the chapter is done (sections 1.1–1.9 and the chapter pass, 2026-10-19). `npm run colours:default -- diffyqs` is the orchestrator's at the end of the run (config 19).
+
+Done (chapter pass, 2026-10-19, pass-ch01): every "Wanted at chapter level" applied (71 variables anchors, 50 form anchors, the "characteristics" term moved to `characteristic-curve`, `1.4/x` widened, `drv-transport` naming Example 1.9.1), footnote numbers 1–9 set in book order (config 21), 1.5's three links to (1.4) fixed, twelve caption sentences trimmed to the subject (rule 17), the chapter's `log-pass.md` appended to `LOG.md` with `ost log diffyqs 1`. No Hasse script exists (root rule 6's TODO), so the edges were not re-checked by tool. Checks: PLAYWRIGHT.
+
+Decisions Chen must hear (the whole chapter, in one list):
+- Footnotes carry the book's running number (`config.md` 21): `diffyqssetup.sty` runs the counter through the whole book and prints it only as a per-page symbol, so Chapter 1's nine are 1–9 in book order and Chapter 2 starts at 10; the sections' "1" per section and the suggested "∗" were both set aside. Every later chapter's pass counts its own from the previous chapter's last.
+- Captions never instruct the reader about the controls ("Drag the point"): Chapter 0's pass trimmed 0.2's to the subject and this pass did the same for twelve sentences in 1.1–1.9, though Calculus's captions say "drag" freely and `docs/prompts/interactive-figures.md` asks captions to say "what to drag"; one of the two conventions should be written into the rules.
+- `equilibrium-solution` has no symbol: x is the dependent variable's symbol in 1.6 (root rule 6), so 1.6's suggestion was not applied.
+- No chapter intro/summary; sections without book subsections got OmniStax h2s (1.1, 1.4, 1.6, 1.7, 1.9).
+- Folds: 1.2+1.3+1.4, 1.13+1.14+1.15, 1.16+1.17, 1.20+1.21; the tank sketch of Example 1.4.2 is the scene of Figure 1.10 (moving); Figure 1.23 is flat and moving with its 3D surface as a second view.
+- Sims (rule 15): sim-integral-solution (1.1), sim-substitution-family (1.5, the section's only figure), sim-method-order (1.7); Figure 1.7 generalised to the family of solutions joining and leaving the axis.
+- 1.7's Runge–Kutta and improved Euler paragraphs (printed among the exercises) stand in the text as the third h2 before the Exercises.
+- 1.6's unnumbered classification image is a bare `<img>`; its phase-diagram image is the second original of Figure 1.12.
+- Every unkeyed exercise (72) carries an AI-marked, computation-checked solution; a "sketch" exercise gets a described answer.
+- Prep concepts beyond the plans: `interval-of-existence`, `integrating-twice` (1.1), `reading-a-slope-field` (1.2), `classifying-critical-points` (1.6), `estimating-the-error-by-halving`, `choosing-a-step-size` (1.7).
+- Links out of the chapter into pages not yet built: 1.9 → `/diffyqs/ch04/4.8/`, `/diffyqs/ch03/3.1/`, `/diffyqs/ch08/8.1/` (page links, resolve when built). Links into Chapter 1 from other chapters' pages: 0.1 (16) and 2.1 (1), all page links, all resolve; none with a fragment, none unresolved.
+- App: `derivation.ts`'s "Example N.M" regex is already widened to N.M.k in the working tree (uncommitted); `astro check` reports one error in `src/lib/content/load.ts:275` (`c.concept` on a coverage summary row, ts(2339)), not from this chapter; `npm test`'s two book-on-disk checks fail on Chapter 3's just-merged rows (`matrix`, `vector`, `transpose` symbols with no linked variables row; `ch03/chapter.json` x₁, x₂ "sets itself in ink"), not on Chapter 1.
+- For the other chapters' passes: `linkcheck.py` and `pw.py` in this pass's scratch check hrefs against the built pages' ids and walk every figure's sliders and choices; the app keeps earlier tabs' documents in the DOM, so a Playwright check filters figures by the section's id prefix.
 
 Decisions so far:
 - No chapter intro/summary. Sections without book subsections get OmniStax h2s (1.1, 1.4, 1.6, 1.7, 1.9).

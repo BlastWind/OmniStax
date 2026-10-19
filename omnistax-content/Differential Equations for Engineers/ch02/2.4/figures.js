@@ -62,8 +62,8 @@ function written(S) {
     spring(ctx, WALL, CY, cx - CW / 2, CY, 9, 20, ink, 3);
     cart(ctx, cx, CY, CW, CH, ink);
     text(ctx, 'm', cx, CY, ink, { size: 24, align: 'center', italic: true });
-    line(ctx, REST, FLOOR - 176, REST, FLOOR + 48, guide(), 2, [4, 8]);
-    text(ctx, 'x = 0', REST, FLOOR - 190, PAL.muted, { size: 17, align: 'center' });
+    line(ctx, REST, FLOOR - 124, REST, FLOOR + 48, guide(), 2, [4, 8]);
+    text(ctx, 'x = 0', REST + 10, FLOOR + 30, PAL.muted, { size: 17, align: 'left' });
     if (Math.abs(cx - REST) > 12) hbracket(ctx, REST, cx, FLOOR + 48, fc, 'x', { side: 'below' });
     /* the three forces, symbolic, each pulling from the face it points away from; a vanished force draws nothing */
     hits = [{ x: cx, y: CY, r: 60, name: 'the mass, m = 2 kg' }, { x: (WALL + cx - CW / 2) / 2, y: CY, r: 24, name: 'the spring, k = 8 N/m' },
@@ -106,11 +106,11 @@ function written(S) {
    in the wire sit at an offset of 300 units per coulomb of Q round the loop, so they move with the current and stop as
    Q settles at CE = 0.5 C. Graph t 0 to 10 by I −1.2 to 1.2 (at R = 0 the current is sin 2t). */
 (function () {
-  const d = sim('sim-rlc', 700);
+  const d = sim('sim-rlc', 740);
   const L = 1, CAP = 0.25, E = 2, T = 10;
   const rS = ctl(d.controls, { label: 'R', cls: '', key: 'R', min: 0, max: 6, step: 0.05, value: 1, unit: 'Ω', dec: 2, aria: 'the resistance R', specials: [{ at: 2 * Math.sqrt(L / CAP), label: 'critical' }], onInput: () => cy.reset() });
   const ro = readout(d);
-  const LEFT = 330, RIGHT = 1070, TOP = 120, BOT = 330, MID = (TOP + BOT) / 2, PER = 2 * (RIGHT - LEFT) + 2 * (BOT - TOP), OFF = 300;
+  const LEFT = 330, RIGHT = 1070, TOP = 170, BOT = 380, MID = (TOP + BOT) / 2, PER = 2 * (RIGHT - LEFT) + 2 * (BOT - TOP), OFF = 300;
   const CL = 680, CR = 720, RL = 600, RR = 800;
   const along = (u) => {
     u = ((u % PER) + PER) % PER;
@@ -154,7 +154,7 @@ function written(S) {
     if (Math.abs(It) > 0.02) arrow(ctx, AX - dir * 45, TOP - 34, AX + dir * 45, TOP - 34, fc, 4);
     mark(ctx, `$\\kI = ${n(It)}$ A`, AX, TOP - 66, fc, { align: 'center' });
     /* the graph of I(t) */
-    const ax = axes(ctx, { l: 200, r: 1250, t: 420, b: 640 }, [0, T], [-1.2, 1.2], { xl: 't (s)', yl: 'I (A)', yc: fc, nx: 5, ny: 4, fy: (u) => fmt(u, 1) });
+    const ax = axes(ctx, { l: 200, r: 1250, t: 480, b: 680 }, [0, T], [-1.2, 1.2], { xl: 't (s)', yl: 'I (A)', yc: fc, nx: 5, ny: 4, fy: (u) => fmt(u, 1) });
     line(ctx, ax.box.l, ax.Y(0), ax.box.r, ax.Y(0), guide(), 2);
     plot(ctx, ax, I, alpha(fc, 0.3), { w: 3 });
     if (t > 0) plot(ctx, ax, I, fc, { w: 5, x: [0, t] });
@@ -163,8 +163,8 @@ function written(S) {
       { x: RIGHT, y: MID, r: 50, name: 'the inductor, L = 1 H' }, { x: (RL + RR) / 2, y: BOT, r: 34, name: `the resistor, R = ${fmt(R, 2)} Ω` },
       { x: AX, y: TOP - 34, r: 20, name: 'the current I, the way the charges run' }, { x: (LEFT + RIGHT) / 2, y: BOT, r: 12, name: 'charges carried round the loop' },
       { x: P.x, y: P.y, r: 14, name: `I(${fmt(t, 2)}) = ${fmt(It, 2)} A` }];
-    const tail = R > 0 ? `the current dies away and $\\kQ \\to C\\kE = ${n(CAP * E, 1)}$ C.` : 'with no resistance the current never dies away.';
-    headline(ctx, `$t = ${n(t)}$ s: $\\kI = ${n(It)}$ A and the capacitor holds $\\kQ = ${n(Qt)}$ C; ${tail}`);
+    const tail = R > 0 ? `$\\kQ$ settles at $C\\kE = ${n(CAP * E, 1)}$ C.` : 'the current never dies away.';
+    headline(ctx, `$t = ${n(t)}$ s: $\\kI = ${n(It)}$ A and $\\kQ = ${n(Qt)}$ C; ${tail}`);
     ro.set(`\\kIdprime${R > 0 ? ` + ${n(R)}\\kIprime` : ''} + 4\\kI = \\kEprime(t) = 0,\\quad \\kI(t) = ${written(SI)}`, undefined, { form: SI.kind });
   });
 })();
@@ -301,7 +301,7 @@ function written(S) {
     const c2 = c * c, km4 = 4 * K * M;
     const crossing = (ts) => (ts > 0.005 ? `crossing $\\kx = 0$ once, at $t = ${n(ts)}$ s` : Math.abs(x0.v) < 1e-9 ? `leaving $\\kx = 0$ and never returning to it` : `never crossing $\\kx = 0$`);
     let head;
-    if (S.kind === 'over') head = `$c^2 = ${n(c2)} \\gt 4km = ${km4}$: overdamped, two negative roots, the mass sliding home and ${crossing(Math.log(-S.c1 / S.c2) / (S.r2 - S.r1))}.`;
+    if (S.kind === 'over') head = `$c^2 = ${n(c2)} \\gt 4km = ${km4}$: overdamped, two negative roots; the mass slides home, ${crossing(Math.log(-S.c1 / S.c2) / (S.r2 - S.r1))}.`;
     else if (S.kind === 'critical') head = `$c^2 = ${n(c2)} = 4km$: critically damped, one root $-p = ${n(-p)}$ of multiplicity 2, ${crossing(-S.c1 / S.c2)}.`;
     else if (p < 1e-9) head = `$c = 0$: undamped, $\\komegazero = ${n(W0)}$, and $\\kx(t)$ oscillates between $\\pm C = \\pm ${n(A)}$ for ever.`;
     else head = `$c^2 = ${n(c2)} \\lt 4km = ${km4}$: underdamped, decaying inside $\\pm ${n(A)}e^{-${n(p)}t}$ with $\\komegaone = \\sqrt{\\komegazero^2 - p^2} = ${n(S.w1)}$.`;
