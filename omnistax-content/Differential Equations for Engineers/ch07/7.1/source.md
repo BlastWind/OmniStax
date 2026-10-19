@@ -71,7 +71,7 @@ Consider a power series
 $$ \sum_{k=0}^\infty a_k {(x-x_0)}^k $$
 such that
 $$ A = \lim_{k\to\infty} \left \lvert \frac{a_{k+1}}{a_k} \right \rvert \qquad \text{or} \qquad A = \lim_{k\to\infty} \sqrt[k]{\lvert a_k \rvert} $$
-exists. If $A = 0$, then the radius of convergence of the series is $\infty$. Otherwise, the radius of convergence is ${1}/{A}$. Moreover, if either limit for $A$ diverges to $\infty$, then the series is divergent. [3]
+exists. If $A = 0$, then the radius of convergence of the series is $\infty$. Otherwise, the radius of convergence is ${1}/{A}$. Moreover, if either limit for $A$ diverges to $\infty$, then the series is divergent.
 :::
 
 :::example {ex:example-7-1-3} Example 7.1.3

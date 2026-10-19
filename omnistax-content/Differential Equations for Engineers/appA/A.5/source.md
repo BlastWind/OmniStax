@@ -181,7 +181,7 @@ c) $\operatorname{proj}_{\vec{v}}\bigl( (1,-1,0) \bigr)$
 
 :::exercise {exercise-A-5-005} number=A.5.5 answered=no src=ap-linear-algebra.tex:6034
 PROBLEM:
-[2] Consider the vectors $(1,2,3)$, $(-3,0,1)$, $(1,-5,3)$.
+Consider the vectors $(1,2,3)$, $(-3,0,1)$, $(1,-5,3)$.
 
 a) Check that the vectors are linearly independent and so form a basis of ${\mathbb{R}}^3$.
 b) Check that the vectors are mutually orthogonal, and are therefore an orthogonal basis.

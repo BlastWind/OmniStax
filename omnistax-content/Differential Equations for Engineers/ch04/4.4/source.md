@@ -185,7 +185,7 @@ Find the Fourier series of the even periodic extension of the function $f(t) = \
 
 :::exercise {exercise-4-4-008} number=4.4.8 answered=no src=ch-fourier-and-pde.tex:2759
 PROBLEM:
-[2] Consider
+Consider
 $$ x''(t) + 4 x(t) = f(t) , $$
 where $f(t) = 1$ on $0 < t < 1$.
 

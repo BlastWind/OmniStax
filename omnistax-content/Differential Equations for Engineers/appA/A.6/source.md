@@ -146,12 +146,12 @@ Suppose $A$ and $S$ are $n \times n$ matrices, and $S$ is invertible. Suppose th
 
 :::exercise {exercise-A-6-007} number=A.6.7 answered=no src=ap-linear-algebra.tex:6792
 PROBLEM:
-Let $A$ be an $n \times n$ matrix such that $\det(A)=1$. Compute $\det(x A)$ given a number $x$.[2] Hint: First try computing $\det(xI)$, then note that $xA = (xI)A$.
+Let $A$ be an $n \times n$ matrix such that $\det(A)=1$. Compute $\det(x A)$ given a number $x$.Hint: First try computing $\det(xI)$, then note that $xA = (xI)A$.
 :::
 
 :::exercise {exercise-A-6-101} number=A.6.101 answered=yes src=ap-linear-algebra.tex:6801
 PROBLEM:
-[2] Compute the determinant of the following matrices:
+Compute the determinant of the following matrices:
 
 a) $\begin{bmatrix} -2 \end{bmatrix}$
 b) $\begin{bmatrix} 2 & -2 \\ 1 & 3 \end{bmatrix}$

@@ -121,7 +121,7 @@ $$ \begin{align*} & k_1 = f(x_i,y_i) , & & k_2 = f\bigl(x_i + {h}/{2},y_i + k_1 
 
 :::exercise {exercise-1-7-007} number=1.7.7 answered=no src=ch-first-order-ode.tex:2935
 PROBLEM:
-[2] Consider $\dfrac{dy}{dx} = yx^2$, $y(0)=1$.
+Consider $\dfrac{dy}{dx} = yx^2$, $y(0)=1$.
 
 a) Approximate $y(1)$ using Runge–Kutta (see above) with step sizes $h=1$ and $h={1}/{2}$.
 b) Approximate $y(1)$ using Euler’s method with $h=1$ and $h={1}/{2}$.

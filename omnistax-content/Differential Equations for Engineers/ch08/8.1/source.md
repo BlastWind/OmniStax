@@ -169,8 +169,6 @@ c) Find the linearization. Is it helpful in understanding the system?
 
 :::
 
-[2]
-
 :::exercise {exercise-8-1-101} number=8.1.101 answered=yes src=ch-nonlin-systems.tex:431
 PROBLEM:
 Find the critical points and linearizations of the following systems.

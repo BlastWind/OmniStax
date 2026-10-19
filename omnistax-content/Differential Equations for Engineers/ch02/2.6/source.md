@@ -29,7 +29,7 @@ The general solution is
 $$ \boxed{~~ x = C_1 \cos (\omega_0 t) + C_2 \sin (\omega_0 t) + \frac{F_0}{m(\omega_0^2 - \omega^2)} \cos (\omega t) . ~~} $$
 Written another way
 $$ x = C \cos (\omega_0 t - \gamma) + \frac{F_0}{m(\omega_0^2 - \omega^2)} \cos (\omega t) . $$
-The solution is a superposition of two (shifted) cosine waves at different frequencies. [2]
+The solution is a superposition of two (shifted) cosine waves at different frequencies.
 
 :::example {ex:example-2-6-1} Example 2.6.1
 Take
@@ -85,7 +85,7 @@ The roots of the characteristic equation of the associated homogeneous problem a
 $$ x_c = \begin{cases} C_1 e^{r_1 t} + C_2 e^{r_2 t} & \text{if } \; c^2 > 4km , \\ C_1 e^{-p t} + C_2 t e^{-p t} & \text{if } \; c^2 = 4km , \\ e^{-p t} \bigl( C_1 \cos (\omega_1 t) + C_2 \sin (\omega_1 t) \bigr) & \text{if } \; c^2 < 4km , \end{cases} $$
 where $\omega_1 = \sqrt{\omega_0^2 - p^2}$. In any case, we see that $x_c(t) \to 0$ as $t \to \infty$.
 
-[2] Let us find a particular solution. There can be no conflicts when trying to solve for the undetermined coefficients by trying $x_p = A \cos (\omega t) + B \sin (\omega t)$. We plug in and solve for $A$ and $B$. We get (the {index:tedious} details are left to reader)
+Let us find a particular solution. There can be no conflicts when trying to solve for the undetermined coefficients by trying $x_p = A \cos (\omega t) + B \sin (\omega t)$. We plug in and solve for $A$ and $B$. We get (the {index:tedious} details are left to reader)
 $$ \bigl((\omega_0^2 - \omega^2)B - 2\omega p A\bigr) \sin (\omega t) + \bigl((\omega_0^2 - \omega^2)A + 2\omega p B\bigr) \cos (\omega t) = \frac{F_0}{m} \cos (\omega t) . $$
 
 We solve for $A$ and $B$ as usual:
@@ -155,7 +155,7 @@ Take $m x'' + c x' + kx = F_0 \cos (\omega t)$. Fix $c > 0$, $k > 0$, and $F_0 >
 
 :::exercise {exercise-2-6-005} number=2.6.5 answered=no src=ch-higher-order-ode.tex:3162
 PROBLEM:
-[3] A water tower in an earthquake acts as a mass-spring system. Assume that the container on top is full and the water does not move around. The container then acts as the mass and the support acts as the spring, where the induced vibrations are horizontal. The container with water has a mass of $m=10,000\,\mathrm{kg}$. It takes a force of 1000 newtons to displace the container 1 meter. For simplicity, assume no friction. When the earthquake hits, the water tower is at rest (it is not moving). The earthquake induces an external force $F(t) = m A \omega^2 \cos (\omega t)$ newtons.
+A water tower in an earthquake acts as a mass-spring system. Assume that the container on top is full and the water does not move around. The container then acts as the mass and the support acts as the spring, where the induced vibrations are horizontal. The container with water has a mass of $m=10,000\,\mathrm{kg}$. It takes a force of 1000 newtons to displace the container 1 meter. For simplicity, assume no friction. When the earthquake hits, the water tower is at rest (it is not moving). The earthquake induces an external force $F(t) = m A \omega^2 \cos (\omega t)$ newtons.
 
 a) What is the natural frequency of the water tower?
 b) If $\omega$ is not the natural frequency, find a formula for the maximal amplitude of the resulting oscillations of the water container (the maximal deviation from the rest position). The motion will be a high-frequency wave modulated by a low-frequency wave, so simply find the constant in front of the sines.

@@ -269,7 +269,7 @@ a) $\begin{bmatrix} -1 & 13 \\ 9 & 14 \end{bmatrix}$ b) $\begin{bmatrix} 2 & -5 
 
 :::exercise {exercise-A-2-103} number=A.2.103 answered=yes src=ap-linear-algebra.tex:2688
 PROBLEM:
-[2] Multiply the following matrices
+Multiply the following matrices
 
 a) $\begin{bmatrix} 2 & 1 & 4 \\ 3 & 4 & 4 \end{bmatrix} \begin{bmatrix} 2 & 4 \\ 6 & 3 \\ 3 & 5 \end{bmatrix}$
 b) $\begin{bmatrix} 0 & 3 & 3 \\ 2 & -2 & 1 \\ 3 & 5 & -2 \end{bmatrix} \begin{bmatrix} 6 & 6 & 2 \\ 4 & 6 & 0 \\ 2 & 0 & 4 \end{bmatrix}$

@@ -142,7 +142,7 @@ c) $x'=ye^x$, $y'=y-x+y^2$
 
 :::exercise {exercise-8-2-002} number=8.2.2 answered=no src=ch-nonlin-systems.tex:955
 PROBLEM:
-[2] Find the implicit equations of the trajectories of the following conservative systems. Next find their critical points (if any) and classify them.
+Find the implicit equations of the trajectories of the following conservative systems. Next find their critical points (if any) and classify them.
 
 a) $x''+ x+x^3 = 0$
 b) $\theta''+\sin \theta = 0$

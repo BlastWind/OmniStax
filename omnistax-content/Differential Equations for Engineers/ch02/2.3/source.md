@@ -209,7 +209,7 @@ $y=C_1 e^x +C_2 x^3 + C_3 x^2 +C_4 x + C_5$
 
 :::exercise {exercise-2-3-102} number=2.3.102 answered=yes src=ch-higher-order-ode.tex:1352
 PROBLEM:
-[2] Suppose that the characteristic equation of a third-order differential equation has roots $\pm 2i$ and 3.
+Suppose that the characteristic equation of a third-order differential equation has roots $\pm 2i$ and 3.
 
 a) What is the characteristic equation?
 b) Find the corresponding differential equation.

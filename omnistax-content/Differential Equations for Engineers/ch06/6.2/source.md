@@ -78,7 +78,7 @@ Consider the mass-spring system
 $$ x''(t) + x(t) = f(t) , \quad x(0) = 0, \quad x'(0) = 0, $$
 where $f(t) = 1$ if $1 \leq t < 5$ and zero otherwise. The function $f(t)$ is not periodic and is defined piecewise; no problem for Laplace. Imagine a rocket attached to the mass is fired for 4 seconds starting at $t=1$. Or perhaps imagine an RLC circuit, where the voltage is raised at a constant rate for 4 seconds starting at $t=1$ and then held steady again starting at $t=5$ (recall that $f(t)$ represents the derivative of the voltage in the RLC circuit).
 
-[2] We write $f(t) = u(t-1) - u(t-5)$. We transform the equation and we plug in the initial conditions as before
+We write $f(t) = u(t-1) - u(t-5)$. We transform the equation and we plug in the initial conditions as before
 $$ s^2 X(s) + X(s) = \frac{e^{-s}}{s} - \frac{e^{-5s}}{s} . $$
 We solve for $X(s)$,
 $$ X(s) = \frac{e^{-s}}{s(s^2+1)} - \frac{e^{-5s}}{s(s^2+1)} . $$

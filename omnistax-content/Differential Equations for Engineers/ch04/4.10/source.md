@@ -164,7 +164,6 @@ Using the Poisson kernel, give the solution to $\Delta u = 0$, where $u(1,\theta
 
 :::exercise {exercise-4-10-005} number=4.10.5 answered=no src=ch-fourier-and-pde.tex:6625
 PROBLEM:
-[2]
 
 a) Draw a graph for the Poisson kernel as a function of $\alpha$ when $r={1}/{2}$ and $\theta = 0$.
 b) Describe what happens to the graph when you make $r$ bigger (as it approaches 1).

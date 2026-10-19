@@ -96,7 +96,7 @@ $$ y = x^r \sum_{k=0}^\infty a_k x^k . $$
 A solution of this form is called a *{index:Frobenius-type solution}*.
 :::
 
-[2] The method usually breaks down like this:
+The method usually breaks down like this:
 
 (i) We seek a Frobenius-type solution of the form
 $$ y = \sum_{k=0}^\infty a_k x^{k+r} . $$

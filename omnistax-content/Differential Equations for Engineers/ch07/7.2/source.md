@@ -53,7 +53,7 @@ Let us do a more complex example. Consider *{index:Airy’s equation}*^[Named af
 $$ y'' - xy = 0 , $$
 near the point $x_0 = 0$. Note that $x_0 = 0$ is an ordinary point.
 
-[2] We try
+We try
 $$ y = \sum_{k=0}^\infty a_k x^k . $$
 We differentiate twice (as above) to obtain
 $$ y'' = \sum_{k=2}^\infty k\,(k-1) \, a_k x^{k-2} . $$
@@ -173,8 +173,6 @@ SOLUTION:
 $a_2 = 0$, $a_3 = 0$, $a_4 = 0$, recurrence relation (for $k \geq 5$): $a_k = \frac{- 2 a_{k-5}}{k(k-1)}$, so:
 $y(x) = a_0 + a_1 x -\frac{a_0}{10} x^5 - \frac{a_1}{15} x^6 + \frac{a_0}{450} x^{10} + \frac{a_1}{825} x^{11} - \frac{a_0}{47250} x^{15} - \frac{a_1}{99000} x^{16} + \cdots$
 :::
-
-[2]
 
 :::exercise {exercise-7-2-102} number=7.2.102 answered=yes src=ch-power-ser.tex:1216
 PROBLEM:

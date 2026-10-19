@@ -198,7 +198,7 @@ c) $(1,3,-4)$
 
 :::exercise {exercise-A-1-005} number=A.1.5 answered=no src=ap-linear-algebra.tex:883
 PROBLEM:
-[2] Compute
+Compute
 
 a) $\begin{bmatrix} 2 \\ 3 \end{bmatrix} + \begin{bmatrix} 7 \\ -8 \end{bmatrix}$
 b) $\begin{bmatrix} -2 \\ 3 \end{bmatrix} - \begin{bmatrix} 6 \\ -4 \end{bmatrix}$
@@ -294,7 +294,7 @@ a) $\begin{bmatrix} \frac{-1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}$ b) 
 
 :::exercise {exercise-A-1-103} number=A.1.103 answered=yes src=ap-linear-algebra.tex:1102
 PROBLEM:
-[2] Compute
+Compute
 
 a) $\begin{bmatrix} 3 \\ 1 \end{bmatrix} + \begin{bmatrix} 6 \\ -3 \end{bmatrix}$
 b) $\begin{bmatrix} -1 \\ 2 \end{bmatrix} - \begin{bmatrix} 2 \\ -1 \end{bmatrix}$

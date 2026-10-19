@@ -27,7 +27,7 @@ $$ \dim S = k . $$
 We have the following theorem.
 
 :::theorem {thm:theorem-A-4-1} Theorem A.4.1
-[2] If $S \subset {\mathbb R}^n$ is a subspace and $S$ is not the trivial subspace $\{ \vec{0} \}$, then there exists a unique positive integer $k$ (the dimension) and a (not unique) basis $\{ \vec{v}_1, \vec{v}_2, \ldots, \vec{v}_k \}$, such that every $\vec{w}$ in $S$ can be uniquely represented by
+If $S \subset {\mathbb R}^n$ is a subspace and $S$ is not the trivial subspace $\{ \vec{0} \}$, then there exists a unique positive integer $k$ (the dimension) and a (not unique) basis $\{ \vec{v}_1, \vec{v}_2, \ldots, \vec{v}_k \}$, such that every $\vec{w}$ in $S$ can be uniquely represented by
 $$ \vec{w} = \alpha_1 \vec{v}_1 + \alpha_2 \vec{v}_2 + \cdots + \alpha_k \vec{v}_k , $$
 for some scalars $\alpha_1$, $\alpha_2$, …, $\alpha_k$. By “uniquely represented” we mean that these scalars $\alpha_1$, $\alpha_2$, …, $\alpha_k$ are unique.
 :::
@@ -108,7 +108,7 @@ $$ \text{kernel of $L$} = \operatorname{span} \left\{ \begin{bmatrix} 2 \\ -1 \\
 
 What we did in finding a basis of the kernel is that we expressed all solutions of $L \vec{x} = \vec{0}$ as a linear combination of some given vectors.
 
-[2] The procedure to find a basis of the kernel of a matrix $L$:
+The procedure to find a basis of the kernel of a matrix $L$:
 
 (i) Find the reduced row echelon form of $L$.
 (ii) Write down a basis of the kernel as above, one vector for each non-pivot column.
@@ -147,7 +147,7 @@ f) $\begin{bmatrix} 3 \\ 1 \\ 3 \end{bmatrix} , \quad \begin{bmatrix} 2 \\ 4 \\ 
 
 :::exercise {exercise-A-4-002} number=A.4.2 answered=no src=ap-linear-algebra.tex:5101
 PROBLEM:
-[2] For the following matrices, find a basis for the kernel (nullspace).
+For the following matrices, find a basis for the kernel (nullspace).
 
 a) $\begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & 5 \\ 1 & 1 & -4 \end{bmatrix}$
 b) $\begin{bmatrix} 2 & -1 & -3 \\ 4 & 0 & -4 \\ -1 & 1 & 2 \end{bmatrix}$

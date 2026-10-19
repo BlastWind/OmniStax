@@ -193,7 +193,7 @@ Take an equation $y' = (y-2x) g(x,y) + 2$ for some function $g(x,y)$. Can you so
 :::exercise {exercise-1-2-012} number=1.2.12 answered=no src=ch-first-order-ode.tex:759
 PROBLEM:
 **challenging**
-[2] Suppose $y' = f(x,y)$ is such that $f(x,1) = 0$ for every $x$, $f$ is continuous and $\frac{\partial f}{\partial y}$ exists and is continuous for every $x$ and $y$.
+Suppose $y' = f(x,y)$ is such that $f(x,1) = 0$ for every $x$, $f$ is continuous and $\frac{\partial f}{\partial y}$ exists and is continuous for every $x$ and $y$.
 
 a) Guess a solution given the initial condition $y(0) = 1$.
 b) Can graphs of two solutions of the equation for different initial conditions ever intersect?

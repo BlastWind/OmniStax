@@ -44,7 +44,7 @@ We apply the three operations above to the matrix. We call these the *{index:ele
 (ii) Multiply a row by a nonzero number.
 (iii) Add a multiple of one row to another row.
 
-[2] We run these operations until we get into a state where it is easy to read off the answer, or until we get into a contradiction indicating no solution.
+We run these operations until we get into a state where it is easy to read off the answer, or until we get into a contradiction indicating no solution.
 
 More specifically, we run the operations until we obtain the so-called *{index:row echelon form}*{index-entry:echelon form}. Let us call the first (from the left) nonzero entry in each row the *{index:leading entry}*. A matrix is in *row echelon form* if the following conditions are satisfied:
 
@@ -120,7 +120,7 @@ Let us solve for the variables that corresponded to the pivots, that is, $x_1$ a
 $$ \begin{align*} & x_1 = - 2 x_2 -5 , \\ & x_3 = 3 . \end{align*} $$
 The variable $x_2$ can be anything you wish, and we still get a solution. The $x_2$ is called a *{index:free variable}*. There are infinitely many solutions, one for every choice of $x_2$. If we pick $x_2=0$, then $x_1 = -5$, and $x_3 = 3$ give a solution. But we also get a solution by picking say $x_2 = 1$, in which case $x_1 = -7$ and $x_3 = 3$, or by picking $x_2 = -5$ in which case $x_1 = 5$ and $x_3 = 3$.
 
-The general idea is that if any row has all zeros in the columns corresponding to the variables, but a nonzero entry in the column corresponding to the right-hand side $\vec{b}$, then the system is inconsistent and has no solutions. In other words, the system is inconsistent if you find a pivot on the right side of the vertical line drawn in the augmented matrix. Otherwise, the system is *{index:consistent}*, and at least one solution exists. [2]
+The general idea is that if any row has all zeros in the columns corresponding to the variables, but a nonzero entry in the column corresponding to the right-hand side $\vec{b}$, then the system is inconsistent and has no solutions. In other words, the system is inconsistent if you find a pivot on the right side of the vertical line drawn in the augmented matrix. Otherwise, the system is *{index:consistent}*, and at least one solution exists.
 
 Suppose the system is consistent (at least one solution exists):
 

@@ -24,7 +24,7 @@ In the spirit of the last section and the idea of undetermined coefficients, we 
 $$ F(t) = \frac{c_0}{2} + \sum_{n=1}^\infty \Bigl[ c_n \cos \Bigl( \frac{n \pi}{L} t \Bigr) + d_n \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] . $$
 Then we write a proposed steady periodic solution $x$ as
 $$ x(t) = \frac{a_0}{2} + \sum_{n=1}^\infty \Bigl[ a_n \cos \Bigl( \frac{n \pi}{L} t \Bigr) + b_n \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr], $$
-where $a_n$ and $b_n$ are unknowns. We plug $x$ into the differential equation and solve for $a_n$ and $b_n$ in terms of $c_n$ and $d_n$. This process is perhaps best understood by example. [2]
+where $a_n$ and $b_n$ are unknowns. We plug $x$ into the differential equation and solve for $a_n$ and $b_n$ in terms of $c_n$ and $d_n$. This process is perhaps best understood by example.
 
 :::example {ex:afs-steadyex} Example 4.5.1
 Suppose that $k=2$ and $m=1$. The units are again the mks units{index-entry:mks units} (meters-kilograms-seconds). There is a jetpack strapped to the mass, which fires with a force of 1 newton for 1 second and then is off for 1 second, and so on. We want to find the steady periodic solution.

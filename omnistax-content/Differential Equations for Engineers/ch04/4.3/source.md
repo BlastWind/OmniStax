@@ -231,7 +231,7 @@ c) What does the series converge to at $t=1$.
 
 :::exercise {exercise-4-3-010} number=4.3.10 answered=no src=ch-fourier-and-pde.tex:2064
 PROBLEM:
-[2] Let
+Let
 $$ f(t) = t^2 \qquad \text{for } \; {-1} < t \leq 1 $$
 extended periodically.
 
@@ -293,7 +293,7 @@ $f'(t) = \sum\limits_{n=1}^\infty \frac{\pi}{n^2+1} \cos(n\pi t)$
 
 :::exercise {exercise-4-3-104} number=4.3.104 answered=yes src=ch-fourier-and-pde.tex:2177
 PROBLEM:
-[2] Let
+Let
 $$ f(t) = \frac{1}{2} + \sum_{n=1}^\infty \frac{1}{n^3} \cos(n t) . $$
 
 a) Find the antiderivative.

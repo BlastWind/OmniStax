@@ -485,6 +485,8 @@ class Book:
         if name in SPACECMDS:
             return " ", eat(j)
         if name in DROP0:
+            if name in ("pagebreak", "nopagebreak", "linebreak", "displaybreak", "allowbreak", "avoidbreak"):
+                _, j = optional(s, j)   # \pagebreak[2]: the priority is print layout, never "[2]" in the text
             return "", eat(j)
         if name in DROPARGS:
             for _ in range(DROPARGS[name]):
