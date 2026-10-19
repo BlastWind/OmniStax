@@ -236,7 +236,7 @@ function expm(S, t) {
               const dx = (ax.X(ux) - ax.X(0)) / 100, dy = (ax.Y(uy) - ax.Y(0)) / 100, Ld = Math.hypot(dx, dy) || 1;
               arrow(ctx, X0 - (s * 13 * dx) / Ld, Y0 - (s * 13 * dy) / Ld, X0 + (s * 13 * dx) / Ld, Y0 + (s * 13 * dy) / Ld, cv, 4);
             }
-            hits.push({ x: ax.X(q[0]), y: ax.Y(q[1]), r: 12, name: minus(`a straight solution on the line of the eigenvector for λ = ${num(e.lam).s}: it moves ${out ? 'away from' : 'toward'} the origin`) });
+            hits.push({ x: ax.X(q[0]), y: ax.Y(q[1]), r: 12, name: minus(`a straight solution on the line of the eigenvector for λ ${num(e.lam).exact ? '=' : '≈'} ${num(e.lam).s}: it moves ${out ? 'away from' : 'toward'} the origin`) });
           });
         }
         ctx.restore();
@@ -257,8 +257,9 @@ function expm(S, t) {
         const x2 = ax.X(e.v[0] * grow), y2 = ax.Y(e.v[1] * grow);
         arrow(ctx, ax.X(0), ax.Y(0), x2, y2, vc, 5);
         const L = Math.hypot(x2 - ax.X(0), y2 - ax.Y(0)) || 1;
-        if (grow >= 1 && L > 8) lab.beside({ x1: ax.X(0), y1: ax.Y(0), x2, y2 }, 'left', `λ = ${minus(num(e.lam).s)}`, ec, 20, { offset: 0.85, gap: 20 });
-        hits.push({ x: x2, y: y2, r: 14, name: minus(`the eigenvector v⃗ = [${num(e.v[0]).s}; ${num(e.v[1]).s}] for the eigenvalue λ = ${num(e.lam).s}`) });
+        const z = num(e.lam), rel = z.exact ? '=' : '≈', vv = e.v.map((x) => num(x)), vrel = vv.every((x) => x.exact) ? '=' : '≈';
+        if (grow >= 1 && L > 8) lab.beside({ x1: ax.X(0), y1: ax.Y(0), x2, y2 }, 'left', `λ ${rel} ${minus(z.s)}`, ec, 20, { offset: 0.85, gap: 20 });
+        hits.push({ x: x2, y: y2, r: 14, name: minus(`the eigenvector v⃗ ${vrel} [${vv[0].s}; ${vv[1].s}] for the eigenvalue λ ${rel} ${z.s}`) });
       });
       ctx.restore();
     }
@@ -298,7 +299,8 @@ function expm(S, t) {
       const above = S.real ? (pts.length === 2 && i === 0 && Math.abs(S.l1 - S.l2) < 1.6 ? 1 : -1) : (im > 0 ? -1 : 1);
       const ly = Math.max(PLANE.t + 14, Math.min(PLANE.b - 14, p.y + above * 30));
       text(ctx, name, Math.max(PLANE.l + 40, Math.min(PLANE.r - 40, p.x)), ly, ec, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
-      hits.push({ x: p.x, y: p.y, r: 16, name: `the eigenvalue λ = ${name}${inside ? '' : ' (off the plane, pinned at its edge)'}` });
+      const ex = S.real ? num(re).exact : num(re).exact && num(Math.abs(im)).exact;
+      hits.push({ x: p.x, y: p.y, r: 16, name: `the eigenvalue λ ${ex ? '=' : '≈'} ${name}${inside ? '' : ' (off the plane, pinned at its edge)'}` });
     });
     ctx.restore();
 

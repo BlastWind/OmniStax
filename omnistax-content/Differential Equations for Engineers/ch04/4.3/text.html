@@ -1,0 +1,129 @@
+<section id="two-l-periodic">
+<h2>$2L$-periodic functions</h2>
+<p id="rescaling">We computed the <span data-concept="fourier-series">Fourier series</span> for a $2\pi$-<span data-concept="periodic-function">periodic function</span>, but what about functions of different periods? Well, fear not, the computation is a simple case of change of variables. We just rescale the independent axis. Consider a $2L$-<span data-concept="periodic-function">periodic function</span> $\kf(t)$. The $L$ is called the <em><span data-concept="half-period">half period</span></em>. Let $s = \frac{\pi}{L} t$. Then the function</p>
+$$ \kg(s) = \kf\left(\frac{L}{\pi} s \right) $$
+<p>is $2\pi$-<span data-concept="periodic-function">periodic</span> and we know what to do with it. We must also rescale all our sines and cosines. In the series, we use $\frac{\pi}{L} t$ as the variable. That is, we want to write</p>
+<div class="equation" id="eq-fourier-series-2l">$$ \boxed{~~ \kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kbn \sin \Bigl(\frac{n \pi}{L} t \Bigr) \Bigr] . ~~} $$</div>
+<p>If we change variables to $s$, we see that</p>
+$$ \kg(s) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos (n s) + \kbn \sin (n s) \Bigr] . $$
+<p id="we-compute">We compute $\kan$ and $\kbn$ as before. After we write down the integrals, we change variables from $s$ back to $t$, noting also that $ds = \frac{\pi}{L} \, dt$.</p>
+<figure class="dv" id="drv-rescaling"></figure>
+<p id="common-half-periods">The two most common <span data-concept="half-period">half periods</span> that show up in examples are $\pi$ and 1 because of the simplicity of the formulas. We should stress that we have done no new mathematics—we have only changed variables. If you understand the <span data-concept="fourier-series">Fourier series</span> for $2\pi$-<span data-concept="periodic-function">periodic functions</span>, you understand it for $2L$-<span data-concept="periodic-function">periodic functions</span>. You can think of it as just using different units for time. All that we are doing is moving some constants around, but all the mathematics is the same.</p>
+<div class="example" id="ex-4-3-1">
+<h3>Example 4.3.1</h3>
+<p>Let</p>
+$$ \kf(t) = \lvert t \rvert \qquad \text{for } \; {-1} < t \leq 1, $$
+<p>extended periodically. The plot of the <span data-concept="periodic-extension">periodic extension</span> is given in Figure 4.9. Compute the <span data-concept="fourier-series">Fourier series</span> of $\kf(t)$.</p>
+<figure class="sim" id="sim-triangle-sum" data-figure="4.9 + 4.10" data-original="/media/ch04/gfs-sawcont.svg,/media/ch04/gfs-sawcont-fs3-fs20.svg" data-original-caption="(Figure 4.9) Periodic extension of the function f(t). (Figure 4.10) Fourier series of f(t) up to the 3rd harmonic (left graph) and up to the 20th harmonic (right graph)." data-original-width="432,864">
+  <div class="sim-head"><span class="eyebrow">Figure 4.9 + 4.10</span><span>The <span data-concept="periodic-extension">periodic extension</span> of $\kf(t) = \lvert t \rvert$ and its <span data-concept="fourier-series">Fourier series</span> up to the $N$th <span data-concept="harmonic">harmonic</span>, $\frac{1}{2} - \sum \frac{4}{n^2 \pi^2} \cos (n \pi t)$ over the odd $n \leq N$. The book’s two plots are $N = 3$ and $N = 20$. The function is continuous, so the sum closes on it everywhere: the largest gap sits at the corners and shrinks as $N$ grows, and the sum never passes above or below the function’s range.</span></div>
+</figure>
+<p>First, we recognize that $\kf$ is $2$-<span data-concept="periodic-function">periodic</span> and so $L=1$. We want to write $\kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \kan \cos (n \pi t) + \kbn \sin (n \pi t)$. We start with $\kan$ for $n \geq 1$. We note that $\lvert t \rvert \cos (n \pi t)$ is <span data-concept="even-function">even</span> and for $0 \leq t \leq 1$, $\kf(t) = \lvert t \rvert = t$. Hence,</p>
+$$ \begin{split} \kan & = \int_{-1}^1 \kf(t) \cos (n \pi t) \, dt \\ & = 2 \int_{0}^1 t \cos (n \pi t) \, dt \\ & = 2 \left[ \frac{t}{n \pi} \sin (n \pi t) \right]_{t=0}^1 - 2 \int_{0}^1 \frac{1}{n \pi} \sin (n \pi t) \, dt \\ & = 0 + \frac{2}{n^2 \pi^2} \Bigl[ \cos (n \pi t) \Bigr]_{t=0}^1 = \frac{2 \bigl( {(-1)}^n -1 \bigr) }{n^2 \pi^2} = \begin{cases} 0 & \text{if } n \text{ is even} , \\ \frac{-4 }{n^2 \pi^2} & \text{if } n \text{ is odd} . \end{cases} \end{split} $$
+<p>Next we find $\kazero$:</p>
+$$ \kazero = \int_{-1}^1 \lvert t \rvert \, dt = 1 . $$
+<p>You should be able to find this integral by thinking about the integral as the area under the graph without doing any computation at all. Finally, we find $\kbn$. Notice that $\lvert t \rvert \sin (n \pi t)$ is <span data-concept="odd-function">odd</span>, and so</p>
+$$ \kbn = \int_{-1}^1 \kf(t) \sin (n \pi t) \, dt = 0 . $$
+<p>Hence, the series is</p>
+$$ \frac{1}{2} + \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty \frac{-4}{n^2 \pi^2} \cos (n \pi t) . $$
+<p>The first few terms of the series up to the $3^{\text{rd}}$ <span data-concept="harmonic">harmonic</span> are</p>
+$$ \frac{1}{2} - \frac{4}{\pi^2} \cos (\pi t) - \frac{4}{9 \pi^2} \cos (3 \pi t) - \cdots $$
+<p>The plot of these few terms and also a plot up to the ${20}^{\text{th}}$ <span data-concept="harmonic">harmonic</span> is given in Figure 4.10. You should notice how close the graph is to the real function. You should also notice that there is no “<span data-concept="gibbs-phenomenon">Gibbs phenomenon</span>” present as there are no discontinuities.</p>
+</div>
+</section>
+
+<section id="convergence">
+<h2>Convergence</h2>
+<p id="one-sided-limits">We will need the <span data-concept="one-sided-limit">one-sided limits</span> of functions. We will use the following notation</p>
+<div class="equation" id="eq-one-sided-limits">$$ \kf(c-) = \lim_{t \uparrow c} \kf(t), \qquad \text{and} \qquad \kf(c+) = \lim_{t \downarrow c} \kf(t). $$</div>
+<p id="one-sided-notation">If you are unfamiliar with this notation, $\lim_{t \uparrow c} \kf(t)$ means we are taking <a href="/calculus/ch02/2.2/">a limit</a> of $\kf(t)$ as $t$ approaches $c$ from below (i.e. $t &lt; c$) and $\lim_{t \downarrow c} \kf(t)$ means we are taking a limit of $\kf(t)$ as $t$ approaches $c$ from above (i.e. $t &gt; c$). For example, for the <span data-concept="square-wave">square wave</span> function</p>
+<div class="equation" id="eq-4-8">$$ \kf(t) = \begin{cases} 0 & \text{if } \; {-\pi} < t \leq 0 , \\ \pi & \text{if } \; \phantom{-}0 < t \leq \pi , \end{cases} \tag{4.8}$$</div>
+<p>we have $\kf(0-) = 0$ and $\kf(0+) = \pi$.</p>
+<p id="piecewise-continuous">Let $\kf(t)$ be a function defined on an interval $[a,b]$. Suppose that we find finitely many points $a=t_0$, $t_1$, $t_2$, …, $t_k=b$ in the interval, such that $\kf(t)$ is continuous on the intervals $(t_0,t_1)$, $(t_1,t_2)$, …, $(t_{k-1},t_k)$. Also suppose that all the <span data-concept="one-sided-limit">one-sided limits</span> exist, that is, all of $\kf(t_0+)$, $\kf(t_1-)$, $\kf(t_1+)$, $\kf(t_2-)$, $\kf(t_2+)$, …, $\kf(t_k-)$ exist and are finite. Then we say $\kf(t)$ is <em><span data-concept="piecewise-continuous-function">piecewise continuous</span></em>.</p>
+<p id="piecewise-smooth">If moreover, $\kf(t)$ is differentiable at all but finitely many points, and $\kfprime(t)$ is <span data-concept="piecewise-continuous-function">piecewise continuous</span>, then $\kf(t)$ is said to be <em><span data-concept="piecewise-smooth-function">piecewise smooth</span></em>.</p>
+<div class="example" id="ex-4-3-2">
+<h3>Example 4.3.2</h3>
+<p>The <span data-concept="square-wave">square wave</span> function, <a href="#eq-4-8">(4.8)</a> extended periodically, is <span data-concept="piecewise-smooth-function">piecewise smooth</span> on $[-\pi,\pi]$ or any other finite interval, so we just say that $\kf(t)$ is <span data-concept="piecewise-smooth-function">piecewise smooth</span> without mentioning an interval.</p>
+</div>
+<div class="example" id="ex-4-3-3">
+<h3>Example 4.3.3</h3>
+<p>The function $\kf(t) = \lvert t \rvert$ is <span data-concept="piecewise-smooth-function">piecewise smooth</span>.</p>
+</div>
+<div class="example" id="ex-4-3-4">
+<h3>Example 4.3.4</h3>
+<p>The function $\kf(t) = \frac{1}{t}$ is not <span data-concept="piecewise-smooth-function">piecewise smooth</span> on $[-1,1]$ (or any other interval containing zero). In fact, it is not even <span data-concept="piecewise-continuous-function">piecewise continuous</span>.</p>
+</div>
+<div class="example" id="ex-4-3-5">
+<h3>Example 4.3.5</h3>
+<p>The function $\kf(t) = \sqrt[3]{t}$ is not <span data-concept="piecewise-smooth-function">piecewise smooth</span> on $[-1,1]$ (or any other interval containing zero). The function $\kf(t)$ is continuous, but its derivative $\kfprime(t) = \frac{1}{3t^{2/3}}$ is unbounded near zero and hence not <span data-concept="piecewise-continuous-function">piecewise continuous</span>.</p>
+</div>
+<p><span data-concept="piecewise-smooth-function">Piecewise smooth functions</span> have an easy answer on the convergence of the <span data-concept="fourier-series">Fourier series</span>.</p>
+<div class="note" id="thm-4-3-1">
+<div class="eyebrow">Theorem 4.3.1</div>
+<p>Suppose $\kf(t)$ is a $2L$-<span data-concept="periodic-function">periodic</span> <span data-concept="piecewise-smooth-function">piecewise smooth</span> function. Let</p>
+$$ \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kbn \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] $$
+<p>be the <span data-concept="fourier-series">Fourier series</span> for $\kf(t)$. Then the series <span data-concept="fourier-convergence-theorem">converges for all $t$</span>. If $\kf(t)$ is continuous at $t$, then</p>
+$$ \kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kbn \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] . $$
+<p>Otherwise,</p>
+<div class="equation" id="eq-fourier-convergence">$$ \frac{\kf(t-)+\kf(t+)}{2} = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kbn \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] . $$</div>
+</div>
+<p id="redefine">If we happen to have that $\kf(t) = \frac{\kf(t-)+\kf(t+)}{2}$ at all the discontinuities, the <span data-concept="fourier-series">Fourier series</span> converges to $\kf(t)$ everywhere. We can always just redefine $\kf(t)$ by changing the value at each discontinuity appropriately. Then we can write an equals sign between $\kf(t)$ and the series without any worry. We mentioned this fact briefly at the end of <a href="/diffyqs/ch04/4.2/">the last section</a>.</p>
+<p id="rate-remark">The theorem does not say how fast the series converges. Think back to the discussion of the <span data-concept="gibbs-phenomenon">Gibbs phenomenon</span> in <a href="/diffyqs/ch04/4.2/">the last section</a>. The closer you get to the discontinuity, the more terms you need to take to get an accurate approximation to the function.</p>
+</section>
+
+<section id="differentiation-integration">
+<h2>Differentiation and integration of Fourier series</h2>
+<p id="term-by-term">Not only does <span data-concept="fourier-series">Fourier series</span> converge nicely, but it is easy to differentiate and integrate the series. We can do this just by differentiating or integrating term by term.</p>
+<div class="note" id="thm-4-3-2">
+<div class="eyebrow">Theorem 4.3.2</div>
+<p>Suppose</p>
+$$ \kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kbn \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] $$
+<p>is a <span data-concept="piecewise-smooth-function">piecewise smooth</span> continuous function and the derivative $\kfprime(t)$ is <span data-concept="piecewise-smooth-function">piecewise smooth</span>. Then <span data-concept="term-by-term-differentiation">the derivative can be obtained by differentiating term by term</span>,</p>
+<div class="equation" id="eq-term-by-term-derivative">$$ \kfprime(t) = \sum_{n=1}^\infty \Bigl[ \frac{-\kan n \pi}{L} \sin \Bigl( \frac{n \pi}{L} t \Bigr) + \frac{\kbn n \pi}{L} \cos \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] . $$</div>
+</div>
+<p id="continuity-needed">It is important that the function is continuous. It can have corners, but no jumps. Otherwise, the differentiated series will fail to converge. For an exercise, take the series obtained for the <span data-concept="square-wave">square wave</span> and try to differentiate the series. Similarly to differentiation, integration of <span data-concept="fourier-series">Fourier series</span> is also done term by term.</p>
+<div class="note" id="thm-4-3-3">
+<div class="eyebrow">Theorem 4.3.3</div>
+<p>Suppose</p>
+$$ \kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kbn \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] $$
+<p>is a <span data-concept="piecewise-smooth-function">piecewise smooth</span> function. Then <span data-concept="term-by-term-integration">the antiderivative is obtained by antidifferentiating term by term</span> and so</p>
+<div class="equation" id="eq-term-by-term-integral">$$ \kF(t) = \frac{\kazero t}{2} + C + \sum_{n=1}^\infty \Bigl[ \frac{\kan L}{n \pi} \sin \Bigl( \frac{n \pi}{L} t \Bigr) + \frac{-\kbn L}{n \pi} \cos \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] , $$</div>
+<p>where $\kF'(t) = \kf(t)$ and $C$ is an arbitrary constant.</p>
+</div>
+<p id="not-periodic">Note that the series for $\kF(t)$ is no longer a <span data-concept="fourier-series">Fourier series</span> as it contains the $\frac{\kazero t}{2}$ term. The <span data-concept="antiderivative">antiderivative</span> of a <span data-concept="periodic-function">periodic function</span> need no longer be <span data-concept="periodic-function">periodic</span> and so we should not expect a <span data-concept="fourier-series">Fourier series</span>. Unless, of course, $\kazero = 0$.</p>
+</section>
+
+<section id="rates">
+<h2>Rates of convergence and smoothness</h2>
+<p>We consider an example of a <span data-concept="periodic-function">periodic function</span> differentiable once but not twice.</p>
+<div class="example" id="ex-4-3-6">
+<h3>Example 4.3.6</h3>
+<p>Take the function</p>
+$$ \kf(t) = \begin{cases} (t+1)\,t & \text{if } \; {-1} < t \leq 0 , \\ (1-t)\,t & \text{if } \; \phantom{-}0 < t \leq 1 , \end{cases} $$
+<p id="smooth-derivative">and extend to a 2-<span data-concept="periodic-function">periodic function</span>. The derivative $\kfprime(t)$ exists for all $t$, but $f''(t)$ does not exist if $t$ is an integer. In particular, $\kfprime(t) = 2t+1$ if $-1 \leq t \leq 0$ and $\kfprime(t) = 1-2t$ if $0 \leq t \leq 1$, so $\kfprime(t)$ has a “corner” at $0$. See Figure 4.11 for the plot of $\kf(t)$ and $\kfprime(t)$.</p>
+<figure class="sim" id="sim-smoothness-decay" data-figure="4.11" data-original="/media/ch04/gfs-smoothex.svg" data-original-caption="Smooth 2-periodic function (the smooth line) with its nonsmooth derivative (the jagged line)." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 4.11</span><span>Four <span data-concept="periodic-function">periodic functions</span> over two periods, each with its derivative where it exists, and below them the sizes of their nonzero <span data-concept="fourier-coefficients">Fourier coefficients</span> against $n$ on logarithmic scales, beside the dashed lines $1/n$, $1/n^2$ and $1/n^3$. The once-differentiable function of Example 4.3.6 falls like $1/n^3$, the continuous $\lvert t \rvert$ with its corners like $1/n^2$, and the <span data-concept="square-wave">square wave</span> and the <span data-concept="sawtooth">sawtooth</span> with their jumps like $1/n$.</span></div>
+</figure>
+<div class="exercises" data-place="sim-smoothness-decay"></div>
+<p>Let us compute the Fourier-series coefficients. The actual computation involves several <a href="/calculus/ch07/7.1/">integrations by parts</a> and is left to the reader.</p>
+$$ \begin{align*} \kazero & = \int_{-1}^1 \kf(t) \, dt = \int_{-1}^0 (t+1)\,t \, dt + \int_0^1 (1-t)\,t \, dt = 0 , \\ \kan & = \int_{-1}^1 \kf(t) \, \cos (n\pi t) \, dt = \int_{-1}^0 (t+1)\,t \, \cos (n \pi t) \, dt + \int_0^1 (1-t)\,t \, \cos (n \pi t) \, dt = 0, \\ \kbn & = \int_{-1}^1 \kf(t) \, \sin (n\pi t) \, dt = \int_{-1}^0 (t+1)\,t \, \sin (n \pi t) \, dt + \int_0^1 (1-t)\,t \, \sin (n \pi t) \, dt \\ & = \frac{4 ( 1-{(-1)}^n)}{\pi^3 n^3} = \begin{cases} \frac{8}{\pi^3 n^3} & \text{if } n \text{ is odd} , \\ 0 & \text{if } n \text{ is even} . \end{cases} \end{align*} $$
+<p>That is, the series is</p>
+$$ \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty \frac{8}{\pi^3 n^3} \sin (n \pi t) . $$
+<p>This series converges very fast. If we plot up to the third <span data-concept="harmonic">harmonic</span>, that is,</p>
+$$ \frac{8}{\pi^3} \sin (\pi t) + \frac{8}{27 \pi^3} \sin (3 \pi t) , $$
+<p>the plot is almost indistinguishable from the plot of $\kf(t)$ in Figure 4.11. In fact, the coefficient $\frac{8}{27 \pi^3}$ is already just $0.0096$ (approximately). The reason for this behavior is the $n^3$ term in the denominator. The coefficients $\kbn$ go to zero as fast as ${1}/{n^3}$ goes to zero.</p>
+</div>
+<p id="decay-rule">For functions constructed piecewise from polynomials as above, it is generally true that if you have one derivative but not two derivatives, the <span data-concept="decay-of-fourier-coefficients">Fourier coefficients will go to zero approximately like ${1}/{n^3}$</span>. If you have only a continuous function that is not differentiable, then the <span data-concept="fourier-coefficients">Fourier coefficients</span> will go to zero as ${1}/{n^2}$. If you have discontinuities, then the <span data-concept="fourier-coefficients">Fourier coefficients</span> will go to zero approximately as ${1}/{n}$. For more general functions the story is somewhat more complicated but the same idea holds: <span data-concept="decay-of-fourier-coefficients">The more derivatives you have, the faster the coefficients go to zero</span>. Similar reasoning works in reverse. If the coefficients go to zero like ${1}/{n^2}$ (or faster), you always obtain a continuous function. If they go to zero like ${1}/{n^3}$ (or faster), you obtain an everywhere differentiable function.</p>
+<p id="decay-justification">To justify this behavior, take for example the function defined by the <span data-concept="fourier-series">Fourier series</span></p>
+$$ \kf(t) = \sum_{n=1}^\infty \frac{1}{n^3} \sin (n t) . $$
+<p>When we <span data-concept="term-by-term-differentiation">differentiate term by term</span>, we notice</p>
+$$ \kfprime(t) = \sum_{n=1}^\infty \frac{1}{n^2} \cos (n t) . $$
+<p>Therefore, the coefficients now go down like ${1}/{n^2}$, which means that we have a continuous function. The derivative of $\kfprime(t)$ is defined at most points, but there are points where $\kfprime(t)$ is not differentiable. It has corners, but no jumps. If we differentiate again (where we can), we find that the function $f''(t)$ now fails to be continuous (has jumps)</p>
+$$ f''(t) = \sum_{n=1}^\infty \frac{-1}{n} \sin (n t) . $$
+<p>This function is similar to the <span data-concept="sawtooth">sawtooth</span>. If we tried to differentiate the series again, we would obtain</p>
+$$ \sum_{n=1}^\infty -\cos (n t) , $$
+<p id="does-not-converge">which does not converge!</p>
+<div class="exercises" data-place="does-not-converge"></div>
+<figure class="sim" id="sim-term-by-term">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The series $\kf(t) = \sum \frac{1}{n^3} \sin (nt)$ and the series that <span data-concept="term-by-term-differentiation">differentiating it term by term</span> gives, each summed up to the term $n = N$ over the sum it closes on. Each derivative takes a power of $n$ off the coefficients: $\kf$ is smooth, $\kfprime$ has corners, $f''$ has jumps, and the next series, whose terms do not go to zero, does not converge.</span></div>
+</figure>
+</section>
