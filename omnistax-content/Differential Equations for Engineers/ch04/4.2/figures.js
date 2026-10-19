@@ -1,7 +1,7 @@
 /* Figures for section 4.2 The trigonometric series. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.2'] = function (root, F) {
-const { C, PAL, alpha, ctl, choice, begin, axes, plot, shade, drag, dot, line, text, label, vbracket, hbracket, headline, register, readout, fmt, hover } = F;
+const { C, PAL, alpha, ctl, choice, select, begin, axes, plot, shade, drag, dot, line, text, label, vbracket, hbracket, headline, register, readout, fmt, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const still = (d, draw) => register(d.fig, { update: () => {}, draw });
 const n = (v, dec = 2) => fmt(v, dec).replace('\u2212', '-');   /* a number for TeX */
@@ -118,7 +118,7 @@ const simpson = (g, a, b, m = 2000) => {
     sq: { name: 'the square wave', short: 'square wave', pieces: [{ f: () => 0, x: [-PI, 0], ends: '(]' }, { f: () => PI, x: [0, PI], ends: '(]' }] },
     c3: { name: 'cos 3t', short: 'cos 3t', pieces: [{ f: (t) => Math.cos(3 * t), x: [-PI, PI] }] },
   };
-  const fc = choice(d.controls, { label: 'f', key: 'f', value: 'saw', options: [
+  const fc = select(d.controls, { label: 'f', key: 'f', value: 'saw', options: [
     { value: 'saw', label: 'sawtooth' }, { value: 'sq', label: 'square wave' }, { value: 'c3', label: 'cos 3t' }] });
   const ec = choice(d.controls, { aria: 'eigenfunction', key: 'e', value: 'cos', options: [
     { value: 'cos', label: 'cos nt' }, { value: 'sin', label: 'sin nt' }],
