@@ -56,6 +56,13 @@ Built (config 14): `sim-eigenfunction-series`. Weighed and dropped, as planned: 
 - Variables rows the page writes with no 5.1 row (each now takes its type from the rest of the book; a 5.1 row would give the hover its meaning here), after `ost meanings`: `X_prime` (derivative; "the derivative X′(x) of the unknown of the eigenvalue problem", `redefines`, 3.9 has X′ of the fundamental matrix), `X_dprime` (derivative; "the second derivative X″(x)", 4.6's meaning), `u_t`, `u_xx` (derivative; 4.6's meanings), `dy/dx` (derivative; "the derivative of y with respect to x"), `c` (sequence; "the coefficient cₘ of the eigenfunction decomposition, cₙ written with the index m", `redefines` against 7.1, a later chapter, so possibly set on 7.1 instead).
 - No concept or edge change.
 
+Applied in the chapter pass (2026-10-19, task `pass-ch05`):
+- Anchors: all 15 forms and 18 variables rows above set as written.
+- `ktex` fixes applied: `eq-sl-eigenvalue-sequence`, `eq-eigenfunction-coefficients`, `eq-normalized-coefficient` now write `\klambda_1`, `\kc_m`, `\ky_m`.
+- Variables rows added (after `ost meanings`): X_prime (`redefines`), X_dprime, u_t, u_xx (anchors `5.1-conditions`, `5.1-robin`), dy/dx (`5.1-eq-5-1`), c (sequence, `5.1-eq-5-4`; no `redefines` here since 5.1 comes first, 7.1's row is Chapter 7's to mark).
+- Footnote 25 (the typo note of 5.1.102 b) stays a small note in the exercise's prompt, as the checker refuses a book footnote in an exercise; its number is reserved (config line 21).
+- No concept or edge change.
+
 ## Decisions Chen must hear
 
 - Footnote 25 (the typo note of 5.1.102 b) is a book footnote inside an exercise, and the checker refuses a book footnote's marker in an exercise ("an exercise carries only corrections"); it is printed as a small note marked 25 at the end of the card's prompt, in the book's words. The app could let a card carry a book footnote as it carries a correction.

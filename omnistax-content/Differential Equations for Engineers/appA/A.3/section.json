@@ -1,0 +1,1874 @@
+{
+ "id": "A.3",
+ "module": "elim:section",
+ "chapter": "A",
+ "title": "Elimination",
+ "short": "Elimination",
+ "lead": "<span data-concept=\"gauss-jordan-elimination\">Elimination</span> writes a <span data-concept=\"linear-system-of-equations\">system of linear equations</span> as an <span data-concept=\"augmented-matrix\">augmented matrix</span> and works on its rows until the solutions can be read off. The same procedure tells whether a system has one solution, none or infinitely many, counts the <span data-concept=\"linear-independence-of-vectors\">linearly independent</span> rows and columns of a <span data-concept=\"matrix\">matrix</span>, and computes the <span data-concept=\"matrix-inverse\">inverse</span> of a square one.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises A.3.101–A.3.108 carry the book’s own answers, each confirmed by computation; the answer to A.3.107 a) carries a correction of its third vector. Exercises A.3.1–A.3.8, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-system-of-lines",
+   "kind": "sim",
+   "draws": [
+    "point",
+    "matrix",
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "equation-1",
+   "label": "the first equation",
+   "figures": [
+    "sim-system-of-lines"
+   ]
+  },
+  {
+   "id": "equation-2",
+   "label": "the second equation",
+   "figures": [
+    "sim-system-of-lines"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "systems-intro",
+   "concept": "linear-system-of-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "systems-intro",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-a-2",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "elimination",
+   "concept": "gauss-jordan-elimination",
+   "verb": "introduces"
+  },
+  {
+   "span": "elimination",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "matrix-form",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "matrix-form",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-system",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-system",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-system",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-a-2-matrix",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-a-2-matrix",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-a-2-matrix",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "by-inverse",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "by-inverse",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-system-solution-by-inverse",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-system-solution-by-inverse",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-system-solution-by-inverse",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-system-solution-by-inverse",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "gauss-jordan-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "square-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "any-matrix",
+   "concept": "gauss-jordan-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "any-matrix",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "any-matrix",
+   "concept": "augmented-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "row-operations",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "row-operations",
+   "concept": "elementary-row-operations",
+   "verb": "reinforces"
+  },
+  {
+   "span": "row-echelon",
+   "concept": "row-echelon-form",
+   "verb": "introduces"
+  },
+  {
+   "span": "row-echelon",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "row-echelon",
+   "concept": "leading-entry",
+   "verb": "reinforces"
+  },
+  {
+   "span": "row-echelon",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "reduced",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "reduced",
+   "concept": "reduced-row-echelon-form",
+   "verb": "reinforces"
+  },
+  {
+   "span": "reduced",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "reduced",
+   "concept": "leading-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-3-1",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-3-1",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-3-1",
+   "concept": "leading-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-3-1",
+   "concept": "reduced-row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-3-1",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "gauss-jordan",
+   "concept": "reduced-row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "gauss-jordan",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "gauss-jordan",
+   "concept": "gauss-jordan-elimination",
+   "verb": "reinforces"
+  },
+  {
+   "span": "gauss-jordan",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "gauss-jordan",
+   "concept": "row-reduction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pivot",
+   "concept": "pivot",
+   "verb": "introduces"
+  },
+  {
+   "span": "pivot",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "smaller-matrix",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "smaller-matrix",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "smaller-matrix",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "worked-elimination",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "worked-elimination",
+   "concept": "augmented-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "worked-elimination",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "worked-elimination",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "echelon-reached",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "echelon-reached",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "backsubstitution",
+   "concept": "backsubstitution",
+   "verb": "introduces"
+  },
+  {
+   "span": "backsubstitution",
+   "concept": "elementary-row-operations",
+   "verb": "uses"
+  },
+  {
+   "span": "backsubstitution",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "backsubstitution",
+   "concept": "leading-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "backsubstitution",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "backsubstitution",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "backsubstitution",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "backsubstitution",
+   "concept": "reduced-row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "solved",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "not-unique",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "not-unique",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "inconsistent",
+   "concept": "inconsistent-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inconsistent",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "inconsistent",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "free-variable",
+   "concept": "free-variable",
+   "verb": "reinforces"
+  },
+  {
+   "span": "consistent",
+   "concept": "consistent-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "consistent",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "consistent",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "consistent",
+   "concept": "inconsistent-system",
+   "verb": "uses"
+  },
+  {
+   "span": "consistent",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "consistent",
+   "concept": "augmented-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "consistent-cases",
+   "concept": "solutions-of-a-consistent-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "consistent-cases",
+   "concept": "consistent-system",
+   "verb": "uses"
+  },
+  {
+   "span": "consistent-cases",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "consistent-cases",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "reduced-row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "inconsistent-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "consistent-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "solutions-of-a-consistent-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-system-of-lines",
+   "concept": "augmented-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous",
+   "concept": "homogeneous-matrix-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "homogeneous",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-homogeneous-matrix-equation",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-homogeneous-matrix-equation",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-homogeneous-matrix-equation",
+   "concept": "homogeneous-matrix-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-consistent",
+   "concept": "augmented-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-consistent",
+   "concept": "elementary-row-operations",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-consistent",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-consistent",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-consistent",
+   "concept": "consistent-system",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-consistent",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel",
+   "concept": "kernel",
+   "verb": "introduces"
+  },
+  {
+   "span": "kernel",
+   "concept": "kernel-and-invertibility",
+   "verb": "introduces"
+  },
+  {
+   "span": "kernel",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel",
+   "concept": "square-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "how-many",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "how-many",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "how-many",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "how-many",
+   "concept": "linear-independence",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "linear-combination",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-linear-combination-of-vectors",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-combination-of-vectors",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "seen-combinations",
+   "concept": "matrix-product-as-linear-combination",
+   "verb": "introduces"
+  },
+  {
+   "span": "seen-combinations",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "seen-combinations",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "seen-combinations",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "seen-combinations",
+   "concept": "matrix-vector-product",
+   "verb": "uses"
+  },
+  {
+   "span": "seen-combinations",
+   "concept": "transpose-of-a-product",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-row-combination",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-row-combination",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-row-combination",
+   "concept": "transpose",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-row-combination",
+   "concept": "matrix-product-as-linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-row-combination",
+   "concept": "transpose-of-a-product",
+   "verb": "uses"
+  },
+  {
+   "span": "solutions-combine",
+   "concept": "superposition-for-matrix-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "solutions-combine",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "solutions-combine",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "solutions-combine",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-superposition-for-matrix-equations",
+   "concept": "superposition-for-matrix-equations",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-superposition-for-matrix-equations",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-superposition-for-matrix-equations",
+   "concept": "linear-mapping",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-superposition-for-matrix-equations",
+   "concept": "homogeneous-matrix-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-superposition-for-matrix-equations",
+   "concept": "matrix-vector-product",
+   "verb": "uses"
+  },
+  {
+   "span": "independence",
+   "concept": "linear-independence-of-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "independence",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-independence",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-independence",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "independent-example",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "independent-example",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "solve-for-one",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "solve-for-one",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "by-row-reduction",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "by-row-reduction",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "by-row-reduction",
+   "concept": "row-reduction",
+   "verb": "uses"
+  },
+  {
+   "span": "span",
+   "concept": "span",
+   "verb": "introduces"
+  },
+  {
+   "span": "span",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "span",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "span",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "span",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "span",
+   "concept": "row-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-span",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-span",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "rank",
+   "concept": "rank",
+   "verb": "introduces"
+  },
+  {
+   "span": "rank",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "rank",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-by-hand",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-by-hand",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-by-echelon",
+   "concept": "elementary-row-operations",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-by-echelon",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-by-echelon",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-by-echelon",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-by-echelon",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-by-echelon",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "row-space",
+   "concept": "row-space",
+   "verb": "introduces"
+  },
+  {
+   "span": "row-space",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "row-space",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "row-space",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "column-space",
+   "concept": "column-space",
+   "verb": "introduces"
+  },
+  {
+   "span": "column-space",
+   "concept": "row-space",
+   "verb": "uses"
+  },
+  {
+   "span": "column-space",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "columns-count",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "columns-count",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "columns-count",
+   "concept": "transpose",
+   "verb": "uses"
+  },
+  {
+   "span": "theorem-a-3-1",
+   "concept": "rank-of-the-transpose",
+   "verb": "introduces"
+  },
+  {
+   "span": "theorem-a-3-1",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "theorem-a-3-1",
+   "concept": "transpose",
+   "verb": "uses"
+  },
+  {
+   "span": "theorem-a-3-1",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns-span",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns-span",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns-span",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns-span",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns-span",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "pivot-columns-span",
+   "concept": "column-space",
+   "verb": "uses"
+  },
+  {
+   "span": "proof-sketch",
+   "concept": "row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "proof-sketch",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "proof-sketch",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "proof-sketch",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "proof-sketch",
+   "concept": "rank-of-the-transpose",
+   "verb": "uses"
+  },
+  {
+   "span": "reverse",
+   "concept": "finding-a-linearly-independent-subset",
+   "verb": "introduces"
+  },
+  {
+   "span": "reverse",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "reverse",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "simpler-span",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "simpler-span",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "simpler-span",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "simpler-span",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "crank-up",
+   "concept": "linear-independence-of-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "crank-up",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "crank-up",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "pick-pivots",
+   "concept": "row-reduction",
+   "verb": "uses"
+  },
+  {
+   "span": "pick-pivots",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "pick-pivots",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "pick-pivots",
+   "concept": "finding-a-linearly-independent-subset",
+   "verb": "uses"
+  },
+  {
+   "span": "pick-pivots",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible-rank",
+   "concept": "invertibility-and-rank",
+   "verb": "introduces"
+  },
+  {
+   "span": "invertible-rank",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible-rank",
+   "concept": "square-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible-rank",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible-rank",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible-rank",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible-rank",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible-rank",
+   "concept": "solutions-of-a-consistent-system",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-columns",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-columns",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-columns",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-columns",
+   "concept": "gauss-jordan-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-columns",
+   "concept": "linear-mapping",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-columns",
+   "concept": "standard-unit-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-columns",
+   "concept": "computing-a-matrix-inverse",
+   "verb": "reinforces"
+  },
+  {
+   "span": "n-eliminations",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "n-eliminations",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "n-eliminations",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "n-eliminations",
+   "concept": "standard-unit-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "n-eliminations",
+   "concept": "gauss-jordan-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "n-eliminations",
+   "concept": "augmented-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-augmented",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-augmented",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-augmented",
+   "concept": "augmented-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-augmented",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-augmented",
+   "concept": "standard-unit-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-augmented",
+   "concept": "row-reduction",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-augmented",
+   "concept": "reduced-row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-augmented",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-augmented",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-example",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "not-too-terrible",
+   "concept": "matrix",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "superposition-for-matrix-equations",
+   "what": "a linear combination of solutions of the homogeneous equation",
+   "source": "Differential Equations for Engineers, A.3 Elimination",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecy = \\alpha_1 \\kvecx_1 + \\alpha_2 \\kvecx_2 + \\cdots + \\alpha_n \\kvecx_n"
+      },
+      {
+       "text": "A matrix is a linear mapping: $\\kA(\\kvecx + \\kvecy) = \\kA\\kvecx + \\kA\\kvecy$ and $\\kA(\\alpha \\kvecx) = \\alpha \\kA \\kvecx$ for every scalar $\\alpha$.",
+       "src": "A.1"
+      },
+      {
+       "tex": "\\kA \\kvecx_1 = \\kveczero, \\quad \\kA \\kvecx_2 = \\kveczero, \\quad \\ldots, \\quad \\kA \\kvecx_n = \\kveczero"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kA \\kvecy} = \\mk{r}{\\kA (\\alpha_1 \\kvecx_1 + \\alpha_2 \\kvecx_2 + \\cdots + \\alpha_n \\kvecx_n)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kA \\kvecy} = \\mk{a}{\\alpha_1 \\kA \\kvecx_1} + \\mk{b}{\\alpha_2 \\kA \\kvecx_2} + \\cdots + \\mk{c}{\\alpha_n \\kA \\kvecx_n}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r": [
+         "a",
+         "b",
+         "c"
+        ]
+       },
+       "cap": "Linearity carries $\\kA$ through the sum term by term and moves each scalar $\\alpha_j$ out in front."
+      },
+      {
+       "tex": "\\mk{l}{\\kA \\kvecy} = \\mk{a}{\\alpha_1 \\kveczero} + \\mk{b}{\\alpha_2 \\kveczero} + \\cdots + \\mk{c}{\\alpha_n \\kveczero}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kA \\kvecy} = \\mk{z}{\\kveczero}",
+       "uses": [],
+       "map": {
+        "a": "z",
+        "b": "z",
+        "c": "z"
+       }
+      }
+     ],
+     "src": "A.3, Linear independence and rank"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "A.3.1",
+   "source_number": "A.3.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reduced",
+   "prompt": "<p>Compute the reduced row echelon form for the following matrices:</p><ol type=\"a\"><li>$\\begin{bmatrix} 1 & 3 & 1 \\\\ 0 & 1 & 1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 3 & 3 \\\\ 6 & -3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 3 & 6 \\\\ -2 & -3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 6 & 6 & 7 & 7 \\\\ 1 & 1 & 0 & 1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 9 & 3 & 0 & 2 \\\\ 8 & 6 & 3 & 6 \\\\ 7 & 9 & 7 & 9 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 1 & 3 & -3 \\\\ 6 & 0 & 0 & -1 \\\\ -2 & 4 & 4 & 3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 6 & 6 & 5 \\\\ 0 & -2 & 2 \\\\ 6 & 5 & 6 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 2 & 0 & -1 \\\\ 6 & 6 & -3 & 3 \\\\ 6 & 2 & -3 & 5 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Run Gauss–Jordan elimination: for each pivot, make it 1, clear the entries below it, then backsubstitute to clear the entries above. a) The pivots are already 1; subtracting 3 times the second row from the first gives $\\begin{bmatrix} 1 & 0 & -2 \\\\ 0 & 1 & 1 \\end{bmatrix}$. b) Divide the first row by 3 to get $\\begin{bmatrix} 1 & 1 \\\\ 6 & -3 \\end{bmatrix}$, subtract 6 times it from the second to get $\\begin{bmatrix} 1 & 1 \\\\ 0 & -9 \\end{bmatrix}$, divide by $-9$ and subtract the second row from the first: $\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}$. c) Divide the first row by 3 to get $\\begin{bmatrix} 1 & 2 \\\\ -2 & -3 \\end{bmatrix}$, add twice it to the second to get $\\begin{bmatrix} 1 & 2 \\\\ 0 & 1 \\end{bmatrix}$, and subtract twice the second row from the first: $\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}$. d) Swap the rows to get $\\begin{bmatrix} 1 & 1 & 0 & 1 \\\\ 6 & 6 & 7 & 7 \\end{bmatrix}$ and subtract 6 times the first from the second: $\\begin{bmatrix} 1 & 1 & 0 & 1 \\\\ 0 & 0 & 7 & 1 \\end{bmatrix}$; dividing by 7 gives $\\begin{bmatrix} 1 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 1/7 \\end{bmatrix}$, with no pivot in the second column. e) A pivot turns up in each of the first three columns, so the left $3 \\times 3$ part reduces to the identity: $\\begin{bmatrix} 1 & 0 & 0 & -1/2 \\\\ 0 & 1 & 0 & 13/6 \\\\ 0 & 0 & 1 & -1 \\end{bmatrix}$. f) Again a pivot in each of the first three columns: $\\begin{bmatrix} 1 & 0 & 0 & -1/6 \\\\ 0 & 1 & 0 & 7/3 \\\\ 0 & 0 & 1 & -5/3 \\end{bmatrix}$. g) Subtracting the first row from the third leaves $\\begin{bmatrix} 0 & -1 & 1 \\end{bmatrix}$, half the second row, so the third row becomes zero: $\\begin{bmatrix} 1 & 0 & 11/6 \\\\ 0 & 1 & -1 \\\\ 0 & 0 & 0 \\end{bmatrix}$. h) The first column's pivot is in the second row, so swap; subtracting the new first row from the third leaves $\\begin{bmatrix} 0 & -4 & 0 & 2 \\end{bmatrix}$, $-2$ times the row $\\begin{bmatrix} 0 & 2 & 0 & -1 \\end{bmatrix}$, so one row becomes zero: $\\begin{bmatrix} 1 & 0 & -1/2 & 1 \\\\ 0 & 1 & 0 & -1/2 \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "A.3.2",
+   "source_number": "A.3.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-augmented",
+   "prompt": "<p>Compute the inverse of the given matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 1 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 1 & 1 \\\\ 0 & 2 & 1 \\\\ 0 & 0 & 1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 2 & 3 \\\\ 2 & 0 & 1 \\\\ 0 & 2 & 1 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Row reduce $[\\, \\kA ~|~ \\kI \\,]$ until the left half is $\\kI$; the right half is then $\\kAinv$. a) The matrix is $\\kI$ with its second and third rows swapped. Swapping them back in $[\\, \\kA ~|~ \\kI \\,]$ swaps the same two rows of $\\kI$, so $\\kAinv = \\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 1 & 0 \\end{bmatrix}$, the matrix itself; indeed swapping twice changes nothing, so $\\kA\\kA = \\kI$. b) The matrix is already in row echelon form apart from the 2; subtract the third row from the first two, divide the second row by 2 and subtract it from the first: $\\kAinv = \\begin{bmatrix} 1 & -1/2 & -1/2 \\\\ 0 & 1/2 & -1/2 \\\\ 0 & 0 & 1 \\end{bmatrix}$. c) $[\\, \\kA ~|~ \\kI \\,]$ reduces to $[\\, \\kI ~|~ \\kAinv \\,]$ with $\\kAinv = \\begin{bmatrix} -1/3 & 2/3 & 1/3 \\\\ -1/3 & 1/6 & 5/6 \\\\ 2/3 & -1/3 & -2/3 \\end{bmatrix}$; multiplying, $\\kA\\kAinv = \\kI$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "A.3.3",
+   "source_number": "A.3.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "consistent-cases",
+   "prompt": "<p>Solve (find all solutions), or show no solution exists</p><ol type=\"a\"><li>$\\begin{aligned} 4x_1+3x_2 & = -2 \\\\ -x_1+\\phantom{3} x_2 & = 4 \\end{aligned}$</li><li>$\\begin{aligned} x_1+5x_2+3x_3 & = 7 \\\\ 8x_1+7x_2+8x_3 & = 8 \\\\ 4x_1+8x_2+6x_3 & = 4 \\end{aligned}$</li><li>$\\begin{aligned} 4x_1+8x_2+2x_3 & = 3 \\\\ -x_1-2x_2+3x_3 & = 1 \\\\ 4x_1+8x_2 \\phantom{{}+3x_3} & = 2 \\end{aligned}$</li><li>$\\begin{aligned} x+2y+3z & = 4 \\\\ 2 x-\\phantom{2} y+3z & = 1 \\\\ 3 x+\\phantom{2} y+6z & = 6 \\end{aligned}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Row reduce each augmented matrix and read off the answer. a) $\\left[ \\begin{array}{cc|c} 4 & 3 & -2 \\\\ -1 & 1 & 4 \\end{array} \\right]$ reduces to $\\left[ \\begin{array}{cc|c} 1 & 0 & -2 \\\\ 0 & 1 & 2 \\end{array} \\right]$: $x_1 = -2$, $x_2 = 2$ (check: $-8 + 6 = -2$ and $2 + 2 = 4$). b) Every column has a pivot, and the reduced form gives the unique solution $x_1 = -21$, $x_2 = -16$, $x_3 = 36$ (check: $-21 - 80 + 108 = 7$, $-168 - 112 + 288 = 8$, $-84 - 128 + 216 = 4$). c) The reduced form is $\\left[ \\begin{array}{ccc|c} 1 & 2 & 0 & 1/2 \\\\ 0 & 0 & 1 & 1/2 \\\\ 0 & 0 & 0 & 0 \\end{array} \\right]$. The second column has no pivot, so $x_2$ is a free variable: $x_1 = \\frac{1}{2} - 2x_2$, $x_3 = \\frac{1}{2}$, infinitely many solutions. d) No solution. The reduced form is $\\left[ \\begin{array}{ccc|c} 1 & 0 & 9/5 & 0 \\\\ 0 & 1 & 3/5 & 0 \\\\ 0 & 0 & 0 & 1 \\end{array} \\right]$, whose last row reads $0 = 1$: the system is inconsistent. In the equations themselves, adding the first two gives $3x + y + 6z = 5$, while the third says $3x + y + 6z = 6$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "A.3.4",
+   "source_number": "A.3.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-augmented",
+   "prompt": "<p>By computing the inverse, solve the following systems for $\\kvecx$.</p><ol type=\"a\"><li>$\\begin{bmatrix} 4 & 1 \\\\ -1 & 3 \\end{bmatrix} \\kvecx = \\begin{bmatrix} 13 \\\\ 26 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 3 & 3 \\\\ 3 & 4 \\end{bmatrix} \\kvecx = \\begin{bmatrix} 2 \\\\ -1 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "a) x₁",
+      "value": 1
+     },
+     {
+      "part": "a) x₂",
+      "value": 9
+     },
+     {
+      "part": "b) x₁",
+      "value": 3.6666666666666665
+     },
+     {
+      "part": "b) x₂",
+      "value": -3
+     }
+    ],
+    "solution": "a) Row reducing $[\\, \\kA ~|~ \\kI \\,]$ (or the $2 \\times 2$ formula, with determinant $12 + 1 = 13$) gives $\\kAinv = \\frac{1}{13}\\begin{bmatrix} 3 & -1 \\\\ 1 & 4 \\end{bmatrix}$, so $\\kvecx = \\kAinv \\kvecb = \\frac{1}{13}\\begin{bmatrix} 39-26 \\\\ 13+104 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 9 \\end{bmatrix}$; check: $4 + 9 = 13$ and $-1 + 27 = 26$. b) The determinant is $12 - 9 = 3$ and $\\kAinv = \\frac{1}{3}\\begin{bmatrix} 4 & -3 \\\\ -3 & 3 \\end{bmatrix} = \\begin{bmatrix} 4/3 & -1 \\\\ -1 & 1 \\end{bmatrix}$, so $\\kvecx = \\begin{bmatrix} 8/3+1 \\\\ -2-1 \\end{bmatrix} = \\begin{bmatrix} 11/3 \\\\ -3 \\end{bmatrix}$; check: $11 - 9 = 2$ and $11 - 12 = -1$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "A.3.5",
+   "source_number": "A.3.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rank-by-echelon",
+   "prompt": "<p>Compute the rank of the given matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} 6 & 3 & 5 \\\\ 1 & 4 & 1 \\\\ 7 & 7 & 6 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 5 & -2 & -1 \\\\ 3 & 0 & 6 \\\\ 2 & 4 & 5 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 2 & 3 \\\\ -1 & -2 & -3 \\\\ 2 & 4 & 6 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "a)",
+      "value": 2
+     },
+     {
+      "part": "b)",
+      "value": 3
+     },
+     {
+      "part": "c)",
+      "value": 1
+     }
+    ],
+    "solution": "The rank is the number of nonzero rows of a row echelon form. a) $2$: the third row is the sum of the first two ($6 + 1 = 7$, $3 + 4 = 7$, $5 + 1 = 6$), so it becomes zero, while the first two rows are not multiples of each other. b) $3$: elimination finds a pivot in every column (the reduced form is $\\kI$). c) $1$: the second and third rows are $-1$ and $2$ times the first."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "A.3.6",
+   "source_number": "A.3.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "row-space",
+   "prompt": "<p>For the matrices in Exercise A.3.5, find a linearly independent set of row vectors that span the row space (they do not need to be rows of the matrix).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The nonzero rows of a row echelon form span the row space and are linearly independent, so take the nonzero rows of the reduced row echelon forms. a) The reduced form is $\\begin{bmatrix} 1 & 0 & 17/21 \\\\ 0 & 1 & 1/21 \\\\ 0 & 0 & 0 \\end{bmatrix}$: the rows $\\begin{bmatrix} 1 & 0 & 17/21 \\end{bmatrix}$ and $\\begin{bmatrix} 0 & 1 & 1/21 \\end{bmatrix}$. b) The reduced form is $\\kI$: $\\begin{bmatrix} 1 & 0 & 0 \\end{bmatrix}$, $\\begin{bmatrix} 0 & 1 & 0 \\end{bmatrix}$, $\\begin{bmatrix} 0 & 0 & 1 \\end{bmatrix}$. c) $\\begin{bmatrix} 1 & 2 & 3 \\end{bmatrix}$ alone. Any other linearly independent set with the same span, such as two of the original rows in a), is as good."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "A.3.7",
+   "source_number": "A.3.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pivot-columns-span",
+   "prompt": "<p>For the matrices in Exercise A.3.5, find a linearly independent set of columns that span the column space. That is, find the pivot columns of the matrices.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Row reduce and keep the columns of the original matrix where the pivots are. a) The pivots are in the first two columns: $\\begin{bmatrix} 6 \\\\ 1 \\\\ 7 \\end{bmatrix}$ and $\\begin{bmatrix} 3 \\\\ 4 \\\\ 7 \\end{bmatrix}$. b) Every column is a pivot column: $\\begin{bmatrix} 5 \\\\ 3 \\\\ 2 \\end{bmatrix}$, $\\begin{bmatrix} -2 \\\\ 0 \\\\ 4 \\end{bmatrix}$, $\\begin{bmatrix} -1 \\\\ 6 \\\\ 5 \\end{bmatrix}$. c) Only the first column: $\\begin{bmatrix} 1 \\\\ -1 \\\\ 2 \\end{bmatrix}$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "A.3.8",
+   "source_number": "A.3.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "crank-up",
+   "prompt": "<p>Find a linearly independent subset of the following vectors that has the same span.</p><p>$\\begin{bmatrix} -1 \\\\ 1 \\\\ 2 \\end{bmatrix}, \\quad \\begin{bmatrix} 2 \\\\ -2 \\\\ -4 \\end{bmatrix}, \\quad \\begin{bmatrix} -2 \\\\ 4 \\\\ 1 \\end{bmatrix}, \\quad \\begin{bmatrix} -1 \\\\ 3 \\\\ -2 \\end{bmatrix}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Form the matrix with these vectors as columns and row reduce: $\\begin{bmatrix} -1 & 2 & -2 & -1 \\\\ 1 & -2 & 4 & 3 \\\\ 2 & -4 & 1 & -2 \\end{bmatrix}$ reduces to $\\begin{bmatrix} 1 & -2 & 0 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix}$. The pivot columns are the first, third and fourth, so $\\begin{bmatrix} -1 \\\\ 1 \\\\ 2 \\end{bmatrix}$, $\\begin{bmatrix} -2 \\\\ 4 \\\\ 1 \\end{bmatrix}$, $\\begin{bmatrix} -1 \\\\ 3 \\\\ -2 \\end{bmatrix}$ have the same span as all four; the second vector is $-2$ times the first."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "A.3.101",
+   "source_number": "A.3.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reduced",
+   "prompt": "<p>Compute the reduced row echelon form for the following matrices:</p><ol type=\"a\"><li>$\\begin{bmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 1 \\\\ -2 & -2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & -3 & 1 \\\\ 4 & 6 & -2 \\\\ -2 & 6 & -2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 2 & 5 & 2 \\\\ 1 & -2 & 4 & -1 \\\\ 0 & 3 & 1 & -2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} -2 & 6 & 4 & 3 \\\\ 6 & 0 & -3 & 0 \\\\ 4 & 2 & -1 & 1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 2 & 3 & 3 \\\\ 1 & 2 & 3 & 5 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\begin{bmatrix} 1 & 0 & 1 \\\\ 0 & 1 & 0 \\end{bmatrix}$ b) $\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}$ c) $\\begin{bmatrix} 1 & 1 \\\\ 0 & 0 \\end{bmatrix}$ d) $\\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & 1 & -1/3 \\\\ 0 & 0 & 0 \\end{bmatrix}$ e) $\\begin{bmatrix} 1 & 0 & 0 & 77/15 \\\\ 0 & 1 & 0 & -2/15 \\\\ 0 & 0 & 1 & -8/5 \\end{bmatrix}$ f) $\\begin{bmatrix} 1 & 0 & -1/2 & 0 \\\\ 0 & 1 & 1/2 & 1/2 \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}$ g) $\\begin{bmatrix} 0 & 0 & 0 & 0 \\\\ 0 & 0 & 0 & 0 \\end{bmatrix}$ h) $\\begin{bmatrix} 1 & 2 & 3 & 0 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "A.3.102",
+   "source_number": "A.3.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-augmented",
+   "prompt": "<p>Compute the inverse of the given matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} 0 & 1 & 0 \\\\ -1 & 0 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 1 & 1 \\\\ 1 & 1 & 0 \\\\ 1 & 0 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 4 & 0 \\\\ 2 & 2 & 3 \\\\ 2 & 4 & 1 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\begin{bmatrix} 0 & -1 & 0 \\\\ 1 & 0 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$ b) $\\begin{bmatrix} 0 & 0 & 1 \\\\ 0 & 1 & -1 \\\\ 1 & -1 & 0 \\end{bmatrix}$ c) $\\begin{bmatrix} 5/2 & 1 & -3 \\\\ -1 & -1/2 & 3/2 \\\\ -1 & 0 & 1 \\end{bmatrix}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "A.3.103",
+   "source_number": "A.3.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "consistent-cases",
+   "prompt": "<p>Solve (find all solutions), or show no solution exists</p><ol type=\"a\"><li>$\\begin{aligned} 4x_1+3x_2 & = -1 \\\\ 5x_1+6x_2 & = 4 \\end{aligned}$</li><li>$\\begin{aligned} 5x+6y+5z & = 7 \\\\ 6x+8y+6z & = -1 \\\\ 5x+2y+5z & = 2 \\end{aligned}$</li><li>$\\begin{aligned} a+\\phantom{5}b+\\phantom{6}c & = -1 \\\\ a+5b+6c & = -1 \\\\ -2a+5b+6c & = 8 \\end{aligned}$</li><li>$\\begin{aligned} -2 x_1+2x_2+8x_3 & = 6 \\\\ x_2+\\phantom{8}x_3 & = 2 \\\\ x_1+4x_2+\\phantom{8}x_3 & = 7 \\end{aligned}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $x_1=-2$, $x_2 = {7}/{3}$ b) no solution c) $a = -3$, $b=10$, $c=-8$ d) $x_3$ is free, $x_1 = -1+3x_3$, $x_2 = 2-x_3$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "A.3.104",
+   "source_number": "A.3.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-augmented",
+   "prompt": "<p>By computing the inverse, solve the following systems for $\\kvecx$.</p><ol type=\"a\"><li>$\\begin{bmatrix} -1 & 1 \\\\ 3 & 3 \\end{bmatrix} \\kvecx = \\begin{bmatrix} 4 \\\\ 6 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 7 \\\\ 1 & 6 \\end{bmatrix} \\kvecx = \\begin{bmatrix} 1 \\\\ 3 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a) x₁",
+      "value": -1
+     },
+     {
+      "part": "a) x₂",
+      "value": 3
+     },
+     {
+      "part": "b) x₁",
+      "value": -3
+     },
+     {
+      "part": "b) x₂",
+      "value": 1
+     }
+    ],
+    "solution": "a) $\\begin{bmatrix} -1 \\\\ 3 \\end{bmatrix}$ b) $\\begin{bmatrix} -3 \\\\ 1 \\end{bmatrix}$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "A.3.105",
+   "source_number": "A.3.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rank-by-echelon",
+   "prompt": "<p>Compute the rank of the given matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} 7 & -1 & 6 \\\\ 7 & 7 & 7 \\\\ 7 & 6 & 2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 1 & 1 \\\\ 1 & 1 & 1 \\\\ 2 & 2 & 2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 3 & -1 \\\\ 6 & 3 & 1 \\\\ 4 & 7 & -1 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a)",
+      "value": 3
+     },
+     {
+      "part": "b)",
+      "value": 1
+     },
+     {
+      "part": "c)",
+      "value": 2
+     }
+    ],
+    "solution": "a) 3 b) 1 c) 2"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "A.3.106",
+   "source_number": "A.3.106",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "row-space",
+   "prompt": "<p>For the matrices in Exercise A.3.105, find a linearly independent set of row vectors that span the row space (they do not need to be rows of the matrix).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\begin{bmatrix} 1 & 0 & 0\\end{bmatrix}$, $\\begin{bmatrix} 0 & 1 & 0\\end{bmatrix}$, $\\begin{bmatrix} 0 & 0 & 1\\end{bmatrix}$ b) $\\begin{bmatrix} 1 & 1 & 1\\end{bmatrix}$ c) $\\begin{bmatrix} 1 & 0 & {1}/{3}\\end{bmatrix}$, $\\begin{bmatrix} 0 & 1 & {-1}/{3}\\end{bmatrix}$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "A.3.107",
+   "source_number": "A.3.107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pivot-columns-span",
+   "prompt": "<p>For the matrices in Exercise A.3.105, find a linearly independent set of columns that span the column space. That is, find the pivot columns of the matrices.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\begin{bmatrix} 7 \\\\ 7 \\\\ 7\\end{bmatrix}$, $\\begin{bmatrix} -1 \\\\ 7 \\\\ 6\\end{bmatrix}$, $\\begin{bmatrix} 7 \\\\ 6 \\\\ 2\\end{bmatrix}$<sup class=\"fn\" data-note=\"c-e107-third-column\"></sup> b) $\\begin{bmatrix} 1 \\\\ 1 \\\\ 2\\end{bmatrix}$ c) $\\begin{bmatrix} 0 \\\\ 6 \\\\ 4\\end{bmatrix}$, $\\begin{bmatrix} 3 \\\\ 3 \\\\ 7\\end{bmatrix}$"
+   }
+  },
+  {
+   "id": "e108",
+   "source_id": "A.3.108",
+   "source_number": "A.3.108",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "crank-up",
+   "prompt": "<p>Find a linearly independent subset of the following vectors that has the same span.</p><p>$\\begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\end{bmatrix}, \\quad \\begin{bmatrix} 3 \\\\ 1 \\\\ -5 \\end{bmatrix}, \\quad \\begin{bmatrix} 0 \\\\ 3 \\\\ -1 \\end{bmatrix}, \\quad \\begin{bmatrix} -3 \\\\ 2 \\\\ 4 \\end{bmatrix}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\begin{bmatrix} 3 \\\\ 1 \\\\ -5 \\end{bmatrix} , \\begin{bmatrix} 0 \\\\ 3 \\\\ -1 \\end{bmatrix}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "reduced-row-echelon-form"
+  },
+  {
+   "exercise": "e1",
+   "concept": "gauss-jordan-elimination"
+  },
+  {
+   "exercise": "e2",
+   "concept": "computing-a-matrix-inverse"
+  },
+  {
+   "exercise": "e2",
+   "concept": "matrix-inverse"
+  },
+  {
+   "exercise": "e3",
+   "concept": "gauss-jordan-elimination"
+  },
+  {
+   "exercise": "e3",
+   "concept": "solutions-of-a-consistent-system"
+  },
+  {
+   "exercise": "e3",
+   "concept": "free-variable"
+  },
+  {
+   "exercise": "e3",
+   "concept": "inconsistent-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "computing-a-matrix-inverse"
+  },
+  {
+   "exercise": "e4",
+   "concept": "linear-system-of-equations"
+  },
+  {
+   "exercise": "e5",
+   "concept": "rank"
+  },
+  {
+   "exercise": "e6",
+   "concept": "row-space"
+  },
+  {
+   "exercise": "e6",
+   "concept": "rank"
+  },
+  {
+   "exercise": "e7",
+   "concept": "column-space"
+  },
+  {
+   "exercise": "e7",
+   "concept": "pivot"
+  },
+  {
+   "exercise": "e8",
+   "concept": "finding-a-linearly-independent-subset"
+  },
+  {
+   "exercise": "e8",
+   "concept": "span"
+  },
+  {
+   "exercise": "e101",
+   "concept": "reduced-row-echelon-form"
+  },
+  {
+   "exercise": "e101",
+   "concept": "gauss-jordan-elimination"
+  },
+  {
+   "exercise": "e102",
+   "concept": "computing-a-matrix-inverse"
+  },
+  {
+   "exercise": "e102",
+   "concept": "matrix-inverse"
+  },
+  {
+   "exercise": "e103",
+   "concept": "gauss-jordan-elimination"
+  },
+  {
+   "exercise": "e103",
+   "concept": "solutions-of-a-consistent-system"
+  },
+  {
+   "exercise": "e103",
+   "concept": "free-variable"
+  },
+  {
+   "exercise": "e103",
+   "concept": "inconsistent-system"
+  },
+  {
+   "exercise": "e104",
+   "concept": "computing-a-matrix-inverse"
+  },
+  {
+   "exercise": "e104",
+   "concept": "linear-system-of-equations"
+  },
+  {
+   "exercise": "e105",
+   "concept": "rank"
+  },
+  {
+   "exercise": "e106",
+   "concept": "row-space"
+  },
+  {
+   "exercise": "e106",
+   "concept": "rank"
+  },
+  {
+   "exercise": "e107",
+   "concept": "column-space"
+  },
+  {
+   "exercise": "e107",
+   "concept": "pivot"
+  },
+  {
+   "exercise": "e108",
+   "concept": "finding-a-linearly-independent-subset"
+  },
+  {
+   "exercise": "e108",
+   "concept": "span"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-backwards",
+   "kind": "book",
+   "number": "63",
+   "html": "Although perhaps we have this backwards, quite often we solve a linear system of equations to find out something about matrices, rather than vice versa."
+  },
+  {
+   "id": "c-independence-letters",
+   "kind": "correction",
+   "html": "The book names the vectors $\\kvecy_1, \\kvecy_2, \\ldots, \\kvecy_n$ and writes the equation with $\\kvecx_1, \\kvecx_2, \\ldots, \\kvecx_n$; the same vectors are meant. The vectors $\\kvecy_1, \\kvecy_2, \\ldots, \\kvecy_n$ are linearly independent if the only solution to $\\alpha_1 \\kvecy_1 + \\alpha_2 \\kvecy_2 + \\cdots + \\alpha_n \\kvecy_n = \\kveczero$ is $\\alpha_1 = \\alpha_2 = \\cdots = \\alpha_n = 0$."
+  },
+  {
+   "id": "c-alpha3-sign",
+   "kind": "correction",
+   "html": "The book prints $- \\frac{-\\alpha_3}{\\alpha_1} \\kvecx_3$. Moving every term but $\\alpha_1 \\kvecx_1$ to the right-hand side and dividing by $\\alpha_1$ gives every term the same sign, so the term is $+ \\frac{-\\alpha_3}{\\alpha_1} \\kvecx_3$: $\\kvecx_1 = \\frac{-\\alpha_2}{\\alpha_1} \\kvecx_2 + \\frac{-\\alpha_3}{\\alpha_1} \\kvecx_3 + \\cdots + \\frac{-\\alpha_n}{\\alpha_1} \\kvecx_n$. The example that follows has it right."
+  },
+  {
+   "id": "c-e107-third-column",
+   "kind": "correction",
+   "html": "The book’s third vector, $\\begin{bmatrix} 7 \\\\ 6 \\\\ 2 \\end{bmatrix}$, is the third row of the matrix written as a column. The third column, and the third pivot column, is $\\begin{bmatrix} 6 \\\\ 7 \\\\ 2 \\end{bmatrix}$: the rank is 3, so all three columns are pivot columns."
+  }
+ ]
+}

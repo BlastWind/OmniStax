@@ -48,3 +48,9 @@ Built (config 14): `sim-beam-timbre` and `sim-beam-ends`, above. Weighed and dro
 - Form fix: `eq-beam-frequencies` is stored as ω_n = n²π²a² = n²(π²a²), but in 5.2 ω is the ink fourth root ⁴√λ and the book names the frequencies by no symbol; suggest latex `n^2 \pi^2 a^2 = n^2 \, (\pi^2 a^2), \qquad n = 1, 2, 3, \ldots` (no ω_n).
 - Optional variables rows: ∂4y/∂x4 and ∂2y/∂t2 for 5.2 (the beam equation's display; today they show 0.3's meanings, "the fourth partial derivative of y with respect to x" and "the second partial derivative of y with respect to t", which are true here too), anchor `5.2-eq-beam-equation`.
 - Concepts and edges: none changed. Glossary: none (the book has none).
+
+Applied in the chapter pass (2026-10-19, task `pass-ch05`):
+- Anchors: all 11 forms and 21 variables rows above set as written.
+- `eq-beam-frequencies`: latex and ktex rewritten without ω_n, as suggested.
+- Optional rows added: ∂4y/∂x4 and ∂2y/∂t2 for 5.2, anchor `5.2-eq-beam-equation`.
+- Concepts, edges, glossary: none.

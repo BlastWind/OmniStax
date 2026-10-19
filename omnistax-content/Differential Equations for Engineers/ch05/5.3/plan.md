@@ -50,3 +50,7 @@ The Mythbusters note is the book's footnote 27 in its running count (Chapters 1�
 - Anchors for variables: y, y_tt, y_xx, y_t, f, g → `5.3-eq-5-6`; A_n, B_n → `5.3-natural-frequencies`; ω → `5.3-forcing`; y_p → `5.3-split-setup`; y_c → `5.3-split`; X → `5.3-eq-guess`; X_dprime → `5.3-drv-forced-string-yp`; w, F → `5.3-dalembert-use`; u → `5.3-ground-model`; u_t, u_xx → `5.3-surface`; V, W → `5.3-eq-underground-trial`; h → `5.3-eq-underground-h`; h_t, h_xx → `5.3-eq-5-12`.
 - Done here, recorded: `ref` yp and yc set back on 5.3/y_p and 5.3/y_c.
 - No concept or edge fix; no glossary word (the section italicises no term).
+
+Applied in the chapter pass (2026-10-19, task `pass-ch05`):
+- Anchors: all 19 forms and 23 variables rows above set as written; `ref` yp / yc confirmed on 5.3/y_p and 5.3/y_c.
+- No concept, edge or glossary change.

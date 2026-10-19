@@ -1,6 +1,6 @@
 # Chapter 7 config: Power-series methods
 
-Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing defaults for the whole book); only the chapter-specific lines below differ.
+Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing defaults for the whole book); only the chapter-specific lines below differ. Built 2026-10-19: sections 7.1–7.3 and the chapter pass (anchors, six derivative rows, the footnote numbers, `error` added to `COLOR.md`).
 
 1. Start: `ch07/7.1`, then 7.2, 7.3 in order; Chapter 0's 0.2 is the template section, Calculus `ch10/10.3`, `10.4` and `ch17/17.4` for a series page before then.
 2. Loop: build straight through with no stops; plans and decisions are reported afterwards. The whole book is built.
@@ -18,7 +18,7 @@ Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing d
 14. Sims (rule 15): the plan decides and builds its picks, reported afterwards: the recurrence machine for y″ − y = 0 and the Hermite polynomial figure (7.2), the x^r shapes near a singular point (7.3). No 3Blue1Brown survivor falls in this chapter.
 15. Tier default: lowest tier that carries the value add; no 3D and no moving figure in Chapter 7 (every figure is a graph under a slider; a sequence in k is not a clock, book `RULES.md` on partial sums).
 16. Calculus overlap: 7.1 (Calculus Chapter 10), 7.2–7.3 (17.4); the pages stay whole; shared ideas take Calculus's concept ids (line 6); the prose links Calculus for what it assumes (Taylor and Maclaurin series, the ratio, root and alternating series tests, partial fractions, the chain rule, improper integrals), never repeats it.
-17. Citations: none in the text beyond the dropped section notes; the Neuringer reference in 7.3 is a book footnote and stays one.
+17. Citations: none in the text beyond the dropped section notes; the Neuringer reference in 7.3 is a book footnote and stays one. Footnotes (chapter pass, 2026-10-19, after `ch01/config.md` line 21): a book footnote's `number` is the book's running number. Chapters 1–6 end at 39 (`\footnote` counts 9, 4, 1, 9, 4, 12 in the LaTeX); Chapter 7's six `ch-power-ser.tex` footnotes are 7.1 fn-taylor 40, 7.2 fn-airy 41 and fn-hermite 42, 7.3 fn-frobenius 43, fn-neuringer 44, fn-bessel 45, as built. Chapter 8 continues from 46.
 18. Types: the fifteen of `book.json`; Chapter 7 uses function, derivative, point, eigenvalue, series, sequence. No new type.
 19. Recolour: `colours:default -- diffyqs` is run by the orchestrator at the end of the run, not in the chapter pass.
 20. Title: the book is published as *Differential Equations for Engineers*; the chapter title is the book's "Power-series methods".

@@ -17,6 +17,7 @@ Scratch: /tmp/claude-0/-home-user-OmniStax/fa1756e3-ffc3-5115-96ae-60401395d3dc/
 - The merge refused three names shared with Chapter 1's concepts: `stable-critical-point-of-a-system`, `unstable-critical-point-of-a-system`, `classifying-critical-points-of-a-system` renamed "… of a system" (ids kept).
 - `ost merge diffyqs 8`: 49 concepts, 87 edges (1 redundant dropped after the whole-book Hasse check: classifying-critical-points-of-a-system → characteristic-equation-of-a-matrix), 5 symbols. Concept links were already in the draft and check clean.
 - `ost check diffyqs`: no errors, no warnings.
+- 8.1 built (sec-8.1, claude-opus-5-5 high): 2 moving figures (Figure 8.1 `sim-portrait-x2`, Figure 8.2 `sim-linearizations`, the zoom), the `mv-pend` image kept, 6 concepts introduced, 0 derivations, 10 end exercises (0 inline, 6 unkeyed with AI solutions, 4 keyed), footnote 46 (Jacobi, the book's running number) and one correction note under 8.1.102's card; `ost check` clean.
 
 ## Next
 

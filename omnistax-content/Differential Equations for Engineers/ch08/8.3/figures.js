@@ -180,9 +180,9 @@ function rider(ctx, x, y, color) { dot(ctx, x, y, PAL.panel, true, 12); dot(ctx,
 
     /* the readout: the equation, the live state, and the energy ½ω² − cos θ, conserved with no friction */
     const eq = m === 0 ? '\\kthetadprime + \\sin\\ktheta = 0' : `\\kthetadprime + ${n(m)}\\,\\kthetaprime + \\sin\\ktheta = 0`;
-    const E0s = n(S.E0), Es = n(E);
+    const Es = n(E);
     ro.set(`${eq}:\\quad \\ktheta = ${n(thw)},\\ \\ \\komega = \\kthetaprime = ${n(omv)},\\quad \\tfrac{1}{2}\\komega^2 - \\cos\\ktheta = ${Es}`,
-      m === 0 ? '' : `With friction the energy $\\tfrac{1}{2}\\komega^2 - \\cos\\ktheta$ falls: it started at ${E0s} and is now ${Es}.`, { form: m === 0 ? 'free' : 'damped' });
+      m === 0 ? '' : `With friction the energy $\\tfrac{1}{2}\\komega^2 - \\cos\\ktheta$ falls: it started at ${fmt(S.E0, 2)} and is now ${fmt(E, 2)}.`, { form: m === 0 ? 'free' : 'damped' });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => TEND / 6), draw });
 })();
@@ -270,7 +270,9 @@ function rider(ctx, x, y, color) { dot(ctx, x, y, PAL.panel, true, 12); dot(ctx,
     const a = x0.v, b = y0.v;
     if (cache && cache.a === a && cache.b === b) return cache;
     const r = run(a, b, N, DT);
-    let mi = 0; for (let i = 1; i <= N; i++) if (r.xs[i] < r.xs[mi]) mi = i;
+    /* the hares' lowest count, at the first time it is reached (later cycles come back to the same low) */
+    let lo = Infinity; for (let i = 0; i <= N; i++) if (r.xs[i] < lo) lo = r.xs[i];
+    let mi = 0; while (mi < N && !(r.xs[mi] <= lo * (1 + 1e-6) + 1e-9)) mi++;
     cache = { a, b, ...r, C0: Cof(a, b), minX: r.xs[mi], minT: mi * DT };
     return cache;
   }

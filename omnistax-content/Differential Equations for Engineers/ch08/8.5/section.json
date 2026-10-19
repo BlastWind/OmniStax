@@ -1,0 +1,803 @@
+{
+ "id": "8.5",
+ "module": "sec:chaos",
+ "chapter": "8",
+ "title": "Chaos",
+ "short": "Chaos",
+ "lead": "Some <span data-concept=\"nonlinear-differential-equation\">nonlinear</span> systems are <span data-concept=\"chaotic-system\">chaotic</span>: deterministic, yet so sensitive to their initial conditions that nearby solutions soon part. This section follows the forced <span data-concept=\"duffing-equation\">Duffing equation</span>, watches it with a strobe through a <span data-concept=\"poincare-section\">Poincaré section</span>, and returns to the <span data-concept=\"lorenz-system\">Lorenz system</span>, an autonomous system in three dimensions.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercise 8.5.101 carries the book’s own answer. Exercises 8.5.1–8.5.4, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning: the strobed point of 8.5.1 checked with SymPy and against a numerical solution, the chaos game of 8.5.2 run for 10,000 moves, and Euler’s method of 8.5.4 run at four step sizes against the Runge–Kutta solution; for the projects 8.5.2 and 8.5.3 and the computer project 8.5.4 the solutions say what the reader should find.",
+ "figures": [
+  {
+   "id": "sim-duffing-divergence",
+   "kind": "sim",
+   "number": "8.12",
+   "originals": [
+    "/media/ch08/nlin-duf-two-traj-sols.svg"
+   ],
+   "original_caption": "On left, two trajectories in phase space for 0 ≤ t ≤ 15, for the Duffing equation one with initial conditions (2, 3) and the other with (2, 2.9). On right the two solutions in (x, t)-space.",
+   "widths": [
+    864
+   ],
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-duffing-long",
+   "kind": "sim",
+   "number": "8.13",
+   "originals": [
+    "/media/ch08/nlin-duf-long.svg"
+   ],
+   "original_caption": "The solution to the given Duffing equation for t from 0 to 100.",
+   "widths": [
+    864
+   ],
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-poincare-section",
+   "kind": "sim",
+   "number": "8.14",
+   "originals": [
+    "/media/ch08/nlin-strange-strange2.svg"
+   ],
+   "original_caption": "Strange attractor. The left plot is with no phase shift, the right plot has phase shift π/4.",
+   "widths": [
+    864
+   ],
+   "draws": [
+    "point",
+    "curve",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-lorenz",
+   "kind": "sim",
+   "number": "8.15",
+   "folds": [
+    "8.16"
+   ],
+   "originals": [
+    "/media/ch08/nlin-lorenz.svg",
+    "/media/ch08/nlin-lorenz-graphx.svg"
+   ],
+   "original_caption": "(Figure 8.15) A trajectory in the Lorenz system. (Figure 8.16) Graph of the x(t) component of the solution.",
+   "widths": [
+    432,
+    432
+   ],
+   "draws": [
+    "curve",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "path-1",
+   "label": "the solution from (2, 3)",
+   "figures": [
+    "sim-duffing-divergence"
+   ]
+  },
+  {
+   "id": "path-2",
+   "label": "the solution from (2, 2.9)",
+   "figures": [
+    "sim-duffing-divergence"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "chaotic",
+   "concept": "chaotic-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "lorenz-intro",
+   "concept": "lorenz-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "double-pendulum",
+   "concept": "double-pendulum",
+   "verb": "introduces"
+  },
+  {
+   "span": "duffing",
+   "concept": "duffing-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "poincare-section",
+   "concept": "poincare-section",
+   "verb": "introduces"
+  },
+  {
+   "span": "attractor",
+   "concept": "attractor",
+   "verb": "introduces"
+  },
+  {
+   "span": "strange-attractor",
+   "concept": "strange-attractor",
+   "verb": "introduces"
+  },
+  {
+   "span": "strobed-point",
+   "concept": "attractor-of-a-forced-linear-oscillator",
+   "verb": "introduces"
+  },
+  {
+   "span": "three-dimensions",
+   "concept": "chaos-needs-three-dimensions",
+   "verb": "introduces"
+  },
+  {
+   "span": "lorenz-attractor",
+   "concept": "lorenz-attractor",
+   "verb": "introduces"
+  },
+  {
+   "span": "chaotic",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "weather",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "weather",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "lorenz-intro",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-lorenz-system",
+   "concept": "lorenz-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "double-pendulum",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-duffing-equation",
+   "concept": "duffing-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "duffing-constants",
+   "concept": "forced-vibrations",
+   "verb": "uses"
+  },
+  {
+   "span": "duffing-constants",
+   "concept": "hookes-law",
+   "verb": "uses"
+  },
+  {
+   "span": "duffing-constants",
+   "concept": "nonlinear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "duffing-constants",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-duffing-example",
+   "concept": "duffing-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-trajectories",
+   "concept": "autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "two-trajectories",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "two-trajectories",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "two-trajectories",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "two-trajectories",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "two-trajectories",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-trajectories",
+   "concept": "duffing-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-duffing-divergence",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-duffing-divergence",
+   "concept": "duffing-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-duffing-divergence",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "fig-duffing-long",
+   "concept": "duffing-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fig-duffing-long",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "long-term",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "long-term",
+   "concept": "runge-kutta-method",
+   "verb": "uses"
+  },
+  {
+   "span": "long-term",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "order",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "order",
+   "concept": "mass-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "poincare-section",
+   "concept": "duffing-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "poincare-section",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-poincare-section",
+   "concept": "poincare-section",
+   "verb": "reinforces"
+  },
+  {
+   "span": "skip-transient",
+   "concept": "transient-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "skip-transient",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "skip-transient",
+   "concept": "poincare-section",
+   "verb": "reinforces"
+  },
+  {
+   "span": "strange-attractor",
+   "concept": "poincare-section",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-poincare-section",
+   "concept": "poincare-section",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-poincare-section",
+   "concept": "strange-attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-poincare-section",
+   "concept": "attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-poincare-section",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "attractor",
+   "concept": "poincare-section",
+   "verb": "reinforces"
+  },
+  {
+   "span": "attractor",
+   "concept": "strange-attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "no-difference",
+   "concept": "attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "no-difference",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "not-random",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "not-random",
+   "concept": "strange-attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "not-random",
+   "concept": "attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "not-random",
+   "concept": "duffing-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "phase-shift-picture",
+   "concept": "attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "phase-shift-picture",
+   "concept": "poincare-section",
+   "verb": "reinforces"
+  },
+  {
+   "span": "scales",
+   "concept": "strange-attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "scales",
+   "concept": "attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "scales",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "strobed-linear",
+   "concept": "forced-vibrations",
+   "verb": "uses"
+  },
+  {
+   "span": "steady-form",
+   "concept": "steady-state-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "steady-form",
+   "concept": "duffing-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-steady-periodic-strobed",
+   "concept": "amplitude-and-phase-shift-form",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-steady-periodic-strobed",
+   "concept": "steady-state-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "strobed-point",
+   "concept": "attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "strobed-point",
+   "concept": "steady-state-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "strobed-point",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "three-dimensions",
+   "concept": "poincare-bendixson-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "three-dimensions",
+   "concept": "autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "three-dimensions",
+   "concept": "periodic-orbit",
+   "verb": "uses"
+  },
+  {
+   "span": "three-dimensions",
+   "concept": "limit-cycle",
+   "verb": "uses"
+  },
+  {
+   "span": "three-dimensions",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "three-dimensions",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "three-dimensions",
+   "concept": "duffing-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lorenz-system",
+   "concept": "lorenz-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lorenz-system",
+   "concept": "chaos-needs-three-dimensions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sample-trajectory",
+   "concept": "lorenz-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sample-trajectory",
+   "concept": "autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sample-trajectory",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-lorenz",
+   "concept": "lorenz-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-lorenz",
+   "concept": "lorenz-attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-lorenz",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-lorenz",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-lorenz",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "lorenz-attractor",
+   "concept": "attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lorenz-attractor",
+   "concept": "strange-attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lorenz-attractor",
+   "concept": "lorenz-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lorenz-attractor",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "lobes",
+   "concept": "lorenz-attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lobes",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "lobes",
+   "concept": "attractor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "research",
+   "concept": "chaotic-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "research",
+   "concept": "lorenz-system",
+   "verb": "reinforces"
+  }
+ ],
+ "derivations": [],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "8.5.1",
+   "source_number": "8.5.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strobed-point",
+   "prompt": "<p>For the non-chaotic equation $\\kxdprime+2\\kp \\kxprime + \\komegazero^2 \\kx = \\frac{F_0}{m} \\cos (\\komega t)$, suppose we strobe with frequency $\\komega$ as we mentioned above. Use the known steady periodic solution to find precisely the point which is the attractor for the Poincaré section.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The <span data-concept=\"steady-state-solution\">steady periodic solution</span> of §2.6 is $\\kx = A\\cos(\\komega t) + B\\sin(\\komega t)$ with $A = \\frac{(\\komegazero^2-\\komega^2)F_0}{m(2\\komega\\kp)^2+m(\\komegazero^2-\\komega^2)^2}$ and $B = \\frac{2\\komega\\kp F_0}{m(2\\komega\\kp)^2+m(\\komegazero^2-\\komega^2)^2}$, so $\\ky = \\kxprime = -A\\komega\\sin(\\komega t) + B\\komega\\cos(\\komega t)$. Strobing with frequency $\\komega$ means looking at the times $t = 2\\pi k/\\komega$, $k = 0, 1, 2, \\ldots$, where $\\cos(\\komega t) = 1$ and $\\sin(\\komega t) = 0$. So every flash finds the steady periodic solution at the same point $$(\\kx, \\ky) = (A, \\komega B) = \\left( \\frac{(\\komegazero^2-\\komega^2)F_0}{m(2\\komega\\kp)^2+m(\\komegazero^2-\\komega^2)^2},\\ \\frac{2\\komega^2\\kp F_0}{m(2\\komega\\kp)^2+m(\\komegazero^2-\\komega^2)^2} \\right).$$ With the amplitude and phase shift of §2.6, $\\kx = C\\cos(\\komega t - \\gamma)$ where $C = \\frac{F_0}{m\\sqrt{(2\\komega\\kp)^2+(\\komegazero^2-\\komega^2)^2}}$ and $\\tan\\gamma = \\frac{2\\komega\\kp}{\\komegazero^2-\\komega^2}$, the point is $(C\\cos\\gamma,\\ \\komega C\\sin\\gamma)$; written in this section’s form $\\kx = C\\cos(\\komega t + \\gamma)$, it is $(C\\cos\\gamma,\\ -\\komega C\\sin\\gamma)$. Since $\\kp > 0$, the <span data-concept=\"transient-solution\">transient</span> of every solution dies away, so the strobed points of any solution approach this one point: it is the <span data-concept=\"attractor\">attractor</span> of the <span data-concept=\"poincare-section\">Poincaré section</span>."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "8.5.2",
+   "source_number": "8.5.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "tag": "project",
+   "place": {
+    "at": "end"
+   },
+   "cite": "attractor",
+   "prompt": "<p>A simple fractal attractor can be drawn via the following chaos game. Draw the three vertices of a triangle and label them, say $p_1$, $p_2$ and $p_3$. Draw some random point $p$ (it does not have to be one of the three points above). Roll a die to pick one of the $p_1$, $p_2$, or $p_3$ randomly (for example 1 and 4 mean $p_1$, 2 and 5 mean $p_2$, and 3 and 6 mean $p_3$). Suppose we picked $p_2$. Let $p_{\\text{new}}$ be the point exactly halfway between $p$ and $p_2$. Draw this point and let $p$ now refer to this new point $p_{\\text{new}}$. Rinse, repeat. Try to be precise and draw as many iterations as possible. Your points will be attracted to the so-called <em>Sierpinski triangle</em>. A computer was used to run the game for 10,000 iterations to obtain the picture in Figure 8.17.</p>",
+   "figure": {
+    "src": "/media/ch08/nlin-sierpinski.svg",
+    "alt": "A diagram of the so-called Sierpinski triangle composed of dots in the xy-plane. The vertices of the triangle are at (0,0), (1,0), and (0.5,0.8). There is a smaller similar upside down empty triangle with the middle of the sides of the big triangle as vertices. The remaining 3 upright triangles are not filled, but each has an empty triangle like that in the middle and the three upright triangles repeat the pattern forever. The entire triangle then appears as if it is made up of infinitely many upside down empty triangles.",
+    "caption": "Figure 8.17. 10,000 iterations of the chaos game producing the Sierpinski triangle."
+   },
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "After the first few, every point you draw lies on the Sierpinski triangle of Figure 8.17: the whole triangle with the triangle joining the midpoints of its sides taken out, the same taken out of each of the three corner triangles that are left, and so on forever. Each move replaces $p$ by the midpoint of $p$ and a vertex, which halves every distance towards that vertex. The Sierpinski triangle is made of exactly three half-size copies of itself, one at each vertex, so each of the three moves carries it into itself, and each move at least halves the distance from $p$ to the set: after $n$ moves that distance is at most $2^{-n}$ times the first one, below a thousandth of it after ten moves. So the points are attracted to the set, as the strobed points of the <span data-concept=\"duffing-equation\">Duffing equation</span> are attracted to its <span data-concept=\"strange-attractor\">strange attractor</span>, and as there the first few points are best thrown away. The die makes the choices random, so the points spread over the whole set instead of following one path; from a start inside the triangle, every point after the twelfth lies within $2^{-12}$ of the triangle’s size from the set, closer than any drawing can show (a run of 10,000 moves confirms it). The set is a fractal: each of its three corners is the whole picture at half the size."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "8.5.3",
+   "source_number": "8.5.3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "tag": "project",
+   "place": {
+    "at": "end"
+   },
+   "cite": "double-pendulum",
+   "prompt": "<p>Construct the double pendulum described in the text with a string and two nuts (or heavy beads). Play around with the position of the middle nut, and perhaps use different weight nuts. Describe what you find.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "What you should find: with small pushes the two nuts swing back and forth almost periodically, much like a single pendulum, or in a combination of two motions, the nuts swinging together or against each other. With bigger pushes, especially when the middle nut is about halfway up and the two nuts weigh about the same, the bottom nut’s motion turns irregular: it swings, stops, kicks the other way and whips round its own nut with no pattern you can predict. Two pushes that you try to make the same give motions that look alike for a swing or two and then nothing alike, the sensitivity to <span data-concept=\"initial-condition-for-a-system\">initial conditions</span> that makes the <span data-concept=\"double-pendulum\">double pendulum</span> a <span data-concept=\"chaotic-system\">chaotic system</span>. With the middle nut close to the top or close to the bottom nut, the string behaves much like one pendulum and the motion stays regular longer. Air resistance slowly damps every motion, and once the swings are so large that the string goes slack the system is no longer a double pendulum."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "8.5.4",
+   "source_number": "8.5.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "tag": "computer project",
+   "place": {
+    "at": "end"
+   },
+   "cite": "long-term",
+   "prompt": "<p>Use computer software (such as Matlab, Octave, or perhaps even a spreadsheet) to plot the solution of the given forced Duffing equation with Euler’s method. Plot the solution for $t$ from 0 to 100 with several different (small) step sizes. Discuss.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write the equation as the system $\\kxprime = \\ky$, $\\kyprime = 8\\cos t - 0.05\\ky - \\kx^3$ with $\\kx(0) = 2$, $\\ky(0) = 3$ and apply <span data-concept=\"eulers-method\">Euler’s method</span>. With the steps $h = 0.01$, $0.005$, $0.001$ and $0.0001$ the graphs follow the accurate <span data-concept=\"solution-to-a-system\">solution</span> of Figure 8.13 (the <span data-concept=\"runge-kutta-method\">Runge–Kutta method</span> with 30,000 steps) only for a while: they first differ from it by more than 0.5 at about $t = 10.6$, $11.3$, $17.0$ and $23.1$ respectively, and after that each run looks like a different solution, oscillating with the forcing but with its swings in different places; with $h = 0.01$ the swings even grow larger, up to $\\lvert \\kx \\rvert \\approx 4.8$, as Euler’s method adds energy to an oscillation. Euler’s error in a fixed time is proportional to $h$, but in a <span data-concept=\"chaotic-system\">chaotic system</span> an error grows like a change of <span data-concept=\"initial-condition-for-a-system\">initial condition</span>, here about tenfold every forcing period, so each tenfold smaller step buys only a few more units of time. No reasonable step makes Euler’s method accurate all the way to $t = 100$, which is why the book’s figure needed the far more accurate Runge–Kutta method with a ridiculously large number of steps (halving its step to 60,000 steps moves no point of the graph by more than 0.01)."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "8.5.101",
+   "source_number": "8.5.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lorenz-system",
+   "prompt": "<p>Find critical points of the Lorenz system and the associated linearizations.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Critical points: $(0,0,0)$, $(6\\sqrt{2},6 \\sqrt{2}, 27)$, $(-6 \\sqrt{2},-6 \\sqrt{2}, 27)$. Linearization at $(0,0,0)$ using $u=\\kx$, $v=\\ky$, $w=\\kz$ is $u' = -10u+10v$, $v'=28u-v$, $w'=-({8}/{3})w$. Linearization at $(6 \\sqrt{2},6\\sqrt{2},27)$ using $u=\\kx-6\\sqrt{2}$, $v=\\ky-6\\sqrt{2}$, $w=\\kz-27$ is $u' = -10u+10v$, $v'=u-v-6\\sqrt{2}w$, $w'=6\\sqrt{2}u+6\\sqrt{2}v-({8}/{3})w$. Linearization at $(-6 \\sqrt{2},-6\\sqrt{2},27)$ using $u=\\kx+6\\sqrt{2}$, $v=\\ky+6\\sqrt{2}$, $w=\\kz-27$ is $u' = -10u+10v$, $v'=u-v+6\\sqrt{2}w$, $w'=-6\\sqrt{2}u-6\\sqrt{2}v-({8}/{3})w$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "attractor-of-a-forced-linear-oscillator"
+  },
+  {
+   "exercise": "e1",
+   "concept": "poincare-section"
+  },
+  {
+   "exercise": "e1",
+   "concept": "steady-state-solution"
+  },
+  {
+   "exercise": "e2",
+   "concept": "attractor"
+  },
+  {
+   "exercise": "e2",
+   "concept": "strange-attractor"
+  },
+  {
+   "exercise": "e3",
+   "concept": "double-pendulum"
+  },
+  {
+   "exercise": "e3",
+   "concept": "chaotic-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "chaotic-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "duffing-equation"
+  },
+  {
+   "exercise": "e4",
+   "concept": "eulers-method"
+  },
+  {
+   "exercise": "e101",
+   "concept": "lorenz-system"
+  },
+  {
+   "exercise": "e101",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e101",
+   "concept": "linearization-of-a-system"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-lorenz",
+   "kind": "book",
+   "number": "53",
+   "html": "<a href=\"https://en.wikipedia.org/wiki/Edward_Norton_Lorenz\">Edward Norton Lorenz</a> (1917–2008) was an American mathematician and meteorologist."
+  },
+  {
+   "id": "fn-rk-steps",
+   "kind": "book",
+   "number": "54",
+   "html": "In fact for reference, 30,000 steps were used with the <span data-concept=\"runge-kutta-method\">Runge–Kutta algorithm</span>, see exercises in <a href=\"/diffyqs/ch01/1.7/\">§1.7</a>."
+  },
+  {
+   "id": "fn-poincare",
+   "kind": "book",
+   "number": "55",
+   "html": "Named for the French polymath <a href=\"https://en.wikipedia.org/wiki/Henri_Poincar%C3%A9\">Jules Henri Poincaré</a> (1854–1912)."
+  }
+ ]
+}

@@ -1,0 +1,996 @@
+{
+ "id": "A.1",
+ "module": "vecsandmaps:section",
+ "chapter": "A",
+ "title": "Vectors, mappings, and matrices",
+ "lead": "Appendix A gathers the linear algebra the book leans on. This section begins with <span data-concept=\"vector\">vectors</span> as arrows, each with a <span data-concept=\"direction-of-a-vector\">direction</span> and a <span data-concept=\"magnitude-of-a-vector\">magnitude</span>, and how they are <span data-concept=\"vector-addition\">added</span>, <span data-concept=\"vector-difference\">subtracted</span> and <span data-concept=\"scalar-multiplication\">scaled</span>, then turns to <span data-concept=\"linear-mapping\">linear mappings</span>, the <span data-concept=\"matrix\">matrices</span> that represent them, and how a <span data-concept=\"matrix\">matrix</span> multiplies a <span data-concept=\"vector\">vector</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises A.1.101–A.1.105 carry the book’s own answers, each confirmed by computation. Exercises A.1.1–A.1.13, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first; the drawing exercises A.1.1–A.1.3 are answered by describing each arrow.",
+ "figures": [
+  {
+   "id": "sim-vector-arithmetic",
+   "kind": "sim",
+   "number": "A.1",
+   "folds": [
+    "A.2",
+    "A.3",
+    "A.4"
+   ],
+   "originals": [
+    "/media/appA/linalg-vecarrow.svg",
+    "/media/appA/linalg-vecadd.svg",
+    "/media/appA/linalg-vecsub.svg",
+    "/media/appA/linalg-vecscale.svg"
+   ],
+   "original_caption": "(Figure A.1) The vector (1, 2) drawn as an arrow from the origin to the point (1, 2). (Figure A.2) Adding the vectors (1, 2), drawn dotted, and (2, −3), drawn dashed. The result, (3, −1), is drawn as a solid arrow. (Figure A.3) Subtraction, the vector (1, 2), drawn dotted, minus (−2, 1), drawn dashed. The result, (3, 1), is drawn as a solid arrow. (Figure A.4) A vector x⃗, the vector 2x⃗ (same direction, double the magnitude), and the vector −1.5x⃗ (opposite direction, 1.5 times the magnitude).",
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-matrix-mapping",
+   "kind": "sim",
+   "draws": [
+    "vector",
+    "matrix"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "why",
+   "concept": "linear-mapping",
+   "verb": "uses"
+  },
+  {
+   "span": "why",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "euclidean-space",
+   "concept": "euclidean-space",
+   "verb": "introduces"
+  },
+  {
+   "span": "vectors",
+   "concept": "vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vectors",
+   "concept": "direction-of-a-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "magnitude",
+   "concept": "magnitude-of-a-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "column-vectors",
+   "concept": "vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "addition",
+   "concept": "vector-addition",
+   "verb": "introduces"
+  },
+  {
+   "span": "addition-rule",
+   "concept": "vector-addition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "subtraction",
+   "concept": "vector-difference",
+   "verb": "introduces"
+  },
+  {
+   "span": "scaling",
+   "concept": "scalar-multiplication",
+   "verb": "introduces"
+  },
+  {
+   "span": "scaling",
+   "concept": "scalar",
+   "verb": "reinforces"
+  },
+  {
+   "span": "scaling-magnitude",
+   "concept": "magnitude-of-a-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "negative-scalar",
+   "concept": "scalar-multiplication",
+   "verb": "reinforces"
+  },
+  {
+   "span": "combination",
+   "concept": "vector-addition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "combination",
+   "concept": "scalar-multiplication",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-vector-arithmetic",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-vector-arithmetic",
+   "concept": "vector-addition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-vector-arithmetic",
+   "concept": "vector-difference",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-vector-arithmetic",
+   "concept": "scalar-multiplication",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-vector-arithmetic",
+   "concept": "magnitude-of-a-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unit-vector",
+   "concept": "unit-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "unit-vector",
+   "concept": "direction-of-a-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unit-vector-direction",
+   "concept": "unit-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mapping",
+   "concept": "mapping",
+   "verb": "introduces"
+  },
+  {
+   "span": "function-or-mapping",
+   "concept": "mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "linear",
+   "concept": "linear-mapping",
+   "verb": "introduces"
+  },
+  {
+   "span": "doubling-is-linear",
+   "concept": "linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "transformation",
+   "concept": "linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "matrix",
+   "concept": "matrix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "entries",
+   "concept": "matrix-entry",
+   "verb": "reinforces"
+  },
+  {
+   "span": "row-vector",
+   "concept": "row-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "row-vector",
+   "concept": "square-matrix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "standard-basis",
+   "concept": "standard-unit-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "basis",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "basis",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "basis",
+   "concept": "standard-unit-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "columns",
+   "concept": "matrix-of-a-linear-mapping",
+   "verb": "introduces"
+  },
+  {
+   "span": "matrix-example",
+   "concept": "matrix-of-a-linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "general-columns",
+   "concept": "matrix-of-a-linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "by-linearity",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "by-linearity",
+   "concept": "standard-unit-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-matrix-by-linearity",
+   "concept": "matrix-of-a-linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-matrix-by-linearity",
+   "concept": "linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "m-example",
+   "concept": "matrix-of-a-linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-matrix-mapping",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-matrix-mapping",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-matrix-mapping",
+   "concept": "matrix-of-a-linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-matrix-mapping",
+   "concept": "standard-unit-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-matrix-mapping",
+   "concept": "linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "every-linear-mapping",
+   "concept": "matrix-of-a-linear-mapping",
+   "verb": "reinforces"
+  },
+  {
+   "span": "operators",
+   "concept": "linear-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "finite-dimensional",
+   "concept": "finite-dimensional-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "row-rule",
+   "concept": "matrix-vector-product",
+   "verb": "introduces"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "matrix-by-linearity",
+   "what": "where a matrix takes every vector",
+   "source": "Differential Equations for Engineers, A.1 Vectors, mappings, and matrices",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecx = \\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\\\ x_5 \\end{bmatrix}"
+      },
+      {
+       "tex": "\\alpha \\begin{bmatrix} x_1 \\\\ \\vdots \\\\ x_n \\end{bmatrix} = \\begin{bmatrix} \\alpha x_1 \\\\ \\vdots \\\\ \\alpha x_n \\end{bmatrix}",
+       "src": "A.1, Vectors and operations on vectors"
+      },
+      {
+       "tex": "\\begin{bmatrix} x_1 \\\\ \\vdots \\\\ x_n \\end{bmatrix} + \\begin{bmatrix} y_1 \\\\ \\vdots \\\\ y_n \\end{bmatrix} = \\begin{bmatrix} x_1 + y_1 \\\\ \\vdots \\\\ x_n + y_n \\end{bmatrix}",
+       "src": "A.1, Vectors and operations on vectors"
+      },
+      {
+       "text": "The standard basis vector $\\kvece_j$ has a $1$ in the $j^{\\text{th}}$ place and zeros everywhere else.",
+       "src": "A.1, Linear mappings and matrices"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kvecx} = \\mk{c}{\\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\\\ x_5 \\end{bmatrix}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kvecx} = \\mk{s1}{x_1 \\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix}} + \\mk{s2}{x_2 \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix}} + \\mk{s3}{x_3 \\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\\\ 0 \\\\ 0 \\end{bmatrix}} + \\mk{s4}{x_4 \\begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ 1 \\\\ 0 \\end{bmatrix}} + \\mk{s5}{x_5 \\begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 1 \\end{bmatrix}}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "c": [
+         "s1",
+         "s2",
+         "s3",
+         "s4",
+         "s5"
+        ]
+       },
+       "cap": "Read from right to left, the rules for adding and scaling vectors split the column into one scaled column for each component."
+      },
+      {
+       "tex": "\\mk{x}{\\kvecx} = \\mk{s1}{x_1 \\kvece_1} + \\mk{s2}{x_2 \\kvece_2} + \\mk{s3}{x_3 \\kvece_3} + \\mk{s4}{x_4 \\kvece_4} + \\mk{s5}{x_5 \\kvece_5}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "A.1, Linear mappings and matrices"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\kA$, as a mapping, is linear: $\\kA(\\kvecx+\\kvecy) = \\kA\\kvecx+\\kA\\kvecy$ and $\\kA(\\alpha \\kvecx) = \\alpha \\kA\\kvecx$.",
+       "src": "A.1, Linear mappings and matrices"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Ax}{\\kA \\kvecx} = \\mk{A}{\\kA} ( \\mk{s1}{x_1 \\kvece_1} + \\mk{s2}{x_2 \\kvece_2} + \\mk{s3}{x_3 \\kvece_3} + \\mk{s4}{x_4 \\kvece_4} + \\mk{s5}{x_5 \\kvece_5} )",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Ax}{\\kA \\kvecx} = \\mk{s1}{x_1 \\kA\\kvece_1} + \\mk{s2}{x_2 \\kA\\kvece_2} + \\mk{s3}{x_3 \\kA\\kvece_3} + \\mk{s4}{x_4 \\kA\\kvece_4} + \\mk{s5}{x_5 \\kA\\kvece_5}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "A": [
+         "s1",
+         "s2",
+         "s3",
+         "s4",
+         "s5"
+        ]
+       },
+       "cap": "Linearity splits $\\kA$ over each sum, $\\kA(\\kvecx+\\kvecy) = \\kA\\kvecx+\\kA\\kvecy$, and brings each scalar $x_j$ out in front, $\\kA(\\alpha \\kvecx) = \\alpha \\kA\\kvecx$."
+      }
+     ],
+     "src": "A.1, Linear mappings and matrices"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "A.1.1",
+   "source_number": "A.1.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors",
+   "prompt": "<p>On a piece of graph paper draw the vectors:</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 2 \\\\ 5 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} -2 \\\\ -4 \\end{smallmatrix} \\right]$</li><li>$(3,-4)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each vector is the arrow from the origin to the point with its components. a) From $(0,0)$ to $(2,5)$: 2 units to the right and 5 units up. b) From $(0,0)$ to $(-2,-4)$: 2 units to the left and 4 units down. c) From $(0,0)$ to $(3,-4)$: 3 units to the right and 4 units down."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "A.1.2",
+   "source_number": "A.1.2",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vectors",
+   "prompt": "<p>On a piece of graph paper draw the vector $(1,2)$ starting at (based at) the given point:</p><ol type=\"a\"><li>based at $(0,0)$</li><li>based at $(1,2)$</li><li>based at $(0,-1)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Moved around, the arrow keeps its direction and its magnitude: it always goes 1 unit to the right and 2 units up, so it ends at its base plus $(1,2)$. a) From $(0,0)$ to $(1,2)$. b) From $(1,2)$ to $(2,4)$. c) From $(0,-1)$ to $(1,1)$. The three arrows are parallel and of the same length $\\sqrt{5}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "A.1.3",
+   "source_number": "A.1.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "addition",
+   "prompt": "<p>On a piece of graph paper draw the following operations. Draw and label the vectors involved in the operations as well as the result:</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 1 \\\\ -4 \\end{smallmatrix} \\right] + \\left[ \\begin{smallmatrix} 2 \\\\ 3 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} -3 \\\\ 2 \\end{smallmatrix} \\right] - \\left[ \\begin{smallmatrix} 1 \\\\ 3 \\end{smallmatrix} \\right]$</li><li>$3\\left[ \\begin{smallmatrix} 2 \\\\ 1 \\end{smallmatrix} \\right]$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Draw $(1,-4)$ from the origin, then $(2,3)$ from its head $(1,-4)$ to $(3,-1)$; the result $(1+2,-4+3) = (3,-1)$ is the arrow from the origin to $(3,-1)$. b) Draw $(-3,2)$ from the origin, then travel backwards along $(1,3)$: draw $(1,3)$ from $(-4,-1)$ ending at the head $(-3,2)$; the result $(-3-1,2-3) = (-4,-1)$ is the arrow from the origin to $(-4,-1)$. c) $3(2,1) = (6,3)$: the arrow from the origin to $(6,3)$, in the same direction as $(2,1)$ and three times as long."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "A.1.4",
+   "source_number": "A.1.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude",
+   "prompt": "<p>Compute the magnitude of</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 7 \\\\ 2 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} -2 \\\\ 3 \\\\ 1 \\end{smallmatrix} \\right]$</li><li>$(1,3,-4)$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "a",
+      "value": 7.2801
+     },
+     {
+      "part": "b",
+      "value": 3.7417
+     },
+     {
+      "part": "c",
+      "value": 5.099
+     }
+    ],
+    "solution": "By the Pythagorean formula $\\lVert \\kvecx \\rVert = \\sqrt{x_1^2+\\cdots+x_n^2}$: a) $\\sqrt{7^2+2^2} = \\sqrt{53} \\approx 7.2801$. b) $\\sqrt{(-2)^2+3^2+1^2} = \\sqrt{14} \\approx 3.7417$. c) $\\sqrt{1^2+3^2+(-4)^2} = \\sqrt{26} \\approx 5.0990$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "A.1.5",
+   "source_number": "A.1.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combination",
+   "prompt": "<p>Compute</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 2 \\\\ 3 \\end{smallmatrix} \\right] + \\left[ \\begin{smallmatrix} 7 \\\\ -8 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} -2 \\\\ 3 \\end{smallmatrix} \\right] - \\left[ \\begin{smallmatrix} 6 \\\\ -4 \\end{smallmatrix} \\right]$</li><li>$-\\left[ \\begin{smallmatrix} -3 \\\\ 2 \\end{smallmatrix} \\right]$</li><li>$4\\left[ \\begin{smallmatrix} -1 \\\\ 5 \\end{smallmatrix} \\right]$</li><li>$5\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\end{smallmatrix} \\right] + 9 \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\end{smallmatrix} \\right]$</li><li>$3\\left[ \\begin{smallmatrix} 1 \\\\ -8 \\end{smallmatrix} \\right] - 2 \\left[ \\begin{smallmatrix} 3 \\\\ -1 \\end{smallmatrix} \\right]$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Component by component: a) $\\left[ \\begin{smallmatrix} 2+7 \\\\ 3-8 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 9 \\\\ -5 \\end{smallmatrix} \\right]$. b) $\\left[ \\begin{smallmatrix} -2-6 \\\\ 3+4 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} -8 \\\\ 7 \\end{smallmatrix} \\right]$. c) $\\left[ \\begin{smallmatrix} 3 \\\\ -2 \\end{smallmatrix} \\right]$. d) $\\left[ \\begin{smallmatrix} -4 \\\\ 20 \\end{smallmatrix} \\right]$. e) $\\left[ \\begin{smallmatrix} 5 \\\\ 9 \\end{smallmatrix} \\right]$. f) $\\left[ \\begin{smallmatrix} 3-6 \\\\ -24+2 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} -3 \\\\ -22 \\end{smallmatrix} \\right]$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "A.1.6",
+   "source_number": "A.1.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unit-vector-direction",
+   "prompt": "<p>Find the unit vector in the direction of the given vector</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 1 \\\\ -3 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 2 \\\\ 1 \\\\ -1 \\end{smallmatrix} \\right]$</li><li>$(3,1,-2)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Divide each vector by its magnitude, $\\frac{\\kvecx}{\\lVert \\kvecx \\rVert}$. a) $\\lVert (1,-3) \\rVert = \\sqrt{10}$, so the unit vector is $\\left(\\frac{1}{\\sqrt{10}}, \\frac{-3}{\\sqrt{10}}\\right)$. b) $\\lVert (2,1,-1) \\rVert = \\sqrt{6}$, so it is $\\left(\\frac{2}{\\sqrt{6}}, \\frac{1}{\\sqrt{6}}, \\frac{-1}{\\sqrt{6}}\\right)$. c) $\\lVert (3,1,-2) \\rVert = \\sqrt{14}$, so it is $\\left(\\frac{3}{\\sqrt{14}}, \\frac{1}{\\sqrt{14}}, \\frac{-2}{\\sqrt{14}}\\right)$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "A.1.7",
+   "source_number": "A.1.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "addition-rule",
+   "prompt": "<p>If $\\kvecx = (1,2)$ and $\\kvecy$ are added together, we find $\\kvecx+\\kvecy = (0,2)$. What is $\\kvecy$?</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "y₁",
+      "value": -1
+     },
+     {
+      "part": "y₂",
+      "value": 0
+     }
+    ],
+    "solution": "Adding works component by component, so $1 + y_1 = 0$ and $2 + y_2 = 2$, which give $y_1 = -1$ and $y_2 = 0$: $\\kvecy = (0,2) - (1,2) = (-1,0)$. Check: $(1,2) + (-1,0) = (0,2)$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "A.1.8",
+   "source_number": "A.1.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "basis",
+   "prompt": "<p>Write $(1,2,3)$ as a linear combination of the standard basis vectors $\\kvece_1$, $\\kvece_2$, and $\\kvece_3$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each component is the coefficient of its standard basis vector: $(1,2,3) = \\kvece_1 + 2\\kvece_2 + 3\\kvece_3 = 1\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] + 2\\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right] + 3\\left[ \\begin{smallmatrix} 0 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right]$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "A.1.9",
+   "source_number": "A.1.9",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scaling-magnitude",
+   "prompt": "<p>If the magnitude of $\\kvecx$ is 4, what is the magnitude of</p><ol type=\"a\"><li>$0\\kvecx$</li><li>$3\\kvecx$</li><li>$-\\kvecx$</li><li>$-4\\kvecx$</li><li>$\\kvecx+\\kvecx$</li><li>$\\kvecx-\\kvecx$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "a",
+      "value": 0
+     },
+     {
+      "part": "b",
+      "value": 12
+     },
+     {
+      "part": "c",
+      "value": 4
+     },
+     {
+      "part": "d",
+      "value": 16
+     },
+     {
+      "part": "e",
+      "value": 8
+     },
+     {
+      "part": "f",
+      "value": 0
+     }
+    ],
+    "solution": "Scaling by $\\alpha$ multiplies the magnitude by $\\lvert \\alpha \\rvert$, and a negative scalar only reverses the direction: $\\lVert \\alpha\\kvecx \\rVert = \\lvert \\alpha \\rvert \\, \\lVert \\kvecx \\rVert$. a) $0 \\cdot 4 = 0$. b) $3 \\cdot 4 = 12$. c) $1 \\cdot 4 = 4$. d) $4 \\cdot 4 = 16$. e) $\\kvecx+\\kvecx = 2\\kvecx$, so $2 \\cdot 4 = 8$. f) $\\kvecx-\\kvecx$ is the zero vector, of magnitude $0$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "A.1.10",
+   "source_number": "A.1.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-columns",
+   "prompt": "<p>Suppose a linear mapping $\\kF \\colon {\\mathbb R}^2 \\to {\\mathbb R}^2$ takes $(1,0)$ to $(2,-1)$ and it takes $(0,1)$ to $(3,3)$. Where does it take</p><ol type=\"a\"><li>$(1,1)$</li><li>$(2,0)$</li><li>$(2,-1)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write each vector in terms of $\\kvece_1 = (1,0)$ and $\\kvece_2 = (0,1)$ and use linearity, $\\kF(x_1\\kvece_1 + x_2\\kvece_2) = x_1\\kF\\kvece_1 + x_2\\kF\\kvece_2$; equivalently, $\\kF$ is the matrix $\\left[ \\begin{smallmatrix} 2 & 3 \\\\ -1 & 3 \\end{smallmatrix} \\right]$ whose columns are $(2,-1)$ and $(3,3)$. a) $(1,1) = \\kvece_1 + \\kvece_2$ goes to $(2,-1) + (3,3) = (5,2)$. b) $(2,0) = 2\\kvece_1$ goes to $2(2,-1) = (4,-2)$. c) $(2,-1) = 2\\kvece_1 - \\kvece_2$ goes to $(4,-2) - (3,3) = (1,-5)$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "A.1.11",
+   "source_number": "A.1.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-columns",
+   "prompt": "<p>Suppose a linear mapping $\\kF \\colon {\\mathbb R}^3 \\to {\\mathbb R}^2$ takes $(1,0,0)$ to $(2,1)$, it takes $(0,1,0)$ to $(3,4)$, and it takes $(0,0,1)$ to $(5,6)$. Write down the matrix representing the mapping $\\kF$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The columns of the matrix are where $\\kF$ takes $\\kvece_1$, $\\kvece_2$, $\\kvece_3$, so the $2 \\times 3$ matrix is $\\left[ \\begin{smallmatrix} 2 & 3 & 5 \\\\ 1 & 4 & 6 \\end{smallmatrix} \\right]$."
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "A.1.12",
+   "source_number": "A.1.12",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear",
+   "prompt": "<p>Suppose that a mapping $\\kF \\colon {\\mathbb R}^2 \\to \\mathbb{R}^2$ takes $(1,0)$ to $(1,2)$, $(0,1)$ to $(3,4)$, and $(1,1)$ to $(0,-1)$. Explain why $\\kF$ is not linear.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $(1,1) = (1,0) + (0,1)$, a linear $\\kF$ would have to satisfy $\\kF(1,1) = \\kF(1,0) + \\kF(0,1) = (1,2) + (3,4) = (4,6)$. But $\\kF$ takes $(1,1)$ to $(0,-1) \\neq (4,6)$, so $\\kF(\\kvecx+\\kvecy) = \\kF(\\kvecx)+\\kF(\\kvecy)$ fails and $\\kF$ is not linear."
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "A.1.13",
+   "source_number": "A.1.13",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finite-dimensional",
+   "prompt": "<p><strong>challenging</strong> Let ${\\mathbb R}^3$ represent the space of quadratic polynomials in $t$: A point $(a_0,a_1,a_2)$ in ${\\mathbb R}^3$ represents the polynomial $a_0 + a_1 t + a_2 t^2$. Consider the derivative $\\frac{d}{dt}$ as a mapping of ${\\mathbb R}^3$ to ${\\mathbb R}^3$, and note that $\\frac{d}{dt}$ is linear. Write down $\\frac{d}{dt}$ as a $3 \\times 3$ matrix.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\frac{d}{dt}(a_0 + a_1 t + a_2 t^2) = a_1 + 2a_2 t$, so $\\frac{d}{dt}$ takes $(a_0,a_1,a_2)$ to $(a_1, 2a_2, 0)$. The columns are where it takes the standard basis vectors: $\\kvece_1$ (the polynomial $1$) goes to $0$, that is $(0,0,0)$; $\\kvece_2$ (the polynomial $t$) goes to $1$, that is $(1,0,0)$; $\\kvece_3$ (the polynomial $t^2$) goes to $2t$, that is $(0,2,0)$. So $\\frac{d}{dt}$ is the matrix $\\left[ \\begin{smallmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 2 \\\\ 0 & 0 & 0 \\end{smallmatrix} \\right]$, and indeed $\\left[ \\begin{smallmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 2 \\\\ 0 & 0 & 0 \\end{smallmatrix} \\right]\\left[ \\begin{smallmatrix} a_0 \\\\ a_1 \\\\ a_2 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} a_1 \\\\ 2a_2 \\\\ 0 \\end{smallmatrix} \\right]$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "A.1.101",
+   "source_number": "A.1.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "magnitude",
+   "prompt": "<p>Compute the magnitude of</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 1 \\\\ 3 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 2 \\\\ 3 \\\\ -1 \\end{smallmatrix} \\right]$</li><li>$(-2,1,-2)$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3.1623
+     },
+     {
+      "part": "b",
+      "value": 3.7417
+     },
+     {
+      "part": "c",
+      "value": 3
+     }
+    ],
+    "solution": "a) $\\sqrt{10}$ b) $\\sqrt{14}$ c) $3$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "A.1.102",
+   "source_number": "A.1.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unit-vector-direction",
+   "prompt": "<p>Find the unit vector in the direction of the given vector</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} -1 \\\\ 1 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 2 \\end{smallmatrix} \\right]$</li><li>$(2,-5,2)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\begin{bmatrix} \\frac{-1}{\\sqrt{2}} \\\\ \\frac{1}{\\sqrt{2}} \\end{bmatrix}$ b) $\\begin{bmatrix} \\frac{1}{\\sqrt{6}} \\\\ \\frac{-1}{\\sqrt{6}} \\\\ \\frac{2}{\\sqrt{6}} \\end{bmatrix}$ c) $\\left( \\frac{2}{\\sqrt{33}},\\frac{-5}{\\sqrt{33}},\\frac{2}{\\sqrt{33}} \\right)$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "A.1.103",
+   "source_number": "A.1.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combination",
+   "prompt": "<p>Compute</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 3 \\\\ 1 \\end{smallmatrix} \\right] + \\left[ \\begin{smallmatrix} 6 \\\\ -3 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} -1 \\\\ 2 \\end{smallmatrix} \\right] - \\left[ \\begin{smallmatrix} 2 \\\\ -1 \\end{smallmatrix} \\right]$</li><li>$-\\left[ \\begin{smallmatrix} -5 \\\\ 3 \\end{smallmatrix} \\right]$</li><li>$2\\left[ \\begin{smallmatrix} -2 \\\\ 4 \\end{smallmatrix} \\right]$</li><li>$3\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\end{smallmatrix} \\right] + 7 \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\end{smallmatrix} \\right]$</li><li>$2\\left[ \\begin{smallmatrix} 2 \\\\ -3 \\end{smallmatrix} \\right] - 6 \\left[ \\begin{smallmatrix} 2 \\\\ -1 \\end{smallmatrix} \\right]$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\begin{bmatrix} 9 \\\\ -2 \\end{bmatrix}$ b) $\\begin{bmatrix} -3 \\\\ 3 \\end{bmatrix}$ c) $\\begin{bmatrix} 5 \\\\ -3 \\end{bmatrix}$ d) $\\begin{bmatrix} -4 \\\\ 8 \\end{bmatrix}$ e) $\\begin{bmatrix} 3 \\\\ 7 \\end{bmatrix}$ f) $\\begin{bmatrix} -8 \\\\ 0 \\end{bmatrix}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "A.1.104",
+   "source_number": "A.1.104",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scaling-magnitude",
+   "prompt": "<p>If the magnitude of $\\kvecx$ is 5, what is the magnitude of</p><ol type=\"a\"><li>$4\\kvecx$</li><li>$-2\\kvecx$</li><li>$-4\\kvecx$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 20
+     },
+     {
+      "part": "b",
+      "value": 10
+     },
+     {
+      "part": "c",
+      "value": 20
+     }
+    ],
+    "solution": "a) $20$ b) $10$ c) $20$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "A.1.105",
+   "source_number": "A.1.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-columns",
+   "prompt": "<p>Suppose a linear mapping $\\kF \\colon {\\mathbb R}^2 \\to {\\mathbb R}^2$ takes $(1,0)$ to $(1,-1)$ and it takes $(0,1)$ to $(2,0)$. Where does it take</p><ol type=\"a\"><li>$(1,1)$</li><li>$(0,2)$</li><li>$(1,-1)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $(3,-1)$ b) $(4,0)$ c) $(-1,-1)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "vector"
+  },
+  {
+   "exercise": "e1",
+   "concept": "euclidean-space"
+  },
+  {
+   "exercise": "e2",
+   "concept": "direction-of-a-vector"
+  },
+  {
+   "exercise": "e2",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e3",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e3",
+   "concept": "vector-difference"
+  },
+  {
+   "exercise": "e3",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e4",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e5",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e5",
+   "concept": "vector-difference"
+  },
+  {
+   "exercise": "e5",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e6",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e6",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e7",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e8",
+   "concept": "standard-unit-vectors"
+  },
+  {
+   "exercise": "e8",
+   "concept": "linear-combination"
+  },
+  {
+   "exercise": "e9",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e9",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e10",
+   "concept": "matrix-of-a-linear-mapping"
+  },
+  {
+   "exercise": "e10",
+   "concept": "linear-mapping"
+  },
+  {
+   "exercise": "e11",
+   "concept": "matrix-of-a-linear-mapping"
+  },
+  {
+   "exercise": "e12",
+   "concept": "linear-mapping"
+  },
+  {
+   "exercise": "e13",
+   "concept": "matrix-of-a-linear-mapping"
+  },
+  {
+   "exercise": "e13",
+   "concept": "finite-dimensional-approximation"
+  },
+  {
+   "exercise": "e101",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e102",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e102",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e103",
+   "concept": "vector-addition"
+  },
+  {
+   "exercise": "e103",
+   "concept": "vector-difference"
+  },
+  {
+   "exercise": "e103",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e104",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e104",
+   "concept": "scalar-multiplication"
+  },
+  {
+   "exercise": "e105",
+   "concept": "matrix-of-a-linear-mapping"
+  },
+  {
+   "exercise": "e105",
+   "concept": "linear-mapping"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-unknowns",
+   "kind": "book",
+   "number": "56",
+   "html": "One of the downsides of making everything look like a linear problem is that the number of variables tends to become huge."
+  },
+  {
+   "id": "fn-euclid",
+   "kind": "book",
+   "number": "57",
+   "html": "Named after the ancient Greek mathematician <a href=\"https://en.wikipedia.org/wiki/Euclid\">Euclid of Alexandria</a> (around 300 BC), possibly the most famous of mathematicians; even small towns often have Euclid Street or Euclid Avenue."
+  },
+  {
+   "id": "fn-descartes",
+   "kind": "book",
+   "number": "58",
+   "html": "Named after the French mathematician <a href=\"https://en.wikipedia.org/wiki/Descartes\">René Descartes</a> (1596–1650). It is “cartesian” as his name in Latin is Renatus Cartesius."
+  },
+  {
+   "id": "fn-angle-brackets",
+   "kind": "book",
+   "number": "59",
+   "html": "A common notation to distinguish vectors from points is to write $(1,2)$ for the point and $\\langle 1,2 \\rangle$ for the vector. We write both as $(1,2)$."
+  },
+  {
+   "id": "fn-matlab",
+   "kind": "book",
+   "number": "60",
+   "html": "If you have ever used Matlab, you may have noticed that to plot a function, we take a vector of inputs, ask Matlab to compute the corresponding vector of values of the function, and then we ask it to plot the result."
+  }
+ ]
+}

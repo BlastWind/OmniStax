@@ -261,7 +261,13 @@ portrait({
     hits.push({ x: ax.X(0), y: ax.Y(0), r: 12, name: 'the critical point (0, 0): the linearization has a center there, the system a spiral source' });
     if (q) hits.push({ x: q.x, y: q.y, r: 16, name: minus(`the state at t = ${fix(t, 1)}: (x, y) = (${fix(q.p[0])}, ${fix(q.p[1])})`) });
     /* the headline follows the distance from the origin; the readout the eigenvalues where the state is */
-    const s = out ? p.pts[p.pts.length - 1] : (at(p, t) ?? p.pts[p.pts.length - 1]), dist = Math.hypot(s[0], s[1]);
+    /* past the exit, the point where the path crosses the window's edge (between its last two steps) */
+    const edge = () => {
+      const A = p.pts[p.pts.length - 2], B = p.pts[p.pts.length - 1];
+      let k = 1; [[0, XR], [1, YR]].forEach(([i, r]) => r.forEach((lim) => { const den = B[i] - A[i]; if (den) { const kk = (lim - A[i]) / den; if (kk >= 0 && kk < k && (B[i] - lim) * (lim - A[i]) > 0) k = kk; } }));
+      return [A[0] + (B[0] - A[0]) * k, A[1] + (B[1] - A[1]) * k];
+    };
+    const s = out ? edge() : (at(p, t) ?? edge()), dist = Math.hypot(s[0], s[1]);
     if (out) headline(ctx, minus(`$t \\approx ${fix(end, 1)}$: the trajectory from $(${fix(R)}, 0)$ leaves the window, though the linearization at $(0, 0)$ is a center.`));
     else headline(ctx, minus(`$t = ${fix(t, 1)}$: the distance from $(0, 0)$ is $${fix(dist, 3)}$, against $${fix(R, 3)}$ at the start and on the linearization’s circle.`));
     const yv = Math.round(s[1] * 100) / 100, Y = fix(yv), y2 = (3 / 2) * yv * yv, disc = 4 - 9 * yv ** 4;
