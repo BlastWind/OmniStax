@@ -1,0 +1,85 @@
+<section id="definition">
+<h2>The determinant of a 1 × 1 and a 2 × 2 matrix</h2>
+<p id="determinant-def">For <span data-concept="square-matrix">square matrices</span> we define a useful quantity called the <em><span data-concept="determinant">determinant</span></em>. Define the <span data-concept="determinant">determinant</span> of a $1 \times 1$ <span data-concept="matrix">matrix</span> as the value of its only <span data-concept="matrix-entry">entry</span></p>
+<div class="equation" id="eq-det-1x1">$$ \det \left( \begin{bmatrix} a \end{bmatrix} \right) \overset{\text{def}}{=} a . $$</div>
+<p>For a $2 \times 2$ <span data-concept="matrix">matrix</span>, define</p>
+<div class="equation" id="eq-det-2x2">$$ \det \left( \begin{bmatrix} a & b \\ c & d \end{bmatrix} \right) \overset{\text{def}}{=} ad-bc . $$</div>
+<p id="area-scale">Before defining the <span data-concept="determinant">determinant</span> for larger <span data-concept="matrix">matrices</span>, we note the meaning of the <span data-concept="determinant">determinant</span>. An $n \times n$ <span data-concept="matrix">matrix</span> gives a <span data-concept="linear-mapping">mapping</span> of the $n$-dimensional <span data-concept="euclidean-space">euclidean space</span> ${\mathbb{R}}^n$ to itself. So a $2 \times 2$ <span data-concept="matrix">matrix</span> $\kA$ is a <span data-concept="linear-mapping">mapping</span> of the plane to itself. The <span data-concept="determinant">determinant</span> of $\kA$ is <a href="/diffyqs/ch03/3.2/#3.2-sim-determinant-area">the factor by which the area of objects changes</a>. If we take the unit square (square of side 1) in the plane, then $\kA$ takes the square to a <span data-concept="area-of-a-parallelogram">parallelogram</span> of area $\lvert\det(\kA)\rvert$. The sign of $\det(\kA)$ denotes a change of orientation (negative if the axes get flipped). For example, let</p>
+$$ \kA = \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix} . $$
+<p id="unit-square">Then $\det(\kA) = 1+1 = 2$. Let us see where $\kA$ sends the unit square—the square with vertices $(0,0)$, $(1,0)$, $(1,1)$, and $(0,1)$. The point $(0,0)$ gets sent to $(0,0)$.</p>
+$$ \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ -1 \end{bmatrix} , \qquad \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 2 \\ 0 \end{bmatrix} , \qquad \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix} . $$
+<p id="image-square">The image of the square is another square with vertices $(0,0)$, $(1,-1)$, $(2,0)$, and $(1,1)$. The image square has a side of length $\sqrt{2}$, and it is therefore of area 2. See <a href="#sim-unit-square-image">Figure A.7</a>.</p>
+<figure class="sim" id="sim-unit-square-image" data-figure="A.7" data-original="/media/appA/linalg-imagesquare.svg" data-original-caption="Image of the unit square via the mapping A.">
+  <div class="sim-head"><span class="eyebrow">Figure A.7</span><span>Each corner of the unit square goes to its image under $\kA = \left[ \begin{smallmatrix} a & b \\ c & d \end{smallmatrix} \right]$: the corner $(1, 0)$ to the first column $(a, c)$, the corner $(0, 1)$ to the second column $(b, d)$, and $(1, 1)$ to their sum, so the image is the parallelogram on the two columns, of area $\lvert ad - bc \rvert$. When the <span data-concept="determinant">determinant</span> is negative the corners run round the other way, and when it is zero the square is flattened onto a line.</span></div>
+</figure>
+<p id="parallelogram">In general, the image of a square is a <span data-concept="area-of-a-parallelogram">parallelogram</span>. In high school geometry, you may have seen <a href="/calculus/ch12/12.4/#12.4-sim-parallelogram-area">a formula for computing the area</a> of a <span data-concept="area-of-a-parallelogram">parallelogram</span> with vertices $(0,0)$, $(a,c)$, $(b,d)$ and $(a+b,c+d)$. The area is</p>
+<div class="equation" id="eq-parallelogram-area-determinant">$$ \left\lvert \, \det \left( \begin{bmatrix} a & b \\ c & d \end{bmatrix} \right) \, \right\rvert = \lvert a d - b c \rvert . $$</div>
+<p id="carries">The vertical lines above mean absolute value. The <span data-concept="matrix">matrix</span> $\left[ \begin{smallmatrix} a & b \\ c & d \end{smallmatrix} \right]$ carries the unit square to the given <span data-concept="area-of-a-parallelogram">parallelogram</span>.</p>
+</section>
+
+<section id="cofactor">
+<h2>Cofactor expansion</h2>
+<p id="submatrix">There are a number of ways to define the <span data-concept="determinant">determinant</span> for an $n \times n$ <span data-concept="matrix">matrix</span>. Let us use the so-called <em><span data-concept="cofactor-expansion">cofactor expansion</span></em>. We define $\kAij$ as the <span data-concept="matrix">matrix</span> $\kA$ with the $i^{\text{th}}$ row and the $j^{\text{th}}$ column deleted. For example,</p>
+$$ \text{if} \qquad \kA = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix} , \qquad \text{then} \qquad A_{12} = \begin{bmatrix} 4 & 6 \\ 7 & 9 \end{bmatrix} \qquad \text{and} \qquad A_{23} = \begin{bmatrix} 1 & 2 \\ 7 & 8 \end{bmatrix} . $$
+<p>We now define the <span data-concept="determinant">determinant</span> recursively</p>
+<div class="equation" id="eq-cofactor-first-row">$$ \det (\kA) \overset{\text{def}}{=} \sum_{j=1}^n {(-1)}^{1+j} a_{1j} \det (A_{1j}) , $$</div>
+<p>or in other words</p>
+$$ \det (\kA) = a_{11} \det (A_{11}) - a_{12} \det (A_{12}) + a_{13} \det (A_{13}) - \cdots \begin{cases} + a_{1n} \det (A_{1n}) & \text{if } n \text{ is odd,} \\ - a_{1n} \det (A_{1n}) & \text{if } n \text{ is even.} \end{cases} $$
+<p id="cofactor-3x3">For a $3 \times 3$ <span data-concept="matrix">matrix</span>, we get $\det (\kA) = a_{11} \det (A_{11}) - a_{12} \det (A_{12}) + a_{13} \det (A_{13})$. For example,</p>
+$$ \begin{split} \det \left( \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix} \right) & = 1 \cdot \det \left( \begin{bmatrix} 5 & 6 \\ 8 & 9 \end{bmatrix} \right) - 2 \cdot \det \left( \begin{bmatrix} 4 & 6 \\ 7 & 9 \end{bmatrix} \right) + 3 \cdot \det \left( \begin{bmatrix} 4 & 5 \\ 7 & 8 \end{bmatrix} \right) \\ & = 1 (5 \cdot 9 - 6 \cdot 8) - 2 (4 \cdot 9 - 6 \cdot 7) + 3 (4 \cdot 8 - 5 \cdot 7) = 0 . \end{split} $$
+<p id="any-row">It turns out that we did not have to necessarily use the first row. That is, for any $i$,</p>
+<div class="equation" id="eq-cofactor-row">$$ \det (\kA) = \sum_{j=1}^n {(-1)}^{i+j} \kaij \det (\kAij) . $$</div>
+<p id="second-row">It is sometimes useful to use a row other than the first. In the following example it is more convenient to expand along the second row. Notice that for the second row we are starting with a negative sign.</p>
+$$ \begin{split} \det \left( \begin{bmatrix} 1 & 2 & 3 \\ 0 & 5 & 0 \\ 7 & 8 & 9 \end{bmatrix} \right) & = - 0 \cdot \det \left( \begin{bmatrix} 2 & 3 \\ 8 & 9 \end{bmatrix} \right) + 5 \cdot \det \left( \begin{bmatrix} 1 & 3 \\ 7 & 9 \end{bmatrix} \right) - 0 \cdot \det \left( \begin{bmatrix} 1 & 2 \\ 7 & 8 \end{bmatrix} \right) \\ & = 0 + 5 (1 \cdot 9 - 3 \cdot 7) + 0 = -60 . \end{split} $$
+<p>Let us check if it is really the same as expanding along the first row,</p>
+$$ \begin{split} \det \left( \begin{bmatrix} 1 & 2 & 3 \\ 0 & 5 & 0 \\ 7 & 8 & 9 \end{bmatrix} \right) & = 1 \cdot \det \left( \begin{bmatrix} 5 & 0 \\ 8 & 9 \end{bmatrix} \right) - 2 \cdot \det \left( \begin{bmatrix} 0 & 0 \\ 7 & 9 \end{bmatrix} \right) + 3 \cdot \det \left( \begin{bmatrix} 0 & 5 \\ 7 & 8 \end{bmatrix} \right) \\ & = 1 (5 \cdot 9 - 0 \cdot 8) - 2 (0 \cdot 9 - 0 \cdot 7) + 3 (0 \cdot 8 - 5 \cdot 7) = -60 . \end{split} $$
+<p id="cofactors">In computing the <span data-concept="determinant">determinant</span>, we alternately add and subtract the <span data-concept="determinant">determinants</span> of the submatrices $\kAij$ multiplied by $\kaij$ for a fixed $i$ and all $j$. The numbers ${(-1)}^{i+j}\det(\kAij)$ are called <em><span data-concept="cofactor-expansion">cofactors</span></em> of the <span data-concept="matrix">matrix</span>. And that is why this method of computing the <span data-concept="determinant">determinant</span> is called the <em><span data-concept="cofactor-expansion">cofactor expansion</span></em>.</p>
+<p id="column">Similarly, we do not need to expand along a row; we can expand along a column. For any $j$,</p>
+<div class="equation" id="eq-cofactor-column">$$ \det (\kA) = \sum_{i=1}^n {(-1)}^{i+j} \kaij \det (\kAij) . $$</div>
+<p id="transpose-fact">A related fact is that</p>
+<div class="equation" id="eq-det-transpose">$$ \det (\kA) = \det (\kAT) . $$</div>
+</section>
+
+<section id="triangular">
+<h2>Triangular and diagonal matrices</h2>
+<p id="upper-triangular">A <span data-concept="matrix">matrix</span> is <em><span data-concept="triangular-matrix">upper triangular</span></em> if all elements below the main diagonal are 0. For example,</p>
+$$ \begin{bmatrix} 1 & 2 & 3 \\ 0 & 5 & 6 \\ 0 & 0 & 9 \end{bmatrix} $$
+<p id="lower-triangular">is <span data-concept="triangular-matrix">upper triangular</span>. Similarly a <em><span data-concept="triangular-matrix">lower triangular</span></em> <span data-concept="matrix">matrix</span> is one where everything above the diagonal is zero. For example,</p>
+$$ \begin{bmatrix} 1 & 0 & 0 \\ 4 & 5 & 0 \\ 7 & 8 & 9 \end{bmatrix} . $$
+<p id="triangular-det">The <span data-concept="determinant">determinant</span> for <span data-concept="triangular-matrix">triangular matrices</span> is very simple to compute. Consider the <span data-concept="triangular-matrix">lower triangular matrix</span>. If we expand along the first row, we find that the <span data-concept="determinant">determinant</span> is 1 times the <span data-concept="determinant">determinant</span> of the <span data-concept="triangular-matrix">lower triangular matrix</span> $\left[ \begin{smallmatrix} 5 & 0 \\ 8 & 9 \end{smallmatrix} \right]$. So the <span data-concept="determinant">determinant</span> is just the product of the diagonal entries:</p>
+$$ \det \left( \begin{bmatrix} 1 & 0 & 0 \\ 4 & 5 & 0 \\ 7 & 8 & 9 \end{bmatrix} \right) = 1 \cdot 5 \cdot 9 = 45 . $$
+<p>Similarly for <span data-concept="triangular-matrix">upper triangular matrices</span></p>
+$$ \det \left( \begin{bmatrix} 1 & 2 & 3 \\ 0 & 5 & 6 \\ 0 & 0 & 9 \end{bmatrix} \right) = 1 \cdot 5 \cdot 9 = 45 . $$
+<p id="in-general">In general, if $\kA$ is <span data-concept="triangular-matrix">triangular</span>, then</p>
+<div class="equation" id="eq-det-triangular">$$ \det (\kA) = a_{11} a_{22} \cdots a_{nn} . $$</div>
+<p id="diagonal">If $\kA$ is <span data-concept="diagonal-matrix">diagonal</span>, then it is also <span data-concept="triangular-matrix">triangular</span> (upper and lower), so the same formula applies. For example,</p>
+$$ \det \left( \begin{bmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 5 \end{bmatrix} \right) = 2 \cdot 3 \cdot 5 = 30 . $$
+<p id="identity">In particular, the <span data-concept="identity-matrix">identity matrix</span> $\kI$ is <span data-concept="diagonal-matrix">diagonal</span>, and the diagonal entries are all 1. Thus,</p>
+<div class="equation" id="eq-det-identity">$$ \det(\kI) = 1 . $$</div>
+</section>
+
+<section id="products">
+<h2>Products, inverses, and notation</h2>
+<p id="det-product">The <span data-concept="determinant">determinant</span> is telling you <a href="/calculus/ch15/15.7/#15.7-jacobians">how geometric objects scale</a>. If $\kB$ doubles the sizes of geometric objects and $\kA$ triples them, then $\kA\kB$ (which applies $\kB$ to an object and then it applies $\kA$) should make size go up by a factor of $6$. This is true in general:</p>
+<div class="note" id="thm-a-6-1">
+<div class="eyebrow">Theorem A.6.1</div>
+<div class="equation" id="eq-det-of-product">$$ \det(\kA\kB) = \det(\kA)\det(\kB) . $$</div>
+</div>
+<p id="det-inverses">This property is one of the most useful, and it is employed often to actually compute <span data-concept="determinant">determinants</span>. A particularly interesting consequence is to note what it means for the existence of <span data-concept="matrix-inverse">inverses</span>. Take $\kA$ and $\kB$ to be <span data-concept="matrix-inverse">inverses</span>, that is, $\kA\kB=\kI$. Then</p>
+<div class="equation" id="eq-det-inverse-product">$$ \det(\kA)\det(\kB) = \det(\kA\kB) = \det(\kI) = 1 . $$</div>
+<p id="neither-zero">Neither $\det(\kA)$ nor $\det(\kB)$ can be zero. This fact is an extremely useful property of the <span data-concept="determinant">determinant</span>, and one which is used often in this book:</p>
+<div class="note" id="thm-a-6-2">
+<div class="eyebrow">Theorem A.6.2</div>
+<p>An $n \times n$ <span data-concept="matrix">matrix</span> $\kA$ is <span data-concept="invertible-matrix">invertible</span> if and only if $\det (\kA) \neq 0$.</p>
+</div>
+<p id="det-of-inverse">In fact, $\det(\kAinv) \det(\kA) = 1$ says that</p>
+<div class="equation" id="eq-det-inverse">$$ \det(\kAinv) = \frac{1}{\det(\kA)}. $$</div>
+<p id="without-computing">So we know what the <span data-concept="determinant">determinant</span> of $\kAinv$ is without computing $\kAinv$.</p>
+<figure class="dv" id="drv-determinant-of-an-inverse"></figure>
+<p id="inverse-2x2">Let us return to the formula for the <span data-concept="inverse-of-a-2x2-matrix">inverse of a $2 \times 2$ matrix</span>:</p>
+<div class="equation" id="eq-inverse-2x2">$$ \begin{bmatrix} a & b \\ c & d \end{bmatrix}^{-1} = \frac{1}{ad-bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix} . $$</div>
+<p id="inverse-2x2-note">Notice the <span data-concept="determinant">determinant</span> of the <span data-concept="matrix">matrix</span> $[\begin{smallmatrix}a&amp;b\\c&amp;d\end{smallmatrix}]$ in the denominator of the fraction. The formula only works if the <span data-concept="determinant">determinant</span> is nonzero. Otherwise, we are dividing by zero.</p>
+<p id="notation">A common notation for the <span data-concept="determinant">determinant</span> is a pair of vertical lines:</p>
+$$ \begin{vmatrix} a & b \\ c & d \end{vmatrix} = \det \left( \begin{bmatrix} a & b \\ c & d \end{bmatrix} \right) . $$
+<p>Personally, I find this notation confusing as vertical lines usually mean a positive quantity, while <span data-concept="determinant">determinants</span> can be negative. Also think about how to write the absolute value of a <span data-concept="determinant">determinant</span>. This notation is not used in this book.</p>
+</section>
