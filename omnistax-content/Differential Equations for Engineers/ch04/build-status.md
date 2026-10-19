@@ -16,6 +16,7 @@ Task `prep1-ch04` (prep stage one), port 8105, scratch `/tmp/claude-0/-home-user
 - `redefines: true` set where Chapters 2–3 gave the symbol another meaning (list below); 4.5/x′, x″ reuse 4.1's meanings.
 - `ost merge diffyqs 4`: 86 concepts, 144 edges (7 redundant edges dropped after the whole-book Hasse check), 42 symbols. Concept links set and their repeated type overrides removed. Form `eq-wave-characteristic-coordinates` added on 1.9's `characteristic-coordinates` (section 4.8, no anchor yet).
 - `ost check diffyqs`: no errors, no warnings.
+- 4.1 built (task `sec-4.1`, claude-opus-5-5 high): 3 figures (2 still Sims `sim-eigenvalue-hunt`, `sim-orthogonality`; 1 moving fold `sim-whirling-string` = Figure 4.1 + 4.2), 1 derivation (`drv-orthogonality`), 11 exercises (1 inline, 5 unkeyed with AI solutions, 5 keyed), 12 concepts introduced, footnotes 15–17 (counted from the source: Chapter 3's one footnote, in 3.8, is 14). Plan corrected: ω₁ = π√(15/2) ≈ 8.60 rad/s, not 6.08; ω slider 0–30.
 
 ## Next
 
