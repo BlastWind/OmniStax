@@ -180,7 +180,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
       { x: ax.X(u * L), y: ax.Y(cat(u * L)), r: 14, name: 'the catenary y = A(cosh(Cx/L) − 1), turned over' },
       { x: ax.X(u * L), y: ax.Y(parab(u * L)), r: 14, name: 'the parabola through the same top and feet' }]);
     headline(ctx, `C = ${fmt(c, 4)}: the catenary and the parabola through the same top and feet differ by up to ${gtxt}.`);
-    ro.set(`y = A\\left(\\cosh\\left(\\tfrac{C}{L}x\\right) - 1\\right),\\quad A = ${n(A, 4)},\\ C = ${n(c, 4)},\\ L = 299.2239,\\quad A(\\cosh C - 1) = ${n(A * (Math.cosh(c) - 1), 2)}\\ \\text{ft}`);
+    ro.set(`\\ky = A\\left(\\cosh\\left(\\tfrac{C}{L}x\\right) - 1\\right),\\quad A =${n(A, 4)},\\ C = ${n(c, 4)},\\ L = 299.2239,\\quad A(\\cosh C - 1) = ${n(A * (Math.cosh(c) - 1), 2)}\\ \\text{ft}`);
   }
   still(d, draw);
 })();

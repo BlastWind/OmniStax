@@ -145,7 +145,7 @@ const integers = (v) => (Math.abs(v - Math.round(v)) < 1e-9 ? fmt(v, 0) : '');
   let S = null, hits = [];
   hover(d.stage, () => hits, d.c);
   function mount3d() {
-    S = F.space3d(d, { box, h: 600, pitch: [0.12, 1.45], fit: 2.9, turn: -0.7, tilt: 0.5 });   /* x left to right, t receding, read from above */
+    S = F.space3d(d, { box, h: 600, pitch: [0.12, 1.45], fit: 2.6, turn: -0.7, tilt: 0.62 });   /* x left to right, t receding, read from above */
     const w = S.v ? S.v.wrap : [...d.stage.querySelectorAll('canvas')].pop(), bar = d.stage.querySelector('.transport');
     if (w && bar) d.stage.insertBefore(w, bar);
     d.c.style.display = 'none';
@@ -166,13 +166,12 @@ const integers = (v) => (Math.abs(v - Math.round(v)) < 1e-9 ? fmt(v, 0) : '');
       S.set('chars', [-6, -5, -4, -3, -2, -1, 0, 1, 2].flatMap((xi) => {
         const s0 = Math.max(0, -3 - xi), s1 = Math.min(3, 3 - xi); if (s1 <= s0) return [];
         const pts = Array.from({ length: 41 }, (_, i) => { const s = s0 + ((s1 - s0) * i) / 40; return [xi + s, s, u(xi + s, s) + 0.03]; });
-        return [{ k: 'line', pts, color: cc, w: xi === 0 ? 5.5 : 3.5, name: `the characteristic x − t = ${xi}` },
-          ...(xi === 0 ? [{ k: 'label', s: '$x - t = 0$', p: [3.2, 3, u(3, 3) + 0.03], color: cc }] : [])];
+        return [{ k: 'line', pts, color: cc, w: xi === 0 ? 5.5 : 3.5, name: xi === 0 ? 'the bump’s characteristic x − t = 0' : `the characteristic x − t = ${xi}` }];
       }));
       const slice = Array.from({ length: 121 }, (_, i) => { const x = -3 + i / 20; return [x, t, u(x, t) + 0.03]; });
       S.set('slice', [{ k: 'line', pts: slice, color: fc, w: 5, name: `the profile u(x, ${n(t)})` },
         { k: 'dot', p: [t, t, u(t, t) + 0.03], color: fc, r: 8, name: `the top of the bump, x = t = ${n(t)}` },
-        { k: 'label', s: `$t = ${n(t)}$`, p: [3.3, t, u(3, t)], color: fc }]);
+        { k: 'label', s: `$t = ${n(t)}$`, p: [-3.4, t, u(-3, t)], color: fc }]);
       S.headline(head);
     } else {
       const { ctx } = begin(d.c);

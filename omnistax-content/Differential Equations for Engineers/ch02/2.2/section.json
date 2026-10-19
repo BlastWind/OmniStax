@@ -1,0 +1,611 @@
+{
+ "id": "2.2",
+ "module": "sec:ccsol",
+ "chapter": "2",
+ "title": "Constant-coefficient second-order linear ODEs",
+ "short": "Constant-coefficient second-order linear ODEs",
+ "lead": "When the coefficients of a second-order linear homogeneous equation are constants, a guess of the form e<sup>rx</sup> turns the equation into a quadratic, the <span data-concept=\"characteristic-equation\">characteristic equation</span>. This section reads the general solution off its roots, whether they are two real numbers, one repeated root or a complex pair, and reviews the <span data-concept=\"complex-number\">complex numbers</span> and <span data-concept=\"eulers-formula\">Euler’s formula</span> that the last case needs.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 2.2.101–2.2.107 carry the book’s own answers. The inline exercises 2.2.1–2.2.5 and exercises 2.2.6–2.2.16, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-complex-exponential",
+   "kind": "sim",
+   "draws": [
+    "eigenvalue",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "derivations": [
+  {
+   "id": "cc-example",
+   "what": "the values of r for which e^(rx) solves y″ − 6y′ + 8y = 0",
+   "source": "Differential Equations for Engineers, 2.2 Constant-coefficient second-order linear ODEs",
+   "nodes": [
+    {
+     "assumes": [
+      {"tex": "\\ky = e^{\\kr x}", "src": "2.2"},
+      {"tex": "\\kyprime = \\kr e^{\\kr x}", "src": "2.2"},
+      {"tex": "\\kydprime = \\kr^2 e^{\\kr x}", "src": "2.2"},
+      {"text": "$e^{\\kr x}$ is never zero.", "src": "2.2"}
+     ],
+     "then": {"tex": "\\mk{a}{\\kydprime} - 6\\mk{b}{\\kyprime} + 8\\mk{c}{\\ky} = \\mk{z}{0}", "src": "2.2"},
+     "steps": [
+      {"tex": "\\mk{a}{\\kr^2 e^{\\kr x}} - 6\\mk{b}{\\kr e^{\\kr x}} + 8\\mk{c}{e^{\\kr x}} = \\mk{z}{0}", "uses": [0, 1, 2]},
+      {"tex": "\\mk{a}{\\kr^2} - 6\\mk{b}{\\kr} + \\mk{c}{8} = \\mk{z}{0}", "uses": [3], "cap": "Divide through by $e^{\\kr x}$, which is allowed since it is never zero."},
+      {"tex": "\\mk{p}{(\\kr-2)(\\kr-4)} = \\mk{z}{0}", "uses": [], "map": {"a": "p", "b": "p", "c": "p"}}
+     ],
+     "src": "2.2"
+    }
+   ]
+  },
+  {
+   "id": "complex-roots",
+   "what": "two real-valued solutions from the complex roots α ± iβ",
+   "source": "Differential Equations for Engineers, 2.2 Constant-coefficient second-order linear ODEs, Complex roots",
+   "nodes": [
+    {
+     "assumes": [
+      {"tex": "e^{a+ib} = e^a e^{ib}", "src": "2.2"},
+      {"tex": "e^{i \\theta} = \\cos \\theta + i \\sin \\theta", "src": "2.2, Theorem 2.2.2"}
+     ],
+     "then": {"tex": "\\mk{y}{\\kyone} = \\mk{e}{e^{(\\kalpha+i\\kbeta)x}}", "src": "2.2"},
+     "steps": [
+      {"tex": "\\mk{y}{\\kyone} = \\mk{a}{e^{\\kalpha x}}\\mk{e}{e^{i\\kbeta x}}", "uses": [0], "map": {"e": ["a", "e"]}},
+      {"tex": "\\mk{y}{\\kyone} = \\mk{a}{e^{\\kalpha x}}\\bigl(\\mk{c}{\\cos (\\kbeta x)} + \\mk{s}{i \\sin (\\kbeta x)}\\bigr)", "uses": [1], "map": {"e": ["c", "s"]}},
+      {"tex": "\\mk{y}{\\kyone} = \\mk{a}{e^{\\kalpha x}} \\mk{c}{\\cos (\\kbeta x)} + \\mk{s}{i e^{\\kalpha x} \\sin (\\kbeta x)}", "uses": [], "map": {"a": ["a", "s"]}}
+     ],
+     "src": "2.2"
+    },
+    {
+     "assumes": [
+      {"tex": "e^{a+ib} = e^a e^{ib}", "src": "2.2"},
+      {"tex": "e^{- i \\theta} = \\cos \\theta - i \\sin \\theta", "src": "2.2, Theorem 2.2.2"}
+     ],
+     "then": {"tex": "\\mk{y}{\\kytwo} = \\mk{e}{e^{(\\kalpha-i\\kbeta)x}}", "src": "2.2"},
+     "steps": [
+      {"tex": "\\mk{y}{\\kytwo} = \\mk{a}{e^{\\kalpha x}}\\mk{e}{e^{-i\\kbeta x}}", "uses": [0], "map": {"e": ["a", "e"]}},
+      {"tex": "\\mk{y}{\\kytwo} = \\mk{a}{e^{\\kalpha x}}\\bigl(\\mk{c}{\\cos (\\kbeta x)} - \\mk{s}{i \\sin (\\kbeta x)}\\bigr)", "uses": [1], "map": {"e": ["c", "s"]}},
+      {"tex": "\\mk{y}{\\kytwo} = \\mk{a}{e^{\\kalpha x}} \\mk{c}{\\cos (\\kbeta x)} - \\mk{s}{i e^{\\kalpha x} \\sin (\\kbeta x)}", "uses": [], "map": {"a": ["a", "s"]}}
+     ],
+     "src": "2.2"
+    },
+    {
+     "assumes": [
+      {"step": 0},
+      {"step": 1},
+      {"text": "Linear combinations of solutions are also solutions.", "src": "2.1, Theorem 2.1.1"}
+     ],
+     "then": {"tex": "\\mk{y}{\\kythree} = \\frac{\\mk{p}{\\kyone} + \\mk{q}{\\kytwo}}{\\mk{d}{2}}", "uses": [2], "src": "2.2", "why": "A linear combination of the solutions $\\kyone$ and $\\kytwo$ is again a solution."},
+     "steps": [
+      {"tex": "\\mk{y}{\\kythree} = \\frac{\\mk{p}{e^{\\kalpha x} \\cos (\\kbeta x) + i e^{\\kalpha x} \\sin (\\kbeta x)} + \\mk{q}{\\bigl(e^{\\kalpha x} \\cos (\\kbeta x) - i e^{\\kalpha x} \\sin (\\kbeta x)\\bigr)}}{\\mk{d}{2}}", "uses": [0, 1]},
+      {"tex": "\\mk{y}{\\kythree} = \\frac{\\mk{p}{2 e^{\\kalpha x} \\cos (\\kbeta x)}}{\\mk{d}{2}}", "uses": [], "map": {"q": "p"}},
+      {"tex": "\\mk{y}{\\kythree} = \\mk{p}{e^{\\kalpha x} \\cos (\\kbeta x)}", "uses": [], "map": {"d": "p"}}
+     ],
+     "src": "2.2"
+    },
+    {
+     "assumes": [
+      {"step": 0},
+      {"step": 1},
+      {"text": "Linear combinations of solutions are also solutions.", "src": "2.1, Theorem 2.1.1"}
+     ],
+     "then": {"tex": "\\mk{y}{\\kyfour} = \\frac{\\mk{p}{\\kyone} - \\mk{q}{\\kytwo}}{\\mk{d}{2i}}", "uses": [2], "src": "2.2", "why": "A linear combination of the solutions $\\kyone$ and $\\kytwo$ is again a solution."},
+     "steps": [
+      {"tex": "\\mk{y}{\\kyfour} = \\frac{\\mk{p}{e^{\\kalpha x} \\cos (\\kbeta x) + i e^{\\kalpha x} \\sin (\\kbeta x)} - \\mk{q}{\\bigl(e^{\\kalpha x} \\cos (\\kbeta x) - i e^{\\kalpha x} \\sin (\\kbeta x)\\bigr)}}{\\mk{d}{2i}}", "uses": [0, 1]},
+      {"tex": "\\mk{y}{\\kyfour} = \\frac{\\mk{p}{2 i e^{\\kalpha x} \\sin (\\kbeta x)}}{\\mk{d}{2i}}", "uses": [], "map": {"q": "p"}},
+      {"tex": "\\mk{y}{\\kyfour} = \\mk{p}{e^{\\kalpha x} \\sin (\\kbeta x)}", "uses": [], "map": {"d": "p"}}
+     ],
+     "src": "2.2"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {"span": "eq-2-3", "concept": "second-order-equation-with-constant-coefficients", "verb": "introduces"},
+  {"span": "generalize", "concept": "solving-with-the-characteristic-equation", "verb": "introduces"},
+  {"span": "characteristic-equation", "concept": "characteristic-equation", "verb": "introduces"},
+  {"span": "thm-2-2-1", "concept": "solution-for-distinct-real-roots", "verb": "introduces"},
+  {"span": "thm-2-2-1", "concept": "solution-for-a-repeated-real-root", "verb": "introduces"},
+  {"span": "complex-number", "concept": "complex-number", "verb": "introduces"},
+  {"span": "complex-exponential", "concept": "complex-exponential", "verb": "introduces"},
+  {"span": "thm-2-2-2", "concept": "eulers-formula", "verb": "introduces"},
+  {"span": "re-im", "concept": "real-and-imaginary-parts", "verb": "introduces"},
+  {"span": "thm-2-2-3", "concept": "solution-for-complex-conjugate-roots", "verb": "introduces"},
+  {"span": "constant-coefficients", "concept": "constant-coefficient-equation", "verb": "reinforces"},
+  {"span": "independent", "concept": "linear-independence", "verb": "reinforces"},
+  {"span": "independent", "concept": "general-solution-to-a-homogeneous-equation", "verb": "reinforces"},
+  {"span": "drv-complex-roots", "concept": "superposition-principle", "verb": "reinforces"},
+  {"span": "ex-2-2-1", "concept": "hyperbolic-functions", "verb": "reinforces"},
+  {"span": "constant-coefficients", "concept": "second-order-linear-differential-equation", "verb": "uses"},
+  {"span": "guess", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "trial", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "drv-cc-example", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "two-solutions", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "independent", "concept": "general-solution", "verb": "uses"},
+  {"span": "constants", "concept": "initial-value", "verb": "uses"},
+  {"span": "constants", "concept": "solving-an-initial-value-problem", "verb": "uses"},
+  {"span": "constants", "concept": "particular-solution", "verb": "uses"},
+  {"span": "trial-general", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "eq-characteristic-roots", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "real-roots", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "thm-2-2-1", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "thm-2-2-1", "concept": "general-solution", "verb": "uses"},
+  {"span": "thm-2-2-1", "concept": "general-solution-to-a-homogeneous-equation", "verb": "uses"},
+  {"span": "ex-2-2-1", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "ex-2-2-1", "concept": "solution-for-distinct-real-roots", "verb": "uses"},
+  {"span": "ex-2-2-1", "concept": "linear-independence", "verb": "uses"},
+  {"span": "ex-2-2-1", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-2-2", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "ex-2-2-2", "concept": "solution-for-a-repeated-real-root", "verb": "uses"},
+  {"span": "ex-2-2-2", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-2-2", "concept": "verifying-a-solution", "verb": "uses"},
+  {"span": "double-root-rare", "concept": "critically-damped-system", "verb": "uses"},
+  {"span": "double-root-rare", "concept": "solution-for-a-repeated-real-root", "verb": "uses"},
+  {"span": "double-root-limit", "concept": "solution-for-a-repeated-real-root", "verb": "uses"},
+  {"span": "double-root-limit", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "complex-roots-intro", "concept": "complex-number", "verb": "uses"},
+  {"span": "complex-roots-intro", "concept": "solution-for-complex-conjugate-roots", "verb": "uses"},
+  {"span": "i-squared", "concept": "complex-number", "verb": "uses"},
+  {"span": "j-convention", "concept": "complex-number", "verb": "uses"},
+  {"span": "complex-exponential", "concept": "complex-number", "verb": "uses"},
+  {"span": "complex-exponential", "concept": "eulers-formula", "verb": "uses"},
+  {"span": "complex-exponential-euler", "concept": "eulers-formula", "verb": "uses"},
+  {"span": "complex-exponential-euler", "concept": "complex-exponential", "verb": "uses"},
+  {"span": "re-im", "concept": "complex-number", "verb": "uses"},
+  {"span": "complex-roots", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "complex-roots", "concept": "solution-for-complex-conjugate-roots", "verb": "uses"},
+  {"span": "roots-pair", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "roots-pair", "concept": "solution-for-distinct-real-roots", "verb": "uses"},
+  {"span": "complex-valued", "concept": "complex-number", "verb": "uses"},
+  {"span": "complex-valued", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-complex-exponential", "concept": "complex-exponential", "verb": "uses"},
+  {"span": "sim-complex-exponential", "concept": "eulers-formula", "verb": "uses"},
+  {"span": "sim-complex-exponential", "concept": "solution-for-complex-conjugate-roots", "verb": "uses"},
+  {"span": "euler-rescue", "concept": "eulers-formula", "verb": "uses"},
+  {"span": "drv-complex-roots", "concept": "eulers-formula", "verb": "uses"},
+  {"span": "drv-complex-roots", "concept": "complex-exponential", "verb": "uses"},
+  {"span": "drv-complex-roots", "concept": "linear-combination", "verb": "uses"},
+  {"span": "y3-y4", "concept": "linear-independence", "verb": "uses"},
+  {"span": "y3-y4", "concept": "general-solution", "verb": "uses"},
+  {"span": "y3-y4", "concept": "complex-number", "verb": "uses"},
+  {"span": "thm-2-2-3", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "thm-2-2-3", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-2-3", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "ex-2-2-3", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-2-3", "concept": "solution-for-complex-conjugate-roots", "verb": "uses"},
+  {"span": "ex-2-2-4", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "ex-2-2-4", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-2-4", "concept": "particular-solution", "verb": "uses"},
+  {"span": "ex-2-2-4", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-2-2-4", "concept": "solution-for-complex-conjugate-roots", "verb": "uses"},
+  {"span": "ex-2-2-4", "concept": "solving-an-initial-value-problem", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "2.2.1",
+   "source_number": "2.2.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {"at": "inline", "after": "two-solutions"},
+   "cite": "two-solutions",
+   "prompt": "<p>Check that $\\kyone$ and $\\kytwo$ are solutions.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\kyone = e^{2x}$: $\\kyoneprime = 2e^{2x}$ and $\\kyonedprime = 4e^{2x}$, so $\\kyonedprime - 6\\kyoneprime + 8\\kyone = (4 - 12 + 8)\\,e^{2x} = 0$. With $\\kytwo = e^{4x}$: $\\kytwoprime = 4e^{4x}$ and $\\kytwodprime = 16e^{4x}$, so $\\kytwodprime - 6\\kytwoprime + 8\\kytwo = (16 - 24 + 8)\\,e^{4x} = 0$. Both solve $\\kydprime - 6\\kyprime + 8\\ky = 0$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "2.2.2",
+   "source_number": "2.2.2",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {"at": "inline", "after": "eq-double-root-example"},
+   "cite": "double-root-example",
+   "prompt": "<p>Check that $e^{4x}$ and $x e^{4x}$ are linearly independent.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "If they were not linearly independent, we could write $xe^{4x} = Ce^{4x}$ for some constant $C$. Since $e^{4x}$ is never zero, dividing by it gives $x = C$ for all $x$, which is impossible. So neither function is a constant multiple of the other, and $e^{4x}$ and $xe^{4x}$ are linearly independent."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "2.2.3",
+   "source_number": "2.2.3",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {"at": "inline", "after": "j-convention"},
+   "cite": "i-squared",
+   "prompt": "<p>Make sure you understand (that you can justify) the following identities:</p><ol type=\"a\"><li>$i^2 = -1$, $i^3 = -i$, $i^4 = 1$,</li><li>$\\frac{1}{i} = -i$,</li><li>$(3-7i)(-2-9i) = \\cdots = -69-13i$,</li><li>$(3-2i)(3+2i) = 3^2 - {(2i)}^2 = 3^2 + 2^2 = 13$,</li><li>$\\frac{1}{3-2i} = \\frac{1}{3-2i} \\frac{3+2i}{3+2i} = \\frac{3+2i}{13} = \\frac{3}{13}+\\frac{2}{13}i$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $i^2 = -1$ is the rule $(0,1) \\times (0,1) = (-1,0)$; then $i^3 = i^2 \\cdot i = -i$ and $i^4 = (i^2)^2 = (-1)^2 = 1$. b) Since $i \\cdot (-i) = -i^2 = 1$, the reciprocal of $i$ is $-i$. c) Multiply as polynomials and replace $i^2$ by $-1$: $(3-7i)(-2-9i) = -6 - 27i + 14i + 63i^2 = -6 - 13i - 63 = -69 - 13i$. d) $(3-2i)(3+2i) = 9 + 6i - 6i - 4i^2 = 9 + 4 = 13$; it is the difference of squares $3^2 - (2i)^2$ with $(2i)^2 = 4i^2 = -4$. e) Multiply top and bottom by $3+2i$: $\\frac{1}{3-2i} = \\frac{3+2i}{(3-2i)(3+2i)} = \\frac{3+2i}{13} = \\frac{3}{13} + \\frac{2}{13}i$, using d) for the denominator."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "2.2.4",
+   "source_number": "2.2.4",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {"at": "inline", "after": "complex-exponential-euler"},
+   "cite": "thm-2-2-2",
+   "prompt": "<p>Using Euler’s formula, check the identities:</p>$$ \\cos \\theta = \\frac{e^{i \\theta} + e^{-i \\theta}}{2} \\qquad \\text{and} \\qquad \\sin \\theta = \\frac{e^{i \\theta} - e^{-i \\theta}}{2i}. $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By Euler’s formula, $e^{i\\theta} + e^{-i\\theta} = (\\cos\\theta + i\\sin\\theta) + (\\cos\\theta - i\\sin\\theta) = 2\\cos\\theta$, so $\\cos\\theta = \\frac{e^{i\\theta} + e^{-i\\theta}}{2}$. Likewise $e^{i\\theta} - e^{-i\\theta} = (\\cos\\theta + i\\sin\\theta) - (\\cos\\theta - i\\sin\\theta) = 2i\\sin\\theta$, so $\\sin\\theta = \\frac{e^{i\\theta} - e^{-i\\theta}}{2i}$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "2.2.5",
+   "source_number": "2.2.5",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {"at": "inline", "after": "complex-exponential-euler"},
+   "cite": "thm-2-2-2",
+   "prompt": "<p><strong>Double angle identities</strong> Start with $e^{i(2\\theta)} = {\\bigl(e^{i \\theta} \\bigr)}^2$. Use Euler on each side to deduce:</p>$$ \\cos (2\\theta) = \\cos^2 \\theta - \\sin^2 \\theta \\qquad \\text{and} \\qquad \\sin (2\\theta) = 2 \\sin \\theta \\cos \\theta . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The left side is $e^{i(2\\theta)} = \\cos(2\\theta) + i\\sin(2\\theta)$. The right side is ${(\\cos\\theta + i\\sin\\theta)}^2 = \\cos^2\\theta + 2i\\sin\\theta\\cos\\theta + i^2\\sin^2\\theta = (\\cos^2\\theta - \\sin^2\\theta) + i\\,(2\\sin\\theta\\cos\\theta)$. Two complex numbers are equal exactly when their real parts and their imaginary parts agree, so $\\cos(2\\theta) = \\cos^2\\theta - \\sin^2\\theta$ and $\\sin(2\\theta) = 2\\sin\\theta\\cos\\theta$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "2.2.6",
+   "source_number": "2.2.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-1",
+   "prompt": "<p>Find the general solution of $2\\kydprime + 2\\kyprime -4 \\ky = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation is $2\\kr^2 + 2\\kr - 4 = 2(\\kr - 1)(\\kr + 2) = 0$, with the distinct real roots $\\krone = 1$ and $\\krtwo = -2$. By Theorem 2.2.1 (i), $\\ky = C_1 e^{x} + C_2 e^{-2x}$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "2.2.7",
+   "source_number": "2.2.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-1",
+   "prompt": "<p>Find the general solution of $\\kydprime + 9\\kyprime - 10 \\ky = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation is $\\kr^2 + 9\\kr - 10 = (\\kr - 1)(\\kr + 10) = 0$, with the distinct real roots $\\krone = 1$ and $\\krtwo = -10$. By Theorem 2.2.1 (i), $\\ky = C_1 e^{x} + C_2 e^{-10x}$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "2.2.8",
+   "source_number": "2.2.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-2-2-2",
+   "prompt": "<p>Solve $\\kydprime - 8\\kyprime + 16 \\ky = 0$ for $\\ky(0) = 2$, $\\kyprime(0) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation $\\kr^2 - 8\\kr + 16 = {(\\kr - 4)}^2 = 0$ has the double root $\\kr = 4$, so by Theorem 2.2.1 (ii) the general solution is $\\ky = (C_1 + C_2 x)\\,e^{4x}$ (Example 2.2.2). Then $\\ky(0) = C_1 = 2$, and $\\kyprime = C_2 e^{4x} + 4(C_1 + C_2 x)\\,e^{4x}$ gives $\\kyprime(0) = C_2 + 4C_1 = C_2 + 8 = 0$, so $C_2 = -8$. The solution is $\\ky = (2 - 8x)\\,e^{4x} = 2e^{4x} - 8xe^{4x}$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "2.2.9",
+   "source_number": "2.2.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-1",
+   "prompt": "<p>Solve $\\kydprime + 9\\kyprime = 0$ for $\\ky(0) = 1$, $\\kyprime(0) = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation is $\\kr^2 + 9\\kr = \\kr(\\kr + 9) = 0$, with the roots $\\krone = 0$ and $\\krtwo = -9$, so the general solution is $\\ky = C_1 e^{0x} + C_2 e^{-9x} = C_1 + C_2 e^{-9x}$. Then $\\ky(0) = C_1 + C_2 = 1$ and $\\kyprime(0) = -9C_2 = 1$, so $C_2 = -\\frac{1}{9}$ and $C_1 = 1 + \\frac{1}{9} = \\frac{10}{9}$. The solution is $\\ky = \\frac{10}{9} - \\frac{1}{9}e^{-9x}$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "2.2.10",
+   "source_number": "2.2.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-3",
+   "prompt": "<p>Find the general solution of $2\\kydprime + 50\\ky = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation is $2\\kr^2 + 50 = 0$, so $\\kr^2 = -25$ and the roots are $\\kr = \\pm 5i$: the pair $\\kalpha \\pm i\\kbeta$ with $\\kalpha = 0$ and $\\kbeta = 5$. By Theorem 2.2.3 (as in Example 2.2.3 with $k = 5$), $\\ky = C_1 \\cos(5x) + C_2 \\sin(5x)$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "2.2.11",
+   "source_number": "2.2.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-3",
+   "prompt": "<p>Find the general solution of $\\kydprime + 6 \\kyprime + 13 \\ky = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation is $\\kr^2 + 6\\kr + 13 = 0$. Completing the square, ${(\\kr + 3)}^2 + 2^2 = 0$, so the roots are $\\kr = -3 \\pm 2i$: $\\kalpha = -3$ and $\\kbeta = 2$. By Theorem 2.2.3, $\\ky = C_1 e^{-3x} \\cos(2x) + C_2 e^{-3x} \\sin(2x)$."
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "2.2.12",
+   "source_number": "2.2.12",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-1",
+   "prompt": "<p>Find the general solution of $\\kydprime = 0$ using the methods of this section.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Trying $\\ky = e^{\\kr x}$ gives $\\kr^2 e^{\\kr x} = 0$, so the characteristic equation is $\\kr^2 = 0$, which has the double root $\\krone = \\krtwo = 0$. By Theorem 2.2.1 (ii), $\\ky = (C_1 + C_2 x)\\,e^{0x} = C_1 + C_2 x$, which is what integrating twice gives."
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "2.2.13",
+   "source_number": "2.2.13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "generalize",
+   "prompt": "<p>The method of this section applies to equations of other orders than two. We will see higher orders later. Solve the first-order equation $2\\kyprime + 3\\ky = 0$ using the methods of this section.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Try $\\ky = e^{\\kr x}$, so $\\kyprime = \\kr e^{\\kr x}$. Plugging in, $2\\kr e^{\\kr x} + 3e^{\\kr x} = (2\\kr + 3)\\,e^{\\kr x} = 0$, and dividing by $e^{\\kr x}$ gives the characteristic equation $2\\kr + 3 = 0$, with the one root $\\kr = -\\frac{3}{2}$. One root gives one solution and one constant: $\\ky = Ce^{-3x/2}$."
+   }
+  },
+  {
+   "id": "e14",
+   "source_id": "2.2.14",
+   "source_number": "2.2.14",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-3",
+   "prompt": "<p>Let us revisit the Cauchy–Euler equations of <a href=\"/diffyqs/ch02/2.1/\">Exercise 2.1.6</a>. Suppose now that ${(b-a)}^2-4ac &lt; 0$. Find a formula for the general solution of $a x^2 \\kydprime + b x \\kyprime + c \\ky = 0$. Hint: Note that $x^{\\kr} = e^{\\kr \\ln x}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Try $\\ky = x^{\\kr}$ for $x &gt; 0$. Then $\\kyprime = \\kr x^{\\kr - 1}$ and $\\kydprime = \\kr(\\kr - 1)x^{\\kr - 2}$, and plugging in gives $\\bigl(a\\kr(\\kr - 1) + b\\kr + c\\bigr)x^{\\kr} = 0$, that is, $a\\kr^2 + (b - a)\\kr + c = 0$. Its roots are $\\kr = \\frac{-(b-a) \\pm \\sqrt{{(b-a)}^2 - 4ac}}{2a}$, which for ${(b-a)}^2 - 4ac &lt; 0$ are the complex pair $\\kalpha \\pm i\\kbeta$ with $\\kalpha = \\frac{a - b}{2a}$ and $\\kbeta = \\frac{\\sqrt{4ac - {(b-a)}^2}}{2a}$. By the hint and Euler’s formula, $x^{\\kalpha \\pm i\\kbeta} = e^{(\\kalpha \\pm i\\kbeta)\\ln x} = x^{\\kalpha}\\bigl(\\cos(\\kbeta \\ln x) \\pm i\\sin(\\kbeta \\ln x)\\bigr)$, and taking the real and imaginary parts, as the text does for $\\kythree$ and $\\kyfour$, gives two real-valued solutions. The general solution is $\\ky = C_1 x^{\\kalpha} \\cos(\\kbeta \\ln x) + C_2 x^{\\kalpha} \\sin(\\kbeta \\ln x)$."
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "2.2.15",
+   "source_number": "2.2.15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-1",
+   "prompt": "<p>Find the solution to $\\kydprime-(2\\kalpha) \\kyprime + \\kalpha^2 \\ky=0$, $\\ky(0) = a$, $\\kyprime(0)=b$, where $\\kalpha$, $a$, and $b$ are real numbers.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation $\\kr^2 - 2\\kalpha\\kr + \\kalpha^2 = {(\\kr - \\kalpha)}^2 = 0$ has the double root $\\kr = \\kalpha$, so by Theorem 2.2.1 (ii), $\\ky = (C_1 + C_2 x)\\,e^{\\kalpha x}$. Then $\\ky(0) = C_1 = a$, and $\\kyprime = C_2 e^{\\kalpha x} + \\kalpha(C_1 + C_2 x)\\,e^{\\kalpha x}$ gives $\\kyprime(0) = C_2 + \\kalpha a = b$, so $C_2 = b - \\kalpha a$. The solution is $\\ky = \\bigl(a + (b - \\kalpha a)\\,x\\bigr)e^{\\kalpha x}$."
+   }
+  },
+  {
+   "id": "e16",
+   "source_id": "2.2.16",
+   "source_number": "2.2.16",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-3",
+   "prompt": "<p>Construct an equation such that $\\ky = C_1 e^{-2x} \\cos(3x) + C_2 e^{-2x} \\sin(3x)$ is the general solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "This is the general solution of Theorem 2.2.3 with $\\kalpha = -2$ and $\\kbeta = 3$, so the characteristic equation must have the roots $-2 \\pm 3i$: $(\\kr - (-2 + 3i))(\\kr - (-2 - 3i)) = {(\\kr + 2)}^2 + 9 = \\kr^2 + 4\\kr + 13 = 0$. The equation is $\\kydprime + 4\\kyprime + 13\\ky = 0$, or any nonzero constant multiple of it."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "2.2.101",
+   "source_number": "2.2.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-1",
+   "prompt": "<p>Find the general solution to $\\kydprime+4\\kyprime+2\\ky=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = C_1 e^{(-2+\\sqrt{2}) x} + C_2 e^{(-2-\\sqrt{2}) x}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "2.2.102",
+   "source_number": "2.2.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-2-2-2",
+   "prompt": "<p>Find the general solution to $\\kydprime-6\\kyprime+9\\ky=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = C_1 e^{3x} + C_2 x e^{3x}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "2.2.103",
+   "source_number": "2.2.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-2-2-4",
+   "prompt": "<p>Find the solution to $2\\kydprime+\\kyprime+\\ky=0$, $\\ky(0) = 1$, $\\kyprime(0)=-2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = e^{-x/4} \\cos\\bigl(({\\sqrt{7}}/{4})x\\bigr) - \\sqrt{7} e^{-x/4} \\sin\\bigl(({\\sqrt{7}}/{4})x\\bigr)$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "2.2.104",
+   "source_number": "2.2.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "constants",
+   "prompt": "<p>Find the solution to $2\\kydprime+\\kyprime-3\\ky=0$, $\\ky(0) = a$, $\\kyprime(0)=b$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = \\frac{2(a-b)}{5} \\, e^{-3x/2}+\\frac{3 a+2 b}{5} \\, e^x$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "2.2.105",
+   "source_number": "2.2.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-2-2-4",
+   "prompt": "<p>Find the solution to $z''(t) = -2z'(t)-2z(t)$, $z(0) = 2$, $z'(0)= -2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$z(t) = 2e^{-t} \\cos(t)$"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "2.2.106",
+   "source_number": "2.2.106",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-1",
+   "prompt": "<p>Find the solution to $\\kydprime-(\\kalpha+\\kbeta) \\kyprime + \\kalpha \\kbeta \\ky=0$, $\\ky(0) = a$, $\\kyprime(0)=b$, where $\\kalpha$, $\\kbeta$, $a$, and $b$ are real numbers, and $\\kalpha \\neq \\kbeta$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = \\frac{a \\kbeta-b}{\\kbeta-\\kalpha} e^{\\kalpha x} + \\frac{b-a \\kalpha}{\\kbeta-\\kalpha} e^{\\kbeta x}$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "2.2.107",
+   "source_number": "2.2.107",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {"at": "end"},
+   "cite": "thm-2-2-1",
+   "prompt": "<p>Construct an equation such that $\\ky = C_1 e^{3x} + C_2 e^{-2x}$ is the general solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kydprime -\\kyprime-6\\ky=0$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "verifying-a-solution"},
+  {"exercise": "e1", "concept": "solving-with-the-characteristic-equation"},
+  {"exercise": "e2", "concept": "linear-independence"},
+  {"exercise": "e2", "concept": "solution-for-a-repeated-real-root"},
+  {"exercise": "e3", "concept": "complex-number"},
+  {"exercise": "e4", "concept": "eulers-formula"},
+  {"exercise": "e5", "concept": "eulers-formula"},
+  {"exercise": "e5", "concept": "real-and-imaginary-parts"},
+  {"exercise": "e6", "concept": "characteristic-equation"},
+  {"exercise": "e6", "concept": "solution-for-distinct-real-roots"},
+  {"exercise": "e7", "concept": "characteristic-equation"},
+  {"exercise": "e7", "concept": "solution-for-distinct-real-roots"},
+  {"exercise": "e8", "concept": "solution-for-a-repeated-real-root"},
+  {"exercise": "e8", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e9", "concept": "solution-for-distinct-real-roots"},
+  {"exercise": "e9", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e10", "concept": "characteristic-equation"},
+  {"exercise": "e10", "concept": "solution-for-complex-conjugate-roots"},
+  {"exercise": "e11", "concept": "characteristic-equation"},
+  {"exercise": "e11", "concept": "solution-for-complex-conjugate-roots"},
+  {"exercise": "e12", "concept": "solution-for-a-repeated-real-root"},
+  {"exercise": "e12", "concept": "characteristic-equation"},
+  {"exercise": "e13", "concept": "solving-with-the-characteristic-equation"},
+  {"exercise": "e14", "concept": "solution-for-complex-conjugate-roots"},
+  {"exercise": "e14", "concept": "eulers-formula"},
+  {"exercise": "e15", "concept": "solution-for-a-repeated-real-root"},
+  {"exercise": "e15", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e16", "concept": "solution-for-complex-conjugate-roots"},
+  {"exercise": "e16", "concept": "characteristic-equation"},
+  {"exercise": "e101", "concept": "characteristic-equation"},
+  {"exercise": "e101", "concept": "solution-for-distinct-real-roots"},
+  {"exercise": "e102", "concept": "solution-for-a-repeated-real-root"},
+  {"exercise": "e103", "concept": "solution-for-complex-conjugate-roots"},
+  {"exercise": "e103", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e104", "concept": "solution-for-distinct-real-roots"},
+  {"exercise": "e104", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e105", "concept": "solution-for-complex-conjugate-roots"},
+  {"exercise": "e105", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e106", "concept": "solution-for-distinct-real-roots"},
+  {"exercise": "e106", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e107", "concept": "characteristic-equation"},
+  {"exercise": "e107", "concept": "solution-for-distinct-real-roots"}
+ ],
+ "footnotes": [
+  {
+   "id": "ansatz",
+   "kind": "book",
+   "html": "Making an educated guess with some parameters to solve for is such a central technique in differential equations that people sometimes use a fancy name for such a guess: <em>ansatz</em>, German for “initial placement of a tool at a work piece.” Yes, the Germans have a word for that.",
+   "number": "1"
+  }
+ ]
+}

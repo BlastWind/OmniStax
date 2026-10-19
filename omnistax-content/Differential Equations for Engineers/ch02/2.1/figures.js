@@ -50,7 +50,11 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     dot(ctx, ax.X(0), ax.Y(a), pc, true, 10);
     hits.push({ x: ax.X(0), y: ax.Y(a), r: 16, name: `(0, b₀) = (0, ${n(a)}), where y(0) = b₀` });
     label(ctx, `(0, ${n(a)})`, ax.X(0), ax.Y(a), { side: s >= 0 ? 'right' : 'left', color: pc, size: 20, weight: 600, gap: 14 });
-    label(ctx, 'y(x)', ax.X(-3.2), ax.Y(Math.max(-4, Math.min(4, f(-3.2)))), { side: 'above', color: fc, size: 20, weight: 600 });
+    /* the curve's name sits where the curve is inside the box, scanning in from the left so a cosh branch
+       that has left the frame is not labelled at the clamped edge beside the axis title */
+    let lx = -1.0;
+    for (let u = -3.4; u <= -1.0; u += 0.1) { if (Math.abs(f(u)) < 3.4) { lx = u; break; } }
+    label(ctx, 'y(x)', ax.X(lx), ax.Y(f(lx)), { side: f(lx) < 3 ? 'above' : 'below', color: fc, size: 20, weight: 600 });
     const which = Math.abs(s) < 1e-9 ? 'leaves the point flat' : s > 0 ? 'leaves the point rising' : 'leaves the point falling';
     headline(ctx, `$\\ky(0) = ${n(a)}$ and $\\kyprime(0) = ${n(s)}$ pick one solution of $${E.name.replace('″', "''").replace('²', '^2').replace('−', '-')}$: it ${which}, and no other solution through $(0, ${n(a)})$ does so.`);
     const b1k = s / k;

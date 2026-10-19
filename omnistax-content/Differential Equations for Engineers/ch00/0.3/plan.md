@@ -63,6 +63,8 @@ None: the section states definitions and gives examples, works nothing.
 - 0.2's `p#de-definition` names Newton's law of cooling, which is the book's concept `newtons-law-of-cooling` (1.3); 0.3 marks its mentions, and 0.2's could take the span in the chapter pass for consistency.
 - Glossary words: none (the book has no glossary); concept and edge fixes: none.
 
+Chapter pass (pass-ch00, 2026-10-19): the closer anchors are applied, y_prime and x_prime → `0.3-eq-system`, ∂2y/∂t2 and ∂4y/∂x4 → `0.3-eq-beam`. The rows `0.3/y_dprime` and `0.3/x_dprime` are added (`derivative`, the meanings above, after `ost meanings`: every other row of each is "the second derivative" of the same letter, the 0.2 rows included, so neither is a redefinition and the checker raises no warning). 0.2's "Newton's law of cooling" now wears the concept span as this page's mentions do. Glossary and edges: nothing to do.
+
 ## Conventions
 
 0.2's "Conventions for later sections" are followed as written; this page adds nothing to them.
