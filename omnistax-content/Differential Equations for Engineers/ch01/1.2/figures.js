@@ -175,9 +175,10 @@ function poly(ctx, ax, pts, color, w) {
     headline(ctx, book
       ? 'Joining and leaving the $x$-axis at the origin: the solution $\\ky = x^2$ for $x \\geq 0$, $-x^2$ for $x < 0$.'
       : `Joining the $x$-axis at $x = ${n(B)}$ and leaving it at $x = ${n(A)}$: one more solution through $(0, 0)$.`);
-    ro.set(book
-      ? '\\ky = x^2\\ (x \\geq 0),\\ \\ -x^2\\ (x < 0)'
-      : `\\ky = -${sq(B)}\\ (x < ${n(B)}),\\ \\ 0\\ (${n(B)} \\le x \\le ${n(A)}),\\ \\ ${sq(A)}\\ (x > ${n(A)})`, undefined, { form: book ? 'book' : 'family' });
+    ro.set(book ? '\\ky = -x^2,\\quad x^2' : `\\ky = -${sq(B)},\\quad 0,\\quad ${sq(A)}`,
+      book ? 'on $x < 0$ and on $x \\geq 0$: the solution $\\ky = x\\lvert x \\rvert$, with $\\kyprime = 2\\lvert x \\rvert = 2\\sqrt{\\lvert \\ky \\rvert}$.'
+        : `on $x < ${n(B)}$, on $${n(B)} \\le x \\le ${n(A)}$ and on $x > ${n(A)}$; on every piece $\\kyprime = 2\\sqrt{\\lvert \\ky \\rvert}$.`,
+      { form: book ? 'book' : 'family' });
   }
   still(d, draw);
 })();

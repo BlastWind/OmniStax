@@ -1,0 +1,726 @@
+{
+ "id": "1.6",
+ "module": "auteq:section",
+ "chapter": "1",
+ "title": "Autonomous equations",
+ "short": "Autonomous equations",
+ "lead": "An <span data-concept=\"autonomous-differential-equation\">autonomous equation</span> $\\kdxdt = \\kf(\\kx)$ has a rule that does not depend on time, so the long-term behavior of its solutions can be read off a <span data-concept=\"phase-line\">phase diagram</span> without solving it. This section introduces <span data-concept=\"equilibrium-solution\">equilibrium solutions</span>, <span data-concept=\"equilibrium-point\">critical points</span> and their stability, applies them to the <span data-concept=\"logistic-differential-equation\">logistic equation</span> of population growth, and asks what harvesting does to a population.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 1.6.101–1.6.104 carry the book’s own answers. The inline exercises 1.6.1 and 1.6.2 and exercises 1.6.3–1.6.7, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy or a numerical integration first; a phase diagram asked for is described in words.",
+ "figures": [
+  {
+   "id": "fig-cooling-field",
+   "kind": "sim",
+   "number": "1.11",
+   "originals": [
+    "/media/ch01/2-2-coffee.svg"
+   ],
+   "original_caption": "The slope field and some solutions of x′ = 0.3(5 − x).",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-logistic",
+   "kind": "sim",
+   "number": "1.12",
+   "originals": [
+    "/media/ch01/2-2-logistic.svg",
+    "/media/ch01/2-2-l-phasedia.svg"
+   ],
+   "original_caption": "(Figure 1.12) The slope field and some solutions of x′ = 0.1x(5 − x). (Phase diagram) The phase diagram of x′ = 0.1x(5 − x).",
+   "draws": [
+    "function",
+    "derivative",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-harvesting",
+   "kind": "sim",
+   "number": "1.13",
+   "folds": [
+    "1.14",
+    "1.15"
+   ],
+   "originals": [
+    "/media/ch01/2-2-logistic-h1.svg",
+    "/media/ch01/2-2-logistic-hc.svg",
+    "/media/ch01/2-2-logistic-h2.svg"
+   ],
+   "original_caption": "(Figure 1.13) The slope field and some solutions of x′ = 0.1x(8 − x) − 1. (Figure 1.14) The slope field and some solutions of x′ = 0.1x(8 − x) − 1.6. (Figure 1.15) The slope field and some solutions of x′ = 0.1x(8 − x) − 2.",
+   "widths": [
+    432,
+    432,
+    432
+   ],
+   "draws": [
+    "function",
+    "derivative",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "equilibrium-def",
+   "concept": "equilibrium-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "equilibrium-def",
+   "concept": "equilibrium-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "equilibrium-def",
+   "concept": "stable-critical-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "equilibrium-def",
+   "concept": "unstable-critical-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "logistic-def",
+   "concept": "logistic-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-diagram",
+   "concept": "phase-line",
+   "verb": "introduces"
+  },
+  {
+   "span": "classify",
+   "concept": "classifying-critical-points",
+   "verb": "introduces"
+  },
+  {
+   "span": "classify",
+   "concept": "semistable-critical-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "harvesting-def",
+   "concept": "logistic-equation-with-harvesting",
+   "verb": "introduces"
+  },
+  {
+   "span": "autonomous-def",
+   "concept": "autonomous-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "autonomous-def",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "autonomous-def",
+   "concept": "dependent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "cooling",
+   "concept": "newtons-law-of-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "fig-cooling-field",
+   "concept": "direction-field",
+   "verb": "uses"
+  },
+  {
+   "span": "fig-cooling-field",
+   "concept": "equilibrium-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "fig-cooling-field",
+   "concept": "stable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "fig-cooling-field",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "equilibrium-def",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "equilibrium-def",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "logistic-def",
+   "concept": "exponential-growth",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-logistic",
+   "concept": "logistic-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-logistic",
+   "concept": "phase-line",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-logistic",
+   "concept": "equilibrium-point",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-logistic",
+   "concept": "stable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-logistic",
+   "concept": "unstable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-logistic",
+   "concept": "direction-field",
+   "verb": "uses"
+  },
+  {
+   "span": "long-term",
+   "concept": "equilibrium-point",
+   "verb": "uses"
+  },
+  {
+   "span": "long-term",
+   "concept": "stable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "long-term",
+   "concept": "unstable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "long-term",
+   "concept": "direction-field",
+   "verb": "uses"
+  },
+  {
+   "span": "long-term",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "dne",
+   "concept": "direction-field",
+   "verb": "uses"
+  },
+  {
+   "span": "dne",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "dne",
+   "concept": "interval-of-existence",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-diagram",
+   "concept": "direction-field",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-diagram",
+   "concept": "autonomous-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-diagram",
+   "concept": "dependent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-diagram",
+   "concept": "equilibrium-point",
+   "verb": "uses"
+  },
+  {
+   "span": "sketch-from-phase",
+   "concept": "phase-line",
+   "verb": "uses"
+  },
+  {
+   "span": "sketch-from-phase",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "classify",
+   "concept": "phase-line",
+   "verb": "uses"
+  },
+  {
+   "span": "classify",
+   "concept": "equilibrium-point",
+   "verb": "uses"
+  },
+  {
+   "span": "classify",
+   "concept": "stable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "classify",
+   "concept": "unstable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "unstable-bad",
+   "concept": "unstable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "unstable-bad",
+   "concept": "independent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "harvesting-def",
+   "concept": "logistic-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "critical-ab",
+   "concept": "equilibrium-point",
+   "verb": "uses"
+  },
+  {
+   "span": "harvest-example",
+   "concept": "direction-field",
+   "verb": "uses"
+  },
+  {
+   "span": "harvest-example",
+   "concept": "logistic-equation-with-harvesting",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harvesting",
+   "concept": "logistic-equation-with-harvesting",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harvesting",
+   "concept": "semistable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harvesting",
+   "concept": "phase-line",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harvesting",
+   "concept": "direction-field",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harvesting",
+   "concept": "equilibrium-point",
+   "verb": "uses"
+  },
+  {
+   "span": "harvest-critical",
+   "concept": "equilibrium-point",
+   "verb": "uses"
+  },
+  {
+   "span": "harvest-critical",
+   "concept": "unstable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "harvest-critical",
+   "concept": "semistable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "harvest-none",
+   "concept": "logistic-equation-with-harvesting",
+   "verb": "uses"
+  },
+  {
+   "span": "harvest-none",
+   "concept": "equilibrium-point",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "1.6.1",
+   "source_number": "1.6.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "sketch-from-phase"
+   },
+   "cite": "phase-diagram",
+   "prompt": "<p>Try sketching a few solutions simply from looking at the phase diagram. Check with the preceding graphs if you are getting the same type of curves.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Read each stretch of the phase diagram of $\\kxprime = 0.1\\kx(5-\\kx)$ as time runs left to right. Between $0$ and $5$ the arrow points up ($\\kf(1) = 0.4 &gt; 0$), so a solution starting there climbs and then flattens out as it nears $\\kx = 5$, which it never crosses: an S-shaped curve. Above $5$ the arrow points down ($\\kf(6) = -0.6 &lt; 0$), so a solution starting there falls and levels off onto $\\kx = 5$ from above. Below $0$ the arrow points down ($\\kf(-1) = -0.6 &lt; 0$), so a solution starting there falls away from $\\kx = 0$, ever more steeply. The two critical points themselves give the horizontal lines $\\kx = 0$ and $\\kx = 5$. These are exactly the curves of Figure 1.12."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "1.6.2",
+   "source_number": "1.6.2",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "eq-harvest-critical"
+   },
+   "cite": "critical-ab",
+   "prompt": "<p>Sketch a phase diagram for different possibilities. Note that these possibilities are $A &gt; B$, or $A=B$, or $A$ and $B$ both complex (i.e. no real solutions). Hint: Fix some simple $k$ and $M$ and then vary $h$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take $k = 0.1$ and $M = 8$, so ${(kM)}^2 - 4hk = 0.64 - 0.4h$ and the right-hand side is $\\kf(\\kx) = -0.1\\kx^2 + 0.8\\kx - h$, a downward parabola with its top at $\\kx = 4$, where $\\kf(4) = 1.6 - h$. If $h &lt; 1.6$ there are two critical points $B &lt; A$ and $\\kf(\\kx) = -0.1(\\kx - A)(\\kx - B)$: negative above $A$, positive between $B$ and $A$, negative below $B$. The phase diagram has a down arrow above $A$, an up arrow between $B$ and $A$, and a down arrow below $B$: $A$ is stable and $B$ is unstable. If $h = 1.6$ then $A = B = 4$ and $\\kf(\\kx) = -0.1{(\\kx-4)}^2 \\le 0$: a down arrow above $4$ and a down arrow below it, so the one critical point is unstable (semistable, since the arrow above points toward it). If $h &gt; 1.6$ there is no real critical point and $\\kf(\\kx) \\le 1.6 - h &lt; 0$ everywhere: the phase diagram is a single down arrow, and every solution decreases."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "1.6.3",
+   "source_number": "1.6.3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "classify",
+   "prompt": "<p>Consider $\\kxprime = \\kx^2$.</p><ol type=\"a\"><li>Draw the phase diagram, find the critical points, and mark them stable or unstable.</li><li>Sketch typical solutions of the equation.</li><li>Find $\\displaystyle \\lim_{t\\to \\infty} \\kx(t)$ for the solution with the initial condition $\\kx(0) = -1$.</li></ol>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 0,
+    "part": "c)",
+    "solution": "a) $\\kf(\\kx) = \\kx^2$ is zero only at $\\kx = 0$, the one critical point, and $\\kx^2 &gt; 0$ on both sides of it, so the arrow below $0$ and the arrow above $0$ both point up. The arrow above points away from the critical point, so $\\kx = 0$ is unstable (semistable, since the arrow below points toward it). b) Every solution other than $\\kx = 0$ increases. One starting below $0$ rises toward $0$ and never reaches it; one starting above $0$ rises ever faster and blows up in finite time, since the general solution is $\\kx = \\frac{1}{C - t}$, as in Example 1.1.4. c) $\\lim_{t\\to\\infty} \\kx(t) = 0$. From the phase diagram, $\\kx(0) = -1$ lies in the stretch below $0$ whose arrow points up toward the critical point $0$, and a solution cannot cross a critical point. Explicitly, the solution is $\\kx = \\frac{-1}{1 + t}$ (check: $\\kxprime = \\frac{1}{{(1+t)}^2} = \\kx^2$ and $\\kx(0) = -1$), which tends to $0$ from below."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "1.6.4",
+   "source_number": "1.6.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "classify",
+   "prompt": "<p>Consider $\\kxprime = \\sin \\kx$.</p><ol type=\"a\"><li>Draw the phase diagram for $-4\\pi \\leq \\kx \\leq 4\\pi$. On this interval mark the critical points stable or unstable.</li><li>Sketch typical solutions of the equation.</li><li>Find $\\displaystyle \\lim_{t\\to \\infty} \\kx(t)$ for the solution with the initial condition $\\kx(0) = 1$.</li></ol>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 3.1416,
+    "tol": 0.001,
+    "part": "c)",
+    "solution": "a) $\\sin \\kx = 0$ at $\\kx = n\\pi$, so the critical points on $[-4\\pi, 4\\pi]$ are $-4\\pi, -3\\pi, \\ldots, 3\\pi, 4\\pi$, nine in all. $\\sin \\kx &gt; 0$ on $(0, \\pi)$, $(2\\pi, 3\\pi)$, $(-2\\pi, -\\pi)$ and $(-4\\pi, -3\\pi)$, where the arrows point up, and $\\sin \\kx &lt; 0$ on $(\\pi, 2\\pi)$, $(3\\pi, 4\\pi)$, $(-\\pi, 0)$ and $(-3\\pi, -2\\pi)$, where they point down. So at each odd multiple of $\\pi$ the arrow below points up and the arrow above points down, both toward it: $\\pm\\pi$ and $\\pm 3\\pi$ are stable. At each even multiple the arrows point away: $0$, $\\pm 2\\pi$ and $\\pm 4\\pi$ are unstable. b) A solution starting in $(2m\\pi, (2m+1)\\pi)$ rises toward $(2m+1)\\pi$, and one starting in $((2m-1)\\pi, 2m\\pi)$ falls toward $(2m-1)\\pi$: every nonconstant solution runs from an unstable critical point to the neighboring stable one, flattening out at both ends. c) $\\kx(0) = 1$ lies in $(0, \\pi)$, where the arrow points up toward $\\pi$, so $\\lim_{t\\to\\infty} \\kx(t) = \\pi \\approx 3.1416$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "1.6.5",
+   "source_number": "1.6.5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "classify",
+   "prompt": "<p>Suppose $\\kf(\\kx)$ is positive for $0 &lt; \\kx &lt; 1$, it is zero when $\\kx=0$ and $\\kx=1$, and it is negative for all other $\\kx$.</p><ol type=\"a\"><li>Draw the phase diagram for $\\kxprime = \\kf(\\kx)$, find the critical points, and mark them stable or unstable.</li><li>Sketch typical solutions of the equation.</li><li>Find $\\displaystyle \\lim_{t\\to \\infty} \\kx(t)$ for the solution with the initial condition $\\kx(0) = 0.5$.</li></ol>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 1,
+    "part": "c)",
+    "solution": "a) The critical points are $\\kx = 0$ and $\\kx = 1$. Below $0$ the arrow points down ($\\kf &lt; 0$), between $0$ and $1$ it points up ($\\kf &gt; 0$), and above $1$ it points down ($\\kf &lt; 0$). Both arrows beside $0$ point away from it, so $0$ is unstable; both arrows beside $1$ point toward it, so $1$ is stable. b) A solution starting below $0$ decreases away from $0$ for all time; one starting between $0$ and $1$ rises and levels off onto $\\kx = 1$; one starting above $1$ falls and levels off onto $\\kx = 1$; and $\\kx = 0$ and $\\kx = 1$ are the constant solutions. c) $\\kx(0) = 0.5$ lies between $0$ and $1$, where the arrow points up toward $1$, so $\\lim_{t\\to\\infty} \\kx(t) = 1$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "1.6.6",
+   "source_number": "1.6.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "harvesting-def",
+   "prompt": "<p>Start with the logistic equation $\\kdxdt = k\\kx(M-\\kx)$. Suppose we modify our harvesting. We will only harvest an amount proportional to the current population. In other words, we harvest $h\\kx$ per unit of time for some $h &gt; 0$ (similar to earlier example with $h$ replaced with $h\\kx$).</p><ol type=\"a\"><li>Construct the differential equation.</li><li>Show that if $kM &gt; h$, then the equation is still logistic.</li><li>What happens when $kM &lt; h$?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kdxdt = k\\kx(M - \\kx) - h\\kx$. b) Factor out $k\\kx$: $k\\kx(M - \\kx) - h\\kx = k\\kx\\left(M - \\frac{h}{k} - \\kx\\right) = k\\kx(M' - \\kx)$ with $M' = M - \\frac{h}{k}$. If $kM &gt; h$ then $M' &gt; 0$, so this is the logistic equation again, with the same $k$ and the smaller limiting population $M' = M - \\frac{h}{k}$: the critical points are $0$ (unstable) and $M'$ (stable), and a population starting above $0$ tends to $M'$. c) If $kM &lt; h$ then $M' &lt; 0$. The critical points are $0$ and the negative number $M'$, and for every $\\kx &gt; 0$ we have $k\\kx(M' - \\kx) &lt; 0$, so the arrow above $0$ points down: every positive population decreases toward $0$ and dies out. The harvesting outruns the growth, and $0$ is now the stable critical point for populations."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "1.6.7",
+   "source_number": "1.6.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "logistic-def",
+   "prompt": "<p>A disease is spreading through the country. Let $\\kx$ be the number of people infected. Let the constant $S$ be the number of people susceptible to infection. The infection rate $\\kdxdt$ is proportional to the product of already infected people, $\\kx$, and the number of susceptible but uninfected people, $S-\\kx$.</p><ol type=\"a\"><li>Write down the differential equation.</li><li>Supposing $\\kx(0) &gt; 0$, that is, some people are infected at time $t=0$, what is $\\displaystyle \\lim_{t\\to\\infty} \\kx(t)$.</li><li>Does the solution to part b) agree with your intuition? Why or why not?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kdxdt = k\\kx(S - \\kx)$ for some constant $k &gt; 0$. b) This is the logistic equation with limiting population $M = S$: the critical points are $0$ (unstable) and $S$ (stable), and $\\kf(\\kx) = k\\kx(S - \\kx) &gt; 0$ for $0 &lt; \\kx &lt; S$. So from any $\\kx(0) &gt; 0$ the number of infected rises toward $S$, and $\\lim_{t\\to\\infty} \\kx(t) = S$: everyone susceptible is eventually infected. c) Within the model it agrees with intuition: as long as some people are infected and some susceptible people remain, the two keep meeting and the disease keeps spreading, though ever more slowly as the uninfected pool $S - \\kx$ shrinks. What may disagree with intuition is that nobody escapes; that is because the model has no recovery, immunity, isolation or death, each of which would change the equation and could leave part of the susceptible population uninfected."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "1.6.101",
+   "source_number": "1.6.101",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "classify",
+   "prompt": "<p>Let $\\kxprime=(\\kx-1)(\\kx-2)\\kx^2$.</p><ol type=\"a\"><li>Sketch the phase diagram and find critical points.</li><li>Classify the critical points.</li><li>If $\\kx(0)=0.5$, then find $\\displaystyle \\lim_{t\\to\\infty} \\kx(t)$.</li></ol>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1,
+    "part": "c)",
+    "solution": "a) 0, 1, 2 are critical points. b) $\\kx=0$ is unstable (semistable), $\\kx=1$ is stable, and $\\kx=2$ is unstable. c) 1"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "1.6.102",
+   "source_number": "1.6.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "classify",
+   "prompt": "<p>Let $\\kxprime=e^{-\\kx}$.</p><ol type=\"a\"><li>Find and classify all critical points.</li><li>Find $\\displaystyle \\lim_{t\\to\\infty} \\kx(t)$ given any initial condition.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) There are no critical points. b) $\\infty$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "1.6.103",
+   "source_number": "1.6.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "harvesting-def",
+   "prompt": "<p>Assume that a population of fish in a lake satisfies $\\kdxdt = k\\kx(M-\\kx)$. Now suppose that fish are continually added at $A$ fish per unit of time.</p><ol type=\"a\"><li>Find the differential equation for $\\kx$.</li><li>What is the new limiting population?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\kdxdt = k\\kx(M-\\kx)+A$ b) $\\frac{kM + \\sqrt{{(kM)}^2 + 4Ak}}{2k}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "1.6.104",
+   "source_number": "1.6.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "classify",
+   "prompt": "<p>Suppose $\\kdxdt = (\\kx-\\alpha)(\\kx-\\beta)$ for two numbers $\\alpha &lt; \\beta$.</p><ol type=\"a\"><li>Find the critical points, and classify them.</li></ol><p>For b), c), d), find $\\displaystyle \\lim_{t\\to\\infty} \\kx(t)$ based on the phase diagram.</p><ol type=\"a\" start=\"2\"><li>$\\kx(0) &lt; \\alpha$,</li><li>$\\alpha &lt; \\kx(0) &lt; \\beta$,</li><li>$\\beta &lt; \\kx(0)$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\alpha$ is a stable critical point, $\\beta$ is an unstable one. b) $\\alpha$, c) $\\alpha$, d) $\\infty$ or DNE."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "phase-line"
+  },
+  {
+   "exercise": "e1",
+   "concept": "classifying-critical-points"
+  },
+  {
+   "exercise": "e2",
+   "concept": "logistic-equation-with-harvesting"
+  },
+  {
+   "exercise": "e2",
+   "concept": "phase-line"
+  },
+  {
+   "exercise": "e3",
+   "concept": "phase-line"
+  },
+  {
+   "exercise": "e3",
+   "concept": "classifying-critical-points"
+  },
+  {
+   "exercise": "e3",
+   "concept": "equilibrium-point"
+  },
+  {
+   "exercise": "e4",
+   "concept": "phase-line"
+  },
+  {
+   "exercise": "e4",
+   "concept": "classifying-critical-points"
+  },
+  {
+   "exercise": "e4",
+   "concept": "equilibrium-point"
+  },
+  {
+   "exercise": "e5",
+   "concept": "phase-line"
+  },
+  {
+   "exercise": "e5",
+   "concept": "classifying-critical-points"
+  },
+  {
+   "exercise": "e5",
+   "concept": "stable-critical-point"
+  },
+  {
+   "exercise": "e6",
+   "concept": "logistic-equation-with-harvesting"
+  },
+  {
+   "exercise": "e6",
+   "concept": "logistic-differential-equation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "logistic-differential-equation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "classifying-critical-points"
+  },
+  {
+   "exercise": "e101",
+   "concept": "classifying-critical-points"
+  },
+  {
+   "exercise": "e101",
+   "concept": "semistable-critical-point"
+  },
+  {
+   "exercise": "e102",
+   "concept": "classifying-critical-points"
+  },
+  {
+   "exercise": "e102",
+   "concept": "equilibrium-point"
+  },
+  {
+   "exercise": "e103",
+   "concept": "logistic-equation-with-harvesting"
+  },
+  {
+   "exercise": "e104",
+   "concept": "classifying-critical-points"
+  },
+  {
+   "exercise": "e104",
+   "concept": "stable-critical-point"
+  },
+  {
+   "exercise": "e104",
+   "concept": "unstable-critical-point"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-semistable",
+   "kind": "book",
+   "number": "1",
+   "html": "Unstable points with one of the arrows pointing towards the critical point are sometimes called <em><span data-concept=\"semistable-critical-point\">semistable</span></em>."
+  },
+  {
+   "id": "fn-semistable-2",
+   "kind": "book",
+   "number": "2",
+   "html": "More precisely, it is <span data-concept=\"semistable-critical-point\">semistable</span>."
+  }
+ ]
+}

@@ -1,0 +1,1083 @@
+{
+ "id": "1.9",
+ "module": "fopde:section",
+ "chapter": "1",
+ "title": "First-order linear PDEs",
+ "short": "First-order linear PDEs",
+ "lead": "A <span data-concept=\"first-order-linear-pde\">first-order linear PDE</span> for a function of position $x$ and time $t$, whose <span data-concept=\"pde-initial-condition\">initial condition</span> is a whole function of $x$, is solved by the <span data-concept=\"method-of-characteristics\">method of characteristics</span>: finding the curves in the $(x, t)$ plane along which the equation becomes an ODE. The <span data-concept=\"transport-equation\">transport equation</span> is the first case, and two worked examples carry the method to an equation with a source term and to one with variable coefficients.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and that the section can safely be skipped) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 1.9.101–1.9.103 carry the book’s own answers. Exercises 1.9.1–1.9.6, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every solution substituted back into its equation and initial condition with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-transport",
+   "kind": "sim",
+   "number": "1.20",
+   "folds": [
+    "1.21"
+   ],
+   "originals": [
+    "/media/ch01/char-curves.svg",
+    "/media/ch01/fopde-transport-1-2.svg"
+   ],
+   "original_caption": "(Figure 1.20) Characteristic curves. (Figure 1.21) Example of “transport” in uₓ + uₜ = 0 (that is, α = 1) where the initial condition f(x) is a peak at the origin. On the left is a graph of the initial condition u(x, 0). On the right is a graph of the function u(x, 1), that is, at time t = 1. Notice it is the same graph shifted one unit to the right.",
+   "widths": [],
+   "draws": [
+    "function",
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-curvy-characteristic",
+   "kind": "sim",
+   "number": "1.22",
+   "originals": [
+    "/media/ch01/char-curve-curvy.svg"
+   ],
+   "original_caption": "General characteristic curve.",
+   "widths": [],
+   "draws": [
+    "curve",
+    "point",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pde-surface",
+   "kind": "sim",
+   "number": "1.23",
+   "originals": [
+    "/media/ch01/sol-to-fo-pde.svg"
+   ],
+   "original_caption": "Plot of the solution u(x, t) to uₓ + uₜ + u = x, u(x, 0) = e^(−x²).",
+   "widths": [
+    720
+   ],
+   "draws": [
+    "function",
+    "curve"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "fopde-intro",
+   "concept": "first-order-linear-pde",
+   "verb": "introduces"
+  },
+  {
+   "span": "initial-condition-function",
+   "concept": "pde-initial-condition",
+   "verb": "introduces"
+  },
+  {
+   "span": "characteristics-idea",
+   "concept": "method-of-characteristics",
+   "verb": "introduces"
+  },
+  {
+   "span": "transport-def",
+   "concept": "transport-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "char-coords",
+   "concept": "characteristic-coordinates",
+   "verb": "introduces"
+  },
+  {
+   "span": "moving-right",
+   "concept": "transport-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "char-curves",
+   "concept": "characteristic-curve",
+   "verb": "introduces"
+  },
+  {
+   "span": "convection",
+   "concept": "convection",
+   "verb": "introduces"
+  },
+  {
+   "span": "along-characteristics",
+   "concept": "characteristic-ode",
+   "verb": "introduces"
+  },
+  {
+   "span": "fopde-intro",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-fopde",
+   "concept": "first-order-linear-pde",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-fopde",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-condition-function",
+   "concept": "first-order-linear-pde",
+   "verb": "uses"
+  },
+  {
+   "span": "characteristics-idea",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "characteristics-idea",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-1",
+   "concept": "transport-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-1",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-1",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-1",
+   "concept": "transport-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-1",
+   "concept": "method-of-characteristics",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-transport",
+   "concept": "transport-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-transport",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "char-coords",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-char-coords",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "chain-rule-setup",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-transport",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-transport",
+   "concept": "transport-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-transport",
+   "concept": "transport-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-transport",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "moving-right",
+   "concept": "transport-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "char-curves",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "char-curves",
+   "concept": "transport-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "char-lines",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "convection",
+   "concept": "transport-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-transport",
+   "concept": "transport-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-transport",
+   "concept": "transport-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-transport",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-transport",
+   "concept": "convection",
+   "verb": "uses"
+  },
+  {
+   "span": "general-case",
+   "concept": "first-order-linear-pde",
+   "verb": "uses"
+  },
+  {
+   "span": "general-case",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "general-coords",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "along-characteristics",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "along-characteristics",
+   "concept": "transport-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "along-characteristics",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "along-characteristics",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-1-6",
+   "concept": "characteristic-ode",
+   "verb": "uses"
+  },
+  {
+   "span": "ode-in-s",
+   "concept": "independent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "ode-in-s",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ode-in-s",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ode-in-s",
+   "concept": "integrating-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "find-characteristics",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-char-curve",
+   "concept": "characteristic-ode",
+   "verb": "uses"
+  },
+  {
+   "span": "why-chain-rule",
+   "concept": "characteristic-ode",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-characteristic-ode",
+   "concept": "characteristic-ode",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-characteristic-ode",
+   "concept": "first-order-linear-pde",
+   "verb": "uses"
+  },
+  {
+   "span": "so-ode",
+   "concept": "characteristic-ode",
+   "verb": "uses"
+  },
+  {
+   "span": "so-ode",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "so-ode",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "so-ode",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "so-ode",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-curvy-characteristic",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-curvy-characteristic",
+   "concept": "characteristic-ode",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-curvy-characteristic",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-curvy-characteristic",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-2",
+   "concept": "method-of-characteristics",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-2",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-2",
+   "concept": "characteristic-ode",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-2",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-2",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-2",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pde-surface",
+   "concept": "characteristic-ode",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pde-surface",
+   "concept": "method-of-characteristics",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pde-surface",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pde-surface",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pde-surface",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pde-surface",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nonconstant",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-3",
+   "concept": "method-of-characteristics",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-3",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-3",
+   "concept": "characteristic-ode",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-3",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-9-3",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "b-zero",
+   "concept": "first-order-linear-pde",
+   "verb": "uses"
+  },
+  {
+   "span": "b-zero",
+   "concept": "method-of-characteristics",
+   "verb": "uses"
+  },
+  {
+   "span": "no-solution",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "no-solution",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "messy",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "messy",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "systems",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "systems",
+   "concept": "system-of-differential-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "systems",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nonlinear",
+   "concept": "method-of-characteristics",
+   "verb": "uses"
+  },
+  {
+   "span": "nonlinear",
+   "concept": "nonlinear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nonlinear",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nonlinear",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nonlinear",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "nonlinear",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "transport",
+   "what": "the solution $u(x,t) = f(x - \\alpha t)$ of the transport equation",
+   "source": "Notes on Diffy Qs, 1.9 First-order linear PDEs, Example 1.9.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\xi = x - \\alpha t , \\qquad s = t",
+       "src": "Example 1.9.1"
+      },
+      {
+       "text": "The chain rule in several variables: for $u$ as a function of $\\xi$ and $s$, which are functions of $x$ and $t$, $u_x = u_\\xi \\xi_x + u_s s_x$ and $u_t = u_\\xi \\xi_t + u_s s_t$.",
+       "src": "Calculus, 14.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ux}{\\kux} = \\mk{a}{\\kuxi}\\,\\mk{ax}{\\xi_x} + \\mk{b}{\\kus}\\,\\mk{bx}{s_x}",
+      "src": "Example 1.9.1",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ux}{\\kux} = \\mk{a}{\\kuxi}\\,\\mk{ax}{\\cdot 1} + \\mk{b}{\\kus}\\,\\mk{bx}{\\cdot 0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{ux}{\\kux} = \\mk{a}{\\kuxi}",
+       "uses": []
+      }
+     ],
+     "src": "Example 1.9.1"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\xi = x - \\alpha t , \\qquad s = t",
+       "src": "Example 1.9.1"
+      },
+      {
+       "text": "The chain rule in several variables: for $u$ as a function of $\\xi$ and $s$, which are functions of $x$ and $t$, $u_x = u_\\xi \\xi_x + u_s s_x$ and $u_t = u_\\xi \\xi_t + u_s s_t$.",
+       "src": "Calculus, 14.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ut}{\\kut} = \\mk{a}{\\kuxi}\\,\\mk{ax}{\\xi_t} + \\mk{b}{\\kus}\\,\\mk{bx}{s_t}",
+      "src": "Example 1.9.1",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{ut}{\\kut} = \\mk{a}{\\kuxi}\\,\\mk{ax}{\\cdot(-\\alpha)} + \\mk{b}{\\kus}\\,\\mk{bx}{\\cdot 1}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{ut}{\\kut} = \\mk{ax}{-\\alpha}\\,\\mk{a}{\\kuxi} + \\mk{b}{\\kus}",
+       "uses": []
+      }
+     ],
+     "src": "Example 1.9.1"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\alpha \\kux + \\kut = 0",
+       "src": "Example 1.9.1"
+      },
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{al}{\\alpha}\\,\\mk{ux}{\\kux} + \\mk{ut}{\\kut} = \\mk{z}{0}",
+      "src": "Example 1.9.1",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{al}{\\alpha}\\,\\mk{ux}{\\underbrace{(\\kuxi)}_{\\kux}} + \\mk{ut}{\\underbrace{(- \\alpha \\kuxi + \\kus)}_{\\kut}} = \\mk{z}{0}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{ut}{\\kus} = \\mk{z}{0}",
+       "uses": [],
+       "cap": "The two terms $\\alpha u_\\xi$ and $-\\alpha u_\\xi$ cancel."
+      },
+      {
+       "tex": "\\mk{ut}{\\kduds} = \\mk{z}{0}",
+       "uses": [],
+       "cap": "Treating $\\xi$ as simply a parameter, we have obtained the ODE $\\frac{du}{ds} = 0$. That is trivial to solve."
+      }
+     ],
+     "src": "Example 1.9.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\xi = x - \\alpha t , \\qquad s = t",
+       "src": "Example 1.9.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ut}{\\kduds} = \\mk{z}{0}",
+      "src": "Example 1.9.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{u}{\\ku} = \\mk{A}{A(\\xi)}",
+       "uses": [],
+       "cap": "The solution is a function that does not depend on $s$ (but it does depend on $\\xi$). That is, there is some function $A$ such that $u = A(\\xi)$."
+      },
+      {
+       "tex": "\\mk{u}{\\ku} = \\mk{A}{A(x - \\alpha t)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 1.9.1"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\ku(x,0) = \\kf(x)",
+       "src": "Example 1.9.1"
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kf(x)} = \\mk{u}{\\ku(x,0)}",
+      "src": "Example 1.9.1",
+      "uses": [
+       0
+      ],
+      "why": "The initial condition says that $u(x, 0)$ is the given $f(x)$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf(x)} = \\mk{u}{A(x - \\alpha 0)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kf(x)} = \\mk{u}{A(x)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{u}{A} = \\mk{f}{\\kf}",
+       "uses": [],
+       "cap": "The two functions agree at every $x$, so $A = f$."
+      },
+      {
+       "tex": "\\mk{u}{\\ku(x,t)} = \\mk{f}{\\kf(x-\\alpha t)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "Example 1.9.1"
+    }
+   ]
+  },
+  {
+   "id": "characteristic-ode",
+   "what": "the ODE along a characteristic curve",
+   "source": "Notes on Diffy Qs, 1.9 First-order linear PDEs",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{dx}{ds} = a, \\qquad \\frac{dt}{ds} = b",
+       "src": "1.9"
+      },
+      {
+       "text": "The chain rule: when $x$ and $t$ are functions of $s$, $\\frac{du}{ds} = u_x \\frac{dx}{ds} + u_t \\frac{dt}{ds}$.",
+       "src": "Calculus, 14.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\kduds} = \\mk{x}{\\kux \\frac{dx}{ds}} + \\mk{t}{\\kut \\frac{dt}{ds}}",
+      "src": "1.9",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kduds} = \\mk{x}{a \\kux} + \\mk{t}{b \\kut}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "1.9"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "a \\kux + b \\kut + c \\ku = g",
+       "src": "1.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{a \\kux} + \\mk{t}{b \\kut} + \\mk{c}{c \\ku} = \\mk{g}{g}",
+      "src": "1.9",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\kduds} + \\mk{c}{c \\ku} = \\mk{g}{g}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "x": "d",
+        "t": "d"
+       }
+      }
+     ],
+     "num": "(1.6)",
+     "src": "1.9"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "1.9.1",
+   "source_number": "1.9.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-9-1",
+   "prompt": "<p>Solve</p><ol type=\\\"a\\\"><li>$9\\kux + \\kut = 0$, $\\ku(x,0) = \\sin(x)$,</li><li>$-8\\kux + \\kut = 0$, $\\ku(x,0) = \\sin(x)$,</li><li>$\\pi \\kux + \\kut = 0$, $\\ku(x,0) = \\sin(x)$,</li><li>$\\pi \\kux + \\kut + \\ku = 0$, $\\ku(x,0) = \\sin(x)$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\ku = \\sin(x - 9t)$. b) $\\ku = \\sin(x + 8t)$. c) $\\ku = \\sin(x - \\pi t)$. d) $\\ku = e^{-t}\\sin(x - \\pi t)$. The first three are transport equations $\\alpha \\kux + \\kut = 0$ with $\\alpha = 9$, $-8$ and $\\pi$, so the initial profile $\\sin(x)$ simply moves with velocity $\\alpha$: $\\ku(x,t) = \\kf(x - \\alpha t) = \\sin(x - \\alpha t)$ (to the left in b), where $\\alpha < 0$). In d) the characteristics are the same as in c), $x = \\xi + \\pi s$, $t = s$, but along them the ODE is $\\kduds + \\ku = 0$, so $\\ku = Ce^{-s}$ with $C = \\sin(\\xi)$ from $s = 0$; substituting $\\xi = x - \\pi t$ and $s = t$ gives $\\ku = e^{-t}\\sin(x - \\pi t)$. Each answer checks: for d), $\\pi\\kux + \\kut + \\ku = \\pi e^{-t}\\cos(x - \\pi t) + \\bigl(-e^{-t}\\sin(x - \\pi t) - \\pi e^{-t}\\cos(x - \\pi t)\\bigr) + e^{-t}\\sin(x - \\pi t) = 0$, and $\\ku(x,0) = \\sin(x)$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "1.9.2",
+   "source_number": "1.9.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-9-2",
+   "prompt": "<p>Solve $3\\kux + \\kut = 1$, $\\ku(x,0) = x^2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku = t + (x - 3t)^2$. The characteristics solve $\\frac{dx}{ds} = 3$, $\\frac{dt}{ds} = 1$ with $x(0) = \\xi$, $t(0) = 0$, so $x = \\xi + 3s$, $t = s$. Along them the ODE (1.6) is $\\kduds = 1$, so $\\ku = s + C$, and at $s = 0$ we need $\\ku = \\xi^2$, so $C = \\xi^2$ and $\\ku = s + \\xi^2$. Substituting $\\xi = x - 3t$ and $s = t$ gives $\\ku = t + (x - 3t)^2$. Check: $3\\kux + \\kut = 3 \\cdot 2(x - 3t) + \\bigl(1 - 6(x - 3t)\\bigr) = 1$, and $\\ku(x,0) = x^2$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "1.9.3",
+   "source_number": "1.9.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-9-2",
+   "prompt": "<p>Solve $3\\kux + \\kut = x$, $\\ku(x,0) = e^x$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku = xt - \\tfrac{3}{2}t^2 + e^{x - 3t}$. As in the previous exercise the characteristics are $x = \\xi + 3s$, $t = s$. Along them the ODE is $\\kduds = x = \\xi + 3s$, so $\\ku = \\xi s + \\tfrac{3}{2}s^2 + C$, and $\\ku = e^{\\xi}$ at $s = 0$ gives $C = e^{\\xi}$. Substituting $\\xi = x - 3t$ and $s = t$: $\\ku = (x - 3t)t + \\tfrac{3}{2}t^2 + e^{x - 3t} = xt - \\tfrac{3}{2}t^2 + e^{x - 3t}$. Check: $3\\kux + \\kut = 3\\bigl(t + e^{x - 3t}\\bigr) + \\bigl(x - 3t - 3e^{x - 3t}\\bigr) = x$, and $\\ku(x,0) = e^x$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "1.9.4",
+   "source_number": "1.9.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-9-2",
+   "prompt": "<p>Solve $\\kux+\\kut+x\\ku = 0$, $\\ku(x,0) = \\cos(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku = \\cos(x - t)\\,e^{-xt + t^2/2}$. The characteristics solve $\\frac{dx}{ds} = 1$, $\\frac{dt}{ds} = 1$, so $x = \\xi + s$, $t = s$. Along them the ODE is $\\kduds + (\\xi + s)\\ku = 0$, a linear equation with integrating factor $e^{\\xi s + s^2/2}$, so $\\ku = Ce^{-\\xi s - s^2/2}$, and $\\ku = \\cos(\\xi)$ at $s = 0$ gives $C = \\cos(\\xi)$. Substituting $\\xi = x - t$ and $s = t$: the exponent is $-(x - t)t - t^2/2 = -xt + t^2/2$, so $\\ku = \\cos(x - t)\\,e^{-xt + t^2/2}$. Check: $\\kux = \\bigl(-\\sin(x - t) - t\\cos(x - t)\\bigr)e^{-xt + t^2/2}$ and $\\kut = \\bigl(\\sin(x - t) + (t - x)\\cos(x - t)\\bigr)e^{-xt + t^2/2}$, so $\\kux + \\kut + x\\ku = (-t + t - x + x)\\cos(x - t)\\,e^{-xt + t^2/2} = 0$, and $\\ku(x,0) = \\cos(x)$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "1.9.5",
+   "source_number": "1.9.5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-coords",
+   "prompt": "<ol type=\\\"a\\\"><li>Find the characteristic coordinates for the following equations:<ol><li>$\\kux+\\kut + \\ku = 1$, $\\ku(x,0) = \\cos(x)$,</li><li>$2\\kux+2\\kut +2\\ku = 2$, $\\ku(x,0) = \\cos(x)$.</li></ol></li><li>Solve the two equations using the coordinates.</li><li>Explain why you got the same solution, although the characteristic coordinates you found were different.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) For 1), $\\frac{dx}{ds} = 1$, $\\frac{dt}{ds} = 1$ with $x(0) = \\xi$, $t(0) = 0$ give $x = \\xi + s$, $t = s$, that is, $\\xi = x - t$, $s = t$. For 2), $\\frac{dx}{ds} = 2$, $\\frac{dt}{ds} = 2$ give $x = \\xi + 2s$, $t = 2s$, that is, $\\xi = x - t$, $s = t/2$. b) For 1) the ODE along a characteristic is $\\kduds + \\ku = 1$, so $\\ku = 1 + Ce^{-s}$, and $\\ku = \\cos(\\xi)$ at $s = 0$ gives $C = \\cos(\\xi) - 1$; with $\\xi = x - t$, $s = t$, $\\ku = 1 + \\bigl(\\cos(x - t) - 1\\bigr)e^{-t}$. For 2) the ODE is $\\kduds + 2\\ku = 2$, so $\\ku = 1 + Ce^{-2s}$ with the same $C = \\cos(\\xi) - 1$; with $\\xi = x - t$, $s = t/2$, $e^{-2s} = e^{-t}$ and again $\\ku = 1 + \\bigl(\\cos(x - t) - 1\\bigr)e^{-t}$. c) The second equation is the first multiplied by $2$, so it has exactly the same solutions. The characteristic curves are the same lines $x - t = \\xi$ in both cases; only the parameter $s$ along them differs, running twice as fast in 2) ($s = t/2$ instead of $s = t$), and the ODE along the curve changes accordingly ($\\kduds + 2\\ku = 2$ instead of $\\kduds + \\ku = 1$), so the value of $\\ku$ at each point $(x, t)$ comes out the same. Check: $\\kux + \\kut + \\ku = -\\sin(x - t)e^{-t} + \\bigl(\\sin(x - t) - \\cos(x - t) + 1\\bigr)e^{-t} + 1 + \\bigl(\\cos(x - t) - 1\\bigr)e^{-t} = 1$, and $\\ku(x,0) = \\cos(x)$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "1.9.6",
+   "source_number": "1.9.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-9-3",
+   "prompt": "<p>Solve $x^2 \\kux + (1+x^2) \\kut + e^x \\ku = 0$, $\\ku(x,0) = 0$. Hint: Think a little out of the box.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku = 0$. The zero function satisfies the equation, since every term has a factor of $\\ku$ or a derivative of $\\ku$, and it satisfies the initial condition $\\ku(x,0) = 0$. No characteristic coordinates are needed. To see that it is the only solution the method gives: along any characteristic $\\bigl(x(s), t(s)\\bigr)$ with $\\frac{dx}{ds} = x^2$, $\\frac{dt}{ds} = 1 + x^2$, the ODE is $\\kduds + e^{x(s)}\\ku = 0$, a linear homogeneous equation whose solution with $\\ku = 0$ at $s = 0$ is $\\ku = 0$; and since $b = 1 + x^2 > 0$, these curves reach every point with $t > 0$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "1.9.101",
+   "source_number": "1.9.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-9-1",
+   "prompt": "<p>Solve</p><ol type=\\\"a\\\"><li>$-5\\kux + \\kut = 0$, $\\ku(x,0) = \\frac{1}{1+x^2}$,</li><li>$2\\kux + \\kut = 0$, $\\ku(x,0) = \\cos(x)$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\ku = \\frac{1}{1+{(x+5t)}^2}$ b) $\\ku = \\cos(x-2t)$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "1.9.102",
+   "source_number": "1.9.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-9-2",
+   "prompt": "<p>Solve $\\kux+\\kut+t\\ku = 0$, $\\ku(x,0) = \\cos(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ku = \\cos(x-t)e^{-t^2/2}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "1.9.103",
+   "source_number": "1.9.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-9-2",
+   "prompt": "<p>Solve $\\kux+\\kut = 5$, $\\ku(x,0) = x$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ku = x + 4t$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "transport-equation"
+  },
+  {
+   "exercise": "e1",
+   "concept": "transport-solution"
+  },
+  {
+   "exercise": "e1",
+   "concept": "characteristic-ode"
+  },
+  {
+   "exercise": "e2",
+   "concept": "method-of-characteristics"
+  },
+  {
+   "exercise": "e2",
+   "concept": "characteristic-ode"
+  },
+  {
+   "exercise": "e3",
+   "concept": "method-of-characteristics"
+  },
+  {
+   "exercise": "e3",
+   "concept": "characteristic-ode"
+  },
+  {
+   "exercise": "e4",
+   "concept": "method-of-characteristics"
+  },
+  {
+   "exercise": "e4",
+   "concept": "characteristic-ode"
+  },
+  {
+   "exercise": "e5",
+   "concept": "characteristic-coordinates"
+  },
+  {
+   "exercise": "e5",
+   "concept": "method-of-characteristics"
+  },
+  {
+   "exercise": "e6",
+   "concept": "method-of-characteristics"
+  },
+  {
+   "exercise": "e6",
+   "concept": "characteristic-ode"
+  },
+  {
+   "exercise": "e101",
+   "concept": "transport-equation"
+  },
+  {
+   "exercise": "e101",
+   "concept": "transport-solution"
+  },
+  {
+   "exercise": "e102",
+   "concept": "method-of-characteristics"
+  },
+  {
+   "exercise": "e102",
+   "concept": "characteristic-ode"
+  },
+  {
+   "exercise": "e103",
+   "concept": "method-of-characteristics"
+  },
+  {
+   "exercise": "e103",
+   "concept": "characteristic-ode"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-moving-left",
+   "kind": "book",
+   "html": "That is assuming $\\alpha > 0$. If $\\alpha < 0$, then we are moving to the left.",
+   "number": "9"
+  }
+ ]
+}

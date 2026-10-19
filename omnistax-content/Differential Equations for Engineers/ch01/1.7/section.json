@@ -1,0 +1,369 @@
+{
+ "id": "1.7",
+ "module": "numer:section",
+ "chapter": "1",
+ "title": "Numerical methods: Euler’s method",
+ "short": "Euler’s method",
+ "lead": "When $\\kyprime = \\kf(x, \\ky)$ has no formula for its <span data-concept=\"solution-to-a-differential-equation\">solution</span>, the solution can still be approximated one short step at a time. This section introduces <span data-concept=\"eulers-method\">Euler’s method</span> and its <span data-concept=\"step-size\">step size</span>, asks how far the approximation is from the actual solution and what happens to that <span data-concept=\"approximation-error\">error</span> as the step size is halved, then turns to the better methods real applications use and the factors that make choosing a step size tricky.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count, “can safely be skipped” and the [EP] and [BD] section numbers) are left out; the Runge–Kutta and improved Euler paragraphs, which the book prints among the exercises, stand in the text before them.",
+ "ai": {
+  "text": [{"model": "claude-fable-5-1", "effort": "high"}],
+  "figures": [{"model": "claude-fable-5-1", "effort": "high"}]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 1.7.101–1.7.104 carry the book’s own answers, each recomputed. The inline exercises 1.7.1 and 1.7.2 and exercises 1.7.3–1.7.7, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked numerically (the exact solution of 1.7.1 with SymPy) before it was written.",
+ "figures": [
+  {
+   "id": "sim-euler",
+   "kind": "sim",
+   "number": "1.16",
+   "folds": ["1.17"],
+   "originals": ["/media/ch01/euler-steps-1-2.svg", "/media/ch01/euler-step12-sol.svg"],
+   "original_caption": "(Figure 1.16) First two steps of Euler’s method with h = 1 for the equation y′ = y²/3 with initial condition y(0) = 1. (Figure 1.17) Two steps of Euler’s method (step size 1) and the exact solution for the equation y′ = y²/3 with initial condition y(0) = 1.",
+   "widths": [864, 432],
+   "draws": ["function", "derivative", "error", "point"],
+   "ai": [{"model": "claude-fable-5-1", "effort": "high", "part": "built"}]
+  },
+  {
+   "id": "sim-method-order",
+   "kind": "sim",
+   "draws": ["function", "derivative", "error", "point"],
+   "ai": [{"model": "claude-fable-5-1", "effort": "high", "part": "built"}]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {"span": "euler-definition", "concept": "eulers-method", "verb": "introduces"},
+  {"span": "euler-definition", "concept": "step-size", "verb": "introduces"},
+  {"span": "error-definition", "concept": "approximation-error", "verb": "introduces"},
+  {"span": "order-definition", "concept": "order-of-a-numerical-method", "verb": "introduces"},
+  {"span": "estimate-by-halving", "concept": "estimating-the-error-by-halving", "verb": "introduces"},
+  {"span": "choosing", "concept": "choosing-a-step-size", "verb": "introduces"},
+  {"span": "stiff", "concept": "stiff-problem", "verb": "introduces"},
+  {"span": "runge-kutta", "concept": "runge-kutta-method", "verb": "introduces"},
+  {"span": "improved-euler", "concept": "improved-eulers-method", "verb": "introduces"},
+  {"span": "ivp-hard", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "ivp-hard", "concept": "initial-value", "verb": "uses"},
+  {"span": "ivp-hard", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "why-numerical", "concept": "closed-form", "verb": "uses"},
+  {"span": "why-numerical", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "euler-definition", "concept": "initial-value", "verb": "uses"},
+  {"span": "euler-definition", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "euler-first-steps", "concept": "eulers-method", "verb": "uses"},
+  {"span": "euler-first-steps", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-euler", "concept": "eulers-method", "verb": "uses"},
+  {"span": "sim-euler", "concept": "step-size", "verb": "uses"},
+  {"span": "sim-euler", "concept": "approximation-error", "verb": "uses"},
+  {"span": "sim-euler", "concept": "direction-field", "verb": "uses"},
+  {"span": "sim-euler", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-euler", "concept": "initial-value", "verb": "uses"},
+  {"span": "euler-general", "concept": "eulers-method", "verb": "uses"},
+  {"span": "euler-general", "concept": "step-size", "verb": "uses"},
+  {"span": "eq-euler-step", "concept": "eulers-method", "verb": "uses"},
+  {"span": "euler-approximation", "concept": "eulers-method", "verb": "uses"},
+  {"span": "euler-approximation", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "error-definition", "concept": "eulers-method", "verb": "uses"},
+  {"span": "error-definition", "concept": "step-size", "verb": "uses"},
+  {"span": "error-definition", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "eq-error", "concept": "approximation-error", "verb": "uses"},
+  {"span": "error-unknown", "concept": "approximation-error", "verb": "uses"},
+  {"span": "error-unknown", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "halving", "concept": "step-size", "verb": "uses"},
+  {"span": "halving", "concept": "approximation-error", "verb": "uses"},
+  {"span": "halving", "concept": "eulers-method", "verb": "uses"},
+  {"span": "tab-1-1", "concept": "eulers-method", "verb": "uses"},
+  {"span": "tab-1-1", "concept": "approximation-error", "verb": "uses"},
+  {"span": "tab-1-1", "concept": "step-size", "verb": "uses"},
+  {"span": "order-definition", "concept": "approximation-error", "verb": "uses"},
+  {"span": "order-definition", "concept": "eulers-method", "verb": "uses"},
+  {"span": "order-definition", "concept": "step-size", "verb": "uses"},
+  {"span": "order-definition", "concept": "improved-eulers-method", "verb": "uses"},
+  {"span": "halvings-cost", "concept": "approximation-error", "verb": "uses"},
+  {"span": "halvings-cost", "concept": "order-of-a-numerical-method", "verb": "uses"},
+  {"span": "halvings-cost", "concept": "improved-eulers-method", "verb": "uses"},
+  {"span": "halvings-cost", "concept": "step-size", "verb": "uses"},
+  {"span": "estimate-by-halving", "concept": "approximation-error", "verb": "uses"},
+  {"span": "estimate-by-halving", "concept": "step-size", "verb": "uses"},
+  {"span": "estimate-by-halving", "concept": "eulers-method", "verb": "uses"},
+  {"span": "blowup-table", "concept": "eulers-method", "verb": "uses"},
+  {"span": "blowup-table", "concept": "step-size", "verb": "uses"},
+  {"span": "blowup-table", "concept": "interval-of-existence", "verb": "uses"},
+  {"span": "blowup-table", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "tab-1-2", "concept": "eulers-method", "verb": "uses"},
+  {"span": "oscillating", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "oscillating", "concept": "step-size", "verb": "uses"},
+  {"span": "oscillating", "concept": "eulers-method", "verb": "uses"},
+  {"span": "rk-in-practice", "concept": "eulers-method", "verb": "uses"},
+  {"span": "rk-in-practice", "concept": "runge-kutta-method", "verb": "uses"},
+  {"span": "rk-in-practice", "concept": "order-of-a-numerical-method", "verb": "uses"},
+  {"span": "rk-in-practice", "concept": "step-size", "verb": "uses"},
+  {"span": "rk-in-practice", "concept": "approximation-error", "verb": "uses"},
+  {"span": "choosing", "concept": "step-size", "verb": "uses"},
+  {"span": "choosing-factors", "concept": "step-size", "verb": "uses"},
+  {"span": "choosing-factors", "concept": "approximation-error", "verb": "uses"},
+  {"span": "choosing-factors", "concept": "choosing-a-step-size", "verb": "uses"},
+  {"span": "stiff", "concept": "step-size", "verb": "uses"},
+  {"span": "stiff", "concept": "choosing-a-step-size", "verb": "uses"},
+  {"span": "research", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "runge-kutta", "concept": "eulers-method", "verb": "uses"},
+  {"span": "runge-kutta", "concept": "step-size", "verb": "uses"},
+  {"span": "runge-kutta", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "runge-kutta", "concept": "initial-value", "verb": "uses"},
+  {"span": "eq-rk4", "concept": "runge-kutta-method", "verb": "uses"},
+  {"span": "improved-euler", "concept": "eulers-method", "verb": "uses"},
+  {"span": "improved-euler", "concept": "order-of-a-numerical-method", "verb": "uses"},
+  {"span": "improved-euler", "concept": "step-size", "verb": "uses"},
+  {"span": "improved-euler", "concept": "approximation-error", "verb": "uses"},
+  {"span": "eq-improved-euler", "concept": "improved-eulers-method", "verb": "uses"},
+  {"span": "sim-method-order", "concept": "eulers-method", "verb": "uses"},
+  {"span": "sim-method-order", "concept": "improved-eulers-method", "verb": "uses"},
+  {"span": "sim-method-order", "concept": "runge-kutta-method", "verb": "uses"},
+  {"span": "sim-method-order", "concept": "order-of-a-numerical-method", "verb": "uses"},
+  {"span": "sim-method-order", "concept": "approximation-error", "verb": "uses"},
+  {"span": "sim-method-order", "concept": "step-size", "verb": "uses"},
+  {"span": "sim-method-order", "concept": "estimating-the-error-by-halving", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "1.7.1",
+   "source_number": "1.7.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {"at": "inline", "after": "error-unknown"},
+   "cite": "error-definition",
+   "prompt": "<p>Solve the problem $\\kyprime = {\\ky^2}/{3}$, $\\ky(0)=1$ exactly and show that $\\ky(2) = 3$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The equation is separable: $\\frac{d\\ky}{\\ky^2} = \\frac{dx}{3}$, so $-\\frac{1}{\\ky} = \\frac{x}{3} + C$. The initial condition $\\ky(0) = 1$ gives $C = -1$, so $-\\frac{1}{\\ky} = \\frac{x - 3}{3}$ and $\\ky = \\frac{3}{3 - x}$. Check: $\\kyprime = \\frac{3}{(3 - x)^2} = \\frac{1}{3}\\left(\\frac{3}{3 - x}\\right)^2 = \\frac{\\ky^2}{3}$. Then $\\ky(2) = \\frac{3}{3 - 2} = 3$, the value the errors of the text are measured against. The solution blows up at $x = 3$, which is why the approximations of $\\ky(3)$ in Table 1.2 never settle."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "1.7.2",
+   "source_number": "1.7.2",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {"at": "inline", "after": "estimate-by-halving"},
+   "cite": "estimate-by-halving",
+   "prompt": "<p>In the table above, suppose you do not know the error. Take the approximate values of the function in the last two lines, assume that the error halves. Can you estimate the error in the last line from this information? Does it (approximately) agree with the table? Now do it for the first two rows. Does this agree with the table? Feel free to assume that the real value of $\\ky(2)$ is bigger than any of the approximate values, but you are not allowed to know the real value.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Call the unknown error of the next-to-last line ($h = 0.015625$) $E$. If the error halves, the last line ($h = 0.0078125$) has error $E/2$, and since both approximations lie below the real value, their difference is $E - E/2 = E/2$. So the error of the last line is estimated as $2.97472 - 2.95035 = 0.02437$, against the table’s $0.02528$: it agrees to within about $4\\%$. The same reasoning on the first two rows estimates the error of the second row as $2.20861 - 1.92593 = 0.28268$ (and that of the first as twice that, $0.56536$), while the table has $0.79139$ and $1.07407$. This does not agree: for large $h$ the error falls by a factor of about $0.74$, not $\\frac{1}{2}$, so the assumption is only good once $h$ is small."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "1.7.3",
+   "source_number": "1.7.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "euler-general",
+   "prompt": "<p>Consider $\\kdxdt = {(2t-\\kx)}^2$, $\\kx(0)=2$. Use Euler’s method with step size $h=0.5$ to approximate $\\kx(1)$.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 8.5,
+    "solution": "Here $\\kf(t, \\kx) = (2t - \\kx)^2$, $t_0 = 0$, $x_0 = 2$ and $h = 0.5$. First step: the slope is $\\kf(0, 2) = (0 - 2)^2 = 4$, so $x_1 = 2 + 0.5 \\cdot 4 = 4$ at $t_1 = 0.5$. Second step: the slope is $\\kf(0.5, 4) = (1 - 4)^2 = 9$, so $x_2 = 4 + 0.5 \\cdot 9 = 8.5$ at $t_2 = 1$. Hence $\\kx(1) \\approx 8.5$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "1.7.4",
+   "source_number": "1.7.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "order-definition",
+   "prompt": "<p>Consider $\\kdxdt = t-\\kx$, $\\kx(0)=1$.</p><ol type=\"a\"><li>Use Euler’s method with step sizes $h = 1, {1}/{2}, {1}/{4}, {1}/{8}$ to approximate $\\kx(1)$.</li><li>Solve the equation exactly.</li><li>Describe what happens to the errors for each $h$ you used. That is, find the factor by which the error changed each time you halved the step size.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {"part": "a) h = 1", "value": 0},
+     {"part": "a) h = 1/2", "value": 0.5},
+     {"part": "a) h = 1/4", "value": 0.6328, "tol": 0.001},
+     {"part": "a) h = 1/8", "value": 0.6872, "tol": 0.001},
+     {"part": "b) x(1)", "value": 0.7358, "tol": 0.001},
+     {"part": "c) factor, 1 to 1/2", "value": 0.32, "tol": 0.03},
+     {"part": "c) factor, 1/2 to 1/4", "value": 0.44, "tol": 0.03},
+     {"part": "c) factor, 1/4 to 1/8", "value": 0.47, "tol": 0.03}
+    ],
+    "solution": "a) $\\kf(t, \\kx) = t - \\kx$ and $x_0 = 1$. With $h = 1$: $x_1 = 1 + 1 \\cdot (0 - 1) = 0$, so $\\kx(1) \\approx 0$. With $h = \\frac{1}{2}$: $x_1 = 1 + \\frac{1}{2}(0 - 1) = \\frac{1}{2}$, $x_2 = \\frac{1}{2} + \\frac{1}{2}\\bigl(\\frac{1}{2} - \\frac{1}{2}\\bigr) = \\frac{1}{2}$, so $\\kx(1) \\approx 0.5$. With $h = \\frac{1}{4}$: $x_1 = 0.75$, $x_2 = 0.625$, $x_3 = 0.59375$, $x_4 = 0.6328$, so $\\kx(1) \\approx 0.6328$. With $h = \\frac{1}{8}$, eight steps give $\\kx(1) \\approx 0.6872$. b) The equation is linear, $\\kxprime + \\kx = t$, with integrating factor $e^{t}$: $(e^{t}\\kx)' = te^{t}$, so $e^{t}\\kx = (t - 1)e^{t} + C$ and $\\kx = t - 1 + Ce^{-t}$; $\\kx(0) = 1$ gives $C = 2$, so $\\kx = t - 1 + 2e^{-t}$ and $\\kx(1) = 2/e \\approx 0.7358$. c) The errors are $0.7358$, $0.2358$, $0.1029$ and $0.0485$. Each halving multiplied the error by about $0.32$, then $0.44$, then $0.47$: factors that approach $\\frac{1}{2}$ as $h$ shrinks, as a first-order method’s should."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "1.7.5",
+   "source_number": "1.7.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "euler-general",
+   "prompt": "<p>Approximate the value of $e$ by looking at the initial value problem $\\kyprime=\\ky$ with $\\ky(0)=1$ and approximating $\\ky(1)$ using Euler’s method with a step size of $0.2$.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 2.48832,
+    "tol": 0.001,
+    "solution": "With $\\kf(x, \\ky) = \\ky$ and $h = 0.2$, each step is $y_{i+1} = y_i + 0.2\\,y_i = 1.2\\,y_i$: every step multiplies the value by $1.2$. Five steps take $x$ from $0$ to $1$, so $\\ky(1) \\approx y_5 = 1.2^5 = 2.48832$. The exact value is $e \\approx 2.71828$, so the approximation is off by about $0.23$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "1.7.6",
+   "source_number": "1.7.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "choosing",
+   "prompt": "<p>Example of numerical instability: Take $\\kyprime = -5\\ky$, $\\ky(0) = 1$. We know that the solution should decay to zero as $x$ grows. Using Euler’s method, start with $h=1$ and compute $y_1, y_2, y_3, y_4$ to try to approximate $\\ky(4)$. What happened? Now halve the step size. Keep halving the step size and approximating $\\ky(4)$ until the numbers you are getting start to stabilize (that is, until they start going towards zero). Note: You might want to use a calculator.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $h = 1$ each step is $y_{i+1} = y_i + 1 \\cdot (-5y_i) = -4y_i$, so $y_1 = -4$, $y_2 = 16$, $y_3 = -64$, $y_4 = 256$: the approximation of $\\ky(4)$ grows in size and flips sign at every step, while the actual solution $\\ky = e^{-5x}$ has $\\ky(4) = e^{-20} \\approx 2 \\times 10^{-9}$. In general one step multiplies $\\ky$ by $1 - 5h$, so the numbers go toward zero only when $\\lvert 1 - 5h \\rvert < 1$, that is, when $h < 0.4$. With $h = 0.5$ the factor is $-1.5$ and after 8 steps $\\ky(4) \\approx (-1.5)^8 \\approx 25.6$, still growing. With $h = 0.25$ the factor is $-0.25$ and $\\ky(4) \\approx (-0.25)^{16} \\approx 2.3 \\times 10^{-10}$: the numbers now go toward zero, though they still alternate in sign. With $h = 0.125$ the factor is $0.375$ and $\\ky(4) \\approx 0.375^{32} \\approx 2.3 \\times 10^{-14}$, decaying without a sign change. So the numbers start to stabilize once the step size is halved twice, to $h = 0.25$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "1.7.7",
+   "source_number": "1.7.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "runge-kutta",
+   "prompt": "<p>Consider $\\kdydx = \\ky x^2$, $\\ky(0)=1$.</p><ol type=\"a\"><li>Approximate $\\ky(1)$ using Runge–Kutta (see above) with step sizes $h=1$ and $h={1}/{2}$.</li><li>Approximate $\\ky(1)$ using Euler’s method with $h=1$ and $h={1}/{2}$.</li><li>Solve exactly, find the exact value of $\\ky(1)$, and compare with the approximations.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {"part": "a) Runge–Kutta, h = 1", "value": 1.3906, "tol": 0.001},
+     {"part": "a) Runge–Kutta, h = 1/2", "value": 1.3953, "tol": 0.001},
+     {"part": "b) Euler, h = 1", "value": 1},
+     {"part": "b) Euler, h = 1/2", "value": 1.125},
+     {"part": "c) y(1)", "value": 1.3956, "tol": 0.001}
+    ],
+    "solution": "Here $\\kf(x, \\ky) = \\ky x^2$ and $y_0 = 1$. a) Runge–Kutta with $h = 1$: $k_1 = \\kf(0, 1) = 0$, $k_2 = \\kf(0.5, 1) = 0.25$, $k_3 = \\kf(0.5, 1.125) = 0.28125$, $k_4 = \\kf(1, 1.28125) = 1.28125$, so $\\ky(1) \\approx 1 + \\frac{0 + 0.5 + 0.5625 + 1.28125}{6} = 1.390625$. With $h = \\frac{1}{2}$, two such steps give $\\ky(1) \\approx 1.3953$. b) Euler with $h = 1$: $y_1 = 1 + 1 \\cdot \\kf(0, 1) = 1$. With $h = \\frac{1}{2}$: $y_1 = 1 + \\frac{1}{2}\\kf(0, 1) = 1$ and $y_2 = 1 + \\frac{1}{2}\\kf\\bigl(\\frac{1}{2}, 1\\bigr) = 1 + \\frac{1}{2} \\cdot \\frac{1}{4} = 1.125$. c) Separating variables, $\\frac{d\\ky}{\\ky} = x^2\\,dx$, so $\\ln \\ky = \\frac{x^3}{3} + C$, and $\\ky(0) = 1$ gives $\\ky = e^{x^3/3}$; hence $\\ky(1) = e^{1/3} \\approx 1.3956$. Runge–Kutta is within $0.005$ of it at $h = 1$ and within $0.0003$ at $h = \\frac{1}{2}$, while Euler is off by $0.40$ and $0.27$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "1.7.101",
+   "source_number": "1.7.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "euler-general",
+   "prompt": "<p>Let $\\kxprime = \\sin(\\kx t)$, and $\\kx(0)=1$. Approximate $\\kx(1)$ using Euler’s method with step sizes 1, 0.5, 0.25. Use a calculator and compute up to 4 decimal digits.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "h = 1", "value": 1},
+     {"part": "h = 0.5", "value": 1.2397, "tol": 0.001},
+     {"part": "h = 0.25", "value": 1.3829, "tol": 0.001}
+    ],
+    "solution": "Approximately: 1.0000, 1.2397, 1.3829"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "1.7.102",
+   "source_number": "1.7.102",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "order-definition",
+   "prompt": "<p>Let $\\kxprime = 2t$, and $\\kx(0)=0$.</p><ol type=\"a\"><li>Approximate $\\kx(4)$ using Euler’s method with step sizes 4, 2, and 1.</li><li>Solve exactly, and compute the errors.</li><li>Compute the factor by which the errors changed.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "a) h = 4", "value": 0},
+     {"part": "a) h = 2", "value": 8},
+     {"part": "a) h = 1", "value": 12},
+     {"part": "b) x(4)", "value": 16},
+     {"part": "b) error, h = 4", "value": 16},
+     {"part": "b) error, h = 2", "value": 8},
+     {"part": "b) error, h = 1", "value": 4},
+     {"part": "c) factor, 4 to 2", "value": 0.5},
+     {"part": "c) factor, 2 to 1", "value": 0.5}
+    ],
+    "solution": "a) 0, 8, 12 b) $\\kx(4) = 16$, so errors are: 16, 8, 4. c) Factors are 0.5 and 0.5."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "1.7.103",
+   "source_number": "1.7.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "euler-general",
+   "prompt": "<p>Let $\\kxprime = \\kx e^{\\kx t+1}$, and $\\kx(0)=0$.</p><ol type=\"a\"><li>Approximate $\\kx(4)$ using Euler’s method with step sizes 4, 2, and 1.</li><li>Guess an exact solution based on part a) and compute the errors.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) 0, 0, 0 b) $\\kx=0$ is a solution so errors are: 0, 0, 0."
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "1.7.104",
+   "source_number": "1.7.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "improved-euler",
+   "prompt": "<p>Consider $\\kdydx = x+\\ky$, $\\ky(0)=1$.</p><ol type=\"a\"><li>Approximate $\\ky(1)$ using the improved Euler’s method (see above) with step sizes $h={1}/{4}$ and $h={1}/{8}$.</li><li>Approximate $\\ky(1)$ using Euler’s method with $h={1}/{4}$ and $h={1}/{8}$.</li><li>Solve exactly, find the exact value of $\\ky(1)$.</li><li>Compute the errors, and the factors by which the errors changed.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "a) improved Euler, h = 1/4", "value": 3.3897, "tol": 0.001},
+     {"part": "a) improved Euler, h = 1/8", "value": 3.4237, "tol": 0.001},
+     {"part": "b) Euler, h = 1/4", "value": 2.8828, "tol": 0.001},
+     {"part": "b) Euler, h = 1/8", "value": 3.1316, "tol": 0.001},
+     {"part": "c) y(1)", "value": 3.4366, "tol": 0.001},
+     {"part": "d) factor, improved Euler", "value": 0.27, "tol": 0.05},
+     {"part": "d) factor, Euler", "value": 0.55, "tol": 0.05}
+    ],
+    "solution": "a) Improved Euler: $\\ky(1) \\approx 3.3897$ for $h={1}/{4}$, $\\ky(1) \\approx 3.4237$ for $h={1}/{8}$, b) Standard Euler: $\\ky(1) \\approx 2.8828$ for $h={1}/{4}$, $\\ky(1) \\approx 3.1316$ for $h={1}/{8}$, c) $\\ky = 2e^x-x-1$, so $\\ky(1)$ is approximately $3.4366$. d) Approximate errors for improved Euler: $0.046852$ for $h={1}/{4}$ and $0.012881$ for $h={1}/{8}$. For standard Euler: $0.55375$ for $h={1}/{4}$ and $0.30499$ for $h={1}/{8}$. Factor is approximately $0.27$ for improved Euler and $0.55$ for standard Euler."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "approximation-error"},
+  {"exercise": "e1", "concept": "separation-of-variables"},
+  {"exercise": "e2", "concept": "estimating-the-error-by-halving"},
+  {"exercise": "e2", "concept": "order-of-a-numerical-method"},
+  {"exercise": "e3", "concept": "eulers-method"},
+  {"exercise": "e4", "concept": "eulers-method"},
+  {"exercise": "e4", "concept": "approximation-error"},
+  {"exercise": "e4", "concept": "order-of-a-numerical-method"},
+  {"exercise": "e5", "concept": "eulers-method"},
+  {"exercise": "e6", "concept": "eulers-method"},
+  {"exercise": "e6", "concept": "choosing-a-step-size"},
+  {"exercise": "e6", "concept": "stiff-problem"},
+  {"exercise": "e7", "concept": "runge-kutta-method"},
+  {"exercise": "e7", "concept": "eulers-method"},
+  {"exercise": "e7", "concept": "approximation-error"},
+  {"exercise": "e101", "concept": "eulers-method"},
+  {"exercise": "e102", "concept": "eulers-method"},
+  {"exercise": "e102", "concept": "approximation-error"},
+  {"exercise": "e102", "concept": "order-of-a-numerical-method"},
+  {"exercise": "e103", "concept": "eulers-method"},
+  {"exercise": "e104", "concept": "improved-eulers-method"},
+  {"exercise": "e104", "concept": "eulers-method"},
+  {"exercise": "e104", "concept": "order-of-a-numerical-method"}
+ ],
+ "footnotes": [
+  {"id": "fn-euler", "kind": "book", "number": "1", "html": "Named after the Swiss mathematician <a href=\"https://en.wikipedia.org/wiki/Euler\">Leonhard Paul Euler</a> (1707–1783). The correct pronunciation of the name sounds more like “oiler.”"}
+ ]
+}
