@@ -1,0 +1,78 @@
+<section id="periodically-forced">
+<h2>Periodically forced oscillation</h2>
+<p id="setup">We return to <span data-concept="forced-motion">forced oscillations</span>. Consider a <span data-concept="mass-spring-system">mass-spring system</span> as before, where we have a mass $m$ on a spring with spring constant $k$, with damping $c$, and a force $\kF(t)$ applied to the mass. Suppose the forcing function $\kF(t)$ is <span data-concept="periodic-function">$2L$-periodic</span> for some $L &gt; 0$. We saw this problem in <a href="/diffyqs/ch02/2.6/">chapter 2</a> with $\kF(t) = F_0 \cos (\komega t)$. The equation that governs this particular setup is</p>
+<div class="equation" id="eq-4-9">$$ m\kxdprime(t) + c\kxprime(t) + k\kx(t) = \kF(t) . \tag{4.9}$$</div>
+<p id="steady-periodic">The <span data-concept="general-solution">general solution</span> of <a href="#eq-4-9">(4.9)</a> consists of the <span data-concept="complementary-solution">complementary solution</span> $\kxc$, which solves the <span data-concept="complementary-equation">associated homogeneous equation</span> $m\kxdprime + c\kxprime + k\kx = 0$, and a <span data-concept="particular-solution">particular solution</span> of <a href="#eq-4-9">(4.9)</a> we call $\kxp$. For $c &gt; 0$, the <span data-concept="complementary-solution">complementary solution</span> $\kxc$ will decay as time goes by. Therefore, we are mostly interested in a <span data-concept="particular-solution">particular solution</span> $\kxp$ that does not decay and is periodic with the same period as $\kF(t)$. We call this <span data-concept="particular-solution">particular solution</span> the <em><span data-concept="steady-state-solution">steady periodic solution</span></em> and we write it as $\kxsp$ as before. What is new in this section is that we consider an arbitrary forcing function $\kF(t)$ instead of a simple cosine.</p>
+<p id="undamped">For simplicity, suppose $c=0$. The problem with $c &gt; 0$ is very similar. The equation</p>
+$$ m\kxdprime + k\kx = 0 $$
+<p>has the <span data-concept="general-solution">general solution</span></p>
+$$ \kx(t) = A \cos (\komegazero t) + B \sin (\komegazero t) , $$
+<p id="undamped-form">where $\komegazero = \sqrt{\frac{k}{m}}$. Any solution to $m\kxdprime(t) + k\kx(t) = \kF(t)$ is of the form $A \cos (\komegazero t) + B \sin (\komegazero t) + \kxsp$. The <span data-concept="steady-state-solution">steady periodic solution</span> $\kxsp$ has the same period as $\kF(t)$.</p>
+<p id="series-intro">In the spirit of <a href="/diffyqs/ch04/4.4/">the last section</a> and the idea of <span data-concept="method-of-undetermined-coefficients">undetermined coefficients</span>, we first write</p>
+<div class="equation" id="eq-forcing-series">$$ \kF(t) = \frac{\kczero}{2} + \sum_{n=1}^\infty \Bigl[ \kcn \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kdn \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] . $$</div>
+<p>Then we write a proposed <span data-concept="steady-state-solution">steady periodic solution</span> $\kx$ as</p>
+<div class="equation" id="eq-steady-periodic-series">$$ \kx(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kbn \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr], $$</div>
+<p id="series-guess">where $\kan$ and $\kbn$ are unknowns. We plug $\kx$ into the differential equation and solve for $\kan$ and $\kbn$ in terms of $\kcn$ and $\kdn$. This process is perhaps best understood by example.</p>
+<div class="example" id="ex-4-5-1">
+<h3>Example 4.5.1</h3>
+<p id="jetpack">Suppose that $k=2$ and $m=1$. The units are again the mks units (meters-kilograms-seconds). There is a jetpack strapped to the mass, which fires with a force of 1 newton for 1 second and then is off for 1 second, and so on. We want to find the <span data-concept="steady-state-solution">steady periodic solution</span>.</p>
+<p>The equation is, therefore,</p>
+$$ \kxdprime + 2 \kx = \kF(t) , $$
+<p>where $\kF(t)$ is the step function</p>
+$$ \kF(t) = \begin{cases} 0 &amp; \text{if } \; {-1} &lt; t &lt; 0 , \\ 1 &amp; \text{if } \; \phantom{-}0 &lt; t &lt; 1 , \end{cases} $$
+<p><span data-concept="periodic-extension">extended periodically</span>. We write</p>
+$$ \kF(t) = \frac{\kczero}{2} + \sum_{n=1}^\infty \Bigl[ \kcn \cos (n \pi t) + \kdn \sin (n \pi t) \Bigr] . $$
+<p>We compute</p>
+$$ \begin{align*} \kcn &amp; = \int_{-1}^1 \kF(t) \cos (n \pi t) \, dt = \int_{0}^1 \cos (n \pi t) \, dt = 0 \qquad \text{for } \; n \geq 1, \\ \kczero &amp; = \int_{-1}^1 \kF(t) \, dt = \int_{0}^1 \, dt = 1 , \\ \kdn &amp; = \int_{-1}^1 \kF(t) \sin (n \pi t) \, dt \\ &amp; = \int_{0}^1 \sin (n \pi t) \, dt \\ &amp; = \left[ \frac{-\cos (n \pi t)}{n \pi} \right]_{t=0}^1 \\ &amp; = \frac{1-{(-1)}^n}{\pi n} = \begin{cases} \frac{2}{\pi n} &amp; \text{if } n \text{ odd} , \\ 0 &amp; \text{if } n \text{ even} . \end{cases} \end{align*} $$
+<p>So</p>
+$$ \kF(t) = \frac{1}{2} + \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty \frac{2}{\pi n} \sin (n \pi t) . $$
+<p>We want to try</p>
+$$ \kx(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos (n \pi t) + \kbn \sin (n \pi t) \Bigr] . $$
+<p>Once we plug $\kx$ into the differential equation $\kxdprime+2\kx = \kF(t)$, it is clear that $\kan = 0$ for $n \geq 1$ as there are no corresponding terms in the series for $\kF(t)$. Similarly, $\kbn = 0$ for even $n$. Hence we try</p>
+$$ \kx(t) = \frac{\kazero}{2} + \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty \kbn \sin (n \pi t) . $$
+<p>We plug into the differential equation and obtain</p>
+$$ \begin{split} \kxdprime + 2 \kx &amp; = \left( \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty - \kbn n^2 \pi^2 \sin (n \pi t) \right) + \kazero + 2 \left( \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty \kbn \sin (n \pi t) \right) \\ &amp; = \kazero + \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty \kbn (2 - n^2 \pi^2 ) \sin (n \pi t) \\ &amp; = \kF(t) = \frac{1}{2} + \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty \frac{2}{\pi n} \sin (n \pi t) . \end{split} $$
+<p>So $\kazero = \frac{1}{2}$, $\kbn = 0$ for even $n$, and for odd $n$, we get</p>
+$$ \kbn = \frac{2}{\pi n (2 - n^2 \pi^2 )} . $$
+<p>The <span data-concept="steady-state-solution">steady periodic solution</span> has the <span data-concept="fourier-series">Fourier series</span></p>
+<div class="equation" id="eq-jetpack-solution">$$ \kxsp(t) = \frac{1}{4} + \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty \frac{2}{\pi n (2 - n^2 \pi^2 )} \sin (n \pi t) . $$</div>
+<p id="jetpack-check">We know this is the <span data-concept="steady-state-solution">steady periodic solution</span> as it contains no terms of the <span data-concept="complementary-solution">complementary solution</span> and it is periodic with the same period as $\kF(t)$ itself. See Figure 4.14 for the plot of this solution.</p>
+<figure class="sim" id="sim-jetpack" data-figure="4.14" data-original="/media/ch04/afs-steadyex.svg,/media/ch04/massfigforce.svg" data-original-caption="Plot of the steady periodic solution xₛₚ of Example 4.5.1.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.14</span><span>The cart of Example 4.5.1 on its spring, with no damping, the jetpack on its roof firing for one second and resting for the next. The cart rides its <span data-concept="steady-state-solution">steady periodic solution</span> $\kxsp$, the force $\kF(t)$ on the strip above the graph. A stiffer or softer spring changes the swing; on the dashed circles $k = \pi^2$ and $k = 9\pi^2$ the natural frequency $\komegazero = \sqrt{k}$ meets the jetpack’s first or third <span data-concept="harmonic">harmonic</span>, there is no <span data-concept="steady-state-solution">steady periodic solution</span>, and the motion grows as $t$.</span></div>
+</figure>
+</div>
+</section>
+
+<section id="resonance">
+<h2>Resonance</h2>
+<p id="resonance-setup">Just as when the forcing function was a simple cosine, we may encounter <span data-concept="resonance-with-periodic-forcing">resonance</span>. We assume $c=0$ and so we discuss only <span data-concept="resonance">pure resonance</span>. Let $\kF(t)$ be <span data-concept="periodic-function">$2L$-periodic</span> and consider</p>
+$$ m \kxdprime(t) + k \kx (t) = \kF(t) . $$
+<p id="resonance-conflict">When we expand $\kF(t)$ and find that some of its terms coincide with the <span data-concept="complementary-solution">complementary solution</span> to $m\kxdprime+k\kx=0$, we cannot use those terms in the guess. Just like before, they disappear when we plug them into the left-hand side, and we get a contradictory equation (such as $0=1$). That is, suppose</p>
+$$ \kxc = A \cos (\komegazero t) + B \sin (\komegazero t), $$
+<p>where $\komegazero = \frac{N \pi}{L}$ for some positive integer $N$. We have to modify our guess and try</p>
+<div class="equation" id="eq-resonant-guess">$$ \kx(t) = \frac{\kazero}{2} + t \Biggl( a_N \cos \Bigl( \frac{N \pi}{L} t \Bigr) + b_N \sin \Bigl( \frac{N \pi}{L} t \Bigr) \Biggr) + \sum_{\substack{n=1\\n \neq N}}^\infty \Bigl[ \kan \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kbn \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr]. $$</div>
+<p id="offending">In other words, we multiply the offending term by $t$. From then on, we proceed as before.</p>
+<p id="not-periodic">The solution is not a <span data-concept="fourier-series">Fourier series</span> (it is not even periodic) since it contains these terms multiplied by $t$. The terms $t \left( a_N \cos \left( \frac{N \pi}{L} t \right) + b_N \sin \left( \frac{N \pi}{L} t \right) \right)$ eventually dominate and lead to wild oscillations. As before, this behavior is called <em><span data-concept="resonance-with-periodic-forcing">pure resonance</span></em> or just <em><span data-concept="resonance-with-periodic-forcing">resonance</span></em>.</p>
+<p id="overtones-resonance">Note that we may hit the <span data-concept="resonance">resonance frequency</span> with infinitely many terms (<span data-concept="overtones">overtones</span>) of the forcing function $\kF$. That is, suppose we use the same “shape” for $\kF$, and we change the <span data-concept="fundamental-frequency">base frequency</span> (we change the $L$). Then different terms from the <span data-concept="fourier-series">Fourier series</span> of $\kF$ may interfere with the <span data-concept="complementary-solution">complementary solution</span>, that is, $\frac{n \pi}{L} = \komegazero$ for some $n$, and possibly cause <span data-concept="resonance-with-periodic-forcing">resonance</span>. Theoretically, infinitely many base frequencies could cause <span data-concept="resonance-with-periodic-forcing">resonance</span>. However, we should note that since everything is an approximation to any real life application, only the first few terms of $\kF$, and hence only a few such frequencies, would matter.</p>
+<figure class="sim" id="sim-harmonic-resonance">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A forcing $\kF$ of one shape and half period $L$, its <span data-concept="harmonic">harmonics</span> standing at the frequencies $n\pi/L$ with the sizes $|\kdn|$ of its <span data-concept="fourier-coefficients">coefficients</span>, and below them the undamped response, harmonic by harmonic, $\kbn = \kdn/\bigl(m(\komegazero^2 - (n\pi/L)^2)\bigr)$ on a scale of powers of ten. Moving $\komegazero$ or $L$ walks the <span data-concept="natural-frequency">natural frequency</span> along the ladder of <span data-concept="overtones">overtones</span>; on each dashed circle one <span data-concept="harmonic">harmonic</span> lands on $\komegazero$, lights up, and its term in $\kxp$ grows as $t$. The ±1 wave with $m = 2$, $L = 1$ and $\komegazero = 3\pi$ is Example 4.5.2.</span></div>
+</figure>
+<div class="example" id="ex-4-5-2">
+<h3>Example 4.5.2</h3>
+<p>We want to solve the equation</p>
+<div class="equation" id="eq-4-10">$$ 2 \kxdprime + 18 \pi^2 \kx = \kF(t) , \tag{4.10}$$</div>
+<p>where</p>
+$$ \kF(t) = \begin{cases} -1 &amp; \text{if } \; {-1} &lt; t &lt; 0 , \\ 1 &amp; \text{if } \; \phantom{-}0 &lt; t &lt; 1 , \end{cases} $$
+<p><span data-concept="periodic-extension">extended periodically</span>. We note that</p>
+<div class="equation" id="eq-square-forcing">$$ \kF(t) = \sum_{\substack{n=1 \\ n \text{ odd}}}^\infty \frac{4}{\pi n} \sin (n \pi t) . $$</div>
+<div class="exercises" data-place="eq-square-forcing"></div>
+<p id="ex-4-5-2-solution">As $\sqrt{\frac{k}{m}} = \sqrt{\frac{18\pi^2}{2}} = 3\pi$, the solution to <a href="#eq-4-10">(4.10)</a> is</p>
+$$ \kx(t) = c_1 \cos (3\pi t) + c_2 \sin (3\pi t) + \kxp (t) $$
+<p>for some <span data-concept="particular-solution">particular solution</span> $\kxp$.</p>
+<p id="eats-harmonic">If we just try an $\kxp$ given as a <span data-concept="fourier-series">Fourier series</span> with $\sin (n\pi t)$ as usual, the <span data-concept="complementary-equation">complementary equation</span>, $2\kxdprime+18\pi^2\kx=0$, eats our $3^\text{rd}$ <span data-concept="harmonic">harmonic</span>. That is, the term with $\sin(3 \pi t)$ is already in our <span data-concept="complementary-solution">complementary solution</span>. Therefore, we pull that term out and multiply it by $t$. We also add a cosine term to get everything right. That is, we try</p>
+<figure class="dv" id="drv-resonant-term"></figure>
+<p>That is,</p>
+<div class="equation" id="eq-resonant-example">$$ \kxp(t) = \frac{-1}{9\pi^2} \, t \, \cos (3 \pi t) + \sum_{\substack{n=1 \\ n~\text{odd} \\ n \neq 3}}^\infty \frac{2}{\pi^3 n(9 - n^2)} \sin (n \pi t) . $$</div>
+</div>
+<p id="damped-remark">When $c &gt; 0$, you do not have to worry about <span data-concept="resonance">pure resonance</span>. There are never any conflicts, and you do not need to multiply any terms by $t$. There is a corresponding concept of <span data-concept="practical-resonance">practical resonance</span>, and it is very similar to the ideas we already explored in <a href="/diffyqs/ch02/2.6/">chapter 2</a>. Basically, what happens in <span data-concept="practical-resonance">practical resonance</span> is that one of the coefficients in the series for $\kxsp$ can get very big. Let us not go into details here.</p>
+</section>

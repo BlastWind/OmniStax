@@ -237,7 +237,7 @@ const harmTex = (j) => (j === 1 ? '\\pi' : `${j}\\pi`);
       hits.push({ x, y: (aT.Y(dj) + TOP.b) / 2, r: 12, name: dName });
       if (lit) {
         arrow(ctx, x, LOW.b, x, LOW.t - 22, sq, 5);
-        label(ctx, 'grows as t', x, LOW.t - 26, { side: 'above', color: sq, size: 18, weight: 600 });
+        label(ctx, 'grows as t', x + 14, LOW.t + 22, { side: 'right', color: sq, size: 18, weight: 600, gap: 4 });
         hits.push({ x, y: (LOW.t + LOW.b) / 2, r: 14, name: `resonance: the ${ord(j)} harmonic's term in x_p is a_${j} t cos(ω₀t), a_${j} = −d_${j}/(2mω₀) = ${fmt(-now.dd[j] / (2 * m * w), 4)}, which grows as t` });
         continue;
       }
@@ -251,16 +251,15 @@ const harmTex = (j) => (j === 1 ? '\\pi' : `${j}\\pi`);
     /* the natural frequency, through both panes */
     const xw = X(w);
     line(ctx, xw, TOP.t, xw, LOW.b, alpha(fq, 0.8), 2.5, [10, 10]);
-    label(ctx, `ω_0 = ${fmt(w, 2)}`, xw, 476, { side: 'right', color: fq, size: 20, weight: 600, gap: 0 });
+    label(ctx, `ω_0 = ${fmt(w, 2)}`, N ? xw - 10 : xw, 476, { side: N ? 'left' : 'right', color: fq, size: 20, weight: 600, gap: 0 });
     hits.push({ x: xw, y: (TOP.t + TOP.b) / 2, r: 12, name: `the natural frequency ω₀ = √(k/m) = ${fmt(w, 2)}` });
     if (N) {
-      const xN = X(w);
-      label(ctx, `n = ${N}`, xN, aT.Y(now.dd[N] * 1) - 18, { side: 'above', color: sq, size: 18, weight: 600 });
+      label(ctx, `n = ${N}`, X(w), aT.Y(Math.abs(now.dd[N])) - 18, { side: 'above', color: sq, size: 18, weight: 600 });
     }
 
     /* the headline and the readout */
     if (N) {
-      const hT = N === 1 ? '\\pi' : `${N}\\pi`, aN = -now.dd[N] * Math.sign(S.d(N)) / (2 * m * w) * 1;
+      const hT = N === 1 ? '\\pi' : `${N}\\pi`, aN = -S.d(N) / (2 * m * w);
       headline(ctx, `$\\komegazero = ${hT}/L = ${n(w)}$: the ${ord(N)} harmonic of $\\kF$ meets the natural frequency, and its term in $\\kxp$ grows as $t$.`);
       ro.set(`\\komegazero = \\frac{${hT}}{L}:\\quad a_{${N}} = -\\frac{d_{${N}}}{2m\\komegazero} = -\\frac{${n(S.d(N), 4)}}{2 \\cdot ${m} \\cdot ${n(w, 3)}} = ${sig(aN)},\\ \\text{the coefficient of } t\\cos(\\komegazero t)`, undefined, { form: 'res' });
     } else {

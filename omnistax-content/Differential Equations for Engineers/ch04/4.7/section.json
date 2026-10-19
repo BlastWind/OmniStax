@@ -1,0 +1,1153 @@
+{
+ "id": "4.7",
+ "module": "we:section",
+ "chapter": "4",
+ "title": "One-dimensional wave equation",
+ "short": "Wave equation",
+ "lead": "A guitar string fixed at both ends moves by the <span data-concept=\"wave-equation\">wave equation</span>, which needs the string’s initial shape and its initial velocity. Splitting the problem in two and separating variables gives each half a series of building blocks, a plucked string shows what the series does in time, and its frequencies explain the <span data-concept=\"timbre\">timbre</span> of the note.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.7.101–4.7.104 carry the book’s own answers, each checked with SymPy. The inline exercises 4.7.1 and 4.7.2 and exercises 4.7.3–4.7.8, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-plucked-string",
+   "kind": "sim",
+   "number": "4.20",
+   "folds": [
+    "4.21",
+    "4.22",
+    "4.23"
+   ],
+   "originals": [
+    "/media/ch04/sps-vibstr.svg",
+    "/media/ch04/wave-pluckedstr.svg",
+    "/media/ch04/wave-pluckedex.svg",
+    "/media/ch04/wave-plucked-t0-t0p4.svg",
+    "/media/ch04/wave-plucked-t0p8-t1p2.svg"
+   ],
+   "original_caption": "(Figure 4.20) Vibrating string of length L, x is position, y is displacement. (Figure 4.21) Initial shape of a plucked string from Example 4.7.1. (Figure 4.22) Shape of the plucked string for 0 < t < 3. (Figure 4.23) Plucked string for t = 0, t = 0.4, t = 0.8, and t = 1.2.",
+   "widths": [],
+   "draws": [
+    "function",
+    "sequence",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "wave-equation",
+   "concept": "wave-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "side-conditions",
+   "concept": "wave-equation-side-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "splitting",
+   "concept": "splitting-the-wave-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-4-7-1",
+   "concept": "wave-equation-series-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "guitar-sound",
+   "concept": "timbre",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave-speed",
+   "concept": "wave-speed-of-a-string",
+   "verb": "introduces"
+  },
+  {
+   "span": "space-time",
+   "concept": "space-time-symmetry-of-the-wave-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "sim-plucked-string",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-plucked-string",
+   "concept": "wave-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-plucked-string",
+   "concept": "wave-equation-series-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-plucked-string",
+   "concept": "timbre",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-plucked-string",
+   "concept": "wave-speed-of-a-string",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-plucked-string",
+   "concept": "fundamental-frequency",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-plucked-string",
+   "concept": "overtones",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-plucked-string",
+   "concept": "spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-plucked-string",
+   "concept": "decay-of-fourier-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-wave",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "wave-intuition",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "wave-intuition",
+   "concept": "heat-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wave-intuition",
+   "concept": "classes-of-second-order-pdes",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fixed-ends",
+   "concept": "side-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "side-conditions",
+   "concept": "side-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "superposition",
+   "concept": "linear-pde",
+   "verb": "reinforces"
+  },
+  {
+   "span": "superposition",
+   "concept": "superposition-for-pdes",
+   "verb": "reinforces"
+  },
+  {
+   "span": "superposition",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-4-11",
+   "concept": "splitting-the-wave-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-12",
+   "concept": "splitting-the-wave-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "sum",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "sum",
+   "concept": "splitting-the-wave-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "sum",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sum",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-13",
+   "concept": "wave-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "why-split",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "why-split",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "why-split",
+   "concept": "splitting-the-wave-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "start-w",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-separation-wave",
+   "concept": "separated-heat-equations",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-separation-wave",
+   "concept": "solution-for-complex-conjugate-roots",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave",
+   "concept": "splitting-the-wave-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "start-z",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave-z",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave-z",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave-z",
+   "concept": "solution-for-complex-conjugate-roots",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave-z",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave-z",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-wave-z",
+   "concept": "splitting-the-wave-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-7-1",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-7-1",
+   "concept": "splitting-the-wave-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-14",
+   "concept": "wave-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-wave-series-solution",
+   "concept": "wave-equation-series-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-7-1",
+   "concept": "wave-equation-series-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-7-1",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-7-1",
+   "concept": "wave-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "sharp-edges",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sharp-edges",
+   "concept": "smoothing-by-the-heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sharp-edges",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "guitar-sound",
+   "concept": "fundamental-frequency",
+   "verb": "reinforces"
+  },
+  {
+   "span": "guitar-sound",
+   "concept": "overtones",
+   "verb": "reinforces"
+  },
+  {
+   "span": "guitar-sound",
+   "concept": "spectrum",
+   "verb": "reinforces"
+  },
+  {
+   "span": "guitar-sound",
+   "concept": "wave-equation-series-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "wave-speed",
+   "concept": "fundamental-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-wave-speed",
+   "concept": "wave-speed-of-a-string",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "wave-speed-of-a-string",
+   "verb": "uses"
+  },
+  {
+   "span": "tension",
+   "concept": "fundamental-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "space-time",
+   "concept": "wave-equation-series-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "corners",
+   "concept": "space-time-symmetry-of-the-wave-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "corners",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "corners",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "corners",
+   "concept": "decay-of-fourier-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "corners",
+   "concept": "sawtooth",
+   "verb": "uses"
+  },
+  {
+   "span": "corners",
+   "concept": "overtones",
+   "verb": "uses"
+  },
+  {
+   "span": "any-timbre",
+   "concept": "timbre",
+   "verb": "uses"
+  },
+  {
+   "span": "any-timbre",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "any-timbre",
+   "concept": "space-time-symmetry-of-the-wave-solution",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "separation-wave",
+   "what": "the series solution of (4.11)",
+   "source": "Notes on Diffy Qs, 4.7 One-dimensional wave equation: the problem (4.11) solved by separation of variables",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kw(x,t) = \\kX(x)\\kT(t)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{w_{tt}} = \\mk{a}{a^2}\\,\\mk{r}{w_{xx}}",
+      "src": "(4.11)",
+      "why": "The wave equation that $w$ solves in (4.11)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kX(x)\\kTdprime(t)} = \\mk{a}{a^2}\\,\\mk{r}{\\kXdprime(x)\\kT(t)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\frac{\\kTdprime(t)}{a^2 \\kT(t)}} = \\mk{r}{\\frac{\\kXdprime(x)}{\\kX(x)}}",
+       "uses": [],
+       "map": {
+        "a": "l"
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{\\kTdprime(t)}{a^2 \\kT(t)}} = \\mk{c}{-\\klambda} = \\mk{r}{\\frac{\\kXdprime(x)}{\\kX(x)}}",
+       "uses": [],
+       "cap": "Again, the left-hand side depends only on $t$ and the right-hand side depends only on $x$. So both sides equal a constant, which we denote by $-\\lambda$."
+      },
+      {
+       "tex": "\\mk{x}{\\kXdprime(x) + \\klambda \\kX(x)} = \\mk{z}{0} , \\qquad \\mk{t}{\\kTdprime(t) + \\klambda a^2 \\kT(t)} = \\mk{z2}{0}",
+       "uses": [],
+       "map": {
+        "r": "x",
+        "l": "t",
+        "c": [
+         "x",
+         "t"
+        ]
+       }
+      }
+     ],
+     "src": "4.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kw(0,t) = 0 , \\quad \\kw(L,t) = 0",
+       "src": "(4.11)"
+      },
+      {
+       "tex": "\\kw(x,t) = \\kX(x)\\kT(t)"
+      },
+      {
+       "text": "The problem $X'' + \\lambda X = 0$, $X(0) = 0$, $X(L) = 0$ has nontrivial solutions only for $\\lambda = \\lambda_n = \\frac{n^2\\pi^2}{L^2}$, $n = 1, 2, 3, \\ldots$, and they are multiples of $\\sin\\left(\\frac{n\\pi}{L}x\\right)$.",
+       "src": "4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kXdprime(x) + \\klambda \\kX(x)} = \\mk{z}{0}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kXdprime(x) + \\klambda \\kX(x)} = \\mk{z}{0} , \\qquad \\mk{b}{\\kX(0) = 0 , \\quad \\kX(L) = 0}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "The condition $0 = w(0,t) = X(0) T(t)$ implies $X(0) = 0$ and $w(L,t) = 0$ implies that $X(L) = 0$."
+      },
+      {
+       "tex": "\\mk{l}{\\klambda = \\klambdan = \\frac{n^2 \\pi^2}{L^2}} , \\qquad \\mk{x}{\\kXn(x) = \\sin\\left(\\frac{n\\pi}{L}x\\right)}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "4.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The general solution of $T'' + \\omega^2 T = 0$ is $T = A\\cos(\\omega t) + B\\sin(\\omega t)$.",
+       "src": "2.2"
+      },
+      {
+       "tex": "\\kw(x,0) = 0",
+       "src": "(4.11)"
+      },
+      {
+       "tex": "\\kw(x,t) = \\kX(x)\\kT(t)"
+      },
+      {
+       "text": "It is convenient to pick $B = \\frac{L}{n \\pi a}$ (you will see why in a moment)."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\kTdprime(t) + \\klambda a^2 \\kT(t)} = \\mk{z}{0}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\kTdprime(t) + \\frac{n^2 \\pi^2 a^2}{L^2} \\kT(t)} = \\mk{z}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kTn(t)} = \\mk{A}{A \\cos\\left(\\frac{n\\pi a}{L}t\\right)} + \\mk{B}{B \\sin\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "t": [
+         "T",
+         "A",
+         "B"
+        ]
+       },
+       "cap": "With $\\omega = \\frac{n\\pi a}{L}$ this is the general solution for $T$ for this particular $\\lambda_n$."
+      },
+      {
+       "tex": "\\mk{T}{\\kTn(t)} = \\mk{B}{B \\sin\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [
+        3,
+        4
+       ],
+       "cap": "The condition $w(x,0) = 0$, or $X(x)T(0) = 0$, implies that $T(0) = 0$, which in turn forces $A = 0$."
+      },
+      {
+       "tex": "\\mk{T}{\\kTn(t)} = \\mk{B}{\\frac{L}{n \\pi a} \\sin\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [
+        5
+       ]
+      }
+     ],
+     "src": "4.7"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kw(x,t) = \\kX(x)\\kT(t)"
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\kwn(x,t)} = \\mk{x}{\\kXn(x)}\\,\\mk{t}{\\kTn(t)}",
+      "uses": [
+       0
+      ],
+      "why": "Our building-block solutions are the products $X_n(x)T_n(t)$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{w}{\\kwn(x,t)} = \\mk{c}{\\frac{L}{n \\pi a}}\\,\\mk{x}{\\sin\\left(\\frac{n\\pi}{L}x\\right)}\\,\\mk{s}{\\sin\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "t": [
+         "c",
+         "s"
+        ]
+       }
+      }
+     ],
+     "src": "4.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{\\partial \\kwn}{\\partial t}(x,t)} = \\mk{c}{\\frac{L}{n \\pi a}}\\,\\mk{x}{\\sin\\left(\\frac{n\\pi}{L}x\\right)}\\,\\mk{s}{\\frac{n \\pi a}{L} \\cos\\left(\\frac{n\\pi a}{L}t\\right)}",
+      "uses": [
+       0
+      ],
+      "why": "We differentiate $w_n$ in $t$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{\\partial \\kwn}{\\partial t}(x,t)} = \\mk{x}{\\sin\\left(\\frac{n\\pi}{L}x\\right)}\\,\\mk{s}{\\cos\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [],
+       "map": {
+        "c": "s"
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\frac{\\partial \\kwn}{\\partial t}(x,0)} = \\mk{x}{\\sin\\left(\\frac{n\\pi}{L}x\\right)}",
+       "uses": []
+      }
+     ],
+     "src": "4.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "Superposition: a sum of solutions of the wave equation and of the homogeneous side conditions is again a solution.",
+       "src": "4.6"
+      },
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\kg(x) = \\sum_{n=1}^\\infty \\kbn \\sin\\left(\\frac{n\\pi}{L}x\\right)",
+       "src": "4.4"
+      },
+      {
+       "step": 4
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\kw(x,t)} = \\mk{s}{\\sum_{n=1}^\\infty \\kbn \\kwn(x,t)}",
+      "uses": [
+       0,
+       2,
+       3
+      ],
+      "why": "We expand $g(x)$ in terms of the sines $\\frac{\\partial w_n}{\\partial t}(x,0)$, and using superposition we write the solution as a series with the same coefficients."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{w}{\\kw(x,t)} = \\mk{s}{\\sum_{n=1}^\\infty \\kbn \\frac{L}{n \\pi a} \\sin\\left(\\frac{n\\pi}{L}x\\right) \\sin\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "4.7"
+    }
+   ]
+  },
+  {
+   "id": "separation-wave-z",
+   "what": "the series solution of (4.12)",
+   "source": "Notes on Diffy Qs, 4.7 One-dimensional wave equation: the problem (4.12) solved by separation of variables",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kXdprime(x) + \\klambda \\kX(x) = 0 , \\qquad \\kTdprime(t) + \\klambda a^2 \\kT(t) = 0"
+      },
+      {
+       "tex": "\\klambda = \\klambdan = \\frac{n^2 \\pi^2}{L^2}"
+      },
+      {
+       "text": "The general solution of $T'' + \\omega^2 T = 0$ is $T = A\\cos(\\omega t) + B\\sin(\\omega t)$.",
+       "src": "2.2"
+      },
+      {
+       "tex": "z_t(x,0) = 0",
+       "src": "(4.12)"
+      },
+      {
+       "tex": "\\kz(x,t) = \\kX(x)\\kT(t)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\kTdprime(t) + \\klambda a^2 \\kT(t)} = \\mk{z}{0}",
+      "uses": [
+       0
+      ],
+      "why": "We obtain the same two equations as for (4.11), and the conditions $X(0) = 0$, $X(L) = 0$; again $\\lambda = \\lambda_n$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\kTdprime(t) + \\frac{n^2 \\pi^2 a^2}{L^2} \\kT(t)} = \\mk{z}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kTn(t)} = \\mk{A}{A \\cos\\left(\\frac{n\\pi a}{L}t\\right)} + \\mk{B}{B \\sin\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "t": [
+         "T",
+         "A",
+         "B"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{T}{\\kTn(t)} = \\mk{A}{\\cos\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [
+        3,
+        4
+       ],
+       "cap": "This time, the condition on $T$ is $T'(0) = 0$, since $z_t(x,0) = X(x)T'(0) = 0$. As $T_n'(0) = \\frac{n\\pi a}{L}B$, we get that $B = 0$, and we take $A = 1$."
+      }
+     ],
+     "src": "4.7"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kz(x,t) = \\kX(x)\\kT(t)"
+      },
+      {
+       "tex": "\\kXn(x) = \\sin\\left(\\frac{n\\pi}{L}x\\right)"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{\\kzn(x,t)} = \\mk{x}{\\kXn(x)}\\,\\mk{t}{\\kTn(t)}",
+      "uses": [
+       0
+      ],
+      "why": "Our building-block solution is the product $X_n(x)T_n(t)$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{\\kzn(x,t)} = \\mk{x}{\\sin\\left(\\frac{n\\pi}{L}x\\right)}\\,\\mk{t}{\\cos\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "4.7"
+    },
+    {
+     "assumes": [
+      {
+       "text": "Superposition: a sum of solutions of the wave equation and of the homogeneous side conditions is again a solution.",
+       "src": "4.6"
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kf(x) = \\sum_{n=1}^\\infty \\kcn \\sin\\left(\\frac{n\\pi}{L}x\\right)",
+       "src": "4.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{\\kz(x,t)} = \\mk{s}{\\sum_{n=1}^\\infty \\kcn \\kzn(x,t)}",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "why": "As $z_n(x,0) = \\sin\\left(\\frac{n\\pi}{L}x\\right)$, we expand $f(x)$ in terms of these sines, and superposition writes the solution as a series with the same coefficients."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{\\kz(x,t)} = \\mk{s}{\\sum_{n=1}^\\infty \\kcn \\sin\\left(\\frac{n\\pi}{L}x\\right) \\cos\\left(\\frac{n\\pi a}{L}t\\right)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "4.7"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "4.7.1",
+   "source_number": "4.7.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "drv-separation-wave"
+   },
+   "cite": "drv-separation-wave",
+   "prompt": "<p>Check that $\\kw(x,0) = 0$ and $w_t(x,0) = \\kg(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Every term of $\\kw(x,t) = \\sum_{n=1}^\\infty \\kbn \\frac{L}{n \\pi a} \\sin\\left(\\frac{n\\pi}{L}x\\right) \\sin\\left(\\frac{n\\pi a}{L}t\\right)$ has the factor $\\sin\\left(\\frac{n\\pi a}{L}t\\right)$, which is $\\sin 0 = 0$ at $t = 0$, so $\\kw(x,0) = 0$. Differentiating term by term in $t$, the chain rule brings out $\\frac{n\\pi a}{L}$, which cancels the $\\frac{L}{n\\pi a}$: $w_t(x,t) = \\sum_{n=1}^\\infty \\kbn \\sin\\left(\\frac{n\\pi}{L}x\\right) \\cos\\left(\\frac{n\\pi a}{L}t\\right)$. At $t = 0$, $\\cos 0 = 1$, so $w_t(x,0) = \\sum_{n=1}^\\infty \\kbn \\sin\\left(\\frac{n\\pi}{L}x\\right) = \\kg(x)$, the sine series of $\\kg$. This is why $B = \\frac{L}{n\\pi a}$ was the convenient choice."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "4.7.2",
+   "source_number": "4.7.2",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "drv-separation-wave-z"
+   },
+   "cite": "drv-separation-wave-z",
+   "prompt": "<p>Fill in the details in the derivation of the solution of (4.12). Check that the solution satisfies all the side conditions.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Putting $\\kz = \\kX(x)\\kT(t)$ into $z_{tt} = a^2 z_{xx}$ gives $\\kX\\kTdprime = a^2\\kXdprime\\kT$, so $\\frac{\\kTdprime}{a^2\\kT} = -\\klambda = \\frac{\\kXdprime}{\\kX}$, that is $\\kXdprime + \\klambda\\kX = 0$ and $\\kTdprime + \\klambda a^2\\kT = 0$. The ends give $0 = \\kz(0,t) = \\kX(0)\\kT(t)$ and likewise at $L$, so $\\kX(0) = \\kX(L) = 0$, hence $\\klambdan = \\frac{n^2\\pi^2}{L^2}$ and $\\kXn = \\sin\\left(\\frac{n\\pi}{L}x\\right)$, and $\\kTn = A\\cos\\left(\\frac{n\\pi a}{L}t\\right) + B\\sin\\left(\\frac{n\\pi a}{L}t\\right)$. The condition $z_t(x,0) = \\kX(x)\\kTprime(0) = 0$ needs $\\kTprime(0) = \\frac{n\\pi a}{L}B = 0$, so $B = 0$; taking $A = 1$, $\\kzn = \\sin\\left(\\frac{n\\pi}{L}x\\right)\\cos\\left(\\frac{n\\pi a}{L}t\\right)$. Now check $\\kz = \\sum \\kcn \\kzn$: each $\\kzn$ has $(\\kzn)_{tt} = -\\frac{n^2\\pi^2a^2}{L^2}\\kzn = a^2(\\kzn)_{xx}$, so $\\kz$ solves the equation by superposition; $\\kz(0,t) = \\kz(L,t) = 0$ because $\\sin 0 = \\sin(n\\pi) = 0$; $\\kz(x,0) = \\sum \\kcn \\sin\\left(\\frac{n\\pi}{L}x\\right) = \\kf(x)$ because $\\cos 0 = 1$; and $z_t(x,0) = -\\sum \\kcn \\frac{n\\pi a}{L} \\sin\\left(\\frac{n\\pi}{L}x\\right) \\sin 0 = 0$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "4.7.3",
+   "source_number": "4.7.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-7-1",
+   "prompt": "<p>Solve</p>$$ \\begin{array}{ll} \\kytt = 9 \\kyxx &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 1 \\text{ and } t &gt; 0, \\\\ \\ky(0,t) = \\ky(1,t) = 0 &amp; \\qquad \\text{for } \\; t &gt; 0, \\\\ \\ky(x,0) = \\sin (3\\pi x) + \\frac{1}{4} \\sin (6 \\pi x) &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 1 , \\\\ \\kyt(x,0) = 0 &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 1 . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\sin(3\\pi x)\\cos(9\\pi t) + \\frac{1}{4}\\sin(6\\pi x)\\cos(18\\pi t)$. Here $L = 1$, $a = 3$ and $\\kg = 0$, so every $\\kbn = 0$. The initial shape is already a sine series, with $c_3 = 1$, $c_6 = \\frac{1}{4}$ and every other $\\kcn = 0$. By Theorem 4.7.1 each term $\\kcn\\sin(n\\pi x)$ moves as $\\kcn\\sin(n\\pi x)\\cos(n\\pi a t) = \\kcn\\sin(n\\pi x)\\cos(3n\\pi t)$, which gives the answer. Check: both terms satisfy $\\kytt = 9\\kyxx$ and vanish at $x = 0$ and $x = 1$, and at $t = 0$ the sum is the initial shape with $\\kyt(x,0) = 0$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "4.7.4",
+   "source_number": "4.7.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-7-1",
+   "prompt": "<p>Solve</p>$$ \\begin{array}{ll} \\kytt = 4 \\kyxx &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 1 \\text{ and } t &gt; 0, \\\\ \\ky(0,t) = \\ky(1,t) = 0 &amp; \\qquad \\text{for } \\; t &gt; 0, \\\\ \\ky(x,0) = \\sin (3\\pi x) + \\frac{1}{4} \\sin (6 \\pi x) &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 1 , \\\\ \\kyt(x,0) = \\sin (9 \\pi x) &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 1 . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\sin(3\\pi x)\\cos(6\\pi t) + \\frac{1}{4}\\sin(6\\pi x)\\cos(12\\pi t) + \\frac{1}{18\\pi}\\sin(9\\pi x)\\sin(18\\pi t)$. Here $L = 1$ and $a = 2$. The shape gives $c_3 = 1$, $c_6 = \\frac{1}{4}$, the velocity gives $b_9 = 1$, and every other coefficient is zero. By Theorem 4.7.1 the $\\kcn$ terms carry $\\cos(n\\pi a t) = \\cos(2n\\pi t)$, and the $b_9$ term is $b_9\\frac{L}{9\\pi a}\\sin(9\\pi x)\\sin(9\\pi a t) = \\frac{1}{18\\pi}\\sin(9\\pi x)\\sin(18\\pi t)$. Check: each term satisfies $\\kytt = 4\\kyxx$ and vanishes at both ends; at $t = 0$ the sum is the initial shape, and its $t$-derivative there is $\\sin(9\\pi x)$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "4.7.5",
+   "source_number": "4.7.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-4-7-1",
+   "prompt": "<p>Derive the solution for a general plucked string of length $L$ and any constant $a$ (in the equation $\\kytt = a^2 \\kyxx$), where we raise the string some distance $b$ at the midpoint and let go.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\sum_{n=1}^\\infty \\frac{8b}{n^2\\pi^2}\\sin\\left(\\frac{n\\pi}{2}\\right)\\sin\\left(\\frac{n\\pi}{L}x\\right)\\cos\\left(\\frac{n\\pi a}{L}t\\right) = \\sum_{m=1}^\\infty \\frac{8b{(-1)}^{m+1}}{{(2m-1)}^2\\pi^2}\\sin\\left(\\frac{(2m-1)\\pi}{L}x\\right)\\cos\\left(\\frac{(2m-1)\\pi a}{L}t\\right)$. The initial shape is the triangle $\\kf(x) = \\frac{2b}{L}x$ for $0 \\leq x \\leq \\frac{L}{2}$ and $\\kf(x) = \\frac{2b}{L}(L - x)$ for $\\frac{L}{2} < x \\leq L$, and the string is let go at rest, so $\\kg = 0$ and every $\\kbn = 0$. The sine coefficients are $\\kcn = \\frac{2}{L}\\int_0^L \\kf(x)\\sin\\left(\\frac{n\\pi}{L}x\\right)dx = \\frac{8b}{n^2\\pi^2}\\sin\\left(\\frac{n\\pi}{2}\\right)$, integrating by parts on each half (the boundary terms cancel at $\\frac{L}{2}$, and each half contributes $\\frac{4b}{n^2\\pi^2}\\sin\\left(\\frac{n\\pi}{2}\\right)$). Theorem 4.7.1 then gives the series; only odd $n$ appear, with alternating signs. With $L = 2$, $b = 0.1$ and $a = 1$ it is Example 4.7.1."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "4.7.6",
+   "source_number": "4.7.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-7-1",
+   "prompt": "<p>Imagine that a stringed musical instrument fell on the floor. Suppose that the length of the string is 1 and $a=1$. When the musical instrument hit the ground, the string was in rest position and hence $\\ky(x,0) = 0$. However, the string was moving at some velocity at impact ($t=0$), say $\\kyt(x,0) = -1$. Find the solution $\\ky(x,t)$ for the shape of the string at time $t$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\sum_{n \\text{ odd}} \\frac{-4}{n^2\\pi^2}\\sin(n\\pi x)\\sin(n\\pi t) = -\\frac{4}{\\pi^2}\\left(\\sin(\\pi x)\\sin(\\pi t) + \\frac{1}{9}\\sin(3\\pi x)\\sin(3\\pi t) + \\frac{1}{25}\\sin(5\\pi x)\\sin(5\\pi t) + \\cdots\\right)$. Here $L = 1$, $a = 1$, $\\kf = 0$, so every $\\kcn = 0$, and $\\kg = -1$. The sine series of $-1$ on $0 < x < 1$ has $\\kbn = 2\\int_0^1 (-1)\\sin(n\\pi x)\\,dx = \\frac{2\\bigl((-1)^n - 1\\bigr)}{n\\pi}$, which is $-\\frac{4}{n\\pi}$ for odd $n$ and $0$ for even $n$. By Theorem 4.7.1, $\\ky = \\sum \\kbn\\frac{L}{n\\pi a}\\sin(n\\pi x)\\sin(n\\pi t) = \\sum \\kbn\\frac{1}{n\\pi}\\sin(n\\pi x)\\sin(n\\pi t)$, which gives the answer. The string sags and comes back: at $t = \\frac{1}{2}$ its middle is at $-\\frac{1}{2}$, and at $t = 1$ it is flat again, moving up."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "4.7.7",
+   "source_number": "4.7.7",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drv-separation-wave",
+   "prompt": "<p><strong>challenging</strong> Suppose that you have a vibrating string and that there is air resistance proportional to the velocity. That is, you have</p>$$ \\begin{array}{ll} \\kytt = a^2 \\kyxx - k \\kyt &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 1 \\text{ and } t &gt; 0, \\\\ \\ky(0,t) = \\ky(1,t) = 0 &amp; \\qquad \\text{for } \\; t &gt; 0, \\\\ \\ky(x,0) = \\kf(x) &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 1 , \\\\ \\kyt(x,0) = 0 &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 1 . \\end{array} $$<p>Suppose that $0 &lt; k &lt; 2 \\pi a$. Derive a series solution to the problem. Any coefficients in the series should be expressed as integrals of $\\kf(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\sum_{n=1}^\\infty \\kcn\\, e^{-kt/2}\\left(\\cos(\\omega_n t) + \\frac{k}{2\\omega_n}\\sin(\\omega_n t)\\right)\\sin(n\\pi x)$, with $\\omega_n = \\sqrt{n^2\\pi^2a^2 - \\frac{k^2}{4}}$ and $\\kcn = 2\\int_0^1 \\kf(x)\\sin(n\\pi x)\\,dx$. With $\\ky = \\kX(x)\\kT(t)$ the equation $\\kX\\kTdprime = a^2\\kXdprime\\kT - k\\kX\\kTprime$ separates as $\\frac{\\kTdprime + k\\kTprime}{a^2\\kT} = \\frac{\\kXdprime}{\\kX} = -\\klambda$. The ends give $\\kX(0) = \\kX(1) = 0$, so $\\klambdan = n^2\\pi^2$ and $\\kXn = \\sin(n\\pi x)$, and then $\\kTdprime + k\\kTprime + n^2\\pi^2a^2\\kT = 0$. Its characteristic roots are $-\\frac{k}{2} \\pm i\\omega_n$, and $\\omega_n$ is real for every $n \\geq 1$ because $k < 2\\pi a \\leq 2n\\pi a$, so every mode is underdamped. The condition $\\kyt(x,0) = 0$ needs $\\kTprime(0) = 0$; with $\\kT(0) = 1$ this picks $\\kTn(t) = e^{-kt/2}\\left(\\cos(\\omega_n t) + \\frac{k}{2\\omega_n}\\sin(\\omega_n t)\\right)$, since its derivative at $0$ is $-\\frac{k}{2} + \\frac{k}{2\\omega_n}\\omega_n = 0$. By superposition $\\ky = \\sum \\kcn \\kXn \\kTn$, and $\\ky(x,0) = \\sum \\kcn\\sin(n\\pi x) = \\kf(x)$ when the $\\kcn$ are the sine coefficients of $\\kf$ above."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "4.7.8",
+   "source_number": "4.7.8",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "guitar-sound",
+   "prompt": "<p>Suppose you touch the guitar string exactly in the middle to ensure another condition $\\ky({L}/{2},t) = 0$ for all time. Which multiples of the fundamental frequency $\\frac{\\pi a}{L}$ show up in the solution?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Only the even multiples, $\\frac{2\\pi a}{L}, \\frac{4\\pi a}{L}, \\frac{6\\pi a}{L}, \\ldots$ At $x = \\frac{L}{2}$ the solution of Theorem 4.7.1 is $\\ky\\left(\\frac{L}{2},t\\right) = \\sum_{n=1}^\\infty \\sin\\left(\\frac{n\\pi}{2}\\right)\\left[\\kbn\\frac{L}{n\\pi a}\\sin\\left(\\frac{n\\pi a}{L}t\\right) + \\kcn\\cos\\left(\\frac{n\\pi a}{L}t\\right)\\right]$. For even $n$, $\\sin\\left(\\frac{n\\pi}{2}\\right) = 0$; for odd $n$ it is $\\pm 1$. This is a Fourier series in $t$, and it is zero for all time only if every coefficient is zero, so $\\kbn = \\kcn = 0$ for every odd $n$. What is left are the even $n$, the frequencies $n\\frac{\\pi a}{L}$ for $n = 2, 4, 6, \\ldots$: each half of the string vibrates as a string of length $\\frac{L}{2}$, whose fundamental frequency is $\\frac{2\\pi a}{L}$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "4.7.101",
+   "source_number": "4.7.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-7-1",
+   "prompt": "<p>Solve</p>$$ \\begin{array}{ll} \\kytt = \\kyxx &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; \\pi, t &gt; 0, \\\\ \\ky(0,t) = \\ky(\\pi,t) = 0 &amp; \\qquad \\text{for } \\; t &gt; 0, \\\\ \\ky(x,0) = \\sin(x) &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; \\pi , \\\\ \\kyt(x,0) = \\sin(x) &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; \\pi . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky(x,t) = \\sin(x) \\bigl(\\sin(t) + \\cos(t)\\bigr)$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "4.7.102",
+   "source_number": "4.7.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-7-1",
+   "prompt": "<p>Solve</p>$$ \\begin{array}{ll} \\kytt = 25 \\kyxx &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 2 \\text{ and } t &gt; 0, \\\\ \\ky(0,t) = \\ky(2,t) = 0 &amp; \\qquad \\text{for } \\; t &gt; 0, \\\\ \\ky(x,0) = 0 &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 2 , \\\\ \\kyt(x,0) = \\sin(\\pi x) + 0.1 \\sin(2\\pi x) &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; 2 . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky(x,t) = \\frac{1}{5 \\pi} \\sin (\\pi x) \\sin (5 \\pi t) + \\frac{1}{100 \\pi} \\sin(2\\pi x) \\sin(10\\pi t)$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "4.7.103",
+   "source_number": "4.7.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-7-1",
+   "prompt": "<p>Solve</p>$$ \\begin{array}{ll} \\kytt = 2 \\kyxx &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; \\pi \\text{ and } t &gt; 0, \\\\ \\ky(0,t) = \\ky(\\pi,t) = 0 &amp; \\qquad \\text{for } \\; t &gt; 0, \\\\ \\ky(x,0) = x &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; \\pi , \\\\ \\kyt(x,0) = 0 &amp; \\qquad \\text{for } \\; 0 &lt; x &lt; \\pi . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky(x,t) = \\sum\\limits_{n=1}^\\infty \\frac{2{(-1)}^{n+1}}{n} \\sin(nx) \\cos( n \\sqrt{2}\\,t )$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "4.7.104",
+   "source_number": "4.7.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-equation",
+   "prompt": "<p>What happens when $a=0$? Find a solution to $\\kytt = 0$, $\\ky(0,t) = \\ky(\\pi,t) = 0$, $\\ky(x,0) = \\sin(2x)$, $\\kyt(x,0) = \\sin(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky(x,t) = \\sin(2x)+t\\sin(x)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "splitting-the-wave-problem"
+  },
+  {
+   "exercise": "e1",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e2",
+   "concept": "splitting-the-wave-problem"
+  },
+  {
+   "exercise": "e2",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e2",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e3",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e4",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e5",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e5",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e6",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e6",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e7",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e7",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e7",
+   "concept": "solution-for-complex-conjugate-roots"
+  },
+  {
+   "exercise": "e8",
+   "concept": "timbre"
+  },
+  {
+   "exercise": "e8",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e101",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e102",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e103",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e103",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e104",
+   "concept": "wave-equation"
+  },
+  {
+   "exercise": "e104",
+   "concept": "wave-equation-side-conditions"
+  }
+ ],
+ "footnotes": []
+}

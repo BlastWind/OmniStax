@@ -58,8 +58,9 @@ const piTick = (v) => {
     if (on && key !== wasOn) { hit.set(0); hit.to(1, 900); }
     wasOn = on ? key : null;
     const xr = prob.mix((v) => (v === 'p' ? [-PI, PI] : [0, PI]));
-    const ax = axes(ctx, BOX, xr, [-1.6, 1.6], { xl: 't', yl: 'x', yc: fc, nx: 4, ny: 4, fx: piTick, fy: (u) => fmt(u, 1) });
-    const a = p === 'p' ? -PI : 0, b = PI, cs = candidates(p, L);
+    const cs = candidates(p, L), a = p === 'p' ? -PI : 0, b = PI;
+    const yl = cs.length > 1 ? `x = ${cs[0].name} (solid) or ${cs[1].name} (dashed), scaled to ±1` : `x = ${cs[0].name}, scaled to ±1`;
+    const ax = axes(ctx, BOX, xr, [-1.6, 1.6], { xl: 't', yl, yc: fc, nx: 4, ny: 4, fx: piTick, fy: (u) => fmt(u, 1) });
     hits = [];
     /* the candidates, the second of (4.3)'s pair dashed */
     cs.forEach((c, i) => {
@@ -68,7 +69,7 @@ const piTick = (v) => {
       [0.3, 0.55, 0.8].forEach((u) => { const t = a + (b - a) * u; hits.push({ x: ax.X(t), y: ax.Y(c.f(t)), r: 14, name: `the candidate x = ${c.name}${cs.length > 1 ? (i ? ', dashed' : ', solid') : ''}` }); });
     });
     /* the end conditions: a value or a slope that must match its target */
-    const tick = (t, f, df, color, w = 3) => { const h = 0.32, y = f(t), k = df(t); line(ctx, ax.X(t - h), ax.Y(y - k * h), ax.X(t + h), ax.Y(y + k * h), color, w); };
+    const tick = (t, f, df, color, w = 3) => { const h = 0.32, y = f(t), k = df(t); ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip(); line(ctx, ax.X(t - h), ax.Y(y - k * h), ax.X(t + h), ax.Y(y + k * h), color, w); ctx.restore(); };
     const ring = (x, y) => { const k = F.ease.out(hit.v); if (on && k < 1) dot(ctx, x, y, alpha(pc, 1 - k), false, 10 + 26 * k); };
     if (p === 'd') {
       const c = cs[0], y = c.f(PI);
@@ -129,7 +130,7 @@ const piTick = (v) => {
     } else {
       if (pos) {
         const u = r2(2 * Math.sin(s * PI)), v = r2(-2 * s * Math.sin(s * PI));
-        tex = `\\kx(\\pi) - \\kx(-\\pi) = 2B\\sin(${n(sq)}\\pi) = ${on ? '0' : `${n(u)}B`},\\quad \\kxprime(\\pi) - \\kxprime(-\\pi) = -2${n(sq)}A\\sin(${n(sq)}\\pi) = ${on ? '0' : `${n(v)}A`}`;
+        tex = `\\kx(\\pi) - \\kx(-\\pi) = 2B\\sin(${n(sq)}\\pi) = ${on ? '0' : `${n(u)}B`},\\quad \\kxprime(\\pi) - \\kxprime(-\\pi) = -2\\cdot ${n(sq)}A\\sin(${n(sq)}\\pi) = ${on ? '0' : `${n(v)}A`}`;
         head = on ? `$\\klambda = ${fmt(L, 0)}$ is an eigenvalue: both $\\cos ${fmt(s, 0) === '1' ? '' : fmt(s, 0)}t$ and $\\sin ${fmt(s, 0) === '1' ? '' : fmt(s, 0)}t$ match their values and slopes at $\\pm\\pi$.`
           : `$\\klambda = ${lt}$: the sine misses in value and the cosine in slope, so $A = B = 0$.`;
       } else if (zero) {
@@ -170,14 +171,14 @@ const piTick = (v) => {
     const { ctx } = begin(d.c);
     const fc = C('function'), ic = C('integral'), v = pair.value, m = Math.round(mS.v), k = Math.round(nS.v);
     const g1 = f1(v, m), g2 = f2(v, k), prod = (t) => g1(t) * g2(t);
-    const top = axes(ctx, TOP, [-PI, PI], [-1.2, 1.2], { xl: '', yl: 'eigenfunctions', yc: fc, nx: 4, ny: 2, fx: piTick, fy: (u) => fmt(u, 1) });
+    const n1 = `${FN[v][0]} ${m === 1 ? '' : m}t`, n2 = `${FN[v][1]} ${k === 1 ? '' : k}t`;
+    const top = axes(ctx, TOP, [-PI, PI], [-1.2, 1.2], { xl: '', yl: `${n1} (solid) and ${n2} (dashed)`, yc: fc, nx: 4, ny: 2, fx: piTick, fy: (u) => fmt(u, 1) });
     plot(ctx, top, g1, fc, { w: 4 });
     dashed(ctx, () => plot(ctx, top, g2, fc, { w: 4 }));
-    const bot = axes(ctx, BOT, [-PI, PI], [-1.2, 1.2], { xl: 't', yl: 'product', yc: ic, nx: 4, ny: 2, fx: piTick, fy: (u) => fmt(u, 1) });
+    const bot = axes(ctx, BOT, [-PI, PI], [-1.2, 1.2], { xl: 't', yl: `the product ${n1} · ${n2}`, yc: ic, nx: 4, ny: 2, fx: piTick, fy: (u) => fmt(u, 1) });
     shade(ctx, bot, (t) => Math.max(0, prod(t)), 0, -PI, PI, ic, { alpha: 0.42 });
     shade(ctx, bot, (t) => Math.min(0, prod(t)), 0, -PI, PI, ic, { alpha: 0.16 });
     plot(ctx, bot, prod, fc, { w: 4 });
-    const n1 = `${FN[v][0]} ${m === 1 ? '' : m}t`, n2 = `${FN[v][1]} ${k === 1 ? '' : k}t`;
     hits = [{ x: top.X(-PI / 2 - 0.3), y: top.Y(g1(-PI / 2 - 0.3)), r: 14, name: `x₁ = ${n1}, solid` }, { x: top.X(PI / 2 + 0.3), y: top.Y(g2(PI / 2 + 0.3)), r: 14, name: `x₂ = ${n2}, dashed` },
       { x: bot.X(0.4), y: bot.Y(prod(0.4)), r: 14, name: `the product ${n1} · ${n2}` }];
     const square = v !== 'cs' && m === k;
