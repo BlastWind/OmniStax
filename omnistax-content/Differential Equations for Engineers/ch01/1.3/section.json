@@ -1,0 +1,489 @@
+{
+ "id": "1.3",
+ "module": "separable:section",
+ "chapter": "1",
+ "title": "Separable equations",
+ "short": "Separable equations",
+ "lead": "When the right-hand side of $\\kyprime = \\kf(x,\\ky)$ factors into a function of $x$ times a function of $\\ky$, the equation is <span data-concept=\"separable-differential-equation\">separable</span>: the two variables can be moved to opposite sides and each side integrated. This section works that method through examples, shows what to do when the result cannot be solved for $\\ky$, and times a cooling cup of coffee with <span data-concept=\"newtons-law-of-cooling\">Newton’s law of cooling</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 1.3.101–1.3.107 carry the book’s own answers. Exercises 1.3.1–1.3.12, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first. The book prints no inline exercise in this section.",
+ "figures": [
+  {
+   "id": "sim-implicit",
+   "kind": "sim",
+   "number": "1.8",
+   "originals": [
+    "/media/ch01/implicitsols.svg"
+   ],
+   "original_caption": "The implicit solution y² + 2 ln|y| = x² to y′ = xy/(y² + 1).",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-coffee",
+   "kind": "sim",
+   "number": "1.9",
+   "originals": [
+    "/media/ch01/coffeefig-1-2.svg"
+   ],
+   "original_caption": "Graphs of the coffee temperature function T(t). On the left, horizontal lines are drawn at temperatures 60, 85, and 89. Vertical lines are drawn at t = 1 and t = 9.21. Notice that the temperature of the coffee hits 85 at t = 1, and 60 at t ≈ 9.21. On the right, the graph is over a longer period of time, with a horizontal line at the ambient temperature 22.",
+   "widths": [
+    864
+   ],
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "derivations": [
+  {
+   "id": "separable",
+   "what": "why separating the variables works",
+   "source": "Differential Equations for Engineers, 1.3 Separable equations",
+   "nodes": [
+    {
+     "assumes": [
+      {"text": "Note that $\\ky = \\ky(x)$ is a function of $x$ and so is $\\kdydx$!", "src": "1.3"},
+      {"tex": "\\int F(\\ky)\\,\\kdydx\\,dx = \\int F(\\ky)\\,d\\ky", "src": "Calculus, 5.5 Substitution"}
+     ],
+     "then": {"tex": "\\mk{lhs}{\\kdydx} = \\mk{rhs}{\\kf(x)\\kg(\\ky)}", "src": "1.3"},
+     "steps": [
+      {"tex": "\\mk{g}{\\frac{1}{\\kg(\\ky)}}\\,\\mk{lhs}{\\kdydx} = \\mk{rhs}{\\kf(x)}", "uses": []},
+      {"tex": "\\int \\mk{g}{\\frac{1}{\\kg(\\ky)}}\\,\\mk{lhs}{\\kdydx \\,dx} = \\int \\mk{rhs}{\\kf(x) \\,dx} + \\mk{C}{C}", "uses": [0], "cap": "Both sides are functions of $x$, so we integrate both sides with respect to $x$."},
+      {"tex": "\\int \\mk{g}{\\frac{1}{\\kg(\\ky)}}\\,\\mk{lhs}{d\\ky} = \\int \\mk{rhs}{\\kf(x) \\,dx} + \\mk{C}{C}", "uses": [1], "cap": "The change of variables formula (substitution) on the left-hand side, with $F = 1/\\kg$."}
+     ],
+     "src": "1.3, Separable equations"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {"span": "separable", "concept": "separable-differential-equation", "verb": "introduces"},
+  {"span": "separating", "concept": "separation-of-variables", "verb": "introduces"},
+  {"span": "implicit", "concept": "implicit-solution", "verb": "introduces"},
+  {"span": "singular", "concept": "singular-solution", "verb": "introduces"},
+  {"span": "ex-1-3-3", "concept": "newtons-law-of-cooling", "verb": "introduces"},
+  {"span": "intro", "concept": "differential-equation", "verb": "uses"},
+  {"span": "intro", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "intro", "concept": "integral-solution", "verb": "uses"},
+  {"span": "separable", "concept": "differential-equation", "verb": "uses"},
+  {"span": "separable", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "ex-1-3-1", "concept": "separation-of-variables", "verb": "uses"},
+  {"span": "ex-1-3-1", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "ex-1-3-1", "concept": "antiderivative", "verb": "uses"},
+  {"span": "ex-1-3-1", "concept": "verifying-a-solution", "verb": "uses"},
+  {"span": "ex-1-3-1", "concept": "general-solution", "verb": "uses"},
+  {"span": "careful", "concept": "separation-of-variables", "verb": "uses"},
+  {"span": "drv-separable", "concept": "separation-of-variables", "verb": "reinforces"},
+  {"span": "drv-separable", "concept": "separable-differential-equation", "verb": "uses"},
+  {"span": "stuck", "concept": "separable-differential-equation", "verb": "uses"},
+  {"span": "stuck", "concept": "separation-of-variables", "verb": "uses"},
+  {"span": "implicit", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "implicit", "concept": "differential-equation", "verb": "uses"},
+  {"span": "implicit", "concept": "verifying-a-solution", "verb": "uses"},
+  {"span": "two-curves", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "two-curves", "concept": "initial-value", "verb": "uses"},
+  {"span": "two-curves", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-implicit", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "sim-implicit", "concept": "singular-solution", "verb": "uses"},
+  {"span": "sim-implicit", "concept": "initial-value", "verb": "uses"},
+  {"span": "singular", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "singular", "concept": "general-solution", "verb": "uses"},
+  {"span": "implicit-ic", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "implicit-ic", "concept": "initial-value", "verb": "uses"},
+  {"span": "implicit-ic", "concept": "solving-an-initial-value-problem", "verb": "uses"},
+  {"span": "implicit-ic", "concept": "singular-solution", "verb": "uses"},
+  {"span": "ex-1-3-2", "concept": "separation-of-variables", "verb": "uses"},
+  {"span": "ex-1-3-2", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-1-3-2", "concept": "particular-solution", "verb": "uses"},
+  {"span": "ex-1-3-2", "concept": "solving-an-initial-value-problem", "verb": "uses"},
+  {"span": "ex-1-3-3", "concept": "separation-of-variables", "verb": "uses"},
+  {"span": "ex-1-3-3", "concept": "mathematical-model", "verb": "uses"},
+  {"span": "ex-1-3-3", "concept": "solving-an-initial-value-problem", "verb": "uses"},
+  {"span": "sim-coffee", "concept": "newtons-law-of-cooling", "verb": "uses"},
+  {"span": "sim-coffee", "concept": "mathematical-model", "verb": "uses"},
+  {"span": "ex-1-3-4", "concept": "separation-of-variables", "verb": "uses"},
+  {"span": "ex-1-3-4", "concept": "singular-solution", "verb": "uses"},
+  {"span": "ex-1-3-4", "concept": "general-solution", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "1.3.1",
+   "source_number": "1.3.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Solve $\\kyprime = \\dfrac{x}{\\ky}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky^2 = x^2 + D$, that is, $\\ky = \\pm\\sqrt{x^2 + D}$ for a constant $D$. Separate variables: $\\ky\\,d\\ky = x\\,dx$, and integrate to get $\\frac{\\ky^2}{2} = \\frac{x^2}{2} + C$. Writing $D = 2C$, the implicit solution is $\\ky^2 = x^2 + D$; solving for $\\ky$ gives the two explicit solutions $\\ky = \\sqrt{x^2 + D}$ and $\\ky = -\\sqrt{x^2 + D}$, and an initial condition picks the sign. Check: $\\kyprime = \\pm\\frac{x}{\\sqrt{x^2 + D}} = \\frac{x}{\\ky}$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "1.3.2",
+   "source_number": "1.3.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Solve $\\kyprime = x^2\\ky$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = De^{x^3/3}$ for any constant $D$. Note that $\\ky = 0$ is a solution. For $\\ky \\neq 0$, separate: $\\frac{d\\ky}{\\ky} = x^2\\,dx$, so $\\ln\\lvert\\ky\\rvert = \\frac{x^3}{3} + C$ and $\\lvert\\ky\\rvert = e^C e^{x^3/3}$. Since $\\ky = 0$ is also a solution and because of the absolute value, $\\ky = De^{x^3/3}$ for any $D$ (including zero or negative). Check: $\\kyprime = Dx^2 e^{x^3/3} = x^2\\ky$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "1.3.3",
+   "source_number": "1.3.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Solve $\\kdxdt = (\\kx^2-1)\\,t$, for $\\kx(0) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx = \\dfrac{1 - e^{t^2}}{1 + e^{t^2}}$ (equivalently, $\\kx = -\\tanh\\frac{t^2}{2}$). The constant solutions $\\kx = 1$ and $\\kx = -1$ do not satisfy $\\kx(0) = 0$, so divide: $\\frac{d\\kx}{\\kx^2 - 1} = t\\,dt$. By partial fractions $\\frac{1}{\\kx^2-1} = \\frac{1}{2}\\left(\\frac{1}{\\kx-1} - \\frac{1}{\\kx+1}\\right)$, so integrating gives $\\frac{1}{2}\\ln\\left\\lvert\\frac{\\kx-1}{\\kx+1}\\right\\rvert = \\frac{t^2}{2} + C$, that is, $\\frac{\\kx-1}{\\kx+1} = De^{t^2}$. At $t = 0$, $\\kx = 0$ gives $D = -1$. Then $\\kx - 1 = -e^{t^2}(\\kx + 1)$, so $\\kx\\,(1 + e^{t^2}) = 1 - e^{t^2}$. Check: $\\kx(0) = 0$, and $\\kdxdt = (\\kx^2 - 1)\\,t$ by direct differentiation."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "1.3.4",
+   "source_number": "1.3.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Solve $\\kdxdt = \\kx\\,\\sin(t)$, for $\\kx(0) = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx = e^{1 - \\cos t}$. Separate: $\\frac{d\\kx}{\\kx} = \\sin(t)\\,dt$, so $\\ln\\lvert\\kx\\rvert = -\\cos t + C$ and $\\kx = De^{-\\cos t}$. The condition $\\kx(0) = 1$ gives $1 = De^{-1}$, so $D = e$ and $\\kx = e \\cdot e^{-\\cos t} = e^{1 - \\cos t}$. Check: $\\kdxdt = \\sin(t)\\,e^{1 - \\cos t} = \\kx \\sin(t)$ and $\\kx(0) = e^{0} = 1$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "1.3.5",
+   "source_number": "1.3.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Solve $\\kdydx = x\\ky+x+\\ky+1$. Hint: Factor the right-hand side.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = De^{x^2/2 + x} - 1$ for any constant $D$. Factor: $x\\ky + x + \\ky + 1 = (x + 1)(\\ky + 1)$, so the equation is $\\kdydx = (x+1)(\\ky+1)$, which is separable. Note that $\\ky = -1$ is a solution. For $\\ky \\neq -1$, $\\frac{d\\ky}{\\ky + 1} = (x + 1)\\,dx$, so $\\ln\\lvert\\ky + 1\\rvert = \\frac{x^2}{2} + x + C$ and $\\ky + 1 = De^{x^2/2 + x}$, where $D = 0$ recovers $\\ky = -1$. Check: $\\kdydx = D(x+1)e^{x^2/2 + x} = (x+1)(\\ky+1)$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "1.3.6",
+   "source_number": "1.3.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Solve $x\\kyprime = \\ky + 2x^2 \\ky$, where $\\ky(1) = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = x\\,e^{x^2 - 1}$. The right-hand side factors as $\\ky(1 + 2x^2)$, so for $\\ky \\neq 0$ and $x \\neq 0$, $\\frac{\\kyprime}{\\ky} = \\frac{1}{x} + 2x$. Integrating, $\\ln\\lvert\\ky\\rvert = \\ln\\lvert x\\rvert + x^2 + C$, so $\\ky = Dx\\,e^{x^2}$. The condition $\\ky(1) = 1$ gives $1 = De$, so $D = e^{-1}$ and $\\ky = x\\,e^{x^2}e^{-1} = x\\,e^{x^2 - 1}$. Check: $x\\kyprime = x(1 + 2x^2)e^{x^2-1} = \\ky + 2x^2\\ky$ and $\\ky(1) = 1$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "1.3.7",
+   "source_number": "1.3.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Solve $\\kdydx = \\dfrac{\\ky^2+1}{x^2+1}$, for $\\ky(0) = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = \\tan\\left(\\arctan x + \\frac{\\pi}{4}\\right) = \\dfrac{1 + x}{1 - x}$. Separate: $\\frac{d\\ky}{\\ky^2 + 1} = \\frac{dx}{x^2 + 1}$, so $\\arctan \\ky = \\arctan x + C$. The condition $\\ky(0) = 1$ gives $C = \\arctan 1 = \\frac{\\pi}{4}$, so $\\ky = \\tan(\\arctan x + \\frac{\\pi}{4})$. By the addition formula for the tangent, $\\tan(\\alpha + \\frac{\\pi}{4}) = \\frac{\\tan\\alpha + 1}{1 - \\tan\\alpha}$, this is $\\ky = \\frac{1 + x}{1 - x}$, valid for $x < 1$ (the solution blows up at $x = 1$). Check: $\\kdydx = \\frac{2}{(1-x)^2}$ and $\\frac{\\ky^2 + 1}{x^2 + 1} = \\frac{(1+x)^2 + (1-x)^2}{(1-x)^2(x^2+1)} = \\frac{2}{(1-x)^2}$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "1.3.8",
+   "source_number": "1.3.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "implicit",
+   "prompt": "<p>Find an implicit solution for $\\kdydx = \\dfrac{x^2+1}{\\ky^2+1}$, for $\\ky(0) = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky^3 + 3\\ky = x^3 + 3x + 4$. Separate: $(\\ky^2 + 1)\\,d\\ky = (x^2 + 1)\\,dx$, and integrate: $\\frac{\\ky^3}{3} + \\ky = \\frac{x^3}{3} + x + C$. At $x = 0$, $\\ky = 1$ gives $\\frac{1}{3} + 1 = C$, so $C = \\frac{4}{3}$. Multiplying by 3 gives the implicit solution $\\ky^3 + 3\\ky = x^3 + 3x + 4$. Check by implicit differentiation: $(3\\ky^2 + 3)\\kyprime = 3x^2 + 3$, which is the equation."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "1.3.9",
+   "source_number": "1.3.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Find an explicit solution for $\\kyprime = xe^{-\\ky}$, $\\ky(0)=1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = \\ln\\left(\\dfrac{x^2}{2} + e\\right)$. Separate: $e^{\\ky}\\,d\\ky = x\\,dx$, so $e^{\\ky} = \\frac{x^2}{2} + C$. The condition $\\ky(0) = 1$ gives $e = C$, so $e^{\\ky} = \\frac{x^2}{2} + e$ and $\\ky = \\ln(\\frac{x^2}{2} + e)$, defined for every $x$ since $\\frac{x^2}{2} + e > 0$. Check: $\\kyprime = \\frac{x}{x^2/2 + e} = x e^{-\\ky}$ and $\\ky(0) = \\ln e = 1$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "1.3.10",
+   "source_number": "1.3.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Find an explicit solution for $x\\kyprime = e^{-\\ky}$, for $\\ky(1)=1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = \\ln(\\ln x + e)$. Separate: $e^{\\ky}\\,d\\ky = \\frac{dx}{x}$, so $e^{\\ky} = \\ln\\lvert x\\rvert + C$. The condition $\\ky(1) = 1$ gives $e = 0 + C$, so $e^{\\ky} = \\ln x + e$ (we are near $x = 1$, where $x > 0$) and $\\ky = \\ln(\\ln x + e)$, valid for $\\ln x > -e$, that is, $x > e^{-e}$. Check: $x\\kyprime = x \\cdot \\frac{1/x}{\\ln x + e} = e^{-\\ky}$ and $\\ky(1) = \\ln e = 1$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "1.3.11",
+   "source_number": "1.3.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Find an explicit solution for $\\kyprime = \\ky e^{-x^2}$, $\\ky(0)=1$. It is alright to leave a definite integral in your answer.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = \\exp\\left(\\displaystyle\\int_0^x e^{-s^2}\\,ds\\right)$. The condition $\\ky(0) = 1$ rules out $\\ky = 0$, so separate: $\\frac{d\\ky}{\\ky} = e^{-x^2}\\,dx$. The antiderivative of $e^{-x^2}$ has no closed form, so write it as a definite integral: $\\ln\\ky = \\int_0^x e^{-s^2}\\,ds + C$. At $x = 0$ the integral is $0$ and $\\ln 1 = 0$, so $C = 0$. Check: by the fundamental theorem of calculus, $\\kyprime = e^{-x^2}\\exp\\left(\\int_0^x e^{-s^2}\\,ds\\right) = \\ky e^{-x^2}$, and $\\ky(0) = e^0 = 1$."
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "1.3.12",
+   "source_number": "1.3.12",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "ex-1-3-3",
+   "prompt": "<p>Suppose a cup of coffee is at 100 degrees Celsius at time $t=0$, it is at 70 degrees at $t=10$ minutes, and it is at 50 degrees at $t=20$ minutes. Compute the ambient temperature.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 10,
+    "unit": "degrees Celsius",
+    "solution": "The ambient temperature is $A = 10$ degrees Celsius. By Newton’s law of cooling, $\\kT = A + De^{-kt}$, and $\\kT(0) = 100$ gives $D = 100 - A$. The two later measurements say $e^{-10k} = \\frac{70 - A}{100 - A}$ and $e^{-20k} = \\frac{50 - A}{100 - A}$. Since $e^{-20k} = (e^{-10k})^2$, $\\frac{50 - A}{100 - A} = \\left(\\frac{70 - A}{100 - A}\\right)^2$, that is, $(70 - A)^2 = (100 - A)(50 - A)$. Expanding, $4900 - 140A + A^2 = 5000 - 150A + A^2$, so $10A = 100$ and $A = 10$. (Then $e^{-10k} = \\frac{60}{90}$, so $k = \\frac{\\ln 1.5}{10} \\approx 0.0405$, and indeed $\\kT(20) = 10 + 90 \\cdot \\frac{4}{9} = 50$.)"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "1.3.101",
+   "source_number": "1.3.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Solve $\\kyprime=2x\\ky$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = Ce^{x^2}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "1.3.102",
+   "source_number": "1.3.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Solve $\\kxprime=3\\kx t^2-3t^2$, $\\kx(0)=2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx = e^{t^3}+1$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "1.3.103",
+   "source_number": "1.3.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "implicit",
+   "prompt": "<p>Find an implicit solution for $\\kxprime=\\dfrac{1}{3\\kx^2+1}$, $\\kx(0)=1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx^3+\\kx=t+2$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "1.3.104",
+   "source_number": "1.3.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>Find an explicit solution to $x \\kyprime = \\ky^2$, $\\ky(1) = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = \\frac{1}{1-\\ln x}$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "1.3.105",
+   "source_number": "1.3.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "implicit",
+   "prompt": "<p>Find an implicit solution to $\\kyprime = \\dfrac{\\sin(x)}{\\cos(\\ky)}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sin(\\ky) = -\\cos(x) + C$"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "1.3.106",
+   "source_number": "1.3.106",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "ex-1-3-3",
+   "prompt": "<p>Take Example 1.3.3 with the same numbers: 89 degrees at $t=0$, 85 degrees at $t=1$, and ambient temperature of 22 degrees. Suppose these temperatures were measured with a precision of $\\pm 0.5$ degrees. Given this imprecision, the time it takes the coffee to cool to (exactly) 60 degrees is also only known in a certain range. Find this range. Hint: Think about what kind of error makes the cooling time longer and what shorter.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "shortest time", "value": 7.45, "unit": "minutes"},
+     {"part": "longest time", "value": 12.15, "unit": "minutes"}
+    ],
+    "solution": "The range is approximately 7.45 to 12.15 minutes."
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "1.3.107",
+   "source_number": "1.3.107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "separable",
+   "prompt": "<p>A population $\\kx$ of rabbits on an island is modeled by $\\kxprime = \\kx- \\bigl({1}/{1000} \\bigr) \\kx^2$, where the independent variable $t$ is time in months. At time $t=0$, there are 40 rabbits on the island.</p><ol type=\"a\"><li>Find the solution to the equation with the initial condition.</li><li>How many rabbits are on the island in 1 month, 5 months, 10 months, 15 months (round to the nearest integer)?</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "b) 1 month", "value": 102, "unit": "rabbits"},
+     {"part": "b) 5 months", "value": 861, "unit": "rabbits"},
+     {"part": "b) 10 months", "value": 999, "unit": "rabbits"},
+     {"part": "b) 15 months", "value": 1000, "unit": "rabbits"}
+    ],
+    "solution": "a) $\\kx = \\frac{1000e^t}{e^t+24}$. b) 102 rabbits after one month, 861 after 5 months, 999 after 10 months, 1000 after 15 months."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "separation-of-variables"},
+  {"exercise": "e1", "concept": "separable-differential-equation"},
+  {"exercise": "e2", "concept": "separation-of-variables"},
+  {"exercise": "e2", "concept": "separable-differential-equation"},
+  {"exercise": "e2", "concept": "singular-solution"},
+  {"exercise": "e3", "concept": "separation-of-variables"},
+  {"exercise": "e3", "concept": "separable-differential-equation"},
+  {"exercise": "e4", "concept": "separation-of-variables"},
+  {"exercise": "e4", "concept": "separable-differential-equation"},
+  {"exercise": "e5", "concept": "separation-of-variables"},
+  {"exercise": "e5", "concept": "separable-differential-equation"},
+  {"exercise": "e5", "concept": "singular-solution"},
+  {"exercise": "e6", "concept": "separation-of-variables"},
+  {"exercise": "e6", "concept": "separable-differential-equation"},
+  {"exercise": "e7", "concept": "separation-of-variables"},
+  {"exercise": "e7", "concept": "separable-differential-equation"},
+  {"exercise": "e8", "concept": "separation-of-variables"},
+  {"exercise": "e8", "concept": "implicit-solution"},
+  {"exercise": "e9", "concept": "separation-of-variables"},
+  {"exercise": "e9", "concept": "separable-differential-equation"},
+  {"exercise": "e10", "concept": "separation-of-variables"},
+  {"exercise": "e10", "concept": "separable-differential-equation"},
+  {"exercise": "e11", "concept": "separation-of-variables"},
+  {"exercise": "e11", "concept": "separable-differential-equation"},
+  {"exercise": "e12", "concept": "newtons-law-of-cooling"},
+  {"exercise": "e12", "concept": "separation-of-variables"},
+  {"exercise": "e101", "concept": "separation-of-variables"},
+  {"exercise": "e101", "concept": "separable-differential-equation"},
+  {"exercise": "e102", "concept": "separation-of-variables"},
+  {"exercise": "e102", "concept": "separable-differential-equation"},
+  {"exercise": "e103", "concept": "separation-of-variables"},
+  {"exercise": "e103", "concept": "implicit-solution"},
+  {"exercise": "e104", "concept": "separation-of-variables"},
+  {"exercise": "e104", "concept": "separable-differential-equation"},
+  {"exercise": "e105", "concept": "separation-of-variables"},
+  {"exercise": "e105", "concept": "implicit-solution"},
+  {"exercise": "e106", "concept": "newtons-law-of-cooling"},
+  {"exercise": "e107", "concept": "separation-of-variables"},
+  {"exercise": "e107", "concept": "separable-differential-equation"}
+ ],
+ "footnotes": []
+}
