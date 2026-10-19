@@ -17,6 +17,7 @@ Task `prep1-ch04` (prep stage one), port 8105, scratch `/tmp/claude-0/-home-user
 - `ost merge diffyqs 4`: 86 concepts, 144 edges (7 redundant edges dropped after the whole-book Hasse check), 42 symbols. Concept links set and their repeated type overrides removed. Form `eq-wave-characteristic-coordinates` added on 1.9's `characteristic-coordinates` (section 4.8, no anchor yet).
 - `ost check diffyqs`: no errors, no warnings.
 - 4.1 built (task `sec-4.1`, claude-opus-5-5 high): 3 figures (2 still Sims `sim-eigenvalue-hunt`, `sim-orthogonality`; 1 moving fold `sim-whirling-string` = Figure 4.1 + 4.2), 1 derivation (`drv-orthogonality`), 11 exercises (1 inline, 5 unkeyed with AI solutions, 5 keyed), 12 concepts introduced, footnotes 15–17 (counted from the source: Chapter 3's one footnote, in 3.8, is 14). Plan corrected: ω₁ = π√(15/2) ≈ 8.60 rad/s, not 6.08; ω slider 0–30.
+- 4.3 built (task sec-4.3, 2026-10-19): 3 still Sims (Figure 4.9 + 4.10 `sim-triangle-sum`, Figure 4.11 `sim-smoothness-decay`, Sim `sim-term-by-term`), 1 derivation (`drv-rescaling`, three nodes, replacing the boxed 2L coefficient display; the form `eq-fourier-coefficients-2l` anchors at it), 9 concepts introduced, 17 exercises (2 inline, 9 unkeyed AI-marked, 6 keyed), 64 coverage rows; `ost check` clean. Wanted: a 4.3 variables row for S (`series`) and a symbol f_dprime (\kfdprime) for f″ (plan). The prep's "f″ jumps at multiples of π" corrected to multiples of 2π.
 
 ## Next
 
