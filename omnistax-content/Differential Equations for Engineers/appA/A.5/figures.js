@@ -26,12 +26,13 @@ const piFrac = (t) => {
   return `${p === 1 ? '' : p}\\pi${den === 1 ? '' : `/${den}`}`;
 };
 /* the dashed circle on one slider where a relation is linear in it: shown only on the 0.1 grid inside [−4, 4] */
-const onGrid = (x) => (x !== null && Number.isFinite(x) && Math.abs(x) <= 4 + 1e-9 && exact(x, 1) ? Math.round(x * 10) / 10 : null);
+const onGrid = (x, other = 1) => (x !== null && Number.isFinite(x) && Math.abs(x) <= 4 + 1e-9 && exact(x, 1) && !(Math.abs(x) < 1e-9 && Math.abs(other) < 1e-9) ? Math.round(x * 10) / 10 : null);
+/* (other: the vector's other component; a circle that would make the vector 0⃗ is not shown, as 0⃗ is no case of the relation) */
 
 /* the plane ℝ², one scale for both axes: x and y from −5 to 5, U units to 1, centred in the canvas.
-   Every slider runs −4 to 4, so every vector drawn stays inside; a projection longer than that
-   (up to 4√2 · 4√2 / 0.1 in principle) is clipped at the box. */
-const U = 52, OX = 700, OY = 370, BOX = { l: OX - 5 * U, r: OX + 5 * U, t: OY - 5 * U, b: OY + 5 * U };
+   Every slider runs −4 to 4, so every vector drawn stays inside; a projection can be longer than that
+   (a long w⃗ on a short v⃗ keeps its length along the line) and is clipped at the box. */
+const U = 66, OX = 700, OY = 440, BOX = { l: OX - 5 * U, r: OX + 5 * U, t: OY - 5 * U, b: OY + 5 * U };
 const PL = { box: BOX, X: (x) => OX + U * x, Y: (y) => OY - U * y, xr: [-5, 5], yr: [-5, 5] };
 const P = (p) => [PL.X(p[0]), PL.Y(p[1])];
 function clip(ctx, draw) { ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip(); draw(); ctx.restore(); }
@@ -46,8 +47,8 @@ function plane(ctx) {
   line(ctx, BOX.l, OY, BOX.r, OY, alpha(mu, 0.8), 2);
   line(ctx, OX, BOX.t, OX, BOX.b, alpha(mu, 0.8), 2);
   [-4, -2, 2, 4].forEach((v) => {
-    text(ctx, tm(v, 0), PL.X(v), OY + 18, mu, { size: 17, align: 'center' });
-    text(ctx, tm(v, 0), OX - 10, PL.Y(v), mu, { size: 17, align: 'right' });
+    text(ctx, tm(v, 0), PL.X(v), OY + 20, mu, { size: 19, align: 'center' });
+    text(ctx, tm(v, 0), OX - 12, PL.Y(v), mu, { size: 19, align: 'right' });
   });
 }
 /* a whole line through the origin along u, clipped to the plane */
@@ -71,7 +72,7 @@ function square(ctx, o, u1, u2, color, s = 17) {
   const a = [o[0] + s * u1[0], o[1] - s * u1[1]], b = [a[0] + s * u2[0], a[1] - s * u2[1]], c = [o[0] + s * u2[0], o[1] - s * u2[1]];
   line(ctx, ...a, ...b, color, 2.5); line(ctx, ...b, ...c, color, 2.5);
 }
-const mark = (ctx, s, x, y, color, o = {}) => text(ctx, s, x, y, color, { size: 22, weight: 600, tex: true, bg: PAL.panel, ...o });
+const mark = (ctx, s, x, y, color, o = {}) => text(ctx, s, x, y, color, { size: 26, weight: 600, tex: true, bg: PAL.panel, ...o });
 /* a label just past the head of a vector from the origin, on the side away from it */
 function tipLabel(ctx, s, p, color, extra = 26) {
   const L = Math.hypot(p[0], p[1]) || 1, ux = p[0] / L, uy = p[1] / L, [x, y] = P(p);
@@ -88,13 +89,13 @@ const slider = (d, label, key, value, aria, at, name) =>
    idea has a clock. Defaults: Example A.5.1, x⃗ = (3, 0), y⃗ = (1, 1), θ = π/4. Each slider's dashed circle sits
    where ⟨x⃗, y⃗⟩ = 0 given the other three, where that value is on the slider's grid. */
 (function () {
-  const d = sim('sim-angle-between-vectors', 740);
+  const d = sim('sim-angle-between-vectors', 800);
   let x1 = null, x2 = null, y1 = null, y2 = null;
   const ready = () => x1 && x2 && y1 && y2;
-  x1 = slider(d, 'x_1', 'x1', 3, 'the first component x₁ of x⃗', () => (ready() && y1.v ? onGrid((-x2.v * y2.v) / y1.v) : null), 'orthogonal');
-  x2 = slider(d, 'x_2', 'x2', 0, 'the second component x₂ of x⃗', () => (ready() && y2.v ? onGrid((-x1.v * y1.v) / y2.v) : null), 'orthogonal');
-  y1 = slider(d, 'y_1', 'y1', 1, 'the first component y₁ of y⃗', () => (ready() && x1.v ? onGrid((-x2.v * y2.v) / x1.v) : null), 'orthogonal');
-  y2 = slider(d, 'y_2', 'y2', 1, 'the second component y₂ of y⃗', () => (ready() && x2.v ? onGrid((-x1.v * y1.v) / x2.v) : null), 'orthogonal');
+  x1 = slider(d, 'x_1', 'x1', 3, 'the first component x₁ of x⃗', () => (ready() && y1.v ? onGrid((-x2.v * y2.v) / y1.v, x2.v) : null), 'orthogonal');
+  x2 = slider(d, 'x_2', 'x2', 0, 'the second component x₂ of x⃗', () => (ready() && y2.v ? onGrid((-x1.v * y1.v) / y2.v, x1.v) : null), 'orthogonal');
+  y1 = slider(d, 'y_1', 'y1', 1, 'the first component y₁ of y⃗', () => (ready() && x1.v ? onGrid((-x2.v * y2.v) / x1.v, y2.v) : null), 'orthogonal');
+  y2 = slider(d, 'y_2', 'y2', 1, 'the second component y₂ of y⃗', () => (ready() && x2.v ? onGrid((-x1.v * y1.v) / x2.v, y1.v) : null), 'orthogonal');
   [x1, x2, y1, y2].forEach((s) => s.refresh());
   const DX = drag(d, { x: x1, y: x2 }), DY = drag(d, { x: y1, y: y2 });
   const ro = readout(d);
@@ -115,14 +116,14 @@ const slider = (d, label, key, value, aria, at, name) =>
       th = Math.acos(Math.max(-1, Math.min(1, ip / Math.sqrt(sx * sy))));
       /* the short way runs counterclockwise from `a` to `b`: y⃗ to x⃗ as the book draws it, else x⃗ to y⃗ */
       const [a, b] = dd >= 0 ? [ay, ax] : [ax, ay];
-      const sh = th, R1 = 104, R2 = 58, R3 = 36;
+      const sh = th, R1 = 120, R2 = 68, R3 = 40;
       const faint = alpha(ink, 0.45);
       if (ip === 0) square(ctx, [OX, OY], [Math.cos(a), Math.sin(a)], [Math.cos(b), Math.sin(b)], ink, 22);
       if (sh > 1e-9) turn(ctx, a, a + sh, R1, ink, 2.5);
       if (sh > 1e-9) turn(ctx, b, b - sh, R2, faint, 2);
       turn(ctx, b, b + 2 * Math.PI - sh, R3, faint, 2);
       const mid = a + sh / 2, far = b + Math.PI - sh / 2;
-      const put = (s, ang, r, c) => { const ux = Math.cos(ang), uy = Math.sin(ang); mark(ctx, s, OX + r * ux, OY - r * uy, c, { size: 21, align: ux < -0.35 ? 'right' : ux > 0.35 ? 'left' : 'center' }); };
+      const put = (s, ang, r, c) => { const ux = Math.cos(ang), uy = Math.sin(ang); mark(ctx, s, OX + r * ux, OY - r * uy, c, { size: 24, align: ux < -0.35 ? 'right' : ux > 0.35 ? 'left' : 'center' }); };
       if (sh > 0.12) put('$\\ktheta$', mid, R1 + 16, ink);
       if (sh > 0.25) put('$-\\ktheta$', mid, R2 - 4 > 30 ? (R1 + R2) / 2 - 6 : R2, faint);
       put('$2\\pi - \\ktheta$', far, R3 + 22, faint);
@@ -161,17 +162,18 @@ const slider = (d, label, key, value, aria, at, name) =>
    w⃗ landing at the tip of proj_v⃗(w⃗), which lies on a soft band, the shadow; w⃗ − proj_v⃗(w⃗) dashed from that tip back
    to w⃗'s, the right angle marked at the foot, θ marked between v⃗ and w⃗. The rays carry no arrowheads: they are a
    direction, not a flow, so the figure is still. Heads of v⃗ and w⃗ dragged or set on four sliders (−4 to 4 by 0.1);
-   defaults v⃗ = (1, 1), w⃗ = (3, 4), Example A.5.3's vector on its first basis vector, proj = (7/2)(1, 1). Every
+   defaults v⃗ = (4, 2), w⃗ = (1, 3), θ = π/4, proj = (1/2)(4, 2) = (2, 1) with v⃗ reaching past it as in the book's
+   sketch (the book's projection examples are in ℝ³). Every
    slider's dashed circle sits where ⟨w⃗, v⃗⟩ = 0 given the other three (no shadow). Inner products are exact
    hundredths; a projection that does not come out in hundredths is written with ≈. */
 (function () {
-  const d = sim('sim-projection', 740);
+  const d = sim('sim-projection', 800);
   let v1 = null, v2 = null, w1 = null, w2 = null;
   const ready = () => v1 && v2 && w1 && w2;
-  v1 = slider(d, 'v_1', 'v1', 1, 'the first component v₁ of v⃗', () => (ready() && w1.v ? onGrid((-v2.v * w2.v) / w1.v) : null), 'orthogonal');
-  v2 = slider(d, 'v_2', 'v2', 1, 'the second component v₂ of v⃗', () => (ready() && w2.v ? onGrid((-v1.v * w1.v) / w2.v) : null), 'orthogonal');
-  w1 = slider(d, 'w_1', 'w1', 3, 'the first component w₁ of w⃗', () => (ready() && v1.v ? onGrid((-v2.v * w2.v) / v1.v) : null), 'orthogonal');
-  w2 = slider(d, 'w_2', 'w2', 4, 'the second component w₂ of w⃗', () => (ready() && v2.v ? onGrid((-v1.v * w1.v) / v2.v) : null), 'orthogonal');
+  v1 = slider(d, 'v_1', 'v1', 4, 'the first component v₁ of v⃗', () => (ready() && w1.v ? onGrid((-v2.v * w2.v) / w1.v, v2.v) : null), 'orthogonal');
+  v2 = slider(d, 'v_2', 'v2', 2, 'the second component v₂ of v⃗', () => (ready() && w2.v ? onGrid((-v1.v * w1.v) / w2.v, v1.v) : null), 'orthogonal');
+  w1 = slider(d, 'w_1', 'w1', 1, 'the first component w₁ of w⃗', () => (ready() && v1.v ? onGrid((-v2.v * w2.v) / v1.v, w2.v) : null), 'orthogonal');
+  w2 = slider(d, 'w_2', 'w2', 3, 'the second component w₂ of w⃗', () => (ready() && v2.v ? onGrid((-v1.v * w1.v) / v2.v, w1.v) : null), 'orthogonal');
   [v1, v2, w1, w2].forEach((s) => s.refresh());
   const DV = drag(d, { x: v1, y: v2 }), DW = drag(d, { x: w1, y: w2 });
   const ro = readout(d);
@@ -194,9 +196,9 @@ const slider = (d, label, key, value, aria, at, name) =>
       hits.push({ x: P([u[0] * -3.8, u[1] * -3.8])[0], y: P([u[0] * -3.8, u[1] * -3.8])[1], r: 14, name: 'the line spanned by v⃗: every multiple of v⃗' });
       /* the sun's rays, square to the line, falling from w⃗'s side */
       if (side !== 0) clip(ctx, () => {
-        for (let s = -9; s <= 9; s += 0.9) {
+        for (let s = -9; s <= 9; s += 1) {
           const foot = [u[0] * s, u[1] * s], far = [foot[0] + n[0] * side * 12, foot[1] + n[1] * side * 12];
-          line(ctx, ...P(far), ...P(foot), alpha(ink, 0.16), 2);
+          line(ctx, ...P(far), ...P(foot), alpha(ink, 0.12), 2);
         }
         line(ctx, ...P([pr[0] + n[0] * side * 12, pr[1] + n[1] * side * 12]), ...P(w), alpha(ink, 0.3), 2);
       });
@@ -209,9 +211,9 @@ const slider = (d, label, key, value, aria, at, name) =>
         const av = Math.atan2(v[1], v[0]), aw = Math.atan2(w[1], w[0]);
         let dd = aw - av; while (dd > Math.PI) dd -= 2 * Math.PI; while (dd <= -Math.PI) dd += 2 * Math.PI;
         if (Math.abs(dd) > 0.05) {
-          turn(ctx, av, av + dd, 46, alpha(ink, 0.8), 2.5, false);
+          turn(ctx, av, av + dd, 54, alpha(ink, 0.8), 2.5, false);
           const m = av + dd / 2;
-          mark(ctx, '$\\ktheta$', OX + 66 * Math.cos(m), OY - 66 * Math.sin(m), ink, { size: 20, align: 'center' });
+          mark(ctx, '$\\ktheta$', OX + 78 * Math.cos(m), OY - 78 * Math.sin(m), ink, { size: 24, align: 'center' });
         }
       }
       /* what is left over, w⃗ − proj, dashed from the tip of the shadow to the tip of w⃗, square to the line */
@@ -229,7 +231,7 @@ const slider = (d, label, key, value, aria, at, name) =>
         if (inBox) {
           const o = n.map((k) => -k * (side || 1));
           const [px, py] = P([pr[0] / 2 + o[0] * 0.75, pr[1] / 2 + o[1] * 0.75]);
-          mark(ctx, '$\\kproj_{\\kvecv}(\\kvecw)$', px, py, vc, { size: 21, align: o[0] < -0.35 ? 'right' : o[0] > 0.35 ? 'left' : 'center' });
+          mark(ctx, '$\\kproj_{\\kvecv}(\\kvecw)$', px, py, vc, { size: 24, align: o[0] < -0.35 ? 'right' : o[0] > 0.35 ? 'left' : 'center' });
         }
         hits.push({ x: P(pr)[0], y: P(pr)[1], r: 16, name: `proj_v⃗(w⃗) ${exact(pr[0]) && exact(pr[1]) ? '=' : '≈'} ${vecP(pr)}, the point of the line closest to the tip of w⃗` });
       }
@@ -272,17 +274,17 @@ const slider = (d, label, key, value, aria, at, name) =>
    unit circle. Still: the steps are a discrete state (a choice), not a clock. Dashed circles on all four sliders
    where v⃗₂ lies on the line of v⃗₁ (w⃗₂ = 0⃗), where that value is on the grid. Default step 3, the book's result. */
 (function () {
-  const d = sim('sim-gram-schmidt', 760);
+  const d = sim('sim-gram-schmidt', 800);
   const STEPS = ['w1', 'proj', 'w2', 'unit'], IDX = { w1: 0, proj: 1, w2: 2, unit: 3 };
   const pick = choice(d.controls, { label: 'step', key: 'step', value: 'w2', options: [
     { value: 'w1', label: '1 · keep' }, { value: 'proj', label: '2 · project' }, { value: 'w2', label: '3 · subtract' }, { value: 'unit', label: '4 · normalize' }] });
   let a1 = null, a2 = null, b1 = null, b2 = null;
   const ready = () => a1 && a2 && b1 && b2;
   /* v⃗₂ on the line of v⃗₁: a1·b2 − a2·b1 = 0 */
-  a1 = slider(d, 'v_{1,1}', 'v11', 1, 'the first component of v⃗₁', () => (ready() && b2.v ? onGrid((a2.v * b1.v) / b2.v) : null), 'dependent');
-  a2 = slider(d, 'v_{1,2}', 'v12', 2, 'the second component of v⃗₁', () => (ready() && b1.v ? onGrid((a1.v * b2.v) / b1.v) : null), 'dependent');
-  b1 = slider(d, 'v_{2,1}', 'v21', 3, 'the first component of v⃗₂', () => (ready() && a2.v ? onGrid((a1.v * b2.v) / a2.v) : null), 'dependent');
-  b2 = slider(d, 'v_{2,2}', 'v22', 1, 'the second component of v⃗₂', () => (ready() && a1.v ? onGrid((a2.v * b1.v) / a1.v) : null), 'dependent');
+  a1 = slider(d, 'v_{1,1}', 'v11', 1, 'the first component of v⃗₁', () => (ready() && b2.v ? onGrid((a2.v * b1.v) / b2.v, a2.v) : null), 'dependent');
+  a2 = slider(d, 'v_{1,2}', 'v12', 2, 'the second component of v⃗₁', () => (ready() && b1.v ? onGrid((a1.v * b2.v) / b1.v, a1.v) : null), 'dependent');
+  b1 = slider(d, 'v_{2,1}', 'v21', 3, 'the first component of v⃗₂', () => (ready() && a2.v ? onGrid((a1.v * b2.v) / a2.v, b2.v) : null), 'dependent');
+  b2 = slider(d, 'v_{2,2}', 'v22', 1, 'the second component of v⃗₂', () => (ready() && a1.v ? onGrid((a2.v * b1.v) / a1.v, b1.v) : null), 'dependent');
   [a1, a2, b1, b2].forEach((s) => s.refresh());
   const D1 = drag(d, { x: a1, y: a2 }), D2 = drag(d, { x: b1, y: b2 });
   const ro = readout(d);
@@ -316,7 +318,7 @@ const slider = (d, label, key, value, aria, at, name) =>
         if (k1 > 0.95 && k2 < 0.5 && Math.abs(pr[0]) < 4.6 && Math.abs(pr[1]) < 4.6) {
           const n = [-u[1], u[0]], sd = Math.sign(v2[0] * n[0] + v2[1] * n[1]) || 1, o = [-n[0] * sd, -n[1] * sd];
           const [px, py] = P([pr[0] / 2 + o[0] * 0.75, pr[1] / 2 + o[1] * 0.75]);
-          mark(ctx, '$\\kproj_{\\kvecw_1}(\\kvecv_2)$', px, py, alpha(vc, 1 - 2 * k2), { size: 20, align: o[0] < -0.35 ? 'right' : o[0] > 0.35 ? 'left' : 'center' });
+          mark(ctx, '$\\kproj_{\\kvecw_1}(\\kvecv_2)$', px, py, alpha(vc, 1 - 2 * k2), { size: 24, align: o[0] < -0.35 ? 'right' : o[0] > 0.35 ? 'left' : 'center' });
         }
         hits.push({ x: P(pr)[0], y: P(pr)[1], r: 14, name: `proj_w⃗₁(v⃗₂) ${exact(pr[0]) && exact(pr[1]) ? '=' : '≈'} ${vecP(pr)}, the shadow of v⃗₂ on the line of w⃗₁` });
       }

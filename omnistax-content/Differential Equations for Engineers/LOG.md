@@ -124,3 +124,21 @@ Concept map: 4.10's chain mended (polar-coordinate-system no longer rests on dir
 Config: line 7 no longer names Example 4.7.1 (the book prints no name); line 21 records the footnotes: the book's running number, 15–23 in this chapter (4.1 15–17, 4.2 18, 4.8 19–20, 4.9 21–22, 4.10 23), read against the nine `\footnote`s of `ch-fourier-and-pde.tex`; Chapter 5 starts at 24.
 
 Checked: every in-book and Calculus link from Chapter 4's pages and from 1.9 and 5.3 resolves against the built pages and Calculus's text.html (43 links); every Sim has a canvas, transports only on the six moving figures, no console or page error in light or dark; `ost check diffyqs` no errors, `npm test` 936 pass, `astro check` 0 errors.
+
+
+## Pass 8 (2026-10-19): Chapter 7, Power-series methods, had its chapter pass, after its three sections were built by three agents
+
+Anchors from every section's "Wanted at chapter level": 46 forms and 29 variables rows. Six derivative rows added: 7.1's f′ and f″ (the Taylor series (7.2) now writes them with their macros), 7.2's y₁′ and y₂′, 7.3's y₁′ and y₁″. 7.1's plan corrected to the merged form id `eq-power-series-term-by-term-derivative`. No concept, edge or glossary change.
+
+Chapter COLOR.md: `error` added (Figure 7.2's truncation error). Footnotes take the book's running number: 40 (7.1), 41–42 (7.2), 43–45 (7.3), config line 21; Chapter 8 starts at 46. The near hues of `function` and `series` in the default palette, drawn together on every Chapter 7 figure, are left to the final `colours:default`.
+
+Checked: Figures 7.1–7.4 in book order; every in-book and Calculus link from Chapter 7's pages resolves; every Sim has a canvas, no transports (all figures still), no console or page error in light or dark.
+
+
+## Pass 9 (2026-10-19): Chapter 6, The Laplace transform, had its chapter pass, after its five sections were built by five agents
+
+Anchors from every section's "Wanted at chapter level": 68 forms and 66 variables rows (6.2's F′ and 6.3's x‴ left without, written only in exercises); no rows added, no concept, edge or glossary change. Footnotes take the book's running number: 28–30 (6.1), 31–32 (6.3), 33–37 (6.4), 38–39 (6.5), twelve as in `ch-laplace.tex` (config line 21); Chapter 7 starts at 40.
+
+Links: 6.1 built Table 6.1 as `tab-6-1`, so 6.3's two links and its correction note on Example 6.3.3's "Table 6.2" now open `/diffyqs/ch06/6.1/#6.1-tab-6-1`. 6.2's link to Example 6.1.4 and 6.5's to (6.1) in 6.2 resolve; the Appendix B sheet link builds.
+
+Checked: every in-book link from Chapter 6's pages resolves against the built pages; every Sim has a canvas, transports only on the four moving figures, no console or page error in light or dark. The `transform` type shows in ink until the book's final `colours:default`.

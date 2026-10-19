@@ -14,11 +14,11 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
 
 /* Sim (the book's noncommuting pair, A = [1 1; 1 1] and B = [1 0; 0 2]): the product as composition.
    Two planes side by side at one scale, x₁ −3 to 3 and x₂ −4 to 4, 84 units to 1. Left, x⃗ goes through B and then
-   through A: the arrow x⃗, the arrow Bx⃗ (faint) and the arrow A(Bx⃗), the two hops between their heads
-   curved in the matrix colour and named B and A, and the one hop of AB (dashed, on the other side) from
-   the head of x⃗ straight to the same point. Right, the other order: A first, then B, and the one hop of BA.
-   The reader drags x⃗ (on either plane, or on its two sliders, −1.5 to 1.5; the default (1, 0.5), where x⃗ and
-   the end of each path lie on different lines): ABx⃗ = (s, s) with s = x₁ + 2x₂ and BAx⃗ = (u, 2u) with
+   through A: the arrow x⃗, the point Bx⃗ (a hollow dot, the head of that vector) and the arrow A(Bx⃗), the two hops
+   between the heads curved in the matrix colour and named B and A, and the one hop of AB, a wider dashed arc
+   round the outside of the two, from the head of x⃗ straight to the same point. Right, the other order: A first, then B, and the one hop of BA.
+   The reader drags x⃗ (on either plane, or on its two sliders, −1.5 to 1.5; the default (1, 0.7), where no two
+   arrows of a plane lie on one line): ABx⃗ = (s, s) with s = x₁ + 2x₂ and BAx⃗ = (u, 2u) with
    u = x₁ + x₂, which agree only at x⃗ = 0⃗. The planes frame the default and its neighbourhood large; x⃗, Bx⃗
    and Ax⃗ never leave them, and a product that does (ABx⃗ once |s| > 3, BAx⃗ once |u| > 2, as far as (4.5, 4.5)
    and (3, 6) at the corners) is drawn to the edge along its own direction with its head hollow, while the
@@ -30,7 +30,7 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
   const AB = [1, 2, 1, 2], BA = [1, 1, 2, 2];
   const ap = (m, v) => [m[0] * v[0] + m[1] * v[1], m[2] * v[0] + m[3] * v[1]];
   const s1 = ctl(d.controls, { label: 'x_1', cls: '', key: 'x1', min: -1.5, max: 1.5, step: 0.1, value: 1, unit: '', dec: 1, aria: 'the first entry x₁ of the vector x' });
-  const s2 = ctl(d.controls, { label: 'x_2', cls: '', key: 'x2', min: -1.5, max: 1.5, step: 0.1, value: 0.5, unit: '', dec: 1, aria: 'the second entry x₂ of the vector x' });
+  const s2 = ctl(d.controls, { label: 'x_2', cls: '', key: 'x2', min: -1.5, max: 1.5, step: 0.1, value: 0.7, unit: '', dec: 1, aria: 'the second entry x₂ of the vector x' });
   const grips = [drag(d, { x: s1, y: s2 }), drag(d, { x: s1, y: s2 })];
   const ro = readout(d);
   const K = 84, TOP = 150;
@@ -43,12 +43,12 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
   let hits = [];
   hover(d.stage, () => hits);
 
-  /* a hop from p to q: a quadratic arc bulging by side (±1) off the chord, drawn up to fraction g,
-     its head an arrowhead along the arc's end; returns the point beside its middle for the name */
-  function hop(ctx, p, q, side, color, g, dash) {
+  /* a hop from p to q: a quadratic arc whose middle stands `bulge` off the chord (its sign the side), drawn up
+     to fraction g, its head an arrowhead along the arc's end; returns the point beside its middle for the name */
+  function hop(ctx, p, q, bulge, color, g, dash) {
     const dx = q[0] - p[0], dy = q[1] - p[1], L = Math.hypot(dx, dy);
     if (L < 20 || !(g > 0)) return null;
-    const nx = -dy / L, ny = dx / L, b = Math.min(0.3 * L, 46) * side;
+    const side = Math.sign(bulge) || 1, nx = -dy / L, ny = dx / L, b = 2 * bulge;
     const c = [(p[0] + q[0]) / 2 + nx * b, (p[1] + q[1]) / 2 + ny * b];
     const at = (t) => [(1 - t) * (1 - t) * p[0] + 2 * t * (1 - t) * c[0] + t * t * q[0], (1 - t) * (1 - t) * p[1] + 2 * t * (1 - t) * c[1] + t * t * q[1]];
     /* stop short of the heads so the arc meets the arrows' tips, not their dots */
@@ -59,8 +59,8 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
     ctx.stroke(); ctx.restore();
     const [hx, hy] = at(te), [bx, by] = at(Math.max(t0, te - 0.04)), u = Math.hypot(hx - bx, hy - by) || 1;
     arrow(ctx, hx - (14 * (hx - bx)) / u, hy - (14 * (hy - by)) / u, hx, hy, color, 3);
-    const m = at(0.5);
-    return [m[0] + nx * side * 24, m[1] + ny * side * 24, nx * side, ny * side];
+    const m = at(0.5), path = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9].map(at);
+    return [m[0] + nx * side * 24, m[1] + ny * side * 24, nx * side, ny * side, path];
   }
 
   function draw() {
@@ -70,14 +70,15 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
     const k = ease.smooth(arrival(d));
     hits = [];
     const taken = [];
-    const clash = (b) => taken.some((o) => b.l < o.r + 6 && o.l < b.r + 6 && b.t < o.b + 4 && o.t < b.b + 4);
+    const clash = (b) => taken.some((o) => b.l < o.r + 2 && o.l < b.r + 2 && b.t < o.b + 2 && o.t < b.b + 2);
     /* a name set beside the point it names: out along (ux, uy), stepping further out, then turning, where the slot is taken */
     const name = (s, px, py, ux, uy, color, size = 24) => {
-      const w = measure(ctx, s, { size, weight: 600, tex: true }) + 12, h = size + 12;
-      /* a name that finds no clear slot near its thing is left to the hover names */
-      for (const tr of [0, 0.7, -0.7]) {
+      const w = measure(ctx, s, { size, weight: 600, tex: true }) + 8, h = size + 6;
+      /* the slot out along (ux, uy) first, then the slots turned from it either way round the point; a name
+         that finds no clear slot near its thing is left to the hover names */
+      for (const tr of [0, 0.6, -0.6, 1.2, -1.2, 1.9, -1.9, 2.6, -2.6, Math.PI]) {
         const ca = Math.cos(tr), sa = Math.sin(tr), vx = ux * ca - uy * sa, vy = ux * sa + uy * ca;
-        for (const gap of [18, 34]) {
+        for (const gap of [10, 22, 36]) {
           const cx = px + vx * (gap + w / 2 * Math.abs(vx)), cy = py + vy * (gap + h / 2 * Math.abs(vy));
           const b = { l: cx - w / 2, r: cx + w / 2, t: cy - h / 2, b: cy + h / 2 };
           if (b.l < 12 || b.r > 1388 || b.t < TOP - 10 || clash(b)) continue;
@@ -100,19 +101,29 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
       const hx = S(x), hv = S(v), hw = S(w);
       /* the heads and the origin are kept clear of names */
       [O, hx, hv, hw].forEach(([a, b]) => taken.push({ l: a - 10, r: a + 10, t: b - 10, b: b + 10 }));
-      /* the arrows from the origin: first x⃗ after the first matrix (faint), then the end of the two hops, then x⃗ */
+      /* the arrows from the origin: the end of the two hops, then x⃗; the stop between the hops is the head of
+         x⃗ after the first matrix, marked by a hollow dot */
       const len = (p) => Math.hypot(p[0], p[1]) > 1e-9;
-      if (len(v)) { const [a, b] = grow(v, g1); arrow(ctx, O[0], O[1], a, b, alpha(vc, 0.45), 3); }
-      if (len(w)) { const [a, b] = grow(w, g2); arrow(ctx, O[0], O[1], a, b, vc, 6); if (pinned(w) && g2 >= 1) F.dot(ctx, a, b, vc, false, 9); }
+      if (g1 >= 1) F.dot(ctx, hv[0], hv[1], vc, false, 7);
+      if (len(w)) {
+        const [a, b] = grow(w, g2); arrow(ctx, O[0], O[1], a, b, vc, 6);
+        /* past the edge: the head hollow at the edge and the arrow's line running on, dotted, out of the plane */
+        if (pinned(w) && g2 >= 1) { const u = Math.hypot(a - O[0], b - O[1]) || 1; line(ctx, a, b, a + (26 * (a - O[0])) / u, b + (26 * (b - O[1])) / u, vc, 3, [3, 5]); F.dot(ctx, a, b, vc, false, 9); }
+      }
       if (len(x)) { const [a, b] = grow(x, g0); arrow(ctx, O[0], O[1], a, b, vc, 4); }
-      /* the hops: the first matrix, the second, and their product in one step on the other side;
-         each bulges away from the origin, the product's toward it */
-      const away = (p, q) => { const m = [(p[0] + q[0]) / 2 - O[0], (p[1] + q[1]) / 2 - O[1]], dx = q[0] - p[0], dy = q[1] - p[1]; return (-dy * m[0] + dx * m[1]) >= 0 ? 1 : -1; };
-      const h1 = hop(ctx, hx, hv, away(hx, hv), mc, g1);
-      const h2 = hop(ctx, hv, hw, away(hv, hw), mc, g2);
-      const h3 = hop(ctx, hx, hw, -away(hx, hw), alpha(mc, 0.8), g2, [9, 7]);
-      /* the reader's x⃗ */
+      /* the hops: the first matrix and the second, each bowed into the triangle the three heads make, and
+         their product in one step, a wider dashed arc round the outside of the two */
+      const off = (p, q, r) => { const dx = q[0] - p[0], dy = q[1] - p[1], L = Math.hypot(dx, dy) || 1; return (-dy * (r[0] - p[0]) + dx * (r[1] - p[1])) / L; };
+      const inward = (p, q, r) => { const o = off(p, q, r), L = Math.hypot(q[0] - p[0], q[1] - p[1]); return (o > 0 ? 1 : -1) * Math.min(0.18 * L, 26); };
+      const h1 = hop(ctx, hx, hv, inward(hx, hv, hw), mc, g1);
+      const h2 = hop(ctx, hv, hw, inward(hv, hw, hx), mc, g2);
+      const ov = off(hx, hw, hv), L3 = Math.hypot(hw[0] - hx[0], hw[1] - hx[1]);
+      const h3 = hop(ctx, hx, hw, Math.abs(ov) > 6 ? ov + Math.sign(ov) * 40 : 0.3 * L3, alpha(mc, 0.8), g2, [9, 7]);
+      /* the reader's x⃗; the arrows and the hops are kept clear of names */
       const at = grips[pi].draw(ctx, ax, vc);
+      const keep = (q) => taken.push({ l: q[0] - 5, r: q[0] + 5, t: q[1] - 5, b: q[1] + 5 });
+      [hx, hw].forEach((h) => { const L = Math.hypot(h[0] - O[0], h[1] - O[1]); for (let t = 20; t < L - 6; t += 14) keep([O[0] + ((h[0] - O[0]) * t) / L, O[1] + ((h[1] - O[1]) * t) / L]); });
+      [h1, h2, h3].forEach((h) => h && h[4].forEach(keep));
       return { P, ax, x, v, w, hx, hv, hw, h1, h2, h3, at, out: pinned(w) };
     });
     /* names last, above the arrows: the vectors' at their heads (the reader's x⃗ first), then the hops' */

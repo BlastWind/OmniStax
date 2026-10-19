@@ -94,7 +94,7 @@ const sig2 = (v) => String(Number(v.toPrecision(2)));
     hits.push({ x: lsp.X(t), y: lsp.Y(clamp(Math.log10(Math.max(1e-6, sep[i])), -4, 1)), r: 14, name: `the distance between the two states at t = ${fmt(t, 2)}: ${fmt(sep[i], 3)}` });
     if (tSep !== null) {
       [xt, lsp].forEach((ax) => line(ctx, ax.X(tSep), ax.box.t, ax.X(tSep), ax.box.b, alpha(PAL.ink, 0.5), 2, [4, 8]));
-      label(ctx, `t ≈ ${fmt(tSep, 1)}`, lsp.X(tSep), lsp.Y(0), { side: tSep > 24 ? 'left' : 'right', size: 17, gap: 12, color: PAL.ink, leader: false });
+      label(ctx, `t ≈ ${fmt(tSep, 1)}`, lsp.X(tSep), lsp.Y(-3.6), { side: tSep > 24 ? 'left' : 'right', size: 17, gap: 12, color: PAL.ink, leader: false });
       hits.push({ x: lsp.X(tSep), y: lsp.Y(0), r: 12, name: `the first time the two states are more than 1 apart, t ≈ ${fmt(tSep, 2)}` });
     }
     const ds = sig2(delta);
@@ -205,18 +205,19 @@ const sig2 = (v) => String(Number(v.toPrecision(2)));
    drawn into space as the clock runs, the three critical points of Exercise 8.5.101 hollow (all unstable), axes on the book's box
    x −20 to 20, y −25 to 25, z 0 to 50; free orbit, opening near the book's view (x left to right, y receding, z up); the spin
    button offered and off; the wheel zooms. Beneath, x(t) on t 0 to 15, x −20 to 20 (Figure 8.16), to the present t, so a lobe
-   switch is a sign change of x. The clock runs t 0 to 15 in 6 s. Sliders x₀ = y₀ and z₀, with dashed circles at the
-   critical points' coordinates. */
+   switch is a sign change of x. The clock runs t 0 to 15 in 6 s. Sliders x₀ = y₀ (−15 to 15: from every start in that range the
+   path stays within about 23, 31, 52 of the box's centre line, so the stage holds it) and z₀ (0 to 40), with dashed circles at
+   the critical points' coordinates. */
 (function () {
   const d = sim('sim-lorenz');
   const box = [[-20, 20], [-25, 25], [0, 50]], T = 15, h = 0.005, N = Math.round(T / h), CH = 100;
-  const S3 = F.space3d(d, { box, h: 560, fit: 2.9, turn: -0.42, tilt: 0.3, spin: 'idle' });
+  const S3 = F.space3d(d, { box, h: 600, fit: 2.35, turn: -0.42, tilt: 0.3, spin: 'idle' });
   if (S3.v) S3.v.look({});   /* the spin is offered, never on by default (root 26.2) */
   const gc = F.makeCanvas(d.stage, 300);
   const cy = cycle(() => T, 1.2);
   const R = 6 * Math.SQRT2;
   const reset = () => { solve(); cy.reset(); };
-  const xs = ctl(d.controls, { label: 'x_0 = y_0', cls: '', key: 'x0', min: -20, max: 20, step: 0.5, value: 1, unit: '', dec: 1, detents: [1], specials: [{ at: -R, label: 'critical point' }, { at: 0, label: 'z-axis' }, { at: R, label: 'critical point' }], aria: 'the start’s x and y', onInput: reset });
+  const xs = ctl(d.controls, { label: 'x_0 = y_0', cls: '', key: 'x0', min: -15, max: 15, step: 0.5, value: 1, unit: '', dec: 1, detents: [1], specials: [{ at: -R, label: 'critical point' }, { at: 0, label: 'z-axis' }, { at: R, label: 'critical point' }], aria: 'the start’s x and y', onInput: reset });
   const zs = ctl(d.controls, { label: 'z_0', cls: '', key: 'z0', min: 0, max: 40, step: 0.5, value: 20, unit: '', dec: 1, detents: [20], specials: [{ at: 0, label: 'critical point' }, { at: 27, label: 'critical point' }], aria: 'the start’s z', onInput: reset });
   const ro = readout(d);
   let P = null, sw = null, chunks = [];
@@ -263,7 +264,7 @@ const sig2 = (v) => String(Number(v.toPrecision(2)));
     S3.headline(atCrit()
       ? `The start $(${xs.v === 0 ? '0, 0' : xs.v > 0 ? '6\\sqrt{2}, 6\\sqrt{2}' : '-6\\sqrt{2}, -6\\sqrt{2}'}, ${zs.v})$ is a critical point: the solution stays there.`
       : onAxis()
-        ? `On the $\\kz$-axis $\\kx = \\ky = 0$ for all $t$, and $\\kz = ${n(z0, 1)}e^{-8t/3}$ falls toward the critical point $(0, 0, 0)$: $t = ${n(t)}$, $\\kz = ${n(P[3 * i + 2])}$.`
+        ? `On the $\\kz$-axis $\\kx = \\ky = 0$ for all $t$, and $\\kz = ${n(z0, 1)}e^{-8t/3}$ falls toward the critical point $(0, 0, 0)$.`
         : `$t = ${n(t)}$: $\\kx = ${n(xi, 1)}$, on the ${side} loop; ${k === 0 ? '$\\kx$ has not changed sign yet' : `$\\kx$ has changed sign ${k === 1 ? 'once' : k + ' times'}`}.`);
     /* x(t), Figure 8.16 */
     const { ctx } = begin(gc);

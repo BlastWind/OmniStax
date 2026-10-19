@@ -18,6 +18,9 @@ Task `prep1-appA` (prep stage one, 2026-10-19), port 8110, scratch `/tmp/claude-
 - `redefines: true` added on A.1/x_vec, u_vec, F, A, M, a_ij, A.2/B, b_vec, A.3/v_vec, b_vec, A.4/S, w_vec, b_vec, A.5/θ, x_vec, u_vec. Redundant ink overrides on A.1/L, A.5/θ removed.
 - `ost merge diffyqs A`: 67 concepts, 109 edges (7 redundant dropped after the whole-book Hasse check), 5 symbols. Concept links were in the draft and check clean.
 - `ost check diffyqs`: no errors, no warnings.
+- A.6 built 2026-10-19 (task sec-A.6): 1 figure (Figure A.7 `sim-unit-square-image`, still sim, two panes with the book's correspondence arrows; 3.2's `sim-determinant-area` linked, not rebuilt), 0 Sims, 1 derivation, 11 exercises (0 inline, 7 unkeyed AI-marked, 4 keyed), 5 concepts introduced, 95 coverage rows, no footnotes; `ost check` clean.
+- A.4 built 2026-10-19 (task sec-A.4): 1 Sim (`sim-rank-nullity`, still, two planes: kernel among the inputs, column space among the outputs, a dropdown of three matrices, b⃗ dragged, the Fredholm case in the headline), 0 book figures, 1 derivation (`drv-kernel-is-a-subspace`), 9 exercises (0 inline, 6 unkeyed AI-marked, 3 keyed), 10 concepts introduced, 134 coverage rows, no footnotes; `ost check` clean.
+- A.3 built 2026-10-19 (task sec-A.3): 1 Sim (`sim-system-of-lines`, still, the second line on three sliders with parallel and one-line detents, the solution set fading from a dot to a band, [A | b⃗] and its reduced form exact in the readout), 0 book figures, 1 derivation (`drv-superposition-for-matrix-equations`), 16 exercises (0 inline, 8 unkeyed AI-marked, 8 keyed), 20 concepts introduced, 254 coverage rows, 1 book footnote (number 63, the running count) and 3 corrections (the stray minus before the α₃ term; the y⃗/x⃗ letters of the independence definition; the book's answer to A.3.107 a), whose third vector is a row, not a column); `ost check` clean.
 
 ## Next
 

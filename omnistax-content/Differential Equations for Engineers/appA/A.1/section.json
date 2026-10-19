@@ -350,9 +350,6 @@
     {
      "assumes": [
       {
-       "tex": "\\kvecx = \\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\\\ x_5 \\end{bmatrix}"
-      },
-      {
        "tex": "\\alpha \\begin{bmatrix} x_1 \\\\ \\vdots \\\\ x_n \\end{bmatrix} = \\begin{bmatrix} \\alpha x_1 \\\\ \\vdots \\\\ \\alpha x_n \\end{bmatrix}",
        "src": "A.1, Vectors and operations on vectors"
       },
@@ -366,17 +363,14 @@
       }
      ],
      "then": {
-      "tex": "\\mk{x}{\\kvecx} = \\mk{c}{\\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\\\ x_5 \\end{bmatrix}}",
-      "uses": [
-       0
-      ]
+      "tex": "\\mk{x}{\\kvecx} = \\mk{c}{\\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\\\ x_4 \\\\ x_5 \\end{bmatrix}}"
      },
      "steps": [
       {
        "tex": "\\mk{x}{\\kvecx} = \\mk{s1}{x_1 \\begin{bmatrix} 1 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix}} + \\mk{s2}{x_2 \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\\\ 0 \\\\ 0 \\end{bmatrix}} + \\mk{s3}{x_3 \\begin{bmatrix} 0 \\\\ 0 \\\\ 1 \\\\ 0 \\\\ 0 \\end{bmatrix}} + \\mk{s4}{x_4 \\begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ 1 \\\\ 0 \\end{bmatrix}} + \\mk{s5}{x_5 \\begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\\\ 0 \\\\ 1 \\end{bmatrix}}",
        "uses": [
-        1,
-        2
+        0,
+        1
        ],
        "map": {
         "c": [
@@ -387,12 +381,12 @@
          "s5"
         ]
        },
-       "cap": "Read from right to left, the rules for adding and scaling vectors split the column into one scaled column for each component."
+       "cap": "Read from right to left, the rules for scaling and adding vectors split the column into one scaled column for each component."
       },
       {
        "tex": "\\mk{x}{\\kvecx} = \\mk{s1}{x_1 \\kvece_1} + \\mk{s2}{x_2 \\kvece_2} + \\mk{s3}{x_3 \\kvece_3} + \\mk{s4}{x_4 \\kvece_4} + \\mk{s5}{x_5 \\kvece_5}",
        "uses": [
-        3
+        2
        ]
       }
      ],
@@ -409,14 +403,18 @@
       }
      ],
      "then": {
-      "tex": "\\mk{Ax}{\\kA \\kvecx} = \\mk{A}{\\kA} ( \\mk{s1}{x_1 \\kvece_1} + \\mk{s2}{x_2 \\kvece_2} + \\mk{s3}{x_3 \\kvece_3} + \\mk{s4}{x_4 \\kvece_4} + \\mk{s5}{x_5 \\kvece_5} )",
+      "tex": "\\mk{x}{\\kvecx} = \\mk{s1}{x_1 \\kvece_1} + \\mk{s2}{x_2 \\kvece_2} + \\mk{s3}{x_3 \\kvece_3} + \\mk{s4}{x_4 \\kvece_4} + \\mk{s5}{x_5 \\kvece_5}",
       "uses": [
        0
       ]
      },
      "steps": [
       {
-       "tex": "\\mk{Ax}{\\kA \\kvecx} = \\mk{s1}{x_1 \\kA\\kvece_1} + \\mk{s2}{x_2 \\kA\\kvece_2} + \\mk{s3}{x_3 \\kA\\kvece_3} + \\mk{s4}{x_4 \\kA\\kvece_4} + \\mk{s5}{x_5 \\kA\\kvece_5}",
+       "tex": "\\mk{x}{\\kA \\kvecx} = \\mk{A}{\\kA} ( \\mk{s1}{x_1 \\kvece_1} + \\mk{s2}{x_2 \\kvece_2} + \\mk{s3}{x_3 \\kvece_3} + \\mk{s4}{x_4 \\kvece_4} + \\mk{s5}{x_5 \\kvece_5} )",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{x}{\\kA \\kvecx} = \\mk{s1}{x_1 \\kA\\kvece_1} + \\mk{s2}{x_2 \\kA\\kvece_2} + \\mk{s3}{x_3 \\kA\\kvece_3} + \\mk{s4}{x_4 \\kA\\kvece_4} + \\mk{s5}{x_5 \\kA\\kvece_5}",
        "uses": [
         1
        ],

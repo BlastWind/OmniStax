@@ -84,8 +84,8 @@ const still = (d, draw) => register(d.fig, { update: () => {}, draw });
     if (kase === 'line') sample(L1, 'every point of this line solves both equations');
     /* the one solution where the lines cross, labelled with its coordinates */
     if (k > 0.95) P.draw(ctx, 'dot', () => {
-      const at = pinned(ctx, BOX, X, Y, last[0], last[1], pc);
       const s = xs ? `(${fTxt(xs)}, ${fTxt(ys)})` : '';
+      const at = pinned(ctx, BOX, X, Y, last[0], last[1], pc, s || undefined);
       if (s && !at.out) label(ctx, s, at.x, at.y, { side: at.y < BOX.t + 70 ? 'below' : 'above', color: pc, size: 22, gap: 24 });
       if (s) hits.push({ x: at.x, y: at.y, r: 16, name: `${s}, on both lines: the one solution${at.out ? ', off the plane drawn' : ''}` });
     });

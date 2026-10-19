@@ -23,9 +23,13 @@ Task `prep1-ch06` (prep stage one), port 8107, scratch `/tmp/claude-0/-home-user
 - 6.4 built (task `sec-6.4`, claude-opus-5-5 high): 3 figures (`sim-pulse`, Figure 6.3, still: pulse and transform side by side, a choice height M / area 1, at area 1 the pulse narrows into a delta and its transform rises onto e^(−as); `sim-impulse-response`, the plan's own Sim, moving: the input chopped into N slices launching scaled impulse responses that sum to f ∗ h, four inputs δ, 1, the rocket's pulse and cos t (added at build), ω₀ and N sliders; `sim-beam`, Figure 6.4, still, true scale, a and F sliders), 1 derivation (`drv-impulse-response`), Remarks 6.4.1–6.4.2 as notes, 13 end exercises (8 AI-marked, 5 keyed), 0 Try Its, 13 concepts introduced, 70 coverage rows, footnotes 33–37; `ost check` clean; anchors wanted are in 6.4/plan.md.
 - 6.1 built (task `sec-6.1`, claude-opus-5-5 high): 1 still Sim (`sim-laplace-area`, the 3Blue1Brown Laplace area, built), 0 derivations, 19 exercises (4 inline Try Its, 11 unkeyed with AI solutions, 4 keyed), 15 concepts introduced, footnotes 28–30; `ost check diffyqs --section 6.1` ok.
 
-## Next
+- Chapter pass 2026-10-19 (pass-ch06, port 8138): 68 form and 66 variables anchors from the five plans' "Wanted at chapter level" (no new rows, no concept or edge change); footnotes 28–39 confirmed against `ch-laplace.tex` (config line 21); 6.3's two Table 6.1 links and its correction note `c-table-6-2` repointed to `/diffyqs/ch06/6.1/#6.1-tab-6-1`; all 19 in-book fragment links of Chapter 6 resolve (6.2 → 6.1-ex-6-1-4, 6.5 → 6.2-eq-6-1 among them), the sheet `/diffyqs/sheets/laplace-table/` builds; Playwright light and dark: no errors, every Sim has a canvas, transports only on the four moving figures. `ost log diffyqs 6`. `ost check diffyqs`: no errors; `astro check` 0 errors.
 
-- Sections 6.1 → 6.5, then the chapter pass.
+## In progress
+- Nothing; the chapter is done.
+
+## Next
+- Nothing for Chapter 6. Chapter 7's footnotes start at 40.
 
 ## Cross-chapter prereq ids used in `book-rows.json`
 - Chapter 0 (merged): `constant-coefficient-equation`, `linear-differential-equation`, `solving-an-initial-value-problem`, `partial-differential-equation`.
@@ -36,6 +40,8 @@ Task `prep1-ch06` (prep stage one), port 8107, scratch `/tmp/claude-0/-home-user
 - Chapter 3: none.
 
 ## Decisions Chen must hear
+- Footnote numbering: the book's running number, 28–39 (6.1 28–30, 6.3 31–32, 6.4 33–37, 6.5 38–39; 6.2 none).
+- Colour: the `transform` type (F, G, H, X, Y and their primes) shows in ink on every Chapter 6 page because its colour is unset until the orchestrator's final `colours:default -- diffyqs`; the pages are right once it runs. For that pass also: the referents `conv-f`, `conv-g` (6.3) and `input`, `impulse` (6.4) sit beside f, g, h in `function` (their letters stay `function`); COLOR.md asks that F not look like f.
 - `laplace-transform` reuses Calculus 7.7's id and is declared here with type `transform` (Calculus types it `integral`); `partial-fraction-decomposition` reuses Calculus 7.4's id as a `skill` here ("method of partial fractions").
 - Table 6.1's eleven entries and Table 6.2's three rows are staged as forms (`laplace-transform-table`, `transform-of-a-derivative`) so the formulas list carries the tables; the tables also stay printed in the text.
 - Example 6.3.3 cites "Table 6.2" for entries that are in Table 6.1: treated as a book error under rule 13 (marker, AI-marked footnote, the link to Table 6.1).
