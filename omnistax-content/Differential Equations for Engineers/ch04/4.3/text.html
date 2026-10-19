@@ -99,7 +99,7 @@ $$ \kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{
 <h3>Example 4.3.6</h3>
 <p>Take the function</p>
 $$ \kf(t) = \begin{cases} (t+1)\,t & \text{if } \; {-1} &lt; t \leq 0 , \\ (1-t)\,t & \text{if } \; \phantom{-}0 &lt; t \leq 1 , \end{cases} $$
-<p id="smooth-derivative">and extend to a 2-<span data-concept="periodic-function">periodic function</span>. The derivative $\kfprime(t)$ exists for all $t$, but $f''(t)$ does not exist if $t$ is an integer. In particular, $\kfprime(t) = 2t+1$ if $-1 \leq t \leq 0$ and $\kfprime(t) = 1-2t$ if $0 \leq t \leq 1$, so $\kfprime(t)$ has a “corner” at $0$. See Figure 4.11 for the plot of $\kf(t)$ and $\kfprime(t)$.</p>
+<p id="smooth-derivative">and extend to a 2-<span data-concept="periodic-function">periodic function</span>. The derivative $\kfprime(t)$ exists for all $t$, but $\kfdprime(t)$ does not exist if $t$ is an integer. In particular, $\kfprime(t) = 2t+1$ if $-1 \leq t \leq 0$ and $\kfprime(t) = 1-2t$ if $0 \leq t \leq 1$, so $\kfprime(t)$ has a “corner” at $0$. See Figure 4.11 for the plot of $\kf(t)$ and $\kfprime(t)$.</p>
 <figure class="sim" id="sim-smoothness-decay" data-figure="4.11" data-original="/media/ch04/gfs-smoothex.svg" data-original-caption="Smooth 2-periodic function (the smooth line) with its nonsmooth derivative (the jagged line)." data-original-width="432">
   <div class="sim-head"><span class="eyebrow">Figure 4.11</span><span>Four <span data-concept="periodic-function">periodic functions</span> over two periods, each with its derivative where it exists, and below them the sizes of their nonzero <span data-concept="fourier-coefficients">Fourier coefficients</span> against $n$ on logarithmic scales, beside the dashed lines $1/n$, $1/n^2$ and $1/n^3$. The once-differentiable function of Example 4.3.6 falls like $1/n^3$, the continuous $\lvert t \rvert$ with its corners like $1/n^2$, and the <span data-concept="square-wave">square wave</span> and the <span data-concept="sawtooth">sawtooth</span> with their jumps like $1/n$.</span></div>
 </figure>
@@ -117,13 +117,13 @@ $$ \frac{8}{\pi^3} \sin (\pi t) + \frac{8}{27 \pi^3} \sin (3 \pi t) , $$
 $$ \kf(t) = \sum_{n=1}^\infty \frac{1}{n^3} \sin (n t) . $$
 <p>When we <span data-concept="term-by-term-differentiation">differentiate term by term</span>, we notice</p>
 $$ \kfprime(t) = \sum_{n=1}^\infty \frac{1}{n^2} \cos (n t) . $$
-<p>Therefore, the coefficients now go down like ${1}/{n^2}$, which means that we have a continuous function. The derivative of $\kfprime(t)$ is defined at most points, but there are points where $\kfprime(t)$ is not differentiable. It has corners, but no jumps. If we differentiate again (where we can), we find that the function $f''(t)$ now fails to be continuous (has jumps)</p>
-$$ f''(t) = \sum_{n=1}^\infty \frac{-1}{n} \sin (n t) . $$
+<p>Therefore, the coefficients now go down like ${1}/{n^2}$, which means that we have a continuous function. The derivative of $\kfprime(t)$ is defined at most points, but there are points where $\kfprime(t)$ is not differentiable. It has corners, but no jumps. If we differentiate again (where we can), we find that the function $\kfdprime(t)$ now fails to be continuous (has jumps)</p>
+$$ \kfdprime(t) = \sum_{n=1}^\infty \frac{-1}{n} \sin (n t) . $$
 <p>This function is similar to the <span data-concept="sawtooth">sawtooth</span>. If we tried to differentiate the series again, we would obtain</p>
 $$ \sum_{n=1}^\infty -\cos (n t) , $$
 <p id="does-not-converge">which does not converge!</p>
 <div class="exercises" data-place="does-not-converge"></div>
 <figure class="sim" id="sim-term-by-term">
-  <div class="sim-head"><span class="eyebrow">Sim</span><span>The series $\kf(t) = \sum \frac{1}{n^3} \sin (nt)$ and the series that <span data-concept="term-by-term-differentiation">differentiating it term by term</span> gives, each summed up to the term $n = N$ over the sum it closes on. Each derivative takes a power of $n$ off the coefficients: $\kf$ is smooth, $\kfprime$ has corners, $f''$ has jumps, and the next series, whose terms do not go to zero, does not converge.</span></div>
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The series $\kf(t) = \sum \frac{1}{n^3} \sin (nt)$ and the series that <span data-concept="term-by-term-differentiation">differentiating it term by term</span> gives, each summed up to the term $n = N$ over the sum it closes on. Each derivative takes a power of $n$ off the coefficients: $\kf$ is smooth, $\kfprime$ has corners, $\kfdprime$ has jumps, and the next series, whose terms do not go to zero, does not converge.</span></div>
 </figure>
 </section>

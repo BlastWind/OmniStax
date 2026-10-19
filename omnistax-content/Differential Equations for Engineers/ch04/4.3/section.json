@@ -587,7 +587,7 @@
     "after": "sim-smoothness-decay"
    },
    "cite": "smooth-derivative",
-   "prompt": "<p>Compute $f''(0+)$ and $f''(0-)$.</p>",
+   "prompt": "<p>Compute $\\kfdprime(0+)$ and $\\kfdprime(0-)$.</p>",
    "answer": {
     "type": "multi",
     "generated_by": "ai",
@@ -601,7 +601,7 @@
       "value": 2
      }
     ],
-    "solution": "$f''(0+) = -2$ and $f''(0-) = 2$. For $0 < t \\leq 1$, $\\kfprime(t) = 1 - 2t$, so $f''(t) = -2$ there and its limit from above at $0$ is $-2$. For $-1 < t \\leq 0$, $\\kfprime(t) = 2t + 1$, so $f''(t) = 2$ there and its limit from below at $0$ is $2$. The two one-sided limits differ, so $f''(0)$ does not exist: $\\kfprime$ turns a corner at $0$, falling with slope $-2$ after it and rising with slope $2$ before it, as its graph in Figure 4.11 shows."
+    "solution": "$\\kfdprime(0+) = -2$ and $\\kfdprime(0-) = 2$. For $0 < t \\leq 1$, $\\kfprime(t) = 1 - 2t$, so $\\kfdprime(t) = -2$ there and its limit from above at $0$ is $-2$. For $-1 < t \\leq 0$, $\\kfprime(t) = 2t + 1$, so $\\kfdprime(t) = 2$ there and its limit from below at $0$ is $2$. The two one-sided limits differ, so $\\kfdprime(0)$ does not exist: $\\kfprime$ turns a corner at $0$, falling with slope $-2$ after it and rising with slope $2$ before it, as its graph in Figure 4.11 shows."
    }
   },
   {
@@ -615,11 +615,11 @@
     "after": "does-not-converge"
    },
    "cite": "decay-justification",
-   "prompt": "<p>Use a computer to plot the series we obtained for $\\kf(t)$, $\\kfprime(t)$ and $f''(t)$. That is, plot say the first 5 harmonics of the functions. At what points does $f''(t)$ have the discontinuities?</p>",
+   "prompt": "<p>Use a computer to plot the series we obtained for $\\kf(t)$, $\\kfprime(t)$ and $\\kfdprime(t)$. That is, plot say the first 5 harmonics of the functions. At what points does $\\kfdprime(t)$ have the discontinuities?</p>",
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "At the integer multiples of $2\\pi$: $t = 0, \\pm 2\\pi, \\pm 4\\pi, \\ldots$. The plots of $\\sum_{n=1}^{5} \\frac{\\sin(nt)}{n^3}$, $\\sum_{n=1}^{5} \\frac{\\cos(nt)}{n^2}$ and $\\sum_{n=1}^{5} \\frac{-\\sin(nt)}{n}$ (the Sim below draws them for any number of terms) show $\\kf$ smooth, $\\kfprime$ continuous with corners at $t = 2k\\pi$, and $f''$ jumping there. On $0 < t < 2\\pi$ the series for $f''$ sums to $\\frac{t - \\pi}{2}$, which climbs from $-\\frac{\\pi}{2}$ to $\\frac{\\pi}{2}$ and then drops back to $-\\frac{\\pi}{2}$ as $t$ passes $2\\pi$, a jump of $\\pi$; at $t = \\pi$ it is $0$ and continuous. At each jump the series gives $0$, the average of the two one-sided limits, as Theorem 4.3.1 says."
+    "solution": "At the integer multiples of $2\\pi$: $t = 0, \\pm 2\\pi, \\pm 4\\pi, \\ldots$. The plots of $\\sum_{n=1}^{5} \\frac{\\sin(nt)}{n^3}$, $\\sum_{n=1}^{5} \\frac{\\cos(nt)}{n^2}$ and $\\sum_{n=1}^{5} \\frac{-\\sin(nt)}{n}$ (the Sim below draws them for any number of terms) show $\\kf$ smooth, $\\kfprime$ continuous with corners at $t = 2k\\pi$, and $\\kfdprime$ jumping there. On $0 < t < 2\\pi$ the series for $\\kfdprime$ sums to $\\frac{t - \\pi}{2}$, which climbs from $-\\frac{\\pi}{2}$ to $\\frac{\\pi}{2}$ and then drops back to $-\\frac{\\pi}{2}$ as $t$ passes $2\\pi$, a jump of $\\pi$; at $t = \\pi$ it is $0$ and continuous. At each jump the series gives $0$, the average of the two one-sided limits, as Theorem 4.3.1 says."
    }
   },
   {

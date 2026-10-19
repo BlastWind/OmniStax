@@ -224,7 +224,7 @@ function legend(ctx, box, rows) {
     const heads = {
       f: `$\\kf(t) = \\sum \\frac{\\sin(nt)}{n^3}$, N = ${N}: the coefficients fall like 1/n³, and the sum is smooth.`,
       fp: `$\\kfprime(t) = \\sum \\frac{\\cos(nt)}{n^2}$, N = ${N}: the coefficients fall like 1/n², and the sum is continuous, with corners at $t = 0, \\pm 2\\pi$.`,
-      fpp: `$f''(t) = \\sum \\frac{-\\sin(nt)}{n}$, N = ${N}: the coefficients fall like 1/n, and the sum jumps at $t = 0, \\pm 2\\pi$.`,
+      fpp: `$\\kfdprime(t) = \\sum \\frac{-\\sin(nt)}{n}$, N = ${N}: the coefficients fall like 1/n, and the sum jumps at $t = 0, \\pm 2\\pi$.`,
       f3: `$\\sum -\\cos(nt)$, N = ${N}: the terms do not go to zero; at $t = 0$ the partial sum is ${fmt(-N, 0)} and falls further as N grows.`,
     };
     headline(ctx, heads[v]);

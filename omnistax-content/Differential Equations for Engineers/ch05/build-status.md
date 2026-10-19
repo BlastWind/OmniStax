@@ -20,6 +20,8 @@ Task `prep1-ch05` (prep stage one), port 8106, scratch `/tmp/claude-0/-home-user
 
 - 5.3 built (task `sec-5.3`, 2026-10-19): 3 figures (`sim-forced-string` Figure 5.3 + 5.4 moving, `sim-string-resonance` a still Sim of B(ω) with a probe, `sim-underground-temperature` Figure 5.5 moving with the fact map), 3 derivations (`drv-forced-string-yp` with (5.9) numbered inside, `drv-underground-x`, `drv-underground-temperature`; the planned underground one split in two so Try It 5.3.4 keeps its place), 10 exercises (4 inline Try Its, 4 unkeyed with AI solutions, 2 keyed), 8 concepts introduced, 2 referents (`ref` yp, yc set back on 5.3/y_p, y_c), book footnote 27; `ost check diffyqs --section 5.3` ok; anchors in its plan's `## Wanted at chapter level`.
 
+- 5.2 built (task `sec-5.2`, 2026-10-19): 3 figures (`sim-beam-vibration` Figure 5.2 moving, a motion choice of Example 5.2.1 or modes 1–3 and an a slider; `sim-beam-timbre` a still Sim, the beam's and a string's ladders under a shape choice, its a slider dropped as a rescale; `sim-beam-ends` a still Sim, the hinged/free/clamped choice), 1 derivation (`drv-hinged-beam`, three nodes, after `p#time-factor`, the book's prose and displays kept), 7 exercises (1 inline Try It, 4 unkeyed with AI solutions, 2 keyed), 8 concepts introduced, 2 referents (`beam`, `string`), book footnote 26; `ost check diffyqs --section 5.2` ok; anchors, the `eq-beam-frequencies` ω_n fix and two optional variables rows in its plan's `## Wanted at chapter level`.
+
 ## Next
 
 - Sections 5.1 → 5.3, then the chapter pass.
