@@ -59,7 +59,7 @@ function hollowArrow(ctx, x1, y1, x2, y2, color) {
     line(ctx, X(-4), Y(0), X(4), Y(0), alpha(PAL.ink, 0.35), 2);
     line(ctx, X(0), Y(-3), X(0), Y(3), alpha(PAL.ink, 0.35), 2);
     space.field2(ctx, ax, field, fld, { n: [16, 12], w: 2.5 });
-    hits.push({ x: X(-3.25), y: Y(2.25), r: 30, name: `the direction field of x⃗′ = Ax⃗, each arrow scaled to one length` });
+    hits.push({ x: X(-3.25), y: Y(2.25), r: 30, name: `the direction field of x′ = Ax, each arrow scaled to one length` });
     /* the fan of trajectories, each with an arrowhead at its seed the way it runs */
     SEEDS.forEach(([a, b], i) => {
       const f = sol(e, a, b), pts = trace(f, -4, 1.2, 900);
@@ -82,23 +82,23 @@ function hollowArrow(ctx, x1, y1, x2, y2, color) {
     /* the eigenvectors themselves, v⃗₁ named on the side away from v⃗ */
     arrow(ctx, O[0], O[1], X(1), Y(0), vc, 5);
     mark(ctx, '$\\kvecvone$', X(0.5), Y(0) + 16 * up, vc, { align: 'center', base: up > 0 ? 'top' : 'bottom' });
-    hits.push({ x: X(0.6), y: Y(0), r: 14, name: 'the eigenvector v⃗₁ = (1, 0)' });
+    hits.push({ x: X(0.6), y: Y(0), r: 14, name: 'the eigenvector v₁ = (1, 0)' });
     P.draw(ctx, 'pair', () => {
       arrow(ctx, O[0], O[1], X(1), Y(e), vc, 5);
       mark(ctx, '$\\kvecv$', X(0.5), Y(0.5 * e) - 16 * up, vc, { align: 'center', base: up > 0 ? 'bottom' : 'top' });
     });
-    if (!rep) hits.push({ x: X(0.8), y: Y(0.8 * e), r: 12, name: `the eigenvector v⃗ = (1, ${exact(e)})` });
+    if (!rep) hits.push({ x: X(0.8), y: Y(0.8 * e), r: 12, name: `the eigenvector v = (1, ${exact(e)})` });
     /* the trajectory through (0, 1): x⃗₂ at ε = 0 */
     const g = sol(e, 0, 1);
     poly(ctx, ax, trace(g, -4, 1, 900), cc, 5);
     const gq = g(0.3);
-    hits.push({ x: X(gq[0]), y: Y(gq[1]), r: 16, name: rep ? 'the trajectory of x⃗₂ = (te^(3t), e^(3t)), through (0, 1)' : 'the trajectory through (0, 1)' });
+    hits.push({ x: X(gq[0]), y: Y(gq[1]), r: 16, name: rep ? 'the trajectory of x₂ = (te^(3t), e^(3t)), through (0, 1)' : 'the trajectory through (0, 1)' });
     mark(ctx, rep ? '$\\kvecxtwo$' : 'through $(0, 1)$', X(gq[0]) + 16, Y(gq[1]), cc, { align: 'left', base: 'middle' });
     P.draw(ctx, 'gen', () => {
       hollowArrow(ctx, O[0], O[1], X(0), Y(1), vc);
       mark(ctx, '$\\kvecvtwo$', X(0) - 16, Y(0.6), vc, { align: 'right', base: 'middle' });
     });
-    if (rep) hits.push({ x: X(0), y: Y(0.5), r: 14, name: 'the generalized eigenvector v⃗₂ = (0, 1), drawn hollow' });
+    if (rep) hits.push({ x: X(0), y: Y(0.5), r: 14, name: 'the generalized eigenvector v₂ = (0, 1), drawn hollow' });
     const A = `\\kA = \\left[\\begin{smallmatrix} 3 & 1 \\\\ 0 & ${exact(lam2)} \\end{smallmatrix}\\right]`;
     if (rep) {
       headline(ctx, `$${A}$: the eigenvalue $\\klambda = 3$ twice and one eigenvector line, along $(1, 0)$; the defect is $1$.`);
