@@ -258,7 +258,7 @@ function expm(S, t) {
         arrow(ctx, ax.X(0), ax.Y(0), x2, y2, vc, 5);
         const L = Math.hypot(x2 - ax.X(0), y2 - ax.Y(0)) || 1;
         const z = num(e.lam), rel = z.exact ? '=' : '≈', vv = e.v.map((x) => num(x)), vrel = vv.every((x) => x.exact) ? '=' : '≈';
-        if (grow >= 1 && L > 8) lab.beside({ x1: ax.X(0), y1: ax.Y(0), x2, y2 }, 'left', `λ ${rel} ${minus(z.s)}`, ec, 20, { offset: 0.85, gap: 20 });
+        if (S.real && grow >= 1 && L > 8) lab.beside({ x1: ax.X(0), y1: ax.Y(0), x2, y2 }, 'left', `λ ${rel} ${minus(z.s)}`, ec, 20, { offset: 0.85, gap: 20 });
         hits.push({ x: x2, y: y2, r: 14, name: minus(`the eigenvector v⃗ ${vrel} [${vv[0].s}; ${vv[1].s}] for the eigenvalue λ ${rel} ${z.s}`) });
       });
       ctx.restore();

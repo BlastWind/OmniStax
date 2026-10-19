@@ -8,14 +8,14 @@ const signed = (v, dec = 2) => (v < 0 ? '-' : '+') + n(Math.abs(v), dec);
 const r2 = (v) => Math.round(v * 100) / 100;
 const guide = () => alpha(PAL.ink, 0.35);
 
-/* Sim: Example 3.9.2 by eigenvector decomposition. A = [1 3; 3 1] has λ₁ = −2 with v⃗₁ = (1, −1) and λ₂ = 4 with
-   v⃗₂ = (1, 1); f⃗ = (2eᵗ, 2t) decomposes as g₁ = eᵗ − t, g₂ = eᵗ + t, so x⃗ = v⃗₁ξ₁ + v⃗₂ξ₂ with
+/* Sim: Example 3.9.2 by eigenvector decomposition. A = [1 3; 3 1] has λ₁ = −2 with v₁ = (1, −1) and λ₂ = 4 with
+   v₂ = (1, 1); f⃗ = (2eᵗ, 2t) decomposes as g₁ = eᵗ − t, g₂ = eᵗ + t, so x = v₁ξ₁ + v₂ξ₂ with
    ξ₁′ = −2ξ₁ + eᵗ − t:  ξ₁ = eᵗ/3 − t/2 + 1/4 + C₁e^(−2t),  C₁ = ξ₁(0) − 7/12,
    ξ₂′ = 4ξ₂ + eᵗ + t:   ξ₂ = −eᵗ/3 − t/4 − 1/16 + C₂e^(4t),  C₂ = ξ₂(0) + 19/48.
-   The book's x⃗(0) = (3/16, −5/16) is ξ₁(0) = a₁ = 1/4, ξ₂(0) = a₂ = −1/16 (C₁ = −1/3, C₂ = 1/3); the dashed special
+   The book's x(0) = (3/16, −5/16) is ξ₁(0) = a₁ = 1/4, ξ₂(0) = a₂ = −1/16 (C₁ = −1/3, C₂ = 1/3); the dashed special
    on ξ₂(0) is −19/48, where C₂ = 0 and no e^(4t) term is left. Sliders step by 1/48, so 1/4, −1/16 and −19/48 are
-   all on the grid. Left: the x₁x₂-plane, equal scales −4 to 4, the two eigenvector lines, x⃗(t) as the corner of the
-   parallelogram with sides ξ₁v⃗₁ and ξ₂v⃗₂, the trajectory up to t. Right: ξ₁(t), ξ₂(t) for t 0 to 1, ξ −3 to 3
+   all on the grid. Left: the x₁x₂-plane, equal scales −4 to 4, the two eigenvector lines, x(t) as the corner of the
+   parallelogram with sides ξ₁v₁ and ξ₂v₂, the trajectory up to t. Right: ξ₁(t), ξ₂(t) for t 0 to 1, ξ −3 to 3
    (ξ₁ stays within ±1 over the sliders; ξ₂ is carried off by e^(4t) and pinned at the edge). One run, t 0 to 1, takes
    6 s. The headline's and readout's numbers come from ξ₁, ξ₂ rounded to two decimals, so that the sums shown are
    the sums of the numbers shown. */
@@ -49,11 +49,13 @@ const guide = () => alpha(PAL.ink, 0.35);
     const P = axes(ctx, PLANE, [-4, 4], [-4, 4], { xl: 'x_1', yl: 'x_2', xc: fc, yc: fc, nx: 4, ny: 4 });
     const at = (p) => [P.X(p[0]), P.Y(p[1])];
     /* the eigenvector lines, each its own axis of the skew coordinates */
-    [[V1, 'v_1', 'λ_1 = −2', [3.4, -3.4]], [V2, 'v_2', 'λ_2 = 4', [3.4, 3.4]]].forEach(([v, name, lam, end]) => {
+    [[V1, 'v_1', 'λ_1 = −2', -1], [V2, 'v_2', 'λ_2 = 4', 1]].forEach(([v, name, lam, s]) => {
       line(ctx, P.X(-4.2 * v[0]), P.Y(-4.2 * v[1]), P.X(4.2 * v[0]), P.Y(4.2 * v[1]), alpha(vc, 0.55), 3);
-      const lb = label(ctx, name, P.X(end[0]), P.Y(end[1]), { side: end[1] < 0 ? 'below' : 'above', color: vc, size: 22, gap: 14 });
-      label(ctx, lam, (lb.l + lb.r) / 2 + 52, (lb.t + lb.b) / 2, { side: 'right', color: ec, size: 18, gap: 18, leader: false });
-      hits.push({ x: P.X(end[0]), y: P.Y(end[1]), r: 22, name: `the eigenvector line of ${name === 'v_1' ? 'v⃗₁ = (1, −1), eigenvalue λ₁ = −2' : 'v⃗₂ = (1, 1), eigenvalue λ₂ = 4'}` });
+      /* the names stand outside the plane, beside the corner where the line leaves it */
+      const cyv = s > 0 ? P.box.t + 12 : P.box.b - 12;
+      label(ctx, name, P.box.r + 8, cyv, { side: 'right', color: vc, size: 22, gap: 6, leader: false });
+      label(ctx, lam, P.box.r + 8, cyv + s * 30, { side: 'right', color: ec, size: 18, gap: 6, leader: false });
+      hits.push({ x: P.box.r + 26, y: cyv, r: 22, name: name === 'v_1' ? 'the eigenvector line of v₁ = (1, −1), eigenvalue λ₁ = −2' : 'the eigenvector line of v₂ = (1, 1), eigenvalue λ₂ = 4' });
     });
     /* the trajectory: all of it faint, the part run so far solid */
     const traj = (u) => [xi1(u) + xi2(u), -xi1(u) + xi2(u)];
@@ -65,7 +67,7 @@ const guide = () => alpha(PAL.ink, 0.35);
     clip(ctx, P.box, () => {
       path(0, T, alpha(kc, 0.3), 3);
       if (t > 0) path(0, t, kc, 5);
-      /* the parallelogram: ξ₁v⃗₁ then ξ₂v⃗₂ to the corner x⃗, the other two sides dashed */
+      /* the parallelogram: ξ₁v₁ then ξ₂v₂ to the corner x, the other two sides dashed */
       const p1 = [s1 * V1[0], s1 * V1[1]], p2 = [s2 * V2[0], s2 * V2[1]];
       line(ctx, ...at(p2), ...at(x), guide(), 2, [6, 7]);
       line(ctx, P.X(0), P.Y(0), ...at(p2), guide(), 2, [6, 7]);
@@ -74,15 +76,15 @@ const guide = () => alpha(PAL.ink, 0.35);
       /* the two coordinates read on their own lines */
       dot(ctx, ...at(p1), r1, true, 8);
       dot(ctx, ...at(p2), r2c, true, 8);
-      hits.push({ x: at(p1)[0], y: at(p1)[1], r: 14, name: `ξ₁v⃗₁ = ${n(s1r)}·(1, −1), the coordinate along v⃗₁` },
-        { x: at(p2)[0], y: at(p2)[1], r: 14, name: `ξ₂v⃗₂ = ${n(s2r)}·(1, 1), the coordinate along v⃗₂` });
+      hits.push({ x: at(p1)[0], y: at(p1)[1], r: 14, name: `ξ₁v₁ = ${n(s1r)}·(1, −1), the coordinate along v₁` },
+        { x: at(p2)[0], y: at(p2)[1], r: 14, name: `ξ₂v₂ = ${n(s2r)}·(1, 1), the coordinate along v₂` });
     });
     const x0 = traj(0);
     dot(ctx, ...at(x0), pc, false, 10);
-    hits.push({ x: at(x0)[0], y: at(x0)[1], r: 16, name: `x⃗(0) = (${n(x0[0], 3)}, ${n(x0[1], 3)}), the initial condition` });
-    const xp = pinned(ctx, P.box, P.X, P.Y, x[0], x[1], vc, `(${n(xr[0])}, ${n(xr[1])})`);
-    hits.push({ x: xp.x, y: xp.y, r: 16, name: `x⃗(${n(t)}) = (${n(xr[0])}, ${n(xr[1])}), the corner of the parallelogram` });
-    hits.push({ x: P.X(traj(T * 0.5)[0]), y: P.Y(traj(T * 0.5)[1]), r: 14, name: 'the trajectory of x⃗(t), 0 ≤ t ≤ 1' });
+    hits.push({ x: at(x0)[0], y: at(x0)[1], r: 16, name: `x(0) = (${n(x0[0], 3)}, ${n(x0[1], 3)}), the initial condition` });
+    const xp = pinned(ctx, P.box, P.X, P.Y, x[0], x[1], vc);
+    hits.push({ x: xp.x, y: xp.y, r: 16, name: `x(${n(t)}) = (${n(xr[0])}, ${n(xr[1])}), the corner of the parallelogram` });
+    hits.push({ x: P.X(traj(T * 0.5)[0]), y: P.Y(traj(T * 0.5)[1]), r: 14, name: 'the trajectory of x(t), 0 ≤ t ≤ 1' });
 
     /* the two scalar functions against t */
     const G = axes(ctx, GRAPH, [0, 1], [-3, 3], { xl: 't', yl: 'ξ_1, ξ_2', yc: fc, nx: 4, ny: 6, fx: (v) => fmt(v, 2) });

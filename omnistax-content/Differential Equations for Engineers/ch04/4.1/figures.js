@@ -183,7 +183,7 @@ const piTick = (v) => {
     const square = v !== 'cs' && m === k;
     const I = square ? PI : 0, P = posArea(prod), Pr = r2(P), Ir = r2(I), Nr = r2(Pr - Ir);
     const lhs = `\\int_{-\\pi}^{\\pi} \\${FN[v][0]}(${m}t)\\,\\${FN[v][1]}(${k}t)\\,dt`;
-    ro.set(`${lhs} = ${n(Pr)} - ${n(Nr)} = ${square ? '\\pi' : '0'}`, 'the shaded area above the axis less the area below it', { form: square ? 'sq' : 'zero' });
+    ro.set(`${lhs} = ${n(Pr)} - ${n(Nr)} = ${square ? '\\pi' : '0'}`, undefined, { form: square ? 'sq' : 'zero' });
     const why = square ? `$\\${FN[v][0]}^2 ${m}t$ is never negative, so the integral is $\\pi$.`
       : v === 'cs' ? `$\\cos ${m === 1 ? '' : m}t \\cdot \\sin ${k === 1 ? '' : k}t$ is odd: the areas on either side of 0 cancel${m === k ? ', even with $m = n$' : ''}; the integral is 0.`
         : `$m \\neq n$: the area above the axis equals the area below, and the integral is 0.`;
@@ -209,6 +209,7 @@ const piTick = (v) => {
     aria: 'the angular velocity ω', specials: KS.map((k) => ({ at: () => wk(k, tS.v), label: `pops out, k = ${k}` })) });
   const tS = ctl(d.controls, { label: 'T', cls: '', key: 'T', min: 1, max: 6, step: 0.05, value: 3, unit: 'N', dec: 2,
     aria: 'the tension T', specials: KS.map((k) => ({ at: () => Tk(k, om.v), label: `pops out, k = ${k}` })) });
+  om.set(wk(1, 3));   /* the range input rounds a value to its step before the circles free it; set the exact speed */
   const ro = readout(d);
   const amp = tween(d, 1);
   let shapeK = 1, onK = 1, hits = [];

@@ -1,0 +1,143 @@
+<section id="bvp">
+<h2>Boundary value problems</h2>
+<p id="conditions">In <a href="/diffyqs/ch04/4.1/">chapter 4</a>, we encountered several different <span data-concept="eigenvalue-problem-of-a-differential-operator">eigenvalue problems</span> such as:</p>
+$$ \kXdprime(x) + \klambda \kX(x) = 0 , $$
+<p>with different <a href="/calculus/ch17/17.1/#17.1-boundary-term">boundary conditions</a></p>
+$$ \begin{array}{rrl} \kX(0) = 0 &amp; ~~\kX(L) = 0 &amp; ~~\text{(Dirichlet), or} \\ \kXprime(0) = 0 &amp; ~~\kXprime(L) = 0 &amp; ~~\text{(Neumann), or} \\ \kXprime(0) = 0 &amp; ~~\kX(L) = 0 &amp; ~~\text{(Mixed), or} \\ \kX(0) = 0 &amp; ~~\kXprime(L) = 0 &amp; ~~\text{(Mixed)}, \ldots \end{array} $$
+<p id="robin">These boundary problems came up in the study of the <span data-concept="heat-equation">heat equation</span> $\kut = k \kuxx$ when we were trying to solve the equation by the method of <span data-concept="separation-of-variables-for-pdes">separation of variables</span> in <a href="/diffyqs/ch04/4.6/">§4.6</a>. <span data-concept="dirichlet-boundary-conditions">Dirichlet conditions</span> correspond to applying a zero temperature at the ends, <span data-concept="neumann-boundary-conditions">Neumann</span> means insulating the ends, etc. Other types of endpoint conditions also arise naturally, such as the <em><span data-concept="robin-boundary-conditions">Robin boundary conditions</span></em></p>
+<div class="equation" id="eq-robin-conditions">$$ h\kX(0) - \kXprime(0) = 0, \qquad h\kX(L) + \kXprime(L) = 0 , $$</div>
+<p>for some constant $h$. These conditions come up when the ends are immersed in some medium.</p>
+<p id="decomposition-recap">In the <span data-concept="separation-of-variables-for-pdes">separation of variables</span> computation we encountered an eigenvalue problem and found the <span data-concept="eigenfunction">eigenfunctions</span> $\kXn(x)$. We then found the <em><span data-concept="eigenfunction-decomposition">eigenfunction decomposition</span></em> of the initial temperature $\kf(x) = \ku(x,0)$,</p>
+$$ \kf(x) = \sum_{n=1}^\infty \kcn \kXn(x) . $$
+<p>Once we had this decomposition and found suitable $\kTn(t)$ such that $\kTn(0) = 1$ and such that $\kTn(t)\kXn(x)$ were solutions to the <span data-concept="heat-equation">heat equation</span>, we wrote the solution to the original problem, including the initial condition, as</p>
+$$ \ku(x,t) = \sum_{n=1}^\infty \kcn \kTn(t) \kXn(x) . $$
+<p id="sl-equation">To study more general problems with this method, we must study more general eigenvalue problems. First, we study <span data-concept="second-order-differential-equation">second-order</span> <span data-concept="linear-differential-equation">linear equations</span> of the form</p>
+<div class="equation" id="eq-5-1">$$ \frac{d}{dx} \left( \kp(x) \kdydx \right) - \kq(x) \ky + \klambda \kr(x) \ky = 0 . \tag{5.1}$$</div>
+<p id="proper-factor">Essentially any <span data-concept="second-order-differential-equation">second-order</span> <span data-concept="linear-differential-equation">linear equation</span> of the form $a(x) \kydprime + b(x) \kyprime + c(x) \ky + \klambda d(x) \ky = 0$ can be written as <a href="#eq-5-1">(5.1)</a> after multiplying by a proper factor.</p>
+<div class="example" id="ex-5-1-1">
+<h3>Example 5.1.1 · Bessel</h3>
+<p>Put the following equation into the form <a href="#eq-5-1">(5.1)</a>:</p>
+$$ x^2 \kydprime + x\kyprime + \left(\klambda x^2 - n^2\right)\ky = 0 . $$
+<p>Multiply both sides by $\frac{1}{x}$ to obtain</p>
+$$ \begin{split} \frac{1}{x} \left( x^2 \kydprime + x\kyprime + \left(\klambda x^2 - n^2\right)\ky \right) &amp; = x \kydprime + \kyprime + \left(\klambda x - \frac{n^2}{x}\right)\ky \\ &amp; = \frac{d}{dx} \left( x \kdydx \right) - \frac{n^2}{x} \ky + \klambda x \ky = 0. \end{split} $$
+<p>The Bessel equation turns up for example in the solution of the two-dimensional <span data-concept="wave-equation">wave equation</span>. If you want to see how one solves the equation, you can look at <a href="/diffyqs/ch07/7.3/#7.3-bessel">subsection 7.3.3</a>.</p>
+</div>
+<p id="sl-problem">The so-called <em><span data-concept="sturm-liouville-problem">Sturm–Liouville problem</span></em><sup class="fn" data-note="fn-sturm-liouville"></sup> is to seek nontrivial solutions to</p>
+<div class="equation" id="eq-5-2">$$ \boxed{~~ \begin{aligned} &amp;\frac{d}{dx} \left( \kp(x) \kdydx \right) - \kq(x) \ky + \klambda \kr(x) \ky = 0, \qquad a &lt; x &lt; b, \\ &amp;\alpha_1 \ky(a) - \alpha_2 \kyprime(a) = 0, \\ &amp;\beta_1 \ky(b) + \beta_2 \kyprime(b) = 0. \end{aligned} ~~} \tag{5.2}$$</div>
+<p id="eigen-terms">By nontrivial, we again mean a $\ky$ that is not simply the constant zero (which is always a solution). In particular, we ask which $\klambda$s allow such nontrivial solutions. The $\klambda$s that admit nontrivial solutions are called the <em><span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span></em> and the corresponding nontrivial solutions are called <em><span data-concept="eigenfunction">eigenfunctions</span></em>. The constants $\alpha_1$ and $\alpha_2$ should not both be zero; the same applies to $\beta_1$ and $\beta_2$.</p>
+<div class="note" id="thm-5-1-1">
+<div class="eyebrow">Theorem 5.1.1</div>
+<p>Suppose $\kp(x)$, $\kp'(x)$, $\kq(x)$ and $\kr(x)$ are continuous on $[a,b]$ and suppose $\kp(x) &gt; 0$ and $\kr(x) &gt; 0$ for all $x$ in $[a,b]$. Then the <span data-concept="sturm-liouville-problem">Sturm–Liouville problem</span> <a href="#eq-5-2">(5.2)</a> has an increasing sequence of <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span></p>
+$$ \klambda_1 &lt; \klambda_2 &lt; \klambda_3 &lt; \cdots $$
+<p>such that</p>
+$$ \lim_{n \to \infty} \klambdan = +\infty $$
+<p>and such that to each $\klambdan$ there is (up to a constant multiple) a single <span data-concept="eigenfunction">eigenfunction</span> $\kyn(x)$.</p>
+<p>Moreover, if $\kq(x) \geq 0$ and $\alpha_1, \alpha_2, \beta_1, \beta_2 \geq 0$, then $\klambdan \geq 0$ for all $n$.</p>
+</div>
+<p id="regular">Problems satisfying the hypothesis of the theorem (including the “Moreover”) are called <em><span data-concept="regular-sturm-liouville-problem">regular Sturm–Liouville problems</span></em>, and we will only consider such problems here. That is, a <span data-concept="regular-sturm-liouville-problem">regular problem</span> is one where $\kp(x)$, $\kp'(x)$, $\kq(x)$ and $\kr(x)$ are continuous, $\kp(x) &gt; 0$, $\kr(x) &gt; 0$, $\kq(x) \geq 0$, and $\alpha_1, \alpha_2, \beta_1, \beta_2 \geq 0$, where neither $\alpha_1=\alpha_2=0$ nor $\beta_1=\beta_2=0$. Note: Be careful about the signs. Also be careful about the inequalities for $\kr$ and $\kp$. They must be strict for all $x$ in the interval $[a,b]$, including the endpoints!</p>
+<p id="labeling">When zero is an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span>, we usually start labeling the <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span> from 0 rather than from 1 for convenience. That is, we label the <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span> $\klambda_0 &lt; \klambda_1 &lt; \klambda_2 &lt; \cdots$.</p>
+<div class="example" id="ex-5-1-2">
+<h3>Example 5.1.2</h3>
+<p>The problem $\kydprime+\klambda \ky=0$, $0 &lt; x &lt; L$, $\ky(0) = 0$, and $\ky(L) = 0$ is a <span data-concept="regular-sturm-liouville-problem">regular Sturm–Liouville problem</span>: $\kp(x) = 1$, $\kq(x) = 0$, $\kr(x) = 1$, and we have $\kp(x) = 1 &gt; 0$ and $\kr(x) = 1 &gt; 0$. We also have $a=0$, $b=L$, $\alpha_1 = \beta_1 = 1$, $\alpha_2 = \beta_2 = 0$. The <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span> are $\klambdan = \frac{n^2 \pi^2}{L^2}$ and <span data-concept="eigenfunction">eigenfunctions</span> are $\kyn(x) = \sin\bigl(\frac{n\pi}{L} x\bigr)$. All <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span> are nonnegative as predicted by the theorem.</p>
+</div>
+<div class="exercises" data-place="ex-5-1-2"></div>
+<div class="example" id="ex-5-1-3">
+<h3>Example 5.1.3</h3>
+<p>Find <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span> and <span data-concept="eigenfunction">eigenfunctions</span> of the problem</p>
+$$ \begin{align*} &amp; \kydprime+\klambda \ky = 0, \quad 0 &lt; x &lt; 1 , \\ &amp; h\ky(0)- \kyprime(0) = 0, \quad \kyprime(1) = 0, \quad h &gt; 0. \end{align*} $$
+<p id="ex3-regular">These equations give a <span data-concept="regular-sturm-liouville-problem">regular Sturm–Liouville problem</span>.</p>
+<div class="exercises" data-place="ex3-regular"></div>
+<p id="ex3-nonnegative">By <a href="#thm-5-1-1">Theorem 5.1.1</a>, $\klambda \geq 0$. So the general solution (without boundary conditions) is</p>
+$$ \begin{aligned} &amp; \ky(x) = A \cos \bigl( \sqrt{\klambda}\, x\bigr) + B \sin \bigl( \sqrt{\klambda}\, x\bigr) &amp; &amp; \qquad \text{if } \; \klambda &gt; 0 , \\ &amp; \ky(x) = A x + B &amp; &amp; \qquad \text{if } \; \klambda = 0 . \end{aligned} $$
+<p>Let us see if $\klambda = 0$ is an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span>: We must satisfy $0 = hB - A$ and $A = 0$, hence $B=0$ (as $h &gt; 0$). Therefore, 0 is not an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span> (no nonzero solution, so no <span data-concept="eigenfunction">eigenfunction</span>).</p>
+<p>Now we try $\klambda &gt; 0$. We plug in the boundary conditions:</p>
+<figure class="dv" id="drv-robin-eigenvalues"></figure>
+<p id="graphically">We use a computer to find $\klambdan$. There are tables available, though using a computer or a graphing calculator is far more convenient nowadays. The easiest method is to plot the functions ${h}/{x}$ and $\tan x$ and see for which $x$ they intersect. There is an infinite number of intersections. Denote the first intersection by $\sqrt{\klambda_1}$, the second intersection by $\sqrt{\klambda_2}$, etc. For example, when $h=1$, we get $\sqrt{\klambda_1} \approx 0.86$, $\sqrt{\klambda_2} \approx 3.43$, …. That is $\klambda_1 \approx 0.74$, $\klambda_2 \approx 11.73$, …. A plot for $h=1$ is given in Figure 5.1. The appropriate <span data-concept="eigenfunction">eigenfunction</span> (let $A = 1$ for convenience, then $B={h}/{\sqrt{\klambda}}$) is</p>
+<div class="equation" id="eq-robin-eigenfunctions">$$ \kyn(x) = \cos \bigl( \sqrt{\klambdan}\, x \bigr) + \frac{h}{\sqrt{\klambdan}} \sin \bigl(\sqrt{\klambdan} \, x \bigr) . $$</div>
+<p>When $h=1$ we get (approximately)</p>
+$$ \ky_1(x) \approx \cos (0.86\, x ) + \frac{1}{0.86} \sin (0.86 \, x ) , \qquad \ky_2(x) \approx \cos (3.43\, x ) + \frac{1}{3.43} \sin (3.43 \, x ) , \qquad \ldots . $$
+<figure class="sim" id="sim-robin-eigenvalues" data-figure="5.1" data-original="/media/ch05/sl-tanx1overx.svg" data-original-caption="Plot of 1/x and tan x." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 5.1</span><span>The <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span> of $\kydprime + \klambda\ky = 0$, $h\ky(0) - \kyprime(0) = 0$, $\kyprime(1) = 0$ sit where $h/x$ meets $\tan x$, one crossing in each branch of the tangent, at $x = \sqrt{\klambdan}$. Below, the <span data-concept="eigenfunction">eigenfunction</span> $\kyn$ of the chosen crossing leaves $x = 0$ with the slope $h\ky(0)$ the first condition asks for and arrives at $x = 1$ level. A larger $h$ pushes every crossing to the right; as $h$ shrinks toward 0 the first crossing falls toward 0 and $\ky_1$ flattens toward the constant of the insulated (Neumann) problem.</span></div>
+</figure>
+</div>
+</section>
+
+<section id="orthogonality">
+<h2>Orthogonality</h2>
+<p id="weight">We have seen the notion of orthogonality before. For example, we have shown that $\sin (nx)$ are <span data-concept="orthogonality-of-eigenfunctions">orthogonal</span> for distinct $n$ on $[0,\pi]$. For general Sturm–Liouville problems we need a more general setup. Let $\kr(x)$ be a <em><span data-concept="weight-function">weight function</span></em> (any function, though generally we assume it is positive) on $[a,b]$. Two functions $\kf(x)$ and $\kg(x)$ are said to be <em><span data-concept="orthogonality-with-respect-to-a-weight">orthogonal</span></em> with respect to the <span data-concept="weight-function">weight function</span> $\kr(x)$ when</p>
+<div class="equation" id="eq-weighted-orthogonality">$$ \int_a^b \kf(x) \, \kg(x) \, \kr(x) \,dx = 0 . $$</div>
+<p id="inner-product">In this setting, we define the <em><span data-concept="weighted-inner-product">inner product</span></em> as</p>
+<div class="equation" id="eq-weighted-inner-product">$$ \kinner \overset{\text{def}}{=} \int_a^b \kf(x) \, \kg(x) \, \kr(x) \,dx , $$</div>
+<p>and then say $\kf$ and $\kg$ are <span data-concept="orthogonality-with-respect-to-a-weight">orthogonal</span> whenever $\kinner = 0$. The results and concepts are again analogous to finite-dimensional linear algebra.</p>
+<p id="weight-meaning">The idea of the given <span data-concept="weighted-inner-product">inner product</span> is that those $x$ where $\kr(x)$ is greater have more weight. Nontrivial (nonconstant) $\kr(x)$ arise naturally, for example from a change of variables. Hence, you could think of a change of variables such that $d\xi = \kr(x)\, dx$.</p>
+<p id="orthogonality-intro"><span data-concept="eigenfunction">Eigenfunctions</span> of a <span data-concept="regular-sturm-liouville-problem">regular Sturm–Liouville problem</span> satisfy an orthogonality property, just like the <span data-concept="eigenfunction">eigenfunctions</span> in <a href="/diffyqs/ch04/4.1/">§4.1</a>. Its proof is very similar to that of the analogous <a href="/diffyqs/ch04/4.1/#4.1-thm-4-1-1">Theorem 4.1.1</a>.</p>
+<div class="note" id="thm-5-1-2">
+<div class="eyebrow">Theorem 5.1.2</div>
+<p>Suppose we have a <span data-concept="regular-sturm-liouville-problem">regular Sturm–Liouville problem</span></p>
+$$ \begin{align*} &amp;\frac{d}{dx} \left( \kp(x) \kdydx \right) - \kq(x) \ky + \klambda \kr(x) \ky = 0 , \\ &amp;\alpha_1 \ky(a) - \alpha_2 \kyprime(a) = 0 , \\ &amp;\beta_1 \ky(b) + \beta_2 \kyprime(b) = 0 . \end{align*} $$
+<p>Let $\ky_j$ and $\ky_k$ be two distinct <span data-concept="eigenfunction">eigenfunctions</span> for two distinct <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span> $\klambda_j$ and $\klambda_k$. Then</p>
+$$ \int_a^b \ky_j(x) \, \ky_k(x) \, \kr(x) \,dx = 0, $$
+<p>that is, $\ky_j$ and $\ky_k$ are <span data-concept="orthogonality-with-respect-to-a-weight">orthogonal</span> with respect to the <span data-concept="weight-function">weight function</span> $\kr$.</p>
+</div>
+</section>
+
+<section id="fredholm">
+<h2>Fredholm alternative</h2>
+<p id="fredholm-intro">The <em><span data-concept="fredholm-alternative">Fredholm alternative</span></em> theorem we talked about before (<a href="/diffyqs/ch04/4.1/#4.1-thm-4-1-2">Theorem 4.1.2</a>) holds for all <span data-concept="regular-sturm-liouville-problem">regular Sturm–Liouville problems</span>. We state it here for completeness.</p>
+<div class="note" id="thm-5-1-3">
+<div class="eyebrow">Theorem 5.1.3</div>
+<h3><span data-concept="fredholm-alternative-for-sturm-liouville">Fredholm alternative</span></h3>
+<p>Suppose that we have a <span data-concept="regular-sturm-liouville-problem">regular Sturm–Liouville problem</span>. Then either</p>
+$$ \begin{align*} &amp;\frac{d}{dx} \left( \kp(x) \kdydx \right) - \kq(x) \ky + \klambda \kr(x) \ky = 0 , \\ &amp;\alpha_1 \ky(a) - \alpha_2 \kyprime(a) = 0 , \\ &amp;\beta_1 \ky(b) + \beta_2 \kyprime(b) = 0 , \end{align*} $$
+<p>has a nonzero solution ($\klambda$ is an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span>), or</p>
+$$ \begin{align*} &amp;\frac{d}{dx} \left( \kp(x) \kdydx \right) - \kq(x) \ky + \klambda \kr(x) \ky = \kf(x) , \\ &amp;\alpha_1 \ky(a) - \alpha_2 \kyprime(a) = 0 , \\ &amp;\beta_1 \ky(b) + \beta_2 \kyprime(b) = 0 , \end{align*} $$
+<p>has a unique solution for any $\kf(x)$ continuous on $[a,b]$.</p>
+</div>
+<p id="fredholm-use">This theorem is used in much the same way as we did before in <a href="/diffyqs/ch04/4.4/">§4.4</a>. It is used when solving more general nonhomogeneous <span data-concept="boundary-value-problem">boundary value problems</span>. The theorem does not help us solve the problem. It tells us when a unique solution exists, so that we know when to spend time looking for it. To solve the problem, we decompose $\kf(x)$ and $\ky(x)$ in terms of <span data-concept="eigenfunction">eigenfunctions</span> of the homogeneous problem, and then solve for the coefficients of the series for $\ky(x)$.</p>
+</section>
+
+<section id="eigenfunction-series">
+<h2>Eigenfunction series</h2>
+<p id="decomposition">What we want to do with the <span data-concept="eigenfunction">eigenfunctions</span> once we have them is to compute the <em><span data-concept="eigenfunction-decomposition">eigenfunction decomposition</span></em> of an arbitrary function $\kf(x)$. That is, we wish to write</p>
+<div class="equation" id="eq-5-3">$$ \kf(x) = \sum_{n=1}^\infty \kcn \kyn(x) , \tag{5.3}$$</div>
+<p id="assume-convergence">where $\kyn(x)$ are <span data-concept="eigenfunction">eigenfunctions</span>. We wish to find out if we can represent any function $\kf(x)$ in this way, and if so, we wish to calculate the $\kcn$ (and of course we would want to know if the sum converges). OK, so imagine we could write $\kf(x)$ as <a href="#eq-5-3">(5.3)</a>. We will assume convergence and the ability to integrate the series term by term. Because of <span data-concept="sturm-liouville-orthogonality">orthogonality</span> we have</p>
+<figure class="dv" id="drv-eigenfunction-coefficients"></figure>
+<p>Hence,</p>
+<div class="equation" id="eq-5-4">$$ \boxed{~~ \kc_m = \frac{\langle \kf , \ky_m \rangle}{\langle \ky_m , \ky_m \rangle} = \frac{\int_a^b \kf(x) \, \ky_m (x)\, \kr(x) \, dx} {\int_a^b {\bigl(\ky_m(x)\bigr)}^2 \, \kr(x) \,dx} . ~~} \tag{5.4}$$</div>
+<p id="normalized">Note that $\ky_m$ are known up to a constant multiple, so we could have picked a scalar multiple of an <span data-concept="eigenfunction">eigenfunction</span> such that $\langle \ky_m , \ky_m \rangle = 1$ (if we had an arbitrary <span data-concept="eigenfunction">eigenfunction</span> $\tilde{y}_m$, divide it by $\sqrt{\langle \tilde{y}_m , \tilde{y}_m \rangle}$). When $\langle \ky_m , \ky_m \rangle = 1$, we have the simpler form $\kc_m = \langle \kf, \ky_m \rangle$. The following theorem holds more generally, but the statement given is enough for our purposes.</p>
+<div class="note" id="thm-5-1-4">
+<div class="eyebrow">Theorem 5.1.4</div>
+<p>Suppose $\kf$ is a <span data-concept="piecewise-smooth-function">piecewise smooth</span> continuous function on $[a,b]$. If $\ky_1, \ky_2, \ldots$ are <span data-concept="eigenfunction">eigenfunctions</span> of a <span data-concept="regular-sturm-liouville-problem">regular Sturm–Liouville problem</span>, one for each <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span>, then there exist real constants $\kc_1, \kc_2, \ldots$ given by <a href="#eq-5-4">(5.4)</a> such that <a href="#eq-5-3">(5.3)</a> converges and holds for $a &lt; x &lt; b$.</p>
+</div>
+<div class="example" id="ex-5-1-4">
+<h3>Example 5.1.4</h3>
+<p>Consider</p>
+$$ \begin{align*} &amp; \kydprime + \klambda \ky = 0, \quad 0 &lt; x &lt; {\pi}/{2} , \\ &amp; \ky(0) =0, \quad \kyprime({\pi}/{2}) = 0 . \end{align*} $$
+<p>The above is a <span data-concept="regular-sturm-liouville-problem">regular Sturm–Liouville problem</span>, and <a href="#thm-5-1-1">Theorem 5.1.1</a> says that if $\klambda$ is an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span> then $\klambda \geq 0$.</p>
+<p>Suppose $\klambda = 0$. The general solution is $\ky(x) = Ax + B$. We plug in the initial conditions to get $0=\ky(0) = B$, and $0 = \kyprime({\pi}/{2}) = A$. Hence $\klambda = 0$ is not an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span>.</p>
+<p>So let us consider $\klambda &gt; 0$, where the general solution is</p>
+$$ \ky(x) = A \cos \bigl( \sqrt{\klambda} \, x \bigr) + B \sin \bigl( \sqrt{\klambda} \, x \bigr) . $$
+<p>Plugging in the boundary conditions we get $0 = \ky(0) = A$ and $0 = \kyprime({\pi}/{2}) = \sqrt{\klambda} \, B \cos \bigl(\sqrt{\klambda} \, \frac{\pi}{2}\bigr)$. Since $A$ is zero, $B$ cannot be zero. Hence $\cos \bigl( \sqrt{\klambda} \, \frac{\pi}{2}\bigr) = 0$. This means that $\sqrt{\klambda} \,\frac{\pi}{2}$ is an odd integral multiple of ${\pi}/{2}$, i.e. $(2n-1)\frac{\pi}{2} = \sqrt{\klambdan} \,\frac{\pi}{2}$. Solving for $\klambdan$ we get</p>
+$$ \klambdan = {(2n-1)}^2 . $$
+<p>We can take $B = 1$. Our <span data-concept="eigenfunction">eigenfunctions</span> are</p>
+$$ \kyn(x) = \sin \bigl( (2n-1)x \bigr) . $$
+<p>A little bit of calculus shows</p>
+$$ \int_0^{\frac{\pi}{2}} {\Bigl( \sin \bigl( (2n-1)x \bigr) \Bigr)}^2 \, dx = \frac{\pi}{4} . $$
+<p>So any <span data-concept="piecewise-smooth-function">piecewise smooth</span> function $\kf(x)$ on $[0,{\pi}/{2}]$ can be written as</p>
+$$ \kf(x) = \sum_{n=1}^\infty \kcn \sin \bigl( (2n-1)x \bigr) , $$
+<p>where</p>
+$$ \kcn = \frac{\langle \kf , \kyn \rangle}{\langle \kyn , \kyn \rangle} = \frac{\int_0^{\frac{\pi}{2}} \kf(x) \, \sin \bigl( (2n-1)x \bigr) \, dx }{\int_0^{\frac{\pi}{2}} {\Bigl(\sin \bigl((2n-1)x\bigr)\Bigr)}^2 \, dx} = \frac{4}{\pi} \int_0^{\frac{\pi}{2}} \kf(x) \,\sin \bigl( (2n-1)x \bigr) \, dx . $$
+<p id="odd-extension">Note that the series converges to an <span data-concept="odd-periodic-extension">odd 2π-periodic extension</span> of $\kf(x)$. With the regular <span data-concept="sine-series">sine series</span>, we would expect a function with period $2 \, \frac{\pi}{2} = \pi$.</p>
+<div class="exercises" data-place="odd-extension"></div>
+<p id="example-x">Let us compute an example. Consider $\kf(x) = x$ for $0 &lt; x &lt; {\pi}/{2}$. Some calculus later we find</p>
+$$ \kcn = \frac{4}{\pi} \int_0^{\frac{\pi}{2}} \kf(x) \,\sin \bigl( (2n-1)x \bigr) \, dx = \frac{4{(-1)}^{n+1}}{\pi {(2n-1)}^2} , $$
+<p>and so for $x$ in $[0,{\pi}/{2}]$,</p>
+<div class="equation" id="eq-sl-series-of-x">$$ \kf(x) = \sum_{n=1}^\infty \frac{4{(-1)}^{n+1}}{\pi {(2n-1)}^2} \sin \bigl( (2n-1)x \bigr) . $$</div>
+<p id="two-series"><span data-ref="sl-series">This</span> is different from <span data-ref="sine-series-ref">the π-periodic regular <span data-concept="sine-series">sine series</span></span> which can be computed to be</p>
+<div class="equation" id="eq-sine-series-of-x">$$ \kf(x) = \sum_{n=1}^\infty \frac{{(-1)}^{n+1}}{n} \sin ( 2nx ) . $$</div>
+<p id="both-converge"><span data-ref="sl-series sine-series-ref">Both series</span> converge to $\kf(x)$ for $0 &lt; x &lt; {\pi}/{2}$, but the <span data-concept="eigenfunction">eigenfunctions</span> involved come from different eigenvalue problems.</p>
+<figure class="sim" id="sim-eigenfunction-series">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>On $0 &lt; x &lt; \pi/2$ <span data-ref="sl-series">the series in $\sin\bigl((2n-1)x\bigr)$</span> and <span data-ref="sine-series-ref">the regular sine series in $\sin(2nx)$</span> both close on $\kf(x) = x$ as more terms are taken. Beyond the interval they part: <span data-ref="sl-series">the first</span> turns down along $\pi - x$, the odd $2\pi$-periodic extension, while <span data-ref="sine-series-ref">the second</span> drops at $\pi/2$ to $x - \pi$, the odd $\pi$-periodic one, overshooting at the jump however many terms are taken.</span></div>
+</figure>
+</div>
+</section>
