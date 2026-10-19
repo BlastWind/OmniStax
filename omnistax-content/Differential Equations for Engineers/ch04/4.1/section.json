@@ -1,0 +1,820 @@
+{
+ "id": "4.1",
+ "module": "bvp:section",
+ "chapter": "4",
+ "title": "Boundary value problems",
+ "short": "Boundary value problems",
+ "lead": "Until now a second-order equation came with its two conditions at one point. A <span data-concept=\"boundary-value-problem\">boundary value problem</span> places them at the two ends of an interval instead, and asks for which values of a constant $\\klambda$ such a problem has a nonzero solution. Those values and their solutions are the building blocks of Fourier series, and the section follows them to a spinning string.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Hint for the following exercises: Note that if $\\klambda > 0$, then $\\cos \\bigl( \\sqrt{\\klambda}\\, (t - a) \\bigr)$ and $\\sin \\bigl( \\sqrt{\\klambda}\\, (t - a) \\bigr)$ are also solutions of the homogeneous equation.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.1.101–4.1.105 carry the book’s own answers. The inline exercise 4.1.1 and exercises 4.1.2–4.1.6, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first. The book’s hint above the set is the exercises_lead.",
+ "figures": [
+  {
+   "id": "sim-eigenvalue-hunt",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "derivative",
+    "point",
+    "eigenvalue"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-orthogonality",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-whirling-string",
+   "kind": "sim",
+   "number": "4.1",
+   "folds": [
+    "4.2"
+   ],
+   "originals": [
+    "/media/ch04/bvp-whirstring.svg",
+    "/media/ch04/bvp-whirstring2.svg"
+   ],
+   "original_caption": "(Figure 4.1) Whirling string. (Figure 4.2) Whirling string at the third eigenvalue (k = 3).",
+   "draws": [
+    "function",
+    "frequency",
+    "eigenvalue"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "bvp-definition",
+   "concept": "boundary-value-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-conditions",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "two-conditions",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "two-conditions",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "two-conditions",
+   "concept": "second-order-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-1-1",
+   "concept": "boundary-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-1-1",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-1-2",
+   "concept": "boundary-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-1-2",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-1-2",
+   "concept": "solution-for-complex-conjugate-roots",
+   "verb": "uses"
+  },
+  {
+   "span": "eigen-analogy",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "eigen-analogy",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "three-problems",
+   "concept": "boundary-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eigenvalue-definition",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "eigenvalue-definition",
+   "concept": "eigenfunction",
+   "verb": "introduces"
+  },
+  {
+   "span": "operator-view",
+   "concept": "eigenvalue-problem-of-a-differential-operator",
+   "verb": "introduces"
+  },
+  {
+   "span": "operator-view",
+   "concept": "linear-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "operator-view",
+   "concept": "operator",
+   "verb": "uses"
+  },
+  {
+   "span": "operator-view",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "operator-view",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-1-3",
+   "concept": "solving-an-eigenvalue-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-4-1-3",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-4-1-3",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-1-3",
+   "concept": "solution-for-complex-conjugate-roots",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-1-3",
+   "concept": "eigenfunction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-1-4",
+   "concept": "eigenvalues-with-zero-endpoint-derivatives",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-4-1-4",
+   "concept": "solving-an-eigenvalue-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-1-4",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-1-5",
+   "concept": "eigenvalues-with-periodic-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-4-1-5",
+   "concept": "solving-an-eigenvalue-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-1-5",
+   "concept": "linear-independence",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-1-5",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-eigenvalue-hunt",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-eigenvalue-hunt",
+   "concept": "solving-an-eigenvalue-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-eigenvalue-hunt",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-eigenvalue-hunt",
+   "concept": "eigenvalues-with-zero-endpoint-derivatives",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-eigenvalue-hunt",
+   "concept": "eigenvalues-with-periodic-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "symmetric-matrix",
+   "concept": "symmetric-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "symmetric-matrix",
+   "concept": "transpose",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetric-matrix",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetric-matrix",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-1-1",
+   "concept": "orthogonality-of-eigenfunctions",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-4-1-1",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-orthogonality",
+   "concept": "orthogonality-of-eigenfunctions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "last-equality",
+   "concept": "orthogonality-of-eigenfunctions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "trig-orthogonality",
+   "concept": "orthogonality-of-eigenfunctions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "trig-orthogonality",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "uses"
+  },
+  {
+   "span": "trig-orthogonality",
+   "concept": "eigenvalues-with-periodic-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-orthogonality",
+   "concept": "orthogonality-of-eigenfunctions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-orthogonality",
+   "concept": "eigenvalues-with-periodic-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-1-2",
+   "concept": "fredholm-alternative",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-4-1-2",
+   "concept": "nonhomogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-meaning",
+   "concept": "fredholm-alternative",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fredholm-meaning",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-matrix",
+   "concept": "fredholm-alternative",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fredholm-matrix",
+   "concept": "linear-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-caution",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "whirling-model",
+   "concept": "whirling-string",
+   "verb": "introduces"
+  },
+  {
+   "span": "whirling-model",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "whirling-model",
+   "concept": "boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-whirling-string",
+   "concept": "whirling-string",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-whirling-string",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "uses"
+  },
+  {
+   "span": "whirling-eigenvalues",
+   "concept": "whirling-string",
+   "verb": "reinforces"
+  },
+  {
+   "span": "whirling-eigenvalues",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "uses"
+  },
+  {
+   "span": "pop-out",
+   "concept": "whirling-string",
+   "verb": "reinforces"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "orthogonality",
+   "what": "the orthogonality of eigenfunctions, Theorem 4.1.1",
+   "source": "Differential Equations for Engineers, 4.1 Boundary value problems, proof of Theorem 4.1.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kxonedprime + \\klambdaone \\kxone = 0",
+       "src": "Theorem 4.1.1, (4.1)–(4.3)"
+      },
+      {
+       "tex": "\\kxtwodprime + \\klambdatwo \\kxtwo = 0",
+       "src": "Theorem 4.1.1, (4.1)–(4.3)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kxonedprime\\kxtwo + \\klambdaone\\kxone\\kxtwo} - \\mk{b}{\\bigl(\\kxtwodprime\\kxone + \\klambdatwo\\kxtwo\\kxone\\bigr)} = \\mk{z}{0}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "Multiply the first by $\\kxtwo$ and the second by $\\kxone$ and subtract."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{(\\klambdaone - \\klambdatwo) \\kxone \\kxtwo} = \\mk{r}{\\kxtwodprime \\kxone - \\kxtwo \\kxonedprime}",
+       "uses": [],
+       "map": {
+        "a": [
+         "l",
+         "r"
+        ],
+        "b": [
+         "l",
+         "r"
+        ]
+       }
+      }
+     ],
+     "src": "4.1, proof of Theorem 4.1.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The product rule: $\\frac{d}{dt}\\bigl(\\kxtwoprime\\kxone - \\kxtwo\\kxoneprime\\bigr) = \\kxtwodprime\\kxone + \\kxtwoprime\\kxoneprime - \\kxtwoprime\\kxoneprime - \\kxtwo\\kxonedprime$.",
+       "src": "Calculus, 3.3 Differentiation Rules"
+      },
+      {
+       "text": "The fundamental theorem of calculus: $\\int_a^b F'(t)\\,dt = \\bigl[F(t)\\bigr]_{t=a}^{b}$.",
+       "src": "Calculus, 5.3 The Fundamental Theorem of Calculus"
+      },
+      {
+       "text": "The boundary conditions of (4.1), (4.2) or (4.3) make $\\kxtwoprime\\kxone - \\kxtwo\\kxoneprime$ take the same value at $t = a$ as at $t = b$.",
+       "src": "(4.1)–(4.3)"
+      },
+      {
+       "tex": "\\klambdaone \\neq \\klambdatwo",
+       "src": "Theorem 4.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{(\\klambdaone - \\klambdatwo) \\int_a^b \\kxone(t) \\kxtwo(t) \\,dt} = \\mk{r}{\\int_a^b \\bigl( \\kxtwodprime(t) \\kxone(t) - \\kxtwo(t) \\kxonedprime(t) \\bigr) \\,dt}",
+      "uses": [
+       0
+      ],
+      "why": "Integrate both sides of the equation."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{(\\klambdaone - \\klambdatwo) \\int_a^b \\kxone(t) \\kxtwo(t) \\,dt} = \\mk{r}{\\int_a^b \\frac{d}{dt} \\Bigl( \\kxtwoprime(t) \\kxone(t) - \\kxtwo(t) \\kxoneprime(t) \\Bigr) \\,dt}",
+       "uses": [
+        1
+       ],
+       "cap": "The middle terms of the product rule cancel, so the integrand is a derivative."
+      },
+      {
+       "tex": "\\mk{l}{(\\klambdaone - \\klambdatwo) \\int_a^b \\kxone(t) \\kxtwo(t) \\,dt} = \\mk{r}{\\Bigl[ \\kxtwoprime(t) \\kxone(t) - \\kxtwo(t) \\kxoneprime(t) \\Bigr]_{t=a}^b}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{(\\klambdaone - \\klambdatwo) \\int_a^b \\kxone(t) \\kxtwo(t) \\,dt} = \\mk{r}{0}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{i}{\\int_a^b \\kxone(t) \\kxtwo(t) \\,dt} = \\mk{r}{0}",
+       "uses": [
+        4
+       ],
+       "map": {
+        "l": "i"
+       },
+       "cap": "Divide by $\\klambdaone - \\klambdatwo$, which is not zero."
+      }
+     ],
+     "src": "Theorem 4.1.1"
+    }
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-two-constants",
+   "kind": "book",
+   "number": "15",
+   "html": "See <a href=\"/diffyqs/ch00/0.2/#0.2-four-fundamental\">subsection 0.2.4</a> or <a href=\"/diffyqs/ch02/2.2/#2.2-ex-2-2-1\">Example 2.2.1</a> and <a href=\"/diffyqs/ch02/2.2/#2.2-ex-2-2-3\">Example 2.2.3</a>."
+  },
+  {
+   "id": "fn-cosh-sinh",
+   "kind": "book",
+   "number": "16",
+   "html": "Recall that $\\cosh s = \\frac{1}{2}(e^s+e^{-s})$ and $\\sinh s = \\frac{1}{2}(e^s-e^{-s})$. As an exercise, try the computation with the general solution written as $\\kx = A e^{\\sqrt{-\\klambda}\\, t} + B e^{-\\sqrt{-\\klambda}\\, t}$ (for different $A$ and $B$ of course)."
+  },
+  {
+   "id": "fn-fredholm",
+   "kind": "book",
+   "number": "17",
+   "html": "Named after the Swedish mathematician <a href=\"https://en.wikipedia.org/wiki/Fredholm\">Erik Ivar Fredholm</a> (1866–1927)."
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "4.1.1",
+   "source_number": "4.1.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "tag": "easy",
+   "place": {
+    "at": "inline",
+    "after": "last-equality"
+   },
+   "cite": "last-equality",
+   "prompt": "<p>Finish the proof of the theorem (check the last equality in the proof) for the cases <a href=\"#eq-4-2\">(4.2)</a> and <a href=\"#eq-4-3\">(4.3)</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For (4.2) the boundary conditions say $\\kxoneprime(a) = \\kxoneprime(b) = \\kxtwoprime(a) = \\kxtwoprime(b) = 0$. Each of the two terms of $\\kxtwoprime \\kxone - \\kxtwo \\kxoneprime$ has one of these derivatives as a factor, so the expression is zero at $t = a$ and at $t = b$, and $\\Bigl[ \\kxtwoprime \\kxone - \\kxtwo \\kxoneprime \\Bigr]_{t=a}^b = 0 - 0 = 0$. For (4.3) the conditions say $\\kxone(a) = \\kxone(b)$, $\\kxoneprime(a) = \\kxoneprime(b)$, and the same for $\\kxtwo$. Then every factor of $\\kxtwoprime \\kxone - \\kxtwo \\kxoneprime$ has the same value at $b$ as at $a$. The expression need not be zero, but it has the same value at both ends, so the difference is again 0. For example, the periodic eigenfunctions $\\sin t$ and $\\cos 2t$ on $[-\\pi, \\pi]$ give the value 1 at both ends."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "4.1.2",
+   "source_number": "4.1.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-4-1",
+   "prompt": "<p>Compute all eigenvalues and eigenfunctions of $\\kxdprime + \\klambda \\kx = 0$, $\\kx(a) = 0$, $\\kx(b) = 0$ (assume $a &lt; b$).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\klambdak = \\dfrac{k^2\\pi^2}{(b-a)^2}$ with eigenfunctions $\\kxk = \\sin\\Bigl(\\dfrac{k\\pi (t-a)}{b-a}\\Bigr)$ for $k = 1, 2, 3, \\ldots$, and no others. For $\\klambda &gt; 0$ take, as the hint says, $\\kx = A\\cos\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr) + B\\sin\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr)$. Then $\\kx(a) = A = 0$, and $\\kx(b) = B\\sin\\bigl(\\sqrt{\\klambda}\\,(b-a)\\bigr) = 0$ with $B \\neq 0$ needs $\\sqrt{\\klambda}\\,(b-a) = k\\pi$ for a positive integer $k$. For $\\klambda = 0$, a line $\\kx = At + B$ that is zero at two points is identically zero. For $\\klambda &lt; 0$, $\\kx = A\\cosh\\bigl(\\sqrt{-\\klambda}\\,(t-a)\\bigr) + B\\sinh\\bigl(\\sqrt{-\\klambda}\\,(t-a)\\bigr)$ gives $A = 0$ at $t = a$, and $B\\sinh\\bigl(\\sqrt{-\\klambda}\\,(b-a)\\bigr) = 0$ forces $B = 0$, since $\\sinh$ is zero only at 0. With $a = 0$, $b = \\pi$ this is Example 4.1.3."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "4.1.3",
+   "source_number": "4.1.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-4-2",
+   "prompt": "<p>Compute all eigenvalues and eigenfunctions of $\\kxdprime + \\klambda \\kx = 0$, $\\kxprime(a) = 0$, $\\kxprime(b) = 0$ (assume $a &lt; b$).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\klambdak = \\dfrac{k^2\\pi^2}{(b-a)^2}$ with eigenfunctions $\\kxk = \\cos\\Bigl(\\dfrac{k\\pi (t-a)}{b-a}\\Bigr)$ for $k = 1, 2, 3, \\ldots$, and $\\klambdazero = 0$ with the eigenfunction $\\kx_0 = 1$. For $\\klambda &gt; 0$ write $\\kx = A\\cos\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr) + B\\sin\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr)$, so $\\kxprime = -A\\sqrt{\\klambda}\\sin\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr) + B\\sqrt{\\klambda}\\cos\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr)$. Then $\\kxprime(a) = B\\sqrt{\\klambda} = 0$ gives $B = 0$, and $\\kxprime(b) = -A\\sqrt{\\klambda}\\sin\\bigl(\\sqrt{\\klambda}\\,(b-a)\\bigr) = 0$ with $A \\neq 0$ needs $\\sqrt{\\klambda}\\,(b-a) = k\\pi$. For $\\klambda = 0$, $\\kx = At + B$ has $\\kxprime = A = 0$ and $B$ is free, so $\\kx = 1$ works. For $\\klambda &lt; 0$, $\\kx = A\\cosh\\bigl(\\sqrt{-\\klambda}\\,(t-a)\\bigr) + B\\sinh\\bigl(\\sqrt{-\\klambda}\\,(t-a)\\bigr)$ has $\\kxprime(a) = B\\sqrt{-\\klambda} = 0$ and then $\\kxprime(b) = A\\sqrt{-\\klambda}\\sinh\\bigl(\\sqrt{-\\klambda}\\,(b-a)\\bigr) = 0$ forces $A = 0$. With $a = 0$, $b = \\pi$ this is Example 4.1.4."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "4.1.4",
+   "source_number": "4.1.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eigenvalue-definition",
+   "prompt": "<p>Compute all eigenvalues and eigenfunctions of $\\kxdprime + \\klambda \\kx = 0$, $\\kxprime(a) = 0$, $\\kx(b) = 0$ (assume $a &lt; b$).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\klambdak = \\dfrac{(2k-1)^2\\pi^2}{4(b-a)^2}$ with eigenfunctions $\\kxk = \\cos\\Bigl(\\dfrac{(2k-1)\\pi (t-a)}{2(b-a)}\\Bigr)$ for $k = 1, 2, 3, \\ldots$, and no others; $\\klambda = 0$ is not an eigenvalue. For $\\klambda &gt; 0$ write $\\kx = A\\cos\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr) + B\\sin\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr)$. Then $\\kxprime(a) = B\\sqrt{\\klambda} = 0$ gives $B = 0$, and $\\kx(b) = A\\cos\\bigl(\\sqrt{\\klambda}\\,(b-a)\\bigr) = 0$ with $A \\neq 0$ needs $\\sqrt{\\klambda}\\,(b-a)$ to be an odd multiple of $\\frac{\\pi}{2}$, that is $\\sqrt{\\klambda}\\,(b-a) = \\frac{(2k-1)\\pi}{2}$. For $\\klambda = 0$, $\\kx = At + B$ has $\\kxprime(a) = A = 0$ and then $\\kx(b) = B = 0$. For $\\klambda &lt; 0$, $\\kx = A\\cosh\\bigl(\\sqrt{-\\klambda}\\,(t-a)\\bigr) + B\\sinh\\bigl(\\sqrt{-\\klambda}\\,(t-a)\\bigr)$ has $\\kxprime(a) = B\\sqrt{-\\klambda} = 0$, and $\\kx(b) = A\\cosh\\bigl(\\sqrt{-\\klambda}\\,(b-a)\\bigr) = 0$ forces $A = 0$, since $\\cosh$ is never zero. On $[0, \\pi]$ the eigenvalues are $\\frac{1}{4}, \\frac{9}{4}, \\frac{25}{4}, \\ldots$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "4.1.5",
+   "source_number": "4.1.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-4-3",
+   "prompt": "<p>Compute all eigenvalues and eigenfunctions of $\\kxdprime + \\klambda \\kx = 0$, $\\kx(a) = \\kx(b)$, $\\kxprime(a) = \\kxprime(b)$ (assume $a &lt; b$).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\klambdak = \\dfrac{4k^2\\pi^2}{(b-a)^2}$ for $k = 1, 2, 3, \\ldots$, each with the two eigenfunctions $\\cos\\Bigl(\\dfrac{2k\\pi (t-a)}{b-a}\\Bigr)$ and $\\sin\\Bigl(\\dfrac{2k\\pi (t-a)}{b-a}\\Bigr)$, and $\\klambdazero = 0$ with the eigenfunction $\\kx_0 = 1$. For $\\klambda &gt; 0$ write $\\kx = A\\cos\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr) + B\\sin\\bigl(\\sqrt{\\klambda}\\,(t-a)\\bigr)$ and $s = \\sqrt{\\klambda}\\,(b-a)$. The two conditions are $A(\\cos s - 1) + B\\sin s = 0$ and, after dividing by $\\sqrt{\\klambda}$, $-A\\sin s + B(\\cos s - 1) = 0$. Their determinant is $(\\cos s - 1)^2 + \\sin^2 s = 2 - 2\\cos s$, so a nonzero $(A, B)$ exists only when $\\cos s = 1$, that is $s = 2k\\pi$; then both conditions hold for every $A$ and $B$. For $\\klambda = 0$, $\\kx = At + B$ with $\\kx(a) = \\kx(b)$ forces $A = 0$, and $\\kx = 1$ is left. For $\\klambda &lt; 0$, center at $c = \\frac{a+b}{2}$: $\\kx = A\\cosh\\bigl(\\sqrt{-\\klambda}\\,(t-c)\\bigr) + B\\sinh\\bigl(\\sqrt{-\\klambda}\\,(t-c)\\bigr)$ gives $\\kx(b) - \\kx(a) = 2B\\sinh\\bigl(\\sqrt{-\\klambda}\\,\\frac{b-a}{2}\\bigr) = 0$ and $\\kxprime(b) - \\kxprime(a) = 2A\\sqrt{-\\klambda}\\sinh\\bigl(\\sqrt{-\\klambda}\\,\\frac{b-a}{2}\\bigr) = 0$, so $A = B = 0$. With $a = -\\pi$, $b = \\pi$ this is Example 4.1.5."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "4.1.6",
+   "source_number": "4.1.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-4-1-5",
+   "prompt": "<p>We skipped the case of $\\klambda &lt; 0$ for the boundary value problem $\\kxdprime + \\klambda \\kx = 0$, $\\kx(-\\pi) = \\kx(\\pi)$, $\\kxprime(-\\pi) = \\kxprime(\\pi)$. Finish the calculation and show that there are no negative eigenvalues.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $\\klambda &lt; 0$ the general solution is $\\kx = A\\cosh\\bigl(\\sqrt{-\\klambda}\\,t\\bigr) + B\\sinh\\bigl(\\sqrt{-\\klambda}\\,t\\bigr)$. Since $\\cosh$ is even and $\\sinh$ is odd, $\\kx(\\pi) - \\kx(-\\pi) = 2B\\sinh\\bigl(\\sqrt{-\\klambda}\\,\\pi\\bigr)$, and this is zero only if $B = 0$, because $\\sinh \\xi \\neq 0$ for $\\xi \\neq 0$. Next $\\kxprime = A\\sqrt{-\\klambda}\\sinh\\bigl(\\sqrt{-\\klambda}\\,t\\bigr) + B\\sqrt{-\\klambda}\\cosh\\bigl(\\sqrt{-\\klambda}\\,t\\bigr)$, so $\\kxprime(\\pi) - \\kxprime(-\\pi) = 2A\\sqrt{-\\klambda}\\sinh\\bigl(\\sqrt{-\\klambda}\\,\\pi\\bigr)$, which is zero only if $A = 0$. So $\\kx = 0$ is the only solution, and there are no negative eigenvalues."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "4.1.101",
+   "source_number": "4.1.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pop-out",
+   "prompt": "<p>Consider a spinning string of length 2 and linear density 0.1 and tension 3. Find the smallest angular velocity when the string pops out.</p>",
+   "answer": {
+    "type": "number",
+    "value": 8.6036,
+    "unit": "rad/s",
+    "tol": 0.005,
+    "generated_by": "source",
+    "solution": "$\\komega = \\pi \\sqrt{\\frac{15}{2}}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "4.1.102",
+   "source_number": "4.1.102",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eigenvalue-definition",
+   "prompt": "<p>Suppose $\\kxdprime + \\klambda \\kx = 0$ and $\\kx(0)=1$, $\\kx(1) = 1$. Find all $\\klambda$ for which there is more than one solution. Also find the corresponding solutions (only for the eigenvalues).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\klambdak = 4 k^2 \\pi^2$ for $k = 1,2,3,\\ldots$ $\\kxk = \\cos (2k\\pi t) + B \\sin (2k\\pi t)$ (for any $B$)"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "4.1.103",
+   "source_number": "4.1.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fredholm-meaning",
+   "prompt": "<p>Suppose $\\kxdprime + \\kx = 0$ and $\\kx(0)=0$, $\\kxprime(\\pi) = 1$. Find all the solution(s) if any exist.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx(t) = - \\sin(t)$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "4.1.104",
+   "source_number": "4.1.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bvp-definition",
+   "prompt": "<p>Consider $\\kxprime + \\klambda \\kx = 0$ and $\\kx(0)=0$, $\\kx(1) = 0$. Why does it not have any eigenvalues? Why does every first-order equation with two endpoint conditions such as the one above have no eigenvalues?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "General solution is $\\kx = C e^{-\\klambda t}$. Since $\\kx(0) = 0$ then $C=0$, and so $\\kx(t) = 0$. Therefore, the solution is always identically zero. One condition is always enough to guarantee a unique solution for a first-order equation."
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "4.1.105",
+   "source_number": "4.1.105",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "tag": "challenging",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eigenvalue-definition",
+   "prompt": "<p>Suppose $x''' + \\klambda \\kx = 0$ and $\\kx(0)=0$, $\\kxprime(0) = 0$, $\\kx(1) = 0$. Suppose that $\\klambda &gt; 0$. Find an equation that all such eigenvalues must satisfy. Hint: Note that $-\\sqrt[3]{\\klambda}$ is a root of $r^3+\\klambda = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{\\sqrt{3}}{3} e^{\\frac{-3}{2}\\sqrt[3]{\\klambda}} - \\frac{\\sqrt{3}}{3} \\cos \\bigl( \\frac{\\sqrt{3}\\, \\sqrt[3]{\\klambda}}{2} \\bigr) + \\sin \\bigl( \\frac{\\sqrt{3}\\, \\sqrt[3]{\\klambda}}{2}\\bigr) = 0$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "orthogonality-of-eigenfunctions"
+  },
+  {
+   "exercise": "e2",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e2",
+   "concept": "eigenvalues-with-zero-endpoint-values"
+  },
+  {
+   "exercise": "e3",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e3",
+   "concept": "eigenvalues-with-zero-endpoint-derivatives"
+  },
+  {
+   "exercise": "e4",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e4",
+   "concept": "eigenvalue-of-a-boundary-value-problem"
+  },
+  {
+   "exercise": "e5",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e5",
+   "concept": "eigenvalues-with-periodic-conditions"
+  },
+  {
+   "exercise": "e6",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e6",
+   "concept": "eigenvalues-with-periodic-conditions"
+  },
+  {
+   "exercise": "e101",
+   "concept": "whirling-string"
+  },
+  {
+   "exercise": "e102",
+   "concept": "boundary-value-problem"
+  },
+  {
+   "exercise": "e102",
+   "concept": "eigenvalue-of-a-boundary-value-problem"
+  },
+  {
+   "exercise": "e103",
+   "concept": "boundary-value-problem"
+  },
+  {
+   "exercise": "e103",
+   "concept": "fredholm-alternative"
+  },
+  {
+   "exercise": "e104",
+   "concept": "boundary-value-problem"
+  },
+  {
+   "exercise": "e104",
+   "concept": "eigenvalue-of-a-boundary-value-problem"
+  },
+  {
+   "exercise": "e105",
+   "concept": "eigenvalue-of-a-boundary-value-problem"
+  },
+  {
+   "exercise": "e105",
+   "concept": "solving-an-eigenvalue-problem"
+  }
+ ]
+}

@@ -12,7 +12,7 @@ $$ \kg(s) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos (n s) + \kbn 
 <div class="example" id="ex-4-3-1">
 <h3>Example 4.3.1</h3>
 <p>Let</p>
-$$ \kf(t) = \lvert t \rvert \qquad \text{for } \; {-1} < t \leq 1, $$
+$$ \kf(t) = \lvert t \rvert \qquad \text{for } \; {-1} &lt; t \leq 1, $$
 <p>extended periodically. The plot of the <span data-concept="periodic-extension">periodic extension</span> is given in Figure 4.9. Compute the <span data-concept="fourier-series">Fourier series</span> of $\kf(t)$.</p>
 <figure class="sim" id="sim-triangle-sum" data-figure="4.9 + 4.10" data-original="/media/ch04/gfs-sawcont.svg,/media/ch04/gfs-sawcont-fs3-fs20.svg" data-original-caption="(Figure 4.9) Periodic extension of the function f(t). (Figure 4.10) Fourier series of f(t) up to the 3rd harmonic (left graph) and up to the 20th harmonic (right graph)." data-original-width="432,864">
   <div class="sim-head"><span class="eyebrow">Figure 4.9 + 4.10</span><span>The <span data-concept="periodic-extension">periodic extension</span> of $\kf(t) = \lvert t \rvert$ and its <span data-concept="fourier-series">Fourier series</span> up to the $N$th <span data-concept="harmonic">harmonic</span>, $\frac{1}{2} - \sum \frac{4}{n^2 \pi^2} \cos (n \pi t)$ over the odd $n \leq N$. The book’s two plots are $N = 3$ and $N = 20$. The function is continuous, so the sum closes on it everywhere: the largest gap sits at the corners and shrinks as $N$ grows, and the sum never passes above or below the function’s range.</span></div>
@@ -36,7 +36,7 @@ $$ \frac{1}{2} - \frac{4}{\pi^2} \cos (\pi t) - \frac{4}{9 \pi^2} \cos (3 \pi t)
 <p id="one-sided-limits">We will need the <span data-concept="one-sided-limit">one-sided limits</span> of functions. We will use the following notation</p>
 <div class="equation" id="eq-one-sided-limits">$$ \kf(c-) = \lim_{t \uparrow c} \kf(t), \qquad \text{and} \qquad \kf(c+) = \lim_{t \downarrow c} \kf(t). $$</div>
 <p id="one-sided-notation">If you are unfamiliar with this notation, $\lim_{t \uparrow c} \kf(t)$ means we are taking <a href="/calculus/ch02/2.2/">a limit</a> of $\kf(t)$ as $t$ approaches $c$ from below (i.e. $t &lt; c$) and $\lim_{t \downarrow c} \kf(t)$ means we are taking a limit of $\kf(t)$ as $t$ approaches $c$ from above (i.e. $t &gt; c$). For example, for the <span data-concept="square-wave">square wave</span> function</p>
-<div class="equation" id="eq-4-8">$$ \kf(t) = \begin{cases} 0 & \text{if } \; {-\pi} < t \leq 0 , \\ \pi & \text{if } \; \phantom{-}0 < t \leq \pi , \end{cases} \tag{4.8}$$</div>
+<div class="equation" id="eq-4-8">$$ \kf(t) = \begin{cases} 0 & \text{if } \; {-\pi} &lt; t \leq 0 , \\ \pi & \text{if } \; \phantom{-}0 &lt; t \leq \pi , \end{cases} \tag{4.8}$$</div>
 <p>we have $\kf(0-) = 0$ and $\kf(0+) = \pi$.</p>
 <p id="piecewise-continuous">Let $\kf(t)$ be a function defined on an interval $[a,b]$. Suppose that we find finitely many points $a=t_0$, $t_1$, $t_2$, …, $t_k=b$ in the interval, such that $\kf(t)$ is continuous on the intervals $(t_0,t_1)$, $(t_1,t_2)$, …, $(t_{k-1},t_k)$. Also suppose that all the <span data-concept="one-sided-limit">one-sided limits</span> exist, that is, all of $\kf(t_0+)$, $\kf(t_1-)$, $\kf(t_1+)$, $\kf(t_2-)$, $\kf(t_2+)$, …, $\kf(t_k-)$ exist and are finite. Then we say $\kf(t)$ is <em><span data-concept="piecewise-continuous-function">piecewise continuous</span></em>.</p>
 <p id="piecewise-smooth">If moreover, $\kf(t)$ is differentiable at all but finitely many points, and $\kfprime(t)$ is <span data-concept="piecewise-continuous-function">piecewise continuous</span>, then $\kf(t)$ is said to be <em><span data-concept="piecewise-smooth-function">piecewise smooth</span></em>.</p>
@@ -87,7 +87,7 @@ $$ \kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{
 $$ \kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{n \pi}{L} t \Bigr) + \kbn \sin \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] $$
 <p>is a <span data-concept="piecewise-smooth-function">piecewise smooth</span> function. Then <span data-concept="term-by-term-integration">the antiderivative is obtained by antidifferentiating term by term</span> and so</p>
 <div class="equation" id="eq-term-by-term-integral">$$ \kF(t) = \frac{\kazero t}{2} + C + \sum_{n=1}^\infty \Bigl[ \frac{\kan L}{n \pi} \sin \Bigl( \frac{n \pi}{L} t \Bigr) + \frac{-\kbn L}{n \pi} \cos \Bigl( \frac{n \pi}{L} t \Bigr) \Bigr] , $$</div>
-<p>where $\kF'(t) = \kf(t)$ and $C$ is an arbitrary constant.</p>
+<p>where $\kFprime(t) = \kf(t)$ and $C$ is an arbitrary constant.</p>
 </div>
 <p id="not-periodic">Note that the series for $\kF(t)$ is no longer a <span data-concept="fourier-series">Fourier series</span> as it contains the $\frac{\kazero t}{2}$ term. The <span data-concept="antiderivative">antiderivative</span> of a <span data-concept="periodic-function">periodic function</span> need no longer be <span data-concept="periodic-function">periodic</span> and so we should not expect a <span data-concept="fourier-series">Fourier series</span>. Unless, of course, $\kazero = 0$.</p>
 </section>
@@ -98,7 +98,7 @@ $$ \kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos \Bigl( \frac{
 <div class="example" id="ex-4-3-6">
 <h3>Example 4.3.6</h3>
 <p>Take the function</p>
-$$ \kf(t) = \begin{cases} (t+1)\,t & \text{if } \; {-1} < t \leq 0 , \\ (1-t)\,t & \text{if } \; \phantom{-}0 < t \leq 1 , \end{cases} $$
+$$ \kf(t) = \begin{cases} (t+1)\,t & \text{if } \; {-1} &lt; t \leq 0 , \\ (1-t)\,t & \text{if } \; \phantom{-}0 &lt; t \leq 1 , \end{cases} $$
 <p id="smooth-derivative">and extend to a 2-<span data-concept="periodic-function">periodic function</span>. The derivative $\kfprime(t)$ exists for all $t$, but $f''(t)$ does not exist if $t$ is an integer. In particular, $\kfprime(t) = 2t+1$ if $-1 \leq t \leq 0$ and $\kfprime(t) = 1-2t$ if $0 \leq t \leq 1$, so $\kfprime(t)$ has a “corner” at $0$. See Figure 4.11 for the plot of $\kf(t)$ and $\kfprime(t)$.</p>
 <figure class="sim" id="sim-smoothness-decay" data-figure="4.11" data-original="/media/ch04/gfs-smoothex.svg" data-original-caption="Smooth 2-periodic function (the smooth line) with its nonsmooth derivative (the jagged line)." data-original-width="432">
   <div class="sim-head"><span class="eyebrow">Figure 4.11</span><span>Four <span data-concept="periodic-function">periodic functions</span> over two periods, each with its derivative where it exists, and below them the sizes of their nonzero <span data-concept="fourier-coefficients">Fourier coefficients</span> against $n$ on logarithmic scales, beside the dashed lines $1/n$, $1/n^2$ and $1/n^3$. The once-differentiable function of Example 4.3.6 falls like $1/n^3$, the continuous $\lvert t \rvert$ with its corners like $1/n^2$, and the <span data-concept="square-wave">square wave</span> and the <span data-concept="sawtooth">sawtooth</span> with their jumps like $1/n$.</span></div>

@@ -53,8 +53,8 @@ const guide = () => alpha(PAL.ink, 0.35);
       line(ctx, P.X(-4.2 * v[0]), P.Y(-4.2 * v[1]), P.X(4.2 * v[0]), P.Y(4.2 * v[1]), alpha(vc, 0.55), 3);
       /* the names stand outside the plane, beside the corner where the line leaves it */
       const cyv = s > 0 ? P.box.t + 12 : P.box.b - 12;
-      label(ctx, name, P.box.r + 8, cyv, { side: 'right', color: vc, size: 22, gap: 6, leader: false });
-      label(ctx, lam, P.box.r + 8, cyv + s * 30, { side: 'right', color: ec, size: 18, gap: 6, leader: false });
+      label(ctx, name, P.box.r + 16, cyv, { side: 'right', color: vc, size: 22, gap: 6, leader: false });
+      label(ctx, lam, P.box.r + 16, cyv + s * 30, { side: 'right', color: ec, size: 18, gap: 6, leader: false });
       hits.push({ x: P.box.r + 26, y: cyv, r: 22, name: name === 'v_1' ? 'the eigenvector line of v₁ = (1, −1), eigenvalue λ₁ = −2' : 'the eigenvector line of v₂ = (1, 1), eigenvalue λ₂ = 4' });
     });
     /* the trajectory: all of it faint, the part run so far solid */
