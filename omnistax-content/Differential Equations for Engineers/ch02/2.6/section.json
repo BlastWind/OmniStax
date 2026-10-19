@@ -1,0 +1,448 @@
+{
+ "id": "2.6",
+ "module": "forcedo:section",
+ "chapter": "2",
+ "title": "Forced oscillations and resonance",
+ "short": "Forced oscillations and resonance",
+ "lead": "A <span data-concept=\"mass-spring-system\">mass on a spring</span> is pushed by a periodic force $F_0 \\cos(\\komega t)$. This section asks what happens when the forcing frequency $\\komega$ meets the <span data-concept=\"natural-frequency\">natural frequency</span> $\\komegazero$, first with no damping and then with some, and what the amplitude of the motion that lasts depends on.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 2.6.101–2.6.103 carry the book’s own answers. Exercises 2.6.1–2.6.5, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value and formula checked with SymPy first. The book’s note that exercises numbered 101 and higher have solutions is the exercises_lead.",
+ "figures": [
+  {
+   "id": "sim-beats",
+   "kind": "sim",
+   "number": "2.5",
+   "folds": ["2.6"],
+   "originals": [
+    "/media/ch02/3-6-beating.svg",
+    "/media/ch02/3-6-resonance.svg",
+    "/media/ch02/massfigforce.svg"
+   ],
+   "original_caption": "(Figure 2.5) Graph of 20/(16 − π²)(cos(πt) − cos(4t)). (Figure 2.6) Graph of (1/π) t sin(πt).",
+   "draws": [
+    "function",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-transient",
+   "kind": "sim",
+   "number": "2.7",
+   "originals": [
+    "/media/ch02/3-6-transbeh.svg"
+   ],
+   "original_caption": "Solutions with different initial conditions for parameters k=1, m=1, F₀ = 1, c=0.7, and ω=1.1.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "derivative",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-practical-resonance",
+   "kind": "sim",
+   "number": "2.8",
+   "originals": [
+    "/media/ch02/3-6-pracres.svg"
+   ],
+   "original_caption": "Graph of C(ω) showing practical resonance with parameters k=1, m=1, F₀ = 1. The top line is with c=0.4, the middle line with c=0.8, and the bottom line with c=1.6.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {"id": "xtr", "label": "the transient solution x_tr", "figures": ["sim-transient"]},
+  {"id": "xsp", "label": "the steady periodic solution x_sp", "figures": ["sim-transient"]}
+ ],
+ "coverage": [
+  {"span": "undamped-setup", "concept": "undamped-forced-motion", "verb": "introduces"},
+  {"span": "ex-2-6-1", "concept": "beating", "verb": "introduces"},
+  {"span": "resonance-def", "concept": "resonance", "verb": "introduces"},
+  {"span": "damped-setup", "concept": "forced-vibrations", "verb": "introduces"},
+  {"span": "tr-sp-def", "concept": "transient-solution", "verb": "introduces"},
+  {"span": "tr-sp-def", "concept": "steady-state-solution", "verb": "introduces"},
+  {"span": "practical-resonance-def", "concept": "practical-resonance", "verb": "introduces"},
+  {"span": "practical-resonance-def", "concept": "practical-resonance-frequency", "verb": "introduces"},
+  {"span": "practical-resonance-def", "concept": "practical-resonance-amplitude", "verb": "introduces"},
+  {"span": "forcedo-intro", "concept": "mass-spring-system", "verb": "reinforces"},
+  {"span": "forcedo-intro", "concept": "forced-motion", "verb": "reinforces"},
+  {"span": "undamped-setup", "concept": "undamped-motion", "verb": "uses"},
+  {"span": "undamped-complementary", "concept": "complementary-solution", "verb": "reinforces"},
+  {"span": "undamped-complementary", "concept": "complementary-equation", "verb": "uses"},
+  {"span": "natural-frequency-again", "concept": "natural-frequency", "verb": "reinforces"},
+  {"span": "undamped-trial", "concept": "method-of-undetermined-coefficients", "verb": "reinforces"},
+  {"span": "undamped-trial", "concept": "particular-solution", "verb": "uses"},
+  {"span": "eq-undamped-xp", "concept": "undamped-forced-motion", "verb": "uses"},
+  {"span": "undamped-general-para", "concept": "general-solution", "verb": "uses"},
+  {"span": "eq-undamped-general", "concept": "undamped-forced-motion", "verb": "uses"},
+  {"span": "eq-undamped-general", "concept": "general-solution-to-a-nonhomogeneous-equation", "verb": "uses"},
+  {"span": "eq-undamped-phase", "concept": "amplitude-and-phase-shift-form", "verb": "reinforces"},
+  {"span": "ex-2-6-1", "concept": "undamped-forced-motion", "verb": "uses"},
+  {"span": "ex-2-6-1", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-6-1", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-2-6-1", "concept": "solving-an-initial-value-problem", "verb": "uses"},
+  {"span": "sim-beats", "concept": "undamped-forced-motion", "verb": "uses"},
+  {"span": "sim-beats", "concept": "beating", "verb": "uses"},
+  {"span": "sim-beats", "concept": "resonance", "verb": "uses"},
+  {"span": "sim-beats", "concept": "natural-frequency", "verb": "uses"},
+  {"span": "sim-beats", "concept": "undamped-motion", "verb": "uses"},
+  {"span": "beating-analysis", "concept": "beating", "verb": "uses"},
+  {"span": "eq-beating", "concept": "beating", "verb": "uses"},
+  {"span": "resonance-trial", "concept": "complementary-equation", "verb": "uses"},
+  {"span": "resonance-trial", "concept": "method-of-undetermined-coefficients", "verb": "uses"},
+  {"span": "resonance-trial", "concept": "duplication-with-the-complementary-solution", "verb": "uses"},
+  {"span": "resonance-particular", "concept": "particular-solution", "verb": "uses"},
+  {"span": "resonance-particular", "concept": "general-solution", "verb": "uses"},
+  {"span": "eq-resonance-general", "concept": "resonance", "verb": "uses"},
+  {"span": "drv-pure-resonance", "concept": "resonance", "verb": "uses"},
+  {"span": "drv-pure-resonance", "concept": "method-of-undetermined-coefficients", "verb": "uses"},
+  {"span": "resonance-growth", "concept": "resonance", "verb": "uses"},
+  {"span": "resonance-growth", "concept": "particular-solution", "verb": "uses"},
+  {"span": "earthquakes", "concept": "resonance", "verb": "uses"},
+  {"span": "tacoma", "concept": "resonance", "verb": "uses"},
+  {"span": "damped-setup", "concept": "damped-motion", "verb": "uses"},
+  {"span": "damped-rewrite", "concept": "damped-spring-mass-system", "verb": "reinforces"},
+  {"span": "eq-reduced", "concept": "forced-vibrations", "verb": "uses"},
+  {"span": "damped-xc", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "damped-xc", "concept": "complementary-equation", "verb": "uses"},
+  {"span": "damped-xc", "concept": "general-solution", "verb": "uses"},
+  {"span": "eq-damped-xc", "concept": "overdamped-system", "verb": "reinforces"},
+  {"span": "eq-damped-xc", "concept": "critically-damped-system", "verb": "reinforces"},
+  {"span": "eq-damped-xc", "concept": "underdamped-system", "verb": "reinforces"},
+  {"span": "eq-damped-xc", "concept": "complementary-solution", "verb": "uses"},
+  {"span": "xc-decays", "concept": "pseudo-frequency", "verb": "uses"},
+  {"span": "steady-trial", "concept": "particular-solution", "verb": "uses"},
+  {"span": "steady-trial", "concept": "method-of-undetermined-coefficients", "verb": "uses"},
+  {"span": "drv-steady-periodic", "concept": "forced-vibrations", "verb": "uses"},
+  {"span": "drv-steady-periodic", "concept": "method-of-undetermined-coefficients", "verb": "uses"},
+  {"span": "eq-steady-xp", "concept": "forced-vibrations", "verb": "uses"},
+  {"span": "steady-amplitude-para", "concept": "amplitude", "verb": "uses"},
+  {"span": "eq-steady-amplitude", "concept": "forced-vibrations", "verb": "uses"},
+  {"span": "alt-form", "concept": "amplitude", "verb": "uses"},
+  {"span": "alt-form", "concept": "phase-shift", "verb": "uses"},
+  {"span": "alt-form", "concept": "amplitude-and-phase-shift-form", "verb": "uses"},
+  {"span": "eq-steady-box", "concept": "forced-vibrations", "verb": "uses"},
+  {"span": "steady-at-resonance", "concept": "forced-vibrations", "verb": "uses"},
+  {"span": "tr-sp-def", "concept": "general-solution", "verb": "uses"},
+  {"span": "tr-sp-def", "concept": "general-solution-to-a-nonhomogeneous-equation", "verb": "uses"},
+  {"span": "eq-tr-sp", "concept": "steady-state-solution", "verb": "uses"},
+  {"span": "eq-tr-sp", "concept": "transient-solution", "verb": "uses"},
+  {"span": "transient-explained", "concept": "transient-solution", "verb": "uses"},
+  {"span": "transient-explained", "concept": "steady-state-solution", "verb": "uses"},
+  {"span": "transient-explained", "concept": "initial-value", "verb": "uses"},
+  {"span": "sim-transient", "concept": "transient-solution", "verb": "uses"},
+  {"span": "sim-transient", "concept": "steady-state-solution", "verb": "uses"},
+  {"span": "sim-transient", "concept": "forced-vibrations", "verb": "uses"},
+  {"span": "sim-transient", "concept": "damped-motion", "verb": "uses"},
+  {"span": "sim-transient", "concept": "initial-value", "verb": "uses"},
+  {"span": "transient-speed", "concept": "transient-solution", "verb": "uses"},
+  {"span": "transient-speed", "concept": "initial-value", "verb": "uses"},
+  {"span": "practical-resonance-def", "concept": "resonance", "verb": "uses"},
+  {"span": "practical-resonance-def", "concept": "amplitude", "verb": "uses"},
+  {"span": "practical-resonance-def", "concept": "steady-state-solution", "verb": "uses"},
+  {"span": "sim-practical-resonance", "concept": "practical-resonance", "verb": "uses"},
+  {"span": "sim-practical-resonance", "concept": "practical-resonance-frequency", "verb": "uses"},
+  {"span": "sim-practical-resonance", "concept": "practical-resonance-amplitude", "verb": "uses"},
+  {"span": "sim-practical-resonance", "concept": "amplitude", "verb": "uses"},
+  {"span": "sim-practical-resonance", "concept": "steady-state-solution", "verb": "uses"},
+  {"span": "eq-amplitude-derivative", "concept": "practical-resonance-frequency", "verb": "uses"},
+  {"span": "eq-pracres", "concept": "practical-resonance-frequency", "verb": "uses"},
+  {"span": "first-derivative-test", "concept": "practical-resonance-frequency", "verb": "uses"},
+  {"span": "first-derivative-test", "concept": "practical-resonance", "verb": "uses"},
+  {"span": "small-damping", "concept": "practical-resonance", "verb": "uses"},
+  {"span": "small-damping", "concept": "practical-resonance-frequency", "verb": "uses"},
+  {"span": "small-damping", "concept": "resonance", "verb": "uses"},
+  {"span": "high-frequency", "concept": "mass-spring-system", "verb": "uses"},
+  {"span": "high-frequency", "concept": "practical-resonance-amplitude", "verb": "uses"}
+ ],
+ "derivations": [
+  {
+   "id": "pure-resonance",
+   "what": "the coefficients at pure resonance",
+   "source": "Differential Equations for Engineers, 2.6 Forced oscillations and resonance",
+   "nodes": [
+    {
+     "assumes": [
+      {"tex": "\\kxp = A t \\cos(\\komega t) + B t \\sin(\\komega t)", "src": "2.6"}
+     ],
+     "then": {"tex": "\\mk{xp}{\\kxp} = \\mk{A}{A t \\cos(\\komega t)} + \\mk{B}{B t \\sin(\\komega t)}", "uses": [0], "src": "2.6"},
+     "steps": [
+      {"tex": "\\mk{xp}{{\\kxp}'} = \\mk{A}{A\\cos(\\komega t) - A\\komega t\\sin(\\komega t)} + \\mk{B}{B\\sin(\\komega t) + B\\komega t\\cos(\\komega t)}", "uses": [], "cap": "The product rule: $(t\\cos(\\omega t))' = \\cos(\\omega t) - \\omega t\\sin(\\omega t)$ and $(t\\sin(\\omega t))' = \\sin(\\omega t) + \\omega t\\cos(\\omega t)$."},
+      {"tex": "\\mk{xp}{{\\kxp}''} = \\mk{A}{-2A\\komega\\sin(\\komega t) - A\\komega^2 t\\cos(\\komega t)} + \\mk{B}{2B\\komega\\cos(\\komega t) - B\\komega^2 t\\sin(\\komega t)}", "uses": [], "cap": "Differentiating once more by the product rule."},
+      {"tex": "\\mk{xp}{{\\kxp}'' + \\komega^2 \\kxp} = \\mk{B}{2B\\komega\\cos(\\komega t)} - \\mk{A}{2A\\komega\\sin(\\komega t)}", "uses": [0]}
+     ],
+     "src": "2.6"
+    },
+    {
+     "assumes": [
+      {"tex": "\\kxdprime + \\komega^2 \\kx = \\frac{F_0}{m} \\cos(\\komega t)", "src": "2.6"},
+      {"step": 0}
+     ],
+     "then": {"tex": "\\mk{B}{2B\\komega\\cos(\\komega t)} - \\mk{A}{2A\\komega\\sin(\\komega t)} = \\mk{f}{\\frac{F_0}{m}\\cos(\\komega t)}", "uses": [0, 1], "src": "2.6"},
+     "steps": [
+      {"tex": "\\mk{A}{-2A\\komega} = 0 \\quad\\text{and}\\quad \\mk{B}{2B\\komega} = \\mk{f}{\\frac{F_0}{m}}", "uses": [], "cap": "The two sides agree for every $t$ only if the coefficients of $\\sin(\\omega t)$ match and those of $\\cos(\\omega t)$ match."},
+      {"tex": "\\mk{A}{A} = 0 \\quad\\text{and}\\quad \\mk{B}{B} = \\mk{f}{\\frac{F_0}{2m\\komega}}", "uses": []}
+     ],
+     "src": "2.6"
+    }
+   ]
+  },
+  {
+   "id": "steady-periodic",
+   "what": "the coefficients of the steady periodic solution",
+   "source": "Differential Equations for Engineers, 2.6 Forced oscillations and resonance",
+   "nodes": [
+    {
+     "assumes": [
+      {"tex": "\\kxp = A \\cos(\\komega t) + B \\sin(\\komega t)", "src": "2.6"},
+      {"tex": "\\kxdprime + 2p\\kxprime + \\komegazero^2 \\kx = \\frac{F_0}{m} \\cos(\\komega t)", "src": "2.6"}
+     ],
+     "then": {"tex": "\\mk{xp}{\\kxp} = \\mk{cos}{A\\cos(\\komega t)} + \\mk{sin}{B\\sin(\\komega t)}", "uses": [0], "src": "2.6"},
+     "steps": [
+      {"tex": "\\mk{xp}{{\\kxp}'} = \\mk{sin}{-A\\komega\\sin(\\komega t)} + \\mk{cos}{B\\komega\\cos(\\komega t)}", "uses": [], "cap": "The chain rule: $(\\cos(\\omega t))' = -\\omega\\sin(\\omega t)$ and $(\\sin(\\omega t))' = \\omega\\cos(\\omega t)$."},
+      {"tex": "\\mk{xp}{{\\kxp}''} = \\mk{cos}{-A\\komega^2\\cos(\\komega t)} - \\mk{sin}{B\\komega^2\\sin(\\komega t)}", "uses": [], "cap": "Differentiating once more by the chain rule."},
+      {"tex": "\\mk{xp}{{\\kxp}'' + 2p{\\kxp}' + \\komegazero^2\\kxp} = \\mk{sin}{\\bigl((\\komegazero^2 - \\komega^2)B - 2\\komega pA\\bigr)\\sin(\\komega t)} + \\mk{cos}{\\bigl((\\komegazero^2 - \\komega^2)A + 2\\komega pB\\bigr)\\cos(\\komega t)}", "uses": [0]},
+      {"tex": "\\mk{sin}{\\bigl((\\komegazero^2 - \\komega^2)B - 2\\komega pA\\bigr)\\sin(\\komega t)} + \\mk{cos}{\\bigl((\\komegazero^2 - \\komega^2)A + 2\\komega pB\\bigr)\\cos(\\komega t)} = \\mk{f}{\\frac{F_0}{m}\\cos(\\komega t)}", "uses": [1]},
+      {"tex": "\\mk{sin}{(\\komegazero^2 - \\komega^2)B - 2\\komega pA} = 0 \\quad\\text{and}\\quad \\mk{cos}{(\\komegazero^2 - \\komega^2)A + 2\\komega pB} = \\mk{f}{\\frac{F_0}{m}}", "uses": [], "cap": "The two sides agree for every $t$ only if the coefficients of $\\sin(\\omega t)$ match and those of $\\cos(\\omega t)$ match."}
+     ],
+     "src": "2.6"
+    },
+    {
+     "assumes": [
+      {"step": 0}
+     ],
+     "then": {"tex": "\\mk{sin}{(\\komegazero^2 - \\komega^2)B - 2\\komega pA} = 0 \\quad\\text{and}\\quad \\mk{cos}{(\\komegazero^2 - \\komega^2)A + 2\\komega pB} = \\mk{f}{\\frac{F_0}{m}}", "uses": []},
+     "steps": [
+      {"tex": "\\mk{sin}{-2\\komega p(\\komegazero^2 - \\komega^2)B + (2\\komega p)^2 A} = 0 \\quad\\text{and}\\quad \\mk{cos}{(\\komegazero^2 - \\komega^2)A + 2\\komega pB} = \\mk{f}{\\frac{F_0}{m}}", "uses": []},
+      {"tex": "\\mk{sin}{-2\\komega p(\\komegazero^2 - \\komega^2)B + (2\\komega p)^2 A} = 0 \\quad\\text{and}\\quad \\mk{cos}{(\\komegazero^2 - \\komega^2)^2 A + 2\\komega p(\\komegazero^2 - \\komega^2)B} = \\mk{f}{\\frac{(\\komegazero^2 - \\komega^2)F_0}{m}}", "uses": []},
+      {"tex": "\\mk{cos}{\\bigl((\\komegazero^2 - \\komega^2)^2 + (2\\komega p)^2\\bigr)A} = \\mk{f}{\\frac{(\\komegazero^2 - \\komega^2)F_0}{m}}", "uses": [], "map": {"sin": "cos"}},
+      {"tex": "\\mk{cos}{A} = \\mk{f}{\\frac{(\\komegazero^2 - \\komega^2)F_0}{m(2\\komega p)^2 + m(\\komegazero^2 - \\komega^2)^2}}", "uses": []}
+     ],
+     "src": "2.6"
+    },
+    {
+     "assumes": [
+      {"step": 0}
+     ],
+     "then": {"tex": "\\mk{sin}{(\\komegazero^2 - \\komega^2)B - 2\\komega pA} = 0 \\quad\\text{and}\\quad \\mk{cos}{(\\komegazero^2 - \\komega^2)A + 2\\komega pB} = \\mk{f}{\\frac{F_0}{m}}", "uses": []},
+     "steps": [
+      {"tex": "\\mk{sin}{(\\komegazero^2 - \\komega^2)^2 B - 2\\komega p(\\komegazero^2 - \\komega^2)A} = 0 \\quad\\text{and}\\quad \\mk{cos}{(\\komegazero^2 - \\komega^2)A + 2\\komega pB} = \\mk{f}{\\frac{F_0}{m}}", "uses": []},
+      {"tex": "\\mk{sin}{(\\komegazero^2 - \\komega^2)^2 B - 2\\komega p(\\komegazero^2 - \\komega^2)A} = 0 \\quad\\text{and}\\quad \\mk{cos}{2\\komega p(\\komegazero^2 - \\komega^2)A + (2\\komega p)^2 B} = \\mk{f}{\\frac{2\\komega pF_0}{m}}", "uses": []},
+      {"tex": "\\mk{cos}{\\bigl((\\komegazero^2 - \\komega^2)^2 + (2\\komega p)^2\\bigr)B} = \\mk{f}{\\frac{2\\komega pF_0}{m}}", "uses": [], "map": {"sin": "cos"}},
+      {"tex": "\\mk{cos}{B} = \\mk{f}{\\frac{2\\komega pF_0}{m(2\\komega p)^2 + m(\\komegazero^2 - \\komega^2)^2}}", "uses": []}
+     ],
+     "src": "2.6"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "2.6.1",
+   "source_number": "2.6.1",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "steady-trial",
+   "prompt": "<p>Derive a formula for $\\kxsp$ if the equation is $m \\kxdprime + c \\kxprime + k\\kx = F_0 \\sin (\\komega t)$. Assume $c > 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $p = \\frac{c}{2m}$ and $\\komegazero = \\sqrt{k/m}$ and try $\\kxsp = A\\cos(\\komega t) + B\\sin(\\komega t)$ as before. Plugging in gives the same left-hand side, $\\bigl((\\komegazero^2-\\komega^2)B - 2\\komega pA\\bigr)\\sin(\\komega t) + \\bigl((\\komegazero^2-\\komega^2)A + 2\\komega pB\\bigr)\\cos(\\komega t)$, but now it must equal $\\frac{F_0}{m}\\sin(\\komega t)$, so the two coefficient equations swap roles: $(\\komegazero^2-\\komega^2)B - 2\\komega pA = \\frac{F_0}{m}$ and $(\\komegazero^2-\\komega^2)A + 2\\komega pB = 0$. Solving, $A = \\frac{-2\\komega p F_0}{m(2\\komega p)^2 + m(\\komegazero^2-\\komega^2)^2}$ and $B = \\frac{(\\komegazero^2-\\komega^2)F_0}{m(2\\komega p)^2 + m(\\komegazero^2-\\komega^2)^2}$, so $\\kxsp = \\frac{-2\\komega pF_0}{m(2\\komega p)^2+m(\\komegazero^2-\\komega^2)^2}\\cos(\\komega t) + \\frac{(\\komegazero^2-\\komega^2)F_0}{m(2\\komega p)^2+m(\\komegazero^2-\\komega^2)^2}\\sin(\\komega t)$. The amplitude is the same $C = \\frac{F_0}{m\\sqrt{(2\\komega p)^2 + (\\komegazero^2-\\komega^2)^2}}$ as for cosine forcing, and with $\\tan\\gamma = \\frac{2\\komega p}{\\komegazero^2-\\komega^2}$ the solution is $\\kxsp = C\\sin(\\komega t - \\gamma)$: the response to a sine is the response to a cosine shifted by a quarter period."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "2.6.2",
+   "source_number": "2.6.2",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "steady-trial",
+   "prompt": "<p>Derive a formula for $\\kxsp$ if the equation is $m \\kxdprime + c \\kxprime + k\\kx = F_0 \\cos (\\komega t) + F_1 \\cos (3\\komega t)$. Assume $c > 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The equation is linear, so the steady periodic response to a sum of two forces is the sum of the responses to each: solve $m\\kxdprime + c\\kxprime + k\\kx = F_0\\cos(\\komega t)$ and $m\\kxdprime + c\\kxprime + k\\kx = F_1\\cos(3\\komega t)$ separately and add. The first response is the section’s formula; the second is the same formula with $F_0$ replaced by $F_1$ and $\\komega$ by $3\\komega$. With $p = \\frac{c}{2m}$ and $\\komegazero = \\sqrt{k/m}$, $\\kxsp = \\frac{(\\komegazero^2-\\komega^2)F_0}{m(2\\komega p)^2 + m(\\komegazero^2-\\komega^2)^2}\\cos(\\komega t) + \\frac{2\\komega pF_0}{m(2\\komega p)^2 + m(\\komegazero^2-\\komega^2)^2}\\sin(\\komega t) + \\frac{(\\komegazero^2-9\\komega^2)F_1}{m(6\\komega p)^2 + m(\\komegazero^2-9\\komega^2)^2}\\cos(3\\komega t) + \\frac{6\\komega pF_1}{m(6\\komega p)^2 + m(\\komegazero^2-9\\komega^2)^2}\\sin(3\\komega t)$. In amplitude–phase form, $\\kxsp = \\frac{F_0}{m\\sqrt{(2\\komega p)^2+(\\komegazero^2-\\komega^2)^2}}\\cos(\\komega t - \\gamma_1) + \\frac{F_1}{m\\sqrt{(6\\komega p)^2+(\\komegazero^2-9\\komega^2)^2}}\\cos(3\\komega t - \\gamma_2)$ with $\\tan\\gamma_1 = \\frac{2\\komega p}{\\komegazero^2-\\komega^2}$ and $\\tan\\gamma_2 = \\frac{6\\komega p}{\\komegazero^2-9\\komega^2}$. Plugging the sum back in confirms it: each piece produces its own cosine and nothing else."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "2.6.3",
+   "source_number": "2.6.3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "first-derivative-test",
+   "prompt": "<p>Take $m \\kxdprime + c \\kxprime + k\\kx = F_0 \\cos (\\komega t)$. Fix $m > 0$, $k > 0$, and $F_0 > 0$. Consider the function $C(\\komega)$. For what values of $c$ (solve in terms of $m$, $k$, and $F_0$) will there be no practical resonance (that is, for what values of $c$ is there no maximum of $C(\\komega)$ for $\\komega > 0$)?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$C(\\komega)$ has no maximum for $\\komega > 0$ exactly when $\\komegazero^2 - 2p^2 \\le 0$: then $2p^2 + \\komega^2 - \\komegazero^2 > 0$ for every $\\komega > 0$, so $C'(\\komega) < 0$ and $C(\\komega)$ only decreases from its value at $\\komega = 0$. With $\\komegazero^2 = \\frac{k}{m}$ and $p = \\frac{c}{2m}$ the condition reads $\\frac{k}{m} - \\frac{c^2}{2m^2} \\le 0$, that is, $c^2 \\ge 2km$. So there is no practical resonance exactly when $c \\ge \\sqrt{2km}$. The force $F_0$ plays no part: it only scales $C(\\komega)$ and does not move its maximum."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "2.6.4",
+   "source_number": "2.6.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "first-derivative-test",
+   "prompt": "<p>Take $m \\kxdprime + c \\kxprime + k\\kx = F_0 \\cos (\\komega t)$. Fix $c > 0$, $k > 0$, and $F_0 > 0$. Consider the function $C(\\komega)$. For what values of $m$ (solve in terms of $c$, $k$, and $F_0$) will there be no practical resonance (that is, for what values of $m$ is there no maximum of $C(\\komega)$ for $\\komega > 0$)?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "As in Exercise 2.6.3, there is no maximum of $C(\\komega)$ for $\\komega > 0$ exactly when $\\komegazero^2 - 2p^2 = \\frac{k}{m} - \\frac{c^2}{2m^2} \\le 0$. Multiplying by $2m^2 > 0$ gives $2km \\le c^2$, so the condition is $m \\le \\frac{c^2}{2k}$: a mass that light has no practical resonance, whatever $F_0$ is. Again $F_0$ does not enter, since it only scales $C(\\komega)$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "2.6.5",
+   "source_number": "2.6.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-2-6-1",
+   "prompt": "<p>A water tower in an earthquake acts as a mass-spring system. Assume that the container on top is full and the water does not move around. The container then acts as the mass and the support acts as the spring, where the induced vibrations are horizontal. The container with water has a mass of $m=10,000\\,\\mathrm{kg}$. It takes a force of 1000 newtons to displace the container 1 meter. For simplicity, assume no friction. When the earthquake hits, the water tower is at rest (it is not moving). The earthquake induces an external force $\\kF(t) = m A \\komega^2 \\cos (\\komega t)$ newtons.</p><ol type=\"a\"><li>What is the natural frequency of the water tower?</li><li>If $\\komega$ is not the natural frequency, find a formula for the maximal amplitude of the resulting oscillations of the water container (the maximal deviation from the rest position). The motion will be a high-frequency wave modulated by a low-frequency wave, so simply find the constant in front of the sines.</li><li>Suppose $A = 1$ and an earthquake with frequency 0.5 cycles per second comes. What is the amplitude of the oscillations? Suppose that if the water tower moves more than 1.5 meters from the rest position, the tower collapses. Will the tower collapse?</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {"part": "a) ω₀", "value": 0.3162, "unit": "rad/s", "tol": 0.01},
+     {"part": "c) amplitude", "value": 2.02, "unit": "m", "tol": 0.01}
+    ],
+    "solution": "a) A force of 1000 newtons per meter of displacement means $k = 1000$ N/m, so with $m = 10{,}000$ kg the natural frequency is $\\komegazero = \\sqrt{k/m} = \\sqrt{0.1} \\approx 0.316$ rad/s. b) The equation is $m\\kxdprime + k\\kx = mA\\komega^2\\cos(\\komega t)$ with $\\kx(0) = \\kxprime(0) = 0$, so $F_0 = mA\\komega^2$ and, exactly as in Example 2.6.1, $\\kx = \\frac{F_0}{m(\\komegazero^2-\\komega^2)}\\bigl(\\cos(\\komega t) - \\cos(\\komegazero t)\\bigr) = \\frac{2A\\komega^2}{\\komegazero^2 - \\komega^2}\\,\\sin\\Bigl(\\frac{\\komegazero-\\komega}{2}t\\Bigr)\\sin\\Bigl(\\frac{\\komegazero+\\komega}{2}t\\Bigr)$. The maximal amplitude is the size of the constant in front of the sines, $\\frac{2A\\komega^2}{\\lvert\\komegazero^2 - \\komega^2\\rvert}$. c) A frequency of 0.5 cycles per second is $\\komega = 2\\pi(0.5) = \\pi$ rad/s. With $A = 1$ the amplitude is $\\frac{2\\pi^2}{\\pi^2 - 0.1} \\approx 2.02$ meters. That is more than 1.5 meters, so the tower collapses."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "2.6.101",
+   "source_number": "2.6.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "eq-pracres",
+   "prompt": "<p>A mass of 4 kg on a spring with $k=4\\,\\mathrm{N}/\\mathrm{m}$ and a damping constant $c=1\\,\\mathrm{Ns}/\\mathrm{m}$. Suppose that $F_0 = 2\\,\\mathrm{N}$. Using the forcing function $F_0 \\cos (\\komega t)$, find the $\\komega$ that causes practical resonance and find the practical resonance amplitude.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "ω", "value": 0.984, "unit": "rad/s", "tol": 0.01},
+     {"part": "C(ω)", "value": 2.016, "unit": "m", "tol": 0.01}
+    ],
+    "solution": "$\\komega = \\frac{\\sqrt{31}}{4\\sqrt{2}} \\approx 0.984\\,\\mathrm{rad}/\\mathrm{s}$ $C(\\komega) = \\frac{16}{3\\sqrt{7}} \\approx 2.016\\,\\mathrm{m}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "2.6.102",
+   "source_number": "2.6.102",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "steady-trial",
+   "prompt": "<p>Derive a formula for $\\kxsp$ for $m\\kxdprime+c\\kxprime+k\\kx = F_0 \\cos(\\komega t) + A$, where $A$ is some constant. Assume $c > 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxsp = \\frac{(\\komegazero^2-\\komega^2) F_0} {m{(2\\komega p)}^2+m{(\\komegazero^2-\\komega^2)}^2} \\cos (\\komega t) + \\frac{2 \\komega p F_0} {m{(2\\komega p)}^2+m{(\\komegazero^2-\\komega^2)}^2} \\sin (\\komega t) + \\frac{A}{k}$, where $p = \\frac{c}{2m}$ and $\\komegazero = \\sqrt{\\frac{k}{m}}$."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "2.6.103",
+   "source_number": "2.6.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "resonance-growth",
+   "prompt": "<p>Suppose there is no damping in a mass and spring system with $m = 5\\,\\mathrm{kg}$, $k= 20\\,\\mathrm{N}/\\mathrm{m}$, and $F_0 = 5\\,\\mathrm{N}$. Suppose $\\komega$ is chosen to be precisely the resonance frequency.</p><ol type=\"a\"><li>Find $\\komega$.</li><li>Find the amplitude of the oscillations at time $t=100$ seconds, given the system is at rest at $t=0$.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "a) ω", "value": 2, "unit": "rad/s"},
+     {"part": "b)", "value": 25, "unit": "m"}
+    ],
+    "solution": "a) $\\komega = 2\\,\\mathrm{rad}/\\mathrm{s}$ b) $25\\,\\mathrm{m}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "forced-vibrations"},
+  {"exercise": "e1", "concept": "steady-state-solution"},
+  {"exercise": "e1", "concept": "method-of-undetermined-coefficients"},
+  {"exercise": "e2", "concept": "forced-vibrations"},
+  {"exercise": "e2", "concept": "steady-state-solution"},
+  {"exercise": "e2", "concept": "superposition-principle"},
+  {"exercise": "e3", "concept": "practical-resonance"},
+  {"exercise": "e3", "concept": "practical-resonance-frequency"},
+  {"exercise": "e4", "concept": "practical-resonance"},
+  {"exercise": "e4", "concept": "practical-resonance-frequency"},
+  {"exercise": "e5", "concept": "natural-frequency"},
+  {"exercise": "e5", "concept": "undamped-forced-motion"},
+  {"exercise": "e5", "concept": "beating"},
+  {"exercise": "e101", "concept": "practical-resonance-frequency"},
+  {"exercise": "e101", "concept": "practical-resonance-amplitude"},
+  {"exercise": "e102", "concept": "forced-vibrations"},
+  {"exercise": "e102", "concept": "steady-state-solution"},
+  {"exercise": "e103", "concept": "resonance"},
+  {"exercise": "e103", "concept": "natural-frequency"}
+ ],
+ "footnotes": [
+  {
+   "id": "fn-tacoma",
+   "kind": "book",
+   "number": "1",
+   "html": "K. Billah and R. Scanlan, <em>Resonance, Tacoma Narrows Bridge Failure, and Undergraduate Physics Textbooks</em>, American Journal of Physics, 59(2), 1991, 118–124, <a href=\"http://www.ketchum.org/billah/Billah-Scanlan.pdf\">http://www.ketchum.org/billah/Billah-Scanlan.pdf</a>"
+  }
+ ]
+}
