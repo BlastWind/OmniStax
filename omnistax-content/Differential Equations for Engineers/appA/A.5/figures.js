@@ -17,6 +17,8 @@ const ipH = (a, b) => tenth(a[0]) * tenth(b[0]) + tenth(a[1]) * tenth(b[1]);    
 const exact = (v, dec = 2) => Math.abs(v * 10 ** dec - Math.round(v * 10 ** dec)) < 1e-9;
 /* √ of a sum of squares given in hundredths: the number itself when it is a perfect square of tenths */
 const sqrtH = (h) => { const r = Math.round(Math.sqrt(h)); return r * r === h ? nm(r / 10, 1) : `\\sqrt{${nm(h / 100)}}`; };
+/* a product of two such roots as the book writes it, 3\sqrt{2}, with a dot where two numerals would run together */
+const times = (a, b) => (b.startsWith('\\sqrt') ? `${a}${a.startsWith('\\sqrt') ? '\\,' : ''}${b}` : `${a} \\cdot ${b}`);
 /* a value of θ as a multiple of π/12 where it is one */
 const piFrac = (t) => {
   const k = (t * 12) / Math.PI, r = Math.round(k);
@@ -150,7 +152,7 @@ const slider = (d, label, key, value, aria, at, name) =>
     const pf = piFrac(th), thT = pf !== null ? `${pf}${pf === '0' ? '' : ` \\approx ${nm(th, 3)}`}` : `\\approx ${nm(th, 3)}`;
     if (ip === 0) headline(ctx, `$\\langle \\kvecx, \\kvecy \\rangle = 0$: $\\kvecx$ and $\\kvecy$ are orthogonal, at the right angle $\\ktheta = \\pi/2$.`);
     else headline(ctx, `$\\cos \\ktheta ${eq} ${nm(cs, 3)}$, so $\\ktheta = ${thT}$; the turns $-\\ktheta$ and $2\\pi - \\ktheta$ have the same cosine.`);
-    ro.set(`\\cos \\ktheta = \\frac{\\langle \\kvecx, \\kvecy \\rangle}{\\lVert \\kvecx \\rVert \\lVert \\kvecy \\rVert} = \\frac{${prods}}{${sqrtH(sx)}\\,${sqrtH(sy)}} ${eq} ${nm(cs, 3)}`,
+    ro.set(`\\cos \\ktheta = \\frac{\\langle \\kvecx, \\kvecy \\rangle}{\\lVert \\kvecx \\rVert \\lVert \\kvecy \\rVert} = \\frac{${prods}}{${times(sqrtH(sx), sqrtH(sy))}} ${eq} ${nm(cs, 3)}`,
       `$\\ktheta = \\cos^{-1}(\\cos \\ktheta) ${pf !== null ? `= ${pf}` : ''} \\approx ${nm(th, 3)}$, while $-\\ktheta \\approx ${nm(-th, 3)}$ and $2\\pi - \\ktheta \\approx ${nm(2 * Math.PI - th, 3)}$ have the same cosine.`,
       { form: 'angle' });
   }
@@ -258,7 +260,7 @@ const slider = (d, label, key, value, aria, at, name) =>
     else headline(ctx, `The shadow of $\\kvecw$ on the line of $\\kvecv$ is $\\kproj_{\\kvecv}(\\kvecw) ${eq} ${vecT(pr)}$; what is left, $\\kvecw - \\kproj_{\\kvecv}(\\kvecw)$, is orthogonal to $\\kvecv$.`);
     ro.set(`\\kproj_{\\kvecv}(\\kvecw) = \\left( \\frac{\\langle \\kvecw , \\kvecv \\rangle}{ \\langle \\kvecv , \\kvecv \\rangle} \\right) \\kvecv = \\frac{${nm(wv / 100)}}{${nm(vv / 100)}} ${vecT(v, 1)} ${eq} ${vecT(pr)}`,
       ok ? `$\\kvecw - \\kproj_{\\kvecv}(\\kvecw) = ${vecT(rem)}$, and $\\langle \\kvecw - \\kproj_{\\kvecv}(\\kvecw), \\kvecv \\rangle = (${nm(rem[0])})(${nm(v[0], 1)}) + (${nm(rem[1])})(${nm(v[1], 1)}) = 0$.`
-        : `$\\kvecw - \\kproj_{\\kvecv}(\\kvecw) \\approx ${vecT(rem)}$, and $\\langle \\kvecw - \\kproj_{\\kvecv}(\\kvecw), \\kvecv \\rangle = \\langle \\kvecw, \\kvecv \\rangle - \\frac{\\langle \\kvecw, \\kvecv \\rangle}{\\langle \\kvecv, \\kvecv \\rangle} \\langle \\kvecv, \\kvecv \\rangle = ${nm(wv / 100)} - ${nm(wv / 100)} = 0$.`,
+        : `$\\kvecw - \\kproj_{\\kvecv}(\\kvecw) \\approx ${vecT(rem)}$, and $\\langle \\kvecw - \\kproj_{\\kvecv}(\\kvecw), \\kvecv \\rangle = \\langle \\kvecw, \\kvecv \\rangle - \\frac{\\langle \\kvecw, \\kvecv \\rangle}{\\langle \\kvecv, \\kvecv \\rangle} \\langle \\kvecv, \\kvecv \\rangle = ${nm(wv / 100)} - ${wv < 0 ? `(${nm(wv / 100)})` : nm(wv / 100)} = 0$.`,
       { form: 'proj' });
   }
   still(d, draw);
@@ -379,7 +381,7 @@ const slider = (d, label, key, value, aria, at, name) =>
         const shown = [Math.round(pr[0] * 100) / 100, Math.round(pr[1] * 100) / 100], diff = vecT([v2[0] - shown[0], v2[1] - shown[1]]);
         ro.set(`\\kvecw_2 = \\kvecv_2 - \\kproj_{\\kvecw_1}(\\kvecv_2) ${eq} ${V2} - ${PR} = ${diff}`,
           ok ? `$\\langle \\kvecw_1, \\kvecw_2 \\rangle = (${nm(v1[0], 1)})(${nm(w2[0])}) + (${nm(v1[1], 1)})(${nm(w2[1])}) = 0$: the two are orthogonal.`
-            : `$\\langle \\kvecw_1, \\kvecw_2 \\rangle = \\langle \\kvecw_1, \\kvecv_2 \\rangle - \\frac{\\langle \\kvecv_2, \\kvecw_1 \\rangle}{\\langle \\kvecw_1, \\kvecw_1 \\rangle} \\langle \\kvecw_1, \\kvecw_1 \\rangle = ${nm(q21 / 100)} - ${nm(q21 / 100)} = 0$: the two are orthogonal.`,
+            : `$\\langle \\kvecw_1, \\kvecw_2 \\rangle = \\langle \\kvecw_1, \\kvecv_2 \\rangle - \\frac{\\langle \\kvecv_2, \\kvecw_1 \\rangle}{\\langle \\kvecw_1, \\kvecw_1 \\rangle} \\langle \\kvecw_1, \\kvecw_1 \\rangle = ${nm(q21 / 100)} - ${q21 < 0 ? `(${nm(q21 / 100)})` : nm(q21 / 100)} = 0$: the two are orthogonal.`,
           { form: 'w2' });
       }
     } else {
