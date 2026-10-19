@@ -72,9 +72,11 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     hits.push({ x: GR.X(0.5), y: GR.Y(Math.min(2, env(0.5))), r: 14, name: 'the envelope ±e^(αx)' });
     plot(ctx, GR, f, alpha(fc, 0.25), { w: 3 });
     if (x > 1e-6) plot(ctx, GR, f, fc, { w: 5, x: [0, x] });
-    text(ctx, '$\\kythree = e^{\\kalpha x}\\cos(\\kbeta x)$', GR.box.r - 8, GR.box.t + 18, fc, { size: 22, tex: true, align: 'right', bg: PAL.panel });
     const gp = pinned(ctx, GR.box, GR.X, GR.Y, x, zx, fc);
     hits.push({ x: gp.x, y: gp.y, r: 18, name: `(x, e^(αx) cos βx) = (${fmt(xr, 2)}, ${fmt(re, 2)})` });
+    /* the curve's name sits top right, or top left while a pinned point runs along the top edge there */
+    const topRight = gp.out && gp.y <= GR.box.t + 1 && gp.x > (GR.box.l + GR.box.r) / 2;
+    text(ctx, '$\\kythree = e^{\\kalpha x}\\cos(\\kbeta x)$', topRight ? GR.box.l + 10 : GR.box.r - 8, GR.box.t + 18, fc, { size: 22, tex: true, align: topRight ? 'left' : 'right', bg: PAL.panel });
     /* the words */
     const tiny = b < 0.025, still = Math.abs(a) < 0.005;
     const shape = tiny ? (still ? 'stays at $1$' : a < 0 ? 'runs in along the real axis toward $0$' : 'runs out along the real axis')
