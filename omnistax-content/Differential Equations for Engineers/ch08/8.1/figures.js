@@ -45,6 +45,23 @@ function stroke(ctx, ax, pts, color, w, dash) {
   ctx.beginPath(); pts.forEach((q, i) => { const X = ax.X(q[0]), Y = ax.Y(Math.max(-50, Math.min(50, q[1]))); if (i) ctx.lineTo(X, Y); else ctx.moveTo(X, Y); });
   ctx.stroke(); ctx.restore();
 }
+/* The vector field as arrows at the centres of an n by n grid of cells, each pointing along the field, its length
+   0.85 of a cell times tanh(|F|/ref): growing with |F| as the book's do, but read near the critical points too (a
+   linear scale would leave them dots beside the arrows of |F| ≈ 6 at the window's left edge). */
+function arrows(ctx, ax, f, color, n, ref, k, w = 2.5) {
+  const q = clamp01(k / 0.5); if (!(q > 0)) return;
+  const { box, xr, yr } = ax, cw = (box.r - box.l) / n, ch = (box.b - box.t) / n, cell = Math.min(cw, ch);
+  const sx = (box.r - box.l) / (xr[1] - xr[0]), sy = (box.b - box.t) / (yr[1] - yr[0]);
+  ctx.save(); ctx.globalAlpha *= q;
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+    const X = box.l + (i + 0.5) * cw, Y = box.t + (j + 0.5) * ch, x = xr[0] + (X - box.l) / sx, y = yr[1] - (Y - box.t) / sy;
+    const [a, b] = f([x, y]), m = Math.hypot(a, b); if (!(m > 0) || !Number.isFinite(m)) continue;
+    const L = 0.85 * cell * Math.tanh(m / ref); if (L < 7) continue;
+    const ux = a / m * L, uy = -b / m * L;
+    F.arrow(ctx, X - ux / 2, Y - uy / 2, X + ux / 2, Y + uy / 2, color, w);
+  }
+  ctx.restore();
+}
 /* the state riding a path at index position f (points h apart): a dot with a short fading tail */
 function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
   if (!(a > 0.02) || pts.length < 2) return null;
@@ -149,7 +166,7 @@ function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
     const t = cy.now(), tt = Number.isFinite(t) ? Math.min(t, Tcur) : Tcur;
     hits = [];
     const ax = axes(ctx, BOX, [-LIM, LIM], [-LIM, LIM], { xl: 'x', yl: 'y', xc: C('function'), yc: C('function'), nx: 4, ny: 4 });
-    space.field2(ctx, ax, field, alpha(vf, 0.7), { n: [15, 15], w: 2.5 });
+    arrows(ctx, ax, field, alpha(vf, 0.75), 17, 1.2, F.arrival(d));
     for (let i = -2; i <= 2; i++) for (let j = -2; j <= 2; j++) {
       const [u, v] = field([i, j]);
       if (u || v) hits.push({ x: ax.X(i), y: ax.Y(j), r: 12, name: minus(`the vector field at (${i}, ${j}): (y, −x + x²) = (${u}, ${v})`) });
@@ -196,7 +213,8 @@ function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
         : `From ${pt}, the trajectory is a closed curve round the origin.`;
     } else if (St.kind === 'loop') head = `From ${pt}, the trajectory is the loop through $(1, 0)$: the state creeps towards that critical point and never reaches it.`;
     else if (St.kind === 'branch') head = `From ${pt}, the trajectory runs into the critical point $(1, 0)$, closer and closer as $t$ grows.`;
-    else head = St.out !== null && St.out <= TMAX ? `From ${pt}, the trajectory goes off towards infinity: the state leaves the square at $t \\approx ${num(St.out).s}$.`
+    else head = St.out !== null && St.out < 0.05 ? `From ${pt}, the trajectory goes off towards infinity: the state leaves the square at once.`
+      : St.out !== null && St.out <= TMAX ? `From ${pt}, the trajectory goes off towards infinity: the state leaves the square at $t \\approx ${num(St.out).s}$.`
       : `From ${pt}, the trajectory goes off towards infinity.`;
     headline(ctx, head);
 
@@ -224,7 +242,7 @@ function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
   const RATE = 1.1, H1 = 0.01;
   const POINTS = { o: { x0: 0, sgn: -1, name: '(0, 0)' }, s: { x0: 1, sgn: 1, name: '(1, 0)' } };
   const pick = choice(d.controls, {
-    label: 'critical point', key: 'point', value: 's', aria: 'the critical point to zoom into',
+    label: '\\text{critical point}', key: 'point', value: 's', aria: 'the critical point to zoom into',
     options: [{ value: 'o', label: '(0, 0)' }, { value: 's', label: '(1, 0)' }],
   });
   const w = ctl(d.controls, { label: 'w', cls: '', key: 'w', min: 0.1, max: 1.5, step: 0.05, value: 1, unit: '', dec: 2, detents: [1], aria: 'the half-width w of the square about the critical point' });
@@ -235,7 +253,7 @@ function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
 
   /* seeds as fractions of w in (u, v): four on one ray for the circles, four on the axes for the saddle's
      hyperbolas, and for the saddle the four half-lines of its eigenvectors (1, 1) (out) and (1, −1) (in) */
-  const SEEDS = { o: [[0.25, 0], [0.5, 0], [0.75, 0], [0.95, 0]], s: [[0.9, 0], [-0.9, 0], [0, 0.9], [0, -0.9]] };
+  const SEEDS = { o: [[0.25, 0], [0.5, 0], [0.75, 0], [0.95, 0]], s: [[0.6, 0], [-0.6, 0], [0, 0.6], [0, -0.6]] };
   const HALVES = [[1, 1], [-1, -1], [1, -1], [-1, 1]];
   /* the linear flow e^{tJ} for J = [0 1; s 0]: s = −1 rotation, s = 1 cosh/sinh */
   const lin = (sg, p, t) => (sg < 0 ? [p[0] * Math.cos(t) + p[1] * Math.sin(t), -p[0] * Math.sin(t) + p[1] * Math.cos(t)]
@@ -329,13 +347,15 @@ function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
 
     /* the headline: the two fields differ by u² ≤ w², against arrows up to √2 w */
     const Wn = num(W), gap = num(W * W, 4), big = num(Math.SQRT2 * W), pct = Math.round(100 * W / Math.SQRT2);
-    const what = P.x0 ? 'a saddle' : 'closed curves';
-    headline(ctx, `Within $${Wn.s}$ of ${P.name}, ${what}: the fields differ by $\\ku^2 \\le ${gap.s}$, ${pct} % of the linearization’s longest arrow, $\\sqrt{2}\\,w ${big.exact ? '=' : '\\approx'} ${big.s}$.`);
+    const what = P.x0 ? 'The saddle at (1, 0)' : 'The closed curves about (0, 0)';
+    headline(ctx, `${what}: within $\\pm ${Wn.s}$ the two fields differ by $\\ku^2 \\le ${gap.s}$, ${pct} % of the linearization’s longest arrow, $\\sqrt{2}\\,w ${big.exact ? '=' : '\\approx'} ${big.s}$.`);
 
     /* the readout: Example 8.1.2's Jacobian at the point, and the linearization */
     const shift = P.x0 ? '\\ku = \\kx - 1,\\ \\kv = \\ky' : '\\ku = \\kx,\\ \\kv = \\ky';
     const J = P.x0 ? '\\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}' : '\\begin{bmatrix} 0 & 1 \\\\ -1 & 0 \\end{bmatrix}';
-    ro.set(`${shift}:\\quad \\begin{bmatrix} \\ku \\\\ \\kv \\end{bmatrix}' = \\begin{bmatrix} \\kpfx & \\kpfy \\\\ \\kpgx & \\kpgy \\end{bmatrix}_{${P.name}} \\begin{bmatrix} \\ku \\\\ \\kv \\end{bmatrix} = \\begin{bmatrix} 0 & 1 \\\\ -1 + 2(${P.x0}) & 0 \\end{bmatrix} \\begin{bmatrix} \\ku \\\\ \\kv \\end{bmatrix} = ${J} \\begin{bmatrix} \\ku \\\\ \\kv \\end{bmatrix}`, undefined, { form: cur });
+    const lin = P.x0 ? "$\\ku' = \\kv$, $\\kv' = \\ku$" : "$\\ku' = \\kv$, $\\kv' = -\\ku$";
+    ro.set(`\\begin{bmatrix} \\kpfx & \\kpfy \\\\ \\kpgx & \\kpgy \\end{bmatrix}_{${P.name}} = \\begin{bmatrix} 0 & 1 \\\\ -1 + 2(${P.x0}) & 0 \\end{bmatrix} = ${J}`,
+      `With $${shift}$, the linearization at ${P.name} is ${lin}.`, { form: cur });
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
 })();

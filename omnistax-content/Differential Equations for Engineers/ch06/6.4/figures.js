@@ -44,7 +44,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     if (M > 8) arrow(ctx, (x1 + x2) / 2, al.Y(5), (x1 + x2) / 2, LB.t - 6, fc, 4);
     const right = b <= 2, sx = right ? x2 : x1, side = right ? 'right' : 'left';
     const mText = M > 8 ? `M = ${fmt(M, 1)}, off the top` : `M = ${fmt(M, 2)}`, aText = `area M(b − a) = ${fmt(area, 2)}`;
-    label(ctx, mText, sx, Math.max(yT, LB.t + 16), { side, color: fc, size: 18, gap: 14 });
+    label(ctx, mText, sx, Math.max(yT, LB.t + 16), { side, color: fc, size: 18, gap: 24 });
     if (x2 - x1 >= 240 && top >= 1.5) text(ctx, aText, (x1 + x2) / 2, al.Y(top / 2), ic, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
     else label(ctx, aText, sx, top < 3 ? yT - 38 : al.Y(top / 2), { side, color: ic, size: 18, gap: 14 });
     /* right: the transform, with e^(−as) dashed for the limit */

@@ -43,15 +43,15 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     return '$\\ky$ and $\\kyprime$ both go to $0$ at $x = 0$.';
   }
   function formula(kind, r) {
-    const rr = tx(r, 2), rm = tx(r - 1, 2);
+    const rr = tx(r, 2), rm = tx(r - 1, 2), xm = rm === '1' ? 'x' : `x^{${rm}}`;
     if (kind === 'pow') {
       if (r === 0) return '\\ky = x^{0} = 1,\\quad \\kyprime = 0';
       if (r === 1) return '\\ky = x,\\quad \\kyprime = 1';
-      return `\\ky = x^{${rr}},\\quad \\kyprime = ${rr}\\,x^{${rm}}`;
+      return `\\ky = x^{${rr}},\\quad \\kyprime = ${rr}\\,${xm}`;
     }
     if (r === 0) return '\\ky = \\ln x,\\quad \\kyprime = \\frac{1}{x}';
     if (r === 1) return '\\ky = x\\ln x,\\quad \\kyprime = \\ln x + 1';
-    return `\\ky = x^{${rr}}\\ln x,\\quad \\kyprime = x^{${rm}}\\,(${rr}\\ln x + 1)`;
+    return `\\ky = x^{${rr}}\\ln x,\\quad \\kyprime = ${xm}\\,(${rr}\\ln x + 1)`;
   }
   function draw() {
     const { ctx } = begin(d.c);

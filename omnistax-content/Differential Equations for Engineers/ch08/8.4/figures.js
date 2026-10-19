@@ -5,7 +5,8 @@ const { C, PAL, alpha, ctl, choice, begin, axes, drag, dot, line, arrow, text, l
 const sim = (id, H) => F.sim(root, id, H);
 const n = (v, dec = 2) => fmt(v, dec).replace('−', '-');            /* a number for TeX */
 const u = (v, dec = 2) => fmt(v, dec);                                /* a number for canvas text and hover names */
-const par = (v, dec = 2) => (v < 0 ? `(${n(v, dec)})` : n(v, dec));  /* a factor, bracketed when negative */
+const par = (v, dec = 2) => (v < 0 ? `(${n(v, dec)})` : n(v, dec));  /* a term, bracketed when negative */
+const pp = (v, dec = 2) => `(${n(v, dec)})`;                           /* a factor, always bracketed */
 const rnd = (v, dec = 2) => Math.round(v * 10 ** dec) / 10 ** dec + 0;
 const clamp01 = (k) => Math.max(0, Math.min(1, k));
 const guide = () => alpha(PAL.ink, 0.35);
@@ -102,14 +103,14 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
       cyc.coarse = loop.filter((_, i) => i % 3 === 0);
     }
     const Y = Math.max(4, cyc ? 1.15 * cyc.ymax : 0);
-    M = { f, cyc, Y, book: BOOK.map((z) => solve(f, z, T, H)) };
+    M = { f, cyc, Y, book: BOOK.map((z) => solve(f, z, T, H, 1e4)) };
     mKey = m; return M;
   }
   /* per (μ, x₀, y₀): the reader's solution, and from when it stays within 0.05 of the cycle */
   let sKey = '', S = null;
   function forStart(m, a, b) {
     const key = `${m}|${a}|${b}`; if (key === sKey) return S;
-    const Mu = forMu(m), s = solve(Mu.f, [a, b], T, H);
+    const Mu = forMu(m), s = solve(Mu.f, [a, b], T, H, 1e4);
     let settle = null;
     if (Mu.cyc && (a || b)) {
       const dist = (p) => Math.min(...Mu.cyc.coarse.map((q) => Math.hypot(p[0] - q[0], p[1] - q[1])));
@@ -180,7 +181,8 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
       if (Math.abs(now[0]) <= 4) { dot(ctx, g.x, g.y, PAL.panel, true, 12.5); dot(ctx, g.x, g.y, fc, true, 9); }
       hits.push({ x: g.x, y: g.y, r: 14, name: `x(${u(t, 1)}) = ${u(now[0])}` });
     }
-    hits.push({ x: gx.X(4), y: gx.Y(xt[Math.round(4 / s.h)][1]), r: 12, name: `x(t), the solution with x(0) = ${u(a)}, x′(0) = ${u(b)}` });
+    const x4 = xt[Math.min(xt.length - 1, Math.round(4 / s.h))];
+    if (Math.abs(x4[1]) <= 4) hits.push({ x: gx.X(x4[0]), y: gx.Y(x4[1]), r: 12, name: `x(t), the solution with x(0) = ${u(a)}, x′(0) = ${u(b)}` });
 
     /* the headline: the cycle, and when the reader's solution reaches it */
     const from = `$(${n(a)}, ${n(b)})$`;
@@ -199,7 +201,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     /* the readout: the system at the present state, from the numbers shown */
     if (now) {
       const xr = rnd(now[0]), yr = rnd(now[1]), yp = rnd(m * (1 - xr * xr) * yr - xr);
-      ro.set(`t = ${n(t, 1)}:\\quad \\kxprime = \\ky = ${n(yr)},\\quad \\kyprime = \\mu(1 - \\kx^2)\\ky - \\kx = ${n(m)}\\bigl(1 - ${par(xr)}^2\\bigr)${par(yr)} - ${par(xr)} = ${n(yp)}`);
+      ro.set(`t = ${n(t, 1)}:\\quad \\kxprime = \\ky = ${n(yr)},\\quad \\kyprime = \\mu(1 - \\kx^2)\\ky - \\kx = ${n(m)}\\bigl(1 - ${pp(xr)}^2\\bigr)${pp(yr)} - ${par(xr)} = ${n(yp)}`);
     }
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => RATE), draw });
@@ -293,7 +295,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     let fate;
     if (v === 'linear') fate = `from ${from} the solution goes round the circle of radius ${u(x0)} with period $2\\pi$`;
     else if (on) fate = `from ${from} the solution goes round it, $\\kx = \\cos t$, $\\ky = -\\sin t$, with period $2\\pi$`;
-    else if (x0 > 1) fate = `from ${from} the trajectory spirals off to infinity, leaving the square at $t = ${n(leave, 2)}$`;
+    else if (x0 > 1) fate = leave === null ? `from ${from} the trajectory spirals slowly away from it, still inside the square at $t = 20$` : `from ${from} the trajectory spirals off to infinity, leaving the square at $t = ${n(leave, 2)}$`;
     else fate = v === 'squared' ? `from ${from} the trajectory spirals out towards it` : `from ${from} the trajectory spirals in to the origin`;
     const lead = { squared: 'Squared factor: the unit circle is a limit cycle, not asymptotically stable', unsquared: 'Unsquared factor: the unit circle is an asymptotically unstable limit cycle', linear: '$\\kxprime = \\ky$, $\\kyprime = -\\kx$: every circle about the origin is a closed trajectory, none a limit cycle' }[v];
     headline(ctx, `${lead}; ${fate}.`);
@@ -303,9 +305,9 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
       const xr = rnd(p[0]), yr = rnd(p[1]), q = rnd(xr * xr + yr * yr - 1), ex = SYS[v];
       if (ex === 0) ro.set(`t = ${n(t, 1)}:\\quad \\kxprime = \\ky = ${n(yr)},\\quad \\kyprime = -\\kx = ${n(-xr)}`, '', { form: 'linear' });
       else {
-        const hh = ex === 2 ? `${par(q)}^2` : par(q), hv = ex === 2 ? q * q : q, sym = ex === 2 ? '(\\kx^2 + \\ky^2 - 1)^2' : '(\\kx^2 + \\ky^2 - 1)';
+        const hh = ex === 2 ? `${pp(q)}^2` : pp(q), hv = ex === 2 ? q * q : q, sym = ex === 2 ? '(\\kx^2 + \\ky^2 - 1)^2' : '(\\kx^2 + \\ky^2 - 1)';
         const xp = rnd(yr + hv * xr), yp = rnd(-xr + hv * yr);
-        ro.set(`t = ${n(t, 1)}:\\quad \\kx^2 + \\ky^2 - 1 = ${par(xr)}^2 + ${par(yr)}^2 - 1 = ${n(q)},\\quad \\kxprime = \\ky + ${sym}\\kx = ${n(yr)} + ${hh}${par(xr)} = ${n(xp)},\\quad \\kyprime = -\\kx + ${sym}\\ky = ${n(-xr)} + ${hh}${par(yr)} = ${n(yp)}`, '', { form: v });
+        ro.set(`t = ${n(t, 1)}:\\quad \\kx^2 + \\ky^2 - 1 = ${pp(xr)}^2 + ${pp(yr)}^2 - 1 = ${n(q)},\\quad \\kxprime = \\ky + ${sym}\\kx = ${n(yr)} + ${hh}${pp(xr)} = ${n(xp)},\\quad \\kyprime = -\\kx + ${sym}\\ky = ${n(-xr)} + ${hh}${pp(yr)} = ${n(yp)}`, '', { form: v });
       }
     } else ro.set(`t = ${n(t, 1)}:\\quad \\text{the solution from } (${n(x0)}, 0) \\text{ has left the square at } t = ${n(leave, 2)}`, '', { form: 'gone' });
   }
@@ -423,7 +425,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     let tex, head;
     if (v === '8.4.3') {
       const r2 = rnd(dv), exact = Math.abs(dv) < 1e-12;
-      tex = `\\kpfx + \\kpgy = \\ky^2 e^{\\kx} + 0 = ${par(b)}^2 e^{${n(a)}} + 0 ${exact ? '=' : '\\approx'} ${n(r2)} ${sign(dv)}`;
+      tex = `\\kpfx + \\kpgy = \\ky^2 e^{\\kx} + 0 = ${pp(b)}^2 e^{${n(a)}} + 0 ${exact ? '=' : '\\approx'} ${n(r2)} ${sign(dv)}`;
       head = Math.abs(b) < 1e-9 ? `Example 8.4.3: at ${at0}, on the line $\\ky = 0$, the divergence $\\ky^2 e^{\\kx}$ is 0; it is positive everywhere else, so no closed trajectory.`
         : `Example 8.4.3: at ${at0} the divergence $\\ky^2 e^{\\kx}$ is about ${n(r2)} > 0; it is positive on the whole plane but the line $\\ky = 0$, so no closed trajectory.`;
     } else if (v === '8.4.4') {
@@ -432,7 +434,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
       head = `Example 8.4.4: at ${at0} the divergence $2(\\ky - \\kx)$ is ${n(r2)} ${sign(dv)}; on the line $\\kx = \\ky$ the arrows all point into $\\ky \\geq \\kx$, so no closed trajectory has points on both sides.`;
     } else {
       const r2 = rnd(dv), inside = a * a + b * b <= 0.5 + 1e-12;
-      tex = `\\kpfx + \\kpgy = 4\\kx^2 + 4\\ky^2 - 2 = 4${par(a)}^2 + 4${par(b)}^2 - 2 = ${n(r2)} ${sign(dv)}`;
+      tex = `\\kpfx + \\kpgy = 4\\kx^2 + 4\\ky^2 - 2 = 4${pp(a)}^2 + 4${pp(b)}^2 - 2 = ${n(r2)} ${sign(dv)}`;
       head = inside ? `Example 8.4.5: at ${at0}, in the hole cut out of $\\kR$, the divergence $4\\kx^2 + 4\\ky^2 - 2$ is ${n(r2)}; on $\\kR$ it is positive, yet the unit circle is a closed trajectory: $\\kR$ is not simply connected.`
         : `Example 8.4.5: at ${at0}, in $\\kR$, the divergence $4\\kx^2 + 4\\ky^2 - 2$ is ${n(r2)} > 0, yet the unit circle is a closed trajectory: $\\kR$ has a hole, so it is not simply connected.`;
     }
