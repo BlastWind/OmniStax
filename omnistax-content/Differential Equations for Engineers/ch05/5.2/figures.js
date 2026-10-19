@@ -66,7 +66,8 @@ const pinHead = (ctx, x, y) => { dot(ctx, x, y, PAL.panel, true, 8); dot(ctx, x,
     const per = 2 / (Math.PI * a * a);
     if (per <= T) {
       line(ctx, ax.X(per), ax.box.t, ax.X(per), ax.box.b, guide(), 2, [4, 8]);
-      text(ctx, `one period of mode 1, 2/(πa^2) = ${n(per)}`, ax.X(per) - 8, ax.box.t - 14, PAL.muted, { size: 17, align: 'right', bg: PAL.panel });
+      const left = per < T / 2;
+      text(ctx, `one period of mode 1, 2/(πa^2) = ${n(per)}`, ax.X(per) + (left ? 8 : -8), ax.box.t - 14, PAL.muted, { size: 17, align: left ? 'left' : 'right', bg: PAL.panel });
     }
     const g = (s) => y(Q, s);
     plot(ctx, ax, g, alpha(fc, 0.3), { w: 3 });
@@ -175,7 +176,7 @@ const pinHead = (ctx, x, y) => { dot(ctx, x, y, PAL.panel, true, 8); dot(ctx, x,
     line(ctx, EX - 120, Y0, px(1) + 130, Y0, guide(), 2, [4, 8]);
     text(ctx, 'y = 0', px(1) + 130, Y0 - 16, PAL.muted, { size: 17, align: 'right' });
     /* the supports: a wall the clamped end is welded into, a hinge under the hinged end; the free end has none */
-    pick.only(ctx, 'clamped', () => fixed(ctx, EX - 70, Y0 - 150, 70, 300), [-12, 0]);
+    pick.only(ctx, 'clamped', () => fixed(ctx, EX - 70, Y0 - 110, 70, 220), [-12, 0]);
     pick.only(ctx, 'hinged', () => hinge(ctx, EX, Y0), [0, 12]);
     /* the beam, its piece beyond x = 1 dashed and faint */
     const pts = Array.from({ length: 101 }, (_, i) => [px(i / 100), py(y(i / 100))]);
@@ -185,15 +186,15 @@ const pinHead = (ctx, x, y) => { dot(ctx, x, y, PAL.panel, true, 8); dot(ctx, x,
     /* the slope at the end, a short tangent */
     const s = c[1] * S / LEN, u = 1 / Math.hypot(1, s), ex = EX, ey = py(c[0]);
     line(ctx, ex - 80 * u, ey + 80 * u * s, ex + 300 * u, ey - 300 * u * s, dc, 4, [12, 8]);
-    mark(ctx, '$\\kyx$', ex + 300 * u, ey - 300 * u * s - 30, dc, { align: 'center' });
+    mark(ctx, '$\\kyx$', ex + 300 * u - 34 * u * s, ey - 300 * u * s - 34 * u, dc, { align: 'center' });
     dot(ctx, ex, ey, fc, true, 9);
-    text(ctx, 'x = 0', EX, Y0 + 90, PAL.muted, { size: 17, align: 'center' });
+    text(ctx, 'x = 0', EX, Y0 + 136, PAL.muted, { size: 17, align: 'center' });
     hits = [
       { x: px(0.6), y: py(y(0.6)), r: 26, name: 'the beam near its end, y(x, t) at one instant' },
       { x: ex, y: ey, r: 16, name: `the end x = 0, displaced y(0, t) = ${n(c[0], 2)} (in the drawing's units)` },
       { x: ex + 260 * u, y: ey - 260 * u * s, r: 16, name: `the slope y_x(0, t) = ${n(c[1], 2)} (in the drawing's units)` }];
     if (v === 'hinged') hits.push({ x: EX, y: Y0 + 24, r: 26, name: 'the hinge: a pin that holds the end in place and lets it turn' });
-    if (v === 'clamped') hits.push({ x: EX - 35, y: Y0 - 90, r: 30, name: 'the wall the end is welded into' });
+    if (v === 'clamped') hits.push({ x: EX - 35, y: Y0 - 70, r: 30, name: 'the wall the end is welded into' });
     headline(ctx, {
       hinged: 'Hinged at $x = 0$: the pin holds the end in place, $\\ky(0,t) = 0$, but lets it turn, and $\\kyxx(0,t) = 0$.',
       free: 'Free at $x = 0$: nothing holds the end, so it may move and tilt, and $\\kyxx(0,t) = \\kyxxx(0,t) = 0$.',

@@ -175,15 +175,15 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
 /* Figure 6.4: three-point bending. The beam of length L = 2 with EI = 1 on simple supports at x = 0 and
    x = 2, the force F pushing down at x = a (the book's F = 1, a = 1 on load, Example 6.4.3). Its deflection
    y(x) = −F(x − a)³u(x − a)/6 + C₁x + C₂x³/6 with C₂ = F(L − a)/L, C₁ = F(L − a)³/(6L) − F(L − a)L/6 (from
-   y(L) = y″(L) = 0; C₁ = −1/4, C₂ = 1/2 in the book). Drawn at true scale, 500 units per unit of x in both
-   directions: the deepest sag, 0.35 at F = 3 and a = 0.5 or 1.5, is 175 units. The deepest point is marked
-   with its depth. Still: the beam answers its sliders. */
+   y(L) = y″(L) = 0; C₁ = −1/4, C₂ = 1/2 in the book). Drawn at true scale, 400 units per unit of x in both
+   directions: the deepest sag the sliders reach, 0.5 at F = 3 and a = 1, is 200 units, and the scale and the
+   mark of a sit below it. The deepest point is marked with its depth. Still: the beam answers its sliders. */
 (function () {
-  const d = sim('sim-beam', 470);
+  const d = sim('sim-beam', 490);
   const aS = ctl(d.controls, { label: 'a', cls: '', key: 'a', min: 0.1, max: 1.9, step: 0.01, value: 1, unit: '', dec: 2, aria: 'the point a where the force acts', detents: [1] });
   const fS = ctl(d.controls, { label: '\\kF', cls: '', key: 'F', min: 0, max: 3, step: 0.05, value: 1, unit: '', dec: 2, aria: 'the force F' });
   const ro = readout(d);
-  const L = 2, X0 = 200, SC = 500, BY = 170;
+  const L = 2, X0 = 300, SC = 400, BY = 170;
   const PX = (x) => X0 + x * SC, PY = (y) => BY - y * SC;
   let hits = [];
   hover(d.stage, () => hits);
@@ -205,17 +205,17 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     const pts = []; for (let i = 0; i <= 200; i++) { const x = (L * i) / 200; pts.push([PX(x), PY(y(x))]); }
     ctx.save(); ctx.lineCap = 'round'; ctx.strokeStyle = alpha(ink, 0.18); ctx.lineWidth = 20; ctx.beginPath(); pts.forEach(([px, py], i) => (i ? ctx.lineTo(px, py) : ctx.moveTo(px, py))); ctx.stroke(); ctx.restore();
     ctx.save(); ctx.strokeStyle = fc; ctx.lineWidth = 5; ctx.beginPath(); pts.forEach(([px, py], i) => (i ? ctx.lineTo(px, py) : ctx.moveTo(px, py))); ctx.stroke(); ctx.restore();
-    F.scale(ctx, PX, 0, 2, 1, BY + 110);
-    [0.5, 1.5].forEach((v) => line(ctx, PX(v), BY + 104, PX(v), BY + 116, PAL.muted, 2));
-    text(ctx, 'x', PX(L) + 70, BY + 138, ink, { size: 20, weight: 600 });
+    F.scale(ctx, PX, 0, 2, 1, BY + 260);
+    [0.5, 1.5].forEach((v) => line(ctx, PX(v), BY + 254, PX(v), BY + 266, PAL.muted, 2));
+    text(ctx, 'x', PX(L) + 70, BY + 288, ink, { size: 20, weight: 600 });
     /* the load */
-    const ya = PY(y(a)), len = 30 + 40 * Fv;
+    const ya = PY(y(a)), len = 24 + 22 * Fv;
     if (Fv > 0) {
       arrow(ctx, PX(a), ya - 14 - len, PX(a), ya - 12, ink, 5);
-      label(ctx, `F = ${fmt(Fv, 2)}`, PX(a), ya - 14 - len, { side: 'above', size: 20, gap: 14 });
+      label(ctx, `F = ${fmt(Fv, 2)}`, PX(a), ya - 14 - len / 2, { side: a > 1.6 ? 'left' : 'right', size: 20, gap: 16 });
     }
-    line(ctx, PX(a), BY + 98, PX(a), BY + 122, ink, 3);
-    text(ctx, 'a', PX(a), BY + 84, ink, { size: 20, align: 'center', weight: 600 });
+    line(ctx, PX(a), BY + 250, PX(a), BY + 272, ink, 3);
+    text(ctx, 'a', PX(a), BY + 236, ink, { size: 20, align: 'center', weight: 600 });
     /* the deepest point */
     hits = [
       { x: PX(0), y: BY + 34, r: 30, name: 'the simple support at x = 0, where y = y″ = 0' },

@@ -26,25 +26,25 @@ const SUMKK = (x) => { let s = 0; for (let k = 1; k <= 60; k++) { const t = Math
 const SERIES = {
   ex3: { label: 'Σ 2⁻ᵏ(x − 1)ᵏ (Example 7.1.3)', tex: '\\sum_{k=0}^\\infty 2^{-k}(x-1)^k', k0: 0, x0: 1, rho: 2, a: (k) => Math.pow(2, -k),
     lim: (x) => 2 / (3 - x), limTex: '\\frac{2}{3-x}', limName: '2/(3 − x)',
-    A: '\\lim_{k\\to\\infty}\\left\\lvert\\frac{\\ka_{k+1}}{\\ka_k}\\right\\rvert = \\lim_{k\\to\\infty}\\frac{2^{-k-1}}{2^{-k}} = \\frac{1}{2}', rhoTex: '\\rho = \\frac{1}{A} = 2',
+    A: '\\lim_{k\\to\\infty}\\frac{\\lvert \\ka_{k+1} \\rvert}{\\lvert \\ka_k \\rvert} = \\lim_{k\\to\\infty}\\frac{2^{-k-1}}{2^{-k}} = \\frac{1}{2}', rhoTex: '\\rho = \\frac{1}{A} = 2',
     ends: { '-1': 'the terms are $(-1)^k$, which do not shrink, so the series diverges', '3': 'every term is $1$, so the series diverges' } },
   exp: { label: 'Σ xᵏ/k! (Example 7.1.1)', tex: '\\sum_{k=0}^\\infty \\frac{x^k}{k!}', k0: 0, x0: 0, rho: Infinity, a: (k) => 1 / fact(k),
     lim: Math.exp, limTex: 'e^x', limName: 'eˣ',
-    A: '\\lim_{k\\to\\infty}\\left\\lvert\\frac{\\ka_{k+1}}{\\ka_k}\\right\\rvert = \\lim_{k\\to\\infty}\\frac{1}{k+1} = 0', rhoTex: '\\rho = \\infty', ends: {} },
+    A: '\\lim_{k\\to\\infty}\\frac{\\lvert \\ka_{k+1} \\rvert}{\\lvert \\ka_k \\rvert} = \\lim_{k\\to\\infty}\\frac{1}{k+1} = 0', rhoTex: '\\rho = \\infty', ends: {} },
   log: { label: 'Σ xᵏ/k (Example 7.1.2)', tex: '\\sum_{k=1}^\\infty \\frac{x^k}{k}', k0: 1, x0: 0, rho: 1, a: (k) => 1 / k,
     lim: (x) => -Math.log(1 - x), limTex: '-\\ln(1-x)', limName: '−ln(1 − x)',
-    A: '\\lim_{k\\to\\infty}\\left\\lvert\\frac{\\ka_{k+1}}{\\ka_k}\\right\\rvert = \\lim_{k\\to\\infty}\\frac{k}{k+1} = 1', rhoTex: '\\rho = \\frac{1}{A} = 1',
+    A: '\\lim_{k\\to\\infty}\\frac{\\lvert \\ka_{k+1} \\rvert}{\\lvert \\ka_k \\rvert} = \\lim_{k\\to\\infty}\\frac{k}{k+1} = 1', rhoTex: '\\rho = \\frac{1}{A} = 1',
     ends: { '-1': 'the series converges (conditionally) by the alternating series test, to $-\\ln 2$', '1': 'it is $\\sum 1/k$, which diverges' }, closed: -1 },
   kk: { label: 'Σ xᵏ/kᵏ (Example 7.1.4)', tex: '\\sum_{k=1}^\\infty \\frac{x^k}{k^k}', k0: 1, x0: 0, rho: Infinity, a: (k) => Math.pow(k, -k),
     lim: SUMKK, limTex: null, limName: 'the sum Σ xᵏ/kᵏ',
     A: '\\lim_{k\\to\\infty}\\sqrt[k]{\\lvert \\ka_k \\rvert} = \\lim_{k\\to\\infty}\\frac{1}{k} = 0', rhoTex: '\\rho = \\infty', ends: {} },
   geom: { label: 'Σ xᵏ (geometric series)', tex: '\\sum_{k=0}^\\infty x^k', k0: 0, x0: 0, rho: 1, a: () => 1,
     lim: (x) => 1 / (1 - x), limTex: '\\frac{1}{1-x}', limName: '1/(1 − x)',
-    A: '\\lim_{k\\to\\infty}\\left\\lvert\\frac{\\ka_{k+1}}{\\ka_k}\\right\\rvert = \\lim_{k\\to\\infty}\\frac{1}{1} = 1', rhoTex: '\\rho = \\frac{1}{A} = 1',
+    A: '\\lim_{k\\to\\infty}\\frac{\\lvert \\ka_{k+1} \\rvert}{\\lvert \\ka_k \\rvert} = \\lim_{k\\to\\infty}\\frac{1}{1} = 1', rhoTex: '\\rho = \\frac{1}{A} = 1',
     ends: { '-1': 'the terms are $(-1)^k$, which do not shrink, so the series diverges', '1': 'every term is $1$, so the series diverges' } },
   ex6: { label: 'Σ (−1)ᵏ⁺¹k xᵏ (Example 7.1.6)', tex: '\\sum_{k=1}^\\infty (-1)^{k+1}k\\,x^k', k0: 1, x0: 0, rho: 1, a: (k) => (k % 2 ? 1 : -1) * k,
     lim: (x) => x / ((1 + x) * (1 + x)), limTex: '\\frac{x}{(1+x)^2}', limName: 'x/(1 + x)²',
-    A: '\\lim_{k\\to\\infty}\\left\\lvert\\frac{\\ka_{k+1}}{\\ka_k}\\right\\rvert = \\lim_{k\\to\\infty}\\frac{k+1}{k} = 1', rhoTex: '\\rho = \\frac{1}{A} = 1',
+    A: '\\lim_{k\\to\\infty}\\frac{\\lvert \\ka_{k+1} \\rvert}{\\lvert \\ka_k \\rvert} = \\lim_{k\\to\\infty}\\frac{k+1}{k} = 1', rhoTex: '\\rho = \\frac{1}{A} = 1',
     ends: { '-1': 'the terms are $-k$, which grow, so the series diverges', '1': 'the terms are $\\pm k$, which grow, so the series diverges' } },
 };
 const ORDER = ['ex3', 'exp', 'log', 'kk', 'geom', 'ex6'];
@@ -113,12 +113,15 @@ const converges = (K, x) => Math.abs(x - K.x0) < K.rho || (K.closed !== undefine
     if (conv && Number.isFinite(lim)) { const p = pinned(ctx, BOX, X, ax.Y, x, lim, fc); hits.push({ x: p.x, y: p.y, r: 14, name: `the sum at x = ${fmt(x, 2)}: ${fmt(lim, 4)}` }); }
     const ps = pinned(ctx, BOX, X, ax.Y, x, s, sc);
     hits.push({ x: ps.x, y: ps.y, r: 14, name: `S${N}(${fmt(x, 2)}) = ${Number.isFinite(s) ? fmt(s, 4) : 'too large to draw'}` });
-    label(ctx, `S_{${N}}`, X(XR[1]) - 4, ax.Y(Math.min(Math.max(SN(XR[1] - 0.15), YR[0] + 0.3), YR[1] - 0.3)), { side: 'left', color: sc, size: 20, gap: 14 });
+    /* S_N named where it stands inside the box, away from the probe: near the right edge, else the left, else further in */
+    const at = [3.8, -3.8, 2.6, -2.6, 1.4, -1.4].find((v) => { const y = SN(v); return Number.isFinite(y) && y > YR[0] + 0.6 && y < YR[1] - 0.6 && Math.abs(v - x) > 0.7; }) ?? 3.8;
+    const atY = Math.min(Math.max(SN(at), YR[0] + 0.3), YR[1] - 0.3);
+    label(ctx, `S_{${N}}`, X(at), ax.Y(Number.isFinite(atY) ? atY : YR[1] - 0.3), { side: at > 0 ? 'left' : 'right', color: sc, size: 20, gap: 18 });
     /* headline and readout */
     const end = isEnd(K, x), where = K.rho === Infinity ? 'for every $x$' : `on $(${n(K.x0 - K.rho, 0)}, ${n(K.x0 + K.rho, 0)})$`;
-    const verdict = end !== undefined ? (conv ? 'at this endpoint the partial sums still settle' : 'at this endpoint they do not settle')
-      : conv ? `the partial sums settle on ${fmt(lim, 4)}` : 'outside, the partial sums run off';
-    headline(ctx, `$${K.tex}$ converges absolutely ${where}; at $x = ${n(x)}$ ${verdict}.`);
+    const verdict = end !== undefined ? `at the endpoint $x = ${n(end, 0)}$ the partial sums ${conv ? 'still settle' : 'do not settle'}`
+      : conv ? `at $x = ${n(x)}$ the partial sums settle on ${fmt(lim, 4)}` : `at $x = ${n(x)}$, outside, the partial sums run off`;
+    headline(ctx, `$${K.tex}$ converges absolutely ${where}; ${verdict}.`);
     const dist = Math.abs(x - K.x0);
     let note;
     if (end !== undefined) note = `At the endpoint $x = ${n(end, 0)}$, ${K.ends[String(end)]}; $\\kS_{${N}}(${n(x)}) = ${big(s)}$.`;
@@ -137,7 +140,7 @@ const converges = (K, x) => Math.abs(x - K.x0) < K.rho || (K.closed !== undefine
    reader's, not a clock. */
 (function () {
   const d = sim('sim-taylor-sin', 600);
-  const ns = ctl(d.controls, { label: 'degree n', cls: '', key: 'n', min: 1, max: 25, step: 1, value: 9, unit: '', dec: 0, detents: [5, 9], aria: 'the degree n of the truncation' });
+  const ns = ctl(d.controls, { label: 'n', cls: '', key: 'n', min: 1, max: 25, step: 1, value: 9, unit: '', dec: 0, detents: [5, 9], aria: 'the degree n of the truncation' });
   const x0s = ctl(d.controls, { label: 'x_0', cls: '', key: 'x0', min: -6, max: 6, step: 0.05, value: 0, unit: '', dec: 2, detents: [0], aria: 'the center x0' });
   const ro = readout(d);
   const BOX = { l: 130, r: 1270, t: 110, b: 470 }, XW = [-10, 10], YW = [-3, 3], TOL = 0.1;

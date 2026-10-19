@@ -497,10 +497,6 @@
     {
      "assumes": [
       {
-       "tex": "{\\kh}'' + \\komegazero^2 \\kh = \\kdelta(t)",
-       "src": "(6.3)"
-      },
-      {
        "text": "Convolution distributes over sums and lets constants out: $f * (g_1 + g_2) = f * g_1 + f * g_2$ and $f * (c\\,g) = c\\,(f * g)$.",
        "src": "6.3, The convolution"
       },
@@ -517,9 +513,7 @@
      ],
      "then": {
       "tex": "\\mk{h2}{{\\kh}''} + \\mk{w}{\\komegazero^2 \\kh} = \\mk{d}{\\kdelta(t)}",
-      "uses": [
-       0
-      ],
+      "uses": [],
       "src": "(6.3)",
       "why": "Suppose that $\\kh(t)$ is the impulse response, the solution of (6.3)."
      },
@@ -532,25 +526,25 @@
       {
        "tex": "\\mk{h2}{(\\kf * {\\kh}'')} + \\mk{w}{\\komegazero^2 (\\kf * \\kh)} = \\mk{d}{(\\kf * \\kdelta)(t)}",
        "uses": [
-        1
+        0
        ]
       },
       {
        "tex": "\\mk{h2}{(\\kf * \\kh)''} + \\mk{w}{\\komegazero^2 (\\kf * \\kh)} = \\mk{d}{(\\kf * \\kdelta)(t)}",
        "uses": [
-        2
+        1
        ]
       },
       {
        "tex": "\\mk{h2}{(\\kf * \\kh)''} + \\mk{w}{\\komegazero^2 (\\kf * \\kh)} = \\mk{d}{\\kf(t)}",
        "uses": [
-        3
+        2
        ]
       },
       {
        "tex": "\\mk{h2}{\\kxdprime} + \\mk{w}{\\komegazero^2 \\kx} = \\mk{d}{\\kf(t)}",
        "uses": [
-        4
+        3
        ]
       }
      ],
