@@ -14,7 +14,7 @@ The section introduces none (`ost rows diffyqs concepts --where section=0.1` is 
 
 ## Citations and footnotes (config 17)
 
-The six citations [EP], [BD], [I], [F], [BM], [T] keep the book's bracket in the prose, each followed by a book footnote (`footnotes`, kind `book`, no number, ids `EP`, `BD`, `I`, `F`, `BM`, `T`) carrying the Further Reading entry word for word, with the book's Google Books or publisher link. Later sections that cite a work link here (`/diffyqs/ch00/0.1/#0.1-fn-EP` and so on) rather than repeat the entry. "See the Further Reading chapter at the end of the book." stays as printed, unlinked, since Further Reading is not built (book `RULES.md`).
+The six citations [EP], [BD], [I], [F], [BM], [T] keep the book's bracket in the prose, each followed by a book footnote (`footnotes`, kind `book`, ids `EP`, `BD`, `I`, `F`, `BM`, `T`) carrying the Further Reading entry word for word, with the book's Google Books or publisher link. Each footnote's `number` is its citation key (`EP`…): the app prints a book footnote's marker and its label in the Notes list from `number`, and with none the marker is an empty superscript the reader cannot see or click, so the key stands as the label, which is how the bibliography labels the entry (decision for Chen; `ost set diffyqs footnotes EP --section 0.1` changes it). Later sections that cite a work link here (`/diffyqs/ch00/0.1/#0.1-fn-EP` and so on) rather than repeat the entry. "See the Further Reading chapter at the end of the book." stays as printed, unlinked, since Further Reading is not built (book `RULES.md`).
 
 ## Links
 
