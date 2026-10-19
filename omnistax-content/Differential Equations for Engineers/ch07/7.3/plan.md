@@ -47,3 +47,6 @@ Built (config 14): `sim-frobenius-exponent`. Weighed and dropped: a λ slider fo
 - Variables rows for the derivation's y₁′ and y₁″: 7.3/y_1_prime and 7.3/y_1_dprime (type `derivative`, meanings "the derivative of the first Frobenius-type solution y₁" and "the second derivative of y₁", reusing 2.1's after `ost meanings`); the checker passes without them, the symbols taking their book-wide type.
 - No concept, edge or glossary change.
 - No 3Blue1Brown survivor falls in this section.
+- Chapter pass (2026-10-19): variables anchors applied (14 rows); form anchors applied (21).
+- Chapter pass: rows 7.3/y_1_prime and 7.3/y_1_dprime added (derivative, anchor `7.3-second-solution`).
+- Chapter pass: footnotes 43–45 confirmed.

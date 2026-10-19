@@ -52,3 +52,7 @@ Weighed and dropped: the disc of convergence in the complex plane out to the nea
 - Footnote: `fn-taylor` carries 40 (counted as above); the chapter's others follow from 41.
 - Theorem 7.1.1's `[3]` marker after Theorem 7.1.2 in `source.md` is a page-break artefact of the converter, not a footnote; dropped.
 - No 3Blue1Brown survivor falls in this section.
+- Chapter pass (2026-10-19): variables anchors applied (9 rows); form anchors applied (17), the term-by-term form under its merged id `eq-power-series-term-by-term-derivative`.
+- Chapter pass: rows 7.1/f_prime and 7.1/f_dprime added (derivative, anchor `7.1-eq-7-2`); (7.2) now writes `\kfprime(x_0)`, `\kfdprime(x_0)`; Exercise 7.1.11's `\kf^{(n)}(0)` left as written (no f_n row).
+- Chapter pass: `error` added to the chapter `COLOR.md`.
+- Chapter pass: footnote 40 confirmed (Chapters 1–6 carry 39 `\footnote`s in the LaTeX); recorded at `config.md` line 21.

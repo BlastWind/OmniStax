@@ -17,12 +17,14 @@ $$ \begin{aligned} 2 x_1 + \phantom{9} 2 x_2 + 2 x_3 & = 2 , \\ \phantom{9} x_1 
 <p>Finally, we can add a multiple of one equation to another equation. For instance, we add 3 times the third equation in <a href="#eq-a-2">(A.2)</a> to the second equation:</p>
 $$ \begin{aligned} \phantom{(1+3)} 2 x_1 + \phantom{(1+12)} 2 x_2 + \phantom{(3+3)} 2 x_3 & = 2 , \\ \phantom{2} (1+3) x_1 + \phantom{2}(1+12) x_2 + \phantom{2} (3+3) x_3 & = 5+30 , \\ \phantom{2 (1+3)} x_1 + \phantom{(1+12)} 4 x_2 + \phantom{(3+3) 2} x_3 & = 10 . \end{aligned} $$
 <p id="operations-suffice">The same $x_1,x_2,x_3$ should still be solutions to the new equations. These were just examples; we did not get any closer to the solution. We must do these three operations in some more logical manner, but it turns out these three operations suffice to solve every linear equation.</p>
-<p id="augmented">The first thing is to write the equations in a more compact manner. Given</p>
+<div id="augmented">
+<p>The first thing is to write the equations in a more compact manner. Given</p>
 $$ \kA \kvecx = \kvecb , $$
 <p>we write down the so-called <em><span data-concept="augmented-matrix">augmented matrix</span></em></p>
 $$ [ \kA ~|~ \kvecb ] , $$
 <p>where the vertical line is just a marker for us to know where the “right-hand side” of the equation starts. For the system <a href="#eq-a-2">(A.2)</a> the <span data-concept="augmented-matrix">augmented matrix</span> is</p>
 $$ \left[ \begin{array}{ccc|c} 2 & 2 & 2 & 2 \\ 1 & 1 & 3 & 5 \\ 1 & 4 & 1 & 10 \end{array} \right] . $$
+</div>
 <p id="any-matrix">The entire process of <span data-concept="gauss-jordan-elimination">elimination</span>, which we will describe, is often applied to any sort of <span data-concept="matrix">matrix</span>, not just an <span data-concept="augmented-matrix">augmented matrix</span>. Simply think of the <span data-concept="matrix">matrix</span> as the $3 \times 4$ <span data-concept="matrix">matrix</span></p>
 $$ \begin{bmatrix} 2 & 2 & 2 & 2 \\ 1 & 1 & 3 & 5 \\ 1 & 4 & 1 & 10 \end{bmatrix} . $$
 </section>

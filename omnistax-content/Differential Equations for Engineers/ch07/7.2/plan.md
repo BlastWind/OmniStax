@@ -52,3 +52,7 @@ The book's running number, counted from the LaTeX source in book order (`\footno
 - The text writes `\kyoneprime(0)` and `\kytwoprime(0)` in `p#airy-general` (y₁′(0) = 0, y₂′(0) = 1) and a readout writes `\kS_N`: Chapter 7 has no variables rows y_1_prime, y_2_prime for 7.2 or S for 7.2, so they wear the type their rows share across the book (derivative, series), which is right; rows `7.2/y_1_prime`, `7.2/y_2_prime` (derivative, "the derivative of y₁ (of y₂), with y₁′(0) = 0 (y₂′(0) = 1)") may be added if the chapter pass wants every written symbol to have a row here.
 - Colours: the default palette currently sets `function` and `series` in near hues in light mode (both magenta); every figure of this section draws a series over its function. The figures keep them apart by stroke (the function a wide faint band, the partial sum a thin solid line) and legends, but `npm run colours:default -- diffyqs` at the end of the run should put the two in different families, since 7.1–7.3 set them side by side on every figure.
 - No 3Blue1Brown survivor falls in this section.
+- Chapter pass (2026-10-19): variables anchors applied (6 rows); form anchors applied (8).
+- Chapter pass: rows 7.2/y_1_prime and 7.2/y_2_prime added (derivative, anchor `7.2-airy-general`); S_N in the readout keeps its book-wide `series` type, no 7.2/S row.
+- Chapter pass: the function/series hue note is carried to `build-status.md` for the final `colours:default`.
+- Chapter pass: footnotes 41–42 confirmed.
