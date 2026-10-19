@@ -1,0 +1,97 @@
+<section id="ordinary-points">
+<h2>Ordinary and singular points</h2>
+<p id="consider">Consider a <span data-concept="second-order-linear-differential-equation">linear second-order</span> <span data-concept="homogeneous-linear-equation">homogeneous ODE</span> of the form</p>
+<div class="equation" id="eq-polynomial-coefficient-ode">$$ P(x) \kydprime + Q(x) \kyprime + R(x) \ky = 0 . $$</div>
+<p id="try-series">Suppose that $P(x)$, $Q(x)$, and $R(x)$ are polynomials. We will try a <span data-concept="solution-to-a-differential-equation">solution</span> of the form</p>
+<div class="equation" id="eq-series-solution-ansatz">$$ \ky = \sum_{k=0}^\infty \ka_k {(x-x_0)}^k , $$</div>
+<p id="solve-for-coefficients">and solve for the $\ka_k$ to obtain a <span data-concept="solution-to-a-differential-equation">solution</span> defined in some interval around $x_0$.</p>
+<p id="ordinary-point-def">The point $x_0$ is called an <em><span data-concept="ordinary-point">ordinary point</span></em> if $P(x_0) \neq 0$. That is, the functions</p>
+$$ \frac{Q(x)}{P(x)} \qquad \text{and} \qquad \frac{R(x)}{P(x)} $$
+<p id="singular-point-def">are defined for $x$ near $x_0$. If $P(x_0) = 0$, then $x_0$ is a <em><span data-concept="singular-point">singular point</span></em>. Handling <span data-concept="singular-point">singular points</span> is harder than handling <span data-concept="ordinary-point">ordinary points</span> and so we now focus only on <span data-concept="ordinary-point">ordinary points</span>.</p>
+</section>
+
+<section id="first-example">
+<h2>A first example</h2>
+<div class="example" id="ex-7-2-1">
+<h3>Example 7.2.1</h3>
+<p>We start with a very simple example</p>
+$$ \kydprime - \ky = 0 . $$
+<p id="try-power-series">Let us try a <a href="/calculus/ch17/17.4/#17.4-fs-id1170571157050"><span data-concept="power-series-solution-of-a-differential-equation">power series solution</span></a> near $x_0 = 0$, which is an <span data-concept="ordinary-point">ordinary point</span>. Every point is an <span data-concept="ordinary-point">ordinary point</span> in fact, as the equation is a <span data-concept="constant-coefficient-equation">constant-coefficient</span> one. We already know we should obtain <a href="/diffyqs/ch00/0.2/#0.2-eq-fund-exponentials">exponentials or the <span data-concept="hyperbolic-functions">hyperbolic sine and cosine</span></a>, but let us pretend we do not know this fact.</p>
+<p>We try</p>
+<figure class="dv" id="drv-series-recurrence"></figure>
+<p id="recurrence">The equation above is called a <em><span data-concept="recurrence-relation">recurrence relation</span></em> for the <span data-concept="power-series-coefficients">coefficients</span> of the <span data-concept="power-series">power series</span>. It does not matter what $\ka_0$ or $\ka_1$ are. They can be arbitrary. But once we pick $\ka_0$ and $\ka_1$, all other <span data-concept="power-series-coefficients">coefficients</span> are determined by the <span data-concept="recurrence-relation">recurrence relation</span>.</p>
+<p>Let us see what the <span data-concept="power-series-coefficients">coefficients</span> must be. First, $\ka_0$ and $\ka_1$ are arbitrary. Then,</p>
+<figure class="dv" id="drv-series-solution"></figure>
+</div>
+<figure class="sim" id="sim-series-solution">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The <span data-concept="recurrence-relation">recurrence relation</span> of $\kydprime - \ky = 0$ as a machine: $\ka_0$ and $\ka_1$ are chosen freely, every even <span data-concept="power-series-coefficients">coefficient</span> is fed from $\ka_0$ and every odd one from $\ka_1$, each the one two places back divided by $(k+2)(k+1)$, and the <span data-concept="partial-sum">partial sum</span> built from them closes on $\ka_0 \cosh x + \ka_1 \sinh x$ as more terms are kept.</span></div>
+</figure>
+<p id="no-elementary">Of course, in general we will not be able to recognize the series that appears, since usually there will not be any elementary function that matches it. In that case, we will be content with the series.</p>
+</section>
+
+<section id="airy">
+<h2>Airy’s equation</h2>
+<div class="example" id="ex-7-2-2">
+<h3>Example 7.2.2</h3>
+<p id="airy-def">Let us do a more complex example. Consider <em><span data-concept="airys-equation">Airy’s equation</span></em><sup class="fn" data-note="fn-airy"></sup>:</p>
+<div class="equation" id="eq-airys-equation">$$ \kydprime - x\ky = 0 , $$</div>
+<p>near the point $x_0 = 0$. Note that $x_0 = 0$ is an <span data-concept="ordinary-point">ordinary point</span>.</p>
+<p>We try</p>
+$$ \ky = \sum_{k=0}^\infty \ka_k x^k . $$
+<p>We differentiate twice (as above) to obtain</p>
+$$ \kydprime = \sum_{k=2}^\infty k\,(k-1) \, \ka_k x^{k-2} . $$
+<p>We plug $\ky$ into the equation:</p>
+$$ \begin{split} 0 = \kydprime-x\ky &= \Biggl( \sum_{k=2}^\infty k\,(k-1) \, \ka_k x^{k-2} \Biggr) - x \Biggl( \sum_{k=0}^\infty \ka_k x^k \Biggr) \\ &= \Biggl( \sum_{k=2}^\infty k\,(k-1) \, \ka_k x^{k-2} \Biggr) - \Biggl( \sum_{k=0}^\infty \ka_k x^{k+1} \Biggr) . \end{split} $$
+<p id="airy-reindex">We <span data-concept="reindexing-a-series">reindex</span> and synchronize the start indexes to make the series possible to sum:</p>
+$$ \begin{split} 0 = \kydprime-x\ky &= \Biggl( 2 \ka_2 + \sum_{k=1}^\infty (k+2)\,(k+1) \, \ka_{k+2} x^k \Biggr) - \Biggl( \sum_{k=1}^\infty \ka_{k-1} x^k \Biggr) \\ &= 2 \ka_2 + \sum_{k=1}^\infty \Bigl( (k+2)\,(k+1) \, \ka_{k+2} - \ka_{k-1} \Bigr) \, x^k . \end{split} $$
+<p>As $\kydprime-x\ky$ is supposed to be $0$, we have $\ka_2 = 0$, and</p>
+<div class="equation" id="eq-airy-recurrence">$$ (k+2)\,(k+1) \,\ka_{k+2} - \ka_{k-1} = 0 , \qquad \text{or} \qquad \ka_{k+2} = \frac{\ka_{k-1}}{(k+2)(k+1)} . $$</div>
+<p>We have arbitrary constants $\ka_0$ and $\ka_1$, and $\ka_2 = 0$. We compute a few higher <span data-concept="power-series-coefficients">coefficients</span>:</p>
+$$ \begin{gather*} \ka_3 = \frac{\ka_0}{3 \cdot 2}, \quad \ka_4 = \frac{\ka_1}{4 \cdot 3}, \quad \ka_5 = \frac{\ka_2}{5 \cdot 4} = 0, \quad \ka_6 = \frac{\ka_3}{6 \cdot 5} = \frac{\ka_0}{6 \cdot 5 \cdot 3 \cdot 2}, \\ \ka_7 = \frac{\ka_4}{7 \cdot 6} = \frac{\ka_1}{7 \cdot 6 \cdot 4 \cdot 3}, \quad \ka_8 = \frac{\ka_5}{8 \cdot 7} = 0, \quad \ka_9 = \frac{\ka_6}{9 \cdot 8} = \frac{\ka_0}{9 \cdot 8 \cdot 6 \cdot 5 \cdot 3 \cdot 2}, \quad \ldots \end{gather*} $$
+<p>We jump in steps of three. For $\ka_k$ where $k$ is a multiple of $3$, that is, $k=3n$, we notice that</p>
+$$ \ka_{3n} = \frac{\ka_0}{2 \cdot 3 \cdot 5 \cdot 6 \cdots (3n-1) \cdot (3n)} . $$
+<p>For $\ka_k$ where $k = 3n+1$, we notice</p>
+$$ \ka_{3n+1} = \frac{\ka_1}{3 \cdot 4 \cdot 6 \cdot 7 \cdots (3n) \cdot (3n+1)} . $$
+<p>Finally, since $\ka_2 = 0$, we have $\ka_5 = 0$, $\ka_8 = 0$, $\ka_{11}=0$, etc. In general, $\ka_{3n+2} = 0$.</p>
+<p>In other words, if we write down the series for $\ky$, it has two parts</p>
+$$ \begin{split} \ky &= \left( \ka_0 + \frac{\ka_0}{6} x^3 + \frac{\ka_0}{180} x^6 + \cdots + \frac{\ka_0}{2 \cdot 3 \cdot 5 \cdot 6 \cdots (3n-1) \cdot (3n)} x^{3n} + \cdots \right) \\ &\phantom{=} + \left( \ka_1 x + \frac{\ka_1}{12} x^4 + \frac{\ka_1}{504} x^7 + \cdots + \frac{\ka_1}{3 \cdot 4 \cdot 6 \cdot 7 \cdots (3n) \cdot (3n+1)} x^{3n+1} + \cdots \right) \\ & = \ka_0 \left( 1 + \frac{1}{6} x^3 + \frac{1}{180} x^6 + \cdots + \frac{1}{2 \cdot 3 \cdot 5 \cdot 6 \cdots (3n-1) \cdot (3n)} x^{3n} + \cdots \right) \\ &\phantom{=} + \ka_1 \left( x + \frac{1}{12} x^4 + \frac{1}{504} x^7 + \cdots + \frac{1}{3 \cdot 4 \cdot 6 \cdot 7 \cdots (3n) \cdot (3n+1)} x^{3n+1} + \cdots \right) . \end{split} $$
+<p>We define</p>
+<div class="equation" id="eq-airy-solutions">$$ \begin{align*} \kyone(x) &= 1 + \frac{1}{6} x^3 + \frac{1}{180} x^6 + \cdots + \frac{1}{2 \cdot 3 \cdot 5 \cdot 6 \cdots (3n-1) \cdot (3n)} x^{3n} + \cdots, \\ \kytwo(x) &= x + \frac{1}{12} x^4 + \frac{1}{504} x^7 + \cdots + \frac{1}{3 \cdot 4 \cdot 6 \cdot 7 \cdots (3n) \cdot (3n+1)} x^{3n+1} + \cdots , \end{align*} $$</div>
+<p id="airy-general">and write the <span data-concept="general-solution">general solution</span> to the equation as $\ky(x)= \ka_0 \kyone(x) + \ka_1 \kytwo(x)$. If we plug $x=0$ into the <span data-concept="power-series">power series</span> for $\kyone$ and $\kytwo$, we find $\kyone(0) = 1$ and $\kytwo(0) = 0$. Similarly, $\kyoneprime(0) = 0$ and $\kytwoprime(0) = 1$. Therefore $\ky = \ka_0 \kyone + \ka_1 \kytwo$ is a <span data-concept="solution-to-a-differential-equation">solution</span> that satisfies the <span data-concept="initial-value">initial conditions</span> $\ky(0) = \ka_0$ and $\kyprime(0) = \ka_1$.</p>
+<figure class="sim" id="sim-airy" data-figure="7.3" data-original="/media/ch07/ps-airy.svg" data-original-caption="The two solutions y₁ and y₂ to Airy’s equation." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 7.3</span><span>The two <span data-concept="solution-to-a-differential-equation">solutions</span> $\kyone$ and $\kytwo$ to <span data-concept="airys-equation">Airy’s equation</span>, each built term by term from the <span data-concept="recurrence-relation">recurrence relation</span>: a few terms already match near $x = 0$, and the oscillating side $x &lt; 0$ takes more and more of them.</span></div>
+</figure>
+</div>
+<p id="airy-properties">The functions $\kyone$ and $\kytwo$ cannot be written in terms of the <a href="/calculus/ch10/10.4/#10.4-elementary-term">elementary functions</a> that you know. See Figure 7.3 for the plot of the <span data-concept="solution-to-a-differential-equation">solutions</span> $\kyone$ and $\kytwo$. These functions have many interesting properties. For example, they are oscillatory for negative $x$ (like <span data-concept="solution-to-a-differential-equation">solutions</span> to $\kydprime+\ky=0$) and for positive $x$ they grow without bound (like <span data-concept="solution-to-a-differential-equation">solutions</span> to $\kydprime-\ky=0$).</p>
+</section>
+
+<section id="hermite">
+<h2>Hermite’s equation</h2>
+<p id="polynomial-preview">Sometimes a series <span data-concept="solution-to-a-differential-equation">solution</span> may turn out to be a <span data-concept="polynomial-as-a-power-series">polynomial</span>. Let us see an example.</p>
+<div class="example" id="ex-7-2-3">
+<h3>Example 7.2.3</h3>
+<p id="hermite-def">Let us find a <span data-concept="solution-to-a-differential-equation">solution</span> to the so-called <em><span data-concept="hermites-equation">Hermite’s equation of order $n$</span></em><sup class="fn" data-note="fn-hermite"></sup>:</p>
+<div class="equation" id="eq-hermites-equation">$$ \kydprime -2x\kyprime + 2n \ky = 0 . $$</div>
+<p>Let us find a <span data-concept="solution-to-a-differential-equation">solution</span> around the point $x_0 = 0$. We try</p>
+$$ \ky = \sum_{k=0}^\infty \ka_k x^k . $$
+<p>We differentiate (as above) to obtain</p>
+$$ \kyprime = \sum_{k=1}^\infty k \ka_k x^{k-1} \qquad \text{and} \qquad \kydprime = \sum_{k=2}^\infty k\,(k-1) \, \ka_k x^{k-2} . $$
+<p>Now we plug into the equation</p>
+$$ \begin{split} 0 &= \kydprime-2x\kyprime+2n\ky \\ &= \Biggl( \sum_{k=2}^\infty k(k-1) \ka_k x^{k-2} \Biggr) - 2x \Biggl( \sum_{k=1}^\infty k \ka_k x^{k-1} \Biggr) + 2n \Biggl( \sum_{k=0}^\infty \ka_k x^k \Biggr) \\ &= \Biggl( \sum_{k=2}^\infty k(k-1) \ka_k x^{k-2} \Biggr) - \Biggl( \sum_{k=1}^\infty 2k \ka_k x^k \Biggr) + \Biggl( \sum_{k=0}^\infty 2n \ka_k x^k \Biggr) \\ &= \Biggl(2\ka_2+ \sum_{k=1}^\infty (k+2)(k+1) \ka_{k+2} x^k \Biggr) - \Biggl( \sum_{k=1}^\infty 2k \ka_k x^k \Biggr) + \Biggl( 2n\ka_0 + \sum_{k=1}^\infty 2n \ka_k x^k \Biggr) \\ &= 2\ka_2+2n\ka_0+ \sum_{k=1}^\infty \bigl( (k+2)(k+1) \ka_{k+2} - 2k\ka_k + 2n \ka_k \bigr) x^k . \end{split} $$
+<p>As $\kydprime-2x\kyprime+2n\ky = 0$, we have</p>
+<div class="equation" id="eq-hermite-recurrence">$$ (k+2)(k+1) \ka_{k+2} + ( - 2k+ 2n) \ka_k = 0 , \qquad \text{or} \qquad \ka_{k+2} = \frac{(2k-2n)}{(k+2)(k+1)} \ka_k . $$</div>
+<p>This <span data-concept="recurrence-relation">recurrence relation</span> actually includes $\ka_2 = -n\ka_0$ (which comes about from the constant term $2\ka_2+2n\ka_0 = 0$). Again, $\ka_0$ and $\ka_1$ are arbitrary.</p>
+$$ \begin{align*} & \ka_2 = \frac{-2n}{2 \cdot 1}\ka_0, \\ & \ka_3 = \frac{2(1-n)}{3 \cdot 2} \ka_1, \\ & \ka_4 = \frac{2(2-n)}{4 \cdot 3} \ka_2 = \frac{2^2(2-n)(-n)}{4 \cdot 3 \cdot 2 \cdot 1} \ka_0 , \\ & \ka_5 = \frac{2(3-n)}{5 \cdot 4} \ka_3 = \frac{2^2(3-n)(1-n)}{5 \cdot 4 \cdot 3 \cdot 2} \ka_1 , \quad \ldots \end{align*} $$
+<p>We separate the even and odd <span data-concept="power-series-coefficients">coefficients</span> to find that</p>
+$$ \begin{align*} \ka_{2m} &=\frac{2^m(-n)(2-n)\cdots(2m-2-n)}{(2m)!} \ka_0, \\ \ka_{2m+1} &=\frac{2^m(1-n)(3-n)\cdots(2m-1-n)}{(2m+1)!} \ka_1 . \end{align*} $$
+<p>We write down the two series, one with the even powers and one with the odd:</p>
+$$ \begin{align*} \kyone(x) & = 1+\frac{2(-n)}{2!} x^2 + \frac{2^2(-n)(2-n)}{4!} x^4 + \frac{2^3(-n)(2-n)(4-n)}{6!} x^6 + \cdots , \\ \kytwo(x) & = x+\frac{2(1-n)}{3!} x^3 + \frac{2^2(1-n)(3-n)}{5!} x^5 + \frac{2^3(1-n)(3-n)(5-n)}{7!} x^7 + \cdots . \end{align*} $$
+<p>Then</p>
+$$ \ky(x) = \ka_0 \kyone(x) + \ka_1 \kytwo(x) . $$
+<p id="hermite-polynomial">We remark that if $n$ is a positive even integer, then $\kyone(x)$ is a <span data-concept="polynomial-solutions-of-hermites-equation">polynomial</span> as all the <span data-concept="power-series-coefficients">coefficients</span> in the series beyond degree $n$ are zero. If $n$ is a positive odd integer, then $\kytwo(x)$ is a <span data-concept="polynomial-solutions-of-hermites-equation">polynomial</span>. For example, if $n=4$, then</p>
+$$ \kyone(x) = 1 + \frac{2(-4)}{2!} x^2 + \frac{2^2(-4)(2-4)}{4!} x^4 = 1 - 4x^2 + \frac{4}{3} x^4 . $$
+</div>
+<figure class="sim" id="sim-hermite">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The two series of <span data-concept="hermites-equation">Hermite’s equation</span>, $\kyone$ in the even powers and $\kytwo$ in the odd, beside their <span data-concept="power-series-coefficients">coefficients</span>. Each coefficient is the one two places back times $(2k-2n)/((k+2)(k+1))$, so at a whole number $n$ the factor $2k - 2n$ reaches zero at $k = n$ and one of the two series stops there, a <span data-concept="polynomial-solutions-of-hermites-equation">polynomial</span>; at any other $n$ neither stops.</span></div>
+</figure>
+</section>

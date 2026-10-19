@@ -135,14 +135,14 @@ const simpson = (g, a, b, m = 2000) => {
   const why = (f, e, k, val) => {
     const z = Math.abs(val) < 5e-4;
     if (f === 'saw') return e === 'cos'
-      ? (k === 0 ? 'f(t) = t is odd, so its areas cancel' : `the product t cos ${k === 1 ? '' : k}t is odd, so the areas cancel`)
-      : `the product t sin ${k === 1 ? '' : k}t is even, so the two halves add`;
+      ? (k === 0 ? 'f(t) = t is odd and its areas cancel' : `the product t cos ${k === 1 ? '' : k}t is odd and its areas cancel`)
+      : `the product t sin ${k === 1 ? '' : k}t is even and its two halves add`;
     if (f === 'sq') return e === 'cos'
       ? (k === 0 ? 'the only area is π over (0, π)' : `on (0, π) the arches of π cos ${k === 1 ? '' : k}t above and below the axis are equal`)
       : (z ? `on (0, π) the arches of π sin ${k}t above and below the axis are equal` : `on (0, π) π sin ${k === 1 ? '' : k}t has one arch more above the axis than below`);
-    if (e === 'sin') return `the product cos 3t sin ${k === 1 ? '' : k}t is odd, so the areas cancel`;
+    if (e === 'sin') return `the product cos 3t sin ${k === 1 ? '' : k}t is odd and its areas cancel`;
     if (k === 3) return 'the product cos² 3t never dips below the axis';
-    return k === 0 ? 'cos 3t has as much area above the axis as below' : `cos 3t and cos ${k === 1 ? '' : k}t are orthogonal, so the areas cancel`;
+    return k === 0 ? 'cos 3t has as much area above the axis as below' : `cos 3t and cos ${k === 1 ? '' : k}t are orthogonal and the areas cancel`;
   };
   /* the book's own value, where the section works it out */
   const exact = (f, e, k) => {
@@ -186,7 +186,7 @@ const simpson = (g, a, b, m = 2000) => {
     const cname = e === 'cos' ? `a${k === 0 ? '₀' : '_' + k}` : `b_${k}`;
     const sub = (s) => s.replace(/_(\d)/, (m, q) => '₀₁₂₃₄₅₆₇₈'[+q]);
     const vs = fmt(Math.abs(val) < 5e-4 ? 0 : val, 3);
-    headline(ctx, `${FS[f].short[0].toUpperCase()}${FS[f].short.slice(1)} and ${k === 0 ? 'the constant 1' : eName(e, k)}: ${why(f, e, k, val)}, so ${sub(cname)} = ${vs}.`);
+    headline(ctx, `${FS[f].short[0].toUpperCase()}${FS[f].short.slice(1)} and ${k === 0 ? 'the constant 1' : eName(e, k)}: ${why(f, e, k, val)}: ${sub(cname)} = ${vs}.`);
     const sym = e === 'cos' ? (k === 0 ? '\\kazero' : `\\htmlClass{kv-sequence}{a_{${k}}}`) : `\\htmlClass{kv-sequence}{b_{${k}}}`;
     const integrand = k === 0 ? '\\kf(t)' : `\\kf(t)\\${e}(${k === 1 ? '' : k}t)`;
     const tex = `${sym} = \\frac{1}{\\pi}\\int_{-\\pi}^{\\pi} ${integrand}\\,dt = \\frac{1}{\\pi}\\bigl(${n(P, 3)} - ${n(N, 3)}\\bigr) = ${n(Math.abs(val) < 5e-4 ? 0 : val, 3)}`;

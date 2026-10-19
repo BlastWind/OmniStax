@@ -93,7 +93,7 @@ const DATA = {
   const CX = 400, CY = 362, RD = 218, CELL = 3, GN = Math.round((2 * RD) / CELL);
   const FR = { l: CX - 1.25 * RD, r: CX + 1.25 * RD, t: CY - 1.25 * RD, b: CY + 1.25 * RD };
   const FAX = { X: (v) => CX + v * RD, Y: (v) => CY - v * RD, box: FR, xr: [-1.25, 1.25], yr: [-1.25, 1.25] };
-  const GB = { l: 880, r: 1236, t: 150, b: 560 };
+  const GB = { l: 880, r: 1236, t: 150, b: 560 }, ZH = 1.1;   /* the surface's height on the scale of the disc's radius */
   const off = document.createElement('canvas'); off.width = off.height = GN;
   const octx = off.getContext('2d'), img = octx.createImageData(GN, GN);
   const fields = new Map();
@@ -115,7 +115,8 @@ const DATA = {
   function mount3d(g) {
     const D = DATA[g], keep = S?.v?.at;
     if (S) unmount3d();
-    S = F.space3d(d, { box: [[-1.05, 1.05], [-1.05, 1.05], [D.lo, D.top ?? D.hi]], h: 640, pitch: [0.12, 1.45], fit: 1.75, turn: -0.62, tilt: 0.95 });
+    const zs = ZH / (D.hi - D.lo);
+    S = F.space3d(d, { box: [[-1.05, 1.05], [-1.05, 1.05], [D.lo * zs, (D.top ?? D.hi) * zs]], h: 640, pitch: [0.12, 1.45], fit: 2.1, turn: -0.62, tilt: 0.62 });
     if (keep && S.v) S.v.setView(keep.yaw, keep.pitch);
     S.g = g; s3key = '';
     d.c.style.display = 'none';
@@ -127,10 +128,10 @@ const DATA = {
   }
   /* the surface over a polar grid, its faces grouped into bands of the scale */
   function surfaceMarks(g) {
-    const D = DATA[g], u = uOf(g), NR = 32, NT = g === 'cos' ? 12 * Math.max(12, nS.v) : 144, B = 48, bands = Array.from({ length: B }, () => []);
-    const P = (i, j) => { const r = i / NR, t = -Math.PI + (TAU * j) / NT; return [r * Math.cos(t), r * Math.sin(t), u(r, t)]; };
+    const D = DATA[g], u = uOf(g), zs = ZH / (D.hi - D.lo), NR = 32, NT = g === 'cos' ? 12 * Math.max(12, nS.v) : 144, B = 48, bands = Array.from({ length: B }, () => []);
+    const P = (i, j) => { const r = i / NR, t = -Math.PI + (TAU * j) / NT; return [r * Math.cos(t), r * Math.sin(t), u(r, t) * zs]; };
     for (let i = 0; i < NR; i++) for (let j = 0; j < NT; j++) {
-      const q = [P(i, j), P(i + 1, j), P(i + 1, j + 1), P(i, j + 1)], z = (q[0][2] + q[1][2] + q[2][2] + q[3][2]) / 4;
+      const q = [P(i, j), P(i + 1, j), P(i + 1, j + 1), P(i, j + 1)], z = (q[0][2] + q[1][2] + q[2][2] + q[3][2]) / (4 * zs);
       bands[Math.min(B - 1, Math.max(0, Math.floor(((z - D.lo) / (D.hi - D.lo)) * B)))].push(q);
     }
     return bands.flatMap((faces, b) => (faces.length ? [{ k: 'faces', faces, color: tempCss((b + 0.5) / B), alpha: 1 }] : []));
@@ -171,16 +172,19 @@ const DATA = {
     if (view.value === '2d' && S) unmount3d();
     if (S) {
       LUT();
-      const D = DATA[g], u = uOf(g), key = [keyOf(g), lutSig].join('|');
+      const D = DATA[g], u = uOf(g), zs = ZH / (D.hi - D.lo), key = [keyOf(g), lutSig].join('|');
       if (key !== s3key) {
         s3key = key;
-        S.set('axes', SP.axes(S.box, { ticks: [1, 1, g === 'abs' ? 1 : 0.5], names: ['$x$', '$y$', '$\\ku$'] }));
+        /* the u-axis is drawn at its own scale (ZH across the data's range), its ticks labelled with u */
+        const tl = 0.035, zt = Array.from({ length: D.ny + 1 }, (_, i) => D.lo + (((D.top ?? D.hi) - D.lo) * i) / D.ny).filter((v) => Math.abs(v) > 1e-9);
+        S.set('axes', [...SP.axes(S.box, { ticks: [1, 1, 0], names: ['$x$', '$y$', '$\\ku$'] }),
+          ...zt.flatMap((v) => [{ k: 'segs', segs: [[[0, -tl, v * zs], [0, tl, v * zs]]], color: 'muted', w: 2 }, { k: 'label', s: fmt(v, 1), p: [0, -4 * tl, v * zs], cls: 'tick' }])]);
         S.set('surf', surfaceMarks(g));
-        S.set('rim', [{ k: 'line', pts: Array.from({ length: 361 }, (_, i) => { const a = -Math.PI + (TAU * i) / 360; return [Math.cos(a), Math.sin(a), D.g(a, m)]; }), color: 'ink', w: 3, name: 'the rim r = 1, held at u = g(θ)' }]);
+        S.set('rim', [{ k: 'line', pts: Array.from({ length: 361 }, (_, i) => { const a = -Math.PI + (TAU * i) / 360; return [Math.cos(a), Math.sin(a), D.g(a, m) * zs]; }), color: 'ink', w: 3, name: 'the rim r = 1, held at u = g(θ)' }]);
       }
-      const ray = Array.from({ length: 61 }, (_, i) => { const q = i / 60; return [q * Math.cos(t), q * Math.sin(t), u(q, t) + 0.01]; });
+      const ray = Array.from({ length: 61 }, (_, i) => { const q = i / 60; return [q * Math.cos(t), q * Math.sin(t), u(q, t) * zs + 0.01]; });
       S.set('ray', [{ k: 'line', pts: ray, color: fc, w: 4.5, name: `u along the ray θ = ${n(t)}` },
-        { k: 'dot', p: [r * Math.cos(t), r * Math.sin(t), W.v + 0.01], color: 'ink', r: 9, name: `the probe (r, θ) = (${n(r)}, ${n(t)}), u = ${n(W.v, 3)}` }]);
+        { k: 'dot', p: [r * Math.cos(t), r * Math.sin(t), W.v * zs + 0.01], color: 'ink', r: 9, name: `the probe (r, θ) = (${n(r)}, ${n(t)}), u = ${n(W.v, 3)}` }]);
       S.headline(W.head);
       ro.set(W.tex, undefined, { form: g });
       return;

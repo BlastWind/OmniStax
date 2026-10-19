@@ -121,7 +121,7 @@ const hex = (c) => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0'
   let S = null, hits = [];
   hover(d.stage, () => hits, d.c);
   function mount3d() {
-    S = F.space3d(d, { box: box3, h: 690, pitch: [0.12, 1.5], fit: 1.75, turn: -3.0, tilt: 0.55 });   /* above the plate: from beneath it shows nothing new */
+    S = F.space3d(d, { box: box3, h: 690, pitch: [0.12, 1.5], fit: 1.75, turn: -3.0, tilt: 0.7 });   /* above the plate: from beneath it shows nothing new */
     d.c.style.display = 'none';
     S.drag({ at: () => [xs.v, ys.v, uProbe(fsel.value, xs.v, ys.v, hs.v) + 0.04], on: 'pick', move: (q) => { xs.drive(q[0]); ys.drive(q[1]); } });
   }

@@ -123,9 +123,9 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
       ...[-2.2, 2.2].map((x) => ({ x: ax.X(x), y: ax.Y(T2(x)), r: 12, name: 'the odd π-periodic extension of x: x − π past π/2' })),
       { x: ax.X(0.8), y: ax.Y(0.8), r: 12, name: 'f(x) = x on 0 < x < π/2' },
     ];
-    const xt = `${n(u)}\\pi`;
+    const xt = `${n(u)}\\pi`, xa = u < 0 ? `(${xt})` : xt;
     headline(ctx, `$N = ${N}$, $x = ${xt}$: the eigenfunction series gives ${fmt(a1, 3)} (its limit ${fmt(l1, 3)}), the sine series ${fmt(a2, 3)} (its limit ${fmt(l2, 3)}).`);
-    ro.set(`\\begin{aligned} \\htmlData{ref=sl-series}{\\textstyle\\sum_{n=1}^{${N}} \\frac{4(-1)^{n+1}}{\\pi(2n-1)^2}\\sin\\bigl((2n-1)\\,${xt}\\bigr)} &= ${n(a1, 3)} \\\\ \\htmlData{ref=sine-series-ref}{\\textstyle\\sum_{n=1}^{${N}} \\frac{(-1)^{n+1}}{n}\\sin(2n\\cdot ${xt})} &= ${n(a2, 3)} \\end{aligned}`);
+    ro.set(`\\begin{aligned} \\htmlData{ref=sl-series}{\\textstyle\\sum_{n=1}^{${N}} \\frac{4(-1)^{n+1}}{\\pi(2n-1)^2}\\sin\\bigl((2n-1)\\cdot ${xa}\\bigr)} &= ${n(a1, 3)} \\\\ \\htmlData{ref=sine-series-ref}{\\textstyle\\sum_{n=1}^{${N}} \\frac{(-1)^{n+1}}{n}\\sin(2n\\cdot ${xa})} &= ${n(a2, 3)} \\end{aligned}`);
   }
   still(d, draw);
 })();
