@@ -225,7 +225,8 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     ];
     if (Fv > 0) {
       dot(ctx, PX(xm), PY(ym), fc, true, 8);
-      vbracket(ctx, PX(xm) + (xm < a ? -60 : 60), BY, PY(ym), PAL.muted, fmt(-ym, 3), xm < a ? -1 : 1, { size: 18 });
+      const bs = a > 1.6 ? 1 : -1;   /* the depth on the side away from the force's label */
+      vbracket(ctx, PX(xm) + bs * 60, BY, PY(ym), PAL.muted, fmt(-ym, 3), bs, { size: 18 });
       hits.push({ x: PX(xm), y: PY(ym), r: 16, name: `the deepest point, x = ${fmt(xm, 2)}, y = ${fmt(ym, 3)}` },
         { x: PX(a), y: ya - 14 - len / 2, r: 18, name: `the point load F δ(x − a), F = ${fmt(Fv, 2)} at a = ${fmt(a, 2)}` });
       headline(ctx, `$\\kF = ${n(Fv)}$ at $x = ${n(a)}$: the beam sags most at $x = ${n(xm)}$, by ${n(-ym, 3)}.`);

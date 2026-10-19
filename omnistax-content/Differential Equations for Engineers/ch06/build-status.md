@@ -18,6 +18,7 @@ Task `prep1-ch06` (prep stage one), port 8107, scratch `/tmp/claude-0/-home-user
 - `ost merge diffyqs 6`: 50 concepts, 83 edges (2 redundant dropped after the whole-book Hasse check), 10 symbols. Concept links were already in the draft and check clean.
 - `ost check diffyqs`: no errors, no warnings.
 - 6.3 built (task `sec-6.3`, claude-opus-5-5 high): 1 Sim (`sim-convolution`, moving, the 3Blue1Brown sliding convolution, four pairs, ω slider for the sine pair), 2 derivations (`drv-convolution-theorem`, `drv-forced-oscillation-convolution`), 13 end exercises (9 AI-marked, 4 keyed), 0 Try Its, 6 concepts introduced, footnotes 31 and 32 plus the correction of Example 6.3.3's "Table 6.2"; `ost check` clean.
+- 6.5 built (task `sec-6.5`, claude-opus-5-5 high): 2 figures (`sim-goo-river`, Figures 6.5 + 6.6 folded, moving: the river, its profile and the (x, t) plane with the rising wavefront, a choice of the data C or sin t; `sim-ill-posed`, Figure 6.7, still, C slider with a special at π), 0 derivations (four candidates under the bar), 12 end exercises (7 AI-marked, 5 keyed), 0 Try Its, 6 concepts introduced, 84 coverage rows, footnotes 38 and 39; `ost check` clean; anchors wanted are in 6.5/plan.md.
 
 ## Next
 

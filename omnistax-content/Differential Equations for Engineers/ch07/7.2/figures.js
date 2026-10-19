@@ -42,6 +42,15 @@ function reach(S, Y, lo, hi, tol = 0.1) {
   while (R + h <= hi + 1e-9 && Math.abs(S(R + h) - Y(R + h)) < tol) R += h;
   return [L, R];
 }
+/* a legend: one short stroke and its name per entry, in a row (or a column) from (x, y) */
+function legend(ctx, x, y, items, column = false) {
+  let cx = x, cy = y;
+  items.forEach(([name, color, w]) => {
+    line(ctx, cx, cy, cx + 40, cy, color, w);
+    text(ctx, name, cx + 52, cy, PAL.ink, { size: 18, bg: PAL.panel });
+    if (column) cy += 32; else cx += 52 + F.measure(ctx, name, { size: 18 }) + 44;
+  });
+}
 const poly = (c, upto) => (x) => { let s = 0, p = 1; for (let k = 0; k <= upto && k < c.length; k++) { s += c[k] * p; p *= x; } return s; };
 
 /* Sim (Example 7.2.1): the recurrence a_{k+2} = a_k/((k + 2)(k + 1)) of y'' − y = 0 run from the reader's a_0 and
@@ -49,12 +58,12 @@ const poly = (c, upto) => (x) => { let s = 0, p = 1; for (let k = 0; k <= upto &
    agree within 0.1 bracketed; below, the coefficients a_0 … a_20 as bars on a log scale, the even ones fed from a_0
    and the odd from a_1, those past degree N faint. Graph x −4 to 4, y −6 to 6; bars 10^−20 to 1 (|a_0|, |a_1| ≤ 1). */
 (function () {
-  const d = sim('sim-series-solution', 780);
+  const d = sim('sim-series-solution', 800);
   const A0 = ctl(d.controls, { label: '\\ka_0', cls: 'sequence', key: 'a0', min: -1, max: 1, step: 0.05, value: 1, unit: '', dec: 2, detents: [0, 1] });
   const A1 = ctl(d.controls, { label: '\\ka_1', cls: 'sequence', key: 'a1', min: -1, max: 1, step: 0.05, value: 0, unit: '', dec: 2, detents: [0, 1] });
   const NS = ctl(d.controls, { label: 'N', cls: '', key: 'N', min: 0, max: 20, step: 1, value: 6, unit: '', dec: 0, aria: 'the highest power N kept in the partial sum' });
   const ro = readout(d);
-  const TOP = { l: 200, r: 1240, t: 110, b: 420 }, BAR = { l: 200, r: 1240, t: 500, b: 700 }, K = 20;
+  const TOP = { l: 200, r: 1240, t: 130, b: 440 }, BAR = { l: 200, r: 1240, t: 520, b: 720 }, K = 20;
   let hits = [];
   hover(d.stage, () => hits);
   function draw() {
@@ -64,8 +73,9 @@ const poly = (c, upto) => (x) => { let s = 0, p = 1; for (let k = 0; k <= upto &
     const Y = (x) => a0 * Math.cosh(x) + a1 * Math.sinh(x), S = poly(a, N);
     hits = [];
     const ax = axes(ctx, TOP, [-4, 4], [-6, 6], { xl: 'x', yl: 'y', nx: 8, ny: 4 });
-    plot(ctx, ax, Y, fc, { w: 6 });
-    plot(ctx, ax, S, sc, { w: 4 });
+    plot(ctx, ax, Y, alpha(fc, 0.45), { w: 10 });
+    plot(ctx, ax, S, sc, { w: 3.5 });
+    legend(ctx, TOP.l + 70, TOP.t - 24, [['the solution y', alpha(fc, 0.45), 10], [`the partial sum S_${N}`, sc, 3.5]]);
     const [L, R] = reach(S, Y, -4, 4), whole = L <= -4 + 1e-6 && R >= 4 - 1e-6;
     if (R - L > 0.05) hbracket(ctx, ax.X(L), ax.X(R), ax.Y(-5.2), PAL.muted, 'within 0.1', { side: 'above', size: 18 });
     label(ctx, 'y', ax.X(3.3), ax.Y(Math.max(-5.5, Math.min(5.5, Y(3.3)))), { side: 'left', color: fc, size: 22, weight: 600 });
@@ -113,17 +123,14 @@ const poly = (c, upto) => (x) => { let s = 0, p = 1; for (let k = 0; k <= upto &
     const m = MS.v, fc = C('function'), sc = C('series');
     const k1 = 3 * (m - 1), k2 = k1 + 1, S1 = poly(c1, k1), S2 = poly(c2, k2);
     const ax = axes(ctx, BOX, [-5, 5], [-5, 7.5], { xl: 'x', yl: 'y', nx: 4, ny: 5, fx: (v) => dec(v, 1), fy: (v) => dec(v, 1) });
-    plot(ctx, ax, Y1, alpha(fc, 0.55), { w: 7 });
-    plot(ctx, ax, Y2, alpha(fc, 0.55), { w: 7 });
+    plot(ctx, ax, Y1, alpha(fc, 0.45), { w: 10 });
+    plot(ctx, ax, Y2, alpha(fc, 0.45), { w: 10 });
     plot(ctx, ax, S1, sc, { w: 3.5 });
     plot(ctx, ax, S2, sc, { w: 3.5 });
     label(ctx, 'y_1', ax.X(-0.6), ax.Y(Y1(-0.6)), { side: 'above', color: fc, size: 24, weight: 600 });
     label(ctx, 'y_2', ax.X(-1.55), ax.Y(Y2(-1.55)), { side: 'below', color: fc, size: 24, weight: 600 });
-    /* a legend in the box's top-left corner */
-    line(ctx, BOX.l + 24, BOX.t + 28, BOX.l + 64, BOX.t + 28, alpha(fc, 0.55), 7);
-    text(ctx, 'solutions', BOX.l + 76, BOX.t + 28, PAL.ink, { size: 18, bg: PAL.panel });
-    line(ctx, BOX.l + 24, BOX.t + 60, BOX.l + 64, BOX.t + 60, sc, 3.5);
-    text(ctx, 'partial sums', BOX.l + 76, BOX.t + 60, PAL.ink, { size: 18, bg: PAL.panel });
+    /* the legend right of x = 3, below the axis: every curve there is positive */
+    legend(ctx, ax.X(3.15), ax.Y(-1.4), [['solutions', alpha(fc, 0.45), 10], ['partial sums', sc, 3.5]], true);
     const [La, Ra] = reach(S1, Y1, -5, 5), [Lb, Rb] = reach(S2, Y2, -5, 5);
     const L = Math.max(La, Lb), R = Math.min(Ra, Rb), whole = L <= -5 + 1e-6 && R >= 5 - 1e-6;
     hbracket(ctx, ax.X(L), ax.X(R), ax.Y(-4.4), PAL.muted, 'both within 0.1', { side: 'above', size: 18 });
@@ -145,7 +152,7 @@ const poly = (c, upto) => (x) => { let s = 0, p = 1; for (let k = 0; k <= upto &
    (80 terms), x −3 to 3, y −8 to 8; right, a_0 … a_16 as bars on a log scale (10^−8 to 10^2: |a_k| ≤ 8 for n ≤ 8 and
    k ≤ 16, the smallest nonzero 5 × 10^−8), past degree N faint. At a whole n the factor 2k − 2n is 0 at k = n. */
 (function () {
-  const d = sim('sim-hermite', 600);
+  const d = sim('sim-hermite', 630);
   const NS = ctl(d.controls, { label: 'n', cls: '', key: 'n', min: 0, max: 8, step: 0.05, value: 4, unit: '', dec: 2, aria: 'the order n of Hermite’s equation', detents: [0, 1, 2, 3, 4, 5, 6, 7, 8] });
   const DS = ctl(d.controls, { label: 'degree', cls: '', key: 'N', min: 1, max: 16, step: 1, value: 10, unit: '', dec: 0, aria: 'the highest power N kept in the partial sums' });
   const ro = readout(d);
@@ -173,10 +180,11 @@ const poly = (c, upto) => (x) => { let s = 0, p = 1; for (let k = 0; k <= upto &
     const Y1 = part(a, 0, 80), Y2 = part(a, 1, 79), S1 = part(a, 0, N), S2 = part(a, 1, N);
     hits = [];
     const ax = axes(ctx, G, [-3, 3], [-8, 8], { xl: 'x', yl: 'y', nx: 6, ny: 4 });
-    plot(ctx, ax, Y1, alpha(fc, 0.55), { w: 7 });
-    plot(ctx, ax, Y2, alpha(fc, 0.55), { w: 7 });
+    plot(ctx, ax, Y1, alpha(fc, 0.45), { w: 10 });
+    plot(ctx, ax, Y2, alpha(fc, 0.45), { w: 10 });
     plot(ctx, ax, S1, sc, { w: 3.5 });
     plot(ctx, ax, S2, sc, { w: 3.5 });
+    legend(ctx, G.l + 40, G.b + 98, [['solutions', alpha(fc, 0.45), 10], [`partial sums to degree ${N}`, sc, 3.5]]);
     label(ctx, 'y_1', ax.X(0), ax.Y(1), { side: 'above', color: fc, size: 24, weight: 600 });
     label(ctx, 'y_2', ax.X(0.3), ax.Y(Y2(0.3)), { side: 'right', color: fc, size: 24, weight: 600 });
     hits.push(...[-2, -1, 1, 2].flatMap((x) => [

@@ -1,0 +1,1235 @@
+{
+  "id": "7.3",
+  "module": "frobenius:section",
+  "chapter": "7",
+  "title": "Singular points and the method of Frobenius",
+  "short": "The method of Frobenius",
+  "lead": "What becomes of the series method at a <span data-concept=\"singular-point\">singular point</span>, and what can take its place? This section tries a power of $x$ times a <span data-concept=\"power-series\">power series</span>, asks at which singular points that is worth doing, sets out the <span data-concept=\"method-of-frobenius\">method of Frobenius</span> case by case, and meets <span data-concept=\"bessel-equation\">Bessel’s equation</span> and the <span data-concept=\"bessel-functions-of-the-first-kind\">Bessel functions</span> that solve it.",
+  "objectives": [],
+  "summary_html": "",
+  "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-19",
+  "exercises_lead": "",
+  "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 7.3.101–7.3.104 carry the book’s own answers. The inline exercises 7.3.1 and 7.3.2 and exercises 7.3.3–7.3.8, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first. Exercise 7.3.102 is the equation of Exercise 7.2.103, which the power-series method of 7.2 could only solve by zero.",
+  "figures": [
+    {
+      "id": "sim-frobenius-exponent",
+      "kind": "sim",
+      "draws": [
+        "function",
+        "derivative",
+        "point",
+        "eigenvalue"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-bessel",
+      "kind": "sim",
+      "number": "7.4",
+      "originals": [
+        "/media/ch07/bessel-first-second.svg"
+      ],
+      "original_caption": "Plot of the J₀(x) and J₁(x) in the first graph and Y₀(x) and Y₁(x) in the second graph.",
+      "widths": [
+        864
+      ],
+      "draws": [
+        "function",
+        "series",
+        "derivative"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "referents": [],
+  "coverage": [
+    {
+      "span": "indicial-named",
+      "concept": "indicial-equation",
+      "verb": "introduces"
+    },
+    {
+      "span": "regular-singular",
+      "concept": "regular-singular-point",
+      "verb": "introduces"
+    },
+    {
+      "span": "thm-7-3-1",
+      "concept": "frobenius-type-solution",
+      "verb": "introduces"
+    },
+    {
+      "span": "thm-7-3-1",
+      "concept": "frobenius-theorem",
+      "verb": "introduces"
+    },
+    {
+      "span": "method-intro",
+      "concept": "method-of-frobenius",
+      "verb": "introduces"
+    },
+    {
+      "span": "bessel-equation",
+      "concept": "bessel-equation",
+      "verb": "introduces"
+    },
+    {
+      "span": "bessel-solutions",
+      "concept": "frobenius-solutions-of-bessels-equation",
+      "verb": "introduces"
+    },
+    {
+      "span": "gamma",
+      "concept": "gamma-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "bessel-first-kind",
+      "concept": "bessel-functions-of-the-first-kind",
+      "verb": "introduces"
+    },
+    {
+      "span": "bessel-second-kind",
+      "concept": "bessel-functions-of-the-second-kind",
+      "verb": "introduces"
+    },
+    {
+      "span": "bessel-general",
+      "concept": "general-solution-of-bessels-equation",
+      "verb": "introduces"
+    },
+    {
+      "span": "ex-7-3-4",
+      "concept": "reducing-to-bessels-equation",
+      "verb": "introduces"
+    },
+    {
+      "span": "intro",
+      "concept": "singular-point",
+      "verb": "reinforces"
+    },
+    {
+      "span": "intro",
+      "concept": "ordinary-differential-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "intro",
+      "concept": "power-series",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-7-3-1",
+      "concept": "singular-point",
+      "verb": "reinforces"
+    },
+    {
+      "span": "ex-7-3-1",
+      "concept": "power-series-solution-of-a-differential-equation",
+      "verb": "reinforces"
+    },
+    {
+      "span": "ex-7-3-1",
+      "concept": "first-order-differential-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-7-3-1",
+      "concept": "general-solution",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-7-3-1",
+      "concept": "linear-differential-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "derivative-blows-up",
+      "concept": "singular-point",
+      "verb": "uses"
+    },
+    {
+      "span": "frobenius-ansatz",
+      "concept": "analytic-function",
+      "verb": "reinforces"
+    },
+    {
+      "span": "frobenius-ansatz",
+      "concept": "power-series",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-7-3-2",
+      "concept": "singular-point",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-7-3-2",
+      "concept": "maclaurin-series-of-common-functions",
+      "verb": "reinforces"
+    },
+    {
+      "span": "drv-frobenius-example",
+      "concept": "term-by-term-differentiation-and-integration",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-frobenius-example",
+      "concept": "reindexing-a-series",
+      "verb": "uses"
+    },
+    {
+      "span": "coefficients",
+      "concept": "recurrence-relation",
+      "verb": "reinforces"
+    },
+    {
+      "span": "second-solution",
+      "concept": "linear-independence",
+      "verb": "uses"
+    },
+    {
+      "span": "second-solution",
+      "concept": "indicial-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "long-computation",
+      "concept": "recurrence-relation",
+      "verb": "reinforces"
+    },
+    {
+      "span": "drv-frobenius-second-solution",
+      "concept": "linear-operator",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-frobenius-second-solution",
+      "concept": "recurrence-relation",
+      "verb": "uses"
+    },
+    {
+      "span": "general-ex-7-3-2",
+      "concept": "general-solution-to-a-homogeneous-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "when-applies",
+      "concept": "ordinary-differential-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "when-applies",
+      "concept": "singular-point",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-7-3-3",
+      "concept": "regular-singular-point",
+      "verb": "reinforces"
+    },
+    {
+      "span": "ex-7-3-3",
+      "concept": "singular-point",
+      "verb": "uses"
+    },
+    {
+      "span": "frobenius-steps",
+      "concept": "frobenius-type-solution",
+      "verb": "reinforces"
+    },
+    {
+      "span": "frobenius-steps",
+      "concept": "indicial-equation",
+      "verb": "reinforces"
+    },
+    {
+      "span": "frobenius-steps",
+      "concept": "linear-independence",
+      "verb": "uses"
+    },
+    {
+      "span": "frobenius-steps",
+      "concept": "complex-number",
+      "verb": "uses"
+    },
+    {
+      "span": "frobenius-steps",
+      "concept": "real-and-imaginary-parts",
+      "verb": "uses"
+    },
+    {
+      "span": "second-solution-ideas",
+      "concept": "reduction-of-order",
+      "verb": "uses"
+    },
+    {
+      "span": "second-solution-ideas",
+      "concept": "frobenius-type-solution",
+      "verb": "reinforces"
+    },
+    {
+      "span": "sim-frobenius-exponent",
+      "concept": "frobenius-type-solution",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-frobenius-exponent",
+      "concept": "singular-point",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-frobenius-exponent",
+      "concept": "method-of-frobenius",
+      "verb": "uses"
+    },
+    {
+      "span": "bessel-indicial",
+      "concept": "indicial-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "bessel-indicial",
+      "concept": "bessel-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "bessel-solutions",
+      "concept": "method-of-frobenius",
+      "verb": "uses"
+    },
+    {
+      "span": "bessel-solutions",
+      "concept": "linear-independence",
+      "verb": "uses"
+    },
+    {
+      "span": "gamma-factorial",
+      "concept": "gamma-function",
+      "verb": "reinforces"
+    },
+    {
+      "span": "constant-multiples",
+      "concept": "bessel-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "integer-orders",
+      "concept": "linear-independence",
+      "verb": "uses"
+    },
+    {
+      "span": "bessel-second-kind",
+      "concept": "linear-combination",
+      "verb": "uses"
+    },
+    {
+      "span": "bessel-general",
+      "concept": "linear-combination",
+      "verb": "uses"
+    },
+    {
+      "span": "bessel-general",
+      "concept": "superposition-principle",
+      "verb": "uses"
+    },
+    {
+      "span": "bessel-properties",
+      "concept": "bessel-functions-of-the-first-kind",
+      "verb": "reinforces"
+    },
+    {
+      "span": "sim-bessel",
+      "concept": "bessel-functions-of-the-first-kind",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-bessel",
+      "concept": "bessel-functions-of-the-second-kind",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-bessel",
+      "concept": "partial-sum",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-bessel",
+      "concept": "general-solution-of-bessels-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-7-3-4",
+      "concept": "bessel-equation",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-7-3-4",
+      "concept": "general-solution-of-bessels-equation",
+      "verb": "uses"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "frobenius-example",
+      "what": "the equation as a single series",
+      "source": "Differential Equations for Engineers, 7.3 Singular points and the method of Frobenius, Example 7.3.2",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "\\ky = \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}"
+            },
+            {
+              "text": "A power series is differentiated term by term, and $\\frac{d}{dx}\\, x^{k+\\kr} = (k+\\kr)\\,x^{k+\\kr-1}$.",
+              "src": "7.1"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{y}{\\kyprime} = \\mk{s}{\\Bigl(\\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}\\Bigr)'}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{y}{\\kyprime} = \\mk{s}{\\sum_{k=0}^\\infty (k+\\kr)\\, \\ka_k x^{k+\\kr-1}}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "Example 7.3.2"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "A power series is differentiated term by term, and $\\frac{d}{dx}\\, x^{k+\\kr} = (k+\\kr)\\,x^{k+\\kr-1}$.",
+              "src": "7.1"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{y}{\\kydprime} = \\mk{s}{\\Bigl(\\sum_{k=0}^\\infty (k+\\kr)\\, \\ka_k x^{k+\\kr-1}\\Bigr)'}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{y}{\\kydprime} = \\mk{s}{\\sum_{k=0}^\\infty (k+\\kr)\\,(k+\\kr-1)\\, \\ka_k x^{k+\\kr-2}}",
+              "uses": [
+                1
+              ]
+            }
+          ],
+          "src": "Example 7.3.2"
+        },
+        {
+          "assumes": [
+            {
+              "tex": "4 x^2 \\kydprime - 4 x^2 \\kyprime + (1-2x)\\ky = 0"
+            },
+            {
+              "step": 0
+            },
+            {
+              "step": 1
+            },
+            {
+              "tex": "\\ky = \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}"
+            },
+            {
+              "text": "A series is reindexed by shifting $k$: $\\sum_{k=0}^\\infty c_k\\, x^{k+\\kr+1} = \\sum_{k=1}^\\infty c_{k-1}\\, x^{k+\\kr}$.",
+              "src": "7.1"
+            }
+          ],
+          "then": {
+            "tex": "0 = \\mk{A}{4x^2\\kydprime} - \\mk{B}{4x^2\\kyprime} + \\mk{C}{(1-2x)\\ky}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "0 = \\mk{A}{4x^2 \\Bigl( \\sum_{k=0}^\\infty (k+\\kr)\\,(k+\\kr-1) \\, \\ka_k x^{k+\\kr-2} \\Bigr)} - \\mk{B}{4x^2 \\Bigl( \\sum_{k=0}^\\infty (k+\\kr) \\, \\ka_k x^{k+\\kr-1} \\Bigr)} + \\mk{C}{(1-2x) \\Bigl( \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr} \\Bigr)}",
+              "uses": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "tex": "0 = \\mk{A}{\\sum_{k=0}^\\infty 4 (k+\\kr)\\,(k+\\kr-1) \\, \\ka_k x^{k+\\kr}} - \\mk{B}{\\sum_{k=0}^\\infty 4 (k+\\kr) \\, \\ka_k x^{k+\\kr+1}} + \\mk{C1}{\\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}} - \\mk{C2}{\\sum_{k=0}^\\infty 2\\ka_k x^{k+\\kr+1}}",
+              "uses": [],
+              "map": {
+                "C": [
+                  "C1",
+                  "C2"
+                ]
+              }
+            },
+            {
+              "tex": "0 = \\mk{A}{\\sum_{k=0}^\\infty 4 (k+\\kr)\\,(k+\\kr-1) \\, \\ka_k x^{k+\\kr}} - \\mk{B}{\\sum_{k=1}^\\infty 4 (k+\\kr-1) \\, \\ka_{k-1} x^{k+\\kr}} + \\mk{C1}{\\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}} - \\mk{C2}{\\sum_{k=1}^\\infty 2\\ka_{k-1} x^{k+\\kr}}",
+              "uses": [
+                4
+              ]
+            },
+            {
+              "tex": "0 = \\mk{z}{4\\kr(\\kr-1) \\, \\ka_0 x^{\\kr} + \\ka_0 x^{\\kr}} + \\mk{S}{\\sum_{k=1}^\\infty \\Bigl( 4 (k+\\kr)\\,(k+\\kr-1) \\, \\ka_k - 4 (k+\\kr-1) \\, \\ka_{k-1} + \\ka_k - 2\\ka_{k-1} \\Bigr) \\, x^{k+\\kr}}",
+              "uses": [],
+              "map": {
+                "A": [
+                  "z",
+                  "S"
+                ],
+                "B": "S",
+                "C1": [
+                  "z",
+                  "S"
+                ],
+                "C2": "S"
+              }
+            },
+            {
+              "tex": "0 = \\mk{z}{\\bigl( 4\\kr(\\kr-1) + 1 \\bigr) \\, \\ka_0 x^{\\kr}} + \\mk{S}{\\sum_{k=1}^\\infty \\Bigl( \\bigl( 4 (k+\\kr)\\,(k+\\kr-1) + 1 \\bigr) \\, \\ka_k - \\bigl( 4 (k+\\kr-1) + 2 \\bigr) \\, \\ka_{k-1} \\Bigr) \\, x^{k+\\kr}}",
+              "uses": []
+            }
+          ],
+          "src": "Example 7.3.2"
+        }
+      ]
+    },
+    {
+      "id": "frobenius-second-solution",
+      "what": "the second solution of Example 7.3.2",
+      "source": "Differential Equations for Engineers, 7.3 Singular points and the method of Frobenius, the second solution of 4x²y″ − 4x²y′ + (1 − 2x)y = 0, worked by the reader",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "The derivative of a product: $(fg)' = f'g + fg'$.",
+              "src": "Calculus, 3.3 Product Rule"
+            },
+            {
+              "tex": "(\\ln x)' = \\frac{1}{x}",
+              "src": "Calculus, 3.9"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{d}{\\bigl((\\ln x)\\kyone\\bigr)'} = \\mk{a}{(\\ln x)'\\,\\kyone} + \\mk{b}{(\\ln x)\\,\\kyoneprime}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{d}{\\bigl((\\ln x)\\kyone\\bigr)'} = \\mk{a}{\\frac{\\kyone}{x}} + \\mk{b}{(\\ln x)\\,\\kyoneprime}",
+              "uses": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "The derivative of a product: $(fg)' = f'g + fg'$.",
+              "src": "Calculus, 3.3 Product Rule"
+            },
+            {
+              "tex": "(\\ln x)' = \\frac{1}{x}",
+              "src": "Calculus, 3.9"
+            },
+            {
+              "tex": "\\Bigl(\\frac{1}{x}\\Bigr)' = -\\frac{1}{x^2}",
+              "src": "Calculus, 3.3 Power Rule"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{d}{\\bigl((\\ln x)\\kyone\\bigr)''} = \\mk{a}{\\Bigl(\\frac{\\kyone}{x}\\Bigr)'} + \\mk{b}{\\bigl((\\ln x)\\,\\kyoneprime\\bigr)'}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{d}{\\bigl((\\ln x)\\kyone\\bigr)''} = \\mk{a}{\\frac{\\kyoneprime}{x} - \\frac{\\kyone}{x^2}} + \\mk{b}{\\frac{\\kyoneprime}{x} + (\\ln x)\\,\\kyonedprime}",
+              "uses": [
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{d}{\\bigl((\\ln x)\\kyone\\bigr)''} = \\mk{n}{-\\frac{\\kyone}{x^2}} + \\mk{m}{\\frac{2\\kyoneprime}{x}} + \\mk{b}{(\\ln x)\\,\\kyonedprime}",
+              "uses": [],
+              "map": {
+                "a": [
+                  "n",
+                  "m"
+                ],
+                "b": [
+                  "m",
+                  "b"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "assumes": [
+            {
+              "text": "Write $L[\\ky]$ for the left-hand side $4x^2\\kydprime - 4x^2\\kyprime + (1-2x)\\ky$ of the equation."
+            },
+            {
+              "step": 0
+            },
+            {
+              "step": 1
+            },
+            {
+              "text": "$\\kyone = x^{1/2}e^x$ solves the equation: $4x^2\\kyonedprime - 4x^2\\kyoneprime + (1-2x)\\kyone = 0$.",
+              "src": "Example 7.3.2"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{p}{4x^2\\bigl((\\ln x)\\kyone\\bigr)''} - \\mk{q}{4x^2\\bigl((\\ln x)\\kyone\\bigr)'} + \\mk{r}{(1-2x)(\\ln x)\\kyone}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{p}{4x^2\\Bigl(-\\frac{\\kyone}{x^2} + \\frac{2\\kyoneprime}{x} + (\\ln x)\\,\\kyonedprime\\Bigr)} - \\mk{q}{4x^2\\Bigl(\\frac{\\kyone}{x} + (\\ln x)\\,\\kyoneprime\\Bigr)} + \\mk{r}{(1-2x)(\\ln x)\\kyone}",
+              "uses": [
+                1,
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{n}{-4\\kyone + 8x\\kyoneprime - 4x\\kyone} + \\mk{g}{(\\ln x)\\bigl(4x^2\\kyonedprime - 4x^2\\kyoneprime + (1-2x)\\kyone\\bigr)}",
+              "uses": [],
+              "map": {
+                "p": [
+                  "n",
+                  "g"
+                ],
+                "q": [
+                  "n",
+                  "g"
+                ],
+                "r": "g"
+              }
+            },
+            {
+              "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{n}{-4\\kyone + 8x\\kyoneprime - 4x\\kyone} + \\mk{g}{(\\ln x) \\cdot 0}",
+              "uses": [
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{n}{-4\\kyone + 8x\\kyoneprime - 4x\\kyone}",
+              "uses": []
+            }
+          ]
+        },
+        {
+          "assumes": [
+            {
+              "step": 2
+            },
+            {
+              "tex": "\\kyone = x^{1/2}e^x = \\sum_{k=0}^\\infty \\frac{1}{k!}\\, x^{k+1/2}",
+              "src": "Example 7.3.2"
+            },
+            {
+              "text": "A power series is differentiated term by term, and $\\frac{d}{dx}\\, x^{k+1/2} = (k+\\tfrac{1}{2})\\,x^{k-1/2}$.",
+              "src": "7.1"
+            },
+            {
+              "text": "A series is reindexed by shifting $k$: $\\sum_{k=0}^\\infty c_k\\, x^{k+3/2} = \\sum_{k=1}^\\infty c_{k-1}\\, x^{k+1/2}$.",
+              "src": "7.1"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{n}{-4\\kyone + 8x\\kyoneprime - 4x\\kyone}",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{a}{-4\\sum_{k=0}^\\infty \\frac{1}{k!}\\, x^{k+1/2}} + \\mk{b}{8\\sum_{k=0}^\\infty \\frac{k+1/2}{k!}\\, x^{k+1/2}} - \\mk{c}{4\\sum_{k=0}^\\infty \\frac{1}{k!}\\, x^{k+3/2}}",
+              "uses": [
+                1,
+                2
+              ],
+              "map": {
+                "n": [
+                  "a",
+                  "b",
+                  "c"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{a}{-4\\sum_{k=0}^\\infty \\frac{1}{k!}\\, x^{k+1/2}} + \\mk{b}{8\\sum_{k=0}^\\infty \\frac{k+1/2}{k!}\\, x^{k+1/2}} - \\mk{c}{4\\sum_{k=1}^\\infty \\frac{1}{(k-1)!}\\, x^{k+1/2}}",
+              "uses": [
+                3
+              ]
+            },
+            {
+              "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{a}{-4\\sum_{k=0}^\\infty \\frac{1}{k!}\\, x^{k+1/2}} + \\mk{b}{8\\sum_{k=0}^\\infty \\frac{k+1/2}{k!}\\, x^{k+1/2}} - \\mk{c}{4\\sum_{k=0}^\\infty \\frac{k}{k!}\\, x^{k+1/2}}",
+              "uses": [],
+              "cap": "Since $\\frac{1}{(k-1)!} = \\frac{k}{k!}$, and the term this adds at $k = 0$ is zero."
+            },
+            {
+              "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{s}{\\sum_{k=0}^\\infty \\frac{-4 + 8(k+1/2) - 4k}{k!}\\, x^{k+1/2}}",
+              "uses": [],
+              "map": {
+                "a": "s",
+                "b": "s",
+                "c": "s"
+              }
+            },
+            {
+              "tex": "\\mk{L}{L\\bigl[(\\ln x)\\kyone\\bigr]} = \\mk{s}{\\sum_{k=1}^\\infty \\frac{4k}{k!}\\, x^{k+1/2}}",
+              "uses": []
+            }
+          ]
+        },
+        {
+          "assumes": [
+            {
+              "tex": "L\\Bigl[\\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}\\Bigr] = \\bigl( 4\\kr(\\kr-1) + 1 \\bigr) \\ka_0 x^{\\kr} + \\sum_{k=1}^\\infty \\Bigl( \\bigl( 4 (k+\\kr)(k+\\kr-1) + 1 \\bigr) \\ka_k - \\bigl( 4 (k+\\kr-1) + 2 \\bigr) \\ka_{k-1} \\Bigr) x^{k+\\kr}",
+              "src": "Example 7.3.2"
+            },
+            {
+              "tex": "\\kr = \\tfrac{1}{2}",
+              "src": "Example 7.3.2"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{L\\Bigl[\\sum_{k=0}^\\infty \\kb_k x^{k+\\kr}\\Bigr]} = \\mk{z}{\\bigl( 4\\kr(\\kr-1) + 1 \\bigr) \\kb_0 x^{\\kr}} + \\mk{S}{\\sum_{k=1}^\\infty \\Bigl( \\bigl( 4 (k+\\kr)(k+\\kr-1) + 1 \\bigr) \\kb_k - \\bigl( 4 (k+\\kr-1) + 2 \\bigr) \\kb_{k-1} \\Bigr) x^{k+\\kr}}",
+            "uses": [
+              0
+            ],
+            "why": "The single series of the example, with $\\kb_k$ in place of $\\ka_k$."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{L\\Bigl[\\sum_{k=0}^\\infty \\kb_k x^{k+1/2}\\Bigr]} = \\mk{z}{\\bigl( 4\\cdot\\tfrac{1}{2}\\cdot\\bigl(-\\tfrac{1}{2}\\bigr) + 1 \\bigr) \\kb_0 x^{1/2}} + \\mk{S}{\\sum_{k=1}^\\infty \\Bigl( \\bigl( 4 \\bigl(k+\\tfrac{1}{2}\\bigr)\\bigl(k-\\tfrac{1}{2}\\bigr) + 1 \\bigr) \\kb_k - \\bigl( 4 \\bigl(k-\\tfrac{1}{2}\\bigr) + 2 \\bigr) \\kb_{k-1} \\Bigr) x^{k+1/2}}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{L}{L\\Bigl[\\sum_{k=0}^\\infty \\kb_k x^{k+1/2}\\Bigr]} = \\mk{z}{0} + \\mk{S}{\\sum_{k=1}^\\infty \\bigl( 4k^2 \\kb_k - 4k\\, \\kb_{k-1} \\bigr) x^{k+1/2}}",
+              "uses": []
+            },
+            {
+              "tex": "\\mk{L}{L\\Bigl[\\sum_{k=0}^\\infty \\kb_k x^{k+1/2}\\Bigr]} = \\mk{S}{\\sum_{k=1}^\\infty \\bigl( 4k^2 \\kb_k - 4k\\, \\kb_{k-1} \\bigr) x^{k+1/2}}",
+              "uses": []
+            }
+          ]
+        },
+        {
+          "assumes": [
+            {
+              "tex": "\\kytwo = \\sum_{k=0}^\\infty \\kb_k x^{k+1/2} + (\\ln x)\\kyone",
+              "src": "Example 7.3.2"
+            },
+            {
+              "text": "$\\kytwo$ is to solve the equation: $L[\\kytwo] = 0$."
+            },
+            {
+              "text": "$L$ is linear: $L[u + v] = L[u] + L[v]$.",
+              "src": "2.1"
+            },
+            {
+              "step": 3
+            },
+            {
+              "step": 4
+            },
+            {
+              "text": "A series $\\sum c_k x^{k+1/2}$ is zero for all $x > 0$ only when every coefficient $c_k$ is zero.",
+              "src": "Example 7.3.2"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{z}{0} = \\mk{L}{L[\\kytwo]}",
+            "uses": [
+              1
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{z}{0} = \\mk{F}{L\\Bigl[\\sum_{k=0}^\\infty \\kb_k x^{k+1/2}\\Bigr]} + \\mk{G}{L\\bigl[(\\ln x)\\kyone\\bigr]}",
+              "uses": [
+                0,
+                2
+              ],
+              "map": {
+                "L": [
+                  "F",
+                  "G"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{z}{0} = \\mk{F}{\\sum_{k=1}^\\infty \\bigl( 4k^2 \\kb_k - 4k\\, \\kb_{k-1} \\bigr) x^{k+1/2}} + \\mk{G}{\\sum_{k=1}^\\infty \\frac{4k}{k!}\\, x^{k+1/2}}",
+              "uses": [
+                3,
+                4
+              ]
+            },
+            {
+              "tex": "\\mk{z}{0} = \\mk{S}{\\sum_{k=1}^\\infty \\Bigl( 4k^2 \\kb_k - 4k\\, \\kb_{k-1} + \\frac{4k}{k!} \\Bigr) x^{k+1/2}}",
+              "uses": [],
+              "map": {
+                "F": "S",
+                "G": "S"
+              }
+            },
+            {
+              "tex": "\\mk{z}{0} = \\mk{S}{4k^2 \\kb_k - 4k\\, \\kb_{k-1} + \\frac{4k}{k!}}, \\qquad k = 1, 2, 3, \\ldots",
+              "uses": [
+                5
+              ]
+            },
+            {
+              "tex": "\\mk{b}{\\kb_k} = \\mk{S}{\\frac{\\kb_{k-1}}{k} - \\frac{1}{k \\cdot k!}}",
+              "uses": []
+            }
+          ],
+          "src": "Example 7.3.2"
+        },
+        {
+          "assumes": [
+            {
+              "step": 5
+            }
+          ],
+          "then": {
+            "tex": "\\mk{b}{\\kb_k} = \\mk{S}{\\frac{\\kb_{k-1}}{k} - \\frac{1}{k \\cdot k!}}",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{b1}{\\kb_1} = \\mk{r1}{\\kb_0 - 1}, \\qquad \\mk{b2}{\\kb_2} = \\mk{r2}{\\frac{2\\kb_1 - 1}{4}}, \\qquad \\mk{b3}{\\kb_3} = \\mk{r3}{\\frac{6\\kb_2 - 1}{18}}",
+              "uses": [],
+              "map": {
+                "b": [
+                  "b1",
+                  "b2",
+                  "b3"
+                ],
+                "S": [
+                  "r1",
+                  "r2",
+                  "r3"
+                ]
+              }
+            }
+          ],
+          "src": "Example 7.3.2"
+        }
+      ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-frobenius",
+      "kind": "book",
+      "number": "43",
+      "html": "Named after the German mathematician <a href=\"http://en.wikipedia.org/wiki/Ferdinand_Georg_Frobenius\">Ferdinand Georg Frobenius</a> (1849–1917)."
+    },
+    {
+      "id": "fn-neuringer",
+      "kind": "book",
+      "number": "44",
+      "html": "See Joseph L. Neuringer, <em>The Frobenius method for complex roots of the indicial equation</em>, International Journal of Mathematical Education in Science and Technology, Volume 9, Issue 1, 1978, 71–77."
+    },
+    {
+      "id": "fn-bessel",
+      "kind": "book",
+      "number": "45",
+      "html": "Named after the German astronomer and mathematician <a href=\"http://en.wikipedia.org/wiki/Friedrich_Bessel\">Friedrich Wilhelm Bessel</a> (1784–1846)."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e1",
+      "source_id": "7.3.1",
+      "source_number": "7.3.1",
+      "kind": "inline-exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "eq-bessel-y1"
+      },
+      "cite": "bessel-indicial",
+      "prompt": "<ol type=\"a\"><li>Verify that the indicial equation of Bessel’s equation of order $p$ is $(\\kr-p)(\\kr+p)=0$.</li><li>Suppose $p$ is not an integer. Carry out the computation to find the solutions $\\kyone$ and $\\kytwo$ above.</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "a) Put $\\ky = \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}$ into $x^2\\kydprime + x\\kyprime + (x^2 - p^2)\\ky$. The part $x^2\\kydprime + x\\kyprime - p^2\\ky$ is $\\sum_{k=0}^\\infty \\bigl((k+\\kr)(k+\\kr-1) + (k+\\kr) - p^2\\bigr)\\ka_k x^{k+\\kr} = \\sum_{k=0}^\\infty \\bigl((k+\\kr)^2 - p^2\\bigr)\\ka_k x^{k+\\kr}$, while $x^2\\ky = \\sum_{k=2}^\\infty \\ka_{k-2} x^{k+\\kr}$ starts two powers higher. The lowest power $x^{\\kr}$ therefore carries $\\bigl(\\kr(\\kr-1) + \\kr - p^2\\bigr)\\ka_0 = (\\kr-p)(\\kr+p)\\ka_0$, and with $\\ka_0 \\neq 0$ the indicial equation is $(\\kr-p)(\\kr+p) = 0$. b) The power $x^{1+\\kr}$ gives $\\bigl((1+\\kr)^2 - p^2\\bigr)\\ka_1 = 0$, and each power $x^{k+\\kr}$ with $k \\ge 2$ gives $\\bigl((k+\\kr)^2 - p^2\\bigr)\\ka_k + \\ka_{k-2} = 0$. For $\\kr = p$, $(k+p)^2 - p^2 = k(k+2p)$, so $(1+2p)\\ka_1 = 0$ and $\\ka_k = -\\frac{\\ka_{k-2}}{k(k+2p)}$. Take $\\ka_1 = 0$ (it is forced unless $1 + 2p = 0$, and may then be chosen zero); then every odd coefficient is zero. For the even ones, $\\ka_{2k} = -\\frac{\\ka_{2k-2}}{2k(2k+2p)} = -\\frac{\\ka_{2k-2}}{2^2 k(k+p)}$, so with $\\ka_0 = 1$, $\\ka_{2k} = \\frac{(-1)^k}{2^{2k} k!\\,(k+p)(k-1+p)\\cdots(1+p)}$, and $\\kyone = x^p \\sum_{k=0}^\\infty \\ka_{2k} x^{2k}$ is the series above. For $\\kr = -p$ the same steps run with $-p$ in place of $p$; the divisors $k(k-p)$ never vanish because $p$ is not an integer, and they give $\\kytwo$. Check: SymPy reproduces the coefficient of every power through $x^{7+\\kr}$, and the $\\kyone$ series divided by $2^p\\kGamma(1+p)$ gives $\\kJ_{1/3}(3) = -0.0449638$ and $\\kJ_{1/2}(3) = 0.0650082$, the values the software's Bessel functions give."
+      }
+    },
+    {
+      "id": "e2",
+      "source_id": "7.3.2",
+      "source_number": "7.3.2",
+      "kind": "inline-exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "eq-gamma-products"
+      },
+      "cite": "eq-gamma-products",
+      "prompt": "<p>Verify the identities above using $\\kGamma(x+1) = x \\kGamma(x)$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Take $x = k+p$ in $\\kGamma(x+1) = x\\kGamma(x)$: $\\kGamma(k+p+1) = (k+p)\\kGamma(k+p)$. Take $x = k-1+p$: $\\kGamma(k+p) = (k-1+p)\\kGamma(k-1+p)$, so $\\kGamma(k+p+1) = (k+p)(k-1+p)\\kGamma(k-1+p)$. Each use of the property peels off one factor and lowers the argument by one, so after $k$ uses the argument is down to $1+p$: $\\kGamma(k+p+1) = (k+p)(k-1+p)\\cdots(2+p)(1+p)\\kGamma(1+p)$. The second identity is the same computation with $-p$ in place of $p$, since the property holds wherever $\\kGamma$ is defined. Check: for $k = 3$, $\\kGamma(4+p) - (3+p)(2+p)(1+p)\\kGamma(1+p)$ simplifies to $0$ in SymPy."
+      }
+    },
+    {
+      "id": "e3",
+      "source_id": "7.3.3",
+      "source_number": "7.3.3",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "frobenius-steps",
+      "prompt": "<p>Find a particular (Frobenius-type) solution of $x^2 \\kydprime + x \\kyprime + (1+x) \\ky = 0$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Put $\\ky = \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}$ into the equation. The part $x^2\\kydprime + x\\kyprime + \\ky$ is $\\sum_{k=0}^\\infty \\bigl((k+\\kr)^2 + 1\\bigr)\\ka_k x^{k+\\kr}$ and $x\\ky = \\sum_{k=1}^\\infty \\ka_{k-1} x^{k+\\kr}$, so the lowest power gives the indicial equation $\\kr^2 + 1 = 0$, with the complex roots $\\kr = \\pm i$: case (vi). For $k \\ge 1$, $\\bigl((k+\\kr)^2 + 1\\bigr)\\ka_k + \\ka_{k-1} = 0$; with $\\kr = i$, $(k+i)^2 + 1 = k(k+2i)$, so $\\ka_k = -\\frac{\\ka_{k-1}}{k(k+2i)}$. With $\\ka_0 = 1$: $\\ka_1 = -\\frac{1}{5} + \\frac{2}{5}i$, $\\ka_2 = -\\frac{1}{40} - \\frac{3}{40}i$, $\\ka_3 = \\frac{3}{520} + \\frac{7}{1560}i$, and so on. As $x^{i} = e^{i\\ln x} = \\cos(\\ln x) + i\\sin(\\ln x)$, the real part of $x^{i}\\sum_{k=0}^\\infty \\ka_k x^k$ is a real solution for $x > 0$: $\\ky = \\cos(\\ln x)\\Bigl(1 - \\frac{x}{5} - \\frac{x^2}{40} + \\cdots\\Bigr) - \\sin(\\ln x)\\Bigl(\\frac{2x}{5} - \\frac{3x^2}{40} + \\cdots\\Bigr)$ (the imaginary part is a second one). Summed to 14 terms, this real part satisfies the equation to within $10^{-15}$ at $x = 0.5$ and $x = 2$."
+      }
+    },
+    {
+      "id": "e4",
+      "source_id": "7.3.4",
+      "source_number": "7.3.4",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "frobenius-steps",
+      "prompt": "<p>Find a particular (Frobenius-type) solution of $x \\kydprime - \\ky = 0$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Put $\\ky = \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}$ in: $x\\kydprime = \\sum_{k=0}^\\infty (k+\\kr)(k+\\kr-1)\\ka_k x^{k+\\kr-1}$ and $\\ky = \\sum_{k=1}^\\infty \\ka_{k-1} x^{k+\\kr-1}$. The lowest power, $x^{\\kr-1}$, gives the indicial equation $\\kr(\\kr-1) = 0$, with roots $1$ and $0$ differing by an integer (case (v)); take the larger, $\\kr = 1$. For $k \\ge 1$, $(k+1)k\\,\\ka_k = \\ka_{k-1}$, so $\\ka_k = \\frac{\\ka_{k-1}}{k(k+1)}$, and with $\\ka_0 = 1$, $\\ka_k = \\frac{1}{k!\\,(k+1)!}$. A Frobenius-type solution is $\\ky = \\sum_{k=0}^\\infty \\frac{x^{k+1}}{k!\\,(k+1)!} = x + \\frac{x^2}{2} + \\frac{x^3}{12} + \\frac{x^4}{144} + \\cdots$. (The root $\\kr = 0$ gives no series of this form: at $k = 1$ it would need $0 \\cdot \\ka_1 = \\ka_0$.) Substituting the first twelve terms back leaves only a term in $x^{12}$."
+      }
+    },
+    {
+      "id": "e5",
+      "source_id": "7.3.5",
+      "source_number": "7.3.5",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "frobenius-steps",
+      "prompt": "<p>Find a particular (Frobenius-type) solution of $\\kydprime +\\frac{1}{x}\\kyprime - x\\ky = 0$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Multiply by $x^2$: $x^2\\kydprime + x\\kyprime - x^3\\ky = 0$. With $\\ky = \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}$, $x^2\\kydprime + x\\kyprime = \\sum_{k=0}^\\infty (k+\\kr)^2\\ka_k x^{k+\\kr}$ and $x^3\\ky = \\sum_{k=3}^\\infty \\ka_{k-3} x^{k+\\kr}$. The indicial equation is $\\kr^2 = 0$, a double root $\\kr = 0$ (case (iv)). Then $\\ka_1 = \\ka_2 = 0$ and $k^2\\ka_k = \\ka_{k-3}$ for $k \\ge 3$, so only every third coefficient survives: $\\ka_{3n} = \\frac{\\ka_{3n-3}}{9n^2}$, and with $\\ka_0 = 1$, $\\ka_{3n} = \\frac{1}{9^n (n!)^2}$. A solution is $\\ky = \\sum_{n=0}^\\infty \\frac{x^{3n}}{9^n (n!)^2} = 1 + \\frac{x^3}{9} + \\frac{x^6}{324} + \\cdots$; substituting the first six terms back leaves only a term in $x^{18}$."
+      }
+    },
+    {
+      "id": "e6",
+      "source_id": "7.3.6",
+      "source_number": "7.3.6",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "frobenius-steps",
+      "prompt": "<p>Find the general solution of $2 x \\kydprime + \\kyprime - x^2 \\ky = 0$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Multiply by $x$: $2x^2\\kydprime + x\\kyprime - x^3\\ky = 0$. With $\\ky = \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}$, $2x^2\\kydprime + x\\kyprime = \\sum_{k=0}^\\infty (k+\\kr)(2k+2\\kr-1)\\ka_k x^{k+\\kr}$ and $x^3\\ky = \\sum_{k=3}^\\infty \\ka_{k-3} x^{k+\\kr}$. The indicial equation is $\\kr(2\\kr-1) = 0$, with roots $\\krone = \\frac{1}{2}$ and $\\krtwo = 0$, which do not differ by an integer (case (iii)). For $k \\ge 1$, $(k+\\kr)(2k+2\\kr-1)\\ka_k = \\ka_{k-3}$ (with $\\ka_{-2} = \\ka_{-1} = 0$), so $\\ka_1 = \\ka_2 = 0$ and only every third coefficient survives. For $\\kr = 0$, $k(2k-1)\\ka_k = \\ka_{k-3}$ gives $\\ka_3 = \\frac{1}{15}$, $\\ka_6 = \\frac{1}{990}$; for $\\kr = \\frac{1}{2}$, $k(2k+1)\\kb_k = \\kb_{k-3}$ gives $\\kb_3 = \\frac{1}{21}$, $\\kb_6 = \\frac{1}{1638}$. The general solution, for $x > 0$, is $\\ky = A\\Bigl(1 + \\frac{x^3}{15} + \\frac{x^6}{990} + \\cdots\\Bigr) + B\\,x^{1/2}\\Bigl(1 + \\frac{x^3}{21} + \\frac{x^6}{1638} + \\cdots\\Bigr)$; substituting either series back leaves only powers beyond those kept."
+      }
+    },
+    {
+      "id": "e7",
+      "source_id": "7.3.7",
+      "source_number": "7.3.7",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "frobenius-steps",
+      "prompt": "<p>Find the general solution of $x^2 \\kydprime - x \\kyprime -\\ky = 0$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "With $\\ky = \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}$ every term keeps its power: $x^2\\kydprime - x\\kyprime - \\ky = \\sum_{k=0}^\\infty \\bigl((k+\\kr)(k+\\kr-1) - (k+\\kr) - 1\\bigr)\\ka_k x^{k+\\kr}$. The indicial equation is $\\kr^2 - 2\\kr - 1 = 0$, so $\\kr = 1 \\pm \\sqrt{2}$, two roots differing by $2\\sqrt{2}$, not an integer (case (iii)). For $k \\ge 1$ the factor $(k+\\kr)^2 - 2(k+\\kr) - 1$ is not zero (that would make $k+\\kr$ another root), so every $\\ka_k$ with $k \\ge 1$ is zero and each series is a single power. The general solution is $\\ky = A x^{1+\\sqrt{2}} + B x^{1-\\sqrt{2}}$ for $x > 0$; each power satisfies the equation exactly."
+      }
+    },
+    {
+      "id": "e8",
+      "source_id": "7.3.8",
+      "source_number": "7.3.8",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "regular-singular",
+      "prompt": "<p>In the following equations classify the point $x=0$ as <em>ordinary</em>, <em>regular singular</em>, or <em>singular but not regular singular</em>.</p><ol type=\"a\"><li>$x^2(1+x^2)\\kydprime+x\\ky=0$</li><li>$x^2\\kydprime+\\kyprime+\\ky=0$</li><li>$x\\kydprime+x^3\\kyprime+\\ky=0$</li><li>$x\\kydprime+x\\kyprime-e^x\\ky=0$</li><li>$x^2\\kydprime+x^2\\kyprime+x^2\\ky=0$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "In each equation $P(0) = 0$, so $x = 0$ is singular, and the two limits $\\lim_{x\\to 0} x\\frac{Q(x)}{P(x)}$ and $\\lim_{x\\to 0} x^2\\frac{R(x)}{P(x)}$ decide. a) Regular singular: $x\\frac{Q}{P} = 0$ and $x^2\\frac{R}{P} = \\frac{x}{1+x^2} \\to 0$. b) Singular but not regular singular: $x\\frac{Q}{P} = \\frac{1}{x}$ has no limit. c) Regular singular: $x\\frac{Q}{P} = x^3 \\to 0$ and $x^2\\frac{R}{P} = x \\to 0$. d) Regular singular: $x\\frac{Q}{P} = x \\to 0$ and $x^2\\frac{R}{P} = -xe^x \\to 0$. e) Regular singular by the definition as stated: $P(0) = 0$, and $x\\frac{Q}{P} = x$ and $x^2\\frac{R}{P} = x^2$ both go to $0$. Dividing the equation through by $x^2$ gives $\\kydprime + \\kyprime + \\ky = 0$, for which $0$ is an ordinary point: the singularity comes only from a factor common to all three coefficients."
+      }
+    },
+    {
+      "id": "e101",
+      "source_id": "7.3.101",
+      "source_number": "7.3.101",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "regular-singular",
+      "prompt": "<p>In the following equations classify the point $x=0$ as <em>ordinary</em>, <em>regular singular</em>, or <em>singular but not regular singular</em>.</p><ol type=\"a\"><li>$\\kydprime+\\ky=0$</li><li>$x^3\\kydprime+(1+x)\\ky=0$</li><li>$x\\kydprime+x^5\\kyprime+\\ky=0$</li><li>$\\sin(x)\\kydprime-\\ky=0$</li><li>$\\cos(x)\\kydprime-\\sin(x)\\ky=0$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a) ordinary, b) singular but not regular singular, c) regular singular, d) regular singular, e) ordinary."
+      }
+    },
+    {
+      "id": "e102",
+      "source_id": "7.3.102",
+      "source_number": "7.3.102",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "frobenius-steps",
+      "prompt": "<p>Find the general solution of $x^2 \\kydprime -\\ky = 0$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\ky = A x^{\\frac{1+\\sqrt{5}}{2}} + B x^{\\frac{1-\\sqrt{5}}{2}}$"
+      }
+    },
+    {
+      "id": "e103",
+      "source_id": "7.3.103",
+      "source_number": "7.3.103",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "frobenius-steps",
+      "prompt": "<p>Find a particular solution of $x^2 \\kydprime +(x-{3}/{4})\\ky = 0$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\ky = x^{3/2} \\sum\\limits_{k=0}^\\infty \\frac{{(-1)}^{k}}{k!\\,(k+2)!} x^k$ (Note that for convenience we did not pick $\\ka_0 = 1$.)"
+      }
+    },
+    {
+      "id": "e104",
+      "source_id": "7.3.104",
+      "source_number": "7.3.104",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "step-iv",
+      "prompt": "<p>Find the general solution of $x^2 \\kydprime - x \\kyprime +\\ky = 0$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\ky = Ax + B x \\ln(x)$"
+      },
+      "tag": "tricky"
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "e1",
+      "concept": "bessel-equation"
+    },
+    {
+      "exercise": "e1",
+      "concept": "indicial-equation"
+    },
+    {
+      "exercise": "e1",
+      "concept": "frobenius-solutions-of-bessels-equation"
+    },
+    {
+      "exercise": "e1",
+      "concept": "method-of-frobenius"
+    },
+    {
+      "exercise": "e2",
+      "concept": "gamma-function"
+    },
+    {
+      "exercise": "e3",
+      "concept": "method-of-frobenius"
+    },
+    {
+      "exercise": "e3",
+      "concept": "indicial-equation"
+    },
+    {
+      "exercise": "e3",
+      "concept": "real-and-imaginary-parts"
+    },
+    {
+      "exercise": "e4",
+      "concept": "method-of-frobenius"
+    },
+    {
+      "exercise": "e4",
+      "concept": "frobenius-type-solution"
+    },
+    {
+      "exercise": "e4",
+      "concept": "indicial-equation"
+    },
+    {
+      "exercise": "e5",
+      "concept": "method-of-frobenius"
+    },
+    {
+      "exercise": "e5",
+      "concept": "frobenius-type-solution"
+    },
+    {
+      "exercise": "e6",
+      "concept": "method-of-frobenius"
+    },
+    {
+      "exercise": "e6",
+      "concept": "general-solution"
+    },
+    {
+      "exercise": "e7",
+      "concept": "method-of-frobenius"
+    },
+    {
+      "exercise": "e7",
+      "concept": "indicial-equation"
+    },
+    {
+      "exercise": "e7",
+      "concept": "general-solution"
+    },
+    {
+      "exercise": "e8",
+      "concept": "regular-singular-point"
+    },
+    {
+      "exercise": "e8",
+      "concept": "singular-point"
+    },
+    {
+      "exercise": "e8",
+      "concept": "ordinary-point"
+    },
+    {
+      "exercise": "e101",
+      "concept": "regular-singular-point"
+    },
+    {
+      "exercise": "e101",
+      "concept": "singular-point"
+    },
+    {
+      "exercise": "e101",
+      "concept": "ordinary-point"
+    },
+    {
+      "exercise": "e102",
+      "concept": "method-of-frobenius"
+    },
+    {
+      "exercise": "e102",
+      "concept": "indicial-equation"
+    },
+    {
+      "exercise": "e102",
+      "concept": "general-solution"
+    },
+    {
+      "exercise": "e103",
+      "concept": "method-of-frobenius"
+    },
+    {
+      "exercise": "e103",
+      "concept": "frobenius-type-solution"
+    },
+    {
+      "exercise": "e103",
+      "concept": "recurrence-relation"
+    },
+    {
+      "exercise": "e104",
+      "concept": "method-of-frobenius"
+    },
+    {
+      "exercise": "e104",
+      "concept": "indicial-equation"
+    },
+    {
+      "exercise": "e104",
+      "concept": "general-solution"
+    }
+  ]
+}

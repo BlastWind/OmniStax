@@ -16,6 +16,7 @@ Task `prep1-ch07` (prep stage one), port 8108, scratch /tmp/claude-0/-home-user-
 - The merge refused the form id `eq-term-by-term-derivative`, already 4.3's: this chapter's renamed **`eq-power-series-term-by-term-derivative`** (on `term-by-term-differentiation-and-integration`). `7.1/plan.md` still names the old id: the 7.1 agent uses the new one.
 - Concept links set (their repeated type overrides removed): 7.1/a, 7.2/a → `power-series-coefficients`; 7.1/S → `partial-sum`; 7.1/ρ → `radius-of-convergence`; 7.1/f → `analytic-function`; 7.3/Γ → `gamma-function`; 7.3/J → `bessel-functions-of-the-first-kind`; 7.3/Y → `bessel-functions-of-the-second-kind`.
 - Whole-book Hasse check: no redundant edge. `ost check diffyqs`: no errors, no warnings.
+- 7.1 Power series (sec-7.1, port 8169, 2026-10-19): built; text.html (opening paragraphs + the book's 5 subsections, 2 theorem notes, 6 examples, 1 book footnote `fn-taylor` numbered 40 by the book's running count), 2 Figures still (7.1 `sim-convergence-interval`: six series on a dropdown, interval, partial sums, dragged probe; 7.2 `sim-taylor-sin`: degree and centre sliders, the stretch within 0.1 bracketed in `error`), 1 derivation (`drv-radius-from-ratio-test`, the L display only), 21 concepts introduced, 118 coverage rows, exercises 0 inline + 11 unkeyed (AI-marked, SymPy-checked) + 6 keyed (SymPy-confirmed); `ost check diffyqs --section 7.1` ok; Playwright light and dark clean. Wanted at chapter level in `7.1/plan.md` (anchors, `error` in the chapter COLOR.md, optional f′/f″ symbols).
 
 ## Next
 

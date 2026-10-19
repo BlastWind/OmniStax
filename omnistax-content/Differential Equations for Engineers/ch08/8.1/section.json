@@ -1,0 +1,717 @@
+{
+ "id": "8.1",
+ "module": "linearization:section",
+ "chapter": "8",
+ "title": "Linearization, critical points, and equilibria",
+ "short": "Linearization and critical points",
+ "lead": "Most phenomena call for <span data-concept=\"nonlinear-differential-equation\">nonlinear equations</span>. This section sets up the <span data-concept=\"planar-autonomous-system\">two-dimensional autonomous system</span> and its <span data-concept=\"phase-portrait\">phase portrait</span>, names its <span data-concept=\"critical-point-of-a-system\">critical points</span> and <span data-concept=\"equilibrium-solution-of-a-system\">equilibrium solutions</span>, and puts in place of the system near a critical point its <span data-concept=\"linearization-of-a-system\">linearization</span>, a linear system whose matrix is the <span data-concept=\"jacobian-matrix\">Jacobian matrix</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 8.1.101–8.1.104 carry the book’s own answers, 8.1.101 and 8.1.103 recomputed with SymPy and found right, 8.1.102’s matching checked against the three fields, with a note under its card reading the answer’s numbering. Exercises 8.1.1–8.1.6, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every critical point and Jacobian matrix checked with SymPy and every claim about trajectories checked numerically first; the sketches are described in words.",
+ "figures": [
+  {
+   "id": "sim-portrait-x2",
+   "kind": "sim",
+   "number": "8.1",
+   "originals": [
+    "/media/ch08/nlin-1b.svg"
+   ],
+   "original_caption": "Phase portrait with some trajectories of x′ = y, y′ = −x + x².",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-linearizations",
+   "kind": "sim",
+   "number": "8.2",
+   "originals": [
+    "/media/ch08/nlin-1b-lin-00-01.svg"
+   ],
+   "original_caption": "Phase diagram with some trajectories of linearizations at the critical points (0,0) (left) and (1,0) (right) of x′ = y, y′ = −x + x².",
+   "widths": [
+    864
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "planar-system",
+   "concept": "planar-autonomous-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "critical-points",
+   "concept": "critical-point-of-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "equilibria",
+   "concept": "equilibrium-solution-of-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "jacobian",
+   "concept": "jacobian-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "linearization-def",
+   "concept": "linearization-of-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-8-1-2",
+   "concept": "finding-critical-points-and-linearizations",
+   "verb": "introduces"
+  },
+  {
+   "span": "intro",
+   "concept": "linear-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "intro",
+   "concept": "nonlinear-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "intro",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum",
+   "concept": "pendulum-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pendulum",
+   "concept": "dependent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-pendulum",
+   "concept": "small-angle-approximation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pendulum-close",
+   "concept": "linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "pendulum-close",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "why-not-solve",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "planar-solutions",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "compare-1-6",
+   "concept": "autonomous-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "compare-1-6",
+   "concept": "system-of-differential-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "vector-equation",
+   "concept": "system-of-differential-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-8-1",
+   "concept": "planar-autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-portrait",
+   "concept": "phase-portrait",
+   "verb": "reinforces"
+  },
+  {
+   "span": "phase-portrait",
+   "concept": "vector-field-of-a-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "phase-portrait",
+   "concept": "trajectory",
+   "verb": "reinforces"
+  },
+  {
+   "span": "phase-portrait",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-1-1",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-1-1",
+   "concept": "second-order-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-1-1",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-1-1",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-1-1",
+   "concept": "planar-autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-portrait-x2",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-portrait-x2",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-portrait-x2",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-portrait-x2",
+   "concept": "equilibrium-solution-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "zoom-regular",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "critical-points",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "critical-points",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "most-complicated",
+   "concept": "critical-point-of-a-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "most-complicated",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "equilibria",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "equilibria",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "two-equilibria",
+   "concept": "equilibrium-solution-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "compare-equilibria",
+   "concept": "equilibrium-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "compare-equilibria",
+   "concept": "equilibrium-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "recall-3-5",
+   "concept": "behavior-of-planar-linear-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "recall-3-5",
+   "concept": "linear-system-of-odes",
+   "verb": "uses"
+  },
+  {
+   "span": "recall-3-5",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "recall-3-5",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "shift",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "shift",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "linearization-def",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "linearization-def",
+   "concept": "linear-system-of-odes",
+   "verb": "uses"
+  },
+  {
+   "span": "linearization-def",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-1-2",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-1-2",
+   "concept": "linearization-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-1-2",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-linearizations",
+   "concept": "linearization-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-linearizations",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-linearizations",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-linearizations",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-linearizations",
+   "concept": "center",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-linearizations",
+   "concept": "saddle-point",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "8.1.1",
+   "source_number": "8.1.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-portrait",
+   "prompt": "<p>Sketch the phase plane vector field for:</p><ol type=\"a\"><li>$\\kxprime=\\kx^2$, $\\kyprime=\\ky^2$,</li><li>$\\kxprime=(\\kx-\\ky)^2$, $\\kyprime=-\\kx$,</li><li>$\\kxprime=e^{\\ky}$, $\\kyprime=e^{\\kx}$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Both components $\\kx^2$ and $\\ky^2$ are never negative, so every arrow points right, up, or up and to the right, and the only critical point is the origin. On the $x$-axis the arrows point straight right, on the $y$-axis straight up, and on the lines $y = \\pm x$ along $(1,1)$; their length grows like the square of the distance from the origin. b) $\\kxprime = (\\kx-\\ky)^2 \\ge 0$, so no arrow points left, and $\\kyprime = -\\kx$, so the arrows point down in the right half-plane and up in the left half-plane. On the line $y = x$ the arrows are vertical (down for $x > 0$, up for $x < 0$); on the $y$-axis they are horizontal, pointing right, with length $y^2$. The only critical point is the origin, where both $x = 0$ and $x = y$. c) $\\kxprime = e^{\\ky} > 0$ and $\\kyprime = e^{\\kx} > 0$ everywhere, so every arrow points up and to the right and there is no critical point. The slope of the arrow at $(x,y)$ is $e^{\\kx}/e^{\\ky} = e^{x-y}$: it is 1 on the line $y = x$, steeper below that line (where $x > y$) and shallower above it. The arrows are long towards the upper right and short towards the lower left."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "8.1.2",
+   "source_number": "8.1.2",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-portrait",
+   "prompt": "<p>Match systems</p><ol type=\"a\"><li>$\\kxprime=\\kx^2$, $\\kyprime=\\ky^2$,</li><li>$\\kxprime=\\kx\\ky$, $\\kyprime=1+\\ky^2$,</li><li>$\\kxprime=\\sin(\\pi \\ky)$, $\\kyprime=\\kx$,</li></ol><p>to the vector fields below. Justify.</p><ol type=\"a\"><li><img src=\"/media/ch08/nlin-exer-xy-1py2.svg\" alt=\"A direction field in the xy-plane where all the arrows seem small and pointing directly upwards along the x-axis. The arrows above the x-axis point upwards and away from the origin and the arrows below the x axis point also roughly upwards and towards the origin.\" width=\"168\"></li><li><img src=\"/media/ch08/nlin-exer-x2-y2.svg\" alt=\"A direction field in the xy-plane where the arrow is zero at the origin, on the x-axis point rightward, on the y-axis point upward. In the first quadrant, the arrows point roughly away from the origin, and in the third quadrant they point roughly towards the origin. In the second quadrant, the arrows start rightwards at the right and slowly turn upwards as we move right. In the fourth quadrant, the arrows start upwards at the bottom and turn rightwards as we move up.\" width=\"168\"></li><li><img src=\"/media/ch08/nlin-exer-sinpiy-x.svg\" alt=\"A direction field in the xy-plane where the arrows seem to go around counterclockwise around two points on the y-axis, one above the origin and one below the origin.\" width=\"168\"></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "System a) is picture b), system b) is picture a), and system c) is picture c). a) $\\kxprime = \\kx^2 \\ge 0$ and $\\kyprime = \\ky^2 \\ge 0$, both zero only at the origin: the arrows point right on the $x$-axis and up on the $y$-axis, away from the origin in the first quadrant and towards it in the third, which is picture b). b) $\\kyprime = 1 + \\ky^2 \\ge 1$ never vanishes, so there is no critical point and every arrow points upward; on the $x$-axis $\\kxprime = \\kx\\ky = 0$, so the arrows there point straight up, and elsewhere they tilt away from the $y$-axis where $y > 0$ (since $xy$ has the sign of $x$) and towards it where $y < 0$: picture a). c) $\\kxprime = \\sin(\\pi\\ky)$ and $\\kyprime = \\kx$ both vanish at the points $(0,k)$ for every integer $k$. At $(0,\\pm 1)$ the Jacobian matrix is $\\left[\\begin{smallmatrix} 0 & -\\pi \\\\ 1 & 0 \\end{smallmatrix}\\right]$, with eigenvalues $\\pm i\\sqrt{\\pi}$, and the arrows go around these two points counterclockwise (at $(1, 1)$ the arrow is $(0, 1)$, straight up), which is picture c)."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "8.1.3",
+   "source_number": "8.1.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-8-1-2",
+   "prompt": "<p>Find the critical points and linearizations of the following systems.</p><ol type=\"a\"><li>$\\kxprime=\\kx^2-\\ky^2$, $\\kyprime=\\kx^2+\\ky^2-1$,</li><li>$\\kxprime=-\\ky$, $\\kyprime=3\\kx+\\ky\\kx^2$,</li><li>$\\kxprime=\\kx^2+\\ky$, $\\kyprime=\\ky^2+\\kx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $x^2 = y^2$ and $x^2 + y^2 = 1$ give $x^2 = y^2 = \\frac{1}{2}$: four critical points $\\bigl(\\pm\\frac{1}{\\sqrt{2}}, \\pm\\frac{1}{\\sqrt{2}}\\bigr)$. The Jacobian matrix is $\\left[\\begin{smallmatrix} 2x & -2y \\\\ 2x & 2y \\end{smallmatrix}\\right]$. At $\\bigl(\\frac{1}{\\sqrt{2}}, \\frac{1}{\\sqrt{2}}\\bigr)$, with $\\ku = \\kx - \\frac{1}{\\sqrt{2}}$, $\\kv = \\ky - \\frac{1}{\\sqrt{2}}$: $\\ku' = \\sqrt{2}\\,\\ku - \\sqrt{2}\\,\\kv$, $\\kv' = \\sqrt{2}\\,\\ku + \\sqrt{2}\\,\\kv$. At $\\bigl(\\frac{1}{\\sqrt{2}}, -\\frac{1}{\\sqrt{2}}\\bigr)$, with $\\ku = \\kx - \\frac{1}{\\sqrt{2}}$, $\\kv = \\ky + \\frac{1}{\\sqrt{2}}$: $\\ku' = \\sqrt{2}\\,\\ku + \\sqrt{2}\\,\\kv$, $\\kv' = \\sqrt{2}\\,\\ku - \\sqrt{2}\\,\\kv$. At $\\bigl(-\\frac{1}{\\sqrt{2}}, \\frac{1}{\\sqrt{2}}\\bigr)$, with $\\ku = \\kx + \\frac{1}{\\sqrt{2}}$, $\\kv = \\ky - \\frac{1}{\\sqrt{2}}$: $\\ku' = -\\sqrt{2}\\,\\ku - \\sqrt{2}\\,\\kv$, $\\kv' = -\\sqrt{2}\\,\\ku + \\sqrt{2}\\,\\kv$. At $\\bigl(-\\frac{1}{\\sqrt{2}}, -\\frac{1}{\\sqrt{2}}\\bigr)$, with $\\ku = \\kx + \\frac{1}{\\sqrt{2}}$, $\\kv = \\ky + \\frac{1}{\\sqrt{2}}$: $\\ku' = -\\sqrt{2}\\,\\ku + \\sqrt{2}\\,\\kv$, $\\kv' = -\\sqrt{2}\\,\\ku - \\sqrt{2}\\,\\kv$. b) $-y = 0$ forces $y = 0$, and then $3x = 0$: the only critical point is $(0,0)$. The Jacobian matrix is $\\left[\\begin{smallmatrix} 0 & -1 \\\\ 3 + 2xy & x^2 \\end{smallmatrix}\\right]$, which is $\\left[\\begin{smallmatrix} 0 & -1 \\\\ 3 & 0 \\end{smallmatrix}\\right]$ at the origin; with $\\ku = \\kx$, $\\kv = \\ky$ the linearization is $\\ku' = -\\kv$, $\\kv' = 3\\ku$. c) $y = -x^2$ and $x = -y^2 = -x^4$, so $x(1 + x^3) = 0$: the critical points are $(0,0)$ and $(-1,-1)$. The Jacobian matrix is $\\left[\\begin{smallmatrix} 2x & 1 \\\\ 1 & 2y \\end{smallmatrix}\\right]$. At $(0,0)$, with $\\ku = \\kx$, $\\kv = \\ky$: $\\ku' = \\kv$, $\\kv' = \\ku$. At $(-1,-1)$, with $\\ku = \\kx + 1$, $\\kv = \\ky + 1$: $\\ku' = -2\\ku + \\kv$, $\\kv' = \\ku - 2\\kv$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "8.1.4",
+   "source_number": "8.1.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linearization-def",
+   "prompt": "<p>For the following systems, verify they have critical point at $(0,0)$, and find the linearization at $(0,0)$.</p><ol type=\"a\"><li>$\\kxprime=\\kx+2\\ky+\\kx^2-\\ky^2$, $\\kyprime=2\\ky-\\kx^2$</li><li>$\\kxprime=-\\ky$, $\\kyprime=\\kx-\\ky^3$</li><li>* $\\kxprime=ax+by+f(x,y)$, $\\kyprime=cx+dy+g(x,y)$, where $f(0,0) = 0$, $g(0,0) = 0$, and all first partial derivatives of $f$ and $g$ are also zero at $(0,0)$, that is, $\\frac{\\partial f}{\\partial x}(0,0) = \\frac{\\partial f}{\\partial y}(0,0) = \\frac{\\partial g}{\\partial x}(0,0) = \\frac{\\partial g}{\\partial y}(0,0) = 0$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) At $(0,0)$ both right-hand sides are $0$, so the origin is a critical point. The Jacobian matrix is $\\left[\\begin{smallmatrix} 1 + 2x & 2 - 2y \\\\ -2x & 2 \\end{smallmatrix}\\right]$, which is $\\left[\\begin{smallmatrix} 1 & 2 \\\\ 0 & 2 \\end{smallmatrix}\\right]$ at the origin: the linearization is $\\ku' = \\ku + 2\\kv$, $\\kv' = 2\\kv$. b) $-0 = 0$ and $0 - 0^3 = 0$, so the origin is a critical point. The Jacobian matrix is $\\left[\\begin{smallmatrix} 0 & -1 \\\\ 1 & -3y^2 \\end{smallmatrix}\\right]$, which is $\\left[\\begin{smallmatrix} 0 & -1 \\\\ 1 & 0 \\end{smallmatrix}\\right]$ at the origin: the linearization is $\\ku' = -\\kv$, $\\kv' = \\ku$. c) At the origin $ax + by + f(x,y) = f(0,0) = 0$ and $cx + dy + g(x,y) = g(0,0) = 0$, so it is a critical point. The Jacobian matrix at the origin is $\\left[\\begin{smallmatrix} a + \\frac{\\partial f}{\\partial x}(0,0) & b + \\frac{\\partial f}{\\partial y}(0,0) \\\\ c + \\frac{\\partial g}{\\partial x}(0,0) & d + \\frac{\\partial g}{\\partial y}(0,0) \\end{smallmatrix}\\right] = \\left[\\begin{smallmatrix} a & b \\\\ c & d \\end{smallmatrix}\\right]$, since the partial derivatives of $f$ and $g$ vanish there: the linearization is $\\ku' = a\\ku + b\\kv$, $\\kv' = c\\ku + d\\kv$, the linear part of the system with the terms $f$ and $g$ dropped."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "8.1.5",
+   "source_number": "8.1.5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "most-complicated",
+   "prompt": "<p>Take $\\kxprime=(\\kx-\\ky)^2$, $\\kyprime=(\\kx+\\ky)^2$.</p><ol type=\"a\"><li>Find the set of critical points.</li><li>Sketch a phase diagram and describe the behavior near the critical point(s).</li><li>Find the linearization. Is it helpful in understanding the system?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $(x - y)^2 = 0$ and $(x + y)^2 = 0$ force $x = y$ and $x = -y$, so the only critical point is $(0,0)$. b) Both $\\kxprime$ and $\\kyprime$ are squares, so they are never negative: every solution moves up and to the right, horizontally only on the line $y = -x$ (where $\\kyprime = 0$) and vertically only on the line $y = x$ (where $\\kxprime = 0$). The field is radial only along the line $y = mx$ with $m \\approx 3.383$, the real root of $m^3 - 3m^2 - m - 1 = 0$: on its half in the third quadrant the solution creeps into the origin as $t \\to \\infty$, and on its half in the first quadrant it leaves the origin. The other trajectories come from the lower left, sweep past the origin and go off to the upper right, so the origin is approached from one side and left on the other: it is unstable. c) The Jacobian matrix $\\left[\\begin{smallmatrix} 2(x-y) & -2(x-y) \\\\ 2(x+y) & 2(x+y) \\end{smallmatrix}\\right]$ is the zero matrix at $(0,0)$, so the linearization is $\\ku' = 0$, $\\kv' = 0$: every point would be a critical point and every solution constant. It says nothing about the behavior in b), so it is not helpful."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "8.1.6",
+   "source_number": "8.1.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "most-complicated",
+   "prompt": "<p>Take $\\kxprime=\\kx^2$, $\\kyprime=\\kx^3$.</p><ol type=\"a\"><li>Find the set of critical points.</li><li>Sketch a phase diagram and describe the behavior near the critical point(s).</li><li>Find the linearization. Is it helpful in understanding the system?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $x^2 = 0$ and $x^3 = 0$ hold exactly when $x = 0$: every point $(0, y_0)$ of the $y$-axis is a critical point. b) Away from the $y$-axis $\\kxprime = \\kx^2 > 0$, so solutions move to the right, and $\\frac{dy}{dx} = \\frac{x^3}{x^2} = x$, so the trajectories are the parabolas $y = \\frac{x^2}{2} + C$. With $x(t) = -\\frac{1}{t + C_1}$: on the left half of a parabola ($x < 0$) the solution slides down towards the critical point $(0, C)$ as $t \\to \\infty$ without reaching it; on the right half ($x > 0$) it climbs away from $(0, C)$ and $x$ goes off to infinity in finite time. So every critical point attracts the left half of its parabola and repels the right half. c) The Jacobian matrix is $\\left[\\begin{smallmatrix} 2x & 0 \\\\ 3x^2 & 0 \\end{smallmatrix}\\right]$, the zero matrix at every $(0, y_0)$, so the linearization is $\\ku' = 0$, $\\kv' = 0$ at every critical point. It does not see the motion described in b), so it is not helpful."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "8.1.101",
+   "source_number": "8.1.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-8-1-2",
+   "prompt": "<p>Find the critical points and linearizations of the following systems.</p><ol type=\"a\"><li>$\\kxprime=\\sin(\\pi \\ky)+(\\kx-1)^2$, $\\kyprime=\\ky^2-\\ky$,</li><li>$\\kxprime=\\kx+\\ky+\\ky^2$, $\\kyprime=\\kx$,</li><li>$\\kxprime=(\\kx-1)^2+\\ky$, $\\kyprime=\\kx^2+\\ky$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) Critical points $(1,0)$ and $(1,1)$. At $(1,0)$ using $\\ku=\\kx-1$, $\\kv=\\ky$ the linearization is $\\ku'=\\pi \\kv$, $\\kv'=-\\kv$. At $(1,1)$ using $\\ku=\\kx-1$, $\\kv=\\ky-1$ the linearization is $\\ku'=-\\pi \\kv$, $\\kv'=\\kv$. b) Critical points $(0,0)$ and $(0,-1)$. At $(0,0)$ using $\\ku=\\kx$, $\\kv=\\ky$ the linearization is $\\ku'=\\ku+\\kv$, $\\kv'=\\ku$. At $(0,-1)$ using $\\ku=\\kx$, $\\kv=\\ky+1$ the linearization is $\\ku'=\\ku-\\kv$, $\\kv'=\\ku$. c) Critical point $({1}/{2},{-1}/{4})$. Using $\\ku=\\kx-{1}/{2}$, $\\kv=\\ky+{1}/{4}$ the linearization is $\\ku'=-\\ku+\\kv$, $\\kv'=\\ku+\\kv$."
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "8.1.102",
+   "source_number": "8.1.102",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-portrait",
+   "prompt": "<p>Match systems</p><ol type=\"a\"><li>$\\kxprime=\\ky^2$, $\\kyprime=-\\kx^2$,</li><li>$\\kxprime=\\ky$, $\\kyprime=(\\kx-1)(\\kx+1)$,</li><li>$\\kxprime=\\ky+\\kx^2$, $\\kyprime=-\\kx$,</li></ol><p>to the vector fields below. Justify.</p><ol type=\"a\"><li><img src=\"/media/ch08/nlin-exer-y-xm1xp1.svg\" alt=\"A direction field plot in the xy-plane. On the left of the plot the arrows seem to go clockwise around a point to the left of the origin on the x-axis. Then on the right the arrows seem to go towards a point to the right of the origin along a diagonal line downwards, and away from that point along a diagonal line upwards. On the left side of the plot the arrows are roughly upward, on the top, they are roughly rightwards, on the right, they are roughly upward, and on the bottom, they are roughly leftward.\" width=\"168\"></li><li><img src=\"/media/ch08/nlin-exer-ypx2-mx.svg\" alt=\"A direction field plot in the xy-plane. The arrows seem to be going around the origin clockwise, but not in a perfectly circular way. At the top, the arrows are mostly rightward although being somewhat upward facing on the left and downward facing on the right and they are slightly smaller in the middle of the picture. On the left side of the picture, the arrows are all pointing roughly leftward and upward, although they are smaller on the bottom of the picture. On the right side of the picture, the arrows are pointing roughly rightward and slightly downward being smaller on the bottom of the picture. Along the bottom of the picture from left to right, the arrows start upward and to the left then slowly turn rightward, than downward until they end pointing down and to the right at the bottom right corner.\" width=\"168\"></li><li><img src=\"/media/ch08/nlin-exer-y2-mx2.svg\" alt=\"A direction field plot in the xy-plane. The arrows seem to come from the top left and point down and to the right roughly. They keep going in that direction but almost as if they want to take a detour around the origin. Those that start above the y equals minus x line go in a curve around and above the origin, while those that start below the line take a curve around and below the origin.\" width=\"168\"></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "1) is c), 2) is a), 3) is b)<sup class=\"fn\" data-note=\"c-e102-labels\"></sup>"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "8.1.103",
+   "source_number": "8.1.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-8-1-2",
+   "prompt": "<p>The idea of critical points and linearization works in higher dimensions as well. You simply make the Jacobian matrix bigger by adding more functions and more variables. For the following system of 3 equations find the critical points and their linearizations:</p>$$ \\kxprime = \\kx + z^2, \\qquad \\kyprime = z^2-\\ky, \\qquad z' = z+\\kx^2. $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Critical points are $(0,0,0)$, and $(-1, 1, -1)$. The linearization at the origin using variables $\\ku=\\kx$, $\\kv=\\ky$, $w=z$ is $\\ku' = \\ku$, $\\kv'=-\\kv$, $w' = w$. The linearization at the point $(-1,1,-1)$ using variables $\\ku=\\kx+1$, $\\kv=\\ky-1$, $w=z+1$ is $\\ku'=\\ku-2w$, $\\kv'=-\\kv-2w$, $w'=w-2\\ku$."
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "8.1.104",
+   "source_number": "8.1.104",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "planar-system",
+   "prompt": "<p>Any two-dimensional non-autonomous system $\\kxprime=f(\\kx,\\ky,t)$, $\\kyprime=g(\\kx,\\ky,t)$ can be written as a three-dimensional autonomous system (three equations). Write down this autonomous system using the variables $u$, $v$, $w$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$u' = f(u,v,w)$, $v'=g(u,v,w)$, $w' = 1$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "vector-field-of-a-system"
+  },
+  {
+   "exercise": "e1",
+   "concept": "planar-autonomous-system"
+  },
+  {
+   "exercise": "e1",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "vector-field-of-a-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "planar-autonomous-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e3",
+   "concept": "finding-critical-points-and-linearizations"
+  },
+  {
+   "exercise": "e3",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e3",
+   "concept": "jacobian-matrix"
+  },
+  {
+   "exercise": "e3",
+   "concept": "linearization-of-a-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "finding-critical-points-and-linearizations"
+  },
+  {
+   "exercise": "e4",
+   "concept": "jacobian-matrix"
+  },
+  {
+   "exercise": "e4",
+   "concept": "linearization-of-a-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e5",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e5",
+   "concept": "linearization-of-a-system"
+  },
+  {
+   "exercise": "e5",
+   "concept": "jacobian-matrix"
+  },
+  {
+   "exercise": "e5",
+   "concept": "vector-field-of-a-system"
+  },
+  {
+   "exercise": "e6",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e6",
+   "concept": "linearization-of-a-system"
+  },
+  {
+   "exercise": "e6",
+   "concept": "jacobian-matrix"
+  },
+  {
+   "exercise": "e6",
+   "concept": "trajectory"
+  },
+  {
+   "exercise": "e101",
+   "concept": "finding-critical-points-and-linearizations"
+  },
+  {
+   "exercise": "e101",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e101",
+   "concept": "jacobian-matrix"
+  },
+  {
+   "exercise": "e101",
+   "concept": "linearization-of-a-system"
+  },
+  {
+   "exercise": "e102",
+   "concept": "vector-field-of-a-system"
+  },
+  {
+   "exercise": "e102",
+   "concept": "planar-autonomous-system"
+  },
+  {
+   "exercise": "e102",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e103",
+   "concept": "finding-critical-points-and-linearizations"
+  },
+  {
+   "exercise": "e103",
+   "concept": "jacobian-matrix"
+  },
+  {
+   "exercise": "e103",
+   "concept": "linearization-of-a-system"
+  },
+  {
+   "exercise": "e103",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e104",
+   "concept": "planar-autonomous-system"
+  },
+  {
+   "exercise": "e104",
+   "concept": "autonomous-system"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-jacobi",
+   "kind": "book",
+   "number": "46",
+   "html": "Named for the German mathematician <a href=\"https://en.wikipedia.org/wiki/Carl_Gustav_Jacob_Jacobi\">Carl Gustav Jacob Jacobi</a> (1804–1851)."
+  },
+  {
+   "id": "c-e102-labels",
+   "kind": "correction",
+   "html": "The answer numbers the systems 1), 2), 3), where the exercise letters them a), b), c), the letters of the pictures: system a) is picture c), system b) is picture a), and system c) is picture b). System a) has $\\kxprime \\ge 0$ and $\\kyprime \\le 0$ everywhere, so its arrows all point down and to the right; system b) has a center at $(-1, 0)$ and a saddle at $(1, 0)$; system c) circles the origin clockwise."
+  }
+ ]
+}
