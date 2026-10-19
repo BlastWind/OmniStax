@@ -13,30 +13,30 @@ const smat = (m) => `\\left[\\begin{smallmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} 
 const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \\end{bmatrix}`;
 
 /* Sim (the book's noncommuting pair, A = [1 1; 1 1] and B = [1 0; 0 2]): the product as composition.
-   Two planes side by side at one scale, x₁ and x₂ −6 to 6, 45 units to 1. Left, x⃗ goes through B and then
+   Two planes side by side at one scale, x₁ −5 to 5 and x₂ −6 to 6, 56 units to 1. Left, x⃗ goes through B and then
    through A: the arrow x⃗, the arrow Bx⃗ (faint) and the arrow A(Bx⃗), the two hops between their heads
    curved in the matrix colour and named B and A, and the one hop of AB (dashed, on the other side) from
    the head of x⃗ straight to the same point. Right, the other order: A first, then B, and the one hop of BA.
-   The reader drags x⃗ (on either plane, or on its two sliders, −2 to 2; the default (1.5, 0.5), where no two of
-   the arrows of a plane lie on one line): ABx⃗ = (s, s) with s = x₁ + 2x₂ and BAx⃗ = (u, 2u) with u = x₁ + x₂,
-   which agree only at x⃗ = 0⃗. Every head but BAx⃗'s stays inside the planes at the sliders' extremes (entries
-   at most 6); BAx⃗ = (u, 2u) leaves the top or bottom edge once |u| > 3, and is then drawn to the edge along its
-   own direction, its head hollow there, while the headline and readout give its true entries.
+   The reader drags x⃗ (on either plane, or on its two sliders, −1.5 to 1.5; the default (1, 0.5), where x⃗ and
+   the end of each path lie on different lines): ABx⃗ = (s, s) with s = x₁ + 2x₂ and BAx⃗ = (u, 2u) with
+   u = x₁ + x₂, which agree only at x⃗ = 0⃗. Every head stays inside the planes at the sliders' extremes: x
+   entries at most 4.5 (ABx⃗), y entries at most 6 (BAx⃗ = (3, 6)); a head past an edge would be drawn there
+   along its own direction, hollow.
    Still: a composition has no clock. The arrows are symbolic (vectors, and the mappings drawn as hops). */
 (function () {
-  const d = sim('sim-composition', 770);
+  const d = sim('sim-composition', 900);
   const A = [1, 1, 1, 1], B = [1, 0, 0, 2];
   const AB = [1, 2, 1, 2], BA = [1, 1, 2, 2];
   const ap = (m, v) => [m[0] * v[0] + m[1] * v[1], m[2] * v[0] + m[3] * v[1]];
-  const s1 = ctl(d.controls, { label: 'x_1', cls: '', key: 'x1', min: -2, max: 2, step: 0.1, value: 1.5, unit: '', dec: 1, aria: 'the first entry x₁ of the vector x' });
-  const s2 = ctl(d.controls, { label: 'x_2', cls: '', key: 'x2', min: -2, max: 2, step: 0.1, value: 0.5, unit: '', dec: 1, aria: 'the second entry x₂ of the vector x' });
+  const s1 = ctl(d.controls, { label: 'x_1', cls: '', key: 'x1', min: -1.5, max: 1.5, step: 0.1, value: 1, unit: '', dec: 1, aria: 'the first entry x₁ of the vector x' });
+  const s2 = ctl(d.controls, { label: 'x_2', cls: '', key: 'x2', min: -1.5, max: 1.5, step: 0.1, value: 0.5, unit: '', dec: 1, aria: 'the second entry x₂ of the vector x' });
   const grips = [drag(d, { x: s1, y: s2 }), drag(d, { x: s1, y: s2 })];
   const ro = readout(d);
-  const K = 45, TOP = 150;
+  const K = 56, TOP = 150;
   /* the two planes: the first matrix applied, the second, their product, and the names */
   const PANES = [
-    { ox: 360, first: B, second: A, prod: AB, f: '\\kB', s: '\\kA', fs: 'B', ss: 'A', title: '$\\kA\\kB$: first $\\kB$, then $\\kA$' },
-    { ox: 1040, first: A, second: B, prod: BA, f: '\\kA', s: '\\kB', fs: 'A', ss: 'B', title: '$\\kB\\kA$: first $\\kA$, then $\\kB$' },
+    { ox: 350, first: B, second: A, prod: AB, f: '\\kB', s: '\\kA', fs: 'B', ss: 'A', title: '$\\kA\\kB$: first $\\kB$, then $\\kA$' },
+    { ox: 1050, first: A, second: B, prod: BA, f: '\\kA', s: '\\kB', fs: 'A', ss: 'B', title: '$\\kB\\kA$: first $\\kA$, then $\\kB$' },
   ];
   const matText = (m) => `[${m[0]} ${m[1]}; ${m[2]} ${m[3]}]`;
   let hits = [];
@@ -71,7 +71,7 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
     const taken = [];
     const clash = (b) => taken.some((o) => b.l < o.r + 6 && o.l < b.r + 6 && b.t < o.b + 4 && o.t < b.b + 4);
     /* a name set beside the point it names: out along (ux, uy), stepping further out, then turning, where the slot is taken */
-    const name = (s, px, py, ux, uy, color, size = 22) => {
+    const name = (s, px, py, ux, uy, color, size = 24) => {
       const w = measure(ctx, s, { size, weight: 600, tex: true }) + 12, h = size + 12;
       const turns = [0, 0.9, -0.9, 1.8, -1.8];
       for (const tr of turns) {
@@ -85,15 +85,15 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
       }
     };
     const results = PANES.map((P, pi) => {
-      const box = { l: P.ox - 6 * K, r: P.ox + 6 * K, t: TOP, b: TOP + 12 * K };
-      const ax = axes(ctx, box, [-6, 6], [-6, 6], { xl: 'x_1', yl: 'x_2', nx: 6, ny: 6, fx: (v) => nT(v), fy: (v) => nT(v) });
+      const box = { l: P.ox - 5 * K, r: P.ox + 5 * K, t: TOP, b: TOP + 12 * K };
+      const ax = axes(ctx, box, [-5, 5], [-6, 6], { xl: 'x_1', yl: 'x_2', nx: 5, ny: 6, nice: true, fx: (v) => nT(v), fy: (v) => nT(v) });
       const { X, Y } = ax, O = [X(0), Y(0)];
-      text(ctx, P.title, P.ox, 104, ink, { size: 22, tex: true, align: 'center' });
+      text(ctx, P.title, P.ox, 106, ink, { size: 24, tex: true, align: 'center' });
       const v = ap(P.first, x).map(r1), w = ap(P.second, v).map(r1);
       /* a head past the plane's edge is drawn at the edge, along its own direction */
-      const edge = (p) => { const f = Math.min(1, 6 / Math.max(Math.abs(p[0]), Math.abs(p[1]), 1e-9)); return [p[0] * f, p[1] * f]; };
+      const edge = (p) => { const f = Math.min(1, 5 / Math.max(Math.abs(p[0]), 1e-9), 6 / Math.max(Math.abs(p[1]), 1e-9)); return [p[0] * f, p[1] * f]; };
       const S = (p) => { const q = edge(p); return [X(q[0]), Y(q[1])]; };
-      const pinned = (p) => Math.max(Math.abs(p[0]), Math.abs(p[1])) > 6 + 1e-9;
+      const pinned = (p) => Math.abs(p[0]) > 5 + 1e-9 || Math.abs(p[1]) > 6 + 1e-9;
       const g0 = stagger(k, 0, 3, 0.45), g1 = stagger(k, 1, 3, 0.45), g2 = stagger(k, 2, 3, 0.45);
       const grow = (p, g) => [O[0] + (S(p)[0] - O[0]) * g, O[1] + (S(p)[1] - O[1]) * g];
       const hx = S(x), hv = S(v), hw = S(w);
@@ -101,7 +101,7 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
       [O, hx, hv, hw].forEach(([a, b]) => taken.push({ l: a - 10, r: a + 10, t: b - 10, b: b + 10 }));
       /* the arrows from the origin: first x⃗ after the first matrix (faint), then the end of the two hops, then x⃗ */
       const len = (p) => Math.hypot(p[0], p[1]) > 1e-9;
-      if (len(v)) { const [a, b] = grow(v, g1); arrow(ctx, O[0], O[1], a, b, alpha(vc, 0.6), 3.5); }
+      if (len(v)) { const [a, b] = grow(v, g1); arrow(ctx, O[0], O[1], a, b, alpha(vc, 0.45), 3); }
       if (len(w)) { const [a, b] = grow(w, g2); arrow(ctx, O[0], O[1], a, b, vc, 6); if (pinned(w) && g2 >= 1) F.dot(ctx, a, b, vc, false, 9); }
       if (len(x)) { const [a, b] = grow(x, g0); arrow(ctx, O[0], O[1], a, b, vc, 4); }
       /* the hops: the first matrix, the second, and their product in one step on the other side;

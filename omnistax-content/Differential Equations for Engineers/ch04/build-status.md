@@ -29,7 +29,7 @@ Task `prep1-ch04` (prep stage one), port 8105, scratch `/tmp/claude-0/-home-user
 
 ## Done (2026-10-19, chapter pass, task `pass-ch04`, claude-opus-5-5 low)
 
-- Every `## Wanted at chapter level` applied and recorded in its plan: 155 variables anchors, 90 form anchors, 16 new variables rows, symbol `f_dprime` (\kfdprime) and 4.3's f″ turned to it, 4.2's S_N to \kS_N; 4.10's edges mended and the whole book Hasse-reduced (145 Chapter 4 edges). Config 7 (no name for Example 4.7.1) and 21 (footnotes 15–23, Chapter 5 starts at 24). Hrefs (43, incl. 1.9 and 5.3 into 4.7/4.8) all resolve; Playwright light and dark clean. `ost check diffyqs` no errors; `npm test` 936/936; `astro check` 0 errors. Scratch `scratch/pass-ch04/`.
+- Every `## Wanted at chapter level` applied and recorded in its plan: 146 variables anchors (LOG.md Pass 7 says 155 in error; LOG is not edited by hand), 90 form anchors, 16 new variables rows, symbol `f_dprime` (\kfdprime) and 4.3's f″ turned to it, 4.2's S_N to \kS_N; 4.10's edges mended and the whole book Hasse-reduced (145 Chapter 4 edges). Config 7 (no name for Example 4.7.1) and 21 (footnotes 15–23, Chapter 5 starts at 24). Hrefs (43, incl. 1.9 and 5.3 into 4.7/4.8) all resolve; Playwright light and dark clean. `ost check diffyqs` no errors; `npm test` 936/936; `astro check` 0 errors. Scratch `scratch/pass-ch04/`.
 
 ## Next
 
