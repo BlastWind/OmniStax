@@ -53,3 +53,5 @@ Extra Sims weighed and left out: a forced two-cart Sim for Example 3.9.5 (3.6's 
 - Meanings to widen (`ost meanings` first): `3.9/a_vec` also names the unknown vector of the guess a⃗eᵗ in Example 3.9.3 and of a⃗ cos(ω₀t) in the superposition paragraph, as `b_vec`'s meaning already does for b⃗; the page writes `\kveca` there (same type, so the colour is right either way).
 - Referents `xi-1`, `xi-2`: no `ref` wanted on the rows of ξ_1, ξ_2 (they also name the general coordinates of the section).
 - Concepts: nothing to change; the merged statements and edges fit the page as built.
+
+- Chapter pass 2026-10-19 (pass-ch03): applied: every anchor above (20 forms, 49 variables rows); 3.9/a_vec meaning widened (the guesses a⃗eᵗ and a⃗ cos(ω₀t)); no `ref` on ξ_1, ξ_2; the six exercise-only rows keep no anchor.

@@ -1,7 +1,7 @@
 /* Figures for section 4.8 D’Alembert solution of the wave equation. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.8'] = function (root, F) {
-const { C, PAL, alpha, ctl, choice, select, begin, axes, plot, dot, line, text, label, headline, register, readout, fmt, hover, cycle, pinned, hbracket, space: SP } = F;
+const { C, PAL, alpha, ctl, select, begin, axes, plot, dot, line, text, label, headline, register, readout, fmt, hover, cycle, pinned, hbracket } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const n = (v, dec = 2) => fmt(v, dec).replace('−', '-');
 const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); draw(); ctx.restore(); };
@@ -24,9 +24,8 @@ function poly(ctx, ax, pts, color, w, dash) {
    Starts: Example 4.8.1’s impulse (L = 1, the default, a = 1), Example 4.7.1’s plucked string (L = 2, height 0.1) and
    Exercise 4.7.6’s struck string (L = 1, f = 0, g = −1, the H form). The clock runs t from 0 to 2L, 5 s a loop, so the
    impulse passes the book’s t = 0, 0.2, 0.4, 0.6. Axes x −L/2 to 3L/2, y ±1 (±0.1 for the plucked string), t 0 to 2L.
-   The 3D view (archetype 10, mounted on the first switch) is the surface y(x, t) over 0 < x < L, 0 < t < 2L with the
-   same characteristic lines on it and the current slice; the plucked string’s heights are drawn ×10 there and the
-   z axis says so. The orbit stays above the (x, t) plane (pitch 0.12 to 1.45): the ridges are read from above. */
+   No surface view: the (x, t) plane below already carries the characteristic lines and the interval each point has
+   felt, and the surface of the narrow impulse reads as a row of blades (tried, dropped). */
 (function () {
   const d = sim('sim-dalembert', 800);
   const imp = (z) => (z < 0.45 ? 0 : z < 0.5 ? 20 * (z - 0.45) : z < 0.55 ? 20 * (0.55 - z) : 0);
@@ -34,25 +33,23 @@ function poly(ctx, ax, pts, color, w, dash) {
   const wrapP = (x, L) => { const P = 2 * L; return ((((x + L) % P) + P) % P) - L; };
   const oddExt = (f, L) => (x) => { const w = wrapP(x, L); return w >= 0 ? f(w) : -f(-w); };
   const START = {
-    impulse: { L: 1, ymax: 1, yt: 0.5, F: oddExt(imp, 1), H: null, xp: 0.1, kinks: [-0.5, 0.5], dec: 2, zk: 1,
+    impulse: { L: 1, ymax: 1, yt: 0.5, F: oddExt(imp, 1), H: null, xp: 0.1, kinks: [-0.5, 0.5], dec: 2, 
       what: 'Example 4.8.1’s impulse' },
-    plucked: { L: 2, ymax: 0.1, yt: 0.05, F: oddExt(tri, 2), H: null, xp: 0.5, kinks: [-1, 1], dec: 3, zk: 10,
+    plucked: { L: 2, ymax: 0.1, yt: 0.05, F: oddExt(tri, 2), H: null, xp: 0.5, kinks: [-1, 1], dec: 3, 
       what: 'Example 4.7.1’s plucked string' },
-    struck: { L: 1, ymax: 1, yt: 0.5, F: null, H: (x) => -Math.abs(wrapP(x, 1)), xp: 0.5, kinks: [-1, 0], dec: 2, zk: 1,
+    struck: { L: 1, ymax: 1, yt: 0.5, F: null, H: (x) => -Math.abs(wrapP(x, 1)), xp: 0.5, kinks: [-1, 0], dec: 2, 
       what: 'Exercise 4.7.6’s struck string' },
   };
   const pick = select(d.controls, { label: 'start', key: 'start', value: 'impulse', aria: 'how the string starts', options: [
-    { value: 'impulse', label: 'impulse (Example 4.8.1)' }, { value: 'plucked', label: 'plucked (Example 4.7.1)' }, { value: 'struck', label: 'struck (Exercise 4.7.6)' }],
+    { value: 'impulse', label: 'impulse' }, { value: 'plucked', label: 'plucked string' }, { value: 'struck', label: 'struck string' }],
     onInput: () => { const s = START[pick.value]; xs.range({ min: 0, max: s.L, step: 0.01, value: s.xp, unit: '', dec: 2 }); reset(); } });
-  const view = choice(d.controls, { label: 'view', key: 'view', value: '2d', aria: 'the string and the (x, t) plane, or the surface y(x, t)', ms: 0,
-    options: [{ value: '2d', label: '2D' }, { value: '3d', label: '3D' }] });
   const as = ctl(d.controls, { label: 'a', cls: '', key: 'a', min: 0.5, max: 2, step: 0.05, value: 1, unit: '', dec: 2, detents: [1], onInput: reset });
   const cy = cycle(() => 2 * START[pick.value].L, 1.2);
   function reset() { cy.reset(); }
   const xs = ctl(d.controls, { label: 'x', cls: '', key: 'x', min: 0, max: 1, step: 0.01, value: 0.1, unit: '', dec: 2, detents: [0.1] });
   const ro = readout(d);
   const TOP = { l: 200, r: 1240, t: 104, b: 380 }, BOT = { l: 200, r: 1240, t: 452, b: 736 };
-  let hits = [], S = null, S3 = '', surfKey = '';
+  let hits = [];
   hover(d.stage, () => hits, d.c);
 
   const waves = (s, a) => ({
@@ -65,19 +62,6 @@ function poly(ctx, ax, pts, color, w, dash) {
     s.kinks.forEach((c0) => { for (let k = -4; k <= 4; k++) { const c = c0 + 2 * s.L * k; out.push({ c, dir: 1, p: [[c, 0], [c + a * T, T]] }, { c, dir: -1, p: [[c, 0], [c - a * T, T]] }); } });
     return out;
   };
-  function mount3d(s) {
-    const zt = s.zk === 1 ? 0.5 : 0;
-    S = F.space3d(d, { box: [[0, s.L], [0, 2 * s.L], [-1, 1]], h: 640, pitch: [0.12, 1.45], fit: 2.5, turn: -0.65, tilt: 0.95 });
-    S.set('axes', SP.axes([[0, s.L], [0, 2 * s.L], [-1, 1]], { ticks: [s.L / 2, s.L / 2, zt], names: ['$x$', '$t$', s.zk === 1 ? '$\\ky$' : '$10\\,\\ky$'] }));
-    const w = S.v ? S.v.wrap : [...d.stage.querySelectorAll('canvas')].pop(), bar = d.stage.querySelector('.transport');
-    if (w && bar) d.stage.insertBefore(w, bar);
-    d.c.style.display = 'none'; S3 = pick.value; surfKey = '';
-  }
-  function unmount3d() {
-    const w = S.v ? S.v.wrap : [...d.stage.querySelectorAll('canvas')].pop();
-    S.v?.dispose(); if (w && w !== d.c) w.remove(); S = null; S3 = '';
-    d.c.style.display = '';
-  }
   function draw() {
     const s = START[pick.value], a = as.v, t = cy.now(), T = 2 * s.L, L = s.L;
     const fc = C('function'), cc = C('curve'), pc = C('point'), rc = C('region'), wr = F.ref('wave-right'), wl = F.ref('wave-left');
@@ -95,27 +79,7 @@ function poly(ctx, ax, pts, color, w, dash) {
       tx = `\\ky(x,t) = \\frac{-\\kH(x-at) + \\kH(x+at)}{2a},\\quad \\ky(${n(xp)}, ${n(t)}) = \\frac{-\\kH(${n(xi)}) + \\kH(${n(eta)})}{2 \\cdot ${n(a)}} = \\frac{-${neg(h1)} + ${neg(h2)}}{${n(2 * a)}} = ${n(yv, dec)}`;
     }
     const head = `$t = ${n(t)}$: at $x = ${n(xp)}$ the string has felt only the initial data on $[x - at,\\ x + at] = [${n(xi)},\\ ${n(eta)}]$.`;
-    if (view.value === '3d' && S && S3 !== pick.value) unmount3d();
-    if (view.value === '3d' && !S) mount3d(s);
-    if (view.value === '2d' && S) unmount3d();
-    if (S) {
-      const zk = s.zk, key = `${pick.value}|${a}|${fc}`;
-      if (key !== surfKey) {
-        surfKey = key;
-        S.set('surf', SP.surface((u, v) => [u * L, v * T, zk * y(u * L, v * T)], [0, 1], [0, 1], fc, { n: [160, 320], grid: 0, alpha: 0.9 }));
-        S.set('chars', kinkLines(s, a, T).flatMap((k) => {
-          const [[x0], [x1]] = k.p, lo = Math.max(0, Math.min(x0, x1)), hi = Math.min(L, Math.max(x0, x1));
-          if (hi - lo < 1e-6) return [];
-          const pts = Array.from({ length: 81 }, (_, i) => { const x = lo + ((hi - lo) * i) / 80, tt = (x - k.c) / (k.dir * a); return [x, tt, zk * y(x, tt) + 0.02]; }).filter((p) => p[1] >= 0 && p[1] <= T);
-          return pts.length > 1 ? [{ k: 'line', pts, color: cc, w: 3, name: `the characteristic line x ${k.dir > 0 ? '−' : '+'} at = ${n(k.c)}, along which a corner of the initial data travels` }] : [];
-        }));
-      }
-      const slice = Array.from({ length: 201 }, (_, i) => { const x = (L * i) / 200; return [x, t, zk * y(x, t) + 0.02]; });
-      S.set('slice', [{ k: 'line', pts: slice, color: fc, w: 5, name: `the string at t = ${n(t)}, y(x, ${n(t)})` },
-        { k: 'dot', p: [xp, t, zk * y(xp, t) + 0.02], color: pc, r: 8, name: `the point (x, t) = (${n(xp)}, ${n(t)}), y = ${n(y(xp, t), dec)}` },
-        { k: 'label', s: `$t = ${n(t)}$`, p: [-0.12 * L, t, zk * y(0, t)], color: fc }]);
-      S.headline(head);
-    } else {
+    {
       const { ctx } = begin(d.c);
       const Lm = pick.mix((v) => START[v].L), ym = pick.mix((v) => START[v].ymax), yt = s.yt;
       const top = axes(ctx, TOP, [-Lm / 2, 1.5 * Lm], [-ym, ym], { xl: 'x', yl: 'y', nx: 4, ny: 4, fx: (v) => n(v, Lm < 1.5 ? 1 : 0), fy: (v) => n(v, yt < 0.1 ? 2 : 1) });

@@ -40,3 +40,5 @@ End (Exercises document, kind `exercise`, cited to `tab-3-1`, `summary` or `spir
 ## Wanted at chapter level
 
 Anchors: x → `3.5-eq-3-3`; y → `3.5-eq-3-3`; P → `3.5-plane-intro`; λ → `3.5-eigenvector-line`; v_vec → `3.5-eigenvector-line`. Forms: `eq-planar-system` → `3.5-eq-3-3`; `eq-eigenvector-line-derivative` → `3.5-drv-eigenvector-line`; `eq-center-solutions` → `3.5-eq-center-solutions`; `eq-spiral-source-solutions` → `3.5-eq-spiral-source-solutions`; `eq-spiral-sink-solutions` → `3.5-eq-spiral-sink-solutions`. No concept, edge or glossary change.
+
+- Chapter pass 2026-10-19 (pass-ch03): applied: every anchor above (5 forms, 5 variables rows); no concept or edge change.

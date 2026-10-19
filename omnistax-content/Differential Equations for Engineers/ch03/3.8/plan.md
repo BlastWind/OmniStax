@@ -49,3 +49,5 @@ A truncated-series Sim (number of terms against t) rejected: the text's two tabl
 - Concept fix: the statement of `derivative-of-the-matrix-exponential` ends "Since e^(tP) is a series in powers of P, it also commutes with P: Pe^(tP) = e^(tP)P.", which 3.8 never says (it is 3.9's `eq-exponential-commutes-with-P`); drop that sentence or move it to `integrating-factor-method-for-systems`.
 - Forms' `ktex` (optional): the 3.8 forms carry plain `latex` only; their `ktex` would write `\kA`, `\kP`, `\kI`, `\kB`, `\kD`, `\kE`, `\kEinv`, `\kX`, `\kvecx`, `\kvecb`, `\klambdaone`… as the text does.
 - No glossary words beyond the concepts' `terms` (matrix exponential, nilpotent, diagonalization).
+
+- Chapter pass 2026-10-19 (pass-ch03): applied: every anchor above (21 forms, 20 variables rows); COLOR.md referents line for `column-1`, `column-2` added; the statement of `derivative-of-the-matrix-exponential` loses its last sentence (3.9's commuting fact) via book-rows.json and the merge; the forms already carry `ktex`, nothing to add.

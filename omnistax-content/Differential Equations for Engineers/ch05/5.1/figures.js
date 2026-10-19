@@ -36,8 +36,8 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     const up = axes(ctx, TOP, [0, 7], [-4, 4], { xl: 'x', yl: 'y', nx: 7, ny: 8 });
     plot(ctx, up, Math.tan, fc, { w: 4, poles: [Math.PI / 2, (3 * Math.PI) / 2] });
     plot(ctx, up, (x) => h / x, fc, { w: 5, x: [1e-3, 7] });
-    const xt = 1.22, xh = 5.4;
-    label(ctx, 'tan x', up.X(xt), up.Y(Math.tan(xt)), { side: 'right', color: fc, size: 20 });
+    const xt = 2.2, xh = 5.4;
+    label(ctx, 'tan x', up.X(xt), up.Y(Math.tan(xt)), { side: 'left', color: fc, size: 20 });
     label(ctx, 'h/x', up.X(xh), up.Y(h / xh), { side: 'above', color: fc, size: 20 });
     hits.push({ x: up.X(xt), y: up.Y(Math.tan(xt)), r: 14, name: 'tan x' }, { x: up.X(xh), y: up.Y(h / xh), r: 14, name: `h/x with h = ${fmt(h, 2)}` });
     S.forEach((r, j) => {
@@ -50,7 +50,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     });
     /* the eigenfunction of the chosen crossing, drawn at the multiple whose largest value is 1 */
     const B = h / s, amp = Math.sqrt(1 + B * B), phi = Math.atan(B), y = (x) => Math.cos(s * x - phi);
-    const lo = axes(ctx, LOW, [0, 1], [-1.5, 1.5], { xl: 'x', yl: `y_${k}`, nx: 5, ny: 6 });
+    const lo = axes(ctx, LOW, [0, 1], [-1.5, 1.5], { xl: 'x', yl: `y_${k}`, nx: 5, ny: 6, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 1) });
     plot(ctx, lo, y, fc, { w: 5 });
     const y0 = y(0), seg = 0.14;
     clip(ctx, lo.box, () => {
@@ -66,7 +66,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
       { x: lo.X(1 - seg / 2), y: lo.Y(y(1)), r: 14, name: 'level tangent at x = 1: y′(1) = 0' },
       { x: lo.X(0.5), y: lo.Y(y(0.5)), r: 14, name: `the eigenfunction y${'₁₂₃'[k - 1]}, scaled so its largest value is 1` });
     headline(ctx, `$h = ${n(h)}$: $\\sqrt{\\klambda_1} \\approx ${n(S[0])}$, $\\sqrt{\\klambda_2} \\approx ${n(S[1])}$, $\\sqrt{\\klambda_3} \\approx ${n(S[2])}$, so $\\klambda_1 \\approx ${n(S[0] * S[0])}$ and $\\klambda_2 \\approx ${n(S[1] * S[1])}$.`);
-    ro.set(`\\frac{h}{\\sqrt{\\klambda_${k}}} = \\frac{${n(h)}}{${n(s, 3)}} \\approx ${n(B, 3)} \\approx \\tan ${n(s, 3)},\\quad \\ky_${k}(x) = \\cos(${n(s, 3)}\\,x) + ${n(B, 3)}\\sin(${n(s, 3)}\\,x)`,
+    ro.set(`\\begin{aligned} \\frac{h}{\\sqrt{\\klambda_${k}}} &= \\frac{${n(h)}}{${n(s, 3)}} \\approx ${n(B, 3)} \\approx \\tan ${n(s, 3)} \\\\ \\ky_${k}(x) &= \\cos(${n(s, 3)}\\,x) + ${n(B, 3)}\\sin(${n(s, 3)}\\,x) \\end{aligned}`,
       `Drawn below at ${fmt(1 / amp, 3)} times this, the multiple whose largest value on [0, 1] is 1.`, { form: k });
   }
   still(d, draw);
@@ -124,8 +124,8 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
       { x: ax.X(0.8), y: ax.Y(0.8), r: 12, name: 'f(x) = x on 0 < x < π/2' },
     ];
     const xt = `${n(u)}\\pi`;
-    headline(ctx, `$N = ${N}$, $x = ${xt}$: the eigenfunction series gives ${n(a1, 3)} (its limit ${n(l1, 3)}), the sine series ${n(a2, 3)} (its limit ${n(l2, 3)}).`);
-    ro.set(`\\htmlData{ref=sl-series}{\\textstyle\\sum_{n=1}^{${N}} \\frac{4(-1)^{n+1}}{\\pi(2n-1)^2}\\sin\\bigl((2n-1)\\,${xt}\\bigr)} = ${n(a1, 3)},\\qquad \\htmlData{ref=sine-series-ref}{\\textstyle\\sum_{n=1}^{${N}} \\frac{(-1)^{n+1}}{n}\\sin(2n\\cdot ${xt})} = ${n(a2, 3)}`);
+    headline(ctx, `$N = ${N}$, $x = ${xt}$: the eigenfunction series gives ${fmt(a1, 3)} (its limit ${fmt(l1, 3)}), the sine series ${fmt(a2, 3)} (its limit ${fmt(l2, 3)}).`);
+    ro.set(`\\begin{aligned} \\htmlData{ref=sl-series}{\\textstyle\\sum_{n=1}^{${N}} \\frac{4(-1)^{n+1}}{\\pi(2n-1)^2}\\sin\\bigl((2n-1)\\,${xt}\\bigr)} &= ${n(a1, 3)} \\\\ \\htmlData{ref=sine-series-ref}{\\textstyle\\sum_{n=1}^{${N}} \\frac{(-1)^{n+1}}{n}\\sin(2n\\cdot ${xt})} &= ${n(a2, 3)} \\end{aligned}`);
   }
   still(d, draw);
 })();

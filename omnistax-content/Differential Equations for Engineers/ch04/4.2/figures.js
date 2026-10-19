@@ -55,7 +55,7 @@ const simpson = (g, a, b, m = 2000) => {
       fx: (x) => (v === 'par' ? fmt(x, 0) : halfPi(x)), fy: (y) => fmt(y, 1) });
     /* the interval the function is given on */
     ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(U(-1), BOX.t, U(1) - U(-1), BOX.b - BOX.t); ctx.restore();
-    text(ctx, FNS[v].on, U(0), BOX.b - 18, mu, { size: 17, align: 'center' });
+    text(ctx, FNS[v].on, U(0.5), BOX.b - 18, mu, { size: 17, align: 'center' });
     /* the formula for f carried on past [−L, L]: not the extension */
     const fu = (w) => (u) => FNS[w].f(u * FNS[w].L), Fu = (w) => (u) => ext(w)(u * FNS[w].L);
     clip(ctx, BOX, () => {
@@ -70,7 +70,7 @@ const simpson = (g, a, b, m = 2000) => {
     }
     /* each copy's formula above it */
     ['par', 'cos'].forEach((w) => fn.only(ctx, w, () => [-1, 0, 1].forEach((k) => text(ctx, shiftName(w, k), U(2 * k), BOX.t + 20, fc, { size: 20, align: 'center', weight: 600, bg: PAL.panel }))));
-    const ux = -2.55, fy = FNS[v].f(ux * L);
+    const ux = v === 'par' ? -1.45 : -2.55, fy = FNS[v].f(ux * L);
     if (fy > -1.5) label(ctx, `${FNS[v].name} continued`, U(ux), ax.Y(fy), { side: 'right', color: mu, size: 17, weight: 400 });
     /* the probe: F(t) on its copy, and the formula's own value at the same t */
     const k = copyOf(v, t), Fv = ext(v)(t), fv = FNS[v].f(t);
@@ -120,7 +120,7 @@ const simpson = (g, a, b, m = 2000) => {
   };
   const fc = choice(d.controls, { label: 'f', key: 'f', value: 'saw', options: [
     { value: 'saw', label: 'sawtooth' }, { value: 'sq', label: 'square wave' }, { value: 'c3', label: 'cos 3t' }] });
-  const ec = choice(d.controls, { label: 'eigenfunction', key: 'e', value: 'cos', options: [
+  const ec = choice(d.controls, { aria: 'eigenfunction', key: 'e', value: 'cos', options: [
     { value: 'cos', label: 'cos nt' }, { value: 'sin', label: 'sin nt' }],
     onInput: (v) => ns.range({ min: v === 'sin' ? 1 : 0, max: 8, step: 1, unit: '', dec: 0 }) });
   const ns = ctl(d.controls, { label: 'n', cls: '', key: 'n', min: 0, max: 8, step: 1, value: 3, unit: '', dec: 0 });
@@ -200,8 +200,8 @@ const simpson = (g, a, b, m = 2000) => {
 
 /* Figures 4.4–4.8: the sawtooth or the square wave and the partial sum S_N of its Fourier series.
    Main pane t −2π to 2π (the book's window), y −4 to 4 (the sawtooth's overshoot reaches about 3.7).
-   The zoom below is the one window the plan names: t within 0.5 of the probe, its y range fitted to what
-   the window holds each frame (nice ticks). The bars are |b_n| for n = 1 to 16 on 0 to 2.2. */
+   The zoom below is the one window the plan names: t within 0.5 of the probe, y within 0.8 of f there (half
+   the jump and 0.7 more with the probe on a jump), nice ticks. The bars are |b_n| for n = 1 to 16 on 0 to 2.2. */
 (function () {
   const d = sim('sim-partial-sums', 880);
   const WAVES = {
@@ -240,10 +240,11 @@ const simpson = (g, a, b, m = 2000) => {
     const lg = (x, c, s, wd) => { line(ctx, x, MAIN.t - 30, x + 30, MAIN.t - 30, c, wd); text(ctx, s, x + 40, MAIN.t - 30, c, { size: 18, weight: 600 }); };
     lg(MAIN.l, fC, `f(t), the ${W.name}`, 5);
     lg(MAIN.l + 380, sC, `S_{${N}}(t), the first ${N} harmonic${N === 1 ? '' : 's'}`, 3);
-    /* the zoom: x within 0.5 of the probe, y fitted to what the window holds */
-    let lo = Infinity, hi = -Infinity;
-    for (let i = 0; i <= 600; i++) { const t = za + ((zb - za) * i) / 600, a = SN(t), b = W.f(t); lo = Math.min(lo, a, b); hi = Math.max(hi, a, b); }
-    const pad = Math.max(0.12 * (hi - lo), 0.15); lo -= pad; hi += pad;
+    /* the zoom: x within 0.5 of the probe */
+    /* centred on f at the probe (the midpoint at a jump), 0.8 either way: the overshoot of either wave fits */
+    const jAt = jumpsOf(w).find((j) => Math.abs(t0 - j.J) < 1e-9);
+    const yc = jAt ? (jAt.l + jAt.r) / 2 : W.f(t0), yh = jAt ? Math.abs(jAt.l - jAt.r) / 2 + 0.7 : 0.8;
+    const lo = yc - yh, hi = yc + yh;
     const zoom = axes(ctx, ZOOM, [za, zb], [lo, hi], { xl: 't', nx: 4, ny: 4, nice: true });
     Object.keys(WAVES).forEach((h) => wv.only(ctx, h, () => plot(ctx, zoom, WAVES[h].pieces, fC, { w: 5 })));
     plot(ctx, zoom, SN, sC, { w: 3 });
@@ -256,11 +257,15 @@ const simpson = (g, a, b, m = 2000) => {
       for (let i = 1; i < 2000; i++) { const t = a + ((b - a) * i) / 2000, v = SN(t); if (v > best) { best = v; bt = t; } }
       clip(ctx, ZOOM, () => line(ctx, ZOOM.l, zoom.Y(top), ZOOM.r, zoom.Y(top), alpha(PAL.ink, 0.5), 2, [10, 10]));
       over = { J: J.J, top, peak: best, at: bt, size: best - top, jump: Math.abs(J.l - J.r), side: left ? 'left' : 'right' };
-      if (over.size > 0.004) vbracket(ctx, zoom.X(bt) + (left ? -18 : 18), zoom.Y(best), zoom.Y(top), PAL.muted, `overshoot ${fmt(over.size, 2)}`, left ? -1 : 1, { size: 17 });
+      if (over.size > 0.004 && best <= hi) {
+        const bx = zoom.X(bt) + (left ? -16 : 16);
+        vbracket(ctx, bx, zoom.Y(best), zoom.Y(top), PAL.muted);
+        label(ctx, `overshoot ${fmt(over.size, 2)}`, bx, zoom.Y(best), { side: 'above', color: PAL.muted, size: 17, weight: 400 });
+      }
     }
     const pz = zoom.X(t0), sv = SN(t0);
     line(ctx, pz, ZOOM.t, pz, ZOOM.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
-    dot(ctx, pz, zoom.Y(sv), sC, true, 9);
+    if (sv >= lo && sv <= hi) dot(ctx, pz, zoom.Y(sv), sC, true, 9);
     Pr.draw(ctx, main, sC);
     text(ctx, 'near the probe', ZOOM.r, ZOOM.t - 24, PAL.muted, { size: 17, align: 'right' });
     /* the spectrum: |b_n| against n, filled for the harmonics in the sum */

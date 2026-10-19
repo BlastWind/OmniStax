@@ -63,3 +63,5 @@ Anchors on the forms of 3.1's concepts:
 - eq-direction-field-vector → 3.1-direction-field; eq-trajectory-points → 3.1-phase-portrait; eq-general-system → 3.1-thm-3-1-1
 
 No concept or edge fix and no new glossary word. Two notes for the chapter pass: no `ref` is wanted on 3.1/x_1 and 3.1/x_2 (see Colour and referents); y₃ and y₄ of Exercises 3.1.101 and 3.1.104 are written plain for want of a 3.1 row; add `y_3`, `y_4` (and primes) rows of type `function` only if the pass wants them coloured beside y₁, y₂.
+
+- Chapter pass 2026-10-19 (pass-ch03): applied: every anchor above (13 forms, 50 variables rows); no `ref` on 3.1/x_1, x_2 (as asked); the optional y₃, y₄ rows not added: they appear only in two exercise prompts, plain ink is honest there and a row per exercise symbol would crowd the hover list.

@@ -46,3 +46,5 @@ Built: the one above (the brief's pick). Rejected: row reduction stepped (the te
 - Chapter `COLOR.md`, Categories: add `region`: the parallelogram, image of the unit square, in 3.2's `sim-determinant-area` (a book type, no new hue).
 - The form `eq-matrix-array` is written m × n with dots while the book's display (its anchor) is the 3 × 5 matrix a₁₁…a₃₅; harmless, named in case the chapter pass wants the form as printed.
 - No concept or edge fixes; no glossary words beyond the merged `terms`.
+
+- Chapter pass 2026-10-19 (pass-ch03): applied: every anchor above (28 forms, 15 variables rows); COLOR.md `region` line added under Categories; `eq-matrix-array` kept in its m × n form (it states the concept, the anchor shows the book's instance).
