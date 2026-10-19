@@ -1,0 +1,141 @@
+<section id="the-transform">
+<h2>The transform</h2>
+<p id="laplace-intro">In this chapter, we will discuss the <span data-concept="laplace-transform">Laplace transform</span><sup class="fn" data-note="fn-laplace"></sup>. The <span data-concept="laplace-transform">Laplace transform</span> is a very efficient method to solve certain <span data-concept="ordinary-differential-equation">ODE</span> or <span data-concept="partial-differential-equation">PDE</span> problems. The transform takes a <span data-concept="differential-equation">differential equation</span> and turns it into an algebraic equation. If the algebraic equation can be solved, applying the <span data-concept="inverse-laplace-transform">inverse transform</span> gives us our desired solution. The <span data-concept="laplace-transform">Laplace transform</span> also has applications in the analysis of electrical circuits, NMR spectroscopy, signal processing, and elsewhere. Finally, understanding the <span data-concept="laplace-transform">Laplace transform</span> will also help with understanding the related Fourier transform, which, however, requires more understanding of complex numbers. We will not cover the Fourier transform.</p>
+<p id="frequency-domain">The <span data-concept="laplace-transform">Laplace transform</span> also gives a lot of insight into the nature of the equations we are dealing with. It can be seen as converting between the <span data-concept="frequency-domain">time and the frequency domain</span>. For example, take <span data-concept="mass-spring-system">the standard equation</span></p>
+<div class="equation" id="eq-standard">$$ m \kxdprime(t) + c \kxprime(t) + k \kx(t) = \kf(t) . $$</div>
+<p id="frequency-variable">We can think of $t$ as time and $\kf(t)$ as incoming signal. The <span data-concept="laplace-transform">Laplace transform</span> will convert the equation from a <span data-concept="differential-equation">differential equation</span> in time to an algebraic (no derivatives) equation, where the new independent variable $s$ is thought of as the <span data-concept="frequency-domain">frequency</span>.<sup class="fn" data-note="fn-frequency"></sup></p>
+<p id="black-box">We can think of the <em><span data-concept="laplace-transform">Laplace transform</span></em> as a black box. It eats functions and spits out functions in a new variable. We write $\mathcal{L} \bigl\{ \kf(t) \bigr\} = \kF(s)$ for the <span data-concept="laplace-transform">Laplace transform</span> of $\kf(t)$. It is common to write lower case letters for functions in the <span data-concept="frequency-domain">time domain</span> and upper case letters for functions in the <span data-concept="frequency-domain">frequency domain</span>. We use the same letter to denote that one function is the <span data-concept="laplace-transform">Laplace transform</span> of the other. For example, $\kF(s)$ is the <span data-concept="laplace-transform">Laplace transform</span> of $\kf(t)$. Let us define the transform.</p>
+<div class="equation" id="eq-lt-definition">$$ \boxed{~~ \mathcal{L} \bigl\{ \kf(t) \bigr\} = \kF(s) \overset{\text{def}}{=} \int_0^\infty e^{-st} \kf(t) \, dt . ~~} $$</div>
+<p id="future">We note that we are only considering $t \geq 0$ in the transform. Of course, if we think of $t$ as time, there is no problem; we are generally interested in finding out what will happen in the future (the <span data-concept="laplace-transform">Laplace transform</span> is one place where it is safe to ignore the past). Let us compute some simple transforms.</p>
+<div class="example" id="ex-6-1-1">
+<h3>Example 6.1.1</h3>
+<p>Suppose $\kf(t) = 1$, then</p>
+$$ \mathcal{L} \{1\} = \int_0^\infty e^{-st} \, dt = \left[ \frac{e^{-st}}{-s} \right]_{t=0}^\infty = \lim_{h\to\infty} \left[ \frac{e^{-st}}{-s} \right]_{t=0}^h = \lim_{h\to\infty} \left( \frac{e^{-sh}}{-s} - \frac{1}{-s} \right) = \frac{1}{s} . $$
+<p>The limit (<a href="/calculus/ch07/7.7/#7.7-infinite-definition"><span data-type="integral">the improper integral</span></a>) only exists if $s &gt; 0$. So $\mathcal{L} \{1\}$ is only defined for $s &gt; 0$.</p>
+</div>
+<div class="example" id="ex-6-1-2">
+<h3>Example 6.1.2</h3>
+<p>Suppose $\kf(t) = e^{-at}$, then</p>
+$$ \mathcal{L} \bigl\{e^{-at}\bigr\} = \int_0^\infty e^{-st} e^{-at} \, dt = \int_0^\infty e^{-(s+a)t} \, dt = \left[ \frac{e^{-(s+a)t}}{-(s+a)} \right]_{t=0}^\infty = \frac{1}{s+a} . $$
+<p>The limit only exists if $s+a &gt; 0$. So $\mathcal{L} \bigl\{e^{-at}\bigr\}$ is only defined for $s+a &gt; 0$.</p>
+</div>
+<div class="example" id="ex-6-1-3">
+<h3>Example 6.1.3</h3>
+<p>Suppose $\kf(t) = t$, then using <a href="/calculus/ch07/7.1/#7.1-formula">integration by parts</a></p>
+$$ \begin{split} \mathcal{L} \{t\} & = \int_0^\infty e^{-st} t \, dt \\ & = \left[ \frac{-te^{-st}}{s} \right]_{t=0}^\infty + \frac{1}{s} \int_0^\infty e^{-st} \,dt \\ & = 0 + \frac{1}{s} \left[ \frac{e^{-st}}{-s} \right]_{t=0}^\infty \\ & = \frac{1}{s^2} . \end{split} $$
+<p>Again, the limit only exists if $s &gt; 0$.</p>
+</div>
+<div class="example" id="ex-6-1-4">
+<h3>Example 6.1.4</h3>
+<p id="unit-step">A common function is the <em><span data-concept="unit-step-function">unit step function</span></em>, which is sometimes called the <em><span data-concept="unit-step-function">Heaviside function</span></em><sup class="fn" data-note="fn-heaviside"></sup>. This function is generally given as</p>
+<div class="equation" id="eq-unit-step">$$ \ku(t) = \begin{cases} 0 & \text{if } \; t < 0 , \\ 1 & \text{if } \; t \geq 0 . \end{cases} $$</div>
+<p>Let us find the <span data-concept="laplace-transform">Laplace transform</span> of $\ku(t-a)$, where $a \geq 0$ is some constant. That is, it is the function that is $0$ for $t &lt; a$ and $1$ for $t \geq a$.</p>
+$$ \mathcal{L} \bigl\{ \ku(t-a) \bigr\} = \int_0^{\infty} e^{-st} \ku(t-a) \, dt = \int_a^{\infty} e^{-st} \, dt = \left[ \frac{e^{-st}}{-s} \right]_{t=a}^\infty = \frac{e^{-as}}{s} , $$
+<p>where of course $s &gt; 0$ (and $a \geq 0$ as we said before).</p>
+</div>
+<figure class="sim" id="sim-laplace-area">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The factor $e^{-st}$ presses $\kf(t)$ down, and the area under $e^{-st}\kf(t)$ is the value $\kF(s)$, plotted on the right over $s$. The larger $s$ is, the faster the integrand dies and the smaller the area. Slide $s$ down toward the dashed threshold and the integrand dies ever more slowly, so the area grows without bound, and at or below the threshold the integral has no value: the transform exists only for $s$ beyond it.</span></div>
+</figure>
+<p id="table-intro">By applying similar procedures, we can compute the transforms of many elementary functions. Many basic transforms are listed in <a href="#tab-6-1">Table 6.1</a> (see also <a href="/diffyqs/sheets/laplace-table/">appendix B</a>).</p>
+<div class="book-table" id="tab-6-1">
+  <div class="tcap"><span class="eyebrow">Table 6.1</span><span>Some <span data-concept="laplace-transform">Laplace transforms</span> ($C$, $\omega$, and $a$ are constants).</span></div>
+  <table>
+    <thead><tr><th>$\kf(t)$</th><th>$\mathcal{L} \bigl\{ \kf(t) \bigr\}$</th><th>$\kf(t)$</th><th>$\mathcal{L} \bigl\{ \kf(t) \bigr\}$</th></tr></thead>
+    <tbody>
+      <tr><td>$C$</td><td>$\frac{C}{s}$</td><td>$\sin (\omega t)$</td><td>$\frac{\omega}{s^2+\omega^2}$</td></tr>
+      <tr><td>$t$</td><td>$\frac{1}{s^2}$</td><td>$\cos (\omega t)$</td><td>$\frac{s}{s^2+\omega^2}$</td></tr>
+      <tr><td>$t^2$</td><td>$\frac{2}{s^3}$</td><td>$\sinh (\omega t)$</td><td>$\frac{\omega}{s^2-\omega^2}$</td></tr>
+      <tr><td>$t^3$</td><td>$\frac{6}{s^4}$</td><td>$\cosh (\omega t)$</td><td>$\frac{s}{s^2-\omega^2}$</td></tr>
+      <tr><td>$t^n$</td><td>$\frac{n!}{s^{n+1}}$</td><td>$\ku(t-a) \quad (a \geq 0)$</td><td>$\frac{e^{-as}}{s}$</td></tr>
+      <tr><td>$e^{-at}$</td><td>$\frac{1}{s+a}$</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="exercises" data-place="tab-6-1"></div>
+<p id="pull-out">Since the transform is defined by <span data-type="integral">an integral</span>, we can use the linearity properties of the integral. For example, if $C$ is a constant, then</p>
+$$ \mathcal{L} \bigl\{ C \kf(t) \bigr\} = \int_0^\infty e^{-st} C \kf(t) \,dt = C \int_0^\infty e^{-st} \kf(t) \,dt = C \mathcal{L} \bigl\{ \kf(t) \bigr\} . $$
+<p>So we can “pull out” a constant from the transform. Similarly, with addition. As linearity is important, we state it as a theorem.</p>
+<div class="note" id="thm-6-1-1">
+<div class="eyebrow">Theorem 6.1.1</div>
+<h3><span data-concept="linearity-of-the-laplace-transform">Linearity of the Laplace transform</span></h3>
+<p>If $A$, $B$, and $C$ are constants, then</p>
+<div class="equation" id="eq-lt-linearity">$$ \boxed{~~ \mathcal{L} \bigl\{ A \kf(t) + B \kg(t) \bigr\} = A \mathcal{L} \bigl\{ \kf(t) \bigr\} + B \mathcal{L} \bigl\{ \kg(t) \bigr\} , ~~} $$</div>
+<p>and in particular,</p>
+<div class="equation" id="eq-lt-constant-multiple">$$ \mathcal{L} \bigl\{ C \kf(t) \bigr\} = C \mathcal{L} \bigl\{ \kf(t) \bigr\} . $$</div>
+</div>
+<div class="exercises" data-place="thm-6-1-1"></div>
+<p id="sum-example">These rules together with <a href="#tab-6-1">Table 6.1</a> make it easy to find the <span data-concept="laplace-transform">Laplace transform</span> of a whole lot of functions already. For example:</p>
+$$ \mathcal{L}\bigl\{ 2 + 5t + 9e^{-2t} \bigr\} = \mathcal{L}\bigl\{ 2 \bigr\} +5 \mathcal{L}\bigl\{ t \bigr\} + 9 \mathcal{L}\bigl\{ e^{-2t} \bigr\} = \frac{2}{s} + \frac{5}{s^2} + \frac{9}{s+2} . $$
+<p id="product-warning">Be careful! The <span data-concept="laplace-transform">Laplace transform</span> of a product is <em>not</em> the product of the transforms. In general</p>
+$$ \mathcal{L} \bigl\{ \kf(t) \kg(t) \bigr\} \neq \mathcal{L} \bigl\{ \kf(t) \bigr\} \mathcal{L} \bigl\{ \kg(t) \bigr\} . $$
+<p id="no-transform">Moreover, not all functions have a <span data-concept="laplace-transform">Laplace transform</span>. For example, the function $\frac{1}{t}$ does not have a <span data-concept="laplace-transform">Laplace transform</span> as <span data-type="integral">the integral</span> diverges for all $s$. Similarly, $\tan t$ or $e^{t^2}$ do not have <span data-concept="laplace-transform">Laplace transforms</span>.</p>
+</section>
+
+<section id="existence-uniqueness">
+<h2>Existence and uniqueness</h2>
+<p id="exponential-order">When does the <span data-concept="laplace-transform">Laplace transform</span> exist? A function $\kf(t)$ is of <em><span data-concept="exponential-order">exponential order</span></em> as $t$ goes to infinity if</p>
+<div class="equation" id="eq-exponential-order">$$ \lvert \kf(t) \rvert \leq M e^{ct} , $$</div>
+<p>for some constants $M$ and $c$, for sufficiently large $t$ (say for all $t &gt; t_0$ for some $t_0$). The simplest way to check this condition is to try and compute</p>
+<div class="equation" id="eq-exponential-order-limit">$$ \lim_{t\to \infty} \frac{\kf(t)}{e^{ct}} . $$</div>
+<p id="exponential-order-check">If the limit exists and is finite (usually zero), then $\kf(t)$ is of <span data-concept="exponential-order">exponential order</span>.</p>
+<div class="exercises" data-place="exponential-order-check"></div>
+<p>For an <span data-concept="exponential-order">exponential-order</span> function, we have existence and uniqueness of the <span data-concept="laplace-transform">Laplace transform</span>.</p>
+<div class="note" id="thm-6-1-2">
+<div class="eyebrow">Theorem 6.1.2</div>
+<h3><span data-concept="existence-of-the-laplace-transform">Existence</span></h3>
+<p>Let $\kf(t)$ be continuous on the interval $[0,\infty)$ and of <span data-concept="exponential-order">exponential order</span> for a certain constant $c$. Then $\kF(s) = \mathcal{L} \bigl\{ \kf(t) \bigr\}$ is defined for all $s &gt; c$.</p>
+</div>
+<p id="existence-argument">The existence is not difficult to see. Let $\kf(t)$ be of <span data-concept="exponential-order">exponential order</span>, that is, $\lvert \kf(t) \rvert \leq M e^{ct}$ for all $t &gt; 0$ (for simplicity $t_0 = 0$). Let $s &gt; c$, or in other words $(s-c) &gt; 0$. By the <a href="/calculus/ch07/7.7/#7.7-comparison-theorem">comparison theorem from calculus</a>, <span data-type="integral">the improper integral</span> defining $\mathcal{L} \bigl\{ \kf(t) \bigr\}$ exists because the following integral exists</p>
+$$ \int_0^\infty e^{-st} ( M e^{ct} ) \,dt = M \int_0^\infty e^{-(s-c)t} \,dt = M \left[ \frac{e^{-(s-c)t}}{-(s-c)} \right]_{t=0}^\infty = \frac{M}{s-c} . $$
+<p id="decay">The transform also exists for some other functions that are not of <span data-concept="exponential-order">exponential order</span>, but that will not be relevant to us. Before dealing with uniqueness, we note that for functions of <span data-concept="exponential-order">exponential order</span>, their <span data-concept="laplace-transform-decay">Laplace transform decays at infinity</span>:</p>
+<div class="equation" id="eq-lt-decay">$$ \lim_{s\to\infty} \kF(s) = 0 . $$</div>
+<div class="note" id="thm-6-1-3">
+<div class="eyebrow">Theorem 6.1.3</div>
+<h3><span data-concept="uniqueness-of-the-laplace-transform">Uniqueness</span></h3>
+<p>Let $\kf(t)$ and $\kg(t)$ be continuous and of <span data-concept="exponential-order">exponential order</span>. Suppose that there exists a constant $C$, such that $\kF(s) = \kG(s)$ for all $s &gt; C$. Then $\kf(t) = \kg(t)$ for all $t \geq 0$.</p>
+</div>
+<p id="piecewise">Both theorems hold for <span data-concept="piecewise-continuous-function">piecewise continuous</span> functions as well. <a href="/diffyqs/ch04/4.3/#4.3-piecewise-continuous">Recall</a> that <span data-concept="piecewise-continuous-function">piecewise continuous</span> means that the function is continuous except perhaps at a discrete set of points, where it has jump discontinuities like the <span data-concept="unit-step-function">Heaviside function</span>. The <span data-concept="laplace-transform">Laplace transform</span>, however, does not “see” values at the discontinuities. So we can only conclude that $\kf(t) = \kg(t)$ outside of discontinuities. For example, the <span data-concept="unit-step-function">unit step function</span> is sometimes defined using $\ku(0) = {1}/{2}$. This new step function, however, has the exact same <span data-concept="laplace-transform">Laplace transform</span> as the one we defined earlier, where $\ku(0) = 1$.</p>
+</section>
+
+<section id="the-inverse">
+<h2>The inverse transform</h2>
+<p id="inverse-motivation">As we said, the <span data-concept="laplace-transform">Laplace transform</span> will allow us to convert a <span data-concept="differential-equation">differential equation</span> into an algebraic equation. Once we solve the algebraic equation in the <span data-concept="frequency-domain">frequency domain</span>, we will want to get back to the <span data-concept="frequency-domain">time domain</span>, as that is what we are interested in. Given a function $\kF(s)$, we wish to find a function $\kf(t)$ such that $\mathcal{L} \bigl\{ \kf(t) \bigr\} = \kF(s)$. <a href="#thm-6-1-3">Theorem 6.1.3</a> says that the solution $\kf(t)$ is unique. So we can without fear make the following definition.</p>
+<p id="inverse-definition">Suppose $\kF(s) = \mathcal{L} \bigl\{ \kf(t) \bigr\}$ for some function $\kf(t)$. Define the <em><span data-concept="inverse-laplace-transform">inverse Laplace transform</span></em> as</p>
+<div class="equation" id="eq-inverse-lt-definition">$$ {\mathcal{L}}^{-1} \bigl\{ \kF(s) \bigr\} \overset{\text{def}}{=} \kf(t) . $$</div>
+<p id="inverse-by-table">There is an integral formula for the inverse, but it is not as simple as the transform itself—it requires complex numbers and path integrals. For us it will suffice to compute the inverse using <a href="#tab-6-1">Table 6.1</a>.</p>
+<div class="example" id="ex-6-1-5">
+<h3>Example 6.1.5</h3>
+<p>Take $\kF(s) = \frac{1}{s+1}$. Find the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span>.</p>
+<p>We look at the table to find</p>
+$$ {\mathcal{L}}^{-1} \left\{ \frac{1}{s+1} \right\} = e^{-t} . $$
+</div>
+<p id="inverse-linearity">As the <span data-concept="linearity-of-the-laplace-transform">Laplace transform is linear</span>, the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> is also linear. That is,</p>
+<div class="equation" id="eq-inverse-lt-linearity">$$ {\mathcal{L}}^{-1} \bigl\{ A \kF(s) + B \kG(s) \bigr\} = A {\mathcal{L}}^{-1} \bigl\{ \kF(s) \bigr\} + B {\mathcal{L}}^{-1} \bigl\{ \kG(s) \bigr\} . $$</div>
+<p>Of course, we also have ${\mathcal{L}}^{-1} \bigl\{ A \kF(s) \bigr\} = A {\mathcal{L}}^{-1} \bigl\{ \kF(s) \bigr\}$.</p>
+<div class="example" id="ex-6-1-6">
+<h3>Example 6.1.6</h3>
+<p>Take $\kF(s) = \frac{s^2+s+1}{s^3+s}$. Find the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span>.</p>
+<p id="partial-fractions">First we use the <em><span data-concept="partial-fraction-decomposition">method of partial fractions</span></em> to write $\kF$ in a form where we can use <a href="#tab-6-1">Table 6.1</a>. We factor the denominator as $s(s^2+1)$ and write</p>
+$$ \frac{s^2+s+1}{s^3+s} = \frac{A}{s} + \frac{Bs+C}{s^2+1} . $$
+<p>Putting the right-hand side over a common denominator and equating the numerators, we get $A(s^2+1) + s(Bs+C) = s^2+s+1$. Expanding and equating coefficients, we obtain $A+B = 1$, $C=1$, $A=1$, and thus $B=0$. In other words,</p>
+$$ \kF(s) = \frac{s^2+s+1}{s^3+s} = \frac{1}{s} + \frac{1}{s^2+1} . $$
+<p>By linearity of the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span>, we get</p>
+$$ {\mathcal{L}}^{-1} \left\{ \frac{s^2+s+1}{s^3+s} \right\} = {\mathcal{L}}^{-1} \left\{ \frac{1}{s} \right\} + {\mathcal{L}}^{-1} \left\{ \frac{1}{s^2+1} \right\} = 1 + \sin t . $$
+</div>
+<p id="first-shifting">Another useful property is the so-called <em><span data-concept="first-shifting-property">shifting property</span></em> or the <em><span data-concept="first-shifting-property">first shifting property</span></em></p>
+<div class="equation" id="eq-first-shifting">$$ \boxed{~~ \mathcal{L} \bigl\{ e^{-at} \kf(t) \bigr\} = \kF(s+a) , ~~} $$</div>
+<p id="shifting-where">where $\kF(s)$ is the <span data-concept="laplace-transform">Laplace transform</span> of $\kf(t)$.</p>
+<div class="exercises" data-place="shifting-where"></div>
+<p id="complete-the-square">The <span data-concept="first-shifting-property">shifting property</span> can be used, for example, when the denominator is a more complicated quadratic that may come up in the <a href="/calculus/ch07/7.4/#7.4-quadratic"><span data-concept="partial-fraction-decomposition">method of partial fractions</span></a>. We complete the square and write such quadratics as ${(s+a)}^2+b$ and then use the <span data-concept="first-shifting-property">shifting property</span>.</p>
+<div class="example" id="ex-6-1-7">
+<h3>Example 6.1.7</h3>
+<p>Find ${\mathcal{L}}^{-1} \left\{ \frac{1}{s^2+4s+8} \right\}$.</p>
+<p>First, we complete the square to make the denominator ${(s+2)}^2+4$. We find</p>
+$$ {\mathcal{L}}^{-1} \left\{ \frac{1}{s^2+4} \right\} = \frac{1}{2} {\mathcal{L}}^{-1} \left\{ \frac{2}{s^2+2^2} \right\} = \frac{1}{2} \sin (2t) . $$
+<p>Finally, we put it all together with the <span data-concept="first-shifting-property">shifting property</span> to find</p>
+$$ {\mathcal{L}}^{-1} \left\{ \frac{1}{s^2+4s+8} \right\} = {\mathcal{L}}^{-1} \left\{ \frac{1}{{(s+2)}^2+4} \right\} = \frac{1}{2}\,e^{-2t} \sin (2t) . $$
+</div>
+<p id="rational">Often, we want to be able to apply the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> to rational functions, that is, functions of the form</p>
+$$ \frac{F(s)}{G(s)} $$
+<p id="proper-rational">where $F(s)$ and $G(s)$ are polynomials. If $\frac{F(s)}{G(s)}$ is the <span data-concept="laplace-transform">Laplace transform</span> of an <span data-concept="exponential-order">exponential-order</span> function, it <span data-concept="laplace-transform-decay">goes to zero as $s \to \infty$</span>, and so the degree of $F(s)$ must be smaller than that of $G(s)$. Such rational functions are called <em><span data-concept="proper-rational-function">proper rational functions</span></em> and we can always apply the <span data-concept="partial-fraction-decomposition">method of partial fractions</span> without polynomial division. Of course, we still need to be able to factor the denominator into linear and quadratic terms, which involves finding the roots of the denominator.</p>
+</section>

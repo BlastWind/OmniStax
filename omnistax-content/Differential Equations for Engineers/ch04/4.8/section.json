@@ -1,0 +1,978 @@
+{
+ "id": "4.8",
+ "module": "dalemb:section",
+ "chapter": "4",
+ "title": "D’Alembert solution of the wave equation",
+ "short": "D’Alembert solution",
+ "lead": "The <span data-concept=\"wave-equation\">wave equation</span> for a string with fixed ends is solved here a second way, without <span data-concept=\"fourier-series\">Fourier series</span>: a change to <span data-concept=\"characteristic-coordinates\">characteristic coordinates</span> brings it to an equation solved by integrating twice, and the <span data-concept=\"odd-periodic-extension\">odd periodic extensions</span> of the initial position and velocity fit the result to the side conditions.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the matching sections of Edwards–Penney and Boyce–DiPrima) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.8.101–4.8.103 carry the book’s own answers. The inline exercise 4.8.1 and exercises 4.8.2–4.8.6, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-dalembert",
+   "kind": "sim",
+   "number": "4.24",
+   "originals": [
+    "/media/ch04/dalemb-impuls-1-2.svg",
+    "/media/ch04/dalemb-impuls-3-4.svg"
+   ],
+   "original_caption": "Plot of the d’Alembert solution for t = 0, t = 0.2, t = 0.4, and t = 0.6.",
+   "widths": [],
+   "draws": [
+    "function",
+    "curve",
+    "point",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "wave-right",
+   "label": "the wave traveling right",
+   "figures": [
+    "sim-dalembert"
+   ]
+  },
+  {
+   "id": "wave-left",
+   "label": "the wave traveling left",
+   "figures": [
+    "sim-dalembert"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "why-dalembert",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "why-dalembert",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "why-dalembert",
+   "concept": "dalemberts-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "problem-setup",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-15",
+   "concept": "wave-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "side-conditions",
+   "concept": "wave-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-16",
+   "concept": "wave-equation-side-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "change-variables",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-characteristic-change",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-characteristic-change",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "integrate-twice",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-wave-general-solution",
+   "concept": "wave-equation-general-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-waves",
+   "concept": "wave-equation-general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "two-waves",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "two-waves",
+   "concept": "characteristic-coordinates",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-waves",
+   "concept": "classes-of-second-order-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "two-waves",
+   "concept": "first-order-linear-pde",
+   "verb": "uses"
+  },
+  {
+   "span": "two-waves",
+   "concept": "characteristic-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-waves",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "definitions",
+   "concept": "wave-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "definitions",
+   "concept": "odd-periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-dalembert-waves",
+   "concept": "wave-equation-general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-dalembert-waves",
+   "concept": "odd-periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "claim",
+   "concept": "wave-equation-general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-17",
+   "concept": "dalemberts-formula",
+   "verb": "introduces"
+  },
+  {
+   "span": "check-intro",
+   "concept": "dalemberts-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-dalembert-check",
+   "concept": "dalemberts-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-dalembert-check",
+   "concept": "wave-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-dalembert-check",
+   "concept": "odd-periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-8-1",
+   "concept": "dalemberts-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-8-1",
+   "concept": "odd-periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-8-1",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-8-1",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-dalembert",
+   "concept": "dalemberts-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-dalembert",
+   "concept": "wave-equation-general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-dalembert",
+   "concept": "wavefronts",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-dalembert",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-dalembert",
+   "concept": "odd-periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "wave-equation-general-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "procedure",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "stages",
+   "concept": "wave-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "stages",
+   "concept": "dalemberts-formula",
+   "verb": "reinforces"
+  },
+  {
+   "span": "by-superposition",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "by-superposition",
+   "concept": "wave-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-18",
+   "concept": "dalemberts-formula",
+   "verb": "reinforces"
+  },
+  {
+   "span": "warning",
+   "concept": "odd-periodic-extension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "corners-stay",
+   "concept": "wave-equation-general-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "corners-stay",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "not-differentiable",
+   "concept": "dalemberts-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "long-string",
+   "concept": "dalemberts-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "long-string",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "wavefronts",
+   "concept": "wavefronts",
+   "verb": "introduces"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "characteristic-change",
+   "what": "the wave equation in the characteristic coordinates",
+   "source": "Notes on Diffy Qs, 4.8 D’Alembert solution of the wave equation: the change of variables",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\xi = x - at, \\qquad \\eta = x + at"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{\\partial}{\\partial x}} = \\mk{a}{\\frac{\\partial \\xi}{\\partial x}} \\mk{p}{\\frac{\\partial}{\\partial \\xi}} + \\mk{b}{\\frac{\\partial \\eta}{\\partial x}} \\mk{q}{\\frac{\\partial}{\\partial \\eta}}",
+      "src": "Calculus, 14.5",
+      "why": "The chain rule in several variables, with $y$ a function of $\\xi$ and $\\eta$, which are functions of $x$ and $t$.",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{\\partial}{\\partial x}} = \\mk{p}{\\frac{\\partial}{\\partial \\xi}} + \\mk{q}{\\frac{\\partial}{\\partial \\eta}}",
+       "uses": [
+        0
+       ]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\xi = x - at, \\qquad \\eta = x + at"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{\\partial}{\\partial t}} = \\mk{a}{\\frac{\\partial \\xi}{\\partial t}} \\mk{p}{\\frac{\\partial}{\\partial \\xi}} + \\mk{b}{\\frac{\\partial \\eta}{\\partial t}} \\mk{q}{\\frac{\\partial}{\\partial \\eta}}",
+      "src": "Calculus, 14.5",
+      "why": "The chain rule again, now differentiating in $t$.",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{\\partial}{\\partial t}} = \\mk{a}{-a} \\mk{p}{\\frac{\\partial}{\\partial \\xi}} + \\mk{b}{a} \\mk{q}{\\frac{\\partial}{\\partial \\eta}}",
+       "uses": [
+        0
+       ]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The mixed partials agree: $\\frac{\\partial^2 y}{\\partial \\xi \\partial \\eta} = \\frac{\\partial^2 y}{\\partial \\eta \\partial \\xi}$.",
+       "src": "Calculus, 14.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kyxx} = \\mk{r}{\\frac{\\partial}{\\partial x} \\frac{\\partial y}{\\partial x}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kyxx} = \\mk{r}{\\left( \\frac{\\partial}{\\partial \\xi} + \\frac{\\partial}{\\partial \\eta} \\right) \\left( \\frac{\\partial y}{\\partial \\xi} + \\frac{\\partial y}{\\partial \\eta} \\right)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kyxx} = \\mk{r1}{\\frac{\\partial^2 y}{\\partial \\xi^2}} + \\mk{r2}{\\frac{\\partial^2 y}{\\partial \\xi \\partial \\eta}} + \\mk{r3}{\\frac{\\partial^2 y}{\\partial \\eta \\partial \\xi}} + \\mk{r4}{\\frac{\\partial^2 y}{\\partial \\eta^2}}",
+       "uses": [],
+       "cap": "Multiplying out, each of the two operators acts on each of the two terms.",
+       "map": {
+        "r": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\kyxx} = \\mk{r1}{\\frac{\\partial^2 y}{\\partial \\xi^2}} + \\mk{r2}{2 \\frac{\\partial^2 y}{\\partial \\xi \\partial \\eta}} + \\mk{r4}{\\frac{\\partial^2 y}{\\partial \\eta^2}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r3": "r2"
+       }
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The mixed partials agree: $\\frac{\\partial^2 y}{\\partial \\xi \\partial \\eta} = \\frac{\\partial^2 y}{\\partial \\eta \\partial \\xi}$.",
+       "src": "Calculus, 14.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kytt} = \\mk{r}{\\frac{\\partial}{\\partial t} \\frac{\\partial y}{\\partial t}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kytt} = \\mk{r}{\\left( -a \\frac{\\partial}{\\partial \\xi} + a \\frac{\\partial}{\\partial \\eta} \\right) \\left( -a \\frac{\\partial y}{\\partial \\xi} + a \\frac{\\partial y}{\\partial \\eta} \\right)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kytt} = \\mk{r1}{a^2 \\frac{\\partial^2 y}{\\partial \\xi^2}} \\mk{r2}{- a^2 \\frac{\\partial^2 y}{\\partial \\xi \\partial \\eta}} \\mk{r3}{- a^2 \\frac{\\partial^2 y}{\\partial \\eta \\partial \\xi}} + \\mk{r4}{a^2 \\frac{\\partial^2 y}{\\partial \\eta^2}}",
+       "uses": [],
+       "cap": "Multiplying out, each of the two operators acts on each of the two terms.",
+       "map": {
+        "r": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\kytt} = \\mk{r1}{a^2 \\frac{\\partial^2 y}{\\partial \\xi^2}} \\mk{r2}{- 2 a^2 \\frac{\\partial^2 y}{\\partial \\xi \\partial \\eta}} + \\mk{r4}{a^2 \\frac{\\partial^2 y}{\\partial \\eta^2}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r3": "r2"
+       }
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{tt}{\\kytt} = \\mk{xx}{a^2 \\kyxx}",
+      "src": "(4.15)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0} = \\mk{xx}{a^2 \\kyxx} \\mk{tt}{- \\kytt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{z}{0} = \\mk{xx}{a^2 \\left( \\frac{\\partial^2 y}{\\partial \\xi^2} + 2 \\frac{\\partial^2 y}{\\partial \\xi \\partial \\eta} + \\frac{\\partial^2 y}{\\partial \\eta^2} \\right)} \\mk{tt}{- \\left( a^2 \\frac{\\partial^2 y}{\\partial \\xi^2} - 2 a^2 \\frac{\\partial^2 y}{\\partial \\xi \\partial \\eta} + a^2 \\frac{\\partial^2 y}{\\partial \\eta^2} \\right)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{z}{0} = \\mk{xx}{4 a^2 \\frac{\\partial^2 y}{\\partial \\xi \\partial \\eta}}",
+       "uses": [],
+       "map": {
+        "tt": "xx"
+       }
+      },
+      {
+       "tex": "\\mk{z}{0} = \\mk{xx}{4 a^2 \\kyxieta}",
+       "uses": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dalembert-check",
+   "what": "d’Alembert’s formula meets the side conditions (4.16)",
+   "source": "Notes on Diffy Qs, 4.8 D’Alembert solution of the wave equation: the check of (4.17)",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{y}{\\ky(x,t)} = \\mk{F}{\\frac{\\kF(x-at) + \\kF(x+at)}{2}} + \\mk{G}{\\frac{1}{2a} \\int_{x-at}^{x+at} \\kG(s) \\,ds}",
+      "src": "(4.17)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\ky(x,0)} = \\mk{F}{\\frac{\\kF(x) + \\kF(x)}{2}} + \\mk{G}{\\frac{1}{2a} \\int_{x}^{x} \\kG(s) \\,ds}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\ky(x,0)} = \\mk{F}{\\kF(x)}",
+       "uses": [],
+       "map": {
+        "G": "F"
+       },
+       "cap": "An integral from $x$ to $x$ is zero."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "text": "By the fundamental theorem of calculus, $\\frac{d}{du} \\int_0^{u} \\kG(s) \\,ds = \\kG(u)$.",
+       "src": "Calculus, 5.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\ky(x,t)} = \\mk{F1}{\\frac{1}{2} \\kF(x-at)} \\mk{G1}{- \\frac{1}{2a} \\int_0^{x-at} \\kG(s) \\,ds} + \\mk{F2}{\\frac{1}{2} \\kF(x+at)} + \\mk{G2}{\\frac{1}{2a} \\int_0^{x+at} \\kG(s) \\,ds}",
+      "src": "(4.17)",
+      "why": "Assume for simplicity $F$ is differentiable. And we use the first form of (4.17) as it is easier to differentiate.",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyt(x,t)} = \\mk{F1}{\\frac{-a}{2} \\kF'(x-at)} + \\mk{G1}{\\frac{1}{2} \\kG(x-at)} + \\mk{F2}{\\frac{a}{2} \\kF'(x+at)} + \\mk{G2}{\\frac{1}{2} \\kG(x+at)}",
+       "uses": [
+        0
+       ],
+       "cap": "Differentiating in $t$; the chain rule brings out the factor $-a$ of $x - at$ and $a$ of $x + at$."
+      },
+      {
+       "tex": "\\mk{y}{\\kyt(x,0)} = \\mk{F1}{\\frac{-a}{2} \\kF'(x)} + \\mk{G1}{\\frac{1}{2} \\kG(x)} + \\mk{F2}{\\frac{a}{2} \\kF'(x)} + \\mk{G2}{\\frac{1}{2} \\kG(x)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\kyt(x,0)} = \\mk{G1}{\\kG(x)}",
+       "uses": [],
+       "map": {
+        "G2": "G1"
+       }
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kF(x)$ and $\\kG(x)$ are odd.",
+       "src": "4.4"
+      },
+      {
+       "text": "The integral of an odd function over an interval symmetric about $0$ is zero.",
+       "src": "4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\ky(x,t)} = \\mk{F}{\\frac{\\kF(x-at) + \\kF(x+at)}{2}} + \\mk{G}{\\frac{1}{2a} \\int_{x-at}^{x+at} \\kG(s) \\,ds}",
+      "src": "(4.17)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\ky(0,t)} = \\mk{F}{\\frac{\\kF(-at) + \\kF(at)}{2}} + \\mk{G}{\\frac{1}{2a} \\int_{-at}^{at} \\kG(s) \\,ds}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\ky(0,t)} = \\mk{F}{\\frac{-\\kF(at) + \\kF(at)}{2}} + \\mk{G}{\\frac{1}{2a} \\int_{-at}^{at} \\kG(s) \\,ds}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\ky(0,t)} = \\mk{F}{0} + \\mk{G}{0}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\ky(0,t)} = \\mk{F}{0}",
+       "uses": [],
+       "map": {
+        "G": "F"
+       }
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kF(x)$ and $\\kG(x)$ are $2L$-periodic.",
+       "src": "4.4"
+      },
+      {
+       "text": "$\\kF(x)$ and $\\kG(x)$ are odd.",
+       "src": "4.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kF(L-at)} = \\mk{b}{\\kF(-L-at)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kF(L-at)} = \\mk{b}{-\\kF(L+at)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kF(L-at)} + \\mk{b}{\\kF(L+at)} = \\mk{z}{0}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kF(x)$ and $\\kG(x)$ are $2L$-periodic.",
+       "src": "4.4"
+      },
+      {
+       "text": "$\\kF(x)$ and $\\kG(x)$ are odd.",
+       "src": "4.4"
+      },
+      {
+       "text": "The integral of an odd function over an interval symmetric about $0$ is zero.",
+       "src": "4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{i}{\\int_{L-at}^{L+at} \\kG(s) \\,ds} = \\mk{j}{\\int_{-at}^{at} \\kG(v+L) \\,dv}",
+      "why": "We change variables $v = s - L$.",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{i}{\\int_{L-at}^{L+at} \\kG(s) \\,ds} = \\mk{j}{0}",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "cap": "We notice that $G(v+L) = G(v-L) = -G(-v+L)$, so $G(v+L)$ is odd as a function of $v$, and its integral over $[-at, at]$ is zero."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "step": 4
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\ky(x,t)} = \\mk{F}{\\frac{\\kF(x-at) + \\kF(x+at)}{2}} + \\mk{G}{\\frac{1}{2a} \\int_{x-at}^{x+at} \\kG(s) \\,ds}",
+      "src": "(4.17)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\ky(L,t)} = \\mk{F}{\\frac{\\kF(L-at) + \\kF(L+at)}{2}} + \\mk{G}{\\frac{1}{2a} \\int_{L-at}^{L+at} \\kG(s) \\,ds}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{y}{\\ky(L,t)} = \\mk{F}{0} + \\mk{G}{0}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\ky(L,t)} = \\mk{F}{0}",
+       "uses": [],
+       "map": {
+        "G": "F"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "4.8.1",
+   "source_number": "4.8.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "minus-sign"
+   },
+   "cite": "eq-4-18",
+   "prompt": "<p>Check that the new formula <a href=\"#eq-4-18\">(4.18)</a> satisfies the side conditions <a href=\"#eq-4-16\">(4.16)</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\kH(x) = \\int_0^x \\kG(s)\\,ds$, so that $\\kH' = \\kG$. At $t = 0$, (4.18) gives $\\ky(x,0) = \\frac{\\kF(x) + \\kF(x)}{2} + \\frac{-\\kH(x) + \\kH(x)}{2a} = \\kF(x)$, which is $\\kf(x)$ for $0 < x < L$. Differentiating in $t$, $\\kyt(x,t) = \\frac{-a\\kF'(x-at) + a\\kF'(x+at)}{2} + \\frac{a\\kG(x-at) + a\\kG(x+at)}{2a}$, so $\\kyt(x,0) = 0 + \\frac{2a\\kG(x)}{2a} = \\kG(x)$, which is $\\kg(x)$ for $0 < x < L$. At $x = 0$: $\\kF$ is odd, so $\\kF(-at) + \\kF(at) = 0$; and $\\kH$ is even, since $\\kH(-x) = \\int_0^{-x} \\kG(s)\\,ds = \\int_0^{x} \\kG(-u)\\,(-du) = \\int_0^x \\kG(u)\\,du = \\kH(x)$ for the odd $\\kG$, so $-\\kH(-at) + \\kH(at) = 0$. Hence $\\ky(0,t) = 0$. At $x = L$: $\\kF(L-at) + \\kF(L+at) = 0$ as in the check of (4.17), and $-\\kH(L-at) + \\kH(L+at) = \\int_{L-at}^{L+at} \\kG(s)\\,ds = 0$ because $\\kG(v+L)$ is odd in $v$. Hence $\\ky(L,t) = 0$, and all the side conditions (4.16) hold."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "4.8.2",
+   "source_number": "4.8.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-4-17",
+   "prompt": "<p>Using the d’Alembert solution solve $\\kytt = 4\\kyxx$, $0 < x < \\pi$, $t > 0$, $\\ky(0,t) = \\ky(\\pi, t) = 0$, $\\ky(x,0) = \\sin x$, and $\\kyt(x,0) = \\sin x$. Hint: Note that $\\sin x$ is the odd periodic extension of $\\ky(x,0)$ and $\\kyt(x,0)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\sin x \\cos 2t + \\frac{1}{2} \\sin x \\sin 2t$. Here $a = 2$, and $\\sin x$ is odd and $2\\pi$-periodic, so it is its own odd periodic extension: $\\kF(x) = \\kG(x) = \\sin x$. By (4.17), $\\ky(x,t) = \\frac{\\sin(x-2t) + \\sin(x+2t)}{2} + \\frac{1}{4} \\int_{x-2t}^{x+2t} \\sin s \\,ds = \\sin x \\cos 2t + \\frac{1}{4}\\bigl(\\cos(x-2t) - \\cos(x+2t)\\bigr) = \\sin x \\cos 2t + \\frac{1}{2} \\sin x \\sin 2t$, by the addition formulas for $\\sin(x \\mp 2t)$ and $\\cos(x \\mp 2t)$. Check: $\\kytt = -4\\ky = 4\\kyxx$, $\\ky(x,0) = \\sin x$, $\\kyt(x,0) = \\sin x$, and $\\ky(0,t) = \\ky(\\pi,t) = 0$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "4.8.3",
+   "source_number": "4.8.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-4-17",
+   "prompt": "<p>Using the d’Alembert solution solve $\\kytt = 2\\kyxx$, $0 < x < 1$, $t > 0$, $\\ky(0,t) = \\ky(1, t) = 0$, $\\ky(x,0) = \\sin^5 (\\pi x)$, and $\\kyt(x,0) = \\sin^3 (\\pi x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\frac{\\sin^5\\bigl(\\pi(x-\\sqrt{2}\\,t)\\bigr) + \\sin^5\\bigl(\\pi(x+\\sqrt{2}\\,t)\\bigr)}{2} + \\frac{1}{2\\sqrt{2}} \\Bigl[ -\\frac{\\cos(\\pi s)}{\\pi} + \\frac{\\cos^3(\\pi s)}{3\\pi} \\Bigr]_{s = x-\\sqrt{2}\\,t}^{s = x+\\sqrt{2}\\,t}$. Here $a = \\sqrt{2}$ and $L = 1$. The functions $\\sin^5(\\pi x)$ and $\\sin^3(\\pi x)$ are odd and $2$-periodic, so they are their own odd periodic extensions $\\kF$ and $\\kG$, and (4.17) applies to them directly. For the integral, $\\sin^3(\\pi s) = \\sin(\\pi s)\\bigl(1 - \\cos^2(\\pi s)\\bigr)$ has the antiderivative $-\\frac{\\cos(\\pi s)}{\\pi} + \\frac{\\cos^3(\\pi s)}{3\\pi}$. Check: this $\\ky$ satisfies $\\kytt = 2\\kyxx$, $\\ky(x,0) = \\sin^5(\\pi x)$, $\\kyt(x,0) = \\sin^3(\\pi x)$, and $\\ky(0,t) = \\ky(1,t) = 0$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "4.8.4",
+   "source_number": "4.8.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-4-17",
+   "prompt": "<p>Take $\\kytt = 4\\kyxx$, $0 < x < \\pi$, $t > 0$, $\\ky(0,t) = \\ky(\\pi, t) = 0$, $\\ky(x,0) = x(\\pi-x)$, and $\\kyt(x,0) = 0$.</p><ol type=\"a\"><li>Solve using the d’Alembert formula. Hint: You can use the sine series for $\\ky(x,0)$.</li><li>Find the solution as a function of $x$ for a fixed $t=0.5$, $t=1$, and $t=2$. Do not use the sine series here.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\ky(x,t) = \\frac{\\kF(x-2t) + \\kF(x+2t)}{2}$, with $\\kF$ the odd $2\\pi$-periodic extension of $x(\\pi - x)$ ($a = 2$, and $\\kg = 0$ so $\\kG = 0$). With the sine series $\\kF(x) = \\sum_{n \\text{ odd}} \\frac{8}{\\pi n^3} \\sin(nx)$ and $\\frac{\\sin(n(x-2t)) + \\sin(n(x+2t))}{2} = \\sin(nx)\\cos(2nt)$, this is $\\ky(x,t) = \\sum_{n \\text{ odd}} \\frac{8}{\\pi n^3} \\sin(nx) \\cos(2nt)$. b) $\\kF(u) = u(\\pi - u)$ for $0 \\le u \\le \\pi$, $\\kF(u) = u(\\pi + u)$ for $-\\pi \\le u \\le 0$, and $\\kF$ repeats with period $2\\pi$; put $u = x \\mp 2t$ and average. At $t = 0.5$: $\\ky = (\\pi - 2)x$ for $0 \\le x \\le 1$, $\\ky = -x^2 + \\pi x - 1$ for $1 \\le x \\le \\pi - 1$, $\\ky = (\\pi - 2)(\\pi - x)$ for $\\pi - 1 \\le x \\le \\pi$. At $t = 1$: $\\ky = (\\pi - 4)x$ for $0 \\le x \\le \\pi - 2$, $\\ky = x^2 - \\pi x + (\\pi - 2)^2$ for $\\pi - 2 \\le x \\le 2$, $\\ky = (\\pi - 4)(\\pi - x)$ for $2 \\le x \\le \\pi$. At $t = 2$: $\\ky = (8 - 3\\pi)x$ for $0 \\le x \\le 4 - \\pi$, $\\ky = x^2 - \\pi x + (\\pi - 4)^2$ for $4 - \\pi \\le x \\le 2\\pi - 4$, $\\ky = (8 - 3\\pi)(\\pi - x)$ for $2\\pi - 4 \\le x \\le \\pi$. Each piece agrees with the series of a) at its $t$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "4.8.5",
+   "source_number": "4.8.5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-4-17",
+   "prompt": "<p>Derive the d’Alembert solution for $\\kytt = a^2 \\kyxx$, $0 < x < \\pi$, $t > 0$, $\\ky(0,t) = \\ky(\\pi, t) = 0$, $\\ky(x,0) = \\kf(x)$, and $\\kyt(x,0) = 0$, using the Fourier series solution of the wave equation, by applying an appropriate trigonometric identity. Hint: Do it first for a single term of the Fourier series solution, in particular do it when $\\ky$ is $\\sin(n x )\\cos(n a t )$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\kg = 0$ the Fourier series solution on $0 < x < \\pi$ is $\\ky(x,t) = \\sum_{n=1}^\\infty b_n \\sin(nx) \\cos(nat)$, where $\\kf(x) = \\sum_{n=1}^\\infty b_n \\sin(nx)$ is the sine series of $\\kf$. The identity $\\sin A \\cos B = \\frac{1}{2}\\bigl(\\sin(A - B) + \\sin(A + B)\\bigr)$ with $A = nx$, $B = nat$ turns one term into $\\sin(nx)\\cos(nat) = \\frac{\\sin(n(x-at)) + \\sin(n(x+at))}{2}$. Summing term by term, $\\ky(x,t) = \\frac{1}{2} \\sum_{n=1}^\\infty b_n \\sin(n(x-at)) + \\frac{1}{2} \\sum_{n=1}^\\infty b_n \\sin(n(x+at)) = \\frac{\\kF(x-at) + \\kF(x+at)}{2}$, since the sine series $\\sum b_n \\sin(nu)$ is the odd $2\\pi$-periodic extension $\\kF(u)$ of $\\kf$ at every $u$ where $\\kF$ is continuous. This is d’Alembert’s formula (4.17) with $\\kG = 0$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "4.8.6",
+   "source_number": "4.8.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "long-string",
+   "prompt": "<p>The d’Alembert solution still works if there are no boundary conditions and the initial condition is defined on the whole real line. Suppose that $\\kytt = \\kyxx$ (for all $x$ on the real line and $t \\geq 0$), $\\ky(x,0) = \\kf(x)$, and $\\kyt(x,0) = 0$, where</p><p>$$ \\kf(x) = \\begin{cases} 0 & \\text{if } \\; x < -1, \\\\ x+1 & \\text{if } \\; {-1} \\leq x < 0, \\\\ -x+1 & \\text{if } \\; 0 \\leq x < 1, \\\\ 0 & \\text{if } \\; 1 < x . \\end{cases} $$</p><p>Solve using the d’Alembert solution. That is, write down a piecewise definition for the solution. Then sketch the solution for $t=0$, $t={1}/{2}$, $t=1$, and $t=2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\frac{\\kf(x-t) + \\kf(x+t)}{2}$: on the whole line no extension is needed, $\\kF = \\kf$ and $a = 1$. Piece by piece, $\\frac{1}{2}\\kf(x-t)$ is $0$ for $x < t - 1$, $\\frac{x - t + 1}{2}$ for $t - 1 \\le x < t$, $\\frac{-x + t + 1}{2}$ for $t \\le x < t + 1$ and $0$ for $x \\ge t + 1$; $\\frac{1}{2}\\kf(x+t)$ is $0$ for $x < -t - 1$, $\\frac{x + t + 1}{2}$ for $-t - 1 \\le x < -t$, $\\frac{-x - t + 1}{2}$ for $-t \\le x < -t + 1$ and $0$ for $x \\ge -t + 1$; $\\ky$ is their sum. Sketches: at $t = 0$ the hat of height $1$ on $[-1, 1]$; at $t = \\frac{1}{2}$ a trapezoid, rising from $0$ at $x = -\\frac{3}{2}$ to $\\frac{1}{2}$ at $x = -\\frac{1}{2}$, flat at $\\frac{1}{2}$ on $[-\\frac{1}{2}, \\frac{1}{2}]$ and falling to $0$ at $x = \\frac{3}{2}$; at $t = 1$ two hats of height $\\frac{1}{2}$ on $[-2, 0]$ and $[0, 2]$, touching at $x = 0$ where $\\ky = 0$; at $t = 2$ two hats of height $\\frac{1}{2}$ on $[-3, -1]$ and $[1, 3]$ with $\\ky = 0$ between them. The initial hat splits into two half-height copies moving apart at speed $1$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "4.8.101",
+   "source_number": "4.8.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-4-17",
+   "prompt": "<p>Using the d’Alembert solution solve $\\kytt = 9\\kyxx$, $0 < x < 1$, $t > 0$, $\\ky(0,t) = \\ky(1, t) = 0$, $\\ky(x,0) = \\sin (2 \\pi x)$, and $\\kyt(x,0) = \\sin (3 \\pi x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky(x,t)= \\frac{\\sin(2 \\pi (x-3 t))+\\sin(2 \\pi (3 t+x))}{2} + \\frac{\\cos(3 \\pi (x-3 t))-\\cos(3 \\pi (3 t+x))}{18\\pi}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "4.8.102",
+   "source_number": "4.8.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "warning",
+   "prompt": "<p>Take $\\kytt = 4\\kyxx$, $0 < x < 1$, $t > 0$, $\\ky(0,t) = \\ky(1, t) = 0$, $\\ky(x,0) = x-x^2$, and $\\kyt(x,0) = 0$. Using the d’Alembert solution find the solution at</p><ol type=\"a\"><li>$t=0.1$,</li><li>$t={1}/{2}$,</li><li>$t=1$.</li></ol><p>You may have to split your answer up by cases.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\ky(x,0.1) = \\begin{cases} x-x^2-0.04 & \\text{if } \\; 0.2 \\leq x \\leq 0.8 \\\\ 0.6x & \\text{if } \\; x \\leq 0.2 \\\\ 0.6-0.6x & \\text{if } \\; x \\geq 0.8 \\\\ \\end{cases}$ b) $\\ky(x,{1}/{2}) = -x+x^2$ c) $\\ky(x,1) = x-x^2$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "4.8.103",
+   "source_number": "4.8.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "impulse-value",
+   "prompt": "<p>Take $\\kytt = 100\\kyxx$, $0 < x < 4$, $t > 0$, $\\ky(0,t) = \\ky(4, t) = 0$, $\\ky(x,0) = \\kF(x)$, and $\\kyt(x,0) = 0$. Suppose that $\\kF(0)=0$, $\\kF(1)=2$, $\\kF(2)=3$, $\\kF(3)=1$. Using the d’Alembert solution find</p><ol type=\"a\"><li>$\\ky(1,1)$,</li><li>$\\ky(4,3)$,</li><li>$\\ky(3,9)$.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "parts": [
+     {
+      "part": "a",
+      "value": -0.5
+     },
+     {
+      "part": "b",
+      "value": 0
+     },
+     {
+      "part": "c",
+      "value": 0.5
+     }
+    ],
+    "generated_by": "source",
+    "solution": "a) $\\ky(1,1) = -{1}/{2}$ b) $\\ky(4,3) = 0$ c) $\\ky(3,9) = {1}/{2}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "dalemberts-formula"
+  },
+  {
+   "exercise": "e1",
+   "concept": "wave-equation-side-conditions"
+  },
+  {
+   "exercise": "e2",
+   "concept": "dalemberts-formula"
+  },
+  {
+   "exercise": "e2",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e3",
+   "concept": "dalemberts-formula"
+  },
+  {
+   "exercise": "e3",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e4",
+   "concept": "dalemberts-formula"
+  },
+  {
+   "exercise": "e4",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e4",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e5",
+   "concept": "dalemberts-formula"
+  },
+  {
+   "exercise": "e5",
+   "concept": "wave-equation-series-solution"
+  },
+  {
+   "exercise": "e6",
+   "concept": "dalemberts-formula"
+  },
+  {
+   "exercise": "e6",
+   "concept": "wave-equation-general-solution"
+  },
+  {
+   "exercise": "e101",
+   "concept": "dalemberts-formula"
+  },
+  {
+   "exercise": "e102",
+   "concept": "dalemberts-formula"
+  },
+  {
+   "exercise": "e102",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e103",
+   "concept": "dalemberts-formula"
+  },
+  {
+   "exercise": "e103",
+   "concept": "odd-periodic-extension"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-dalembert",
+   "kind": "book",
+   "number": "19",
+   "html": "Named after the French mathematician <a href=\"https://en.wikipedia.org/wiki/D%27Alembert\">Jean le Rond d’Alembert</a> (1717–1783)."
+  },
+  {
+   "id": "fn-eta",
+   "kind": "book",
+   "number": "20",
+   "html": "There is nothing special about $\\eta$, you can integrate with $\\xi$ first, if you wish."
+  }
+ ]
+}

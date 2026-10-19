@@ -1,0 +1,1005 @@
+{
+  "id": "4.2",
+  "module": "ts:section",
+  "chapter": "4",
+  "title": "The trigonometric series",
+  "short": "The trigonometric series",
+  "lead": "A periodic forcing $\\kf(t)$ can be split into cosines and sines. This section says what a <span data-concept=\"periodic-function\">periodic function</span> and its <span data-concept=\"periodic-extension\">periodic extension</span> are, recalls how a vector is decomposed along orthogonal eigenvectors, and does the same for a function with an <span data-concept=\"inner-product-of-functions\">inner product of functions</span>, which leads to the <span data-concept=\"fourier-series\">Fourier series</span>, worked out for the <span data-concept=\"sawtooth\">sawtooth</span> and the <span data-concept=\"square-wave\">square wave</span>.",
+  "objectives": [],
+  "summary_html": "",
+  "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-19",
+  "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+  "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.2.101–4.2.104 carry the book’s own answers, each checked against SymPy. The inline exercises 4.2.1–4.2.2 and exercises 4.2.3–4.2.9, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every coefficient computed with SymPy first. The paragraph on the complex form of the series, printed between Exercises 4.2.8 and 4.2.9, opens the prompt of 4.2.9. The book’s note that exercises numbered 101 and higher have solutions is the exercises_lead.",
+  "figures": [
+    {
+      "id": "sim-periodic-extension",
+      "kind": "sim",
+      "number": "4.3",
+      "originals": [
+        "/media/ch04/ts-perextofinvertedparabola.svg"
+      ],
+      "original_caption": "Periodic extension of the function 1 − t².",
+      "widths": [
+        432
+      ],
+      "draws": [
+        "function"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-fourier-coefficient",
+      "kind": "sim",
+      "draws": [
+        "function",
+        "integral",
+        "sequence"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-partial-sums",
+      "kind": "sim",
+      "number": "4.4",
+      "folds": [
+        "4.5",
+        "4.6",
+        "4.7",
+        "4.8"
+      ],
+      "originals": [
+        "/media/ch04/ts-sawtooth.svg",
+        "/media/ch04/ts-sawtooth-fs3-fs20.svg",
+        "/media/ch04/ts-squarewave.svg",
+        "/media/ch04/ts-squarewave-fs3-fs20.svg",
+        "/media/ch04/ts-squarewave-gibbs.svg"
+      ],
+      "original_caption": "(Figure 4.4) The graph of the sawtooth function. (Figure 4.5) First 3 (left graph) and 20 (right graph) harmonics of the sawtooth function. (Figure 4.6) The graph of the square wave function. (Figure 4.7) First 3 (left graph) and 20 (right graph) harmonics of the square wave function. (Figure 4.8) Gibbs phenomenon in action.",
+      "widths": [
+        432,
+        864,
+        432,
+        864,
+        432
+      ],
+      "draws": [
+        "function",
+        "series",
+        "sequence"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "referents": [],
+  "coverage": [
+    {
+      "span": "motivation",
+      "concept": "fourier-series",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-4-6",
+      "concept": "undamped-forced-motion",
+      "verb": "uses"
+    },
+    {
+      "span": "forced-recall",
+      "concept": "periodic-function",
+      "verb": "uses"
+    },
+    {
+      "span": "forced-recall",
+      "concept": "general-solution",
+      "verb": "uses"
+    },
+    {
+      "span": "forced-recall",
+      "concept": "undamped-forced-motion",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-4-7",
+      "concept": "undamped-forced-motion",
+      "verb": "reinforces"
+    },
+    {
+      "span": "superposition-plan",
+      "concept": "superposition-principle",
+      "verb": "uses"
+    },
+    {
+      "span": "periodic-definition",
+      "concept": "periodic-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "periodic-extension",
+      "concept": "periodic-extension",
+      "verb": "introduces"
+    },
+    {
+      "span": "periodic-extension",
+      "concept": "periodic-function",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-4-2-1",
+      "concept": "periodic-extension",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-4-2-1",
+      "concept": "periodic-function",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-periodic-extension",
+      "concept": "periodic-extension",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-periodic-extension",
+      "concept": "periodic-function",
+      "verb": "uses"
+    },
+    {
+      "span": "extension-warning",
+      "concept": "periodic-extension",
+      "verb": "uses"
+    },
+    {
+      "span": "symmetric-orthogonal",
+      "concept": "symmetric-matrix",
+      "verb": "reinforces"
+    },
+    {
+      "span": "symmetric-orthogonal",
+      "concept": "eigenvector",
+      "verb": "uses"
+    },
+    {
+      "span": "symmetric-orthogonal",
+      "concept": "dot-product",
+      "verb": "reinforces"
+    },
+    {
+      "span": "symmetric-orthogonal",
+      "concept": "orthogonal-decomposition",
+      "verb": "uses"
+    },
+    {
+      "span": "decomposition",
+      "concept": "orthogonal-decomposition",
+      "verb": "introduces"
+    },
+    {
+      "span": "eq-orthogonal-coefficient",
+      "concept": "orthogonal-decomposition",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-4-2-2",
+      "concept": "orthogonal-decomposition",
+      "verb": "uses"
+    },
+    {
+      "span": "eigenfunction-choice",
+      "concept": "eigenfunction",
+      "verb": "uses"
+    },
+    {
+      "span": "eigenfunction-choice",
+      "concept": "eigenvalue-problem-of-a-differential-operator",
+      "verb": "uses"
+    },
+    {
+      "span": "eigenfunction-choice",
+      "concept": "eigenvector",
+      "verb": "uses"
+    },
+    {
+      "span": "eigenfunction-choice",
+      "concept": "fourier-series",
+      "verb": "uses"
+    },
+    {
+      "span": "eigenfunctions-recall",
+      "concept": "eigenvalues-with-periodic-conditions",
+      "verb": "reinforces"
+    },
+    {
+      "span": "eigenfunctions-recall",
+      "concept": "periodic-function",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-fourier-series",
+      "concept": "fourier-series",
+      "verb": "introduces"
+    },
+    {
+      "span": "fourier-name",
+      "concept": "harmonic",
+      "verb": "introduces"
+    },
+    {
+      "span": "fourier-name",
+      "concept": "fourier-series",
+      "verb": "uses"
+    },
+    {
+      "span": "fourier-name",
+      "concept": "eigenfunction",
+      "verb": "uses"
+    },
+    {
+      "span": "inner-product-functions",
+      "concept": "inner-product-of-functions",
+      "verb": "introduces"
+    },
+    {
+      "span": "inner-product-functions",
+      "concept": "fourier-coefficients",
+      "verb": "uses"
+    },
+    {
+      "span": "inner-product-functions",
+      "concept": "eigenfunction",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-inner-product",
+      "concept": "inner-product-of-functions",
+      "verb": "uses"
+    },
+    {
+      "span": "orthogonality-recall",
+      "concept": "orthogonality-of-eigenfunctions",
+      "verb": "reinforces"
+    },
+    {
+      "span": "orthogonality-recall",
+      "concept": "inner-product-of-functions",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-inner-product-norms",
+      "concept": "inner-product-of-functions",
+      "verb": "uses"
+    },
+    {
+      "span": "coefficients-given",
+      "concept": "fourier-coefficients",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-fourier-coefficients",
+      "concept": "fourier-coefficients",
+      "verb": "introduces"
+    },
+    {
+      "span": "eq-fourier-a0",
+      "concept": "fourier-coefficients",
+      "verb": "uses"
+    },
+    {
+      "span": "coefficient-check",
+      "concept": "orthogonality-of-eigenfunctions",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-coefficient-formula",
+      "concept": "fourier-coefficients",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-coefficient-formula",
+      "concept": "orthogonality-of-eigenfunctions",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-coefficient-formula",
+      "concept": "inner-product-of-functions",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-fourier-coefficient",
+      "concept": "fourier-coefficients",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-fourier-coefficient",
+      "concept": "inner-product-of-functions",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-fourier-coefficient",
+      "concept": "integrals-of-even-and-odd-functions",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-fourier-coefficient",
+      "concept": "orthogonality-of-eigenfunctions",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-fourier-coefficient",
+      "concept": "odd-function",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-4-2-3",
+      "concept": "fourier-series",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-4-2-3",
+      "concept": "fourier-coefficients",
+      "verb": "uses"
+    },
+    {
+      "span": "sawtooth-def",
+      "concept": "sawtooth",
+      "verb": "introduces"
+    },
+    {
+      "span": "sawtooth-def",
+      "concept": "periodic-extension",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-partial-sums",
+      "concept": "fourier-series",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-partial-sums",
+      "concept": "harmonic",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-partial-sums",
+      "concept": "sawtooth",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-partial-sums",
+      "concept": "square-wave",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-partial-sums",
+      "concept": "gibbs-phenomenon",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-partial-sums",
+      "concept": "spectrum",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-partial-sums",
+      "concept": "fundamental-frequency",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-partial-sums",
+      "concept": "overtones",
+      "verb": "uses"
+    },
+    {
+      "span": "odd-integral",
+      "concept": "integrals-of-even-and-odd-functions",
+      "verb": "introduces"
+    },
+    {
+      "span": "odd-integral",
+      "concept": "odd-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "even-integral",
+      "concept": "even-function",
+      "verb": "introduces"
+    },
+    {
+      "span": "even-integral",
+      "concept": "integrals-of-even-and-odd-functions",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-sawtooth-series",
+      "concept": "sawtooth",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-sawtooth-series",
+      "concept": "fourier-series",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-4-2-4",
+      "concept": "fourier-coefficients",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-4-2-4",
+      "concept": "fourier-series",
+      "verb": "uses"
+    },
+    {
+      "span": "square-wave-def",
+      "concept": "square-wave",
+      "verb": "introduces"
+    },
+    {
+      "span": "square-wave-def",
+      "concept": "periodic-extension",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-square-wave-series",
+      "concept": "square-wave",
+      "verb": "uses"
+    },
+    {
+      "span": "convergence-remark",
+      "concept": "square-wave",
+      "verb": "uses"
+    },
+    {
+      "span": "redefine-jumps",
+      "concept": "square-wave",
+      "verb": "uses"
+    },
+    {
+      "span": "gibbs",
+      "concept": "gibbs-phenomenon",
+      "verb": "introduces"
+    },
+    {
+      "span": "gibbs",
+      "concept": "harmonic",
+      "verb": "uses"
+    },
+    {
+      "span": "gibbs",
+      "concept": "square-wave",
+      "verb": "uses"
+    },
+    {
+      "span": "spectrum",
+      "concept": "fundamental-frequency",
+      "verb": "introduces"
+    },
+    {
+      "span": "spectrum",
+      "concept": "overtones",
+      "verb": "introduces"
+    },
+    {
+      "span": "spectrum",
+      "concept": "spectrum",
+      "verb": "introduces"
+    },
+    {
+      "span": "spectrum",
+      "concept": "periodic-function",
+      "verb": "uses"
+    },
+    {
+      "span": "spectrum",
+      "concept": "square-wave",
+      "verb": "uses"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "coefficient-formula",
+      "what": "the Fourier coefficients",
+      "source": "Differential Equations for Engineers, 4.2 The trigonometric series",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "tex": "\\kf(t) = \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\Bigl[ \\kan \\cos (n t) + \\kbn \\sin (n t) \\Bigr]",
+              "src": "4.2"
+            },
+            {
+              "tex": "\\langle \\kf(t) , \\kg(t) \\rangle = \\int_{-\\pi}^\\pi \\kf(t) \\, \\kg(t) \\, dt",
+              "src": "4.2"
+            },
+            {
+              "tex": "\\langle 1 , \\cos (mt) \\rangle = 0 \\quad \\text{for } m \\geq 1",
+              "src": "4.2"
+            },
+            {
+              "tex": "\\langle \\cos (nt) , \\cos (mt) \\rangle = 0 \\quad \\text{for } m \\neq n",
+              "src": "4.2"
+            },
+            {
+              "tex": "\\langle \\sin (nt) , \\cos (mt) \\rangle = 0 \\quad \\text{for all } m \\text{ and } n",
+              "src": "4.2"
+            },
+            {
+              "tex": "\\langle \\cos (mt) , \\cos (mt) \\rangle = \\pi",
+              "src": "4.2"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{\\langle \\kf(t) , \\cos (mt) \\rangle} = \\mk{R}{\\Bigl\\langle \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\Bigl[ \\kan \\cos (n t) + \\kbn \\sin (n t) \\Bigr] , \\cos (mt) \\Bigr\\rangle}",
+            "src": "4.2",
+            "uses": [
+              0
+            ],
+            "why": "Suppose for a moment that $f(t)$ is its series, and take the inner product of both sides with $\\cos(mt)$ for an $m \\geq 1$."
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{\\langle \\kf(t) , \\cos (mt) \\rangle} = \\mk{a0}{\\frac{\\kazero}{2} \\langle 1 , \\cos (mt) \\rangle} + \\mk{S}{\\sum_{n=1}^\\infty \\Bigl[ \\kan \\langle \\cos (nt) , \\cos (mt) \\rangle + \\kbn \\langle \\sin (n t) , \\cos (mt) \\rangle \\Bigr]}",
+              "uses": [
+                1
+              ],
+              "map": {
+                "R": [
+                  "a0",
+                  "S"
+                ]
+              },
+              "cap": "The inner product is an integral, and the integral of a sum is the sum of the integrals, with the constants taken out."
+            },
+            {
+              "tex": "\\mk{L}{\\langle \\kf(t) , \\cos (mt) \\rangle} = \\mk{S}{\\sum_{n=1}^\\infty \\Bigl[ \\kan \\langle \\cos (nt) , \\cos (mt) \\rangle + \\kbn \\langle \\sin (n t) , \\cos (mt) \\rangle \\Bigr]}",
+              "uses": [
+                2
+              ]
+            },
+            {
+              "tex": "\\mk{L}{\\langle \\kf(t) , \\cos (mt) \\rangle} = \\mk{S}{\\htmlClass{kv-sequence}{a_m} \\langle \\cos (mt) , \\cos (mt) \\rangle}",
+              "uses": [
+                3,
+                4
+              ],
+              "cap": "Every $\\sin(nt)$ is orthogonal to $\\cos(mt)$, and so is every $\\cos(nt)$ but the one with $n = m$: of the whole sum only $a_m \\langle \\cos(mt), \\cos(mt) \\rangle$ is left."
+            },
+            {
+              "tex": "\\mk{am}{\\htmlClass{kv-sequence}{a_m}} = \\frac{\\mk{L}{\\langle \\kf(t) , \\cos (mt) \\rangle}}{\\mk{N}{\\langle \\cos (mt) , \\cos (mt) \\rangle}}",
+              "uses": [],
+              "map": {
+                "S": [
+                  "am",
+                  "N"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{am}{\\htmlClass{kv-sequence}{a_m}} = \\mk{N}{\\frac{1}{\\pi}} \\mk{L}{\\int_{-\\pi}^\\pi \\kf(t) \\cos (mt) \\, dt}",
+              "uses": [
+                5,
+                1
+              ]
+            }
+          ],
+          "src": "4.2"
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e1",
+      "source_id": "4.2.1",
+      "source_number": "4.2.1",
+      "kind": "inline-exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "extension-warning"
+      },
+      "cite": "extension-warning",
+      "prompt": "<p>Define $\\kf(t) = \\cos t$ on $[{-\\pi}/{2},{\\pi}/{2}]$. Take the $\\pi$-periodic extension and sketch its graph. How does it compare to the graph of $\\cos t$?</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The extension $\\kF(t)$ repeats the arch of $\\cos t$ over $[-\\pi/2, \\pi/2]$ every $\\pi$: on $[\\pi/2, 3\\pi/2]$ it is $\\kf(t - \\pi) = \\cos(t - \\pi) = -\\cos t$, on $[-3\\pi/2, -\\pi/2]$ it is $\\cos(t + \\pi) = -\\cos t$, and so on. On the copy centred at $k\\pi$, $\\cos(t - k\\pi) = (-1)^k \\cos t$, and there $\\cos t$ has the sign $(-1)^k$, so $\\kF(t) = \\lvert \\cos t \\rvert$ for every $t$. Its graph is a row of identical arches of height 1 that touch zero at the odd multiples of $\\pi/2$ with corners there, and it is never negative. The graph of $\\cos t$ agrees with it wherever $\\cos t \\geq 0$, on $[-\\pi/2, \\pi/2]$ and its translates by $2\\pi$, but on $[\\pi/2, 3\\pi/2]$ $\\cos t$ dips down to $-1$ while the extension rises back up to 1. The formula $\\cos t$ is periodic, but with period $2\\pi$, not $\\pi$, so it is not the $\\pi$-periodic extension (the second choice of Figure 4.3 draws both)."
+      }
+    },
+    {
+      "id": "e2",
+      "source_id": "4.2.2",
+      "source_number": "4.2.2",
+      "kind": "inline-exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "drv-coefficient-formula"
+      },
+      "cite": "coefficient-check",
+      "prompt": "<p>Carry out the calculation for $\\kazero$ and $b_m$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "For $\\kazero$, take the inner product of the series with the constant 1: $\\langle \\kf(t), 1 \\rangle = \\frac{\\kazero}{2} \\langle 1, 1 \\rangle + \\sum_{n=1}^\\infty \\bigl[ \\kan \\langle \\cos(nt), 1 \\rangle + \\kbn \\langle \\sin(nt), 1 \\rangle \\bigr] = \\frac{\\kazero}{2} \\langle 1, 1 \\rangle$, since the constant is orthogonal to every $\\cos(nt)$ with $n \\geq 1$ and to every $\\sin(nt)$. So $\\kazero = 2 \\frac{\\langle \\kf(t), 1 \\rangle}{\\langle 1, 1 \\rangle} = \\frac{1}{\\pi} \\int_{-\\pi}^\\pi \\kf(t) \\, dt$, as $\\langle 1, 1 \\rangle = 2\\pi$. For $b_m$ with $m \\geq 1$, take the inner product with $\\sin(mt)$: $\\langle \\kf(t), \\sin(mt) \\rangle = \\frac{\\kazero}{2} \\langle 1, \\sin(mt) \\rangle + \\sum_{n=1}^\\infty \\bigl[ \\kan \\langle \\cos(nt), \\sin(mt) \\rangle + \\kbn \\langle \\sin(nt), \\sin(mt) \\rangle \\bigr] = b_m \\langle \\sin(mt), \\sin(mt) \\rangle$, since $\\sin(mt)$ is orthogonal to 1, to every $\\cos(nt)$ and to every $\\sin(nt)$ with $n \\neq m$. So $b_m = \\frac{\\langle \\kf(t), \\sin(mt) \\rangle}{\\langle \\sin(mt), \\sin(mt) \\rangle} = \\frac{1}{\\pi} \\int_{-\\pi}^\\pi \\kf(t) \\sin(mt) \\, dt$, as $\\langle \\sin(mt), \\sin(mt) \\rangle = \\pi$."
+      }
+    },
+    {
+      "id": "e3",
+      "source_id": "4.2.3",
+      "source_number": "4.2.3",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $[-\\pi,\\pi]$ as $\\sin (5t) + \\cos (3t)$. Extend periodically and compute the Fourier series of $\\kf(t)$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "The function is already a finite trigonometric series, and it is $2\\pi$-periodic, so the extension is $\\sin(5t) + \\cos(3t)$ itself and the Fourier series is $\\cos(3t) + \\sin(5t)$. The coefficient formulas agree: by orthogonality, $\\langle \\kf, \\cos(nt) \\rangle = \\langle \\cos(3t), \\cos(nt) \\rangle$ is $\\pi$ for $n = 3$ and 0 otherwise, so $a_3 = 1$ and every other $\\kan$ (and $\\kazero$) is 0; likewise $\\langle \\kf, \\sin(nt) \\rangle = \\langle \\sin(5t), \\sin(nt) \\rangle$ gives $b_5 = 1$ and every other $\\kbn = 0$."
+      }
+    },
+    {
+      "id": "e4",
+      "source_id": "4.2.4",
+      "source_number": "4.2.4",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $[-\\pi,\\pi]$ as $\\lvert t \\rvert$. Extend periodically and compute the Fourier series of $\\kf(t)$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "$\\lvert t \\rvert$ is even, so $\\lvert t \\rvert \\sin(nt)$ is odd and every $\\kbn = 0$. Then $\\kazero = \\frac{2}{\\pi} \\int_0^\\pi t \\, dt = \\pi$, and by parts $\\kan = \\frac{2}{\\pi} \\int_0^\\pi t \\cos(nt) \\, dt = \\frac{2}{\\pi} \\cdot \\frac{\\cos(n\\pi) - 1}{n^2} = \\frac{2\\bigl({(-1)}^n - 1\\bigr)}{\\pi n^2}$, which is $\\frac{-4}{\\pi n^2}$ for odd $n$ and 0 for even $n$. The series is $\\frac{\\pi}{2} + \\sum_{n=1}^\\infty \\frac{2\\bigl({(-1)}^n - 1\\bigr)}{\\pi n^2} \\cos(nt) = \\frac{\\pi}{2} - \\sum_{\\substack{n=1 \\\\ n \\text{ odd}}}^\\infty \\frac{4}{\\pi n^2} \\cos(nt) = \\frac{\\pi}{2} - \\frac{4}{\\pi} \\cos t - \\frac{4}{9\\pi} \\cos(3t) - \\cdots$."
+      }
+    },
+    {
+      "id": "e5",
+      "source_id": "4.2.5",
+      "source_number": "4.2.5",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $[-\\pi,\\pi]$ as $\\lvert t \\rvert^3$. Extend periodically and compute the Fourier series of $\\kf(t)$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "$\\lvert t \\rvert^3$ is even, so every $\\kbn = 0$. Then $\\kazero = \\frac{2}{\\pi} \\int_0^\\pi t^3 \\, dt = \\frac{\\pi^3}{2}$, and integrating $\\kan = \\frac{2}{\\pi} \\int_0^\\pi t^3 \\cos(nt) \\, dt$ by parts three times gives $\\kan = \\frac{2}{\\pi}\\Bigl( \\frac{3\\pi^2 {(-1)}^n}{n^2} - \\frac{6\\bigl({(-1)}^n - 1\\bigr)}{n^4} \\Bigr) = \\frac{6\\bigl({(-1)}^n \\pi^2 n^2 - 2{(-1)}^n + 2\\bigr)}{\\pi n^4}$. The series is $\\frac{\\pi^3}{4} + \\sum_{n=1}^\\infty \\frac{6\\bigl({(-1)}^n \\pi^2 n^2 - 2{(-1)}^n + 2\\bigr)}{\\pi n^4} \\cos(nt)$; the first terms are $\\frac{\\pi^3}{4} + \\bigl(\\frac{24}{\\pi} - 6\\pi\\bigr) \\cos t + \\frac{3\\pi}{2} \\cos(2t) + \\cdots$."
+      }
+    },
+    {
+      "id": "e6",
+      "source_id": "4.2.6",
+      "source_number": "4.2.6",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $(-\\pi,\\pi]$ as</p><p>$$ \\kf(t) = \\begin{cases} -1 & \\text{if } \\; {-\\pi} < t \\leq 0 , \\\\ 1 & \\text{if } \\; \\phantom{-}0 < t \\leq \\pi . \\end{cases} $$</p><p>Extend periodically and compute the Fourier series of $\\kf(t)$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Apart from its values at $0$ and $\\pi$, $\\kf$ is odd, so $\\kazero = 0$ and every $\\kan = 0$. Then $\\kbn = \\frac{2}{\\pi} \\int_0^\\pi \\sin(nt) \\, dt = \\frac{2}{\\pi} \\cdot \\frac{1 - \\cos(n\\pi)}{n} = \\frac{2\\bigl(1 - {(-1)}^n\\bigr)}{\\pi n}$, which is $\\frac{4}{\\pi n}$ for odd $n$ and 0 for even $n$. The series is $\\sum_{\\substack{n=1 \\\\ n \\text{ odd}}}^\\infty \\frac{4}{\\pi n} \\sin(nt) = \\frac{4}{\\pi} \\sin t + \\frac{4}{3\\pi} \\sin(3t) + \\frac{4}{5\\pi} \\sin(5t) + \\cdots$. It is $\\frac{2}{\\pi}$ times the square wave of Example 4.2.4 less $1$: $\\frac{2}{\\pi}\\bigl(\\frac{\\pi}{2} + \\sum \\frac{2}{n} \\sin(nt)\\bigr) - 1$."
+      }
+    },
+    {
+      "id": "e7",
+      "source_id": "4.2.7",
+      "source_number": "4.2.7",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $(-\\pi,\\pi]$ as $t^3$. Extend periodically and compute the Fourier series of $\\kf(t)$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "$t^3$ is odd, so $\\kazero = 0$ and every $\\kan = 0$ ($t^3 \\cos(nt)$ is odd). Since $t^3 \\sin(nt)$ is even, $\\kbn = \\frac{2}{\\pi} \\int_0^\\pi t^3 \\sin(nt) \\, dt$, and integrating by parts three times gives $\\kbn = \\frac{2}{\\pi} \\Bigl( \\frac{-\\pi^3 {(-1)}^n}{n} + \\frac{6\\pi {(-1)}^n}{n^3} \\Bigr) = \\frac{2 {(-1)}^n (6 - \\pi^2 n^2)}{n^3}$. The series is $\\sum_{n=1}^\\infty \\frac{2 {(-1)}^n (6 - \\pi^2 n^2)}{n^3} \\sin(nt) = (2\\pi^2 - 12) \\sin t + \\bigl(\\tfrac{3}{2} - \\pi^2\\bigr) \\sin(2t) + \\cdots$."
+      }
+    },
+    {
+      "id": "e8",
+      "source_id": "4.2.8",
+      "source_number": "4.2.8",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $[-\\pi,\\pi]$ as $t^2$. Extend periodically and compute the Fourier series of $\\kf(t)$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "$t^2$ is even, so every $\\kbn = 0$. Then $\\kazero = \\frac{2}{\\pi} \\int_0^\\pi t^2 \\, dt = \\frac{2\\pi^2}{3}$, and integrating by parts twice, $\\kan = \\frac{2}{\\pi} \\int_0^\\pi t^2 \\cos(nt) \\, dt = \\frac{2}{\\pi} \\cdot \\frac{2\\pi \\cos(n\\pi)}{n^2} = \\frac{4{(-1)}^n}{n^2}$. The series is $\\frac{\\pi^2}{3} + \\sum_{n=1}^\\infty \\frac{4{(-1)}^n}{n^2} \\cos(nt) = \\frac{\\pi^2}{3} - 4\\cos t + \\cos(2t) - \\frac{4}{9}\\cos(3t) + \\cdots$."
+      }
+    },
+    {
+      "id": "e9",
+      "source_id": "4.2.9",
+      "source_number": "4.2.9",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-series",
+      "prompt": "<p>There is another form of the Fourier series using complex exponentials $e^{nt}$<sup class=\"fn\" data-note=\"fn-complex-exponentials\"></sup> for $n=\\ldots,-2,-1,0,1,2,\\ldots$ instead of $\\cos(nt)$ and $\\sin(nt)$ for positive $n$. This form may be easier to work with sometimes. It is certainly more compact to write, and there is only one formula for the coefficients. On the downside, the coefficients are complex numbers.</p><p>Let</p><p>$$ \\kf(t) = \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\Bigl[ \\kan \\cos (n t) + \\kbn \\sin (n t) \\Bigr] . $$</p><p>Use Euler’s formula $e^{i\\theta} = \\cos (\\theta) + i \\sin (\\theta)$ to show that there exist complex numbers $c_m$ such that</p><p>$$ \\kf(t) = \\sum_{m=-\\infty}^\\infty c_m e^{imt} . $$</p><p>Note that the sum now ranges over all the integers including negative ones. Do not worry about convergence in this calculation. Hint: It may be better to start from the complex exponential form and write the series as</p><p>$$ c_0 + \\sum_{m=1}^\\infty \\Bigl[ c_m e^{imt} + c_{-m} e^{-imt} \\Bigr] . $$</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "By Euler’s formula, $e^{imt} = \\cos(mt) + i \\sin(mt)$ and $e^{-imt} = \\cos(mt) - i \\sin(mt)$, so $c_m e^{imt} + c_{-m} e^{-imt} = (c_m + c_{-m}) \\cos(mt) + i (c_m - c_{-m}) \\sin(mt)$. This is the $m^{\\text{th}}$ harmonic $a_m \\cos(mt) + b_m \\sin(mt)$ exactly when $c_m + c_{-m} = a_m$ and $i(c_m - c_{-m}) = b_m$, that is, $c_m = \\frac{a_m - i b_m}{2}$ and $c_{-m} = \\frac{a_m + i b_m}{2}$ for $m \\geq 1$. With $c_0 = \\frac{\\kazero}{2}$ the constant terms agree too, so these $c_m$ give $\\kf(t) = \\sum_{m=-\\infty}^\\infty c_m e^{imt}$. From the coefficient formulas, every one of them is $c_m = \\frac{1}{2\\pi} \\int_{-\\pi}^\\pi \\kf(t) e^{-imt} \\, dt$: the single formula the paragraph promises."
+      }
+    },
+    {
+      "id": "e101",
+      "source_id": "4.2.101",
+      "source_number": "4.2.101",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $[-\\pi,\\pi]$ as $\\kf(t) = \\sin(t)$. Extend periodically and compute the Fourier series.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\sin(t)$"
+      }
+    },
+    {
+      "id": "e102",
+      "source_id": "4.2.102",
+      "source_number": "4.2.102",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $(-\\pi,\\pi]$ as $\\kf(t) = \\sin(\\pi t)$. Extend periodically and compute the Fourier series.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\sum\\limits_{n=1}^\\infty \\frac{2n {(-1)}^{n} \\sin({\\pi}^{2})}{\\pi({\\pi}^{2} - {n}^{2})} \\sin(nt)$"
+      }
+    },
+    {
+      "id": "e103",
+      "source_id": "4.2.103",
+      "source_number": "4.2.103",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $(-\\pi,\\pi]$ as $\\kf(t) = \\sin^2(t)$. Extend periodically and compute the Fourier series.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\frac{1}{2}-\\frac{1}{2}\\cos(2t)$"
+      }
+    },
+    {
+      "id": "e104",
+      "source_id": "4.2.104",
+      "source_number": "4.2.104",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-fourier-coefficients",
+      "prompt": "<p>Suppose $\\kf(t)$ is defined on $(-\\pi,\\pi]$ as $\\kf(t) = t^4$. Extend periodically and compute the Fourier series.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "$\\frac{\\pi^4}{5} + \\sum\\limits_{n=1}^\\infty \\frac{{(-1)}^{n} (8{\\pi}^{2}{n}^{2}-48) }{{n}^{4}} \\cos(nt)$"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "e1",
+      "concept": "periodic-extension"
+    },
+    {
+      "exercise": "e1",
+      "concept": "periodic-function"
+    },
+    {
+      "exercise": "e2",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e2",
+      "concept": "orthogonality-of-eigenfunctions"
+    },
+    {
+      "exercise": "e2",
+      "concept": "inner-product-of-functions"
+    },
+    {
+      "exercise": "e3",
+      "concept": "fourier-series"
+    },
+    {
+      "exercise": "e3",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e3",
+      "concept": "orthogonality-of-eigenfunctions"
+    },
+    {
+      "exercise": "e4",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e4",
+      "concept": "even-function"
+    },
+    {
+      "exercise": "e4",
+      "concept": "integrals-of-even-and-odd-functions"
+    },
+    {
+      "exercise": "e5",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e5",
+      "concept": "even-function"
+    },
+    {
+      "exercise": "e5",
+      "concept": "integrals-of-even-and-odd-functions"
+    },
+    {
+      "exercise": "e6",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e6",
+      "concept": "odd-function"
+    },
+    {
+      "exercise": "e6",
+      "concept": "square-wave"
+    },
+    {
+      "exercise": "e7",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e7",
+      "concept": "odd-function"
+    },
+    {
+      "exercise": "e7",
+      "concept": "integrals-of-even-and-odd-functions"
+    },
+    {
+      "exercise": "e8",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e8",
+      "concept": "even-function"
+    },
+    {
+      "exercise": "e8",
+      "concept": "integrals-of-even-and-odd-functions"
+    },
+    {
+      "exercise": "e9",
+      "concept": "fourier-series"
+    },
+    {
+      "exercise": "e9",
+      "concept": "eulers-formula"
+    },
+    {
+      "exercise": "e9",
+      "concept": "complex-number"
+    },
+    {
+      "exercise": "e101",
+      "concept": "fourier-series"
+    },
+    {
+      "exercise": "e101",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e102",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e102",
+      "concept": "odd-function"
+    },
+    {
+      "exercise": "e102",
+      "concept": "periodic-extension"
+    },
+    {
+      "exercise": "e103",
+      "concept": "fourier-series"
+    },
+    {
+      "exercise": "e103",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e104",
+      "concept": "fourier-coefficients"
+    },
+    {
+      "exercise": "e104",
+      "concept": "even-function"
+    },
+    {
+      "exercise": "e104",
+      "concept": "integrals-of-even-and-odd-functions"
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-fourier",
+      "kind": "book",
+      "number": "18",
+      "html": "Named after the French mathematician <a href=\"https://en.wikipedia.org/wiki/Joseph_Fourier\">Jean Baptiste Joseph Fourier</a> (1768–1830)."
+    },
+    {
+      "id": "fn-complex-exponentials",
+      "kind": "correction",
+      "html": "The book prints $e^{nt}$; the complex exponentials meant are $e^{int}$, the ones the exercise sums as $c_m e^{imt}$."
+    }
+  ]
+}
