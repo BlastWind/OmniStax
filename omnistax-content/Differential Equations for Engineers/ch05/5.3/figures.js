@@ -91,7 +91,7 @@ const FS = (() => {
     line(ctx, XB, SY, XN, SY, guide(), 2, [4, 8]);
     line(ctx, XB, SY - 140, XB, SY + 140, PAL.muted, 2);
     [0.5, -0.5].forEach((v) => { line(ctx, XB - 8, SYv(v), XB, SYv(v), PAL.muted, 2); text(ctx, fmt(v, 1), XB - 14, SYv(v), PAL.muted, { size: 17, align: 'right' }); });
-    text(ctx, 'y', XB - 14, SY - 140, fc, { size: 20, weight: 600, align: 'right' });
+    text(ctx, 'y', XB, SY - 164, fc, { size: 20, weight: 600, align: 'center' });
     text(ctx, 'x = 0', XB, SY + 168, PAL.muted, { size: 17, align: 'center' });
     text(ctx, 'x = L', XN, SY + 168, PAL.muted, { size: 17, align: 'center' });
     hits.push({ x: XB, y: SY + 120, r: 22, name: 'the bridge, x = 0, where the string is fixed' }, { x: XN, y: SY + 30, r: 22, name: 'the nut, x = L, where the string is fixed' });
@@ -234,7 +234,9 @@ const FS = (() => {
     const env = (x) => A0 * Math.exp(-c * x), xr = Math.PI / c;
     hits = [];
     /* the column, slice by slice, and the surface with the person on it */
-    for (let y = Y0; y < YB; y += 4) { const x = ((y + 2 - Y0) / (YB - Y0)) * DMAX; ctx.fillStyle = temp(u(x)); ctx.fillRect(CL, y, CR - CL, 4.6); }
+    const g = ctx.createLinearGradient(0, Y0, 0, YB);
+    for (let i = 0; i <= 150; i++) g.addColorStop(i / 150, temp(u((DMAX * i) / 150)));
+    ctx.save(); ctx.fillStyle = g; ctx.fillRect(CL, Y0, CR - CL, YB - Y0); ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 2; ctx.strokeRect(CL, Y0, CR - CL, YB - Y0); ctx.restore();
     line(ctx, 90, Y0, 370, Y0, ink, 3);
     silhouette(ctx, { x: (CL + CR) / 2, y: Y0 - 2, s: 0.62, pose: 'stand', color: ink });
@@ -242,7 +244,9 @@ const FS = (() => {
       { x: (CL + CR) / 2, y: (Y0 + YB) / 2, r: 60, name: `the ground, coloured by its temperature u(x, ${n(t)} year)` });
     /* the legend: the scale from −A₀ to A₀ */
     const LX = 380, LT = 280, LBt = 580;
-    for (let y = LT; y < LBt; y += 3) { ctx.fillStyle = temp(A0 - ((y + 1.5 - LT) / (LBt - LT)) * 2 * A0); ctx.fillRect(LX, y, 22, 3.6); }
+    const lg = ctx.createLinearGradient(0, LT, 0, LBt);
+    for (let i = 0; i <= 40; i++) lg.addColorStop(i / 40, temp(A0 - (i / 40) * 2 * A0));
+    ctx.save(); ctx.fillStyle = lg; ctx.fillRect(LX, LT, 22, LBt - LT); ctx.restore();
     ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 1.5; ctx.strokeRect(LX, LT, 22, LBt - LT); ctx.restore();
     [[15, LT], [0, (LT + LBt) / 2], [-15, LBt]].forEach(([v, y]) => { line(ctx, LX + 22, y, LX + 30, y, PAL.muted, 2); text(ctx, `${fmt(v, 0)} °C`, LX + 34, y, PAL.muted, { size: 17 }); });
     text(ctx, 'u', LX + 11, LT - 22, fc, { size: 20, weight: 600, align: 'center' });
@@ -259,21 +263,22 @@ const FS = (() => {
     /* the reversal depth across the column and the graph */
     if (xr <= DMAX) {
       line(ctx, CL, YD(xr), ax.box.r, YD(xr), alpha(ink, 0.6), 2, [10, 10]);
-      text(ctx, `seasons reversed, x = ${fmt(xr, 0)} cm`, ax.box.r - 6, YD(xr) - 14, ink, { size: 17, align: 'right', bg: PAL.panel });
+      text(ctx, `seasons reversed, x = ${fmt(xr, 0)} cm`, ax.box.l + 10, YD(xr) - 14, ink, { size: 17, align: 'left', bg: PAL.panel });
       hits.push({ x: (ax.box.l + ax.box.r) / 2, y: YD(xr), r: 14, name: `x√(ω/2k) = π at x = ${fmt(xr, 0)} cm: summer is the coldest there, and the swing is ±${n(env(xr))} °C` });
     }
     /* the probe */
     const up = u(xp);
     line(ctx, CL - 10, YD(xp), ax.box.l, YD(xp), alpha(ink, 0.5), 2, [4, 8]);
     dot(ctx, ax.X(up), YD(xp), fc, true, 9);
-    label(ctx, `u = ${n(up)} °C`, ax.X(up), YD(xp), { side: up > 4 ? 'left' : 'right', color: fc, size: 18, weight: 600 });
+    label(ctx, `u = ${n(up)} °C`, ax.X(up), YD(xp), { side: Math.abs(xp - xr) < 80 ? 'below' : up > 4 ? 'left' : 'right', color: fc, size: 18, weight: 600 });
     hits.push({ x: ax.X(up), y: YD(xp), r: 16, name: `at x = ${fmt(xp, 0)} cm: u = ${n(up)} °C, within ±${n(env(xp))} °C` });
     text(ctx, `t = ${n(t)} year`, ax.box.l + 12, ax.box.b - 18, PAL.muted, { size: 17 });
     /* headline and readout */
     const days = (x) => fmt((c * x * 365.25) / (2 * Math.PI), 0);
     const rev = xr <= DMAX ? `the seasons reverse at $x = ${fmt(xr, 0)}$ cm, where the swing is ±${n(env(xr))} °C` : `the seasons reverse at $x = ${fmt(xr, 0)}$ cm, below this column`;
     headline(ctx, `$k = ${fmt(k, 4)}$ cm²/s: ${rev}; at $x = ${fmt(xp, 0)}$ cm the swing is ±${n(env(xp))} °C, ${days(xp)} days behind the surface.`);
-    ro.set(`\\ku(x,t) = A_0 e^{-\\sqrt{\\komega/2k}\\,x}\\cos\\bigl(\\komega t - \\sqrt{\\komega/2k}\\,x\\bigr),\\quad \\ku(${fmt(xp, 0)}, t) = 15\\,e^{-${n(c * xp, 3)}}\\cos(\\komega t - ${n(c * xp, 3)}) = ${n(env(xp), 3)}\\cos(\\komega t - ${n(c * xp, 3)})`,
+    const at = xp === 0 ? '\\ku(0, t) = 15\\cos(\\komega t)' : `\\ku(${fmt(xp, 0)}, t) = 15\\,e^{-${n(c * xp, 3)}}\\cos(\\komega t - ${n(c * xp, 3)}) = ${n(env(xp), 3)}\\cos(\\komega t - ${n(c * xp, 3)})`;
+    ro.set(`\\ku(x,t) = A_0 e^{-\\sqrt{\\komega/2k}\\,x}\\cos\\bigl(\\komega t - \\sqrt{\\komega/2k}\\,x\\bigr),\\quad ${at}`,
       `$\\komega = 2\\pi/\\text{year} = 1.991 \\times 10^{-7}$ s⁻¹ and $\\sqrt{\\komega/2k} = ${fmt(c * 1000, 4)} \\times 10^{-3}$ cm⁻¹; the delay $x\\sqrt{\\komega/2k}$ is in radians.`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 1 / 6), draw });

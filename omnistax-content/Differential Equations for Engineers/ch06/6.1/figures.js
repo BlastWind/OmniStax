@@ -1,7 +1,7 @@
 /* Figures for section 6.1 The Laplace transform. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['6.1'] = function (root, F) {
-const { C, PAL, alpha, ctl, choice, begin, axes, plot, shade, line, text, pinned, headline, register, readout, fmt, hover } = F;
+const { C, PAL, alpha, ctl, select, begin, axes, plot, shade, line, text, pinned, headline, register, readout, fmt, hover, dot } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const still = (d, draw) => register(d.fig, { update: () => {}, draw });
 const n = (v, dec = 2) => fmt(v, dec).replace(/−/g, '-');
@@ -70,9 +70,9 @@ const guide = () => alpha(PAL.ink, 0.4);
       entry: '\\frac{s}{s^2+\\omega^2}', num: (S, p) => `\\frac{${S}}{${S}^2 + ${n(p.w)}^2}`,
     },
   };
-  const pick = choice(d.controls, { label: '\\kf(t)', key: 'f', value: 'one', options: [
-    { value: 'one', label: '1' }, { value: 'exp', label: 'e^(−at)' }, { value: 't', label: 't' },
-    { value: 'step', label: 'u(t − a)' }, { value: 'cos', label: 'cos ωt' }], onInput: (v) => showFor(v) });
+  const pick = select(d.controls, { label: '\\kf(t)', key: 'f', value: 'one', options: [
+    { value: 'one', label: '1  (Example 6.1.1)' }, { value: 'exp', label: 'e^(−at)  (Example 6.1.2)' }, { value: 't', label: 't  (Example 6.1.3)' },
+    { value: 'step', label: 'u(t − a)  (Example 6.1.4)' }, { value: 'cos', label: 'cos(ωt)  (Table 6.1)' }], onInput: (v) => showFor(v) });
   const ss = ctl(d.controls, { label: 's', cls: '', key: 's', min: -1, max: 6, step: 0.05, value: 1, unit: '', dec: 2,
     specials: [{ at: () => KINDS[pick.value].thr(params()), label: 'threshold' }] });
   const as = ctl(d.controls, { label: 'a', cls: '', key: 'a', min: -1, max: 2, step: 0.05, value: 1, unit: '', dec: 2,
@@ -120,7 +120,7 @@ const guide = () => alpha(PAL.ink, 0.4);
     if (thr >= -1 && thr <= 6) {
       line(ctx, aR.X(thr), RIGHT.t, aR.X(thr), RIGHT.b, guide(), 2.5, [10, 10]);
       const name = pick.value === 'exp' ? `s = −a = ${n(thr)}` : 's = 0';
-      text(ctx, name, aR.X(thr) + 10, RIGHT.t + 14, PAL.muted, { size: 17 });
+      text(ctx, name, aR.X(thr) + 10, RIGHT.t + 14, PAL.muted, { size: 17, align: 'left' });
       hits.push({ x: aR.X(thr), y: aR.Y(2), r: 14, name: `the threshold ${name}: the integral converges only for s beyond it` });
     }
     plot(ctx, aR, FNow, tc);
@@ -131,7 +131,9 @@ const guide = () => alpha(PAL.ink, 0.4);
       const at = pinned(ctx, RIGHT, aR.X, aR.Y, s, Fv, tc, Fv > 4 ? `F = ${n(Fv, 2)}` : undefined);
       hits.push({ x: at.x, y: at.y, r: 18, name: `(s, F(s)) = (${n(s)}, ${n(Fv, 3)}): its height is the whole area` });
     } else {
-      text(ctx, 'no value', aR.X(s), aR.Y(0) - 20, PAL.muted, { size: 17, align: s < 0 ? 'left' : 'center' });
+      dot(ctx, aR.X(s), aR.Y(0), tc, false, 9);
+      text(ctx, 'no F(s)', aR.X(s) + (s < 4.5 ? 14 : -14), aR.Y(0) - 26, PAL.muted, { size: 17, align: s < 4.5 ? 'left' : 'right' });
+      hits.push({ x: aR.X(s), y: aR.Y(0), r: 16, name: `s = ${n(s)}: the integral diverges, so F(s) has no value here` });
     }
     /* the words and the equation */
     const S = n(s), shows = pick.value === 'cos';

@@ -138,7 +138,7 @@ function wireSeries(x, t, ins, k) {
     }
     /* the legend of the bead panel, in the column at its right */
     const LX = 1100;
-    dot(ctx, LX + 10, 170, fc, true, 7); text(ctx, 'a bead, its temperature u_i', LX + 30, 170, PAL.ink, { size: 17 });
+    dot(ctx, LX + 10, 170, fc, true, 7); text(ctx, 'bead temperature u_i', LX + 30, 170, PAL.ink, { size: 17 });
     arrow(ctx, LX + 10, 222, LX + 10, 196, dc, 3); text(ctx, 'its rate u_t × 10', LX + 30, 210, PAL.ink, { size: 17 });
     line(ctx, LX - 4, 250, LX + 24, 250, alpha(PAL.ink, 0.6), 2, [6, 6]); dot(ctx, LX + 10, 250, PAL.ink, false, 5); text(ctx, 'neighbours’ average', LX + 30, 250, PAL.ink, { size: 17 });
     line(ctx, LX - 4, 290, LX + 24, 290, alpha(fc, 0.4), 3); text(ctx, 'continuous wire', LX + 30, 290, PAL.ink, { size: 17 });
@@ -208,7 +208,7 @@ function wireSeries(x, t, ins, k) {
   let cur = { e: 'ice', s: 'parab' }, from = null;
   const swap = () => { from = { ...cur, t: cy.now(), k: ks.v }; cur = { e: ends.value, s: start.value }; cy.reset(); };
   const ends = choice(d.controls, { label: 'ends', key: 'ends', options: [{ value: 'ice', label: 'in ice' }, { value: 'ins', label: 'insulated' }], value: 'ice', aria: 'the ends of the wire', onInput: swap });
-  const start = choice(d.controls, { label: 'start', key: 'start', options: [{ value: 'parab', label: '50x(1 − x)' }, { value: 'two', label: '0.1 sin πx + sin 2πx' }, { value: 'hot', label: 'hot middle' }], value: 'parab', aria: 'the initial temperature', onInput: swap });
+  const start = F.select(d.controls, { label: 'start', key: 'start', options: [{ value: 'parab', label: '50x(1 − x)' }, { value: 'two', label: '0.1 sin πx + sin 2πx' }, { value: 'hot', label: 'hot middle' }], value: 'parab', aria: 'the initial temperature', onInput: swap });
   const ks = ctl(d.controls, { label: 'k', cls: '', key: 'k', min: 0.001, max: 0.01, step: 0.0005, value: K0, unit: '', dec: 4, detents: [K0], aria: 'the thermal diffusivity k', onInput: () => cy.reset() });
   const ro = readout(d);
   /* ∫₀¹ sin(mπx) cos(nπx) dx */
@@ -283,7 +283,7 @@ function wireSeries(x, t, ins, k) {
     hits = [];
     /* the profile: during a change of choice the old profile bends into the new start */
     const ur = [lerp(Pf.u[0], P.u[0], mixing ? m : 1), lerp(Pf.u[1], P.u[1], mixing ? m : 1)];
-    const ax = axes(ctx, PROF, [0, 1], ur, { nx: 0, ny: P.uy, fy: (v) => fmt(v, P.dec === 0 ? 0 : 1) });
+    const ax = axes(ctx, PROF, [0, 1], ur, { nx: 0, ny: mixing ? 0 : P.uy, fy: (v) => fmt(v, P.dec === 0 ? 0 : 1) });
     mark(ctx, '$\\ku(x, t)$', PROF.l, PROF.t - 24, fc, { align: 'left', weight: 400 });
     [0, 0.25, 0.5, 0.75, 1].forEach((v) => text(ctx, fmt(v, 2), ax.X(v), STRIP.b + 26, PAL.muted, { size: 17, align: 'center' }));
     text(ctx, 'x', PROF.r + 26, STRIP.b + 26, PAL.ink, { size: 20, weight: 600 });
@@ -336,7 +336,7 @@ function wireSeries(x, t, ins, k) {
     bars(ctx, S, t, k, mixing ? m : 1, arrive);
     /* the midpoint against t, with the first term alone and, with the ends in ice, the level of half the start */
     const mr = [lerp(Pf.mid[0], P.mid[0], mixing ? m : 1), lerp(Pf.mid[1], P.mid[1], mixing ? m : 1)];
-    const mx = axes(ctx, MID, [0, T], mr, { xl: 't', nx: 4, ny: P.my, fy: (v) => fmt(v, P.dec) });
+    const mx = axes(ctx, MID, [0, T], mr, { xl: 't', nx: 4, ny: mixing ? 0 : P.my, fy: (v) => fmt(v, P.dec) });
     mark(ctx, '$\\ku(\\tfrac{1}{2}, t)$', MID.l, MID.t - 24, fc, { align: 'left', weight: 400 });
     const midNow = midOf(S, t), m0 = midOf(S, 0);
     const mf = midFast(S), half = !S.ins && cur.s !== 'two' ? m0 / 2 : null;
@@ -374,8 +374,8 @@ function wireSeries(x, t, ins, k) {
     }
     /* the readout: the series with the live coefficients and rates, its first two terms written out */
     const term = (q, i) => {
-      const c = sig(q.c), fn = S.ins ? '\\cos' : '\\sin', arg = q.n === 1 ? '\\pi x' : `${q.n}\\pi x`;
-      return `${i === 0 && !S.ins ? (q.c < 0 ? '-' : '') : q.c < 0 ? ' - ' : ' + '}${c}\\,${fn}(${arg})\\,e^{-${sig(q.lam)}\\,t}`;
+      const c = sig(q.c) === '1' ? '' : sig(q.c) + '\\,', fn = S.ins ? '\\cos' : '\\sin', arg = q.n === 1 ? '\\pi x' : `${q.n}\\pi x`;
+      return `${i === 0 && !S.ins ? (q.c < 0 ? '-' : '') : q.c < 0 ? ' - ' : ' + '}${c}${fn}(${arg})\\,e^{-${sig(q.lam)}\\,t}`;
     };
     const two = [t1m, t2m].map(term).join(''), more = S.terms.length > 2 ? ' + \\cdots' : '';
     ro.set(S.ins

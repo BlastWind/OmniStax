@@ -49,7 +49,7 @@ const integers = (v) => (Math.abs(v - Math.round(v)) < 1e-9 ? fmt(v, 0) : '');
     hits = [];
     const gr = axes(ctx, GB, [0, XM], [-1, 2.5], { xl: 'x', yl: 'y', yc: fc, nx: 6, ny: 7, fy: integers });
     const pl = axes(ctx, PB, [0, XM], [0, T], { xl: 'x', yl: 't', nx: 6, ny: 6 });
-    const lab = labeller(ctx, 850, { headline: true });
+    const lab = labeller(ctx, 850, { headline: 2 });
     /* the river: pure goo grey, the stretch the substance has reached tinted, its dashes carried along at speed α */
     const RX = gr.X(0), RR = gr.X(XM);
     ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(RX, SY - SH / 2, RR - RX, SH); ctx.restore();
@@ -99,8 +99,8 @@ const integers = (v) => (Math.abs(v - Math.round(v)) < 1e-9 ? fmt(v, 0) : '');
     lab.add('y = 0', pl.X(4.8), pl.Y(0.8), 0, 0, fc, 20);
     lab.add(v === 'c' ? 'y = C' : 'y = sin t', PB.l - 60, pl.Y(3), -1, 0, fc, 20, 0.001);
     lab.add('y = 0', pl.X(3), PB.b + 58, 0, 0, fc, 20);
-    lab.beside({ x1: pl.X(0), y1: pl.Y(0), x2: pl.X(edge[0]), y2: pl.Y(edge[1]) }, 'right', 'wavefront, slope 1/α', cc, 20, { offset: 0.72, gap: 30 });
-    if (t > 0.05) text(ctx, `t = ${n(t)}`, pl.X(0.08), pl.Y(t) - 16, PAL.ink, { size: 20, align: 'left', bg: PAL.panel });
+    lab.beside({ x1: pl.X(0), y1: pl.Y(0), x2: pl.X(edge[0]), y2: pl.Y(edge[1]) }, a >= 1 ? 'left' : 'right', 'wavefront, slope 1/α', cc, 20, { offset: 0.62, gap: 30 });
+    if (t > 0.05) text(ctx, `t = ${n(t)}`, pl.X(0.08), pl.Y(t) + (t > 5.4 ? 18 : -16), PAL.ink, { size: 20, align: 'left', bg: PAL.panel });
     lab.flush();
     if (v === 'c') {
       headline(ctx, t < 0.005
@@ -121,26 +121,26 @@ const integers = (v) => (Math.abs(v - Math.round(v)) < 1e-9 ? fmt(v, 0) : '');
    the x-axis and y = sin t on the t-axis, the characteristics t = −x + k faint, and the one the reader picks,
    t = −x + C (the book's C = 1 the default), bold, its two ends marked with the data they carry: y(C, 0) = 0 and
    y(0, C) = sin C. A solution would be constant along the line, so the two would have to agree; a dashed special at
-   C = π, where sin C = 0 and they do, for that one line only. Still: a family under its slider. Axes x 0 to 4,
-   t 0 to 4 (the slider's maximum). */
+   C = π, where sin C = 0 and they do, for that one line only. Still: a family under its slider. Axes x 0 to 4.5,
+   t 0 to 4.5, so the ends at the slider's maximum C = 4 keep clear of the frame. */
 (function () {
-  const d = sim('sim-ill-posed', 700);
-  const M = 4;
+  const d = sim('sim-ill-posed', 720);
+  const M = 4.5;
   const cS = ctl(d.controls, { label: 'C', cls: '', key: 'C', min: 0.2, max: 4, step: 0.01, value: 1, unit: '', dec: 2, aria: 'the characteristic t = −x + C', detents: [1], specials: [{ at: Math.PI, label: 'sin C = 0' }] });
   const ro = readout(d);
-  const PB = { l: 400, r: 1000, t: 110, b: 600 };
+  const PB = { l: 400, r: 1000, t: 140, b: 620 };
   let hits = [];
   hover(d.stage, () => hits, d.c);
   /* the characteristic t = −x + k inside the box: from (k, 0) or (k − M, M) to (0, k) or (M, k − M) */
-  const seg = (k) => [[Math.min(k, M), k - Math.min(k, M)], [Math.max(0, k - M), Math.min(k, M)]];
+  const seg = (k) => [[Math.min(k, M), k - Math.min(k, M)], [k - Math.min(k, M), Math.min(k, M)]];
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('function'), cc = C('curve'), rc = C('region'), k = cS.v, pi = Math.abs(k - Math.PI) < 1e-9, sk = Math.sin(k);
     hits = [];
-    const pl = axes(ctx, PB, [0, M], [0, M], { xl: 'x', yl: 't', nx: 4, ny: 4 });
-    const lab = labeller(ctx, 700, { headline: true });
+    const pl = axes(ctx, PB, [0, 4.5], [0, 4.5], { xl: 'x', yl: 't', nx: 9, ny: 9, fx: integers, fy: integers });
+    const lab = labeller(ctx, 720, { headline: 2 });
     fillPoly(ctx, pl, [[0, 0], [M, 0], [M, M], [0, M]], rc, 0.14);
-    for (let j = 1; j <= 15; j++) {
+    for (let j = 1; j <= 17; j++) {
       const kk = j / 2; if (Math.abs(kk - k) < 0.05) continue;
       const [p, q] = seg(kk);
       line(ctx, pl.X(p[0]), pl.Y(p[1]), pl.X(q[0]), pl.Y(q[1]), alpha(cc, 0.3), 2);
@@ -159,10 +159,10 @@ const integers = (v) => (Math.abs(v - Math.round(v)) < 1e-9 ? fmt(v, 0) : '');
     }
     dot(ctx, pl.X(0), pl.Y(Math.min(k, M)), fc, true, 10);
     if (k <= M) hits.push({ x: pl.X(0), y: pl.Y(k), r: 16, name: `(0, ${n(k)}) on the t-axis, where y(0, t) = sin t = ${n(sk, 3)}` });
-    ends.push([pi ? 'y(0, π) = sin π = 0' : `y(0, ${n(k)}) = sin ${n(k)} = ${n(sk, 3)}`, pl.X(0), pl.Y(k), 0.7, -0.7]);
+    ends.push([pi ? 'y(0, π) = sin π = 0' : `y(0, ${fmt(k, 2)}) = sin ${fmt(k, 2)} = ${fmt(sk, 3)}`, pl.X(0), pl.Y(k), 0.7, -0.7]);
     lab.add(pi ? 'y(π, 0) = 0' : ends[0][0], ends[0][1], ends[0][2], ends[0][3], ends[0][4], fc, 20);
     lab.add(ends[1][0], ends[1][1], ends[1][2], ends[1][3], ends[1][4], fc, 20);
-    lab.add(`t = −x + ${pi ? 'π' : n(k)}`, pl.X((p[0] + q[0]) / 2), pl.Y((p[1] + q[1]) / 2), 0.7, 0.7, cc, 20, 30);
+    lab.add(`t = −x + ${pi ? 'π' : n(k)}`, pl.X((p[0] + q[0]) / 2), pl.Y((p[1] + q[1]) / 2), 0.7, -0.7, cc, 20, 30);
     /* the data the axes carry (the book's labels) */
     lab.add('y = sin t', PB.l - 60, pl.Y(2), -1, 0, fc, 20, 0.001);
     lab.add('y = 0', pl.X(2), PB.b + 58, 0, 0, fc, 20);

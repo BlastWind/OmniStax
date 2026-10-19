@@ -89,7 +89,8 @@ const guide = () => alpha(PAL.ink, 0.4);
     });
     const yv = fg(t), xT = aA.X(t);
     const at = pinned(ctx, aC.box, aC.X, aC.Y, t, yv, fc);
-    line(ctx, xT, TOP.t, xT, at.y, guide(), 2.5, [4, 8]);
+    /* the line τ = t down to the point, broken where the tick labels sit */
+    [[TOP.t, TOP.b + 8], [TOP.b + 38, MID.b + 8], [MID.b + 38, at.y]].forEach(([y0, y1]) => line(ctx, xT, y0, xT, y1, guide(), 2.5, [4, 8]));
     if (Math.abs(aC.Y(yv) - aC.Y(0)) > 14) vbracket(ctx, xT + 16, aC.Y(0), at.y, ic);
     /* legends, fixed at the right of each panel */
     key(ctx, TOP.t + 34, fcol, 'f(τ)'); key(ctx, TOP.t + 84, gcol, 'g(t − τ)');

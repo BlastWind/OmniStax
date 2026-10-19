@@ -1,0 +1,162 @@
+<p id="intro">The behavior of <span data-concept="ordinary-differential-equation">ODEs</span> at <span data-concept="singular-point">singular points</span> can be complicated. For certain <span data-concept="singular-point">singular points</span>, we can find a <span data-concept="solution-to-a-differential-equation">solution</span> on at least one side of the <span data-concept="singular-point">singular point</span> using a modification of the <span data-concept="power-series">power series</span>. Let us look at some examples before giving a general method.</p>
+
+<section id="examples">
+<h2>Examples</h2>
+<div class="example" id="ex-7-3-1">
+<h3>Example 7.3.1</h3>
+<p>Consider the simple <span data-concept="first-order-differential-equation">first-order equation</span></p>
+$$ 2 x \kyprime - \ky = 0 . $$
+<p>Note that $x=0$ is a <span data-concept="singular-point">singular point</span>. Setting $x=0$ in the equation, we find that any <span data-concept="solution-to-a-differential-equation">solution</span> defined near zero satisfies $\ky(0)=0$, but it is even worse. If we try to plug in</p>
+$$ \ky = \sum_{k=0}^\infty \ka_k x^k , $$
+<p>we obtain</p>
+$$ \begin{split} 0 = 2 x\kyprime-\ky &amp;= 2x \, \Biggl( \sum_{k=1}^\infty k \ka_k x^{k-1} \Biggr) - \Biggl( \sum_{k=0}^\infty \ka_k x^k \Biggr) \\ &amp; = -\ka_0 + \sum_{k=1}^\infty (2 k \ka_k - \ka_k) \, x^{k} . \end{split} $$
+<p>First, $\ka_0 = 0$. Next, the only way to solve $0 = 2 k \ka_k - \ka_k = (2k-1) \, \ka_k$ for $k = 1,2,3,\dots$ is for $\ka_k = 0$ for all $k$. Therefore, in this manner we only get the trivial <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=0$. We need a nonzero <span data-concept="solution-to-a-differential-equation">solution</span> to get the <span data-concept="general-solution">general solution</span> to the equation.</p>
+<p id="try-x-r">Let us try $\ky=x^{\kr}$ for some real number $\kr$. Consequently our <span data-concept="solution-to-a-differential-equation">solution</span>—if we can find one—may only make sense for positive $x$. Then $\kyprime = \kr x^{\kr-1}$. So</p>
+$$ 0 = 2 x \kyprime - \ky = 2 x \kr x^{\kr-1} - x^{\kr} = (2\kr-1) x^{\kr} . $$
+<p>Thus $\kr= {1}/{2}$ and so $\ky = x^{1/2}$. As the equation is <span data-concept="linear-differential-equation">linear</span>, the <span data-concept="general-solution">general solution</span> for positive $x$ is</p>
+$$ \ky = C x^{1/2} . $$
+<p id="derivative-blows-up">If $C \neq 0$, then the derivative of the <span data-concept="solution-to-a-differential-equation">solution</span> “blows up” at $x=0$ (the <span data-concept="singular-point">singular point</span>). There is only one <span data-concept="solution-to-a-differential-equation">solution</span> that is differentiable at $x=0$ and that’s the trivial <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=0$.</p>
+</div>
+<p id="frobenius-ansatz">Not every problem with a <span data-concept="singular-point">singular point</span> has a <span data-concept="solution-to-a-differential-equation">solution</span> of the form $\ky=x^{\kr}$, of course. But perhaps we can combine the methods. What we will do is to try a <span data-concept="solution-to-a-differential-equation">solution</span> of the form</p>
+$$ \ky = x^{\kr} \kf(x) $$
+<p>for positive $x$, where $\kf(x)$ is an <span data-concept="analytic-function">analytic function</span> (a <span data-concept="power-series">power series</span>).</p>
+<div class="example" id="ex-7-3-2">
+<h3>Example 7.3.2</h3>
+<p>Consider the equation</p>
+$$ 4 x^2 \kydprime - 4 x^2 \kyprime + (1-2x)\ky = 0, $$
+<p>and again note that $x=0$ is a <span data-concept="singular-point">singular point</span>.</p>
+<p id="try-frobenius">Let us try</p>
+$$ \ky = x^{\kr} \sum_{k=0}^\infty \ka_k x^k = \sum_{k=0}^\infty \ka_k x^{k+\kr} , $$
+<p>where $\kr$ is a real number, not necessarily an integer. Again if such a <span data-concept="solution-to-a-differential-equation">solution</span> exists, it may only exist for positive $x$. First we find the derivatives</p>
+<figure class="dv" id="drv-frobenius-example"></figure>
+<p id="indicial-equation">First, to have a <span data-concept="solution-to-a-differential-equation">solution</span> we must have $\bigl( 4\kr(\kr-1) + 1 \bigr) \, \ka_0 = 0$. Supposing $\ka_0 \neq 0$,</p>
+<div class="equation" id="eq-indicial-example">$$ 4\kr(\kr-1) + 1 = 0 . $$</div>
+<p id="indicial-named">This equation is called the <em><span data-concept="indicial-equation">indicial equation</span></em>. This particular <span data-concept="indicial-equation">indicial equation</span> has a double root at $\kr = {1}/{2}$.</p>
+<p id="coefficients">OK, so we know what $\kr$ has to be. That knowledge we obtained simply by looking at the coefficient of $x^{\kr}$. All other coefficients of $x^{k+\kr}$ also have to be zero so</p>
+$$ \bigl( 4 (k+\kr)\,(k+\kr-1) + 1 \bigr) \, \ka_k - \bigl( 4 (k+\kr-1) + 2 \bigr) \, \ka_{k-1} = 0 . $$
+<p>If we plug in $\kr={1}/{2}$ and solve for $\ka_k$, we get</p>
+$$ \ka_k = \frac{4 (k+{1}/{2}-1) + 2}{4 (k+{1}/{2})\,(k+{1}/{2}-1) + 1} \, \ka_{k-1} = \frac{1}{k} \, \ka_{k-1} . $$
+<p>Let us set $\ka_0 = 1$. Then</p>
+$$ \ka_1 = \frac{1}{1} \ka_0 = 1 , \quad \ka_2 = \frac{1}{2} \ka_1 = \frac{1}{2} , \quad \ka_3 = \frac{1}{3} \ka_2 = \frac{1}{3 \cdot 2} , \quad \ka_4 = \frac{1}{4} \ka_3 = \frac{1}{4 \cdot 3 \cdot 2} , \quad \cdots $$
+<p>Extrapolating, we notice that</p>
+$$ \ka_k = \frac{1}{k(k-1)(k-2) \cdots 3 \cdot 2} = \frac{1}{k!} . $$
+<p>In other words,</p>
+$$ \ky = \sum_{k=0}^\infty \ka_k x^{k+\kr} = \sum_{k=0}^\infty \frac{1}{k!} x^{k+1/2} = x^{1/2} \sum_{k=0}^\infty \frac{1}{k!} x^{k} = x^{1/2} e^x . $$
+<p id="lucky">That was lucky! In general, we will not be able to write the series in terms of elementary functions.</p>
+<p id="second-solution">We have one <span data-concept="solution-to-a-differential-equation">solution</span>, let us call it $\kyone = x^{1/2} e^x$. But what about a second <span data-concept="solution-to-a-differential-equation">solution</span>? If we want a <span data-concept="general-solution">general solution</span>, we need two <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions</span>. Picking $\ka_0$ to be a different constant only gets us a constant multiple of $\kyone$, and we do not have any other $\kr$ to try; we only have one <span data-concept="solution-to-a-differential-equation">solution</span> to the <span data-concept="indicial-equation">indicial equation</span>. Well, there are powers of $x$ floating around and we are taking derivatives, perhaps the logarithm (the antiderivative of $x^{-1}$) is around as well. It turns out we want to try for another <span data-concept="solution-to-a-differential-equation">solution</span> of the form</p>
+$$ \kytwo = \sum_{k=0}^\infty \kb_k x^{k+\kr} + (\ln x) \kyone , $$
+<p>which in our case is</p>
+$$ \kytwo = \sum_{k=0}^\infty \kb_k x^{k+1/2} + (\ln x) x^{1/2} e^x . $$
+<p id="long-computation">We now differentiate this equation, substitute into the <span data-concept="differential-equation">differential equation</span> and solve for $\kb_k$. A long computation ensues and we obtain some <span data-concept="recurrence-relation">recursion relation</span> for $\kb_k$. The reader can (and should) try this to obtain for example the first three terms</p>
+$$ \kb_1 = \kb_0 -1 , \qquad \kb_2 = \frac{2\kb_1-1}{4} , \qquad \kb_3 = \frac{6\kb_2-1}{18} , \qquad \ldots $$
+<figure class="dv" id="drv-frobenius-second-solution"></figure>
+<p id="general-ex-7-3-2">We then fix $\kb_0$ and obtain a <span data-concept="solution-to-a-differential-equation">solution</span> $\kytwo$. Then we write the <span data-concept="general-solution">general solution</span> as $\ky = A \kyone + B \kytwo$.</p>
+</div>
+<figure class="sim" id="sim-frobenius-exponent">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>Near the <span data-concept="singular-point">singular point</span> $x = 0$ a <span data-concept="frobenius-type-solution">Frobenius-type solution</span> behaves like its leading power $x^{\kr}$, or like $x^{\kr}\ln x$ for the second <span data-concept="solution-to-a-differential-equation">solution</span> of a double root. For $\kr &lt; 0$ the <span data-concept="solution-to-a-differential-equation">solution</span> itself blows up; for $0 &lt; \kr &lt; 1$ it goes to zero while its slope $\kyprime$ blows up, as $\ky = x^{1/2}$ does in Example 7.3.1; from $\kr = 1$ on, $x^{\kr}$ stays differentiable. Move $\kr$, and drag the point toward $x = 0$ to watch the tangent.</span></div>
+</figure>
+</section>
+
+<section id="frobenius">
+<h2>The method of Frobenius</h2>
+<p id="when-applies">Before giving the general method, let us clarify when the method applies. Let</p>
+$$ P(x) \kydprime + Q(x) \kyprime + R(x) \ky = 0 $$
+<p>be an <span data-concept="ordinary-differential-equation">ODE</span> for polynomials $P(x)$, $Q(x)$, and $R(x)$. As before, if $P(x_0) = 0$, then $x_0$ is a <span data-concept="singular-point">singular point</span>. If we divide by $P(x)$ to put the equation in standard form $\kydprime + \frac{Q(x)}{P(x)} \kyprime + \frac{R(x)}{P(x)} \ky = 0$, perhaps the singularities introduced are not too bad. More specifically, if the limits</p>
+<div class="equation" id="eq-regular-singular-limits">$$ \lim_{x \to x_0} ~ (x-x_0) \frac{Q(x)}{P(x)} \qquad \text{and} \qquad \lim_{x \to x_0} ~ (x-x_0)^2 \frac{R(x)}{P(x)} $$</div>
+<p id="regular-singular">both exist and are finite, then we say that $x_0$ is a <em><span data-concept="regular-singular-point">regular singular point</span></em>.</p>
+<div class="example" id="ex-7-3-3">
+<h3>Example 7.3.3</h3>
+<p>Often, and for the rest of this section, $x_0 = 0$. Consider</p>
+$$ x^2\kydprime + x(1+x)\kyprime + (\pi+x^2)\ky = 0 . $$
+<p>Write</p>
+$$ \begin{align*} &amp; \lim_{x \to 0} ~x \frac{Q(x)}{P(x)} = \lim_{x \to 0} ~x \frac{x(1+x)}{x^2} = \lim_{x \to 0} ~(1+x) = 1 , \\ &amp; \lim_{x \to 0} ~x^2 \frac{R(x)}{P(x)} = \lim_{x \to 0} ~x^2 \frac{(\pi+x^2)}{x^2} = \lim_{x \to 0} ~(\pi+x^2) = \pi . \end{align*} $$
+<p>So $x = 0$ is a <span data-concept="regular-singular-point">regular singular point</span>.</p>
+<p>On the other hand, if we make the slight change</p>
+$$ x^2\kydprime + (1+x)\kyprime + (\pi+x^2)\ky = 0 , $$
+<p>then</p>
+$$ \lim_{x \to 0} ~x \frac{Q(x)}{P(x)} = \lim_{x \to 0} ~x \frac{(1+x)}{x^2} = \lim_{x \to 0} ~\frac{1+x}{x} = \text{DNE}. $$
+<p id="dne">Here DNE stands for <em>does not exist</em>. The point $0$ is <span data-concept="singular-point">singular</span>, but not a <span data-concept="regular-singular-point">regular singular point</span>.</p>
+</div>
+<p id="method-intro">We now discuss the general <em><span data-concept="method-of-frobenius">Method of Frobenius</span></em><sup class="fn" data-note="fn-frobenius"></sup>. We only consider the method at the point $x=0$ for simplicity. If $x_0 \neq 0$, then in the <span data-concept="solution-to-a-differential-equation">solution</span>, we would replace every $x$ with $(x-x_0)$. The main idea is the following theorem.</p>
+<div class="note" id="thm-7-3-1">
+<div class="eyebrow">Theorem 7.3.1</div>
+<h3><span data-concept="frobenius-theorem">Method of Frobenius</span></h3>
+<p>Suppose that</p>
+<div class="equation" id="eq-7-3">$$ P(x) \kydprime + Q(x) \kyprime + R(x) \ky = 0 \tag{7.3}$$</div>
+<p>has a <span data-concept="regular-singular-point">regular singular point</span> at $x=0$, then there exists at least one <span data-concept="solution-to-a-differential-equation">solution</span> of the form</p>
+<div class="equation" id="eq-frobenius-type-solution">$$ \ky = x^{\kr} \sum_{k=0}^\infty \ka_k x^k . $$</div>
+<p>A <span data-concept="solution-to-a-differential-equation">solution</span> of this form is called a <em><span data-concept="frobenius-type-solution">Frobenius-type solution</span></em>.</p>
+</div>
+<p id="breaks-down">The method usually breaks down like this:</p>
+<ol type="i" id="frobenius-steps">
+<li id="step-i">We seek a <span data-concept="frobenius-type-solution">Frobenius-type solution</span> of the form
+$$ \ky = \sum_{k=0}^\infty \ka_k x^{k+\kr} . $$
+We plug this $\ky$ into the left-hand side of equation <a href="#eq-7-3">(7.3)</a>, collect terms, and write everything as a single series.</li>
+<li id="step-ii">The obtained series must be zero. Setting the first coefficient (the one with the smallest power) in the series to zero we obtain the <em><span data-concept="indicial-equation">indicial equation</span></em>, which is a quadratic polynomial in $\kr$.</li>
+<li id="step-iii">If the <span data-concept="indicial-equation">indicial equation</span> has two real roots $\krone$ and $\krtwo$ such that $\krone - \krtwo$ is not an integer, then we have two <span data-concept="linear-independence">linearly independent</span> <span data-concept="frobenius-type-solution">Frobenius-type solutions</span>. Using the first root, we plug in
+$$ \kyone = x^{\krone} \sum_{k=0}^\infty \ka_k x^{k} , $$
+and we solve for all $\ka_k$ to obtain the first <span data-concept="solution-to-a-differential-equation">solution</span>. Then using the second root, we plug in
+$$ \kytwo = x^{\krtwo} \sum_{k=0}^\infty \kb_k x^{k} , $$
+and solve for all $\kb_k$ to obtain the second <span data-concept="solution-to-a-differential-equation">solution</span>.</li>
+<li id="step-iv">If the <span data-concept="indicial-equation">indicial equation</span> has a doubled root $\kr$, then there we find one <span data-concept="solution-to-a-differential-equation">solution</span>
+$$ \kyone = x^{\kr} \sum_{k=0}^\infty \ka_k x^{k} , $$
+and then we obtain a new <span data-concept="solution-to-a-differential-equation">solution</span> by plugging
+<div class="equation" id="eq-frobenius-double-root">$$ \kytwo = x^{\kr} \sum_{k=0}^\infty \kb_k x^{k} + (\ln x) \kyone , $$</div>
+into equation <a href="#eq-7-3">(7.3)</a> and solving for the constants $\kb_k$.</li>
+<li id="step-v">If the <span data-concept="indicial-equation">indicial equation</span> has two real roots such that $\krone-\krtwo$ is an integer, then, assuming $\krone$ is the larger root, one <span data-concept="solution-to-a-differential-equation">solution</span> is
+$$ \kyone = x^{\krone} \sum_{k=0}^\infty \ka_k x^{k} , $$
+and the second <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solution</span> is of the form
+<div class="equation" id="eq-frobenius-integer-difference">$$ \kytwo = x^{\krtwo} \sum_{k=0}^\infty \kb_k x^{k} + C (\ln x) \kyone , $$</div>
+where we plug $\kytwo$ into <a href="#eq-7-3">(7.3)</a> and solve for the constants $\kb_k$ and $C$.</li>
+<li id="step-vi">Finally, if the <span data-concept="indicial-equation">indicial equation</span> has complex roots, then solving for $\ka_k$ in the <span data-concept="solution-to-a-differential-equation">solution</span>
+$$ \ky = x^{\krone} \sum_{k=0}^\infty \ka_k x^{k} $$
+results in a complex-valued function—the $\ka_k$ are <span data-concept="complex-number">complex numbers</span>. We obtain our two <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions</span><sup class="fn" data-note="fn-neuringer"></sup> by taking the <span data-concept="real-and-imaginary-parts">real and imaginary parts</span> of $\ky$.</li>
+</ol>
+<p id="second-solution-ideas">The main idea is to find at least one <span data-concept="frobenius-type-solution">Frobenius-type solution</span>. If we are lucky and find two, we are done. If we only get one, we either use the ideas above or even a different method such as <span data-concept="reduction-of-order">reduction of order</span> (see <a href="/diffyqs/ch02/2.1/#2.1-reduction-of-order">§2.1</a>) to obtain a second <span data-concept="solution-to-a-differential-equation">solution</span>.</p>
+</section>
+
+<section id="bessel">
+<h2>Bessel functions</h2>
+<p id="bessel-equation">An important class of functions that arise commonly in physics are the <em><span data-concept="bessel-functions-of-the-first-kind">Bessel functions</span></em><sup class="fn" data-note="fn-bessel"></sup>. For example, these functions appear when solving the wave equation in two and three dimensions. First consider <em><span data-concept="bessel-equation">Bessel’s equation</span></em> of order $p$:</p>
+<div class="equation" id="eq-bessels-equation">$$ x^2 \kydprime + x\kyprime + \left(x^2 - p^2\right)\ky = 0 . $$</div>
+<p id="order-p">We allow $p$ to be any number, not just an integer, although integers and multiples of ${1}/{2}$ are most important in applications.</p>
+<p id="bessel-indicial">When we plug</p>
+$$ \ky = \sum_{k=0}^\infty \ka_k x^{k+\kr} $$
+<p>into <span data-concept="bessel-equation">Bessel’s equation</span> of order $p$, we obtain the <span data-concept="indicial-equation">indicial equation</span></p>
+<div class="equation" id="eq-bessel-indicial">$$ \kr(\kr-1)+\kr-p^2 = (\kr-p)(\kr+p) = 0 . $$</div>
+<p id="bessel-solutions">Unless $p=0$, we obtain two roots, $\krone = p$ and $\krtwo = -p$. If $p$ is not an integer, then following the <span data-concept="method-of-frobenius">method of Frobenius</span> and setting $\ka_0 = 1$, we find <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions</span> of the form</p>
+<div class="equation" id="eq-bessel-y1">$$ \begin{align*} &amp; \kyone = x^p \sum_{k=0}^\infty \frac{{(-1)}^k x^{2k}}{2^{2k} k! (k+p)(k-1+p)\cdots (2+p)(1+p)} , \\ &amp; \kytwo = x^{-p} \sum_{k=0}^\infty \frac{{(-1)}^k x^{2k}}{2^{2k} k! (k-p)(k-1-p)\cdots (2-p)(1-p)} . \end{align*} $$</div>
+<div class="exercises" data-place="eq-bessel-y1"></div>
+<p id="gamma"><span data-concept="bessel-functions-of-the-first-kind">Bessel functions</span> are convenient constant multiples of $\kyone$ and $\kytwo$. First, we define the <em><span data-concept="gamma-function">gamma function</span></em></p>
+<div class="equation" id="eq-gamma-function">$$ \kGamma(x) = \int_0^\infty t^{x-1} e^{-t} \, dt . $$</div>
+<p>Notice that $\kGamma(1) = 1$. The <span data-concept="gamma-function">gamma function</span> also has a wonderful property</p>
+<div class="equation" id="eq-gamma-recursion">$$ \kGamma(x+1) = x \kGamma(x) . $$</div>
+<p id="gamma-factorial">From this property, it follows that $\kGamma(n) = (n-1)!$ when $n$ is a positive integer. So the <span data-concept="gamma-function">gamma function</span> is a continuous version of the factorial. We compute:</p>
+<div class="equation" id="eq-gamma-products">$$ \begin{align*} &amp; \kGamma(k+p+1)=(k+p)(k-1+p)\cdots (2+p)(1+p) \kGamma(1+p) , \\ &amp; \kGamma(k-p+1)=(k-p)(k-1-p)\cdots (2-p)(1-p) \kGamma(1-p) . \end{align*} $$</div>
+<div class="exercises" data-place="eq-gamma-products"></div>
+<p id="reciprocal-gamma">Using $\kGamma(x+1) = x \kGamma(x)$, we define the <span data-concept="gamma-function">gamma function</span> for all $x$ except nonpositive integers. The reciprocal $\frac{1}{\kGamma(x)}$ can be defined for all $x$ by letting $\frac{1}{\kGamma(x)}$ be zero for integers $x \leq 0$.</p>
+<p id="bessel-first-kind">We define the <em><span data-concept="bessel-functions-of-the-first-kind">Bessel functions of the first kind</span></em> of order $p$ and $-p$ as</p>
+<div class="equation" id="eq-bessel-J-p">$$ \begin{align*} &amp; \kJ_p(x) = \frac{1}{2^p\kGamma(1+p)} \kyone = \sum_{k=0}^\infty \frac{{(-1)}^k}{k! \, \kGamma(k+p+1)} {\left(\frac{x}{2}\right)}^{2k+p} , \\ &amp; \kJ_{-p}(x) = \frac{1}{2^{-p}\kGamma(1-p)} \kytwo = \sum_{k=0}^\infty \frac{{(-1)}^k}{k! \,\kGamma(k-p+1)} {\left(\frac{x}{2}\right)}^{2k-p} . \end{align*} $$</div>
+<p id="constant-multiples">As these are constant multiples of the <span data-concept="solution-to-a-differential-equation">solutions</span> we found above, these are both <span data-concept="solution-to-a-differential-equation">solutions</span> to <span data-concept="bessel-equation">Bessel’s equation</span> of order $p$. The constants are picked for convenience. As the reciprocal of $\kGamma$ is defined for all $x$, the formulas on the right hold even for integer $p$. When $n$ is a nonnegative integer,</p>
+<div class="equation" id="eq-bessel-J-n">$$ \kJ_n(x) = \sum_{k=0}^\infty \frac{{(-1)}^k}{k! \,(k+n)!} {\left(\frac{x}{2}\right)}^{2k+n} . $$</div>
+<p id="integer-orders">When $p$ is not an integer, $\kJ_p$ and $\kJ_{-p}$ are <span data-concept="linear-independence">linearly independent</span>. For integer orders, one can check that</p>
+<div class="equation" id="eq-bessel-J-minus-n">$$ \kJ_n(x) = {(-1)}^n\kJ_{-n}(x) . $$</div>
+<p id="bessel-second-kind">So $\kJ_{-n}$ is not a second <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solution</span>. The other <span data-concept="solution-to-a-differential-equation">solution</span> is the so-called <em><span data-concept="bessel-functions-of-the-second-kind">Bessel function of second kind</span></em>. These make sense only for integer orders $n$ and are defined as limits of <span data-concept="linear-combination">linear combinations</span> of $\kJ_p(x)$ and $\kJ_{-p}(x)$, as $p$ approaches $n$ in the following way:</p>
+<div class="equation" id="eq-bessel-Y-n">$$ \kY_n(x) = \lim_{p\to n} \frac{\cos(p \pi) \kJ_p(x) - \kJ_{-p}(x)}{\sin(p \pi)} . $$</div>
+<p id="bessel-general">Each <span data-concept="linear-combination">linear combination</span> of $\kJ_p(x)$ and $\kJ_{-p}(x)$ is a <span data-concept="solution-to-a-differential-equation">solution</span> to <span data-concept="bessel-equation">Bessel’s equation</span> of order $p$. Then as we take the limit as $p$ goes to $n$, we see that $\kY_n(x)$ is a <span data-concept="solution-to-a-differential-equation">solution</span> to <span data-concept="bessel-equation">Bessel’s equation</span> of order $n$. It also turns out that $\kY_n(x)$ and $\kJ_n(x)$ are <span data-concept="linear-independence">linearly independent</span>. Therefore, when $n$ is an integer, we have the <span data-concept="general-solution-of-bessels-equation">general solution to Bessel’s equation of order $n$</span>:</p>
+<div class="equation" id="eq-bessel-general-solution">$$ \ky = A \kJ_n(x) + B \kY_n(x) , $$</div>
+<p id="bessel-properties">for arbitrary constants $A$ and $B$. Note that $\kY_n(x)$ goes to negative infinity at $x=0$. Many mathematical software packages have these functions $\kJ_n(x)$ and $\kY_n(x)$ defined, so they can be used just like say $\sin(x)$ and $\cos(x)$. In fact, <span data-concept="bessel-functions-of-the-first-kind">Bessel functions</span> have some similar properties. For example, $-\kJ_1(x)$ is a derivative of $\kJ_0(x)$, and in general the derivative of $\kJ_n(x)$ can be written as a <span data-concept="linear-combination">linear combination</span> of $\kJ_{n-1}(x)$ and $\kJ_{n+1}(x)$. Furthermore, these functions oscillate, although they are not periodic. See <a href="#sim-bessel">Figure 7.4</a> for graphs of <span data-concept="bessel-functions-of-the-first-kind">Bessel functions</span>.</p>
+<figure class="sim" id="sim-bessel" data-figure="7.4" data-original="/media/ch07/bessel-first-second.svg" data-original-caption="Plot of the J₀(x) and J₁(x) in the first graph and Y₀(x) and Y₁(x) in the second graph." data-original-width="864">
+  <div class="sim-head"><span class="eyebrow">Figure 7.4</span><span>On the left, $\kJ_p$ and $\kJ_{p+1}$, each with the partial sum of its series through $k = K$, built term by term from the recurrence that multiplies each term by $-\frac{(x/2)^2}{k(k+p)}$: every added term carries the sum further from $x = 0$ before it leaves the function. On the right, the second <span data-concept="solution-to-a-differential-equation">solutions</span> of the same orders: $\kJ_{-p}$ and $\kJ_{-p-1}$ when $p$ is not an integer, unbounded at $x = 0$, and $\kY_n$ and $\kY_{n+1}$ at an integer $p = n$, where $\kJ_{-n} = (-1)^n\kJ_n$ is no new <span data-concept="solution-to-a-differential-equation">solution</span>. Move $p$ toward an integer to see $\kJ_{-p}$ close onto $\pm\kJ_n$, and lower $K$ to see the series build.</span></div>
+</figure>
+<div class="example" id="ex-7-3-4">
+<h3>Example 7.3.4</h3>
+<p>Other equations can sometimes be solved in terms of the <span data-concept="bessel-functions-of-the-first-kind">Bessel functions</span>. For example, given a positive constant $\lambda$,</p>
+<div class="equation" id="eq-drum-equation">$$ x \kydprime + \kyprime + \lambda^2 x \ky = 0 , $$</div>
+<p>can be changed to $x^2 \kydprime + x \kyprime + \lambda^2 x^2 \ky = 0$. Changing variables $t = \lambda x$, we obtain, via <a href="/calculus/ch03/3.6/">the chain rule</a>, the equation in $\ky$ and $t$:</p>
+$$ t^2 \kydprime + t \kyprime + t^2 \ky = 0 , $$
+<p>which we recognize as <a href="/calculus/ch17/17.4/#17.4-bessel"><span data-concept="bessel-equation">Bessel’s equation of order $0$</span></a>. Therefore the <span data-concept="general-solution">general solution</span> is $\ky(t) = A \kJ_0(t) + B \kY_0(t)$, or in terms of $x$:</p>
+<div class="equation" id="eq-drum-solution">$$ \ky = A \kJ_0(\lambda x) + B \kY_0(\lambda x) . $$</div>
+<p>This equation comes up, for example, when finding the fundamental modes of vibration of a circular drum, but we digress.</p>
+</div>
+</section>

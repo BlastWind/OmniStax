@@ -14,7 +14,7 @@ const isPi = (v) => Math.abs(v - PI) < 0.005;
 /* t − a written out: t for a = 0 */
 const tm = (a) => (Math.abs(a) < 0.005 ? 't' : `t - ${num(a)}`);
 /* the factor e^(−as): nothing for a = 0, e^{-s} for a = 1 */
-const ex = (a) => (Math.abs(a) < 0.005 ? '' : Math.abs(a - 1) < 0.005 ? 'e^{-s}' : `e^{-${num(a)}s}`);
+const ex = (a) => (Math.abs(a) < 0.005 ? '' : Math.abs(a - 1) < 0.005 ? 'e^{-s}' : `e^{-${num(a)}${isPi(a) ? " " : ""}s}`);
 
 /* Figure 6.1: the unit step u(t − a) under a slider for a (0 to 4, the book's u(t) at a = 0), and a choice of
    what steps build: the step itself; the window u(t − a) − u(t − b) (b on a second slider, shown only here; the
@@ -28,7 +28,7 @@ const ex = (a) => (Math.abs(a) < 0.005 ? '' : Math.abs(a - 1) < 0.005 ? 'e^{-s}'
 (function () {
   const d = sim('sim-heaviside', 560);
   const pick = choice(d.controls, { label: 'build', key: 'build', value: 'step', aria: 'what the steps build', options: [
-    { value: 'step', label: 'step' }, { value: 'window', label: 'window' }, { value: 'signal', label: 'switched sin t' }, { value: 'tent', label: 'tent' }],
+    { value: 'step', label: 'step' }, { value: 'window', label: 'window' }, { value: 'signal', label: 'signal' }, { value: 'tent', label: 'tent' }],
   });
   const aS = ctl(d.controls, { label: 'a', cls: '', key: 'a', min: 0, max: 4, step: 0.01, value: 0, unit: '', dec: 2, aria: 'the switch-on time a', detents: [0, 1, { v: PI, label: 'π' }] });
   const bS = ctl(d.controls, { label: 'b', cls: '', key: 'b', min: 0, max: 6.5, step: 0.01, value: 2, unit: '', dec: 2, aria: 'the switch-off time b of the window', detents: [2] });
@@ -195,7 +195,7 @@ const ex = (a) => (Math.abs(a) < 0.005 ? '' : Math.abs(a - 1) < 0.005 ? 'e^{-s}'
 
     /* the thrust f(t) on its strip, the burn shaded on strip and graph */
     const aF = axes(ctx, STRIP, [0, TMAX], [0, 1], { yl: 'f(t)', yc: fc, nx: 0, ny: 1, fy: (v) => fmt(v, 0) });
-    const ax = axes(ctx, BOX, [0, TMAX], [-2.4, 2.4], { xl: 't', yl: 'x', yc: fc, nx: 10, ny: 4, nice: true, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const ax = axes(ctx, BOX, [0, TMAX], [-2.4, 2.4], { xl: 't', yl: 'x', yc: fc, nx: 10, ny: 8, nice: true, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     const burn = (A) => {
       const l = A.X(Math.min(a, TMAX)), rr = A.X(Math.min(end, TMAX));
       if (rr > l) { ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(l, A.box.t, rr - l, A.box.b - A.box.t); ctx.restore(); }

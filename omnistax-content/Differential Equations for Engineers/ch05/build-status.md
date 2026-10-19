@@ -16,6 +16,7 @@ Task `prep1-ch05` (prep stage one), port 8106, scratch `/tmp/claude-0/-home-user
 - `redefines: true` added on 5.1/X, X_n, T_n, y, λ, λ_n, y_n, c_n, 5.2/b_n, 5.3/w (Chapter 4 or earlier gave another meaning).
 - `ost merge diffyqs 5`: 32 concepts, 54 edges (4 redundant dropped after the whole-book Hasse check), 12 symbols. 5.3/y_p now links `particular-solution-of-the-forced-string` (was `particular-solution`), 5.3/u links `underground-temperature-solution` (the concepts carry those symbols). The draft `ref` yp, yc on 5.3/y_p, y_c removed: the checker refuses a referent of an unbuilt section; the 5.3 agent sets them back (`ost set … '{"ref": "yp"}'`) once its figures name the referents. Redundant ink overrides on 5.1/h, 5.2/ω removed (they inherit no type: still ink).
 - `ost check diffyqs`: no errors, no warnings.
+- 5.1 built (task `sec-5.1`, 2026-10-19): 2 figures (Figure 5.1 a still Sim under h with an n choice; `sim-eigenfunction-series` a still Sim under N and a probe x), 2 derivations (`drv-robin-eigenvalues`, Example 5.1.3's λ > 0 case; `drv-eigenfunction-coefficients`, the boxed (5.4) kept in the text), 10 exercises (3 inline Try Its, 5 unkeyed with AI solutions, 2 keyed), 16 concepts introduced, 2 referents, book footnotes 24 and 25 (25 printed in 5.1.102's card); `ost check diffyqs --section 5.1` ok; anchors, three form `ktex` fixes and six wanted variables rows in its plan's `## Wanted at chapter level`.
 
 ## Next
 

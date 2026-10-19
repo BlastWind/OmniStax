@@ -35,7 +35,7 @@ $$ \kRn = A r^n + B r^{-n} . $$
 $$ \kR_0 = 1 \qquad \text{and} \qquad \kRn = r^n . $$
 <p id="building-blocks">Our building block solutions are</p>
 $$ \ku_0(r,\theta) = \frac{\kazero}{2} \qquad \text{and} \qquad \kun(r,\theta) = \kan r^n \cos(n \theta) + \kbn r^n \sin(n \theta) . $$
-<p id="together">Putting everything together, our solution is</p>
+<p>Putting everything together, our solution is</p>
 <div class="equation" id="eq-disc-series-solution">$$ \boxed{~~ \ku(r,\theta) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan r^n \cos(n \theta) + \kbn r^n \sin(n \theta) \Bigr] . ~~} $$</div>
 <p id="boundary-condition">We look at the boundary condition in <a href="#eq-4-26">(4.26)</a>,</p>
 $$ \kg(\theta) = \ku(1,\theta) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \kan \cos(n \theta) + \kbn \sin(n \theta) \Bigr]. $$
@@ -45,13 +45,13 @@ $$ \kg(\theta) = \ku(1,\theta) = \frac{\kazero}{2} + \sum_{n=1}^\infty \Bigl[ \k
 <h3>Example 4.10.1</h3>
 <p>Suppose we wish to solve</p>
 $$ \begin{align*} & \Delta \ku = 0 , \qquad 0 \leq r < 1, \quad -\pi < \theta \leq \pi,\\ & \ku(1,\theta) = \cos(10\,\theta), \qquad -\pi < \theta \leq \pi. \end{align*} $$
-<p id="high-frequency">The $\kg(\theta)$ is already expanded, so the solution is</p>
+<p>The $\kg(\theta)$ is already expanded, so the solution is</p>
 $$ \ku(r,\theta) = r^{10} \cos(10\,\theta) . $$
 <p>See the plot in Figure 4.26. The thing to notice in this example is that the effect of a high frequency is mostly felt at the boundary. In the middle of the disc, the solution is very close to zero. That is because $r^{10}$ is rather small when $r$ is close to 0.</p>
 </div>
 <div class="example" id="ex-4-10-2">
 <h3>Example 4.10.2</h3>
-<p id="rod">Let us solve a more difficult problem. Consider a long rod with a circular cross section of radius 1. Suppose we wish to solve the <span data-concept="steady-state-temperature">steady-state heat problem</span> in the rod. If the rod is long enough, we simply need to solve the <span data-concept="laplaces-equation">Laplace equation</span> in two dimensions. We put the center of the rod at the origin, and we have exactly the region we are currently studying—a circle of radius 1. For the boundary conditions, suppose in Cartesian coordinates $x$ and $y$, the <span data-concept="steady-state-temperature">temperature</span> on the boundary is 0 when $y &lt; 0$, and it is $2y$ when $y &gt; 0$.</p>
+<p>Let us solve a more difficult problem. Consider a long rod with a circular cross section of radius 1. Suppose we wish to solve the <span data-concept="steady-state-temperature">steady-state heat problem</span> in the rod. If the rod is long enough, we simply need to solve the <span data-concept="laplaces-equation">Laplace equation</span> in two dimensions. We put the center of the rod at the origin, and we have exactly the region we are currently studying—a circle of radius 1. For the boundary conditions, suppose in Cartesian coordinates $x$ and $y$, the <span data-concept="steady-state-temperature">temperature</span> on the boundary is 0 when $y &lt; 0$, and it is $2y$ when $y &gt; 0$.</p>
 <p>Let us set the problem up. As $y = r\sin(\theta)$, then on the circle of radius 1, that is, where $r=1$, we have $2y = 2\sin(\theta)$. So</p>
 $$ \begin{align*} & \Delta \ku = 0 , \qquad 0 \leq r < 1, \quad -\pi < \theta \leq \pi,\\ & \ku(1,\theta) = \begin{cases} 2\sin(\theta) & \text{if } \; \phantom{-}0 \leq \theta \leq \pi, \\ 0 & \text{if } \; {-\pi} < \theta < 0. \end{cases} \end{align*} $$
 <p>We must now compute the <span data-concept="fourier-series">Fourier series</span> for the boundary condition. By now the reader has plentiful experience in computing <span data-concept="fourier-series">Fourier series</span>, and so we simply state that</p>
@@ -66,7 +66,7 @@ $$ \ku(r,\theta) = \frac{2}{\pi} + r\sin(\theta) + \sum_{n=1}^\infty \frac{-4r^{
 <h2>Poisson kernel</h2>
 <p id="kernel-idea">There is another way to solve the <span data-concept="dirichlet-problem">Dirichlet problem</span>—with the help of an integral kernel. That is, we will find a function $\kP(r,\theta,\alpha)$ called the <em><span data-concept="poisson-kernel">Poisson kernel</span></em><sup class="fn" data-note="fn-poisson"></sup> such that</p>
 $$ \ku(r,\theta) = \frac{1}{2\pi} \int_{-\pi}^{\pi} \kP(r,\theta,\alpha) \, \kg(\alpha) \,d\alpha . $$
-<p id="kernel-numerics">While the integral will generally not be solvable analytically, it can be evaluated numerically. In fact, unless the boundary data is given as a <span data-concept="fourier-series">Fourier series</span> already, it may be much easier to numerically evaluate this formula as there is only one integral to evaluate.</p>
+<p>While the integral will generally not be solvable analytically, it can be evaluated numerically. In fact, unless the boundary data is given as a <span data-concept="fourier-series">Fourier series</span> already, it may be much easier to numerically evaluate this formula as there is only one integral to evaluate.</p>
 <p id="kernel-uses">The formula also has theoretical applications. For instance, as $\kP(r,\theta,\alpha)$ will have infinitely many derivatives, then via differentiating under the integral, we find that the solution $\ku(r,\theta)$ has infinitely many derivatives, at least when inside the circle, $r &lt; 1$. By “having infinitely many derivatives,” what you should think of is that $\ku(r,\theta)$ has “no corners” and all of its partial derivatives of all orders exist and also have “no corners.”</p>
 <p id="kernel-other">We will compute the formula for $\kP(r,\theta,\alpha)$ from the series solution, and this idea can be applied anytime you have a convenient series solution where the coefficients are obtained via integration. Hence you can apply this reasoning to obtain such integral kernels for other equations, such as the <span data-concept="heat-equation">heat equation</span>. The computation is long and tedious, but not overly difficult. Since the ideas are often applied in similar contexts, it is good to understand how this computation works.</p>
 <p id="kernel-plan">What we do is start with the series solution and replace the coefficients with the integrals that compute them. Then we try to write everything as a single integral. We must use a different dummy variable for the integration and hence we use $\alpha$ instead of $\theta$.</p>
@@ -77,7 +77,7 @@ $$ \ku(r,\theta) = \frac{1}{2\pi} \int_{-\pi}^{\pi} \kP(r,\theta,\alpha) \, \kg(
 <div class="equation" id="eq-geometric-series-from-one">$$ \sum_{n=1}^\infty z^n = \frac{z}{1-z} . $$</div>
 <p id="geometric-from-one">Note that $n$ starts at $1$, and that is why we have the $z$ in the numerator. It is the standard <span data-concept="sum-of-a-geometric-series">geometric series</span> multiplied by $z$. We can use $z = re^{i(\theta-\alpha)}$, as lo and behold $\lvert re^{i(\theta-\alpha)} \rvert = r &lt; 1$. We continue with the computation.</p>
 <figure class="dv" id="drv-poisson-closed-form"></figure>
-<p id="live-with">That is a formula we can live with. The solution to the <span data-concept="dirichlet-problem">Dirichlet problem</span> using the <span data-concept="poisson-kernel">Poisson kernel</span> is</p>
+<p>That is a formula we can live with. The solution to the <span data-concept="dirichlet-problem">Dirichlet problem</span> using the <span data-concept="poisson-kernel">Poisson kernel</span> is</p>
 <div class="equation" id="eq-poisson-solution">$$ \boxed{~~ \ku(r,\theta) = \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{1 -r^2}{1 - 2r\cos(\theta-\alpha) +r^2} \kg(\alpha) \, d\alpha . ~~} $$</div>
 <p id="limits-remark">Sometimes the formula for the <span data-concept="poisson-kernel">Poisson kernel</span> is given together with the constant $\frac{1}{2\pi}$, in which case we should, of course, not leave it in front of the integral. Sometimes the limits of the integral are given as 0 to $2\pi$; everything inside is $2\pi$-<span data-concept="periodic-function">periodic</span> in $\alpha$, so this does not change the integral.</p>
 <figure class="sim" id="sim-poisson-kernel" data-original="/media/ch04/poisson.svg">
@@ -85,7 +85,7 @@ $$ \ku(r,\theta) = \frac{1}{2\pi} \int_{-\pi}^{\pi} \kP(r,\theta,\alpha) \, \kg(
 </figure>
 <p id="geometric-meaning">Let us not leave the <span data-concept="poisson-kernel">Poisson kernel</span> without explaining its geometric meaning. The kernel corresponding to the point $(r,\theta)$ in the disc and the point $(1,\alpha)$ on the boundary depends only on the distance of $(r,\theta)$ from the center and the distance between $(r,\theta)$ and $(1,\alpha)$. Let $s$ be the distance from $(r,\theta)$ to $(1,\alpha)$. This distance $s$ in polar coordinates is given precisely by the square root of $1 - 2r\cos(\theta-\alpha) +r^2$. That is, the <span data-concept="poisson-kernel">Poisson kernel</span> is really the formula</p>
 $$ \frac{1-r^2}{s^2} . $$
-<p id="origin">One final note we make about the formula is that it is really a weighted average of the boundary values. First, we look at what happens at the origin, that is, when $r=0$:</p>
+<p>One final note we make about the formula is that it is really a weighted average of the boundary values. First, we look at what happens at the origin, that is, when $r=0$:</p>
 <div class="equation" id="eq-mean-value">$$ \begin{split} \ku(0,0) &= \frac{1}{2\pi} \int_{-\pi}^{\pi} \frac{1 -0^2}{1 - 2(0)\cos(0-\alpha) +0^2} \kg(\alpha) \, d\alpha \\ & = \frac{1}{2\pi} \int_{-\pi}^{\pi} \kg(\alpha) \, d\alpha . \end{split} $$</div>
 <p id="mean-value">So $\ku(0,0)$ is precisely the average value of $\kg(\theta)$ and therefore the average value of $\ku$ on the boundary. This is a general feature of <span data-concept="harmonic-function">harmonic functions</span>, the value at some point $p$ is equal to the average of the values on a circle centered at $p$.</p>
 <p id="weighted-average">What the formula says at other points inside the circle is that the value of the solution is a weighted average of the boundary data $\kg(\theta)$. The kernel is bigger when $(1,\alpha)$ is closer to $(r,\theta)$. Therefore, when computing $\ku(r,\theta)$, we give more weight to the values $\kg(\alpha)$ when $(1,\alpha)$ is closer to $(r,\theta)$ and less weight to the values $\kg(\alpha)$ when $(1,\alpha)$ is far from $(r,\theta)$.</p>
