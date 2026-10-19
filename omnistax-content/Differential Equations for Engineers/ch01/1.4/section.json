@@ -1,0 +1,800 @@
+{
+ "id": "1.4",
+ "module": "intfactor:section",
+ "chapter": "1",
+ "title": "Linear equations and the integrating factor",
+ "short": "Linear equations and the integrating factor",
+ "lead": "A first-order equation that is <span data-concept=\"first-order-linear-differential-equation\">linear</span> in $\\ky$ and $\\kyprime$ can always be solved by one trick: multiply through by a function that turns the left-hand side into the derivative of a product. This section finds that <span data-concept=\"integrating-factor\">function</span>, writes the solution as a definite integral a calculator can evaluate, and applies the method to the salt in a filling tank.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "In the exercises, feel free to leave the answer as a definite integral if a closed-form solution cannot be found. If you can find a closed-form solution, you should give that.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 1.4.101–1.4.105 carry the book’s own answers. The inline exercises 1.4.1–1.4.3 and exercises 1.4.4–1.4.12, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first. The book’s line above the set is the exercises_lead.",
+ "figures": [
+  {
+   "id": "sim-brine-tank",
+   "kind": "sim",
+   "number": "1.10",
+   "originals": [
+    "/media/ch01/lin-tank.svg",
+    "/media/ch01/linear-salt-graph.svg"
+   ],
+   "original_caption": "Graph of the solution x kilograms of salt in the tank at time t.",
+   "widths": [],
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "derivations": [
+  {
+   "id": "integrating-factor",
+   "what": "the solution of a linear first-order equation by the integrating factor",
+   "source": "Differential Equations for Engineers, 1.4 Linear equations and the integrating factor",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kr(x) = e^{\\int \\kp(x) \\,dx}",
+       "src": "1.4"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\Bigl[ e^{\\int \\kp(x) \\,dx} \\Bigr] = \\kp(x)\\, e^{\\int \\kp(x) \\,dx}",
+       "src": "Calculus 3.9, Derivatives of Exponential Functions"
+      },
+      {
+       "tex": "\\frac{d}{dx}\\bigl[ u(x) v(x) \\bigr] = u'(x) v(x) + u(x) v'(x)",
+       "src": "Calculus 3.3, Product Rule"
+      },
+      {
+       "tex": "\\int F'(x) \\,dx = F(x) + C",
+       "src": "Calculus 4.10, Antiderivatives"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{yp}{\\kyprime} + \\mk{py}{\\kp(x) \\ky} = \\mk{f}{\\kf(x)}",
+      "src": "(1.3)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{yp}{e^{\\int \\kp(x) \\,dx} \\kyprime} + \\mk{py}{e^{\\int \\kp(x) \\,dx} \\kp(x) \\ky} = \\mk{f}{e^{\\int \\kp(x) \\,dx} \\kf(x)}",
+       "uses": [
+        0
+       ],
+       "cap": "Multiply both sides by the integrating factor $\\kr(x) = e^{\\int \\kp(x)\\,dx}$, where $\\int \\kp(x)\\,dx$ is any antiderivative of $\\kp(x)$."
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dx}\\left[ e^{\\int \\kp(x) \\,dx} \\ky \\right]} = \\mk{f}{e^{\\int \\kp(x) \\,dx} \\kf(x)}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "yp": "d",
+        "py": "d"
+       },
+       "cap": "The product rule read backward: differentiating $e^{\\int \\kp(x)\\,dx}$ gives the same function back multiplied by $\\kp(x)$, so $e^{\\int \\kp(x)\\,dx}\\kyprime + e^{\\int \\kp(x)\\,dx}\\kp(x)\\ky$ is the derivative of the product $e^{\\int \\kp(x)\\,dx}\\ky$."
+      },
+      {
+       "tex": "\\mk{d}{e^{\\int \\kp(x) \\,dx} \\ky} = \\mk{f}{\\int e^{\\int \\kp(x) \\,dx} \\kf(x) \\,dx} + \\mk{c}{C}",
+       "uses": [
+        3
+       ],
+       "cap": "Integrate both sides with respect to $x$, which we can do as the right-hand side does not depend on $\\ky$ and the left-hand side is written as a derivative of a function."
+      },
+      {
+       "tex": "\\mk{d}{\\ky} = \\mk{r}{e^{-\\int \\kp(x) \\,dx}} \\left( \\mk{f}{\\int e^{\\int \\kp(x) \\,dx} \\kf(x) \\,dx} + \\mk{c}{C} \\right)",
+       "uses": [],
+       "map": {
+        "d": [
+         "d",
+         "r"
+        ]
+       }
+      }
+     ],
+     "src": "1.4"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "linear-definition",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrating-factor-def",
+   "concept": "integrating-factor",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrating-factor-def",
+   "concept": "integrating-factor-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-1-4",
+   "concept": "linear-ivp-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "rem-1-4-1",
+   "concept": "existence-for-linear-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "mixing-law",
+   "concept": "mixing-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-definition",
+   "concept": "linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-definition",
+   "concept": "first-order-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-1-3",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nice-properties",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nice-properties",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "product-trick",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-integrating-factor-product",
+   "concept": "integrating-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "exponential-job",
+   "concept": "integrating-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-integrating-factor",
+   "concept": "integrating-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "we-compute",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-integrating-factor",
+   "concept": "integrating-factor-method",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-integrating-factor",
+   "concept": "integrating-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-integrating-factor",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "closed-form-caveat",
+   "concept": "closed-form",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-4-1",
+   "concept": "integrating-factor-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-4-1",
+   "concept": "integrating-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-4-1",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-4-1",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-of-integration",
+   "concept": "integrating-factor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "constant-of-integration",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "advice",
+   "concept": "integrating-factor-method",
+   "verb": "reinforces"
+  },
+  {
+   "span": "definite-integral-form",
+   "concept": "closed-form",
+   "verb": "uses"
+  },
+  {
+   "span": "definite-integral-form",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "definite-integral-form",
+   "concept": "integral-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-1-4",
+   "concept": "integrating-factor-method",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-1-4",
+   "concept": "integral-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "rem-1-4-1",
+   "concept": "linear-ivp-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "rem-1-4-1",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "rem-1-4-1",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "rem-1-4-1",
+   "concept": "picards-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "rem-1-4-1",
+   "concept": "interval-of-existence",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-1-4-2",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "mixing-law",
+   "concept": "mathematical-model",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-mixing",
+   "concept": "mixing-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "tank-solve",
+   "concept": "integrating-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "tank-solve",
+   "concept": "integrating-factor-method",
+   "verb": "uses"
+  },
+  {
+   "span": "tank-full",
+   "concept": "mixing-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-brine-tank",
+   "concept": "mixing-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-brine-tank",
+   "concept": "integrating-factor-method",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "1.4.1",
+   "source_number": "1.4.1",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "constant-of-integration"
+   },
+   "cite": "ex-1-4-1",
+   "prompt": "<p>Try it! Add a constant of integration to the integral in the integrating factor and show that the solution you get in the end is the same as what we got above.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take $\\int 2x\\,dx = x^2 + K$ instead, so the integrating factor is $\\kr(x) = e^{x^2 + K} = e^{K} e^{x^2}$. Multiplying the equation by it gives $\\frac{d}{dx}\\bigl[e^{K}e^{x^2}\\ky\\bigr] = e^{K}e^{x^2}e^{x - x^2} = e^{K}e^{x}$, and integrating, $e^{K}e^{x^2}\\ky = e^{K}e^{x} + D$. Dividing by $e^{K}e^{x^2}$, $\\ky = e^{x - x^2} + De^{-K}e^{-x^2}$. Since $D$ is arbitrary, so is $De^{-K}$; calling it $C$ gives $\\ky = e^{x - x^2} + Ce^{-x^2}$, the same general solution as before, and $\\ky(0) = -1$ again gives $C = -2$. The extra constant only rescales the integrating factor, and the rescaling cancels when we divide by it."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "1.4.2",
+   "source_number": "1.4.2",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "dummy-variables"
+   },
+   "cite": "eq-1-4",
+   "prompt": "<p>Check that $\\ky(x_0) = y_0$ in formula (1.4).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Put $x = x_0$ in (1.4). Both definite integrals run from $x_0$ to $x_0$, so each is $0$: the exponent is $-\\int_{x_0}^{x_0} \\kp(s)\\,ds = 0$, so the factor in front is $e^{0} = 1$, and inside the parentheses $\\int_{x_0}^{x_0} e^{\\int_{x_0}^t \\kp(s)\\,ds} \\kf(t)\\,dt = 0$. Hence $\\ky(x_0) = 1 \\cdot (0 + y_0) = y_0$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "1.4.3",
+   "source_number": "1.4.3",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "dummy-variables"
+   },
+   "cite": "eq-1-4",
+   "prompt": "<p>Write the solution of the following problem as a definite integral, but try to simplify as far as you can. You will not be able to find the solution in closed form.</p>$$ \\kyprime + \\ky = e^{x^2-x}, \\qquad \\ky(0) = 10 . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $\\kp(x) = 1$ and $\\kf(x) = e^{x^2 - x}$, so the integrating factor is $\\kr(x) = e^{\\int 1\\,dx} = e^{x}$. Multiplying, $\\frac{d}{dx}\\bigl[e^{x}\\ky\\bigr] = e^{x}e^{x^2 - x} = e^{x^2}$. Integrating from $0$ to $x$ with a dummy variable, $e^{x}\\ky(x) - e^{0}\\ky(0) = \\int_0^x e^{t^2}\\,dt$, and $\\ky(0) = 10$, so $\\ky(x) = e^{-x}\\left( \\int_0^x e^{t^2}\\,dt + 10 \\right)$. The same comes from (1.4) with $x_0 = 0$, $y_0 = 10$: $e^{-\\int_0^x 1\\,ds} = e^{-x}$ and $e^{\\int_0^t 1\\,ds} \\kf(t) = e^{t}e^{t^2 - t} = e^{t^2}$. Check: $\\ky(0) = 1 \\cdot (0 + 10) = 10$, and differentiating, $\\kyprime = -\\ky + e^{-x}e^{x^2} = -\\ky + e^{x^2 - x}$. The integral $\\int_0^x e^{t^2}\\,dt$ has no closed form."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "1.4.4",
+   "source_number": "1.4.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating-factor-def",
+   "prompt": "<p>Solve $\\kyprime + x\\ky = x$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = 1 + Ce^{-x^2/2}$. Here $\\kp(x) = x$, so the integrating factor is $\\kr(x) = e^{\\int x\\,dx} = e^{x^2/2}$. Multiplying, $\\frac{d}{dx}\\bigl[e^{x^2/2}\\ky\\bigr] = xe^{x^2/2}$, and integrating, $e^{x^2/2}\\ky = e^{x^2/2} + C$ (the antiderivative of $xe^{x^2/2}$ is $e^{x^2/2}$, by the substitution $u = x^2/2$). Dividing by $e^{x^2/2}$ gives $\\ky = 1 + Ce^{-x^2/2}$. Check: $\\kyprime = -Cxe^{-x^2/2}$ and $x\\ky = x + Cxe^{-x^2/2}$, which add to $x$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "1.4.5",
+   "source_number": "1.4.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating-factor-def",
+   "prompt": "<p>Solve $\\kyprime + 6\\ky = e^x$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = \\frac{1}{7}e^{x} + Ce^{-6x}$. With $\\kp(x) = 6$ the integrating factor is $\\kr(x) = e^{6x}$, so $\\frac{d}{dx}\\bigl[e^{6x}\\ky\\bigr] = e^{6x}e^{x} = e^{7x}$. Integrating, $e^{6x}\\ky = \\frac{1}{7}e^{7x} + C$, and dividing by $e^{6x}$, $\\ky = \\frac{1}{7}e^{x} + Ce^{-6x}$. Check: $\\kyprime + 6\\ky = \\frac{1}{7}e^{x} - 6Ce^{-6x} + \\frac{6}{7}e^{x} + 6Ce^{-6x} = e^{x}$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "1.4.6",
+   "source_number": "1.4.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-4-1",
+   "prompt": "<p>Solve $\\kyprime + 3x^2\\ky = \\sin(x) \\, e^{-x^3}$, with $\\ky(0) = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = (2 - \\cos x)\\,e^{-x^3}$. With $\\kp(x) = 3x^2$ the integrating factor is $\\kr(x) = e^{\\int 3x^2\\,dx} = e^{x^3}$, and multiplying by it, $\\frac{d}{dx}\\bigl[e^{x^3}\\ky\\bigr] = e^{x^3}\\sin(x)\\,e^{-x^3} = \\sin x$. Integrating, $e^{x^3}\\ky = -\\cos x + C$, so $\\ky = (C - \\cos x)\\,e^{-x^3}$. The initial condition gives $1 = \\ky(0) = (C - 1)\\cdot 1$, so $C = 2$ and $\\ky = (2 - \\cos x)\\,e^{-x^3}$. Check: $\\kyprime = \\sin(x)\\,e^{-x^3} - 3x^2(2 - \\cos x)\\,e^{-x^3} = \\sin(x)\\,e^{-x^3} - 3x^2\\ky$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "1.4.7",
+   "source_number": "1.4.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating-factor-def",
+   "prompt": "<p>Solve $\\kyprime + \\cos (x)\\, \\ky = \\cos(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = 1 + Ce^{-\\sin x}$. With $\\kp(x) = \\cos x$ the integrating factor is $\\kr(x) = e^{\\int \\cos x\\,dx} = e^{\\sin x}$, so $\\frac{d}{dx}\\bigl[e^{\\sin x}\\ky\\bigr] = \\cos(x)\\,e^{\\sin x}$. The right-hand side is the derivative of $e^{\\sin x}$, so integrating, $e^{\\sin x}\\ky = e^{\\sin x} + C$, and $\\ky = 1 + Ce^{-\\sin x}$. Check: $\\kyprime = -C\\cos(x)\\,e^{-\\sin x}$ and $\\cos(x)\\,\\ky = \\cos x + C\\cos(x)\\,e^{-\\sin x}$, which add to $\\cos x$. (The constant $\\ky = 1$ is the solution with $C = 0$, as the equation itself suggests.)"
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "1.4.8",
+   "source_number": "1.4.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-1-4",
+   "prompt": "<p>Solve $\\frac{1}{x^2+1} \\, \\kyprime + x \\ky = 3$, with $\\ky(0) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x) = 3\\,e^{-\\left(\\frac{x^4}{4} + \\frac{x^2}{2}\\right)} \\int_0^x (t^2 + 1)\\, e^{\\frac{t^4}{4} + \\frac{t^2}{2}}\\,dt$, a definite integral with no closed form. First put the equation in the form (1.3) by multiplying by $x^2 + 1$: $\\kyprime + (x^3 + x)\\ky = 3(x^2 + 1)$, so $\\kp(x) = x^3 + x$ and $\\kf(x) = 3(x^2 + 1)$. Then $\\int \\kp(x)\\,dx = \\frac{x^4}{4} + \\frac{x^2}{2}$ and the integrating factor is $\\kr(x) = e^{\\frac{x^4}{4} + \\frac{x^2}{2}}$. Multiplying, $\\frac{d}{dx}\\bigl[\\kr(x)\\ky\\bigr] = 3(x^2 + 1)\\,e^{\\frac{x^4}{4} + \\frac{x^2}{2}}$, whose antiderivative is not elementary, so we integrate from $0$ to $x$: $\\kr(x)\\ky(x) - \\kr(0)\\ky(0) = \\int_0^x 3(t^2 + 1)\\,e^{\\frac{t^4}{4} + \\frac{t^2}{2}}\\,dt$, and since $\\ky(0) = 0$ the constant term vanishes. Dividing by $\\kr(x)$ gives the formula above, which is (1.4) with $x_0 = 0$ and $y_0 = 0$. Check: $\\ky(0) = 0$, and $\\kyprime = -(x^3 + x)\\ky + 3(x^2 + 1)$ by the product rule and the fundamental theorem of calculus."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "1.4.9",
+   "source_number": "1.4.9",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-4-2",
+   "prompt": "<p>Suppose there are two lakes located on a stream. Clean water flows into the first lake, then the water from the first lake flows into the second lake, and then water from the second lake flows further downstream. The in and out flow from each lake is 500 liters per hour. The first lake contains 100 thousand liters of water and the second lake contains 200 thousand liters of water. A truck with 500 kg of toxic substance crashes into the first lake. Assume that the water is being continually mixed perfectly by the stream.</p><ol type=\"a\"><li>Find the concentration of toxic substance as a function of time in both lakes.</li><li>When will the concentration in the first lake be below 0.001 kg per liter?</li><li>When will the concentration in the second lake be maximal?</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "b)",
+      "value": 321.9,
+      "unit": "hours"
+     },
+     {
+      "part": "c)",
+      "value": 277.3,
+      "unit": "hours"
+     }
+    ],
+    "solution": "a) Let $t$ be the time in hours and $x_1(t)$, $x_2(t)$ the kilograms of substance in the two lakes. Both volumes stay constant, since the flow in equals the flow out. First lake: nothing comes in and the outflow carries $500 \\cdot \\frac{x_1}{100000}$ kg per hour, so $\\frac{dx_1}{dt} = -\\frac{x_1}{200}$, $x_1(0) = 500$, giving $x_1 = 500\\,e^{-t/200}$ and the concentration $c_1(t) = \\frac{x_1}{100000} = 0.005\\,e^{-t/200}$ kg/L. Second lake: the inflow carries $500\\,c_1 = 2.5\\,e^{-t/200}$ kg per hour and the outflow $500 \\cdot \\frac{x_2}{200000} = \\frac{x_2}{400}$, so $\\frac{dx_2}{dt} + \\frac{1}{400}x_2 = 2.5\\,e^{-t/200}$, $x_2(0) = 0$. The integrating factor is $e^{t/400}$: $\\frac{d}{dt}\\bigl[e^{t/400}x_2\\bigr] = 2.5\\,e^{-t/400}$, so $e^{t/400}x_2 = -1000\\,e^{-t/400} + C$, and $x_2(0) = 0$ gives $C = 1000$. Hence $x_2 = 1000\\bigl(e^{-t/400} - e^{-t/200}\\bigr)$ and $c_2(t) = \\frac{x_2}{200000} = 0.005\\bigl(e^{-t/400} - e^{-t/200}\\bigr)$ kg/L. b) $c_1 < 0.001$ when $e^{-t/200} < 0.2$, that is, $t > 200\\ln 5 \\approx 321.9$ hours (about 13.4 days). c) $c_2$ is maximal where $\\frac{dc_2}{dt} = 0.005\\bigl(-\\frac{1}{400}e^{-t/400} + \\frac{1}{200}e^{-t/200}\\bigr) = 0$, that is, $e^{-t/400} = \\frac{1}{2}$, so $t = 400\\ln 2 \\approx 277.3$ hours (about 11.6 days). The maximum is $c_2 = 0.005\\bigl(\\frac{1}{2} - \\frac{1}{4}\\bigr) = 0.00125$ kg/L."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "1.4.10",
+   "source_number": "1.4.10",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating-factor-def",
+   "prompt": "<p><span data-concept=\"newtons-law-of-cooling\">Newton’s law of cooling</span> states that $\\kdxdt = -k(\\kx-A)$ where $\\kx$ is the temperature, $t$ is time, $A$ is the ambient temperature, and $k &gt; 0$ is a constant. Suppose that $A = A_0 \\cos (\\omega t)$ for some constants $A_0$ and $\\omega$. That is, the ambient temperature oscillates (for example night and day temperatures).</p><ol type=\"a\"><li>Find the general solution.</li><li>In the long term, will the initial conditions make much of a difference? Why or why not?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kx = \\frac{kA_0}{k^2 + \\omega^2}\\bigl(k\\cos(\\omega t) + \\omega\\sin(\\omega t)\\bigr) + Ce^{-kt}$. Write the equation in the form (1.3): $\\kdxdt + k\\kx = kA_0\\cos(\\omega t)$, so the integrating factor is $e^{kt}$ and $\\frac{d}{dt}\\bigl[e^{kt}\\kx\\bigr] = kA_0\\,e^{kt}\\cos(\\omega t)$. Integrating by parts twice (or checking by differentiation), $\\int e^{kt}\\cos(\\omega t)\\,dt = \\frac{e^{kt}\\bigl(k\\cos(\\omega t) + \\omega\\sin(\\omega t)\\bigr)}{k^2 + \\omega^2} + C$, so $e^{kt}\\kx = \\frac{kA_0\\,e^{kt}\\bigl(k\\cos(\\omega t) + \\omega\\sin(\\omega t)\\bigr)}{k^2 + \\omega^2} + C$, and dividing by $e^{kt}$ gives the general solution above. b) No. The initial condition only fixes $C$, and the term $Ce^{-kt}$ dies away as $t$ grows because $k$ is positive. Whatever the starting temperature, in the long term every solution settles onto the same oscillation $\\frac{kA_0}{k^2 + \\omega^2}\\bigl(k\\cos(\\omega t) + \\omega\\sin(\\omega t)\\bigr)$, which follows the ambient temperature with the same frequency $\\omega$ but a smaller amplitude $\\frac{kA_0}{\\sqrt{k^2 + \\omega^2}}$ and a lag."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "1.4.11",
+   "source_number": "1.4.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-4-2",
+   "prompt": "<p>Initially 5 grams of salt are dissolved in 20 liters of water. Brine with a salt concentration of 2 grams per liter is added at a rate of 3 liters a minute. The tank is mixed well and is drained at 3 liters a minute. How long does the process have to continue until there are 20 grams of salt in the tank?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 3.73,
+    "unit": "minutes",
+    "solution": "About 3.73 minutes. Let $\\kx$ be the grams of salt in the tank at time $t$ minutes. The volume stays at 20 liters, since 3 liters come in and 3 go out each minute. Rate in $\\times$ concentration in is $3 \\times 2 = 6$ grams per minute, and rate out $\\times$ concentration out is $3 \\cdot \\frac{\\kx}{20}$, so $\\kdxdt = 6 - \\frac{3}{20}\\kx$, or $\\kdxdt + \\frac{3}{20}\\kx = 6$. The integrating factor is $e^{3t/20}$: $\\frac{d}{dt}\\bigl[e^{3t/20}\\kx\\bigr] = 6e^{3t/20}$, so $e^{3t/20}\\kx = 40e^{3t/20} + C$ and $\\kx = 40 + Ce^{-3t/20}$. From $\\kx(0) = 5$, $C = -35$, so $\\kx = 40 - 35e^{-3t/20}$. Then $\\kx = 20$ when $35e^{-3t/20} = 20$, that is, $e^{-3t/20} = \\frac{4}{7}$ and $t = \\frac{20}{3}\\ln\\frac{7}{4} \\approx 3.73$ minutes."
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "1.4.12",
+   "source_number": "1.4.12",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-4-2",
+   "prompt": "<p>Initially a tank contains 10 liters of pure water. Brine of unknown (but constant) concentration of salt is flowing in at 1 liter per minute. The water is mixed well and drained at 1 liter per minute. In 20 minutes there are 15 grams of salt in the tank. What is the concentration of salt in the incoming brine?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 1.735,
+    "unit": "g/L",
+    "solution": "About 1.735 grams per liter. Let $c$ be the unknown concentration in grams per liter and $\\kx$ the grams of salt in the tank at time $t$ minutes. The volume stays at 10 liters. Rate in $\\times$ concentration in is $1 \\cdot c$, and rate out $\\times$ concentration out is $1 \\cdot \\frac{\\kx}{10}$, so $\\kdxdt + \\frac{1}{10}\\kx = c$ with $\\kx(0) = 0$. The integrating factor is $e^{t/10}$: $\\frac{d}{dt}\\bigl[e^{t/10}\\kx\\bigr] = ce^{t/10}$, so $e^{t/10}\\kx = 10c\\,e^{t/10} + C$ and $\\kx = 10c + Ce^{-t/10}$; $\\kx(0) = 0$ gives $C = -10c$, so $\\kx = 10c\\bigl(1 - e^{-t/10}\\bigr)$. Then $\\kx(20) = 10c\\bigl(1 - e^{-2}\\bigr) = 15$ gives $c = \\frac{1.5}{1 - e^{-2}} \\approx 1.735$ grams per liter."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "1.4.101",
+   "source_number": "1.4.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating-factor-def",
+   "prompt": "<p>Solve $\\kyprime+3 x^2 \\ky = x^2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = C e^{-x^3} + {1}/{3}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "1.4.102",
+   "source_number": "1.4.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-4-1",
+   "prompt": "<p>Solve $\\kyprime+ 2\\sin(2x)\\, \\ky = 2\\sin(2x)$, $\\ky({\\pi}/{2}) = 3$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = 2 e^{\\cos(2x)+1} + 1$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "1.4.103",
+   "source_number": "1.4.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-1-4-2",
+   "prompt": "<p>Suppose a water tank is being pumped out at 3 L/min. The water tank starts at 10 L of clean water. Water with a toxic substance is flowing into the tank at 2 L/min, with concentration $20t$ g/L at time $t$. When the tank is half empty, how many grams of toxic substance are in the tank (assuming perfect mixing)?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 250,
+    "unit": "grams",
+    "solution": "$250$ grams"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "1.4.104",
+   "source_number": "1.4.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating-factor-def",
+   "prompt": "<p>There are bacteria on a plate and a toxic substance is being added that slows down the rate of growth of the bacteria. That is, suppose that $\\kdPdt = (2-0.1\\,t)\\kP$. If $\\kP(0) = 1000$, find the population at $t=5$.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 6310000,
+    "tol": 0.01,
+    "solution": "$\\kP(5) = 1000 e^{2 \\times 5 - 0.05 \\times {5}^2} = 1000 e^{8.75} \\approx 6.31 \\times {10}^6$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "1.4.105",
+   "source_number": "1.4.105",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mixing-law",
+   "prompt": "<p>A cylindrical water tank has water flowing in at $I$ cubic meters per second. Let $A$ be the area of the cross section of the tank in square meters. Suppose water is flowing out from the bottom of the tank at a rate proportional to the height of the water level. Set up the differential equation for $h$, the height of the water, introducing and naming constants that you need. You should also give the units for your constants.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$Ah' = I - kh$, where $k$ is a constant with units $\\mathrm{m^2}/\\mathrm{s}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "integrating-factor"
+  },
+  {
+   "exercise": "e1",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e2",
+   "concept": "linear-ivp-solution"
+  },
+  {
+   "exercise": "e3",
+   "concept": "linear-ivp-solution"
+  },
+  {
+   "exercise": "e3",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e4",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e4",
+   "concept": "integrating-factor"
+  },
+  {
+   "exercise": "e5",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e5",
+   "concept": "integrating-factor"
+  },
+  {
+   "exercise": "e6",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e6",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e7",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e7",
+   "concept": "integrating-factor"
+  },
+  {
+   "exercise": "e8",
+   "concept": "first-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e8",
+   "concept": "linear-ivp-solution"
+  },
+  {
+   "exercise": "e9",
+   "concept": "mixing-problem"
+  },
+  {
+   "exercise": "e9",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e10",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e10",
+   "concept": "newtons-law-of-cooling"
+  },
+  {
+   "exercise": "e11",
+   "concept": "mixing-problem"
+  },
+  {
+   "exercise": "e11",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e12",
+   "concept": "mixing-problem"
+  },
+  {
+   "exercise": "e12",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e101",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e101",
+   "concept": "integrating-factor"
+  },
+  {
+   "exercise": "e102",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e102",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e103",
+   "concept": "mixing-problem"
+  },
+  {
+   "exercise": "e103",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e104",
+   "concept": "first-order-linear-differential-equation"
+  },
+  {
+   "exercise": "e104",
+   "concept": "integrating-factor-method"
+  },
+  {
+   "exercise": "e105",
+   "concept": "mixing-problem"
+  },
+  {
+   "exercise": "e105",
+   "concept": "mathematical-model"
+  }
+ ],
+ "footnotes": []
+}

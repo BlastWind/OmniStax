@@ -1,0 +1,337 @@
+{
+ "id": "1.5",
+ "module": "substitution:section",
+ "chapter": "1",
+ "title": "Substitution",
+ "short": "Substitution",
+ "lead": "An equation that is neither <span data-concept=\"separable-differential-equation\">separable</span> nor <span data-concept=\"first-order-linear-differential-equation\">linear</span> may become one after a change of variables. This section shows how to guess a <span data-concept=\"substitution-method\">substitution</span>, which ones to try first, and two families of equations, <span data-concept=\"bernoulli-equation\">Bernoulli equations</span> and <span data-concept=\"homogeneous-first-order-equation\">homogeneous equations</span>, that each come with a substitution of their own.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count, that the section can safely be skipped, and the [EP] section number) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Hint: Answers need not always be in closed form.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 1.5.101–1.5.104 carry the book’s own answers, each confirmed by SymPy. Exercises 1.5.1–1.5.6, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first; 1.5.1 and 1.5.3 keep a definite integral, as the book’s hint allows.",
+ "figures": [
+  {
+   "id": "sim-substitution-family",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {"span": "substitution-try", "concept": "substitution-method", "verb": "introduces"},
+  {"span": "bernoulli-def", "concept": "bernoulli-equation", "verb": "introduces"},
+  {"span": "bernoulli-sub", "concept": "bernoulli-substitution", "verb": "introduces"},
+  {"span": "homogeneous-def", "concept": "homogeneous-first-order-equation", "verb": "introduces"},
+  {"span": "homogeneous-sub", "concept": "homogeneous-substitution", "verb": "introduces"},
+  {"span": "substitution-try", "concept": "separable-differential-equation", "verb": "uses"},
+  {"span": "substitution-try", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "substitution-separate", "concept": "separation-of-variables", "verb": "uses"},
+  {"span": "substitution-separate", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "unsubstitute", "concept": "substitution-method", "verb": "uses"},
+  {"span": "unsubstitute", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "lost-solution", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-substitution-family", "concept": "substitution-method", "verb": "uses"},
+  {"span": "sim-substitution-family", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-substitution-family", "concept": "singular-solution", "verb": "uses"},
+  {"span": "sim-substitution-family", "concept": "direction-field", "verb": "uses"},
+  {"span": "substitution-guess", "concept": "substitution-method", "verb": "reinforces"},
+  {"span": "substitution-guess", "concept": "differential-equation", "verb": "uses"},
+  {"span": "substitution-table", "concept": "substitution-method", "verb": "reinforces"},
+  {"span": "substitution-rule-of-thumb", "concept": "substitution-method", "verb": "reinforces"},
+  {"span": "bernoulli-def", "concept": "substitution-method", "verb": "uses"},
+  {"span": "bernoulli-sub", "concept": "bernoulli-equation", "verb": "uses"},
+  {"span": "bernoulli-sub", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "drv-bernoulli", "concept": "bernoulli-equation", "verb": "uses"},
+  {"span": "drv-bernoulli", "concept": "bernoulli-substitution", "verb": "uses"},
+  {"span": "drv-bernoulli", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "bernoulli-equation", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "bernoulli-substitution", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "substitution-method", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "integrating-factor-method", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "integrating-factor", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "linear-ivp-solution", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "closed-form", "verb": "uses"},
+  {"span": "ex-1-5-1", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "homogeneous-def", "concept": "substitution-method", "verb": "uses"},
+  {"span": "homogeneous-def", "concept": "differential-equation", "verb": "uses"},
+  {"span": "drv-homogeneous", "concept": "homogeneous-first-order-equation", "verb": "uses"},
+  {"span": "drv-homogeneous", "concept": "homogeneous-substitution", "verb": "uses"},
+  {"span": "drv-homogeneous", "concept": "separation-of-variables", "verb": "uses"},
+  {"span": "drv-homogeneous", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "homogeneous-domain", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "homogeneous-domain", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-1-5-2", "concept": "homogeneous-first-order-equation", "verb": "uses"},
+  {"span": "ex-1-5-2", "concept": "homogeneous-substitution", "verb": "uses"},
+  {"span": "ex-1-5-2", "concept": "substitution-method", "verb": "uses"},
+  {"span": "ex-1-5-2", "concept": "separable-differential-equation", "verb": "uses"},
+  {"span": "ex-1-5-2", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-1-5-2", "concept": "solution-to-a-differential-equation", "verb": "uses"}
+ ],
+ "derivations": [
+  {
+   "id": "bernoulli",
+   "what": "the linear equation a Bernoulli equation becomes",
+   "source": "Differential Equations for Engineers, 1.5 Substitution",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {"tex": "\\mk{v}{\\kv} = \\mk{y}{\\ky^{1-n}}", "src": "1.5"},
+     "steps": [
+      {"tex": "\\mk{v}{\\kvprime} = \\mk{y}{(1-n)\\,\\ky^{-n}\\,\\kyprime}", "uses": [], "cap": "The chain rule: $\\ky$ is a function of $x$, so the derivative of $\\ky^{1-n}$ in $x$ is $(1-n)\\ky^{-n}$ times $\\kyprime$."}
+     ],
+     "src": "1.5"
+    },
+    {
+     "assumes": [
+      {"tex": "\\kv = \\ky^{1-n}", "src": "1.5"},
+      {"step": 0},
+      {"text": "$n$ is neither $0$ nor $1$, so $1-n \\neq 0$.", "src": "1.5"}
+     ],
+     "then": {"tex": "\\mk{d}{\\kyprime} + \\mk{p}{\\kp(x)\\ky} = \\mk{q}{\\kq(x)\\ky^n}", "src": "1.5"},
+     "steps": [
+      {"tex": "\\mk{d}{\\ky^{-n}\\kyprime} + \\mk{p}{\\kp(x)\\ky^{1-n}} = \\mk{q}{\\kq(x)}", "uses": []},
+      {"tex": "\\mk{d}{\\frac{\\kvprime}{1-n}} + \\mk{p}{\\kp(x)\\kv} = \\mk{q}{\\kq(x)}", "uses": [0, 1, 2]},
+      {"tex": "\\mk{d}{\\kvprime} + \\mk{p}{(1-n)\\,\\kp(x)\\,\\kv} = \\mk{q}{(1-n)\\,\\kq(x)}", "uses": []}
+     ],
+     "src": "1.5"
+    }
+   ]
+  },
+  {
+   "id": "homogeneous",
+   "what": "the implicit solution of a homogeneous equation",
+   "source": "Differential Equations for Engineers, 1.5 Substitution",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {"tex": "\\mk{v}{\\kv} = \\mk{y}{\\frac{\\ky}{x}}", "src": "1.5"},
+     "steps": [
+      {"tex": "\\mk{y}{\\ky} = \\mk{v}{x\\kv}", "uses": []},
+      {"tex": "\\mk{y}{\\kyprime} = \\mk{v}{\\kv + x\\kvprime}", "uses": [], "cap": "The product rule: $\\kv$ is a function of $x$, so the derivative of $x\\kv$ is $1 \\cdot \\kv + x\\kvprime$."}
+     ],
+     "src": "1.5"
+    },
+    {
+     "assumes": [
+      {"tex": "\\kv = \\frac{\\ky}{x}", "src": "1.5"},
+      {"step": 0}
+     ],
+     "then": {"tex": "\\mk{d}{\\kyprime} = \\mk{F}{\\kF\\left(\\frac{\\ky}{x}\\right)}", "src": "1.5"},
+     "steps": [
+      {"tex": "\\mk{v}{\\kv} + \\mk{d}{x\\kvprime} = \\mk{F}{\\kF(\\kv)}", "uses": [0, 1], "map": {"d": ["v", "d"]}},
+      {"tex": "\\mk{d}{x\\kvprime} = \\mk{F}{\\kF(\\kv)} - \\mk{v}{\\kv}", "uses": []},
+      {"tex": "\\frac{\\mk{d}{\\kvprime}}{\\mk{F}{\\kF(\\kv)} - \\mk{v}{\\kv}} = \\mk{x}{\\frac{1}{x}}", "uses": []},
+      {"tex": "\\int \\frac{1}{\\mk{F}{\\kF(\\kv)} - \\mk{v}{\\kv}} \\,\\mk{d}{d\\kv} = \\mk{x}{\\ln \\, \\lvert x \\rvert} + \\mk{c}{C}", "uses": [], "cap": "Integrate both sides in $x$; on the left $\\kvprime \\,dx = d\\kv$, which is separating variables as in 1.3, and on the right $\\int \\frac{1}{x}\\,dx = \\ln \\, \\lvert x \\rvert + C$."}
+     ],
+     "src": "1.5"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "1.5.1",
+   "source_number": "1.5.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-1-5-1",
+   "prompt": "<p>Solve $\\kyprime+ \\ky(x^2-1)+x\\ky^6 = 0$, with $\\ky(1)=1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Rearranged, $\\kyprime + (x^2-1)\\ky = -x\\ky^6$ is a Bernoulli equation with $\\kp(x) = x^2-1$, $\\kq(x) = -x$ and $n = 6$. Substitute $\\kv = \\ky^{1-6} = \\ky^{-5}$, so $\\kvprime = -5\\ky^{-6}\\kyprime$. Dividing the equation by $\\ky^6$ gives $\\ky^{-6}\\kyprime + (x^2-1)\\ky^{-5} = -x$, that is $-\\tfrac{1}{5}\\kvprime + (x^2-1)\\kv = -x$, or $\\kvprime - 5(x^2-1)\\kv = 5x$, which is linear, with $\\kv(1) = 1^{-5} = 1$. Here $\\kp(s) = -5(s^2-1)$ in formula (1.4), and $\\int_1^x \\kp(s)\\,ds = -\\tfrac{5}{3}x^3 + 5x - \\tfrac{10}{3}$, so $\\kv(x) = e^{\\frac{5}{3}x^3 - 5x + \\frac{10}{3}} \\left( 5\\int_1^x t\\,e^{-\\frac{5}{3}t^3 + 5t - \\frac{10}{3}}\\,dt + 1 \\right)$. The integral has no closed form, so it stays. Unsubstituting, $\\ky = \\kv^{-1/5}$: $$\\ky = e^{-\\frac{x^3}{3} + x - \\frac{2}{3}} \\left( 5\\int_1^x t\\,e^{-\\frac{5}{3}t^3 + 5t - \\frac{10}{3}}\\,dt + 1 \\right)^{-1/5} .$$ At $x = 1$ the integral is $0$ and the exponent is $0$, so $\\ky(1) = 1$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "1.5.2",
+   "source_number": "1.5.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "substitution-table",
+   "prompt": "<p>Solve $2\\ky\\kyprime + 1 = \\ky^2 + x$, with $\\ky(0)=1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The $2\\ky\\kyprime$ suggests $\\kv = \\ky^2$, so that $\\kvprime = 2\\ky\\kyprime$. The equation becomes $\\kvprime + 1 = \\kv + x$, that is $\\kvprime - \\kv = x - 1$, a linear equation. Its integrating factor is $e^{-x}$: $(e^{-x}\\kv)' = (x-1)e^{-x}$, and $\\int (x-1)e^{-x}\\,dx = -xe^{-x} + C$, so $\\kv = -x + Ce^{x}$. (Check: $\\kvprime - \\kv = (Ce^x - 1) - (Ce^x - x) = x - 1$.) The condition $\\ky(0) = 1$ gives $\\kv(0) = 1$, so $C = 1$ and $\\kv = e^x - x$. Unsubstituting, $\\ky^2 = e^x - x$, and since $\\ky(0) = 1 > 0$, $$\\ky = \\sqrt{e^x - x} .$$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "1.5.3",
+   "source_number": "1.5.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "bernoulli-sub",
+   "prompt": "<p>Solve $\\kyprime + x\\ky = \\ky^4$, with $\\ky(0)=1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "This is a Bernoulli equation with $\\kp(x) = x$, $\\kq(x) = 1$ and $n = 4$. Substitute $\\kv = \\ky^{-3}$, so $\\kvprime = -3\\ky^{-4}\\kyprime$. Dividing the equation by $\\ky^4$ gives $\\ky^{-4}\\kyprime + x\\ky^{-3} = 1$, that is $-\\tfrac{1}{3}\\kvprime + x\\kv = 1$, or $\\kvprime - 3x\\kv = -3$, which is linear, with $\\kv(0) = 1$. In formula (1.4), $\\kp(s) = -3s$ and $\\int_0^x \\kp(s)\\,ds = -\\tfrac{3}{2}x^2$, so $\\kv(x) = e^{\\frac{3}{2}x^2}\\left( \\int_0^x e^{-\\frac{3}{2}t^2}(-3)\\,dt + 1 \\right) = e^{\\frac{3}{2}x^2}\\left( 1 - 3\\int_0^x e^{-\\frac{3}{2}t^2}\\,dt \\right)$. The integral has no closed form (it is an error function), so it stays. Unsubstituting, $\\ky = \\kv^{-1/3}$: $$\\ky = e^{-\\frac{x^2}{2}} \\left( 1 - 3\\int_0^x e^{-\\frac{3}{2}t^2}\\,dt \\right)^{-1/3} ,$$ valid as long as the bracket stays positive. At $x = 0$ the integral is $0$, so $\\ky(0) = 1$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "1.5.4",
+   "source_number": "1.5.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "substitution-rule-of-thumb",
+   "prompt": "<p>Solve $\\ky\\kyprime + x = \\sqrt{x^2 + \\ky^2}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The most complicated part is $\\sqrt{x^2 + \\ky^2}$, and the derivative of what is under the root, $2x + 2\\ky\\kyprime$, is twice the left-hand side. So substitute $\\kv = x^2 + \\ky^2$: then $\\kvprime = 2x + 2\\ky\\kyprime$, so $\\ky\\kyprime + x = \\tfrac{1}{2}\\kvprime$, and the equation reads $\\tfrac{1}{2}\\kvprime = \\sqrt{\\kv}$, or $\\kvprime = 2\\sqrt{\\kv}$. This is separable: $\\frac{d\\kv}{2\\sqrt{\\kv}} = dx$, so $\\sqrt{\\kv} = x + C$, that is $x^2 + \\ky^2 = (x+C)^2$ where $x + C \\geq 0$. Unsubstituting and cancelling $x^2$, $\\ky^2 = 2Cx + C^2$, so $$\\ky = \\pm\\sqrt{2Cx + C^2}$$ for $x > -C$. (The constant $\\kv = 0$ is only the origin, not a solution.) Check: with $\\ky^2 = 2Cx + C^2$, $2\\ky\\kyprime = 2C$, so $\\ky\\kyprime + x = x + C$, while $\\sqrt{x^2 + \\ky^2} = \\sqrt{(x+C)^2} = x + C$ for $x + C > 0$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "1.5.5",
+   "source_number": "1.5.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "substitution-try",
+   "prompt": "<p>Solve $\\kyprime = {(x+\\ky-1)}^2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "As in the text, substitute the complicated part: $\\kv = x + \\ky - 1$, so $\\kvprime = 1 + \\kyprime$ and $\\kyprime = \\kvprime - 1$. The equation becomes $\\kvprime - 1 = \\kv^2$, that is $\\kvprime = 1 + \\kv^2$. Separate variables: $\\frac{d\\kv}{1+\\kv^2} = dx$, so $\\arctan \\kv = x + C$ and $\\kv = \\tan(x + C)$. (Here $1 + \\kv^2$ is never zero, so no solutions are lost.) Unsubstituting, $\\ky = \\kv - x + 1$: $$\\ky = \\tan(x + C) - x + 1 .$$ Check: $\\kyprime = \\sec^2(x+C) - 1 = \\tan^2(x+C) = (x + \\ky - 1)^2$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "1.5.6",
+   "source_number": "1.5.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-1-5-2",
+   "prompt": "<p>Solve $\\kyprime = \\frac{x^2-\\ky^2}{x \\ky}$, with $\\ky(1) = 2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The right-hand side is $\\frac{x}{\\ky} - \\frac{\\ky}{x} = \\kF\\left(\\frac{\\ky}{x}\\right)$ with $\\kF(\\kv) = \\frac{1}{\\kv} - \\kv$, so the equation is homogeneous. Substitute $\\kv = \\ky/x$, $\\kyprime = \\kv + x\\kvprime$: $\\kv + x\\kvprime = \\frac{1}{\\kv} - \\kv$, so $x\\kvprime = \\frac{1}{\\kv} - 2\\kv = \\frac{1 - 2\\kv^2}{\\kv}$. As the initial condition is at $x = 1 > 0$, assume $x > 0$ and separate: $\\frac{\\kv\\,d\\kv}{1 - 2\\kv^2} = \\frac{dx}{x}$, so $-\\tfrac{1}{4}\\ln\\lvert 1 - 2\\kv^2 \\rvert = \\ln x + C$, that is $1 - 2\\kv^2 = Dx^{-4}$ and $\\kv^2 = \\tfrac{1}{2}\\left(1 - Dx^{-4}\\right)$. Unsubstituting, $\\ky^2 = x^2\\kv^2 = \\frac{x^2}{2} - \\frac{D}{2x^2}$. The condition $\\ky(1) = 2$ gives $4 = \\tfrac{1}{2} - \\tfrac{D}{2}$, so $D = -7$ and $\\ky^2 = \\frac{x^2}{2} + \\frac{7}{2x^2} = \\frac{x^4 + 7}{2x^2}$. Since $\\ky(1) = 2 > 0$, $$\\ky = \\frac{\\sqrt{x^4 + 7}}{\\sqrt{2}\\,x} \\qquad (x > 0).$$"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "1.5.101",
+   "source_number": "1.5.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "bernoulli-sub",
+   "prompt": "<p>Solve $x\\kyprime+\\ky+\\ky^2 = 0$, $\\ky(1)=2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = \\frac{2}{3x-2}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "1.5.102",
+   "source_number": "1.5.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-1-5-2",
+   "prompt": "<p>Solve $x\\kyprime+\\ky +x = 0$, $\\ky(1)=1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = \\frac{3-x^2}{2 x}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "1.5.103",
+   "source_number": "1.5.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "substitution-table",
+   "prompt": "<p>Solve $\\ky^2\\kyprime = \\ky^3-3x$, $\\ky(0)=2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = {\\bigl(7 e^{3x} + 3x + 1 \\bigr)}^{1/3}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "1.5.104",
+   "source_number": "1.5.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "substitution-rule-of-thumb",
+   "prompt": "<p>Solve $2\\ky\\kyprime = e^{\\ky^2-x^2} + 2x$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = \\pm\\sqrt{x^2-\\ln(C-x)}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "bernoulli-equation"},
+  {"exercise": "e1", "concept": "bernoulli-substitution"},
+  {"exercise": "e2", "concept": "substitution-method"},
+  {"exercise": "e3", "concept": "bernoulli-equation"},
+  {"exercise": "e3", "concept": "bernoulli-substitution"},
+  {"exercise": "e4", "concept": "substitution-method"},
+  {"exercise": "e5", "concept": "substitution-method"},
+  {"exercise": "e5", "concept": "separation-of-variables"},
+  {"exercise": "e6", "concept": "homogeneous-first-order-equation"},
+  {"exercise": "e6", "concept": "homogeneous-substitution"},
+  {"exercise": "e101", "concept": "bernoulli-equation"},
+  {"exercise": "e101", "concept": "bernoulli-substitution"},
+  {"exercise": "e102", "concept": "homogeneous-first-order-equation"},
+  {"exercise": "e102", "concept": "homogeneous-substitution"},
+  {"exercise": "e103", "concept": "substitution-method"},
+  {"exercise": "e104", "concept": "substitution-method"}
+ ],
+ "footnotes": [
+  {
+   "id": "fn-bernoulli",
+   "kind": "book",
+   "number": "1",
+   "html": "There are several things called Bernoulli equations; this is just one of them. The Bernoullis were a prominent Swiss family of mathematicians. These particular equations are named for <a href=\"https://en.wikipedia.org/wiki/Jacob_Bernoulli\">Jacob Bernoulli</a> (1654–1705)."
+  }
+ ]
+}

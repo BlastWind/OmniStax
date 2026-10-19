@@ -49,9 +49,9 @@ function poly(ctx, ax, pts, color, w) {
       hits.push({ x: ax.X(lx), y: ax.Y(sol(c)(lx)), r: 14, name: `the solution with y(0) = ${fmt(c, 1)}` });
       hits.push({ x: ax.X(-lx), y: ax.Y(sol(c)(-lx)), r: 14, name: `the solution with y(0) = ${fmt(c, 1)}` });
     });
-    mark(ctx, '$\\ky(0) = 0.2$', ax.X(1.2), ax.Y(sol(0.2)(1.2)) - 12, fc, { align: 'left', base: 'bottom' });
+    mark(ctx, '$\\ky(0) = 0.2$', ax.X(0.35), ax.Y(sol(0.2)(0.35)) - 16, fc, { align: 'center', base: 'bottom' });
     mark(ctx, '$\\ky(0) = 0$', ax.X(-2.9), ax.Y(0) - 10, fc, { align: 'left', base: 'bottom' });
-    mark(ctx, '$\\ky(0) = -0.2$', ax.X(1.2), ax.Y(sol(-0.2)(1.2)) + 12, fc, { align: 'left', base: 'top' });
+    mark(ctx, '$\\ky(0) = -0.2$', ax.X(0.35), ax.Y(sol(-0.2)(0.35)) + 16, fc, { align: 'center', base: 'top' });
     /* The solution through the point, split there and revealed outward from it as the clock runs. */
     const pts = SF.trace(f, [a, b], ax.xr, ax.yr);
     let i = 0; pts.forEach((p, j) => { if (Math.abs(p[0] - a) < Math.abs(pts[i][0] - a)) i = j; });
@@ -63,7 +63,11 @@ function poly(ctx, ax, pts, color, w) {
     if (right.length > 3) { const q = right[Math.floor(right.length / 2)]; hits.push({ x: ax.X(q[0]), y: ax.Y(q[1]), r: 14, name: `the solution through (${fmt(a, 1)}, ${fmt(b, 1)})` }); }
     /* The slope at the point, drawn long and bold in the derivative's colour. */
     const sg = SF.segment(a, b, m, 150, (ax.box.r - ax.box.l) / 6, (ax.box.b - ax.box.t) / 6);
-    if (sg) { line(ctx, ax.X(sg[0][0]), ax.Y(sg[0][1]), ax.X(sg[1][0]), ax.Y(sg[1][1]), dc, 5); hits.push({ x: ax.X(sg[1][0]), y: ax.Y(sg[1][1]), r: 12, name: `the slope y′ = xy = ${fmt(m, 2)} at the point` }); }
+    if (sg) {
+      ctx.save(); ctx.beginPath(); ctx.rect(ax.box.l, ax.box.t, ax.box.r - ax.box.l, ax.box.b - ax.box.t); ctx.clip();
+      line(ctx, ax.X(sg[0][0]), ax.Y(sg[0][1]), ax.X(sg[1][0]), ax.Y(sg[1][1]), dc, 5); ctx.restore();
+      hits.push({ x: ax.X((sg[0][0] + 3 * sg[1][0]) / 4), y: ax.Y((sg[0][1] + 3 * sg[1][1]) / 4), r: 12, name: `the slope y′ = xy = ${fmt(m, 2)} at the point` });
+    }
     const at = P.draw(ctx, ax, pc);
     if (at) hits.push({ x: at.x, y: at.y, r: 18, name: `(x₀, y₀) = (${fmt(a, 1)}, ${fmt(b, 1)}), the initial condition` });
     const pa = a < 0 ? `(${n(a, 1)})` : n(a, 1), pb = b < 0 ? `(${n(b, 1)})` : n(b, 1);
@@ -171,10 +175,9 @@ function poly(ctx, ax, pts, color, w) {
     headline(ctx, book
       ? 'Joining and leaving the $x$-axis at the origin: the solution $\\ky = x^2$ for $x \\geq 0$, $-x^2$ for $x < 0$.'
       : `Joining the $x$-axis at $x = ${n(B)}$ and leaving it at $x = ${n(A)}$: one more solution through $(0, 0)$.`);
-    const rows = book
-      ? [`x^2 & x \\geq 0`, `-x^2 & x < 0`]
-      : [`-${sq(B)} & x < ${n(B)}`, `0 & ${n(B)} \\le x \\le ${n(A)}`, `${sq(A)} & x > ${n(A)}`];
-    ro.set(`\\ky = \\begin{cases} ${rows.join(' \\\\ ')} \\end{cases}`, undefined, { form: book ? 'book' : 'family' });
+    ro.set(book
+      ? '\\ky = x^2\\ (x \\geq 0),\\ \\ -x^2\\ (x < 0)'
+      : `\\ky = -${sq(B)}\\ (x < ${n(B)}),\\ \\ 0\\ (${n(B)} \\le x \\le ${n(A)}),\\ \\ ${sq(A)}\\ (x > ${n(A)})`, undefined, { form: book ? 'book' : 'family' });
   }
   still(d, draw);
 })();

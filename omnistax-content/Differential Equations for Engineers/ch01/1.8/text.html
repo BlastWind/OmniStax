@@ -1,0 +1,165 @@
+<section id="intro">
+<h2>Potential functions and exact equations</h2>
+<p id="potential">A type of equation that comes up quite often in physics and engineering is an <em><span data-concept="exact-equation">exact equation</span></em>. Suppose $\kF(x,y)$ is a function of two variables, which we call the <em><span data-concept="potential-function">potential function</span></em>. The naming should suggest potential energy, or electric potential. <span data-concept="exact-equation">Exact equations</span> and <span data-concept="potential-function">potential functions</span> appear when there is a conservation law at play, such as conservation of energy. Let us make up a simple example. Consider</p>
+$$ \kF(x,y) = x^2+y^2 . $$
+<figure class="sim" id="sim-exact" data-figure="1.18" data-original="/media/ch01/circlesfig.svg" data-original-caption="Solutions to F(x, y) = x² + y² = C for various C." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 1.18</span><span>Every curve of constant potential $\kF(x,y) = C$ is a solution of $\kM + \kN\,\kdydx = 0$, and the vector field $\kvecv = (\kM, \kN) = (\kFx, \kFy)$ stands square to those curves. Drag the point to pick out the curve through it, and switch the potential to the ones of Examples 1.8.3 and 1.8.5.</span></div>
+</figure>
+<p id="equipotential">We are interested in the <span data-concept="equipotential-curve">lines of constant potential</span><sup class="fn" data-note="fn-equipotential"></sup>: curves given by $\kF(x,y) = C$, for some constant $C$. In our example, the curves $x^2+y^2=C$ are circles. See Figure 1.18.</p>
+<p id="total-derivative">We take the <em><span data-concept="total-derivative">total derivative</span></em> of $\kF$:</p>
+<div class="equation" id="eq-total-derivative">$$ \kdF = \frac{\partial \kF}{\partial x} dx + \frac{\partial \kF}{\partial y} dy . $$</div>
+<p id="notation">For convenience, we will use the notation $\kFx = \frac{\partial \kF}{\partial x}$ and $\kFy = \frac{\partial \kF}{\partial y}$. In our example,</p>
+$$ \kdF = 2x \, dx + 2y \, dy . $$
+<p id="exact-form">If we apply the <span data-concept="total-derivative">total derivative</span> to the equation $\kF(x,y) = C$, we find the differential equation $\kdF = 0$. This differential equation has the form</p>
+<div class="equation" id="eq-exact">$$ \kM \, dx + \kN \, dy = 0, \qquad \text{or} \qquad \kM + \kN \, \kdydx = 0 . $$</div>
+<p id="exact-definition">An equation of this form is called <em><span data-concept="exact-equation">exact</span></em> if it was obtained as $\kdF = 0$ for some <span data-concept="potential-function">potential function</span> $\kF$. In our simple example, we obtain the equation</p>
+$$ 2x \, dx + 2y \, dy = 0, \qquad \text{or} \qquad 2x + 2y \, \kdydx = 0 . $$
+<p id="solve-for-y">Since we obtained this equation by differentiating $x^2+y^2=C$, the equation is <span data-concept="exact-equation">exact</span>. We often wish to solve for $y$ in terms of $x$. In our example,</p>
+$$ y = \pm \sqrt{C-x^2} . $$
+<p id="vector-field">In terms of <a href="/calculus/ch14/14.3/#14.3-partials-intro">multivariable calculus</a>, at each point $(x,y)$ in the plane, $\kvecv = (\kM,\kN)$ is a vector, that is, a direction and a magnitude. As $\kM$ and $\kN$ are functions of $(x,y)$, we have a <em><span data-concept="vector-field">vector field</span></em>. A <span data-concept="vector-field">vector field</span> $\kvecv$ that comes from an <span data-concept="exact-equation">exact equation</span> is a so-called <em><span data-concept="conservative-vector-field">conservative vector field</span></em>, that is, a <span data-concept="vector-field">vector field</span> that comes with a <span data-concept="potential-function">potential function</span> $\kF(x,y)$, such that</p>
+<div class="equation" id="eq-conservative-field">$$ \kvecv = \left( \frac{\partial \kF}{\partial x} ,\frac{\partial \kF}{\partial y} \right) . $$</div>
+<p id="path-integral">Let $\gamma$ be a path in the plane starting at $(x_1,y_1)$ and ending at $(x_2,y_2)$. If we think of $\kvecv$ as force, then the work required to move along $\gamma$ is the path integral</p>
+<div class="equation" id="eq-path-integral-potential">$$ \int_\gamma \kvecv(\vec{r}) \cdot d\vec{r} = \int_\gamma \kM \, dx + \kN \, dy = \kF(x_2,y_2) - \kF(x_1,y_1) . $$</div>
+<p id="work">In other words, <a href="/calculus/ch16/16.3/#16.3-fundamental">the work done depends only on the endpoints</a>—where we start and where we end. For example, suppose $\kF$ is gravitational potential (physicists use the convention that $-\kF$ is the potential, but the idea is the same). The derivative of $\kF$ given by $\kvecv$ is the gravitational force. What we are saying is that the work required to move a heavy box from the ground floor to the roof only depends on the change in potential energy. The work done is the same no matter what path we took; if we took the stairs or the elevator. Although if we took the elevator, the elevator did the work for us. Movement along the curves $\kF(x,y) = C$ requires no work done, such as the heavy box sliding along without accelerating or braking on a perfectly flat roof on a cart with incredibly well-oiled wheels.</p>
+<p id="exact-is-conservative">An <span data-concept="exact-equation">exact equation</span> is a <span data-concept="conservative-vector-field">conservative vector field</span>, and the <span data-concept="implicit-solution">implicit solution</span> of this equation is the <span data-concept="potential-function">potential function</span>.</p>
+</section>
+
+<section id="solving">
+<h2>Solving exact equations</h2>
+<p id="why-solve">Now you, the reader, should ask: Where did we solve a differential equation? Well, in applications we generally know $\kM$ and $\kN$, but we do not know $\kF$. That is, we may have just started with $2x + 2y \kdydx = 0$, or perhaps even</p>
+$$ x + y \kdydx = 0 . $$
+<p id="find-potential">It is up to us to find some <span data-concept="potential-function">potential</span> $\kF$ that works. Many different $\kF$ will work; adding a constant to $\kF$ does not change the equation. Once we have a <span data-concept="potential-function">potential function</span> $\kF$, the equation $\kF\bigl(x,y(x)\bigr) = C$ gives an <span data-concept="implicit-solution">implicit solution</span> of the ODE.</p>
+<div class="example" id="ex-1-8-1">
+<h3>Example 1.8.1</h3>
+<p>Let us find the <span data-concept="general-solution">general solution</span> to $2x + 2y \kdydx = 0$. Forget we know $\kF$.</p>
+<p>If we know that this is an <span data-concept="exact-equation">exact equation</span>, we start looking for a <span data-concept="potential-function">potential function</span> $\kF$. We have $\kM = 2x$ and $\kN=2y$. If $\kF$ exists, it must be such that $\kFx (x,y) = 2x$. Integrate in the $x$ variable to find</p>
+<div class="equation" id="eq-1-5">$$ \kF(x,y) = x^2 + A(y) , \tag{1.5}$$</div>
+<p>for some function $A(y)$. The function $A$ is the “constant of integration,” though it is only constant as far as $x$ is concerned, and may still depend on $y$. Now differentiate <a href="#eq-1-5">(1.5)</a> in $y$ and set it equal to $\kN$, which is what $\kFy$ is supposed to be:</p>
+$$ 2y = \kFy (x,y) = A'(y) . $$
+<p>Integrating, we find $A(y) = y^2$. We could add a constant of integration if we wanted to, but there is no need. We found $\kF(x,y) = x^2+y^2$. Next for a constant $C$, we solve</p>
+$$ \kF\bigl(x,y(x)\bigr) = C $$
+<p>for $y$ in terms of $x$. In this case, we obtain $y = \pm \sqrt{C-x^2}$ as we did before.</p>
+</div>
+<div class="exercises" data-place="ex-1-8-1"></div>
+<p id="procedure">The <span data-concept="solving-an-exact-equation">procedure</span>, once we know that the equation is <span data-concept="exact-equation">exact</span>, is:</p>
+<ol type="i">
+<li>Integrate $\kFx = \kM$ in $x$ resulting in $\kF(x,y) = \text{something} + A(y)$.</li>
+<li>Differentiate this $\kF$ in $y$ and set that equal to $\kN$. Then find $A(y)$ by integration.</li>
+</ol>
+<p id="procedure-reverse">The <span data-concept="solving-an-exact-equation">procedure</span> can also be done by first integrating in $y$ and then differentiating in $x$. Pretty easy, huh? Let’s try this again.</p>
+<div class="example" id="ex-1-8-2">
+<h3>Example 1.8.2</h3>
+<p>Consider now $2x+y + xy \kdydx = 0$.</p>
+<p>OK, so $\kM = 2x+y$ and $\kN=xy$. We try to proceed as before. Suppose $\kF$ exists. Then $\kFx (x,y) = 2x+y$. We integrate:</p>
+$$ \kF(x,y) = x^2 + xy + A(y) $$
+<p>for some function $A(y)$. Differentiate in $y$ and set equal to $\kN$:</p>
+$$ \kN = xy = \kFy (x,y) = x+A'(y) . $$
+<p>But there is no way to satisfy this requirement! The function $xy$ cannot be written as $x$ plus a function of $y$. The equation is not <span data-concept="exact-equation">exact</span>; no <span data-concept="potential-function">potential function</span> $\kF$ exists.</p>
+</div>
+<p id="exactness-test">Is there an easier way to <span data-concept="exactness-test">check for exactness</span>, other than failing in trying to find $\kF$? Yes there is. Suppose $\kM = \kFx$ and $\kN = \kFy$. As long as the <a href="/calculus/ch14/14.3/#14.3-second-partials">second derivatives are continuous</a>,</p>
+<figure class="dv" id="drv-exactness-test"></figure>
+<p id="exactness-fail">If $\kMy \neq \kNx$, the equation is not <span data-concept="exact-equation">exact</span>. For example, in Example 1.8.2, where $\kM = 2x + y$ and $\kN = xy$, the equation is not <span data-concept="exact-equation">exact</span>. Indeed, $\kMy = 1$ and $\kNx = y$ are not equal.</p>
+<p id="poincare-intro">What is interesting is that this idea works in reverse too. If $\kMy=\kNx$, then a <span data-concept="potential-function">potential</span> exists, at least near an <span data-concept="initial-value">initial point</span>. This result is called the <span data-concept="poincare-lemma">Poincaré Lemma</span><sup class="fn" data-note="fn-poincare"></sup>.</p>
+<div class="note" id="theorem-1-8-1">
+<div class="eyebrow">Theorem 1.8.1</div>
+<h3>Poincaré Lemma</h3>
+<p>If $\kM$ and $\kN$ are continuously differentiable functions of $(x,y)$, and $\frac{\partial \kM}{\partial y} = \frac{\partial \kN}{\partial x}$, then near any point there is a function $\kF(x,y)$ such that $\kM = \frac{\partial \kF}{\partial x}$ and $\kN = \frac{\partial \kF}{\partial y}$.</p>
+</div>
+<div class="example" id="ex-1-8-3">
+<h3>Example 1.8.3</h3>
+<p>Solve</p>
+$$ \kdydx = \frac{-2x-y}{x-1}, \qquad y(0) = 1. $$
+<p>Write the equation as</p>
+$$ (2x+y) + (x-1)\kdydx = 0 , $$
+<p>so $\kM = 2x+y$, $\kN = x-1$, and</p>
+$$ \kMy = 1 = \kNx . $$
+<p>The <span data-concept="poincare-lemma">Poincaré Lemma</span> applies, so let us look for $\kF$. Integrating $\kM$ in $x$, we find</p>
+$$ \kF(x,y) = x^2+xy + A(y) . $$
+<p>Differentiating in $y$ and setting to $\kN$, we find</p>
+$$ x-1 = x + A'(y) . $$
+<p>So $A'(y) = -1$, and $A(y) = -y$ will work. We obtain $\kF(x,y) = x^2+xy-y$, so the <span data-concept="implicit-solution">implicit solution</span> is $x^2+xy-y = C$. First we find $C$. As $y(0)=1$, we have $\kF(0,1) = C$. Therefore, $0^2+0\times 1 - 1 = C$, so $C=-1$. Now we solve $x^2+xy-y = -1$ for $y$ to get</p>
+$$ y = \frac{-x^2-1}{x-1} . $$
+</div>
+<div class="example" id="ex-1-8-4">
+<h3>Example 1.8.4</h3>
+<p>Solve</p>
+$$ \frac{-y}{x^2+y^2} dx + \frac{x}{x^2+y^2} dy = 0 , \qquad y(1) = 2. $$
+<p>We leave to the reader to check that $\kMy = \kNx$, so the <span data-concept="poincare-lemma">Poincaré Lemma</span> applies.</p>
+<p>This <span data-concept="vector-field">vector field</span> $(\kM,\kN)$ is not <span data-concept="conservative-vector-field">conservative</span> (the equation is not <span data-concept="exact-equation">exact</span>) if considered as a <span data-concept="vector-field">vector field</span> of the entire plane minus the origin. The problem is that if the curve $\gamma$ is a circle around the origin, say starting at $(1,0)$ and ending at $(1,0)$ going counterclockwise, then if $\kF$ existed, we would expect</p>
+$$ 0 = \kF(1,0) - \kF(1,0) = \int_\gamma \kFx \, dx + \kFy \, dy = \int_\gamma \frac{-y}{x^2+y^2} \, dx + \frac{x}{x^2+y^2} \, dy = 2\pi . $$
+<p>That is nonsense! We leave the computation of the path integral to the interested reader, or you can consult your <a href="/calculus/ch16/16.3/#16.3-potentials">multivariable calculus textbook</a>. So there is no <span data-concept="potential-function">potential function</span> $\kF$ defined everywhere outside the origin $(0,0)$.</p>
+<p>The <span data-concept="poincare-lemma">Poincaré Lemma</span> does not guarantee such an $\kF$ anyway. It only guarantees a <span data-concept="potential-function">potential function</span> $\kF$ locally—only in some region containing the <span data-concept="initial-value">initial point</span>. As $y(1) = 2$, we start at the point $(1,2)$. Considering $x &gt; 0$ and integrating $\kM$ in $x$ or $\kN$ in $y$, we find</p>
+$$ \kF(x,y) = \arctan \bigl( {y}/{x} \bigr) . $$
+<p>This $\kF$ is defined on the region $x &gt; 0$ and so the equation is <span data-concept="exact-equation">exact</span> on that region. The <span data-concept="implicit-solution">implicit solution</span> is $\arctan \bigl( {y}/{x} \bigr) = C$. Solving, $y = \tan(C) x$. That is, the <span data-concept="solution-to-a-differential-equation">solution</span> is a straight line. Solving $y(1) = 2$ gives us that $\tan(C) = 2$, and so $y= 2x$ is the desired <span data-concept="solution-to-a-differential-equation">solution</span>. See Figure 1.19, and note again that the <span data-concept="solution-to-a-differential-equation">solution</span> only exists for $x &gt; 0$.</p>
+<figure class="sim" id="sim-vortex" data-figure="1.19" data-original="/media/ch01/exact-y2x.svg" data-original-caption="Solution to −y/(x² + y²) dx + x/(x² + y²) dy = 0, y(1) = 2, with initial point marked." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 1.19</span><span>The vector field $\kvecv = (\kM, \kN)$ of $\frac{-y}{x^2+y^2}\,dx + \frac{x}{x^2+y^2}\,dy = 0$ circles the origin, and the potential $\kF = \arctan(y/x)$ lives only on the half-plane that holds the initial point: the solution through it is a ray from the origin, which never reaches the other side. Drag the initial point.</span></div>
+</figure>
+</div>
+<p id="no-holes">If the region where $\kM$ and $\kN$ are defined and where $\kMy=\kNx$ has “no holes,” such as, for instance, the entire $xy$-plane, then the equation is <span data-concept="exact-equation">exact</span> and an $\kF$ defined on that region can be found. For example, in Example 1.8.3, $\kM=2x+y$ and $\kN=x-1$ are defined in the entire plane and $\kMy = 1 = \kNx$, so a global $\kF$ exists there. Similarly, in Example 1.8.4 the half-plane where $x &gt; 0$ also has “no holes” and a <span data-concept="potential-function">potential function</span> exists on that region. So in such cases, <span data-concept="exactness-test">checking $\kMy = \kNx$ is good enough to check for exactness</span>.</p>
+<div class="example" id="ex-1-8-5">
+<h3>Example 1.8.5</h3>
+<p>Solve</p>
+$$ x^2+y^2 + 2y(x+1) \kdydx = 0 . $$
+<p>The reader should check that this equation is <span data-concept="exact-equation">exact</span>. Let $\kM= x^2+y^2$ and $\kN=2y(x+1)$. We follow the <span data-concept="solving-an-exact-equation">procedure for exact equations</span></p>
+$$ \kF(x,y) = \frac{1}{3}x^3 + xy^2 + A(y) , $$
+<p>and</p>
+$$ 2y(x+1) = 2xy + A'(y) . $$
+<p>Therefore $A'(y) = 2y$ or $A(y) = y^2$ and $\kF(x,y) = \frac{1}{3}x^3 + xy^2 + y^2$. We try to solve $\kF(x,y) = C$. We easily solve for $y^2$ and then just take the square root:</p>
+$$ y^2 = \frac{C-({1}/{3})x^3}{x+1}, \qquad \text{so} \qquad y = \pm \sqrt{\frac{C-({1}/{3})x^3}{x+1}} . $$
+<p>When $x=-1$, the term in front of $\kdydx$ is zero, and our explicit solution is not valid. The given equation has no <span data-concept="solution-to-a-differential-equation">solution</span> (for $y(x)$) near $x=-1$, but the equation $(x^2+y^2) \, dx + 2y(x+1) \, dy = 0$ does have a <span data-concept="solution-to-a-differential-equation">solution</span> $x=-1$. In fact, one could solve for $x$ in terms of $y$ for any <span data-concept="initial-value">initial condition</span>. The <span data-concept="solution-to-a-differential-equation">solution</span> is messy, so we leave it as $\frac{1}{3}x^3 + xy^2 + y^2 = C$.</p>
+</div>
+</section>
+
+<section id="factors">
+<h2>Integrating factors</h2>
+<p id="factor-idea">Sometimes an equation $\kM\, dx + \kN \, dy = 0$ is not <span data-concept="exact-equation">exact</span>, but it can be <span data-concept="exact-integrating-factor">made exact by multiplying with a function</span> $\ku(x,y)$. That is, perhaps for some nonzero function $\ku(x,y)$,</p>
+$$ \ku(x,y) \kM(x,y) \, dx + \ku(x,y) \kN(x,y) \, dy = 0 $$
+<p id="factor-solutions">is <span data-concept="exact-equation">exact</span>. Any <span data-concept="solution-to-a-differential-equation">solution</span> to this new equation is also a <span data-concept="solution-to-a-differential-equation">solution</span> to $\kM\, dx + \kN \, dy = 0$.</p>
+<p id="linear-as-exact">In fact, a <span data-concept="first-order-linear-differential-equation">linear equation</span></p>
+<div class="equation" id="eq-linear-as-exact">$$ \kdydx + \kp(x) \ky = \kf(x), \qquad \text{or} \qquad \bigl( \kp(x) \ky - \kf(x) \bigr)\, dx + dy = 0, $$</div>
+<p id="linear-factor">is always such an equation. Let $\kr(x) = e^{\int \kp(x)\,dx}$ be the <span data-concept="integrating-factor">integrating factor</span> for the <span data-concept="first-order-linear-differential-equation">linear equation</span>. Multiply the equation by $\kr(x)$ and write it in the form of $\kM + \kN \kdydx = 0$.</p>
+$$ \kr(x) \kp(x) \ky - \kr(x) \kf(x) + \kr(x) \kdydx = 0 . $$
+<p id="linear-exact-check">Then $\kM = \kr(x) \kp(x) \ky - \kr(x) \kf(x)$, so $\kMy = \kr(x) \kp(x)$, while $\kN = \kr(x)$, so $\kNx = \kr'(x) = \kr(x) \kp(x)$. In other words, we have an <span data-concept="exact-equation">exact equation</span>. <span data-concept="integrating-factor">Integrating factors for linear functions</span> are just a special case of <span data-concept="exact-integrating-factor">integrating factors for exact equations</span>.</p>
+<p id="factor-condition">But how do we find the <span data-concept="exact-integrating-factor">integrating factor</span> $\ku$? Well, for $\ku\kM \, dx + \ku\kN \, dy = 0$ to be <span data-concept="exact-equation">exact</span>, the function $\ku$ should satisfy</p>
+<figure class="dv" id="drv-exact-factor-condition"></figure>
+<p id="factor-pde">At first it may seem we replaced one differential equation by another. Even worse, the new equation is a PDE. True, but all hope is not lost.</p>
+<p id="factor-strategy">A strategy that often works is to look for a $\ku$ that is a function of $x$ alone, or a function of $y$ alone. After all, that is what worked for <span data-concept="first-order-linear-differential-equation">linear equations</span>. If $\ku$ is a function of $x$ alone, that is, $\ku(x)$, then we write $\ku'(x)$ instead of $\kux$, and $\kuy$ is just zero. Then</p>
+<figure class="dv" id="drv-exact-factor"></figure>
+<p id="factor-x">In particular, $\frac{\kMy-\kNx}{\kN}$ ought to be a function of $x$ alone (not depend on $y$). If so, then we have a <span data-concept="first-order-linear-differential-equation">linear equation</span> $\ku' - \frac{\kMy-\kNx}{\kN} \ku = 0$. Letting $\kP(x) = \frac{\kMy-\kNx}{\kN}$, we solve the <span data-concept="first-order-linear-differential-equation">linear equation</span> to find $\ku(x) = C e^{\int \kP(x) \, dx}$. The constant in the solution is not relevant, we need any nonzero solution, so we take $C=1$. Then $\ku(x) = e^{\int \kP(x) \, dx}$ is the <span data-concept="exact-integrating-factor">integrating factor</span> making the equation <span data-concept="exact-equation">exact</span>.</p>
+<p id="factor-y">Similarly, we could try a function of the form $\ku(y)$. Then $\frac{\kMy-\kNx}{\kM} \ku = - \ku'$. In particular, $\frac{\kMy-\kNx}{\kM}$ ought to be a function of $y$ alone. If so, we have a <span data-concept="first-order-linear-differential-equation">linear equation</span> $\ku' + \frac{\kMy-\kNx}{\kM} \ku = 0$. Letting $\kQ(y) = \frac{\kMy-\kNx}{\kM}$, we find $\ku(y) = C e^{-\int \kQ(y) \, dy}$. We take $C=1$. So $\ku(y) = e^{-\int \kQ(y) \, dy}$ is the <span data-concept="exact-integrating-factor">integrating factor</span>.</p>
+<div class="example" id="ex-1-8-6">
+<h3>Example 1.8.6</h3>
+<p>Solve</p>
+$$ \frac{x^2+y^2}{x+1} + 2y \kdydx = 0 . $$
+<p>Let $\kM= \frac{x^2+y^2}{x+1}$ and $\kN=2y$. Compute</p>
+$$ \kMy-\kNx = \frac{2y}{x+1} - 0 = \frac{2y}{x+1} . $$
+<p>As this is not zero, the equation is not <span data-concept="exact-equation">exact</span>. We notice</p>
+$$ \kP(x) = \frac{\kMy-\kNx}{\kN} = \frac{2y}{x+1} \, \frac{1}{2y} = \frac{1}{x+1} $$
+<p>is a function of $x$ alone. We compute the <span data-concept="exact-integrating-factor">integrating factor</span></p>
+$$ e^{\int \kP(x) \, dx} = e^{\ln (x+1)} = x+1 . $$
+<p>We multiply our given equation by $(x+1)$ to obtain</p>
+$$ x^2+y^2 + 2y(x+1) \kdydx = 0 , $$
+<p>which is an <span data-concept="exact-equation">exact equation</span> that we solved in Example 1.8.5. The <span data-concept="solution-to-a-differential-equation">solution</span> was</p>
+$$ y = \pm \sqrt{\frac{C-({1}/{3})x^3}{x+1}} . $$
+</div>
+<div class="example" id="ex-1-8-7">
+<h3>Example 1.8.7</h3>
+<p>Solve</p>
+$$ y^2 + (xy+1) \kdydx = 0 . $$
+<p>First compute</p>
+$$ \kMy-\kNx = 2y-y = y . $$
+<p>As this is not zero, the equation is not <span data-concept="exact-equation">exact</span>. We observe</p>
+$$ \kQ(y) = \frac{\kMy-\kNx}{\kM} = \frac{y}{y^2} = \frac{1}{y} $$
+<p>is a function of $y$ alone. We compute the <span data-concept="exact-integrating-factor">integrating factor</span></p>
+$$ e^{-\int \kQ(y) \, dy} = e^{-\ln y} = \frac{1}{y} . $$
+<p>Therefore, we look at the <span data-concept="exact-equation">exact equation</span></p>
+$$ y + \frac{xy+1}{y} \kdydx = 0 . $$
+<p>The reader should double check that this equation is <span data-concept="exact-equation">exact</span>. We follow the <span data-concept="solving-an-exact-equation">procedure for exact equations</span></p>
+$$ \kF(x,y) = xy + A(y) , $$
+<p>and</p>
+$$ \frac{xy+1}{y} = x+\frac{1}{y} = x+ A'(y) . $$
+<p>Consequently, $A'(y) = {1}/{y}$ or $A(y) = \ln \, \lvert y \rvert$. Thus $\kF(x,y) = xy + \ln \, \lvert y \rvert$. It is not possible to solve $\kF(x,y)=C$ for $y$ in terms of elementary functions, so let us be content with the <span data-concept="implicit-solution">implicit solution</span>:</p>
+$$ xy + \ln \, \lvert y \rvert = C . $$
+<p>We are looking for the <span data-concept="general-solution">general solution</span>, and we divided by $y$ above. We should check what happens when $y=0$, as the equation itself makes perfect sense in that case. We plug in $y=0$ to find the equation is satisfied. So $y=0$ is also a <span data-concept="solution-to-a-differential-equation">solution</span>.</p>
+</div>
+</section>

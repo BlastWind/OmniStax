@@ -1,0 +1,90 @@
+<section id="characteristics">
+<h2>The method of characteristics</h2>
+<p id="fopde-intro">We have only considered <span data-concept="ordinary-differential-equation">ODEs</span> so far, so let us solve a <span data-concept="first-order-linear-pde">linear first-order PDE</span>. Consider</p>
+<div class="equation" id="eq-fopde">$$ a(x,t) \, \kux + b(x,t) \, \kut + c(x,t) \, \ku = g(x,t), \quad \ku(x,0) = \kf(x) , \quad -\infty < x < \infty, \quad t > 0 , $$</div>
+<p id="initial-condition-function">where $\ku(x,t)$ is a function of $x$ and $t$. We again use the notation $\kux = \frac{\partial u}{\partial x}$ and $\kut = \frac{\partial u}{\partial t}$ for <a href="/calculus/ch14/14.3/">convenience</a>. The <em><span data-concept="pde-initial-condition">initial condition</span></em> $\ku(x,0) = \kf(x)$ is now a function of $x$ rather than just a number. In these problems, it is useful to think of $x$ as position and $t$ as time. The equation describes the evolution of a function of $x$ as time goes on. Below, the coefficients $a$, $b$, $c$, and the function $g$ are mostly going to be constant or zero. The method we describe works with nonconstant coefficients, although the computations may get difficult quickly.</p>
+<p id="characteristics-idea">We will use the <em><span data-concept="method-of-characteristics">method of characteristics</span></em>. The idea is to find lines along which the equation is an <span data-concept="ordinary-differential-equation">ODE</span> that we then solve. We will see this technique again for second-order <span data-concept="partial-differential-equation">PDEs</span> when we encounter the wave equation in <a href="/diffyqs/ch04/4.8/">§4.8</a>.</p>
+<div class="example" id="ex-1-9-1">
+<h3>Example 1.9.1</h3>
+<p>Consider</p>
+<div class="equation" id="eq-transport">$$ \alpha \kux + \kut = 0, \qquad \ku(x,0) = \kf(x) , $$</div>
+<p id="transport-def">where $\alpha$ is a constant. This particular equation, $\alpha \kux + \kut = 0$, is called the <em><span data-concept="transport-equation">transport equation</span></em>.</p>
+<p id="char-coords">The data will propagate along curves called <span data-concept="characteristic-curve">characteristics</span>. The idea is to change to the so-called <em><span data-concept="characteristic-coordinates">characteristic coordinates</span></em>, which we will call $(\xi,s)$. If we change to these coordinates, the equation simplifies. The change of variables for this equation is</p>
+<div class="equation" id="eq-char-coords">$$ \xi = x - \alpha t , \qquad s = t . $$</div>
+<p id="chain-rule-setup">Let us see what the equation becomes. Remember the <a href="/calculus/ch14/14.5/">chain rule in several variables</a>.</p>
+<figure class="dv" id="drv-transport"></figure>
+<p id="moving-right">Everything is simply moving to the right<sup class="fn" data-note="fn-moving-left"></sup> with velocity $\alpha$ as $t$ increases. The curves given by the equation</p>
+$$ \xi = \text{constant} $$
+<p id="char-curves">are called the <em><span data-concept="characteristic-curve">characteristic curves</span></em>. See Figure 1.20. In this case, the <span data-concept="solution-to-a-differential-equation">solution</span> does not change along the <span data-concept="characteristic-curve">characteristic</span> as $\kduds = 0$.</p>
+<p id="char-lines">In the $(x,t)$ coordinates, the <span data-concept="characteristic-curve">characteristic curves</span> satisfy $t = \frac{1}{\alpha} ( x- \xi)$, and are in fact lines. The slope of <span data-concept="characteristic-curve">characteristic lines</span> is $\frac{1}{\alpha}$, and for each different $\xi$, we get a different <span data-concept="characteristic-curve">characteristic line</span>.</p>
+<p id="convection">We see why $\alpha \kux + \kut = 0$ is called the <span data-concept="transport-equation">transport equation</span>: Everything travels at some constant speed. This behavior is called <em><span data-concept="convection">convection</span></em>. An example application is material being moved by a river where the material does not diffuse and is simply carried along. In this setup, $x$ is the position along the river, $t$ is the time, and $\ku(x,t)$ the concentration of the material at position $x$ and time $t$. See Figure 1.21 for an example.</p>
+<figure class="sim" id="sim-transport" data-figure="1.20 + 1.21" data-original="/media/ch01/char-curves.svg,/media/ch01/fopde-transport-1-2.svg" data-original-caption="(Figure 1.20) Characteristic curves. (Figure 1.21) Example of “transport” in uₓ + uₜ = 0 (that is, α = 1) where the initial condition f(x) is a peak at the origin. On the left is a graph of the initial condition u(x, 0). On the right is a graph of the function u(x, 1), that is, at time t = 1. Notice it is the same graph shifted one unit to the right.">
+  <div class="sim-head"><span class="eyebrow">Figure 1.20 + 1.21</span><span>The <span data-concept="transport-equation">transport equation</span> $\alpha \kux + \kut = 0$ carries the initial peak $\kf(x)$ along at velocity $\alpha$: at time $t$ the profile is $\ku(x,t) = \kf(x - \alpha t)$, the same peak shifted by $\alpha t$. Below it, the <span data-concept="characteristic-curve">characteristic lines</span> $\xi = x - \alpha t$ in the $(x, t)$ plane, of slope $1/\alpha$, one for each $\xi$; the peak rides the one through its starting point, and $\ku$ is constant along every one of them. Drag $\alpha$ to send the peak the other way, or stop it at $\alpha = 0$.</span></div>
+</figure>
+</div>
+</section>
+
+<section id="general">
+<h2>Characteristic curves in general</h2>
+<p id="general-case">We use a similar idea in the more general case:</p>
+$$ a \kux + b \kut + c \ku = g, \qquad \ku(x,0) = \kf(x) . $$
+<p id="general-coords">We change coordinates to the <span data-concept="characteristic-coordinates">characteristic coordinates</span>, which we call $(\xi,s)$. These are coordinates where $a \kux + b \kut$ becomes differentiation in the $s$ variable.</p>
+<p id="along-characteristics">Along the <span data-concept="characteristic-curve">characteristic curves</span> (where $\xi$ is constant), we get a new <span data-concept="ordinary-differential-equation">ODE</span> in the $s$ variable. In the <span data-concept="transport-equation">transport equation</span>, we got the simple $\kduds = 0$. In general, we get the <span data-concept="first-order-linear-differential-equation">linear equation</span></p>
+<div class="equation" id="eq-1-6">$$ \kduds + c \ku = g. \tag{1.6}$$</div>
+<p id="ode-in-s">We think of everything as a function of $\xi$ and $s$, although we are thinking of $\xi$ as a parameter rather than an <span data-concept="independent-variable">independent variable</span>. So the equation is an <span data-concept="ordinary-differential-equation">ODE</span>. It is a <span data-concept="first-order-linear-differential-equation">linear ODE</span> that we can solve using the <span data-concept="integrating-factor">integrating factor</span>.</p>
+<p id="find-characteristics">To find the <span data-concept="characteristic-curve">characteristics</span>, think of a curve given parametrically $\bigl(x(s),t(s)\bigr)$. We try to have the curve satisfy</p>
+<div class="equation" id="eq-char-curve">$$ \frac{dx}{ds} = a, \qquad \frac{dt}{ds} = b . $$</div>
+<p id="why-chain-rule">Why? Because when we think of $x$ and $t$ as functions of $s$, we find, using the <a href="/calculus/ch14/14.5/">chain rule</a>,</p>
+<figure class="dv" id="drv-characteristic-ode"></figure>
+<p id="so-ode">So we get the <span data-concept="ordinary-differential-equation">ODE</span> <a href="#eq-1-6">(1.6)</a>, which then describes the value of the <span data-concept="solution-to-a-differential-equation">solution</span> $\ku$ of the <span data-concept="partial-differential-equation">PDE</span> along this <span data-concept="characteristic-curve">characteristic curve</span>. It is convenient to make sure that $s=0$ corresponds to $t=0$, that is, $t(0) = 0$. It will also be convenient for $x(0) = \xi$. See Figure 1.22.</p>
+<figure class="sim" id="sim-curvy-characteristic" data-figure="1.22" data-original="/media/ch01/char-curve-curvy.svg" data-original-caption="General characteristic curve.">
+  <div class="sim-head"><span class="eyebrow">Figure 1.22</span><span>A general <span data-concept="characteristic-curve">characteristic curve</span> $\bigl(x(s), t(s)\bigr)$, here one of Example 1.9.3’s $x = \xi e^{s}$, $t = s$: it leaves the $x$-axis at the foot $x = \xi$, where $s = 0$, and $s$ runs along it. The initial value $\kf(\xi)$ at the foot is carried along the curve by the <span data-concept="ordinary-differential-equation">ODE</span> <a href="#eq-1-6">(1.6)</a>, which here gives $\ku = e^{-2s} \cos \xi$. Drag $\xi$ to pick the curve and $s$ to move along it.</span></div>
+</figure>
+<div class="example" id="ex-1-9-2">
+<h3>Example 1.9.2</h3>
+<p>Consider</p>
+$$ \kux + \kut + \ku = x, \qquad \ku(x,0) = e^{-x^2} . $$
+<p>We find the <span data-concept="characteristic-curve">characteristics</span>, that is, the curves given by</p>
+$$ \frac{dx}{ds} = 1, \qquad \frac{dt}{ds} = 1 . $$
+<p>So</p>
+$$ x = s + c_1, \qquad t = s+ c_2 , $$
+<p>for some $c_1$ and $c_2$. At $s=0$, we want $x=\xi$ and $t=0$. So we let $c_1 = \xi$ and $c_2 = 0$:</p>
+$$ x = s + \xi, \qquad t = s . $$
+<p>The <span data-concept="ordinary-differential-equation">ODE</span> is $\kduds + \ku = x$, and $x = s+\xi$. So, the <span data-concept="ordinary-differential-equation">ODE</span> to solve along the <span data-concept="characteristic-curve">characteristic</span> is</p>
+$$ \kduds + \ku = s+ \xi . $$
+<p>The <span data-concept="general-solution">general solution</span> of this equation, treating $\xi$ as a parameter, is $\ku = C e^{-s}+s+\xi-1$, for some $C$, which can depend on $\xi$. At $s=0$, our <span data-concept="pde-initial-condition">initial condition</span> is that $\ku$ is $e^{-\xi^2}$, since at $s=0$, we have $x=\xi$. Given this <span data-concept="pde-initial-condition">initial condition</span>, we find $C=e^{-\xi^2} - \xi +1$. So,</p>
+$$ \begin{split} \ku & = \bigl(e^{-\xi^2} - \xi +1\bigr) e^{-s}+s+\xi-1 \\ & = e^{-\xi^2-s} + (1 - \xi) e^{-s} +s+\xi-1 . \end{split} $$
+<p>Substitute $\xi = x-t$ and $s=t$ to find $\ku$ in terms of $x$ and $t$:</p>
+$$ \begin{split} \ku & = e^{-\xi^2-s} + (1 - \xi) e^{-s} +s+\xi-1 \\ & = e^{-{(x-t)}^2-t} + (1 - x + t) e^{-t} +x-1 . \end{split} $$
+<p id="surface-ref">See Figure 1.23 for a plot of $\ku(x,t)$ as a function of two variables.</p>
+<figure class="sim" id="sim-pde-surface" data-figure="1.23" data-original="/media/ch01/sol-to-fo-pde.svg" data-original-caption="Plot of the solution u(x, t) to uₓ + uₜ + u = x, u(x, 0) = e^(−x²)." data-original-width="720">
+  <div class="sim-head"><span class="eyebrow">Figure 1.23</span><span>The <span data-concept="solution-to-a-differential-equation">solution</span> $\ku(x,t) = e^{-{(x-t)}^2-t} + (1 - x + t) e^{-t} +x-1$ of $\kux + \kut + \ku = x$, $\ku(x,0) = e^{-x^2}$, as time runs: the bump of the <span data-concept="pde-initial-condition">initial condition</span> rides its <span data-concept="characteristic-curve">characteristic</span> $x - t = 0$ at unit speed and fades by $e^{-t}$, while the rest of the profile settles onto the line $x - 1$. The 3D view is the whole surface over the $(x, t)$ plane, with the <span data-concept="characteristic-curve">characteristic lines</span> $x - t = \xi$ drawn on it: along each, the <span data-concept="ordinary-differential-equation">ODE</span> <a href="#eq-1-6">(1.6)</a> carries the data from the foot $(\xi, 0)$.</span></div>
+</figure>
+</div>
+<p id="nonconstant">When the coefficients are not constants, the <span data-concept="characteristic-curve">characteristic curves</span> are not going to be straight lines anymore.</p>
+<div class="example" id="ex-1-9-3">
+<h3>Example 1.9.3</h3>
+<p>Consider the following variable-coefficient equation:</p>
+$$ x \kux + \kut + 2 \ku = 0, \qquad \ku(x,0) = \cos(x) . $$
+<p>We find the <span data-concept="characteristic-curve">characteristics</span>, that is, the curves given by</p>
+$$ \frac{dx}{ds} = x, \qquad \frac{dt}{ds} = 1 . $$
+<p>So</p>
+$$ x = c_1 e^{s} , \qquad t = s+ c_2 . $$
+<p>At $s=0$, we wish to get $x=\xi$ and $t=0$ as before. So</p>
+$$ x = \xi e^s, \qquad t = s . $$
+<p>OK, the <span data-concept="ordinary-differential-equation">ODE</span> we need to solve is</p>
+$$ \kduds + 2 \ku = 0 . $$
+<p>This is for a fixed $\xi$. We find $\ku = C e^{-2s}$. At $s=0$, we want $\ku$ to be $\cos(\xi)$, so that is our <span data-concept="initial-value">initial condition</span> for the <span data-concept="ordinary-differential-equation">ODE</span>. Hence, $C = \cos(\xi)$. We solve for $\xi$ and $s$ to find $\xi = xe^{-t}$ and $s=t$. Consequently,</p>
+$$ \ku = e^{-2s} \cos(\xi)= e^{-2t} \cos(xe^{-t}) . $$
+</div>
+</section>
+
+<section id="remarks">
+<h2>Closing remarks</h2>
+<p id="b-zero">We make a few closing remarks. One thing to keep in mind is that we would get into trouble if the coefficient in front of $\kut$, that is, the $b$, is ever zero. Let us consider a quick example of what can go wrong:</p>
+$$ \kux + \ku = 0, \qquad \ku(x,0) = \sin(x). $$
+<p id="no-solution">This problem has no <span data-concept="solution-to-a-differential-equation">solution</span>. If we had a <span data-concept="solution-to-a-differential-equation">solution</span>, it would imply that $\kux(x,0) = \cos(x)$, but $\kux(x,0) + \ku(x,0) = \cos(x) + \sin(x) \neq 0$. The problem is that the <span data-concept="characteristic-curve">characteristic curve</span> is now the line $t=0$, and the <span data-concept="solution-to-a-differential-equation">solution</span> is already provided on that line! As $b$ ought to then be nonzero, it is convenient to ensure that $b$ is positive by multiplying the equation by $-1$ if necessary, so that a positive $s$ means a positive $t$.</p>
+<p id="messy">Another remark is that if $a$ or $b$ in the equation are not constants, the computations can quickly get out of hand, as the expressions for the <span data-concept="characteristic-coordinates">characteristic coordinates</span> become messy and then solving the <span data-concept="ordinary-differential-equation">ODE</span> becomes even messier. In the examples above, $b$ was always $1$, meaning we got $s=t$ in the <span data-concept="characteristic-coordinates">characteristic coordinates</span>. If $b$ is not constant, your expression for $s$ will be more complicated.</p>
+<p id="systems">Finding the <span data-concept="characteristic-coordinates">characteristic coordinates</span> is really a <span data-concept="system-of-differential-equations">system of ODEs</span> in general if $a$ depends on $t$ or if $b$ depends on $x$. In that case, we would need techniques of systems of <span data-concept="ordinary-differential-equation">ODEs</span> to solve, see <a href="/diffyqs/ch03/3.1/">chapter 3</a> or <a href="/diffyqs/ch08/8.1/">chapter 8</a>. In general, if $a$ and $b$ are not linear functions or constants, finding closed-form expressions for the <span data-concept="characteristic-coordinates">characteristic coordinates</span> may be impossible.</p>
+<p id="nonlinear">Finally, the <span data-concept="method-of-characteristics">method of characteristics</span> applies to <span data-concept="nonlinear-differential-equation">nonlinear</span> first-order <span data-concept="partial-differential-equation">PDEs</span> as well. In the nonlinear case, the <span data-concept="characteristic-curve">characteristics</span> depend not only on the <span data-concept="differential-equation">differential equation</span>, but also on the initial data. This leads to not only more difficult computations, but also the formation of singularities where the <span data-concept="solution-to-a-differential-equation">solution</span> breaks down at a certain point in time. An example application where first-order nonlinear <span data-concept="partial-differential-equation">PDEs</span> come up is traffic flow theory, and you have probably experienced the formation of singularities: traffic jams. But we digress.</p>
+</section>
