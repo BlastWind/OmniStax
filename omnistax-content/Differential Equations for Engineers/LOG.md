@@ -142,3 +142,14 @@ Anchors from every section's "Wanted at chapter level": 68 forms and 66 variable
 Links: 6.1 built Table 6.1 as `tab-6-1`, so 6.3's two links and its correction note on Example 6.3.3's "Table 6.2" now open `/diffyqs/ch06/6.1/#6.1-tab-6-1`. 6.2's link to Example 6.1.4 and 6.5's to (6.1) in 6.2 resolve; the Appendix B sheet link builds.
 
 Checked: every in-book link from Chapter 6's pages resolves against the built pages; every Sim has a canvas, transports only on the four moving figures, no console or page error in light or dark. The `transform` type shows in ink until the book's final `colours:default`.
+
+
+## Pass 10 (2026-10-19): Appendix A, Linear algebra, had its chapter pass (`docs/prompts/briefs/final.md`) by one agent in one run after its six sections were built
+
+The sections' "Wanted at chapter level" lists were applied, each decision recorded under that heading in its plan. Anchors: 53 variables rows of `appA/chapter.json` and 65 forms. Two variables rows were added after `ost meanings`: A.5/f and A.5/g, the two functions of the inner product of functions. One edge was fixed through `appA/book-rows.json` and `ost merge diffyqs A`: `triangular-matrix` rests on `square-matrix`, not `diagonal-matrix`; the whole-book Hasse check finds no cycle and no redundant edge. A.4's Referents line in `COLOR.md` was corrected. Chapter 4's 4.1 links its finite-dimensional Fredholm alternative to A.4.
+
+Footnotes: the book's running numbers 56–64 (A.1 56–60, A.2 61–62, A.3 63, A.5 64), confirmed against `ap-linear-algebra.tex` after Chapter 8's 55 (`config.md` 22).
+
+Cross-section: every in-book and Calculus link of the six pages resolves (30 checked); the "Figure A.k" hand links stay, now that the app links them too.
+
+Checks: `ost check diffyqs` clean for the whole book; `astro check` 0 errors; the appendix built, served and walked with Playwright in light and dark (no console or page errors, a canvas in every Sim, no transport on these still figures, every control changes its figure).

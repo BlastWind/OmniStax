@@ -48,3 +48,7 @@ Book images: both sketches are originals of the fold. Extra Sims weighed and lef
 - No concept or edge fixes; no glossary words beyond the concepts' terms.
 - Chapter pass (`pass-ch04`, 2026-10-19): applied: every variables and form anchor listed (13 + 15).
 - Chapter pass (`pass-ch04`, 2026-10-19): applied: new rows 4.1/λ_1, λ_2, x_1_prime, x_2_prime, x_1_dprime, x_2_dprime, each `redefines` (Chapter 3 meanings).
+
+## Appendix A pass (2026-10-19)
+
+- Applied from A.4's "Wanted at chapter level": `p#fredholm-matrix` links "Fredholm alternative for matrices" to `/diffyqs/appA/A.4/#A.4-fredholm`; its `data-concept` stays `fredholm-alternative` (the one edit asked; no coverage change in 4.1).

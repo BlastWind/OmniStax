@@ -1,6 +1,6 @@
 # Appendix A config: Linear algebra
 
-Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing defaults for the whole book); only the chapter-specific lines below differ.
+Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing defaults for the whole book); only the chapter-specific lines below differ. Built 2026-10-19: sections A.1–A.6 and the chapter pass (anchors on 53 variables rows and 65 forms, two new variables rows A.5/f and A.5/g, one edge fix, the footnote numbers, the A.4 COLOR.md referents line).
 
 1. Start: `appA/A.1`, then A.2–A.6 in order, after Chapters 1–8 are merged (the merge of this chapter waits for Chapter 8; `ost merge diffyqs A`). Template: `ch00/0.2`; for a page of vectors and matrices, Chapter 3's `3.2` and `3.4` once built.
 2. Loop: build straight through with no stops; plans and decisions are reported afterwards. The whole appendix is built.
@@ -23,3 +23,4 @@ Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing d
 19. Recolour: `colours:default -- diffyqs` is run by the orchestrator at the end of the run, not in the chapter pass.
 20. Derivations (root rule 29): every printed block of equations worked to a result is built unless it is a worked example of the section's own method or a numeric verification; each plan names its candidates with scores.
 21. Merge: `appA/book-rows.json` stages symbols, concepts, forms and edges; before `ost merge diffyqs A` the orchestrator drops from `symbols` every sym that `ost rows diffyqs symbols` already lists (Chapter 3 stages A, B, C, I, x⃗, b⃗, e⃗ first) and confirms the cross-chapter prereq ids in `build-status.md` exist. Forms the appendix adds to Chapter 3's concepts (the 1 × 1 and 2 × 2 determinant, the row- and column-expansions, the linear combination of vectors) go on through `ost add diffyqs forms` after the merge, listed in the plans' "Wanted at chapter level".
+22. Footnotes (chapter pass, 2026-10-19, after `ch03/config.md` 21): a book footnote's `number` is the book's running number. Chapter 8 ends at 55; `ap-linear-algebra.tex` has nine `\footnote`s: A.1 56–60, A.2 61–62, A.3 63, A.4 none, A.5 64 (A.5's `fn-euclid`), A.6 none. The three A.3 corrections are `correction` notes, not numbered.

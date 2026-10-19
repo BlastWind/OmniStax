@@ -20,7 +20,7 @@ Untyped, in ink: the components x₁, …, xₙ and the entries a_ij, b_ij, d_k,
 | A.1 | `sim-matrix-mapping` | none: e⃗₁, e⃗₂, x⃗ and their images carry labels |
 | A.2 | `sim-composition` | none: one path at a time (AB or BA), each vector labelled |
 | A.3 | `sim-system-of-lines` | `equation-1`, `equation-2`: the two equations of the system, each a line in its own colour, the text's "the first equation", "the second equation" marked `data-ref` |
-| A.4 | `sim-rank-nullity` | `kernel-of-a`, `column-space-of-a`: the two subspaces of one matrix drawn together, both of type `region`, told apart by their referent colours; the text's mentions of the kernel and the column space of the example matrix marked `data-ref` |
+| A.4 | `sim-rank-nullity` | `kernel-of-a`, `column-space-of-a`: the two subspaces of one matrix drawn together, both of type `region`, told apart by their referent colours; the text's referent mentions are the Sim's caption only; the Fredholm paragraph speaks of a general A and keeps `data-concept` |
 | A.5 | `sim-angle-between-vectors` (Figure A.5), `sim-projection` (Figure A.6), `sim-gram-schmidt` | none: two or three labelled arrows of one type |
 | A.6 | `sim-unit-square-image` (Figure A.7) | none: the square and its image are one region before and after the mapping |
 

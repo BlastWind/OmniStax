@@ -46,3 +46,6 @@ All kind `exercise`; no inline exercise. Unkeyed A.2.1–A.2.5 with AI-marked so
 - Chapter 3's forms this page states again (the identity, the multiplication rules, the 2 × 2 inverse, the dot product): no new form; the displays stay plain.
 - No concept or edge fixes; no glossary words beyond the merged `terms`.
 - Converter: `tools/convert.py` keeps the optional argument of `\pagebreak[2]` as "[2]" at the head of an exercise (A.2.103 here); worth stripping book-wide.
+- Chapter pass (2026-10-19): anchors set on the 9 variables rows and 15 forms: applied.
+- Chapter pass (2026-10-19): Converter `\pagebreak[2]` note: left for the converter owner (not this chapter's files).
+- Chapter pass (2026-10-19): Footnotes 61–62 confirmed.

@@ -49,3 +49,5 @@ All kind `exercise`, `place: end`; no inline exercise. Unkeyed A.3.1–A.3.8 (`e
 - Variables anchors: A.3/A, A.3/x_vec, A.3/b_vec → `A.3-matrix-form`; A.3/zero_vec → `A.3-homogeneous`; A.3/y_vec → `A.3-combinations`; A.3/v_vec → `A.3-reverse`; A.3/e_vec → `A.3-inverse-columns`; A.3/I → `A.3-inverse-augmented`; A.3/A_inv → `A.3-by-inverse`; A.3/A_T → `A.3-eq-row-combination`.
 - Form anchors: `eq-linear-system` → `A.3-eq-linear-system`; `eq-a-2` → `A.3-eq-a-2`; `eq-linear-system-solution-by-inverse` → `A.3-eq-linear-system-solution-by-inverse`; `eq-homogeneous-matrix-equation` → `A.3-eq-homogeneous-matrix-equation`; `eq-row-combination` → `A.3-eq-row-combination`; `eq-superposition-matrix` → `A.3-drv-superposition-for-matrix-equations`; `eq-linear-independence` → `A.3-eq-linear-independence`; `eq-span` → `A.3-eq-span`; `eq-rank-transpose` → `A.3-theorem-a-3-1`; `eq-linear-combination-of-vectors` (on 2.1's `linear-combination`, already added) → `A.3-eq-linear-combination-of-vectors`.
 - No concept, edge or glossary fix.
+- Chapter pass (2026-10-19): anchors set on the 10 variables rows and 10 forms: applied.
+- Chapter pass (2026-10-19): Footnote 63 confirmed.

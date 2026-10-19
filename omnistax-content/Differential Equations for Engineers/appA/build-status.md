@@ -25,9 +25,20 @@ Task `prep1-appA` (prep stage one, 2026-10-19), port 8110, scratch `/tmp/claude-
 - A.1 built 2026-10-19 (task sec-A.1): 1 book figure (Figure A.1 + A.2 + A.3 + A.4 folded into `sim-vector-arithmetic`, still sim, operation as a choice that loads each book picture, x⃗ and y⃗ dragged) and 1 Sim (`sim-matrix-mapping`, still, input and output planes, e⃗₁, e⃗₂ to the columns, x⃗ to Ax⃗ by the same steps over the image grid; 3.2's `sim-determinant-area` linked from its caption, not rebuilt), 1 derivation (`drv-matrix-by-linearity`), 18 exercises (0 inline, 13 unkeyed AI-marked, 5 keyed), 13 concepts introduced, 54 coverage rows, 5 book footnotes (56–60, the running count); `ost check` clean.
 - A.2 built 2026-10-19 (task sec-A.2): 1 Sim (`sim-composition`, still, two planes side by side: x⃗ → Bx⃗ → A(Bx⃗) with the dashed one step of AB, and x⃗ → Ax⃗ → B(Ax⃗) with BA's, the book's A = [1 1; 1 1], B = [1 0; 0 2], x⃗ dragged; the plan's AB/BA choice became the second plane), 0 book figures, 1 derivation (`drv-cancellation`, replacing the printed block), 10 exercises (0 inline, 5 unkeyed AI-marked, 5 keyed), 9 concepts introduced (13 reinforced, `diagonal-matrix` and `symmetric-matrix` among them), 193 coverage rows, 2 book footnotes (61–62, the running count); `ost check` clean.
 
+## Done (2026-10-19, task `pass-appA`, chapter pass, port 8140)
+- Anchors on 53 variables rows and 65 forms (scratch `pass-appA/anchors.json`, `fast.py`); new variables rows A.5/f and A.5/g (type `function`, anchor `A.5-functions`).
+- Edge `triangular-matrix → diagonal-matrix` replaced by `triangular-matrix → square-matrix` in `book-rows.json`; `ost merge diffyqs A` (67 concepts, 109 edges); whole-book Hasse check: no cycle, no unknown prereq, 0 redundant edges.
+- Footnotes confirmed 56–64 against `ap-linear-algebra.tex` (`config.md` 22). A.4 Referents line of `COLOR.md` corrected. 4.1's `p#fredholm-matrix` links `/diffyqs/appA/A.4/#A.4-fredholm` (recorded in 4.1's plan).
+- Hrefs: 30 in-book and Calculus links of A.1–A.6 and 4.1 resolve. "Figure A.k" hand links kept.
+- Checks: `ost check diffyqs` clean; `astro check` 0 errors; built and walked in Playwright light and dark: no console or page errors, a canvas in every Sim, no transports (all still), every control changes its figure.
+
 ## Next
 
-- Sections A.1 → A.6, then the chapter pass.
+- Nothing in the chapter. The orchestrator's `colours:default -- diffyqs` should mind the colour notes below.
+
+## Colour notes for `colours:default`
+- Referent colours of the appendix sit near ink in places; keep them clear of ink.
+- The column-space referent colour sits near the `vector` type colour; in A.4's Sim the column space and b⃗ are drawn together, so separate them.
 
 ## Cross-chapter prereq ids used in `concept_prereqs` (must exist at merge time)
 Chapter 3 (3.2 unless noted): `matrix`, `vector`, `scalar`, `square-matrix`, `matrix-addition`, `scalar-multiplication-of-a-matrix`, `matrix-product`, `dot-product`, `transpose`, `matrix-inverse`, `invertible-matrix`, `determinant-as-area-scale`, `cofactor-expansion`, `determinant-of-a-product`, `invertibility-and-the-determinant`, `augmented-matrix`, `elementary-row-operations`, `leading-entry`, `reduced-row-echelon-form`, `free-variable`, `inconsistent-system`, `row-reduction`, `computing-a-matrix-inverse`. Chapter 2 (2.1): `linear-combination`, `linear-operator`. Concept ids the plans reuse in coverage without an edge: 3.2's `matrix-entry`, `row-vector`, `identity-matrix`, `rules-of-matrix-algebra`, `determinant`, `inverse-of-a-2x2-matrix`; 3.3's `vector-valued-function`; 2.1's `linear-independence`.
@@ -38,6 +49,7 @@ Chapter 3 (3.2 unless noted): `matrix`, `vector`, `scalar`, `square-matrix`, `ma
 - Not tested: the app's build of `/diffyqs/appA/A.M/` (no section is built); `omnistax-web/src/lib/content` has no `ch\d\d` pattern, so nothing is expected to object.
 
 ## Decisions Chen must hear
+- Chapter pass: `triangular-matrix` now rests on `square-matrix` (the book defines a triangular matrix first, a diagonal matrix as its special case). `determinant-of-an-inverse` (A.6) restates 3.2's forms on `invertibility-and-the-determinant`; kept. The converter keeps `\pagebreak[2]`'s "[2]" at the head of A.2.103 (book-wide fix wanted in `tools/convert.py`).
 - The book-level `exploration.md` counts "112 boxed formulas, 62 of them in Appendix A": the appendix's 62 are `\mybxsm` pivot marks on single matrix entries (A.3's eliminations, Example A.3.1, Example A.4.5), not formulas. The appendix has no boxed formula; its Equations and formulas list is the equations that state its definitions and theorems (config 12). The book-level count of boxed results is 50.
 - Appendix A reuses Chapter 3's ids for everything 3.2–3.3 already define (matrix, vector, dot product, determinant, cofactor expansion, inverse, augmented matrix, row operations, echelon form, free variable, …) and Chapter 2's `linear-combination`, `linear-operator`; its pages mark those `reinforces`. Calculus ids are kept for the shared vector concepts (magnitude, addition, difference, scaling, unit vector, standard basis vectors, angle, orthogonal, projection, area of a parallelogram). `linear-independence-of-vectors` is new (Chapter 2's `linear-independence` is of functions, 3.3's of vector-valued functions).
 - A linear mapping F wears `matrix` (the section identifies the two); a subspace, kernel, span, row space and column space wear `region`; no new type.

@@ -46,3 +46,6 @@ All kind `exercise`, `place: {at: end}`, ids `e1`–`e6`, `e101`–`e103`; no in
 - Chapter `COLOR.md`, Referents row of A.4: the text's referent mentions are the Sim's caption only; the Fredholm paragraph speaks of a general A and keeps `data-concept` (correct the line "the text's mentions of the kernel and the column space of the example matrix marked `data-ref`").
 - For Chapter 4's pass (not this chapter's rows): 4.1's `p#fredholm-matrix` ("a finite-dimensional version of Fredholm alternative for matrices") marks `fredholm-alternative` (4.1's boundary-value theorem); `fredholm-alternative-for-matrices` now exists and names that mention, and a link to `/diffyqs/appA/A.4/#A.4-fredholm` would serve it.
 - No concept or edge fixes; no glossary words beyond the merged `terms`.
+- Chapter pass (2026-10-19): anchors set on the 9 variables rows and 6 forms: applied.
+- Chapter pass (2026-10-19): COLOR.md Referents line of A.4 corrected as asked: applied.
+- Chapter pass (2026-10-19): 4.1 `p#fredholm-matrix` now links `/diffyqs/appA/A.4/#A.4-fredholm` (recorded in 4.1's plan); its concept mark left as is.
