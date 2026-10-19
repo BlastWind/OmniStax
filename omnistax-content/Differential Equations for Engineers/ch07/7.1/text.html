@@ -1,0 +1,146 @@
+<p id="intro">Many functions can be written in terms of a <span data-concept="power-series">power series</span></p>
+$$ \sum_{k=0}^\infty \ka_k {(x-x_0)}^k . $$
+<p id="undetermined">Assuming a <span data-concept="solution-to-a-differential-equation">solution</span> of a <span data-concept="differential-equation">differential equation</span> is a <span data-concept="power-series">power series</span>, we can perhaps use a method reminiscent of <span data-concept="method-of-undetermined-coefficients">undetermined coefficients</span>—we try to solve for the numbers $\ka_k$. Before we carry out this process, we review <a href="/calculus/ch10/10.1/#10.1-power-series-term">some results and concepts about power series</a>.</p>
+
+<section id="definition">
+<h2>Definition</h2>
+<p id="power-series-def">As we said, a <em><span data-concept="power-series">power series</span></em> is an expression such as</p>
+<div class="equation" id="eq-7-1">$$ \sum_{k=0}^\infty \ka_k {(x-x_0)}^k = \ka_0 + \ka_1 (x-x_0) + \ka_2 {(x-x_0)}^2 + \ka_3 {(x-x_0)}^3 + \cdots, \tag{7.1}$$</div>
+<p id="coefficients">where $\ka_0,\ka_1,\ka_2,\ldots,\ka_k,\ldots$ and $x_0$ are constants. The $\ka_k$ are called the <em><span data-concept="power-series-coefficients">coefficients</span></em> and $x_0$ is called the <em><span data-concept="power-series-center">center</span></em>. Let</p>
+<div class="equation" id="eq-partial-sum">$$ \begin{split} \kS_n(x) & = \sum_{k=0}^n \ka_k {(x-x_0)}^k \\ & = \ka_0 + \ka_1 (x-x_0) + \ka_2 {(x-x_0)}^2 + \ka_3 {(x-x_0)}^3 + \cdots + \ka_n {(x-x_0)}^n , \end{split} $$</div>
+<p id="partial-sum">denote the so-called <em><span data-concept="partial-sum">partial sum</span></em>. If for some $x$, the limit</p>
+$$ \lim_{n\to \infty} \kS_n(x) = \lim_{n\to\infty} \sum_{k=0}^n \ka_k {(x-x_0)}^k $$
+<p id="convergent">exists, we say the series <a href="#eq-7-1">(7.1)</a> <em><span data-concept="convergent-power-series">converges</span></em> at $x$. At $x=x_0$, the series always <span data-concept="convergent-power-series">converges</span> to $\ka_0$. When <a href="#eq-7-1">(7.1)</a> <span data-concept="convergent-power-series">converges</span> at any other $x \neq x_0$, we say <a href="#eq-7-1">(7.1)</a> is a <em><span data-concept="convergent-power-series">convergent power series</span></em>, and we write</p>
+<div class="equation" id="eq-power-series-limit">$$ \sum_{k=0}^\infty \ka_k {(x-x_0)}^k = \lim_{n\to\infty} \sum_{k=0}^n \ka_k {(x-x_0)}^k. $$</div>
+<p id="divergent">If the series does not <span data-concept="convergent-power-series">converge</span> for any point $x \neq x_0$, we say that the series is <em><span data-concept="convergent-power-series">divergent</span></em>.</p>
+<div class="example" id="ex-7-1-1">
+<h3>Example 7.1.1</h3>
+<p>The series</p>
+<div class="equation" id="eq-series-exp">$$ \sum_{k=0}^\infty \frac{1}{k!} x^k = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \cdots $$</div>
+<p id="exp-series">converges at every $x$. Here, $\ka_k = {1}/{k!}$ and $x_0 = 0$. Recall that $k! = 1\cdot 2\cdot 3 \cdots k$ is the factorial. By convention, we define $0! = 1$. You may recall that this <a href="/calculus/ch10/10.4/#10.4-fs-id1167024047165"><span data-concept="maclaurin-series-of-common-functions">series converges to $e^x$</span></a>.</p>
+</div>
+<p id="absolute">We say that <a href="#eq-7-1">(7.1)</a> <em><span data-concept="absolute-convergence">converges absolutely</span></em> at $x$ whenever the limit</p>
+<div class="equation" id="eq-absolute-convergence">$$ \lim_{n\to\infty} \sum_{k=0}^n \lvert \ka_k \rvert \, {\lvert x-x_0 \rvert}^k $$</div>
+<p id="absolute-implies">exists. That is, the series $\sum_{k=0}^\infty \lvert \ka_k \rvert \, {\lvert x-x_0 \rvert}^k$ <span data-concept="convergent-power-series">converges</span>. If <a href="#eq-7-1">(7.1)</a> <span data-concept="absolute-convergence">converges absolutely</span> at $x$, then it <span data-concept="convergent-power-series">converges</span> at $x$. However, the opposite implication is not true.</p>
+<div class="example" id="ex-7-1-2">
+<h3>Example 7.1.2</h3>
+<p>The series</p>
+$$ \sum_{k=1}^\infty \frac{1}{k} x^k $$
+<p><span data-concept="absolute-convergence">converges absolutely</span> for all $x$ in the interval $(-1,1)$. It <span data-concept="convergent-power-series">converges</span> at $x=-1$, as $\sum_{k=1}^\infty \frac{{(-1)}^k}{k}$ <span data-concept="convergent-power-series">converges</span> (<a href="/calculus/ch09/9.5/#9.5-absolute-definition">conditionally</a>) by the <a href="/calculus/ch09/9.5/#9.5-alternating-test-theorem">alternating series test</a>. The <span data-concept="power-series">power series</span> does not <span data-concept="absolute-convergence">converge absolutely</span> at $x=-1$, because $\sum_{k=1}^\infty \frac{1}{k}$ does not converge. The series diverges at $x=1$.</p>
+</div>
+</section>
+
+<section id="radius">
+<h2>Radius of convergence</h2>
+<p id="comparison">If a <span data-concept="power-series">power series</span> <span data-concept="absolute-convergence">converges absolutely</span> at some $x_1$, then for all $x$ such that $\lvert x - x_0 \rvert \leq \lvert x_1 - x_0 \rvert$ (that is, $x$ is no further than $x_1$ to $x_0$), we have $\lvert \ka_k \rvert \, {\lvert x-x_0 \rvert}^k \leq \lvert \ka_k \rvert \, { \lvert x_1-x_0 \rvert}^k$ for all $k$. As the numbers $\lvert \ka_k \rvert \, {\lvert x_1-x_0 \rvert}^k$ sum to some finite limit, summing smaller positive numbers $\lvert \ka_k \rvert \, {\lvert x-x_0 \rvert}^k$ must also have a finite limit. Hence, the series must <span data-concept="absolute-convergence">converge absolutely</span> at $x$.</p>
+<div class="note" id="thm-7-1-1">
+<div class="eyebrow">Theorem 7.1.1</div>
+<p>For a <span data-concept="power-series">power series</span> <a href="#eq-7-1">(7.1)</a>, there exists a number $\rho$ (we allow $\rho=\infty$) called the <em><span data-concept="radius-of-convergence">radius of convergence</span></em> such that the series <span data-concept="absolute-convergence">converges absolutely</span> on the interval $(x_0-\rho,x_0+\rho)$ and diverges when $x &lt; x_0-\rho$ or $x &gt; x_0+\rho$. We write $\rho=\infty$ if the series <span data-concept="convergent-power-series">converges</span> for all $x$.</p>
+</div>
+<figure class="sim" id="sim-convergence-interval" data-figure="7.1" data-original="/media/ch07/ps-conv.svg" data-original-caption="Convergence of a power series.">
+  <div class="sim-head"><span class="eyebrow">Figure 7.1</span><span>On the number line, a <span data-concept="power-series">power series</span> <span data-concept="absolute-convergence">converges absolutely</span> within $\rho$ of its <span data-concept="power-series-center">center</span> $x_0$ and diverges beyond. Above the line, the <span data-concept="partial-sum">partial sums</span> $\kS_n(x)$ close on the function the series defines inside the interval and run off outside it, even where that function goes on.</span></div>
+</figure>
+<p id="radius-examples">See Figure 7.1. In Example 7.1.1, the <span data-concept="radius-of-convergence">radius of convergence</span> is $\rho = \infty$ as the series <span data-concept="convergent-power-series">converges</span> everywhere. In Example 7.1.2, the <span data-concept="radius-of-convergence">radius of convergence</span> is $\rho=1$. We note that $\rho = 0$ is another way of saying that the series is <span data-concept="convergent-power-series">divergent</span>.</p>
+<p id="ratio-test">A useful test for <a href="/calculus/ch09/9.6/#9.6-ratio-theorem">convergence of a series</a> is the <em><span data-concept="ratio-test">ratio test</span></em>. Suppose that</p>
+$$ \sum_{k=0}^\infty \kc_k $$
+<p>is a series and the limit</p>
+<div class="equation" id="eq-ratio-test">$$ L = \lim_{k\to\infty} \left \lvert \frac{\kc_{k+1}}{\kc_k} \right \rvert $$</div>
+<p id="ratio-verdict">exists. Then the series <span data-concept="absolute-convergence">converges absolutely</span> if $L &lt; 1$ and diverges if $L &gt; 1$.</p>
+<p id="apply-ratio">We apply this test to the <span data-concept="power-series">power series</span> <a href="#eq-7-1">(7.1)</a>. Let $\kc_k = \ka_k {(x - x_0)}^k$ in the test. Compute</p>
+<figure class="dv" id="drv-radius-from-ratio-test"></figure>
+<p id="define-A">Define $A$ by</p>
+$$ A = \lim_{k\to\infty} \left \lvert \frac{\ka_{k+1}}{\ka_k} \right \rvert . $$
+<p id="radius-is-1-over-A">Then the series <a href="#eq-7-1">(7.1)</a> <span data-concept="absolute-convergence">converges absolutely</span> if $1 &gt; L = A \lvert x - x_0 \rvert$. If $A &gt; 0$, then the series <span data-concept="absolute-convergence">converges absolutely</span> if $\lvert x - x_0 \rvert &lt; {1}/{A}$, and diverges if $\lvert x - x_0 \rvert &gt; {1}/{A}$. That is, the <span data-concept="radius-of-convergence">radius of convergence</span> is ${1}/{A}$. If $A = 0$, then the series always <span data-concept="convergent-power-series">converges</span>.</p>
+<p id="root-test">The <em><span data-concept="root-test">root test</span></em> is similar. Suppose</p>
+<div class="equation" id="eq-root-test">$$ L = \lim_{k\to\infty} \sqrt[k]{\lvert \kc_k \rvert} $$</div>
+<p id="root-verdict">exists. Then $\sum_{k=0}^\infty \kc_k$ <span data-concept="absolute-convergence">converges absolutely</span> if $L &lt; 1$ and diverges if $L &gt; 1$. We can use the same calculation as above to find $A$. Let us summarize.</p>
+<div class="note" id="thm-7-1-2">
+<div class="eyebrow">Theorem 7.1.2</div>
+<h3><span data-concept="ratio-and-root-tests-for-power-series">Ratio and root tests for power series</span></h3>
+<p>Consider a <span data-concept="power-series">power series</span></p>
+$$ \sum_{k=0}^\infty \ka_k {(x-x_0)}^k $$
+<p>such that</p>
+<div class="equation" id="eq-power-series-A">$$ A = \lim_{k\to\infty} \left \lvert \frac{\ka_{k+1}}{\ka_k} \right \rvert \qquad \text{or} \qquad A = \lim_{k\to\infty} \sqrt[k]{\lvert \ka_k \rvert} $$</div>
+<p id="radius-from-A">exists. If $A = 0$, then the <span data-concept="radius-of-convergence">radius of convergence</span> of the series is $\infty$. Otherwise, the <span data-concept="radius-of-convergence">radius of convergence</span> is ${1}/{A}$. Moreover, if either limit for $A$ diverges to $\infty$, then the series is <span data-concept="convergent-power-series">divergent</span>.</p>
+</div>
+<div class="example" id="ex-7-1-3">
+<h3>Example 7.1.3</h3>
+<p>Consider</p>
+$$ \sum_{k=0}^\infty 2^{-k} {(x-1)}^k . $$
+<p>We compute the limit in the <span data-concept="ratio-test">ratio test</span>,</p>
+$$ A = \lim_{k\to\infty} \left \lvert \frac{\ka_{k+1}}{\ka_k} \right \rvert = \lim_{k\to\infty} \left \lvert \frac{2^{-k-1}}{2^{-k}} \right \rvert = \lim_{k\to\infty} 2^{-1} = \frac{1}{2}. $$
+<p>Therefore, the <span data-concept="radius-of-convergence">radius of convergence</span> is $2$, and the series <span data-concept="absolute-convergence">converges absolutely</span> on the interval $(-1,3)$. We could just as well have used the <span data-concept="root-test">root test</span>:</p>
+$$ A = \lim_{k\to\infty} \sqrt[k]{\lvert \ka_k \rvert} = \lim_{k\to\infty} \sqrt[k]{\lvert 2^{-k} \rvert} = \lim_{k\to\infty} 2^{-1} = \frac{1}{2}. $$
+</div>
+<div class="example" id="ex-7-1-4">
+<h3>Example 7.1.4</h3>
+<p>Consider</p>
+$$ \sum_{k=1}^\infty \frac{1}{k^k} {x}^k . $$
+<p>Compute the limit for the <span data-concept="root-test">root test</span> (<span data-concept="ratio-test">ratio test</span> would also work),</p>
+$$ A = \lim_{k\to\infty} \sqrt[k]{\lvert \ka_k \rvert} = \lim_{k\to\infty} \sqrt[k]{ \left\lvert\frac{1}{k^k}\right\rvert} = \lim_{k\to\infty} \sqrt[k]{ {\left\lvert\frac{1}{k}\right\rvert}^{k}} = \lim_{k\to\infty} \frac{1}{k} = 0 . $$
+<p>So the <span data-concept="radius-of-convergence">radius of convergence</span> is $\infty$: The series <span data-concept="convergent-power-series">converges</span> everywhere.</p>
+</div>
+<p id="test-on-series">The root or the <span data-concept="ratio-test">ratio test</span> as given does not always apply. That is, the limit of $\bigl \lvert \frac{\ka_{k+1}}{\ka_k} \bigr \rvert$ or $\sqrt[k]{\lvert \ka_k \rvert}$ might not exist. Sometimes the test must be applied to the series itself—to find the $L$ rather than the $A$. For example, for the series $\sum_{k=1}^\infty 2^k x^{2k}$, we cannot apply the root with the $A$, we must work with the limit of $\sqrt[k]{\lvert 2^k x^{2k} \rvert}$, which equals $L = 2 {\lvert x \rvert}^2$. This $L$ is less than $1$ when $\lvert x \rvert &lt; \frac{1}{\sqrt{2}}$ and so $\frac{1}{\sqrt{2}}$ is the <span data-concept="radius-of-convergence">radius of convergence</span>. Other ways exist to find the radius, but ratio and root tests cover many series arising in practice.</p>
+<p id="endpoints">At the endpoints, $x = x_0-\rho$ and $x = x_0+\rho$, the series may or may not <span data-concept="convergent-power-series">converge</span>, and the tests above say nothing about convergence there. Sometimes convergence at the endpoints is important, but for our purposes, we will not worry about it much.</p>
+</section>
+
+<section id="analytic">
+<h2>Analytic functions</h2>
+<p id="analytic-def">Functions represented by <span data-concept="power-series">power series</span> are called <em><span data-concept="analytic-function">analytic functions</span></em>. Not all functions are analytic, but <a href="/calculus/ch10/10.4/#10.4-fs-id1167024047165">the functions you have seen in calculus</a> likely all are. An <span data-concept="analytic-function">analytic function</span> $\kf(x)$ equals its <em><span data-concept="taylor-series">Taylor series</span></em><sup class="fn" data-note="fn-taylor"></sup> (a <span data-concept="power-series">power series</span> computed from $\kf$) for $x$ near a given point $x_0$:</p>
+<div class="equation" id="eq-7-2">$$ \kf(x) = \sum_{k=0}^\infty \frac{\kfk(x_0)}{k!} {(x-x_0)}^k = \kf(x_0) + \kf'(x_0) (x-x_0) + \frac{\kf''(x_0)}{2} (x-x_0)^2 + \cdots , \tag{7.2}$$</div>
+<p id="kth-derivative">where $\kfk(x_0)$ denotes the $k^{\text{th}}$ derivative of $\kf(x)$ at the point $x_0$.</p>
+<p id="sine-series">For example, sine is an <span data-concept="analytic-function">analytic function</span> and its <span data-concept="taylor-series">Taylor series</span> around $x_0 = 0$ is given by</p>
+<div class="equation" id="eq-series-sin">$$ \sin(x) = \sum_{n=0}^\infty \frac{{(-1)}^n}{(2n+1)!} x^{2n+1} . $$</div>
+<p id="sine-approximations">In Figure 7.2, we plot $\sin(x)$ and the truncations of the series up to degree 5 and 9. You can see that the approximation is very good for $x$ near 0, but gets worse for $x$ further away from 0. <a href="/calculus/ch10/10.3/#10.3-fs-id1167025239317">This is what happens in general.</a> To get a good approximation far away from $x_0$ you need to take more and more terms of the <span data-concept="taylor-series">Taylor series</span>.</p>
+<figure class="sim" id="sim-taylor-sin" data-figure="7.2" data-original="/media/ch07/ps-sin.svg" data-original-caption="The sine function and its Taylor approximations around x₀ = 0 of 5th and 9th degree." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 7.2</span><span>The <span data-concept="taylor-series">Taylor series</span> of $\sin x$ cut off at degree $n$ hugs the sine near its <span data-concept="power-series-center">center</span> $x_0$ and leaves it further out; each added term pushes out the stretch where the two stay within $0.1$ of each other, the <span data-concept="approximation-error">error</span> of the truncation.</span></div>
+</figure>
+</section>
+
+<section id="manipulating">
+<h2>Manipulating power series</h2>
+<p id="term-by-term">One of the main properties of <span data-concept="power-series">power series</span> that we will use is that we can <em><span data-concept="term-by-term-differentiation-and-integration">differentiate them term by term</span></em>. That is, suppose that $\sum \ka_k {(x-x_0)}^k$ is a <span data-concept="convergent-power-series">convergent power series</span>. Then for $x$ in the <span data-concept="radius-of-convergence">radius of convergence</span>, we have</p>
+<div class="equation" id="eq-power-series-term-by-term-derivative">$$ \frac{d}{dx} \left[\sum_{k=0}^\infty \ka_k {(x-x_0)}^k\right] = \sum_{k=1}^\infty k \ka_k {(x-x_0)}^{k-1} = \ka_1 + 2 \ka_2 (x-x_0) + 3 \ka_3 {(x-x_0)}^{2} + \cdots . $$</div>
+<p id="same-radius">Notice that the term corresponding to $k=0$ disappeared as it was constant. The <span data-concept="radius-of-convergence">radius of convergence</span> of the differentiated series is the same as that of the original.</p>
+<div class="example" id="ex-7-1-5">
+<h3>Example 7.1.5</h3>
+<p>Let us show that the exponential $\ky=e^x$ solves $\kyprime=\ky$. Suppose we did not know that. Write</p>
+$$ \ky = e^x = \sum_{k=0}^\infty \frac{1}{k!} x^k . $$
+<p>Differentiate $\ky$,</p>
+$$ \kyprime = \sum_{k=1}^\infty k \frac{1}{k!} x^{k-1} = \sum_{k=1}^\infty \frac{1}{(k-1)!} x^{k-1} . $$
+<p id="reindex">We <em><span data-concept="reindexing-a-series">reindex</span></em> the series by simply replacing $k$ with $k+1$. The series does not change; what changes is simply how we write it. After reindexing, the series starts at $k=0$ again.</p>
+$$ \sum_{k=1}^\infty \frac{1}{(k-1)!} x^{k-1} = \sum_{k+1=1}^\infty \frac{1}{\bigl((k+1)-1\bigr)!} x^{(k+1)-1} = \sum_{k=0}^\infty \frac{1}{k!} x^k . $$
+<p>That was precisely the <span data-concept="power-series">power series</span> for $e^x$ we started with, so we showed that $\frac{d}{dx} [ e^x ] = e^x$.</p>
+</div>
+<p id="combining">Convergent <span data-concept="power-series">power series</span> can be <span data-concept="combining-power-series">added</span> and <span data-concept="multiplying-power-series">multiplied together</span>, and <span data-concept="combining-power-series">multiplied by constants</span> using the following rules. First, we can add series by adding term by term,</p>
+<div class="equation" id="eq-series-sum">$$ \left(\sum_{k=0}^\infty \ka_k {(x-x_0)}^k\right) + \left(\sum_{k=0}^\infty \kb_k {(x-x_0)}^k\right) = \sum_{k=0}^\infty (\ka_k+\kb_k) {(x-x_0)}^k . $$</div>
+<p>We can multiply by constants,</p>
+<div class="equation" id="eq-series-constant-multiple">$$ \alpha \left(\sum_{k=0}^\infty \ka_k {(x-x_0)}^k\right) = \sum_{k=0}^\infty \alpha \ka_k {(x-x_0)}^k . $$</div>
+<p>We can also <span data-concept="multiplying-power-series">multiply series together</span>,</p>
+<div class="equation" id="eq-series-product">$$ \left(\sum_{k=0}^\infty \ka_k {(x-x_0)}^k\right) \, \left(\sum_{k=0}^\infty \kb_k {(x-x_0)}^k\right) = \sum_{k=0}^\infty \kc_k {(x-x_0)}^k , $$</div>
+<p id="product-coefficients">where $\kc_k = \ka_0\kb_k + \ka_1 \kb_{k-1} + \cdots + \ka_k \kb_0$. The <span data-concept="radius-of-convergence">radius of convergence</span> of the sum or the product is at least the minimum of the <span data-concept="radius-of-convergence">radii of convergence</span> of the two series involved.</p>
+</section>
+
+<section id="rational">
+<h2>Power series for rational functions</h2>
+<p id="polynomials">Polynomials are simply finite <span data-concept="power-series">power series</span>. That is, a <span data-concept="polynomial-as-a-power-series">polynomial is a power series</span> where the $\ka_k$ are zero for all $k$ large enough. We can always expand a polynomial as a <span data-concept="power-series">power series</span> about any point $x_0$ by writing the polynomial as a polynomial in $(x-x_0)$. For example, let us write $2x^2-3x+4$ as a <span data-concept="power-series">power series</span> around $x_0 = 1$:</p>
+$$ 2x^2-3x+4 = 3 + (x-1) + 2{(x-1)}^2 . $$
+<p id="polynomial-coefficients">In other words, $\ka_0 = 3$, $\ka_1 = 1$, $\ka_2 = 2$, and all other $\ka_k = 0$. To do this, we know that $\ka_k = 0$ for all $k \geq 3$ as the polynomial is of degree 2. We write $\ka_0 + \ka_1(x-1) + \ka_2{(x-1)}^2$, we expand, and we solve for $\ka_0$, $\ka_1$, and $\ka_2$. We could have also differentiated at $x=1$ and used the <span data-concept="taylor-series">Taylor series</span> formula <a href="#eq-7-2">(7.2)</a>.</p>
+<p id="interval-only">Let us look at rational functions, that is, ratios of polynomials. An important fact is that a series for a function only defines the function on an interval even if the function is defined elsewhere. For example, for $-1 &lt; x &lt; 1$,</p>
+<div class="equation" id="eq-geometric-series">$$ \frac{1}{1-x} = \sum_{k=0}^\infty x^k = 1 + x + x^2 + \cdots $$</div>
+<p id="geometric-series">This series is called the <em><span data-concept="geometric-series">geometric series</span></em>. The <span data-concept="ratio-test">ratio test</span> tells us that the <span data-concept="radius-of-convergence">radius of convergence</span> is $1$. The series diverges for $x \leq -1$ and $x \geq 1$, even though $\frac{1}{1-x}$ is defined for all $x \neq 1$.</p>
+<p id="rational-expansion">Instead of applying the <span data-concept="taylor-series">Taylor series</span> expansion <a href="#eq-7-2">(7.2)</a>, the <span data-concept="geometric-series">geometric series</span> together with rules for addition and multiplication of <span data-concept="power-series">power series</span> can be used to <span data-concept="power-series-of-a-rational-function">expand any rational function</span> around a point $x_0$, as long as the denominator is not zero at $x_0$.</p>
+<div class="example" id="ex-7-1-6">
+<h3>Example 7.1.6</h3>
+<p>Expand $\frac{x}{1+2x+x^2}$ as a <span data-concept="power-series">power series</span> around the origin ($x_0 = 0$) and find the <span data-concept="radius-of-convergence">radius of convergence</span>.</p>
+<p>First, write $1+2x+x^2 = {(1+x)}^2 = {\bigl(1-(-x)\bigr)}^2$. Compute</p>
+$$ \begin{split} \frac{x}{1+2x+x^2} & = x \, {\left( \frac{1}{1-(-x)} \right)}^2 \\ & = x \, { \left( \sum_{k=0}^\infty {(-1)}^k x^k \right)}^2 \\ & = x \, \left( \sum_{k=0}^\infty \kc_k x^k \right) \\ & = \sum_{k=0}^\infty \kc_k x^{k+1} , \end{split} $$
+<p>where to get $\kc_k$, we use the formula for the <span data-concept="multiplying-power-series">product of series</span>: $\kc_0 = 1$, $\kc_1 = -1 -1 = -2$, $\kc_2 = 1+1+1 = 3$, etc. Therefore</p>
+$$ \frac{x}{1+2x+x^2} = \sum_{k=1}^\infty {(-1)}^{k+1} k x^k = x-2x^2+3x^3-4x^4+\cdots $$
+<p>The <span data-concept="radius-of-convergence">radius of convergence</span> is at least 1. We use the <span data-concept="ratio-test">ratio test</span></p>
+$$ \lim_{k\to\infty} \left\lvert \frac{\ka_{k+1}}{\ka_k} \right\rvert = \lim_{k\to\infty} \left\lvert \frac{{(-1)}^{k+2} (k+1)}{{(-1)}^{k+1}k} \right\rvert = \lim_{k\to\infty} \frac{k+1}{k} = 1 . $$
+<p>So the <span data-concept="radius-of-convergence">radius of convergence</span> is actually equal to 1.</p>
+</div>
+<p id="partial-fractions">When the rational function is more complicated, it is also possible to use the <a href="/calculus/ch07/7.4/#7.4-pfd-intro">method of partial fractions</a>. For example, to find the <span data-concept="taylor-series">Taylor series</span> for $\frac{x^3+x}{x^2-1}$, we write</p>
+$$ \frac{x^3+x}{x^2-1} = x + \frac{1}{1+x} - \frac{1}{1-x} = x + \sum_{k=0}^\infty {(-1)}^k x^k - \sum_{k=0}^\infty x^k = - x + \sum_{\substack{k=3 \\ k \text{ odd}}}^\infty (-2) x^k . $$
+</section>

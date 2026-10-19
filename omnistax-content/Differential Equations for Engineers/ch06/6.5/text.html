@@ -1,0 +1,103 @@
+<section id="the-method">
+<h2>Transforming the time variable</h2>
+<p id="family">The <span data-concept="laplace-transform">Laplace transform</span> comes from the same family of transforms as does the <span data-concept="fourier-series">Fourier series</span><sup class="fn" data-note="fn-fourier-transform"></sup>, which we used in <a href="/diffyqs/ch04/4.1/">chapter 4</a> to solve <span data-concept="partial-differential-equation">partial differential equations (PDEs)</span>. It is therefore not surprising that we can also solve <span data-concept="partial-differential-equation">PDEs</span> with the <span data-concept="laplace-transform">Laplace transform</span>.</p>
+<p id="method">Given a <span data-concept="partial-differential-equation">PDE</span> in two <span data-concept="independent-variable">independent variables</span> $x$ and $t$, we use the <span data-concept="laplace-transform">Laplace transform</span> on one of the variables (taking the transform of everything in sight), and <span data-concept="transform-of-a-derivative">derivatives in that variable become multiplications by the transformed variable $s$</span>. The <span data-concept="partial-differential-equation">PDE</span> becomes an <span data-concept="ordinary-differential-equation">ODE</span>, which we solve. Afterwards, we <span data-concept="inverse-laplace-transform">invert the transform</span> to find a <span data-concept="solution-to-a-differential-equation">solution</span> to the original problem. It is best to see <span data-concept="solving-pdes-with-the-laplace-transform">the procedure</span> in an example.</p>
+</section>
+
+<section id="transport">
+<h2>The transport equation on a half line</h2>
+<div class="example" id="ex-6-5-1">
+<h3>Example 6.5.1</h3>
+<p>Consider the <span data-concept="first-order-linear-pde">first-order PDE</span></p>
+$$ \kyt = - \alpha \kyx, \qquad \text{for } x > 0, \enspace t > 0, $$
+<p>with <span data-concept="side-conditions">side conditions</span></p>
+$$ \ky(0,t) = C, \qquad \ky(x,0) = 0 . $$
+<p id="convection-equation">We will assume $\alpha > 0$ is a constant. This equation is called the <em><span data-concept="transport-equation">convection equation</span></em> or sometimes the <em><span data-concept="transport-equation">transport equation</span></em>, and it already made an appearance in <a href="/diffyqs/ch01/1.9/">§1.9</a>, with different conditions. See Figure 6.5 for a diagram of the setup.</p>
+<p id="river">A physical setup of this equation is a river of viscous goo, as we do not want anything to diffuse. The function $\ky$ is the concentration of some toxic substance<sup class="fn" data-note="fn-goo"></sup>. The variable $x$ denotes position, where $x=0$ is the location of a factory spewing the toxic substance into the river. The toxic substance flows into the river so that at $x=0$ the concentration is always $C$. We wish to see what happens past the factory, that is, at $x > 0$. Let $t$ be the time, and assume the factory started operations at $t=0$, so that at $t=0$ the river is just pure goo.</p>
+<figure class="sim" id="sim-goo-river" data-figure="6.5 + 6.6" data-original="/media/ch06/half-infinite-goo-river.svg,/media/ch06/half-infinite-goo-river-wavefront.svg" data-original-caption="(Figure 6.5) Transport equation on a half line. (Figure 6.6) Wavefront of toxic substance is a line of slope 1/α.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.5 + 6.6</span><span>The factory at $x = 0$ holds the concentration at $\ky = C$, and the river carries the toxic substance downstream at speed $\alpha$: at time $t$ the river is toxic up to the front $x = \alpha t$ and still pure goo beyond it, $\ky(x,t) = C\,\ku\bigl(t - x/\alpha\bigr)$. Below, the <span data-type="region">first quadrant</span> of the $(x, t)$ plane, with $\ky = 0$ on the $x$-axis and $\ky = C$ on the $t$-axis: the <span data-concept="wavefront">wavefront</span> $t = x/\alpha$, of slope $1/\alpha$, divides it into $\ky = C$ above and $\ky = 0$ below, and the present time rises through it. With the data $\ky(0,t) = \sin t$ of Example 6.5.2 the signal arrives delayed by $x$ and damped by $e^{-x}$, behind the same front.</span></div>
+</figure>
+<p id="transform-in-t">Consider a <a href="/calculus/ch14/14.1/">function of two variables</a> $\ky(x,t)$. Let us fix $x$ and transform the $t$ variable. For convenience, we treat the transformed $s$ variable as a parameter, since there are no derivatives in $s$. That is, we write $\kY(x)$ for the <span data-concept="laplace-transform">transformed function</span>, and treat it as a function of $x$, leaving $s$ as a parameter.</p>
+<div class="equation" id="eq-lpde-transform-in-t">$$ \kY(x) = {\mathcal L} \bigl\{ \ky(x,t) \bigr\} = \int_0^\infty \ky(x,t) e^{-st} \,dt . $$</div>
+<p id="partial-transforms">The <span data-concept="transform-of-a-partial-derivative">transform of a derivative with respect to $x$</span> is just the derivative of the transformed function:</p>
+<div class="equation" id="eq-lt-partial-x">$$ {\mathcal L} \bigl\{ \kyx(x,t) \bigr\} = \int_0^\infty \kyx(x,t) e^{-st} \,dt = \frac{d}{dx} \left[\int_0^\infty \ky(x,t) e^{-st} \,dt \right] = \kYprime(x) . $$</div>
+<p id="t-derivative">To transform the derivative in $t$ (the variable being transformed), we use <span data-concept="transform-of-a-derivative">the rules</span> from <a href="/diffyqs/ch06/6.2/">§6.2</a>:</p>
+<div class="equation" id="eq-lt-partial-t">$$ {\mathcal L} \bigl\{ \kyt(x,t) \bigr\} = s\kY(x) - \ky(x,0) . $$</div>
+<p id="transformed-equation">In our specific case, $\ky(x,0)=0$, and so ${\mathcal L} \bigl\{ \kyt(x,t) \bigr\} = s\kY(x)$. We transform the equation to find</p>
+$$ s\kY(x) = -\alpha \kYprime(x) . $$
+<p id="transformed-condition">This <span data-concept="ordinary-differential-equation">ODE</span> needs an <span data-concept="initial-value">initial condition</span>. The <span data-concept="initial-value">initial condition</span> is the other <span data-concept="side-conditions">side condition</span> of the <span data-concept="partial-differential-equation">PDE</span>, the one that depends on $x$. Everything is transformed, so we must also transform this condition</p>
+$$ \kY(0) = {\mathcal L} \bigl\{ \ky(0,t) \bigr\} = {\mathcal L} \bigl\{ C \bigr\} = \frac{C}{s} . $$
+<p id="solve-transformed">We solve the <span data-concept="ordinary-differential-equation">ODE</span> problem $s\kY(x) = -\alpha \kYprime(x)$, $\kY(0) = \frac{C}{s}$, to find</p>
+$$ \kY(x) = \frac{C}{s} e^{-\frac{s}{\alpha} x} . $$
+<p id="heaviside">We are not done. We have $\kY(x)$, but we really want $\ky(x,t)$. We <span data-concept="inverse-laplace-transform">transform the $s$ variable back to $t$</span>. Let</p>
+$$ \ku(t) = \begin{cases} 0 & \text{if $t < 0$}, \\ 1 & \text{otherwise} \end{cases} $$
+<p>be the <span data-concept="unit-step-function">Heaviside function</span>. As</p>
+$$ {\mathcal L} \bigl\{ \ku(t-a) \bigr\} = \int_0^\infty \ku(t-a) \, e^{-st} \,dt = \int_a^\infty e^{-st} \,dt = \frac{e^{-as}}{s} , $$
+<p>then</p>
+<div class="equation" id="eq-half-line-transport">$$ \ky(x,t) = {\mathcal L}^{-1} \left\{ \frac{C}{s} e^{-\frac{s}{\alpha} x} \right\} = C \ku\bigl(t-{x}/{\alpha}\bigr) . $$</div>
+<p>In other words,</p>
+<div class="equation" id="eq-half-line-transport-cases">$$ \ky(x,t) = \begin{cases} 0 & \text{if $t < {x}/{\alpha}$}, \\ C & \text{otherwise.} \end{cases} $$</div>
+<p id="wavefront">See Figure 6.6 for a diagram of this <span data-concept="solution-to-a-differential-equation">solution</span>. The line of slope ${1}/{\alpha}$ indicates the <span data-concept="wavefront">wavefront</span> of the toxic substance in the picture as it is leaving the factory. What the equation does is to try to move the <span data-concept="pde-initial-condition">initial condition</span> to the right at speed $\alpha$, and so it moves the boundary condition (the <span data-concept="wavefront">wavefront</span>) too.</p>
+<p id="shhh">Shhh…$\ky$ is not differentiable. It is not even continuous (nobody ever seems to notice). How could we plug something that’s not differentiable into the equation? Well, just think of a differentiable function very, very close to $\ky$. Or, if you recognize <span data-concept="derivative-of-the-heaviside-function">the derivative of the Heaviside function as the delta function</span>, then all is well too:</p>
+$$ \kyt (x,t) = \frac{\partial}{\partial t} \left[ C \ku\bigl(t-{x}/{\alpha}\bigr) \right] = C \ku'\bigl(t-{x}/{\alpha}\bigr) = C \kdelta\bigl(t-{x}/{\alpha}\bigr) $$
+<p>and</p>
+$$ \kyx (x,t) = \frac{\partial}{\partial x} \left[ C \ku\bigl(t-{x}/{\alpha}\bigr) \right] = - \frac{C}{\alpha} \ku'\bigl(t-{x}/{\alpha}\bigr) = - \frac{C}{\alpha} \kdelta\bigl(t-{x}/{\alpha}\bigr) . $$
+<p>So $\kyt = - \alpha \kyx$.</p>
+</div>
+</section>
+
+<section id="nonhomogeneous">
+<h2>Nonhomogeneous side conditions</h2>
+<p id="nonhomogeneous-conditions">The <span data-concept="laplace-transform">Laplace transform</span> is very good with <span data-concept="constant-coefficient-equation">constant-coefficient equations</span>. One advantage of Laplace is that it easily handles nonhomogeneous <span data-concept="side-conditions">side conditions</span>. Let us try a more complicated example.</p>
+<div class="example" id="ex-6-5-2">
+<h3>Example 6.5.2</h3>
+<p>Consider</p>
+$$ \begin{align*} & \kyt + \kyx + \ky = 0, \qquad \text{for } x > 0, \enspace t > 0, \\ & \ky(0,t) = \sin(t), \qquad \ky(x,0) = 0 . \end{align*} $$
+<p>Again, we transform $t$, and we write $\kY(x)$ for the <span data-concept="laplace-transform">transformed function</span>. As $\ky(x,0) = 0$, we find</p>
+$$ s\kY(x) + \kYprime(x) + \kY(x) = 0, \qquad \kY(0) = \frac{1}{s^2+1} . $$
+<p>The <span data-concept="solution-to-a-differential-equation">solution</span> of the transformed equation is</p>
+$$ \kY(x) = \frac{1}{s^2+1} e^{-(s+1) x} = \frac{1}{s^2+1} e^{-xs} e^{-x} . $$
+<p id="second-shift">Using the <span data-concept="second-shifting-property">second shifting property</span> <a href="/diffyqs/ch06/6.2/#6.2-eq-6-1">(6.1)</a> and <span data-concept="linearity-of-the-laplace-transform">linearity of the transform</span>, we obtain the <span data-concept="solution-to-a-differential-equation">solution</span></p>
+$$ \ky(x,t) = e^{-x} \sin(t-x) \ku(t-x) . $$
+</div>
+</section>
+
+<section id="ill-posed">
+<h2>Detecting an ill-posed problem</h2>
+<p id="ill-posed-def">We can also detect when the problem is <em><span data-concept="ill-posed-problem">ill-posed</span></em> in the sense that it has no <span data-concept="solution-to-a-differential-equation">solution</span>. Let us change the equation to</p>
+$$ \begin{align*} & -\kyt + \kyx = 0, \qquad \text{for } x > 0, \enspace t > 0, \\ & \ky(0,t) = \sin(t), \qquad \ky(x,0) = 0 . \end{align*} $$
+<p id="characteristics">Then the problem has no <span data-concept="solution-to-a-differential-equation">solution</span>. First, let us see this in the language of <a href="/diffyqs/ch01/1.9/">§1.9</a>. The <span data-concept="characteristic-curve">characteristic curves</span> are $t=-x+C$. If $\tau$ is the <span data-concept="characteristic-coordinates">characteristic coordinate</span>, then we find the equation $y_\tau = 0$ along the curve, meaning a <span data-concept="solution-to-a-differential-equation">solution</span> is constant along <span data-concept="characteristic-curve">characteristic curves</span>. But these curves intersect both the $x$-axis and the $t$-axis. For example, the curve $t=-x+1$ intersects at $(1,0)$ and $(0,1)$. The <span data-concept="solution-to-a-differential-equation">solution</span> is constant along the curve so $\ky(1,0)$ should equal $\ky(0,1)$. But $\ky(1,0) = 0$ and $\ky(0,1) = \sin(1) \neq 0$. See Figure 6.7.</p>
+<figure class="sim" id="sim-ill-posed" data-figure="6.7" data-original="/media/ch06/half-infinite-ill-posed.svg" data-original-caption="Ill-posed problem.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.7</span><span>For $-\kyt + \kyx = 0$ a <span data-concept="solution-to-a-differential-equation">solution</span> would be constant along every <span data-concept="characteristic-curve">characteristic</span> $t = -x + C$, but each of these lines joins a point $(C, 0)$ of the $x$-axis, where $\ky = 0$, to a point $(0, C)$ of the $t$-axis, where $\ky = \sin C$. The two values differ unless $\sin C = 0$, as at $C = \pi$, and even then only on that one line, so the problem has no <span data-concept="solution-to-a-differential-equation">solution</span>.</span></div>
+</figure>
+<p id="transform-argument">Now consider the transform. The transformed problem is</p>
+$$ -s\kY(x) + \kYprime(x) = 0, \enspace \kY(0) = \frac{1}{s^2+1} , $$
+<p>and the <span data-concept="solution-to-a-differential-equation">solution</span> ought to be</p>
+$$ \kY(x) = \frac{1}{s^2+1} e^{sx} . $$
+<p id="no-decay">Importantly, this <span data-concept="laplace-transform">Laplace transform</span> <span data-concept="laplace-transform-decay">does not decay to zero at infinity</span>! That is, since $x > 0$ in <span data-type="region">the region of interest</span>,</p>
+$$ \lim_{s \to \infty} \frac{1}{s^2+1} e^{sx} = \infty \neq 0 . $$
+<p id="wrong-direction">It almost looks as if we could use <span data-concept="second-shifting-property">the shifting property</span>, but notice that the shift is in the wrong direction.</p>
+</section>
+
+<section id="heat">
+<h2>A half-infinite rod</h2>
+<p id="higher-order">Of course, we need not restrict ourselves to first-order equations, although the computations become more involved for higher-order equations.</p>
+<div class="example" id="ex-6-5-3">
+<h3>Example 6.5.3</h3>
+<p>Let us use Laplace for the following problem:</p>
+$$ \begin{align*} & \kyt = \kyxx, \qquad 0 < x < \infty, \enspace t > 0,\\ & \kyx(0,t) = \kf(t), \\ & \ky(x,0) = 0 . \end{align*} $$
+<p id="bounded">This problem corresponds to a half-infinite insulated rod with a given heat flux at one end. The setup would come up in real life in the case of a sufficiently long rod, where we would not consider a long enough time for our <span data-concept="solution-to-a-differential-equation">solution</span> to notice that we do not have an infinite rod but just a very long one. In any case, the real-life situation imposes other conditions on our <span data-concept="solution-to-a-differential-equation">solution</span> $\ky$. For example, we will assume that the <span data-concept="solution-to-a-differential-equation">solution</span> is bounded. <span data-concept="boundedness-condition">This boundedness condition</span> will stand in for a boundary condition at the infinite end. Boundedness is also sufficient for <span data-concept="existence-of-the-laplace-transform">the Laplace transform in the $t$ variable to exist</span>.</p>
+<p>Transform the equation in the $t$ variable to find</p>
+$$ s\kY(x) = \kYdprime(x) . $$
+<p>The <span data-concept="general-solution">general solution</span> to this <span data-concept="ordinary-differential-equation">ODE</span> is</p>
+$$ \kY(x) = A e^{\sqrt{s}x} + B e^{-\sqrt{s} x} . $$
+<p id="a-zero">Note that $A$ and $B$ depend on $s$. As $\ky$ is bounded, then $\kY(x)$ is bounded for any fixed $s > 0$, so for $\kY(x)$ to stay bounded as $x \to \infty$, we must have $A=0$.</p>
+<p id="flux-condition">Now consider the boundary condition at $x=0$. Transform $\kYprime(0) = \kF(s)$ and so $-\sqrt{s}B = \kF(s)$. In other words,</p>
+$$ \kY(x) = \kF(s) \frac{-1}{\sqrt{s}} e^{-\sqrt{s} x} . $$
+<p id="appendix-b">If we look up the <span data-concept="inverse-laplace-transform">inverse transform</span> in a table such as the one in <a href="/diffyqs/sheets/laplace-table/">Appendix B</a> (or we spend the afternoon doing calculus), we find</p>
+$$ {\mathcal L}^{-1}\left[\frac{1}{\sqrt{s}} e^{-\sqrt{s} x}\right] = \frac{1}{\sqrt{\pi t}} e^{\frac{-x^2}{4t}} . $$
+<p id="convolution-answer">So</p>
+$$ \ky(x,t) = {\mathcal L}^{-1} \left[ \kF(s) \frac{-1}{\sqrt{s}} e^{-\sqrt{s} x}\right] = \int_0^t \kf(\tau) \frac{-1}{\sqrt{\pi {(t-\tau)}}} e^{\frac{-x^2}{4(t-\tau)}} \, d\tau . $$
+</div>
+<p id="closing">Laplace can solve problems where <span data-concept="separation-of-variables-for-pdes">separation of variables</span> fails. Laplace does not mind nonhomogeneity, but it is essentially only useful for <span data-concept="constant-coefficient-equation">constant-coefficient equations</span>.</p>
+</section>

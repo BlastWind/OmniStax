@@ -115,7 +115,7 @@ const DATA = {
   function mount3d(g) {
     const D = DATA[g], keep = S?.v?.at;
     if (S) unmount3d();
-    S = F.space3d(d, { box: [[-1.05, 1.05], [-1.05, 1.05], [D.lo, D.top ?? D.hi]], h: 640, pitch: [0.12, 1.45], fit: 2.5, turn: -0.62, tilt: 0.72 });
+    S = F.space3d(d, { box: [[-1.05, 1.05], [-1.05, 1.05], [D.lo, D.top ?? D.hi]], h: 640, pitch: [0.12, 1.45], fit: 1.75, turn: -0.62, tilt: 0.95 });
     if (keep && S.v) S.v.setView(keep.yaw, keep.pitch);
     S.g = g; s3key = '';
     d.c.style.display = 'none';
@@ -127,7 +127,7 @@ const DATA = {
   }
   /* the surface over a polar grid, its faces grouped into bands of the scale */
   function surfaceMarks(g) {
-    const D = DATA[g], u = uOf(g), NR = 24, NT = g === 'cos' ? 12 * Math.max(12, nS.v) : 144, B = 24, bands = Array.from({ length: B }, () => []);
+    const D = DATA[g], u = uOf(g), NR = 32, NT = g === 'cos' ? 12 * Math.max(12, nS.v) : 144, B = 48, bands = Array.from({ length: B }, () => []);
     const P = (i, j) => { const r = i / NR, t = -Math.PI + (TAU * j) / NT; return [r * Math.cos(t), r * Math.sin(t), u(r, t)]; };
     for (let i = 0; i < NR; i++) for (let j = 0; j < NT; j++) {
       const q = [P(i, j), P(i + 1, j), P(i + 1, j + 1), P(i, j + 1)], z = (q[0][2] + q[1][2] + q[2][2] + q[3][2]) / 4;
@@ -207,7 +207,9 @@ const DATA = {
     hits.push({ x: CX, y: CY, r: 14, name: `the centre, where u is the average of g on the rim` });
     hits.push({ x: CX + RD * Math.cos(2.4), y: CY - RD * Math.sin(2.4), r: 16, name: 'the rim r = 1, held at u = g(θ)' });
     /* the ray through the probe, and the probe */
-    ctx.save(); ctx.setLineDash([4, 8]); line(ctx, CX, CY, CX + RD * Math.cos(t), CY - RD * Math.sin(t), alpha(PAL.ink, 0.75), 2.5); ctx.restore();
+    line(ctx, CX, CY, CX + RD * Math.cos(t), CY - RD * Math.sin(t), alpha(PAL.panel, 0.7), 6);
+    ctx.save(); ctx.setLineDash([4, 8]); line(ctx, CX, CY, CX + RD * Math.cos(t), CY - RD * Math.sin(t), PAL.ink, 2.5); ctx.restore();
+    dot(ctx, CX + r * RD * Math.cos(t), CY - r * RD * Math.sin(t), PAL.panel, true, 13);
     const P = grip.draw(ctx, FAX, PAL.ink);
     if (P) hits.push({ x: P.x, y: P.y, r: 18, name: `the probe (r, θ) = (${n(r)}, ${n(t)}), u = ${n(W.v, 3)}` });
     /* u along the ray, its u-axis carrying the scale */
@@ -257,7 +259,7 @@ const DATA = {
     for (let i = 0; i <= M; i++) { const a = a0 + i * h, w = i === 0 || i === M ? 1 : i % 2 ? 4 : 2; s += w * Pk(r, t, a) * G.g(a); }
     return (s * h) / 3 / TAU;
   }
-  const CX = 300, CY = 334, RD = 185;
+  const CX = 300, CY = 346, RD = 176;
   const FR = { l: CX - 1.3 * RD, r: CX + 1.3 * RD, t: CY - 1.3 * RD, b: CY + 1.3 * RD };
   const FAX = { X: (v) => CX + v * RD, Y: (v) => CY - v * RD, box: FR, xr: [-1.3, 1.3], yr: [-1.3, 1.3] };
   const GB = { l: 690, r: 1330, t: 130, b: 520 }, YT = 8;
@@ -276,7 +278,6 @@ const DATA = {
     }
     ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(CX, CY, RD, 0, TAU); ctx.stroke(); ctx.restore();
     hits.push({ x: CX + (RD + 7) * Math.cos(2.6), y: CY - (RD + 7) * Math.sin(2.6), r: 14, name: `the rim, painted with g: ${G.name}` });
-    [[0, '0'], [Math.PI / 2, 'π/2'], [Math.PI, 'π'], [-Math.PI / 2, '−π/2']].forEach(([q, s]) => text(ctx, s, CX + (RD + 38) * Math.cos(q), CY - (RD + 38) * Math.sin(q) + 6, PAL.muted, { size: 17, align: 'center' }));
     const px = CX + r * RD * Math.cos(t), py = CY - r * RD * Math.sin(t), qx = CX + RD * Math.cos(a), qy = CY - RD * Math.sin(a);
     const s2 = 1 - 2 * r * Math.cos(t - a) + r * r, s = Math.sqrt(s2);
     ctx.save(); ctx.setLineDash([10, 10]);
@@ -284,17 +285,23 @@ const DATA = {
     ctx.restore();
     line(ctx, px, py, qx, qy, PAL.ink, 3.5);
     dot(ctx, CX, CY, PAL.ink, true, 5);
-    const mid = (x0, y0, x1, y1, str, side) => {
-      const L = Math.hypot(x1 - x0, y1 - y0) || 1, nx = -(y1 - y0) / L, ny = (x1 - x0) / L;
-      text(ctx, str, (x0 + x1) / 2 + side * 20 * nx, (y0 + y1) / 2 + side * 20 * ny + 6, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    /* a segment's name beside it at fraction f of its length, on the side away from the point (ax, ay) */
+    const along = (x0, y0, x1, y1, f, str, awayX, awayY) => {
+      const L = Math.hypot(x1 - x0, y1 - y0) || 1, nx = -(y1 - y0) / L, ny = (x1 - x0) / L, mx = x0 + f * (x1 - x0), my = y0 + f * (y1 - y0);
+      const side = nx * (awayX - mx) + ny * (awayY - my) > 0 ? -1 : 1, gap = 16 + (F.measure(ctx, str, { size: 20, weight: 600 }) / 2) * Math.abs(nx) + 12 * Math.abs(ny);
+      text(ctx, str, mx + side * gap * nx, my + side * gap * ny + 7, PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
     };
-    if (r > 0.12) mid(CX, CY, px, py, 'r', -1);
-    mid(CX, CY, qx, qy, '1', 1);
-    if (s > 0.15) mid(px, py, qx, qy, `s = ${fmt(s, 2)}`, 1);
+    if (r > 0.3) along(CX, CY, px, py, 0.35, 'r', qx, qy);
+    along(CX, CY, qx, qy, 0.3, '1', px, py);
+    if (s > 0.25) along(px, py, qx, qy, 0.5, `s = ${fmt(s, 2)}`, CX, CY);
     hits.push({ x: (px + qx) / 2, y: (py + qy) / 2, r: 16, name: `s, the distance from (r, θ) to (1, α): s² = 1 − 2r cos(θ − α) + r² = ${fmt(s2, 3)}` });
     const Pp = inner.draw(ctx, FAX, PAL.ink), Pq = rim.draw(ctx, FAX, PAL.ink);
-    if (Pp) { label(ctx, '(r, θ)', Pp.x, Pp.y, { side: Math.cos(t) >= 0 ? 'left' : 'right', size: 20, color: PAL.ink, gap: 18 }); hits.push({ x: Pp.x, y: Pp.y, r: 18, name: `the point (r, θ) = (${n(r)}, ${n(t)})` }); }
-    if (Pq) { text(ctx, '(1, α)', CX + (RD + 62) * Math.cos(a), CY - (RD + 62) * Math.sin(a) + 7, PAL.ink, { size: 20, align: 'center', bg: PAL.panel }); hits.push({ x: Pq.x, y: Pq.y, r: 18, name: `the rim point (1, α), α = ${n(a)}, where g = ${fmt(G.g(a), 2)}` }); }
+    /* the point's name in the widest gap between its two segments */
+    const aQ = Math.atan2(qy - py, qx - px), aC = r > 0.02 ? Math.atan2(CY - py, CX - px) : aQ + Math.PI;
+    let bis = (aQ + aC) / 2; const gapTo = (u, v) => Math.abs(Math.atan2(Math.sin(u - v), Math.cos(u - v)));
+    if (gapTo(bis, aQ) < Math.PI / 2) bis += Math.PI;
+    if (Pp) { text(ctx, '(r, θ)', Pp.x + 46 * Math.cos(bis), Pp.y + 40 * Math.sin(bis) + 7, PAL.ink, { size: 20, align: 'center', bg: PAL.panel }); hits.push({ x: Pp.x, y: Pp.y, r: 18, name: `the point (r, θ) = (${n(r)}, ${n(t)})` }); }
+    if (Pq) { text(ctx, '(1, α)', CX + (RD + 46) * Math.cos(a), CY - (RD + 40) * Math.sin(a) + 7, PAL.ink, { size: 20, align: 'center', bg: PAL.panel }); hits.push({ x: Pq.x, y: Pq.y, r: 18, name: `the rim point (1, α), α = ${n(a)}, where g = ${fmt(G.g(a), 2)}` }); }
     /* the scale of g under the disc */
     scaleBar(ctx, CX - 130, 572, CX + 130, 586, false);
     text(ctx, '0', CX - 130, 610, PAL.muted, { size: 17, align: 'center' });

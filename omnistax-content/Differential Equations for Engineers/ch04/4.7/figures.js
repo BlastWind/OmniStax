@@ -62,7 +62,7 @@ function stroke(ctx, pts, color, w, dash) {
     const fq = (k) => `\\htmlClass{kv-frequency}{${n((k * Math.PI * a) / L)}}`, wk = (k) => n((k * Math.PI) / L);
     const sq = (c) => `\\htmlClass{kv-sequence}{${n(Math.abs(c), 4)}}`;
     const m = mode(v);
-    if (m) return `\\ky(x,t) = 0.1\\sin\\left(\\frac{${m}\\pi}{L}x\\right)\\cos\\left(\\frac{${m}\\pi a}{L}t\\right) = 0.1\\sin(${wk(m)}x)\\cos(${fq(m)}\\,t)`;
+    if (m) return `\\ky(x,t) = 0.1\\sin\\left(\\frac{${m > 1 ? m : ''}\\pi}{L}x\\right)\\cos\\left(\\frac{${m > 1 ? m : ''}\\pi a}{L}t\\right) = 0.1\\sin(${wk(m)}x)\\cos(${fq(m)}\\,t)`;
     const coef = v === 'strike' ? (k) => bn(k, a) : (k) => cn(k, p);
     const ks = []; for (let k = 1; ks.length < 2 && k < 40; k++) if (Math.abs(coef(k)) > 5e-6) ks.push(k);
     const trig = v === 'strike' ? '\\sin' : '\\cos';

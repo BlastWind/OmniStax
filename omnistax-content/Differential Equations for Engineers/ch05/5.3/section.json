@@ -1,0 +1,1068 @@
+{
+ "id": "5.3",
+ "module": "sps:section",
+ "chapter": "5",
+ "title": "Steady periodic solutions",
+ "short": "Steady periodic solutions",
+ "lead": "What does a guitar string do when a uniform force pushes it back and forth in time, and how does the yearly swing of temperature at the surface reach the ground below? This section finds solutions of the <span data-concept=\"forced-wave-equation\">forced wave equation</span> and of the <span data-concept=\"heat-equation\">heat equation</span> that oscillate with what drives them, the second through a <span data-concept=\"complex-exponential\">complex exponential</span>, and asks at which forcing frequencies the string resonates.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count, the [EP] section number and that the section is not in [BD]) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 5.3.101 and 5.3.102 carry the book’s own answers. The inline exercises 5.3.1–5.3.4 and exercises 5.3.5–5.3.8, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every formula checked with SymPy and every number computed before it was written. The book’s note that exercises numbered 101 and higher have solutions is the exercises_lead.",
+ "figures": [
+  {
+   "id": "sim-forced-string",
+   "kind": "sim",
+   "number": "5.3",
+   "folds": [
+    "5.4"
+   ],
+   "originals": [
+    "/media/ch05/sps-vibstr.svg",
+    "/media/ch05/natfreq-forcedvib.svg"
+   ],
+   "original_caption": "(Figure 5.3) Vibrating string. (Figure 5.4) Plot of y(x, t) = (F(x + t) + F(x − t))/2 + (cos(x) − ((cos(1) − 1)/sin(1)) sin(x) − 1) cos(t).",
+   "widths": [],
+   "draws": [
+    "function",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-string-resonance",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-underground-temperature",
+   "kind": "sim",
+   "number": "5.5",
+   "originals": [
+    "/media/ch05/sps-groundtemp.svg"
+   ],
+   "original_caption": "Underground temperature.",
+   "widths": [],
+   "draws": [
+    "function",
+    "frequency"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "yp",
+   "label": "the particular solution y_p",
+   "figures": [
+    "sim-forced-string"
+   ]
+  },
+  {
+   "id": "yc",
+   "label": "the free vibration y_c",
+   "figures": [
+    "sim-forced-string"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "natural-frequencies",
+   "concept": "natural-frequencies-of-a-string",
+   "verb": "introduces"
+  },
+  {
+   "span": "forcing",
+   "concept": "forced-wave-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "split",
+   "concept": "splitting-the-forced-string-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-forced-string-yp",
+   "concept": "particular-solution-of-the-forced-string",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance",
+   "concept": "string-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "surface",
+   "concept": "underground-temperature-model",
+   "verb": "introduces"
+  },
+  {
+   "span": "complex",
+   "concept": "solving-with-a-complex-exponential",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-underground-solution",
+   "concept": "underground-temperature-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "string-setup",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-6",
+   "concept": "wave-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "free-solution",
+   "concept": "wave-equation-series-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-free-string-solution",
+   "concept": "wave-equation-series-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-free-string-solution",
+   "concept": "natural-frequencies-of-a-string",
+   "verb": "uses"
+  },
+  {
+   "span": "forcing",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-7",
+   "concept": "forced-wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-rest",
+   "concept": "forced-wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-8",
+   "concept": "forced-wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "split-setup",
+   "concept": "particular-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "split-setup",
+   "concept": "splitting-the-forced-string-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-forced-string-split",
+   "concept": "splitting-the-forced-string-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "split",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "split",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "guess",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "guess",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-guess",
+   "concept": "particular-solution-of-the-forced-string",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-forced-string-yp",
+   "concept": "particular-solution-of-the-forced-string",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-forced-string-yp",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-forced-string-yp",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-forced-string-yp",
+   "concept": "forced-wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "yp-result",
+   "concept": "particular-solution-of-the-forced-string",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance",
+   "concept": "natural-frequencies-of-a-string",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance",
+   "concept": "fundamental-frequency",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resonance",
+   "concept": "resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resonance",
+   "concept": "particular-solution-of-the-forced-string",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-string-resonance",
+   "concept": "string-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-string-resonance",
+   "concept": "natural-frequencies-of-a-string",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-string-resonance",
+   "concept": "particular-solution-of-the-forced-string",
+   "verb": "uses"
+  },
+  {
+   "span": "nearby-string",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "nearby-string",
+   "concept": "string-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "wine-glass",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "complicated-forcing",
+   "concept": "forced-wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "complicated-forcing",
+   "concept": "fourier-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complicated-forcing",
+   "concept": "particular-solution-of-the-forced-string",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-3-1",
+   "concept": "particular-solution-of-the-forced-string",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-3-1",
+   "concept": "splitting-the-forced-string-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-3-1",
+   "concept": "forced-wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "dalembert-use",
+   "concept": "dalemberts-formula",
+   "verb": "reinforces"
+  },
+  {
+   "span": "dalembert-use",
+   "concept": "odd-periodic-extension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-5-10",
+   "concept": "dalemberts-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-forced-string",
+   "concept": "forced-wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-forced-string",
+   "concept": "particular-solution-of-the-forced-string",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-forced-string",
+   "concept": "splitting-the-forced-string-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-forced-string",
+   "concept": "string-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-forced-string",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ground-model",
+   "concept": "underground-temperature-model",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-underground-temperature",
+   "concept": "underground-temperature-model",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-underground-temperature",
+   "concept": "underground-temperature-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "surface",
+   "concept": "heat-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-surface-temperature",
+   "concept": "underground-temperature-model",
+   "verb": "uses"
+  },
+  {
+   "span": "steady-form",
+   "concept": "steady-state-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-underground-trial",
+   "concept": "underground-temperature-model",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-11",
+   "concept": "underground-temperature-model",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-11",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "complex",
+   "concept": "complex-exponential",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-underground-h",
+   "concept": "solving-with-a-complex-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-real",
+   "concept": "solving-with-a-complex-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-12",
+   "concept": "solving-with-a-complex-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-underground-x",
+   "concept": "solving-with-a-complex-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-underground-x",
+   "concept": "complex-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "bounded",
+   "concept": "eulers-formula",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bounded",
+   "concept": "underground-temperature-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "a-equals",
+   "concept": "solving-with-a-complex-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-underground-temperature",
+   "concept": "eulers-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-underground-temperature",
+   "concept": "underground-temperature-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "underground-solution",
+   "concept": "solving-with-a-complex-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-delay",
+   "concept": "underground-temperature-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "amplitude-decay",
+   "concept": "underground-temperature-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "cellar",
+   "concept": "underground-temperature-solution",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "forced-string-yp",
+   "what": "the factor $X(x)$ of the particular solution",
+   "source": "Differential Equations for Engineers, 5.3 Steady periodic solutions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kytt = a^2 \\kyxx + F_0 \\cos(\\komega t)",
+       "src": "(5.7)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyp(x,t)} = \\mk{X}{\\kX(x)}\\,\\mk{c}{\\cos(\\komega t)}",
+      "src": "5.3",
+      "why": "We look at the equation and we make an educated guess."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{(\\kyp)_{tt}} = \\mk{X}{-\\komega^2 \\kX}\\,\\mk{c}{\\cos(\\komega t)}, \\qquad \\mk{y2}{(\\kyp)_{xx}} = \\mk{X2}{\\kXdprime}\\,\\mk{c2}{\\cos(\\komega t)}",
+       "uses": [],
+       "cap": "Differentiating twice in $t$ and twice in $x$; $X$ depends on $x$ alone."
+      },
+      {
+       "tex": "\\mk{X}{-\\komega^2 \\kX}\\,\\mk{c}{\\cos(\\komega t)} = \\mk{X2}{a^2 \\kXdprime}\\,\\mk{c2}{\\cos(\\komega t)} + \\mk{f}{F_0 \\cos(\\komega t)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{X}{-\\komega^2 \\kX} = \\mk{X2}{a^2 \\kXdprime} + \\mk{f}{F_0}",
+       "uses": []
+      }
+     ],
+     "src": "5.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "A nonhomogeneous constant-coefficient equation is solved by the general solution of its associated homogeneous equation plus one particular solution.",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{X}{-\\komega^2 \\kX} = \\mk{X2}{a^2 \\kXdprime} + \\mk{f}{F_0}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{X2}{\\kXdprime} + \\mk{X}{\\frac{\\komega^2}{a^2} \\kX} = \\mk{f}{-\\frac{F_0}{a^2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{X}{\\kX(x)} = \\mk{h}{A \\cos\\left(\\frac{\\komega}{a} x\\right) + B \\sin\\left(\\frac{\\komega}{a} x\\right)} \\mk{f}{- \\frac{F_0}{\\komega^2}}",
+       "uses": [
+        1
+       ],
+       "cap": "It is a nonhomogeneous constant-coefficient equation: $\\cos(\\frac{\\omega}{a}x)$ and $\\sin(\\frac{\\omega}{a}x)$ solve the homogeneous one, and the constant $-\\frac{F_0}{\\omega^2}$ is a particular solution."
+      }
+     ],
+     "src": "5.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The endpoint conditions $y(0,t) = y(L,t) = 0$ imply $X(0) = X(L) = 0$.",
+       "src": "5.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0} = \\mk{X}{\\kX(0)}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0} = \\mk{X}{A - \\frac{F_0}{\\komega^2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{A}{A} = \\mk{X}{\\frac{F_0}{\\komega^2}}",
+       "uses": []
+      }
+     ],
+     "src": "5.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "text": "The endpoint conditions $y(0,t) = y(L,t) = 0$ imply $X(0) = X(L) = 0$.",
+       "src": "5.3"
+      },
+      {
+       "text": "$\\sin(\\frac{\\omega L}{a})$ is not zero.",
+       "src": "5.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0} = \\mk{X}{\\kX(L)}",
+      "uses": [
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0} = \\mk{X}{\\frac{F_0}{\\komega^2} \\cos\\left(\\frac{\\komega L}{a}\\right) + B \\sin\\left(\\frac{\\komega L}{a}\\right) - \\frac{F_0}{\\komega^2}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{B}{B \\sin\\left(\\frac{\\komega L}{a}\\right)} = \\mk{X}{-\\frac{F_0}{\\komega^2}\\left(\\cos\\left(\\frac{\\komega L}{a}\\right) - 1\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{B}{B} = \\mk{X}{\\frac{-F_0 \\left( \\cos\\left(\\frac{\\komega L}{a}\\right) - 1 \\right)}{\\komega^2 \\sin\\left(\\frac{\\komega L}{a}\\right)}}",
+       "uses": [
+        3
+       ],
+       "cap": "Assuming that $\\sin(\\frac{\\omega L}{a})$ is not zero, we can solve for $B$."
+      }
+     ],
+     "num": "(5.9)",
+     "src": "5.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{X}{\\kX(x)} = \\mk{h}{A \\cos\\left(\\frac{\\komega}{a} x\\right) + B \\sin\\left(\\frac{\\komega}{a} x\\right)} \\mk{f}{- \\frac{F_0}{\\komega^2}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{X}{\\kX(x)} = \\mk{h}{\\frac{F_0}{\\komega^2} \\cos\\left(\\frac{\\komega}{a} x\\right) - \\frac{F_0 \\left( \\cos\\left(\\frac{\\komega L}{a}\\right) - 1 \\right)}{\\komega^2 \\sin\\left(\\frac{\\komega L}{a}\\right)} \\sin\\left(\\frac{\\komega}{a} x\\right)} \\mk{f}{- \\frac{F_0}{\\komega^2}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{X}{\\kX(x)} = \\mk{h}{\\frac{F_0}{\\komega^2} \\left( \\cos\\left(\\frac{\\komega}{a} x\\right) - \\frac{\\cos\\left(\\frac{\\komega L}{a}\\right) - 1}{\\sin\\left(\\frac{\\komega L}{a}\\right)} \\sin\\left(\\frac{\\komega}{a} x\\right) - 1 \\right)}",
+       "uses": [],
+       "map": {
+        "f": "h"
+       }
+      }
+     ],
+     "src": "5.3"
+    }
+   ]
+  },
+  {
+   "id": "underground-x",
+   "what": "the general solution for $X(x)$",
+   "source": "Differential Equations for Engineers, 5.3 Steady periodic solutions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kh(x,t) = \\kX(x)\\, e^{i\\komega t}",
+       "src": "5.3"
+      },
+      {
+       "tex": "\\pm \\sqrt{i} = \\pm \\frac{1+i}{\\sqrt{2}}",
+       "src": "5.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\kht} = \\mk{xx}{k \\khxx}",
+      "src": "(5.12)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{i\\komega \\kX e^{i\\komega t}} = \\mk{xx}{k \\kXdprime e^{i \\komega t}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{xx}{k \\kXdprime} - \\mk{t}{i \\komega \\kX} = 0",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{xx}{\\kXdprime} - \\mk{t}{\\alpha^2 \\kX} = 0, \\qquad \\mk{a}{\\alpha = \\pm \\sqrt{\\frac{i\\komega}{k}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{xx}{\\kXdprime} - \\mk{t}{\\alpha^2 \\kX} = 0, \\qquad \\mk{a}{\\alpha = \\pm (1+i)\\sqrt{\\frac{\\komega}{2k}}}",
+       "uses": [
+        1
+       ],
+       "cap": "$\\sqrt{\\frac{i\\omega}{k}} = \\sqrt{i}\\,\\sqrt{\\frac{\\omega}{k}}$ and $\\frac{1}{\\sqrt{2}}\\sqrt{\\frac{\\omega}{k}} = \\sqrt{\\frac{\\omega}{2k}}$, so you could simplify $\\alpha$."
+      },
+      {
+       "tex": "\\mk{X}{\\kX(x)} = \\mk{e}{A e^{-(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x} + B e^{(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x}}",
+       "uses": [],
+       "cap": "The equation $X'' - \\alpha^2 X = 0$ has the solutions $e^{\\alpha x}$ and $e^{-\\alpha x}$, one for each sign of $\\alpha$."
+      }
+     ],
+     "src": "5.3"
+    }
+   ]
+  },
+  {
+   "id": "underground-temperature",
+   "what": "the complex-valued solution $h(x,t)$",
+   "source": "Differential Equations for Engineers, 5.3 Steady periodic solutions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kX(x) = A e^{-(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x} + B e^{(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x}",
+       "src": "5.3"
+      },
+      {
+       "tex": "B = 0",
+       "src": "5.3"
+      },
+      {
+       "tex": "A = A_0",
+       "src": "5.3"
+      },
+      {
+       "tex": "\\kh(x,t) = \\kX(x)\\, e^{i\\komega t}",
+       "src": "5.3"
+      },
+      {
+       "tex": "e^{i\\theta} = \\cos \\theta + i \\sin \\theta",
+       "src": "2.2, Euler’s formula"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{h}{\\kh(x,t)} = \\mk{X}{\\kX(x)}\\,\\mk{e}{e^{i\\komega t}}",
+      "uses": [
+       3
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{h}{\\kh(x,t)} = \\mk{X}{\\left(A e^{-(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x} + B e^{(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x}\\right)}\\,\\mk{e}{e^{i\\komega t}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{h}{\\kh(x,t)} = \\mk{X}{A_0 e^{-(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x}}\\,\\mk{e}{e^{i \\komega t}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{h}{\\kh(x,t)} = \\mk{X}{A_0 e^{-(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x + i \\komega t}}",
+       "uses": [],
+       "map": {
+        "e": "X"
+       }
+      },
+      {
+       "tex": "\\mk{h}{\\kh(x,t)} = \\mk{X}{A_0 e^{-\\sqrt{\\frac{\\komega}{2k}} \\, x}}\\,\\mk{e}{e^{i(\\komega t - \\sqrt{\\frac{\\komega}{2k}} \\, x)}}",
+       "uses": [],
+       "map": {
+        "X": [
+         "X",
+         "e"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{h}{\\kh(x,t)} = \\mk{X}{A_0 e^{-\\sqrt{\\frac{\\komega}{2k}} \\, x}} \\mk{e}{\\left(\\cos \\left(\\komega t - \\sqrt{\\frac{\\komega}{2k}}\\, x\\right) + i \\sin \\left(\\komega t - \\sqrt{\\frac{\\komega}{2k}}\\, x\\right) \\right)}",
+       "uses": [
+        4
+       ],
+       "cap": "We need to get the real part of $h$, so we apply Euler’s formula."
+      }
+     ],
+     "src": "5.3"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "5.3.1",
+   "source_number": "5.3.1",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "split"
+   },
+   "cite": "split",
+   "prompt": "<p>Check that $\\ky = \\kyc + \\kyp$ solves <a href=\"#eq-5-7\">(5.7)</a> and the side conditions <a href=\"#eq-5-8\">(5.8)</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The equation is linear, so it splits over the sum: $\\kytt - a^2\\kyxx = \\bigl((\\kyc)_{tt} - a^2(\\kyc)_{xx}\\bigr) + \\bigl((\\kyp)_{tt} - a^2(\\kyp)_{xx}\\bigr) = 0 + F_0\\cos(\\komega t)$, since $\\kyc$ solves the free equation of (5.6) and $\\kyp$ solves (5.7). At the ends, $\\ky(0,t) = \\kyc(0,t) + \\kyp(0,t) = 0 + 0 = 0$, and the same at $x = L$, because both parts vanish there. At $t = 0$, $\\ky(x,0) = \\kyc(x,0) + \\kyp(x,0) = \\kf(x) + \\kyp(x,0) = -\\kyp(x,0) + \\kyp(x,0) = 0$, and $\\kyt(x,0) = \\kg(x) + \\frac{\\partial \\kyp}{\\partial t}(x,0) = 0$, by the definitions of $\\kf$ and $\\kg$. So all four conditions of (5.8) hold."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "5.3.2",
+   "source_number": "5.3.2",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "eq-forced-string-yp"
+   },
+   "cite": "eq-forced-string-yp",
+   "prompt": "<p>Check that $\\kyp$ works.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\kyp = \\kX(x)\\cos(\\komega t)$ with $\\kX(x) = \\frac{F_0}{\\komega^2} \\left( \\cos\\left(\\frac{\\komega}{a} x\\right) - \\frac{\\cos\\left(\\frac{\\komega L}{a}\\right) - 1}{\\sin\\left(\\frac{\\komega L}{a}\\right)} \\sin\\left(\\frac{\\komega}{a} x\\right) - 1 \\right)$. Then $(\\kyp)_{tt} = -\\komega^2 \\kX \\cos(\\komega t)$ and $(\\kyp)_{xx} = \\kXdprime \\cos(\\komega t)$, where $\\kXdprime = -\\frac{\\komega^2}{a^2}\\bigl(\\kX + \\frac{F_0}{\\komega^2}\\bigr)$ because the bracket's cosine and sine terms are multiplied by $-\\frac{\\komega^2}{a^2}$ when differentiated twice and the constant $-1$ drops out. So $(\\kyp)_{tt} - a^2(\\kyp)_{xx} = \\bigl(-\\komega^2\\kX + \\komega^2\\kX + F_0\\bigr)\\cos(\\komega t) = F_0\\cos(\\komega t)$, which is (5.7). At the ends, $\\kX(0) = \\frac{F_0}{\\komega^2}(1 - 0 - 1) = 0$ and $\\kX(L) = \\frac{F_0}{\\komega^2}\\bigl(\\cos\\left(\\frac{\\komega L}{a}\\right) - (\\cos\\left(\\frac{\\komega L}{a}\\right) - 1) - 1\\bigr) = 0$, so $\\kyp(0,t) = \\kyp(L,t) = 0$. (Checked symbolically: the residual of (5.7) and both end values simplify to 0.)"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "5.3.3",
+   "source_number": "5.3.3",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "eq-5-12"
+   },
+   "cite": "eq-5-12",
+   "prompt": "<p>Suppose $\\kh$ satisfies <a href=\"#eq-5-12\">(5.12)</a>. Use <a href=\"/diffyqs/ch02/2.2/#2.2-eq-eulers-formula\">Euler’s formula</a> for the complex exponential to check that $\\ku = \\operatorname{Re} \\kh$ satisfies <a href=\"#eq-5-11\">(5.11)</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Taking the real part commutes with differentiating in the real variables $t$ and $x$, and $k$ is real, so from $\\kht = k\\khxx$ we get $\\kut = (\\operatorname{Re}\\kh)_t = \\operatorname{Re}(\\kht) = \\operatorname{Re}(k\\khxx) = k(\\operatorname{Re}\\kh)_{xx} = k\\kuxx$. At the surface, Euler's formula gives $\\kh(0,t) = A_0 e^{i\\komega t} = A_0\\bigl(\\cos(\\komega t) + i\\sin(\\komega t)\\bigr)$, and since $A_0$ is real, $\\ku(0,t) = \\operatorname{Re}\\kh(0,t) = A_0\\cos(\\komega t)$. Both parts of (5.11) hold."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "5.3.4",
+   "source_number": "5.3.4",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "bounded"
+   },
+   "cite": "bounded",
+   "prompt": "<p>Use <a href=\"/diffyqs/ch02/2.2/#2.2-eq-eulers-formula\">Euler’s formula</a> to show that $e^{(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x}$ is unbounded as $x \\to \\infty$, while $e^{-(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x}$ is bounded as $x \\to \\infty$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $c = \\sqrt{\\frac{\\komega}{2k}} > 0$. By Euler's formula, $e^{(1+i)cx} = e^{cx}e^{icx} = e^{cx}\\bigl(\\cos(cx) + i\\sin(cx)\\bigr)$, and $\\lvert \\cos(cx) + i\\sin(cx)\\rvert = \\sqrt{\\cos^2(cx) + \\sin^2(cx)} = 1$, so $\\lvert e^{(1+i)cx} \\rvert = e^{cx}$, which grows without bound as $x \\to \\infty$. In the same way $\\lvert e^{-(1+i)cx} \\rvert = e^{-cx}\\,\\lvert \\cos(cx) - i\\sin(cx) \\rvert = e^{-cx} \\le 1$ for $x \\ge 0$, so it is bounded (it even goes to 0)."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "5.3.5",
+   "source_number": "5.3.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drv-forced-string-yp",
+   "prompt": "<p>Suppose that the forcing function for the vibrating string is $F_0 \\sin (\\komega t)$. Derive the particular solution $\\kyp$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kyp(x,t) = \\frac{F_0}{\\komega^2} \\left( \\cos\\left(\\frac{\\komega}{a} x\\right) - \\frac{\\cos\\left(\\frac{\\komega L}{a}\\right) - 1}{\\sin\\left(\\frac{\\komega L}{a}\\right)} \\sin\\left(\\frac{\\komega}{a} x\\right) - 1 \\right) \\sin(\\komega t)$, assuming $\\sin(\\frac{\\komega L}{a}) \\ne 0$. Guess $\\kyp = \\kX(x)\\sin(\\komega t)$. Plugging into $\\kytt = a^2\\kyxx + F_0\\sin(\\komega t)$ gives $-\\komega^2\\kX\\sin(\\komega t) = a^2\\kXdprime\\sin(\\komega t) + F_0\\sin(\\komega t)$, and canceling the sine leaves $-\\komega^2\\kX = a^2\\kXdprime + F_0$, the same equation as for the cosine. The endpoint conditions are again $\\kX(0) = \\kX(L) = 0$, so $\\kX$ is exactly the same as before: $\\kX(x) = A\\cos(\\frac{\\komega}{a}x) + B\\sin(\\frac{\\komega}{a}x) - \\frac{F_0}{\\komega^2}$ with $A = \\frac{F_0}{\\komega^2}$ and $B$ from (5.9). Only the time factor changes from $\\cos(\\komega t)$ to $\\sin(\\komega t)$. (Checked symbolically: the residual of the equation simplifies to 0.)"
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "5.3.6",
+   "source_number": "5.3.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "complicated-forcing",
+   "prompt": "<p>Take the forced vibrating string. Suppose that $L=1$, $a=1$. Suppose that the forcing function is the square wave that is 1 on the interval $0 &lt; t &lt; \\pi$ and $-1$ on the interval $-\\pi &lt; t &lt; 0$. Find the particular solution. Hint: You may want to use result of <a href=\"#e5\">Exercise 5.3.5</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kyp(x,t) = \\sum\\limits_{\\substack{n=1 \\\\ n \\text{ odd}}}^\\infty \\frac{4}{\\pi n^3} \\left( \\cos(nx) - \\frac{\\cos(n) - 1}{\\sin(n)} \\sin(nx) - 1 \\right) \\sin(nt)$. The square wave is odd and $2\\pi$-periodic, so its Fourier series is a sine series, $\\sum_{n \\text{ odd}} \\frac{4}{\\pi n}\\sin(nt)$ (the coefficients $\\frac{2}{\\pi}\\int_0^\\pi \\sin(nt)\\,dt = \\frac{2}{\\pi n}(1 - \\cos(n\\pi))$ are $\\frac{4}{\\pi n}$ for odd $n$ and 0 for even $n$). Each term is a forcing $F_0\\sin(\\komega t)$ with $F_0 = \\frac{4}{\\pi n}$ and $\\komega = n$, so by Exercise 5.3.5 with $L = a = 1$ its particular solution is $\\frac{4}{\\pi n}\\cdot\\frac{1}{n^2}\\bigl(\\cos(nx) - \\frac{\\cos(n) - 1}{\\sin(n)}\\sin(nx) - 1\\bigr)\\sin(nt)$, and the equation is linear, so the particular solution for the square wave is the sum. No term is resonant: the natural frequencies are the multiples $n\\pi$ of $\\pi$, and an integer $n$ is never one, so $\\sin(n) \\neq 0$ (the $n = 3$ term is large, $\\sin 3 \\approx 0.141$, as $3$ is close to $\\pi$). (Checked: the coefficients numerically, and each term's residual symbolically.)"
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "5.3.7",
+   "source_number": "5.3.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "amplitude-decay",
+   "prompt": "<p>The units are cgs (centimeters-grams-seconds). For $k=0.005$, $\\komega = 1.991 \\times {10}^{-7}$, $A_0 = 20$. Find the depth at which the temperature variation is half ($\\pm 10$ degrees) of what it is on the surface.</p>",
+   "answer": {
+    "type": "number",
+    "value": 155.3,
+    "unit": "cm",
+    "generated_by": "ai",
+    "solution": "About $155$ centimeters. The amplitude at depth $x$ is $A_0 e^{-\\sqrt{\\frac{\\komega}{2k}}\\, x}$, so we need $20 e^{-\\sqrt{\\frac{\\komega}{2k}}\\, x} = 10$, that is $e^{-\\sqrt{\\frac{\\komega}{2k}}\\, x} = \\frac{1}{2}$ and $x = \\ln 2 \\big/ \\sqrt{\\frac{\\komega}{2k}}$. Here $\\sqrt{\\frac{\\komega}{2k}} = \\sqrt{\\frac{1.991 \\times 10^{-7}}{0.01}} \\approx 4.462 \\times 10^{-3}$ per centimeter, so $x \\approx \\frac{0.6931}{0.004462} \\approx 155.3$ centimeters, about 5 feet. The answer does not depend on $A_0$: halving is the same factor at every amplitude."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "5.3.8",
+   "source_number": "5.3.8",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "surface-constants",
+   "prompt": "<p>Derive the solution for underground temperature oscillation without assuming that $T_0 = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,t) = T_0 + A_0 e^{-\\sqrt{\\frac{\\komega}{2k}}\\, x} \\cos \\left(\\komega t - \\sqrt{\\frac{\\komega}{2k}}\\, x\\right)$. The problem is $\\kut = k\\kuxx$ with $\\ku(0,t) = T_0 + A_0\\cos(\\komega t)$. The constant $T_0$ solves the heat equation by itself (both sides are 0), so let $v = \\ku - T_0$. Then $v_t = \\kut = k\\kuxx = k v_{xx}$ and $v(0,t) = A_0\\cos(\\komega t)$: $v$ solves (5.11), whose bounded steady periodic solution is $A_0 e^{-\\sqrt{\\frac{\\komega}{2k}}\\, x} \\cos(\\komega t - \\sqrt{\\frac{\\komega}{2k}}\\, x)$, found above. Adding $T_0$ back gives the answer: the mean temperature $T_0$ is the same at every depth, and the swing about it decays and lags exactly as before. (Checked symbolically: the residual of the heat equation is 0 and $\\ku(0,t) = T_0 + A_0\\cos(\\komega t)$.)"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "5.3.101",
+   "source_number": "5.3.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "complicated-forcing",
+   "prompt": "<p>Take the forced vibrating string. Suppose that $L=1$, $a=1$. Suppose that the forcing function is a triangle wave, $\\lvert t \\rvert -\\frac{\\pi}{2}$ on $-\\pi &lt; t &lt; \\pi$ extended periodically. Find the particular solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyp(x,t) = \\sum\\limits_{\\substack{n=1 \\\\ n \\text{ odd}}}^\\infty \\frac{-4}{\\pi n^4} \\left( \\cos(n x ) - \\frac{\\cos ( n ) - 1} {\\sin( n )} \\sin( n x) -1 \\right) \\cos (n t) .$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "5.3.102",
+   "source_number": "5.3.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-delay",
+   "prompt": "<p>The units are cgs (centimeters-grams-seconds). For $k=0.01$, $\\komega = 1.991 \\times {10}^{-7}$, $A_0 = 25$. Find the depth at which the summer is again the hottest point.</p>",
+   "answer": {
+    "type": "number",
+    "value": 1991,
+    "unit": "cm",
+    "generated_by": "source",
+    "solution": "Approximately 1991 centimeters"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "splitting-the-forced-string-solution"
+  },
+  {
+   "exercise": "e1",
+   "concept": "forced-wave-equation"
+  },
+  {
+   "exercise": "e2",
+   "concept": "particular-solution-of-the-forced-string"
+  },
+  {
+   "exercise": "e3",
+   "concept": "solving-with-a-complex-exponential"
+  },
+  {
+   "exercise": "e3",
+   "concept": "eulers-formula"
+  },
+  {
+   "exercise": "e4",
+   "concept": "underground-temperature-solution"
+  },
+  {
+   "exercise": "e4",
+   "concept": "eulers-formula"
+  },
+  {
+   "exercise": "e5",
+   "concept": "particular-solution-of-the-forced-string"
+  },
+  {
+   "exercise": "e5",
+   "concept": "forced-wave-equation"
+  },
+  {
+   "exercise": "e6",
+   "concept": "particular-solution-of-the-forced-string"
+  },
+  {
+   "exercise": "e6",
+   "concept": "fourier-series"
+  },
+  {
+   "exercise": "e7",
+   "concept": "underground-temperature-solution"
+  },
+  {
+   "exercise": "e8",
+   "concept": "underground-temperature-model"
+  },
+  {
+   "exercise": "e8",
+   "concept": "underground-temperature-solution"
+  },
+  {
+   "exercise": "e101",
+   "concept": "particular-solution-of-the-forced-string"
+  },
+  {
+   "exercise": "e101",
+   "concept": "fourier-series"
+  },
+  {
+   "exercise": "e102",
+   "concept": "underground-temperature-solution"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-mythbusters",
+   "kind": "book",
+   "number": "27",
+   "html": "<em>Mythbusters</em>, episode 31, Discovery Channel, originally aired May 18th 2005."
+  }
+ ]
+}

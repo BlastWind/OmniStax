@@ -30,7 +30,7 @@ const guide = () => alpha(PAL.ink, 0.4);
       thr: () => 0,
       F: (s) => 1 / s,
       I: (s) => (Math.abs(s) < 1e-9 ? T : (1 - Math.exp(-s * T)) / s),
-      fTex: () => '1', head: () => 'e^{-st}',
+      fTex: () => '', head: () => 'e^{-st}',
       entry: '\\frac{1}{s}', num: (S) => `\\frac{1}{${S}}`,
     },
     exp: {
@@ -137,14 +137,15 @@ const guide = () => alpha(PAL.ink, 0.4);
     const S = n(s), shows = pick.value === 'cos';
     if (live) {
       headline(ctx, `$s = ${S}$: the area under $${K.head(p)}$ is $\\kF(s) = ${K.entry} = ${n(Fv, 3)}$.`);
-      ro.set(`\\kF(${S}) = \\int_0^\\infty ${s === 0 ? '' : `e^{${s < 0 ? n(-s) : `-${S}`}t}`}\\,${K.fTex(p)}\\,dt = ${K.num(S, p)} = ${n(Fv, 3)}`,
+      const body = [s === 0 ? '' : `e^{${s < 0 ? n(-s) : `-${S}`}t}`, K.fTex(p)].filter(Boolean).join('\\,') || '1';
+      ro.set(`\\kF(${S}) = \\int_0^\\infty ${body}\\,dt = ${K.num(S, p)} = ${n(Fv, 3)}`,
         `Shaded on $0 \\le t \\le 6$: ${n(I6, 3)}; the tail past $t = 6$ adds ${n(Fv - I6, 3)}.`, { form: 'live' });
     } else {
       const why = shows && Math.abs(s - thr) < 1e-9 ? 'swings back and forth without settling' : shows ? 'swings ever wider and never settles' : 'grows without bound';
       const bound = pick.value === 'exp' ? `s \\le -a = ${n(thr)}` : 's \\le 0';
       headline(ctx, `$s = ${S}$: the area under $${K.head(p)}$ ${why}, so $\\kF(s)$ is not defined for $${bound}$.`);
-      const factor = s === 0 ? '' : `e^{${s < 0 ? n(-s) : `-${S}`}t}`;
-      ro.set(`\\int_0^\\infty ${factor}\\,${K.fTex(p)}\\,dt \\text{ diverges, so } \\kF(${S}) \\text{ is not defined}`,
+      const body = [s === 0 ? '' : `e^{${s < 0 ? n(-s) : `-${S}`}t}`, K.fTex(p)].filter(Boolean).join('\\,') || '1';
+      ro.set(`\\int_0^\\infty ${body}\\,dt \\text{ diverges, so } \\kF(${S}) \\text{ is not defined}`,
         `Shaded on $0 \\le t \\le 6$: ${n(I6, 3)}; past $t = 6$ the area ${shows ? 'never settles' : 'keeps growing'}.`, { form: 'div' });
     }
   }

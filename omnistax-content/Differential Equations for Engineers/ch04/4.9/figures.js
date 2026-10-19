@@ -121,7 +121,7 @@ const hex = (c) => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0'
   let S = null, hits = [];
   hover(d.stage, () => hits, d.c);
   function mount3d() {
-    S = F.space3d(d, { box: box3, h: 690, pitch: [0.12, 1.5], fit: 2.0, turn: -3.0, tilt: 0.55 });   /* above the plate: from beneath it shows nothing new */
+    S = F.space3d(d, { box: box3, h: 690, pitch: [0.12, 1.5], fit: 1.75, turn: -3.0, tilt: 0.55 });   /* above the plate: from beneath it shows nothing new */
     d.c.style.display = 'none';
     S.drag({ at: () => [xs.v, ys.v, uProbe(fsel.value, xs.v, ys.v, hs.v) + 0.04], on: 'pick', move: (q) => { xs.drive(q[0]); ys.drive(q[1]); } });
   }
@@ -139,7 +139,7 @@ const hex = (c) => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0'
       const q = [pts[j][i], pts[j][i + 1], pts[j + 1][i + 1], pts[j + 1][i]], m = (q[0][2] + q[1][2] + q[2][2] + q[3][2]) / 4;
       bins[Math.min(BANDS - 1, Math.max(0, Math.floor(((m - D.lo) / (D.hi - D.lo)) * BANDS)))].push(q);
     }
-    return { pts, marks: bins.flatMap((faces, k) => (faces.length ? [{ k: 'faces', faces, color: hex(ramp(stops, (k + 0.5) / BANDS)), alpha: 0.95, name: 'the surface u(x, y): the rubber sheet stretched on its wire' }] : [])) };
+    return { pts, marks: bins.flatMap((faces, k) => (faces.length ? [{ k: 'faces', faces, color: hex(ramp(stops, (k + 0.5) / BANDS)), alpha: 1, name: 'the surface u(x, y): the rubber sheet stretched on its wire' }] : [])) };
   }
 
   /* layout of the flat view */
@@ -161,6 +161,16 @@ const hex = (c) => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0'
       S.set('wire', [
         { k: 'line', pts: bottom, color: 'ink', w: 3.5, name: 'the wire on the bottom edge: u(x, 0) = f(x)' },
         { k: 'line', pts: [[0, 0, 0], [0, h, 0], [PI, h, 0], [PI, 0, 0]], color: 'ink', w: 3.5, name: 'the wire on the left, top and right edges: u = 0' },
+      ]);
+      /* the scale's strip stands upright beside the far end of the bottom edge, along u: a height and its colour side by side */
+      const NS = 32, sx = [PI + 0.25, PI + 0.5], st3 = D.hi - D.lo > 2.5 ? 1 : 0.5;
+      S.set('legend', [
+        ...Array.from({ length: NS }, (_, i) => {
+          const z0 = D.lo + ((D.hi - D.lo) * i) / NS, z1 = D.lo + ((D.hi - D.lo) * (i + 1)) / NS;
+          return { k: 'faces', faces: [[[sx[0], 0, z0], [sx[1], 0, z0], [sx[1], 0, z1], [sx[0], 0, z1]]], color: hex(ramp(stops, (i + 0.5) / NS)), alpha: 1, name: `the temperature scale, u from ${n2(D.lo)} (cold) to ${n2(D.hi)} (hot)` };
+        }),
+        ...Array.from({ length: Math.floor((D.hi - D.lo) / st3 + 1e-9) + 1 }, (_, i) => Math.ceil(D.lo / st3 - 1e-9) * st3 + i * st3).filter((v) => v <= D.hi + 1e-9)
+          .map((v) => ({ k: 'label', s: fmt(v + 0, st3 < 1 ? 1 : 0), p: [sx[1] + 0.3, 0, v], cls: 'tick' })),
       ]);
       S.set('probe', [{ k: 'dot', p: [x0, y0, u0 + 0.04], color: 'ink', r: 9, name: `the probe: u(${n2(x0)}, ${n2(y0)}) = ${n2(u0, 3)}` }]);
       S.headline(head);

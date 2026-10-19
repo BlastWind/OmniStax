@@ -1,0 +1,859 @@
+{
+ "id": "6.5",
+ "module": "laplacepde:section",
+ "chapter": "6",
+ "title": "Solving PDEs with the Laplace transform",
+ "short": "PDEs by Laplace",
+ "lead": "The <span data-concept=\"laplace-transform\">Laplace transform</span> taken in the time variable alone carries a <span data-concept=\"partial-differential-equation\">partial differential equation</span> in $x$ and $t$ over to an <span data-concept=\"ordinary-differential-equation\">ordinary differential equation</span> in $x$. The method is worked on the <span data-concept=\"transport-equation\">transport equation</span> of a river carrying a toxic substance, on a problem with nonhomogeneous side conditions, on a problem that has no solution at all, and on a half-infinite rod with a given heat flux at one end.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and that the section can be skipped) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 6.5.101–6.5.105 carry the book’s own answers, each checked with SymPy or numerically. Exercises 6.5.1–6.5.7, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning; every answer was checked by computation first: the solutions substituted back into their equations and side conditions on both sides of the front with SymPy, the transformed problems of 6.5.5 rederived term by term, and the convolution of 6.5.6 checked numerically against the heat equation and its flux condition.",
+ "figures": [
+  {
+   "id": "sim-goo-river",
+   "kind": "sim",
+   "number": "6.5",
+   "folds": [
+    "6.6"
+   ],
+   "originals": [
+    "/media/ch06/half-infinite-goo-river.svg",
+    "/media/ch06/half-infinite-goo-river-wavefront.svg"
+   ],
+   "original_caption": "(Figure 6.5) Transport equation on a half line. (Figure 6.6) Wavefront of toxic substance is a line of slope 1/α.",
+   "widths": [],
+   "draws": [
+    "function",
+    "curve",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-ill-posed",
+   "kind": "sim",
+   "number": "6.7",
+   "originals": [
+    "/media/ch06/half-infinite-ill-posed.svg"
+   ],
+   "original_caption": "Ill-posed problem.",
+   "widths": [],
+   "draws": [
+    "function",
+    "curve",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "family",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "family",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "family",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "solving-pdes-with-the-laplace-transform",
+   "verb": "introduces"
+  },
+  {
+   "span": "method",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "independent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "transform-of-a-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-1",
+   "concept": "first-order-linear-pde",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-1",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-1",
+   "concept": "solving-pdes-with-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-1",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-1",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "convection-equation",
+   "concept": "transport-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "river",
+   "concept": "convection",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-goo-river",
+   "concept": "transport-on-a-half-line",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-goo-river",
+   "concept": "wavefront",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-goo-river",
+   "concept": "transport-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-goo-river",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "transform-in-t",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-lpde-transform-in-t",
+   "concept": "solving-pdes-with-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "partial-transforms",
+   "concept": "transform-of-a-partial-derivative",
+   "verb": "introduces"
+  },
+  {
+   "span": "t-derivative",
+   "concept": "transform-of-a-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-lt-partial-t",
+   "concept": "transform-of-a-partial-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "transformed-equation",
+   "concept": "transform-of-a-partial-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "transformed-condition",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "transformed-condition",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "transformed-condition",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "transformed-condition",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "solve-transformed",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "heaviside",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "heaviside",
+   "concept": "unit-step-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-half-line-transport",
+   "concept": "transport-on-a-half-line",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-half-line-transport",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-half-line-transport",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-half-line-transport-cases",
+   "concept": "transport-on-a-half-line",
+   "verb": "uses"
+  },
+  {
+   "span": "wavefront",
+   "concept": "wavefront",
+   "verb": "introduces"
+  },
+  {
+   "span": "wavefront",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "wavefront",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "wavefront",
+   "concept": "transport-on-a-half-line",
+   "verb": "uses"
+  },
+  {
+   "span": "shhh",
+   "concept": "derivative-of-the-heaviside-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "shhh",
+   "concept": "dirac-delta-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "nonhomogeneous-conditions",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "nonhomogeneous-conditions",
+   "concept": "constant-coefficient-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nonhomogeneous-conditions",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-2",
+   "concept": "solving-pdes-with-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-2",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-2",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "second-shift",
+   "concept": "second-shifting-property",
+   "verb": "reinforces"
+  },
+  {
+   "span": "second-shift",
+   "concept": "linearity-of-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "second-shift",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ill-posed-def",
+   "concept": "ill-posed-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "ill-posed-def",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "characteristics",
+   "concept": "characteristic-curve",
+   "verb": "reinforces"
+  },
+  {
+   "span": "characteristics",
+   "concept": "characteristic-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "characteristics",
+   "concept": "method-of-characteristics",
+   "verb": "uses"
+  },
+  {
+   "span": "characteristics",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-ill-posed",
+   "concept": "ill-posed-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-ill-posed",
+   "concept": "characteristic-curve",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-ill-posed",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "transform-argument",
+   "concept": "solving-pdes-with-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "transform-argument",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "no-decay",
+   "concept": "laplace-transform-decay",
+   "verb": "reinforces"
+  },
+  {
+   "span": "no-decay",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "no-decay",
+   "concept": "ill-posed-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "wrong-direction",
+   "concept": "second-shifting-property",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-3",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-3",
+   "concept": "solving-pdes-with-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-3",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-5-3",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "bounded",
+   "concept": "boundedness-condition",
+   "verb": "introduces"
+  },
+  {
+   "span": "bounded",
+   "concept": "existence-of-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "bounded",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "a-zero",
+   "concept": "boundedness-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "flux-condition",
+   "concept": "transform-of-a-partial-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "appendix-b",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "appendix-b",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "convolution-answer",
+   "concept": "convolution-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "convolution-answer",
+   "concept": "inverting-a-product-by-convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "closing",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "closing",
+   "concept": "constant-coefficient-equation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "6.5.1",
+   "source_number": "6.5.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-5-1",
+   "prompt": "<p>Solve</p>$$ \\begin{align*} & \\kyt + \\kyx = 1, \\qquad 0 < x < \\infty, \\enspace t > 0, \\\\ & \\ky(0,t) = 1, \\quad \\ky(x,0) = 0 . \\end{align*} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = t + (1 - t + x)\\,\\ku(t - x)$, that is, $\\ky = t$ for $t < x$ and $\\ky = 1 + x$ for $t \\geq x$. Transform in $t$, writing $\\kY(x) = {\\mathcal L}\\{\\ky(x,t)\\}$: as $\\ky(x,0) = 0$, ${\\mathcal L}\\{\\kyt\\} = s\\kY(x)$, while ${\\mathcal L}\\{\\kyx\\} = \\kYprime(x)$ and ${\\mathcal L}\\{1\\} = \\frac{1}{s}$, so the problem becomes $s\\kY + \\kYprime = \\frac{1}{s}$ with $\\kY(0) = {\\mathcal L}\\{1\\} = \\frac{1}{s}$. The constant $\\frac{1}{s^2}$ is a particular solution and $e^{-sx}$ solves the homogeneous equation, so $\\kY(x) = \\frac{1}{s^2} + \\left(\\frac{1}{s} - \\frac{1}{s^2}\\right) e^{-sx}$. Invert: ${\\mathcal L}^{-1}\\{\\frac{1}{s^2}\\} = t$, and by the second shifting property ${\\mathcal L}^{-1}\\{(\\frac{1}{s} - \\frac{1}{s^2}) e^{-xs}\\} = \\bigl(1 - (t - x)\\bigr)\\ku(t - x)$. Check: ahead of the front ($t < x$), $\\ky = t$ gives $\\kyt + \\kyx = 1 + 0 = 1$ and $\\ky(x,0) = 0$; behind it ($t > x$), $\\ky = 1 + x$ gives $0 + 1 = 1$ and $\\ky(0,t) = 1$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "6.5.2",
+   "source_number": "6.5.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-5-1",
+   "prompt": "<p>Solve</p>$$ \\begin{align*} & \\kyt + \\alpha \\kyx = 0, \\qquad 0 < x < \\infty, \\enspace t > 0, \\\\ & \\ky(0,t) = t, \\quad \\ky(x,0) = 0 . \\end{align*} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\left(t - \\frac{x}{\\alpha}\\right) \\ku\\left(t - \\frac{x}{\\alpha}\\right)$: the boundary data $t$ is carried down the half line at speed $\\alpha$, arriving at $x$ at time $x/\\alpha$. Transforming in $t$ as in Example 6.5.1 gives $s\\kY(x) + \\alpha \\kYprime(x) = 0$ with $\\kY(0) = {\\mathcal L}\\{t\\} = \\frac{1}{s^2}$, so $\\kY(x) = \\frac{1}{s^2} e^{-\\frac{s}{\\alpha} x}$. Since ${\\mathcal L}^{-1}\\{\\frac{1}{s^2}\\} = t$, the second shifting property with the shift $x/\\alpha$ gives the answer. Check: behind the front, $\\ky = t - x/\\alpha$ has $\\kyt + \\alpha\\kyx = 1 - 1 = 0$ and $\\ky(0,t) = t$; ahead of it $\\ky = 0$, which satisfies the equation and $\\ky(x,0) = 0$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "6.5.3",
+   "source_number": "6.5.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-5-1",
+   "prompt": "<p>Solve</p>$$ \\begin{align*} & \\kyt + 2 \\kyx = x+t, \\qquad 0 < x < \\infty, \\enspace t > 0, \\\\ & \\ky(0,t) = 0, \\quad \\ky(x,0) = 0 . \\end{align*} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = xt - \\frac{t^2}{2} + \\frac{(2t - x)^2}{8}\\, \\ku\\left(t - \\frac{x}{2}\\right)$, that is, $\\ky = xt - \\frac{t^2}{2}$ for $t < x/2$ and $\\ky = \\frac{xt}{2} + \\frac{x^2}{8}$ for $t \\geq x/2$. Transform in $t$: as $\\ky(x,0) = 0$, the problem becomes $s\\kY + 2\\kYprime = \\frac{x}{s} + \\frac{1}{s^2}$, $\\kY(0) = 0$. Trying $\\kY = Ax + B$ gives $sA = \\frac{1}{s}$ and $sB + 2A = \\frac{1}{s^2}$, so $A = \\frac{1}{s^2}$, $B = -\\frac{1}{s^3}$; the homogeneous solution is $e^{-sx/2}$, and $\\kY(0) = 0$ fixes its coefficient, $\\kY(x) = \\frac{x}{s^2} - \\frac{1}{s^3} + \\frac{1}{s^3} e^{-\\frac{x}{2} s}$. Invert: ${\\mathcal L}^{-1}\\{\\frac{1}{s^2}\\} = t$, ${\\mathcal L}^{-1}\\{\\frac{1}{s^3}\\} = \\frac{t^2}{2}$, and by the second shifting property ${\\mathcal L}^{-1}\\{\\frac{1}{s^3} e^{-\\frac{x}{2} s}\\} = \\frac{(t - x/2)^2}{2}\\ku(t - x/2) = \\frac{(2t - x)^2}{8}\\ku(t - x/2)$. Check: ahead of the front $\\kyt + 2\\kyx = (x - t) + 2t = x + t$ and $\\ky(x,0) = 0$; behind it $\\kyt + 2\\kyx = \\frac{x}{2} + 2\\left(\\frac{t}{2} + \\frac{x}{4}\\right) = x + t$ and $\\ky(0,t) = 0$; the two pieces agree on $t = x/2$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "6.5.4",
+   "source_number": "6.5.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-5-2",
+   "prompt": "<p>For an $\\alpha > 0$, solve</p>$$ \\begin{align*} & \\kyt + \\alpha \\kyx + \\ky = 0, \\qquad 0 < x < \\infty, \\enspace t > 0, \\\\ & \\ky(0,t) = \\sin(t), \\quad \\ky(x,0) = 0 . \\end{align*} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = e^{-x/\\alpha} \\sin\\left(t - \\frac{x}{\\alpha}\\right) \\ku\\left(t - \\frac{x}{\\alpha}\\right)$. As in Example 6.5.2, transforming in $t$ gives $s\\kY(x) + \\alpha\\kYprime(x) + \\kY(x) = 0$ with $\\kY(0) = \\frac{1}{s^2+1}$, so $\\kY(x) = \\frac{1}{s^2+1} e^{-\\frac{s+1}{\\alpha} x} = \\frac{1}{s^2+1} e^{-\\frac{x}{\\alpha} s} e^{-x/\\alpha}$. The factor $e^{-x/\\alpha}$ does not depend on $s$, so by linearity and the second shifting property (6.1) with the shift $x/\\alpha$, $\\ky = e^{-x/\\alpha}\\sin(t - x/\\alpha)\\ku(t - x/\\alpha)$; at $\\alpha = 1$ this is Example 6.5.2. Check: behind the front, $\\kyt = e^{-x/\\alpha}\\cos(t - x/\\alpha)$ and $\\alpha\\kyx = -e^{-x/\\alpha}\\sin(t - x/\\alpha) - e^{-x/\\alpha}\\cos(t - x/\\alpha)$, so $\\kyt + \\alpha\\kyx + \\ky = 0$, and $\\ky(0,t) = \\sin t$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "6.5.5",
+   "source_number": "6.5.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "partial-transforms",
+   "prompt": "<p>Find the corresponding ODE problem for $\\kY(x)$, after transforming the $t$ variable</p>$$ \\begin{align*} & \\kytt + 3\\kyxx + \\kyxt + 3 \\kyx + \\ky = \\sin(x) + t, \\qquad 0 < x < 1, \\enspace t > 0, \\\\ & \\ky(0,t) = 1, \\quad \\ky(1,t) = t, \\quad \\ky(x,0) = 1-x, \\quad \\kyt(x,0) = 1 . \\end{align*} $$<p>Do not solve the problem.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$3\\kYdprime(x) + (s+3)\\kYprime(x) + (s^2+1)\\kY(x) = \\frac{\\sin(x)}{s} + \\frac{1}{s^2} + s(1-x)$, with $\\kY(0) = \\frac{1}{s}$ and $\\kY(1) = \\frac{1}{s^2}$. Term by term: ${\\mathcal L}\\{\\kytt\\} = s^2\\kY - s\\,\\ky(x,0) - \\kyt(x,0) = s^2\\kY - s(1-x) - 1$; ${\\mathcal L}\\{\\kyxx\\} = \\kYdprime$ and ${\\mathcal L}\\{\\kyx\\} = \\kYprime$, since derivatives in $x$ pass through the transform; $\\kyxt$ is the $t$-derivative of $\\kyx$, so ${\\mathcal L}\\{\\kyxt\\} = s\\kYprime - \\kyx(x,0) = s\\kYprime - (-1) = s\\kYprime + 1$; and the right-hand side transforms to $\\frac{\\sin(x)}{s} + \\frac{1}{s^2}$. Adding, the $-1$ and the $+1$ cancel and $s(1-x)$ moves to the right. The side conditions in $x$ transform to $\\kY(0) = {\\mathcal L}\\{1\\} = \\frac{1}{s}$ and $\\kY(1) = {\\mathcal L}\\{t\\} = \\frac{1}{s^2}$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "6.5.6",
+   "source_number": "6.5.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-5-3",
+   "prompt": "<p>Write down a solution to</p>$$ \\begin{align*} & \\kyt = \\kyxx, \\qquad 0 < x < \\infty, \\enspace t > 0,\\\\ & \\kyx(0,t) = e^{-t}, \\quad \\ky(x,0) = 0 , \\end{align*} $$<p>as a definite integral (convolution). Assume that $\\ky$ is bounded.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = -\\int_0^t e^{-\\tau} \\frac{1}{\\sqrt{\\pi (t-\\tau)}} e^{\\frac{-x^2}{4(t-\\tau)}} \\, d\\tau$. This is Example 6.5.3 with the flux $\\kf(t) = e^{-t}$: transforming in $t$ gives $s\\kY = \\kYdprime$, so $\\kY = Ae^{\\sqrt{s}x} + Be^{-\\sqrt{s}x}$; boundedness forces $A = 0$, and $\\kYprime(0) = \\kF(s) = \\frac{1}{s+1}$ gives $-\\sqrt{s}B = \\frac{1}{s+1}$, so $\\kY(x) = \\frac{1}{s+1} \\cdot \\frac{-1}{\\sqrt{s}} e^{-\\sqrt{s}x}$. With ${\\mathcal L}^{-1}\\{\\frac{1}{s+1}\\} = e^{-t}$ and ${\\mathcal L}^{-1}\\{\\frac{1}{\\sqrt{s}}e^{-\\sqrt{s}x}\\} = \\frac{1}{\\sqrt{\\pi t}}e^{\\frac{-x^2}{4t}}$, the convolution theorem gives the integral. A numerical check: the integral satisfies $\\kyt = \\kyxx$ (at $(x,t) = (1,1)$ both are $-0.1724$), and its $x$-derivative at $x = 0$ equals $e^{-t}$ (at $t = 1$, $0.3679$)."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "6.5.7",
+   "source_number": "6.5.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "method",
+   "prompt": "<p>Use the Laplace transform in $t$ to solve</p>$$ \\begin{align*} & \\kytt = \\kyxx, \\qquad -\\infty < x < \\infty, \\enspace t > 0,\\\\ & \\ky(x,0) = 0, \\quad \\kyt(x,0) = \\sin(x) . \\end{align*} $$<p>Assume that $\\ky$ is bounded. Hint: Note that for any fixed $s > 0$, $e^{sx}$ blows up as $x \\to +\\infty$ and $e^{-sx}$ blows up as $x \\to -\\infty$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x,t) = \\sin(x)\\sin(t)$. Transform in $t$: ${\\mathcal L}\\{\\kytt\\} = s^2\\kY - s\\,\\ky(x,0) - \\kyt(x,0) = s^2\\kY - \\sin(x)$ and ${\\mathcal L}\\{\\kyxx\\} = \\kYdprime$, so $\\kYdprime - s^2\\kY = -\\sin(x)$. Trying $\\kY = c\\sin(x)$ gives $-c - s^2c = -1$, $c = \\frac{1}{s^2+1}$, so the general solution is $\\kY(x) = \\frac{\\sin(x)}{s^2+1} + Ae^{sx} + Be^{-sx}$. As $\\ky$ is bounded, so is $\\kY(x)$ for each fixed $s > 0$; by the hint $e^{sx}$ blows up as $x \\to +\\infty$ and $e^{-sx}$ as $x \\to -\\infty$, so $A = B = 0$. Then $\\kY(x) = \\frac{\\sin(x)}{s^2+1}$ and, since ${\\mathcal L}^{-1}\\{\\frac{1}{s^2+1}\\} = \\sin t$, $\\ky = \\sin(x)\\sin(t)$. Check: $\\kytt = -\\sin x \\sin t = \\kyxx$, $\\ky(x,0) = 0$ and $\\kyt(x,0) = \\sin x$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "6.5.101",
+   "source_number": "6.5.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-5-1",
+   "prompt": "<p>Solve</p>$$ \\begin{align*} & \\kyt + \\kyx = 1, \\qquad 0 < x < \\infty, \\enspace t > 0, \\\\ & \\ky(0,t) = 0, \\quad \\ky(x,0) = 0 . \\end{align*} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=(x-t)\\ku(t-x)+t$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "6.5.102",
+   "source_number": "6.5.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-5-2",
+   "prompt": "<p>For a $c > 0$, solve</p>$$ \\begin{align*} & \\kyt + \\kyx + c \\ky = 0, \\qquad 0 < x < \\infty, \\enspace t > 0, \\\\ & \\ky(0,t) = \\sin(t), \\quad \\ky(x,0) = 0 . \\end{align*} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=e^{-cx}\\sin(t-x)\\ku(t-x)$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "6.5.103",
+   "source_number": "6.5.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "partial-transforms",
+   "prompt": "<p>Find the corresponding ODE problem for $\\kY(x)$, after transforming the $t$ variable</p>$$ \\begin{align*} & \\kytt + 3\\kyxx + \\ky = x+t, \\qquad -1 < x < 1, \\enspace t > 0, \\\\ & \\ky(-1,t) = 0, \\quad \\ky(1,t) = 0, \\quad \\ky(x,0) = (1-x^2) , \\quad \\kyt(x,0) = 0. \\end{align*} $$<p>Do not solve the problem.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$s^2\\kY(x) - s(1-x^2) + 3\\kYdprime(x) + \\kY(x) = \\frac{x}{s} + \\frac{1}{s^2}, \\quad \\kY(-1) = 0, \\quad \\kY(1)=0$."
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "6.5.104",
+   "source_number": "6.5.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "method",
+   "prompt": "<p>Use the Laplace transform in $t$ to solve</p>$$ \\begin{align*} & \\kytt = \\kyxx, \\qquad -\\infty < x < \\infty, \\enspace t > 0,\\\\ & \\ky(x,0) = \\sin(x), \\quad \\kyt(x,0) = 0 . \\end{align*} $$<p>Assume that $\\ky$ is bounded. Hint: Note that for any fixed $s > 0$, $e^{sx}$ blows up as $x \\to +\\infty$ and $e^{-sx}$ blows up as $x \\to -\\infty$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=\\sin(x)\\cos(t)$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "6.5.105",
+   "source_number": "6.5.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-5-3",
+   "prompt": "<p>Use the Laplace transform in $t$ to solve</p>$$ \\begin{align*} & \\kyt = \\kyxx, \\qquad 0 < x < \\infty, \\enspace t > 0,\\\\ & \\ky(0,t) = \\kf(t), \\quad \\ky(x,0) = 0 , \\end{align*} $$<p>where $\\kf(t)$ is some function. Assume that $\\ky$ is bounded. Give the answer as a convolution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky(x,t) = \\int_0^t \\kf(\\tau) \\frac{x}{2 \\sqrt{\\pi {(t-\\tau)^3}}} e^{\\frac{-x^2}{4(t-\\tau)}} \\, d\\tau$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e1",
+   "concept": "transport-on-a-half-line"
+  },
+  {
+   "exercise": "e1",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e2",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e2",
+   "concept": "transport-on-a-half-line"
+  },
+  {
+   "exercise": "e2",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e3",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e3",
+   "concept": "transform-of-a-partial-derivative"
+  },
+  {
+   "exercise": "e3",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e4",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e4",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e4",
+   "concept": "linearity-of-the-laplace-transform"
+  },
+  {
+   "exercise": "e5",
+   "concept": "transform-of-a-partial-derivative"
+  },
+  {
+   "exercise": "e5",
+   "concept": "transform-of-a-derivative"
+  },
+  {
+   "exercise": "e6",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e6",
+   "concept": "boundedness-condition"
+  },
+  {
+   "exercise": "e6",
+   "concept": "convolution-theorem"
+  },
+  {
+   "exercise": "e7",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e7",
+   "concept": "boundedness-condition"
+  },
+  {
+   "exercise": "e7",
+   "concept": "wave-equation"
+  },
+  {
+   "exercise": "e101",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e101",
+   "concept": "transport-on-a-half-line"
+  },
+  {
+   "exercise": "e101",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e102",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e102",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e102",
+   "concept": "linearity-of-the-laplace-transform"
+  },
+  {
+   "exercise": "e103",
+   "concept": "transform-of-a-partial-derivative"
+  },
+  {
+   "exercise": "e103",
+   "concept": "transform-of-a-derivative"
+  },
+  {
+   "exercise": "e104",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e104",
+   "concept": "boundedness-condition"
+  },
+  {
+   "exercise": "e104",
+   "concept": "wave-equation"
+  },
+  {
+   "exercise": "e105",
+   "concept": "solving-pdes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e105",
+   "concept": "boundedness-condition"
+  },
+  {
+   "exercise": "e105",
+   "concept": "convolution-theorem"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-fourier-transform",
+   "kind": "book",
+   "number": "38",
+   "html": "There is also a Fourier transform on the real line that looks sort of like the Laplace transform."
+  },
+  {
+   "id": "fn-goo",
+   "kind": "book",
+   "number": "39",
+   "html": "It’s a river of goo already. We’re not hurting the environment much more."
+  }
+ ]
+}

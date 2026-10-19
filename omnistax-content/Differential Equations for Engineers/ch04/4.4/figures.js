@@ -77,7 +77,7 @@ function jumps(fn, odd) {
   const d = sim('sim-extensions', 560);
   const KEYS = ['par', 'sh', 'lin', 'sin'];
   const pick = choice(d.controls, { label: 'f(t)', key: 'f', value: 'par', options: KEYS.map((k) => ({ value: k, label: FUNCS[k].name })),
-    onInput: (v) => { const was = FUNCS[pick.from] || FUNCS.par, L = FUNCS[v].L; ts.range({ min: -2 * L, max: 2 * L, step: 0.01, value: Math.round(((ts.v / was.L) * L) * 100) / 100, dec: 2 }); } });
+    onInput: (v) => { const was = FUNCS[pick.from] || FUNCS.par, L = FUNCS[v].L; const E = Math.floor(200 * L) / 100; ts.range({ min: -E, max: E, step: 0.01, value: Math.round(((ts.v / was.L) * L) * 100) / 100, dec: 2 }); } });
   const ts = ctl(d.controls, { label: 't', cls: '', key: 't', min: -2, max: 2, step: 0.01, value: -0.3, unit: '', dec: 2 });
   const ro = readout(d);
   const PANES = [{ odd: true, box: { l: 150, r: 660, t: 150, b: 450 }, name: 'F_{odd}(t)' }, { odd: false, box: { l: 830, r: 1340, t: 150, b: 450 }, name: 'F_{even}(t)' }];
@@ -87,7 +87,7 @@ function jumps(fn, odd) {
     const { ctx } = begin(d.c);
     const fc = C('function'), fn = FUNCS[pick.value], L = fn.L;
     const Lm = pick.mix((v) => FUNCS[v].L), yr = pick.mix((v) => FUNCS[v].yr);
-    const t = Math.max(-2 * L, Math.min(2 * L, ts.v)), s = home(t, L), src = Math.abs(s), fs = fn.f(src);
+    const t = Math.max(-2 * L, Math.min(2 * L, Math.round(ts.v * 100) / 100)), s = home(t, L), src = Math.abs(s), fs = fn.f(src);
     hits = [];
     PANES.forEach((P) => {
       const ax = axes(ctx, P.box, [-2 * Lm, 2 * Lm], yr, { xl: 't', nx: 4, ny: fn.ny, fx: tickName(fn), fy: (v) => cn(v, Math.abs(yr[1]) < 1 ? 1 : Math.abs(yr[1]) < 2 ? 1 : 0) });

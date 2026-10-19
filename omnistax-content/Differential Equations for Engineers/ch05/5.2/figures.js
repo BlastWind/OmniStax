@@ -97,10 +97,10 @@ const pinHead = (ctx, x, y) => { dot(ctx, x, y, PAL.panel, true, 8); dot(ctx, x,
 /* Sim: the beam's ladder of natural frequencies beside a string's. Both are released from one shape, so both carry the
    same sine coefficients bₙ: Example 5.2.1's x(x − 1)/10 (bₙ = −4/(5π³n³), odd n), or a pluck of height 0.025 at p = 1/2 or
    p = 1/4 (bₙ = 2h sin(nπp)/(n²π² p(1 − p))). The string is tuned so its fundamental is the beam's π²a², so the beam's
-   rungs stand at n² and the string's at n times it. Frequency axis 0 to 26 times π²a² (the beam's n = 1 to 5 and the
+   rungs stand at n² and the string's at n times it. Frequency axis 0 to 26 times π²a² (titled once, under the string's panel) (the beam's n = 1 to 5 and the
    string's n = 1 to 26); rung heights |bₙ| / |b₁|, 0 to 1. Still: a change of shape bends the rungs to their new heights. */
 (function () {
-  const d = sim('sim-beam-timbre', 600);
+  const d = sim('sim-beam-timbre', 620);
   const NMAX = 26, H0 = 0.025;
   const pluck = (k, p) => (2 * H0 * Math.sin(k * Math.PI * p)) / (k * k * PI2 * p * (1 - p));
   const B = { ex: (k) => (k % 2 ? -4 / (5 * Math.PI ** 3 * k ** 3) : 0), mid: (k) => pluck(k, 0.5), quarter: (k) => pluck(k, 0.25) };
@@ -118,7 +118,7 @@ const pinHead = (ctx, x, y) => { dot(ctx, x, y, PAL.panel, true, 8); dot(ctx, x,
     const h = shape.mix((w) => HEIGHTS[w]);
     hits = [];
     const panel = (box, title, color, rungs, who) => {
-      const ax = axes(ctx, box, [0, NMAX], [0, 1], { xl: who === 'the string' ? 'angular frequency ÷ π^2a^2' : '', xc: qc, yl: '', nx: 0, ny: 2, fy: (u) => fmt(u, 1) });
+      const ax = axes(ctx, box, [0, NMAX], [0, 1], { xl: who === 'the string' ? 'angular frequency ÷ π²a²' : '', xc: qc, yl: '', nx: 0, ny: 2, fy: (u) => fmt(u, 1) });
       if (who === 'the string') for (let m = 0; m <= 25; m += 5) text(ctx, String(m), ax.X(m), box.b + 22, PAL.muted, { size: 17, align: 'center' });
       text(ctx, title, box.l, box.t - 26, color, { size: 20, weight: 600, align: 'left', tex: true, bg: PAL.panel });
       rungs.forEach(([k, at]) => {
@@ -184,14 +184,14 @@ const pinHead = (ctx, x, y) => { dot(ctx, x, y, PAL.panel, true, 8); dot(ctx, x,
     pick.only(ctx, 'hinged', () => pinHead(ctx, EX, Y0), [0, 12]);
     /* the slope at the end, a short tangent */
     const s = c[1] * S / LEN, u = 1 / Math.hypot(1, s), ex = EX, ey = py(c[0]);
-    line(ctx, ex - 70 * u, ey + 70 * u * s, ex + 190 * u, ey - 190 * u * s, dc, 4);
-    mark(ctx, '$\\kyx$', ex + 200 * u + 26, ey - 200 * u * s, dc, { align: 'left' });
+    line(ctx, ex - 80 * u, ey + 80 * u * s, ex + 300 * u, ey - 300 * u * s, dc, 4, [12, 8]);
+    mark(ctx, '$\\kyx$', ex + 300 * u, ey - 300 * u * s - 30, dc, { align: 'center' });
     dot(ctx, ex, ey, fc, true, 9);
     text(ctx, 'x = 0', EX, Y0 + 90, PAL.muted, { size: 17, align: 'center' });
     hits = [
       { x: px(0.6), y: py(y(0.6)), r: 26, name: 'the beam near its end, y(x, t) at one instant' },
       { x: ex, y: ey, r: 16, name: `the end x = 0, displaced y(0, t) = ${n(c[0], 2)} (in the drawing's units)` },
-      { x: ex + 120 * u, y: ey - 120 * u * s, r: 16, name: `the slope y_x(0, t) = ${n(c[1], 2)} (in the drawing's units)` }];
+      { x: ex + 260 * u, y: ey - 260 * u * s, r: 16, name: `the slope y_x(0, t) = ${n(c[1], 2)} (in the drawing's units)` }];
     if (v === 'hinged') hits.push({ x: EX, y: Y0 + 24, r: 26, name: 'the hinge: a pin that holds the end in place and lets it turn' });
     if (v === 'clamped') hits.push({ x: EX - 35, y: Y0 - 90, r: 30, name: 'the wall the end is welded into' });
     headline(ctx, {

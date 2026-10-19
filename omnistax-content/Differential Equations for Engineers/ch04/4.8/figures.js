@@ -33,12 +33,9 @@ function poly(ctx, ax, pts, color, w, dash) {
   const wrapP = (x, L) => { const P = 2 * L; return ((((x + L) % P) + P) % P) - L; };
   const oddExt = (f, L) => (x) => { const w = wrapP(x, L); return w >= 0 ? f(w) : -f(-w); };
   const START = {
-    impulse: { L: 1, ymax: 1, yt: 0.5, F: oddExt(imp, 1), H: null, xp: 0.1, kinks: [-0.5, 0.5], dec: 2, 
-      what: 'Example 4.8.1’s impulse' },
-    plucked: { L: 2, ymax: 0.1, yt: 0.05, F: oddExt(tri, 2), H: null, xp: 0.5, kinks: [-1, 1], dec: 3, 
-      what: 'Example 4.7.1’s plucked string' },
-    struck: { L: 1, ymax: 1, yt: 0.5, F: null, H: (x) => -Math.abs(wrapP(x, 1)), xp: 0.5, kinks: [-1, 0], dec: 2, 
-      what: 'Exercise 4.7.6’s struck string' },
+    impulse: { L: 1, ymax: 1, yt: 0.5, F: oddExt(imp, 1), H: null, xp: 0.1, kinks: [-0.5, 0.5], dec: 2 },
+    plucked: { L: 2, ymax: 0.1, yt: 0.05, F: oddExt(tri, 2), H: null, xp: 0.5, kinks: [-1, 1], dec: 3 },
+    struck: { L: 1, ymax: 1, yt: 0.5, F: null, H: (x) => -Math.abs(wrapP(x, 1)), xp: 0.5, kinks: [-1, 0], dec: 2 },
   };
   const pick = select(d.controls, { label: 'start', key: 'start', value: 'impulse', aria: 'how the string starts', options: [
     { value: 'impulse', label: 'impulse' }, { value: 'plucked', label: 'plucked string' }, { value: 'struck', label: 'struck string' }],
@@ -79,65 +76,63 @@ function poly(ctx, ax, pts, color, w, dash) {
       tx = `\\ky(x,t) = \\frac{-\\kH(x-at) + \\kH(x+at)}{2a},\\quad \\ky(${n(xp)}, ${n(t)}) = \\frac{-\\kH(${n(xi)}) + \\kH(${n(eta)})}{2 \\cdot ${n(a)}} = \\frac{-${neg(h1)} + ${neg(h2)}}{${n(2 * a)}} = ${n(yv, dec)}`;
     }
     const head = `$t = ${n(t)}$: at $x = ${n(xp)}$ the string has felt only the initial data on $[x - at,\\ x + at] = [${n(xi)},\\ ${n(eta)}]$.`;
-    {
-      const { ctx } = begin(d.c);
-      const Lm = pick.mix((v) => START[v].L), ym = pick.mix((v) => START[v].ymax), yt = s.yt;
-      const top = axes(ctx, TOP, [-Lm / 2, 1.5 * Lm], [-ym, ym], { xl: 'x', yl: 'y', nx: 4, ny: 4, fx: (v) => n(v, Lm < 1.5 ? 1 : 0), fy: (v) => n(v, yt < 0.1 ? 2 : 1) });
-      const bot = axes(ctx, BOT, [-Lm / 2, 1.5 * Lm], [0, 2 * Lm], { xl: 'x', yl: 't', nx: 4, ny: 4, fx: (v) => n(v, Lm < 1.5 ? 1 : 0), fy: (v) => n(v, Lm < 1.5 ? 1 : 0) });
-      hits = [];
-      const lo = -L / 2, hi = 1.5 * L;
-      /* the (x, t) plane: the region, the characteristic lines through the corners, the fixed ends */
-      clip(ctx, bot.box, () => { ctx.fillStyle = alpha(rc, 0.12); ctx.fillRect(bot.X(0), bot.Y(T), bot.X(L) - bot.X(0), bot.Y(0) - bot.Y(T)); });
-      hits.push({ x: bot.X(L / 2), y: bot.Y(T * 0.93), r: 16, name: `the region 0 < x < ${n(L, 0)}, t > 0 where the string lives` });
-      kinkLines(s, a, T).forEach((k) => {
-        poly(ctx, bot, k.p, alpha(cc, 0.32), 2);
-        const mt = T * 0.15, mx = k.c + k.dir * a * mt;
-        if (mx > lo && mx < hi) hits.push({ x: bot.X(mx), y: bot.Y(mt), r: 10, name: `the characteristic line x ${k.dir > 0 ? '−' : '+'} at = ${n(k.c)}: a corner of the initial data rides it` });
-      });
-      [0, L].forEach((xw) => { line(ctx, top.X(xw), top.box.t, top.X(xw), top.box.b, alpha(PAL.ink, 0.55), 3); line(ctx, bot.X(xw), bot.box.t, bot.X(xw), bot.box.b, alpha(PAL.ink, 0.55), 3); });
-      hits.push({ x: top.X(0), y: top.Y(-ym * 0.85), r: 14, name: 'the fixed end x = 0, y(0, t) = 0' }, { x: top.X(L), y: top.Y(-ym * 0.85), r: 14, name: `the fixed end x = L = ${n(L, 0)}, y(L, t) = 0` });
-      /* now, the reader’s point and its two characteristics back to t = 0, the interval of initial data it has felt */
-      line(ctx, bot.X(lo), bot.Y(t), bot.X(hi), bot.Y(t), alpha(PAL.ink, 0.5), 2, [10, 10]);
-      if (t > 0.04 * T) text(ctx, `t = ${n(t)}`, bot.X(lo) + 8, bot.Y(t) - 14, PAL.ink, { size: 18, align: 'left', bg: PAL.panel });
-      poly(ctx, bot, [[xi, 0], [xp, t]], cc, 4);
-      poly(ctx, bot, [[eta, 0], [xp, t]], cc, 4);
-      hits.push({ x: bot.X((xi + xp) / 2), y: bot.Y(t / 2), r: 12, name: `the characteristic x − at = ${n(xi)} through the point: the right-moving wave A keeps its value along it` });
-      hits.push({ x: bot.X((eta + xp) / 2), y: bot.Y(t / 2), r: 12, name: `the characteristic x + at = ${n(eta)} through the point: the left-moving wave B keeps its value along it` });
-      if (t > 0.02 * T) hbracket(ctx, bot.X(Math.max(xi, lo)), bot.X(Math.min(eta, hi)), bot.Y(0) - 16, PAL.ink);
-      hits.push({ x: bot.X(Math.min(Math.max(xp, lo), hi)), y: bot.Y(0) - 16, r: 14, name: `the initial data on [x − at, x + at] = [${n(xi)}, ${n(eta)}]; its ends are the wavefronts` });
-      [[xi, 'x − at', 'left'], [eta, 'x + at', 'right']].forEach(([xv, s1, side]) => {
-        const q = pinned(ctx, bot.box, bot.X, bot.Y, xv, 0, pc, `${s1} = ${n(xv)}`);
-        if (!q.out) { dot(ctx, q.x, q.y, pc, false, 9); if (t > 0.06 * T) label(ctx, s1, q.x, q.y - 30, { side, color: pc, size: 20, weight: 600, gap: 10 }); }
-        hits.push({ x: q.x, y: q.y, r: 14, name: `the foot ${s1} = ${n(xv)}, a wavefront` });
-      });
-      dot(ctx, bot.X(xp), bot.Y(t), pc, true, 9);
-      hits.push({ x: bot.X(xp), y: bot.Y(t), r: 16, name: `the point (x, t) = (${n(xp)}, ${n(t)})` });
-      /* the scene: the two waves on the whole line, faint beyond the ends, and the string their sum on 0 < x < L */
-      const At = (x) => A(x - a * t), Bt = (x) => B(x + a * t);
-      plot(ctx, top, (x) => At(x) + Bt(x), fc, { w: 7, x: [0, L] });   /* under the waves, so a wave lying on the string still shows */
-      [[At, wr], [Bt, wl]].forEach(([g, col]) => {
-        plot(ctx, top, g, alpha(col, 0.38), { w: 3, x: [lo, 0] });
-        plot(ctx, top, g, alpha(col, 0.38), { w: 3, x: [L, hi] });
-        plot(ctx, top, g, col, { w: 2.5, x: [0, L] });
-      });
-      line(ctx, top.X(xp), top.box.t, top.X(xp), bot.Y(t), alpha(PAL.ink, 0.35), 2, [4, 8]);
-      const yA = At(xp), yB = Bt(xp);
-      [[yA, wr, `A(x − at) = ${n(yA, dec)}, the right-moving wave at x = ${n(xp)}`], [yB, wl, `B(x + at) = ${n(yB, dec)}, the left-moving wave at x = ${n(xp)}`], [yA + yB, fc, `y(x, t) = A + B = ${n(yA + yB, dec)}, the string at x = ${n(xp)}`]].forEach(([v, col, name], i) => {
-        const q = pinned(ctx, top.box, top.X, top.Y, xp, v, col);
-        if (!q.out) dot(ctx, q.x, q.y, col, true, i === 2 ? 9 : 7);
-        hits.push({ x: q.x, y: q.y, r: 14, name });
-      });
-      const sx = (x) => top.X(x);
-      hits.push({ x: sx(L * 0.25), y: top.Y(At(L * 0.25) + Bt(L * 0.25)), r: 12, name: `the string y(x, ${n(t)}) = A(x − at) + B(x + at) on 0 < x < L` });
-      /* legend, top right, on a panel */
-      ctx.fillStyle = PAL.panel; ctx.fillRect(top.box.r - 372, top.box.t + 2, 370, 90);
-      [['the wave A(x − at), moving right', wr], ['the wave B(x + at), moving left', wl], ['the string y = A + B', fc]].forEach(([str, col], i) => {
-        const lx = top.box.r - 360, ly = top.box.t + 18 + i * 28;
-        line(ctx, lx, ly, lx + 36, ly, col, i === 2 ? 5 : 3);
-        text(ctx, str, lx + 46, ly, col, { size: 18, weight: 600, align: 'left', base: 'middle', bg: PAL.panel });
-      });
-      headline(ctx, head);
-    }
+    const { ctx } = begin(d.c);
+    const Lm = pick.mix((v) => START[v].L), ym = pick.mix((v) => START[v].ymax), yt = s.yt;
+    const top = axes(ctx, TOP, [-Lm / 2, 1.5 * Lm], [-ym, ym], { xl: 'x', yl: 'y', nx: 4, ny: 4, fx: (v) => n(v, Lm < 1.5 ? 1 : 0), fy: (v) => n(v, yt < 0.1 ? 2 : 1) });
+    const bot = axes(ctx, BOT, [-Lm / 2, 1.5 * Lm], [0, 2 * Lm], { xl: 'x', yl: 't', nx: 4, ny: 4, fx: (v) => n(v, Lm < 1.5 ? 1 : 0), fy: (v) => n(v, Lm < 1.5 ? 1 : 0) });
+    hits = [];
+    const lo = -L / 2, hi = 1.5 * L;
+    /* the (x, t) plane: the region, the characteristic lines through the corners, the fixed ends */
+    clip(ctx, bot.box, () => { ctx.fillStyle = alpha(rc, 0.12); ctx.fillRect(bot.X(0), bot.Y(T), bot.X(L) - bot.X(0), bot.Y(0) - bot.Y(T)); });
+    hits.push({ x: bot.X(L / 2), y: bot.Y(T * 0.93), r: 16, name: `the region 0 < x < ${n(L, 0)}, t > 0 where the string lives` });
+    kinkLines(s, a, T).forEach((k) => {
+      poly(ctx, bot, k.p, alpha(cc, 0.32), 2);
+      const mt = T * 0.15, mx = k.c + k.dir * a * mt;
+      if (mx > lo && mx < hi) hits.push({ x: bot.X(mx), y: bot.Y(mt), r: 10, name: `the characteristic line x ${k.dir > 0 ? '−' : '+'} at = ${n(k.c)}: a corner of the initial data rides it` });
+    });
+    [0, L].forEach((xw) => { line(ctx, top.X(xw), top.box.t, top.X(xw), top.box.b, alpha(PAL.ink, 0.55), 3); line(ctx, bot.X(xw), bot.box.t, bot.X(xw), bot.box.b, alpha(PAL.ink, 0.55), 3); });
+    hits.push({ x: top.X(0), y: top.Y(-ym * 0.85), r: 14, name: 'the fixed end x = 0, y(0, t) = 0' }, { x: top.X(L), y: top.Y(-ym * 0.85), r: 14, name: `the fixed end x = L = ${n(L, 0)}, y(L, t) = 0` });
+    /* now, the reader’s point and its two characteristics back to t = 0, the interval of initial data it has felt */
+    line(ctx, bot.X(lo), bot.Y(t), bot.X(hi), bot.Y(t), alpha(PAL.ink, 0.5), 2, [10, 10]);
+    if (t > 0.04 * T) text(ctx, `t = ${n(t)}`, bot.X(lo) + 8, bot.Y(t) - 14, PAL.ink, { size: 18, align: 'left', bg: PAL.panel });
+    poly(ctx, bot, [[xi, 0], [xp, t]], cc, 4);
+    poly(ctx, bot, [[eta, 0], [xp, t]], cc, 4);
+    hits.push({ x: bot.X((xi + xp) / 2), y: bot.Y(t / 2), r: 12, name: `the characteristic x − at = ${n(xi)} through the point: the right-moving wave A keeps its value along it` });
+    hits.push({ x: bot.X((eta + xp) / 2), y: bot.Y(t / 2), r: 12, name: `the characteristic x + at = ${n(eta)} through the point: the left-moving wave B keeps its value along it` });
+    if (t > 0.02 * T) hbracket(ctx, bot.X(Math.max(xi, lo)), bot.X(Math.min(eta, hi)), bot.Y(0) - 16, PAL.ink);
+    hits.push({ x: bot.X(Math.min(Math.max(xp, lo), hi)), y: bot.Y(0) - 16, r: 14, name: `the initial data on [x − at, x + at] = [${n(xi)}, ${n(eta)}]; its ends are the wavefronts` });
+    [[xi, 'x − at', 'left'], [eta, 'x + at', 'right']].forEach(([xv, s1, side]) => {
+      const q = pinned(ctx, bot.box, bot.X, bot.Y, xv, 0, pc, `${s1} = ${n(xv)}`);
+      if (!q.out) { dot(ctx, q.x, q.y, pc, false, 9); if (t > 0.06 * T) label(ctx, s1, q.x, q.y - 30, { side, color: pc, size: 20, weight: 600, gap: 10 }); }
+      hits.push({ x: q.x, y: q.y, r: 14, name: `the foot ${s1} = ${n(xv)}, a wavefront` });
+    });
+    dot(ctx, bot.X(xp), bot.Y(t), pc, true, 9);
+    hits.push({ x: bot.X(xp), y: bot.Y(t), r: 16, name: `the point (x, t) = (${n(xp)}, ${n(t)})` });
+    /* the scene: the two waves on the whole line, faint beyond the ends, and the string their sum on 0 < x < L */
+    const At = (x) => A(x - a * t), Bt = (x) => B(x + a * t);
+    plot(ctx, top, (x) => At(x) + Bt(x), fc, { w: 7, x: [0, L] });   /* under the waves, so a wave lying on the string still shows */
+    [[At, wr], [Bt, wl]].forEach(([g, col]) => {
+      plot(ctx, top, g, alpha(col, 0.38), { w: 3, x: [lo, 0] });
+      plot(ctx, top, g, alpha(col, 0.38), { w: 3, x: [L, hi] });
+      plot(ctx, top, g, col, { w: 2.5, x: [0, L] });
+    });
+    line(ctx, top.X(xp), top.box.t, top.X(xp), bot.Y(t), alpha(PAL.ink, 0.35), 2, [4, 8]);
+    const yA = At(xp), yB = Bt(xp);
+    [[yA, wr, `A(x − at) = ${n(yA, dec)}, the right-moving wave at x = ${n(xp)}`], [yB, wl, `B(x + at) = ${n(yB, dec)}, the left-moving wave at x = ${n(xp)}`], [yA + yB, fc, `y(x, t) = A + B = ${n(yA + yB, dec)}, the string at x = ${n(xp)}`]].forEach(([v, col, name], i) => {
+      const q = pinned(ctx, top.box, top.X, top.Y, xp, v, col);
+      if (!q.out) dot(ctx, q.x, q.y, col, true, i === 2 ? 9 : 7);
+      hits.push({ x: q.x, y: q.y, r: 14, name });
+    });
+    const sx = (x) => top.X(x);
+    hits.push({ x: sx(L * 0.25), y: top.Y(At(L * 0.25) + Bt(L * 0.25)), r: 12, name: `the string y(x, ${n(t)}) = A(x − at) + B(x + at) on 0 < x < L` });
+    /* legend, top right, on a panel */
+    ctx.fillStyle = PAL.panel; ctx.fillRect(top.box.r - 372, top.box.t + 2, 370, 90);
+    [['the wave A(x − at), moving right', wr], ['the wave B(x + at), moving left', wl], ['the string y = A + B', fc]].forEach(([str, col], i) => {
+      const lx = top.box.r - 360, ly = top.box.t + 18 + i * 28;
+      line(ctx, lx, ly, lx + 36, ly, col, i === 2 ? 5 : 3);
+      text(ctx, str, lx + 46, ly, col, { size: 18, weight: 600, align: 'left', base: 'middle', bg: PAL.panel });
+    });
+    headline(ctx, head);
     ro.set(tx);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => (2 * START[pick.value].L) / 5), draw });

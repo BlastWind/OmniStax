@@ -132,7 +132,7 @@ const harmTex = (j) => (j === 1 ? '\\pi' : `${j}\\pi`);
       plot(ctx, ax, (s) => mean + g * s, alpha(fc, 0.55), { w: 2 });
       plot(ctx, ax, (s) => mean - g * s, alpha(fc, 0.55), { w: 2 });
       const tl = Math.min(8.5, (0.6 - 0.04 - mean) / g);
-      label(ctx, `t/(${S.N === 1 ? '' : S.N * S.N}π²)`, ax.X(tl), ax.Y(mean + g * tl), { side: 'left', color: fc, size: 18, weight: 600 });
+      label(ctx, S.N === 1 ? 't/π²' : `t/(${S.N * S.N}π²)`, ax.X(tl), ax.Y(mean + g * tl), { side: 'left', color: fc, size: 18, weight: 600 });
       hits.push({ x: ax.X(tl), y: ax.Y(mean + g * tl), r: 16, name: `the size of the growing term, 1/(2k) ± t/(${S.N === 1 ? '' : S.N * S.N}π²)` });
     }
     plot(ctx, ax, S.x, alpha(fc, 0.3), { w: 3 });
@@ -145,7 +145,7 @@ const harmTex = (j) => (j === 1 ? '\\pi' : `${j}\\pi`);
       ro.set(`\\kxsp(t) = \\frac{1}{2k} + \\sum_{n\\ \\text{odd}} \\frac{2\\sin(n\\pi t)}{\\pi n\\,(k - n^2\\pi^2)} = ${n(mean, 4)}${signed(S.b1)}\\sin(\\pi t)${signed(S.b3)}\\sin(3\\pi t) + \\cdots`, undefined, { form: 'sp' });
     } else {
       const N = S.N, NN = N === 1 ? '' : N * N, hT = harmTex(N);
-      headline(ctx, `$k = ${NN}\\pi^2 = ${n(k)}$: $\\komegazero = ${hT}$ meets the jetpack’s ${ord(N)} harmonic, so $\\kxp$ carries $-t\\cos(${hT} t)/(${NN}\\pi^2)$, which grows without bound.`);
+      headline(ctx, `$k = ${NN}\\pi^2 = ${n(k)}$: $\\komegazero = ${hT}$ meets the jetpack’s ${ord(N)} harmonic, so $\\kxp$ carries $-t\\cos(${hT} t)/${N === 1 ? '\\pi^2' : '(9\\pi^2)'}$, which grows without bound.`);
       const tTerm = `${signed(S.aN)}\\,t\\cos(${hT} t)`, oTerm = `${signed(S.other)}\\sin(${N === 1 ? '3\\pi' : '\\pi'} t)`;
       ro.set(`\\kxp(t) = \\frac{1}{2k} - \\frac{t\\cos(${hT} t)}{${NN}\\pi^2} + \\sum_{n\\ \\text{odd},\\ n \\neq ${N}} \\frac{2\\sin(n\\pi t)}{\\pi n\\,(k - n^2\\pi^2)} = ${n(mean, 4)}${N === 1 ? tTerm + oTerm : oTerm + tTerm} + \\cdots`, undefined, { form: 'res' + N });
     }
@@ -181,10 +181,11 @@ const harmTex = (j) => (j === 1 ? '\\pi' : `${j}\\pi`);
     specials: Array.from({ length: 10 }, (_, i) => ({ at: () => harm(i) * PI / LS.v, label: 'a harmonic of F, resonance' })) });
   const LS = ctl(d.controls, { label: 'L', cls: '', key: 'L', min: 0.25, max: 3, step: 0.01, value: 1, unit: '', dec: 2, aria: 'the half period L of the forcing',
     specials: Array.from({ length: 10 }, (_, i) => ({ at: () => harm(i) * PI / wS.v, label: 'a harmonic of F, resonance' })) });
+  wS.set(3 * PI);   /* Example 4.5.2's ω₀ = 3π exactly, off the slider's 0.01 grid (the circles let it hold) */
   const ro = readout(d);
   const pulse = F.tween(d, 1);
   const INSET = { l: 160, r: 1300, t: 136, b: 196 }, TOP = { l: 160, r: 1300, t: 300, b: 440 }, LOW = { l: 160, r: 1300, t: 520, b: 720 };
-  const LMIN = -5, LMAX = 1;
+  const LMIN = -5, LMAX = 1;   /* the log scale's decades; the axis runs 0 to LMAX − LMIN so no zero line falls inside it */
   let hits = [], lastN = 0;
   hover(d.stage, () => hits);
   /* the coefficients of the shape s at half period L and natural frequency w: index 0 the constant, j the jth harmonic */
@@ -216,15 +217,15 @@ const harmTex = (j) => (j === 1 ? '\\pi' : `${j}\\pi`);
 
     /* the two panes share the frequency axis */
     const aT = axes(ctx, TOP, [0, WMAX], [0, 1.5], { yl: s === 'step' ? '|c_0|/2,  |d_n|' : '|d_n|', yc: sq, nx: 0, ny: 3, fy: (v) => fmt(v, 1) });
-    const aB = axes(ctx, LOW, [0, WMAX], [LMIN, LMAX], { xl: 'ω', xc: fq, yl: s === 'step' ? '|a_0|/2,  |b_n|' : '|b_n|', yc: sq, nx: 8, ny: 6, fx: (v) => fmt(v, 0),
-      fy: (v) => (v === 0 ? '1' : v === 1 ? '10' : `10^{${fmt(v, 0)}}`) });
-    const X = aT.X, ly = (v) => (v <= 10 ** LMIN ? LOW.b : aB.Y(Math.min(LMAX, Math.log10(v))));
+    const aB = axes(ctx, LOW, [0, WMAX], [0, LMAX - LMIN], { xl: 'ω', xc: fq, yl: s === 'step' ? '|a_0|/2,  |b_n|' : '|b_n|', yc: sq, nx: 8, ny: 6, fx: (v) => fmt(v, 0),
+      fy: (v) => { const e = v + LMIN; return e === 0 ? '1' : e === 1 ? '10' : `10^{${fmt(e, 0)}}`; } });
+    const X = aT.X, ly = (v) => (v <= 10 ** LMIN ? LOW.b : aB.Y(Math.min(LMAX, Math.log10(v)) - LMIN));
     const gap = (PI / L) * ((TOP.r - TOP.l) / WMAX), bw = Math.min(14, 0.6 * gap);
     const bar = (x, yTop, yBot, color, a) => { ctx.save(); ctx.globalAlpha *= a; ctx.fillStyle = color; ctx.fillRect(x - bw / 2, yTop, bw, yBot - yTop); ctx.restore(); };
     for (let j = 0; j < JMAX; j++) {
       const wj = (j * PI) / L, dj = mix.dd[j], bj = mix.bb[j];
       if (wj > WMAX || (j === 0 && S.c0 === 0 && fS.k >= 1) || (j > 0 && dj < 1e-9)) continue;
-      const x = j === 0 ? X(0) + bw / 2 + 2 : X(wj), lit = j === N, a = N && !lit ? 0.4 : 1;
+      const x = j === 0 ? X(0) + bw / 2 + 2 : X(wj), lit = N > 0 && j === N, a = N && !lit ? 0.4 : 1;
       if (lit) {
         const pad = 7 + 14 * glow;
         ctx.save(); ctx.fillStyle = alpha(sq, 0.2 + 0.3 * glow);
@@ -251,7 +252,7 @@ const harmTex = (j) => (j === 1 ? '\\pi' : `${j}\\pi`);
     /* the natural frequency, through both panes */
     const xw = X(w);
     line(ctx, xw, TOP.t, xw, LOW.b, alpha(fq, 0.8), 2.5, [10, 10]);
-    label(ctx, `ω_0 = ${fmt(w, 2)}`, N ? xw - 10 : xw, 476, { side: N ? 'left' : 'right', color: fq, size: 20, weight: 600, gap: 0 });
+    label(ctx, `ω_0 = ${fmt(w, 2)}`, N ? xw - 10 : xw, 462, { side: N ? 'left' : 'right', color: fq, size: 20, weight: 600, gap: 0 });
     hits.push({ x: xw, y: (TOP.t + TOP.b) / 2, r: 12, name: `the natural frequency ω₀ = √(k/m) = ${fmt(w, 2)}` });
     if (N) {
       label(ctx, `n = ${N}`, X(w), aT.Y(Math.abs(now.dd[N])) - 18, { side: 'above', color: sq, size: 18, weight: 600 });

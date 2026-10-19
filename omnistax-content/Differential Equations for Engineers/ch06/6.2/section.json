@@ -1,0 +1,1162 @@
+{
+ "id": "6.2",
+ "module": "transformsofders:section",
+ "chapter": "6",
+ "title": "Transforms of derivatives and ODEs",
+ "short": "Transforms of derivatives",
+ "lead": "How the <span data-concept=\"laplace-transform\">Laplace transform</span> treats a derivative, and how that is used to solve linear constant-coefficient equations with their initial conditions; the <span data-concept=\"unit-step-function\">Heaviside function</span> for inputs that switch on and off, the <span data-concept=\"transfer-function\">transfer function</span> that relates a system’s output to its input, and the transforms of integrals and of periodic functions.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out; the two runs of displayed equations the book works step by step, the transform of a derivative and of a periodic function, are drawn as derivations in place of the printed lines.",
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 6.2.101–6.2.104 carry the book’s own answers, each checked by computation and none contradicted. The inline exercise 6.2.1 and exercises 6.2.2–6.2.14, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked by computation first (6.2.8 and 6.2.11 also against a numerical solution of the equation).",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "figures": [
+  {
+   "id": "sim-heaviside",
+   "kind": "sim",
+   "number": "6.1",
+   "originals": [
+    "/media/ch06/lt-heaviside.svg"
+   ],
+   "original_caption": "Plot of the Heaviside (unit step) function u(t).",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-rocket",
+   "kind": "sim",
+   "number": "6.2",
+   "originals": [
+    "/media/ch06/lt-heavisideex.svg"
+   ],
+   "original_caption": "Plot of x(t).",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function"
+   ],
+   "facts": [
+    "#f2a33a",
+    "#ffd166"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "derivations": [
+  {
+   "id": "transform-of-derivatives",
+   "what": "the transforms of derivatives",
+   "source": "Differential Equations for Engineers, 6.2 Transforms of derivatives and ODEs, Transforms of derivatives",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\mathcal{L}\\bigl\\{\\kf(t)\\bigr\\} = \\int_0^\\infty e^{-st}\\kf(t)\\,dt",
+       "src": "6.1"
+      },
+      {
+       "text": "Integration by parts: $\\int_0^\\infty p(t)\\,q'(t)\\,dt = \\Bigl[p(t)\\,q(t)\\Bigr]_{t=0}^\\infty - \\int_0^\\infty p'(t)\\,q(t)\\,dt$.",
+       "src": "Calculus, 7.1 Integration by Parts"
+      },
+      {
+       "text": "$\\kg$ is of exponential order, $\\lvert \\kg(t) \\rvert \\leq M e^{ct}$, so $\\lim_{t\\to\\infty} e^{-st}\\kg(t) = 0$ when $s > c$.",
+       "src": "6.2"
+      },
+      {
+       "tex": "\\kG(s) = \\mathcal{L} \\bigl\\{ \\kg(t) \\bigr\\}",
+       "src": "Table 6.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\}} = \\mk{r}{\\int_0^\\infty e^{-st} \\kgprime(t) \\,dt}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\}} = \\mk{b}{\\Bigl[e^{-st} \\kg(t) \\Bigr]_{t=0}^\\infty} - \\mk{r}{\\int_0^\\infty (-s)\\, e^{-st} \\kg(t) \\,dt}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r": [
+         "b",
+         "r"
+        ]
+       },
+       "cap": "By parts with $p = e^{-st}$, whose derivative is $-s\\,e^{-st}$, and $q = \\kg$."
+      },
+      {
+       "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\}} = \\mk{b}{-\\kg(0)} - \\mk{r}{\\int_0^\\infty (-s)\\, e^{-st} \\kg(t) \\,dt}",
+       "uses": [
+        2
+       ],
+       "cap": "At $t = 0$ the bracket is $e^{0}\\kg(0) = \\kg(0)$; as $t \\to \\infty$ it goes to $0$, since $s > c$."
+      },
+      {
+       "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\}} = \\mk{b}{-\\kg(0)} + \\mk{r}{s \\int_0^\\infty e^{-st} \\kg(t) \\,dt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\}} = \\mk{b}{-\\kg(0)} + \\mk{r}{s \\mathcal{L} \\bigl\\{ \\kg(t) \\bigr\\}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\}} = \\mk{r}{s\\kG(s)} - \\mk{b}{\\kg(0)}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "6.2, Table 6.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "We repeat this procedure for higher derivatives: each derivative of $\\kg$ is taken to be differentiable and of exponential order in its turn, so result 1 holds with it in place of $\\kg$.",
+       "src": "6.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgdprime(t) \\bigr\\}} = \\mk{a}{s \\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\}} - \\mk{c}{\\kgprime(0)}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgdprime(t) \\bigr\\}} = \\mk{a}{s \\bigl( s\\kG(s) - \\kg(0) \\bigr)} - \\mk{c}{\\kgprime(0)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgdprime(t) \\bigr\\}} = \\mk{a}{s^2\\kG(s) - s\\kg(0)} - \\mk{c}{\\kgprime(0)}",
+       "uses": []
+      }
+     ],
+     "src": "Table 6.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "We repeat this procedure for higher derivatives: each derivative of $\\kg$ is taken to be differentiable and of exponential order in its turn, so result 1 holds with it in place of $\\kg$.",
+       "src": "6.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgtprime(t) \\bigr\\}} = \\mk{a}{s \\mathcal{L} \\bigl\\{ \\kgdprime(t) \\bigr\\}} - \\mk{c}{\\kgdprime(0)}",
+      "uses": [
+       0,
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgtprime(t) \\bigr\\}} = \\mk{a}{s \\bigl( s^2\\kG(s) - s\\kg(0) - \\kgprime(0) \\bigr)} - \\mk{c}{\\kgdprime(0)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\mathcal{L} \\bigl\\{ \\kgtprime(t) \\bigr\\}} = \\mk{a}{s^3\\kG(s) - s^2\\kg(0) - s\\kgprime(0)} - \\mk{c}{\\kgdprime(0)}",
+       "uses": []
+      }
+     ],
+     "src": "Table 6.2"
+    }
+   ]
+  },
+  {
+   "id": "periodic-transform",
+   "what": "the transform of a periodic function",
+   "source": "Differential Equations for Engineers, 6.2 Transforms of derivatives and ODEs, Periodic functions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kF(s) = \\int_0^\\infty e^{-st} \\kf(t) \\, dt",
+       "src": "6.1"
+      },
+      {
+       "text": "An integral over $[0, \\infty)$ splits at any point $P$ of it into the integrals over $[0, P]$ and over $[P, \\infty)$.",
+       "src": "Calculus, 5.2 The Definite Integral"
+      },
+      {
+       "text": "Writing $t + P$ for $t$ turns an integral over $[P, \\infty)$ into one over $[0, \\infty)$.",
+       "src": "Calculus, 5.5 Substitution"
+      },
+      {
+       "tex": "\\kf(t+P) = \\kf(t)",
+       "src": "6.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{lhs}{\\kF(s)} = \\mk{r}{\\int_0^\\infty e^{-st} \\kf(t) \\, dt}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{lhs}{\\kF(s)} = \\mk{a}{\\int_0^P e^{-st} \\kf(t) \\, dt} + \\mk{r}{\\int_P^\\infty e^{-st} \\kf(t) \\, dt}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r": [
+         "a",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{lhs}{\\kF(s)} = \\mk{a}{\\int_0^P e^{-st} \\kf(t) \\, dt} + \\mk{r}{\\int_0^\\infty e^{-s(t+P)} \\kf(t+P) \\, dt}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{lhs}{\\kF(s)} = \\mk{a}{\\int_0^P e^{-st} \\kf(t) \\, dt} + \\mk{r}{\\int_0^\\infty e^{-s(t+P)} \\kf(t) \\, dt}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{lhs}{\\kF(s)} = \\mk{a}{\\int_0^P e^{-st} \\kf(t) \\, dt} + \\mk{r}{e^{-Ps} \\int_0^\\infty e^{-st} \\kf(t) \\, dt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{lhs}{\\kF(s)} = \\mk{a}{\\int_0^P e^{-st} \\kf(t) \\, dt} + \\mk{r}{e^{-Ps} \\kF(s)}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "6.2"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "derivatives-intro",
+   "concept": "transform-of-a-derivative",
+   "verb": "introduces"
+  },
+  {
+   "span": "procedure",
+   "concept": "solving-odes-with-the-laplace-transform",
+   "verb": "introduces"
+  },
+  {
+   "span": "piecewise-heaviside",
+   "concept": "writing-piecewise-functions-with-the-heaviside-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-shifting",
+   "concept": "second-shifting-property",
+   "verb": "introduces"
+  },
+  {
+   "span": "input-output",
+   "concept": "input-and-output",
+   "verb": "introduces"
+  },
+  {
+   "span": "transfer-function",
+   "concept": "transfer-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "integral-rule",
+   "concept": "transform-of-an-integral",
+   "verb": "introduces"
+  },
+  {
+   "span": "integral-equation",
+   "concept": "integral-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "periodic-intro",
+   "concept": "transform-of-a-periodic-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "sawtooth",
+   "concept": "sawtooth-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "derivatives-intro",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "derivatives-intro",
+   "concept": "exponential-order",
+   "verb": "uses"
+  },
+  {
+   "span": "derivatives-intro",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-transform-of-derivatives",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-transform-of-derivatives",
+   "concept": "exponential-order",
+   "verb": "uses"
+  },
+  {
+   "span": "higher-derivatives",
+   "concept": "piecewise-smooth-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "higher-derivatives",
+   "concept": "piecewise-continuous-function",
+   "verb": "uses"
+  },
+  {
+   "span": "tab-6-2",
+   "concept": "transform-of-a-derivative",
+   "verb": "reinforces"
+  },
+  {
+   "span": "multiplication-by-s",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "multiplication-by-s",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-2-1",
+   "concept": "transform-of-a-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-2-1",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-2-1",
+   "concept": "partial-fraction-decomposition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-1",
+   "concept": "inverse-laplace-transform",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-1",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "frequency-domain",
+   "verb": "reinforces"
+  },
+  {
+   "span": "procedure",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "constant-coefficient-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "transform-of-a-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "caveat",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "caveat",
+   "concept": "linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "heaviside-recall",
+   "concept": "unit-step-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-heaviside",
+   "concept": "unit-step-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-heaviside",
+   "concept": "unit-step-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-heaviside",
+   "concept": "writing-piecewise-functions-with-the-heaviside-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-heaviside",
+   "concept": "second-shifting-property",
+   "verb": "reinforces"
+  },
+  {
+   "span": "piecewise-heaviside",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-heaviside-window",
+   "concept": "writing-piecewise-functions-with-the-heaviside-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tent",
+   "concept": "writing-piecewise-functions-with-the-heaviside-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "second-shifting",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "second-shifting",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-6-1",
+   "concept": "second-shifting-property",
+   "verb": "reinforces"
+  },
+  {
+   "span": "shift-example",
+   "concept": "second-shifting-property",
+   "verb": "reinforces"
+  },
+  {
+   "span": "shift-example",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-2-2",
+   "concept": "solving-odes-with-the-laplace-transform",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-2",
+   "concept": "second-shifting-property",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-2",
+   "concept": "writing-piecewise-functions-with-the-heaviside-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-2",
+   "concept": "mass-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-2-2",
+   "concept": "rlc-series-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-2-2",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rocket",
+   "concept": "mass-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rocket",
+   "concept": "second-shifting-property",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-rocket",
+   "concept": "solving-odes-with-the-laplace-transform",
+   "verb": "reinforces"
+  },
+  {
+   "span": "input-output",
+   "concept": "linear-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "input-output",
+   "concept": "steady-state-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "input-output",
+   "concept": "mass-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "transfer-function",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "transfer-function",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-transfer-function",
+   "concept": "transfer-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "transfer-output",
+   "concept": "transfer-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "transfer-output",
+   "concept": "input-and-output",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-3",
+   "concept": "transfer-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-3",
+   "concept": "natural-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-2-3",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "integral-rule",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-lt-integral",
+   "concept": "transform-of-an-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-inverse-lt-integral",
+   "concept": "transform-of-an-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-inverse-lt-integral",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-2-4",
+   "concept": "transform-of-an-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-4",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-2-5",
+   "concept": "transform-of-an-integral",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-5",
+   "concept": "partial-fraction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "periodic-intro",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "periodic-intro",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-periodic-transform",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-lt-periodic",
+   "concept": "transform-of-a-periodic-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-6",
+   "concept": "transform-of-a-periodic-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-2-6",
+   "concept": "periodic-function",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "6.2.1",
+   "source_number": "6.2.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "tab-6-2"
+   },
+   "cite": "tab-6-2",
+   "prompt": "<p>Verify <a href=\"#tab-6-2\">Table 6.2</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The first row is the computation above: $\\mathcal{L}\\bigl\\{\\kgprime(t)\\bigr\\} = s\\kG(s) - \\kg(0)$. Apply it to $\\kgprime$ in place of $\\kg$ (its derivative is $\\kgdprime$): $\\mathcal{L}\\bigl\\{\\kgdprime(t)\\bigr\\} = s\\,\\mathcal{L}\\bigl\\{\\kgprime(t)\\bigr\\} - \\kgprime(0) = s\\bigl(s\\kG(s) - \\kg(0)\\bigr) - \\kgprime(0) = s^2\\kG(s) - s\\kg(0) - \\kgprime(0)$, the second row. Apply it once more, to $\\kgdprime$: $\\mathcal{L}\\bigl\\{\\kgtprime(t)\\bigr\\} = s\\,\\mathcal{L}\\bigl\\{\\kgdprime(t)\\bigr\\} - \\kgdprime(0) = s^3\\kG(s) - s^2\\kg(0) - s\\kgprime(0) - \\kgdprime(0)$, the third row. Each application needs the function being differentiated to be differentiable and of exponential order, as $\\kg$ was."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "6.2.2",
+   "source_number": "6.2.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tent",
+   "prompt": "<p>Using the Heaviside function write down the piecewise function that is 0 for $t &lt; 0$, $t^2$ for $t$ in $[0,1]$ and $t$ for $t &gt; 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kf(t) = t^2\\bigl(\\ku(t) - \\ku(t-1)\\bigr) + t\\,\\ku(t-1)$. The window $\\ku(t) - \\ku(t-1)$ is $1$ on $[0, 1)$ and $0$ elsewhere, so the first term is $t^2$ there and nothing outside; the step $\\ku(t-1)$ switches $t$ on from $t = 1$. Before $t = 0$ every step is $0$. At $t = 1$ the two pieces agree ($1^2 = 1$), so the value there is the one the problem gives."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "6.2.3",
+   "source_number": "6.2.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "procedure",
+   "prompt": "<p>Using the Laplace transform solve</p>$$ m \\kxdprime + c \\kxprime + k \\kx = 0 , \\quad \\kx(0) = a, \\quad \\kxprime(0) = b , $$<p>where $m &gt; 0$, $c &gt; 0$, $k &gt; 0$, and $c^2 - 4km &gt; 0$ (system is overdamped).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = \\frac{(b - ar_2)\\,e^{r_1 t} - (b - ar_1)\\,e^{r_2 t}}{r_1 - r_2}$, where $r_1, r_2 = \\frac{-c \\pm \\sqrt{c^2 - 4km}}{2m}$. Transform the equation with Table 6.2: $m\\bigl(s^2\\kX(s) - sa - b\\bigr) + c\\bigl(s\\kX(s) - a\\bigr) + k\\kX(s) = 0$, so $\\kX(s) = \\frac{m(as + b) + ca}{ms^2 + cs + k}$. As $c^2 - 4km &gt; 0$, the denominator has the two real roots $r_1 \\neq r_2$, and $ms^2 + cs + k = m(s - r_1)(s - r_2)$ with $c = -m(r_1 + r_2)$. Then $m(as + b) + ca = m\\bigl(as + b - a(r_1 + r_2)\\bigr)$, and partial fractions give $\\kX(s) = \\frac{b - ar_2}{r_1 - r_2}\\,\\frac{1}{s - r_1} - \\frac{b - ar_1}{r_1 - r_2}\\,\\frac{1}{s - r_2}$. The inverse transform of $\\frac{1}{s - r}$ is $e^{rt}$, which gives $\\kx(t)$. Check: $\\kx(0) = \\frac{(b - ar_2) - (b - ar_1)}{r_1 - r_2} = a$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "6.2.4",
+   "source_number": "6.2.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "procedure",
+   "prompt": "<p>Using the Laplace transform solve</p>$$ m \\kxdprime + c \\kxprime + k \\kx = 0 , \\quad \\kx(0) = a, \\quad \\kxprime(0) = b , $$<p>where $m &gt; 0$, $c &gt; 0$, $k &gt; 0$, and $c^2 - 4km &lt; 0$ (system is underdamped).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = e^{-pt}\\Bigl(a \\cos(\\omega_1 t) + \\frac{b + pa}{\\omega_1} \\sin(\\omega_1 t)\\Bigr)$, where $p = \\frac{c}{2m}$ and $\\omega_1 = \\sqrt{\\frac{k}{m} - p^2} = \\frac{\\sqrt{4km - c^2}}{2m}$. Transform the equation with Table 6.2: $m\\bigl(s^2\\kX(s) - sa - b\\bigr) + c\\bigl(s\\kX(s) - a\\bigr) + k\\kX(s) = 0$, so $\\kX(s) = \\frac{m(as + b) + ca}{ms^2 + cs + k}$. Divide top and bottom by $m$ and complete the square: $s^2 + \\frac{c}{m}s + \\frac{k}{m} = (s + p)^2 + \\omega_1^2$, with $\\omega_1^2 &gt; 0$ as $c^2 - 4km &lt; 0$. The top is $as + b + 2ap = a(s + p) + (b + ap)$, so $\\kX(s) = a\\,\\frac{s + p}{(s+p)^2 + \\omega_1^2} + \\frac{b + pa}{\\omega_1}\\,\\frac{\\omega_1}{(s+p)^2 + \\omega_1^2}$. By the first shifting property the two fractions are the transforms of $e^{-pt}\\cos(\\omega_1 t)$ and $e^{-pt}\\sin(\\omega_1 t)$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "6.2.5",
+   "source_number": "6.2.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "procedure",
+   "prompt": "<p>Using the Laplace transform solve</p>$$ m \\kxdprime + c \\kxprime + k \\kx = 0 , \\quad \\kx(0) = a, \\quad \\kxprime(0) = b , $$<p>where $m &gt; 0$, $c &gt; 0$, $k &gt; 0$, and $c^2 = 4km$ (system is critically damped).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = e^{-pt}\\bigl(a + (b + pa)\\,t\\bigr)$, where $p = \\frac{c}{2m}$. Transform the equation with Table 6.2: $m\\bigl(s^2\\kX(s) - sa - b\\bigr) + c\\bigl(s\\kX(s) - a\\bigr) + k\\kX(s) = 0$, so $\\kX(s) = \\frac{m(as + b) + ca}{ms^2 + cs + k}$. As $c^2 = 4km$, $s^2 + \\frac{c}{m}s + \\frac{k}{m} = (s + p)^2$, and the top over $m$ is $a(s + p) + (b + ap)$, so $\\kX(s) = \\frac{a}{s + p} + \\frac{b + pa}{(s + p)^2}$. By the first shifting property these are the transforms of $a e^{-pt}$ and $(b + pa)\\,t e^{-pt}$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "6.2.6",
+   "source_number": "6.2.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-2-2",
+   "prompt": "<p>Solve $\\kxdprime + \\kx = \\ku(t-1)$ for initial conditions $\\kx(0) = 0$ and $\\kxprime(0) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = \\bigl(1 - \\cos(t-1)\\bigr)\\,\\ku(t-1)$. With zero initial conditions the transform is $s^2\\kX(s) + \\kX(s) = \\frac{e^{-s}}{s}$, so $\\kX(s) = e^{-s}\\,\\frac{1}{s(s^2+1)}$. Since $\\mathcal{L}\\{1 - \\cos t\\} = \\frac{1}{s(s^2+1)}$ (Example 6.2.4), the second shifting property (6.1) gives the inverse transform $\\bigl(1 - \\cos(t-1)\\bigr)\\,\\ku(t-1)$. It is Example 6.2.2 with the rocket never switched off: the mass rests until $t = 1$, then swings between $0$ and $2$ about $\\kx = 1$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "6.2.7",
+   "source_number": "6.2.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "derivatives-intro",
+   "prompt": "<p>Show the “differentiation of the transform” property. Suppose $\\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} = \\kF(s)$, then show</p>$$ \\mathcal{L} \\bigl\\{ -t \\kf(t) \\bigr\\} = \\kFprime(s) . $$<p>Hint: Differentiate under the integral sign.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Start from $\\kF(s) = \\int_0^\\infty e^{-st}\\kf(t)\\,dt$ and differentiate both sides with respect to $s$, taking the derivative inside the integral, where only $e^{-st}$ depends on $s$: $\\frac{\\partial}{\\partial s} e^{-st} = -t\\,e^{-st}$. So $\\kFprime(s) = \\int_0^\\infty -t\\,e^{-st}\\kf(t)\\,dt = \\int_0^\\infty e^{-st}\\bigl(-t\\kf(t)\\bigr)\\,dt = \\mathcal{L}\\bigl\\{-t\\kf(t)\\bigr\\}$. Taking the derivative inside is allowed for $\\kf$ of exponential order with $\\lvert \\kf(t) \\rvert \\leq Me^{ct}$ and $s &gt; c$: the integrand $t\\,e^{-st}\\lvert\\kf(t)\\rvert \\leq Mt\\,e^{-(s-c)t}$ has a convergent integral, uniformly for $s$ near any $s_0 &gt; c$. For example, $\\kf = 1$ has $\\kF = \\frac{1}{s}$, and $\\kFprime(s) = -\\frac{1}{s^2} = \\mathcal{L}\\{-t\\}$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "6.2.8",
+   "source_number": "6.2.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "procedure",
+   "prompt": "<p>Solve $\\kxtprime + \\kx = t^3 \\ku(t-1)$ for initial conditions $\\kx(0) = 1$ and $\\kxprime(0) = 0$, $\\kxdprime(0) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = \\frac{1}{3}e^{-t} + \\frac{2}{3}e^{t/2}\\cos\\bigl(\\tfrac{\\sqrt{3}}{2}t\\bigr) + \\Bigl(t^3 - 6 + \\frac{2}{3}e^{1-t} + \\frac{13}{3}e^{(t-1)/2}\\cos\\bigl(\\tfrac{\\sqrt{3}}{2}(t-1)\\bigr) - 3\\sqrt{3}\\,e^{(t-1)/2}\\sin\\bigl(\\tfrac{\\sqrt{3}}{2}(t-1)\\bigr)\\Bigr)\\ku(t-1)$. By the third row of Table 6.2, $s^3\\kX(s) - s^2 + \\kX(s) = \\mathcal{L}\\{t^3\\ku(t-1)\\}$. Write $t^3 = \\bigl((t-1)+1\\bigr)^3$, so by (6.1) $\\mathcal{L}\\{t^3\\ku(t-1)\\} = e^{-s}\\mathcal{L}\\{(t+1)^3\\} = e^{-s}\\bigl(\\frac{6}{s^4} + \\frac{6}{s^3} + \\frac{3}{s^2} + \\frac{1}{s}\\bigr)$. Hence $\\kX(s) = \\frac{s^2}{s^3+1} + e^{-s}\\,\\frac{s^3 + 3s^2 + 6s + 6}{s^4(s^3+1)}$. With $s^3 + 1 = (s+1)\\bigl((s - \\frac{1}{2})^2 + \\frac{3}{4}\\bigr)$, partial fractions give $\\frac{s^2}{s^3+1} = \\frac{1}{3}\\,\\frac{1}{s+1} + \\frac{2}{3}\\,\\frac{s - 1/2}{(s - 1/2)^2 + 3/4}$, whose inverse is the first two terms. The second fraction is the transform of $t^3 + 3t^2 + 3t - 5 + \\frac{2}{3}e^{-t} + \\frac{13}{3}e^{t/2}\\cos\\bigl(\\tfrac{\\sqrt{3}}{2}t\\bigr) - 3\\sqrt{3}\\,e^{t/2}\\sin\\bigl(\\tfrac{\\sqrt{3}}{2}t\\bigr)$ (partial fractions again); by (6.1) the factor $e^{-s}$ replaces $t$ by $t - 1$ and multiplies by $\\ku(t-1)$, and $(t-1)^3 + 3(t-1)^2 + 3(t-1) - 5 = t^3 - 6$. For instance $\\kx(0.5) \\approx 0.9792$ and $\\kx(3) \\approx 2.7170$, as the equation itself, solved numerically, also gives."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "6.2.9",
+   "source_number": "6.2.9",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-6-1",
+   "prompt": "<p>Using the definition of the Laplace transform, justify the second shifting property: $\\mathcal{L} \\bigl\\{ \\kf(t-a) \\, \\ku(t-a) \\bigr\\} = e^{-as} \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $a \\geq 0$, $\\mathcal{L}\\bigl\\{\\kf(t-a)\\,\\ku(t-a)\\bigr\\} = \\int_0^\\infty e^{-st}\\kf(t-a)\\,\\ku(t-a)\\,dt = \\int_a^\\infty e^{-st}\\kf(t-a)\\,dt$, since $\\ku(t-a)$ is $0$ for $t &lt; a$ and $1$ for $t \\geq a$. Substitute $\\tau = t - a$, so $t = \\tau + a$, $dt = d\\tau$, and $\\tau$ runs from $0$ to $\\infty$: the integral is $\\int_0^\\infty e^{-s(\\tau + a)}\\kf(\\tau)\\,d\\tau = e^{-as}\\int_0^\\infty e^{-s\\tau}\\kf(\\tau)\\,d\\tau = e^{-as}\\mathcal{L}\\bigl\\{\\kf(t)\\bigr\\}$. The condition $a \\geq 0$ makes the lower limit $a$ lie in $[0, \\infty)$, so that cutting the integral at $a$ is right."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "6.2.10",
+   "source_number": "6.2.10",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-2-2",
+   "prompt": "<p>Consider the mass-spring system with a rocket from <a href=\"#ex-6-2-2\">Example 6.2.2</a>. We noticed that the solution kept oscillating after the rocket stopped running. The amplitude of the oscillation depends on the time that the rocket was fired (for 4 seconds in the example).</p><ol type=\"a\"><li>Find a formula for the amplitude of the resulting oscillation in terms of the amount of time the rocket is fired.</li><li>Is there a nonzero time (if so, what is it?) for which the rocket fires and the resulting oscillation has amplitude 0 (the mass is not moving)?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $2\\lvert\\sin(T/2)\\rvert$, for a rocket fired for time $T$. Firing from $t = 1$ to $t = 1 + T$ is $\\kf(t) = \\ku(t-1) - \\ku(t-1-T)$, and as in the example $\\kx(t) = \\bigl(1 - \\cos(t-1)\\bigr)\\ku(t-1) - \\bigl(1 - \\cos(t-1-T)\\bigr)\\ku(t-1-T)$. Once the rocket stops, $t \\geq 1 + T$, both steps are $1$ and $\\kx(t) = \\cos(t-1-T) - \\cos(t-1) = 2\\sin(T/2)\\,\\sin(t - 1 - T/2)$ by the difference-of-cosines identity, a sine of amplitude $2\\lvert\\sin(T/2)\\rvert$. For the example's $T = 4$ it is $2\\lvert\\sin 2\\rvert \\approx 1.82$. b) Yes: $\\sin(T/2) = 0$ for $T = 2\\pi$ (and for every multiple $2\\pi k$). The rocket then fires for exactly one period of the spring’s oscillation, and at $t = 1 + 2\\pi$ the mass is back at $\\kx = 1 - \\cos(2\\pi) = 0$ with velocity $\\sin(2\\pi) = 0$, so it stays at rest."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "6.2.11",
+   "source_number": "6.2.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tent",
+   "prompt": "<p>Define</p>$$ \\kf(t) = \\begin{cases} {(t-1)}^2 & \\text{if } \\; 1 \\leq t &lt; 2, \\\\ 3-t & \\text{if } \\; 2 \\leq t &lt; 3, \\\\ 0 & \\text{otherwise} . \\end{cases} $$<ol type=\"a\"><li>Sketch the graph of $\\kf(t)$.</li><li>Write down $\\kf(t)$ using the Heaviside function.</li><li>Solve $\\kxdprime+\\kx=\\kf(t)$, $\\kx(0)=0$, $\\kxprime(0) = 0$ using the Laplace transform.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The graph is $0$ up to $t = 1$, then the parabola $(t-1)^2$ rising from $(1, 0)$ to $(2, 1)$, then the line $3 - t$ falling from $(2, 1)$ to $(3, 0)$ (the two pieces meet at $(2, 1)$, so the graph has no jump), and $0$ after $t = 3$. b) $\\kf(t) = (t-1)^2\\bigl(\\ku(t-1) - \\ku(t-2)\\bigr) + (3-t)\\bigl(\\ku(t-2) - \\ku(t-3)\\bigr)$. c) $\\kx(t) = \\bigl((t-1)^2 - 2 + 2\\cos(t-1)\\bigr)\\ku(t-1) - \\bigl((t-2)^2 + 3(t-2) - 2 + 2\\cos(t-2) - 3\\sin(t-2)\\bigr)\\ku(t-2) + \\bigl((t-3) - \\sin(t-3)\\bigr)\\ku(t-3)$. To use (6.1), write each step’s function in powers of its own shift: $(t-1)^2 = (t-2)^2 + 2(t-2) + 1$ and $3 - t = 1 - (t-2) = -(t-3)$, so $\\kf(t) = (t-1)^2\\ku(t-1) - \\bigl((t-2)^2 + 3(t-2)\\bigr)\\ku(t-2) + (t-3)\\ku(t-3)$ and $\\kF(s) = e^{-s}\\frac{2}{s^3} - e^{-2s}\\bigl(\\frac{2}{s^3} + \\frac{3}{s^2}\\bigr) + e^{-3s}\\frac{1}{s^2}$. With zero initial conditions $\\kX(s) = \\frac{\\kF(s)}{s^2+1}$. Partial fractions give $\\mathcal{L}^{-1}\\bigl\\{\\frac{2}{s^3(s^2+1)}\\bigr\\} = t^2 - 2 + 2\\cos t$ and $\\mathcal{L}^{-1}\\bigl\\{\\frac{1}{s^2(s^2+1)}\\bigr\\} = t - \\sin t$, and (6.1) shifts each by its step. For instance $\\kx(4) \\approx 0.7387$, as the equation itself, solved numerically, also gives."
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "6.2.12",
+   "source_number": "6.2.12",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transfer-function",
+   "prompt": "<p>Find the transfer function for $m \\kxdprime + c \\kxprime + k\\kx = \\kf(t)$, $\\kx(0)=0$, $\\kxprime(0)=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kH(s) = \\frac{1}{ms^2 + cs + k}$. With zero initial conditions Table 6.2 gives $\\mathcal{L}\\{\\kxdprime\\} = s^2\\kX(s)$ and $\\mathcal{L}\\{\\kxprime\\} = s\\kX(s)$, so the transformed equation is $(ms^2 + cs + k)\\kX(s) = \\kF(s)$, and $\\kH(s) = \\frac{\\kX(s)}{\\kF(s)} = \\frac{1}{ms^2 + cs + k}$."
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "6.2.13",
+   "source_number": "6.2.13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transfer-output",
+   "prompt": "<p>Suppose $L\\kx = \\kf(t)$, $\\kx(0)=0$, $\\kxprime(0)=0$ for the input function $\\kf(t) = t$ gives the output $\\kx(t) = 2e^{-t} + te^{-t} + (t-2)$.</p><ol type=\"a\"><li>Find $\\kF(s)$, $\\kX(s)$, and the transfer function $\\kH(s)$.</li><li>If the input is instead $\\kf(t) = \\sin(t)$, find the new output $\\kx(t)$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kF(s) = \\frac{1}{s^2}$, $\\kX(s) = \\frac{2}{s+1} + \\frac{1}{(s+1)^2} + \\frac{1}{s^2} - \\frac{2}{s} = \\frac{1}{s^2(s+1)^2}$, and $\\kH(s) = \\frac{\\kX(s)}{\\kF(s)} = \\frac{1}{(s+1)^2}$. Each term of $\\kx$ is a table entry ($te^{-t}$ by the first shifting property), and over the common denominator $s^2(s+1)^2$ the numerator $2s^2(s+1) + s^2 + (s+1)^2 - 2s(s+1)^2$ is $1$. b) $\\kx(t) = \\frac{1}{2}\\bigl(te^{-t} + e^{-t} - \\cos t\\bigr)$. Now $\\kF(s) = \\frac{1}{s^2+1}$, so $\\kX(s) = \\kH(s)\\kF(s) = \\frac{1}{(s+1)^2(s^2+1)} = \\frac{1}{2}\\,\\frac{1}{s+1} + \\frac{1}{2}\\,\\frac{1}{(s+1)^2} - \\frac{1}{2}\\,\\frac{s}{s^2+1}$ by partial fractions, whose inverse transform is the output above."
+   }
+  },
+  {
+   "id": "e14",
+   "source_id": "6.2.14",
+   "source_number": "6.2.14",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-lt-periodic",
+   "prompt": "<p>Suppose $\\kf(t) = 1$ if $0 \\leq t &lt; 1$ and $\\kf(t)=0$ if $1 \\leq t &lt; 2$, and then extend periodically for all $t \\geq 0$ so that $\\kf(t)=\\kf(t+2)$. Compute the Laplace transform $\\kF(s)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kF(s) = \\frac{1}{s(1 + e^{-s})}$. The period is $P = 2$, and $\\int_0^2 e^{-st}\\kf(t)\\,dt = \\int_0^1 e^{-st}\\,dt = \\frac{1 - e^{-s}}{s}$. The formula for a periodic function gives $\\kF(s) = \\frac{1}{1 - e^{-2s}}\\,\\frac{1 - e^{-s}}{s}$, and since $1 - e^{-2s} = (1 - e^{-s})(1 + e^{-s})$, the factor $1 - e^{-s}$ cancels."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "6.2.101",
+   "source_number": "6.2.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tent",
+   "prompt": "<p>Using the Heaviside function $\\ku(t)$, write down the function</p>$$ \\kf(t) = \\begin{cases} 0 & \\text{if } \\; \\phantom{1 \\leq {}} t &lt; 1 , \\\\ t-1 & \\text{if } \\; 1 \\leq t &lt; 2 , \\\\ 1 & \\text{if } \\; 2 \\leq t . \\end{cases} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kf(t) = (t-1)\\bigl(\\ku(t-1) - \\ku(t-2)\\bigr) + \\ku(t-2)$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "6.2.102",
+   "source_number": "6.2.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-2-2",
+   "prompt": "<p>Solve $\\kxdprime-\\kx = (t^2-1) \\ku(t-1)$ for initial conditions $\\kx(0)=1$, $\\kxprime(0) = 2$ using the Laplace transform.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx(t) = (2e^{t-1}-t^2-1) \\ku(t-1) -\\frac{1}{2}e^{-t}+\\frac{3}{2}e^t$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "6.2.103",
+   "source_number": "6.2.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transfer-function",
+   "prompt": "<p>Find the transfer function for $\\kxprime + \\kx = \\kf(t)$, $\\kx(0)=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kH(s) = \\frac{1}{s+1}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "6.2.104",
+   "source_number": "6.2.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "transfer-output",
+   "prompt": "<p>Suppose $L\\kx = \\kf(t)$, $\\kx(0)=0$, $\\kxprime(0)=0$ for the input function $\\kf(t) = 4$ gives the output $\\kx(t) = 1 - \\cos(2 t)$. Find $\\kF(s)$, $\\kX(s)$, and the transfer function $\\kH(s)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kF(s) = \\frac{4}{s}$, $\\kX(s) = \\frac{1}{s} - \\frac{s}{s^2+4}$, $\\kH(s) = \\frac{1}{s^2+4}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "transform-of-a-derivative"
+  },
+  {
+   "exercise": "e2",
+   "concept": "writing-piecewise-functions-with-the-heaviside-function"
+  },
+  {
+   "exercise": "e2",
+   "concept": "unit-step-function"
+  },
+  {
+   "exercise": "e3",
+   "concept": "solving-odes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e3",
+   "concept": "transform-of-a-derivative"
+  },
+  {
+   "exercise": "e3",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e3",
+   "concept": "overdamped-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "solving-odes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e4",
+   "concept": "transform-of-a-derivative"
+  },
+  {
+   "exercise": "e4",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e4",
+   "concept": "underdamped-system"
+  },
+  {
+   "exercise": "e5",
+   "concept": "solving-odes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e5",
+   "concept": "transform-of-a-derivative"
+  },
+  {
+   "exercise": "e5",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e5",
+   "concept": "critically-damped-system"
+  },
+  {
+   "exercise": "e6",
+   "concept": "solving-odes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e6",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e7",
+   "concept": "laplace-transform"
+  },
+  {
+   "exercise": "e8",
+   "concept": "solving-odes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e8",
+   "concept": "transform-of-a-derivative"
+  },
+  {
+   "exercise": "e8",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e8",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e9",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e10",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e10",
+   "concept": "solving-odes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e10",
+   "concept": "mass-spring-system"
+  },
+  {
+   "exercise": "e11",
+   "concept": "writing-piecewise-functions-with-the-heaviside-function"
+  },
+  {
+   "exercise": "e11",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e11",
+   "concept": "solving-odes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e12",
+   "concept": "transfer-function"
+  },
+  {
+   "exercise": "e13",
+   "concept": "transfer-function"
+  },
+  {
+   "exercise": "e13",
+   "concept": "input-and-output"
+  },
+  {
+   "exercise": "e13",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e14",
+   "concept": "transform-of-a-periodic-function"
+  },
+  {
+   "exercise": "e101",
+   "concept": "writing-piecewise-functions-with-the-heaviside-function"
+  },
+  {
+   "exercise": "e102",
+   "concept": "solving-odes-with-the-laplace-transform"
+  },
+  {
+   "exercise": "e102",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e103",
+   "concept": "transfer-function"
+  },
+  {
+   "exercise": "e104",
+   "concept": "transfer-function"
+  },
+  {
+   "exercise": "e104",
+   "concept": "input-and-output"
+  }
+ ],
+ "footnotes": []
+}

@@ -1,0 +1,1157 @@
+{
+ "id": "4.6",
+ "module": "heateq:section",
+ "chapter": "4",
+ "title": "PDEs, separation of variables, and the heat equation",
+ "short": "The heat equation",
+ "lead": "The <span data-concept=\"heat-equation\">heat equation</span> governs the temperature along a thin wire insulated except at its ends, a <span data-concept=\"partial-differential-equation\">partial differential equation</span> in position and time. It is solved here by <span data-concept=\"separation-of-variables-for-pdes\">separation of variables</span>: products of a function of position and a function of time serve as building blocks, and <span data-concept=\"superposition-for-pdes\">superposition</span> with a Fourier series fits them to the initial temperature, once with the ends held at zero and once with them insulated.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.6.101–4.6.105 carry the book’s own answers. The inline exercise 4.6.1 and exercises 4.6.2–4.6.11, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every coefficient and value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-discrete-rod",
+   "kind": "sim",
+   "number": "4.15",
+   "originals": [
+    "/media/ch04/heat-wire.svg",
+    "/media/ch04/heateqregion.svg"
+   ],
+   "original_caption": "Insulated wire.",
+   "widths": [],
+   "draws": [
+    "function",
+    "derivative",
+    "region"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-heat-modes",
+   "kind": "sim",
+   "number": "4.16",
+   "folds": [
+    "4.17",
+    "4.18",
+    "4.19"
+   ],
+   "originals": [
+    "/media/ch04/heat-wireex-init.svg",
+    "/media/ch04/heat-wireex.svg",
+    "/media/ch04/heat-wireex-max.svg",
+    "/media/ch04/heat-wireisolex.svg"
+   ],
+   "original_caption": "(Figure 4.16) Initial distribution of temperature in the wire. (Figure 4.17) Plot of the temperature u(x, t) of the wire at position x at time t for 0 ≤ t ≤ 100. Notice the side conditions u(0, t) = u(1, t) = 0 and how the exponential makes the temperature decay with time. (Figure 4.18) Temperature at the midpoint of the wire (the bottom curve), and the approximation of this temperature by using only the first term in the series (top curve). (Figure 4.19) Plot of the temperature of the insulated wire at position x at time t.",
+   "widths": [
+    432,
+    720,
+    432,
+    720
+   ],
+   "draws": [
+    "function",
+    "series",
+    "sequence"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "pde-recall",
+   "concept": "partial-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pde-recall",
+   "concept": "independent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "pde-recall",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-pde",
+   "concept": "linear-pde",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-pde",
+   "concept": "side-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-pde",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-pde",
+   "concept": "dependent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-pde",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "three-equations",
+   "concept": "classes-of-second-order-pdes",
+   "verb": "introduces"
+  },
+  {
+   "span": "three-equations",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "three-equations",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "three-equations",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "three-equations",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "wire",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-discrete-rod",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-discrete-rod",
+   "concept": "heat-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-discrete-rod",
+   "concept": "thermal-diffusivity",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-equation",
+   "concept": "heat-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffusivity",
+   "concept": "thermal-diffusivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffusivity",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "subscript-notation",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "region",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "side-conditions",
+   "concept": "heat-equation-side-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "side-conditions",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "why-insulated",
+   "concept": "heat-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous",
+   "concept": "side-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "initial-condition",
+   "concept": "pde-initial-condition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "initial-condition",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition",
+   "concept": "superposition-for-pdes",
+   "verb": "introduces"
+  },
+  {
+   "span": "superposition",
+   "concept": "superposition-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition",
+   "concept": "linear-pde",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "superposition-preserves",
+   "concept": "superposition-for-pdes",
+   "verb": "reinforces"
+  },
+  {
+   "span": "superposition-preserves",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "product-guess",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "introduces"
+  },
+  {
+   "span": "product-guess",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "product-guess",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "building-blocks",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "building-blocks",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "building-blocks",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fixed-ends-problem",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fixed-ends-problem",
+   "concept": "heat-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "guess",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "guess",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "guess",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "guess",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-heat",
+   "concept": "separated-heat-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-separation-heat",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-heat",
+   "concept": "heat-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-heat",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-heat",
+   "concept": "four-fundamental-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-heat",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "sine-series-of-f",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "odd-extension-used",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "odd-extension-used",
+   "concept": "odd-periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "odd-extension-used",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "odd-extension-used",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-heat-solution",
+   "concept": "heat-equation-solution-fixed-ends",
+   "verb": "introduces"
+  },
+  {
+   "span": "why-it-works",
+   "concept": "heat-equation-solution-fixed-ends",
+   "verb": "reinforces"
+  },
+  {
+   "span": "why-it-works",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-6-1",
+   "concept": "heat-equation-solution-fixed-ends",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-6-1",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-heat-modes",
+   "concept": "heat-equation-solution-fixed-ends",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-heat-modes",
+   "concept": "heat-equation-solution-insulated-ends",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-heat-modes",
+   "concept": "smoothing-by-the-heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-heat-modes",
+   "concept": "average-temperature-of-an-insulated-wire",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-heat-modes",
+   "concept": "separated-heat-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "midpoint",
+   "concept": "heat-equation-solution-fixed-ends",
+   "verb": "uses"
+  },
+  {
+   "span": "smoothing",
+   "concept": "smoothing-by-the-heat-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "smoothing",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "smoothing",
+   "concept": "decay-of-fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-6-2",
+   "concept": "heat-equation-solution-fixed-ends",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-6-2",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-6-2",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "insulated-setup",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "insulated-setup",
+   "concept": "heat-equation-side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "insulated-setup",
+   "concept": "separated-heat-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "insulated-eigenvalues",
+   "concept": "eigenvalues-with-zero-endpoint-derivatives",
+   "verb": "uses"
+  },
+  {
+   "span": "insulated-eigenvalues",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "insulated-eigenvalues",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "cosine-series-of-f",
+   "concept": "cosine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "cosine-series-of-f",
+   "concept": "even-periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-heat-solution-insulated",
+   "concept": "heat-equation-solution-insulated-ends",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-4-6-3",
+   "concept": "heat-equation-solution-insulated-ends",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-6-3",
+   "concept": "cosine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "evens-out",
+   "concept": "heat-equation-solution-insulated-ends",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-term",
+   "concept": "cosine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "average-temperature",
+   "concept": "average-temperature-of-an-insulated-wire",
+   "verb": "introduces"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "separation-heat",
+   "what": "the building-block solutions of the heat equation with the ends at zero",
+   "source": "Notes on Diffy Qs, 4.6 PDEs, separation of variables, and the heat equation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\ku(x,t) = \\kX(x)\\kT(t)",
+       "src": "4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ut}{\\kut} = \\mk{k}{k}\\,\\mk{uxx}{\\kuxx}",
+      "src": "4.6",
+      "why": "The heat equation, which the guess must satisfy."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{X}{\\kX(x)}\\,\\mk{Tp}{\\kTprime(t)} = \\mk{k}{k}\\,\\mk{Xpp}{\\kXdprime(x)}\\,\\mk{T}{\\kT(t)}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "ut": [
+         "X",
+         "Tp"
+        ],
+        "uxx": [
+         "Xpp",
+         "T"
+        ]
+       },
+       "cap": "First, we plug $u(x,t) = X(x)T(t)$ into the heat equation: $X(x)$ does not change with $t$ and $T(t)$ does not change with $x$, so $u_t = X(x)T'(t)$ and $u_{xx} = X''(x)T(t)$."
+      },
+      {
+       "tex": "\\frac{\\mk{Tp}{\\kTprime(t)}}{\\mk{k}{k}\\,\\mk{T}{\\kT(t)}} = \\frac{\\mk{Xpp}{\\kXdprime(x)}}{\\mk{X}{\\kX(x)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\frac{\\mk{Tp}{\\kTprime(t)}}{\\mk{k}{k}\\,\\mk{T}{\\kT(t)}} = \\mk{lam}{-\\klambda} = \\frac{\\mk{Xpp}{\\kXdprime(x)}}{\\mk{X}{\\kX(x)}}",
+       "uses": [],
+       "cap": "This equation must hold for all $x$ and all $t$. But the left-hand side does not depend on $x$ and the right-hand side does not depend on $t$. Hence, each side must be a constant. Let us call this constant $-\\lambda$ (the minus sign is for convenience later)."
+      },
+      {
+       "tex": "\\mk{Xpp}{\\kXdprime(x)} + \\mk{lam}{\\klambda}\\,\\mk{X}{\\kX(x)} = 0 , \\qquad \\mk{Tp}{\\kTprime(t)} + \\mk{lam2}{\\klambda}\\,\\mk{k}{k}\\,\\mk{T}{\\kT(t)} = 0",
+       "uses": [],
+       "map": {
+        "lam": [
+         "lam",
+         "lam2"
+        ]
+       }
+      }
+     ],
+     "src": "4.6"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\ku(x,t) = \\kX(x)\\kT(t)",
+       "src": "4.6"
+      },
+      {
+       "text": "We are looking for a nontrivial solution, so $T(t)$ is not identically zero.",
+       "src": "4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\ku(0,t)} = 0 , \\qquad \\mk{b}{\\ku(L,t)} = 0",
+      "src": "4.6",
+      "why": "The ends of the wire are kept at temperature 0."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kX(0)\\,\\kT(t)} = 0 , \\qquad \\mk{b}{\\kX(L)\\,\\kT(t)} = 0",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kX(0)} = 0 , \\qquad \\mk{b}{\\kX(L)} = 0",
+       "uses": [
+        1
+       ],
+       "cap": "A product that is zero for every $t$, with $T(t)$ not identically zero, has its other factor zero."
+      }
+     ],
+     "src": "4.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The only eigenvalues of $\\kXdprime + \\klambda \\kX = 0$, $\\kX(0) = 0$, $\\kX(L) = 0$ are $\\klambdan = \\frac{n^2 \\pi^2}{L^2}$ for integers $n \\geq 1$, with eigenfunctions $\\sin \\left(\\frac{n \\pi}{L} x\\right)$.",
+       "src": "4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{ode}{\\kXdprime + \\klambda \\kX = 0} , \\qquad \\mk{bc}{\\kX(0) = 0 , \\ \\kX(L) = 0}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "We are looking for nontrivial solutions $X$ of the eigenvalue problem $X'' + \\lambda X = 0$, $X(0) = 0$, $X(L) = 0$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{lam}{\\klambdan = \\frac{n^2 \\pi^2}{L^2}} , \\qquad \\mk{X}{\\kXn (x) = \\sin \\left(\\frac{n \\pi}{L} x \\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "We have previously found the only eigenvalues and their eigenfunctions. Hence, let us pick the solutions $X_n$, one for each $\\lambda_n$."
+      }
+     ],
+     "src": "4.6"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 2
+      },
+      {
+       "text": "The fundamental equation $y' = -ry$, for a constant $r > 0$, has the general solution $y = Ce^{-rx}$.",
+       "src": "0.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Tp}{\\kTprime(t)} + \\mk{lam}{\\klambda}\\,\\mk{k}{k}\\,\\mk{T}{\\kT(t)} = 0",
+      "uses": [
+       0
+      ],
+      "why": "The equation for $T$ from result 1."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Tp}{\\kTprime_n(t)} + \\mk{lam}{\\frac{n^2 \\pi^2}{L^2}}\\,\\mk{k}{k}\\,\\mk{T}{\\kTn(t)} = 0",
+       "uses": [
+        1
+       ],
+       "cap": "The corresponding $T_n$ goes with $\\lambda = \\lambda_n$."
+      },
+      {
+       "tex": "\\mk{T}{\\kTn(t)} = \\mk{e}{e^{\\frac{-n^2 \\pi^2}{L^2} k t}}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "lam": "e",
+        "k": "e"
+       },
+       "cap": "This is one of our fundamental equations, and the solution is an exponential; we picked the particular solution where conveniently $T_n(0) = 1$."
+      }
+     ],
+     "src": "4.6"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\ku(x,t) = \\kX(x)\\kT(t)",
+       "src": "4.6"
+      },
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{u}{\\kun(x,t)} = \\mk{X}{\\kXn(x)}\\,\\mk{T}{\\kTn(t)}",
+      "uses": [
+       0
+      ],
+      "why": "Each pair $X_n$, $T_n$ gives a product of the form we guessed."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{u}{\\kun(x,t)} = \\mk{X}{\\sin \\left( \\frac{n \\pi}{L} x \\right)}\\,\\mk{T}{e^{\\frac{-n^2 \\pi^2}{L^2} k t}}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "4.6"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "4.6.1",
+   "source_number": "4.6.1",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "superposition"
+   },
+   "cite": "superposition",
+   "prompt": "<p>Verify the principle of superposition for the heat equation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $\\ku = c_1 \\kuone + c_2 \\kutwo$ with $(\\kuone)_t = k(\\kuone)_{xx}$ and $(\\kutwo)_t = k(\\kutwo)_{xx}$. Derivatives are linear, so $\\kut = c_1 (\\kuone)_t + c_2 (\\kutwo)_t = c_1 k (\\kuone)_{xx} + c_2 k (\\kutwo)_{xx} = k\\,(c_1 \\kuone + c_2 \\kutwo)_{xx} = k\\kuxx$. So $\\ku$ satisfies $\\kut = k\\kuxx$: the two sides agree for every choice of the constants $c_1$, $c_2$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "4.6.2",
+   "source_number": "4.6.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-heat-solution",
+   "prompt": "<p>Consider a wire of length 2, with $k=0.001$ and an initial temperature distribution $\\ku(x,0) = 50 x$. Both ends are embedded in ice (temperature 0). Find the solution as a series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,t) = \\sum_{n=1}^\\infty \\frac{200\\,(-1)^{n+1}}{n\\pi} \\sin \\left(\\frac{n\\pi}{2} x\\right) e^{-\\frac{n^2 \\pi^2}{4} 0.001\\, t}$. With the ends in ice the solution is the series $\\ku(x,t) = \\sum \\kbn \\sin \\left(\\frac{n \\pi}{L} x\\right) e^{\\frac{-n^2\\pi^2}{L^2} k t}$ with $L = 2$ and $k = 0.001$, where $\\kbn$ are the coefficients of the sine series of $\\kf(x) = 50x$ on $0 < x < 2$: integrating by parts, $\\kbn = \\frac{2}{2} \\int_0^2 50x \\sin \\left(\\frac{n\\pi}{2} x\\right) dx = \\frac{200\\,(-1)^{n+1}}{n\\pi}$, that is $\\frac{200}{\\pi}, -\\frac{100}{\\pi}, \\frac{200}{3\\pi}, \\ldots$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "4.6.3",
+   "source_number": "4.6.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-heat-solution",
+   "prompt": "<p>Find a series solution of</p>$$ \\begin{array}{ll} \\kut = \\kuxx & \\qquad \\text{for } \\; 0 < x < 1 \\text{ and } t > 0, \\\\ \\ku(0,t) = \\ku(1,t) = 0 & \\qquad \\text{for } \\; t > 0, \\\\ \\ku(x,0) = 100 & \\qquad \\text{for } \\; 0 < x < 1 . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,t) = \\sum_{n \\text{ odd}} \\frac{400}{n\\pi} \\sin (n\\pi x)\\, e^{-n^2 \\pi^2 t}$. Here $L = 1$ and $k = 1$, and the sine series of $\\kf(x) = 100$ has $\\kbn = 2 \\int_0^1 100 \\sin(n \\pi x)\\, dx = \\frac{200\\,(1 - (-1)^n)}{n\\pi}$, which is $\\frac{400}{n\\pi}$ for odd $n$ and $0$ for even $n$. Plugging these into $\\ku = \\sum \\kbn \\sin(n\\pi x) e^{-n^2\\pi^2 t}$ gives the series; the jumps of the odd extension at the ends are smoothed out at once for $t > 0$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "4.6.4",
+   "source_number": "4.6.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-heat-solution-insulated",
+   "prompt": "<p>Find a series solution of</p>$$ \\begin{array}{ll} \\kut = \\kuxx & \\qquad \\text{for } \\; 0 < x < \\pi \\text{ and } t > 0, \\\\ \\kux(0,t) = \\kux(\\pi,t) = 0 & \\qquad \\text{for } \\; t > 0, \\\\ \\ku(x,0) = 3\\cos (x) + \\cos (3x) & \\qquad \\text{for } \\; 0 < x < \\pi . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,t) = 3\\cos(x)\\, e^{-t} + \\cos(3x)\\, e^{-9t}$. The ends are insulated and $L = \\pi$, $k = 1$, so the building blocks are $\\cos(nx)\\, e^{-n^2 t}$. The initial temperature is already a cosine series, with coefficient 3 for $n = 1$, 1 for $n = 3$, and $\\kazero = 0$ and every other coefficient 0, so we just plug in, as in Example 4.6.2. Check: $\\kut = -3\\cos(x)e^{-t} - 9\\cos(3x)e^{-9t} = \\kuxx$, and $\\kux = -3\\sin(x)e^{-t} - 3\\sin(3x)e^{-9t}$ is 0 at $x = 0$ and $x = \\pi$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "4.6.5",
+   "source_number": "4.6.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-heat-solution-insulated",
+   "prompt": "<p>Find a series solution of</p>$$ \\begin{array}{ll} \\kut = \\frac{1}{3} \\kuxx & \\qquad \\text{for } \\; 0 < x < \\pi \\text{ and } t > 0, \\\\ \\kux(0,t) = \\kux(\\pi,t) = 0 & \\qquad \\text{for } \\; t > 0, \\\\ \\ku(x,0) = \\frac{10x}{\\pi} & \\qquad \\text{for } \\; 0 < x < \\pi . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,t) = 5 - \\sum_{n \\text{ odd}} \\frac{40}{\\pi^2 n^2} \\cos(nx)\\, e^{-n^2 t/3}$. Insulated ends with $L = \\pi$ and $k = \\frac{1}{3}$ call for the cosine series of $\\kf(x) = \\frac{10x}{\\pi}$: $\\kazero = \\frac{2}{\\pi}\\int_0^\\pi \\frac{10x}{\\pi}\\, dx = 10$, so $\\frac{\\kazero}{2} = 5$, the average of $\\kf$; and, integrating by parts, $\\kan = \\frac{2}{\\pi}\\int_0^\\pi \\frac{10x}{\\pi}\\cos(nx)\\, dx = \\frac{20\\,((-1)^n - 1)}{\\pi^2 n^2}$, which is $-\\frac{40}{\\pi^2 n^2}$ for odd $n$ and $0$ for even $n$. Each term decays as $e^{-n^2 k t} = e^{-n^2 t/3}$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "4.6.6",
+   "source_number": "4.6.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "superposition-preserves",
+   "prompt": "<p>Find a series solution of</p>$$ \\begin{array}{ll} \\kut = \\kuxx & \\qquad \\text{for } \\; 0 < x < 1 \\text{ and } t > 0, \\\\ \\ku(0,t) = 0 , \\quad \\ku(1,t) = 100 & \\qquad \\text{for } \\; t > 0, \\\\ \\ku(x,0) = \\sin (\\pi x) & \\qquad \\text{for } \\; 0 < x < 1 . \\end{array} $$<p>Hint: Use the fact that $\\ku(x,t) = 100 x$ is a solution satisfying $\\kut = \\kuxx$, $\\ku(0,t) = 0$, $\\ku(1,t) = 100$. Then use superposition.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,t) = 100x + \\sin(\\pi x)\\, e^{-\\pi^2 t} + \\sum_{n=1}^\\infty \\frac{200\\,(-1)^n}{n\\pi} \\sin(n\\pi x)\\, e^{-n^2\\pi^2 t}$. Write $\\ku = 100x + v$. As $100x$ satisfies the equation and the two end values, superposition leaves $v_t = v_{xx}$ with $v(0,t) = v(1,t) = 0$ and $v(x,0) = \\sin(\\pi x) - 100x$, a problem with the ends at zero. The sine series of $-100x$ on $0 < x < 1$ has coefficients $2\\int_0^1 (-100x)\\sin(n\\pi x)\\, dx = \\frac{200\\,(-1)^n}{n\\pi}$, and $\\sin(\\pi x)$ is already a sine series, so $v = \\sin(\\pi x)e^{-\\pi^2 t} + \\sum_{n=1}^\\infty \\frac{200(-1)^n}{n\\pi}\\sin(n\\pi x)e^{-n^2\\pi^2 t}$. The $n = 1$ term together has coefficient $1 - \\frac{200}{\\pi} \\approx -62.7$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "4.6.7",
+   "source_number": "4.6.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-temperature",
+   "prompt": "<p>Find the <em>steady-state temperature</em> solution as a function of $x$ alone, by letting $t \\to \\infty$ in the solution from exercises 4.6.5 and 4.6.6. Verify that it satisfies the equation $\\kuxx = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "From 4.6.5 the steady state is $\\ku = 5$; from 4.6.6 it is $\\ku = 100x$. As $t \\to \\infty$ every factor $e^{-n^2 t/3}$ or $e^{-n^2\\pi^2 t}$ goes to 0, so only the terms without one remain: the constant $\\frac{\\kazero}{2} = 5$ in 4.6.5, the average of the initial temperature that the insulated wire keeps, and $100x$ in 4.6.6, the straight line between the end temperatures 0 and 100. Both satisfy $\\kuxx = 0$: the second derivative of a constant and of the linear function $100x$ is 0."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "4.6.8",
+   "source_number": "4.6.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "product-guess",
+   "prompt": "<p>Use separation of variables to find a nontrivial solution to $u_{xx} + u_{yy} = 0$, where $u(x,0) = 0$ and $u(0,y) = 0$. Hint: Try $u(x,y) = X(x)Y(y)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$u(x,y) = xy$ is one; so are $u = \\sinh(ax)\\sin(ay)$ and $u = \\sin(ax)\\sinh(ay)$ for any constant $a \\neq 0$. Try $u = X(x)Y(y)$: then $X''Y + XY'' = 0$, so $\\frac{X''}{X} = -\\frac{Y''}{Y}$, and as the left side does not depend on $y$ and the right side not on $x$, both equal a constant $\\mu$. The conditions $u(0,y) = 0$ and $u(x,0) = 0$ give $X(0) = 0$ and $Y(0) = 0$. With $\\mu = 0$: $X'' = 0$, $Y'' = 0$, so $X = x$ and $Y = y$. With $\\mu = a^2 > 0$: $X = \\sinh(ax)$ and $Y = \\sin(ay)$. With $\\mu = -a^2 < 0$: $X = \\sin(ax)$ and $Y = \\sinh(ay)$. Each product satisfies $u_{xx} + u_{yy} = 0$ and is zero on both axes."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "4.6.9",
+   "source_number": "4.6.9",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "tag": "challenging",
+   "place": {
+    "at": "end"
+   },
+   "cite": "insulated-eigenvalues",
+   "prompt": "<p>Suppose that one end of the wire is insulated (say at $x=0$) and the other end is kept at zero temperature. That is, find a series solution of</p>$$ \\begin{array}{ll} \\kut = k \\kuxx & \\qquad \\text{for } \\; 0 < x < L \\text{ and } t > 0, \\\\ \\kux(0,t) = \\ku(L,t) = 0 & \\qquad \\text{for } \\; t > 0, \\\\ \\ku(x,0) = \\kf(x) & \\qquad \\text{for } \\; 0 < x < L . \\end{array} $$<p>Express any coefficients in the series by integrals of $\\kf(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,t) = \\sum_{n=1}^\\infty \\kan \\cos \\left(\\frac{(2n-1)\\pi}{2L} x\\right) e^{-\\frac{(2n-1)^2\\pi^2}{4L^2} k t}$, with $\\kan = \\frac{2}{L}\\int_0^L \\kf(x) \\cos \\left(\\frac{(2n-1)\\pi}{2L} x\\right) dx$. Separating $\\ku = \\kX(x)\\kT(t)$ gives $\\kXdprime + \\klambda \\kX = 0$ and $\\kTprime + \\klambda k \\kT = 0$ as before. Now $\\kux(0,t) = 0$ gives $\\kXprime(0) = 0$ and $\\ku(L,t) = 0$ gives $\\kX(L) = 0$. For $\\klambda = 0$ or $\\klambda < 0$ only $\\kX = 0$ fits. For $\\klambda > 0$, $\\kXprime(0) = 0$ leaves $\\kX = \\cos(\\sqrt{\\klambda}\\, x)$, and $\\cos(\\sqrt{\\klambda}\\, L) = 0$ needs $\\sqrt{\\klambda}\\, L = \\frac{(2n-1)\\pi}{2}$, so $\\klambdan = \\frac{(2n-1)^2\\pi^2}{4L^2}$ for $n = 1, 2, 3, \\ldots$ Then $\\kTn = e^{-\\klambdan k t}$, and superposition asks that $\\kf(x) = \\sum \\kan \\cos\\left(\\frac{(2n-1)\\pi}{2L} x\\right)$. These cosines are orthogonal on $[0, L]$, each with $\\int_0^L \\cos^2 = \\frac{L}{2}$, which gives the formula for $\\kan$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "4.6.10",
+   "source_number": "4.6.10",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "tag": "challenging",
+   "place": {
+    "at": "end"
+   },
+   "cite": "insulated-eigenvalues",
+   "prompt": "<p>Suppose that the wire is circular and insulated, so there are no ends. You can think of this as simply connecting the two ends and making sure the solution matches up at the ends. That is, find a series solution of</p>$$ \\begin{array}{ll} \\kut = k \\kuxx & \\qquad \\text{for } \\; 0 < x < L \\text{ and } t > 0, \\\\ \\ku(0,t) = \\ku(L,t) , \\quad \\kux(0,t) = \\kux(L,t) & \\qquad \\text{for } \\; t > 0, \\\\ \\ku(x,0) = \\kf(x) & \\qquad \\text{for } \\; 0 < x < L . \\end{array} $$<p>Express any coefficients in the series by integrals of $\\kf(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,t) = \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\left( \\kan \\cos \\left(\\frac{2n\\pi}{L} x\\right) + \\kbn \\sin \\left(\\frac{2n\\pi}{L} x\\right) \\right) e^{-\\frac{4n^2\\pi^2}{L^2} k t}$, with $\\kan = \\frac{2}{L}\\int_0^L \\kf(x)\\cos\\left(\\frac{2n\\pi}{L} x\\right) dx$ for $n \\geq 0$ and $\\kbn = \\frac{2}{L}\\int_0^L \\kf(x)\\sin\\left(\\frac{2n\\pi}{L} x\\right) dx$. Separating $\\ku = \\kX(x)\\kT(t)$ gives $\\kXdprime + \\klambda \\kX = 0$ with $\\kX(0) = \\kX(L)$ and $\\kXprime(0) = \\kXprime(L)$: the periodic eigenvalue problem of 4.1 on an interval of length $L$, whose eigenvalues are $\\klambdan = \\frac{4n^2\\pi^2}{L^2}$ for $n \\geq 0$, with the constant eigenfunction for $n = 0$ and both $\\cos\\left(\\frac{2n\\pi}{L}x\\right)$ and $\\sin\\left(\\frac{2n\\pi}{L}x\\right)$ for each $n \\geq 1$. Then $\\kTn = e^{-\\klambdan k t}$ ($T_0 = 1$), and at $t = 0$ the series must be the Fourier series of $\\kf$ as an $L$-periodic function, whose coefficients are the integrals above. The average $\\frac{\\kazero}{2}$ stays, as no heat leaves the insulated ring."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "4.6.11",
+   "source_number": "4.6.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "average-temperature",
+   "prompt": "<p>Consider a wire insulated on both ends, $L=1$, $k=1$, and $\\ku(x,0) = \\cos^2(\\pi x)$.</p><ol type=\"a\"><li>Find the solution $\\ku(x,t)$. Hint: a trig identity.</li><li>Find the average temperature.</li><li>Initially the temperature variation is 1 (maximum minus the minimum). Find the time when the variation is ${1}/{2}$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\ku(x,t) = \\frac{1}{2} + \\frac{1}{2}\\cos(2\\pi x)\\, e^{-4\\pi^2 t}$. b) $\\frac{1}{2}$. c) $t = \\frac{\\ln 2}{4\\pi^2} \\approx 0.0176$. a) The identity $\\cos^2(\\pi x) = \\frac{1}{2} + \\frac{1}{2}\\cos(2\\pi x)$ writes the initial temperature as a cosine series with $\\frac{\\kazero}{2} = \\frac{1}{2}$, the coefficient of $\\cos(2\\pi x)$ equal to $\\frac{1}{2}$ and all others 0; with $L = 1$, $k = 1$ the $n = 2$ term decays as $e^{-4\\pi^2 t}$. b) The average temperature is the constant term $\\frac{\\kazero}{2} = \\int_0^1 \\cos^2(\\pi x)\\, dx = \\frac{1}{2}$, the same at every time. c) At time $t$, $\\cos(2\\pi x)$ runs from $-1$ to $1$ on $0 \\leq x \\leq 1$, so the variation is $\\frac{1}{2}e^{-4\\pi^2 t} - \\left(-\\frac{1}{2}e^{-4\\pi^2 t}\\right) = e^{-4\\pi^2 t}$, which is $\\frac{1}{2}$ when $4\\pi^2 t = \\ln 2$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "4.6.101",
+   "source_number": "4.6.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-4-6-2",
+   "prompt": "<p>Find a series solution of</p>$$ \\begin{array}{ll} \\kut = 3 \\kuxx & \\qquad \\text{for } \\; 0 < x < \\pi \\text{ and } t > 0, \\\\ \\ku(0,t) = \\ku(\\pi,t) = 0 & \\qquad \\text{for } \\; t > 0, \\\\ \\ku(x,0) = 5\\sin (x) + 2\\sin (5x) & \\qquad \\text{for } \\; 0 < x < \\pi . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ku(x,t) = 5 \\sin (x) \\, e^{- 3 t} + 2 \\sin (5x) \\, e^{-75 t}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "4.6.102",
+   "source_number": "4.6.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-heat-solution-insulated",
+   "prompt": "<p>Find a series solution of</p>$$ \\begin{array}{ll} \\kut = 0.1 \\kuxx & \\qquad \\text{for } \\; 0 < x < \\pi \\text{ and } t > 0, \\\\ \\kux(0,t) = \\kux(\\pi,t) = 0 & \\qquad \\text{for } \\; t > 0, \\\\ \\ku(x,0) = 1 + 2\\cos (x) & \\qquad \\text{for } \\; 0 < x < \\pi . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ku(x,t) = 1 + 2 \\cos (x) \\, e^{-0.1 t}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "4.6.103",
+   "source_number": "4.6.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "product-guess",
+   "prompt": "<p>Use separation of variables to find a nontrivial solution to $u_{xt} = u_{xx}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$u(x,t) = e^{\\lambda t} e^{\\lambda x}$ for some $\\lambda$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "4.6.104",
+   "source_number": "4.6.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "product-guess",
+   "prompt": "<p>Use a variation on separation of variables to find a nontrivial solution to $u_{x} + u_{t} = u$. Hint: Try $u(x,t) = X(x)+T(t)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$u(x,t) = Ae^x + Be^t$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "4.6.105",
+   "source_number": "4.6.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-4-6-2",
+   "prompt": "<p>Suppose that the temperature on the wire is fixed at $0$ at the ends, $L=1$, $k=1$, and $\\ku(x,0) = 100\\sin(2 \\pi x)$.</p><ol type=\"a\"><li>What is the temperature at $x = {1}/{2}$ at any time?</li><li>What is the maximum and the minimum temperature on the wire at $t=0$?</li><li>At what time is the maximum temperature on the wire exactly one half of the initial maximum at $t=0$?</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a)",
+      "value": 0
+     },
+     {
+      "part": "b) minimum",
+      "value": -100
+     },
+     {
+      "part": "b) maximum",
+      "value": 100
+     },
+     {
+      "part": "c)",
+      "value": 0.017558,
+      "tol": 0.001
+     }
+    ],
+    "solution": "a) $0$, b) minimum $-100$, maximum $100$, c) $t = \\frac{\\ln 2}{4 \\pi^2}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "superposition-for-pdes"
+  },
+  {
+   "exercise": "e1",
+   "concept": "heat-equation"
+  },
+  {
+   "exercise": "e2",
+   "concept": "heat-equation-solution-fixed-ends"
+  },
+  {
+   "exercise": "e2",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e3",
+   "concept": "heat-equation-solution-fixed-ends"
+  },
+  {
+   "exercise": "e3",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e4",
+   "concept": "heat-equation-solution-insulated-ends"
+  },
+  {
+   "exercise": "e5",
+   "concept": "heat-equation-solution-insulated-ends"
+  },
+  {
+   "exercise": "e5",
+   "concept": "cosine-series"
+  },
+  {
+   "exercise": "e6",
+   "concept": "heat-equation-solution-fixed-ends"
+  },
+  {
+   "exercise": "e6",
+   "concept": "superposition-for-pdes"
+  },
+  {
+   "exercise": "e7",
+   "concept": "heat-equation-solution-insulated-ends"
+  },
+  {
+   "exercise": "e7",
+   "concept": "average-temperature-of-an-insulated-wire"
+  },
+  {
+   "exercise": "e7",
+   "concept": "heat-equation-solution-fixed-ends"
+  },
+  {
+   "exercise": "e8",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e9",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e9",
+   "concept": "separated-heat-equations"
+  },
+  {
+   "exercise": "e9",
+   "concept": "heat-equation-side-conditions"
+  },
+  {
+   "exercise": "e10",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e10",
+   "concept": "eigenvalues-with-periodic-conditions"
+  },
+  {
+   "exercise": "e10",
+   "concept": "heat-equation-solution-insulated-ends"
+  },
+  {
+   "exercise": "e11",
+   "concept": "heat-equation-solution-insulated-ends"
+  },
+  {
+   "exercise": "e11",
+   "concept": "average-temperature-of-an-insulated-wire"
+  },
+  {
+   "exercise": "e101",
+   "concept": "heat-equation-solution-fixed-ends"
+  },
+  {
+   "exercise": "e102",
+   "concept": "heat-equation-solution-insulated-ends"
+  },
+  {
+   "exercise": "e103",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e104",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e105",
+   "concept": "heat-equation-solution-fixed-ends"
+  }
+ ],
+ "footnotes": []
+}
