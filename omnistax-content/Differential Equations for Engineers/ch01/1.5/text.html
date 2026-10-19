@@ -1,0 +1,87 @@
+<p id="intro">Just as when solving integrals, one method to try is to <a href="/calculus/ch05/5.5/#5.5-substitution-intro">change variables</a> to end up with a simpler equation to solve.</p>
+
+<section id="substitution">
+<h2>Substitution</h2>
+<p>The equation</p>
+$$ \kyprime = {(x-\ky+1)}^2 $$
+<p id="substitution-try">is neither <span data-concept="separable-differential-equation">separable</span> nor <span data-concept="first-order-linear-differential-equation">linear</span>. What can we do? How about trying to change variables, so that in the new variables the equation is simpler? We use another variable $\kv$, which we treat as a function of $x$. We try</p>
+$$ \kv = x-\ky+1 . $$
+<p>We need to figure out $\kyprime$ in terms of $\kvprime$, $\kv$ and $x$. We differentiate (in $x$) to obtain $\kvprime = 1 - \kyprime$. So $\kyprime = 1-\kvprime$. We plug this into the equation to get</p>
+$$ 1-\kvprime = \kv^2 . $$
+<p id="substitution-separate">In other words, $\kvprime = 1-\kv^2$. We know how to solve such an equation by <span data-concept="separation-of-variables">separating variables</span>:</p>
+$$ \frac{1}{1-\kv^2} \,d\kv = dx . $$
+<p>So</p>
+$$ \frac{1}{2} \ln \left\lvert \frac{\kv+1}{\kv-1} \right\rvert = x + C , \qquad \text{or} \qquad \left\lvert \frac{\kv+1}{\kv-1} \right\rvert = e^{2x + 2C} , \qquad \text{or} \qquad \frac{\kv+1}{\kv-1} = D e^{2x} , $$
+<p>for some constant $D$. Note that $\kv=1$ and $\kv=-1$ are also <span data-concept="solution-to-a-differential-equation">solutions</span>.</p>
+<p id="unsubstitute">Now we need to “<span data-concept="substitution-method">unsubstitute</span>” to obtain</p>
+<div class="equation" id="eq-substitution-implicit">$$ \frac{x-\ky+2}{x-\ky} = D e^{2x} , $$</div>
+<p>and also the two <span data-concept="solution-to-a-differential-equation">solutions</span> $x-\ky+1=1$ or $\ky=x$, and $x-\ky+1=-1$ or $\ky=x+2$. We solve the first equation for $\ky$:</p>
+<div class="equation" id="eq-substitution-solved">$$ \begin{aligned} x-\ky+2 &amp;= (x-\ky)D e^{2x} , \\ x-\ky+2 &amp;= Dx e^{2x}-\ky D e^{2x} , \\ -\ky + \ky D e^{2x} &amp;= Dx e^{2x} - x - 2 , \\ \ky\,(-1+ D e^{2x}) &amp;= Dx e^{2x} - x - 2 , \\ \ky &amp;= \frac{Dx e^{2x} - x - 2}{D e^{2x}-1} . \end{aligned} $$</div>
+<p id="lost-solution">Note that $D=0$ gives $\ky=x+2$, but no value of $D$ gives the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=x$.</p>
+<figure class="sim" id="sim-substitution-family">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The solutions of $\kyprime = (x - \ky + 1)^2$ in its slope field: the curve $\ky = \frac{Dxe^{2x} - x - 2}{De^{2x} - 1}$ for the $D$ set on the slider, and the two lines $\ky = x$ and $\ky = x + 2$ that $\kv = \pm 1$ gave. At $D = 0$ the curve is the line $\ky = x + 2$ itself; as $\lvert D \rvert$ grows it hugs $\ky = x$ ever more closely without ever becoming it.</span></div>
+</figure>
+<p id="substitution-guess"><span data-concept="substitution-method">Substitution</span> in <span data-concept="differential-equation">differential equations</span> is applied in much the same way that it is applied in calculus. You guess. Several different <span data-concept="substitution-method">substitutions</span> might work. There are some general patterns to look for. We summarize a few of these in a table.</p>
+<div class="book-table" id="substitution-table">
+  <table>
+    <thead><tr><th>When you see</th><th>Try substituting</th></tr></thead>
+    <tbody>
+      <tr><td>$\ky\kyprime$</td><td>$\kv=\ky^2$</td></tr>
+      <tr><td>$\ky^2\kyprime$</td><td>$\kv=\ky^3$</td></tr>
+      <tr><td>$(\cos \ky)\kyprime$</td><td>$\kv=\sin \ky$</td></tr>
+      <tr><td>$(\sin \ky)\kyprime$</td><td>$\kv=\cos \ky$</td></tr>
+      <tr><td>$e^{\ky} \kyprime$</td><td>$\kv=e^{\ky}$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p id="substitution-rule-of-thumb">Usually, you try to <span data-concept="substitution-method">substitute</span> in the “most complicated” part of the equation, with the hope of simplifying it. The table above is just a rule of thumb. You might have to modify your guesses. If a <span data-concept="substitution-method">substitution</span> does not work (it does not make the equation any simpler), try a different one.</p>
+</section>
+
+<section id="bernoulli">
+<h2>Bernoulli equations</h2>
+<p id="bernoulli-def">There are some forms of equations where there is a general rule for <span data-concept="substitution-method">substitution</span> that always works. One such example is the so-called <em><span data-concept="bernoulli-equation">Bernoulli equation</span></em><sup class="fn" data-note="fn-bernoulli"></sup>:</p>
+<div class="equation" id="eq-bernoulli">$$ \kyprime + \kp(x)\ky = \kq(x)\ky^n . $$</div>
+<p id="bernoulli-sub">This equation looks a lot like a <span data-concept="first-order-linear-differential-equation">linear equation</span> except for the $\ky^n$. If $n=0$ or $n=1$, then the equation is <span data-concept="first-order-linear-differential-equation">linear</span> and we can solve it. Otherwise, the <span data-concept="bernoulli-substitution">substitution</span> $\kv=\ky^{1-n}$ transforms the <span data-concept="bernoulli-equation">Bernoulli equation</span> into a <span data-concept="first-order-linear-differential-equation">linear equation</span>. Note that $n$ need not be an integer.</p>
+<figure class="dv" id="drv-bernoulli"></figure>
+<div class="example" id="ex-1-5-1">
+<h3>Example 1.5.1</h3>
+<p>Solve</p>
+$$ x\kyprime+ \ky(x+1)+x\ky^5 = 0, \qquad \ky(1)=1 . $$
+<p>Divide the equation by $x$ and rearrange to see it is a <span data-concept="bernoulli-equation">Bernoulli equation</span>, $\kyprime+ \frac{x+1}{x} \ky = -\ky^5$, that is, $\kp(x) = \frac{x+1}{x}$ and $\kq(x) = -1$. We <span data-concept="bernoulli-substitution">substitute</span></p>
+$$ \kv=\ky^{1-5} = \ky^{-4}, \qquad \kvprime = -4 \ky^{-5} \kyprime . $$
+<p>In other words, $\left( {-1}/{4} \right) \ky^5 \kvprime = \kyprime$. So</p>
+$$ \begin{align*} x\kyprime+ \ky(x+1)+x\ky^5 &amp; = 0 , \\ \frac{-x\ky^5}{4} \kvprime+ \ky(x+1)+x\ky^5 &amp; = 0 , \\ \frac{-x}{4} \kvprime+ \ky^{-4}(x+1)+x &amp; = 0 , \\ \frac{-x}{4} \kvprime+ \kv(x+1)+x &amp; = 0 , \end{align*} $$
+<p>and finally</p>
+$$ \kvprime- \frac{4(x+1)}{x} \kv = 4 . $$
+<p>The equation is now <span data-concept="first-order-linear-differential-equation">linear</span>. We can use the <span data-concept="integrating-factor-method">integrating factor method</span>. In particular, we use formula <a href="/diffyqs/ch01/1.4/#1.4-lei-defsol">(1.4)</a>. We assume that $x &gt; 0$ so $\lvert x \rvert = x$. This assumption is OK, as our <span data-concept="initial-value">initial condition</span> is at $x=1 &gt; 0$. Let us compute the <span data-concept="integrating-factor">integrating factor</span>. Here $\kp(s)$ from formula <a href="/diffyqs/ch01/1.4/#1.4-lei-defsol">(1.4)</a> is $\frac{-4(s+1)}{s}$.</p>
+$$ \begin{align*} e^{\int_1^x \kp(s)\,ds} &amp; = \exp \left( \int_1^x \frac{-4(s+1)}{s} \,ds \right) = e^{-4x-4\ln(x)+4} = e^{-4x+4} x^{-4} = \frac{e^{-4x+4}}{x^4} , \\ e^{-\int_1^x \kp(s)\,ds} &amp; = e^{4x+4\ln(x)-4} = e^{4x-4} x^4 . \end{align*} $$
+<p>We now plug in to <a href="/diffyqs/ch01/1.4/#1.4-lei-defsol">(1.4)</a></p>
+$$ \begin{split} \kv(x) &amp; = e^{-\int_{1}^x \kp(s)\, ds} \left( \int_{1}^x e^{\int_{1}^t \kp(s)\, ds} 4 \,dt + 1 \right) \\ &amp; = e^{4x-4} x^4 \left( \int_{1}^x 4 \frac{e^{-4t+4}}{t^4} \,dt + 1 \right) . \end{split} $$
+<p>The integral in this expression is not possible to find in <span data-concept="closed-form">closed form</span>. As we said before, it is perfectly fine to have a definite integral in our <span data-concept="solution-to-a-differential-equation">solution</span>. Now “<span data-concept="substitution-method">unsubstitute</span>”</p>
+$$ \begin{align*} \ky^{-4} &amp;= e^{4x-4}x^4 \left( 4 \int_1^x \frac{e^{-4t+4}}{t^4} \,dt + 1\right) , \\ \ky &amp;= \frac{e^{-x+1}}{x {\left( 4 \int_1^x \frac{e^{-4t+4}}{t^4} \,dt + 1\right)}^{1/4}} . \end{align*} $$
+</div>
+</section>
+
+<section id="homogeneous">
+<h2>Homogeneous equations</h2>
+<p id="homogeneous-def">Using <span data-concept="substitution-method">substitution</span>, we can also solve the so-called <em><span data-concept="homogeneous-first-order-equation">homogeneous equations</span></em>. Suppose that we can write the <span data-concept="differential-equation">differential equation</span> as</p>
+<div class="equation" id="eq-homogeneous">$$ \kyprime = \kF\left(\frac{\ky}{x}\right) . $$</div>
+<p id="homogeneous-sub">Here we try the <span data-concept="homogeneous-substitution">substitutions</span></p>
+<figure class="dv" id="drv-homogeneous"></figure>
+<p id="homogeneous-domain">Clearly this <span data-concept="implicit-solution">solution</span> does not work when $x = 0$ (we would, after all, divide by zero in ${\ky}/{x}$). So we will either assume $x &gt; 0$ or $x &lt; 0$ depending on the <span data-concept="initial-value">initial condition</span>.</p>
+<div class="example" id="ex-1-5-2">
+<h3>Example 1.5.2</h3>
+<p>Solve</p>
+$$ x^2\kyprime = \ky^2+x\ky, \qquad \ky(1)=1. $$
+<p>We put the equation into the form $\kyprime= {\left({\ky}/{x}\right)}^2+{\ky}/{x}$, that is, $\kF(\kv) = \kv^2+\kv$. As the <span data-concept="initial-value">initial condition</span> is for a positive $x$ value, we will assume $x &gt; 0$. We <span data-concept="homogeneous-substitution">substitute</span> $\kv={\ky}/{x}$ to get the <span data-concept="separable-differential-equation">separable</span> equation</p>
+$$ x\kvprime = \kv^2+\kv-\kv = \kv^2 , $$
+<p>which has a <span data-concept="solution-to-a-differential-equation">solution</span></p>
+$$ \begin{aligned} \int \frac{1}{\kv^2} \,d\kv &amp;= \ln \, \lvert x \rvert + C , \\ \frac{-1}{\kv} &amp;= \ln x + C , \\ \kv &amp;= \frac{-1}{\ln x + C} . \end{aligned} $$
+<p>We <span data-concept="substitution-method">unsubstitute</span></p>
+$$ \frac{\ky}{x} = \frac{-1}{\ln x + C} , \qquad \text{or} \qquad \ky = \frac{-x}{\ln x + C} . $$
+<p>We want $\ky(1)=1$, so</p>
+$$ 1 = \ky(1) = \frac{-1}{\ln 1 + C} = \frac{-1}{C} . $$
+<p>Thus $C = -1$ and the <span data-concept="solution-to-a-differential-equation">solution</span> we are looking for is</p>
+$$ \ky = \frac{-x}{\ln x -1} . $$
+</div>
+</section>

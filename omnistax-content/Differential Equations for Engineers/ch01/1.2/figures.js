@@ -55,8 +55,10 @@ function poly(ctx, ax, pts, color, w) {
     /* The solution through the point, split there and revealed outward from it as the clock runs. */
     const pts = SF.trace(f, [a, b], ax.xr, ax.yr);
     let i = 0; pts.forEach((p, j) => { if (Math.abs(p[0] - a) < Math.abs(pts[i][0] - a)) i = j; });
+    /* Each branch is cut one point past the box's top or bottom, so the reveal spends the whole cycle on what is seen. */
+    const inBox = (br) => { const o = []; for (const p of br) { o.push(p); if (p[1] < ax.yr[0] || p[1] > ax.yr[1]) break; } return o; };
     const k = ease.smooth(cy.now() / T);
-    const right = partial(pts.slice(i), k), left = partial(pts.slice(0, i + 1).reverse(), k);
+    const right = partial(inBox(pts.slice(i)), k), left = partial(inBox(pts.slice(0, i + 1).reverse()), k);
     poly(ctx, ax, right, fc, 5); poly(ctx, ax, left, fc, 5);
     if (right.length > 3) { const q = right[Math.floor(right.length / 2)]; hits.push({ x: ax.X(q[0]), y: ax.Y(q[1]), r: 14, name: `the solution through (${fmt(a, 1)}, ${fmt(b, 1)})` }); }
     /* The slope at the point, drawn long and bold in the derivative's colour. */
@@ -169,7 +171,10 @@ function poly(ctx, ax, pts, color, w) {
     headline(ctx, book
       ? 'Joining and leaving the $x$-axis at the origin: the solution $\\ky = x^2$ for $x \\geq 0$, $-x^2$ for $x < 0$.'
       : `Joining the $x$-axis at $x = ${n(B)}$ and leaving it at $x = ${n(A)}$: one more solution through $(0, 0)$.`);
-    ro.set(`\\ky = -${sq(B)} \\text{ for } x < ${n(B)},\\quad 0 \\text{ for } ${n(B)} \\le x \\le ${n(A)},\\quad ${sq(A)} \\text{ for } x > ${n(A)};\\qquad \\kyprime = 2\\sqrt{\\lvert \\ky \\rvert}`);
+    const rows = book
+      ? [`x^2 & x \\geq 0`, `-x^2 & x < 0`]
+      : [`-${sq(B)} & x < ${n(B)}`, `0 & ${n(B)} \\le x \\le ${n(A)}`, `${sq(A)} & x > ${n(A)}`];
+    ro.set(`\\ky = \\begin{cases} ${rows.join(' \\\\ ')} \\end{cases}`, undefined, { form: book ? 'book' : 'family' });
   }
   still(d, draw);
 })();

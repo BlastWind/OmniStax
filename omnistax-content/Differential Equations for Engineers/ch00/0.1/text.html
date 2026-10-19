@@ -1,0 +1,102 @@
+<p id="origins">This book originated from my class notes for Math 286 at the <a href="https://www.math.uiuc.edu/">University of Illinois at Urbana-Champaign</a> (UIUC) in Fall 2008 and Spring 2009. It is a first course on <span data-concept="differential-equation">differential equations</span> for engineers. Using this book, I also taught Math 285 at UIUC, Math 20D at <a href="https://www.math.ucsd.edu/">University of California, San Diego</a> (UCSD), and Math 2233 and 4233 at <a href="https://math.okstate.edu/">Oklahoma State University</a> (OSU). Normally these courses are taught with Edwards and Penney, <em>Differential Equations and Boundary Value Problems: Computing and Modeling</em> [EP]<sup class="fn" data-note="EP"></sup>, or Boyce and DiPrima’s <em>Elementary Differential Equations and Boundary Value Problems</em> [BD]<sup class="fn" data-note="BD"></sup>, and this book aims to be more or less a drop-in replacement. Other books I used as sources of information and inspiration are E.L. Ince’s classic (and inexpensive) <em>Ordinary Differential Equations</em> [I]<sup class="fn" data-note="I"></sup>, Stanley Farlow’s <em>Differential Equations and Their Applications</em> [F]<sup class="fn" data-note="F"></sup>, now available from Dover, Berg and McGregor’s <em>Elementary Partial Differential Equations</em> [BM]<sup class="fn" data-note="BM"></sup>, and William Trench’s free book <em>Elementary Differential Equations with Boundary Value Problems</em> [T]<sup class="fn" data-note="T"></sup>. See the Further Reading chapter at the end of the book.</p>
+
+<section id="organization">
+<h2>Organization</h2>
+<p id="dependence">The organization of this book requires, to some degree, that the chapters be covered in order. Later chapters can be dropped. The dependence of the material covered is roughly:</p>
+<figure class="sim" id="fig-chapter-diagram" data-original="/media/ch00/chapterdiagram.svg">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span>The dependence of the chapters: an arrow leads from a chapter to one that builds on it, and a dotted arrow marks a dependence that is not essential.</span></div>
+  <div class="stage">
+<svg viewBox="0 0 1380 540" width="100%" role="img" aria-label="The dependence of the chapters: Introduction, then Chapter 1, then Chapter 2, which Chapters 3, 4, 6 and 7 build on; Chapter 3 leads to Chapter 8 and, loosely, to Chapter 4; Chapter 4 leads to Chapter 5 and, loosely, to Chapter 6; Appendix A leads loosely to Chapter 3." fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <g aria-label="Introduction to Chapter 1">
+    <line x1="712.2" y1="48.4" x2="712.2" y2="81.1"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(712.2 81.9) rotate(90)"/>
+  </g>
+  <g aria-label="Appendix A to Chapter 3">
+    <line x1="372.4" y1="148.3" x2="372.4" y2="280.8" stroke-dasharray="0.5 10"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(372.4 281.6) rotate(90)"/>
+  </g>
+  <g aria-label="Chapter 1 to Chapter 2">
+    <line x1="712.2" y1="148.3" x2="712.2" y2="180.9"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(712.2 181.7) rotate(90)"/>
+  </g>
+  <g aria-label="Chapter 2 to Chapter 6">
+    <line x1="748.2" y1="248.1" x2="994.7" y2="481"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(995.3 481.5) rotate(43.4)"/>
+  </g>
+  <g aria-label="Chapter 2 to Chapter 4">
+    <line x1="712.2" y1="248.1" x2="712.2" y2="380.6"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(712.2 381.4) rotate(90)"/>
+  </g>
+  <g aria-label="Chapter 2 to Chapter 3">
+    <line x1="613" y1="243.3" x2="473.1" y2="284.4"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(472.4 284.6) rotate(163.6)"/>
+  </g>
+  <g aria-label="Chapter 2 to Chapter 7">
+    <line x1="811.5" y1="245.4" x2="928.5" y2="282.3"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(929.3 282.5) rotate(17.5)"/>
+  </g>
+  <g aria-label="Chapter 3 to Chapter 4">
+    <line x1="471.6" y1="343.2" x2="611.4" y2="384.3" stroke-dasharray="0.5 10"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(612.2 384.5) rotate(16.4)"/>
+  </g>
+  <g aria-label="Chapter 3 to Chapter 8">
+    <line x1="372.4" y1="348" x2="372.4" y2="380.6"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(372.4 381.4) rotate(90)"/>
+  </g>
+  <g aria-label="Chapter 4 to Chapter 5">
+    <line x1="712.2" y1="447.8" x2="712.2" y2="480.5"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(712.2 481.3) rotate(90)"/>
+  </g>
+  <g aria-label="Chapter 4 to Chapter 6">
+    <line x1="811.5" y1="445.1" x2="928.5" y2="482" stroke-dasharray="0.5 10"/>
+    <path d="M-10.4 12C-8.5 4.8-4.25 1.4 0 0-4.25-1.4-8.5-4.8-10.4-12" transform="translate(929.3 482.2) rotate(17.5)"/>
+  </g>
+  <a href="/diffyqs/ch00/0.1/"><text x="712.2" y="34.8" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Introduction</text></a>
+  <a href="/diffyqs/appA/A.1/"><text x="372.4" y="124.3" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Appendix A</text></a>
+  <a href="/diffyqs/ch01/1.1/"><text x="712.2" y="124.3" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Chapter 1</text></a>
+  <a href="/diffyqs/ch02/2.1/"><text x="712.2" y="224.1" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Chapter 2</text></a>
+  <a href="/diffyqs/ch03/3.1/"><text x="372.4" y="324" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Chapter 3</text></a>
+  <a href="/diffyqs/ch07/7.1/"><text x="1029.3" y="324" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Chapter 7</text></a>
+  <a href="/diffyqs/ch08/8.1/"><text x="372.4" y="423.8" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Chapter 8</text></a>
+  <a href="/diffyqs/ch04/4.1/"><text x="712.2" y="423.8" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Chapter 4</text></a>
+  <a href="/diffyqs/ch05/5.1/"><text x="712.2" y="523.7" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Chapter 5</text></a>
+  <a href="/diffyqs/ch06/6.1/"><text x="1029.3" y="523.7" text-anchor="middle" font-size="36" fill="currentColor" stroke="none" text-decoration="underline">Chapter 6</text></a>
+</svg>
+  </div>
+</figure>
+<p id="skippable">There are a few references in chapters <a href="/diffyqs/ch04/4.1/">4</a> and <a href="/diffyqs/ch05/5.1/">5</a> to <a href="/diffyqs/ch03/3.1/">chapter 3</a> (some linear algebra), but these references are not essential and can be skimmed over, so <a href="/diffyqs/ch03/3.1/">chapter 3</a> can safely be dropped, while still covering chapters <a href="/diffyqs/ch04/4.1/">4</a> and <a href="/diffyqs/ch05/5.1/">5</a>. <a href="/diffyqs/ch06/6.1/">Chapter 6</a> does not depend on <a href="/diffyqs/ch04/4.1/">chapter 4</a> except that the PDEs section <a href="/diffyqs/ch06/6.5/">6.5</a> makes a few references to <a href="/diffyqs/ch04/4.1/">chapter 4</a>, although it could, in theory, be covered separately. The more in-depth <a href="/diffyqs/appA/A.1/">appendix A</a> on linear algebra can replace the short review <a href="/diffyqs/ch03/3.2/">§3.2</a> for a course that combines linear algebra and <span data-concept="ordinary-differential-equation">ODEs</span>.</p>
+</section>
+
+<section id="typical-courses">
+<h2>Typical courses</h2>
+<p id="uiuc-courses">Several different courses can be run with the book. There are the two original one-semester courses at UIUC. Both cover <span data-concept="ordinary-differential-equation">ODEs</span> as well as some <span data-concept="partial-differential-equation">PDEs</span>. The first course runs at 4 hours a week (Math 286):</p>
+<p id="math-286"><a href="/diffyqs/ch00/0.1/">Introduction</a> (<a href="/diffyqs/ch00/0.2/">0.2</a>), <a href="/diffyqs/ch01/1.1/">chapter 1</a> (<a href="/diffyqs/ch01/1.1/">1.1</a>–<a href="/diffyqs/ch01/1.7/">1.7</a>), <a href="/diffyqs/ch02/2.1/">chapter 2</a>, <a href="/diffyqs/ch03/3.1/">chapter 3</a>, <a href="/diffyqs/ch04/4.1/">chapter 4</a> (<a href="/diffyqs/ch04/4.1/">4.1</a>–<a href="/diffyqs/ch04/4.9/">4.9</a>), <a href="/diffyqs/ch05/5.1/">chapter 5</a> (or <a href="/diffyqs/ch06/6.1/">6</a> or <a href="/diffyqs/ch07/7.1/">7</a> or <a href="/diffyqs/ch08/8.1/">8</a>).</p>
+<p id="math-285-intro">The second course at UIUC runs 3 hours a week (Math 285):</p>
+<p id="math-285"><a href="/diffyqs/ch00/0.1/">Introduction</a> (<a href="/diffyqs/ch00/0.2/">0.2</a>), <a href="/diffyqs/ch01/1.1/">chapter 1</a> (<a href="/diffyqs/ch01/1.1/">1.1</a>–<a href="/diffyqs/ch01/1.7/">1.7</a>), <a href="/diffyqs/ch02/2.1/">chapter 2</a>, <a href="/diffyqs/ch04/4.1/">chapter 4</a> (<a href="/diffyqs/ch04/4.1/">4.1</a>–<a href="/diffyqs/ch04/4.9/">4.9</a>), and maybe <a href="/diffyqs/ch05/5.1/">chapter 5</a>, <a href="/diffyqs/ch06/6.1/">6</a>, or <a href="/diffyqs/ch07/7.1/">7</a>.</p>
+<p id="no-systems-pdes">A semester-long course at 3 hours a week that does not cover either systems or <span data-concept="partial-differential-equation">PDEs</span> will cover, beyond the introduction, <a href="/diffyqs/ch01/1.1/">chapter 1</a>, <a href="/diffyqs/ch02/2.1/">chapter 2</a>, <a href="/diffyqs/ch06/6.1/">chapter 6</a>, and <a href="/diffyqs/ch07/7.1/">chapter 7</a>, (with sections skipped as above). On the other hand, a typical course that covers systems will probably need to skip Laplace and power series and cover <a href="/diffyqs/ch01/1.1/">chapter 1</a>, <a href="/diffyqs/ch02/2.1/">chapter 2</a>, <a href="/diffyqs/ch03/3.1/">chapter 3</a>, and <a href="/diffyqs/ch08/8.1/">chapter 8</a>.</p>
+<p id="core-sections">If sections need to be skipped in the beginning, a good core of the sections on single <span data-concept="ordinary-differential-equation">ODEs</span> is: <a href="/diffyqs/ch00/0.2/">0.2</a>, <a href="/diffyqs/ch01/1.1/">1.1</a>–<a href="/diffyqs/ch01/1.4/">1.4</a>, <a href="/diffyqs/ch01/1.6/">1.6</a>, <a href="/diffyqs/ch02/2.1/">2.1</a>, <a href="/diffyqs/ch02/2.2/">2.2</a>, <a href="/diffyqs/ch02/2.4/">2.4</a>–<a href="/diffyqs/ch02/2.6/">2.6</a>.</p>
+<p id="lecture-count">The complete book can be covered at a reasonably fast pace at approximately 76 lectures (without <a href="/diffyqs/appA/A.1/">appendix A</a>) or 86 lectures (with <a href="/diffyqs/appA/A.1/">appendix A</a> replacing <a href="/diffyqs/ch03/3.2/">§3.2</a>). This is not accounting for exams, review, or time spent in a computer lab. A two-quarter or a two-semester course can be easily run with the material. For example (with some sections perhaps strategically skipped):</p>
+<p id="two-semesters">Semester 1: <a href="/diffyqs/ch00/0.1/">Introduction</a>, <a href="/diffyqs/ch01/1.1/">chapter 1</a>, <a href="/diffyqs/ch02/2.1/">chapter 2</a>, <a href="/diffyqs/ch06/6.1/">chapter 6</a>, <a href="/diffyqs/ch07/7.1/">chapter 7</a>.<br>
+Semester 2: <a href="/diffyqs/ch03/3.1/">Chapter 3</a>, <a href="/diffyqs/ch08/8.1/">chapter 8</a>, <a href="/diffyqs/ch04/4.1/">chapter 4</a>, <a href="/diffyqs/ch05/5.1/">chapter 5</a>.</p>
+<p id="combined-course-intro">A combined course on <span data-concept="ordinary-differential-equation">ODEs</span> with linear algebra can run as:</p>
+<p id="combined-course"><a href="/diffyqs/ch00/0.1/">Introduction</a>, <a href="/diffyqs/ch01/1.1/">chapter 1</a> (<a href="/diffyqs/ch01/1.1/">1.1</a>–<a href="/diffyqs/ch01/1.7/">1.7</a>), <a href="/diffyqs/ch02/2.1/">chapter 2</a>, <a href="/diffyqs/appA/A.1/">appendix A</a>, <a href="/diffyqs/ch03/3.1/">chapter 3</a> (w/o <a href="/diffyqs/ch03/3.2/">§3.2</a>), possibly <a href="/diffyqs/ch08/8.1/">chapter 8</a>.</p>
+<p id="topics">The chapter on the Laplace transform (<a href="/diffyqs/ch06/6.1/">chapter 6</a>), the chapter on Sturm–Liouville (<a href="/diffyqs/ch05/5.1/">chapter 5</a>), the chapter on power series (<a href="/diffyqs/ch07/7.1/">chapter 7</a>), and the chapter on nonlinear systems (<a href="/diffyqs/ch08/8.1/">chapter 8</a>), are more or less interchangeable and can be treated as “topics”. If <a href="/diffyqs/ch08/8.1/">chapter 8</a> is covered, it may be best to place it right after <a href="/diffyqs/ch03/3.1/">chapter 3</a>, and <a href="/diffyqs/ch05/5.1/">chapter 5</a> is best covered right after <a href="/diffyqs/ch04/4.1/">chapter 4</a>. If time is short, the first two sections of <a href="/diffyqs/ch07/7.1/">chapter 7</a> make a reasonable self-contained unit.</p>
+</section>
+
+<section id="computer-resources">
+<h2>Computer resources</h2>
+<p id="website">The book’s website <a href="https://www.jirka.org/diffyqs/">https://www.jirka.org/diffyqs/</a> or <a href="https://jirilebl.github.io/diffyqs/">https://jirilebl.github.io/diffyqs/</a> contains the following resources:</p>
+<ol>
+<li>Interactive SAGE demos.</li>
+<li>Online WeBWorK homeworks (using either your own WeBWorK installation or Edfinity) for most sections, customized for this book.</li>
+<li>The PDFs of the figures used in this book.</li>
+<li>YouTube videos and corresponding slides for some sections.</li>
+</ol>
+<p id="iode">I used IODE (<a href="https://publish.illinois.edu/iode-diffeq/">https://publish.illinois.edu/iode-diffeq/</a>) in the UIUC courses. IODE is a free software package that works with Matlab (proprietary) or Octave (free software). The graphs in the book were made with the Genius software (see <a href="https://www.jirka.org/genius.html">https://www.jirka.org/genius.html</a>).</p>
+<p id="latex-source">The LaTeX source of the book is also available for possible modification and customization at GitHub (<a href="https://github.com/jirilebl/diffyqs">https://github.com/jirilebl/diffyqs</a>).</p>
+</section>
+
+<section id="acknowledgments">
+<h2>Acknowledgments</h2>
+<p id="acknowledgments-text">Firstly, I would like to acknowledge Rick Laugesen. I used his handwritten class notes the first time I taught Math 286. My organization of this book through chapter 5, and the choice of material covered, is heavily influenced by his notes. Many examples and computations are taken from his notes. I am also heavily indebted to Rick for all the advice he has given me, not just on teaching Math 286. For spotting errors and other suggestions, I would also like to acknowledge (in no particular order): John P. D’Angelo, Sean Raleigh, Jessica Robinson, Michael Angelini, Leonardo Gomes, Jeff Winegar, Ian Simon, Thomas Wicklund, Eliot Brenner, Sean Robinson, Jannett Susberry, Dana Al-Quadi, Cesar Alvarez, Cem Bagdatlioglu, Nathan Wong, Alison Shive, Shawn White, Wing Yip Ho, Joanne Shin, Gladys Cruz, Jonathan Gomez, Janelle Louie, Navid Froutan, Grace Victorine, Paul Pearson, Jared Teague, Ziad Adwan, Martin Weilandt, Sönmez Şahutoğlu, Pete Peterson, Thomas Gresham, Prentiss Hyde, Jai Welch, Simon Tse, Andrew Browning, James Choi, Dusty Grundmeier, John Marriott, Jim Kruidenier, Barry Conrad, Wesley Snider, Colton Koop, Sarah Morse, Erik Boczko, Asif Shakeel, Chris Peterson, Nicholas Hu, Paul Seeburger, Jonathan McCormick, David Leep, William Meisel, Shishir Agrawal, Tom Wan, Andres Valloud, Martin Irungu, Justin Corvino, Tai-Peng Tsai, Santiago Mendoza Reyes, Glen Pugh, Michael Tran, Heber Farnsworth, Tamás Zsoldos, Mark Mills, George Ballinger, and probably others I have forgotten. Finally, I would like to acknowledge NSF grants DMS-0900885 and DMS-1362337.</p>
+</section>
