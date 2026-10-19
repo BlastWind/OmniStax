@@ -99,3 +99,12 @@ Anchors from every section's "Wanted at chapter level": 97 forms and 106 variabl
 Footnotes take the book's running number (Chapter 1's convention): 10–13 for the four of 2.2, 2.3, 2.4, 2.6, where every section had written "1". The chapter COLOR.md's `derivative` line no longer lists C′(ω), which the 2.6 decision keeps in ink.
 
 Checked: every in-book and Calculus link resolves, footnotes render 10–13, every Sim has a canvas, transports only on the six moving figures, every slider changes its figure, no console or page error in light or dark.
+
+
+## Pass 5 (2026-10-19): (2026-10-19): Chapter 3, Systems of ODEs, had its chapter pass, after its nine sections were built by nine agents
+
+Anchors from every section's "Wanted at chapter level": 142 forms and 244 variables rows (all 250 rows but the six 3.9 rows used only in its exercises). Meanings widened: 3.7's v⃗₂ and v⃗₃ (an ordinary eigenvector of Theorem 3.7.1 or a link of a chain), 3.9's a⃗ (also the unknown vector of a guess). Through `book-rows.json` and `ost merge diffyqs 3`: the glossary term "associated homogeneous equation" moved from `general-solution-of-a-nonhomogeneous-system` to `homogeneous-system`; the statement of `derivative-of-the-matrix-exponential` lost its last sentence, 3.9's commuting fact. No `ref` on the x₁, x₂, x₃ of 3.1 and 3.6 or the ξ₁, ξ₂ of 3.9 (each row names several referents or the general coordinates); no optional y₃, y₄ or v⃗ₖ₋₂ symbol.
+
+Chapter COLOR.md: `region` added to the categories (3.2's parallelogram) and the referents of 3.8 (`column-1`, `column-2`) and 3.9 (`xi-1`, `xi-2`). Footnotes take the book's running number: 3.8's Moler–Van Loan is 14, the chapter's only one (config line 21); Chapter 4 starts at 15.
+
+Checked: Figures 3.1–3.17 and Table 3.1 in book order with the four folds; every in-book and Calculus link from Chapter 3's pages and from 1.9 resolves against the built pages and Calculus's text.html (1.9's link to 8.1 waits on Chapter 8); every Sim has a canvas, transports only on the eleven moving figures, no console or page error in light or dark.

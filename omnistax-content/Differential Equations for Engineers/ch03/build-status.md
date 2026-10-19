@@ -17,13 +17,21 @@ Task `prep2-ch03` (prep, finished by `prep2-ch03-finish`), port 8123, scratch /t
 - 3.6 Second-order systems and applications built 2026-10-19 (sec-3.6, port 8146): text.html (the book's 3 headers, Theorem 3.6.1 note with its two boxed solutions, Examples 3.6.1–3.6.3, equation (3.4) as `eq-3-4`, 13 form displays), 4 figures: `sim-three-carts` Figure 3.12 (still: x₁, x₂, x₃ set the springs and each mass's net force, its row of Kx⃗), `sim-normal-modes` Figures 3.13 + 3.14 + 3.15 (moving: a choice Mode 1 / Mode 2 / Example 3.6.1, the carts swinging over bands that show each mode shape, x₁, x₂ traced, the sum bending out of the modes — exploration rule 23), `sim-railcars` Figures 3.16 + 3.17 (moving: linkup, bumper and impact, the wall distance d with the safe distances 4π/√3, 8π/√3 as specials), `sim-forced-carts` Sim (moving: ω slider, c₁(ω), c₂(ω) with poles at the natural frequencies 1, 2 and c₂ = 0 at √3, the resonant t sin ωt solutions at 1 and 2); 2 derivations (`drv-second-order-trial-solution`, `drv-forced-response-of-a-system` two nodes), 2 inline + 7 end exercises (6 AI-solved and SymPy-checked, 3 keyed), 10 concepts introduced, 7 referents, 0 footnotes (none in the section, no number taken), 6 images copied to media/ch03/; `ost check diffyqs --section 3.6` ok; Playwright light and dark clean; anchors for 37 variables rows and 18 forms, no `ref` on x_1/x_2/x_3, in `3.6/plan.md`. App note: a morph readout (`F.readout`) draws a 3-row bmatrix's stretched delimiters as black bars, so 3.12's readout uses `F.tex`.
 - 3.9 Nonhomogeneous systems built 2026-10-19 (sec-3.9, port 8149): text.html (the book's 3 headers with their 6 `<h3>` subsubsections, Examples 3.9.1–3.9.5, equations (3.6)–(3.11) as `eq-3-6`…`eq-3-11`, 3 boxed formulas framed, 7 form displays), 1 Sim (`sim-eigen-decomposition`, moving: Example 3.9.2 in the skew coordinates of the eigenvector lines, x⃗(t) the corner of the parallelogram ξ₁v⃗₁ + ξ₂v⃗₂ beside ξ₁(t), ξ₂(t) graphed, sliders ξ₁(0), ξ₂(0) with C₂ = 0 at −19/48 a special; referents `xi-1`, `xi-2`), 5 derivations (`drv-integrating-factor-for-systems` three nodes, `drv-eigenvector-decomposition`, `drv-scalar-equation-xi-k`, `drv-variation-of-parameters-for-systems`, `drv-eigenvector-decomposition-second-order`), 3 inline + 9 end exercises (5 AI-solved and SymPy-checked, 4 keyed), 6 concepts introduced, 0 footnotes (none in the section, no number taken), no media (the section has no images); `ost check diffyqs --section 3.9` ok; Playwright light, dark and reduced motion clean; anchors for 49 variables rows and 20 forms and one meaning to widen (a_vec) wanted in `3.9/plan.md`.
 
+- Chapter pass 2026-10-19 (pass-ch03, port 8134): 142 form and 244 variables anchors; v⃗₂, v⃗₃ (3.7) and a⃗ (3.9) meanings widened; glossary move and concept-statement fix merged; COLOR.md `region` and 3.8/3.9 referents; footnote 14 (config line 21); links, figures, Playwright light and dark clean; `ost log diffyqs 3` (Pass 5). `ost check diffyqs`: `10 chapters, 46 sections, 27 checks, no errors`; `astro check` 0 errors; `npm test` 935/936, the one failure Chapter 5's in-flight 5.3 (no section.json yet).
+
 ## In progress
-- Nothing; the section agents start now.
+- Nothing; the chapter is done.
 
 ## Next
-- Sections 3.1 → 3.9, then the chapter pass: anchors on every variables row and form (each plan's "Wanted at chapter level"), the Hasse script rerun, `ost log diffyqs 3`.
+- Nothing for Chapter 3. Chapter 4's footnotes start at 15.
 
-## Decisions
+## Decisions (for Chen)
+- Footnote numbering: the book's running number; Chapter 3's only footnote (3.8, Moler–Van Loan) is 14.
+- "associated homogeneous equation" is a glossary term of `homogeneous-system`, not of the nonhomogeneous general-solution theorem.
+- Not added (optional): y₃, y₄ rows for 3.1's exercises, x₁, x₂ rows for 3.4's exercises, a `v_km2_vec` symbol for 3.7 (v⃗ₖ₋₂ stays ink in two displays); no `ref` on the shared x₁, x₂, x₃ (3.1, 3.6) and ξ₁, ξ₂ (3.9) rows.
+- `eq-matrix-array` keeps its general m × n form, though its anchor shows the book's 3 × 5 instance.
+- For the whole-book `colours:default` pass, not changed here: several section agents found referent hues sitting close to `function` magenta or close to ink; the groups to look at are `tank-1`/`tank-2` (3.1, split subscripts beside x in `function`), `cart-1`/`cart-2` (3.1, 3.6), `mass-1..3`, `car-1`/`car-2` (3.6), `column-1`/`column-2` (3.8, drawn beside `function` curves) and `xi-1`/`xi-2` (3.9, beside ξ in `function`).
+- 1.9's link to `/diffyqs/ch08/8.1/` does not resolve until Chapter 8 is built.
 - Folds: Figures 3.2 + 3.3; 3.4 + … + 3.11; 3.13 + 3.14 + 3.15; 3.16 + 3.17.
 - Appendix A's linear algebra is taught first in 3.2: matrix, vector, determinant, row reduction and inverse concepts live in 3.2 under the ids Appendix A stages, so Appendix A's merge links to them rather than restaging.
 - Five prereq edges dropped as implied (listed under Done).
