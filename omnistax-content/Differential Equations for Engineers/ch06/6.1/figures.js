@@ -132,7 +132,7 @@ const guide = () => alpha(PAL.ink, 0.4);
       hits.push({ x: at.x, y: at.y, r: 18, name: `(s, F(s)) = (${n(s)}, ${n(Fv, 3)}): its height is the whole area` });
     } else {
       dot(ctx, aR.X(s), aR.Y(0), tc, false, 9);
-      text(ctx, 'no F(s)', aR.X(s) + (s < 4.5 ? 14 : -14), aR.Y(0) - 26, PAL.muted, { size: 17, align: s < 4.5 ? 'left' : 'right' });
+      /* hollow on the axis: no value here; the headline and the readout say why, the hover names it */
       hits.push({ x: aR.X(s), y: aR.Y(0), r: 16, name: `s = ${n(s)}: the integral diverges, so F(s) has no value here` });
     }
     /* the words and the equation */

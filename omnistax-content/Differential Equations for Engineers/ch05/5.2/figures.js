@@ -186,7 +186,7 @@ const pinHead = (ctx, x, y) => { dot(ctx, x, y, PAL.panel, true, 8); dot(ctx, x,
     /* the slope at the end, a short tangent */
     const s = c[1] * S / LEN, u = 1 / Math.hypot(1, s), ex = EX, ey = py(c[0]);
     line(ctx, ex - 80 * u, ey + 80 * u * s, ex + 300 * u, ey - 300 * u * s, dc, 4, [12, 8]);
-    mark(ctx, '$\\kyx$', ex + 300 * u - 34 * u * s, ey - 300 * u * s - 34 * u, dc, { align: 'center' });
+    mark(ctx, '$\\kyx$', ex + 320 * u - 48 * u * s, ey - 320 * u * s - 48 * u, dc, { align: 'center' });
     dot(ctx, ex, ey, fc, true, 9);
     text(ctx, 'x = 0', EX, Y0 + 136, PAL.muted, { size: 17, align: 'center' });
     hits = [
