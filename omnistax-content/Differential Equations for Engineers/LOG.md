@@ -153,3 +153,14 @@ Footnotes: the book's running numbers 56–64 (A.1 56–60, A.2 61–62, A.3 63,
 Cross-section: every in-book and Calculus link of the six pages resolves (30 checked); the "Figure A.k" hand links stay, now that the app links them too.
 
 Checks: `ost check diffyqs` clean for the whole book; `astro check` 0 errors; the appendix built, served and walked with Playwright in light and dark (no console or page errors, a canvas in every Sim, no transport on these still figures, every control changes its figure).
+
+
+## Pass 11 (2026-10-19): (2026-10-19): Chapter 8, Nonlinear systems, had its chapter pass (`docs/prompts/briefs/final.md`) by one agent in one run after its five sections were built
+
+The sections' "Wanted at chapter level" lists were applied, each decision recorded under that heading in its plan: 46 form anchors and 51 variables-row anchors (`ost set diffyqs forms` / `variables --chapter 8`); 8.2's concept "anchors" are its coverage `introduces` spans, already in `section.json` as written; 8.2/g keeps no anchor (only Exercise 8.2.7 writes g). `planar-autonomous-system` now lists only "autonomous system" in its `terms`, since the page marks "phase portrait" and "vector field" on their earlier concepts; merged with `ost merge diffyqs 8`.
+
+Footnotes, decided once for the chapter (`config.md` item 21): the book's running number. `ch-nonlin-systems.tex` has ten `\footnote`s: 46 (8.1), 47–48 (8.3), 49–52 (8.4), 53–55 (8.5); Appendix A continues from 56.
+
+Cross-section: Figures 8.1–8.16 and equations (8.1), (8.2) run in book order with no gap; every concept id resolves; 44 in-book and Calculus links from the five pages, 0.1 and 1.9 (whose link to `/diffyqs/ch08/8.1/` now resolves) point at ids that exist. Reading pass: no leftover marker, hex colour or "demo"; one comment in 8.5's `figures.js` corrected (the Lorenz critical points are filled, not hollow).
+
+Checks: `ost check diffyqs` clean; `astro check` 0 errors; built under the lock and walked with Playwright in light and dark (no console or page errors, a canvas in every figure, transports only on moving ones). The derivation cards now colour y and J (the app passes the page's macros), so the uncoloured-symbol reports from 8.2 and 8.3 are resolved.

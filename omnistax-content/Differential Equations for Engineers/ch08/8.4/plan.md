@@ -54,3 +54,5 @@ End exercises (kind `exercise`, ids `e1`–`e5`, `e101`–`e104`), every one kep
 - Form anchors: `eq-van-der-pol` → `8.4-eq-van-der-pol`; `eq-periodic-orbit` → `8.4-periodic-orbit`; `eq-planar-system-with-continuous-derivatives` → `8.4-eq-8-2`; `eq-divergence-of-a-plane-field` → `8.4-divergence`.
 - No concept, edge or glossary change. The staged `f_x`, `g_y` symbol pair was not needed: the book's answers to 8.4.101 and 8.4.103 write `f_x + g_y` in plain LaTeX.
 - For 8.1, 8.3 and 8.5: the book's footnotes run 46 (8.1), 47–48 (8.3), 53–55 (8.5) by the count above.
+- Chapter pass (2026-10-19): applied, 11 variables and 4 form anchors; footnotes 49–52 confirmed (config line 21).
+

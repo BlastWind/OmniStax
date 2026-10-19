@@ -51,3 +51,5 @@ End exercises (kind `exercise`, `place: end`), every one kept, Bloom and concept
 - Variables anchors (chapter 8, section 8.5): `x`, `y`, `z`, `x_prime`, `y_prime`, `z_prime` → `8.5-lorenz-intro` (first written in the Lorenz system of the opening); `x_dprime`, `ω` → `8.5-duffing`; `ω_0`, `p` → `8.5-strobed-linear`.
 - The introducing spans (coverage) differ from the prep plan for two concepts: `strange-attractor` is introduced at `8.5-strange-attractor` (the paragraph before Figure 8.14, where the book italicises it) and `attractor-of-a-forced-linear-oscillator` at `8.5-strobed-point`.
 - No concept, edge or glossary change.
+- Chapter pass (2026-10-19): applied, 5 form and 10 variables anchors; the two introducing spans stand as built; footnotes 53–55 confirmed.
+

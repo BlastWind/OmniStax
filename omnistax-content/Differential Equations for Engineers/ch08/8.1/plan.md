@@ -57,3 +57,7 @@ End exercises (kind `exercise`, ids `e1`–`e6`, `e101`–`e104`), every one kep
 - Variables anchors (none set yet): 8.1/x, 8.1/y, 8.1/x_prime, 8.1/y_prime, 8.1/f, 8.1/g → `8.1-planar-system`; 8.1/x_dprime → `8.1-ex-8-1-1`; 8.1/θ → `8.1-pendulum`; 8.1/θ_dprime → `8.1-pendulum`; 8.1/u, 8.1/v → `8.1-shift`; 8.1/∂f/∂x, 8.1/∂f/∂y, 8.1/∂g/∂x, 8.1/∂g/∂y → `8.1-jacobian`.
 - Concept terms: `planar-autonomous-system` lists "phase portrait", "phase diagram" and "vector field" among its terms, but the page marks those words (as config 6 says) on the earlier concepts `phase-portrait` and `vector-field-of-a-system`; the three could leave its `terms`, keeping "autonomous system".
 - No glossary words, no concept or edge fixes beyond that.
+- Chapter pass (2026-10-19): applied, 7 form and 15 variables anchors.
+- Chapter pass: applied, `planar-autonomous-system` terms now "autonomous system" only (merged).
+- Chapter pass: footnote 46 confirmed against `ch-nonlin-systems.tex` (config line 21).
+

@@ -202,7 +202,7 @@ const sig2 = (v) => String(Number(v.toPrecision(2)));
 /* Figure 8.15 + 8.16: the Lorenz system x′ = −10x + 10y, y′ = 28x − y − xz, z′ = −(8/3)z + xy from (x₀, x₀, z₀), the book's start
    (1, 1, 20) the default (its x(t) for 0 ≤ t ≤ 15 matches Figure 8.16 peak for peak, checked numerically), stepped by RK4 at
    h = 0.005 to t = 15 (halving h keeps every sign change of x). Above, mathematical 3D (the book's RULES.md): the trajectory
-   drawn into space as the clock runs, the three critical points of Exercise 8.5.101 hollow (all unstable), axes on the book's box
+   drawn into space as the clock runs, the three critical points of Exercise 8.5.101 filled though all unstable (a hollow sphere does not read in a scene), axes on the book's box
    x −20 to 20, y −25 to 25, z 0 to 50; free orbit, opening near the book's view (x left to right, y receding, z up); the spin
    button offered and off; the wheel zooms. Beneath, x(t) on t 0 to 15, x −20 to 20 (Figure 8.16), to the present t, so a lobe
    switch is a sign change of x. The clock runs t 0 to 15 in 6 s. Sliders x₀ = y₀ (−15 to 15: from every start in that range the

@@ -23,11 +23,24 @@ Scratch: /tmp/claude-0/-home-user-OmniStax/fa1756e3-ffc3-5115-96ae-60401395d3dc/
 - 8.5 built (sec-8.5, claude-opus-5-5 high): 3 moving figures (Figure 8.12 `sim-duffing-divergence`, the 3Blue1Brown Duffing pair with log₁₀ δ on a slider and a log-distance graph; Figure 8.14 `sim-poincare-section`, the strobes cascading with φ on a slider; Figure 8.15 + 8.16 `sim-lorenz`, mathematical 3D drawn as it runs over its x(t), spin offered and off, from the book's start (1, 1, 20) found numerically), 1 still (Figure 8.13 `fig-duffing-long`), `chaos-pend` kept as an image, Figure 8.17 in Exercise 8.5.2's card, 10 concepts introduced, 0 derivations, 5 end exercises (0 inline, 4 unkeyed with AI solutions, 1 keyed), footnotes 53–55 (the book's running number counted from the LaTeX); `ost check` clean.
 - 8.4 built (sec-8.4, claude-opus-5-5 high): 2 moving figures (Figure 8.10 `sim-van-der-pol`, rule 23's limit cycle every orbit winds onto: four edge trajectories and the dragged start riding onto the cycle beside x(t), μ on a slider with the window following μ and a dashed special at 0; Figure 8.11 `sim-limit-cycle-cases`, a choice of squared / unsquared / linear morphing the field and the book's three starts plus a dragged x₀), 1 still Sim (`sim-divergence-sign`, Examples 8.4.3–8.4.5), 12 concepts introduced, 0 derivations, 9 end exercises (0 inline, 5 unkeyed with AI solutions, 4 keyed), footnotes 49–52 (the book's running number counted from the LaTeX) and one correction (Example 8.4.5's x = cos t, y = sin t runs the circle the wrong way); `ost check` clean.
 
+## Done (chapter pass, 2026-10-19, task pass-ch08, port 8139)
+
+- 41 form and 56 variables anchors (all wanted; 8.2/g none); 8.2's concept spans already as wanted; `planar-autonomous-system` terms → "autonomous system" (merged).
+- Footnotes 46–55 confirmed against `ch-nonlin-systems.tex` (config item 21); Appendix A starts at 56.
+- 44 in-book/Calculus links from 8.1–8.5, 0.1 and 1.9 resolve (1.9 → `/diffyqs/ch08/8.1/` now resolves); Figures 8.1–8.16, (8.1)–(8.2) in order.
+- Derivation cards colour y and J (macros passed by the app): the uncoloured y/J reports are resolved.
+- `ost log diffyqs 8` (Pass 11; its "46 form and 51 variables" count should read 41 and 56). `ost check diffyqs`: `10 chapters, 59 sections, 27 checks, no errors`; `astro check` 0 errors; build and Playwright light and dark clean.
+
 ## Next
 
-- Sections 8.1 → 8.5, then the chapter pass.
+- Nothing for Chapter 8; the chapter is done.
 
 ## Decisions Chen must hear
+
+- Footnotes: the book's running number, 46–55 in this chapter.
+- `planar-autonomous-system` keeps only "autonomous system" as a glossary word; "phase portrait", "phase diagram", "vector field" belong to the earlier concepts.
+- 8.5's Lorenz spin is offered, off by default (root rule 26.2); its three critical points are drawn filled though unstable, because a hollow sphere does not read in a 3D scene (an exception to the hollow-unstable convention).
+- For the whole-book `colours:default` pass, not changed here: check the Lorenz scene's critical-point colour against the curve, and the referent hues of 8.2–8.4's portraits beside `function` magenta.
 
 - Ids: Calculus's `simply-connected-region` and `divergence` are reused; `jacobian-matrix`, `linearization-of-a-system`, `critical-point-of-a-system`, `stable-critical-point-of-a-system`, `classifying-critical-points-of-a-system` are new ids because Calculus's `jacobian` (a determinant), `linear-approximation` and `critical-point` (of a function) and Chapter 1's `stable-critical-point` and `classifying-critical-points` (one dimension) are cousins, not the same concept.
 - The equation (8.1) belongs to a new definition `planar-autonomous-system` rather than to 3.1's `autonomous-system`, so no cross-chapter form is needed; (8.2) is the form of `poincare-bendixson-theorem` with its hypotheses as the condition.
