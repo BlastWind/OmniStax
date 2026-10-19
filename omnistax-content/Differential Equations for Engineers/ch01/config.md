@@ -1,6 +1,6 @@
 # Chapter 1 config: First-order equations
 
-Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing defaults for the whole book); only the chapter-specific lines below differ.
+Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing defaults for the whole book); only the chapter-specific lines below differ. Built 2026-10-19: sections 1.1–1.9 and the chapter pass (anchors, footnote numbers, the 1.5 links, line 21 below).
 
 1. Start: `ch01/1.1`, then 1.2–1.9 in order; Chapter 0's 0.2 is the template section once built, `ch01/1.2` the template for slope fields and theorems.
 2. Loop: build straight through with no stops; plans and decisions are reported afterwards. The whole book is built.
@@ -22,3 +22,4 @@ Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing d
 18. Types: the fifteen of `book.json`; Chapter 1 uses function, derivative, integral, point, vector field, curve, error. No new type.
 19. Recolour: `colours:default -- diffyqs` is run by the orchestrator at the end of the run, not in the chapter pass.
 20. Exercises defined only in a prompt (harmonic function, harmonic conjugate in 1.8.7) are not concepts of the map; the card keeps the italic.
+21. Footnotes (decided at the chapter pass, 2026-10-19): a book footnote's `number` is the book's running number. `diffyqssetup.sty` runs the footnote counter through the whole book (`\counterwithout{footnote}{chapter}`) and only prints it as a per-page symbol (`\MakePerPage{footnote}`, `\fnsymbol`), so the number is the footnote's place in book order, counted from the first `\footnote` of the book: Chapter 0 prints none, Chapter 1's nine are 1–9 (1.1: 1; 1.2: 2; 1.5: 3; 1.6: 4, 5; 1.7: 6; 1.8: 7, 8; 1.9: 9), and Chapter 2 continues from 10. A chapter counts its own from the previous chapter's last (`grep -n '\\footnote' source/diffyqs/<chapter file>` in book order, or the `^[…]` markers of its `source.md` files); never "1" per section and never "∗".

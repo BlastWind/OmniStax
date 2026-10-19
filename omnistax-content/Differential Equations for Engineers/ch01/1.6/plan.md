@@ -46,6 +46,7 @@ None beyond the folds: the phase diagram beside each field is the section's view
 - Anchors: variables `x`, `dx/dt`, `f` → `1.6-autonomous-def`; `x_prime` → `1.6-long-term`. Forms: `eq-logistic` → `1.6-eq-logistic`; `eq-logistic-harvest` → `1.6-eq-logistic-harvest`; `eq-harvest-critical` → `1.6-eq-harvest-critical`. All ids exist in `text.html`.
 - Concept `equilibrium-solution`: its `symbol` could be `x` (the row's meaning is the constant solution x = A); nothing else to fix.
 - No edge changes: the merged prerequisites (`stable-critical-point` ← `equilibrium-solution`, `phase-line` ← `equilibrium-point`, `classifying-critical-points` ← `phase-line`, `unstable-critical-point`, `logistic-equation-with-harvesting` ← `logistic-differential-equation`, `classifying-critical-points`) match the page.
+- Chapter pass (2026-10-19): anchors applied as listed (four variables rows, three forms). `equilibrium-solution` gets no symbol: a concept's symbol is the sym of a variables row linked to it, and `1.6/x` names the dependent variable (`dependent-variable`), a concept the equilibrium solution only uses, so there is no row to give it (root rule 6). `fn-semistable` and `fn-semistable-2` carry "4" and "5", the chapter's fourth and fifth footnotes in book order (`config.md`).
 
 ## Conventions followed (the 0.2 template)
 

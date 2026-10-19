@@ -43,3 +43,4 @@ y `function` (`\ky`), f `function` (`\kf`), y′ and dy/dx `derivative` (`\kypri
 - Anchors (forms): `eq-euler-step` → `1.7-eq-euler-step`; `eq-error` → `1.7-eq-error`; `eq-rk4`, `eq-rk4-slopes` → `1.7-eq-rk4`; `eq-improved-euler`, `eq-improved-euler-slopes` → `1.7-eq-improved-euler`.
 - The footnote is numbered "1" as 1.1 numbered its first (the book marks footnotes by symbols restarting per page); the chapter pass may unify the convention.
 - Nothing else: concepts, edges, terms and symbols as merged.
+- Chapter pass (2026-10-19): applied. The four variables anchors and the six form anchors are set as listed; `x`, `dx/dt`, `x_prime` stay without one. `fn-euler` carries "6", the chapter's sixth footnote in book order (`config.md`).

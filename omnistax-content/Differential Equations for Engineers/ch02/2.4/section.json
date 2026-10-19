@@ -1,0 +1,496 @@
+{
+ "id": "2.4",
+ "module": "sec:mv",
+ "chapter": "2",
+ "title": "Mechanical vibrations",
+ "short": "Mechanical vibrations",
+ "lead": "A <span data-concept=\"mass-spring-system\">mass on a spring</span>, an <span data-concept=\"rlc-series-circuit\">RLC circuit</span> and a pendulum swinging through small angles all lead to the same linear second-order constant-coefficient equation. This section sets up those models and then follows free motion: <span data-concept=\"undamped-motion\">undamped</span> oscillation with its amplitude, frequency and phase shift, and <span data-concept=\"damped-motion\">damped</span> motion, whose roots sort it into overdamped, critically damped and underdamped cases.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 2.4.101–2.4.104 carry the book’s own answers, each confirmed by computation. The inline exercise 2.4.1 and exercises 2.4.2–2.4.6, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first. A page-break hint ([2]) that the conversion left at the head of Exercise 2.4.103 is dropped.",
+ "figures": [
+  {
+   "id": "sim-mass-spring",
+   "kind": "sim",
+   "originals": [
+    "/media/ch02/massfigforce.svg"
+   ],
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-rlc",
+   "kind": "sim",
+   "originals": [
+    "/media/ch02/mv-rlc.svg"
+   ],
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pendulum",
+   "kind": "sim",
+   "number": "2.1",
+   "originals": [
+    "/media/ch02/mv-sintheta.svg",
+    "/media/ch02/mv-pend-deriv.svg"
+   ],
+   "original_caption": "The graphs of sin θ and θ (in radians).",
+   "draws": [
+    "function",
+    "derivative",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-free-motion",
+   "kind": "sim",
+   "number": "2.2",
+   "folds": [
+    "2.3",
+    "2.4"
+   ],
+   "originals": [
+    "/media/ch02/mv-undamped.svg",
+    "/media/ch02/mv-overdamped.svg",
+    "/media/ch02/mv-underdamped.svg"
+   ],
+   "original_caption": "(Figure 2.2) Simple undamped oscillation. (Figure 2.3) Overdamped motion for several different initial conditions. (Figure 2.4) Underdamped motion with the envelope curves shown.",
+   "widths": [
+    432,
+    432,
+    432
+   ],
+   "draws": [
+    "function",
+    "eigenvalue",
+    "frequency",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {"id": "pendulum", "label": "the pendulum", "figures": ["sim-pendulum"]},
+  {"id": "linear-pendulum", "label": "its linear model", "figures": ["sim-pendulum"]}
+ ],
+ "coverage": [
+  {"span": "mass-spring-eq", "concept": "hookes-law", "verb": "introduces"},
+  {"span": "mass-spring-eq", "concept": "newtons-second-law", "verb": "introduces"},
+  {"span": "mass-spring-eq", "concept": "mass-spring-system", "verb": "introduces"},
+  {"span": "motion-words", "concept": "forced-motion", "verb": "introduces"},
+  {"span": "motion-words", "concept": "free-motion", "verb": "introduces"},
+  {"span": "motion-words", "concept": "damped-motion", "verb": "introduces"},
+  {"span": "motion-words", "concept": "undamped-motion", "verb": "introduces"},
+  {"span": "rlc", "concept": "rlc-series-circuit", "verb": "introduces"},
+  {"span": "pendulum", "concept": "pendulum-equation", "verb": "introduces"},
+  {"span": "small-angle", "concept": "small-angle-approximation", "verb": "introduces"},
+  {"span": "shm-terms", "concept": "natural-frequency", "verb": "introduces"},
+  {"span": "shm-terms", "concept": "simple-harmonic-motion", "verb": "introduces"},
+  {"span": "shm-terms", "concept": "amplitude", "verb": "introduces"},
+  {"span": "shm-terms", "concept": "angular-frequency", "verb": "introduces"},
+  {"span": "shm-terms", "concept": "phase-shift", "verb": "introduces"},
+  {"span": "amplitude-phase", "concept": "amplitude-and-phase-shift-form", "verb": "introduces"},
+  {"span": "period", "concept": "period", "verb": "introduces"},
+  {"span": "damped-intro", "concept": "damped-spring-mass-system", "verb": "introduces"},
+  {"span": "overdamping", "concept": "overdamped-system", "verb": "introduces"},
+  {"span": "critical-damping", "concept": "critically-damped-system", "verb": "introduces"},
+  {"span": "underdamping", "concept": "underdamped-system", "verb": "introduces"},
+  {"span": "envelope", "concept": "envelope-curves", "verb": "introduces"},
+  {"span": "pseudo-frequency", "concept": "pseudo-frequency", "verb": "introduces"},
+  {"span": "mv-intro", "concept": "second-order-equation-with-constant-coefficients", "verb": "uses"},
+  {"span": "mass-spring-intro", "concept": "mass-spring-system", "verb": "uses"},
+  {"span": "mass-spring-intro", "concept": "mathematical-model", "verb": "uses"},
+  {"span": "mass-spring-eq", "concept": "dependent-variable", "verb": "uses"},
+  {"span": "motion-words", "concept": "mass-spring-system", "verb": "uses"},
+  {"span": "motion-words", "concept": "second-order-equation-with-constant-coefficients", "verb": "reinforces"},
+  {"span": "sim-mass-spring", "concept": "mass-spring-system", "verb": "uses"},
+  {"span": "sim-mass-spring", "concept": "hookes-law", "verb": "uses"},
+  {"span": "sim-mass-spring", "concept": "newtons-second-law", "verb": "uses"},
+  {"span": "sim-mass-spring", "concept": "forced-motion", "verb": "uses"},
+  {"span": "sim-mass-spring", "concept": "free-motion", "verb": "uses"},
+  {"span": "sim-mass-spring", "concept": "damped-motion", "verb": "uses"},
+  {"span": "sim-mass-spring", "concept": "undamped-motion", "verb": "uses"},
+  {"span": "applications", "concept": "mass-spring-system", "verb": "uses"},
+  {"span": "applications", "concept": "mathematical-model", "verb": "uses"},
+  {"span": "sim-rlc", "concept": "rlc-series-circuit", "verb": "uses"},
+  {"span": "sim-rlc", "concept": "damped-motion", "verb": "uses"},
+  {"span": "rlc", "concept": "dependent-variable", "verb": "uses"},
+  {"span": "rlc-analogy", "concept": "rlc-series-circuit", "verb": "uses"},
+  {"span": "rlc-analogy", "concept": "mass-spring-system", "verb": "uses"},
+  {"span": "rlc-analogy", "concept": "free-motion", "verb": "uses"},
+  {"span": "rlc-analogy", "concept": "nonhomogeneous-linear-equation", "verb": "reinforces"},
+  {"span": "rlc-analogy", "concept": "second-order-equation-with-constant-coefficients", "verb": "uses"},
+  {"span": "pendulum", "concept": "newtons-second-law", "verb": "uses"},
+  {"span": "pendulum", "concept": "mass-spring-system", "verb": "uses"},
+  {"span": "pendulum", "concept": "dependent-variable", "verb": "uses"},
+  {"span": "small-angle", "concept": "pendulum-equation", "verb": "uses"},
+  {"span": "sim-pendulum", "concept": "pendulum-equation", "verb": "uses"},
+  {"span": "sim-pendulum", "concept": "small-angle-approximation", "verb": "uses"},
+  {"span": "linear-pendulum", "concept": "small-angle-approximation", "verb": "uses"},
+  {"span": "linear-pendulum", "concept": "mathematical-model", "verb": "uses"},
+  {"span": "approximation-errors", "concept": "small-angle-approximation", "verb": "uses"},
+  {"span": "approximation-errors", "concept": "mass-spring-system", "verb": "uses"},
+  {"span": "approximation-errors", "concept": "amplitude", "verb": "uses"},
+  {"span": "approximation-errors", "concept": "period", "verb": "uses"},
+  {"span": "simplifications", "concept": "mathematical-model", "verb": "uses"},
+  {"span": "free-undamped-intro", "concept": "free-motion", "verb": "uses"},
+  {"span": "free-undamped-intro", "concept": "undamped-motion", "verb": "uses"},
+  {"span": "free-undamped-intro", "concept": "nonhomogeneous-linear-equation", "verb": "uses"},
+  {"span": "free-undamped-intro", "concept": "homogeneous-linear-equation", "verb": "reinforces"},
+  {"span": "omega-zero", "concept": "natural-frequency", "verb": "uses"},
+  {"span": "omega-zero", "concept": "simple-harmonic-motion", "verb": "uses"},
+  {"span": "eq-shm-solution", "concept": "general-solution", "verb": "uses"},
+  {"span": "eq-shm-solution", "concept": "solution-for-complex-conjugate-roots", "verb": "reinforces"},
+  {"span": "eq-shm-solution", "concept": "simple-harmonic-motion", "verb": "uses"},
+  {"span": "amplitude-phase", "concept": "amplitude", "verb": "uses"},
+  {"span": "amplitude-phase", "concept": "phase-shift", "verb": "uses"},
+  {"span": "physical-interpretation", "concept": "initial-value", "verb": "uses"},
+  {"span": "physical-interpretation", "concept": "amplitude-and-phase-shift-form", "verb": "uses"},
+  {"span": "shm-terms", "concept": "amplitude-and-phase-shift-form", "verb": "uses"},
+  {"span": "angular", "concept": "angular-frequency", "verb": "uses"},
+  {"span": "angular", "concept": "natural-frequency", "verb": "uses"},
+  {"span": "period", "concept": "angular-frequency", "verb": "uses"},
+  {"span": "ex-2-4-1", "concept": "simple-harmonic-motion", "verb": "uses"},
+  {"span": "ex-2-4-1", "concept": "natural-frequency", "verb": "uses"},
+  {"span": "ex-2-4-1", "concept": "angular-frequency", "verb": "uses"},
+  {"span": "ex-2-4-1", "concept": "amplitude", "verb": "uses"},
+  {"span": "ex-2-4-1", "concept": "amplitude-and-phase-shift-form", "verb": "uses"},
+  {"span": "ex-2-4-1", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-2-4-1", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-4-1", "concept": "solving-an-initial-value-problem", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "simple-harmonic-motion", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "damped-spring-mass-system", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "overdamped-system", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "critically-damped-system", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "underdamped-system", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "envelope-curves", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "pseudo-frequency", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "amplitude", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "sim-free-motion", "concept": "initial-value", "verb": "uses"},
+  {"span": "initial-conditions", "concept": "free-motion", "verb": "uses"},
+  {"span": "initial-conditions", "concept": "undamped-motion", "verb": "uses"},
+  {"span": "phase-quadrant", "concept": "initial-value", "verb": "uses"},
+  {"span": "phase-quadrant", "concept": "solving-an-initial-value-problem", "verb": "uses"},
+  {"span": "phase-quadrant", "concept": "amplitude", "verb": "uses"},
+  {"span": "phase-quadrant", "concept": "phase-shift", "verb": "uses"},
+  {"span": "phase-quadrant", "concept": "amplitude-and-phase-shift-form", "verb": "uses"},
+  {"span": "atan2", "concept": "phase-shift", "verb": "uses"},
+  {"span": "atan2", "concept": "amplitude-and-phase-shift-form", "verb": "uses"},
+  {"span": "damped-intro", "concept": "damped-motion", "verb": "uses"},
+  {"span": "damped-intro", "concept": "free-motion", "verb": "uses"},
+  {"span": "damped-intro", "concept": "mass-spring-system", "verb": "uses"},
+  {"span": "eq-damping-rate", "concept": "natural-frequency", "verb": "uses"},
+  {"span": "damped-characteristic", "concept": "characteristic-equation", "verb": "reinforces"},
+  {"span": "roots-sign", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "roots-sign", "concept": "damped-spring-mass-system", "verb": "uses"},
+  {"span": "discriminant-sign", "concept": "damped-spring-mass-system", "verb": "uses"},
+  {"span": "overdamping", "concept": "damped-spring-mass-system", "verb": "uses"},
+  {"span": "overdamping", "concept": "solution-for-distinct-real-roots", "verb": "reinforces"},
+  {"span": "overdamped-decay", "concept": "overdamped-system", "verb": "uses"},
+  {"span": "overdamped-decay", "concept": "initial-value", "verb": "uses"},
+  {"span": "one-crossing", "concept": "overdamped-system", "verb": "uses"},
+  {"span": "ex-2-4-2", "concept": "overdamped-system", "verb": "uses"},
+  {"span": "ex-2-4-2", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-2-4-2", "concept": "solving-an-initial-value-problem", "verb": "uses"},
+  {"span": "critical-damping", "concept": "damped-spring-mass-system", "verb": "uses"},
+  {"span": "critical-damping", "concept": "solution-for-a-repeated-real-root", "verb": "reinforces"},
+  {"span": "critical-remarks", "concept": "critically-damped-system", "verb": "uses"},
+  {"span": "critical-remarks", "concept": "overdamped-system", "verb": "uses"},
+  {"span": "critical-remarks", "concept": "underdamped-system", "verb": "uses"},
+  {"span": "underdamping", "concept": "damped-spring-mass-system", "verb": "uses"},
+  {"span": "underdamping", "concept": "solution-for-complex-conjugate-roots", "verb": "reinforces"},
+  {"span": "drv-underdamped-roots", "concept": "underdamped-system", "verb": "uses"},
+  {"span": "drv-underdamped-roots", "concept": "pseudo-frequency", "verb": "uses"},
+  {"span": "drv-underdamped-roots", "concept": "characteristic-equation", "verb": "uses"},
+  {"span": "underdamped-solution", "concept": "pseudo-frequency", "verb": "uses"},
+  {"span": "underdamped-solution", "concept": "underdamped-system", "verb": "uses"},
+  {"span": "underdamped-solution", "concept": "amplitude-and-phase-shift-form", "verb": "uses"},
+  {"span": "underdamped-decay", "concept": "underdamped-system", "verb": "uses"},
+  {"span": "envelope", "concept": "underdamped-system", "verb": "uses"},
+  {"span": "envelope", "concept": "amplitude", "verb": "uses"},
+  {"span": "envelope", "concept": "phase-shift", "verb": "uses"},
+  {"span": "pseudo-frequency", "concept": "damped-motion", "verb": "uses"},
+  {"span": "pseudo-frequency", "concept": "critically-damped-system", "verb": "uses"},
+  {"span": "pseudo-frequency", "concept": "overdamped-system", "verb": "uses"},
+  {"span": "pseudo-frequency", "concept": "natural-frequency", "verb": "uses"},
+  {"span": "pseudo-frequency", "concept": "undamped-motion", "verb": "uses"},
+  {"span": "pseudo-frequency", "concept": "envelope-curves", "verb": "uses"}
+ ],
+ "derivations": [
+  {
+   "id": "underdamped-roots",
+   "what": "the roots of the underdamped equation",
+   "source": "Differential Equations for Engineers, 2.4 Mechanical vibrations",
+   "nodes": [
+    {
+     "assumes": [
+      {"text": "When $c^2 - 4km < 0$ the system is underdamped, and the sign of $p^2 - \\komegazero^2$ is the same as the sign of $c^2 - 4km$, so $p^2 - \\komegazero^2$ is negative.", "src": "2.4, Free damped motion"},
+      {"text": "The imaginary unit $i$ has $i^2 = -1$, so $\\sqrt{-1} = i$.", "src": "2.2, Complex numbers"},
+      {"tex": "\\komegaone = \\sqrt{\\komegazero^2 - p^2}", "src": "2.4, Underdamping"}
+     ],
+     "then": {"tex": "\\mk{r}{\\kr} = \\mk{p}{-p} \\pm \\mk{rad}{\\sqrt{p^2 - \\komegazero^2}}", "src": "2.4, Free damped motion"},
+     "steps": [
+      {"tex": "\\mk{r}{\\kr} = \\mk{p}{-p} \\pm \\mk{i}{\\sqrt{-1}}\\,\\mk{rad}{\\sqrt{\\komegazero^2 - p^2}}", "uses": [0], "cap": "Since $p^2 - \\komegazero^2$ is negative, write it as $(-1)(\\komegazero^2 - p^2)$ and split the square root of the product: $\\sqrt{-a} = \\sqrt{-1}\\,\\sqrt{a}$ for $a > 0$."},
+      {"tex": "\\mk{r}{\\kr} = \\mk{p}{-p} \\pm \\mk{i}{i}\\,\\mk{rad}{\\sqrt{\\komegazero^2 - p^2}}", "uses": [1]},
+      {"tex": "\\mk{r}{\\kr} = \\mk{p}{-p} \\pm \\mk{i}{i}\\,\\mk{rad}{\\komegaone}", "uses": [2]}
+     ],
+     "src": "2.4, Underdamping"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "2.4.1",
+   "source_number": "2.4.1",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {"at": "inline", "after": "amplitude-phase"},
+   "cite": "eq-amplitude-phase",
+   "prompt": "<p>Justify the identity $A \\cos (\\komegazero t) + B \\sin (\\komegazero t) = C \\cos ( \\komegazero t - \\gamma )$ and verify the equations $C = \\sqrt{A^2+B^2}$ and $\\tan \\gamma = \\frac{B}{A}$. Hint: Start with $\\cos (\\alpha-\\beta) = \\cos (\\alpha) \\cos (\\beta) + \\sin (\\alpha)\\sin (\\beta)$ and multiply by $C$. Then what should $\\alpha$ and $\\beta$ be?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take $\\alpha = \\komegazero t$ and $\\beta = \\gamma$. Multiplying the identity by $C$ gives $C \\cos(\\komegazero t - \\gamma) = C\\cos\\gamma\\,\\cos(\\komegazero t) + C\\sin\\gamma\\,\\sin(\\komegazero t)$, which is $A\\cos(\\komegazero t) + B\\sin(\\komegazero t)$ once we set $A = C\\cos\\gamma$ and $B = C\\sin\\gamma$. Every pair $A$, $B$ arises this way: the point $(A, B)$ lies at distance $C = \\sqrt{A^2 + B^2}$ from the origin at some angle $\\gamma$ from the positive axis, so $A = C\\cos\\gamma$ and $B = C\\sin\\gamma$. Squaring and adding, $A^2 + B^2 = C^2(\\cos^2\\gamma + \\sin^2\\gamma) = C^2$, so $C = \\sqrt{A^2 + B^2}$; dividing, $\\frac{B}{A} = \\frac{C\\sin\\gamma}{C\\cos\\gamma} = \\tan\\gamma$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "2.4.2",
+   "source_number": "2.4.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "damped-intro",
+   "prompt": "<p>Consider a mass and spring system with a mass $m=2$, spring constant $k=3$, and damping constant $c=1$.</p><ol type=\"a\"><li>Set up and find the general solution of the system.</li><li>Is the system underdamped, overdamped, or critically damped?</li><li>If the system is not critically damped, find a $c$ that makes the system critically damped.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The equation is $2\\kxdprime + \\kxprime + 3\\kx = 0$. Its characteristic equation $2\\kr^2 + \\kr + 3 = 0$ has the roots $\\kr = \\frac{-1 \\pm \\sqrt{1 - 24}}{4} = -\\frac{1}{4} \\pm i\\frac{\\sqrt{23}}{4}$, so $p = \\frac{1}{4}$ and $\\komegaone = \\frac{\\sqrt{23}}{4} \\approx 1.199$. The general solution is $\\kx(t) = e^{-t/4}\\bigl(A\\cos(\\tfrac{\\sqrt{23}}{4}t) + B\\sin(\\tfrac{\\sqrt{23}}{4}t)\\bigr)$, or $\\kx(t) = Ce^{-t/4}\\cos(\\tfrac{\\sqrt{23}}{4}t - \\gamma)$. b) $c^2 = 1 < 4km = 24$, so the roots are complex and the system is underdamped. c) Critical damping needs $c^2 = 4km = 24$, so $c = \\sqrt{24} = 2\\sqrt{6} \\approx 4.899$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "2.4.3",
+   "source_number": "2.4.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "damped-intro",
+   "prompt": "<p>Do Exercise 2.4.2 for $m=3$, $k=12$, and $c=12$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The equation is $3\\kxdprime + 12\\kxprime + 12\\kx = 0$, that is $\\kxdprime + 4\\kxprime + 4\\kx = 0$. Its characteristic equation $\\kr^2 + 4\\kr + 4 = (\\kr + 2)^2 = 0$ has the one root $\\kr = -2 = -p$ of multiplicity 2, so the general solution is $\\kx(t) = C_1 e^{-2t} + C_2 t e^{-2t}$. b) $c^2 = 144 = 4km = 4 \\cdot 12 \\cdot 3$, so the system is critically damped. c) It is already critically damped: $c = 12$ is the value, and nothing needs changing."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "2.4.4",
+   "source_number": "2.4.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "angular",
+   "prompt": "<p>Using the mks units (meters-kilograms-seconds), suppose you have a spring with spring constant 4 N/m. You want to use it to weigh items. Assume no friction. You place the mass on the spring and put it in motion.</p><ol type=\"a\"><li>You count and find that the frequency is 0.8 Hz (cycles per second). What is the mass?</li><li>Find a formula for the mass $m$ given the frequency $\\omega$ in Hz.</li></ol>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 0.1583,
+    "unit": "kg",
+    "part": "a)",
+    "solution": "a) With no friction the motion is simple harmonic with $\\komegazero = \\sqrt{k/m}$, and the frequency in cycles per second is $\\komegazero/(2\\pi)$. So $0.8 = \\frac{1}{2\\pi}\\sqrt{4/m}$, that is $\\sqrt{4/m} = 1.6\\pi$, $4/m = 2.56\\pi^2$ and $m = \\frac{4}{2.56\\pi^2} = \\frac{25}{16\\pi^2} \\approx 0.158$ kg. b) In general $\\omega = \\frac{1}{2\\pi}\\sqrt{k/m}$ with $k = 4$, so $(2\\pi\\omega)^2 = 4/m$ and $m = \\frac{4}{4\\pi^2\\omega^2} = \\frac{1}{\\pi^2\\omega^2}$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "2.4.5",
+   "source_number": "2.4.5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "pseudo-frequency",
+   "prompt": "<p>Suppose we add possible friction to Exercise 2.4.4. Further, suppose you do not know the spring constant, but you have two reference weights 1 kg and 2 kg to calibrate your setup. You put each in motion on your spring and measure the frequency. For the 1 kg weight you measured 1.1 Hz, for the 2 kg weight you measured 0.8 Hz.</p><ol type=\"a\"><li>Find $k$ (spring constant) and $c$ (damping constant).</li><li>Find a formula for the mass in terms of the frequency in Hz. <em>Note that there may be more than one possible mass for a given frequency.</em></li><li>For an unknown object you measured 0.2 Hz, what is the mass of the object? Suppose that you know that the mass of the unknown object is more than a kilogram.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {"part": "a) k", "value": 53.3, "unit": "N/m", "tol": 0.01},
+     {"part": "a) c", "value": 4.702, "unit": "Ns/m", "tol": 0.01},
+     {"part": "c) m", "value": 33.65, "unit": "kg", "tol": 0.01}
+    ],
+    "solution": "a) With friction the mass oscillates at the pseudo-frequency $\\komegaone = \\sqrt{\\komegazero^2 - p^2} = \\sqrt{\\frac{k}{m} - \\frac{c^2}{4m^2}}$, and the measured frequency in Hz is $\\komegaone/(2\\pi)$. The two measurements give $\\frac{k}{1} - \\frac{c^2}{4} = (2.2\\pi)^2 = 4.84\\pi^2$ and $\\frac{k}{2} - \\frac{c^2}{16} = (1.6\\pi)^2 = 2.56\\pi^2$. Doubling the second and subtracting the first, $\\frac{c^2}{4} - \\frac{c^2}{8} = \\frac{c^2}{8} = 5.12\\pi^2 - 4.84\\pi^2 = 0.28\\pi^2$, so $c^2 = 2.24\\pi^2$ and $c = \\sqrt{2.24}\\,\\pi = \\frac{2\\sqrt{14}}{5}\\pi \\approx 4.70$ Ns/m. Then $k = 4.84\\pi^2 + \\frac{c^2}{4} = 4.84\\pi^2 + 0.56\\pi^2 = 5.4\\pi^2 = \\frac{27\\pi^2}{5} \\approx 53.3$ N/m. b) For a frequency $\\omega$ in Hz, $(2\\pi\\omega)^2 = \\frac{k}{m} - \\frac{c^2}{4m^2}$; multiplying by $4m^2$ gives the quadratic $16\\pi^2\\omega^2 m^2 - 4km + c^2 = 0$, so $m = \\frac{k \\pm \\sqrt{k^2 - 4\\pi^2\\omega^2 c^2}}{8\\pi^2\\omega^2}$: two possible masses for one frequency. c) At $\\omega = 0.2$ Hz, $8\\pi^2\\omega^2 = 0.32\\pi^2$ and $k^2 - 4\\pi^2\\omega^2 c^2 = (29.16 - 0.3584)\\pi^4 = 28.8016\\pi^4$, so $m = \\frac{5.4 \\pm \\sqrt{28.8016}}{0.32} = \\frac{5.4 \\pm 5.3667}{0.32}$: about $0.104$ kg or $33.6$ kg. Since the object weighs more than a kilogram, $m \\approx 33.6$ kg."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "2.4.6",
+   "source_number": "2.4.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "pseudo-frequency",
+   "prompt": "<p>Suppose you wish to measure the friction a mass of 0.1 kg experiences as it slides along a floor (you wish to find $c$). You have a spring with spring constant $k=5\\,\\mathrm{N}/\\mathrm{m}$. You take the spring, you attach it to the mass and fix it to a wall. Then you pull on the spring and let the mass go. You find that the mass oscillates with frequency 1 Hz. What is the friction?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 0.6487,
+    "unit": "Ns/m",
+    "solution": "The mass oscillates at the pseudo-frequency $\\komegaone = \\sqrt{\\komegazero^2 - p^2}$, with $\\komegazero^2 = k/m = 50$ and $p = c/(2m) = 5c$, and 1 Hz means $\\komegaone = 2\\pi$. So $4\\pi^2 = 50 - 25c^2$, $c^2 = \\frac{50 - 4\\pi^2}{25} = 2 - 0.16\\pi^2 \\approx 0.421$, and $c = \\frac{\\sqrt{50 - 4\\pi^2}}{5} \\approx 0.649$ Ns/m."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "2.4.101",
+   "source_number": "2.4.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "shm-terms",
+   "prompt": "<p>A mass of $2$ kilograms is on a spring with spring constant $k$ newtons per meter with no damping. Suppose the system is at rest and at time $t=0$ the mass is kicked and starts traveling at 2 meters per second. How large does $k$ have to be so that the mass does not go further than 3 meters from the rest position?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.8889,
+    "unit": "N/m",
+    "solution": "$k={8}/{9}\\,\\mathrm{N}/\\mathrm{m}$ (and larger)"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "2.4.102",
+   "source_number": "2.4.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "rlc",
+   "prompt": "<p>Suppose we have an RLC circuit with a resistor of 100 milliohms (0.1 ohms), inductor of inductance of 50 millihenries (0.05 henries), and a capacitor of 5 farads, with constant voltage.</p><ol type=\"a\"><li>Set up the ODE equation for the current $\\kI$.</li><li>Find the general solution.</li><li>Solve for $\\kI(0) = 10$ and $\\kIprime(0) = 0$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $0.05 \\kIdprime + 0.1 \\kIprime + ({1}/{5}) \\kI = 0$ b) $\\kI = C e^{-t} \\cos(\\sqrt{3} \\, t - \\gamma)$ c) $\\kI = 10 e^{-t} \\cos(\\sqrt{3} \\, t) + \\frac{10}{\\sqrt{3}} e^{-t} \\sin(\\sqrt{3} \\, t)$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "2.4.103",
+   "source_number": "2.4.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-2-4-1",
+   "prompt": "<p>A 5000 kg railcar hits a bumper (a spring) at 1 m/s, and the spring compresses by 0.1 m. Assume no damping.</p><ol type=\"a\"><li>Find $k$.</li><li>How far does the spring compress when a 10000 kg railcar hits the spring at the same speed?</li><li>If the spring would break if it compresses further than 0.3 m, what is the maximum mass of a railcar that can hit it at 1 m/s?</li><li>What is the maximum mass of a railcar that can hit the spring without it breaking at 2 m/s?</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "a) k", "value": 500000, "unit": "N/m"},
+     {"part": "b)", "value": 0.1414, "unit": "m"},
+     {"part": "c)", "value": 45000, "unit": "kg"},
+     {"part": "d)", "value": 11250, "unit": "kg"}
+    ],
+    "solution": "a) $k=500000\\,\\mathrm{N}/\\mathrm{m}$ b) $\\frac{1}{5\\sqrt{2}} \\approx 0.141\\,\\mathrm{m}$ c) 45000 kg d) 11250 kg"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "2.4.104",
+   "source_number": "2.4.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "critical-damping",
+   "prompt": "<p>A mass of $m$ kg is on a spring with $k=3\\,\\mathrm{N}/\\mathrm{m}$ and $c=2\\,\\mathrm{Ns}/\\mathrm{m}$. Find the mass $m_0$ for which there is critical damping. If $m &lt; m_0$, does the system oscillate or not, that is, is it underdamped or overdamped?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.3333,
+    "unit": "kg",
+    "part": "m₀",
+    "solution": "$m_0 = {1}/{3}\\,\\mathrm{kg}$. If $m < m_0$, then the system is overdamped and will not oscillate."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "amplitude-and-phase-shift-form"},
+  {"exercise": "e1", "concept": "amplitude"},
+  {"exercise": "e1", "concept": "phase-shift"},
+  {"exercise": "e2", "concept": "damped-spring-mass-system"},
+  {"exercise": "e2", "concept": "underdamped-system"},
+  {"exercise": "e2", "concept": "critically-damped-system"},
+  {"exercise": "e3", "concept": "damped-spring-mass-system"},
+  {"exercise": "e3", "concept": "critically-damped-system"},
+  {"exercise": "e4", "concept": "natural-frequency"},
+  {"exercise": "e4", "concept": "angular-frequency"},
+  {"exercise": "e4", "concept": "simple-harmonic-motion"},
+  {"exercise": "e5", "concept": "pseudo-frequency"},
+  {"exercise": "e5", "concept": "underdamped-system"},
+  {"exercise": "e5", "concept": "damped-spring-mass-system"},
+  {"exercise": "e6", "concept": "pseudo-frequency"},
+  {"exercise": "e6", "concept": "damped-spring-mass-system"},
+  {"exercise": "e101", "concept": "simple-harmonic-motion"},
+  {"exercise": "e101", "concept": "amplitude"},
+  {"exercise": "e101", "concept": "natural-frequency"},
+  {"exercise": "e102", "concept": "rlc-series-circuit"},
+  {"exercise": "e102", "concept": "underdamped-system"},
+  {"exercise": "e103", "concept": "simple-harmonic-motion"},
+  {"exercise": "e103", "concept": "amplitude"},
+  {"exercise": "e103", "concept": "mass-spring-system"},
+  {"exercise": "e104", "concept": "critically-damped-system"},
+  {"exercise": "e104", "concept": "overdamped-system"}
+ ],
+ "footnotes": [
+  {"id": "fn-pseudo-frequency", "kind": "book", "number": "1", "html": "We do not call $\\komegaone$ a frequency since the solution is not really a periodic function."}
+ ]
+}

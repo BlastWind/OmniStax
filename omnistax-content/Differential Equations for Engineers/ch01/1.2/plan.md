@@ -35,6 +35,7 @@ End (kind `exercise`, ids `e<k>`): 1.2.1–1.2.12 kept with AI-marked solutions 
 
 - Anchors: variables `y`, `y_prime`, `f` → `1.2-general-form`; `∂f/∂y` → `1.2-thm-1-2-1`; `x_prime` → `1.2-ex-1-2-3`; `g` (Exercise 1.2.11 only) has no span to anchor, nothing to do. Form `eq-picard-ivp` of `picards-theorem` → `1.2-thm-1-2-1`. (The prep's plan named `1.2-slope-picardthm` and a form of `direction-field`; the note's id is `thm-1-2-1` and `direction-field` has no form row.)
 - Footnote numbering: the checker requires a `number` on a `kind: book` footnote though the book prints per-page symbols (∗); 1.1, 1.2 and 1.5 all wrote "1" (first on its page); the chapter pass may prefer "∗" for all three.
+- Chapter pass (2026-10-19): applied. Anchors set on `y`, `y_prime`, `f`, `∂f/∂y`, `x_prime` and on `eq-picard-ivp`; `g` has none. Not "∗": the book's counter runs through the book (`\counterwithout{footnote}{chapter}`), so `fn-picard` is the chapter's second footnote and carries "2" (`config.md`).
 
 ## Derivations
 

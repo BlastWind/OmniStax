@@ -163,7 +163,7 @@
       "statement": "The rate at which the temperature T of an object changes is proportional to the difference between the ambient temperature A and T: dT/dt = k(A − T) for some positive constant k. Separating variables gives T = A + De^(−kt), and two measurements fix D and k.",
       "forms": [
         {"id": "eq-newton-cooling", "latex": "\\frac{dT}{dt} = k(A-T)", "ktex": "\\kdTdt = k(A-\\kT)", "anchor": "1.3-eq-newton-cooling"},
-        {"id": "eq-newton-cooling-solution", "latex": "T = A + D e^{-kt}", "ktex": "\\kT = A + D e^{-kt}"}
+        {"id": "eq-newton-cooling-solution", "latex": "T = A + D e^{-kt}", "ktex": "\\kT = A + D e^{-kt}", "anchor": "1.3-eq-newton-cooling-solution"}
       ]
     },
     {
@@ -174,7 +174,7 @@
       "terms": ["first-order linear equation", "linear equations", "linear equation"],
       "statement": "A first-order equation is linear if it can be put into the form y′ + p(x)y = f(x): linear in y and y′, with no higher powers or functions of y or y′, while the dependence on x can be more complicated. Its solution exists wherever p(x) and f(x) are continuous, is just as nice, and there is a method for finding it.",
       "forms": [
-        {"id": "eq-linear-first-order", "latex": "y' + p(x) y = f(x)", "ktex": "\\kyprime + \\kp(x) \\ky = \\kf(x)"}
+        {"id": "eq-linear-first-order", "latex": "y' + p(x) y = f(x)", "ktex": "\\kyprime + \\kp(x) \\ky = \\kf(x)", "anchor": "1.4-eq-1-3"}
       ]
     },
     {
@@ -187,8 +187,8 @@
       "type": "function",
       "statement": "The integrating factor of y′ + p(x)y = f(x) is the function r(x) = e^(∫p(x) dx), where ∫p(x) dx is any antiderivative of p(x): differentiating it gives the same function back multiplied by p(x), so r(x)y′ + r(x)p(x)y is the derivative of the product r(x)y. Which antiderivative is taken does not matter in the end.",
       "forms": [
-        {"id": "eq-integrating-factor", "latex": "r(x) = e^{\\int p(x) \\,dx}", "ktex": "\\kr(x) = e^{\\int \\kp(x) \\,dx}"},
-        {"id": "eq-integrating-factor-product", "latex": "r(x) y' + r(x) p(x) y = \\frac{d}{dx}\\Bigl[ r(x) y \\Bigr]", "ktex": "\\kr(x) \\kyprime + \\kr(x) \\kp(x) \\ky = \\frac{d}{dx}\\Bigl[ \\kr(x) \\ky \\Bigr]"}
+        {"id": "eq-integrating-factor", "latex": "r(x) = e^{\\int p(x) \\,dx}", "ktex": "\\kr(x) = e^{\\int \\kp(x) \\,dx}", "anchor": "1.4-eq-integrating-factor"},
+        {"id": "eq-integrating-factor-product", "latex": "r(x) y' + r(x) p(x) y = \\frac{d}{dx}\\Bigl[ r(x) y \\Bigr]", "ktex": "\\kr(x) \\kyprime + \\kr(x) \\kp(x) \\ky = \\frac{d}{dx}\\Bigl[ \\kr(x) \\ky \\Bigr]", "anchor": "1.4-eq-integrating-factor-product"}
       ]
     },
     {
@@ -199,7 +199,7 @@
       "terms": ["integrating factor method"],
       "statement": "To solve y′ + p(x)y = f(x), multiply both sides by the integrating factor r(x) = e^(∫p(x) dx) so that the left-hand side becomes d/dx[r(x)y], integrate both sides, and divide by r(x): y = e^(−∫p(x) dx)(∫e^(∫p(x) dx) f(x) dx + C). Do not try to remember the formula for y; it is easier to remember the process and repeat it.",
       "forms": [
-        {"id": "eq-linear-general-solution", "latex": "y = e^{-\\int p(x) \\,dx} \\left( \\int e^{\\int p(x) \\,dx} f(x) \\,dx + C \\right)", "ktex": "\\ky = e^{-\\int \\kp(x) \\,dx} \\left( \\int e^{\\int \\kp(x) \\,dx} \\kf(x) \\,dx + C \\right)"}
+        {"id": "eq-linear-general-solution", "latex": "y = e^{-\\int p(x) \\,dx} \\left( \\int e^{\\int p(x) \\,dx} f(x) \\,dx + C \\right)", "ktex": "\\ky = e^{-\\int \\kp(x) \\,dx} \\left( \\int e^{\\int \\kp(x) \\,dx} \\kf(x) \\,dx + C \\right)", "anchor": "1.4-drv-integrating-factor"}
       ]
     },
     {
@@ -209,7 +209,7 @@
       "name": "Solution of the linear initial value problem",
       "statement": "The solution of y′ + p(x)y = f(x), y(x₀) = y₀, written with definite integrals and careful dummy variables, is the formula (1.4), y(x) = e^(−∫ from x₀ to x of p(s) ds)(∫ from x₀ to x of e^(∫ from x₀ to t of p(s) ds) f(t) dt + y₀); plugged into a computer or a calculator it gives numerical answers even when the integrals have no closed form.",
       "forms": [
-        {"id": "eq-linear-ivp", "latex": "y(x) = e^{-\\int_{x_0}^x p(s)\\, ds} \\left( \\int_{x_0}^x e^{\\int_{x_0}^t p(s)\\, ds} f(t) \\,dt + y_0 \\right)", "ktex": "\\ky(x) = e^{-\\int_{x_0}^x \\kp(s)\\, ds} \\left( \\int_{x_0}^x e^{\\int_{x_0}^t \\kp(s)\\, ds} \\kf(t) \\,dt + y_0 \\right)", "condition": "y′ + p(x)y = f(x), y(x₀) = y₀"}
+        {"id": "eq-linear-ivp", "latex": "y(x) = e^{-\\int_{x_0}^x p(s)\\, ds} \\left( \\int_{x_0}^x e^{\\int_{x_0}^t p(s)\\, ds} f(t) \\,dt + y_0 \\right)", "ktex": "\\ky(x) = e^{-\\int_{x_0}^x \\kp(s)\\, ds} \\left( \\int_{x_0}^x e^{\\int_{x_0}^t \\kp(s)\\, ds} \\kf(t) \\,dt + y_0 \\right)", "condition": "y′ + p(x)y = f(x), y(x₀) = y₀", "anchor": "1.4-eq-1-4"}
       ]
     },
     {
@@ -226,7 +226,7 @@
       "name": "Setting up a mixing problem",
       "statement": "For a well-stirred tank, the amount x of a dissolved substance changes at the rate dx/dt = (rate in × concentration in) − (rate out × concentration out), where the concentration out is x divided by the current volume, itself the initial volume plus (rate in − rate out)t; the result is a first-order linear equation, solved by the integrating factor. The same setup gives the concentration of chemicals in rivers and lakes.",
       "forms": [
-        {"id": "eq-mixing", "latex": "\\frac{dx}{dt} = (\\text{rate in} \\times \\text{concentration in}) - (\\text{rate out} \\times \\text{concentration out})", "ktex": "\\kdxdt = (\\text{rate in} \\times \\text{concentration in}) - (\\text{rate out} \\times \\text{concentration out})"}
+        {"id": "eq-mixing", "latex": "\\frac{dx}{dt} = (\\text{rate in} \\times \\text{concentration in}) - (\\text{rate out} \\times \\text{concentration out})", "ktex": "\\kdxdt = (\\text{rate in} \\times \\text{concentration in}) - (\\text{rate out} \\times \\text{concentration out})", "anchor": "1.4-eq-mixing"}
       ]
     },
     {
@@ -244,7 +244,7 @@
       "terms": ["Bernoulli equation"],
       "statement": "A Bernoulli equation is an equation of the form y′ + p(x)y = q(x)yⁿ, which looks like a linear equation except for the yⁿ; if n = 0 or n = 1 it is linear, and n need not be an integer.",
       "forms": [
-        {"id": "eq-bernoulli", "latex": "y' + p(x)y = q(x)y^n", "ktex": "\\kyprime + \\kp(x)\\ky = \\kq(x)\\ky^n"}
+        {"id": "eq-bernoulli", "latex": "y' + p(x)y = q(x)y^n", "ktex": "\\kyprime + \\kp(x)\\ky = \\kq(x)\\ky^n", "anchor": "1.5-eq-bernoulli"}
       ]
     },
     {
@@ -254,8 +254,8 @@
       "name": "Bernoulli’s substitution",
       "statement": "For n other than 0 and 1, the substitution v = y^(1−n) transforms the Bernoulli equation y′ + p(x)y = q(x)yⁿ into the linear equation v′ + (1 − n)p(x)v = (1 − n)q(x), which the integrating factor solves; the answer is then unsubstituted.",
       "forms": [
-        {"id": "eq-bernoulli-v", "latex": "v = y^{1-n}", "ktex": "\\kv = \\ky^{1-n}"},
-        {"id": "eq-bernoulli-linear", "latex": "v' + (1-n)\\,p(x)\\, v = (1-n)\\, q(x)", "ktex": "\\kvprime + (1-n)\\,\\kp(x)\\, \\kv = (1-n)\\, \\kq(x)"}
+        {"id": "eq-bernoulli-v", "latex": "v = y^{1-n}", "ktex": "\\kv = \\ky^{1-n}", "anchor": "1.5-bernoulli-sub"},
+        {"id": "eq-bernoulli-linear", "latex": "v' + (1-n)\\,p(x)\\, v = (1-n)\\, q(x)", "ktex": "\\kvprime + (1-n)\\,\\kp(x)\\, \\kv = (1-n)\\, \\kq(x)", "anchor": "1.5-drv-bernoulli"}
       ]
     },
     {
@@ -266,7 +266,7 @@
       "terms": ["homogeneous equations", "homogeneous equation"],
       "statement": "A first-order equation that can be written as y′ = F(y/x) is called homogeneous, in a different sense from the homogeneous linear equations of the classification; it is solved by substitution.",
       "forms": [
-        {"id": "eq-homogeneous", "latex": "y' = F\\left(\\frac{y}{x}\\right)", "ktex": "\\kyprime = \\kF\\left(\\frac{\\ky}{x}\\right)"}
+        {"id": "eq-homogeneous", "latex": "y' = F\\left(\\frac{y}{x}\\right)", "ktex": "\\kyprime = \\kF\\left(\\frac{\\ky}{x}\\right)", "anchor": "1.5-eq-homogeneous"}
       ]
     },
     {
@@ -276,8 +276,8 @@
       "name": "Solution of a homogeneous equation",
       "statement": "The substitution v = y/x, so that y′ = v + xv′, turns y′ = F(y/x) into the separable equation xv′ = F(v) − v, whose implicit solution is ∫ dv/(F(v) − v) = ln|x| + C; since this divides by x, either x > 0 or x < 0 is assumed, as the initial condition decides.",
       "forms": [
-        {"id": "eq-homogeneous-v", "latex": "v = \\frac{y}{x}, \\qquad y' = v + x v'", "ktex": "\\kv = \\frac{\\ky}{x}, \\qquad \\kyprime = \\kv + x \\kvprime"},
-        {"id": "eq-homogeneous-solution", "latex": "\\int \\frac{1}{F(v)-v} \\,dv = \\ln \\, \\lvert x \\rvert + C", "ktex": "\\int \\frac{1}{\\kF(\\kv)-\\kv} \\,d\\kv = \\ln \\, \\lvert x \\rvert + C"}
+        {"id": "eq-homogeneous-v", "latex": "v = \\frac{y}{x}, \\qquad y' = v + x v'", "ktex": "\\kv = \\frac{\\ky}{x}, \\qquad \\kyprime = \\kv + x \\kvprime", "anchor": "1.5-drv-homogeneous"},
+        {"id": "eq-homogeneous-solution", "latex": "\\int \\frac{1}{F(v)-v} \\,dv = \\ln \\, \\lvert x \\rvert + C", "ktex": "\\int \\frac{1}{\\kF(\\kv)-\\kv} \\,d\\kv = \\ln \\, \\lvert x \\rvert + C", "anchor": "1.5-drv-homogeneous"}
       ]
     },
     {
@@ -330,7 +330,7 @@
       "terms": ["logistic equation"],
       "statement": "The logistic equation dx/dt = kx(M − x), for positive k and M, models a population whose limiting population M, the maximum sustainable population, is known; it leads to less catastrophic predictions than x′ = kx. Its critical points are x = 0, unstable, and x = M, stable, so a population starting above 0 tends to M.",
       "forms": [
-        {"id": "eq-logistic", "latex": "\\frac{dx}{dt} = kx(M-x)", "ktex": "\\kdxdt = k\\kx(M-\\kx)", "condition": "k > 0, M > 0"}
+        {"id": "eq-logistic", "latex": "\\frac{dx}{dt} = kx(M-x)", "ktex": "\\kdxdt = k\\kx(M-\\kx)", "condition": "k > 0, M > 0", "anchor": "1.6-eq-logistic"}
       ]
     },
     {
@@ -356,8 +356,8 @@
       "terms": ["logistic equation with harvesting", "harvesting"],
       "statement": "The logistic equation with harvesting dx/dt = kx(M − x) − h removes h per unit time from a logistic population; its critical points A and B = (kM ± √((kM)² − 4hk))/2k are two (A stable, B unstable), one (semistable, when (kM)² = 4hk) or none as h grows, so a population above B tends to A, and once below B dies out; with no critical point every population plummets to zero.",
       "forms": [
-        {"id": "eq-logistic-harvest", "latex": "\\frac{dx}{dt} = kx(M-x) - h", "ktex": "\\kdxdt = k\\kx(M-\\kx) - h"},
-        {"id": "eq-harvest-critical", "latex": "A = \\frac{kM + \\sqrt{{(kM)}^2 - 4hk}}{2k}, \\qquad B = \\frac{kM - \\sqrt{{(kM)}^2 - 4hk}}{2k}", "ktex": "A = \\frac{kM + \\sqrt{{(kM)}^2 - 4hk}}{2k}, \\qquad B = \\frac{kM - \\sqrt{{(kM)}^2 - 4hk}}{2k}"}
+        {"id": "eq-logistic-harvest", "latex": "\\frac{dx}{dt} = kx(M-x) - h", "ktex": "\\kdxdt = k\\kx(M-\\kx) - h", "anchor": "1.6-eq-logistic-harvest"},
+        {"id": "eq-harvest-critical", "latex": "A = \\frac{kM + \\sqrt{{(kM)}^2 - 4hk}}{2k}, \\qquad B = \\frac{kM - \\sqrt{{(kM)}^2 - 4hk}}{2k}", "ktex": "A = \\frac{kM + \\sqrt{{(kM)}^2 - 4hk}}{2k}, \\qquad B = \\frac{kM - \\sqrt{{(kM)}^2 - 4hk}}{2k}", "anchor": "1.6-eq-harvest-critical"}
       ]
     },
     {
@@ -368,7 +368,7 @@
       "terms": ["Euler’s method"],
       "statement": "Euler’s method approximates the solution of y′ = f(x, y), y(x₀) = y₀, by following the slope: compute the slope k = f(x₀, y₀), follow the line for an interval of length h on the x-axis to y₁ = y₀ + hk at x₁ = x₀ + h, and repeat, x_{i+1} = x_i + h and y_{i+1} = y_i + h f(x_i, y_i). The segments joining the points (x_i, y_i) are an approximate graph of the solution, and y_i approximates y(x_i), generally not exactly.",
       "forms": [
-        {"id": "eq-euler-step", "latex": "x_{i+1} = x_i + h , \\qquad y_{i+1} = y_i + h\\, f(x_i,y_i)", "ktex": "x_{i+1} = x_i + h , \\qquad y_{i+1} = y_i + h\\, \\kf(x_i,y_i)"}
+        {"id": "eq-euler-step", "latex": "x_{i+1} = x_i + h , \\qquad y_{i+1} = y_i + h\\, f(x_i,y_i)", "ktex": "x_{i+1} = x_i + h , \\qquad y_{i+1} = y_i + h\\, \\kf(x_i,y_i)", "anchor": "1.7-eq-euler-step"}
       ]
     },
     {
@@ -388,7 +388,7 @@
       "type": "error",
       "statement": "The difference between the actual solution and the approximate solution is called the error; what matters is its size, Error = |Actual y − Approximate y|, not its sign. It is usually not known exactly, for if it were, the actual solution would be too.",
       "forms": [
-        {"id": "eq-error", "latex": "\\text{Error} = \\bigl\\lvert \\text{Actual } y - \\text{Approximate } y \\bigr\\rvert", "ktex": "\\text{Error} = \\bigl\\lvert \\text{Actual } \\ky - \\text{Approximate } \\ky \\bigr\\rvert"}
+        {"id": "eq-error", "latex": "\\text{Error} = \\bigl\\lvert \\text{Actual } y - \\text{Approximate } y \\bigr\\rvert", "ktex": "\\text{Error} = \\bigl\\lvert \\text{Actual } \\ky - \\text{Approximate } \\ky \\bigr\\rvert", "anchor": "1.7-eq-error"}
       ]
     },
     {
@@ -429,8 +429,8 @@
       "terms": ["Runge–Kutta method"],
       "statement": "The standard Runge–Kutta method is the simplest method used in practice. Everything is as in Euler’s method except the step: it computes four slopes, k₁ = f(x_i, y_i), k₂ = f(x_i + h/2, y_i + k₁h/2), k₃ = f(x_i + h/2, y_i + k₂h/2), k₄ = f(x_i + h, y_i + k₃h), and takes x_{i+1} = x_i + h, y_{i+1} = y_i + h(k₁ + 2k₂ + 2k₃ + k₄)/6. It is a fourth-order method: halving the step multiplies the error by 1/16.",
       "forms": [
-        {"id": "eq-rk4", "latex": "y_{i+1} = y_i + \\frac{k_1 + 2k_2 + 2k_3 + k_4}{6}\\,h", "ktex": "y_{i+1} = y_i + \\frac{k_1 + 2k_2 + 2k_3 + k_4}{6}\\,h"},
-        {"id": "eq-rk4-slopes", "latex": "k_1 = f(x_i,y_i), \\quad k_2 = f\\bigl(x_i + \\tfrac{h}{2},y_i + k_1 \\tfrac{h}{2}\\bigr), \\quad k_3 = f\\bigl(x_i + \\tfrac{h}{2},y_i + k_2 \\tfrac{h}{2}\\bigr), \\quad k_4 = f(x_i + h,y_i + k_3 h)", "ktex": "k_1 = \\kf(x_i,y_i), \\quad k_2 = \\kf\\bigl(x_i + \\tfrac{h}{2},y_i + k_1 \\tfrac{h}{2}\\bigr), \\quad k_3 = \\kf\\bigl(x_i + \\tfrac{h}{2},y_i + k_2 \\tfrac{h}{2}\\bigr), \\quad k_4 = \\kf(x_i + h,y_i + k_3 h)"}
+        {"id": "eq-rk4", "latex": "y_{i+1} = y_i + \\frac{k_1 + 2k_2 + 2k_3 + k_4}{6}\\,h", "ktex": "y_{i+1} = y_i + \\frac{k_1 + 2k_2 + 2k_3 + k_4}{6}\\,h", "anchor": "1.7-eq-rk4"},
+        {"id": "eq-rk4-slopes", "latex": "k_1 = f(x_i,y_i), \\quad k_2 = f\\bigl(x_i + \\tfrac{h}{2},y_i + k_1 \\tfrac{h}{2}\\bigr), \\quad k_3 = f\\bigl(x_i + \\tfrac{h}{2},y_i + k_2 \\tfrac{h}{2}\\bigr), \\quad k_4 = f(x_i + h,y_i + k_3 h)", "ktex": "k_1 = \\kf(x_i,y_i), \\quad k_2 = \\kf\\bigl(x_i + \\tfrac{h}{2},y_i + k_1 \\tfrac{h}{2}\\bigr), \\quad k_3 = \\kf\\bigl(x_i + \\tfrac{h}{2},y_i + k_2 \\tfrac{h}{2}\\bigr), \\quad k_4 = \\kf(x_i + h,y_i + k_3 h)", "anchor": "1.7-eq-rk4"}
       ]
     },
     {
@@ -441,8 +441,8 @@
       "terms": ["Improved Euler’s method", "improved Euler method"],
       "statement": "Euler’s method is improved to a second-order method by one extra step: from (x_i, y_i) compute the slope k₁ = f(x_i, y_i), look at the point (x_i + h, y_i + k₁h) that Euler’s step would reach, compute the slope k₂ there, and step with the average of the two, y_{i+1} = y_i + h(k₁ + k₂)/2, hoping the average is closer to the actual slope on the interval; it is, and halving the step multiplies the error by about 1/4.",
       "forms": [
-        {"id": "eq-improved-euler", "latex": "y_{i+1} = y_i + \\frac{k_1+k_2}{2}\\,h", "ktex": "y_{i+1} = y_i + \\frac{k_1+k_2}{2}\\,h"},
-        {"id": "eq-improved-euler-slopes", "latex": "k_1 = f(x_i,y_i) , \\qquad k_2 = f(x_i + h,y_i + k_1h)", "ktex": "k_1 = \\kf(x_i,y_i) , \\qquad k_2 = \\kf(x_i + h,y_i + k_1h)"}
+        {"id": "eq-improved-euler", "latex": "y_{i+1} = y_i + \\frac{k_1+k_2}{2}\\,h", "ktex": "y_{i+1} = y_i + \\frac{k_1+k_2}{2}\\,h", "anchor": "1.7-eq-improved-euler"},
+        {"id": "eq-improved-euler-slopes", "latex": "k_1 = f(x_i,y_i) , \\qquad k_2 = f(x_i + h,y_i + k_1h)", "ktex": "k_1 = \\kf(x_i,y_i) , \\qquad k_2 = \\kf(x_i + h,y_i + k_1h)", "anchor": "1.7-eq-improved-euler"}
       ]
     },
     {
@@ -474,7 +474,7 @@
       "type": "derivative",
       "statement": "The total derivative of F(x, y) is dF = (∂F/∂x) dx + (∂F/∂y) dy, written dF = F_x dx + F_y dy for convenience; applied to F(x, y) = C it gives the differential equation dF = 0.",
       "forms": [
-        {"id": "eq-total-derivative", "latex": "dF = \\frac{\\partial F}{\\partial x} dx + \\frac{\\partial F}{\\partial y} dy", "ktex": "\\kdF = \\frac{\\partial \\kF}{\\partial x} dx + \\frac{\\partial \\kF}{\\partial y} dy"}
+        {"id": "eq-total-derivative", "latex": "dF = \\frac{\\partial F}{\\partial x} dx + \\frac{\\partial F}{\\partial y} dy", "ktex": "\\kdF = \\frac{\\partial \\kF}{\\partial x} dx + \\frac{\\partial \\kF}{\\partial y} dy", "anchor": "1.8-eq-total-derivative"}
       ]
     },
     {
@@ -485,8 +485,8 @@
       "terms": ["exact equation", "exact"],
       "statement": "An equation of the form M dx + N dy = 0, or M + N dy/dx = 0, is called exact if it was obtained as dF = 0 for some potential function F, that is, M = F_x and N = F_y; its implicit solution is F(x, y) = C, which is solved for y where possible. An exact equation is a conservative vector field, and the implicit solution is the potential function.",
       "forms": [
-        {"id": "eq-exact", "latex": "M \\, dx + N \\, dy = 0", "ktex": "\\kM \\, dx + \\kN \\, dy = 0", "condition": "M = F_x, N = F_y for some potential F"},
-        {"id": "eq-exact-dydx", "latex": "M + N \\, \\frac{dy}{dx} = 0", "ktex": "\\kM + \\kN \\, \\kdydx = 0"}
+        {"id": "eq-exact", "latex": "M \\, dx + N \\, dy = 0", "ktex": "\\kM \\, dx + \\kN \\, dy = 0", "condition": "M = F_x, N = F_y for some potential F", "anchor": "1.8-eq-exact"},
+        {"id": "eq-exact-dydx", "latex": "M + N \\, \\frac{dy}{dx} = 0", "ktex": "\\kM + \\kN \\, \\kdydx = 0", "anchor": "1.8-eq-exact"}
       ]
     },
     {
@@ -508,8 +508,8 @@
       "type": "vector-field",
       "statement": "A vector field that comes from an exact equation is a conservative vector field: one that comes with a potential function F(x, y) such that v⃗ = (∂F/∂x, ∂F/∂y). Thinking of v⃗ as a force, the work ∫ over γ of M dx + N dy along a path γ equals F(x₂, y₂) − F(x₁, y₁), so it depends only on the endpoints, like lifting a box to the roof by the stairs or the elevator; along F(x, y) = C no work is done.",
       "forms": [
-        {"id": "eq-conservative-field", "latex": "\\vec{v} = \\left( \\frac{\\partial F}{\\partial x} ,\\frac{\\partial F}{\\partial y} \\right)", "ktex": "\\kvecv = \\left( \\frac{\\partial \\kF}{\\partial x} ,\\frac{\\partial \\kF}{\\partial y} \\right)"},
-        {"id": "eq-path-integral-potential", "latex": "\\int_\\gamma \\vec{v}(\\vec{r}) \\cdot d\\vec{r} = \\int_\\gamma M \\, dx + N \\, dy = F(x_2,y_2) - F(x_1,y_1)", "ktex": "\\int_\\gamma \\kvecv(\\vec{r}) \\cdot d\\vec{r} = \\int_\\gamma \\kM \\, dx + \\kN \\, dy = \\kF(x_2,y_2) - \\kF(x_1,y_1)"}
+        {"id": "eq-conservative-field", "latex": "\\vec{v} = \\left( \\frac{\\partial F}{\\partial x} ,\\frac{\\partial F}{\\partial y} \\right)", "ktex": "\\kvecv = \\left( \\frac{\\partial \\kF}{\\partial x} ,\\frac{\\partial \\kF}{\\partial y} \\right)", "anchor": "1.8-eq-conservative-field"},
+        {"id": "eq-path-integral-potential", "latex": "\\int_\\gamma \\vec{v}(\\vec{r}) \\cdot d\\vec{r} = \\int_\\gamma M \\, dx + N \\, dy = F(x_2,y_2) - F(x_1,y_1)", "ktex": "\\int_\\gamma \\kvecv(\\vec{r}) \\cdot d\\vec{r} = \\int_\\gamma \\kM \\, dx + \\kN \\, dy = \\kF(x_2,y_2) - \\kF(x_1,y_1)", "anchor": "1.8-eq-path-integral-potential"}
       ]
     },
     {
@@ -519,7 +519,7 @@
       "name": "Solving an exact equation",
       "statement": "In applications M and N are known and F is not. Once the equation is known to be exact: (i) integrate F_x = M in x, giving F(x, y) = something + A(y), where the constant of integration A may still depend on y; (ii) differentiate this F in y, set it equal to N, and find A(y) by integration. Then F(x, y(x)) = C is the implicit solution, solved for y in terms of x where possible. The procedure can also be done by first integrating in y and then differentiating in x; a constant of integration in A is never needed.",
       "forms": [
-        {"id": "eq-exact-fint", "latex": "F(x,y) = \\int M \\, dx + A(y)", "ktex": "\\kF(x,y) = \\int \\kM \\, dx + A(y)"}
+        {"id": "eq-exact-fint", "latex": "F(x,y) = \\int M \\, dx + A(y)", "ktex": "\\kF(x,y) = \\int \\kM \\, dx + A(y)", "anchor": "1.8-eq-1-5"}
       ]
     },
     {
@@ -529,7 +529,7 @@
       "name": "Test for exactness",
       "statement": "If M = F_x and N = F_y and the second derivatives are continuous, then ∂M/∂y = ∂²F/∂y∂x = ∂²F/∂x∂y = ∂N/∂x. So if M_y ≠ N_x, the equation is not exact, which is easier than failing to find F; and where the region on which M and N are defined and M_y = N_x has no holes, such as the entire plane or a half-plane, checking M_y = N_x is good enough to check for exactness.",
       "forms": [
-        {"id": "eq-exactness", "latex": "\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}", "ktex": "\\frac{\\partial \\kM}{\\partial y} = \\frac{\\partial \\kN}{\\partial x}"}
+        {"id": "eq-exactness", "latex": "\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}", "ktex": "\\frac{\\partial \\kM}{\\partial y} = \\frac{\\partial \\kN}{\\partial x}", "anchor": "1.8-drv-exactness-test"}
       ]
     },
     {
@@ -547,10 +547,10 @@
       "name": "Integrating factor for an exact equation",
       "statement": "An equation M dx + N dy = 0 that is not exact may be made exact by multiplying by a nonzero function u(x, y); any solution of uM dx + uN dy = 0 is also a solution of the original, and u must satisfy (M_y − N_x)u = u_x N − u_y M, a PDE. Looking for u of one variable: if P(x) = (M_y − N_x)/N is a function of x alone, then u(x) = e^(∫P(x) dx) works; if Q(y) = (M_y − N_x)/M is a function of y alone, then u(y) = e^(−∫Q(y) dy) works. The integrating factor r(x) of a linear equation, written (p(x)y − f(x)) dx + dy = 0, is a special case.",
       "forms": [
-        {"id": "eq-exact-factor-x", "latex": "u(x) = e^{\\int P(x) \\, dx}, \\qquad P(x) = \\frac{M_y-N_x}{N}", "ktex": "\\ku(x) = e^{\\int \\kP(x) \\, dx}, \\qquad \\kP(x) = \\frac{\\kMy-\\kNx}{\\kN}", "condition": "(M_y − N_x)/N depends on x alone"},
-        {"id": "eq-exact-factor-y", "latex": "u(y) = e^{-\\int Q(y) \\, dy}, \\qquad Q(y) = \\frac{M_y-N_x}{M}", "ktex": "\\ku(y) = e^{-\\int \\kQ(y) \\, dy}, \\qquad \\kQ(y) = \\frac{\\kMy-\\kNx}{\\kM}", "condition": "(M_y − N_x)/M depends on y alone"},
-        {"id": "eq-exact-factor-condition", "latex": "(M_y-N_x)u = u_x N - u_y M", "ktex": "(\\kMy-\\kNx)\\ku = \\kux \\kN - \\kuy \\kM"},
-        {"id": "eq-linear-as-exact", "latex": "\\bigl( p(x) y - f(x) \\bigr)\\, dx + dy = 0", "ktex": "\\bigl( \\kp(x) \\ky - \\kf(x) \\bigr)\\, dx + dy = 0", "condition": "the linear equation dy/dx + p(x)y = f(x), exact after multiplying by r(x)"}
+        {"id": "eq-exact-factor-x", "latex": "u(x) = e^{\\int P(x) \\, dx}, \\qquad P(x) = \\frac{M_y-N_x}{N}", "ktex": "\\ku(x) = e^{\\int \\kP(x) \\, dx}, \\qquad \\kP(x) = \\frac{\\kMy-\\kNx}{\\kN}", "condition": "(M_y − N_x)/N depends on x alone", "anchor": "1.8-drv-exact-factor"},
+        {"id": "eq-exact-factor-y", "latex": "u(y) = e^{-\\int Q(y) \\, dy}, \\qquad Q(y) = \\frac{M_y-N_x}{M}", "ktex": "\\ku(y) = e^{-\\int \\kQ(y) \\, dy}, \\qquad \\kQ(y) = \\frac{\\kMy-\\kNx}{\\kM}", "condition": "(M_y − N_x)/M depends on y alone", "anchor": "1.8-drv-exact-factor"},
+        {"id": "eq-exact-factor-condition", "latex": "(M_y-N_x)u = u_x N - u_y M", "ktex": "(\\kMy-\\kNx)\\ku = \\kux \\kN - \\kuy \\kM", "anchor": "1.8-drv-exact-factor-condition"},
+        {"id": "eq-linear-as-exact", "latex": "\\bigl( p(x) y - f(x) \\bigr)\\, dx + dy = 0", "ktex": "\\bigl( \\kp(x) \\ky - \\kf(x) \\bigr)\\, dx + dy = 0", "condition": "the linear equation dy/dx + p(x)y = f(x), exact after multiplying by r(x)", "anchor": "1.8-eq-linear-as-exact"}
       ]
     },
     {
@@ -560,7 +560,7 @@
       "name": "First-order linear PDE",
       "statement": "A linear first-order PDE for a function u(x, t) of x and t is a(x, t)u_x + b(x, t)u_t + c(x, t)u = g(x, t), with u_x = ∂u/∂x and u_t = ∂u/∂t, posed for −∞ < x < ∞ and t > 0 with the initial condition u(x, 0) = f(x); x is thought of as position and t as time, and the coefficients a, b, c and the function g are mostly constant or zero here, though the method works with nonconstant coefficients.",
       "forms": [
-        {"id": "eq-fopde", "latex": "a(x,t) \\, u_x + b(x,t) \\, u_t + c(x,t) \\, u = g(x,t), \\quad u(x,0) = f(x)", "ktex": "a(x,t) \\, \\kux + b(x,t) \\, \\kut + c(x,t) \\, \\ku = g(x,t), \\quad \\ku(x,0) = \\kf(x)", "condition": "−∞ < x < ∞, t > 0"}
+        {"id": "eq-fopde", "latex": "a(x,t) \\, u_x + b(x,t) \\, u_t + c(x,t) \\, u = g(x,t), \\quad u(x,0) = f(x)", "ktex": "a(x,t) \\, \\kux + b(x,t) \\, \\kut + c(x,t) \\, \\ku = g(x,t), \\quad \\ku(x,0) = \\kf(x)", "condition": "−∞ < x < ∞, t > 0", "anchor": "1.9-eq-fopde"}
       ]
     },
     {
@@ -589,7 +589,7 @@
       "terms": ["transport equation"],
       "statement": "The equation αu_x + u_t = 0, where α is a constant, is called the transport equation: everything travels at the constant speed α, as material carried along by a river without diffusing.",
       "forms": [
-        {"id": "eq-transport", "latex": "\\alpha u_x + u_t = 0", "ktex": "\\alpha \\kux + \\kut = 0"}
+        {"id": "eq-transport", "latex": "\\alpha u_x + u_t = 0", "ktex": "\\alpha \\kux + \\kut = 0", "anchor": "1.9-eq-transport"}
       ]
     },
     {
@@ -600,7 +600,7 @@
       "terms": ["characteristic coordinates"],
       "statement": "The characteristic coordinates (ξ, s) are coordinates in which the PDE simplifies, a u_x + b u_t becoming differentiation in s; for the transport equation they are ξ = x − αt, s = t, and by the chain rule u_x = u_ξ and u_t = −αu_ξ + u_s, so the equation becomes u_s = 0.",
       "forms": [
-        {"id": "eq-char-coords", "latex": "\\xi = x - \\alpha t , \\qquad s = t", "ktex": "\\xi = x - \\alpha t , \\qquad s = t", "condition": "the transport equation αu_x + u_t = 0"}
+        {"id": "eq-char-coords", "latex": "\\xi = x - \\alpha t , \\qquad s = t", "ktex": "\\xi = x - \\alpha t , \\qquad s = t", "condition": "the transport equation αu_x + u_t = 0", "anchor": "1.9-eq-char-coords"}
       ]
     },
     {
@@ -612,7 +612,7 @@
       "type": "curve",
       "statement": "The curves ξ = constant, along which the data propagate, are called the characteristic curves. For the transport equation they are the lines t = (x − ξ)/α of slope 1/α, one for each ξ, and the solution does not change along them since du/ds = 0; when the coefficients are not constants the characteristics are not straight lines.",
       "forms": [
-        {"id": "eq-char-lines", "latex": "t = \\frac{1}{\\alpha} ( x - \\xi )", "ktex": "t = \\frac{1}{\\alpha} ( x - \\xi )", "condition": "the transport equation; ξ = constant"}
+        {"id": "eq-char-lines", "latex": "t = \\frac{1}{\\alpha} ( x - \\xi )", "ktex": "t = \\frac{1}{\\alpha} ( x - \\xi )", "condition": "the transport equation; ξ = constant", "anchor": "1.9-char-lines"}
       ]
     },
     {
@@ -622,7 +622,7 @@
       "name": "Solution of the transport equation",
       "statement": "In characteristic coordinates the transport equation is u_s = 0, so u = A(ξ) = A(x − αt) for some function A, and the initial condition f(x) = u(x, 0) = A(x) gives u(x, t) = f(x − αt): the initial profile simply moves to the right with velocity α as t increases (to the left if α < 0).",
       "forms": [
-        {"id": "eq-transport-solution", "latex": "u(x,t) = f(x-\\alpha t)", "ktex": "\\ku(x,t) = \\kf(x-\\alpha t)", "condition": "αu_x + u_t = 0, u(x, 0) = f(x)"}
+        {"id": "eq-transport-solution", "latex": "u(x,t) = f(x-\\alpha t)", "ktex": "\\ku(x,t) = \\kf(x-\\alpha t)", "condition": "αu_x + u_t = 0, u(x, 0) = f(x)", "anchor": "1.9-drv-transport"}
       ]
     },
     {
@@ -640,8 +640,8 @@
       "name": "ODE along a characteristic",
       "statement": "Along a curve (x(s), t(s)) with dx/ds = a and dt/ds = b, the chain rule gives du/ds = u_x dx/ds + u_t dt/ds = a u_x + b u_t, so the PDE a u_x + b u_t + c u = g becomes the linear ODE du/ds + cu = g, equation (1.6), with ξ a parameter; it is solved with the integrating factor, taking s = 0 at t = 0 and x(0) = ξ.",
       "forms": [
-        {"id": "eq-char-ode", "latex": "\\frac{du}{ds} + c u = g", "ktex": "\\kduds + c \\ku = g", "condition": "along a characteristic curve"},
-        {"id": "eq-char-curve", "latex": "\\frac{dx}{ds} = a, \\qquad \\frac{dt}{ds} = b", "ktex": "\\frac{dx}{ds} = a, \\qquad \\frac{dt}{ds} = b", "condition": "x(0) = ξ, t(0) = 0"}
+        {"id": "eq-char-ode", "latex": "\\frac{du}{ds} + c u = g", "ktex": "\\kduds + c \\ku = g", "condition": "along a characteristic curve", "anchor": "1.9-eq-1-6"},
+        {"id": "eq-char-curve", "latex": "\\frac{dx}{ds} = a, \\qquad \\frac{dt}{ds} = b", "ktex": "\\frac{dx}{ds} = a, \\qquad \\frac{dt}{ds} = b", "condition": "x(0) = ξ, t(0) = 0", "anchor": "1.9-eq-char-curve"}
       ]
     }
   ],

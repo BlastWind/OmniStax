@@ -209,23 +209,14 @@
    "nodes": [
     {
      "assumes": [
-      {"tex": "\\kxp = A t \\cos(\\komega t) + B t \\sin(\\komega t)", "src": "2.6"}
+      {"tex": "\\kxdprime + \\komega^2 \\kx = \\frac{F_0}{m} \\cos(\\komega t)", "src": "2.6"}
      ],
-     "then": {"tex": "\\mk{xp}{\\kxp} = \\mk{A}{A t \\cos(\\komega t)} + \\mk{B}{B t \\sin(\\komega t)}", "uses": [0], "src": "2.6"},
+     "then": {"tex": "\\mk{xp}{\\kxp} = \\mk{A}{A t \\cos(\\komega t)} + \\mk{B}{B t \\sin(\\komega t)}", "uses": [], "src": "2.6"},
      "steps": [
       {"tex": "\\mk{xp}{{\\kxp}'} = \\mk{A}{A\\cos(\\komega t) - A\\komega t\\sin(\\komega t)} + \\mk{B}{B\\sin(\\komega t) + B\\komega t\\cos(\\komega t)}", "uses": [], "cap": "The product rule: $(t\\cos(\\omega t))' = \\cos(\\omega t) - \\omega t\\sin(\\omega t)$ and $(t\\sin(\\omega t))' = \\sin(\\omega t) + \\omega t\\cos(\\omega t)$."},
       {"tex": "\\mk{xp}{{\\kxp}''} = \\mk{A}{-2A\\komega\\sin(\\komega t) - A\\komega^2 t\\cos(\\komega t)} + \\mk{B}{2B\\komega\\cos(\\komega t) - B\\komega^2 t\\sin(\\komega t)}", "uses": [], "cap": "Differentiating once more by the product rule."},
-      {"tex": "\\mk{xp}{{\\kxp}'' + \\komega^2 \\kxp} = \\mk{B}{2B\\komega\\cos(\\komega t)} - \\mk{A}{2A\\komega\\sin(\\komega t)}", "uses": [0]}
-     ],
-     "src": "2.6"
-    },
-    {
-     "assumes": [
-      {"tex": "\\kxdprime + \\komega^2 \\kx = \\frac{F_0}{m} \\cos(\\komega t)", "src": "2.6"},
-      {"step": 0}
-     ],
-     "then": {"tex": "\\mk{B}{2B\\komega\\cos(\\komega t)} - \\mk{A}{2A\\komega\\sin(\\komega t)} = \\mk{f}{\\frac{F_0}{m}\\cos(\\komega t)}", "uses": [0, 1], "src": "2.6"},
-     "steps": [
+      {"tex": "\\mk{xp}{{\\kxp}'' + \\komega^2 \\kxp} = \\mk{B}{2B\\komega\\cos(\\komega t)} - \\mk{A}{2A\\komega\\sin(\\komega t)}", "uses": []},
+      {"tex": "\\mk{B}{2B\\komega\\cos(\\komega t)} - \\mk{A}{2A\\komega\\sin(\\komega t)} = \\mk{f}{\\frac{F_0}{m}\\cos(\\komega t)}", "uses": [0]},
       {"tex": "\\mk{A}{-2A\\komega} = 0 \\quad\\text{and}\\quad \\mk{B}{2B\\komega} = \\mk{f}{\\frac{F_0}{m}}", "uses": [], "cap": "The two sides agree for every $t$ only if the coefficients of $\\sin(\\omega t)$ match and those of $\\cos(\\omega t)$ match."},
       {"tex": "\\mk{A}{A} = 0 \\quad\\text{and}\\quad \\mk{B}{B} = \\mk{f}{\\frac{F_0}{2m\\komega}}", "uses": []}
      ],
@@ -240,15 +231,14 @@
    "nodes": [
     {
      "assumes": [
-      {"tex": "\\kxp = A \\cos(\\komega t) + B \\sin(\\komega t)", "src": "2.6"},
       {"tex": "\\kxdprime + 2p\\kxprime + \\komegazero^2 \\kx = \\frac{F_0}{m} \\cos(\\komega t)", "src": "2.6"}
      ],
-     "then": {"tex": "\\mk{xp}{\\kxp} = \\mk{cos}{A\\cos(\\komega t)} + \\mk{sin}{B\\sin(\\komega t)}", "uses": [0], "src": "2.6"},
+     "then": {"tex": "\\mk{xp}{\\kxp} = \\mk{cos}{A\\cos(\\komega t)} + \\mk{sin}{B\\sin(\\komega t)}", "uses": [], "src": "2.6"},
      "steps": [
       {"tex": "\\mk{xp}{{\\kxp}'} = \\mk{sin}{-A\\komega\\sin(\\komega t)} + \\mk{cos}{B\\komega\\cos(\\komega t)}", "uses": [], "cap": "The chain rule: $(\\cos(\\omega t))' = -\\omega\\sin(\\omega t)$ and $(\\sin(\\omega t))' = \\omega\\cos(\\omega t)$."},
       {"tex": "\\mk{xp}{{\\kxp}''} = \\mk{cos}{-A\\komega^2\\cos(\\komega t)} - \\mk{sin}{B\\komega^2\\sin(\\komega t)}", "uses": [], "cap": "Differentiating once more by the chain rule."},
-      {"tex": "\\mk{xp}{{\\kxp}'' + 2p{\\kxp}' + \\komegazero^2\\kxp} = \\mk{sin}{\\bigl((\\komegazero^2 - \\komega^2)B - 2\\komega pA\\bigr)\\sin(\\komega t)} + \\mk{cos}{\\bigl((\\komegazero^2 - \\komega^2)A + 2\\komega pB\\bigr)\\cos(\\komega t)}", "uses": [0]},
-      {"tex": "\\mk{sin}{\\bigl((\\komegazero^2 - \\komega^2)B - 2\\komega pA\\bigr)\\sin(\\komega t)} + \\mk{cos}{\\bigl((\\komegazero^2 - \\komega^2)A + 2\\komega pB\\bigr)\\cos(\\komega t)} = \\mk{f}{\\frac{F_0}{m}\\cos(\\komega t)}", "uses": [1]},
+      {"tex": "\\mk{xp}{{\\kxp}'' + 2p{\\kxp}' + \\komegazero^2\\kxp} = \\mk{sin}{\\bigl((\\komegazero^2 - \\komega^2)B - 2\\komega pA\\bigr)\\sin(\\komega t)} + \\mk{cos}{\\bigl((\\komegazero^2 - \\komega^2)A + 2\\komega pB\\bigr)\\cos(\\komega t)}", "uses": []},
+      {"tex": "\\mk{sin}{\\bigl((\\komegazero^2 - \\komega^2)B - 2\\komega pA\\bigr)\\sin(\\komega t)} + \\mk{cos}{\\bigl((\\komegazero^2 - \\komega^2)A + 2\\komega pB\\bigr)\\cos(\\komega t)} = \\mk{f}{\\frac{F_0}{m}\\cos(\\komega t)}", "uses": [0]},
       {"tex": "\\mk{sin}{(\\komegazero^2 - \\komega^2)B - 2\\komega pA} = 0 \\quad\\text{and}\\quad \\mk{cos}{(\\komegazero^2 - \\komega^2)A + 2\\komega pB} = \\mk{f}{\\frac{F_0}{m}}", "uses": [], "cap": "The two sides agree for every $t$ only if the coefficients of $\\sin(\\omega t)$ match and those of $\\cos(\\omega t)$ match."}
      ],
      "src": "2.6"

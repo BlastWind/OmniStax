@@ -124,14 +124,14 @@ function scene(ctx, o) {
    rides its own strip above the graph and the lag γ/ω between a crest of F and the next crest of x_sp is
    bracketed. Graph t 0 to 20 by x −6 to 6 (the book's window; c ≥ 0.2 keeps C ≤ 5.03); 20 s of t over 10 s. */
 (function () {
-  const d = sim('sim-transient', 770);
+  const d = sim('sim-transient', 800);
   const cS = ctl(d.controls, { label: 'c', cls: '', key: 'c', min: 0.2, max: 2, step: 0.01, value: 0.7, unit: '', dec: 2, aria: 'the damping c', onInput: () => cy.reset() });
   const wS = ctl(d.controls, { label: '\\komega', cls: 'frequency', key: 'omega', min: 0.2, max: 3, step: 0.01, value: 1.1, unit: '', dec: 2, aria: 'the forcing frequency ω',
     specials: [{ at: 1, label: 'ω₀, where γ = π/2' }], onInput: () => cy.reset() });
   const x0S = ctl(d.controls, { label: '\\kx(0)', cls: 'function', key: 'x0', min: -5, max: 5, step: 0.1, value: 4.7, unit: '', dec: 1, aria: 'the initial position x(0)', onInput: () => cy.reset() });
   const v0S = ctl(d.controls, { label: '\\kxprime(0)', cls: 'derivative', key: 'v0', min: -5, max: 5, step: 0.1, value: 0, unit: '', dec: 1, aria: 'the initial velocity x′(0)', onInput: () => cy.reset() });
   const ro = readout(d);
-  const STRIP = { l: 120, r: 1300, t: 282, b: 342 }, BOX = { l: 120, r: 1300, t: 392, b: 710 }, X0 = 700, SC = 45, FY = 236, WX = 110;
+  const STRIP = { l: 120, r: 1300, t: 316, b: 376 }, BOX = { l: 120, r: 1300, t: 426, b: 740 }, X0 = 700, SC = 45, FY = 268, WX = 110;
   let hits = [];
   hover(d.stage, () => hits);
   const cy = run(d, 20, 2, (t) => {
