@@ -1,0 +1,1539 @@
+{
+  "id": "3.2",
+  "module": "sec:matrix",
+  "chapter": "3",
+  "title": "Matrices and linear systems",
+  "short": "Matrices and linear systems",
+  "lead": "Systems of differential equations are written with <span data-concept=\"matrix\">matrices</span> and <span data-concept=\"vector\">vectors</span>, so this section reviews them: adding and multiplying matrices, the <span data-concept=\"identity-matrix\">identity</span> and the <span data-concept=\"matrix-inverse\">inverse</span>, the <span data-concept=\"determinant\">determinant</span> and what it measures, and solving a system of linear equations by <span data-concept=\"row-reduction\">row reduction</span>, which is also how an inverse is computed.",
+  "objectives": [],
+  "summary_html": "",
+  "notes": "The section notes (the lecture count, the [EP] and [BD] section numbers and the pointer to Appendix A) are left out.",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-19",
+  "exercises_lead": "",
+  "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 3.2.101–3.2.104 carry the book’s own answers, each confirmed by computation. The inline exercise 3.2.1 and exercises 3.2.2–3.2.11, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+  "figures": [
+    {
+      "id": "sim-determinant-area",
+      "kind": "sim",
+      "draws": [
+        "matrix",
+        "vector",
+        "region"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "referents": [],
+  "coverage": [
+    {
+      "span": "matrix-def",
+      "concept": "matrix",
+      "verb": "introduces"
+    },
+    {
+      "span": "matrix-def",
+      "concept": "linear-system-of-odes",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-array",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-array",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "entries",
+      "concept": "matrix-entry",
+      "verb": "introduces"
+    },
+    {
+      "span": "entries",
+      "concept": "square-matrix",
+      "verb": "introduces"
+    },
+    {
+      "span": "entries",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "vectors",
+      "concept": "vector",
+      "verb": "introduces"
+    },
+    {
+      "span": "vectors",
+      "concept": "row-vector",
+      "verb": "introduces"
+    },
+    {
+      "span": "vectors",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar",
+      "concept": "scalar",
+      "verb": "introduces"
+    },
+    {
+      "span": "scalar",
+      "concept": "scalar-multiplication-of-a-matrix",
+      "verb": "introduces"
+    },
+    {
+      "span": "scalar",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-scalar-multiplication-of-a-matrix",
+      "concept": "scalar-multiplication-of-a-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "addition",
+      "concept": "matrix-addition",
+      "verb": "introduces"
+    },
+    {
+      "span": "addition",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "addition",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-addition",
+      "concept": "matrix-addition",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-rules",
+      "concept": "rules-of-matrix-algebra",
+      "verb": "introduces"
+    },
+    {
+      "span": "addition-rules",
+      "concept": "matrix-addition",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-rules",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-rules",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-rules",
+      "concept": "scalar",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-addition-rules",
+      "concept": "rules-of-matrix-algebra",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-addition-rules",
+      "concept": "matrix-addition",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-addition-rules",
+      "concept": "scalar-multiplication-of-a-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose",
+      "concept": "transpose",
+      "verb": "introduces"
+    },
+    {
+      "span": "transpose",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-transpose",
+      "concept": "transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product",
+      "concept": "dot-product",
+      "verb": "introduces"
+    },
+    {
+      "span": "dot-product",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product",
+      "concept": "row-vector",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-dot-product",
+      "concept": "dot-product",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-dot-product",
+      "concept": "row-vector",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-dot-product",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-product",
+      "concept": "matrix-product",
+      "verb": "introduces"
+    },
+    {
+      "span": "matrix-product",
+      "concept": "dot-product",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-product",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-product",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-product-entry",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-product-entry",
+      "concept": "dot-product",
+      "verb": "uses"
+    },
+    {
+      "span": "sizes",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "identity",
+      "concept": "identity-matrix",
+      "verb": "introduces"
+    },
+    {
+      "span": "identity",
+      "concept": "square-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-identity-matrix",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "mult-rules",
+      "concept": "rules-of-matrix-algebra",
+      "verb": "uses"
+    },
+    {
+      "span": "mult-rules",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "mult-rules",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "mult-rules",
+      "concept": "scalar",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-multiplication-rules",
+      "concept": "rules-of-matrix-algebra",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-multiplication-rules",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-multiplication-rules",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "warnings",
+      "concept": "commuting-matrices",
+      "verb": "introduces"
+    },
+    {
+      "span": "warnings",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "warnings",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-def",
+      "concept": "matrix-inverse",
+      "verb": "introduces"
+    },
+    {
+      "span": "inverse-def",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-inverse",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-inverse",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-inverse",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "invertible",
+      "concept": "invertible-matrix",
+      "verb": "introduces"
+    },
+    {
+      "span": "invertible",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-unique",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-unique",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-unique",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-unique",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "determinant-def",
+      "concept": "determinant",
+      "verb": "introduces"
+    },
+    {
+      "span": "determinant-def",
+      "concept": "square-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "determinant-def",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "determinant-def",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-determinant-2x2",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "area-scale",
+      "concept": "determinant-as-area-scale",
+      "verb": "introduces"
+    },
+    {
+      "span": "area-scale",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "area-scale",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "area-scale",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "area-scale",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-parallelogram-area",
+      "concept": "determinant-as-area-scale",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-parallelogram-area",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "carries",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "carries",
+      "concept": "determinant-as-area-scale",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-determinant-area",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-determinant-area",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-determinant-area",
+      "concept": "determinant-as-area-scale",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-determinant-area",
+      "concept": "invertibility-and-the-determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-determinant-area",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "cofactor-def",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "cofactor-def",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "cofactor-def",
+      "concept": "cofactor-expansion",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-cofactor-expansion",
+      "concept": "cofactor-expansion",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-cofactor-expansion",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-cofactor-expansion-first-row",
+      "concept": "cofactor-expansion",
+      "verb": "uses"
+    },
+    {
+      "span": "cofactor-3x3",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "cofactor-3x3",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "cofactor-3x3",
+      "concept": "cofactor-expansion",
+      "verb": "uses"
+    },
+    {
+      "span": "cofactors",
+      "concept": "cofactor-expansion",
+      "verb": "introduces"
+    },
+    {
+      "span": "cofactors",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "cofactors",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "cofactors",
+      "concept": "transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "det-product",
+      "concept": "determinant-of-a-product",
+      "verb": "introduces"
+    },
+    {
+      "span": "det-product",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "det-product",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-determinant-of-a-product",
+      "concept": "determinant-of-a-product",
+      "verb": "uses"
+    },
+    {
+      "span": "det-inverses",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "det-inverses",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "det-inverses",
+      "concept": "determinant-of-a-product",
+      "verb": "uses"
+    },
+    {
+      "span": "det-inverses",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-determinant-of-inverses",
+      "concept": "determinant-of-a-product",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-determinant-of-inverses",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-determinant-of-inverses",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "neither-zero",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "neither-zero",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "thm-3-2-1",
+      "concept": "invertibility-and-the-determinant",
+      "verb": "introduces"
+    },
+    {
+      "span": "thm-3-2-1",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "thm-3-2-1",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "thm-3-2-1",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "det-of-inverse",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "det-of-inverse",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "det-of-inverse",
+      "concept": "invertibility-and-the-determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-determinant-of-inverse",
+      "concept": "determinant-of-a-product",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-determinant-of-inverse",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-determinant-of-inverse",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-determinant-of-inverse",
+      "concept": "invertibility-and-the-determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-determinant-of-inverse",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-2x2",
+      "concept": "inverse-of-a-2x2-matrix",
+      "verb": "introduces"
+    },
+    {
+      "span": "inverse-2x2",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-2x2",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-2x2",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-inverse-2x2",
+      "concept": "inverse-of-a-2x2-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-inverse-2x2",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-2x2-note",
+      "concept": "determinant",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-2x2-note",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-2x2-note",
+      "concept": "inverse-of-a-2x2-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "linear-systems",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-example-system",
+      "concept": "augmented-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "row-ops-idea",
+      "concept": "elementary-row-operations",
+      "verb": "uses"
+    },
+    {
+      "span": "augmented",
+      "concept": "augmented-matrix",
+      "verb": "introduces"
+    },
+    {
+      "span": "augmented",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "augmented",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-augmented-matrix",
+      "concept": "augmented-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "row-operations",
+      "concept": "elementary-row-operations",
+      "verb": "introduces"
+    },
+    {
+      "span": "row-operations",
+      "concept": "row-reduction",
+      "verb": "uses"
+    },
+    {
+      "span": "row-reduce",
+      "concept": "row-reduction",
+      "verb": "introduces"
+    },
+    {
+      "span": "row-reduce",
+      "concept": "elementary-row-operations",
+      "verb": "uses"
+    },
+    {
+      "span": "row-reduce",
+      "concept": "inconsistent-system",
+      "verb": "uses"
+    },
+    {
+      "span": "worked-solution",
+      "concept": "augmented-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "worked-solution",
+      "concept": "row-reduction",
+      "verb": "uses"
+    },
+    {
+      "span": "worked-solution",
+      "concept": "elementary-row-operations",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-notation",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-notation",
+      "concept": "augmented-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-linear-system-matrix-form",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-linear-system-matrix-form",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "by-inverse",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "by-inverse",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "by-inverse",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "by-inverse",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-solution-by-inverse",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-solution-by-inverse",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-solution-by-inverse",
+      "concept": "row-reduction",
+      "verb": "uses"
+    },
+    {
+      "span": "inconsistent",
+      "concept": "inconsistent-system",
+      "verb": "introduces"
+    },
+    {
+      "span": "inconsistent",
+      "concept": "row-reduction",
+      "verb": "uses"
+    },
+    {
+      "span": "inconsistent",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "inconsistent",
+      "concept": "augmented-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "leading-entry",
+      "concept": "leading-entry",
+      "verb": "introduces"
+    },
+    {
+      "span": "leading-entry",
+      "concept": "elementary-row-operations",
+      "verb": "uses"
+    },
+    {
+      "span": "leading-entry",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "rref",
+      "concept": "reduced-row-echelon-form",
+      "verb": "introduces"
+    },
+    {
+      "span": "rref",
+      "concept": "free-variable",
+      "verb": "introduces"
+    },
+    {
+      "span": "rref",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "rref",
+      "concept": "leading-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "rref",
+      "concept": "row-reduction",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-3-2-1",
+      "concept": "augmented-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-3-2-1",
+      "concept": "reduced-row-echelon-form",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-3-2-1",
+      "concept": "free-variable",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-3-2-1",
+      "concept": "row-reduction",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-3-2-1",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-3-2-1",
+      "concept": "inconsistent-system",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-3-2-1",
+      "concept": "leading-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-solves",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-solves",
+      "concept": "square-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-solves",
+      "concept": "free-variable",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-solves",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-solves",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-solves",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-solves",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "computing-a-matrix-inverse",
+      "verb": "introduces"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "augmented-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "row-reduction",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "reduced-row-echelon-form",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-compute",
+      "concept": "free-variable",
+      "verb": "uses"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "determinant-of-inverse",
+      "what": "the determinant of the inverse",
+      "source": "Differential Equations for Engineers, 3.2 Matrices and linear systems",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "$\\kA$ and $\\kB$ are inverses of each other, that is, $\\kA\\kB = \\kI$.",
+              "src": "3.2, The determinant"
+            },
+            {
+              "tex": "\\det(\\kA\\kB) = \\det(\\kA)\\det(\\kB)",
+              "src": "3.2, The determinant"
+            },
+            {
+              "tex": "\\det(\\kI) = 1",
+              "src": "3.2, The determinant"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{l}{\\det(\\kA)\\det(\\kB)} = \\mk{r}{\\det(\\kA\\kB)}",
+            "src": "3.2, The determinant",
+            "uses": [
+              1
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{l}{\\det(\\kA)\\det(\\kB)} = \\mk{r}{\\det(\\kI)}",
+              "uses": [
+                0
+              ]
+            },
+            {
+              "tex": "\\mk{l}{\\det(\\kA)\\det(\\kB)} = \\mk{r}{1}",
+              "uses": [
+                2
+              ],
+              "cap": "Expanding $\\det(\\kI)$ along its first row leaves $1$ times the determinant of the next smaller identity matrix, and so on down to $1$."
+            }
+          ],
+          "src": "3.2, The determinant"
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "$\\kB$ is the inverse of $\\kA$, denoted $\\kAinv$.",
+              "src": "3.2, Matrix multiplication"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{l}{\\det(\\kA)\\det(\\kB)} = \\mk{r}{1}",
+            "uses": [
+              0
+            ]
+          },
+          "steps": [
+            {
+              "tex": "\\mk{a}{\\det(\\kA)}\\,\\mk{b}{\\det(\\kAinv)} = \\mk{r}{1}",
+              "uses": [
+                1
+              ],
+              "map": {
+                "l": [
+                  "a",
+                  "b"
+                ]
+              }
+            },
+            {
+              "tex": "\\mk{b}{\\det(\\kAinv)} = \\frac{\\mk{r}{1}}{\\mk{a}{\\det(\\kA)}}",
+              "uses": [],
+              "cap": "The product is $1$, so $\\det(\\kA)$ is not zero, and we may divide by it."
+            }
+          ],
+          "src": "3.2, The determinant"
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e1",
+      "source_id": "3.2.1",
+      "source_number": "3.2.1",
+      "kind": "inline-exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "worked-solution"
+      },
+      "cite": "worked-solution",
+      "prompt": "<p>Check that the solution above really solves the given equations.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Put $\\kxone = -4$, $\\kxtwo = 3$, $\\kxthree = 2$ into each equation. The first: $2(-4) + 2(3) + 2(2) = -8 + 6 + 4 = 2$. The second: $-4 + 3 + 3(2) = 5$. The third: $-4 + 4(3) + 2 = 10$. Each left-hand side equals its right-hand side, so $\\kxone = -4$, $\\kxtwo = 3$, $\\kxthree = 2$ solves the system."
+      }
+    },
+    {
+      "id": "e2",
+      "source_id": "3.2.2",
+      "source_number": "3.2.2",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "inverse-2x2",
+      "prompt": "<p>Solve $\\left[ \\begin{smallmatrix} 1 & 2 \\\\ 3 & 4 \\end{smallmatrix} \\right] \\kvecx = \\left[ \\begin{smallmatrix} 5 \\\\ 6 \\end{smallmatrix} \\right]$ by using matrix inverse.</p>",
+      "answer": {
+        "type": "multi",
+        "generated_by": "ai",
+        "parts": [
+          {
+            "part": "x₁",
+            "value": -4
+          },
+          {
+            "part": "x₂",
+            "value": 4.5
+          }
+        ],
+        "solution": "The determinant is $1 \\cdot 4 - 2 \\cdot 3 = -2 \\neq 0$, so the matrix is invertible, and the $2 \\times 2$ formula gives $\\left[ \\begin{smallmatrix} 1 & 2 \\\\ 3 & 4 \\end{smallmatrix} \\right]^{-1} = \\frac{1}{-2}\\left[ \\begin{smallmatrix} 4 & -2 \\\\ -3 & 1 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} -2 & 1 \\\\ 3/2 & -1/2 \\end{smallmatrix} \\right]$. Then $\\kvecx = \\kAinv \\kvecb = \\left[ \\begin{smallmatrix} -2 & 1 \\\\ 3/2 & -1/2 \\end{smallmatrix} \\right]\\left[ \\begin{smallmatrix} 5 \\\\ 6 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} -10 + 6 \\\\ 15/2 - 3 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} -4 \\\\ 9/2 \\end{smallmatrix} \\right]$. Check: $-4 + 2 \\cdot \\frac{9}{2} = 5$ and $3(-4) + 4 \\cdot \\frac{9}{2} = 6$."
+      }
+    },
+    {
+      "id": "e3",
+      "source_id": "3.2.3",
+      "source_number": "3.2.3",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-cofactor-expansion",
+      "prompt": "<p>Compute determinant of $\\left[ \\begin{smallmatrix} 9 & -2 & -6 \\\\ -8 & 3 & 6 \\\\ 10 & -2 & -6 \\end{smallmatrix} \\right]$.</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "ai",
+        "value": 6,
+        "solution": "Expand along the first row: $\\det = 9 \\det\\left[ \\begin{smallmatrix} 3 & 6 \\\\ -2 & -6 \\end{smallmatrix} \\right] - (-2)\\det\\left[ \\begin{smallmatrix} -8 & 6 \\\\ 10 & -6 \\end{smallmatrix} \\right] + (-6)\\det\\left[ \\begin{smallmatrix} -8 & 3 \\\\ 10 & -2 \\end{smallmatrix} \\right] = 9(-18+12) + 2(48-60) - 6(16-30) = -54 - 24 + 84 = 6$."
+      }
+    },
+    {
+      "id": "e4",
+      "source_id": "3.2.4",
+      "source_number": "3.2.4",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cofactors",
+      "prompt": "<p>Compute determinant of $\\left[ \\begin{smallmatrix} 1 & 2 & 3 & 1 \\\\ 4 & 0 & 5 & 0 \\\\ 6 & 0 & 7 & 0 \\\\ 8 & 0 & 10 & 1 \\end{smallmatrix} \\right]$. Hint: Expand along the proper row or column to make the calculations simpler.</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "ai",
+        "value": 4,
+        "solution": "The second column has only one nonzero entry, $a_{12} = 2$, so expanding along it leaves one term: $\\det = {(-1)}^{1+2} \\cdot 2 \\det\\left[ \\begin{smallmatrix} 4 & 5 & 0 \\\\ 6 & 7 & 0 \\\\ 8 & 10 & 1 \\end{smallmatrix} \\right]$. In that $3 \\times 3$ matrix the third column has only the entry $1$ in the corner, so its determinant is ${(-1)}^{3+3} \\cdot 1 \\cdot \\det\\left[ \\begin{smallmatrix} 4 & 5 \\\\ 6 & 7 \\end{smallmatrix} \\right] = 28 - 30 = -2$. Hence $\\det = -2 \\cdot (-2) = 4$."
+      }
+    },
+    {
+      "id": "e5",
+      "source_id": "3.2.5",
+      "source_number": "3.2.5",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "inverse-compute",
+      "prompt": "<p>Compute inverse of $\\left[ \\begin{smallmatrix} 1 & 2 & 3 \\\\ 1 & 1 & 1 \\\\ 0 & 1 & 0 \\end{smallmatrix} \\right]$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "$\\left[ \\begin{smallmatrix} 1 & 2 & 3 \\\\ 1 & 1 & 1 \\\\ 0 & 1 & 0 \\end{smallmatrix} \\right]^{-1} = \\left[ \\begin{smallmatrix} -1/2 & 3/2 & -1/2 \\\\ 0 & 0 & 1 \\\\ 1/2 & -1/2 & -1/2 \\end{smallmatrix} \\right]$. Row reduce $[\\,\\kA ~|~ \\kI\\,]$: subtract the first row from the second, giving $[\\,0 ~~ {-1} ~~ {-2} ~|~ {-1} ~~ 1 ~~ 0\\,]$; swap the second and third rows; add the new second row $[\\,0 ~~ 1 ~~ 0 ~|~ 0 ~~ 0 ~~ 1\\,]$ to the third, giving $[\\,0 ~~ 0 ~~ {-2} ~|~ {-1} ~~ 1 ~~ 1\\,]$, and multiply it by $-\\frac{1}{2}$, giving $[\\,0 ~~ 0 ~~ 1 ~|~ \\frac{1}{2} ~~ {-\\frac{1}{2}} ~~ {-\\frac{1}{2}}\\,]$; finally subtract twice the second row and three times the third from the first, giving $[\\,1 ~~ 0 ~~ 0 ~|~ {-\\frac{1}{2}} ~~ \\frac{3}{2} ~~ {-\\frac{1}{2}}\\,]$. The right-hand block is the inverse; multiplying it by the matrix gives $\\kI$."
+      }
+    },
+    {
+      "id": "e6",
+      "source_id": "3.2.6",
+      "source_number": "3.2.6",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "thm-3-2-1",
+      "prompt": "<p>For which $h$ is $\\left[ \\begin{smallmatrix} 1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & h \\end{smallmatrix} \\right]$ not invertible? Is there only one such $h$? Are there several? Infinitely many?</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "ai",
+        "value": 9,
+        "solution": "By Theorem 3.2.1 the matrix fails to be invertible exactly when its determinant is zero. Expanding along the first row, $\\det = 1(5h - 48) - 2(4h - 42) + 3(32 - 35) = -3h + 27 = -3(h - 9)$. This is zero only for $h = 9$: there is exactly one such $h$. (With $h = 9$ it is the matrix whose determinant the text computes to be $0$.)"
+      }
+    },
+    {
+      "id": "e7",
+      "source_id": "3.2.7",
+      "source_number": "3.2.7",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "cite": "thm-3-2-1",
+      "prompt": "<p>For which $h$ is $\\left[ \\begin{smallmatrix} h & 1 & 1 \\\\ 0 & h & 0 \\\\ 1 & 1 & h \\end{smallmatrix} \\right]$ not invertible? Find all such $h$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "$h = -1$, $h = 0$ and $h = 1$. The second row has the single nonzero entry $h$, so expanding along it, $\\det = {(-1)}^{2+2} h \\det\\left[ \\begin{smallmatrix} h & 1 \\\\ 1 & h \\end{smallmatrix} \\right] = h(h^2 - 1) = h(h-1)(h+1)$. By Theorem 3.2.1 the matrix is not invertible exactly when this is zero, which happens for $h = 0$, $h = 1$ and $h = -1$."
+      }
+    },
+    {
+      "id": "e8",
+      "source_id": "3.2.8",
+      "source_number": "3.2.8",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "row-reduce",
+      "prompt": "<p>Solve $\\left[ \\begin{smallmatrix} 9 & -2 & -6 \\\\ -8 & 3 & 6 \\\\ 10 & -2 & -6 \\end{smallmatrix} \\right] \\kvecx = \\left[ \\begin{smallmatrix} 1 \\\\ 2 \\\\ 3 \\end{smallmatrix} \\right]$ .</p>",
+      "answer": {
+        "type": "multi",
+        "generated_by": "ai",
+        "parts": [
+          {
+            "part": "x₁",
+            "value": 2
+          },
+          {
+            "part": "x₂",
+            "value": 1
+          },
+          {
+            "part": "x₃",
+            "value": 2.5
+          }
+        ],
+        "solution": "$\\kvecx = \\left[ \\begin{smallmatrix} 2 \\\\ 1 \\\\ 5/2 \\end{smallmatrix} \\right]$. The determinant is $6$ (Exercise 3.2.3), so the solution is unique. Row reducing the augmented matrix $\\left[ \\begin{smallmatrix} 9 & -2 & -6 & | & 1 \\\\ -8 & 3 & 6 & | & 2 \\\\ 10 & -2 & -6 & | & 3 \\end{smallmatrix} \\right]$ (subtract the first row from the third to get $[\\,1 ~~ 0 ~~ 0 ~|~ 2\\,]$, so $\\kxone = 2$; then the first two rows give $-2\\kxtwo - 6\\kxthree = -17$ and $3\\kxtwo + 6\\kxthree = 18$, whose sum is $\\kxtwo = 1$, and so $6\\kxthree = 15$) gives $\\kxone = 2$, $\\kxtwo = 1$, $\\kxthree = \\frac{5}{2}$. Check: $18 - 2 - 15 = 1$, $-16 + 3 + 15 = 2$, $20 - 2 - 15 = 3$."
+      }
+    },
+    {
+      "id": "e9",
+      "source_id": "3.2.9",
+      "source_number": "3.2.9",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "rref",
+      "prompt": "<p>Solve $\\left[ \\begin{smallmatrix} 5 & 3 & 7 \\\\ 8 & 4 & 4 \\\\ 6 & 3 & 3 \\end{smallmatrix} \\right] \\kvecx = \\left[ \\begin{smallmatrix} 2 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right]$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "There are infinitely many solutions: $\\kxthree$ is free, and $\\kxone = -2 + 4\\kxthree$, $\\kxtwo = 4 - 9\\kxthree$. The augmented matrix row reduces to the reduced row echelon form $\\left[ \\begin{smallmatrix} 1 & 0 & -4 & | & -2 \\\\ 0 & 1 & 9 & | & 4 \\\\ 0 & 0 & 0 & | & 0 \\end{smallmatrix} \\right]$: the third column has no leading entry, so $\\kxthree$ is a free variable, and the first two rows say $\\kxone - 4\\kxthree = -2$ and $\\kxtwo + 9\\kxthree = 4$. (The matrix has determinant $0$, so it is not invertible, and the right-hand side happens to give a consistent system.) For example $\\kxthree = 0$ gives $\\kvecx = \\left[ \\begin{smallmatrix} -2 \\\\ 4 \\\\ 0 \\end{smallmatrix} \\right]$: $-10 + 12 = 2$, $-16 + 16 = 0$, $-12 + 12 = 0$."
+      }
+    },
+    {
+      "id": "e10",
+      "source_id": "3.2.10",
+      "source_number": "3.2.10",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "inconsistent",
+      "prompt": "<p>Solve $\\left[ \\begin{smallmatrix} 3 & 2 & 3 & 0 \\\\ 3 & 3 & 3 & 3 \\\\ 0 & 2 & 4 & 2 \\\\ 2 & 3 & 4 & 3 \\end{smallmatrix} \\right] \\kvecx = \\left[ \\begin{smallmatrix} 2 \\\\ 0 \\\\ 4 \\\\ 1 \\end{smallmatrix} \\right]$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "There is no solution: the system is inconsistent. Row reducing the augmented matrix gives the reduced row echelon form $\\left[ \\begin{smallmatrix} 1 & 0 & 0 & -1 & | & 0 \\\\ 0 & 1 & 0 & 3 & | & 0 \\\\ 0 & 0 & 1 & -1 & | & 0 \\\\ 0 & 0 & 0 & 0 & | & 1 \\end{smallmatrix} \\right]$, whose last row is the equation $0 = 1$. (The coefficient matrix has determinant $0$, so it is not invertible, and this right-hand side is not one it can reach.)"
+      }
+    },
+    {
+      "id": "e11",
+      "source_id": "3.2.11",
+      "source_number": "3.2.11",
+      "kind": "exercise",
+      "bloom": "Create",
+      "place": {
+        "at": "end"
+      },
+      "cite": "warnings",
+      "prompt": "<p>Find 3 nonzero $2 \\times 2$ matrices $\\kA$, $\\kB$, and $\\kC$ such that $\\kA\\kB = \\kA\\kC$ but $\\kB \\neq \\kC$.</p>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "For example $\\kA = \\left[ \\begin{smallmatrix} 1 & 0 \\\\ 0 & 0 \\end{smallmatrix} \\right]$, $\\kB = \\left[ \\begin{smallmatrix} 1 & 0 \\\\ 0 & 1 \\end{smallmatrix} \\right]$, $\\kC = \\left[ \\begin{smallmatrix} 1 & 0 \\\\ 0 & 2 \\end{smallmatrix} \\right]$. Then $\\kA\\kB = \\left[ \\begin{smallmatrix} 1 & 0 \\\\ 0 & 0 \\end{smallmatrix} \\right] = \\kA\\kC$, since the zero second row of $\\kA$ never looks at the second row of $\\kB$ or $\\kC$, where they differ, yet $\\kB \\neq \\kC$. Any such $\\kA$ must be singular: were it invertible, multiplying by $\\kAinv$ on the left would give $\\kB = \\kC$."
+      }
+    },
+    {
+      "id": "e101",
+      "source_id": "3.2.101",
+      "source_number": "3.2.101",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "eq-cofactor-expansion",
+      "prompt": "<p>Compute determinant of $\\left[ \\begin{smallmatrix} 1 & 1 & 1 \\\\ 2 & 3 & -5 \\\\ 1 & -1 & 0 \\end{smallmatrix} \\right]$</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": -15,
+        "solution": "$-15$"
+      }
+    },
+    {
+      "id": "e102",
+      "source_id": "3.2.102",
+      "source_number": "3.2.102",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "thm-3-2-1",
+      "prompt": "<p>Find $t$ such that $\\left[ \\begin{smallmatrix} 1 & t \\\\ -1 & 2 \\end{smallmatrix} \\right]$ is not invertible.</p>",
+      "answer": {
+        "type": "number",
+        "generated_by": "source",
+        "value": -2,
+        "solution": "$-2$"
+      }
+    },
+    {
+      "id": "e103",
+      "source_id": "3.2.103",
+      "source_number": "3.2.103",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "by-inverse",
+      "prompt": "<p>Solve $\\left[ \\begin{smallmatrix} 1 & 1 \\\\ 1 & -1 \\end{smallmatrix} \\right] \\kvecx = \\left[ \\begin{smallmatrix} 10 \\\\ 20 \\end{smallmatrix} \\right]$.</p>",
+      "answer": {
+        "type": "multi",
+        "generated_by": "source",
+        "parts": [
+          {
+            "part": "x₁",
+            "value": 15
+          },
+          {
+            "part": "x₂",
+            "value": -5
+          }
+        ],
+        "solution": "$\\kvecx = \\left[ \\begin{smallmatrix} 15 \\\\ -5 \\end{smallmatrix} \\right]$"
+      }
+    },
+    {
+      "id": "e104",
+      "source_id": "3.2.104",
+      "source_number": "3.2.104",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "inverse-2x2",
+      "prompt": "<p>Suppose $a, b, c$ are nonzero numbers. Let $M=\\left[ \\begin{smallmatrix} a & 0 \\\\ 0 & b \\end{smallmatrix} \\right]$, $N=\\left[ \\begin{smallmatrix} a & 0 & 0 \\\\ 0 & b & 0 \\\\ 0 & 0 & c \\end{smallmatrix} \\right]$.</p><ol type=\\\"a\\\"><li>Compute $M^{-1}$.</li><li>Compute $N^{-1}$.</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a) $\\left[ \\begin{smallmatrix} {1}/{a} & 0 \\\\ 0 & {1}/{b} \\end{smallmatrix} \\right]$ b) $\\left[ \\begin{smallmatrix} {1}/{a} & 0 & 0 \\\\ 0 & {1}/{b} & 0 \\\\ 0 & 0 & {1}/{c} \\end{smallmatrix} \\right]$"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "e1",
+      "concept": "row-reduction"
+    },
+    {
+      "exercise": "e2",
+      "concept": "matrix-inverse"
+    },
+    {
+      "exercise": "e2",
+      "concept": "inverse-of-a-2x2-matrix"
+    },
+    {
+      "exercise": "e2",
+      "concept": "matrix-product"
+    },
+    {
+      "exercise": "e3",
+      "concept": "determinant"
+    },
+    {
+      "exercise": "e3",
+      "concept": "cofactor-expansion"
+    },
+    {
+      "exercise": "e4",
+      "concept": "cofactor-expansion"
+    },
+    {
+      "exercise": "e5",
+      "concept": "computing-a-matrix-inverse"
+    },
+    {
+      "exercise": "e5",
+      "concept": "elementary-row-operations"
+    },
+    {
+      "exercise": "e6",
+      "concept": "invertibility-and-the-determinant"
+    },
+    {
+      "exercise": "e6",
+      "concept": "cofactor-expansion"
+    },
+    {
+      "exercise": "e7",
+      "concept": "invertibility-and-the-determinant"
+    },
+    {
+      "exercise": "e7",
+      "concept": "cofactor-expansion"
+    },
+    {
+      "exercise": "e8",
+      "concept": "row-reduction"
+    },
+    {
+      "exercise": "e8",
+      "concept": "augmented-matrix"
+    },
+    {
+      "exercise": "e9",
+      "concept": "row-reduction"
+    },
+    {
+      "exercise": "e9",
+      "concept": "free-variable"
+    },
+    {
+      "exercise": "e9",
+      "concept": "reduced-row-echelon-form"
+    },
+    {
+      "exercise": "e10",
+      "concept": "row-reduction"
+    },
+    {
+      "exercise": "e10",
+      "concept": "inconsistent-system"
+    },
+    {
+      "exercise": "e11",
+      "concept": "matrix-product"
+    },
+    {
+      "exercise": "e11",
+      "concept": "invertible-matrix"
+    },
+    {
+      "exercise": "e101",
+      "concept": "determinant"
+    },
+    {
+      "exercise": "e101",
+      "concept": "cofactor-expansion"
+    },
+    {
+      "exercise": "e102",
+      "concept": "invertibility-and-the-determinant"
+    },
+    {
+      "exercise": "e102",
+      "concept": "determinant"
+    },
+    {
+      "exercise": "e103",
+      "concept": "matrix-inverse"
+    },
+    {
+      "exercise": "e103",
+      "concept": "inverse-of-a-2x2-matrix"
+    },
+    {
+      "exercise": "e104",
+      "concept": "matrix-inverse"
+    },
+    {
+      "exercise": "e104",
+      "concept": "computing-a-matrix-inverse"
+    }
+  ],
+  "footnotes": []
+}

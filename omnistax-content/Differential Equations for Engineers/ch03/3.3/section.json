@@ -1,0 +1,838 @@
+{
+ "id": "3.3",
+ "module": "linsystems:section",
+ "chapter": "3",
+ "title": "Linear systems of ODEs",
+ "short": "Linear systems of ODEs",
+ "lead": "A system of linear ODEs is written in the language of <span data-concept=\"matrix\">matrices</span> and <span data-concept=\"vector\">vectors</span>. This section sets up that language: <span data-concept=\"vector-valued-function\">vector-valued</span> and <span data-concept=\"matrix-valued-function\">matrix-valued functions</span> and their derivatives, the <span data-concept=\"first-order-linear-system\">first-order linear system</span> $\\kvecxprime = \\kP\\kvecx + \\kvecf$, how <span data-concept=\"solution-to-a-system\">solutions</span> of a <span data-concept=\"homogeneous-system\">homogeneous</span> system combine, the <span data-concept=\"fundamental-matrix\">fundamental matrix</span> they form, and how an <span data-concept=\"initial-condition-for-a-system\">initial condition</span> picks out one solution.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 3.3.101–3.3.104 carry the book’s own answers. Exercises 3.3.1–3.3.6, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-superposition",
+   "kind": "sim",
+   "draws": [
+    "vector",
+    "curve",
+    "point",
+    "function",
+    "matrix"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "vector-valued",
+   "concept": "vector-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "matrix-valued",
+   "concept": "matrix-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "matrix-derivative",
+   "concept": "derivative-of-a-matrix-valued-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "differentiation-rules",
+   "concept": "differentiation-rules-for-matrix-valued-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "first-order-linear-system",
+   "concept": "first-order-linear-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-coefficient",
+   "concept": "constant-coefficient-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "homogeneous-system",
+   "concept": "homogeneous-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-3-3-1",
+   "concept": "superposition-for-systems",
+   "verb": "introduces"
+  },
+  {
+   "span": "linearly-independent",
+   "concept": "linear-independence-of-vector-valued-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "fundamental-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-3-3-2",
+   "concept": "general-solution-of-a-nonhomogeneous-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "seeking-c",
+   "concept": "solving-an-initial-value-problem-for-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "vector-valued",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "vector-valued",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "vector-valued",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "vector-valued",
+   "concept": "independent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-vector-valued-function",
+   "concept": "vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "matrix-valued",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-matrix-valued-function",
+   "concept": "matrix-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-matrix-valued-function",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "matrix-derivative",
+   "concept": "matrix-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "matrix-derivative",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "differentiation-rules",
+   "concept": "matrix-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "differentiation-rules",
+   "concept": "derivative-of-a-matrix-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "differentiation-rules",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "differentiation-rules",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-matrix-differentiation-rules",
+   "concept": "differentiation-rules-for-matrix-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-matrix-differentiation-rules",
+   "concept": "matrix-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-matrix-differentiation-rules",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-matrix-differentiation-rules",
+   "concept": "scalar-multiplication-of-a-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "order-of-multiplication",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "order-of-multiplication",
+   "concept": "commuting-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "first-order-linear-system",
+   "concept": "linear-system-of-odes",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-first-order-linear-system",
+   "concept": "first-order-linear-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-first-order-linear-system",
+   "concept": "vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-first-order-linear-system",
+   "concept": "matrix-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "suppress-t",
+   "concept": "matrix-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "suppress-t",
+   "concept": "vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "suppress-t",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "suppress-t",
+   "concept": "first-order-linear-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "linear-example",
+   "concept": "first-order-linear-system",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-example",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-coefficient",
+   "concept": "constant-coefficient-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-coefficient",
+   "concept": "first-order-linear-system",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-coefficient",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-system",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-system",
+   "concept": "homogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-system",
+   "concept": "superposition-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-system",
+   "concept": "superposition-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-3-1",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-3-1",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-3-1",
+   "concept": "linear-independence-of-vector-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-2",
+   "concept": "superposition-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-2",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "linearly-independent",
+   "concept": "vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "linearly-independent",
+   "concept": "linear-independence-of-several-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-linear-independence-of-vector-valued-functions",
+   "concept": "linear-independence-of-vector-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-3-1",
+   "concept": "linear-independence-of-vector-valued-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-3-1",
+   "concept": "vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-combination",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-combination",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-fundamental-matrix-solution",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "matrix-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "linear-independence-of-vector-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "superposition-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "nonhomogeneous-intro",
+   "concept": "first-order-linear-system",
+   "verb": "uses"
+  },
+  {
+   "span": "nonhomogeneous-intro",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-3-2",
+   "concept": "first-order-linear-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-3-2",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-3-2",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-3-2",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-xc-plus-xp",
+   "concept": "general-solution-of-a-nonhomogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-xc-plus-xp",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-xc-plus-xp",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "general-solution-of-a-nonhomogeneous-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "procedure",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-condition",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-condition",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-system-initial-condition-vector",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-system-initial-condition-vector",
+   "concept": "solving-an-initial-value-problem-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "general-with-fundamental",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "general-with-fundamental",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "general-with-fundamental",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "general-with-fundamental",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-general-solution-with-fundamental-matrix",
+   "concept": "general-solution-of-a-nonhomogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-general-solution-with-fundamental-matrix",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "seeking-c",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "seeking-c",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-initial-condition-for-a-system",
+   "concept": "solving-an-initial-value-problem-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-initial-condition-for-a-system",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-3-2",
+   "concept": "fundamental-matrix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-3-2",
+   "concept": "solving-an-initial-value-problem-for-a-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-3-2",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-3-2",
+   "concept": "linear-independence-of-vector-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-3-2",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-3-2",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-3-2",
+   "concept": "elementary-row-operations",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-3-2",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-3-2",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-superposition",
+   "concept": "superposition-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-superposition",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-superposition",
+   "concept": "solving-an-initial-value-problem-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-superposition",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-superposition",
+   "concept": "trajectory",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "3.3.1",
+   "source_number": "3.3.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-example",
+   "prompt": "<p>Write the system $\\kxoneprime = 2 \\kxone - 3t \\kxtwo + \\sin t$, $\\kxtwoprime = e^t \\kxone + 3 \\kxtwo + \\cos t$ in the form $\\kvecxprime = \\kP(t) \\kvecx + \\kvecf(t)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kvecxprime = \\begin{bmatrix} 2 & -3t \\\\ e^t & 3 \\end{bmatrix} \\kvecx + \\begin{bmatrix} \\sin t \\\\ \\cos t \\end{bmatrix}$, so $\\kP(t) = \\begin{bmatrix} 2 & -3t \\\\ e^t & 3 \\end{bmatrix}$ and $\\kvecf(t) = \\begin{bmatrix} \\sin t \\\\ \\cos t \\end{bmatrix}$. Each row of $\\kP(t)$ holds the coefficients of $\\kxone$ and $\\kxtwo$ in one equation, and the terms with neither go into $\\kvecf(t)$. Multiplying out, the first row gives $2\\kxone - 3t\\kxtwo + \\sin t$ and the second $e^t\\kxone + 3\\kxtwo + \\cos t$, the two right-hand sides."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "3.3.2",
+   "source_number": "3.3.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-3-1",
+   "prompt": "<ol type=\"a\"><li>Verify that the system $\\kvecxprime = \\left[ \\begin{smallmatrix} 1 & 3 \\\\ 3 & 1 \\end{smallmatrix} \\right] \\kvecx$ has the two solutions $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right] e^{4t}$ and $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right] e^{-2t}$.</li><li>Write down the general solution.</li><li>Write down the general solution in the form $\\kxone = ?$, $\\kxtwo = ?$ (i.e. write down a formula for each element of the solution).</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\begin{bmatrix} 1 & 3 \\\\ 3 & 1 \\end{bmatrix}\\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 4 \\\\ 4 \\end{bmatrix} = 4\\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}$, so for $\\kvecx = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}e^{4t}$ both $\\kvecxprime$ and $\\begin{bmatrix} 1 & 3 \\\\ 3 & 1 \\end{bmatrix}\\kvecx$ equal $\\begin{bmatrix} 4 \\\\ 4 \\end{bmatrix}e^{4t}$. Likewise $\\begin{bmatrix} 1 & 3 \\\\ 3 & 1 \\end{bmatrix}\\begin{bmatrix} 1 \\\\ -1 \\end{bmatrix} = \\begin{bmatrix} -2 \\\\ 2 \\end{bmatrix} = -2\\begin{bmatrix} 1 \\\\ -1 \\end{bmatrix}$, so for $\\kvecx = \\begin{bmatrix} 1 \\\\ -1 \\end{bmatrix}e^{-2t}$ both sides equal $\\begin{bmatrix} -2 \\\\ 2 \\end{bmatrix}e^{-2t}$. b) The two solutions are linearly independent (at $t = 0$ they are $\\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}$ and $\\begin{bmatrix} 1 \\\\ -1 \\end{bmatrix}$, neither a multiple of the other) and the system has two equations, so by superposition (Theorem 3.3.1) every solution is $\\kvecx = c_1 \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}e^{4t} + c_2 \\begin{bmatrix} 1 \\\\ -1 \\end{bmatrix}e^{-2t}$. c) $\\kxone = c_1 e^{4t} + c_2 e^{-2t}$, $\\kxtwo = c_1 e^{4t} - c_2 e^{-2t}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "3.3.3",
+   "source_number": "3.3.3",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linearly-independent",
+   "prompt": "<p>Verify that $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right] e^{t}$ and $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right] e^{t}$ are linearly independent. Hint: Just plug in $t=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Suppose $c_1 \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}e^{t} + c_2 \\begin{bmatrix} 1 \\\\ -1 \\end{bmatrix}e^{t} = \\vec{0}$ for all $t$. At $t = 0$ this reads $c_1 + c_2 = 0$ and $c_1 - c_2 = 0$; adding the two gives $2c_1 = 0$, so $c_1 = 0$ and then $c_2 = 0$. Only the zero combination works, so the two functions are linearly independent."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "3.3.4",
+   "source_number": "3.3.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linearly-independent",
+   "prompt": "<p>Verify that $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right] e^{t}$ and $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 1 \\end{smallmatrix} \\right] e^{t}$ and $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 1 \\end{smallmatrix} \\right] e^{2t}$ are linearly independent. Hint: You must be a bit more tricky than in the previous exercise.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Suppose $c_1 \\begin{bmatrix} 1 \\\\ 1 \\\\ 0 \\end{bmatrix}e^{t} + c_2 \\begin{bmatrix} 1 \\\\ -1 \\\\ 1 \\end{bmatrix}e^{t} + c_3 \\begin{bmatrix} 1 \\\\ -1 \\\\ 1 \\end{bmatrix}e^{2t} = \\vec{0}$ for all $t$. Plugging in $t = 0$ alone is not enough, since the last two vectors are then equal. The third entry says $c_2 e^{t} + c_3 e^{2t} = 0$ for all $t$; dividing by $e^{t}$, $c_2 + c_3 e^{t} = 0$, which at $t = 0$ and $t = 1$ gives $c_2 + c_3 = 0$ and $c_2 + c_3 e = 0$. Subtracting, $c_3(e - 1) = 0$, so $c_3 = 0$ and $c_2 = 0$. The first entry is then $c_1 e^{t} = 0$, so $c_1 = 0$. Only the zero combination works: the three functions are linearly independent."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "3.3.5",
+   "source_number": "3.3.5",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linearly-independent",
+   "prompt": "<p>Verify that $\\left[ \\begin{smallmatrix} t \\\\ t^2 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} t^3 \\\\ t^4 \\end{smallmatrix} \\right]$ are linearly independent.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Suppose $c_1 \\begin{bmatrix} t \\\\ t^2 \\end{bmatrix} + c_2 \\begin{bmatrix} t^3 \\\\ t^4 \\end{bmatrix} = \\vec{0}$ for all $t$. Plugging in $t = 0$ gives nothing, since both functions vanish there. The first entry says $c_1 t + c_2 t^3 = 0$ for all $t$: at $t = 1$ this is $c_1 + c_2 = 0$, and at $t = 2$ it is $2c_1 + 8c_2 = 0$. Putting $c_1 = -c_2$ into the second, $6c_2 = 0$, so $c_2 = 0$ and $c_1 = 0$. Only the zero combination works, so the two functions are linearly independent."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "3.3.6",
+   "source_number": "3.3.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "first-order-linear-system",
+   "prompt": "<p>Take the system $\\kxoneprime + \\kxtwoprime = \\kxone$, $\\kxoneprime - \\kxtwoprime = \\kxtwo$.</p><ol type=\"a\"><li>Write it in the form $\\kA \\kvecxprime = \\kB \\kvecx$ for matrices $\\kA$ and $\\kB$.</li><li>Compute $\\kA^{-1}$ and use that to write the system in the form $\\kvecxprime = \\kP \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The left-hand sides are $\\begin{bmatrix} \\kxoneprime + \\kxtwoprime \\\\ \\kxoneprime - \\kxtwoprime \\end{bmatrix} = \\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix} \\kvecxprime$ and the right-hand sides are $\\begin{bmatrix} \\kxone \\\\ \\kxtwo \\end{bmatrix} = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} \\kvecx$, so $\\kA = \\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix}$ and $\\kB = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I$. b) $\\det \\kA = (1)(-1) - (1)(1) = -2$, so $\\kA^{-1} = \\frac{1}{-2}\\begin{bmatrix} -1 & -1 \\\\ -1 & 1 \\end{bmatrix} = \\begin{bmatrix} 1/2 & 1/2 \\\\ 1/2 & -1/2 \\end{bmatrix}$. Multiplying $\\kA \\kvecxprime = \\kB \\kvecx$ on the left by $\\kA^{-1}$ gives $\\kvecxprime = \\kA^{-1}\\kB\\kvecx$, so $\\kP = \\kA^{-1}\\kB = \\kA^{-1}$ and $\\kvecxprime = \\begin{bmatrix} 1/2 & 1/2 \\\\ 1/2 & -1/2 \\end{bmatrix} \\kvecx$; that is, $\\kxoneprime = \\frac{\\kxone + \\kxtwo}{2}$ and $\\kxtwoprime = \\frac{\\kxone - \\kxtwo}{2}$, whose sum and difference give back the original two equations."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "3.3.101",
+   "source_number": "3.3.101",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linearly-independent",
+   "prompt": "<p>Are $\\left[ \\begin{smallmatrix} e^{2t} \\\\ e^t \\end{smallmatrix}\\right]$ and $\\left[ \\begin{smallmatrix} e^{t} \\\\ e^{2t} \\end{smallmatrix}\\right]$ linearly independent? Justify.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "Yes",
+     "No"
+    ],
+    "correct": 0,
+    "solution": "Yes."
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "3.3.102",
+   "source_number": "3.3.102",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linearly-independent",
+   "prompt": "<p>Are $\\left[ \\begin{smallmatrix} \\cosh(t) \\\\ 1 \\end{smallmatrix}\\right]$, $\\left[ \\begin{smallmatrix} e^{t} \\\\ 1 \\end{smallmatrix}\\right]$, and $\\left[ \\begin{smallmatrix} e^{-t} \\\\ 1 \\end{smallmatrix}\\right]$ linearly independent? Justify.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "Yes",
+     "No"
+    ],
+    "correct": 1,
+    "solution": "No. $2 \\left[ \\begin{smallmatrix} \\cosh(t) \\\\ 1 \\end{smallmatrix}\\right] - \\left[ \\begin{smallmatrix} e^{t} \\\\ 1 \\end{smallmatrix}\\right] - \\left[ \\begin{smallmatrix} e^{-t} \\\\ 1 \\end{smallmatrix}\\right] = \\vec{0}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "3.3.103",
+   "source_number": "3.3.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "linear-example",
+   "prompt": "<p>Write $x'=3x-y+e^t$, $y'=tx$ in matrix notation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\left[ \\begin{smallmatrix} x \\\\ y \\end{smallmatrix}\\right] ' = \\left[ \\begin{smallmatrix} 3 & -1 \\\\ t & 0 \\end{smallmatrix}\\right] \\left[ \\begin{smallmatrix} x \\\\ y \\end{smallmatrix}\\right] + \\left[ \\begin{smallmatrix} e^{t} \\\\ 0 \\end{smallmatrix}\\right]$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "3.3.104",
+   "source_number": "3.3.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "first-order-linear-system",
+   "prompt": "<ol type=\"a\"><li>Write $\\kxoneprime=2t\\kxtwo$, $\\kxtwoprime=2t\\kxtwo$ in matrix notation.</li><li>Solve and write the solution in matrix notation.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\kvecxprime = \\left[ \\begin{smallmatrix} 0 & 2t \\\\ 0 & 2t \\end{smallmatrix}\\right] \\kvecx$ b) $\\kvecx = \\left[ \\begin{smallmatrix} C_2 e^{t^2} + C_1 \\\\ C_2 e^{t^2} \\end{smallmatrix}\\right]$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "first-order-linear-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "superposition-for-systems"
+  },
+  {
+   "exercise": "e2",
+   "concept": "solution-to-a-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "linear-independence-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e3",
+   "concept": "linear-independence-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e4",
+   "concept": "linear-independence-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e5",
+   "concept": "linear-independence-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e6",
+   "concept": "first-order-linear-system"
+  },
+  {
+   "exercise": "e6",
+   "concept": "matrix-inverse"
+  },
+  {
+   "exercise": "e101",
+   "concept": "linear-independence-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e102",
+   "concept": "linear-independence-of-vector-valued-functions"
+  },
+  {
+   "exercise": "e103",
+   "concept": "first-order-linear-system"
+  },
+  {
+   "exercise": "e104",
+   "concept": "first-order-linear-system"
+  },
+  {
+   "exercise": "e104",
+   "concept": "solution-to-a-system"
+  }
+ ],
+ "footnotes": []
+}

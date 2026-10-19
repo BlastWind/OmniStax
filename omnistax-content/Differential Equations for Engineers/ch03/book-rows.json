@@ -425,7 +425,8 @@
       "terms": ["determinant"],
       "statement": "For square matrices we define a useful quantity called the determinant. The determinant of a 1 × 1 matrix is the value of its only entry, and for a 2 × 2 matrix det([a b; c d]) = ad − bc by definition. A common notation for the determinant is a pair of vertical lines, |a b; c d|, which this book does not use, since vertical lines usually mean a positive quantity while determinants can be negative.",
       "forms": [
-        {"id": "eq-determinant-2x2", "latex": "\\det \\left( \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\right) \\overset{\\text{def}}{=} ad-bc", "ktex": "\\det \\left( \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\right) \\overset{\\text{def}}{=} ad-bc"}
+        {"id": "eq-determinant-2x2", "latex": "\\det \\left( \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\right) \\overset{\\text{def}}{=} ad-bc", "ktex": "\\det \\left( \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\right) \\overset{\\text{def}}{=} ad-bc"},
+        {"id": "eq-det-1x1", "latex": "\\det \\left( \\begin{bmatrix} a \\end{bmatrix} \\right) = a", "section": "A.6"}
       ]
     },
     {
@@ -447,7 +448,8 @@
       "statement": "Define A_ij as the matrix A with the ith row and the jth column deleted. To compute the determinant of a matrix, pick one row, say the ith, and compute det(A) = Σ_{j=1}^{n} (−1)^(i+j) a_ij det(A_ij): we alternately add and subtract the determinants of the submatrices A_ij multiplied by a_ij for a fixed i and all j. For a 3 × 3 matrix, picking the first row, det(A) = a₁₁det(A₁₁) − a₁₂det(A₁₂) + a₁₃det(A₁₃). The numbers (−1)^(i+j) det(A_ij) are called cofactors of the matrix, and this way of computing the determinant is called the cofactor expansion. No matter which row you pick, you always get the same number, and it is also possible to expand along columns.",
       "forms": [
         {"id": "eq-cofactor-expansion", "latex": "\\det (A) = \\sum_{j=1}^n {(-1)}^{i+j} a_{ij} \\det (A_{ij})", "ktex": "\\det (\\kA) = \\sum_{j=1}^n {(-1)}^{i+j} a_{ij} \\det (\\kAij)", "condition": "along the ith row; A_ij is A with the ith row and jth column deleted"},
-        {"id": "eq-cofactor-expansion-first-row", "latex": "\\det (A) = a_{11} \\det (A_{11}) - a_{12} \\det (A_{12}) + a_{13} \\det (A_{13}) - \\cdots", "ktex": "\\det (\\kA) = a_{11} \\det (A_{11}) - a_{12} \\det (A_{12}) + a_{13} \\det (A_{13}) - \\cdots", "condition": "along the first row, ending + a₁ₙ det(A₁ₙ) if n is odd and − a₁ₙ det(A₁ₙ) if n is even"}
+        {"id": "eq-cofactor-expansion-first-row", "latex": "\\det (A) = a_{11} \\det (A_{11}) - a_{12} \\det (A_{12}) + a_{13} \\det (A_{13}) - \\cdots", "ktex": "\\det (\\kA) = a_{11} \\det (A_{11}) - a_{12} \\det (A_{12}) + a_{13} \\det (A_{13}) - \\cdots", "condition": "along the first row, ending + a₁ₙ det(A₁ₙ) if n is odd and − a₁ₙ det(A₁ₙ) if n is even"},
+        {"id": "eq-cofactor-column", "latex": "\\det (A) = \\sum_{i=1}^n {(-1)}^{i+j} a_{ij} \\det (A_{ij})", "section": "A.6"}
       ]
     },
     {

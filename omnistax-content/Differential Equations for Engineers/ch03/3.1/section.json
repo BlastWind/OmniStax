@@ -1,0 +1,914 @@
+{
+ "id": "3.1",
+ "module": "sec:introtosys",
+ "chapter": "3",
+ "title": "Introduction to systems of ODEs",
+ "short": "Systems of ODEs",
+ "lead": "With several unknown functions and several equations relating them we have a <span data-concept=\"system-of-differential-equations\">system of differential equations</span>. This section sets up the words for systems, two physical models (brine pumped between two tanks and two carts joined by a spring), the change of a higher-order equation into a <span data-concept=\"first-order-system\">first-order system</span>, the <span data-concept=\"vector-field-of-a-system\">direction field</span> and trajectories of an autonomous system, and Picard’s theorem for systems.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 3.1.101–3.1.106 carry the book’s own answers, each confirmed by computation, and keep its “left to reader” where it prints one. The book answers no exercise below 101; the inline exercise 3.1.1 and exercises 3.1.2–3.1.7 carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-brine-tanks",
+   "kind": "sim",
+   "number": "3.1",
+   "originals": [
+    "/media/ch03/lin-tank-sys.svg"
+   ],
+   "original_caption": "A closed system of two brine tanks.",
+   "widths": [],
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-carts",
+   "kind": "sim",
+   "originals": [
+    "/media/ch03/cartsfig.svg"
+   ],
+   "widths": [],
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-direction-field",
+   "kind": "sim",
+   "number": "3.2",
+   "folds": [
+    "3.3"
+   ],
+   "originals": [
+    "/media/ch03/sintro-vectorfield.svg",
+    "/media/ch03/sintro-vectorfield-sol.svg"
+   ],
+   "original_caption": "(Figure 3.2) The direction field for x′ = 2y − x, y′ = x. (Figure 3.3) The direction field for x′ = 2y − x, y′ = x with the trajectory of the solution starting at (1, 0) for 0 ≤ t ≤ 2.",
+   "widths": [
+    432,
+    432
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "tank-1",
+   "label": "tank 1",
+   "figures": [
+    "sim-brine-tanks"
+   ]
+  },
+  {
+   "id": "tank-2",
+   "label": "tank 2",
+   "figures": [
+    "sim-brine-tanks"
+   ]
+  },
+  {
+   "id": "cart-1",
+   "label": "the first cart",
+   "figures": [
+    "sim-two-carts"
+   ]
+  },
+  {
+   "id": "cart-2",
+   "label": "the second cart",
+   "figures": [
+    "sim-two-carts"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "systems-intro",
+   "concept": "dependent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "systems-intro",
+   "concept": "system-of-differential-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "several-variables",
+   "concept": "dependent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "several-variables",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "several-variables",
+   "concept": "independent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-second-order-system",
+   "concept": "second-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "system-def",
+   "concept": "second-order-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "system-def",
+   "concept": "first-order-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "system-def",
+   "concept": "system-of-differential-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "system-def",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-first-order-system",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "solution-def",
+   "concept": "solution-to-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "solution-def",
+   "concept": "system-of-differential-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "solution-def",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-solution-to-a-system",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-condition",
+   "concept": "initial-condition-for-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "initial-condition",
+   "concept": "general-solution-to-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "initial-condition",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-condition",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "initial-condition",
+   "concept": "second-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-1",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-1",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-1",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-1",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-1",
+   "concept": "integrating-factor-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-1",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "all-at-once",
+   "concept": "system-of-differential-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "all-at-once",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-systems",
+   "concept": "linear-system-of-odes",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-systems",
+   "concept": "linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "linear-systems",
+   "concept": "second-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-2",
+   "concept": "two-tank-brine-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-3-1-2",
+   "concept": "mixing-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-2",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-2",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-2",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-brine-tanks",
+   "concept": "two-tank-brine-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-brine-tanks",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-tank-one-rate",
+   "concept": "two-tank-brine-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-two-tank-system",
+   "concept": "two-tank-brine-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-two-tank-system",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "tanks-equal",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "tanks-equal",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "tanks-limit",
+   "concept": "two-tank-brine-system",
+   "verb": "uses"
+  },
+  {
+   "span": "tanks-limit",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-3",
+   "concept": "two-cart-spring-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-3-1-3",
+   "concept": "mass-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-3",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-3",
+   "concept": "second-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-two-carts",
+   "concept": "two-cart-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-two-carts",
+   "concept": "second-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-two-cart-system",
+   "concept": "two-cart-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "first-order-intro",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "first-order-intro",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "first-order-intro",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-nth-order-equation",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-first-order-from-nth-order",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-first-order-from-nth-order",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-4",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "higher-order-systems",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "higher-order-systems",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-5",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-5",
+   "concept": "two-cart-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-6",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-6",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-1-6",
+   "concept": "second-order-equation-with-constant-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "numerical",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "numerical",
+   "concept": "eulers-method",
+   "verb": "uses"
+  },
+  {
+   "span": "numerical",
+   "concept": "runge-kutta-method",
+   "verb": "uses"
+  },
+  {
+   "span": "autonomous-def",
+   "concept": "autonomous-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "autonomous-def",
+   "concept": "independent-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "autonomous-def",
+   "concept": "system-of-differential-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "direction-field",
+   "concept": "vector-field-of-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "direction-field",
+   "concept": "autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "direction-field",
+   "concept": "direction-field",
+   "verb": "uses"
+  },
+  {
+   "span": "direction-field",
+   "concept": "autonomous-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-portrait",
+   "concept": "phase-portrait",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-portrait",
+   "concept": "trajectory",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-portrait",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-portrait",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-direction-field",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-direction-field",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-direction-field",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-direction-field",
+   "concept": "autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "non-autonomous",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "non-autonomous",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "non-autonomous",
+   "concept": "autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "non-autonomous",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "picard-intro",
+   "concept": "picards-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "picard-intro",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-1",
+   "concept": "first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-1-1",
+   "concept": "picards-theorem-for-systems",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-3-1-1",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-1-1",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "picard-meaning",
+   "concept": "picards-theorem-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "picard-higher-order",
+   "concept": "picards-theorem-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "picard-higher-order",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "3.1.1",
+   "source_number": "3.1.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "ex-3-1-6"
+   },
+   "cite": "ex-3-1-6",
+   "prompt": "<p>Plug in and check that this really is the solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate $\\kx = \\frac{2e^{-2t} + e^t}{3}$ and $\\ky = \\frac{-e^{-2t} + e^t}{3}$: $\\kxprime = \\frac{-4e^{-2t} + e^t}{3}$ and $\\kyprime = \\frac{2e^{-2t} + e^t}{3}$. Then $2\\ky - \\kx = \\frac{-2e^{-2t} + 2e^t - 2e^{-2t} - e^t}{3} = \\frac{-4e^{-2t} + e^t}{3} = \\kxprime$, and $\\kyprime = \\frac{2e^{-2t} + e^t}{3} = \\kx$, so both equations hold. At $t = 0$, $\\kx(0) = \\frac{2 + 1}{3} = 1$ and $\\ky(0) = \\frac{-1 + 1}{3} = 0$, so the initial conditions hold too: it really is the solution."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "3.1.2",
+   "source_number": "3.1.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-3-1-1",
+   "prompt": "<p>Find the general solution of $\\kxoneprime = \\kxtwo - \\kxone + t$, $\\kxtwoprime = \\kxtwo$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Solve the second equation first, as in Example 3.1.1: $\\kxtwoprime = \\kxtwo$ gives $\\kxtwo = C_2e^t$. The first equation becomes $\\kxoneprime + \\kxone = C_2e^t + t$, a linear first-order equation. With the integrating factor $e^t$, $(e^t\\kxone)' = C_2e^{2t} + te^t$, so $e^t\\kxone = \\frac{C_2}{2}e^{2t} + (t - 1)e^t + C_1$. The general solution is $\\kxone = C_1e^{-t} + \\frac{C_2}{2}e^{t} + t - 1$, $\\kxtwo = C_2e^{t}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "3.1.3",
+   "source_number": "3.1.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-3-1-6",
+   "prompt": "<p>Find the general solution of $\\kxoneprime = 3 \\kxone - \\kxtwo + e^t$, $\\kxtwoprime = \\kxone$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Work as in Example 3.1.6. Differentiating the second equation, $\\kxtwodprime = \\kxoneprime = 3\\kxone - \\kxtwo + e^t = 3\\kxtwoprime - \\kxtwo + e^t$, so $\\kxtwodprime - 3\\kxtwoprime + \\kxtwo = e^t$. The characteristic equation $r^2 - 3r + 1 = 0$ has the roots $r = \\frac{3 \\pm \\sqrt{5}}{2}$, and a particular solution $Ae^t$ needs $A - 3A + A = 1$, so $A = -1$. Hence $\\kxtwo = C_1e^{\\frac{3+\\sqrt{5}}{2}t} + C_2e^{\\frac{3-\\sqrt{5}}{2}t} - e^t$, and from $\\kxone = \\kxtwoprime$, $\\kxone = \\frac{3+\\sqrt{5}}{2}C_1e^{\\frac{3+\\sqrt{5}}{2}t} + \\frac{3-\\sqrt{5}}{2}C_2e^{\\frac{3-\\sqrt{5}}{2}t} - e^t$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "3.1.4",
+   "source_number": "3.1.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "new-variables",
+   "prompt": "<p>Write $a\\kydprime + b\\kyprime + c\\ky = f(x)$ as a first-order system of ODEs.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The equation is second order (take $a \\neq 0$), so two new variables are needed: $\\kuone = \\ky$ and $\\kutwo = \\kyprime$. Then $\\kuoneprime = \\kutwo$, and solving the equation for $\\kydprime = \\kutwoprime$ gives the system $\\kuoneprime = \\kutwo$, $\\kutwoprime = \\frac{1}{a}\\bigl(f(x) - b\\kutwo - c\\kuone\\bigr)$. Its second equation is the original one, $a\\kydprime + b\\kyprime + c\\ky = f(x)$, written in the $u$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "3.1.5",
+   "source_number": "3.1.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order-systems",
+   "prompt": "<p>Write $\\kxdprime + \\ky^2 \\kyprime - \\kx^3 = \\sin(t)$, $\\kydprime + {(\\kxprime+\\kyprime)}^2 -\\kx = 0$ as a first-order system of ODEs.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Two second-order equations in two unknowns give four first-order equations: let $\\kuone = \\kx$, $\\kutwo = \\kxprime$, $\\kuthree = \\ky$, $\\kufour = \\kyprime$. Solving each equation for its second derivative, $\\kxdprime = \\kx^3 - \\ky^2\\kyprime + \\sin(t)$ and $\\kydprime = \\kx - (\\kxprime + \\kyprime)^2$, so the system is $\\kuoneprime = \\kutwo$, $\\kutwoprime = \\kuone^3 - \\kuthree^2\\kufour + \\sin(t)$, $\\kuthreeprime = \\kufour$, $\\kufourprime = \\kuone - (\\kutwo + \\kufour)^2$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "3.1.6",
+   "source_number": "3.1.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "carts-setup",
+   "prompt": "<p>Suppose two masses on carts on frictionless surface are at displacements $\\kxone$ and $\\kxtwo$ as in Example 3.1.3. Suppose that a rocket applies force $F$ in the positive direction on cart $\\kxone$. Set up the system of equations.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The rocket pushes only the first cart, so its force adds to the spring’s force $k(\\kxtwo - \\kxone)$ on that cart, and the second cart still feels only the spring. By Newton’s second law, $m_1\\kxonedprime = k(\\kxtwo - \\kxone) + F$, $m_2\\kxtwodprime = -k(\\kxtwo - \\kxone)$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "3.1.7",
+   "source_number": "3.1.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tank-rates",
+   "prompt": "<p>Suppose the tanks are as in Example 3.1.2, starting both at volume $V$, but now the rate of flow from tank 1 to tank 2 is $r_1$, and rate of flow from tank 2 to tank one is $r_2$. Notice that the volumes are now not constant. Set up the system of equations.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Tank 1 gains $r_2$ and loses $r_1$ liters per second, so its volume is $V + (r_2 - r_1)t$, and tank 2’s is $V + (r_1 - r_2)t$. As in Example 3.1.2, salt enters a tank at the density of the other tank times the rate of the pipe it comes through, and leaves at its own density times the rate out: $\\kxoneprime = \\frac{r_2}{V + (r_1 - r_2)t}\\,\\kxtwo - \\frac{r_1}{V + (r_2 - r_1)t}\\,\\kxone$, $\\kxtwoprime = \\frac{r_1}{V + (r_2 - r_1)t}\\,\\kxone - \\frac{r_2}{V + (r_1 - r_2)t}\\,\\kxtwo$. The equations hold while both volumes stay positive, and $\\kxoneprime + \\kxtwoprime = 0$: the closed system keeps its salt."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "3.1.101",
+   "source_number": "3.1.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-3-1-1",
+   "prompt": "<p>Find the general solution to $\\kyoneprime = 3 \\kyone$, $\\kytwoprime = \\kyone + \\kytwo$, $y_3' = \\kyone + y_3$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyone = C_1 e^{3x}$, $\\kytwo = C_2 e^x+ \\frac{C_1}{2} e^{3 x}$, $y_3 = C_3 e^x+ \\frac{C_1}{2} e^{3 x}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "3.1.102",
+   "source_number": "3.1.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-3-1-6",
+   "prompt": "<p>Solve $\\kyprime=2\\kx$, $\\kxprime=\\kx+\\ky$, $\\kx(0)=1$, $\\ky(0)=3$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx=\\frac{5}{3} e^{2t} - \\frac{2}{3} e^{-t}$, $\\ky=\\frac{5}{3} e^{2t} + \\frac{4}{3} e^{-t}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "3.1.103",
+   "source_number": "3.1.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-3-1-4",
+   "prompt": "<p>Write $\\kxtprime = \\kx+t$ as a first-order system.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kuoneprime = \\kutwo$, $\\kutwoprime = \\kuthree$, $\\kuthreeprime = \\kuone+t$, (here $\\kuone=\\kx$)"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "3.1.104",
+   "source_number": "3.1.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order-systems",
+   "prompt": "<p>Write $\\kyonedprime + \\kyone + \\kytwo = t$, $\\kytwodprime + \\kyone - \\kytwo = t^2$ as a first-order system.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kyoneprime = y_3$, $\\kytwoprime = y_4$, $y_3' = - \\kyone - \\kytwo + t$, $y_4' = - \\kyone + \\kytwo + t^2$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "3.1.105",
+   "source_number": "3.1.105",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "carts-setup",
+   "prompt": "<p>Suppose two masses on carts on frictionless surface are at displacements $\\kxone$ and $\\kxtwo$ as in Example 3.1.3. Suppose initial displacement is $\\kxone(0)=\\kxtwo(0)=0$, and initial velocity is $\\kxoneprime(0) = \\kxtwoprime(0) = a$ for some number $a$. Use your intuition to solve the system, explain your reasoning.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kxone = \\kxtwo = at$. Explanation of the intuition is left to reader."
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "3.1.106",
+   "source_number": "3.1.106",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tank-rates",
+   "prompt": "<p>Suppose the tanks are as in Example 3.1.2 except that clean water flows in at a rate of $s$ liters per second into tank 1, and brine flows out of tank 2 and into the sewer also at a rate of $s$ liters per second. The rate of flow from tank 1 into tank 2 is still $r$, but the rate of flow from tank 2 back into tank 1 is $r-s$ (assume $r &gt; s$).</p><ol type=\"a\"><li>Draw the picture.</li><li>Set up the system of equations.</li><li>Intuitively, what happens as $t$ goes to infinity, explain.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) Left to reader. b) $\\kxoneprime = \\frac{r-s}{V} \\kxtwo- \\frac{r}{V}\\kxone$, $\\kxtwoprime = \\frac{r}{V} (\\kxone- \\kxtwo)$. c) As $t$ goes to infinity, both $\\kxone$ and $\\kxtwo$ go to zero, explanation is left to reader."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "solution-to-a-system"
+  },
+  {
+   "exercise": "e1",
+   "concept": "initial-condition-for-a-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "general-solution-to-a-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "linear-system-of-odes"
+  },
+  {
+   "exercise": "e3",
+   "concept": "general-solution-to-a-system"
+  },
+  {
+   "exercise": "e3",
+   "concept": "converting-to-a-first-order-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "converting-to-a-first-order-system"
+  },
+  {
+   "exercise": "e5",
+   "concept": "converting-to-a-first-order-system"
+  },
+  {
+   "exercise": "e6",
+   "concept": "two-cart-spring-system"
+  },
+  {
+   "exercise": "e7",
+   "concept": "two-tank-brine-system"
+  },
+  {
+   "exercise": "e101",
+   "concept": "general-solution-to-a-system"
+  },
+  {
+   "exercise": "e102",
+   "concept": "initial-condition-for-a-system"
+  },
+  {
+   "exercise": "e102",
+   "concept": "converting-to-a-first-order-system"
+  },
+  {
+   "exercise": "e103",
+   "concept": "converting-to-a-first-order-system"
+  },
+  {
+   "exercise": "e104",
+   "concept": "converting-to-a-first-order-system"
+  },
+  {
+   "exercise": "e105",
+   "concept": "two-cart-spring-system"
+  },
+  {
+   "exercise": "e106",
+   "concept": "two-tank-brine-system"
+  }
+ ],
+ "footnotes": []
+}

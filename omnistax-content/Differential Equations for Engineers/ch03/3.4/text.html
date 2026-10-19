@@ -1,0 +1,132 @@
+<section id="eigen-intro">
+<h2>Trying an exponential solution</h2>
+<p id="intro">In this section, we will learn how to solve <span data-concept="constant-coefficient-system">linear homogeneous constant-coefficient systems of ODEs</span> by the <span data-concept="eigenvalue-method">eigenvalue method</span>. Suppose we have such a system</p>
+$$ \kvecxprime = \kP\kvecx , $$
+<p id="trial">where $\kP$ is a constant <span data-concept="square-matrix">square matrix</span>. We wish to adapt the <span data-concept="solving-with-the-characteristic-equation">method for the single constant-coefficient equation</span> by trying the function $e^{\klambda t}$ for an unknown constant $\klambda$. However, $\kvecx$ is a <span data-concept="vector">vector</span>. So we try $\kvecx = \kvecv e^{\klambda t}$, where $\kvecv$ is an unknown constant <span data-concept="vector">vector</span>. We plug this $\kvecx$ into the equation to get</p>
+$$ \underbrace{\klambda \kvecv e^{\klambda t}}_{\kvecxprime} = \underbrace{\kP\kvecv e^{\klambda t}}_{\kP\kvecx} . $$
+<p id="divide">We divide by $e^{\klambda t}$ and notice that we are looking for a <span data-concept="scalar">scalar</span> $\klambda$ and a <span data-concept="vector">vector</span> $\kvecv$ that satisfy the equation</p>
+<div class="equation" id="eq-eigenvalue-trial-plugged">$$ \klambda \kvecv = \kP\kvecv . $$</div>
+<p>To solve this equation, we need a little bit more linear algebra, which we now review.</p>
+</section>
+
+<section id="eigen-matrix">
+<h2>Eigenvalues and eigenvectors of a matrix</h2>
+<p id="eigen-def">Let $\kA$ be a constant <span data-concept="square-matrix">square matrix</span>. Suppose $\klambda$ is a <span data-concept="scalar">scalar</span> and $\kvecv$ is a nonzero <span data-concept="vector">vector</span> such that</p>
+<div class="equation" id="eq-eigenvalue-equation">$$ \kA \kvecv = \klambda \kvecv. $$</div>
+<p id="eigenvalue">We call such a $\klambda$ an <em><span data-concept="eigenvalue">eigenvalue</span></em> of $\kA$, and we call $\kvecv$ a corresponding <em><span data-concept="eigenvector">eigenvector</span></em>.</p>
+<div class="example" id="ex-3-4-1">
+<h3>Example 3.4.1</h3>
+<p>The <span data-concept="matrix">matrix</span> $\left[ \begin{smallmatrix} 2 &amp; 1 \\ 0 &amp; 1 \end{smallmatrix} \right]$ has an <span data-concept="eigenvalue">eigenvalue</span> $\klambda = 2$ with a corresponding <span data-concept="eigenvector">eigenvector</span> $\left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right]$, because</p>
+$$ \begin{bmatrix} 2 &amp; 1 \\ 0 &amp; 1 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 2 \\ 0 \end{bmatrix} = 2 \begin{bmatrix} 1 \\ 0 \end{bmatrix} . $$
+</div>
+<figure class="sim" id="sim-eigenvectors">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A unit vector $\kvecv$ and its image $\kA\kvecv$, both from the origin. For almost every direction $\kA\kvecv$ points off the line of $\kvecv$; only along an <span data-concept="eigenvector">eigenvector</span> does it fall on that line, as $\kA\kvecv = \klambda\kvecv$, and the graph beside marks those directions where the angle between the line and $\kA\kvecv$ is zero. For the complex example no direction does it. Turn $\kvecv$ with $\theta$ and pick the matrix.</span></div>
+</figure>
+<p id="char-eq">Let us compute <span data-concept="eigenvalue">eigenvalues</span> for any <span data-concept="matrix">matrix</span>. Rewrite the equation for an <span data-concept="eigenvalue">eigenvalue</span> as $\kA\kvecv-\klambda \kvecv=\vec{0}$ and thus as</p>
+<div class="equation" id="eq-eigenvector-system">$$ (\kA - \klambda \kI)\kvecv = \vec{0} . $$</div>
+<p id="not-invertible">This equation has a nonzero solution $\kvecv$ if and only if $\kA - \klambda \kI$ is not <span data-concept="invertible-matrix">invertible</span>. Were $\kA - \klambda \kI$ <span data-concept="invertible-matrix">invertible</span>, we could write ${(\kA - \klambda \kI)}^{-1}(\kA - \klambda \kI)\kvecv = {(\kA-\klambda \kI)}^{-1}\vec{0}$, which implies $\kvecv = \vec{0}$. Therefore, $\kA$ has the <span data-concept="eigenvalue">eigenvalue</span> $\klambda$ if and only if $\klambda$ solves the equation</p>
+<div class="equation" id="eq-characteristic-equation-of-a-matrix">$$ \det (\kA-\klambda \kI) = 0 . $$</div>
+<p>Consequently, we can find an <span data-concept="eigenvalue">eigenvalue</span> of $\kA$ without finding a corresponding <span data-concept="eigenvector">eigenvector</span> at the same time. An <span data-concept="eigenvector">eigenvector</span> will have to be found later, once $\klambda$ is known.</p>
+<div class="example" id="ex-3-4-2">
+<h3>Example 3.4.2</h3>
+<p>Find all <span data-concept="eigenvalue">eigenvalues</span> of $\left[ \begin{smallmatrix} 2 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2 \end{smallmatrix} \right]$.</p>
+<p>We write</p>
+$$ \begin{gather*} \det \left( \begin{bmatrix} 2 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2 \end{bmatrix} - \klambda \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix} \right) = \det \left( \begin{bmatrix} 2-\klambda &amp; 1 &amp; 1 \\ 1 &amp; 2-\klambda &amp; 0 \\ 0 &amp; 0 &amp; 2-\klambda \end{bmatrix} \right) = \\ = (2-\klambda) \bigl({(2-\klambda)}^2 - 1\bigr) = -(\klambda -1)(\klambda -2)(\klambda-3) . \end{gather*} $$
+<p>Setting this to zero, we find that the <span data-concept="eigenvalue">eigenvalues</span> are $\klambda = 1$, $\klambda = 2$, and $\klambda = 3$.</p>
+</div>
+<p id="degree-n">For an $n \times n$ <span data-concept="matrix">matrix</span>, the polynomial we get by computing $\det(\kA - \klambda \kI)$ is of degree $n$, and hence in general, we have $n$ <span data-concept="eigenvalue">eigenvalues</span>. Some may be repeated, some may be complex.</p>
+<p id="find-eigenvector">To find an <span data-concept="eigenvector">eigenvector</span> corresponding to an <span data-concept="eigenvalue">eigenvalue</span> $\klambda$, we write</p>
+$$ (\kA-\klambda \kI) \kvecv = \vec{0} , $$
+<p>and solve for a nontrivial (nonzero) <span data-concept="vector">vector</span> $\kvecv$. If $\klambda$ is an <span data-concept="eigenvalue">eigenvalue</span>, there will be at least one <span data-concept="free-variable">free variable</span>, and so for each distinct <span data-concept="eigenvalue">eigenvalue</span> $\klambda$, we can always find an <span data-concept="eigenvector">eigenvector</span>.</p>
+<div class="example" id="ex-3-4-3">
+<h3>Example 3.4.3</h3>
+<p>Find an <span data-concept="eigenvector">eigenvector</span> of $\left[ \begin{smallmatrix} 2 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2 \end{smallmatrix} \right]$ corresponding to the <span data-concept="eigenvalue">eigenvalue</span> $\klambda = 3$.</p>
+<p>We write</p>
+$$ (\kA-\klambda \kI) \kvecv = \left( \begin{bmatrix} 2 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2 \end{bmatrix} - 3 \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix} \right) \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \begin{bmatrix} -1 &amp; 1 &amp; 1 \\ 1 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; -1 \end{bmatrix} \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = \vec{0} . $$
+<p>To solve this system of linear equations, we write down the <span data-concept="augmented-matrix">augmented matrix</span></p>
+$$ \left[ \begin{array}{ccc|c} -1 &amp; 1 &amp; 1 &amp; 0 \\ 1 &amp; -1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -1 &amp; 0 \end{array} \right] , $$
+<p>and we perform <span data-concept="elementary-row-operations">row operations</span> (exercise: which ones?) until we get:</p>
+$$ \left[ \begin{array}{ccc|c} 1 &amp; -1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{array} \right] . $$
+<p>The entries of $\kvecv$ have to satisfy the equations $v_1 - v_2 = 0$, $v_3 = 0$, and $v_2$ is a <span data-concept="free-variable">free variable</span>. We pick $v_2$ to be arbitrary (but nonzero), we let $v_1 = v_2$, and of course $v_3 = 0$. For example, if we pick $v_2 = 1$, then $\kvecv = \left[ \begin{smallmatrix} 1 \\ 1 \\ 0 \end{smallmatrix} \right]$. Let us verify that $\kvecv$ really is an <span data-concept="eigenvector">eigenvector</span> corresponding to $\klambda = 3$:</p>
+$$ \begin{bmatrix} 2 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2 \\ \end{bmatrix} \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 3 \\ 3 \\ 0 \end{bmatrix} = 3 \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} . $$
+<p>Yay! It worked.</p>
+</div>
+<div class="exercises" data-place="ex-3-4-3"></div>
+</section>
+
+<section id="distinct-real">
+<h2>The eigenvalue method with distinct real eigenvalues</h2>
+<p id="method">OK, back to <span data-concept="constant-coefficient-system">homogeneous constant-coefficient systems of ODEs</span>. We have the system</p>
+$$ \kvecxprime = \kP\kvecx . $$
+<p id="method-solutions">We find the <span data-concept="eigenvalue">eigenvalues</span> $\klambdaone$, $\klambdatwo$, …, $\klambdan$ of the <span data-concept="matrix">matrix</span> $\kP$, and corresponding <span data-concept="eigenvector">eigenvectors</span> $\kvecvone$, $\kvecvtwo$, …, $\kvecvn$. The functions $\kvecvone e^{\klambdaone t}$, $\kvecvtwo e^{\klambdatwo t}$, …, $\kvecvn e^{\klambdan t}$ are <span data-concept="solution-to-a-system">solutions</span> of the system of equations and hence $\kvecx = c_1 \kvecvone e^{\klambdaone t} + c_2 \kvecvtwo e^{\klambdatwo t} + \cdots + c_n \kvecvn e^{\klambdan t}$ is a <span data-concept="solution-to-a-system">solution</span>.</p>
+<div class="note" id="thm-3-4-1">
+<div class="eyebrow">Theorem 3.4.1</div>
+<p>Take $\kvecxprime = \kP\kvecx$. If $\kP$ is an $n \times n$ constant <span data-concept="matrix">matrix</span> that has $n$ distinct real <span data-concept="eigenvalue">eigenvalues</span> $\klambdaone$, $\klambdatwo$, …, $\klambdan$, then there exist $n$ <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span> corresponding <span data-concept="eigenvector">eigenvectors</span> $\kvecvone$, $\kvecvtwo$, …, $\kvecvn$, and the <span data-concept="general-solution-to-a-system">general solution</span> to $\kvecxprime = \kP\kvecx$ can be written as</p>
+<div class="equation" id="eq-eigenvalue-method-solution">$$ \boxed{~~ \kvecx = c_1 \kvecvone e^{\klambdaone t} + c_2 \kvecvtwo e^{\klambdatwo t} + \cdots + c_n \kvecvn e^{\klambdan t} . ~~} $$</div>
+</div>
+<p id="fundamental">The corresponding <span data-concept="fundamental-matrix">fundamental matrix solution</span> is</p>
+<div class="equation" id="eq-eigenvalue-fundamental-matrix">$$ \kX(t) = \bigl[\, \kvecvone e^{\klambdaone t} \quad \kvecvtwo e^{\klambdatwo t} \quad \cdots \quad \kvecvn e^{\klambdan t} \,\bigr]. $$</div>
+<p>That is, $\kX(t)$ is the <span data-concept="matrix">matrix</span> whose $j^{\text{th}}$ column is $\kvecv_j e^{\klambda_j t}$.</p>
+<figure class="sim" id="sim-eigenvector-flow">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The <span data-concept="eigenvector">eigenvectors</span> $\kvecvone$ and $\kvecvtwo$ of Example 3.4.1’s <span data-concept="matrix">matrix</span> span two lines through the origin, and on each line the <span data-concept="solution-to-a-system">solution</span> $c_k\kvecv_k e^{\klambda_k t}$ slides out when its <span data-concept="eigenvalue">eigenvalue</span> is positive and in when it is negative. A <span data-concept="solution-to-a-system">solution</span> from any other <span data-concept="initial-condition-for-a-system">initial point</span> is the sum of one slider on each line, so its <span data-concept="trajectory">trajectory</span> bends toward the line whose <span data-concept="eigenvalue">eigenvalue</span> is larger; one that starts on a line never leaves it. Drag the initial point and set $\klambdaone$ and $\klambdatwo$.</span></div>
+</figure>
+<div class="example" id="ex-3-4-4">
+<h3>Example 3.4.4</h3>
+<p>Consider the system</p>
+$$ \kvecxprime = \begin{bmatrix} 2 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2 \end{bmatrix} \kvecx . $$
+<p>Find the <span data-concept="general-solution-to-a-system">general solution</span>.</p>
+<p>Earlier, we found the <span data-concept="eigenvalue">eigenvalues</span> are $1,2,3$. We found the <span data-concept="eigenvector">eigenvector</span> $\left[ \begin{smallmatrix} 1 \\ 1 \\ 0 \end{smallmatrix} \right]$ for the <span data-concept="eigenvalue">eigenvalue</span> 3. Similarly we find the <span data-concept="eigenvector">eigenvector</span> $\left[ \begin{smallmatrix} 1 \\ -1 \\ 0 \end{smallmatrix} \right]$ for the <span data-concept="eigenvalue">eigenvalue</span> 1 and $\left[ \begin{smallmatrix} 0 \\ 1 \\ -1 \end{smallmatrix} \right]$ for the <span data-concept="eigenvalue">eigenvalue</span> 2 (exercise: check). The <span data-concept="general-solution-to-a-system">general solution</span> is</p>
+$$ \kvecx = c_1 \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix} e^t + c_2 \begin{bmatrix} 0 \\ 1 \\ -1 \end{bmatrix} e^{2t} + c_3 \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} e^{3t} = \begin{bmatrix} c_1 e^t+c_3 e^{3t} \\ -c_1 e^t + c_2 e^{2t} + c_3 e^{3t} \\ - c_2 e^{2t} \end{bmatrix} . $$
+<p>In terms of a <span data-concept="fundamental-matrix">fundamental matrix solution</span>,</p>
+$$ \kvecx = \kX(t)\, \vec{c} = \begin{bmatrix} e^t &amp; 0 &amp; e^{3t} \\ -e^t &amp; e^{2t} &amp; e^{3t} \\ 0 &amp; -e^{2t} &amp; 0 \end{bmatrix} \begin{bmatrix} c_1 \\ c_2 \\ c_3 \end{bmatrix} . $$
+</div>
+<div class="exercises" data-place="ex-3-4-4"></div>
+<p id="char-note">Note: If we write a <span data-concept="solving-higher-order-constant-coefficient-equations">single homogeneous linear constant-coefficient $n^{\text{th}}$-order equation</span> as a <span data-concept="converting-to-a-first-order-system">first-order system</span> (as we did in <a href="/diffyqs/ch03/3.1/">§3.1</a>), then the <span data-concept="characteristic-equation-of-a-matrix">eigenvalue equation</span></p>
+$$ \det(\kP - \klambda \kI) = 0 $$
+<p>is essentially the same as the <span data-concept="characteristic-equation">characteristic equation</span> we got in <a href="/diffyqs/ch02/2.2/#2.2-characteristic-equation">§2.2</a> and <a href="/diffyqs/ch02/2.3/#2.3-constant-coefficient">§2.3</a>.</p>
+</section>
+
+<section id="complex-eigen">
+<h2>Complex eigenvalues</h2>
+<p id="complex-example">A <span data-concept="matrix">matrix</span> may very well have complex <span data-concept="eigenvalue">eigenvalues</span> even if all the <span data-concept="matrix-entry">entries</span> are real. Take, for example,</p>
+$$ \kvecxprime = \begin{bmatrix} 1 &amp; 1 \\ -1 &amp; 1 \end{bmatrix} \kvecx . $$
+<p>Let us compute the <span data-concept="eigenvalue">eigenvalues</span> of the <span data-concept="matrix">matrix</span> $\kP = \left[ \begin{smallmatrix} 1 &amp; 1 \\ -1 &amp; 1 \end{smallmatrix} \right]$.</p>
+$$ \det(\kP - \klambda \kI) = \det\left( \begin{bmatrix} 1-\klambda &amp; 1 \\ -1 &amp; 1-\klambda \end{bmatrix} \right) = {(1-\klambda)}^2 + 1 = \klambda^2 - 2 \klambda + 2 = 0 . $$
+<p>Thus $\klambda = 1 \pm i$. Corresponding <span data-concept="eigenvector">eigenvectors</span> are also complex. Start with $\klambda = 1-i$.</p>
+$$ \begin{align*} \bigl(\kP-(1-i) \kI\bigr) \kvecv &amp; = \vec{0} , \\ \begin{bmatrix} i &amp; 1 \\ -1 &amp; i \end{bmatrix} \kvecv = \vec{0}. \end{align*} $$
+<p id="complex-eigenvectors">The equations $i v_1 + v_2 = 0$ and $-v_1 + iv_2 = 0$ are multiples of each other. So we only need to consider one of them. After picking $v_2 = 1$, for example, we have an <span data-concept="eigenvector">eigenvector</span> $\kvecv = \left[ \begin{smallmatrix} i \\ 1 \end{smallmatrix} \right]$. In similar fashion, we find that $\left[ \begin{smallmatrix} -i \\ 1 \end{smallmatrix} \right]$ is an <span data-concept="eigenvector">eigenvector</span> corresponding to the <span data-concept="eigenvalue">eigenvalue</span> $1+i$.</p>
+<p id="complex-solution">We could write the <span data-concept="solution-to-a-system">solution</span> as</p>
+$$ \kvecx = c_1 \begin{bmatrix} i \\ 1 \end{bmatrix} e^{(1-i)t} + c_2 \begin{bmatrix} -i \\ 1 \end{bmatrix} e^{(1+i)t} = \begin{bmatrix} c_1 i e^{(1-i)t} - c_2 i e^{(1+i)t} \\ c_1 e^{(1-i)t} + c_2 e^{(1+i)t} \end{bmatrix} . $$
+<p>We would then need to look for <span data-concept="complex-number">complex</span> values $c_1$ and $c_2$ to solve any <span data-concept="initial-condition-for-a-system">initial conditions</span>. It is perhaps not completely clear that we get a real <span data-concept="solution-to-a-system">solution</span>. After solving for $c_1$ and $c_2$, we could use <a href="/diffyqs/ch02/2.2/#2.2-thm-2-2-2"><span data-concept="eulers-formula">Euler’s formula</span></a> and do the whole song and dance we did before, but we will not. We will apply the formula in a smarter way first to find independent real <span data-concept="solution-to-a-system">solutions</span>.</p>
+<p id="pairs">We claim that we did not have to look for a second <span data-concept="eigenvector">eigenvector</span> (nor for the second <span data-concept="eigenvalue">eigenvalue</span>). All complex <span data-concept="eigenvalue">eigenvalues</span> come in pairs (because the <span data-concept="matrix">matrix</span> $\kP$ is real).</p>
+<p id="complex-conjugate">First a small detour. The <span data-concept="real-and-imaginary-parts">real part</span> of a <span data-concept="complex-number">complex number</span> $z$ can be computed as $\frac{z + \bar{z}}{2}$, where the bar above $z$ means $\overline{a+ib} = a -ib$. The bar of $z$ is called the <em><span data-concept="complex-conjugate">complex conjugate</span></em> of $z$. If $a$ is a real number, then $\bar{a} = a$. Similarly we bar whole <span data-concept="vector">vectors</span> or <span data-concept="matrix">matrices</span> by taking the <span data-concept="complex-conjugate">complex conjugate</span> of every <span data-concept="matrix-entry">entry</span>. Suppose a <span data-concept="matrix">matrix</span> $\kP$ is real. Then $\overline{\kP} = \kP$, and so $\overline{\kP\kvecx} = \overline{\kP} \, \overline{\kvecx} = \kP \overline{\kvecx}$. Also the <span data-concept="complex-conjugate">complex conjugate</span> of 0 is still 0, therefore,</p>
+<div class="equation" id="eq-conjugate-eigenvector">$$ \vec{0} = \overline{\vec{0}} = \overline{(\kP-\klambda \kI)\kvecv} = (\kP-\klambdabar \kI)\kvecvbar . $$</div>
+<p id="conjugate-pair">In other words, if $\klambda = a+ib$ is an <span data-concept="eigenvalue">eigenvalue</span>, then so is $\klambdabar = a-ib$. And if $\kvecv$ is an <span data-concept="eigenvector">eigenvector</span> corresponding to the <span data-concept="eigenvalue">eigenvalue</span> $\klambda$, then $\kvecvbar$ is an <span data-concept="eigenvector">eigenvector</span> corresponding to the <span data-concept="eigenvalue">eigenvalue</span> $\klambdabar$.</p>
+<p id="complex-solutions">Suppose $a + ib$ is a complex <span data-concept="eigenvalue">eigenvalue</span> of $\kP$, and $\kvecv$ is a corresponding <span data-concept="eigenvector">eigenvector</span>. Then</p>
+$$ \kvecxone = \kvecv e^{(a+ib)t} $$
+<p>is a <span data-concept="solution-to-a-system">solution</span> (complex-valued) of $\kvecxprime = \kP \kvecx$. <a href="/diffyqs/ch02/2.2/#2.2-thm-2-2-2"><span data-concept="eulers-formula">Euler’s formula</span></a> shows that $\overline{e^{a+ib}} = e^{a-ib}$, and so</p>
+$$ \kvecxtwo = \overline{\kvecxone} = \kvecvbar e^{(a-ib)t} $$
+<p>is also a <span data-concept="solution-to-a-system">solution</span>. As $\kvecxone$ and $\kvecxtwo$ are <span data-concept="solution-to-a-system">solutions</span>, the function</p>
+<div class="equation" id="eq-real-solutions-from-complex-pair">$$ \kvecxthree = \operatorname{Re} \kvecxone = \operatorname{Re} \kvecv e^{(a+ib)t} = \frac{\kvecxone + \overline{\kvecxone}}{2} = \frac{\kvecxone + \kvecxtwo}{2} = \frac{1}{2} \kvecxone + \frac{1}{2}\kvecxtwo $$</div>
+<p>is also a <span data-concept="solution-to-a-system">solution</span>. And $\kvecxthree$ is real-valued! Similarly as $\operatorname{Im} z = \frac{z-\bar{z}}{2i}$ is the <span data-concept="real-and-imaginary-parts">imaginary part</span>, we find that</p>
+$$ \kvecxfour = \operatorname{Im} \kvecxone = \frac{\kvecxone - \overline{\kvecxone}}{2i} = \frac{\kvecxone - \kvecxtwo}{2i} . $$
+<p id="independent">is also a real-valued <span data-concept="solution-to-a-system">solution</span>. It turns out that $\kvecxthree$ and $\kvecxfour$ are <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span>. We will use <a href="/diffyqs/ch02/2.2/#2.2-thm-2-2-2"><span data-concept="eulers-formula">Euler’s formula</span></a> to separate out the real and imaginary part.</p>
+<figure class="dv" id="drv-complex-eigenvalue-solutions"></figure>
+<p id="complex-parts">Returning to our example problem,</p>
+$$ \begin{split} \kvecxone &amp; = \begin{bmatrix} i \\ 1 \end{bmatrix} e^{(1-i)t} = \begin{bmatrix} i \\ 1 \end{bmatrix} \left( e^t \cos t - i e^t \sin t \right) \\ &amp; = \begin{bmatrix} i e^t \cos t + e^t \sin t \\ e^t \cos t - i e^t \sin t \end{bmatrix} = \begin{bmatrix} e^t \sin t \\ e^t \cos t \end{bmatrix} + i \begin{bmatrix} e^t \cos t \\ - e^t \sin t \end{bmatrix} . \end{split} $$
+<p>The two real-valued <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span> <span data-concept="solution-to-a-system">solutions</span> we seek are</p>
+<div class="equation" id="eq-real-parts">$$ \operatorname{Re} \kvecxone = \begin{bmatrix} e^t \sin t \\ e^t \cos t \end{bmatrix} \qquad \text{and} \qquad \operatorname{Im} \kvecxone = \begin{bmatrix} e^t \cos t \\ - e^t \sin t \end{bmatrix} . $$</div>
+<div class="exercises" data-place="eq-real-parts"></div>
+<p id="complex-general">The <span data-concept="general-solution-to-a-system">general solution</span> is</p>
+$$ \kvecx = c_1 \begin{bmatrix} e^t \sin t \\ e^t \cos t \end{bmatrix} + c_2 \begin{bmatrix} e^t \cos t \\ -e^t \sin t \end{bmatrix} = \begin{bmatrix} c_1 e^t \sin t + c_2 e^t \cos t \\ c_1 e^t \cos t - c_2 e^t \sin t \end{bmatrix} . $$
+<p>This <span data-concept="solution-to-a-system">solution</span> is real-valued for real $c_1$ and $c_2$. At this point, we would solve for any <span data-concept="initial-condition-for-a-system">initial conditions</span> we may have to find $c_1$ and $c_2$.</p>
+<p>We summarize the discussion as a theorem.</p>
+<div class="note" id="thm-3-4-2">
+<div class="eyebrow">Theorem 3.4.2</div>
+<p>Let $\kP$ be a real-valued constant <span data-concept="matrix">matrix</span>. If $\kP$ has a complex <span data-concept="eigenvalue">eigenvalue</span> $a+ib$ and a corresponding <span data-concept="eigenvector">eigenvector</span> $\kvecv$, then $\kP$ also has a complex <span data-concept="eigenvalue">eigenvalue</span> $a-ib$ with a corresponding <span data-concept="eigenvector">eigenvector</span> $\kvecvbar$. Furthermore, $\kvecxprime = \kP\kvecx$ has two <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span> real-valued <span data-concept="solution-to-a-system">solutions</span></p>
+<div class="equation" id="eq-complex-eigenvalue-solutions">$$ \kvecxone = \operatorname{Re} \kvecv e^{(a+ib)t} \qquad \text{and} \qquad \kvecxtwo = \operatorname{Im} \kvecv e^{(a+ib)t} . $$</div>
+</div>
+<p id="pairs-general">For each pair of complex <span data-concept="eigenvalue">eigenvalues</span> $a+ib$ and $a-ib$, we get two real-valued <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span> <span data-concept="solution-to-a-system">solutions</span>. We then go on to the next <span data-concept="eigenvalue">eigenvalue</span>, which is either a real <span data-concept="eigenvalue">eigenvalue</span> or another complex <span data-concept="eigenvalue">eigenvalue</span> pair. If we have $n$ distinct <span data-concept="eigenvalue">eigenvalues</span> (real or complex), then we end up with $n$ <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span> <span data-concept="solution-to-a-system">solutions</span>. If we had only two equations ($n=2$) as in the example above, then once we found two <span data-concept="solution-to-a-system">solutions</span> we are finished, and our <span data-concept="general-solution-to-a-system">general solution</span> is</p>
+<div class="equation" id="eq-complex-pair-general-solution">$$ \kvecx = c_1 \kvecxone + c_2 \kvecxtwo = c_1 \bigl( \operatorname{Re} \kvecv e^{(a+ib)t} \bigr) + c_2 \bigl( \operatorname{Im} \kvecv e^{(a+ib)t} \bigr) . $$</div>
+<p id="repeated">We can now find a real-valued <span data-concept="general-solution-to-a-system">general solution</span> to any <span data-concept="homogeneous-system">homogeneous system</span> where the <span data-concept="matrix">matrix</span> has distinct <span data-concept="eigenvalue">eigenvalues</span>. When we have repeated <span data-concept="eigenvalue">eigenvalues</span>, matters get a bit more complicated and we will look at that situation in <a href="/diffyqs/ch03/3.7/">§3.7</a>.</p>
+</section>

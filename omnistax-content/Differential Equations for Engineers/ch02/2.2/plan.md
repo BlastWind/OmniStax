@@ -46,3 +46,4 @@ Extra Sims weighed and left out: a characteristic-roots Sim over a, b, c (2.4's 
 - variables of 2.2 (anchors): y, y′, y″ → `2.2-constant-coefficients`; r → `2.2-trial`; y₁, y₂ → `2.2-two-solutions`; r₁, r₂ → `2.2-eq-characteristic-roots`; α, β → `2.2-roots-pair`; y₃, y₄ → `2.2-drv-complex-roots`.
 - variables rows 2.2/α and 2.2/β: widen the meanings to cover the exercises, where α is a (real) double root (2.2.15) and α, β are two distinct real roots (2.2.106); the text writes them \kalpha, \kbeta there, in `eigenvalue`, which is right either way.
 - The 3Blue1Brown survivor of this section is built as `sim-complex-exponential`; no concept, edge or glossary change is asked for.
+- Chapter pass 2026-10-19 (pass-ch02): applied: 15 form anchors, 12 variables anchors; 2.2/α and 2.2/β meanings widened to the exercises' real roots; the book footnote (ansatz) numbered 10 (config 21).

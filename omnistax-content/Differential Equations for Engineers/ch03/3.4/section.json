@@ -1,0 +1,1107 @@
+{
+ "id": "3.4",
+ "module": "eigenmethod:section",
+ "chapter": "3",
+ "title": "Eigenvalue method",
+ "short": "Eigenvalue method",
+ "lead": "A homogeneous linear system of ODEs with a constant matrix is solved the way a single constant-coefficient equation was: by trying an exponential, now multiplied by a constant vector. The trial turns the system into a question about the matrix alone, which leads to its <span data-concept=\"eigenvalue\">eigenvalues</span> and <span data-concept=\"eigenvector\">eigenvectors</span>; the section finds them, builds the general solution from them, and handles eigenvalues that come as a complex pair.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 3.4.101–3.4.104 carry the book’s own answers. The inline exercises 3.4.1–3.4.4 and exercises 3.4.5–3.4.11, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-eigenvectors",
+   "kind": "sim",
+   "draws": [
+    "vector",
+    "eigenvalue"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-eigenvector-flow",
+   "kind": "sim",
+   "draws": [
+    "vector",
+    "eigenvalue",
+    "point",
+    "curve",
+    "function",
+    "vector-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "derivations": [
+  {
+   "id": "complex-eigenvalue-solutions",
+   "what": "the conjugate eigenvalue and two real-valued solutions from a complex eigenvalue",
+   "source": "Differential Equations for Engineers, 3.4 Eigenvalue method, Complex eigenvalues",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "(\\kP-\\klambda \\kI)\\kvecv = \\vec{0}",
+       "src": "3.4"
+      },
+      {
+       "tex": "\\overline{\\vec{0}} = \\vec{0}",
+       "src": "3.4"
+      },
+      {
+       "text": "The bar of a product is the product of the bars: $\\overline{\\kP\\kvecx} = \\overline{\\kP} \\, \\overline{\\kvecx}$.",
+       "src": "3.4"
+      },
+      {
+       "text": "$\\kP$ is real, so $\\overline{\\kP} = \\kP$; the identity $\\kI$ is real too, so $\\overline{\\klambda \\kI} = \\klambdabar \\kI$.",
+       "src": "3.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{\\vec{0}} = \\mk{m}{(\\kP-\\klambda \\kI)\\kvecv}",
+      "uses": [
+       0
+      ],
+      "src": "3.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{\\vec{0}} = \\mk{m}{\\overline{(\\kP-\\klambda \\kI)\\kvecv}}",
+       "uses": [
+        1
+       ],
+       "cap": "Take the complex conjugate of both sides; the conjugate of $\\vec{0}$ is still $\\vec{0}$."
+      },
+      {
+       "tex": "\\mk{z}{\\vec{0}} = \\mk{m}{\\overline{\\kP-\\klambda \\kI}}\\,\\mk{v}{\\kvecvbar}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "m": [
+         "m",
+         "v"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{z}{\\vec{0}} = \\mk{m}{(\\kP-\\klambdabar \\kI)}\\mk{v}{\\kvecvbar}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "3.4"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecxone = \\kvecv e^{(a+ib)t}",
+       "src": "3.4"
+      },
+      {
+       "text": "The bar of a product is the product of the bars.",
+       "src": "3.4"
+      },
+      {
+       "tex": "\\overline{e^{a+ib}} = e^{a-ib}",
+       "src": "2.2, Euler’s formula"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kvecxtwo} = \\mk{r}{\\overline{\\kvecxone}}",
+      "src": "3.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kvecxtwo} = \\mk{r}{\\overline{\\kvecv e^{(a+ib)t}}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kvecxtwo} = \\mk{v}{\\kvecvbar}\\,\\mk{e}{\\overline{e^{(a+ib)t}}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r": [
+         "v",
+         "e"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\kvecxtwo} = \\mk{v}{\\kvecvbar}\\mk{e}{e^{(a-ib)t}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "3.4"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\operatorname{Re} z = \\frac{z + \\bar{z}}{2}",
+       "src": "3.4"
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "A linear combination of solutions of $\\kvecxprime = \\kP\\kvecx$ is again a solution.",
+       "src": "3.3, Theorem 3.3.1"
+      },
+      {
+       "text": "$\\kvecxone = \\kvecv e^{(a+ib)t}$ solves $\\kvecxprime = \\kP\\kvecx$, as $\\kvecv$ is an eigenvector for the eigenvalue $a+ib$.",
+       "src": "3.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kvecxthree} = \\mk{r}{\\operatorname{Re} \\kvecxone}",
+      "src": "3.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kvecxthree} = \\frac{\\mk{p}{\\kvecxone} + \\mk{q}{\\overline{\\kvecxone}}}{\\mk{d}{2}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "r": [
+         "p",
+         "q",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\kvecxthree} = \\frac{\\mk{p}{\\kvecxone} + \\mk{q}{\\kvecxtwo}}{\\mk{d}{2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kvecxthree} = \\mk{a}{\\frac{1}{2}} \\mk{p}{\\kvecxone} + \\mk{b}{\\frac{1}{2}}\\mk{q}{\\kvecxtwo}",
+       "uses": [
+        2,
+        3,
+        4
+       ],
+       "map": {
+        "d": [
+         "a",
+         "b"
+        ]
+       },
+       "cap": "$\\kvecxone$ is a solution, and so is $\\kvecxtwo = \\kvecvbar e^{(a-ib)t}$, since $\\kvecvbar$ is an eigenvector for $\\klambdabar = a-ib$; a linear combination of the two is again a solution."
+      }
+     ],
+     "src": "3.4"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\operatorname{Im} z = \\frac{z-\\bar{z}}{2i}",
+       "src": "3.4"
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "A linear combination of solutions of $\\kvecxprime = \\kP\\kvecx$ is again a solution.",
+       "src": "3.3, Theorem 3.3.1"
+      },
+      {
+       "text": "$\\kvecxone = \\kvecv e^{(a+ib)t}$ solves $\\kvecxprime = \\kP\\kvecx$, as $\\kvecv$ is an eigenvector for the eigenvalue $a+ib$.",
+       "src": "3.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kvecxfour} = \\mk{r}{\\operatorname{Im} \\kvecxone}",
+      "src": "3.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kvecxfour} = \\frac{\\mk{p}{\\kvecxone} - \\mk{q}{\\overline{\\kvecxone}}}{\\mk{d}{2i}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "r": [
+         "p",
+         "q",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{x}{\\kvecxfour} = \\frac{\\mk{p}{\\kvecxone} - \\mk{q}{\\kvecxtwo}}{\\mk{d}{2i}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kvecxfour} = \\mk{a}{\\frac{1}{2i}} \\mk{p}{\\kvecxone} - \\mk{b}{\\frac{1}{2i}}\\mk{q}{\\kvecxtwo}",
+       "uses": [
+        2,
+        3,
+        4
+       ],
+       "map": {
+        "d": [
+         "a",
+         "b"
+        ]
+       },
+       "cap": "$\\kvecxone$ is a solution, and so is $\\kvecxtwo = \\kvecvbar e^{(a-ib)t}$, since $\\kvecvbar$ is an eigenvector for $\\klambdabar = a-ib$; a linear combination of the two is again a solution."
+      }
+     ],
+     "src": "3.4"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "eigenvalue",
+   "concept": "eigenvalue",
+   "verb": "introduces"
+  },
+  {
+   "span": "eigenvalue",
+   "concept": "eigenvector",
+   "verb": "introduces"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "characteristic-equation-of-a-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "find-eigenvector",
+   "concept": "finding-an-eigenvector",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-3-4-1",
+   "concept": "eigenvalue-method",
+   "verb": "introduces"
+  },
+  {
+   "span": "complex-conjugate",
+   "concept": "complex-conjugate",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-3-4-2",
+   "concept": "complex-eigenvalue-solutions",
+   "verb": "introduces"
+  },
+  {
+   "span": "intro",
+   "concept": "constant-coefficient-system",
+   "verb": "uses"
+  },
+  {
+   "span": "intro",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "trial",
+   "concept": "square-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "trial",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "trial",
+   "concept": "vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "trial",
+   "concept": "solving-with-the-characteristic-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "divide",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "eigen-def",
+   "concept": "square-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eigen-def",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "eigen-def",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eigen-def",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-1",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "char-eq",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "not-invertible",
+   "concept": "invertibility-and-the-determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-2",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-2",
+   "concept": "cofactor-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "degree-n",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "find-eigenvector",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "find-eigenvector",
+   "concept": "row-reduction",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-3",
+   "concept": "augmented-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-3",
+   "concept": "elementary-row-operations",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-3",
+   "concept": "reduced-row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-3",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "constant-coefficient-system",
+   "verb": "uses"
+  },
+  {
+   "span": "method-solutions",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "method-solutions",
+   "concept": "superposition-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-4-1",
+   "concept": "linear-independence-of-vector-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-4-1",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-eigenvector-flow",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-eigenvector-flow",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-eigenvector-flow",
+   "concept": "superposition-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-4",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-4",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "char-note",
+   "concept": "characteristic-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "char-note",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-example",
+   "concept": "complex-number",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-solution",
+   "concept": "eulers-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-solution",
+   "concept": "complex-number",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-solution",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-conjugate",
+   "concept": "real-and-imaginary-parts",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-conjugate",
+   "concept": "complex-number",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-solutions",
+   "concept": "eulers-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-solutions",
+   "concept": "superposition-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-solutions",
+   "concept": "real-and-imaginary-parts",
+   "verb": "uses"
+  },
+  {
+   "span": "independent",
+   "concept": "linear-independence-of-vector-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-complex-eigenvalue-solutions",
+   "concept": "superposition-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-complex-eigenvalue-solutions",
+   "concept": "eulers-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-parts",
+   "concept": "eulers-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-parts",
+   "concept": "real-and-imaginary-parts",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-general",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-4-2",
+   "concept": "linear-independence-of-vector-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "pairs-general",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "repeated",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-4-1",
+   "concept": "eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-4-1",
+   "concept": "eigenvector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-eigenvectors",
+   "concept": "eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-eigenvectors",
+   "concept": "eigenvector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-4-2",
+   "concept": "characteristic-equation-of-a-matrix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-4-3",
+   "concept": "finding-an-eigenvector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "method-solutions",
+   "concept": "eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "method-solutions",
+   "concept": "eigenvector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-eigenvector-flow",
+   "concept": "eigenvalue-method",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-4-4",
+   "concept": "eigenvalue-method",
+   "verb": "reinforces"
+  },
+  {
+   "span": "char-note",
+   "concept": "characteristic-equation-of-a-matrix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complex-example",
+   "concept": "characteristic-equation-of-a-matrix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complex-eigenvectors",
+   "concept": "finding-an-eigenvector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-conjugate-eigenvector",
+   "concept": "complex-conjugate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-complex-eigenvalue-solutions",
+   "concept": "complex-eigenvalue-solutions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complex-parts",
+   "concept": "complex-eigenvalue-solutions",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "3.4.1",
+   "source_number": "3.4.1",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "ex-3-4-3"
+   },
+   "cite": "ex-3-4-3",
+   "tag": "easy",
+   "prompt": "<p>Are eigenvectors unique? Can you find a different eigenvector for $\\klambda = 3$ in the example above? How are the two eigenvectors related?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. If $\\kA\\kvecv = \\klambda\\kvecv$ and $\\alpha \\neq 0$ is a number, then $\\kA(\\alpha\\kvecv) = \\alpha \\kA\\kvecv = \\klambda(\\alpha\\kvecv)$, so every nonzero multiple of an eigenvector is again an eigenvector for the same eigenvalue. In the example $v_2$ was a free variable; picking $v_2 = 2$ instead of $1$ gives $\\kvecv = \\left[ \\begin{smallmatrix} 2 \\\\ 2 \\\\ 0 \\end{smallmatrix} \\right]$, and indeed $\\left[ \\begin{smallmatrix} 2 & 1 & 1 \\\\ 1 & 2 & 0 \\\\ 0 & 0 & 2 \\end{smallmatrix} \\right]\\left[ \\begin{smallmatrix} 2 \\\\ 2 \\\\ 0 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 6 \\\\ 6 \\\\ 0 \\end{smallmatrix} \\right] = 3\\left[ \\begin{smallmatrix} 2 \\\\ 2 \\\\ 0 \\end{smallmatrix} \\right]$. The two eigenvectors are multiples of each other, $\\left[ \\begin{smallmatrix} 2 \\\\ 2 \\\\ 0 \\end{smallmatrix} \\right] = 2\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right]$: every eigenvector for $\\klambda = 3$ is $v_2\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right]$ with $v_2 \\neq 0$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "3.4.2",
+   "source_number": "3.4.2",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "ex-3-4-3"
+   },
+   "cite": "find-eigenvector",
+   "prompt": "<p>When the matrix is $2 \\times 2$ you do not need to do row operations when computing an eigenvector, you can read it off from $\\kA-\\klambda \\kI$ (if you have computed the eigenvalues correctly). Can you see why? Explain. Try it for the matrix $\\left[ \\begin{smallmatrix} 2 & 1 \\\\ 1 & 2 \\end{smallmatrix} \\right]$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "When $\\klambda$ is an eigenvalue, $\\det(\\kA - \\klambda\\kI) = 0$, so the two rows of the $2 \\times 2$ matrix $\\kA - \\klambda\\kI$ are multiples of each other, and $(\\kA - \\klambda\\kI)\\kvecv = \\vec{0}$ is really the one equation $p v_1 + q v_2 = 0$ of a nonzero row $[\\, p \\;\\; q \\,]$. The vector $\\kvecv = \\left[ \\begin{smallmatrix} q \\\\ -p \\end{smallmatrix} \\right]$ solves it, so it can be read off that row (if every entry of $\\kA - \\klambda\\kI$ is zero, every nonzero vector is an eigenvector). For $\\left[ \\begin{smallmatrix} 2 & 1 \\\\ 1 & 2 \\end{smallmatrix} \\right]$: $\\det(\\kA - \\klambda\\kI) = (2-\\klambda)^2 - 1 = (\\klambda-1)(\\klambda-3)$, so the eigenvalues are $1$ and $3$. For $\\klambda = 3$, $\\kA - 3\\kI = \\left[ \\begin{smallmatrix} -1 & 1 \\\\ 1 & -1 \\end{smallmatrix} \\right]$ and the row $[\\, -1 \\;\\; 1 \\,]$ gives $\\kvecv = \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$. For $\\klambda = 1$, $\\kA - \\kI = \\left[ \\begin{smallmatrix} 1 & 1 \\\\ 1 & 1 \\end{smallmatrix} \\right]$ and the row $[\\, 1 \\;\\; 1 \\,]$ gives $\\kvecv = \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]$. Check: $\\left[ \\begin{smallmatrix} 2 & 1 \\\\ 1 & 2 \\end{smallmatrix} \\right]\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 3 \\\\ 3 \\end{smallmatrix} \\right] = 3\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 2 & 1 \\\\ 1 & 2 \\end{smallmatrix} \\right]\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "3.4.3",
+   "source_number": "3.4.3",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "ex-3-4-4"
+   },
+   "cite": "ex-3-4-4",
+   "prompt": "<p>Check that this $\\kvecx$ really solves the system.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate $\\kvecx = \\left[ \\begin{smallmatrix} c_1 e^t + c_3 e^{3t} \\\\ -c_1 e^t + c_2 e^{2t} + c_3 e^{3t} \\\\ -c_2 e^{2t} \\end{smallmatrix} \\right]$ entry by entry: $\\kvecxprime = \\left[ \\begin{smallmatrix} c_1 e^t + 3c_3 e^{3t} \\\\ -c_1 e^t + 2c_2 e^{2t} + 3c_3 e^{3t} \\\\ -2c_2 e^{2t} \\end{smallmatrix} \\right]$. Multiply out the right-hand side: the first entry of $\\kP\\kvecx$ is $2(c_1e^t + c_3e^{3t}) + (-c_1e^t + c_2e^{2t} + c_3e^{3t}) + (-c_2e^{2t}) = c_1e^t + 3c_3e^{3t}$, the second is $(c_1e^t + c_3e^{3t}) + 2(-c_1e^t + c_2e^{2t} + c_3e^{3t}) = -c_1e^t + 2c_2e^{2t} + 3c_3e^{3t}$, and the third is $2(-c_2e^{2t}) = -2c_2e^{2t}$. These are the entries of $\\kvecxprime$, so $\\kvecxprime = \\kP\\kvecx$ for all $c_1$, $c_2$, $c_3$. (The eigenvectors check too: $\\left[ \\begin{smallmatrix} 2 & 1 & 1 \\\\ 1 & 2 & 0 \\\\ 0 & 0 & 2 \\end{smallmatrix} \\right]\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 2 & 1 & 1 \\\\ 1 & 2 & 0 \\\\ 0 & 0 & 2 \\end{smallmatrix} \\right]\\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ -1 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 0 \\\\ 2 \\\\ -2 \\end{smallmatrix} \\right] = 2\\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ -1 \\end{smallmatrix} \\right]$.)"
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "3.4.4",
+   "source_number": "3.4.4",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "eq-real-parts"
+   },
+   "cite": "eq-real-parts",
+   "prompt": "<p>Check that these really are solutions.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $\\kP = \\left[ \\begin{smallmatrix} 1 & 1 \\\\ -1 & 1 \\end{smallmatrix} \\right]$. For $\\operatorname{Re}\\kvecxone = \\left[ \\begin{smallmatrix} e^t \\sin t \\\\ e^t \\cos t \\end{smallmatrix} \\right]$ the product rule gives the derivative $\\left[ \\begin{smallmatrix} e^t \\sin t + e^t \\cos t \\\\ e^t \\cos t - e^t \\sin t \\end{smallmatrix} \\right]$, and $\\kP\\left[ \\begin{smallmatrix} e^t \\sin t \\\\ e^t \\cos t \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} e^t \\sin t + e^t \\cos t \\\\ -e^t \\sin t + e^t \\cos t \\end{smallmatrix} \\right]$, the same. For $\\operatorname{Im}\\kvecxone = \\left[ \\begin{smallmatrix} e^t \\cos t \\\\ -e^t \\sin t \\end{smallmatrix} \\right]$ the derivative is $\\left[ \\begin{smallmatrix} e^t \\cos t - e^t \\sin t \\\\ -e^t \\sin t - e^t \\cos t \\end{smallmatrix} \\right]$, and $\\kP\\left[ \\begin{smallmatrix} e^t \\cos t \\\\ -e^t \\sin t \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} e^t \\cos t - e^t \\sin t \\\\ -e^t \\cos t - e^t \\sin t \\end{smallmatrix} \\right]$, the same. Both solve $\\kvecxprime = \\kP\\kvecx$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "3.4.5",
+   "source_number": "3.4.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eigenvalue",
+   "tag": "easy",
+   "prompt": "<p>Let $\\kA$ be a $3 \\times 3$ matrix with an eigenvalue of 3 and a corresponding eigenvector $\\kvecv = \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 3 \\end{smallmatrix} \\right]$. Find $\\kA \\kvecv$.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "first entry of Av⃗",
+      "value": 3
+     },
+     {
+      "part": "second entry of Av⃗",
+      "value": -3
+     },
+     {
+      "part": "third entry of Av⃗",
+      "value": 9
+     }
+    ],
+    "solution": "By the definition of an eigenvector, $\\kA\\kvecv = \\klambda\\kvecv = 3\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 3 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 3 \\\\ -3 \\\\ 9 \\end{smallmatrix} \\right]$; the rest of $\\kA$ is not needed."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "3.4.6",
+   "source_number": "3.4.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-4-1",
+   "prompt": "<ol type=\"a\"><li>Find the general solution of $x_1' = 2 x_1$, $x_2' = 3 x_2$ using the eigenvalue method (first write the system in the form $\\kvecxprime = \\kA \\kvecx$).</li><li>Solve the system by solving each equation separately and verify you get the same general solution.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The system is $\\kvecxprime = \\kA\\kvecx$ with $\\kA = \\left[ \\begin{smallmatrix} 2 & 0 \\\\ 0 & 3 \\end{smallmatrix} \\right]$, and $\\det(\\kA - \\klambda\\kI) = (2-\\klambda)(3-\\klambda)$, so the eigenvalues are $2$ and $3$. $\\kA - 2\\kI = \\left[ \\begin{smallmatrix} 0 & 0 \\\\ 0 & 1 \\end{smallmatrix} \\right]$ gives the eigenvector $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\end{smallmatrix} \\right]$, and $\\kA - 3\\kI = \\left[ \\begin{smallmatrix} -1 & 0 \\\\ 0 & 0 \\end{smallmatrix} \\right]$ gives $\\left[ \\begin{smallmatrix} 0 \\\\ 1 \\end{smallmatrix} \\right]$. By Theorem 3.4.1 the general solution is $\\kvecx = c_1\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\end{smallmatrix} \\right]e^{2t} + c_2\\left[ \\begin{smallmatrix} 0 \\\\ 1 \\end{smallmatrix} \\right]e^{3t} = \\left[ \\begin{smallmatrix} c_1 e^{2t} \\\\ c_2 e^{3t} \\end{smallmatrix} \\right]$. b) The two equations do not involve each other: $x_1' = 2x_1$ gives $x_1 = c_1 e^{2t}$ and $x_2' = 3x_2$ gives $x_2 = c_2 e^{3t}$, the same general solution."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "3.4.7",
+   "source_number": "3.4.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-4-1",
+   "prompt": "<p>Find the general solution of $x_1' = 3 x_1 + x_2$, $x_2' = 2 x_1 + 4 x_2$ using the eigenvalue method.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $\\kA = \\left[ \\begin{smallmatrix} 3 & 1 \\\\ 2 & 4 \\end{smallmatrix} \\right]$ and $\\det(\\kA - \\klambda\\kI) = (3-\\klambda)(4-\\klambda) - 2 = \\klambda^2 - 7\\klambda + 10 = (\\klambda-2)(\\klambda-5)$. For $\\klambda = 2$: $\\kA - 2\\kI = \\left[ \\begin{smallmatrix} 1 & 1 \\\\ 2 & 2 \\end{smallmatrix} \\right]$, so $v_1 + v_2 = 0$ and $\\kvecv = \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]$. For $\\klambda = 5$: $\\kA - 5\\kI = \\left[ \\begin{smallmatrix} -2 & 1 \\\\ 2 & -1 \\end{smallmatrix} \\right]$, so $-2v_1 + v_2 = 0$ and $\\kvecv = \\left[ \\begin{smallmatrix} 1 \\\\ 2 \\end{smallmatrix} \\right]$. The general solution is $\\kvecx = c_1\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]e^{2t} + c_2\\left[ \\begin{smallmatrix} 1 \\\\ 2 \\end{smallmatrix} \\right]e^{5t}$, that is $x_1 = c_1 e^{2t} + c_2 e^{5t}$ and $x_2 = -c_1 e^{2t} + 2c_2 e^{5t}$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "3.4.8",
+   "source_number": "3.4.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-4-2",
+   "prompt": "<p>Find the general solution of $x_1' = x_1 -2 x_2$, $x_2' = 2 x_1 + x_2$ using the eigenvalue method. Do not use complex exponentials in your solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $\\kP = \\left[ \\begin{smallmatrix} 1 & -2 \\\\ 2 & 1 \\end{smallmatrix} \\right]$ and $\\det(\\kP - \\klambda\\kI) = (1-\\klambda)^2 + 4 = \\klambda^2 - 2\\klambda + 5$, so $\\klambda = 1 \\pm 2i$. For $\\klambda = 1+2i$: $\\kP - (1+2i)\\kI = \\left[ \\begin{smallmatrix} -2i & -2 \\\\ 2 & -2i \\end{smallmatrix} \\right]$, whose first row gives $-2i v_1 - 2 v_2 = 0$; picking $v_2 = 1$ gives $\\kvecv = \\left[ \\begin{smallmatrix} i \\\\ 1 \\end{smallmatrix} \\right]$. By Euler’s formula $\\kvecv e^{(1+2i)t} = \\left[ \\begin{smallmatrix} i \\\\ 1 \\end{smallmatrix} \\right] e^t(\\cos 2t + i \\sin 2t) = \\left[ \\begin{smallmatrix} -e^t \\sin 2t \\\\ e^t \\cos 2t \\end{smallmatrix} \\right] + i\\left[ \\begin{smallmatrix} e^t \\cos 2t \\\\ e^t \\sin 2t \\end{smallmatrix} \\right]$. By Theorem 3.4.2 its real and imaginary parts are two linearly independent real-valued solutions, and the general solution is $\\kvecx = c_1\\left[ \\begin{smallmatrix} -e^t \\sin 2t \\\\ e^t \\cos 2t \\end{smallmatrix} \\right] + c_2\\left[ \\begin{smallmatrix} e^t \\cos 2t \\\\ e^t \\sin 2t \\end{smallmatrix} \\right]$, that is $x_1 = -c_1 e^t \\sin 2t + c_2 e^t \\cos 2t$ and $x_2 = c_1 e^t \\cos 2t + c_2 e^t \\sin 2t$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "3.4.9",
+   "source_number": "3.4.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-4-1",
+   "prompt": "<ol type=\"a\"><li>Compute eigenvalues and eigenvectors of $\\kA = \\left[ \\begin{smallmatrix} 9 & -2 & -6 \\\\ -8 & 3 & 6 \\\\ 10 & -2 & -6 \\end{smallmatrix} \\right]$.</li><li>Find the general solution of $\\kvecxprime = \\kA \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Expanding, $\\det(\\kA - \\klambda\\kI) = -\\klambda^3 + 6\\klambda^2 - 11\\klambda + 6 = -(\\klambda-1)(\\klambda-2)(\\klambda-3)$, so the eigenvalues are $1$, $2$, $3$. Solving $(\\kA - \\klambda\\kI)\\kvecv = \\vec{0}$ for each: $\\klambda = 1$ gives $\\left[ \\begin{smallmatrix} 1 \\\\ -2 \\\\ 2 \\end{smallmatrix} \\right]$, $\\klambda = 2$ gives $\\left[ \\begin{smallmatrix} 2 \\\\ -2 \\\\ 3 \\end{smallmatrix} \\right]$, and $\\klambda = 3$ gives $\\left[ \\begin{smallmatrix} 3 \\\\ -3 \\\\ 4 \\end{smallmatrix} \\right]$ (or any nonzero multiples). For example $\\kA\\left[ \\begin{smallmatrix} 3 \\\\ -3 \\\\ 4 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 27+6-24 \\\\ -24-9+24 \\\\ 30+6-24 \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 9 \\\\ -9 \\\\ 12 \\end{smallmatrix} \\right] = 3\\left[ \\begin{smallmatrix} 3 \\\\ -3 \\\\ 4 \\end{smallmatrix} \\right]$. b) The three eigenvalues are distinct and real, so by Theorem 3.4.1 $\\kvecx = c_1\\left[ \\begin{smallmatrix} 1 \\\\ -2 \\\\ 2 \\end{smallmatrix} \\right]e^t + c_2\\left[ \\begin{smallmatrix} 2 \\\\ -2 \\\\ 3 \\end{smallmatrix} \\right]e^{2t} + c_3\\left[ \\begin{smallmatrix} 3 \\\\ -3 \\\\ 4 \\end{smallmatrix} \\right]e^{3t}$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "3.4.10",
+   "source_number": "3.4.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "find-eigenvector",
+   "prompt": "<p>Compute eigenvalues and eigenvectors of $\\left[ \\begin{smallmatrix} -2 & -1 & -1 \\\\ 3 & 2 & 1 \\\\ -3 & -1 & 0 \\end{smallmatrix} \\right]$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\det(\\kA - \\klambda\\kI) = -\\klambda^3 + 3\\klambda - 2 = -(\\klambda-1)^2(\\klambda+2)$, so the eigenvalues are $-2$ and $1$, the latter repeated. For $\\klambda = -2$: $\\kA + 2\\kI = \\left[ \\begin{smallmatrix} 0 & -1 & -1 \\\\ 3 & 4 & 1 \\\\ -3 & -1 & 2 \\end{smallmatrix} \\right]$ row reduces to $v_1 - v_3 = 0$, $v_2 + v_3 = 0$, and $v_3 = 1$ gives $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 1 \\end{smallmatrix} \\right]$. For $\\klambda = 1$: every row of $\\kA - \\kI = \\left[ \\begin{smallmatrix} -3 & -1 & -1 \\\\ 3 & 1 & 1 \\\\ -3 & -1 & -1 \\end{smallmatrix} \\right]$ is a multiple of $[\\, 3 \\;\\; 1 \\;\\; 1 \\,]$, so the only equation is $3v_1 + v_2 + v_3 = 0$ with two free variables; two independent eigenvectors are $\\left[ \\begin{smallmatrix} 1 \\\\ -3 \\\\ 0 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ -3 \\end{smallmatrix} \\right]$, and every nonzero combination of them is an eigenvector for $\\klambda = 1$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "3.4.11",
+   "source_number": "3.4.11",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-characteristic-equation-of-a-matrix",
+   "prompt": "<p>Let $a,b,c,d,e,f$ be numbers. Find the eigenvalues of $\\left[ \\begin{smallmatrix} a & b & c \\\\ 0 & d & e \\\\ 0 & 0 & f \\end{smallmatrix} \\right]$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Subtracting $\\klambda\\kI$ leaves $\\left[ \\begin{smallmatrix} a-\\klambda & b & c \\\\ 0 & d-\\klambda & e \\\\ 0 & 0 & f-\\klambda \\end{smallmatrix} \\right]$, still zero below the diagonal. Expanding the determinant along the first column, $\\det = (a-\\klambda)\\bigl((d-\\klambda)(f-\\klambda) - e \\cdot 0\\bigr) = (a-\\klambda)(d-\\klambda)(f-\\klambda)$, so $\\det(\\kA - \\klambda\\kI) = 0$ exactly when $\\klambda = a$, $\\klambda = d$ or $\\klambda = f$: the eigenvalues are the diagonal entries $a$, $d$, $f$ (whatever $b$, $c$, $e$ are)."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "3.4.101",
+   "source_number": "3.4.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-4-1",
+   "prompt": "<ol type=\"a\"><li>Compute eigenvalues and eigenvectors of $\\kA= \\left[ \\begin{smallmatrix} 1 & 0 & 3 \\\\ -1 & 0 & 1 \\\\ 2 & 0 & 2 \\end{smallmatrix} \\right]$.</li><li>Solve the system $\\kvecxprime = \\kA \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) Eigenvalues: $4,0,-1$ Eigenvectors: $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right]$, $\\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right]$, $\\left[ \\begin{smallmatrix} 3 \\\\ 5 \\\\ -2 \\end{smallmatrix} \\right]$ b) $\\kvecx = C_1 \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right] e^{4t} + C_2 \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right] + C_3 \\left[ \\begin{smallmatrix} 3 \\\\ 5 \\\\ -2 \\end{smallmatrix} \\right] e^{-t}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "3.4.102",
+   "source_number": "3.4.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-4-2",
+   "prompt": "<ol type=\"a\"><li>Compute eigenvalues and eigenvectors of $\\kA=\\left[ \\begin{smallmatrix} 1 & 1 \\\\ -1 & 0 \\end{smallmatrix} \\right]$.</li><li>Solve the system $\\kvecxprime = \\kA\\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) Eigenvalues: $\\frac{1+\\sqrt{3}i}{2}, \\frac{1-\\sqrt{3}i}{2}$, Eigenvectors: $\\left[ \\begin{smallmatrix} -2 \\\\ 1-\\sqrt{3}i \\end{smallmatrix} \\right]$, $\\left[ \\begin{smallmatrix} -2 \\\\ 1+\\sqrt{3}i \\end{smallmatrix} \\right]$ b) $\\kvecx = C_1 e^{t/2} \\left[ \\begin{smallmatrix} -2\\cos\\bigl(\\frac{\\sqrt{3}t}{2}\\bigr) \\\\ \\cos\\bigl(\\frac{\\sqrt{3}t}{2}\\bigr) + \\sqrt{3}\\sin\\bigl(\\frac{\\sqrt{3}t}{2}\\bigr) \\end{smallmatrix} \\right] + C_2 e^{t/2} \\left[ \\begin{smallmatrix} - 2\\sin\\bigl(\\frac{\\sqrt{3}t}{2}\\bigr) \\\\ \\sin\\bigl(\\frac{\\sqrt{3}t}{2}\\bigr) -\\sqrt{3}\\cos\\bigl(\\frac{\\sqrt{3}t}{2}\\bigr) \\end{smallmatrix} \\right]$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "3.4.103",
+   "source_number": "3.4.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-4-1",
+   "prompt": "<p>Solve $x_1' = x_2$, $x_2' = x_1$ using the eigenvalue method.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kvecx = C_1 \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right] e^{t} + C_2 \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right] e^{-t}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "3.4.104",
+   "source_number": "3.4.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-4-2",
+   "prompt": "<p>Solve $x_1' = x_2$, $x_2' = -x_1$ using the eigenvalue method.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kvecx = C_1 \\left[ \\begin{smallmatrix} \\cos(t) \\\\ -\\sin(t) \\end{smallmatrix} \\right] + C_2 \\left[ \\begin{smallmatrix} \\sin(t) \\\\ \\cos(t) \\end{smallmatrix} \\right]$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "eigenvector"
+  },
+  {
+   "exercise": "e1",
+   "concept": "finding-an-eigenvector"
+  },
+  {
+   "exercise": "e2",
+   "concept": "finding-an-eigenvector"
+  },
+  {
+   "exercise": "e2",
+   "concept": "characteristic-equation-of-a-matrix"
+  },
+  {
+   "exercise": "e3",
+   "concept": "eigenvalue-method"
+  },
+  {
+   "exercise": "e3",
+   "concept": "solution-to-a-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "complex-eigenvalue-solutions"
+  },
+  {
+   "exercise": "e4",
+   "concept": "solution-to-a-system"
+  },
+  {
+   "exercise": "e5",
+   "concept": "eigenvector"
+  },
+  {
+   "exercise": "e5",
+   "concept": "eigenvalue"
+  },
+  {
+   "exercise": "e6",
+   "concept": "eigenvalue-method"
+  },
+  {
+   "exercise": "e6",
+   "concept": "finding-an-eigenvector"
+  },
+  {
+   "exercise": "e7",
+   "concept": "eigenvalue-method"
+  },
+  {
+   "exercise": "e7",
+   "concept": "characteristic-equation-of-a-matrix"
+  },
+  {
+   "exercise": "e7",
+   "concept": "finding-an-eigenvector"
+  },
+  {
+   "exercise": "e8",
+   "concept": "complex-eigenvalue-solutions"
+  },
+  {
+   "exercise": "e8",
+   "concept": "characteristic-equation-of-a-matrix"
+  },
+  {
+   "exercise": "e8",
+   "concept": "eulers-formula"
+  },
+  {
+   "exercise": "e9",
+   "concept": "characteristic-equation-of-a-matrix"
+  },
+  {
+   "exercise": "e9",
+   "concept": "finding-an-eigenvector"
+  },
+  {
+   "exercise": "e9",
+   "concept": "eigenvalue-method"
+  },
+  {
+   "exercise": "e10",
+   "concept": "characteristic-equation-of-a-matrix"
+  },
+  {
+   "exercise": "e10",
+   "concept": "finding-an-eigenvector"
+  },
+  {
+   "exercise": "e11",
+   "concept": "characteristic-equation-of-a-matrix"
+  },
+  {
+   "exercise": "e11",
+   "concept": "cofactor-expansion"
+  },
+  {
+   "exercise": "e101",
+   "concept": "characteristic-equation-of-a-matrix"
+  },
+  {
+   "exercise": "e101",
+   "concept": "finding-an-eigenvector"
+  },
+  {
+   "exercise": "e101",
+   "concept": "eigenvalue-method"
+  },
+  {
+   "exercise": "e102",
+   "concept": "characteristic-equation-of-a-matrix"
+  },
+  {
+   "exercise": "e102",
+   "concept": "complex-eigenvalue-solutions"
+  },
+  {
+   "exercise": "e103",
+   "concept": "eigenvalue-method"
+  },
+  {
+   "exercise": "e104",
+   "concept": "complex-eigenvalue-solutions"
+  }
+ ],
+ "footnotes": []
+}
