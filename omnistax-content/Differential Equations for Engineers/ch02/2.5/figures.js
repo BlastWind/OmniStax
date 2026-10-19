@@ -50,24 +50,28 @@ const r2 = (v) => Math.round(v * 100) / 100, r3 = (v) => Math.round(v * 1000) / 
     /* the probe: y_p from the axis, y_c from there up (or down) to y */
     line(ctx, ax.X(x0), ax.box.t, ax.X(x0), ax.box.b, guide(), 2.5, [4, 8]);
     if (Math.abs(ax.Y(ypv) - ax.Y(0)) > 8) vbracket(ctx, ax.X(x0) + 18, ax.Y(0), ax.Y(ypv), pcol, `y_p = ${n(ypr, 3)}`, 1, { size: 18 });
-    if (Math.abs(ax.Y(yv) - ax.Y(ypv)) > 8) vbracket(ctx, ax.X(x0) - 18, ax.Y(ypv), ax.Y(yv), cc, `y_c = ${n(ycr, 3)}`, -1, { size: 18 });
+    /* y_c's bracket stands left of the probe, and right of y_p's where the axis labels would be in its way */
+    const near = x0 < 0.7;
+    if (Math.abs(ax.Y(yv) - ax.Y(ypv)) > 8) vbracket(ctx, ax.X(x0) + (near ? 46 : -18), ax.Y(ypv), ax.Y(yv), cc, `y_c = ${n(ycr, 3)}`, near ? 1 : -1, { size: 18 });
     dot(ctx, ax.X(x0), ax.Y(ypv), pcol, true, 7);
     dot(ctx, ax.X(x0), ax.Y(ycv), cc, true, 7);
     hits.push({ x: ax.X(x0), y: ax.Y(ypv), r: 14, name: `(x, y_p) = (${n(xr)}, ${n(ypr, 3)})` });
     hits.push({ x: ax.X(x0), y: ax.Y(ycv), r: 14, name: `(x, y_c) = (${n(xr)}, ${n(ycr, 3)})` });
     /* the initial condition: the point (0, y(0)) and its slope y′(0) */
-    const sl = Math.min(0.3, 4);
+    const sl = 0.3;
+    ctx.save(); ctx.beginPath(); ctx.rect(ax.box.l, ax.box.t, ax.box.r - ax.box.l, ax.box.b - ax.box.t); ctx.clip();
     line(ctx, ax.X(0), ax.Y(b0.v), ax.X(sl), ax.Y(b0.v + sl * b1.v), dc, 3);
+    ctx.restore();
     dot(ctx, ax.X(0), ax.Y(b0.v), pc, false, 10);
     hits.push({ x: ax.X(0), y: ax.Y(b0.v), r: 16, name: `(0, y(0)) = (0, ${n(b0.v)}), the initial condition` });
     hits.push({ x: ax.X(sl / 2), y: ax.Y(b0.v + (sl / 2) * b1.v), r: 12, name: `the slope y′(0) = ${n(b1.v)} at the initial point` });
     const at = P.draw(ctx, ax, fc);
     if (at) hits.push({ x: at.x, y: at.y, r: 18, name: `(x, y) = (${n(xr)}, ${n(yr, 3)}) on the solution` });
-    /* legend, bottom right, where no curve reaches */
+    /* legend, bottom right, where no curve reaches; on a panel so the probe's line passes behind it */
     [['y = y_c + y_p', fc], ['y_c', cc], ['y_p', pcol]].forEach(([s, col], i) => {
       const lx = ax.box.r - 250, ly = ax.box.b - 24 - (2 - i) * 30;
       line(ctx, lx, ly, lx + 40, ly, col, 4);
-      text(ctx, s, lx + 52, ly, col, { size: 20, weight: 600, align: 'left', base: 'middle' });
+      text(ctx, s, lx + 52, ly, col, { size: 20, weight: 600, align: 'left', base: 'middle', bg: PAL.panel });
     });
     headline(ctx, `$\\ky(0) = ${n(b0.v)}$, $\\kyprime(0) = ${n(b1.v)}$: $C_1 = ${n(c1r)}$, $C_2 = ${n(c2r)}$, and at $x = ${n(xr)}$ the heights $\\kyp = ${n(ypr, 3)}$ and $\\kyc = ${n(ycr, 3)}$ add to $\\ky = ${n(yr, 3)}$.`);
     ro.set(`\\ky = \\kyc + \\kyp = ${n(c1r)}\\,e^{-2x} ${sgn(c2r)} ${n(Math.abs(c2r))}\\,e^{-3x} + \\frac{3x-1}{9}`);
