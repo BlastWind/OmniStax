@@ -20,7 +20,7 @@ const mat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \\
    (the entries blend); the dashed circles on θ sit at the real eigenvector directions of the matrix chosen
    (0°, 135° and 180° for Example 3.4.1, none for the complex one). The book's θ = 0°, Av⃗ = 2v⃗, is the state on load. */
 (function () {
-  const d = sim('sim-eigenvectors', 600);
+  const d = sim('sim-eigenvectors', 640);
   const MATS = {
     ex: { m: [2, 1, 0, 1], label: 'Example 3.4.1' },
     cx: { m: [1, 1, -1, 1], label: 'complex example' },
@@ -48,7 +48,7 @@ const mat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \\
   const th = ctl(d.controls, { label: '\\theta', cls: '', key: 'theta', min: 0, max: 180, step: 1, value: 0, unit: '°', dec: 0,
     aria: 'the angle θ of the unit vector v', specials: [0, 1, 2].map((i) => ({ at: at(i), label: 'eigenvector' })) });
   const ro = readout(d);
-  const U = 76, PLANE = { l: 330 - 3 * U, r: 330 + 3 * U, t: 112, b: 112 + 6 * U }, GRAPH = { l: 760, r: 1330, t: 140, b: 520 };
+  const U = 72, PLANE = { l: 330 - 3 * U, r: 330 + 3 * U, t: 130, b: 130 + 6 * U }, GRAPH = { l: 760, r: 1330, t: 150, b: 540 };
   /* the angle from the line of v⃗ to Av⃗, in degrees in (−90, 90] */
   const off = (m, deg) => {
     const c = Math.cos((deg * Math.PI) / 180), s = Math.sin((deg * Math.PI) / 180);
@@ -95,14 +95,15 @@ const mat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \\
     hits.push({ x: X(tip[0]), y: Y(tip[1]), r: 16, name: `Av⃗ = (${fmt(tip[0], 2)}, ${fmt(tip[1], 2)})` });
     hits.push({ x: X(m[0] * Math.cos(2.3) + m[1] * Math.sin(2.3)), y: Y(m[2] * Math.cos(2.3) + m[3] * Math.sin(2.3)), r: 12, name: 'the image of the unit circle under A: where Av⃗ can end' });
     /* the graph: the angle from the line of v⃗ to Av⃗ against θ, zero at the eigenvectors */
-    const G = axes(ctx, GRAPH, [0, 180], [-90, 90], { xl: 'θ (°)', yl: 'angle from the line of v⃗ to Av⃗ (°)', nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    const G = axes(ctx, GRAPH, [0, 180], [-90, 90], { xl: 'θ (°)', yl: 'angle of Av off the line of v (°)', nx: 4, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
     line(ctx, G.box.l, G.Y(0), G.box.r, G.Y(0), alpha(vc, 0.55), 2.5, [10, 10]);
     hits.push({ x: G.X(20), y: G.Y(0), r: 12, name: 'angle 0: Av⃗ on the line of v⃗' });
     plot(ctx, G, (x) => off(m, x), alpha(PAL.ink, 0.75), { w: 4 });
     eig.forEach((e) => {
       dot(ctx, G.X(e.deg), G.Y(0), ec, true, 8);
-      const right = e.deg < 90;
-      text(ctx, `$\\klambda = ${n(e.l, 0)}$`, G.X(e.deg) + (right ? 14 : -14), G.Y(0) + 30, ec, { size: 20, weight: 600, tex: true, align: right ? 'left' : 'right', bg: PAL.panel });
+      /* the name sits on the side of the axis the curve leaves free next to the zero */
+      const inward = e.deg < 90 ? 1 : -1, below = off(m, e.deg + 10 * inward) > 0;
+      text(ctx, `$\\klambda = ${n(e.l, 0)}$`, G.X(e.deg) + 14 * inward, G.Y(0) + (below ? 30 : -30), ec, { size: 20, weight: 600, tex: true, align: inward > 0 ? 'left' : 'right', bg: PAL.panel });
       hits.push({ x: G.X(e.deg), y: G.Y(0), r: 14, name: `θ = ${fmt(e.deg, 0)}°: an eigenvector, with eigenvalue λ = ${fmt(e.l, 0)}` });
     });
     line(ctx, G.X(deg), G.Y(0), G.X(deg), G.Y(phi), guide(), 2.5, [4, 8]);
@@ -136,7 +137,7 @@ const mat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \\
    scale. Dashed circles where x⃗(0) lies on an eigenvector line (x₂(0) = 0, x₁(0) + x₂(0) = 0) and where
    λ₁ = λ₂, past the theorem's distinct eigenvalues, where P = λI and every line through the origin is one. */
 (function () {
-  const d = sim('sim-eigenvector-flow', 700);
+  const d = sim('sim-eigenvector-flow', 740);
   const RUN = 5, TMAX = 2.5;
   let T = TMAX;
   const cy = cycle(() => T, 1.2);
@@ -156,11 +157,11 @@ const mat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \\
   const P = drag(d, { x: x10, y: x20 });
   const ro = readout(d);
   T = span();
-  const U = 92, BOX = { l: 700 - 3 * U, r: 700 + 3 * U, t: 110, b: 110 + 6 * U };
+  const U = 88, BOX = { l: 700 - 3 * U, r: 700 + 3 * U, t: 140, b: 140 + 6 * U };
   const V1 = [1, 0], V2 = [1, -1];
   let hits = [];
   hover(d.stage, () => hits);
-  const ex = (l) => (Math.abs(l) < 1e-9 ? '0t' : Math.abs(l - 1) < 1e-9 ? 't' : Math.abs(l + 1) < 1e-9 ? '-t' : `${n(l, 1)}t`);
+  const ex = (l) => (Math.abs(l) < 1e-9 ? '0t' : Math.abs(l - 1) < 1e-9 ? 't' : Math.abs(l + 1) < 1e-9 ? '-t' : `${n(l, Number.isInteger(l) ? 0 : 1)}t`);
   const way = (l) => (Math.abs(l) < 1e-9 ? 'stays put' : l > 0 ? 'slides out' : 'slides in');
   function draw() {
     const { ctx } = begin(d.c);

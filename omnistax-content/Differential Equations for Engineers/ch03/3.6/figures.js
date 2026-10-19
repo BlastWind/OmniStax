@@ -23,7 +23,6 @@ const body = (ctx, x, FY, w, h, color) => { const r = Math.max(6, Math.min(w, h)
   const WL = 80, WR = 1320, FY = 340, CW = 150, CH = 90, SC = 120, FN = 120;
   const REST = [352.5, 700, 1047.5];
   const xs = [0.3, 0, -0.2].map((v, i) => ctl(d.controls, { label: `\\kx${['one', 'two', 'three'][i]}`, cls: 'function', key: `x${i + 1}`, min: -0.5, max: 0.5, step: 0.01, value: v, unit: 'm', dec: 2, aria: `the displacement x${'₁₂₃'[i]} of mass ${i + 1}`, detents: [0] }));
-  const ro = readout(d);
   let hits = [];
   hover(d.stage, () => hits);
   function draw() {
@@ -54,13 +53,13 @@ const body = (ctx, x, FY, w, h, color) => { const r = Math.max(6, Math.min(w, h)
       /* the net spring force, symbolic, from the top of the mass */
       const len = Fn[i] * FN, y = cy - CH / 2 - 30;
       if (Math.abs(len) >= 4) arrow(ctx, c, y, c + len, y, ink, 4);
-      mark(ctx, `${n(Fn[i])} N`, c + (Math.abs(len) >= 4 ? len / 2 : 0), y - 28, ink, { align: 'center', tex: false, weight: 400, size: 18 });
+      mark(ctx, `${fmt(Fn[i], 2)} N`, c + (Math.abs(len) >= 4 ? len / 2 : 0), y - 28, ink, { align: 'center', tex: false, weight: 400, size: 18 });
       hits.push({ x: c, y: cy, r: 60, name: `mass ${i + 1}, m${'₁₂₃'[i]} = 1 kg, displaced ${fmt(x[i], 2)} m` },
         { x: c + len / 2, y, r: 18, name: `the net spring force on mass ${i + 1}, row ${i + 1} of Kx⃗ = ${fmt(Fn[i], 2)} N` });
     });
     hits.push({ x: WL - 18, y: 240, r: 24, name: 'the left wall' }, { x: WR + 18, y: 240, r: 24, name: 'the right wall' });
     headline(ctx, `The net spring forces: $m_1\\kxonedprime = ${n(Fn[0])}$ N, $m_2\\kxtwodprime = ${n(Fn[1])}$ N, $m_3\\kxthreedprime = ${n(Fn[2])}$ N.`);
-    ro.set(`\\kM\\kvecxdprime = \\kK\\kvecx = \\begin{bmatrix} -2 & 1 & 0 \\\\ 1 & -2 & 1 \\\\ 0 & 1 & -2 \\end{bmatrix} ${col(x.map((v) => n(v)))} = ${col(Fn.map((v) => n(v)))}`);
+    F.tex(d.readout, `\\kM\\kvecxdprime = \\kK\\kvecx = \\begin{bmatrix} -2 & 1 & 0 \\\\ 1 & -2 & 1 \\\\ 0 & 1 & -2 \\end{bmatrix} ${col(x.map((v) => n(v)))} = ${col(Fn.map((v) => n(v)))}`);
   }
   still(d, draw);
 })();
