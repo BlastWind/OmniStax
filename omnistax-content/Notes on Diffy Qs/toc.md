@@ -1,0 +1,77 @@
+# Notes on Diffy Qs: table of contents
+
+Jiří Lebl, *Notes on Diffy Qs: Differential Equations for Engineers*, edition 6, version 6.11 (source/diffyqs, the LaTeX of github.com/jirilebl/diffyqs). Each section line gives its number, title, label and folder, then its counts: examples, figures (numbered), tables, exercises (answered, that is numbered 101 and up), theorems. The line ranges are in `modules.json`. The book has no chapter introductions: each chapter opens on its first section. Its back matter is Further Reading (the bibliography the citations name) and Solutions to Selected Exercises, which the source.md files carry with their exercises.
+
+- Chapter 0 Introduction (`intro:chapter`, ch-intro.tex): 2 examples, 2 figures, 0 tables, 27 exercises (9 answered)
+  - 0.1 Notes about these notes (`notes:section`, ch00/0.1): 0 examples, 0 figures, 0 tables, 0 exercises (0 answered), 0 theorems
+  - 0.2 Introduction to differential equations (`introde:section`, ch00/0.2): 2 examples, 2 figures, 0 tables, 20 exercises (6 answered), 0 theorems
+  - 0.3 Classification of differential equations (`classification:section`, ch00/0.3): 0 examples, 0 figures, 0 tables, 7 exercises (3 answered), 0 theorems
+- Chapter 1 First-order equations (`fo:chapter`, ch-first-order-ode.tex): 27 examples, 23 figures, 2 tables, 124 exercises (43 answered)
+  - 1.1 Integrals as solutions (`integralsols:section`, ch01/1.1): 6 examples, 1 figures, 0 tables, 19 exercises (7 answered), 0 theorems
+  - 1.2 Slope fields (`slopefields:section`, ch01/1.2): 3 examples, 6 figures, 0 tables, 18 exercises (6 answered), 1 theorems
+  - 1.3 Separable equations (`separable:section`, ch01/1.3): 4 examples, 2 figures, 0 tables, 19 exercises (7 answered), 0 theorems
+  - 1.4 Linear equations and the integrating factor (`intfactor:section`, ch01/1.4): 2 examples, 1 figures, 0 tables, 17 exercises (5 answered), 0 theorems
+  - 1.5 Substitution (`substitution:section`, ch01/1.5): 2 examples, 0 figures, 0 tables, 10 exercises (4 answered), 0 theorems
+  - 1.6 Autonomous equations (`auteq:section`, ch01/1.6): 0 examples, 5 figures, 0 tables, 11 exercises (4 answered), 0 theorems
+  - 1.7 Numerical methods: Euler’s method (`numer:section`, ch01/1.7): 0 examples, 2 figures, 2 tables, 11 exercises (4 answered), 0 theorems
+  - 1.8 Exact equations (`exact:section`, ch01/1.8): 7 examples, 2 figures, 0 tables, 10 exercises (3 answered), 1 theorems
+  - 1.9 First-order linear PDEs (`fopde:section`, ch01/1.9): 3 examples, 4 figures, 0 tables, 9 exercises (3 answered), 0 theorems
+- Chapter 2 Higher-order linear ODEs (`ho:chapter`, ch-higher-order-ode.tex): 12 examples, 8 figures, 0 tables, 90 exercises (31 answered)
+  - 2.1 Second-order linear ODEs (`solinear:section`, ch02/2.1): 0 examples, 0 figures, 0 tables, 15 exercises (5 answered), 3 theorems
+  - 2.2 Constant-coefficient second-order linear ODEs (`sec:ccsol`, ch02/2.2): 4 examples, 0 figures, 0 tables, 23 exercises (7 answered), 3 theorems
+  - 2.3 Higher-order linear ODEs (`sec:hol`, ch02/2.3): 5 examples, 0 figures, 0 tables, 17 exercises (6 answered), 3 theorems
+  - 2.4 Mechanical vibrations (`sec:mv`, ch02/2.4): 2 examples, 4 figures, 0 tables, 10 exercises (4 answered), 0 theorems
+  - 2.5 Nonhomogeneous equations (`sec:nonhom`, ch02/2.5): 0 examples, 0 figures, 0 tables, 17 exercises (6 answered), 1 theorems
+  - 2.6 Forced oscillations and resonance (`forcedo:section`, ch02/2.6): 1 examples, 4 figures, 0 tables, 8 exercises (3 answered), 0 theorems
+- Chapter 3 Systems of ODEs (`sys:chapter`, ch-systems.tex): 24 examples, 17 figures, 1 tables, 111 exercises (37 answered)
+  - 3.1 Introduction to systems of ODEs (`sec:introtosys`, ch03/3.1): 6 examples, 3 figures, 0 tables, 13 exercises (6 answered), 1 theorems
+  - 3.2 Matrices and linear systems (`sec:matrix`, ch03/3.2): 1 examples, 0 figures, 0 tables, 15 exercises (4 answered), 1 theorems
+  - 3.3 Linear systems of ODEs (`linsystems:section`, ch03/3.3): 2 examples, 0 figures, 0 tables, 10 exercises (4 answered), 2 theorems
+  - 3.4 Eigenvalue method (`eigenmethod:section`, ch03/3.4): 4 examples, 0 figures, 0 tables, 15 exercises (4 answered), 2 theorems
+  - 3.5 Two-dimensional systems and their vector fields (`sec:twodimaut`, ch03/3.5): 0 examples, 8 figures, 1 tables, 8 exercises (3 answered), 0 theorems
+  - 3.6 Second-order systems and applications (`sol:section`, ch03/3.6): 3 examples, 6 figures, 0 tables, 9 exercises (3 answered), 1 theorems
+  - 3.7 Repeated eigenvalues (`sec:multeigen`, ch03/3.7): 2 examples, 0 figures, 0 tables, 12 exercises (4 answered), 1 theorems
+  - 3.8 Matrix exponentials (`sec:matexp`, ch03/3.8): 1 examples, 0 figures, 0 tables, 17 exercises (5 answered), 2 theorems
+  - 3.9 Nonhomogeneous systems (`nonhomogsys:section`, ch03/3.9): 5 examples, 0 figures, 0 tables, 12 exercises (4 answered), 0 theorems
+- Chapter 4 Fourier series and PDEs (`FS:chapter`, ch-fourier-and-pde.tex): 29 examples, 27 figures, 0 tables, 130 exercises (42 answered)
+  - 4.1 Boundary value problems (`bvp:section`, ch04/4.1): 5 examples, 2 figures, 0 tables, 11 exercises (5 answered), 2 theorems
+  - 4.2 The trigonometric series (`ts:section`, ch04/4.2): 4 examples, 6 figures, 0 tables, 13 exercises (4 answered), 0 theorems
+  - 4.3 More on the Fourier series (`moreonfourier:section`, ch04/4.3): 6 examples, 3 figures, 0 tables, 17 exercises (6 answered), 3 theorems
+  - 4.4 Sine and cosine series (`sec:scs`, ch04/4.4): 4 examples, 2 figures, 0 tables, 16 exercises (5 answered), 1 theorems
+  - 4.5 Applications of Fourier series (`appoffourier:section`, ch04/4.5): 2 examples, 1 figures, 0 tables, 10 exercises (4 answered), 0 theorems
+  - 4.6 PDEs, separation of variables, and the heat equation (`heateq:section`, ch04/4.6): 3 examples, 5 figures, 0 tables, 16 exercises (5 answered), 0 theorems
+  - 4.7 One-dimensional wave equation (`we:section`, ch04/4.7): 1 examples, 4 figures, 0 tables, 12 exercises (4 answered), 1 theorems
+  - 4.8 D’Alembert solution of the wave equation (`dalemb:section`, ch04/4.8): 1 examples, 1 figures, 0 tables, 9 exercises (3 answered), 0 theorems
+  - 4.9 Steady state temperature and the Laplacian (`dirich:section`, ch04/4.9): 1 examples, 1 figures, 0 tables, 13 exercises (2 answered), 0 theorems
+  - 4.10 Dirichlet problem in the circle and the Poisson kernel (`dirichdisc:section`, ch04/4.10): 2 examples, 2 figures, 0 tables, 13 exercises (4 answered), 0 theorems
+- Chapter 5 More on eigenvalue problems (`SL:chapter`, ch-eigenvalue-probs.tex): 6 examples, 5 figures, 0 tables, 27 exercises (6 answered)
+  - 5.1 Sturm–Liouville problems (`slproblems:section`, ch05/5.1): 4 examples, 1 figures, 0 tables, 10 exercises (2 answered), 4 theorems
+  - 5.2 Higher-order eigenvalue problems (`sec:appeig`, ch05/5.2): 1 examples, 1 figures, 0 tables, 7 exercises (2 answered), 0 theorems
+  - 5.3 Steady periodic solutions (`sps:section`, ch05/5.3): 1 examples, 3 figures, 0 tables, 10 exercises (2 answered), 0 theorems
+- Chapter 6 The Laplace transform (`LT:chapter`, ch-laplace.tex): 24 examples, 7 figures, 2 tables, 75 exercises (22 answered)
+  - 6.1 The Laplace transform (`laplace:section`, ch06/6.1): 7 examples, 0 figures, 1 tables, 19 exercises (4 answered), 3 theorems
+  - 6.2 Transforms of derivatives and ODEs (`transformsofders:section`, ch06/6.2): 6 examples, 2 figures, 1 tables, 18 exercises (4 answered), 0 theorems
+  - 6.3 Convolution (`convolution:section`, ch06/6.3): 5 examples, 0 figures, 0 tables, 13 exercises (4 answered), 1 theorems
+  - 6.4 Dirac delta and impulse response (`diracdelta:section`, ch06/6.4): 3 examples, 2 figures, 0 tables, 13 exercises (5 answered), 0 theorems
+  - 6.5 Solving PDEs with the Laplace transform (`laplacepde:section`, ch06/6.5): 3 examples, 3 figures, 0 tables, 12 exercises (5 answered), 0 theorems
+- Chapter 7 Power-series methods (`ps:chapter`, ch-power-ser.tex): 13 examples, 4 figures, 0 tables, 40 exercises (13 answered)
+  - 7.1 Power series (`powerseries:section`, ch07/7.1): 6 examples, 2 figures, 0 tables, 17 exercises (6 answered), 2 theorems
+  - 7.2 Series solutions of linear second-order ODEs (`seriessols:section`, ch07/7.2): 3 examples, 1 figures, 0 tables, 11 exercises (3 answered), 0 theorems
+  - 7.3 Singular points and the method of Frobenius (`frobenius:section`, ch07/7.3): 4 examples, 1 figures, 0 tables, 12 exercises (4 answered), 1 theorems
+- Chapter 8 Nonlinear systems (`nlin:chapter`, ch-nonlin-systems.tex): 11 examples, 17 figures, 1 tables, 43 exercises (16 answered)
+  - 8.1 Linearization, critical points, and equilibria (`linearization:section`, ch08/8.1): 2 examples, 2 figures, 0 tables, 10 exercises (4 answered), 0 theorems
+  - 8.2 Stability and classification of isolated critical points (`nlinstability:section`, ch08/8.2): 4 examples, 3 figures, 1 tables, 11 exercises (4 answered), 0 theorems
+  - 8.3 Applications of nonlinear systems (`nlinapps:section`, ch08/8.3): 0 examples, 4 figures, 0 tables, 8 exercises (3 answered), 0 theorems
+  - 8.4 Limit cycles (`limitcycles:section`, ch08/8.4): 5 examples, 2 figures, 0 tables, 9 exercises (4 answered), 2 theorems
+  - 8.5 Chaos (`sec:chaos`, ch08/8.5): 0 examples, 6 figures, 0 tables, 5 exercises (1 answered), 0 theorems
+- Appendix A Linear algebra (`linalg:appendix`, ap-linear-algebra.tex): 12 examples, 7 figures, 0 tables, 80 exercises (32 answered)
+  - A.1 Vectors, mappings, and matrices (`vecsandmaps:section`, appA/A.1): 0 examples, 4 figures, 0 tables, 18 exercises (5 answered), 0 theorems
+  - A.2 Matrix algebra (`matalg:section`, appA/A.2): 1 examples, 0 figures, 0 tables, 10 exercises (5 answered), 0 theorems
+  - A.3 Elimination (`elim:section`, appA/A.3): 1 examples, 0 figures, 0 tables, 16 exercises (8 answered), 1 theorems
+  - A.4 Subspaces, dimension, and the kernel (`subspaces:section`, appA/A.4): 5 examples, 0 figures, 0 tables, 9 exercises (3 answered), 3 theorems
+  - A.5 Inner product and projections (`innerproduct:section`, appA/A.5): 5 examples, 2 figures, 0 tables, 16 exercises (7 answered), 0 theorems
+  - A.6 Determinant (`det:section`, appA/A.6): 0 examples, 1 figures, 0 tables, 11 exercises (4 answered), 2 theorems
+- Appendix B Table of Laplace Transforms (`laplacelist:appendix`, ap-laplace-list.tex): 0 examples, 0 figures, 0 tables, 0 exercises (0 answered)
+  - B Table of Laplace Transforms (`laplacelist:appendix`, appB/B): 0 examples, 0 figures, 0 tables, 0 exercises (0 answered), 0 theorems
+- Further Reading (diffyqs.tex)
+- Solutions to Selected Exercises (from the \exsol of each exercise)
