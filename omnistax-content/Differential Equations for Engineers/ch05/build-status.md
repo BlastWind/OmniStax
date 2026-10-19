@@ -18,6 +18,8 @@ Task `prep1-ch05` (prep stage one), port 8106, scratch `/tmp/claude-0/-home-user
 - `ost check diffyqs`: no errors, no warnings.
 - 5.1 built (task `sec-5.1`, 2026-10-19): 2 figures (Figure 5.1 a still Sim under h with an n choice; `sim-eigenfunction-series` a still Sim under N and a probe x), 2 derivations (`drv-robin-eigenvalues`, Example 5.1.3's λ > 0 case; `drv-eigenfunction-coefficients`, the boxed (5.4) kept in the text), 10 exercises (3 inline Try Its, 5 unkeyed with AI solutions, 2 keyed), 16 concepts introduced, 2 referents, book footnotes 24 and 25 (25 printed in 5.1.102's card); `ost check diffyqs --section 5.1` ok; anchors, three form `ktex` fixes and six wanted variables rows in its plan's `## Wanted at chapter level`.
 
+- 5.3 built (task `sec-5.3`, 2026-10-19): 3 figures (`sim-forced-string` Figure 5.3 + 5.4 moving, `sim-string-resonance` a still Sim of B(ω) with a probe, `sim-underground-temperature` Figure 5.5 moving with the fact map), 3 derivations (`drv-forced-string-yp` with (5.9) numbered inside, `drv-underground-x`, `drv-underground-temperature`; the planned underground one split in two so Try It 5.3.4 keeps its place), 10 exercises (4 inline Try Its, 4 unkeyed with AI solutions, 2 keyed), 8 concepts introduced, 2 referents (`ref` yp, yc set back on 5.3/y_p, y_c), book footnote 27; `ost check diffyqs --section 5.3` ok; anchors in its plan's `## Wanted at chapter level`.
+
 ## Next
 
 - Sections 5.1 → 5.3, then the chapter pass.
