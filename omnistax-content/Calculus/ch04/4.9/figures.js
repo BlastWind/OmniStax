@@ -21,7 +21,7 @@ function newton(ctx, ax, f, df, x0, k) {
       if (along > 0) line(ctx, ax.X(x), ax.Y(f(x)), ax.X(x + (x1 - x) * along), ax.Y(f(x) * (1 - along)), lc, 3);
     }
   });
-  xs.forEach((x, i) => { if (i <= k && isFinite(x)) dot(ctx, ax.X(x), ax.Y(0), C('point'), i === Math.floor(k), 7); });
+  xs.forEach((x, i) => { if (i <= k && isFinite(x) && x >= ax.xr[0] && x <= ax.xr[1]) dot(ctx, ax.X(x), ax.Y(0), C('point'), i === Math.floor(k), 7); });
   return xs;
 }
 

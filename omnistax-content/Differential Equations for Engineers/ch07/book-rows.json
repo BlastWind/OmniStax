@@ -1,0 +1,1003 @@
+{
+  "types": [],
+  "symbols": [
+    {
+      "sym": "a",
+      "latex": "a",
+      "macro": "\\ka"
+    },
+    {
+      "sym": "b",
+      "latex": "b",
+      "macro": "\\kb"
+    },
+    {
+      "sym": "c",
+      "latex": "c",
+      "macro": "\\kc"
+    },
+    {
+      "sym": "S",
+      "latex": "S",
+      "macro": "\\kS"
+    },
+    {
+      "sym": "ρ",
+      "latex": "\\rho"
+    },
+    {
+      "sym": "f_k",
+      "latex": "f^{(k)}",
+      "macro": "\\kfk"
+    },
+    {
+      "sym": "J",
+      "latex": "J",
+      "macro": "\\kJ"
+    },
+    {
+      "sym": "Y",
+      "latex": "Y",
+      "macro": "\\kY"
+    },
+    {
+      "sym": "Γ",
+      "latex": "\\Gamma",
+      "macro": "\\kGamma"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "power-series",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Power series",
+      "terms": [
+        "power series"
+      ],
+      "type": "series",
+      "statement": "A power series is an expression Σ a_k(x − x₀)^k = a₀ + a₁(x − x₀) + a₂(x − x₀)² + ⋯, where a₀, a₁, a₂, … and x₀ are constants; many functions can be written in terms of one, and a solution of a differential equation can be sought as one.",
+      "forms": [
+        {
+          "id": "eq-power-series",
+          "latex": "\\sum_{k=0}^\\infty a_k {(x-x_0)}^k = a_0 + a_1 (x-x_0) + a_2 {(x-x_0)}^2 + a_3 {(x-x_0)}^3 + \\cdots",
+          "ktex": "\\sum_{k=0}^\\infty \\ka_k {(x-x_0)}^k = \\ka_0 + \\ka_1 (x-x_0) + \\ka_2 {(x-x_0)}^2 + \\ka_3 {(x-x_0)}^3 + \\cdots"
+        }
+      ]
+    },
+    {
+      "id": "power-series-coefficients",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Coefficients of a power series",
+      "terms": [
+        "coefficients"
+      ],
+      "symbol": "a",
+      "type": "sequence",
+      "statement": "The constants a₀, a₁, a₂, …, a_k, … in a power series Σ a_k(x − x₀)^k are called its coefficients."
+    },
+    {
+      "id": "power-series-center",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Center of a power series",
+      "terms": [
+        "center"
+      ],
+      "statement": "The constant x₀ in a power series Σ a_k(x − x₀)^k is called its center; at x = x₀ the series always converges, to a₀."
+    },
+    {
+      "id": "partial-sum",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Partial sum",
+      "terms": [
+        "partial sum"
+      ],
+      "symbol": "S",
+      "type": "series",
+      "statement": "The partial sum S_n(x) = Σ_{k=0}^n a_k(x − x₀)^k = a₀ + a₁(x − x₀) + ⋯ + a_n(x − x₀)ⁿ is the power series cut off after the nth power.",
+      "forms": [
+        {
+          "id": "eq-partial-sum",
+          "latex": "S_n(x) = \\sum_{k=0}^n a_k {(x-x_0)}^k = a_0 + a_1 (x-x_0) + a_2 {(x-x_0)}^2 + \\cdots + a_n {(x-x_0)}^n",
+          "ktex": "\\kS_n(x) = \\sum_{k=0}^n \\ka_k {(x-x_0)}^k = \\ka_0 + \\ka_1 (x-x_0) + \\ka_2 {(x-x_0)}^2 + \\cdots + \\ka_n {(x-x_0)}^n"
+        }
+      ]
+    },
+    {
+      "id": "convergent-power-series",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Convergent power series",
+      "terms": [
+        "converges",
+        "convergent power series",
+        "divergent"
+      ],
+      "statement": "A power series converges at x if the limit of its partial sums S_n(x) as n → ∞ exists; it is a convergent power series if it converges at some x ≠ x₀, and then the series is that limit; it is divergent if it converges at no x ≠ x₀.",
+      "forms": [
+        {
+          "id": "eq-power-series-limit",
+          "latex": "\\sum_{k=0}^\\infty a_k {(x-x_0)}^k = \\lim_{n\\to\\infty} \\sum_{k=0}^n a_k {(x-x_0)}^k",
+          "ktex": "\\sum_{k=0}^\\infty \\ka_k {(x-x_0)}^k = \\lim_{n\\to\\infty} \\sum_{k=0}^n \\ka_k {(x-x_0)}^k"
+        }
+      ]
+    },
+    {
+      "id": "absolute-convergence",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Absolute convergence",
+      "terms": [
+        "converges absolutely"
+      ],
+      "statement": "A power series converges absolutely at x whenever Σ |a_k| |x − x₀|^k converges; if it converges absolutely at x then it converges at x, but the opposite implication is not true.",
+      "forms": [
+        {
+          "id": "eq-absolute-convergence",
+          "latex": "\\lim_{n\\to\\infty} \\sum_{k=0}^n \\lvert a_k \\rvert \\, {\\lvert x-x_0 \\rvert}^k",
+          "ktex": "\\lim_{n\\to\\infty} \\sum_{k=0}^n \\lvert \\ka_k \\rvert \\, {\\lvert x-x_0 \\rvert}^k"
+        }
+      ]
+    },
+    {
+      "id": "radius-of-convergence",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Radius of convergence",
+      "terms": [
+        "radius of convergence"
+      ],
+      "symbol": "ρ",
+      "statement": "The radius of convergence of a power series is the number ρ (ρ = ∞ allowed) such that the series converges absolutely on (x₀ − ρ, x₀ + ρ) and diverges when x < x₀ − ρ or x > x₀ + ρ; ρ = ∞ means the series converges for all x, and ρ = 0 is another way of saying the series is divergent."
+    },
+    {
+      "id": "convergence-of-a-power-series",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Convergence of a power series",
+      "statement": "For a power series Σ a_k(x − x₀)^k there exists a radius of convergence ρ: if the series converges absolutely at some x₁, it converges absolutely at every x no further from x₀ than x₁, since the smaller terms |a_k||x − x₀|^k are bounded by the summable |a_k||x₁ − x₀|^k; at the endpoints x₀ ± ρ the series may or may not converge."
+    },
+    {
+      "id": "ratio-test",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Ratio test",
+      "terms": [
+        "ratio test"
+      ],
+      "statement": "For a series Σ c_k, if the limit L = lim |c_{k+1}/c_k| exists, then the series converges absolutely if L < 1 and diverges if L > 1.",
+      "forms": [
+        {
+          "id": "eq-ratio-test",
+          "latex": "L = \\lim_{k\\to\\infty} \\left \\lvert \\frac{c_{k+1}}{c_k} \\right \\rvert",
+          "ktex": "L = \\lim_{k\\to\\infty} \\left \\lvert \\frac{\\kc_{k+1}}{\\kc_k} \\right \\rvert"
+        }
+      ]
+    },
+    {
+      "id": "root-test",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Root test",
+      "terms": [
+        "root test"
+      ],
+      "statement": "For a series Σ c_k, if the limit L = lim ᵏ√|c_k| exists, then the series converges absolutely if L < 1 and diverges if L > 1.",
+      "forms": [
+        {
+          "id": "eq-root-test",
+          "latex": "L = \\lim_{k\\to\\infty} \\sqrt[k]{\\lvert c_k \\rvert}",
+          "ktex": "L = \\lim_{k\\to\\infty} \\sqrt[k]{\\lvert \\kc_k \\rvert}"
+        }
+      ]
+    },
+    {
+      "id": "ratio-and-root-tests-for-power-series",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Ratio and root tests for power series",
+      "statement": "For a power series Σ a_k(x − x₀)^k such that A = lim |a_{k+1}/a_k| or A = lim ᵏ√|a_k| exists: if A = 0 the radius of convergence is ∞, otherwise it is 1/A, and if either limit diverges to ∞ the series is divergent. The tests say nothing about the endpoints, and where the limit for A does not exist the test is applied to the series itself to find L.",
+      "forms": [
+        {
+          "id": "eq-power-series-A",
+          "latex": "A = \\lim_{k\\to\\infty} \\left \\lvert \\frac{a_{k+1}}{a_k} \\right \\rvert \\qquad \\text{or} \\qquad A = \\lim_{k\\to\\infty} \\sqrt[k]{\\lvert a_k \\rvert}",
+          "ktex": "A = \\lim_{k\\to\\infty} \\left \\lvert \\frac{\\ka_{k+1}}{\\ka_k} \\right \\rvert \\qquad \\text{or} \\qquad A = \\lim_{k\\to\\infty} \\sqrt[k]{\\lvert \\ka_k \\rvert}"
+        },
+        {
+          "id": "eq-radius-from-A",
+          "latex": "\\rho = \\frac{1}{A}",
+          "ktex": "\\rho = \\frac{1}{A}",
+          "condition": "A > 0; the radius is ∞ when A = 0"
+        }
+      ]
+    },
+    {
+      "id": "analytic-function",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Analytic function",
+      "terms": [
+        "analytic functions"
+      ],
+      "symbol": "f",
+      "type": "function",
+      "statement": "Functions represented by power series are called analytic: an analytic function f(x) equals its Taylor series for x near a given point x₀. Not all functions are analytic, but the functions seen in calculus likely all are."
+    },
+    {
+      "id": "taylor-series",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Taylor series",
+      "terms": [
+        "Taylor series"
+      ],
+      "type": "series",
+      "statement": "The Taylor series of f around x₀ is the power series computed from f, Σ f^{(k)}(x₀)/k! (x − x₀)^k = f(x₀) + f′(x₀)(x − x₀) + f″(x₀)/2 (x − x₀)² + ⋯, where f^{(k)}(x₀) is the kth derivative of f at x₀; the approximation is very good for x near x₀ and gets worse further away, so more terms are needed far from x₀.",
+      "forms": [
+        {
+          "id": "eq-taylor-series",
+          "latex": "f(x) = \\sum_{k=0}^\\infty \\frac{f^{(k)}(x_0)}{k!} {(x-x_0)}^k = f(x_0) + f'(x_0) (x-x_0) + \\frac{f''(x_0)}{2} (x-x_0)^2 + \\cdots",
+          "ktex": "\\kf(x) = \\sum_{k=0}^\\infty \\frac{\\kfk(x_0)}{k!} {(x-x_0)}^k = \\kf(x_0) + \\kf'(x_0) (x-x_0) + \\frac{\\kf''(x_0)}{2} (x-x_0)^2 + \\cdots"
+        }
+      ]
+    },
+    {
+      "id": "maclaurin-series-of-common-functions",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Series of the exponential and the sine",
+      "statement": "The exponential and the sine are analytic with series that converge at every x: eˣ = Σ x^k/k!, with a_k = 1/k! and 0! = 1, and sin x = Σ (−1)ⁿ x^{2n+1}/(2n + 1)! around x₀ = 0.",
+      "forms": [
+        {
+          "id": "eq-series-exp",
+          "latex": "e^x = \\sum_{k=0}^\\infty \\frac{1}{k!} x^k = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\cdots",
+          "ktex": "e^x = \\sum_{k=0}^\\infty \\frac{1}{k!} x^k = 1 + x + \\frac{x^2}{2} + \\frac{x^3}{6} + \\cdots"
+        },
+        {
+          "id": "eq-series-sin",
+          "latex": "\\sin(x) = \\sum_{n=0}^\\infty \\frac{{(-1)}^n}{(2n+1)!} x^{2n+1}",
+          "ktex": "\\sin(x) = \\sum_{n=0}^\\infty \\frac{{(-1)}^n}{(2n+1)!} x^{2n+1}"
+        }
+      ]
+    },
+    {
+      "id": "term-by-term-differentiation-and-integration",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Term-by-term differentiation",
+      "statement": "A convergent power series can be differentiated term by term: for x within the radius of convergence, d/dx Σ a_k(x − x₀)^k = Σ_{k≥1} k a_k(x − x₀)^{k−1} = a₁ + 2a₂(x − x₀) + 3a₃(x − x₀)² + ⋯, the k = 0 term disappearing as it was constant; the differentiated series has the same radius of convergence as the original.",
+      "forms": [
+        {
+          "id": "eq-term-by-term-derivative",
+          "latex": "\\frac{d}{dx} \\left[\\sum_{k=0}^\\infty a_k {(x-x_0)}^k\\right] = \\sum_{k=1}^\\infty k a_k {(x-x_0)}^{k-1} = a_1 + 2 a_2 (x-x_0) + 3 a_3 {(x-x_0)}^{2} + \\cdots",
+          "ktex": "\\frac{d}{dx} \\left[\\sum_{k=0}^\\infty \\ka_k {(x-x_0)}^k\\right] = \\sum_{k=1}^\\infty k \\ka_k {(x-x_0)}^{k-1} = \\ka_1 + 2 \\ka_2 (x-x_0) + 3 \\ka_3 {(x-x_0)}^{2} + \\cdots"
+        }
+      ]
+    },
+    {
+      "id": "reindexing-a-series",
+      "kind": "skill",
+      "section": "7.1",
+      "name": "Reindexing a series",
+      "terms": [
+        "reindex"
+      ],
+      "statement": "To reindex a series, replace k by k + 1 (or another shift) throughout, so that the series starts at k = 0 again; the series does not change, only how it is written, as when Σ_{k≥1} x^{k−1}/(k − 1)! becomes Σ_{k≥0} x^k/k!."
+    },
+    {
+      "id": "combining-power-series",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Sum and constant multiple of power series",
+      "statement": "Convergent power series are added term by term, (Σ a_k(x − x₀)^k) + (Σ b_k(x − x₀)^k) = Σ (a_k + b_k)(x − x₀)^k, and multiplied by a constant term by term, α Σ a_k(x − x₀)^k = Σ αa_k(x − x₀)^k; the radius of convergence of the sum is at least the minimum of the two radii.",
+      "forms": [
+        {
+          "id": "eq-series-sum",
+          "latex": "\\left(\\sum_{k=0}^\\infty a_k {(x-x_0)}^k\\right) + \\left(\\sum_{k=0}^\\infty b_k {(x-x_0)}^k\\right) = \\sum_{k=0}^\\infty (a_k+b_k) {(x-x_0)}^k",
+          "ktex": "\\left(\\sum_{k=0}^\\infty \\ka_k {(x-x_0)}^k\\right) + \\left(\\sum_{k=0}^\\infty \\kb_k {(x-x_0)}^k\\right) = \\sum_{k=0}^\\infty (\\ka_k+\\kb_k) {(x-x_0)}^k"
+        },
+        {
+          "id": "eq-series-constant-multiple",
+          "latex": "\\alpha \\left(\\sum_{k=0}^\\infty a_k {(x-x_0)}^k\\right) = \\sum_{k=0}^\\infty \\alpha a_k {(x-x_0)}^k",
+          "ktex": "\\alpha \\left(\\sum_{k=0}^\\infty \\ka_k {(x-x_0)}^k\\right) = \\sum_{k=0}^\\infty \\alpha \\ka_k {(x-x_0)}^k"
+        }
+      ]
+    },
+    {
+      "id": "multiplying-power-series",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Product of power series",
+      "statement": "Two convergent power series multiply to a power series, (Σ a_k(x − x₀)^k)(Σ b_k(x − x₀)^k) = Σ c_k(x − x₀)^k with c_k = a₀b_k + a₁b_{k−1} + ⋯ + a_kb₀; the radius of convergence of the product is at least the minimum of the two radii.",
+      "forms": [
+        {
+          "id": "eq-series-product",
+          "latex": "\\left(\\sum_{k=0}^\\infty a_k {(x-x_0)}^k\\right) \\, \\left(\\sum_{k=0}^\\infty b_k {(x-x_0)}^k\\right) = \\sum_{k=0}^\\infty c_k {(x-x_0)}^k",
+          "ktex": "\\left(\\sum_{k=0}^\\infty \\ka_k {(x-x_0)}^k\\right) \\, \\left(\\sum_{k=0}^\\infty \\kb_k {(x-x_0)}^k\\right) = \\sum_{k=0}^\\infty \\kc_k {(x-x_0)}^k"
+        },
+        {
+          "id": "eq-series-product-coefficients",
+          "latex": "c_k = a_0b_k + a_1 b_{k-1} + \\cdots + a_k b_0",
+          "ktex": "\\kc_k = \\ka_0\\kb_k + \\ka_1 \\kb_{k-1} + \\cdots + \\ka_k \\kb_0"
+        }
+      ]
+    },
+    {
+      "id": "polynomial-as-a-power-series",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Polynomials as finite power series",
+      "statement": "A polynomial is a finite power series, one whose coefficients a_k are zero for all large enough k; it expands as a power series about any point x₀ by writing it as a polynomial in (x − x₀), either by expanding a₀ + a₁(x − x₀) + ⋯ and solving for the coefficients or by differentiating at x₀ and using the Taylor series formula, as 2x² − 3x + 4 = 3 + (x − 1) + 2(x − 1)²."
+    },
+    {
+      "id": "geometric-series",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Geometric series",
+      "terms": [
+        "geometric series"
+      ],
+      "type": "series",
+      "statement": "The geometric series is 1/(1 − x) = Σ x^k = 1 + x + x² + ⋯ for −1 < x < 1; its radius of convergence is 1 by the ratio test, and it diverges for x ≤ −1 and x ≥ 1 even though 1/(1 − x) is defined for all x ≠ 1: a series for a function only defines the function on an interval.",
+      "forms": [
+        {
+          "id": "eq-geometric-series",
+          "latex": "\\frac{1}{1-x} = \\sum_{k=0}^\\infty x^k = 1 + x + x^2 + \\cdots",
+          "ktex": "\\frac{1}{1-x} = \\sum_{k=0}^\\infty x^k = 1 + x + x^2 + \\cdots",
+          "condition": "−1 < x < 1"
+        }
+      ]
+    },
+    {
+      "id": "power-series-of-a-rational-function",
+      "kind": "skill",
+      "section": "7.1",
+      "name": "Expanding a rational function",
+      "statement": "A rational function, a ratio of polynomials, expands around any x₀ where its denominator is not zero by the geometric series together with the rules for adding and multiplying power series, or by partial fractions when it is more complicated, instead of the Taylor series formula; the radius of convergence is then checked with the ratio test, as for x/(1 + 2x + x²) = Σ (−1)^{k+1} k x^k with radius 1."
+    },
+    {
+      "id": "ordinary-point",
+      "kind": "definition",
+      "section": "7.2",
+      "name": "Ordinary point",
+      "terms": [
+        "ordinary point"
+      ],
+      "type": "point",
+      "statement": "For the linear second-order homogeneous equation P(x)y″ + Q(x)y′ + R(x)y = 0 with polynomial P, Q, R, the point x₀ is an ordinary point if P(x₀) ≠ 0, that is, Q(x)/P(x) and R(x)/P(x) are defined for x near x₀; a power series solution y = Σ a_k(x − x₀)^k is then sought in some interval around x₀.",
+      "forms": [
+        {
+          "id": "eq-polynomial-coefficient-ode",
+          "latex": "P(x) y'' + Q(x) y' + R(x) y = 0",
+          "ktex": "P(x) \\kydprime + Q(x) \\kyprime + R(x) \\ky = 0"
+        }
+      ]
+    },
+    {
+      "id": "singular-point",
+      "kind": "definition",
+      "section": "7.2",
+      "name": "Singular point",
+      "terms": [
+        "singular point"
+      ],
+      "type": "point",
+      "statement": "If P(x₀) = 0, then x₀ is a singular point of P(x)y″ + Q(x)y′ + R(x)y = 0; handling singular points is harder than handling ordinary points, and at one the power series method may find only the trivial solution y = 0."
+    },
+    {
+      "id": "power-series-solution-of-a-differential-equation",
+      "kind": "skill",
+      "section": "7.2",
+      "name": "Solving an equation by power series",
+      "statement": "Near an ordinary point x₀, try y = Σ a_k(x − x₀)^k: differentiate term by term, reindex so that every series carries the same power, plug into the equation, collect into a single series and set each coefficient to zero; the result is a recurrence relation determining every a_k from the arbitrary a₀ and a₁, and the general solution is y = a₀y₁ + a₁y₂ with y₁(x₀) = 1, y₁′(x₀) = 0, y₂(x₀) = 0, y₂′(x₀) = 1, so that y(x₀) = a₀ and y′(x₀) = a₁. Usually no elementary function matches the series, and the series is the answer.",
+      "forms": [
+        {
+          "id": "eq-series-solution-ansatz",
+          "latex": "y = \\sum_{k=0}^\\infty a_k {(x-x_0)}^k",
+          "ktex": "\\ky = \\sum_{k=0}^\\infty \\ka_k {(x-x_0)}^k"
+        }
+      ]
+    },
+    {
+      "id": "recurrence-relation",
+      "kind": "definition",
+      "section": "7.2",
+      "name": "Recurrence relation",
+      "terms": [
+        "recurrence relation"
+      ],
+      "statement": "The equation relating the coefficients of a power series solution, obtained by setting the coefficients of the combined series to zero, is a recurrence relation, such as a_{k+2} = a_k/((k + 2)(k + 1)) for y″ − y = 0; it does not matter what a₀ and a₁ are, but once they are picked all other coefficients are determined by it.",
+      "forms": [
+        {
+          "id": "eq-recurrence-example",
+          "latex": "(k+2)\\,(k+1) \\,a_{k+2} - a_k = 0 , \\qquad \\text{or} \\qquad a_{k+2} = \\frac{a_k}{(k+2)(k+1)}",
+          "ktex": "(k+2)\\,(k+1) \\,\\ka_{k+2} - \\ka_k = 0 , \\qquad \\text{or} \\qquad \\ka_{k+2} = \\frac{\\ka_k}{(k+2)(k+1)}",
+          "condition": "y″ − y = 0 near x₀ = 0"
+        }
+      ]
+    },
+    {
+      "id": "airys-equation",
+      "kind": "definition",
+      "section": "7.2",
+      "name": "Airy’s equation",
+      "terms": [
+        "Airy’s equation"
+      ],
+      "statement": "Airy's equation is y″ − xy = 0; the point x₀ = 0 is an ordinary point of it.",
+      "forms": [
+        {
+          "id": "eq-airys-equation",
+          "latex": "y'' - xy = 0",
+          "ktex": "\\kydprime - x\\ky = 0"
+        }
+      ]
+    },
+    {
+      "id": "series-solutions-of-airys-equation",
+      "kind": "result",
+      "section": "7.2",
+      "name": "Series solutions of Airy’s equation",
+      "statement": "Near x₀ = 0 Airy's equation gives a₂ = 0 and a_{k+2} = a_{k−1}/((k + 2)(k + 1)), so the coefficients jump in steps of three, a_{3n+2} = 0, and the general solution is y = a₀y₁ + a₁y₂ with y₁ = 1 + x³/6 + x⁶/180 + ⋯ and y₂ = x + x⁴/12 + x⁷/504 + ⋯; y₁ and y₂ cannot be written in terms of elementary functions, oscillate for negative x like solutions of y″ + y = 0 and grow without bound for positive x like solutions of y″ − y = 0.",
+      "forms": [
+        {
+          "id": "eq-airy-recurrence",
+          "latex": "(k+2)\\,(k+1) \\,a_{k+2} - a_{k-1} = 0 , \\qquad \\text{or} \\qquad a_{k+2} = \\frac{a_{k-1}}{(k+2)(k+1)}",
+          "ktex": "(k+2)\\,(k+1) \\,\\ka_{k+2} - \\ka_{k-1} = 0 , \\qquad \\text{or} \\qquad \\ka_{k+2} = \\frac{\\ka_{k-1}}{(k+2)(k+1)}"
+        },
+        {
+          "id": "eq-airy-solutions",
+          "latex": "y_1(x) = 1 + \\frac{1}{6} x^3 + \\frac{1}{180} x^6 + \\cdots + \\frac{1}{2 \\cdot 3 \\cdot 5 \\cdot 6 \\cdots (3n-1) \\cdot (3n)} x^{3n} + \\cdots, \\qquad y_2(x) = x + \\frac{1}{12} x^4 + \\frac{1}{504} x^7 + \\cdots + \\frac{1}{3 \\cdot 4 \\cdot 6 \\cdot 7 \\cdots (3n) \\cdot (3n+1)} x^{3n+1} + \\cdots",
+          "ktex": "\\kyone(x) = 1 + \\frac{1}{6} x^3 + \\frac{1}{180} x^6 + \\cdots + \\frac{1}{2 \\cdot 3 \\cdot 5 \\cdot 6 \\cdots (3n-1) \\cdot (3n)} x^{3n} + \\cdots, \\qquad \\kytwo(x) = x + \\frac{1}{12} x^4 + \\frac{1}{504} x^7 + \\cdots + \\frac{1}{3 \\cdot 4 \\cdot 6 \\cdot 7 \\cdots (3n) \\cdot (3n+1)} x^{3n+1} + \\cdots"
+        }
+      ]
+    },
+    {
+      "id": "hermites-equation",
+      "kind": "definition",
+      "section": "7.2",
+      "name": "Hermite’s equation",
+      "terms": [
+        "Hermite’s equation of order n"
+      ],
+      "statement": "Hermite's equation of order n is y″ − 2xy′ + 2ny = 0.",
+      "forms": [
+        {
+          "id": "eq-hermites-equation",
+          "latex": "y'' -2xy' + 2n y = 0",
+          "ktex": "\\kydprime -2x\\kyprime + 2n \\ky = 0"
+        }
+      ]
+    },
+    {
+      "id": "polynomial-solutions-of-hermites-equation",
+      "kind": "result",
+      "section": "7.2",
+      "name": "Polynomial solutions of Hermite’s equation",
+      "statement": "Around x₀ = 0 Hermite's equation of order n gives the recurrence a_{k+2} = (2k − 2n)/((k + 2)(k + 1)) a_k, which includes a₂ = −na₀, so y = a₀y₁ + a₁y₂ with y₁ holding the even powers and y₂ the odd; if n is a positive even integer y₁ is a polynomial, since all the coefficients beyond degree n are zero, and if n is a positive odd integer y₂ is, as y₁ = 1 − 4x² + (4/3)x⁴ for n = 4.",
+      "forms": [
+        {
+          "id": "eq-hermite-recurrence",
+          "latex": "(k+2)(k+1) a_{k+2} + ( - 2k+ 2n) a_k = 0 , \\qquad \\text{or} \\qquad a_{k+2} = \\frac{(2k-2n)}{(k+2)(k+1)} a_k",
+          "ktex": "(k+2)(k+1) \\ka_{k+2} + ( - 2k+ 2n) \\ka_k = 0 , \\qquad \\text{or} \\qquad \\ka_{k+2} = \\frac{(2k-2n)}{(k+2)(k+1)} \\ka_k"
+        }
+      ]
+    },
+    {
+      "id": "frobenius-type-solution",
+      "kind": "definition",
+      "section": "7.3",
+      "name": "Frobenius-type solution",
+      "terms": [
+        "Frobenius-type solution"
+      ],
+      "type": "series",
+      "statement": "A solution of the form y = x^r Σ a_k x^k = Σ a_k x^{k+r}, where r is a real number, not necessarily an integer, and the series is an analytic function f(x), is a Frobenius-type solution; if such a solution exists it may only make sense for positive x, and for a singular point x₀ ≠ 0 every x is replaced by (x − x₀).",
+      "forms": [
+        {
+          "id": "eq-frobenius-type-solution",
+          "latex": "y = x^r \\sum_{k=0}^\\infty a_k x^k = \\sum_{k=0}^\\infty a_k x^{k+r}",
+          "ktex": "\\ky = x^{\\kr} \\sum_{k=0}^\\infty \\ka_k x^k = \\sum_{k=0}^\\infty \\ka_k x^{k+\\kr}"
+        }
+      ]
+    },
+    {
+      "id": "indicial-equation",
+      "kind": "definition",
+      "section": "7.3",
+      "name": "Indicial equation",
+      "terms": [
+        "indicial equation"
+      ],
+      "statement": "After a Frobenius-type solution is plugged into the equation and everything is written as a single series, setting the first coefficient, the one with the smallest power x^r, to zero while supposing a₀ ≠ 0 gives the indicial equation, a quadratic polynomial in r whose roots are the exponents r a solution can start with; for 4x²y″ − 4x²y′ + (1 − 2x)y = 0 it is 4r(r − 1) + 1 = 0, with the double root r = 1/2.",
+      "forms": [
+        {
+          "id": "eq-indicial-example",
+          "latex": "4r(r-1) + 1 = 0",
+          "ktex": "4\\kr(\\kr-1) + 1 = 0",
+          "condition": "4x²y″ − 4x²y′ + (1 − 2x)y = 0"
+        }
+      ]
+    },
+    {
+      "id": "regular-singular-point",
+      "kind": "definition",
+      "section": "7.3",
+      "name": "Regular singular point",
+      "terms": [
+        "regular singular point"
+      ],
+      "type": "point",
+      "statement": "A singular point x₀ of P(x)y″ + Q(x)y′ + R(x)y = 0 is a regular singular point if, in the standard form y″ + (Q/P)y′ + (R/P)y = 0, the limits of (x − x₀)Q(x)/P(x) and (x − x₀)²R(x)/P(x) as x → x₀ both exist and are finite; where one limit does not exist the point is singular but not regular singular.",
+      "forms": [
+        {
+          "id": "eq-regular-singular-limits",
+          "latex": "\\lim_{x \\to x_0} ~ (x-x_0) \\frac{Q(x)}{P(x)} \\qquad \\text{and} \\qquad \\lim_{x \\to x_0} ~ (x-x_0)^2 \\frac{R(x)}{P(x)}",
+          "ktex": "\\lim_{x \\to x_0} ~ (x-x_0) \\frac{Q(x)}{P(x)} \\qquad \\text{and} \\qquad \\lim_{x \\to x_0} ~ (x-x_0)^2 \\frac{R(x)}{P(x)}"
+        }
+      ]
+    },
+    {
+      "id": "frobenius-theorem",
+      "kind": "result",
+      "section": "7.3",
+      "name": "Existence of a Frobenius-type solution",
+      "statement": "If P(x)y″ + Q(x)y′ + R(x)y = 0 has a regular singular point at x = 0, then there exists at least one solution of the form y = x^r Σ a_k x^k, a Frobenius-type solution.",
+      "forms": [
+        {
+          "id": "eq-frobenius-ode",
+          "latex": "P(x) y'' + Q(x) y' + R(x) y = 0",
+          "ktex": "P(x) \\kydprime + Q(x) \\kyprime + R(x) \\ky = 0",
+          "condition": "a regular singular point at x = 0"
+        }
+      ]
+    },
+    {
+      "id": "method-of-frobenius",
+      "kind": "skill",
+      "section": "7.3",
+      "name": "Method of Frobenius",
+      "terms": [
+        "Method of Frobenius"
+      ],
+      "statement": "Seek y = Σ a_k x^{k+r}, plug it into the left-hand side, collect terms into a single series and set the first coefficient to zero to get the indicial equation. Two real roots r₁, r₂ not differing by an integer give two Frobenius-type solutions, y₁ = x^{r₁}Σ a_k x^k and y₂ = x^{r₂}Σ b_k x^k. A double root r gives y₁ and then y₂ = x^r Σ b_k x^k + (ln x)y₁, the b_k found by plugging y₂ into the equation. Roots differing by an integer, r₁ the larger, give y₁ from r₁ and y₂ = x^{r₂}Σ b_k x^k + C(ln x)y₁, solved for the b_k and C. Complex roots give complex a_k, and the real and imaginary parts of y are the two solutions. Finding one Frobenius-type solution is the main idea; reduction of order is another way to the second.",
+      "forms": [
+        {
+          "id": "eq-frobenius-two-roots",
+          "latex": "y_1 = x^{r_1} \\sum_{k=0}^\\infty a_k x^{k} , \\qquad y_2 = x^{r_2} \\sum_{k=0}^\\infty b_k x^{k}",
+          "ktex": "\\kyone = x^{\\krone} \\sum_{k=0}^\\infty \\ka_k x^{k} , \\qquad \\kytwo = x^{\\krtwo} \\sum_{k=0}^\\infty \\kb_k x^{k}",
+          "condition": "r₁ − r₂ not an integer"
+        },
+        {
+          "id": "eq-frobenius-double-root",
+          "latex": "y_2 = x^{r} \\sum_{k=0}^\\infty b_k x^{k} + (\\ln x) y_1",
+          "ktex": "\\kytwo = x^{\\kr} \\sum_{k=0}^\\infty \\kb_k x^{k} + (\\ln x) \\kyone",
+          "condition": "a double root r"
+        },
+        {
+          "id": "eq-frobenius-integer-difference",
+          "latex": "y_2 = x^{r_2} \\sum_{k=0}^\\infty b_k x^{k} + C (\\ln x) y_1",
+          "ktex": "\\kytwo = x^{\\krtwo} \\sum_{k=0}^\\infty \\kb_k x^{k} + C (\\ln x) \\kyone",
+          "condition": "r₁ − r₂ an integer, r₁ the larger root"
+        }
+      ]
+    },
+    {
+      "id": "bessel-equation",
+      "kind": "definition",
+      "section": "7.3",
+      "name": "Bessel’s equation",
+      "terms": [
+        "Bessel’s equation"
+      ],
+      "statement": "Bessel's equation of order p is x²y″ + xy′ + (x² − p²)y = 0, where p may be any number, although integers and multiples of 1/2 are the most important in applications; it arises, for example, when solving the wave equation in two and three dimensions.",
+      "forms": [
+        {
+          "id": "eq-bessels-equation",
+          "latex": "x^2 y'' + xy' + \\left(x^2 - p^2\\right)y = 0",
+          "ktex": "x^2 \\kydprime + x\\kyprime + \\left(x^2 - p^2\\right)\\ky = 0"
+        }
+      ]
+    },
+    {
+      "id": "frobenius-solutions-of-bessels-equation",
+      "kind": "result",
+      "section": "7.3",
+      "name": "Frobenius solutions of Bessel’s equation",
+      "statement": "Plugging y = Σ a_k x^{k+r} into Bessel's equation of order p gives the indicial equation r(r − 1) + r − p² = (r − p)(r + p) = 0, with roots r₁ = p and r₂ = −p unless p = 0; if p is not an integer, the method of Frobenius with a₀ = 1 gives the linearly independent solutions y₁ = x^p Σ (−1)^k x^{2k}/(2^{2k} k! (k + p)(k − 1 + p)⋯(1 + p)) and y₂ = x^{−p} Σ (−1)^k x^{2k}/(2^{2k} k! (k − p)(k − 1 − p)⋯(1 − p)).",
+      "forms": [
+        {
+          "id": "eq-bessel-indicial",
+          "latex": "r(r-1)+r-p^2 = (r-p)(r+p) = 0",
+          "ktex": "\\kr(\\kr-1)+\\kr-p^2 = (\\kr-p)(\\kr+p) = 0"
+        },
+        {
+          "id": "eq-bessel-y1",
+          "latex": "y_1 = x^p \\sum_{k=0}^\\infty \\frac{{(-1)}^k x^{2k}}{2^{2k} k! (k+p)(k-1+p)\\cdots (2+p)(1+p)}",
+          "ktex": "\\kyone = x^p \\sum_{k=0}^\\infty \\frac{{(-1)}^k x^{2k}}{2^{2k} k! (k+p)(k-1+p)\\cdots (2+p)(1+p)}"
+        },
+        {
+          "id": "eq-bessel-y2",
+          "latex": "y_2 = x^{-p} \\sum_{k=0}^\\infty \\frac{{(-1)}^k x^{2k}}{2^{2k} k! (k-p)(k-1-p)\\cdots (2-p)(1-p)}",
+          "ktex": "\\kytwo = x^{-p} \\sum_{k=0}^\\infty \\frac{{(-1)}^k x^{2k}}{2^{2k} k! (k-p)(k-1-p)\\cdots (2-p)(1-p)}",
+          "condition": "p not an integer"
+        }
+      ]
+    },
+    {
+      "id": "gamma-function",
+      "kind": "definition",
+      "section": "7.3",
+      "name": "Gamma function",
+      "terms": [
+        "gamma function"
+      ],
+      "symbol": "Γ",
+      "type": "function",
+      "statement": "The gamma function is Γ(x) = ∫₀^∞ t^{x−1}e^{−t} dt, with Γ(1) = 1 and the property Γ(x + 1) = xΓ(x), so that Γ(n) = (n − 1)! for a positive integer n: a continuous version of the factorial. The property defines Γ for all x except the nonpositive integers, and 1/Γ(x) is defined for all x by letting it be zero at the integers x ≤ 0.",
+      "forms": [
+        {
+          "id": "eq-gamma-function",
+          "latex": "\\Gamma(x) = \\int_0^\\infty t^{x-1} e^{-t} \\, dt",
+          "ktex": "\\kGamma(x) = \\int_0^\\infty t^{x-1} e^{-t} \\, dt"
+        },
+        {
+          "id": "eq-gamma-recursion",
+          "latex": "\\Gamma(x+1) = x \\Gamma(x)",
+          "ktex": "\\kGamma(x+1) = x \\kGamma(x)"
+        }
+      ]
+    },
+    {
+      "id": "bessel-functions-of-the-first-kind",
+      "kind": "definition",
+      "section": "7.3",
+      "name": "Bessel functions of the first kind",
+      "terms": [
+        "Bessel functions",
+        "Bessel functions of the first kind"
+      ],
+      "symbol": "J",
+      "type": "function",
+      "statement": "The Bessel functions of the first kind of order p and −p are the convenient constant multiples J_p(x) = y₁/(2^pΓ(1 + p)) = Σ (−1)^k/(k! Γ(k + p + 1)) (x/2)^{2k+p} and J_{−p}(x) = y₂/(2^{−p}Γ(1 − p)) = Σ (−1)^k/(k! Γ(k − p + 1)) (x/2)^{2k−p}, both solutions of Bessel's equation of order p; as 1/Γ is defined for all x the formulas hold even for integer p, and for a nonnegative integer n, J_n(x) = Σ (−1)^k/(k!(k + n)!) (x/2)^{2k+n}. For non-integer p, J_p and J_{−p} are linearly independent; for integer orders J_n = (−1)ⁿJ_{−n}, so J_{−n} is not a second independent solution.",
+      "forms": [
+        {
+          "id": "eq-bessel-J-p",
+          "latex": "J_p(x) = \\frac{1}{2^p\\Gamma(1+p)} y_1 = \\sum_{k=0}^\\infty \\frac{{(-1)}^k}{k! \\, \\Gamma(k+p+1)} {\\left(\\frac{x}{2}\\right)}^{2k+p}",
+          "ktex": "\\kJ_p(x) = \\frac{1}{2^p\\kGamma(1+p)} \\kyone = \\sum_{k=0}^\\infty \\frac{{(-1)}^k}{k! \\, \\kGamma(k+p+1)} {\\left(\\frac{x}{2}\\right)}^{2k+p}"
+        },
+        {
+          "id": "eq-bessel-J-minus-p",
+          "latex": "J_{-p}(x) = \\frac{1}{2^{-p}\\Gamma(1-p)} y_2 = \\sum_{k=0}^\\infty \\frac{{(-1)}^k}{k! \\,\\Gamma(k-p+1)} {\\left(\\frac{x}{2}\\right)}^{2k-p}",
+          "ktex": "\\kJ_{-p}(x) = \\frac{1}{2^{-p}\\kGamma(1-p)} \\kytwo = \\sum_{k=0}^\\infty \\frac{{(-1)}^k}{k! \\,\\kGamma(k-p+1)} {\\left(\\frac{x}{2}\\right)}^{2k-p}"
+        },
+        {
+          "id": "eq-bessel-J-n",
+          "latex": "J_n(x) = \\sum_{k=0}^\\infty \\frac{{(-1)}^k}{k! \\,(k+n)!} {\\left(\\frac{x}{2}\\right)}^{2k+n}",
+          "ktex": "\\kJ_n(x) = \\sum_{k=0}^\\infty \\frac{{(-1)}^k}{k! \\,(k+n)!} {\\left(\\frac{x}{2}\\right)}^{2k+n}",
+          "condition": "n a nonnegative integer"
+        },
+        {
+          "id": "eq-bessel-J-minus-n",
+          "latex": "J_n(x) = {(-1)}^nJ_{-n}(x)",
+          "ktex": "\\kJ_n(x) = {(-1)}^n\\kJ_{-n}(x)",
+          "condition": "n an integer"
+        }
+      ]
+    },
+    {
+      "id": "bessel-functions-of-the-second-kind",
+      "kind": "definition",
+      "section": "7.3",
+      "name": "Bessel functions of the second kind",
+      "terms": [
+        "Bessel function of second kind"
+      ],
+      "symbol": "Y",
+      "type": "function",
+      "statement": "For an integer order n the Bessel function of the second kind is Y_n(x) = lim_{p→n} (cos(pπ)J_p(x) − J_{−p}(x))/sin(pπ), a limit of linear combinations of solutions and so a solution of Bessel's equation of order n, linearly independent of J_n; it makes sense only for integer orders and goes to negative infinity at x = 0.",
+      "forms": [
+        {
+          "id": "eq-bessel-Y-n",
+          "latex": "Y_n(x) = \\lim_{p\\to n} \\frac{\\cos(p \\pi) J_p(x) - J_{-p}(x)}{\\sin(p \\pi)}",
+          "ktex": "\\kY_n(x) = \\lim_{p\\to n} \\frac{\\cos(p \\pi) \\kJ_p(x) - \\kJ_{-p}(x)}{\\sin(p \\pi)}"
+        }
+      ]
+    },
+    {
+      "id": "general-solution-of-bessels-equation",
+      "kind": "result",
+      "section": "7.3",
+      "name": "General solution of Bessel’s equation",
+      "statement": "When n is an integer the general solution to Bessel's equation of order n is y = A J_n(x) + B Y_n(x) for arbitrary constants A and B (for non-integer p, A J_p + B J_{−p}); J_n and Y_n are defined in most mathematical software and behave somewhat like sine and cosine: −J₁ is the derivative of J₀, the derivative of J_n is a linear combination of J_{n−1} and J_{n+1}, and they oscillate although they are not periodic.",
+      "forms": [
+        {
+          "id": "eq-bessel-general-solution",
+          "latex": "y = A J_n(x) + B Y_n(x)",
+          "ktex": "\\ky = A \\kJ_n(x) + B \\kY_n(x)",
+          "condition": "n an integer"
+        }
+      ]
+    },
+    {
+      "id": "reducing-to-bessels-equation",
+      "kind": "skill",
+      "section": "7.3",
+      "name": "Reducing an equation to Bessel’s",
+      "statement": "Other equations can be solved in terms of Bessel functions by a change of variables: for a positive constant λ, xy″ + y′ + λ²xy = 0 is x²y″ + xy′ + λ²x²y = 0, and t = λx turns it, via the chain rule, into t²y″ + ty′ + t²y = 0, Bessel's equation of order 0, so y = A J₀(λx) + B Y₀(λx); this equation comes up when finding the fundamental modes of vibration of a circular drum.",
+      "forms": [
+        {
+          "id": "eq-drum-equation",
+          "latex": "x y'' + y' + \\lambda^2 x y = 0",
+          "ktex": "x \\kydprime + \\kyprime + \\lambda^2 x \\ky = 0"
+        },
+        {
+          "id": "eq-drum-solution",
+          "latex": "y = A J_0(\\lambda x) + B Y_0(\\lambda x)",
+          "ktex": "\\ky = A \\kJ_0(\\lambda x) + B \\kY_0(\\lambda x)"
+        }
+      ]
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "power-series-coefficients",
+      "prereq": "power-series"
+    },
+    {
+      "concept": "power-series-center",
+      "prereq": "power-series"
+    },
+    {
+      "concept": "partial-sum",
+      "prereq": "power-series"
+    },
+    {
+      "concept": "convergent-power-series",
+      "prereq": "partial-sum"
+    },
+    {
+      "concept": "absolute-convergence",
+      "prereq": "convergent-power-series"
+    },
+    {
+      "concept": "radius-of-convergence",
+      "prereq": "absolute-convergence"
+    },
+    {
+      "concept": "radius-of-convergence",
+      "prereq": "power-series-center"
+    },
+    {
+      "concept": "convergence-of-a-power-series",
+      "prereq": "radius-of-convergence"
+    },
+    {
+      "concept": "ratio-test",
+      "prereq": "absolute-convergence"
+    },
+    {
+      "concept": "root-test",
+      "prereq": "absolute-convergence"
+    },
+    {
+      "concept": "ratio-and-root-tests-for-power-series",
+      "prereq": "ratio-test"
+    },
+    {
+      "concept": "ratio-and-root-tests-for-power-series",
+      "prereq": "root-test"
+    },
+    {
+      "concept": "ratio-and-root-tests-for-power-series",
+      "prereq": "radius-of-convergence"
+    },
+    {
+      "concept": "analytic-function",
+      "prereq": "convergent-power-series"
+    },
+    {
+      "concept": "taylor-series",
+      "prereq": "analytic-function"
+    },
+    {
+      "concept": "maclaurin-series-of-common-functions",
+      "prereq": "taylor-series"
+    },
+    {
+      "concept": "term-by-term-differentiation-and-integration",
+      "prereq": "radius-of-convergence"
+    },
+    {
+      "concept": "reindexing-a-series",
+      "prereq": "power-series"
+    },
+    {
+      "concept": "combining-power-series",
+      "prereq": "radius-of-convergence"
+    },
+    {
+      "concept": "combining-power-series",
+      "prereq": "power-series-coefficients"
+    },
+    {
+      "concept": "multiplying-power-series",
+      "prereq": "radius-of-convergence"
+    },
+    {
+      "concept": "multiplying-power-series",
+      "prereq": "power-series-coefficients"
+    },
+    {
+      "concept": "polynomial-as-a-power-series",
+      "prereq": "power-series-coefficients"
+    },
+    {
+      "concept": "polynomial-as-a-power-series",
+      "prereq": "power-series-center"
+    },
+    {
+      "concept": "polynomial-as-a-power-series",
+      "prereq": "taylor-series"
+    },
+    {
+      "concept": "geometric-series",
+      "prereq": "ratio-and-root-tests-for-power-series"
+    },
+    {
+      "concept": "power-series-of-a-rational-function",
+      "prereq": "geometric-series"
+    },
+    {
+      "concept": "power-series-of-a-rational-function",
+      "prereq": "combining-power-series"
+    },
+    {
+      "concept": "power-series-of-a-rational-function",
+      "prereq": "multiplying-power-series"
+    },
+    {
+      "concept": "power-series-of-a-rational-function",
+      "prereq": "polynomial-as-a-power-series"
+    },
+    {
+      "concept": "ordinary-point",
+      "prereq": "second-order-linear-differential-equation"
+    },
+    {
+      "concept": "ordinary-point",
+      "prereq": "homogeneous-linear-equation"
+    },
+    {
+      "concept": "ordinary-point",
+      "prereq": "power-series-center"
+    },
+    {
+      "concept": "singular-point",
+      "prereq": "ordinary-point"
+    },
+    {
+      "concept": "power-series-solution-of-a-differential-equation",
+      "prereq": "ordinary-point"
+    },
+    {
+      "concept": "power-series-solution-of-a-differential-equation",
+      "prereq": "term-by-term-differentiation-and-integration"
+    },
+    {
+      "concept": "power-series-solution-of-a-differential-equation",
+      "prereq": "reindexing-a-series"
+    },
+    {
+      "concept": "power-series-solution-of-a-differential-equation",
+      "prereq": "general-solution-to-a-homogeneous-equation"
+    },
+    {
+      "concept": "recurrence-relation",
+      "prereq": "power-series-solution-of-a-differential-equation"
+    },
+    {
+      "concept": "recurrence-relation",
+      "prereq": "power-series-coefficients"
+    },
+    {
+      "concept": "airys-equation",
+      "prereq": "second-order-linear-differential-equation"
+    },
+    {
+      "concept": "series-solutions-of-airys-equation",
+      "prereq": "airys-equation"
+    },
+    {
+      "concept": "series-solutions-of-airys-equation",
+      "prereq": "recurrence-relation"
+    },
+    {
+      "concept": "hermites-equation",
+      "prereq": "second-order-linear-differential-equation"
+    },
+    {
+      "concept": "polynomial-solutions-of-hermites-equation",
+      "prereq": "hermites-equation"
+    },
+    {
+      "concept": "polynomial-solutions-of-hermites-equation",
+      "prereq": "recurrence-relation"
+    },
+    {
+      "concept": "frobenius-type-solution",
+      "prereq": "singular-point"
+    },
+    {
+      "concept": "frobenius-type-solution",
+      "prereq": "analytic-function"
+    },
+    {
+      "concept": "indicial-equation",
+      "prereq": "frobenius-type-solution"
+    },
+    {
+      "concept": "regular-singular-point",
+      "prereq": "singular-point"
+    },
+    {
+      "concept": "frobenius-theorem",
+      "prereq": "regular-singular-point"
+    },
+    {
+      "concept": "frobenius-theorem",
+      "prereq": "frobenius-type-solution"
+    },
+    {
+      "concept": "method-of-frobenius",
+      "prereq": "frobenius-theorem"
+    },
+    {
+      "concept": "method-of-frobenius",
+      "prereq": "indicial-equation"
+    },
+    {
+      "concept": "method-of-frobenius",
+      "prereq": "linear-independence"
+    },
+    {
+      "concept": "method-of-frobenius",
+      "prereq": "real-and-imaginary-parts"
+    },
+    {
+      "concept": "bessel-equation",
+      "prereq": "second-order-linear-differential-equation"
+    },
+    {
+      "concept": "frobenius-solutions-of-bessels-equation",
+      "prereq": "bessel-equation"
+    },
+    {
+      "concept": "frobenius-solutions-of-bessels-equation",
+      "prereq": "method-of-frobenius"
+    },
+    {
+      "concept": "bessel-functions-of-the-first-kind",
+      "prereq": "frobenius-solutions-of-bessels-equation"
+    },
+    {
+      "concept": "bessel-functions-of-the-first-kind",
+      "prereq": "gamma-function"
+    },
+    {
+      "concept": "bessel-functions-of-the-second-kind",
+      "prereq": "bessel-functions-of-the-first-kind"
+    },
+    {
+      "concept": "general-solution-of-bessels-equation",
+      "prereq": "bessel-functions-of-the-second-kind"
+    },
+    {
+      "concept": "reducing-to-bessels-equation",
+      "prereq": "general-solution-of-bessels-equation"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+# Plan: 8.4 Limit cycles (`limitcycles:section`)
+
+Source: `source.md`. Status: plan written 2026-10-19 at prep stage one; built straight through after the merge (config 2). Template: `ch03/3.5`, `ch03/3.1` for the portraits; `ch01/1.2` for theorems as notes.
+
+An opening sentence, no book subsection before Exercises, Examples 8.4.1–8.4.5, Theorems 8.4.1 (Poincaré–Bendixson) and 8.4.2 (Bendixson–Dulac) as notes with their names, equation (8.2), Figures 8.10 and 8.11, four book footnotes (van der Pol, Bendixson, Dulac, the Dulac function), no inline exercise, end exercises 8.4.1–8.4.5 and 8.4.101–8.4.104 (nine, four keyed). Section notes dropped (`notes`).
+
+## Sub-concepts (OmniStax's; the book prints no header before Exercises)
+
+1. `van-der-pol` **The Van der Pol oscillator**: the opening sentence, Example 8.4.1 with `sim-van-der-pol` (Figure 8.10) at its place, relaxation oscillation.
+2. `limit-cycles` **Closed trajectories, limit cycles and periodic orbits**: the definitions (`p#closed-trajectory`, `p#limit-cycle`, `p#periodic-orbit`), equation (8.2) as `eq-8-2`, Theorem 8.4.1 as `div.note#thm-8-4-1`, the paragraph on what it says, the Van der Pol case, Example 8.4.2 with `sim-limit-cycle-cases` (Figure 8.11) at its place, the similar system and the linear circles (`p#unstable-cycle`), Picard and the inside of a closed trajectory (`p#inside-closed`).
+3. `bendixson-dulac` **Ruling out closed trajectories**: simply connected regions (`p#simply-connected`), Theorem 8.4.2 as `div.note#thm-8-4-2` with its footnote, the divergence (`p#divergence`), Example 8.4.3, the informal statement, Example 8.4.4 with `sim-divergence-sign` (Sim) after it, Example 8.4.5.
+
+## Concepts
+
+Introduced: `van-der-pol-oscillator` (definition; form the equation), `relaxation-oscillation` (definition), `closed-trajectory` (definition, `curve`; terms closed trajectory, closed curves), `limit-cycle` (definition, `curve`), `asymptotically-stable-limit-cycle` (definition; terms asymptotically stable, asymptotically unstable), `periodic-orbit` (definition, `curve`; form x(t) = x(t + P), y(t) = y(t + P)), `poincare-bendixson-theorem` (result, Theorem 8.4.1; form (8.2) with its hypotheses), `existence-inside-a-closed-trajectory` (result: the Picard paragraph), `simply-connected-region` (Calculus's id; definition, `region`), `divergence` (Calculus's id; definition; form ∂f/∂x + ∂g/∂y), `bendixson-dulac-theorem` (result, Theorem 8.4.2), `ruling-out-closed-trajectories` (skill: Examples 8.4.3–8.4.5, Exercises 8.4.1, 8.4.101, 8.4.103).
+Reinforced: `trajectory`, `phase-portrait`, `vector-field` (3.1, 1.8), `critical-point-of-a-system` (8.1), `center` (3.5), `picards-theorem-for-systems` (3.1, Theorem 3.1.1), `equilibrium-solution-of-a-system` ("constant solutions are periodic"), `stable-center` (8.2). Uses `converting-to-a-first-order-system` (y = x′ "as usual"), `second-order-differential-equation`.
+
+## Colour and referents
+
+x, y, f, g `function`; x′, y′, x″ `derivative`; ∂f/∂x, ∂g/∂y `derivative` (`\kpfx`, `\kpgy`); R `region` (`\kR`); closed trajectories, limit cycles, periodic orbits `curve`; critical points `point`; the fields `vector-field`. μ, P, t₀, the polar r and θ of the exercises, k in ink. No referents.
+
+## Figures
+
+- `sim-van-der-pol` · Figure 8.10 (Example 8.4.1) · `van-der-pol-oscillator`, `limit-cycle`, `asymptotically-stable-limit-cycle`, `relaxation-oscillation`, `periodic-orbit` · value add: flow by animation and variation: left, the portrait of x″ − μ(1 − x²)x′ + x = 0 with y = x′ on [−4, 4]², the field, the limit cycle drawn bold in `curve` (computed once per μ by running a trajectory long and keeping its last loop), the book's trajectories from inside and outside faint, and the trajectory from the dragged start (default (0.1, 0.1), the book's) with its riding dot landing on the cycle within a loop; right, x(t) for t 0 to 30 on −3 to 3 drawn up to the present t, whose steep parts are the relaxation jumps. μ on a slider: at μ = 0 (a dashed circle, "linear center") the cycle dissolves and every trajectory is a circle, the text's remark; as μ grows the cycle squares off and the jumps steepen (checked: y reaches ±2.68 at μ = 1, ±3.82 at μ = 2, ±5.06 at μ = 3, so the window follows μ as y −6 to 6 at μ = 3, a camera that follows the values) · arrows: field symbolic, dot kinematic · moving: t 0 to 30 in 6 s, hold 1.2 s · sliders μ (0 to 3, step 0.05, default 1, dashed circle at 0, untyped), x₀, y₀ (`point`, `F.drag`) · headline "μ = 1: from (0.1, 0.1) the solution settles on the limit cycle within one loop, a periodic motion between x = −2.01 and 2.01." · readout the equation with μ live · graph beside graph (the book's two panes) · 2D.
+- `sim-limit-cycle-cases` · Figure 8.11 (Example 8.4.2) · `limit-cycle`, `asymptotically-stable-limit-cycle`, `closed-trajectory`, `poincare-bendixson-theorem` · value add: flow by animation and variation: the field on [−1.6, 1.6]², the unit circle as the closed trajectory in `curve`, the book's three starts (1.02, 0), (0.9, 0), (0.1, 0) as labelled dots flowing (inside spirals out to the circle, outside spirals off and leaves the window), and a fourth start at the reader's radius r₀ on the x-axis; a choice of system bends the field and the fates: the book's squared factor (x² + y² − 1)² (a limit cycle that is not asymptotically stable: inside out to it, outside away), the unsquared factor of the following paragraph (an asymptotically unstable limit cycle: inside spirals to the origin, outside away), and the linear x′ = y, y′ = −x (every circle a closed trajectory, none a limit cycle); the choice morphs the field and the three book curves · arrows: field symbolic, dots kinematic · moving: t 0 to 25 in 6 s, hold 1.2 s · choice system (three), slider r₀ (0.05 to 1.5, step 0.01, default 0.5, dashed circle at 1 "the closed trajectory", `point`) · headline "Squared factor: the unit circle is a limit cycle; from r₀ = 0.50 the trajectory spirals out to it, from 1.02 away to infinity." · graph alone · 2D.
+- `sim-divergence-sign` · Sim (Example 8.4.4; rule 15 pick, config 14) · `divergence`, `bendixson-dulac-theorem`, `ruling-out-closed-trajectories`, `simply-connected-region` · value add: intuition: the field of a chosen example on [−2, 2]² with the set where the divergence is positive filled in `region` and where it is negative hatched in `region`, the zero set dashed, and a point the reader drags whose divergence is written live; Example 8.4.3 (y²eˣ: positive everywhere but the line y = 0, no closed trajectory), Example 8.4.4 (2(y − x): two half-planes, and on the line x = y the arrows all point into y ≥ x, drawn long on the line so the one-way crossing is visible), Example 8.4.5 (4x² + 4y² − 2 on the region outside the circle of radius 1/√2, the hole drawn as a cut-out and the closed trajectory on the unit circle inside the positive set: the theorem fails because the region is not simply connected) · arrows: symbolic (the field) · still: no clock, the sign regions are the idea · choice example (three), sliders x, y (`F.drag`, `point`) · headline "Example 8.4.4: at (0.5, 1.2) the divergence is 2(y − x) = 1.40 > 0; the arrows on x = y point into y ≥ x, so no closed trajectory straddles the line." · readout ∂f/∂x + ∂g/∂y = … with the live value · graph alone · 2D. Labels: the two sets named once in a legend (positive, negative); the hole and the circle by hover.
+
+## Extra simulations (rule 15)
+
+Built: `sim-divergence-sign`. Weighed and dropped: a Poincaré–Bendixson "trapping region" figure (an annulus round the Van der Pol cycle with the field pointing in on both edges; the book does not construct one and the theorem is called qualitative); Exercise 8.4.5's polar system r′ = 1 − r², θ′ = 1 (an exercise; `sim-limit-cycle-cases` already shows a circle every trajectory lands on).
+
+## Derivations (rule 29)
+
+- Example 8.4.4's trapping argument (x′ ≤ y′ on x = y) · prose, two moves · score 1 · not built: the Sim shows it.
+- Example 8.4.5's divergence 4x² + 4y² − 2 · one computation · not built.
+- No printed proofs: both theorems are stated and explained in prose.
+
+## Exercises
+
+End exercises (kind `exercise`), every one kept, divergences checked by SymPy at build:
+- 8.4.1 · a) 3x² + 3y² > 0 except at the origin; b) e^(x−y) + e^(x+y) > 0; c) 1 + 3y² > 0: by Bendixson–Dulac no closed trajectory in the plane. `open`.
+- 8.4.2 · the divergence of Ax⃗ is a + d, the trace; if the trace is not zero the system has no closed trajectory, so a center needs trace zero (the condition is on the diagonal entries). `open`.
+- 8.4.3 · with x′ = y, y′ = −h(x) the divergence is 0 + 0 = 0 everywhere, neither always positive nor always negative. `open`.
+- 8.4.4 · the solutions x = x₀eᵗ, y = y₀eᵗ leave every bounded region, and the only bounded region they stay in contains the critical point (0, 0): the hypotheses fail. `open`.
+- 8.4.5 · r′ = 1 − r² vanishes at r = 1 (r = 0 is the critical point): the unit circle is the only closed trajectory; r < 1 grows and r > 1 shrinks towards 1, so it is an asymptotically stable limit cycle. `open`.
+- 8.4.101–8.4.104 · the book's answers (`source`); 8.4.101 confirmed by SymPy; 8.4.103's reference to Figure 8.10 links to `sim-van-der-pol`.
+
+## Wanted at chapter level
+
+- Anchors: `van-der-pol-oscillator` and its form → `8.4-ex-8-4-1`; `relaxation-oscillation` → `8.4-ex-8-4-1`; `closed-trajectory` → `8.4-closed-trajectory`; `limit-cycle`, `asymptotically-stable-limit-cycle` → `8.4-limit-cycle`; `periodic-orbit` and its form → `8.4-periodic-orbit`; `poincare-bendixson-theorem` → `8.4-thm-8-4-1`, its form (8.2) → `8.4-eq-8-2`; `existence-inside-a-closed-trajectory` → `8.4-inside-closed`; `simply-connected-region` → `8.4-simply-connected`; `divergence` and its form → `8.4-divergence`; `bendixson-dulac-theorem` → `8.4-thm-8-4-2`; `ruling-out-closed-trajectories` → `8.4-ex-8-4-3`. Variables R (the symbol is Chapter 4's `\kR`, 4.10's radial factor; the 8.4 row carries `redefines`) → `8.4-eq-8-2`; P → `8.4-periodic-orbit`; the partials → `8.4-thm-8-4-2`.
+- A typed `f_x`, `g_y` symbol pair for the book's answers to 8.4.101 and 8.4.103 (they write f_x + g_y): not staged; the answers write them in plain LaTeX unless stage two adds the symbols.

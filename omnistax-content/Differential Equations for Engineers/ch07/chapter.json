@@ -1,0 +1,197 @@
+{
+  "id": "7",
+  "dir": "ch07",
+  "title": "Power-series methods",
+  "sections": [
+    {
+      "id": "7.1",
+      "module": "powerseries:section",
+      "title": "Power series"
+    },
+    {
+      "id": "7.2",
+      "module": "seriessols:section",
+      "title": "Series solutions of linear second-order ODEs"
+    },
+    {
+      "id": "7.3",
+      "module": "frobenius:section",
+      "title": "Singular points and the method of Frobenius"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "a",
+      "type": "sequence",
+      "meaning": "the coefficients a₀, a₁, a₂, … of a power series Σ a_k(x − x₀)^k, written a_k",
+      "section": "7.1"
+    },
+    {
+      "sym": "b",
+      "type": "sequence",
+      "meaning": "the coefficients b_k of a second power series added to or multiplied with the first",
+      "section": "7.1"
+    },
+    {
+      "sym": "c",
+      "type": "sequence",
+      "meaning": "the terms c_k of a series Σ c_k in the ratio and root tests, and the coefficients c_k = a₀b_k + a₁b_{k−1} + ⋯ + a_kb₀ of the product of two power series",
+      "section": "7.1"
+    },
+    {
+      "sym": "S",
+      "type": "series",
+      "meaning": "the partial sum S_n(x) = Σ_{k=0}^n a_k(x − x₀)^k of a power series, its terms up to the nth power",
+      "section": "7.1"
+    },
+    {
+      "sym": "ρ",
+      "meaning": "the radius of convergence of a power series, ρ = ∞ allowed: the series converges absolutely on (x₀ − ρ, x₀ + ρ) and diverges outside it",
+      "section": "7.1"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "an analytic function f(x), one equal to its Taylor series for x near a given point x₀",
+      "section": "7.1"
+    },
+    {
+      "sym": "f_k",
+      "type": "derivative",
+      "meaning": "the kth derivative f^{(k)}(x₀) of f(x) at the point x₀, the kth Taylor coefficient's numerator",
+      "section": "7.1"
+    },
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "7.1"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "7.1"
+    },
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "7.2"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "7.2"
+    },
+    {
+      "sym": "y_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of y",
+      "section": "7.2"
+    },
+    {
+      "sym": "a",
+      "type": "sequence",
+      "meaning": "the coefficients a_k of the power series solution y = Σ a_k(x − x₀)^k, determined by the recurrence relation from the arbitrary a₀ and a₁",
+      "section": "7.2"
+    },
+    {
+      "sym": "y_1",
+      "type": "function",
+      "meaning": "the first of the two series solutions of a second-order equation, with y₁(0) = 1 and y₁′(0) = 0, the series in a₀",
+      "section": "7.2"
+    },
+    {
+      "sym": "y_2",
+      "type": "function",
+      "meaning": "the second of the two series solutions of a second-order equation, with y₂(0) = 0 and y₂′(0) = 1, the series in a₁, so that y = a₀y₁ + a₁y₂",
+      "section": "7.2"
+    },
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "7.3"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "7.3"
+    },
+    {
+      "sym": "y_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of y",
+      "section": "7.3"
+    },
+    {
+      "sym": "a",
+      "type": "sequence",
+      "meaning": "the coefficients a_k of a Frobenius-type solution y = Σ a_k x^{k+r}, found from the recurrence once r is known",
+      "section": "7.3"
+    },
+    {
+      "sym": "b",
+      "type": "sequence",
+      "meaning": "the coefficients b_k of the second solution y₂ = Σ b_k x^{k+r} + (ln x) y₁",
+      "section": "7.3"
+    },
+    {
+      "sym": "r",
+      "type": "eigenvalue",
+      "meaning": "the exponent r of a Frobenius-type solution y = x^r Σ a_k x^k, a real number, not necessarily an integer, a root of the indicial equation",
+      "section": "7.3"
+    },
+    {
+      "sym": "r_1",
+      "type": "eigenvalue",
+      "meaning": "the larger root of the indicial equation, the exponent of the first Frobenius-type solution",
+      "section": "7.3"
+    },
+    {
+      "sym": "r_2",
+      "type": "eigenvalue",
+      "meaning": "the second root of the indicial equation, the exponent of the second solution",
+      "section": "7.3"
+    },
+    {
+      "sym": "y_1",
+      "type": "function",
+      "meaning": "the first Frobenius-type solution, from the first (or only) root of the indicial equation",
+      "section": "7.3"
+    },
+    {
+      "sym": "y_2",
+      "type": "function",
+      "meaning": "the second linearly independent solution, a Frobenius-type solution from the second root or a series with a logarithm term",
+      "section": "7.3"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "an analytic function f(x), a power series, the factor in the ansatz y = x^r f(x)",
+      "section": "7.3"
+    },
+    {
+      "sym": "J",
+      "type": "function",
+      "meaning": "the Bessel function of the first kind J_p(x) of order p, a constant multiple of y₁ that solves Bessel's equation of order p; J_{−p} the one of order −p",
+      "section": "7.3"
+    },
+    {
+      "sym": "Y",
+      "type": "function",
+      "meaning": "the Bessel function of the second kind Y_n(x) of integer order n, the limit of (cos(pπ)J_p − J_{−p})/sin(pπ) as p → n, linearly independent of J_n",
+      "section": "7.3"
+    },
+    {
+      "sym": "Γ",
+      "type": "function",
+      "meaning": "the gamma function Γ(x) = ∫₀^∞ t^{x−1}e^{−t} dt, with Γ(x + 1) = xΓ(x) and Γ(n) = (n − 1)! for positive integers n",
+      "section": "7.3"
+    }
+  ]
+}

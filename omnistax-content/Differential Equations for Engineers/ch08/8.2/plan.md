@@ -1,0 +1,59 @@
+# Plan: 8.2 Stability and classification of isolated critical points (`nlinstability:section`)
+
+Source: `source.md`. Status: plan written 2026-10-19 at prep stage one; built straight through after the merge (config 2). Template: `ch00/0.2`, `ch03/3.5` for the portraits.
+
+Four book subsections, Table 8.1, Examples 8.2.1–8.2.4, Figures 8.3–8.5, no theorem, no footnote, no inline exercise, end exercises 8.2.1–8.2.7 and 8.2.101–8.2.104 (eleven, four keyed). Section notes dropped (`notes`).
+
+## Sub-concepts (page headers, the book's own)
+
+1. `isolated` **Isolated critical points and almost linear systems**: isolated (`p#isolated`), almost linear (`p#almost-linear`), the two counterexamples x′ = x², y′ = y² and x′ = x, y′ = x².
+2. `classification` **Stability and classification of isolated critical points**: Table 8.1 as `div.book-table#tab-8-1` (`p#classification`), stable and unstable (`p#stability`), asymptotically stable with its limit (`p#asymptotic`), Example 8.2.1 with `sim-saddle-sink` (Figure 8.3) at its place, Example 8.2.2 with `sim-saddle-spiral` (Figure 8.4) at its place.
+3. `centers` **The trouble with centers**: the stable center (`p#center`), the trouble (`p#center-trouble`), Example 8.2.3 with `sim-false-center` (Figure 8.5) at its place, the moral.
+4. `conservative` **Conservative equations**: the definition (`p#conservative`), `drv-hamiltonian` in place of the three displays from the chain rule to ½y² + ∫f dx = C with the words between them kept (`p#hamiltonian` for the name), Example 8.2.4 with `sim-energy-levels` (Sim) after it, the general case with `drv-conservative-eigenvalues` in place of the displays from the Jacobian to λ = ±√(−f′(x)) (`p#conservative-classification`).
+
+## Concepts
+
+Introduced: `isolated-critical-point` (definition, `point`), `almost-linear-system` (definition), `stable-critical-point-of-a-system`, `unstable-critical-point-of-a-system`, `asymptotically-stable-critical-point` (definitions, `point`; the last with the limit as its form), `classification-of-critical-points` (result, Table 8.1; terms source, unstable node, sink, stable node, saddle, spiral source, spiral sink as the table prints them), `classifying-critical-points-of-a-system` (skill: Examples 8.2.1–8.2.2, Exercises 8.2.1, 8.2.101), `stable-center` (definition, `point`; terms center, stable center), `linearization-with-a-center` (idea: Example 8.2.3), `conservative-equation` (definition; forms the equation and its system), `hamiltonian` (definition; terms Hamiltonian, energy; forms ½y² + ∫f dx = C and the chain-rule line), `trajectories-of-a-conservative-equation` (result; form y = ±√(−2∫f dx + 2C)), `critical-points-of-a-conservative-equation` (result; forms λ = ±√(−f′(x)), the Jacobian, the characteristic equation).
+Reinforced: `critical-point-of-a-system`, `jacobian-matrix`, `linearization-of-a-system` (8.1), `invertible-matrix` (3.2), `center`, `saddle-point`, `sink`, `spiral-source` (3.5), `eigenvalue` (3.4), `exact-equation`, `potential-function` (1.8), `pendulum-equation` (2.4, "the pendulum equation is a conservative equation"). "Closed curves" in Example 8.2.4 is a term of 8.4's `closed-trajectory` and stays italic without a span until 8.4 introduces it (a later `uses` is a forward reference the checker allows; if it does not, the italic stays plain).
+
+## Colour and referents
+
+x, y, f, g `function`; x′, y′, x″, dy/dx `derivative`; J `matrix` (`\kJ`); λ `eigenvalue` (`\klambda`); critical points `point` (sinks and centers filled, saddles and sources hollow); the field `vector-field`; trajectories and level curves `curve`. t, ε, C, x₀, y₀, xᵢ, yᵢ in ink. No referents.
+
+## Table
+
+Table 8.1 stays in the text as `div.book-table` with the book's caption; its five rows are the statement of `classification-of-critical-points`, whose introducing span is the paragraph that cites it.
+
+## Figures
+
+- `sim-saddle-sink` · Figure 8.3 (Example 8.2.1) · `classifying-critical-points-of-a-system`, `classification-of-critical-points`, `asymptotically-stable-critical-point`, `almost-linear-system` · value add: flow by animation and variation: the field of x′ = −y − x², y′ = −x + y² on [−2, 2]², the saddle (0, 0) hollow and the sink (1, −1) filled, the book's trajectories faint, the trajectory from the dragged start (default (1.5, 0)) traced with its riding dot, so the reader sees which starts fall into the sink and which leave past the saddle, the text's "true even for some initial points quite far from (1, −1), but definitely not for all"; a choice of critical point sets the readout to its Jacobian, eigenvalues and Table 8.1 row · arrows: the field symbolic, the dot kinematic · moving: t 0 to 10 in 5 s, hold 1.2 s · sliders x₀, y₀ (`point`, `F.drag`, dashed circles at the critical points), choice critical point (two) · headline "At (1, −1): J = [−2 −1; −1 −2], eigenvalues −1 and −3, a sink: asymptotically stable." · readout x′ = −y − x², y′ = −x + y² at the start, the limit of the trajectory named · graph alone · 2D.
+- `sim-saddle-spiral` · Figure 8.4 (Example 8.2.2) · `classifying-critical-points-of-a-system`, `unstable-critical-point-of-a-system`, `spiral-source` · the same archetype on x′ = y + y²eˣ, y′ = x on [−2, 2]²: the saddle (0, 0) hollow and the spiral source (0, −1) hollow, the book's two spirals out of (0, −1) faint, the dragged start (default (0.1, −1), just off the source) spiralling out; choice of critical point for the readout (J = [0 1; 1 0], ±1; J = [1 −1; 1 0], ½ ± i√3/2) · arrows: field symbolic, dot kinematic · moving: t 0 to 10 in 5 s · sliders x₀, y₀ (`F.drag`), choice (two) · headline "At (0, −1): eigenvalues ½ ± i√3/2, complex with positive real part: a spiral source, unstable." · graph alone · 2D.
+- `sim-false-center` · Figure 8.5 (Example 8.2.3) · `linearization-with-a-center`, `stable-center` · value add: variation and flow: the field of x′ = y, y′ = −x + y³ on [−3, 3]², the trajectory from (r₀, 0) traced as time runs with the linearization's circle of radius r₀ dashed beneath it, the readout writing the real part ³⁄₂y² of the Jacobian's eigenvalues at the moving point, which is ≥ 0 and pulls the trajectory out; small r₀ winds out slowly (from (0.1, 0) the distance from the origin only doubles by t ≈ 100), larger r₀ leaves the window within the cycle (from (0.3, 0) before t = 60) and turns off the spiral as the book's picture does · arrows: field symbolic, dot kinematic · moving: t 0 to 60 in 6 s, hold 1.2 s · slider r₀ (0.05 to 1, step 0.01, default 0.3, `point`) · headline "From (0.30, 0): the linearization's center keeps r = 0.30; the real part ³⁄₂y² ≥ 0 pulls the trajectory out to r = 1.4 by t = 40." (numbers computed at build) · graph alone · 2D. Window held fixed; the trajectory leaving it is pinned at the edge.
+- `sim-energy-levels` · Sim (Example 8.2.4, which has no figure; rule 15 pick, config 14) · `hamiltonian`, `trajectories-of-a-conservative-equation`, `critical-points-of-a-conservative-equation` · value add: intuition and variation: the potential well V(x) = ½x² − ⅓x³ graphed above with the energy level C as a horizontal dashed line, and below, sharing the x-axis, the phase plane of x′ = y, y′ = −x + x² with the level curve ½y² + V(x) = C drawn where C ≥ V(x), y = ±√(2(C − V(x))); as C rises from 0 (the center) the curve grows from the origin, at C = 1/6 it passes through the saddle (1, 0) and opens, and beyond it the curve runs off to the right: the reader sees why the ovals are closed and where they stop being · arrows: none · still: a family under a parameter has no clock (the book's `RULES.md`) · slider C (−0.05 to 0.5, step 0.005, default 0.1, dashed circle at C = 1/6 "through the saddle" and a detent at 0, untyped) · headline "C = 0.100: the level curve closes round (0, 0) between x = −0.39 and x = 0.53." (at 1/6: "C = 1/6: the curve passes through the saddle (1, 0) and opens.") · graph above graph (the well over the portrait) · 2D. The book's Figure 8.1 is the family drawn at six values; this Sim is one member at a time with its energy read off.
+
+## Extra simulations (rule 15)
+
+Built: `sim-energy-levels`. Weighed and dropped: a separate figure for the two non-almost-linear counterexamples (x′ = x², y′ = y² is Exercise 8.1.2's picture, already in the card; x′ = x, y′ = x² has a line of critical points and no flow worth running); a Table 8.1 "picker" (3.5's `sim-portrait-cases` already walks the six cases, and the table is a reference).
+
+## Derivations (rule 29)
+
+- The Hamiltonian: x″ = y′ = (dy/dx)x′ = y dy/dx; y dy/dx + f(x) = 0; integrate in x; ½y² + ∫f dx = C · printed block with the words between · built as `drv-hamiltonian`, replacing the three displays (equation-first); facts: the system x′ = y, y′ = −f(x), the chain rule (a why sentence), ∫y dy/dx dx = ½y²; the result links the Hamiltonian.
+- The eigenvalues of a conservative equation: J = [0 1; −f′(x) 0]; 0 = det(J − λI) = λ² + f′(x); λ = ±√(−f′(x)) · printed with words · built as `drv-conservative-eigenvalues`, replacing the two displays; facts: the Jacobian (8.1), det(J − λI) = 0 (3.4).
+- Example 8.2.3's eigenvalues "via the quadratic equation" · score 1 · not built.
+- Example 8.2.4's trajectories · substitution into the formula · not built.
+
+## Exercises
+
+End exercises (kind `exercise`), every one kept, answers checked by SymPy at build:
+- 8.2.1 · a) (0, 0) sink, asymptotically stable; (1/3, 0) saddle, unstable. b) (0, 1) saddle, unstable; (0, −1) eigenvalues ±i√2, the linearization has a center: inconclusive (the AI solution says so and finds, with x′ = x² + y² − 1, y′ = x, that near (0, −1) the system is not conservative in the book's form and leaves the center undecided by linearization; a numerical trajectory is described). c) (0, 0) spiral source, unstable. `open`.
+- 8.2.2 · a) ½y² + ½x² + ¼x⁴ = C, (0, 0) a stable center; b) ½y² − cos θ = C, (kπ, 0): even k stable centers, odd k saddles; c) ½y² + ⅓z³ − z = C, (−1, 0) saddle, (1, 0) stable center; d) ½y² + ⅓x³ + x = C, no critical points. `open`.
+- 8.2.3 · (0, 0) only, not almost linear (J = 0); x and y both decrease (x′ = −x² ≤ 0), so starts in the first quadrant approach the origin and any start with a negative coordinate runs away: unstable. `open`.
+- 8.2.4 · a) J = [−y −x; 2x −1] gives [0 −1; 2 −1] at (1, 0) and [0 1; −2 −1] at (−1, 0), eigenvalues −½ ± i√7/2 at both: spiral sinks. b) on x = 0, x′ = 0 and y′ = −1 − y, so y = −1 + (y₀ + 1)e^(−t): the trajectory runs down the y-axis to (0, −1). c) No: the y-axis is made of trajectories, so by uniqueness no trajectory crosses it, and a start with x₀ > 0 stays in x > 0. `open`.
+- 8.2.5 · f′ = 2xx′ + 2yy′ = 2xy + 2y(y³ − x) = 2y⁴ ≥ 0, so the distance grows: a spiral source. `open`.
+- 8.2.6 · y′ = −f(y) < 0 so y always decreases, there is no critical point, and dy/dx = −f(y)/y gives the trajectories ∫y/f(y) dy = −x + C. `open`.
+- 8.2.7 · none, since y′ > 1 > 0; y(t) > y₀ + t → ∞, every trajectory goes up without bound. `open`.
+- 8.2.101–8.2.104 · the book's answers (`source`); 8.2.101 and 8.2.102 confirmed by SymPy (8.2.102 a): f′(−2) = −4 < 0 saddle, f′(2) = 4 > 0 center).
+
+## Wanted at chapter level
+
+- Anchors: `isolated-critical-point` → `8.2-isolated`; `almost-linear-system` → `8.2-almost-linear`; `classification-of-critical-points` → `8.2-classification`; `stable-critical-point-of-a-system`, `unstable-critical-point-of-a-system` → `8.2-stability`; `asymptotically-stable-critical-point` and its form → `8.2-asymptotic`; `classifying-critical-points-of-a-system` → `8.2-ex-8-2-1`; `stable-center` → `8.2-center`; `linearization-with-a-center` → `8.2-center-trouble`; `conservative-equation` → `8.2-conservative`; `hamiltonian` → `8.2-hamiltonian`; `trajectories-of-a-conservative-equation` → `8.2-ex-8-2-4`; `critical-points-of-a-conservative-equation` → `8.2-conservative-classification`. Variables J, λ → `8.2-conservative-classification` (where J is named); dy/dx → `8.2-hamiltonian`.

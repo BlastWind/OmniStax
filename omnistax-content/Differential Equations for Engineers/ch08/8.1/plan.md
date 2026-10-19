@@ -52,4 +52,5 @@ End exercises (kind `exercise`), every one kept:
 ## Wanted at chapter level
 
 - Anchors: `planar-autonomous-system` and its forms → `8.1-autonomous` / `8.1-eq-8-1`; `critical-point-of-a-system` → `8.1-critical-points`; `equilibrium-solution-of-a-system` → `8.1-equilibria`; `jacobian-matrix` → `8.1-jacobian`; `linearization-of-a-system` → `8.1-linearization`; `finding-critical-points-and-linearizations` → `8.1-ex-8-1-2`. Variables x, y, x′, y′, f, g → `8.1-autonomous`; θ, θ″ → `8.1-nonlinear-intro`; u, v, the partials → `8.1-jacobian`.
+- Symbols: ∂f/∂x, ∂g/∂x, ∂g/∂y are staged here (`\kpfx`, `\kpgx`, `\kpgy`); ∂f/∂y is Chapter 1's (`\kpfy`, Picard's theorem) and is not restaged.
 - Variables `concept` links (stage two): x, y, θ, u, v → `dependent-variable` as Chapters 0–1 link them; J → `jacobian-matrix`.
