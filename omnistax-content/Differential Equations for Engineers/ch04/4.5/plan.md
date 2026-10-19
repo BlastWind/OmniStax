@@ -34,7 +34,7 @@ Book images: the cart sketch and Figure 4.14 are originals of `sim-jetpack`. Ext
 
 - Try It 4.5.1 (inline after the series of F in Example 4.5.2): c_n = 0 (odd F), c₀ = 0, d_n = 2∫₀¹ sin nπt dt = 2(1 − (−1)ⁿ)/(nπ) = 4/(nπ) for odd n, checked with SymPy.
 - End, unkeyed (AI-marked, checked with SymPy): 4.5.2 x = 1/4 + Σ 1/(n²(2 − n²π²)) cos nπt; 4.5.3 (damped, x″ + x′ + x = Σ sin(nπt)/n³) each harmonic gives a 2 × 2 system; a_n = −π/(n²(π⁴n⁴ − π²n² + 1)), b_n = (1 − π²n²)/(n³(π⁴n⁴ − π²n² + 1)), x = Σ [a_n cos nπt + b_n sin nπt]; 4.5.4 x = Σ 1/(n²(4 − n²π²)) cos nπt; 4.5.5 F = Σ 2(−1)^{n+1}/(nπ) sin nπt, x = Σ 2(−1)^{n+1}/(nπ(1 − n²π²)) sin nπt; 4.5.6 ω₀ = π = 1·π/L: the first harmonic resonates; x_p = −(1/π²) t cos πt + Σ_{n ≥ 2} 2(−1)^{n+1}/(nπ(π² − n²π²)) sin nπt (a₁ from −2a₁π = d₁ = 2/π).
-- Keyed 4.5.101–4.5.104 with the book's answers, each checked: 4.5.101 ✓ (each term divided by √2 − ω²); 4.5.102 ✓; 4.5.103 ✓ (the cosine series of |t| on [−1, 1] is 1/2 − Σ_{odd} 4/(n²π²) cos nπt); 4.5.104 ✓ (n = 1 resonates: a₁ t sin πt with −2π² · (−2/π³)… the builder recomputes the t sin πt coefficient −2/π³ from −2a₁π = −4/π² and confirms the book's sign). Shapes: `open` for every series.
+- Keyed 4.5.101–4.5.104 with the book's answers, each checked: 4.5.101 ✓ (each term divided by √2 − ω²); 4.5.102 ✓; 4.5.103 ✓ (the cosine series of |t| on [−1, 1] is 1/2 − Σ_{odd} 4/(n²π²) cos nπt); 4.5.104 ✓ (the n = 1 cosine term −(4/π²) cos πt resonates with ω₀ = π: the guess a t sin πt gives 2aπ cos πt, so a = −2/π³, the book's sign; the constant 1/(2π²) and the n ≥ 3 terms −4/(n²π⁴(1 − n²)) agree). Shapes: `open` for every series.
 
 ## Wanted at chapter level
 

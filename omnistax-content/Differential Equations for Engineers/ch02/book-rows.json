@@ -1,0 +1,882 @@
+{
+  "types": [],
+  "symbols": [
+    {"sym": "y_1", "latex": "y_1", "macro": "\\kyone"},
+    {"sym": "y_2", "latex": "y_2", "macro": "\\kytwo"},
+    {"sym": "y_3", "latex": "y_3", "macro": "\\kythree"},
+    {"sym": "y_4", "latex": "y_4", "macro": "\\kyfour"},
+    {"sym": "y_n", "latex": "y_n", "macro": "\\kyn"},
+    {"sym": "y_1_prime", "latex": "y_1'", "macro": "\\kyoneprime"},
+    {"sym": "y_1_dprime", "latex": "y_1''", "macro": "\\kyonedprime"},
+    {"sym": "y_2_prime", "latex": "y_2'", "macro": "\\kytwoprime"},
+    {"sym": "y_2_dprime", "latex": "y_2''", "macro": "\\kytwodprime"},
+    {"sym": "y_tprime", "latex": "y'''", "macro": "\\kytprime"},
+    {"sym": "y_fourth", "latex": "y^{(4)}", "macro": "\\kyfourth"},
+    {"sym": "y_fifth", "latex": "y^{(5)}", "macro": "\\kyfifth"},
+    {"sym": "y_nth", "latex": "y^{(n)}", "macro": "\\kynth"},
+    {"sym": "y_nm1th", "latex": "y^{(n-1)}", "macro": "\\kynmoneth"},
+    {"sym": "y_c", "latex": "y_c", "macro": "\\kyc"},
+    {"sym": "y_p", "latex": "y_p", "macro": "\\kyp"},
+    {"sym": "y_p_tilde", "latex": "\\tilde{y}_p", "macro": "\\kyptilde"},
+    {"sym": "y_p_prime", "latex": "y_p'", "macro": "\\kypprime"},
+    {"sym": "y_p_dprime", "latex": "y_p''", "macro": "\\kypdprime"},
+    {"sym": "v_dprime", "latex": "v''", "macro": "\\kvdprime"},
+    {"sym": "w", "latex": "w", "macro": "\\kw"},
+    {"sym": "w_prime", "latex": "w'", "macro": "\\kwprime"},
+    {"sym": "w_dprime", "latex": "w''", "macro": "\\kwdprime"},
+    {"sym": "u_1", "latex": "u_1", "macro": "\\kuone"},
+    {"sym": "u_2", "latex": "u_2", "macro": "\\kutwo"},
+    {"sym": "u_1_prime", "latex": "u_1'", "macro": "\\kuoneprime"},
+    {"sym": "u_2_prime", "latex": "u_2'", "macro": "\\kutwoprime"},
+    {"sym": "r_1", "latex": "r_1", "macro": "\\krone"},
+    {"sym": "r_2", "latex": "r_2", "macro": "\\krtwo"},
+    {"sym": "r_3", "latex": "r_3", "macro": "\\krthree"},
+    {"sym": "α", "latex": "\\alpha", "macro": "\\kalpha"},
+    {"sym": "β", "latex": "\\beta", "macro": "\\kbeta"},
+    {"sym": "I", "latex": "I", "macro": "\\kI"},
+    {"sym": "I_prime", "latex": "I'", "macro": "\\kIprime"},
+    {"sym": "I_dprime", "latex": "I''", "macro": "\\kIdprime"},
+    {"sym": "Q_prime", "latex": "Q'", "macro": "\\kQprime"},
+    {"sym": "E", "latex": "E", "macro": "\\kE"},
+    {"sym": "E_prime", "latex": "E'", "macro": "\\kEprime"},
+    {"sym": "ω", "latex": "\\omega", "macro": "\\komega"},
+    {"sym": "ω_0", "latex": "\\omega_0", "macro": "\\komegazero"},
+    {"sym": "ω_1", "latex": "\\omega_1", "macro": "\\komegaone"},
+    {"sym": "x_c", "latex": "x_c", "macro": "\\kxc"},
+    {"sym": "x_p", "latex": "x_p", "macro": "\\kxp"},
+    {"sym": "x_tr", "latex": "x_{tr}", "macro": "\\kxtr"},
+    {"sym": "x_sp", "latex": "x_{sp}", "macro": "\\kxsp"}
+  ],
+  "concepts": [
+    {
+      "id": "second-order-linear-differential-equation",
+      "kind": "definition",
+      "section": "2.1",
+      "name": "Second-order linear differential equation",
+      "terms": ["second-order linear differential equation"],
+      "statement": "The general second-order linear differential equation is A(x)y″ + B(x)y′ + C(x)y = F(x), which is usually divided through by A(x) to get y″ + p(x)y′ + q(x)y = f(x), equation (2.1), where p(x) = B(x)/A(x), q(x) = C(x)/A(x) and f(x) = F(x)/A(x). The word linear means that the equation contains no powers or functions of y, y′ and y″. In the special case f(x) = 0 it is the homogeneous equation y″ + p(x)y′ + q(x)y = 0, equation (2.2).",
+      "forms": [
+        {"id": "eq-second-order-linear", "latex": "y'' + p(x)y' + q(x)y = f(x)", "ktex": "\\kydprime + p(x)\\kyprime + q(x)\\ky = \\kf(x)"},
+        {"id": "eq-second-order-linear-general", "latex": "A(x) y'' + B(x)y' + C(x)y = F(x)", "ktex": "A(x) \\kydprime + B(x)\\kyprime + C(x)\\ky = \\kF(x)"},
+        {"id": "eq-second-order-homogeneous", "latex": "y'' + p(x)y' + q(x)y = 0", "ktex": "\\kydprime + p(x)\\kyprime + q(x)\\ky = 0", "condition": "f(x) = 0, the homogeneous equation"}
+      ]
+    },
+    {
+      "id": "linear-combination",
+      "kind": "definition",
+      "section": "2.1",
+      "name": "Linear combination",
+      "terms": ["linear combination"],
+      "statement": "The expression C₁y₁ + C₂y₂, the solutions y₁ and y₂ added together after multiplying them by constants, is a linear combination of y₁ and y₂; for n functions, C₁y₁ + C₂y₂ + ⋯ + Cₙyₙ."
+    },
+    {
+      "id": "superposition-principle",
+      "kind": "result",
+      "section": "2.1",
+      "name": "Superposition",
+      "terms": ["superposition"],
+      "statement": "Theorem 2.1.1 (Superposition). Suppose y₁ and y₂ are two solutions of the homogeneous equation (2.2). Then y(x) = C₁y₁(x) + C₂y₂(x) also solves (2.2) for arbitrary constants C₁ and C₂: solutions can be added together and multiplied by constants to obtain new and different solutions. The proof plugs y = C₁y₁ + C₂y₂ in and groups the terms into C₁(y₁″ + py₁′ + qy₁) + C₂(y₂″ + py₂′ + qy₂) = C₁·0 + C₂·0 = 0, which is how linear equations work.",
+      "forms": [
+        {"id": "eq-superposition", "latex": "y(x) = C_1 y_1(x) + C_2 y_2(x)", "ktex": "\\ky(x) = C_1 \\kyone(x) + C_2 \\kytwo(x)", "condition": "y₁, y₂ solutions of the homogeneous equation (2.2)"}
+      ]
+    },
+    {
+      "id": "operator",
+      "kind": "definition",
+      "section": "2.1",
+      "name": "Operator",
+      "terms": ["operator"],
+      "statement": "An operator is an object that eats functions and spits out functions (kind of like what a function is, but a function eats numbers and spits out numbers). The operator L defined by Ly = y″ + py′ + qy turns the differential equation into Ly = 0.",
+      "forms": [
+        {"id": "eq-operator-L", "latex": "Ly = y'' + py' + qy", "ktex": "L\\ky = \\kydprime + p\\kyprime + q\\ky"}
+      ]
+    },
+    {
+      "id": "linear-operator",
+      "kind": "definition",
+      "section": "2.1",
+      "name": "Linear operator",
+      "terms": ["linear"],
+      "statement": "The operator L (and the equation) being linear means that L(C₁y₁ + C₂y₂) = C₁Ly₁ + C₂Ly₂; it is almost as if we were multiplying by L. The proof of superposition becomes Ly = L(C₁y₁ + C₂y₂) = C₁Ly₁ + C₂Ly₂ = C₁·0 + C₂·0 = 0.",
+      "forms": [
+        {"id": "eq-linear-operator", "latex": "L(C_1 y_1 + C_2 y_2) = C_1 L y_1 + C_2 L y_2", "ktex": "L(C_1 \\kyone + C_2 \\kytwo) = C_1 L \\kyone + C_2 L \\kytwo"}
+      ]
+    },
+    {
+      "id": "existence-and-uniqueness-for-linear-equations",
+      "kind": "result",
+      "section": "2.1",
+      "name": "Existence and uniqueness for second-order linear equations",
+      "terms": ["existence and uniqueness"],
+      "statement": "Theorem 2.1.2 (Existence and uniqueness). Suppose p, q, f are continuous functions on some interval I, a is a number in I, and b₀, b₁ are constants. Then the equation y″ + p(x)y′ + q(x)y = f(x) has exactly one solution y(x) defined on the interval I satisfying the initial conditions y(a) = b₀, y′(a) = b₁. The initial conditions for a second-order ODE consist of two equations, and with two arbitrary constants and two equations one solves for the constants: y″ + k²y = 0 with y(0) = b₀, y′(0) = b₁ has the solution b₀ cos(kx) + (b₁/k) sin(kx), and y″ − k²y = 0 the solution b₀ cosh(kx) + (b₁/k) sinh(kx).",
+      "forms": [
+        {"id": "eq-second-order-ivp", "latex": "y'' + p(x) y' + q(x) y = f(x), \\qquad y(a) = b_0, \\quad y'(a) = b_1", "ktex": "\\kydprime + p(x) \\kyprime + q(x) \\ky = \\kf(x), \\qquad \\ky(a) = b_0, \\quad \\kyprime(a) = b_1", "condition": "p, q, f continuous on an interval I containing a"},
+        {"id": "eq-ivp-cos-sin", "latex": "y(x) = b_0 \\cos (kx) + \\frac{b_1}{k} \\sin (kx)", "ktex": "\\ky(x) = b_0 \\cos (kx) + \\frac{b_1}{k} \\sin (kx)", "condition": "y″ + k²y = 0, y(0) = b₀, y′(0) = b₁"},
+        {"id": "eq-ivp-cosh-sinh", "latex": "y(x) = b_0 \\cosh (kx) + \\frac{b_1}{k} \\sinh (kx)", "ktex": "\\ky(x) = b_0 \\cosh (kx) + \\frac{b_1}{k} \\sinh (kx)", "condition": "y″ − k²y = 0, y(0) = b₀, y′(0) = b₁"}
+      ]
+    },
+    {
+      "id": "linear-independence",
+      "kind": "definition",
+      "section": "2.1",
+      "name": "Linear independence",
+      "terms": ["linearly independent"],
+      "statement": "Two solutions y₁ and y₂ are linearly independent if one is not a constant multiple of the other: they are different enough that every solution can be written as C₁y₁ + C₂y₂. For two functions the check is simple: suppose y₁ = Ay₂ and show that A = y₁/y₂ cannot be a constant, as sine and cosine are not multiples of each other and x² and 1/x have ratio x³."
+    },
+    {
+      "id": "general-solution-to-a-homogeneous-equation",
+      "kind": "result",
+      "section": "2.1",
+      "name": "General solution of a second-order homogeneous equation",
+      "statement": "Theorem 2.1.3. Let p, q be continuous functions. Let y₁ and y₂ be two linearly independent solutions to the homogeneous equation (2.2). Then every other solution is of the form y = C₁y₁ + C₂y₂; that is, y = C₁y₁ + C₂y₂ is the general solution. So y = C₁ cos x + C₂ sin x is the general solution to y″ + y = 0.",
+      "forms": [
+        {"id": "eq-general-solution-homogeneous", "latex": "y = C_1 y_1 + C_2 y_2", "ktex": "\\ky = C_1 \\kyone + C_2 \\kytwo", "condition": "y₁, y₂ linearly independent solutions of (2.2)"}
+      ]
+    },
+    {
+      "id": "reduction-of-order",
+      "kind": "skill",
+      "section": "2.1",
+      "name": "Reduction of order",
+      "terms": ["reduction of order method"],
+      "statement": "If you have one nonzero solution y₁ to a second-order linear homogeneous equation, you can find another: try a second solution of the form y₂(x) = y₁(x)v(x) and find v. Plugging y₂ into the equation, the terms with v cancel since y₁ is a solution, leaving y₁v″ + (2y₁′ + p(x)y₁)v′ = 0; with w = v′ this is the first-order linear equation y₁w′ + (2y₁′ + p(x)y₁)w = 0, solved by the integrating factor, after which v is an antiderivative of w and y₂ = y₁v. The formula y₂ = y₁ ∫ e^(−∫p(x) dx)/(y₁)² dx follows, but it is easier to remember to try y₂ = y₁v and find v. The technique works for higher-order equations too: the order drops by one for each solution found.",
+      "forms": [
+        {"id": "eq-reduction-of-order", "latex": "y_2(x) = y_1(x) \\int \\frac{e^{-\\int p(x)\\,dx}}{{\\bigl(y_1(x)\\bigr)}^2} \\,dx", "ktex": "\\kytwo(x) = \\kyone(x) \\int \\frac{e^{-\\int p(x)\\,dx}}{{\\bigl(\\kyone(x)\\bigr)}^2} \\,dx"},
+        {"id": "eq-reduction-of-order-trial", "latex": "y_2(x) = y_1(x) v(x)", "ktex": "\\kytwo(x) = \\kyone(x) \\kv(x)"},
+        {"id": "eq-reduction-of-order-w", "latex": "y_1 w' + (2 y_1' + p(x) y_1) w = 0, \\qquad w = v'", "ktex": "\\kyone \\kwprime + (2 \\kyoneprime + p(x) \\kyone) \\kw = 0, \\qquad \\kw = \\kvprime"}
+      ]
+    },
+    {
+      "id": "second-order-equation-with-constant-coefficients",
+      "kind": "definition",
+      "section": "2.2",
+      "name": "Second-order equation with constant coefficients",
+      "statement": "The equation ay″ + by′ + cy = 0, equation (2.3), where a, b, c are constants, is a second-order linear homogeneous equation with constant coefficients: the functions in front of y″, y′ and y are constants and do not depend on x. A function that stays essentially the same when differentiated, the exponential y = e^(rx), is the guess that solves it.",
+      "forms": [
+        {"id": "eq-cc-second-order", "latex": "a y'' + b y' + c y = 0", "ktex": "a \\kydprime + b \\kyprime + c \\ky = 0", "condition": "a, b, c constants"}
+      ]
+    },
+    {
+      "id": "characteristic-equation",
+      "kind": "definition",
+      "section": "2.2",
+      "name": "Characteristic equation",
+      "terms": ["characteristic equation"],
+      "statement": "Trying y = e^(rx) in ay″ + by′ + cy = 0 gives ar²e^(rx) + bre^(rx) + ce^(rx) = 0, and dividing by e^(rx) gives the characteristic equation of the ODE, ar² + br + c = 0. Its roots r₁, r₂ = (−b ± √(b² − 4ac))/(2a), from the quadratic formula, are the r for which e^(rx) is a solution; they are real when b² − 4ac ≥ 0 and complex when b² − 4ac < 0.",
+      "forms": [
+        {"id": "eq-characteristic-equation", "latex": "a r^2 + b r + c = 0", "ktex": "a \\kr^2 + b \\kr + c = 0"},
+        {"id": "eq-characteristic-roots", "latex": "r_1, r_2 = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}", "ktex": "\\krone, \\krtwo = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}"}
+      ]
+    },
+    {
+      "id": "solution-for-distinct-real-roots",
+      "kind": "result",
+      "section": "2.2",
+      "name": "Solution for distinct real roots",
+      "statement": "Theorem 2.2.1 (i). If the roots r₁ and r₂ of the characteristic equation are distinct and real (when b² − 4ac > 0), then (2.3) has the general solution y = C₁e^(r₁x) + C₂e^(r₂x): e^(r₁x) and e^(r₂x) are solutions, and they are linearly independent since e^(r₂x) = Ce^(r₁x) would make an exponential constant.",
+      "forms": [
+        {"id": "eq-distinct-real-roots", "latex": "y = C_1 e^{r_1 x} + C_2 e^{r_2 x}", "ktex": "\\ky = C_1 e^{\\krone x} + C_2 e^{\\krtwo x}", "condition": "b² − 4ac > 0"}
+      ]
+    },
+    {
+      "id": "solution-for-a-repeated-real-root",
+      "kind": "result",
+      "section": "2.2",
+      "name": "Solution for a repeated real root",
+      "statement": "Theorem 2.2.1 (ii). If r₁ = r₂ (happens when b² − 4ac = 0), then (2.3) has the general solution y = (C₁ + C₂x)e^(r₁x). A double root is a limit case of two distinct but very close roots: (e^(r₂x) − e^(r₁x))/(r₂ − r₁) is a solution when the roots are distinct, and its limit as r₁ goes to r₂ is the derivative of e^(rx) in r, which is xe^(rx). A double root rarely happens for random coefficients, but it does happen naturally in some real-world problems, such as a critically damped mass–spring system.",
+      "forms": [
+        {"id": "eq-repeated-real-root", "latex": "y = (C_1 + C_2 x)\\, e^{r_1 x}", "ktex": "\\ky = (C_1 + C_2 x)\\, e^{\\krone x}", "condition": "b² − 4ac = 0, r₁ = r₂"},
+        {"id": "eq-double-root-limit", "latex": "\\lim_{r_1 \\to r_2} \\frac{e^{r_2 x} - e^{r_1 x}}{r_2 - r_1} = x e^{rx}", "ktex": "\\lim_{\\krone \\to \\krtwo} \\frac{e^{\\krtwo x} - e^{\\krone x}}{\\krtwo - \\krone} = x e^{\\kr x}"}
+      ]
+    },
+    {
+      "id": "complex-number",
+      "kind": "definition",
+      "section": "2.2",
+      "name": "Complex number",
+      "terms": ["complex numbers", "complex number"],
+      "statement": "A complex number is simply a pair of real numbers (a, b), that is, a point in the plane, added in the straightforward way and multiplied by (a, b) × (c, d) = (ac − bd, ad + bc); with this rule all the standard properties of arithmetic hold, and (0, 1) × (0, 1) = (−1, 0). Generally (a, b) is written a + ib, i is treated as an unknown, and whenever i² appears it is replaced by −1, so that arithmetic goes as with polynomials. The numbers i and −i are the two roots of r² + 1 = 0; some engineers write j for i.",
+      "forms": [
+        {"id": "eq-complex-multiplication", "latex": "(a,b) \\times (c,d) \\overset{\\text{def}}{=} (ac-bd,ad+bc)", "ktex": "(a,b) \\times (c,d) \\overset{\\text{def}}{=} (ac-bd,ad+bc)"},
+        {"id": "eq-i-squared", "latex": "i^2 = -1", "ktex": "i^2 = -1"}
+      ]
+    },
+    {
+      "id": "complex-exponential",
+      "kind": "definition",
+      "section": "2.2",
+      "name": "Complex exponential",
+      "statement": "The exponential e^(a+ib) of a complex number is defined by writing down the Taylor series and plugging in the complex number, so most properties of the exponential follow from its Taylor series and hold for the complex exponential too; in particular e^(x+y) = e^x e^y gives e^(a+ib) = e^a e^(ib), and once e^(ib) is computed, so is e^(a+ib).",
+      "forms": [
+        {"id": "eq-complex-exponential-split", "latex": "e^{a+ib} = e^a e^{ib}", "ktex": "e^{a+ib} = e^a e^{ib}"}
+      ]
+    },
+    {
+      "id": "eulers-formula",
+      "kind": "result",
+      "section": "2.2",
+      "name": "Euler’s formula",
+      "terms": ["Euler’s formula"],
+      "statement": "Theorem 2.2.2 (Euler’s formula). e^(iθ) = cos θ + i sin θ and e^(−iθ) = cos θ − i sin θ. In other words, e^(a+ib) = e^a(cos(b) + i sin(b)) = e^a cos(b) + i e^a sin(b).",
+      "forms": [
+        {"id": "eq-eulers-formula", "latex": "e^{i \\theta} = \\cos \\theta + i \\sin \\theta \\qquad \\text{ and } \\qquad e^{- i \\theta} = \\cos \\theta - i \\sin \\theta", "ktex": "e^{i \\theta} = \\cos \\theta + i \\sin \\theta \\qquad \\text{ and } \\qquad e^{- i \\theta} = \\cos \\theta - i \\sin \\theta"},
+        {"id": "eq-complex-exponential-euler", "latex": "e^{a+ib} = e^a \\bigl( \\cos(b) + i \\sin(b) \\bigr) = e^a \\cos(b) + i e^a \\sin(b)", "ktex": "e^{a+ib} = e^a \\bigl( \\cos(b) + i \\sin(b) \\bigr) = e^a \\cos(b) + i e^a \\sin(b)"}
+      ]
+    },
+    {
+      "id": "real-and-imaginary-parts",
+      "kind": "definition",
+      "section": "2.2",
+      "name": "Real and imaginary parts",
+      "terms": ["real part", "imaginary part"],
+      "statement": "For a complex number a + ib, a is the real part and b the imaginary part of the number, written Re(a + ib) = a and Im(a + ib) = b.",
+      "forms": [
+        {"id": "eq-re-im", "latex": "\\operatorname{Re}(a+ib) = a \\qquad \\text{and} \\qquad \\operatorname{Im}(a+ib) = b", "ktex": "\\operatorname{Re}(a+ib) = a \\qquad \\text{and} \\qquad \\operatorname{Im}(a+ib) = b"}
+      ]
+    },
+    {
+      "id": "solution-for-complex-conjugate-roots",
+      "kind": "result",
+      "section": "2.2",
+      "name": "Solution for complex roots",
+      "terms": ["complex roots"],
+      "statement": "Theorem 2.2.3. If the characteristic equation of ay″ + by′ + cy = 0 has the roots α ± iβ (when b² − 4ac < 0), then the general solution is y = C₁e^(αx) cos(βx) + C₂e^(αx) sin(βx). The roots are r₁, r₂ = −b/(2a) ± i√(4ac − b²)/(2a); the solution could be written C₁e^((α+iβ)x) + C₂e^((α−iβ)x), but the exponential is then complex-valued and C₁, C₂ would have to be complex. Euler’s formula comes to the rescue: y₁ = e^((α+iβ)x) and y₂ = e^((α−iβ)x) are e^(αx) cos(βx) ± i e^(αx) sin(βx), so the linear combinations y₃ = (y₁ + y₂)/2 = e^(αx) cos(βx) and y₄ = (y₁ − y₂)/(2i) = e^(αx) sin(βx) are real-valued, linearly independent solutions.",
+      "forms": [
+        {"id": "eq-complex-conjugate-roots", "latex": "y = C_1 e^{\\alpha x} \\cos (\\beta x) + C_2 e^{\\alpha x} \\sin (\\beta x)", "ktex": "\\ky = C_1 e^{\\kalpha x} \\cos (\\kbeta x) + C_2 e^{\\kalpha x} \\sin (\\kbeta x)", "condition": "b² − 4ac < 0, roots α ± iβ"},
+        {"id": "eq-complex-roots-form", "latex": "r_1, r_2 = \\frac{-b}{2a} \\pm i\\frac{\\sqrt{4ac - b^2}}{2a}", "ktex": "\\krone, \\krtwo = \\frac{-b}{2a} \\pm i\\frac{\\sqrt{4ac - b^2}}{2a}", "condition": "b² − 4ac < 0"},
+        {"id": "eq-real-solutions-from-complex", "latex": "y_3 = \\frac{y_1 + y_2}{2} = e^{\\alpha x} \\cos (\\beta x) , \\qquad y_4 = \\frac{y_1 - y_2}{2i} = e^{\\alpha x} \\sin (\\beta x)", "ktex": "\\kythree = \\frac{\\kyone + \\kytwo}{2} = e^{\\kalpha x} \\cos (\\kbeta x) , \\qquad \\kyfour = \\frac{\\kyone - \\kytwo}{2i} = e^{\\kalpha x} \\sin (\\kbeta x)", "condition": "y₁ = e^((α+iβ)x), y₂ = e^((α−iβ)x)"}
+      ]
+    },
+    {
+      "id": "solving-with-the-characteristic-equation",
+      "kind": "skill",
+      "section": "2.2",
+      "name": "Solving with the characteristic equation",
+      "statement": "To solve ay″ + by′ + cy = 0, write the characteristic equation ar² + br + c = 0 and find its roots by the quadratic formula (or by factoring or completing the square); then write the general solution from the case the roots fall in, distinct real, repeated real, or complex α ± iβ. For an initial value problem, compute y′, plug x = 0 into y and y′, and solve the two equations for C₁ and C₂ by matrix algebra or high school math."
+    },
+    {
+      "id": "higher-order-linear-equation",
+      "kind": "definition",
+      "section": "2.3",
+      "name": "Higher-order linear equation",
+      "statement": "A general homogeneous linear equation of order n is y⁽ⁿ⁾ + pₙ₋₁(x)y⁽ⁿ⁻¹⁾ + ⋯ + p₁(x)y′ + p₀(x)y = 0, equation (2.4), and the nonhomogeneous one has f(x) on the right. The basic results about linear ODEs of higher order are essentially the same as for second-order equations, with 2 replaced by n; equations in applications tend to be second-order, but higher-order equations do appear from time to time.",
+      "forms": [
+        {"id": "eq-higher-order-homogeneous", "latex": "y^{(n)} + p_{n-1}(x)y^{(n-1)} + \\cdots + p_1(x) y' + p_0(x) y = 0", "ktex": "\\kynth + p_{n-1}(x)\\kynmoneth + \\cdots + p_1(x) \\kyprime + p_0(x) \\ky = 0"},
+        {"id": "eq-higher-order-linear", "latex": "y^{(n)} + p_{n-1}(x)y^{(n-1)} + \\cdots + p_1(x) y' + p_0(x) y = f(x)", "ktex": "\\kynth + p_{n-1}(x)\\kynmoneth + \\cdots + p_1(x) \\kyprime + p_0(x) \\ky = \\kf(x)"}
+      ]
+    },
+    {
+      "id": "superposition-for-higher-order-equations",
+      "kind": "result",
+      "section": "2.3",
+      "name": "Superposition for higher-order equations",
+      "terms": ["superposition"],
+      "statement": "Theorem 2.3.1 (Superposition). If y₁, y₂, …, yₙ are solutions of the homogeneous equation (2.4), then y(x) = C₁y₁(x) + C₂y₂(x) + ⋯ + Cₙyₙ(x) also solves (2.4) for arbitrary constants C₁, C₂, …, Cₙ: a linear combination of solutions to (2.4) is a solution to (2.4).",
+      "forms": [
+        {"id": "eq-superposition-n", "latex": "y(x) = C_1 y_1(x) + C_2 y_2(x) + \\cdots + C_n y_n(x)", "ktex": "\\ky(x) = C_1 \\kyone(x) + C_2 \\kytwo(x) + \\cdots + C_n \\kyn(x)", "condition": "y₁, …, yₙ solutions of (2.4)"}
+      ]
+    },
+    {
+      "id": "existence-and-uniqueness-for-higher-order-linear-equations",
+      "kind": "result",
+      "section": "2.3",
+      "name": "Existence and uniqueness for higher-order linear equations",
+      "terms": ["existence and uniqueness"],
+      "statement": "Theorem 2.3.2 (Existence and uniqueness). Suppose p₀, p₁, …, pₙ₋₁ and f are continuous functions on some interval I, a is a number in I, and b₀, b₁, …, bₙ₋₁ are constants. Then the equation y⁽ⁿ⁾ + pₙ₋₁(x)y⁽ⁿ⁻¹⁾ + ⋯ + p₁(x)y′ + p₀(x)y = f(x) has exactly one solution y(x) defined on the same interval I satisfying the initial conditions y(a) = b₀, y′(a) = b₁, …, y⁽ⁿ⁻¹⁾(a) = bₙ₋₁.",
+      "forms": [
+        {"id": "eq-higher-order-ivp", "latex": "y(a) = b_0, \\quad y'(a) = b_1, \\quad \\ldots, \\quad y^{(n-1)}(a) = b_{n-1}", "ktex": "\\ky(a) = b_0, \\quad \\kyprime(a) = b_1, \\quad \\ldots, \\quad \\kynmoneth(a) = b_{n-1}", "condition": "p₀, …, pₙ₋₁, f continuous on an interval I containing a"}
+      ]
+    },
+    {
+      "id": "linear-independence-of-several-functions",
+      "kind": "definition",
+      "section": "2.3",
+      "name": "Linear independence of several functions",
+      "terms": ["linearly independent"],
+      "statement": "The functions y₁, y₂, …, yₙ are linearly independent if the equation c₁y₁ + c₂y₂ + ⋯ + cₙyₙ = 0, which must hold for all x, has only the trivial solution c₁ = c₂ = ⋯ = cₙ = 0; if it can be solved with some c₁ ≠ 0, then y₁ is a linear combination of the others. There is no one best way to show it: for e^x, e^(2x), e^(3x) one can set z = e^x and use that a cubic polynomial has at most 3 zeros, divide by e^(3x) and let x → ∞, or evaluate the equation and its derivatives at x = 0; many textbooks introduce Wronskians, which are not really necessary here.",
+      "forms": [
+        {"id": "eq-linear-independence-n", "latex": "c_1 y_1 + c_2 y_2 + \\cdots + c_n y_n = 0", "ktex": "c_1 \\kyone + c_2 \\kytwo + \\cdots + c_n \\kyn = 0", "condition": "for all x, only when c₁ = c₂ = ⋯ = cₙ = 0"}
+      ]
+    },
+    {
+      "id": "linear-dependence",
+      "kind": "definition",
+      "section": "2.3",
+      "name": "Linear dependence",
+      "terms": ["linearly dependent"],
+      "statement": "If the functions are not linearly independent, they are linearly dependent: some combination with not all constants zero is identically zero, as e^x, e^(−x) and cosh x are, since 2 cosh x − e^x − e^(−x) = 0."
+    },
+    {
+      "id": "general-solution-of-a-higher-order-homogeneous-equation",
+      "kind": "result",
+      "section": "2.3",
+      "name": "General solution of a higher-order homogeneous equation",
+      "statement": "Theorem 2.3.3. If y₁, y₂, …, yₙ are linearly independent solutions of the homogeneous equation (2.4), then the general solution to (2.4) can be written as y(x) = C₁y₁(x) + C₂y₂(x) + ⋯ + Cₙyₙ(x): once there are enough linearly independent solutions, there is the general solution, just as for second-order equations.",
+      "forms": [
+        {"id": "eq-general-solution-n", "latex": "y(x) = C_1 y_1(x) + C_2 y_2(x) + \\cdots + C_n y_n(x)", "ktex": "\\ky(x) = C_1 \\kyone(x) + C_2 \\kytwo(x) + \\cdots + C_n \\kyn(x)", "condition": "y₁, …, yₙ linearly independent solutions of (2.4)"}
+      ]
+    },
+    {
+      "id": "solutions-for-repeated-real-roots",
+      "kind": "result",
+      "section": "2.3",
+      "name": "Solutions for repeated real roots",
+      "terms": ["repeated roots", "multiplicity"],
+      "statement": "For a higher-order constant-coefficient equation, a real root r of the characteristic equation repeated k times gives, in the spirit of the second-order solution and for the same reasons, the k solutions e^(rx), xe^(rx), x²e^(rx), …, x^(k−1)e^(rx); a linear combination of these, together with the solutions of the other roots, is the general solution. The roots are given with multiplicity: r⁴ − 3r³ + 3r² − r = r(r − 1)³ has the roots 0, 1, 1, 1 and the general solution (C₁ + C₂x + C₃x²)e^x + C₄.",
+      "forms": [
+        {"id": "eq-repeated-real-roots", "latex": "e^{rx}, \\quad xe^{rx}, \\quad x^2 e^{rx}, \\quad \\ldots, \\quad x^{k-1} e^{rx}", "ktex": "e^{\\kr x}, \\quad xe^{\\kr x}, \\quad x^2 e^{\\kr x}, \\quad \\ldots, \\quad x^{k-1} e^{\\kr x}", "condition": "a real root r repeated k times"}
+      ]
+    },
+    {
+      "id": "solutions-for-repeated-complex-roots",
+      "kind": "result",
+      "section": "2.3",
+      "name": "Solutions for repeated complex roots",
+      "statement": "Complex roots always come in pairs r = α ± iβ. For two such complex roots, each repeated k times, the corresponding solution is (C₀ + C₁x + ⋯ + Cₖ₋₁x^(k−1))e^(αx) cos(βx) + (D₀ + D₁x + ⋯ + Dₖ₋₁x^(k−1))e^(αx) sin(βx), where C₀, …, Cₖ₋₁, D₀, …, Dₖ₋₁ are arbitrary constants; the roots 1 ± i with multiplicity 2 give (C₁ + C₂x)e^x cos x + (C₃ + C₄x)e^x sin x.",
+      "forms": [
+        {"id": "eq-repeated-complex-roots", "latex": "( C_0 + C_1 x + \\cdots + C_{k-1} x^{k-1} ) \\, e^{\\alpha x} \\cos (\\beta x) + ( D_0 + D_1 x + \\cdots + D_{k-1} x^{k-1} ) \\, e^{\\alpha x} \\sin (\\beta x)", "ktex": "( C_0 + C_1 x + \\cdots + C_{k-1} x^{k-1} ) \\, e^{\\kalpha x} \\cos (\\kbeta x) + ( D_0 + D_1 x + \\cdots + D_{k-1} x^{k-1} ) \\, e^{\\kalpha x} \\sin (\\kbeta x)", "condition": "the pair α ± iβ repeated k times"}
+      ]
+    },
+    {
+      "id": "solving-higher-order-constant-coefficient-equations",
+      "kind": "skill",
+      "section": "2.3",
+      "name": "Solving higher-order constant-coefficient equations",
+      "statement": "The song and dance is exactly the same as for second order: try y = e^(rx), divide by e^(rx), and find the n roots of the characteristic polynomial, which may be repeated and may be complex; an nth-order equation needs n linearly independent solutions, one per root counted with multiplicity. There is no formula for the roots of a high-degree polynomial, so plot the polynomial and look for sign changes, or plug in r = 0, 1, −1, −2, 2, …; once a root r₁ is found, (r − r₁) is a factor and polynomial long division or the constant term of a monic polynomial, the product of the negations of the roots, gives the rest. Initial conditions give a system of n equations for the constants, sensibly solved by matrix algebra; a computer or an advanced calculator can also find the roots."
+    },
+    {
+      "id": "hookes-law",
+      "kind": "axiom",
+      "section": "2.4",
+      "name": "Hooke’s law",
+      "terms": ["Hooke’s law"],
+      "statement": "The force exerted by a spring with spring constant k > 0 (in newtons per meter) is proportional to the compression of the spring: for a mass displaced x from the rest position it is kx in the negative direction. Similarly, the force exerted by friction is proportional to the velocity of the mass, with the constant c ≥ 0 (in newton-seconds per meter)."
+    },
+    {
+      "id": "newtons-second-law",
+      "kind": "axiom",
+      "section": "2.4",
+      "name": "Newton’s second law",
+      "terms": ["Newton’s second law"],
+      "statement": "Newton’s second law says that force equals mass times acceleration. For the mass on a spring, mx″ = F(t) − cx′ − kx; for the pendulum, the acceleration is Lθ″, so mLθ″ equals the tangential component of the force of gravity, mg sin θ, in the opposite direction.",
+      "forms": [
+        {"id": "eq-newtons-second-law", "latex": "mx'' = F(t)-cx'-kx", "ktex": "m\\kxdprime = \\kF(t)-c\\kxprime-k\\kx"}
+      ]
+    },
+    {
+      "id": "mass-spring-system",
+      "kind": "result",
+      "section": "2.4",
+      "name": "Mass on a spring",
+      "statement": "A mass m > 0 (in kilograms) connected by a spring with spring constant k > 0 to a fixed wall, with an external force F(t) (in newtons) and friction c ≥ 0 as it slides along the floor, has its displacement x (in meters, x = 0 the rest position, x growing away from the wall) governed by mx″ + cx′ + kx = F(t), a linear second-order constant-coefficient ODE, by Hooke’s law and Newton’s second law. The equation appears in lots of applications: a bungee jump is essentially a mass and spring system, and so, in other letters, are the RLC circuit and the pendulum for small swings.",
+      "forms": [
+        {"id": "eq-mass-spring", "latex": "mx'' + cx' + kx = F(t)", "ktex": "m\\kxdprime + c\\kxprime + k\\kx = \\kF(t)"}
+      ]
+    },
+    {
+      "id": "forced-motion",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Forced motion",
+      "terms": ["forced"],
+      "statement": "The motion of the mass on a spring is forced if F is not identically zero, F ≢ 0."
+    },
+    {
+      "id": "free-motion",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Free motion",
+      "terms": ["unforced", "free"],
+      "statement": "The motion is unforced or free if F is identically zero, F ≡ 0; free motion is what is studied first, since nonhomogeneous equations come later."
+    },
+    {
+      "id": "damped-motion",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Damped motion",
+      "terms": ["damped"],
+      "statement": "The motion is damped if c > 0: there is friction as the mass slides along the floor, or perhaps a damper is connected."
+    },
+    {
+      "id": "undamped-motion",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Undamped motion",
+      "terms": ["undamped"],
+      "statement": "The motion is undamped if c = 0, with no friction at all."
+    },
+    {
+      "id": "rlc-series-circuit",
+      "kind": "result",
+      "section": "2.4",
+      "name": "RLC circuit",
+      "terms": ["RLC circuit"],
+      "statement": "In an RLC circuit with a resistor of resistance R ohms, an inductor of inductance L henries, a capacitor of capacitance C farads and an electric source of voltage E(t) volts, the charge Q(t) on the capacitor and the current I(t) satisfy Q′ = I and, by elementary principles, LI′ + RI + Q/C = E; differentiating gives LI″(t) + RI′(t) + (1/C)I(t) = E′(t), a nonhomogeneous second-order constant-coefficient linear equation. As L, R and C are all positive, the circuit behaves just like the mass and spring system: position is replaced by current, mass by inductance, damping by resistance, the spring constant by one over the capacitance, and the change in voltage is the forcing, so a constant voltage gives unforced motion.",
+      "forms": [
+        {"id": "eq-rlc", "latex": "L I''(t) + R I'(t) + \\frac{1}{C} I(t) = E'(t)", "ktex": "L \\kIdprime(t) + R \\kIprime(t) + \\frac{1}{C} \\kI(t) = \\kEprime(t)"},
+        {"id": "eq-rlc-first-order", "latex": "L I' + RI + \\frac{Q}{C} = E", "ktex": "L \\kIprime + R\\kI + \\frac{\\kQ}{C} = \\kE"},
+        {"id": "eq-charge-current", "latex": "Q' = I", "ktex": "\\kQprime = \\kI"}
+      ]
+    },
+    {
+      "id": "pendulum-equation",
+      "kind": "result",
+      "section": "2.4",
+      "name": "Pendulum equation",
+      "statement": "A mass of m kilograms hanging on a pendulum of length L meters, with θ(t) the angle in radians and g the acceleration due to gravity, obeys θ″ + (g/L) sin θ = 0: by Newton’s second law the acceleration is Lθ″, so mLθ″ equals the tangential component of gravity, mg sin θ, in the opposite direction, and the m curiously cancels. The pendulum behaves like a mass and spring system only approximately.",
+      "forms": [
+        {"id": "eq-pendulum", "latex": "\\theta'' + \\frac{g}{L} \\sin \\theta = 0", "ktex": "\\kthetadprime + \\frac{g}{L} \\sin \\ktheta = 0"},
+        {"id": "eq-pendulum-newton", "latex": "mL\\theta'' = -mg \\sin \\theta", "ktex": "mL\\kthetadprime = -mg \\sin \\ktheta"}
+      ]
+    },
+    {
+      "id": "small-angle-approximation",
+      "kind": "idea",
+      "section": "2.4",
+      "name": "Small-angle approximation",
+      "statement": "For small θ, sin θ ≈ θ: for approximately −0.5 < θ < 0.5 radians the graphs of sin θ and θ are almost the same (Figure 2.1). So when the swings are small, the pendulum is modelled by the simpler linear equation θ″ + (g/L)θ = 0. The errors from the approximation build up, and after a long time the real-world system may be substantially different from the solution; unlike the mass–spring system, the pendulum’s period depends on its amplitude. Such simplifications are often necessary, and one must understand both the mathematics and the physics to see whether a simplification is valid for the questions asked.",
+      "forms": [
+        {"id": "eq-sin-approx", "latex": "\\sin \\theta \\approx \\theta", "ktex": "\\sin \\ktheta \\approx \\ktheta", "condition": "θ small, about −0.5 < θ < 0.5 radians"},
+        {"id": "eq-linear-pendulum", "latex": "\\theta'' + \\frac{g}{L} \\theta = 0", "ktex": "\\kthetadprime + \\frac{g}{L} \\ktheta = 0", "condition": "small swings"}
+      ]
+    },
+    {
+      "id": "natural-frequency",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Natural frequency",
+      "terms": ["natural (angular) frequency", "natural frequency"],
+      "symbol": "ω_0",
+      "type": "frequency",
+      "statement": "For the free undamped motion mx″ + kx = 0, dividing by m and letting ω₀ = √(k/m) rewrites the equation as x″ + ω₀²x = 0; ω₀ is the natural (angular) frequency, the frequency at which the system “wants to oscillate” without external interference.",
+      "forms": [
+        {"id": "eq-natural-frequency", "latex": "\\omega_0 = \\sqrt{\\frac{k}{m}}", "ktex": "\\komegazero = \\sqrt{\\frac{k}{m}}"},
+        {"id": "eq-free-undamped", "latex": "mx'' + kx = 0", "ktex": "m\\kxdprime + k\\kx = 0", "condition": "free, undamped: F ≡ 0, c = 0"}
+      ]
+    },
+    {
+      "id": "simple-harmonic-motion",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Simple harmonic motion",
+      "terms": ["simple harmonic motion"],
+      "statement": "The free undamped motion x″ + ω₀²x = 0 has the general solution x(t) = A cos(ω₀t) + B sin(ω₀t), which by a trigonometric identity is C cos(ω₀t − γ): a pure-frequency oscillation (a sine wave) with amplitude C, angular frequency ω₀ and phase shift γ. This entire setup is called simple harmonic motion. The form with A and B is easier for the initial conditions, x(0) = A and x′(0) = ω₀B; the form with C and γ is more natural, and C and γ are computed from A and B.",
+      "forms": [
+        {"id": "eq-shm", "latex": "x'' + \\omega_0^2 x = 0", "ktex": "\\kxdprime + \\komegazero^2 \\kx = 0"},
+        {"id": "eq-shm-solution", "latex": "x(t) = A \\cos (\\omega_0 t) + B \\sin (\\omega_0 t)", "ktex": "\\kx(t) = A \\cos (\\komegazero t) + B \\sin (\\komegazero t)"},
+        {"id": "eq-shm-initial-conditions", "latex": "x(0) = A, \\qquad x'(0) = \\omega_0 B", "ktex": "\\kx(0) = A, \\qquad \\kxprime(0) = \\komegazero B"}
+      ]
+    },
+    {
+      "id": "amplitude-and-phase-shift-form",
+      "kind": "result",
+      "section": "2.4",
+      "name": "Amplitude and phase shift form",
+      "statement": "By a trigonometric identity, A cos(ω₀t) + B sin(ω₀t) = C cos(ω₀t − γ) for two different constants C and γ: one finds A = C cos γ and B = C sin γ, and therefore C = √(A² + B²) and tan γ = B/A, so C and γ can be taken as the arbitrary constants and the solution written x(t) = C cos(ω₀t − γ). The arctangent must be checked for the correct quadrant, the quadrant of the point (A, B), and π added if not; the atan2 function of many calculators takes B and A and returns γ in the correct quadrant.",
+      "forms": [
+        {"id": "eq-amplitude-phase", "latex": "A \\cos (\\omega_0 t) + B \\sin (\\omega_0 t) = C \\cos ( \\omega_0 t - \\gamma )", "ktex": "A \\cos (\\komegazero t) + B \\sin (\\komegazero t) = C \\cos ( \\komegazero t - \\gamma )"},
+        {"id": "eq-amplitude-phase-constants", "latex": "C= \\sqrt{A^2 + B^2}, \\qquad \\tan \\gamma = \\frac{B}{A}", "ktex": "C= \\sqrt{A^2 + B^2}, \\qquad \\tan \\gamma = \\frac{B}{A}"},
+        {"id": "eq-amplitude-phase-components", "latex": "A = C \\cos \\gamma, \\qquad B = C \\sin \\gamma", "ktex": "A = C \\cos \\gamma, \\qquad B = C \\sin \\gamma"}
+      ]
+    },
+    {
+      "id": "amplitude",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Amplitude",
+      "terms": ["amplitude"],
+      "statement": "In the solution x(t) = C cos(ω₀t − γ) of simple harmonic motion, the amplitude is C, the furthest the mass goes either way from the rest position; in Example 2.4.1 it is √(A² + B²) = √0.5 ≈ 0.707."
+    },
+    {
+      "id": "angular-frequency",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Angular frequency",
+      "terms": ["frequency", "angular frequency"],
+      "type": "frequency",
+      "statement": "In x(t) = C cos(ω₀t − γ), ω₀ is the (angular) frequency. The units of ω₀ are radians per unit time, not cycles per unit time as is the usual measure of frequency; because one cycle is 2π radians, the usual frequency is ω₀/(2π), and where the 2π goes is a matter of taste. In Example 2.4.1 the angular frequency is 2 and the usual frequency in Hertz (cycles per second) is 2/(2π) = 1/π ≈ 0.318.",
+      "forms": [
+        {"id": "eq-frequency-hertz", "latex": "\\frac{\\omega_0}{2\\pi}", "ktex": "\\frac{\\komegazero}{2\\pi}", "condition": "the usual frequency, in cycles per unit time"}
+      ]
+    },
+    {
+      "id": "phase-shift",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Phase shift",
+      "terms": ["phase shift"],
+      "statement": "In x(t) = C cos(ω₀t − γ), γ is the so-called phase shift; it just shifts the graph left or right. It is found from tan γ = B/A in the quadrant of (A, B), so in Example 2.4.1, where A and B are both positive, γ = π/4."
+    },
+    {
+      "id": "period",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Period",
+      "terms": ["period"],
+      "statement": "The period of the motion is one over the frequency (in cycles per unit time) and hence it is 2π/ω₀: the amount of time it takes to complete one full cycle.",
+      "forms": [
+        {"id": "eq-period", "latex": "\\frac{2\\pi}{\\omega_0}", "ktex": "\\frac{2\\pi}{\\komegazero}", "condition": "the period of simple harmonic motion"}
+      ]
+    },
+    {
+      "id": "damped-spring-mass-system",
+      "kind": "result",
+      "section": "2.4",
+      "name": "Free damped motion",
+      "statement": "The free damped equation mx″ + cx′ + kx = 0 is rewritten as x″ + 2px′ + ω₀²x = 0 with ω₀ = √(k/m) and p = c/(2m). Its characteristic equation r² + 2pr + ω₀² = 0 has the roots r = −p ± √(p² − ω₀²), and the form of the solution depends on whether they are real or complex: p² − ω₀² = (c/2m)² − k/m = (c² − 4km)/(4m²), so the roots are real if and only if c² ≥ 4km. The sign of c² − 4km sorts the motion into overdamped, critically damped and underdamped.",
+      "forms": [
+        {"id": "eq-damped-free", "latex": "x'' + 2p x' + \\omega_0^2 x = 0", "ktex": "\\kxdprime + 2p \\kxprime + \\komegazero^2 \\kx = 0"},
+        {"id": "eq-damping-rate", "latex": "\\omega_0 = \\sqrt{\\frac{k}{m}}, \\qquad p = \\frac{c}{2m}", "ktex": "\\komegazero = \\sqrt{\\frac{k}{m}}, \\qquad p = \\frac{c}{2m}"},
+        {"id": "eq-damped-characteristic", "latex": "r^2 + 2 pr + \\omega_0^2 = 0", "ktex": "\\kr^2 + 2 p\\kr + \\komegazero^2 = 0"},
+        {"id": "eq-damped-roots", "latex": "r = -p \\pm \\sqrt{p^2 - \\omega_0^2}", "ktex": "\\kr = -p \\pm \\sqrt{p^2 - \\komegazero^2}"},
+        {"id": "eq-damped-discriminant", "latex": "p^2 - \\omega_0^2 = {\\left( \\frac{c}{2m} \\right)}^2 - \\frac{k}{m} = \\frac{c^2 - 4km}{4m^2}", "ktex": "p^2 - \\komegazero^2 = {\\left( \\frac{c}{2m} \\right)}^2 - \\frac{k}{m} = \\frac{c^2 - 4km}{4m^2}"}
+      ]
+    },
+    {
+      "id": "overdamped-system",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Overdamped system",
+      "terms": ["overdamped"],
+      "statement": "When c² − 4km > 0, the system is overdamped: there are two distinct real roots r₁ and r₂, both negative since √(p² − ω₀²) is always less than p, and the solution is x(t) = C₁e^(r₁t) + C₂e^(r₂t), which tends to the rest position as t → ∞. No oscillation happens, and the graph crosses the t-axis at most once, since 0 = C₁e^(r₁t) + C₂e^(r₂t) gives −C₁/C₂ = e^((r₂−r₁)t), which has at most one solution t ≥ 0; for some initial conditions it never crosses. Released from rest, x(0) = x₀ and x′(0) = 0, the mass follows x(t) = x₀(r₁e^(r₂t) − r₂e^(r₁t))/(r₁ − r₂).",
+      "forms": [
+        {"id": "eq-overdamped", "latex": "x(t) = C_1 e^{r_1 t} + C_2 e^{r_2 t}", "ktex": "\\kx(t) = C_1 e^{\\krone t} + C_2 e^{\\krtwo t}", "condition": "c² − 4km > 0"},
+        {"id": "eq-overdamped-from-rest", "latex": "x(t) = \\frac{x_0}{r_1-r_2} \\left(r_1 e^{r_2 t} - r_2 e^{r_1 t} \\right)", "ktex": "\\kx(t) = \\frac{x_0}{\\krone-\\krtwo} \\left(\\krone e^{\\krtwo t} - \\krtwo e^{\\krone t} \\right)", "condition": "x(0) = x₀, x′(0) = 0, Example 2.4.2"}
+      ]
+    },
+    {
+      "id": "critically-damped-system",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Critically damped system",
+      "terms": ["critically damped"],
+      "statement": "When c² − 4km = 0, the system is critically damped: there is one root of multiplicity 2, the root −p, and the solution is x(t) = C₁e^(−pt) + C₂te^(−pt). The behavior is very similar to an overdamped system, of which it is in some sense a limit; since the equations are only an approximation to the real world, in reality we are never critically damped, always a little bit underdamped or a little bit overdamped, so it is better not to dwell on critical damping.",
+      "forms": [
+        {"id": "eq-critically-damped", "latex": "x(t) = C_1 e^{-pt} + C_2 t e^{-pt}", "ktex": "\\kx(t) = C_1 e^{-pt} + C_2 t e^{-pt}", "condition": "c² − 4km = 0"}
+      ]
+    },
+    {
+      "id": "underdamped-system",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Underdamped system",
+      "terms": ["underdamped"],
+      "statement": "When c² − 4km < 0, the system is underdamped and the roots are complex: r = −p ± √(p² − ω₀²) = −p ± √−1 √(ω₀² − p²) = −p ± iω₁, where ω₁ = √(ω₀² − p²). The solution is x(t) = e^(−pt)(A cos(ω₁t) + B sin(ω₁t)), or x(t) = Ce^(−pt) cos(ω₁t − γ): an oscillation that still has x(t) → 0 as t → ∞.",
+      "forms": [
+        {"id": "eq-underdamped", "latex": "x(t) = e^{-pt} \\bigl( A \\cos (\\omega_1 t) + B \\sin (\\omega_1 t) \\bigr)", "ktex": "\\kx(t) = e^{-pt} \\bigl( A \\cos (\\komegaone t) + B \\sin (\\komegaone t) \\bigr)", "condition": "c² − 4km < 0"},
+        {"id": "eq-underdamped-phase", "latex": "x(t) = C e^{-pt} \\cos ( \\omega_1 t - \\gamma )", "ktex": "\\kx(t) = C e^{-pt} \\cos ( \\komegaone t - \\gamma )", "condition": "c² − 4km < 0"},
+        {"id": "eq-underdamped-roots", "latex": "r = -p \\pm i \\omega_1", "ktex": "\\kr = -p \\pm i \\komegaone", "condition": "c² − 4km < 0"}
+      ]
+    },
+    {
+      "id": "envelope-curves",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Envelope curves",
+      "terms": ["envelope curves"],
+      "type": "function",
+      "statement": "The envelope curves Ce^(−pt) and −Ce^(−pt) of underdamped motion: the solution is the oscillating line between them, and they give the maximum amplitude of the oscillation at any given point in time, which is what a bungee jumper wants to compute so as not to hit the concrete. The phase shift γ shifts the oscillation left or right within the envelope curves, which do not change if γ changes; they become flatter and flatter as c, and hence p, goes to 0.",
+      "forms": [
+        {"id": "eq-envelope", "latex": "C e^{-pt} \\quad \\text{and} \\quad -C e^{-pt}", "ktex": "C e^{-pt} \\quad \\text{and} \\quad -C e^{-pt}", "condition": "the envelope of x(t) = Ce^(−pt) cos(ω₁t − γ)"}
+      ]
+    },
+    {
+      "id": "pseudo-frequency",
+      "kind": "definition",
+      "section": "2.4",
+      "name": "Pseudo-frequency",
+      "terms": ["pseudo-frequency"],
+      "symbol": "ω_1",
+      "type": "frequency",
+      "statement": "The angular pseudo-frequency ω₁ = √(ω₀² − p²) of underdamped motion is not called a frequency since the solution is not really a periodic function. It becomes smaller when the damping c (and hence p) becomes larger: as c² approaches 4km, ω₁ approaches 0 and the solution starts looking like critical damping or overdamping, where no oscillation happens; as c gets smaller, ω₁ approaches ω₀ (ω₁ is always smaller than ω₀) and the solution looks more and more like the steady periodic motion of the undamped case.",
+      "forms": [
+        {"id": "eq-pseudo-frequency", "latex": "\\omega_1 =\\sqrt{\\omega_0^2 - p^2}", "ktex": "\\komegaone =\\sqrt{\\komegazero^2 - p^2}"}
+      ]
+    },
+    {
+      "id": "complementary-equation",
+      "kind": "definition",
+      "section": "2.5",
+      "name": "Associated homogeneous equation",
+      "terms": ["associated homogeneous equation"],
+      "statement": "For a nonhomogeneous linear equation Ly = f(x), such as y″ + 5y′ + 6y = 2x + 1, equation (2.6), the associated homogeneous equation is Ly = 0, the same left-hand side with zero on the right: y″ + 5y′ + 6y = 0, equation (2.7). Ly is written when the exact form of the operator is not important.",
+      "forms": [
+        {"id": "eq-associated-homogeneous", "latex": "y'' + 5y'+ 6y = 0", "ktex": "\\kydprime + 5\\kyprime+ 6\\ky = 0", "condition": "the associated homogeneous equation (2.7) of y″ + 5y′ + 6y = 2x + 1"},
+        {"id": "eq-associated-homogeneous-operator", "latex": "Ly = 0", "ktex": "L\\ky = 0", "condition": "for the equation Ly = f(x)"}
+      ]
+    },
+    {
+      "id": "complementary-solution",
+      "kind": "definition",
+      "section": "2.5",
+      "name": "Complementary solution",
+      "terms": ["complementary solution"],
+      "symbol": "y_c",
+      "type": "function",
+      "statement": "The complementary solution y_c is the general solution to the associated homogeneous equation Ly = 0, found first when solving a nonhomogeneous equation; for (2.6) it is y_c = C₁e^(−2x) + C₂e^(−3x)."
+    },
+    {
+      "id": "general-solution-to-a-nonhomogeneous-equation",
+      "kind": "result",
+      "section": "2.5",
+      "name": "General solution of a nonhomogeneous equation",
+      "statement": "Theorem 2.5.1. Let Ly = f(x) be a linear ODE (not necessarily constant-coefficient). Let y_c be the complementary solution (the general solution to the associated homogeneous equation Ly = 0) and let y_p be any particular solution to Ly = f(x). Then the general solution to Ly = f(x) is y = y_c + y_p. As L is a linear operator, Ly = Ly_c + Ly_p = 0 + f(x); and any two particular solutions y_p and ỹ_p differ by w = y_p − ỹ_p with Lw = Ly_p − Lỹ_p = 0, a solution of the homogeneous equation, so y_c + y_p includes all solutions. The moral is that the particular solution can be found in any old way: a different one gives the same general solution, with different constants for the initial conditions.",
+      "forms": [
+        {"id": "eq-yc-plus-yp", "latex": "y = y_c + y_p", "ktex": "\\ky = \\kyc + \\kyp"},
+        {"id": "eq-difference-of-particular-solutions", "latex": "Lw = L(y_p - \\tilde{y}_p) = Ly_p - L\\tilde{y}_p = (2x+1)-(2x+1) = 0", "ktex": "L\\kw = L(\\kyp - \\kyptilde) = L\\kyp - L\\kyptilde = (2x+1)-(2x+1) = 0", "condition": "y_p, ỹ_p two particular solutions of (2.6)"},
+        {"id": "eq-nonhomogeneous-example-solution", "latex": "y = C_1 e^{-2x} + C_2 e^{-3x} + \\frac{3x-1}{9}", "ktex": "\\ky = C_1 e^{-2x} + C_2 e^{-3x} + \\frac{3x-1}{9}", "condition": "the general solution of y″ + 5y′ + 6y = 2x + 1"}
+      ]
+    },
+    {
+      "id": "method-of-undetermined-coefficients",
+      "kind": "skill",
+      "section": "2.5",
+      "name": "Undetermined coefficients",
+      "terms": ["undetermined coefficients"],
+      "statement": "The trick is to guess, in a smart way, one particular solution of Ly = f(x) with coefficients to solve for: for a polynomial right-hand side a general polynomial of the same degree, lower-degree terms included (y_p = Ax + B for 2x + 1, giving y_p = (3x − 1)/9); for cos(2x) a multiple of cos(2x) and a multiple of sin(2x), since derivatives of cosine are sines; for e^(3x) a multiple of e^(3x); and for a product of sines, cosines, exponentials and polynomials, a form such that Ly_p has all the terms of the right-hand side, which can make for a very long and tedious calculation. Plug the guess in, match the coefficients of like terms, and solve. When the right-hand side has several terms, find a particular solution for each term separately and add them, since L is linear. The initial conditions are applied to y = y_c + y_p and only then, never to y_c alone. The method only works when the right-hand side has finitely many linearly independent derivatives."
+    },
+    {
+      "id": "duplication-with-the-complementary-solution",
+      "kind": "idea",
+      "section": "2.5",
+      "name": "Duplication with the complementary solution",
+      "statement": "There is one hiccup: the guess may solve the associated homogeneous equation, as Ae^(3x) does for y″ − 9y = e^(3x), where plugging it in gives 0 whatever A is. The trick is to multiply the guess by x to get rid of duplication with the complementary solution, y_p = Axe^(3x), which gives A = 1/6; if that does not remove all duplication, as for y″ − 6y′ + 9y = e^(3x) with y_c = C₁e^(3x) + C₂xe^(3x), multiply by x again, y_p = Ax²e^(3x). Multiply by x until all duplication is gone, but no more, and look for duplication in the entire expression tried: for y″ − y = xe^x the guess must be Axe^x + Bx²e^x, since e^x appears in y_c.",
+      "forms": [
+        {"id": "eq-undetermined-duplication", "latex": "y_p = A x e^{3x}", "ktex": "\\kyp = A x e^{3x}", "condition": "y″ − 9y = e^(3x), where Ae^(3x) duplicates y_c"}
+      ]
+    },
+    {
+      "id": "method-of-variation-of-parameters",
+      "kind": "skill",
+      "section": "2.5",
+      "name": "Variation of parameters",
+      "terms": ["variation of parameters"],
+      "statement": "Variation of parameters handles any equation Ly = f(x), such as y″ + y = tan x, whose right-hand side has infinitely many different derivatives, provided certain integrals can be solved; it works for higher-order equations and for nonconstant coefficients when the associated homogeneous equation can be solved. For y″ + p(x)y′ + q(x)y = f(x), first find solutions y₁, y₂ of the homogeneous equation, then try y_p = u₁y₁ + u₂y₂ where u₁ and u₂ are functions and not constants. Imposing u₁′y₁ + u₂′y₂ = 0 to simplify the second derivative, the equation Ly = f(x) comes down to the two boxed equations u₁′y₁ + u₂′y₂ = 0 and u₁′y₁′ + u₂′y₂′ = f(x); solve them for u₁′ and u₂′, integrate (forgetting the constants of integration) to find u₁ and u₂, and plug into y_p = u₁y₁ + u₂y₂. If y″ has a coefficient a ≠ 1, first divide the equation, and hence f, by a. For y″ + y = tan x this gives y_p = −cos x ln|sec x + tan x|.",
+      "forms": [
+        {"id": "eq-variation-of-parameters", "latex": "\\begin{aligned} & u_1' y_1 + u_2' y_2 = 0 ,\\\\ & u_1' y_1' + u_2' y_2' = f(x) . \\end{aligned}", "ktex": "\\begin{aligned} & \\kuoneprime \\kyone + \\kutwoprime \\kytwo = 0 ,\\\\ & \\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime = \\kf(x) . \\end{aligned}", "condition": "for Ly = y″ + p(x)y′ + q(x)y = f(x), y₁ and y₂ solving Ly = 0"},
+        {"id": "eq-variation-trial", "latex": "y_p = u_1 y_1 + u_2 y_2", "ktex": "\\kyp = \\kuone \\kyone + \\kutwo \\kytwo"}
+      ]
+    },
+    {
+      "id": "undamped-forced-motion",
+      "kind": "result",
+      "section": "2.6",
+      "name": "Undamped forced motion",
+      "statement": "For the undamped forced equation mx″ + kx = F₀ cos(ωt), with ω₀ = √(k/m) the natural frequency and ω₀ ≠ ω, the complementary solution is x_c = C₁ cos(ω₀t) + C₂ sin(ω₀t) and undetermined coefficients with the trial x_p = A cos(ωt) (no sine is needed, since after plugging in there are only cosines) gives x_p = F₀/(m(ω₀² − ω²)) cos(ωt). The general solution x = C₁ cos(ω₀t) + C₂ sin(ω₀t) + F₀/(m(ω₀² − ω²)) cos(ωt), or C cos(ω₀t − γ) + F₀/(m(ω₀² − ω²)) cos(ωt), is a superposition of two (shifted) cosine waves at different frequencies. Periodic forcing such as noncentered rotating parts or loud sounds is understood through F₀ cos(ωt), since by Fourier series every periodic function is a sum of such cosines.",
+      "forms": [
+        {"id": "eq-undamped-forced", "latex": "x = C_1 \\cos (\\omega_0 t) + C_2 \\sin (\\omega_0 t) + \\frac{F_0}{m(\\omega_0^2 - \\omega^2)} \\cos (\\omega t)", "ktex": "\\kx = C_1 \\cos (\\komegazero t) + C_2 \\sin (\\komegazero t) + \\frac{F_0}{m(\\komegazero^2 - \\komega^2)} \\cos (\\komega t)", "condition": "mx″ + kx = F₀ cos(ωt), ω₀ ≠ ω"},
+        {"id": "eq-undamped-forced-equation", "latex": "mx'' + kx = F_0 \\cos (\\omega t)", "ktex": "m\\kxdprime + k\\kx = F_0 \\cos (\\komega t)"},
+        {"id": "eq-undamped-forced-xp", "latex": "x_p = \\frac{F_0}{m(\\omega_0^2 - \\omega^2)} \\cos (\\omega t)", "ktex": "\\kxp = \\frac{F_0}{m(\\komegazero^2 - \\komega^2)} \\cos (\\komega t)", "condition": "ω₀ ≠ ω"},
+        {"id": "eq-undamped-forced-phase", "latex": "x = C \\cos (\\omega_0 t - \\gamma) + \\frac{F_0}{m(\\omega_0^2 - \\omega^2)} \\cos (\\omega t)", "ktex": "\\kx = C \\cos (\\komegazero t - \\gamma) + \\frac{F_0}{m(\\komegazero^2 - \\komega^2)} \\cos (\\komega t)", "condition": "ω₀ ≠ ω"}
+      ]
+    },
+    {
+      "id": "beating",
+      "kind": "idea",
+      "section": "2.6",
+      "name": "Beating",
+      "terms": ["beating"],
+      "statement": "When the forcing frequency is close to the natural frequency, as in Example 2.6.1 with x = 20/(16 − π²)(cos(πt) − cos(4t)), the solution shows beating: by the identity 2 sin((A − B)/2) sin((A + B)/2) = cos B − cos A, x = 20/(16 − π²)(2 sin((4 − π)t/2) sin((4 + π)t/2)), a high-frequency wave modulated by a low-frequency wave, whose amplitude grows, goes to zero, and grows again.",
+      "forms": [
+        {"id": "eq-beating-identity", "latex": "2\\sin \\left( \\frac{A-B}{2} \\right) \\sin \\left( \\frac{A+B}{2} \\right) = \\cos B -\\cos A", "ktex": "2\\sin \\left( \\frac{A-B}{2} \\right) \\sin \\left( \\frac{A+B}{2} \\right) = \\cos B -\\cos A"},
+        {"id": "eq-beating-example", "latex": "x = \\frac{20}{16 - \\pi^2} \\left( 2 \\sin \\left(\\frac{4-\\pi}{2} t \\right) \\sin \\left( \\frac{4+\\pi}{2} t \\right) \\right)", "ktex": "\\kx = \\frac{20}{16 - \\pi^2} \\left( 2 \\sin \\left(\\frac{4-\\pi}{2} t \\right) \\sin \\left( \\frac{4+\\pi}{2} t \\right) \\right)", "condition": "Example 2.6.1: 0.5x″ + 8x = 10 cos(πt), x(0) = x′(0) = 0"}
+      ]
+    },
+    {
+      "id": "resonance",
+      "kind": "definition",
+      "section": "2.6",
+      "name": "Resonance",
+      "terms": ["resonance", "pure resonance"],
+      "statement": "When ω₀ = ω, cos(ωt) solves the associated homogeneous equation, so the trial solution is x_p = At cos(ωt) + Bt sin(ωt), and plugging into x″ + ω²x = (F₀/m) cos(ωt) gives 2Bω cos(ωt) − 2Aω sin(ωt) = (F₀/m) cos(ωt), hence A = 0 and B = F₀/(2mω): the particular solution is F₀/(2mω) t sin(ωt), which oscillates between ±F₀t/(2mω) and grows without bound as t → ∞, while the other terms only oscillate between ±√(C₁² + C₂²). Forcing the system at just the right frequency produces very wild oscillations; this behavior is called resonance or perhaps pure resonance. It is desired on a swing and destructive in an earthquake, where buildings of different resonance frequencies fare differently; the Tacoma Narrows bridge failure, a common example, was in fact a different phenomenon.",
+      "forms": [
+        {"id": "eq-pure-resonance", "latex": "x_p = \\frac{F_0}{2m\\omega} \\, t \\sin (\\omega t)", "ktex": "\\kxp = \\frac{F_0}{2m\\komega} \\, t \\sin (\\komega t)", "condition": "ω = ω₀"},
+        {"id": "eq-resonance-general", "latex": "x = C_1 \\cos (\\omega t) + C_2 \\sin (\\omega t) + \\frac{F_0}{2m\\omega} \\, t \\sin (\\omega t)", "ktex": "\\kx = C_1 \\cos (\\komega t) + C_2 \\sin (\\komega t) + \\frac{F_0}{2m\\komega} \\, t \\sin (\\komega t)", "condition": "ω = ω₀"},
+        {"id": "eq-resonance-equation", "latex": "x'' + \\omega^2 x = \\frac{F_0}{m} \\cos ( \\omega t)", "ktex": "\\kxdprime + \\komega^2 \\kx = \\frac{F_0}{m} \\cos ( \\komega t)", "condition": "ω = ω₀"},
+        {"id": "eq-resonance-collected", "latex": "2 B \\omega \\cos (\\omega t) - 2 A \\omega \\sin (\\omega t) = \\frac{F_0}{m} \\cos (\\omega t)", "ktex": "2 B \\komega \\cos (\\komega t) - 2 A \\komega \\sin (\\komega t) = \\frac{F_0}{m} \\cos (\\komega t)", "condition": "x_p = At cos(ωt) + Bt sin(ωt) plugged into the left-hand side"}
+      ]
+    },
+    {
+      "id": "forced-vibrations",
+      "kind": "result",
+      "section": "2.6",
+      "name": "Damped forced motion",
+      "statement": "With damping c > 0 the equation is mx″ + cx′ + kx = F₀ cos(ωt), equation (2.8), replaced with p = c/(2m) and ω₀ = √(k/m) by x″ + 2px′ + ω₀²x = (F₀/m) cos(ωt). The complementary solution x_c takes the overdamped, critically damped or underdamped form by the sign of c² − 4km, and in any case x_c(t) → 0 as t → ∞. There can be no conflicts trying x_p = A cos(ωt) + B sin(ωt); plugging in gives ((ω₀² − ω²)B − 2ωpA) sin(ωt) + ((ω₀² − ω²)A + 2ωpB) cos(ωt) = (F₀/m) cos(ωt), hence A = (ω₀² − ω²)F₀/(m(2ωp)² + m(ω₀² − ω²)²) and B = 2ωpF₀/(m(2ωp)² + m(ω₀² − ω²)²), so the particular solution has amplitude C = √(A² + B²) = F₀/(m√((2ωp)² + (ω₀² − ω²)²)) and phase shift γ with tan γ = B/A = 2ωp/(ω₀² − ω²) if ω ≠ ω₀: x_p = C cos(ωt − γ). If ω = ω₀, then A = 0, B = C = F₀/(2mωp) and γ = π/2.",
+      "forms": [
+        {"id": "eq-steady-periodic", "latex": "x_p = \\frac{F_0}{m \\sqrt{{(2\\omega p)}^2+{(\\omega_0^2-\\omega^2)}^2}} \\cos ( \\omega t - \\gamma )", "ktex": "\\kxp = \\frac{F_0}{m \\sqrt{{(2\\komega p)}^2+{(\\komegazero^2-\\komega^2)}^2}} \\cos ( \\komega t - \\gamma )"},
+        {"id": "eq-damped-forced", "latex": "mx'' + cx' + kx = F_0 \\cos (\\omega t)", "ktex": "m\\kxdprime + c\\kxprime + k\\kx = F_0 \\cos (\\komega t)", "condition": "c > 0"},
+        {"id": "eq-damped-forced-reduced", "latex": "x'' + 2px' + \\omega_0^2x = \\frac{F_0}{m} \\cos (\\omega t)", "ktex": "\\kxdprime + 2p\\kxprime + \\komegazero^2\\kx = \\frac{F_0}{m} \\cos (\\komega t)", "condition": "p = c/(2m), ω₀ = √(k/m)"},
+        {"id": "eq-damped-forced-xc", "latex": "x_c = \\begin{cases} C_1 e^{r_1 t} + C_2 e^{r_2 t} & \\text{if } \\; c^2 > 4km , \\\\ C_1 e^{-p t} + C_2 t e^{-p t} & \\text{if } \\; c^2 = 4km , \\\\ e^{-p t} \\bigl( C_1 \\cos (\\omega_1 t) + C_2 \\sin (\\omega_1 t) \\bigr) & \\text{if } \\; c^2 < 4km , \\end{cases}", "ktex": "\\kxc = \\begin{cases} C_1 e^{\\krone t} + C_2 e^{\\krtwo t} & \\text{if } \\; c^2 > 4km , \\\\ C_1 e^{-p t} + C_2 t e^{-p t} & \\text{if } \\; c^2 = 4km , \\\\ e^{-p t} \\bigl( C_1 \\cos (\\komegaone t) + C_2 \\sin (\\komegaone t) \\bigr) & \\text{if } \\; c^2 < 4km , \\end{cases}", "condition": "ω₁ = √(ω₀² − p²)"},
+        {"id": "eq-steady-coefficients", "latex": "A=\\frac{(\\omega_0^2-\\omega^2) F_0} {m{(2\\omega p)}^2+m{(\\omega_0^2-\\omega^2)}^2} , \\qquad B=\\frac{2 \\omega p F_0} {m{(2\\omega p)}^2+m{(\\omega_0^2-\\omega^2)}^2}", "ktex": "A=\\frac{(\\komegazero^2-\\komega^2) F_0} {m{(2\\komega p)}^2+m{(\\komegazero^2-\\komega^2)}^2} , \\qquad B=\\frac{2 \\komega p F_0} {m{(2\\komega p)}^2+m{(\\komegazero^2-\\komega^2)}^2}", "condition": "x_p = A cos(ωt) + B sin(ωt)"},
+        {"id": "eq-steady-amplitude", "latex": "C = \\frac{F_0}{m \\sqrt{{(2\\omega p)}^2+{(\\omega_0^2-\\omega^2)}^2}}", "ktex": "C = \\frac{F_0}{m \\sqrt{{(2\\komega p)}^2+{(\\komegazero^2-\\komega^2)}^2}}"},
+        {"id": "eq-phase-lag", "latex": "\\tan \\gamma = \\frac{B}{A} = \\frac{2\\omega p}{\\omega_0^2-\\omega^2}", "ktex": "\\tan \\gamma = \\frac{B}{A} = \\frac{2\\komega p}{\\komegazero^2-\\komega^2}", "condition": "ω ≠ ω₀"},
+        {"id": "eq-steady-at-resonance", "latex": "A=0, \\qquad B = C = \\frac{F_0}{2m\\omega p}, \\qquad \\gamma = \\frac{\\pi}{2}", "ktex": "A=0, \\qquad B = C = \\frac{F_0}{2m\\komega p}, \\qquad \\gamma = \\frac{\\pi}{2}", "condition": "ω = ω₀"}
+      ]
+    },
+    {
+      "id": "transient-solution",
+      "kind": "definition",
+      "section": "2.6",
+      "name": "Transient solution",
+      "terms": ["transient solution", "transient"],
+      "symbol": "x_tr",
+      "type": "function",
+      "statement": "The complementary solution x_c of the damped forced equation is called the transient solution and denoted x_tr: it goes to zero as t → ∞, as all its terms involve an exponential with a negative exponent, so for large t its effect is negligible, hence the name. The initial conditions only affect x_tr, so their effect is negligible after some period of time. The bigger p (the bigger c) is, the faster x_tr becomes negligible; the smaller the damping, the longer the transient region, and when c = 0 the initial conditions affect the behavior for all time."
+    },
+    {
+      "id": "steady-state-solution",
+      "kind": "definition",
+      "section": "2.6",
+      "name": "Steady periodic solution",
+      "terms": ["steady periodic solution"],
+      "symbol": "x_sp",
+      "type": "function",
+      "statement": "The particular solution x_p = C cos(ωt − γ) of the damped forced equation is called the steady periodic solution and denoted x_sp; the general solution is x = x_c + x_p = x_tr + x_sp. Since x_sp involves no arbitrary constants and x_tr dies out, essentially only x_sp is seen for large t, so one might as well focus on the steady periodic solution and ignore the transient solution.",
+      "forms": [
+        {"id": "eq-tr-plus-sp", "latex": "x = x_c + x_p = x_{tr} + x_{sp}", "ktex": "\\kx = \\kxc + \\kxp = \\kxtr + \\kxsp"}
+      ]
+    },
+    {
+      "id": "practical-resonance",
+      "kind": "definition",
+      "section": "2.6",
+      "name": "Practical resonance",
+      "terms": ["practical resonance"],
+      "statement": "When damping is present there are no conflicts in undetermined coefficients and no term of x_sp goes to infinity; instead, consider the amplitude C of the steady periodic solution, the furthest the mass goes either way from the rest position, plotted as a function C(ω) of the forcing frequency with the other parameters fixed. Its maximum, where there is one, is practical resonance rather than pure resonance; the practical resonance amplitude grows as damping gets smaller, and practical resonance can disappear altogether when damping is large. When ω → ∞, C → 0: a forcing frequency too high does not manage to get the mass moving, as fast vibrations cancel out before the mass can respond. For a forcing that is not an exact cosine wave, such as a square wave, the behavior is the superposition of many cosine waves, which Fourier series will handle."
+    },
+    {
+      "id": "practical-resonance-frequency",
+      "kind": "definition",
+      "section": "2.6",
+      "name": "Practical resonance frequency",
+      "terms": ["practical resonance frequency"],
+      "type": "frequency",
+      "statement": "The ω that gives the maximum of C(ω) is the practical resonance frequency. The derivative C′(ω) = −2ω(2p² + ω² − ω₀²)F₀/(m((2ωp)² + (ω₀² − ω²)²)^(3/2)) is zero when ω = √(ω₀² − 2p²) or ω = 0. If ω₀² − 2p² is positive, √(ω₀² − 2p²) is the practical resonance frequency, by the first derivative test, since C′(ω) > 0 for small ω; if not, C(ω) achieves its maximum at ω = 0 and there is no practical resonance, since ω > 0 is assumed, and the amplitude gets larger as the forcing frequency gets smaller. The practical resonance frequency is smaller than ω₀ and goes to ω₀ as the damping becomes smaller, so for very small damping ω₀ is a good estimate of it, in agreement with ω₀ being the resonance frequency when c = 0.",
+      "forms": [
+        {"id": "eq-practical-resonance-frequency", "latex": "\\omega = \\sqrt{\\omega_0^2 - 2p^2} \\quad \\text{or} \\quad \\omega = 0", "ktex": "\\komega = \\sqrt{\\komegazero^2 - 2p^2} \\quad \\text{or} \\quad \\komega = 0", "condition": "where C′(ω) = 0"},
+        {"id": "eq-amplitude-derivative", "latex": "C'(\\omega) = \\frac{- 2\\omega( 2p^2+\\omega^2-\\omega_0^2)F_0} {m {\\bigl({(2\\omega p)}^2+{(\\omega_0^2-\\omega^2)}^2\\bigr)}^{3/2}}", "ktex": "C'(\\komega) = \\frac{- 2\\komega( 2p^2+\\komega^2-\\komegazero^2)F_0} {m {\\bigl({(2\\komega p)}^2+{(\\komegazero^2-\\komega^2)}^2\\bigr)}^{3/2}}"}
+      ]
+    },
+    {
+      "id": "practical-resonance-amplitude",
+      "kind": "definition",
+      "section": "2.6",
+      "name": "Practical resonance amplitude",
+      "terms": ["practical resonance amplitude"],
+      "statement": "The maximal amplitude C(ω), the value of C at the practical resonance frequency, is the practical resonance amplitude; it grows as damping gets smaller, as the three curves of Figure 2.8 show."
+    }
+  ],
+  "concept_prereqs": [
+    {"concept": "second-order-linear-differential-equation", "prereq": "linear-differential-equation"},
+    {"concept": "second-order-linear-differential-equation", "prereq": "second-order-differential-equation"},
+    {"concept": "linear-combination", "prereq": "solution-to-a-differential-equation"},
+    {"concept": "superposition-principle", "prereq": "second-order-linear-differential-equation"},
+    {"concept": "superposition-principle", "prereq": "homogeneous-linear-equation"},
+    {"concept": "superposition-principle", "prereq": "linear-combination"},
+    {"concept": "operator", "prereq": "second-order-linear-differential-equation"},
+    {"concept": "linear-operator", "prereq": "operator"},
+    {"concept": "linear-operator", "prereq": "superposition-principle"},
+    {"concept": "existence-and-uniqueness-for-linear-equations", "prereq": "second-order-linear-differential-equation"},
+    {"concept": "existence-and-uniqueness-for-linear-equations", "prereq": "picards-theorem"},
+    {"concept": "linear-independence", "prereq": "superposition-principle"},
+    {"concept": "general-solution-to-a-homogeneous-equation", "prereq": "linear-independence"},
+    {"concept": "general-solution-to-a-homogeneous-equation", "prereq": "existence-and-uniqueness-for-linear-equations"},
+    {"concept": "general-solution-to-a-homogeneous-equation", "prereq": "general-solution"},
+    {"concept": "reduction-of-order", "prereq": "general-solution-to-a-homogeneous-equation"},
+    {"concept": "reduction-of-order", "prereq": "integrating-factor-method"},
+    {"concept": "second-order-equation-with-constant-coefficients", "prereq": "second-order-linear-differential-equation"},
+    {"concept": "second-order-equation-with-constant-coefficients", "prereq": "constant-coefficient-equation"},
+    {"concept": "second-order-equation-with-constant-coefficients", "prereq": "homogeneous-linear-equation"},
+    {"concept": "characteristic-equation", "prereq": "second-order-equation-with-constant-coefficients"},
+    {"concept": "solution-for-distinct-real-roots", "prereq": "characteristic-equation"},
+    {"concept": "solution-for-distinct-real-roots", "prereq": "general-solution-to-a-homogeneous-equation"},
+    {"concept": "solution-for-a-repeated-real-root", "prereq": "solution-for-distinct-real-roots"},
+    {"concept": "complex-exponential", "prereq": "complex-number"},
+    {"concept": "eulers-formula", "prereq": "complex-exponential"},
+    {"concept": "real-and-imaginary-parts", "prereq": "complex-number"},
+    {"concept": "solution-for-complex-conjugate-roots", "prereq": "eulers-formula"},
+    {"concept": "solution-for-complex-conjugate-roots", "prereq": "solution-for-distinct-real-roots"},
+    {"concept": "solving-with-the-characteristic-equation", "prereq": "solution-for-a-repeated-real-root"},
+    {"concept": "solving-with-the-characteristic-equation", "prereq": "solution-for-complex-conjugate-roots"},
+    {"concept": "solving-with-the-characteristic-equation", "prereq": "solving-an-initial-value-problem"},
+    {"concept": "higher-order-linear-equation", "prereq": "second-order-linear-differential-equation"},
+    {"concept": "higher-order-linear-equation", "prereq": "homogeneous-linear-equation"},
+    {"concept": "superposition-for-higher-order-equations", "prereq": "superposition-principle"},
+    {"concept": "superposition-for-higher-order-equations", "prereq": "higher-order-linear-equation"},
+    {"concept": "existence-and-uniqueness-for-higher-order-linear-equations", "prereq": "existence-and-uniqueness-for-linear-equations"},
+    {"concept": "existence-and-uniqueness-for-higher-order-linear-equations", "prereq": "higher-order-linear-equation"},
+    {"concept": "linear-independence-of-several-functions", "prereq": "linear-independence"},
+    {"concept": "linear-dependence", "prereq": "linear-independence-of-several-functions"},
+    {"concept": "general-solution-of-a-higher-order-homogeneous-equation", "prereq": "general-solution-to-a-homogeneous-equation"},
+    {"concept": "general-solution-of-a-higher-order-homogeneous-equation", "prereq": "linear-independence-of-several-functions"},
+    {"concept": "general-solution-of-a-higher-order-homogeneous-equation", "prereq": "superposition-for-higher-order-equations"},
+    {"concept": "general-solution-of-a-higher-order-homogeneous-equation", "prereq": "existence-and-uniqueness-for-higher-order-linear-equations"},
+    {"concept": "solutions-for-repeated-real-roots", "prereq": "solution-for-a-repeated-real-root"},
+    {"concept": "solutions-for-repeated-real-roots", "prereq": "general-solution-of-a-higher-order-homogeneous-equation"},
+    {"concept": "solutions-for-repeated-complex-roots", "prereq": "solution-for-complex-conjugate-roots"},
+    {"concept": "solutions-for-repeated-complex-roots", "prereq": "solutions-for-repeated-real-roots"},
+    {"concept": "solving-higher-order-constant-coefficient-equations", "prereq": "solving-with-the-characteristic-equation"},
+    {"concept": "solving-higher-order-constant-coefficient-equations", "prereq": "solutions-for-repeated-complex-roots"},
+    {"concept": "hookes-law", "prereq": "mathematical-model"},
+    {"concept": "newtons-second-law", "prereq": "mathematical-model"},
+    {"concept": "mass-spring-system", "prereq": "hookes-law"},
+    {"concept": "mass-spring-system", "prereq": "newtons-second-law"},
+    {"concept": "mass-spring-system", "prereq": "second-order-equation-with-constant-coefficients"},
+    {"concept": "mass-spring-system", "prereq": "nonhomogeneous-linear-equation"},
+    {"concept": "forced-motion", "prereq": "mass-spring-system"},
+    {"concept": "free-motion", "prereq": "forced-motion"},
+    {"concept": "damped-motion", "prereq": "mass-spring-system"},
+    {"concept": "undamped-motion", "prereq": "damped-motion"},
+    {"concept": "rlc-series-circuit", "prereq": "mass-spring-system"},
+    {"concept": "pendulum-equation", "prereq": "newtons-second-law"},
+    {"concept": "pendulum-equation", "prereq": "nonlinear-differential-equation"},
+    {"concept": "small-angle-approximation", "prereq": "pendulum-equation"},
+    {"concept": "small-angle-approximation", "prereq": "mass-spring-system"},
+    {"concept": "natural-frequency", "prereq": "free-motion"},
+    {"concept": "natural-frequency", "prereq": "undamped-motion"},
+    {"concept": "simple-harmonic-motion", "prereq": "natural-frequency"},
+    {"concept": "simple-harmonic-motion", "prereq": "solution-for-complex-conjugate-roots"},
+    {"concept": "amplitude-and-phase-shift-form", "prereq": "simple-harmonic-motion"},
+    {"concept": "amplitude", "prereq": "amplitude-and-phase-shift-form"},
+    {"concept": "angular-frequency", "prereq": "simple-harmonic-motion"},
+    {"concept": "phase-shift", "prereq": "amplitude-and-phase-shift-form"},
+    {"concept": "period", "prereq": "angular-frequency"},
+    {"concept": "damped-spring-mass-system", "prereq": "natural-frequency"},
+    {"concept": "damped-spring-mass-system", "prereq": "damped-motion"},
+    {"concept": "damped-spring-mass-system", "prereq": "characteristic-equation"},
+    {"concept": "overdamped-system", "prereq": "damped-spring-mass-system"},
+    {"concept": "overdamped-system", "prereq": "solution-for-distinct-real-roots"},
+    {"concept": "critically-damped-system", "prereq": "damped-spring-mass-system"},
+    {"concept": "critically-damped-system", "prereq": "solution-for-a-repeated-real-root"},
+    {"concept": "underdamped-system", "prereq": "damped-spring-mass-system"},
+    {"concept": "underdamped-system", "prereq": "amplitude-and-phase-shift-form"},
+    {"concept": "envelope-curves", "prereq": "underdamped-system"},
+    {"concept": "pseudo-frequency", "prereq": "underdamped-system"},
+    {"concept": "complementary-equation", "prereq": "nonhomogeneous-linear-equation"},
+    {"concept": "complementary-equation", "prereq": "linear-operator"},
+    {"concept": "complementary-solution", "prereq": "complementary-equation"},
+    {"concept": "complementary-solution", "prereq": "general-solution"},
+    {"concept": "general-solution-to-a-nonhomogeneous-equation", "prereq": "complementary-solution"},
+    {"concept": "general-solution-to-a-nonhomogeneous-equation", "prereq": "particular-solution"},
+    {"concept": "method-of-undetermined-coefficients", "prereq": "general-solution-to-a-nonhomogeneous-equation"},
+    {"concept": "method-of-undetermined-coefficients", "prereq": "solving-with-the-characteristic-equation"},
+    {"concept": "duplication-with-the-complementary-solution", "prereq": "method-of-undetermined-coefficients"},
+    {"concept": "method-of-variation-of-parameters", "prereq": "method-of-undetermined-coefficients"},
+    {"concept": "undamped-forced-motion", "prereq": "forced-motion"},
+    {"concept": "undamped-forced-motion", "prereq": "amplitude-and-phase-shift-form"},
+    {"concept": "undamped-forced-motion", "prereq": "method-of-undetermined-coefficients"},
+    {"concept": "beating", "prereq": "undamped-forced-motion"},
+    {"concept": "resonance", "prereq": "undamped-forced-motion"},
+    {"concept": "resonance", "prereq": "duplication-with-the-complementary-solution"},
+    {"concept": "forced-vibrations", "prereq": "undamped-forced-motion"},
+    {"concept": "forced-vibrations", "prereq": "overdamped-system"},
+    {"concept": "forced-vibrations", "prereq": "critically-damped-system"},
+    {"concept": "forced-vibrations", "prereq": "pseudo-frequency"},
+    {"concept": "transient-solution", "prereq": "forced-vibrations"},
+    {"concept": "steady-state-solution", "prereq": "transient-solution"},
+    {"concept": "practical-resonance", "prereq": "steady-state-solution"},
+    {"concept": "practical-resonance", "prereq": "resonance"},
+    {"concept": "practical-resonance-frequency", "prereq": "practical-resonance"},
+    {"concept": "practical-resonance-amplitude", "prereq": "practical-resonance-frequency"}
+  ]
+}

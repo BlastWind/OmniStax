@@ -43,5 +43,5 @@ Built (config 14): the two Sims above. Weighed and dropped: a centre slider x₀
 ## Wanted at chapter level
 
 - Anchors (stage two): variables y, y′, y″ → `7.2-ordinary-points`; a → `7.2-ex-7-2-1`; y₁, y₂ → `7.2-ex-7-2-2`. Forms: `eq-polynomial-coefficient-ode` → `7.2-ordinary-points`; `eq-series-solution-ansatz` → `7.2-ordinary-points`; `eq-recurrence-example` → `7.2-ex-7-2-1`; `eq-airys-equation`, `eq-airy-recurrence`, `eq-airy-solutions` → `7.2-ex-7-2-2`; `eq-hermites-equation`, `eq-hermite-recurrence` → `7.2-ex-7-2-3`.
-- The symbols y₁, y₂ are expected from Chapter 2's staging (2.1); if Chapter 2 keys them otherwise, the rows of 7.2 and the ktex of `eq-airy-solutions` follow its keys (build-status).
+- The symbols y₁, y₂ are Chapter 2's (keys `y_1`, `y_2` confirmed in its `chapter.json`, macros `\kyone`, `\kytwo` per its 2.2 plan, to confirm against its `book-rows.json` at stage two); 7.2's rows give them this section's meaning.
 - No 3Blue1Brown survivor falls in this section.
