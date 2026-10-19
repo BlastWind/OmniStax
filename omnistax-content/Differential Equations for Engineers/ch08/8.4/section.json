@@ -1,0 +1,907 @@
+{
+ "id": "8.4",
+ "module": "limitcycles:section",
+ "chapter": "8",
+ "title": "Limit cycles",
+ "short": "Limit cycles",
+ "lead": "Trajectories of a nonlinear system in the plane need not approach or leave a single point: they can wind onto a closed curve. This section meets the Van der Pol oscillator, names closed trajectories, limit cycles and periodic orbits, and states two theorems about them, one that finds them and one, built on the <span data-concept=\"divergence\">divergence</span> of the vector field, that rules them out.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section references) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 8.4.101–8.4.104 carry the book’s own answers. The book answers no exercise below 101; each of 8.4.1–8.4.5 carries an AI-marked solution stating the answer and the reasoning, every divergence and every solution checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-van-der-pol",
+   "kind": "sim",
+   "number": "8.10",
+   "originals": [
+    "/media/ch08/nlin-van-der-phase-plot1.svg"
+   ],
+   "original_caption": "The phase portrait (left) and a graph of a sample solution of the Van der Pol oscillator.",
+   "widths": [
+    864
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-limit-cycle-cases",
+   "kind": "sim",
+   "number": "8.11",
+   "originals": [
+    "/media/ch08/nlin-unstable-limit-cycle.svg"
+   ],
+   "original_caption": "Unstable limit cycle example.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-divergence-sign",
+   "kind": "sim",
+   "draws": [
+    "vector-field",
+    "region",
+    "curve",
+    "point",
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "intro",
+   "concept": "nonlinear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "intro",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "van-der-pol-def",
+   "concept": "van-der-pol-oscillator",
+   "verb": "introduces"
+  },
+  {
+   "span": "van-der-pol-def",
+   "concept": "second-order-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "van-der-pol-plot",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "van-der-pol-plot",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "van-der-pol-plot",
+   "concept": "converting-to-a-first-order-system",
+   "verb": "uses"
+  },
+  {
+   "span": "van-der-pol-plot",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "van-der-pol-plot",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-van-der-pol",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-van-der-pol",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-van-der-pol",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-van-der-pol",
+   "concept": "van-der-pol-oscillator",
+   "verb": "reinforces"
+  },
+  {
+   "span": "relaxation",
+   "concept": "relaxation-oscillation",
+   "verb": "introduces"
+  },
+  {
+   "span": "relaxation",
+   "concept": "center",
+   "verb": "uses"
+  },
+  {
+   "span": "relaxation",
+   "concept": "linear-system-of-odes",
+   "verb": "uses"
+  },
+  {
+   "span": "relaxation",
+   "concept": "van-der-pol-oscillator",
+   "verb": "reinforces"
+  },
+  {
+   "span": "limit-cycle",
+   "concept": "closed-trajectory",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-cycle",
+   "concept": "limit-cycle",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-cycle",
+   "concept": "asymptotically-stable-limit-cycle",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-cycle",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "limit-cycle",
+   "concept": "phase-portrait",
+   "verb": "uses"
+  },
+  {
+   "span": "limit-cycle",
+   "concept": "van-der-pol-oscillator",
+   "verb": "reinforces"
+  },
+  {
+   "span": "periodic-orbit",
+   "concept": "periodic-orbit",
+   "verb": "introduces"
+  },
+  {
+   "span": "periodic-orbit",
+   "concept": "autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "periodic-orbit",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "periodic-orbit",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "periodic-orbit",
+   "concept": "closed-trajectory",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-8-2",
+   "concept": "planar-autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-8-4-1",
+   "concept": "poincare-bendixson-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-8-4-1",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-8-4-1",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-8-4-1",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-8-4-1",
+   "concept": "periodic-orbit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pb-meaning",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pb-meaning",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "pb-meaning",
+   "concept": "poincare-bendixson-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pb-meaning",
+   "concept": "limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pb-meaning",
+   "concept": "periodic-orbit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pb-van-der-pol",
+   "concept": "equilibrium-solution-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pb-van-der-pol",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "pb-van-der-pol",
+   "concept": "poincare-bendixson-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pb-van-der-pol",
+   "concept": "van-der-pol-oscillator",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pb-van-der-pol",
+   "concept": "limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-2",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-4-2",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-4-2",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-4-2",
+   "concept": "linear-system-of-odes",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-4-2",
+   "concept": "closed-trajectory",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-2",
+   "concept": "limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-2",
+   "concept": "asymptotically-stable-limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-2",
+   "concept": "poincare-bendixson-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-limit-cycle-cases",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-limit-cycle-cases",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-limit-cycle-cases",
+   "concept": "limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-limit-cycle-cases",
+   "concept": "closed-trajectory",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-limit-cycle-cases",
+   "concept": "asymptotically-stable-limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unstable-cycle",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "unstable-cycle",
+   "concept": "linear-system-of-odes",
+   "verb": "uses"
+  },
+  {
+   "span": "unstable-cycle",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "unstable-cycle",
+   "concept": "asymptotically-stable-limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unstable-cycle",
+   "concept": "limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unstable-cycle",
+   "concept": "closed-trajectory",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inside-closed",
+   "concept": "existence-inside-a-closed-trajectory",
+   "verb": "introduces"
+  },
+  {
+   "span": "inside-closed",
+   "concept": "picards-theorem-for-systems",
+   "verb": "uses"
+  },
+  {
+   "span": "inside-closed",
+   "concept": "autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "inside-closed",
+   "concept": "closed-trajectory",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inside-closed",
+   "concept": "poincare-bendixson-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "simply-connected",
+   "concept": "simply-connected-region",
+   "verb": "introduces"
+  },
+  {
+   "span": "simply-connected",
+   "concept": "limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "simply-connected",
+   "concept": "periodic-orbit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thm-8-4-2",
+   "concept": "bendixson-dulac-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-8-4-2",
+   "concept": "simply-connected-region",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thm-8-4-2",
+   "concept": "closed-trajectory",
+   "verb": "reinforces"
+  },
+  {
+   "span": "divergence",
+   "concept": "divergence",
+   "verb": "introduces"
+  },
+  {
+   "span": "divergence",
+   "concept": "ruling-out-closed-trajectories",
+   "verb": "introduces"
+  },
+  {
+   "span": "divergence",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "divergence",
+   "concept": "bendixson-dulac-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "divergence",
+   "concept": "limit-cycle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "divergence",
+   "concept": "closed-trajectory",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-3",
+   "concept": "ruling-out-closed-trajectories",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-3",
+   "concept": "divergence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-3",
+   "concept": "bendixson-dulac-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-3",
+   "concept": "simply-connected-region",
+   "verb": "reinforces"
+  },
+  {
+   "span": "informal",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "informal",
+   "concept": "equilibrium-solution-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "informal",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "informal",
+   "concept": "bendixson-dulac-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "informal",
+   "concept": "periodic-orbit",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-4",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-4-4",
+   "concept": "ruling-out-closed-trajectories",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-4",
+   "concept": "divergence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-4",
+   "concept": "bendixson-dulac-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-divergence-sign",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-divergence-sign",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-divergence-sign",
+   "concept": "divergence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-divergence-sign",
+   "concept": "bendixson-dulac-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-divergence-sign",
+   "concept": "ruling-out-closed-trajectories",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-divergence-sign",
+   "concept": "simply-connected-region",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-5",
+   "concept": "simply-connected-region",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-5",
+   "concept": "bendixson-dulac-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-5",
+   "concept": "divergence",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-4-5",
+   "concept": "closed-trajectory",
+   "verb": "reinforces"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-van-der-pol",
+   "kind": "book",
+   "number": "49",
+   "html": "Named for the Dutch physicist <a href=\"https://en.wikipedia.org/wiki/Balthasar_van_der_Pol\">Balthasar van der Pol</a> (1889–1959)."
+  },
+  {
+   "id": "fn-bendixson",
+   "kind": "book",
+   "number": "50",
+   "html": "<a href=\"https://en.wikipedia.org/wiki/Ivar_Otto_Bendixson\">Ivar Otto Bendixson</a> (1861–1935) was a Swedish mathematician."
+  },
+  {
+   "id": "fn-dulac",
+   "kind": "book",
+   "number": "51",
+   "html": "<a href=\"https://en.wikipedia.org/wiki/Henri_Dulac\">Henri Dulac</a> (1870–1955) was a French mathematician."
+  },
+  {
+   "id": "fn-dulac-function",
+   "kind": "book",
+   "number": "52",
+   "html": "Usually the expression in the Bendixson–Dulac Theorem is $\\frac{\\partial (\\varphi \\kf)}{\\partial x} + \\frac{\\partial (\\varphi \\kg)}{\\partial y}$ for some continuously differentiable function $\\varphi$. For simplicity, let us just consider the case $\\varphi = 1$."
+  },
+  {
+   "id": "c-ex-8-4-5-direction",
+   "kind": "correction",
+   "html": "The book prints $\\kx=\\cos(t)$, $\\ky=\\sin(t)$, which runs round the unit circle the wrong way for this system: on the circle the system is $\\kxprime = \\ky$, $\\kyprime = -\\kx$, while $\\cos(t)$ has derivative $-\\sin(t) = -\\ky$. The solution on the circle is $\\kx = \\cos(t)$, $\\ky = -\\sin(t)$ (or $\\kx = \\sin(t)$, $\\ky = \\cos(t)$, as in Example 8.4.2); the closed trajectory, the unit circle, is the same."
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "8.4.1",
+   "source_number": "8.4.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-8-4-3",
+   "prompt": "<p>Show that the following systems have no closed trajectories.</p><ol type=\"a\"><li>$\\kxprime=\\kx^3+\\ky,\\quad \\kyprime=\\ky^3+\\kx^2$,</li><li>$\\kxprime=e^{\\kx-\\ky},\\quad \\kyprime=e^{\\kx+\\ky}$,</li><li>$\\kxprime=\\kx+3\\ky^2-\\ky^3,\\quad \\kyprime=\\ky^3+\\kx^2$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each system is defined on the whole plane, which is simply connected, so by the Bendixson–Dulac theorem it suffices to show the divergence $\\kpfx + \\kpgy$ keeps one sign except perhaps at isolated points or on curves. a) $\\kf = \\kx^3 + \\ky$, $\\kg = \\ky^3 + \\kx^2$, so $\\kpfx + \\kpgy = 3\\kx^2 + 3\\ky^2$, which is positive everywhere except at the single point $(0,0)$, where it is zero: no closed trajectories. b) $\\kpfx + \\kpgy = e^{\\kx-\\ky} + e^{\\kx+\\ky} > 0$ everywhere: no closed trajectories. c) $\\kf = \\kx + 3\\ky^2 - \\ky^3$ gives $\\kpfx = 1$, and $\\kg = \\ky^3 + \\kx^2$ gives $\\kpgy = 3\\ky^2$, so $\\kpfx + \\kpgy = 1 + 3\\ky^2 \\geq 1 > 0$ everywhere: no closed trajectories."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "8.4.2",
+   "source_number": "8.4.2",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-8-4-2",
+   "prompt": "<p>Formulate a condition for a 2-by-2 linear system ${\\vec{x}}' = A \\vec{x}$ to not be a center using the Bendixson–Dulac theorem. That is, the theorem says something about certain elements of $A$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $A = \\left[ \\begin{smallmatrix} a & b \\\\ c & d \\end{smallmatrix} \\right]$, so the system is $\\kxprime = a\\kx + b\\ky$, $\\kyprime = c\\kx + d\\ky$ and $\\kpfx + \\kpgy = a + d$, the sum of the diagonal entries (the trace of $A$), a constant. If $a + d \\neq 0$, the divergence is always positive or always negative on the whole plane, which is simply connected, so by the Bendixson–Dulac theorem the system has no closed trajectory. A center has closed trajectories (its solutions are ellipses), so the condition is: if $a + d \\neq 0$, the system is not a center. This agrees with the eigenvalues: a center has eigenvalues $\\pm ib$, whose sum, the trace $a + d$, is zero."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "8.4.3",
+   "source_number": "8.4.3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-8-4-2",
+   "prompt": "<p>Explain why the Bendixson–Dulac Theorem does not apply for any conservative system $\\kxdprime+h(\\kx) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "As a system, $\\kxdprime + h(\\kx) = 0$ is $\\kxprime = \\ky$, $\\kyprime = -h(\\kx)$. Here $\\kf = \\ky$ does not depend on $\\kx$ and $\\kg = -h(\\kx)$ does not depend on $\\ky$, so $\\kpfx + \\kpgy = 0 + 0 = 0$ at every point. The divergence is zero on the whole plane, not just at isolated points or on curves, so it is never always positive or always negative on any region, and the hypothesis of the theorem fails. This has to be so: conservative systems do have closed trajectories, such as the closed curves around a center of the pendulum."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "8.4.4",
+   "source_number": "8.4.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-8-4-1",
+   "prompt": "<p>A system such as $\\kxprime=\\kx, \\kyprime=\\ky$ has solutions that exist for all time $t$, yet there are no closed trajectories. Explain why the Poincaré–Bendixson Theorem does not apply.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The solutions are $\\kx = C_1 e^t$, $\\ky = C_2 e^t$, which exist for all $t$. The theorem needs a solution that stays, for all $t \\geq t_0$, in a closed bounded region $\\kR$ containing no critical points. Every solution except the constant one has distance $\\sqrt{C_1^2 + C_2^2}\\, e^t$ from the origin, which grows without bound, so it leaves every bounded region. The only solution that stays bounded is the constant $\\kx = 0$, $\\ky = 0$, and any region containing it contains the critical point $(0,0)$. So no solution satisfies the hypotheses, and the theorem says nothing about this system."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "8.4.5",
+   "source_number": "8.4.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-cycle",
+   "prompt": "<p>Differential equations can also be given in different coordinate systems. Suppose we have the system $r' = 1-r^2$, $\\theta' = 1$ given in polar coordinates. Find all the closed trajectories and check if they are limit cycles and if so, if they are asymptotically stable or not.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $\\theta' = 1$, every solution turns around the origin at a constant rate, so a trajectory is a closed curve exactly when $r$ stays constant, that is, when $r' = 1 - r^2 = 0$. The only radius solving this is $r = 1$ ($r = -1$ is not a radius). So the only closed trajectory is the unit circle $r = 1$, run through with $\\theta = t + \\theta_0$, period $2\\pi$. For $0 < r < 1$, $r' = 1 - r^2 > 0$, so $r$ increases towards $1$; for $r > 1$, $r' < 0$, so $r$ decreases towards $1$ (the solutions are $r = \\tanh(t + C)$ inside and $r = \\coth(t + C)$ outside, both tending to $1$). Every trajectory near the circle, from inside and from outside, spirals into it, so the unit circle is a limit cycle, and it is asymptotically stable."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "8.4.101",
+   "source_number": "8.4.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-8-4-3",
+   "prompt": "<p>Show that the following systems have no closed trajectories.</p><ol type=\"a\"><li>$\\kxprime=\\kx+\\ky^2,\\quad \\kyprime=\\ky+\\kx^2$,</li><li>$\\kxprime=-\\kx\\sin^2(\\ky),\\quad \\kyprime=e^{\\kx}$,</li><li>$\\kxprime=\\kx\\ky^2,\\quad \\kyprime=\\kx+\\kx^2$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Use Bendixson–Dulac Theorem. a) $f_x+g_y = 1+1 > 0$, so no closed trajectories. b) $f_x+g_y = -\\sin^2(\\ky)+0 < 0$ for all $\\kx,\\ky$ except the lines given by $\\ky=k\\pi$ (where we get zero), so no closed trajectories. c) $f_x+g_y = \\ky^2 + 0 > 0$ for all $\\kx,\\ky$ except the line given by $\\ky=0$ (where we get zero), so no closed trajectories."
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "8.4.102",
+   "source_number": "8.4.102",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-8-4-1",
+   "prompt": "<p>Suppose an autonomous system in the plane has a solution $\\kx=\\cos(t)(1+e^{-t})$, $\\ky=\\sin(t)(1+e^{-t})$. What can you say about the system (in particular about limit cycles and periodic solutions)?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Using Poincaré–Bendixson Theorem, the system has a limit cycle, which is the unit circle centered at the origin, as $\\kx=\\cos(t)(1+e^{-t})$, $\\ky=\\sin(t)(1+e^{-t})$ gets closer and closer to the unit circle. Thus $\\kx=\\cos(t)$, $\\ky=\\sin(t)$ is the periodic solution."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "8.4.103",
+   "source_number": "8.4.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-8-4-2",
+   "prompt": "<p>Show that the limit cycle of the Van der Pol oscillator (for $\\mu &gt; 0$) must not lie completely in the set where $-1 &lt; \\kx &lt; 1$. Compare with Figure 8.10.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kf(\\kx,\\ky) = \\ky$, $\\kg(\\kx,\\ky) = \\mu(1-\\kx^2)\\ky-\\kx$. So $f_x+g_y = \\mu(1-\\kx^2)$. The Bendixson–Dulac Theorem says there is no closed trajectory lying entirely in the set $\\kx^2 < 1$."
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "8.4.104",
+   "source_number": "8.4.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limit-cycle",
+   "prompt": "<p>Consider the system $r' = \\sin(r)$, $\\theta' = 1$ given in polar coordinates. Find all the closed trajectories.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The closed trajectories are those where $\\sin(r) = 0$, therefore, all the circles centered at the origin with radius that is a positive multiple of $\\pi$ are closed trajectories."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "ruling-out-closed-trajectories"
+  },
+  {
+   "exercise": "e1",
+   "concept": "bendixson-dulac-theorem"
+  },
+  {
+   "exercise": "e1",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e2",
+   "concept": "bendixson-dulac-theorem"
+  },
+  {
+   "exercise": "e2",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e2",
+   "concept": "center"
+  },
+  {
+   "exercise": "e3",
+   "concept": "bendixson-dulac-theorem"
+  },
+  {
+   "exercise": "e3",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e3",
+   "concept": "conservative-equation"
+  },
+  {
+   "exercise": "e4",
+   "concept": "poincare-bendixson-theorem"
+  },
+  {
+   "exercise": "e4",
+   "concept": "closed-trajectory"
+  },
+  {
+   "exercise": "e5",
+   "concept": "closed-trajectory"
+  },
+  {
+   "exercise": "e5",
+   "concept": "limit-cycle"
+  },
+  {
+   "exercise": "e5",
+   "concept": "asymptotically-stable-limit-cycle"
+  },
+  {
+   "exercise": "e101",
+   "concept": "ruling-out-closed-trajectories"
+  },
+  {
+   "exercise": "e101",
+   "concept": "bendixson-dulac-theorem"
+  },
+  {
+   "exercise": "e101",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e102",
+   "concept": "poincare-bendixson-theorem"
+  },
+  {
+   "exercise": "e102",
+   "concept": "limit-cycle"
+  },
+  {
+   "exercise": "e102",
+   "concept": "periodic-orbit"
+  },
+  {
+   "exercise": "e103",
+   "concept": "bendixson-dulac-theorem"
+  },
+  {
+   "exercise": "e103",
+   "concept": "divergence"
+  },
+  {
+   "exercise": "e103",
+   "concept": "van-der-pol-oscillator"
+  },
+  {
+   "exercise": "e103",
+   "concept": "limit-cycle"
+  },
+  {
+   "exercise": "e104",
+   "concept": "closed-trajectory"
+  }
+ ]
+}
