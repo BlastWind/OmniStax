@@ -35,13 +35,13 @@ const guide = () => alpha(PAL.ink, 0.4);
     const xr = +x.toFixed(2), Ar = +A.toFixed(3), yr = +(Ar + b).toFixed(3);
     hits = [];
     /* the integrand and the area from 0 to x */
-    const aT = axes(ctx, TOP, [-3, 3], [0, 1.2], { xl: 't', yl: 'f(t)', yc: fc, nx: 6, ny: 4 });
+    const aT = axes(ctx, TOP, [-3, 3], [0, 1.2], { xl: 't', yl: 'f(t)', yc: fc, nx: 6, ny: 6, fy: (v) => fmt(v, 1) });
     if (Math.abs(x) > 1e-9) shade(ctx, aT, f, 0, Math.min(0, x), Math.max(0, x), ic, { alpha: 0.35 });
     plot(ctx, aT, f, fc);
     line(ctx, aT.X(x), aT.Y(0), aT.X(x), aT.Y(f(x)), guide(), 2.5, [4, 8]);
     label(ctx, 'f(t) = e^{−t^2}', aT.X(-2.1), aT.Y(f(-2.1)), { side: 'above', color: fc, size: 20, weight: 600 });
     if (Math.abs(x) >= 0.6) {
-      label(ctx, `area ${n(Ar, 3)}`, aT.X(x / 2), aT.Y(f(x / 2) / 2), { side: 'above', color: ic, size: 20, weight: 600, gap: 0 });
+      label(ctx, `area ${n(Ar, 3)}`, aT.X(x / 2), aT.Y(Math.max(f(x / 2) / 2, 0.22)), { side: 'above', color: ic, size: 20, weight: 600, gap: 0 });
       hits.push({ x: aT.X(x / 2), y: aT.Y(f(x / 2) / 2), r: 22, name: `the area under e^(−t²) from 0 to x = ${n(xr)}, which is ∫₀ˣ e^(−t²) dt = ${n(Ar, 3)}` });
     } else if (Math.abs(x) > 1e-9) {
       label(ctx, `area ${n(Ar, 3)}`, aT.X(x), aT.Y(0.5), { side: x < 0 ? 'left' : 'right', color: ic, size: 20, weight: 600 });

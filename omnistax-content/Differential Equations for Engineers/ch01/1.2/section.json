@@ -1,0 +1,448 @@
+{
+ "id": "1.2",
+ "module": "slopefields:section",
+ "chapter": "1",
+ "title": "Slope fields",
+ "short": "Slope fields",
+ "lead": "A first-order equation $\\kyprime = \\kf(x,\\ky)$ gives a slope at every point of the plane, and drawing those slopes shows how solutions behave before any solving is done. This section builds the <span data-concept=\"direction-field\">slope field</span>, reads the solutions off it, and asks when a solution through a given point exists and when it is the only one.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 1.2.101–1.2.106 carry the book’s own answers, the slope-field images of 1.2.101 and 1.2.104 kept with them. The book answers no exercise below 101; each of 1.2.1–1.2.12 carries an AI-marked solution stating the answer and the reasoning, every computed claim checked with SymPy first, and the sketching exercises answered in words, not pictures. The three slope-field images of 1.2.6 stay in its card.",
+ "figures": [
+  {
+   "id": "sim-slope-xy",
+   "kind": "sim",
+   "number": "1.2",
+   "folds": ["1.3", "1.4"],
+   "originals": ["/media/ch01/1-3-xysl-one.svg", "/media/ch01/1-3-xysl.svg", "/media/ch01/1-3-xysl-sol.svg"],
+   "original_caption": "(Figure 1.2) The slope y′ = xy at (2, 1.5). (Figure 1.3) Slope field of y′ = xy. (Figure 1.4) Slope field of y′ = xy with a graph of solutions satisfying y(0) = 0.2, y(0) = 0, and y(0) = −0.2.",
+   "widths": [432, 432, 432],
+   "draws": ["derivative", "function", "point"],
+   "ai": [{"model": "claude-fable-5-1", "effort": "high", "part": "built"}]
+  },
+  {
+   "id": "fig-decay-field",
+   "kind": "figure",
+   "number": "1.5",
+   "originals": ["/media/ch01/1-3-mysl-sol.svg"],
+   "original_caption": "Slope field of y′ = −y with a graph of a few solutions.",
+   "widths": [432],
+   "draws": ["derivative", "function"],
+   "ai": [{"model": "claude-fable-5-1", "effort": "high", "part": "built"}]
+  },
+  {
+   "id": "fig-reciprocal-field",
+   "kind": "figure",
+   "number": "1.6",
+   "originals": ["/media/ch01/1-3-xinv-sol.svg"],
+   "original_caption": "Slope field of y′ = 1/x.",
+   "widths": [432],
+   "draws": ["derivative", "function", "point"],
+   "ai": [{"model": "claude-fable-5-1", "effort": "high", "part": "built"}]
+  },
+  {
+   "id": "sim-nonunique",
+   "kind": "sim",
+   "number": "1.7",
+   "originals": ["/media/ch01/1-3-sqrt-sol.svg"],
+   "original_caption": "Slope field of y′ = 2√|y| with two solutions satisfying y(0) = 0.",
+   "widths": [432],
+   "draws": ["derivative", "function", "point"],
+   "ai": [{"model": "claude-fable-5-1", "effort": "high", "part": "built"}]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {"span": "slope-field-def", "concept": "direction-field", "verb": "introduces"},
+  {"span": "sketching-solutions", "concept": "reading-a-slope-field", "verb": "introduces"},
+  {"span": "thm-1-2-1", "concept": "picards-theorem", "verb": "introduces"},
+  {"span": "general-form", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "general-form", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "slope-at-a-point", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "slope-at-a-point", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "slope-field-def", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sketching-solutions", "concept": "direction-field", "verb": "uses"},
+  {"span": "sketching-solutions", "concept": "initial-value", "verb": "uses"},
+  {"span": "sketching-solutions", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-slope-xy", "concept": "direction-field", "verb": "uses"},
+  {"span": "sim-slope-xy", "concept": "reading-a-slope-field", "verb": "uses"},
+  {"span": "sim-slope-xy", "concept": "initial-value", "verb": "uses"},
+  {"span": "sim-slope-xy", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "reading-behavior", "concept": "direction-field", "verb": "uses"},
+  {"span": "reading-behavior", "concept": "reading-a-slope-field", "verb": "uses"},
+  {"span": "reading-behavior", "concept": "initial-value", "verb": "uses"},
+  {"span": "reading-behavior", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "decay-field", "concept": "direction-field", "verb": "uses"},
+  {"span": "decay-field", "concept": "reading-a-slope-field", "verb": "uses"},
+  {"span": "decay-field", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "fig-decay-field", "concept": "direction-field", "verb": "uses"},
+  {"span": "fig-decay-field", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "two-questions", "concept": "direction-field", "verb": "uses"},
+  {"span": "two-questions", "concept": "initial-value", "verb": "uses"},
+  {"span": "two-questions", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "deterministic", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "ex-1-2-1", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-1-2-1", "concept": "integral-solution", "verb": "uses"},
+  {"span": "ex-1-2-1", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-1-2-1", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "fig-reciprocal-field", "concept": "direction-field", "verb": "uses"},
+  {"span": "fig-reciprocal-field", "concept": "initial-value", "verb": "uses"},
+  {"span": "fig-reciprocal-field", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "ex-1-2-2", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-1-2-2", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-nonunique", "concept": "direction-field", "verb": "uses"},
+  {"span": "sim-nonunique", "concept": "initial-value", "verb": "uses"},
+  {"span": "sim-nonunique", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "picard-intro", "concept": "direction-field", "verb": "uses"},
+  {"span": "picard-intro", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "thm-1-2-1", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "thm-1-2-1", "concept": "initial-value", "verb": "uses"},
+  {"span": "thm-1-2-1", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "picard-hypothesis", "concept": "picards-theorem", "verb": "reinforces"},
+  {"span": "picard-hypothesis", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "ex-1-2-3", "concept": "solving-y-prime-equals-f-of-y", "verb": "uses"},
+  {"span": "ex-1-2-3", "concept": "integral-solution", "verb": "uses"},
+  {"span": "ex-1-2-3", "concept": "interval-of-existence", "verb": "uses"},
+  {"span": "ex-1-2-3", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-1-2-3", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "global", "concept": "picards-theorem", "verb": "reinforces"},
+  {"span": "global", "concept": "interval-of-existence", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "1.2.1",
+   "source_number": "1.2.1",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "slope-field-def",
+   "prompt": "<p>Sketch the slope field for $\\kyprime=e^{x-\\ky}$. How do the solutions behave as $x$ grows? Can you guess a particular solution by looking at the slope field?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Every slope $e^{x-y}$ is positive, so all solutions rise. Along the line $y = x$ the slope is $e^{0} = 1$; above the line ($y > x$) the little lines are flatter, and below it they are steeper, nearly vertical far below. So a solution starting above $y = x$ rises slowly and one starting below shoots up, and both are drawn toward the line: as $x$ grows, every solution approaches $y = x$ and its slope tends to $1$. The line itself fits the field: $\\ky = x$ gives $\\kyprime = 1 = e^{x - x}$, so $\\ky = x$ is a particular solution. (The general solution is $\\ky = \\ln(e^{x} + C)$, and $\\ky - x = \\ln(1 + Ce^{-x}) \\to 0$ as $x \\to \\infty$, which confirms the picture.)"
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "1.2.2",
+   "source_number": "1.2.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "slope-field-def",
+   "prompt": "<p>Sketch the slope field for $\\kyprime=x^2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The slope $x^2$ does not depend on $y$, so the little lines are the same all the way up each vertical line: horizontal on the $y$-axis ($x = 0$), and rising ever more steeply to the right and, since $x^2 > 0$ for negative $x$ too, just as steeply to the left (slope $1$ at $x = \\pm 1$, slope $4$ at $x = \\pm 2$). The picture is a cubic repeated by vertical shifts, which is what the solutions $\\ky = x^3/3 + C$ are."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "1.2.3",
+   "source_number": "1.2.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "slope-field-def",
+   "prompt": "<p>Sketch the slope field for $\\kyprime=\\ky^2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The slope $y^2$ does not depend on $x$, so the little lines are the same all along each horizontal line: horizontal on the $x$-axis ($y = 0$), and steeper the farther from it, with positive slope both above and below the axis (slope $1$ at $y = \\pm 1$, slope $4$ at $y = \\pm 2$). Every solution rises, flat near $y = 0$ and nearly vertical far from it; the solutions are $\\ky = 0$ and $\\ky = \\frac{1}{C - x}$ (Example 1.2.3), horizontal shifts of one another."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "1.2.4",
+   "source_number": "1.2.4",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "thm-1-2-1",
+   "prompt": "<p>Is it possible to solve the equation $\\kyprime = \\frac{x\\ky}{\\cos x}$ for $\\ky(0) = 1$? Justify.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": ["Yes", "No"],
+    "correct": 0,
+    "solution": "Yes. Here $\\kf(x,\\ky) = \\frac{x\\ky}{\\cos x}$ and $\\kpfy = \\frac{x}{\\cos x}$. Since $\\cos 0 = 1 \\neq 0$, both are continuous near $(0, 1)$ (indeed wherever $\\cos x \\neq 0$), so by Picard’s theorem a solution with $\\ky(0) = 1$ exists, at least on some interval around $x = 0$, and it is unique."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "1.2.5",
+   "source_number": "1.2.5",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "thm-1-2-1",
+   "prompt": "<p>Is it possible to solve the equation $\\kyprime = \\ky\\sqrt{\\lvert x\\rvert}$ for $\\ky(0) = 0$? Is the solution unique? Justify.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": ["Yes, and the solution is unique", "Yes, but the solution is not unique", "No"],
+    "correct": 0,
+    "solution": "Yes, and the solution is unique. Here $\\kf(x,\\ky) = \\ky\\sqrt{\\lvert x \\rvert}$ is continuous everywhere, and $\\kpfy = \\sqrt{\\lvert x \\rvert}$ is continuous everywhere too (the absolute value makes a corner at $x = 0$, but the theorem asks only for continuity, not differentiability). So Picard’s theorem gives a unique solution with $\\ky(0) = 0$. It is $\\ky = 0$: both sides of the equation are then $0$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "1.2.6",
+   "source_number": "1.2.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "slope-field-def",
+   "prompt": "<p>Match equations $\\kyprime=1-x$, $\\kyprime=x-2\\ky$, $\\kyprime = x(1-\\ky)$ to slope fields. Justify.</p><ol type=\"a\"><li><img src=\"/media/ch01/yprimex1minusyslope.svg\" alt=\"A slope field where the lines have 0 slope on the y-axis, they are sloped upwards for negative x and y above some horizontal line and also for positive x and y below some horizontal line, they are sloped downwards otherwise.\" width=\"168\"></li><li><img src=\"/media/ch01/yprime1minusxslope.svg\" alt=\"A slope field where the lines are sloped upwards for x less than some positive quantity and downwards otherwise. The slope does not seem to vary with y.\" width=\"168\"></li><li><img src=\"/media/ch01/yprimexminus2yslope.svg\" alt=\"A slope field where above some diagonal line from lower left to upper right, the slopes are negative, and below this line the slopes are positive.\" width=\"168\"></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kyprime = x(1-\\ky)$: the slopes are zero along the $y$-axis ($x = 0$) and along the horizontal line $y = 1$, positive where $x$ and $1 - y$ have the same sign (left of the axis above $y = 1$, right of it below $y = 1$) and negative elsewhere. b) $\\kyprime = 1-x$: the slope does not depend on $y$, so every column of little lines is alike; it is positive for $x < 1$ and negative for $x > 1$. c) $\\kyprime = x-2\\ky$: the slopes are zero along the diagonal line $y = x/2$, negative above it (where $2y > x$) and positive below."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "1.2.7",
+   "source_number": "1.2.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "tag": "challenging",
+   "place": {"at": "end"},
+   "cite": "reading-behavior",
+   "prompt": "<p>Take $\\kyprime = \\kf(x,\\ky)$, $\\ky(0) = 0$, where $\\kf(x,\\ky) > 1$ for all $x$ and $y$. If the solution exists for all $x$, can you say what happens to $\\ky(x)$ as $x$ goes to positive infinity? Explain.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x)$ goes to $+\\infty$. Since $\\kyprime = \\kf(x,\\ky) > 1$ at every point, the solution rises faster than a line of slope $1$: for $x > 0$, $\\ky(x) = \\ky(0) + \\int_0^x \\kyprime(t)\\,dt > 0 + \\int_0^x 1\\,dt = x$. So $\\ky(x) > x$ for every $x > 0$, and as $x \\to \\infty$, $\\ky(x) \\to \\infty$ as well. In the slope field, every little line is steeper than the diagonal, so a solution can never fall back below the line $y = x$ once it starts on it."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "1.2.8",
+   "source_number": "1.2.8",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "tag": "challenging",
+   "place": {"at": "end"},
+   "cite": "thm-1-2-1",
+   "prompt": "<p>Take $(\\ky-x)\\kyprime = 0$, $\\ky(0) = 0$.</p><ol type=\"a\"><li>Find two distinct solutions.</li><li>Explain why this does not violate Picard’s theorem.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\ky = 0$ and $\\ky = x$. For $\\ky = 0$, $\\kyprime = 0$, so $(\\ky - x)\\kyprime = 0$; for $\\ky = x$, $\\ky - x = 0$, so again $(\\ky - x)\\kyprime = 0$. Both satisfy $\\ky(0) = 0$. b) Picard’s theorem is about equations written as $\\kyprime = \\kf(x,\\ky)$ with $\\kf$ and $\\kpfy$ continuous near the initial point. To put $(\\ky - x)\\kyprime = 0$ in that form one must divide by $\\ky - x$, which is zero along the whole line $y = x$, through $(0, 0)$ in particular: there the equation leaves $\\kyprime$ undetermined, so there is no continuous $\\kf$ near $(0, 0)$, the hypothesis fails, and the theorem promises nothing. Two solutions through the origin do not contradict it."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "1.2.9",
+   "source_number": "1.2.9",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "slope-field-def",
+   "prompt": "<p>Suppose $\\kyprime = \\kf(x,\\ky)$. What will the slope field look like, explain and sketch an example, if you know the following about $\\kf(x,\\ky)$:</p><ol type=\"a\"><li>$\\kf$ does not depend on $y$.</li><li>$\\kf$ does not depend on $x$.</li><li>$\\kf(t,t) = 0$ for any number $t$.</li><li>$\\kf(x,0) = 0$ and $\\kf(x,1) = 1$ for all $x$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The slope does not change as you move up or down, so each vertical line carries identical little lines and the field repeats itself column by column; for example $\\kyprime = x$, horizontal on the $y$-axis and steeper to either side. b) The slope does not change as you move left or right, so each horizontal line carries identical little lines and the field repeats row by row; for example $\\kyprime = \\ky$, horizontal on the $x$-axis and steeper above and below it. c) Along the diagonal line $y = x$ the slope is zero, so the little lines there are all horizontal; for example $\\kyprime = \\ky - x$. d) Along the $x$-axis the little lines are horizontal, and along the line $y = 1$ they all have slope $1$; for example $\\kyprime = \\ky$. The $x$-axis is then itself a solution, $\\ky = 0$, and a solution crossing the line $y = 1$ does so at $45°$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "1.2.10",
+   "source_number": "1.2.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-1-2-1",
+   "prompt": "<p>Find a solution to $\\kyprime = \\lvert \\ky \\rvert$, $\\ky(0) = 0$. Does Picard’s theorem apply?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = 0$ is a solution: both sides of the equation are then $0$, and $\\ky(0) = 0$. Picard’s theorem does not apply: $\\kf(x,\\ky) = \\lvert \\ky \\rvert$ is continuous, but $\\kpfy$ does not exist at $y = 0$ (the absolute value has a corner there), and $y = 0$ is exactly where the initial condition sits. (The solution happens to be unique anyway, but the theorem is not what tells us so.)"
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "1.2.11",
+   "source_number": "1.2.11",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "thm-1-2-1",
+   "prompt": "<p>Take an equation $\\kyprime = (\\ky-2x) \\kg(x,\\ky) + 2$ for some function $\\kg(x,\\ky)$. Can you solve the problem for the initial condition $\\ky(0) = 0$, and if so what is the solution?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes: $\\ky = 2x$, whatever $\\kg$ is. Along the line $y = 2x$ the factor $\\ky - 2x$ is zero, so there the equation reads $\\kyprime = 2$; and $\\ky = 2x$ has $\\kyprime = 2$ and $\\ky(0) = 0$. So $\\ky = 2x$ solves the problem for every $\\kg(x,\\ky)$ for which the right-hand side makes sense along that line. Whether it is the only solution depends on $\\kg$: Picard’s theorem guarantees uniqueness when $\\kf(x,\\ky) = (\\ky - 2x)\\kg(x,\\ky) + 2$ and $\\kpfy$ are continuous near $(0, 0)$."
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "1.2.12",
+   "source_number": "1.2.12",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "tag": "challenging",
+   "place": {"at": "end"},
+   "cite": "thm-1-2-1",
+   "prompt": "<p>Suppose $\\kyprime = \\kf(x,\\ky)$ is such that $\\kf(x,1) = 0$ for every $x$, $\\kf$ is continuous and $\\kpfy$ exists and is continuous for every $x$ and $y$.</p><ol type=\"a\"><li>Guess a solution given the initial condition $\\ky(0) = 1$.</li><li>Can graphs of two solutions of the equation for different initial conditions ever intersect?</li><li>Given $\\ky(0) = 0$, what can you say about the solution. In particular, can $\\ky(x) > 1$ for any $x$? Can $\\ky(x) = 1$ for any $x$? Why or why not?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\ky = 1$. The constant function has $\\kyprime = 0 = \\kf(x, 1)$ for every $x$, and $\\ky(0) = 1$. b) No. If the graphs of two solutions met at a point $(x_1, y_1)$, both would solve $\\kyprime = \\kf(x,\\ky)$ with $\\ky(x_1) = y_1$; since $\\kf$ and $\\kpfy$ are continuous everywhere, Picard’s theorem says that problem has only one solution, so the two solutions are the same function and the graphs are one curve. c) The solution starts at $\\ky(0) = 0 < 1$. It can never equal $1$: at such a point its graph would meet the graph of the solution $\\ky = 1$ of part a), which part b) rules out. It can never exceed $1$ either, since to get from $0$ to a value above $1$ a continuous function must pass through $1$ on the way. So $\\ky(x) < 1$ for every $x$ at which the solution exists."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "1.2.101",
+   "source_number": "1.2.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "slope-field-def",
+   "prompt": "<p>Sketch the slope field of $\\kyprime=\\ky^3$. Can you visually find the solution that satisfies $\\ky(0)=0$?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<img src=\"/media/ch01/yprimey3slope.svg\" alt=\"A slope field where the slopes are positive above the x-axis and negative below, getting steeper and steeper the further away from the x-axis we get. The slopes are zero on the x-axis and do not seem to depend on x.\" width=\"192\"><p>$\\ky=0$ is a solution such that $\\ky(0)=0$.</p>"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "1.2.102",
+   "source_number": "1.2.102",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "thm-1-2-1",
+   "prompt": "<p>Is it possible to solve $\\kyprime = x\\ky$ for $\\ky(0) = 0$? Is the solution unique?</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": ["Yes, and the solution is unique", "Yes, but the solution is not unique", "No"],
+    "correct": 0,
+    "solution": "Yes a solution exists. The equation is $\\kyprime = \\kf(x,\\ky)$ where $\\kf(x,\\ky) = x\\ky$. The function $\\kf(x,\\ky)$ is continuous and $\\kpfy = x$, which is also continuous near $(0,0)$. So a solution exists and is unique. (In fact, $\\ky=0$ is the solution.)"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "1.2.103",
+   "source_number": "1.2.103",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "thm-1-2-1",
+   "prompt": "<p>Is it possible to solve $\\kyprime = \\frac{x}{x^2-1}$ for $\\ky(1) = 0$?</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": ["Yes", "No"],
+    "correct": 1,
+    "solution": "No, the equation is not defined at $(x,y) = (1,0)$."
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "1.2.104",
+   "source_number": "1.2.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "slope-field-def",
+   "prompt": "<p>Match equations $\\kyprime=\\sin x$, $\\kyprime=\\cos \\ky$, $\\kyprime = \\ky\\cos(x)$ to slope fields. Justify.</p><ol type=\"a\"><li><img src=\"/media/ch01/yprimecosyslope.svg\" alt=\"A slope field where the slopes do not seem to depend on x. They are negative at the top of the picture, positive in the middle part, and negative again at the bottom of the picture.\" width=\"168\"></li><li><img src=\"/media/ch01/yprimecosxyslope.svg\" alt=\"A slope field where the slopes are zero on the x-axis. Above the x-axis the slopes first are negative, then turn positive, then turn negative. Below the x-axis it is the same pattern but starting with positive, then negative, then positive again.\" width=\"168\"></li><li><img src=\"/media/ch01/yprimesinxslope.svg\" alt=\"A slope field that is zero on the y-axis. The slopes do not appear to depend on y, and from left to right are first positive, then negative then positive and then negative again.\" width=\"168\"></li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\kyprime=\\cos \\ky$, b) $\\kyprime = \\ky\\cos(x)$, c) $\\kyprime=\\sin x$. Justification left to reader."
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "1.2.105",
+   "source_number": "1.2.105",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "tag": "tricky",
+   "place": {"at": "end"},
+   "cite": "thm-1-2-1",
+   "prompt": "<p>Suppose</p>$$ \\kf(\\ky) = \\begin{cases} 0 & \\text{ if } y > 0, \\\\ 1 & \\text{ if } y \\leq 0 . \\end{cases} $$<p>Does $\\kyprime = \\kf(\\ky)$, $\\ky(0) = 0$ have a continuously differentiable solution? Does Picard apply? Why, or why not?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Picard does not apply as $\\kf$ is not continuous at $\\ky=0$. The equation does not have a continuously differentiable solution. Suppose it did. Notice that $\\kyprime(0) = 1$. By the first derivative test, $\\ky(x) > 0$ for small positive $x$. But then for those $x$, we have $\\kyprime(x) = \\kf\\bigl(\\ky(x)\\bigr) = 0$. It is not possible for $\\kyprime$ to be continuous, $\\kyprime(0)=1$ and $\\kyprime(x) = 0$ for arbitrarily small positive $x$."
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "1.2.106",
+   "source_number": "1.2.106",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "picard-hypothesis",
+   "prompt": "<p>Consider an equation of the form $\\kyprime = \\kf(x)$ for some continuous function $\\kf$, and an initial condition $\\ky(x_0) = y_0$. Does a solution exist for all $x$? Why or why not?</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": ["Yes", "No"],
+    "correct": 0,
+    "solution": "The solution is $\\ky(x) = \\int_{x_0}^x \\kf(s) \\,ds + y_0$, and this does indeed exist for every $x$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "direction-field"},
+  {"exercise": "e1", "concept": "reading-a-slope-field"},
+  {"exercise": "e2", "concept": "direction-field"},
+  {"exercise": "e3", "concept": "direction-field"},
+  {"exercise": "e4", "concept": "picards-theorem"},
+  {"exercise": "e5", "concept": "picards-theorem"},
+  {"exercise": "e6", "concept": "direction-field"},
+  {"exercise": "e6", "concept": "reading-a-slope-field"},
+  {"exercise": "e7", "concept": "reading-a-slope-field"},
+  {"exercise": "e7", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e8", "concept": "picards-theorem"},
+  {"exercise": "e8", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e9", "concept": "direction-field"},
+  {"exercise": "e10", "concept": "picards-theorem"},
+  {"exercise": "e11", "concept": "picards-theorem"},
+  {"exercise": "e11", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e12", "concept": "picards-theorem"},
+  {"exercise": "e101", "concept": "direction-field"},
+  {"exercise": "e101", "concept": "reading-a-slope-field"},
+  {"exercise": "e102", "concept": "picards-theorem"},
+  {"exercise": "e103", "concept": "picards-theorem"},
+  {"exercise": "e104", "concept": "direction-field"},
+  {"exercise": "e104", "concept": "reading-a-slope-field"},
+  {"exercise": "e105", "concept": "picards-theorem"},
+  {"exercise": "e106", "concept": "picards-theorem"},
+  {"exercise": "e106", "concept": "integral-solution"}
+ ],
+ "footnotes": [
+  {
+   "id": "fn-picard",
+   "kind": "book",
+   "html": "Named after the French mathematician <a href=\"https://en.wikipedia.org/wiki/Charles_%C3%89mile_Picard\">Charles Émile Picard</a> (1856–1941)."
+  }
+ ]
+}
