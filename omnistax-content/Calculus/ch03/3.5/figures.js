@@ -143,8 +143,7 @@ const halfPi = (v) => { const k = Math.round((2 * v) / PI); if (k === 0) return 
     const sq = 16; ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(Kz[0], Kz[1] - sq); ctx.lineTo(Kz[0] + sq, Kz[1] - sq); ctx.lineTo(Kz[0] + sq, Kz[1]); ctx.stroke(); ctx.restore();
     const down = Math.PI / 2, toP = Math.atan2(Pz[1] - Qz[1], Pz[0] - Qz[0]);
     ctx.save(); ctx.strokeStyle = ac; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(Qz[0], Qz[1], 46, toP, down); ctx.stroke(); ctx.restore();
-    const bis = (toP + down) / 2;
-    text(ctx, 'θ + Δθ/2', Qz[0] + 74 * Math.cos(bis) + 6, Qz[1] + 74 * Math.sin(bis) + 8, ac, { size: 20, weight: 600, align: 'left', base: 'middle', bg: PAL.panel });
+    text(ctx, 'θ + Δθ/2', Qz[0] + 24, Qz[1] - 30, ac, { size: 20, weight: 600, align: 'left', base: 'middle', bg: PAL.panel });
     dot(ctx, ...Pz, PAL.ink, true, 7); dot(ctx, ...Qz, PAL.ink, true, 7);
     text(ctx, 'P', Pz[0] + 14, Pz[1] + 4, PAL.ink, { size: 22, weight: 600, align: 'left', base: 'middle' });
     text(ctx, 'Q', Qz[0] - 4, Qz[1] - 16, PAL.ink, { size: 22, weight: 600, align: 'center', base: 'bottom' });

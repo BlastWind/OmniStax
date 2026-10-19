@@ -136,7 +136,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     } else {
       const a = e.sign * kr * kr * yr, py = f(x0), tip = Math.max(-4, Math.min(4, py + 0.5 * e.sign * k * k * py));
       if (Math.abs(tip - py) > 0.05 && Math.abs(py) <= 4) arrow(ctx, ax.X(x0), ax.Y(py), ax.X(x0), ax.Y(tip), dc, 4);
-      hits.push({ x: ax.X(x0), y: ax.Y((py + tip) / 2), r: 14, name: `second derivative y″ = ${e.sign < 0 ? '−' : ''}k²y` });
+      hits.push({ x: ax.X(x0), y: ax.Y((py + tip) / 2), r: 14, name: `second derivative y″ = ${e.sign < 0 ? '−' : ''}k²y, drawn at half its length` });
       tex = `${e.sol(k)},\\quad \\kydprime(${n(xr)}) = ${e.sign < 0 ? '-' : ''}(${n(kr)})^2 \\cdot ${par(yr)} = ${n(a)}`;
       const pull = Math.abs(yr) < 0.005 ? 'and the curve crosses zero without bending.'
         : e.sign < 0 ? 'pulling the curve back toward zero.' : 'pushing the curve away from zero.';
