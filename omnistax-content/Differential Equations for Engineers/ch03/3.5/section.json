@@ -4,7 +4,7 @@
  "chapter": "3",
  "title": "Two-dimensional systems and their vector fields",
  "short": "Systems in the plane",
- "lead": "This section reads the vector field and the solutions of the planar system $\\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]' = \\kP \\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]$ off the <span data-concept=\\\"eigenvalue\\\">eigenvalues</span> and <span data-concept=\\\"eigenvector\\\">eigenvectors</span> of the $2 \\times 2$ matrix $\\kP$, case by case, names the picture each case draws, and collects them in a table.",
+ "lead": "This section reads the vector field and the solutions of the planar system $\\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]' = \\kP \\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]$ off the <span data-concept=\"eigenvalue\">eigenvalues</span> and <span data-concept=\"eigenvector\">eigenvectors</span> of the $2 \\times 2$ matrix $\\kP$, case by case, names the picture each case draws, and collects them in a table.",
  "objectives": [],
  "summary_html": "",
  "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out.",
@@ -531,7 +531,7 @@
     "at": "end"
    },
    "cite": "tab-3-1",
-   "prompt": "<p>Take the equation $m \\kxdprime + c \\kxprime + k\\kx = 0$, with $m &gt; 0$, $c \\geq 0$, $k &gt; 0$ for the mass-spring system.</p><ol type=\\\"a\\\"><li>Convert this to a system of first-order equations.</li><li>Classify for what $m, c, k$ do you get which behavior.</li><li>Explain from physical intuition why you do not get all the different kinds of behavior here?</li></ol>",
+   "prompt": "<p>Take the equation $m \\kxdprime + c \\kxprime + k\\kx = 0$, with $m &gt; 0$, $c \\geq 0$, $k &gt; 0$ for the mass-spring system.</p><ol type=\"a\"><li>Convert this to a system of first-order equations.</li><li>Classify for what $m, c, k$ do you get which behavior.</li><li>Explain from physical intuition why you do not get all the different kinds of behavior here?</li></ol>",
    "answer": {
     "type": "open",
     "solution": "a) Let $\\ky = \\kxprime$ (the velocity). Then $\\kxprime = \\ky$ and $\\kyprime = \\kxdprime = -\\frac{k}{m}\\kx - \\frac{c}{m}\\ky$, that is, $\\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]' = \\left[ \\begin{smallmatrix} 0 & 1 \\\\ -k/m & -c/m \\end{smallmatrix} \\right] \\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]$. b) The eigenvalues solve $\\klambda^2 + \\frac{c}{m}\\klambda + \\frac{k}{m} = 0$, so $\\klambda = \\frac{-c \\pm \\sqrt{c^2 - 4km}}{2m}$. If $c = 0$, they are $\\pm i\\sqrt{k/m}$, purely imaginary: a center (ellipses). If $0 &lt; c^2 &lt; 4km$, they are complex with negative real part $-\\frac{c}{2m}$: a spiral sink. If $c^2 &gt; 4km$, they are real, distinct and both negative (since $\\sqrt{c^2 - 4km} &lt; c$): a sink. If $c^2 = 4km$, the eigenvalue $-\\frac{c}{2m}$ is repeated and negative, which also means a sink. These are the undamped, underdamped, overdamped and critically damped cases of §2.4. c) The product of the eigenvalues is $\\frac{k}{m} &gt; 0$, so they never have opposite signs: no saddle; their sum is $-\\frac{c}{m} \\leq 0$, so the real part is never positive: no source and no spiral source. Physically, the spring always pulls the mass back toward the rest position, so nothing pushes it away along a line (a saddle), and the damping only takes energy out of the system and never puts any in, so the motion can never grow (a source or a spiral source).",
@@ -599,7 +599,7 @@
     "at": "end"
    },
    "cite": "summary",
-   "prompt": "<p>Take the system from <a href=\\\"/diffyqs/ch03/3.1/#3.1-ex-3-1-2\\\">Example 3.1.2</a>, $\\kxoneprime=\\frac{r}{V}(\\kxtwo-\\kxone)$, $\\kxtwoprime=\\frac{r}{V}(\\kxone-\\kxtwo)$. As we said, one of the eigenvalues is zero. What is the other eigenvalue, how does the picture look like, and what happens when $t$ goes to infinity.</p>",
+   "prompt": "<p>Take the system from <a href=\"/diffyqs/ch03/3.1/#3.1-ex-3-1-2\">Example 3.1.2</a>, $\\kxoneprime=\\frac{r}{V}(\\kxtwo-\\kxone)$, $\\kxtwoprime=\\frac{r}{V}(\\kxone-\\kxtwo)$. As we said, one of the eigenvalues is zero. What is the other eigenvalue, how does the picture look like, and what happens when $t$ goes to infinity.</p>",
    "answer": {
     "type": "open",
     "solution": "The matrix is $\\frac{r}{V} \\left[ \\begin{smallmatrix} -1 & 1 \\\\ 1 & -1 \\end{smallmatrix} \\right]$; its trace is $-\\frac{2r}{V}$ and its determinant $0$, so the eigenvalues are $0$ and $-\\frac{2r}{V}$, with eigenvectors $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]$. The other eigenvalue is $-\\frac{2r}{V}$. In the picture every point of the line $x_1 = x_2$ is a critical point (equal amounts of salt do not change), and every other solution moves along a straight line of slope $-1$ (on which $x_1 + x_2$ stays constant) toward the line $x_1 = x_2$, the arrows shrinking as it gets closer. As $t \\to \\infty$ the solution $\\kxone = \\frac{A+B}{2} + \\frac{A-B}{2} e^{-2rt/V}$, $\\kxtwo = \\frac{A+B}{2} - \\frac{A-B}{2} e^{-2rt/V}$ with $\\kxone(0) = A$, $\\kxtwo(0) = B$ tends to the point $\\left( \\frac{A+B}{2}, \\frac{A+B}{2} \\right)$: the amounts of salt in the two tanks equalize, as Example 3.1.2 predicted.",
@@ -616,7 +616,7 @@
     "at": "end"
    },
    "cite": "tab-3-1",
-   "prompt": "<p>Describe the behavior of the following systems without solving:</p><ol type=\\\"a\\\"><li>$\\kxprime = \\kx + \\ky$, $\\kyprime = \\kx-\\ky$.</li><li>$\\kxoneprime = \\kxone + \\kxtwo$, $\\kxtwoprime = 2 \\kxtwo$.</li><li>$\\kxoneprime = -2\\kxtwo$, $\\kxtwoprime = 2 \\kxone$.</li><li>$\\kxprime = \\kx + 3\\ky$, $\\kyprime = -2\\kx-4\\ky$.</li><li>$\\kxprime = \\kx - 4\\ky$, $\\kyprime = -4\\kx+\\ky$.</li></ol>",
+   "prompt": "<p>Describe the behavior of the following systems without solving:</p><ol type=\"a\"><li>$\\kxprime = \\kx + \\ky$, $\\kyprime = \\kx-\\ky$.</li><li>$\\kxoneprime = \\kxone + \\kxtwo$, $\\kxtwoprime = 2 \\kxtwo$.</li><li>$\\kxoneprime = -2\\kxtwo$, $\\kxtwoprime = 2 \\kxone$.</li><li>$\\kxprime = \\kx + 3\\ky$, $\\kyprime = -2\\kx-4\\ky$.</li><li>$\\kxprime = \\kx - 4\\ky$, $\\kyprime = -4\\kx+\\ky$.</li></ol>",
    "answer": {
     "type": "open",
     "solution": "a) Two eigenvalues: $\\pm \\sqrt{2}$ so the behavior is a saddle. b) Two eigenvalues: $1$ and $2$, so the behavior is a source. c) Two eigenvalues: $\\pm 2i$, so the behavior is a center (ellipses). d) Two eigenvalues: $-1$ and $-2$, so the behavior is a sink. e) Two eigenvalues: $5$ and $-3$, so the behavior is a saddle.",
@@ -653,7 +653,7 @@
    "prompt": "<p>Take $\\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix}\\right] ' = \\left[ \\begin{smallmatrix} 0 & 1 \\\\ 0 & 0 \\end{smallmatrix}\\right] \\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix}\\right]$. Draw the vector field and describe the behavior. Is it one of the behaviors that we have seen before?</p>",
    "answer": {
     "type": "open",
-    "solution": "<img src=\\\"/media/ch03/0100vectorfield.svg\\\" alt=\\\"A direction field diagram where all arrows are horizontal. The arrows above the x-axis go right and arrows below the x-axis go left. The arrows are longer the further away from the x-axis that we get.\\\" width=\\\"192\\\"><p>The solution does not move anywhere if $\\ky = 0$. When $\\ky$ is positive, the solution moves (with constant speed) in the positive $x$ direction. When $\\ky$ is negative, the solution moves (with constant speed) in the negative $x$ direction. It is not one of the behaviors we saw.</p><p>Note that the matrix has a double eigenvalue 0 and the general solution is $\\kx = C_1 t + C_2$ and $\\ky = C_1$, which agrees with the description above.</p>",
+    "solution": "<img src=\"/media/ch03/0100vectorfield.svg\" alt=\"A direction field diagram where all arrows are horizontal. The arrows above the x-axis go right and arrows below the x-axis go left. The arrows are longer the further away from the x-axis that we get.\" width=\"192\"><p>The solution does not move anywhere if $\\ky = 0$. When $\\ky$ is positive, the solution moves (with constant speed) in the positive $x$ direction. When $\\ky$ is negative, the solution moves (with constant speed) in the negative $x$ direction. It is not one of the behaviors we saw.</p><p>Note that the matrix has a double eigenvalue 0 and the general solution is $\\kx = C_1 t + C_2$ and $\\ky = C_1$, which agrees with the description above.</p>",
     "generated_by": "source"
    }
   }

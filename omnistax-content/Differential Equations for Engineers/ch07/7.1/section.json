@@ -814,7 +814,7 @@
    "answer": {
     "type": "open",
     "generated_by": "ai",
-    "solution": "$\\displaystyle \\sin x = \\sum_{n=0}^\\infty \\frac{{(-1)}^{n+1}}{(2n+1)!} {(x-\\pi)}^{2n+1} = -(x-\\pi) + \\frac{{(x-\\pi)}^3}{6} - \\frac{{(x-\\pi)}^5}{120} + \\cdots$. Use <a href=\\\"#eq-7-2\\\">(7.2)</a> with $\\kf(x) = \\sin x$ and $x_0 = \\pi$. The derivatives of $\\sin x$ cycle through $\\sin x, \\cos x, -\\sin x, -\\cos x$, so at $\\pi$ they cycle through $0, -1, 0, 1$: $\\kfk(\\pi) = 0$ for even $k$, and for odd $k = 2n+1$ it is ${(-1)}^{n+1}$. Dividing by $k!$ gives the series, which converges for every $x$ (the ratio test gives $A = 0$ for the nonzero terms, as for the sine series around $0$)."
+    "solution": "$\\displaystyle \\sin x = \\sum_{n=0}^\\infty \\frac{{(-1)}^{n+1}}{(2n+1)!} {(x-\\pi)}^{2n+1} = -(x-\\pi) + \\frac{{(x-\\pi)}^3}{6} - \\frac{{(x-\\pi)}^5}{120} + \\cdots$. Use <a href=\"#eq-7-2\">(7.2)</a> with $\\kf(x) = \\sin x$ and $x_0 = \\pi$. The derivatives of $\\sin x$ cycle through $\\sin x, \\cos x, -\\sin x, -\\cos x$, so at $\\pi$ they cycle through $0, -1, 0, 1$: $\\kfk(\\pi) = 0$ for even $k$, and for odd $k = 2n+1$ it is ${(-1)}^{n+1}$. Dividing by $k!$ gives the series, which converges for every $x$ (the ratio test gives $A = 0$ for the nonzero terms, as for the sine series around $0$)."
    }
   },
   {
@@ -908,7 +908,7 @@
       "value": 1
      }
     ],
-    "solution": "$x^5 + 5x + 1 = 3151 + 3130(x-5) + 1250{(x-5)}^2 + 250{(x-5)}^3 + 25{(x-5)}^4 + {(x-5)}^5$. The polynomial has degree 5, so $\\ka_k = 0$ for $k \\geq 6$, and the Taylor formula <a href=\\\"#eq-7-2\\\">(7.2)</a> gives the rest: with $\\kf(x) = x^5 + 5x + 1$, $\\kf(5) = 3125 + 25 + 1 = 3151$, $\\kf'(5) = 5 \\cdot 5^4 + 5 = 3130$, $\\frac{\\kf''(5)}{2} = \\frac{20 \\cdot 5^3}{2} = 1250$, $\\frac{\\kf'''(5)}{3!} = \\frac{60 \\cdot 5^2}{6} = 250$, $\\frac{\\kf^{(4)}(5)}{4!} = \\frac{120 \\cdot 5}{24} = 25$ and $\\frac{\\kf^{(5)}(5)}{5!} = 1$."
+    "solution": "$x^5 + 5x + 1 = 3151 + 3130(x-5) + 1250{(x-5)}^2 + 250{(x-5)}^3 + 25{(x-5)}^4 + {(x-5)}^5$. The polynomial has degree 5, so $\\ka_k = 0$ for $k \\geq 6$, and the Taylor formula <a href=\"#eq-7-2\">(7.2)</a> gives the rest: with $\\kf(x) = x^5 + 5x + 1$, $\\kf(5) = 3125 + 25 + 1 = 3151$, $\\kf'(5) = 5 \\cdot 5^4 + 5 = 3130$, $\\frac{\\kf''(5)}{2} = \\frac{20 \\cdot 5^3}{2} = 1250$, $\\frac{\\kf'''(5)}{3!} = \\frac{60 \\cdot 5^2}{6} = 250$, $\\frac{\\kf^{(4)}(5)}{4!} = \\frac{120 \\cdot 5}{24} = 25$ and $\\frac{\\kf^{(5)}(5)}{5!} = 1$."
    }
   },
   {
@@ -944,7 +944,7 @@
     "generated_by": "ai",
     "value": 2.71828,
     "tol": 0.001,
-    "solution": "$\\kf(1) = e \\approx 2.718$. An analytic function equals its Taylor series <a href=\\\"#eq-7-2\\\">(7.2)</a>; at $x_0 = 0$, $\\kf(x) = \\sum_{n=0}^\\infty \\frac{\\kf^{(n)}(0)}{n!} x^n = \\sum_{n=1}^\\infty \\frac{n}{n!} x^n = \\sum_{n=1}^\\infty \\frac{x^n}{(n-1)!} = x \\sum_{n=0}^\\infty \\frac{x^n}{n!} = x e^x$, after reindexing $n \\to n+1$. This series converges for every $x$, so $\\kf(1) = 1 \\cdot e^1 = e$."
+    "solution": "$\\kf(1) = e \\approx 2.718$. An analytic function equals its Taylor series <a href=\"#eq-7-2\">(7.2)</a>; at $x_0 = 0$, $\\kf(x) = \\sum_{n=0}^\\infty \\frac{\\kf^{(n)}(0)}{n!} x^n = \\sum_{n=1}^\\infty \\frac{n}{n!} x^n = \\sum_{n=1}^\\infty \\frac{x^n}{(n-1)!} = x \\sum_{n=0}^\\infty \\frac{x^n}{n!} = x e^x$, after reindexing $n \\to n+1$. This series converges for every $x$, so $\\kf(1) = 1 \\cdot e^1 = e$."
    }
   },
   {
@@ -1048,7 +1048,7 @@
     "at": "end"
    },
    "cite": "reindex",
-   "prompt": "<p>Reindex the following series to have the powers be $x^k$.</p><ol type=\\\"a\\\"><li>$\\displaystyle \\sum_{k=3}^\\infty k(k-1)x^{k+3}$</li><li>$\\displaystyle \\sum_{k=1}^\\infty (k+1)x^{k-1}$</li><li>$\\displaystyle \\sum_{k=5}^\\infty 2kx^{k-2}$</li></ol>",
+   "prompt": "<p>Reindex the following series to have the powers be $x^k$.</p><ol type=\"a\"><li>$\\displaystyle \\sum_{k=3}^\\infty k(k-1)x^{k+3}$</li><li>$\\displaystyle \\sum_{k=1}^\\infty (k+1)x^{k-1}$</li><li>$\\displaystyle \\sum_{k=5}^\\infty 2kx^{k-2}$</li></ol>",
    "answer": {
     "type": "open",
     "generated_by": "source",
