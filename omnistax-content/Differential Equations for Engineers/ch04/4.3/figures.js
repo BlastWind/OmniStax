@@ -7,17 +7,19 @@ const still = (d, draw) => register(d.fig, { update: () => {}, draw });
 const n2 = (v, dec = 2) => fmt(v, dec).replace('−', '-');
 const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l - 4, box.t - 4, box.r - box.l + 8, box.b - box.t + 8); ctx.clip(); draw(); ctx.restore(); };
 const PI = Math.PI;
+const ord = (k) => `${k}${k % 100 >= 11 && k % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][k % 10] || 'th'}`;
 const sub = (k) => String(k).replace(/[0-9]/g, (c) => '₀₁₂₃₄₅₆₇₈₉'[+c]);
 /* the tick label of t = kL: plain numbers when L = 1, multiples of π when L = π */
 const piTick = (v) => { const k = Math.round(v / PI); return k === 0 ? '0' : k === 1 ? 'π' : k === -1 ? '−π' : `${k < 0 ? '−' : ''}${Math.abs(k)}π`; };
-/* a small legend in the top right corner of a graph: one stroke sample and one name per row */
+/* a legend in one row above a graph, centred: one stroke sample and one name per entry */
 function legend(ctx, box, rows) {
-  const w = Math.max(...rows.map((r) => measure(ctx, r.name, { size: 18 }))) + 74, x = box.r - w - 8;
-  ctx.save(); ctx.globalAlpha *= 0.92; ctx.fillStyle = PAL.panel; ctx.fillRect(x - 10, box.t + 4, w + 14, rows.length * 28 + 10); ctx.restore();
+  const ws = rows.map((r) => measure(ctx, r.name, { size: 18 }) + 60), gap = 36;
+  let x = (box.l + box.r) / 2 - (ws.reduce((a, b) => a + b, 0) + gap * (rows.length - 1)) / 2;
+  const y = box.t - 30;
   rows.forEach((r, i) => {
-    const y = box.t + 22 + i * 28;
-    ctx.save(); ctx.globalAlpha *= r.a ?? 1; line(ctx, x, y, x + 48, y, r.color, r.w ?? 4, r.dash); ctx.restore();
-    text(ctx, r.name, x + 60, y, PAL.ink, { size: 18 });
+    line(ctx, x, y, x + 44, y, r.color, r.w ?? 4, r.dash);
+    text(ctx, r.name, x + 56, y, PAL.ink, { size: 18 });
+    x += ws[i] + gap;
   });
 }
 
@@ -27,7 +29,7 @@ function legend(ctx, box, rows) {
    corners t = 0, ±1, ±2, where it is the tail Σ (n odd > N) 4/(n²π²), and S_N stays inside (0, 1) for every N
    (both checked numerically for N = 1 to 40 in the build's scratch). Axes t −2 to 2, y −0.2 to 1.2. */
 (function () {
-  const d = sim('sim-triangle-sum', 560);
+  const d = sim('sim-triangle-sum', 600);
   const Ns = ctl(d.controls, { label: 'N', cls: '', key: 'N', min: 1, max: 40, step: 1, value: 3, unit: '', dec: 0, detents: [3, 20] });
   const ts = ctl(d.controls, { label: 't', cls: '', key: 't', min: -2, max: 2, step: 0.01, value: 0, unit: '', dec: 2, detents: [-1, 0, 1] });
   const tri = (t) => Math.abs((((t + 1) % 2) + 2) % 2 - 1);
@@ -35,14 +37,14 @@ function legend(ctx, box, rows) {
   const SN = (N) => { const m = terms(N); return (t) => 0.5 - m.reduce((s, k) => s + (4 / (k * k * PI * PI)) * Math.cos(k * PI * t), 0); };
   const P = drag(d, { x: ts, y: (t) => SN(Ns.v)(t) });
   const ro = readout(d);
-  const BOX = { l: 180, r: 1250, t: 120, b: 470 };
+  const BOX = { l: 180, r: 1250, t: 160, b: 510 };
   let hits = [];
   hover(d.stage, () => hits);
   function draw() {
     const { ctx } = begin(d.c);
-    const fc = C('function'), sc = C('series'), N = Ns.v, t = ts.v, S = SN(N);
+    const fc = C('function'), fw = alpha(fc, 0.4), sc = C('series'), N = Ns.v, t = ts.v, S = SN(N);
     const ax = axes(ctx, BOX, [-2, 2], [-0.2, 1.2], { xl: 't', nx: 4, ny: 7, fy: (v) => fmt(v, 1) });
-    plot(ctx, ax, tri, fc, { w: 7 });
+    plot(ctx, ax, tri, fw, { w: 10 });
     plot(ctx, ax, S, sc, { w: 3.5 });
     /* the probe: a drop line, f(t) on the function, S_N(t) on the sum (the handle) */
     const tr = +t.toFixed(2), sum = terms(N).reduce((s, k) => s + (4 / (k * k * PI * PI)) * Math.cos(k * PI * tr), 0);
@@ -51,7 +53,7 @@ function legend(ctx, box, rows) {
     line(ctx, ax.X(t), ax.box.t, ax.X(t), ax.box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
     dot(ctx, ax.X(t), ax.Y(tri(t)), fc, true, 8);
     const at = P.draw(ctx, ax, sc);
-    legend(ctx, BOX, [{ name: 'f(t) = |t|, extended periodically', color: fc, w: 7 }, { name: `S_{${N}}(t), up to the ${N}${N === 1 ? 'st' : N === 2 ? 'nd' : N === 3 ? 'rd' : 'th'} harmonic`, color: sc, w: 3.5 }]);
+    legend(ctx, BOX, [{ name: 'f(t) = |t|, extended periodically', color: fw, w: 10 }, { name: `S_{${N}}(t), up to the ${ord(N)} harmonic`, color: sc, w: 3.5 }]);
     hits = [{ x: ax.X(t), y: ax.Y(tri(t)), r: 14, name: `f(${n2(tr)}) = ${fmt(fv, 3)}` }];
     if (at) hits.push({ x: at.x, y: at.y, r: 16, name: `S${sub(N)}(${n2(tr)}) = ${fmt(Sv, 3)} (drag along the sum)` });
     [-1, 0, 1].forEach((c) => hits.push({ x: ax.X(c), y: ax.Y(tri(c)), r: 14, name: `a corner of f at t = ${c}: the gap is ${fmt(tail, 3)}` }));
@@ -72,7 +74,7 @@ function legend(ctx, box, rows) {
    −4/(π²n²), square wave b_n = 2/n (n odd), sawtooth b_n = 2(−1)^(n+1)/n. Graph t −2L to 2L, the y range per
    function; coefficients 10⁻⁶ to 10¹. */
 (function () {
-  const d = sim('sim-smoothness-decay', 780);
+  const d = sim('sim-smoothness-decay', 800);
   const wrap = (t, L) => { const p = 2 * L; return ((((t + L) % p) + p) % p) - L; };   /* into [−L, L) */
   const FUN = {
     para: {
@@ -124,8 +126,9 @@ function legend(ctx, box, rows) {
   const pick = choice(d.controls, { label: 'function', key: 'f', value: 'para', options: [
     { value: 'para', label: 'Example 4.3.6' }, { value: 'abs', label: '|t|' }, { value: 'square', label: 'square wave' }, { value: 'saw', label: 'sawtooth' }] });
   const ro = readout(d);
-  const TOP = { l: 180, r: 1250, t: 110, b: 360 }, BOT = { l: 180, r: 1250, t: 450, b: 700 };
-  const NMAX = 30, LX = [0, Math.log10(NMAX)];
+  const TOP = { l: 180, r: 1250, t: 150, b: 380 }, BOT = { l: 180, r: 1250, t: 470, b: 720 };
+  const NMAX = 30, LX = [0, Math.log10(NMAX)], LO = -6;   /* the coefficient axis runs log₁₀|c| − LO over 0 to 8 */
+  const ly = (c) => Math.log10(Math.abs(c)) - LO;
   let hits = [];
   hover(d.stage, () => hits);
   function draw() {
@@ -142,7 +145,7 @@ function legend(ctx, box, rows) {
     }, [0, 0]));
     legend(ctx, TOP, [{ name: o.fname, color: fc, w: 5 }, { name: o.fpname, color: dc, w: 3 }]);
     /* the coefficients on log–log scales, the three reference lines through c₁ */
-    const bot = axes(ctx, BOT, LX, [-6, 1], { xl: 'n', yl: o.which === 'b' ? '|b_n|' : '|a_n|', yc: qc, nx: 0, ny: 7, fy: (y) => `10^{${fmt(y, 0)}}` });
+    const bot = axes(ctx, BOT, LX, [0, 8], { xl: 'n', yl: o.which === 'b' ? '|b_n|' : '|a_n|', yc: qc, nx: 0, ny: 4, fy: (y) => `10^{${fmt(y + LO, 0)}}` });
     [1, 2, 3, 5, 10, 20, 30].forEach((k) => {
       const x = bot.X(Math.log10(k));
       if (k > 1) line(ctx, x, BOT.t, x, BOT.b, PAL.rule, 1.5);
@@ -152,15 +155,15 @@ function legend(ctx, box, rows) {
     [...new Set([pick.from, v])].forEach((w) => pick.only(ctx, w, () => {
       const q = FUN[w], c1 = Math.abs(q.c(1));
       clip(ctx, BOT, () => [1, 2, 3].forEach((p) => {
-        line(ctx, bot.X(0), bot.Y(Math.log10(c1)), bot.X(LX[1]), bot.Y(Math.log10(c1) - p * LX[1]), alpha(PAL.ink, p === q.p ? 0.75 : 0.4), p === q.p ? 3 : 2, [10, 10]);
+        line(ctx, bot.X(0), bot.Y(ly(c1)), bot.X(LX[1]), bot.Y(ly(c1) - p * LX[1]), alpha(PAL.ink, p === q.p ? 0.75 : 0.4), p === q.p ? 3 : 2, [10, 10]);
       }));
       [1, 2, 3].forEach((p) => {
-        const yv = Math.log10(c1) - p * LX[1];
-        if (yv > -6) text(ctx, `1/n${p === 1 ? '' : p === 2 ? '²' : '³'}`, BOT.r + 10, bot.Y(yv), PAL.muted, { size: 18, weight: p === q.p ? 600 : 400 });
+        const yv = ly(c1) - p * LX[1];
+        if (yv > 0) text(ctx, `1/n${p === 1 ? '' : p === 2 ? '²' : '³'}`, BOT.r + 10, bot.Y(yv), PAL.muted, { size: 18, weight: p === q.p ? 600 : 400 });
       });
       for (let k = 1; k <= NMAX; k++) {
         const ck = q.c(k); if (!ck) continue;
-        const x = bot.X(Math.log10(k)), y = bot.Y(Math.log10(Math.abs(ck)));
+        const x = bot.X(Math.log10(k)), y = bot.Y(ly(ck));
         dot(ctx, x, y, qc, true, 6);
         if (w === v) hits.push({ x, y, r: 12, name: `${q.which}${sub(k)} = ${fmt(ck, Math.abs(ck) < 0.001 ? 6 : 4)}` });
       }
@@ -178,7 +181,7 @@ function legend(ctx, box, rows) {
    has corners and f″ jumps at the multiples of 2π, where its series gives 0, the midpoint. The last series has no sum:
    its partial sums are −N at t = 0. Axes t −2π to 2π; y −2 to 2, or −32 to 16 for the last series. */
 (function () {
-  const d = sim('sim-term-by-term', 580);
+  const d = sim('sim-term-by-term', 610);
   const u = (t) => (((t % (2 * PI)) + 2 * PI) % (2 * PI));   /* into [0, 2π) */
   const SER = {
     f: { term: (k, t) => Math.sin(k * t) / k ** 3, p: 3, yr: [-2, 2], ny: 4, type: 'function', sum: (t) => { const x = u(t); return PI * PI * x / 6 - PI * x * x / 4 + x ** 3 / 12; } },
@@ -190,7 +193,7 @@ function legend(ctx, box, rows) {
     { value: 'f', label: 'f' }, { value: 'fp', label: 'f′' }, { value: 'fpp', label: 'f″' }, { value: 'f3', label: 'f″, differentiated' }] });
   const Ns = ctl(d.controls, { label: 'N', cls: '', key: 'N', min: 1, max: 30, step: 1, value: 5, unit: '', dec: 0, detents: [5] });
   const ro = readout(d);
-  const BOX = { l: 180, r: 1250, t: 120, b: 470 };
+  const BOX = { l: 180, r: 1250, t: 160, b: 500 };
   const SN = (v, N) => (t) => { let s = 0; for (let k = 1; k <= N; k++) s += SER[v].term(k, t); return s; };
   const fppPieces = [-2, 0].map((k) => ({ f: (t) => (t - (k + 1) * PI) / 2, x: [k * PI, (k + 2) * PI], ends: '()' }));
   let hits = [];
@@ -220,9 +223,9 @@ function legend(ctx, box, rows) {
     if (v === 'fp') [-2 * PI, 0, 2 * PI].forEach((x) => hits.push({ x: ax.X(x), y: ax.Y(PI * PI / 6), r: 14, name: 'a corner of f′, at the value π²/6' }));
     const heads = {
       f: `$\\kf(t) = \\sum \\frac{\\sin(nt)}{n^3}$, N = ${N}: the coefficients fall like 1/n³, and the sum is smooth.`,
-      fp: `$\\kfprime(t) = \\sum \\frac{\\cos(nt)}{n^2}$, N = ${N}: the coefficients fall like 1/n², and the sum is continuous, with corners at t = 0, ±2π.`,
-      fpp: `$f''(t) = \\sum \\frac{-\\sin(nt)}{n}$, N = ${N}: the coefficients fall like 1/n, and the sum jumps at t = 0, ±2π.`,
-      f3: `$\\sum -\\cos(nt)$, N = ${N}: the terms do not go to zero; at t = 0 the partial sum is ${fmt(-N, 0)} and falls further as N grows.`,
+      fp: `$\\kfprime(t) = \\sum \\frac{\\cos(nt)}{n^2}$, N = ${N}: the coefficients fall like 1/n², and the sum is continuous, with corners at $t = 0, \\pm 2\\pi$.`,
+      fpp: `$f''(t) = \\sum \\frac{-\\sin(nt)}{n}$, N = ${N}: the coefficients fall like 1/n, and the sum jumps at $t = 0, \\pm 2\\pi$.`,
+      f3: `$\\sum -\\cos(nt)$, N = ${N}: the terms do not go to zero; at $t = 0$ the partial sum is ${fmt(-N, 0)} and falls further as N grows.`,
     };
     headline(ctx, heads[v]);
     const TERM = { f: '\\frac{\\sin(nt)}{n^3}', fp: '\\frac{\\cos(nt)}{n^2}', fpp: '\\frac{-\\sin(nt)}{n}', f3: '-\\cos(nt)' };

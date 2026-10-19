@@ -1,0 +1,907 @@
+{
+ "id": "6.1",
+ "module": "laplace:section",
+ "chapter": "6",
+ "title": "The Laplace transform",
+ "short": "The Laplace transform",
+ "lead": "The <span data-concept=\"laplace-transform\">Laplace transform</span> takes a function of the time t to a function of a new variable s through an improper integral. This section defines it, computes it for the elementary functions, asks for which functions and which s the integral exists and whether the transform determines its function, and inverts it with a table, partial fractions and the shifting property.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 6.1.101–6.1.104 carry the book’s own answers. The inline exercises 6.1.1–6.1.4 and exercises 6.1.5–6.1.15, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first; Exercise 6.1.14 is answered as printed, with the transform of the sine switched on at t = a given beside it.",
+ "figures": [
+  {
+   "id": "sim-laplace-area",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "integral",
+    "transform"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "derivations": [],
+ "coverage": [
+  {
+   "span": "black-box",
+   "concept": "laplace-transform",
+   "verb": "introduces"
+  },
+  {
+   "span": "frequency-domain",
+   "concept": "frequency-domain",
+   "verb": "introduces"
+  },
+  {
+   "span": "tab-6-1",
+   "concept": "laplace-transform-table",
+   "verb": "introduces"
+  },
+  {
+   "span": "unit-step",
+   "concept": "unit-step-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-6-1-1",
+   "concept": "linearity-of-the-laplace-transform",
+   "verb": "introduces"
+  },
+  {
+   "span": "exponential-order",
+   "concept": "exponential-order",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-6-1-2",
+   "concept": "existence-of-the-laplace-transform",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay",
+   "concept": "laplace-transform-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-6-1-3",
+   "concept": "uniqueness-of-the-laplace-transform",
+   "verb": "introduces"
+  },
+  {
+   "span": "inverse-definition",
+   "concept": "inverse-laplace-transform",
+   "verb": "introduces"
+  },
+  {
+   "span": "partial-fractions",
+   "concept": "partial-fraction-decomposition",
+   "verb": "introduces"
+  },
+  {
+   "span": "first-shifting",
+   "concept": "first-shifting-property",
+   "verb": "introduces"
+  },
+  {
+   "span": "proper-rational",
+   "concept": "proper-rational-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-6-1-1",
+   "concept": "computing-a-laplace-transform",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-6-1-5",
+   "concept": "inverting-with-the-table",
+   "verb": "introduces"
+  },
+  {
+   "span": "laplace-intro",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "laplace-intro",
+   "concept": "ordinary-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "laplace-intro",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "frequency-domain",
+   "concept": "mass-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "frequency-domain",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-standard",
+   "concept": "mass-spring-system",
+   "verb": "uses"
+  },
+  {
+   "span": "frequency-variable",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-lt-definition",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-1",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-2",
+   "concept": "computing-a-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-3",
+   "concept": "computing-a-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-4",
+   "concept": "computing-a-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-laplace-area",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-laplace-area",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-laplace-area",
+   "concept": "existence-of-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-laplace-area",
+   "concept": "laplace-transform-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-laplace-area",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "table-intro",
+   "concept": "computing-a-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "tab-6-1",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "pull-out",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "sum-example",
+   "concept": "linearity-of-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "sum-example",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "sum-example",
+   "concept": "computing-a-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "product-warning",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "no-transform",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-6-1-2",
+   "concept": "exponential-order",
+   "verb": "uses"
+  },
+  {
+   "span": "existence-argument",
+   "concept": "existence-of-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "existence-argument",
+   "concept": "exponential-order",
+   "verb": "uses"
+  },
+  {
+   "span": "decay",
+   "concept": "exponential-order",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-6-1-3",
+   "concept": "exponential-order",
+   "verb": "uses"
+  },
+  {
+   "span": "piecewise",
+   "concept": "piecewise-continuous-function",
+   "verb": "uses"
+  },
+  {
+   "span": "piecewise",
+   "concept": "existence-of-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "piecewise",
+   "concept": "uniqueness-of-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "piecewise",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-motivation",
+   "concept": "uniqueness-of-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-motivation",
+   "concept": "frequency-domain",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-by-table",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-5",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-5",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-linearity",
+   "concept": "linearity-of-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-linearity",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-6",
+   "concept": "inverting-with-the-table",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-6",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "first-shifting",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "complete-the-square",
+   "concept": "first-shifting-property",
+   "verb": "uses"
+  },
+  {
+   "span": "complete-the-square",
+   "concept": "partial-fraction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-7",
+   "concept": "inverting-with-the-table",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-1-7",
+   "concept": "first-shifting-property",
+   "verb": "uses"
+  },
+  {
+   "span": "proper-rational",
+   "concept": "laplace-transform-decay",
+   "verb": "uses"
+  },
+  {
+   "span": "proper-rational",
+   "concept": "exponential-order",
+   "verb": "uses"
+  },
+  {
+   "span": "proper-rational",
+   "concept": "partial-fraction-decomposition",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "6.1.1",
+   "source_number": "6.1.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "tab-6-1"
+   },
+   "cite": "tab-6-1",
+   "prompt": "<p>Verify <a href=\"#tab-6-1\">Table 6.1</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each entry is the improper integral $\\int_0^\\infty e^{-st} \\kf(t)\\,dt$. Examples 6.1.1–6.1.4 give $\\frac{1}{s}$ (so $\\frac{C}{s}$ for a constant $C$, by linearity), $\\frac{1}{s+a}$, $\\frac{1}{s^2}$ and $\\frac{e^{-as}}{s}$. For $t^n$, integrating by parts with $t^n e^{-st} \\to 0$ for $s > 0$ gives $\\int_0^\\infty e^{-st} t^n\\,dt = \\frac{n}{s} \\int_0^\\infty e^{-st} t^{n-1}\\,dt$; repeating down to $\\mathcal{L}\\{1\\} = \\frac{1}{s}$ gives $\\frac{n!}{s^{n+1}}$, which is $\\frac{2}{s^3}$ and $\\frac{6}{s^4}$ for $n = 2, 3$. For the cosine and sine, $\\cos(\\omega t) + i \\sin(\\omega t) = e^{i\\omega t}$ and the computation of Example 6.1.2 with $a = -i\\omega$ give $\\frac{1}{s - i\\omega} = \\frac{s + i\\omega}{s^2+\\omega^2}$ for $s > 0$, whose real and imaginary parts are $\\frac{s}{s^2+\\omega^2}$ and $\\frac{\\omega}{s^2+\\omega^2}$ (two integrations by parts give the same). For the hyperbolic functions, $\\cosh(\\omega t) = \\frac{e^{\\omega t}+e^{-\\omega t}}{2}$ and $\\sinh(\\omega t) = \\frac{e^{\\omega t}-e^{-\\omega t}}{2}$ with Example 6.1.2 give $\\frac{1}{2}\\bigl(\\frac{1}{s-\\omega} + \\frac{1}{s+\\omega}\\bigr) = \\frac{s}{s^2-\\omega^2}$ and $\\frac{1}{2}\\bigl(\\frac{1}{s-\\omega} - \\frac{1}{s+\\omega}\\bigr) = \\frac{\\omega}{s^2-\\omega^2}$, for $s > \\lvert \\omega \\rvert$. Every entry checks."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "6.1.2",
+   "source_number": "6.1.2",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "thm-6-1-1"
+   },
+   "cite": "thm-6-1-1",
+   "prompt": "<p>Verify the theorem. That is, show that $\\mathcal{L} \\bigl\\{ A \\kf(t) + B \\kg(t) \\bigr\\} = A \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} + B \\mathcal{L} \\bigl\\{ \\kg(t) \\bigr\\}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For every $s$ at which both transforms exist, the integral is linear, and a sum of two convergent improper integrals converges to the sum of their values: $\\mathcal{L}\\{A\\kf(t) + B\\kg(t)\\} = \\int_0^\\infty e^{-st}\\bigl(A\\kf(t) + B\\kg(t)\\bigr)\\,dt = A\\int_0^\\infty e^{-st}\\kf(t)\\,dt + B\\int_0^\\infty e^{-st}\\kg(t)\\,dt = A\\mathcal{L}\\{\\kf(t)\\} + B\\mathcal{L}\\{\\kg(t)\\}$. Taking $B = 0$ and $A = C$ gives $\\mathcal{L}\\{C\\kf(t)\\} = C\\mathcal{L}\\{\\kf(t)\\}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "6.1.3",
+   "source_number": "6.1.3",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "exponential-order-check"
+   },
+   "cite": "exponential-order",
+   "prompt": "<p>Use <a href=\"/calculus/ch04/4.8/#4.8-applying-lhopitals-rule\">L’Hopital’s rule</a> from calculus to show that a polynomial is of exponential order. Hint: Note that a sum of two exponential-order functions is also of exponential order. Then show that $t^n$ is of exponential order for any $n$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take any $c > 0$. The quotient $\\frac{t^n}{e^{ct}}$ is of the form $\\frac{\\infty}{\\infty}$, and L’Hopital’s rule applied $n$ times gives $\\lim_{t\\to\\infty} \\frac{t^n}{e^{ct}} = \\lim_{t\\to\\infty} \\frac{n t^{n-1}}{c e^{ct}} = \\cdots = \\lim_{t\\to\\infty} \\frac{n!}{c^n e^{ct}} = 0$, so $t^n$ is of exponential order for every $n$ (and $t^0 = 1 \\leq e^{ct}$). If $\\lvert \\kf(t) \\rvert \\leq M_1 e^{c_1 t}$ and $\\lvert \\kg(t) \\rvert \\leq M_2 e^{c_2 t}$ for large $t$, then with $c = \\max(c_1, c_2)$ we get $\\lvert \\kf(t) + \\kg(t) \\rvert \\leq (M_1 + M_2) e^{ct}$, and a constant multiple $a\\kf(t)$ is bounded by $\\lvert a \\rvert M_1 e^{c_1 t}$. A polynomial $a_0 + a_1 t + \\cdots + a_n t^n$ is a sum of constant multiples of powers $t^k$, so it is of exponential order."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "6.1.4",
+   "source_number": "6.1.4",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "shifting-where"
+   },
+   "cite": "first-shifting",
+   "prompt": "<p>Derive the <span data-concept=\"first-shifting-property\">first shifting property</span> from the definition of the <span data-concept=\"laplace-transform\">Laplace transform</span>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the definition, $\\mathcal{L}\\{e^{-at}\\kf(t)\\} = \\int_0^\\infty e^{-st} e^{-at} \\kf(t)\\,dt = \\int_0^\\infty e^{-(s+a)t} \\kf(t)\\,dt$, and the last integral is the definition of $\\kF$ with $s + a$ written in place of $s$. So $\\mathcal{L}\\{e^{-at}\\kf(t)\\} = \\kF(s+a)$, wherever $\\kF(s+a)$ exists. For example, $\\kf(t) = t$ gives $\\mathcal{L}\\{te^{-at}\\} = \\frac{1}{(s+a)^2}$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "6.1.5",
+   "source_number": "6.1.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tab-6-1",
+   "prompt": "<p>Find the Laplace transform of $3+t^5+\\sin (\\pi t)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By linearity and Table 6.1 (the constant $C = 3$, $t^n$ with $n = 5$, $\\sin(\\omega t)$ with $\\omega = \\pi$): $\\mathcal{L}\\{3 + t^5 + \\sin(\\pi t)\\} = \\frac{3}{s} + \\frac{5!}{s^6} + \\frac{\\pi}{s^2+\\pi^2} = \\frac{3}{s} + \\frac{120}{s^6} + \\frac{\\pi}{s^2+\\pi^2}$, for $s > 0$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "6.1.6",
+   "source_number": "6.1.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tab-6-1",
+   "prompt": "<p>Find the Laplace transform of $a+bt+ct^2$ for some constants $a$, $b$, and $c$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By linearity and Table 6.1, $\\mathcal{L}\\{a + bt + ct^2\\} = a\\mathcal{L}\\{1\\} + b\\mathcal{L}\\{t\\} + c\\mathcal{L}\\{t^2\\} = \\frac{a}{s} + \\frac{b}{s^2} + \\frac{2c}{s^3}$, for $s > 0$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "6.1.7",
+   "source_number": "6.1.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-6-1-1",
+   "prompt": "<p>Find the Laplace transform of $A \\cos (\\omega t) + B \\sin (\\omega t)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By linearity and the cosine and sine entries of Table 6.1, $A\\frac{s}{s^2+\\omega^2} + B\\frac{\\omega}{s^2+\\omega^2} = \\frac{As + B\\omega}{s^2+\\omega^2}$, for $s > 0$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "6.1.8",
+   "source_number": "6.1.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tab-6-1",
+   "prompt": "<p>Find the Laplace transform of $\\cos^2 (\\omega t)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The transform of a product is not the product of the transforms, so first write $\\cos^2(\\omega t) = \\frac{1}{2} + \\frac{1}{2}\\cos(2\\omega t)$. By linearity and Table 6.1 (cosine with $2\\omega$), $\\mathcal{L}\\{\\cos^2(\\omega t)\\} = \\frac{1}{2s} + \\frac{s}{2(s^2+4\\omega^2)} = \\frac{s^2+2\\omega^2}{s(s^2+4\\omega^2)}$, for $s > 0$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "6.1.9",
+   "source_number": "6.1.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-by-table",
+   "prompt": "<p>Find the inverse Laplace transform of $\\frac{4}{s^2-9}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\frac{4}{s^2-9} = \\frac{4}{3}\\cdot\\frac{3}{s^2-3^2}$, a multiple of the $\\sinh(\\omega t)$ entry of Table 6.1 with $\\omega = 3$. By linearity of the inverse, $\\mathcal{L}^{-1}\\bigl\\{\\frac{4}{s^2-9}\\bigr\\} = \\frac{4}{3}\\sinh(3t)$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "6.1.10",
+   "source_number": "6.1.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-by-table",
+   "prompt": "<p>Find the inverse Laplace transform of $\\frac{2s}{s^2-1}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\frac{2s}{s^2-1} = 2\\cdot\\frac{s}{s^2-1^2}$, twice the $\\cosh(\\omega t)$ entry of Table 6.1 with $\\omega = 1$, so $\\mathcal{L}^{-1}\\bigl\\{\\frac{2s}{s^2-1}\\bigr\\} = 2\\cosh t$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "6.1.11",
+   "source_number": "6.1.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "partial-fractions",
+   "prompt": "<p>Find the inverse Laplace transform of $\\frac{1}{{(s-1)}^2(s+1)}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By partial fractions, $\\frac{1}{(s-1)^2(s+1)} = \\frac{A}{s-1} + \\frac{B}{(s-1)^2} + \\frac{C}{s+1}$ with $1 = A(s-1)(s+1) + B(s+1) + C(s-1)^2$. Putting $s = 1$ gives $B = \\frac{1}{2}$, putting $s = -1$ gives $C = \\frac{1}{4}$, and the coefficient of $s^2$ gives $A + C = 0$, so $A = -\\frac{1}{4}$. The table gives $\\mathcal{L}^{-1}\\bigl\\{\\frac{1}{s-1}\\bigr\\} = e^t$ and $\\mathcal{L}^{-1}\\bigl\\{\\frac{1}{s+1}\\bigr\\} = e^{-t}$, and the shifting property applied to $\\mathcal{L}\\{t\\} = \\frac{1}{s^2}$ gives $\\mathcal{L}^{-1}\\bigl\\{\\frac{1}{(s-1)^2}\\bigr\\} = te^t$. So the inverse is $\\frac{1}{2}te^t - \\frac{1}{4}e^t + \\frac{1}{4}e^{-t}$."
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "6.1.12",
+   "source_number": "6.1.12",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-1-3",
+   "prompt": "<p>Find the Laplace transform of $\\kf(t) = \\begin{cases} t & \\text{if } \\; t \\geq 1, \\\\ 0 & \\text{if } \\; t < 1. \\end{cases}$</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Only $t \\geq 1$ contributes. Integrating by parts as in Example 6.1.3, for $s > 0$: $\\kF(s) = \\int_1^\\infty e^{-st} t\\,dt = \\Bigl[\\frac{-te^{-st}}{s}\\Bigr]_{t=1}^\\infty + \\frac{1}{s}\\int_1^\\infty e^{-st}\\,dt = \\frac{e^{-s}}{s} + \\frac{e^{-s}}{s^2}$. So $\\kF(s) = e^{-s}\\Bigl(\\frac{1}{s^2} + \\frac{1}{s}\\Bigr)$."
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "6.1.13",
+   "source_number": "6.1.13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-1-7",
+   "prompt": "<p>Find the inverse Laplace transform of $\\frac{s}{(s^2+s+2)(s+4)}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The quadratic $s^2+s+2$ has no real roots, so write $\\frac{s}{(s^2+s+2)(s+4)} = \\frac{A}{s+4} + \\frac{Bs+C}{s^2+s+2}$, that is $s = A(s^2+s+2) + (Bs+C)(s+4)$. Putting $s = -4$ gives $-4 = 14A$, so $A = -\\frac{2}{7}$; the coefficient of $s^2$ gives $A + B = 0$, so $B = \\frac{2}{7}$; the constant term gives $2A + 4C = 0$, so $C = \\frac{1}{7}$. Then $\\frac{Bs+C}{s^2+s+2} = \\frac{2}{7}\\cdot\\frac{s+\\frac{1}{2}}{(s+\\frac{1}{2})^2 + \\frac{7}{4}}$ after completing the square, and by the shifting property with $a = \\frac{1}{2}$ and the cosine entry with $\\omega = \\frac{\\sqrt{7}}{2}$ its inverse is $\\frac{2}{7}e^{-t/2}\\cos\\bigl(\\frac{\\sqrt{7}}{2}t\\bigr)$. So $\\mathcal{L}^{-1}\\Bigl\\{\\frac{s}{(s^2+s+2)(s+4)}\\Bigr\\} = \\frac{2}{7}e^{-t/2}\\cos\\Bigl(\\frac{\\sqrt{7}}{2}t\\Bigr) - \\frac{2}{7}e^{-4t}$."
+   }
+  },
+  {
+   "id": "e14",
+   "source_id": "6.1.14",
+   "source_number": "6.1.14",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tab-6-1",
+   "prompt": "<p>Find the Laplace transform of $\\sin\\bigl(\\omega (t-a)\\bigr)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "As written, the function is $\\sin(\\omega t - \\omega a) = \\cos(\\omega a)\\sin(\\omega t) - \\sin(\\omega a)\\cos(\\omega t)$ for all $t \\geq 0$, where $\\cos(\\omega a)$ and $\\sin(\\omega a)$ are constants. By linearity and Table 6.1, $\\mathcal{L}\\bigl\\{\\sin\\bigl(\\omega(t-a)\\bigr)\\bigr\\} = \\cos(\\omega a)\\frac{\\omega}{s^2+\\omega^2} - \\sin(\\omega a)\\frac{s}{s^2+\\omega^2} = \\frac{\\omega\\cos(\\omega a) - s\\sin(\\omega a)}{s^2+\\omega^2}$, for $s > 0$. If instead the sine is meant to start at $t = a$, that is $\\ku(t-a)\\sin\\bigl(\\omega(t-a)\\bigr)$ with $a \\geq 0$, substituting $\\tau = t - a$ in $\\int_a^\\infty e^{-st}\\sin\\bigl(\\omega(t-a)\\bigr)\\,dt$ gives $e^{-as}\\frac{\\omega}{s^2+\\omega^2}$."
+   }
+  },
+  {
+   "id": "e15",
+   "source_id": "6.1.15",
+   "source_number": "6.1.15",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-1-3",
+   "prompt": "<p>Find the Laplace transform of $t\\sin(\\omega t)$. Hint: Several integrations by parts.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $I = \\mathcal{L}\\{t\\sin(\\omega t)\\}$ and $J = \\mathcal{L}\\{t\\cos(\\omega t)\\}$, for $s > 0$. Integrating $e^{-st}$ and differentiating the rest, the boundary terms vanish and $I = \\frac{1}{s}\\int_0^\\infty e^{-st}\\bigl(\\sin(\\omega t) + \\omega t\\cos(\\omega t)\\bigr)\\,dt = \\frac{1}{s}\\Bigl(\\frac{\\omega}{s^2+\\omega^2} + \\omega J\\Bigr)$, and in the same way $J = \\frac{1}{s}\\Bigl(\\frac{s}{s^2+\\omega^2} - \\omega I\\Bigr)$. Substituting $J$ gives $I\\Bigl(1 + \\frac{\\omega^2}{s^2}\\Bigr) = \\frac{2\\omega}{s(s^2+\\omega^2)}$, so $\\mathcal{L}\\{t\\sin(\\omega t)\\} = \\frac{2\\omega s}{(s^2+\\omega^2)^2}$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "6.1.101",
+   "source_number": "6.1.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-6-1-1",
+   "prompt": "<p>Find the Laplace transform of $4{(t+1)}^2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{8}{s^3} + \\frac{8}{s^2} + \\frac{4}{s}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "6.1.102",
+   "source_number": "6.1.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-1-6",
+   "prompt": "<p>Find the inverse Laplace transform of $\\frac{8}{s^3(s+2)}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$2t^2-2t+1-e^{-2t}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "6.1.103",
+   "source_number": "6.1.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "first-shifting",
+   "prompt": "<p>Find the Laplace transform of $te^{-t}$. Hint: Shifting property.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{{(s+1)}^2}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "6.1.104",
+   "source_number": "6.1.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "first-shifting",
+   "prompt": "<p>Find the Laplace transform of $\\sin(t)e^{-t}$. Hint: Integrate by parts.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{s^2+2s+2}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "laplace-transform-table"
+  },
+  {
+   "exercise": "e1",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e2",
+   "concept": "linearity-of-the-laplace-transform"
+  },
+  {
+   "exercise": "e3",
+   "concept": "exponential-order"
+  },
+  {
+   "exercise": "e4",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e4",
+   "concept": "laplace-transform"
+  },
+  {
+   "exercise": "e5",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e5",
+   "concept": "linearity-of-the-laplace-transform"
+  },
+  {
+   "exercise": "e5",
+   "concept": "laplace-transform-table"
+  },
+  {
+   "exercise": "e6",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e6",
+   "concept": "linearity-of-the-laplace-transform"
+  },
+  {
+   "exercise": "e6",
+   "concept": "laplace-transform-table"
+  },
+  {
+   "exercise": "e7",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e7",
+   "concept": "linearity-of-the-laplace-transform"
+  },
+  {
+   "exercise": "e7",
+   "concept": "laplace-transform-table"
+  },
+  {
+   "exercise": "e8",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e8",
+   "concept": "linearity-of-the-laplace-transform"
+  },
+  {
+   "exercise": "e8",
+   "concept": "laplace-transform-table"
+  },
+  {
+   "exercise": "e9",
+   "concept": "inverting-with-the-table"
+  },
+  {
+   "exercise": "e9",
+   "concept": "inverse-laplace-transform"
+  },
+  {
+   "exercise": "e10",
+   "concept": "inverting-with-the-table"
+  },
+  {
+   "exercise": "e10",
+   "concept": "inverse-laplace-transform"
+  },
+  {
+   "exercise": "e11",
+   "concept": "inverting-with-the-table"
+  },
+  {
+   "exercise": "e11",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e11",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e12",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e12",
+   "concept": "laplace-transform"
+  },
+  {
+   "exercise": "e13",
+   "concept": "inverting-with-the-table"
+  },
+  {
+   "exercise": "e13",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e13",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e14",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e14",
+   "concept": "linearity-of-the-laplace-transform"
+  },
+  {
+   "exercise": "e14",
+   "concept": "laplace-transform-table"
+  },
+  {
+   "exercise": "e15",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e15",
+   "concept": "laplace-transform"
+  },
+  {
+   "exercise": "e101",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e101",
+   "concept": "linearity-of-the-laplace-transform"
+  },
+  {
+   "exercise": "e101",
+   "concept": "laplace-transform-table"
+  },
+  {
+   "exercise": "e102",
+   "concept": "inverting-with-the-table"
+  },
+  {
+   "exercise": "e102",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e103",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e103",
+   "concept": "computing-a-laplace-transform"
+  },
+  {
+   "exercise": "e104",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e104",
+   "concept": "computing-a-laplace-transform"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-laplace",
+   "kind": "book",
+   "number": "28",
+   "html": "Just like the Laplace equation and the Laplacian, the Laplace transform is also named after <a href=\"https://en.wikipedia.org/wiki/Laplace\">Pierre-Simon, marquis de Laplace</a> (1749–1827)."
+  },
+  {
+   "id": "fn-frequency",
+   "kind": "book",
+   "number": "29",
+   "html": "Really, it is the “frequency” in terms of complex numbers, but we digress."
+  },
+  {
+   "id": "fn-heaviside",
+   "kind": "book",
+   "number": "30",
+   "html": "The function is named after the English mathematician, engineer, and physicist <a href=\"https://en.wikipedia.org/wiki/Heaviside\">Oliver Heaviside</a> (1850–1925). Only by coincidence is the function “heavy” on “one side.”"
+  }
+ ]
+}

@@ -74,6 +74,7 @@ function stroke(ctx, pts, color, w, dash) {
   }
   function headOf(v, t, a, p) {
     const T = `$t = ${n(t)}$`, m = mode(v);
+    if (t > 0.005 && Math.abs(t - (2 * L) / a) < 0.005) return `${T}: after one period $2L/a = ${n((2 * L) / a)}$ the string is back where it started.`;
     if (m === 1) return `${T}: mode 1 swings as one arch at the fundamental frequency $\\pi a/L = ${n((Math.PI * a) / L)}$.`;
     if (m) return `${T}: mode ${m} swings at $${m}\\pi a/L = ${n((m * Math.PI * a) / L)}$ and never moves at its node${m > 2 ? 's' : ''} $x = ${Array.from({ length: m - 1 }, (_, i) => n(((i + 1) * L) / m)).join(',\\ ')}$.`;
     if (v === 'strike') {
@@ -122,7 +123,7 @@ function stroke(ctx, pts, color, w, dash) {
     const sx = axes(ctx, SB, [0, WMAX], [0, 0.1], { xl: 'frequency nπa/L', xc: wc, yl: 'amplitude', yc: sc, nx: 4, ny: 2, fx: (u) => fmt(u, 0), fy: (u) => fmt(u, 2) });
     const w1 = (Math.PI * a) / L, bw = Math.max(4, Math.min(18, 0.55 * (sx.X(w1) - sx.X(0))));
     line(ctx, sx.X(w1), SB.b, sx.X(w1), SB.t, wc, 2, [10, 10]);
-    text(ctx, `πa/L = ${n(w1)}`, sx.X(w1) + 10, SB.t + 16, wc, { size: 20, weight: 600, bg: PAL.panel });
+    text(ctx, `fundamental πa/L = ${n(w1)}`, SB.r, SB.t - 24, wc, { size: 20, weight: 600, align: 'right' });
     hits.push({ x: sx.X(w1), y: SB.t + 60, r: 12, name: `the fundamental frequency πa/L = ${n(w1)}` });
     for (let k = 1; k <= NB; k++) {
       const wk = k * w1; if (wk > WMAX) break;

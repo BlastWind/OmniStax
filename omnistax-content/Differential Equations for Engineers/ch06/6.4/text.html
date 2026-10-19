@@ -1,0 +1,120 @@
+<section id="rectangular-pulse">
+<h2>Rectangular pulse</h2>
+<p id="impulse-response-intro">Often we study a physical system by putting in a short pulse and then seeing what the system does. The resulting behavior is often called <em><span data-concept="impulse-response">impulse response</span></em>, and understanding it tells us how the system responds to any input. Let us see what we mean by a pulse. The simplest kind of a pulse is a <em><span data-concept="rectangular-pulse">rectangular pulse</span></em> defined by</p>
+<div class="equation" id="eq-rectangular-pulse">$$ \kvarphi(t) = \begin{cases} 0 &amp; \text{if } \; \phantom{a \leq {}} t &lt; a , \\ M &amp; \text{if } \; a \leq t &lt; b , \\ 0 &amp; \text{if } \; b \leq t . \end{cases} $$</div>
+<p>See Figure 6.3 for a graph.</p>
+<figure class="sim" id="sim-pulse" data-figure="6.3" data-original="/media/ch06/lt-sqpulse.svg" data-original-caption="Sample rectangular pulse with a=0.5, b=1, and M = 2." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 6.3</span><span>The <span data-concept="rectangular-pulse">rectangular pulse</span> $\kvarphi(t) = M\bigl(\ku(t-a) - \ku(t-b)\bigr)$ beside its <span data-concept="laplace-transform">Laplace transform</span> $M(e^{-as} - e^{-bs})/s$, with the book’s $a = 0.5$, $b = 1$ and $M = 2$ on load. The shaded area under the pulse is $M(b-a)$, and it is also the value of the transform at $s = 0$. Choose area 1 and slide $b$ down toward $a$: the pulse grows tall and thin while its area stays 1, and its transform rises onto the dashed curve $e^{-as}$, the transform of the <span data-concept="dirac-delta-function">delta function</span> $\kdelta(t-a)$ that the pulses approach.</span></div>
+</figure>
+<p id="pulse-steps">Notice that</p>
+<div class="equation" id="eq-rectangular-pulse-steps">$$ \kvarphi(t) = M \bigl( \ku(t-a) - \ku(t-b) \bigr) , $$</div>
+<p>where $\ku(t)$ is the <span data-concept="unit-step-function">unit step function</span>. The <span data-concept="laplace-transform">Laplace transform</span> of a <span data-concept="rectangular-pulse">rectangular pulse</span> is</p>
+<div class="equation" id="eq-lt-rectangular-pulse">$$ \begin{split} {\mathcal{L}} \bigl\{ \kvarphi(t) \bigr\} &amp; = {\mathcal{L}} \bigl\{ M \bigl( \ku(t-a) - \ku(t-b) \bigr) \bigr\} \\ &amp; = M \frac{e^{-as} - e^{-bs}}{s} . \end{split} $$</div>
+<p id="unit-mass">For simplicity, let $a=0$. We also set $M = {1}/{b}$ so that</p>
+$$ \int_0^\infty \kvarphi(t) \,dt = 1 . $$
+<p>That is, we have a pulse of “unit mass.” This way for any $b$ the pulse has the same “oomph.” For such a pulse,</p>
+<div class="equation" id="eq-unit-mass-pulse">$$ {\mathcal{L}} \bigl\{ \kvarphi(t) \bigr\} = {\mathcal{L}} \left\{ \frac{\ku(t) - \ku(t-b)}{b} \right\} = \frac{1 - e^{-bs}}{bs} . $$</div>
+<p id="toward-delta">We want $b$ to be very small; we wish to have the pulse be very short and very tall. By letting $b$ go to zero, we arrive at the concept of the <span data-concept="dirac-delta-function">Dirac delta function</span>. The limit of $\frac{1-e^{-bs}}{bs}$ as $b \to 0$ is $1$, so we are looking for a “function” whose <span data-concept="laplace-transform">Laplace transform</span> is $1$.</p>
+</section>
+
+<section id="delta-function">
+<h2>The delta function</h2>
+<p id="delta">The <em><span data-concept="dirac-delta-function">Dirac delta function</span></em><sup class="fn" data-note="fn-dirac"></sup> is not exactly a function; it is sometimes called a <em><span data-concept="generalized-function">generalized function</span></em>. We avoid unnecessary details and simply say that it is an object that does not really make sense unless we integrate it. The motivation is that we would like a “function” $\kdelta(t)$ such that for any <a href="/calculus/ch02/2.4/">continuous function</a> $\kf(t)$,</p>
+<div class="equation" id="eq-delta-sifting">$$ \boxed{~~ \int_{-\infty}^\infty \kdelta(t) \kf(t) \,dt = \kf(0) . ~~} $$</div>
+<p id="delta-interval">The formula should hold if we integrate over any interval that contains 0, not just $(-\infty,\infty)$. So $\kdelta(t)$ is a “function” with all its “mass” at the single point $t=0$. For any interval<sup class="fn" data-note="fn-interval-endpoints"></sup> $[c,d]$,</p>
+<div class="equation" id="eq-delta-interval">$$ \int_c^d \kdelta(t) \,dt = \begin{cases} 1 &amp; \text{if the interval $[c,d]$ contains 0, i.e.\ } c \leq 0 \leq d, \\ 0 &amp; \text{otherwise.} \end{cases} $$</div>
+<p>Unfortunately, there is no such function in the classical sense. You could informally think that $\kdelta(t)$ is zero for $t \neq 0$ and somehow infinite at $t=0$.</p>
+<p id="limit-of-pulses">A good way to think about $\kdelta(t)$ is as a limit of pulses of decreasing length, each having an integral of $1$. For example, consider a <span data-concept="rectangular-pulse">rectangular pulse</span> $\kvarphi(t)$ as above with $a=0$ and $M={1}/{b}$, that is, $\kvarphi(t) = \frac{\ku(t) - \ku(t-b)}{b}$. Compute</p>
+$$ \int_{-\infty}^\infty \kvarphi(t) \kf(t) \,dt = \int_{-\infty}^\infty \frac{\ku(t) - \ku(t-b)}{b} \kf(t) \,dt = \frac{1}{b} \int_{0}^b \kf(t) \,dt . $$
+<p>If $\kf(t)$ is continuous at $t=0$, then for very small $b$, the function $\kf(t)$ is approximately equal to $\kf(0)$ on the interval $[0,b]$. We approximate the integral</p>
+$$ \frac{1}{b} \int_{0}^b \kf(t) \,dt \approx \frac{1}{b} \int_{0}^b \kf(0) \,dt = \kf(0) . $$
+<p>Hence,</p>
+<div class="equation" id="eq-delta-pulse-limit">$$ \lim_{b\to 0} \int_{-\infty}^\infty \kvarphi(t) \kf(t) \,dt = \lim_{b\to 0} \frac{1}{b} \int_{0}^b \kf(t) \,dt = \kf(0) . $$</div>
+<p id="shifted-delta">Let us therefore accept $\kdelta(t)$ as an object that is possible to integrate. We often want to shift $\kdelta$ to another point, for example $\kdelta(t-a)$. In that case,</p>
+<div class="equation" id="eq-delta-shifted-sifting">$$ \int_{-\infty}^\infty \kdelta(t-a) \kf(t) \,dt = \kf(a) . $$</div>
+<p id="delta-convolution">Note that $\kdelta(a-t)$ is the same object as $\kdelta(t-a)$. With that, the <span data-concept="convolution">convolution</span> of $\kdelta(t)$ with $\kf(t)$ is again $\kf(t)$,</p>
+<div class="equation" id="eq-convolution-delta">$$ (\kf * \kdelta) (t) = \int_{0}^t \kf(\tau) \kdelta(t-\tau) \,d\tau = \kf(t) . $$</div>
+<p id="delta-transform">As we can integrate $\kdelta(t)$, we compute its <span data-concept="laplace-transform">Laplace transform</span>:</p>
+<div class="equation" id="eq-lt-delta-shifted">$$ \boxed{~~ {\mathcal{L}} \bigl\{ \kdelta(t-a) \bigr\} = \int_{0}^\infty e^{-st} \kdelta(t-a) \,dt = e^{-as} . ~~} $$</div>
+<p>In particular,</p>
+<div class="equation" id="eq-lt-delta">$$ {\mathcal{L}} \bigl\{ \kdelta(t) \bigr\} = 1 . $$</div>
+<div class="note" id="remark-6-4-1">
+<div class="eyebrow">Remark 6.4.1</div>
+<p>The <span data-concept="laplace-transform">Laplace transform</span> of $\kdelta(t-a)$ would be the <span data-concept="laplace-transform">Laplace transform</span> of the derivative of the <span data-concept="unit-step-function">Heaviside function</span> $\ku(t-a)$, if the <span data-concept="unit-step-function">Heaviside function</span> had a derivative. First,</p>
+$$ {\mathcal{L}} \bigl\{ \ku(t-a) \bigr\} = \frac{e^{-as}}{s}. $$
+<p>To obtain what the <span data-concept="laplace-transform">Laplace transform</span> of the derivative would be, we multiply by $s$ to obtain $e^{-as}$, which is the <span data-concept="laplace-transform">Laplace transform</span> of $\kdelta(t-a)$. We see the same thing using integration,</p>
+<div class="equation" id="eq-delta-integral">$$ \int_0^t \kdelta(\tau-a)\,d\tau = \ku(t-a) . $$</div>
+<p>So in a certain sense</p>
+<div class="equation" id="eq-heaviside-derivative">$$ \text{"} \quad \frac{d}{dt} \Bigl[ \ku(t-a) \Bigr] = \kdelta(t-a) . \quad \text{"} $$</div>
+<p>This line of reasoning allows us to talk about derivatives of functions with jump discontinuities. We can think of the derivative of the <span data-concept="unit-step-function">Heaviside function</span> $\ku(t-a)$ as being somehow infinite at $a$, which is precisely our intuitive understanding of the <span data-concept="dirac-delta-function">delta function</span>.</p>
+</div>
+<div class="example" id="ex-6-4-1">
+<h3>Example 6.4.1</h3>
+<p>Let us compute ${\mathcal{L}}^{-1} \left\{ \frac{s+1}{s} \right\}$. So far, we only computed the <span data-concept="inverse-laplace-transform">inverse transform</span> of <span data-concept="proper-rational-function">proper rational functions</span> in the $s$ variable. That is, the numerator was of lower degree than the denominator. Not so with $\frac{s+1}{s}$. We can use the <span data-concept="dirac-delta-function">delta function</span> to compute,</p>
+$$ {\mathcal{L}}^{-1} \left\{ \frac{s+1}{s} \right\} = {\mathcal{L}}^{-1} \left\{ 1 + \frac{1}{s} \right\} = {\mathcal{L}}^{-1} \{ 1 \} + {\mathcal{L}}^{-1} \left\{ \frac{1}{s} \right\} = \kdelta(t) + 1 . $$
+<p>The resulting object is a <span data-concept="generalized-function">generalized function</span> and only makes sense when put underneath an integral.</p>
+</div>
+</section>
+
+<section id="impulse-response">
+<h2>Impulse response</h2>
+<p id="impulse-response-def">As we said before, in the <span data-concept="differential-equation">differential equation</span> $L \kx = \kf(t)$, we think of $\kf(t)$ as the <span data-concept="input-and-output">input</span>, and $\kx(t)$ as the <span data-concept="input-and-output">output</span>. We think of the <span data-concept="dirac-delta-function">delta function</span> as an impulse, and so to find the response to an impulse, we use the <span data-concept="dirac-delta-function">delta function</span> in place of $\kf(t)$. The solution to</p>
+<div class="equation" id="eq-impulse-response-equation">$$ L \kx = \kdelta(t) $$</div>
+<p>is called the <em><span data-concept="impulse-response">impulse response</span></em>.</p>
+<div class="example" id="ex-6-4-2">
+<h3>Example 6.4.2</h3>
+<p>Solve (find the <span data-concept="impulse-response">impulse response</span>)</p>
+<div class="equation" id="eq-6-3">$$ \kxdprime + \komegazero^2 \kx = \kdelta(t) , \quad \kx(0) = 0, \quad \kxprime(0) = 0 . \tag{6.3}$$</div>
+<p>Apply the <span data-concept="laplace-transform">Laplace transform</span> to the equation, and denote the transform of $\kx(t)$ by $\kX(s)$:</p>
+$$ s^2 \kX(s) + \komegazero^2 \kX(s) = 1 , \qquad \text{and so} \qquad \kX(s) = \frac{1}{s^2+ \komegazero^2} . $$
+<p>The <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> produces (for $t &gt; 0$)</p>
+$$ \kx(t) = \frac{\sin (\komegazero t)}{\komegazero} . $$
+</div>
+<div class="note" id="remark-6-4-2">
+<div class="eyebrow">Remark 6.4.2</div>
+<p>Perhaps an astute reader will notice that it does not seem like $\kxprime(0)=0$. However, we really want to think that $\kx(t)=0$ for $t \leq 0$, so $\kx(t)$ has a “corner” at $t=0$, that is, $\kxprime$ has a jump discontinuity there, which is what produces the $\kdelta(t)$ when we take $\kxdprime$. See <a href="#remark-6-4-1">Remark 6.4.1</a>. The initial condition really is $\kxprime(0-) = \lim_{t \uparrow 0} \kxprime(t) = 0$.</p>
+</div>
+<p id="arbitrary-input">Let us notice something about the example above. In <a href="/diffyqs/ch06/6.3/#6.3-ex-6-3-4">Example 6.3.4</a>, we found that when the <span data-ref="input">input is $\kf(t)$</span>, the solution to $L\kx = \kf(t)$ is given by</p>
+$$ \kx(t) = \int_0^t \kf(\tau) \frac{\sin \bigl( \komegazero (t-\tau) \bigr)}{\komegazero} \, d\tau . $$
+<p id="lets-see-why">That is, <em>the solution for an arbitrary <span data-ref="input">input</span> is given as <span data-concept="convolution">convolution</span> with <span data-ref="impulse">the impulse response</span></em>. Let us see why. For functions <span data-ref="input">$\kf(t)$</span> and <span data-ref="impulse">$\kh(t)$</span> that are zero for negative $t$,</p>
+<figure class="dv" id="drv-impulse-response"></figure>
+<p id="under-the-integral">We differentiate twice under the integral<sup class="fn" data-note="fn-under-the-integral"></sup>.</p>
+<p id="any-input">The procedure works for any <span data-concept="constant-coefficient-equation">constant-coefficient linear equation</span> $L\kx = \kf(t)$. If you find <span data-ref="impulse">the impulse response $\kh$</span> (solution to $L\kh = \kdelta(t)$), you also know how to obtain the <span data-concept="input-and-output">output</span> $\kx(t)$ for any <span data-ref="input">input $\kf(t)$</span>. We simply convolve, $\kx(t) = (\kf * \kh)(t)$. As you may have noticed in the example, <span data-ref="impulse">the impulse response</span> is in fact just the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> of the <span data-concept="transfer-function">transfer function</span>, that is, $\kh(t) = {\mathcal{L}}^{-1} \bigl\{ \kH(s) \bigr\}$.</p>
+<figure class="sim" id="sim-impulse-response">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The system $\kxdprime + \komegazero^2 \kx = \kf(t)$ of Example 6.4.2, whose <span data-ref="impulse">impulse response</span> is $\kh(t) = \sin(\komegazero t)/\komegazero$. <span data-ref="input">The input</span> is chopped into $N$ slices of width $\Delta\tau$; as time passes the middle $\tau_i$ of a slice, the slice acts as an impulse of strength $\kf(\tau_i)\Delta\tau$ and launches its own copy $\kf(\tau_i)\Delta\tau\,\kh(t-\tau_i)$ of <span data-ref="impulse">the impulse response</span>. The output is the sum of the copies launched so far, and as $N$ grows it closes onto the dashed $\kx = \kf * \kh$. The inputs are the impulse itself, the constant 1 of Example 6.2.3, the rocket’s firing $\ku(t-1) - \ku(t-5)$ of Example 6.2.2, and $\cos t$, which at $\komegazero = 1$ is the <span data-concept="resonance">resonance</span> of Section 6.3, where a negative slice launches an upside-down copy.</span></div>
+</figure>
+</section>
+
+<section id="beam-bending">
+<h2>Three-point beam bending</h2>
+<p id="euler-bernoulli">A quite different example application where the <span data-concept="dirac-delta-function">delta function</span> appears is in representing point loads on a steel beam. Consider a beam of length $L$, resting on two <span data-concept="hinged-end-of-a-beam">simple supports</span> at the ends. Let $x$ denote the position on the beam, and let $\ky(x)$ denote the deflection of the beam in the vertical direction. The deflection $\ky(x)$ satisfies the <em><span data-concept="euler-bernoulli-equation">Euler–Bernoulli equation</span></em><sup class="fn" data-note="fn-euler-bernoulli"></sup>,</p>
+<div class="equation" id="eq-euler-bernoulli">$$ EI \kdfourydx = \kF(x) , $$</div>
+<p>where $E$ and $I$ are constants<sup class="fn" data-note="fn-e-and-i"></sup> and $\kF(x)$ is the force applied per unit length at position $x$. The situation we are interested in is when the force is applied at a single point as in Figure 6.4.</p>
+<figure class="sim" id="sim-beam" data-figure="6.4" data-original="/media/ch06/beam-bending.svg" data-original-caption="Three-point bending.">
+  <div class="sim-head"><span class="eyebrow">Figure 6.4</span><span><span data-concept="three-point-bending">Three-point bending</span>: a beam of length $L = 2$ with $EI = 1$ rests on simple supports at its ends, and the force $\kF$ pushes down at the single point $x = a$. The beam is drawn bent to its deflection $\ky(x)$ at true scale, the solution of $\kdfourydx = -\kF\kdelta(x-a)$ with $\ky = \kydprime = 0$ at both ends; on load it is Example 6.4.3, $\kF = 1$ at $a = 1$. Move the load and the deepest point follows it, but stays nearer the middle than the load; the cubic pieces on either side of the load meet with the same slope and curvature, and only $\kytprime$ jumps there.</span></div>
+</figure>
+<p id="point-load">The equation becomes</p>
+<div class="equation" id="eq-beam-point-load">$$ EI \kdfourydx = -\kF \kdelta(x-a) , $$</div>
+<p id="endpoint-conditions">where $x=a$ is the point where the mass is applied. The constant $\kF$ is the force applied and the minus sign indicates that the force is downward, that is, in the negative $\ky$ direction. The end points of the beam satisfy the conditions,</p>
+<div class="equation" id="eq-beam-simply-supported">$$ \begin{align*} &amp; \ky(0) = 0, \qquad \kydprime(0) = 0, \\ &amp; \ky(L) = 0, \qquad \kydprime(L) = 0. \end{align*} $$</div>
+<p>See <a href="/diffyqs/ch05/5.2/">§5.2</a> for further information about <span data-concept="hinged-end-of-a-beam">endpoint conditions</span> applied to beams.</p>
+<div class="example" id="ex-6-4-3">
+<h3>Example 6.4.3</h3>
+<p>Suppose that the length of the beam is 2, and $EI=1$ for simplicity. Further suppose that a force $\kF=1$ is applied at $x=1$. That is, we have the equation</p>
+$$ \kdfourydx = -\kdelta(x-1) , $$
+<p>and the endpoint conditions are</p>
+$$ \ky(0) = 0, \qquad \kydprime(0) = 0, \qquad \ky(2) = 0, \qquad \kydprime(2) = 0. $$
+<p>We could integrate, but using the <span data-concept="laplace-transform">Laplace transform</span> is even easier. We apply the transform in the $x$ variable rather than the $t$ variable. We again denote the transform of $\ky(x)$ by $\kY(s)$.</p>
+$$ s^4\kY(s)-s^3\ky(0)-s^2\kyprime(0)-s\kydprime(0)-\kytprime(0) = -e^{-s}. $$
+<p>We notice that $\ky(0) = 0$ and $\kydprime(0) = 0$. Let us call $C_1 = \kyprime(0)$ and $C_2=\kytprime(0)$. We solve for $\kY(s)$,</p>
+$$ \kY(s) = \frac{-e^{-s}}{s^4} + \frac{C_1}{s^2}+ \frac{C_2}{s^4} . $$
+<p>We take the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> utilizing the <span data-concept="second-shifting-property">second shifting property</span> <a href="/diffyqs/ch06/6.2/#6.2-eq-6-1">(6.1)</a> for the first term:</p>
+$$ \ky(x) = \frac{-{(x-1)}^3}{6} \ku(x-1) + C_1 x + \frac{C_2}{6} x^3 . $$
+<p>We still need to apply two of the endpoint conditions. As the conditions are at $x=2$ we can simply replace $\ku(x-1) = 1$ when taking the derivatives. Therefore,</p>
+$$ 0 = \ky(2) = \frac{-{(2-1)}^3}{6} + C_1 (2) + \frac{C_2}{6} 2^3 = \frac{-1}{6} + 2 C_1 + \frac{4}{3} C_2 , $$
+<p>and</p>
+$$ 0 = \kydprime(2) = \frac{-3\cdot 2 \cdot (2-1)}{6} + \frac{C_2}{6} 3\cdot 2 \cdot 2 = -1 + 2 C_2 . $$
+<p>Hence, $C_2 = \frac{1}{2}$. Solving for $C_1$ using the first equation, we obtain $C_1 = \frac{-1}{4}$. Our solution for the beam deflection is</p>
+$$ \ky(x) = \frac{-{(x-1)}^3}{6} \ku(x-1) - \frac{x}{4} + \frac{x^3}{12} . $$
+</div>
+</section>

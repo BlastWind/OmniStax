@@ -77,7 +77,7 @@ function jumps(fn, odd) {
   const d = sim('sim-extensions', 560);
   const KEYS = ['par', 'sh', 'lin', 'sin'];
   const pick = choice(d.controls, { label: 'f(t)', key: 'f', value: 'par', options: KEYS.map((k) => ({ value: k, label: FUNCS[k].name })),
-    onInput: (v) => { const was = FUNCS[pick.from] || FUNCS.par, L = FUNCS[v].L; ts.range({ min: -2 * L, max: 2 * L, step: L / 100, value: (ts.v / was.L) * L, dec: 2 }); } });
+    onInput: (v) => { const was = FUNCS[pick.from] || FUNCS.par, L = FUNCS[v].L; ts.range({ min: -2 * L, max: 2 * L, step: 0.01, value: Math.round(((ts.v / was.L) * L) * 100) / 100, dec: 2 }); } });
   const ts = ctl(d.controls, { label: 't', cls: '', key: 't', min: -2, max: 2, step: 0.01, value: -0.3, unit: '', dec: 2 });
   const ro = readout(d);
   const PANES = [{ odd: true, box: { l: 150, r: 660, t: 150, b: 450 }, name: 'F_{odd}(t)' }, { odd: false, box: { l: 830, r: 1340, t: 150, b: 450 }, name: 'F_{even}(t)' }];
@@ -130,7 +130,7 @@ function jumps(fn, odd) {
 (function () {
   const d = sim('sim-sine-cosine-series', 700);
   const KEYS = ['sq', 'par', 'sh', 'lin'];
-  const pick = choice(d.controls, { label: 'f(t)', key: 'f', value: 'sq', options: KEYS.map((k) => ({ value: k, label: `${FUNCS[k].name} on [0, ${FUNCS[k].Lname}]` })) });
+  const pick = F.select(d.controls, { label: 'f(t)', key: 'f', value: 'sq', options: KEYS.map((k) => ({ value: k, label: `${FUNCS[k].name} on [0, ${FUNCS[k].Lname}]` })) });
   const kind = choice(d.controls, { label: 'series', key: 'series', value: 'cos', options: [{ value: 'sin', label: 'sine series' }, { value: 'cos', label: 'cosine series' }] });
   const Ns = ctl(d.controls, { label: 'N', cls: '', key: 'N', min: 1, max: 30, step: 1, value: 3, unit: '', dec: 0 });
   const ro = readout(d);
@@ -177,7 +177,7 @@ function jumps(fn, odd) {
     plot(ctx, bx, (n) => (n >= 1 ? env(n) : NaN), alpha(PAL.ink, 0.6), { w: 2, x: [1, MAXN] });
     ctx.restore();
     const pw = D.p === 1 ? 'n' : `n^${D.p}`;
-    label(ctx, `falls like 1/${pw}`, bx.X(4), bx.Y(Math.min(env(4), 0.85)), { side: 'right', color: PAL.ink, size: 20, weight: 400 });
+    label(ctx, `falls like 1/${pw}`, bx.X(7), bx.Y(Math.min(env(7), 0.6)), { side: 'above', gap: 34, color: PAL.ink, size: 20, weight: 400 });
     hits.push({ x: ax.X(L / 2), y: ax.Y(fn.f(L / 2)), r: 16, name: `f(t) = ${fn.name} on [0, ${fn.Lname}]` });
     hits.push({ x: ax.X(-L / 2), y: ax.Y(sum(fn, k, N)(-L / 2)), r: 16, name: `the partial sum S_${N}(t) of the ${k === 'cos' ? 'cosine' : 'sine'} series` });
     const which = k === 'cos' ? 'Cosine' : 'Sine';
@@ -207,7 +207,7 @@ function jumps(fn, odd) {
 (function () {
   const d = sim('sim-bvp-series', 560);
   const M = 60, PI2 = PI * PI;
-  const cond = choice(d.controls, { label: 'conditions', key: 'bc', value: 'D', options: [{ value: 'D', label: 'Dirichlet x(0) = x(1) = 0' }, { value: 'N', label: 'Neumann x′(0) = x′(1) = 0' }] });
+  const cond = choice(d.controls, { label: 'conditions', key: 'bc', value: 'D', options: [{ value: 'D', label: 'Dirichlet' }, { value: 'N', label: 'Neumann' }] });
   const lam = ctl(d.controls, { label: '\\klambda', cls: 'eigenvalue', key: 'lambda', min: -5, max: 45, step: 0.05, value: 2, unit: '', dec: 2, detents: [2],
     specials: [{ at: () => (cond.value === 'N' ? 0 : null), label: 'λ = 0, an eigenvalue of the Neumann problem' }, { at: PI2, label: 'λ = π², an eigenvalue' }, { at: 4 * PI2, label: 'λ = 4π², an eigenvalue' }] });
   const ro = readout(d);
@@ -246,7 +246,7 @@ function jumps(fn, odd) {
       let lo = Infinity, hi = -Infinity, tlo = 0, thi = 0;
       for (let i = 0; i <= 400; i++) { const t = i / 400, y = x(t); if (y < lo) { lo = y; tlo = t; } if (y > hi) { hi = y; thi = t; } }
       const big = Math.abs(lo) >= Math.abs(hi) ? [lo, tlo] : [hi, thi];
-      if (big[0] > -0.2 && big[0] < 0.4) {
+      if (v === 'D' && big[0] > -0.2 && big[0] < 0.4) {
         const p = { x: ax.X(big[1]), y: ax.Y(big[0]) };
         dot(ctx, p.x, p.y, fc, true, 7);
         hits.push({ x: p.x, y: p.y, r: 14, name: `x(${cn(big[1])}) = ${cn(big[0], 3)}` });
@@ -271,7 +271,7 @@ function jumps(fn, odd) {
     } else {
       const n = e === 0 ? 0 : Math.round(Math.sqrt(e / PI2));
       const c = v === 'D' ? cD(n) : n === 0 ? 1 : cN(n);
-      head = `λ = ${lname} is an eigenvalue: the factor λ − n²π² is 0 at n = ${n} while ${v === 'N' ? 'c' : 'c'}${['₀', '₁', '₂'][n]} = ${cn(c, 4)} is not, so no solution exists.`;
+      head = `λ = ${lname} is an eigenvalue: the factor λ − n²π² is 0 at n = ${n} while c${['₀', '₁', '₂'][n]} = ${n === 0 ? '1' : cn(c, 4)} is not, so no solution exists.`;
       tex = n === 0
         ? `\\klambda\\,\\kazero = 0\\cdot\\kazero = 0 \\neq \\kczero = 1`
         : `${seq(`${v === 'D' ? 'b' : 'a'}_${n}`)}\\,(${ltex} - ${n === 1 ? '' : n * n}\\pi^2) = 0 \\neq ${seq(`c_${n}`)} = ${tn(c, 4)}`;

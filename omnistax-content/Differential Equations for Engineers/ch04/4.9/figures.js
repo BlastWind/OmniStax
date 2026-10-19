@@ -44,10 +44,11 @@ const hex = (c) => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0'
    the plate x 0 to π, y 0 to 3π/2 at one scale; the row graph u from the scale's low end to its high end. */
 (function () {
   const d = sim('sim-square-plate', 690);
+  let settled = 0;   /* the probe's y slider eases into its new range [0, h]; the figure redraws once it has settled */
   const PI = Math.PI, HMAX = 1.5 * PI;
   const view = choice(d.controls, { label: 'view', key: 'view', options: [{ value: '2d', label: '2D' }, { value: '3d', label: '3D' }], value: '2d', aria: 'heat map or surface', ms: 0 });
   const fsel = choice(d.controls, { label: '\\kf(x)', key: 'f', options: [{ value: 'pi', label: 'π' }, { value: 'sin', label: 'sin x' }, { value: 'two', label: 'sin x − sin 2x' }], value: 'pi', aria: 'boundary data on the bottom edge' });
-  const hs = ctl(d.controls, { label: 'h', cls: '', key: 'h', min: PI / 4, max: HMAX, step: PI / 100, value: PI, unit: '', dec: 2, specials: [{ at: PI, label: 'square, h = w' }], onInput: () => ys.range({ min: 0, max: hs.v, step: 0.01, dec: 2 }) });
+  const hs = ctl(d.controls, { label: 'h', cls: '', key: 'h', min: PI / 4, max: HMAX, step: PI / 100, value: PI, unit: '', dec: 2, specials: [{ at: PI, label: 'square, h = w' }], onInput: () => { ys.range({ min: 0, max: hs.v, step: 0.01, dec: 2 }); clearTimeout(settled); settled = setTimeout(() => d.fig.dispatchEvent(new Event('change')), 450); } });
   const xs = ctl(d.controls, { label: 'x', cls: '', key: 'x', min: 0, max: PI, step: PI / 100, value: PI / 2, unit: '', dec: 2 });
   const ys = ctl(d.controls, { label: 'y', cls: '', key: 'y', min: 0, max: PI, step: 0.01, value: 0.8, unit: '', dec: 2 });
   const ro = readout(d);
@@ -120,7 +121,7 @@ const hex = (c) => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0'
   let S = null, hits = [];
   hover(d.stage, () => hits, d.c);
   function mount3d() {
-    S = F.space3d(d, { box: box3, h: 690, pitch: [0.12, 1.5], fit: 2.5, turn: -0.62, tilt: 0.6 });   /* above the plate: from beneath it shows nothing new */
+    S = F.space3d(d, { box: box3, h: 690, pitch: [0.12, 1.5], fit: 2.0, turn: -3.0, tilt: 0.55 });   /* above the plate: from beneath it shows nothing new */
     d.c.style.display = 'none';
     S.drag({ at: () => [xs.v, ys.v, uProbe(fsel.value, xs.v, ys.v, hs.v) + 0.04], on: 'pick', move: (q) => { xs.drive(q[0]); ys.drive(q[1]); } });
   }
@@ -167,7 +168,7 @@ const hex = (c) => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0'
       const { ctx } = begin(d.c), k = F.arrival(d);
       hits = [];
       /* the plate: the heat map on the scale, filling from its outline as the figure arrives */
-      const ax = axes(ctx, PL, [0, PI], [0, HMAX], { xl: 'x', yl: 'y', nx: 3, ny: 4, nice: true });
+      const ax = axes(ctx, PL, [0, PI], [0, HMAX], { xl: 'x', yl: 'y', nx: 4, ny: 6, nice: true });
       const X0 = ax.X(0), X1 = ax.X(PI), Yh = ax.Y(h), Y0 = ax.Y(0);
       ctx.save(); ctx.globalAlpha *= F.ease.smooth(Math.min(1, Math.max(0, (k - 0.25) / 0.6)));
       ctx.imageSmoothingEnabled = true; ctx.drawImage(heatImage(D, h, stops), X0, Yh, X1 - X0, Y0 - Yh); ctx.restore();
@@ -185,13 +186,13 @@ const hex = (c) => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0'
       const pp = probe.draw(ctx, ax, PAL.ink);
       if (pp) hits.push({ x: pp.x, y: pp.y, r: 18, name: `the probe at (${n2(x0)}, ${n2(y0)}): u = ${n2(u0, 3)}; drag it over the plate` });
       /* the row graph: f dashed, u(x, y0) solid, on the scale's range; the scale's strip beside it as the legend */
-      const g = axes(ctx, GB, [0, PI], [D.lo, D.hi], { xl: 'x', yl: 'u', yc: fc, nx: 3, ny: 4, nice: true });
+      const g = axes(ctx, GB, [0, PI], [D.lo, D.hi], { xl: 'x', yl: 'u', yc: fc, nx: 4, ny: 6, nice: true });
       ctx.save(); ctx.setLineDash([10, 10]); plot(ctx, g, (x) => D.f(x), alpha(fc, 0.55), { w: 3, x: [1e-6, PI - 1e-6] }); ctx.restore();
       plot(ctx, g, (x) => uAt(D, x, y0, h), fc, { w: 5 });
       const yl = y0 <= 1e-9 ? 0 : y0;
       hits.push({ x: g.X(0.4), y: g.Y(D.f(0.4)), r: 14, name: 'the data on the bottom edge, f(x) = u(x, 0)' },
         { x: g.X(2.2), y: g.Y(uAt(D, 2.2, y0, h)), r: 14, name: `the row through the probe, u(x, ${n2(yl)})` });
-      mark(ctx, '$\\kf(x)$', g.X(PI) - 6, g.Y(D.f(PI * 0.92)) - 22, fc, { align: 'right' });
+      mark(ctx, '$\\kf(x)$', g.X(PI * 0.86), g.Y(D.f(PI * 0.86)) - 22, fc, { align: 'right' });
       mark(ctx, `$\\ku(x, ${n2(yl)})$`, g.X(0.5), Math.min(GB.b - 20, g.Y(uAt(D, 0.5, y0, h)) + 26), fc, { align: 'left' });
       if (x0 > 1e-9 && x0 < PI - 1e-9) dot(ctx, g.X(x0), g.Y(u0), fc, true, 9);
       const SX = GB.r + 22, SW = 20, NS = 64;

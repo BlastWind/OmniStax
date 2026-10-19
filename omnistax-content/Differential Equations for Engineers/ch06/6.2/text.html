@@ -1,0 +1,148 @@
+<section id="transforms-of-derivatives">
+<h2>Transforms of derivatives</h2>
+<p id="derivatives-intro">Let us see how the <span data-concept="laplace-transform">Laplace transform</span> is used for <span data-concept="differential-equation">differential equations</span>. First we find the <span data-concept="transform-of-a-derivative">Laplace transform of the derivative of a function</span>. Suppose $\kg(t)$ is a differentiable function of <span data-concept="exponential-order">exponential order</span>, that is, $\lvert \kg(t) \rvert \leq M e^{ct}$ for some $M$ and $c$. So $\mathcal{L} \bigl\{ \kg(t) \bigr\}$ exists, and what is more, $\lim_{t\to\infty} e^{-st}\kg(t) = 0$ when $s &gt; c$. Then</p>
+<figure class="dv" id="drv-transform-of-derivatives"></figure>
+<p id="higher-derivatives">We repeat this procedure for higher derivatives. The results are listed in <a href="#tab-6-2">Table 6.2</a>. The procedure also works for <span data-concept="piecewise-smooth-function">continuous piecewise smooth functions</span>, that is, functions that are continuous with a <span data-concept="piecewise-continuous-function">piecewise continuous</span> derivative.</p>
+<div class="book-table" id="tab-6-2">
+  <div class="tcap"><span class="eyebrow">Table 6.2</span><span><span data-concept="transform-of-a-derivative">Laplace transforms of derivatives</span> ($\kG(s) = \mathcal{L} \bigl\{ \kg(t) \bigr\}$ as usual).</span></div>
+  <table>
+    <thead><tr><th>$\kf(t)$</th><th>$\mathcal{L} \bigl\{ \kf(t) \bigr\} = \kF(s)$</th></tr></thead>
+    <tbody>
+      <tr><td>$\kgprime(t)$</td><td>$s\kG(s)-\kg(0)$</td></tr>
+      <tr><td>$\kgdprime(t)$</td><td>$s^2\kG(s)-s\kg(0)-\kgprime(0)$</td></tr>
+      <tr><td>$\kgtprime(t)$</td><td>$s^3\kG(s)-s^2\kg(0)-s\kgprime(0)-\kgdprime(0)$</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="exercises" data-place="tab-6-2"></div>
+</section>
+
+<section id="solving-odes">
+<h2>Solving ODEs with the Laplace transform</h2>
+<p id="multiplication-by-s">Notice that the <span data-concept="laplace-transform">Laplace transform</span> turns differentiation into multiplication by $s$. It is this property that makes it useful to apply the <span data-concept="laplace-transform">transform</span> to <span data-concept="differential-equation">differential equations</span>.</p>
+<div class="example" id="ex-6-2-1">
+<h3>Example 6.2.1</h3>
+<p>Consider the problem</p>
+<div class="equation" id="eq-example-6-2-1">$$ \kxdprime(t) + \kx(t) = \cos (2t), \quad \kx(0) = 0, \quad \kxprime(0) = 1 . $$</div>
+<p>We will take the <span data-concept="laplace-transform">Laplace transform</span> of both sides of the equation. By $\kX(s)$, we will, as usual, denote the <span data-concept="laplace-transform">Laplace transform</span> of $\kx(t)$.</p>
+$$ \begin{align*} \mathcal{L} \bigl\{ \kxdprime(t) + \kx(t) \bigr\} & = \mathcal{L} \bigl\{ \cos (2t) \bigr\} , \\ s^2 \kX(s) -s\kx(0)-\kxprime(0) + \kX(s) & = \frac{s}{s^2 + 4} . \end{align*} $$
+<p>We plug in the <span data-concept="initial-value">initial conditions</span> now—making computations more streamlined—to find</p>
+$$ s^2 \kX(s) -1 + \kX(s) = \frac{s}{s^2 + 4} . $$
+<p>We solve for $\kX(s)$,</p>
+$$ \kX(s) = \frac{s}{(s^2+1)(s^2 + 4)} + \frac{1}{s^2+1} . $$
+<p>We use <span data-concept="partial-fraction-decomposition">partial fractions</span> (exercise) to write</p>
+$$ \kX(s) =\frac{1}{3} \, \frac{s}{s^2+1} - \frac{1}{3}\, \frac{s}{s^2+4} + \frac{1}{s^2+1} . $$
+<p>Now take the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> to obtain</p>
+$$ \kx(t) =\frac{1}{3} \cos (t) - \frac{1}{3} \cos (2t) + \sin (t) . $$
+</div>
+<p id="procedure">The <span data-concept="solving-odes-with-the-laplace-transform">procedure</span> for <span data-concept="linear-differential-equation">linear</span> <span data-concept="constant-coefficient-equation">constant-coefficient</span> equations is as follows: Take an <span data-concept="ordinary-differential-equation">ordinary differential equation</span> in the time variable $t$. Apply the <span data-concept="laplace-transform">Laplace transform</span> to transform the equation into an algebraic (non differential) equation in the <span data-concept="frequency-domain">frequency domain</span>. All the $\kx(t)$, $\kxprime(t)$, $\kxdprime(t)$, and so on, will be converted to $\kX(s)$, $s\kX(s) - \kx(0)$, $s^2\kX(s) - s\kx(0) - \kxprime(0)$, and so on. Solve the equation for $\kX(s)$. Then taking the <span data-concept="inverse-laplace-transform">inverse transform</span>, if possible, find $\kx(t)$.</p>
+<p id="caveat">It should be noted that since not every function has a <span data-concept="laplace-transform">Laplace transform</span>, not every equation can be solved in this manner. Also if the equation is not a <span data-concept="linear-differential-equation">linear</span> <span data-concept="constant-coefficient-equation">constant-coefficient</span> ODE, then applying the <span data-concept="laplace-transform">Laplace transform</span> may not give us an algebraic equation.</p>
+</section>
+
+<section id="heaviside">
+<h2>Using the Heaviside function</h2>
+<p id="heaviside-recall">Before we move on to more general equations than those we could solve before, we want to consider the <span data-concept="unit-step-function">Heaviside function</span>. See Figure 6.1 for the graph.</p>
+<div class="equation" id="eq-heaviside">$$ \ku(t) = \begin{cases} 0 & \text{if } \; t &lt; 0 , \\ 1 & \text{if } \; t \geq 0 . \end{cases} $$</div>
+<figure class="sim" id="sim-heaviside" data-figure="6.1" data-original="/media/ch06/lt-heaviside.svg" data-original-caption="Plot of the Heaviside (unit step) function u(t)." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 6.1</span><span>The <span data-concept="unit-step-function">unit step</span> $\ku(t - a)$ is $0$ before $t = a$ and $1$ from $t = a$ on; at $a = 0$ it is the <span data-concept="unit-step-function">Heaviside function</span> $\ku(t)$ itself, and a larger $a$ slides the graph to the right. <span data-concept="writing-piecewise-functions-with-the-heaviside-function">Steps put pieces together</span>: two of them make the window $\ku(t-a) - \ku(t-b)$, one switches the signal $\sin t$ on at $t = a$, four cut a tent out of two lines. Under each, its <span data-concept="laplace-transform">transform</span>: sliding a function to the right by $a$ multiplies its <span data-concept="laplace-transform">transform</span> by $e^{-as}$, and the switched-on $\sin t$ is not $\sin t$ slid along, so the factor $e^{-as}$ multiplies the <span data-concept="laplace-transform">transform</span> of $\sin(t + a)$.</span></div>
+</figure>
+<p id="piecewise-heaviside">The <span data-concept="unit-step-function">Heaviside function</span> is useful for <span data-concept="writing-piecewise-functions-with-the-heaviside-function">putting other functions together or cutting functions off</span>. Usually we use $\ku(t-a)$ for some constant $a$; we just shift the graph to the right by $a$. That is, $\ku(t-a) = 0$ when $t &lt; a$ and $\ku(t-a) = 1$ when $t \geq a$. For example, suppose $\kf(t)$ is a “signal”, and we started receiving $\sin t$ at time $t=\pi$. The function $\kf(t)$ is then defined as</p>
+$$ \kf(t) = \begin{cases} 0 & \text{if } \; t &lt; \pi , \\ \sin t & \text{if } \; t \geq \pi . \end{cases} $$
+<p>Using the <span data-concept="unit-step-function">Heaviside function</span>, $\kf(t)$ can be written as</p>
+$$ \kf(t) = \ku(t - \pi) \, \sin t . $$
+<p>Similarly, the <span data-concept="unit-step-function">step function</span> that is $1$ on the interval $[1,2)$ and $0$ elsewhere is written as</p>
+<div class="equation" id="eq-heaviside-window">$$ \ku(t - 1) - \ku(t-2) . $$</div>
+<p id="tent">With the <span data-concept="unit-step-function">Heaviside function</span> we can express functions defined piecewise. If $\kf(t) = t$ when $t$ is in $[0,1]$, $\kf(t) = -t+2$ when $t$ is in $[1,2]$, and $\kf(t) = 0$ otherwise, then you write</p>
+$$ \kf(t) = t \, \bigl( \ku(t) - \ku(t-1) \bigr) + (-t+2) \, \bigl( \ku(t - 1) - \ku(t-2) \bigr) . $$
+<p id="second-shifting">How does the <span data-concept="unit-step-function">Heaviside function</span> interact with the <span data-concept="laplace-transform">Laplace transform</span>? We <a href="/diffyqs/ch06/6.1/#6.1-ex-6-1-4">saw</a> that (for $a \geq 0$)</p>
+$$ \mathcal{L} \bigl\{ \ku(t-a) \bigr\} = \frac{e^{-as}}{s} . $$
+<p>This computation can be generalized into a <em><span data-concept="second-shifting-property">shifting property</span></em> or <em><span data-concept="second-shifting-property">second shifting property</span></em>:</p>
+<div class="equation" id="eq-6-1">$$ \boxed{~~ \mathcal{L} \bigl\{ \kf(t-a) \, \ku(t-a) \bigr\} = e^{-as} \mathcal{L} \bigl\{ \kf(t) \bigr\} \qquad (a \geq 0). ~~} \tag{6.1}$$</div>
+<p id="shift-example">For example,</p>
+$$ \mathcal{L} \bigl\{ t \, \ku(t-1) \bigr\} = \mathcal{L} \bigl\{ \bigl( (t-1) + 1\bigr) \, \ku(t-1) \bigr\} = e^{-s} \mathcal{L} \bigl\{ t+1 \bigr\} = e^{-s} \left(\frac{1}{s^2} + \frac{1}{s} \right) . $$
+<div class="example" id="ex-6-2-2">
+<h3>Example 6.2.2</h3>
+<p id="rocket">Consider the <span data-concept="mass-spring-system">mass-spring system</span></p>
+<div class="equation" id="eq-rocket">$$ \kxdprime(t) + \kx(t) = \kf(t) , \quad \kx(0) = 0, \quad \kxprime(0) = 0, $$</div>
+<p>where $\kf(t) = 1$ if $1 \leq t &lt; 5$ and zero otherwise. The function $\kf(t)$ is not <span data-concept="periodic-function">periodic</span> and is defined piecewise; no problem for Laplace. Imagine a rocket attached to the mass is fired for 4 seconds starting at $t=1$. Or perhaps imagine an <span data-concept="rlc-series-circuit">RLC circuit</span>, where the voltage is raised at a constant rate for 4 seconds starting at $t=1$ and then held steady again starting at $t=5$ (recall that $\kf(t)$ represents the derivative of the voltage in the <span data-concept="rlc-series-circuit">RLC circuit</span>).</p>
+<p>We write $\kf(t) = \ku(t-1) - \ku(t-5)$. We transform the equation and we plug in the <span data-concept="initial-value">initial conditions</span> as before</p>
+$$ s^2 \kX(s) + \kX(s) = \frac{e^{-s}}{s} - \frac{e^{-5s}}{s} . $$
+<p>We solve for $\kX(s)$,</p>
+$$ \kX(s) = \frac{e^{-s}}{s(s^2+1)} - \frac{e^{-5s}}{s(s^2+1)} . $$
+<p>We leave it as an exercise to the reader to show that</p>
+$$ {\mathcal{L}}^{-1} \left\{ \frac{1}{s(s^2+1)} \right\} = 1 - \cos t . $$
+<p>In other words, $\mathcal{L} \{ 1 - \cos t \} = \frac{1}{s(s^2+1)}$. Using the <span data-concept="second-shifting-property">second shifting property</span> <a href="#eq-6-1">(6.1)</a>, we find</p>
+$$ {\mathcal{L}}^{-1} \left\{ \frac{e^{-s}}{s(s^2+1)} \right\} = {\mathcal{L}}^{-1} \bigl\{ e^{-s} \mathcal{L} \{ 1 - \cos t \} \bigr\} = \bigl( 1 - \cos (t-1) \bigr) \, \ku(t-1) . $$
+<p>Similarly,</p>
+$$ {\mathcal{L}}^{-1} \left\{ \frac{e^{-5s}}{s(s^2+1)} \right\} = {\mathcal{L}}^{-1} \bigl\{ e^{-5s} \mathcal{L} \{ 1 - \cos t \} \bigr\} = \bigl( 1 - \cos (t-5) \bigr) \, \ku(t-5) . $$
+<p>Hence, the solution is</p>
+<div class="equation" id="eq-rocket-solution">$$ \kx(t) = \bigl( 1 - \cos (t-1) \bigr) \, \ku(t-1) - \bigl( 1 - \cos (t-5) \bigr) \, \ku(t-5) . $$</div>
+<p>The plot of this solution is given in Figure 6.2.</p>
+<figure class="sim" id="sim-rocket" data-figure="6.2" data-original="/media/ch06/lt-heavisideex.svg" data-original-caption="Plot of x(t)." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 6.2</span><span>The mass of $\kxdprime + \kx = \kf(t)$ on its spring, with a rocket on top that pushes with force $1$ from $t = a$ to $t = a + T$; the book’s rocket fires at $a = 1$ for $T = 4$ seconds. The thrust $\kf(t) = \ku(t-a) - \ku(t-a-T)$ runs on the strip, the displacement $\kx(t)$ on the graph below it. While the rocket fires, the mass swings about $\kx = 1$, where the spring balances the thrust; once it stops, the mass swings about $\kx = 0$ for good, with an amplitude (dashed) that depends on how long the rocket burned.</span></div>
+</figure>
+</div>
+</section>
+
+<section id="transfer-functions">
+<h2>Transfer functions</h2>
+<p id="input-output">The <span data-concept="laplace-transform">Laplace transform</span> leads to the following useful concept for studying the <span data-concept="steady-state-solution">steady-state behavior</span> of a <span data-concept="linear-differential-equation">linear</span> system. Consider an equation of the form</p>
+$$ L \kx = \kf(t) , $$
+<p>where $L$ is a <span data-concept="linear-operator">linear</span> <span data-concept="constant-coefficient-equation">constant-coefficient</span> <span data-concept="operator">differential operator</span>. Then $\kf(t)$ is usually thought of as the <span data-concept="input-and-output">input of the system</span> and $\kx(t)$ is thought of as the <span data-concept="input-and-output">output of the system</span>. For example, for a <span data-concept="mass-spring-system">mass-spring system</span> the <span data-concept="input-and-output">input</span> is the forcing function and the <span data-concept="input-and-output">output</span> is the behavior of the mass. We would like to have a convenient way to study the behavior of the system for different <span data-concept="input-and-output">inputs</span>.</p>
+<p id="transfer-function">Let us suppose that all the <span data-concept="initial-value">initial conditions</span> are zero. We take the <span data-concept="laplace-transform">Laplace transform</span> of the equation to obtain, for some $A(s)$,</p>
+$$ A(s) \kX(s) = \kF(s) . $$
+<p>Solving for the ratio ${\kX(s)}/{\kF(s)}$ gives the so-called <em><span data-concept="transfer-function">transfer function</span></em> $\kH(s) = {1}/{A(s)}$, that is,</p>
+<div class="equation" id="eq-transfer-function">$$ \kH(s) = \frac{\kX(s)}{\kF(s)} . $$</div>
+<p id="transfer-output">In other words, $\kX(s) = \kH(s) \kF(s)$. We get an algebraic dependence of the <span data-concept="input-and-output">output</span> of the system based on the <span data-concept="input-and-output">input</span>. We can now easily study the <span data-concept="steady-state-solution">steady-state behavior</span> of the system given different <span data-concept="input-and-output">inputs</span> by simply multiplying by the <span data-concept="transfer-function">transfer function</span>. Moreover, it is possible to compute the $\kH(s)$ without knowing exactly what the equation is by observing the <span data-concept="input-and-output">output</span> $\kX(s)$ for a given <span data-concept="input-and-output">input</span> $\kF(s)$. Once $\kH(s)$ is known, you can find the <span data-concept="input-and-output">output</span> for any <span data-concept="input-and-output">input</span>.</p>
+<div class="example" id="ex-6-2-3">
+<h3>Example 6.2.3</h3>
+<p>Given $\kxdprime + \komegazero^2 \kx = \kf(t)$ (assume the <span data-concept="initial-value">initial conditions</span> are zero), let us find the <span data-concept="transfer-function">transfer function</span>.</p>
+<p>First, we take the <span data-concept="laplace-transform">Laplace transform</span> of the equation,</p>
+$$ s^2 \kX(s) + \komegazero^2 \kX(s) = \kF(s) . $$
+<p>Now we solve for the <span data-concept="transfer-function">transfer function</span> ${\kX(s)}/{\kF(s)}$,</p>
+$$ \kH(s) = \frac{\kX(s)}{\kF(s)} = \frac{1}{s^2 + \komegazero^2} . $$
+<p>Let us see how to use the <span data-concept="transfer-function">transfer function</span>. Suppose we have the constant <span data-concept="input-and-output">input</span> $\kf(t) = 1$. Hence $\kF(s) = {1}/{s}$, and</p>
+$$ \kX(s) = \kH(s) \kF(s) = \frac{1}{s^2+\komegazero^2} \, \frac{1}{s} . $$
+<p>Taking the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> of $\kX(s)$, we obtain</p>
+$$ \kx(t) = \frac{1-\cos(\komegazero t)}{\komegazero^2} . $$
+<p>Similarly, for any other <span data-concept="input-and-output">input</span> $\kF(s)$, the <span data-concept="input-and-output">output</span> is $\kX(s) = \kH(s) \kF(s) = \frac{1}{s^2+\komegazero^2} \, \kF(s)$.</p>
+</div>
+</section>
+
+<section id="transforms-of-integrals">
+<h2>Transforms of integrals</h2>
+<p id="integral-rule">A feature of the <span data-concept="laplace-transform">Laplace transform</span> is that it is able to deal with <span data-concept="integral-equation">integral equations</span>. These are equations in which integrals rather than derivatives of functions appear. The basic property, which can be proved by applying the definition and doing <a href="/calculus/ch07/7.1/#7.1-parts-intro">integration by parts</a>, is</p>
+<div class="equation" id="eq-lt-integral">$$ \boxed{~~ \mathcal{L} \left\{ \int_0^t \kf(\tau) \, d\tau \right\} = \frac{1}{s} \, \kF(s) . ~~} $$</div>
+<p>It is sometimes useful (e.g. for computing the <span data-concept="inverse-laplace-transform">inverse transform</span>) to write this as</p>
+<div class="equation" id="eq-inverse-lt-integral">$$ \int_0^t \kf(\tau) \, d\tau = {\mathcal{L}}^{-1} \left\{ \frac{1}{s} \, \kF(s) \right\} . $$</div>
+<div class="example" id="ex-6-2-4">
+<h3>Example 6.2.4</h3>
+<p>To compute ${\mathcal{L}}^{-1} \left\{\frac{1}{s(s^2+1)}\right\}$, we could apply this integration rule:</p>
+$$ {\mathcal{L}}^{-1} \left\{ \frac{1}{s} \, \frac{1}{s^2+1} \right\} = \int_0^t {\mathcal{L}}^{-1} \left\{ \frac{1}{s^2+1} \right\} \, d\tau = \int_0^t \sin \tau \, d\tau = 1 - \cos t . $$
+</div>
+<div class="example" id="ex-6-2-5">
+<h3>Example 6.2.5</h3>
+<p id="integral-equation">An equation containing an integral of the unknown function is called an <em><span data-concept="integral-equation">integral equation</span></em>. Consider</p>
+$$ \kx(t) - t = \int_0^t \kx(\tau) \, d\tau , $$
+<p>where we wish to solve for $\kx(t)$. We apply the <span data-concept="laplace-transform">Laplace transform</span> to get</p>
+$$ \kX(s) - \frac{1}{s^2} = \frac{1}{s} \kX(s) , $$
+<p>where $\kX(s) = \mathcal{L} \bigl\{ \kx(t) \bigr\}$. Thus</p>
+$$ \kX(s) = \frac{1}{s(s-1)} = \frac{1}{s-1} - \frac{1}{s} . $$
+<p>The <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> gives</p>
+$$ \kx(t) = e^t - 1 . $$
+</div>
+</section>
+
+<section id="periodic">
+<h2>Periodic functions</h2>
+<p id="periodic-intro">The reader might ask: What about <span data-concept="periodic-function">periodic functions</span> as our <span data-concept="input-and-output">input</span> $\kf(t)$? That is, a function $\kf(t)$ where $\kf(t) = \kf(t+P)$ for some constant $P$ (the <span data-concept="periodic-function">period</span>). Well, let us compute $\kF(s)$:</p>
+<figure class="dv" id="drv-periodic-transform"></figure>
+<p id="periodic-solve">Solving for $\kF(s)$, we get</p>
+<div class="equation" id="eq-lt-periodic">$$ \kF(s) = \frac{1}{1-e^{-Ps}} \int_0^P e^{-st} \kf(t) \, dt . $$</div>
+<p>As before, computing the inverse would be more complex and possibly involve consulting a table. Let us not worry about computing the inverse here.</p>
+<div class="example" id="ex-6-2-6">
+<h3>Example 6.2.6</h3>
+<p id="sawtooth">Suppose $\kf(t)$ is a version of the <em><span data-concept="sawtooth-function">sawtooth</span></em>, that is, let $\kf(t) = t$ for $0 \leq t &lt; 1$ and use $\kf(t)=\kf(t+1)$ to extend it <span data-concept="periodic-function">periodically</span>. So $\kf(t) = t-1$ for $1 \leq t &lt; 2$, $\kf(t) = t-2$ for $2 \leq t &lt; 3$, etc. Then $P=1$ and a short computation with <a href="/calculus/ch07/7.1/#7.1-parts-intro">integration by parts</a> gets</p>
+$$ \kF(s) = \frac{1}{1-e^{-s}} \int_0^1 e^{-st} t \, dt = \frac{1}{1-e^{-s}} \left( \frac{-e^{-s}}{s}-\frac{e^{-s}}{s^2} + \frac{1}{s^2} \right) = \frac{-e^{-s}}{(1-e^{-s})s} + \frac{1}{s^2} . $$
+</div>
+</section>

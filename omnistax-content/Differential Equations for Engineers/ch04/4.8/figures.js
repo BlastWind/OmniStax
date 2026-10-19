@@ -1,7 +1,7 @@
 /* Figures for section 4.8 D’Alembert solution of the wave equation. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['4.8'] = function (root, F) {
-const { C, PAL, alpha, ctl, choice, begin, axes, plot, dot, line, text, label, headline, register, readout, fmt, hover, cycle, pinned, hbracket, space: SP } = F;
+const { C, PAL, alpha, ctl, choice, select, begin, axes, plot, dot, line, text, label, headline, register, readout, fmt, hover, cycle, pinned, hbracket, space: SP } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const n = (v, dec = 2) => fmt(v, dec).replace('−', '-');
 const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip(); draw(); ctx.restore(); };
@@ -41,8 +41,8 @@ function poly(ctx, ax, pts, color, w, dash) {
     struck: { L: 1, ymax: 1, yt: 0.5, F: null, H: (x) => -Math.abs(wrapP(x, 1)), xp: 0.5, kinks: [-1, 0], dec: 2, zk: 1,
       what: 'Exercise 4.7.6’s struck string' },
   };
-  const pick = choice(d.controls, { label: 'start', key: 'start', value: 'impulse', aria: 'how the string starts', options: [
-    { value: 'impulse', label: 'impulse' }, { value: 'plucked', label: 'plucked' }, { value: 'struck', label: 'struck' }],
+  const pick = select(d.controls, { label: 'start', key: 'start', value: 'impulse', aria: 'how the string starts', options: [
+    { value: 'impulse', label: 'impulse (Example 4.8.1)' }, { value: 'plucked', label: 'plucked (Example 4.7.1)' }, { value: 'struck', label: 'struck (Exercise 4.7.6)' }],
     onInput: () => { const s = START[pick.value]; xs.range({ min: 0, max: s.L, step: 0.01, value: s.xp, unit: '', dec: 2 }); reset(); } });
   const view = choice(d.controls, { label: 'view', key: 'view', value: '2d', aria: 'the string and the (x, t) plane, or the surface y(x, t)', ms: 0,
     options: [{ value: '2d', label: '2D' }, { value: '3d', label: '3D' }] });
@@ -67,7 +67,7 @@ function poly(ctx, ax, pts, color, w, dash) {
   };
   function mount3d(s) {
     const zt = s.zk === 1 ? 0.5 : 0;
-    S = F.space3d(d, { box: [[0, s.L], [0, 2 * s.L], [-1, 1]], h: 640, pitch: [0.12, 1.45], fit: 2.5, turn: -0.65, tilt: 0.6 });
+    S = F.space3d(d, { box: [[0, s.L], [0, 2 * s.L], [-1, 1]], h: 640, pitch: [0.12, 1.45], fit: 2.5, turn: -0.65, tilt: 0.95 });
     S.set('axes', SP.axes([[0, s.L], [0, 2 * s.L], [-1, 1]], { ticks: [s.L / 2, s.L / 2, zt], names: ['$x$', '$t$', s.zk === 1 ? '$\\ky$' : '$10\\,\\ky$'] }));
     const w = S.v ? S.v.wrap : [...d.stage.querySelectorAll('canvas')].pop(), bar = d.stage.querySelector('.transport');
     if (w && bar) d.stage.insertBefore(w, bar);
@@ -102,7 +102,7 @@ function poly(ctx, ax, pts, color, w, dash) {
       const zk = s.zk, key = `${pick.value}|${a}|${fc}`;
       if (key !== surfKey) {
         surfKey = key;
-        S.set('surf', SP.surface((u, v) => [u * L, v * T, zk * y(u * L, v * T)], [0, 1], [0, 1], fc, { n: [110, 220], grid: 8, alpha: 0.7 }));
+        S.set('surf', SP.surface((u, v) => [u * L, v * T, zk * y(u * L, v * T)], [0, 1], [0, 1], fc, { n: [160, 320], grid: 0, alpha: 0.9 }));
         S.set('chars', kinkLines(s, a, T).flatMap((k) => {
           const [[x0], [x1]] = k.p, lo = Math.max(0, Math.min(x0, x1)), hi = Math.min(L, Math.max(x0, x1));
           if (hi - lo < 1e-6) return [];
@@ -150,12 +150,12 @@ function poly(ctx, ax, pts, color, w, dash) {
       hits.push({ x: bot.X(xp), y: bot.Y(t), r: 16, name: `the point (x, t) = (${n(xp)}, ${n(t)})` });
       /* the scene: the two waves on the whole line, faint beyond the ends, and the string their sum on 0 < x < L */
       const At = (x) => A(x - a * t), Bt = (x) => B(x + a * t);
+      plot(ctx, top, (x) => At(x) + Bt(x), fc, { w: 7, x: [0, L] });   /* under the waves, so a wave lying on the string still shows */
       [[At, wr], [Bt, wl]].forEach(([g, col]) => {
         plot(ctx, top, g, alpha(col, 0.38), { w: 3, x: [lo, 0] });
         plot(ctx, top, g, alpha(col, 0.38), { w: 3, x: [L, hi] });
-        plot(ctx, top, g, col, { w: 3, x: [0, L] });
+        plot(ctx, top, g, col, { w: 2.5, x: [0, L] });
       });
-      plot(ctx, top, (x) => At(x) + Bt(x), fc, { w: 5, x: [0, L] });
       line(ctx, top.X(xp), top.box.t, top.X(xp), bot.Y(t), alpha(PAL.ink, 0.35), 2, [4, 8]);
       const yA = At(xp), yB = Bt(xp);
       [[yA, wr, `A(x − at) = ${n(yA, dec)}, the right-moving wave at x = ${n(xp)}`], [yB, wl, `B(x + at) = ${n(yB, dec)}, the left-moving wave at x = ${n(xp)}`], [yA + yB, fc, `y(x, t) = A + B = ${n(yA + yB, dec)}, the string at x = ${n(xp)}`]].forEach(([v, col, name], i) => {
@@ -166,6 +166,7 @@ function poly(ctx, ax, pts, color, w, dash) {
       const sx = (x) => top.X(x);
       hits.push({ x: sx(L * 0.25), y: top.Y(At(L * 0.25) + Bt(L * 0.25)), r: 12, name: `the string y(x, ${n(t)}) = A(x − at) + B(x + at) on 0 < x < L` });
       /* legend, top right, on a panel */
+      ctx.fillStyle = PAL.panel; ctx.fillRect(top.box.r - 372, top.box.t + 2, 370, 90);
       [['the wave A(x − at), moving right', wr], ['the wave B(x + at), moving left', wl], ['the string y = A + B', fc]].forEach(([str, col], i) => {
         const lx = top.box.r - 360, ly = top.box.t + 18 + i * 28;
         line(ctx, lx, ly, lx + 36, ly, col, i === 2 ? 5 : 3);

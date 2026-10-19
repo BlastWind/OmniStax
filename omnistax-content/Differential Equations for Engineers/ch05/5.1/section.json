@@ -1,0 +1,994 @@
+{
+ "id": "5.1",
+ "module": "slproblems:section",
+ "chapter": "5",
+ "title": "Sturm–Liouville problems",
+ "short": "Sturm–Liouville problems",
+ "lead": "Chapter 4 met its eigenvalue problems one at a time, each an equation X″ + λX = 0 with its own pair of endpoint conditions. This section sets them in one frame, the <span data-concept=\"sturm-liouville-problem\">Sturm–Liouville problem</span>, and asks when such a problem is regular, with respect to what its <span data-concept=\"eigenfunction\">eigenfunctions</span> are orthogonal, and how a function is written as a series of them.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 5.1.101 and 5.1.102 carry the book’s own answers. The inline exercises 5.1.1–5.1.3 and exercises 5.1.4–5.1.8, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy or numerically first. The book’s footnote to 5.1.102 b (its running number 25) is kept in the card, since a card carries only correction notes.",
+ "figures": [
+  {
+   "id": "sim-robin-eigenvalues",
+   "kind": "sim",
+   "number": "5.1",
+   "originals": [
+    "/media/ch05/sl-tanx1overx.svg"
+   ],
+   "original_caption": "Plot of 1/x and tan x.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "eigenvalue",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-eigenfunction-series",
+   "kind": "sim",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "sl-series",
+   "label": "the eigenfunction series",
+   "figures": [
+    "sim-eigenfunction-series"
+   ]
+  },
+  {
+   "id": "sine-series-ref",
+   "label": "the regular sine series",
+   "figures": [
+    "sim-eigenfunction-series"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "conditions",
+   "concept": "mixed-boundary-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "conditions",
+   "concept": "eigenvalue-problem-of-a-differential-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "conditions",
+   "concept": "dirichlet-boundary-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conditions",
+   "concept": "neumann-boundary-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "robin",
+   "concept": "robin-boundary-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "robin",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "robin",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "robin",
+   "concept": "dirichlet-boundary-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "robin",
+   "concept": "neumann-boundary-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-robin-conditions",
+   "concept": "robin-boundary-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "decomposition-recap",
+   "concept": "eigenfunction-decomposition",
+   "verb": "introduces"
+  },
+  {
+   "span": "decomposition-recap",
+   "concept": "eigenfunction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "decomposition-recap",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "decomposition-recap",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-1",
+   "concept": "sturm-liouville-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "sl-equation",
+   "concept": "second-order-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sl-equation",
+   "concept": "linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "proper-factor",
+   "concept": "putting-an-equation-in-sturm-liouville-form",
+   "verb": "introduces"
+  },
+  {
+   "span": "proper-factor",
+   "concept": "sturm-liouville-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-1",
+   "concept": "putting-an-equation-in-sturm-liouville-form",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-1",
+   "concept": "sturm-liouville-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-1",
+   "concept": "wave-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sl-problem",
+   "concept": "sturm-liouville-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "sl-problem",
+   "concept": "sturm-liouville-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-2",
+   "concept": "robin-boundary-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "eigen-terms",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eigen-terms",
+   "concept": "eigenfunction",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thm-5-1-1",
+   "concept": "sturm-liouville-eigenvalues",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-5-1-1",
+   "concept": "sturm-liouville-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-5-1-1",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "regular",
+   "concept": "regular-sturm-liouville-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "regular",
+   "concept": "sturm-liouville-eigenvalues",
+   "verb": "uses"
+  },
+  {
+   "span": "labeling",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-5-1-2",
+   "concept": "regular-sturm-liouville-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-2",
+   "concept": "sturm-liouville-eigenvalues",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-2",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-5-1-3",
+   "concept": "regular-sturm-liouville-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-3",
+   "concept": "robin-boundary-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-3",
+   "concept": "solving-an-eigenvalue-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "ex3-nonnegative",
+   "concept": "sturm-liouville-eigenvalues",
+   "verb": "uses"
+  },
+  {
+   "span": "ex3-nonnegative",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-robin-eigenvalues",
+   "concept": "solving-an-eigenvalue-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "graphically",
+   "concept": "finding-eigenvalues-graphically",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-robin-eigenfunctions",
+   "concept": "finding-eigenvalues-graphically",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-robin-eigenfunctions",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-robin-eigenvalues",
+   "concept": "finding-eigenvalues-graphically",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-robin-eigenvalues",
+   "concept": "sturm-liouville-eigenvalues",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-robin-eigenvalues",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-robin-eigenvalues",
+   "concept": "neumann-boundary-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "weight",
+   "concept": "weight-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight",
+   "concept": "orthogonality-with-respect-to-a-weight",
+   "verb": "introduces"
+  },
+  {
+   "span": "weight",
+   "concept": "orthogonality-of-eigenfunctions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-weighted-orthogonality",
+   "concept": "orthogonality-with-respect-to-a-weight",
+   "verb": "uses"
+  },
+  {
+   "span": "inner-product",
+   "concept": "weighted-inner-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "inner-product",
+   "concept": "inner-product-of-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-weighted-inner-product",
+   "concept": "weighted-inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-meaning",
+   "concept": "weight-function",
+   "verb": "uses"
+  },
+  {
+   "span": "weight-meaning",
+   "concept": "weighted-inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "orthogonality-intro",
+   "concept": "orthogonality-of-eigenfunctions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "orthogonality-intro",
+   "concept": "regular-sturm-liouville-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-5-1-2",
+   "concept": "sturm-liouville-orthogonality",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-5-1-2",
+   "concept": "regular-sturm-liouville-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-5-1-2",
+   "concept": "orthogonality-with-respect-to-a-weight",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-5-1-2",
+   "concept": "weight-function",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-intro",
+   "concept": "fredholm-alternative",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fredholm-intro",
+   "concept": "regular-sturm-liouville-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-5-1-3",
+   "concept": "fredholm-alternative-for-sturm-liouville",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-5-1-3",
+   "concept": "regular-sturm-liouville-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-use",
+   "concept": "fredholm-alternative-for-sturm-liouville",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-use",
+   "concept": "boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-use",
+   "concept": "solving-a-boundary-value-problem-by-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "decomposition",
+   "concept": "eigenfunction-decomposition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "decomposition",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-3",
+   "concept": "eigenfunction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "assume-convergence",
+   "concept": "sturm-liouville-orthogonality",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-eigenfunction-coefficients",
+   "concept": "sturm-liouville-orthogonality",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-eigenfunction-coefficients",
+   "concept": "weighted-inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-eigenfunction-coefficients",
+   "concept": "eigenfunction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-4",
+   "concept": "eigenfunction-coefficients",
+   "verb": "introduces"
+  },
+  {
+   "span": "normalized",
+   "concept": "eigenfunction-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-5-1-4",
+   "concept": "convergence-of-eigenfunction-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-5-1-4",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-5-1-4",
+   "concept": "eigenfunction-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-4",
+   "concept": "regular-sturm-liouville-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-4",
+   "concept": "sturm-liouville-eigenvalues",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-4",
+   "concept": "eigenfunction-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-1-4",
+   "concept": "eigenfunction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "odd-extension",
+   "concept": "odd-periodic-extension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "odd-extension",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "two-series",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "both-converge",
+   "concept": "convergence-of-eigenfunction-series",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-eigenfunction-series",
+   "concept": "eigenfunction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-eigenfunction-series",
+   "concept": "eigenfunction-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-eigenfunction-series",
+   "concept": "convergence-of-eigenfunction-series",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-eigenfunction-series",
+   "concept": "odd-periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-eigenfunction-series",
+   "concept": "sine-series",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "robin-eigenvalues",
+   "what": "the eigenvalue equation $h/\\sqrt{\\lambda} = \\tan \\sqrt{\\lambda}$",
+   "source": "Differential Equations for Engineers, 5.1 Sturm–Liouville problems, Example 5.1.3",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\klambda > 0"
+      },
+      {
+       "tex": "h\\ky(0) - \\kyprime(0) = 0"
+      },
+      {
+       "tex": "\\kyprime(1) = 0"
+      },
+      {
+       "text": "An eigenfunction is a nontrivial solution: a $y$ that is not simply the constant zero.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\ky(x)} = \\mk{a}{A \\cos \\bigl( \\sqrt{\\klambda}\\, x\\bigr)} + \\mk{b}{B \\sin \\bigl( \\sqrt{\\klambda}\\, x\\bigr)}",
+      "uses": [
+       0
+      ],
+      "src": "Example 5.1.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c0}{0 = h A - \\sqrt{\\klambda}\\, B}",
+       "uses": [
+        1
+       ],
+       "cap": "Here $y(0) = A$ and $y'(0) = \\sqrt{\\lambda}\\, B$, since $y'(x) = -A\\sqrt{\\lambda}\\,\\sin(\\sqrt{\\lambda}\\,x) + B\\sqrt{\\lambda}\\,\\cos(\\sqrt{\\lambda}\\,x)$."
+      },
+      {
+       "tex": "\\mk{c0}{0 = h A - \\sqrt{\\klambda}\\, B} , \\quad \\mk{c1}{0 = -A \\sqrt{\\klambda}\\, \\sin \\bigl(\\sqrt{\\klambda}\\bigr) + B \\sqrt{\\klambda}\\, \\cos \\bigl(\\sqrt{\\klambda}\\bigr)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{B}{B = \\frac{hA}{\\sqrt{\\klambda}}} , \\quad \\mk{c1}{0 = -A \\sqrt{\\klambda}\\, \\sin \\bigl(\\sqrt{\\klambda}\\bigr) + B \\sqrt{\\klambda}\\, \\cos \\bigl(\\sqrt{\\klambda}\\bigr)}",
+       "uses": [],
+       "map": {
+        "c0": "B"
+       }
+      },
+      {
+       "tex": "\\mk{c1}{0 = -A \\sqrt{\\klambda}\\, \\sin \\bigl( \\sqrt{\\klambda}\\bigr) + \\frac{hA}{\\sqrt{\\klambda}} \\sqrt{\\klambda}\\, \\cos \\bigl( \\sqrt{\\klambda}\\bigr)}",
+       "uses": [],
+       "map": {
+        "B": "c1"
+       }
+      },
+      {
+       "tex": "\\mk{c1}{0 = - \\sqrt{\\klambda}\\, \\sin \\bigl( \\sqrt{\\klambda}\\bigr) + h \\cos \\bigl( \\sqrt{\\klambda}\\bigr)}",
+       "uses": [
+        3
+       ],
+       "cap": "If $A = 0$, then $B = hA/\\sqrt{\\lambda} = 0$ as well and $y$ would be the zero solution; so $A \\neq 0$, and we divide by it."
+      },
+      {
+       "tex": "\\mk{c1}{\\frac{h}{\\sqrt{\\klambda}} = \\tan \\sqrt{\\klambda}}",
+       "uses": [],
+       "cap": "Divide by $\\sqrt{\\lambda}\\,\\cos\\sqrt{\\lambda}$, which is not zero: where $\\cos\\sqrt{\\lambda} = 0$, $\\sin\\sqrt{\\lambda} = \\pm 1$ and the line above could not hold."
+      }
+     ],
+     "src": "Example 5.1.3"
+    }
+   ]
+  },
+  {
+   "id": "eigenfunction-coefficients",
+   "what": "the coefficient equation $\\langle f, y_m \\rangle = c_m \\langle y_m, y_m \\rangle$",
+   "source": "Differential Equations for Engineers, 5.1 Sturm–Liouville problems, Eigenfunction series",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kf(x) = \\sum_{n=1}^\\infty \\kcn \\kyn(x)",
+       "src": "(5.3)"
+      },
+      {
+       "text": "We assume convergence and the ability to integrate the series term by term.",
+       "src": "5.1"
+      },
+      {
+       "tex": "\\int_a^b \\kyn(x) \\, \\ky_m(x) \\, \\kr(x) \\,dx = 0 \\quad \\text{for } n \\neq m",
+       "src": "Theorem 5.1.2"
+      },
+      {
+       "tex": "\\kinner \\overset{\\text{def}}{=} \\int_a^b \\kf(x) \\, \\kg(x) \\, \\kr(x) \\,dx",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{lhs}{\\langle \\kf , \\ky_m \\rangle} = \\mk{rhs}{\\int_a^b \\kf(x) \\, \\ky_m (x) \\, \\kr(x) \\, dx}",
+      "uses": [
+       3
+      ],
+      "src": "5.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{lhs}{\\langle \\kf , \\ky_m \\rangle} = \\mk{rhs}{\\int_a^b \\left( \\sum_{n=1}^\\infty \\kcn \\kyn(x) \\right) \\, \\ky_m (x) \\, \\kr(x) \\, dx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{lhs}{\\langle \\kf , \\ky_m \\rangle} = \\mk{rhs}{\\sum_{n=1}^\\infty \\kcn \\int_a^b \\kyn(x) \\, \\ky_m (x) \\, \\kr(x) \\, dx}",
+       "uses": [
+        1
+       ],
+       "cap": "Integrate the series term by term, taking each constant $c_n$ out of its integral."
+      },
+      {
+       "tex": "\\mk{lhs}{\\langle \\kf , \\ky_m \\rangle} = \\mk{rhs}{\\kc_m \\int_a^b \\ky_m(x) \\, \\ky_m (x) \\, \\kr(x) \\, dx}",
+       "uses": [
+        2
+       ],
+       "cap": "By orthogonality every integral with $n \\neq m$ is zero, so only the term $n = m$ is left."
+      },
+      {
+       "tex": "\\mk{lhs}{\\langle \\kf , \\ky_m \\rangle} = \\mk{rhs}{\\kc_m \\langle \\ky_m , \\ky_m \\rangle}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "5.1"
+    }
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-sturm-liouville",
+   "kind": "book",
+   "number": "24",
+   "html": "Named after the French mathematicians <a href=\"https://en.wikipedia.org/wiki/Jacques_Charles_Fran%C3%A7ois_Sturm\">Jacques Charles François Sturm</a> (1803–1855) and <a href=\"https://en.wikipedia.org/wiki/Liouville\">Joseph Liouville</a> (1809–1882)."
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "5.1.1",
+   "source_number": "5.1.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "ex-5-1-2"
+   },
+   "cite": "ex-5-1-2",
+   "prompt": "<p>Find eigenvalues and eigenfunctions for</p>$$ \\kydprime + \\klambda \\ky = 0, \\quad \\kyprime(0) = 0, \\quad \\kyprime(1) = 0. $$<p>Identify the $\\kp, \\kq, \\kr, \\alpha_j, \\beta_j$. Can you use the theorem above to make the search for eigenvalues easier? Hint: Consider the condition $-\\kyprime(0)=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $\\kp(x) = 1$, $\\kq(x) = 0$, $\\kr(x) = 1$ on $[0, 1]$. Written as $0 \\cdot \\ky(0) - 1 \\cdot \\kyprime(0) = 0$, the left condition gives $\\alpha_1 = 0$, $\\alpha_2 = 1$, and $0 \\cdot \\ky(1) + 1 \\cdot \\kyprime(1) = 0$ gives $\\beta_1 = 0$, $\\beta_2 = 1$. The problem is regular with $\\kq \\geq 0$ and all four constants $\\geq 0$, so Theorem 5.1.1 gives $\\klambda \\geq 0$: only $\\klambda = 0$ and $\\klambda &gt; 0$ need checking. For $\\klambda = 0$, $\\ky = Ax + B$ and $\\kyprime = A = 0$ at both ends, so $\\ky = B$ works: $\\klambda_0 = 0$ is an eigenvalue with eigenfunction $\\ky_0 = 1$. For $\\klambda &gt; 0$, $\\ky = A\\cos(\\sqrt{\\klambda}\\,x) + B\\sin(\\sqrt{\\klambda}\\,x)$; $\\kyprime(0) = \\sqrt{\\klambda}\\,B = 0$ gives $B = 0$, and $\\kyprime(1) = -A\\sqrt{\\klambda}\\sin\\sqrt{\\klambda} = 0$ with $A \\neq 0$ gives $\\sqrt{\\klambda} = n\\pi$. So $\\klambdan = n^2\\pi^2$ with $\\kyn = \\cos(n\\pi x)$ for $n = 1, 2, 3, \\ldots$, besides $\\klambda_0 = 0$, $\\ky_0 = 1$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "5.1.2",
+   "source_number": "5.1.2",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "ex3-regular"
+   },
+   "cite": "ex-5-1-3",
+   "prompt": "<p>Identify $\\kp, \\kq, \\kr, \\alpha_j, \\beta_j$ in the example above.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Comparing $\\kydprime + \\klambda \\ky = 0$ with (5.1): $\\kp(x) = 1$, $\\kq(x) = 0$, $\\kr(x) = 1$, on $a = 0$, $b = 1$. The left condition $h\\ky(0) - \\kyprime(0) = 0$ is $\\alpha_1 \\ky(a) - \\alpha_2 \\kyprime(a) = 0$ with $\\alpha_1 = h$, $\\alpha_2 = 1$; the right condition $\\kyprime(1) = 0$ is $0 \\cdot \\ky(1) + 1 \\cdot \\kyprime(1) = 0$, so $\\beta_1 = 0$, $\\beta_2 = 1$. As $h &gt; 0$, every constant is $\\geq 0$ and neither pair is both zero, and $\\kp = \\kr = 1 &gt; 0$, $\\kq = 0 \\geq 0$: the problem is regular."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "5.1.3",
+   "source_number": "5.1.3",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "odd-extension"
+   },
+   "cite": "odd-extension",
+   "prompt": "<p>In the example above, the function is defined on $0 &lt; x &lt; {\\pi}/{2}$, yet the series with respect to the eigenfunctions $\\sin \\bigl( (2n-1)x \\bigr)$ converges to an odd $2\\pi$-periodic extension of $\\kf(x)$. Find out how the extension is defined for ${\\pi}/{2} &lt; x &lt; \\pi$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "On $\\pi/2 &lt; x &lt; \\pi$ the extension is $\\kf(\\pi - x)$, the mirror image of $\\kf$ in the line $x = \\pi/2$. Each eigenfunction is symmetric about $\\pi/2$: $\\sin\\bigl((2n-1)(\\pi - x)\\bigr) = \\sin\\bigl((2n-1)\\pi\\bigr)\\cos\\bigl((2n-1)x\\bigr) - \\cos\\bigl((2n-1)\\pi\\bigr)\\sin\\bigl((2n-1)x\\bigr) = \\sin\\bigl((2n-1)x\\bigr)$, since $(2n-1)\\pi$ is an odd multiple of $\\pi$. So the series takes the same value at $\\pi - x$ as at $x$, and for $\\pi/2 &lt; x &lt; \\pi$, where $0 &lt; \\pi - x &lt; \\pi/2$, it converges to $\\kf(\\pi - x)$. Being odd, the extension is $-\\kf(-x)$ on $-\\pi/2 &lt; x &lt; 0$ and $-\\kf(\\pi + x)$ on $-\\pi &lt; x &lt; -\\pi/2$, repeated with period $2\\pi$. For $\\kf(x) = x$ it is $\\pi - x$ on $\\pi/2 &lt; x &lt; \\pi$: a triangle wave."
+   },
+   "tag": "challenging"
+  },
+  {
+   "id": "e4",
+   "source_id": "5.1.4",
+   "source_number": "5.1.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-5-1-3",
+   "prompt": "<p>Find eigenvalues and eigenfunctions of</p>$$ \\kydprime+\\klambda \\ky = 0, \\quad \\ky(0)- \\kyprime(0) = 0, \\quad \\ky(1) = 0 . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $\\kp = 1$, $\\kq = 0$, $\\kr = 1$, $\\alpha_1 = \\alpha_2 = 1$, $\\beta_1 = 1$, $\\beta_2 = 0$: a regular problem, so $\\klambda \\geq 0$ by Theorem 5.1.1. For $\\klambda = 0$, $\\ky = Ax + B$: $\\ky(0) - \\kyprime(0) = B - A = 0$ and $\\ky(1) = A + B = 0$ give $A = B = 0$, so $0$ is not an eigenvalue. For $\\klambda &gt; 0$, $\\ky = A\\cos(\\sqrt{\\klambda}\\,x) + B\\sin(\\sqrt{\\klambda}\\,x)$. The left condition gives $A - \\sqrt{\\klambda}\\,B = 0$, so $A = \\sqrt{\\klambda}\\,B$ and $B \\neq 0$; then $\\ky(1) = B\\bigl(\\sqrt{\\klambda}\\cos\\sqrt{\\klambda} + \\sin\\sqrt{\\klambda}\\bigr) = 0$, that is, $\\tan\\sqrt{\\klambda} = -\\sqrt{\\klambda}$. Plotting $\\tan x$ and $-x$ as in Example 5.1.3, they cross once in each interval $\\bigl((k - \\tfrac{1}{2})\\pi, k\\pi\\bigr)$: $\\sqrt{\\klambda_1} \\approx 2.0288$, $\\sqrt{\\klambda_2} \\approx 4.9132$, $\\sqrt{\\klambda_3} \\approx 7.9787$, …, so $\\klambda_1 \\approx 4.116$, $\\klambda_2 \\approx 24.14$, $\\klambda_3 \\approx 63.66$, …. With $B = 1$ the eigenfunctions are $\\kyn(x) = \\sqrt{\\klambdan}\\cos\\bigl(\\sqrt{\\klambdan}\\,x\\bigr) + \\sin\\bigl(\\sqrt{\\klambdan}\\,x\\bigr)$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "5.1.5",
+   "source_number": "5.1.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-5-4",
+   "prompt": "<p>Expand the function $\\kf(x) = x$ on $0 \\leq x \\leq 1$ using eigenfunctions of the system</p>$$ \\kydprime + \\klambda \\ky = 0, \\quad \\kyprime(0) = 0, \\quad \\ky(1) = 0 . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The problem is regular, so $\\klambda \\geq 0$. For $\\klambda = 0$, $\\ky = Ax + B$ with $\\kyprime(0) = A = 0$ and $\\ky(1) = B = 0$: not an eigenvalue. For $\\klambda &gt; 0$, $\\kyprime(0) = 0$ leaves $\\ky = A\\cos(\\sqrt{\\klambda}\\,x)$, and $\\ky(1) = 0$ gives $\\cos\\sqrt{\\klambda} = 0$: $\\klambdan = \\frac{(2n-1)^2\\pi^2}{4}$, $\\kyn = \\cos\\bigl(\\frac{(2n-1)\\pi}{2}x\\bigr)$, $n = 1, 2, 3, \\ldots$. With $\\kr = 1$, $\\langle \\kyn, \\kyn \\rangle = \\int_0^1 \\cos^2\\bigl(\\frac{(2n-1)\\pi}{2}x\\bigr)\\,dx = \\frac{1}{2}$, and integrating by parts, $\\langle \\kf, \\kyn \\rangle = \\int_0^1 x\\cos\\bigl(\\frac{(2n-1)\\pi}{2}x\\bigr)\\,dx = \\frac{2(-1)^{n+1}}{(2n-1)\\pi} - \\frac{4}{(2n-1)^2\\pi^2}$. By (5.4), $\\kcn = \\frac{4(-1)^{n+1}}{(2n-1)\\pi} - \\frac{8}{(2n-1)^2\\pi^2}$, so $x = \\sum_{n=1}^\\infty \\Bigl(\\frac{4(-1)^{n+1}}{(2n-1)\\pi} - \\frac{8}{(2n-1)^2\\pi^2}\\Bigr)\\cos\\Bigl(\\frac{(2n-1)\\pi}{2}x\\Bigr)$ for $0 &lt; x &lt; 1$ (Theorem 5.1.4). The first coefficients are $\\kc_1 = \\frac{4(\\pi - 2)}{\\pi^2} \\approx 0.463$, $\\kc_2 \\approx -0.514$, $\\kc_3 \\approx 0.222$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "5.1.6",
+   "source_number": "5.1.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-5-4",
+   "prompt": "<p>Suppose that you had a Sturm–Liouville problem on the interval $[0,1]$ and came up with $\\kyn(x) = \\sin (\\gamma n x)$, where $\\gamma &gt; 0$ is some constant. Decompose $\\kf(x) = x$, $0 &lt; x &lt; 1$ in terms of these eigenfunctions.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the weight $\\kr = 1$, as for $\\kydprime + \\klambda \\ky = 0$, whose eigenfunctions these are. Integrating by parts, $\\langle \\kf, \\kyn \\rangle = \\int_0^1 x\\sin(\\gamma n x)\\,dx = \\frac{\\sin(\\gamma n) - \\gamma n\\cos(\\gamma n)}{\\gamma^2 n^2}$, and $\\langle \\kyn, \\kyn \\rangle = \\int_0^1 \\sin^2(\\gamma n x)\\,dx = \\frac{1}{2} - \\frac{\\sin(2\\gamma n)}{4\\gamma n}$. By (5.4), $x = \\sum_{n=1}^\\infty \\kcn \\sin(\\gamma n x)$ with $\\kcn = \\frac{4\\bigl(\\sin(\\gamma n) - \\gamma n\\cos(\\gamma n)\\bigr)}{\\gamma n\\bigl(2\\gamma n - \\sin(2\\gamma n)\\bigr)}$. As a check, $\\gamma = \\pi$ (the problem $\\ky(0) = \\ky(1) = 0$) gives $\\kcn = \\frac{2(-1)^{n+1}}{n\\pi}$, the sine series of $x$ on $[0, 1]$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "5.1.7",
+   "source_number": "5.1.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-5-2",
+   "prompt": "<p>Find eigenvalues and eigenfunctions of</p>$$ \\ky^{(4)}+\\klambda \\ky = 0, \\quad \\ky(0) = 0, \\quad \\kyprime(0) = 0, \\quad \\ky(1) = 0, \\quad \\kyprime(1) = 0 . $$<p>This problem is not a Sturm–Liouville problem, but the idea is the same.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Multiply the equation by $\\ky$ and integrate over $[0, 1]$. Integrating by parts twice, $\\int_0^1 \\ky^{(4)}\\ky\\,dx = \\bigl[\\ky'''\\ky - \\kydprime\\kyprime\\bigr]_0^1 + \\int_0^1 (\\kydprime)^2\\,dx = \\int_0^1 (\\kydprime)^2\\,dx$, since $\\ky = \\kyprime = 0$ at both ends. So $\\int_0^1 (\\kydprime)^2\\,dx + \\klambda\\int_0^1 \\ky^2\\,dx = 0$. A nonzero $\\ky$ with these conditions is not a line, so $\\int_0^1 (\\kydprime)^2\\,dx &gt; 0$ and $\\klambda &lt; 0$: every eigenvalue is negative. Write $\\klambda = -\\mu^4$ with $\\mu &gt; 0$. The general solution of $\\ky^{(4)} = \\mu^4 \\ky$ is $\\ky = A\\cosh(\\mu x) + B\\sinh(\\mu x) + C\\cos(\\mu x) + D\\sin(\\mu x)$; $\\ky(0) = 0$ and $\\kyprime(0) = 0$ give $C = -A$, $D = -B$. The conditions at $x = 1$, $A(\\cosh\\mu - \\cos\\mu) + B(\\sinh\\mu - \\sin\\mu) = 0$ and $A(\\sinh\\mu + \\sin\\mu) + B(\\cosh\\mu - \\cos\\mu) = 0$, have a nonzero solution exactly when $(\\cosh\\mu - \\cos\\mu)^2 - (\\sinh^2\\mu - \\sin^2\\mu) = 2 - 2\\cos\\mu\\cosh\\mu = 0$, that is, $\\cos\\mu\\cosh\\mu = 1$. Its positive roots, found numerically, are $\\mu_1 \\approx 4.7300$, $\\mu_2 \\approx 7.8532$, $\\mu_3 \\approx 10.9956$, …, so the eigenvalues are $\\klambdan = -\\mu_n^4$: $\\klambda_1 \\approx -500.6$, $\\klambda_2 \\approx -3803.5$, $\\klambda_3 \\approx -14617.6$, …, with eigenfunctions $\\kyn = \\cosh(\\mu_n x) - \\cos(\\mu_n x) - \\frac{\\cosh\\mu_n - \\cos\\mu_n}{\\sinh\\mu_n - \\sin\\mu_n}\\bigl(\\sinh(\\mu_n x) - \\sin(\\mu_n x)\\bigr)$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "5.1.8",
+   "source_number": "5.1.8",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-5-1-1",
+   "prompt": "<p>Find eigenvalues and eigenfunctions for</p>$$ \\frac{d}{dx} (e^x \\kyprime) + \\klambda e^x \\ky = 0, \\quad \\ky(0) = 0, \\quad \\ky(1) = 0 . $$<p>Hint: First write the system as a constant-coefficient system to find general solutions. Do note that Theorem 5.1.1 guarantees $\\klambda \\geq 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Expanding, $(e^x\\kyprime)' + \\klambda e^x\\ky = e^x(\\kydprime + \\kyprime + \\klambda\\ky)$, so the problem is $\\kydprime + \\kyprime + \\klambda\\ky = 0$, $\\ky(0) = \\ky(1) = 0$, with characteristic equation $r^2 + r + \\klambda = 0$, $r = -\\frac{1}{2} \\pm \\sqrt{\\frac{1}{4} - \\klambda}$. Here $\\kp = \\kr = e^x &gt; 0$, $\\kq = 0$, $\\alpha_1 = \\beta_1 = 1$, $\\alpha_2 = \\beta_2 = 0$, so $\\klambda \\geq 0$. For $0 \\leq \\klambda &lt; \\frac{1}{4}$, $\\ky = e^{-x/2}\\bigl(A\\cosh(\\nu x) + B\\sinh(\\nu x)\\bigr)$ with $\\nu = \\sqrt{\\frac{1}{4} - \\klambda} &gt; 0$; $\\ky(0) = A = 0$ and $\\ky(1) = Be^{-1/2}\\sinh\\nu = 0$ force $B = 0$. For $\\klambda = \\frac{1}{4}$, $\\ky = (A + Bx)e^{-x/2}$ and again $A = B = 0$. For $\\klambda &gt; \\frac{1}{4}$, $\\ky = e^{-x/2}\\bigl(A\\cos(\\mu x) + B\\sin(\\mu x)\\bigr)$ with $\\mu = \\sqrt{\\klambda - \\frac{1}{4}}$; $\\ky(0) = A = 0$, and $\\ky(1) = Be^{-1/2}\\sin\\mu = 0$ with $B \\neq 0$ gives $\\mu = n\\pi$. So the eigenvalues are $\\klambdan = \\frac{1}{4} + n^2\\pi^2$ ($\\klambda_1 \\approx 10.12$) with eigenfunctions $\\kyn = e^{-x/2}\\sin(n\\pi x)$, $n = 1, 2, 3, \\ldots$."
+   },
+   "tag": "more challenging"
+  },
+  {
+   "id": "e101",
+   "source_id": "5.1.101",
+   "source_number": "5.1.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-5-1-2",
+   "prompt": "<p>Find eigenvalues and eigenfunctions of</p>$$ \\kydprime + \\klambda \\ky = 0, \\quad \\ky(-1) = 0, \\quad \\ky(1) = 0 . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\klambdan = \\frac{n^2\\pi^2}{4}$, $n=1,2,3,\\ldots$. For odd $n$, $\\kyn = \\cos\\left(\\frac{n\\pi}{2} x \\right)$, for even $n$, $\\kyn = \\sin\\left(\\frac{n\\pi}{2} x \\right)$."
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "5.1.102",
+   "source_number": "5.1.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "regular",
+   "prompt": "<p>Put the following problems into the standard form for Sturm–Liouville problems, that is, find $\\kp(x)$, $\\kq(x)$, $\\kr(x)$, $\\alpha_1$, $\\alpha_2$, $\\beta_1$, and $\\beta_2$, and decide if the problems are regular or not.</p><ol type=\"a\"><li>$x \\kydprime + \\klambda \\ky = 0$ for $0 &lt; x &lt; 1$, $\\ky(0) = 0$, $\\ky(1) = 0$.</li><li>$(1+x^2) \\kydprime + 2x\\kyprime + (\\klambda-x^2) \\ky = 0$ for $-1 &lt; x &lt; 1$, $\\ky(-1) = 0$, $\\ky(1)+\\kyprime(1) = 0$.<sup>25</sup></li></ol><p><small><sup>25</sup> In an earlier version of this book, a typo rendered the equation as $(1+x^2) \\kydprime - 2x\\kyprime + (\\klambda-x^2) \\ky = 0$ ending up with something harder than intended. Try this equation for a further challenge.</small></p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\kp(x) = 1$, $\\kq(x) = 0$, $\\kr(x) = \\frac{1}{x}$, $\\alpha_1 = 1$, $\\alpha_2 = 0$, $\\beta_1 = 1$, $\\beta_2 = 0$. The problem is not regular. b) $\\kp(x) = 1+x^2$, $\\kq(x) = x^2$, $\\kr(x) = 1$, $\\alpha_1 = 1$, $\\alpha_2 = 0$, $\\beta_1 = 1$, $\\beta_2 = 1$. The problem is regular."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "sturm-liouville-problem"
+  },
+  {
+   "exercise": "e1",
+   "concept": "sturm-liouville-eigenvalues"
+  },
+  {
+   "exercise": "e1",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e2",
+   "concept": "sturm-liouville-problem"
+  },
+  {
+   "exercise": "e2",
+   "concept": "regular-sturm-liouville-problem"
+  },
+  {
+   "exercise": "e2",
+   "concept": "robin-boundary-conditions"
+  },
+  {
+   "exercise": "e3",
+   "concept": "eigenfunction-decomposition"
+  },
+  {
+   "exercise": "e3",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e4",
+   "concept": "sturm-liouville-eigenvalues"
+  },
+  {
+   "exercise": "e4",
+   "concept": "finding-eigenvalues-graphically"
+  },
+  {
+   "exercise": "e4",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e5",
+   "concept": "eigenfunction-coefficients"
+  },
+  {
+   "exercise": "e5",
+   "concept": "mixed-boundary-conditions"
+  },
+  {
+   "exercise": "e5",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e6",
+   "concept": "eigenfunction-coefficients"
+  },
+  {
+   "exercise": "e6",
+   "concept": "eigenfunction-decomposition"
+  },
+  {
+   "exercise": "e7",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e7",
+   "concept": "eigenvalue-of-a-boundary-value-problem"
+  },
+  {
+   "exercise": "e7",
+   "concept": "finding-eigenvalues-graphically"
+  },
+  {
+   "exercise": "e8",
+   "concept": "sturm-liouville-eigenvalues"
+  },
+  {
+   "exercise": "e8",
+   "concept": "sturm-liouville-problem"
+  },
+  {
+   "exercise": "e8",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e101",
+   "concept": "solving-an-eigenvalue-problem"
+  },
+  {
+   "exercise": "e101",
+   "concept": "sturm-liouville-eigenvalues"
+  },
+  {
+   "exercise": "e102",
+   "concept": "putting-an-equation-in-sturm-liouville-form"
+  },
+  {
+   "exercise": "e102",
+   "concept": "regular-sturm-liouville-problem"
+  }
+ ]
+}
