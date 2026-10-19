@@ -5,7 +5,7 @@ Prepared 2026-10-19 with `config.md`. It refines the book's `COLOR.md` for what 
 ## What the chapter colours
 
 - `function`: the unknown y(x) of a linear equation and every solution of one (y₁, y₂, y₃, y₄, the general solution, y_c, y_p, ỹ_p, w = y_p − ỹ_p, the reduction-of-order v and y₁v), the right side f(x) and F(x); the displacement x(t), the current I(t) and the charge Q(t), the angle θ(t), the forcing F(t) = F₀ cos ωt and the voltage E(t); the variation-of-parameters u₁, u₂; the transient x_tr and the steady periodic x_sp; the envelope ±Ce^(−pt) drawn dashed. The amplitude C(ω) of 2.6 and its derivative C′(ω) stay in ink (the 2.6 plan: C is a number for each ω, the curve of Figure 2.8 drawn in ink over an ω axis in `frequency`); set at prep 2026-10-19.
-- `derivative`: y′, y″, y‴, y^(n), x′ (a velocity), x″, I′, I″, θ″, E′(t), u₁′, u₂′, v′, w′, C′(ω).
+- `derivative`: y′, y″, y‴, y^(n), x′ (a velocity), x″, I′, I″, θ″, E′(t), u₁′, u₂′, v′, w′ (C′(ω) of 2.6 is ink, line above).
 - `point`: an initial condition drawn as a dot with its slope (y(0) = b₀, y′(0) = b₁).
 - `eigenvalue`: a characteristic root r, r₁, r₂, the pair α ± iβ, −p ± iω₁, and the complex number s = a + ib of the 2.2 Sim when it is the root whose exponential is drawn; the roots are dots in the complex plane in 2.2 and 2.4.
 - `frequency`: ω₀ (natural), ω (forcing), ω₁ (pseudo-frequency), the practical-resonance frequency √(ω₀² − 2p²); ω₀ marked as a dashed special on every ω slider.

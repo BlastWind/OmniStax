@@ -20,6 +20,8 @@
     {"sym": "y_p_tilde", "latex": "\\tilde{y}_p", "macro": "\\kyptilde"},
     {"sym": "y_p_prime", "latex": "y_p'", "macro": "\\kypprime"},
     {"sym": "y_p_dprime", "latex": "y_p''", "macro": "\\kypdprime"},
+    {"sym": "y_p_tilde_prime", "latex": "\\tilde{y}_p'", "macro": "\\kyptildeprime"},
+    {"sym": "y_p_tilde_dprime", "latex": "\\tilde{y}_p''", "macro": "\\kyptildedprime"},
     {"sym": "v_dprime", "latex": "v''", "macro": "\\kvdprime"},
     {"sym": "w", "latex": "w", "macro": "\\kw"},
     {"sym": "w_prime", "latex": "w'", "macro": "\\kwprime"},
@@ -552,7 +554,7 @@
       "terms": ["critically damped"],
       "statement": "When c² − 4km = 0, the system is critically damped: there is one root of multiplicity 2, the root −p, and the solution is x(t) = C₁e^(−pt) + C₂te^(−pt). The behavior is very similar to an overdamped system, of which it is in some sense a limit; since the equations are only an approximation to the real world, in reality we are never critically damped, always a little bit underdamped or a little bit overdamped, so it is better not to dwell on critical damping.",
       "forms": [
-        {"id": "eq-critically-damped", "latex": "x(t) = C_1 e^{-pt} + C_2 t e^{-pt}", "ktex": "\\kx(t) = C_1 e^{-pt} + C_2 t e^{-pt}", "condition": "c² − 4km = 0"}
+        {"id": "eq-critically-damped", "latex": "x(t) = C_1 e^{-pt} + C_2 t e^{-pt}", "ktex": "\\kx(t) = C_1 e^{-pt} + C_2 t e^{-pt}", "condition": "c² − 4km = 0", "anchor": "2.4-eq-critically-damped"}
       ]
     },
     {
@@ -563,9 +565,9 @@
       "terms": ["underdamped"],
       "statement": "When c² − 4km < 0, the system is underdamped and the roots are complex: r = −p ± √(p² − ω₀²) = −p ± √−1 √(ω₀² − p²) = −p ± iω₁, where ω₁ = √(ω₀² − p²). The solution is x(t) = e^(−pt)(A cos(ω₁t) + B sin(ω₁t)), or x(t) = Ce^(−pt) cos(ω₁t − γ): an oscillation that still has x(t) → 0 as t → ∞.",
       "forms": [
-        {"id": "eq-underdamped", "latex": "x(t) = e^{-pt} \\bigl( A \\cos (\\omega_1 t) + B \\sin (\\omega_1 t) \\bigr)", "ktex": "\\kx(t) = e^{-pt} \\bigl( A \\cos (\\komegaone t) + B \\sin (\\komegaone t) \\bigr)", "condition": "c² − 4km < 0"},
-        {"id": "eq-underdamped-phase", "latex": "x(t) = C e^{-pt} \\cos ( \\omega_1 t - \\gamma )", "ktex": "\\kx(t) = C e^{-pt} \\cos ( \\komegaone t - \\gamma )", "condition": "c² − 4km < 0"},
-        {"id": "eq-underdamped-roots", "latex": "r = -p \\pm i \\omega_1", "ktex": "\\kr = -p \\pm i \\komegaone", "condition": "c² − 4km < 0"}
+        {"id": "eq-underdamped", "latex": "x(t) = e^{-pt} \\bigl( A \\cos (\\omega_1 t) + B \\sin (\\omega_1 t) \\bigr)", "ktex": "\\kx(t) = e^{-pt} \\bigl( A \\cos (\\komegaone t) + B \\sin (\\komegaone t) \\bigr)", "condition": "c² − 4km < 0", "anchor": "2.4-eq-underdamped"},
+        {"id": "eq-underdamped-phase", "latex": "x(t) = C e^{-pt} \\cos ( \\omega_1 t - \\gamma )", "ktex": "\\kx(t) = C e^{-pt} \\cos ( \\komegaone t - \\gamma )", "condition": "c² − 4km < 0", "anchor": "2.4-eq-underdamped-phase"},
+        {"id": "eq-underdamped-roots", "latex": "r = -p \\pm i \\omega_1", "ktex": "\\kr = -p \\pm i \\komegaone", "condition": "c² − 4km < 0", "anchor": "2.4-drv-underdamped-roots"}
       ]
     },
     {
@@ -577,7 +579,7 @@
       "type": "function",
       "statement": "The envelope curves Ce^(−pt) and −Ce^(−pt) of underdamped motion: the solution is the oscillating line between them, and they give the maximum amplitude of the oscillation at any given point in time, which is what a bungee jumper wants to compute so as not to hit the concrete. The phase shift γ shifts the oscillation left or right within the envelope curves, which do not change if γ changes; they become flatter and flatter as c, and hence p, goes to 0.",
       "forms": [
-        {"id": "eq-envelope", "latex": "C e^{-pt} \\quad \\text{and} \\quad -C e^{-pt}", "ktex": "C e^{-pt} \\quad \\text{and} \\quad -C e^{-pt}", "condition": "the envelope of x(t) = Ce^(−pt) cos(ω₁t − γ)"}
+        {"id": "eq-envelope", "latex": "C e^{-pt} \\quad \\text{and} \\quad -C e^{-pt}", "ktex": "C e^{-pt} \\quad \\text{and} \\quad -C e^{-pt}", "condition": "the envelope of x(t) = Ce^(−pt) cos(ω₁t − γ)", "anchor": "2.4-envelope"}
       ]
     },
     {
@@ -590,7 +592,7 @@
       "type": "frequency",
       "statement": "The angular pseudo-frequency ω₁ = √(ω₀² − p²) of underdamped motion is not called a frequency since the solution is not really a periodic function. It becomes smaller when the damping c (and hence p) becomes larger: as c² approaches 4km, ω₁ approaches 0 and the solution starts looking like critical damping or overdamping, where no oscillation happens; as c gets smaller, ω₁ approaches ω₀ (ω₁ is always smaller than ω₀) and the solution looks more and more like the steady periodic motion of the undamped case.",
       "forms": [
-        {"id": "eq-pseudo-frequency", "latex": "\\omega_1 =\\sqrt{\\omega_0^2 - p^2}", "ktex": "\\komegaone =\\sqrt{\\komegazero^2 - p^2}"}
+        {"id": "eq-pseudo-frequency", "latex": "\\omega_1 =\\sqrt{\\omega_0^2 - p^2}", "ktex": "\\komegaone =\\sqrt{\\komegazero^2 - p^2}", "anchor": "2.4-underdamped-solution"}
       ]
     },
     {
@@ -601,8 +603,8 @@
       "terms": ["associated homogeneous equation"],
       "statement": "For a nonhomogeneous linear equation Ly = f(x), such as y″ + 5y′ + 6y = 2x + 1, equation (2.6), the associated homogeneous equation is Ly = 0, the same left-hand side with zero on the right: y″ + 5y′ + 6y = 0, equation (2.7). Ly is written when the exact form of the operator is not important.",
       "forms": [
-        {"id": "eq-associated-homogeneous", "latex": "y'' + 5y'+ 6y = 0", "ktex": "\\kydprime + 5\\kyprime+ 6\\ky = 0", "condition": "the associated homogeneous equation (2.7) of y″ + 5y′ + 6y = 2x + 1"},
-        {"id": "eq-associated-homogeneous-operator", "latex": "Ly = 0", "ktex": "L\\ky = 0", "condition": "for the equation Ly = f(x)"}
+        {"id": "eq-associated-homogeneous", "latex": "y'' + 5y'+ 6y = 0", "ktex": "\\kydprime + 5\\kyprime+ 6\\ky = 0", "condition": "the associated homogeneous equation (2.7) of y″ + 5y′ + 6y = 2x + 1", "anchor": "2.5-eq-2-7"},
+        {"id": "eq-associated-homogeneous-operator", "latex": "Ly = 0", "ktex": "L\\ky = 0", "condition": "for the equation Ly = f(x)", "anchor": "2.5-yc-yp"}
       ]
     },
     {
@@ -622,9 +624,9 @@
       "name": "General solution of a nonhomogeneous equation",
       "statement": "Theorem 2.5.1. Let Ly = f(x) be a linear ODE (not necessarily constant-coefficient). Let y_c be the complementary solution (the general solution to the associated homogeneous equation Ly = 0) and let y_p be any particular solution to Ly = f(x). Then the general solution to Ly = f(x) is y = y_c + y_p. As L is a linear operator, Ly = Ly_c + Ly_p = 0 + f(x); and any two particular solutions y_p and ỹ_p differ by w = y_p − ỹ_p with Lw = Ly_p − Lỹ_p = 0, a solution of the homogeneous equation, so y_c + y_p includes all solutions. The moral is that the particular solution can be found in any old way: a different one gives the same general solution, with different constants for the initial conditions.",
       "forms": [
-        {"id": "eq-yc-plus-yp", "latex": "y = y_c + y_p", "ktex": "\\ky = \\kyc + \\kyp"},
-        {"id": "eq-difference-of-particular-solutions", "latex": "Lw = L(y_p - \\tilde{y}_p) = Ly_p - L\\tilde{y}_p = (2x+1)-(2x+1) = 0", "ktex": "L\\kw = L(\\kyp - \\kyptilde) = L\\kyp - L\\kyptilde = (2x+1)-(2x+1) = 0", "condition": "y_p, ỹ_p two particular solutions of (2.6)"},
-        {"id": "eq-nonhomogeneous-example-solution", "latex": "y = C_1 e^{-2x} + C_2 e^{-3x} + \\frac{3x-1}{9}", "ktex": "\\ky = C_1 e^{-2x} + C_2 e^{-3x} + \\frac{3x-1}{9}", "condition": "the general solution of y″ + 5y′ + 6y = 2x + 1"}
+        {"id": "eq-yc-plus-yp", "latex": "y = y_c + y_p", "ktex": "\\ky = \\kyc + \\kyp", "anchor": "2.5-thm-2-5-1"},
+        {"id": "eq-difference-of-particular-solutions", "latex": "Lw = L(y_p - \\tilde{y}_p) = Ly_p - L\\tilde{y}_p = (2x+1)-(2x+1) = 0", "ktex": "L\\kw = L(\\kyp - \\kyptilde) = L\\kyp - L\\kyptilde = (2x+1)-(2x+1) = 0", "condition": "y_p, ỹ_p two particular solutions of (2.6)", "anchor": "2.5-eq-difference-of-particular-solutions"},
+        {"id": "eq-nonhomogeneous-example-solution", "latex": "y = C_1 e^{-2x} + C_2 e^{-3x} + \\frac{3x-1}{9}", "ktex": "\\ky = C_1 e^{-2x} + C_2 e^{-3x} + \\frac{3x-1}{9}", "condition": "the general solution of y″ + 5y′ + 6y = 2x + 1", "anchor": "2.5-eq-nonhomogeneous-example-solution"}
       ]
     },
     {
@@ -642,7 +644,7 @@
       "name": "Duplication with the complementary solution",
       "statement": "There is one hiccup: the guess may solve the associated homogeneous equation, as Ae^(3x) does for y″ − 9y = e^(3x), where plugging it in gives 0 whatever A is. The trick is to multiply the guess by x to get rid of duplication with the complementary solution, y_p = Axe^(3x), which gives A = 1/6; if that does not remove all duplication, as for y″ − 6y′ + 9y = e^(3x) with y_c = C₁e^(3x) + C₂xe^(3x), multiply by x again, y_p = Ax²e^(3x). Multiply by x until all duplication is gone, but no more, and look for duplication in the entire expression tried: for y″ − y = xe^x the guess must be Axe^x + Bx²e^x, since e^x appears in y_c.",
       "forms": [
-        {"id": "eq-undetermined-duplication", "latex": "y_p = A x e^{3x}", "ktex": "\\kyp = A x e^{3x}", "condition": "y″ − 9y = e^(3x), where Ae^(3x) duplicates y_c"}
+        {"id": "eq-undetermined-duplication", "latex": "y_p = A x e^{3x}", "ktex": "\\kyp = A x e^{3x}", "condition": "y″ − 9y = e^(3x), where Ae^(3x) duplicates y_c", "anchor": "2.5-duplication-guess"}
       ]
     },
     {
@@ -653,8 +655,8 @@
       "terms": ["variation of parameters"],
       "statement": "Variation of parameters handles any equation Ly = f(x), such as y″ + y = tan x, whose right-hand side has infinitely many different derivatives, provided certain integrals can be solved; it works for higher-order equations and for nonconstant coefficients when the associated homogeneous equation can be solved. For y″ + p(x)y′ + q(x)y = f(x), first find solutions y₁, y₂ of the homogeneous equation, then try y_p = u₁y₁ + u₂y₂ where u₁ and u₂ are functions and not constants. Imposing u₁′y₁ + u₂′y₂ = 0 to simplify the second derivative, the equation Ly = f(x) comes down to the two boxed equations u₁′y₁ + u₂′y₂ = 0 and u₁′y₁′ + u₂′y₂′ = f(x); solve them for u₁′ and u₂′, integrate (forgetting the constants of integration) to find u₁ and u₂, and plug into y_p = u₁y₁ + u₂y₂. If y″ has a coefficient a ≠ 1, first divide the equation, and hence f, by a. For y″ + y = tan x this gives y_p = −cos x ln|sec x + tan x|.",
       "forms": [
-        {"id": "eq-variation-of-parameters", "latex": "\\begin{aligned} & u_1' y_1 + u_2' y_2 = 0 ,\\\\ & u_1' y_1' + u_2' y_2' = f(x) . \\end{aligned}", "ktex": "\\begin{aligned} & \\kuoneprime \\kyone + \\kutwoprime \\kytwo = 0 ,\\\\ & \\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime = \\kf(x) . \\end{aligned}", "condition": "for Ly = y″ + p(x)y′ + q(x)y = f(x), y₁ and y₂ solving Ly = 0"},
-        {"id": "eq-variation-trial", "latex": "y_p = u_1 y_1 + u_2 y_2", "ktex": "\\kyp = \\kuone \\kyone + \\kutwo \\kytwo"}
+        {"id": "eq-variation-of-parameters", "latex": "\\begin{aligned} & u_1' y_1 + u_2' y_2 = 0 ,\\\\ & u_1' y_1' + u_2' y_2' = f(x) . \\end{aligned}", "ktex": "\\begin{aligned} & \\kuoneprime \\kyone + \\kutwoprime \\kytwo = 0 ,\\\\ & \\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime = \\kf(x) . \\end{aligned}", "condition": "for Ly = y″ + p(x)y′ + q(x)y = f(x), y₁ and y₂ solving Ly = 0", "anchor": "2.5-eq-vp-system"},
+        {"id": "eq-variation-trial", "latex": "y_p = u_1 y_1 + u_2 y_2", "ktex": "\\kyp = \\kuone \\kyone + \\kutwo \\kytwo", "anchor": "2.5-eq-variation-trial"}
       ]
     },
     {
