@@ -906,7 +906,7 @@ def write_index(book):
     fr = master.split("\n")
     fr_start = next(k for k, l in enumerate(fr) if l.startswith("\\begin{thebibliography}")) + 1
     fr_end = next(k for k, l in enumerate(fr) if l.startswith("\\end{thebibliography}")) + 1
-    data = dict(book="Notes on Diffy Qs: Differential Equations for Engineers", id="diffyqs", source="source/diffyqs",
+    data = dict(book="Differential Equations for Engineers", id="diffyqs", source="source/diffyqs",
                 version=version,
                 numbering="sections N.M; theorems, examples, remarks, exercises N.M.k per section; equations, figures, "
                           "tables N.k per chapter (no chapter part in Chapter 0); appendices lettered",
