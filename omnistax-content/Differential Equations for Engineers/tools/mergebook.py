@@ -71,10 +71,15 @@ def write_atomic(path, text):
 
 
 def chapter_number(ch):
+    """The order a chapter dir sorts in: the numbered chapters by number, then the
+    lettered appendices (appA is a chapter of this book, id A) after them by letter."""
     m = re.fullmatch(r"ch(\d\d)", ch)
-    if not m:
-        sys.exit(f"chapter dir must look like ch04, got {ch}")
-    return int(m.group(1))
+    if m:
+        return int(m.group(1))
+    m = re.fullmatch(r"app([A-Z])", ch)
+    if m:
+        return 100 + ord(m.group(1))
+    sys.exit(f"chapter dir must look like ch04 or appA, got {ch}")
 
 
 def update_in_place(rows, staged, key, owned):
