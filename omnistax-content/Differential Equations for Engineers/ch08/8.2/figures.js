@@ -243,7 +243,7 @@ portrait({
     const vf = C('vector-field'), cv = C('curve'), pc = C('point'), ec = C('eigenvalue');
     const p = traj(), end = span(), t = Math.min(cy.now(), end), out = p.why === 'out' && cy.now() >= end;
     hits = [];
-    const ax = axes(ctx, BOX, XR, YR, { xl: 'x', yl: 'y', nx: 6, ny: 5, fy: (v) => (Math.abs(v - Math.round(v)) < 1e-9 ? minus(String(Math.round(v))) : '') });
+    const ax = axes(ctx, BOX, XR, YR, { xl: 'x', yl: 'y', nx: 6, ny: 5, nice: true });
     line(ctx, ax.X(0), BOX.t, ax.X(0), BOX.b, alpha(PAL.ink, 0.25), 2); line(ctx, BOX.l, ax.Y(0), BOX.r, ax.Y(0), alpha(PAL.ink, 0.25), 2);
     space.field2(ctx, ax, unit(f), alpha(vf, 0.6), { n: [16, 14], w: 2.5 });
     [[-2, 1], [2, -1], [1, 2], [-1, -2]].forEach(([px, py]) => { const [u, w] = f([px, py]); hits.push({ x: ax.X(px), y: ax.Y(py), r: 14, name: minus(`the vector field at (${px}, ${py}): (x′, y′) = (${u}, ${w}), drawn at one length`) }); });
@@ -265,7 +265,7 @@ portrait({
     if (out) headline(ctx, minus(`$t \\approx ${fix(end, 1)}$: the trajectory from $(${fix(R)}, 0)$ leaves the window, though the linearization at $(0, 0)$ is a center.`));
     else headline(ctx, minus(`$t = ${fix(t, 1)}$: the distance from $(0, 0)$ is $${fix(dist, 3)}$, against $${fix(R, 3)}$ at the start and on the linearization’s circle.`));
     const yv = Math.round(s[1] * 100) / 100, Y = fix(yv), y2 = (3 / 2) * yv * yv, disc = 4 - 9 * yv ** 4;
-    const yy = yv < 0 ? `(${Y})` : Y;
+    const yy = `(${Y})`;
     const lam = disc >= 0
       ? `\\klambda = \\tfrac{3}{2}\\ky^2 \\pm i\\tfrac{\\sqrt{4-9\\ky^4}}{2} = \\tfrac{3}{2}${yy}^2 \\pm i\\tfrac{\\sqrt{4-9${yy}^4}}{2} ${rel(num(y2, 3), num(Math.sqrt(disc) / 2, 3))} ${fix(y2, 3)} \\pm ${fix(Math.sqrt(disc) / 2, 3)}i`
       : `\\klambda = \\tfrac{3}{2}\\ky^2 \\pm \\tfrac{\\sqrt{9\\ky^4-4}}{2} = \\tfrac{3}{2}${yy}^2 \\pm \\tfrac{\\sqrt{9${yy}^4-4}}{2} \\approx ${fix(y2 - Math.sqrt(-disc) / 2, 3)},\\ ${fix(y2 + Math.sqrt(-disc) / 2, 3)}`;
@@ -283,9 +283,9 @@ portrait({
    oval runs from x ≈ −0.398 to 0.567 and a second branch starts at x ≈ 1.331; for C > 1/6 there is one curve, turning at
    one x < −1/2. Still: a family under a parameter has no clock. */
 (function () {
-  const d = sim('sim-energy-levels', 1060);
+  const d = sim('sim-energy-levels', 1110);
   const V = (x) => x * x / 2 - x * x * x / 3;
-  const TOP = { l: 380, r: 1020, t: 120, b: 320 }, BOT = { l: 380, r: 1020, t: 380, b: 1020 }, XR = [-2, 2];
+  const TOP = { l: 380, r: 1020, t: 120, b: 320 }, BOT = { l: 380, r: 1020, t: 420, b: 1060 }, XR = [-2, 2];
   const c = ctl(d.controls, { label: 'C', cls: '', key: 'C', min: -0.05, max: 0.5, step: 0.005, value: 0.1, unit: '', dec: 3, aria: 'the energy level C',
     specials: [{ at: 0, label: 'center' }, { at: 1 / 6, label: 'saddle' }] });
   const ro = readout(d);
@@ -334,7 +334,7 @@ portrait({
     const top = axes(ctx, TOP, XR, [-0.2, 0.6], { xl: 'x', yl: '', nx: 4, ny: 4, fy: (v) => minus(v.toFixed(1)) });
     line(ctx, TOP.l, top.Y(0), TOP.r, top.Y(0), alpha(PAL.ink, 0.25), 2);
     plot(ctx, top, V, ic, { w: 5 });
-    text(ctx, '$\\int \\kf(\\kx)\\,d\\kx = \\tfrac{1}{2}\\kx^2 - \\tfrac{1}{3}\\kx^3$', TOP.l + 20, TOP.t + 18, ic, { size: 20, weight: 600, tex: true, bg: PAL.panel });
+    text(ctx, '$\\int \\kf(\\kx)\\,d\\kx = \\tfrac{1}{2}\\kx^2 - \\tfrac{1}{3}\\kx^3$', TOP.l + 16, top.Y(-0.11), ic, { size: 20, weight: 600, tex: true, bg: PAL.panel });
     hits.push({ x: top.X(-0.9), y: top.Y(V(-0.9)), r: 14, name: 'the integral ½x² − ⅓x³ of f(x) = x − x², the well the energy sits in' });
     /* the level C across the well */
     ctx.save(); ctx.setLineDash([10, 10]); line(ctx, TOP.l, top.Y(Cv), TOP.r, top.Y(Cv), PAL.ink, 3); ctx.restore();
