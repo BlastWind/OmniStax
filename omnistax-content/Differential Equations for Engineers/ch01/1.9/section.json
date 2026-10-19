@@ -597,18 +597,12 @@
       {
        "tex": "\\xi = x - \\alpha t , \\qquad s = t",
        "src": "Example 1.9.1"
-      },
-      {
-       "text": "The chain rule in several variables: for $u$ as a function of $\\xi$ and $s$, which are functions of $x$ and $t$, $u_x = u_\\xi \\xi_x + u_s s_x$ and $u_t = u_\\xi \\xi_t + u_s s_t$.",
-       "src": "Calculus, 14.5"
       }
      ],
      "then": {
       "tex": "\\mk{ux}{\\kux} = \\mk{a}{\\kuxi}\\,\\mk{ax}{\\xi_x} + \\mk{b}{\\kus}\\,\\mk{bx}{s_x}",
-      "src": "Example 1.9.1",
-      "uses": [
-       1
-      ]
+      "src": "Calculus, 14.5",
+      "why": "The chain rule in several variables, with $u$ a function of $\\xi$ and $s$, which are functions of $x$ and $t$."
      },
      "steps": [
       {
@@ -629,18 +623,12 @@
       {
        "tex": "\\xi = x - \\alpha t , \\qquad s = t",
        "src": "Example 1.9.1"
-      },
-      {
-       "text": "The chain rule in several variables: for $u$ as a function of $\\xi$ and $s$, which are functions of $x$ and $t$, $u_x = u_\\xi \\xi_x + u_s s_x$ and $u_t = u_\\xi \\xi_t + u_s s_t$.",
-       "src": "Calculus, 14.5"
       }
      ],
      "then": {
       "tex": "\\mk{ut}{\\kut} = \\mk{a}{\\kuxi}\\,\\mk{ax}{\\xi_t} + \\mk{b}{\\kus}\\,\\mk{bx}{s_t}",
-      "src": "Example 1.9.1",
-      "uses": [
-       1
-      ]
+      "src": "Calculus, 14.5",
+      "why": "The chain rule again, now differentiating in $t$."
      },
      "steps": [
       {
@@ -659,10 +647,6 @@
     {
      "assumes": [
       {
-       "tex": "\\alpha \\kux + \\kut = 0",
-       "src": "Example 1.9.1"
-      },
-      {
        "step": 0
       },
       {
@@ -671,17 +655,14 @@
      ],
      "then": {
       "tex": "\\mk{al}{\\alpha}\\,\\mk{ux}{\\kux} + \\mk{ut}{\\kut} = \\mk{z}{0}",
-      "src": "Example 1.9.1",
-      "uses": [
-       0
-      ]
+      "src": "Example 1.9.1"
      },
      "steps": [
       {
        "tex": "\\mk{al}{\\alpha}\\,\\mk{ux}{\\underbrace{(\\kuxi)}_{\\kux}} + \\mk{ut}{\\underbrace{(- \\alpha \\kuxi + \\kus)}_{\\kut}} = \\mk{z}{0}",
        "uses": [
-        1,
-        2
+        0,
+        1
        ]
       },
       {
@@ -729,26 +710,19 @@
     {
      "assumes": [
       {
-       "tex": "\\ku(x,0) = \\kf(x)",
-       "src": "Example 1.9.1"
-      },
-      {
        "step": 3
       }
      ],
      "then": {
       "tex": "\\mk{f}{\\kf(x)} = \\mk{u}{\\ku(x,0)}",
       "src": "Example 1.9.1",
-      "uses": [
-       0
-      ],
       "why": "The initial condition says that $u(x, 0)$ is the given $f(x)$."
      },
      "steps": [
       {
        "tex": "\\mk{f}{\\kf(x)} = \\mk{u}{A(x - \\alpha 0)}",
        "uses": [
-        1
+        0
        ]
       },
       {
@@ -763,7 +737,7 @@
       {
        "tex": "\\mk{u}{\\ku(x,t)} = \\mk{f}{\\kf(x-\\alpha t)}",
        "uses": [
-        1
+        0
        ]
       }
      ],
@@ -781,18 +755,12 @@
       {
        "tex": "\\frac{dx}{ds} = a, \\qquad \\frac{dt}{ds} = b",
        "src": "1.9"
-      },
-      {
-       "text": "The chain rule: when $x$ and $t$ are functions of $s$, $\\frac{du}{ds} = u_x \\frac{dx}{ds} + u_t \\frac{dt}{ds}$.",
-       "src": "Calculus, 14.5"
       }
      ],
      "then": {
       "tex": "\\mk{d}{\\kduds} = \\mk{x}{\\kux \\frac{dx}{ds}} + \\mk{t}{\\kut \\frac{dt}{ds}}",
-      "src": "1.9",
-      "uses": [
-       1
-      ]
+      "src": "Calculus, 14.5",
+      "why": "The chain rule, when we think of $x$ and $t$ as functions of $s$."
      },
      "steps": [
       {
@@ -808,18 +776,12 @@
      "assumes": [
       {
        "step": 0
-      },
-      {
-       "tex": "a \\kux + b \\kut + c \\ku = g",
-       "src": "1.9"
       }
      ],
      "then": {
       "tex": "\\mk{x}{a \\kux} + \\mk{t}{b \\kut} + \\mk{c}{c \\ku} = \\mk{g}{g}",
       "src": "1.9",
-      "uses": [
-       1
-      ]
+      "why": "The equation we are solving."
      },
      "steps": [
       {

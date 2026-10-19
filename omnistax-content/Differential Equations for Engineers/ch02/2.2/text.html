@@ -1,0 +1,118 @@
+<section id="solving-cc">
+<h2>Solving constant-coefficient equations</h2>
+<p>Consider the problem</p>
+$$ \kydprime - 6\kyprime + 8\ky = 0, \qquad \ky(0) = - 2, \qquad \kyprime(0) = 6 . $$
+<p id="constant-coefficients">This is a <span data-concept="second-order-linear-differential-equation">second-order linear homogeneous equation</span> with <span data-concept="constant-coefficient-equation">constant coefficients</span>. <em><span data-concept="constant-coefficient-equation">Constant coefficients</span></em> means that the functions in front of $\kydprime$, $\kyprime$, and $\ky$ are constants; they do not depend on $x$.</p>
+<p id="guess">To guess a <span data-concept="solution-to-a-differential-equation">solution</span>, think of a function that stays essentially the same when we differentiate it, so that we can take the function and its derivatives, add some multiples of these together, and end up with zero. Yes, we are talking about the exponential.</p>
+<p id="trial">We try<sup class="fn" data-note="ansatz"></sup> a <span data-concept="solution-to-a-differential-equation">solution</span> of the form $\ky = e^{\kr x}$. Then $\kyprime = \kr e^{\kr x}$ and $\kydprime = \kr^2 e^{\kr x}$. Plug in to get</p>
+<figure class="dv" id="drv-cc-example"></figure>
+<p id="two-solutions">Hence, if $\kr=2$ or $\kr=4$, then $e^{\kr x}$ is a <span data-concept="solution-to-a-differential-equation">solution</span>. So let $\kyone = e^{2x}$ and $\kytwo = e^{4x}$.</p>
+<div class="exercises" data-place="two-solutions"></div>
+<p id="independent">The functions $e^{2x}$ and $e^{4x}$ are <span data-concept="linear-independence">linearly independent</span>. If they were not <span data-concept="linear-independence">linearly independent</span>, we could write $e^{4x} = C e^{2x}$ for some constant $C$, implying that $e^{2x} = C$ for all $x$, which is clearly not possible. Hence, we can write the <span data-concept="general-solution">general solution</span> as</p>
+$$ \ky = C_1 e^{2x} + C_2 e^{4x} . $$
+<p id="constants">We need to solve for $C_1$ and $C_2$. To apply the <span data-concept="initial-value">initial conditions</span>, we first find $\kyprime = 2 C_1 e^{2x} + 4 C_2 e^{4x}$. We plug $x=0$ into $\ky$ and $\kyprime$ and solve.</p>
+$$ \begin{aligned} -2 &amp; = \ky(0) = C_1 + C_2 , \\ 6 &amp; = \kyprime(0) = 2 C_1 + 4 C_2 . \end{aligned} $$
+<p>Either apply some matrix algebra, or just solve these by high school math. For example, divide the second equation by 2 to obtain $3 = C_1 + 2 C_2$, then subtract the two equations to get $5 = C_2$. Then $C_1 = -7$ as $-2 = C_1 + 5$. Hence, the <span data-concept="particular-solution">solution</span> we are looking for is</p>
+$$ \ky = -7 e^{2x} + 5 e^{4x} . $$
+<p id="generalize">We generalize this example into a method. Suppose that we have an equation</p>
+<div class="equation" id="eq-2-3">$$ a \kydprime + b \kyprime + c \ky = 0 , \tag{2.3}$$</div>
+<p id="trial-general">where $a, b, c$ are constants. Try the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky = e^{\kr x}$ to obtain</p>
+$$ a \kr^2 e^{\kr x} + b \kr e^{\kr x} + c e^{\kr x} = 0 . $$
+<p id="characteristic-equation">Divide by $e^{\kr x}$ to obtain the so-called <em><span data-concept="characteristic-equation">characteristic equation</span></em> of the ODE:</p>
+<div class="equation" id="eq-characteristic-equation">$$ a \kr^2 + b \kr + c = 0 . $$</div>
+<p id="quadratic-formula">Solve for the $\kr$ by using the quadratic formula:</p>
+<div class="equation" id="eq-characteristic-roots">$$ \krone, \krtwo = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} . $$</div>
+<p id="real-roots">Suppose that $b^2 -4ac \geq 0$ for now so that <a href="/calculus/ch17/17.1/#17.1-sim-characteristic-roots">$\krone$ and $\krtwo$ are real</a>. So $e^{\krone x}$ and $e^{\krtwo x}$ are <span data-concept="solution-to-a-differential-equation">solutions</span>. There is still a difficulty if $\krone = \krtwo$, but it is not hard to overcome.</p>
+<div class="note" id="thm-2-2-1">
+<div class="eyebrow">Theorem 2.2.1</div>
+<p>Suppose that $\krone$ and $\krtwo$ are the roots of the <span data-concept="characteristic-equation">characteristic equation</span>.</p>
+<p>(i) If $\krone$ and $\krtwo$ are distinct and real (when $b^2 - 4ac &gt; 0$), then <a href="#eq-2-3">(2.3)</a> has the <span data-concept="general-solution">general solution</span></p>
+<div class="equation" id="eq-distinct-real-roots">$$ \boxed{~~ \ky = C_1 e^{\krone x} + C_2 e^{\krtwo x} . ~~} $$</div>
+<p>(ii) If $\krone = \krtwo$ (happens when $b^2 - 4ac = 0$), then <a href="#eq-2-3">(2.3)</a> has the <span data-concept="general-solution">general solution</span></p>
+<div class="equation" id="eq-repeated-real-root">$$ \boxed{~~ \ky = (C_1 + C_2 x)\, e^{\krone x} . ~~} $$</div>
+</div>
+<div class="example" id="ex-2-2-1">
+<h3>Example 2.2.1</h3>
+<p>Solve</p>
+$$ \kydprime - k^2 \ky = 0 . $$
+<p>The <span data-concept="characteristic-equation">characteristic equation</span> is $\kr^2 - k^2 = 0$ or $(\kr-k)(\kr+k) = 0$. Consequently, $e^{-k x}$ and $e^{kx}$ are the two <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions</span>, and the <span data-concept="general-solution">general solution</span> is</p>
+$$ \ky = C_1 e^{kx} + C_2e^{-kx} . $$
+<p>Since <a href="/calculus/ch06/6.9/">$\cosh s = \frac{e^s+e^{-s}}{2}$ and $\sinh s = \frac{e^s-e^{-s}}{2}$</a>, we can also write the <span data-concept="general-solution">general solution</span> as</p>
+$$ \ky = D_1 \cosh(kx) + D_2 \sinh(kx) . $$
+</div>
+<div class="example" id="ex-2-2-2">
+<h3>Example 2.2.2</h3>
+<p>Find the <span data-concept="general-solution">general solution</span> of</p>
+$$ \kydprime -8 \kyprime + 16 \ky = 0 . $$
+<p id="double-root-example">The <span data-concept="characteristic-equation">characteristic equation</span> is $\kr^2 - 8 \kr + 16 = {(\kr-4)}^2 = 0$. The equation has a double root $\krone = \krtwo = 4$. The <span data-concept="general-solution">general solution</span> is, therefore,</p>
+<div class="equation" id="eq-double-root-example">$$ \ky = (C_1 + C_2 x)\, e^{4 x} = C_1 e^{4x} + C_2 x e^{4x} . $$</div>
+<div class="exercises" data-place="eq-double-root-example"></div>
+<p>It is good to check your work. That $e^{4x}$ solves the equation is clear. Let us check that $x e^{4x}$ solves the equation. Compute $\kyprime = e^{4x} + 4xe^{4x}$ and $\kydprime = 8 e^{4x} + 16xe^{4x}$. Plug in,</p>
+$$ \kydprime - 8 \kyprime + 16 \ky = 8 e^{4x} + 16xe^{4x} - 8(e^{4x} + 4xe^{4x}) + 16 xe^{4x} = 0 . $$
+</div>
+<p id="double-root-rare">In some sense, a double root rarely happens. If coefficients are picked randomly, a double root is unlikely. There are, however, some real-world problems where a double root does happen naturally (e.g. <span data-concept="critically-damped-system">critically damped mass-spring system</span>, as we will see).</p>
+<p id="double-root-limit">Here is a short argument for why the <span data-concept="solution-to-a-differential-equation">solution</span> $x e^{\kr x}$ works for a double root. A double root is a limit case of two distinct but very close roots. Note that $\frac{e^{\krtwo x} - e^{\krone x}}{\krtwo - \krone}$ is a <span data-concept="solution-to-a-differential-equation">solution</span> when the roots are distinct. When we take the limit as $\krone$ goes to $\krtwo$, we are really taking the derivative of $e^{\kr x}$ using $\kr$ as the variable. Therefore, the limit is $x e^{\kr x}$, and hence this is a <span data-concept="solution-to-a-differential-equation">solution</span> in the double root case. We remark that in some numerical computations, two very close roots may lead to numerical instability while a double root will not.</p>
+</section>
+
+<section id="complex-euler">
+<h2>Complex numbers and Euler’s formula</h2>
+<p id="complex-roots-intro">A polynomial may have <span data-concept="solution-for-complex-conjugate-roots">complex roots</span>. The equation $\kr^2 + 1 = 0$ has no real roots, but it does have two complex roots. Here we review some properties of <span data-concept="complex-number">complex numbers</span>.</p>
+<p id="complex-number"><span data-concept="complex-number">Complex numbers</span> may seem a strange concept, perhaps due to the terminology. There is nothing imaginary or complicated about <span data-concept="complex-number">complex numbers</span>. A <span data-concept="complex-number">complex number</span> is simply a pair of real numbers, $(a,b)$, that is, it is a point in the plane. We add <span data-concept="complex-number">complex numbers</span> in the straightforward way: $(a,b)+(c,d)=(a+c,b+d)$. We define multiplication by</p>
+<div class="equation" id="eq-complex-multiplication">$$ (a,b) \times (c,d) \overset{\text{def}}{=} (ac-bd,ad+bc) . $$</div>
+<p>It turns out that with this multiplication rule, all the standard properties of arithmetic hold. Further, and most importantly $(0,1) \times (0,1) = (-1,0)$.</p>
+<p id="i-squared">Generally we write $(a,b)$ as $a+ib$, and we treat $i$ as if it were an unknown. When $b$ is zero, then $(a,0)$ is just the number $a$. We do arithmetic with <span data-concept="complex-number">complex numbers</span> just as we would with polynomials. The property we just mentioned becomes $i^2 = -1$. So whenever we see $i^2$, we replace it by $-1$. For example,</p>
+$$ (2+3i)(4i) - 5i = (2\times 4)i + (3 \times 4) i^2 - 5i = 8i + 12 (-1) - 5i = -12 + 3i . $$
+<p id="j-convention">The numbers $i$ and $-i$ are the two roots of $\kr^2 + 1 = 0$. Some engineers use the letter $j$ instead of $i$ for the square root of $-1$. We follow the mathematicians’ convention and use $i$.</p>
+<div class="exercises" data-place="j-convention"></div>
+<p id="complex-exponential">We also define the <span data-concept="complex-exponential">exponential $e^{a+ib}$</span> of a <span data-concept="complex-number">complex number</span> by writing down the <a href="/calculus/ch10/10.3/">Taylor series</a> and plugging in the <span data-concept="complex-number">complex number</span>. Most properties of the exponential follow from its Taylor series, and so these properties hold for the <span data-concept="complex-exponential">complex exponential</span> too. For example, we have the property: $e^{x+y} = e^x e^y$. In particular, $e^{a+ib} = e^a e^{ib}$. Hence, if we can compute $e^{ib}$, we can compute $e^{a+ib}$. For $e^{ib}$, we use the so-called <em><span data-concept="eulers-formula">Euler’s formula</span></em>.</p>
+<div class="note" id="thm-2-2-2">
+<div class="eyebrow">Theorem 2.2.2</div>
+<h3><span data-concept="eulers-formula">Euler’s formula</span></h3>
+<div class="equation" id="eq-eulers-formula">$$ \boxed{~~ e^{i \theta} = \cos \theta + i \sin \theta \qquad \text{ and } \qquad e^{- i \theta} = \cos \theta - i \sin \theta . ~~} $$</div>
+</div>
+<p id="complex-exponential-euler">In other words, $e^{a+ib} = e^a \bigl( \cos(b) + i \sin(b) \bigr) = e^a \cos(b) + i e^a \sin(b)$.</p>
+<div class="exercises" data-place="complex-exponential-euler"></div>
+<p id="re-im">For a <span data-concept="complex-number">complex number</span> $a+ib$, we call $a$ the <em><span data-concept="real-and-imaginary-parts">real part</span></em> and $b$ the <em><span data-concept="real-and-imaginary-parts">imaginary part</span></em> of the number. Often the following notation is used:</p>
+<div class="equation" id="eq-re-im">$$ \operatorname{Re}(a+ib) = a \qquad \text{and} \qquad \operatorname{Im}(a+ib) = b. $$</div>
+</section>
+
+<section id="complex-roots">
+<h2>Complex roots</h2>
+<p id="complex-roots">Suppose the differential equation $a\kydprime + b\kyprime + c\ky = 0$ has the <span data-concept="characteristic-equation">characteristic equation</span> $a \kr^2 + b \kr + c = 0$ that has <span data-concept="solution-for-complex-conjugate-roots">complex roots</span>. By the quadratic formula, the roots are $\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$. These roots are complex if $b^2 - 4ac &lt; 0$. In this case, we write the roots as</p>
+<div class="equation" id="eq-complex-roots-form">$$ \krone, \krtwo = \frac{-b}{2a} \pm i\frac{\sqrt{4ac - b^2}}{2a} . $$</div>
+<p id="roots-pair">As you can see, we get a pair of roots of the form $\kalpha \pm i \kbeta$. We could still write the <span data-concept="solution-to-a-differential-equation">solution</span> as</p>
+$$ \ky = C_1 e^{(\kalpha+i\kbeta)x} + C_2 e^{(\kalpha-i\kbeta)x} . $$
+<p id="complex-valued">However, the exponential is now complex-valued. We need to allow $C_1$ and $C_2$ to be <span data-concept="complex-number">complex numbers</span> to obtain a real-valued <span data-concept="solution-to-a-differential-equation">solution</span> (which is what we are after). While there is nothing particularly wrong with this approach, it can make calculations harder and it is generally preferred to find two real-valued <span data-concept="solution-to-a-differential-equation">solutions</span>.</p>
+<figure class="sim" id="sim-complex-exponential">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>As $x$ runs, the point $e^{\kr x}$ sets out from $1$ with its velocity $\kr e^{\kr x}$ always $\kr$ times its position, so it circles when $\kr$ is purely imaginary, spirals in when $\kalpha &lt; 0$ and spirals out when $\kalpha &gt; 0$; its real part, traced beside it, is $e^{\kalpha x} \cos(\kbeta x)$. Drag the root $\kr = \kalpha + i\kbeta$.</span></div>
+</figure>
+<p id="euler-rescue"><span data-concept="eulers-formula">Euler’s formula</span> comes to the rescue. Let</p>
+$$ \kyone = e^{(\kalpha+i\kbeta)x} \qquad \text{and} \qquad \kytwo = e^{(\kalpha-i\kbeta)x} . $$
+<figure class="dv" id="drv-complex-roots"></figure>
+<p id="y3-y4">It is not hard to see that $\kythree$ and $\kyfour$ are <span data-concept="linear-independence">linearly independent</span> (not multiples of each other). So the <span data-concept="general-solution">general solution</span> can be written in terms of $\kythree$ and $\kyfour$. And as they are real-valued, no <span data-concept="complex-number">complex numbers</span> need to be used for the arbitrary constants in the <span data-concept="general-solution">general solution</span>. We summarize what we found as a theorem.</p>
+<div class="note" id="thm-2-2-3">
+<div class="eyebrow">Theorem 2.2.3</div>
+<p>Take the equation</p>
+$$ a\kydprime + b\kyprime + c\ky = 0 . $$
+<p>If the <span data-concept="characteristic-equation">characteristic equation</span> has the roots $\kalpha \pm i \kbeta$ (when $b^2 - 4ac &lt; 0$), then the <span data-concept="general-solution">general solution</span> is</p>
+<div class="equation" id="eq-complex-conjugate-roots">$$ \boxed{~~ \ky = C_1 e^{\kalpha x} \cos (\kbeta x) + C_2 e^{\kalpha x} \sin (\kbeta x) . ~~} $$</div>
+</div>
+<div class="example" id="ex-2-2-3">
+<h3>Example 2.2.3</h3>
+<p>Find the <span data-concept="general-solution">general solution</span> of $\kydprime + k^2 \ky = 0$, for a constant $k &gt; 0$.</p>
+<p>The <span data-concept="characteristic-equation">characteristic equation</span> is $\kr^2 + k^2 = 0$, and the roots are $\kr = \pm ik$. By the theorem, the <span data-concept="general-solution">general solution</span> is</p>
+$$ \ky = C_1 \cos (kx) + C_2 \sin (kx) . $$
+</div>
+<div class="example" id="ex-2-2-4">
+<h3>Example 2.2.4</h3>
+<p>Find the <span data-concept="particular-solution">solution</span> of $\kydprime - 6 \kyprime + 13 \ky = 0$, $\ky(0) = 0$, $\kyprime(0) = 10$.</p>
+<p>The <span data-concept="characteristic-equation">characteristic equation</span> is $\kr^2 - 6 \kr + 13 = 0$. Completing the square, we get ${(\kr-3)}^2 + 2^2 = 0$ and hence the roots are $\kr = 3 \pm 2i$. Per the theorem, the <span data-concept="general-solution">general solution</span> is</p>
+$$ \ky = C_1 e^{3x} \cos (2x) + C_2 e^{3x} \sin (2x) . $$
+<p>To find the <span data-concept="particular-solution">solution</span> satisfying the <span data-concept="initial-value">initial conditions</span>, we first plug in zero to get</p>
+$$ 0 = \ky(0) = C_1 e^{0} \cos 0 + C_2 e^{0} \sin 0 = C_1 . $$
+<p>Hence, $C_1 = 0$ and $\ky = C_2 e^{3x} \sin (2x)$. We differentiate,</p>
+$$ \kyprime = 3C_2 e^{3x} \sin (2x) + 2C_2 e^{3x} \cos (2x) . $$
+<p>We again plug in the <span data-concept="initial-value">initial condition</span> and obtain $10 = \kyprime(0) = 2C_2$, or $C_2 = 5$. The <span data-concept="particular-solution">solution</span> we are seeking is</p>
+$$ \ky = 5 e^{3x} \sin (2x) . $$
+</div>
+</section>
