@@ -60,9 +60,9 @@ const n = (v, dec = 2) => fmt(v, dec).replace('−', '-');
     hits.push({ x: XIN, y: (inTop + ys) / 2, r: 24, name: `brine in: 5 L/min at ${n(c, 3)} kg/L` });
     stream(TANK.r, OUTY, OUTR - 26, OUTY, shade(conc), t * 12 * qo);
     arrow(ctx, OUTR - 40, OUTY, OUTR, OUTY, shade(conc), 5);
-    label(ctx, `out: ${n(qo, 1)} L/min`, OUTR - 50, OUTY, { side: 'below', color: fc, size: 18, weight: 600, gap: 18 });
+    label(ctx, `out: ${n(qo, 1)} L/min`, OUTR - 24, OUTY, { side: 'below', color: fc, size: 18, weight: 600, gap: 30 });
     hits.push({ x: (TANK.r + OUTR) / 2, y: OUTY, r: 24, name: `mixture out: ${n(qo, 1)} L/min at the tank’s ${n(conc, 3)} kg/L` });
-    label(ctx, `${fmt(V, 1)} L`, TANK.r - 8, ys, { side: 'left', color: fc, size: 18, weight: 600, gap: 10, leader: false });
+    if (ys < OUTY - 40) label(ctx, `${fmt(V, 1)} L`, TANK.r + 6, ys, { side: 'right', color: fc, size: 18, weight: 600, gap: 8, leader: false });
     /* ---- the graph beside it: x(t) traced as time runs, the dashed c_in·V(t) it is drawn toward ---- */
     let lo = Infinity, hi = -Infinity;
     for (let i = 0; i <= 60; i++) { const u = xOf((T * i) / 60), g = c * vol((T * i) / 60); lo = Math.min(lo, u, g); hi = Math.max(hi, u, g); }

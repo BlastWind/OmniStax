@@ -2,7 +2,7 @@
    y′ = y²/3, y(0) = 1, whose solution y = 3/(3 − x) has y(2) = 3 and blows up at x = 3. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['1.7'] = function (root, F) {
-const { C, PAL, alpha, ctl, choice, begin, axes, plot, dot, line, label, vbracket, headline, register, readout, fmt, hover, slopefield: SF } = F;
+const { C, PAL, alpha, ctl, choice, begin, axes, plot, dot, line, text, label, vbracket, headline, register, readout, fmt, hover, slopefield: SF } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const still = (d, draw) => register(d.fig, { update: () => {}, draw });
 const n = (v, dec = 2) => fmt(v, dec).replace('−', '-');
@@ -68,7 +68,7 @@ function poly(ctx, ax, pts, color, w, dots = true) {
 
 /* Sim: the order of a method. y(2) for the same problem by Euler, improved Euler or Runge–Kutta (a choice) at
    h = 2^(−k), k the halvings slider (0 to 7, the book's eight rows of Table 1.1). Left, the chosen method's
-   polyline against the solution with the gap at x = 2 bracketed (x 0 to 2.1, y 0 to 4); right, every method's
+   polyline against the solution with the gap at x = 2 bracketed (x 0 to 2.5, y 0 to 4); right, every method's
    error at each halving so far on a logarithmic scale (h on the x-axis, 10^(−10) to 10 on the y), the chosen
    one full with the dashed line of its order through its current point, the others faint and named. Still. */
 (function () {
@@ -87,7 +87,8 @@ function poly(ctx, ax, pts, color, w, dots = true) {
   const ERR = {}; IDS.forEach((m) => { ERR[m] = []; for (let k = 0; k <= 7; k++) ERR[m].push(Math.abs(3 - run(m, 2 ** -k)[2 ** (k + 1)][1])); });
   const hOf = (k) => (k === 0 ? '1' : `1/${2 ** k}`);
   const sci = (e) => (e >= 0.001 ? fmt(e, 4) : `${(e / 10 ** Math.floor(Math.log10(e))).toFixed(2)} \\times 10^{${Math.floor(Math.log10(e))}}`);
-  const BOX_L = { l: 100, r: 640, t: 110, b: 500 }, BOX_R = { l: 850, r: 1340, t: 110, b: 500 };
+  /* the boxes start low enough for a two-line headline; the error axis title is set by hand above its ticks */
+  const BOX_L = { l: 100, r: 640, t: 134, b: 510 }, BOX_R = { l: 850, r: 1340, t: 134, b: 510 };
   let hits = [];
   hover(d.stage, () => hits);
   function draw() {
@@ -95,7 +96,7 @@ function poly(ctx, ax, pts, color, w, dots = true) {
     const fc = C('function'), dc = C('derivative'), ec = C('error'), pc = C('point');
     const cur = method.value, k = Math.round(ks.v), h = 2 ** -k, N = 2 ** (k + 1);
     /* left: the chosen method's steps, bending into the next method's as the choice changes */
-    const axL = axes(ctx, BOX_L, [0, 2.1], [0, 4], { xl: 'x', yl: 'y', nx: 4, ny: 4, fx: (v) => tidy(v, 2) });
+    const axL = axes(ctx, BOX_L, [0, 2.5], [0, 4], { xl: 'x', yl: 'y', nx: 5, ny: 4, fx: (v) => tidy(v, 1) });
     SF.field(ctx, axL, f, alpha(dc, 0.45), { n: [12, 16] });
     plot(ctx, axL, exact, fc, { w: 5 });
     const ys = method.mix((m) => run(m, h).map((p) => p[1]));
@@ -108,7 +109,8 @@ function poly(ctx, ax, pts, color, w, dots = true) {
     if (err > 0.01) vbracket(ctx, axL.X(2) + 16, axL.Y(y2), axL.Y(3), ec, `error ${fmt(err, 4)}`, 1, { size: 20 });
     else label(ctx, `y(2) ≈ ${fmt(y2, 4)}`, axL.X(2), axL.Y(y2), { side: 'below', color: fc, size: 20 });
     /* right: the error of every method at each halving so far, on a log scale */
-    const axR = axes(ctx, BOX_R, [0, 7], [-10, 1], { xl: 'h', yl: 'error', yc: ec, nx: 7, ny: 11, fx: hOf, fy: (v) => (v === 0 ? '1' : v === 1 ? '10' : `10^{${v}}`) });
+    const axR = axes(ctx, BOX_R, [0, 7], [-10, 1], { xl: 'h', nx: 7, ny: 11, fx: hOf, fy: (v) => (v === 0 ? '1' : v === 1 ? '10' : `10^{${v}}`) });
+    text(ctx, 'error', BOX_R.l - 60, BOX_R.t - 34, ec, { align: 'left', weight: 600, size: 20 });
     const faint = alpha(PAL.ink, 0.4);
     IDS.forEach((m, j) => {
       const color = method.mixColor((v) => (v === m ? ec : faint));
@@ -121,9 +123,12 @@ function poly(ctx, ax, pts, color, w, dots = true) {
       }
       poly(ctx, axR, ser, color, m === cur ? 4 : 2.5, false);
       ser.forEach(([i, ly]) => dot(ctx, axR.X(i), axR.Y(ly), color, true, m === cur ? 8 : 6));
+      /* the name beside the last point: to the right while the three are near the top-left, Euler's lifted clear of
+         improved Euler's; from the fifth halving Euler's and improved Euler's go under their points and Runge–Kutta's
+         to the left, so none sits on an earlier point of its own series */
       const [li, ly] = ser[ser.length - 1];
-      const side = k <= 1 ? ['above', 'right', 'below'][j] : k >= 5 ? 'left' : 'right';
-      label(ctx, NAME[m], axR.X(li), axR.Y(ly), { side, color, size: 20 });
+      const side = k >= 5 ? (j === 2 ? 'left' : 'below') : 'right', lift = k <= 2 && j === 0 ? 22 : 0;
+      label(ctx, NAME[m], axR.X(li), axR.Y(ly) - lift, { side, color, size: 20 });
       ser.forEach(([i, ly]) => hits.push({ x: axR.X(i), y: axR.Y(ly), r: 14,
         name: `${NAME[m]}, h = ${hOf(i)}: error ${ERR[m][i] >= 0.001 ? fmt(ERR[m][i], 4) : ERR[m][i].toExponential(2)}${i ? `, ${fmt(ERR[m][i] / ERR[m][i - 1], 3)} of the previous` : ''}` }));
     });

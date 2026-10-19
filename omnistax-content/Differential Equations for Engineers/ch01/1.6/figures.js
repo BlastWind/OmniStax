@@ -66,8 +66,8 @@ function phase(ctx, ax, f, crit, x0, hits) {
     SF.field(ctx, ax, f, fieldColor(), { n: [28, 16] });
     level(ctx, ax, 5, alpha(fc, 0.7));
     STARTS.forEach((c) => plot(ctx, ax, sol(c), fc, { w: 4 }));
-    mark(ctx, '$\\kx(0) = 10$', ax.X(0.3), ax.Y(10) + 14, fc, { align: 'left', base: 'top' });
-    mark(ctx, '$\\kx(0) = 0$', ax.X(0.3), ax.Y(0) + 14, fc, { align: 'left', base: 'top' });
+    mark(ctx, '$\\kx(0) = 10$', ax.X(1.4), ax.Y(9.1), fc, { align: 'left', base: 'middle' });   /* beside the falling curve, off it */
+    mark(ctx, '$\\kx(0) = 0$', ax.X(3.4), ax.Y(sol(0)(3.4)) - 12, fc, { align: 'left', base: 'bottom' });
     mark(ctx, '$\\kx(0) = -5$', ax.X(0.3), ax.Y(-5) + 14, fc, { align: 'left', base: 'top' });
     mark(ctx, '$\\kx(0) = -10$', ax.X(0.3), ax.Y(-10) - 12, fc, { align: 'left', base: 'bottom' });
     mark(ctx, '$\\kx = 5$', ax.box.r - 8, ax.Y(5) - 10, fc, { align: 'right', base: 'bottom' });
@@ -121,7 +121,7 @@ function phase(ctx, ax, f, crit, x0, hits) {
     else if (b > 5) head = `${from}$\\kf(${n(b)}) = ${n(m)} < 0$, so $\\kx$ falls toward $5$.`;
     else head = `${from}$\\kf(${n(b)}) = ${n(m)} < 0$, so $\\kx$ falls without end, reaching $-\\infty$ at $t \\approx ${n(a + 2 * Math.log(1 - 5 / b), 2)}$.`;
     headline(ctx, head);
-    ro.set(`\\kxprime = 0.1\\,\\kx\\,(5 - \\kx) = 0.1\\,${par(b)}\\,(5 - ${par(b)}) = ${n(m)}`);
+    ro.set(`\\kxprime = 0.1\\,\\kx\\,(5 - \\kx) = 0.1\\,(${n(b)})\\,(5 - ${par(b)}) = ${n(m)}`);
   }
   still(d, draw);
 })();
