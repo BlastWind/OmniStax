@@ -39,9 +39,9 @@ function scene(ctx, o) {
   const cw = 120, ch = 70, r = Math.max(6, Math.min(cw, ch) / 6), cy = FY - ch / 2 - 2 * r;
   const xd = Math.max(-reach, Math.min(reach, x)), cx = X0 + xd * SC, off = Math.abs(x) > reach;
   const fc = C('function'), ink = PAL.ink;
-  fixed(ctx, WX - 24, FY - 180, 24, 180);
+  fixed(ctx, WX - 24, FY - 150, 24, 150);
   line(ctx, WX, FY, 1300, FY, ink, 3);
-  line(ctx, X0, FY - 185, X0, FY + 12, guide(), 2, [4, 8]);
+  line(ctx, X0, FY - 150, X0, FY + 12, guide(), 2, [4, 8]);
   spring(ctx, WX, cy, cx - cw / 2, cy, 9, 16, ink, 3);
   cart(ctx, cx, cy, cw, ch, ink);
   text(ctx, 'm', cx, cy, ink, { size: 24, align: 'center', italic: true });
@@ -52,7 +52,7 @@ function scene(ctx, o) {
     label(ctx, 'F(t)', fx + Math.abs(L) + 6, cy, { side: 'right', color: fc, size: 20, weight: 600, gap: 4 });
   }
   if (Math.abs(cx - X0) > 12) hbracket(ctx, X0, cx, FY + 26, fc, `x = ${n(x)}${off ? ' (off the track)' : ''}`, { side: 'below', size: 18 });
-  if (floorText) text(ctx, floorText, WX + 16, FY + 24, PAL.muted, { size: 17 });
+  if (floorText) text(ctx, floorText, WX + 16, FY - 16, PAL.muted, { size: 17 });
   return [
     { x: cx, y: cy, r: 50, name: massText },
     { x: (WX + cx - cw / 2) / 2, y: cy, r: 22, name: springText },
@@ -71,19 +71,20 @@ function scene(ctx, o) {
    Graph t 0 to 20 by x −10 to 10, the book's window for Figure 2.5 (Figure 2.6's ±6.4 sits inside); the scene is
    45 units per unit of x, and a cart past ±10 is drawn at the track's end with its true x. 20 s of t over 10 s. */
 (function () {
-  const d = sim('sim-beats', 660);
+  const d = sim('sim-beats', 690);
   const SET = { ex: { m: 0.5, k: 8, F0: 10, w0: 4 }, fig: { m: 1, k: Math.PI * Math.PI, F0: 2, w0: Math.PI } };
   const setup = choice(d.controls, { label: 'system', key: 'setup', value: 'ex', options: [
     { value: 'ex', label: 'Example 2.6.1' }, { value: 'fig', label: 'Figure 2.6' }], onInput: () => { cy.reset(); if (om.refresh) om.refresh(); } });
   const om = ctl(d.controls, { label: '\\komega', cls: 'frequency', key: 'omega', min: 0.5, max: 6, step: 0.01, value: Math.PI, unit: '', dec: 2, aria: 'the forcing frequency ω',
     specials: [{ at: () => SET[setup.value].w0, label: 'ω₀, resonance' }], onInput: () => cy.reset() });
   const ro = readout(d);
-  const BOX = { l: 120, r: 1300, t: 300, b: 600 }, X0 = 700, SC = 45, FY = 236, WX = 110;
+  const BOX = { l: 120, r: 1300, t: 330, b: 630 }, X0 = 700, SC = 45, FY = 268, WX = 110;
   let hits = [];
   hover(d.stage, () => hits);
   const cy = run(d, 20, 2, (t) => {
     const { ctx } = begin(d.c);
-    const fc = C('function'), S = SET[setup.value], w = om.v, w0 = S.w0, res = Math.abs(w - w0) < 1e-9;
+    /* the slider's grid holds 3.14 for the book's π, so a ω within half a step of ω₀ is resonance */
+    const fc = C('function'), S = SET[setup.value], w0 = S.w0, res = Math.abs(om.v - w0) <= 0.0051, w = res ? w0 : om.v;
     const K = S.F0 / (S.m * (w0 * w0 - w * w)), G = S.F0 / (2 * S.m * w);
     const x = res ? (s) => G * s * Math.sin(w * s) : (s) => K * (Math.cos(w * s) - Math.cos(w0 * s));
     const env = res ? (s) => G * s : (s) => 2 * Math.abs(K) * Math.abs(Math.sin(((w0 - w) * s) / 2));

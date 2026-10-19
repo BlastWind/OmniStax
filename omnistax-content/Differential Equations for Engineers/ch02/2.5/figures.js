@@ -1,7 +1,7 @@
 /* Figures for section 2.5 Nonhomogeneous equations. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['2.5'] = function (root, F) {
-const { C, PAL, alpha, ctl, begin, axes, plot, drag, dot, line, text, vbracket, headline, register, readout, fmt, hover } = F;
+const { C, PAL, alpha, ctl, begin, axes, plot, drag, dot, line, text, label, vbracket, headline, register, readout, fmt, hover } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const still = (d, draw) => register(d.fig, { update: () => {}, draw });
 const n = (v, dec = 2) => fmt(v, dec).replace('−', '-');
@@ -49,10 +49,18 @@ const r2 = (v) => Math.round(v * 100) / 100, r3 = (v) => Math.round(v * 1000) / 
     });
     /* the probe: y_p from the axis, y_c from there up (or down) to y */
     line(ctx, ax.X(x0), ax.box.t, ax.X(x0), ax.box.b, guide(), 2.5, [4, 8]);
-    if (Math.abs(ax.Y(ypv) - ax.Y(0)) > 8) vbracket(ctx, ax.X(x0) + 18, ax.Y(0), ax.Y(ypv), pcol, `y_p = ${n(ypr, 3)}`, 1, { size: 18 });
-    /* y_c's bracket stands left of the probe, and right of y_p's where the axis labels would be in its way */
+    /* each bracket's label sits on a panel beside it (label clamps it inside the canvas); y_c's bracket stands
+       left of the probe, and right of y_p's where the axis labels would be in its way */
     const near = x0 < 0.7;
-    if (Math.abs(ax.Y(yv) - ax.Y(ypv)) > 8) vbracket(ctx, ax.X(x0) + (near ? 46 : -18), ax.Y(ypv), ax.Y(yv), cc, `y_c = ${n(ycr, 3)}`, near ? 1 : -1, { size: 18 });
+    if (Math.abs(ax.Y(ypv) - ax.Y(0)) > 8) {
+      vbracket(ctx, ax.X(x0) + 18, ax.Y(0), ax.Y(ypv), pcol);
+      label(ctx, `y_p = ${n(ypr, 3)}`, ax.X(x0) + 18, (ax.Y(0) + ax.Y(ypv)) / 2, { side: 'right', color: pcol, size: 18, gap: 8 });
+    }
+    if (Math.abs(ax.Y(yv) - ax.Y(ypv)) > 8) {
+      const bx = ax.X(x0) + (near ? 46 : -18);
+      vbracket(ctx, bx, ax.Y(ypv), ax.Y(yv), cc);
+      label(ctx, `y_c = ${n(ycr, 3)}`, bx, (ax.Y(ypv) + ax.Y(yv)) / 2, { side: near ? 'right' : 'left', color: cc, size: 18, gap: 8 });
+    }
     dot(ctx, ax.X(x0), ax.Y(ypv), pcol, true, 7);
     dot(ctx, ax.X(x0), ax.Y(ycv), cc, true, 7);
     hits.push({ x: ax.X(x0), y: ax.Y(ypv), r: 14, name: `(x, y_p) = (${n(xr)}, ${n(ypr, 3)})` });
