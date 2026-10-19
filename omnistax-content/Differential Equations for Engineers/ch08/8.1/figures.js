@@ -176,25 +176,29 @@ function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
     text(ctx, '(1, 0)', ax.X(1) + 16, ax.Y(0) + 26, pc, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
     const sp = P.draw(ctx, ax, pc);
     if (sp) hits.push({ x: sp.x, y: sp.y, r: 18, name: minus(`the starting point (x(0), y(0)) = (${num(a).s}, ${num(b).s})`) });
-    if (St.fwd.length > 1 && n < St.fwd.length - 1 + 1e-9) {
-      const r = rider(ctx, ax, St.fwd, tt / H0, cc, 1, 3 / (H0 * 60));
+    if (St.fwd.length > 1) {
+      const r = rider(ctx, ax, St.fwd, tt / H0, cc, 1, 10);
       if (r) hits.push({ x: r.x, y: r.y, r: 14, name: `the state (x(t), y(t)) at t = ${num(tt, 1).s}, moving along its trajectory` });
+    } else {
+      /* an equilibrium solution: the state sits on the critical point */
+      dot(ctx, ax.X(a), ax.Y(b), PAL.panel, true, 11); dot(ctx, ax.X(a), ax.Y(b), cc, true, 7.5);
+      hits.push({ x: ax.X(a), y: ax.Y(b), r: 14, name: `the state, which stays at (${num(a).s}, ${num(b).s}) for all t` });
     }
 
     /* the headline: what the start leads to */
-    const A = num(a), B = num(b), pt = `$(${A.s}, ${B.s})$`.replace(/-/g, '-'), sym = A.exact && B.exact ? '' : '\\approx ';
+    const A = num(a), B = num(b), pt = `$(x_0, y_0) ${A.exact && B.exact ? '=' : '\\approx'} (${A.s}, ${B.s})$`;
     let head;
     if (St.kind === 'eq0' || St.kind === 'eq1') {
       const xs = St.kind === 'eq0' ? '0' : '1';
       head = `$(${xs}, 0)$ is a critical point: $\\kxprime = 0$ and $\\kyprime = 0$, so the equilibrium solution $\\kx(t) = ${xs}$, $\\ky(t) = 0$ never moves.`;
     } else if (St.kind === 'closed') {
-      head = St.T ? `From ${sym ? `$\\approx (${A.s}, ${B.s})$` : pt}, the trajectory is a closed curve: the state circles the origin and is back after $t \\approx ${num(St.T).s}$.`
+      head = St.T ? `From ${pt}, the trajectory is a closed curve: the state circles the origin and is back after $t \\approx ${num(St.T).s}$.`
         : `From ${pt}, the trajectory is a closed curve round the origin.`;
-    } else if (St.kind === 'loop') head = `From ${sym ? `$\\approx (${A.s}, ${B.s})$` : pt}, the trajectory is the loop through $(1, 0)$: the state creeps towards that critical point and never reaches it.`;
-    else if (St.kind === 'branch') head = `From ${sym ? `$\\approx (${A.s}, ${B.s})$` : pt}, the trajectory runs into the critical point $(1, 0)$, closer and closer as $t$ grows.`;
-    else head = St.out !== null && St.out <= TMAX ? `From ${sym ? `$\\approx (${A.s}, ${B.s})$` : pt}, the trajectory goes off towards infinity: the state leaves the square at $t \\approx ${num(St.out).s}$.`
+    } else if (St.kind === 'loop') head = `From ${pt}, the trajectory is the loop through $(1, 0)$: the state creeps towards that critical point and never reaches it.`;
+    else if (St.kind === 'branch') head = `From ${pt}, the trajectory runs into the critical point $(1, 0)$, closer and closer as $t$ grows.`;
+    else head = St.out !== null && St.out <= TMAX ? `From ${pt}, the trajectory goes off towards infinity: the state leaves the square at $t \\approx ${num(St.out).s}$.`
       : `From ${pt}, the trajectory goes off towards infinity.`;
-    headline(ctx, minus(head.replace(/\$([^$]*)\$/g, (m) => m)));
+    headline(ctx, head);
 
     /* the readout: the vector field at the start, from the numbers shown */
     const x2 = a * a, g = -a + x2;
@@ -268,8 +272,6 @@ function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
          traced from just off the critical point along the same eigenvector */
       const e = 1e-3 * W, dir = a * b > 0 ? 1 : -1;
       const nl = trace([a * e, b * e], dir * H1, 30, [1.2 * W, 1.2 * W], 1e-9, (p) => [p[1], -(1 + p[0]) + (1 + p[0]) * (1 + p[0])], [[-1, 0]]);
-      const ln = [], m = 1.2 * W;
-      for (let i = 0; i <= 400; i++) { const r = (i / 400) * m; ln.push([a * r / Math.SQRT2, b * r / Math.SQRT2]); }
       /* time along the straight line: r(t) = r₀e^{±t}, so equal steps of log r */
       const lnT = []; const r0 = 0.004 * W, r1 = 1.2 * W * Math.SQRT2, N = Math.ceil(Math.log(r1 / r0) / H1);
       for (let i = 0; i <= N; i++) { const r = r0 * Math.exp(i * H1); lnT.push([a * r / Math.SQRT2, b * r / Math.SQRT2]); }
@@ -302,12 +304,12 @@ function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
     const axL = axes(ctx, L, [x0 - W, x0 + W], [-W, W], { xl: 'x', yl: 'y', xc: fc, yc: fc, nx: 4, ny: 4, nice: true });
     const axR = axes(ctx, R, [-W, W], [-W, W], { xl: 'u', yl: 'v', xc: fc, yc: fc, nx: 4, ny: 4, nice: true });
     const fa = F.arrival(d), sols = clamp01((fa - 0.3) / 0.7);
+    space.field2(ctx, axL, field, alpha(vf, 0.65), { n: [11, 11], w: 2.5 });
     ['o', 's'].forEach((key) => {
       const a = pick.a(key); if (!(a > 0.01)) return;
       const Pk = POINTS[key], pic = picture(key, W);
       const axLk = { ...axL, X: (v) => axL.X(v + Pk.x0), Y: axL.Y }, axRk = axR;
       F.faded(ctx, a, [0, 0], () => {
-        space.field2(ctx, axL, (p) => field(p), alpha(vf, 0.65), { n: [11, 11], w: 2.5 });
         space.field2(ctx, axR, (p) => [p[1], Pk.sgn * p[0]], alpha(vf, 0.65), { n: [11, 11], w: 2.5 });
         [[axLk, pic.left], [axRk, pic.right]].forEach(([ax, list]) => list.forEach((k) => {
           stroke(ctx, ax, sols < 1 ? F.partial(k.pts, sols) : k.pts, k.half ? cc : alpha(cc, 0.8), k.half ? 4 : 3.5);
@@ -328,7 +330,7 @@ function rider(ctx, ax, pts, f, color, a = 1, tail = 4) {
     /* the headline: the two fields differ by u² ≤ w², against arrows up to √2 w */
     const Wn = num(W), gap = num(W * W, 4), big = num(Math.SQRT2 * W), pct = Math.round(100 * W / Math.SQRT2);
     const what = P.x0 ? 'a saddle' : 'closed curves';
-    headline(ctx, `Within ${Wn.s} of ${P.name}, ${what}: the two fields differ by $\\ku^2 \\le ${gap.s}$ against arrows up to $${big.s}$ long, a gap of ${pct} %.`);
+    headline(ctx, `Within $${Wn.s}$ of ${P.name}, ${what}: the fields differ by $\\ku^2 \\le ${gap.s}$, ${pct} % of the linearization’s longest arrow, $\\sqrt{2}\\,w ${big.exact ? '=' : '\\approx'} ${big.s}$.`);
 
     /* the readout: Example 8.1.2's Jacobian at the point, and the linearization */
     const shift = P.x0 ? '\\ku = \\kx - 1,\\ \\kv = \\ky' : '\\ku = \\kx,\\ \\kv = \\ky';

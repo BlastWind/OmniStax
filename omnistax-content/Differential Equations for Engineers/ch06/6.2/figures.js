@@ -226,7 +226,7 @@ const ex = (a) => (Math.abs(a) < 0.005 ? '' : Math.abs(a - 1) < 0.005 ? 'e^{-s}'
     headline(ctx, `$t = ${n(t)}$: ${when}; the mass is at $\\kx = ${n(xt)}$.`);
     const term = (s) => `\\bigl(1 - \\cos(${tm(s)})\\bigr)\\,\\ku(${tm(s)})`;
     const tail = T < 0.005 ? 'The rocket never fires, and the two terms cancel: the mass stays at rest.'
-      : Math.abs(T - 2 * PI) < 1e-6 ? `From $t = ${num(end)}$ on, $\\kx(t) = \\cos(${tm(end)}) - \\cos(${tm(a)}) = 0$: the burn lasts one period and leaves the mass at rest.`
+      : Math.abs(T - 2 * PI) < 1e-6 ? `From $t = ${num(end)}$ on, $\\kx(t) = \\cos(${tm(a)} - 2\\pi) - \\cos(${tm(a)}) = 0$: the burn lasts one period and leaves the mass at rest.`
         : `From $t = ${num(end)}$ on, $\\kx(t) = \\cos(${tm(end)}) - \\cos(${tm(a)})$, which swings with amplitude ${fmt(amp, 2)}.`;
     ro.set(`\\kx(t) = ${term(a)} - ${term(end)}`, tail);
   }

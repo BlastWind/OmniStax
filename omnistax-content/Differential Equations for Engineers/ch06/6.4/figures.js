@@ -51,7 +51,8 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     const ar = axes(ctx, RB, [0, 10], [0, 2], { xl: 's', yl: 'ℒ{φ(t)}', yc: tc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     dashed(ctx, () => plot(ctx, ar, E, alpha(tc, 0.6), { w: 3 }));
     plot(ctx, ar, L, tc);
-    const at0 = pinned(ctx, ar.box, ar.X, ar.Y, 0, area, tc, area > 2 ? `M(b − a) = ${fmt(area, 2)}` : undefined);
+    const at0 = pinned(ctx, ar.box, ar.X, ar.Y, 0, area, tc);
+    if (area > 2) label(ctx, `M(b − a) = ${fmt(area, 2)} at s = 0`, at0.x + 40, at0.y + 30, { side: 'right', color: tc, size: 17 });
     label(ctx, 'e^{−as}', ar.X(3.2), ar.Y(E(3.2)), { side: 'above', color: tc, size: 18, weight: 400 });
     let gap = 0;
     for (let i = 0; i <= 400; i++) { const s = (10 * i) / 400; gap = Math.max(gap, Math.abs(L(s) - E(s))); }
@@ -179,11 +180,11 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
    directions: the deepest sag the sliders reach, 0.5 at F = 3 and a = 1, is 200 units, and the scale and the
    mark of a sit below it. The deepest point is marked with its depth. Still: the beam answers its sliders. */
 (function () {
-  const d = sim('sim-beam', 490);
+  const d = sim('sim-beam', 510);
   const aS = ctl(d.controls, { label: 'a', cls: '', key: 'a', min: 0.1, max: 1.9, step: 0.01, value: 1, unit: '', dec: 2, aria: 'the point a where the force acts', detents: [1] });
   const fS = ctl(d.controls, { label: '\\kF', cls: '', key: 'F', min: 0, max: 3, step: 0.05, value: 1, unit: '', dec: 2, aria: 'the force F' });
   const ro = readout(d);
-  const L = 2, X0 = 300, SC = 400, BY = 170;
+  const L = 2, X0 = 300, SC = 400, BY = 190;
   const PX = (x) => X0 + x * SC, PY = (y) => BY - y * SC;
   let hits = [];
   hover(d.stage, () => hits);
