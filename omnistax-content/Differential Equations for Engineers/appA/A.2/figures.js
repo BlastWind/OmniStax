@@ -13,15 +13,16 @@ const smat = (m) => `\\left[\\begin{smallmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} 
 const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \\end{bmatrix}`;
 
 /* Sim (the book's noncommuting pair, A = [1 1; 1 1] and B = [1 0; 0 2]): the product as composition.
-   Two planes side by side at one scale, x₁ −5 to 5 and x₂ −6 to 6, 56 units to 1. Left, x⃗ goes through B and then
+   Two planes side by side at one scale, x₁ −3 to 3 and x₂ −4 to 4, 84 units to 1. Left, x⃗ goes through B and then
    through A: the arrow x⃗, the arrow Bx⃗ (faint) and the arrow A(Bx⃗), the two hops between their heads
    curved in the matrix colour and named B and A, and the one hop of AB (dashed, on the other side) from
    the head of x⃗ straight to the same point. Right, the other order: A first, then B, and the one hop of BA.
    The reader drags x⃗ (on either plane, or on its two sliders, −1.5 to 1.5; the default (1, 0.5), where x⃗ and
    the end of each path lie on different lines): ABx⃗ = (s, s) with s = x₁ + 2x₂ and BAx⃗ = (u, 2u) with
-   u = x₁ + x₂, which agree only at x⃗ = 0⃗. Every head stays inside the planes at the sliders' extremes: x
-   entries at most 4.5 (ABx⃗), y entries at most 6 (BAx⃗ = (3, 6)); a head past an edge would be drawn there
-   along its own direction, hollow.
+   u = x₁ + x₂, which agree only at x⃗ = 0⃗. The planes frame the default and its neighbourhood large; x⃗, Bx⃗
+   and Ax⃗ never leave them, and a product that does (ABx⃗ once |s| > 3, BAx⃗ once |u| > 2, as far as (4.5, 4.5)
+   and (3, 6) at the corners) is drawn to the edge along its own direction with its head hollow, while the
+   headline, the readout and its hover name give its true entries.
    Still: a composition has no clock. The arrows are symbolic (vectors, and the mappings drawn as hops). */
 (function () {
   const d = sim('sim-composition', 900);
@@ -32,7 +33,7 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
   const s2 = ctl(d.controls, { label: 'x_2', cls: '', key: 'x2', min: -1.5, max: 1.5, step: 0.1, value: 0.5, unit: '', dec: 1, aria: 'the second entry x₂ of the vector x' });
   const grips = [drag(d, { x: s1, y: s2 }), drag(d, { x: s1, y: s2 })];
   const ro = readout(d);
-  const K = 56, TOP = 150;
+  const K = 84, TOP = 150;
   /* the two planes: the first matrix applied, the second, their product, and the names */
   const PANES = [
     { ox: 350, first: B, second: A, prod: AB, f: '\\kB', s: '\\kA', fs: 'B', ss: 'A', title: '$\\kA\\kB$: first $\\kB$, then $\\kA$' },
@@ -73,10 +74,10 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
     /* a name set beside the point it names: out along (ux, uy), stepping further out, then turning, where the slot is taken */
     const name = (s, px, py, ux, uy, color, size = 24) => {
       const w = measure(ctx, s, { size, weight: 600, tex: true }) + 12, h = size + 12;
-      const turns = [0, 0.9, -0.9, 1.8, -1.8];
-      for (const tr of turns) {
+      /* a name that finds no clear slot near its thing is left to the hover names */
+      for (const tr of [0, 0.7, -0.7]) {
         const ca = Math.cos(tr), sa = Math.sin(tr), vx = ux * ca - uy * sa, vy = ux * sa + uy * ca;
-        for (const gap of [24, 46, 72]) {
+        for (const gap of [18, 34]) {
           const cx = px + vx * (gap + w / 2 * Math.abs(vx)), cy = py + vy * (gap + h / 2 * Math.abs(vy));
           const b = { l: cx - w / 2, r: cx + w / 2, t: cy - h / 2, b: cy + h / 2 };
           if (b.l < 12 || b.r > 1388 || b.t < TOP - 10 || clash(b)) continue;
@@ -85,15 +86,15 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
       }
     };
     const results = PANES.map((P, pi) => {
-      const box = { l: P.ox - 5 * K, r: P.ox + 5 * K, t: TOP, b: TOP + 12 * K };
-      const ax = axes(ctx, box, [-5, 5], [-6, 6], { xl: 'x_1', yl: 'x_2', nx: 5, ny: 6, nice: true, fx: (v) => nT(v), fy: (v) => nT(v) });
+      const box = { l: P.ox - 3 * K, r: P.ox + 3 * K, t: TOP, b: TOP + 8 * K };
+      const ax = axes(ctx, box, [-3, 3], [-4, 4], { xl: 'x_1', yl: 'x_2', nx: 6, ny: 8, fx: (v) => nT(v), fy: (v) => nT(v) });
       const { X, Y } = ax, O = [X(0), Y(0)];
       text(ctx, P.title, P.ox, 106, ink, { size: 24, tex: true, align: 'center' });
       const v = ap(P.first, x).map(r1), w = ap(P.second, v).map(r1);
       /* a head past the plane's edge is drawn at the edge, along its own direction */
-      const edge = (p) => { const f = Math.min(1, 5 / Math.max(Math.abs(p[0]), 1e-9), 6 / Math.max(Math.abs(p[1]), 1e-9)); return [p[0] * f, p[1] * f]; };
+      const edge = (p) => { const f = Math.min(1, 3 / Math.max(Math.abs(p[0]), 1e-9), 4 / Math.max(Math.abs(p[1]), 1e-9)); return [p[0] * f, p[1] * f]; };
       const S = (p) => { const q = edge(p); return [X(q[0]), Y(q[1])]; };
-      const pinned = (p) => Math.abs(p[0]) > 5 + 1e-9 || Math.abs(p[1]) > 6 + 1e-9;
+      const pinned = (p) => Math.abs(p[0]) > 3 + 1e-9 || Math.abs(p[1]) > 4 + 1e-9;
       const g0 = stagger(k, 0, 3, 0.45), g1 = stagger(k, 1, 3, 0.45), g2 = stagger(k, 2, 3, 0.45);
       const grow = (p, g) => [O[0] + (S(p)[0] - O[0]) * g, O[1] + (S(p)[1] - O[1]) * g];
       const hx = S(x), hv = S(v), hw = S(w);

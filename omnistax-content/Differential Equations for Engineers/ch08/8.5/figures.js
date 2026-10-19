@@ -82,9 +82,9 @@ const sig2 = (v) => String(Number(v.toPrecision(2)));
     const xt = axes(ctx, XT, [0, T], [-3.5, 3.5], { xl: 't', yl: 'x', nx: 6, ny: 6, nice: true });
     run(ctx, xt, ti, bx1, 0, i, c2, 3.5, 2); run(ctx, xt, ti, ax1, 0, i, c1, 3.5, 2);
     dot(ctx, xt.X(t), xt.Y(bx1(i)), c2, true, 7); dot(ctx, xt.X(t), xt.Y(ax1(i)), c1, true, 7);
-    /* the legend, in the corner the curves leave clearest (above x = 3 the solutions never reach for t ≤ 30) */
-    [['from (2, 3)', c1], [`from (2, 3 − δ)`, c2]].forEach(([s, c], k) => {
-      const y = XT.t + 16 + k * 26, x = XT.r - 250;
+    /* the legend, on the line above the graph, clear of every curve */
+    [['from (2, 3)', c1], ['from (2, 3 − δ)', c2]].forEach(([s, c], k) => {
+      const y = XT.t - 24, x = XT.l + 90 + k * 230;
       line(ctx, x, y, x + 36, y, c, 4); text(ctx, s, x + 46, y, c, { size: 17, weight: 600, align: 'left', bg: PAL.panel });
     });
     /* their distance on a log scale */
@@ -210,7 +210,7 @@ const sig2 = (v) => String(Number(v.toPrecision(2)));
 (function () {
   const d = sim('sim-lorenz');
   const box = [[-20, 20], [-25, 25], [0, 50]], T = 15, h = 0.005, N = Math.round(T / h), CH = 100;
-  const S3 = F.space3d(d, { box, h: 560, fit: 2.25, turn: -0.42, tilt: 0.3, spin: 'idle' });
+  const S3 = F.space3d(d, { box, h: 560, fit: 2.9, turn: -0.42, tilt: 0.3, spin: 'idle' });
   if (S3.v) S3.v.look({});   /* the spin is offered, never on by default (root 26.2) */
   const gc = F.makeCanvas(d.stage, 300);
   const cy = cycle(() => T, 1.2);
@@ -244,14 +244,15 @@ const sig2 = (v) => String(Number(v.toPrecision(2)));
   function draw() {
     const t = cy.now(), i = Math.min(N, Math.round(t / h)), cc = C('curve'), pc = C('point'), fc = C('function');
     /* the scene: axes, critical points, the start, the trajectory in chunks (a finished chunk is a layer that never changes) */
-    S3.set('axes', SP.axes(box, { ticks: 10, names: ['$\\kx$', '$\\ky$', '$\\kz$'] }));
+    /* a hollow sphere does not read in a scene, so the critical points (all unstable) and the start are filled and named on hover */
+    S3.set('axes', SP.axes(box, { ticks: [10, 20, 10], names: ['$\\kx$', '$\\ky$', '$\\kz$'] }));
     S3.set('crit', [
-      { k: 'dot', p: [0, 0, 0], color: pc, r: 8, hollow: true, name: 'the critical point (0, 0, 0)' },
-      { k: 'dot', p: [R, R, 27], color: pc, r: 8, hollow: true, name: 'the critical point (6√2, 6√2, 27), inside the right loop' },
-      { k: 'dot', p: [-R, -R, 27], color: pc, r: 8, hollow: true, name: 'the critical point (−6√2, −6√2, 27), inside the left loop' },
+      { k: 'dot', p: [0, 0, 0], color: pc, r: 7, name: 'the critical point (0, 0, 0), unstable' },
+      { k: 'dot', p: [R, R, 27], color: pc, r: 7, name: 'the critical point (6√2, 6√2, 27), unstable, inside the right loop' },
+      { k: 'dot', p: [-R, -R, 27], color: pc, r: 7, name: 'the critical point (−6√2, −6√2, 27), unstable, inside the left loop' },
     ]);
     const x0 = xs.v, z0 = zs.v;
-    S3.set('start', [{ k: 'dot', p: [x0, x0, z0], color: pc, r: 7, hollow: true, name: `the start (${fmt(x0, 1)}, ${fmt(x0, 1)}, ${fmt(z0, 1)})` }]);
+    S3.set('start', [{ k: 'dot', p: [x0, x0, z0], color: pc, r: 6, name: `the start (${fmt(x0, 1)}, ${fmt(x0, 1)}, ${fmt(z0, 1)})` }]);
     const full = Math.floor(i / CH);
     for (let c = 0; c * CH < N; c++) S3.set('c' + c, c < full ? [{ k: 'line', pts: chunks[c], color: cc, w: 3, name: 'the trajectory' }] : NONE);
     S3.set('head', [
@@ -275,6 +276,11 @@ const sig2 = (v) => String(Number(v.toPrecision(2)));
     hits = [{ x: q.x, y: q.y, r: 14, name: `x(${fmt(t, 2)}) = ${fmt(xi, 2)}` }];
     /* the readout, its derivatives computed from the rounded state it shows */
     const r = (v) => Math.round(v * 100) / 100, X = r(P[3 * i]), Y = r(P[3 * i + 1]), Zz = r(P[3 * i + 2]);
+    if (atCrit()) {
+      const c = xs.v === 0 ? '0, 0, 0' : xs.v > 0 ? '6\\sqrt{2}, 6\\sqrt{2}, 27' : '-6\\sqrt{2}, -6\\sqrt{2}, 27';
+      ro.set(`t = ${n(t)}:\\ (\\kx,\\ky,\\kz) = (${c}),\\quad \\kxprime = -10\\kx + 10\\ky = 0,\\quad \\kyprime = 28\\kx - \\ky - \\kx\\kz = 0,\\quad \\kzprime = -\\tfrac{8}{3}\\kz + \\kx\\ky = 0`);
+      return;
+    }
     ro.set(`t = ${n(t)}:\\ (\\kx,\\ky,\\kz) = (${n(X)}, ${n(Y)}, ${n(Zz)}),\\quad \\kxprime = -10\\kx + 10\\ky = ${n(-10 * X + 10 * Y, 1)},\\quad \\kyprime = 28\\kx - \\ky - \\kx\\kz = ${n(28 * X - Y - X * Zz, 1)},\\quad \\kzprime = -\\tfrac{8}{3}\\kz + \\kx\\ky = ${n((-8 / 3) * Zz + X * Y, 1)}`);
   }
   register(d.fig, { update: (dt) => cy.step(dt, () => 2.5), draw });

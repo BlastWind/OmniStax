@@ -52,6 +52,16 @@ function past(ctx, ax, t, h, s, color, gap = 30) {
   const lx = Math.min(Math.max(x2 + ux * gap, box.l + 30), box.r - 30), ly = Math.min(Math.max(y2 + uy * (gap - 6), box.t + 14), box.b - 14);
   tag(ctx, s, lx, ly, color, ux > 0.55 ? 'left' : ux < -0.55 ? 'right' : 'center');
 }
+/* a label at the head h of an arrow from the origin, on the side away from the arrow to `other` */
+function outer(ctx, ax, h, other, s, color) {
+  const { X, Y, box } = ax, x0 = X(0), y0 = Y(0), hx = X(h[0]), hy = Y(h[1]), L = Math.hypot(hx - x0, hy - y0);
+  if (!(L > 3)) { tag(ctx, s, x0 + 30, y0 - 26, color, 'left'); return; }
+  const ux = (hx - x0) / L, uy = (hy - y0) / L;
+  let nx = -uy, ny = ux;
+  if (nx * (X(other[0]) - x0) + ny * (Y(other[1]) - y0) > 0) { nx = -nx; ny = -ny; }
+  const lx = Math.min(Math.max(hx + ux * 10 + nx * 30, box.l + 30), box.r - 30), ly = Math.min(Math.max(hy + uy * 10 + ny * 24, box.t + 14), box.b - 14);
+  tag(ctx, s, lx, ly, color, nx > 0.55 ? 'left' : nx < -0.55 ? 'right' : 'center');
+}
 /* the grip ring of a head the reader can drag */
 const ring = (ctx, ax, p, color) => { const { X, Y, box } = ax, x = X(p[0]), y = Y(p[1]); if (x < box.l || x > box.r || y < box.t || y > box.b) return; ctx.save(); ctx.strokeStyle = alpha(color, 0.35); ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, y, 17, 0, Math.PI * 2); ctx.stroke(); ctx.restore(); };
 /* axes that hide a grip: its point lands nowhere, so it cannot be picked */
@@ -59,9 +69,9 @@ const nowhere = (ax) => ({ ...ax, X: () => NaN, Y: () => NaN });
 const clear = (c) => alpha(c, 0);
 
 /* Figure A.1 + A.2 + A.3 + A.4: a vector as an arrow, and adding, subtracting and scaling vectors.
-   One x₁x₂ plane at one scale, 46 units to 1, x₁ from −12 to 12 and x₂ from −6 to 6: the components of
-   x⃗ and y⃗ run from −4 to 4, so a sum or difference reaches 8 and αx⃗ (α from −3 to 3) reaches 12, and
-   a head past the box is pinned at its edge. The operation is a choice; choosing one sets y⃗ and α to
+   One x₁x₂ plane at one scale, 64 units to 1, x₁ from −10 to 10 and x₂ from −5 to 5: the components of
+   x⃗ and y⃗ run from −4 to 4, so a sum or difference reaches 8 and αx⃗ (α from −3 to 3) reaches 12; the
+   book's pictures all lie inside, and a head past the box at the sliders' extremes is pinned at its edge. The operation is a choice; choosing one sets y⃗ and α to
    the book's picture for it: x⃗ = (1, 2) alone (A.1), (1, 2) + (2, −3) = (3, −1) (A.2), (1, 2) − (−2, 1)
    = (3, 1) (A.3), 2x⃗ and −1.5x⃗ with copies of x⃗ laid alongside for scale (A.4). The book's line
    styles are kept: x⃗ dotted, y⃗ dashed, the result solid (x⃗ alone is solid, as in Figure A.1).
@@ -70,13 +80,13 @@ const clear = (c) => alpha(c, 0);
    picture into the next (the result's head and y⃗'s place blend); the readout writes the component
    rule with the live numbers. Still: a vector has no clock. */
 (function () {
-  const d = sim('sim-vector-arithmetic', 760);
-  const U = 46, OX = 700, OY = 406, BOX = { l: OX - 12 * U, r: OX + 12 * U, t: OY - 6 * U, b: OY + 6 * U };
+  const d = sim('sim-vector-arithmetic', 850);
+  const U = 64, OX = 700, OY = 450, BOX = { l: OX - 10 * U, r: OX + 10 * U, t: OY - 5 * U, b: OY + 5 * U };
   const BOOK = { add: [2, -3], sub: [-2, 1] };
   let x1 = null, x2 = null, y1 = null, y2 = null, al = null;
   const op = choice(d.controls, {
     label: 'operation', key: 'op', value: 'arrow',
-    options: [{ value: 'arrow', label: 'x⃗' }, { value: 'add', label: 'x⃗ + y⃗' }, { value: 'sub', label: 'x⃗ − y⃗' }, { value: 'scale', label: 'αx⃗' }],
+    options: [{ value: 'arrow', label: 'one vector' }, { value: 'add', label: 'add' }, { value: 'sub', label: 'subtract' }, { value: 'scale', label: 'scale' }],
     onInput: (v) => {
       if (BOOK[v]) { y1.set(BOOK[v][0]); y2.set(BOOK[v][1]); }
       if (v === 'scale') al.set(2);
@@ -106,10 +116,10 @@ const clear = (c) => alpha(c, 0);
     hits = [];
     /* the plane: a faint unit grid under the axes */
     ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
-    for (let i = -12; i <= 12; i++) line(ctx, OX + i * U, BOX.t, OX + i * U, BOX.b, alpha(ink, 0.06), 1.5);
-    for (let j = -6; j <= 6; j++) line(ctx, BOX.l, OY - j * U, BOX.r, OY - j * U, alpha(ink, 0.06), 1.5);
+    for (let i = -10; i <= 10; i++) line(ctx, OX + i * U, BOX.t, OX + i * U, BOX.b, alpha(ink, 0.06), 1.5);
+    for (let j = -5; j <= 5; j++) line(ctx, BOX.l, OY - j * U, BOX.r, OY - j * U, alpha(ink, 0.06), 1.5);
     ctx.restore();
-    const ax = axes(ctx, BOX, [-12, 12], [-6, 6], { xl: 'x_1', yl: 'x_2', nx: 12, ny: 6, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
+    const ax = axes(ctx, BOX, [-10, 10], [-5, 5], { xl: 'x_1', yl: 'x_2', nx: 10, ny: 10, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
     const S = (p) => [g * p[0], g * p[1]];
     /* x⃗ alone: the right triangle of its components, from which the magnitude comes */
     op.only(ctx, 'arrow', () => {
@@ -153,8 +163,8 @@ const clear = (c) => alpha(c, 0);
     /* the grips: the head of x⃗, and y⃗'s end that is free */
     PX.draw(ctx, ax, clear(vc));
     ring(ctx, ax, x, vc);
-    const yGrip = v === 'add' ? { ...ax, X: (q) => ax.X(q + x[0]), Y: (q) => ax.Y(q + x[1]), xr: [-12 - x[0], 12 - x[0]], yr: [-6 - x[1], 6 - x[1]] }
-      : v === 'sub' ? { ...ax, X: (q) => ax.X(x[0] - q), Y: (q) => ax.Y(x[1] - q), xr: [x[0] + 12, x[0] - 12], yr: [x[1] + 6, x[1] - 6] } : nowhere(ax);
+    const yGrip = v === 'add' ? { ...ax, X: (q) => ax.X(q + x[0]), Y: (q) => ax.Y(q + x[1]), xr: [-10 - x[0], 10 - x[0]], yr: [-5 - x[1], 5 - x[1]] }
+      : v === 'sub' ? { ...ax, X: (q) => ax.X(x[0] - q), Y: (q) => ax.Y(x[1] - q), xr: [x[0] + 10, x[0] - 10], yr: [x[1] + 5, x[1] - 5] } : nowhere(ax);
     PY.draw(ctx, yGrip, clear(vc));
     if (v === 'add') ring(ctx, ax, [x[0] + y[0], x[1] + y[1]], vc);
     if (v === 'sub') ring(ctx, ax, [x[0] - y[0], x[1] - y[1]], vc);
@@ -205,7 +215,7 @@ const clear = (c) => alpha(c, 0);
       const nm = a === -1 ? '-\\kvecx' : `${num(a)}\\kvecx`;
       headline(ctx, `$${nm} = ${ptT(res)}$: ${what}.`);
       ro.set(`${nm} = ${a === -1 ? '-' : num(a)}${col(num(x[0]), num(x[1]))} = ${col(`${num(a)}(${num(x[0])})`, `${num(a)}(${num(x[1])})`)} = ${col(num(res[0]), num(res[1]))}`,
-        `$\\lVert ${nm} \\rVert = |${num(a)}|\\,\\lVert \\kvecx \\rVert = ${m === 0 || xs === 0 ? '0' : rootTex(xs, m)}$`, { form: v });
+        `$\\lVert ${nm} \\rVert = \\lvert ${num(a)} \\rvert\\,\\lVert \\kvecx \\rVert = ${m === 0 || xs === 0 ? '0' : rootTex(xs, m)}$`, { form: v });
     }
   }
   still(d, draw);
@@ -217,12 +227,12 @@ const clear = (c) => alpha(c, 0);
    Ax⃗ = x₁Ae⃗₁ + x₂Ae⃗₂ drawn as the same two steps along the columns, over the image of the input's unit
    grid. The matrix is a choice: the book's M = [1 2; 3 4] (the default), the doubling F(x⃗) = 2x⃗ as
    [2 0; 0 2], and the mapping of Exercise A.1.10, [2 3; −1 3]; a change bends the output picture from
-   the old matrix to the new. x₁, x₂ run from −2 to 2 (dragged on the input plane or on their sliders),
+   the old matrix to the new. The two columns are named on their outer sides, since M's lie close together. x₁, x₂ run from −2 to 2 (dragged on the input plane or on their sliders),
    the book's (−2, 0.1) the default, giving Mx⃗ = (−1.8, −5.6); Ax⃗ reaches 14 at the extremes of M and is
    pinned at the edge past 10. Still: nothing here has a clock. */
 (function () {
-  const d = sim('sim-matrix-mapping', 760);
-  const IN = { l: 70, r: 470, t: 200, b: 600 }, OUT = { l: 780, r: 1340, t: 120, b: 680 };
+  const d = sim('sim-matrix-mapping', 780);
+  const IN = { l: 70, r: 470, t: 230, b: 630 }, OUT = { l: 800, r: 1340, t: 160, b: 700 };
   const MATS = { m: [1, 2, 3, 4], double: [2, 0, 0, 2], ex10: [2, 3, -1, 3] };
   const pick = choice(d.controls, { label: '\\kA', key: 'matrix', value: 'm', options: [{ value: 'm', label: '[1 2; 3 4]' }, { value: 'double', label: '[2 0; 0 2]' }, { value: 'ex10', label: '[2 3; −1 3]' }] });
   const x1 = ctl(d.controls, { label: 'x_1', cls: '', key: 'x1', min: -2, max: 2, step: 0.1, value: -2, unit: '', dec: 1, aria: 'the first component x₁ of x⃗' });
@@ -241,8 +251,8 @@ const clear = (c) => alpha(c, 0);
     hits = [];
     const axIn = axes(ctx, IN, [-3, 3], [-3, 3], { xl: 'x_1', yl: 'x_2', nx: 6, ny: 6, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
     const axOut = axes(ctx, OUT, [-10, 10], [-10, 10], { nx: 4, ny: 4, fx: (q) => fmt(q, 0), fy: (q) => fmt(q, 0) });
-    text(ctx, 'the input: $\\kvecx$ and $\\kvece_1$, $\\kvece_2$', (IN.l + IN.r) / 2, IN.t - 62, mu, { size: 20, align: 'center', tex: true });
-    text(ctx, 'the output: $\\kA\\kvecx$ and the columns of $\\kA$', (OUT.l + OUT.r) / 2, OUT.t - 22, mu, { size: 20, align: 'center', tex: true });
+    text(ctx, 'the input: $\\kvecx$ and $\\kvece_1$, $\\kvece_2$', (IN.l + IN.r) / 2, IN.t - 64, mu, { size: 20, align: 'center', tex: true });
+    text(ctx, 'the output: $\\kA\\kvecx$ and the columns of $\\kA$', (OUT.l + OUT.r) / 2, OUT.t - 34, mu, { size: 20, align: 'center', tex: true });
     /* the image of the input's unit grid: the grid lines x₁ = i and x₂ = i for |i| ≤ 3, carried by A */
     ctx.save(); ctx.beginPath(); ctx.rect(OUT.l, OUT.t, OUT.r - OUT.l, OUT.b - OUT.t); ctx.clip(); ctx.globalAlpha *= g;
     for (let i = -3; i <= 3; i++) {
@@ -253,7 +263,7 @@ const clear = (c) => alpha(c, 0);
     ctx.restore();
     hits.push({ x: axOut.X(map(Am, [1, 1])[0] * 0.5), y: axOut.Y(map(Am, [1, 1])[1] * 0.5), r: 12, name: 'a cell of the input grid carried by A: a parallelogram on the columns' });
     /* the mapping between the planes */
-    const MX = (IN.r + OUT.l) / 2, MY = 400;
+    const MX = (IN.r + OUT.l) / 2, MY = 430;
     arrow(ctx, IN.r + 34, MY, OUT.l - 34, MY, mc, 4);
     text(ctx, `$\\kA = ${mtex(A)}$`, MX, MY - 56, mc, { size: 22, align: 'center', tex: true });
     text(ctx, '$\\kvecx \\mapsto \\kA\\kvecx$', MX, MY + 30, mu, { size: 20, align: 'center', tex: true });
@@ -281,8 +291,8 @@ const clear = (c) => alpha(c, 0);
       past(ctx, axIn, [0, 0], [1, 0], '$\\kvece_1$', vc, 24);
       past(ctx, axIn, [0, 0], [0, 1], '$\\kvece_2$', vc, 24);
       past(ctx, axIn, [0, 0], x, '$\\kvecx$', vc);
-      past(ctx, axOut, [0, 0], c1, '$\\kA\\kvece_1$', vc, 28);
-      past(ctx, axOut, [0, 0], c2, '$\\kA\\kvece_2$', vc, 28);
+      outer(ctx, axOut, c1, c2, '$\\kA\\kvece_1$', vc);
+      outer(ctx, axOut, c2, c1, '$\\kA\\kvece_2$', vc);
       past(ctx, axOut, [0, 0], Ax, '$\\kA\\kvecx$', vc);
     }
     /* hover names */

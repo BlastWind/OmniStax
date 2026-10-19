@@ -18,6 +18,7 @@ Scratch: /tmp/claude-0/-home-user-OmniStax/fa1756e3-ffc3-5115-96ae-60401395d3dc/
 - `ost merge diffyqs 8`: 49 concepts, 87 edges (1 redundant dropped after the whole-book Hasse check: classifying-critical-points-of-a-system → characteristic-equation-of-a-matrix), 5 symbols. Concept links were already in the draft and check clean.
 - `ost check diffyqs`: no errors, no warnings.
 - 8.1 built (sec-8.1, claude-opus-5-5 high): 2 moving figures (Figure 8.1 `sim-portrait-x2`, Figure 8.2 `sim-linearizations`, the zoom), the `mv-pend` image kept, 6 concepts introduced, 0 derivations, 10 end exercises (0 inline, 6 unkeyed with AI solutions, 4 keyed), footnote 46 (Jacobi, the book's running number) and one correction note under 8.1.102's card; `ost check` clean.
+- 8.2 built (sec-8.2, claude-opus-5-5 high): 3 moving figures (Figure 8.3 `sim-saddle-sink`, Figure 8.4 `sim-saddle-spiral`, Figure 8.5 `sim-false-center`), 1 still Sim (`sim-energy-levels`), Table 8.1 as `div.book-table`, 13 concepts introduced, 2 derivations (`drv-hamiltonian`, `drv-conservative-eigenvalues`), 11 end exercises (0 inline, 7 unkeyed with AI solutions, 4 keyed), no footnote (the LaTeX prints none in 8.2); 8.2.1 b)'s (0, −1) shown a stable center by the integrating factor e^(−2y); `ost check` clean.
 
 ## Next
 
