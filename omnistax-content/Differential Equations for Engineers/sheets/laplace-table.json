@@ -1,0 +1,261 @@
+{
+ "id": "laplace-table",
+ "title": "Table of Laplace Transforms",
+ "kind": "table",
+ "source": {
+  "module": "laplacelist:appendix",
+  "appendix": "B"
+ },
+ "generated_by": "tool",
+ "tables": [
+  {
+   "id": "definitions",
+   "title": "Functions Named in the Table",
+   "columns": [
+    {
+     "id": "function",
+     "label": "Function",
+     "kind": "text"
+    },
+    {
+     "id": "definition",
+     "label": "Definition",
+     "kind": "text"
+    }
+   ],
+   "rows": [
+    [
+     "$u(t)$",
+     "the Heaviside function"
+    ],
+    [
+     "$\\delta(t)$",
+     "the Dirac delta function"
+    ],
+    [
+     "$\\Gamma(t)$",
+     "$\\int_0^\\infty e^{-\\tau} \\tau^{t-1} \\, d\\tau$"
+    ],
+    [
+     "$\\operatorname{erf}(t)$",
+     "$\\frac{2}{\\sqrt{\\pi}} \\int_0^t e^{-\\tau^2} \\, d\\tau$"
+    ],
+    [
+     "$\\operatorname{erfc}(t)$",
+     "$1 - \\operatorname{erf}(t)$"
+    ]
+   ],
+   "notes": []
+  },
+  {
+   "id": "transforms",
+   "title": "Laplace Transforms",
+   "columns": [
+    {
+     "id": "f",
+     "label": "$f(t)$",
+     "kind": "text"
+    },
+    {
+     "id": "F",
+     "label": "$F(s) = \\mathcal{L} \\bigl\\{ f(t) \\bigr\\}= \\int_0^\\infty e^{-st} f(t) \\, dt$",
+     "kind": "text"
+    }
+   ],
+   "rows": [
+    [
+     "$C$",
+     "$\\frac{C}{s}$"
+    ],
+    [
+     "$t$",
+     "$\\frac{1}{s^2}$"
+    ],
+    [
+     "$t^n$",
+     "$\\frac{n!}{s^{n+1}}$"
+    ],
+    [
+     "$t^p \\quad (p > -1)$",
+     "$\\frac{\\Gamma(p+1)}{s^{p+1}}$"
+    ],
+    [
+     "$e^{-at}$",
+     "$\\frac{1}{s+a}$"
+    ],
+    [
+     "$\\sin (\\omega t)$",
+     "$\\frac{\\omega}{s^2+\\omega^2}$"
+    ],
+    [
+     "$\\cos (\\omega t)$",
+     "$\\frac{s}{s^2+\\omega^2}$"
+    ],
+    [
+     "$\\sinh (\\omega t)$",
+     "$\\frac{\\omega}{s^2-\\omega^2}$"
+    ],
+    [
+     "$\\cosh (\\omega t)$",
+     "$\\frac{s}{s^2-\\omega^2}$"
+    ],
+    [
+     "$u(t-a) \\quad (a \\geq 0)$",
+     "$\\frac{e^{-as}}{s}$"
+    ],
+    [
+     "$\\delta(t)$",
+     "$1$"
+    ],
+    [
+     "$\\delta(t-a) \\quad (a \\geq 0)$",
+     "$e^{-as}$"
+    ],
+    [
+     "$\\operatorname{erf}\\left( \\frac{t}{2a} \\right)$",
+     "$\\frac{1}{s} e^{(as)^2} \\operatorname{erfc}(as)$"
+    ],
+    [
+     "$t \\sin(\\omega t)$",
+     "$\\frac{2\\omega s}{{(s^2+\\omega^2)}^2}$"
+    ],
+    [
+     "$t \\cos(\\omega t)$",
+     "$\\frac{s^2-\\omega^2}{{(s^2+\\omega^2)}^2}$"
+    ],
+    [
+     "$e^{-at} \\sin(\\omega t)$",
+     "$\\frac{\\omega}{{(s+a)}^2 + \\omega^2}$"
+    ],
+    [
+     "$e^{-at} \\cos(\\omega t)$",
+     "$\\frac{s+a}{{(s+a)}^2 + \\omega^2}$"
+    ],
+    [
+     "$e^{-at} \\sinh(\\omega t)$",
+     "$\\frac{\\omega}{{(s+a)}^2 - \\omega^2}$"
+    ],
+    [
+     "$e^{-at} \\cosh(\\omega t)$",
+     "$\\frac{s+a}{{(s+a)}^2 - \\omega^2}$"
+    ],
+    [
+     "$\\frac{1}{\\sqrt{\\pi t}} \\exp\\left(\\frac{-a^2}{4t}\\right) \\quad (a > 0)$",
+     "$\\frac{e^{-a\\sqrt{s}}}{\\sqrt{s}}$"
+    ],
+    [
+     "$\\frac{a}{\\sqrt{4\\pi t^3}} \\exp\\left(\\frac{-a^2}{4t}\\right) \\quad (a > 0)$",
+     "$e^{-a \\sqrt{s}}$"
+    ],
+    [
+     "$\\frac{1}{\\sqrt{\\pi t}} - a e^{a^2 t} \\operatorname{erfc}(a \\sqrt{t}) \\quad (a>0)$",
+     "$\\frac{1}{\\sqrt{s}+a}$"
+    ],
+    [
+     "$\\operatorname{erfc}\\left(\\frac{a}{2\\sqrt{t}}\\right) \\quad (a>0)$",
+     "$\\frac{e^{-a\\sqrt{s}}}{s}$"
+    ],
+    [
+     "$\\frac{1}{2\\sqrt{\\pi t^3}}( e^{b t} - e^{a t})$",
+     "$\\sqrt{s-a}-\\sqrt{s-b}$"
+    ],
+    [
+     "$\\frac{1}{t} ( e^{b t} - e^{a t})$",
+     "$\\ln \\frac{s-a}{s-b}$"
+    ],
+    [
+     "$J_0(at)$",
+     "$\\frac{1}{\\sqrt{s^2+a^2}}$"
+    ],
+    [
+     "$J_0(a\\sqrt{t})$",
+     "$\\frac{\\exp\\left(\\frac{-a^2}{4s}\\right)}{s}$"
+    ],
+    [
+     "$\\frac{1}{\\sqrt{\\pi t}} \\cos(a \\sqrt{t})$",
+     "$\\frac{\\exp\\left(\\frac{-a^2}{4s}\\right)}{\\sqrt{s}}$"
+    ],
+    [
+     "$\\frac{2}{\\sqrt{\\pi}} \\sinh(a \\sqrt{t})$",
+     "$\\frac{a \\exp\\left(\\frac{a^2}{4s}\\right)}{s^{3/2}}$"
+    ],
+    [
+     "$\\frac{1}{\\sqrt{\\pi t}} e^{at} (1+2at)$",
+     "$\\frac{s}{(s-a)^{3/2}}$"
+    ]
+   ],
+   "notes": []
+  },
+  {
+   "id": "properties",
+   "title": "Properties of the Laplace Transform",
+   "columns": [
+    {
+     "id": "f",
+     "label": "$f(t)$",
+     "kind": "text"
+    },
+    {
+     "id": "F",
+     "label": "$F(s) = \\mathcal{L} \\bigl\\{ f(t) \\bigr\\}= \\int_0^\\infty e^{-st} f(t) \\, dt$",
+     "kind": "text"
+    }
+   ],
+   "rows": [
+    [
+     "$a f(t) + b g(t)$",
+     "$a F(s) + bG(s)$"
+    ],
+    [
+     "$f(at) \\quad (a > 0)$",
+     "$\\frac{1}{a}F\\left( \\frac{s}{a} \\right)$"
+    ],
+    [
+     "$f(t-a)u(t-a) \\quad (a \\geq 0)$",
+     "$e^{-as} F(s)$"
+    ],
+    [
+     "$e^{-at} f(t)$",
+     "$F(s+a)$"
+    ],
+    [
+     "$g'(t)$",
+     "$sG(s)-g(0)$"
+    ],
+    [
+     "$g''(t)$",
+     "$s^2G(s)-sg(0)-g'(0)$"
+    ],
+    [
+     "$g^{(n)}(t)$",
+     "$s^nG(s)-s^{n-1}g(0)-\\cdots-g^{(n-1)}(0)$"
+    ],
+    [
+     "$(f * g)(t) = \\int_0^t f(\\tau) g(t-\\tau) \\, d\\tau$",
+     "$F(s)G(s)$"
+    ],
+    [
+     "$tf(t)$",
+     "$-F'(s)$"
+    ],
+    [
+     "$t^nf(t)$",
+     "${(-1)}^nF^{(n)}(s)$"
+    ],
+    [
+     "$\\int_0^t f(\\tau) d\\tau$",
+     "$\\frac{1}{s} F(s)$"
+    ],
+    [
+     "$\\frac{f(t)}{t}$",
+     "$\\int_s^\\infty F(\\sigma) d\\sigma$"
+    ],
+    [
+     "$f(t)$ periodic with period $P$",
+     "$\\frac{1}{1-e^{-Ps}} \\int_0^P e^{-st} f(t) \\, dt$"
+    ]
+   ],
+   "notes": []
+  }
+ ]
+}
