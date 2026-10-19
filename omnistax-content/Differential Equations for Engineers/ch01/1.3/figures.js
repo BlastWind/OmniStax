@@ -98,7 +98,7 @@ const level = (ctx, ax, v, color, dash = [10, 10], w = 3) => line(ctx, ax.box.l,
     dot(ctx, L.X(0), L.Y(a), pc, true, 10);
     dot(ctx, L.X(1), L.Y(b), pc, true, 10);
     label(ctx, `T(0) = ${fmt(a, 1)}`, L.X(0), L.Y(a), { side: 'right', color: pc, size: 20, weight: 600 });
-    label(ctx, `T(1) = ${fmt(b, 1)}`, L.X(1), L.Y(b), { side: 'right', color: pc, size: 20, weight: 600 });
+    label(ctx, `T(1) = ${fmt(b, 1)}`, L.X(1), L.Y(b), { side: a - b < 3 ? 'below' : 'right', color: pc, size: 20, weight: 600 });
     hits.push({ x: L.X(0), y: L.Y(a), r: 16, name: `T(0) = ${fmt(a, 1)} °C, measured when the coffee was poured` });
     hits.push({ x: L.X(1), y: L.Y(b), r: 16, name: `T(1) = ${fmt(b, 1)} °C, measured a minute later` });
     /* right: 80 minutes, with the ambient level */
