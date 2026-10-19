@@ -1,0 +1,75 @@
+<section id="linear">
+<h2>The integrating factor</h2>
+<p id="linear-definition"><em><span data-concept="linear-differential-equation">Linear equations</span></em> are one of the most important types of equations we will learn to solve. In fact, the majority of the course is about <span data-concept="linear-differential-equation">linear equations</span>. In this section, we focus on the <em><span data-concept="first-order-linear-differential-equation">first-order linear equation</span></em>. A <span data-concept="first-order-differential-equation">first-order equation</span> is <span data-concept="first-order-linear-differential-equation">linear</span> if we can put it into the form:</p>
+<div class="equation" id="eq-1-3">$$ \kyprime + \kp(x) \ky = \kf(x) . \tag{1.3}$$</div>
+<p>The word “<span data-concept="first-order-linear-differential-equation">linear</span>” means linear in $\ky$ and $\kyprime$: No higher powers or functions of $\ky$ or $\kyprime$ appear. The dependence on $x$ can be more complicated.</p>
+<p id="nice-properties"><span data-concept="solution-to-a-differential-equation">Solutions</span> of <span data-concept="first-order-linear-differential-equation">linear equations</span> have nice properties. For example, the <span data-concept="solution-to-a-differential-equation">solution</span> exists wherever $\kp(x)$ and $\kf(x)$ are <a href="/calculus/ch02/2.4/">continuous</a>, and it has essentially the same regularity (read: it is just as nice). Most importantly for us right now, there is a method for solving <span data-concept="first-order-linear-differential-equation">linear first-order equations</span>.</p>
+<p id="product-trick">The trick is to rewrite the left-hand side of <a href="#eq-1-3">(1.3)</a> as a derivative of a product of $\ky$ with another function. To this end, we wish to find a function $\kr(x)$ such that</p>
+<div class="equation" id="eq-integrating-factor-product">$$ \kr(x) \kyprime + \kr(x) \kp(x) \ky = \frac{d}{dx}\Bigl[ \kr(x) \ky \Bigr] . $$</div>
+<p>This is the left-hand side of <a href="#eq-1-3">(1.3)</a> multiplied by $\kr(x)$. If we multiply <a href="#eq-1-3">(1.3)</a> by $\kr(x)$, we obtain</p>
+$$ \frac{d}{dx}\Bigl[ \kr(x) \ky \Bigr] = \kr(x)\kf(x) . $$
+<p id="integrating-factor-def">We can now integrate both sides, which we can do as the right-hand side does not depend on $\ky$ and the left-hand side is written as a derivative of a function. After the integration, we solve for $\ky$ by dividing by $\kr(x)$. The function $\kr(x)$ is called the <em><span data-concept="integrating-factor">integrating factor</span></em> and the method is called the <em><span data-concept="integrating-factor-method">integrating factor method</span></em>.</p>
+<p id="exponential-job">We are looking for a function $\kr(x)$, such that if we differentiate it, we get the same function back multiplied by $\kp(x)$. That seems like a job for the <a href="/calculus/ch03/3.9/">exponential function</a>! Let</p>
+<div class="equation" id="eq-integrating-factor">$$ \kr(x) = e^{\int \kp(x) \,dx} , $$</div>
+<p id="we-compute">where $\int \kp(x)\, dx$ is any <span data-concept="antiderivative">antiderivative</span> of $\kp(x)$. We compute:</p>
+<figure class="dv" id="drv-integrating-factor"></figure>
+<p id="closed-form-caveat">Of course, to get a <span data-concept="closed-form">closed-form</span> formula for $\ky$, we need to be able to find a <span data-concept="closed-form">closed-form</span> formula for the integrals appearing above.</p>
+<div class="example" id="ex-1-4-1">
+<h3>Example 1.4.1</h3>
+<p>Solve</p>
+$$ \kyprime + 2x\ky = e^{x-x^2}, \qquad \ky(0) = -1 . $$
+<p>First note that $\kp(x) = 2x$ and $\kf(x) = e^{x-x^2}$. The <span data-concept="integrating-factor">integrating factor</span> is $\kr(x) = e^{\int \kp(x)\, dx} = e^{x^2}$. We multiply both sides of the equation by $\kr(x)$ to get</p>
+$$ \begin{aligned} e^{x^2} \kyprime + 2xe^{x^2}\ky &amp; = e^{x^2} e^{x-x^2} , \\ \frac{d}{dx} \left[ e^{x^2} \ky \right] &amp;= e^x . \end{aligned} $$
+<p>We integrate</p>
+$$ \begin{aligned} e^{x^2} \ky &amp;= e^x +C , \\ \ky &amp;= e^{x-x^2} + C e^{-x^2} . \end{aligned} $$
+<p>Next, we solve for the <span data-concept="initial-value">initial condition</span> $-1 = \ky(0) = 1 + C$, so $C=-2$. The <span data-concept="solution-to-a-differential-equation">solution</span> is</p>
+$$ \ky = e^{x-x^2} - 2 e^{-x^2} . $$
+</div>
+<p id="constant-of-integration">Note that we do not care which <span data-concept="antiderivative">antiderivative</span> we take when computing $e^{\int \kp(x) \, dx}$. You can always add a constant of integration, but those constants will not matter in the end.</p>
+<div class="exercises" data-place="constant-of-integration"></div>
+<p id="advice">Advice: Do not try to remember the formula for $\ky$ itself—that is way too hard. It is easier to remember the <span data-concept="integrating-factor-method">process</span> and repeat it.</p>
+<p id="definite-integral-form">Since we cannot always evaluate the integrals in <span data-concept="closed-form">closed form</span>, it is useful to know how to write the <span data-concept="solution-to-a-differential-equation">solution</span> in definite integral form. A definite integral is something that you can plug into a computer or a calculator. Suppose we are given</p>
+$$ \kyprime + \kp(x) \ky = \kf(x) , \qquad \ky(x_0) = y_0 . $$
+<p>Look at the <span data-concept="solution-to-a-differential-equation">solution</span> and write the integrals as definite integrals.</p>
+<div class="equation" id="eq-1-4">$$ \boxed{~~ \ky(x) = e^{-\int_{x_0}^x \kp(s)\, ds} \left( \int_{x_0}^x e^{\int_{x_0}^t \kp(s)\, ds} \kf(t) \,dt + y_0 \right). ~~} \tag{1.4}$$</div>
+<p id="dummy-variables">You should be careful to properly use dummy variables here. If you now plug such a formula into a computer or a calculator, it will be happy to give you numerical answers.</p>
+<div class="exercises" data-place="dummy-variables"></div>
+<div class="note" id="rem-1-4-1">
+<div class="eyebrow">Remark 1.4.1</div>
+<p>Before we move on, we should note some interesting properties of <span data-concept="first-order-linear-differential-equation">linear equations</span>. First, for the <span data-concept="first-order-linear-differential-equation">linear</span> initial value problem $\kyprime + \kp(x) \ky = \kf(x)$, $\ky(x_0) = y_0$, there is an explicit formula <a href="#eq-1-4">(1.4)</a> for the <span data-concept="solution-to-a-differential-equation">solution</span>. Second, it follows from the formula <a href="#eq-1-4">(1.4)</a> that if $\kp(x)$ and $\kf(x)$ are continuous on some interval $(a,b)$, then the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky(x)$ <span data-concept="existence-for-linear-equations">exists and is differentiable on $(a,b)$</span>. Compare with the simple nonlinear example we have seen previously, $\kyprime=\ky^2$, and compare to <a href="/diffyqs/ch01/1.2/#1.2-thm-1-2-1">Theorem 1.2.1</a>.</p>
+</div>
+</section>
+<section id="mixing">
+<h2>Mixing problems</h2>
+<div class="example" id="ex-1-4-2">
+<h3>Example 1.4.2</h3>
+<p>We get to a common simple application of <span data-concept="first-order-linear-differential-equation">linear equations</span>. Real-life applications of this type of problem include computing the concentration of chemicals in bodies of water (rivers and lakes).</p>
+<p id="tank-setup">A 100-liter tank contains 10 kilograms of salt dissolved in 60 liters of water. A solution of water and salt (brine) with a concentration of 0.1 kilograms per liter is flowing in at the rate of 5 liters a minute. The solution in the tank is well stirred and flows out at a rate of 3 liters a minute. How much salt is in the tank when the tank is full?</p>
+<p id="mixing-law">To solve this problem, we need to find the <span data-concept="mathematical-model">differential equation for this setup</span>. Let $\kx$ denote the kilograms of salt in the tank, and let $t$ denote the time in minutes. For a small change $\Delta t$ in time, the change in $\kx$ (denoted $\Delta x$) is approximately</p>
+$$ \Delta x \approx (\text{rate in} \times \text{concentration in}) \Delta t - (\text{rate out} \times \text{concentration out}) \Delta t . $$
+<p>Dividing through by $\Delta t$ and taking the limit $\Delta t \to 0$, we see that</p>
+<div class="equation" id="eq-mixing">$$ \kdxdt = (\text{rate in} \times \text{concentration in}) - (\text{rate out} \times \text{concentration out}) . $$</div>
+<p>In our example,</p>
+$$ \begin{aligned} \text{rate in} &amp;= 5 , \\ \text{concentration in} &amp;= 0.1 , \\ \text{rate out} &amp;= 3 , \\ \text{volume} &amp;= \text{initial volume} + (\text{rate in} - \text{rate out})t = 60+(5-3)t, \\ \text{concentration out} &amp;= \frac{\kx}{\text{volume}} = \frac{\kx}{60+(5-3)t} . \end{aligned} $$
+<p>Our differential equation is</p>
+$$ \kdxdt = (5 \times 0.1) - \left(3 \frac{\kx}{60+2t}\right) . $$
+<p>In the form <a href="#eq-1-3">(1.3)</a>, it is</p>
+$$ \kdxdt + \frac{3}{60+2t} \kx = 0.5 . $$
+<p id="tank-solve">Let us solve. The <span data-concept="integrating-factor">integrating factor</span> is</p>
+$$ \kr(t) = \exp \left( \int \frac{3}{60+2t} dt \right) = \exp \left( \frac{3}{2} \ln (60+2t) \right) = {(60+2t)}^{3/2} . $$
+<p>We multiply both sides of the equation by $\kr(t)$ and simplify,</p>
+$$ \begin{aligned} {(60+2t)}^{3/2} \kdxdt + {(60+2t)}^{3/2} \frac{3}{60+2t} \kx &amp; = 0.5{(60+2t)}^{3/2} ,\\ \frac{d}{dt}\left[ {(60+2t)}^{3/2} \kx \right] &amp; = 0.5{(60+2t)}^{3/2} . \end{aligned} $$
+<p>We integrate and solve,</p>
+$$ \begin{aligned} {(60+2t)}^{3/2} \kx &amp; = \int 0.5{(60+2t)}^{3/2} dt +C ,\\ \kx &amp; = {(60+2t)}^{-3/2} \int \frac{ {(60+2t)}^{3/2} }{2} dt +C{(60+2t)}^{-3/2} ,\\ \kx &amp; = {(60+2t)}^{-3/2} \frac{1}{10}{(60+2t)}^{5/2} +C{(60+2t)}^{-3/2} ,\\ \kx &amp; = \frac{60+2t}{10} +C{(60+2t)}^{-3/2} . \end{aligned} $$
+<p>To find $C$, note that at $t=0$, we have $\kx=10$. That is,</p>
+$$ 10 = \kx(0) = \frac{60}{10} +C{(60)}^{-3/2} = 6 +C{(60)}^{-3/2} , $$
+<p>or</p>
+$$ C=4 ({60}^{3/2}) \approx 1859.03 . $$
+<p id="tank-full">As $5$ liters per minute are flowing in and $3$ liters per minute are flowing out, the volume is increasing by $2$ liters a minute. So the tank is full when $60+2t = 100$, or when $t=20$. We want the value of $\kx$ when the tank is full, that is, we compute $\kx(20)$:</p>
+$$ \begin{split} \kx(20) &amp; = \frac{60+40}{10} +C{(60+40)}^{-3/2} \\ &amp; \approx 10 +1859.03 {(100)}^{-3/2} \approx 11.86 . \end{split} $$
+<p id="tank-answer">There are 11.86 kg of salt in the tank when it is full. See Figure 1.10 for the graph of $\kx(t)$. The concentration when the tank is full is approximately ${11.86}/{100} = 0.1186\,\mathrm{kg}/\mathrm{liter}$, and we started with ${1}/{6}$ or approximately 0.1667 kg/liter.</p>
+<figure class="sim" id="sim-brine-tank" data-figure="1.10" data-original="/media/ch01/lin-tank.svg,/media/ch01/linear-salt-graph.svg" data-original-caption="Graph of the solution x kilograms of salt in the tank at time t.">
+  <div class="sim-head"><span class="eyebrow">Figure 1.10</span><span>Brine at 0.1 kg per liter runs in at 5 liters a minute and the stirred mixture runs out at 3, so the tank fills while the salt $\kx(t)$ climbs from 10 kg to 11.86 kg at $t = 20$. The concentration of the brine coming in and the rate of the flow out are yours to set: the salt in the tank is always drawn toward the concentration of what comes in, and the tank is full when $60 + (5 - \text{rate out})\,t$ reaches 100.</span></div>
+</figure>
+</div>
+</section>

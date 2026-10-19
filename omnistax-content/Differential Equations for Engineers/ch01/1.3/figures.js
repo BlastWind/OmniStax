@@ -64,7 +64,7 @@ const level = (ctx, ax, v, color, dash = [10, 10], w = 3) => line(ctx, ax.box.l,
 
 /* Figure 1.9 and Example 1.3.3: the coffee, T = A + (T(0) − A)e^(−kt) with k = −ln((T(1) − A)/(T(0) − A)) from the two
    measurements, the book's 89, 85 and 22 the defaults (T(1) stays below T(0) and above A on its range, so k > 0). Left
-   panel t 0 to 12.5 min, T 55 to 95 (the book's window, holding T(0) up to 92); right t 0 to 80, T 10 to 100 with the
+   panel t 0 to 12.5 min, T 55 to 95 (the book's window, holding T(0) up to 92); right t 0 to 80, T 0 to 100 with the
    level A. The time to 60° is the drop line; past 12.5 min it is pinned at the left panel's edge and read on the right. */
 (function () {
   const d = sim('sim-coffee', 560);
@@ -82,7 +82,7 @@ const level = (ctx, ax, v, color, dash = [10, 10], w = 3) => line(ctx, ax.box.l,
     const T = (t) => A + Dd * Math.exp(-k * t), t60 = -Math.log((60 - A) / Dd) / k;
     hits = [];
     /* left: the first 12.5 minutes */
-    const L = axes(ctx, LB, [0, 12.5], [55, 95], { xl: 't (min)', yl: 'T (°C)', nx: 5, ny: 4 });
+    const L = axes(ctx, LB, [0, 12.5], [55, 95], { xl: 't (min)', yl: 'T (°C)', nx: 5, ny: 4, fx: (v) => fmt(v, v % 1 ? 1 : 0) });
     [a, b, 60].forEach((v) => level(ctx, L, v, alpha(PAL.ink, 0.35), [4, 8], 2));
     drop(ctx, L.X(1), L.Y(b), L.X(1), L.box.b);
     plot(ctx, L, T, fc);
@@ -102,7 +102,7 @@ const level = (ctx, ax, v, color, dash = [10, 10], w = 3) => line(ctx, ax.box.l,
     hits.push({ x: L.X(0), y: L.Y(a), r: 16, name: `T(0) = ${fmt(a, 1)} °C, measured when the coffee was poured` });
     hits.push({ x: L.X(1), y: L.Y(b), r: 16, name: `T(1) = ${fmt(b, 1)} °C, measured a minute later` });
     /* right: 80 minutes, with the ambient level */
-    const R = axes(ctx, RB, [0, 80], [10, 100], { xl: 't (min)', yl: 'T (°C)', nx: 4, ny: 3 });
+    const R = axes(ctx, RB, [0, 80], [0, 100], { xl: 't (min)', yl: 'T (°C)', nx: 4, ny: 5 });
     level(ctx, R, A, mu, [10, 10], 3);
     text(ctx, `A = ${fmt(A, 1)}`, R.box.r - 8, R.Y(A) - 8, mu, { size: 20, weight: 600, align: 'right', base: 'bottom', bg: PAL.panel });
     plot(ctx, R, T, fc);

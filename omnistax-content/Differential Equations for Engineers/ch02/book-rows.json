@@ -679,7 +679,7 @@
       "statement": "When the forcing frequency is close to the natural frequency, as in Example 2.6.1 with x = 20/(16 − π²)(cos(πt) − cos(4t)), the solution shows beating: by the identity 2 sin((A − B)/2) sin((A + B)/2) = cos B − cos A, x = 20/(16 − π²)(2 sin((4 − π)t/2) sin((4 + π)t/2)), a high-frequency wave modulated by a low-frequency wave, whose amplitude grows, goes to zero, and grows again.",
       "forms": [
         {"id": "eq-beating-identity", "latex": "2\\sin \\left( \\frac{A-B}{2} \\right) \\sin \\left( \\frac{A+B}{2} \\right) = \\cos B -\\cos A", "ktex": "2\\sin \\left( \\frac{A-B}{2} \\right) \\sin \\left( \\frac{A+B}{2} \\right) = \\cos B -\\cos A"},
-        {"id": "eq-beating-example", "latex": "x = \\frac{20}{16 - \\pi^2} \\left( 2 \\sin \\left(\\frac{4-\\pi}{2} t \\right) \\sin \\left( \\frac{4+\\pi}{2} t \\right) \\right)", "ktex": "\\kx = \\frac{20}{16 - \\pi^2} \\left( 2 \\sin \\left(\\frac{4-\\pi}{2} t \\right) \\sin \\left( \\frac{4+\\pi}{2} t \\right) \\right)", "condition": "Example 2.6.1: 0.5x″ + 8x = 10 cos(πt), x(0) = x′(0) = 0"}
+        {"id": "eq-beating", "latex": "x = \\frac{20}{16 - \\pi^2} \\left( 2 \\sin \\left(\\frac{4-\\pi}{2} t \\right) \\sin \\left( \\frac{4+\\pi}{2} t \\right) \\right)", "ktex": "\\kx = \\frac{20}{16 - \\pi^2} \\left( 2 \\sin \\left(\\frac{4-\\pi}{2} t \\right) \\sin \\left( \\frac{4+\\pi}{2} t \\right) \\right)", "condition": "Example 2.6.1: 0.5x″ + 8x = 10 cos(πt), x(0) = x′(0) = 0"}
       ]
     },
     {
@@ -824,9 +824,9 @@
     {"concept": "mass-spring-system", "prereq": "second-order-equation-with-constant-coefficients"},
     {"concept": "mass-spring-system", "prereq": "nonhomogeneous-linear-equation"},
     {"concept": "forced-motion", "prereq": "mass-spring-system"},
-    {"concept": "free-motion", "prereq": "forced-motion"},
+    {"concept": "free-motion", "prereq": "mass-spring-system"},
     {"concept": "damped-motion", "prereq": "mass-spring-system"},
-    {"concept": "undamped-motion", "prereq": "damped-motion"},
+    {"concept": "undamped-motion", "prereq": "mass-spring-system"},
     {"concept": "rlc-series-circuit", "prereq": "mass-spring-system"},
     {"concept": "pendulum-equation", "prereq": "newtons-second-law"},
     {"concept": "pendulum-equation", "prereq": "nonlinear-differential-equation"},
