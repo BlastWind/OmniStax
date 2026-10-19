@@ -88,7 +88,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     pts.push({ x: end.x, y: end.y, r: 14, name: `P(60) = ${fmt(p60, 0)}` });
     dot(ctx, ax.X(0), ax.Y(a), pc, true, 10);
     dot(ctx, ax.X(10), ax.Y(b), pc, true, 10);
-    label(ctx, `P(0) = ${fmt(a, 0)}`, ax.X(0), ax.Y(a), { side: 'above', color: pc, size: 20, weight: 600 });
+    label(ctx, `P(0) = ${fmt(a, 0)}`, ax.X(0) + 50, ax.Y(a), { side: 'above', color: pc, size: 20, weight: 600 });   /* set right of the tick labels */
     label(ctx, `P(10) = ${fmt(b, 0)}`, ax.X(10), ax.Y(b), { side: 'above', color: pc, size: 20, weight: 600 });
     headline(ctx, `P(0) = ${fmt(a, 0)}, P(10) = ${fmt(b, 0)}: the population is multiplied by ${fmt(r, 2)} every 10 s, so P(60) = ${fmt(p60, 0)}.`);
     ro.set(`k = \\frac{\\ln(${fmt(b, 0)}/${fmt(a, 0)})}{10} = ${n(k, 4)},\\quad \\kP(t) = ${fmt(a, 0)}\\,e^{${n(k, 4)}t},\\quad \\kP(60) = ${fmt(a, 0)}\\left(\\tfrac{${fmt(b, 0)}}{${fmt(a, 0)}}\\right)^{6} = ${fmt(p60, 0)}`);
@@ -155,7 +155,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
    and feet is dashed, and the widest gap between the two is bracketed. Equal scales in feet: x −400 to 400,
    height 0 to 700. */
 (function () {
-  const d = sim('sim-gateway-arch', 600);
+  const d = sim('sim-gateway-arch', 640);
   const L = 299.2239, A0 = 68.7672, C0 = 3.0022, H = A0 * (Math.cosh(C0) - 1);
   const cs = ctl(d.controls, { label: 'C', cls: '', key: 'C', min: 0.25, max: 4, step: 0.0001, value: C0, unit: '', dec: 4, detents: [C0] });
   const ro = readout(d);

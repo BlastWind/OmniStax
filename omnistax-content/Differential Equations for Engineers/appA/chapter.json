@@ -1,0 +1,359 @@
+{
+  "id": "A",
+  "dir": "appA",
+  "title": "Linear algebra",
+  "sections": [
+    {
+      "id": "A.1",
+      "module": "vecsandmaps:section",
+      "title": "Vectors, mappings, and matrices"
+    },
+    {
+      "id": "A.2",
+      "module": "matalg:section",
+      "title": "Matrix algebra"
+    },
+    {
+      "id": "A.3",
+      "module": "elim:section",
+      "title": "Elimination"
+    },
+    {
+      "id": "A.4",
+      "module": "subspaces:section",
+      "title": "Subspaces, dimension, and the kernel"
+    },
+    {
+      "id": "A.5",
+      "module": "innerproduct:section",
+      "title": "Inner product and projections"
+    },
+    {
+      "id": "A.6",
+      "module": "det:section",
+      "title": "Determinant"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "x_vec",
+      "meaning": "a vector, an n-tuple (x₁, x₂, …, xₙ) of real numbers written as a column, drawn as an arrow with a direction and a magnitude",
+      "section": "A.1",
+      "concept": "vector"
+    },
+    {
+      "sym": "y_vec",
+      "meaning": "a second vector, added to or subtracted from x⃗, or the vector a mapping returns",
+      "section": "A.1",
+      "concept": "vector"
+    },
+    {
+      "sym": "u_vec",
+      "meaning": "a unit vector, a vector of magnitude one giving a direction",
+      "section": "A.1",
+      "concept": "unit-vector"
+    },
+    {
+      "sym": "e_vec",
+      "meaning": "the standard basis vectors e⃗₁, …, e⃗ₙ of ℝⁿ, each with a single 1 and zeros elsewhere",
+      "section": "A.1",
+      "concept": "standard-unit-vectors"
+    },
+    {
+      "sym": "F",
+      "meaning": "a mapping F: ℝⁿ → ℝᵐ that takes a vector x⃗ to a vector F(x⃗), linear when it respects sums and scalar multiples",
+      "section": "A.1",
+      "concept": "linear-mapping"
+    },
+    {
+      "sym": "A",
+      "meaning": "an m × n matrix, an array of m rows and n columns, which as a linear mapping takes e⃗_j to its jth column",
+      "section": "A.1",
+      "concept": "matrix"
+    },
+    {
+      "sym": "M",
+      "meaning": "the 2 × 2 matrix [1 2; 3 4] of the worked example, as a linear mapping of the plane",
+      "section": "A.1",
+      "concept": "matrix"
+    },
+    {
+      "sym": "a_ij",
+      "meaning": "the entry of a matrix in row i and column j",
+      "section": "A.1",
+      "concept": "matrix-entry"
+    },
+    {
+      "sym": "L",
+      "meaning": "a linear differential operator, a linear mapping of an infinite-dimensional space of functions, L f = g",
+      "section": "A.1",
+      "concept": "linear-operator",
+      "type": null
+    },
+    {
+      "sym": "A",
+      "meaning": "an m × n matrix, a linear mapping from ℝⁿ to ℝᵐ, added to, scaled, multiplied, inverted or transposed",
+      "section": "A.2",
+      "concept": "matrix"
+    },
+    {
+      "sym": "B",
+      "meaning": "a second matrix, of the same size as A for a sum and of size n × p for the product AB",
+      "section": "A.2",
+      "concept": "matrix"
+    },
+    {
+      "sym": "C",
+      "meaning": "a third matrix in the rules of matrix algebra",
+      "section": "A.2",
+      "concept": "matrix"
+    },
+    {
+      "sym": "x_vec",
+      "meaning": "a column vector the matrices act on",
+      "section": "A.2",
+      "concept": "vector"
+    },
+    {
+      "sym": "y_vec",
+      "meaning": "a second column vector in the dot product x⃗ · y⃗ = y⃗ᵀx⃗",
+      "section": "A.2",
+      "concept": "vector"
+    },
+    {
+      "sym": "b_vec",
+      "meaning": "the columns b⃗₁, …, b⃗_p of the matrix B, each carried by A to a column of AB",
+      "section": "A.2",
+      "concept": "vector"
+    },
+    {
+      "sym": "I",
+      "meaning": "the identity matrix, 1s on the main diagonal and zeros elsewhere, I_n for the n × n one",
+      "section": "A.2",
+      "concept": "identity-matrix"
+    },
+    {
+      "sym": "A_inv",
+      "meaning": "the inverse of A, the matrix with AA⁻¹ = I = A⁻¹A",
+      "section": "A.2",
+      "concept": "matrix-inverse"
+    },
+    {
+      "sym": "A_T",
+      "meaning": "the transpose of A, rows and columns swapped",
+      "section": "A.2",
+      "concept": "transpose"
+    },
+    {
+      "sym": "A",
+      "meaning": "the coefficient matrix of a system of linear equations Ax⃗ = b⃗, or any matrix put through elimination",
+      "section": "A.3",
+      "concept": "matrix"
+    },
+    {
+      "sym": "x_vec",
+      "meaning": "the vector of unknowns x₁, …, xₙ of a linear system, or a vector in a linear combination",
+      "section": "A.3",
+      "concept": "vector"
+    },
+    {
+      "sym": "b_vec",
+      "meaning": "the right-hand side of the system Ax⃗ = b⃗",
+      "section": "A.3",
+      "concept": "vector"
+    },
+    {
+      "sym": "zero_vec",
+      "meaning": "the zero vector, the right-hand side of a homogeneous equation Ax⃗ = 0⃗",
+      "section": "A.3",
+      "concept": "vector"
+    },
+    {
+      "sym": "y_vec",
+      "meaning": "the vectors y⃗₁, …, y⃗ₙ of a linear combination, or the combination y⃗ = α₁x⃗₁ + ⋯ + αₙx⃗ₙ",
+      "section": "A.3",
+      "concept": "vector"
+    },
+    {
+      "sym": "v_vec",
+      "meaning": "the column vectors v⃗₁, …, v⃗₄ from which a linearly independent subset is picked",
+      "section": "A.3",
+      "concept": "vector"
+    },
+    {
+      "sym": "e_vec",
+      "meaning": "the standard basis vectors, the columns of I, the right-hand sides solved for to find the columns of A⁻¹",
+      "section": "A.3",
+      "concept": "standard-unit-vectors"
+    },
+    {
+      "sym": "I",
+      "meaning": "the identity matrix, written beside A in the augmented matrix [A | I]",
+      "section": "A.3",
+      "concept": "identity-matrix"
+    },
+    {
+      "sym": "A_inv",
+      "meaning": "the inverse of A, read off the reduced row echelon form [I | A⁻¹]",
+      "section": "A.3",
+      "concept": "matrix-inverse"
+    },
+    {
+      "sym": "A_T",
+      "meaning": "the transpose of A, whose rank equals that of A",
+      "section": "A.3",
+      "concept": "transpose"
+    },
+    {
+      "sym": "L",
+      "meaning": "a matrix whose kernel, the set of solutions of Lx⃗ = 0⃗, is studied; in reduced row echelon form in the examples",
+      "section": "A.4",
+      "concept": "matrix",
+      "redefines": true
+    },
+    {
+      "sym": "S",
+      "meaning": "a subspace of ℝⁿ, a set of vectors closed under addition and scalar multiplication",
+      "section": "A.4",
+      "concept": "subspace"
+    },
+    {
+      "sym": "v_vec",
+      "meaning": "the vectors v⃗₁, …, v⃗ₖ of a basis of a subspace",
+      "section": "A.4",
+      "concept": "vector"
+    },
+    {
+      "sym": "w_vec",
+      "meaning": "a vector of the subspace S, uniquely represented in its basis",
+      "section": "A.4",
+      "concept": "vector"
+    },
+    {
+      "sym": "x_vec",
+      "meaning": "a vector of a subspace, or the unknown of Lx⃗ = 0⃗ or Ax⃗ = b⃗",
+      "section": "A.4",
+      "concept": "vector"
+    },
+    {
+      "sym": "y_vec",
+      "meaning": "a second vector of a subspace, added to x⃗",
+      "section": "A.4",
+      "concept": "vector"
+    },
+    {
+      "sym": "zero_vec",
+      "meaning": "the zero vector, the only member of the trivial subspace",
+      "section": "A.4",
+      "concept": "vector"
+    },
+    {
+      "sym": "A",
+      "meaning": "a matrix whose column space, row space, rank and nullity are found",
+      "section": "A.4",
+      "concept": "matrix"
+    },
+    {
+      "sym": "b_vec",
+      "meaning": "the right-hand side of Ax⃗ = b⃗ in the Fredholm alternative",
+      "section": "A.4",
+      "concept": "vector"
+    },
+    {
+      "sym": "x_vec",
+      "meaning": "a vector in an inner product, or the vector expressed in an orthogonal basis or projected onto a subspace",
+      "section": "A.5",
+      "concept": "vector"
+    },
+    {
+      "sym": "y_vec",
+      "meaning": "the second vector of an inner product ⟨x⃗, y⃗⟩",
+      "section": "A.5",
+      "concept": "vector"
+    },
+    {
+      "sym": "z_vec",
+      "meaning": "a third vector in the distributive rules of the inner product",
+      "section": "A.5",
+      "concept": "vector"
+    },
+    {
+      "sym": "v_vec",
+      "meaning": "the nonzero vector projected onto, or the vectors v⃗₁, …, v⃗ₙ of an orthogonal basis",
+      "section": "A.5",
+      "concept": "vector"
+    },
+    {
+      "sym": "w_vec",
+      "meaning": "the vector projected onto v⃗, or the orthogonal vectors w⃗₁, …, w⃗ₙ the Gram–Schmidt process builds",
+      "section": "A.5",
+      "concept": "vector"
+    },
+    {
+      "sym": "u_vec",
+      "meaning": "a multiple of v⃗; the projection is the one closest to w⃗",
+      "section": "A.5",
+      "concept": "vector"
+    },
+    {
+      "sym": "proj",
+      "meaning": "the orthogonal projection proj_v⃗(w⃗) of w⃗ onto v⃗, or proj_S(x⃗) onto a subspace",
+      "section": "A.5",
+      "concept": "vector-projection"
+    },
+    {
+      "sym": "θ",
+      "meaning": "the angle between two vectors based at the same point, 0 ≤ θ ≤ π, from cos θ = ⟨x⃗, y⃗⟩/(‖x⃗‖‖y⃗‖)",
+      "section": "A.5",
+      "type": null
+    },
+    {
+      "sym": "S",
+      "meaning": "a subspace spanned by an orthogonal basis, onto which a vector is projected",
+      "section": "A.5",
+      "concept": "subspace"
+    },
+    {
+      "sym": "A",
+      "meaning": "a square matrix whose determinant is defined, or the 2 × 2 matrix [1 1; −1 1] mapping the unit square",
+      "section": "A.6",
+      "concept": "matrix"
+    },
+    {
+      "sym": "B",
+      "meaning": "a second square matrix in det(AB) = det(A)det(B)",
+      "section": "A.6",
+      "concept": "matrix"
+    },
+    {
+      "sym": "A_ij",
+      "meaning": "the matrix A with its ith row and jth column deleted, whose determinant enters the cofactor expansion",
+      "section": "A.6",
+      "type": "matrix"
+    },
+    {
+      "sym": "a_ij",
+      "meaning": "the entry of A in row i and column j, multiplying the cofactor (−1)^(i+j) det(A_ij)",
+      "section": "A.6",
+      "concept": "matrix-entry"
+    },
+    {
+      "sym": "I",
+      "meaning": "the identity matrix, with det(I) = 1",
+      "section": "A.6",
+      "concept": "identity-matrix"
+    },
+    {
+      "sym": "A_inv",
+      "meaning": "the inverse of A, with det(A⁻¹) = 1/det(A)",
+      "section": "A.6",
+      "concept": "matrix-inverse"
+    },
+    {
+      "sym": "A_T",
+      "meaning": "the transpose of A, with det(Aᵀ) = det(A)",
+      "section": "A.6",
+      "concept": "transpose"
+    }
+  ]
+}

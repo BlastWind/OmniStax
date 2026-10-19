@@ -1,0 +1,662 @@
+{
+  "types": [],
+  "symbols": [
+    {"sym": "G", "latex": "G", "macro": "\\kG"},
+    {"sym": "X", "latex": "X", "macro": "\\kX"},
+    {"sym": "Y", "latex": "Y", "macro": "\\kY"},
+    {"sym": "H", "latex": "H", "macro": "\\kH"},
+    {"sym": "F_prime", "latex": "F'", "macro": "\\kFprime"},
+    {"sym": "Y_prime", "latex": "Y'", "macro": "\\kYprime"},
+    {"sym": "Y_dprime", "latex": "Y''", "macro": "\\kYdprime"},
+    {"sym": "g_prime", "latex": "g'", "macro": "\\kgprime"},
+    {"sym": "g_dprime", "latex": "g''", "macro": "\\kgdprime"},
+    {"sym": "g_tprime", "latex": "g'''", "macro": "\\kgtprime"},
+    {"sym": "f*g", "latex": "f * g", "macro": "\\kfconvg"},
+    {"sym": "h", "latex": "h", "macro": "\\kh"},
+    {"sym": "δ", "latex": "\\delta", "macro": "\\kdelta"},
+    {"sym": "φ", "latex": "\\varphi", "macro": "\\kvarphi"},
+    {"sym": "y_tprime", "latex": "y'''", "macro": "\\kytprime"},
+    {"sym": "d4y/dx4", "latex": "\\frac{d^4 y}{dx^4}", "macro": "\\kdfourydx"},
+    {"sym": "y_t", "latex": "y_t", "macro": "\\kyt"},
+    {"sym": "y_x", "latex": "y_x", "macro": "\\kyx"},
+    {"sym": "y_xx", "latex": "y_{xx}", "macro": "\\kyxx"},
+    {"sym": "y_tt", "latex": "y_{tt}", "macro": "\\kytt"},
+    {"sym": "y_xt", "latex": "y_{xt}", "macro": "\\kyxt"}
+  ],
+  "concepts": [
+    {
+      "id": "laplace-transform",
+      "kind": "definition",
+      "section": "6.1",
+      "name": "Laplace transform",
+      "terms": ["Laplace transform"],
+      "symbol": "F",
+      "type": "transform",
+      "statement": "The Laplace transform of a function f(t) is the function F(s) = ℒ{f(t)} = ∫ from 0 to ∞ of e^(−st) f(t) dt of the new variable s, defined for the s where the improper integral exists; only t ≥ 0 enters, a lower-case letter names the function in the time domain and the upper-case letter its transform.",
+      "forms": [
+        {"id": "eq-lt-definition", "latex": "\\mathcal{L} \\bigl\\{ f(t) \\bigr\\} = F(s) \\overset{\\text{def}}{=} \\int_0^\\infty e^{-st} f(t) \\, dt", "ktex": "\\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} = \\kF(s) \\overset{\\text{def}}{=} \\int_0^\\infty e^{-st} \\kf(t) \\, dt"}
+      ]
+    },
+    {
+      "id": "frequency-domain",
+      "kind": "idea",
+      "section": "6.1",
+      "name": "Time domain and frequency domain",
+      "terms": ["time domain", "frequency domain"],
+      "statement": "The Laplace transform converts a differential equation in the time t into an algebraic equation in the new variable s, which is thought of as the frequency: the transform takes the equation from the time domain to the frequency domain, and the inverse transform brings the solution back."
+    },
+    {
+      "id": "laplace-transform-table",
+      "kind": "result",
+      "section": "6.1",
+      "name": "Basic Laplace transforms",
+      "statement": "Table 6.1 lists the transforms of the elementary functions, each computed from the definition: a constant C gives C/s, tⁿ gives n!/s^(n+1), e^(−at) gives 1/(s + a), sin ωt and cos ωt give ω/(s² + ω²) and s/(s² + ω²), sinh ωt and cosh ωt give ω/(s² − ω²) and s/(s² − ω²), and the shifted step u(t − a) gives e^(−as)/s, each for s large enough that the integral exists.",
+      "forms": [
+        {"id": "eq-lt-constant", "latex": "\\mathcal{L} \\{ C \\} = \\frac{C}{s}", "condition": "s > 0"},
+        {"id": "eq-lt-t", "latex": "\\mathcal{L} \\{ t \\} = \\frac{1}{s^2}", "condition": "s > 0"},
+        {"id": "eq-lt-t-squared", "latex": "\\mathcal{L} \\{ t^2 \\} = \\frac{2}{s^3}", "condition": "s > 0"},
+        {"id": "eq-lt-t-cubed", "latex": "\\mathcal{L} \\{ t^3 \\} = \\frac{6}{s^4}", "condition": "s > 0"},
+        {"id": "eq-lt-t-power", "latex": "\\mathcal{L} \\{ t^n \\} = \\frac{n!}{s^{n+1}}", "condition": "s > 0"},
+        {"id": "eq-lt-exponential", "latex": "\\mathcal{L} \\bigl\\{ e^{-at} \\bigr\\} = \\frac{1}{s+a}", "condition": "s + a > 0"},
+        {"id": "eq-lt-sin", "latex": "\\mathcal{L} \\bigl\\{ \\sin (\\omega t) \\bigr\\} = \\frac{\\omega}{s^2+\\omega^2}", "condition": "s > 0"},
+        {"id": "eq-lt-cos", "latex": "\\mathcal{L} \\bigl\\{ \\cos (\\omega t) \\bigr\\} = \\frac{s}{s^2+\\omega^2}", "condition": "s > 0"},
+        {"id": "eq-lt-sinh", "latex": "\\mathcal{L} \\bigl\\{ \\sinh (\\omega t) \\bigr\\} = \\frac{\\omega}{s^2-\\omega^2}", "condition": "s > |ω|"},
+        {"id": "eq-lt-cosh", "latex": "\\mathcal{L} \\bigl\\{ \\cosh (\\omega t) \\bigr\\} = \\frac{s}{s^2-\\omega^2}", "condition": "s > |ω|"},
+        {"id": "eq-lt-step", "latex": "\\mathcal{L} \\bigl\\{ u(t-a) \\bigr\\} = \\frac{e^{-as}}{s}", "ktex": "\\mathcal{L} \\bigl\\{ \\ku(t-a) \\bigr\\} = \\frac{e^{-as}}{s}", "condition": "a ≥ 0, s > 0"}
+      ]
+    },
+    {
+      "id": "unit-step-function",
+      "kind": "definition",
+      "section": "6.1",
+      "name": "Unit step function",
+      "terms": ["unit step function", "Heaviside function"],
+      "symbol": "u",
+      "type": "function",
+      "statement": "The unit step function, or Heaviside function, is u(t) = 0 for t < 0 and u(t) = 1 for t ≥ 0; the shifted step u(t − a) is 0 for t < a and 1 for t ≥ a.",
+      "forms": [
+        {"id": "eq-unit-step", "latex": "u(t) = \\begin{cases} 0 & \\text{if } \\; t < 0 , \\\\ 1 & \\text{if } \\; t \\geq 0 . \\end{cases}", "ktex": "\\ku(t) = \\begin{cases} 0 & \\text{if } \\; t < 0 , \\\\ 1 & \\text{if } \\; t \\geq 0 . \\end{cases}"}
+      ]
+    },
+    {
+      "id": "linearity-of-the-laplace-transform",
+      "kind": "result",
+      "section": "6.1",
+      "name": "Linearity of the Laplace transform",
+      "terms": ["linearity of the Laplace transform"],
+      "statement": "Theorem 6.1.1: if A, B and C are constants, then ℒ{Af(t) + Bg(t)} = Aℒ{f(t)} + Bℒ{g(t)}, and in particular ℒ{Cf(t)} = Cℒ{f(t)}, because the transform is defined by an integral; the transform of a product, however, is not the product of the transforms.",
+      "forms": [
+        {"id": "eq-lt-linearity", "latex": "\\mathcal{L} \\bigl\\{ A f(t) + B g(t) \\bigr\\} = A \\mathcal{L} \\bigl\\{ f(t) \\bigr\\} + B \\mathcal{L} \\bigl\\{ g(t) \\bigr\\}", "ktex": "\\mathcal{L} \\bigl\\{ A \\kf(t) + B \\kg(t) \\bigr\\} = A \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} + B \\mathcal{L} \\bigl\\{ \\kg(t) \\bigr\\}"},
+        {"id": "eq-lt-constant-multiple", "latex": "\\mathcal{L} \\bigl\\{ C f(t) \\bigr\\} = C \\mathcal{L} \\bigl\\{ f(t) \\bigr\\}", "ktex": "\\mathcal{L} \\bigl\\{ C \\kf(t) \\bigr\\} = C \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\}"}
+      ]
+    },
+    {
+      "id": "exponential-order",
+      "kind": "definition",
+      "section": "6.1",
+      "name": "Exponential order",
+      "terms": ["exponential order"],
+      "statement": "A function f(t) is of exponential order as t goes to infinity if |f(t)| ≤ Me^(ct) for some constants M and c and all sufficiently large t; the simplest check is that the limit of f(t)/e^(ct) as t → ∞ exists and is finite.",
+      "forms": [
+        {"id": "eq-exponential-order", "latex": "\\lvert f(t) \\rvert \\leq M e^{ct}", "ktex": "\\lvert \\kf(t) \\rvert \\leq M e^{ct}", "condition": "for all t > t₀"},
+        {"id": "eq-exponential-order-limit", "latex": "\\lim_{t\\to \\infty} \\frac{f(t)}{e^{ct}}", "ktex": "\\lim_{t\\to \\infty} \\frac{\\kf(t)}{e^{ct}}", "condition": "exists and is finite"}
+      ]
+    },
+    {
+      "id": "existence-of-the-laplace-transform",
+      "kind": "result",
+      "section": "6.1",
+      "name": "Existence of the Laplace transform",
+      "statement": "Theorem 6.1.2: if f(t) is continuous on [0, ∞) and of exponential order for a constant c, then F(s) = ℒ{f(t)} is defined for all s > c; the improper integral exists by comparison with ∫ e^(−st) Me^(ct) dt = M/(s − c). The theorem holds for piecewise continuous functions as well."
+    },
+    {
+      "id": "laplace-transform-decay",
+      "kind": "result",
+      "section": "6.1",
+      "name": "Decay of the transform at infinity",
+      "statement": "For a function of exponential order the Laplace transform decays at infinity: lim F(s) = 0 as s → ∞. So a rational function that is a transform must be proper, and a transformed problem whose Y does not decay has no solution.",
+      "forms": [
+        {"id": "eq-lt-decay", "latex": "\\lim_{s\\to\\infty} F(s) = 0", "ktex": "\\lim_{s\\to\\infty} \\kF(s) = 0"}
+      ]
+    },
+    {
+      "id": "uniqueness-of-the-laplace-transform",
+      "kind": "result",
+      "section": "6.1",
+      "name": "Uniqueness of the Laplace transform",
+      "statement": "Theorem 6.1.3: if f(t) and g(t) are continuous and of exponential order and F(s) = G(s) for all s > C, then f(t) = g(t) for all t ≥ 0. For piecewise continuous functions the transform does not see the values at the discontinuities, so f = g only outside them."
+    },
+    {
+      "id": "piecewise-continuous-function",
+      "kind": "definition",
+      "section": "6.1",
+      "name": "Piecewise continuous function",
+      "terms": ["piecewise continuous"],
+      "statement": "A function is piecewise continuous if it is continuous except perhaps at a discrete set of points, where it has jump discontinuities like the Heaviside function."
+    },
+    {
+      "id": "inverse-laplace-transform",
+      "kind": "definition",
+      "section": "6.1",
+      "name": "Inverse Laplace transform",
+      "terms": ["inverse Laplace transform"],
+      "statement": "If F(s) = ℒ{f(t)} for some function f(t), the inverse Laplace transform of F(s) is ℒ⁻¹{F(s)} = f(t); it is well defined because the transform is unique, it is linear, and it is computed from the table rather than from its integral formula.",
+      "forms": [
+        {"id": "eq-inverse-lt-definition", "latex": "{\\mathcal{L}}^{-1} \\bigl\\{ F(s) \\bigr\\} \\overset{\\text{def}}{=} f(t)", "ktex": "{\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\bigr\\} \\overset{\\text{def}}{=} \\kf(t)"},
+        {"id": "eq-inverse-lt-linearity", "latex": "{\\mathcal{L}}^{-1} \\bigl\\{ A F(s) + B G(s) \\bigr\\} = A {\\mathcal{L}}^{-1} \\bigl\\{ F(s) \\bigr\\} + B {\\mathcal{L}}^{-1} \\bigl\\{ G(s) \\bigr\\}", "ktex": "{\\mathcal{L}}^{-1} \\bigl\\{ A \\kF(s) + B \\kG(s) \\bigr\\} = A {\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\bigr\\} + B {\\mathcal{L}}^{-1} \\bigl\\{ \\kG(s) \\bigr\\}"}
+      ]
+    },
+    {
+      "id": "partial-fraction-decomposition",
+      "kind": "skill",
+      "section": "6.1",
+      "name": "Method of partial fractions",
+      "terms": ["method of partial fractions", "partial fractions"],
+      "statement": "To invert a rational F(s), factor the denominator into linear and quadratic terms, write F as a sum of simpler fractions with unknown constants, put the sum over the common denominator and equate coefficients, then invert each piece with the table."
+    },
+    {
+      "id": "first-shifting-property",
+      "kind": "result",
+      "section": "6.1",
+      "name": "First shifting property",
+      "terms": ["shifting property", "first shifting property"],
+      "statement": "Multiplying f(t) by e^(−at) shifts its transform: ℒ{e^(−at) f(t)} = F(s + a), where F(s) is the transform of f(t). It inverts a quadratic denominator after completing the square to (s + a)² + b.",
+      "forms": [
+        {"id": "eq-first-shifting", "latex": "\\mathcal{L} \\bigl\\{ e^{-at} f(t) \\bigr\\} = F(s+a)", "ktex": "\\mathcal{L} \\bigl\\{ e^{-at} \\kf(t) \\bigr\\} = \\kF(s+a)"}
+      ]
+    },
+    {
+      "id": "proper-rational-function",
+      "kind": "definition",
+      "section": "6.1",
+      "name": "Proper rational function",
+      "terms": ["proper rational function"],
+      "statement": "A rational function F(s)/G(s), with F and G polynomials, is proper when the degree of F is smaller than that of G; the transform of an exponential-order function goes to zero as s → ∞, so it is a proper rational function and partial fractions apply without polynomial division."
+    },
+    {
+      "id": "computing-a-laplace-transform",
+      "kind": "skill",
+      "section": "6.1",
+      "name": "Computing a Laplace transform",
+      "statement": "Compute a transform from the definition as an improper integral (integrating by parts where needed), note the s for which the limit exists, and build the transforms of sums and constant multiples from the table by linearity."
+    },
+    {
+      "id": "inverting-with-the-table",
+      "kind": "skill",
+      "section": "6.1",
+      "name": "Finding an inverse transform",
+      "statement": "Write F(s) as a combination of table entries, by partial fractions where it is rational and by completing the square and the shifting property where a quadratic does not factor, then read the inverse of each piece from the table and add them by linearity."
+    },
+
+    {
+      "id": "transform-of-a-derivative",
+      "kind": "result",
+      "section": "6.2",
+      "name": "Laplace transform of a derivative",
+      "statement": "If g(t) is differentiable and of exponential order, then ℒ{g′(t)} = sG(s) − g(0), by integration by parts; repeating gives ℒ{g″} = s²G(s) − sg(0) − g′(0) and ℒ{g‴} = s³G(s) − s²g(0) − sg′(0) − g″(0) (Table 6.2). The transform turns differentiation into multiplication by s, and the rule also holds for continuous piecewise smooth functions.",
+      "forms": [
+        {"id": "eq-lt-first-derivative", "latex": "\\mathcal{L} \\bigl\\{ g'(t) \\bigr\\} = sG(s)-g(0)", "ktex": "\\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\} = s\\kG(s)-\\kg(0)"},
+        {"id": "eq-lt-second-derivative", "latex": "\\mathcal{L} \\bigl\\{ g''(t) \\bigr\\} = s^2G(s)-sg(0)-g'(0)", "ktex": "\\mathcal{L} \\bigl\\{ \\kgdprime(t) \\bigr\\} = s^2\\kG(s)-s\\kg(0)-\\kgprime(0)"},
+        {"id": "eq-lt-third-derivative", "latex": "\\mathcal{L} \\bigl\\{ g'''(t) \\bigr\\} = s^3G(s)-s^2g(0)-sg'(0)-g''(0)", "ktex": "\\mathcal{L} \\bigl\\{ \\kgtprime(t) \\bigr\\} = s^3\\kG(s)-s^2\\kg(0)-s\\kgprime(0)-\\kgdprime(0)"}
+      ]
+    },
+    {
+      "id": "piecewise-smooth-function",
+      "kind": "definition",
+      "section": "6.2",
+      "name": "Continuous piecewise smooth function",
+      "terms": ["continuous piecewise smooth"],
+      "statement": "A continuous piecewise smooth function is a function that is continuous with a piecewise continuous derivative; the transform of its derivative obeys the same rule as for a differentiable function."
+    },
+    {
+      "id": "solving-odes-with-the-laplace-transform",
+      "kind": "skill",
+      "section": "6.2",
+      "name": "Solving an ODE with the Laplace transform",
+      "statement": "For a linear constant-coefficient equation in t: apply the transform to both sides, so x, x′, x″ become X(s), sX(s) − x(0), s²X(s) − sx(0) − x′(0), plug in the initial conditions, solve the algebraic equation for X(s), and take the inverse transform to find x(t). Not every function has a transform, and a non-constant-coefficient equation need not become algebraic."
+    },
+    {
+      "id": "writing-piecewise-functions-with-the-heaviside-function",
+      "kind": "skill",
+      "section": "6.2",
+      "name": "Writing piecewise functions with the Heaviside function",
+      "statement": "A function switched on at t = a is f(t)u(t − a), a step that is 1 on [a, b) and 0 elsewhere is u(t − a) − u(t − b), and a function defined piecewise is a sum of its pieces each multiplied by the difference of steps that cuts out its interval.",
+      "forms": [
+        {"id": "eq-heaviside-window", "latex": "u(t - a) - u(t-b)", "ktex": "\\ku(t - a) - \\ku(t-b)", "condition": "1 on [a, b), 0 elsewhere"}
+      ]
+    },
+    {
+      "id": "second-shifting-property",
+      "kind": "result",
+      "section": "6.2",
+      "name": "Second shifting property",
+      "terms": ["shifting property", "second shifting property"],
+      "statement": "Equation (6.1): for a ≥ 0, ℒ{f(t − a) u(t − a)} = e^(−as) ℒ{f(t)}; delaying a function by a and switching it on at a multiplies its transform by e^(−as), which generalizes ℒ{u(t − a)} = e^(−as)/s and inverts a transform carrying the factor e^(−as).",
+      "forms": [
+        {"id": "eq-second-shifting", "latex": "\\mathcal{L} \\bigl\\{ f(t-a) \\, u(t-a) \\bigr\\} = e^{-as} \\mathcal{L} \\bigl\\{ f(t) \\bigr\\}", "ktex": "\\mathcal{L} \\bigl\\{ \\kf(t-a) \\, \\ku(t-a) \\bigr\\} = e^{-as} \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\}", "condition": "a ≥ 0"}
+      ]
+    },
+    {
+      "id": "input-and-output",
+      "kind": "definition",
+      "section": "6.2",
+      "name": "Input and output of a system",
+      "terms": ["input", "output"],
+      "statement": "In an equation Lx = f(t), with L a linear constant-coefficient differential operator, f(t) is thought of as the input of the system and x(t) as its output; for a mass–spring system the input is the forcing function and the output is the behavior of the mass."
+    },
+    {
+      "id": "transfer-function",
+      "kind": "definition",
+      "section": "6.2",
+      "name": "Transfer function",
+      "terms": ["transfer function"],
+      "symbol": "H",
+      "type": "transform",
+      "statement": "With all initial conditions zero, transforming Lx = f(t) gives A(s)X(s) = F(s) for some A(s); the transfer function is the ratio H(s) = X(s)/F(s) = 1/A(s), so that X(s) = H(s)F(s): an algebraic dependence of the output on the input, which can be measured from one input–output pair and then gives the output for any input.",
+      "forms": [
+        {"id": "eq-transfer-function", "latex": "H(s) = \\frac{X(s)}{F(s)}", "ktex": "\\kH(s) = \\frac{\\kX(s)}{\\kF(s)}", "condition": "zero initial conditions"},
+        {"id": "eq-transfer-output", "latex": "X(s) = H(s) F(s)", "ktex": "\\kX(s) = \\kH(s) \\kF(s)"}
+      ]
+    },
+    {
+      "id": "transform-of-an-integral",
+      "kind": "result",
+      "section": "6.2",
+      "name": "Laplace transform of an integral",
+      "statement": "ℒ{∫ from 0 to t of f(τ) dτ} = F(s)/s, proved from the definition by integration by parts; read backwards, ℒ⁻¹{F(s)/s} = ∫ from 0 to t of f(τ) dτ, which computes an inverse transform by integrating a known one.",
+      "forms": [
+        {"id": "eq-lt-integral", "latex": "\\mathcal{L} \\left\\{ \\int_0^t f(\\tau) \\, d\\tau \\right\\} = \\frac{1}{s} \\, F(s)", "ktex": "\\mathcal{L} \\left\\{ \\int_0^t \\kf(\\tau) \\, d\\tau \\right\\} = \\frac{1}{s} \\, \\kF(s)"},
+        {"id": "eq-inverse-lt-integral", "latex": "\\int_0^t f(\\tau) \\, d\\tau = {\\mathcal{L}}^{-1} \\left\\{ \\frac{1}{s} \\, F(s) \\right\\}", "ktex": "\\int_0^t \\kf(\\tau) \\, d\\tau = {\\mathcal{L}}^{-1} \\left\\{ \\frac{1}{s} \\, \\kF(s) \\right\\}"}
+      ]
+    },
+    {
+      "id": "integral-equation",
+      "kind": "definition",
+      "section": "6.2",
+      "name": "Integral equation",
+      "terms": ["integral equation"],
+      "statement": "An integral equation is an equation containing an integral of the unknown function; the Laplace transform turns the integral into division by s and the equation into an algebraic one."
+    },
+    {
+      "id": "transform-of-a-periodic-function",
+      "kind": "result",
+      "section": "6.2",
+      "name": "Laplace transform of a periodic function",
+      "statement": "If f(t) = f(t + P) for a period P, splitting the integral at P and shifting the tail gives F(s) = ∫₀ᴾ e^(−st) f(t) dt + e^(−Ps)F(s), so F(s) = (1/(1 − e^(−Ps))) ∫ from 0 to P of e^(−st) f(t) dt: one period's integral suffices.",
+      "forms": [
+        {"id": "eq-lt-periodic", "latex": "F(s) = \\frac{1}{1-e^{-Ps}} \\int_0^P e^{-st} f(t) \\, dt", "ktex": "\\kF(s) = \\frac{1}{1-e^{-Ps}} \\int_0^P e^{-st} \\kf(t) \\, dt", "condition": "f(t) = f(t + P)"}
+      ]
+    },
+    {
+      "id": "sawtooth-function",
+      "kind": "definition",
+      "section": "6.2",
+      "name": "Sawtooth",
+      "terms": ["sawtooth"],
+      "statement": "A version of the sawtooth is f(t) = t for 0 ≤ t < 1 extended periodically by f(t) = f(t + 1), so f(t) = t − 1 on [1, 2), t − 2 on [2, 3), and so on; its period is 1 and its transform is 1/s² − e^(−s)/((1 − e^(−s))s)."
+    },
+
+    {
+      "id": "convolution",
+      "kind": "definition",
+      "section": "6.3",
+      "name": "Convolution",
+      "terms": ["convolution"],
+      "symbol": "f*g",
+      "type": "function",
+      "statement": "The convolution of two functions f(t) and g(t) defined for t ≥ 0 is (f ∗ g)(t) = ∫ from 0 to t of f(τ) g(t − τ) dτ (equation (6.2)), another function of t; it is the different kind of product whose transform is the product of the transforms.",
+      "forms": [
+        {"id": "eq-convolution-definition", "latex": "(f * g)(t) \\overset{\\text{def}}{=} \\int_0^t f(\\tau) g(t-\\tau) \\, d\\tau", "ktex": "(\\kfconvg)(t) \\overset{\\text{def}}{=} \\int_0^t \\kf(\\tau) \\kg(t-\\tau) \\, d\\tau"},
+        {"id": "eq-convolution-commuted", "latex": "(f * g)(t) = \\int_0^t f(t-\\tau) g(\\tau) \\, d\\tau", "ktex": "(\\kfconvg)(t) = \\int_0^t \\kf(t-\\tau) \\kg(\\tau) \\, d\\tau"}
+      ]
+    },
+    {
+      "id": "properties-of-convolution",
+      "kind": "result",
+      "section": "6.3",
+      "name": "Properties of convolution",
+      "statement": "Convolution behaves like a product: it is commutative, f ∗ g = g ∗ f; a constant comes out, (cf) ∗ g = f ∗ (cg) = c(f ∗ g); it distributes over addition, (f + g) ∗ h = f ∗ h + g ∗ h; and it is associative, (f ∗ g) ∗ h = f ∗ (g ∗ h).",
+      "forms": [
+        {"id": "eq-convolution-commutative", "latex": "f * g = g * f"},
+        {"id": "eq-convolution-scalar", "latex": "(c f) * g = f * (c g) = c (f*g)"},
+        {"id": "eq-convolution-distributive", "latex": "(f+g) * h = f * h + g * h"},
+        {"id": "eq-convolution-associative", "latex": "( f * g ) * h = f * ( g * h )"}
+      ]
+    },
+    {
+      "id": "convolution-theorem",
+      "kind": "result",
+      "section": "6.3",
+      "name": "Convolution theorem",
+      "statement": "Theorem 6.3.1: if f(t) and g(t) are of exponential order, so is (f ∗ g)(t), and ℒ{(f ∗ g)(t)} = ℒ{f(t)} ℒ{g(t)}: the transform of a convolution is the product of the transforms, F(s)G(s), and in reverse ℒ⁻¹{F(s)G(s)} = (f ∗ g)(t).",
+      "forms": [
+        {"id": "eq-convolution-theorem", "latex": "\\mathcal{L} \\bigl\\{ (f*g)(t) \\bigr\\} = \\mathcal{L} \\left\\{ \\int_0^t f(\\tau) g(t-\\tau) \\, d\\tau \\right\\} = \\mathcal{L} \\bigl\\{ f(t) \\bigr\\} \\mathcal{L} \\bigl\\{ g(t) \\bigr\\}", "ktex": "\\mathcal{L} \\bigl\\{ (\\kfconvg)(t) \\bigr\\} = \\mathcal{L} \\left\\{ \\int_0^t \\kf(\\tau) \\kg(t-\\tau) \\, d\\tau \\right\\} = \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} \\mathcal{L} \\bigl\\{ \\kg(t) \\bigr\\}"},
+        {"id": "eq-inverse-convolution-theorem", "latex": "{\\mathcal{L}}^{-1} \\bigl\\{ F(s) G(s) \\bigr\\} = (f*g)(t)", "ktex": "{\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\kG(s) \\bigr\\} = (\\kfconvg)(t)"}
+      ]
+    },
+    {
+      "id": "inverting-a-product-by-convolution",
+      "kind": "skill",
+      "section": "6.3",
+      "name": "Inverting a product by convolution",
+      "statement": "To invert a transform that is a product of two table entries, F(s)G(s), recognize f and g from the table and compute the convolution integral (f ∗ g)(t) instead of a partial fraction decomposition."
+    },
+    {
+      "id": "convolution-solution",
+      "kind": "result",
+      "section": "6.3",
+      "name": "Solution as a convolution with the transfer function's inverse",
+      "statement": "For a constant-coefficient equation Lx = f(t) with zero initial conditions, X(s) = H(s)F(s), so with h(t) = ℒ⁻¹{H(s)} the solution for any forcing f(t) is the definite integral x(t) = (f ∗ h)(t) = ∫ from 0 to t of f(τ) h(t − τ) dτ; for x″ + ω₀²x = f(t) it is x(t) = ∫ from 0 to t of f(τ) sin(ω₀(t − τ))/ω₀ dτ, which for f = cos ω₀t grows as t sin(ω₀t)/(2ω₀): resonance.",
+      "forms": [
+        {"id": "eq-convolution-solution", "latex": "x(t) = {\\mathcal{L}}^{-1}\\bigl\\{ F(s)H(s) \\bigr\\} = (f * h)(t) = \\int_0^t f(\\tau) h(t-\\tau) \\, d\\tau", "ktex": "\\kx(t) = {\\mathcal{L}}^{-1}\\bigl\\{ \\kF(s)\\kH(s) \\bigr\\} = (\\kf * \\kh)(t) = \\int_0^t \\kf(\\tau) \\kh(t-\\tau) \\, d\\tau", "condition": "x(0) = x′(0) = 0, h = ℒ⁻¹{H}"},
+        {"id": "eq-undamped-forced-convolution", "latex": "x(t) = \\int_0^t f(\\tau) \\frac{\\sin \\bigl( \\omega_0 (t-\\tau) \\bigr)}{\\omega_0} \\, d\\tau", "ktex": "\\kx(t) = \\int_0^t \\kf(\\tau) \\frac{\\sin \\bigl( \\omega_0 (t-\\tau) \\bigr)}{\\omega_0} \\, d\\tau", "condition": "x″ + ω₀²x = f(t), x(0) = x′(0) = 0"}
+      ]
+    },
+    {
+      "id": "volterra-integral-equation",
+      "kind": "definition",
+      "section": "6.3",
+      "name": "Volterra integral equation",
+      "terms": ["Volterra integral equation"],
+      "statement": "A Volterra integral equation is x(t) = f(t) + ∫ from 0 to t of g(t − τ) x(τ) dτ with f and g known, that is x = f + g ∗ x; it comes up in systems with memory effects, and transforming it gives X(s) = F(s) + G(s)X(s), so X(s) = F(s)/(1 − G(s)) and x is its inverse transform.",
+      "forms": [
+        {"id": "eq-volterra", "latex": "x(t) = f(t) + \\int_0^t g(t-\\tau) x(\\tau) \\, d\\tau", "ktex": "\\kx(t) = \\kf(t) + \\int_0^t \\kg(t-\\tau) \\kx(\\tau) \\, d\\tau"},
+        {"id": "eq-volterra-transform", "latex": "X(s) = \\frac{F(s)}{1-G(s)}", "ktex": "\\kX(s) = \\frac{\\kF(s)}{1-\\kG(s)}"}
+      ]
+    },
+
+    {
+      "id": "impulse-response",
+      "kind": "definition",
+      "section": "6.4",
+      "name": "Impulse response",
+      "terms": ["impulse response"],
+      "symbol": "h",
+      "type": "function",
+      "statement": "The impulse response of a system Lx = f(t) is what the system does when the input is a short pulse: the solution h of Lx = δ(t) with zero initial conditions, which is the inverse transform of the transfer function, h(t) = ℒ⁻¹{H(s)}; knowing it tells how the system responds to any input.",
+      "forms": [
+        {"id": "eq-impulse-response-equation", "latex": "L x = \\delta(t)", "ktex": "L \\kx = \\kdelta(t)", "condition": "x(0) = x′(0) = 0"},
+        {"id": "eq-impulse-response-transfer", "latex": "h(t) = {\\mathcal{L}}^{-1} \\bigl\\{ H(s) \\bigr\\}", "ktex": "\\kh(t) = {\\mathcal{L}}^{-1} \\bigl\\{ \\kH(s) \\bigr\\}"}
+      ]
+    },
+    {
+      "id": "rectangular-pulse",
+      "kind": "definition",
+      "section": "6.4",
+      "name": "Rectangular pulse",
+      "terms": ["rectangular pulse", "pulse"],
+      "symbol": "φ",
+      "type": "function",
+      "statement": "A rectangular pulse is φ(t) = M for a ≤ t < b and 0 otherwise, that is φ(t) = M(u(t − a) − u(t − b)), with transform M(e^(−as) − e^(−bs))/s; with a = 0 and M = 1/b it has unit mass, ∫ φ dt = 1, and its transform (1 − e^(−bs))/(bs) tends to 1 as b → 0.",
+      "forms": [
+        {"id": "eq-rectangular-pulse", "latex": "\\varphi(t) = \\begin{cases} 0 & \\text{if } \\; t < a , \\\\ M & \\text{if } \\; a \\leq t < b , \\\\ 0 & \\text{if } \\; b \\leq t . \\end{cases}", "ktex": "\\kvarphi(t) = \\begin{cases} 0 & \\text{if } \\; t < a , \\\\ M & \\text{if } \\; a \\leq t < b , \\\\ 0 & \\text{if } \\; b \\leq t . \\end{cases}"},
+        {"id": "eq-rectangular-pulse-steps", "latex": "\\varphi(t) = M \\bigl( u(t-a) - u(t-b) \\bigr)", "ktex": "\\kvarphi(t) = M \\bigl( \\ku(t-a) - \\ku(t-b) \\bigr)"},
+        {"id": "eq-lt-rectangular-pulse", "latex": "{\\mathcal{L}} \\bigl\\{ \\varphi(t) \\bigr\\} = M \\frac{e^{-as} - e^{-bs}}{s}", "ktex": "{\\mathcal{L}} \\bigl\\{ \\kvarphi(t) \\bigr\\} = M \\frac{e^{-as} - e^{-bs}}{s}"},
+        {"id": "eq-unit-mass-pulse", "latex": "{\\mathcal{L}} \\left\\{ \\frac{u(t) - u(t-b)}{b} \\right\\} = \\frac{1 - e^{-bs}}{bs}", "ktex": "{\\mathcal{L}} \\left\\{ \\frac{\\ku(t) - \\ku(t-b)}{b} \\right\\} = \\frac{1 - e^{-bs}}{bs}", "condition": "a = 0, M = 1/b: unit mass"}
+      ]
+    },
+    {
+      "id": "generalized-function",
+      "kind": "definition",
+      "section": "6.4",
+      "name": "Generalized function",
+      "terms": ["generalized function"],
+      "statement": "A generalized function is an object, like the Dirac delta, that is not exactly a function and does not really make sense unless it is integrated; a formula such as δ(t) + 1 is only meaningful underneath an integral."
+    },
+    {
+      "id": "dirac-delta-function",
+      "kind": "definition",
+      "section": "6.4",
+      "name": "Dirac delta function",
+      "terms": ["Dirac delta function", "delta function"],
+      "symbol": "δ",
+      "type": "function",
+      "statement": "The Dirac delta function δ(t) is the generalized function with ∫ δ(t) f(t) dt = f(0) for every continuous f(t) over any interval containing 0: all its mass sits at the single point t = 0, so ∫ from c to d of δ(t) dt is 1 if c ≤ 0 ≤ d and 0 otherwise; shifted, ∫ δ(t − a) f(t) dt = f(a), and δ(a − t) is the same object as δ(t − a). Informally it is zero for t ≠ 0 and somehow infinite at t = 0.",
+      "forms": [
+        {"id": "eq-delta-sifting", "latex": "\\int_{-\\infty}^\\infty \\delta(t) f(t) \\,dt = f(0)", "ktex": "\\int_{-\\infty}^\\infty \\kdelta(t) \\kf(t) \\,dt = \\kf(0)"},
+        {"id": "eq-delta-interval", "latex": "\\int_c^d \\delta(t) \\,dt = \\begin{cases} 1 & \\text{if } c \\leq 0 \\leq d, \\\\ 0 & \\text{otherwise.} \\end{cases}", "ktex": "\\int_c^d \\kdelta(t) \\,dt = \\begin{cases} 1 & \\text{if } c \\leq 0 \\leq d, \\\\ 0 & \\text{otherwise.} \\end{cases}"},
+        {"id": "eq-delta-shifted-sifting", "latex": "\\int_{-\\infty}^\\infty \\delta(t-a) f(t) \\,dt = f(a)", "ktex": "\\int_{-\\infty}^\\infty \\kdelta(t-a) \\kf(t) \\,dt = \\kf(a)"}
+      ]
+    },
+    {
+      "id": "delta-as-a-limit-of-pulses",
+      "kind": "idea",
+      "section": "6.4",
+      "name": "The delta function as a limit of pulses",
+      "statement": "A good way to think about δ(t) is as the limit of rectangular pulses of decreasing length b, each of integral 1: for φ(t) = (u(t) − u(t − b))/b and f continuous at 0, ∫ φ(t) f(t) dt = (1/b) ∫ from 0 to b of f(t) dt, which tends to f(0) as b → 0.",
+      "forms": [
+        {"id": "eq-delta-pulse-limit", "latex": "\\lim_{b\\to 0} \\int_{-\\infty}^\\infty \\varphi(t) f(t) \\,dt = \\lim_{b\\to 0} \\frac{1}{b} \\int_{0}^b f(t) \\,dt = f(0)", "ktex": "\\lim_{b\\to 0} \\int_{-\\infty}^\\infty \\kvarphi(t) \\kf(t) \\,dt = \\lim_{b\\to 0} \\frac{1}{b} \\int_{0}^b \\kf(t) \\,dt = \\kf(0)", "condition": "φ = (u(t) − u(t − b))/b"}
+      ]
+    },
+    {
+      "id": "convolution-with-the-delta-function",
+      "kind": "result",
+      "section": "6.4",
+      "name": "Convolution with the delta function",
+      "statement": "The convolution of δ(t) with f(t) is f(t) again: (f ∗ δ)(t) = ∫ from 0 to t of f(τ) δ(t − τ) dτ = f(t), so δ is the identity for convolution.",
+      "forms": [
+        {"id": "eq-convolution-delta", "latex": "(f * \\delta) (t) = \\int_{0}^t f(\\tau) \\delta(t-\\tau) \\,d\\tau = f(t)", "ktex": "(\\kf * \\kdelta) (t) = \\int_{0}^t \\kf(\\tau) \\kdelta(t-\\tau) \\,d\\tau = \\kf(t)"}
+      ]
+    },
+    {
+      "id": "transform-of-the-delta-function",
+      "kind": "result",
+      "section": "6.4",
+      "name": "Laplace transform of the delta function",
+      "statement": "Since δ can be integrated, ℒ{δ(t − a)} = ∫ from 0 to ∞ of e^(−st) δ(t − a) dt = e^(−as), and in particular ℒ{δ(t)} = 1: the delta function is the object whose transform is 1, the limit of the unit-mass pulse's transform.",
+      "forms": [
+        {"id": "eq-lt-delta-shifted", "latex": "{\\mathcal{L}} \\bigl\\{ \\delta(t-a) \\bigr\\} = \\int_{0}^\\infty e^{-st} \\delta(t-a) \\,dt = e^{-as}", "ktex": "{\\mathcal{L}} \\bigl\\{ \\kdelta(t-a) \\bigr\\} = \\int_{0}^\\infty e^{-st} \\kdelta(t-a) \\,dt = e^{-as}"},
+        {"id": "eq-lt-delta", "latex": "{\\mathcal{L}} \\bigl\\{ \\delta(t) \\bigr\\} = 1", "ktex": "{\\mathcal{L}} \\bigl\\{ \\kdelta(t) \\bigr\\} = 1"}
+      ]
+    },
+    {
+      "id": "derivative-of-the-heaviside-function",
+      "kind": "idea",
+      "section": "6.4",
+      "name": "The delta function as the derivative of the Heaviside function",
+      "statement": "Remark 6.4.1: multiplying ℒ{u(t − a)} = e^(−as)/s by s, as the transform of a derivative would, gives e^(−as) = ℒ{δ(t − a)}, and ∫ from 0 to t of δ(τ − a) dτ = u(t − a); so in a certain sense the derivative of u(t − a) is δ(t − a), somehow infinite at the jump, which lets one speak of derivatives of functions with jump discontinuities.",
+      "forms": [
+        {"id": "eq-heaviside-derivative", "latex": "\\frac{d}{dt} \\Bigl[ u(t-a) \\Bigr] = \\delta(t-a)", "ktex": "\\frac{d}{dt} \\Bigl[ \\ku(t-a) \\Bigr] = \\kdelta(t-a)", "condition": "in the sense of generalized functions"},
+        {"id": "eq-delta-integral", "latex": "\\int_0^t \\delta(\\tau-a)\\,d\\tau = u(t-a)", "ktex": "\\int_0^t \\kdelta(\\tau-a)\\,d\\tau = \\ku(t-a)"}
+      ]
+    },
+    {
+      "id": "inverting-improper-rational-functions",
+      "kind": "skill",
+      "section": "6.4",
+      "name": "Inverting an improper rational function",
+      "statement": "When the numerator's degree is not lower than the denominator's, divide to split off a polynomial part and invert it with delta functions, ℒ⁻¹{1} = δ(t) and ℒ⁻¹{e^(−as)} = δ(t − a), then invert the proper remainder with the table; the result is a generalized function."
+    },
+    {
+      "id": "finding-the-impulse-response",
+      "kind": "skill",
+      "section": "6.4",
+      "name": "Finding the impulse response",
+      "statement": "Put δ(t) in place of the input, transform the equation with zero initial conditions, so that the right-hand side becomes 1 and X(s) = H(s), and invert; the initial condition x′(0) = 0 is really x′(0−) = 0, since x has a corner at t = 0 whose jump in x′ produces the δ."
+    },
+    {
+      "id": "derivative-of-a-convolution",
+      "kind": "result",
+      "section": "6.4",
+      "name": "Derivative of a convolution",
+      "statement": "For functions f(t) and h(t) that are zero for negative t, differentiating under the integral gives (f ∗ h)″(t) = (f ∗ h″)(t); so convolving the equation h″ + ω₀²h = δ with f shows that x = f ∗ h solves x″ + ω₀²x = f: the solution for an arbitrary input is the convolution with the impulse response.",
+      "forms": [
+        {"id": "eq-convolution-second-derivative", "latex": "(f * h)''(t) = \\frac{d^2}{dt^2}\\left[ \\int_0^t f(\\tau) h(t-\\tau) \\, d\\tau \\right] = \\int_0^t f(\\tau) h''(t-\\tau) \\, d\\tau = (f * h'')(t)", "ktex": "(\\kf * \\kh)''(t) = \\frac{d^2}{dt^2}\\left[ \\int_0^t \\kf(\\tau) \\kh(t-\\tau) \\, d\\tau \\right] = \\int_0^t \\kf(\\tau) \\kh''(t-\\tau) \\, d\\tau = (\\kf * \\kh'')(t)", "condition": "f(t) = h(t) = 0 for t < 0"}
+      ]
+    },
+    {
+      "id": "euler-bernoulli-equation",
+      "kind": "axiom",
+      "section": "6.4",
+      "name": "Euler–Bernoulli equation",
+      "terms": ["Euler–Bernoulli equation"],
+      "statement": "The deflection y(x) of a beam satisfies EI y⁗ = F(x), where E (the elastic modulus) and I (the second moment of area) are constants and F(x) is the force applied per unit length at the position x.",
+      "forms": [
+        {"id": "eq-euler-bernoulli", "latex": "EI \\frac{d^4 y}{dx^4} = F(x)", "ktex": "EI \\kdfourydx = F(x)"}
+      ]
+    },
+    {
+      "id": "three-point-bending",
+      "kind": "definition",
+      "section": "6.4",
+      "name": "Three-point beam bending",
+      "terms": ["three-point beam bending", "three-point bending"],
+      "statement": "A beam of length L rests on two simple supports at its ends and a force F pushes down at the single point x = a: the point load is a delta function, EI y⁗ = −Fδ(x − a), with y(0) = y″(0) = 0 and y(L) = y″(L) = 0 at the ends; the Laplace transform in the x variable, with the second shifting property, solves it.",
+      "forms": [
+        {"id": "eq-beam-point-load", "latex": "EI \\frac{d^4 y}{dx^4} = -F \\delta(x-a)", "ktex": "EI \\kdfourydx = -F \\kdelta(x-a)"},
+        {"id": "eq-beam-simply-supported", "latex": "y(0) = 0, \\quad y''(0) = 0, \\quad y(L) = 0, \\quad y''(L) = 0", "ktex": "\\ky(0) = 0, \\quad \\kydprime(0) = 0, \\quad \\ky(L) = 0, \\quad \\kydprime(L) = 0", "condition": "simple supports at both ends"}
+      ]
+    },
+
+    {
+      "id": "solving-pdes-with-the-laplace-transform",
+      "kind": "skill",
+      "section": "6.5",
+      "name": "Solving a PDE with the Laplace transform",
+      "statement": "Given a PDE in x and t, transform everything in sight in the t variable, writing Y(x) = ℒ{y(x, t)} with s as a parameter: t-derivatives become multiplications by s, the side condition in t is used in the derivative rule, the PDE becomes an ODE in x whose initial condition is the transformed condition at x = 0; solve it, then invert, typically with the second shifting property. Laplace handles nonhomogeneous side conditions but is essentially only useful for constant-coefficient equations.",
+      "forms": [
+        {"id": "eq-lpde-transform-in-t", "latex": "Y(x) = {\\mathcal L} \\bigl\\{ y(x,t) \\bigr\\} = \\int_0^\\infty y(x,t) e^{-st} \\,dt", "ktex": "\\kY(x) = {\\mathcal L} \\bigl\\{ \\ky(x,t) \\bigr\\} = \\int_0^\\infty \\ky(x,t) e^{-st} \\,dt"}
+      ]
+    },
+    {
+      "id": "transform-of-a-partial-derivative",
+      "kind": "result",
+      "section": "6.5",
+      "name": "Transform of a partial derivative",
+      "statement": "Transforming y(x, t) in t, the transform of a derivative with respect to x is the derivative of the transformed function, ℒ{y_x} = Y′(x), while a derivative in the transformed variable follows the rule of §6.2, ℒ{y_t} = sY(x) − y(x, 0).",
+      "forms": [
+        {"id": "eq-lt-partial-x", "latex": "{\\mathcal L} \\bigl\\{ y_x(x,t) \\bigr\\} = \\frac{d}{dx} \\left[\\int_0^\\infty y(x,t) e^{-st} \\,dt \\right] = Y'(x)", "ktex": "{\\mathcal L} \\bigl\\{ \\kyx(x,t) \\bigr\\} = \\frac{d}{dx} \\left[\\int_0^\\infty \\ky(x,t) e^{-st} \\,dt \\right] = \\kYprime(x)"},
+        {"id": "eq-lt-partial-t", "latex": "{\\mathcal L} \\bigl\\{ y_t(x,t) \\bigr\\} = sY(x) - y(x,0)", "ktex": "{\\mathcal L} \\bigl\\{ \\kyt(x,t) \\bigr\\} = s\\kY(x) - \\ky(x,0)"}
+      ]
+    },
+    {
+      "id": "transport-on-a-half-line",
+      "kind": "result",
+      "section": "6.5",
+      "name": "Transport equation on a half line",
+      "statement": "Example 6.5.1: for y_t = −αy_x on x > 0, t > 0 with y(0, t) = C and y(x, 0) = 0, the transformed problem sY = −αY′, Y(0) = C/s has Y(x) = (C/s) e^(−sx/α), so y(x, t) = C u(t − x/α): zero before the wavefront t = x/α arrives and C after; the equation moves the boundary condition to the right at speed α.",
+      "forms": [
+        {"id": "eq-half-line-transport", "latex": "y(x,t) = {\\mathcal L}^{-1} \\left\\{ \\frac{C}{s} e^{-\\frac{s}{\\alpha} x} \\right\\} = C u\\bigl(t-{x}/{\\alpha}\\bigr)", "ktex": "\\ky(x,t) = {\\mathcal L}^{-1} \\left\\{ \\frac{C}{s} e^{-\\frac{s}{\\alpha} x} \\right\\} = C \\ku\\bigl(t-{x}/{\\alpha}\\bigr)", "condition": "y_t = −αy_x, y(0, t) = C, y(x, 0) = 0"},
+        {"id": "eq-half-line-transport-cases", "latex": "y(x,t) = \\begin{cases} 0 & \\text{if } t < {x}/{\\alpha}, \\\\ C & \\text{otherwise.} \\end{cases}", "ktex": "\\ky(x,t) = \\begin{cases} 0 & \\text{if } t < {x}/{\\alpha}, \\\\ C & \\text{otherwise.} \\end{cases}"}
+      ]
+    },
+    {
+      "id": "wavefront",
+      "kind": "definition",
+      "section": "6.5",
+      "name": "Wavefront",
+      "terms": ["wavefront"],
+      "type": "curve",
+      "statement": "The wavefront of the toxic substance is the line t = x/α of slope 1/α in the (x, t) plane, the edge between the region y = 0 ahead of it and y = C behind it, moving right at speed α; along it y jumps, and y_t and y_x are delta functions there.",
+      "forms": [
+        {"id": "eq-wavefront", "latex": "t = \\frac{x}{\\alpha}", "condition": "slope 1/α"}
+      ]
+    },
+    {
+      "id": "ill-posed-problem",
+      "kind": "definition",
+      "section": "6.5",
+      "name": "Ill-posed problem",
+      "terms": ["ill-posed"],
+      "statement": "A problem is ill-posed, in the sense used here, when it has no solution: for −y_t + y_x = 0 with y(0, t) = sin t and y(x, 0) = 0, the characteristics t = −x + C meet both axes, where the data disagree, and the transformed solution Y(x) = e^(sx)/(s² + 1) does not decay to zero as s → ∞, so it cannot be a Laplace transform."
+    },
+    {
+      "id": "boundedness-condition",
+      "kind": "idea",
+      "section": "6.5",
+      "name": "Boundedness as a boundary condition",
+      "statement": "On a half-infinite rod the solution is assumed bounded, and this boundedness condition stands in for a boundary condition at the infinite end: for fixed s > 0 the transformed Y(x) = Ae^(√s x) + Be^(−√s x) stays bounded only if A = 0. Boundedness also makes the transform in t exist."
+    }
+  ],
+  "concept_prereqs": [
+    {"concept": "frequency-domain", "prereq": "laplace-transform"},
+    {"concept": "frequency-domain", "prereq": "mass-spring-system"},
+    {"concept": "laplace-transform-table", "prereq": "laplace-transform"},
+    {"concept": "laplace-transform-table", "prereq": "unit-step-function"},
+    {"concept": "linearity-of-the-laplace-transform", "prereq": "laplace-transform"},
+    {"concept": "existence-of-the-laplace-transform", "prereq": "laplace-transform"},
+    {"concept": "existence-of-the-laplace-transform", "prereq": "exponential-order"},
+    {"concept": "laplace-transform-decay", "prereq": "existence-of-the-laplace-transform"},
+    {"concept": "uniqueness-of-the-laplace-transform", "prereq": "existence-of-the-laplace-transform"},
+    {"concept": "uniqueness-of-the-laplace-transform", "prereq": "piecewise-continuous-function"},
+    {"concept": "inverse-laplace-transform", "prereq": "uniqueness-of-the-laplace-transform"},
+    {"concept": "partial-fraction-decomposition", "prereq": "inverse-laplace-transform"},
+    {"concept": "first-shifting-property", "prereq": "laplace-transform"},
+    {"concept": "proper-rational-function", "prereq": "laplace-transform-decay"},
+    {"concept": "proper-rational-function", "prereq": "partial-fraction-decomposition"},
+    {"concept": "computing-a-laplace-transform", "prereq": "linearity-of-the-laplace-transform"},
+    {"concept": "computing-a-laplace-transform", "prereq": "laplace-transform-table"},
+    {"concept": "inverting-with-the-table", "prereq": "laplace-transform-table"},
+    {"concept": "inverting-with-the-table", "prereq": "partial-fraction-decomposition"},
+    {"concept": "inverting-with-the-table", "prereq": "first-shifting-property"},
+
+    {"concept": "transform-of-a-derivative", "prereq": "laplace-transform"},
+    {"concept": "transform-of-a-derivative", "prereq": "exponential-order"},
+    {"concept": "piecewise-smooth-function", "prereq": "piecewise-continuous-function"},
+    {"concept": "solving-odes-with-the-laplace-transform", "prereq": "transform-of-a-derivative"},
+    {"concept": "solving-odes-with-the-laplace-transform", "prereq": "inverting-with-the-table"},
+    {"concept": "solving-odes-with-the-laplace-transform", "prereq": "constant-coefficient-equation"},
+    {"concept": "solving-odes-with-the-laplace-transform", "prereq": "solving-an-initial-value-problem"},
+    {"concept": "writing-piecewise-functions-with-the-heaviside-function", "prereq": "unit-step-function"},
+    {"concept": "second-shifting-property", "prereq": "laplace-transform-table"},
+    {"concept": "input-and-output", "prereq": "linear-operator"},
+    {"concept": "transfer-function", "prereq": "input-and-output"},
+    {"concept": "transfer-function", "prereq": "transform-of-a-derivative"},
+    {"concept": "transform-of-an-integral", "prereq": "laplace-transform"},
+    {"concept": "integral-equation", "prereq": "transform-of-an-integral"},
+    {"concept": "transform-of-a-periodic-function", "prereq": "laplace-transform"},
+    {"concept": "sawtooth-function", "prereq": "transform-of-a-periodic-function"},
+
+    {"concept": "properties-of-convolution", "prereq": "convolution"},
+    {"concept": "convolution-theorem", "prereq": "convolution"},
+    {"concept": "convolution-theorem", "prereq": "laplace-transform"},
+    {"concept": "convolution-theorem", "prereq": "exponential-order"},
+    {"concept": "inverting-a-product-by-convolution", "prereq": "convolution-theorem"},
+    {"concept": "inverting-a-product-by-convolution", "prereq": "inverting-with-the-table"},
+    {"concept": "convolution-solution", "prereq": "convolution-theorem"},
+    {"concept": "convolution-solution", "prereq": "transfer-function"},
+    {"concept": "convolution-solution", "prereq": "natural-frequency"},
+    {"concept": "volterra-integral-equation", "prereq": "integral-equation"},
+    {"concept": "volterra-integral-equation", "prereq": "convolution-theorem"},
+
+    {"concept": "rectangular-pulse", "prereq": "laplace-transform-table"},
+    {"concept": "dirac-delta-function", "prereq": "generalized-function"},
+    {"concept": "delta-as-a-limit-of-pulses", "prereq": "dirac-delta-function"},
+    {"concept": "delta-as-a-limit-of-pulses", "prereq": "rectangular-pulse"},
+    {"concept": "convolution-with-the-delta-function", "prereq": "dirac-delta-function"},
+    {"concept": "convolution-with-the-delta-function", "prereq": "convolution"},
+    {"concept": "transform-of-the-delta-function", "prereq": "dirac-delta-function"},
+    {"concept": "transform-of-the-delta-function", "prereq": "laplace-transform"},
+    {"concept": "derivative-of-the-heaviside-function", "prereq": "transform-of-the-delta-function"},
+    {"concept": "derivative-of-the-heaviside-function", "prereq": "laplace-transform-table"},
+    {"concept": "derivative-of-the-heaviside-function", "prereq": "transform-of-a-derivative"},
+    {"concept": "inverting-improper-rational-functions", "prereq": "transform-of-the-delta-function"},
+    {"concept": "inverting-improper-rational-functions", "prereq": "proper-rational-function"},
+    {"concept": "inverting-improper-rational-functions", "prereq": "inverting-with-the-table"},
+    {"concept": "impulse-response", "prereq": "dirac-delta-function"},
+    {"concept": "impulse-response", "prereq": "transfer-function"},
+    {"concept": "finding-the-impulse-response", "prereq": "impulse-response"},
+    {"concept": "finding-the-impulse-response", "prereq": "solving-odes-with-the-laplace-transform"},
+    {"concept": "finding-the-impulse-response", "prereq": "transform-of-the-delta-function"},
+    {"concept": "derivative-of-a-convolution", "prereq": "impulse-response"},
+    {"concept": "derivative-of-a-convolution", "prereq": "convolution-with-the-delta-function"},
+    {"concept": "derivative-of-a-convolution", "prereq": "convolution-solution"},
+    {"concept": "euler-bernoulli-equation", "prereq": "linear-differential-equation"},
+    {"concept": "three-point-bending", "prereq": "euler-bernoulli-equation"},
+    {"concept": "three-point-bending", "prereq": "dirac-delta-function"},
+
+    {"concept": "transform-of-a-partial-derivative", "prereq": "transform-of-a-derivative"},
+    {"concept": "solving-pdes-with-the-laplace-transform", "prereq": "transform-of-a-partial-derivative"},
+    {"concept": "solving-pdes-with-the-laplace-transform", "prereq": "solving-odes-with-the-laplace-transform"},
+    {"concept": "solving-pdes-with-the-laplace-transform", "prereq": "second-shifting-property"},
+    {"concept": "solving-pdes-with-the-laplace-transform", "prereq": "partial-differential-equation"},
+    {"concept": "transport-on-a-half-line", "prereq": "solving-pdes-with-the-laplace-transform"},
+    {"concept": "transport-on-a-half-line", "prereq": "transport-equation"},
+    {"concept": "wavefront", "prereq": "transport-on-a-half-line"},
+    {"concept": "ill-posed-problem", "prereq": "solving-pdes-with-the-laplace-transform"},
+    {"concept": "ill-posed-problem", "prereq": "laplace-transform-decay"},
+    {"concept": "ill-posed-problem", "prereq": "method-of-characteristics"},
+    {"concept": "boundedness-condition", "prereq": "solving-pdes-with-the-laplace-transform"},
+    {"concept": "boundedness-condition", "prereq": "heat-equation"}
+  ]
+}

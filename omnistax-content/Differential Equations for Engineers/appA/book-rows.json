@@ -1,0 +1,1617 @@
+{
+  "types": [],
+  "symbols": [
+    {
+      "sym": "x_vec",
+      "latex": "\\vec{x}",
+      "macro": "\\kvecx"
+    },
+    {
+      "sym": "y_vec",
+      "latex": "\\vec{y}",
+      "macro": "\\kvecy"
+    },
+    {
+      "sym": "z_vec",
+      "latex": "\\vec{z}",
+      "macro": "\\kvecz"
+    },
+    {
+      "sym": "u_vec",
+      "latex": "\\vec{u}",
+      "macro": "\\kvecu"
+    },
+    {
+      "sym": "w_vec",
+      "latex": "\\vec{w}",
+      "macro": "\\kvecw"
+    },
+    {
+      "sym": "b_vec",
+      "latex": "\\vec{b}",
+      "macro": "\\kvecb"
+    },
+    {
+      "sym": "e_vec",
+      "latex": "\\vec{e}",
+      "macro": "\\kvece"
+    },
+    {
+      "sym": "zero_vec",
+      "latex": "\\vec{0}",
+      "macro": "\\kveczero"
+    },
+    {
+      "sym": "A",
+      "latex": "A",
+      "macro": "\\kA"
+    },
+    {
+      "sym": "B",
+      "latex": "B",
+      "macro": "\\kB"
+    },
+    {
+      "sym": "C",
+      "latex": "C",
+      "macro": "\\kC"
+    },
+    {
+      "sym": "I",
+      "latex": "I",
+      "macro": "\\kI"
+    },
+    {
+      "sym": "L",
+      "latex": "L",
+      "macro": "\\kL"
+    },
+    {
+      "sym": "A_inv",
+      "latex": "A^{-1}",
+      "macro": "\\kAinv"
+    },
+    {
+      "sym": "A_T",
+      "latex": "A^T",
+      "macro": "\\kAT"
+    },
+    {
+      "sym": "A_ij",
+      "latex": "A_{ij}",
+      "macro": "\\kAij"
+    },
+    {
+      "sym": "a_ij",
+      "latex": "a_{ij}",
+      "macro": "\\kaij"
+    },
+    {
+      "sym": "S",
+      "latex": "S",
+      "macro": "\\kS"
+    },
+    {
+      "sym": "proj",
+      "latex": "\\operatorname{proj}",
+      "macro": "\\kproj"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "euclidean-space",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Euclidean space",
+      "terms": [
+        "n-dimensional space",
+        "euclidean space",
+        "cartesian plane"
+      ],
+      "statement": "The set of n-tuples (x₁, x₂, …, xₙ) of real numbers is the n-dimensional space, or euclidean space, ℝⁿ; each n-tuple represents a point of it, one unit to the right and two up from the origin for (1, 2) in the plane ℝ², the cartesian plane."
+    },
+    {
+      "id": "magnitude-of-a-vector",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Magnitude of a vector",
+      "terms": [
+        "magnitude"
+      ],
+      "statement": "The magnitude ‖x⃗‖ of a vector is the length of its arrow, computed by the Pythagorean theorem in any number of dimensions: ‖(x₁, x₂, …, xₙ)‖ = √(x₁² + x₂² + ⋯ + xₙ²); in A.5 it is √⟨x⃗, x⃗⟩, the euclidean length.",
+      "forms": [
+        {
+          "id": "eq-magnitude",
+          "latex": "\\lVert \\vec{x} \\rVert = \\lVert (x_1,x_2,\\ldots,x_n) \\rVert = \\sqrt{x_1^2+x_2^2+\\cdots+x_n^2}",
+          "ktex": "\\lVert \\kvecx \\rVert = \\lVert (x_1,x_2,\\ldots,x_n) \\rVert = \\sqrt{x_1^2+x_2^2+\\cdots+x_n^2}"
+        },
+        {
+          "id": "eq-magnitude-inner-product",
+          "latex": "\\lVert{\\vec{x}}\\rVert = \\sqrt{\\langle \\vec{x}, \\vec{x} \\rangle} = \\sqrt{x_1^2 + x_2^2 + \\cdots + x_n^2}",
+          "ktex": "\\lVert{\\kvecx}\\rVert = \\sqrt{\\langle \\kvecx, \\kvecx \\rangle} = \\sqrt{x_1^2 + x_2^2 + \\cdots + x_n^2}",
+          "section": "A.5"
+        }
+      ]
+    },
+    {
+      "id": "direction-of-a-vector",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Direction of a vector",
+      "terms": [
+        "direction"
+      ],
+      "statement": "A vector is an arrow with a direction and a magnitude; the arrow need not start at the origin, but moved about it keeps the same direction and magnitude. The direction is given by the unit vector in the same direction, x⃗/‖x⃗‖."
+    },
+    {
+      "id": "vector-addition",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Vector addition",
+      "terms": [
+        "addition",
+        "adding vectors"
+      ],
+      "statement": "To add two vectors, travel along one and then along the other: the sum of (1, 2) and (2, −3) ends at (1 + 2, 2 + (−3)) = (3, −1), and in general the components are added one by one.",
+      "forms": [
+        {
+          "id": "eq-vector-addition",
+          "latex": "\\begin{bmatrix} x_{1} \\\\ x_2 \\\\ \\vdots \\\\ x_n \\end{bmatrix} + \\begin{bmatrix} y_{1} \\\\ y_2 \\\\ \\vdots \\\\ y_n \\end{bmatrix} = \\begin{bmatrix} x_1 + y_{1} \\\\ x_2+ y_2 \\\\ \\vdots \\\\ x_n + y_n \\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "id": "vector-difference",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Vector difference",
+      "terms": [
+        "subtracting",
+        "subtracting vectors"
+      ],
+      "statement": "x⃗ − y⃗ means travelling along x⃗ and then backwards along y⃗: it is x⃗ + (−y⃗), where −y⃗ is the arrow with its head moved to the other end, so both of its components are negated; (1, 2) − (−2, 1) = (3, 1).",
+      "forms": [
+        {
+          "id": "eq-vector-difference",
+          "latex": "\\vec{x} - \\vec{y} = \\vec{x} + (-\\vec{y})",
+          "ktex": "\\kvecx - \\kvecy = \\kvecx + (-\\kvecy)"
+        }
+      ]
+    },
+    {
+      "id": "scalar-multiplication",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Scaling a vector",
+      "terms": [
+        "scale",
+        "scale a vector",
+        "scaling"
+      ],
+      "statement": "Multiplying a vector by a number α scales it: each component is multiplied by α. A positive α multiplies the magnitude and leaves the direction untouched; a negative α also reverses the direction, so −y⃗ = (−1)y⃗. Numbers are called scalars when they are told apart from vectors.",
+      "forms": [
+        {
+          "id": "eq-scalar-multiplication",
+          "latex": "\\alpha \\begin{bmatrix} x_{1} \\\\ x_2 \\\\ \\vdots \\\\ x_n \\end{bmatrix} = \\begin{bmatrix} \\alpha x_{1} \\\\ \\alpha x_2 \\\\ \\vdots \\\\ \\alpha x_n \\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "id": "unit-vector",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Unit vector",
+      "terms": [
+        "unit vector"
+      ],
+      "symbol": "u_vec",
+      "type": "vector",
+      "statement": "A unit vector is a vector of magnitude one, ‖u⃗‖ = 1, such as (1, 0), (1/√2, 1/√2) and (0, −1); the unit vector in the direction of x⃗ is x⃗ rescaled by the reciprocal of its magnitude, x⃗/‖x⃗‖, which represents its direction.",
+      "forms": [
+        {
+          "id": "eq-unit-vector",
+          "latex": "\\vec{u} = \\frac{1}{\\lVert \\vec{x} \\rVert} \\vec{x} = \\frac{\\vec{x}}{\\lVert \\vec{x} \\rVert}",
+          "ktex": "\\kvecu = \\frac{1}{\\lVert \\kvecx \\rVert} \\kvecx = \\frac{\\kvecx}{\\lVert \\kvecx \\rVert}"
+        }
+      ]
+    },
+    {
+      "id": "mapping",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Mapping",
+      "terms": [
+        "mapping"
+      ],
+      "statement": "A vector-valued function, or mapping, F is a rule that takes a vector x⃗ and returns another vector y⃗; F: ℝ² → ℝ² says it takes vectors of ℝ² to ℝ². Mapping is the word for a vector-valued function and function for a scalar-valued one.",
+      "forms": [
+        {
+          "id": "eq-mapping-doubling",
+          "latex": "F(\\vec{x}) = 2 \\vec{x}",
+          "ktex": "\\kF(\\kvecx) = 2 \\kvecx"
+        }
+      ]
+    },
+    {
+      "id": "linear-mapping",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Linear mapping",
+      "terms": [
+        "linear",
+        "linear mapping",
+        "linear transformation",
+        "transformation",
+        "operator"
+      ],
+      "symbol": "F",
+      "type": "matrix",
+      "statement": "A mapping F: ℝⁿ → ℝᵐ is linear if F(x⃗ + y⃗) = F(x⃗) + F(y⃗) for all vectors and F(αx⃗) = αF(x⃗) for every scalar α, as the doubling F(x⃗) = 2x⃗ is; a linear mapping is also called a linear transformation or linear operator, and is written Fx⃗ without parentheses, since it behaves like multiplying x⃗ by something, a matrix.",
+      "forms": [
+        {
+          "id": "eq-linear-mapping-sum",
+          "latex": "F(\\vec{x}+\\vec{y}) = F(\\vec{x})+F(\\vec{y})",
+          "ktex": "\\kF(\\kvecx+\\kvecy) = \\kF(\\kvecx)+\\kF(\\kvecy)"
+        },
+        {
+          "id": "eq-linear-mapping-scalar",
+          "latex": "F(\\alpha \\vec{x}) = \\alpha F(\\vec{x})",
+          "ktex": "\\kF(\\alpha \\kvecx) = \\alpha \\kF(\\kvecx)"
+        }
+      ]
+    },
+    {
+      "id": "standard-unit-vectors",
+      "kind": "definition",
+      "section": "A.1",
+      "name": "Standard basis vectors",
+      "terms": [
+        "standard basis vectors"
+      ],
+      "symbol": "e_vec",
+      "type": "vector",
+      "statement": "The standard basis vectors e⃗₁, e⃗₂, …, e⃗ₙ of ℝⁿ each have a single entry 1 and zeros elsewhere (ı⃗, ȷ⃗, k⃗ in ℝ³); they are a basis because every vector is a unique linear combination of them, (4, 5, 6) = 4e⃗₁ + 5e⃗₂ + 6e⃗₃.",
+      "forms": [
+        {
+          "id": "eq-standard-basis-expansion",
+          "latex": "\\vec{x} = x_1 \\vec{e}_1 + x_2 \\vec{e}_2 + \\cdots + x_n \\vec{e}_n",
+          "ktex": "\\kvecx = x_1 \\kvece_1 + x_2 \\kvece_2 + \\cdots + x_n \\kvece_n"
+        }
+      ]
+    },
+    {
+      "id": "matrix-of-a-linear-mapping",
+      "kind": "result",
+      "section": "A.1",
+      "name": "Matrix of a linear mapping",
+      "statement": "An n × m matrix A is a linear mapping ℝᵐ → ℝⁿ that takes e⃗_j to the jth column of A, so by linearity Ax⃗ = x₁Ae⃗₁ + x₂Ae⃗₂ + ⋯ + x_mAe⃗_m: knowing where A takes the basis vectors tells where it takes every vector. Every linear mapping from ℝᵐ to ℝⁿ is represented by an n × m matrix, found from where it takes the standard basis vectors, and every such matrix represents a linear mapping.",
+      "forms": [
+        {
+          "id": "eq-matrix-on-basis-vector",
+          "latex": "A \\vec{e}_j = \\operatorname{column}_j (A)",
+          "ktex": "\\kA \\kvece_j = \\operatorname{column}_j (\\kA)"
+        },
+        {
+          "id": "eq-matrix-by-linearity",
+          "latex": "A \\vec{x} = A ( x_1 \\vec{e}_1 + x_2 \\vec{e}_2 + \\cdots + x_m \\vec{e}_m ) = x_1 A\\vec{e}_1 + x_2 A\\vec{e}_2 + \\cdots + x_m A\\vec{e}_m",
+          "ktex": "\\kA \\kvecx = \\kA ( x_1 \\kvece_1 + x_2 \\kvece_2 + \\cdots + x_m \\kvece_m ) = x_1 \\kA\\kvece_1 + x_2 \\kA\\kvece_2 + \\cdots + x_m \\kA\\kvece_m"
+        }
+      ]
+    },
+    {
+      "id": "matrix-vector-product",
+      "kind": "result",
+      "section": "A.1",
+      "name": "Matrix times vector",
+      "statement": "The entry of Ax⃗ in row i is found by multiplying the entries of row i of A by the entries of x⃗ and adding: for a 2 × 3 matrix, Ax⃗ = (a₁₁x₁ + a₁₂x₂ + a₁₃x₃, a₂₁x₁ + a₂₂x₂ + a₂₃x₃), and [1 2; 3 4](2, −1) = (0, 2).",
+      "forms": [
+        {
+          "id": "eq-matrix-vector-product",
+          "latex": "A \\vec{x} = \\begin{bmatrix} a_{11} & a_{12} & a_{13} \\\\ a_{21} & a_{22} & a_{23} \\end{bmatrix} \\begin{bmatrix} x_1 \\\\ x_2 \\\\ x_3 \\end{bmatrix} = \\begin{bmatrix} a_{11} x_1 + a_{12} x_2 + a_{13} x_3 \\\\ a_{21} x_1 + a_{22} x_2 + a_{23} x_3 \\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "id": "finite-dimensional-approximation",
+      "kind": "idea",
+      "section": "A.1",
+      "name": "Finite-dimensional approximation",
+      "statement": "A linear differential operator, L f = g with L(f + h) = Lf + Lh and L(αf) = αLf, is a linear mapping of an infinite-dimensional space of functions, not of ℝⁿ, so it is not a matrix; but such spaces are approximated by finite-dimensional ones, as a computer samples a function at finitely many points, and then linear operators are matrices, so approximately everything is a vector and every linear mapping is a matrix."
+    },
+    {
+      "id": "one-by-one-matrices",
+      "kind": "idea",
+      "section": "A.2",
+      "name": "One-by-one matrices",
+      "statement": "A linear mapping of the real line is multiplication by a number α, a 1 × 1 matrix [α]: adding two such mappings multiplies by α + β, and composing them, β(αx) = (βα)x, multiplies by βα. Matrix addition and multiplication do the same for larger matrices, composition ending up as a kind of multiplication."
+    },
+    {
+      "id": "zero-matrix",
+      "kind": "definition",
+      "section": "A.2",
+      "name": "Zero matrix",
+      "terms": [
+        "zero matrix"
+      ],
+      "statement": "The zero matrix, written 0 with its size understood to match, is the matrix of all zeros; added to any matrix it does nothing, A + 0 = A."
+    },
+    {
+      "id": "properties-of-matrix-addition-and-scalar-multiplication",
+      "kind": "result",
+      "section": "A.2",
+      "name": "Rules of matrix addition and scalar multiplication",
+      "statement": "Matrices of one size add entry by entry, (A + B)x⃗ = Ax⃗ + Bx⃗, and αA scales every entry, (αA)x⃗ = α(Ax⃗); matrices of different sizes cannot be added. For matrices A, B, C, scalars α, β and the zero matrix: A + 0 = A = 0 + A, A + B = B + A, (A + B) + C = A + (B + C), α(A + B) = αA + αB, (α + β)A = αA + βA.",
+      "forms": [
+        {
+          "id": "eq-matrix-sum-on-vector",
+          "latex": "(A+B) \\vec{x} = A\\vec{x} + B \\vec{x}",
+          "ktex": "(\\kA+\\kB) \\kvecx = \\kA\\kvecx + \\kB \\kvecx"
+        },
+        {
+          "id": "eq-matrix-scalar-on-vector",
+          "latex": "(\\alpha A) \\vec{x} = \\alpha (A \\vec{x})",
+          "ktex": "(\\alpha \\kA) \\kvecx = \\alpha (\\kA \\kvecx)"
+        },
+        {
+          "id": "eq-matrix-addition-rules",
+          "latex": "\\begin{aligned} A + 0 & = A = 0 + A , \\\\ A + B & = B + A , \\\\ (A + B) + C & = A + (B + C) , \\\\ \\alpha(A+B) & = \\alpha A+\\alpha B, \\\\ (\\alpha+\\beta)A & = \\alpha A + \\beta A. \\end{aligned}",
+          "ktex": "\\begin{aligned} \\kA + 0 & = \\kA = 0 + \\kA , \\\\ \\kA + \\kB & = \\kB + \\kA , \\\\ (\\kA + \\kB) + \\kC & = \\kA + (\\kB + \\kC) , \\\\ \\alpha(\\kA+\\kB) & = \\alpha \\kA+\\alpha \\kB, \\\\ (\\alpha+\\beta)\\kA & = \\alpha \\kA + \\beta \\kA. \\end{aligned}"
+        }
+      ]
+    },
+    {
+      "id": "matrix-product-as-composition",
+      "kind": "result",
+      "section": "A.2",
+      "name": "Matrix product as composition",
+      "statement": "The product of an m × n matrix A and an n × p matrix B is the composition, ABx⃗ = A(Bx⃗), an m × p matrix ([m × n][n × p] = [m × p], the middle sizes matching) whose ij-th entry is the dot product row_i(A) · column_j(B); its columns are Ab⃗₁, …, Ab⃗_p, the mapping A applied to the columns of B, and Ax⃗ for a column vector is itself a matrix product.",
+      "forms": [
+        {
+          "id": "eq-matrix-product-composition",
+          "latex": "AB\\vec{x} = A(B\\vec{x})",
+          "ktex": "\\kA\\kB\\kvecx = \\kA(\\kB\\kvecx)"
+        },
+        {
+          "id": "eq-matrix-product-sizes",
+          "latex": "[ m \\times n ] \\, [ n \\times p ] = [ m \\times p ]"
+        },
+        {
+          "id": "eq-matrix-product-entry",
+          "latex": "\\operatorname{row}_i(A) \\cdot \\operatorname{column}_j(B)",
+          "ktex": "\\operatorname{row}_i(\\kA) \\cdot \\operatorname{column}_j(\\kB)"
+        },
+        {
+          "id": "eq-a-1",
+          "latex": "\\begin{bmatrix} a_{11} & a_{12} & a_{13} \\\\ a_{21} & a_{22} & a_{23} \\end{bmatrix} \\begin{bmatrix} b_{11} & b_{12} \\\\ b_{21} & b_{22} \\\\ b_{31} & b_{32} \\end{bmatrix} = \\begin{bmatrix} a_{11} b_{11} + a_{12} b_{21} + a_{13} b_{31} & a_{11} b_{12} + a_{12} b_{22} + a_{13} b_{32} \\\\ a_{21} b_{11} + a_{22} b_{21} + a_{23} b_{31} & a_{21} b_{12} + a_{22} b_{22} + a_{23} b_{32} \\end{bmatrix}"
+        },
+        {
+          "id": "eq-matrix-product-columns",
+          "latex": "AB = A [ \\vec{b}_1 ~ \\vec{b}_2 ~ \\cdots ~ \\vec{b}_p ] = [ A\\vec{b}_1 ~ A\\vec{b}_2 ~ \\cdots ~ A\\vec{b}_p ]",
+          "ktex": "\\kA\\kB = \\kA [ \\kvecb_1 ~ \\kvecb_2 ~ \\cdots ~ \\kvecb_p ] = [ \\kA\\kvecb_1 ~ \\kA\\kvecb_2 ~ \\cdots ~ \\kA\\kvecb_p ]"
+        }
+      ]
+    },
+    {
+      "id": "noncommutativity-of-matrix-multiplication",
+      "kind": "result",
+      "section": "A.2",
+      "name": "Noncommutativity of matrix multiplication",
+      "statement": "Matrix multiplication is not commutative: when A is 2 × 3 and B is 3 × 4 the product AB makes sense but BA is not defined, and even when both are defined they need not be equal, as for A = [1 1; 1 1] and B = [1 0; 0 2].",
+      "forms": [
+        {
+          "id": "eq-noncommutative",
+          "latex": "AB \\neq BA",
+          "ktex": "\\kA\\kB \\neq \\kB\\kA"
+        }
+      ]
+    },
+    {
+      "id": "cancellation-with-an-inverse",
+      "kind": "result",
+      "section": "A.2",
+      "name": "Cancellation with an inverse",
+      "statement": "For matrices AB = AC does not imply B = C even when A is not 0, and AB = 0 does not mean A = 0 or B = 0; but if A is invertible, AB = AC implies B = C (multiply by A⁻¹ on the left, never commuting), and BA = CA implies B = C. So the inverse of a matrix is unique when it exists: if AB = I = AC then B = C.",
+      "forms": [
+        {
+          "id": "eq-cancellation",
+          "latex": "AB = AC \\implies B = C",
+          "ktex": "\\kA\\kB = \\kA\\kC \\implies \\kB = \\kC",
+          "condition": "A invertible"
+        }
+      ]
+    },
+    {
+      "id": "diagonal-matrix",
+      "kind": "definition",
+      "section": "A.2",
+      "name": "Diagonal matrix",
+      "terms": [
+        "diagonal matrix"
+      ],
+      "type": "matrix",
+      "statement": "A diagonal matrix is a square matrix whose entries are all zero except those on the main diagonal from top left to bottom right; it multiplies the kth entry of a vector by d_k, multiplies the rows of a matrix by d_k from the left and the columns from the right, and two diagonal matrices multiply entry by entry. Much of linear algebra reduces a problem to the diagonal case."
+    },
+    {
+      "id": "inverse-of-a-diagonal-matrix",
+      "kind": "result",
+      "section": "A.2",
+      "name": "Inverse of a diagonal matrix",
+      "statement": "A diagonal matrix with nonzero diagonal entries d₁, …, dₙ is inverted by inverting each diagonal entry.",
+      "forms": [
+        {
+          "id": "eq-diagonal-inverse",
+          "latex": "\\begin{bmatrix} d_1 & 0 & 0 \\\\ 0 & d_2 & 0 \\\\ 0 & 0 & d_3 \\end{bmatrix}^{-1} = \\begin{bmatrix} d_1^{-1} & 0 & 0 \\\\ 0 & d_2^{-1} & 0 \\\\ 0 & 0 & d_3^{-1} \\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "id": "transpose-of-a-product",
+      "kind": "result",
+      "section": "A.2",
+      "name": "Transpose of a product",
+      "statement": "If AB makes sense then so does BᵀAᵀ, and it is the transpose of AB: (AB)ᵀ = BᵀAᵀ. For a column vector, (Ax⃗)ᵀ = x⃗ᵀAᵀ: the row vector x⃗ᵀ applies to Aᵀ from the left.",
+      "forms": [
+        {
+          "id": "eq-transpose-of-product",
+          "latex": "{(AB)}^T = B^TA^T",
+          "ktex": "{(\\kA\\kB)}^T = \\kB^T\\kA^T"
+        },
+        {
+          "id": "eq-transpose-of-ax",
+          "latex": "{(A\\vec{x})}^T = \\vec{x}^TA^T",
+          "ktex": "{(\\kA\\kvecx)}^T = \\kvecx^T\\kA^T"
+        }
+      ]
+    },
+    {
+      "id": "dot-product-via-transpose",
+      "kind": "result",
+      "section": "A.2",
+      "name": "Dot product as a transpose product",
+      "statement": "The dot product of two column vectors is the matrix product of the transpose of one with the other, x⃗ · y⃗ = y⃗ᵀx⃗, which is how software often writes it.",
+      "forms": [
+        {
+          "id": "eq-dot-product-transpose",
+          "latex": "\\vec{x} \\cdot \\vec{y} = \\vec{y}^T \\vec{x}",
+          "ktex": "\\kvecx \\cdot \\kvecy = \\kvecy^T \\kvecx"
+        }
+      ]
+    },
+    {
+      "id": "symmetric-matrix",
+      "kind": "definition",
+      "section": "A.2",
+      "name": "Symmetric matrix",
+      "terms": [
+        "symmetric",
+        "symmetric matrix"
+      ],
+      "type": "matrix",
+      "statement": "A matrix A is symmetric if A = Aᵀ; a symmetric matrix is always square, and symmetric matrices come up often in applications.",
+      "forms": [
+        {
+          "id": "eq-symmetric",
+          "latex": "A = A^T",
+          "ktex": "\\kA = \\kA^T"
+        }
+      ]
+    },
+    {
+      "id": "linear-system-of-equations",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "System of linear equations",
+      "terms": [
+        "system of linear equations",
+        "linear system"
+      ],
+      "statement": "A system of linear equations in the unknowns x₁, …, xₙ is written as one matrix equation Ax⃗ = b⃗, with A the matrix of coefficients, x⃗ the column of unknowns and b⃗ the right-hand sides; the system (A.2) is [2 2 2; 1 1 3; 1 4 1]x⃗ = (2, 5, 10). If A⁻¹ were known the solution would be x⃗ = A⁻¹b⃗, but A may be large, singular or not square.",
+      "forms": [
+        {
+          "id": "eq-linear-system",
+          "latex": "A \\vec{x} = \\vec{b}",
+          "ktex": "\\kA \\kvecx = \\kvecb"
+        },
+        {
+          "id": "eq-a-2",
+          "latex": "\\begin{aligned} 2 x_1 + 2 x_2 + 2 x_3 & = 2 , \\\\ x_1 + x_2 + 3 x_3 & = 5 , \\\\ x_1 + 4 x_2 + x_3 & = 10 . \\end{aligned}"
+        },
+        {
+          "id": "eq-solution-by-inverse",
+          "latex": "\\vec{x} = A^{-1} A \\vec{x} = A^{-1} \\vec{b}",
+          "ktex": "\\kvecx = \\kAinv \\kA \\kvecx = \\kAinv \\kvecb",
+          "condition": "A invertible"
+        }
+      ]
+    },
+    {
+      "id": "row-echelon-form",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Row echelon form",
+      "terms": [
+        "row echelon form",
+        "echelon form"
+      ],
+      "statement": "A matrix is in row echelon form if the leading entry (the first nonzero entry) of any row is strictly to the right of the leading entry of the row above, any zero rows are below all the nonzero rows, and all leading entries are 1; it is in reduced row echelon form if furthermore every entry above a leading entry is zero. The definition applies to matrices of any size."
+    },
+    {
+      "id": "pivot",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Pivot",
+      "terms": [
+        "pivot"
+      ],
+      "statement": "Working column by column from the left, the pivot is the topmost nonzero entry of the current column among the rows not yet fixed; its row is swapped to the top, divided by the pivot so the entry becomes 1, and the right multiples of it are subtracted from the rows below so every entry under the pivot becomes zero. A column with no nonzero entry is skipped, and the fixed row and column are then forgotten."
+    },
+    {
+      "id": "backsubstitution",
+      "kind": "skill",
+      "section": "A.3",
+      "name": "Backsubstitution",
+      "terms": [
+        "backsubstitution"
+      ],
+      "statement": "From a row echelon form, backsubstitution clears the entries above each pivot by subtracting the right multiple of the pivot's row from the rows above, starting from the lowest pivot; it is the substitution of x₃ = 2 into the earlier equations done with row operations, and ends in reduced row echelon form, where the unknowns are read off."
+    },
+    {
+      "id": "gauss-jordan-elimination",
+      "kind": "skill",
+      "section": "A.3",
+      "name": "Gauss–Jordan elimination",
+      "terms": [
+        "elimination",
+        "Gauss–Jordan elimination",
+        "Gaussian elimination"
+      ],
+      "statement": "Elimination solves Ax⃗ = b⃗ by running the three elementary row operations on the augmented matrix [A | b⃗] until the answer can be read off or a contradiction appears: swapping rows, multiplying a row by a nonzero number and adding a multiple of one row to another change no solution. Reaching a row echelon form by pivots is Gaussian elimination or row reduction; continuing by backsubstitution to the reduced row echelon form is Gauss–Jordan elimination. For (A.2) it gives x₁ = −4, x₂ = 3, x₃ = 2."
+    },
+    {
+      "id": "consistent-system",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Consistent system",
+      "terms": [
+        "consistent"
+      ],
+      "statement": "A linear system is consistent if at least one solution exists and inconsistent if none does; it is inconsistent exactly when a row of the echelon form has zeros in every variable column and a nonzero entry on the right, a pivot to the right of the vertical line, which reads 0 = 1."
+    },
+    {
+      "id": "solutions-of-a-consistent-system",
+      "kind": "result",
+      "section": "A.3",
+      "name": "Solutions of a consistent system",
+      "statement": "If a consistent system has a pivot in every column corresponding to a variable, the solution is unique; the variables of columns without a pivot are free variables that can be chosen arbitrarily, and then there are infinitely many solutions, one for every choice."
+    },
+    {
+      "id": "homogeneous-matrix-equation",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Homogeneous matrix equation",
+      "terms": [
+        "homogeneous matrix equation"
+      ],
+      "statement": "When b⃗ = 0⃗ the equation Ax⃗ = 0⃗ is a homogeneous matrix equation: no augmented matrix is needed since the zero column stays zero under the row operations, x⃗ = 0⃗ is always a solution so the system is always consistent, and any free variable gives infinitely many solutions.",
+      "forms": [
+        {
+          "id": "eq-homogeneous-matrix-equation",
+          "latex": "A \\vec{x} = \\vec{0}",
+          "ktex": "\\kA \\kvecx = \\kveczero"
+        }
+      ]
+    },
+    {
+      "id": "kernel",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Kernel",
+      "terms": [
+        "nullspace",
+        "kernel"
+      ],
+      "type": "region",
+      "statement": "The set of solutions of Ax⃗ = 0⃗ is the nullspace or kernel of A; if it contains a nonzero vector it contains infinitely many, since there was a free variable."
+    },
+    {
+      "id": "kernel-and-invertibility",
+      "kind": "result",
+      "section": "A.3",
+      "name": "Kernel and invertibility",
+      "statement": "If the kernel of a square matrix A is nontrivial, that is, if there are free variables, or columns without pivots in the row echelon form of A, then infinitely many vectors go to 0⃗, no unique vector is taken to 0⃗, and A is not invertible."
+    },
+    {
+      "id": "matrix-product-as-linear-combination",
+      "kind": "result",
+      "section": "A.3",
+      "name": "A matrix times a vector as a linear combination",
+      "statement": "Ax⃗ is a linear combination of the columns of A with the entries of x⃗ as coefficients, and x⃗ᵀA = (Aᵀx⃗)ᵀ is a linear combination of the rows of A.",
+      "forms": [
+        {
+          "id": "eq-row-combination",
+          "latex": "\\vec{x}^T A = (A^T \\vec{x})^T",
+          "ktex": "\\kvecx^T \\kA = (\\kA^T \\kvecx)^T"
+        }
+      ]
+    },
+    {
+      "id": "superposition-for-matrix-equations",
+      "kind": "result",
+      "section": "A.3",
+      "name": "Linear combinations of solutions",
+      "statement": "If x⃗₁, …, x⃗ₙ are solutions of Ax⃗ = 0⃗, then every linear combination y⃗ = α₁x⃗₁ + ⋯ + αₙx⃗ₙ is a solution, since Ay⃗ = α₁Ax⃗₁ + ⋯ + αₙAx⃗ₙ = 0⃗; so once enough solutions are found, all solutions are, and the question is when enough have been found.",
+      "forms": [
+        {
+          "id": "eq-superposition-matrix",
+          "latex": "A \\vec{y} = A (\\alpha_1 \\vec{x}_1 + \\alpha_2 \\vec{x}_2 + \\cdots + \\alpha_n \\vec{x}_n ) = \\alpha_1 A \\vec{x}_1 + \\alpha_2 A \\vec{x}_2 + \\cdots + \\alpha_n A \\vec{x}_n = \\vec{0}",
+          "ktex": "\\kA \\kvecy = \\kA (\\alpha_1 \\kvecx_1 + \\alpha_2 \\kvecx_2 + \\cdots + \\alpha_n \\kvecx_n ) = \\alpha_1 \\kA \\kvecx_1 + \\alpha_2 \\kA \\kvecx_2 + \\cdots + \\alpha_n \\kA \\kvecx_n = \\kveczero"
+        }
+      ]
+    },
+    {
+      "id": "linear-independence-of-vectors",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Linear independence of vectors",
+      "terms": [
+        "linearly independent",
+        "linearly dependent",
+        "linear independence"
+      ],
+      "statement": "Vectors y⃗₁, …, y⃗ₙ are linearly independent if the only solution of α₁y⃗₁ + ⋯ + αₙy⃗ₙ = 0⃗ is α₁ = ⋯ = αₙ = 0, and linearly dependent otherwise; dependent vectors let one be solved for as a linear combination of the others, and the check is a row reduction, since solving for the α_j is solving linear equations.",
+      "forms": [
+        {
+          "id": "eq-linear-independence",
+          "latex": "\\alpha_1 \\vec{x}_1 + \\alpha_2 \\vec{x}_2 + \\cdots + \\alpha_n \\vec{x}_n = \\vec{0} \\quad\\text{only when}\\quad \\alpha_1 = \\alpha_2 = \\cdots = \\alpha_n = 0",
+          "ktex": "\\alpha_1 \\kvecx_1 + \\alpha_2 \\kvecx_2 + \\cdots + \\alpha_n \\kvecx_n = \\kveczero \\quad\\text{only when}\\quad \\alpha_1 = \\alpha_2 = \\cdots = \\alpha_n = 0"
+        }
+      ]
+    },
+    {
+      "id": "span",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Span",
+      "terms": [
+        "span"
+      ],
+      "type": "region",
+      "statement": "The span of a set of vectors is the set of all their linear combinations; a matrix is formed from the vectors, as rows or as columns, to find a linearly independent subset or other vectors with the same span.",
+      "forms": [
+        {
+          "id": "eq-span",
+          "latex": "\\operatorname{span} \\bigl\\{ \\vec{x}_1, \\vec{x}_2 , \\ldots , \\vec{x}_n \\bigr\\} = \\bigl\\{ \\text{set of all linear combinations of } \\vec{x}_1, \\vec{x}_2 , \\ldots , \\vec{x}_n \\bigr\\}",
+          "ktex": "\\operatorname{span} \\bigl\\{ \\kvecx_1, \\kvecx_2 , \\ldots , \\kvecx_n \\bigr\\} = \\bigl\\{ \\text{set of all linear combinations of } \\kvecx_1, \\kvecx_2 , \\ldots , \\kvecx_n \\bigr\\}"
+        }
+      ]
+    },
+    {
+      "id": "rank",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Rank",
+      "terms": [
+        "rank"
+      ],
+      "statement": "The rank of a matrix A, rank A, is the maximal number of linearly independent rows; since the elementary row operations do not change the span of the rows and the nonzero rows of a row echelon form are linearly independent, the rank is the number of nonzero rows, the number of pivots, of the row echelon form."
+    },
+    {
+      "id": "row-space",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Row space",
+      "terms": [
+        "row space"
+      ],
+      "type": "region",
+      "statement": "The row space of A is the span of its rows; it is the same as the row space of the row echelon form of A, so the nonzero rows of the echelon form are a linearly independent set spanning it."
+    },
+    {
+      "id": "column-space",
+      "kind": "definition",
+      "section": "A.3",
+      "name": "Column space",
+      "terms": [
+        "column space"
+      ],
+      "type": "region",
+      "statement": "The column space of A is the span of its columns; the pivot columns of A span it, since every non-pivot column corresponds to a free variable of Ax⃗ = 0⃗ and so can be solved for in terms of the pivot columns."
+    },
+    {
+      "id": "rank-of-the-transpose",
+      "kind": "result",
+      "section": "A.3",
+      "name": "Rank of the transpose",
+      "statement": "rank A = rank Aᵀ: the number of linearly independent columns of a matrix is always the same as the number of linearly independent rows, each nonzero row of the echelon form holding one pivot and each pivot marking one independent column.",
+      "forms": [
+        {
+          "id": "eq-rank-transpose",
+          "latex": "\\operatorname{rank} A = \\operatorname{rank} A^T",
+          "ktex": "\\operatorname{rank} \\kA = \\operatorname{rank} \\kA^T"
+        }
+      ]
+    },
+    {
+      "id": "finding-a-linearly-independent-subset",
+      "kind": "skill",
+      "section": "A.3",
+      "name": "Finding a linearly independent subset",
+      "statement": "To find a linearly independent subset of given vectors with the same span, form the matrix with the vectors as columns, row reduce, and take the columns of the original matrix where the pivots landed; for row vectors, the nonzero rows of the row echelon form span the same row space. Every vector in the span is then a unique combination of the chosen ones."
+    },
+    {
+      "id": "invertibility-and-rank",
+      "kind": "result",
+      "section": "A.3",
+      "name": "Invertibility and rank",
+      "statement": "A square n × n matrix A is invertible exactly when Ax⃗ = b⃗ has a unique solution for every b⃗, that is, when there are no free variables, which is the same as A having rank n. Then x⃗ = A⁻¹b⃗, and the columns of A⁻¹ are the solutions of Ax⃗ = e⃗_j, found all at once by reducing [A | I] to [I | A⁻¹]; if some of the first n columns has no pivot, A is not invertible."
+    },
+    {
+      "id": "subspace",
+      "kind": "definition",
+      "section": "A.4",
+      "name": "Subspace",
+      "terms": [
+        "subspace"
+      ],
+      "symbol": "S",
+      "type": "region",
+      "statement": "A set S of vectors in ℝⁿ is a subspace if whenever x⃗ and y⃗ are members of S and α is a scalar, x⃗ + y⃗ and αx⃗ are also members of S, so every linear combination of vectors of S is still in S. ℝⁿ, the set {0⃗} and the vectors (a, a) of ℝ² are subspaces; the span of any vectors is one, and so are the row and column spaces of a matrix.",
+      "forms": [
+        {
+          "id": "eq-subspace",
+          "latex": "\\vec{x} + \\vec{y}, \\qquad \\text{and} \\qquad \\alpha \\vec{x} \\quad \\text{are in } S",
+          "ktex": "\\kvecx + \\kvecy, \\qquad \\text{and} \\qquad \\alpha \\kvecx \\quad \\text{are in } \\kS"
+        }
+      ]
+    },
+    {
+      "id": "basis",
+      "kind": "definition",
+      "section": "A.4",
+      "name": "Basis",
+      "terms": [
+        "basis"
+      ],
+      "statement": "A basis of a subspace S is a set of k linearly independent vectors v⃗₁, …, v⃗ₖ in S such that every other vector in S is a linear combination of them: S is their span and no smaller subset of them spans S. A subspace has many bases, and finding the right one is much of what linear algebra, and linear differential equations, do."
+    },
+    {
+      "id": "dimension",
+      "kind": "definition",
+      "section": "A.4",
+      "name": "Dimension",
+      "terms": [
+        "dimension"
+      ],
+      "statement": "The dimension of a subspace S, dim S = k, is the number of vectors in a basis of S; every basis of S has the same number, dim ℝⁿ = n with the standard basis, and the subspace {0⃗} has dimension 0 with the empty set as its basis.",
+      "forms": [
+        {
+          "id": "eq-dimension",
+          "latex": "\\dim S = k",
+          "ktex": "\\dim \\kS = k"
+        },
+        {
+          "id": "eq-dimension-of-rn",
+          "latex": "\\dim {\\mathbb R}^n = n"
+        }
+      ]
+    },
+    {
+      "id": "unique-representation-in-a-basis",
+      "kind": "result",
+      "section": "A.4",
+      "name": "Existence and uniqueness of a basis",
+      "statement": "If S ⊂ ℝⁿ is a subspace and not the trivial subspace {0⃗}, there is a unique positive integer k, the dimension, and a basis v⃗₁, …, v⃗ₖ, not unique, such that every w⃗ in S is uniquely represented as w⃗ = α₁v⃗₁ + ⋯ + αₖv⃗ₖ, the scalars α_j being unique; once a basis is fixed, a vector of S is a unique k-tuple of numbers, and a different basis gives a different k-tuple.",
+      "forms": [
+        {
+          "id": "eq-theorem-a-4-1",
+          "latex": "\\vec{w} = \\alpha_1 \\vec{v}_1 + \\alpha_2 \\vec{v}_2 + \\cdots + \\alpha_k \\vec{v}_k",
+          "ktex": "\\kvecw = \\alpha_1 \\kvecv_1 + \\alpha_2 \\kvecv_2 + \\cdots + \\alpha_k \\kvecv_k"
+        }
+      ]
+    },
+    {
+      "id": "rank-theorem",
+      "kind": "result",
+      "section": "A.4",
+      "name": "Rank theorem",
+      "statement": "The dimension of the column space and the dimension of the row space of a matrix A are both equal to the rank of A: the pivot columns are a basis of the column space and the nonzero rows of the echelon form a basis of the row space, each as many as the pivots."
+    },
+    {
+      "id": "kernel-is-a-subspace",
+      "kind": "result",
+      "section": "A.4",
+      "name": "The kernel is a subspace",
+      "statement": "The set of solutions of Lx⃗ = 0⃗, the kernel of L, is a subspace: if x⃗ and y⃗ are solutions then L(x⃗ + y⃗) = Lx⃗ + Ly⃗ = 0⃗ and L(αx⃗) = αLx⃗ = 0⃗. The same idea governs a linear differential operator, whose kernel is described by finding a basis of it, which much of the book does.",
+      "forms": [
+        {
+          "id": "eq-kernel-subspace",
+          "latex": "L(\\vec{x}+\\vec{y}) = L\\vec{x}+L\\vec{y} = \\vec{0}+\\vec{0} = \\vec{0} , \\qquad L(\\alpha \\vec{x}) = \\alpha L \\vec{x} = \\alpha \\vec{0} = \\vec{0}",
+          "ktex": "\\kL(\\kvecx+\\kvecy) = \\kL\\kvecx+\\kL\\kvecy = \\kveczero+\\kveczero = \\kveczero , \\qquad \\kL(\\alpha \\kvecx) = \\alpha \\kL \\kvecx = \\alpha \\kveczero = \\kveczero"
+        }
+      ]
+    },
+    {
+      "id": "nullity",
+      "kind": "definition",
+      "section": "A.4",
+      "name": "Nullity",
+      "terms": [
+        "nullity"
+      ],
+      "statement": "The nullity of a matrix is the dimension of its kernel."
+    },
+    {
+      "id": "basis-of-the-kernel",
+      "kind": "skill",
+      "section": "A.4",
+      "name": "Finding a basis of the kernel",
+      "statement": "The kernel of a matrix is the kernel of its reduced row echelon form. To find a basis: find the reduced row echelon form of L, and write one vector per non-pivot column, with −1 in the entry of that column, zeros in the entries of the other non-pivot columns, and in the entries of the pivot columns the values of the non-pivot column in the corresponding rows, which makes Lx⃗ = 0⃗; the kernel is the span of these vectors."
+    },
+    {
+      "id": "rank-nullity-theorem",
+      "kind": "result",
+      "section": "A.4",
+      "name": "Rank–Nullity theorem",
+      "statement": "If a matrix A has n columns, rank r and nullity k, then n = r + k: the rank counts the pivot columns, which span the column space, and the kernel has one basis vector for each non-pivot column. It gives the rank from the nullity, and vice versa, with no extra work.",
+      "forms": [
+        {
+          "id": "eq-rank-nullity",
+          "latex": "n = r+k"
+        }
+      ]
+    },
+    {
+      "id": "fredholm-alternative",
+      "kind": "result",
+      "section": "A.4",
+      "name": "Fredholm alternative",
+      "terms": [
+        "Fredholm alternative"
+      ],
+      "statement": "For a square n × n matrix A exactly one of two things holds: either a nonzero solution x⃗ of Ax⃗ = 0⃗ exists, or Ax⃗ = b⃗ has a unique solution x⃗ for every b⃗. A nonzero kernel makes the nullity positive, so the rank r = n − k is less than n, the column space is a subspace that does not include everything, and some b⃗, in fact most, is not in it."
+    },
+    {
+      "id": "inner-product",
+      "kind": "definition",
+      "section": "A.5",
+      "name": "Inner product",
+      "terms": [
+        "inner product",
+        "standard inner product"
+      ],
+      "statement": "The standard inner product of two column vectors in ℝⁿ is the dot product, ⟨x⃗, y⃗⟩ = x⃗ · y⃗ = y⃗ᵀx⃗ = x₁y₁ + ⋯ + xₙyₙ; the new notation leaves room for other inner products, such as ⟨f(t), g(t)⟩ = ∫ₐᵇ f(t)g(t) dt on spaces of functions, and anything satisfying the four rules of the inner product may be called one.",
+      "forms": [
+        {
+          "id": "eq-inner-product",
+          "latex": "\\langle \\vec{x} , \\vec{y} \\rangle = \\vec{x} \\cdot \\vec{y} = \\vec{y}^T \\vec{x} = x_1 y_1 + x_2 y_2 + \\cdots + x_n y_n = \\sum_{i=1}^n x_i y_i",
+          "ktex": "\\langle \\kvecx , \\kvecy \\rangle = \\kvecx \\cdot \\kvecy = \\kvecy^T \\kvecx = x_1 y_1 + x_2 y_2 + \\cdots + x_n y_n = \\sum_{i=1}^n x_i y_i"
+        },
+        {
+          "id": "eq-inner-product-of-functions",
+          "latex": "\\langle f(t) , g(t) \\rangle = \\int_{a}^{b} f(t) g(t) \\, dt",
+          "ktex": "\\langle \\kf(t) , \\kg(t) \\rangle = \\int_{a}^{b} \\kf(t) \\kg(t) \\, dt"
+        }
+      ]
+    },
+    {
+      "id": "properties-of-the-inner-product",
+      "kind": "result",
+      "section": "A.5",
+      "name": "Rules of the inner product",
+      "statement": "⟨x⃗, x⃗⟩ ≥ 0, with ⟨x⃗, x⃗⟩ = 0 if and only if x⃗ = 0⃗; ⟨x⃗, y⃗⟩ = ⟨y⃗, x⃗⟩; ⟨ax⃗, y⃗⟩ = ⟨x⃗, ay⃗⟩ = a⟨x⃗, y⃗⟩; and ⟨x⃗ + y⃗, z⃗⟩ = ⟨x⃗, z⃗⟩ + ⟨y⃗, z⃗⟩, ⟨x⃗, y⃗ + z⃗⟩ = ⟨x⃗, y⃗⟩ + ⟨x⃗, z⃗⟩.",
+      "forms": [
+        {
+          "id": "eq-inner-product-rules",
+          "latex": "\\begin{aligned} & \\langle \\vec{x} , \\vec{x} \\rangle \\geq 0, \\quad \\langle \\vec{x} , \\vec{x} \\rangle = 0 \\iff \\vec{x} = \\vec{0}, \\\\ & \\langle \\vec{x} , \\vec{y} \\rangle = \\langle \\vec{y} , \\vec{x} \\rangle, \\\\ & \\langle a\\vec{x} , \\vec{y} \\rangle = \\langle \\vec{x} , a\\vec{y} \\rangle = a \\langle \\vec{x} , \\vec{y} \\rangle, \\\\ & \\langle \\vec{x} + \\vec{y} , \\vec{z} \\rangle = \\langle \\vec{x} , \\vec{z} \\rangle + \\langle \\vec{y} , \\vec{z} \\rangle, \\quad \\langle \\vec{x}, \\vec{y} + \\vec{z} \\rangle = \\langle \\vec{x} , \\vec{y} \\rangle + \\langle \\vec{x} , \\vec{z} \\rangle . \\end{aligned}",
+          "ktex": "\\begin{aligned} & \\langle \\kvecx , \\kvecx \\rangle \\geq 0, \\quad \\langle \\kvecx , \\kvecx \\rangle = 0 \\iff \\kvecx = \\kveczero, \\\\ & \\langle \\kvecx , \\kvecy \\rangle = \\langle \\kvecy , \\kvecx \\rangle, \\\\ & \\langle a\\kvecx , \\kvecy \\rangle = \\langle \\kvecx , a\\kvecy \\rangle = a \\langle \\kvecx , \\kvecy \\rangle, \\\\ & \\langle \\kvecx + \\kvecy , \\kvecz \\rangle = \\langle \\kvecx , \\kvecz \\rangle + \\langle \\kvecy , \\kvecz \\rangle, \\quad \\langle \\kvecx, \\kvecy + \\kvecz \\rangle = \\langle \\kvecx , \\kvecy \\rangle + \\langle \\kvecx , \\kvecz \\rangle . \\end{aligned}"
+        }
+      ]
+    },
+    {
+      "id": "angle-between-two-vectors",
+      "kind": "definition",
+      "section": "A.5",
+      "name": "Angle between two vectors",
+      "terms": [
+        "angle"
+      ],
+      "statement": "In two or three dimensions ⟨x⃗, y⃗⟩ = ‖x⃗‖‖y⃗‖cos θ, with θ the angle the vectors make when based at the same point; in ℝⁿ this formula defines the angle, since two vectors based at the origin lie in a plane. Solving, cos θ = ⟨x⃗, y⃗⟩/(‖x⃗‖‖y⃗‖), the cosine being the best that can be done since −θ and 2π − θ have the same cosine; with the inverse cosine, 0 ≤ θ ≤ π, in radians.",
+      "forms": [
+        {
+          "id": "eq-inner-product-angle",
+          "latex": "\\langle \\vec{x}, \\vec{y} \\rangle = \\lVert{\\vec{x}}\\rVert \\lVert{\\vec{y}}\\rVert \\cos \\theta",
+          "ktex": "\\langle \\kvecx, \\kvecy \\rangle = \\lVert{\\kvecx}\\rVert \\lVert{\\kvecy}\\rVert \\cos \\theta"
+        },
+        {
+          "id": "eq-cos-angle",
+          "latex": "\\cos \\theta = \\frac{\\langle \\vec{x}, \\vec{y} \\rangle}{\\lVert{\\vec{x}}\\rVert \\lVert{\\vec{y}}\\rVert}",
+          "ktex": "\\cos \\theta = \\frac{\\langle \\kvecx, \\kvecy \\rangle}{\\lVert{\\kvecx}\\rVert \\lVert{\\kvecy}\\rVert}"
+        }
+      ]
+    },
+    {
+      "id": "orthogonal-vectors",
+      "kind": "definition",
+      "section": "A.5",
+      "name": "Orthogonal vectors",
+      "terms": [
+        "orthogonal"
+      ],
+      "statement": "Vectors x⃗ and y⃗ are orthogonal, at right angles, if ⟨x⃗, y⃗⟩ = 0, since cos(π/2) = 0: (1, 1) and (1, −1) are orthogonal, (1, 1) and (1, 2) are not.",
+      "forms": [
+        {
+          "id": "eq-orthogonal",
+          "latex": "\\langle \\vec{x} , \\vec{y} \\rangle = 0",
+          "ktex": "\\langle \\kvecx , \\kvecy \\rangle = 0"
+        }
+      ]
+    },
+    {
+      "id": "vector-projection",
+      "kind": "definition",
+      "section": "A.5",
+      "name": "Orthogonal projection",
+      "terms": [
+        "orthogonal projection",
+        "project",
+        "projection"
+      ],
+      "symbol": "proj",
+      "type": "vector",
+      "statement": "The orthogonal projection of w⃗ onto a nonzero v⃗ is proj_v⃗(w⃗) = (⟨w⃗, v⃗⟩/⟨v⃗, v⃗⟩)v⃗: the shadow of w⃗ on the line spanned by v⃗ when the sun's rays are perpendicular to the line, whose tip is the point of that line closest to the tip of w⃗, so that u⃗ = proj_v⃗(w⃗) minimizes ‖w⃗ − u⃗‖ among the multiples of v⃗ and is the best solution of writing w⃗ as a multiple of v⃗. It follows from trigonometry, the length (cos θ)‖w⃗‖ along the unit vector v⃗/‖v⃗‖, and w⃗ − proj_v⃗(w⃗) is orthogonal to v⃗.",
+      "forms": [
+        {
+          "id": "eq-projection",
+          "latex": "\\operatorname{proj}_{\\vec{v}}(\\vec{w}) = \\left( \\frac{\\langle \\vec{w} , \\vec{v} \\rangle}{ \\langle \\vec{v} , \\vec{v} \\rangle} \\right) \\vec{v}",
+          "ktex": "\\kproj_{\\kvecv}(\\kvecw) = \\left( \\frac{\\langle \\kvecw , \\kvecv \\rangle}{ \\langle \\kvecv , \\kvecv \\rangle} \\right) \\kvecv"
+        },
+        {
+          "id": "eq-projection-trig",
+          "latex": "\\operatorname{proj}_{\\vec{v}}(\\vec{w}) = (\\cos \\theta) \\lVert \\vec{w} \\rVert \\frac{\\vec{v}}{\\lVert \\vec{v} \\rVert}",
+          "ktex": "\\kproj_{\\kvecv}(\\kvecw) = (\\cos \\theta) \\lVert \\kvecw \\rVert \\frac{\\kvecv}{\\lVert \\kvecv \\rVert}"
+        }
+      ]
+    },
+    {
+      "id": "orthogonal-basis",
+      "kind": "definition",
+      "section": "A.5",
+      "name": "Orthogonal basis",
+      "terms": [
+        "orthogonal basis"
+      ],
+      "statement": "A basis v⃗₁, …, v⃗ₙ is an orthogonal basis if all its vectors are orthogonal to each other, ⟨v⃗_j, v⃗_k⟩ = 0 for all j ≠ k; coordinate axes are almost always drawn orthogonal, and the Fourier series of Chapter 4 is an orthogonal basis of functions.",
+      "forms": [
+        {
+          "id": "eq-orthogonal-basis",
+          "latex": "\\langle \\vec{v}_j , \\vec{v}_k \\rangle = 0 \\quad (j \\neq k)",
+          "ktex": "\\langle \\kvecv_j , \\kvecv_k \\rangle = 0 \\quad (j \\neq k)"
+        }
+      ]
+    },
+    {
+      "id": "orthonormal-basis",
+      "kind": "definition",
+      "section": "A.5",
+      "name": "Orthonormal basis",
+      "terms": [
+        "orthonormal basis"
+      ],
+      "statement": "An orthogonal basis whose vectors are all unit vectors is an orthonormal basis, like the standard basis of ℝ³; any orthogonal basis is made orthonormal by dividing each vector by its magnitude, and then the coefficient formulas have denominators 1."
+    },
+    {
+      "id": "coordinates-in-an-orthogonal-basis",
+      "kind": "result",
+      "section": "A.5",
+      "name": "Coordinates in an orthogonal basis",
+      "statement": "If x⃗ is in the span of an orthogonal basis v⃗₁, …, v⃗ₙ, it is the sum of its projections onto them, x⃗ = proj_v⃗₁(x⃗) + ⋯ + proj_v⃗ₙ(x⃗), so writing x⃗ = a₁v⃗₁ + ⋯ + aₙv⃗ₙ the coefficients are a_j = ⟨x⃗, v⃗_j⟩/⟨v⃗_j, v⃗_j⟩, which taking the inner product of the expansion with v⃗_j also gives, since every other term vanishes. In ℝ²⁰ this is 20 inner products instead of a 20 × 21 row reduction.",
+      "forms": [
+        {
+          "id": "eq-orthogonal-expansion",
+          "latex": "\\vec{x} = \\operatorname{proj}_{\\vec{v}_1} ( \\vec{x} ) + \\operatorname{proj}_{\\vec{v}_2} ( \\vec{x} ) + \\cdots + \\operatorname{proj}_{\\vec{v}_n} ( \\vec{x} ) = \\frac{\\langle \\vec{x}, \\vec{v}_1 \\rangle}{ \\langle \\vec{v}_1, \\vec{v}_1 \\rangle } \\vec{v}_1 + \\frac{\\langle \\vec{x}, \\vec{v}_2 \\rangle}{ \\langle \\vec{v}_2, \\vec{v}_2 \\rangle } \\vec{v}_2 + \\cdots + \\frac{\\langle \\vec{x}, \\vec{v}_n \\rangle}{ \\langle \\vec{v}_n, \\vec{v}_n \\rangle } \\vec{v}_n",
+          "ktex": "\\kvecx = \\kproj_{\\kvecv_1} ( \\kvecx ) + \\kproj_{\\kvecv_2} ( \\kvecx ) + \\cdots + \\kproj_{\\kvecv_n} ( \\kvecx ) = \\frac{\\langle \\kvecx, \\kvecv_1 \\rangle}{ \\langle \\kvecv_1, \\kvecv_1 \\rangle } \\kvecv_1 + \\frac{\\langle \\kvecx, \\kvecv_2 \\rangle}{ \\langle \\kvecv_2, \\kvecv_2 \\rangle } \\kvecv_2 + \\cdots + \\frac{\\langle \\kvecx, \\kvecv_n \\rangle}{ \\langle \\kvecv_n, \\kvecv_n \\rangle } \\kvecv_n"
+        },
+        {
+          "id": "eq-orthogonal-coefficients",
+          "latex": "a_j = \\frac{\\langle \\vec{x}, \\vec{v}_j \\rangle}{ \\langle \\vec{v}_j, \\vec{v}_j \\rangle }",
+          "ktex": "a_j = \\frac{\\langle \\kvecx, \\kvecv_j \\rangle}{ \\langle \\kvecv_j, \\kvecv_j \\rangle }"
+        }
+      ]
+    },
+    {
+      "id": "projection-onto-a-subspace",
+      "kind": "result",
+      "section": "A.5",
+      "name": "Projection onto a subspace",
+      "statement": "If S is the span of an orthogonal basis v⃗₁, …, v⃗ₙ and x⃗ is any vector, the vector of S closest to x⃗ is proj_S(x⃗) = Σ (⟨x⃗, v⃗_j⟩/⟨v⃗_j, v⃗_j⟩)v⃗_j, the same formula; it is x⃗ itself when x⃗ is in S and otherwise the best approximation to x⃗ within S, as in the partial sums of Fourier series, least squares fits and finite element methods.",
+      "forms": [
+        {
+          "id": "eq-projection-onto-subspace",
+          "latex": "\\operatorname{proj}_{S}(\\vec{x}) = \\frac{\\langle \\vec{x}, \\vec{v}_1 \\rangle}{ \\langle \\vec{v}_1, \\vec{v}_1 \\rangle } \\vec{v}_1 + \\frac{\\langle \\vec{x}, \\vec{v}_2 \\rangle}{ \\langle \\vec{v}_2, \\vec{v}_2 \\rangle } \\vec{v}_2 + \\cdots + \\frac{\\langle \\vec{x}, \\vec{v}_n \\rangle}{ \\langle \\vec{v}_n, \\vec{v}_n \\rangle } \\vec{v}_n",
+          "ktex": "\\kproj_{\\kS}(\\kvecx) = \\frac{\\langle \\kvecx, \\kvecv_1 \\rangle}{ \\langle \\kvecv_1, \\kvecv_1 \\rangle } \\kvecv_1 + \\frac{\\langle \\kvecx, \\kvecv_2 \\rangle}{ \\langle \\kvecv_2, \\kvecv_2 \\rangle } \\kvecv_2 + \\cdots + \\frac{\\langle \\kvecx, \\kvecv_n \\rangle}{ \\langle \\kvecv_n, \\kvecv_n \\rangle } \\kvecv_n"
+        }
+      ]
+    },
+    {
+      "id": "gram-schmidt-process",
+      "kind": "skill",
+      "section": "A.5",
+      "name": "Gram–Schmidt process",
+      "terms": [
+        "Gram–Schmidt process"
+      ],
+      "statement": "From a basis v⃗₁, …, v⃗ₙ the Gram–Schmidt process manufactures an orthogonal basis w⃗₁, …, w⃗ₙ: w⃗₁ = v⃗₁, and at the kth step w⃗ₖ = v⃗ₖ − proj_w⃗₁(v⃗ₖ) − ⋯ − proj_w⃗ₖ₋₁(v⃗ₖ), subtracting from v⃗ₖ its projection onto the subspace spanned by the earlier w⃗'s, projecting away the bits that make the vectors not orthogonal; dividing each w⃗ₖ by its magnitude then gives an orthonormal basis.",
+      "forms": [
+        {
+          "id": "eq-gram-schmidt",
+          "latex": "\\begin{aligned} \\vec{w}_1 & = \\vec{v}_1 , \\\\ \\vec{w}_2 & = \\vec{v}_2 - \\operatorname{proj}_{\\vec{w}_1}(\\vec{v}_2) , \\\\ \\vec{w}_3 & = \\vec{v}_3 - \\operatorname{proj}_{\\vec{w}_1}(\\vec{v}_3) - \\operatorname{proj}_{\\vec{w}_2}(\\vec{v}_3) , \\\\ & \\vdots \\\\ \\vec{w}_n & = \\vec{v}_n - \\operatorname{proj}_{\\vec{w}_1}(\\vec{v}_n) - \\operatorname{proj}_{\\vec{w}_2}(\\vec{v}_n) - \\cdots - \\operatorname{proj}_{\\vec{w}_{n-1}}(\\vec{v}_n) . \\end{aligned}",
+          "ktex": "\\begin{aligned} \\kvecw_1 & = \\kvecv_1 , \\\\ \\kvecw_2 & = \\kvecv_2 - \\kproj_{\\kvecw_1}(\\kvecv_2) , \\\\ \\kvecw_3 & = \\kvecv_3 - \\kproj_{\\kvecw_1}(\\kvecv_3) - \\kproj_{\\kvecw_2}(\\kvecv_3) , \\\\ & \\vdots \\\\ \\kvecw_n & = \\kvecv_n - \\kproj_{\\kvecw_1}(\\kvecv_n) - \\kproj_{\\kvecw_2}(\\kvecv_n) - \\cdots - \\kproj_{\\kvecw_{n-1}}(\\kvecv_n) . \\end{aligned}"
+        }
+      ]
+    },
+    {
+      "id": "area-of-a-parallelogram",
+      "kind": "result",
+      "section": "A.6",
+      "name": "Area of a parallelogram",
+      "terms": [
+        "parallelogram"
+      ],
+      "statement": "The parallelogram with vertices (0, 0), (a, c), (b, d) and (a + b, c + d) has area |ad − bc|, the absolute value of the determinant of [a b; c d], the matrix that carries the unit square to it; the image of a square under a 2 × 2 matrix is in general a parallelogram, and the sign of the determinant tells whether the axes get flipped. For A = [1 1; −1 1], det(A) = 2 and the unit square goes to the square with vertices (0, 0), (1, −1), (2, 0), (1, 1), of side √2 and area 2.",
+      "forms": [
+        {
+          "id": "eq-parallelogram-area",
+          "latex": "\\left\\lvert \\, \\det \\left( \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\right) \\, \\right\\rvert = \\lvert a d - b c \\rvert"
+        }
+      ]
+    },
+    {
+      "id": "determinant-of-the-transpose",
+      "kind": "result",
+      "section": "A.6",
+      "name": "Determinant of the transpose",
+      "statement": "det(A) = det(Aᵀ); accordingly the cofactor expansion may run along any row i, Σ_j (−1)^(i+j) a_ij det(A_ij), or down any column j, Σ_i (−1)^(i+j) a_ij det(A_ij), the numbers (−1)^(i+j) det(A_ij) being the cofactors, and all give the same determinant, as expanding [1 2 3; 0 5 0; 7 8 9] along its first and its second row both give −60.",
+      "forms": [
+        {
+          "id": "eq-det-transpose",
+          "latex": "\\det (A) = \\det (A^T)",
+          "ktex": "\\det (\\kA) = \\det (\\kA^T)"
+        }
+      ]
+    },
+    {
+      "id": "triangular-matrix",
+      "kind": "definition",
+      "section": "A.6",
+      "name": "Triangular matrix",
+      "terms": [
+        "upper triangular",
+        "lower triangular"
+      ],
+      "type": "matrix",
+      "statement": "A matrix is upper triangular if all elements below the main diagonal are 0 and lower triangular if everything above the diagonal is zero; a diagonal matrix is both."
+    },
+    {
+      "id": "determinant-of-a-triangular-matrix",
+      "kind": "result",
+      "section": "A.6",
+      "name": "Determinant of a triangular matrix",
+      "statement": "If A is triangular, det(A) = a₁₁a₂₂⋯aₙₙ, the product of the diagonal entries, since expanding along the first row leaves a smaller triangular matrix each time; a diagonal matrix is triangular, so the same formula applies, and the identity matrix has det(I) = 1.",
+      "forms": [
+        {
+          "id": "eq-det-triangular",
+          "latex": "\\det (A) = a_{11} a_{22} \\cdots a_{nn}",
+          "ktex": "\\det (\\kA) = a_{11} a_{22} \\cdots a_{nn}",
+          "condition": "A triangular"
+        },
+        {
+          "id": "eq-det-identity",
+          "latex": "\\det(I) = 1",
+          "ktex": "\\det(\\kI) = 1"
+        }
+      ]
+    },
+    {
+      "id": "determinant-of-an-inverse",
+      "kind": "result",
+      "section": "A.6",
+      "name": "Determinant of an inverse",
+      "statement": "If A and B are inverses, AB = I, then det(A)det(B) = det(AB) = det(I) = 1, so neither determinant is zero, which is why an n × n matrix is invertible if and only if det(A) ≠ 0; and det(A⁻¹) = 1/det(A) is known without computing A⁻¹. The formula for the inverse of a 2 × 2 matrix has its determinant in the denominator and works only when it is nonzero.",
+      "forms": [
+        {
+          "id": "eq-det-inverse",
+          "latex": "\\det(A^{-1}) = \\frac{1}{\\det(A)}",
+          "ktex": "\\det(\\kAinv) = \\frac{1}{\\det(\\kA)}"
+        },
+        {
+          "id": "eq-det-inverse-product",
+          "latex": "\\det(A)\\det(B) = \\det(AB) = \\det(I) = 1",
+          "ktex": "\\det(\\kA)\\det(\\kB) = \\det(\\kA\\kB) = \\det(\\kI) = 1",
+          "condition": "AB = I"
+        }
+      ]
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "magnitude-of-a-vector",
+      "prereq": "vector"
+    },
+    {
+      "concept": "direction-of-a-vector",
+      "prereq": "vector"
+    },
+    {
+      "concept": "vector-addition",
+      "prereq": "vector"
+    },
+    {
+      "concept": "vector-difference",
+      "prereq": "vector-addition"
+    },
+    {
+      "concept": "scalar-multiplication",
+      "prereq": "vector"
+    },
+    {
+      "concept": "scalar-multiplication",
+      "prereq": "scalar"
+    },
+    {
+      "concept": "unit-vector",
+      "prereq": "magnitude-of-a-vector"
+    },
+    {
+      "concept": "unit-vector",
+      "prereq": "scalar-multiplication"
+    },
+    {
+      "concept": "mapping",
+      "prereq": "vector"
+    },
+    {
+      "concept": "linear-mapping",
+      "prereq": "mapping"
+    },
+    {
+      "concept": "linear-mapping",
+      "prereq": "vector-addition"
+    },
+    {
+      "concept": "linear-mapping",
+      "prereq": "scalar-multiplication"
+    },
+    {
+      "concept": "standard-unit-vectors",
+      "prereq": "vector-addition"
+    },
+    {
+      "concept": "standard-unit-vectors",
+      "prereq": "scalar-multiplication"
+    },
+    {
+      "concept": "standard-unit-vectors",
+      "prereq": "linear-combination"
+    },
+    {
+      "concept": "matrix-of-a-linear-mapping",
+      "prereq": "linear-mapping"
+    },
+    {
+      "concept": "matrix-of-a-linear-mapping",
+      "prereq": "matrix"
+    },
+    {
+      "concept": "matrix-of-a-linear-mapping",
+      "prereq": "standard-unit-vectors"
+    },
+    {
+      "concept": "matrix-vector-product",
+      "prereq": "matrix-of-a-linear-mapping"
+    },
+    {
+      "concept": "finite-dimensional-approximation",
+      "prereq": "matrix-of-a-linear-mapping"
+    },
+    {
+      "concept": "finite-dimensional-approximation",
+      "prereq": "linear-operator"
+    },
+    {
+      "concept": "one-by-one-matrices",
+      "prereq": "linear-mapping"
+    },
+    {
+      "concept": "zero-matrix",
+      "prereq": "matrix-addition"
+    },
+    {
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication",
+      "prereq": "scalar-multiplication-of-a-matrix"
+    },
+    {
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication",
+      "prereq": "zero-matrix"
+    },
+    {
+      "concept": "matrix-product-as-composition",
+      "prereq": "matrix-product"
+    },
+    {
+      "concept": "matrix-product-as-composition",
+      "prereq": "dot-product"
+    },
+    {
+      "concept": "matrix-product-as-composition",
+      "prereq": "matrix-of-a-linear-mapping"
+    },
+    {
+      "concept": "noncommutativity-of-matrix-multiplication",
+      "prereq": "matrix-product-as-composition"
+    },
+    {
+      "concept": "cancellation-with-an-inverse",
+      "prereq": "invertible-matrix"
+    },
+    {
+      "concept": "cancellation-with-an-inverse",
+      "prereq": "matrix-inverse"
+    },
+    {
+      "concept": "diagonal-matrix",
+      "prereq": "square-matrix"
+    },
+    {
+      "concept": "diagonal-matrix",
+      "prereq": "matrix-product"
+    },
+    {
+      "concept": "inverse-of-a-diagonal-matrix",
+      "prereq": "diagonal-matrix"
+    },
+    {
+      "concept": "inverse-of-a-diagonal-matrix",
+      "prereq": "matrix-inverse"
+    },
+    {
+      "concept": "transpose-of-a-product",
+      "prereq": "transpose"
+    },
+    {
+      "concept": "transpose-of-a-product",
+      "prereq": "matrix-product-as-composition"
+    },
+    {
+      "concept": "dot-product-via-transpose",
+      "prereq": "transpose"
+    },
+    {
+      "concept": "dot-product-via-transpose",
+      "prereq": "dot-product"
+    },
+    {
+      "concept": "symmetric-matrix",
+      "prereq": "transpose"
+    },
+    {
+      "concept": "symmetric-matrix",
+      "prereq": "square-matrix"
+    },
+    {
+      "concept": "linear-system-of-equations",
+      "prereq": "matrix-vector-product"
+    },
+    {
+      "concept": "linear-system-of-equations",
+      "prereq": "matrix-inverse"
+    },
+    {
+      "concept": "row-echelon-form",
+      "prereq": "leading-entry"
+    },
+    {
+      "concept": "pivot",
+      "prereq": "elementary-row-operations"
+    },
+    {
+      "concept": "backsubstitution",
+      "prereq": "row-echelon-form"
+    },
+    {
+      "concept": "backsubstitution",
+      "prereq": "pivot"
+    },
+    {
+      "concept": "gauss-jordan-elimination",
+      "prereq": "linear-system-of-equations"
+    },
+    {
+      "concept": "gauss-jordan-elimination",
+      "prereq": "augmented-matrix"
+    },
+    {
+      "concept": "gauss-jordan-elimination",
+      "prereq": "backsubstitution"
+    },
+    {
+      "concept": "gauss-jordan-elimination",
+      "prereq": "reduced-row-echelon-form"
+    },
+    {
+      "concept": "consistent-system",
+      "prereq": "inconsistent-system"
+    },
+    {
+      "concept": "consistent-system",
+      "prereq": "gauss-jordan-elimination"
+    },
+    {
+      "concept": "solutions-of-a-consistent-system",
+      "prereq": "consistent-system"
+    },
+    {
+      "concept": "solutions-of-a-consistent-system",
+      "prereq": "free-variable"
+    },
+    {
+      "concept": "homogeneous-matrix-equation",
+      "prereq": "solutions-of-a-consistent-system"
+    },
+    {
+      "concept": "kernel",
+      "prereq": "homogeneous-matrix-equation"
+    },
+    {
+      "concept": "kernel-and-invertibility",
+      "prereq": "kernel"
+    },
+    {
+      "concept": "kernel-and-invertibility",
+      "prereq": "invertible-matrix"
+    },
+    {
+      "concept": "matrix-product-as-linear-combination",
+      "prereq": "matrix-vector-product"
+    },
+    {
+      "concept": "matrix-product-as-linear-combination",
+      "prereq": "transpose-of-a-product"
+    },
+    {
+      "concept": "superposition-for-matrix-equations",
+      "prereq": "homogeneous-matrix-equation"
+    },
+    {
+      "concept": "linear-independence-of-vectors",
+      "prereq": "homogeneous-matrix-equation"
+    },
+    {
+      "concept": "span",
+      "prereq": "linear-combination"
+    },
+    {
+      "concept": "rank",
+      "prereq": "linear-independence-of-vectors"
+    },
+    {
+      "concept": "row-space",
+      "prereq": "span"
+    },
+    {
+      "concept": "row-space",
+      "prereq": "row-echelon-form"
+    },
+    {
+      "concept": "column-space",
+      "prereq": "span"
+    },
+    {
+      "concept": "column-space",
+      "prereq": "pivot"
+    },
+    {
+      "concept": "rank-of-the-transpose",
+      "prereq": "rank"
+    },
+    {
+      "concept": "rank-of-the-transpose",
+      "prereq": "column-space"
+    },
+    {
+      "concept": "rank-of-the-transpose",
+      "prereq": "transpose"
+    },
+    {
+      "concept": "finding-a-linearly-independent-subset",
+      "prereq": "column-space"
+    },
+    {
+      "concept": "finding-a-linearly-independent-subset",
+      "prereq": "row-space"
+    },
+    {
+      "concept": "finding-a-linearly-independent-subset",
+      "prereq": "row-reduction"
+    },
+    {
+      "concept": "invertibility-and-rank",
+      "prereq": "rank"
+    },
+    {
+      "concept": "invertibility-and-rank",
+      "prereq": "invertible-matrix"
+    },
+    {
+      "concept": "invertibility-and-rank",
+      "prereq": "computing-a-matrix-inverse"
+    },
+    {
+      "concept": "subspace",
+      "prereq": "euclidean-space"
+    },
+    {
+      "concept": "subspace",
+      "prereq": "span"
+    },
+    {
+      "concept": "basis",
+      "prereq": "subspace"
+    },
+    {
+      "concept": "basis",
+      "prereq": "linear-independence-of-vectors"
+    },
+    {
+      "concept": "dimension",
+      "prereq": "basis"
+    },
+    {
+      "concept": "unique-representation-in-a-basis",
+      "prereq": "dimension"
+    },
+    {
+      "concept": "rank-theorem",
+      "prereq": "dimension"
+    },
+    {
+      "concept": "rank-theorem",
+      "prereq": "rank-of-the-transpose"
+    },
+    {
+      "concept": "kernel-is-a-subspace",
+      "prereq": "kernel"
+    },
+    {
+      "concept": "kernel-is-a-subspace",
+      "prereq": "subspace"
+    },
+    {
+      "concept": "nullity",
+      "prereq": "kernel-is-a-subspace"
+    },
+    {
+      "concept": "nullity",
+      "prereq": "dimension"
+    },
+    {
+      "concept": "basis-of-the-kernel",
+      "prereq": "kernel-is-a-subspace"
+    },
+    {
+      "concept": "basis-of-the-kernel",
+      "prereq": "basis"
+    },
+    {
+      "concept": "rank-nullity-theorem",
+      "prereq": "rank-theorem"
+    },
+    {
+      "concept": "rank-nullity-theorem",
+      "prereq": "nullity"
+    },
+    {
+      "concept": "rank-nullity-theorem",
+      "prereq": "basis-of-the-kernel"
+    },
+    {
+      "concept": "fredholm-alternative",
+      "prereq": "rank-nullity-theorem"
+    },
+    {
+      "concept": "inner-product",
+      "prereq": "dot-product-via-transpose"
+    },
+    {
+      "concept": "properties-of-the-inner-product",
+      "prereq": "inner-product"
+    },
+    {
+      "concept": "angle-between-two-vectors",
+      "prereq": "inner-product"
+    },
+    {
+      "concept": "angle-between-two-vectors",
+      "prereq": "magnitude-of-a-vector"
+    },
+    {
+      "concept": "orthogonal-vectors",
+      "prereq": "angle-between-two-vectors"
+    },
+    {
+      "concept": "vector-projection",
+      "prereq": "orthogonal-vectors"
+    },
+    {
+      "concept": "vector-projection",
+      "prereq": "unit-vector"
+    },
+    {
+      "concept": "orthogonal-basis",
+      "prereq": "basis"
+    },
+    {
+      "concept": "orthogonal-basis",
+      "prereq": "orthogonal-vectors"
+    },
+    {
+      "concept": "orthonormal-basis",
+      "prereq": "orthogonal-basis"
+    },
+    {
+      "concept": "orthonormal-basis",
+      "prereq": "unit-vector"
+    },
+    {
+      "concept": "coordinates-in-an-orthogonal-basis",
+      "prereq": "orthogonal-basis"
+    },
+    {
+      "concept": "coordinates-in-an-orthogonal-basis",
+      "prereq": "vector-projection"
+    },
+    {
+      "concept": "projection-onto-a-subspace",
+      "prereq": "coordinates-in-an-orthogonal-basis"
+    },
+    {
+      "concept": "gram-schmidt-process",
+      "prereq": "projection-onto-a-subspace"
+    },
+    {
+      "concept": "area-of-a-parallelogram",
+      "prereq": "determinant-as-area-scale"
+    },
+    {
+      "concept": "determinant-of-the-transpose",
+      "prereq": "cofactor-expansion"
+    },
+    {
+      "concept": "determinant-of-the-transpose",
+      "prereq": "transpose"
+    },
+    {
+      "concept": "triangular-matrix",
+      "prereq": "diagonal-matrix"
+    },
+    {
+      "concept": "determinant-of-a-triangular-matrix",
+      "prereq": "triangular-matrix"
+    },
+    {
+      "concept": "determinant-of-a-triangular-matrix",
+      "prereq": "cofactor-expansion"
+    },
+    {
+      "concept": "determinant-of-an-inverse",
+      "prereq": "determinant-of-a-product"
+    },
+    {
+      "concept": "determinant-of-an-inverse",
+      "prereq": "determinant-of-a-triangular-matrix"
+    },
+    {
+      "concept": "determinant-of-an-inverse",
+      "prereq": "invertibility-and-the-determinant"
+    }
+  ]
+}
