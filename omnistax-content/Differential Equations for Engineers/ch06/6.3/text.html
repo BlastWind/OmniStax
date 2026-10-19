@@ -36,7 +36,7 @@ $$ \begin{split} (\kfconvg)(t) & = \int_0^t \frac{1}{2} \, \bigl( \sin (\omega t
 <h3>Example 6.3.3</h3>
 <p>Suppose we wish to find the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> of</p>
 $$ \frac{1}{s^2(s+1)} = \frac{1}{s^2} \, \frac{1}{s+1} . $$
-<p>We recognize the two entries of <a href="/diffyqs/ch06/6.1/#6.1-table-6-1">Table 6.2</a><sup class="fn" data-note="c-table-6-2"></sup>:</p>
+<p>We recognize the two entries of <a href="/diffyqs/ch06/6.1/#6.1-tab-6-1">Table 6.2</a><sup class="fn" data-note="c-table-6-2"></sup>:</p>
 $$ \mathcal{L}^{-1} \left\{ \frac{1}{s^2} \right\} = t \qquad \text{and} \qquad \mathcal{L}^{-1} \left\{ \frac{1}{s+1} \right\} = e^{-t} . $$
 <p>Therefore, we <span data-concept="inverting-a-product-by-convolution">convolve</span> <span data-ref="conv-f">$t$</span> and <span data-ref="conv-g">$e^{-t}$</span>,</p>
 $$ \mathcal{L}^{-1} \left\{ \frac{1}{s^2} \, \frac{1}{s+1} \right\} = \int_0^t \tau e^{-(t-\tau)} \,d\tau = e^{-t}+t-1 . $$
@@ -82,7 +82,7 @@ $$ \kx(t) = e^{-t} + \int_0^t \sinh(t-\tau) \kx(\tau) \, d\tau . $$
 $$ \kX(s) = \frac{1}{s+1} + \frac{1}{s^2-1} \kX(s) , $$
 <p>or</p>
 $$ \kX(s) = \frac{\frac{1}{s+1}}{1- \frac{1}{s^2-1}} = \frac{s-1}{s^2 - 2} = \frac{s}{s^2 - 2} - \frac{1}{s^2 - 2} . $$
-<p>It is not hard to apply <a href="/diffyqs/ch06/6.1/#6.1-table-6-1">Table 6.1</a> to find</p>
+<p>It is not hard to apply <a href="/diffyqs/ch06/6.1/#6.1-tab-6-1">Table 6.1</a> to find</p>
 $$ \kx(t) = \cosh \bigl( \sqrt{2} \, t \bigr) - \frac{1}{\sqrt{2}} \sinh \bigl( \sqrt{2}\, t \bigr). $$
 </div>
 </section>

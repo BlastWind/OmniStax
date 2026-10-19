@@ -108,13 +108,6 @@ const numT = (v) => num(v).replace('-', '−');   /* the same in figure text, wi
       const r = Math.min(34, 0.45 * K * Math.min(Math.hypot(a, c), Math.hypot(b, dd)));
       if (r > 9) turn(ctx, R.ox, Math.atan2(c, a), Math.atan2(dd, b), r, ink);
     }
-    /* the corners and their names on the left, the images on the right */
-    const names = ['(0, 0)', '(1, 0)', '(1, 1)', '(0, 1)'], place = [[-10, 22, 'right'], [10, 22, 'left'], [10, -22, 'left'], [-10, -22, 'right']];
-    sq.forEach(([x, y], i) => {
-      dot(ctx, x, y, ink, true, 6);
-      const [dx, dy, al] = place[i];
-      text(ctx, names[i], x + dx, y + dy, ink, { size: 20, align: al, bg: PAL.panel });
-    });
     img.forEach(([x, y]) => dot(ctx, x, y, ink, true, 6));
     /* the dotted correspondence arrows, each corner to its image, bent over the gap between the panes */
     sq.forEach((p, i) => {
@@ -127,6 +120,13 @@ const numT = (v) => num(v).replace('-', '−');   /* the same in figure text, wi
       for (let j = 1; j <= m; j++) { const [x, y] = j === n ? end : bez(start, cp, end, j / n); ctx.lineTo(x, y); }
       ctx.stroke(); ctx.restore();
       if (k > 0.99) arrow(ctx, end[0] - (14 * ux) / u, end[1] - (14 * uy) / u, end[0], end[1], col, 2);
+    });
+    /* the corners and their names on the left, the images on the right (dotted above), drawn over the arrows */
+    const names = ['(0, 0)', '(1, 0)', '(1, 1)', '(0, 1)'], place = [[-10, 22, 'right'], [10, 22, 'left'], [10, -22, 'left'], [-10, -22, 'right']];
+    sq.forEach(([x, y], i) => {
+      dot(ctx, x, y, ink, true, 6);
+      const [dx, dy, al] = place[i];
+      text(ctx, names[i], x + dx, y + dy, ink, { size: 20, align: al, bg: PAL.panel });
     });
     /* where the corners go */
     const X0 = 190, Y0 = 560, rows = images.map(([x, y], i) => [names[i], `(${numT(x)}, ${numT(y)})`, i === 1 || i === 3 ? vc : ink]);

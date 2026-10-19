@@ -68,7 +68,8 @@
         {
           "id": "eq-lt-definition",
           "latex": "\\mathcal{L} \\bigl\\{ f(t) \\bigr\\} = F(s) \\overset{\\text{def}}{=} \\int_0^\\infty e^{-st} f(t) \\, dt",
-          "ktex": "\\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} = \\kF(s) \\overset{\\text{def}}{=} \\int_0^\\infty e^{-st} \\kf(t) \\, dt"
+          "ktex": "\\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} = \\kF(s) \\overset{\\text{def}}{=} \\int_0^\\infty e^{-st} \\kf(t) \\, dt",
+          "anchor": "6.1-eq-lt-definition"
         }
       ]
     },
@@ -93,58 +94,69 @@
         {
           "id": "eq-lt-constant",
           "latex": "\\mathcal{L} \\{ C \\} = \\frac{C}{s}",
-          "condition": "s > 0"
+          "condition": "s > 0",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-t",
           "latex": "\\mathcal{L} \\{ t \\} = \\frac{1}{s^2}",
-          "condition": "s > 0"
+          "condition": "s > 0",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-t-squared",
           "latex": "\\mathcal{L} \\{ t^2 \\} = \\frac{2}{s^3}",
-          "condition": "s > 0"
+          "condition": "s > 0",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-t-cubed",
           "latex": "\\mathcal{L} \\{ t^3 \\} = \\frac{6}{s^4}",
-          "condition": "s > 0"
+          "condition": "s > 0",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-t-power",
           "latex": "\\mathcal{L} \\{ t^n \\} = \\frac{n!}{s^{n+1}}",
-          "condition": "s > 0"
+          "condition": "s > 0",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-exponential",
           "latex": "\\mathcal{L} \\bigl\\{ e^{-at} \\bigr\\} = \\frac{1}{s+a}",
-          "condition": "s + a > 0"
+          "condition": "s + a > 0",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-sin",
           "latex": "\\mathcal{L} \\bigl\\{ \\sin (\\omega t) \\bigr\\} = \\frac{\\omega}{s^2+\\omega^2}",
-          "condition": "s > 0"
+          "condition": "s > 0",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-cos",
           "latex": "\\mathcal{L} \\bigl\\{ \\cos (\\omega t) \\bigr\\} = \\frac{s}{s^2+\\omega^2}",
-          "condition": "s > 0"
+          "condition": "s > 0",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-sinh",
           "latex": "\\mathcal{L} \\bigl\\{ \\sinh (\\omega t) \\bigr\\} = \\frac{\\omega}{s^2-\\omega^2}",
-          "condition": "s > |ω|"
+          "condition": "s > |ω|",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-cosh",
           "latex": "\\mathcal{L} \\bigl\\{ \\cosh (\\omega t) \\bigr\\} = \\frac{s}{s^2-\\omega^2}",
-          "condition": "s > |ω|"
+          "condition": "s > |ω|",
+          "anchor": "6.1-tab-6-1"
         },
         {
           "id": "eq-lt-step",
           "latex": "\\mathcal{L} \\bigl\\{ u(t-a) \\bigr\\} = \\frac{e^{-as}}{s}",
           "ktex": "\\mathcal{L} \\bigl\\{ \\ku(t-a) \\bigr\\} = \\frac{e^{-as}}{s}",
-          "condition": "a ≥ 0, s > 0"
+          "condition": "a ≥ 0, s > 0",
+          "anchor": "6.1-tab-6-1"
         }
       ]
     },
@@ -164,7 +176,8 @@
         {
           "id": "eq-unit-step",
           "latex": "u(t) = \\begin{cases} 0 & \\text{if } \\; t < 0 , \\\\ 1 & \\text{if } \\; t \\geq 0 . \\end{cases}",
-          "ktex": "\\ku(t) = \\begin{cases} 0 & \\text{if } \\; t < 0 , \\\\ 1 & \\text{if } \\; t \\geq 0 . \\end{cases}"
+          "ktex": "\\ku(t) = \\begin{cases} 0 & \\text{if } \\; t < 0 , \\\\ 1 & \\text{if } \\; t \\geq 0 . \\end{cases}",
+          "anchor": "6.1-eq-unit-step"
         }
       ]
     },
@@ -181,12 +194,14 @@
         {
           "id": "eq-lt-linearity",
           "latex": "\\mathcal{L} \\bigl\\{ A f(t) + B g(t) \\bigr\\} = A \\mathcal{L} \\bigl\\{ f(t) \\bigr\\} + B \\mathcal{L} \\bigl\\{ g(t) \\bigr\\}",
-          "ktex": "\\mathcal{L} \\bigl\\{ A \\kf(t) + B \\kg(t) \\bigr\\} = A \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} + B \\mathcal{L} \\bigl\\{ \\kg(t) \\bigr\\}"
+          "ktex": "\\mathcal{L} \\bigl\\{ A \\kf(t) + B \\kg(t) \\bigr\\} = A \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} + B \\mathcal{L} \\bigl\\{ \\kg(t) \\bigr\\}",
+          "anchor": "6.1-eq-lt-linearity"
         },
         {
           "id": "eq-lt-constant-multiple",
           "latex": "\\mathcal{L} \\bigl\\{ C f(t) \\bigr\\} = C \\mathcal{L} \\bigl\\{ f(t) \\bigr\\}",
-          "ktex": "\\mathcal{L} \\bigl\\{ C \\kf(t) \\bigr\\} = C \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\}"
+          "ktex": "\\mathcal{L} \\bigl\\{ C \\kf(t) \\bigr\\} = C \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\}",
+          "anchor": "6.1-eq-lt-constant-multiple"
         }
       ]
     },
@@ -204,13 +219,15 @@
           "id": "eq-exponential-order",
           "latex": "\\lvert f(t) \\rvert \\leq M e^{ct}",
           "ktex": "\\lvert \\kf(t) \\rvert \\leq M e^{ct}",
-          "condition": "for all t > t₀"
+          "condition": "for all t > t₀",
+          "anchor": "6.1-eq-exponential-order"
         },
         {
           "id": "eq-exponential-order-limit",
           "latex": "\\lim_{t\\to \\infty} \\frac{f(t)}{e^{ct}}",
           "ktex": "\\lim_{t\\to \\infty} \\frac{\\kf(t)}{e^{ct}}",
-          "condition": "exists and is finite"
+          "condition": "exists and is finite",
+          "anchor": "6.1-eq-exponential-order-limit"
         }
       ]
     },
@@ -231,7 +248,8 @@
         {
           "id": "eq-lt-decay",
           "latex": "\\lim_{s\\to\\infty} F(s) = 0",
-          "ktex": "\\lim_{s\\to\\infty} \\kF(s) = 0"
+          "ktex": "\\lim_{s\\to\\infty} \\kF(s) = 0",
+          "anchor": "6.1-eq-lt-decay"
         }
       ]
     },
@@ -255,12 +273,14 @@
         {
           "id": "eq-inverse-lt-definition",
           "latex": "{\\mathcal{L}}^{-1} \\bigl\\{ F(s) \\bigr\\} \\overset{\\text{def}}{=} f(t)",
-          "ktex": "{\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\bigr\\} \\overset{\\text{def}}{=} \\kf(t)"
+          "ktex": "{\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\bigr\\} \\overset{\\text{def}}{=} \\kf(t)",
+          "anchor": "6.1-eq-inverse-lt-definition"
         },
         {
           "id": "eq-inverse-lt-linearity",
           "latex": "{\\mathcal{L}}^{-1} \\bigl\\{ A F(s) + B G(s) \\bigr\\} = A {\\mathcal{L}}^{-1} \\bigl\\{ F(s) \\bigr\\} + B {\\mathcal{L}}^{-1} \\bigl\\{ G(s) \\bigr\\}",
-          "ktex": "{\\mathcal{L}}^{-1} \\bigl\\{ A \\kF(s) + B \\kG(s) \\bigr\\} = A {\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\bigr\\} + B {\\mathcal{L}}^{-1} \\bigl\\{ \\kG(s) \\bigr\\}"
+          "ktex": "{\\mathcal{L}}^{-1} \\bigl\\{ A \\kF(s) + B \\kG(s) \\bigr\\} = A {\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\bigr\\} + B {\\mathcal{L}}^{-1} \\bigl\\{ \\kG(s) \\bigr\\}",
+          "anchor": "6.1-eq-inverse-lt-linearity"
         }
       ]
     },
@@ -289,7 +309,8 @@
         {
           "id": "eq-first-shifting",
           "latex": "\\mathcal{L} \\bigl\\{ e^{-at} f(t) \\bigr\\} = F(s+a)",
-          "ktex": "\\mathcal{L} \\bigl\\{ e^{-at} \\kf(t) \\bigr\\} = \\kF(s+a)"
+          "ktex": "\\mathcal{L} \\bigl\\{ e^{-at} \\kf(t) \\bigr\\} = \\kF(s+a)",
+          "anchor": "6.1-eq-first-shifting"
         }
       ]
     },
@@ -327,17 +348,20 @@
         {
           "id": "eq-lt-first-derivative",
           "latex": "\\mathcal{L} \\bigl\\{ g'(t) \\bigr\\} = sG(s)-g(0)",
-          "ktex": "\\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\} = s\\kG(s)-\\kg(0)"
+          "ktex": "\\mathcal{L} \\bigl\\{ \\kgprime(t) \\bigr\\} = s\\kG(s)-\\kg(0)",
+          "anchor": "6.2-tab-6-2"
         },
         {
           "id": "eq-lt-second-derivative",
           "latex": "\\mathcal{L} \\bigl\\{ g''(t) \\bigr\\} = s^2G(s)-sg(0)-g'(0)",
-          "ktex": "\\mathcal{L} \\bigl\\{ \\kgdprime(t) \\bigr\\} = s^2\\kG(s)-s\\kg(0)-\\kgprime(0)"
+          "ktex": "\\mathcal{L} \\bigl\\{ \\kgdprime(t) \\bigr\\} = s^2\\kG(s)-s\\kg(0)-\\kgprime(0)",
+          "anchor": "6.2-tab-6-2"
         },
         {
           "id": "eq-lt-third-derivative",
           "latex": "\\mathcal{L} \\bigl\\{ g'''(t) \\bigr\\} = s^3G(s)-s^2g(0)-sg'(0)-g''(0)",
-          "ktex": "\\mathcal{L} \\bigl\\{ \\kgtprime(t) \\bigr\\} = s^3\\kG(s)-s^2\\kg(0)-s\\kgprime(0)-\\kgdprime(0)"
+          "ktex": "\\mathcal{L} \\bigl\\{ \\kgtprime(t) \\bigr\\} = s^3\\kG(s)-s^2\\kg(0)-s\\kgprime(0)-\\kgdprime(0)",
+          "anchor": "6.2-tab-6-2"
         }
       ]
     },
@@ -359,7 +383,8 @@
           "id": "eq-heaviside-window",
           "latex": "u(t - a) - u(t-b)",
           "ktex": "\\ku(t - a) - \\ku(t-b)",
-          "condition": "1 on [a, b), 0 elsewhere"
+          "condition": "1 on [a, b), 0 elsewhere",
+          "anchor": "6.2-eq-heaviside-window"
         }
       ]
     },
@@ -378,7 +403,8 @@
           "id": "eq-second-shifting",
           "latex": "\\mathcal{L} \\bigl\\{ f(t-a) \\, u(t-a) \\bigr\\} = e^{-as} \\mathcal{L} \\bigl\\{ f(t) \\bigr\\}",
           "ktex": "\\mathcal{L} \\bigl\\{ \\kf(t-a) \\, \\ku(t-a) \\bigr\\} = e^{-as} \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\}",
-          "condition": "a ≥ 0"
+          "condition": "a ≥ 0",
+          "anchor": "6.2-eq-6-1"
         }
       ]
     },
@@ -409,12 +435,14 @@
           "id": "eq-transfer-function",
           "latex": "H(s) = \\frac{X(s)}{F(s)}",
           "ktex": "\\kH(s) = \\frac{\\kX(s)}{\\kF(s)}",
-          "condition": "zero initial conditions"
+          "condition": "zero initial conditions",
+          "anchor": "6.2-eq-transfer-function"
         },
         {
           "id": "eq-transfer-output",
           "latex": "X(s) = H(s) F(s)",
-          "ktex": "\\kX(s) = \\kH(s) \\kF(s)"
+          "ktex": "\\kX(s) = \\kH(s) \\kF(s)",
+          "anchor": "6.2-transfer-output"
         }
       ]
     },
@@ -428,12 +456,14 @@
         {
           "id": "eq-lt-integral",
           "latex": "\\mathcal{L} \\left\\{ \\int_0^t f(\\tau) \\, d\\tau \\right\\} = \\frac{1}{s} \\, F(s)",
-          "ktex": "\\mathcal{L} \\left\\{ \\int_0^t \\kf(\\tau) \\, d\\tau \\right\\} = \\frac{1}{s} \\, \\kF(s)"
+          "ktex": "\\mathcal{L} \\left\\{ \\int_0^t \\kf(\\tau) \\, d\\tau \\right\\} = \\frac{1}{s} \\, \\kF(s)",
+          "anchor": "6.2-eq-lt-integral"
         },
         {
           "id": "eq-inverse-lt-integral",
           "latex": "\\int_0^t f(\\tau) \\, d\\tau = {\\mathcal{L}}^{-1} \\left\\{ \\frac{1}{s} \\, F(s) \\right\\}",
-          "ktex": "\\int_0^t \\kf(\\tau) \\, d\\tau = {\\mathcal{L}}^{-1} \\left\\{ \\frac{1}{s} \\, \\kF(s) \\right\\}"
+          "ktex": "\\int_0^t \\kf(\\tau) \\, d\\tau = {\\mathcal{L}}^{-1} \\left\\{ \\frac{1}{s} \\, \\kF(s) \\right\\}",
+          "anchor": "6.2-eq-inverse-lt-integral"
         }
       ]
     },
@@ -458,7 +488,8 @@
           "id": "eq-lt-periodic",
           "latex": "F(s) = \\frac{1}{1-e^{-Ps}} \\int_0^P e^{-st} f(t) \\, dt",
           "ktex": "\\kF(s) = \\frac{1}{1-e^{-Ps}} \\int_0^P e^{-st} \\kf(t) \\, dt",
-          "condition": "f(t) = f(t + P)"
+          "condition": "f(t) = f(t + P)",
+          "anchor": "6.2-eq-lt-periodic"
         }
       ]
     },
@@ -487,12 +518,14 @@
         {
           "id": "eq-convolution-definition",
           "latex": "(f * g)(t) \\overset{\\text{def}}{=} \\int_0^t f(\\tau) g(t-\\tau) \\, d\\tau",
-          "ktex": "(\\kfconvg)(t) \\overset{\\text{def}}{=} \\int_0^t \\kf(\\tau) \\kg(t-\\tau) \\, d\\tau"
+          "ktex": "(\\kfconvg)(t) \\overset{\\text{def}}{=} \\int_0^t \\kf(\\tau) \\kg(t-\\tau) \\, d\\tau",
+          "anchor": "6.3-eq-6-2"
         },
         {
           "id": "eq-convolution-commuted",
           "latex": "(f * g)(t) = \\int_0^t f(t-\\tau) g(\\tau) \\, d\\tau",
-          "ktex": "(\\kfconvg)(t) = \\int_0^t \\kf(t-\\tau) \\kg(\\tau) \\, d\\tau"
+          "ktex": "(\\kfconvg)(t) = \\int_0^t \\kf(t-\\tau) \\kg(\\tau) \\, d\\tau",
+          "anchor": "6.3-commuted"
         }
       ]
     },
@@ -505,19 +538,23 @@
       "forms": [
         {
           "id": "eq-convolution-commutative",
-          "latex": "f * g = g * f"
+          "latex": "f * g = g * f",
+          "anchor": "6.3-eq-convolution-properties"
         },
         {
           "id": "eq-convolution-scalar",
-          "latex": "(c f) * g = f * (c g) = c (f*g)"
+          "latex": "(c f) * g = f * (c g) = c (f*g)",
+          "anchor": "6.3-eq-convolution-properties"
         },
         {
           "id": "eq-convolution-distributive",
-          "latex": "(f+g) * h = f * h + g * h"
+          "latex": "(f+g) * h = f * h + g * h",
+          "anchor": "6.3-eq-convolution-properties"
         },
         {
           "id": "eq-convolution-associative",
-          "latex": "( f * g ) * h = f * ( g * h )"
+          "latex": "( f * g ) * h = f * ( g * h )",
+          "anchor": "6.3-eq-convolution-properties"
         }
       ]
     },
@@ -531,12 +568,14 @@
         {
           "id": "eq-convolution-theorem",
           "latex": "\\mathcal{L} \\bigl\\{ (f*g)(t) \\bigr\\} = \\mathcal{L} \\left\\{ \\int_0^t f(\\tau) g(t-\\tau) \\, d\\tau \\right\\} = \\mathcal{L} \\bigl\\{ f(t) \\bigr\\} \\mathcal{L} \\bigl\\{ g(t) \\bigr\\}",
-          "ktex": "\\mathcal{L} \\bigl\\{ (\\kfconvg)(t) \\bigr\\} = \\mathcal{L} \\left\\{ \\int_0^t \\kf(\\tau) \\kg(t-\\tau) \\, d\\tau \\right\\} = \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} \\mathcal{L} \\bigl\\{ \\kg(t) \\bigr\\}"
+          "ktex": "\\mathcal{L} \\bigl\\{ (\\kfconvg)(t) \\bigr\\} = \\mathcal{L} \\left\\{ \\int_0^t \\kf(\\tau) \\kg(t-\\tau) \\, d\\tau \\right\\} = \\mathcal{L} \\bigl\\{ \\kf(t) \\bigr\\} \\mathcal{L} \\bigl\\{ \\kg(t) \\bigr\\}",
+          "anchor": "6.3-eq-convolution-theorem"
         },
         {
           "id": "eq-inverse-convolution-theorem",
           "latex": "{\\mathcal{L}}^{-1} \\bigl\\{ F(s) G(s) \\bigr\\} = (f*g)(t)",
-          "ktex": "{\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\kG(s) \\bigr\\} = (\\kfconvg)(t)"
+          "ktex": "{\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\kG(s) \\bigr\\} = (\\kfconvg)(t)",
+          "anchor": "6.3-in-other-words"
         }
       ]
     },
@@ -558,13 +597,15 @@
           "id": "eq-convolution-solution",
           "latex": "x(t) = {\\mathcal{L}}^{-1}\\bigl\\{ F(s)H(s) \\bigr\\} = (f * h)(t) = \\int_0^t f(\\tau) h(t-\\tau) \\, d\\tau",
           "ktex": "\\kx(t) = {\\mathcal{L}}^{-1}\\bigl\\{ \\kF(s)\\kH(s) \\bigr\\} = (\\kf * \\kh)(t) = \\int_0^t \\kf(\\tau) \\kh(t-\\tau) \\, d\\tau",
-          "condition": "x(0) = x′(0) = 0, h = ℒ⁻¹{H}"
+          "condition": "x(0) = x′(0) = 0, h = ℒ⁻¹{H}",
+          "anchor": "6.3-eq-convolution-solution"
         },
         {
           "id": "eq-undamped-forced-convolution",
           "latex": "x(t) = \\int_0^t f(\\tau) \\frac{\\sin \\bigl( \\omega_0 (t-\\tau) \\bigr)}{\\omega_0} \\, d\\tau",
           "ktex": "\\kx(t) = \\int_0^t \\kf(\\tau) \\frac{\\sin \\bigl( \\omega_0 (t-\\tau) \\bigr)}{\\omega_0} \\, d\\tau",
-          "condition": "x″ + ω₀²x = f(t), x(0) = x′(0) = 0"
+          "condition": "x″ + ω₀²x = f(t), x(0) = x′(0) = 0",
+          "anchor": "6.3-ex-6-3-4"
         }
       ]
     },
@@ -581,12 +622,14 @@
         {
           "id": "eq-volterra",
           "latex": "x(t) = f(t) + \\int_0^t g(t-\\tau) x(\\tau) \\, d\\tau",
-          "ktex": "\\kx(t) = \\kf(t) + \\int_0^t \\kg(t-\\tau) \\kx(\\tau) \\, d\\tau"
+          "ktex": "\\kx(t) = \\kf(t) + \\int_0^t \\kg(t-\\tau) \\kx(\\tau) \\, d\\tau",
+          "anchor": "6.3-eq-volterra"
         },
         {
           "id": "eq-volterra-transform",
           "latex": "X(s) = \\frac{F(s)}{1-G(s)}",
-          "ktex": "\\kX(s) = \\frac{\\kF(s)}{1-\\kG(s)}"
+          "ktex": "\\kX(s) = \\frac{\\kF(s)}{1-\\kG(s)}",
+          "anchor": "6.3-eq-volterra-transform"
         }
       ]
     },
@@ -606,12 +649,14 @@
           "id": "eq-impulse-response-equation",
           "latex": "L x = \\delta(t)",
           "ktex": "L \\kx = \\kdelta(t)",
-          "condition": "x(0) = x′(0) = 0"
+          "condition": "x(0) = x′(0) = 0",
+          "anchor": "6.4-eq-impulse-response-equation"
         },
         {
           "id": "eq-impulse-response-transfer",
           "latex": "h(t) = {\\mathcal{L}}^{-1} \\bigl\\{ H(s) \\bigr\\}",
-          "ktex": "\\kh(t) = {\\mathcal{L}}^{-1} \\bigl\\{ \\kH(s) \\bigr\\}"
+          "ktex": "\\kh(t) = {\\mathcal{L}}^{-1} \\bigl\\{ \\kH(s) \\bigr\\}",
+          "anchor": "6.4-any-input"
         }
       ]
     },
@@ -631,23 +676,27 @@
         {
           "id": "eq-rectangular-pulse",
           "latex": "\\varphi(t) = \\begin{cases} 0 & \\text{if } \\; t < a , \\\\ M & \\text{if } \\; a \\leq t < b , \\\\ 0 & \\text{if } \\; b \\leq t . \\end{cases}",
-          "ktex": "\\kvarphi(t) = \\begin{cases} 0 & \\text{if } \\; t < a , \\\\ M & \\text{if } \\; a \\leq t < b , \\\\ 0 & \\text{if } \\; b \\leq t . \\end{cases}"
+          "ktex": "\\kvarphi(t) = \\begin{cases} 0 & \\text{if } \\; t < a , \\\\ M & \\text{if } \\; a \\leq t < b , \\\\ 0 & \\text{if } \\; b \\leq t . \\end{cases}",
+          "anchor": "6.4-eq-rectangular-pulse"
         },
         {
           "id": "eq-rectangular-pulse-steps",
           "latex": "\\varphi(t) = M \\bigl( u(t-a) - u(t-b) \\bigr)",
-          "ktex": "\\kvarphi(t) = M \\bigl( \\ku(t-a) - \\ku(t-b) \\bigr)"
+          "ktex": "\\kvarphi(t) = M \\bigl( \\ku(t-a) - \\ku(t-b) \\bigr)",
+          "anchor": "6.4-eq-rectangular-pulse-steps"
         },
         {
           "id": "eq-lt-rectangular-pulse",
           "latex": "{\\mathcal{L}} \\bigl\\{ \\varphi(t) \\bigr\\} = M \\frac{e^{-as} - e^{-bs}}{s}",
-          "ktex": "{\\mathcal{L}} \\bigl\\{ \\kvarphi(t) \\bigr\\} = M \\frac{e^{-as} - e^{-bs}}{s}"
+          "ktex": "{\\mathcal{L}} \\bigl\\{ \\kvarphi(t) \\bigr\\} = M \\frac{e^{-as} - e^{-bs}}{s}",
+          "anchor": "6.4-eq-lt-rectangular-pulse"
         },
         {
           "id": "eq-unit-mass-pulse",
           "latex": "{\\mathcal{L}} \\left\\{ \\frac{u(t) - u(t-b)}{b} \\right\\} = \\frac{1 - e^{-bs}}{bs}",
           "ktex": "{\\mathcal{L}} \\left\\{ \\frac{\\ku(t) - \\ku(t-b)}{b} \\right\\} = \\frac{1 - e^{-bs}}{bs}",
-          "condition": "a = 0, M = 1/b: unit mass"
+          "condition": "a = 0, M = 1/b: unit mass",
+          "anchor": "6.4-eq-unit-mass-pulse"
         }
       ]
     },
@@ -677,17 +726,20 @@
         {
           "id": "eq-delta-sifting",
           "latex": "\\int_{-\\infty}^\\infty \\delta(t) f(t) \\,dt = f(0)",
-          "ktex": "\\int_{-\\infty}^\\infty \\kdelta(t) \\kf(t) \\,dt = \\kf(0)"
+          "ktex": "\\int_{-\\infty}^\\infty \\kdelta(t) \\kf(t) \\,dt = \\kf(0)",
+          "anchor": "6.4-eq-delta-sifting"
         },
         {
           "id": "eq-delta-interval",
           "latex": "\\int_c^d \\delta(t) \\,dt = \\begin{cases} 1 & \\text{if } c \\leq 0 \\leq d, \\\\ 0 & \\text{otherwise.} \\end{cases}",
-          "ktex": "\\int_c^d \\kdelta(t) \\,dt = \\begin{cases} 1 & \\text{if } c \\leq 0 \\leq d, \\\\ 0 & \\text{otherwise.} \\end{cases}"
+          "ktex": "\\int_c^d \\kdelta(t) \\,dt = \\begin{cases} 1 & \\text{if } c \\leq 0 \\leq d, \\\\ 0 & \\text{otherwise.} \\end{cases}",
+          "anchor": "6.4-eq-delta-interval"
         },
         {
           "id": "eq-delta-shifted-sifting",
           "latex": "\\int_{-\\infty}^\\infty \\delta(t-a) f(t) \\,dt = f(a)",
-          "ktex": "\\int_{-\\infty}^\\infty \\kdelta(t-a) \\kf(t) \\,dt = \\kf(a)"
+          "ktex": "\\int_{-\\infty}^\\infty \\kdelta(t-a) \\kf(t) \\,dt = \\kf(a)",
+          "anchor": "6.4-eq-delta-shifted-sifting"
         }
       ]
     },
@@ -702,7 +754,8 @@
           "id": "eq-delta-pulse-limit",
           "latex": "\\lim_{b\\to 0} \\int_{-\\infty}^\\infty \\varphi(t) f(t) \\,dt = \\lim_{b\\to 0} \\frac{1}{b} \\int_{0}^b f(t) \\,dt = f(0)",
           "ktex": "\\lim_{b\\to 0} \\int_{-\\infty}^\\infty \\kvarphi(t) \\kf(t) \\,dt = \\lim_{b\\to 0} \\frac{1}{b} \\int_{0}^b \\kf(t) \\,dt = \\kf(0)",
-          "condition": "φ = (u(t) − u(t − b))/b"
+          "condition": "φ = (u(t) − u(t − b))/b",
+          "anchor": "6.4-eq-delta-pulse-limit"
         }
       ]
     },
@@ -716,7 +769,8 @@
         {
           "id": "eq-convolution-delta",
           "latex": "(f * \\delta) (t) = \\int_{0}^t f(\\tau) \\delta(t-\\tau) \\,d\\tau = f(t)",
-          "ktex": "(\\kf * \\kdelta) (t) = \\int_{0}^t \\kf(\\tau) \\kdelta(t-\\tau) \\,d\\tau = \\kf(t)"
+          "ktex": "(\\kf * \\kdelta) (t) = \\int_{0}^t \\kf(\\tau) \\kdelta(t-\\tau) \\,d\\tau = \\kf(t)",
+          "anchor": "6.4-eq-convolution-delta"
         }
       ]
     },
@@ -730,12 +784,14 @@
         {
           "id": "eq-lt-delta-shifted",
           "latex": "{\\mathcal{L}} \\bigl\\{ \\delta(t-a) \\bigr\\} = \\int_{0}^\\infty e^{-st} \\delta(t-a) \\,dt = e^{-as}",
-          "ktex": "{\\mathcal{L}} \\bigl\\{ \\kdelta(t-a) \\bigr\\} = \\int_{0}^\\infty e^{-st} \\kdelta(t-a) \\,dt = e^{-as}"
+          "ktex": "{\\mathcal{L}} \\bigl\\{ \\kdelta(t-a) \\bigr\\} = \\int_{0}^\\infty e^{-st} \\kdelta(t-a) \\,dt = e^{-as}",
+          "anchor": "6.4-eq-lt-delta-shifted"
         },
         {
           "id": "eq-lt-delta",
           "latex": "{\\mathcal{L}} \\bigl\\{ \\delta(t) \\bigr\\} = 1",
-          "ktex": "{\\mathcal{L}} \\bigl\\{ \\kdelta(t) \\bigr\\} = 1"
+          "ktex": "{\\mathcal{L}} \\bigl\\{ \\kdelta(t) \\bigr\\} = 1",
+          "anchor": "6.4-eq-lt-delta"
         }
       ]
     },
@@ -750,12 +806,14 @@
           "id": "eq-heaviside-derivative",
           "latex": "\\frac{d}{dt} \\Bigl[ u(t-a) \\Bigr] = \\delta(t-a)",
           "ktex": "\\frac{d}{dt} \\Bigl[ \\ku(t-a) \\Bigr] = \\kdelta(t-a)",
-          "condition": "in the sense of generalized functions"
+          "condition": "in the sense of generalized functions",
+          "anchor": "6.4-eq-heaviside-derivative"
         },
         {
           "id": "eq-delta-integral",
           "latex": "\\int_0^t \\delta(\\tau-a)\\,d\\tau = u(t-a)",
-          "ktex": "\\int_0^t \\kdelta(\\tau-a)\\,d\\tau = \\ku(t-a)"
+          "ktex": "\\int_0^t \\kdelta(\\tau-a)\\,d\\tau = \\ku(t-a)",
+          "anchor": "6.4-eq-delta-integral"
         }
       ]
     },
@@ -784,7 +842,8 @@
           "id": "eq-convolution-second-derivative",
           "latex": "(f * h)''(t) = \\frac{d^2}{dt^2}\\left[ \\int_0^t f(\\tau) h(t-\\tau) \\, d\\tau \\right] = \\int_0^t f(\\tau) h''(t-\\tau) \\, d\\tau = (f * h'')(t)",
           "ktex": "(\\kf * \\kh)''(t) = \\frac{d^2}{dt^2}\\left[ \\int_0^t \\kf(\\tau) \\kh(t-\\tau) \\, d\\tau \\right] = \\int_0^t \\kf(\\tau) \\kh''(t-\\tau) \\, d\\tau = (\\kf * \\kh'')(t)",
-          "condition": "f(t) = h(t) = 0 for t < 0"
+          "condition": "f(t) = h(t) = 0 for t < 0",
+          "anchor": "6.4-drv-impulse-response"
         }
       ]
     },
@@ -801,7 +860,8 @@
         {
           "id": "eq-euler-bernoulli",
           "latex": "EI \\frac{d^4 y}{dx^4} = F(x)",
-          "ktex": "EI \\kdfourydx = F(x)"
+          "ktex": "EI \\kdfourydx = F(x)",
+          "anchor": "6.4-eq-euler-bernoulli"
         }
       ]
     },
@@ -819,13 +879,15 @@
         {
           "id": "eq-beam-point-load",
           "latex": "EI \\frac{d^4 y}{dx^4} = -F \\delta(x-a)",
-          "ktex": "EI \\kdfourydx = -F \\kdelta(x-a)"
+          "ktex": "EI \\kdfourydx = -F \\kdelta(x-a)",
+          "anchor": "6.4-eq-beam-point-load"
         },
         {
           "id": "eq-beam-simply-supported",
           "latex": "y(0) = 0, \\quad y''(0) = 0, \\quad y(L) = 0, \\quad y''(L) = 0",
           "ktex": "\\ky(0) = 0, \\quad \\kydprime(0) = 0, \\quad \\ky(L) = 0, \\quad \\kydprime(L) = 0",
-          "condition": "simple supports at both ends"
+          "condition": "simple supports at both ends",
+          "anchor": "6.4-eq-beam-simply-supported"
         }
       ]
     },
@@ -839,7 +901,8 @@
         {
           "id": "eq-lpde-transform-in-t",
           "latex": "Y(x) = {\\mathcal L} \\bigl\\{ y(x,t) \\bigr\\} = \\int_0^\\infty y(x,t) e^{-st} \\,dt",
-          "ktex": "\\kY(x) = {\\mathcal L} \\bigl\\{ \\ky(x,t) \\bigr\\} = \\int_0^\\infty \\ky(x,t) e^{-st} \\,dt"
+          "ktex": "\\kY(x) = {\\mathcal L} \\bigl\\{ \\ky(x,t) \\bigr\\} = \\int_0^\\infty \\ky(x,t) e^{-st} \\,dt",
+          "anchor": "6.5-eq-lpde-transform-in-t"
         }
       ]
     },
@@ -853,12 +916,14 @@
         {
           "id": "eq-lt-partial-x",
           "latex": "{\\mathcal L} \\bigl\\{ y_x(x,t) \\bigr\\} = \\frac{d}{dx} \\left[\\int_0^\\infty y(x,t) e^{-st} \\,dt \\right] = Y'(x)",
-          "ktex": "{\\mathcal L} \\bigl\\{ \\kyx(x,t) \\bigr\\} = \\frac{d}{dx} \\left[\\int_0^\\infty \\ky(x,t) e^{-st} \\,dt \\right] = \\kYprime(x)"
+          "ktex": "{\\mathcal L} \\bigl\\{ \\kyx(x,t) \\bigr\\} = \\frac{d}{dx} \\left[\\int_0^\\infty \\ky(x,t) e^{-st} \\,dt \\right] = \\kYprime(x)",
+          "anchor": "6.5-eq-lt-partial-x"
         },
         {
           "id": "eq-lt-partial-t",
           "latex": "{\\mathcal L} \\bigl\\{ y_t(x,t) \\bigr\\} = sY(x) - y(x,0)",
-          "ktex": "{\\mathcal L} \\bigl\\{ \\kyt(x,t) \\bigr\\} = s\\kY(x) - \\ky(x,0)"
+          "ktex": "{\\mathcal L} \\bigl\\{ \\kyt(x,t) \\bigr\\} = s\\kY(x) - \\ky(x,0)",
+          "anchor": "6.5-eq-lt-partial-t"
         }
       ]
     },
@@ -873,12 +938,14 @@
           "id": "eq-half-line-transport",
           "latex": "y(x,t) = {\\mathcal L}^{-1} \\left\\{ \\frac{C}{s} e^{-\\frac{s}{\\alpha} x} \\right\\} = C u\\bigl(t-{x}/{\\alpha}\\bigr)",
           "ktex": "\\ky(x,t) = {\\mathcal L}^{-1} \\left\\{ \\frac{C}{s} e^{-\\frac{s}{\\alpha} x} \\right\\} = C \\ku\\bigl(t-{x}/{\\alpha}\\bigr)",
-          "condition": "y_t = −αy_x, y(0, t) = C, y(x, 0) = 0"
+          "condition": "y_t = −αy_x, y(0, t) = C, y(x, 0) = 0",
+          "anchor": "6.5-eq-half-line-transport"
         },
         {
           "id": "eq-half-line-transport-cases",
           "latex": "y(x,t) = \\begin{cases} 0 & \\text{if } t < {x}/{\\alpha}, \\\\ C & \\text{otherwise.} \\end{cases}",
-          "ktex": "\\ky(x,t) = \\begin{cases} 0 & \\text{if } t < {x}/{\\alpha}, \\\\ C & \\text{otherwise.} \\end{cases}"
+          "ktex": "\\ky(x,t) = \\begin{cases} 0 & \\text{if } t < {x}/{\\alpha}, \\\\ C & \\text{otherwise.} \\end{cases}",
+          "anchor": "6.5-eq-half-line-transport-cases"
         }
       ]
     },
@@ -896,7 +963,8 @@
         {
           "id": "eq-wavefront",
           "latex": "t = \\frac{x}{\\alpha}",
-          "condition": "slope 1/α"
+          "condition": "slope 1/α",
+          "anchor": "6.5-wavefront"
         }
       ]
     },

@@ -22,9 +22,16 @@ Task `prep1-ch05` (prep stage one), port 8106, scratch `/tmp/claude-0/-home-user
 
 - 5.2 built (task `sec-5.2`, 2026-10-19): 3 figures (`sim-beam-vibration` Figure 5.2 moving, a motion choice of Example 5.2.1 or modes 1–3 and an a slider; `sim-beam-timbre` a still Sim, the beam's and a string's ladders under a shape choice, its a slider dropped as a rescale; `sim-beam-ends` a still Sim, the hinged/free/clamped choice), 1 derivation (`drv-hinged-beam`, three nodes, after `p#time-factor`, the book's prose and displays kept), 7 exercises (1 inline Try It, 4 unkeyed with AI solutions, 2 keyed), 8 concepts introduced, 2 referents (`beam`, `string`), book footnote 26; `ost check diffyqs --section 5.2` ok; anchors, the `eq-beam-frequencies` ω_n fix and two optional variables rows in its plan's `## Wanted at chapter level`.
 
+## Done (2026-10-19, chapter pass, task `pass-ch05`)
+
+- Every `## Wanted at chapter level` of 5.1–5.3 applied and recorded in the plans: 45 form anchors, 61 variables anchors (106 in all); `ktex` of `eq-sl-eigenvalue-sequence`, `eq-eigenfunction-coefficients`, `eq-normalized-coefficient` rewritten with `\klambda_1`, `\kc_m`, `\ky_m`; `eq-beam-frequencies` without ω_n; 8 variables rows added (5.1 X_prime, X_dprime, u_t, u_xx, dy/dx, c; 5.2 ∂4y/∂x4, ∂2y/∂t2); 5.3 refs yp/yc confirmed. No concept or edge change.
+- Footnotes 24–27 confirmed against `ch-eigenvalue-probs.tex` (config line 21).
+- 12 cross-chapter links (4.x, 2.2, Calculus) resolve; Playwright over 5.1–5.3 light and dark: no console or page errors, every Sim has a canvas, transports only on the three moving figures. Nothing needed fixing.
+- `ost check diffyqs`: no errors; `astro check`: 0 errors.
+
 ## Next
 
-- Sections 5.1 → 5.3, then the chapter pass.
+- Nothing for Chapter 5; the chapter is done. Chapter 6's footnotes start at 28.
 
 ## Decisions Chen must hear
 
@@ -35,6 +42,10 @@ Task `prep1-ch05` (prep stage one), port 8106, scratch `/tmp/claude-0/-home-user
 - Rule 15 picks built by the plan (config 14): the two series of Example 5.1.4 under N (5.1), the beam's frequency ladder beside a string's and the three end conditions as a choice (5.2), B(ω) with its poles and removable points (5.3). No 3Blue1Brown survivor falls in Chapter 5.
 - The weight r(x), the coefficients p(x), q(x) and the factors X, T, V, W wear `function` (functions of x), as Chapter 1 colours p and f of a linear equation; the Robin constant h (5.1) and ω = ⁴√λ (5.2) are in ink by `type: null`; the ground's temperature is a fact map (`facts: ["spectrum"]`).
 - Concepts: Mixed boundary conditions is a concept of 5.1 (its first index entry); "cgs units" and the footnote's E, I, ρ are not. The book's keyed answers all check (5.1.101, 5.1.102, 5.2.101, 5.2.102, 5.3.101, 5.3.102); no correction note is needed.
+
+- Footnote numbering: the book's running number, 24–27. Number 25 (the typo note of Exercise 5.1.102 b) is a small note in the exercise's prompt, not a `footnotes` row, because the checker refuses a book footnote in an exercise; the number is reserved so 26 and 27 match the book.
+- The `c` row of 5.1 (cₘ of the eigenfunction decomposition) comes before 7.1's `c` (series terms); 7.1's row may want `redefines: true` (Chapter 7's to set).
+- For the whole-book `colours:default` pass, not changed here: in `sim-eigenfunction-series` (5.1) f(x) = x in `function` magenta sits near the red of the `sl-series` referent (eigenfunction series); the series family (`series` type, the `sl-series`/`sine-series-ref` referents, the beam/string ladders of 5.2) should be checked against `function` for hue distance.
 
 ## What section agents must know
 - Symbol keys and macros added (12): inner \kinner, X_4prime \kXfour, y_xxxx \kyxxxx, y_xxx \kyxxx, y_x \kyx, A_n \kAn, B_n \kBn, h \kh, h_t \kht, h_xx \khxx, V \kV, W \kW.

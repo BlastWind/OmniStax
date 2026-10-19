@@ -17,17 +17,19 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
    through A: the arrow x⃗, the arrow Bx⃗ (faint) and the arrow A(Bx⃗), the two hops between their heads
    curved in the matrix colour and named B and A, and the one hop of AB (dashed, on the other side) from
    the head of x⃗ straight to the same point. Right, the other order: A first, then B, and the one hop of BA.
-   The reader drags x⃗ (on either plane, or on its two sliders, −1.5 to 1.5; the default (1, 1)): ABx⃗ = (s, s)
-   with s = x₁ + 2x₂ and BAx⃗ = (u, 2u) with u = x₁ + x₂, which agree only at x⃗ = 0⃗. At the sliders' extremes
-   every head stays inside the planes: |Bx⃗|, |Ax⃗| ≤ 3 per entry, ABx⃗ ≤ 4.5, BAx⃗ = (3, 6) at most.
+   The reader drags x⃗ (on either plane, or on its two sliders, −2 to 2; the default (1.5, 0.5), where no two of
+   the arrows of a plane lie on one line): ABx⃗ = (s, s) with s = x₁ + 2x₂ and BAx⃗ = (u, 2u) with u = x₁ + x₂,
+   which agree only at x⃗ = 0⃗. Every head but BAx⃗'s stays inside the planes at the sliders' extremes (entries
+   at most 6); BAx⃗ = (u, 2u) leaves the top or bottom edge once |u| > 3, and is then drawn to the edge along its
+   own direction, its head hollow there, while the headline and readout give its true entries.
    Still: a composition has no clock. The arrows are symbolic (vectors, and the mappings drawn as hops). */
 (function () {
   const d = sim('sim-composition', 770);
   const A = [1, 1, 1, 1], B = [1, 0, 0, 2];
   const AB = [1, 2, 1, 2], BA = [1, 1, 2, 2];
   const ap = (m, v) => [m[0] * v[0] + m[1] * v[1], m[2] * v[0] + m[3] * v[1]];
-  const s1 = ctl(d.controls, { label: 'x_1', cls: '', key: 'x1', min: -1.5, max: 1.5, step: 0.1, value: 1, unit: '', dec: 1, aria: 'the first entry x₁ of the vector x' });
-  const s2 = ctl(d.controls, { label: 'x_2', cls: '', key: 'x2', min: -1.5, max: 1.5, step: 0.1, value: 1, unit: '', dec: 1, aria: 'the second entry x₂ of the vector x' });
+  const s1 = ctl(d.controls, { label: 'x_1', cls: '', key: 'x1', min: -2, max: 2, step: 0.1, value: 1.5, unit: '', dec: 1, aria: 'the first entry x₁ of the vector x' });
+  const s2 = ctl(d.controls, { label: 'x_2', cls: '', key: 'x2', min: -2, max: 2, step: 0.1, value: 0.5, unit: '', dec: 1, aria: 'the second entry x₂ of the vector x' });
   const grips = [drag(d, { x: s1, y: s2 }), drag(d, { x: s1, y: s2 })];
   const ro = readout(d);
   const K = 45, TOP = 150;
@@ -88,7 +90,10 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
       const { X, Y } = ax, O = [X(0), Y(0)];
       text(ctx, P.title, P.ox, 104, ink, { size: 22, tex: true, align: 'center' });
       const v = ap(P.first, x).map(r1), w = ap(P.second, v).map(r1);
-      const S = (p) => [X(p[0]), Y(p[1])];
+      /* a head past the plane's edge is drawn at the edge, along its own direction */
+      const edge = (p) => { const f = Math.min(1, 6 / Math.max(Math.abs(p[0]), Math.abs(p[1]), 1e-9)); return [p[0] * f, p[1] * f]; };
+      const S = (p) => { const q = edge(p); return [X(q[0]), Y(q[1])]; };
+      const pinned = (p) => Math.max(Math.abs(p[0]), Math.abs(p[1])) > 6 + 1e-9;
       const g0 = stagger(k, 0, 3, 0.45), g1 = stagger(k, 1, 3, 0.45), g2 = stagger(k, 2, 3, 0.45);
       const grow = (p, g) => [O[0] + (S(p)[0] - O[0]) * g, O[1] + (S(p)[1] - O[1]) * g];
       const hx = S(x), hv = S(v), hw = S(w);
@@ -97,7 +102,7 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
       /* the arrows from the origin: first x⃗ after the first matrix (faint), then the end of the two hops, then x⃗ */
       const len = (p) => Math.hypot(p[0], p[1]) > 1e-9;
       if (len(v)) { const [a, b] = grow(v, g1); arrow(ctx, O[0], O[1], a, b, alpha(vc, 0.6), 3.5); }
-      if (len(w)) { const [a, b] = grow(w, g2); arrow(ctx, O[0], O[1], a, b, vc, 6); }
+      if (len(w)) { const [a, b] = grow(w, g2); arrow(ctx, O[0], O[1], a, b, vc, 6); if (pinned(w) && g2 >= 1) F.dot(ctx, a, b, vc, false, 9); }
       if (len(x)) { const [a, b] = grow(x, g0); arrow(ctx, O[0], O[1], a, b, vc, 4); }
       /* the hops: the first matrix, the second, and their product in one step on the other side;
          each bulges away from the origin, the product's toward it */
@@ -107,10 +112,17 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
       const h3 = hop(ctx, hx, hw, -away(hx, hw), alpha(mc, 0.8), g2, [9, 7]);
       /* the reader's x⃗ */
       const at = grips[pi].draw(ctx, ax, vc);
-      return { P, ax, x, v, w, hx, hv, hw, h1, h2, h3, at };
+      return { P, ax, x, v, w, hx, hv, hw, h1, h2, h3, at, out: pinned(w) };
     });
-    /* names last, above the arrows: the hops', then the vectors' */
+    /* names last, above the arrows: the vectors' at their heads (the reader's x⃗ first), then the hops' */
     const unit = (p, q) => { const dx = q[0] - p[0], dy = q[1] - p[1], L = Math.hypot(dx, dy) || 1; return [dx / L, dy / L]; };
+    if (k > 0.98) results.forEach((R) => {
+      const { P, ax, hx, hv, hw } = R, O = [ax.X(0), ax.Y(0)];
+      const out = (h) => (Math.hypot(h[0] - O[0], h[1] - O[1]) > 4 ? unit(O, h) : [0.7, -0.7]);
+      name('$\\kvecx$', hx[0], hx[1], ...out(hx), C('vector'));
+      name(`$${P.s}(${P.f}\\kvecx)$`, hw[0], hw[1], ...out(hw), C('vector'));
+      name(`$${P.f}\\kvecx$`, hv[0], hv[1], ...out(hv), C('vector'));
+    });
     if (k > 0.98) results.forEach((R) => {
       const { P, h1, h2, h3 } = R;
       if (h1) name(`$${P.f}$`, h1[0] - h1[2] * 24, h1[1] - h1[3] * 24, h1[2], h1[3], C('matrix'));
@@ -118,17 +130,11 @@ const bmat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \
       if (h3) name(`$${P.s}${P.f}$`, h3[0] - h3[2] * 24, h3[1] - h3[3] * 24, h3[2], h3[3], C('matrix'));
     });
     results.forEach((R) => {
-      const { P, ax, x: xx, v, w, hx, hv, hw } = R, O = [ax.X(0), ax.Y(0)];
-      const out = (h) => (Math.hypot(h[0] - O[0], h[1] - O[1]) > 4 ? unit(O, h) : [0.7, -0.7]);
-      if (k > 0.98) {
-        name(`$${P.s}(${P.f}\\kvecx)$`, hw[0], hw[1], ...out(hw), C('vector'));
-        name(`$${P.f}\\kvecx$`, hv[0], hv[1], ...out(hv), C('vector'));
-        name('$\\kvecx$', hx[0], hx[1], ...out(hx), C('vector'));
-      }
+      const { P, x: xx, v, w, hx, hv, hw } = R;
       const pair = (p) => `(${nT(p[0])}, ${nT(p[1])})`;
       hits.push({ x: hx[0], y: hx[1], r: 18, name: `x⃗ = ${pair(xx)}; drag it` });
       hits.push({ x: hv[0], y: hv[1], r: 16, name: `${P.fs}x⃗ = ${pair(v)}: x⃗ after ${P.fs} = ${matText(P.first)}` });
-      hits.push({ x: hw[0], y: hw[1], r: 16, name: `${P.ss}(${P.fs}x⃗) = (${P.ss}${P.fs})x⃗ = ${pair(w)}` });
+      hits.push({ x: hw[0], y: hw[1], r: 16, name: `${P.ss}(${P.fs}x⃗) = (${P.ss}${P.fs})x⃗ = ${pair(w)}${R.out ? ', past the edge of the plane' : ''}` });
       if (R.h1) hits.push({ x: R.h1[0], y: R.h1[1], r: 16, name: `${P.fs} = ${matText(P.first)} takes x⃗ to ${P.fs}x⃗` });
       if (R.h2) hits.push({ x: R.h2[0], y: R.h2[1], r: 16, name: `${P.ss} = ${matText(P.second)} takes ${P.fs}x⃗ to ${P.ss}(${P.fs}x⃗)` });
       if (R.h3) hits.push({ x: R.h3[0], y: R.h3[1], r: 16, name: `${P.ss}${P.fs} = ${matText(P.prod)} takes x⃗ there in one step` });

@@ -1,7 +1,7 @@
 /* Figures for section A.4 Subspaces, dimension, and the kernel. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['A.4'] = function (root, F) {
-const { C, PAL, alpha, ctl, choice, begin, axes, drag, dot, line, arrow, text, headline, labeller, register, readout, hover, tex, pinned } = F;
+const { C, PAL, alpha, ctl, select, begin, axes, drag, dot, line, arrow, text, headline, labeller, register, readout, hover, tex, pinned } = F;
 const sim = (id, H) => F.sim(root, id, H);
 /* a number as the readout writes it: at most two decimals, no trailing zeros, never −0 */
 const num = (v) => { const r = Math.round(v * 100) / 100; return String(Object.is(r, -0) ? 0 : r); };
@@ -36,7 +36,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
   /* b⃗ is in the column space of [1 2; 2 4] when b₂ = 2b₁, and in that of the zero matrix only at 0⃗ */
   const atB1 = () => { if (!s1 || !s2) return null; const k = pick.value; return k === 'r1' ? onGrid(s2.v / 2) : k === 'r0' && Math.abs(s2.v) < 1e-9 ? 0 : null; };
   const atB2 = () => { if (!s1 || !s2) return null; const k = pick.value; return k === 'r1' ? onGrid(2 * s1.v) : k === 'r0' && Math.abs(s1.v) < 1e-9 ? 0 : null; };
-  const pick = choice(d.controls, { label: '\\kA', key: 'A', value: 'r1', aria: 'the matrix A',
+  const pick = select(d.controls, { label: '\\kA', key: 'A', value: 'r1', aria: 'the matrix A',
     options: KEYS.map((k) => ({ value: k, label: MATS[k].label })), onInput: () => { s1.refresh(); s2.refresh(); } });
   s1 = ctl(d.controls, { label: 'b_1', cls: '', key: 'b1', min: -4, max: 4, step: 0.1, value: 1, unit: '', dec: 1, aria: 'the first entry of b', specials: [{ at: atB1, label: 'in the column space' }] });
   s2 = ctl(d.controls, { label: 'b_2', cls: '', key: 'b2', min: -4, max: 4, step: 0.1, value: 3, unit: '', dec: 1, aria: 'the second entry of b', specials: [{ at: atB2, label: 'in the column space' }] });
@@ -71,6 +71,19 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     const [u, v] = spec.dir, L = Math.hypot(u, v);
     return { x: X((-4 * u) / L), y: Y((-4 * v) / L), r: 18, name };
   };
+  /* a TeX label beside the head (hx, hy) of a vector, along the unit direction (ux, uy) on the canvas,
+     kept inside the canvas and entered in the labeller's set so the plain labels step round it */
+  function texLabel(ctx, lab, s, hx, hy, ux, uy, color) {
+    const w = F.measure(ctx, s, { size: 24, weight: 600, tex: true });
+    const align = ux < -0.3 ? 'right' : ux > 0.3 ? 'left' : 'center';
+    let x = hx + ux * 30, y = hy + uy * 30;
+    const l0 = align === 'left' ? x - 7 : align === 'right' ? x - w - 7 : x - w / 2 - 7;
+    x += Math.max(0, 16 - l0) - Math.max(0, l0 + w + 14 - (1400 - 16));
+    y = Math.min(Math.max(y, 116), 700);
+    text(ctx, s, x, y, color, { size: 24, weight: 600, tex: true, align, bg: PAL.panel });
+    const l = align === 'left' ? x - 7 : align === 'right' ? x - w - 7 : x - w / 2 - 7;
+    lab.place({ l, r: l + w + 14, t: y - 18, b: y + 18 });
+  }
   const arrowIf = (ctx, ax, x, y, color, w) => { if (Math.hypot(x, y) > 0.05) arrow(ctx, ax.X(0), ax.Y(0), ax.X(x), ax.Y(y), color, w); };
 
   function draw() {
@@ -126,20 +139,13 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     /* the columns of A, Ae⃗₁ and Ae⃗₂, morphing with the matrix */
     const cols = [[m[0], m[2]], [m[1], m[3]]];
     clip(ctx, R.box, () => { arrowIf(ctx, R, cols[1][0], cols[1][1], alpha(vc, 0.75), 4); arrowIf(ctx, R, cols[0][0], cols[0][1], alpha(vc, 0.75), 4); });
-    if (M.rank > 0) {
-      [[a, c], [bb, dd]].forEach(([u, v], i) => {
-        const n = Math.hypot(u, v), side = i === 0 ? -1 : 1;
-        lab.add(`Ae⃗${i ? '₂' : '₁'}`, R.X(u), R.Y(v), (side * v) / n * 0.8 + (u / n) * 0.6, (side * u) / n * 0.8 - (v / n) * 0.6, vc, 20, 26);
-        hits.push({ x: R.X(u), y: R.Y(v), r: 16, name: `Ae⃗${i ? '₂' : '₁'} = ${pairT(u, v)}, the ${i ? 'second' : 'first'} column of A` });
-      });
-    }
 
     /* b⃗, the reader's, and the solutions of Ax⃗ = b⃗ on the left */
     arrowIf(ctx, R, b1, b2, vc, 6);
     const pb = P.draw(ctx, R, vc);
     if (pb) {
-      const n = Math.hypot(b1, b2) || 1;
-      lab.add('b⃗', pb.x, pb.y, b1 / n || 0.7, -(b2 / n) || -0.7, vc, 22, 26);
+      const n = Math.hypot(b1, b2);
+      texLabel(ctx, lab, '$\\kvecb$', pb.x, pb.y, n > 0.05 ? b1 / n : 0.7, n > 0.05 ? -b2 / n : -0.7, vc);
       hits.push({ x: pb.x, y: pb.y, r: 20, name: `b⃗ = ${pairT(b1, b2)}, ${inCol ? 'in' : 'not in'} the column space of A` });
     }
     pick.only(ctx, 'r2', () => {
@@ -148,7 +154,8 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
       else clip(ctx, L.box, () => line(ctx, L.X(0), L.Y(0), L.X(x1), L.Y(x2), vc, 5));
       const p = pinned(ctx, L.box, L.X, L.Y, x1, x2, vc, inside ? undefined : pairT(x1, x2));
       if (key === 'r2') {
-        if (inside && Math.hypot(x1, x2) > 0.05) lab.add('x⃗', p.x, p.y, x1 / Math.hypot(x1, x2), -x2 / Math.hypot(x1, x2), vc, 22, 26);
+        const n = Math.hypot(x1, x2);
+        if (inside) texLabel(ctx, lab, '$\\kvecx$', p.x, p.y, n > 0.05 ? x1 / n : 0.7, n > 0.05 ? -x2 / n : -0.7, vc);
         hits.push({ x: p.x, y: p.y, r: 18, name: `x⃗ = A⁻¹b⃗ = ${pairT(x1, x2)}, the one solution of Ax⃗ = b⃗` });
       }
     }, [0, 0]);
@@ -156,6 +163,14 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
       /* x₁ + 2x₂ = b₁: the kernel's line moved to pass through (b₁, 0) */
       clip(ctx, L.box, () => line(ctx, L.X(b1 - 18), L.Y(9), L.X(b1 + 18), L.Y(-9), vc, 4, [12, 9]));
       hits.push({ x: L.X(b1 - 4), y: L.Y(2), r: 16, name: `every x⃗ on this line solves Ax⃗ = b⃗: the kernel's line moved to pass through ${pairT(b1, 0)}` });
+    }
+    /* the columns named last, so their labels step round b⃗'s */
+    if (M.rank > 0) {
+      [[a, c], [bb, dd]].forEach(([u, v], i) => {
+        const n = Math.hypot(u, v), side = i === 0 ? -1 : 1;
+        lab.add(`column ${i + 1}`, R.X(u), R.Y(v), ((side * v) / n) * 0.8 + (u / n) * 0.6, ((side * u) / n) * 0.8 - (v / n) * 0.6, vc, 18, 26);
+        hits.push({ x: R.X(u), y: R.Y(v), r: 16, name: `Ae⃗${i ? '₂' : '₁'} = ${pairT(u, v)}, the ${i ? 'second' : 'first'} column of A` });
+      });
     }
     lab.flush();
 

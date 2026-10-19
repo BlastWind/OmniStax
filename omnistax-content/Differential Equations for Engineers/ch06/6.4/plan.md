@@ -50,3 +50,4 @@ Extra Sims weighed and left out: a delta-function "limit" animation of its own (
 - Referents `input`, `impulse` are section rows (written), each listing `sim-impulse-response`; nothing at chapter level.
 - No concept, edge or glossary fix: the edge `three-point-bending → hinged-end-of-a-beam` is merged; ω₀'s 6.4 row is in place.
 - Footnote numbering: 6.4 holds the book's running footnotes 33–37, which assumes 6.1 numbers its three 28–30 and 6.3 its two 31–32 (the book-order count above); the chapter pass should confirm the sibling sections agree.
+- Chapter pass (2026-10-19): applied, 18 variables and 19 form anchors; footnotes 33–37 confirmed (6.1 28–30, 6.3 31–32, 6.5 38–39; `ch-laplace.tex` has 12).

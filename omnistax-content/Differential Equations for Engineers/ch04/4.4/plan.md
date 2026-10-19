@@ -49,3 +49,4 @@ All checked with SymPy (`scratch/sec-4.4/check.py`, every assertion passing).
 - New variables row: 4.4/x_prime (`derivative`, "the derivative of x with respect to t", 4.1's and 8.1's meaning; the Neumann conditions x′(0) = 0, x′(L) = 0 write it), anchor `4.4-bvp-method`.
 - Anchors (forms): `eq-odd-extension` → `4.4-eq-odd-extension`; `eq-even-extension` → `4.4-eq-even-extension`; `eq-sine-series` → `4.4-eq-sine-series`; `eq-sine-coefficients` → `4.4-eq-sine-coefficients`; `eq-cosine-series` → `4.4-eq-cosine-series`; `eq-cosine-coefficients` → `4.4-eq-cosine-coefficients`; `eq-half-inner-product` → `4.4-eq-half-inner-product`; `eq-bvp-series-coefficient` → `4.4-eq-bvp-series-coefficient` (the solution display; the derivation ends on b_n).
 - No concept or edge fix; no glossary word.
+- Chapter pass (`pass-ch04`, 2026-10-19): applied: every anchor listed (11 variables, 8 forms); new row 4.4/x_prime, anchor `4.4-bvp-method`.

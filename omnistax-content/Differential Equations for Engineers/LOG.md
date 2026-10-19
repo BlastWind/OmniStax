@@ -108,3 +108,19 @@ Anchors from every section's "Wanted at chapter level": 142 forms and 244 variab
 Chapter COLOR.md: `region` added to the categories (3.2's parallelogram) and the referents of 3.8 (`column-1`, `column-2`) and 3.9 (`xi-1`, `xi-2`). Footnotes take the book's running number: 3.8's Moler–Van Loan is 14, the chapter's only one (config line 21); Chapter 4 starts at 15.
 
 Checked: Figures 3.1–3.17 and Table 3.1 in book order with the four folds; every in-book and Calculus link from Chapter 3's pages and from 1.9 resolves against the built pages and Calculus's text.html (1.9's link to 8.1 waits on Chapter 8); every Sim has a canvas, transports only on the eleven moving figures, no console or page error in light or dark.
+
+
+## Pass 6 (2026-10-19): Chapter 5 chapter pass (2026-10-19, `pass-ch05`)
+
+Applied every chapter-level want of 5.1–5.3: 106 anchors on forms and variables rows; three `ktex` fixes in 5.1 (no bracket arguments on \klambda, \kc, \ky) and `eq-beam-frequencies` without ω_n; eight variables rows added (5.1 X′, X″, u_t, u_xx, dy/dx, c; 5.2 ∂⁴y/∂x⁴, ∂²y/∂t²). Footnotes numbered 24–27 by the book's running count; 25 kept as a note in Exercise 5.1.102's prompt. Cross-chapter links checked, the three pages checked in a browser in both themes, nothing to fix. Colour notes for the final recolour left in `ch05/build-status.md`.
+
+
+## Pass 7 (2026-10-19): Chapter 4, Fourier series and PDEs, had its chapter pass, after its ten sections were built by ten agents
+
+Anchors from every section's "Wanted at chapter level": 155 variables rows and 90 forms, `eq-wave-characteristic-coordinates` (on 1.9's `characteristic-coordinates`) at `4.8-change-variables`. New variables rows (16, each after `ost meanings`): 4.1/λ_1, λ_2, x_1_prime, x_2_prime, x_1_dprime, x_2_dprime; 4.2/S and 4.3/S (`series`, the partial sum S_N); 4.3/f_dprime; 4.4/x_prime; 4.6/u_1, u_2, X_prime; 4.7/X_dprime, λ, T_prime. New symbol `f_dprime` (\kfdprime): 4.3's plain f″ (text, Exercises 4.3.1–4.3.2, the term-by-term Sim's headline) now wears `derivative`; 4.2's S_N(t) now \kS_N(t).
+
+Concept map: 4.10's chain mended (polar-coordinate-system no longer rests on dirichlet-problem, the geometric series no longer on the disc problem; the polar Laplacian rests on the Laplace operator, the disc problem on the Dirichlet problem, the Poisson kernel on the disc problem); the whole-book Hasse reduction then took the four other wanted edges out as implied. 86 concepts, 145 edges, 43 symbols merged; no cycle, no redundant edge.
+
+Config: line 7 no longer names Example 4.7.1 (the book prints no name); line 21 records the footnotes: the book's running number, 15–23 in this chapter (4.1 15–17, 4.2 18, 4.8 19–20, 4.9 21–22, 4.10 23), read against the nine `\footnote`s of `ch-fourier-and-pde.tex`; Chapter 5 starts at 24.
+
+Checked: every in-book and Calculus link from Chapter 4's pages and from 1.9 and 5.3 resolves against the built pages and Calculus's text.html (43 links); every Sim has a canvas, transports only on the six moving figures, no console or page error in light or dark; `ost check diffyqs` no errors, `npm test` 936 pass, `astro check` 0 errors.

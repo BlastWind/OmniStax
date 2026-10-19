@@ -1,0 +1,1523 @@
+{
+ "id": "A.5",
+ "module": "innerproduct:section",
+ "chapter": "A",
+ "title": "Inner product and projections",
+ "short": "Inner product and projections",
+ "lead": "The <span data-concept=\"dot-product\">dot product</span>, written as the <span data-concept=\"inner-product\">inner product</span>, measures lengths and angles in any number of dimensions. This section uses it to say when two vectors are <span data-concept=\"orthogonal-vectors\">orthogonal</span>, to project one vector onto another as its shadow, and to build <span data-concept=\"orthogonal-basis\">orthogonal bases</span> by the <span data-concept=\"gram-schmidt-process\">Gram–Schmidt process</span>, the idea Chapter 4 carries over to functions.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises A.5.101–A.5.107 carry the book’s own answers, each confirmed by computation. Exercises A.5.1–A.5.9, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-angle-between-vectors",
+   "kind": "sim",
+   "number": "A.5",
+   "originals": [
+    "/media/appA/vec-angle.svg"
+   ],
+   "original_caption": "Angle between vectors.",
+   "widths": [],
+   "draws": [
+    "vector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-projection",
+   "kind": "sim",
+   "number": "A.6",
+   "originals": [
+    "/media/appA/vec-orthoproj.svg"
+   ],
+   "original_caption": "Orthogonal projection.",
+   "widths": [],
+   "draws": [
+    "vector",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-gram-schmidt",
+   "kind": "sim",
+   "draws": [
+    "vector",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "geometry",
+   "concept": "magnitude-of-a-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inner-product-def",
+   "concept": "inner-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "inner-product-def",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "inner-product-def",
+   "concept": "dot-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "inner-product-def",
+   "concept": "dot-product-via-transpose",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-vector-inner-product",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-vector-inner-product",
+   "concept": "dot-product-via-transpose",
+   "verb": "reinforces"
+  },
+  {
+   "span": "functions",
+   "concept": "dot-product",
+   "verb": "uses"
+  },
+  {
+   "span": "functions",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "functions",
+   "concept": "inner-product-of-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-inner-product-of-functions",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-inner-product-of-functions",
+   "concept": "inner-product-of-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "rules-intro",
+   "concept": "properties-of-the-inner-product",
+   "verb": "introduces"
+  },
+  {
+   "span": "rules-intro",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "rules",
+   "concept": "properties-of-the-inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "any-inner-product",
+   "concept": "properties-of-the-inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "any-inner-product",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "length",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "length",
+   "concept": "magnitude-of-a-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-magnitude-inner-product",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-magnitude-inner-product",
+   "concept": "magnitude-of-a-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "angle-formula",
+   "concept": "angle-between-two-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "angle-formula",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "angle-formula",
+   "concept": "dot-product",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-inner-product-angle",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-inner-product-angle",
+   "concept": "magnitude-of-a-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "angle-meaning",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "any-dimension",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "any-dimension",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "any-dimension",
+   "concept": "orthogonality-of-eigenfunctions",
+   "verb": "uses"
+  },
+  {
+   "span": "any-dimension",
+   "concept": "subspace",
+   "verb": "reinforces"
+  },
+  {
+   "span": "cos-intro",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-cos-angle",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-cos-angle",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-cos-angle",
+   "concept": "magnitude-of-a-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "angle-range",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "angle-range",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-angle-between-vectors",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-angle-between-vectors",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-angle-between-vectors",
+   "concept": "orthogonal-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-1",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-1",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-1",
+   "concept": "magnitude-of-a-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "orthogonal",
+   "concept": "orthogonal-vectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "orthogonal",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "orthogonal",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-orthogonal",
+   "concept": "orthogonal-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-orthogonal",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "orthogonal-examples",
+   "concept": "orthogonal-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "orthogonal-examples",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "orthogonal-examples",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "right-basis",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "right-basis",
+   "concept": "orthogonal-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "right-basis",
+   "concept": "basis",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fourier-basis",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "fourier-basis",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "projection-def",
+   "concept": "vector-projection",
+   "verb": "introduces"
+  },
+  {
+   "span": "projection-def",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "projection-def",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-projection",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-projection",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "shadow",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "shadow",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "shadow",
+   "concept": "magnitude-of-a-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "shadow",
+   "concept": "span",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-projection",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-projection",
+   "concept": "orthogonal-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-projection",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-projection",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "trig",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "trig",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "trig",
+   "concept": "magnitude-of-a-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "trig",
+   "concept": "unit-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-projection-formula",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-projection-formula",
+   "concept": "unit-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-projection-formula",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-projection-formula",
+   "concept": "magnitude-of-a-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "obtuse",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "obtuse",
+   "concept": "angle-between-two-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-2",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-2",
+   "concept": "orthogonal-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-2",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "orthogonal-basis-def",
+   "concept": "orthogonal-basis",
+   "verb": "introduces"
+  },
+  {
+   "span": "orthogonal-basis-def",
+   "concept": "orthogonal-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "orthogonal-basis-def",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "orthogonal-basis-def",
+   "concept": "basis",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-orthogonal-basis",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-orthogonal-basis",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "orthonormal-def",
+   "concept": "orthonormal-basis",
+   "verb": "introduces"
+  },
+  {
+   "span": "orthonormal-def",
+   "concept": "orthogonal-vectors",
+   "verb": "uses"
+  },
+  {
+   "span": "orthonormal-def",
+   "concept": "unit-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "orthonormal-def",
+   "concept": "magnitude-of-a-vector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "orthonormal-def",
+   "concept": "standard-unit-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "why-orthogonal",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "why-orthogonal",
+   "concept": "orthonormal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "why-orthogonal",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "why-orthogonal",
+   "concept": "projection-onto-a-subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "why-orthogonal",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "why-orthogonal",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "why-orthogonal",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-basis",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-basis",
+   "concept": "projection-onto-a-subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-basis",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-basis",
+   "concept": "subspace",
+   "verb": "reinforces"
+  },
+  {
+   "span": "subspace-basis",
+   "concept": "span",
+   "verb": "reinforces"
+  },
+  {
+   "span": "expansion",
+   "concept": "coordinates-in-an-orthogonal-basis",
+   "verb": "introduces"
+  },
+  {
+   "span": "expansion",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "expansion",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-orthogonal-expansion",
+   "concept": "coordinates-in-an-orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-orthogonal-expansion",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "coefficients-intro",
+   "concept": "coordinates-in-an-orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "coefficients-intro",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-orthogonal-coefficients",
+   "concept": "coordinates-in-an-orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-orthogonal-coefficients",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "reverse",
+   "concept": "coordinates-in-an-orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "reverse",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "reverse",
+   "concept": "properties-of-the-inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-orthogonal-coefficients",
+   "concept": "coordinates-in-an-orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-orthogonal-coefficients",
+   "concept": "properties-of-the-inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-orthogonal-coefficients",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "solve-aj",
+   "concept": "coordinates-in-an-orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-3",
+   "concept": "coordinates-in-an-orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-3",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-3",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "orthonormal-version",
+   "concept": "orthonormal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "orthonormal-version",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "orthonormal-version",
+   "concept": "coordinates-in-an-orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "orthonormal-version",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "twenty",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "twenty",
+   "concept": "orthonormal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "twenty",
+   "concept": "linear-system-of-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "twenty",
+   "concept": "row-reduction",
+   "verb": "uses"
+  },
+  {
+   "span": "twenty",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "projection-subspace",
+   "concept": "projection-onto-a-subspace",
+   "verb": "introduces"
+  },
+  {
+   "span": "projection-subspace",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "projection-subspace",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "projection-subspace",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "projection-subspace",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-projection-onto-subspace",
+   "concept": "projection-onto-a-subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-projection-onto-subspace",
+   "concept": "inner-product",
+   "verb": "uses"
+  },
+  {
+   "span": "utility",
+   "concept": "projection-onto-a-subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "utility",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "utility",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "utility",
+   "concept": "partial-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "utility",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-4",
+   "concept": "projection-onto-a-subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-4",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-4",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-4",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "gram-schmidt-def",
+   "concept": "gram-schmidt-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "gram-schmidt-def",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "gram-schmidt-def",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "gram-schmidt-def",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "gram-schmidt-def",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "gram-schmidt-start",
+   "concept": "gram-schmidt-process",
+   "verb": "uses"
+  },
+  {
+   "span": "gram-schmidt-start",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "gram-schmidt-start",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-gram-schmidt",
+   "concept": "gram-schmidt-process",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-gram-schmidt",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "kth-step",
+   "concept": "gram-schmidt-process",
+   "verb": "uses"
+  },
+  {
+   "span": "kth-step",
+   "concept": "projection-onto-a-subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "kth-step",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "kth-step",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-gram-schmidt",
+   "concept": "gram-schmidt-process",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-gram-schmidt",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-gram-schmidt",
+   "concept": "orthonormal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-gram-schmidt",
+   "concept": "vector-projection",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-5",
+   "concept": "gram-schmidt-process",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-5",
+   "concept": "orthogonal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-5",
+   "concept": "orthonormal-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-5",
+   "concept": "unit-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-5-5",
+   "concept": "span",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "projection-formula",
+   "what": "the formula for the orthogonal projection",
+   "source": "Differential Equations for Engineers, A.5 Inner product and projections",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "If $\\ktheta$ is acute, the length of $\\kproj_{\\kvecv}(\\kvecw)$ is $\\cos \\ktheta$ times the length of $\\kvecw$, that is, $(\\cos \\ktheta)\\lVert\\kvecw\\rVert$.",
+       "src": "A.5, Orthogonal projection"
+      },
+      {
+       "text": "$\\frac{\\kvecv}{\\lVert \\kvecv \\rVert}$ is the unit vector in the direction of $\\kvecv$.",
+       "src": "A.1"
+      },
+      {
+       "tex": "\\langle \\kvecw, \\kvecv \\rangle = \\lVert \\kvecw \\rVert \\lVert \\kvecv \\rVert \\cos \\ktheta",
+       "src": "A.5, Inner product and orthogonality"
+      },
+      {
+       "tex": "\\lVert \\kvecv \\rVert = \\sqrt{\\langle \\kvecv, \\kvecv \\rangle}",
+       "src": "A.5, Inner product and orthogonality"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kproj_{\\kvecv}(\\kvecw)} = \\mk{l}{(\\cos \\ktheta) \\lVert \\kvecw \\rVert} \\, \\mk{u}{\\frac{\\kvecv}{\\lVert \\kvecv \\rVert}}",
+      "src": "A.5, Orthogonal projection",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "We take the unit vector in the direction of $\\kvecv$ and we multiply it by the length of the projection."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kproj_{\\kvecv}(\\kvecw)} = \\frac{\\mk{c}{(\\cos \\ktheta) \\lVert \\kvecw \\rVert \\lVert \\kvecv \\rVert}}{\\mk{n}{{\\lVert \\kvecv \\rVert}^2}} \\, \\mk{v}{\\kvecv}",
+       "uses": [],
+       "map": {
+        "l": "c",
+        "u": [
+         "c",
+         "n",
+         "v"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{p}{\\kproj_{\\kvecv}(\\kvecw)} = \\frac{\\mk{c}{\\langle \\kvecw, \\kvecv \\rangle}}{\\mk{n}{{\\lVert \\kvecv \\rVert}^2}} \\, \\mk{v}{\\kvecv}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{p}{\\kproj_{\\kvecv}(\\kvecw)} = \\frac{\\mk{c}{\\langle \\kvecw, \\kvecv \\rangle}}{\\mk{n}{\\langle \\kvecv, \\kvecv \\rangle}} \\, \\mk{v}{\\kvecv}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "A.5, Orthogonal projection"
+    }
+   ]
+  },
+  {
+   "id": "orthogonal-coefficients",
+   "what": "the inner product of an orthogonal expansion with one of its vectors",
+   "source": "Differential Equations for Engineers, A.5 Inner product and projections",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecx = a_1 \\kvecv_1 + a_2 \\kvecv_2 + \\cdots + a_n \\kvecv_n"
+      },
+      {
+       "tex": "\\langle \\kvecx + \\kvecy , \\kvecz \\rangle = \\langle \\kvecx , \\kvecz \\rangle + \\langle \\kvecy , \\kvecz \\rangle",
+       "src": "A.5, rule (iv)"
+      },
+      {
+       "tex": "\\langle a\\kvecx , \\kvecy \\rangle = a \\langle \\kvecx , \\kvecy \\rangle",
+       "src": "A.5, rule (iii)"
+      },
+      {
+       "tex": "\\langle \\kvecv_k , \\kvecv_j \\rangle = 0 \\quad (k \\neq j)",
+       "src": "A.5, Orthogonal basis"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\langle \\kvecx , \\kvecv_j \\rangle} = \\mk{r}{\\langle a_1 \\kvecv_1 + a_2 \\kvecv_2 + \\cdots + a_n \\kvecv_n , \\kvecv_j \\rangle}",
+      "src": "A.5, Orthogonal basis",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\langle \\kvecx , \\kvecv_j \\rangle} = \\mk{r1}{\\langle a_1 \\kvecv_1 , \\kvecv_j \\rangle} + \\mk{r2}{\\langle a_2 \\kvecv_2 , \\kvecv_j \\rangle} + \\cdots + \\mk{rn}{\\langle a_n \\kvecv_n , \\kvecv_j \\rangle}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "r": [
+         "r1",
+         "r2",
+         "rn"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\langle \\kvecx , \\kvecv_j \\rangle} = \\mk{r1}{a_1 \\langle \\kvecv_1 , \\kvecv_j \\rangle} + \\mk{r2}{a_2 \\langle \\kvecv_2 , \\kvecv_j \\rangle} + \\cdots + \\mk{rn}{a_n \\langle \\kvecv_n , \\kvecv_j \\rangle}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\langle \\kvecx , \\kvecv_j \\rangle} = \\mk{rj}{a_j \\langle \\kvecv_j , \\kvecv_j \\rangle}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "r1": "rj",
+        "r2": "rj",
+        "rn": "rj"
+       },
+       "cap": "As the basis is orthogonal, $\\langle \\kvecv_k , \\kvecv_j \\rangle = 0$ whenever $k \\neq j$. That means that only one of the terms, the $j^{\\text{th}}$ one, on the right-hand side is nonzero."
+      }
+     ],
+     "src": "A.5, Orthogonal basis"
+    }
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-euclid",
+   "kind": "book",
+   "number": "64",
+   "html": "When Euclid defined angles in his <em>Elements</em>, the only angle he ever really defined was the right angle."
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "A.5.1",
+   "source_number": "A.5.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "orthogonal",
+   "prompt": "<p>Find the $s$ that makes the following vectors orthogonal: $(1,2,3)$, $(1,1,s)$.</p>",
+   "answer": {
+    "type": "number",
+    "value": -1,
+    "generated_by": "ai",
+    "solution": "Two vectors are orthogonal when their inner product is zero. Here $\\langle (1,2,3), (1,1,s) \\rangle = 1 \\cdot 1 + 2 \\cdot 1 + 3s = 3 + 3s$, which is $0$ exactly when $s = -1$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "A.5.2",
+   "source_number": "A.5.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cos-intro",
+   "prompt": "<p>Find the angle $\\ktheta$ between $(1,3,1)$, $(2,1,-1)$.</p>",
+   "answer": {
+    "type": "number",
+    "value": 1.056,
+    "tol": 0.001,
+    "generated_by": "ai",
+    "solution": "$\\cos \\ktheta = \\frac{\\langle (1,3,1), (2,1,-1) \\rangle}{\\lVert (1,3,1) \\rVert \\lVert (2,1,-1) \\rVert} = \\frac{2 + 3 - 1}{\\sqrt{11}\\,\\sqrt{6}} = \\frac{4}{\\sqrt{66}} \\approx 0.4924$, so with $0 \\leq \\ktheta \\leq \\pi$, $\\ktheta = \\cos^{-1}\\bigl(4/\\sqrt{66}\\bigr) \\approx 1.0560$ (radians)."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "A.5.3",
+   "source_number": "A.5.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rules",
+   "prompt": "<p>Given that $\\langle \\kvecv , \\kvecw \\rangle = 3$ and $\\langle \\kvecv , \\kvecu \\rangle = -1$ compute</p><ol type=\"a\"><li>$\\langle \\kvecu , 2 \\kvecv \\rangle$</li><li>$\\langle \\kvecv , 2 \\kvecw + 3 \\kvecu \\rangle$</li><li>$\\langle \\kvecw + 3 \\kvecu, \\kvecv \\rangle$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "a",
+      "value": -2
+     },
+     {
+      "part": "b",
+      "value": 3
+     },
+     {
+      "part": "c",
+      "value": 0
+     }
+    ],
+    "solution": "a) By rules (iii) and (ii), $\\langle \\kvecu , 2 \\kvecv \\rangle = 2 \\langle \\kvecu , \\kvecv \\rangle = 2 \\langle \\kvecv , \\kvecu \\rangle = 2(-1) = -2$. b) By rules (iv) and (iii), $\\langle \\kvecv , 2 \\kvecw + 3 \\kvecu \\rangle = 2 \\langle \\kvecv , \\kvecw \\rangle + 3 \\langle \\kvecv , \\kvecu \\rangle = 2(3) + 3(-1) = 3$. c) By rules (iv), (iii) and (ii), $\\langle \\kvecw + 3 \\kvecu, \\kvecv \\rangle = \\langle \\kvecv , \\kvecw \\rangle + 3 \\langle \\kvecv , \\kvecu \\rangle = 3 + 3(-1) = 0$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "A.5.4",
+   "source_number": "A.5.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projection-def",
+   "prompt": "<p>Suppose $\\kvecv = (1,1,-1)$. Find</p><ol type=\"a\"><li>$\\kproj_{\\kvecv}\\bigl( (1,0,0) \\bigr)$</li><li>$\\kproj_{\\kvecv}\\bigl( (1,2,3) \\bigr)$</li><li>$\\kproj_{\\kvecv}\\bigl( (1,-1,0) \\bigr)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $\\langle \\kvecv , \\kvecv \\rangle = 1 + 1 + 1 = 3$. a) $\\langle (1,0,0), \\kvecv \\rangle = 1$, so $\\kproj_{\\kvecv}\\bigl((1,0,0)\\bigr) = \\frac{1}{3}(1,1,-1) = \\left(\\frac{1}{3}, \\frac{1}{3}, \\frac{-1}{3}\\right)$. b) $\\langle (1,2,3), \\kvecv \\rangle = 1 + 2 - 3 = 0$, so the projection is $\\vec{0} = (0,0,0)$: $(1,2,3)$ is orthogonal to $\\kvecv$. c) $\\langle (1,-1,0), \\kvecv \\rangle = 1 - 1 + 0 = 0$, so again the projection is $(0,0,0)$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "A.5.5",
+   "source_number": "A.5.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "orthogonal-basis-def",
+   "prompt": "<p>Consider the vectors $(1,2,3)$, $(-3,0,1)$, $(1,-5,3)$.</p><ol type=\"a\"><li>Check that the vectors are linearly independent and so form a basis of ${\\mathbb{R}}^3$.</li><li>Check that the vectors are mutually orthogonal, and are therefore an orthogonal basis.</li><li>Represent $(1,1,1)$ as a linear combination of this basis.</li><li>Make the basis orthonormal.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The matrix with these vectors as columns, $\\left[ \\begin{smallmatrix} 1 & -3 & 1 \\\\ 2 & 0 & -5 \\\\ 3 & 1 & 3 \\end{smallmatrix} \\right]$, has determinant $70 \\neq 0$ (equivalently, row reduction finds a pivot in every column), so the three vectors are linearly independent, and three linearly independent vectors in ${\\mathbb{R}}^3$ form a basis. b) $\\langle (1,2,3), (-3,0,1) \\rangle = -3 + 0 + 3 = 0$, $\\langle (1,2,3), (1,-5,3) \\rangle = 1 - 10 + 9 = 0$ and $\\langle (-3,0,1), (1,-5,3) \\rangle = -3 + 0 + 3 = 0$, so every pair is orthogonal. c) The coefficients are $a_j = \\frac{\\langle \\kvecx, \\kvecv_j \\rangle}{\\langle \\kvecv_j, \\kvecv_j \\rangle}$ with $\\kvecx = (1,1,1)$: $\\frac{6}{14} = \\frac{3}{7}$, $\\frac{-2}{10} = -\\frac{1}{5}$ and $\\frac{-1}{35}$, so $(1,1,1) = \\frac{3}{7}(1,2,3) - \\frac{1}{5}(-3,0,1) - \\frac{1}{35}(1,-5,3)$. d) Divide each vector by its magnitude, $\\sqrt{14}$, $\\sqrt{10}$ and $\\sqrt{35}$: $\\frac{1}{\\sqrt{14}}(1,2,3)$, $\\frac{1}{\\sqrt{10}}(-3,0,1)$, $\\frac{1}{\\sqrt{35}}(1,-5,3)$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "A.5.6",
+   "source_number": "A.5.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gram-schmidt-start",
+   "prompt": "<p>Let $\\kS$ be the subspace spanned by $(1,3,-1)$, $(1,1,1)$. Find an orthogonal basis of $\\kS$ by the Gram–Schmidt process.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kvecw_1 = (1,3,-1)$. Then $\\langle (1,1,1), \\kvecw_1 \\rangle = 1 + 3 - 1 = 3$ and $\\langle \\kvecw_1, \\kvecw_1 \\rangle = 11$, so $\\kvecw_2 = (1,1,1) - \\frac{3}{11}(1,3,-1) = \\left(\\frac{8}{11}, \\frac{2}{11}, \\frac{14}{11}\\right)$. The orthogonal basis is $(1,3,-1)$, $\\left(\\frac{8}{11}, \\frac{2}{11}, \\frac{14}{11}\\right)$ (or $(4,1,7)$ after scaling by $\\frac{11}{2}$); check: $\\frac{8}{11} + \\frac{6}{11} - \\frac{14}{11} = 0$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "A.5.7",
+   "source_number": "A.5.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gram-schmidt-start",
+   "prompt": "<p>Starting with $(1,2,3)$, $(1,1,1)$, $(2,2,0)$, follow the Gram–Schmidt process to find an orthogonal basis of ${\\mathbb{R}}^3$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kvecw_1 = (1,2,3)$, with $\\langle \\kvecw_1, \\kvecw_1 \\rangle = 14$. Next, $\\langle (1,1,1), \\kvecw_1 \\rangle = 6$, so $\\kvecw_2 = (1,1,1) - \\frac{6}{14}(1,2,3) = \\left(\\frac{4}{7}, \\frac{1}{7}, \\frac{-2}{7}\\right)$, with $\\langle \\kvecw_2, \\kvecw_2 \\rangle = \\frac{3}{7}$. Last, $\\langle (2,2,0), \\kvecw_1 \\rangle = 6$ and $\\langle (2,2,0), \\kvecw_2 \\rangle = \\frac{10}{7}$, so $\\kvecw_3 = (2,2,0) - \\frac{3}{7}(1,2,3) - \\frac{10}{3}\\left(\\frac{4}{7}, \\frac{1}{7}, \\frac{-2}{7}\\right) = \\left(\\frac{-1}{3}, \\frac{2}{3}, \\frac{-1}{3}\\right)$. The orthogonal basis is $(1,2,3)$, $\\left(\\frac{4}{7}, \\frac{1}{7}, \\frac{-2}{7}\\right)$, $\\left(\\frac{-1}{3}, \\frac{2}{3}, \\frac{-1}{3}\\right)$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "A.5.8",
+   "source_number": "A.5.8",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gram-schmidt-start",
+   "prompt": "<p>Find an orthogonal basis of ${\\mathbb{R}}^3$ such that $(3,1,-2)$ is one of the vectors. Hint: First find two extra vectors to make a linearly independent set.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "One answer: $(3,1,-2)$, $(1,0,0)$, $(0,1,0)$ are linearly independent (the determinant of the matrix they form is $-2 \\neq 0$), so run the Gram–Schmidt process on them. $\\kvecw_1 = (3,1,-2)$, $\\langle \\kvecw_1, \\kvecw_1 \\rangle = 14$; $\\kvecw_2 = (1,0,0) - \\frac{3}{14}(3,1,-2) = \\left(\\frac{5}{14}, \\frac{-3}{14}, \\frac{3}{7}\\right)$; $\\kvecw_3 = (0,1,0) - \\frac{1}{14}(3,1,-2) + \\frac{3}{5}\\left(\\frac{5}{14}, \\frac{-3}{14}, \\frac{3}{7}\\right) = \\left(0, \\frac{4}{5}, \\frac{2}{5}\\right)$. Scaled, the basis $(3,1,-2)$, $(5,-3,6)$, $(0,2,1)$ is orthogonal: the three inner products are $15 - 3 - 12 = 0$, $0 + 2 - 2 = 0$ and $0 - 6 + 6 = 0$. Any orthogonal basis containing $(3,1,-2)$ is an answer."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "A.5.9",
+   "source_number": "A.5.9",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "angle-formula",
+   "prompt": "<p>Using cosines and sines of $\\ktheta$, find a unit vector $\\kvecu$ in ${\\mathbb{R}}^2$ that makes angle $\\ktheta$ with $\\vec{\\imath} = (1,0)$. What is $\\langle \\vec{\\imath} , \\kvecu \\rangle$?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kvecu = (\\cos \\ktheta, \\sin \\ktheta)$ has magnitude $\\sqrt{\\cos^2 \\ktheta + \\sin^2 \\ktheta} = 1$ and makes angle $\\ktheta$ with $\\vec{\\imath}$. Then $\\langle \\vec{\\imath} , \\kvecu \\rangle = 1 \\cdot \\cos \\ktheta + 0 \\cdot \\sin \\ktheta = \\cos \\ktheta$, as the formula $\\langle \\vec{\\imath} , \\kvecu \\rangle = \\lVert \\vec{\\imath} \\rVert \\lVert \\kvecu \\rVert \\cos \\ktheta$ says for two unit vectors."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "A.5.101",
+   "source_number": "A.5.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "orthogonal",
+   "prompt": "<p>Find the $s$ that makes the following vectors orthogonal: $(1,1,1)$, $(1,s,1)$.</p>",
+   "answer": {
+    "type": "number",
+    "value": -2,
+    "generated_by": "source",
+    "solution": "$s=-2$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "A.5.102",
+   "source_number": "A.5.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cos-intro",
+   "prompt": "<p>Find the angle $\\ktheta$ between $(1,2,3)$, $(1,1,1)$.</p>",
+   "answer": {
+    "type": "number",
+    "value": 0.3876,
+    "tol": 0.001,
+    "generated_by": "source",
+    "solution": "$\\ktheta \\approx 0.3876$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "A.5.103",
+   "source_number": "A.5.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "rules",
+   "prompt": "<p>Given that $\\langle \\kvecv , \\kvecw \\rangle = 1$, $\\langle \\kvecv , \\kvecu \\rangle = -1$, and $\\lVert \\kvecv \\rVert = 3$, compute</p><ol type=\"a\"><li>$\\langle 3 \\kvecu , 5 \\kvecv \\rangle$</li><li>$\\langle \\kvecv , 2 \\kvecw + 3 \\kvecu \\rangle$</li><li>$\\langle \\kvecw + 3 \\kvecv, \\kvecv \\rangle$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": -15
+     },
+     {
+      "part": "b",
+      "value": -1
+     },
+     {
+      "part": "c",
+      "value": 28
+     }
+    ],
+    "solution": "a) $-15$ b) $-1$ c) $28$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "A.5.104",
+   "source_number": "A.5.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "projection-def",
+   "prompt": "<p>Suppose $\\kvecv = (1,0,-1)$. Find</p><ol type=\"a\"><li>$\\kproj_{\\kvecv}\\bigl( (0,2,1) \\bigr)$</li><li>$\\kproj_{\\kvecv}\\bigl( (1,0,1) \\bigr)$</li><li>$\\kproj_{\\kvecv}\\bigl( (4,-1,0) \\bigr)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $({-1}/{2},0,{1}/{2})$ b) $(0,0,0)$ c) $(2,0,-2)$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "A.5.105",
+   "source_number": "A.5.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "coefficients-intro",
+   "prompt": "<p>The vectors $(1,1,-1)$, $(2,-1,1)$, $(0,1,1)$ form an orthogonal basis. Represent the following vectors in terms of this basis:</p><ol type=\"a\"><li>$(-1,4,0)$</li><li>$(4,-1,3)$</li><li>$(-2,6,-2)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $(1,1,-1)-(2,-1,1)+2(0,1,1)$ b) $2(2,-1,1)+(0,1,1)$ c) $2(1,1,-1)-2(2,-1,1)+2(0,1,1)$"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "A.5.106",
+   "source_number": "A.5.106",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gram-schmidt-start",
+   "prompt": "<p>Let $\\kS$ be the subspace spanned by $(2,-1,1)$, $(2,2,2)$. Find an orthogonal basis of $\\kS$ by the Gram–Schmidt process.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(2,-1,1)$, $({2}/{3},{8}/{3},{4}/{3})$"
+   }
+  },
+  {
+   "id": "e107",
+   "source_id": "A.5.107",
+   "source_number": "A.5.107",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gram-schmidt-start",
+   "prompt": "<p>Starting with $(1,1,-1)$, $(2,3,-1)$, $(1,-1,1)$, follow the Gram–Schmidt process to find an orthogonal basis of ${\\mathbb{R}}^3$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$(1,1,-1)$, $(0,1,1)$, $({4}/{3},{-2}/{3},{2}/{3})$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e1",
+   "concept": "inner-product"
+  },
+  {
+   "exercise": "e2",
+   "concept": "angle-between-two-vectors"
+  },
+  {
+   "exercise": "e2",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e3",
+   "concept": "properties-of-the-inner-product"
+  },
+  {
+   "exercise": "e4",
+   "concept": "vector-projection"
+  },
+  {
+   "exercise": "e5",
+   "concept": "linear-independence-of-vectors"
+  },
+  {
+   "exercise": "e5",
+   "concept": "orthogonal-basis"
+  },
+  {
+   "exercise": "e5",
+   "concept": "coordinates-in-an-orthogonal-basis"
+  },
+  {
+   "exercise": "e5",
+   "concept": "orthonormal-basis"
+  },
+  {
+   "exercise": "e6",
+   "concept": "gram-schmidt-process"
+  },
+  {
+   "exercise": "e7",
+   "concept": "gram-schmidt-process"
+  },
+  {
+   "exercise": "e7",
+   "concept": "orthogonal-basis"
+  },
+  {
+   "exercise": "e8",
+   "concept": "gram-schmidt-process"
+  },
+  {
+   "exercise": "e8",
+   "concept": "orthogonal-basis"
+  },
+  {
+   "exercise": "e8",
+   "concept": "linear-independence-of-vectors"
+  },
+  {
+   "exercise": "e9",
+   "concept": "unit-vector"
+  },
+  {
+   "exercise": "e9",
+   "concept": "inner-product"
+  },
+  {
+   "exercise": "e9",
+   "concept": "angle-between-two-vectors"
+  },
+  {
+   "exercise": "e101",
+   "concept": "orthogonal-vectors"
+  },
+  {
+   "exercise": "e101",
+   "concept": "inner-product"
+  },
+  {
+   "exercise": "e102",
+   "concept": "angle-between-two-vectors"
+  },
+  {
+   "exercise": "e102",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e103",
+   "concept": "properties-of-the-inner-product"
+  },
+  {
+   "exercise": "e103",
+   "concept": "magnitude-of-a-vector"
+  },
+  {
+   "exercise": "e104",
+   "concept": "vector-projection"
+  },
+  {
+   "exercise": "e105",
+   "concept": "coordinates-in-an-orthogonal-basis"
+  },
+  {
+   "exercise": "e105",
+   "concept": "orthogonal-basis"
+  },
+  {
+   "exercise": "e106",
+   "concept": "gram-schmidt-process"
+  },
+  {
+   "exercise": "e107",
+   "concept": "gram-schmidt-process"
+  },
+  {
+   "exercise": "e107",
+   "concept": "orthogonal-basis"
+  }
+ ]
+}

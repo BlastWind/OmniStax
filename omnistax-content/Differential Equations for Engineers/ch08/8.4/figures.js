@@ -99,8 +99,8 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
       const a = cross[cross.length - 2], b = cross[cross.length - 1];
       const loop = pts.slice(Math.floor(a), Math.ceil(b) + 1);
       cyc = { loop, period: (b - a) * run.h, xmax: Math.max(...loop.map((p) => Math.abs(p[0]))), ymax: Math.max(...loop.map((p) => Math.abs(p[1]))) };
-      /* a coarser copy for distances */
-      cyc.coarse = loop.filter((_, i) => i % 3 === 0);
+      /* the loop resampled evenly by arc length, for distances to it */
+      cyc.even = F.resample(loop, 600, true);
     }
     const Y = Math.max(4, cyc ? 1.15 * cyc.ymax : 0);
     M = { f, cyc, Y, book: BOOK.map((z) => solve(f, z, T, H, 1e4)) };
@@ -113,10 +113,12 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     const Mu = forMu(m), s = solve(Mu.f, [a, b], T, H, 1e4);
     let settle = null;
     if (Mu.cyc && (a || b)) {
-      const dist = (p) => Math.min(...Mu.cyc.coarse.map((q) => Math.hypot(p[0] - q[0], p[1] - q[1])));
+      /* the distance from p to the cycle: to the nearest of its chords */
+      const E = Mu.cyc.even, seg = (p, a, c) => { const dx = c[0] - a[0], dy = c[1] - a[1], L2 = dx * dx + dy * dy, k = L2 ? Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / L2)) : 0; return Math.hypot(p[0] - a[0] - k * dx, p[1] - a[1] - k * dy); };
+      const dist = (p) => { let best = Infinity; for (let j = 0; j < E.length; j++) best = Math.min(best, seg(p, E[j], E[(j + 1) % E.length])); return best; };
       let last = -1;
-      for (let i = 0; i < s.pts.length; i += 2) if (dist(s.pts[i]) > 0.05) last = i;
-      settle = last < 0 ? 0 : last + 2 < s.pts.length ? (last + 2) * s.h : null;
+      for (let i = 0; i < s.pts.length; i++) if (dist(s.pts[i]) > 0.05) last = i;
+      settle = last < 0 ? 0 : last + 1 < s.pts.length ? (last + 1) * s.h : null;
     }
     S = { s, settle }; sKey = key; return S;
   }
@@ -129,7 +131,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     hits = [];
     const ax = axes(ctx, PORT, [-4, 4], [-Y, Y], { xl: 'x', yl: 'y = x′', xc: fc, yc: fc, nx: 4, ny: 4, nice: true });
     line(ctx, ax.X(0), PORT.t, ax.X(0), PORT.b, guide(), 2); line(ctx, PORT.l, ax.Y(0), PORT.r, ax.Y(0), guide(), 2);
-    directions(ctx, ax, Mu.f, alpha(vf, 0.6), [15, 15]);
+    directions(ctx, ax, Mu.f, alpha(vf, 0.6), [13, 13]);
     [[-2.5, 0.5 * Y], [2.5, -0.5 * Y], [-1.5, -0.75 * Y], [1.5, 0.75 * Y]].forEach(([x, y]) => {
       const [p, q] = Mu.f([x, y]);
       hits.push({ x: ax.X(x), y: ax.Y(y), r: 16, name: `the direction field at (${u(x, 1)}, ${u(y, 2)}): (x′, y′) = (y, μ(1 − x²)y − x) = (${u(p)}, ${u(q)})` });
@@ -146,7 +148,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     /* the limit cycle */
     if (Mu.cyc) {
       const lp = Mu.cyc.loop;
-      poly(ctx, ax, lp, cc, 6);
+      poly(ctx, ax, lp, cc, 7);
       let j = 0; lp.forEach((p, i) => { if (p[0] > lp[j][0]) j = i; });
       const top = lp.reduce((p, q) => (q[1] > p[1] ? q : p));
       hits.push({ x: ax.X(top[0]), y: ax.Y(top[1]), r: 16, name: `the limit cycle: a closed trajectory, between x = ${u(-Mu.cyc.xmax)} and ${u(Mu.cyc.xmax)}, period ${u(Mu.cyc.period)}` });
@@ -154,7 +156,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     }
     /* the reader's trajectory: faint whole, solid up to t, with the state */
     poly(ctx, ax, s.pts, alpha(cc, 0.35), 3);
-    poly(ctx, ax, s.pts, cc, 4.5, k + 1);
+    poly(ctx, ax, s.pts, alpha(cc, 0.85), 3.5, k + 1);
     const now = at(s, t);
     const rp = rider(ctx, ax, now, cc, 9);
     if (rp) hits.push({ x: rp.x, y: rp.y, r: 16, name: `the state (x(t), y(t)) = (${u(now[0])}, ${u(now[1])}) at t = ${u(t, 1)}` });
@@ -189,13 +191,13 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     let head;
     if (m === 0) {
       head = !a && !b ? '$\\mu = 0$: $\\kxdprime + \\kx = 0$, a linear center; from the critical point $(0, 0)$ the solution is the constant $\\kx = 0$, $\\ky = 0$.'
-        : `$\\mu = 0$: $\\kxdprime + \\kx = 0$, a linear center; from ${from} the trajectory is the circle of radius ${u(Math.hypot(a, b))}, and no trajectory spirals onto another.`;
+        : `$\\mu = 0$: $\\kxdprime + \\kx = 0$, a linear center; from ${from} the trajectory is the circle of radius $${n(Math.hypot(a, b))}$, and no trajectory spirals onto another.`;
     } else {
       const c = Mu.cyc, part = `$\\mu = ${n(m)}$: the limit cycle runs between $\\kx = ${n(-c.xmax)}$ and $${n(c.xmax)}$, period $\\kP \\approx ${n(c.period)}$`;
       if (!a && !b) head = `${part}; from the critical point $(0, 0)$ the solution is the constant $\\kx = 0$, $\\ky = 0$.`;
-      else if (St.settle === 0) head = `${part}; from ${from} the solution stays within 0.05 of it from the start.`;
-      else if (St.settle === null) head = `${part}; from ${from} the solution is still more than 0.05 from it at $t = 30$.`;
-      else head = `${part}; from ${from} the solution stays within 0.05 of it from $t = ${n(St.settle, 1)}$ on.`;
+      else if (St.settle === 0) head = `${part}; from ${from} the solution stays within $0.05$ of it from the start.`;
+      else if (St.settle === null) head = `${part}; from ${from} the solution is still more than $0.05$ from it at $t = 30$.`;
+      else head = `${part}; from ${from} the solution stays within $0.05$ of it from $t = ${n(St.settle, 1)}$ on.`;
     }
     headline(ctx, head);
     /* the readout: the system at the present state, from the numbers shown */
@@ -220,7 +222,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
 (function () {
   const d = sim('sim-limit-cycle-cases', 780);
   const T = 20, RATE = 3, H = 0.01, R = 1.5;
-  const BOX = { l: 410, r: 990, t: 140, b: 720 };
+  const BOX = { l: 415, r: 985, t: 130, b: 700 };
   const SYS = { squared: 2, unsquared: 1, linear: 0 };
   const hOf = (p) => (x, y) => (p === 0 ? 0 : (x * x + y * y - 1) ** p);
   const field = (p) => ([x, y]) => { const h = hOf(p)(x, y); return [y + h * x, -x + h * y]; };
@@ -293,7 +295,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     const s = mine.s, leave = s.gone < Infinity ? s.gone : (() => { const i = s.pts.findIndex((p) => !inBox(p, R)); return i < 0 ? null : i * s.h; })();
     const from = `$(${n(x0)}, 0)$`, on = Math.abs(x0 - 1) < 1e-9;
     let fate;
-    if (v === 'linear') fate = `from ${from} the solution goes round the circle of radius ${u(x0)} with period $2\\pi$`;
+    if (v === 'linear') fate = `from ${from} the solution goes round the circle of radius $${n(x0)}$ with period $2\\pi$`;
     else if (on) fate = `from ${from} the solution goes round it, $\\kx = \\cos t$, $\\ky = -\\sin t$, with period $2\\pi$`;
     else if (x0 > 1) fate = leave === null ? `from ${from} the trajectory spirals slowly away from it, still inside the square at $t = 20$` : `from ${from} the trajectory spirals off to infinity, leaving the square at $t = ${n(leave, 2)}$`;
     else fate = v === 'squared' ? `from ${from} the trajectory spirals out towards it` : `from ${from} the trajectory spirals in to the origin`;
@@ -324,15 +326,15 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
    the idea and nothing in them moves; the choice crossfades the regions and bends the field. */
 (function () {
   const d = sim('sim-divergence-sign', 760);
-  const BOX = { l: 330, r: 930, t: 130, b: 730 }, L = 2;
+  const BOX = { l: 350, r: 910, t: 120, b: 680 }, L = 2;
   const EX = {
     '8.4.3': { f: ([x, y]) => [y + y * y * Math.exp(x), x], div: (x, y) => y * y * Math.exp(x), crit: [[0, 0, false, 'a saddle'], [0, -1, false, 'a spiral source']] },
     '8.4.4': { f: ([x, y]) => [-y - x * x, -x + y * y], div: (x, y) => 2 * (y - x), crit: [[0, 0, false, 'a saddle'], [1, -1, true, 'a sink']] },
     '8.4.5': { f: ([x, y]) => { const h = x * x + y * y - 1; return [y + h * x, -x + h * y]; }, div: (x, y) => 4 * x * x + 4 * y * y - 2, crit: [[0, 0, true, 'a spiral sink, in the hole, outside R']] },
   };
   const ex = choice(d.controls, {
-    label: '', key: 'example', value: '8.4.4', aria: 'the example',
-    options: Object.keys(EX).map((k) => ({ value: k, label: `Example ${k}` })),
+    label: '\\text{example}', key: 'example', value: '8.4.4', aria: 'the example',
+    options: Object.keys(EX).map((k) => ({ value: k, label: k })),
   });
   const px = ctl(d.controls, { label: 'x', cls: 'point', key: 'x', min: -2, max: 2, step: 0.05, value: 0.5, unit: '', dec: 2, aria: 'the x of the point' });
   const py = ctl(d.controls, { label: 'y', cls: 'point', key: 'y', min: -2, max: 2, step: 0.05, value: 1.2, unit: '', dec: 2, aria: 'the y of the point' });
@@ -363,7 +365,7 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     });
   }
   /* the legend, right of the plane: what each fill means for the example shown */
-  const LEG = { x: 980, y: 200 };
+  const LEG = { x: 960, y: 190 };
   function legend(ctx, key, rc) {
     const rows = [];
     rows.push({ kind: 'pos', text: key === '8.4.5' ? 'divergence > 0: R' : 'divergence > 0' });
@@ -426,17 +428,17 @@ const inBox = (p, R) => p && Math.abs(p[0]) <= R && Math.abs(p[1]) <= R;
     if (v === '8.4.3') {
       const r2 = rnd(dv), exact = Math.abs(dv) < 1e-12;
       tex = `\\kpfx + \\kpgy = \\ky^2 e^{\\kx} + 0 = ${pp(b)}^2 e^{${n(a)}} + 0 ${exact ? '=' : '\\approx'} ${n(r2)} ${sign(dv)}`;
-      head = Math.abs(b) < 1e-9 ? `Example 8.4.3: at ${at0}, on the line $\\ky = 0$, the divergence $\\ky^2 e^{\\kx}$ is 0; it is positive everywhere else, so no closed trajectory.`
-        : `Example 8.4.3: at ${at0} the divergence $\\ky^2 e^{\\kx}$ is about ${n(r2)} > 0; it is positive on the whole plane but the line $\\ky = 0$, so no closed trajectory.`;
+      head = Math.abs(b) < 1e-9 ? `Example 8.4.3: at ${at0}, on the line $\\ky = 0$, the divergence $\\ky^2 e^{\\kx}$ is $0$; it is positive everywhere else, so no closed trajectory.`
+        : `Example 8.4.3: at ${at0} the divergence $\\ky^2 e^{\\kx}$ is about $${n(r2)} > 0$; it is positive on the whole plane but the line $\\ky = 0$, so no closed trajectory.`;
     } else if (v === '8.4.4') {
       const r2 = rnd(dv);
       tex = `\\kpfx + \\kpgy = -2\\kx + 2\\ky = 2(-\\kx + \\ky) = 2\\bigl(-${par(a)} + ${par(b)}\\bigr) = ${n(r2)} ${sign(dv)}`;
-      head = `Example 8.4.4: at ${at0} the divergence $2(\\ky - \\kx)$ is ${n(r2)} ${sign(dv)}; on the line $\\kx = \\ky$ the arrows all point into $\\ky \\geq \\kx$, so no closed trajectory has points on both sides.`;
+      head = `Example 8.4.4: at ${at0} the divergence $2(\\ky - \\kx)$ is $${n(r2)} ${sign(dv)}$; on the line $\\kx = \\ky$ the arrows all point into $\\ky \\geq \\kx$, so no closed trajectory has points on both sides.`;
     } else {
       const r2 = rnd(dv), inside = a * a + b * b <= 0.5 + 1e-12;
       tex = `\\kpfx + \\kpgy = 4\\kx^2 + 4\\ky^2 - 2 = 4${pp(a)}^2 + 4${pp(b)}^2 - 2 = ${n(r2)} ${sign(dv)}`;
-      head = inside ? `Example 8.4.5: at ${at0}, in the hole cut out of $\\kR$, the divergence $4\\kx^2 + 4\\ky^2 - 2$ is ${n(r2)}; on $\\kR$ it is positive, yet the unit circle is a closed trajectory: $\\kR$ is not simply connected.`
-        : `Example 8.4.5: at ${at0}, in $\\kR$, the divergence $4\\kx^2 + 4\\ky^2 - 2$ is ${n(r2)} > 0, yet the unit circle is a closed trajectory: $\\kR$ has a hole, so it is not simply connected.`;
+      head = inside ? `Example 8.4.5: at ${at0}, in the hole cut out of $\\kR$, the divergence $4\\kx^2 + 4\\ky^2 - 2$ is $${n(r2)}$; on $\\kR$ it is positive, yet the unit circle is a closed trajectory: $\\kR$ is not simply connected.`
+        : `Example 8.4.5: at ${at0}, in $\\kR$, the divergence $4\\kx^2 + 4\\ky^2 - 2$ is $${n(r2)} > 0$, yet the unit circle is a closed trajectory: $\\kR$ has a hole, so it is not simply connected.`;
     }
     headline(ctx, head);
     ro.set(tex, undefined, { form: v });

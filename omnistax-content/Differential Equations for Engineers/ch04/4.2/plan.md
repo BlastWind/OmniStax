@@ -44,3 +44,6 @@ Book images: 4.3–4.8 are the originals above. Extra Sims weighed and left out:
 - The symbols ω₀ and A are Chapter 2's and 3's (\komegazero, \kA); `v_vec` is Chapter 1's with a `vector` override here.
 - Colours: on this page `function` (f) and `series` (S_N) take near hues (magenta and violet in light, pink and grey-violet in dark), hard to tell apart in `sim-partial-sums`; the end-of-run `colours:default -- diffyqs` should put them in different families.
 - No concept or edge fixes; no glossary (the book has none).
+- Chapter pass (`pass-ch04`, 2026-10-19): applied: every anchor listed (11 variables, 10 forms).
+- Chapter pass (`pass-ch04`, 2026-10-19): applied: new row 4.2/S (`series`, the partial sum S_N(t), anchor `4.2-eq-fourier-series`); the two S_N(t) of the text now \kS_N(t).
+- Chapter pass (`pass-ch04`, 2026-10-19): colour note (function vs series hues) listed in `build-status.md` for the whole-book `colours:default` run; palette not changed.

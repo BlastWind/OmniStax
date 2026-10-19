@@ -15,7 +15,7 @@ const pt = (v) => `(${numT(v[0])}, ${numT(v[1])})`;
 const ptT = (v) => `(${num(v[0])}, ${num(v[1])})`;
 const tag = (ctx, s, x, y, color, align = 'center') => text(ctx, s, x, y, color, { size: 22, weight: 600, tex: true, bg: PAL.panel, align });
 /* the magnitude √s of a vector whose squared components add to s, as TeX: exact where the root is, else to two places */
-function root(s, times = 1) {
+function rootTex(s, times = 1) {
   const S = Math.round(s * 1e4) / 1e4, v = times * Math.sqrt(S), exact = Math.abs(r2(v) - v) < 1e-9;
   const pre = times === 1 ? '' : num(times);
   if (S === 0) return '0';
@@ -192,11 +192,11 @@ const clear = (c) => alpha(c, 0);
     /* headline and readout */
     const sq = (p) => r2(p[0] * p[0] + p[1] * p[1]);
     if (v === 'arrow') {
-      headline(ctx, `$\\kvecx = ${ptT(x)}$ is the arrow from the origin to the point $${ptT(x)}$, of magnitude $\\lVert \\kvecx \\rVert = ${root(sq(x))}$.`);
-      ro.set(`\\lVert \\kvecx \\rVert = \\sqrt{${par(x[0])}^2 + ${par(x[1])}^2} = ${root(sq(x))}`, '', { form: v });
+      headline(ctx, `$\\kvecx = ${ptT(x)}$ is the arrow from the origin to the point $${ptT(x)}$, of magnitude $\\lVert \\kvecx \\rVert = ${rootTex(sq(x))}$.`);
+      ro.set(`\\lVert \\kvecx \\rVert = \\sqrt{${par(x[0])}^2 + ${par(x[1])}^2} = ${rootTex(sq(x))}`, '', { form: v });
     } else if (v === 'add' || v === 'sub') {
       const s = v === 'add' ? '+' : '-';
-      headline(ctx, `Along $\\kvecx$, then ${v === 'add' ? '' : 'backwards '}along $\\kvecy$: $\\kvecx ${s} \\kvecy = ${ptT(res)}$, of magnitude $${root(sq(res))}$.`);
+      headline(ctx, `Along $\\kvecx$, then ${v === 'add' ? '' : 'backwards '}along $\\kvecy$: $\\kvecx ${s} \\kvecy = ${ptT(res)}$, of magnitude $${rootTex(sq(res))}$.`);
       ro.set(`\\kvecx ${s} \\kvecy = ${col(num(x[0]), num(x[1]))} ${s} ${col(num(y[0]), num(y[1]))} = ${col(`${num(x[0])} ${s} ${par(y[0])}`, `${num(x[1])} ${s} ${par(y[1])}`)} = ${col(num(res[0]), num(res[1]))}`, '', { form: v });
     } else {
       const m = Math.abs(a), xs = sq(x);
@@ -205,7 +205,7 @@ const clear = (c) => alpha(c, 0);
       const nm = a === -1 ? '-\\kvecx' : `${num(a)}\\kvecx`;
       headline(ctx, `$${nm} = ${ptT(res)}$: ${what}.`);
       ro.set(`${nm} = ${a === -1 ? '-' : num(a)}${col(num(x[0]), num(x[1]))} = ${col(`${num(a)}(${num(x[0])})`, `${num(a)}(${num(x[1])})`)} = ${col(num(res[0]), num(res[1]))}`,
-        `$\\lVert ${nm} \\rVert = |${num(a)}|\\,\\lVert \\kvecx \\rVert = ${m === 0 || xs === 0 ? '0' : root(xs, m)}$`, { form: v });
+        `$\\lVert ${nm} \\rVert = |${num(a)}|\\,\\lVert \\kvecx \\rVert = ${m === 0 || xs === 0 ? '0' : rootTex(xs, m)}$`, { form: v });
     }
   }
   still(d, draw);

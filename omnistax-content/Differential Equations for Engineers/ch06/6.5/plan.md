@@ -52,3 +52,4 @@ None beyond the two figures (config 14 names no 3Blue1Brown survivor in 6.5).
 - Concept `wavefront`: its statement ends "y_t and y_x are delta functions there", which the "Shhh" paragraph says of the solution along the front; fine as written. Concept `ill-posed-problem` keeps its statement (both arguments).
 - Edges, as the prep left them for stage two: `boundedness-condition → heat-equation` exists and checks; `transport-on-a-half-line → characteristic-curve` not added (the book ties the wavefront to §1.9 only through the transport equation).
 - Links the page relies on: `/diffyqs/ch06/6.2/#6.2-eq-6-1` must be 6.2's id for (6.1) (6.2's plan names `eq-6-1`); `/diffyqs/sheets/laplace-table/` (the Appendix B sheet task).
+- Chapter pass (2026-10-19): applied, 13 variables and 6 form anchors; `/diffyqs/ch06/6.2/#6.2-eq-6-1` resolves; the sheet link `/diffyqs/sheets/laplace-table/` is the sheet task's page; no edge added (as planned).

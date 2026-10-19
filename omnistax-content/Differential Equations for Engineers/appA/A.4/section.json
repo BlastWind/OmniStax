@@ -739,10 +739,6 @@
     {
      "assumes": [
       {
-       "tex": "\\kL(\\kvecx + \\kvecy) = \\kL\\kvecx + \\kL\\kvecy",
-       "src": "A.1, Linear mappings and matrices"
-      },
-      {
        "tex": "\\kL\\kvecx = \\kveczero"
       },
       {
@@ -751,22 +747,20 @@
      ],
      "then": {
       "tex": "\\mk{l}{\\kL(\\kvecx+\\kvecy)} = \\mk{a}{\\kL\\kvecx} + \\mk{b}{\\kL\\kvecy}",
-      "uses": [
-       0
-      ],
+      "src": "A.1, Linear mappings and matrices",
       "why": "A matrix is a linear mapping, so it takes a sum to the sum of the images."
      },
      "steps": [
       {
        "tex": "\\mk{l}{\\kL(\\kvecx+\\kvecy)} = \\mk{a}{\\kveczero} + \\mk{b}{\\kL\\kvecy}",
        "uses": [
-        1
+        0
        ]
       },
       {
        "tex": "\\mk{l}{\\kL(\\kvecx+\\kvecy)} = \\mk{a}{\\kveczero} + \\mk{b}{\\kveczero}",
        "uses": [
-        2
+        1
        ]
       },
       {
@@ -783,25 +777,19 @@
     {
      "assumes": [
       {
-       "tex": "\\kL(\\alpha \\kvecx) = \\alpha \\kL\\kvecx",
-       "src": "A.1, Linear mappings and matrices"
-      },
-      {
        "tex": "\\kL\\kvecx = \\kveczero"
       }
      ],
      "then": {
       "tex": "\\mk{l}{\\kL(\\alpha \\kvecx)} = \\mk{s}{\\alpha} \\mk{a}{\\kL \\kvecx}",
-      "uses": [
-       0
-      ],
+      "src": "A.1, Linear mappings and matrices",
       "why": "A matrix is a linear mapping, so a scalar comes out in front."
      },
      "steps": [
       {
        "tex": "\\mk{l}{\\kL(\\alpha \\kvecx)} = \\mk{s}{\\alpha} \\mk{a}{\\kveczero}",
        "uses": [
-        1
+        0
        ]
       },
       {
