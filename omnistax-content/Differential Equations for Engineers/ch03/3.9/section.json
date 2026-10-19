@@ -1,0 +1,1286 @@
+{
+ "id": "3.9",
+ "module": "nonhomogsys:section",
+ "chapter": "3",
+ "title": "Nonhomogeneous systems",
+ "short": "Nonhomogeneous systems",
+ "lead": "A linear system with a forcing term, $\\kvecxprime = \\kA\\kvecx + \\kvecf$, is solved by the methods already used for a single equation, carried over to vectors and matrices: an integrating factor, a decomposition along the <span data-concept=\"eigenvector\">eigenvectors</span> of $\\kA$, undetermined coefficients and variation of parameters. The section works each method through an example and then turns to forced second-order systems.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out; the five runs of displayed equations the book works step by step are drawn as derivations in place of the printed lines.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 3.9.101–3.9.104 carry the book’s own answers, each checked with SymPy and none contradicted. The inline exercises 3.9.1–3.9.3 and exercises 3.9.4–3.9.8, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-eigen-decomposition",
+   "kind": "sim",
+   "draws": [
+    "vector",
+    "curve",
+    "point",
+    "function",
+    "eigenvalue"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "xi-1",
+   "label": "the coordinate ξ₁ along the eigenvector v⃗₁",
+   "figures": [
+    "sim-eigen-decomposition"
+   ]
+  },
+  {
+   "id": "xi-2",
+   "label": "the coordinate ξ₂ along the eigenvector v⃗₂",
+   "figures": [
+    "sim-eigen-decomposition"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "integrating-factor-for-systems",
+   "what": "the integrating factor solution of x⃗′ + Px⃗ = f⃗",
+   "source": "Differential Equations for Engineers, 3.9 Nonhomogeneous systems, Integrating factor",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "e^{t\\kP} = \\kI + t\\kP + \\frac{1}{2} {(t\\kP)}^2 + \\cdots",
+       "src": "3.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kP e^{t\\kP}} = \\mk{s}{\\kP \\left( \\kI + t\\kP + \\frac{1}{2} {(t\\kP)}^2 + \\cdots \\right)}",
+      "src": "3.9",
+      "uses": [
+       0
+      ],
+      "why": "This fact follows by writing down the series definition of $e^{t\\kP}$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kP e^{t\\kP}} = \\mk{s}{\\kP + t\\kP^2 + \\frac{1}{2} t^2\\kP^3 + \\cdots}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\kP e^{t\\kP}} = \\mk{s}{\\left( \\kI + t\\kP + \\frac{1}{2} {(t\\kP)}^2 + \\cdots \\right) \\kP}",
+       "uses": [],
+       "cap": "Every term is a power of $\\kP$, and powers of $\\kP$ commute with $\\kP$, so the $\\kP$ can be factored out on the right just as well."
+      },
+      {
+       "tex": "\\mk{l}{\\kP e^{t\\kP}} = \\mk{s}{e^{t\\kP} \\kP}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "3.9"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\frac{d}{dt} \\left( e^{t\\kP} \\right) = \\kP e^{t\\kP}",
+       "src": "3.8"
+      },
+      {
+       "tex": "\\bigl(\\kA(t)\\kB(t)\\bigr)' = \\kAprime(t)\\kB(t) + \\kA(t)\\kBprime(t)",
+       "src": "3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d}{dt} \\Bigl( e^{t\\kP} \\kvecx(t) \\Bigr)} = \\mk{b}{e^{t\\kP}\\kvecxprime(t)} + \\mk{a}{\\frac{d}{dt} \\left( e^{t\\kP} \\right) \\kvecx(t)}",
+      "src": "3.9",
+      "uses": [
+       2
+      ],
+      "why": "The product rule holds for a matrix-valued function times a vector-valued function, with the order of the factors kept."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt} \\Bigl( e^{t\\kP} \\kvecx(t) \\Bigr)} = \\mk{b}{e^{t\\kP}\\kvecxprime(t)} + \\mk{a}{\\kP e^{t\\kP} \\kvecx(t)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt} \\Bigl( e^{t\\kP} \\kvecx(t) \\Bigr)} = \\mk{b}{e^{t\\kP}\\kvecxprime(t)} + \\mk{a}{e^{t\\kP}\\kP\\kvecx(t)}",
+       "uses": [
+        0
+       ],
+       "cap": "So $\\frac{d}{dt} \\left( e^{t\\kP} \\right) = \\kP e^{t\\kP} = e^{t\\kP} \\kP$."
+      }
+     ],
+     "src": "3.9"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "{\\left(e^{t\\kP}\\right)}^{-1} = e^{-t\\kP}",
+       "src": "3.8, Exercise 3.8.7"
+      },
+      {
+       "tex": "\\int F'(t) \\,dt = F(t) + C",
+       "src": "Calculus 4.10, Antiderivatives"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{xp}{\\kvecxprime(t)} + \\mk{px}{\\kP \\kvecx(t)} = \\mk{f}{\\kvecf(t)}",
+      "src": "3.9",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xp}{e^{t\\kP}\\kvecxprime(t)} + \\mk{px}{e^{t\\kP}\\kP\\kvecx(t)} = \\mk{f}{e^{t\\kP}\\kvecf(t)}",
+       "uses": [],
+       "cap": "We multiply both sides on the left by $e^{t\\kP}$, being mindful that we are dealing with matrices that may not commute."
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt} \\Bigl( e^{t\\kP} \\kvecx(t) \\Bigr)} = \\mk{f}{e^{t\\kP}\\kvecf(t)}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "xp": "d",
+        "px": "d"
+       }
+      },
+      {
+       "tex": "\\mk{d}{e^{t\\kP} \\kvecx(t)} = \\mk{f}{\\int e^{t\\kP}\\kvecf(t) \\, dt} + \\mk{c}{\\vec{c}}",
+       "uses": [
+        2
+       ],
+       "cap": "We can now integrate. That is, we integrate each component of the vector separately."
+      },
+      {
+       "tex": "\\mk{d}{\\kvecx(t)} = \\mk{f}{e^{-t\\kP} \\int e^{t\\kP}\\kvecf(t) \\, dt} + \\mk{c}{e^{-t\\kP} \\vec{c}}",
+       "uses": [
+        1
+       ],
+       "cap": "Multiply both sides on the left by ${\\left(e^{t\\kP}\\right)}^{-1} = e^{-t\\kP}$."
+      }
+     ],
+     "src": "3.9"
+    }
+   ]
+  },
+  {
+   "id": "eigenvector-decomposition",
+   "what": "the decoupled equations ξₖ′ = λₖξₖ + gₖ",
+   "source": "Differential Equations for Engineers, 3.9 Nonhomogeneous systems, Eigenvector decomposition",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecx(t) = \\kvecvone \\, \\kxione(t) + \\kvecvtwo \\, \\kxitwo(t) + \\cdots + \\kvecvn \\, \\kxin(t)",
+       "src": "(3.8)"
+      },
+      {
+       "tex": "\\kvecf(t) = \\kvecvone \\, \\kgone(t) + \\kvecvtwo \\, \\kgtwo(t) + \\cdots + \\kvecvn \\, \\kgn(t)",
+       "src": "(3.9)"
+      },
+      {
+       "tex": "\\kA \\kvecvk = \\klambdak \\kvecvk",
+       "src": "3.4"
+      },
+      {
+       "text": "The eigenvectors $\\kvecvone, \\kvecvtwo, \\ldots, \\kvecvn$ are linearly independent.",
+       "src": "3.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{xp}{\\kvecxprime} = \\mk{ax}{\\kA\\kvecx} + \\mk{f}{\\kvecf}",
+      "src": "(3.7)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xp}{\\kvecvone \\kxioneprime + \\kvecvtwo \\kxitwoprime + \\cdots + \\kvecvn \\kxinprime} = \\mk{ax}{\\kA \\left( \\kvecvone \\kxione + \\kvecvtwo \\kxitwo + \\cdots + \\kvecvn \\kxin \\right)} + \\mk{f}{\\kvecvone \\kgone + \\kvecvtwo \\kgtwo + \\cdots + \\kvecvn \\kgn}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "The eigenvectors are constant, so differentiating puts the prime on each $\\xi_k$."
+      },
+      {
+       "tex": "\\mk{xp}{\\kvecvone \\kxioneprime + \\kvecvtwo \\kxitwoprime + \\cdots + \\kvecvn \\kxinprime} = \\mk{ax}{\\kA \\kvecvone \\kxione + \\kA \\kvecvtwo \\kxitwo + \\cdots + \\kA \\kvecvn \\kxin} + \\mk{f}{\\kvecvone \\kgone + \\kvecvtwo \\kgtwo + \\cdots + \\kvecvn \\kgn}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{xp}{\\kvecvone \\kxioneprime + \\kvecvtwo \\kxitwoprime + \\cdots + \\kvecvn \\kxinprime} = \\mk{ax}{\\kvecvone \\klambdaone \\kxione + \\kvecvtwo \\klambdatwo \\kxitwo + \\cdots + \\kvecvn \\klambdan \\kxin} + \\mk{f}{\\kvecvone \\kgone + \\kvecvtwo \\kgtwo + \\cdots + \\kvecvn \\kgn}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{xp}{\\kvecvone \\kxioneprime + \\kvecvtwo \\kxitwoprime + \\cdots + \\kvecvn \\kxinprime} = \\mk{r}{\\kvecvone ( \\klambdaone \\kxione + \\kgone ) + \\kvecvtwo ( \\klambdatwo \\kxitwo + \\kgtwo ) + \\cdots + \\kvecvn ( \\klambdan \\kxin + \\kgn )}",
+       "uses": [],
+       "map": {
+        "ax": "r",
+        "f": "r"
+       }
+      },
+      {
+       "tex": "\\mk{e1}{\\kxioneprime = \\klambdaone \\kxione + \\kgone} ,\\quad \\mk{e2}{\\kxitwoprime = \\klambdatwo \\kxitwo + \\kgtwo} ,\\quad \\ldots ,\\quad \\mk{en}{\\kxinprime = \\klambdan \\kxin + \\kgn}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "xp": [
+         "e1",
+         "e2",
+         "en"
+        ],
+        "r": [
+         "e1",
+         "e2",
+         "en"
+        ]
+       },
+       "cap": "We identify the coefficients of the eigenvectors: as they are linearly independent, the coefficient of each $\\kvecvk$ must be the same on both sides."
+      }
+     ],
+     "src": "3.9"
+    }
+   ]
+  },
+  {
+   "id": "scalar-equation-xi-k",
+   "what": "the solution ξₖ of its own scalar equation",
+   "source": "Differential Equations for Engineers, 3.9 Nonhomogeneous systems, Eigenvector decomposition",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A linear first-order equation $y' + p\\,y = f(t)$ with a constant $p$ has the integrating factor $e^{pt}$, the integrating factor method for single equations.",
+       "src": "1.4"
+      },
+      {
+       "tex": "\\frac{d}{dt}\\bigl[ u(t) v(t) \\bigr] = u'(t) v(t) + u(t) v'(t)",
+       "src": "Calculus 3.3, Product Rule"
+      },
+      {
+       "tex": "\\int F'(t) \\,dt = F(t) + C",
+       "src": "Calculus 4.10, Antiderivatives"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{xp}{\\kxikprime(t)} = \\mk{lx}{\\klambdak \\kxik(t)} + \\mk{g}{\\kgk(t)}",
+      "src": "3.9",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xp}{\\kxikprime(t)} - \\mk{lx}{\\klambdak \\kxik(t)} = \\mk{g}{\\kgk(t)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{xp}{e^{-\\klambdak t}\\kxikprime(t)} - \\mk{lx}{\\klambdak e^{-\\klambdak t}\\kxik(t)} = \\mk{g}{e^{-\\klambdak t} \\kgk(t)}",
+       "uses": [
+        0
+       ],
+       "cap": "We use the integrating factor $e^{-\\klambdak t}$: here $p = -\\klambdak$."
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d}{dt}\\Bigl[ \\kxik(t) \\, e^{-\\klambdak t} \\Bigr]} = \\mk{g}{e^{-\\klambdak t} \\kgk(t)}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "xp": "d",
+        "lx": "d"
+       },
+       "cap": "The derivative of $e^{-\\klambdak t}$ is $-\\klambdak e^{-\\klambdak t}$, so the left-hand side is the derivative of the product $\\kxik(t)\\,e^{-\\klambdak t}$."
+      },
+      {
+       "tex": "\\mk{d}{\\kxik(t) \\, e^{-\\klambdak t}} = \\mk{g}{\\int e^{-\\klambdak t} \\kgk(t) \\,dt} + \\mk{c}{C_k}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kxik(t)} = \\mk{g}{e^{\\klambdak t} \\int e^{-\\klambdak t} \\kgk(t) \\,dt} + \\mk{c}{C_k e^{\\klambdak t}}",
+       "uses": []
+      }
+     ],
+     "src": "3.9"
+    }
+   ]
+  },
+  {
+   "id": "variation-of-parameters-for-systems",
+   "what": "the equation for u⃗′ in variation of parameters",
+   "source": "Differential Equations for Engineers, 3.9 Nonhomogeneous systems, Variation of parameters",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecxp = \\kX(t)\\, \\kvecu(t)",
+       "src": "3.9"
+      },
+      {
+       "tex": "\\bigl(\\kA(t)\\kB(t)\\bigr)' = \\kAprime(t)\\kB(t) + \\kA(t)\\kBprime(t)",
+       "src": "3.3"
+      },
+      {
+       "tex": "\\kXprime(t) = \\kA(t)\\kX(t)",
+       "src": "3.3"
+      },
+      {
+       "text": "The columns of a fundamental matrix solution $\\kX(t)$ are linearly independent, so $\\kX(t)$ is invertible.",
+       "src": "3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{xp}{{\\kvecxp}'(t)} = \\mk{ax}{\\kA(t) \\kvecxp(t)} + \\mk{f}{\\kvecf(t)}",
+      "src": "(3.10)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xp}{{\\kvecxp}'(t)} = \\mk{ax}{\\kA(t)\\, \\kX(t)\\, \\kvecu(t)} + \\mk{f}{\\kvecf(t)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kXprime(t)\\, \\kvecu(t)} + \\mk{b}{\\kX(t)\\, \\kvecuprime(t)} = \\mk{ax}{\\kA(t)\\, \\kX(t)\\, \\kvecu(t)} + \\mk{f}{\\kvecf(t)}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "xp": [
+         "a",
+         "b"
+        ]
+       },
+       "cap": "The product rule for matrix-valued functions, the order of the factors kept."
+      },
+      {
+       "tex": "\\mk{a}{\\kXprime(t)\\, \\kvecu(t)} + \\mk{b}{\\kX(t)\\, \\kvecuprime(t)} = \\mk{ax}{\\kXprime(t)\\, \\kvecu(t)} + \\mk{f}{\\kvecf(t)}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\kX(t)$ is a fundamental matrix solution to the homogeneous problem."
+      },
+      {
+       "tex": "\\mk{b}{\\kX(t)\\, \\kvecuprime(t)} = \\mk{f}{\\kvecf(t)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{b}{\\kvecuprime(t)} = \\mk{f}{\\left[\\kX(t)\\right]^{-1}\\kvecf(t)}",
+       "uses": [
+        3
+       ],
+       "cap": "We compute $\\left[\\kX(t)\\right]^{-1}$ and multiply both sides by it on the left."
+      }
+     ],
+     "src": "3.9"
+    }
+   ]
+  },
+  {
+   "id": "eigenvector-decomposition-second-order",
+   "what": "the decoupled equations ξₖ″ = λₖξₖ + gₖ",
+   "source": "Differential Equations for Engineers, 3.9 Nonhomogeneous systems, Second-order constant-coefficients",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecx(t) = \\kvecvone \\, \\kxione(t) + \\kvecvtwo \\, \\kxitwo(t) + \\cdots + \\kvecvn \\, \\kxin(t)",
+       "src": "3.9"
+      },
+      {
+       "tex": "\\kvecf(t) = \\kvecvone \\, \\kgone(t) + \\kvecvtwo \\, \\kgtwo(t) + \\cdots + \\kvecvn \\, \\kgn(t)",
+       "src": "3.9"
+      },
+      {
+       "tex": "\\kA \\kvecvk = \\klambdak \\kvecvk",
+       "src": "3.4"
+      },
+      {
+       "text": "The eigenvectors $\\kvecvone, \\kvecvtwo, \\ldots, \\kvecvn$ are linearly independent.",
+       "src": "3.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{xp}{\\kvecxdprime} = \\mk{ax}{\\kA\\kvecx} + \\mk{f}{\\kvecf}",
+      "src": "3.9",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xp}{\\kvecvone \\kxionedprime + \\kvecvtwo \\kxitwodprime + \\cdots + \\kvecvn \\kxindprime} = \\mk{ax}{\\kA \\left( \\kvecvone \\kxione + \\kvecvtwo \\kxitwo + \\cdots + \\kvecvn \\kxin \\right)} + \\mk{f}{\\kvecvone \\kgone + \\kvecvtwo \\kgtwo + \\cdots + \\kvecvn \\kgn}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "The eigenvectors are constant, so differentiating twice puts the two primes on each $\\xi_k$."
+      },
+      {
+       "tex": "\\mk{xp}{\\kvecvone \\kxionedprime + \\kvecvtwo \\kxitwodprime + \\cdots + \\kvecvn \\kxindprime} = \\mk{ax}{\\kA \\kvecvone \\kxione + \\kA \\kvecvtwo \\kxitwo + \\cdots + \\kA \\kvecvn \\kxin} + \\mk{f}{\\kvecvone \\kgone + \\kvecvtwo \\kgtwo + \\cdots + \\kvecvn \\kgn}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{xp}{\\kvecvone \\kxionedprime + \\kvecvtwo \\kxitwodprime + \\cdots + \\kvecvn \\kxindprime} = \\mk{ax}{\\kvecvone \\klambdaone \\kxione + \\kvecvtwo \\klambdatwo \\kxitwo + \\cdots + \\kvecvn \\klambdan \\kxin} + \\mk{f}{\\kvecvone \\kgone + \\kvecvtwo \\kgtwo + \\cdots + \\kvecvn \\kgn}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{xp}{\\kvecvone \\kxionedprime + \\kvecvtwo \\kxitwodprime + \\cdots + \\kvecvn \\kxindprime} = \\mk{r}{\\kvecvone ( \\klambdaone \\kxione + \\kgone ) + \\kvecvtwo ( \\klambdatwo \\kxitwo + \\kgtwo ) + \\cdots + \\kvecvn ( \\klambdan \\kxin + \\kgn )}",
+       "uses": [],
+       "map": {
+        "ax": "r",
+        "f": "r"
+       }
+      },
+      {
+       "tex": "\\mk{e1}{\\kxionedprime = \\klambdaone \\kxione + \\kgone} ,\\quad \\mk{e2}{\\kxitwodprime = \\klambdatwo \\kxitwo + \\kgtwo} ,\\quad \\ldots ,\\quad \\mk{en}{\\kxindprime = \\klambdan \\kxin + \\kgn}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "xp": [
+         "e1",
+         "e2",
+         "en"
+        ],
+        "r": [
+         "e1",
+         "e2",
+         "en"
+        ]
+       },
+       "cap": "We identify the coefficients of the eigenvectors: as they are linearly independent, the coefficient of each $\\kvecvk$ must be the same on both sides."
+      }
+     ],
+     "src": "3.9"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "if-method",
+   "concept": "integrating-factor-method-for-systems",
+   "verb": "introduces"
+  },
+  {
+   "span": "ed-idea",
+   "concept": "eigenvector-decomposition",
+   "verb": "introduces"
+  },
+  {
+   "span": "uc-systems",
+   "concept": "undetermined-coefficients-for-systems",
+   "verb": "introduces"
+  },
+  {
+   "span": "vp-systems",
+   "concept": "variation-of-parameters-for-systems",
+   "verb": "introduces"
+  },
+  {
+   "span": "uc2-intro",
+   "concept": "undetermined-coefficients-for-second-order-systems",
+   "verb": "introduces"
+  },
+  {
+   "span": "ed2-method",
+   "concept": "eigenvector-decomposition-for-second-order-systems",
+   "verb": "introduces"
+  },
+  {
+   "span": "nhsys-intro",
+   "concept": "first-order-linear-system",
+   "verb": "uses"
+  },
+  {
+   "span": "if-method",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "if-multiply",
+   "concept": "commuting-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "if-multiply",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-integrating-factor-for-systems",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-integrating-factor-for-systems",
+   "concept": "derivative-of-the-matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-integrating-factor-for-systems",
+   "concept": "differentiation-rules-for-matrix-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-integrating-factor-for-systems",
+   "concept": "integrating-factor-method",
+   "verb": "uses"
+  },
+  {
+   "span": "if-definite",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "if-check",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "if-check",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-1",
+   "concept": "defect",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-1",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-1",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "if-constant-only",
+   "concept": "commuting-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "if-constant-only",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-idea",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-idea",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-assume",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-assume",
+   "concept": "linear-independence",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-write",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-g",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-g",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-eigenvector-decomposition",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-eigenvector-decomposition",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-independent",
+   "concept": "integrating-factor-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-independent",
+   "concept": "first-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-scalar-equation-xi-k",
+   "concept": "integrating-factor",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-particular",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-particular",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-definite",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-definite",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-remark",
+   "concept": "eigenvalue-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ed-remark",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-2",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-2",
+   "concept": "inverse-of-a-2x2-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-2",
+   "concept": "integrating-factor-method",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-systems",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-3",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-3",
+   "concept": "eigenvalue-method",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-3",
+   "concept": "augmented-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-3",
+   "concept": "row-reduction",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-3",
+   "concept": "general-solution-of-a-nonhomogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-conflict",
+   "concept": "duplication-with-the-complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-systems",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-systems",
+   "concept": "constant-coefficient-system",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-trial",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-trial",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-trial",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-substitute",
+   "concept": "vector-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-variation-of-parameters-for-systems",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-variation-of-parameters-for-systems",
+   "concept": "differentiation-rules-for-matrix-valued-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-variation-of-parameters-for-systems",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-constant",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-4",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-4",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-general",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-general",
+   "concept": "general-solution-of-a-nonhomogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "uc2-intro",
+   "concept": "forced-oscillation-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "uc2-superposition",
+   "concept": "superposition-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "uc2-duplication",
+   "concept": "duplication-with-the-complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ed2-setup",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "ed2-setup",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "ed2-solve",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-5",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-9-5",
+   "concept": "forced-oscillation-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-integrating-factor-for-systems",
+   "concept": "integrating-factor-method-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-3-6",
+   "concept": "integrating-factor-method-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-9-1",
+   "concept": "integrating-factor-method-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "if-constant-only",
+   "concept": "integrating-factor-method-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-eigenvector-decomposition",
+   "concept": "eigenvector-decomposition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-eigenvector-decomposition-xi",
+   "concept": "eigenvector-decomposition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-9-2",
+   "concept": "eigenvector-decomposition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-eigen-decomposition",
+   "concept": "eigenvector-decomposition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-9-3",
+   "concept": "undetermined-coefficients-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "uc-conclusion",
+   "concept": "undetermined-coefficients-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-variation-of-parameters-for-systems",
+   "concept": "variation-of-parameters-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-variation-of-parameters-for-systems",
+   "concept": "variation-of-parameters-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vp-constant",
+   "concept": "integrating-factor-method-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "vp-constant",
+   "concept": "variation-of-parameters-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-9-4",
+   "concept": "variation-of-parameters-for-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-eigenvector-decomposition-second-order",
+   "concept": "eigenvector-decomposition-for-second-order-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-9-5",
+   "concept": "eigenvector-decomposition-for-second-order-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ed2-setup",
+   "concept": "eigenvector-decomposition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "uc2-intro",
+   "concept": "undetermined-coefficients-for-systems",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "3.9.1",
+   "source_number": "3.9.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "ex-3-9-2"
+   },
+   "cite": "ex-3-9-2-answer",
+   "prompt": "<p>Check that $\\kxone$ and $\\kxtwo$ solve the problem. Check both that they satisfy the differential equation and that they satisfy the initial conditions.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The system is $\\kxoneprime = \\kxone + 3\\kxtwo + 2e^t$, $\\kxtwoprime = 3\\kxone + \\kxtwo + 2t$. Differentiating, $\\kxoneprime = \\frac{4e^{4t}+2e^{-2t}}{3} - \\frac{3}{4}$ and $\\kxtwoprime = \\frac{4e^{4t}-2e^{-2t}-2e^t}{3} + \\frac{1}{4}$. Then $\\kxone + 3\\kxtwo + 2e^t = \\frac{4e^{4t} + 2e^{-2t} - 6e^t}{3} + \\frac{3 - 12t + 12t - 15}{16} + 2e^t = \\frac{4e^{4t}+2e^{-2t}}{3} - \\frac{3}{4} = \\kxoneprime$, and $3\\kxone + \\kxtwo + 2t = \\frac{4e^{4t} - 2e^{-2t} - 2e^t}{3} + \\frac{4 - 32t}{16} + 2t = \\frac{4e^{4t}-2e^{-2t}-2e^t}{3} + \\frac{1}{4} = \\kxtwoprime$. At $t = 0$: $\\kxone(0) = \\frac{1-1}{3} + \\frac{3}{16} = \\frac{3}{16}$ and $\\kxtwo(0) = \\frac{1+1-2}{3} - \\frac{5}{16} = -\\frac{5}{16}$, the given $\\kvecx(0)$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "3.9.2",
+   "source_number": "3.9.2",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "ex-3-9-3"
+   },
+   "cite": "ex-3-9-3",
+   "prompt": "<p>Check that $\\kxone$ and $\\kxtwo$ solve the problem. Then set $a_2 = 1$ and check this solution as well. What is the difference between the two solutions (one with $a_2=0$ and one with $a_2=1$)?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The system is $\\kxoneprime = -\\kxone + e^t$, $\\kxtwoprime = -2\\kxone + \\kxtwo + t$. With $\\kxone = \\frac{1}{2}e^t$, $\\kxtwo = -te^t - t - 1$: $-\\kxone + e^t = \\frac{1}{2}e^t = \\kxoneprime$, and $-2\\kxone + \\kxtwo + t = -e^t - te^t - 1 = \\kxtwoprime$. With $a_2 = 1$ the solution is $\\kxone = \\frac{1}{2}e^t$, $\\kxtwo = e^t - te^t - t - 1$; then $\\kxtwoprime = -te^t - 1$ and $-2\\kxone + \\kxtwo + t = -e^t + e^t - te^t - 1 = -te^t - 1$, so it solves the system too. The difference of the two is $\\left[ \\begin{smallmatrix} 0 \\\\ e^t \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\end{smallmatrix} \\right]e^t$, the complementary solution with $\\alpha_1 = 0$, $\\alpha_2 = 1$: it solves the homogeneous system $\\kvecxprime = \\kA\\kvecx$, so both are particular solutions and give the same general solution."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "3.9.3",
+   "source_number": "3.9.3",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "ex-3-9-4"
+   },
+   "cite": "eq-3-11",
+   "prompt": "<p>Check that $\\kxone = \\frac{1}{3}\\,t^4$ and $\\kxtwo = \\frac{2}{3}\\,t^3 + t$ really solve <a href=\"#eq-3-11\">(3.11)</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $\\kxoneprime = \\frac{4}{3}t^3$ and $\\kxtwoprime = 2t^2 + 1$. The first row of (3.11) gives $\\frac{t\\kxone - \\kxtwo}{t^2+1} + t(t^2+1) = \\frac{\\frac{1}{3}t^5 - \\frac{2}{3}t^3 - t}{t^2+1} + t^3 + t = \\frac{t}{3}(t^2 - 3) + t^3 + t = \\frac{4}{3}t^3$, since $\\frac{1}{3}t^5 - \\frac{2}{3}t^3 - t = \\frac{t}{3}(t^2-3)(t^2+1)$. The second row gives $\\frac{\\kxone + t\\kxtwo}{t^2+1} + t^2 + 1 = \\frac{t^4 + t^2}{t^2+1} + t^2 + 1 = 2t^2 + 1$. Both match, so $\\kvecxp$ solves (3.11)."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "3.9.4",
+   "source_number": "3.9.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nhsys-intro",
+   "prompt": "<p>Find a particular solution to $\\kxprime = \\kx+ 2\\ky +2t$, $\\kyprime = 3\\kx + 2\\ky -4$</p><ol type=\"a\"><li>using integrating factor method,</li><li>using eigenvector decomposition,</li><li>using undetermined coefficients.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "All three give $\\kx = t + \\frac{3}{4}$, $\\ky = -\\frac{3}{2}t + \\frac{1}{8}$. Here $\\kA = \\left[ \\begin{smallmatrix} 1 & 2 \\\\ 3 & 2 \\end{smallmatrix} \\right]$, $\\kvecf = \\left[ \\begin{smallmatrix} 2t \\\\ -4 \\end{smallmatrix} \\right]$, with eigenvalues $-1$ and $4$ and eigenvectors $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 2 \\\\ 3 \\end{smallmatrix} \\right]$. a) With $\\kP = -\\kA$, $\\kvecxp = e^{t\\kA}\\int e^{-t\\kA}\\kvecf\\,dt$, where $e^{t\\kA} = \\frac{1}{5}\\left[ \\begin{smallmatrix} 2e^{4t}+3e^{-t} & 2e^{4t}-2e^{-t} \\\\ 3e^{4t}-3e^{-t} & 3e^{4t}+2e^{-t} \\end{smallmatrix} \\right]$. Then $e^{-t\\kA}\\kvecf = \\frac{2}{5}\\left[ \\begin{smallmatrix} (3t+4)e^{t} + (2t-4)e^{-4t} \\\\ -(3t+4)e^{t} + (3t-6)e^{-4t} \\end{smallmatrix} \\right]$, whose integral (by parts, constant taken zero) is $\\left[ \\begin{smallmatrix} \\frac{2}{5}(3t+1)e^t + \\frac{7-4t}{20}e^{-4t} \\\\ -\\frac{2}{5}(3t+1)e^t + \\frac{21-12t}{40}e^{-4t} \\end{smallmatrix} \\right]$, and multiplying by $e^{t\\kA}$ gives $\\left[ \\begin{smallmatrix} t + \\frac{3}{4} \\\\ -\\frac{3}{2}t + \\frac{1}{8} \\end{smallmatrix} \\right]$. b) $\\kE = \\left[ \\begin{smallmatrix} 1 & 2 \\\\ -1 & 3 \\end{smallmatrix} \\right]$, $\\kEinv = \\frac{1}{5}\\left[ \\begin{smallmatrix} 3 & -2 \\\\ 1 & 1 \\end{smallmatrix} \\right]$, so $\\kvecg = \\kEinv\\kvecf = \\left[ \\begin{smallmatrix} \\frac{6t+8}{5} \\\\ \\frac{2t-4}{5} \\end{smallmatrix} \\right]$. Then $\\kxioneprime = -\\kxione + \\frac{6t+8}{5}$ gives $\\kxione = \\frac{6}{5}t + \\frac{2}{5}$ and $\\kxitwoprime = 4\\kxitwo + \\frac{2t-4}{5}$ gives $\\kxitwo = -\\frac{t}{10} + \\frac{7}{40}$ (constants zero), and $\\kvecx = \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]\\kxione + \\left[ \\begin{smallmatrix} 2 \\\\ 3 \\end{smallmatrix} \\right]\\kxitwo = \\left[ \\begin{smallmatrix} t + \\frac{3}{4} \\\\ -\\frac{3}{2}t + \\frac{1}{8} \\end{smallmatrix} \\right]$. c) Neither $1$ nor $t$ appears in $\\kvecxc$, so try $\\kvecx = \\kveca t + \\kvecb$: the $t$ terms give $\\kA\\kveca + \\left[ \\begin{smallmatrix} 2 \\\\ 0 \\end{smallmatrix} \\right] = \\vec{0}$, so $\\kveca = \\left[ \\begin{smallmatrix} 1 \\\\ -3/2 \\end{smallmatrix} \\right]$; the constant terms give $\\kveca = \\kA\\kvecb + \\left[ \\begin{smallmatrix} 0 \\\\ -4 \\end{smallmatrix} \\right]$, so $\\kvecb = \\left[ \\begin{smallmatrix} 3/4 \\\\ 1/8 \\end{smallmatrix} \\right]$. The general solution adds $C_1\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]e^{-t} + C_2\\left[ \\begin{smallmatrix} 2 \\\\ 3 \\end{smallmatrix} \\right]e^{4t}$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "3.9.5",
+   "source_number": "3.9.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nhsys-intro",
+   "prompt": "<p>Find the general solution to $\\kxprime = 4\\kx+ \\ky -1$, $\\kyprime = \\kx + 4\\ky -e^t$</p><ol type=\"a\"><li>using integrating factor method,</li><li>using eigenvector decomposition,</li><li>using undetermined coefficients.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx = C_1 e^{5t} + C_2 e^{3t} - \\frac{1}{8}e^t + \\frac{4}{15}$, $\\ky = C_1 e^{5t} - C_2 e^{3t} + \\frac{3}{8}e^t - \\frac{1}{15}$. Here $\\kA = \\left[ \\begin{smallmatrix} 4 & 1 \\\\ 1 & 4 \\end{smallmatrix} \\right]$, $\\kvecf = \\left[ \\begin{smallmatrix} -1 \\\\ -e^t \\end{smallmatrix} \\right]$, with eigenvalues $5$ and $3$ and eigenvectors $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]$, so $\\kvecxc = C_1\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]e^{5t} + C_2\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]e^{3t}$. a) $e^{t\\kA} = \\frac{1}{2}\\left[ \\begin{smallmatrix} e^{5t}+e^{3t} & e^{5t}-e^{3t} \\\\ e^{5t}-e^{3t} & e^{5t}+e^{3t} \\end{smallmatrix} \\right]$ and $e^{-t\\kA}\\kvecf = \\frac{1}{2}\\left[ \\begin{smallmatrix} e^{-2t} - e^{-3t} - e^{-4t} - e^{-5t} \\\\ -e^{-2t} + e^{-3t} - e^{-4t} - e^{-5t} \\end{smallmatrix} \\right]$; integrating, $\\int e^{-t\\kA}\\kvecf\\,dt = \\left[ \\begin{smallmatrix} -\\frac{e^{-2t}}{4} + \\frac{e^{-3t}}{6} + \\frac{e^{-4t}}{8} + \\frac{e^{-5t}}{10} \\\\ \\frac{e^{-2t}}{4} - \\frac{e^{-3t}}{6} + \\frac{e^{-4t}}{8} + \\frac{e^{-5t}}{10} \\end{smallmatrix} \\right] + \\vec{c}$, and $e^{t\\kA}$ times it is $\\left[ \\begin{smallmatrix} \\frac{4}{15} - \\frac{e^t}{8} \\\\ \\frac{3e^t}{8} - \\frac{1}{15} \\end{smallmatrix} \\right] + e^{t\\kA}\\vec{c}$, where $e^{t\\kA}\\vec{c}$ is the complementary solution. b) $\\kE = \\left[ \\begin{smallmatrix} 1 & 1 \\\\ 1 & -1 \\end{smallmatrix} \\right]$, $\\kvecg = \\kEinv\\kvecf = \\left[ \\begin{smallmatrix} -\\frac{1 + e^t}{2} \\\\ \\frac{e^t - 1}{2} \\end{smallmatrix} \\right]$; $\\kxioneprime = 5\\kxione - \\frac{1+e^t}{2}$ gives $\\kxione = \\frac{1}{10} + \\frac{e^t}{8} + C_1 e^{5t}$ and $\\kxitwoprime = 3\\kxitwo + \\frac{e^t-1}{2}$ gives $\\kxitwo = \\frac{1}{6} - \\frac{e^t}{4} + C_2 e^{3t}$; then $\\kx = \\kxione + \\kxitwo$, $\\ky = \\kxione - \\kxitwo$. c) $e^t$ is not in $\\kvecxc$, so try $\\kvecx = \\kveca e^t + \\kvecb$: $\\kveca = \\kA\\kveca + \\left[ \\begin{smallmatrix} 0 \\\\ -1 \\end{smallmatrix} \\right]$ gives $\\kveca = \\left[ \\begin{smallmatrix} -1/8 \\\\ 3/8 \\end{smallmatrix} \\right]$ and $\\kA\\kvecb + \\left[ \\begin{smallmatrix} -1 \\\\ 0 \\end{smallmatrix} \\right] = \\vec{0}$ gives $\\kvecb = \\left[ \\begin{smallmatrix} 4/15 \\\\ -1/15 \\end{smallmatrix} \\right]$; add $\\kvecxc$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "3.9.6",
+   "source_number": "3.9.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ed2-method",
+   "prompt": "<p>Find the general solution to $\\kxonedprime = -6\\kxone+ 3\\kxtwo + \\cos (t)$, $\\kxtwodprime = 2\\kxone -7\\kxtwo + 3\\cos (t)$</p><ol type=\"a\"><li>using eigenvector decomposition,</li><li>using undetermined coefficients.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kxone = 3A_1\\cos(2t) + 3B_1\\sin(2t) - A_2\\cos(3t) - B_2\\sin(3t) + \\frac{5}{8}\\cos(t)$, $\\kxtwo = 2A_1\\cos(2t) + 2B_1\\sin(2t) + A_2\\cos(3t) + B_2\\sin(3t) + \\frac{17}{24}\\cos(t)$. Here $\\kA = \\left[ \\begin{smallmatrix} -6 & 3 \\\\ 2 & -7 \\end{smallmatrix} \\right]$ has eigenvalues $-4$ and $-9$ with eigenvectors $\\left[ \\begin{smallmatrix} 3 \\\\ 2 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} -1 \\\\ 1 \\end{smallmatrix} \\right]$, so $\\kE = \\left[ \\begin{smallmatrix} 3 & -1 \\\\ 2 & 1 \\end{smallmatrix} \\right]$, $\\kEinv = \\frac{1}{5}\\left[ \\begin{smallmatrix} 1 & 1 \\\\ -2 & 3 \\end{smallmatrix} \\right]$, and the forcing $\\left[ \\begin{smallmatrix} 1 \\\\ 3 \\end{smallmatrix} \\right]\\cos(t)$ decomposes as $\\kgone = \\frac{4}{5}\\cos(t)$, $\\kgtwo = \\frac{7}{5}\\cos(t)$. The equations are $\\kxionedprime = -4\\kxione + \\kgone$ and $\\kxitwodprime = -9\\kxitwo + \\kgtwo$, whose complementary solutions are $A_1\\cos(2t) + B_1\\sin(2t)$ and $A_2\\cos(3t) + B_2\\sin(3t)$. a) $C\\cos(t)$ in the first equation gives $-C = -4C + \\frac{4}{5}$, $C = \\frac{4}{15}$; in the second $-C = -9C + \\frac{7}{5}$, $C = \\frac{7}{40}$. So $\\kvecx = \\left[ \\begin{smallmatrix} 3 \\\\ 2 \\end{smallmatrix} \\right]\\bigl(A_1\\cos(2t) + B_1\\sin(2t) + \\tfrac{4}{15}\\cos(t)\\bigr) + \\left[ \\begin{smallmatrix} -1 \\\\ 1 \\end{smallmatrix} \\right]\\bigl(A_2\\cos(3t) + B_2\\sin(3t) + \\tfrac{7}{40}\\cos(t)\\bigr)$, and $\\left[ \\begin{smallmatrix} 3 \\\\ 2 \\end{smallmatrix} \\right]\\tfrac{4}{15} + \\left[ \\begin{smallmatrix} -1 \\\\ 1 \\end{smallmatrix} \\right]\\tfrac{7}{40} = \\left[ \\begin{smallmatrix} 5/8 \\\\ 17/24 \\end{smallmatrix} \\right]$. b) No duplication ($\\cos(t)$ is not a solution of the homogeneous system), so try $\\kvecxp = \\kvecc\\cos(t)$: $-\\kvecc = \\kA\\kvecc + \\left[ \\begin{smallmatrix} 1 \\\\ 3 \\end{smallmatrix} \\right]$, that is $-5c_1 + 3c_2 = -1$ and $2c_1 - 6c_2 = -3$, so $c_1 = \\frac{5}{8}$, $c_2 = \\frac{17}{24}$, the same particular solution."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "3.9.7",
+   "source_number": "3.9.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ed2-method",
+   "prompt": "<p>Find the general solution to $\\kxonedprime = -6\\kxone+ 3\\kxtwo + \\cos (2t)$, $\\kxtwodprime = 2\\kxone -7\\kxtwo + 3\\cos (2t)$</p><ol type=\"a\"><li>using eigenvector decomposition,</li><li>using undetermined coefficients.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kvecx = \\left[ \\begin{smallmatrix} 3 \\\\ 2 \\end{smallmatrix} \\right]\\bigl(A_1\\cos(2t) + B_1\\sin(2t) + \\tfrac{1}{5}t\\sin(2t)\\bigr) + \\left[ \\begin{smallmatrix} -1 \\\\ 1 \\end{smallmatrix} \\right]\\bigl(A_2\\cos(3t) + B_2\\sin(3t) + \\tfrac{7}{25}\\cos(2t)\\bigr)$, that is, the particular solution is $\\kxone = \\frac{3}{5}t\\sin(2t) - \\frac{7}{25}\\cos(2t)$, $\\kxtwo = \\frac{2}{5}t\\sin(2t) + \\frac{7}{25}\\cos(2t)$. Here $\\kA = \\left[ \\begin{smallmatrix} -6 & 3 \\\\ 2 & -7 \\end{smallmatrix} \\right]$ has eigenvalues $-4$ and $-9$ with eigenvectors $\\left[ \\begin{smallmatrix} 3 \\\\ 2 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} -1 \\\\ 1 \\end{smallmatrix} \\right]$, so $\\kE = \\left[ \\begin{smallmatrix} 3 & -1 \\\\ 2 & 1 \\end{smallmatrix} \\right]$, $\\kEinv = \\frac{1}{5}\\left[ \\begin{smallmatrix} 1 & 1 \\\\ -2 & 3 \\end{smallmatrix} \\right]$, and the forcing $\\left[ \\begin{smallmatrix} 1 \\\\ 3 \\end{smallmatrix} \\right]\\cos(2t)$ decomposes as $\\kgone = \\frac{4}{5}\\cos(2t)$, $\\kgtwo = \\frac{7}{5}\\cos(2t)$. The equations are $\\kxionedprime = -4\\kxione + \\kgone$ and $\\kxitwodprime = -9\\kxitwo + \\kgtwo$, whose complementary solutions are $A_1\\cos(2t) + B_1\\sin(2t)$ and $A_2\\cos(3t) + B_2\\sin(3t)$. a) The forcing frequency 2 is the natural frequency of the first mode, so $C\\cos(2t)$ duplicates its complementary solution; try $Ct\\sin(2t)$ there: $(Ct\\sin(2t))'' = 4C\\cos(2t) - 4Ct\\sin(2t)$, so $4C = \\frac{4}{5}$ and $C = \\frac{1}{5}$. In the second equation $C\\cos(2t)$ gives $-4C = -9C + \\frac{7}{5}$, $C = \\frac{7}{25}$. b) Try both terms, $\\kvecxp = \\kveca\\cos(2t) + \\kvecb t\\sin(2t)$, as in Example 3.9.3. The $t\\sin(2t)$ terms give $-4\\kvecb = \\kA\\kvecb$, so $\\kvecb = \\beta\\left[ \\begin{smallmatrix} 3 \\\\ 2 \\end{smallmatrix} \\right]$; the $\\cos(2t)$ terms give $(\\kA + 4\\kI)\\kveca = 4\\kvecb - \\left[ \\begin{smallmatrix} 1 \\\\ 3 \\end{smallmatrix} \\right]$, and as $\\kA + 4\\kI = \\left[ \\begin{smallmatrix} -2 & 3 \\\\ 2 & -3 \\end{smallmatrix} \\right]$ only reaches multiples of $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]$, $12\\beta - 1 = -(8\\beta - 3)$, so $\\beta = \\frac{1}{5}$ and $-2a_1 + 3a_2 = \\frac{7}{5}$. Taking $\\kveca = \\left[ \\begin{smallmatrix} -7/25 \\\\ 7/25 \\end{smallmatrix} \\right]$ gives the particular solution above; any other choice of $\\kveca$ differs by a multiple of $\\left[ \\begin{smallmatrix} 3 \\\\ 2 \\end{smallmatrix} \\right]\\cos(2t)$, part of the complementary solution."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "3.9.8",
+   "source_number": "3.9.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vp-integrate",
+   "prompt": "<p>Take the equation $\\displaystyle \\kvecxprime = \\begin{bmatrix} \\frac{1}{t} & -1 \\\\ 1 & \\frac{1}{t} \\end{bmatrix} \\kvecx + \\begin{bmatrix} t^2 \\\\ -t \\end{bmatrix} .$</p><ol type=\"a\"><li>Check that $\\displaystyle \\kvecxc = c_1 \\begin{bmatrix} t\\, \\sin t \\\\ - t \\, \\cos t \\end{bmatrix} + c_2 \\begin{bmatrix} t\\, \\cos t \\\\ t \\, \\sin t \\end{bmatrix}$ is the complementary solution.</li><li>Use variation of parameters to find a particular solution.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) For $\\left[ \\begin{smallmatrix} t\\sin t \\\\ -t\\cos t \\end{smallmatrix} \\right]$ the derivative is $\\left[ \\begin{smallmatrix} \\sin t + t\\cos t \\\\ -\\cos t + t\\sin t \\end{smallmatrix} \\right]$, and the matrix times it is $\\left[ \\begin{smallmatrix} \\frac{1}{t}t\\sin t + t\\cos t \\\\ t\\sin t - \\frac{1}{t}t\\cos t \\end{smallmatrix} \\right]$, the same. For $\\left[ \\begin{smallmatrix} t\\cos t \\\\ t\\sin t \\end{smallmatrix} \\right]$ the derivative is $\\left[ \\begin{smallmatrix} \\cos t - t\\sin t \\\\ \\sin t + t\\cos t \\end{smallmatrix} \\right]$ and the matrix times it is $\\left[ \\begin{smallmatrix} \\cos t - t\\sin t \\\\ t\\cos t + \\sin t \\end{smallmatrix} \\right]$, the same. The fundamental matrix $\\kX = \\left[ \\begin{smallmatrix} t\\sin t & t\\cos t \\\\ -t\\cos t & t\\sin t \\end{smallmatrix} \\right]$ has $\\det \\kX = t^2 \\neq 0$, so the two solutions are linearly independent and $\\kvecxc = \\kX\\vec{c}$ is the complementary solution. b) $\\kvecxp = \\left[ \\begin{smallmatrix} 2t \\\\ t^2 \\end{smallmatrix} \\right]$. $\\left[\\kX(t)\\right]^{-1} = \\frac{1}{t}\\left[ \\begin{smallmatrix} \\sin t & -\\cos t \\\\ \\cos t & \\sin t \\end{smallmatrix} \\right]$, so $\\kvecuprime = \\left[\\kX(t)\\right]^{-1}\\kvecf = \\left[ \\begin{smallmatrix} t\\sin t + \\cos t \\\\ t\\cos t - \\sin t \\end{smallmatrix} \\right]$ and $\\kvecu = \\left[ \\begin{smallmatrix} -t\\cos t + 2\\sin t \\\\ t\\sin t + 2\\cos t \\end{smallmatrix} \\right]$. Then $\\kvecxp = \\kX\\kvecu = \\left[ \\begin{smallmatrix} 2t(\\sin^2 t + \\cos^2 t) \\\\ t^2(\\cos^2 t + \\sin^2 t) \\end{smallmatrix} \\right] = \\left[ \\begin{smallmatrix} 2t \\\\ t^2 \\end{smallmatrix} \\right]$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "3.9.101",
+   "source_number": "3.9.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nhsys-intro",
+   "prompt": "<p>Find a particular solution to $\\kxprime = 5\\kx + 4\\ky + t$, $\\kyprime = \\kx + 8\\ky - t$</p><ol type=\"a\"><li>using integrating factor method,</li><li>using eigenvector decomposition,</li><li>using undetermined coefficients.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The general solution is (particular solutions should agree with one of these): $\\kx(t) = C_1 e^{9 t}+4 C_2 e^{4t}-{t}/{3}-{5}/{54}$, $\\ky(t) = C_1 e^{9 t}-C_2 e^{4t}+{t}/{6}+{7}/{216}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "3.9.102",
+   "source_number": "3.9.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nhsys-intro",
+   "prompt": "<p>Find a particular solution to $\\kxprime = \\ky + e^t$, $\\kyprime = \\kx +e^t$</p><ol type=\"a\"><li>using integrating factor method,</li><li>using eigenvector decomposition,</li><li>using undetermined coefficients.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "The general solution is (particular solutions should agree with one of these): $\\kx(t) = C_1 e^t + C_2 e^{-t}+te^t$, $\\ky(t) = C_1 e^t - C_2 e^{-t}+te^t$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "3.9.103",
+   "source_number": "3.9.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ed-definite",
+   "prompt": "<p>Solve $\\kxoneprime = \\kxtwo + t$, $\\kxtwoprime = \\kxone +t$ with initial conditions $\\kxone(0) = 1$, $\\kxtwo(0) = 2$ using eigenvector decomposition.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kvecx = \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right] \\left(\\frac{5}{2} e^t-t-1\\right) + \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right] \\frac{-1}{2} e^{-t}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "3.9.104",
+   "source_number": "3.9.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ed2-solve",
+   "prompt": "<p>Solve $\\kxonedprime = -3\\kxone + \\kxtwo + t$, $\\kxtwodprime = 9\\kxone + 5\\kxtwo +\\cos(t)$ with initial conditions $\\kxone(0) = 0$, $\\kxtwo(0) = 0$, $\\kxoneprime(0) = 0$, $\\kxtwoprime(0) = 0$ using eigenvector decomposition.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kvecx = \\left[ \\begin{smallmatrix} 1 \\\\ 9 \\end{smallmatrix} \\right] \\left(\\left(\\frac{1}{140} + \\frac{1}{120\\sqrt{6}}\\right) e^{\\sqrt{6} t} + \\left(\\frac{1}{140} - \\frac{1}{120\\sqrt{6}}\\right) e^{-\\sqrt{6} t} -\\frac{t}{60}-\\frac{\\cos(t)}{70} \\right) + \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right] \\left(\\frac{-9}{80} \\sin(2 t)+ \\frac{1}{30} \\cos(2 t)+\\frac{9 t}{40}-\\frac{\\cos(t)}{30}\\right)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "eigenvector-decomposition"
+  },
+  {
+   "exercise": "e1",
+   "concept": "initial-condition-for-a-system"
+  },
+  {
+   "exercise": "e2",
+   "concept": "undetermined-coefficients-for-systems"
+  },
+  {
+   "exercise": "e2",
+   "concept": "general-solution-of-a-nonhomogeneous-system"
+  },
+  {
+   "exercise": "e3",
+   "concept": "variation-of-parameters-for-systems"
+  },
+  {
+   "exercise": "e4",
+   "concept": "integrating-factor-method-for-systems"
+  },
+  {
+   "exercise": "e4",
+   "concept": "eigenvector-decomposition"
+  },
+  {
+   "exercise": "e4",
+   "concept": "undetermined-coefficients-for-systems"
+  },
+  {
+   "exercise": "e5",
+   "concept": "integrating-factor-method-for-systems"
+  },
+  {
+   "exercise": "e5",
+   "concept": "eigenvector-decomposition"
+  },
+  {
+   "exercise": "e5",
+   "concept": "undetermined-coefficients-for-systems"
+  },
+  {
+   "exercise": "e5",
+   "concept": "general-solution-of-a-nonhomogeneous-system"
+  },
+  {
+   "exercise": "e6",
+   "concept": "eigenvector-decomposition-for-second-order-systems"
+  },
+  {
+   "exercise": "e6",
+   "concept": "undetermined-coefficients-for-second-order-systems"
+  },
+  {
+   "exercise": "e7",
+   "concept": "eigenvector-decomposition-for-second-order-systems"
+  },
+  {
+   "exercise": "e7",
+   "concept": "undetermined-coefficients-for-second-order-systems"
+  },
+  {
+   "exercise": "e7",
+   "concept": "duplication-with-the-complementary-solution"
+  },
+  {
+   "exercise": "e7",
+   "concept": "resonance-in-a-system"
+  },
+  {
+   "exercise": "e8",
+   "concept": "variation-of-parameters-for-systems"
+  },
+  {
+   "exercise": "e8",
+   "concept": "fundamental-matrix"
+  },
+  {
+   "exercise": "e101",
+   "concept": "integrating-factor-method-for-systems"
+  },
+  {
+   "exercise": "e101",
+   "concept": "eigenvector-decomposition"
+  },
+  {
+   "exercise": "e101",
+   "concept": "undetermined-coefficients-for-systems"
+  },
+  {
+   "exercise": "e102",
+   "concept": "integrating-factor-method-for-systems"
+  },
+  {
+   "exercise": "e102",
+   "concept": "eigenvector-decomposition"
+  },
+  {
+   "exercise": "e102",
+   "concept": "undetermined-coefficients-for-systems"
+  },
+  {
+   "exercise": "e102",
+   "concept": "duplication-with-the-complementary-solution"
+  },
+  {
+   "exercise": "e103",
+   "concept": "eigenvector-decomposition"
+  },
+  {
+   "exercise": "e103",
+   "concept": "initial-condition-for-a-system"
+  },
+  {
+   "exercise": "e104",
+   "concept": "eigenvector-decomposition-for-second-order-systems"
+  },
+  {
+   "exercise": "e104",
+   "concept": "initial-condition-for-a-system"
+  }
+ ],
+ "footnotes": []
+}

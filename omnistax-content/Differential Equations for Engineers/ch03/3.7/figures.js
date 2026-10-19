@@ -51,7 +51,7 @@ function hollowArrow(ctx, x1, y1, x2, y2, color) {
   function draw() {
     const { ctx } = begin(d.c);
     const e = +eps.v.toFixed(2), rep = isRep(e), lam2 = 3 + e;
-    const vc = C('vector'), cc = C('curve'), fc = C('function'), fld = alpha(C('vector-field'), 0.5);
+    const vc = C('vector'), cc = C('curve'), fc = C('function'), fld = alpha(C('vector-field'), 0.4);
     const field = (p) => { const a = 3 * p[0] + p[1], b = lam2 * p[1], L = Math.hypot(a, b); return L > 1e-9 ? [a / L, b / L] : [0, 0]; };
     const ax = axes(ctx, BOX, [-4, 4], [-3, 3], { xl: 'x_1', yl: 'x_2', xc: fc, yc: fc, nx: 8, ny: 6 });
     const { X, Y } = ax, O = [X(0), Y(0)];
@@ -68,21 +68,26 @@ function hollowArrow(ctx, x1, y1, x2, y2, color) {
       if (L > 0) arrow(ctx, X(p[0]) - (dx / L) * 9, Y(p[1]) - (dy / L) * 9, X(p[0]) + (dx / L) * 9, Y(p[1]) + (dy / L) * 9, alpha(cc, 0.7), 3);
       if (i % 3 === 1) hits.push({ x: X(a), y: Y(b), r: 16, name: `the trajectory through (${fmt(a, 2)}, ${fmt(b, 2)})` });
     });
-    /* the eigenvector lines: (1, 0) for 3, and (1, ε) for 3 + ε, which leaves as ε reaches 0 */
-    clip(ctx, ax.box, () => line(ctx, X(-4), Y(0), X(4), Y(0), vc, 4));
+    /* the eigenvector lines (faint, behind the vectors): (1, 0) for 3, and (1, ε) for 3 + ε, which leaves as ε reaches 0 */
+    const vl = alpha(vc, 0.55), up = e >= 0 ? 1 : -1;
+    clip(ctx, ax.box, () => line(ctx, X(-4), Y(0), X(4), Y(0), vl, 3));
     P.draw(ctx, 'pair', () => {
-      clip(ctx, ax.box, () => line(ctx, X(-4), Y(-4 * e), X(4), Y(4 * e), vc, 4));
+      clip(ctx, ax.box, () => line(ctx, X(-4), Y(-4 * e), X(4), Y(4 * e), vl, 3));
       const s = Math.min(3.3, 2.6 / Math.max(Math.abs(e), 1e-9));
-      mark(ctx, `$\\klambdatwo = ${exact(lam2)}$`, X(s), Y(e * s) + (e >= 0 ? -18 : 18), C('eigenvalue'), { align: 'right', base: e >= 0 ? 'bottom' : 'top' });
-      arrow(ctx, O[0], O[1], X(1), Y(e), vc, 5);
-      mark(ctx, '$\\kvecv$', X(1) + 14, Y(e) + (e >= 0 ? -10 : 10), vc, { align: 'left', base: e >= 0 ? 'bottom' : 'top' });
+      mark(ctx, `$\\klambdatwo = ${exact(lam2)}$`, X(s), Y(e * s) - 18 * up, C('eigenvalue'), { align: 'right', base: up > 0 ? 'bottom' : 'top' });
     });
     if (!rep) hits.push({ x: X(2.2), y: Y(2.2 * e), r: 16, name: `the eigenvector line along (1, ${exact(e)}), eigenvalue ${exact(lam2)}` });
-    mark(ctx, rep ? '$\\klambda = 3$, twice' : '$\\klambdaone = 3$', X(3.3), Y(0) + (e >= 0 ? 18 : -18), C('eigenvalue'), { align: 'right', base: e >= 0 ? 'top' : 'bottom' });
+    mark(ctx, rep ? '$\\klambda = 3$, twice' : '$\\klambdaone = 3$', X(3.3), Y(0) + 18 * up, C('eigenvalue'), { align: 'right', base: up > 0 ? 'top' : 'bottom' });
     hits.push({ x: X(-2.2), y: Y(0), r: 16, name: rep ? 'the only eigenvector line, along (1, 0): eigenvalue 3, twice' : 'the eigenvector line along (1, 0), eigenvalue 3' });
+    /* the eigenvectors themselves, v⃗₁ named on the side away from v⃗ */
     arrow(ctx, O[0], O[1], X(1), Y(0), vc, 5);
-    mark(ctx, '$\\kvecvone$', X(1) - 6, Y(0) + (e >= 0 ? 16 : -16), vc, { align: 'right', base: e >= 0 ? 'top' : 'bottom' });
+    mark(ctx, '$\\kvecvone$', X(0.5), Y(0) + 16 * up, vc, { align: 'center', base: up > 0 ? 'top' : 'bottom' });
     hits.push({ x: X(0.6), y: Y(0), r: 14, name: 'the eigenvector v⃗₁ = (1, 0)' });
+    P.draw(ctx, 'pair', () => {
+      arrow(ctx, O[0], O[1], X(1), Y(e), vc, 5);
+      mark(ctx, '$\\kvecv$', X(0.5), Y(0.5 * e) - 16 * up, vc, { align: 'center', base: up > 0 ? 'bottom' : 'top' });
+    });
+    if (!rep) hits.push({ x: X(0.8), y: Y(0.8 * e), r: 12, name: `the eigenvector v⃗ = (1, ${exact(e)})` });
     /* the trajectory through (0, 1): x⃗₂ at ε = 0 */
     const g = sol(e, 0, 1);
     poly(ctx, ax, trace(g, -4, 1, 900), cc, 5);
