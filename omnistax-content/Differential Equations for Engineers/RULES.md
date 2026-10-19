@@ -77,4 +77,6 @@ The root layout, plus `sheets/` (the Laplace table), `COLOR.md`, `modules.json`,
 
 ## Template sections
 
-None yet: `ch00/0.2` becomes the template for prose with defined terms, examples, inline exercises and keyed exercises once built, and `ch01/1.2` for slope fields and theorems.
+`ch00/0.2` for prose with defined terms, examples, inline exercises and keyed exercises (its `plan.md` lists the id and exercise conventions every section copies); `ch01/1.2` for slope fields and theorems; `ch03/3.5` for a moving phase portrait under a matrix; `ch01/1.9` and `ch04/4.9` for a 2D | 3D view.
+
+A book footnote carries the book's running number, counted through the whole book in source order (`\counterwithout{footnote}{chapter}`): Chapter 1 holds 1–9 and Appendix A ends at 64. Each chapter's `config.md` records its range.
