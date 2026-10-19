@@ -124,17 +124,24 @@ const integral = (f, a, b) => {
     if (x !== c.a) shade(ctx, top, c.f, 0, Math.min(c.a, x), Math.max(c.a, x), ic, { alpha: 0.3 });
     line(ctx, top.X(c.a), top.box.t, top.X(c.a), top.box.b, alpha(PAL.ink, 0.4), 2, [4, 8]);
     plot(ctx, top, c.f, fc);
+    const span = Math.abs(x - c.a) > 1e-6, ave = span ? Fx / (x - c.a) : fx;
+    if (span) {
+      line(ctx, top.X(c.a), top.Y(ave), top.X(x), top.Y(ave), fc, 3, [10, 10]);
+      text(ctx, '$\\kfave$', top.X(x) + (x > c.a ? 12 : -12), top.Y(ave), fc, { size: 22, weight: 600, align: x > c.a ? 'left' : 'right', base: 'middle', tex: true, bg: PAL.panel });
+    }
     P.draw(ctx, top, fc);
     text(ctx, `$\\kf(t)=${c.tex}$`, top.box.r - 6, top.box.t + 6, fc, { size: 22, weight: 600, align: 'right', base: 'top', tex: true, bg: PAL.panel });
     const bot = axes(ctx, { l: 330, r: 1070, t: 400, b: 590 }, c.x, c.F, { xl: 'x', yl: 'y', nx: c.x[1] - c.x[0], ny: c.nF, nice: true });
     plot(ctx, bot, (t) => integral(c.f, c.a, t), alpha(ic, 0.3), { w: 3 });
     plot(ctx, bot, (t) => integral(c.f, c.a, t), ic, { x: [c.x[0], x] });
     tangent(ctx, bot, () => Fx, x, lc, { df: () => fx, w: 3 });
+    if (span) { line(ctx, bot.X(c.a), bot.Y(0), bot.X(x), bot.Y(Fx), fc, 3, [10, 10]); dot(ctx, bot.X(c.a), bot.Y(0), ic, false, 8); }
     dot(ctx, bot.X(x), bot.Y(Fx), ic, true, 9);
     line(ctx, top.X(x), top.Y(fx), bot.X(x), bot.Y(Fx), alpha(PAL.ink, 0.3), 2, [4, 8]);
     text(ctx, `$\\kF(x)=\\int_{${c.a}}^{x}\\kf(t)\\,dt$`, bot.box.r - 6, bot.box.t + 6, ic, { size: 22, weight: 600, align: 'right', base: 'top', tex: true, bg: PAL.panel });
     headline(ctx, `x = ${fmt(x, 2)}: the area from ${fmt(c.a, 0)} to x is F(x) = ${fmt(Fx, 3)}, and F changes at the rate f(x) = ${fmt(fx, 3)}, the height of f there.`);
-    ro.set(`\\kF(${n(x, 2)})=\\int_{${c.a}}^{${n(x, 2)}}\\kf(t)\\,dt=${typed('integral', n(Fx, 3))}\\qquad \\kFprime(${n(x, 2)})=\\kf(${n(x, 2)})=${typed('derivative', n(fx, 3))}`, undefined, { form: pick.value });
+    const chord = span ? `\\qquad \\frac{\\kF(${n(x, 2)})-\\kF(${c.a})}{${n(x, 2)}-${c.a < 0 ? `(${c.a})` : c.a}}=\\frac{${typed('integral', n(Fx, 3))}}{${n(x - c.a, 2)}}=\\kfave=${typed('function', n(Number(Fx.toFixed(3)) / Number((x - c.a).toFixed(2)), 3))}` : '';
+    ro.set(`\\kF(${n(x, 2)})=\\int_{${c.a}}^{${n(x, 2)}}\\kf(t)\\,dt=${typed('integral', n(Fx, 3))}\\qquad \\kFprime(${n(x, 2)})=\\kf(${n(x, 2)})=${typed('derivative', n(fx, 3))}${chord}`, undefined, { form: pick.value + (span ? '' : '0') });
   }
   still(d, draw);
 })();

@@ -171,4 +171,33 @@ const vec = (p) => `\\langle ${p.map((x) => n2(x)).join(',')}\\rangle`;
   }
   still(d, draw);
 })();
+
+/* Sim, Example 16.63: the sphere of radius r = 2 inside the cylinder x² + y² = r², −r ≤ z ≤ r, that circumscribes it. The
+   band φ₁ ≤ φ ≤ φ₂ of the sphere and the strip of the cylinder level with it, onto which it projects horizontally, have the
+   same area, ∫∫ r² sin φ dφ dθ = 2πr²(cos φ₁ − cos φ₂) = 2πr Δz, so the whole sphere has the cylinder's side area 4πr².
+   Both areas are printed from the same Δz. Mathematical 3D, free orbit, pitch ±1.4, no buttons. */
+(function () {
+  const d = sim('sim-sphere-cylinder');
+  const R = 2, box = [[-2.6, 2.6], [-2.6, 2.6], [-2.6, 2.6]];
+  const S = F.space3d(d, { box, h: 520, pitch: [-1.4, 1.4] });
+  const ps = ctl(d.controls, { label: '\\varphi', cls: '', key: 'phi', min: 0, max: 3, step: 0.01, value: 0.8, unit: '', dec: 2, detents: [0] });
+  const ds = ctl(d.controls, { label: '\\Delta\\varphi', cls: '', key: 'dphi', min: 0.02, max: PI, step: 0.01, value: 0.4, unit: '', dec: 2, specials: [{ at: () => PI - ps.v, label: 'to the pole' }] });
+  const sph = (t, f) => [R * Math.cos(t) * Math.sin(f), R * Math.sin(t) * Math.sin(f), R * Math.cos(f)];
+  const cyl = (t, z) => [R * Math.cos(t), R * Math.sin(t), z];
+  const name = (marks, s) => marks.map((m) => ({ ...m, name: s }));
+  function draw() {
+    const f1 = ps.v, f2 = Math.min(PI, f1 + ds.v), z1 = R * Math.cos(f1), z2 = R * Math.cos(f2), toPole = Math.abs(f2 - PI) < 1e-9;
+    const dz = Number((z1 - z2).toFixed(5)), A = TAU * R * dz, whole = f1 < 1e-9 && toPole, sc = C('surface'), ic = C('integral');
+    S.set('axes', SP.axes(box, { ticks: 1 }));
+    S.set('sphere', name(SP.surface(sph, [0, TAU], [0, PI], sc, { n: [48, 24], grid: 8, alpha: 0.28 }), 'the sphere, radius r = 2'));
+    S.set('cylinder', name(SP.surface(cyl, [0, TAU], [-R, R], sc, { n: [48, 4], grid: 0, alpha: 0.1 }), 'the cylinder x² + y² = r² that circumscribes it'));
+    S.set('band', name(SP.surface(sph, [0, TAU], [f1, f2], ic, { n: [48, 12], grid: 0, alpha: 0.8 }), `the band of the sphere: area ${fmt(A, 3)}`));
+    S.set('strip', name(SP.surface(cyl, [0, TAU], [z2, z1], ic, { n: [48, 2], grid: 0, alpha: 0.5 }), `the strip of the cylinder: area ${fmt(A, 3)}`));
+    S.set('rays', Array.from({ length: 8 }, (_, k) => (k * PI) / 4).flatMap((t) => [f1, f2].map((f) => ({ k: 'line', pts: [sph(t, f), cyl(t, R * Math.cos(f))], color: 'guide', w: 2, dash: [4, 8] }))));
+    S.headline(whole ? `The whole sphere: 4πr² = ${fmt(4 * PI * R * R, 2)}, the cylinder's side 2πr · 2r.`
+      : `φ from ${fmt(f1, 2)} to ${toPole ? 'π' : fmt(f2, 2)}: area ${fmt(A, 3)} on the sphere and on the cylinder; all the bands make 4πr² = ${fmt(4 * PI * R * R, 2)}.`);
+    tex(d.readout, `\\int_{0}^{2\\pi}\\int_{${n2(f1)}}^{${toPole ? '\\pi' : n2(f2)}}r^{2}\\sin\\varphi\\,d\\varphi\\,d\\theta=${hue('integral', n2(A, 3))}\\qquad 2\\pi r\\,\\Delta z=2\\pi(2)(${n2(dz, 5)})=${hue('integral', n2(A, 3))}`);
+  }
+  still(d, draw);
+})();
 };

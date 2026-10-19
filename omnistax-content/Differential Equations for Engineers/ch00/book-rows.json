@@ -1,0 +1,729 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "x",
+   "latex": "x",
+   "macro": "\\kx"
+  },
+  {
+   "sym": "dx/dt",
+   "latex": "\\frac{dx}{dt}",
+   "macro": "\\kdxdt"
+  },
+  {
+   "sym": "x_prime",
+   "latex": "x'",
+   "macro": "\\kxprime"
+  },
+  {
+   "sym": "x_dprime",
+   "latex": "x''",
+   "macro": "\\kxdprime"
+  },
+  {
+   "sym": "x_tprime",
+   "latex": "x'''",
+   "macro": "\\kxtprime"
+  },
+  {
+   "sym": "d2x/dt2",
+   "latex": "\\frac{d^2x}{dt^2}",
+   "macro": "\\kdtwoxdt"
+  },
+  {
+   "sym": "P",
+   "latex": "P",
+   "macro": "\\kP"
+  },
+  {
+   "sym": "dP/dt",
+   "latex": "\\frac{dP}{dt}",
+   "macro": "\\kdPdt"
+  },
+  {
+   "sym": "y",
+   "latex": "y",
+   "macro": "\\ky"
+  },
+  {
+   "sym": "dy/dx",
+   "latex": "\\frac{dy}{dx}",
+   "macro": "\\kdydx"
+  },
+  {
+   "sym": "dy/dt",
+   "latex": "\\frac{dy}{dt}",
+   "macro": "\\kdydt"
+  },
+  {
+   "sym": "d2y/dx2",
+   "latex": "\\frac{d^2y}{dx^2}",
+   "macro": "\\kdtwoydx"
+  },
+  {
+   "sym": "y_prime",
+   "latex": "y'",
+   "macro": "\\kyprime"
+  },
+  {
+   "sym": "y_dprime",
+   "latex": "y''",
+   "macro": "\\kydprime"
+  },
+  {
+   "sym": "dny/dxn",
+   "latex": "\\frac{d^n y}{dx^n}",
+   "macro": "\\kdnydx"
+  },
+  {
+   "sym": "dn1y/dxn1",
+   "latex": "\\frac{d^{n-1} y}{dx^{n-1}}",
+   "macro": "\\kdnmoneydx"
+  },
+  {
+   "sym": "θ",
+   "latex": "\\theta",
+   "macro": "\\ktheta"
+  },
+  {
+   "sym": "θ_dprime",
+   "latex": "\\theta''",
+   "macro": "\\kthetadprime"
+  },
+  {
+   "sym": "u",
+   "latex": "u",
+   "macro": "\\ku"
+  },
+  {
+   "sym": "∂u/∂t",
+   "latex": "\\frac{\\partial u}{\\partial t}",
+   "macro": "\\kput"
+  },
+  {
+   "sym": "∂2u/∂x2",
+   "latex": "\\frac{\\partial^2 u}{\\partial x^2}",
+   "macro": "\\kptwoux"
+  },
+  {
+   "sym": "∂2u/∂t2",
+   "latex": "\\frac{\\partial^2 u}{\\partial t^2}",
+   "macro": "\\kptwout"
+  },
+  {
+   "sym": "∂2u/∂y2",
+   "latex": "\\frac{\\partial^2 u}{\\partial y^2}",
+   "macro": "\\kptwouy"
+  },
+  {
+   "sym": "∂y/∂t",
+   "latex": "\\frac{\\partial y}{\\partial t}",
+   "macro": "\\kpyt"
+  },
+  {
+   "sym": "∂y/∂x",
+   "latex": "\\frac{\\partial y}{\\partial x}",
+   "macro": "\\kpyx"
+  },
+  {
+   "sym": "∂2y/∂x2",
+   "latex": "\\frac{\\partial^2 y}{\\partial x^2}",
+   "macro": "\\kptwoyx"
+  },
+  {
+   "sym": "∂2y/∂t2",
+   "latex": "\\frac{\\partial^2 y}{\\partial t^2}",
+   "macro": "\\kptwoyt"
+  },
+  {
+   "sym": "∂4y/∂x4",
+   "latex": "\\frac{\\partial^4 y}{\\partial x^4}",
+   "macro": "\\kpfouryx"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "differential-equation",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Differential equation",
+   "terms": [
+    "differential equation"
+   ],
+   "statement": "A differential equation is an equation that involves not only an unknown variable, but also its derivatives."
+  },
+  {
+   "id": "dependent-variable",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Dependent variable",
+   "terms": [
+    "dependent variable"
+   ],
+   "symbol": "x",
+   "type": "function",
+   "statement": "The dependent variable is the unknown of a differential equation, a function of the independent variable; solving the equation means finding it."
+  },
+  {
+   "id": "independent-variable",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Independent variable",
+   "terms": [
+    "independent variable"
+   ],
+   "statement": "The independent variable is the variable the unknown of a differential equation is a function of, such as t in dx/dt + x = 2 cos t."
+  },
+  {
+   "id": "first-order-differential-equation",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "First-order differential equation",
+   "terms": [
+    "first-order differential equation",
+    "first order"
+   ],
+   "statement": "A first-order differential equation involves only the first derivative of the dependent variable; the general form is dy/dx = f(x, y).",
+   "forms": [
+    {
+     "id": "eq-first-order-general",
+     "latex": "\\frac{dy}{dx} = f(x,y)",
+     "ktex": "\\kdydx = f(x,\\ky)",
+     "section": "0.3",
+     "anchor": "0.3-first-order-form"
+    }
+   ]
+  },
+  {
+   "id": "solution-to-a-differential-equation",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Solution of a differential equation",
+   "terms": [
+    "solution"
+   ],
+   "type": "function",
+   "statement": "A solution of a differential equation is a function of the independent variable that makes the equation hold, left-hand side equal to right-hand side, when it and its derivatives are plugged in. An equation may have many solutions."
+  },
+  {
+   "id": "verifying-a-solution",
+   "kind": "skill",
+   "section": "0.2",
+   "name": "Checking a solution",
+   "statement": "Computing the derivatives of a proposed function and plugging them into the equation to see whether the two sides agree; it is how a remembered or guessed solution is confirmed."
+  },
+  {
+   "id": "ordinary-differential-equation",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Ordinary differential equation",
+   "terms": [
+    "ordinary differential equation",
+    "ordinary differential equations",
+    "ODE",
+    "ODEs"
+   ],
+   "statement": "An ordinary differential equation (ODE) is an equation where the derivatives are taken with respect to only one variable, so there is only one independent variable."
+  },
+  {
+   "id": "partial-differential-equation",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Partial differential equation",
+   "terms": [
+    "partial differential equation",
+    "partial differential equations",
+    "PDE",
+    "PDEs"
+   ],
+   "statement": "A partial differential equation (PDE) is an equation that depends on partial derivatives with respect to several independent variables."
+  },
+  {
+   "id": "real-world-problem",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Real-world problem",
+   "terms": [
+    "real-world problem"
+   ],
+   "statement": "The situation in science or engineering that a differential equation is used to understand, the start and the end of the modelling cycle."
+  },
+  {
+   "id": "mathematical-model",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Mathematical model",
+   "terms": [
+    "mathematical model"
+   ],
+   "statement": "The differential equation (or equations) a real-world problem is translated into, after simplifying assumptions are made."
+  },
+  {
+   "id": "mathematical-solution",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Mathematical solution",
+   "terms": [
+    "mathematical solution"
+   ],
+   "statement": "The solution mathematics gives for a mathematical model, which must still be interpreted to say what it means for the real-world problem."
+  },
+  {
+   "id": "exponential-growth",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Exponential growth model",
+   "terms": [
+    "exponential growth model",
+    "exponential growth"
+   ],
+   "statement": "The exponential growth model says that a population grows at a rate proportional to itself, dP/dt = kP for a constant k > 0; its solutions are P(t) = Ce^(kt).",
+   "forms": [
+    {
+     "id": "eq-exponential-growth",
+     "latex": "\\frac{dP}{dt} = kP",
+     "ktex": "\\kdPdt = k\\kP",
+     "condition": "k > 0",
+     "anchor": "0.2-eq-growth-model"
+    },
+    {
+     "id": "eq-exponential-growth-solution",
+     "latex": "P(t) = Ce^{kt}",
+     "ktex": "\\kP(t) = Ce^{kt}",
+     "anchor": "0.2-eq-growth-solution"
+    }
+   ]
+  },
+  {
+   "id": "initial-value",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Initial condition",
+   "terms": [
+    "initial condition"
+   ],
+   "type": "point",
+   "statement": "An initial condition gives the value of the solution at one point, such as P(0) = 1000; it picks out the constant in the general solution."
+  },
+  {
+   "id": "general-solution",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "General solution",
+   "terms": [
+    "general solution"
+   ],
+   "type": "function",
+   "statement": "The general solution is a formula with constants, such as P(t) = Ce^t, in which every solution of the equation can be written for some choice of the constants."
+  },
+  {
+   "id": "particular-solution",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Particular solution",
+   "terms": [
+    "particular solution"
+   ],
+   "type": "function",
+   "statement": "A particular solution is the one solution sought, found from the general solution by an initial condition; generally, any one solution."
+  },
+  {
+   "id": "solving-an-initial-value-problem",
+   "kind": "skill",
+   "section": "0.2",
+   "name": "Solving for the constants",
+   "statement": "Plugging the initial conditions into the general solution and solving for its constants, one condition for each constant, to get the particular solution."
+  },
+  {
+   "id": "four-fundamental-equations",
+   "kind": "result",
+   "section": "0.2",
+   "name": "Four fundamental equations",
+   "terms": [
+    "four fundamental equations"
+   ],
+   "statement": "Four equations whose solutions are worth memorizing, for a constant k > 0: dy/dx = ky has y = Ce^(kx); dy/dx = −ky has y = Ce^(−kx); y″ = −k²y has y = C₁ cos(kx) + C₂ sin(kx); y″ = k²y has y = C₁e^(kx) + C₂e^(−kx), or D₁ cosh(kx) + D₂ sinh(kx).",
+   "forms": [
+    {
+     "id": "eq-fundamental-growth",
+     "latex": "y(x) = Ce^{kx}",
+     "ktex": "\\ky(x) = Ce^{kx}",
+     "condition": "dy/dx = ky, k > 0",
+     "anchor": "0.2-eq-fund-growth"
+    },
+    {
+     "id": "eq-fundamental-decay",
+     "latex": "y(x) = Ce^{-kx}",
+     "ktex": "\\ky(x) = Ce^{-kx}",
+     "condition": "dy/dx = −ky, k > 0",
+     "anchor": "0.2-eq-fund-decay"
+    },
+    {
+     "id": "eq-fundamental-oscillation",
+     "latex": "y(x) = C_1 \\cos(kx) + C_2 \\sin(kx)",
+     "ktex": "\\ky(x) = C_1 \\cos(kx) + C_2 \\sin(kx)",
+     "condition": "d²y/dx² = −k²y, k > 0",
+     "anchor": "0.2-eq-fund-oscillation"
+    },
+    {
+     "id": "eq-fundamental-exponentials",
+     "latex": "y(x) = C_1 e^{kx} + C_2 e^{-kx}",
+     "ktex": "\\ky(x) = C_1 e^{kx} + C_2 e^{-kx}",
+     "condition": "d²y/dx² = k²y, k > 0",
+     "anchor": "0.2-eq-fund-exponentials"
+    },
+    {
+     "id": "eq-fundamental-hyperbolic",
+     "latex": "y(x) = D_1 \\cosh(kx) + D_2 \\sinh(kx)",
+     "ktex": "\\ky(x) = D_1 \\cosh(kx) + D_2 \\sinh(kx)",
+     "condition": "d²y/dx² = k²y, k > 0",
+     "anchor": "0.2-eq-fund-exponentials"
+    }
+   ]
+  },
+  {
+   "id": "second-order-differential-equation",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Second-order differential equation",
+   "terms": [
+    "second-order differential equation",
+    "second order"
+   ],
+   "statement": "A second-order differential equation involves the second derivative of the dependent variable and no higher; its general solution has two constants."
+  },
+  {
+   "id": "hyperbolic-functions",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Hyperbolic functions",
+   "terms": [
+    "hyperbolic cosine",
+    "hyperbolic sine"
+   ],
+   "type": "function",
+   "statement": "The hyperbolic cosine and hyperbolic sine are cosh x = (eˣ + e⁻ˣ)/2 and sinh x = (eˣ − e⁻ˣ)/2, with cosh 0 = 1 and sinh 0 = 0.",
+   "forms": [
+    {
+     "id": "eq-cosh",
+     "latex": "\\cosh x = \\frac{e^{x} + e^{-x}}{2}",
+     "ktex": "\\cosh x = \\frac{e^{x} + e^{-x}}{2}",
+     "anchor": "0.2-eq-hyperbolic"
+    },
+    {
+     "id": "eq-sinh",
+     "latex": "\\sinh x = \\frac{e^{x} - e^{-x}}{2}",
+     "ktex": "\\sinh x = \\frac{e^{x} - e^{-x}}{2}",
+     "anchor": "0.2-eq-hyperbolic"
+    }
+   ]
+  },
+  {
+   "id": "derivatives-of-hyperbolic-functions",
+   "kind": "result",
+   "section": "0.2",
+   "name": "Derivatives of the hyperbolic functions",
+   "type": "derivative",
+   "statement": "The derivative of cosh x is sinh x, with no minus sign, and the derivative of sinh x is cosh x.",
+   "forms": [
+    {
+     "id": "eq-derivative-cosh",
+     "latex": "\\frac{d}{dx} \\cosh x = \\sinh x",
+     "ktex": "\\frac{d}{dx} \\cosh x = \\sinh x",
+     "anchor": "0.2-hyperbolic"
+    },
+    {
+     "id": "eq-derivative-sinh",
+     "latex": "\\frac{d}{dx} \\sinh x = \\cosh x",
+     "ktex": "\\frac{d}{dx} \\sinh x = \\cosh x",
+     "anchor": "0.2-hyperbolic"
+    }
+   ]
+  },
+  {
+   "id": "catenary",
+   "kind": "definition",
+   "section": "0.2",
+   "name": "Catenary",
+   "terms": [
+    "catenary"
+   ],
+   "type": "function",
+   "statement": "The catenary is the shape of a hanging chain, the graph of cosh; inverted, it is the ideal arch for supporting its own weight, which a parabola is not.",
+   "forms": [
+    {
+     "id": "eq-gateway-arch",
+     "latex": "y = A\\left( \\cosh \\left( \\frac{C}{L} x \\right) - 1 \\right)",
+     "ktex": "y = A\\left( \\cosh \\left( \\frac{C}{L} x \\right) - 1 \\right)",
+     "condition": "the Gateway Arch in Saint Louis, A = 68.7672, C = 3.0022, L = 299.2239",
+     "anchor": "0.2-eq-gateway-arch"
+    }
+   ]
+  },
+  {
+   "id": "system-of-differential-equations",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "System of differential equations",
+   "terms": [
+    "system of differential equations"
+   ],
+   "statement": "Several differential equations working together, such as y′ = x, x′ = y, form a system of differential equations."
+  },
+  {
+   "id": "order-of-a-differential-equation",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "Order of a differential equation",
+   "terms": [
+    "order"
+   ],
+   "statement": "The order of an equation or system is the order of the largest derivative that appears in it."
+  },
+  {
+   "id": "linear-differential-equation",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "Linear equation",
+   "terms": [
+    "linear"
+   ],
+   "statement": "An equation is linear if the dependent variable (or variables) and their derivatives appear only as first powers, are not multiplied together, and no other functions of them appear; a linear ODE can be put in the form (2).",
+   "forms": [
+    {
+     "id": "eq-linear-ode",
+     "latex": "a_n(x) \\frac{d^n y}{dx^n} + a_{n-1}(x) \\frac{d^{n-1} y}{dx^{n-1}} + \\cdots + a_{1}(x) \\frac{dy}{dx} + a_{0}(x) y = b(x)",
+     "ktex": "a_n(x) \\kdnydx + a_{n-1}(x) \\kdnmoneydx + \\cdots + a_{1}(x) \\kdydx + a_{0}(x) \\ky = b(x)",
+     "anchor": "0.3-eq-2"
+    }
+   ]
+  },
+  {
+   "id": "coefficients-of-a-linear-equation",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "Coefficients",
+   "terms": [
+    "coefficients"
+   ],
+   "statement": "The coefficients of a linear equation are the functions a₀, a₁, …, aₙ that multiply the dependent variable or one of its derivatives, not the function b(x) standing alone."
+  },
+  {
+   "id": "nonlinear-differential-equation",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "Nonlinear equation",
+   "terms": [
+    "nonlinear"
+   ],
+   "statement": "An equation that is not linear is nonlinear, such as dx/dt = x² or the pendulum equation θ″ + sin θ = 0."
+  },
+  {
+   "id": "homogeneous-linear-equation",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "Homogeneous equation",
+   "terms": [
+    "homogeneous"
+   ],
+   "statement": "A linear equation is homogeneous if every term depends on the dependent variable, so no term is a function of the independent variables alone.",
+   "forms": [
+    {
+     "id": "eq-homogeneous-linear-ode",
+     "latex": "a_n(x) \\frac{d^n y}{dx^n} + a_{n-1}(x) \\frac{d^{n-1} y}{dx^{n-1}} + \\cdots + a_{1}(x) \\frac{dy}{dx} + a_{0}(x) y = 0",
+     "ktex": "a_n(x) \\kdnydx + a_{n-1}(x) \\kdnmoneydx + \\cdots + a_{1}(x) \\kdydx + a_{0}(x) \\ky = 0",
+     "anchor": "0.3-eq-homogeneous"
+    }
+   ]
+  },
+  {
+   "id": "nonhomogeneous-linear-equation",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "Nonhomogeneous equation",
+   "terms": [
+    "nonhomogeneous",
+    "inhomogeneous"
+   ],
+   "statement": "A linear equation with a term that is a function of the independent variables alone, such as b(x) in (2) when b is not zero, is nonhomogeneous, or inhomogeneous."
+  },
+  {
+   "id": "constant-coefficient-equation",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "Constant coefficients",
+   "terms": [
+    "constant coefficients",
+    "constant-coefficient"
+   ],
+   "statement": "A linear equation has constant coefficients if its coefficients are constant functions; the function b standing alone may still depend on the independent variable.",
+   "forms": [
+    {
+     "id": "eq-constant-coefficient-ode",
+     "latex": "a_n \\frac{d^n y}{dx^n} + a_{n-1} \\frac{d^{n-1} y}{dx^{n-1}} + \\cdots + a_{1} \\frac{dy}{dx} + a_{0} y = b(x)",
+     "ktex": "a_n \\kdnydx + a_{n-1} \\kdnmoneydx + \\cdots + a_{1} \\kdydx + a_{0} \\ky = b(x)",
+     "anchor": "0.3-eq-constant-coefficient"
+    }
+   ]
+  },
+  {
+   "id": "variable-coefficient-equation",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "Variable-coefficient equation",
+   "terms": [
+    "variable-coefficient"
+   ],
+   "statement": "A linear equation whose coefficients are not constants is a variable-coefficient equation."
+  },
+  {
+   "id": "autonomous-differential-equation",
+   "kind": "definition",
+   "section": "0.3",
+   "name": "Autonomous equation",
+   "terms": [
+    "autonomous"
+   ],
+   "statement": "An equation or system is autonomous if it does not depend on the independent variable, which is then thought of as time; a first-order autonomous ODE has the form dx/dt = f(x).",
+   "forms": [
+    {
+     "id": "eq-autonomous-first-order",
+     "latex": "\\frac{dx}{dt} = f(x)",
+     "ktex": "\\kdxdt = f(\\kx)",
+     "anchor": "0.3-eq-autonomous"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "dependent-variable",
+   "prereq": "differential-equation"
+  },
+  {
+   "concept": "independent-variable",
+   "prereq": "differential-equation"
+  },
+  {
+   "concept": "first-order-differential-equation",
+   "prereq": "dependent-variable"
+  },
+  {
+   "concept": "solution-to-a-differential-equation",
+   "prereq": "dependent-variable"
+  },
+  {
+   "concept": "verifying-a-solution",
+   "prereq": "solution-to-a-differential-equation"
+  },
+  {
+   "concept": "ordinary-differential-equation",
+   "prereq": "independent-variable"
+  },
+  {
+   "concept": "partial-differential-equation",
+   "prereq": "independent-variable"
+  },
+  {
+   "concept": "mathematical-model",
+   "prereq": "real-world-problem"
+  },
+  {
+   "concept": "mathematical-solution",
+   "prereq": "mathematical-model"
+  },
+  {
+   "concept": "exponential-growth",
+   "prereq": "mathematical-model"
+  },
+  {
+   "concept": "exponential-growth",
+   "prereq": "first-order-differential-equation"
+  },
+  {
+   "concept": "general-solution",
+   "prereq": "solution-to-a-differential-equation"
+  },
+  {
+   "concept": "initial-value",
+   "prereq": "solution-to-a-differential-equation"
+  },
+  {
+   "concept": "particular-solution",
+   "prereq": "general-solution"
+  },
+  {
+   "concept": "particular-solution",
+   "prereq": "initial-value"
+  },
+  {
+   "concept": "solving-an-initial-value-problem",
+   "prereq": "particular-solution"
+  },
+  {
+   "concept": "second-order-differential-equation",
+   "prereq": "dependent-variable"
+  },
+  {
+   "concept": "four-fundamental-equations",
+   "prereq": "general-solution"
+  },
+  {
+   "concept": "four-fundamental-equations",
+   "prereq": "second-order-differential-equation"
+  },
+  {
+   "concept": "four-fundamental-equations",
+   "prereq": "hyperbolic-functions"
+  },
+  {
+   "concept": "derivatives-of-hyperbolic-functions",
+   "prereq": "hyperbolic-functions"
+  },
+  {
+   "concept": "catenary",
+   "prereq": "hyperbolic-functions"
+  },
+  {
+   "concept": "system-of-differential-equations",
+   "prereq": "differential-equation"
+  },
+  {
+   "concept": "order-of-a-differential-equation",
+   "prereq": "dependent-variable"
+  },
+  {
+   "concept": "linear-differential-equation",
+   "prereq": "order-of-a-differential-equation"
+  },
+  {
+   "concept": "coefficients-of-a-linear-equation",
+   "prereq": "linear-differential-equation"
+  },
+  {
+   "concept": "nonlinear-differential-equation",
+   "prereq": "linear-differential-equation"
+  },
+  {
+   "concept": "homogeneous-linear-equation",
+   "prereq": "linear-differential-equation"
+  },
+  {
+   "concept": "nonhomogeneous-linear-equation",
+   "prereq": "homogeneous-linear-equation"
+  },
+  {
+   "concept": "constant-coefficient-equation",
+   "prereq": "coefficients-of-a-linear-equation"
+  },
+  {
+   "concept": "variable-coefficient-equation",
+   "prereq": "coefficients-of-a-linear-equation"
+  },
+  {
+   "concept": "autonomous-differential-equation",
+   "prereq": "independent-variable"
+  }
+ ]
+}

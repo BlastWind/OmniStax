@@ -1,0 +1,525 @@
+{
+  "id": "1.1",
+  "module": "integralsols:section",
+  "chapter": "1",
+  "title": "Integrals as solutions",
+  "lead": "The simplest first-order equations, $\\kyprime = \\kf(x)$ and $\\kyprime = \\kf(\\ky)$, are solved by integrating, and the solution of an initial value problem can always be written as a definite integral, a formula a computer can evaluate even when no <span data-concept=\"closed-form\">closed form</span> exists.",
+  "objectives": [],
+  "summary_html": "",
+  "notes": "The book’s section note (lecture count and the matching sections of Edwards–Penney and Boyce–DiPrima) is left out.",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-19",
+  "exercises_lead": "",
+  "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 1.1.101–1.1.107 carry the book’s answers; the book answers no exercise below 101, and each of those carries an AI-marked solution checked by computation.",
+  "figures": [
+    {
+      "id": "sim-blowup",
+      "kind": "sim",
+      "number": "1.1",
+      "originals": [
+        "/media/ch01/1over1mx.svg"
+      ],
+      "original_caption": "Plot of y=1/(1−x).",
+      "draws": [
+        "function",
+        "point"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-integral-solution",
+      "kind": "sim",
+      "draws": [
+        "function",
+        "integral",
+        "point"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "referents": [],
+  "coverage": [
+    {
+      "span": "integrating",
+      "concept": "first-order-differential-equation",
+      "verb": "reinforces"
+    },
+    {
+      "span": "ias-inteq",
+      "concept": "integral-solution",
+      "verb": "introduces"
+    },
+    {
+      "span": "antiderivative-def",
+      "concept": "antiderivative",
+      "verb": "introduces"
+    },
+    {
+      "span": "closed-form-def",
+      "concept": "closed-form",
+      "verb": "introduces"
+    },
+    {
+      "span": "ivp-integral",
+      "concept": "initial-value",
+      "verb": "uses"
+    },
+    {
+      "span": "integrating",
+      "concept": "general-solution",
+      "verb": "uses"
+    },
+    {
+      "span": "y-of-x-swapped",
+      "concept": "solving-y-prime-equals-f-of-y",
+      "verb": "introduces"
+    },
+    {
+      "span": "velocity",
+      "concept": "integral-solution",
+      "verb": "reinforces"
+    },
+    {
+      "span": "velocity",
+      "concept": "second-order-differential-equation",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "t1",
+      "source_id": "exercise-1-1-001",
+      "source_number": "1.1.1",
+      "kind": "inline-exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "inline",
+        "after": "example-1-1-6"
+      },
+      "prompt": "<p>Solve for $v$, then solve for $x$. Find $x(10)$ to answer the question.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>First $\\kvprime = t^2$, $\\kv(0) = 10$, so $\\kv = \\frac{t^3}{3} + 10$. Then $\\kxprime = \\kv = \\frac{t^3}{3} + 10$, $\\kx(0) = 1$, so $\\kx = \\frac{t^4}{12} + 10t + 1$. At $t = 10$, $\\kx(10) = \\frac{10000}{12} + 100 + 1 = \\frac{2803}{3} \\approx 934.33$, so the car is at about the 934-meter mark.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e2",
+      "source_id": "exercise-1-1-002",
+      "source_number": "1.1.2",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\kdydx = x^2+x$ for $\\ky(1)=3$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>Integrate: $\\ky = \\frac{x^3}{3} + \\frac{x^2}{2} + C$. Then $3 = \\ky(1) = \\frac{1}{3} + \\frac{1}{2} + C$, so $C = \\frac{13}{6}$ and $\\ky = \\frac{x^3}{3} + \\frac{x^2}{2} + \\frac{13}{6}$.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e3",
+      "source_id": "exercise-1-1-003",
+      "source_number": "1.1.3",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\kdydx = \\sin (5x)$ for $\\ky(0)=2$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>Integrate: $\\ky = -\\frac{\\cos(5x)}{5} + C$. Then $2 = \\ky(0) = -\\frac{1}{5} + C$, so $C = \\frac{11}{5}$ and $\\ky = \\frac{11 - \\cos(5x)}{5}$.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e4",
+      "source_id": "exercise-1-1-004",
+      "source_number": "1.1.4",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\kdydx = \\frac{1}{x^2-1}$ for $\\ky(0)=0$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>By partial fractions, $\\frac{1}{x^2-1} = \\frac{1}{2}\\left(\\frac{1}{x-1} - \\frac{1}{x+1}\\right)$, so $\\ky = \\frac{1}{2}\\ln\\left\\lvert\\frac{x-1}{x+1}\\right\\rvert + C$. At $x = 0$ the logarithm is $\\ln 1 = 0$, so $C = 0$ and $\\ky = \\frac{1}{2}\\ln\\frac{1-x}{1+x}$, the solution on the interval $(-1, 1)$ that holds $0$.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e5",
+      "source_id": "exercise-1-1-005",
+      "source_number": "1.1.5",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\kyprime = \\ky^3$ for $\\ky(0)=1$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>$\\ky = 0$ is a solution, but not this one. Write $\\frac{dx}{dy} = \\frac{1}{y^3}$, so $x = -\\frac{1}{2y^2} + C$. At $x = 0$, $\\ky = 1$ gives $C = \\frac{1}{2}$, so $y^2 = \\frac{1}{1-2x}$ and, taking the positive root, $\\ky = \\frac{1}{\\sqrt{1-2x}}$ for $x < \\frac{1}{2}$; the solution blows up at $x = \\frac{1}{2}$.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e6",
+      "source_id": "exercise-1-1-006",
+      "source_number": "1.1.6",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "tag": "little harder",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\kyprime = (\\ky-1)(\\ky+1)$ for $\\ky(0)=3$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>The constant solutions are $\\ky = 1$ and $\\ky = -1$; ours starts at 3. Write $\\frac{dx}{dy} = \\frac{1}{(y-1)(y+1)} = \\frac{1}{2}\\left(\\frac{1}{y-1} - \\frac{1}{y+1}\\right)$, so $x = \\frac{1}{2}\\ln\\left\\lvert\\frac{y-1}{y+1}\\right\\rvert + C$, that is $\\frac{y-1}{y+1} = De^{2x}$. At $x = 0$, $\\frac{3-1}{3+1} = \\frac{1}{2} = D$. Solving $\\ky - 1 = \\frac{1}{2}(\\ky+1)e^{2x}$ for $\\ky$ gives $\\ky = \\frac{2 + e^{2x}}{2 - e^{2x}}$, which exists for $x < \\frac{\\ln 2}{2}$.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e7",
+      "source_id": "exercise-1-1-007",
+      "source_number": "1.1.7",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\kdydx = \\frac{1}{\\ky+1}$ for $\\ky(0)=0$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>Write $\\frac{dx}{dy} = y + 1$, so $x = \\frac{y^2}{2} + y + C$, and $\\ky(0) = 0$ gives $C = 0$. Solving $y^2 + 2y - 2x = 0$ gives $\\ky = -1 \\pm \\sqrt{1+2x}$, and the plus sign makes $\\ky(0) = 0$: $\\ky = -1 + \\sqrt{1+2x}$ for $x > -\\frac{1}{2}$.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e8",
+      "source_id": "exercise-1-1-008",
+      "source_number": "1.1.8",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "tag": "harder",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\kydprime = \\sin x$ for $\\ky(0)=0$, $\\kyprime(0) = 2$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>Integrate twice. First $\\kyprime = -\\cos x + C_1$, and $\\kyprime(0) = 2$ gives $C_1 = 3$. Then $\\ky = -\\sin x + 3x + C_2$, and $\\ky(0) = 0$ gives $C_2 = 0$: $\\ky = 3x - \\sin x$.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e9",
+      "source_id": "exercise-1-1-009",
+      "source_number": "1.1.9",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>A spaceship is traveling at the speed $2t^2+1$ km/s ($t$ is time in seconds). It is pointing directly away from earth and at time $t=0$ it is 1000 kilometers from earth. How far from earth is it at one minute from time $t=0$?</p>",
+      "answer": {
+        "type": "number",
+        "value": 145060,
+        "unit": "km",
+        "solution": "<p>With $x(t)$ the distance from earth in kilometers, $x' = 2t^2 + 1$ and $x(0) = 1000$, so $x(t) = \\frac{2t^3}{3} + t + 1000$. One minute is $t = 60$ seconds: $x(60) = \\frac{2 \\cdot 216000}{3} + 60 + 1000 = 145060$ kilometers.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e10",
+      "source_id": "exercise-1-1-010",
+      "source_number": "1.1.10",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\frac{dx}{dt} = \\sin(t^2)+t$, $x(0)=20$. It is OK to leave your answer as a definite integral.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>By (1.2), $x(t) = \\int_0^t \\left(\\sin(s^2) + s\\right) ds + 20 = \\int_0^t \\sin(s^2)\\,ds + \\frac{t^2}{2} + 20$; the integral of $\\sin(s^2)$ has no closed form.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e11",
+      "source_id": "exercise-1-1-011",
+      "source_number": "1.1.11",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>A dropped ball accelerates downwards at a constant rate $9.8$ meters per second squared. Set up the differential equation for the height above ground $h$ in meters. Then supposing $h(0) = 100$ meters, how long does it take for the ball to hit the ground?</p>",
+      "answer": {
+        "type": "number",
+        "value": 4.52,
+        "unit": "s",
+        "solution": "<p>Downward acceleration is a negative second derivative of the height: $h'' = -9.8$. The ball is dropped, so $h'(0) = 0$, and $h(0) = 100$. Integrating twice, $h' = -9.8t$ and $h = 100 - 4.9t^2$. It hits the ground when $h = 0$: $t = \\sqrt{100/4.9} \\approx 4.52$ seconds.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e12",
+      "source_id": "exercise-1-1-012",
+      "source_number": "1.1.12",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Find the general solution of $\\kyprime = e^x$, and then $\\kyprime = e^\\ky$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>For $\\kyprime = e^x$, integrate: $\\ky = e^x + C$. For $\\kyprime = e^y$, write $\\frac{dx}{dy} = e^{-y}$, so $x = -e^{-y} + C$, that is $e^{-y} = C - x$ and $\\ky = -\\ln(C - x)$, defined for $x < C$; there is no constant solution since $e^y$ is never zero.</p>",
+        "generated_by": "ai"
+      }
+    },
+    {
+      "id": "e101",
+      "source_id": "exercise-1-1-101",
+      "source_number": "1.1.101",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\kdydx = e^x + x$ and $\\ky(0) = 10$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>$\\ky = e^x + \\frac{x^2}{2} + 9$</p>",
+        "generated_by": "source"
+      }
+    },
+    {
+      "id": "e102",
+      "source_id": "exercise-1-1-102",
+      "source_number": "1.1.102",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $x' = \\frac{1}{x^2}$, $x(1)=1$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>$x = {(3t-2)}^{1/3}$</p>",
+        "generated_by": "source"
+      }
+    },
+    {
+      "id": "e103",
+      "source_id": "exercise-1-1-103",
+      "source_number": "1.1.103",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $x' = \\frac{1}{\\cos(x)}$, $x(0)=\\frac{\\pi}{4}$.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>$x = \\sin^{-1} \\bigl(t+{1}/{\\sqrt{2}}\\bigr)$</p>",
+        "generated_by": "source"
+      }
+    },
+    {
+      "id": "e104",
+      "source_id": "exercise-1-1-104",
+      "source_number": "1.1.104",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Sid is in a car traveling at speed $10t+70$ miles per hour away from Las Vegas, where $t$ is in hours. At $t=0$, Sid is 10 miles away from Vegas. How far from Vegas is Sid 2 hours later?</p>",
+      "answer": {
+        "type": "number",
+        "value": 170,
+        "unit": "mi",
+        "solution": "<p>170</p>",
+        "generated_by": "source"
+      }
+    },
+    {
+      "id": "e105",
+      "source_id": "exercise-1-1-105",
+      "source_number": "1.1.105",
+      "kind": "exercise",
+      "bloom": "Analyze",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Solve $\\kyprime = \\ky^n$, $\\ky(0) = 1$, where $n$ is a positive integer. Hint: You have to consider different cases.</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>If $n \\neq 1$, then $\\ky={\\bigl((1-n)x+1\\bigr)}^{1/(1-n)}$. If $n=1$, then $\\ky = e^x$.</p>",
+        "generated_by": "source"
+      }
+    },
+    {
+      "id": "e106",
+      "source_id": "exercise-1-1-106",
+      "source_number": "1.1.106",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>The rate of change of the volume of a snowball that is melting is proportional to the surface area of the snowball. Suppose the snowball is perfectly spherical. The volume (in centimeters cubed) of a ball of radius $r$ centimeters is $({4}/{3}) \\pi r^3$. The surface area is $4 \\pi r^2$. Set up the differential equation for how the radius $r$ is changing. Then, suppose that at time $t=0$ minutes, the radius is 10 centimeters. After 5 minutes, the radius is 8 centimeters. At what time $t$ will the snowball be completely melted?</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>The equation is $r' = -C$ for some constant $C$. The snowball will be completely melted in 25 minutes from time $t=0$.</p>",
+        "generated_by": "source"
+      }
+    },
+    {
+      "id": "e107",
+      "source_id": "exercise-1-1-107",
+      "source_number": "1.1.107",
+      "kind": "exercise",
+      "bloom": "Understand",
+      "place": {
+        "at": "end"
+      },
+      "prompt": "<p>Find the general solution to $\\kydprime''= 0$. How many distinct constants do you need?</p>",
+      "answer": {
+        "type": "open",
+        "solution": "<p>$\\ky = Ax^3 + Bx^2 + Cx + D$, so 4 constants.</p>",
+        "generated_by": "source"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "t1",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e2",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e3",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e4",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e5",
+      "concept": "solving-y-prime-equals-f-of-y"
+    },
+    {
+      "exercise": "e6",
+      "concept": "solving-y-prime-equals-f-of-y"
+    },
+    {
+      "exercise": "e7",
+      "concept": "solving-y-prime-equals-f-of-y"
+    },
+    {
+      "exercise": "e8",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e9",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e10",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e11",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e12",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e12",
+      "concept": "solving-y-prime-equals-f-of-y"
+    },
+    {
+      "exercise": "e101",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e102",
+      "concept": "solving-y-prime-equals-f-of-y"
+    },
+    {
+      "exercise": "e103",
+      "concept": "solving-y-prime-equals-f-of-y"
+    },
+    {
+      "exercise": "e104",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e105",
+      "concept": "solving-y-prime-equals-f-of-y"
+    },
+    {
+      "exercise": "e106",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e106",
+      "concept": "first-order-differential-equation"
+    },
+    {
+      "exercise": "e107",
+      "concept": "integral-solution"
+    },
+    {
+      "exercise": "e107",
+      "concept": "general-solution"
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-closed-form",
+      "kind": "book",
+      "html": "By closed form, we mean a formula in terms of known functions with no integrals or limits."
+    }
+  ]
+}

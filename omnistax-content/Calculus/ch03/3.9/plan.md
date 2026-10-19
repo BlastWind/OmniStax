@@ -78,3 +78,7 @@ Ids confirmed with `ost ids calculus 3.9` after the build.
 - Derivatives of General Exponential and Logarithmic Functions · Proof, part 1 (log_b x) · score 1 · built as drv-derivatives-of-general-exponential-and-logarithmic-functions, nodes for (3.32) and (3.33); the book's "Equation 3.32 now follows from the chain rule" means (3.33), said in that node's note
 - Proof, part 2 (bˣ) · score 2 · built as the same derivation's nodes for (3.34) and (3.35): one Proof heading, two results sharing the power property of logarithms and the chain rule
 - Example 3.83 · Extending the Power Rule · score 1 · built as drv-power-rule-real-exponents (a printed block deriving the general rule; a reason notes x > 0 where the logarithm is taken)
+
+## Added 2026-10-19 (3Blue1Brown-informed changes)
+
+- `sim-find-e` · Figure 3.33 + 3.34 · `number-e-by-slope`, `derivative-of-an-exponential-function` · value add: variation: a point x dragged along bˣ (slider x, −2 to 1.6, default 0 so the book's state opens unchanged) carries the tangent; its slope over the height bˣ reads B′(0) at every x, the fact the section proves as B′(x) = B′(0)bˣ, and the tangent meets the x-axis 1/B′(0) behind x (bracketed where inside the box, the height dashed) · arrows: none · still · sliders b (as before) and x, `F.drag` along the curve · headline at x ≠ 0: "x = 1.00: slope 1.3863 over height 2.0000 is 0.6931, the slope at 0." · readout: the B′(0) estimate as before beside B′(x)/B(x) = slope/height = ratio · graph alone · 2D.

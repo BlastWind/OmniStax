@@ -1,0 +1,24 @@
+# Chapter 1 config: First-order equations
+
+Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing defaults for the whole book); only the chapter-specific lines below differ.
+
+1. Start: `ch01/1.1`, then 1.2–1.9 in order; Chapter 0's 0.2 is the template section once built, `ch01/1.2` the template for slope fields and theorems.
+2. Loop: build straight through with no stops; plans and decisions are reported afterwards. The whole book is built.
+3. No chapter introduction or summary (the book prints none).
+4. Section notes (`\sectionnotes`: lecture counts, "can safely be skipped", [EP]/[BD] section numbers): dropped, named in `notes`.
+5. Numbering: the book's own; sections 1.1–1.9, Figure 1.N and Table 1.N chapter-wide, equations (1.1)–(1.6), Example 1.M.k, Theorem 1.M.k, Remark 1.4.1, Exercise 1.M.k and 1.M.101….
+6. Defined terms (`\emph{\myindex{…}}`): stay italic in the prose, each a `definition` concept with the italic words as `terms`; a term Calculus already defines reuses Calculus's concept id (`direction-field`, `separable-differential-equation`, `separation-of-variables`, `integrating-factor`, `first-order-linear-differential-equation`, `autonomous-differential-equation`, `equilibrium-solution`, `logistic-differential-equation`, `phase-line`, `eulers-method`, `step-size`, `vector-field`, `conservative-vector-field`, `newtons-law-of-cooling`).
+7. Examples: kept whole in the text, Example 1.M.k as eyebrow.
+8. Inline exercises: inline Try Its, kind `inline-exercise`; each carries an AI-marked approach that states the check and its result; no attainment.
+9. End exercises: Exercises system, kind `exercise`; 101+ carry the book's answer (`\exsol`); parts of a `tasks` list are one card with parts.
+10. Unkeyed end exercises (every one below 101; 72 in this chapter): all kept, each with an AI-marked solution that states the answer and the reasoning that reaches it, computed answers included, checked by computation (SymPy, or numerics for a plot or estimate) before it is written. A "sketch the slope field / phase diagram" exercise gets a described answer, not a picture.
+11. Answers: the book's `\exsol` is the key for 101+; everything else is an AI-marked solution, never shown as the book's answer. A keyed answer the computation contradicts keeps the book's words and carries a correction note under its card.
+12. Formulas list "Equations and formulas": the integral solution (1.1)–(1.2), the separable form, the linear form (1.3) and the boxed solution (1.4), the integrating factor, Bernoulli's substitution, the homogeneous substitution, Newton's law of cooling, the logistic equation (with harvesting), Euler's method, improved Euler and Runge–Kutta, the exactness test and the integrating factors of 1.8, the transport equation and its solution, the characteristic ODE (1.6).
+13. Figures: Figures 1.1–1.23 all drawn live from the book's equations, initial conditions and windows (the originals behind the toggle); folds: 1.2 + 1.3 + 1.4 (one field of y′ = xy with the dragged point), 1.13 + 1.14 + 1.15 (harvesting h on a slider with the book's three as detents), 1.16 + 1.17 (Euler's steps with h on a slider), 1.20 + 1.21 (transport along characteristics, moving); the brine tank of Example 1.4.2 is the scene of Figure 1.10 (moving, graph beside the vertical tank); Figure 1.23 is flat and moving first, with its surface u(x, t) as a second view carrying the characteristic lines. Tables 1.1 and 1.2 and the substitution table stay in the text. The exercise slope-field images (1.2.6, 1.2.101, 1.2.104) stay in their cards.
+14. Sims (rule 15): the plan decides and builds its picks, reported afterwards. Seeds: the definite-integral solution as an accumulated area (1.1), the family of solutions through one point of y′ = 2√|y| (1.2), the family of 1.5's substitution example with its lost solution y = x, the order of Euler, improved Euler and Runge–Kutta as h halves (1.7). No 3Blue1Brown survivor falls in Chapter 1.
+15. Tier default: lowest tier that carries the value add; one 3D view (Figure 1.23's surface), mathematical, beside its flat figure.
+16. Calculus overlap: 1.1 (Calculus 8.1), 1.2 and 1.7 (8.2), 1.3 (8.3), 1.4 (8.5), 1.6 (8.3, 8.4), 1.8 (Ch 14–16's partial derivatives, vector fields and line integrals); the pages stay whole; shared ideas take Calculus's concept ids (line 6); the prose links Calculus for what it assumes, never repeats it.
+17. Citations: none in Chapter 1's prose but the dropped section notes.
+18. Types: the fifteen of `book.json`; Chapter 1 uses function, derivative, integral, point, vector field, curve, error. No new type.
+19. Recolour: `colours:default -- diffyqs` is run by the orchestrator at the end of the run, not in the chapter pass.
+20. Exercises defined only in a prompt (harmonic function, harmonic conjugate in 1.8.7) are not concepts of the map; the card keeps the italic.

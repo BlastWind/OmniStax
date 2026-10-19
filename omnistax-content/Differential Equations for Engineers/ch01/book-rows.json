@@ -1,0 +1,1228 @@
+{
+  "types": [],
+  "symbols": [
+    {
+      "sym": "f",
+      "latex": "f",
+      "macro": "\\kf"
+    },
+    {
+      "sym": "g",
+      "latex": "g",
+      "macro": "\\kg"
+    },
+    {
+      "sym": "p",
+      "latex": "p",
+      "macro": "\\kp"
+    },
+    {
+      "sym": "q",
+      "latex": "q",
+      "macro": "\\kq"
+    },
+    {
+      "sym": "r",
+      "latex": "r",
+      "macro": "\\kr"
+    },
+    {
+      "sym": "v",
+      "latex": "v",
+      "macro": "\\kv"
+    },
+    {
+      "sym": "v_prime",
+      "latex": "v'",
+      "macro": "\\kvprime"
+    },
+    {
+      "sym": "dv/dx",
+      "latex": "\\frac{dv}{dx}",
+      "macro": "\\kdvdx"
+    },
+    {
+      "sym": "T",
+      "latex": "T",
+      "macro": "\\kT"
+    },
+    {
+      "sym": "dT/dt",
+      "latex": "\\frac{dT}{dt}",
+      "macro": "\\kdTdt"
+    },
+    {
+      "sym": "F",
+      "latex": "F",
+      "macro": "\\kF"
+    },
+    {
+      "sym": "F_x",
+      "latex": "F_x",
+      "macro": "\\kFx"
+    },
+    {
+      "sym": "F_y",
+      "latex": "F_y",
+      "macro": "\\kFy"
+    },
+    {
+      "sym": "dF",
+      "latex": "dF",
+      "macro": "\\kdF"
+    },
+    {
+      "sym": "M",
+      "latex": "M",
+      "macro": "\\kM"
+    },
+    {
+      "sym": "N",
+      "latex": "N",
+      "macro": "\\kN"
+    },
+    {
+      "sym": "M_y",
+      "latex": "M_y",
+      "macro": "\\kMy"
+    },
+    {
+      "sym": "N_x",
+      "latex": "N_x",
+      "macro": "\\kNx"
+    },
+    {
+      "sym": "v_vec",
+      "latex": "\\vec{v}",
+      "macro": "\\kvecv"
+    },
+    {
+      "sym": "u_x",
+      "latex": "u_x",
+      "macro": "\\kux"
+    },
+    {
+      "sym": "u_t",
+      "latex": "u_t",
+      "macro": "\\kut"
+    },
+    {
+      "sym": "u_xi",
+      "latex": "u_\\xi",
+      "macro": "\\kuxi"
+    },
+    {
+      "sym": "u_s",
+      "latex": "u_s",
+      "macro": "\\kus"
+    },
+    {
+      "sym": "du/ds",
+      "latex": "\\frac{du}{ds}",
+      "macro": "\\kduds"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "antiderivative",
+      "kind": "definition",
+      "section": "1.1",
+      "name": "Antiderivative",
+      "terms": [
+        "antiderivative",
+        "indefinite integral",
+        "antidifferentiate",
+        "integrate"
+      ],
+      "type": "integral",
+      "statement": "An antiderivative of f(x) is a function whose derivative is f(x); the indefinite integral ∫f(x) dx + C is really the whole one-parameter family of antiderivatives, and to integrate, here, means to antidifferentiate."
+    },
+    {
+      "id": "closed-form",
+      "kind": "definition",
+      "section": "1.1",
+      "name": "Closed form",
+      "terms": [
+        "closed form"
+      ],
+      "statement": "A closed form is a formula in terms of known functions with no integrals or limits."
+    },
+    {
+      "id": "integral-solution",
+      "kind": "result",
+      "section": "1.1",
+      "name": "Solution by integration",
+      "statement": "The equation y′ = f(x) is solved by integrating: its general solution is y(x) = ∫f(x) dx + C, and the solution with y(x₀) = y₀ is the definite integral y(x) = ∫ from x₀ to x of f(t) dt + y₀, which exists wherever f is continuous and can be computed even when no closed form exists.",
+      "forms": [
+        {
+          "id": "eq-integral-general",
+          "latex": "y(x) = \\int f(x) \\,dx + C",
+          "ktex": "\\ky(x) = \\int \\kf(x) \\,dx + C"
+        },
+        {
+          "id": "eq-integral-ivp",
+          "latex": "y(x) = \\int_{x_0}^x f(t) \\,dt + y_0",
+          "ktex": "\\ky(x) = \\int_{x_0}^x \\kf(t) \\,dt + y_0"
+        }
+      ]
+    },
+    {
+      "id": "solving-y-prime-equals-f-of-y",
+      "kind": "skill",
+      "section": "1.1",
+      "name": "Switching the roles of x and y",
+      "statement": "An equation y′ = f(y) is solved by treating x as a function of y: dx/dy = 1/f(y), so x(y) = ∫ 1/f(y) dy + C, which is then solved for y; constant solutions where f(y) = 0 are found separately.",
+      "forms": [
+        {
+          "id": "eq-x-of-y",
+          "latex": "x(y) = \\int \\frac{1}{f(y)} \\,dy + C",
+          "ktex": "x(\\ky) = \\int \\frac{1}{\\kf(\\ky)} \\,d\\ky + C"
+        }
+      ]
+    },
+    {
+      "id": "direction-field",
+      "kind": "definition",
+      "section": "1.2",
+      "name": "Slope field",
+      "terms": [
+        "slope field"
+      ],
+      "type": "derivative",
+      "statement": "The slope field of y′ = f(x, y) is the picture of short lines drawn at a grid of points (x, y), each with the slope f(x, y), which is the slope a solution through that point must have; solutions are curves that follow the slopes."
+    },
+    {
+      "id": "picards-theorem",
+      "kind": "result",
+      "section": "1.2",
+      "name": "Picard’s theorem on existence and uniqueness",
+      "terms": [
+        "Picard’s theorem",
+        "existence and uniqueness"
+      ],
+      "statement": "If f(x, y) is continuous and ∂f/∂y exists and is continuous near (x₀, y₀), then a solution to y′ = f(x, y), y(x₀) = y₀, exists, at least for x in some small interval, and is unique.",
+      "forms": [
+        {
+          "id": "eq-picard-ivp",
+          "latex": "y' = f(x,y), \\qquad y(x_0) = y_0",
+          "ktex": "\\kyprime = \\kf(x,\\ky), \\qquad \\ky(x_0) = y_0"
+        }
+      ]
+    },
+    {
+      "id": "separable-differential-equation",
+      "kind": "definition",
+      "section": "1.3",
+      "name": "Separable equation",
+      "terms": [
+        "separable"
+      ],
+      "statement": "A differential equation is separable if it can be written as y′ = f(x)g(y) for some functions f(x) and g(y).",
+      "forms": [
+        {
+          "id": "eq-separable",
+          "latex": "y' = f(x)g(y)",
+          "ktex": "\\kyprime = \\kf(x)\\kg(\\ky)"
+        }
+      ]
+    },
+    {
+      "id": "separation-of-variables",
+      "kind": "skill",
+      "section": "1.3",
+      "name": "Separating variables",
+      "statement": "A separable equation dy/dx = f(x)g(y) is solved by separating the variables, dy/g(y) = f(x) dx, and integrating both sides, ∫ dy/g(y) = ∫ f(x) dx + C, then solving for y if possible; the solutions where g(y) = 0 are checked separately.",
+      "forms": [
+        {
+          "id": "eq-separated",
+          "latex": "\\int \\frac{dy}{g(y)} = \\int f(x) \\,dx + C",
+          "ktex": "\\int \\frac{d\\ky}{\\kg(\\ky)} = \\int \\kf(x) \\,dx + C"
+        }
+      ]
+    },
+    {
+      "id": "implicit-solution",
+      "kind": "definition",
+      "section": "1.3",
+      "name": "Implicit solution",
+      "terms": [
+        "implicit solution"
+      ],
+      "type": "function",
+      "statement": "An implicit solution is a solution left as an equation relating x and y, such as y² + 2 ln|y| = x² + D, when it is hard to solve for y explicitly; it is checked by implicit differentiation."
+    },
+    {
+      "id": "singular-solution",
+      "kind": "definition",
+      "section": "1.3",
+      "name": "Singular solution",
+      "terms": [
+        "singular solutions"
+      ],
+      "type": "function",
+      "statement": "A singular solution is an extra solution that comes up due to division by zero while separating variables, such as y = 0 for y′ = xy/(y² + 1); it is often not given by any value of the constant in the general formula."
+    },
+    {
+      "id": "newtons-law-of-cooling",
+      "kind": "axiom",
+      "section": "1.3",
+      "name": "Newton’s law of cooling",
+      "terms": [
+        "Newton’s law of cooling"
+      ],
+      "statement": "The rate at which the temperature T of an object changes is proportional to the difference between the ambient temperature A and T: dT/dt = k(A − T) for some positive constant k.",
+      "forms": [
+        {
+          "id": "eq-newton-cooling",
+          "latex": "\\frac{dT}{dt} = k(A-T)",
+          "ktex": "\\kdTdt = k(A-\\kT)"
+        }
+      ]
+    },
+    {
+      "id": "first-order-linear-differential-equation",
+      "kind": "definition",
+      "section": "1.4",
+      "name": "First-order linear equation",
+      "terms": [
+        "linear equations",
+        "first-order linear equation"
+      ],
+      "statement": "A first-order equation is linear if it can be put in the form y′ + p(x)y = f(x): it is linear in y and y′, with no higher powers or functions of them, while the dependence on x can be more complicated.",
+      "forms": [
+        {
+          "id": "eq-linear-first-order",
+          "latex": "y' + p(x) y = f(x)",
+          "ktex": "\\kyprime + \\kp(x) \\ky = \\kf(x)"
+        }
+      ]
+    },
+    {
+      "id": "integrating-factor",
+      "kind": "definition",
+      "section": "1.4",
+      "name": "Integrating factor",
+      "terms": [
+        "integrating factor"
+      ],
+      "symbol": "r",
+      "type": "function",
+      "statement": "The integrating factor of y′ + p(x)y = f(x) is the function r(x) = e^(∫p(x) dx), chosen so that r(x)y′ + r(x)p(x)y is the derivative of the product r(x)y; any antiderivative of p will do.",
+      "forms": [
+        {
+          "id": "eq-integrating-factor",
+          "latex": "r(x) = e^{\\int p(x) \\,dx}",
+          "ktex": "\\kr(x) = e^{\\int \\kp(x) \\,dx}"
+        }
+      ]
+    },
+    {
+      "id": "integrating-factor-method",
+      "kind": "skill",
+      "section": "1.4",
+      "name": "Integrating factor method",
+      "terms": [
+        "integrating factor method"
+      ],
+      "statement": "To solve y′ + p(x)y = f(x), multiply by the integrating factor r(x) = e^(∫p dx) so the left side becomes d/dx[r(x)y], integrate both sides, and divide by r(x): y = e^(−∫p dx)(∫e^(∫p dx)f(x) dx + C). It is easier to remember the process than the formula.",
+      "forms": [
+        {
+          "id": "eq-linear-general-solution",
+          "latex": "y = e^{-\\int p(x) \\,dx} \\left( \\int e^{\\int p(x) \\,dx} f(x) \\,dx + C \\right)",
+          "ktex": "\\ky = e^{-\\int \\kp(x) \\,dx} \\left( \\int e^{\\int \\kp(x) \\,dx} \\kf(x) \\,dx + C \\right)"
+        }
+      ]
+    },
+    {
+      "id": "linear-ivp-solution",
+      "kind": "result",
+      "section": "1.4",
+      "name": "Solution of the linear initial value problem",
+      "statement": "The solution of y′ + p(x)y = f(x), y(x₀) = y₀, written with definite integrals and careful dummy variables, is the boxed formula (1.4), which a computer or calculator can evaluate.",
+      "forms": [
+        {
+          "id": "eq-linear-ivp",
+          "latex": "y(x) = e^{-\\int_{x_0}^x p(s)\\, ds} \\left( \\int_{x_0}^x e^{\\int_{x_0}^t p(s)\\, ds} f(t) \\,dt + y_0 \\right)",
+          "ktex": "\\ky(x) = e^{-\\int_{x_0}^x \\kp(s)\\, ds} \\left( \\int_{x_0}^x e^{\\int_{x_0}^t \\kp(s)\\, ds} \\kf(t) \\,dt + y_0 \\right)"
+        }
+      ]
+    },
+    {
+      "id": "existence-for-linear-equations",
+      "kind": "result",
+      "section": "1.4",
+      "name": "Existence for linear equations",
+      "statement": "If p(x) and f(x) are continuous on an interval (a, b), the solution y(x) of y′ + p(x)y = f(x), y(x₀) = y₀, exists and is differentiable on all of (a, b), unlike the solution of a nonlinear equation such as y′ = y²."
+    },
+    {
+      "id": "mixing-problem",
+      "kind": "skill",
+      "section": "1.4",
+      "name": "Setting up a mixing problem",
+      "statement": "For a well-stirred tank, the amount x of a dissolved substance changes at the rate in times the concentration in, minus the rate out times the concentration out, where the concentration out is x divided by the current volume; the result is a first-order linear equation.",
+      "forms": [
+        {
+          "id": "eq-mixing",
+          "latex": "\\frac{dx}{dt} = (\\text{rate in} \\times \\text{concentration in}) - (\\text{rate out} \\times \\text{concentration out})",
+          "ktex": "\\kdxdt = (\\text{rate in} \\times \\text{concentration in}) - (\\text{rate out} \\times \\text{concentration out})"
+        }
+      ]
+    },
+    {
+      "id": "substitution-method",
+      "kind": "skill",
+      "section": "1.5",
+      "name": "Solving by substitution",
+      "terms": [
+        "substitution"
+      ],
+      "statement": "An equation that is neither separable nor linear may become one after a change of variables: a new dependent variable v, a function of x, is chosen (often the most complicated part of the equation), y′ is written in terms of v′, v and x, the new equation is solved, and the result is unsubstituted."
+    },
+    {
+      "id": "bernoulli-equation",
+      "kind": "definition",
+      "section": "1.5",
+      "name": "Bernoulli equation",
+      "terms": [
+        "Bernoulli equation"
+      ],
+      "statement": "A Bernoulli equation is an equation of the form y′ + p(x)y = q(x)yⁿ; for n = 0 or n = 1 it is linear, and n need not be an integer.",
+      "forms": [
+        {
+          "id": "eq-bernoulli",
+          "latex": "y' + p(x)y = q(x)y^n",
+          "ktex": "\\kyprime + \\kp(x)\\ky = \\kq(x)\\ky^n"
+        }
+      ]
+    },
+    {
+      "id": "bernoulli-substitution",
+      "kind": "result",
+      "section": "1.5",
+      "name": "Bernoulli’s substitution",
+      "statement": "For n ≠ 0, 1, the substitution v = y^(1−n) transforms the Bernoulli equation into the linear equation v′ + (1 − n)p(x)v = (1 − n)q(x).",
+      "forms": [
+        {
+          "id": "eq-bernoulli-v",
+          "latex": "v = y^{1-n}",
+          "ktex": "\\kv = \\ky^{1-n}"
+        }
+      ]
+    },
+    {
+      "id": "homogeneous-first-order-equation",
+      "kind": "definition",
+      "section": "1.5",
+      "name": "Homogeneous first-order equation",
+      "terms": [
+        "homogeneous equations"
+      ],
+      "statement": "A homogeneous equation, in the sense of substitution, is a first-order equation that can be written as y′ = F(y/x).",
+      "forms": [
+        {
+          "id": "eq-homogeneous",
+          "latex": "y' = F\\left(\\frac{y}{x}\\right)",
+          "ktex": "\\kyprime = \\kF\\left(\\frac{\\ky}{x}\\right)"
+        }
+      ]
+    },
+    {
+      "id": "homogeneous-substitution",
+      "kind": "result",
+      "section": "1.5",
+      "name": "Solution of a homogeneous equation",
+      "statement": "The substitution v = y/x, so that y′ = v + xv′, turns y′ = F(y/x) into the separable equation xv′ = F(v) − v, with the implicit solution ∫ dv/(F(v) − v) = ln|x| + C, for x > 0 or x < 0 as the initial condition decides.",
+      "forms": [
+        {
+          "id": "eq-homogeneous-v",
+          "latex": "v = \\frac{y}{x}, \\qquad y' = v + x v'",
+          "ktex": "\\kv = \\frac{\\ky}{x}, \\qquad \\kyprime = \\kv + x \\kvprime"
+        },
+        {
+          "id": "eq-homogeneous-solution",
+          "latex": "\\int \\frac{1}{F(v)-v} \\,dv = \\ln \\, \\lvert x \\rvert + C",
+          "ktex": "\\int \\frac{1}{\\kF(\\kv)-\\kv} \\,d\\kv = \\ln \\, \\lvert x \\rvert + C"
+        }
+      ]
+    },
+    {
+      "id": "equilibrium-solution",
+      "kind": "definition",
+      "section": "1.6",
+      "name": "Equilibrium solution",
+      "terms": [
+        "equilibrium solutions"
+      ],
+      "type": "function",
+      "statement": "An equilibrium solution of an autonomous equation dx/dt = f(x) is a constant solution x = A; each critical point corresponds to one."
+    },
+    {
+      "id": "equilibrium-point",
+      "kind": "definition",
+      "section": "1.6",
+      "name": "Critical point",
+      "terms": [
+        "critical points",
+        "equilibria",
+        "equilibrium"
+      ],
+      "type": "point",
+      "statement": "The critical points, or equilibria, of dx/dt = f(x) are the points on the x-axis where f(x) = 0."
+    },
+    {
+      "id": "stable-critical-point",
+      "kind": "definition",
+      "section": "1.6",
+      "name": "Stable critical point",
+      "terms": [
+        "stable"
+      ],
+      "statement": "A critical point is stable if small perturbations of the initial condition do not lead to substantially different solutions as t grows: solutions starting near it tend to it as t → ∞; on the phase diagram both arrows point toward it."
+    },
+    {
+      "id": "unstable-critical-point",
+      "kind": "definition",
+      "section": "1.6",
+      "name": "Unstable critical point",
+      "terms": [
+        "unstable"
+      ],
+      "statement": "A critical point that is not stable is unstable: on the phase diagram at least one arrow points away from it."
+    },
+    {
+      "id": "semistable-critical-point",
+      "kind": "definition",
+      "section": "1.6",
+      "name": "Semistable critical point",
+      "terms": [
+        "semistable"
+      ],
+      "statement": "An unstable critical point with one of the arrows of its phase diagram pointing toward it is sometimes called semistable."
+    },
+    {
+      "id": "logistic-differential-equation",
+      "kind": "definition",
+      "section": "1.6",
+      "name": "Logistic equation",
+      "terms": [
+        "logistic equation"
+      ],
+      "statement": "The logistic equation dx/dt = kx(M − x), for positive k and M, models a population with limiting population M, the maximum sustainable population.",
+      "forms": [
+        {
+          "id": "eq-logistic",
+          "latex": "\\frac{dx}{dt} = kx(M-x)",
+          "ktex": "\\kdxdt = k\\kx(M-\\kx)"
+        }
+      ]
+    },
+    {
+      "id": "phase-line",
+      "kind": "definition",
+      "section": "1.6",
+      "name": "Phase diagram",
+      "terms": [
+        "phase diagram",
+        "phase portrait"
+      ],
+      "statement": "The phase diagram, or phase portrait, of an autonomous equation x′ = f(x) is the x-axis drawn vertically with the critical points marked and an arrow between them, up where f(x) > 0 and down where f(x) < 0; it shows the long-term behavior of solutions without solving."
+    },
+    {
+      "id": "logistic-equation-with-harvesting",
+      "kind": "definition",
+      "section": "1.6",
+      "name": "Logistic equation with harvesting",
+      "terms": [
+        "logistic equation with harvesting",
+        "harvesting"
+      ],
+      "statement": "The logistic equation with harvesting dx/dt = kx(M − x) − h removes h per unit time from a logistic population; its critical points are A and B = (kM ± √((kM)² − 4hk))/2k, two, one or none as h grows.",
+      "forms": [
+        {
+          "id": "eq-logistic-harvest",
+          "latex": "\\frac{dx}{dt} = kx(M-x) - h",
+          "ktex": "\\kdxdt = k\\kx(M-\\kx) - h"
+        },
+        {
+          "id": "eq-harvest-critical",
+          "latex": "A = \\frac{kM + \\sqrt{{(kM)}^2 - 4hk}}{2k}, \\qquad B = \\frac{kM - \\sqrt{{(kM)}^2 - 4hk}}{2k}",
+          "ktex": "A = \\frac{kM + \\sqrt{{(kM)}^2 - 4hk}}{2k}, \\qquad B = \\frac{kM - \\sqrt{{(kM)}^2 - 4hk}}{2k}"
+        }
+      ]
+    },
+    {
+      "id": "eulers-method",
+      "kind": "result",
+      "section": "1.7",
+      "name": "Euler’s method",
+      "terms": [
+        "Euler’s method"
+      ],
+      "statement": "Euler’s method approximates the solution of y′ = f(x, y), y(x₀) = y₀, by following the slope for a step of length h: x_{i+1} = x_i + h and y_{i+1} = y_i + h f(x_i, y_i), the points joined by line segments; y_i approximates y(x_i).",
+      "forms": [
+        {
+          "id": "eq-euler-step",
+          "latex": "x_{i+1} = x_i + h , \\qquad y_{i+1} = y_i + h\\, f(x_i,y_i)",
+          "ktex": "x_{i+1} = x_i + h , \\qquad y_{i+1} = y_i + h\\, \\kf(x_i,y_i)"
+        }
+      ]
+    },
+    {
+      "id": "step-size",
+      "kind": "definition",
+      "section": "1.7",
+      "name": "Step size",
+      "terms": [
+        "step size"
+      ],
+      "statement": "The step size h is the length of the interval on the x-axis followed along one slope in a step of a numerical method."
+    },
+    {
+      "id": "approximation-error",
+      "kind": "definition",
+      "section": "1.7",
+      "name": "Error",
+      "terms": [
+        "error"
+      ],
+      "type": "error",
+      "statement": "The error of an approximation is the size of the difference between the actual solution and the approximate one, |actual y − approximate y|; its sign is not cared about, and it is usually not known exactly.",
+      "forms": [
+        {
+          "id": "eq-error",
+          "latex": "\\text{Error} = \\bigl\\lvert \\text{Actual } y - \\text{Approximate } y \\bigr\\rvert",
+          "ktex": "\\text{Error} = \\bigl\\lvert \\text{Actual } \\ky - \\text{Approximate } \\ky \\bigr\\rvert"
+        }
+      ]
+    },
+    {
+      "id": "order-of-a-numerical-method",
+      "kind": "definition",
+      "section": "1.7",
+      "name": "Order of a numerical method",
+      "terms": [
+        "first-order method",
+        "second-order method",
+        "fourth-order method"
+      ],
+      "statement": "A numerical method is of order n if halving the step size multiplies the error by about (1/2)ⁿ: Euler’s method is a first-order method (the error halves), the improved Euler method a second-order method (it quarters) and Runge–Kutta a fourth-order method (it falls by 1/16)."
+    },
+    {
+      "id": "stiff-problem",
+      "kind": "definition",
+      "section": "1.7",
+      "name": "Stiff problem",
+      "terms": [
+        "stiff"
+      ],
+      "statement": "A stiff problem is a numerically unstable equation for which the approximations never seem to stabilize as the step size is halved, needing a ridiculously small step."
+    },
+    {
+      "id": "runge-kutta-method",
+      "kind": "result",
+      "section": "1.7",
+      "name": "Runge–Kutta method",
+      "terms": [
+        "Runge–Kutta method"
+      ],
+      "statement": "The standard Runge–Kutta method computes four slopes in each step, k₁ = f(x_i, y_i), k₂ = f(x_i + h/2, y_i + k₁h/2), k₃ = f(x_i + h/2, y_i + k₂h/2), k₄ = f(x_i + h, y_i + k₃h), and sets y_{i+1} = y_i + h(k₁ + 2k₂ + 2k₃ + k₄)/6; it is a fourth-order method.",
+      "forms": [
+        {
+          "id": "eq-rk4",
+          "latex": "y_{i+1} = y_i + \\frac{k_1 + 2k_2 + 2k_3 + k_4}{6}\\,h",
+          "ktex": "y_{i+1} = y_i + \\frac{k_1 + 2k_2 + 2k_3 + k_4}{6}\\,h"
+        }
+      ]
+    },
+    {
+      "id": "improved-eulers-method",
+      "kind": "result",
+      "section": "1.7",
+      "name": "Improved Euler’s method",
+      "terms": [
+        "Improved Euler’s method"
+      ],
+      "statement": "The improved Euler method takes the slope k₁ = f(x_i, y_i), the slope k₂ = f(x_i + h, y_i + k₁h) at the point Euler’s step reaches, and steps with their average: y_{i+1} = y_i + h(k₁ + k₂)/2; it is a second-order method.",
+      "forms": [
+        {
+          "id": "eq-improved-euler",
+          "latex": "y_{i+1} = y_i + \\frac{k_1+k_2}{2}\\,h",
+          "ktex": "y_{i+1} = y_i + \\frac{k_1+k_2}{2}\\,h"
+        }
+      ]
+    },
+    {
+      "id": "potential-function",
+      "kind": "definition",
+      "section": "1.8",
+      "name": "Potential function",
+      "terms": [
+        "potential function"
+      ],
+      "symbol": "F",
+      "type": "function",
+      "statement": "A potential function is a function F(x, y) of two variables whose curves of constant potential F(x, y) = C are the solutions of an exact equation; the name suggests potential energy or electric potential."
+    },
+    {
+      "id": "equipotential-curve",
+      "kind": "definition",
+      "section": "1.8",
+      "name": "Equipotential curve",
+      "terms": [
+        "equipotential curves"
+      ],
+      "type": "curve",
+      "statement": "The curves F(x, y) = C of constant potential are sometimes called equipotential curves."
+    },
+    {
+      "id": "total-derivative",
+      "kind": "definition",
+      "section": "1.8",
+      "name": "Total derivative",
+      "terms": [
+        "total derivative"
+      ],
+      "symbol": "dF",
+      "type": "derivative",
+      "statement": "The total derivative of F(x, y) is dF = F_x dx + F_y dy.",
+      "forms": [
+        {
+          "id": "eq-total-derivative",
+          "latex": "dF = \\frac{\\partial F}{\\partial x} dx + \\frac{\\partial F}{\\partial y} dy",
+          "ktex": "\\kdF = \\frac{\\partial \\kF}{\\partial x} dx + \\frac{\\partial \\kF}{\\partial y} dy"
+        }
+      ]
+    },
+    {
+      "id": "exact-equation",
+      "kind": "definition",
+      "section": "1.8",
+      "name": "Exact equation",
+      "terms": [
+        "exact equation",
+        "exact"
+      ],
+      "statement": "An equation M dx + N dy = 0, or M + N dy/dx = 0, is exact if it was obtained as dF = 0 for some potential function F, that is M = F_x and N = F_y; the implicit solution is F(x, y) = C.",
+      "forms": [
+        {
+          "id": "eq-exact",
+          "latex": "M \\, dx + N \\, dy = 0",
+          "ktex": "\\kM \\, dx + \\kN \\, dy = 0"
+        }
+      ]
+    },
+    {
+      "id": "vector-field",
+      "kind": "definition",
+      "section": "1.8",
+      "name": "Vector field",
+      "terms": [
+        "vector field"
+      ],
+      "symbol": "v_vec",
+      "type": "vector-field",
+      "statement": "A vector field assigns to each point (x, y) of the plane a vector, a direction and a magnitude, such as v⃗ = (M, N) with M and N functions of (x, y)."
+    },
+    {
+      "id": "conservative-vector-field",
+      "kind": "definition",
+      "section": "1.8",
+      "name": "Conservative vector field",
+      "terms": [
+        "conservative vector field"
+      ],
+      "statement": "A conservative vector field comes with a potential function F(x, y) such that v⃗ = (∂F/∂x, ∂F/∂y); the work along a path depends only on its endpoints, F(x₂, y₂) − F(x₁, y₁). An exact equation is a conservative vector field."
+    },
+    {
+      "id": "solving-an-exact-equation",
+      "kind": "skill",
+      "section": "1.8",
+      "name": "Solving an exact equation",
+      "statement": "Once the equation is known to be exact, integrate F_x = M in x to get F(x, y) = something + A(y), then differentiate this F in y, set it equal to N and find A(y) by integration; F(x, y) = C is the implicit solution. The steps may also be done in the other order."
+    },
+    {
+      "id": "exactness-test",
+      "kind": "result",
+      "section": "1.8",
+      "name": "Test for exactness",
+      "statement": "If M = F_x and N = F_y with continuous second derivatives, then M_y = N_x; so if M_y ≠ N_x the equation is not exact.",
+      "forms": [
+        {
+          "id": "eq-exactness",
+          "latex": "\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}",
+          "ktex": "\\frac{\\partial \\kM}{\\partial y} = \\frac{\\partial \\kN}{\\partial x}"
+        }
+      ]
+    },
+    {
+      "id": "poincare-lemma",
+      "kind": "result",
+      "section": "1.8",
+      "name": "Poincaré Lemma",
+      "terms": [
+        "Poincaré Lemma"
+      ],
+      "statement": "If M and N are continuously differentiable functions of (x, y) and ∂M/∂y = ∂N/∂x, then near any point there is a function F(x, y) with M = ∂F/∂x and N = ∂F/∂y; on a region with no holes such an F exists on the whole region."
+    },
+    {
+      "id": "exact-integrating-factor",
+      "kind": "result",
+      "section": "1.8",
+      "name": "Integrating factor for an exact equation",
+      "statement": "A nonzero u(x, y) makes u M dx + u N dy = 0 exact when (M_y − N_x)u = u_x N − u_y M. If P(x) = (M_y − N_x)/N depends on x alone, u(x) = e^(∫P(x) dx) works; if Q(y) = (M_y − N_x)/M depends on y alone, u(y) = e^(−∫Q(y) dy) works.",
+      "forms": [
+        {
+          "id": "eq-exact-factor-x",
+          "latex": "u(x) = e^{\\int P(x) \\, dx}, \\qquad P(x) = \\frac{M_y-N_x}{N}",
+          "ktex": "\\ku(x) = e^{\\int P(x) \\, dx}, \\qquad P(x) = \\frac{\\kMy-\\kNx}{\\kN}"
+        },
+        {
+          "id": "eq-exact-factor-y",
+          "latex": "u(y) = e^{-\\int Q(y) \\, dy}, \\qquad Q(y) = \\frac{M_y-N_x}{M}",
+          "ktex": "\\ku(y) = e^{-\\int Q(y) \\, dy}, \\qquad Q(y) = \\frac{\\kMy-\\kNx}{\\kM}"
+        }
+      ]
+    },
+    {
+      "id": "first-order-linear-pde",
+      "kind": "definition",
+      "section": "1.9",
+      "name": "First-order linear PDE",
+      "statement": "A first-order linear PDE for u(x, t) is a u_x + b u_t + c u = g, with coefficients a, b, c and g functions of x and t (mostly constant or zero here), given with an initial condition u(x, 0) = f(x) for −∞ < x < ∞, t > 0.",
+      "forms": [
+        {
+          "id": "eq-fopde",
+          "latex": "a(x,t) \\, u_x + b(x,t) \\, u_t + c(x,t) \\, u = g(x,t), \\quad u(x,0) = f(x)",
+          "ktex": "a(x,t) \\, \\kux + b(x,t) \\, \\kut + c(x,t) \\, \\ku = g(x,t), \\quad \\ku(x,0) = \\kf(x)"
+        }
+      ]
+    },
+    {
+      "id": "pde-initial-condition",
+      "kind": "definition",
+      "section": "1.9",
+      "name": "Initial condition for a PDE",
+      "terms": [
+        "initial condition"
+      ],
+      "statement": "The initial condition u(x, 0) = f(x) of a PDE in x and t is a function of x rather than a number: the equation describes how that function evolves as time goes on."
+    },
+    {
+      "id": "method-of-characteristics",
+      "kind": "skill",
+      "section": "1.9",
+      "name": "Method of characteristics",
+      "terms": [
+        "method of characteristics",
+        "characteristics"
+      ],
+      "statement": "The method of characteristics finds curves (x(s), t(s)) with dx/ds = a, dt/ds = b, starting at (ξ, 0), along which the PDE a u_x + b u_t + c u = g becomes the linear ODE du/ds + cu = g; it is solved with the initial value f(ξ) and the answer written back in x and t."
+    },
+    {
+      "id": "transport-equation",
+      "kind": "definition",
+      "section": "1.9",
+      "name": "Transport equation",
+      "terms": [
+        "transport equation"
+      ],
+      "statement": "The transport equation is α u_x + u_t = 0 with α a constant: everything travels at the constant speed α.",
+      "forms": [
+        {
+          "id": "eq-transport",
+          "latex": "\\alpha u_x + u_t = 0",
+          "ktex": "\\alpha \\kux + \\kut = 0"
+        }
+      ]
+    },
+    {
+      "id": "transport-solution",
+      "kind": "result",
+      "section": "1.9",
+      "name": "Solution of the transport equation",
+      "statement": "The solution of α u_x + u_t = 0, u(x, 0) = f(x), is u(x, t) = f(x − αt): the initial profile moves to the right with velocity α (to the left if α < 0).",
+      "forms": [
+        {
+          "id": "eq-transport-solution",
+          "latex": "u(x,t) = f(x-\\alpha t)",
+          "ktex": "\\ku(x,t) = \\kf(x-\\alpha t)"
+        }
+      ]
+    },
+    {
+      "id": "characteristic-coordinates",
+      "kind": "definition",
+      "section": "1.9",
+      "name": "Characteristic coordinates",
+      "terms": [
+        "characteristic coordinates"
+      ],
+      "statement": "Characteristic coordinates (ξ, s) are coordinates in which the PDE simplifies to an ODE in s; for the transport equation they are ξ = x − αt, s = t.",
+      "forms": [
+        {
+          "id": "eq-char-coords",
+          "latex": "\\xi = x - \\alpha t , \\qquad s = t",
+          "ktex": "\\xi = x - \\alpha t , \\qquad s = t"
+        }
+      ]
+    },
+    {
+      "id": "characteristic-curve",
+      "kind": "definition",
+      "section": "1.9",
+      "name": "Characteristic curve",
+      "terms": [
+        "characteristic curves"
+      ],
+      "type": "curve",
+      "statement": "The characteristic curves of a first-order PDE are the curves ξ = constant, along which the data propagate; for the transport equation they are the lines t = (x − ξ)/α of slope 1/α."
+    },
+    {
+      "id": "convection",
+      "kind": "definition",
+      "section": "1.9",
+      "name": "Convection",
+      "terms": [
+        "convection"
+      ],
+      "statement": "Convection is the behavior in which everything travels at some constant speed, as in the transport equation: material carried along by a river without diffusing."
+    },
+    {
+      "id": "characteristic-ode",
+      "kind": "result",
+      "section": "1.9",
+      "name": "ODE along a characteristic",
+      "statement": "Along a characteristic curve (x(s), t(s)) with dx/ds = a and dt/ds = b, the chain rule turns a u_x + b u_t + c u = g into the linear ODE du/ds + cu = g in s, with ξ a parameter.",
+      "forms": [
+        {
+          "id": "eq-char-ode",
+          "latex": "\\frac{du}{ds} + c u = g",
+          "ktex": "\\kduds + c \\ku = g"
+        },
+        {
+          "id": "eq-char-curve",
+          "latex": "\\frac{dx}{ds} = a, \\qquad \\frac{dt}{ds} = b",
+          "ktex": "\\frac{dx}{ds} = a, \\qquad \\frac{dt}{ds} = b"
+        }
+      ]
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "antiderivative",
+      "prereq": "first-order-differential-equation"
+    },
+    {
+      "concept": "integral-solution",
+      "prereq": "antiderivative"
+    },
+    {
+      "concept": "integral-solution",
+      "prereq": "initial-value"
+    },
+    {
+      "concept": "integral-solution",
+      "prereq": "general-solution"
+    },
+    {
+      "concept": "closed-form",
+      "prereq": "antiderivative"
+    },
+    {
+      "concept": "solving-y-prime-equals-f-of-y",
+      "prereq": "integral-solution"
+    },
+    {
+      "concept": "solving-y-prime-equals-f-of-y",
+      "prereq": "autonomous-differential-equation"
+    },
+    {
+      "concept": "direction-field",
+      "prereq": "first-order-differential-equation"
+    },
+    {
+      "concept": "direction-field",
+      "prereq": "solution-to-a-differential-equation"
+    },
+    {
+      "concept": "picards-theorem",
+      "prereq": "first-order-differential-equation"
+    },
+    {
+      "concept": "picards-theorem",
+      "prereq": "initial-value"
+    },
+    {
+      "concept": "separable-differential-equation",
+      "prereq": "first-order-differential-equation"
+    },
+    {
+      "concept": "separation-of-variables",
+      "prereq": "separable-differential-equation"
+    },
+    {
+      "concept": "separation-of-variables",
+      "prereq": "integral-solution"
+    },
+    {
+      "concept": "implicit-solution",
+      "prereq": "separation-of-variables"
+    },
+    {
+      "concept": "singular-solution",
+      "prereq": "separation-of-variables"
+    },
+    {
+      "concept": "newtons-law-of-cooling",
+      "prereq": "first-order-differential-equation"
+    },
+    {
+      "concept": "first-order-linear-differential-equation",
+      "prereq": "linear-differential-equation"
+    },
+    {
+      "concept": "first-order-linear-differential-equation",
+      "prereq": "first-order-differential-equation"
+    },
+    {
+      "concept": "integrating-factor",
+      "prereq": "first-order-linear-differential-equation"
+    },
+    {
+      "concept": "integrating-factor-method",
+      "prereq": "integrating-factor"
+    },
+    {
+      "concept": "integrating-factor-method",
+      "prereq": "antiderivative"
+    },
+    {
+      "concept": "linear-ivp-solution",
+      "prereq": "integrating-factor-method"
+    },
+    {
+      "concept": "linear-ivp-solution",
+      "prereq": "integral-solution"
+    },
+    {
+      "concept": "existence-for-linear-equations",
+      "prereq": "linear-ivp-solution"
+    },
+    {
+      "concept": "existence-for-linear-equations",
+      "prereq": "picards-theorem"
+    },
+    {
+      "concept": "mixing-problem",
+      "prereq": "first-order-linear-differential-equation"
+    },
+    {
+      "concept": "substitution-method",
+      "prereq": "separation-of-variables"
+    },
+    {
+      "concept": "substitution-method",
+      "prereq": "integrating-factor-method"
+    },
+    {
+      "concept": "bernoulli-equation",
+      "prereq": "first-order-linear-differential-equation"
+    },
+    {
+      "concept": "bernoulli-substitution",
+      "prereq": "bernoulli-equation"
+    },
+    {
+      "concept": "bernoulli-substitution",
+      "prereq": "substitution-method"
+    },
+    {
+      "concept": "homogeneous-first-order-equation",
+      "prereq": "first-order-differential-equation"
+    },
+    {
+      "concept": "homogeneous-substitution",
+      "prereq": "homogeneous-first-order-equation"
+    },
+    {
+      "concept": "homogeneous-substitution",
+      "prereq": "substitution-method"
+    },
+    {
+      "concept": "homogeneous-substitution",
+      "prereq": "implicit-solution"
+    },
+    {
+      "concept": "equilibrium-point",
+      "prereq": "autonomous-differential-equation"
+    },
+    {
+      "concept": "equilibrium-solution",
+      "prereq": "equilibrium-point"
+    },
+    {
+      "concept": "equilibrium-solution",
+      "prereq": "solution-to-a-differential-equation"
+    },
+    {
+      "concept": "stable-critical-point",
+      "prereq": "equilibrium-point"
+    },
+    {
+      "concept": "unstable-critical-point",
+      "prereq": "stable-critical-point"
+    },
+    {
+      "concept": "semistable-critical-point",
+      "prereq": "unstable-critical-point"
+    },
+    {
+      "concept": "logistic-differential-equation",
+      "prereq": "autonomous-differential-equation"
+    },
+    {
+      "concept": "phase-line",
+      "prereq": "equilibrium-point"
+    },
+    {
+      "concept": "logistic-equation-with-harvesting",
+      "prereq": "logistic-differential-equation"
+    },
+    {
+      "concept": "eulers-method",
+      "prereq": "direction-field"
+    },
+    {
+      "concept": "eulers-method",
+      "prereq": "step-size"
+    },
+    {
+      "concept": "eulers-method",
+      "prereq": "initial-value"
+    },
+    {
+      "concept": "step-size",
+      "prereq": "first-order-differential-equation"
+    },
+    {
+      "concept": "approximation-error",
+      "prereq": "eulers-method"
+    },
+    {
+      "concept": "order-of-a-numerical-method",
+      "prereq": "approximation-error"
+    },
+    {
+      "concept": "stiff-problem",
+      "prereq": "step-size"
+    },
+    {
+      "concept": "runge-kutta-method",
+      "prereq": "eulers-method"
+    },
+    {
+      "concept": "improved-eulers-method",
+      "prereq": "eulers-method"
+    },
+    {
+      "concept": "potential-function",
+      "prereq": "first-order-differential-equation"
+    },
+    {
+      "concept": "equipotential-curve",
+      "prereq": "potential-function"
+    },
+    {
+      "concept": "total-derivative",
+      "prereq": "potential-function"
+    },
+    {
+      "concept": "exact-equation",
+      "prereq": "total-derivative"
+    },
+    {
+      "concept": "exact-equation",
+      "prereq": "implicit-solution"
+    },
+    {
+      "concept": "vector-field",
+      "prereq": "exact-equation"
+    },
+    {
+      "concept": "conservative-vector-field",
+      "prereq": "vector-field"
+    },
+    {
+      "concept": "solving-an-exact-equation",
+      "prereq": "exact-equation"
+    },
+    {
+      "concept": "exactness-test",
+      "prereq": "exact-equation"
+    },
+    {
+      "concept": "poincare-lemma",
+      "prereq": "exactness-test"
+    },
+    {
+      "concept": "exact-integrating-factor",
+      "prereq": "exactness-test"
+    },
+    {
+      "concept": "exact-integrating-factor",
+      "prereq": "integrating-factor"
+    },
+    {
+      "concept": "first-order-linear-pde",
+      "prereq": "partial-differential-equation"
+    },
+    {
+      "concept": "first-order-linear-pde",
+      "prereq": "linear-differential-equation"
+    },
+    {
+      "concept": "pde-initial-condition",
+      "prereq": "first-order-linear-pde"
+    },
+    {
+      "concept": "pde-initial-condition",
+      "prereq": "initial-value"
+    },
+    {
+      "concept": "method-of-characteristics",
+      "prereq": "characteristic-ode"
+    },
+    {
+      "concept": "transport-equation",
+      "prereq": "first-order-linear-pde"
+    },
+    {
+      "concept": "characteristic-coordinates",
+      "prereq": "transport-equation"
+    },
+    {
+      "concept": "characteristic-curve",
+      "prereq": "characteristic-coordinates"
+    },
+    {
+      "concept": "transport-solution",
+      "prereq": "characteristic-curve"
+    },
+    {
+      "concept": "transport-solution",
+      "prereq": "pde-initial-condition"
+    },
+    {
+      "concept": "convection",
+      "prereq": "transport-solution"
+    },
+    {
+      "concept": "characteristic-ode",
+      "prereq": "characteristic-curve"
+    },
+    {
+      "concept": "characteristic-ode",
+      "prereq": "integrating-factor-method"
+    }
+  ]
+}

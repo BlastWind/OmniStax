@@ -43,11 +43,13 @@ function scene3(d, o) {
 }
 
 /* Figures 6.37 + 6.38: the stand-in curve f(x) = 1.5 + 1.2 sin(1.1x − 0.3) + 0.1x on [a, b] = [0.5, 5.2], which rises and
-   falls as the book's does, and n line segments between points of its graph; the book draws n = 5. */
+   falls as the book's does, and n line segments between points of its graph; the book draws n = 5. The staircase runs
+   Δx along and Δyᵢ up or down over each piece instead, and its length closes on (b − a) + ∫|f′| dx, never on the arc length. */
 (function () {
   const d = sim('sim-arc-segments', 540);
   const f = (x) => 1.5 + 1.2 * Math.sin(1.1 * x - 0.3) + 0.1 * x, df = (x) => 1.32 * Math.cos(1.1 * x - 0.3) + 0.1, a = 0.5, b = 5.2;
-  const L = simpson((x) => Math.sqrt(1 + df(x) ** 2), a, b);
+  const L = simpson((x) => Math.sqrt(1 + df(x) ** 2), a, b), LS = b - a + simpson((x) => Math.abs(df(x)), a, b, 4000);
+  const mode = F.choice(d.controls, { key: 'path', aria: 'path', options: [{ value: 'segments', label: 'segments' }, { value: 'staircase', label: 'staircase' }], value: 'segments' });
   const ns = ctl(d.controls, { label: 'n', cls: '', key: 'n', min: 1, max: 40, step: 1, value: 5, unit: '', dec: 0, detents: [5] });
   const xs = ctl(d.controls, { label: 'x', cls: '', key: 'x', min: a, max: b - 0.001, step: 0.01, value: 2.2, unit: '', dec: 2 });
   const P = drag(d, { x: xs, y: 0 });
@@ -58,12 +60,16 @@ function scene3(d, o) {
   function draw() {
     const { ctx } = begin(d.c);
     const fc = C('function'), ic = C('integral'), n = ns.v, w = (b - a) / n, i = Math.min(n - 1, Math.floor((xs.v - a) / w));
+    const stair = mode.value === 'staircase', t = mode.mix((v) => (v === 'staircase' ? 1 : 0));
     const ax = axes(ctx, BOX, [0, 6], [0, 3.5], { xl: 'x', yl: 'y', nx: 6, ny: 7, fy: (v) => (Number.isInteger(v) ? fmt(v, 0) : '') });
     plot(ctx, ax, f, fc, { x: [0.2, 5.6], w: 4 });
-    let sum = 0;
+    let sum = 0, steps = 0;
     for (let k = 0; k < n; k++) {
-      const x0 = a + k * w, x1 = x0 + w; sum += Math.hypot(w, f(x1) - f(x0));
-      line(ctx, ax.X(x0), ax.Y(f(x0)), ax.X(x1), ax.Y(f(x1)), ic, k === i ? 6 : 4);
+      const x0 = a + k * w, x1 = x0 + w, y0 = f(x0), y1 = f(x1);
+      sum += Math.hypot(w, y1 - y0); steps += w + Math.abs(y1 - y0);
+      const cx = x1 - (w / 2) * (1 - t), cy = y0 + ((y1 - y0) / 2) * (1 - t);
+      ctx.save(); ctx.strokeStyle = ic; ctx.lineWidth = k === i ? 6 : 4; ctx.lineJoin = 'round'; ctx.beginPath();
+      ctx.moveTo(ax.X(x0), ax.Y(y0)); ctx.lineTo(ax.X(cx), ax.Y(cy)); ctx.lineTo(ax.X(x1), ax.Y(y1)); ctx.stroke(); ctx.restore();
     }
     for (let k = 0; k <= n; k++) { const x = a + k * w; dot(ctx, ax.X(x), ax.Y(f(x)), PAL.ink, true, n > 20 ? 4 : 6); if (n <= 8) dash(ctx, ax.X(x), ax.Y(f(x)), ax.X(x), ax.Y(0)); }
     const x0 = a + i * w, x1 = x0 + w, y0 = f(x0), y1 = f(x1);
@@ -73,9 +79,15 @@ function scene3(d, o) {
     if (n <= 8) { text(ctx, 'a = x₀', ax.X(a), BOX.b + 50, PAL.ink, { size: 18, align: 'center' }); text(ctx, `b = x${'₀₁₂₃₄₅₆₇₈'[n]}`, ax.X(b), BOX.b + 50, PAL.ink, { size: 18, align: 'center' }); }
     text(ctx, '$\\kf(x)$', ax.X(5.55), ax.Y(f(5.55)) - 26, fc, { size: 22, weight: 600, align: 'center', tex: true, bg: PAL.panel });
     P.draw(ctx, ax, PAL.ink);
-    hits = [{ x: (ax.X(x0) + ax.X(x1)) / 2, y: (ax.Y(y0) + ax.Y(y1)) / 2, r: 22, name: `segment ${i + 1} of ${n}: length ${fmt(Math.hypot(w, y1 - y0), 3)}` }];
-    headline(ctx, `${n} ${n === 1 ? 'segment' : 'segments'}: their lengths add to ${fmt(sum, 3)}; the arc length of the curve is ${fmt(L, 3)}.`);
-    ro.set(`\\sum_{i=1}^{${n}}\\sqrt{(\\Delta x)^{2}+(\\Delta y_{i})^{2}}=${typed('integral', n2(sum))}\\qquad \\text{Arc Length}=\\int_{0.5}^{5.2}\\sqrt{1+[\\kfprime(x)]^{2}}\\,dx=${typed('integral', n2(L))}`);
+    hits = [{ x: (ax.X(x0) + ax.X(x1)) / 2, y: (ax.Y(y0) + ax.Y(y1)) / 2, r: 22, name: stair ? `step ${i + 1} of ${n}: length Δx + |Δyᵢ| = ${fmt(w + Math.abs(y1 - y0), 3)}` : `segment ${i + 1} of ${n}: length ${fmt(Math.hypot(w, y1 - y0), 3)}` }];
+    const arc = `\\text{Arc Length}=\\int_{0.5}^{5.2}\\sqrt{1+[\\kfprime(x)]^{2}}\\,dx=${typed('integral', n2(L))}`;
+    if (stair) {
+      headline(ctx, `${n} ${n === 1 ? 'step' : 'steps'}: the staircase is ${fmt(steps, 3)} long and closes on ${fmt(LS, 3)}, not on the arc length ${fmt(L, 3)}.`);
+      ro.set(`\\sum_{i=1}^{${n}}(\\Delta x+|\\Delta y_{i}|)=${typed('integral', n2(steps))}\\qquad ${arc}`, undefined, { form: 'staircase' });
+    } else {
+      headline(ctx, `${n} ${n === 1 ? 'segment' : 'segments'}: their lengths add to ${fmt(sum, 3)}; the arc length of the curve is ${fmt(L, 3)}.`);
+      ro.set(`\\sum_{i=1}^{${n}}\\sqrt{(\\Delta x)^{2}+(\\Delta y_{i})^{2}}=${typed('integral', n2(sum))}\\qquad ${arc}`, undefined, { form: 'segments' });
+    }
   }
   still(d, draw);
 })();
@@ -101,30 +113,38 @@ function scene3(d, o) {
 })();
 
 /* Figures 6.40 + 6.41: the stand-in f(x) = 1 + 0.5 sin(1.2x) + 0.2x on [0, 3.5] revolved about the x-axis, faint, and the
-   frustum bands its n inscribed segments sweep. */
+   frustum bands its n inscribed segments sweep. The cylinders take each band's radius at its midpoint x̄ᵢ; their side areas
+   2πf(x̄ᵢ)Δx close on ∫2πf dx, short of the surface area by the slant the √(1 + f′²) counts. */
 (function () {
   const d = sim('sim-frustum-bands');
   const f = (x) => 1 + 0.5 * Math.sin(1.2 * x) + 0.2 * x, df = (x) => 0.6 * Math.cos(1.2 * x) + 0.2, a = 0, b = 3.5;
-  const SA = simpson((x) => TAU * f(x) * Math.sqrt(1 + df(x) ** 2), a, b);
+  const SA = simpson((x) => TAU * f(x) * Math.sqrt(1 + df(x) ** 2), a, b), SC = simpson((x) => TAU * f(x), a, b);
+  const mode = F.choice(d.controls, { key: 'bands', aria: 'bands', options: [{ value: 'frustums', label: 'frustums' }, { value: 'cylinders', label: 'cylinders' }], value: 'frustums' });
   const ns = ctl(d.controls, { label: 'n', cls: '', key: 'n', min: 1, max: 30, step: 1, value: 4, unit: '', dec: 0 });
   const ro = readout(d);
   const S = hasGL() ? scene3(d, { s: 0.9, at: [1.75, 0.2, 0], dist: 9, tilt: 0.36, yaw: -0.35 }) : null;
   function draw() {
-    const n = ns.v, w = (b - a) / n;
-    let sum = 0; for (let i = 0; i < n; i++) { const x0 = a + i * w, x1 = x0 + w; sum += Math.PI * (f(x0) + f(x1)) * Math.hypot(w, f(x1) - f(x0)); }
+    const n = ns.v, w = (b - a) / n, cyl = mode.value === 'cylinders', t = mode.mix((v) => (v === 'cylinders' ? 1 : 0));
+    let sum = 0, side = 0;
+    for (let i = 0; i < n; i++) { const x0 = a + i * w, x1 = x0 + w; sum += Math.PI * (f(x0) + f(x1)) * Math.hypot(w, f(x1) - f(x0)); side += TAU * f(x0 + w / 2) * w; }
     if (S) {
       const { v, g } = S; S.reset();
       F.mesh.arrow(g, [-0.5, 0, 0], [4.4, 0, 0], 0.022, PAL.muted); v.label('x', [4.6, 0, 0], g);
       F.mesh.arrow(g, [0, -0.2, 0], [0, 2.9, 0], 0.022, PAL.muted); v.label('y', [0, 3.1, 0], g);
       const sc = C('surface'), ic = C('integral'), fc = C('function');
       v.pickable(RV.mesh(g, line2(f, a, b, 80), { y: 0 }, sc, { closed: false, alpha: 0.22, edges: null }).children[0], 'the surface of revolution');
-      const pts = Array.from({ length: n + 1 }, (_, i) => [a + i * w, f(a + i * w)]);
-      const bands = RV.mesh(g, pts, { y: 0 }, ic, { closed: false });
-      bands.children.forEach((m, i) => { if (m.isMesh) v.pickable(m, n === 1 ? 'the band' : 'a frustum band'); });
+      for (let i = 0; i < n; i++) {
+        const x0 = a + i * w, x1 = x0 + w, fm = f(x0 + w / 2), r0 = f(x0) + (fm - f(x0)) * t, r1 = f(x1) + (fm - f(x1)) * t;
+        const band = RV.mesh(g, [[x0, r0], [x1, r1]], { y: 0 }, ic, { closed: false });
+        band.children.forEach((m) => { if (m.isMesh) v.pickable(m, cyl ? `cylinder ${i + 1}: side area ${fmt(TAU * fm * w, 3)}` : `frustum band ${i + 1}`); });
+      }
       F.mesh.polyline(g, curveAt(f, a, b, 80), fc);
-      v.headline(`${n} ${n === 1 ? 'band' : 'bands'}: their areas add to ${fmt(sum, 2)}; the surface area is ${fmt(SA, 2)}.`);
+      v.headline(cyl ? `${n} ${n === 1 ? 'cylinder' : 'cylinders'}: their side areas add to ${fmt(side, 2)}, closing on ${fmt(SC, 2)}; the surface area is ${fmt(SA, 2)}.`
+        : `${n} ${n === 1 ? 'band' : 'bands'}: their areas add to ${fmt(sum, 2)}; the surface area is ${fmt(SA, 2)}.`);
     }
-    ro.set(`\\sum_{i=1}^{${n}}\\pi(\\kf(x_{i-1})+\\kf(x_{i}))\\,l_{i}=${typed('integral', n2(sum))}\\qquad \\int_{0}^{3.5}2\\pi\\kf(x)\\sqrt{1+(\\kfprime(x))^{2}}\\,dx=${typed('integral', n2(SA))}`);
+    const area = `\\int_{0}^{3.5}2\\pi\\kf(x)\\sqrt{1+(\\kfprime(x))^{2}}\\,dx=${typed('integral', n2(SA))}`;
+    ro.set(cyl ? `\\sum_{i=1}^{${n}}2\\pi\\kf(\\bar{x}_{i})\\,\\Delta x=${typed('integral', n2(side))}\\qquad ${area}`
+      : `\\sum_{i=1}^{${n}}\\pi(\\kf(x_{i-1})+\\kf(x_{i}))\\,l_{i}=${typed('integral', n2(sum))}\\qquad ${area}`, undefined, { form: mode.value });
   }
   still(d, draw);
 })();

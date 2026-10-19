@@ -1,0 +1,407 @@
+{
+  "id": "1",
+  "dir": "ch01",
+  "title": "First-order equations",
+  "sections": [
+    {
+      "id": "1.1",
+      "module": "integralsols:section",
+      "title": "Integrals as solutions"
+    },
+    {
+      "id": "1.2",
+      "module": "slopefields:section",
+      "title": "Slope fields"
+    },
+    {
+      "id": "1.3",
+      "module": "separable:section",
+      "title": "Separable equations"
+    },
+    {
+      "id": "1.4",
+      "module": "intfactor:section",
+      "title": "Linear equations and the integrating factor"
+    },
+    {
+      "id": "1.5",
+      "module": "substitution:section",
+      "title": "Substitution"
+    },
+    {
+      "id": "1.6",
+      "module": "auteq:section",
+      "title": "Autonomous equations"
+    },
+    {
+      "id": "1.7",
+      "module": "numer:section",
+      "title": "Numerical methods: Euler’s method"
+    },
+    {
+      "id": "1.8",
+      "module": "exact:section",
+      "title": "Exact equations"
+    },
+    {
+      "id": "1.9",
+      "module": "fopde:section",
+      "title": "First-order linear PDEs"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "1.1"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "1.1"
+    },
+    {
+      "sym": "dy/dx",
+      "type": "derivative",
+      "meaning": "the derivative of y with respect to x",
+      "section": "1.1"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the right-hand side f(x, y) of the first-order equation y′ = f(x, y), a function of x and y; in y′ = f(x), a function of x alone",
+      "section": "1.1"
+    },
+    {
+      "sym": "x",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function of t",
+      "section": "1.1"
+    },
+    {
+      "sym": "x_prime",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t, the same as dx/dt",
+      "section": "1.1"
+    },
+    {
+      "sym": "v",
+      "type": "function",
+      "meaning": "the velocity of the car, the new dependent variable v = x′ of Example 1.1.6, a function of t",
+      "section": "1.1"
+    },
+    {
+      "sym": "v_prime",
+      "type": "derivative",
+      "meaning": "the derivative of the velocity v, the acceleration of the car",
+      "section": "1.1"
+    },
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "1.2"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "1.2"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the right-hand side f(x, y) of the first-order equation y′ = f(x, y), a function of x and y; in y′ = f(x), a function of x alone",
+      "section": "1.2"
+    },
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "1.3"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "1.3"
+    },
+    {
+      "sym": "dy/dx",
+      "type": "derivative",
+      "meaning": "the derivative of y with respect to x",
+      "section": "1.3"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "a function of x alone, the first factor of the separable equation y′ = f(x)g(y)",
+      "section": "1.3",
+      "redefines": true
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "a function of y alone, the second factor of the separable equation y′ = f(x)g(y)",
+      "section": "1.3"
+    },
+    {
+      "sym": "T",
+      "type": "function",
+      "meaning": "the temperature of the coffee in degrees Celsius, a function of the time t in minutes",
+      "section": "1.3"
+    },
+    {
+      "sym": "dT/dt",
+      "type": "derivative",
+      "meaning": "the rate at which the temperature T of the coffee changes",
+      "section": "1.3"
+    },
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "1.4"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "1.4"
+    },
+    {
+      "sym": "p",
+      "type": "function",
+      "meaning": "the coefficient p(x) of y in the linear equation y′ + p(x)y = f(x)",
+      "section": "1.4"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the right-hand side f(x) of the linear equation y′ + p(x)y = f(x)",
+      "section": "1.4",
+      "redefines": true
+    },
+    {
+      "sym": "r",
+      "concept": "integrating-factor",
+      "meaning": "the integrating factor r(x) = e^(∫p(x) dx)",
+      "section": "1.4"
+    },
+    {
+      "sym": "x",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function of t",
+      "section": "1.4"
+    },
+    {
+      "sym": "dx/dt",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t",
+      "section": "1.4"
+    },
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "1.5"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "1.5"
+    },
+    {
+      "sym": "v",
+      "type": "function",
+      "meaning": "the new dependent variable of a substitution, a function of x",
+      "section": "1.5",
+      "redefines": true
+    },
+    {
+      "sym": "v_prime",
+      "type": "derivative",
+      "meaning": "the derivative of the new variable v with respect to x",
+      "section": "1.5",
+      "redefines": true
+    },
+    {
+      "sym": "p",
+      "type": "function",
+      "meaning": "the coefficient p(x) of y in the Bernoulli equation y′ + p(x)y = q(x)yⁿ",
+      "section": "1.5",
+      "redefines": true
+    },
+    {
+      "sym": "q",
+      "type": "function",
+      "meaning": "the coefficient q(x) of yⁿ in the Bernoulli equation y′ + p(x)y = q(x)yⁿ",
+      "section": "1.5"
+    },
+    {
+      "sym": "F",
+      "type": "function",
+      "meaning": "the function F of y/x in a homogeneous equation y′ = F(y/x)",
+      "section": "1.5"
+    },
+    {
+      "sym": "x",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function of t",
+      "section": "1.6"
+    },
+    {
+      "sym": "dx/dt",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t",
+      "section": "1.6"
+    },
+    {
+      "sym": "x_prime",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t, the same as dx/dt",
+      "section": "1.6"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the right-hand side f(x) of the autonomous equation dx/dt = f(x), a function of the dependent variable alone",
+      "section": "1.6",
+      "redefines": true
+    },
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "1.7"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "1.7"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the right-hand side f(x, y) of the first-order equation y′ = f(x, y), a function of x and y; in y′ = f(x), a function of x alone",
+      "section": "1.7",
+      "redefines": true
+    },
+    {
+      "sym": "F",
+      "concept": "potential-function",
+      "meaning": "the potential function F(x, y), whose curves F(x, y) = C are the solutions of an exact equation",
+      "section": "1.8",
+      "redefines": true
+    },
+    {
+      "sym": "F_x",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂F/∂x of the potential F",
+      "section": "1.8"
+    },
+    {
+      "sym": "F_y",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂F/∂y of the potential F",
+      "section": "1.8"
+    },
+    {
+      "sym": "dF",
+      "concept": "total-derivative",
+      "meaning": "the total derivative dF = F_x dx + F_y dy of the potential F",
+      "section": "1.8"
+    },
+    {
+      "sym": "M",
+      "type": "function",
+      "meaning": "the function M(x, y) multiplying dx in the equation M dx + N dy = 0",
+      "section": "1.8"
+    },
+    {
+      "sym": "N",
+      "type": "function",
+      "meaning": "the function N(x, y) multiplying dy in the equation M dx + N dy = 0",
+      "section": "1.8"
+    },
+    {
+      "sym": "M_y",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂M/∂y",
+      "section": "1.8"
+    },
+    {
+      "sym": "N_x",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂N/∂x",
+      "section": "1.8"
+    },
+    {
+      "sym": "v_vec",
+      "concept": "vector-field",
+      "meaning": "the vector field v⃗ = (M, N), a vector at each point (x, y)",
+      "section": "1.8"
+    },
+    {
+      "sym": "u",
+      "type": "function",
+      "meaning": "an integrating factor u(x, y) that makes u M dx + u N dy = 0 exact",
+      "section": "1.8",
+      "redefines": true
+    },
+    {
+      "sym": "dy/dx",
+      "type": "derivative",
+      "meaning": "the derivative of y with respect to x",
+      "section": "1.8"
+    },
+    {
+      "sym": "u",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable of the heat and wave equations, a function of t and of x (and y)",
+      "section": "1.9",
+      "redefines": true
+    },
+    {
+      "sym": "u_x",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂u/∂x",
+      "section": "1.9"
+    },
+    {
+      "sym": "u_t",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂u/∂t",
+      "section": "1.9"
+    },
+    {
+      "sym": "u_xi",
+      "type": "derivative",
+      "meaning": "the partial derivative of u with respect to the characteristic coordinate ξ",
+      "section": "1.9"
+    },
+    {
+      "sym": "u_s",
+      "type": "derivative",
+      "meaning": "the partial derivative of u with respect to the characteristic coordinate s",
+      "section": "1.9"
+    },
+    {
+      "sym": "du/ds",
+      "type": "derivative",
+      "meaning": "the derivative of u along a characteristic curve, with ξ held as a parameter",
+      "section": "1.9"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the initial condition f(x) = u(x, 0) of the PDE, a function of x",
+      "section": "1.9",
+      "redefines": true
+    }
+  ]
+}

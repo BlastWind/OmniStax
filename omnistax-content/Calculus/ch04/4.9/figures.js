@@ -68,9 +68,57 @@ function steps(id, o) {
 }
 steps('fig-cubic-root', { f: (x) => x ** 3 - 3 * x + 1, xr: [-2.5, 2.5], yr: [-4, 6], nx: 5, ny: 5, roots: [[-1.879385, 'a root near −1.879'], [0.347296, 'a root near 0.347'], [1.532089, 'the root in [1, 2], near 1.532']], label: ['$\\kf(x)=x^3-3x+1$', 1.6, 4.8] });
 steps('fig-square-root-two', { f: (x) => x * x - 2, df: (x) => 2 * x, x0: 2, k: 2, xr: [0, 2.5], yr: [-2, 4.5], nx: 5, ny: 6, fx: (v) => fmt(v, 1), roots: [[Math.SQRT2, '√2 ≈ 1.414213562']], label: ['$\\kf(x)=x^2-2$', 0.9, 2.5] });
-steps('fig-wrong-root', { f: (x) => x ** 3 / 4 - x, df: (x) => 0.75 * x * x - 1, x0: 1, k: 1, xr: [-3, 3], yr: [-2.5, 2.5], nx: 6, ny: 5,
-  roots: [[-2, 'the root found, −2'], [0, 'the root sought, 0']], notes: [['root found', -2, 0.45], ['root sought', 0, 0.45], ['x₀', 1, 0.35]] });
 steps('fig-two-cycle', { f: (x) => x ** 3 - 2 * x + 2, df: (x) => 3 * x * x - 2, x0: 0, k: 4, xr: [-2.5, 2], yr: [-3, 5], nx: 9, ny: 8, fx: (v) => fmt(v, 1), roots: [[-1.769292, 'the root, near −1.769, in [−2, −1]']], label: ['$\\kf(x)=x^3-2x+2$', -1.2, 3.8] });
+
+/* Figure 4.80 made live on its stand-in f(x) = x³/4 − x (the book prints no formula), roots −2, 0 and 2: x₀ dragged on the
+   axis, the Newton steps from it, and a band under the graph coloured at every start by the root the method reaches. Near
+   x = ±2/√3, where f′ = 0, a start is thrown far and the colours interleave. x₀ = 1 is the book's picture: one step lands on
+   −2, though 0 is as near. Axes −3 to 3 by −2.5 to 2.5. */
+(function () {
+  const d = sim('sim-wrong-root', 500);
+  const f = (x) => x ** 3 / 4 - x, df = (x) => 0.75 * x * x - 1, ROOTS = [-2, 0, 2], CRIT = 2 / Math.sqrt(3);
+  const x0s = ctl(d.controls, { label: 'x_0', cls: '', key: 'x0', min: -3, max: 3, step: 0.01, value: 1, unit: '', dec: 2, detents: [1], specials: [{ at: -CRIT, label: 'f′ = 0' }, { at: CRIT, label: 'f′ = 0' }] });
+  const P = F.drag(d, { x: x0s, y: 0 });
+  const ro = readout(d);
+  const BOX = { l: 330, r: 1070, t: 90, b: 380 };
+  const reach = (x) => { for (let i = 0; i < 80; i++) { const s = df(x); if (Math.abs(s) < 1e-12 || !isFinite(x)) return -1; x -= f(x) / s; } return ROOTS.findIndex((r) => Math.abs(x - r) < 1e-6); };
+  let hits = [];
+  hover(d.stage, () => hits);
+  still(d, () => {
+    const { ctx } = begin(d.c);
+    const x0 = x0s.v, flat = Math.abs(Math.abs(x0) - CRIT) < 1e-9, cat = ROOTS.map((_, i) => F.cat(i));
+    const ax = axes(ctx, BOX, [-3, 3], [-2.5, 2.5], { xl: 'x', yl: 'y', nx: 6, ny: 5 });
+    const y0 = BOX.b + 52, bh = 22, step = 1.5;
+    for (let px = BOX.l; px < BOX.r; px += step) {
+      const k = reach(-3 + (6 * (px + step / 2 - BOX.l)) / (BOX.r - BOX.l));
+      if (k < 0) continue;
+      ctx.fillStyle = cat[k]; ctx.fillRect(px, y0, step + 0.6, bh);
+    }
+    text(ctx, 'root reached', BOX.l - 14, y0 + bh / 2, PAL.muted, { size: 17, align: 'right', base: 'middle' });
+    line(ctx, ax.X(x0), y0 - 6, ax.X(x0), y0 + bh + 6, PAL.ink, 3);
+    plot(ctx, ax, f, C('function'));
+    const k = flat ? -1 : reach(x0);
+    let K = 0; if (!flat) { let x = x0; while (K < 10 && Math.abs(f(x)) > 1e-9 && isFinite(x)) { x -= f(x) / df(x); K++; } }
+    const xs = newton(ctx, ax, f, df, x0, Math.max(K, flat ? 0 : 1));
+    const order = ROOTS.map((r, i) => i).sort((i, j) => Math.abs(x0 - ROOTS[i]) - Math.abs(x0 - ROOTS[j]) || Math.abs(ROOTS[i]) - Math.abs(ROOTS[j]));
+    const near = order[0];
+    ROOTS.forEach((r, i) => dot(ctx, ax.X(r), ax.Y(0), cat[i], i === k, 10));
+    if (k >= 0) text(ctx, 'root found', ax.X(ROOTS[k]), ax.Y(0.45), PAL.ink, { size: 20, align: 'center', bg: PAL.panel });
+    if (k !== near) text(ctx, 'root sought', ax.X(ROOTS[near]), ax.Y(k >= 0 && Math.abs(ROOTS[k] - ROOTS[near]) < 1.6 ? 0.95 : 0.45), PAL.ink, { size: 20, align: 'center', bg: PAL.panel });
+    text(ctx, 'x₀', ax.X(x0), ax.Y(-0.4), PAL.ink, { size: 20, weight: 600, align: 'center', bg: PAL.panel });
+    text(ctx, '$\\kf(x)=\\frac{x^3}{4}-x$', ax.X(-2.2), ax.Y(2.1), C('function'), { size: 22, weight: 600, align: 'center', tex: true, bg: PAL.panel });
+    P.draw(ctx, ax, C('point'));
+    hits = [...ROOTS.map((r, i) => ({ x: ax.X(r), y: ax.Y(0), r: 12, name: `the root ${fmt(r, 0)}${i === k ? ', reached from x₀' : ''}` })),
+      ...xs.slice(1, K + 1).filter(isFinite).map((x, i) => ({ x: ax.X(x), y: ax.Y(0), r: 10, name: `x${sub(i + 1)} = ${fmt(x, 4)}` }))];
+    const r = (i) => fmt(ROOTS[i], 0);
+    headline(ctx, flat ? `x₀ = ${fmt(x0, 3)}: f′(x₀) = 0, so the tangent is horizontal and never meets the axis.`
+      : k < 0 ? `From x₀ = ${fmt(x0, 2)} the approximations do not settle on a root.`
+      : k === near ? `From x₀ = ${fmt(x0, 2)} the approximations approach ${r(k)}, the root nearest x₀.`
+      : `From x₀ = ${fmt(x0, 2)} the approximations approach ${r(k)}, not ${r(near)}, the root nearest x₀.`);
+    ro.set(flat ? `\\kfprime(x_0)=\\tfrac{3}{4}(${n(x0, 3)})^{2}-1=0`
+      : `x_1=x_0-\\frac{\\kf(x_0)}{\\kfprime(x_0)}=${n(x0, 2)}-\\frac{${n(f(x0), 4)}}{${n(df(x0), 4)}}=${n(xs[1], 4)}${k >= 0 ? `\\qquad x_n\\to ${r(k).replace('−', '-')}` : ''}`, undefined, { form: flat });
+  });
+})();
 
 /* The cobweb of an iterative process x_n = F(x_{n−1}): from (x₀, 0) up to the graph of F, across to y = x, up again… */
 function cobweb(ctx, ax, Fn, x0, N, skip, color, y0 = 0) {
