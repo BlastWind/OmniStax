@@ -40,11 +40,13 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     ctx.save(); ctx.fillStyle = alpha(ic, 0.3); ctx.fillRect(x1, yT, x2 - x1, y0 - yT); ctx.restore();
     line(ctx, x1, y0, x1, yT, alpha(fc, 0.45), 2, [4, 8]); line(ctx, x2, y0, x2, yT, alpha(fc, 0.45), 2, [4, 8]);
     plot(ctx, al, [...(a > 0 ? [{ f: () => 0, x: [0, a], ends: '-)' }] : []), { f: () => M, x: [a, b], ends: '[)' }, { f: () => 0, x: [b, 3], ends: '[-' }], fc);
-    if (M > 8) {
-      arrow(ctx, (x1 + x2) / 2, yT + 40, (x1 + x2) / 2, yT + 4, fc, 3);
-      label(ctx, `M = ${fmt(M, 1)}, above the frame`, x2, yT + 22, { side: 'right', color: fc, size: 18 });
-    } else label(ctx, `M = ${fmt(M, 2)}`, x2, yT, { side: 'right', color: fc, size: 18 });
-    label(ctx, `area M(b − a) = ${fmt(area, 2)}`, (x1 + x2) / 2, Math.max(yT, al.Y(6.6)) - 34, { side: 'above', color: ic, size: 18 });
+    /* a pulse taller than the frame rises out of it as an arrow, the way the delta is drawn */
+    if (M > 8) arrow(ctx, (x1 + x2) / 2, al.Y(5), (x1 + x2) / 2, LB.t - 6, fc, 4);
+    const right = b <= 2, sx = right ? x2 : x1, side = right ? 'right' : 'left';
+    const mText = M > 8 ? `M = ${fmt(M, 1)}, off the top` : `M = ${fmt(M, 2)}`, aText = `area M(b − a) = ${fmt(area, 2)}`;
+    label(ctx, mText, sx, Math.max(yT, LB.t + 16), { side, color: fc, size: 18, gap: 14 });
+    if (x2 - x1 >= 240 && top >= 1.5) text(ctx, aText, (x1 + x2) / 2, al.Y(top / 2), ic, { size: 18, weight: 600, align: 'center', bg: PAL.panel });
+    else label(ctx, aText, sx, top < 3 ? yT - 38 : al.Y(top / 2), { side, color: ic, size: 18, gap: 14 });
     /* right: the transform, with e^(−as) dashed for the limit */
     const ar = axes(ctx, RB, [0, 10], [0, 2], { xl: 's', yl: 'ℒ{φ(t)}', yc: tc, nx: 5, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 1) });
     dashed(ctx, () => plot(ctx, ar, E, alpha(tc, 0.6), { w: 3 }));
