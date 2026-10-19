@@ -2,7 +2,7 @@
 
 Source: `source.md`. Status: built 2026-10-19 straight through (config 2); text, figures and `section.json` reviewed against the source and the rules, `ost check diffyqs --section 1.2` clean, built and checked in the browser in light and dark on 2026-10-19 (sec-1.2 task). This section is the book's template for slope fields and theorems (`RULES.md`, Template sections); the conventions it adds to 0.2's are listed at the end.
 
-Section notes dropped and named in `notes`. Three examples, six figures (1.2–1.7, built as four: 1.2 + 1.3 + 1.4 folded), one theorem (1.2.1, Picard), one footnote (Picard, Chapter 1's second, number 2), 18 end exercises (6 keyed); no inline exercise.
+Section notes dropped and named in `notes`. Three examples, six figures (1.2–1.7, built as four: 1.2 + 1.3 + 1.4 folded), one theorem (1.2.1, Picard), one footnote (Picard, number "1" as 1.1 and 1.5: the book prints per-page symbols), 18 end exercises (6 keyed); no inline exercise.
 
 ## Sub-concepts (page headers)
 
@@ -34,7 +34,7 @@ End (kind `exercise`, ids `e<k>`): 1.2.1–1.2.12 kept with AI-marked solutions 
 ## Wanted at chapter level
 
 - Anchors: variables `y`, `y_prime`, `f` → `1.2-general-form`; `∂f/∂y` → `1.2-thm-1-2-1`; `x_prime` → `1.2-ex-1-2-3`; `g` (Exercise 1.2.11 only) has no span to anchor, nothing to do. Form `eq-picard-ivp` of `picards-theorem` → `1.2-thm-1-2-1`. (The prep's plan named `1.2-slope-picardthm` and a form of `direction-field`; the note's id is `thm-1-2-1` and `direction-field` has no form row.)
-- Footnote numbering: the checker requires a `number` on a `kind: book` footnote; Lebl's `book` class numbers footnotes per chapter, so 1.2's Picard note is Chapter 1's 2 and 1.1's closed-form note is 1 (1.1's row is the chapter pass's to set if its agent has not).
+- Footnote numbering: the checker requires a `number` on a `kind: book` footnote though the book prints per-page symbols (∗); 1.1, 1.2 and 1.5 all wrote "1" (first on its page); the chapter pass may prefer "∗" for all three.
 
 ## Derivations
 
@@ -44,7 +44,7 @@ End (kind `exercise`, ids `e<k>`): 1.2.1–1.2.12 kept with AI-marked solutions 
 ## Conventions this section adds (template for slope fields and theorems)
 
 1. A theorem is `<div class="note" id="thm-N-M-k">` with `<div class="eyebrow">Theorem N.M.k</div>`, then `<h3>` holding the book's bracketed name inside `<span data-concept="…">` (the concept's `introduces` span is the note's id), the statement verbatim with its display; its form's anchor is `N.M-thm-N-M-k`. A remark is the same with "Remark N.M.k".
-2. A book footnote is `<sup class="fn" data-note="fn-<slug>"></sup>` right after the word, its row `kind: book` with the chapter-wide `number` the `book` class prints (count the chapter's `\footnote`s).
+2. A book footnote is `<sup class="fn" data-note="fn-<slug>"></sup>` right after the word, its row `kind: book` with `number` "1" (the book prints per-page symbols, so the number is its order on the page).
 3. A slope field is `F.slopefield.field` in `alpha(C('derivative'), 0.55)` on a 25 × 19 grid over the book's window with a box 1.36 wide to tall (the book's plots are 1.39); solutions in `function` with `plot`; the book's sample solutions thin at 0.45 alpha and labelled once by their initial condition; a dragged start in `point` held by two untyped sliders through `F.drag`; a solution traced from the dragged point is the moving tier (a 4 s cycle revealing `F.slopefield.trace`'s polyline out from the point both ways, each branch cut at the box edge, reset on input), a family under a slider is still; a figure the text only reads (no quantity to vary) is a faithful live copy, `kind: figure` with its number, no sliders.
 4. A fold writes `data-figure="1.2 + 1.3 + 1.4"`, `data-original` comma-separated, `data-original-caption` as "(Figure 1.2) … (Figure 1.3) …", `data-original-width="432,432,432"`, and the row's `number`, `folds`, `originals`, `widths` to match; the eyebrow reads every number.
 5. A readout that would wrap after its first `=` goes to its `note` line for the conditions (the note renders `$…$` through the macros), keeping the formula line short.

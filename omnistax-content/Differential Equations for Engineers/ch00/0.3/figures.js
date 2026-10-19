@@ -17,8 +17,8 @@ const n = (v, dec = 2) => fmt(v, dec).replace('−', '-');
   const om0 = ctl(d.controls, { label: 'θ′(0)', cls: 'point', key: 'om0', min: -2, max: 2, step: 0.05, value: 0, unit: '', dec: 2, onInput: reset });
   const cy = cycle(() => T, 1.2);
   const ro = readout(d);
-  const PX = 330, PY = 290, R = 220;                       /* the pivot and the rod, in logical units */
-  const BOX = { l: 720, r: 1340, t: 116, b: 500 };
+  const PX = 330, PY = 300, R = 220;                       /* the pivot and the rod, in logical units */
+  const BOX = { l: 720, r: 1340, t: 176, b: 500 };         /* the headline wraps to two lines above it */
   let cache = null, hits = [];
   hover(d.stage, () => hits);
 
@@ -61,8 +61,8 @@ const n = (v, dec = 2) => fmt(v, dec).replace('−', '-');
     const bob = (th, col, r) => { const x = PX + R * Math.sin(th), y = PY + R * Math.cos(th); line(ctx, PX, PY, x, y, col, 3); dot(ctx, x, y, col, true, r); return { x, y }; };
     const B = bob(b, lc, 15), A = bob(a, nlc, 11);
     dot(ctx, PX, PY, PAL.ink, true, 6);
-    text(ctx, 'θ″ + sin θ = 0', 110, 96, nlc, { size: 22, weight: 600 });
-    text(ctx, 'θ″ + θ = 0', 110, 128, lc, { size: 22, weight: 600 });
+    text(ctx, 'θ″ + sin θ = 0', 110, 124, nlc, { size: 22, weight: 600 });
+    text(ctx, 'θ″ + θ = 0', 110, 156, lc, { size: 22, weight: 600 });
     /* the graph: both solutions faint over the whole window, solid up to t, a dot at the present time */
     const ax = axes(ctx, BOX, [0, T], [-4, 4], { xl: 't', yl: 'θ (rad)', yc: fc, nx: 4, ny: 4 });
     plot(ctx, ax, S.lin, alpha(lc, 0.3), { w: 3 });

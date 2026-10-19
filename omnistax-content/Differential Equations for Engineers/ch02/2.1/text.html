@@ -1,0 +1,81 @@
+<p id="second-order-linear">Consider the general <em><span data-concept="second-order-linear-differential-equation">second-order linear differential equation</span></em></p>
+<div class="equation" id="eq-general-second-order">$$ A(x) \kydprime + B(x)\kyprime + C(x)\ky = \kF(x) . $$</div>
+<p>We often divide through by $A(x)$ to get</p>
+<div class="equation" id="eq-2-1">$$ \kydprime + \kp(x)\kyprime + \kq(x)\ky = \kf(x) , \tag{2.1}$$</div>
+<p id="linear-meaning">where $\kp(x) = {B(x)}/{A(x)}$, $\kq(x) = {C(x)}/{A(x)}$, and $\kf(x) = {\kF(x)}/{A(x)}$. The word <em><span data-concept="linear-differential-equation">linear</span></em> means that the equation contains no powers or functions of $\ky$, $\kyprime$, and $\kydprime$.</p>
+
+<section id="homogeneous-superposition">
+<h2>Homogeneous equations and superposition</h2>
+<p id="homogeneous">In the special case when $\kf(x) = 0$, we have a so-called <em><span data-concept="homogeneous-linear-equation">homogeneous</span></em> equation</p>
+<div class="equation" id="eq-2-2">$$ \kydprime + \kp(x)\kyprime + \kq(x)\ky = 0 . \tag{2.2}$$</div>
+<p id="seen-already">We have already seen some <span data-concept="homogeneous-linear-equation">second-order linear homogeneous equations</span>.</p>
+$$ \begin{align*} \qquad \kydprime + k^2 \ky & = 0 & & \text{Two solutions are:} \quad \kyone = \cos (kx), \quad \kytwo = \sin(kx) . \qquad \\ \qquad \kydprime - k^2 \ky & = 0 & & \text{Two solutions are:} \quad \kyone = e^{kx}, \quad \kytwo = e^{-kx} . \qquad \end{align*} $$
+<p id="superposition-intro">If we know two <span data-concept="solution-to-a-differential-equation">solutions</span> of a <span data-concept="homogeneous-linear-equation">linear homogeneous equation</span>, we know many more of them.</p>
+<div class="note" id="thm-2-1-1">
+<div class="eyebrow">Theorem 2.1.1</div>
+<h3><span data-concept="superposition-principle">Superposition</span></h3>
+<p>Suppose $\kyone$ and $\kytwo$ are two <span data-concept="solution-to-a-differential-equation">solutions</span> of the <span data-concept="homogeneous-linear-equation">homogeneous equation</span> <a href="#eq-2-2">(2.2)</a>. Then</p>
+$$ \ky(x) = C_1 \kyone(x) + C_2 \kytwo(x) , $$
+<p>also solves <a href="#eq-2-2">(2.2)</a> for arbitrary constants $C_1$ and $C_2$.</p>
+</div>
+<p id="linear-combination">That is, we can add <span data-concept="solution-to-a-differential-equation">solutions</span> together and multiply them by constants to obtain new and different <span data-concept="solution-to-a-differential-equation">solutions</span>. We call the expression $C_1 \kyone + C_2 \kytwo$ a <em><span data-concept="linear-combination">linear combination</span></em> of $\kyone$ and $\kytwo$. Let us prove this theorem; the proof is very enlightening and illustrates how <span data-concept="linear-differential-equation">linear equations</span> work.</p>
+<p id="proof-superposition"><em>Proof:</em> Let $\ky = C_1 \kyone + C_2 \kytwo$. Then</p>
+<figure class="dv" id="drv-superposition"></figure>
+<p id="operator">The proof becomes even simpler to state if we use the operator notation. An <em><span data-concept="operator">operator</span></em> is an object that eats functions and spits out functions (kind of like what a function is, but a function eats numbers and spits out numbers). Define the <span data-concept="operator">operator</span> $L$ by</p>
+<div class="equation" id="eq-operator-L">$$ L\ky = \kydprime + \kp\kyprime + \kq\ky . $$</div>
+<p id="linear-operator">The differential equation now becomes $L\ky=0$. The <span data-concept="operator">operator</span> (and the equation) $L$ being <em><span data-concept="linear-operator">linear</span></em> means that $L(C_1\kyone + C_2\kytwo) = C_1 L\kyone + C_2 L\kytwo$. It is almost as if we were “multiplying” by $L$. The proof above becomes</p>
+$$ L\ky = L(C_1\kyone + C_2\kytwo) = C_1 L\kyone + C_2 L\kytwo = C_1 \cdot 0 + C_2 \cdot 0 = 0 . $$
+<p id="cosh-sinh">Two different <span data-concept="solution-to-a-differential-equation">solutions</span> to the second equation $\kydprime - k^2\ky = 0$ are $\kyone = \cosh (kx)$ and $\kytwo = \sinh (kx)$. Recalling the <a href="/calculus/ch01/1.5/#1.5-hyperbolic-definition">definition of $\sinh$ and $\cosh$</a>, we note that these are <span data-concept="solution-to-a-differential-equation">solutions</span> by <span data-concept="superposition-principle">superposition</span> as they are <span data-concept="linear-combination">linear combinations</span> of the two exponential <span data-concept="solution-to-a-differential-equation">solutions</span>: $\cosh(kx) = \frac{e^{kx} + e^{-kx}}{2} = ({1}/{2}) e^{kx} + ({1}/{2}) e^{-kx}$ and $\sinh(kx) = \frac{e^{kx} - e^{-kx}}{2} = ({1}/{2}) e^{kx} + ({-1}/{2}) e^{-kx}$.</p>
+<p id="hyperbolic-properties">The functions $\sinh$ and $\cosh$ are sometimes more convenient to use than the exponential. Let us review some of their <a href="/calculus/ch06/6.9/#6.9-hyperbolic">properties</a>:</p>
+<div class="equation" id="eq-hyperbolic-properties">$$ \begin{align*} & \cosh 0 = 1 , & & \sinh 0 = 0 , \\ & \frac{d}{dx} \Bigl[ \cosh x \Bigr] = \sinh x , & & \frac{d}{dx} \Bigl[ \sinh x \Bigr] = \cosh x , \\ & \cosh^2 x - \sinh^2 x = 1 . \end{align*} $$</div>
+<div class="exercises" data-place="eq-hyperbolic-properties"></div>
+</section>
+
+<section id="existence-uniqueness">
+<h2>Existence and uniqueness</h2>
+<p id="eu-intro"><span data-concept="linear-differential-equation">Linear equations</span> have nice and simple answers to the <span data-concept="existence-and-uniqueness-for-linear-equations">existence and uniqueness</span> question.</p>
+<div class="note" id="thm-2-1-2">
+<div class="eyebrow">Theorem 2.1.2</div>
+<h3><span data-concept="existence-and-uniqueness-for-linear-equations">Existence and uniqueness</span></h3>
+<p>Suppose $\kp, \kq, \kf$ are continuous functions on some interval $I$, $a$ is a number in $I$, and $b_0, b_1$ are constants. Then the equation</p>
+$$ \kydprime + \kp(x) \kyprime + \kq(x) \ky = \kf(x) , $$
+<p>has exactly one <span data-concept="solution-to-a-differential-equation">solution</span> $\ky(x)$ defined on the interval $I$ satisfying the <span data-concept="initial-value">initial conditions</span></p>
+$$ \ky(a) = b_0 , \qquad \kyprime(a) = b_1 . $$
+</div>
+<p id="ivp-examples">For example, the equation $\kydprime + k^2 \ky = 0$ with $\ky(0) = b_0$ and $\kyprime(0) = b_1$ has the <span data-concept="solution-to-a-differential-equation">solution</span></p>
+<div class="equation" id="eq-ivp-cos-sin">$$ \ky(x) = b_0 \cos (kx) + \frac{b_1}{k} \sin (kx) . $$</div>
+<p>The equation $\kydprime - k^2 \ky = 0$ with $\ky(0) = b_0$ and $\kyprime(0) = b_1$ has the <span data-concept="solution-to-a-differential-equation">solution</span></p>
+<div class="equation" id="eq-ivp-cosh-sinh">$$ \ky(x) = b_0 \cosh (kx) + \frac{b_1}{k} \sinh (kx) . $$</div>
+<p id="cosh-sinh-cleaner">Using $\cosh$ and $\sinh$ in this <span data-concept="solution-to-a-differential-equation">solution</span> allows us to solve for the <span data-concept="initial-value">initial conditions</span> in a cleaner way than if we had used the exponentials.</p>
+<figure class="sim" id="sim-two-conditions">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>Two numbers pick one <span data-concept="solution-to-a-differential-equation">solution</span> of $\kydprime + k^2\ky = 0$ or $\kydprime - k^2\ky = 0$: the value $\ky(0) = b_0$ places the point and the slope $\kyprime(0) = b_1$ chooses among the solutions through it, of which a few others are drawn faint. The full curve is the book’s $b_0 \cos(kx) + \frac{b_1}{k}\sin(kx)$ or $b_0 \cosh(kx) + \frac{b_1}{k}\sinh(kx)$. Move $b_0$, $b_1$ and $k$.</span></div>
+</figure>
+<p id="two-conditions">The <a href="/calculus/ch17/17.1/#17.1-initial-boundary"><span data-concept="initial-value">initial conditions</span> for a second-order ODE consist of two equations</a>. Common sense tells us that if we have two arbitrary constants and two equations, then we should be able to solve for the constants and find a <span data-concept="solution-to-a-differential-equation">solution</span> to the differential equation satisfying the <span data-concept="initial-value">initial conditions</span>.</p>
+</section>
+
+<section id="independence">
+<h2>Linear independence</h2>
+<p id="question"><em>Question:</em> Suppose we find two different <span data-concept="solution-to-a-differential-equation">solutions</span> $\kyone$ and $\kytwo$ to the <span data-concept="homogeneous-linear-equation">homogeneous equation</span> <a href="#eq-2-2">(2.2)</a>. Can every <span data-concept="solution-to-a-differential-equation">solution</span> be written (using <span data-concept="superposition-principle">superposition</span>) in the form $\ky = C_1 \kyone + C_2 \kytwo$?</p>
+<p id="linearly-independent">The answer is affirmative! Provided that $\kyone$ and $\kytwo$ are different enough in the following sense. We say $\kyone$ and $\kytwo$ are <em><span data-concept="linear-independence">linearly independent</span></em> if one is not a constant multiple of the other.</p>
+<div class="note" id="thm-2-1-3">
+<div class="eyebrow">Theorem 2.1.3</div>
+<p>Let $\kp, \kq$ be continuous functions. Let $\kyone$ and $\kytwo$ be two <span data-concept="linear-independence">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions</span> to the <span data-concept="homogeneous-linear-equation">homogeneous equation</span> <a href="#eq-2-2">(2.2)</a>. Then every other <span data-concept="solution-to-a-differential-equation">solution</span> is of the form</p>
+$$ \ky = C_1 \kyone + C_2 \kytwo . $$
+<p>That is, $\ky = C_1 \kyone + C_2 \kytwo$ is the <span data-concept="general-solution">general solution</span>.</p>
+</div>
+<p id="cos-sin-independent">For example, we found the <span data-concept="solution-to-a-differential-equation">solutions</span> $\kyone = \cos x$ and $\kytwo = \sin x$ for the equation $\kydprime + \ky = 0$. It is not hard to see that sine and cosine are not constant multiples of each other. Indeed, if $\sin x = A \cos x$ for some constant $A$, plugging in $x=0$ would imply $A = 0$. But then $\sin x = 0$ for all $x$, which is preposterous. So $\kyone$ and $\kytwo$ are <span data-concept="linear-independence">linearly independent</span>. Hence,</p>
+$$ \ky = C_1 \cos x + C_2 \sin x $$
+<p>is the <span data-concept="general-solution">general solution</span> to $\kydprime + \ky = 0$.</p>
+<p id="x2-xinv">For two functions, checking <span data-concept="linear-independence">linear independence</span> is rather simple. Here is another example. Consider $\kydprime-2x^{-2}\ky = 0$. Then $\kyone = x^2$ and $\kytwo = {1}/{x}$ are <span data-concept="solution-to-a-differential-equation">solutions</span>. To see that they are <span data-concept="linear-independence">linearly independent</span>, suppose one is a multiple of the other: $\kyone = A \kytwo$, we just have to show that $A$ cannot be a constant. In this case, we have $A = {\kyone}/{\kytwo} = x^3$, which is most decidedly not a constant. So $\ky = C_1 x^2 + C_2 {1}/{x}$ is the <span data-concept="general-solution">general solution</span>.</p>
+</section>
+
+<section id="reduction-of-order">
+<h2>Reduction of order</h2>
+<p id="reduction-method">If you have one nonzero <span data-concept="solution-to-a-differential-equation">solution</span> to a <span data-concept="homogeneous-linear-equation">second-order linear homogeneous equation</span>, then you can find another one. This is the <em><span data-concept="reduction-of-order">reduction of order method</span></em>. The idea is that if we somehow found $\kyone$ as a <span data-concept="solution-to-a-differential-equation">solution</span> of $\kydprime + \kp(x) \kyprime + \kq(x) \ky = 0$, then we try a second <span data-concept="solution-to-a-differential-equation">solution</span> of the form $\kytwo(x) = \kyone(x) \kv(x)$. We just need to find $\kv$. We plug $\kytwo$ into the equation:</p>
+<figure class="dv" id="drv-reduction-of-order"></figure>
+<p id="reduction-w">In other words, $\kyone \kvdprime + (2 \kyoneprime + \kp(x) \kyone) \kvprime = 0$. Using $\kw = \kvprime$, we have the <span data-concept="first-order-linear-differential-equation">first-order linear equation</span> $\kyone \kwprime + (2 \kyoneprime + \kp(x) \kyone) \kw = 0$. After solving this equation for $\kw$ (<a href="/diffyqs/ch01/1.4/"><span data-concept="integrating-factor">integrating factor</span></a>), we find $\kv$ by <span data-concept="antiderivative">antidifferentiating</span> $\kw$. We then form $\kytwo$ by computing $\kyone \kv$. For example, suppose we somehow know $\kyone = x$ is a <span data-concept="solution-to-a-differential-equation">solution</span> to $\kydprime+x^{-1}\kyprime-x^{-2} \ky=0$. The equation for $\kw$ is then $x\kwprime + 3 \kw = 0$. We find a <span data-concept="solution-to-a-differential-equation">solution</span>, $\kw = Cx^{-3}$, and we find an <span data-concept="antiderivative">antiderivative</span> $\kv = \frac{-C}{2x^2}$. Hence $\kytwo = \kyone \kv = \frac{-C}{2x}$. Any $C$ works and so $C=-2$ makes $\kytwo = {1}/{x}$. Thus, the <span data-concept="general-solution">general solution</span> is $\ky = C_1 x + C_2{1}/{x}$.</p>
+<p id="reduction-formula">Since we have a formula for the <span data-concept="solution-to-a-differential-equation">solution</span> to the <span data-concept="first-order-linear-differential-equation">first-order linear equation</span>, we can write a formula for $\kytwo$:</p>
+<figure class="dv" id="drv-reduction-of-order-formula"></figure>
+<p id="reduction-remember">However, it is much easier to remember that we just need to try $\kytwo(x) = \kyone(x) \kv(x)$ and find $\kv(x)$ as we did above. The technique works for higher-order equations too: You get to reduce the order by one for each <span data-concept="solution-to-a-differential-equation">solution</span> you find. So it is better to remember how to do it rather than a specific formula.</p>
+<p id="nonhomogeneous-pointer">We will study the <span data-concept="solution-to-a-differential-equation">solution</span> of nonhomogeneous equations in <a href="/diffyqs/ch02/2.5/">§2.5</a>. We will first focus on finding <span data-concept="general-solution">general solutions</span> to <span data-concept="homogeneous-linear-equation">homogeneous equations</span>.</p>
+</section>

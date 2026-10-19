@@ -1,0 +1,116 @@
+<p id="hol-intro">We briefly study <span data-concept="higher-order-linear-equation">higher-order equations</span>. Equations appearing in applications tend to be second-order. <span data-concept="higher-order-linear-equation">Higher-order equations</span> do appear from time to time, but generally the world around us is “second-order.”</p>
+<p id="hol-overview">The basic results about <span data-concept="higher-order-linear-equation">linear ODEs of higher order</span> are essentially the same as for <span data-concept="second-order-linear-differential-equation">second-order equations</span>, with 2 replaced by $n$. The important concept of <span data-concept="linear-independence-of-several-functions">linear independence</span> is somewhat more complicated when more than two functions are involved. For higher-order <span data-concept="constant-coefficient-equation">constant-coefficient</span> ODEs, the methods developed are also somewhat harder to apply, but we will not dwell on these complications. It is also possible to use the methods for systems of linear equations from <a href="/diffyqs/ch03/3.1/">chapter 3</a> to solve higher-order <span data-concept="constant-coefficient-equation">constant-coefficient</span> equations.</p>
+
+<section id="general-equation">
+<h2>The general linear equation</h2>
+<p id="hol-general">Consider a <span data-concept="higher-order-linear-equation">general <span data-concept="homogeneous-linear-equation">homogeneous</span> <span data-concept="linear-differential-equation">linear</span> equation</span></p>
+<div class="equation" id="eq-2-4">$$ \kynth + p_{n-1}(x)\kynmoneth + \cdots + p_1(x) \kyprime + p_0(x) \ky = 0 . \tag{2.4}$$</div>
+<div class="note" id="thm-2-3-1">
+<div class="eyebrow">Theorem 2.3.1</div>
+<h3><span data-concept="superposition-for-higher-order-equations">Superposition</span></h3>
+<p>If $\kyone$, $\kytwo$, …, $\kyn$ are <span data-concept="solution-to-a-differential-equation">solutions</span> of the <span data-concept="higher-order-linear-equation">homogeneous equation</span> <a href="#eq-2-4">(2.4)</a>, then</p>
+<div class="equation" id="eq-superposition-n">$$ \ky(x) = C_1 \kyone(x) + C_2 \kytwo(x) + \cdots + C_n \kyn(x) $$</div>
+<p>also solves <a href="#eq-2-4">(2.4)</a> for arbitrary constants $C_1, C_2, \ldots, C_n$.</p>
+</div>
+<p id="linear-combination">That is, a <em><span data-concept="linear-combination">linear combination</span></em> of <span data-concept="solution-to-a-differential-equation">solutions</span> to <a href="#eq-2-4">(2.4)</a> is a <span data-concept="solution-to-a-differential-equation">solution</span> to <a href="#eq-2-4">(2.4)</a>. There is also the <span data-concept="existence-and-uniqueness-for-higher-order-linear-equations">existence and uniqueness theorem</span> for linear equations, including <span data-concept="nonhomogeneous-linear-equation">nonhomogeneous</span> ones.</p>
+<div class="note" id="thm-2-3-2">
+<div class="eyebrow">Theorem 2.3.2</div>
+<h3><span data-concept="existence-and-uniqueness-for-higher-order-linear-equations">Existence and uniqueness</span></h3>
+<p>Suppose $p_0, p_1, \ldots, p_{n-1}$, and $\kf$ are <a href="/calculus/ch02/2.4/">continuous</a> functions on some interval $I$, $a$ is a number in $I$, and $b_0, b_1, \ldots, b_{n-1}$ are constants. Then the equation</p>
+<div class="equation" id="eq-higher-order-linear">$$ \kynth + p_{n-1}(x)\kynmoneth + \cdots + p_1(x) \kyprime + p_0(x) \ky = \kf(x) $$</div>
+<p>has exactly one <span data-concept="solution-to-a-differential-equation">solution</span> $\ky(x)$ defined on the same interval $I$ satisfying the <span data-concept="initial-value">initial conditions</span></p>
+<div class="equation" id="eq-higher-order-ivp">$$ \ky(a) = b_0, \quad \kyprime(a) = b_1, \quad \ldots, \quad \kynmoneth(a) = b_{n-1} . $$</div>
+</div>
+</section>
+
+<section id="independence">
+<h2>Linear independence</h2>
+<p id="linear-independence">When we had two functions $\kyone$ and $\kytwo$, we said they were <span data-concept="linear-independence">linearly independent</span> if one was not a multiple of the other. Same idea holds for $n$ functions, although in this case it is easier to state as follows. The functions $\kyone$, $\kytwo$, …, $\kyn$ are <em><span data-concept="linear-independence-of-several-functions">linearly independent</span></em> if the equation</p>
+<div class="equation" id="eq-linear-independence-n">$$ c_1 \kyone + c_2 \kytwo + \cdots + c_n \kyn = 0 $$</div>
+<p id="linear-dependence">has only the trivial solution $c_1 = c_2 = \cdots = c_n = 0$, where the equation must hold for all $x$. If we can solve the equation with some constants $c_1,c_2,\ldots,c_n$, where for example $c_1 \neq 0$, then we can solve for $\kyone$ as a <span data-concept="linear-combination">linear combination</span> of the others. If the functions are not <span data-concept="linear-independence-of-several-functions">linearly independent</span>, they are <em><span data-concept="linear-dependence">linearly dependent</span></em>.</p>
+<div class="example" id="ex-2-3-1">
+<h3>Example 2.3.1</h3>
+<p>Verify that $e^x, e^{2x}, e^{3x}$ are <span data-concept="linear-independence-of-several-functions">linearly independent</span>.</p>
+<p>Let us give several ways to show this fact. Many textbooks (including [<a href="/diffyqs/ch00/0.1/#0.1-fn-EP">EP</a>] and [<a href="/diffyqs/ch00/0.1/#0.1-fn-F">F</a>]) introduce Wronskians, but it is difficult to see why they work and they are not really necessary here.</p>
+<p>Consider</p>
+$$ c_1 e^x + c_2 e^{2x} + c_3 e^{3x} = 0. $$
+<p>We use <a href="/calculus/ch01/1.5/">rules of exponentials</a> and write $z = e^x$. Hence $z^2 = e^{2x}$ and $z^3 = e^{3x}$. Then we have</p>
+$$ c_1 z + c_2 z^2 + c_3 z^3 = 0. $$
+<p>The left-hand side is a third degree polynomial in $z$. It is either identically zero, or it has at most 3 zeros. Therefore, it is identically zero, $c_1 = c_2 = c_3 = 0$, and the functions are <span data-concept="linear-independence-of-several-functions">linearly independent</span>.</p>
+<p>Let us try another way. As before we write</p>
+$$ c_1 e^x + c_2 e^{2x} + c_3 e^{3x} = 0. $$
+<p>This equation has to hold for all $x$. We divide through by $e^{3x}$ to get</p>
+$$ c_1 e^{-2x} + c_2 e^{-x} + c_3 = 0. $$
+<p>As the equation is true for all $x$, let <a href="/calculus/ch04/4.6/">$x \to \infty$</a>. After taking the limit we see that $c_3 = 0$. Hence our equation becomes</p>
+$$ c_1 e^x + c_2 e^{2x} = 0. $$
+<p>Rinse, repeat!</p>
+<p>How about yet another way? We again write</p>
+$$ c_1 e^x + c_2 e^{2x} + c_3 e^{3x} = 0. $$
+<p>We can evaluate the equation and its derivatives at different values of $x$ to obtain equations for $c_1$, $c_2$, and $c_3$. Let us first divide by $e^{x}$ for simplicity.</p>
+$$ c_1 + c_2 e^{x} + c_3 e^{2x} = 0. $$
+<p>We set $x=0$ to get the equation $c_1 + c_2 + c_3 = 0$. Now differentiate both sides</p>
+$$ c_2 e^{x} + 2 c_3 e^{2x} = 0 . $$
+<p>We set $x=0$ to get $c_2 + 2c_3 = 0$. We divide by $e^x$ again and differentiate to get $2 c_3 e^{x} = 0$. It is clear that $c_3$ is zero. Then $c_2$ must be zero as $c_2 = -2c_3$, and $c_1$ must be zero because $c_1 + c_2 + c_3 = 0$.</p>
+<p>There is no one best way to do it. All of these methods are perfectly valid. The important thing is to understand why the functions are <span data-concept="linear-independence-of-several-functions">linearly independent</span>.</p>
+</div>
+<div class="example" id="ex-2-3-2">
+<h3>Example 2.3.2</h3>
+<p>On the other hand, the functions $e^x$, $e^{-x}$, and $\cosh x$ are <span data-concept="linear-dependence">linearly dependent</span>. Simply apply definition of the <span data-concept="hyperbolic-functions">hyperbolic cosine</span>:</p>
+$$ \cosh x = \frac{e^x + e^{-x}}{2} \qquad \text{or} \qquad 2 \cosh x - e^x - e^{-x} = 0. $$
+</div>
+<p id="enough-solutions">Once we have enough <span data-concept="linear-independence-of-several-functions">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions</span>, we have the <span data-concept="general-solution-of-a-higher-order-homogeneous-equation">general solution to the homogeneous equation</span>, just as we did for <span data-concept="general-solution-to-a-homogeneous-equation">second-order equations</span>.</p>
+<div class="note" id="thm-2-3-3">
+<div class="eyebrow">Theorem 2.3.3</div>
+<p>If $\kyone$, $\kytwo$, …, $\kyn$ are <span data-concept="linear-independence-of-several-functions">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions</span> of the <span data-concept="higher-order-linear-equation">homogeneous equation</span> <a href="#eq-2-4">(2.4)</a>, then the <span data-concept="general-solution-of-a-higher-order-homogeneous-equation">general solution</span> to <a href="#eq-2-4">(2.4)</a> can be written as</p>
+<div class="equation" id="eq-general-solution-n">$$ \ky(x) = C_1 \kyone(x) + C_2 \kytwo(x) + \cdots + C_n \kyn(x) . $$</div>
+</div>
+</section>
+
+<section id="constant-coefficient">
+<h2>Constant-coefficient higher-order ODEs</h2>
+<p id="song-and-dance">When we have a higher-order <span data-concept="constant-coefficient-equation">constant-coefficient</span> <span data-concept="higher-order-linear-equation">homogeneous linear equation</span>, <span data-concept="solving-higher-order-constant-coefficient-equations">the song and dance is exactly the same as it was for second order</span>. We just need to find more <span data-concept="solution-to-a-differential-equation">solutions</span>. If the equation is $n^{\text{th}}$-<span data-concept="order-of-a-differential-equation">order</span>, we need to find $n$ <span data-concept="linear-independence-of-several-functions">linearly independent</span> <span data-concept="solution-to-a-differential-equation">solutions</span>. It is best seen by example.</p>
+<div class="example" id="ex-2-3-3">
+<h3>Example 2.3.3</h3>
+<p>Find the <span data-concept="general-solution">general solution</span> to</p>
+<div class="equation" id="eq-2-5">$$ \kytprime - 3 \kydprime - \kyprime + 3\ky = 0 . \tag{2.5}$$</div>
+<p>Try: $\ky = e^{\kr x}$. We plug in and get</p>
+$$ \underbrace{\kr^3 e^{\kr x}}_{\kytprime} - 3 \underbrace{\kr^2 e^{\kr x}}_{\kydprime} - \underbrace{\kr e^{\kr x}}_{\kyprime} + 3 \underbrace{e^{\kr x}}_{\ky} = 0 . $$
+<p>We divide through by $e^{\kr x}$. Then</p>
+$$ \kr^3 - 3 \kr^2 - \kr + 3 = 0 . $$
+<p>The trick now is to find the roots. There is a formula for the roots of degree 3 and 4 polynomials, but it is very complicated. There is no formula for higher degree polynomials. That does not mean that the roots do not exist. There are always $n$ roots for an $n^{\text{th}}$ degree polynomial. They may be <span data-concept="solutions-for-repeated-real-roots">repeated</span> and they may be <span data-concept="solution-for-complex-conjugate-roots">complex</span>. Computers are pretty good at finding roots approximately for reasonable size polynomials.</p>
+<p>A good place to start is to plot the polynomial and check where it is zero. We can also simply try plugging in. We just start plugging in numbers $\kr=-2,-1,0,1,2,\ldots$ and see if we get a hit (we can also try complex numbers). Even if we do not get a hit, we may get an indication of where the root is. For example, we plug $\kr=-2$ into our polynomial and get $-15$; we plug in $\kr=0$ and get $3$. That means there is a root between $\kr=-2$ and $\kr=0$, because the sign changed. If we find one root, say $\krone$, then we know $(\kr-\krone)$ is a factor of our polynomial. Polynomial long division can then be used.</p>
+<p>A good strategy is to begin with $\kr=0$, $1$, or $-1$. These are easy to compute. Our polynomial has two such roots, $\krone = -1$ and $\krtwo = 1$. There should be 3 roots and the last root is reasonably easy to find. The constant term in a monic<sup class="fn" data-note="fn-monic"></sup> polynomial such as this is the product of the negations of all the roots because $\kr^3 - 3 \kr^2 - \kr + 3 = (\kr-\krone)(\kr-\krtwo)(\kr-\krthree)$. So</p>
+$$ 3 = (-\krone)(-\krtwo)(-\krthree) = (1)(-1)(-\krthree) = \krthree . $$
+<p>You should check that $\krthree = 3$ really is a root. Hence $e^{-x}$, $e^{x}$ and $e^{3x}$ are <span data-concept="solution-to-a-differential-equation">solutions</span> to <a href="#eq-2-5">(2.5)</a>. They are <span data-concept="linear-independence-of-several-functions">linearly independent</span> as can easily be checked, and there are 3 of them, which happens to be exactly the number we need. So the <span data-concept="general-solution">general solution</span> is</p>
+$$ \ky = C_1 e^{-x} + C_2 e^{x} + C_3 e^{3x} . $$
+<p>Suppose we were given some <span data-concept="initial-value">initial conditions</span> $\ky(0) = 1$, $\kyprime(0) = 2$, and $\kydprime(0) = 3$. Then</p>
+$$ \begin{aligned} 1 = \ky(0) & = C_1 + C_2 + C_3 , \\ 2 = \kyprime(0) & = -C_1 + C_2 + 3C_3 , \\ 3 = \kydprime(0) & = C_1 + C_2 + 9C_3 . \end{aligned} $$
+<p>It is possible to find the solution by high school algebra, but it would be a pain. The sensible way to solve a system of equations such as this is to use matrix algebra, see <a href="/diffyqs/ch03/3.2/">§3.2</a> or <a href="/diffyqs/appA/A.1/">appendix A</a>. For now we note that the solution is $C_1 = -{1}/{4}$, $C_2 = 1$, and $C_3 = {1}/{4}$. The <span data-concept="particular-solution">specific solution</span> to the ODE is</p>
+$$ \ky = \frac{-1}{4}\, e^{-x} + e^x + \frac{1}{4}\, e^{3x} . $$
+</div>
+<p id="repeated-real">Next, suppose that we have real roots, but they are <span data-concept="solutions-for-repeated-real-roots">repeated</span>. Let us say we have a root $\kr$ repeated $k$ times. In the spirit of the <span data-concept="solution-for-a-repeated-real-root">second-order solution</span>, and for the same reasons, we have the <span data-concept="solution-to-a-differential-equation">solutions</span></p>
+<div class="equation" id="eq-repeated-real-roots">$$ e^{\kr x}, \quad xe^{\kr x}, \quad x^2 e^{\kr x}, \quad \ldots, \quad x^{k-1} e^{\kr x} . $$</div>
+<p id="repeated-real-combination">We take a <span data-concept="linear-combination">linear combination</span> of these <span data-concept="solution-to-a-differential-equation">solutions</span> to find the <span data-concept="general-solution">general solution</span>.</p>
+<div class="example" id="ex-2-3-4">
+<h3>Example 2.3.4</h3>
+<p>Solve</p>
+$$ \kyfourth - 3 \kytprime + 3 \kydprime - \kyprime = 0 . $$
+<p>We note that the <span data-concept="characteristic-equation">characteristic equation</span> is</p>
+$$ \kr^4 - 3\kr^3 + 3\kr^2 -\kr = 0 . $$
+<p>By inspection, we note that $\kr^4 - 3\kr^3 + 3\kr^2 -\kr = \kr{(\kr-1)}^3$. Hence the roots given with <span data-concept="solutions-for-repeated-real-roots">multiplicity</span> are $\kr = 0, 1, 1, 1$. Thus the <span data-concept="general-solution">general solution</span> is</p>
+$$ \ky = \underbrace{(C_1 + C_2 x + C_3 x^2)\, e^x}_{\text{terms coming from } \kr=1} + \underbrace{C_4}_{\text{from } \kr=0} . $$
+</div>
+<p id="repeated-complex">The case of <span data-concept="solution-for-complex-conjugate-roots">complex roots</span> is similar to <span data-concept="second-order-linear-differential-equation">second-order equations</span>. <span data-concept="solution-for-complex-conjugate-roots">Complex roots</span> always come in pairs $\kr = \kalpha \pm i \kbeta$. Suppose we have two such <span data-concept="solutions-for-repeated-complex-roots">complex roots, each repeated $k$ times</span>. The corresponding <span data-concept="solution-to-a-differential-equation">solution</span> is</p>
+<div class="equation" id="eq-repeated-complex-roots">$$ ( C_0 + C_1 x + \cdots + C_{k-1} x^{k-1} ) \, e^{\kalpha x} \cos (\kbeta x) + ( D_0 + D_1 x + \cdots + D_{k-1} x^{k-1} ) \, e^{\kalpha x} \sin (\kbeta x) , $$</div>
+<p>where $C_0$, …, $C_{k-1}$, $D_0$, …, $D_{k-1}$ are arbitrary constants.</p>
+<div class="example" id="ex-2-3-5">
+<h3>Example 2.3.5</h3>
+<p>Solve</p>
+$$ \kyfourth - 4 \kytprime + 8 \kydprime - 8 \kyprime + 4\ky = 0 . $$
+<p>The <span data-concept="characteristic-equation">characteristic equation</span> is</p>
+$$ \begin{align*} \kr^4 - 4 \kr^3 + 8 \kr^2 - 8 \kr + 4 & = 0 , \\ {(\kr^2-2\kr+2)}^2 & = 0 , \\ {\bigl({(\kr-1)}^2+1\bigr)}^2 & = 0 . \end{align*} $$
+<p>Hence the roots are $1 \pm i$, both with <span data-concept="solutions-for-repeated-real-roots">multiplicity</span> 2. Hence the <span data-concept="general-solution">general solution</span> to the ODE is</p>
+$$ \ky = ( C_1 + C_2 x ) \, e^{x} \cos x + ( C_3 + C_4 x ) \, e^{x} \sin x . $$
+<p>The way we solved the <span data-concept="characteristic-equation">characteristic equation</span> above is really by guessing or by inspection. It is not so easy in general. We could also have asked a computer or an advanced calculator for the roots.</p>
+</div>
+</section>
