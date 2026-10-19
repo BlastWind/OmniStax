@@ -51,7 +51,6 @@ const guide = () => alpha(PAL.ink, 0.35);
     /* the eigenvector lines, each its own axis of the skew coordinates */
     [[V1, 'v_1', 'λ_1 = −2', [3.4, -3.4]], [V2, 'v_2', 'λ_2 = 4', [3.4, 3.4]]].forEach(([v, name, lam, end]) => {
       line(ctx, P.X(-4.2 * v[0]), P.Y(-4.2 * v[1]), P.X(4.2 * v[0]), P.Y(4.2 * v[1]), alpha(vc, 0.55), 3);
-      arrow(ctx, P.X(0), P.Y(0), P.X(v[0]), P.Y(v[1]), vc, 4);
       const lb = label(ctx, name, P.X(end[0]), P.Y(end[1]), { side: end[1] < 0 ? 'below' : 'above', color: vc, size: 22, gap: 14 });
       label(ctx, lam, (lb.l + lb.r) / 2 + 52, (lb.t + lb.b) / 2, { side: 'right', color: ec, size: 18, gap: 18, leader: false });
       hits.push({ x: P.X(end[0]), y: P.Y(end[1]), r: 22, name: `the eigenvector line of ${name === 'v_1' ? 'v⃗₁ = (1, −1), eigenvalue λ₁ = −2' : 'v⃗₂ = (1, 1), eigenvalue λ₂ = 4'}` });

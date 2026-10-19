@@ -226,8 +226,10 @@ const mat = (m) => `\\begin{bmatrix} ${m[0]} & ${m[1]} \\\\ ${m[2]} & ${m[3]} \\
     /* the initial point, the reader's */
     const at = P.draw(ctx, ax, pc);
     if (at) {
-      const left = X0 > 1.6;
-      mark(ctx, '$\\kvecx(0)$', at.x + (left ? -26 : 26), at.y - 26, pc, { align: left ? 'right' : 'left' });
+      /* the name sits behind the point, away from where the trajectory sets off */
+      const vx = l1 * X0 + (l1 - l2) * Y0, vy = l2 * Y0, vl = Math.hypot(vx, vy);
+      const ux = vl > 1e-6 ? -vx / vl : 0.7, uy = vl > 1e-6 ? -vy / vl : 0.7;
+      mark(ctx, '$\\kvecx(0)$', at.x + 30 * ux, at.y - 30 * uy, pc, { align: ux < -0.3 ? 'right' : ux > 0.3 ? 'left' : 'center' });
       hits.push({ x: at.x, y: at.y, r: 18, name: `x⃗(0) = (${fmt(X0, 2)}, ${fmt(Y0, 2)}), the initial point; drag it` });
     }
     /* the words */

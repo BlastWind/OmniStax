@@ -1,9 +1,10 @@
 /* Figures for section 3.5 Two-dimensional systems and their vector fields. */
 window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
 window.OMNISTAX_FIGURES['3.5'] = function (root, F) {
-const { C, PAL, alpha, ctl, choice, begin, axes, arrow, dot, line, text, headline, register, readout, hover, cycle, tween, presence, labeller, ease, REDUCED, space } = F;
+const { C, PAL, alpha, ctl, select, begin, axes, arrow, dot, line, text, headline, register, readout, hover, cycle, tween, presence, labeller, ease, REDUCED, space } = F;
 const sim = (id, H) => F.sim(root, id, H);
 const clamp01 = (k) => Math.max(0, Math.min(1, k));
+const minus = (s) => s.replace(/-/g, '\u2212');
 
 /* A number for the readout and the headline: rounded to `dec` places with trailing zeros dropped, and whether
    that rounding is exact (so the figure writes = where it is and ≈ where it is not). */
@@ -80,15 +81,11 @@ function expm(S, t) {
   const glide = tween(d, 1);
   const stop = () => { if (morph) { morph = null; glide.set(1); } };
   const go = (v) => { morph = { from: [A.v, B.v, Cs.v, D.v], to: BOOK[v] }; glide.set(0); glide.to(1, 1500); };
-  const pick = choice(d.controls, {
+  /* the behavior: seven states, so a dropdown (a row would wrap); it always names the behavior of the entries as they
+     stand, and picking one glides them to the book's matrix for it */
+  const pick = select(d.controls, {
     label: '', key: 'case', value: 'source', aria: 'the behavior, each with the book’s matrix for it',
     options: KINDS.map((k) => ({ value: k, label: k })), onInput: go,
-  });
-  /* the marked behavior follows the entries, so a press on it when the entries have wandered from the book's matrix
-     brings them back to it */
-  d.controls.addEventListener('click', (e) => {
-    const btn = e.target instanceof Element ? e.target.closest('button[data-value]') : null;
-    if (btn && btn.dataset.value === pick.value && !(morph && morph.to === BOOK[pick.value]) && ent().some((x, i) => x !== BOOK[pick.value][i])) go(pick.value);
   });
   const ent = () => [A.v, B.v, Cs.v, D.v];
   const live = (f) => () => { const [a, b, c, dd] = ent(); const x = f(a, b, c, dd); return x === null || !Number.isFinite(x) || Math.abs(x) > LIM ? null : x; };
@@ -201,7 +198,7 @@ function expm(S, t) {
     }
     const [a, b, c, dd] = E, S = analyse(a, b, c, dd);
     if (!morph && pick.value !== S.kind) pick.set(S.kind);
-    const { ctx, H } = begin(d.c);
+    const { ctx, H } = begin(d.c), LW = 1400;
     const vf = C('vector-field'), cv = C('curve'), vc = C('vector'), ec = C('eigenvalue'), pc = C('point');
     hits = [];
     ax = axes(ctx, BOX, [-3, 3], [-3, 3], { xl: 'x', yl: 'y', nx: 6, ny: 6 });
@@ -210,7 +207,7 @@ function expm(S, t) {
     for (let i = -3; i <= 3; i += 1) for (let j = -3; j <= 3; j += 1) {
       if (!(i % 2 === 0 || j % 2 === 0)) continue;
       const u = a * i + b * j, w = c * i + dd * j;
-      hits.push({ x: ax.X(i), y: ax.Y(j), r: 12, name: `the vector field at (${i}, ${j}): P[${i}; ${j}] = (${num(u).s}, ${num(w).s})` });
+      hits.push({ x: ax.X(i), y: ax.Y(j), r: 12, name: minus(`the vector field at (${i}, ${j}): P[${i}; ${j}] = (${num(u).s}, ${num(w).s})`) });
     }
     const pic = picture(S);
     /* the eigenvector lines (Figure 3.5): faded in and out as the eigenvalues turn real or complex */
@@ -218,6 +215,7 @@ function expm(S, t) {
     const ea = fade.a('eig');
     const last = picture.last;
     const lab = labeller(ctx, H, { headline: 2 });
+    lab.block(0, BOX.b + 4, LW, H); lab.block(0, BOX.t - 40, BOX.l - 4, BOX.b + 4); lab.block(PLANE.l - 70, PLANE.t - 50, LW, PLANE.b + 80);
     if (last && ea > 0.01 && lines > 0) {
       const LS = S.real ? S : last.S, LP = S.real ? pic : last.pic;
       LP.eig.forEach((e) => {
@@ -238,7 +236,7 @@ function expm(S, t) {
               const dx = (ax.X(ux) - ax.X(0)) / 100, dy = (ax.Y(uy) - ax.Y(0)) / 100, Ld = Math.hypot(dx, dy) || 1;
               arrow(ctx, X0 - (s * 13 * dx) / Ld, Y0 - (s * 13 * dy) / Ld, X0 + (s * 13 * dx) / Ld, Y0 + (s * 13 * dy) / Ld, cv, 4);
             }
-            hits.push({ x: ax.X(q[0]), y: ax.Y(q[1]), r: 12, name: `a straight solution on the line of the eigenvector for λ = ${num(e.lam).s}: it moves ${out ? 'away from' : 'toward'} the origin` });
+            hits.push({ x: ax.X(q[0]), y: ax.Y(q[1]), r: 12, name: minus(`a straight solution on the line of the eigenvector for λ = ${num(e.lam).s}: it moves ${out ? 'away from' : 'toward'} the origin`) });
           });
         }
         ctx.restore();
@@ -249,7 +247,7 @@ function expm(S, t) {
       if (k.pts.length < 3) return;
       stroke(ctx, k.pts, alpha(cv, 0.85), 3.5, sols);
       const q = k.pts[Math.floor(k.pts.length * 0.5)];
-      if (q && Math.abs(q[0]) < 3 && Math.abs(q[1]) < 3) hits.push({ x: ax.X(q[0]), y: ax.Y(q[1]), r: 12, name: `a solution curve (trajectory), through (${num(SEEDS[i][0], 1).s}, ${num(SEEDS[i][1], 1).s})` });
+      if (q && Math.abs(q[0]) < 3 && Math.abs(q[1]) < 3) hits.push({ x: ax.X(q[0]), y: ax.Y(q[1]), r: 12, name: minus(`a solution curve (trajectory), through (${num(SEEDS[i][0], 1).s}, ${num(SEEDS[i][1], 1).s})`) });
     });
     /* the eigenvectors themselves (Figure 3.4), grown from the origin */
     if (last && ea > 0.01 && grow > 0) {
@@ -259,8 +257,8 @@ function expm(S, t) {
         const x2 = ax.X(e.v[0] * grow), y2 = ax.Y(e.v[1] * grow);
         arrow(ctx, ax.X(0), ax.Y(0), x2, y2, vc, 5);
         const L = Math.hypot(x2 - ax.X(0), y2 - ax.Y(0)) || 1;
-        if (grow >= 1) lab.add(`λ = ${num(e.lam).s}`, x2, y2, (x2 - ax.X(0)) / L, (y2 - ax.Y(0)) / L, ec, 20, 22);
-        hits.push({ x: x2, y: y2, r: 14, name: `the eigenvector v⃗ = [${num(e.v[0]).s}; ${num(e.v[1]).s}] for the eigenvalue λ = ${num(e.lam).s}` });
+        if (grow >= 1 && L > 8) lab.beside({ x1: ax.X(0), y1: ax.Y(0), x2, y2 }, 'left', `λ = ${minus(num(e.lam).s)}`, ec, 20, { offset: 0.85, gap: 20 });
+        hits.push({ x: x2, y: y2, r: 14, name: minus(`the eigenvector v⃗ = [${num(e.v[0]).s}; ${num(e.v[1]).s}] for the eigenvalue λ = ${num(e.lam).s}`) });
       });
       ctx.restore();
     }

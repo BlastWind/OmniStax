@@ -139,7 +139,7 @@ const body = (ctx, x, FY, w, h, color) => { const r = Math.max(6, Math.min(w, h)
    distance d is the slider (4 to 16 m, the book's 10), with dashed circles at the safe distances 4π/√3 and 8π/√3,
    where x₂′ = 2 − 2 cos √3t is zero at impact. The wall face is fixed at 1300 and the scene is 56 units per metre, so
    at d = 16 car 1 starts at 92; the bumper is 2.2 m long at rest and squeezes by at most √3 m. The velocity arrows are
-   kinematic, 25 units per m/s. Graph t 0 to 9 (d = 16 hits at 8.49 s) by x 0 to 18. */
+   kinematic, 25 units per m/s, each ending at its car's centre so none reaches into the wall. Graph t 0 to 9 (d = 16 hits at 8.49 s) by x 0 to 18. */
 (function () {
   const d = sim('sim-railcars', 760);
   const R3 = Math.sqrt(3), T0 = 0.6, SAFE1 = (4 * Math.PI) / R3, SAFE2 = (8 * Math.PI) / R3;
@@ -173,11 +173,11 @@ const body = (ctx, x, FY, w, h, color) => { const r = Math.max(6, Math.min(w, h)
     text(ctx, '2', c2, sy, r2, { size: 22, align: 'center', weight: 600 });
     /* the velocities, kinematic, above the cars */
     const vy = sy - CH / 2 - 26, va = v1(t), vb = tau - T0 >= ti ? v2(ti) : v2(t);
-    if (va * VS > 6) arrow(ctx, c1, vy, c1 + va * VS, vy, dc, 4);
-    if (vb * VS > 6) arrow(ctx, c2, vy, c2 + vb * VS, vy, dc, 4);
+    if (va * VS > 6) arrow(ctx, c1 - va * VS, vy, c1, vy, dc, 4);
+    if (vb * VS > 6) arrow(ctx, c2 - vb * VS, vy, c2, vy, dc, 4);
     hits = [
       { x: c1, y: sy, r: 36, name: `car 1, 2 kg, x₁ = ${fmt(a, 2)} m` }, { x: c2, y: sy, r: 36, name: `car 2, 1 kg, x₂ = ${fmt(b, 2)} m` },
-      { x: c1 + (va * VS) / 2, y: vy, r: 16, name: `car 1's velocity x₁′ = ${fmt(va, 2)} m/s` }, { x: c2 + (vb * VS) / 2, y: vy, r: 16, name: `car 2's velocity x₂′ = ${fmt(vb, 2)} m/s` },
+      { x: c1 - (va * VS) / 2, y: vy, r: 16, name: `car 1's velocity x₁′ = ${fmt(va, 2)} m/s` }, { x: c2 - (vb * VS) / 2, y: vy, r: 16, name: `car 2's velocity x₂′ = ${fmt(vb, 2)} m/s` },
       { x: bl - BUMP / 2, y: sy, r: 22, name: 'the bumper, a spring of k = 2 N/m' }, { x: WX + 15, y: 220, r: 24, name: 'the wall' },
     ];
     /* the graph: x₂ faint over the window ignoring the wall, x₁ faint up to impact, both solid up to t; the wall dashed */
@@ -190,8 +190,8 @@ const body = (ctx, x, FY, w, h, color) => { const r = Math.max(6, Math.min(w, h)
     const tt = Math.max(t, 0), P1 = pinned(ctx, ax.box, ax.X, ax.Y, tt, x1(tt), r1), P2 = pinned(ctx, ax.box, ax.X, ax.Y, tt, x2(tt), r2);
     line(ctx, ax.X(ti), ax.Y(dd), ax.X(ti), ax.box.b, guide(), 2, [4, 8]);
     dot(ctx, ax.X(ti), ax.Y(dd), r2, false, 10);
-    text(ctx, 'x_1', BOX.r - 70, BOX.t - 24, r1, { size: 20, weight: 600, align: 'right' });
-    text(ctx, 'x_2', BOX.r, BOX.t - 24, r2, { size: 20, weight: 600, align: 'right' });
+    text(ctx, 'x_1', 690, BOX.t - 24, r1, { size: 20, weight: 600, align: 'right' });
+    text(ctx, 'x_2', 750, BOX.t - 24, r2, { size: 20, weight: 600, align: 'right' });
     hits.push({ x: P1.x, y: P1.y, r: 14, name: `x₁(${fmt(tt, 2)}) = ${fmt(x1(tt), 2)} m` }, { x: P2.x, y: P2.y, r: 14, name: `x₂(${fmt(tt, 2)}) = ${fmt(x2(tt), 2)} m` },
       { x: ax.X(ti), y: ax.Y(dd), r: 14, name: `the impact, x₂ = d at t = ${fmt(ti, 2)} s` });
     const sp = v2(ti), safe = sp < 0.005;

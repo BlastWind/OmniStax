@@ -71,10 +71,6 @@
     {
      "assumes": [
       {
-       "tex": "(\\kP-\\klambda \\kI)\\kvecv = \\vec{0}",
-       "src": "3.4"
-      },
-      {
        "tex": "\\overline{\\vec{0}} = \\vec{0}",
        "src": "3.4"
       },
@@ -89,23 +85,21 @@
      ],
      "then": {
       "tex": "\\mk{z}{\\vec{0}} = \\mk{m}{(\\kP-\\klambda \\kI)\\kvecv}",
-      "uses": [
-       0
-      ],
-      "src": "3.4"
+      "src": "3.4",
+      "why": "$\\kvecv$ is an eigenvector of $\\kP$ for the eigenvalue $\\klambda$."
      },
      "steps": [
       {
        "tex": "\\mk{z}{\\vec{0}} = \\mk{m}{\\overline{(\\kP-\\klambda \\kI)\\kvecv}}",
        "uses": [
-        1
+        0
        ],
        "cap": "Take the complex conjugate of both sides; the conjugate of $\\vec{0}$ is still $\\vec{0}$."
       },
       {
        "tex": "\\mk{z}{\\vec{0}} = \\mk{m}{\\overline{\\kP-\\klambda \\kI}}\\,\\mk{v}{\\kvecvbar}",
        "uses": [
-        2
+        1
        ],
        "map": {
         "m": [
@@ -117,7 +111,7 @@
       {
        "tex": "\\mk{z}{\\vec{0}} = \\mk{m}{(\\kP-\\klambdabar \\kI)}\\mk{v}{\\kvecvbar}",
        "uses": [
-        3
+        2
        ]
       }
      ],
