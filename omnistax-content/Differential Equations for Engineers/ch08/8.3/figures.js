@@ -196,6 +196,7 @@ function rider(ctx, x, y, color) { dot(ctx, x, y, PAL.panel, true, 12); dot(ctx,
   const L1 = { l: 110, r: 650, t: 150, b: 430 }, R1 = { l: 800, r: 1340, t: 150, b: 430 };
   const th0 = ctl(d.controls, { label: '\\theta_0', cls: '', key: 'th0', min: 0.01, max: 0.98 * Math.PI, step: 0.01, value: Math.PI / 4, unit: 'rad', dec: 2, aria: 'the initial angle θ₀',
     specials: [{ at: (5 * Math.PI) / 180, label: '5°' }, { at: Math.PI / 4, label: '45°' }, { at: Math.PI / 2, label: '90°' }] });
+  th0.set(Math.PI / 4);   /* the book's 45°, exactly: the input rounded it to its step before the circles freed the step */
   const ro = readout(d);
   let hits = [];
   hover(d.stage, () => hits);
@@ -214,14 +215,14 @@ function rider(ctx, x, y, color) { dot(ctx, x, y, PAL.panel, true, 12); dot(ctx,
     line(ctx, a.X(0), a.Y(TL), a.X(Math.PI), a.Y(TL), PAL.ink, 3, [10, 10]);
     plot(ctx, a, T, PAL.ink, { w: 5, poles: [Math.PI] });
     text(ctx, 'T', a.X(2.75), a.Y(Math.min(19, T(2.75))) , PAL.ink, { size: 24, weight: 600, align: 'right', bg: PAL.panel });
-    text(ctx, 'T_{linear} = 2π', a.X(Math.PI) - 8, a.Y(TL) + 24, PAL.ink, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
+    text(ctx, 'T_{linear} = 2π', a.X(Math.PI) - 16, a.Y(TL) - 22, PAL.ink, { size: 20, weight: 600, align: 'right', bg: PAL.panel });
     line(ctx, a.X(t0), a.Y(TL), a.X(t0), a.Y(Math.min(20, Tv)), alpha(PAL.ink, 0.4), 2, [4, 8]);
     line(ctx, a.X(t0), a.Y(TL), a.X(t0), a.Y(5), alpha(PAL.ink, 0.4), 2, [4, 8]);
     const p1 = pinned(ctx, L1, a.X, a.Y, t0, Tv, PAL.ink), p2 = pinned(ctx, L1, a.X, a.Y, t0, TL, PAL.ink);
     hits.push({ x: p1.x, y: p1.y, r: 16, name: `T = ${fmt(Tv, 2)}, the true period for θ₀ = ${fmt(t0, 2)} rad` });
     hits.push({ x: p2.x, y: p2.y, r: 16, name: `T_linear = 2π ≈ 6.28, the period of the linearized pendulum, the same for every θ₀` });
     hits.push({ x: a.X(Math.PI), y: a.Y(12), r: 16, name: 'θ₀ = π, the pendulum released upside down: the period grows without bound as θ₀ approaches it' });
-    const b = axes(ctx, R1, [0, Math.PI], [0, 0.8], { xl: 'θ₀', yl: 'relative error', yc: ec, nx: 4, ny: 4, fx });
+    const b = axes(ctx, R1, [0, Math.PI], [0, 0.8], { xl: 'θ₀', yl: 'relative error', yc: ec, nx: 4, ny: 4, fx, fy: (v) => v.toFixed(1) });
     plot(ctx, b, err, ec, { w: 5 });
     line(ctx, b.X(t0), b.Y(0), b.X(t0), b.Y(Math.min(0.8, ev)), alpha(PAL.ink, 0.4), 2, [4, 8]);
     const p3 = pinned(ctx, R1, b.X, b.Y, t0, ev, ec);
@@ -282,7 +283,9 @@ function rider(ctx, x, y, color) { dot(ctx, x, y, PAL.panel, true, 12); dot(ctx,
     const vf = C('vector-field'), cv = C('curve'), pc = C('point'), hc = F.ref('hares'), fc = F.ref('foxes');
     hits = [];
     const ax = axes(ctx, LB, [0, 300], [0, 250], { xl: 'x (hares)', yl: 'y (foxes)', xc: C('function'), yc: C('function'), nx: 6, ny: 5 });
-    space.field2(ctx, ax, fld, alpha(vf, 0.6), { n: [12, 10], w: 2.5 });
+    /* the direction of the field, one arrow length everywhere as the book draws it: the speeds differ a hundredfold over the window */
+    const sx = (LB.r - LB.l) / 300, sy = (LB.b - LB.t) / 250;
+    space.field2(ctx, ax, (p) => { const [u, v] = fld(p), m = Math.hypot(u * sx, v * sy); return m > 1e-9 ? [u / m, v / m] : [0, 0]; }, alpha(vf, 0.6), { n: [12, 10], w: 2.5 });
     BOOKS.forEach((p) => stroke(ctx, ax, p, alpha(cv, 0.22), 2.5));
     const all = Array.from(S.xs, (x, i) => [x, S.ys[i]]), upto = Math.floor(clamp(t / DT, 0, N));
     stroke(ctx, ax, all, alpha(cv, 0.35), 3);

@@ -65,7 +65,7 @@ const sig2 = (v) => String(Number(v.toPrecision(2)));
   function draw() {
     const { ctx } = begin(d.c);
     const t = cy.now(), i = Math.min(N, Math.round(t / h)), recent = Math.max(0, i - Math.round(5 / h));
-    const c1 = F.ref('path-1'), c2 = F.ref('path-2'), cc = C('curve'), fc = C('function');
+    const c1 = F.ref('path-1'), c2 = F.ref('path-2');
     hits = [];
     /* the phase plane */
     const ph = axes(ctx, PH, [-3.5, 3.5], [-6.5, 6.5], { xl: 'x', yl: 'y = x′', nx: 4, ny: 6, nice: true });
