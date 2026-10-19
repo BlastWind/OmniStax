@@ -73,8 +73,10 @@ const run = (d, T, rate, draw, hold = 1.2) => { const cy = cycle(() => T, hold);
     if (t > 0) { plot(ctx, ax, x1, c1, { w: 5, x: [0, t] }); plot(ctx, ax, x2, c2, { w: 5, x: [0, t] }); }
     const p1 = pinned(ctx, ax.box, ax.X, ax.Y, t, a, c1), p2 = pinned(ctx, ax.box, ax.X, ax.Y, t, b, c2);
     if (Math.abs(A - B) > 2) {
-      text(ctx, 'tank 1', ax.X(1.5), ax.Y(A) + (A > B ? -18 : 18), c1, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
-      text(ctx, 'tank 2', ax.X(1.5), ax.Y(B) + (B > A ? -18 : 18), c2, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+      /* each curve named at t = 4 s, the upper one above it and the lower one below, kept inside the box */
+      const at = (v, up) => Math.min(ax.box.b - 14, Math.max(ax.box.t + 14, ax.Y(v) + (up ? -20 : 20)));
+      text(ctx, 'tank 1', ax.X(4), at(x1(4), A > B), c1, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
+      text(ctx, 'tank 2', ax.X(4), at(x2(4), B > A), c2, { size: 20, weight: 600, align: 'left', bg: PAL.panel });
     }
     hits.push({ x: p1.x, y: p1.y, r: 14, name: `x₁(${fmt(t, 1)}) = ${fmt(a, 1)} g, the salt in tank 1` }, { x: p2.x, y: p2.y, r: 14, name: `x₂(${fmt(t, 1)}) = ${fmt(b, 1)} g, the salt in tank 2` },
       { x: ax.X(30), y: ax.Y(mid), r: 12, name: `(A + B)/2 = ${fmt(mid, 1)} g, where both amounts settle` });
