@@ -6,7 +6,7 @@ Task `prep1-ch06` (prep stage one), port 8107, scratch `/tmp/claude-0/-home-user
 - Sources read whole (6.1–6.5); the seven figure images copied to `media/ch06/` under the book's names.
 - `exploration.md`, `config.md` (agreed by carry-over), `COLOR.md`.
 - `chapter.json`: id, dir, title, no intro, five sections with their `\label`s as `module`, 65 draft variables rows (type on every row that names no Chapter 6 concept; `concept` only where the symbol names one of this chapter's: F → `laplace-transform`, u → `unit-step-function`, H → `transfer-function`, f∗g → `convolution`, φ → `rectangular-pulse`, δ → `dirac-delta-function`, h → `impulse-response`; 6.4's F set to ink with `redefines`).
-- `book-rows.json`: 21 new symbols with macros, 52 concepts (16 · 11 · 6 · 13 · 6 by section; 29 definitions, 15 results, 4 ideas, 7 skills, 1 axiom), 68 forms (the nine boxed formulas, Tables 6.1 and 6.2, the theorems, the named equations), 86 prereq edges, Hasse-reduced and acyclic against the merged book (checked by `check_rows.py`).
+- `book-rows.json`: 11 new symbols with macros (F′, Y′, g′, g″, g‴, f∗g, δ, φ, y‴, d⁴y/dx⁴, y_xt; the ten others the chapter writes, X, Y, Y″, G, H, h, y_t, y_x, y_xx, y_tt, are staged by Chapters 4 and 5 with the same LaTeX and macros and were withdrawn here), 50 concepts (15 · 10 · 6 · 13 · 6 by section; 18 definitions, 18 results, 9 skills, 4 ideas, 1 axiom), 68 forms (the nine boxed formulas, Tables 6.1 and 6.2, the theorems, the named equations), 85 prereq edges, Hasse-reduced and acyclic against the merged book (checked by `check_rows.py`, which also checks id, symbol and macro clashes with `ch04`/`ch05/book-rows.json`).
 - `plan.md` for 6.1–6.5: 9 figures (0 faithful copies, 5 still, 4 moving, 0 3D), 5 derivations, every exercise with its expected answer (48 unkeyed computed and checked at prep; 22 keyed verified, none contradicts the book).
 
 ## In progress
@@ -21,7 +21,7 @@ Task `prep1-ch06` (prep stage one), port 8107, scratch `/tmp/claude-0/-home-user
 - Chapter 0 (merged): `constant-coefficient-equation`, `linear-differential-equation`, `solving-an-initial-value-problem`, `partial-differential-equation`.
 - Chapter 1 (merged): `transport-equation`, `method-of-characteristics`.
 - Chapter 2 (from its plans; `ch02/book-rows.json` did not exist at prep): `mass-spring-system` (2.4), `linear-operator` (2.1), `natural-frequency` (2.4). Reinforced only, no edge: `resonance`, `rlc-series-circuit`, `steady-state-solution`, `undamped-forced-motion`.
-- Chapter 4 (`ch04/book-rows.json`, read late): `heat-equation` (4.6). Reinforced only: `fourier-series`, `wave-equation`, `separation-of-variables-for-pdes`.
+- Chapter 4 (`ch04/book-rows.json`, read late): `heat-equation` (4.6), `piecewise-continuous-function` (4.3; 6.1's uniqueness theorem rests on it). Reinforced only: `piecewise-smooth-function` (4.3), `fourier-series`, `wave-equation`, `separation-of-variables-for-pdes`.
 - Chapter 5 (`ch05/book-rows.json`, read late): `hinged-end-of-a-beam` (5.2).
 - Chapter 3: none.
 
@@ -35,4 +35,5 @@ Task `prep1-ch06` (prep stage one), port 8107, scratch `/tmp/claude-0/-home-user
 - 6.5's `wavefront` is a concept of its own (type `curve`); Chapter 4's 4.8 stages `wavefronts` (d'Alembert's). Not linked: the book does not connect them; an edge can be added at stage two if wanted.
 - `euler-bernoulli-equation` (static, EI y⁗ = F(x)) is kept apart from Chapter 5's `beam-equation` (the vibrating beam); `three-point-bending` rests on 5.2's `hinged-end-of-a-beam`.
 - Five derivations: `drv-transform-of-derivatives` and `drv-periodic-transform` (6.2, printed blocks), `drv-convolution-theorem` (6.3, the proof the book skips, score 7, a Calculus 15.2 fact for the swapped order of integration), `drv-forced-oscillation-convolution` (6.3, replacing Example 6.3.4's worked lines, eyebrow "Example 6.3.4 ·"), `drv-impulse-response` (6.4, the printed convolution argument). Example 6.5.1 stays prose (the method's first instance, score 3).
-- Terms only in exercises ("differentiation of the transform", 6.2.7) are not concepts, as Chapters 1 and 2 decided; "convection equation" (6.5) marks Chapter 1's `transport-equation` without a new row.
+- Terms only in exercises ("differentiation of the transform", 6.2.7) are not concepts, as Chapters 1 and 2 decided; "convection equation" (6.5) marks Chapter 1's `transport-equation` without a new row; "piecewise continuous" (6.1) and "continuous piecewise smooth" (6.2) mark Chapter 4's 4.3 definitions rather than new rows (the book's 6.1 says "Recall that…").
+- If Chapter 2 or 3 turns out to stage any of this chapter's eleven symbols or ids (their `book-rows.json` did not exist at prep), withdraw the duplicate here at stage two, as was done for Chapters 4 and 5.
