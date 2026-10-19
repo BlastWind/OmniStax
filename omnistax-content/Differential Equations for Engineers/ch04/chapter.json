@@ -69,7 +69,8 @@
       "sym": "x",
       "type": "function",
       "meaning": "the unknown function x(t) of a boundary value problem, defined for t in the interval [a, b]",
-      "section": "4.1"
+      "section": "4.1",
+      "redefines": true
     },
     {
       "sym": "x_prime",
@@ -85,15 +86,17 @@
     },
     {
       "sym": "λ",
-      "type": "eigenvalue",
       "meaning": "the constant λ in x″ + λx = 0; an eigenvalue of the boundary value problem when a nonzero solution exists for it",
-      "section": "4.1"
+      "section": "4.1",
+      "redefines": true,
+      "concept": "eigenvalue-of-a-boundary-value-problem"
     },
     {
       "sym": "λ_k",
       "type": "eigenvalue",
       "meaning": "the kth eigenvalue of a boundary value problem, λ_k = k² for the problems on [0, π] and [−π, π]",
-      "section": "4.1"
+      "section": "4.1",
+      "redefines": true
     },
     {
       "sym": "lambda_0",
@@ -103,34 +106,38 @@
     },
     {
       "sym": "x_k",
-      "type": "function",
       "meaning": "an eigenfunction corresponding to the eigenvalue λ_k, a nonzero solution of the boundary value problem",
-      "section": "4.1"
+      "section": "4.1",
+      "concept": "eigenfunction"
     },
     {
       "sym": "x_1",
       "type": "function",
       "meaning": "the first of two eigenfunctions of Theorem 4.1.1, for the eigenvalue λ₁",
-      "section": "4.1"
+      "section": "4.1",
+      "redefines": true
     },
     {
       "sym": "x_2",
       "type": "function",
       "meaning": "the second of two eigenfunctions of Theorem 4.1.1, for the eigenvalue λ₂",
-      "section": "4.1"
+      "section": "4.1",
+      "redefines": true
     },
     {
       "sym": "f",
       "type": "function",
       "meaning": "the right-hand side f(t), continuous on [a, b], of the nonhomogeneous problem (4.5) of the Fredholm alternative",
-      "section": "4.1"
+      "section": "4.1",
+      "redefines": true
     },
     {
       "sym": "y",
       "type": "function",
       "meaning": "the deflection y(x) of the whirling string from the x-axis, in meters, a function of the position x along the string",
       "section": "4.1",
-      "unit": "m"
+      "unit": "m",
+      "redefines": true
     },
     {
       "sym": "y_dprime",
@@ -143,7 +150,8 @@
       "type": "frequency",
       "meaning": "the angular velocity at which the string rotates, in radians per second",
       "section": "4.1",
-      "unit": "rad/s"
+      "unit": "rad/s",
+      "redefines": true
     },
     {
       "sym": "x",
@@ -166,34 +174,38 @@
     },
     {
       "sym": "f",
-      "type": "function",
       "meaning": "a periodic function f(t), P-periodic when f(t) = f(t + P) for all t; the function a Fourier series represents",
       "section": "4.2",
-      "redefines": true
+      "redefines": true,
+      "concept": "periodic-function"
     },
     {
       "sym": "F",
-      "type": "function",
       "meaning": "the periodic extension F(t) of a function f(t) defined on [−L, L], equal to f on [−L, L] and 2L-periodic",
-      "section": "4.2"
+      "section": "4.2",
+      "redefines": true,
+      "concept": "periodic-extension"
     },
     {
       "sym": "v_vec",
       "type": "vector",
       "meaning": "a vector v⃗ decomposed along two mutually orthogonal vectors w⃗₁ and w⃗₂",
-      "section": "4.2"
+      "section": "4.2",
+      "redefines": true
     },
     {
       "sym": "A",
       "type": "matrix",
       "meaning": "a symmetric matrix, Aᵀ = A, whose eigenvectors for distinct eigenvalues are orthogonal",
-      "section": "4.2"
+      "section": "4.2",
+      "redefines": true
     },
     {
       "sym": "g",
       "type": "function",
       "meaning": "the second function g(t) of the inner product ⟨f(t), g(t)⟩ = ∫ f(t) g(t) dt from −π to π",
-      "section": "4.2"
+      "section": "4.2",
+      "redefines": true
     },
     {
       "sym": "a_0",
@@ -203,9 +215,9 @@
     },
     {
       "sym": "a_n",
-      "type": "sequence",
       "meaning": "the coefficient of cos(nt) in the Fourier series, a_n = (1/π)∫ f(t) cos(nt) dt over [−π, π]",
-      "section": "4.2"
+      "section": "4.2",
+      "concept": "fourier-coefficients"
     },
     {
       "sym": "b_n",
@@ -235,9 +247,9 @@
     },
     {
       "sym": "a_n",
-      "type": "sequence",
       "meaning": "the coefficient a_n = (1/L)∫ f(t) cos(nπt/L) dt over [−L, L] of cos(nπt/L)",
-      "section": "4.3"
+      "section": "4.3",
+      "concept": "fourier-coefficients"
     },
     {
       "sym": "b_n",
@@ -267,15 +279,15 @@
     },
     {
       "sym": "F_odd",
-      "type": "function",
       "meaning": "the odd periodic extension of f(t): f(t) on [0, L], −f(−t) on (−L, 0), extended to be 2L-periodic",
-      "section": "4.4"
+      "section": "4.4",
+      "concept": "odd-periodic-extension"
     },
     {
       "sym": "F_even",
-      "type": "function",
       "meaning": "the even periodic extension of f(t): f(t) on [0, L], f(−t) on (−L, 0), extended to be 2L-periodic",
-      "section": "4.4"
+      "section": "4.4",
+      "concept": "even-periodic-extension"
     },
     {
       "sym": "a_0",
@@ -337,13 +349,13 @@
     {
       "sym": "x_prime",
       "type": "derivative",
-      "meaning": "the velocity x′(t) of the mass",
+      "meaning": "the derivative of x with respect to t",
       "section": "4.5"
     },
     {
       "sym": "x_dprime",
       "type": "derivative",
-      "meaning": "the acceleration x″(t) of the mass",
+      "meaning": "the second derivative of x with respect to t",
       "section": "4.5"
     },
     {
@@ -423,7 +435,8 @@
       "sym": "u",
       "type": "function",
       "meaning": "the temperature u(x, t) at the point x of the wire at time t",
-      "section": "4.6"
+      "section": "4.6",
+      "redefines": true
     },
     {
       "sym": "∂u/∂t",
@@ -466,7 +479,8 @@
       "sym": "X",
       "type": "function",
       "meaning": "the factor X(x) of a product solution u(x, t) = X(x)T(t), a function of x alone",
-      "section": "4.6"
+      "section": "4.6",
+      "redefines": true
     },
     {
       "sym": "T",
@@ -498,7 +512,8 @@
       "sym": "λ_n",
       "type": "eigenvalue",
       "meaning": "the nth eigenvalue λ_n = n²π²/L² of X″ + λX = 0 with the wire's side conditions",
-      "section": "4.6"
+      "section": "4.6",
+      "redefines": true
     },
     {
       "sym": "X_n",
@@ -516,7 +531,8 @@
       "sym": "u_n",
       "type": "function",
       "meaning": "the building-block solution u_n(x, t) = X_n(x)T_n(t)",
-      "section": "4.6"
+      "section": "4.6",
+      "redefines": true
     },
     {
       "sym": "b_n",
@@ -582,7 +598,8 @@
       "sym": "w",
       "type": "function",
       "meaning": "the solution of the wave problem (4.11) that starts flat with velocity g(x)",
-      "section": "4.7"
+      "section": "4.7",
+      "redefines": true
     },
     {
       "sym": "z",
@@ -660,8 +677,9 @@
     {
       "sym": "y",
       "type": "function",
-      "meaning": "the solution y(x, t) of the wave equation on 0 < x < L, written as A(x − at) + B(x + at)",
-      "section": "4.8"
+      "meaning": "the displacement y(x, t) of the string from its rest position at the point x at time t",
+      "section": "4.8",
+      "redefines": true
     },
     {
       "sym": "y_tt",
@@ -690,14 +708,16 @@
     {
       "sym": "f",
       "type": "function",
-      "meaning": "the initial position f(x) = y(x, 0), given for 0 < x < L",
-      "section": "4.8"
+      "meaning": "the initial position f(x) = y(x, 0) of the string",
+      "section": "4.8",
+      "redefines": true
     },
     {
       "sym": "g",
       "type": "function",
-      "meaning": "the initial velocity g(x) = y_t(x, 0), given for 0 < x < L",
-      "section": "4.8"
+      "meaning": "the initial velocity g(x) = y_t(x, 0) of the string",
+      "section": "4.8",
+      "redefines": true
     },
     {
       "sym": "F",
@@ -729,14 +749,15 @@
       "sym": "B",
       "type": "function",
       "meaning": "the wave B(η) = B(x + at) traveling to the left at speed a, B(x) = F(x)/2 + (1/2a)∫ G(s) ds from 0 to x",
-      "section": "4.8"
+      "section": "4.8",
+      "redefines": true
     },
     {
       "sym": "u",
-      "type": "function",
       "meaning": "the steady-state temperature: u(x) along a wire, u(x, y) over a plate, a solution of the heat equation with u_t = 0",
       "section": "4.9",
-      "redefines": true
+      "redefines": true,
+      "concept": "steady-state-temperature"
     },
     {
       "sym": "u_t",
@@ -992,9 +1013,10 @@
     },
     {
       "sym": "P",
-      "type": "function",
       "meaning": "the Poisson kernel P(r, θ, α) = (1 − r²)/(1 − 2r cos(θ − α) + r²), the weight of the boundary value g(α) in the solution at (r, θ)",
-      "section": "4.10"
+      "section": "4.10",
+      "redefines": true,
+      "concept": "poisson-kernel"
     }
   ]
 }
