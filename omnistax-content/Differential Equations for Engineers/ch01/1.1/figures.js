@@ -50,7 +50,7 @@ const guide = () => alpha(PAL.ink, 0.4);
     const aB = axes(ctx, BOT, [-3, 3], [-3, 4], { xl: 'x', yl: 'y', yc: fc, nx: 6, ny: 7 });
     line(ctx, aB.box.l, aB.Y(b), aB.box.r, aB.Y(b), guide(), 2.5, [10, 10]);
     plot(ctx, aB, (u) => I(u) + b, fc);
-    label(ctx, 'y(x)', aB.X(2.4), aB.Y(I(2.4) + b), { side: 'above', color: fc, size: 20, weight: 600 });
+    label(ctx, 'y(x)', aB.X(2.4), aB.Y(I(2.4) + b), { side: I(2.4) + b > 3 ? 'below' : 'above', color: fc, size: 20, weight: 600 });
     label(ctx, `y_0 = ${n(b, 1)}`, aB.box.l + 8, aB.Y(b), { side: 'right', color: PAL.muted, size: 17, gap: 8 });
     if (Math.abs(x) >= 0.15) vbracket(ctx, aB.X(x) + (x < 0 ? -16 : 16), aB.Y(b), aB.Y(y), ic, n(Ar, 3), x < 0 ? -1 : 1, { size: 18 });
     dot(ctx, aB.X(0), aB.Y(b), pc, false, 10);
