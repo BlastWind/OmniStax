@@ -17,6 +17,7 @@ Task `prep1-ch06` (prep stage one), port 8107, scratch `/tmp/claude-0/-home-user
 - The merge refused `sawtooth-function` (6.2) sharing the name "Sawtooth" with 4.2's `sawtooth`: renamed "Sawtooth of period 1" (id kept; it is the book's period-1 version).
 - `ost merge diffyqs 6`: 50 concepts, 83 edges (2 redundant dropped after the whole-book Hasse check), 10 symbols. Concept links were already in the draft and check clean.
 - `ost check diffyqs`: no errors, no warnings.
+- 6.3 built (task `sec-6.3`, claude-opus-5-5 high): 1 Sim (`sim-convolution`, moving, the 3Blue1Brown sliding convolution, four pairs, ω slider for the sine pair), 2 derivations (`drv-convolution-theorem`, `drv-forced-oscillation-convolution`), 13 end exercises (9 AI-marked, 4 keyed), 0 Try Its, 6 concepts introduced, footnotes 31 and 32 plus the correction of Example 6.3.3's "Table 6.2"; `ost check` clean.
 
 ## Next
 
