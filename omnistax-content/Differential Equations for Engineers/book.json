@@ -2538,18 +2538,21 @@
         {
           "id": "eq-second-order-linear",
           "latex": "y'' + p(x)y' + q(x)y = f(x)",
-          "ktex": "\\kydprime + p(x)\\kyprime + q(x)\\ky = \\kf(x)"
+          "ktex": "\\kydprime + p(x)\\kyprime + q(x)\\ky = \\kf(x)",
+          "anchor": "2.1-eq-2-1"
         },
         {
           "id": "eq-second-order-linear-general",
           "latex": "A(x) y'' + B(x)y' + C(x)y = F(x)",
-          "ktex": "A(x) \\kydprime + B(x)\\kyprime + C(x)\\ky = \\kF(x)"
+          "ktex": "A(x) \\kydprime + B(x)\\kyprime + C(x)\\ky = \\kF(x)",
+          "anchor": "2.1-eq-general-second-order"
         },
         {
           "id": "eq-second-order-homogeneous",
           "latex": "y'' + p(x)y' + q(x)y = 0",
           "ktex": "\\kydprime + p(x)\\kyprime + q(x)\\ky = 0",
-          "condition": "f(x) = 0, the homogeneous equation"
+          "condition": "f(x) = 0, the homogeneous equation",
+          "anchor": "2.1-eq-2-2"
         }
       ]
     },
@@ -2577,7 +2580,8 @@
           "id": "eq-superposition",
           "latex": "y(x) = C_1 y_1(x) + C_2 y_2(x)",
           "ktex": "\\ky(x) = C_1 \\kyone(x) + C_2 \\kytwo(x)",
-          "condition": "y₁, y₂ solutions of the homogeneous equation (2.2)"
+          "condition": "y₁, y₂ solutions of the homogeneous equation (2.2)",
+          "anchor": "2.1-thm-2-1-1"
         }
       ]
     },
@@ -2594,7 +2598,8 @@
         {
           "id": "eq-operator-L",
           "latex": "Ly = y'' + py' + qy",
-          "ktex": "L\\ky = \\kydprime + p\\kyprime + q\\ky"
+          "ktex": "L\\ky = \\kydprime + p\\kyprime + q\\ky",
+          "anchor": "2.1-eq-operator-L"
         }
       ]
     },
@@ -2611,7 +2616,8 @@
         {
           "id": "eq-linear-operator",
           "latex": "L(C_1 y_1 + C_2 y_2) = C_1 L y_1 + C_2 L y_2",
-          "ktex": "L(C_1 \\kyone + C_2 \\kytwo) = C_1 L \\kyone + C_2 L \\kytwo"
+          "ktex": "L(C_1 \\kyone + C_2 \\kytwo) = C_1 L \\kyone + C_2 L \\kytwo",
+          "anchor": "2.1-linear-operator"
         }
       ]
     },
@@ -2629,19 +2635,22 @@
           "id": "eq-second-order-ivp",
           "latex": "y'' + p(x) y' + q(x) y = f(x), \\qquad y(a) = b_0, \\quad y'(a) = b_1",
           "ktex": "\\kydprime + p(x) \\kyprime + q(x) \\ky = \\kf(x), \\qquad \\ky(a) = b_0, \\quad \\kyprime(a) = b_1",
-          "condition": "p, q, f continuous on an interval I containing a"
+          "condition": "p, q, f continuous on an interval I containing a",
+          "anchor": "2.1-thm-2-1-2"
         },
         {
           "id": "eq-ivp-cos-sin",
           "latex": "y(x) = b_0 \\cos (kx) + \\frac{b_1}{k} \\sin (kx)",
           "ktex": "\\ky(x) = b_0 \\cos (kx) + \\frac{b_1}{k} \\sin (kx)",
-          "condition": "y″ + k²y = 0, y(0) = b₀, y′(0) = b₁"
+          "condition": "y″ + k²y = 0, y(0) = b₀, y′(0) = b₁",
+          "anchor": "2.1-eq-ivp-cos-sin"
         },
         {
           "id": "eq-ivp-cosh-sinh",
           "latex": "y(x) = b_0 \\cosh (kx) + \\frac{b_1}{k} \\sinh (kx)",
           "ktex": "\\ky(x) = b_0 \\cosh (kx) + \\frac{b_1}{k} \\sinh (kx)",
-          "condition": "y″ − k²y = 0, y(0) = b₀, y′(0) = b₁"
+          "condition": "y″ − k²y = 0, y(0) = b₀, y′(0) = b₁",
+          "anchor": "2.1-eq-ivp-cosh-sinh"
         }
       ]
     },
@@ -2666,7 +2675,8 @@
           "id": "eq-general-solution-homogeneous",
           "latex": "y = C_1 y_1 + C_2 y_2",
           "ktex": "\\ky = C_1 \\kyone + C_2 \\kytwo",
-          "condition": "y₁, y₂ linearly independent solutions of (2.2)"
+          "condition": "y₁, y₂ linearly independent solutions of (2.2)",
+          "anchor": "2.1-thm-2-1-3"
         }
       ]
     },
@@ -2683,17 +2693,20 @@
         {
           "id": "eq-reduction-of-order",
           "latex": "y_2(x) = y_1(x) \\int \\frac{e^{-\\int p(x)\\,dx}}{{\\bigl(y_1(x)\\bigr)}^2} \\,dx",
-          "ktex": "\\kytwo(x) = \\kyone(x) \\int \\frac{e^{-\\int p(x)\\,dx}}{{\\bigl(\\kyone(x)\\bigr)}^2} \\,dx"
+          "ktex": "\\kytwo(x) = \\kyone(x) \\int \\frac{e^{-\\int p(x)\\,dx}}{{\\bigl(\\kyone(x)\\bigr)}^2} \\,dx",
+          "anchor": "2.1-drv-reduction-of-order-formula"
         },
         {
           "id": "eq-reduction-of-order-trial",
           "latex": "y_2(x) = y_1(x) v(x)",
-          "ktex": "\\kytwo(x) = \\kyone(x) \\kv(x)"
+          "ktex": "\\kytwo(x) = \\kyone(x) \\kv(x)",
+          "anchor": "2.1-reduction-method"
         },
         {
           "id": "eq-reduction-of-order-w",
           "latex": "y_1 w' + (2 y_1' + p(x) y_1) w = 0, \\qquad w = v'",
-          "ktex": "\\kyone \\kwprime + (2 \\kyoneprime + p(x) \\kyone) \\kw = 0, \\qquad \\kw = \\kvprime"
+          "ktex": "\\kyone \\kwprime + (2 \\kyoneprime + p(x) \\kyone) \\kw = 0, \\qquad \\kw = \\kvprime",
+          "anchor": "2.1-reduction-w"
         }
       ]
     },
@@ -2708,7 +2721,8 @@
           "id": "eq-cc-second-order",
           "latex": "a y'' + b y' + c y = 0",
           "ktex": "a \\kydprime + b \\kyprime + c \\ky = 0",
-          "condition": "a, b, c constants"
+          "condition": "a, b, c constants",
+          "anchor": "2.2-eq-2-3"
         }
       ]
     },
@@ -2725,12 +2739,14 @@
         {
           "id": "eq-characteristic-equation",
           "latex": "a r^2 + b r + c = 0",
-          "ktex": "a \\kr^2 + b \\kr + c = 0"
+          "ktex": "a \\kr^2 + b \\kr + c = 0",
+          "anchor": "2.2-eq-characteristic-equation"
         },
         {
           "id": "eq-characteristic-roots",
           "latex": "r_1, r_2 = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
-          "ktex": "\\krone, \\krtwo = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}"
+          "ktex": "\\krone, \\krtwo = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}",
+          "anchor": "2.2-eq-characteristic-roots"
         }
       ]
     },
@@ -2745,7 +2761,8 @@
           "id": "eq-distinct-real-roots",
           "latex": "y = C_1 e^{r_1 x} + C_2 e^{r_2 x}",
           "ktex": "\\ky = C_1 e^{\\krone x} + C_2 e^{\\krtwo x}",
-          "condition": "b² − 4ac > 0"
+          "condition": "b² − 4ac > 0",
+          "anchor": "2.2-eq-distinct-real-roots"
         }
       ]
     },
@@ -2760,12 +2777,14 @@
           "id": "eq-repeated-real-root",
           "latex": "y = (C_1 + C_2 x)\\, e^{r_1 x}",
           "ktex": "\\ky = (C_1 + C_2 x)\\, e^{\\krone x}",
-          "condition": "b² − 4ac = 0, r₁ = r₂"
+          "condition": "b² − 4ac = 0, r₁ = r₂",
+          "anchor": "2.2-eq-repeated-real-root"
         },
         {
           "id": "eq-double-root-limit",
           "latex": "\\lim_{r_1 \\to r_2} \\frac{e^{r_2 x} - e^{r_1 x}}{r_2 - r_1} = x e^{rx}",
-          "ktex": "\\lim_{\\krone \\to \\krtwo} \\frac{e^{\\krtwo x} - e^{\\krone x}}{\\krtwo - \\krone} = x e^{\\kr x}"
+          "ktex": "\\lim_{\\krone \\to \\krtwo} \\frac{e^{\\krtwo x} - e^{\\krone x}}{\\krtwo - \\krone} = x e^{\\kr x}",
+          "anchor": "2.2-double-root-limit"
         }
       ]
     },
@@ -2783,12 +2802,14 @@
         {
           "id": "eq-complex-multiplication",
           "latex": "(a,b) \\times (c,d) \\overset{\\text{def}}{=} (ac-bd,ad+bc)",
-          "ktex": "(a,b) \\times (c,d) \\overset{\\text{def}}{=} (ac-bd,ad+bc)"
+          "ktex": "(a,b) \\times (c,d) \\overset{\\text{def}}{=} (ac-bd,ad+bc)",
+          "anchor": "2.2-eq-complex-multiplication"
         },
         {
           "id": "eq-i-squared",
           "latex": "i^2 = -1",
-          "ktex": "i^2 = -1"
+          "ktex": "i^2 = -1",
+          "anchor": "2.2-i-squared"
         }
       ]
     },
@@ -2802,7 +2823,8 @@
         {
           "id": "eq-complex-exponential-split",
           "latex": "e^{a+ib} = e^a e^{ib}",
-          "ktex": "e^{a+ib} = e^a e^{ib}"
+          "ktex": "e^{a+ib} = e^a e^{ib}",
+          "anchor": "2.2-complex-exponential"
         }
       ]
     },
@@ -2819,12 +2841,14 @@
         {
           "id": "eq-eulers-formula",
           "latex": "e^{i \\theta} = \\cos \\theta + i \\sin \\theta \\qquad \\text{ and } \\qquad e^{- i \\theta} = \\cos \\theta - i \\sin \\theta",
-          "ktex": "e^{i \\theta} = \\cos \\theta + i \\sin \\theta \\qquad \\text{ and } \\qquad e^{- i \\theta} = \\cos \\theta - i \\sin \\theta"
+          "ktex": "e^{i \\theta} = \\cos \\theta + i \\sin \\theta \\qquad \\text{ and } \\qquad e^{- i \\theta} = \\cos \\theta - i \\sin \\theta",
+          "anchor": "2.2-eq-eulers-formula"
         },
         {
           "id": "eq-complex-exponential-euler",
           "latex": "e^{a+ib} = e^a \\bigl( \\cos(b) + i \\sin(b) \\bigr) = e^a \\cos(b) + i e^a \\sin(b)",
-          "ktex": "e^{a+ib} = e^a \\bigl( \\cos(b) + i \\sin(b) \\bigr) = e^a \\cos(b) + i e^a \\sin(b)"
+          "ktex": "e^{a+ib} = e^a \\bigl( \\cos(b) + i \\sin(b) \\bigr) = e^a \\cos(b) + i e^a \\sin(b)",
+          "anchor": "2.2-complex-exponential-euler"
         }
       ]
     },
@@ -2842,7 +2866,8 @@
         {
           "id": "eq-re-im",
           "latex": "\\operatorname{Re}(a+ib) = a \\qquad \\text{and} \\qquad \\operatorname{Im}(a+ib) = b",
-          "ktex": "\\operatorname{Re}(a+ib) = a \\qquad \\text{and} \\qquad \\operatorname{Im}(a+ib) = b"
+          "ktex": "\\operatorname{Re}(a+ib) = a \\qquad \\text{and} \\qquad \\operatorname{Im}(a+ib) = b",
+          "anchor": "2.2-eq-re-im"
         }
       ]
     },
@@ -2860,19 +2885,22 @@
           "id": "eq-complex-conjugate-roots",
           "latex": "y = C_1 e^{\\alpha x} \\cos (\\beta x) + C_2 e^{\\alpha x} \\sin (\\beta x)",
           "ktex": "\\ky = C_1 e^{\\kalpha x} \\cos (\\kbeta x) + C_2 e^{\\kalpha x} \\sin (\\kbeta x)",
-          "condition": "b² − 4ac < 0, roots α ± iβ"
+          "condition": "b² − 4ac < 0, roots α ± iβ",
+          "anchor": "2.2-eq-complex-conjugate-roots"
         },
         {
           "id": "eq-complex-roots-form",
           "latex": "r_1, r_2 = \\frac{-b}{2a} \\pm i\\frac{\\sqrt{4ac - b^2}}{2a}",
           "ktex": "\\krone, \\krtwo = \\frac{-b}{2a} \\pm i\\frac{\\sqrt{4ac - b^2}}{2a}",
-          "condition": "b² − 4ac < 0"
+          "condition": "b² − 4ac < 0",
+          "anchor": "2.2-eq-complex-roots-form"
         },
         {
           "id": "eq-real-solutions-from-complex",
           "latex": "y_3 = \\frac{y_1 + y_2}{2} = e^{\\alpha x} \\cos (\\beta x) , \\qquad y_4 = \\frac{y_1 - y_2}{2i} = e^{\\alpha x} \\sin (\\beta x)",
           "ktex": "\\kythree = \\frac{\\kyone + \\kytwo}{2} = e^{\\kalpha x} \\cos (\\kbeta x) , \\qquad \\kyfour = \\frac{\\kyone - \\kytwo}{2i} = e^{\\kalpha x} \\sin (\\kbeta x)",
-          "condition": "y₁ = e^((α+iβ)x), y₂ = e^((α−iβ)x)"
+          "condition": "y₁ = e^((α+iβ)x), y₂ = e^((α−iβ)x)",
+          "anchor": "2.2-drv-complex-roots"
         }
       ]
     },
@@ -2893,12 +2921,14 @@
         {
           "id": "eq-higher-order-homogeneous",
           "latex": "y^{(n)} + p_{n-1}(x)y^{(n-1)} + \\cdots + p_1(x) y' + p_0(x) y = 0",
-          "ktex": "\\kynth + p_{n-1}(x)\\kynmoneth + \\cdots + p_1(x) \\kyprime + p_0(x) \\ky = 0"
+          "ktex": "\\kynth + p_{n-1}(x)\\kynmoneth + \\cdots + p_1(x) \\kyprime + p_0(x) \\ky = 0",
+          "anchor": "2.3-eq-2-4"
         },
         {
           "id": "eq-higher-order-linear",
           "latex": "y^{(n)} + p_{n-1}(x)y^{(n-1)} + \\cdots + p_1(x) y' + p_0(x) y = f(x)",
-          "ktex": "\\kynth + p_{n-1}(x)\\kynmoneth + \\cdots + p_1(x) \\kyprime + p_0(x) \\ky = \\kf(x)"
+          "ktex": "\\kynth + p_{n-1}(x)\\kynmoneth + \\cdots + p_1(x) \\kyprime + p_0(x) \\ky = \\kf(x)",
+          "anchor": "2.3-eq-higher-order-linear"
         }
       ]
     },
@@ -2916,7 +2946,8 @@
           "id": "eq-superposition-n",
           "latex": "y(x) = C_1 y_1(x) + C_2 y_2(x) + \\cdots + C_n y_n(x)",
           "ktex": "\\ky(x) = C_1 \\kyone(x) + C_2 \\kytwo(x) + \\cdots + C_n \\kyn(x)",
-          "condition": "y₁, …, yₙ solutions of (2.4)"
+          "condition": "y₁, …, yₙ solutions of (2.4)",
+          "anchor": "2.3-eq-superposition-n"
         }
       ]
     },
@@ -2934,7 +2965,8 @@
           "id": "eq-higher-order-ivp",
           "latex": "y(a) = b_0, \\quad y'(a) = b_1, \\quad \\ldots, \\quad y^{(n-1)}(a) = b_{n-1}",
           "ktex": "\\ky(a) = b_0, \\quad \\kyprime(a) = b_1, \\quad \\ldots, \\quad \\kynmoneth(a) = b_{n-1}",
-          "condition": "p₀, …, pₙ₋₁, f continuous on an interval I containing a"
+          "condition": "p₀, …, pₙ₋₁, f continuous on an interval I containing a",
+          "anchor": "2.3-eq-higher-order-ivp"
         }
       ]
     },
@@ -2952,7 +2984,8 @@
           "id": "eq-linear-independence-n",
           "latex": "c_1 y_1 + c_2 y_2 + \\cdots + c_n y_n = 0",
           "ktex": "c_1 \\kyone + c_2 \\kytwo + \\cdots + c_n \\kyn = 0",
-          "condition": "for all x, only when c₁ = c₂ = ⋯ = cₙ = 0"
+          "condition": "for all x, only when c₁ = c₂ = ⋯ = cₙ = 0",
+          "anchor": "2.3-eq-linear-independence-n"
         }
       ]
     },
@@ -2977,7 +3010,8 @@
           "id": "eq-general-solution-n",
           "latex": "y(x) = C_1 y_1(x) + C_2 y_2(x) + \\cdots + C_n y_n(x)",
           "ktex": "\\ky(x) = C_1 \\kyone(x) + C_2 \\kytwo(x) + \\cdots + C_n \\kyn(x)",
-          "condition": "y₁, …, yₙ linearly independent solutions of (2.4)"
+          "condition": "y₁, …, yₙ linearly independent solutions of (2.4)",
+          "anchor": "2.3-eq-general-solution-n"
         }
       ]
     },
@@ -2996,7 +3030,8 @@
           "id": "eq-repeated-real-roots",
           "latex": "e^{rx}, \\quad xe^{rx}, \\quad x^2 e^{rx}, \\quad \\ldots, \\quad x^{k-1} e^{rx}",
           "ktex": "e^{\\kr x}, \\quad xe^{\\kr x}, \\quad x^2 e^{\\kr x}, \\quad \\ldots, \\quad x^{k-1} e^{\\kr x}",
-          "condition": "a real root r repeated k times"
+          "condition": "a real root r repeated k times",
+          "anchor": "2.3-eq-repeated-real-roots"
         }
       ]
     },
@@ -3011,7 +3046,8 @@
           "id": "eq-repeated-complex-roots",
           "latex": "( C_0 + C_1 x + \\cdots + C_{k-1} x^{k-1} ) \\, e^{\\alpha x} \\cos (\\beta x) + ( D_0 + D_1 x + \\cdots + D_{k-1} x^{k-1} ) \\, e^{\\alpha x} \\sin (\\beta x)",
           "ktex": "( C_0 + C_1 x + \\cdots + C_{k-1} x^{k-1} ) \\, e^{\\kalpha x} \\cos (\\kbeta x) + ( D_0 + D_1 x + \\cdots + D_{k-1} x^{k-1} ) \\, e^{\\kalpha x} \\sin (\\kbeta x)",
-          "condition": "the pair α ± iβ repeated k times"
+          "condition": "the pair α ± iβ repeated k times",
+          "anchor": "2.3-eq-repeated-complex-roots"
         }
       ]
     },
@@ -3045,7 +3081,8 @@
         {
           "id": "eq-newtons-second-law",
           "latex": "mx'' = F(t)-cx'-kx",
-          "ktex": "m\\kxdprime = \\kF(t)-c\\kxprime-k\\kx"
+          "ktex": "m\\kxdprime = \\kF(t)-c\\kxprime-k\\kx",
+          "anchor": "2.4-mass-spring-eq"
         }
       ]
     },
@@ -3059,7 +3096,8 @@
         {
           "id": "eq-mass-spring",
           "latex": "mx'' + cx' + kx = F(t)",
-          "ktex": "m\\kxdprime + c\\kxprime + k\\kx = \\kF(t)"
+          "ktex": "m\\kxdprime + c\\kxprime + k\\kx = \\kF(t)",
+          "anchor": "2.4-eq-mass-spring"
         }
       ]
     },
@@ -3117,17 +3155,20 @@
         {
           "id": "eq-rlc",
           "latex": "L I''(t) + R I'(t) + \\frac{1}{C} I(t) = E'(t)",
-          "ktex": "L \\kIdprime(t) + R \\kIprime(t) + \\frac{1}{C} \\kI(t) = \\kEprime(t)"
+          "ktex": "L \\kIdprime(t) + R \\kIprime(t) + \\frac{1}{C} \\kI(t) = \\kEprime(t)",
+          "anchor": "2.4-eq-rlc"
         },
         {
           "id": "eq-rlc-first-order",
           "latex": "L I' + RI + \\frac{Q}{C} = E",
-          "ktex": "L \\kIprime + R\\kI + \\frac{\\kQ}{C} = \\kE"
+          "ktex": "L \\kIprime + R\\kI + \\frac{\\kQ}{C} = \\kE",
+          "anchor": "2.4-rlc"
         },
         {
           "id": "eq-charge-current",
           "latex": "Q' = I",
-          "ktex": "\\kQprime = \\kI"
+          "ktex": "\\kQprime = \\kI",
+          "anchor": "2.4-rlc"
         }
       ]
     },
@@ -4494,8 +4535,8 @@
       "forms": [
         {
           "id": "eq-inverse-by-row-reduction",
-          "latex": "[ \\,A ~|~ I\\, ] \\longrightarrow [ \\,I ~|~ A^{-1}\\, ]",
-          "ktex": "[ \\,\\kA ~|~ \\kI\\, ] \\longrightarrow [ \\,\\kI ~|~ \\kAinv\\, ]",
+          "latex": "[ \\,A ~|~ I\\ ] \\longrightarrow [ \\,I ~|~ A^{-1}\\ ]",
+          "ktex": "[ \\,\\kA ~|~ \\kI\\ ] \\longrightarrow [ \\,\\kI ~|~ \\kAinv\\ ]",
           "condition": "by row reduction, if and only if A is invertible"
         },
         {
@@ -5556,8 +5597,8 @@
         },
         {
           "id": "eq-diagonalization-AE",
-          "latex": "AE = A [\\, \\vec{v}_1 \\quad \\cdots \\quad \\vec{v}_n \\,] = [\\, \\lambda_1 \\vec{v}_1 \\quad \\cdots \\quad \\lambda_n \\vec{v}_n \\,] = ED",
-          "ktex": "\\kA\\kE = \\kA [\\, \\kvecvone \\quad \\cdots \\quad \\kvecvn \\,] = [\\, \\klambdaone \\kvecvone \\quad \\cdots \\quad \\klambdan \\kvecvn \\,] = \\kE\\kD"
+          "latex": "AE = A [\\, \\vec{v}_1 \\quad \\cdots \\quad \\vec{v}_n \\] = [\\, \\lambda_1 \\vec{v}_1 \\quad \\cdots \\quad \\lambda_n \\vec{v}_n \\] = ED",
+          "ktex": "\\kA\\kE = \\kA [\\, \\kvecvone \\quad \\cdots \\quad \\kvecvn \\] = [\\, \\klambdaone \\kvecvone \\quad \\cdots \\quad \\klambdan \\kvecvn \\] = \\kE\\kD"
         },
         {
           "id": "eq-eigenvalue-diagonal-matrix",
@@ -6896,10 +6937,6 @@
     },
     {
       "concept": "dot-product",
-      "prereq": "vector"
-    },
-    {
-      "concept": "dot-product",
       "prereq": "row-vector"
     },
     {
@@ -7084,10 +7121,6 @@
     },
     {
       "concept": "superposition-for-systems",
-      "prereq": "superposition-principle"
-    },
-    {
-      "concept": "superposition-for-systems",
       "prereq": "linear-independence-of-vector-valued-functions"
     },
     {
@@ -7157,10 +7190,6 @@
     {
       "concept": "eigenvalue-method",
       "prereq": "fundamental-matrix"
-    },
-    {
-      "concept": "complex-conjugate",
-      "prereq": "complex-number"
     },
     {
       "concept": "complex-conjugate",
@@ -7293,10 +7322,6 @@
     {
       "concept": "natural-frequency-of-a-system",
       "prereq": "normal-mode"
-    },
-    {
-      "concept": "natural-frequency-of-a-system",
-      "prereq": "natural-frequency"
     },
     {
       "concept": "forced-oscillation-of-a-system",
@@ -7509,10 +7534,6 @@
     {
       "concept": "undetermined-coefficients-for-systems",
       "prereq": "general-solution-of-a-nonhomogeneous-system"
-    },
-    {
-      "concept": "undetermined-coefficients-for-systems",
-      "prereq": "method-of-undetermined-coefficients"
     },
     {
       "concept": "undetermined-coefficients-for-systems",

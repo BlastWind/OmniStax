@@ -551,7 +551,7 @@
       "name": "Computing the inverse",
       "statement": "Finding the inverse of A is just solving a bunch of linear equations: if we can solve Ax⃗_k = e⃗_k, where e⃗_k is the vector with all zeros except a 1 at the kth position, then the inverse is the matrix with the columns x⃗_k for k = 1, …, n. So write the larger n × 2n augmented matrix [A | I] and row reduce; its reduced row echelon form is [I | A⁻¹] if and only if A is invertible, and we read off A⁻¹. It is useful to compute the inverse if you want to solve Ax⃗ = b⃗ for many different right-hand sides b⃗.",
       "forms": [
-        {"id": "eq-inverse-by-row-reduction", "latex": "[ \\,A ~|~ I\\, ] \\longrightarrow [ \\,I ~|~ A^{-1}\\, ]", "ktex": "[ \\,\\kA ~|~ \\kI\\, ] \\longrightarrow [ \\,\\kI ~|~ \\kAinv\\, ]", "condition": "by row reduction, if and only if A is invertible"},
+        {"id": "eq-inverse-by-row-reduction", "latex": "[ \\,A ~|~ I\\ ] \\longrightarrow [ \\,I ~|~ A^{-1}\\ ]", "ktex": "[ \\,\\kA ~|~ \\kI\\ ] \\longrightarrow [ \\,\\kI ~|~ \\kAinv\\ ]", "condition": "by row reduction, if and only if A is invertible"},
         {"id": "eq-inverse-columns", "latex": "A \\vec{x}_k = \\vec{e}_k, \\qquad k = 1, 2, \\ldots, n", "ktex": "\\kA \\kvecxk = \\kvece_k, \\qquad k = 1, 2, \\ldots, n", "condition": "the columns x⃗_k of A⁻¹"}
       ]
     },
@@ -1164,7 +1164,7 @@
       "statement": "Given a square matrix A we can usually write A = EDE⁻¹, where D is diagonal and E invertible; this procedure is called diagonalization. It needs n linearly independent eigenvectors of A: let E = [v⃗₁ v⃗₂ ⋯ v⃗ₙ] have the eigenvectors as columns and D the eigenvalues λ₁, …, λₙ on the diagonal. Then AE = [Av⃗₁ ⋯ Av⃗ₙ] = [λ₁v⃗₁ ⋯ λₙv⃗ₙ] = ED; the columns of E are linearly independent, so E is invertible, and multiplying on the right by E⁻¹ gives A = EDE⁻¹. Otherwise this method of computing the exponential does not work. In Example 3.8.1, [1 2; 2 1] = [1 1; 1 −1][3 0; 0 −1][1 1; 1 −1]⁻¹.",
       "forms": [
         {"id": "eq-diagonalization", "latex": "A = E D E^{-1}", "ktex": "\\kA = \\kE \\kD \\kEinv", "condition": "E = [v⃗₁ ⋯ v⃗ₙ] the eigenvectors, D the eigenvalues on the diagonal"},
-        {"id": "eq-diagonalization-AE", "latex": "AE = A [\\, \\vec{v}_1 \\quad \\cdots \\quad \\vec{v}_n \\,] = [\\, \\lambda_1 \\vec{v}_1 \\quad \\cdots \\quad \\lambda_n \\vec{v}_n \\,] = ED", "ktex": "\\kA\\kE = \\kA [\\, \\kvecvone \\quad \\cdots \\quad \\kvecvn \\,] = [\\, \\klambdaone \\kvecvone \\quad \\cdots \\quad \\klambdan \\kvecvn \\,] = \\kE\\kD"},
+        {"id": "eq-diagonalization-AE", "latex": "AE = A [\\, \\vec{v}_1 \\quad \\cdots \\quad \\vec{v}_n \\] = [\\, \\lambda_1 \\vec{v}_1 \\quad \\cdots \\quad \\lambda_n \\vec{v}_n \\] = ED", "ktex": "\\kA\\kE = \\kA [\\, \\kvecvone \\quad \\cdots \\quad \\kvecvn \\] = [\\, \\klambdaone \\kvecvone \\quad \\cdots \\quad \\klambdan \\kvecvn \\] = \\kE\\kD"},
         {"id": "eq-eigenvalue-diagonal-matrix", "latex": "D = \\begin{bmatrix} \\lambda_1 & 0 & \\cdots & 0 \\\\ 0 & \\lambda_2 & \\cdots & 0 \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ 0 & 0 & \\cdots & \\lambda_n \\end{bmatrix}", "ktex": "\\kD = \\begin{bmatrix} \\klambdaone & 0 & \\cdots & 0 \\\\ 0 & \\klambdatwo & \\cdots & 0 \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ 0 & 0 & \\cdots & \\klambdan \\end{bmatrix}"}
       ]
     },
@@ -1315,7 +1315,6 @@
     {"concept": "scalar-multiplication-of-a-matrix", "prereq": "scalar"},
     {"concept": "matrix-addition", "prereq": "matrix-entry"},
     {"concept": "transpose", "prereq": "matrix"},
-    {"concept": "dot-product", "prereq": "vector"},
     {"concept": "dot-product", "prereq": "row-vector"},
     {"concept": "matrix-product", "prereq": "dot-product"},
     {"concept": "identity-matrix", "prereq": "matrix-product"},
@@ -1362,7 +1361,6 @@
     {"concept": "linear-independence-of-vector-valued-functions", "prereq": "vector-valued-function"},
     {"concept": "linear-independence-of-vector-valued-functions", "prereq": "linear-independence-of-several-functions"},
     {"concept": "superposition-for-systems", "prereq": "homogeneous-system"},
-    {"concept": "superposition-for-systems", "prereq": "superposition-principle"},
     {"concept": "superposition-for-systems", "prereq": "linear-independence-of-vector-valued-functions"},
     {"concept": "fundamental-matrix", "prereq": "superposition-for-systems"},
     {"concept": "general-solution-of-a-nonhomogeneous-system", "prereq": "fundamental-matrix"},
@@ -1381,7 +1379,6 @@
     {"concept": "eigenvalue-method", "prereq": "constant-coefficient-system"},
     {"concept": "eigenvalue-method", "prereq": "finding-an-eigenvector"},
     {"concept": "eigenvalue-method", "prereq": "fundamental-matrix"},
-    {"concept": "complex-conjugate", "prereq": "complex-number"},
     {"concept": "complex-conjugate", "prereq": "real-and-imaginary-parts"},
     {"concept": "complex-eigenvalue-solutions", "prereq": "eigenvalue-method"},
     {"concept": "complex-eigenvalue-solutions", "prereq": "complex-conjugate"},
@@ -1415,7 +1412,6 @@
     {"concept": "normal-mode", "prereq": "undamped-second-order-system-solution"},
     {"concept": "normal-mode", "prereq": "amplitude-and-phase-shift-form"},
     {"concept": "natural-frequency-of-a-system", "prereq": "normal-mode"},
-    {"concept": "natural-frequency-of-a-system", "prereq": "natural-frequency"},
     {"concept": "forced-oscillation-of-a-system", "prereq": "natural-frequency-of-a-system"},
     {"concept": "forced-oscillation-of-a-system", "prereq": "general-solution-of-a-nonhomogeneous-system"},
     {"concept": "forced-oscillation-of-a-system", "prereq": "method-of-undetermined-coefficients"},
@@ -1469,7 +1465,6 @@
     {"concept": "eigenvector-decomposition", "prereq": "integrating-factor-method"},
     {"concept": "eigenvector-decomposition", "prereq": "diagonalization"},
     {"concept": "undetermined-coefficients-for-systems", "prereq": "general-solution-of-a-nonhomogeneous-system"},
-    {"concept": "undetermined-coefficients-for-systems", "prereq": "method-of-undetermined-coefficients"},
     {"concept": "undetermined-coefficients-for-systems", "prereq": "duplication-with-the-complementary-solution"},
     {"concept": "undetermined-coefficients-for-systems", "prereq": "eigenvalue-method"},
     {"concept": "variation-of-parameters-for-systems", "prereq": "general-solution-of-a-nonhomogeneous-system"},
