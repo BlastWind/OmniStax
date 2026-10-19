@@ -125,7 +125,7 @@ const simpson = (g, a, b, m = 2000) => {
     onInput: (v) => ns.range({ min: v === 'sin' ? 1 : 0, max: 8, step: 1, unit: '', dec: 0 }) });
   const ns = ctl(d.controls, { label: 'n', cls: '', key: 'n', min: 0, max: 8, step: 1, value: 3, unit: '', dec: 0 });
   const ro = readout(d);
-  const TOP = { l: 170, r: 1250, t: 130, b: 340 }, BOT = { l: 170, r: 1250, t: 430, b: 640 };
+  const TOP = { l: 170, r: 1250, t: 150, b: 350 }, BOT = { l: 170, r: 1250, t: 450, b: 650 };
   const fxPi = (x) => halfPi(x);
   let hits = [];
   hover(d.stage, () => hits);

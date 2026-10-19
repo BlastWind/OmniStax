@@ -120,7 +120,7 @@ const guide = () => alpha(PAL.ink, 0.4);
     if (thr >= -1 && thr <= 6) {
       line(ctx, aR.X(thr), RIGHT.t, aR.X(thr), RIGHT.b, guide(), 2.5, [10, 10]);
       const name = pick.value === 'exp' ? `s = −a = ${n(thr)}` : 's = 0';
-      text(ctx, name, aR.X(thr) + 10, RIGHT.t + 14, PAL.muted, { size: 17, align: 'left' });
+      text(ctx, name, aR.X(thr), RIGHT.b + 54, PAL.muted, { size: 17, align: 'center' });   /* under the tick row, clear of F's curve */
       hits.push({ x: aR.X(thr), y: aR.Y(2), r: 14, name: `the threshold ${name}: the integral converges only for s beyond it` });
     }
     plot(ctx, aR, FNow, tc);
@@ -141,7 +141,7 @@ const guide = () => alpha(PAL.ink, 0.4);
       headline(ctx, `$s = ${S}$: the area under $${K.head(p)}$ is $\\kF(s) = ${K.entry} = ${n(Fv, 3)}$.`);
       const body = [s === 0 ? '' : `e^{${s < 0 ? n(-s) : `-${S}`}t}`, K.fTex(p)].filter(Boolean).join('\\,') || '1';
       ro.set(`\\kF(${S}) = \\int_0^\\infty ${body}\\,dt = ${K.num(S, p)} = ${n(Fv, 3)}`,
-        `Shaded on $0 \\le t \\le 6$: ${n(I6, 3)}; the tail past $t = 6$ adds ${n(Fv - I6, 3)}.`, { form: 'live' });
+        `Shaded on $0 \\le t \\le 6$: ${n(I6, 3)}; the tail past $t = 6$ adds ${n(+Fv.toFixed(3) - +I6.toFixed(3), 3)}.`, { form: 'live' });
     } else {
       const why = shows && Math.abs(s - thr) < 1e-9 ? 'swings back and forth without settling' : shows ? 'swings ever wider and never settles' : 'grows without bound';
       const bound = pick.value === 'exp' ? `s \\le -a = ${n(thr)}` : 's \\le 0';
