@@ -1,0 +1,1289 @@
+{
+  "id": "4",
+  "dir": "ch04",
+  "title": "Fourier series and PDEs",
+  "sections": [
+    {
+      "id": "4.1",
+      "module": "bvp:section",
+      "title": "Boundary value problems",
+      "slug": ""
+    },
+    {
+      "id": "4.2",
+      "module": "ts:section",
+      "title": "The trigonometric series",
+      "slug": ""
+    },
+    {
+      "id": "4.3",
+      "module": "moreonfourier:section",
+      "title": "More on the Fourier series",
+      "slug": ""
+    },
+    {
+      "id": "4.4",
+      "module": "sec:scs",
+      "title": "Sine and cosine series",
+      "slug": ""
+    },
+    {
+      "id": "4.5",
+      "module": "appoffourier:section",
+      "title": "Applications of Fourier series",
+      "slug": ""
+    },
+    {
+      "id": "4.6",
+      "module": "heateq:section",
+      "title": "PDEs, separation of variables, and the heat equation",
+      "slug": ""
+    },
+    {
+      "id": "4.7",
+      "module": "we:section",
+      "title": "One-dimensional wave equation",
+      "slug": ""
+    },
+    {
+      "id": "4.8",
+      "module": "dalemb:section",
+      "title": "D’Alembert solution of the wave equation",
+      "slug": ""
+    },
+    {
+      "id": "4.9",
+      "module": "dirich:section",
+      "title": "Steady state temperature and the Laplacian",
+      "slug": ""
+    },
+    {
+      "id": "4.10",
+      "module": "dirichdisc:section",
+      "title": "Dirichlet problem in the circle and the Poisson kernel",
+      "slug": ""
+    }
+  ],
+  "variables": [
+    {
+      "sym": "x",
+      "type": "function",
+      "meaning": "the unknown function x(t) of a boundary value problem, defined for t in the interval [a, b]",
+      "section": "4.1",
+      "redefines": true,
+      "anchor": "4.1-eq-bvp"
+    },
+    {
+      "sym": "x_prime",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t",
+      "section": "4.1",
+      "anchor": "4.1-eq-4-2"
+    },
+    {
+      "sym": "x_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of x with respect to t",
+      "section": "4.1",
+      "anchor": "4.1-eq-bvp"
+    },
+    {
+      "sym": "λ",
+      "meaning": "the constant λ in x″ + λx = 0; an eigenvalue of the boundary value problem when a nonzero solution exists for it",
+      "section": "4.1",
+      "redefines": true,
+      "concept": "eigenvalue-of-a-boundary-value-problem",
+      "anchor": "4.1-eq-bvp"
+    },
+    {
+      "sym": "λ_k",
+      "type": "eigenvalue",
+      "meaning": "the kth eigenvalue of a boundary value problem, λ_k = k² for the problems on [0, π] and [−π, π]",
+      "section": "4.1",
+      "redefines": true,
+      "anchor": "4.1-ex-4-1-3"
+    },
+    {
+      "sym": "lambda_0",
+      "type": "eigenvalue",
+      "meaning": "the eigenvalue 0, with the constant eigenfunction x₀ = 1, of the problems with x′(a) = x′(b) = 0 and with periodic conditions",
+      "section": "4.1",
+      "anchor": "4.1-ex-4-1-4"
+    },
+    {
+      "sym": "x_k",
+      "meaning": "an eigenfunction corresponding to the eigenvalue λ_k, a nonzero solution of the boundary value problem",
+      "section": "4.1",
+      "concept": "eigenfunction",
+      "anchor": "4.1-ex-4-1-3"
+    },
+    {
+      "sym": "x_1",
+      "type": "function",
+      "meaning": "the first of two eigenfunctions of Theorem 4.1.1, for the eigenvalue λ₁",
+      "section": "4.1",
+      "redefines": true,
+      "anchor": "4.1-thm-4-1-1"
+    },
+    {
+      "sym": "x_2",
+      "type": "function",
+      "meaning": "the second of two eigenfunctions of Theorem 4.1.1, for the eigenvalue λ₂",
+      "section": "4.1",
+      "redefines": true,
+      "anchor": "4.1-thm-4-1-1"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the right-hand side f(t), continuous on [a, b], of the nonhomogeneous problem (4.5) of the Fredholm alternative",
+      "section": "4.1",
+      "redefines": true,
+      "anchor": "4.1-eq-4-5"
+    },
+    {
+      "sym": "y",
+      "type": "function",
+      "meaning": "the deflection y(x) of the whirling string from the x-axis, in meters, a function of the position x along the string",
+      "section": "4.1",
+      "unit": "m",
+      "redefines": true,
+      "anchor": "4.1-whirling-model"
+    },
+    {
+      "sym": "y_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of the string's deflection y with respect to the position x, in m/m²",
+      "section": "4.1",
+      "anchor": "4.1-whirling-model"
+    },
+    {
+      "sym": "ω",
+      "type": "frequency",
+      "meaning": "the angular velocity at which the string rotates, in radians per second",
+      "section": "4.1",
+      "unit": "rad/s",
+      "redefines": true,
+      "anchor": "4.1-whirling-model"
+    },
+    {
+      "sym": "x",
+      "type": "function",
+      "meaning": "the displacement x(t) of the undamped oscillator x″ + ω₀²x = f(t) driven by a periodic f",
+      "section": "4.2",
+      "redefines": true,
+      "anchor": "4.2-eq-4-6"
+    },
+    {
+      "sym": "x_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of x with respect to t",
+      "section": "4.2",
+      "anchor": "4.2-eq-4-6"
+    },
+    {
+      "sym": "ω_0",
+      "type": "frequency",
+      "meaning": "the natural frequency of the oscillator x″ + ω₀²x = f(t)",
+      "section": "4.2",
+      "anchor": "4.2-eq-4-6"
+    },
+    {
+      "sym": "f",
+      "meaning": "a periodic function f(t), P-periodic when f(t) = f(t + P) for all t; the function a Fourier series represents",
+      "section": "4.2",
+      "redefines": true,
+      "concept": "periodic-function",
+      "anchor": "4.2-periodic-definition"
+    },
+    {
+      "sym": "F",
+      "meaning": "the periodic extension F(t) of a function f(t) defined on [−L, L], equal to f on [−L, L] and 2L-periodic",
+      "section": "4.2",
+      "redefines": true,
+      "concept": "periodic-extension",
+      "anchor": "4.2-periodic-extension"
+    },
+    {
+      "sym": "v_vec",
+      "type": "vector",
+      "meaning": "a vector v⃗ decomposed along two mutually orthogonal vectors w⃗₁ and w⃗₂",
+      "section": "4.2",
+      "redefines": true,
+      "anchor": "4.2-symmetric-orthogonal"
+    },
+    {
+      "sym": "A",
+      "type": "matrix",
+      "meaning": "a symmetric matrix, Aᵀ = A, whose eigenvectors for distinct eigenvalues are orthogonal",
+      "section": "4.2",
+      "redefines": true,
+      "anchor": "4.2-symmetric-orthogonal"
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "the second function g(t) of the inner product ⟨f(t), g(t)⟩ = ∫ f(t) g(t) dt from −π to π",
+      "section": "4.2",
+      "redefines": true,
+      "anchor": "4.2-eq-inner-product"
+    },
+    {
+      "sym": "a_0",
+      "type": "sequence",
+      "meaning": "the constant coefficient of the Fourier series, written as a₀/2 for convenience; a₀ = (1/π)∫ f(t) dt over [−π, π]",
+      "section": "4.2",
+      "anchor": "4.2-eq-fourier-series"
+    },
+    {
+      "sym": "a_n",
+      "meaning": "the coefficient of cos(nt) in the Fourier series, a_n = (1/π)∫ f(t) cos(nt) dt over [−π, π]",
+      "section": "4.2",
+      "concept": "fourier-coefficients",
+      "anchor": "4.2-eq-fourier-series"
+    },
+    {
+      "sym": "b_n",
+      "type": "sequence",
+      "meaning": "the coefficient of sin(nt) in the Fourier series, b_n = (1/π)∫ f(t) sin(nt) dt over [−π, π]",
+      "section": "4.2",
+      "anchor": "4.2-eq-fourier-series"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "a 2L-periodic function f(t) with half period L; from the convergence subsection on, a piecewise smooth function",
+      "section": "4.3",
+      "redefines": true,
+      "anchor": "4.3-rescaling"
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "the rescaled function g(s) = f(Ls/π), which is 2π-periodic",
+      "section": "4.3",
+      "redefines": true,
+      "anchor": "4.3-rescaling"
+    },
+    {
+      "sym": "a_0",
+      "type": "sequence",
+      "meaning": "the constant coefficient a₀ = (1/L)∫ f(t) dt over [−L, L] of the Fourier series of a 2L-periodic function",
+      "section": "4.3",
+      "anchor": "4.3-eq-fourier-series-2l"
+    },
+    {
+      "sym": "a_n",
+      "meaning": "the coefficient a_n = (1/L)∫ f(t) cos(nπt/L) dt over [−L, L] of cos(nπt/L)",
+      "section": "4.3",
+      "concept": "fourier-coefficients",
+      "anchor": "4.3-eq-fourier-series-2l"
+    },
+    {
+      "sym": "b_n",
+      "type": "sequence",
+      "meaning": "the coefficient b_n = (1/L)∫ f(t) sin(nπt/L) dt over [−L, L] of sin(nπt/L)",
+      "section": "4.3",
+      "anchor": "4.3-eq-fourier-series-2l"
+    },
+    {
+      "sym": "f_prime",
+      "type": "derivative",
+      "meaning": "the derivative f′(t), obtained from a continuous piecewise smooth f by differentiating its Fourier series term by term",
+      "section": "4.3",
+      "anchor": "4.3-thm-4-3-2"
+    },
+    {
+      "sym": "F",
+      "type": "function",
+      "meaning": "an antiderivative F(t) of f(t), F′(t) = f(t), obtained by integrating the Fourier series term by term; not periodic unless a₀ = 0",
+      "section": "4.3",
+      "redefines": true,
+      "anchor": "4.3-thm-4-3-3"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "a function f(t) defined on [0, L], whose odd or even periodic extension is expanded; in the application, the right-hand side of x″ + λx = f(t)",
+      "section": "4.4",
+      "redefines": true,
+      "anchor": "4.4-extension-setup"
+    },
+    {
+      "sym": "F_odd",
+      "meaning": "the odd periodic extension of f(t): f(t) on [0, L], −f(−t) on (−L, 0), extended to be 2L-periodic",
+      "section": "4.4",
+      "concept": "odd-periodic-extension",
+      "anchor": "4.4-extensions"
+    },
+    {
+      "sym": "F_even",
+      "meaning": "the even periodic extension of f(t): f(t) on [0, L], f(−t) on (−L, 0), extended to be 2L-periodic",
+      "section": "4.4",
+      "concept": "even-periodic-extension",
+      "anchor": "4.4-extensions"
+    },
+    {
+      "sym": "a_0",
+      "type": "sequence",
+      "meaning": "the constant coefficient of the cosine series, a₀ = (2/L)∫ f(t) dt over [0, L]",
+      "section": "4.4",
+      "anchor": "4.4-thm-4-4-1"
+    },
+    {
+      "sym": "a_n",
+      "type": "sequence",
+      "meaning": "the coefficient of cos(nπt/L) in the cosine series, a_n = (2/L)∫ f(t) cos(nπt/L) dt over [0, L]; in Example 4.4.4 the unknown coefficient of the solution",
+      "section": "4.4",
+      "anchor": "4.4-thm-4-4-1"
+    },
+    {
+      "sym": "b_n",
+      "type": "sequence",
+      "meaning": "the coefficient of sin(nπt/L) in the sine series, b_n = (2/L)∫ f(t) sin(nπt/L) dt over [0, L]; in Example 4.4.3 the unknown coefficient of the solution",
+      "section": "4.4",
+      "anchor": "4.4-thm-4-4-1"
+    },
+    {
+      "sym": "c_n",
+      "type": "sequence",
+      "meaning": "the coefficient of the sine or cosine series of the right-hand side f(t) of the boundary value problem",
+      "section": "4.4",
+      "anchor": "4.4-ex-4-4-3"
+    },
+    {
+      "sym": "c_0",
+      "type": "sequence",
+      "meaning": "the constant coefficient c₀ of the cosine series of f(t) in Example 4.4.4",
+      "section": "4.4",
+      "anchor": "4.4-ex-4-4-4"
+    },
+    {
+      "sym": "x",
+      "type": "function",
+      "meaning": "the solution x(t) of the boundary value problem x″ + λx = f(t) on 0 < t < L, written as a sine or cosine series",
+      "section": "4.4",
+      "redefines": true,
+      "anchor": "4.4-bvp-setup"
+    },
+    {
+      "sym": "x_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of x with respect to t",
+      "section": "4.4",
+      "anchor": "4.4-bvp-setup"
+    },
+    {
+      "sym": "λ",
+      "type": "eigenvalue",
+      "meaning": "the constant λ of x″ + λx = f(t), which must not be an eigenvalue of the homogeneous problem for the series method to work",
+      "section": "4.4",
+      "anchor": "4.4-bvp-setup"
+    },
+    {
+      "sym": "x",
+      "type": "function",
+      "meaning": "the displacement x(t) of the mass on the spring, in meters (mks units)",
+      "section": "4.5",
+      "unit": "m",
+      "redefines": true,
+      "anchor": "4.5-eq-4-9"
+    },
+    {
+      "sym": "x_prime",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t",
+      "section": "4.5",
+      "anchor": "4.5-eq-4-9"
+    },
+    {
+      "sym": "x_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of x with respect to t",
+      "section": "4.5",
+      "anchor": "4.5-eq-4-9"
+    },
+    {
+      "sym": "F",
+      "type": "function",
+      "meaning": "the 2L-periodic forcing function F(t) applied to the mass, in newtons",
+      "section": "4.5",
+      "unit": "N",
+      "redefines": true,
+      "anchor": "4.5-eq-4-9"
+    },
+    {
+      "sym": "x_c",
+      "type": "function",
+      "meaning": "the complementary solution x_c, which solves the associated homogeneous equation mx″ + cx′ + kx = 0 and decays when c > 0",
+      "section": "4.5",
+      "anchor": "4.5-steady-periodic"
+    },
+    {
+      "sym": "x_p",
+      "type": "function",
+      "meaning": "a particular solution x_p of mx″ + cx′ + kx = F(t)",
+      "section": "4.5",
+      "anchor": "4.5-steady-periodic"
+    },
+    {
+      "sym": "x_sp",
+      "type": "function",
+      "meaning": "the steady periodic solution x_sp, the particular solution that does not decay and is periodic with the same period as F(t)",
+      "section": "4.5",
+      "anchor": "4.5-steady-periodic"
+    },
+    {
+      "sym": "ω_0",
+      "type": "frequency",
+      "meaning": "the natural frequency ω₀ = √(k/m) of the undamped mass-spring system",
+      "section": "4.5",
+      "anchor": "4.5-undamped-form"
+    },
+    {
+      "sym": "c_0",
+      "type": "sequence",
+      "meaning": "the constant coefficient c₀ of the Fourier series of the forcing F(t)",
+      "section": "4.5",
+      "redefines": true,
+      "anchor": "4.5-eq-forcing-series"
+    },
+    {
+      "sym": "c_n",
+      "type": "sequence",
+      "meaning": "the coefficient of cos(nπt/L) in the Fourier series of the forcing F(t)",
+      "section": "4.5",
+      "redefines": true,
+      "anchor": "4.5-eq-forcing-series"
+    },
+    {
+      "sym": "d_n",
+      "type": "sequence",
+      "meaning": "the coefficient of sin(nπt/L) in the Fourier series of the forcing F(t)",
+      "section": "4.5",
+      "anchor": "4.5-eq-forcing-series"
+    },
+    {
+      "sym": "a_0",
+      "type": "sequence",
+      "meaning": "the constant coefficient of the proposed steady periodic solution, an unknown solved for from the equation",
+      "section": "4.5",
+      "redefines": true,
+      "anchor": "4.5-series-guess"
+    },
+    {
+      "sym": "a_n",
+      "type": "sequence",
+      "meaning": "the unknown coefficient of cos(nπt/L) in the proposed steady periodic solution",
+      "section": "4.5",
+      "redefines": true,
+      "anchor": "4.5-series-guess"
+    },
+    {
+      "sym": "b_n",
+      "type": "sequence",
+      "meaning": "the unknown coefficient of sin(nπt/L) in the proposed steady periodic solution",
+      "section": "4.5",
+      "redefines": true,
+      "anchor": "4.5-series-guess"
+    },
+    {
+      "sym": "u",
+      "type": "function",
+      "meaning": "the temperature u(x, t) at the point x of the wire at time t",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-heat-equation"
+    },
+    {
+      "sym": "∂u/∂t",
+      "type": "derivative",
+      "meaning": "the partial derivative of the temperature u with respect to time t",
+      "section": "4.6",
+      "anchor": "4.6-heat-equation"
+    },
+    {
+      "sym": "∂2u/∂x2",
+      "type": "derivative",
+      "meaning": "the second partial derivative of the temperature u with respect to the position x",
+      "section": "4.6",
+      "anchor": "4.6-heat-equation"
+    },
+    {
+      "sym": "u_t",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂u/∂t in subscript notation",
+      "section": "4.6",
+      "anchor": "4.6-subscript-notation"
+    },
+    {
+      "sym": "u_x",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂u/∂x; u_x = 0 at an end means no heat flows through it",
+      "section": "4.6",
+      "anchor": "4.6-eq-heat-insulated-ends"
+    },
+    {
+      "sym": "u_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative ∂²u/∂x² in subscript notation",
+      "section": "4.6",
+      "anchor": "4.6-subscript-notation"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the initial temperature distribution f(x) = u(x, 0) along the wire, for 0 < x < L",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-eq-heat-initial"
+    },
+    {
+      "sym": "X",
+      "type": "function",
+      "meaning": "the factor X(x) of a product solution u(x, t) = X(x)T(t), a function of x alone",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-eq-separated-product"
+    },
+    {
+      "sym": "T",
+      "type": "function",
+      "meaning": "the factor T(t) of a product solution u(x, t) = X(x)T(t), a function of t alone",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-eq-separated-product"
+    },
+    {
+      "sym": "X_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative X″(x)",
+      "section": "4.6",
+      "anchor": "4.6-drv-separation-heat"
+    },
+    {
+      "sym": "T_prime",
+      "type": "derivative",
+      "meaning": "the derivative T′(t)",
+      "section": "4.6",
+      "anchor": "4.6-drv-separation-heat"
+    },
+    {
+      "sym": "λ",
+      "type": "eigenvalue",
+      "meaning": "the separation constant, with the sign chosen so that both sides equal −λ; λ_n = n²π²/L² are the eigenvalues of X″ + λX = 0 with the side conditions",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-drv-separation-heat"
+    },
+    {
+      "sym": "λ_n",
+      "type": "eigenvalue",
+      "meaning": "the nth eigenvalue λ_n = n²π²/L² of X″ + λX = 0 with the wire's side conditions",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-drv-separation-heat"
+    },
+    {
+      "sym": "X_n",
+      "type": "function",
+      "meaning": "the eigenfunction X_n(x) = sin(nπx/L), or cos(nπx/L) for insulated ends, with X₀ = 1",
+      "section": "4.6",
+      "anchor": "4.6-drv-separation-heat"
+    },
+    {
+      "sym": "T_n",
+      "type": "function",
+      "meaning": "the time factor T_n(t) = e^(−n²π²kt/L²) that goes with X_n, chosen so that T_n(0) = 1",
+      "section": "4.6",
+      "anchor": "4.6-drv-separation-heat"
+    },
+    {
+      "sym": "u_n",
+      "type": "function",
+      "meaning": "the building-block solution u_n(x, t) = X_n(x)T_n(t)",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-drv-separation-heat"
+    },
+    {
+      "sym": "b_n",
+      "type": "sequence",
+      "meaning": "the coefficient of sin(nπx/L) in the sine series of the initial temperature f(x)",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-sine-series-of-f"
+    },
+    {
+      "sym": "a_n",
+      "type": "sequence",
+      "meaning": "the coefficient of cos(nπx/L) in the cosine series of the initial temperature f(x), for insulated ends",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-cosine-series-of-f"
+    },
+    {
+      "sym": "a_0",
+      "type": "sequence",
+      "meaning": "the constant coefficient of the cosine series of f(x); a₀/2 is the average initial temperature, which the insulated wire keeps forever",
+      "section": "4.6",
+      "redefines": true,
+      "anchor": "4.6-cosine-series-of-f"
+    },
+    {
+      "sym": "y",
+      "type": "function",
+      "meaning": "the displacement y(x, t) of the string from its rest position at the point x at time t",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-vibrating-string"
+    },
+    {
+      "sym": "y_tt",
+      "type": "derivative",
+      "meaning": "the second partial derivative of y with respect to t, the acceleration of the string at x",
+      "section": "4.7",
+      "anchor": "4.7-eq-wave"
+    },
+    {
+      "sym": "y_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative of y with respect to x, the curvature of the string's shape",
+      "section": "4.7",
+      "anchor": "4.7-eq-wave"
+    },
+    {
+      "sym": "y_t",
+      "type": "derivative",
+      "meaning": "the partial derivative of y with respect to t, the velocity of the string at x",
+      "section": "4.7",
+      "anchor": "4.7-side-conditions"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the initial position f(x) = y(x, 0) of the string",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-side-conditions"
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "the initial velocity g(x) = y_t(x, 0) of the string",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-side-conditions"
+    },
+    {
+      "sym": "w",
+      "type": "function",
+      "meaning": "the solution of the wave problem (4.11) that starts flat with velocity g(x)",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-eq-4-11"
+    },
+    {
+      "sym": "z",
+      "type": "function",
+      "meaning": "the solution of the wave problem (4.12) that starts at rest in the shape f(x)",
+      "section": "4.7",
+      "anchor": "4.7-eq-4-12"
+    },
+    {
+      "sym": "w_n",
+      "type": "function",
+      "meaning": "the building-block solution w_n(x, t) = (L/(nπa)) sin(nπx/L) sin(nπat/L) of (4.11)",
+      "section": "4.7",
+      "anchor": "4.7-drv-separation-wave"
+    },
+    {
+      "sym": "z_n",
+      "type": "function",
+      "meaning": "the building-block solution z_n(x, t) = sin(nπx/L) cos(nπat/L) of (4.12)",
+      "section": "4.7",
+      "anchor": "4.7-drv-separation-wave-z"
+    },
+    {
+      "sym": "X",
+      "type": "function",
+      "meaning": "the factor X(x) of a product solution X(x)T(t) of the wave equation",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-start-w"
+    },
+    {
+      "sym": "T",
+      "type": "function",
+      "meaning": "the factor T(t) of a product solution X(x)T(t) of the wave equation",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-start-w"
+    },
+    {
+      "sym": "T_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative T″(t)",
+      "section": "4.7",
+      "anchor": "4.7-drv-separation-wave"
+    },
+    {
+      "sym": "X_n",
+      "type": "function",
+      "meaning": "the eigenfunction X_n(x) = sin(nπx/L)",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-drv-separation-wave"
+    },
+    {
+      "sym": "T_n",
+      "type": "function",
+      "meaning": "the time factor T_n(t), (L/(nπa)) sin(nπat/L) for (4.11) and cos(nπat/L) for (4.12)",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-drv-separation-wave"
+    },
+    {
+      "sym": "λ_n",
+      "type": "eigenvalue",
+      "meaning": "the nth eigenvalue λ_n = n²π²/L² of X″ + λX = 0, X(0) = X(L) = 0",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-drv-separation-wave"
+    },
+    {
+      "sym": "b_n",
+      "type": "sequence",
+      "meaning": "the coefficient of sin(nπx/L) in the sine series of the initial velocity g(x)",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-drv-separation-wave"
+    },
+    {
+      "sym": "c_n",
+      "type": "sequence",
+      "meaning": "the coefficient of sin(nπx/L) in the sine series of the initial shape f(x)",
+      "section": "4.7",
+      "redefines": true,
+      "anchor": "4.7-drv-separation-wave-z"
+    },
+    {
+      "sym": "y",
+      "type": "function",
+      "meaning": "the displacement y(x, t) of the string from its rest position at the point x at time t",
+      "section": "4.8",
+      "redefines": true,
+      "anchor": "4.8-eq-4-15"
+    },
+    {
+      "sym": "y_tt",
+      "type": "derivative",
+      "meaning": "the second partial derivative of y with respect to t",
+      "section": "4.8",
+      "anchor": "4.8-eq-4-15"
+    },
+    {
+      "sym": "y_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative of y with respect to x",
+      "section": "4.8",
+      "anchor": "4.8-eq-4-15"
+    },
+    {
+      "sym": "y_t",
+      "type": "derivative",
+      "meaning": "the partial derivative of y with respect to t",
+      "section": "4.8",
+      "anchor": "4.8-eq-4-16"
+    },
+    {
+      "sym": "y_xieta",
+      "type": "derivative",
+      "meaning": "the mixed partial derivative of y with respect to the characteristic coordinates ξ and η; the wave equation becomes y_ξη = 0",
+      "section": "4.8",
+      "anchor": "4.8-drv-characteristic-change"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the initial position f(x) = y(x, 0) of the string",
+      "section": "4.8",
+      "redefines": true,
+      "anchor": "4.8-eq-4-16"
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "the initial velocity g(x) = y_t(x, 0) of the string",
+      "section": "4.8",
+      "redefines": true,
+      "anchor": "4.8-eq-4-16"
+    },
+    {
+      "sym": "F",
+      "type": "function",
+      "meaning": "the odd periodic extension F(x) of the initial position f(x)",
+      "section": "4.8",
+      "redefines": true,
+      "anchor": "4.8-definitions"
+    },
+    {
+      "sym": "G",
+      "type": "function",
+      "meaning": "the odd periodic extension G(x) of the initial velocity g(x)",
+      "section": "4.8",
+      "anchor": "4.8-definitions"
+    },
+    {
+      "sym": "H",
+      "type": "function",
+      "meaning": "the antiderivative H(x) = ∫ G(s) ds from 0 to x, used in the second form (4.18) of the solution",
+      "section": "4.8",
+      "anchor": "4.8-h-define"
+    },
+    {
+      "sym": "A",
+      "type": "function",
+      "meaning": "the wave A(ξ) = A(x − at) traveling to the right at speed a, A(x) = F(x)/2 − (1/2a)∫ G(s) ds from 0 to x",
+      "section": "4.8",
+      "redefines": true,
+      "anchor": "4.8-eq-wave-general-solution"
+    },
+    {
+      "sym": "B",
+      "type": "function",
+      "meaning": "the wave B(η) = B(x + at) traveling to the left at speed a, B(x) = F(x)/2 + (1/2a)∫ G(s) ds from 0 to x",
+      "section": "4.8",
+      "redefines": true,
+      "anchor": "4.8-eq-wave-general-solution"
+    },
+    {
+      "sym": "u",
+      "meaning": "the steady-state temperature: u(x) along a wire, u(x, y) over a plate, a solution of the heat equation with u_t = 0",
+      "section": "4.9",
+      "redefines": true,
+      "concept": "steady-state-temperature",
+      "anchor": "4.9-steady-state"
+    },
+    {
+      "sym": "u_t",
+      "type": "derivative",
+      "meaning": "the partial derivative of u with respect to t, which is zero at steady state",
+      "section": "4.9",
+      "anchor": "4.9-u-linear"
+    },
+    {
+      "sym": "u_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative of u with respect to x",
+      "section": "4.9",
+      "anchor": "4.9-u-linear"
+    },
+    {
+      "sym": "u_yy",
+      "type": "derivative",
+      "meaning": "the second partial derivative of u with respect to y",
+      "section": "4.9",
+      "anchor": "4.9-eq-4-19"
+    },
+    {
+      "sym": "∂2u/∂x2",
+      "type": "derivative",
+      "meaning": "the second partial derivative of u with respect to x, a term of the Laplacian",
+      "section": "4.9",
+      "anchor": "4.9-laplacian-def"
+    },
+    {
+      "sym": "∂2u/∂y2",
+      "type": "derivative",
+      "meaning": "the second partial derivative of u with respect to y, a term of the Laplacian",
+      "section": "4.9",
+      "anchor": "4.9-laplacian-def"
+    },
+    {
+      "sym": "X",
+      "type": "function",
+      "meaning": "the factor X(x) of a product solution u(x, y) = X(x)Y(y) of the Laplace equation",
+      "section": "4.9",
+      "redefines": true,
+      "anchor": "4.9-try-product"
+    },
+    {
+      "sym": "Y",
+      "type": "function",
+      "meaning": "the factor Y(y) of a product solution u(x, y) = X(x)Y(y) of the Laplace equation",
+      "section": "4.9",
+      "anchor": "4.9-try-product"
+    },
+    {
+      "sym": "X_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative X″(x)",
+      "section": "4.9",
+      "redefines": true,
+      "anchor": "4.9-drv-separation-laplace"
+    },
+    {
+      "sym": "Y_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative Y″(y)",
+      "section": "4.9",
+      "anchor": "4.9-drv-separation-laplace"
+    },
+    {
+      "sym": "λ",
+      "type": "eigenvalue",
+      "meaning": "the separation constant λ = −X″/X = Y″/Y; the nontrivial solutions need λ = λ_n = n²π²/w²",
+      "section": "4.9",
+      "redefines": true,
+      "anchor": "4.9-drv-separation-laplace"
+    },
+    {
+      "sym": "λ_n",
+      "type": "eigenvalue",
+      "meaning": "the nth eigenvalue λ_n = n²π²/w² of X″ + λX = 0, X(0) = X(w) = 0",
+      "section": "4.9",
+      "redefines": true,
+      "anchor": "4.9-drv-separation-laplace"
+    },
+    {
+      "sym": "X_n",
+      "type": "function",
+      "meaning": "the eigenfunction X_n(x) = sin(nπx/w)",
+      "section": "4.9",
+      "redefines": true,
+      "anchor": "4.9-drv-separation-laplace"
+    },
+    {
+      "sym": "Y_n",
+      "type": "function",
+      "meaning": "the factor Y_n(y) = sinh(nπ(h − y)/w)/sinh(nπh/w), chosen so that Y_n(0) = 1 and Y_n(h) = 0",
+      "section": "4.9",
+      "anchor": "4.9-drv-separation-laplace"
+    },
+    {
+      "sym": "u_n",
+      "type": "function",
+      "meaning": "the building-block solution u_n(x, y) = X_n(x)Y_n(y), which satisfies (4.20)–(4.23)",
+      "section": "4.9",
+      "redefines": true,
+      "anchor": "4.9-building-blocks"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the boundary data f(x) = u(x, 0) on the bottom edge of the rectangle, for 0 < x < w",
+      "section": "4.9",
+      "redefines": true,
+      "anchor": "4.9-eq-4-24"
+    },
+    {
+      "sym": "b_n",
+      "type": "sequence",
+      "meaning": "the coefficient of sin(nπx/w) in the sine series of the boundary data f(x)",
+      "section": "4.9",
+      "redefines": true,
+      "anchor": "4.9-building-blocks"
+    },
+    {
+      "sym": "u",
+      "type": "function",
+      "meaning": "the temperature u(r, θ) at the point (r, θ) of the disc of radius 1, a solution of the Laplace equation",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-problem"
+    },
+    {
+      "sym": "u_x",
+      "type": "derivative",
+      "meaning": "the partial derivative of u with respect to x",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-drv-polar-laplacian"
+    },
+    {
+      "sym": "u_y",
+      "type": "derivative",
+      "meaning": "the partial derivative of u with respect to y",
+      "section": "4.10",
+      "anchor": "4.10-drv-polar-laplacian"
+    },
+    {
+      "sym": "u_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative of u with respect to x",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-drv-polar-laplacian"
+    },
+    {
+      "sym": "u_yy",
+      "type": "derivative",
+      "meaning": "the second partial derivative of u with respect to y",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-drv-polar-laplacian"
+    },
+    {
+      "sym": "u_xy",
+      "type": "derivative",
+      "meaning": "the mixed second partial derivative of u with respect to x and y",
+      "section": "4.10",
+      "anchor": "4.10-drv-polar-laplacian"
+    },
+    {
+      "sym": "u_r",
+      "type": "derivative",
+      "meaning": "the partial derivative of u with respect to the polar radius r",
+      "section": "4.10",
+      "anchor": "4.10-drv-polar-laplacian"
+    },
+    {
+      "sym": "u_rr",
+      "type": "derivative",
+      "meaning": "the second partial derivative of u with respect to r",
+      "section": "4.10",
+      "anchor": "4.10-drv-polar-laplacian"
+    },
+    {
+      "sym": "u_theta",
+      "type": "derivative",
+      "meaning": "the partial derivative of u with respect to the polar angle θ",
+      "section": "4.10",
+      "anchor": "4.10-drv-polar-laplacian"
+    },
+    {
+      "sym": "u_thetatheta",
+      "type": "derivative",
+      "meaning": "the second partial derivative of u with respect to θ",
+      "section": "4.10",
+      "anchor": "4.10-drv-polar-laplacian"
+    },
+    {
+      "sym": "R",
+      "type": "function",
+      "meaning": "the factor R(r) of a product solution u(r, θ) = R(r)Θ(θ) of the Laplace equation in polar coordinates",
+      "section": "4.10",
+      "anchor": "4.10-drv-separation-disc"
+    },
+    {
+      "sym": "Theta",
+      "type": "function",
+      "meaning": "the factor Θ(θ) of a product solution u(r, θ) = R(r)Θ(θ), which must be 2π-periodic",
+      "section": "4.10",
+      "anchor": "4.10-drv-separation-disc"
+    },
+    {
+      "sym": "R_prime",
+      "type": "derivative",
+      "meaning": "the derivative R′(r)",
+      "section": "4.10",
+      "anchor": "4.10-drv-separation-disc"
+    },
+    {
+      "sym": "R_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative R″(r)",
+      "section": "4.10",
+      "anchor": "4.10-drv-separation-disc"
+    },
+    {
+      "sym": "Theta_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative Θ″(θ)",
+      "section": "4.10",
+      "anchor": "4.10-drv-separation-disc"
+    },
+    {
+      "sym": "R_n",
+      "type": "function",
+      "meaning": "the radial factor R_n = rⁿ (R₀ = 1), the solution of r²R″ + rR′ − n²R = 0 that stays finite at the origin",
+      "section": "4.10",
+      "anchor": "4.10-r-equation"
+    },
+    {
+      "sym": "Theta_n",
+      "type": "function",
+      "meaning": "the angular factor Θ_n = a_n cos(nθ) + b_n sin(nθ), with Θ₀ = a₀/2",
+      "section": "4.10",
+      "anchor": "4.10-theta-equation"
+    },
+    {
+      "sym": "λ",
+      "type": "eigenvalue",
+      "meaning": "the separation constant λ = −Θ″/Θ, which the periodicity of Θ forces to be n² for a nonnegative integer n",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-drv-separation-disc"
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "the prescribed temperature g(θ) on the circle r = 1, a 2π-periodic function expanded as a Fourier series",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-problem"
+    },
+    {
+      "sym": "a_0",
+      "type": "sequence",
+      "meaning": "the constant coefficient of the Fourier series of the boundary data g(θ)",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-theta-equation"
+    },
+    {
+      "sym": "a_n",
+      "type": "sequence",
+      "meaning": "the coefficient of cos(nθ) in the Fourier series of g(θ), a_n = (1/π)∫ g(θ) cos(nθ) dθ over [−π, π]",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-theta-equation"
+    },
+    {
+      "sym": "b_n",
+      "type": "sequence",
+      "meaning": "the coefficient of sin(nθ) in the Fourier series of g(θ), b_n = (1/π)∫ g(θ) sin(nθ) dθ over [−π, π]",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-theta-equation"
+    },
+    {
+      "sym": "u_n",
+      "type": "function",
+      "meaning": "the building-block solution u_n(r, θ) = a_n rⁿ cos(nθ) + b_n rⁿ sin(nθ), with u₀ = a₀/2",
+      "section": "4.10",
+      "redefines": true,
+      "anchor": "4.10-building-blocks"
+    },
+    {
+      "sym": "P",
+      "meaning": "the Poisson kernel P(r, θ, α) = (1 − r²)/(1 − 2r cos(θ − α) + r²), the weight of the boundary value g(α) in the solution at (r, θ)",
+      "section": "4.10",
+      "redefines": true,
+      "concept": "poisson-kernel",
+      "anchor": "4.10-kernel-idea"
+    },
+    {
+      "sym": "λ_1",
+      "type": "eigenvalue",
+      "meaning": "the eigenvalue λ₁ of the eigenfunction x₁ in Theorem 4.1.1",
+      "section": "4.1",
+      "anchor": "4.1-thm-4-1-1",
+      "redefines": true
+    },
+    {
+      "sym": "λ_2",
+      "type": "eigenvalue",
+      "meaning": "the eigenvalue λ₂ of the eigenfunction x₂ in Theorem 4.1.1, different from λ₁",
+      "section": "4.1",
+      "anchor": "4.1-thm-4-1-1",
+      "redefines": true
+    },
+    {
+      "sym": "x_1_prime",
+      "type": "derivative",
+      "meaning": "the derivative of the eigenfunction x₁ with respect to t",
+      "section": "4.1",
+      "anchor": "4.1-last-equality",
+      "redefines": true
+    },
+    {
+      "sym": "x_2_prime",
+      "type": "derivative",
+      "meaning": "the derivative of the eigenfunction x₂ with respect to t",
+      "section": "4.1",
+      "anchor": "4.1-last-equality",
+      "redefines": true
+    },
+    {
+      "sym": "x_1_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of the eigenfunction x₁ with respect to t",
+      "section": "4.1",
+      "anchor": "4.1-drv-orthogonality",
+      "redefines": true
+    },
+    {
+      "sym": "x_2_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of the eigenfunction x₂ with respect to t",
+      "section": "4.1",
+      "anchor": "4.1-drv-orthogonality",
+      "redefines": true
+    },
+    {
+      "sym": "S",
+      "type": "series",
+      "meaning": "the partial sum S_N(t) of a Fourier series, its terms up to the Nth harmonic",
+      "section": "4.2",
+      "anchor": "4.2-eq-fourier-series"
+    },
+    {
+      "sym": "S",
+      "type": "series",
+      "meaning": "the partial sum S_N(t) of a Fourier series, its terms up to the Nth harmonic",
+      "section": "4.3",
+      "anchor": "4.3-eq-fourier-series-2l"
+    },
+    {
+      "sym": "f_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative f″(t)",
+      "section": "4.3",
+      "anchor": "4.3-decay-justification"
+    },
+    {
+      "sym": "x_prime",
+      "type": "derivative",
+      "meaning": "the derivative of x with respect to t",
+      "section": "4.4",
+      "anchor": "4.4-bvp-method"
+    },
+    {
+      "sym": "u_1",
+      "type": "function",
+      "meaning": "a first solution u₁ of the heat equation, combined with u₂ by superposition into c₁u₁ + c₂u₂",
+      "section": "4.6",
+      "anchor": "4.6-superposition",
+      "redefines": true
+    },
+    {
+      "sym": "u_2",
+      "type": "function",
+      "meaning": "a second solution u₂ of the heat equation, combined with u₁ by superposition",
+      "section": "4.6",
+      "anchor": "4.6-superposition",
+      "redefines": true
+    },
+    {
+      "sym": "X_prime",
+      "type": "derivative",
+      "meaning": "the derivative X′(x) of the factor X(x); insulated ends give X′(0) = X′(L) = 0",
+      "section": "4.6",
+      "anchor": "4.6-insulated-eigenvalues",
+      "redefines": true
+    },
+    {
+      "sym": "X_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative X″(x)",
+      "section": "4.7",
+      "anchor": "4.7-drv-separation-wave"
+    },
+    {
+      "sym": "λ",
+      "type": "eigenvalue",
+      "meaning": "the separation constant, with the sign chosen so that both sides equal −λ; λ_n = n²π²/L² are the eigenvalues of X″ + λX = 0 with the side conditions",
+      "section": "4.7",
+      "anchor": "4.7-drv-separation-wave"
+    },
+    {
+      "sym": "T_prime",
+      "type": "derivative",
+      "meaning": "the derivative T′(t)",
+      "section": "4.7",
+      "anchor": "4.7-drv-separation-wave-z"
+    }
+  ]
+}

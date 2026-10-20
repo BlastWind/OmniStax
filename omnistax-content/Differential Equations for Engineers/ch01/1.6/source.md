@@ -37,14 +37,14 @@ If we are interested only in the long-term behavior of the solution, we would be
 > IMAGE {img:2-2-l-phasedia} src=../../media/2-2-l-phasedia.svg
 > alt: A vertical line with two points marked with horizontal ticks marked as x equals 0 for the lower one and x equals 5 on the upper one. There are triangular arrows on the line. Below x equals 0 the arrow points down, between the x equals 0 and x equals 5 ticks the arrow points up, and above the x equals 5 tick the arrow points down.
 
-[0] Armed with the phase diagram, it is easy to sketch the solutions approximately: As time $t$ moves from left to right, the graph of a solution goes up if the arrow is up, and it goes down if the arrow is down.
+Armed with the phase diagram, it is easy to sketch the solutions approximately: As time $t$ moves from left to right, the graph of a solution goes up if the arrow is up, and it goes down if the arrow is down.
 
 :::exercise {exercise-1-6-001} number=1.6.1 answered=no src=ch-first-order-ode.tex:2268
 PROBLEM:
 Try sketching a few solutions simply from looking at the phase diagram. Check with the preceding graphs if you are getting the same type of curves.
 :::
 
-[0] Once we draw the phase diagram, we classify critical points as stable or unstable^[Unstable points with one of the arrows pointing towards the critical point are sometimes called *semistable*{index-entry:semistable critical point}.]:
+Once we draw the phase diagram, we classify critical points as stable or unstable^[Unstable points with one of the arrows pointing towards the critical point are sometimes called *semistable*{index-entry:semistable critical point}.]:
 
 > IMAGE {img:2-2-ph-class} src=../../media/2-2-ph-class.svg
 > alt: On the left, there are three possible phase diagrams with one critical point marked as a horizontal tick. The first one has the arrow above and below the tick pointing away from the tick. The second one has both arrows pointing up, the third has both arrows pointing down. These three diagrams are labeled as 'unstable'. Then there is one phase diagram with one critical point on the right where both arrows are pointing towards the critical point. This diagram is labeled as 'stable'.
@@ -138,7 +138,7 @@ c) Does the solution to part b) agree with your intuition? Why or why not?
 
 :::exercise {exercise-1-6-101} number=1.6.101 answered=yes src=ch-first-order-ode.tex:2487
 PROBLEM:
-[2] Let $x'=(x-1)(x-2)x^2$.
+Let $x'=(x-1)(x-2)x^2$.
 
 a) Sketch the phase diagram and find critical points.
 b) Classify the critical points.

@@ -1,0 +1,480 @@
+{
+ "id": "1.8",
+ "module": "exact:section",
+ "chapter": "1",
+ "title": "Exact equations",
+ "short": "Exact equations",
+ "lead": "This section looks at equations $\\kM\\,dx + \\kN\\,dy = 0$ that come from a <span data-concept=\"potential-function\">potential function</span> $\\kF(x,y)$, the <span data-concept=\"exact-equation\">exact equations</span>, whose solutions are curves of constant potential. It shows how to recover $\\kF$ from $\\kM$ and $\\kN$, how to tell quickly whether such an $\\kF$ exists, and how an <span data-concept=\"exact-integrating-factor\">integrating factor</span> can make an equation exact when it is not.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count, the note that the section can be skipped, and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 1.8.101–1.8.103 carry the book’s own answers. The inline exercise 1.8.1 and exercises 1.8.2–1.8.7, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every potential differentiated back and every integrating factor tested with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-exact",
+   "kind": "sim",
+   "number": "1.18",
+   "originals": [
+    "/media/ch01/circlesfig.svg"
+   ],
+   "original_caption": "Solutions to F(x, y) = x² + y² = C for various C.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "derivative",
+    "vector-field",
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-vortex",
+   "kind": "sim",
+   "number": "1.19",
+   "originals": [
+    "/media/ch01/exact-y2x.svg"
+   ],
+   "original_caption": "Solution to −y/(x² + y²) dx + x/(x² + y²) dy = 0, y(1) = 2, with initial point marked.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "vector-field",
+    "curve",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {"span": "potential", "concept": "potential-function", "verb": "introduces"},
+  {"span": "equipotential", "concept": "equipotential-curve", "verb": "introduces"},
+  {"span": "total-derivative", "concept": "total-derivative", "verb": "introduces"},
+  {"span": "exact-definition", "concept": "exact-equation", "verb": "introduces"},
+  {"span": "vector-field", "concept": "vector-field", "verb": "introduces"},
+  {"span": "vector-field", "concept": "conservative-vector-field", "verb": "introduces"},
+  {"span": "procedure", "concept": "solving-an-exact-equation", "verb": "introduces"},
+  {"span": "exactness-test", "concept": "exactness-test", "verb": "introduces"},
+  {"span": "theorem-1-8-1", "concept": "poincare-lemma", "verb": "introduces"},
+  {"span": "factor-idea", "concept": "exact-integrating-factor", "verb": "introduces"},
+  {"span": "potential", "concept": "exact-equation", "verb": "uses"},
+  {"span": "sim-exact", "concept": "potential-function", "verb": "uses"},
+  {"span": "sim-exact", "concept": "equipotential-curve", "verb": "uses"},
+  {"span": "sim-exact", "concept": "exact-equation", "verb": "uses"},
+  {"span": "sim-exact", "concept": "vector-field", "verb": "uses"},
+  {"span": "sim-exact", "concept": "conservative-vector-field", "verb": "uses"},
+  {"span": "equipotential", "concept": "potential-function", "verb": "uses"},
+  {"span": "exact-form", "concept": "total-derivative", "verb": "uses"},
+  {"span": "exact-definition", "concept": "potential-function", "verb": "uses"},
+  {"span": "exact-definition", "concept": "total-derivative", "verb": "uses"},
+  {"span": "solve-for-y", "concept": "exact-equation", "verb": "uses"},
+  {"span": "vector-field", "concept": "exact-equation", "verb": "uses"},
+  {"span": "vector-field", "concept": "potential-function", "verb": "uses"},
+  {"span": "path-integral", "concept": "conservative-vector-field", "verb": "uses"},
+  {"span": "work", "concept": "conservative-vector-field", "verb": "uses"},
+  {"span": "work", "concept": "equipotential-curve", "verb": "uses"},
+  {"span": "exact-is-conservative", "concept": "exact-equation", "verb": "reinforces"},
+  {"span": "exact-is-conservative", "concept": "conservative-vector-field", "verb": "reinforces"},
+  {"span": "exact-is-conservative", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "exact-is-conservative", "concept": "potential-function", "verb": "uses"},
+  {"span": "why-solve", "concept": "potential-function", "verb": "uses"},
+  {"span": "find-potential", "concept": "potential-function", "verb": "uses"},
+  {"span": "find-potential", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "ex-1-8-1", "concept": "solving-an-exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-1", "concept": "exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-1", "concept": "potential-function", "verb": "uses"},
+  {"span": "ex-1-8-1", "concept": "general-solution", "verb": "uses"},
+  {"span": "procedure", "concept": "exact-equation", "verb": "uses"},
+  {"span": "procedure-reverse", "concept": "solving-an-exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-2", "concept": "solving-an-exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-2", "concept": "exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-2", "concept": "potential-function", "verb": "uses"},
+  {"span": "exactness-test", "concept": "potential-function", "verb": "uses"},
+  {"span": "drv-exactness-test", "concept": "exactness-test", "verb": "uses"},
+  {"span": "exactness-fail", "concept": "exactness-test", "verb": "uses"},
+  {"span": "exactness-fail", "concept": "exact-equation", "verb": "uses"},
+  {"span": "poincare-intro", "concept": "poincare-lemma", "verb": "uses"},
+  {"span": "poincare-intro", "concept": "exactness-test", "verb": "uses"},
+  {"span": "poincare-intro", "concept": "potential-function", "verb": "uses"},
+  {"span": "poincare-intro", "concept": "initial-value", "verb": "uses"},
+  {"span": "theorem-1-8-1", "concept": "exactness-test", "verb": "uses"},
+  {"span": "ex-1-8-3", "concept": "poincare-lemma", "verb": "uses"},
+  {"span": "ex-1-8-3", "concept": "exactness-test", "verb": "uses"},
+  {"span": "ex-1-8-3", "concept": "solving-an-exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-3", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "ex-1-8-4", "concept": "poincare-lemma", "verb": "reinforces"},
+  {"span": "ex-1-8-4", "concept": "conservative-vector-field", "verb": "uses"},
+  {"span": "ex-1-8-4", "concept": "vector-field", "verb": "uses"},
+  {"span": "ex-1-8-4", "concept": "potential-function", "verb": "uses"},
+  {"span": "ex-1-8-4", "concept": "exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-4", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "ex-1-8-4", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-1-8-4", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-vortex", "concept": "poincare-lemma", "verb": "uses"},
+  {"span": "sim-vortex", "concept": "vector-field", "verb": "uses"},
+  {"span": "sim-vortex", "concept": "potential-function", "verb": "uses"},
+  {"span": "sim-vortex", "concept": "initial-value", "verb": "uses"},
+  {"span": "no-holes", "concept": "exactness-test", "verb": "reinforces"},
+  {"span": "no-holes", "concept": "exact-equation", "verb": "uses"},
+  {"span": "no-holes", "concept": "potential-function", "verb": "uses"},
+  {"span": "ex-1-8-5", "concept": "solving-an-exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-5", "concept": "exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-5", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "ex-1-8-5", "concept": "initial-value", "verb": "uses"},
+  {"span": "factor-idea", "concept": "exact-equation", "verb": "uses"},
+  {"span": "factor-solutions", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "linear-as-exact", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "linear-factor", "concept": "integrating-factor", "verb": "uses"},
+  {"span": "linear-factor", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "linear-exact-check", "concept": "exactness-test", "verb": "uses"},
+  {"span": "linear-exact-check", "concept": "integrating-factor", "verb": "uses"},
+  {"span": "linear-exact-check", "concept": "exact-integrating-factor", "verb": "uses"},
+  {"span": "linear-exact-check", "concept": "exact-equation", "verb": "uses"},
+  {"span": "factor-condition", "concept": "exact-integrating-factor", "verb": "uses"},
+  {"span": "factor-condition", "concept": "exact-equation", "verb": "uses"},
+  {"span": "drv-exact-factor-condition", "concept": "exact-integrating-factor", "verb": "uses"},
+  {"span": "drv-exact-factor-condition", "concept": "exactness-test", "verb": "uses"},
+  {"span": "factor-strategy", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "drv-exact-factor", "concept": "exact-integrating-factor", "verb": "uses"},
+  {"span": "drv-exact-factor", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "factor-x", "concept": "exact-integrating-factor", "verb": "uses"},
+  {"span": "factor-x", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "factor-y", "concept": "exact-integrating-factor", "verb": "uses"},
+  {"span": "factor-y", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "ex-1-8-6", "concept": "exact-integrating-factor", "verb": "uses"},
+  {"span": "ex-1-8-6", "concept": "exactness-test", "verb": "uses"},
+  {"span": "ex-1-8-6", "concept": "exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-6", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "ex-1-8-7", "concept": "exact-integrating-factor", "verb": "uses"},
+  {"span": "ex-1-8-7", "concept": "exactness-test", "verb": "uses"},
+  {"span": "ex-1-8-7", "concept": "solving-an-exact-equation", "verb": "uses"},
+  {"span": "ex-1-8-7", "concept": "implicit-solution", "verb": "uses"},
+  {"span": "ex-1-8-7", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-1-8-7", "concept": "solution-to-a-differential-equation", "verb": "uses"}
+ ],
+ "derivations": [
+  {
+   "id": "exactness-test",
+   "what": "the test for exactness",
+   "source": "Notes on Diffy Qs, 1.8 Exact equations, Solving exact equations",
+   "nodes": [
+    {
+     "assumes": [
+      {"tex": "\\kM = \\kFx"},
+      {"tex": "\\kN = \\kFy"},
+      {"text": "As long as the second derivatives are continuous, the two mixed partial derivatives of $\\kF$ are equal: $\\frac{\\partial^2 \\kF}{\\partial y \\partial x} = \\frac{\\partial^2 \\kF}{\\partial x \\partial y}$."}
+     ],
+     "then": {"tex": "\\mk{My}{\\frac{\\partial \\kM}{\\partial y}} = \\mk{Fyx}{\\frac{\\partial^2 \\kF}{\\partial y \\partial x}}", "uses": [0]},
+     "steps": [
+      {"tex": "\\mk{My}{\\frac{\\partial \\kM}{\\partial y}} = \\mk{Fxy}{\\frac{\\partial^2 \\kF}{\\partial x \\partial y}}", "uses": [2], "cap": "The order of the two differentiations does not matter when the second derivatives are continuous.", "map": {"Fyx": "Fxy"}},
+      {"tex": "\\mk{My}{\\frac{\\partial \\kM}{\\partial y}} = \\mk{Nx}{\\frac{\\partial \\kN}{\\partial x}}", "uses": [1], "map": {"Fxy": "Nx"}}
+     ],
+     "src": "1.8"
+    }
+   ]
+  },
+  {
+   "id": "exact-factor-condition",
+   "what": "the condition on an integrating factor",
+   "source": "Notes on Diffy Qs, 1.8 Exact equations, Integrating factors",
+   "nodes": [
+    {
+     "assumes": [
+      {"text": "An equation $\\kM\\,dx + \\kN\\,dy = 0$ is exact only if $\\frac{\\partial \\kM}{\\partial y} = \\frac{\\partial \\kN}{\\partial x}$; here the equation is $\\ku\\kM\\,dx + \\ku\\kN\\,dy = 0$."}
+     ],
+     "then": {"tex": "\\mk{L}{\\frac{\\partial}{\\partial y} \\bigl[ \\ku \\kM \\bigr]} = \\mk{R}{\\frac{\\partial}{\\partial x} \\bigl[ \\ku \\kN \\bigr]}", "uses": [0]},
+     "steps": [
+      {"tex": "\\mk{a}{\\kuy \\kM} + \\mk{b}{\\ku \\kMy} = \\mk{c}{\\kux \\kN} + \\mk{d}{\\ku \\kNx}", "uses": [], "cap": "The product rule, in $y$ on the left and in $x$ on the right.", "map": {"L": ["a", "b"], "R": ["c", "d"]}},
+      {"tex": "\\mk{b}{(\\kMy-\\kNx)\\ku} = \\mk{c}{\\kux \\kN} - \\mk{a}{\\kuy \\kM}", "uses": [], "map": {"d": "b"}}
+     ],
+     "src": "1.8"
+    }
+   ]
+  },
+  {
+   "id": "exact-factor",
+   "what": "the integrating factors u(x) and u(y)",
+   "source": "Notes on Diffy Qs, 1.8 Exact equations, Integrating factors",
+   "nodes": [
+    {
+     "assumes": [
+      {"tex": "(\\kMy-\\kNx)\\ku = \\kux \\kN - \\kuy \\kM"},
+      {"text": "If $\\ku$ is a function of $x$ alone, that is, $\\ku(x)$, then we write $\\ku'(x)$ instead of $\\kux$, and $\\kuy$ is just zero."}
+     ],
+     "then": {"tex": "\\mk{b}{(\\kMy-\\kNx)\\ku} = \\mk{c}{\\kux \\kN} - \\mk{a}{\\kuy \\kM}", "uses": [0]},
+     "steps": [
+      {"tex": "\\mk{b}{(\\kMy-\\kNx)\\ku} = \\mk{c}{\\ku' \\kN}", "uses": [1]},
+      {"tex": "\\mk{b}{\\frac{\\kMy-\\kNx}{\\kN}\\,\\ku} = \\mk{c}{\\ku'}", "uses": []},
+      {"tex": "\\mk{c}{\\ku'} - \\mk{b}{\\frac{\\kMy-\\kNx}{\\kN}\\,\\ku} = 0", "uses": []}
+     ],
+     "src": "1.8"
+    },
+    {
+     "assumes": [
+      {"step": 0},
+      {"text": "In particular, $\\frac{\\kMy-\\kNx}{\\kN}$ ought to be a function of $x$ alone (not depend on $y$); let $\\kP(x) = \\frac{\\kMy-\\kNx}{\\kN}$."},
+      {"tex": "\\ky = e^{-\\int \\kp(x) \\,dx} \\left( \\int e^{\\int \\kp(x) \\,dx} \\kf(x) \\,dx + C \\right)", "src": "1.4, (1.4)"},
+      {"text": "The constant in the solution is not relevant, we need any nonzero solution, so we take $C=1$."}
+     ],
+     "then": {"tex": "\\mk{c}{\\ku'} - \\mk{b}{\\frac{\\kMy-\\kNx}{\\kN}\\,\\ku} = 0", "uses": [0]},
+     "steps": [
+      {"tex": "\\mk{c}{\\ku'} - \\mk{b}{\\kP(x)\\,\\ku} = 0", "uses": [1]},
+      {"tex": "\\mk{u}{\\ku(x)} = \\mk{s}{C e^{\\int \\kP(x) \\, dx}}", "uses": [2], "cap": "A linear equation $\\ku' + p(x)\\ku = f(x)$ with $p(x) = -\\kP(x)$ and $f(x) = 0$: its integrating factor is $e^{-\\int \\kP(x)\\,dx}$, and the integral in the solution is just the constant.", "map": {"c": "u", "b": "s"}},
+      {"tex": "\\mk{u}{\\ku(x)} = \\mk{s}{e^{\\int \\kP(x) \\, dx}}", "uses": [3]}
+     ],
+     "src": "1.8"
+    },
+    {
+     "assumes": [
+      {"tex": "(\\kMy-\\kNx)\\ku = \\kux \\kN - \\kuy \\kM"},
+      {"text": "Similarly, we could try a function of the form $\\ku(y)$: then $\\kux$ is just zero, and we write $\\ku'(y)$ instead of $\\kuy$."}
+     ],
+     "then": {"tex": "\\mk{b}{(\\kMy-\\kNx)\\ku} = \\mk{c}{\\kux \\kN} - \\mk{a}{\\kuy \\kM}", "uses": [0]},
+     "steps": [
+      {"tex": "\\mk{b}{(\\kMy-\\kNx)\\ku} = - \\mk{a}{\\ku' \\kM}", "uses": [1]},
+      {"tex": "\\mk{b}{\\frac{\\kMy-\\kNx}{\\kM}\\,\\ku} = - \\mk{a}{\\ku'}", "uses": []},
+      {"tex": "\\mk{a}{\\ku'} + \\mk{b}{\\frac{\\kMy-\\kNx}{\\kM}\\,\\ku} = 0", "uses": []}
+     ],
+     "src": "1.8"
+    },
+    {
+     "assumes": [
+      {"step": 2},
+      {"text": "In particular, $\\frac{\\kMy-\\kNx}{\\kM}$ ought to be a function of $y$ alone; let $\\kQ(y) = \\frac{\\kMy-\\kNx}{\\kM}$."},
+      {"tex": "\\ky = e^{-\\int \\kp(x) \\,dx} \\left( \\int e^{\\int \\kp(x) \\,dx} \\kf(x) \\,dx + C \\right)", "src": "1.4, (1.4)"},
+      {"text": "We take $C=1$."}
+     ],
+     "then": {"tex": "\\mk{a}{\\ku'} + \\mk{b}{\\frac{\\kMy-\\kNx}{\\kM}\\,\\ku} = 0", "uses": [0]},
+     "steps": [
+      {"tex": "\\mk{a}{\\ku'} + \\mk{b}{\\kQ(y)\\,\\ku} = 0", "uses": [1]},
+      {"tex": "\\mk{u}{\\ku(y)} = \\mk{s}{C e^{-\\int \\kQ(y) \\, dy}}", "uses": [2], "cap": "A linear equation in $y$, $\\ku' + p(y)\\ku = f(y)$ with $p(y) = \\kQ(y)$ and $f(y) = 0$: its integrating factor is $e^{\\int \\kQ(y)\\,dy}$, and the integral in the solution is just the constant.", "map": {"a": "u", "b": "s"}},
+      {"tex": "\\mk{u}{\\ku(y)} = \\mk{s}{e^{-\\int \\kQ(y) \\, dy}}", "uses": [3]}
+     ],
+     "src": "1.8"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "1.8.1",
+   "source_number": "1.8.1",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {"at": "inline", "after": "ex-1-8-1"},
+   "cite": "ex-1-8-1",
+   "prompt": "<p>Why did we not need to add a constant of integration when integrating $A'(y) = 2y$? Add a constant of integration, say $3$, and see what $\\kF$ you get. What is the difference from what we got above, and why does it not matter?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $A(y) = y^2 + 3$ we get $\\kF(x,y) = x^2 + y^2 + 3$. Check: $\\kFx = 2x = \\kM$ and $\\kFy = 2y = \\kN$ still, so this $\\kF$ is also a potential function. The difference from $x^2 + y^2$ is the constant $3$, and it does not matter: the equation only involves the derivatives of $\\kF$, which do not see a constant, and the implicit solution $x^2 + y^2 + 3 = C$ is the same family of circles as $x^2 + y^2 = C$, with the constant simply renamed ($C - 3$ in place of $C$). Any constant of integration can be absorbed into $C$, so none is needed."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "1.8.2",
+   "source_number": "1.8.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "procedure",
+   "prompt": "<p>Solve the following exact equations, implicit general solutions will suffice:</p><ol type=\"a\"><li>$(2 xy + x^2) \\, dx + (x^2+y^2+1) \\, dy = 0$</li><li>$x^5 + y^5 \\kdydx = 0$</li><li>$e^x+y^3 + 3xy^2 \\kdydx = 0$</li><li>$(x+y)\\cos(x)+\\sin(x) + \\sin(x)\\kyprime = 0$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $x^2 y + \\frac{x^3}{3} + \\frac{y^3}{3} + y = C$: $\\kM = 2xy + x^2$, $\\kN = x^2 + y^2 + 1$, $\\kMy = 2x = \\kNx$. Integrating $\\kM$ in $x$, $\\kF = x^2 y + \\frac{x^3}{3} + A(y)$; then $\\kFy = x^2 + A'(y) = \\kN$ gives $A'(y) = y^2 + 1$, so $A(y) = \\frac{y^3}{3} + y$. b) $\\frac{x^6}{6} + \\frac{y^6}{6} = C$ (or $x^6 + y^6 = C$): $\\kM = x^5$, $\\kN = y^5$, $\\kMy = 0 = \\kNx$; $\\kF = \\frac{x^6}{6} + A(y)$ and $A'(y) = y^5$. c) $e^x + xy^3 = C$: $\\kM = e^x + y^3$, $\\kN = 3xy^2$, $\\kMy = 3y^2 = \\kNx$; $\\kF = e^x + xy^3 + A(y)$ and $\\kFy = 3xy^2 + A'(y) = 3xy^2$, so $A$ is constant. d) $(x+y)\\sin(x) = C$: $\\kM = (x+y)\\cos(x) + \\sin(x)$, $\\kN = \\sin(x)$, $\\kMy = \\cos(x) = \\kNx$. Integrating $\\kM$ in $x$ (by parts, $\\int x\\cos x\\,dx = x\\sin x + \\cos x$), $\\kF = x\\sin(x) + \\cos(x) + y\\sin(x) - \\cos(x) + A(y) = (x+y)\\sin(x) + A(y)$; then $\\kFy = \\sin(x) + A'(y) = \\sin(x)$, so $A$ is constant."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "1.8.3",
+   "source_number": "1.8.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "factor-x",
+   "prompt": "<p>Find the integrating factors for the following equations making them into exact equations:</p><ol type=\"a\"><li>$e^{xy} \\, dx + \\frac{y}{x} e^{xy} \\, dy = 0$</li><li>$\\frac{e^x+y^3}{y^2} \\, dx + 3x \\, dy = 0$</li><li>$4(y^2+x) \\, dx + \\frac{2x+2y^2}{y} \\, dy = 0$</li><li>$2\\sin(y) \\, dx + x\\cos(y)\\, dy = 0$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\ku = x e^{-xy}$. Here $\\kM = e^{xy}$, $\\kN = \\frac{y}{x}e^{xy}$, and neither $\\frac{\\kMy-\\kNx}{\\kN} = \\frac{x^2}{y} - y + \\frac{1}{x}$ nor $\\frac{\\kMy-\\kNx}{\\kM}$ is a function of one variable, so no $\\ku(x)$ or $\\ku(y)$ works. But every term carries the factor $e^{xy}$, and dividing by it and multiplying by $x$ gives $x\\,dx + y\\,dy = 0$, which is exact ($\\kMy = 0 = \\kNx$), with potential $\\frac{x^2}{2} + \\frac{y^2}{2}$. b) $\\ku = y^2$: $\\kM = \\frac{e^x}{y^2} + y$, $\\kN = 3x$, $\\kMy - \\kNx = -\\frac{2e^x}{y^3} - 2 = -\\frac{2}{y}\\kM$, so $\\kQ(y) = \\frac{\\kMy-\\kNx}{\\kM} = -\\frac{2}{y}$ and $\\ku(y) = e^{-\\int \\kQ(y)\\,dy} = e^{2\\ln y} = y^2$. The equation becomes $(e^x + y^3)\\,dx + 3xy^2\\,dy = 0$, exercise 1.8.2 c). c) $\\ku = \\frac{1}{x + y^2}$. Here $\\kMy - \\kNx = 8y - \\frac{2}{y}$, and dividing it by $\\kN$ or by $\\kM$ leaves both variables, so again no factor of one variable works; but both $\\kM = 4(x+y^2)$ and $\\kN = \\frac{2}{y}(x+y^2)$ carry the factor $x + y^2$, and dividing by it gives $4\\,dx + \\frac{2}{y}\\,dy = 0$, which is exact with potential $4x + 2\\ln\\lvert y \\rvert$. d) $\\ku = x$: $\\kM = 2\\sin(y)$, $\\kN = x\\cos(y)$, $\\kMy - \\kNx = 2\\cos(y) - \\cos(y) = \\cos(y)$, so $\\kP(x) = \\frac{\\kMy-\\kNx}{\\kN} = \\frac{1}{x}$ and $\\ku(x) = e^{\\int \\frac{1}{x}\\,dx} = x$. The equation becomes $2x\\sin(y)\\,dx + x^2\\cos(y)\\,dy = 0$, with potential $x^2\\sin(y)$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "1.8.4",
+   "source_number": "1.8.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "exactness-test",
+   "prompt": "<p>Suppose you have an equation of the form: $\\kf(x) + \\kg(y) \\kdydx = 0$.</p><ol type=\"a\"><li>Show it is exact.</li><li>Find the form of the potential function in terms of $\\kf$ and $\\kg$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Here $\\kM = \\kf(x)$ and $\\kN = \\kg(y)$. Since $\\kM$ does not depend on $y$ and $\\kN$ does not depend on $x$, $\\kMy = 0 = \\kNx$, and the equation is exact (on the whole plane, which has no holes). b) Integrating $\\kFx = \\kf(x)$ in $x$ gives $\\kF(x,y) = \\int \\kf(x)\\,dx + A(y)$; then $\\kFy = A'(y) = \\kg(y)$, so $A(y) = \\int \\kg(y)\\,dy$ and $\\kF(x,y) = \\int \\kf(x)\\,dx + \\int \\kg(y)\\,dy$. The implicit solution $\\int \\kf(x)\\,dx + \\int \\kg(y)\\,dy = C$ is what separating the variables gives."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "1.8.5",
+   "source_number": "1.8.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "exactness-test",
+   "prompt": "<p>Suppose that we have the equation $\\kf(x) \\, dx - dy = 0$.</p><ol type=\"a\"><li>Is this equation exact?</li><li>Find the general solution using a definite integral.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Yes. With $\\kM = \\kf(x)$ and $\\kN = -1$, $\\kMy = 0 = \\kNx$, so the equation is exact on the whole plane. b) Take $\\kF(x,y) = \\int_{x_0}^x \\kf(t)\\,dt - y$: then $\\kFx = \\kf(x)$ by the fundamental theorem of calculus and $\\kFy = -1$. The implicit solution $\\kF(x,y) = C$ gives the general solution $y = \\int_{x_0}^x \\kf(t)\\,dt + C$ (with $C$ renamed), which is the integral solution of 1.1 for $\\kdydx = \\kf(x)$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "1.8.6",
+   "source_number": "1.8.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "procedure-reverse",
+   "prompt": "<p>Find the potential function $\\kF(x,y)$ of the exact equation $\\frac{1+xy}{x}\\, dx + \\left(\\frac{1}{y} + x \\right) \\, dy = 0$ in two different ways.</p><ol type=\"a\"><li>Integrate $\\kM$ in terms of $x$ and then differentiate in $y$ and set to $\\kN$.</li><li>Integrate $\\kN$ in terms of $y$ and then differentiate in $x$ and set to $\\kM$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both ways give $\\kF(x,y) = \\ln\\lvert x \\rvert + xy + \\ln\\lvert y \\rvert$. Here $\\kM = \\frac{1}{x} + y$ and $\\kN = \\frac{1}{y} + x$, with $\\kMy = 1 = \\kNx$. a) Integrating $\\kM$ in $x$: $\\kF = \\ln\\lvert x \\rvert + xy + A(y)$; then $\\kFy = x + A'(y) = \\frac{1}{y} + x$, so $A'(y) = \\frac{1}{y}$ and $A(y) = \\ln\\lvert y \\rvert$. b) Integrating $\\kN$ in $y$: $\\kF = \\ln\\lvert y \\rvert + xy + B(x)$; then $\\kFx = y + B'(x) = \\frac{1}{x} + y$, so $B'(x) = \\frac{1}{x}$ and $B(x) = \\ln\\lvert x \\rvert$. The implicit solution is $\\ln\\lvert x \\rvert + xy + \\ln\\lvert y \\rvert = C$, or $\\ln\\lvert xy \\rvert + xy = C$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "1.8.7",
+   "source_number": "1.8.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "exactness-test",
+   "prompt": "<p>A function $u(x,y)$ is said to be a <em>harmonic function</em> if $u_{xx} + u_{yy} = 0$.</p><ol type=\"a\"><li>Show that if $u$ is harmonic, $-u_y \\, dx + u_x \\, dy = 0$ is an exact equation. So there exists (at least locally) the so-called <em>harmonic conjugate</em> function $v(x,y)$ such that $v_x = -u_y$ and $v_y = u_x$.</li></ol><p>Verify that the following $u$ are harmonic and find the corresponding harmonic conjugates $v$:</p><ol type=\"a\" start=\"2\"><li>$u = 2xy$</li><li>$u = e^x \\cos y$</li><li>$u = x^3-3xy^2$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Here $\\kM = -u_y$ and $\\kN = u_x$, so $\\kMy = -u_{yy}$ and $\\kNx = u_{xx}$. These are equal exactly when $u_{xx} + u_{yy} = 0$, that is, when $u$ is harmonic, and then by the Poincaré Lemma a potential $v$ with $v_x = \\kM = -u_y$ and $v_y = \\kN = u_x$ exists near any point. b) $v = y^2 - x^2$ (plus any constant): $u = 2xy$ has $u_{xx} = 0$ and $u_{yy} = 0$. We need $v_x = -u_y = -2x$, so $v = -x^2 + A(y)$, and $v_y = A'(y) = u_x = 2y$, so $A(y) = y^2$. c) $v = e^x \\sin y$: $u_{xx} = e^x\\cos y$ and $u_{yy} = -e^x \\cos y$, which add to $0$. We need $v_x = -u_y = e^x \\sin y$, so $v = e^x \\sin y + A(y)$, and $v_y = e^x\\cos y + A'(y) = u_x = e^x \\cos y$, so $A$ is constant. d) $v = 3x^2 y - y^3$: $u_{xx} = 6x$ and $u_{yy} = -6x$. We need $v_x = -u_y = 6xy$, so $v = 3x^2 y + A(y)$, and $v_y = 3x^2 + A'(y) = u_x = 3x^2 - 3y^2$, so $A(y) = -y^3$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "1.8.101",
+   "source_number": "1.8.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "procedure",
+   "prompt": "<p>Solve the following exact equations, implicit general solutions will suffice:</p><ol type=\"a\"><li>$\\cos(x)+ye^{xy} + xe^{xy} \\kyprime = 0$</li><li>$(2x+y)\\, dx + (x-4y) \\, dy = 0$</li><li>$e^x + e^y \\kdydx = 0$</li><li>$(3x^2+3y)\\,dx + (3y^2+3x)\\, dy = 0$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $e^{xy}+\\sin(x)=C$ b) $x^2+xy-2y^2=C$ c) $e^x+e^y=C$ d) $x^3 + 3xy+ y^3 = C$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "1.8.102",
+   "source_number": "1.8.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "factor-x",
+   "prompt": "<p>Find the integrating factor for the following equations making them into exact equations:</p><ol type=\"a\"><li>$\\frac{1}{y}\\, dx + 3y \\, dy = 0$</li><li>$dx - e^{-x-y} \\, dy = 0$</li><li>$\\left( \\frac{\\cos(x)}{y^2} + \\frac{1}{y} \\right) \\, dx + \\frac{x}{y^2} \\, dy = 0$</li><li>$\\left( 2y + \\frac{y^2}{x} \\right) \\, dx + ( 2y+x )\\, dy = 0$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) Integrating factor is $y$, equation becomes $dx + 3y^2\\,dy = 0$. b) Integrating factor is $e^x$, equation becomes $e^x \\, dx - e^{-y}\\,dy = 0$. c) Integrating factor is $y^2$, equation becomes $(\\cos(x)+y)\\, dx + x\\,dy = 0$. d) Integrating factor is $x$, equation becomes $( 2xy+y^2 )\\, dx + (x^2+2xy)\\,dy = 0$."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "1.8.103",
+   "source_number": "1.8.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "exactness-test",
+   "prompt": "<ol type=\"a\"><li>Show that every separable equation $\\kyprime = \\kf(x)\\kg(y)$ can be written as an exact equation, and verify that it is indeed exact.</li><li>Rewrite $\\kyprime = xy$ as an exact equation, solve it, and verify that the solution is the same as it was in <a href=\"/diffyqs/ch01/1.3/#1.3-ex-1-3-1\">Example 1.3.1</a>.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) The equation is $- \\kf(x) \\, dx + \\frac{1}{\\kg(y)} \\, dy = 0$, and this is exact because $\\kM = -\\kf(x)$, $\\kN = \\frac{1}{\\kg(y)}$, so $\\kMy = 0 = \\kNx$. b) $-x \\, dx + \\frac{1}{y} \\, dy = 0$, leads to potential function $\\kF(x,y) = -\\frac{x^2}{2} + \\ln \\lvert y \\rvert$, solving $\\kF(x,y) = C$ leads to the same solution as the example."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "solving-an-exact-equation"},
+  {"exercise": "e1", "concept": "potential-function"},
+  {"exercise": "e2", "concept": "solving-an-exact-equation"},
+  {"exercise": "e2", "concept": "exact-equation"},
+  {"exercise": "e3", "concept": "exact-integrating-factor"},
+  {"exercise": "e3", "concept": "exactness-test"},
+  {"exercise": "e4", "concept": "exactness-test"},
+  {"exercise": "e4", "concept": "potential-function"},
+  {"exercise": "e5", "concept": "exactness-test"},
+  {"exercise": "e5", "concept": "solving-an-exact-equation"},
+  {"exercise": "e6", "concept": "solving-an-exact-equation"},
+  {"exercise": "e6", "concept": "potential-function"},
+  {"exercise": "e7", "concept": "exactness-test"},
+  {"exercise": "e7", "concept": "solving-an-exact-equation"},
+  {"exercise": "e7", "concept": "poincare-lemma"},
+  {"exercise": "e101", "concept": "solving-an-exact-equation"},
+  {"exercise": "e101", "concept": "exact-equation"},
+  {"exercise": "e102", "concept": "exact-integrating-factor"},
+  {"exercise": "e103", "concept": "exact-equation"},
+  {"exercise": "e103", "concept": "exactness-test"},
+  {"exercise": "e103", "concept": "separable-differential-equation"}
+ ],
+ "footnotes": [
+  {
+   "id": "fn-equipotential",
+   "kind": "book",
+   "html": "Accordingly, these curves are sometimes called <em><span data-concept=\"equipotential-curve\">equipotential curves</span></em>.",
+   "number": "7"
+  },
+  {
+   "id": "fn-poincare",
+   "kind": "book",
+   "html": "Named for the French polymath <a href=\"https://en.wikipedia.org/wiki/Henri_Poincar%C3%A9\">Jules Henri Poincaré</a> (1854–1912).",
+   "number": "8"
+  }
+ ]
+}

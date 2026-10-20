@@ -1,6 +1,6 @@
 # Chapter 2 config: Higher-order linear ODEs
 
-Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing defaults for the whole book); only the chapter-specific lines below differ.
+Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing defaults for the whole book); only the chapter-specific lines below differ. Built 2026-10-19: sections 2.1–2.6 and the chapter pass (anchors, footnote numbers, two ỹ_p derivative symbols, the C′(ω) colour line).
 
 1. Start: `ch02/2.1`, then 2.2–2.6 in order; Chapter 0's 0.2 is the template section once built, Calculus `ch08/8.1`, `8.2` and `ch17/17.1`–`17.3` before then.
 2. Loop: build straight through with no stops; plans and decisions are reported afterwards. The whole book is built.
@@ -22,3 +22,5 @@ Status: agreed by carry-over 2026-10-19 from `ch00/config.md` (Chen's standing d
 18. Types: the fifteen of `book.json`; Chapter 2 uses function, derivative, point, eigenvalue, frequency. No new type.
 19. Recolour: `colours:default -- diffyqs` is run by the orchestrator at the end of the run, not in the chapter pass.
 20. Derivations (root rule 29): the printed proof of Theorem 2.1.1 and the equation blocks the book works step by step are judged in each plan with their scores.
+21. Footnotes (chapter pass, 2026-10-19, after `ch01/config.md` line 21): a book footnote's `number` is the book's running number. Chapter 1 ends at 9; Chapter 2's four are 2.2 ansatz 10, 2.3 fn-monic 11, 2.4 fn-pseudo-frequency 12, 2.6 fn-tacoma 13 (`ch-higher-order-ode.tex` has four `\footnote`). Chapter 3 continues from 14.
+22. ỹ_p′ and ỹ_p″ (2.5) are rows of their own (`y_p_tilde_prime`, `y_p_tilde_dprime`, `derivative`), like y_p′ and y_p″; C′(ω) of 2.6 stays ink (COLOR.md).

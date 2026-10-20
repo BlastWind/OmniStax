@@ -1,0 +1,909 @@
+{
+ "id": "6.4",
+ "module": "diracdelta:section",
+ "chapter": "6",
+ "title": "Dirac delta and impulse response",
+ "short": "Dirac delta and impulse response",
+ "lead": "A system is often studied by giving it a short, sharp pulse and watching what it does. This section narrows a <span data-concept=\"rectangular-pulse\">rectangular pulse</span> toward the <span data-concept=\"dirac-delta-function\">Dirac delta function</span>, an object that only makes sense under an integral, uses it to define the <span data-concept=\"impulse-response\">impulse response</span> of a linear equation, and puts it to work as a point load on a beam.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 6.4.101–6.4.105 carry the book’s own answers, each confirmed by computation. Exercises 6.4.1–6.4.8, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-pulse",
+   "kind": "sim",
+   "number": "6.3",
+   "originals": [
+    "/media/ch06/lt-sqpulse.svg"
+   ],
+   "original_caption": "Sample rectangular pulse with a=0.5, b=1, and M = 2.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "integral",
+    "transform"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-impulse-response",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-beam",
+   "kind": "sim",
+   "number": "6.4",
+   "originals": [
+    "/media/ch06/beam-bending.svg"
+   ],
+   "original_caption": "Three-point bending.",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "input",
+   "label": "the input",
+   "figures": [
+    "sim-impulse-response"
+   ]
+  },
+  {
+   "id": "impulse",
+   "label": "the impulse response",
+   "figures": [
+    "sim-impulse-response"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "impulse-response-intro",
+   "concept": "impulse-response",
+   "verb": "introduces"
+  },
+  {
+   "span": "impulse-response-intro",
+   "concept": "rectangular-pulse",
+   "verb": "introduces"
+  },
+  {
+   "span": "sim-pulse",
+   "concept": "rectangular-pulse",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pulse",
+   "concept": "delta-as-a-limit-of-pulses",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pulse",
+   "concept": "transform-of-the-delta-function",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-pulse",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "pulse-steps",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "pulse-steps",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "pulse-steps",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "unit-mass",
+   "concept": "rectangular-pulse",
+   "verb": "reinforces"
+  },
+  {
+   "span": "toward-delta",
+   "concept": "dirac-delta-function",
+   "verb": "uses"
+  },
+  {
+   "span": "toward-delta",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "delta",
+   "concept": "dirac-delta-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "delta",
+   "concept": "generalized-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "delta-interval",
+   "concept": "dirac-delta-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "limit-of-pulses",
+   "concept": "delta-as-a-limit-of-pulses",
+   "verb": "introduces"
+  },
+  {
+   "span": "limit-of-pulses",
+   "concept": "rectangular-pulse",
+   "verb": "uses"
+  },
+  {
+   "span": "limit-of-pulses",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "shifted-delta",
+   "concept": "dirac-delta-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "delta-convolution",
+   "concept": "convolution-with-the-delta-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "delta-convolution",
+   "concept": "convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "delta-transform",
+   "concept": "transform-of-the-delta-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "delta-transform",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "remark-6-4-1",
+   "concept": "derivative-of-the-heaviside-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "remark-6-4-1",
+   "concept": "unit-step-function",
+   "verb": "uses"
+  },
+  {
+   "span": "remark-6-4-1",
+   "concept": "transform-of-a-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "remark-6-4-1",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-1",
+   "concept": "inverting-improper-rational-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-6-4-1",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-1",
+   "concept": "proper-rational-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-1",
+   "concept": "transform-of-the-delta-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-1",
+   "concept": "generalized-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "impulse-response-def",
+   "concept": "impulse-response",
+   "verb": "reinforces"
+  },
+  {
+   "span": "impulse-response-def",
+   "concept": "input-and-output",
+   "verb": "uses"
+  },
+  {
+   "span": "impulse-response-def",
+   "concept": "linear-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "impulse-response-def",
+   "concept": "differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "impulse-response-def",
+   "concept": "dirac-delta-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-2",
+   "concept": "finding-the-impulse-response",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-6-4-2",
+   "concept": "solving-odes-with-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-2",
+   "concept": "transform-of-a-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-2",
+   "concept": "transform-of-the-delta-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-2",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-2",
+   "concept": "natural-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "remark-6-4-2",
+   "concept": "derivative-of-the-heaviside-function",
+   "verb": "uses"
+  },
+  {
+   "span": "arbitrary-input",
+   "concept": "convolution-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lets-see-why",
+   "concept": "convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "lets-see-why",
+   "concept": "impulse-response",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-impulse-response",
+   "concept": "derivative-of-a-convolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-impulse-response",
+   "concept": "properties-of-convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-impulse-response",
+   "concept": "convolution-with-the-delta-function",
+   "verb": "uses"
+  },
+  {
+   "span": "any-input",
+   "concept": "impulse-response",
+   "verb": "reinforces"
+  },
+  {
+   "span": "any-input",
+   "concept": "convolution-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "any-input",
+   "concept": "transfer-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "any-input",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "any-input",
+   "concept": "constant-coefficient-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "any-input",
+   "concept": "input-and-output",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-impulse-response",
+   "concept": "convolution-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-impulse-response",
+   "concept": "impulse-response",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-impulse-response",
+   "concept": "natural-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-impulse-response",
+   "concept": "resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "euler-bernoulli",
+   "concept": "euler-bernoulli-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "euler-bernoulli",
+   "concept": "hinged-end-of-a-beam",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam",
+   "concept": "three-point-bending",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam",
+   "concept": "euler-bernoulli-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "point-load",
+   "concept": "three-point-bending",
+   "verb": "introduces"
+  },
+  {
+   "span": "endpoint-conditions",
+   "concept": "hinged-end-of-a-beam",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-3",
+   "concept": "three-point-bending",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-4-3",
+   "concept": "second-shifting-property",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-4-3",
+   "concept": "transform-of-a-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-4-3",
+   "concept": "solving-odes-with-the-laplace-transform",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "impulse-response",
+   "what": "the response to any input as a convolution with the impulse response",
+   "source": "Differential Equations for Engineers, 6.4 Dirac delta and impulse response",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "(\\kf * \\kh)(t) = \\int_0^t \\kf(\\tau)\\kh(t-\\tau)\\,d\\tau",
+       "src": "(6.2)"
+      },
+      {
+       "text": "The functions $\\kf(t)$ and $\\kh(t)$ are zero for negative $t$, and we differentiate twice under the integral, pretending $\\kh$ is twice differentiable.",
+       "src": "6.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{lhs}{(\\kf * \\kh)''(t)} = \\mk{d}{\\frac{d^2}{dt^2}}\\mk{int}{\\left[ \\int_0^t \\kf(\\tau) \\kh(t-\\tau) \\, d\\tau \\right]}",
+      "uses": [
+       0
+      ],
+      "src": "6.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{lhs}{(\\kf * \\kh)''(t)} = \\mk{int}{\\int_0^t \\kf(\\tau) {\\kh}''(t-\\tau) \\, d\\tau}",
+       "uses": [
+        1
+       ],
+       "cap": "By the Leibniz rule each derivative falls on $\\kh(t-\\tau)$, the only factor that depends on $t$, plus a term from the moving limit $t$ carrying $\\kh(0)$ or ${\\kh}'(0)$; a twice differentiable $\\kh$ that is zero for $t < 0$ has both equal to zero."
+      },
+      {
+       "tex": "\\mk{lhs}{(\\kf * \\kh)''(t)} = \\mk{int}{(\\kf * {\\kh}'')(t)}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "6.4"
+    },
+    {
+     "assumes": [
+      {
+       "text": "Convolution distributes over sums and lets constants out: $f * (g_1 + g_2) = f * g_1 + f * g_2$ and $f * (c\\,g) = c\\,(f * g)$.",
+       "src": "6.3, The convolution"
+      },
+      {
+       "step": 0
+      },
+      {
+       "tex": "(\\kf * \\kdelta)(t) = \\kf(t)",
+       "src": "6.4, The delta function"
+      },
+      {
+       "text": "Write $\\kx(t) = (\\kf * \\kh)(t)$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{h2}{{\\kh}''} + \\mk{w}{\\komegazero^2 \\kh} = \\mk{d}{\\kdelta(t)}",
+      "uses": [],
+      "src": "(6.3)",
+      "why": "Suppose that $\\kh(t)$ is the impulse response, the solution of (6.3)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kf *} \\bigl(\\mk{h2}{{\\kh}''} + \\mk{w}{\\komegazero^2 \\kh}\\bigr) = \\mk{d}{(\\kf * \\kdelta)(t)}",
+       "uses": [],
+       "cap": "Convolve the entire equation with $\\kf$: both sides are convolved with the same function, so they stay equal."
+      },
+      {
+       "tex": "\\mk{h2}{(\\kf * {\\kh}'')} + \\mk{w}{\\komegazero^2 (\\kf * \\kh)} = \\mk{d}{(\\kf * \\kdelta)(t)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{h2}{(\\kf * \\kh)''} + \\mk{w}{\\komegazero^2 (\\kf * \\kh)} = \\mk{d}{(\\kf * \\kdelta)(t)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{h2}{(\\kf * \\kh)''} + \\mk{w}{\\komegazero^2 (\\kf * \\kh)} = \\mk{d}{\\kf(t)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{h2}{\\kxdprime} + \\mk{w}{\\komegazero^2 \\kx} = \\mk{d}{\\kf(t)}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "6.4, Impulse response"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "6.4.1",
+   "source_number": "6.4.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-2",
+   "prompt": "<p>Solve (find the impulse response) $\\kxdprime + \\kxprime + \\kx = \\kdelta(t)$, $\\kx(0) = 0$, $\\kxprime(0)=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = \\frac{2}{\\sqrt{3}}\\, e^{-t/2} \\sin\\left(\\frac{\\sqrt{3}}{2} t\\right)$ for $t &gt; 0$. Transform with zero initial conditions and ${\\mathcal{L}}\\{\\kdelta(t)\\} = 1$: $(s^2 + s + 1)\\kX(s) = 1$, so $\\kX(s) = \\frac{1}{s^2 + s + 1} = \\frac{1}{(s + 1/2)^2 + 3/4}$. Since ${\\mathcal{L}}\\{\\sin(\\omega t)\\} = \\frac{\\omega}{s^2 + \\omega^2}$ with $\\omega = \\frac{\\sqrt{3}}{2}$, write $\\kX(s) = \\frac{2}{\\sqrt{3}} \\cdot \\frac{\\sqrt{3}/2}{(s+1/2)^2 + 3/4}$ and invert with the first shifting property."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "6.4.2",
+   "source_number": "6.4.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-2",
+   "prompt": "<p>Solve (find the impulse response) $\\kxdprime + 2 \\kxprime + \\kx = \\kdelta(t)$, $\\kx(0) = 0$, $\\kxprime(0)=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = t e^{-t}$ for $t &gt; 0$. Transform with zero initial conditions: $(s^2 + 2s + 1)\\kX(s) = 1$, so $\\kX(s) = \\frac{1}{(s+1)^2}$. As ${\\mathcal{L}}\\{t\\} = \\frac{1}{s^2}$, the first shifting property gives ${\\mathcal{L}}^{-1}\\left\\{\\frac{1}{(s+1)^2}\\right\\} = t e^{-t}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "6.4.3",
+   "source_number": "6.4.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-2",
+   "prompt": "<p>A pulse can come later and can be bigger. Solve $\\kxdprime + 4 \\kx = 4\\kdelta(t-1)$, $\\kx(0) = 0$, $\\kxprime(0)=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = 2 \\sin\\bigl(2(t-1)\\bigr)\\, \\ku(t-1)$. Transform using ${\\mathcal{L}}\\{\\kdelta(t-1)\\} = e^{-s}$: $(s^2 + 4)\\kX(s) = 4e^{-s}$, so $\\kX(s) = e^{-s} \\cdot \\frac{4}{s^2+4} = e^{-s}\\, {\\mathcal{L}}\\{2\\sin(2t)\\}$. The second shifting property gives $\\kx(t) = 2\\sin\\bigl(2(t-1)\\bigr)\\ku(t-1)$: the mass rests until $t = 1$, then oscillates with amplitude 2, four times the response $\\frac{\\sin(2t)}{2}$ to $\\kdelta(t)$ alone, delayed by 1."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "6.4.4",
+   "source_number": "6.4.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drv-impulse-response",
+   "prompt": "<p>Suppose that $\\kf(t)$ and $g(t)$ are differentiable functions (and the derivatives are continuous) and suppose that $\\kf(t) = g(t) = 0$ for all $t \\leq 0$. Show that</p>$$ (\\kf * g)'(t) = (\\kf' * g)(t) = (\\kf * g')(t) . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $(\\kf * g)(t) = \\int_0^t \\kf(\\tau) g(t-\\tau)\\,d\\tau$. By the Leibniz rule for an integral whose upper limit and integrand both depend on $t$, $(\\kf * g)'(t) = \\kf(t) g(0) + \\int_0^t \\kf(\\tau) g'(t-\\tau)\\,d\\tau$. Since $g$ is continuous and zero for $t \\leq 0$, $g(0) = 0$, so $(\\kf * g)'(t) = (\\kf * g')(t)$. Convolution is commutative, $\\kf * g = g * \\kf$, and the same computation with the roles exchanged gives $(g * \\kf)'(t) = g(t)\\kf(0) + \\int_0^t g(\\tau)\\kf'(t-\\tau)\\,d\\tau = (g * \\kf')(t)$ because $\\kf(0) = 0$; by commutativity again this is $(\\kf' * g)(t)$. Hence $(\\kf * g)' = \\kf' * g = \\kf * g'$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "6.4.5",
+   "source_number": "6.4.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "any-input",
+   "prompt": "<p>Suppose that $L \\kx = \\kdelta(t)$, $\\kx(0) = 0$, $\\kxprime(0) = 0$, has the solution $\\kx(t) = t e^{-t}$ for $t &gt; 0$. Find the solution to $L\\kx = t^2$, $\\kx(0) = 0$, $\\kxprime(0) = 0$ for $t &gt; 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = t^2 - 4t + 6 - (2t + 6)e^{-t}$. The impulse response is $\\kh(t) = te^{-t}$, so the output for the input $t^2$ is the convolution $\\kx(t) = (t^2 * te^{-t})(t) = \\int_0^t \\tau^2 (t-\\tau) e^{-(t-\\tau)}\\,d\\tau$. Integrating by parts (or transforming: $\\kX(s) = \\frac{2}{s^3} \\cdot \\frac{1}{(s+1)^2}$ and splitting into partial fractions) gives $t^2 - 4t + 6 - (2t+6)e^{-t}$. Check: $\\kH(s) = \\frac{1}{(s+1)^2}$ means $L\\kx = \\kxdprime + 2\\kxprime + \\kx$, and this $\\kx$ satisfies $\\kxdprime + 2\\kxprime + \\kx = t^2$ with $\\kx(0) = \\kxprime(0) = 0$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "6.4.6",
+   "source_number": "6.4.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-1",
+   "prompt": "<p>Compute ${\\mathcal{L}}^{-1} \\left\\{ \\frac{s^2+s+1}{s^2} \\right\\}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kdelta(t) + 1 + t$. Divide first: $\\frac{s^2+s+1}{s^2} = 1 + \\frac{1}{s} + \\frac{1}{s^2}$. Then ${\\mathcal{L}}^{-1}\\{1\\} = \\kdelta(t)$, ${\\mathcal{L}}^{-1}\\left\\{\\frac{1}{s}\\right\\} = 1$ and ${\\mathcal{L}}^{-1}\\left\\{\\frac{1}{s^2}\\right\\} = t$, so by linearity the inverse transform is the generalized function $\\kdelta(t) + 1 + t$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "6.4.7",
+   "source_number": "6.4.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-3",
+   "prompt": "<p><strong>(challenging)</strong> Solve <a href=\"#ex-6-4-3\">Example 6.4.3</a> via integrating 4 times in the $x$ variable.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x) = \\frac{-(x-1)^3}{6}\\ku(x-1) - \\frac{x}{4} + \\frac{x^3}{12}$, the book’s answer. Integrating $\\kdfourydx = -\\kdelta(x-1)$ once gives $\\kytprime = -\\ku(x-1) + C_2$ (the integral of $\\kdelta(x-1)$ is $\\ku(x-1)$, Remark 6.4.1). Integrating again, $\\kydprime = -(x-1)\\ku(x-1) + C_2 x + 0$, the constant being $\\kydprime(0) = 0$; then $\\kyprime = -\\frac{(x-1)^2}{2}\\ku(x-1) + \\frac{C_2}{2}x^2 + C_1$ and $\\ky = -\\frac{(x-1)^3}{6}\\ku(x-1) + \\frac{C_2}{6}x^3 + C_1 x$, the last constant being $\\ky(0) = 0$. At $x = 2$: $\\kydprime(2) = -1 + 2C_2 = 0$ gives $C_2 = \\frac{1}{2}$, and $\\ky(2) = -\\frac{1}{6} + 2C_1 + \\frac{4}{3}C_2 = 0$ gives $C_1 = -\\frac{1}{4}$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "6.4.8",
+   "source_number": "6.4.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-3",
+   "prompt": "<p>Suppose we have a beam of length $1$ simply supported at the ends and suppose that a force $\\kF=1$ is applied at $x={3}/{4}$ in the downward direction. Suppose that $EI=1$ for simplicity. Find the beam deflection $\\ky(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky(x) = \\frac{-(x-3/4)^3}{6}\\ku(x-3/4) - \\frac{5x}{128} + \\frac{x^3}{24}$. The problem is $\\kdfourydx = -\\kdelta(x - 3/4)$ with $\\ky(0) = \\kydprime(0) = \\ky(1) = \\kydprime(1) = 0$. As in Example 6.4.3, transforming in $x$ with $C_1 = \\kyprime(0)$, $C_2 = \\kytprime(0)$ gives $\\kY(s) = \\frac{-e^{-3s/4}}{s^4} + \\frac{C_1}{s^2} + \\frac{C_2}{s^4}$, so $\\ky(x) = \\frac{-(x-3/4)^3}{6}\\ku(x-3/4) + C_1 x + \\frac{C_2}{6}x^3$. At $x = 1$: $\\kydprime(1) = -\\frac{1}{4} + C_2 = 0$ gives $C_2 = \\frac{1}{4}$, and $\\ky(1) = -\\frac{1}{384} + C_1 + \\frac{1}{24} = 0$ gives $C_1 = -\\frac{5}{128}$. The beam sags most near $x \\approx 0.56$, by about $0.0146$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "6.4.101",
+   "source_number": "6.4.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-2",
+   "prompt": "<p>Solve (find the impulse response) $\\kxdprime = \\kdelta(t)$, $\\kx(0) = 0$, $\\kxprime(0)=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx(t) = t$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "6.4.102",
+   "source_number": "6.4.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-2",
+   "prompt": "<p>Solve (find the impulse response) $\\kxprime + a \\kx = \\kdelta(t)$, $\\kx(0) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx(t) = e^{-at}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "6.4.103",
+   "source_number": "6.4.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "any-input",
+   "prompt": "<p>Suppose that $L \\kx = \\kdelta(t)$, $\\kx(0) = 0$, $\\kxprime(0) = 0$, has the solution $\\kx(t) = e^t \\sin(t)$ for $t &gt; 0$. Find (in closed form) the solution to $L\\kx = e^t$, $\\kx(0) = 0$, $\\kxprime(0) = 0$ for $t &gt; 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx(t) = (e^t) * (e^t \\sin(t) ) = e^t (1-\\cos(t))$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "6.4.104",
+   "source_number": "6.4.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-1",
+   "prompt": "<p>Compute ${\\mathcal{L}}^{-1} \\left\\{ \\frac{s^2}{s^2+1} \\right\\}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kdelta(t) - \\sin(t)$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "6.4.105",
+   "source_number": "6.4.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-4-1",
+   "prompt": "<p>Compute ${\\mathcal{L}}^{-1} \\left\\{ \\frac{3 s^2 e^{-s} + 2}{s^2} \\right\\}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$3 \\kdelta(t-1) + 2 t$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "finding-the-impulse-response"
+  },
+  {
+   "exercise": "e1",
+   "concept": "transform-of-the-delta-function"
+  },
+  {
+   "exercise": "e2",
+   "concept": "finding-the-impulse-response"
+  },
+  {
+   "exercise": "e2",
+   "concept": "transform-of-the-delta-function"
+  },
+  {
+   "exercise": "e3",
+   "concept": "finding-the-impulse-response"
+  },
+  {
+   "exercise": "e3",
+   "concept": "transform-of-the-delta-function"
+  },
+  {
+   "exercise": "e3",
+   "concept": "second-shifting-property"
+  },
+  {
+   "exercise": "e4",
+   "concept": "derivative-of-a-convolution"
+  },
+  {
+   "exercise": "e4",
+   "concept": "properties-of-convolution"
+  },
+  {
+   "exercise": "e5",
+   "concept": "impulse-response"
+  },
+  {
+   "exercise": "e5",
+   "concept": "convolution-solution"
+  },
+  {
+   "exercise": "e6",
+   "concept": "inverting-improper-rational-functions"
+  },
+  {
+   "exercise": "e6",
+   "concept": "transform-of-the-delta-function"
+  },
+  {
+   "exercise": "e7",
+   "concept": "three-point-bending"
+  },
+  {
+   "exercise": "e8",
+   "concept": "three-point-bending"
+  },
+  {
+   "exercise": "e8",
+   "concept": "euler-bernoulli-equation"
+  },
+  {
+   "exercise": "e101",
+   "concept": "finding-the-impulse-response"
+  },
+  {
+   "exercise": "e102",
+   "concept": "finding-the-impulse-response"
+  },
+  {
+   "exercise": "e103",
+   "concept": "impulse-response"
+  },
+  {
+   "exercise": "e103",
+   "concept": "convolution-solution"
+  },
+  {
+   "exercise": "e104",
+   "concept": "inverting-improper-rational-functions"
+  },
+  {
+   "exercise": "e104",
+   "concept": "transform-of-the-delta-function"
+  },
+  {
+   "exercise": "e105",
+   "concept": "inverting-improper-rational-functions"
+  },
+  {
+   "exercise": "e105",
+   "concept": "transform-of-the-delta-function"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-dirac",
+   "kind": "book",
+   "number": "33",
+   "html": "Named after the English physicist and mathematician <a href=\"https://en.wikipedia.org/wiki/Paul_Dirac\">Paul Adrien Maurice Dirac</a> (1902–1984)."
+  },
+  {
+   "id": "fn-interval-endpoints",
+   "kind": "book",
+   "number": "34",
+   "html": "It is important that we consider $c$ and $d$ as part of the interval. One could write this integral as $\\int_{c-}^{d+}$."
+  },
+  {
+   "id": "fn-under-the-integral",
+   "kind": "book",
+   "number": "35",
+   "html": "You may be worried about the fact that our $\\kh$ is not really twice differentiable, in fact, ${\\kh}'(0)$ does not exist as a normal derivative, and ${\\kh}''$ involves the $\\kdelta$ function. You can pretend that $\\kh$ is twice differentiable for this computation and either apply the standard Leibniz rule (that $\\kh(t)=0$ for $t &lt; 0$ is important) or note that for such functions, the integral is actually over $(-\\infty,\\infty)$ rather than over $[0,t]$."
+  },
+  {
+   "id": "fn-euler-bernoulli",
+   "kind": "book",
+   "number": "36",
+   "html": "Named for the Swiss mathematicians <a href=\"https://en.wikipedia.org/wiki/Jacob_Bernoulli\">Jacob Bernoulli</a> (1654–1705), <a href=\"https://en.wikipedia.org/wiki/Daniel_Bernoulli\">Daniel Bernoulli</a> (1700–1782), the nephew of Jacob, and <a href=\"https://en.wikipedia.org/wiki/Euler\">Leonhard Paul Euler</a> (1707–1783)."
+  },
+  {
+   "id": "fn-e-and-i",
+   "kind": "book",
+   "number": "37",
+   "html": "$E$ is the elastic modulus and $I$ is the second moment of area. Let us not worry about the details and simply think of these as some given constants."
+  }
+ ]
+}

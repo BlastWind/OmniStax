@@ -1,0 +1,119 @@
+<section id="subspaces">
+<h2>Subspaces, basis, and dimension</h2>
+<p id="kernel-motivation">We often find ourselves looking at the set of solutions of a linear equation $\kL\kvecx = \kveczero$ for some <span data-concept="matrix">matrix</span> $\kL$. That is, we are interested in the <a href="/diffyqs/appA/A.3/#A.3-kernel"><span data-concept="kernel">kernel</span></a> of $\kL$. The set of all such solutions has a nice structure: It looks and acts a lot like some <span data-concept="euclidean-space">euclidean space</span> ${\mathbb R}^k$.</p>
+<p id="subspace-def">We say that a set $\kS$ of <span data-concept="vector">vectors</span> in ${\mathbb R}^n$ is a <em><span data-concept="subspace">subspace</span></em> if whenever $\kvecx$ and $\kvecy$ are members of $\kS$ and $\alpha$ is a <span data-concept="scalar">scalar</span>, then</p>
+<div class="equation" id="eq-subspace">$$ \kvecx + \kvecy, \qquad \text{and} \qquad \alpha \kvecx $$</div>
+<p id="subspace-closed">are also members of $\kS$. That is, we can add and multiply by <span data-concept="scalar">scalars</span> and we still land in $\kS$. So every <span data-concept="linear-combination">linear combination</span> of <span data-concept="vector">vectors</span> of $\kS$ is still in $\kS$. That is really what a <span data-concept="subspace">subspace</span> is. It is a subset where we can take <span data-concept="linear-combination">linear combinations</span> and still end up being in the subset. Consequently, the <a href="/diffyqs/appA/A.3/#A.3-span"><span data-concept="span">span</span></a> of a number of <span data-concept="vector">vectors</span> is automatically a <span data-concept="subspace">subspace</span>.</p>
+<div class="example" id="ex-a-4-1">
+<h3>Example A.4.1</h3>
+<ol type="i">
+<li>If we let $\kS = {\mathbb R}^n$, then this $\kS$ is a <span data-concept="subspace">subspace</span> of ${\mathbb R}^n$. Adding any two <span data-concept="vector">vectors</span> in ${\mathbb R}^n$ gets a <span data-concept="vector">vector</span> in ${\mathbb R}^n$, and so does multiplying by <span data-concept="scalar">scalars</span>.</li>
+<li>The set $\kS' = \{ \kveczero \}$, that is, the set of the zero <span data-concept="vector">vector</span> by itself, is also a <span data-concept="subspace">subspace</span> of ${\mathbb R}^n$. There is only one <span data-concept="vector">vector</span> in this <span data-concept="subspace">subspace</span>, so we only need to verify the definition for that one <span data-concept="vector">vector</span>, and everything checks out: $\kveczero+\kveczero = \kveczero$ and $\alpha \kveczero = \kveczero$.</li>
+<li>The set $\kS''$ of all the <span data-concept="vector">vectors</span> of the form $(a,a)$ for any real number $a$, such as $(1,1)$, $(3,3)$, or $(-0.5,-0.5)$, is a <span data-concept="subspace">subspace</span> of ${\mathbb R}^2$. Adding two such <span data-concept="vector">vectors</span>, say $(1,1)+(3,3) = (4,4)$ again gets a <span data-concept="vector">vector</span> of the same form, and so does multiplying by a <span data-concept="scalar">scalar</span>, say $8(1,1) = (8,8)$.</li>
+</ol>
+</div>
+<p id="basis-setup">If $\kS$ is a <span data-concept="subspace">subspace</span> and we can find $k$ <span data-concept="linear-independence-of-vectors">linearly independent</span> <span data-concept="vector">vectors</span> in $\kS$</p>
+$$ \kvecv_1, \kvecv_2, \ldots, \kvecv_k , $$
+<p id="basis">such that every other <span data-concept="vector">vector</span> in $\kS$ is a <span data-concept="linear-combination">linear combination</span> of $\kvecv_1, \kvecv_2,\ldots, \kvecv_k$, then the set $\{ \kvecv_1, \kvecv_2, \ldots, \kvecv_k \}$ is called a <em><span data-concept="basis">basis</span></em> of $\kS$. In other words, $\kS$ is the <span data-concept="span">span</span> of $\{ \kvecv_1, \kvecv_2, \ldots, \kvecv_k \}$ and there is no smaller subset of these <span data-concept="vector">vectors</span> that spans $\kS$. We say that $\kS$ has <span data-concept="dimension">dimension</span> $k$, and we write</p>
+<div class="equation" id="eq-dimension">$$ \dim \kS = k . $$</div>
+<p>We have the following theorem.</p>
+<div class="note" id="thm-a-4-1">
+<div class="eyebrow">Theorem A.4.1</div>
+<p>If $\kS \subset {\mathbb R}^n$ is a <span data-concept="subspace">subspace</span> and $\kS$ is not the trivial <span data-concept="subspace">subspace</span> $\{ \kveczero \}$, then there exists a unique positive integer $k$ (the <span data-concept="dimension">dimension</span>) and a (not unique) <span data-concept="basis">basis</span> $\{ \kvecv_1, \kvecv_2, \ldots, \kvecv_k \}$, such that every $\kvecw$ in $\kS$ can be uniquely represented by</p>
+<div class="equation" id="eq-theorem-a-4-1">$$ \kvecw = \alpha_1 \kvecv_1 + \alpha_2 \kvecv_2 + \cdots + \alpha_k \kvecv_k , $$</div>
+<p>for some <span data-concept="scalar">scalars</span> $\alpha_1$, $\alpha_2$, …, $\alpha_k$. By “uniquely represented” we mean that these <span data-concept="scalar">scalars</span> $\alpha_1$, $\alpha_2$, …, $\alpha_k$ are unique.</p>
+</div>
+<p id="k-tuple">Just as a <span data-concept="vector">vector</span> in ${\mathbb R}^k$ is represented by a $k$-tuple of numbers, so is a <span data-concept="vector">vector</span> in a $k$-dimensional <span data-concept="subspace">subspace</span> of ${\mathbb R}^n$ represented by a unique $k$-tuple of numbers, at least once we have fixed a <span data-concept="basis">basis</span>. A different <span data-concept="basis">basis</span> would give a different $k$-tuple of numbers for the same <span data-concept="vector">vector</span>.</p>
+<p id="many-bases">We should reiterate that while $k$ is unique (a <span data-concept="subspace">subspace</span> cannot have two different <span data-concept="dimension">dimensions</span>—every <span data-concept="basis">basis</span> has the same number of <span data-concept="vector">vectors</span>), the set of <span data-concept="basis">basis</span> <span data-concept="vector">vectors</span> is not at all unique. There are lots of different <span data-concept="basis">bases</span> for any given <span data-concept="subspace">subspace</span>. Finding just the right <span data-concept="basis">basis</span> for a <span data-concept="subspace">subspace</span> is a large part of what one does in linear algebra. In fact, that is what we spend a lot of time on in linear differential equations, although at first glance it may not seem like that is what we are doing.</p>
+<div class="example" id="ex-a-4-2">
+<h3>Example A.4.2</h3>
+<ol type="i">
+<li><p>The <span data-concept="standard-unit-vectors">standard basis</span></p>
+$$ \kvece_1, \kvece_2, \ldots, \kvece_n , $$
+<p>is a <span data-concept="basis">basis</span> of ${\mathbb R}^n$, (hence the name). So as expected</p>
+<div class="equation" id="eq-dimension-of-rn">$$ \dim {\mathbb R}^n = n . $$</div></li>
+<li>Both sets $\bigl\{ (1,0) , (0,1) \bigr\}$ and $\bigl\{ (1,1), (1,-1) \bigr\}$ are <span data-concept="basis">bases</span> of ${\mathbb{R}}^2$. A <span data-concept="vector">vector</span> $(3,7)$ can be written as $(3,7)=3 (1,0) + 7 (0,1)$ (and in no other way with the first <span data-concept="basis">basis</span>), and it can be written as $(3,7)=5 (1,1) - 2(1,-1)$ (and in no other way with the second <span data-concept="basis">basis</span>).</li>
+<li>The <span data-concept="subspace">subspace</span> $\{ \kveczero \}$ is of <span data-concept="dimension">dimension</span> $0$. A <span data-concept="basis">basis</span> is simply an empty set of <span data-concept="vector">vectors</span>.</li>
+<li>The <span data-concept="subspace">subspace</span> $\kS''$ from <a href="#ex-a-4-1">Example A.4.1</a>, that is, the set of <span data-concept="vector">vectors</span> $(a,a)$, is of <span data-concept="dimension">dimension</span> 1. One possible <span data-concept="basis">basis</span> is simply $\bigl\{ (1,1) \bigr\}$, the single <span data-concept="vector">vector</span> $(1,1)$: Every <span data-concept="vector">vector</span> in $\kS''$ can be represented by $a (1,1) = (a,a)$. Similarly, another possible <span data-concept="basis">basis</span> would be $\bigl\{ (-1,-1) \bigr\}$. Then the <span data-concept="vector">vector</span> $(a,a)$ would be represented as $(-a) (-1,-1)$.</li>
+<li>The set $\bigl\{ (1,1) , (-1,-1) \bigr\}$ does <span data-concept="span">span</span> $\kS''$, but it is not a <span data-concept="basis">basis</span> as it is not a <span data-concept="linear-independence-of-vectors">linearly independent</span> set. Consequently, a <span data-concept="vector">vector</span> such as $(2,2)$ can be written in multiple ways with this set of <span data-concept="vector">vectors</span>: $(2,2) = 2(1,1) + 0 (-1,-1)$, or $(2,2) = 5(1,1) + 3 (-1,-1)$, etc.</li>
+</ol>
+</div>
+<p id="row-column-subspaces"><span data-concept="row-space">Row</span> and <span data-concept="column-space">column spaces</span> of a <span data-concept="matrix">matrix</span> are also examples of <span data-concept="subspace">subspaces</span>, as they are given as the <span data-concept="span">span</span> of <span data-concept="vector">vectors</span>. We can use what we know about <span data-concept="rank">rank</span>, <span data-concept="row-space">row spaces</span>, and <span data-concept="column-space">column spaces</span> from the <a href="/diffyqs/appA/A.3/#A.3-independence-and-rank">previous section</a> to find a <span data-concept="basis">basis</span>.</p>
+<div class="example" id="ex-a-4-3">
+<h3>Example A.4.3</h3>
+<p>In the <a href="/diffyqs/appA/A.3/#A.3-pivot-columns">last section</a>, we considered the <span data-concept="matrix">matrix</span></p>
+$$ \kA = \begin{bmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 5 & 6 \\ 3 & 6 & 7 & 8 \end{bmatrix} . $$
+<p>Using <span data-concept="row-reduction">row reduction</span> to find the <span data-concept="pivot">pivot</span> columns, we found</p>
+$$ \text{column space of $\kA$} \left( \begin{bmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 5 & 6 \\ 3 & 6 & 7 & 8 \end{bmatrix} \right) = \operatorname{span} \left\{ \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} , \begin{bmatrix} 3 \\ 5 \\ 7 \end{bmatrix} \right\} . $$
+<p>What we did was we found a <span data-concept="basis">basis</span> of the <span data-concept="column-space">column space</span>. This <span data-concept="basis">basis</span> has two elements, and so the <span data-concept="column-space">column space</span> of $\kA$ is two-dimensional. Notice that the <span data-concept="rank">rank</span> of $\kA$ is two.</p>
+</div>
+<p id="subspace-x">We would have followed the same procedure if we wanted to find a <span data-concept="basis">basis</span> of the <span data-concept="subspace">subspace</span> $X$ spanned by</p>
+$$ \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} , \begin{bmatrix} 2 \\ 4 \\ 6 \end{bmatrix} , \begin{bmatrix} 3 \\ 5 \\ 7 \end{bmatrix} , \begin{bmatrix} 4 \\ 6 \\ 8 \end{bmatrix} . $$
+<p>We would have simply formed the <span data-concept="matrix">matrix</span> $\kA$ with these <span data-concept="vector">vectors</span> as columns and repeated the computation above. The <span data-concept="subspace">subspace</span> $X$ is then the <span data-concept="column-space">column space</span> of $\kA$.</p>
+<div class="example" id="ex-a-4-4">
+<h3>Example A.4.4</h3>
+<p>Consider the <span data-concept="matrix">matrix</span></p>
+$$ \kL = \begin{bmatrix} {1} & 2 & 0 & 0 & 3 \\ 0 & 0 & {1} & 0 & 4 \\ 0 & 0 & 0 & {1} & 5 \end{bmatrix} . $$
+<p>Conveniently, the <span data-concept="matrix">matrix</span> is in <span data-concept="reduced-row-echelon-form">reduced row echelon form</span>. The <span data-concept="matrix">matrix</span> is of <span data-concept="rank">rank</span> 3. The <span data-concept="column-space">column space</span> is the <span data-concept="span">span</span> of the <span data-concept="pivot">pivot</span> columns. It is the 3-dimensional space</p>
+$$ \text{column space of $\kL$} = \operatorname{span} \left\{ \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} , \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} , \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \right\} = {\mathbb{R}}^3 . $$
+<p>The <span data-concept="row-space">row space</span> is the 3-dimensional space</p>
+$$ \text{row space of $\kL$} = \operatorname{span} \left\{ \begin{bmatrix} 1 & 2 & 0 & 0 & 3 \end{bmatrix} , \begin{bmatrix} 0 & 0 & 1 & 0 & 4 \end{bmatrix} , \begin{bmatrix} 0 & 0 & 0 & 1 & 5 \end{bmatrix} \right\} . $$
+<p>As these <span data-concept="vector">vectors</span> have 5 components, we think of the <span data-concept="row-space">row space</span> of $\kL$ as a <span data-concept="subspace">subspace</span> of ${\mathbb{R}}^5$.</p>
+</div>
+<p id="pivots-count">The way the <span data-concept="dimension">dimensions</span> worked out in the examples is not an accident. Since the number of <span data-concept="vector">vectors</span> that we needed to take was always the same as the number of <span data-concept="pivot">pivots</span>, and the number of <span data-concept="pivot">pivots</span> is the <span data-concept="rank">rank</span>, we get the following result.</p>
+<div class="note" id="thm-a-4-2">
+<div class="eyebrow">Theorem A.4.2</div>
+<h3><span data-concept="rank-theorem">Rank</span></h3>
+<p>The <span data-concept="dimension">dimension</span> of the <span data-concept="column-space">column space</span> and the <span data-concept="dimension">dimension</span> of the <span data-concept="row-space">row space</span> of a <span data-concept="matrix">matrix</span> $\kA$ are both equal to the <span data-concept="rank">rank</span> of $\kA$.</p>
+</div>
+</section>
+
+<section id="kernel">
+<h2>Kernel</h2>
+<p id="kernel-subspace">The set of solutions of a linear equation $\kL\kvecx = \kveczero$, the <span data-concept="kernel">kernel</span> of $\kL$, is a <span data-concept="subspace">subspace</span>: If $\kvecx$ and $\kvecy$ are solutions, then</p>
+<figure class="dv" id="drv-kernel-is-a-subspace"></figure>
+<p id="nullity">So $\kvecx+\kvecy$ and $\alpha \kvecx$ are solutions. The <span data-concept="dimension">dimension</span> of the <span data-concept="kernel">kernel</span> is called the <em><span data-concept="nullity">nullity</span></em> of the <span data-concept="matrix">matrix</span>.</p>
+<p id="differential-operators">The same sort of idea governs the solutions of linear differential equations. We try to describe the <span data-concept="kernel">kernel</span> of a <a href="/diffyqs/ch02/2.1/"><span data-concept="linear-operator">linear differential operator</span></a>, and as it is a <span data-concept="subspace">subspace</span>, we look for a <span data-concept="basis">basis</span> of this <span data-concept="kernel">kernel</span>. Much of this book is dedicated to finding such <span data-concept="basis">bases</span>.</p>
+<p id="kernel-procedure">The <span data-concept="kernel">kernel</span> of a <span data-concept="matrix">matrix</span> is the same as the <span data-concept="kernel">kernel</span> of its <span data-concept="reduced-row-echelon-form">reduced row echelon form</span>. For a <span data-concept="matrix">matrix</span> in <span data-concept="reduced-row-echelon-form">reduced row echelon form</span>, the <span data-concept="kernel">kernel</span> is rather easy to find. If we take a product of a <span data-concept="matrix">matrix</span> $\kL$ and a <span data-concept="vector">vector</span> $\kvecx$, then each entry in $\kvecx$ corresponds to a column of $\kL$, the column that the entry multiplies. To find the <span data-concept="kernel">kernel</span>, pick a non-<span data-concept="pivot">pivot</span> column and make a <span data-concept="vector">vector</span> that has a $-1$ in the entry corresponding to this non-<span data-concept="pivot">pivot</span> column and zeros at all the other entries corresponding to the other non-<span data-concept="pivot">pivot</span> columns. Then for all the entries corresponding to <span data-concept="pivot">pivot</span> columns make it precisely the value in the corresponding row of the non-<span data-concept="pivot">pivot</span> column to make the <span data-concept="vector">vector</span> be a solution to $\kL \kvecx = \kveczero$. This procedure is best understood by example.</p>
+<div class="example" id="ex-a-4-5">
+<h3>Example A.4.5</h3>
+<p>Consider</p>
+$$ \kL = \begin{bmatrix} \boxed{1} & 2 & 0 & 0 & 3 \\ 0 & 0 & \boxed{1} & 0 & 4 \\ 0 & 0 & 0 & \boxed{1} & 5 \end{bmatrix} . $$
+<p>This <span data-concept="matrix">matrix</span> is in <span data-concept="reduced-row-echelon-form">reduced row echelon form</span>, the <span data-concept="pivot">pivots</span> are marked. There are two non-<span data-concept="pivot">pivot</span> columns, so the <span data-concept="kernel">kernel</span> has <span data-concept="dimension">dimension</span> 2, that is, it is the <span data-concept="span">span</span> of 2 <span data-concept="vector">vectors</span>. Let us find the first <span data-concept="vector">vector</span>. We look at the first non-<span data-concept="pivot">pivot</span> column, the $2^{\text{nd}}$ column, and we put a $-1$ in the $2^{\text{nd}}$ entry of our <span data-concept="vector">vector</span>. We put a $0$ in the $5^{\text{th}}$ entry as the $5^{\text{th}}$ column is also a non-<span data-concept="pivot">pivot</span> column:</p>
+$$ \begin{bmatrix} ? \\ -1 \\ ? \\ ? \\ 0 \end{bmatrix} . $$
+<p>Let us fill the rest. When this <span data-concept="vector">vector</span> hits the first row of $\kL$, we get a $-2$ and $1$ times whatever the first question mark is. We want to get zero when hitting the first row, so make the first question mark $2$. To get zero when hitting the second and third rows, it is sufficient to make the remaining question marks $0$. We are really filling in the non-<span data-concept="pivot">pivot</span> column into the remaining entries. Let us check while marking which numbers went where:</p>
+$$ \begin{bmatrix} 1 & \boxed{2} & 0 & 0 & 3 \\ 0 & \boxed{0} & 1 & 0 & 4 \\ 0 & \boxed{0} & 0 & 1 & 5 \end{bmatrix} \begin{bmatrix} \boxed{2} \\ -1 \\ \boxed{0} \\ \boxed{0} \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} . $$
+<p>Yay! How about the second <span data-concept="vector">vector</span>? We start with</p>
+$$ \begin{bmatrix} ? \\ 0 \\ ? \\ ? \\ -1 . \end{bmatrix} $$
+<p>We set the first question mark to 3, the second to 4, and the third to 5. Let us check, marking things as previously,</p>
+$$ \begin{bmatrix} 1 & 2 & 0 & 0 & \boxed{3} \\ 0 & 0 & 1 & 0 & \boxed{4} \\ 0 & 0 & 0 & 1 & \boxed{5} \end{bmatrix} \begin{bmatrix} \boxed{3} \\ 0 \\ \boxed{4} \\ \boxed{5} \\ -1 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix} . $$
+<p>There are two non-<span data-concept="pivot">pivot</span> columns, so we only need two <span data-concept="vector">vectors</span>. We have found a <span data-concept="basis">basis</span> of the <span data-concept="kernel">kernel</span>. So,</p>
+$$ \text{kernel of $\kL$} = \operatorname{span} \left\{ \begin{bmatrix} 2 \\ -1 \\ 0 \\ 0 \\ 0 \end{bmatrix} , \begin{bmatrix} 3 \\ 0 \\ 4 \\ 5 \\ -1 \end{bmatrix} \right\} $$
+</div>
+<p id="all-solutions">What we did in finding a <span data-concept="basis">basis</span> of the <span data-concept="kernel">kernel</span> is that we expressed all solutions of $\kL \kvecx = \kveczero$ as a <span data-concept="linear-combination">linear combination</span> of some given <span data-concept="vector">vectors</span>.</p>
+<div id="kernel-steps">
+<p>The procedure to find a <span data-concept="basis">basis</span> of the <span data-concept="kernel">kernel</span> of a <span data-concept="matrix">matrix</span> $\kL$:</p>
+<ol type="i">
+<li>Find the <span data-concept="reduced-row-echelon-form">reduced row echelon form</span> of $\kL$.</li>
+<li>Write down a <span data-concept="basis">basis</span> of the <span data-concept="kernel">kernel</span> as above, one <span data-concept="vector">vector</span> for each non-<span data-concept="pivot">pivot</span> column.</li>
+</ol>
+</div>
+<p id="rank-plus-nullity">The <span data-concept="rank">rank</span> of a <span data-concept="matrix">matrix</span> is the <span data-concept="dimension">dimension</span> of the <span data-concept="column-space">column space</span>, and that is the <span data-concept="span">span</span> of the <span data-concept="pivot">pivot</span> columns, while the <span data-concept="kernel">kernel</span> is the <span data-concept="span">span</span> of certain <span data-concept="vector">vectors</span>, one for each non-<span data-concept="pivot">pivot</span> column. So the two numbers must add to the number of columns.</p>
+<div class="note" id="thm-a-4-3">
+<div class="eyebrow">Theorem A.4.3</div>
+<h3><span data-concept="rank-nullity-theorem">Rank–Nullity</span></h3>
+<p>If a <span data-concept="matrix">matrix</span> $\kA$ has $n$ columns, <span data-concept="rank">rank</span> $r$, and <span data-concept="nullity">nullity</span> $k$ (<span data-concept="dimension">dimension</span> of the <span data-concept="kernel">kernel</span>), then</p>
+<div class="equation" id="eq-rank-nullity">$$ n = r+k . $$</div>
+</div>
+<p id="fredholm">The theorem is immensely useful in applications. It allows one to compute the <span data-concept="rank">rank</span> $r$ if one knows the <span data-concept="nullity">nullity</span> $k$ and vice versa, without doing any extra work. An example application is a simple version of the so-called <em><span data-concept="fredholm-alternative-for-matrices">Fredholm alternative</span></em>. A similar result is true for <a href="/diffyqs/ch04/4.1/#4.1-thm-4-1-2">differential equations</a>. Consider</p>
+$$ \kA \kvecx = \kvecb , $$
+<p id="fredholm-cases">where $\kA$ is a <span data-concept="square-matrix">square</span> $n \times n$ <span data-concept="matrix">matrix</span>. There are then two mutually exclusive possibilities:</p>
+<ol type="i">
+<li>A nonzero solution $\kvecx$ to $\kA \kvecx = \kveczero$ exists.</li>
+<li>The equation $\kA \kvecx = \kvecb$ has a unique solution $\kvecx$ for every $\kvecb$.</li>
+</ol>
+<p id="fredholm-why">How does the <span data-concept="rank-nullity-theorem">Rank–Nullity theorem</span> come into the picture? Well, if $\kA$ has a nonzero solution $\kvecx$ to $\kA \kvecx = \kveczero$, then the <span data-concept="nullity">nullity</span> $k$ is positive. But then the <span data-concept="rank">rank</span> $r = n-k$ must be less than $n$. It means that the <span data-concept="column-space">column space</span> of $\kA$ is of <span data-concept="dimension">dimension</span> less than $n$, so it is a <span data-concept="subspace">subspace</span> that does not include everything in ${\mathbb{R}}^n$. So ${\mathbb{R}}^n$ has to contain some <span data-concept="vector">vector</span> $\kvecb$ not in the <span data-concept="column-space">column space</span> of $\kA$. In fact, most <span data-concept="vector">vectors</span> in ${\mathbb{R}}^n$ are not in the <span data-concept="column-space">column space</span> of $\kA$.</p>
+<figure class="sim" id="sim-rank-nullity">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A $2 \times 2$ matrix $\kA$ takes the inputs $\kvecx$ to the outputs $\kA\kvecx$. <span data-ref="kernel-of-a">Its kernel</span>, the inputs sent to $\kveczero$, and <span data-ref="column-space-of-a">its column space</span>, the span of its columns, are each the origin alone, a line or the whole plane, and their dimensions always add to 2. With only $\kveczero$ in <span data-ref="kernel-of-a">the kernel</span>, every $\kvecb$ is reached by exactly one $\kvecx$; with a line in <span data-ref="kernel-of-a">the kernel</span>, <span data-ref="column-space-of-a">the column space</span> is a line too, and a $\kvecb$ off it is reached by no $\kvecx$ at all.</span></div>
+</figure>
+</section>

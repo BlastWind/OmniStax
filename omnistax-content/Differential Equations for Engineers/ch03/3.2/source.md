@@ -36,10 +36,10 @@ $$ \begin{gather*} \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} \begin{b
 For multiplication, we want an analogue of a 1. This analogue is the so-called *{index:identity matrix}*. The identity matrix is a square matrix with 1s on the diagonal and zeros everywhere else. It is usually denoted by $I$. For each size, we have a different identity matrix. So sometimes we may denote the size as a subscript. For example, $I_3$ would be the $3 \times 3$ identity matrix
 $$ I = I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix} . $$
 
-[2] We have the following rules for matrix multiplication. Suppose that $A$, $B$, $C$ are matrices of the correct sizes so that the following make sense. Let $\alpha$ denote a scalar (number). Then,
+We have the following rules for matrix multiplication. Suppose that $A$, $B$, $C$ are matrices of the correct sizes so that the following make sense. Let $\alpha$ denote a scalar (number). Then,
 $$ \begin{align*} A(BC) & = (AB)C, \\ A(B+C) & = AB + AC, \\ (B+C)A & = BA + CA, \\ \alpha(AB) & = (\alpha A)B = A(\alpha B), \\ IA & = A = AI . \end{align*} $$
 
-[2] A few warnings are in order.
+A few warnings are in order.
 
 (i) $AB \neq BA$ in general (it may be true by fluke sometimes). That is, matrices do not {index:commute}. For example, take $A = \left[ \begin{smallmatrix} 1 & 1 \\ 1 & 1 \end{smallmatrix} \right]$ and $B = \left[ \begin{smallmatrix} 1 & 0 \\ 0 & 2 \end{smallmatrix} \right]$.
 (ii) $AB = AC$ does not necessarily imply $B=C$, even if $A$ is not 0.
@@ -107,7 +107,7 @@ $$ \begin{bmatrix} 2 & 2 & 2 \\ 1 & 1 & 3 \\ 1 & 4 & 1 \end{bmatrix} \begin{bmat
 To solve the system, we put the coefficient matrix (the matrix on the left-hand side of the equation) together with the vector on the right-hand side and get the so-called *{index:augmented matrix}*:
 $$ \left[ \begin{array}{ccc|c} 2 & 2 & 2 & 2 \\ 1 & 1 & 3 & 5 \\ 1 & 4 & 1 & 10 \end{array} \right] . $$
 
-[2] We apply a sequence of the following three *{index:elementary row operations}*{index-entry:row operations}.
+We apply a sequence of the following three *{index:elementary row operations}*{index-entry:row operations}.
 
 (i) Swap two rows.
 (ii) Multiply a row by a nonzero number.

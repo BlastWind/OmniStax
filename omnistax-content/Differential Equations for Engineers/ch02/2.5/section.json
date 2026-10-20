@@ -1,0 +1,1413 @@
+{
+ "id": "2.5",
+ "module": "sec:nonhom",
+ "chapter": "2",
+ "title": "Nonhomogeneous equations",
+ "short": "Nonhomogeneous equations",
+ "lead": "A linear equation whose right-hand side is not zero, such as the equation of a forced vibration, is solved in two pieces: the <span data-concept=\"general-solution\">general solution</span> of the homogeneous equation it comes from, and any one <span data-concept=\"particular-solution\">particular solution</span> of the equation itself. This section shows why the two pieces are enough, how to guess the one solution when the right-hand side is a polynomial, an exponential or a sine, and what to do when no guess works.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out; the four runs of displayed equations the book works step by step are drawn as derivations in place of the printed lines.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 2.5.101–2.5.106 carry the book’s own answers, each checked with SymPy and none contradicted. The inline exercise 2.5.1 and exercises 2.5.2–2.5.11, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first (2.5.8 by a numerical check of its definite integral).",
+ "figures": [
+  {
+   "id": "sim-yc-yp",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "derivative",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "yc",
+   "label": "the complementary solution y_c",
+   "figures": [
+    "sim-yc-yp"
+   ]
+  },
+  {
+   "id": "yp",
+   "label": "the particular solution y_p",
+   "figures": [
+    "sim-yc-yp"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "undetermined-polynomial",
+   "what": "the left-hand side of (2.6) with y_p = Ax + B",
+   "source": "Differential Equations for Engineers, 2.5 Nonhomogeneous equations, Undetermined coefficients",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kyp = Ax + B",
+       "src": "2.5"
+      },
+      {
+       "text": "The derivative of $Ax + B$ is $A$, and the derivative of the constant $A$ is $0$.",
+       "src": "Calculus, 3.3 Differentiation Rules"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kypdprime + 5\\kypprime+ 6\\kyp} = \\mk{a}{(Ax+B)''} + 5\\mk{b}{(Ax+B)'} + 6\\mk{c}{(Ax+B)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kypdprime + 5\\kypprime+ 6\\kyp} = \\mk{a}{0} + 5\\mk{b}{A} + 6\\mk{c}{(Ax+B)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kypdprime + 5\\kypprime+ 6\\kyp} = \\mk{a}{0} + \\mk{b}{5A} + \\mk{c}{6Ax + 6B}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\kypdprime + 5\\kypprime+ 6\\kyp} = \\mk{x}{6Ax} + \\mk{k}{(5A+6B)}",
+       "uses": [],
+       "map": {
+        "a": "k",
+        "b": "k",
+        "c": [
+         "x",
+         "k"
+        ]
+       }
+      }
+     ],
+     "src": "2.5, Undetermined coefficients"
+    }
+   ]
+  },
+  {
+   "id": "undetermined-trig",
+   "what": "the left-hand side of y″ + 2y′ + 2y = cos 2x with y_p = A cos 2x + B sin 2x",
+   "source": "Differential Equations for Engineers, 2.5 Nonhomogeneous equations, Undetermined coefficients",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kyp = A \\cos (2x) + B \\sin (2x)",
+       "src": "2.5"
+      },
+      {
+       "text": "$\\kypprime = -2A \\sin (2x) + 2B \\cos (2x)$ and $\\kypdprime = -4 A \\cos (2x) - 4 B \\sin (2x)$: the derivative of $\\cos(2x)$ is $-2\\sin(2x)$ and the derivative of $\\sin(2x)$ is $2\\cos(2x)$.",
+       "src": "Calculus, 3.5 Derivatives of Trigonometric Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kypdprime} +2 \\mk{b}{\\kypprime} + 2 \\mk{c}{\\kyp} = \\mk{r}{\\cos (2x)}",
+      "src": "2.5",
+      "uses": [],
+      "why": "This is the equation $\\kydprime+2\\kyprime+2\\ky = \\cos (2x)$ that $\\kyp$ is to satisfy."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\bigl(-4 A \\cos (2x) - 4 B \\sin (2x)\\bigr)} +2 \\mk{b}{\\bigl(-2A \\sin (2x) + 2B \\cos (2x)\\bigr)} + 2 \\mk{c}{\\bigl(A \\cos (2x) + B \\sin (2x)\\bigr)} = \\mk{r}{\\cos (2x)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{-4 A \\cos (2x) - 4 B \\sin (2x)} \\mk{b}{- 4A \\sin (2x) + 4B \\cos (2x)} + \\mk{c}{2A \\cos (2x) + 2B \\sin (2x)} = \\mk{r}{\\cos (2x)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{k}{(-4A+4B+2A)} \\cos(2x) + \\mk{s}{(-4B-4A+2B)} \\sin(2x) = \\mk{r}{\\cos(2x)}",
+       "uses": [],
+       "map": {
+        "a": [
+         "k",
+         "s"
+        ],
+        "b": [
+         "k",
+         "s"
+        ],
+        "c": [
+         "k",
+         "s"
+        ]
+       }
+      }
+     ],
+     "src": "2.5, Undetermined coefficients"
+    }
+   ]
+  },
+  {
+   "id": "variation-of-parameters",
+   "what": "the two conditions on u₁ and u₂",
+   "source": "Differential Equations for Engineers, 2.5 Nonhomogeneous equations, Variation of parameters",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The derivative of a product: $(fg)' = f'g + fg'$.",
+       "src": "Calculus, 3.3 Differentiation Rules"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\ky} = \\mk{a}{\\kuone \\kyone} + \\mk{b}{\\kutwo \\kytwo}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyprime} = \\mk{a}{(\\kuoneprime \\kyone + \\kuone \\kyoneprime)} + \\mk{b}{(\\kutwoprime \\kytwo + \\kutwo \\kytwoprime)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kyprime} = \\mk{p}{(\\kuoneprime \\kyone + \\kutwoprime \\kytwo)} + \\mk{q}{(\\kuone \\kyoneprime + \\kutwo \\kytwoprime)}",
+       "uses": [],
+       "map": {
+        "a": [
+         "p",
+         "q"
+        ],
+        "b": [
+         "p",
+         "q"
+        ]
+       }
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "We require that $\\kuoneprime \\kyone + \\kutwoprime \\kytwo = 0$ (the first term above). We can still impose one more condition at our discretion to simplify computations: we have two unknown functions, so we should be allowed two conditions.",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyprime} = \\mk{p}{(\\kuoneprime \\kyone + \\kutwoprime \\kytwo)} + \\mk{q}{(\\kuone \\kyoneprime + \\kutwo \\kytwoprime)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyprime} = \\mk{p}{0} + \\mk{q}{(\\kuone \\kyoneprime + \\kutwo \\kytwoprime)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kyprime} = \\mk{q}{\\kuone \\kyoneprime + \\kutwo \\kytwoprime}",
+       "uses": []
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The derivative of a product: $(fg)' = f'g + fg'$.",
+       "src": "Calculus, 3.3 Differentiation Rules"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyprime} = \\mk{q}{\\kuone \\kyoneprime + \\kutwo \\kytwoprime}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kydprime} = \\mk{q}{(\\kuoneprime \\kyoneprime + \\kuone \\kyonedprime) + (\\kutwoprime \\kytwoprime + \\kutwo \\kytwodprime)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kydprime} = \\mk{r}{(\\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime)} + \\mk{s}{(\\kuone \\kyonedprime + \\kutwo \\kytwodprime)}",
+       "uses": [],
+       "map": {
+        "q": [
+         "r",
+         "s"
+        ]
+       }
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "Since $\\kyone$ and $\\kytwo$ are solutions to $\\kydprime+\\ky = 0$, we find $\\kyonedprime = - \\kyone$ and $\\kytwodprime = - \\kytwo$.",
+       "src": "2.5"
+      },
+      {
+       "tex": "\\kuone \\kyone + \\kutwo \\kytwo = \\ky",
+       "src": "2.5"
+      },
+      {
+       "text": "$\\ky$ is to satisfy $L\\ky = \\kf(x)$, where $L\\ky = \\kydprime + \\ky$.",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kydprime} = \\mk{r}{(\\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime)} + \\mk{s}{(\\kuone \\kyonedprime + \\kutwo \\kytwodprime)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kydprime} = \\mk{r}{(\\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime)} - \\mk{s}{(\\kuone \\kyone + \\kutwo \\kytwo)}",
+       "uses": [
+        1
+       ],
+       "cap": "If the equation were the more general $\\kydprime+\\kp(x)\\kyprime +\\kq(x)\\ky = 0$, we would have $y_i'' = -\\kp(x)y_i' -\\kq(x)y_i$."
+      },
+      {
+       "tex": "\\mk{y}{\\kydprime} = \\mk{r}{(\\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime)} - \\mk{s}{\\ky}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kydprime} + \\mk{s}{\\ky} = L\\ky = \\mk{r}{\\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kf(x)} = \\mk{r}{\\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "y": "f",
+        "s": "f"
+       }
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  },
+  {
+   "id": "variation-tan",
+   "what": "the particular solution of y″ + y = tan x",
+   "source": "Differential Equations for Engineers, 2.5 Nonhomogeneous equations, Variation of parameters",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The two boxed equations: $\\kuoneprime \\kyone + \\kutwoprime \\kytwo = 0$ and $\\kuoneprime \\kyoneprime + \\kutwoprime \\kytwoprime = \\kf(x)$.",
+       "src": "2.5"
+      },
+      {
+       "text": "In our case, $\\kyone = \\cos x$, $\\kytwo = \\sin x$, and $\\kf(x) = \\tan x$.",
+       "src": "2.5"
+      },
+      {
+       "text": "$\\sin^2 x + \\cos^2 x = 1$.",
+       "src": "Calculus, 1.3 Trigonometric Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kuoneprime \\cos x} + \\mk{b}{\\kutwoprime \\sin x} = \\mk{z}{0} , \\qquad \\mk{c}{-\\kuoneprime \\sin x} + \\mk{d}{\\kutwoprime \\cos x} = \\mk{f}{\\tan x}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kuoneprime \\cos x \\sin x} + \\mk{b}{\\kutwoprime \\sin^2 x} = \\mk{z}{0} , \\qquad \\mk{c}{-\\kuoneprime \\sin x \\cos x} + \\mk{d}{\\kutwoprime \\cos^2 x} = \\mk{f}{\\tan x \\cos x}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\kuoneprime \\cos x \\sin x} + \\mk{b}{\\kutwoprime \\sin^2 x} = \\mk{z}{0} , \\qquad \\mk{c}{-\\kuoneprime \\sin x \\cos x} + \\mk{d}{\\kutwoprime \\cos^2 x} = \\mk{f}{\\sin x}",
+       "uses": [],
+       "cap": "$\\tan x \\cos x = \\sin x$, since $\\tan x = \\sin x / \\cos x$."
+      },
+      {
+       "tex": "\\mk{d}{\\kutwoprime \\bigl(\\sin^2 x + \\cos^2 x\\bigr)} = \\mk{f}{\\sin x}",
+       "uses": [],
+       "map": {
+        "a": "d",
+        "b": "d",
+        "c": "d",
+        "z": "f"
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\kutwoprime} = \\mk{f}{\\sin x}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The first of the two equations, $\\kuoneprime \\cos x + \\kutwoprime \\sin x = 0$.",
+       "src": "2.5"
+      },
+      {
+       "text": "$\\sin^2 x = 1 - \\cos^2 x$, and $\\sec x = 1 / \\cos x$.",
+       "src": "Calculus, 1.3 Trigonometric Functions"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kuoneprime \\cos x} + \\mk{b}{\\kutwoprime \\sin x} = \\mk{z}{0}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kuoneprime \\cos x} + \\mk{b}{\\sin x \\, \\sin x} = \\mk{z}{0}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kuoneprime} = \\mk{b}{\\frac{- \\sin^2 x}{\\cos x}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\kuoneprime} = \\mk{b}{\\cos x - \\sec x}",
+       "uses": [
+        2
+       ],
+       "cap": "$-\\sin^2 x = \\cos^2 x - 1$, and dividing by $\\cos x$ gives $\\cos x - \\sec x$."
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "$\\int \\sec x \\,dx = \\ln \\left\\lvert \\sec x + \\tan x \\right\\rvert + C$.",
+       "src": "Calculus, 7.2 Trigonometric Integrals"
+      },
+      {
+       "text": "We are looking for a particular solution, so we forget about the constants of integration.",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{u}{\\kuone} = \\mk{i}{\\int \\kuoneprime\\,dx}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{u}{\\kuone} = \\mk{i}{\\int ( \\cos x-\\sec x ) \\,dx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{u}{\\kuone} = \\mk{i}{\\sin x - \\ln \\left\\lvert \\sec x + \\tan x \\right\\rvert}",
+       "uses": [
+        1,
+        2
+       ]
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "We are looking for a particular solution, so we forget about the constants of integration.",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{u}{\\kutwo} = \\mk{i}{\\int \\kutwoprime\\,dx}",
+      "src": "2.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{u}{\\kutwo} = \\mk{i}{\\int \\sin x\\,dx}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{u}{\\kutwo} = \\mk{i}{-\\cos x}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "2.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\kyp = \\kuone \\kyone + \\kutwo \\kytwo",
+       "src": "2.5"
+      },
+      {
+       "text": "$\\kyone = \\cos x$ and $\\kytwo = \\sin x$.",
+       "src": "2.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kyp} = \\mk{a}{\\kuone \\kyone} + \\mk{b}{\\kutwo \\kytwo}",
+      "uses": [
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyp} = \\mk{a}{\\kuone \\cos x} + \\mk{b}{\\kutwo \\sin x}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kyp} = \\mk{a}{\\bigl(\\sin x - \\ln \\lvert \\sec x + \\tan x \\rvert\\bigr) \\cos x} + \\mk{b}{(-\\cos x) \\sin x}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{y}{\\kyp} = \\mk{p}{\\cos x \\sin x} - \\mk{l}{\\cos x \\, \\ln \\lvert \\sec x + \\tan x \\rvert} - \\mk{b}{\\cos x \\sin x}",
+       "uses": [],
+       "map": {
+        "a": [
+         "p",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\kyp} = - \\mk{l}{\\cos x \\, \\ln \\lvert \\sec x + \\tan x \\rvert}",
+       "uses": []
+      }
+     ],
+     "src": "2.5"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "yc-yp",
+   "concept": "complementary-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "complementary",
+   "concept": "complementary-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-2-5-1",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "uc-guess",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "introduces"
+  },
+  {
+   "span": "duplication-trick",
+   "concept": "duplication-with-the-complementary-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "vp-method",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "introduces"
+  },
+  {
+   "span": "nonhom-intro",
+   "concept": "nonhomogeneous-linear-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complementary",
+   "concept": "particular-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complementary",
+   "concept": "linear-operator",
+   "verb": "reinforces"
+  },
+  {
+   "span": "nonhom-intro",
+   "concept": "homogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nonhom-intro",
+   "concept": "linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "nonhom-intro",
+   "concept": "second-order-equation-with-constant-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "nonhom-intro",
+   "concept": "forced-vibrations",
+   "verb": "uses"
+  },
+  {
+   "span": "yc-yp",
+   "concept": "operator",
+   "verb": "uses"
+  },
+  {
+   "span": "yc-yp",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "complementary",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "complementary",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "general-why",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "general-why",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "general-why",
+   "concept": "linear-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "general-why",
+   "concept": "operator",
+   "verb": "uses"
+  },
+  {
+   "span": "all-solutions",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "all-solutions",
+   "concept": "homogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "all-solutions",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "all-solutions",
+   "concept": "complementary-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-2-5-1",
+   "concept": "linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-2-5-1",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-2-5-1",
+   "concept": "complementary-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-2-5-1",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-2-5-1",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-yc-yp",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-yc-yp",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-yc-yp",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-yc-yp",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-yc-yp",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "moral",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "moral",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "moral",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "moral",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-undetermined-polynomial",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-result",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-ivp",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-ivp",
+   "concept": "solving-an-initial-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-particular",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "common-mistake",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "common-mistake",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "common-mistake",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "lower-degree",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-trig",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-trig",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-undetermined-trig",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-exp",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "uc-product",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "duplication",
+   "concept": "complementary-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "duplication-trick",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "duplication-trick",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "duplication-guess",
+   "concept": "duplication-with-the-complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "duplication-guess",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "duplication-twice",
+   "concept": "duplication-with-the-complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "duplication-twice",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "duplication-twice",
+   "concept": "solution-for-a-repeated-real-root",
+   "verb": "uses"
+  },
+  {
+   "span": "duplication-whole",
+   "concept": "duplication-with-the-complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "several-terms",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "several-terms",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "several-terms",
+   "concept": "linear-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-why",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-why",
+   "concept": "linear-independence",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-why",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-method",
+   "concept": "second-order-equation-with-constant-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-method",
+   "concept": "higher-order-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-method",
+   "concept": "complementary-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-trial",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-trial",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-trial",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-trial",
+   "concept": "nonhomogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-trial",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-variation-of-parameters",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-vp-system",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-solve",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-variation-tan",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-general",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-general",
+   "concept": "general-solution-to-a-nonhomogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-summary",
+   "concept": "method-of-variation-of-parameters",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-summary",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "vp-summary",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "complementary",
+   "concept": "verifying-a-solution",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "2.5.1",
+   "source_number": "2.5.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "eq-uc-particular"
+   },
+   "cite": "eq-uc-particular",
+   "prompt": "<p>Check that $\\ky$ really solves the equation <a href=\"#eq-2-6\">(2.6)</a> and the given initial conditions.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate $\\ky = \\frac{3 e^{-2x} - 2 e^{-3x} + 3x-1}{9}$: $\\kyprime = \\frac{-6e^{-2x} + 6e^{-3x} + 3}{9}$ and $\\kydprime = \\frac{12e^{-2x} - 18e^{-3x}}{9}$. Then $\\kydprime + 5\\kyprime + 6\\ky = \\frac{(12 - 30 + 18)\\,e^{-2x} + (-18 + 30 - 12)\\,e^{-3x} + 15 + 18x - 6}{9} = \\frac{18x + 9}{9} = 2x + 1$, which is (2.6). At $x = 0$: $\\ky(0) = \\frac{3 - 2 - 1}{9} = 0$ and $\\kyprime(0) = \\frac{-6 + 6 + 3}{9} = \\frac{1}{3}$, the given initial conditions."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "2.5.2",
+   "source_number": "2.5.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uc-guess",
+   "prompt": "<p>Find a particular solution of $\\kydprime-\\kyprime -6\\ky = e^{2x}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kyp = -\\frac{1}{4}e^{2x}$. The characteristic equation $r^2 - r - 6 = (r-3)(r+2) = 0$ has roots $3$ and $-2$, so $\\kyc = C_1 e^{3x} + C_2 e^{-2x}$ and $e^{2x}$ does not duplicate it. Try $\\kyp = Ae^{2x}$: $\\kypprime = 2Ae^{2x}$, $\\kypdprime = 4Ae^{2x}$, and $\\kypdprime - \\kypprime - 6\\kyp = (4 - 2 - 6)\\,Ae^{2x} = -4Ae^{2x}$. So $-4A = 1$ and $A = -\\frac{1}{4}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "2.5.3",
+   "source_number": "2.5.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "duplication-twice",
+   "prompt": "<p>Find a particular solution of $\\kydprime-4\\kyprime +4\\ky = e^{2x}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kyp = \\frac{1}{2}x^2 e^{2x}$. The characteristic equation $r^2 - 4r + 4 = (r-2)^2 = 0$ has the double root $2$, so $\\kyc = C_1 e^{2x} + C_2 x e^{2x}$, and both $Ae^{2x}$ and $Axe^{2x}$ duplicate it. Multiply by $x$ until the duplication is gone: $\\kyp = Ax^2 e^{2x}$. Then $\\kypprime = (2Ax + 2Ax^2)\\,e^{2x}$ and $\\kypdprime = (2A + 8Ax + 4Ax^2)\\,e^{2x}$, so $\\kypdprime - 4\\kypprime + 4\\kyp = (2A + 8Ax + 4Ax^2 - 8Ax - 8Ax^2 + 4Ax^2)\\,e^{2x} = 2Ae^{2x}$. So $2A = 1$ and $A = \\frac{1}{2}$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "2.5.4",
+   "source_number": "2.5.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "duplication-trick",
+   "prompt": "<p>Solve the initial value problem $\\kydprime+9\\ky = \\cos (3x) + \\sin (3x)$ for $\\ky(0) = 2$, $\\kyprime(0) = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = 2\\cos(3x) + \\frac{7}{18}\\sin(3x) + \\frac{x}{6}\\bigl(\\sin(3x) - \\cos(3x)\\bigr)$. The complementary solution is $\\kyc = C_1 \\cos(3x) + C_2 \\sin(3x)$, which duplicates the right-hand side, so try $\\kyp = x\\bigl(A\\cos(3x) + B\\sin(3x)\\bigr)$. The terms with a factor $x$ cancel when we plug in, and $\\kypdprime + 9\\kyp = -6A\\sin(3x) + 6B\\cos(3x)$. So $6B = 1$ and $-6A = 1$: $A = -\\frac{1}{6}$, $B = \\frac{1}{6}$, and $\\kyp = \\frac{x}{6}\\bigl(\\sin(3x) - \\cos(3x)\\bigr)$. The general solution is $\\ky = C_1 \\cos(3x) + C_2 \\sin(3x) + \\frac{x}{6}\\bigl(\\sin(3x) - \\cos(3x)\\bigr)$. Now $\\ky(0) = C_1 = 2$, and $\\kyprime = -3C_1 \\sin(3x) + 3C_2 \\cos(3x) + \\frac{1}{6}\\bigl(\\sin(3x) - \\cos(3x)\\bigr) + \\frac{x}{2}\\bigl(\\cos(3x) + \\sin(3x)\\bigr)$, so $\\kyprime(0) = 3C_2 - \\frac{1}{6} = 1$ and $C_2 = \\frac{7}{18}$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "2.5.5",
+   "source_number": "2.5.5",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "duplication-twice",
+   "prompt": "<p>Set up the form of the particular solution but do not solve for the coefficients for $\\kyfourth-2\\kytprime+\\kydprime = e^x$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kyp = Ax^2 e^x$. The characteristic equation $r^4 - 2r^3 + r^2 = r^2 (r-1)^2 = 0$ has the double roots $0$ and $1$, so $\\kyc = C_1 + C_2 x + C_3 e^x + C_4 x e^x$. The guess $Ae^x$ duplicates $e^x$ and $Axe^x$ duplicates $xe^x$, so multiply by $x$ until the duplication is gone: $\\kyp = Ax^2 e^x$. (Plugging in gives $2Ae^x$, so $A = \\frac{1}{2}$, though only the form is asked for.)"
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "2.5.6",
+   "source_number": "2.5.6",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "duplication-twice",
+   "prompt": "<p>Set up the form of the particular solution but do not solve for the coefficients for $\\kyfourth-2\\kytprime+\\kydprime = e^x + x + \\sin x$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kyp = Ax^2 e^x + Bx^3 + Cx^2 + D\\cos x + E\\sin x$. As in Exercise 2.5.5, $\\kyc = C_1 + C_2 x + C_3 e^x + C_4 x e^x$, and we treat the three terms separately. For $e^x$ the guess is $Ax^2 e^x$ as before. For $x$, a general polynomial of degree 1 is $Bx + C$, but both $x$ and the constant duplicate $\\kyc$; multiplying by $x$ once leaves $Bx^2 + Cx$, whose $Cx$ still duplicates, so multiply by $x$ twice: $Bx^3 + Cx^2$. For $\\sin x$ the roots are not $\\pm i$, so $D\\cos x + E\\sin x$ has no duplication. Adding the three pieces gives the form."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "2.5.7",
+   "source_number": "2.5.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vp-summary",
+   "prompt": "<ol type=\"a\"><li>Using variation of parameters, find a particular solution of $\\kydprime-2\\kyprime+\\ky = e^x$.</li><li>Find a particular solution using undetermined coefficients.</li><li>Are the two solutions you found the same? See also Exercise 2.5.10.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kyp = \\frac{1}{2}x^2 e^x$. The complementary solution of $\\kydprime - 2\\kyprime + \\ky = 0$ is $\\kyc = C_1 e^x + C_2 x e^x$, so $\\kyone = e^x$, $\\kytwo = xe^x$ and $\\kf(x) = e^x$. The boxed equations are $\\kuoneprime e^x + \\kutwoprime xe^x = 0$ and $\\kuoneprime e^x + \\kutwoprime (e^x + xe^x) = e^x$. Subtracting the first from the second gives $\\kutwoprime e^x = e^x$, so $\\kutwoprime = 1$ and $\\kutwo = x$; then $\\kuoneprime = -x\\kutwoprime = -x$ and $\\kuone = -\\frac{x^2}{2}$. So $\\kyp = \\kuone \\kyone + \\kutwo \\kytwo = -\\frac{x^2}{2}e^x + x \\cdot xe^x = \\frac{1}{2}x^2 e^x$. b) Both $Ae^x$ and $Axe^x$ duplicate $\\kyc$, so try $\\kyp = Ax^2 e^x$: $\\kypprime = (2Ax + Ax^2)\\,e^x$, $\\kypdprime = (2A + 4Ax + Ax^2)\\,e^x$, and $\\kypdprime - 2\\kypprime + \\kyp = 2Ae^x$. So $A = \\frac{1}{2}$ and $\\kyp = \\frac{1}{2}x^2 e^x$. c) Yes, the two particular solutions are the same."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "2.5.8",
+   "source_number": "2.5.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vp-summary",
+   "prompt": "<p>Find a particular solution of $\\kydprime-2\\kyprime +\\ky = \\sin (x^2)$. It is OK to leave the answer as a definite integral.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kyp = \\int_0^x (x - t)\\,e^{x-t} \\sin(t^2)\\,dt$. With $\\kyone = e^x$, $\\kytwo = xe^x$ and $\\kf(x) = \\sin(x^2)$, the boxed equations $\\kuoneprime e^x + \\kutwoprime xe^x = 0$ and $\\kuoneprime e^x + \\kutwoprime (e^x + xe^x) = \\sin(x^2)$ give $\\kutwoprime = e^{-x}\\sin(x^2)$ and $\\kuoneprime = -x\\kutwoprime = -xe^{-x}\\sin(x^2)$. These have no closed-form antiderivatives, so write them as definite integrals: $\\kuone = -\\int_0^x t e^{-t} \\sin(t^2)\\,dt$ and $\\kutwo = \\int_0^x e^{-t} \\sin(t^2)\\,dt$. Then $\\kyp = \\kuone e^x + \\kutwo xe^x = e^x \\int_0^x (x - t)\\,e^{-t} \\sin(t^2)\\,dt = \\int_0^x (x - t)\\,e^{x-t} \\sin(t^2)\\,dt$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "2.5.9",
+   "source_number": "2.5.9",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "duplication-trick",
+   "prompt": "<p>For an arbitrary constant $c$ find a particular solution to $\\kydprime-\\ky=e^{cx}$. Hint: Make sure to handle every possible real $c$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $c \\neq \\pm 1$, $\\kyp = \\frac{e^{cx}}{c^2 - 1}$; for $c = 1$, $\\kyp = \\frac{1}{2}xe^x$; for $c = -1$, $\\kyp = -\\frac{1}{2}xe^{-x}$. The complementary solution is $\\kyc = C_1 e^x + C_2 e^{-x}$. If $c \\neq \\pm 1$ there is no duplication: with $\\kyp = Ae^{cx}$, $\\kypdprime - \\kyp = (c^2 - 1)\\,Ae^{cx}$, so $A = \\frac{1}{c^2-1}$. If $c = 1$, the guess $Ae^x$ duplicates $\\kyc$, so try $\\kyp = Axe^x$: $\\kypdprime - \\kyp = 2Ae^x$, so $A = \\frac{1}{2}$. If $c = -1$, try $\\kyp = Axe^{-x}$: $\\kypdprime - \\kyp = -2Ae^{-x}$, so $A = -\\frac{1}{2}$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "2.5.10",
+   "source_number": "2.5.10",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moral",
+   "prompt": "<ol type=\"a\"><li>Using variation of parameters, find a particular solution of $\\kydprime-\\ky = e^x$.</li><li>Find a particular solution using undetermined coefficients.</li><li>Are the two solutions you found the same? What is going on?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kyp = \\frac{1}{2}xe^x - \\frac{1}{4}e^x$. With $\\kyone = e^x$, $\\kytwo = e^{-x}$ and $\\kf(x) = e^x$, the boxed equations $\\kuoneprime e^x + \\kutwoprime e^{-x} = 0$ and $\\kuoneprime e^x - \\kutwoprime e^{-x} = e^x$ add to $2\\kuoneprime e^x = e^x$, so $\\kuoneprime = \\frac{1}{2}$ and $\\kuone = \\frac{x}{2}$; then $\\kutwoprime = -\\kuoneprime e^{2x} = -\\frac{1}{2}e^{2x}$ and $\\kutwo = -\\frac{1}{4}e^{2x}$. So $\\kyp = \\frac{x}{2}e^x - \\frac{1}{4}e^{2x} e^{-x} = \\frac{1}{2}xe^x - \\frac{1}{4}e^x$. b) The guess $Ae^x$ duplicates $\\kyc = C_1 e^x + C_2 e^{-x}$, so try $\\kyp = Axe^x$: $\\kypdprime - \\kyp = 2Ae^x$, so $A = \\frac{1}{2}$ and $\\kyp = \\frac{1}{2}xe^x$. c) No: they differ by $\\frac{1}{4}e^x$. That is fine, because $\\frac{1}{4}e^x$ solves the associated homogeneous equation $\\kydprime - \\ky = 0$. Any two particular solutions differ by a solution of the homogeneous equation, as Theorem 2.5.1 says, and both give the same general solution $\\ky = C_1 e^x + C_2 e^{-x} + \\frac{1}{2}xe^x$: the extra $-\\frac{1}{4}e^x$ is absorbed into $C_1 e^x$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "2.5.11",
+   "source_number": "2.5.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uc-guess",
+   "prompt": "<p>Find a polynomial $P(x)$, so that $\\ky = 2 x^2 + 3 x + 4$ solves $\\kydprime+5 \\kyprime+ \\ky = P(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$P(x) = 2x^2 + 23x + 23$. With $\\ky = 2x^2 + 3x + 4$, $\\kyprime = 4x + 3$ and $\\kydprime = 4$, so $P(x) = \\kydprime + 5\\kyprime + \\ky = 4 + (20x + 15) + (2x^2 + 3x + 4) = 2x^2 + 23x + 23$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "2.5.101",
+   "source_number": "2.5.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uc-trig",
+   "prompt": "<p>Find a particular solution to $\\kydprime-\\kyprime+\\ky=2\\sin(3x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=\\frac{-16\\sin(3x)+6\\cos(3x)}{73}$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "2.5.102",
+   "source_number": "2.5.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "several-terms",
+   "prompt": "<ol type=\"a\"><li>Find a particular solution to $\\kydprime+2\\ky=e^x + x^3$.</li><li>Find the general solution.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\ky=\\frac{2e^x+3x^3-9x}{6}$ b) $\\ky=C_1 \\cos(\\sqrt{2} x) + C_2 \\sin(\\sqrt{2} x) + \\frac{2e^x+3x^3-9x}{6}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "2.5.103",
+   "source_number": "2.5.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uc-ivp",
+   "prompt": "<p>Solve $\\kydprime+2\\kyprime+\\ky = x^2$, $\\ky(0)=1$, $\\kyprime(0)=2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky(x) = x^2-4 x+6+e^{-x}(x-5)$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "2.5.104",
+   "source_number": "2.5.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vp-summary",
+   "prompt": "<p>Use variation of parameters to find a particular solution of $\\kydprime-\\ky = \\frac{1}{e^x+e^{-x}}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky = \\frac{2xe^x-(e^x+e^{-x})\\ln(e^{2x}+1)}{4}$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "2.5.105",
+   "source_number": "2.5.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uc-trig",
+   "prompt": "<p>For an arbitrary constant $c$ find the general solution to $\\kydprime-2\\ky=\\sin(x+c)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=\\frac{-\\sin(x+c)}{3}+C_1 e^{\\sqrt{2}\\,x}+C_2 e^{-\\sqrt{2}\\,x}$"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "2.5.106",
+   "source_number": "2.5.106",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "uc-guess",
+   "prompt": "<p>Undetermined coefficients can sometimes be used to guess a particular solution to other equations than those with constant coefficients. Find a polynomial $\\ky(x)$ that solves $\\kyprime+ x \\ky = x^3+2x^2+5x+2$.</p><p>Note: Not every right-hand side will allow a polynomial solution, for example, $\\kyprime+x\\ky=1$ does not, but a technique based on undetermined coefficients does work, see <a href=\"/diffyqs/ch07/7.1/\">chapter 7</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=x^2+2x+3$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e1",
+   "concept": "verifying-a-solution"
+  },
+  {
+   "exercise": "e1",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e2",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e3",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e3",
+   "concept": "duplication-with-the-complementary-solution"
+  },
+  {
+   "exercise": "e4",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e4",
+   "concept": "duplication-with-the-complementary-solution"
+  },
+  {
+   "exercise": "e4",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e4",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e5",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e5",
+   "concept": "duplication-with-the-complementary-solution"
+  },
+  {
+   "exercise": "e6",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e6",
+   "concept": "duplication-with-the-complementary-solution"
+  },
+  {
+   "exercise": "e7",
+   "concept": "method-of-variation-of-parameters"
+  },
+  {
+   "exercise": "e7",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e7",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e8",
+   "concept": "method-of-variation-of-parameters"
+  },
+  {
+   "exercise": "e9",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e9",
+   "concept": "duplication-with-the-complementary-solution"
+  },
+  {
+   "exercise": "e10",
+   "concept": "method-of-variation-of-parameters"
+  },
+  {
+   "exercise": "e10",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e10",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e11",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e101",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e102",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e102",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e103",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e103",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e103",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e104",
+   "concept": "method-of-variation-of-parameters"
+  },
+  {
+   "exercise": "e105",
+   "concept": "method-of-undetermined-coefficients"
+  },
+  {
+   "exercise": "e105",
+   "concept": "general-solution-to-a-nonhomogeneous-equation"
+  },
+  {
+   "exercise": "e106",
+   "concept": "method-of-undetermined-coefficients"
+  }
+ ],
+ "footnotes": []
+}

@@ -1,0 +1,771 @@
+{
+ "id": "3.7",
+ "module": "sec:multeigen",
+ "chapter": "3",
+ "title": "Repeated eigenvalues",
+ "short": "Repeated eigenvalues",
+ "lead": "A <span data-concept=\"matrix\">matrix</span> whose <span data-concept=\"characteristic-equation-of-a-matrix\">characteristic equation</span> has a repeated root may not have as many <span data-concept=\"eigenvector\">eigenvectors</span> as the <span data-concept=\"eigenvalue-method\">eigenvalue method</span> needs. This section counts an <span data-concept=\"eigenvalue\">eigenvalue</span> two ways, says when the method still works, and finds the missing <span data-concept=\"solution-to-a-system\">solutions</span> of a system from <span data-concept=\"generalized-eigenvector\">generalized eigenvectors</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 3.7.101–3.7.104 carry the book’s own answers. The book answers no exercise below 101; the inline Exercise 3.7.1 and each of Exercises 3.7.2–3.7.8 carries an AI-marked solution stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-repeated-limit",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "vector-field",
+    "curve",
+    "vector",
+    "eigenvalue"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "multiplicities",
+   "concept": "algebraic-multiplicity",
+   "verb": "introduces"
+  },
+  {
+   "span": "multiplicities",
+   "concept": "geometric-multiplicity",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-3-7-1",
+   "concept": "eigenvalue-method-for-complete-eigenvalues",
+   "verb": "introduces"
+  },
+  {
+   "span": "complete",
+   "concept": "complete-eigenvalue",
+   "verb": "introduces"
+  },
+  {
+   "span": "deficient",
+   "concept": "deficient-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "deficient",
+   "concept": "defective-eigenvalue",
+   "verb": "introduces"
+  },
+  {
+   "span": "deficient",
+   "concept": "defect",
+   "verb": "introduces"
+  },
+  {
+   "span": "generalized",
+   "concept": "generalized-eigenvector",
+   "verb": "introduces"
+  },
+  {
+   "span": "try-another",
+   "concept": "solutions-for-a-defective-eigenvalue",
+   "verb": "introduces"
+  },
+  {
+   "span": "upper-triangular",
+   "concept": "upper-triangular-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "chains",
+   "concept": "chains-of-generalized-eigenvectors",
+   "verb": "introduces"
+  },
+  {
+   "span": "repeated-intro",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "repeated-intro",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "repeated-intro",
+   "concept": "characteristic-equation-of-a-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "geometric",
+   "concept": "diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "multiplicities",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "independent-eigenvectors",
+   "concept": "eigenvalue-method",
+   "verb": "uses"
+  },
+  {
+   "span": "independent-eigenvectors",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "restate",
+   "concept": "algebraic-multiplicity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thm-3-7-1",
+   "concept": "eigenvalue-method",
+   "verb": "uses"
+  },
+  {
+   "span": "complete",
+   "concept": "geometric-multiplicity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complete-hypothesis",
+   "concept": "complete-eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complete-hypothesis",
+   "concept": "eigenvalue-method-for-complete-eigenvalues",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eigenvector-choice",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenvector-choice",
+   "concept": "finding-an-eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-7-1",
+   "concept": "defective-eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-3-7-1",
+   "concept": "finding-an-eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "defect-one-example",
+   "concept": "defect",
+   "verb": "reinforces"
+  },
+  {
+   "span": "defect-one-example",
+   "concept": "eigenvalue-method",
+   "verb": "uses"
+  },
+  {
+   "span": "one-solution",
+   "concept": "eigenvalue-method",
+   "verb": "uses"
+  },
+  {
+   "span": "try-another",
+   "concept": "solution-for-a-repeated-real-root",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-generalized-eigenvector",
+   "concept": "solutions-for-a-defective-eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "find-v2",
+   "concept": "generalized-eigenvector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "find-v2",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "squared",
+   "concept": "generalized-eigenvector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "any-w",
+   "concept": "generalized-eigenvector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "upper-triangular",
+   "concept": "defective-eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "defective-algorithm",
+   "concept": "solutions-for-a-defective-eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "defective-algorithm",
+   "concept": "finding-an-eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-repeated-limit",
+   "concept": "defective-eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-repeated-limit",
+   "concept": "generalized-eigenvector",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-repeated-limit",
+   "concept": "solutions-for-a-defective-eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-repeated-limit",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-7-2",
+   "concept": "characteristic-equation-of-a-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-7-2",
+   "concept": "free-variable",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-7-2",
+   "concept": "solutions-for-a-defective-eigenvalue",
+   "verb": "reinforces"
+  },
+  {
+   "span": "higher-defects",
+   "concept": "defect",
+   "verb": "reinforces"
+  },
+  {
+   "span": "chain-solutions",
+   "concept": "chains-of-generalized-eigenvectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "how-many-chains",
+   "concept": "geometric-multiplicity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "defect-two",
+   "concept": "chains-of-generalized-eigenvectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-chains",
+   "concept": "chains-of-generalized-eigenvectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-chains",
+   "concept": "generalized-eigenvector",
+   "verb": "reinforces"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "generalized-eigenvector",
+   "what": "the conditions on v₁ and v₂ that give the second solution",
+   "source": "Differential Equations for Engineers, 3.7 Repeated eigenvalues, Defective eigenvalues",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kvecxtwo$ is a solution of $\\kvecxprime = \\kA\\kvecx$."
+      },
+      {
+       "tex": "\\kvecxtwo = ( \\kvecvtwo + \\kvecvone t )\\, e^{3t}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kvecxtwoprime} = \\mk{r}{\\kA \\kvecxtwo}",
+      "uses": [
+       0
+      ],
+      "why": "As we are assuming that $\\kvecxtwo$ is a solution, $\\kvecxtwoprime$ must equal $\\kA \\kvecxtwo$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\bigl( ( \\kvecvtwo + \\kvecvone t )\\, e^{3t} \\bigr)'} = \\mk{r}{\\kA ( \\kvecvtwo + \\kvecvone t )\\, e^{3t}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kvecvone e^{3t} + 3 ( \\kvecvtwo + \\kvecvone t )\\, e^{3t}} = \\mk{r}{\\kA ( \\kvecvtwo + \\kvecvone t )\\, e^{3t}}",
+       "uses": [],
+       "cap": "Differentiate by the product rule: the derivative of $\\kvecvtwo + \\kvecvone t$ is $\\kvecvone$, and that of $e^{3t}$ is $3e^{3t}$."
+      },
+      {
+       "tex": "\\mk{a}{( 3 \\kvecvtwo + \\kvecvone )\\, e^{3t}} + \\mk{b}{3 \\kvecvone t e^{3t}} = \\mk{r}{\\kA ( \\kvecvtwo + \\kvecvone t )\\, e^{3t}}",
+       "uses": [],
+       "map": {
+        "l": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{a}{( 3 \\kvecvtwo + \\kvecvone )\\, e^{3t}} + \\mk{b}{3 \\kvecvone t e^{3t}} = \\mk{c}{\\kA \\kvecvtwo e^{3t}} + \\mk{d}{\\kA \\kvecvone t e^{3t}}",
+       "uses": [],
+       "map": {
+        "r": [
+         "c",
+         "d"
+        ]
+       },
+       "cap": "Matrix multiplication distributes over the sum, and the scalars $t$ and $e^{3t}$ can be written after $\\kA$ and the vector."
+      }
+     ],
+     "src": "Example 3.7.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{3 \\kvecvtwo + \\kvecvone} = \\mk{c}{\\kA \\kvecvtwo}",
+      "uses": [
+       0
+      ],
+      "why": "Look at the coefficients of $e^{3t}$ on the two sides: $e^{3t}$ and $te^{3t}$ are linearly independent, so the coefficients must agree."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kvecvone} = \\mk{c}{\\kA \\kvecvtwo} - \\mk{s}{3 \\kvecvtwo}",
+       "uses": [],
+       "map": {
+        "a": [
+         "v",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\kvecvone} = \\mk{m}{(\\kA - 3\\kI) \\kvecvtwo}",
+       "uses": [],
+       "map": {
+        "c": "m",
+        "s": "m"
+       },
+       "cap": "Write $3\\kvecvtwo = 3\\kI\\kvecvtwo$ and factor $\\kvecvtwo$ out on the right."
+      },
+      {
+       "tex": "\\mk{m}{(\\kA - 3\\kI) \\kvecvtwo} = \\mk{v}{\\kvecvone}",
+       "uses": []
+      }
+     ],
+     "src": "Example 3.7.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{b}{3 \\kvecvone} = \\mk{d}{\\kA \\kvecvone}",
+      "uses": [
+       0
+      ],
+      "why": "Look at the coefficients of $te^{3t}$ on the two sides."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{\\vec{0}} = \\mk{d}{\\kA \\kvecvone} - \\mk{b}{3 \\kvecvone}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{z}{\\vec{0}} = \\mk{m}{(\\kA - 3\\kI) \\kvecvone}",
+       "uses": [],
+       "map": {
+        "d": "m",
+        "b": "m"
+       },
+       "cap": "Write $3\\kvecvone = 3\\kI\\kvecvone$ and factor $\\kvecvone$ out on the right."
+      },
+      {
+       "tex": "\\mk{m}{(\\kA - 3\\kI) \\kvecvone} = \\mk{z}{\\vec{0}}",
+       "uses": []
+      }
+     ],
+     "src": "Example 3.7.1"
+    }
+   ]
+  }
+ ],
+ "footnotes": [],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "3.7.1",
+   "source_number": "3.7.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "upper-triangular"
+   },
+   "cite": "upper-triangular",
+   "prompt": "<p>Solve $\\kvecxprime = \\left[ \\begin{smallmatrix} 3 & 1 \\\\ 0 & 3 \\end{smallmatrix} \\right] \\kvecx$ by first solving for $\\kxtwo$ and then for $\\kxone$ independently. Check that you got the same solution as we did above.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The second equation is $\\kxtwoprime = 3\\kxtwo$, which does not involve $\\kxone$, so $\\kxtwo = c_2 e^{3t}$. The first equation is then $\\kxoneprime = 3\\kxone + \\kxtwo = 3\\kxone + c_2 e^{3t}$, a first-order linear equation. With the integrating factor $e^{-3t}$ it reads $(\\kxone e^{-3t})' = c_2$, so $\\kxone e^{-3t} = c_2 t + c_1$ and $\\kxone = c_1 e^{3t} + c_2 t e^{3t}$. Together, $\\kvecx = \\left[ \\begin{smallmatrix} c_1 e^{3t} + c_2 t e^{3t} \\\\ c_2 e^{3t} \\end{smallmatrix} \\right]$, the same solution as found with the generalized eigenvector."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "3.7.2",
+   "source_number": "3.7.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defective-algorithm",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} 5 & -3 \\\\ 3 & -1 \\end{smallmatrix} \\right]$. Find the general solution of $\\kvecxprime = \\kA \\kvecx$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation is $\\det(\\kA - \\klambda \\kI) = (5 - \\klambda)(-1 - \\klambda) + 9 = \\klambda^2 - 4\\klambda + 4 = (\\klambda - 2)^2 = 0$, so $\\klambda = 2$ has algebraic multiplicity 2. Then $\\kA - 2\\kI = \\left[ \\begin{smallmatrix} 3 & -3 \\\\ 3 & -3 \\end{smallmatrix} \\right]$, and $(\\kA - 2\\kI)\\kvecv = \\vec{0}$ says $v_1 = v_2$: every eigenvector is a multiple of $\\kvecvone = \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$, so the geometric multiplicity is 1 and the defect is 1. Solve $(\\kA - 2\\kI)\\kvecvtwo = \\kvecvone$: both rows say $3a - 3b = 1$, so take $b = 0$ and $a = 1/3$, $\\kvecvtwo = \\left[ \\begin{smallmatrix} 1/3 \\\\ 0 \\end{smallmatrix} \\right]$. The general solution is $\\kvecx = c_1 \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right] e^{2t} + c_2 \\left( \\left[ \\begin{smallmatrix} 1/3 \\\\ 0 \\end{smallmatrix} \\right] + \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right] t \\right) e^{2t}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "3.7.3",
+   "source_number": "3.7.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "complete",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} 5 & -4 & 4 \\\\ 0 & 3 & 0 \\\\ -2 & 4 & -1 \\end{smallmatrix} \\right]$.</p><ol type=\"a\"><li>What are the eigenvalues?</li><li>What is/are the defect(s) of the eigenvalue(s)?</li><li>Find the general solution of $\\kvecxprime = \\kA \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Expanding $\\det(\\kA - \\klambda \\kI)$ along the second row gives $(3 - \\klambda)\\bigl((5 - \\klambda)(-1 - \\klambda) + 8\\bigr) = (3 - \\klambda)(\\klambda^2 - 4\\klambda + 3) = (3 - \\klambda)(\\klambda - 1)(\\klambda - 3)$, so the eigenvalues are $1, 3, 3$. b) For $\\klambda = 3$, $\\kA - 3\\kI = \\left[ \\begin{smallmatrix} 2 & -4 & 4 \\\\ 0 & 0 & 0 \\\\ -2 & 4 & -4 \\end{smallmatrix} \\right]$ leaves the one equation $v_1 - 2v_2 + 2v_3 = 0$ with two free variables, so there are two linearly independent eigenvectors, $\\left[ \\begin{smallmatrix} 2 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} -2 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right]$: the geometric multiplicity is 2, equal to the algebraic multiplicity. The eigenvalue $1$ has multiplicity 1, with eigenvector $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ -1 \\end{smallmatrix} \\right]$. No eigenvalue is defective: both defects are 0. c) All the eigenvalues are complete, so Theorem 3.7.1 gives $\\kvecx = c_1 \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ -1 \\end{smallmatrix} \\right] e^{t} + c_2 \\left[ \\begin{smallmatrix} 2 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right] e^{3t} + c_3 \\left[ \\begin{smallmatrix} -2 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right] e^{3t}$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "3.7.4",
+   "source_number": "3.7.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-chains",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} 2 & 1 & 0 \\\\ 0 & 2 & 0 \\\\ 0 & 0 & 2 \\end{smallmatrix} \\right]$.</p><ol type=\"a\"><li>What are the eigenvalues?</li><li>What is/are the defect(s) of the eigenvalue(s)?</li><li>Find the general solution of $\\kvecxprime = \\kA \\kvecx$ in two different ways and verify you get the same answer.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kA$ is upper triangular, so $\\det(\\kA - \\klambda \\kI) = (2 - \\klambda)^3$ and the eigenvalues are $2, 2, 2$. b) $\\kA - 2\\kI = \\left[ \\begin{smallmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{smallmatrix} \\right]$ says only $v_2 = 0$, so $v_1$ and $v_3$ are free: the eigenvectors $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 0 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right]$ give geometric multiplicity 2 against algebraic multiplicity 3, a defect of 1. c) First way, by a chain: ${(\\kA - 2\\kI)}^2$ is the zero matrix, so take $\\kvecvthree = \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right]$, for which $(\\kA - 2\\kI)\\kvecvthree = \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] = \\kvecvtwo$ is an eigenvector, and take the other eigenvector $\\kvecvone = \\left[ \\begin{smallmatrix} 0 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right]$. Then $\\kvecx = c_1 \\left[ \\begin{smallmatrix} 0 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right] e^{2t} + c_2 \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] e^{2t} + c_3 \\left( \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right] + \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] t \\right) e^{2t}$. Second way, as the matrix is upper triangular: $\\kxthree' = 2\\kxthree$ gives $\\kxthree = c_1 e^{2t}$, $\\kxtwoprime = 2\\kxtwo$ gives $\\kxtwo = c_3 e^{2t}$, and $\\kxoneprime = 2\\kxone + \\kxtwo = 2\\kxone + c_3 e^{2t}$ gives $\\kxone = c_2 e^{2t} + c_3 t e^{2t}$ (integrating factor $e^{-2t}$). Both ways give $\\kvecx = \\left[ \\begin{smallmatrix} c_2 e^{2t} + c_3 t e^{2t} \\\\ c_3 e^{2t} \\\\ c_1 e^{2t} \\end{smallmatrix} \\right]$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "3.7.5",
+   "source_number": "3.7.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-3-7-2",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} 0 & 1 & 2 \\\\ -1 & -2 & -2 \\\\ -4 & 4 & 7 \\end{smallmatrix} \\right]$.</p><ol type=\"a\"><li>What are the eigenvalues?</li><li>What is/are the defect(s) of the eigenvalue(s)?</li><li>Find the general solution of $\\kvecxprime = \\kA \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\det(\\kA - \\klambda \\kI) = -(\\klambda + 1)(\\klambda - 3)^2$, so the eigenvalues are $-1, 3, 3$. b) For $\\klambda = 3$, $\\kA - 3\\kI = \\left[ \\begin{smallmatrix} -3 & 1 & 2 \\\\ -1 & -5 & -2 \\\\ -4 & 4 & 4 \\end{smallmatrix} \\right]$ has rank 2, so the eigenvectors are the multiples of $\\kvecvone = \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 2 \\end{smallmatrix} \\right]$: the eigenvalue 3 has algebraic multiplicity 2 and geometric multiplicity 1, a defect of 1. The eigenvalue $-1$ is simple, with eigenvector $\\left[ \\begin{smallmatrix} 0 \\\\ 2 \\\\ -1 \\end{smallmatrix} \\right]$, and has no defect. c) Solve $(\\kA - 3\\kI)\\kvecvtwo = \\kvecvone$: the equations reduce to $a = c/2 - 1/4$ and $b = 1/4 - c/2$, and $c = 1/2$ gives $\\kvecvtwo = \\left[ \\begin{smallmatrix} 0 \\\\ 0 \\\\ 1/2 \\end{smallmatrix} \\right]$. The general solution is $\\kvecx = c_1 \\left[ \\begin{smallmatrix} 0 \\\\ 2 \\\\ -1 \\end{smallmatrix} \\right] e^{-t} + c_2 \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 2 \\end{smallmatrix} \\right] e^{3t} + c_3 \\left( \\left[ \\begin{smallmatrix} 0 \\\\ 0 \\\\ 1/2 \\end{smallmatrix} \\right] + \\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 2 \\end{smallmatrix} \\right] t \\right) e^{3t}$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "3.7.6",
+   "source_number": "3.7.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "two-chains",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} 0 & 4 & -2 \\\\ -1 & -4 & 1 \\\\ 0 & 0 & -2 \\end{smallmatrix} \\right]$.</p><ol type=\"a\"><li>What are the eigenvalues?</li><li>What is/are the defect(s) of the eigenvalue(s)?</li><li>Find the general solution of $\\kvecxprime = \\kA \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Expanding along the third row, $\\det(\\kA - \\klambda \\kI) = (-2 - \\klambda)(\\klambda^2 + 4\\klambda + 4) = -(\\klambda + 2)^3$, so the eigenvalues are $-2, -2, -2$. b) $\\kA + 2\\kI = \\left[ \\begin{smallmatrix} 2 & 4 & -2 \\\\ -1 & -2 & 1 \\\\ 0 & 0 & 0 \\end{smallmatrix} \\right]$ leaves the one equation $v_1 + 2v_2 - v_3 = 0$, with two free variables: two linearly independent eigenvectors such as $\\left[ \\begin{smallmatrix} -2 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right]$. The geometric multiplicity is 2 and the algebraic multiplicity 3, so the defect is 1. c) ${(\\kA + 2\\kI)}^2$ is the zero matrix, so take $\\kvecvthree = \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right]$, which has $(\\kA + 2\\kI)\\kvecvthree = \\left[ \\begin{smallmatrix} 2 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right] = \\kvecvtwo \\neq \\vec{0}$, an eigenvector; the eigenvector $\\kvecvone = \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right]$ is linearly independent from it. Then $\\kvecx = c_1 \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right] e^{-2t} + c_2 \\left[ \\begin{smallmatrix} 2 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right] e^{-2t} + c_3 \\left( \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] + \\left[ \\begin{smallmatrix} 2 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right] t \\right) e^{-2t}$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "3.7.7",
+   "source_number": "3.7.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defect-two",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} 2 & 1 & -1 \\\\ -1 & 0 & 2 \\\\ -1 & -2 & 4 \\end{smallmatrix} \\right]$.</p><ol type=\"a\"><li>What are the eigenvalues?</li><li>What is/are the defect(s) of the eigenvalue(s)?</li><li>Find the general solution of $\\kvecxprime = \\kA \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\det(\\kA - \\klambda \\kI) = -(\\klambda - 2)^3$, so the eigenvalues are $2, 2, 2$. b) $\\kA - 2\\kI = \\left[ \\begin{smallmatrix} 0 & 1 & -1 \\\\ -1 & -2 & 2 \\\\ -1 & -2 & 2 \\end{smallmatrix} \\right]$ has rank 2, so every eigenvector is a multiple of $\\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 1 \\end{smallmatrix} \\right]$: the geometric multiplicity is 1 and the algebraic multiplicity 3, a defect of 2. c) One chain of length 3: ${(\\kA - 2\\kI)}^2 = \\left[ \\begin{smallmatrix} 0 & 0 & 0 \\\\ 0 & -1 & 1 \\\\ 0 & -1 & 1 \\end{smallmatrix} \\right]$ and ${(\\kA - 2\\kI)}^3$ is zero. Take $\\kvecvthree = \\left[ \\begin{smallmatrix} 0 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right]$, for which ${(\\kA - 2\\kI)}^2 \\kvecvthree \\neq \\vec{0}$; then $\\kvecvtwo = (\\kA - 2\\kI)\\kvecvthree = \\left[ \\begin{smallmatrix} -1 \\\\ 2 \\\\ 2 \\end{smallmatrix} \\right]$ and $\\kvecvone = (\\kA - 2\\kI)\\kvecvtwo = \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 1 \\end{smallmatrix} \\right]$. The general solution is $\\kvecx = c_1 \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 1 \\end{smallmatrix} \\right] e^{2t} + c_2 \\left( \\left[ \\begin{smallmatrix} -1 \\\\ 2 \\\\ 2 \\end{smallmatrix} \\right] + \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 1 \\end{smallmatrix} \\right] t \\right) e^{2t} + c_3 \\left( \\left[ \\begin{smallmatrix} 0 \\\\ 0 \\\\ 1 \\end{smallmatrix} \\right] + \\left[ \\begin{smallmatrix} -1 \\\\ 2 \\\\ 2 \\end{smallmatrix} \\right] t + \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 1 \\end{smallmatrix} \\right] \\frac{t^2}{2} \\right) e^{2t}$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "3.7.8",
+   "source_number": "3.7.8",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eigenvector-choice",
+   "prompt": "<p>Suppose that $\\kA$ is a $2 \\times 2$ matrix with a repeated eigenvalue $\\klambda$. Suppose that there are two linearly independent eigenvectors. Show that $\\kA = \\klambda \\kI$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let $\\kvecvone$ and $\\kvecvtwo$ be the two linearly independent eigenvectors, so $\\kA\\kvecvone = \\klambda\\kvecvone$ and $\\kA\\kvecvtwo = \\klambda\\kvecvtwo$. Put them as the columns of the $2 \\times 2$ matrix $E = [\\, \\kvecvone \\ \\ \\kvecvtwo \\,]$. Its columns are linearly independent, so $\\det E \\neq 0$ and $E$ is invertible. The two eigenvector equations say $\\kA E = \\klambda E$, and multiplying on the right by $E^{-1}$ gives $\\kA = \\klambda E E^{-1} = \\klambda \\kI$. (In words: every vector of the plane is a combination of $\\kvecvone$ and $\\kvecvtwo$, so $\\kA$ multiplies every vector by $\\klambda$.)"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "3.7.101",
+   "source_number": "3.7.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "complete-hypothesis",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} 1 & 1 & 1 \\\\ 1 & 1 & 1 \\\\ 1 & 1 & 1 \\end{smallmatrix} \\right]$.</p><ol type=\"a\"><li>What are the eigenvalues?</li><li>What is/are the defect(s) of the eigenvalue(s)?</li><li>Find the general solution of $\\kvecxprime = \\kA \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $3,0,0$ b) No defects. c) $\\kvecx = C_1 \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ 1 \\end{smallmatrix} \\right] e^{3t} + C_2 \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ -1 \\end{smallmatrix} \\right] + C_3 \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ -1 \\end{smallmatrix} \\right]$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "3.7.102",
+   "source_number": "3.7.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-3-7-2",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} 1 & 3 & 3 \\\\ 1 & 1 & 0 \\\\ -1 & 1 & 2 \\end{smallmatrix} \\right]$.</p><ol type=\"a\"><li>What are the eigenvalues?</li><li>What is/are the defect(s) of the eigenvalue(s)?</li><li>Find the general solution of $\\kvecxprime = \\kA \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $1,1,2$ b) Eigenvalue 1 has a defect of 1 c) $\\kvecx = C_1 \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ -1 \\end{smallmatrix} \\right] e^{t} + C_2 \\left( \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] + t \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ -1 \\end{smallmatrix} \\right] \\right) e^{t} + C_3 \\left[ \\begin{smallmatrix} 3 \\\\ 3 \\\\ -2 \\end{smallmatrix} \\right] e^{2t}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "3.7.103",
+   "source_number": "3.7.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defect-two",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} 2 & 0 & 0 \\\\ -1 & -1 & 9 \\\\ 0 & -1 & 5 \\end{smallmatrix} \\right]$.</p><ol type=\"a\"><li>What are the eigenvalues?</li><li>What is/are the defect(s) of the eigenvalue(s)?</li><li>Find the general solution of $\\kvecxprime = \\kA \\kvecx$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $2,2,2$ b) Eigenvalue 2 has a defect of 2 c) $\\kvecx = C_1 \\left[ \\begin{smallmatrix} 0 \\\\ 3 \\\\ 1 \\end{smallmatrix} \\right] e^{2t} + C_2 \\left( \\left[ \\begin{smallmatrix} 0 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right] + t \\left[ \\begin{smallmatrix} 0 \\\\ 3 \\\\ 1 \\end{smallmatrix} \\right] \\right) e^{2t} + C_3 \\left( \\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] + t \\left[ \\begin{smallmatrix} 0 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right] + \\frac{t^2}{2} \\left[ \\begin{smallmatrix} 0 \\\\ 3 \\\\ 1 \\end{smallmatrix} \\right] \\right) e^{2t}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "3.7.104",
+   "source_number": "3.7.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defective-algorithm",
+   "prompt": "<p>Let $\\kA = \\left[ \\begin{smallmatrix} a & a \\\\ b & c \\end{smallmatrix} \\right]$, where $a$, $b$, and $c$ are unknowns. Suppose that $5$ is a doubled eigenvalue of defect 1, and suppose that $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\end{smallmatrix} \\right]$ is a corresponding eigenvector. Find $\\kA$ and show that there is only one such matrix $\\kA$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kA = \\left[ \\begin{smallmatrix} 5 & 5 \\\\ 0 & 5 \\end{smallmatrix} \\right]$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "upper-triangular-matrix"
+  },
+  {
+   "exercise": "e1",
+   "concept": "solutions-for-a-defective-eigenvalue"
+  },
+  {
+   "exercise": "e2",
+   "concept": "solutions-for-a-defective-eigenvalue"
+  },
+  {
+   "exercise": "e2",
+   "concept": "generalized-eigenvector"
+  },
+  {
+   "exercise": "e2",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e3",
+   "concept": "algebraic-multiplicity"
+  },
+  {
+   "exercise": "e3",
+   "concept": "geometric-multiplicity"
+  },
+  {
+   "exercise": "e3",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e3",
+   "concept": "eigenvalue-method-for-complete-eigenvalues"
+  },
+  {
+   "exercise": "e4",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e4",
+   "concept": "chains-of-generalized-eigenvectors"
+  },
+  {
+   "exercise": "e4",
+   "concept": "upper-triangular-matrix"
+  },
+  {
+   "exercise": "e5",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e5",
+   "concept": "solutions-for-a-defective-eigenvalue"
+  },
+  {
+   "exercise": "e6",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e6",
+   "concept": "chains-of-generalized-eigenvectors"
+  },
+  {
+   "exercise": "e7",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e7",
+   "concept": "chains-of-generalized-eigenvectors"
+  },
+  {
+   "exercise": "e8",
+   "concept": "geometric-multiplicity"
+  },
+  {
+   "exercise": "e8",
+   "concept": "complete-eigenvalue"
+  },
+  {
+   "exercise": "e101",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e101",
+   "concept": "eigenvalue-method-for-complete-eigenvalues"
+  },
+  {
+   "exercise": "e102",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e102",
+   "concept": "solutions-for-a-defective-eigenvalue"
+  },
+  {
+   "exercise": "e103",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e103",
+   "concept": "chains-of-generalized-eigenvectors"
+  },
+  {
+   "exercise": "e104",
+   "concept": "defective-eigenvalue"
+  },
+  {
+   "exercise": "e104",
+   "concept": "defect"
+  },
+  {
+   "exercise": "e104",
+   "concept": "generalized-eigenvector"
+  }
+ ]
+}

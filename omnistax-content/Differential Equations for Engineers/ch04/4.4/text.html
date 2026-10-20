@@ -1,0 +1,116 @@
+<section id="odd-even">
+<h2>Odd and even periodic functions</h2>
+<p id="observation">You may have noticed by now that an <span data-concept="odd-function">odd function</span> has no cosine terms in the <span data-concept="fourier-series">Fourier series</span> and an <span data-concept="even-function">even function</span> has no sine terms in the <span data-concept="fourier-series">Fourier series</span>. This observation is not a coincidence. Let us look at even and odd <span data-concept="periodic-function">periodic functions</span> in more detail.</p>
+<p id="odd-even-recall"><a href="/calculus/ch01/1.1/">Recall</a> that a function $f(t)$ is <em><span data-concept="odd-function">odd</span></em> if $f(-t) = -f(t)$. A function $f(t)$ is <em><span data-concept="even-function">even</span></em> if $f(-t) = f(t)$. For example, $\cos (n t)$ is <span data-concept="even-function">even</span> and $\sin (n t)$ is <span data-concept="odd-function">odd</span>. Similarly, the function $t^k$ is <span data-concept="even-function">even</span> if $k$ is even and <span data-concept="odd-function">odd</span> if $k$ is odd.</p>
+<div class="exercises" data-place="odd-even-recall"></div>
+<p id="sums">If $f(t)$ and $g(t)$ are both <span data-concept="odd-function">odd</span>, then $f(t)+g(t)$ is <span data-concept="odd-function">odd</span>. Similarly for <span data-concept="even-function">even functions</span>. On the other hand, if $f(t)$ is <span data-concept="odd-function">odd</span> and $g(t)$ <span data-concept="even-function">even</span>, then we cannot say anything about the sum $f(t) + g(t)$. In fact, the <span data-concept="fourier-series">Fourier series</span> of any function is a sum of an <span data-concept="odd-function">odd function</span> (the sine terms) and an <span data-concept="even-function">even function</span> (the cosine terms).</p>
+<p id="half-interval">In this section, we consider <span data-concept="odd-function">odd</span> and <span data-concept="even-function">even</span> <span data-concept="periodic-function">periodic functions</span>. We have previously defined the <span data-concept="periodic-extension">$2L$-periodic extension</span> of a function defined on the interval $[-L,L]$. Sometimes we are only interested in the function on the interval $[0,L]$, and it would be convenient to have an <span data-concept="odd-function">odd</span> (resp. <span data-concept="even-function">even</span>) function. If the function is <span data-concept="odd-function">odd</span> (resp. <span data-concept="even-function">even</span>), all the cosine (resp. sine) terms disappear. What we will do is take the <span data-concept="odd-function">odd</span> (resp. <span data-concept="even-function">even</span>) extension of the function to $[-L,L]$ and then <span data-concept="periodic-extension">extend periodically</span> to a $2L$-periodic function.</p>
+<p id="extension-setup">Take a function $\kf(t)$ defined on $[0,L]$. On $(-L,L]$ define the functions</p>
+<div class="equation" id="eq-odd-extension">$$ \kFodd(t) \overset{\text{def}}{=} \begin{cases} \kf(t) & \text{if } \; \phantom{-}0 \leq t \leq L , \\ -\kf(-t) & \text{if } \; {-L} &lt; t &lt; 0 , \end{cases} $$</div>
+<div class="equation" id="eq-even-extension">$$ \kFeven(t) \overset{\text{def}}{=} \begin{cases} \kf(t) & \text{if } \; \phantom{-}0 \leq t \leq L , \\ \kf(-t) & \text{if } \; {-L} &lt; t &lt; 0 . \end{cases} $$</div>
+<p id="extensions">Extend $\kFodd(t)$ and $\kFeven(t)$ to be $2L$-periodic. Then $\kFodd(t)$ is called the <em><span data-concept="odd-periodic-extension">odd periodic extension</span></em> of $\kf(t)$, and $\kFeven(t)$ is called the <em><span data-concept="even-periodic-extension">even periodic extension</span></em> of $\kf(t)$. For the <span data-concept="odd-periodic-extension">odd extension</span>, we generally assume that $\kf(0) = \kf(L) = 0$.</p>
+<div class="exercises" data-place="extensions"></div>
+<div class="example" id="ex-4-4-1">
+<h3>Example 4.4.1</h3>
+<p>Take the function $\kf(t) = t\,(1-t)$ defined on $[0,1]$. Figure 4.12 shows the plots of the <span data-concept="odd-periodic-extension">odd</span> and <span data-concept="even-periodic-extension">even periodic extensions</span> of $\kf(t)$.</p>
+<figure class="sim" id="sim-extensions" data-figure="4.12" data-original="/media/ch04/scs-ext-odd-even.svg" data-original-caption="Odd and even 2-periodic extension of f(t) = t(1 − t), 0 ≤ t ≤ 1." data-original-width="864">
+  <div class="sim-head"><span class="eyebrow">Figure 4.12</span><span>The <span data-concept="odd-periodic-extension">odd extension</span> turns each copy of $\kf$ over through the origin, $\kFodd(-t) = -\kf(t)$, and the <span data-concept="even-periodic-extension">even extension</span> mirrors it, $\kFeven(-t) = \kf(t)$; both then repeat with period $2L$. Where $\kf(0)$ or $\kf(L)$ is not $0$, as for $(t-1)^2$ or $t$, the <span data-concept="odd-periodic-extension">odd extension</span> jumps there.</span></div>
+</figure>
+</div>
+</section>
+
+<section id="sine-cosine-series">
+<h2>Sine and cosine series</h2>
+<p id="odd-coefficients">Let us write the <span data-concept="fourier-series">Fourier series</span> for an <span data-concept="odd-function">odd</span> <span data-concept="fourier-series-with-half-period-l">$2L$-periodic function</span> $\kf(t)$. First, we compute the <span data-concept="fourier-coefficients">coefficients</span> $\kan$ (including $n=0$) and get</p>
+$$ \kan = \frac{1}{L} \int_{-L}^L \kf(t) \cos \left( \frac{n \pi}{L} t \right) \, dt = 0 . $$
+<p id="odd-coefficients-why">That is, the <span data-concept="fourier-series">Fourier series</span> of an <span data-concept="odd-function">odd function</span> has no cosine terms. The integral is zero as $\kf(t) \cos \left( \frac{n \pi}{L} t \right)$ is an <span data-concept="odd-function">odd function</span> (product of an odd and an even function is odd) and <a href="/calculus/ch05/5.4/"><span data-concept="integrals-of-even-and-odd-functions">the integral of an odd function over a symmetric interval is zero</span></a>. The function $\kf(t) \sin \left( \frac{n \pi}{L} t \right)$ is <span data-concept="even-function">even</span> as it is the product of two <span data-concept="odd-function">odd functions</span>. <span data-concept="integrals-of-even-and-odd-functions">The integral of an even function over a symmetric interval $[-L,L]$ is twice the integral of the function over the interval $[0,L]$</span>. So</p>
+$$ \kbn = \frac{1}{L} \int_{-L}^L \kf(t) \sin \left( \frac{n \pi}{L} t \right) \, dt = \frac{2}{L} \int_{0}^L \kf(t) \sin \left( \frac{n \pi}{L} t \right) \, dt . $$
+<p>The <span data-concept="fourier-series">Fourier series</span> of an <span data-concept="odd-function">odd</span> $\kf(t)$ is then</p>
+$$ \sum_{n=1}^\infty \kbn \sin \left( \frac{n \pi}{L} t \right) . $$
+<p id="even-coefficients">Now suppose $\kf(t)$ is an <span data-concept="even-function">even</span> $2L$-periodic function. For the same exact reasons as above, we find that $\kbn = 0$ and</p>
+$$ \kan = \frac{2}{L} \int_{0}^L \kf(t) \cos \left( \frac{n \pi}{L} t \right) \, dt . $$
+<p>The formula still works for $n=0$, in which case it becomes</p>
+$$ \kazero = \frac{2}{L} \int_{0}^L \kf(t) \, dt . $$
+<p>The <span data-concept="fourier-series">Fourier series</span> of an <span data-concept="even-function">even</span> $\kf(t)$ is then</p>
+$$ \frac{\kazero}{2} + \sum_{n=1}^\infty \kan \cos \left( \frac{n \pi}{L} t \right) . $$
+<p id="half-interval-consequence">An interesting consequence is that the <span data-concept="fourier-coefficients">coefficients</span> of the <span data-concept="fourier-series">Fourier series</span> of an <span data-concept="odd-function">odd</span> (or <span data-concept="even-function">even</span>) function can be computed by just integrating over the half-interval $[0,L]$. Therefore, we can compute the <span data-concept="fourier-series">Fourier series</span> of the <span data-concept="odd-periodic-extension">odd</span> (or <span data-concept="even-periodic-extension">even</span>) <span data-concept="periodic-extension">extension</span> of a function by computing certain integrals over the interval where the original function is defined.</p>
+<div class="note" id="thm-4-4-1">
+<div class="eyebrow">Theorem 4.4.1</div>
+<p>Let $\kf(t)$ be a <span data-concept="piecewise-smooth-function">piecewise smooth function</span> defined on $[0,L]$. Then the <span data-concept="odd-periodic-extension">odd periodic extension</span> of $\kf(t)$ has the <span data-concept="fourier-series">Fourier series</span></p>
+<div class="equation" id="eq-sine-series">$$ \boxed{~~ \kFodd(t) = \sum_{n=1}^\infty \kbn \sin \left( \frac{n \pi}{L} t \right) , ~~} $$</div>
+<p>where</p>
+<div class="equation" id="eq-sine-coefficients">$$ \boxed{~~ \kbn = \frac{2}{L} \int_{0}^L \kf(t)\, \sin \left( \frac{n \pi}{L} t \right) \, dt . ~~} $$</div>
+<p>The <span data-concept="even-periodic-extension">even periodic extension</span> of $\kf(t)$ has the <span data-concept="fourier-series">Fourier series</span></p>
+<div class="equation" id="eq-cosine-series">$$ \boxed{~~ \kFeven(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \kan \cos \left( \frac{n \pi}{L} t \right) , ~~} $$</div>
+<p>where</p>
+<div class="equation" id="eq-cosine-coefficients">$$ \boxed{~~ \kan = \frac{2}{L} \int_{0}^L \kf(t)\, \cos \left( \frac{n \pi}{L} t \right) \, dt . ~~} $$</div>
+</div>
+<p id="series-names">We call the series $\sum_{n=1}^\infty \kbn \sin \left( \frac{n \pi}{L} t\right)$ the <em><span data-concept="sine-series">sine series</span></em> of $\kf(t)$ and we call the series $\frac{\kazero}{2} + \sum_{n=1}^\infty \kan \cos \left( \frac{n \pi}{L} t \right)$ the <em><span data-concept="cosine-series">cosine series</span></em> of $\kf(t)$. We often do not actually care what happens outside of $[0,L]$. We simply pick whichever series fits our problem better.</p>
+<p id="eigenfunction-expansion">It is not necessary to start with the full <span data-concept="fourier-series">Fourier series</span> to obtain the <span data-concept="sine-series">sine</span> and <span data-concept="cosine-series">cosine series</span>. The <span data-concept="sine-series">sine series</span> is really the <span data-concept="eigenfunction-expansion">eigenfunction expansion</span> of $\kf(t)$ using <span data-concept="eigenfunction">eigenfunctions</span> of the <span data-concept="eigenvalues-with-zero-endpoint-values">eigenvalue problem $\kxdprime+\klambda \kx = 0$, $\kx(0) = 0$, $\kx(L) = 0$</span>. The <span data-concept="cosine-series">cosine series</span> is the <span data-concept="eigenfunction-expansion">eigenfunction expansion</span> of $\kf(t)$ using <span data-concept="eigenfunction">eigenfunctions</span> of the <span data-concept="eigenvalues-with-zero-endpoint-derivatives">eigenvalue problem $\kxdprime+\klambda \kx = 0$, $\kxprime(0) = 0$, $\kxprime(L) = 0$</span>. We would, therefore, get the same formulas by defining the <span data-concept="inner-product-of-functions">inner product</span></p>
+<div class="equation" id="eq-half-inner-product">$$ \langle \kf(t), g(t) \rangle = \int_0^L \kf(t) g(t) \, dt , $$</div>
+<p id="eigenfunction-procedure">and following the procedure of <a href="/diffyqs/ch04/4.2/">§4.2</a>. This point of view is useful, as we commonly use a specific series that arose because our underlying question led to a certain eigenvalue problem. If the eigenvalue problem is not one of the three we covered so far, you can still do an <span data-concept="eigenfunction-expansion">eigenfunction expansion</span>, generalizing the results of this chapter. We will deal with such a generalization in <a href="/diffyqs/ch05/5.1/">chapter 5</a>.</p>
+<div class="example" id="ex-4-4-2">
+<h3>Example 4.4.2</h3>
+<p>Find the <span data-concept="fourier-series">Fourier series</span> of the <span data-concept="even-periodic-extension">even periodic extension</span> of the function $\kf(t) = t^2$ for $0 \leq t \leq \pi$.</p>
+<p>We want to write</p>
+$$ \kf(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \kan \cos (n t) , $$
+<p>where</p>
+$$ \kazero = \frac{2}{\pi} \int_0^\pi t^2 \, dt = \frac{2 \pi^2}{3} , $$
+<p>and</p>
+$$ \begin{split} \kan & = \frac{2}{\pi} \int_0^\pi t^2 \cos (n t) \, dt = \frac{2}{\pi} \left[ t^2 \frac{1}{n} \sin (nt) \right]_0^\pi - \frac{4}{n\pi} \int_0^\pi t \sin (n t) \, dt \\ & = \frac{4}{n^2\pi} \Bigl[ t \cos (n t) \Bigr]_0^\pi - \frac{4}{n^2\pi} \int_0^\pi \cos (n t) \, dt = \frac{4{(-1)}^n}{n^2} . \end{split} $$
+<p id="detected">Note that we “detected” the continuity of the extension since <span data-concept="decay-of-fourier-coefficients">the coefficients decay as $\frac{1}{n^2}$</span>. That is, the <span data-concept="even-periodic-extension">even periodic extension</span> of $t^2$ has no jump discontinuities. It does have corners, since the derivative, which is an <span data-concept="odd-function">odd function</span> and a <span data-concept="sine-series">sine series</span>, has jumps; it has a <span data-concept="fourier-series">Fourier series</span> whose <span data-concept="decay-of-fourier-coefficients">coefficients decay only as $\frac{1}{n}$</span>.</p>
+<p>Explicitly, the first few terms of the series for $\kf(t)$ are</p>
+$$ \frac{\pi^2}{3} - 4 \cos (t) + \cos (2t) - \frac{4}{9} \cos (3t) + \cdots $$
+</div>
+<div class="exercises" data-place="ex-4-4-2"></div>
+<figure class="sim" id="sim-sine-cosine-series">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>One function on $[0, L]$ has a <span data-concept="sine-series">sine series</span> and a <span data-concept="cosine-series">cosine series</span>, the <span data-concept="fourier-series">Fourier series</span> of its <span data-concept="odd-periodic-extension">odd</span> and of its <span data-concept="even-periodic-extension">even extension</span>. Both equal $\kf$ on $[0, L]$, but the <span data-concept="decay-of-fourier-coefficients">coefficients fall like $1/n$</span> where the chosen extension jumps and the partial sums overshoot beside the jump, like $1/n^2$ where it has corners only, and like $1/n^3$ where it has neither, as for the sine series of $t(1-t)$.</span></div>
+</figure>
+</section>
+
+<section id="application">
+<h2>Application</h2>
+<p id="bvp-setup"><span data-concept="fourier-series">Fourier series</span> ties in to the <span data-concept="boundary-value-problem">boundary value problems</span> that we studied earlier. Consider the <span data-concept="boundary-value-problem">boundary value problem</span></p>
+$$ \kxdprime(t) + \klambda\, \kx(t) = \kf(t) , \quad 0 &lt; t &lt; L, $$
+<p id="bvp-method">with the <em><span data-concept="dirichlet-boundary-conditions">Dirichlet boundary conditions</span></em> $\kx(0) = 0$, $\kx(L) = 0$. The <span data-concept="fredholm-alternative">Fredholm alternative</span> (<a href="/diffyqs/ch04/4.1/#4.1-thm-4-1-2">Theorem 4.1.2</a>) says that as long as $\klambda$ is not an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span> of the underlying homogeneous problem, there exists a unique solution. <span data-concept="eigenfunction">Eigenfunctions</span> of this eigenvalue problem are the functions $\sin \left( \frac{n \pi}{L} t \right)$. <span data-concept="solving-a-boundary-value-problem-by-series">To find the solution, we first find the Fourier sine series for $\kf(t)$. We write $\kx(t)$ also as a sine series, but with unknown coefficients. We substitute the series for $\kx(t)$ into the equation and solve for the unknown coefficients.</span> If we have the <em><span data-concept="neumann-boundary-conditions">Neumann boundary conditions</span></em> $\kxprime(0) = 0$, $\kxprime(L) = 0$, we do the same procedure using the <span data-concept="cosine-series">cosine series</span>. Let us see how this method works on examples.</p>
+<div class="example" id="ex-4-4-3">
+<h3>Example 4.4.3</h3>
+<p>Take the <span data-concept="boundary-value-problem">boundary value problem</span></p>
+$$ \kxdprime(t) + 2 \kx(t) = \kf(t) , \quad 0 &lt; t &lt; 1, $$
+<p>where $\kf(t) = t$ on $0 &lt; t &lt; 1$, and satisfying the <span data-concept="dirichlet-boundary-conditions">Dirichlet boundary conditions</span> $\kx(0) = 0$, $\kx(1)=0$. We write $\kf(t)$ as a <span data-concept="sine-series">sine series</span></p>
+$$ \kf(t) = \sum_{n=1}^\infty \kcn \sin (n \pi t) . $$
+<p>Compute</p>
+$$ \kcn = 2 \int_0^1 t \sin (n \pi t) \,dt = \frac{2 \, {(-1)}^{n+1}}{n \pi} . $$
+<p>We write $\kx(t)$ as</p>
+$$ \kx(t) = \sum_{n=1}^\infty \kbn \sin (n \pi t) . $$
+<p>We plug in to obtain</p>
+<figure class="dv" id="drv-dirichlet-bvp"></figure>
+<p id="not-eigenvalue">That $2-n^2\pi^2$ is not zero for any $n$, and that we can solve for $\kbn$, is precisely because $2$ is not an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span> of the problem. We have thus obtained a <span data-concept="fourier-series">Fourier series</span> for the solution</p>
+<div class="equation" id="eq-bvp-series-coefficient">$$ \kx(t) = \sum_{n=1}^\infty \frac{2\,{(-1)}^{n+1}}{n \pi \,(2 - n^2 \pi^2)} \sin (n \pi t) . $$</div>
+<p id="bvp-graph">See Figure 4.13 for a graph of the solution. Notice that because the <span data-concept="eigenfunction">eigenfunctions</span> satisfy the boundary conditions, and $\kx$ is written in terms of the <span data-concept="eigenfunction">eigenfunctions</span>, then $\kx$ satisfies the boundary conditions.</p>
+<figure class="sim" id="sim-bvp-series" data-figure="4.13" data-original="/media/ch04/bnd-dirich-graph.svg" data-original-caption="Plot of the solution of x″ + 2x = t, x(0) = 0, x(1) = 0." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 4.13</span><span>The series solution of $\kxdprime + \klambda \kx = t$ on $0 &lt; t &lt; 1$, each coefficient $\kcn$ of $\kf(t) = t$ divided by $\klambda - n^2\pi^2$. As $\klambda$ nears an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span> of the homogeneous problem, $\pi^2$ or $4\pi^2$ (and $0$ for the Neumann conditions), one term grows without bound; on the eigenvalue its factor is $0$ and there is no solution, unless $\kcn$ is $0$ too, as at the Neumann $\klambda = 4\pi^2$, where solutions exist but are not unique: the <span data-concept="fredholm-alternative">Fredholm alternative</span>.</span></div>
+</figure>
+</div>
+<div class="example" id="ex-4-4-4">
+<h3>Example 4.4.4</h3>
+<p>We handle the <span data-concept="neumann-boundary-conditions">Neumann conditions</span> with <span data-concept="cosine-series">cosine series</span>. Take the <span data-concept="boundary-value-problem">boundary value problem</span></p>
+$$ \kxdprime(t) + 2 \kx(t) = \kf(t) , \quad 0 &lt; t &lt; 1, $$
+<p>where again $\kf(t) = t$ on $0 &lt; t &lt; 1$, but now satisfying the <span data-concept="neumann-boundary-conditions">Neumann boundary conditions</span> $\kxprime(0) = 0$, $\kxprime(1)=0$. We write $\kf(t)$ as a <span data-concept="cosine-series">cosine series</span></p>
+$$ \kf(t) = \frac{\kczero}{2} + \sum_{n=1}^\infty \kcn \cos (n \pi t) , $$
+<p>where</p>
+$$ \kczero = 2 \int_0^1 t \,dt = 1 , $$
+<p>and</p>
+$$ \kcn = 2 \int_0^1 t \cos (n \pi t) \,dt = \frac{2\bigl({(-1)}^n-1\bigr)}{\pi^2 n^2} = \begin{cases} \frac{-4}{\pi^2 n^2} & \text{if } n \text{ odd} , \\ 0 & \text{if } n \text{ even}. \end{cases} $$
+<p>We write $\kx(t)$ as a <span data-concept="cosine-series">cosine series</span></p>
+$$ \kx(t) = \frac{\kazero}{2} + \sum_{n=1}^\infty \kan \cos (n \pi t) . $$
+<p>We plug in to obtain</p>
+$$ \begin{split} \kxdprime(t) + 2 \kx(t) & = \left( \sum_{n=1}^\infty - \kan n^2 \pi^2 \cos (n \pi t) \right) + \kazero + 2 \left( \sum_{n=1}^\infty \kan \cos (n \pi t) \right) \\ & = \kazero + \sum_{n=1}^\infty \kan \bigl(2 - n^2 \pi^2 \bigr) \cos (n \pi t) \\ & = \kf(t) = \frac{1}{2} + \sum_{\substack{n=1\\n~\text{odd}}}^\infty \frac{-4}{\pi^2 n^2} \cos (n \pi t) . \end{split} $$
+<p>Therefore, $\kazero = \frac{1}{2}$, $\kan = 0$ for $n$ even ($n \geq 2$), and for $n$ odd, we have</p>
+$$ \kan \bigl(2 - n^2 \pi^2\bigr) = \frac{-4}{\pi^2 n^2} , $$
+<p>or</p>
+$$ \kan = \frac{-4}{n^2 \pi^2 (2 - n^2 \pi^2)} . $$
+<p>The <span data-concept="fourier-series">Fourier series</span> for the solution $\kx(t)$ is</p>
+$$ \kx(t) = \frac{1}{4} + \sum_{\substack{n=1\\n~\text{odd}}}^\infty \frac{-4}{n^2 \pi^2 (2 - n^2 \pi^2)} \cos (n \pi t) . $$
+</div>
+</section>

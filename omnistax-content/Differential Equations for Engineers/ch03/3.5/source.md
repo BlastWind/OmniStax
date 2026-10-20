@@ -45,9 +45,9 @@ We fill in the rest of the arrows for the vector field, and we draw a few soluti
 
 *Case 3.* Suppose one eigenvalue is positive and one is negative. For example, consider $P = \left[ \begin{smallmatrix} 1 & 1 \\ 0 & -2 \end{smallmatrix} \right]$. The eigenvalues are 1 and $-2$ and corresponding eigenvectors are $\left[ \begin{smallmatrix} 1 \\ 0 \end{smallmatrix} \right]$ and $\left[ \begin{smallmatrix} 1 \\ -3 \end{smallmatrix} \right]$. We reverse the arrows on the line corresponding to the negative eigenvalue and we obtain the picture in [Figure 3.8](ref:pln-saddle-fullfig). We call this picture a *{index:saddle point}*.
 
-[0] For the next three cases, we will assume the eigenvalues are complex. In this case the eigenvectors are also complex and we cannot just plot them in the plane.
+For the next three cases, we will assume the eigenvalues are complex. In this case the eigenvectors are also complex and we cannot just plot them in the plane.
 
-[0] *Case 4.* Suppose the eigenvalues are purely imaginary, that is, $\pm ib$. For example, let $P = \left[ \begin{smallmatrix} 0 & 1 \\ -4 & 0 \end{smallmatrix} \right]$. The eigenvalues are $\pm 2i$ and corresponding eigenvectors are $\left[ \begin{smallmatrix} 1 \\ 2i \end{smallmatrix} \right]$ and $\left[ \begin{smallmatrix} 1 \\ -2i \end{smallmatrix} \right]$. Consider the eigenvalue $2i$ and its eigenvector $\left[ \begin{smallmatrix} 1 \\ 2i \end{smallmatrix} \right]$. The real and imaginary parts of $\vec{v} e^{2it}$ are
+*Case 4.* Suppose the eigenvalues are purely imaginary, that is, $\pm ib$. For example, let $P = \left[ \begin{smallmatrix} 0 & 1 \\ -4 & 0 \end{smallmatrix} \right]$. The eigenvalues are $\pm 2i$ and corresponding eigenvectors are $\left[ \begin{smallmatrix} 1 \\ 2i \end{smallmatrix} \right]$ and $\left[ \begin{smallmatrix} 1 \\ -2i \end{smallmatrix} \right]$. Consider the eigenvalue $2i$ and its eigenvector $\left[ \begin{smallmatrix} 1 \\ 2i \end{smallmatrix} \right]$. The real and imaginary parts of $\vec{v} e^{2it}$ are
 $$ \operatorname{Re} \begin{bmatrix} 1 \\ 2i \end{bmatrix} e^{2it} = \begin{bmatrix} \cos (2t) \\ -2 \sin (2t) \end{bmatrix} , \qquad \operatorname{Im} \begin{bmatrix} 1 \\ 2i \end{bmatrix} e^{2it} = \begin{bmatrix} \sin (2t) \\ 2 \cos (2t) \end{bmatrix} . $$
 We can take any linear combination of them to get other solutions, which one we take depends on the initial conditions. Now note that the real part is a parametric equation for an ellipse. Same with the imaginary part and in fact any linear combination of the two. This is what happens in general when the eigenvalues are purely imaginary. So when the eigenvalues are purely imaginary, we get *ellipses{index-entry:ellipses (vector field)}* for the solutions. This type of picture is sometimes called a *{index:center}*. See [Figure 3.9](ref:pln-ellipsesfig).
 
@@ -101,7 +101,7 @@ c) Explain from physical intuition why you do not get all the different kinds of
 
 :::exercise {exercise-3-5-002} number=3.5.2 answered=no src=ch-systems.tex:3218
 PROBLEM:
-[2] What happens in the case when $P = \left[ \begin{smallmatrix} 1 & 1 \\ 0 & 1 \end{smallmatrix} \right]$? In this case the eigenvalue is repeated and there is only one independent eigenvector. Draw and describe the vector field.
+What happens in the case when $P = \left[ \begin{smallmatrix} 1 & 1 \\ 0 & 1 \end{smallmatrix} \right]$? In this case the eigenvalue is repeated and there is only one independent eigenvector. Draw and describe the vector field.
 :::
 
 :::exercise {exercise-3-5-003} number=3.5.3 answered=no src=ch-systems.tex:3226

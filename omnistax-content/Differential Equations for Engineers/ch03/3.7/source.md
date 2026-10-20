@@ -153,7 +153,7 @@ c) Find the general solution of ${\vec{x}}' = A \vec{x}$.
 
 :::exercise {exercise-3-7-006} number=3.7.6 answered=no src=ch-systems.tex:4879
 PROBLEM:
-[2] Let $A = \left[ \begin{smallmatrix} 0 & 4 & -2 \\ -1 & -4 & 1 \\ 0 & 0 & -2 \end{smallmatrix} \right]$.
+Let $A = \left[ \begin{smallmatrix} 0 & 4 & -2 \\ -1 & -4 & 1 \\ 0 & 0 & -2 \end{smallmatrix} \right]$.
 
 a) What are the eigenvalues?
 b) What is/are the defect(s) of the eigenvalue(s)?

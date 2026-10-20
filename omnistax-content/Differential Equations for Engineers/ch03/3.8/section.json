@@ -1,0 +1,1428 @@
+{
+ "id": "3.8",
+ "module": "sec:matexp",
+ "chapter": "3",
+ "title": "Matrix exponentials",
+ "short": "Matrix exponentials",
+ "lead": "A <span data-concept=\"constant-coefficient-system\">constant-coefficient</span> linear system looks like the single equation x′ = px written with a <span data-concept=\"matrix\">matrix</span>, and that single equation is solved by an exponential. This section defines the <span data-concept=\"matrix-exponential\">exponential of a matrix</span> by its Taylor series, computes it for <span data-concept=\"diagonal-matrix\">diagonal</span>, <span data-concept=\"nilpotent-matrix\">nilpotent</span> and diagonalizable matrices, reads it off any <span data-concept=\"fundamental-matrix\">fundamental matrix solution</span>, and approximates it with a few terms of the series.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count, the pointer to 7.1 and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 3.8.101–3.8.105 carry the book’s own answers. The inline exercise 3.8.1 and exercises 3.8.2–3.8.12, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-exponential-flow",
+   "kind": "sim",
+   "draws": [
+    "matrix",
+    "vector",
+    "derivative",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "column-1",
+   "label": "the first column of e^(tA)",
+   "figures": [
+    "sim-exponential-flow"
+   ]
+  },
+  {
+   "id": "column-2",
+   "label": "the second column of e^(tA)",
+   "figures": [
+    "sim-exponential-flow"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "derivative-of-the-exponential-series",
+   "what": "the derivative of e^(at) from its Taylor series",
+   "source": "Differential Equations for Engineers, 3.8 Matrix exponentials, Definition",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "e^{at} = 1 + at + \\frac{{(at)}^2}{2} + \\frac{{(at)}^3}{6} + \\frac{{(at)}^4}{24} + \\cdots",
+       "src": "3.8"
+      },
+      {
+       "text": "A power series is differentiated term by term.",
+       "src": "Calculus 10.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d}{dt} \\left(e^{at} \\right)} = \\mk{s}{\\frac{d}{dt} \\left(1 + at + \\frac{{(at)}^2}{2} + \\frac{{(at)}^3}{6} + \\frac{{(at)}^4}{24} + \\cdots \\right)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt} \\left(e^{at} \\right)} = \\mk{s}{0 + a + a^2 t + \\frac{a^3t^2}{2} + \\frac{a^4t^3}{6} + \\cdots}",
+       "uses": [
+        1
+       ],
+       "cap": "Each term $\\frac{a^k t^k}{k!}$ has the derivative $\\frac{a^k t^{k-1}}{(k-1)!}$, and the constant term $1$ has derivative $0$."
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt} \\left(e^{at} \\right)} = \\mk{a}{a} \\mk{s}{\\left( 1 + a t + \\frac{{(at)}^2}{2} + \\frac{{(at)}^3}{6} + \\cdots \\right)}",
+       "uses": [],
+       "map": {
+        "s": [
+         "a",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt} \\left(e^{at} \\right)} = \\mk{a}{a} \\mk{s}{e^{at}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "3.8"
+    }
+   ]
+  },
+  {
+   "id": "matrix-exponential-check",
+   "what": "the check that e^(tP)c⃗ solves x⃗′ = Px⃗",
+   "source": "Differential Equations for Engineers, 3.8 Matrix exponentials, Theorem 3.8.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvecx = e^{t\\kP} \\vec{c}",
+       "src": "3.8, Theorem 3.8.1"
+      },
+      {
+       "tex": "\\frac{d}{dt} \\left(e^{t\\kP} \\right) = \\kP e^{t\\kP}",
+       "src": "3.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\frac{d}{dt} \\kvecx} = \\frac{d}{dt} \\left( \\mk{e}{e^{t\\kP}} \\mk{c}{\\vec{c}}\\, \\right)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt} \\kvecx} = \\mk{e}{\\kP e^{t\\kP}} \\mk{c}{\\vec{c}}",
+       "uses": [
+        1
+       ],
+       "cap": "The vector $\\vec{c}$ is constant, so the derivative falls on $e^{t\\kP}$ alone."
+      },
+      {
+       "tex": "\\mk{l}{\\frac{d}{dt} \\kvecx} = \\mk{p}{\\kP} \\mk{x}{\\kvecx}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "e": [
+         "p",
+         "x"
+        ],
+        "c": "x"
+       }
+      }
+     ],
+     "src": "3.8, Theorem 3.8.1"
+    }
+   ]
+  },
+  {
+   "id": "exponential-of-a-diagonal-matrix",
+   "what": "the exponential of a diagonal matrix",
+   "source": "Differential Equations for Engineers, 3.8 Matrix exponentials, Simple cases",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "e^{\\kA} = \\kI + \\kA + \\frac{1}{2} \\kA^2 + \\frac{1}{6} \\kA^3 + \\cdots",
+       "src": "3.8"
+      },
+      {
+       "tex": "\\kD = \\left[\\begin{smallmatrix} a & 0 \\\\ 0 & b \\end{smallmatrix}\\right]"
+      },
+      {
+       "tex": "\\kD^k = \\begin{bmatrix} a^k & 0 \\\\ 0 & b^k \\end{bmatrix}",
+       "src": "3.8"
+      },
+      {
+       "tex": "e^{a} = 1 + a + \\frac{a^2}{2} + \\frac{a^3}{6} + \\cdots",
+       "src": "3.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{e^{\\kD}} = \\mk{i}{\\kI} + \\mk{d1}{\\kD} + \\mk{d2}{\\frac{1}{2} \\kD^2} + \\mk{d3}{\\frac{1}{6} \\kD^3} + \\cdots",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{e^{\\kD}} = \\mk{i}{\\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}} + \\mk{d1}{\\begin{bmatrix} a & 0 \\\\ 0 & b \\end{bmatrix}} + \\mk{d2}{\\frac{1}{2} \\begin{bmatrix} a^2 & 0 \\\\ 0 & b^2 \\end{bmatrix}} + \\mk{d3}{\\frac{1}{6} \\begin{bmatrix} a^3 & 0 \\\\ 0 & b^3 \\end{bmatrix}} + \\cdots",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{e^{\\kD}} = \\mk{s}{\\begin{bmatrix} 1 + a + \\frac{a^2}{2} + \\frac{a^3}{6} + \\cdots & 0 \\\\ 0 & 1 + b + \\frac{b^2}{2} + \\frac{b^3}{6} + \\cdots \\end{bmatrix}}",
+       "uses": [],
+       "map": {
+        "i": "s",
+        "d1": "s",
+        "d2": "s",
+        "d3": "s"
+       }
+      },
+      {
+       "tex": "\\mk{l}{e^{\\kD}} = \\mk{s}{\\begin{bmatrix} e^a & 0 \\\\ 0 & e^b \\end{bmatrix}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "3.8"
+    }
+   ]
+  },
+  {
+   "id": "exponential-of-a-similar-matrix",
+   "what": "the exponential of BAB⁻¹",
+   "source": "Differential Equations for Engineers, 3.8 Matrix exponentials, General matrices",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kB^{-1}\\kB = \\kI",
+       "src": "3.2"
+      },
+      {
+       "tex": "\\kA\\kI = \\kA",
+       "src": "3.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{{(\\kB\\kA\\kB^{-1})}^2} = \\mk{p}{\\kB\\kA\\kB^{-1} \\kB\\kA\\kB^{-1}}"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{{(\\kB\\kA\\kB^{-1})}^2} = \\mk{p}{\\kB\\kA\\kI\\kA\\kB^{-1}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{{(\\kB\\kA\\kB^{-1})}^2} = \\mk{p}{\\kB\\kA^2\\kB^{-1}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "3.8"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "e^{\\kA} = \\kI + \\kA + \\frac{1}{2} \\kA^2 + \\frac{1}{6} \\kA^3 + \\cdots",
+       "src": "3.8"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "By the same reasoning, ${(\\kB\\kA\\kB^{-1})}^k = \\kB \\kA^k \\kB^{-1}$.",
+       "src": "3.8"
+      },
+      {
+       "tex": "\\kB\\kB^{-1} = \\kI",
+       "src": "3.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{e^{\\kB\\kA\\kB^{-1}}} = \\mk{i}{\\kI} + \\mk{a1}{\\kB\\kA\\kB^{-1}} + \\mk{a2}{\\frac{1}{2} {(\\kB\\kA\\kB^{-1})}^2} + \\mk{a3}{\\frac{1}{6} {(\\kB\\kA\\kB^{-1})}^3} + \\cdots",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{e^{\\kB\\kA\\kB^{-1}}} = \\mk{i}{\\kB\\kB^{-1}} + \\mk{a1}{\\kB\\kA\\kB^{-1}} + \\mk{a2}{\\frac{1}{2} \\kB\\kA^2\\kB^{-1}} + \\mk{a3}{\\frac{1}{6} \\kB\\kA^3\\kB^{-1}} + \\cdots",
+       "uses": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{l}{e^{\\kB\\kA\\kB^{-1}}} = \\mk{b}{\\kB} \\bigl( \\mk{s}{\\kI + \\kA + \\frac{1}{2} \\kA^2 + \\frac{1}{6} \\kA^3 + \\cdots} \\bigr) \\mk{bi}{\\kB^{-1}}",
+       "uses": [],
+       "map": {
+        "i": [
+         "b",
+         "s",
+         "bi"
+        ],
+        "a1": [
+         "b",
+         "s",
+         "bi"
+        ],
+        "a2": [
+         "b",
+         "s",
+         "bi"
+        ],
+        "a3": [
+         "b",
+         "s",
+         "bi"
+        ]
+       },
+       "cap": "Every term has $\\kB$ on the left and $\\kB^{-1}$ on the right, so $\\kB$ factors out to the left and $\\kB^{-1}$ to the right; the order matters, since matrices need not commute."
+      },
+      {
+       "tex": "\\mk{l}{e^{\\kB\\kA\\kB^{-1}}} = \\mk{b}{\\kB} \\mk{s}{e^{\\kA}} \\mk{bi}{\\kB^{-1}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "3.8"
+    }
+   ]
+  },
+  {
+   "id": "diagonalization-ae",
+   "what": "AE = ED for the matrix E of eigenvectors",
+   "source": "Differential Equations for Engineers, 3.8 Matrix exponentials, General matrices",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kE = [\\, \\kvecvone \\quad \\kvecvtwo \\quad \\cdots \\quad \\kvecvn \\,]",
+       "src": "3.8"
+      },
+      {
+       "tex": "\\kA \\kvecvone = \\klambdaone \\kvecvone, \\quad \\kA \\kvecvtwo = \\klambdatwo \\kvecvtwo, \\quad \\ldots, \\quad \\kA \\kvecvn = \\klambdan \\kvecvn",
+       "src": "3.4"
+      },
+      {
+       "tex": "\\kD = \\begin{bmatrix} \\klambdaone & 0 & \\cdots & 0 \\\\ 0 & \\klambdatwo & \\cdots & 0 \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ 0 & 0 & \\cdots & \\klambdan \\end{bmatrix}",
+       "src": "3.8"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kA\\kE} = \\mk{a}{\\kA} \\mk{e}{[\\, \\kvecvone \\quad \\kvecvtwo \\quad \\cdots \\quad \\kvecvn \\,]}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kA\\kE} = \\mk{e}{[\\, \\kA\\kvecvone \\quad \\kA\\kvecvtwo \\quad \\cdots \\quad \\kA\\kvecvn \\,]}",
+       "uses": [],
+       "map": {
+        "a": "e"
+       },
+       "cap": "A product of matrices is taken column by column: column $k$ of $\\kA\\kE$ is $\\kA$ times column $k$ of $\\kE$."
+      },
+      {
+       "tex": "\\mk{l}{\\kA\\kE} = \\mk{e}{[\\, \\klambdaone \\kvecvone \\quad \\klambdatwo \\kvecvtwo \\quad \\cdots \\quad \\klambdan \\kvecvn \\,]}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kA\\kE} = \\mk{v}{[\\, \\kvecvone \\quad \\kvecvtwo \\quad \\cdots \\quad \\kvecvn \\,]} \\mk{d}{\\kD}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "e": [
+         "v",
+         "d"
+        ]
+       },
+       "cap": "Multiplying on the right by a diagonal matrix multiplies column $k$ by the $k$th diagonal entry."
+      },
+      {
+       "tex": "\\mk{l}{\\kA\\kE} = \\mk{v}{\\kE} \\mk{d}{\\kD}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "3.8"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "matrix-exponential",
+   "concept": "matrix-exponential",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-derivative-of-the-matrix-exponential",
+   "concept": "derivative-of-the-matrix-exponential",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-3-8-1",
+   "concept": "matrix-exponential-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-3-8-2",
+   "concept": "exponential-of-commuting-matrices",
+   "verb": "introduces"
+  },
+  {
+   "span": "diagonal",
+   "concept": "exponential-of-a-diagonal-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "nilpotent",
+   "concept": "nilpotent-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "similar",
+   "concept": "exponential-of-a-similar-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "diagonalization",
+   "concept": "diagonalization",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-3-5",
+   "concept": "matrix-exponential-by-diagonalization",
+   "verb": "introduces"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "matrix-exponential-from-a-fundamental-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "truncated",
+   "concept": "truncated-series-for-the-matrix-exponential",
+   "verb": "introduces"
+  },
+  {
+   "span": "constant-coefficient",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "constant-coefficient",
+   "concept": "constant-coefficient-system",
+   "verb": "uses"
+  },
+  {
+   "span": "one-equation",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "taylor",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-exponential-taylor-series",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-derivative-of-the-exponential-series",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "matrix-exponential",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "matrix-exponential",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "matrix-exponential",
+   "concept": "matrix-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "matrix-exponential",
+   "concept": "scalar-multiplication-of-a-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "convention",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "convention",
+   "concept": "derivative-of-a-matrix-valued-function",
+   "verb": "uses"
+  },
+  {
+   "span": "vector-c",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "vector-c",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-8-1",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-8-1",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-8-1",
+   "concept": "constant-coefficient-system",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-matrix-exponential-check",
+   "concept": "derivative-of-the-matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-matrix-exponential-check",
+   "concept": "matrix-exponential-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-solution",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-solution",
+   "concept": "homogeneous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-solution",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-solution",
+   "concept": "matrix-exponential-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ivp",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ivp",
+   "concept": "solving-an-initial-value-problem-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "drawback",
+   "concept": "commuting-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "drawback",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-3-8-2",
+   "concept": "commuting-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "diagonal",
+   "concept": "diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "diagonal",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-exponential-of-a-diagonal-matrix",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-exponential-of-a-diagonal-matrix",
+   "concept": "diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-exponential-of-identity",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-exponential-of-identity",
+   "concept": "exponential-of-a-diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "nilpotent-example",
+   "concept": "exponential-of-commuting-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "nilpotent-example",
+   "concept": "commuting-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "nilpotent-example",
+   "concept": "exponential-of-a-diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-exponential-of-sum-example",
+   "concept": "exponential-of-commuting-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "defect",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "defect",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "defect",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "defect",
+   "concept": "defect",
+   "verb": "uses"
+  },
+  {
+   "span": "defect",
+   "concept": "algebraic-multiplicity",
+   "verb": "uses"
+  },
+  {
+   "span": "defect",
+   "concept": "defective-eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "nilpotent",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "similar",
+   "concept": "commuting-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "similar",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "similar",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "similar",
+   "concept": "square-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "similar",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-exponential-of-a-similar-matrix",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-exponential-of-a-similar-matrix",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-exponential-of-a-similar-matrix",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "diagonalization",
+   "concept": "diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "diagonalization",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "diagonalization",
+   "concept": "exponential-of-a-diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenvectors",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenvectors",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenvectors",
+   "concept": "diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-diagonalization-ae",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-diagonalization-ae",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-diagonalization-ae",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-diagonalization-ae",
+   "concept": "diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "invertible",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "exponential-by-diagonalization",
+   "concept": "exponential-of-a-similar-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "exponential-by-diagonalization",
+   "concept": "diagonalization",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-5",
+   "concept": "diagonalization",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-5",
+   "concept": "exponential-of-a-diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "formula-3-5",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "formula-3-5",
+   "concept": "matrix-exponential-by-diagonalization",
+   "verb": "uses"
+  },
+  {
+   "span": "complex",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "complex",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "complex",
+   "concept": "complex-number",
+   "verb": "uses"
+  },
+  {
+   "span": "complex",
+   "concept": "eulers-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-8-1",
+   "concept": "matrix-exponential-by-diagonalization",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-8-1",
+   "concept": "diagonalization",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-8-1",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-8-1",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-8-1",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-8-1",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-8-1",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-8-1",
+   "concept": "matrix-exponential-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "matrix-exponential-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "derivative-of-the-matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "nilpotent-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "exponential-of-a-diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "matrix-exponential-by-diagonalization",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "saddle-point",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "spiral-sink",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "center",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "defective-eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "fundamental-matrix",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "right-constants",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "right-constants",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "right-constants",
+   "concept": "general-solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "approximations-intro",
+   "concept": "fundamental-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "approximations-intro",
+   "concept": "eigenvalue-method",
+   "verb": "uses"
+  },
+  {
+   "span": "truncated",
+   "concept": "matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "small-t",
+   "concept": "truncated-series-for-the-matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "small-t",
+   "concept": "matrix-exponential-by-diagonalization",
+   "verb": "uses"
+  },
+  {
+   "span": "eleventh-power",
+   "concept": "truncated-series-for-the-matrix-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-3-8-1",
+   "concept": "matrix-exponential",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fundamental-solution",
+   "concept": "matrix-exponential",
+   "verb": "reinforces"
+  },
+  {
+   "span": "formula-3-5",
+   "concept": "matrix-exponential",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-exponential-flow",
+   "concept": "fundamental-matrix",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "3.8.1",
+   "source_number": "3.8.1",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "defect"
+   },
+   "cite": "defect",
+   "prompt": "<p>Suppose that $\\kA$ is $2 \\times 2$ and $\\klambda$ is the only eigenvalue. Show that ${(\\kA - \\klambda \\kI)}^2 = 0$, and therefore that we can write $\\kA = \\klambda \\kI + \\kB$, where $\\kB^2 = 0$ (and possibly $\\kB=0$). Hint: First write down what does it mean for the eigenvalue to be of multiplicity 2. You will get an equation for the entries. Now compute the square of $\\kB$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write \\kA = \\left[\\begin{smallmatrix} a & b \\\\ c & d \\end{smallmatrix}\\right]. Its characteristic equation is $\\klambda^2 - (a+d)\\klambda + (ad-bc) = 0$, and it has the one root $\\klambda$ of multiplicity 2 exactly when its discriminant is zero: $(a+d)^2 - 4(ad-bc) = (a-d)^2 + 4bc = 0$, and then $\\klambda = \\frac{a+d}{2}$. Let $\\kB = \\kA - \\klambda\\kI = \\left[\\begin{smallmatrix} \\frac{a-d}{2} & b \\\\ c & \\frac{d-a}{2} \\end{smallmatrix}\\right]$. Squaring, the off-diagonal entries are $\\frac{a-d}{2}\\,b + b\\,\\frac{d-a}{2} = 0$ and $c\\,\\frac{a-d}{2} + \\frac{d-a}{2}\\,c = 0$, and both diagonal entries are $\\frac{(a-d)^2}{4} + bc = \\frac{(a-d)^2 + 4bc}{4} = 0$. So ${(\\kA - \\klambda\\kI)}^2 = \\kB^2 = 0$, and $\\kA = \\klambda\\kI + \\kB$ with $\\kB^2 = 0$; $\\kB = 0$ exactly when $\\kA = \\klambda\\kI$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "3.8.2",
+   "source_number": "3.8.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-3-5",
+   "prompt": "<p>Using the matrix exponential, find a fundamental matrix solution for the system $\\kxprime = 3\\kx+\\ky$, $\\kyprime = \\kx+3\\ky$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The coefficient matrix is \\kA = \\left[\\begin{smallmatrix} 3 & 1 \\\\ 1 & 3 \\end{smallmatrix}\\right], with eigenvalues $4$ and $2$ and eigenvectors \\left[\\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix}\\right] and \\left[\\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix}\\right]. By (3.5) with $\\kE = \\left[\\begin{smallmatrix} 1 & 1 \\\\ 1 & -1 \\end{smallmatrix}\\right]$ and $\\kD = \\left[\\begin{smallmatrix} 4 & 0 \\\\ 0 & 2 \\end{smallmatrix}\\right]$, as in Example 3.8.1, $e^{t\\kA} = \\kE e^{t\\kD} \\kEinv = \\left[\\begin{smallmatrix} \\frac{e^{4t}+e^{2t}}{2} & \\frac{e^{4t}-e^{2t}}{2} \\\\ \\frac{e^{4t}-e^{2t}}{2} & \\frac{e^{4t}+e^{2t}}{2} \\end{smallmatrix}\\right]$, a fundamental matrix solution."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "3.8.3",
+   "source_number": "3.8.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nilpotent-example",
+   "prompt": "<p>Find $e^{t\\kA}$ for the matrix $\\kA = \\left[\\begin{smallmatrix} 2 & 3 \\\\ 0 & 2 \\end{smallmatrix}\\right]$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\kA = 2\\kI + \\kB$ with $\\kB = \\left[\\begin{smallmatrix} 0 & 3 \\\\ 0 & 0 \\end{smallmatrix}\\right]$, which is nilpotent: $\\kB^2 = 0$. The matrices $2t\\kI$ and $t\\kB$ commute, so by Theorem 3.8.2, $e^{t\\kA} = e^{2t\\kI} e^{t\\kB} = e^{2t}(\\kI + t\\kB) = \\left[\\begin{smallmatrix} e^{2t} & 3te^{2t} \\\\ 0 & e^{2t} \\end{smallmatrix}\\right]$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "3.8.4",
+   "source_number": "3.8.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-3-5",
+   "prompt": "<p>Find a fundamental matrix solution for the system $x_1' = 7x_1+4x_2+ 12x_3$, $x_2' = x_1+2x_2+x_3$, $x_3' = -3x_1-2x_2- 5x_3$. Then find the solution that satisfies $\\kvecx(0) = \\left[\\begin{smallmatrix} 0 \\\\ 1 \\\\ -2 \\end{smallmatrix}\\right]$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The matrix $\\kA = \\left[\\begin{smallmatrix} 7 & 4 & 12 \\\\ 1 & 2 & 1 \\\\ -3 & -2 & -5 \\end{smallmatrix}\\right]$ has the characteristic polynomial $-\\klambda(\\klambda - 1)(\\klambda - 3)$, so the eigenvalues $0$, $1$, $3$, with eigenvectors \\left[\\begin{smallmatrix} -4 \\\\ 1 \\\\ 2 \\end{smallmatrix}\\right], \\left[\\begin{smallmatrix} -4 \\\\ 3 \\\\ 1 \\end{smallmatrix}\\right], \\left[\\begin{smallmatrix} -2 \\\\ -1 \\\\ 1 \\end{smallmatrix}\\right]. So $\\kX(t) = \\left[\\begin{smallmatrix} -4 & -4e^{t} & -2e^{3t} \\\\ 1 & 3e^{t} & -e^{3t} \\\\ 2 & e^{t} & e^{3t} \\end{smallmatrix}\\right]$ is a fundamental matrix solution, and the one that is the identity at $t = 0$ is $e^{t\\kA} = \\kX(t)\\left[\\kX(0)\\right]^{-1} = \\left[\\begin{smallmatrix} \\frac{5}{3}e^{3t} + 2e^{t} - \\frac{8}{3} & \\frac{4}{3}e^{3t} - \\frac{4}{3} & \\frac{8}{3}e^{3t} + 4e^{t} - \\frac{20}{3} \\\\ \\frac{5}{6}e^{3t} - \\frac{3}{2}e^{t} + \\frac{2}{3} & \\frac{2}{3}e^{3t} + \\frac{1}{3} & \\frac{4}{3}e^{3t} - 3e^{t} + \\frac{5}{3} \\\\ -\\frac{5}{6}e^{3t} - \\frac{1}{2}e^{t} + \\frac{4}{3} & \\frac{2}{3} - \\frac{2}{3}e^{3t} & -\\frac{4}{3}e^{3t} - e^{t} + \\frac{10}{3} \\end{smallmatrix}\\right]$. The solution with $\\kvecx(0) = \\left[\\begin{smallmatrix} 0 \\\\ 1 \\\\ -2 \\end{smallmatrix}\\right]$ is $\\kvecx = e^{t\\kA}\\kvecx(0) = \\left[\\begin{smallmatrix} 12 - 8e^{t} - 4e^{3t} \\\\ -3 + 6e^{t} - 2e^{3t} \\\\ -6 + 2e^{t} + 2e^{3t} \\end{smallmatrix}\\right]$, which is $\\kX(t)$ times \\left[\\begin{smallmatrix} -3 \\\\ 2 \\\\ 2 \\end{smallmatrix}\\right]; at $t = 0$ it gives $(0, 1, -2)$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "3.8.5",
+   "source_number": "3.8.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nilpotent-example",
+   "prompt": "<p>Compute the matrix exponential $e^{\\kA}$ for $\\kA = \\left[\\begin{smallmatrix} 1 & 2 \\\\ 0 & 1 \\end{smallmatrix}\\right]$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\kA = \\kI + \\kB$ with $\\kB = \\left[\\begin{smallmatrix} 0 & 2 \\\\ 0 & 0 \\end{smallmatrix}\\right]$, so $\\kB^2 = 0$ and $e^{\\kB} = \\kI + \\kB$. The identity commutes with $\\kB$, so by Theorem 3.8.2, $e^{\\kA} = e^{\\kI} e^{\\kB} = e\\,(\\kI + \\kB) = \\left[\\begin{smallmatrix} e & 2e \\\\ 0 & e \\end{smallmatrix}\\right]$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "3.8.6",
+   "source_number": "3.8.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-8-2",
+   "prompt": "<p><strong>challenging</strong> Suppose $\\kA\\kB = \\kB\\kA$. Show that under this assumption, $e^{\\kA+\\kB} = e^{\\kA} e^{\\kB}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Multiply the two series and collect the terms of total degree $m$: $e^{\\kA}e^{\\kB} = \\Bigl(\\sum_{j=0}^\\infty \\frac{\\kA^j}{j!}\\Bigr)\\Bigl(\\sum_{k=0}^\\infty \\frac{\\kB^k}{k!}\\Bigr) = \\sum_{m=0}^\\infty \\sum_{j=0}^{m} \\frac{\\kA^j \\kB^{m-j}}{j!\\,(m-j)!} = \\sum_{m=0}^\\infty \\frac{1}{m!} \\sum_{j=0}^{m} \\binom{m}{j} \\kA^j \\kB^{m-j}$. Because $\\kA\\kB = \\kB\\kA$, the binomial theorem holds for $\\kA$ and $\\kB$: expanding ${(\\kA+\\kB)}^m$ gives every product of $j$ factors $\\kA$ and $m-j$ factors $\\kB$, each of which can be reordered to $\\kA^j\\kB^{m-j}$, and there are $\\binom{m}{j}$ of them, so ${(\\kA+\\kB)}^m = \\sum_{j=0}^{m} \\binom{m}{j}\\kA^j\\kB^{m-j}$. Hence $e^{\\kA}e^{\\kB} = \\sum_{m=0}^\\infty \\frac{{(\\kA+\\kB)}^m}{m!} = e^{\\kA+\\kB}$. Without $\\kA\\kB = \\kB\\kA$ the argument fails already at $m = 2$: ${(\\kA+\\kB)}^2 = \\kA^2 + \\kA\\kB + \\kB\\kA + \\kB^2$, while the product of the series has $\\kA^2 + 2\\kA\\kB + \\kB^2$ there."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "3.8.7",
+   "source_number": "3.8.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-3-8-2",
+   "prompt": "<p>Use Exercise 3.8.6 to show that ${(e^{\\kA})}^{-1} = e^{-\\kA}$. In particular, $e^{\\kA}$ is invertible even if $\\kA$ is not.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The matrices $\\kA$ and $-\\kA$ commute, so by Exercise 3.8.6, $e^{\\kA}e^{-\\kA} = e^{\\kA - \\kA} = e^{0} = \\kI$, since the series of the zero matrix is just $\\kI$. In the same way $e^{-\\kA}e^{\\kA} = \\kI$. So $e^{-\\kA}$ is the inverse of $e^{\\kA}$, and $e^{\\kA}$ is invertible whatever $\\kA$ is: the zero matrix, for one, is not invertible, but its exponential $\\kI$ is."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "3.8.8",
+   "source_number": "3.8.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-3-5",
+   "prompt": "<p>Let $\\kA$ be a $2 \\times 2$ matrix with eigenvalues $-1$, $1$, and corresponding eigenvectors $\\left[\\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix}\\right]$, $\\left[\\begin{smallmatrix} 0 \\\\ 1 \\end{smallmatrix}\\right]$.</p><ol type=\"a\"><li>Find matrix $\\kA$ with these properties.</li><li>Find a fundamental matrix solution to $\\kvecxprime = \\kA \\kvecx$.</li><li>Solve the system in with initial conditions $\\kvecx(0) = \\left[\\begin{smallmatrix} 2 \\\\ 3 \\end{smallmatrix}\\right]$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) With the eigenvectors as the columns of $\\kE = \\left[\\begin{smallmatrix} 1 & 0 \\\\ 1 & 1 \\end{smallmatrix}\\right]$ and $\\kD = \\left[\\begin{smallmatrix} -1 & 0 \\\\ 0 & 1 \\end{smallmatrix}\\right]$, $\\kEinv = \\left[\\begin{smallmatrix} 1 & 0 \\\\ -1 & 1 \\end{smallmatrix}\\right]$ and $\\kA = \\kE\\kD\\kEinv = \\left[\\begin{smallmatrix} -1 & 0 \\\\ -2 & 1 \\end{smallmatrix}\\right]$. b) By (3.5), $e^{t\\kA} = \\kE e^{t\\kD} \\kEinv = \\left[\\begin{smallmatrix} e^{-t} & 0 \\\\ e^{-t} - e^{t} & e^{t} \\end{smallmatrix}\\right]$. c) $\\kvecx = e^{t\\kA} \\left[\\begin{smallmatrix} 2 \\\\ 3 \\end{smallmatrix}\\right] = \\left[\\begin{smallmatrix} 2e^{-t} \\\\ 2e^{-t} + e^{t} \\end{smallmatrix}\\right]$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "3.8.9",
+   "source_number": "3.8.9",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diagonalization",
+   "prompt": "<p>Suppose that $\\kA$ is an $n \\times n$ matrix with a repeated eigenvalue $\\klambda$ of multiplicity $n$ with $n$ linearly independent eigenvectors. Show that the matrix is diagonal, in fact, $\\kA = \\klambda \\kI$. Hint: Use diagonalization and the fact that the identity matrix commutes with every other matrix.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Put the $n$ linearly independent eigenvectors as the columns of $\\kE$; then $\\kE$ is invertible and $\\kA = \\kE\\kD\\kEinv$, where $\\kD$ has the eigenvalues on its diagonal. Every eigenvalue is $\\klambda$, so $\\kD = \\klambda\\kI$. The identity commutes with every matrix, so $\\kA = \\kE(\\klambda\\kI)\\kEinv = \\klambda\\,\\kE\\kEinv = \\klambda\\kI$, which is diagonal."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "3.8.10",
+   "source_number": "3.8.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nilpotent-example",
+   "prompt": "<p>Let $\\kA = \\left[\\begin{smallmatrix} -1 & -1 \\\\ 1 & -3 \\end{smallmatrix}\\right]$.</p><ol type=\"a\"><li>Find $e^{t\\kA}$.</li><li>Solve $\\kvecxprime = \\kA \\kvecx$, $\\kvecx(0) = \\left[\\begin{smallmatrix} 1 \\\\ -2 \\end{smallmatrix}\\right]$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The characteristic equation is $\\klambda^2 + 4\\klambda + 4 = {(\\klambda + 2)}^2 = 0$, so $-2$ is the only eigenvalue, and by Exercise 3.8.1, $\\kA = -2\\kI + \\kB$ with $\\kB = \\left[\\begin{smallmatrix} 1 & -1 \\\\ 1 & -1 \\end{smallmatrix}\\right]$ and $\\kB^2 = 0$. Since $-2t\\kI$ and $t\\kB$ commute, $e^{t\\kA} = e^{-2t}(\\kI + t\\kB) = \\left[\\begin{smallmatrix} (1+t)\\,e^{-2t} & -te^{-2t} \\\\ te^{-2t} & (1-t)\\,e^{-2t} \\end{smallmatrix}\\right]$. b) $\\kvecx = e^{t\\kA}\\left[\\begin{smallmatrix} 1 \\\\ -2 \\end{smallmatrix}\\right] = \\left[\\begin{smallmatrix} (1+3t)\\,e^{-2t} \\\\ (3t-2)\\,e^{-2t} \\end{smallmatrix}\\right]$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "3.8.11",
+   "source_number": "3.8.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-truncated-matrix-exponential",
+   "prompt": "<p>Let $\\kA = \\left[\\begin{smallmatrix} 1 & 2 \\\\ 3 & 4 \\end{smallmatrix}\\right]$. Approximate $e^{t\\kA}$ by expanding the power series up to the third order.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kA^2 = \\left[\\begin{smallmatrix} 7 & 10 \\\\ 15 & 22 \\end{smallmatrix}\\right]$ and $\\kA^3 = \\left[\\begin{smallmatrix} 37 & 54 \\\\ 81 & 118 \\end{smallmatrix}\\right]$, so $e^{t\\kA} \\approx \\kI + t\\kA + \\frac{t^2}{2}\\kA^2 + \\frac{t^3}{6}\\kA^3 = \\left[\\begin{smallmatrix} 1 + t + \\frac{7}{2}t^2 + \\frac{37}{6}t^3 & 2t + 5t^2 + 9t^3 \\\\ 3t + \\frac{15}{2}t^2 + \\frac{27}{2}t^3 & 1 + 4t + 11t^2 + \\frac{59}{3}t^3 \\end{smallmatrix}\\right]$."
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "3.8.12",
+   "source_number": "3.8.12",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "similar",
+   "prompt": "<p>For any positive integer $n$, find a formula (or a recipe) for $\\kA^n$ for the following matrices:</p><ol type=\"a\"><li>$\\begin{bmatrix} 3 & 0 \\\\ 0 & 9 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 5 & 2 \\\\ 4 & 7 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 1 \\\\ 0 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 1 \\\\ 0 & 2 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The matrix is diagonal, so $\\kA^n = \\left[\\begin{smallmatrix} 3^n & 0 \\\\ 0 & 9^n \\end{smallmatrix}\\right]$. b) The eigenvalues are $3$ and $9$, with eigenvectors \\left[\\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix}\\right] and \\left[\\begin{smallmatrix} 1 \\\\ 2 \\end{smallmatrix}\\right], so $\\kA = \\kE\\kD\\kEinv$ and, as ${(\\kB\\kA\\kB^{-1})}^k = \\kB\\kA^k\\kB^{-1}$ in the text, $\\kA^n = \\kE\\kD^n\\kEinv = \\frac{1}{3}\\left[\\begin{smallmatrix} 2 \\cdot 3^n + 9^n & 9^n - 3^n \\\\ 2 \\cdot 9^n - 2 \\cdot 3^n & 3^n + 2 \\cdot 9^n \\end{smallmatrix}\\right]$. c) $\\kA^1 = \\kA$, and $\\kA^2 = 0$, so $\\kA^n = 0$ for every $n \\geq 2$: the matrix is nilpotent. d) The matrix is $2\\kI + \\kB$ with $\\kB = \\left[\\begin{smallmatrix} 0 & 1 \\\\ 0 & 0 \\end{smallmatrix}\\right]$, $\\kB^2 = 0$, and $2\\kI$ commutes with $\\kB$, so the binomial expansion stops after two terms: $\\kA^n = 2^n\\kI + n\\,2^{n-1}\\kB = \\left[\\begin{smallmatrix} 2^n & n\\,2^{n-1} \\\\ 0 & 2^n \\end{smallmatrix}\\right]$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "3.8.101",
+   "source_number": "3.8.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-3-8-1",
+   "prompt": "<p>Compute $e^{t\\kA}$ where $\\kA=\\left[ \\begin{smallmatrix} 1 & -2 \\\\ -2 & 1 \\end{smallmatrix}\\right]$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{t\\kA}=\\left[ \\begin{smallmatrix} \\frac{{e}^{3t}+{e}^{-t}}{2} & \\quad \\frac{{e}^{-t}-{e}^{3t}}{2}\\\\ \\frac{{e}^{-t}-{e}^{3t}}{2} & \\quad \\frac{{e}^{3t}+{e}^{-t}}{2} \\end{smallmatrix}\\right]$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "3.8.102",
+   "source_number": "3.8.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-3-5",
+   "prompt": "<p>Compute $e^{t\\kA}$ where $\\kA=\\left[ \\begin{smallmatrix} 1 & -3 & 2 \\\\ -2 & 1 & 2 \\\\ -1 & -3 & 4 \\end{smallmatrix}\\right]$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$e^{t\\kA}=\\left[ \\begin{smallmatrix} 2{e}^{3t}-4{e}^{2t}+3{e}^{t} & \\quad \\frac{3{e}^{t}}{2}-\\frac{3{e}^{3t}}{2} & \\quad -{e}^{3t}+4{e}^{2t}-3{e}^{t} \\\\ 2{e}^{t}-2{e}^{2t} & \\quad {e}^{t} & \\quad 2{e}^{2t}-2{e}^{t} \\\\ 2{e}^{3t}-5{e}^{2t}+3{e}^{t} & \\quad \\frac{3{e}^{t}}{2}-\\frac{3{e}^{3t}}{2} & \\quad -{e}^{3t}+5{e}^{2t}-3{e}^{t} \\end{smallmatrix}\\right]$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "3.8.103",
+   "source_number": "3.8.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "nilpotent-example",
+   "prompt": "<ol type=\"a\"><li>Compute $e^{t\\kA}$ where $\\kA=\\left[ \\begin{smallmatrix} 3 & -1 \\\\ 1 & 1 \\end{smallmatrix}\\right]$.</li><li>Solve $\\kvecxprime = \\kA \\kvecx$ for $\\kvecx(0) = \\left[ \\begin{smallmatrix} 1 \\\\ 2 \\end{smallmatrix}\\right]$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $e^{t\\kA}=\\left[ \\begin{smallmatrix} ( t+1) \\,{e}^{2t} & -t{e}^{2t} \\\\ t{e}^{2t} & ( 1-t) \\,{e}^{2t} \\end{smallmatrix}\\right]$ b) $\\kvecx=\\left[ \\begin{smallmatrix} (1-t) \\,{e}^{2t} \\\\ (2-t) \\,{e}^{2t} \\end{smallmatrix}\\right]$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "3.8.104",
+   "source_number": "3.8.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-truncated-matrix-exponential",
+   "prompt": "<p>Compute the first 3 terms (up to the second degree) of the Taylor expansion of $e^{t\\kA}$ where $\\kA=\\left[ \\begin{smallmatrix} 2 & 3 \\\\ 2 & 2 \\end{smallmatrix}\\right]$. Write it as a single matrix. Then use it to approximate $e^{0.1\\kA}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\left[ \\begin{smallmatrix} 1+2t+5t^2 & 3t+6t^2 \\\\ 2t+4t^2 & 1+2t+5t^2 \\end{smallmatrix}\\right]$ $e^{0.1\\kA} \\approx \\left[ \\begin{smallmatrix} 1.25 & 0.36 \\\\ 0.24 & 1.25 \\end{smallmatrix}\\right]$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "3.8.105",
+   "source_number": "3.8.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "similar",
+   "prompt": "<p>For any positive integer $n$, find a formula (or a recipe) for $\\kA^n$ for the following matrices:</p><ol type=\"a\"><li>$\\begin{bmatrix} 7 & 4 \\\\ -5 & -2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} -3 & 4 \\\\ -6 & 7 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\begin{bmatrix} 5 (3^n)-2^{n+2} & 4 (3^n)-2^{n+2}\\\\ 5 (2^n)-5 (3^n) & 5 (2^n)-4 (3^n) \\end{bmatrix}$ b) $\\begin{bmatrix}3-2 (3^n) & 2 (3^n)-2\\\\ 3-3^{n+1} & 3^{n+1}-2\\end{bmatrix}$ c) $\\begin{bmatrix}1 & 0 \\\\ 0 & 1\\end{bmatrix}$ if $n$ is even, and $\\begin{bmatrix}0 & 1 \\\\ 1 & 0\\end{bmatrix}$ if $n$ is odd."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "nilpotent-matrix"
+  },
+  {
+   "exercise": "e1",
+   "concept": "algebraic-multiplicity"
+  },
+  {
+   "exercise": "e2",
+   "concept": "matrix-exponential-by-diagonalization"
+  },
+  {
+   "exercise": "e3",
+   "concept": "nilpotent-matrix"
+  },
+  {
+   "exercise": "e3",
+   "concept": "exponential-of-commuting-matrices"
+  },
+  {
+   "exercise": "e4",
+   "concept": "matrix-exponential-by-diagonalization"
+  },
+  {
+   "exercise": "e4",
+   "concept": "matrix-exponential-solution"
+  },
+  {
+   "exercise": "e5",
+   "concept": "nilpotent-matrix"
+  },
+  {
+   "exercise": "e5",
+   "concept": "exponential-of-commuting-matrices"
+  },
+  {
+   "exercise": "e6",
+   "concept": "exponential-of-commuting-matrices"
+  },
+  {
+   "exercise": "e7",
+   "concept": "exponential-of-commuting-matrices"
+  },
+  {
+   "exercise": "e7",
+   "concept": "matrix-inverse"
+  },
+  {
+   "exercise": "e8",
+   "concept": "diagonalization"
+  },
+  {
+   "exercise": "e8",
+   "concept": "matrix-exponential-by-diagonalization"
+  },
+  {
+   "exercise": "e8",
+   "concept": "matrix-exponential-solution"
+  },
+  {
+   "exercise": "e9",
+   "concept": "diagonalization"
+  },
+  {
+   "exercise": "e10",
+   "concept": "nilpotent-matrix"
+  },
+  {
+   "exercise": "e10",
+   "concept": "matrix-exponential-solution"
+  },
+  {
+   "exercise": "e11",
+   "concept": "truncated-series-for-the-matrix-exponential"
+  },
+  {
+   "exercise": "e12",
+   "concept": "diagonalization"
+  },
+  {
+   "exercise": "e12",
+   "concept": "exponential-of-a-similar-matrix"
+  },
+  {
+   "exercise": "e12",
+   "concept": "nilpotent-matrix"
+  },
+  {
+   "exercise": "e101",
+   "concept": "matrix-exponential-by-diagonalization"
+  },
+  {
+   "exercise": "e102",
+   "concept": "matrix-exponential-by-diagonalization"
+  },
+  {
+   "exercise": "e103",
+   "concept": "nilpotent-matrix"
+  },
+  {
+   "exercise": "e103",
+   "concept": "matrix-exponential-solution"
+  },
+  {
+   "exercise": "e104",
+   "concept": "truncated-series-for-the-matrix-exponential"
+  },
+  {
+   "exercise": "e105",
+   "concept": "diagonalization"
+  },
+  {
+   "exercise": "e105",
+   "concept": "exponential-of-a-similar-matrix"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "moler-van-loan",
+   "kind": "book",
+   "number": "14",
+   "html": "C. Moler and C.F. Van Loan, <em>Nineteen Dubious Ways to Compute the Exponential of a Matrix, Twenty-Five Years Later</em>, SIAM Review 45 (1), 2003, 3–49"
+  }
+ ]
+}

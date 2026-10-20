@@ -1,0 +1,851 @@
+{
+ "id": "5.2",
+ "module": "sec:appeig",
+ "chapter": "5",
+ "title": "Higher-order eigenvalue problems",
+ "short": "Higher-order eigenvalue problems",
+ "lead": "An elastic beam that bends as it vibrates obeys a <span data-concept=\"partial-differential-equation\">partial differential equation</span> of fourth order in $x$. This section separates variables in it for a beam hinged at both ends, solves the <span data-concept=\"fourth-order-eigenvalue-problem\">fourth-order eigenvalue problem</span> that results, sets the beam’s <span data-concept=\"natural-frequencies-of-a-beam\">natural frequencies</span> beside a string’s, and names the other conditions an end of a beam can meet.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 5.2.101 and 5.2.102 carry the book’s own answers, each confirmed by computation. The inline exercise 5.2.1 and exercises 5.2.2–5.2.5, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed result checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-beam-vibration",
+   "kind": "sim",
+   "number": "5.2",
+   "originals": [
+    "/media/ch05/trans-beam.svg"
+   ],
+   "original_caption": "Transversal vibrations of a beam.",
+   "draws": [
+    "function",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-beam-timbre",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-beam-ends",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "beam",
+   "label": "a simply supported beam",
+   "figures": [
+    "sim-beam-timbre"
+   ]
+  },
+  {
+   "id": "string",
+   "label": "a vibrating string",
+   "figures": [
+    "sim-beam-timbre"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "transversal",
+   "concept": "transversal-vibrations",
+   "verb": "introduces"
+  },
+  {
+   "span": "transversal",
+   "concept": "eigenfunction-decomposition",
+   "verb": "uses"
+  },
+  {
+   "span": "transversal",
+   "concept": "higher-order-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-vibration",
+   "concept": "transversal-vibrations",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-vibration",
+   "concept": "hinged-beam-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-vibration",
+   "concept": "natural-frequencies-of-a-beam",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-vibration",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-vibration",
+   "concept": "hinged-end-of-a-beam",
+   "verb": "uses"
+  },
+  {
+   "span": "beam-equation",
+   "concept": "beam-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "beam-equation",
+   "concept": "partial-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "hinged-setup",
+   "concept": "hinged-end-of-a-beam",
+   "verb": "uses"
+  },
+  {
+   "span": "hinged-setup",
+   "concept": "pde-initial-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-5",
+   "concept": "beam-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-5-5",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "separation",
+   "concept": "fourth-order-eigenvalue-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "separation",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-beam-separated",
+   "concept": "fourth-order-eigenvalue-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "boundary-to-X",
+   "concept": "side-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-beam-X-conditions",
+   "concept": "fourth-order-eigenvalue-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "initial-velocity",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "positive",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "positive",
+   "concept": "fourth-order-eigenvalue-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "fourth-root",
+   "concept": "general-solution-of-a-higher-order-homogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "fourth-root",
+   "concept": "fourth-order-eigenvalue-problem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "conditions-at-zero",
+   "concept": "hinged-end-of-a-beam",
+   "verb": "uses"
+  },
+  {
+   "span": "beam-eigenvalues",
+   "concept": "hinged-beam-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "beam-eigenvalues",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "beam-eigenvalues",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "beam-eigenvalues",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "time-factor",
+   "concept": "general-solution-to-a-homogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "time-factor",
+   "concept": "hinged-beam-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-hinged-beam",
+   "concept": "hinged-beam-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-hinged-beam",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-hinged-beam",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "beam-series",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "beam-series",
+   "concept": "sine-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "beam-series",
+   "concept": "hinged-beam-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-hinged-beam-series",
+   "concept": "hinged-beam-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "homogeneous-check",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "homogeneous-check",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "timbre",
+   "concept": "natural-frequencies-of-a-beam",
+   "verb": "introduces"
+  },
+  {
+   "span": "timbre",
+   "concept": "fundamental-frequency",
+   "verb": "reinforces"
+  },
+  {
+   "span": "timbre",
+   "concept": "overtones",
+   "verb": "uses"
+  },
+  {
+   "span": "timbre",
+   "concept": "timbre",
+   "verb": "reinforces"
+  },
+  {
+   "span": "timbre",
+   "concept": "spectrum",
+   "verb": "uses"
+  },
+  {
+   "span": "xylophone",
+   "concept": "timbre",
+   "verb": "uses"
+  },
+  {
+   "span": "xylophone",
+   "concept": "natural-frequencies-of-a-beam",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-beam-timbre",
+   "concept": "natural-frequencies-of-a-beam",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-timbre",
+   "concept": "timbre",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-timbre",
+   "concept": "fundamental-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-timbre",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-2-1",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-5-2-1",
+   "concept": "hinged-beam-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "end-conditions",
+   "concept": "hinged-end-of-a-beam",
+   "verb": "introduces"
+  },
+  {
+   "span": "end-conditions",
+   "concept": "side-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "free-end",
+   "concept": "free-end-of-a-beam",
+   "verb": "introduces"
+  },
+  {
+   "span": "clamped-end",
+   "concept": "clamped-end-of-a-beam",
+   "verb": "introduces"
+  },
+  {
+   "span": "sim-beam-ends",
+   "concept": "hinged-end-of-a-beam",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-ends",
+   "concept": "free-end-of-a-beam",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-beam-ends",
+   "concept": "clamped-end-of-a-beam",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "hinged-beam",
+   "what": "the eigenvalues, eigenfunctions and time factors of the hinged beam",
+   "source": "Differential Equations for Engineers, 5.2 Higher-order eigenvalue problems",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kX(0) = \\kXdprime(0) = 0",
+       "src": "5.2"
+      },
+      {
+       "text": "$\\komega = \\sqrt[4]{\\klambda}$, that is, $\\komega^4 = \\klambda$, and $\\komega > 0$.",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{X}{\\kX(x)} = \\mk{a}{A e^{\\komega x}} + \\mk{b}{B e^{-\\komega x}} + \\mk{c}{C \\sin (\\komega x)} + \\mk{d}{D \\cos (\\komega x)}",
+      "src": "5.2",
+      "why": "The general solution of $\\kXfour - \\komega^4 \\kX = 0$: its characteristic equation $r^4 = \\komega^4$ has the roots $\\komega$, $-\\komega$, $i\\komega$ and $-i\\komega$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kX(0)} = \\mk{s}{A + B + D}, \\qquad \\mk{l2}{\\kXdprime(0)} = \\mk{s2}{\\komega^2 (A + B - D)}",
+       "uses": [],
+       "map": {
+        "X": [
+         "l",
+         "l2"
+        ],
+        "a": [
+         "s",
+         "s2"
+        ],
+        "b": [
+         "s",
+         "s2"
+        ],
+        "d": [
+         "s",
+         "s2"
+        ]
+       },
+       "cap": "At $x = 0$ the exponentials and the cosine are $1$ and the sine is $0$; differentiating twice multiplies $e^{\\pm\\komega x}$ by $\\komega^2$ and $\\sin (\\komega x)$ and $\\cos (\\komega x)$ by $-\\komega^2$."
+      },
+      {
+       "tex": "\\mk{l}{0} = \\mk{s}{A + B + D}, \\qquad \\mk{l2}{0} = \\mk{s2}{\\komega^2 (A + B - D)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{0} = \\mk{s}{A + B + D}, \\qquad \\mk{l2}{0} = \\mk{s2}{A + B - D}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{dd}{D = 0}, \\qquad \\mk{bb}{B = -A}",
+       "uses": [],
+       "map": {
+        "s": [
+         "dd",
+         "bb"
+        ],
+        "s2": [
+         "dd",
+         "bb"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{Xr}{\\kX(x)} = \\mk{ar}{A e^{\\komega x}} \\mk{bb}{- A e^{-\\komega x}} + \\mk{cr}{C \\sin (\\komega x)}",
+       "uses": []
+      }
+     ],
+     "src": "5.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kX(1) = \\kXdprime(1) = 0",
+       "src": "5.2"
+      },
+      {
+       "text": "$\\komega = \\sqrt[4]{\\klambda}$, that is, $\\komega^4 = \\klambda$, and $\\komega > 0$.",
+       "src": "5.2"
+      },
+      {
+       "tex": "\\sinh \\komega = \\frac{e^{\\komega} - e^{-\\komega}}{2}",
+       "src": "0.2"
+      },
+      {
+       "text": "$\\sinh \\xi$ is zero only when $\\xi = 0$.",
+       "src": "4.1"
+      },
+      {
+       "text": "$\\klambda$ is an eigenvalue only if there is a solution $\\kX$ that is not identically zero.",
+       "src": "4.1"
+      },
+      {
+       "text": "$\\sin \\komega = 0$ only when $\\komega$ is an integer multiple of $\\pi$.",
+       "src": "4.1"
+      },
+      {
+       "text": "A constant multiple of an eigenfunction is again an eigenfunction, so we only need to pick one.",
+       "src": "4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{X}{\\kX(x)} = \\mk{a}{A e^{\\komega x}} \\mk{b}{- A e^{-\\komega x}} + \\mk{c}{C \\sin (\\komega x)}",
+      "src": "5.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kX(1)} = \\mk{p}{A (e^{\\komega} - e^{-\\komega})} + \\mk{q}{C \\sin \\komega}, \\qquad \\mk{l2}{\\kXdprime(1)} = \\mk{p2}{A \\komega^2 (e^{\\komega} - e^{-\\komega})} - \\mk{q2}{C \\komega^2 \\sin \\komega}",
+       "uses": [],
+       "map": {
+        "X": [
+         "l",
+         "l2"
+        ],
+        "a": [
+         "p",
+         "p2"
+        ],
+        "b": [
+         "p",
+         "p2"
+        ],
+        "c": [
+         "q",
+         "q2"
+        ]
+       },
+       "cap": "Put $x = 1$; differentiating twice multiplies $e^{\\pm\\komega x}$ by $\\komega^2$ and $\\sin (\\komega x)$ by $-\\komega^2$."
+      },
+      {
+       "tex": "\\mk{l}{0} = \\mk{p}{A (e^{\\komega} - e^{-\\komega})} + \\mk{q}{C \\sin \\komega}, \\qquad \\mk{l2}{0} = \\mk{p2}{A \\komega^2 (e^{\\komega} - e^{-\\komega})} - \\mk{q2}{C \\komega^2 \\sin \\komega}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{q}{C \\sin \\komega} = 0, \\qquad \\mk{p}{A (e^{\\komega} - e^{-\\komega})} = 0",
+       "uses": [
+        2
+       ],
+       "map": {
+        "p2": "p",
+        "q2": "q"
+       },
+       "cap": "Divide the second equation by $\\komega^2$, which is not zero; the difference and the sum of the two equations are then $2C\\sin\\komega = 0$ and $2A(e^{\\komega} - e^{-\\komega}) = 0$."
+      },
+      {
+       "tex": "\\mk{q}{C \\sin \\komega} = 0, \\qquad \\mk{p}{2 A \\sinh \\komega} = 0",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{q}{C \\sin \\komega} = 0, \\qquad \\mk{p}{A} = 0",
+       "uses": [
+        2,
+        4
+       ],
+       "cap": "Since $\\komega > 0$, $\\sinh \\komega \\neq 0$, so we may divide by $2\\sinh\\komega$."
+      },
+      {
+       "tex": "\\mk{q}{\\sin \\komega} = 0, \\qquad \\mk{p}{A} = 0",
+       "uses": [
+        5
+       ],
+       "cap": "With $A = 0$ the solution is $\\kX(x) = C \\sin (\\komega x)$, which is identically zero when $C = 0$; so $C \\neq 0$, and we may divide by it."
+      },
+      {
+       "tex": "\\mk{q}{\\komega = n \\pi,\\ n \\geq 1}, \\qquad \\mk{p}{A} = 0",
+       "uses": [
+        6,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{lam}{\\klambdan = n^4 \\pi^4}, \\qquad \\mk{Xn}{\\kXn(x) = \\sin (n \\pi x)}",
+       "uses": [
+        2,
+        7
+       ],
+       "map": {
+        "q": [
+         "lam",
+         "Xn"
+        ],
+        "p": "Xn"
+       },
+       "cap": "$\\klambda = \\komega^4 = n^4 \\pi^4$; with $A = 0$ and $C = 1$, the solution is $\\sin (n \\pi x)$."
+      }
+     ],
+     "src": "5.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kTprime(0) = 0",
+       "src": "5.2"
+      },
+      {
+       "text": "For a constant $k > 0$, the general solution of $\\kTdprime + k^2 \\kT = 0$ is $\\kT(t) = A \\sin (k t) + B \\cos (k t)$.",
+       "src": "2.2"
+      },
+      {
+       "text": "We take $B = 1$ to make $\\kT(0) = 1$ for convenience.",
+       "src": "5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dd}{\\kTdprime} + \\mk{lam}{\\klambda} a^4 \\mk{T}{\\kT} = 0",
+      "src": "5.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{dd}{\\kTdprime} + \\mk{lam}{n^4 \\pi^4} a^4 \\mk{T}{\\kT} = 0",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{T}{\\kT(t)} = \\mk{s}{A \\sin (n^2 \\pi^2 a^2 t)} + \\mk{c}{B \\cos (n^2 \\pi^2 a^2 t)}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "dd": [
+         "s",
+         "c"
+        ],
+        "lam": [
+         "s",
+         "c"
+        ]
+       },
+       "cap": "Here $k^2 = n^4 \\pi^4 a^4$, so $k = n^2 \\pi^2 a^2$."
+      },
+      {
+       "tex": "\\mk{T}{\\kT(t)} = \\mk{c}{B \\cos (n^2 \\pi^2 a^2 t)}",
+       "uses": [
+        1
+       ],
+       "cap": "$\\kTprime(0) = A n^2 \\pi^2 a^2$, which is zero only when $A = 0$."
+      },
+      {
+       "tex": "\\mk{T}{\\kTn(t)} = \\mk{c}{\\cos (n^2 \\pi^2 a^2 t)}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "5.2"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "5.2.1",
+   "source_number": "5.2.1",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "positive"
+   },
+   "cite": "eq-beam-X-conditions",
+   "prompt": "<p>Justify $\\klambda &gt; 0$ just from the equation for $\\kX$ and the boundary conditions.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Multiply $\\kXfour = \\klambda \\kX$ by $\\kX$ and integrate over $[0,1]$. Integrating by parts twice, $\\int_0^1 \\kXfour \\kX \\,dx = \\bigl[ X'''X - \\kXdprime X' \\bigr]_0^1 + \\int_0^1 (\\kXdprime)^2 \\,dx$, and the bracket is zero because $\\kX(0) = \\kX(1) = 0$ and $\\kXdprime(0) = \\kXdprime(1) = 0$. So $\\klambda \\int_0^1 \\kX^2 \\,dx = \\int_0^1 (\\kXdprime)^2 \\,dx \\geq 0$, and since an eigenfunction is not identically zero, $\\int_0^1 \\kX^2 \\,dx &gt; 0$, so $\\klambda \\geq 0$. If $\\klambda = 0$, then $\\int_0^1 (\\kXdprime)^2 \\,dx = 0$, so $\\kXdprime \\equiv 0$ and $\\kX = Ax + B$; then $\\kX(0) = 0$ gives $B = 0$ and $\\kX(1) = 0$ gives $A = 0$, so $\\kX \\equiv 0$ and $0$ is not an eigenvalue. Hence $\\klambda &gt; 0$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "5.2.2",
+   "source_number": "5.2.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "free-end",
+   "prompt": "<p>Suppose you have a beam of length 5 with free ends. Let $\\ky$ be the transverse deviation of the beam at position $x$ on the beam ($0 &lt; x &lt; 5$). You know that the constants are such that this satisfies the equation $\\kytt + 4 \\kyxxxx = 0$. Suppose you know that the initial shape of the beam is the graph of $x(5-x)$, and the initial velocity is uniformly equal to 2 (same for each $x$) in the positive $\\ky$ direction. Set up the equation together with the boundary and initial conditions. Just set up, do not solve.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kytt + 4 \\kyxxxx = 0$ for $0 &lt; x &lt; 5$, $t &gt; 0$; $\\kyxx(0,t) = \\kyxxx(0,t) = 0$ and $\\kyxx(5,t) = \\kyxxx(5,t) = 0$; $\\ky(x,0) = x(5-x)$ and $\\kyt(x,0) = 2$. Both ends are free, and a free end is one where the second and third $x$-derivatives vanish; the initial shape gives $\\ky(x,0)$, and the initial velocity is $\\kyt(x,0)$, the constant 2 because every point moves at 2 in the positive $\\ky$ direction."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "5.2.3",
+   "source_number": "5.2.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "end-conditions",
+   "prompt": "<p>Suppose you have a beam of length 5 with one end free and one end fixed (the fixed end is at $x=5$). Let $u$ be the longitudinal deviation of the beam at position $x$ on the beam ($0 &lt; x &lt; 5$). You know that the constants are such that this satisfies the equation $u_{tt} = 4 u_{xx}$. Suppose you know that the initial displacement of the beam is $\\frac{x-5}{50}$, and the initial velocity is $\\frac{-(x-5)}{100}$ in the positive $u$ direction. Set up the equation together with the boundary and initial conditions. Just set up, do not solve.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$u_{tt} = 4 u_{xx}$ for $0 &lt; x &lt; 5$, $t &gt; 0$; $u_x(0,t) = 0$ and $u(5,t) = 0$; $u(x,0) = \\frac{x-5}{50}$ and $u_t(x,0) = \\frac{-(x-5)}{100}$. The longitudinal deviation obeys the wave equation, which is second order in $x$, so each end carries one condition. The fixed end at $x = 5$ does not move, so $u(5,t) = 0$. At the free end $x = 0$ nothing pushes or pulls on the beam, so the beam is neither stretched nor compressed there, and the stretching, measured by $u_x$, is zero: $u_x(0,t) = 0$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "5.2.4",
+   "source_number": "5.2.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-5-5",
+   "prompt": "<p>Suppose the beam is $L$ units long, everything else kept the same as in <a href=\"#eq-5-5\">(5.5)</a>. What is the equation and the series solution?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The problem is $a^4 \\kyxxxx + \\kytt = 0$ for $0 &lt; x &lt; L$, $t &gt; 0$, with $\\ky(0,t) = \\kyxx(0,t) = 0$, $\\ky(L,t) = \\kyxx(L,t) = 0$, $\\ky(x,0) = \\kf(x)$, $\\kyt(x,0) = 0$. Separating as before gives $\\kXfour - \\klambda \\kX = 0$ with $\\kX(0) = \\kXdprime(0) = 0$ and $\\kX(L) = \\kXdprime(L) = 0$; the same work with the conditions at $L$ gives $A = 0$ and $\\sin (\\komega L) = 0$, so $\\komega = \\frac{n\\pi}{L}$, the eigenvalues are $\\klambdan = \\frac{n^4 \\pi^4}{L^4}$ and the eigenfunctions $\\kXn(x) = \\sin \\left(\\frac{n \\pi}{L} x\\right)$. Then $\\kTdprime + \\frac{n^4 \\pi^4 a^4}{L^4} \\kT = 0$ with $\\kTprime(0) = 0$ gives $\\kTn(t) = \\cos \\left(\\frac{n^2 \\pi^2 a^2}{L^2} t\\right)$. With the sine series $\\kf(x) = \\sum_{n=1}^\\infty \\kbn \\sin \\left(\\frac{n \\pi}{L} x\\right)$ on $[0,L]$, $\\kbn = \\frac{2}{L} \\int_0^L \\kf(x) \\sin \\left(\\frac{n \\pi}{L} x\\right) dx$, the solution is $\\ky(x,t) = \\sum_{n=1}^\\infty \\kbn \\sin \\left(\\frac{n \\pi}{L} x\\right) \\cos \\left(\\frac{n^2 \\pi^2 a^2}{L^2} t\\right)$. Each term satisfies the equation because $a^4 \\left(\\frac{n\\pi}{L}\\right)^4 = \\left(\\frac{n^2 \\pi^2 a^2}{L^2}\\right)^2$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "5.2.5",
+   "source_number": "5.2.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beam-series",
+   "prompt": "<p>Suppose you have</p>$$ \\begin{aligned} & a^4 \\kyxxxx + \\kytt = 0 \\quad (0 < x < 1, t > 0) , \\\\ & \\ky(0,t) = \\kyxx(0,t) = 0,\\\\ & \\ky(1,t) = \\kyxx(1,t) = 0 ,\\\\ & \\ky(x,0) = \\kf(x), \\quad \\kyt(x,0) = g(x) . \\end{aligned} $$<p>That is, you also have an initial velocity. Find a series solution. Hint: Use the same idea as we did for the wave equation.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The eigenfunctions are still $\\sin (n \\pi x)$ with $\\klambdan = n^4 \\pi^4$, but now $\\kT$ need not satisfy $\\kTprime(0) = 0$, so both solutions of $\\kTdprime + n^4 \\pi^4 a^4 \\kT = 0$ are kept. Expand both initial functions in sine series, $\\kf(x) = \\sum_{n=1}^\\infty \\kbn \\sin (n \\pi x)$ and $g(x) = \\sum_{n=1}^\\infty c_n \\sin (n \\pi x)$. Then $\\ky(x,t) = \\sum_{n=1}^\\infty \\left( \\kbn \\cos (n^2 \\pi^2 a^2 t) + \\frac{c_n}{n^2 \\pi^2 a^2} \\sin (n^2 \\pi^2 a^2 t) \\right) \\sin (n \\pi x)$. Each term satisfies the equation and the hinged conditions; at $t = 0$ the series is $\\sum \\kbn \\sin (n \\pi x) = \\kf(x)$, and differentiating in $t$ and setting $t = 0$ gives $\\sum c_n \\sin (n \\pi x) = g(x)$. As for the wave equation, one can also solve the two problems, one with $\\kf$ and zero velocity and one with zero shape and velocity $g$, and add them."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "5.2.101",
+   "source_number": "5.2.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beam-series",
+   "prompt": "<p>Suppose you have a beam of length 1 with hinged ends. Let $\\ky$ be the transverse deviation of the beam at position $x$ on the beam ($0 &lt; x &lt; 1$). You know that the constants are such that this satisfies the equation $\\kytt + 4 \\kyxxxx = 0$. Suppose you know that the initial shape of the beam is the graph of $\\sin (\\pi x)$, and the initial velocity is 0. Solve for $\\ky$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky(x,t) = \\sin(\\pi x) \\cos (2 \\pi^2 t)$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "5.2.102",
+   "source_number": "5.2.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "clamped-end",
+   "prompt": "<p>Suppose you have a beam of length 10 with two fixed ends. Let $\\ky$ be the transverse deviation of the beam at position $x$ on the beam ($0 &lt; x &lt; 10$). You know that the constants are such that this satisfies the equation $\\kytt + 9 \\kyxxxx = 0$. Suppose you know that the initial shape of the beam is the graph of $\\sin^2(\\pi x)$, and the initial velocity is equal to $x(10-x)$. Set up the equation together with the boundary and initial conditions. Just set up, do not solve.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$9 \\kyxxxx + \\kytt = 0 \\quad (0 &lt; x &lt; 10, t &gt; 0)$, $\\ky(0,t) = \\kyx(0,t) = 0$, $\\ky(10,t) = \\kyx(10,t) = 0$, $\\ky(x,0) = \\sin^2(\\pi x), \\quad \\kyt(x,0) = x(10-x)$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "fourth-order-eigenvalue-problem"
+  },
+  {
+   "exercise": "e1",
+   "concept": "hinged-end-of-a-beam"
+  },
+  {
+   "exercise": "e2",
+   "concept": "beam-equation"
+  },
+  {
+   "exercise": "e2",
+   "concept": "free-end-of-a-beam"
+  },
+  {
+   "exercise": "e3",
+   "concept": "wave-equation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "side-conditions"
+  },
+  {
+   "exercise": "e4",
+   "concept": "beam-equation"
+  },
+  {
+   "exercise": "e4",
+   "concept": "hinged-beam-solution"
+  },
+  {
+   "exercise": "e5",
+   "concept": "hinged-beam-solution"
+  },
+  {
+   "exercise": "e5",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e101",
+   "concept": "hinged-beam-solution"
+  },
+  {
+   "exercise": "e102",
+   "concept": "beam-equation"
+  },
+  {
+   "exercise": "e102",
+   "concept": "clamped-end-of-a-beam"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-beam-constants",
+   "kind": "book",
+   "number": "26",
+   "html": "If you are interested, $a^4 = \\frac{EI}{\\rho}$, where $E$ is the elastic modulus, $I$ is the second moment of area of the cross section, and $\\rho$ is linear density."
+  }
+ ]
+}

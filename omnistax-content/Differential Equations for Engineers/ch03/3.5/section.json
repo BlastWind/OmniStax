@@ -1,0 +1,771 @@
+{
+ "id": "3.5",
+ "module": "sec:twodimaut",
+ "chapter": "3",
+ "title": "Two-dimensional systems and their vector fields",
+ "short": "Systems in the plane",
+ "lead": "This section reads the vector field and the solutions of the planar system $\\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]' = \\kP \\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]$ off the <span data-concept=\"eigenvalue\">eigenvalues</span> and <span data-concept=\"eigenvector\">eigenvectors</span> of the $2 \\times 2$ matrix $\\kP$, case by case, names the picture each case draws, and collects them in a table.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 3.5.101–3.5.103 carry the book’s own answers, the vector-field picture of 3.5.103 kept with its answer. The book answers no exercise below 101; each of 3.5.1–3.5.5 carries an AI-marked solution stating the answer and the reasoning, every eigenvalue and solution checked with SymPy first, and the drawing questions answered in words.",
+ "figures": [
+  {
+   "id": "sim-portrait",
+   "kind": "sim",
+   "number": "3.4",
+   "folds": [
+    "3.5",
+    "3.6",
+    "3.7",
+    "3.8",
+    "3.9",
+    "3.10",
+    "3.11"
+   ],
+   "originals": [
+    "/media/ch03/pln-source-eig.svg",
+    "/media/ch03/pln-source-eig-arr.svg",
+    "/media/ch03/pln-source-full.svg",
+    "/media/ch03/pln-sink-full.svg",
+    "/media/ch03/pln-saddle-full.svg",
+    "/media/ch03/pln-ellipses.svg",
+    "/media/ch03/pln-spiral-source.svg",
+    "/media/ch03/pln-spiral-sink.svg"
+   ],
+   "original_caption": "(Figure 3.4) Eigenvectors of P. (Figure 3.5) Eigenvectors of P with directions. (Figure 3.6) Example source vector field with eigenvectors and solutions. (Figure 3.7) Example sink vector field with eigenvectors and solutions. (Figure 3.8) Example saddle vector field with eigenvectors and solutions. (Figure 3.9) Example center vector field. (Figure 3.10) Example spiral source vector field. (Figure 3.11) Example spiral sink vector field.",
+   "widths": [
+    432,
+    432,
+    432,
+    432,
+    432,
+    432,
+    432,
+    432
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "vector",
+    "eigenvalue",
+    "point",
+    "matrix"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "eigenvector-direction",
+   "concept": "motion-along-an-eigenvector-line",
+   "verb": "introduces"
+  },
+  {
+   "span": "source-def",
+   "concept": "source",
+   "verb": "introduces"
+  },
+  {
+   "span": "sink-def",
+   "concept": "sink",
+   "verb": "introduces"
+  },
+  {
+   "span": "saddle-def",
+   "concept": "saddle-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "center-def",
+   "concept": "center",
+   "verb": "introduces"
+  },
+  {
+   "span": "spiral-source-def",
+   "concept": "spiral-source",
+   "verb": "introduces"
+  },
+  {
+   "span": "spiral-sink-def",
+   "concept": "spiral-sink",
+   "verb": "introduces"
+  },
+  {
+   "span": "summary",
+   "concept": "behavior-of-planar-linear-systems",
+   "verb": "introduces"
+  },
+  {
+   "span": "plane-intro",
+   "concept": "constant-coefficient-system",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-intro",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-3",
+   "concept": "first-order-linear-system",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-assumptions",
+   "concept": "autonomous-system",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-assumptions",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-assumptions",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-assumptions",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-assumptions",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "plane-assumptions",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "case-1",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "case-1",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "source",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "sink",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "saddle-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "center",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "spiral-source",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-portrait",
+   "concept": "spiral-sink",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eigenvector-line",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenvector-line",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenvector-line",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-eigenvector-line",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-eigenvector-line",
+   "concept": "rules-of-matrix-algebra",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenvector-direction",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "source-def",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "source-def",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sink-def",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "sink-def",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "saddle-def",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "saddle-def",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-intro",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-intro",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "complex-intro",
+   "concept": "complex-number",
+   "verb": "uses"
+  },
+  {
+   "span": "center-case",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "center-case",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "center-case",
+   "concept": "complex-eigenvalue-solutions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-center-solutions",
+   "concept": "complex-eigenvalue-solutions",
+   "verb": "uses"
+  },
+  {
+   "span": "center-def",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "center-def",
+   "concept": "initial-condition-for-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "center-def",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-source-case",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-sink-case",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-source-case",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-sink-case",
+   "concept": "eigenvector",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-source-case",
+   "concept": "complex-eigenvalue-solutions",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-sink-case",
+   "concept": "complex-eigenvalue-solutions",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-source-case",
+   "concept": "complex-number",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-sink-case",
+   "concept": "complex-number",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-spiral-source-solutions",
+   "concept": "complex-eigenvalue-solutions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-spiral-sink-solutions",
+   "concept": "complex-eigenvalue-solutions",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-source-def",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "spiral-sink-def",
+   "concept": "solution-to-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "summary",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "summary",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "summary",
+   "concept": "two-tank-brine-system",
+   "verb": "uses"
+  },
+  {
+   "span": "summary",
+   "concept": "source",
+   "verb": "reinforces"
+  },
+  {
+   "span": "summary",
+   "concept": "sink",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-3-1",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "tab-3-1",
+   "concept": "source",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-3-1",
+   "concept": "sink",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-3-1",
+   "concept": "saddle-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-3-1",
+   "concept": "center",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-3-1",
+   "concept": "spiral-source",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-3-1",
+   "concept": "spiral-sink",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-3-1",
+   "concept": "behavior-of-planar-linear-systems",
+   "verb": "reinforces"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "eigenvector-line",
+   "what": "the derivative on the line of an eigenvector",
+   "source": "Differential Equations for Engineers, 3.5 Two-dimensional systems and their vector fields",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\begin{bmatrix} \\kx \\\\ \\ky \\end{bmatrix} = \\alpha \\kvecv"
+      },
+      {
+       "text": "A scalar comes out of a matrix product: $\\kP(\\alpha \\kvecv) = \\alpha (\\kP \\kvecv)$.",
+       "src": "3.2"
+      },
+      {
+       "tex": "\\kP \\kvecv = \\klambda \\kvecv",
+       "src": "3.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\begin{bmatrix} \\kx \\\\ \\ky \\end{bmatrix}'} = \\mk{P}{\\kP} \\mk{x}{\\begin{bmatrix} \\kx \\\\ \\ky \\end{bmatrix}}",
+      "src": "(3.3)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\begin{bmatrix} \\kx \\\\ \\ky \\end{bmatrix}'} = \\mk{P}{\\kP} ( \\mk{a}{\\alpha} \\mk{v}{\\kvecv} )",
+       "uses": [
+        0
+       ],
+       "map": {
+        "x": [
+         "a",
+         "v"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\begin{bmatrix} \\kx \\\\ \\ky \\end{bmatrix}'} = \\mk{a}{\\alpha} \\mk{Pv}{( \\kP \\kvecv )}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "P": "Pv",
+        "v": "Pv"
+       }
+      },
+      {
+       "tex": "\\mk{d}{\\begin{bmatrix} \\kx \\\\ \\ky \\end{bmatrix}'} = \\mk{a}{\\alpha} \\mk{Pv}{\\klambda \\kvecv}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "3.5"
+    }
+   ]
+  }
+ ],
+ "footnotes": [],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "3.5.1",
+   "source_number": "3.5.1",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tab-3-1",
+   "prompt": "<p>Take the equation $m \\kxdprime + c \\kxprime + k\\kx = 0$, with $m &gt; 0$, $c \\geq 0$, $k &gt; 0$ for the mass-spring system.</p><ol type=\"a\"><li>Convert this to a system of first-order equations.</li><li>Classify for what $m, c, k$ do you get which behavior.</li><li>Explain from physical intuition why you do not get all the different kinds of behavior here?</li></ol>",
+   "answer": {
+    "type": "open",
+    "solution": "a) Let $\\ky = \\kxprime$ (the velocity). Then $\\kxprime = \\ky$ and $\\kyprime = \\kxdprime = -\\frac{k}{m}\\kx - \\frac{c}{m}\\ky$, that is, $\\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]' = \\left[ \\begin{smallmatrix} 0 & 1 \\\\ -k/m & -c/m \\end{smallmatrix} \\right] \\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix} \\right]$. b) The eigenvalues solve $\\klambda^2 + \\frac{c}{m}\\klambda + \\frac{k}{m} = 0$, so $\\klambda = \\frac{-c \\pm \\sqrt{c^2 - 4km}}{2m}$. If $c = 0$, they are $\\pm i\\sqrt{k/m}$, purely imaginary: a center (ellipses). If $0 &lt; c^2 &lt; 4km$, they are complex with negative real part $-\\frac{c}{2m}$: a spiral sink. If $c^2 &gt; 4km$, they are real, distinct and both negative (since $\\sqrt{c^2 - 4km} &lt; c$): a sink. If $c^2 = 4km$, the eigenvalue $-\\frac{c}{2m}$ is repeated and negative, which also means a sink. These are the undamped, underdamped, overdamped and critically damped cases of §2.4. c) The product of the eigenvalues is $\\frac{k}{m} &gt; 0$, so they never have opposite signs: no saddle; their sum is $-\\frac{c}{m} \\leq 0$, so the real part is never positive: no source and no spiral source. Physically, the spring always pulls the mass back toward the rest position, so nothing pushes it away along a line (a saddle), and the damping only takes energy out of the system and never puts any in, so the motion can never grow (a source or a spiral source).",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "3.5.2",
+   "source_number": "3.5.2",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "summary",
+   "prompt": "<p>What happens in the case when $\\kP = \\left[ \\begin{smallmatrix} 1 & 1 \\\\ 0 & 1 \\end{smallmatrix} \\right]$? In this case the eigenvalue is repeated and there is only one independent eigenvector. Draw and describe the vector field.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "The eigenvalue $\\klambda = 1$ is repeated, and the only eigenvectors are the multiples of $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\end{smallmatrix} \\right]$. The system is $\\kxprime = \\kx + \\ky$, $\\kyprime = \\ky$, with solutions $\\ky = C_2 e^t$, $\\kx = (C_1 + C_2 t) e^t$. On the $x$-axis the arrows are horizontal and point away from the origin, and the solutions there move straight out along the axis. Everywhere else $\\kyprime = \\ky$ pushes away from the $x$-axis and the arrows grow longer farther from the origin, so every solution leaves the origin: it is a source (an unstable node), as the book says a repeated positive eigenvalue gives. Unlike Case 1 there is only one eigenvector line: a solution in the upper half-plane ($C_2 &gt; 0$) leaves the origin heading left, tangent to the $x$-axis (as $t \\to -\\infty$, $\\kx/\\ky = C_1/C_2 + t \\to -\\infty$), crosses the $y$-axis at $t = -C_1/C_2$, and swings round to go off to the right, again nearly parallel to the $x$-axis; the lower half-plane is the same picture turned by $180^\\circ$.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "3.5.3",
+   "source_number": "3.5.3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "summary",
+   "prompt": "<p>What happens in the case when $\\kP = \\left[ \\begin{smallmatrix} 1 & 1 \\\\ 1 & 1 \\end{smallmatrix} \\right]$? Draw the vector field. Does this look like any of the pictures we have drawn?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "The matrix is singular: its eigenvalues are $0$ and $2$, with eigenvectors $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$. The system is $\\kxprime = \\kyprime = \\kx + \\ky$, so every arrow of the vector field is a multiple of $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$: zero on the line $y = -x$, pointing up and to the right above that line, down and to the left below it, and longer the farther the point is from the line. Every point of the line $y = -x$ is a critical point, and every other solution, $\\kx = C_1 + C_2 e^{2t}$, $\\ky = -C_1 + C_2 e^{2t}$, runs along a straight line parallel to $y = x$, away from the line $y = -x$. No, it is none of the six pictures: the origin is not the only critical point. It is closest to a source cut in half along the line of critical points, solutions moving away from that line on both sides.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "3.5.4",
+   "source_number": "3.5.4",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tab-3-1",
+   "prompt": "<p>Which behaviors are possible if $\\kP$ is diagonal, that is, $\\kP = \\left[ \\begin{smallmatrix} a & 0 \\\\ 0 & b \\end{smallmatrix} \\right]$? You can assume that $a$ and $b$ are not zero.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "The eigenvalues of a diagonal matrix are its diagonal entries $a$ and $b$, with the eigenvectors $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 0 \\\\ 1 \\end{smallmatrix} \\right]$ along the axes. They are real, so only the first three rows of Table 3.1 can occur: a source when $a$ and $b$ are both positive, a sink when both are negative, and a saddle when they have opposite signs. No center or spiral is possible. (When $a = b$, every vector is an eigenvector and the arrows point straight out of or into the origin: still a source or a sink.)",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "3.5.5",
+   "source_number": "3.5.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "summary",
+   "prompt": "<p>Take the system from <a href=\"/diffyqs/ch03/3.1/#3.1-ex-3-1-2\">Example 3.1.2</a>, $\\kxoneprime=\\frac{r}{V}(\\kxtwo-\\kxone)$, $\\kxtwoprime=\\frac{r}{V}(\\kxone-\\kxtwo)$. As we said, one of the eigenvalues is zero. What is the other eigenvalue, how does the picture look like, and what happens when $t$ goes to infinity.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "The matrix is $\\frac{r}{V} \\left[ \\begin{smallmatrix} -1 & 1 \\\\ 1 & -1 \\end{smallmatrix} \\right]$; its trace is $-\\frac{2r}{V}$ and its determinant $0$, so the eigenvalues are $0$ and $-\\frac{2r}{V}$, with eigenvectors $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$ and $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\end{smallmatrix} \\right]$. The other eigenvalue is $-\\frac{2r}{V}$. In the picture every point of the line $x_1 = x_2$ is a critical point (equal amounts of salt do not change), and every other solution moves along a straight line of slope $-1$ (on which $x_1 + x_2$ stays constant) toward the line $x_1 = x_2$, the arrows shrinking as it gets closer. As $t \\to \\infty$ the solution $\\kxone = \\frac{A+B}{2} + \\frac{A-B}{2} e^{-2rt/V}$, $\\kxtwo = \\frac{A+B}{2} - \\frac{A-B}{2} e^{-2rt/V}$ with $\\kxone(0) = A$, $\\kxtwo(0) = B$ tends to the point $\\left( \\frac{A+B}{2}, \\frac{A+B}{2} \\right)$: the amounts of salt in the two tanks equalize, as Example 3.1.2 predicted.",
+    "generated_by": "ai"
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "3.5.101",
+   "source_number": "3.5.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tab-3-1",
+   "prompt": "<p>Describe the behavior of the following systems without solving:</p><ol type=\"a\"><li>$\\kxprime = \\kx + \\ky$, $\\kyprime = \\kx-\\ky$.</li><li>$\\kxoneprime = \\kxone + \\kxtwo$, $\\kxtwoprime = 2 \\kxtwo$.</li><li>$\\kxoneprime = -2\\kxtwo$, $\\kxtwoprime = 2 \\kxone$.</li><li>$\\kxprime = \\kx + 3\\ky$, $\\kyprime = -2\\kx-4\\ky$.</li><li>$\\kxprime = \\kx - 4\\ky$, $\\kyprime = -4\\kx+\\ky$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "solution": "a) Two eigenvalues: $\\pm \\sqrt{2}$ so the behavior is a saddle. b) Two eigenvalues: $1$ and $2$, so the behavior is a source. c) Two eigenvalues: $\\pm 2i$, so the behavior is a center (ellipses). d) Two eigenvalues: $-1$ and $-2$, so the behavior is a sink. e) Two eigenvalues: $5$ and $-3$, so the behavior is a saddle.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "3.5.102",
+   "source_number": "3.5.102",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "spiral-source-def",
+   "prompt": "<p>Suppose that $\\kvecxprime = \\kP \\kvecx$ where $\\kP$ is a 2 by 2 matrix with eigenvalues $2\\pm i$. Describe the behavior.</p>",
+   "answer": {
+    "type": "open",
+    "solution": "Spiral source.",
+    "generated_by": "source"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "3.5.103",
+   "source_number": "3.5.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "summary",
+   "prompt": "<p>Take $\\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix}\\right] ' = \\left[ \\begin{smallmatrix} 0 & 1 \\\\ 0 & 0 \\end{smallmatrix}\\right] \\left[ \\begin{smallmatrix} \\kx \\\\ \\ky \\end{smallmatrix}\\right]$. Draw the vector field and describe the behavior. Is it one of the behaviors that we have seen before?</p>",
+   "answer": {
+    "type": "open",
+    "solution": "<img src=\"/media/ch03/0100vectorfield.svg\" alt=\"A direction field diagram where all arrows are horizontal. The arrows above the x-axis go right and arrows below the x-axis go left. The arrows are longer the further away from the x-axis that we get.\" width=\"192\"><p>The solution does not move anywhere if $\\ky = 0$. When $\\ky$ is positive, the solution moves (with constant speed) in the positive $x$ direction. When $\\ky$ is negative, the solution moves (with constant speed) in the negative $x$ direction. It is not one of the behaviors we saw.</p><p>Note that the matrix has a double eigenvalue 0 and the general solution is $\\kx = C_1 t + C_2$ and $\\ky = C_1$, which agrees with the description above.</p>",
+    "generated_by": "source"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "converting-to-a-first-order-system"
+  },
+  {
+   "exercise": "e1",
+   "concept": "behavior-of-planar-linear-systems"
+  },
+  {
+   "exercise": "e1",
+   "concept": "center"
+  },
+  {
+   "exercise": "e1",
+   "concept": "spiral-sink"
+  },
+  {
+   "exercise": "e1",
+   "concept": "sink"
+  },
+  {
+   "exercise": "e2",
+   "concept": "source"
+  },
+  {
+   "exercise": "e2",
+   "concept": "behavior-of-planar-linear-systems"
+  },
+  {
+   "exercise": "e2",
+   "concept": "vector-field-of-a-system"
+  },
+  {
+   "exercise": "e3",
+   "concept": "behavior-of-planar-linear-systems"
+  },
+  {
+   "exercise": "e3",
+   "concept": "vector-field-of-a-system"
+  },
+  {
+   "exercise": "e3",
+   "concept": "invertible-matrix"
+  },
+  {
+   "exercise": "e4",
+   "concept": "source"
+  },
+  {
+   "exercise": "e4",
+   "concept": "sink"
+  },
+  {
+   "exercise": "e4",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e4",
+   "concept": "behavior-of-planar-linear-systems"
+  },
+  {
+   "exercise": "e5",
+   "concept": "behavior-of-planar-linear-systems"
+  },
+  {
+   "exercise": "e5",
+   "concept": "two-tank-brine-system"
+  },
+  {
+   "exercise": "e5",
+   "concept": "invertible-matrix"
+  },
+  {
+   "exercise": "e101",
+   "concept": "behavior-of-planar-linear-systems"
+  },
+  {
+   "exercise": "e101",
+   "concept": "saddle-point"
+  },
+  {
+   "exercise": "e101",
+   "concept": "source"
+  },
+  {
+   "exercise": "e101",
+   "concept": "center"
+  },
+  {
+   "exercise": "e101",
+   "concept": "sink"
+  },
+  {
+   "exercise": "e102",
+   "concept": "spiral-source"
+  },
+  {
+   "exercise": "e102",
+   "concept": "behavior-of-planar-linear-systems"
+  },
+  {
+   "exercise": "e103",
+   "concept": "vector-field-of-a-system"
+  },
+  {
+   "exercise": "e103",
+   "concept": "behavior-of-planar-linear-systems"
+  }
+ ]
+}

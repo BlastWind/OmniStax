@@ -1,0 +1,1080 @@
+{
+ "id": "4.3",
+ "module": "moreonfourier:section",
+ "chapter": "4",
+ "title": "More on the Fourier series",
+ "short": "More on the Fourier series",
+ "lead": "The <span data-concept=\"fourier-series\">Fourier series</span> so far is written for functions of period $2\\pi$. This section carries it over to functions of any period $2L$, then asks when the series of a <span data-concept=\"piecewise-smooth-function\">piecewise smooth</span> function converges and to what, when it may be differentiated and integrated term by term, and how the smoothness of a function shows in the size of its <span data-concept=\"fourier-coefficients\">coefficients</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.3.101–4.3.106 carry the book’s own answers. The inline Exercises 4.3.1 and 4.3.2 and Exercises 4.3.3–4.3.11, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every coefficient and value checked with SymPy or numerically first.",
+ "figures": [
+  {
+   "id": "sim-triangle-sum",
+   "kind": "sim",
+   "number": "4.9",
+   "folds": [
+    "4.10"
+   ],
+   "originals": [
+    "/media/ch04/gfs-sawcont.svg",
+    "/media/ch04/gfs-sawcont-fs3-fs20.svg"
+   ],
+   "original_caption": "(Figure 4.9) Periodic extension of the function f(t). (Figure 4.10) Fourier series of f(t) up to the 3rd harmonic (left graph) and up to the 20th harmonic (right graph).",
+   "widths": [
+    432,
+    864
+   ],
+   "draws": [
+    "function",
+    "series"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-smoothness-decay",
+   "kind": "sim",
+   "number": "4.11",
+   "originals": [
+    "/media/ch04/gfs-smoothex.svg"
+   ],
+   "original_caption": "Smooth 2-periodic function (the smooth line) with its nonsmooth derivative (the jagged line).",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "derivative",
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-term-by-term",
+   "kind": "sim",
+   "widths": [],
+   "draws": [
+    "function",
+    "derivative",
+    "series"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "rescaling",
+   "concept": "half-period",
+   "verb": "introduces"
+  },
+  {
+   "span": "rescaling",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "rescaling",
+   "concept": "fourier-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-fourier-series-2l",
+   "concept": "fourier-series-with-half-period-l",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-fourier-series-2l",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "we-compute",
+   "concept": "fourier-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-rescaling",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "common-half-periods",
+   "concept": "half-period",
+   "verb": "uses"
+  },
+  {
+   "span": "common-half-periods",
+   "concept": "fourier-series-with-half-period-l",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-1",
+   "concept": "fourier-series-with-half-period-l",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-1",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-1",
+   "concept": "periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-1",
+   "concept": "even-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-1",
+   "concept": "odd-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-1",
+   "concept": "integrals-of-even-and-odd-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-1",
+   "concept": "harmonic",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-1",
+   "concept": "gibbs-phenomenon",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-triangle-sum",
+   "concept": "fourier-series-with-half-period-l",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-triangle-sum",
+   "concept": "fourier-convergence-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-triangle-sum",
+   "concept": "harmonic",
+   "verb": "uses"
+  },
+  {
+   "span": "one-sided-limits",
+   "concept": "one-sided-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "one-sided-notation",
+   "concept": "square-wave",
+   "verb": "reinforces"
+  },
+  {
+   "span": "piecewise-continuous",
+   "concept": "piecewise-continuous-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "piecewise-continuous",
+   "concept": "one-sided-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "piecewise-smooth",
+   "concept": "piecewise-smooth-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-4-3-2",
+   "concept": "square-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-2",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-3",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-4",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-4",
+   "concept": "piecewise-continuous-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-5",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-5",
+   "concept": "piecewise-continuous-function",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-3-1",
+   "concept": "fourier-convergence-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-4-3-1",
+   "concept": "fourier-series-with-half-period-l",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-3-1",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-3-1",
+   "concept": "one-sided-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "redefine",
+   "concept": "fourier-convergence-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "rate-remark",
+   "concept": "fourier-convergence-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "rate-remark",
+   "concept": "gibbs-phenomenon",
+   "verb": "reinforces"
+  },
+  {
+   "span": "term-by-term",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-3-2",
+   "concept": "term-by-term-differentiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-4-3-2",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "continuity-needed",
+   "concept": "term-by-term-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "continuity-needed",
+   "concept": "square-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-3-3",
+   "concept": "term-by-term-integration",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-4-3-3",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-3-3",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "not-periodic",
+   "concept": "term-by-term-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "not-periodic",
+   "concept": "antiderivative",
+   "verb": "uses"
+  },
+  {
+   "span": "not-periodic",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-6",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-6",
+   "concept": "harmonic",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-3-6",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-smoothness-decay",
+   "concept": "decay-of-fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-smoothness-decay",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-smoothness-decay",
+   "concept": "square-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-smoothness-decay",
+   "concept": "sawtooth",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-rule",
+   "concept": "decay-of-fourier-coefficients",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-rule",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-justification",
+   "concept": "term-by-term-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-justification",
+   "concept": "decay-of-fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-justification",
+   "concept": "sawtooth",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-term-by-term",
+   "concept": "term-by-term-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-term-by-term",
+   "concept": "decay-of-fourier-coefficients",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "rescaling",
+   "what": "the coefficients of a 2L-periodic function",
+   "source": "Differential Equations for Engineers, 4.3 More on the Fourier series",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kg$ is $2\\pi$-periodic, with the series $\\kg(s) = \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\bigl[ \\kan \\cos (n s) + \\kbn \\sin (n s) \\bigr]$.",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\kg(s) = \\kf\\left(\\frac{L}{\\pi} s \\right)",
+       "src": "4.3"
+      },
+      {
+       "tex": "s = \\frac{\\pi}{L} t",
+       "src": "4.3"
+      },
+      {
+       "tex": "ds = \\frac{\\pi}{L} \\, dt",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kazero} = \\mk{c}{\\frac{1}{\\pi}} \\mk{i}{\\int_{-\\pi}^{\\pi} \\kg(s) \\, ds}",
+      "src": "4.2",
+      "uses": [
+       0
+      ],
+      "why": "The formula for the coefficients of a $2\\pi$-periodic function applies to $\\kg$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kazero} = \\mk{c}{\\frac{1}{\\pi}} \\mk{i}{\\int_{-\\pi}^{\\pi} \\kf\\left(\\frac{L}{\\pi} s \\right) \\, ds}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kazero} = \\mk{c}{\\frac{1}{\\pi}} \\mk{i}{\\int_{-L}^{L} \\kf(t) \\, \\frac{\\pi}{L} \\, dt}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "Change variables from $s$ back to $t$: the limits $s = \\pm\\pi$ become $t = \\pm L$, $\\frac{L}{\\pi} s$ becomes $t$, and $ds$ becomes $\\frac{\\pi}{L}\\, dt$."
+      },
+      {
+       "tex": "\\mk{a}{\\kazero} = \\mk{c}{\\frac{1}{L}} \\mk{i}{\\int_{-L}^{L} \\kf(t) \\, dt}",
+       "uses": []
+      }
+     ],
+     "src": "4.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kg$ is $2\\pi$-periodic, with the series $\\kg(s) = \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\bigl[ \\kan \\cos (n s) + \\kbn \\sin (n s) \\bigr]$.",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\kg(s) = \\kf\\left(\\frac{L}{\\pi} s \\right)",
+       "src": "4.3"
+      },
+      {
+       "tex": "s = \\frac{\\pi}{L} t",
+       "src": "4.3"
+      },
+      {
+       "tex": "ds = \\frac{\\pi}{L} \\, dt",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kan} = \\mk{c}{\\frac{1}{\\pi}} \\mk{i}{\\int_{-\\pi}^{\\pi} \\kg(s) \\cos (n s) \\, ds}",
+      "src": "4.2",
+      "uses": [
+       0
+      ],
+      "why": "The formula for the coefficients of a $2\\pi$-periodic function applies to $\\kg$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kan} = \\mk{c}{\\frac{1}{\\pi}} \\mk{i}{\\int_{-\\pi}^{\\pi} \\kf\\left(\\frac{L}{\\pi} s \\right) \\cos (n s) \\, ds}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kan} = \\mk{c}{\\frac{1}{\\pi}} \\mk{i}{\\int_{-L}^{L} \\kf(t) \\cos \\left( \\frac{n \\pi}{L} t \\right) \\, \\frac{\\pi}{L} \\, dt}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "Change variables from $s$ back to $t$: the limits $s = \\pm\\pi$ become $t = \\pm L$, $\\frac{L}{\\pi} s$ becomes $t$, and $ds$ becomes $\\frac{\\pi}{L}\\, dt$."
+      },
+      {
+       "tex": "\\mk{a}{\\kan} = \\mk{c}{\\frac{1}{L}} \\mk{i}{\\int_{-L}^{L} \\kf(t) \\cos \\left( \\frac{n \\pi}{L} t \\right) \\, dt}",
+       "uses": []
+      }
+     ],
+     "src": "4.3"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\kg$ is $2\\pi$-periodic, with the series $\\kg(s) = \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\bigl[ \\kan \\cos (n s) + \\kbn \\sin (n s) \\bigr]$.",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\kg(s) = \\kf\\left(\\frac{L}{\\pi} s \\right)",
+       "src": "4.3"
+      },
+      {
+       "tex": "s = \\frac{\\pi}{L} t",
+       "src": "4.3"
+      },
+      {
+       "tex": "ds = \\frac{\\pi}{L} \\, dt",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kbn} = \\mk{c}{\\frac{1}{\\pi}} \\mk{i}{\\int_{-\\pi}^{\\pi} \\kg(s) \\sin (n s) \\, ds}",
+      "src": "4.2",
+      "uses": [
+       0
+      ],
+      "why": "The formula for the coefficients of a $2\\pi$-periodic function applies to $\\kg$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kbn} = \\mk{c}{\\frac{1}{\\pi}} \\mk{i}{\\int_{-\\pi}^{\\pi} \\kf\\left(\\frac{L}{\\pi} s \\right) \\sin (n s) \\, ds}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kbn} = \\mk{c}{\\frac{1}{\\pi}} \\mk{i}{\\int_{-L}^{L} \\kf(t) \\sin \\left( \\frac{n \\pi}{L} t \\right) \\, \\frac{\\pi}{L} \\, dt}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "Change variables from $s$ back to $t$: the limits $s = \\pm\\pi$ become $t = \\pm L$, $\\frac{L}{\\pi} s$ becomes $t$, and $ds$ becomes $\\frac{\\pi}{L}\\, dt$."
+      },
+      {
+       "tex": "\\mk{a}{\\kbn} = \\mk{c}{\\frac{1}{L}} \\mk{i}{\\int_{-L}^{L} \\kf(t) \\sin \\left( \\frac{n \\pi}{L} t \\right) \\, dt}",
+       "uses": []
+      }
+     ],
+     "src": "4.3"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "4.3.1",
+   "source_number": "4.3.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "sim-smoothness-decay"
+   },
+   "cite": "smooth-derivative",
+   "prompt": "<p>Compute $\\kfdprime(0+)$ and $\\kfdprime(0-)$.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "f″(0+)",
+      "value": -2
+     },
+     {
+      "part": "f″(0−)",
+      "value": 2
+     }
+    ],
+    "solution": "$\\kfdprime(0+) = -2$ and $\\kfdprime(0-) = 2$. For $0 < t \\leq 1$, $\\kfprime(t) = 1 - 2t$, so $\\kfdprime(t) = -2$ there and its limit from above at $0$ is $-2$. For $-1 < t \\leq 0$, $\\kfprime(t) = 2t + 1$, so $\\kfdprime(t) = 2$ there and its limit from below at $0$ is $2$. The two one-sided limits differ, so $\\kfdprime(0)$ does not exist: $\\kfprime$ turns a corner at $0$, falling with slope $-2$ after it and rising with slope $2$ before it, as its graph in Figure 4.11 shows."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "4.3.2",
+   "source_number": "4.3.2",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "does-not-converge"
+   },
+   "cite": "decay-justification",
+   "prompt": "<p>Use a computer to plot the series we obtained for $\\kf(t)$, $\\kfprime(t)$ and $\\kfdprime(t)$. That is, plot say the first 5 harmonics of the functions. At what points does $\\kfdprime(t)$ have the discontinuities?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At the integer multiples of $2\\pi$: $t = 0, \\pm 2\\pi, \\pm 4\\pi, \\ldots$. The plots of $\\sum_{n=1}^{5} \\frac{\\sin(nt)}{n^3}$, $\\sum_{n=1}^{5} \\frac{\\cos(nt)}{n^2}$ and $\\sum_{n=1}^{5} \\frac{-\\sin(nt)}{n}$ (the Sim below draws them for any number of terms) show $\\kf$ smooth, $\\kfprime$ continuous with corners at $t = 2k\\pi$, and $\\kfdprime$ jumping there. On $0 < t < 2\\pi$ the series for $\\kfdprime$ sums to $\\frac{t - \\pi}{2}$, which climbs from $-\\frac{\\pi}{2}$ to $\\frac{\\pi}{2}$ and then drops back to $-\\frac{\\pi}{2}$ as $t$ passes $2\\pi$, a jump of $\\pi$; at $t = \\pi$ it is $0$ and continuous. At each jump the series gives $0$, the average of the two one-sided limits, as Theorem 4.3.1 says."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "4.3.3",
+   "source_number": "4.3.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-fourier-series-2l",
+   "prompt": "<p>Let</p>$$ \\kf(t) = \\begin{cases} 0 & \\text{if } \\; {-1} < t \\leq 0 , \\\\ t & \\text{if } \\; \\phantom{-}0 < t \\leq 1 , \\end{cases} $$<p>extended periodically.</p><ol type=\"a\"><li>Compute the Fourier series for $\\kf(t)$.</li><li>Write out the series explicitly up to the $3^{\\text{rd}}$ harmonic.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Here $L = 1$. $\\kazero = \\int_{-1}^{1} \\kf(t)\\,dt = \\int_0^1 t\\,dt = \\frac{1}{2}$. Integrating by parts, $\\kan = \\int_0^1 t \\cos(n \\pi t)\\,dt = \\frac{{(-1)}^n - 1}{\\pi^2 n^2}$ (so $-\\frac{2}{\\pi^2 n^2}$ for odd $n$ and $0$ for even $n$) and $\\kbn = \\int_0^1 t \\sin(n \\pi t)\\,dt = \\frac{{(-1)}^{n+1}}{\\pi n}$. Hence $\\kf(t) = \\frac{1}{4} + \\sum_{n=1}^\\infty \\Bigl[ \\frac{{(-1)}^n - 1}{\\pi^2 n^2} \\cos(n \\pi t) + \\frac{{(-1)}^{n+1}}{\\pi n} \\sin(n \\pi t) \\Bigr]$, where at the jumps $t = \\pm 1, \\pm 3, \\ldots$ the series gives $\\frac{1}{2}$, the average of $\\kf(1-) = 1$ and $\\kf(1+) = 0$. b) $\\frac{1}{4} - \\frac{2}{\\pi^2} \\cos(\\pi t) + \\frac{1}{\\pi} \\sin(\\pi t) - \\frac{1}{2\\pi} \\sin(2 \\pi t) - \\frac{2}{9\\pi^2} \\cos(3 \\pi t) + \\frac{1}{3\\pi} \\sin(3 \\pi t) + \\cdots$ (the $\\cos(2\\pi t)$ term is $0$)."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "4.3.4",
+   "source_number": "4.3.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-fourier-series-2l",
+   "prompt": "<p>Let</p>$$ \\kf(t) = \\begin{cases} -t & \\text{if } \\; {-1} < t \\leq 0 , \\\\ t^2 & \\text{if } \\; \\phantom{-}0 < t \\leq 1 , \\end{cases} $$<p>extended periodically.</p><ol type=\"a\"><li>Compute the Fourier series for $\\kf(t)$.</li><li>Write out the series explicitly up to the $3^{\\text{rd}}$ harmonic.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Here $L = 1$. $\\kazero = \\int_{-1}^{0} (-t)\\,dt + \\int_0^1 t^2\\,dt = \\frac{1}{2} + \\frac{1}{3} = \\frac{5}{6}$. Integrating by parts (twice for $t^2$), $\\kan = \\int_{-1}^{0} (-t) \\cos(n \\pi t)\\,dt + \\int_0^1 t^2 \\cos(n \\pi t)\\,dt = \\frac{3{(-1)}^n - 1}{\\pi^2 n^2}$ and $\\kbn = \\int_{-1}^{0} (-t) \\sin(n \\pi t)\\,dt + \\int_0^1 t^2 \\sin(n \\pi t)\\,dt = \\frac{2\\bigl({(-1)}^n - 1\\bigr)}{\\pi^3 n^3}$. Hence $\\kf(t) = \\frac{5}{12} + \\sum_{n=1}^\\infty \\Bigl[ \\frac{3{(-1)}^n - 1}{\\pi^2 n^2} \\cos(n \\pi t) + \\frac{2\\bigl({(-1)}^n - 1\\bigr)}{\\pi^3 n^3} \\sin(n \\pi t) \\Bigr]$; $\\kf(1) = 1 = \\kf(-1+)$, so the extension is continuous and the series equals $\\kf(t)$ everywhere. b) $\\frac{5}{12} - \\frac{4}{\\pi^2} \\cos(\\pi t) - \\frac{4}{\\pi^3} \\sin(\\pi t) + \\frac{1}{2\\pi^2} \\cos(2 \\pi t) - \\frac{4}{9\\pi^2} \\cos(3 \\pi t) - \\frac{4}{27\\pi^3} \\sin(3 \\pi t) + \\cdots$ (the $\\sin(2\\pi t)$ term is $0$)."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "4.3.5",
+   "source_number": "4.3.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-fourier-series-2l",
+   "prompt": "<p>Let</p>$$ \\kf(t) = \\begin{cases} \\frac{-t}{10} & \\text{if } \\; {-10} < t \\leq 0 , \\\\ \\frac{t}{10} & \\text{if } \\; \\phantom{-1}0 < t \\leq 10 , \\end{cases} $$<p>extended periodically (period is 20).</p><ol type=\"a\"><li>Compute the Fourier series for $\\kf(t)$.</li><li>Write out the series explicitly up to the $3^{\\text{rd}}$ harmonic.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Here $L = 10$ and $\\kf(t) = \\frac{\\lvert t \\rvert}{10}$, which is even, so $\\kbn = 0$. $\\kazero = \\frac{1}{10} \\int_{-10}^{10} \\frac{\\lvert t \\rvert}{10}\\,dt = 1$, and $\\kan = \\frac{1}{10} \\int_{-10}^{10} \\frac{\\lvert t \\rvert}{10} \\cos\\bigl(\\frac{n\\pi}{10} t\\bigr)\\,dt = \\frac{2\\bigl({(-1)}^n - 1\\bigr)}{\\pi^2 n^2}$, which is $\\frac{-4}{\\pi^2 n^2}$ for odd $n$ and $0$ for even $n$. So $\\kf(t) = \\frac{1}{2} + \\sum_{n \\text{ odd}} \\frac{-4}{\\pi^2 n^2} \\cos\\bigl(\\frac{n\\pi}{10} t\\bigr)$: the series of Example 4.3.1 with $t$ replaced by $\\frac{t}{10}$, as the change of units says it must be. b) $\\frac{1}{2} - \\frac{4}{\\pi^2} \\cos\\bigl(\\frac{\\pi}{10} t\\bigr) - \\frac{4}{9\\pi^2} \\cos\\bigl(\\frac{3\\pi}{10} t\\bigr) - \\cdots$"
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "4.3.6",
+   "source_number": "4.3.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "decay-rule",
+   "prompt": "<p>Let $\\kf(t) = \\sum_{n=1}^\\infty \\frac{1}{n^3} \\cos (n t)$. Is $\\kf(t)$ continuous and differentiable everywhere? Find the derivative (if it exists everywhere) or justify why $\\kf(t)$ is not differentiable everywhere.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes, it is continuous and differentiable everywhere, and $\\kfprime(t) = \\sum_{n=1}^\\infty \\frac{-1}{n^2} \\sin(n t)$. The coefficients go to zero like $\\frac{1}{n^3}$, so $\\kf$ is continuous and everywhere differentiable. Differentiating term by term, each $\\frac{1}{n^3} \\cos(nt)$ gives $\\frac{-n}{n^3} \\sin(nt) = \\frac{-1}{n^2} \\sin(nt)$; these coefficients go to zero like $\\frac{1}{n^2}$, so the differentiated series converges to a continuous function, which is $\\kfprime(t)$ for every $t$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "4.3.7",
+   "source_number": "4.3.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "decay-rule",
+   "prompt": "<p>Let $\\kf(t) = \\sum_{n=1}^\\infty \\frac{{(-1)}^n}{n} \\sin (n t)$. Is $\\kf(t)$ differentiable everywhere? Find the derivative (if it exists everywhere) or justify why $\\kf(t)$ is not differentiable everywhere.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. The coefficients go to zero only like $\\frac{1}{n}$, the rate of a function with jumps, and differentiating term by term gives $\\sum_{n=1}^\\infty {(-1)}^n \\cos(n t)$, whose terms do not go to zero, so it does not converge. In fact this is the series of $-\\frac{t}{2}$ on $-\\pi < t < \\pi$ (Exercise 4.3.105 with the sign changed), extended $2\\pi$-periodically: $\\kf$ jumps from $-\\frac{\\pi}{2}$ to $\\frac{\\pi}{2}$ at $t = \\pm\\pi, \\pm 3\\pi, \\ldots$, where the series gives $0$. There $\\kf$ is not even continuous, so it is not differentiable; between the jumps $\\kfprime(t) = -\\frac{1}{2}$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "4.3.8",
+   "source_number": "4.3.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-fourier-series-2l",
+   "prompt": "<p>Let</p>$$ \\kf(t) = \\begin{cases} 0 & \\text{if } \\; {-2} < t \\leq 0, \\\\ t & \\text{if } \\; \\phantom{-}0 < t \\leq 1, \\\\ -t+2 & \\text{if } \\; \\phantom{-}1 < t \\leq 2, \\end{cases} $$<p>extended periodically.</p><ol type=\"a\"><li>Compute the Fourier series for $\\kf(t)$.</li><li>Write out the series explicitly up to the $3^{\\text{rd}}$ harmonic.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Here $L = 2$. $\\kazero = \\frac{1}{2}\\Bigl( \\int_0^1 t\\,dt + \\int_1^2 (2 - t)\\,dt \\Bigr) = \\frac{1}{2}$. Integrating by parts on each piece, $\\kan = \\frac{1}{2} \\Bigl( \\int_0^1 t \\cos\\bigl(\\frac{n\\pi}{2} t\\bigr)\\,dt + \\int_1^2 (2-t) \\cos\\bigl(\\frac{n\\pi}{2} t\\bigr)\\,dt \\Bigr) = \\frac{2\\bigl({(-1)}^{n+1} + 2\\cos\\frac{n\\pi}{2} - 1\\bigr)}{\\pi^2 n^2}$ and $\\kbn = \\frac{4 \\sin \\frac{n\\pi}{2}}{\\pi^2 n^2}$. So $\\kf(t) = \\frac{1}{4} + \\sum_{n=1}^\\infty \\Bigl[ \\kan \\cos\\bigl(\\frac{n\\pi}{2} t\\bigr) + \\kbn \\sin\\bigl(\\frac{n\\pi}{2} t\\bigr) \\Bigr]$ with these coefficients ($a_1 = 0$, $a_2 = -\\frac{2}{\\pi^2}$, $a_3 = 0$, $b_1 = \\frac{4}{\\pi^2}$, $b_2 = 0$, $b_3 = -\\frac{4}{9\\pi^2}$). The extension is continuous, so the series equals $\\kf(t)$ everywhere. b) $\\frac{1}{4} + \\frac{4}{\\pi^2} \\sin\\bigl(\\frac{\\pi}{2} t\\bigr) - \\frac{2}{\\pi^2} \\cos(\\pi t) - \\frac{4}{9\\pi^2} \\sin\\bigl(\\frac{3\\pi}{2} t\\bigr) + \\cdots$"
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "4.3.9",
+   "source_number": "4.3.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-3-1",
+   "prompt": "<p>Let</p>$$ \\kf(t) = e^t \\qquad \\text{for } \\; {-1} < t \\leq 1 $$<p>extended periodically.</p><ol type=\"a\"><li>Compute the Fourier series for $\\kf(t)$.</li><li>Write out the series explicitly up to the $3^{\\text{rd}}$ harmonic.</li><li>What does the series converge to at $t=1$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Here $L = 1$. $\\kazero = \\int_{-1}^1 e^t\\,dt = e - e^{-1} = 2\\sinh 1$. Integrating by parts twice, $\\kan = \\int_{-1}^1 e^t \\cos(n\\pi t)\\,dt = \\frac{2{(-1)}^n \\sinh 1}{1 + n^2 \\pi^2}$ and $\\kbn = \\int_{-1}^1 e^t \\sin(n\\pi t)\\,dt = \\frac{2{(-1)}^{n+1} n \\pi \\sinh 1}{1 + n^2 \\pi^2}$. So $\\kf(t) = \\sinh 1 + \\sum_{n=1}^\\infty \\frac{2{(-1)}^n \\sinh 1}{1 + n^2\\pi^2} \\bigl( \\cos(n \\pi t) - n\\pi \\sin(n\\pi t) \\bigr)$ wherever $\\kf$ is continuous. b) $\\sinh 1 - \\frac{2\\sinh 1}{1 + \\pi^2} \\cos(\\pi t) + \\frac{2\\pi \\sinh 1}{1 + \\pi^2} \\sin(\\pi t) + \\frac{2\\sinh 1}{1 + 4\\pi^2} \\cos(2\\pi t) - \\frac{4\\pi \\sinh 1}{1 + 4\\pi^2} \\sin(2\\pi t) - \\frac{2\\sinh 1}{1 + 9\\pi^2} \\cos(3\\pi t) + \\frac{6\\pi \\sinh 1}{1 + 9\\pi^2} \\sin(3\\pi t) + \\cdots$ c) At $t = 1$ the extension jumps: $\\kf(1-) = e$ and $\\kf(1+) = \\kf(-1+) = e^{-1}$. By Theorem 4.3.1 the series converges to the average $\\frac{e + e^{-1}}{2} = \\cosh 1 \\approx 1.543$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "4.3.10",
+   "source_number": "4.3.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-3-1",
+   "prompt": "<p>Let</p>$$ \\kf(t) = t^2 \\qquad \\text{for } \\; {-1} < t \\leq 1 $$<p>extended periodically.</p><ol type=\"a\"><li>Compute the Fourier series for $\\kf(t)$.</li><li>By plugging in $t=0$, evaluate $\\displaystyle \\sum_{n=1}^\\infty \\frac{{(-1)}^n}{n^2} = -1 + \\frac{1}{4} - \\frac{1}{9} + \\cdots$.</li><li>Now evaluate $\\displaystyle \\sum_{n=1}^\\infty \\frac{1}{n^2} = 1 + \\frac{1}{4} + \\frac{1}{9} + \\cdots$.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "b)",
+      "value": -0.822467,
+      "tol": 0.001
+     },
+     {
+      "part": "c)",
+      "value": 1.644934,
+      "tol": 0.001
+     }
+    ],
+    "solution": "a) Here $L = 1$ and $t^2$ is even, so $\\kbn = 0$. $\\kazero = \\int_{-1}^1 t^2\\,dt = \\frac{2}{3}$ and, integrating by parts twice, $\\kan = \\int_{-1}^1 t^2 \\cos(n\\pi t)\\,dt = \\frac{4{(-1)}^n}{\\pi^2 n^2}$. So $\\kf(t) = \\frac{1}{3} + \\sum_{n=1}^\\infty \\frac{4{(-1)}^n}{\\pi^2 n^2} \\cos(n\\pi t)$; $\\kf(1) = 1 = \\kf(-1+)$, so the extension is continuous and the series equals $\\kf(t)$ everywhere. b) At $t = 0$: $0 = \\frac{1}{3} + \\frac{4}{\\pi^2} \\sum_{n=1}^\\infty \\frac{{(-1)}^n}{n^2}$, so $\\sum_{n=1}^\\infty \\frac{{(-1)}^n}{n^2} = -\\frac{\\pi^2}{12} \\approx -0.8225$. c) At $t = 1$, $\\cos(n\\pi) = {(-1)}^n$, so $1 = \\frac{1}{3} + \\frac{4}{\\pi^2} \\sum_{n=1}^\\infty \\frac{1}{n^2}$, and $\\sum_{n=1}^\\infty \\frac{1}{n^2} = \\frac{\\pi^2}{6} \\approx 1.6449$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "4.3.11",
+   "source_number": "4.3.11",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-3-1",
+   "prompt": "<p>Let</p>$$ \\kf(t) = \\begin{cases} 0 & \\text{if } \\; {-3} < t \\leq 0, \\\\ t & \\text{if } \\; \\phantom{-}0 < t \\leq 3, \\end{cases} $$<p>extended periodically. Suppose $F(t)$ is the function given by the Fourier series of $\\kf$. Without computing the Fourier series evaluate</p><ol type=\"a\"><li>$F(2)$</li><li>$F(-2)$</li><li>$F(4)$</li><li>$F(-4)$</li><li>$F(3)$</li><li>$F(-9)$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "a) F(2)",
+      "value": 2
+     },
+     {
+      "part": "b) F(−2)",
+      "value": 0
+     },
+     {
+      "part": "c) F(4)",
+      "value": 0
+     },
+     {
+      "part": "d) F(−4)",
+      "value": 2
+     },
+     {
+      "part": "e) F(3)",
+      "value": 1.5
+     },
+     {
+      "part": "f) F(−9)",
+      "value": 1.5
+     }
+    ],
+    "solution": "The extension has period 6 and is piecewise smooth, so by Theorem 4.3.1 the series equals $\\kf(t)$ where $\\kf$ is continuous and the average of the one-sided limits where it jumps; the only jumps are at $t = \\pm 3, \\pm 9, \\ldots$, where $\\kf(3-) = 3$ and $\\kf(3+) = \\kf(-3+) = 0$. a) $F(2) = \\kf(2) = 2$. b) $F(-2) = \\kf(-2) = 0$. c) $F(4) = F(4 - 6) = F(-2) = 0$. d) $F(-4) = F(-4 + 6) = F(2) = 2$. e) $F(3) = \\frac{3 + 0}{2} = \\frac{3}{2}$. f) $F(-9) = F(-9 + 12) = F(3) = \\frac{3}{2}$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "4.3.101",
+   "source_number": "4.3.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-fourier-series-2l",
+   "prompt": "<p>Let</p>$$ \\kf(t) = t^2 \\qquad \\text{for } \\; {-2} < t \\leq 2 $$<p>extended periodically.</p><ol type=\"a\"><li>Compute the Fourier series for $\\kf(t)$.</li><li>Write out the series explicitly up to the $3^{\\text{rd}}$ harmonic.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\frac{8}{6} + \\sum\\limits_{n=1}^\\infty \\frac{16{(-1)}^n}{\\pi^2 n^2} \\cos\\bigl(\\frac{n\\pi}{2} t\\bigr)$ b) $\\frac{8}{6} - \\frac{16}{\\pi^2 } \\cos\\bigl(\\frac{\\pi}{2} t\\bigr) + \\frac{4}{\\pi^2} \\cos\\bigl(\\pi t\\bigr) - \\frac{16}{9\\pi^2} \\cos\\bigl(\\frac{3\\pi}{2} t\\bigr) + \\cdots$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "4.3.102",
+   "source_number": "4.3.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-fourier-series-2l",
+   "prompt": "<p>Let</p>$$ \\kf(t) = t \\qquad \\text{for } \\; {-\\lambda} < t \\leq \\lambda \\; \\text{ (for some } \\lambda > 0 \\text{)} $$<p>extended periodically.</p><ol type=\"a\"><li>Compute the Fourier series for $\\kf(t)$.</li><li>Write out the series explicitly up to the $3^{\\text{rd}}$ harmonic.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\sum\\limits_{n=1}^\\infty \\frac{{(-1)}^{n+1}2\\lambda}{n \\pi} \\sin\\bigl(\\frac{n\\pi}{\\lambda} t\\bigr)$ b) $\\frac{2\\lambda}{\\pi} \\sin\\bigl(\\frac{\\pi}{\\lambda} t\\bigr) - \\frac{\\lambda}{\\pi} \\sin\\bigl(\\frac{2\\pi}{\\lambda} t\\bigr) + \\frac{2\\lambda}{3\\pi} \\sin\\bigl(\\frac{3\\pi}{\\lambda} t\\bigr) - \\cdots$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "4.3.103",
+   "source_number": "4.3.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-3-2",
+   "prompt": "<p>Let</p>$$ \\kf(t) = \\frac{1}{2} + \\sum_{n=1}^\\infty \\frac{1}{n(n^2+1)} \\sin(n\\pi t) . $$<p>Compute $\\kfprime(t)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kfprime(t) = \\sum\\limits_{n=1}^\\infty \\frac{\\pi}{n^2+1} \\cos(n\\pi t)$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "4.3.104",
+   "source_number": "4.3.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-3-3",
+   "prompt": "<p>Let</p>$$ \\kf(t) = \\frac{1}{2} + \\sum_{n=1}^\\infty \\frac{1}{n^3} \\cos(n t) . $$<ol type=\"a\"><li>Find the antiderivative.</li><li>Is the antiderivative periodic?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\kF(t) = \\frac{t}{2} + C + \\sum\\limits_{n=1}^\\infty \\frac{1}{n^4} \\sin(nt)$ b) no"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "4.3.105",
+   "source_number": "4.3.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-3-1",
+   "prompt": "<p>Let</p>$$ \\kf(t) = {t}/{2} \\qquad \\text{for } \\; {-\\pi} < t < \\pi $$<p>extended periodically.</p><ol type=\"a\"><li>Compute the Fourier series for $\\kf(t)$.</li><li>Plug in $t={\\pi}/{2}$ to find a series representation for ${\\pi}/{4}$.</li><li>Using the first 4 terms of the result from part b) approximate ${\\pi}/{4}$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\sum\\limits_{n=1}^\\infty \\frac{{(-1)}^{n+1}}{n} \\sin(nt)$ b) $\\kf$ is continuous at $t={\\pi}/{2}$ so the Fourier series converges to $\\kf({\\pi}/{2}) = {\\pi}/{4}$. Obtain ${\\pi}/{4} = \\sum\\limits_{n=1}^\\infty \\frac{{(-1)}^{n+1}}{2n-1} = 1 - {1}/{3} + {1}/{5}- {1}/{7} + \\cdots$. c) Using the first 4 terms get ${76}/{105}\\approx 0.72$ (quite a bad approximation, you would have to take about 50 terms to start to get to within $0.01$ of ${\\pi}/{4}$)."
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "4.3.106",
+   "source_number": "4.3.106",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-3-1",
+   "prompt": "<p>Let</p>$$ \\kf(t) = \\begin{cases} 0 & \\text{if } \\; {-2} < t \\leq 0, \\\\ 2 & \\text{if } \\; \\phantom{-}0 < t \\leq 2, \\end{cases} $$<p>extended periodically. Suppose $F(t)$ is the function given by the Fourier series of $\\kf$. Without computing the Fourier series evaluate</p><ol type=\"a\"><li>$F(0)$</li><li>$F(-1)$</li><li>$F(1)$</li><li>$F(-2)$</li><li>$F(4)$</li><li>$F(-9)$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a) F(0)",
+      "value": 1
+     },
+     {
+      "part": "b) F(−1)",
+      "value": 0
+     },
+     {
+      "part": "c) F(1)",
+      "value": 2
+     },
+     {
+      "part": "d) F(−2)",
+      "value": 1
+     },
+     {
+      "part": "e) F(4)",
+      "value": 1
+     },
+     {
+      "part": "f) F(−9)",
+      "value": 0
+     }
+    ],
+    "solution": "a) $F(0) = 1$, b) $F(-1) = 0$, c) $F(1) = 2$, d) $F(-2) = 1$, e) $F(4) = 1$, f) $F(-9) = 0$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e1",
+   "concept": "piecewise-smooth-function"
+  },
+  {
+   "exercise": "e2",
+   "concept": "term-by-term-differentiation"
+  },
+  {
+   "exercise": "e2",
+   "concept": "decay-of-fourier-coefficients"
+  },
+  {
+   "exercise": "e2",
+   "concept": "fourier-convergence-theorem"
+  },
+  {
+   "exercise": "e3",
+   "concept": "fourier-series-with-half-period-l"
+  },
+  {
+   "exercise": "e3",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e4",
+   "concept": "fourier-series-with-half-period-l"
+  },
+  {
+   "exercise": "e4",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e5",
+   "concept": "fourier-series-with-half-period-l"
+  },
+  {
+   "exercise": "e5",
+   "concept": "half-period"
+  },
+  {
+   "exercise": "e6",
+   "concept": "decay-of-fourier-coefficients"
+  },
+  {
+   "exercise": "e6",
+   "concept": "term-by-term-differentiation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "decay-of-fourier-coefficients"
+  },
+  {
+   "exercise": "e7",
+   "concept": "term-by-term-differentiation"
+  },
+  {
+   "exercise": "e8",
+   "concept": "fourier-series-with-half-period-l"
+  },
+  {
+   "exercise": "e8",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e9",
+   "concept": "fourier-series-with-half-period-l"
+  },
+  {
+   "exercise": "e9",
+   "concept": "fourier-convergence-theorem"
+  },
+  {
+   "exercise": "e10",
+   "concept": "fourier-series-with-half-period-l"
+  },
+  {
+   "exercise": "e10",
+   "concept": "fourier-convergence-theorem"
+  },
+  {
+   "exercise": "e11",
+   "concept": "fourier-convergence-theorem"
+  },
+  {
+   "exercise": "e11",
+   "concept": "one-sided-limit"
+  },
+  {
+   "exercise": "e101",
+   "concept": "fourier-series-with-half-period-l"
+  },
+  {
+   "exercise": "e101",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e102",
+   "concept": "fourier-series-with-half-period-l"
+  },
+  {
+   "exercise": "e102",
+   "concept": "half-period"
+  },
+  {
+   "exercise": "e103",
+   "concept": "term-by-term-differentiation"
+  },
+  {
+   "exercise": "e104",
+   "concept": "term-by-term-integration"
+  },
+  {
+   "exercise": "e105",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e105",
+   "concept": "fourier-convergence-theorem"
+  },
+  {
+   "exercise": "e106",
+   "concept": "fourier-convergence-theorem"
+  },
+  {
+   "exercise": "e106",
+   "concept": "one-sided-limit"
+  }
+ ],
+ "footnotes": []
+}

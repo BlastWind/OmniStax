@@ -226,7 +226,7 @@ a) $0.05 I'' + 0.1 I' + ({1}/{5}) I = 0$ b) $I = C e^{-t} \cos(\sqrt{3} \, t - \
 
 :::exercise {exercise-2-4-103} number=2.4.103 answered=yes src=ch-higher-order-ode.tex:2029
 PROBLEM:
-[2] A 5000 kg railcar hits a bumper (a spring) at 1 m/s, and the spring compresses by 0.1 m. Assume no damping.
+A 5000 kg railcar hits a bumper (a spring) at 1 m/s, and the spring compresses by 0.1 m. Assume no damping.
 
 a) Find $k$.
 b) How far does the spring compress when a 10000 kg railcar hits the spring at the same speed?

@@ -217,7 +217,7 @@ d) $(x+y)\cos(x)+\sin(x) + \sin(x)y' = 0$
 
 :::exercise {exercise-1-8-003} number=1.8.3 answered=no src=ch-first-order-ode.tex:3606
 PROBLEM:
-[2] Find the integrating factors for the following equations making them into exact equations:
+Find the integrating factors for the following equations making them into exact equations:
 
 a) $e^{xy} \, dx + \frac{y}{x} e^{xy} \, dy = 0$
 b) $\frac{e^x+y^3}{y^2} \, dx + 3x \, dy = 0$
@@ -228,7 +228,7 @@ d) $2\sin(y) \, dx + x\cos(y)\, dy = 0$
 
 :::exercise {exercise-1-8-004} number=1.8.4 answered=no src=ch-first-order-ode.tex:3622
 PROBLEM:
-[2] Suppose you have an equation of the form: $f(x) + g(y) \frac{dy}{dx} = 0$.
+Suppose you have an equation of the form: $f(x) + g(y) \frac{dy}{dx} = 0$.
 
 a) Show it is exact.
 b) Find the form of the potential function in terms of $f$ and $g$.

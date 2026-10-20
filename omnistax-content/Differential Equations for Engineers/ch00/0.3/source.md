@@ -51,8 +51,6 @@ where $a_0, a_1, \ldots, a_n$ are all constants, but $b$ may depend on the indep
 Finally, an equation (or system) is called *{index:autonomous}* if the equation does not depend on the independent variable. For autonomous ordinary differential equations, the independent variable is then thought of as time. An autonomous equation means an equation that does not change with time. For example, Newton’s law of cooling is autonomous, so are the equations [(4)](ref:classification-eqnonlinode) and [(5)](ref:classification-pendulum). On the other hand, mechanical vibrations (as long as $f(t)$ is nonconstant) or [(3)](ref:classification-eqlinex) are not autonomous. A general first-order autonomous ODE would have the form
 $$ \frac{dx}{dt} = f(x) . $$
 
-[3]
-
 ## Exercises
 
 :::exercise {exercise-0-3-001} number=0.3.1 answered=no src=ch-intro.tex:1117

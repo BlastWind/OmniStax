@@ -1,0 +1,892 @@
+{
+  "types": [],
+  "symbols": [
+    {
+      "sym": "inner",
+      "latex": "\\langle f, g \\rangle",
+      "macro": "\\kinner"
+    },
+    {
+      "sym": "X_4prime",
+      "latex": "X^{(4)}",
+      "macro": "\\kXfour"
+    },
+    {
+      "sym": "y_xxxx",
+      "latex": "y_{xxxx}",
+      "macro": "\\kyxxxx"
+    },
+    {
+      "sym": "y_xxx",
+      "latex": "y_{xxx}",
+      "macro": "\\kyxxx"
+    },
+    {
+      "sym": "y_x",
+      "latex": "y_x",
+      "macro": "\\kyx"
+    },
+    {
+      "sym": "A_n",
+      "latex": "A_n",
+      "macro": "\\kAn"
+    },
+    {
+      "sym": "B_n",
+      "latex": "B_n",
+      "macro": "\\kBn"
+    },
+    {
+      "sym": "h",
+      "latex": "h",
+      "macro": "\\kh"
+    },
+    {
+      "sym": "h_t",
+      "latex": "h_t",
+      "macro": "\\kht"
+    },
+    {
+      "sym": "h_xx",
+      "latex": "h_{xx}",
+      "macro": "\\khxx"
+    },
+    {
+      "sym": "V",
+      "latex": "V",
+      "macro": "\\kV"
+    },
+    {
+      "sym": "W",
+      "latex": "W",
+      "macro": "\\kW"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "robin-boundary-conditions",
+      "kind": "definition",
+      "section": "5.1",
+      "name": "Robin boundary conditions",
+      "terms": [
+        "Robin boundary conditions"
+      ],
+      "statement": "Robin boundary conditions are the endpoint conditions hX(0) − X′(0) = 0 and hX(L) + X′(L) = 0 for some constant h; they come up when the ends of the wire are immersed in some medium.",
+      "forms": [
+        {
+          "id": "eq-robin-conditions",
+          "latex": "hX(0) - X'(0) = 0, \\qquad hX(L) + X'(L) = 0",
+          "ktex": "h\\kX(0) - \\kXprime(0) = 0, \\qquad h\\kX(L) + \\kXprime(L) = 0",
+          "anchor": "5.1-eq-robin-conditions"
+        }
+      ]
+    },
+    {
+      "id": "mixed-boundary-conditions",
+      "kind": "definition",
+      "section": "5.1",
+      "name": "Mixed boundary conditions",
+      "terms": [
+        "Mixed boundary conditions"
+      ],
+      "statement": "Mixed boundary conditions set the value of X at one end and of its derivative at the other, X′(0) = 0 and X(L) = 0, or X(0) = 0 and X′(L) = 0."
+    },
+    {
+      "id": "sturm-liouville-equation",
+      "kind": "definition",
+      "section": "5.1",
+      "name": "Sturm–Liouville equation",
+      "statement": "The second-order linear equation (p(x)y′)′ − q(x)y + λr(x)y = 0, equation (5.1); essentially any equation a(x)y″ + b(x)y′ + c(x)y + λd(x)y = 0 can be written in this form after multiplying by a proper factor.",
+      "forms": [
+        {
+          "id": "eq-sturm-liouville",
+          "latex": "\\frac{d}{dx} \\left( p(x) \\frac{dy}{dx} \\right) - q(x) y + \\lambda r(x) y = 0",
+          "ktex": "\\frac{d}{dx} \\left( \\kp(x) \\kdydx \\right) - \\kq(x) \\ky + \\klambda \\kr(x) \\ky = 0",
+          "anchor": "5.1-eq-5-1"
+        }
+      ]
+    },
+    {
+      "id": "putting-an-equation-in-sturm-liouville-form",
+      "kind": "skill",
+      "section": "5.1",
+      "name": "Putting an equation into Sturm–Liouville form",
+      "statement": "To write a(x)y″ + b(x)y′ + c(x)y + λd(x)y = 0 as (5.1), multiply by the factor that makes the first two terms a derivative of a product: Bessel's equation x²y″ + xy′ + (λx² − n²)y = 0 multiplied by 1/x becomes (xy′)′ − (n²/x)y + λxy = 0.",
+      "forms": [
+        {
+          "id": "eq-bessel-sl-form",
+          "latex": "\\frac{d}{dx} \\left( x \\frac{dy}{dx} \\right) - \\frac{n^2}{x} y + \\lambda x y = 0",
+          "ktex": "\\frac{d}{dx} \\left( x \\kdydx \\right) - \\frac{n^2}{x} \\ky + \\klambda x \\ky = 0",
+          "anchor": "5.1-ex-5-1-1"
+        }
+      ]
+    },
+    {
+      "id": "sturm-liouville-problem",
+      "kind": "definition",
+      "section": "5.1",
+      "name": "Sturm–Liouville problem",
+      "terms": [
+        "Sturm–Liouville problem"
+      ],
+      "statement": "The Sturm–Liouville problem is to seek nontrivial solutions y of (p(x)y′)′ − q(x)y + λr(x)y = 0 on a < x < b with α₁y(a) − α₂y′(a) = 0 and β₁y(b) + β₂y′(b) = 0, where α₁, α₂ are not both zero and neither are β₁, β₂; the λs that admit a nontrivial solution are the eigenvalues and the solutions are the eigenfunctions.",
+      "forms": [
+        {
+          "id": "eq-sturm-liouville-problem",
+          "latex": "\\begin{aligned} &\\frac{d}{dx} \\left( p(x) \\frac{dy}{dx} \\right) - q(x) y + \\lambda r(x) y = 0, \\qquad a < x < b, \\\\ &\\alpha_1 y(a) - \\alpha_2 y'(a) = 0, \\\\ &\\beta_1 y(b) + \\beta_2 y'(b) = 0. \\end{aligned}",
+          "ktex": "\\begin{aligned} &\\frac{d}{dx} \\left( \\kp(x) \\kdydx \\right) - \\kq(x) \\ky + \\klambda \\kr(x) \\ky = 0, \\qquad a < x < b, \\\\ &\\alpha_1 \\ky(a) - \\alpha_2 \\kyprime(a) = 0, \\\\ &\\beta_1 \\ky(b) + \\beta_2 \\kyprime(b) = 0. \\end{aligned}",
+          "anchor": "5.1-eq-5-2"
+        }
+      ]
+    },
+    {
+      "id": "regular-sturm-liouville-problem",
+      "kind": "definition",
+      "section": "5.1",
+      "name": "Regular Sturm–Liouville problem",
+      "terms": [
+        "regular Sturm–Liouville problems"
+      ],
+      "statement": "A regular Sturm–Liouville problem is one where p(x), p′(x), q(x) and r(x) are continuous on [a, b], p(x) > 0 and r(x) > 0 for all x in [a, b] including the endpoints, q(x) ≥ 0, and α₁, α₂, β₁, β₂ ≥ 0 with neither α₁ = α₂ = 0 nor β₁ = β₂ = 0."
+    },
+    {
+      "id": "sturm-liouville-eigenvalues",
+      "kind": "result",
+      "section": "5.1",
+      "name": "Eigenvalues of a regular Sturm–Liouville problem",
+      "type": "eigenvalue",
+      "statement": "If p, p′, q and r are continuous on [a, b] with p > 0 and r > 0 there, the Sturm–Liouville problem has an increasing sequence of eigenvalues λ₁ < λ₂ < λ₃ < ⋯ with λₙ → ∞, and to each λₙ there is, up to a constant multiple, a single eigenfunction yₙ(x). Moreover, if q ≥ 0 and α₁, α₂, β₁, β₂ ≥ 0, then λₙ ≥ 0 for all n (Theorem 5.1.1).",
+      "forms": [
+        {
+          "id": "eq-sl-eigenvalue-sequence",
+          "latex": "\\lambda_1 < \\lambda_2 < \\lambda_3 < \\cdots, \\qquad \\lim_{n \\to \\infty} \\lambda_n = +\\infty",
+          "ktex": "\\klambda_1 < \\klambda_2 < \\klambda_3 < \\cdots, \\qquad \\lim_{n \\to \\infty} \\klambdan = +\\infty",
+          "anchor": "5.1-thm-5-1-1"
+        }
+      ]
+    },
+    {
+      "id": "finding-eigenvalues-graphically",
+      "kind": "skill",
+      "section": "5.1",
+      "name": "Finding eigenvalues from a transcendental equation",
+      "statement": "When the boundary conditions lead to an equation such as h/√λ = tan √λ, the eigenvalues are found with a computer by plotting both sides, here h/x and tan x, and reading off the intersections √λ₁, √λ₂, …; for h = 1 the first two are 0.86 and 3.43, so λ₁ ≈ 0.74 and λ₂ ≈ 11.73, with eigenfunctions yₙ(x) = cos(√λₙ x) + (h/√λₙ) sin(√λₙ x) (Example 5.1.3).",
+      "forms": [
+        {
+          "id": "eq-robin-eigenvalue-equation",
+          "latex": "\\frac{h}{\\sqrt{\\lambda}} = \\tan \\sqrt{\\lambda}",
+          "ktex": "\\frac{h}{\\sqrt{\\klambda}} = \\tan \\sqrt{\\klambda}",
+          "anchor": "5.1-drv-robin-eigenvalues"
+        },
+        {
+          "id": "eq-robin-eigenfunctions",
+          "latex": "y_n(x) = \\cos \\bigl( \\sqrt{\\lambda_n}\\, x \\bigr) + \\frac{h}{\\sqrt{\\lambda_n}} \\sin \\bigl(\\sqrt{\\lambda_n} \\, x \\bigr)",
+          "ktex": "\\kyn(x) = \\cos \\bigl( \\sqrt{\\klambdan}\\, x \\bigr) + \\frac{h}{\\sqrt{\\klambdan}} \\sin \\bigl(\\sqrt{\\klambdan} \\, x \\bigr)",
+          "anchor": "5.1-eq-robin-eigenfunctions"
+        }
+      ]
+    },
+    {
+      "id": "weight-function",
+      "kind": "definition",
+      "section": "5.1",
+      "name": "Weight function",
+      "terms": [
+        "weight function"
+      ],
+      "symbol": "r",
+      "type": "function",
+      "statement": "A weight function r(x) on [a, b] is any function, generally assumed positive, that weights the integral of a product of two functions: those x where r(x) is greater have more weight. Nonconstant weights arise naturally from a change of variables, as if dξ = r(x) dx."
+    },
+    {
+      "id": "orthogonality-with-respect-to-a-weight",
+      "kind": "definition",
+      "section": "5.1",
+      "name": "Orthogonality with respect to a weight",
+      "terms": [
+        "orthogonal"
+      ],
+      "statement": "Two functions f(x) and g(x) are orthogonal with respect to the weight function r(x) on [a, b] when ∫ₐᵇ f(x)g(x)r(x) dx = 0.",
+      "forms": [
+        {
+          "id": "eq-weighted-orthogonality",
+          "latex": "\\int_a^b f(x) \\, g(x) \\, r(x) \\,dx = 0",
+          "ktex": "\\int_a^b \\kf(x) \\, \\kg(x) \\, \\kr(x) \\,dx = 0",
+          "anchor": "5.1-eq-weighted-orthogonality"
+        }
+      ]
+    },
+    {
+      "id": "weighted-inner-product",
+      "kind": "definition",
+      "section": "5.1",
+      "name": "Inner product with respect to a weight",
+      "terms": [
+        "inner product"
+      ],
+      "symbol": "inner",
+      "type": "integral",
+      "statement": "The inner product of f and g with respect to the weight r is ⟨f, g⟩ = ∫ₐᵇ f(x)g(x)r(x) dx, and f and g are orthogonal whenever ⟨f, g⟩ = 0; the results and concepts are analogous to finite-dimensional linear algebra.",
+      "forms": [
+        {
+          "id": "eq-weighted-inner-product",
+          "latex": "\\langle f , g \\rangle \\overset{\\text{def}}{=} \\int_a^b f(x) \\, g(x) \\, r(x) \\,dx",
+          "ktex": "\\kinner \\overset{\\text{def}}{=} \\int_a^b \\kf(x) \\, \\kg(x) \\, \\kr(x) \\,dx",
+          "anchor": "5.1-eq-weighted-inner-product"
+        }
+      ]
+    },
+    {
+      "id": "sturm-liouville-orthogonality",
+      "kind": "result",
+      "section": "5.1",
+      "name": "Orthogonality of Sturm–Liouville eigenfunctions",
+      "statement": "For a regular Sturm–Liouville problem, two eigenfunctions y_j and y_k for two distinct eigenvalues λ_j and λ_k satisfy ∫ₐᵇ y_j(x)y_k(x)r(x) dx = 0: they are orthogonal with respect to the weight function r (Theorem 5.1.2).",
+      "forms": [
+        {
+          "id": "eq-sl-orthogonality",
+          "latex": "\\int_a^b y_j(x) \\, y_k(x) \\, r(x) \\,dx = 0",
+          "ktex": "\\int_a^b \\ky_j(x) \\, \\ky_k(x) \\, \\kr(x) \\,dx = 0",
+          "anchor": "5.1-thm-5-1-2"
+        }
+      ]
+    },
+    {
+      "id": "fredholm-alternative-for-sturm-liouville",
+      "kind": "result",
+      "section": "5.1",
+      "name": "Fredholm alternative for Sturm–Liouville problems",
+      "terms": [
+        "Fredholm alternative"
+      ],
+      "statement": "For a regular Sturm–Liouville problem, either the homogeneous problem (p y′)′ − q y + λ r y = 0 with its endpoint conditions has a nonzero solution (λ is an eigenvalue), or the nonhomogeneous problem (p y′)′ − q y + λ r y = f(x) with the same conditions has a unique solution for any f continuous on [a, b] (Theorem 5.1.3). It says when a unique solution exists; to find it, f and y are decomposed in eigenfunctions of the homogeneous problem.",
+      "forms": [
+        {
+          "id": "eq-sl-fredholm-homogeneous",
+          "latex": "\\frac{d}{dx} \\left( p(x) \\frac{dy}{dx} \\right) - q(x) y + \\lambda r(x) y = 0, \\quad \\alpha_1 y(a) - \\alpha_2 y'(a) = 0, \\quad \\beta_1 y(b) + \\beta_2 y'(b) = 0",
+          "ktex": "\\frac{d}{dx} \\left( \\kp(x) \\kdydx \\right) - \\kq(x) \\ky + \\klambda \\kr(x) \\ky = 0, \\quad \\alpha_1 \\ky(a) - \\alpha_2 \\kyprime(a) = 0, \\quad \\beta_1 \\ky(b) + \\beta_2 \\kyprime(b) = 0",
+          "anchor": "5.1-thm-5-1-3"
+        },
+        {
+          "id": "eq-sl-fredholm-nonhomogeneous",
+          "latex": "\\frac{d}{dx} \\left( p(x) \\frac{dy}{dx} \\right) - q(x) y + \\lambda r(x) y = f(x), \\quad \\alpha_1 y(a) - \\alpha_2 y'(a) = 0, \\quad \\beta_1 y(b) + \\beta_2 y'(b) = 0",
+          "ktex": "\\frac{d}{dx} \\left( \\kp(x) \\kdydx \\right) - \\kq(x) \\ky + \\klambda \\kr(x) \\ky = \\kf(x), \\quad \\alpha_1 \\ky(a) - \\alpha_2 \\kyprime(a) = 0, \\quad \\beta_1 \\ky(b) + \\beta_2 \\kyprime(b) = 0",
+          "anchor": "5.1-thm-5-1-3"
+        }
+      ]
+    },
+    {
+      "id": "eigenfunction-decomposition",
+      "kind": "definition",
+      "section": "5.1",
+      "name": "Eigenfunction decomposition",
+      "terms": [
+        "eigenfunction decomposition"
+      ],
+      "type": "series",
+      "statement": "The eigenfunction decomposition of a function f(x) writes it as f(x) = Σ cₙyₙ(x), equation (5.3), where yₙ are the eigenfunctions of a Sturm–Liouville problem; the sine series is the case of y″ + λy = 0 with y(0) = y(L) = 0.",
+      "forms": [
+        {
+          "id": "eq-eigenfunction-decomposition",
+          "latex": "f(x) = \\sum_{n=1}^\\infty c_n y_n(x)",
+          "ktex": "\\kf(x) = \\sum_{n=1}^\\infty \\kcn \\kyn(x)",
+          "anchor": "5.1-eq-5-3"
+        }
+      ]
+    },
+    {
+      "id": "eigenfunction-coefficients",
+      "kind": "result",
+      "section": "5.1",
+      "name": "Coefficients of an eigenfunction series",
+      "statement": "Assuming convergence and term-by-term integration, orthogonality gives ⟨f, yₘ⟩ = cₘ⟨yₘ, yₘ⟩, so the coefficients of (5.3) are cₘ = ⟨f, yₘ⟩/⟨yₘ, yₘ⟩ = ∫ₐᵇ f yₘ r dx / ∫ₐᵇ yₘ² r dx, equation (5.4); if each eigenfunction is scaled so that ⟨yₘ, yₘ⟩ = 1, simply cₘ = ⟨f, yₘ⟩.",
+      "forms": [
+        {
+          "id": "eq-eigenfunction-coefficients",
+          "latex": "c_m = \\frac{\\langle f , y_m \\rangle}{\\langle y_m , y_m \\rangle} = \\frac{\\int_a^b f(x) \\, y_m (x)\\, r(x) \\, dx} {\\int_a^b {\\bigl(y_m(x)\\bigr)}^2 \\, r(x) \\,dx}",
+          "ktex": "\\kc_m = \\frac{\\langle \\kf , \\ky_m \\rangle}{\\langle \\ky_m , \\ky_m \\rangle} = \\frac{\\int_a^b \\kf(x) \\, \\ky_m (x)\\, \\kr(x) \\, dx} {\\int_a^b {\\bigl(\\ky_m(x)\\bigr)}^2 \\, \\kr(x) \\,dx}",
+          "anchor": "5.1-eq-5-4"
+        },
+        {
+          "id": "eq-normalized-coefficient",
+          "latex": "c_m = \\langle f, y_m \\rangle",
+          "ktex": "\\kc_m = \\langle \\kf, \\ky_m \\rangle",
+          "condition": "⟨yₘ, yₘ⟩ = 1",
+          "anchor": "5.1-normalized"
+        }
+      ]
+    },
+    {
+      "id": "convergence-of-eigenfunction-series",
+      "kind": "result",
+      "section": "5.1",
+      "name": "Convergence of an eigenfunction series",
+      "statement": "If f is piecewise smooth and continuous on [a, b] and y₁, y₂, … are eigenfunctions of a regular Sturm–Liouville problem, one for each eigenvalue, then the constants c₁, c₂, … given by (5.4) make the series (5.3) converge and equal f(x) for a < x < b (Theorem 5.1.4)."
+    },
+    {
+      "id": "transversal-vibrations",
+      "kind": "definition",
+      "section": "5.2",
+      "name": "Transversal vibrations",
+      "terms": [
+        "transversal vibrations"
+      ],
+      "statement": "Transversal vibrations of an elastic beam are the vibrations where the beam bends: with the beam along the x-axis, y(x, t) measures the displacement of the point x at time t."
+    },
+    {
+      "id": "beam-equation",
+      "kind": "definition",
+      "section": "5.2",
+      "name": "Beam equation",
+      "statement": "The transversal vibrations of a beam are governed by a⁴ ∂⁴y/∂x⁴ + ∂²y/∂t² = 0 for a constant a > 0 (a⁴ = EI/ρ). For a beam of length 1 simply supported at the ends, displaced to f(x) and let go from rest, y satisfies (5.5): y = y_xx = 0 at x = 0 and x = 1, y(x, 0) = f(x), y_t(x, 0) = 0.",
+      "forms": [
+        {
+          "id": "eq-beam-equation",
+          "latex": "a^4 \\frac{\\partial^4 y}{\\partial x^4} + \\frac{\\partial^2 y}{\\partial t^2} = 0",
+          "ktex": "a^4 \\kpfouryx + \\kptwoyt = 0",
+          "anchor": "5.2-eq-beam-equation"
+        },
+        {
+          "id": "eq-hinged-beam-problem",
+          "latex": "\\begin{aligned} & a^4 y_{xxxx} + y_{tt} = 0 \\qquad (0 < x < 1, \\enspace t > 0), \\\\ & y(0,t) = y_{xx}(0,t) = 0 , \\\\ & y(1,t) = y_{xx}(1,t) = 0 , \\\\ & y(x,0) = f(x), \\qquad y_{t}(x,0) = 0 . \\end{aligned}",
+          "ktex": "\\begin{aligned} & a^4 \\kyxxxx + \\kytt = 0 \\qquad (0 < x < 1, \\enspace t > 0), \\\\ & \\ky(0,t) = \\kyxx(0,t) = 0 , \\\\ & \\ky(1,t) = \\kyxx(1,t) = 0 , \\\\ & \\ky(x,0) = \\kf(x), \\qquad \\kyt(x,0) = 0 . \\end{aligned}",
+          "condition": "length 1, hinged ends, released from rest",
+          "anchor": "5.2-eq-5-5"
+        }
+      ]
+    },
+    {
+      "id": "fourth-order-eigenvalue-problem",
+      "kind": "definition",
+      "section": "5.2",
+      "name": "Fourth-order eigenvalue problem",
+      "statement": "Separating y(x, t) = X(x)T(t) in the beam equation gives X⁽⁴⁾/X = −T″/(a⁴T) = λ, so T″ + λa⁴T = 0 and X⁽⁴⁾ − λX = 0 with X(0) = X″(0) = 0 and X(1) = X″(1) = 0; it is not a Sturm–Liouville problem, but the idea is the same, and physical intuition (vibration, not growth or decay) says λ > 0.",
+      "forms": [
+        {
+          "id": "eq-beam-separated",
+          "latex": "T'' + \\lambda a^4 T = 0 \\qquad \\text{and} \\qquad X^{(4)} - \\lambda X = 0",
+          "ktex": "\\kTdprime + \\klambda a^4 \\kT = 0 \\qquad \\text{and} \\qquad \\kXfour - \\klambda \\kX = 0",
+          "anchor": "5.2-eq-beam-separated"
+        },
+        {
+          "id": "eq-beam-X-conditions",
+          "latex": "X(0) = X''(0) = 0 \\qquad \\text{and} \\qquad X(1) = X''(1) = 0",
+          "ktex": "\\kX(0) = \\kXdprime(0) = 0 \\qquad \\text{and} \\qquad \\kX(1) = \\kXdprime(1) = 0",
+          "anchor": "5.2-eq-beam-X-conditions"
+        }
+      ]
+    },
+    {
+      "id": "hinged-beam-solution",
+      "kind": "result",
+      "section": "5.2",
+      "name": "Series solution of the hinged beam",
+      "statement": "With ω = ⁴√λ, the general solution Ae^(ωx) + Be^(−ωx) + C sin(ωx) + D cos(ωx) of X⁽⁴⁾ − ω⁴X = 0 meets the hinged conditions only for ω = nπ, so the eigenvalues are λₙ = n⁴π⁴ with eigenfunctions sin(nπx), the time factors are Tₙ(t) = cos(n²π²a²t), and with f(x) = Σ bₙ sin(nπx) the solution of (5.5) is y(x, t) = Σ bₙ sin(nπx) cos(n²π²a²t).",
+      "forms": [
+        {
+          "id": "eq-hinged-beam-series",
+          "latex": "y(x,t) = \\sum_{n=1}^\\infty b_n X_n(x) T_n(t) = \\sum_{n=1}^\\infty b_n \\sin (n \\pi x) \\cos ( n^2 \\pi^2 a^2 t )",
+          "ktex": "\\ky(x,t) = \\sum_{n=1}^\\infty \\kbn \\kXn(x) \\kTn(t) = \\sum_{n=1}^\\infty \\kbn \\sin (n \\pi x) \\cos ( n^2 \\pi^2 a^2 t )",
+          "anchor": "5.2-eq-hinged-beam-series"
+        },
+        {
+          "id": "eq-beam-eigenvalues",
+          "latex": "\\lambda_n = n^4 \\pi^4, \\qquad X_n(x) = \\sin (n \\pi x)",
+          "ktex": "\\klambdan = n^4 \\pi^4, \\qquad \\kXn(x) = \\sin (n \\pi x)",
+          "anchor": "5.2-beam-eigenvalues"
+        },
+        {
+          "id": "eq-beam-time-factor",
+          "latex": "T_n(t) = \\cos (n^2 \\pi^2 a^2 t)",
+          "ktex": "\\kTn(t) = \\cos (n^2 \\pi^2 a^2 t)",
+          "anchor": "5.2-time-factor"
+        }
+      ]
+    },
+    {
+      "id": "natural-frequencies-of-a-beam",
+      "kind": "result",
+      "section": "5.2",
+      "name": "Natural frequencies of a hinged beam",
+      "type": "frequency",
+      "statement": "The natural angular frequencies of the simply supported beam are n²π²a², all integer multiples of the fundamental π²a², but only the square multiples 1, 4, 9, 16, 25, …, where a vibrating string gives all of 1, 2, 3, 4, 5, …; the beam's timbre is therefore much closer to a pure sound, the xylophone or vibraphone against the guitar or piano.",
+      "forms": [
+        {
+          "id": "eq-beam-frequencies",
+          "latex": "n^2 \\pi^2 a^2 = n^2 \\, (\\pi^2 a^2), \\qquad n = 1, 2, 3, \\ldots",
+          "ktex": "n^2 \\pi^2 a^2 = n^2 \\, (\\pi^2 a^2), \\qquad n = 1, 2, 3, \\ldots",
+          "anchor": "5.2-timbre"
+        }
+      ]
+    },
+    {
+      "id": "hinged-end-of-a-beam",
+      "kind": "definition",
+      "section": "5.2",
+      "name": "Hinged end",
+      "terms": [
+        "hinged"
+      ],
+      "statement": "At a hinged (simply supported) end of a beam, say x = 0, the displacement and its second derivative vanish: y(0, t) = y_xx(0, t) = 0.",
+      "forms": [
+        {
+          "id": "eq-hinged-end",
+          "latex": "y(0,t) = y_{xx}(0,t) = 0",
+          "ktex": "\\ky(0,t) = \\kyxx(0,t) = 0",
+          "anchor": "5.2-eq-hinged-end"
+        }
+      ]
+    },
+    {
+      "id": "free-end-of-a-beam",
+      "kind": "definition",
+      "section": "5.2",
+      "name": "Free end",
+      "terms": [
+        "free"
+      ],
+      "statement": "At a free end of a beam, one just floating in air, the second and third derivatives vanish: y_xx(0, t) = y_xxx(0, t) = 0.",
+      "forms": [
+        {
+          "id": "eq-free-end",
+          "latex": "y_{xx}(0,t) = y_{xxx}(0,t) = 0",
+          "ktex": "\\kyxx(0,t) = \\kyxxx(0,t) = 0",
+          "anchor": "5.2-eq-free-end"
+        }
+      ]
+    },
+    {
+      "id": "clamped-end-of-a-beam",
+      "kind": "definition",
+      "section": "5.2",
+      "name": "Clamped end",
+      "terms": [
+        "clamped",
+        "fixed"
+      ],
+      "statement": "At a clamped or fixed end of a beam, for example one welded to a wall, the displacement and the slope vanish: y(0, t) = y_x(0, t) = 0.",
+      "forms": [
+        {
+          "id": "eq-clamped-end",
+          "latex": "y(0,t) = y_{x}(0,t) = 0",
+          "ktex": "\\ky(0,t) = \\kyx(0,t) = 0",
+          "anchor": "5.2-eq-clamped-end"
+        }
+      ]
+    },
+    {
+      "id": "natural-frequencies-of-a-string",
+      "kind": "definition",
+      "section": "5.3",
+      "name": "Natural frequencies of a string",
+      "type": "frequency",
+      "statement": "The natural (angular) frequencies of the string of length L with fixed ends are nπa/L for integers n ≥ 1, the frequencies of the free vibrations y = Σ (Aₙ cos(nπat/L) + Bₙ sin(nπat/L)) sin(nπx/L); the base frequency is πa/L.",
+      "forms": [
+        {
+          "id": "eq-string-natural-frequencies",
+          "latex": "\\omega_n = \\frac{n \\pi a}{L}, \\qquad n = 1, 2, 3, \\ldots",
+          "ktex": "\\komegan = \\frac{n \\pi a}{L}, \\qquad n = 1, 2, 3, \\ldots",
+          "anchor": "5.3-natural-frequencies"
+        },
+        {
+          "id": "eq-free-string-solution",
+          "latex": "y = \\sum_{n=1}^\\infty \\left( A_n \\cos \\left( \\frac{n\\pi a}{L} t \\right) + B_n \\sin \\left( \\frac{n\\pi a}{L} t \\right) \\right) \\sin \\left( \\frac{n\\pi}{L} x \\right)",
+          "ktex": "\\ky = \\sum_{n=1}^\\infty \\left( \\kAn \\cos \\left( \\frac{n\\pi a}{L} t \\right) + \\kBn \\sin \\left( \\frac{n\\pi a}{L} t \\right) \\right) \\sin \\left( \\frac{n\\pi}{L} x \\right)",
+          "anchor": "5.3-eq-free-string-solution"
+        }
+      ]
+    },
+    {
+      "id": "forced-wave-equation",
+      "kind": "definition",
+      "section": "5.3",
+      "name": "Forced wave equation",
+      "terms": [
+        "forcing function"
+      ],
+      "statement": "With an external force uniform along the string, F₀ cos(ωt) as force per unit mass (the forcing function), the wave equation becomes y_tt = a²y_xx + F₀ cos(ωt), equation (5.7), with the same boundary conditions; the string initially at rest satisfies (5.8): y(0, t) = y(L, t) = 0, y(x, 0) = 0, y_t(x, 0) = 0.",
+      "forms": [
+        {
+          "id": "eq-forced-wave",
+          "latex": "y_{tt} = a^2 y_{xx} + F_0 \\cos ( \\omega t)",
+          "ktex": "\\kytt = a^2 \\kyxx + F_0 \\cos ( \\komega t)",
+          "anchor": "5.3-eq-5-7"
+        },
+        {
+          "id": "eq-forced-wave-conditions",
+          "latex": "y(0,t) = 0, \\qquad y(L,t) = 0, \\qquad y(x,0) = 0, \\qquad y_t(x,0) = 0",
+          "ktex": "\\ky(0,t) = 0, \\qquad \\ky(L,t) = 0, \\qquad \\ky(x,0) = 0, \\qquad \\kyt(x,0) = 0",
+          "anchor": "5.3-eq-5-8"
+        }
+      ]
+    },
+    {
+      "id": "splitting-the-forced-string-solution",
+      "kind": "skill",
+      "section": "5.3",
+      "name": "Solving the forced string as y = y_c + y_p",
+      "statement": "First find a particular solution y_p of (5.7) satisfying only y(0, t) = y(L, t) = 0; then define f(x) = −y_p(x, 0) and g(x) = −∂y_p/∂t(x, 0) and find the solution y_c of the free problem (5.6) with these initial conditions; then y = y_c + y_p solves (5.7) with the initial conditions (5.8).",
+      "forms": [
+        {
+          "id": "eq-forced-string-split",
+          "latex": "f(x) = -y_p(x,0), \\qquad g(x) = -\\frac{\\partial y_p}{\\partial t} (x,0), \\qquad y = y_c + y_p",
+          "ktex": "\\kf(x) = -\\kyp(x,0), \\qquad \\kg(x) = -\\frac{\\partial \\kyp}{\\partial t} (x,0), \\qquad \\ky = \\kyc + \\kyp",
+          "anchor": "5.3-eq-forced-string-split"
+        }
+      ]
+    },
+    {
+      "id": "particular-solution-of-the-forced-string",
+      "kind": "result",
+      "section": "5.3",
+      "name": "Particular solution of the forced string",
+      "symbol": "y_p",
+      "type": "function",
+      "statement": "The guess y_p = X(x) cos(ωt) in (5.7) gives −ω²X = a²X″ + F₀, whose general solution is X = A cos(ωx/a) + B sin(ωx/a) − F₀/ω²; X(0) = 0 gives A = F₀/ω², and X(L) = 0 gives B = −F₀(cos(ωL/a) − 1)/(ω² sin(ωL/a)), equation (5.9), when sin(ωL/a) ≠ 0; so y_p(x, t) = (F₀/ω²)(cos(ωx/a) − ((cos(ωL/a) − 1)/sin(ωL/a)) sin(ωx/a) − 1) cos(ωt).",
+      "forms": [
+        {
+          "id": "eq-forced-string-yp",
+          "latex": "y_p(x,t) = \\frac{F_0}{\\omega^2} \\left( \\cos \\left( \\frac{\\omega}{a} x \\right) - \\frac{\\cos \\left( \\frac{\\omega L}{a} \\right) - 1} {\\sin \\left( \\frac{\\omega L}{a}\\right)} \\sin \\left( \\frac{\\omega}{a} x \\right) -1 \\right) \\cos ( \\omega t)",
+          "ktex": "\\kyp(x,t) = \\frac{F_0}{\\komega^2} \\left( \\cos \\left( \\frac{\\komega}{a} x \\right) - \\frac{\\cos \\left( \\frac{\\komega L}{a} \\right) - 1} {\\sin \\left( \\frac{\\komega L}{a}\\right)} \\sin \\left( \\frac{\\komega}{a} x \\right) -1 \\right) \\cos ( \\komega t)",
+          "anchor": "5.3-eq-forced-string-yp"
+        },
+        {
+          "id": "eq-forced-string-X",
+          "latex": "X(x) = A \\cos \\left( \\frac{\\omega}{a} x \\right) + B \\sin \\left( \\frac{\\omega}{a} x \\right) - \\frac{F_0}{\\omega^2}",
+          "ktex": "\\kX(x) = A \\cos \\left( \\frac{\\komega}{a} x \\right) + B \\sin \\left( \\frac{\\komega}{a} x \\right) - \\frac{F_0}{\\komega^2}",
+          "anchor": "5.3-drv-forced-string-yp"
+        },
+        {
+          "id": "eq-forced-string-B",
+          "latex": "B = \\frac{-F_0 \\left( \\cos \\left( \\frac{\\omega L}{a} \\right) - 1 \\right)} {\\omega^2 \\sin \\left( \\frac{\\omega L}{a} \\right)}",
+          "ktex": "B = \\frac{-F_0 \\left( \\cos \\left( \\frac{\\komega L}{a} \\right) - 1 \\right)} {\\komega^2 \\sin \\left( \\frac{\\komega L}{a} \\right)}",
+          "condition": "sin(ωL/a) ≠ 0",
+          "anchor": "5.3-drv-forced-string-yp"
+        }
+      ]
+    },
+    {
+      "id": "string-resonance",
+      "kind": "result",
+      "section": "5.3",
+      "name": "Resonance of the forced string",
+      "statement": "When sin(ωL/a) = 0, ω is a natural frequency nπa/L. For even n, cos(ωL/a) = 1 and B = 0 gives the bounded solution y_p = (F₀/ω²)(cos(ωx/a) − 1) cos(ωt), so no resonance happens; resonance occurs only when also cos(ωL/a) = −1, that is for odd n, where B blows up as ω approaches nπa/L. This is why a string begins to vibrate when an identical string is plucked close by, while a jet engine at the wrong frequency does not move it much.",
+      "forms": [
+        {
+          "id": "eq-string-resonance-frequencies",
+          "latex": "\\omega = \\frac{n \\pi a}{L}, \\qquad n \\text{ odd}",
+          "ktex": "\\komega = \\frac{n \\pi a}{L}, \\qquad n \\text{ odd}",
+          "anchor": "5.3-resonance"
+        },
+        {
+          "id": "eq-even-n-bounded-solution",
+          "latex": "y_p = \\frac{F_0}{\\omega^2} \\left( \\cos\\left(\\frac{\\omega}{a} x\\right) - 1 \\right) \\cos(\\omega t)",
+          "ktex": "\\kyp = \\frac{F_0}{\\komega^2} \\left( \\cos\\left(\\frac{\\komega}{a} x\\right) - 1 \\right) \\cos(\\komega t)",
+          "condition": "ω = nπa/L with n even",
+          "anchor": "5.3-resonance"
+        }
+      ]
+    },
+    {
+      "id": "underground-temperature-model",
+      "kind": "definition",
+      "section": "5.3",
+      "name": "Underground temperature model",
+      "statement": "The temperature u(x, t) at depth x satisfies the heat equation u_t = ku_xx, k the diffusivity of the soil, with the surface temperature u(0, t) = T₀ + A₀ cos(ωt) known from weather records, t = 0 midsummer, ω with ωt = 2π at t = 1 year; taking T₀ = 0, the steady periodic solution, independent of the initial conditions, is sought in the form u = V(x) cos(ωt) + W(x) sin(ωt), equation (5.11).",
+      "forms": [
+        {
+          "id": "eq-underground-problem",
+          "latex": "u_t = k u_{xx}, \\qquad u(0,t) = A_0 \\cos ( \\omega t)",
+          "ktex": "\\kut = k \\kuxx, \\qquad \\ku(0,t) = A_0 \\cos ( \\komega t)",
+          "anchor": "5.3-eq-5-11"
+        },
+        {
+          "id": "eq-underground-trial",
+          "latex": "u(x,t) = V(x) \\cos (\\omega t) + W (x) \\sin ( \\omega t)",
+          "ktex": "\\ku(x,t) = \\kV(x) \\cos (\\komega t) + \\kW (x) \\sin ( \\komega t)",
+          "anchor": "5.3-eq-underground-trial"
+        },
+        {
+          "id": "eq-surface-temperature",
+          "latex": "u(0,t) = T_0 + A_0 \\cos (\\omega t)",
+          "ktex": "\\ku(0,t) = T_0 + A_0 \\cos (\\komega t)",
+          "anchor": "5.3-eq-surface-temperature"
+        }
+      ]
+    },
+    {
+      "id": "solving-with-a-complex-exponential",
+      "kind": "skill",
+      "section": "5.3",
+      "name": "Solving through a complex exponential",
+      "statement": "To find the steady periodic solution, look for a complex-valued h(x, t) = X(x)e^(iωt) with h_t = kh_xx and h(0, t) = A₀e^(iωt), equation (5.12), and take u = Re h; substituting gives kX″ − iωX = 0, which is solved with complex exponents and Euler's formula.",
+      "forms": [
+        {
+          "id": "eq-underground-complex",
+          "latex": "h_t = k h_{xx}, \\qquad h(0,t) = A_0 e^{i\\omega t}",
+          "ktex": "\\kht = k \\khxx, \\qquad \\kh(0,t) = A_0 e^{i\\komega t}",
+          "anchor": "5.3-eq-5-12"
+        },
+        {
+          "id": "eq-underground-h",
+          "latex": "h(x,t) = X(x)\\, e^{i\\omega t}",
+          "ktex": "\\kh(x,t) = \\kX(x)\\, e^{i\\komega t}",
+          "anchor": "5.3-eq-underground-h"
+        }
+      ]
+    },
+    {
+      "id": "underground-temperature-solution",
+      "kind": "result",
+      "section": "5.3",
+      "name": "Underground temperature solution",
+      "symbol": "u",
+      "type": "function",
+      "statement": "With α = ±(1 + i)√(ω/2k) and the growing exponential discarded as unbounded, h = A₀e^(−√(ω/2k) x) e^(i(ωt − √(ω/2k) x)), so u(x, t) = A₀e^(−√(ω/2k) x) cos(ωt − √(ω/2k) x): at depth x the phase is delayed by x√(ω/2k) and the amplitude is A₀e^(−√(ω/2k) x). In cgs units with k = 0.005 and ω ≈ 1.99 × 10⁻⁷, the seasons are reversed at about 700 cm, where a surface swing of ±15 °C is only ±0.66 °C, which is why a cellar keeps a nearly constant temperature.",
+      "forms": [
+        {
+          "id": "eq-underground-solution",
+          "latex": "u(x,t) = A_0 e^{-\\sqrt{\\frac{\\omega}{2k}}\\, x} \\cos \\left(\\omega t - \\sqrt{\\frac{\\omega}{2k}}\\, x\\right)",
+          "ktex": "\\ku(x,t) = A_0 e^{-\\sqrt{\\frac{\\komega}{2k}}\\, x} \\cos \\left(\\komega t - \\sqrt{\\frac{\\komega}{2k}}\\, x\\right)",
+          "anchor": "5.3-eq-underground-solution"
+        },
+        {
+          "id": "eq-underground-X",
+          "latex": "X(x) = A e^{-(1+i)\\sqrt{\\frac{\\omega}{2k}} \\, x} + B e^{(1+i)\\sqrt{\\frac{\\omega}{2k}} \\, x}",
+          "ktex": "\\kX(x) = A e^{-(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x} + B e^{(1+i)\\sqrt{\\frac{\\komega}{2k}} \\, x}",
+          "anchor": "5.3-drv-underground-x"
+        },
+        {
+          "id": "eq-underground-amplitude",
+          "latex": "A_0 e^{-\\sqrt{\\frac{\\omega}{2k}}\\, x}",
+          "ktex": "A_0 e^{-\\sqrt{\\frac{\\komega}{2k}}\\, x}",
+          "anchor": "5.3-amplitude-decay"
+        },
+        {
+          "id": "eq-underground-phase-delay",
+          "latex": "x \\sqrt{\\frac{\\omega}{2k}}",
+          "ktex": "x \\sqrt{\\frac{\\komega}{2k}}",
+          "anchor": "5.3-phase-delay"
+        }
+      ]
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "robin-boundary-conditions",
+      "prereq": "dirichlet-boundary-conditions"
+    },
+    {
+      "concept": "robin-boundary-conditions",
+      "prereq": "neumann-boundary-conditions"
+    },
+    {
+      "concept": "mixed-boundary-conditions",
+      "prereq": "dirichlet-boundary-conditions"
+    },
+    {
+      "concept": "mixed-boundary-conditions",
+      "prereq": "neumann-boundary-conditions"
+    },
+    {
+      "concept": "sturm-liouville-equation",
+      "prereq": "eigenvalue-of-a-boundary-value-problem"
+    },
+    {
+      "concept": "putting-an-equation-in-sturm-liouville-form",
+      "prereq": "sturm-liouville-equation"
+    },
+    {
+      "concept": "sturm-liouville-problem",
+      "prereq": "sturm-liouville-equation"
+    },
+    {
+      "concept": "sturm-liouville-problem",
+      "prereq": "robin-boundary-conditions"
+    },
+    {
+      "concept": "sturm-liouville-problem",
+      "prereq": "eigenfunction"
+    },
+    {
+      "concept": "regular-sturm-liouville-problem",
+      "prereq": "sturm-liouville-problem"
+    },
+    {
+      "concept": "sturm-liouville-eigenvalues",
+      "prereq": "regular-sturm-liouville-problem"
+    },
+    {
+      "concept": "finding-eigenvalues-graphically",
+      "prereq": "sturm-liouville-eigenvalues"
+    },
+    {
+      "concept": "weight-function",
+      "prereq": "sturm-liouville-equation"
+    },
+    {
+      "concept": "orthogonality-with-respect-to-a-weight",
+      "prereq": "weight-function"
+    },
+    {
+      "concept": "orthogonality-with-respect-to-a-weight",
+      "prereq": "orthogonality-of-eigenfunctions"
+    },
+    {
+      "concept": "weighted-inner-product",
+      "prereq": "orthogonality-with-respect-to-a-weight"
+    },
+    {
+      "concept": "weighted-inner-product",
+      "prereq": "inner-product-of-functions"
+    },
+    {
+      "concept": "sturm-liouville-orthogonality",
+      "prereq": "regular-sturm-liouville-problem"
+    },
+    {
+      "concept": "sturm-liouville-orthogonality",
+      "prereq": "orthogonality-with-respect-to-a-weight"
+    },
+    {
+      "concept": "fredholm-alternative-for-sturm-liouville",
+      "prereq": "regular-sturm-liouville-problem"
+    },
+    {
+      "concept": "fredholm-alternative-for-sturm-liouville",
+      "prereq": "fredholm-alternative"
+    },
+    {
+      "concept": "eigenfunction-decomposition",
+      "prereq": "sturm-liouville-eigenvalues"
+    },
+    {
+      "concept": "eigenfunction-decomposition",
+      "prereq": "sine-series"
+    },
+    {
+      "concept": "eigenfunction-coefficients",
+      "prereq": "eigenfunction-decomposition"
+    },
+    {
+      "concept": "eigenfunction-coefficients",
+      "prereq": "sturm-liouville-orthogonality"
+    },
+    {
+      "concept": "eigenfunction-coefficients",
+      "prereq": "weighted-inner-product"
+    },
+    {
+      "concept": "convergence-of-eigenfunction-series",
+      "prereq": "eigenfunction-coefficients"
+    },
+    {
+      "concept": "convergence-of-eigenfunction-series",
+      "prereq": "piecewise-smooth-function"
+    },
+    {
+      "concept": "transversal-vibrations",
+      "prereq": "partial-differential-equation"
+    },
+    {
+      "concept": "beam-equation",
+      "prereq": "transversal-vibrations"
+    },
+    {
+      "concept": "beam-equation",
+      "prereq": "side-conditions"
+    },
+    {
+      "concept": "fourth-order-eigenvalue-problem",
+      "prereq": "beam-equation"
+    },
+    {
+      "concept": "fourth-order-eigenvalue-problem",
+      "prereq": "separation-of-variables-for-pdes"
+    },
+    {
+      "concept": "fourth-order-eigenvalue-problem",
+      "prereq": "sturm-liouville-problem"
+    },
+    {
+      "concept": "hinged-beam-solution",
+      "prereq": "fourth-order-eigenvalue-problem"
+    },
+    {
+      "concept": "hinged-beam-solution",
+      "prereq": "sine-series"
+    },
+    {
+      "concept": "natural-frequencies-of-a-beam",
+      "prereq": "hinged-beam-solution"
+    },
+    {
+      "concept": "natural-frequencies-of-a-beam",
+      "prereq": "fundamental-frequency"
+    },
+    {
+      "concept": "hinged-end-of-a-beam",
+      "prereq": "beam-equation"
+    },
+    {
+      "concept": "free-end-of-a-beam",
+      "prereq": "beam-equation"
+    },
+    {
+      "concept": "clamped-end-of-a-beam",
+      "prereq": "beam-equation"
+    },
+    {
+      "concept": "natural-frequencies-of-a-string",
+      "prereq": "wave-equation-series-solution"
+    },
+    {
+      "concept": "natural-frequencies-of-a-string",
+      "prereq": "fundamental-frequency"
+    },
+    {
+      "concept": "forced-wave-equation",
+      "prereq": "wave-equation"
+    },
+    {
+      "concept": "forced-wave-equation",
+      "prereq": "undamped-forced-motion"
+    },
+    {
+      "concept": "splitting-the-forced-string-solution",
+      "prereq": "forced-wave-equation"
+    },
+    {
+      "concept": "particular-solution-of-the-forced-string",
+      "prereq": "splitting-the-forced-string-solution"
+    },
+    {
+      "concept": "string-resonance",
+      "prereq": "particular-solution-of-the-forced-string"
+    },
+    {
+      "concept": "string-resonance",
+      "prereq": "natural-frequencies-of-a-string"
+    },
+    {
+      "concept": "string-resonance",
+      "prereq": "resonance"
+    },
+    {
+      "concept": "underground-temperature-model",
+      "prereq": "heat-equation"
+    },
+    {
+      "concept": "underground-temperature-model",
+      "prereq": "steady-state-solution"
+    },
+    {
+      "concept": "solving-with-a-complex-exponential",
+      "prereq": "underground-temperature-model"
+    },
+    {
+      "concept": "underground-temperature-solution",
+      "prereq": "solving-with-a-complex-exponential"
+    }
+  ]
+}

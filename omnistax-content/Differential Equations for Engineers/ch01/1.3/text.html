@@ -1,0 +1,96 @@
+<p id="intro">When a <span data-concept="differential-equation">differential equation</span> is of the form $\kyprime = \kf(x)$, we integrate: $\ky = \int \kf(x) \,dx + C$. Unfortunately, simply integrating no longer works for the general form of the equation $\kyprime = \kf(x,\ky)$. Integrating both sides yields the rather unhelpful expression</p>
+$$ \ky = \int \kf(x,\ky) \,dx + C . $$
+<p>Notice the dependence on $\ky$ in the integral.</p>
+
+<section id="separable-equations">
+<h2>Separable equations</h2>
+<p id="separable">We say a <span data-concept="differential-equation">differential equation</span> is <em><span data-concept="separable-differential-equation">separable</span></em> if we can write it as</p>
+<div class="equation" id="eq-separable">$$ \kyprime = \kf(x)\kg(\ky) , $$</div>
+<p id="separating">for some functions $\kf(x)$ and $\kg(\ky)$. In <a href="/calculus/ch03/3.2/#3.2-leibniz-paragraph">Leibniz notation</a>, the equation is</p>
+$$ \kdydx = \kf(x)\kg(\ky) , $$
+<p>which we rewrite as</p>
+<div class="equation" id="eq-separated-differentials">$$ \frac{d\ky}{\kg(\ky)} = \kf(x) \,dx . $$</div>
+<p>Both sides now look like something we can integrate. We obtain</p>
+<div class="equation" id="eq-separated">$$ \int \frac{d\ky}{\kg(\ky)} = \int \kf(x) \,dx + C . $$</div>
+<p>If we can find closed-form expressions for these two integrals, we can, perhaps, solve for $\ky$.</p>
+<div class="example" id="ex-1-3-1">
+<h3>Example 1.3.1</h3>
+<p>Take the equation</p>
+$$ \kyprime = x\ky . $$
+<p>Note that $\ky=0$ is a <span data-concept="solution-to-a-differential-equation">solution</span>. We will remember that fact and assume $\ky \neq 0$ from now on, so that we can divide by $\ky$. Write the equation as $\kdydx = x\ky$ or $\frac{d\ky}{\ky} = x \, dx$. Then</p>
+$$ \int \frac{d\ky}{\ky} = \int x\,dx + C . $$
+<p>We compute the <span data-concept="antiderivative">antiderivatives</span> to get</p>
+$$ \ln \, \lvert \ky\rvert = \frac{x^2}{2} + C , $$
+<p>or</p>
+$$ \lvert \ky \rvert = e^{\frac{x^2}{2} + C} = e^{\frac{x^2}{2}} e^C = D e^{\frac{x^2}{2}} , $$
+<p>where $D &gt; 0$ is some constant. Because $\ky=0$ is also a <span data-concept="solution-to-a-differential-equation">solution</span> and because of the absolute value, we can write:</p>
+$$ \ky = D e^{\frac{x^2}{2}} , $$
+<p>for any number $D$ (including zero or negative).</p>
+<p>We check:</p>
+$$ \kyprime = D x e^{\frac{x^2}{2}} = x \left( D e^{\frac{x^2}{2}} \right) = x\ky . $$
+<p>Yay!</p>
+</div>
+<p id="careful">You may be worried that we integrated in two different variables. We seemingly did a different operation to each side. Perhaps we should be a little bit more careful and work through this method more rigorously. Consider</p>
+$$ \kdydx = \kf(x)\kg(\ky) . $$
+<figure class="dv" id="drv-separable"></figure>
+</section>
+
+<section id="implicit-solutions">
+<h2>Implicit solutions</h2>
+<p id="stuck">We sometimes get stuck even if we can do the integration. Consider the <span data-concept="separable-differential-equation">separable</span> equation</p>
+$$ \kyprime = \frac{x\ky}{\ky^2+1} . $$
+<p>We <span data-concept="separation-of-variables">separate variables</span>,</p>
+$$ \frac{\ky^2+1}{\ky}\,d\ky = \left(\ky+\frac{1}{\ky}\right)\,d\ky = x\,dx . $$
+<p>We integrate to get</p>
+$$ \frac{\ky^2}{2} + \ln \, \lvert \ky \rvert = \frac{x^2}{2} + C , $$
+<p>or perhaps the less intimidating expression (where $D = 2C$)</p>
+<div class="equation" id="eq-implicit-example">$$ \ky^2 + 2 \ln \, \lvert \ky\rvert = x^2 + D . $$</div>
+<p id="implicit">It is not easy to find the <span data-concept="solution-to-a-differential-equation">solution</span> explicitly—it is hard to solve for $\ky$. We, therefore, leave the <span data-concept="solution-to-a-differential-equation">solution</span> in this form and call it an <em><span data-concept="implicit-solution">implicit solution</span></em>. It is still easy to check that an <span data-concept="implicit-solution">implicit solution</span> satisfies the <span data-concept="differential-equation">differential equation</span>. In this case, we differentiate with respect to $x$, and remember that $\ky$ is a function of $x$, to get</p>
+$$ 2\ky \kyprime + 2 \frac{1}{\ky} \kyprime = \kyprime\left(2\ky + \frac{2}{\ky}\right) = 2x . $$
+<p>That is usually called “<a href="/calculus/ch03/3.8/#3.8-implicit">implicit differentiation</a>” in calculus, but it is just the <a href="/calculus/ch03/3.6/#3.6-deriving">chain rule</a>. Anyway, now multiply both sides by $\ky$ and divide by $2(\ky^2+1)$ and you will get exactly the <span data-concept="differential-equation">differential equation</span>. We leave this computation to the reader.</p>
+<p>If you have an <span data-concept="implicit-solution">implicit solution</span>, and you want to compute values for $\ky$, you might have to be tricky. You might get multiple <span data-concept="solution-to-a-differential-equation">solutions</span> $\ky$ for each $x$, so you have to pick one. Sometimes you can graph $x$ as a function of $\ky$, and then turn your paper to see a graph. Sometimes you have to do more.</p>
+<p id="two-curves">Computers are also good at some of these tricks. More advanced mathematical software usually has some way of plotting <span data-concept="solution-to-a-differential-equation">solutions</span> to implicit equations. For example, for $D=0$, if you plot all the points $(x,\ky)$ that are solutions to $\ky^2+2\ln \, \lvert \ky\rvert=x^2$, you find the two curves in Figure 1.8. This is not quite a graph of a function. For each $x$, there are two choices of $\ky$. To find a function, you have to pick one of these two curves. You pick the one that satisfies your <span data-concept="initial-value">initial condition</span> if you have one. For instance, the top curve satisfies the condition $\ky(1)=1$. So for each $D$, we really got two <span data-concept="solution-to-a-differential-equation">solutions</span>. As you can see, computing values from an <span data-concept="implicit-solution">implicit solution</span> can be somewhat tricky. But sometimes, an <span data-concept="implicit-solution">implicit solution</span> is the best we can do.</p>
+<figure class="sim" id="sim-implicit" data-figure="1.8" data-original="/media/ch01/implicitsols.svg" data-original-caption="The implicit solution y² + 2 ln|y| = x² to y′ = xy/(y² + 1)." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 1.8</span><span>The two curves of the implicit solution $\ky^2 + 2\ln\lvert\ky\rvert = x^2 + D$ to $\kyprime = \frac{x\ky}{\ky^2+1}$, with the singular solution $\ky = 0$ between them. The initial point fixes $D$ and picks the curve through it, the top one above the axis and the bottom one below; on the axis itself, it lands on the singular solution $\ky = 0$.</span></div>
+</figure>
+<p>The equation above also has the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=0$. So the <span data-concept="general-solution">general solution</span> is</p>
+<div class="equation" id="eq-implicit-general">$$ \ky^2 + 2 \ln \, \lvert \ky \rvert = x^2 + D \qquad \text{and} \qquad \ky=0. $$</div>
+<p id="singular">Sometimes these extra <span data-concept="solution-to-a-differential-equation">solutions</span> that came up due to division by zero, such as $\ky=0$ above, are called <em><span data-concept="singular-solution">singular solutions</span></em>.</p>
+<p id="implicit-ic">We still solve for the constants using <span data-concept="initial-value">initial conditions</span> in <span data-concept="implicit-solution">implicit solutions</span> as usual. For example, consider the <span data-concept="initial-value">initial condition</span> $\ky(0)=1$. We can discount the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=0$. In the <span data-concept="implicit-solution">implicit solution</span>, let us plug in $x=0$ and $\ky=1$ to get $1^2 + 2 \ln \, \lvert 1 \rvert = 0^2 + D$, in other words, $D=1$. So the <span data-concept="solution-to-a-differential-equation">solution</span> for this <span data-concept="initial-value">initial condition</span> is $\ky^2 + 2 \ln \, \lvert \ky \rvert = x^2 + 1$, but only the part of this <span data-concept="implicit-solution">implicit solution</span> that is positive as that is what our <span data-concept="initial-value">initial condition</span> requires.</p>
+</section>
+
+<section id="more-examples">
+<h2>More examples of separable equations</h2>
+<div class="example" id="ex-1-3-2">
+<h3>Example 1.3.2</h3>
+<p>Solve $x^2\kyprime = 1 - x^2+\ky^2 - x^2\ky^2$, $\ky(1) = 0$.</p>
+<p>Factor the right-hand side</p>
+$$ x^2\kyprime = (1 - x^2)(1+\ky^2) . $$
+<p><span data-concept="separation-of-variables">Separate variables</span>, integrate, and solve for $\ky$:</p>
+$$ \begin{align*} \frac{\kyprime}{1+\ky^2} &amp; = \frac{1 - x^2}{x^2} , \\ \frac{\kyprime}{1+\ky^2} &amp; = \frac{1}{x^2} - 1 , \\ \arctan (\ky) &amp; = \frac{-1}{x} - x + C , \\ \ky &amp; = \tan \left(\frac{-1}{x} - x + C\right) . \end{align*} $$
+<p>Solve for the <span data-concept="initial-value">initial condition</span>, $0 = \tan(-2+C)$ to get $C=2$ (or $C = 2 + \pi$, or $C = 2 + 2\pi$, etc.). The <span data-concept="particular-solution">particular solution</span> we seek is, therefore,</p>
+$$ \ky = \tan \left(\frac{-1}{x} - x + 2 \right) . $$
+</div>
+<div class="example" id="ex-1-3-3">
+<h3>Example 1.3.3</h3>
+<p>Bob made a cup of coffee, and Bob likes to drink coffee only once it reaches 60 degrees Celsius and will not burn him. Initially, right after it was poured in the cup, Bob measured the temperature and the coffee was 89 degrees Celsius. One minute later, Bob measured the coffee again and it had 85 degrees. The temperature of the room (the ambient temperature) is 22 degrees. When should Bob start drinking?</p>
+<p>Let $\kT$ be the temperature of the coffee in degrees Celsius, let $A$ be the ambient (room) temperature, also in degrees Celsius, and let $t$ denote the time in minutes, with $t=0$ denoting the time when Bob made the coffee. <span data-concept="newtons-law-of-cooling">Newton’s law of cooling</span> states that the rate at which the temperature of the coffee is changing is proportional to the difference between the ambient temperature and the temperature of the coffee. That is,</p>
+<div class="equation" id="eq-newton-cooling">$$ \kdTdt = k(A-\kT) , $$</div>
+<p>for some positive constant $k$. For our setup $A=22$, $\kT(0) = 89$, $\kT(1) = 85$. Let $C$ and $D$ denote arbitrary constants, and notice that $\kT - A &gt; 0$ since the coffee is clearly warmer than the room. We <span data-concept="separation-of-variables">separate variables</span> and integrate.</p>
+<div class="equation" id="eq-newton-cooling-solution">$$ \begin{align*} \frac{1}{\kT-A} \, \kdTdt &amp; = -k , \\ \ln (\kT-A) &amp;= -kt + C , \\ \kT-A &amp;= D e^{-kt} , \\ \kT &amp;= A + D e^{-kt} . \end{align*} $$</div>
+<p>That is, $\kT = 22 + D e^{-kt}$. We plug in the first condition: $89 = \kT(0) = 22 + D$, and hence $D = 67$. So $\kT = 22 + 67 e^{-kt}$. The second condition says $85 = \kT(1) = 22 + 67 e^{-k}$. Solving for $k$, we get $k = - \ln \frac{85-22}{67} \approx 0.0616$. We solve for the time $t$ that gives a temperature of 60 degrees. Namely, we solve</p>
+$$ 60 = 22 + 67 e^{-0.0616\,t} $$
+<p>to get $t = - \frac{\ln \frac{60-22}{67}}{0.0616} \approx 9.21$ minutes. So Bob can begin to drink the coffee at just over 9 minutes from the time Bob made it. That is probably about the amount of time it took us to calculate how long it would take. See Figure 1.9.</p>
+<figure class="sim" id="sim-coffee" data-figure="1.9" data-original="/media/ch01/coffeefig-1-2.svg" data-original-caption="Graphs of the coffee temperature function T(t). On the left, horizontal lines are drawn at temperatures 60, 85, and 89. Vertical lines are drawn at t = 1 and t = 9.21. Notice that the temperature of the coffee hits 85 at t = 1, and 60 at t ≈ 9.21. On the right, the graph is over a longer period of time, with a horizontal line at the ambient temperature 22." data-original-width="864">
+  <div class="sim-head"><span class="eyebrow">Figure 1.9</span><span>The coffee’s temperature $\kT = A + (\kT(0) - A)\,e^{-kt}$ over the first 12.5 minutes and over 80, falling toward the ambient temperature $A$. The two measured temperatures $\kT(0)$ and $\kT(1)$ fix $k$, and the drop line marks when the coffee reaches 60 degrees; nudging the measurements by a degree or two shows how far that time moves.</span></div>
+</figure>
+</div>
+<div class="example" id="ex-1-3-4">
+<h3>Example 1.3.4</h3>
+<p>Find the <span data-concept="general-solution">general solution</span> to $\kyprime = \frac{-x\ky^2}{3}$ (including any <span data-concept="singular-solution">singular solutions</span>).</p>
+<p>First, note that $\ky=0$ is a <span data-concept="solution-to-a-differential-equation">solution</span> (a <span data-concept="singular-solution">singular solution</span>). Next, assume $\ky \neq 0$ and <span data-concept="separation-of-variables">separate</span>:</p>
+$$ \begin{align*} \frac{-3}{\ky^2} \kyprime &amp; = x , \\ \frac{3}{\ky} &amp; = \frac{x^2}{2} + C , \\ \ky &amp; = \frac{3}{{x^2}/{2} + C} = \frac{6}{x^2 + 2C}. \end{align*} $$
+<p>The <span data-concept="general-solution">general solution</span> is</p>
+$$ \ky = \frac{6}{x^2 + 2C} \qquad \text{and} \qquad \ky=0 . $$
+</div>
+</section>

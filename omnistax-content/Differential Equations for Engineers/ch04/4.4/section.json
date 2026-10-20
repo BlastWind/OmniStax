@@ -1,0 +1,931 @@
+{
+ "id": "4.4",
+ "module": "sec:scs",
+ "chapter": "4",
+ "title": "Sine and cosine series",
+ "short": "Sine and cosine series",
+ "lead": "A function given only on $[0, L]$ can be extended to the whole line as an <span data-concept=\"odd-periodic-extension\">odd</span> or as an <span data-concept=\"even-periodic-extension\">even periodic function</span>. This section writes the <span data-concept=\"fourier-series\">Fourier series</span> of the two extensions, the <span data-concept=\"sine-series\">sine</span> and the <span data-concept=\"cosine-series\">cosine series</span>, and uses them to solve <span data-concept=\"boundary-value-problem\">boundary value problems</span> with <span data-concept=\"dirichlet-boundary-conditions\">Dirichlet</span> and <span data-concept=\"neumann-boundary-conditions\">Neumann conditions</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.4.101–4.4.105 carry the book’s own answers. The inline exercises 4.4.1–4.4.3 and exercises 4.4.4–4.4.11, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every coefficient and solution checked with SymPy first. The book’s note that exercises numbered 101 and higher have solutions is the exercises_lead.",
+ "figures": [
+  {
+   "id": "sim-extensions",
+   "kind": "sim",
+   "number": "4.12",
+   "originals": [
+    "/media/ch04/scs-ext-odd-even.svg"
+   ],
+   "original_caption": "Odd and even 2-periodic extension of f(t) = t(1 − t), 0 ≤ t ≤ 1.",
+   "widths": [
+    864
+   ],
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-sine-cosine-series",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "series",
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-bvp-series",
+   "kind": "sim",
+   "number": "4.13",
+   "originals": [
+    "/media/ch04/bnd-dirich-graph.svg"
+   ],
+   "original_caption": "Plot of the solution of x″ + 2x = t, x(0) = 0, x(1) = 0.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "derivative",
+    "eigenvalue",
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "extensions",
+   "concept": "odd-periodic-extension",
+   "verb": "introduces"
+  },
+  {
+   "span": "extensions",
+   "concept": "even-periodic-extension",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-names",
+   "concept": "sine-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-names",
+   "concept": "cosine-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-4-4-1",
+   "concept": "sine-and-cosine-series-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "eigenfunction-expansion",
+   "concept": "eigenfunction-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "bvp-method",
+   "concept": "dirichlet-boundary-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "bvp-method",
+   "concept": "neumann-boundary-conditions",
+   "verb": "introduces"
+  },
+  {
+   "span": "bvp-method",
+   "concept": "solving-a-boundary-value-problem-by-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "observation",
+   "concept": "odd-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "observation",
+   "concept": "even-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "observation",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "observation",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "odd-even-recall",
+   "concept": "odd-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "odd-even-recall",
+   "concept": "even-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sums",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "half-interval",
+   "concept": "periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "half-interval",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "extension-setup",
+   "concept": "odd-function",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-4-1",
+   "concept": "odd-periodic-extension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-4-1",
+   "concept": "even-periodic-extension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-extensions",
+   "concept": "odd-periodic-extension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-extensions",
+   "concept": "even-periodic-extension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "odd-coefficients",
+   "concept": "fourier-series-with-half-period-l",
+   "verb": "uses"
+  },
+  {
+   "span": "odd-coefficients",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "odd-coefficients-why",
+   "concept": "integrals-of-even-and-odd-functions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "odd-coefficients-why",
+   "concept": "odd-function",
+   "verb": "uses"
+  },
+  {
+   "span": "even-coefficients",
+   "concept": "even-function",
+   "verb": "uses"
+  },
+  {
+   "span": "half-interval-consequence",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "half-interval-consequence",
+   "concept": "odd-periodic-extension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thm-4-4-1",
+   "concept": "piecewise-smooth-function",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-4-4-1",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenfunction-expansion",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenfunction-expansion",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenfunction-expansion",
+   "concept": "eigenvalues-with-zero-endpoint-derivatives",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenfunction-expansion",
+   "concept": "inner-product-of-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-half-inner-product",
+   "concept": "inner-product-of-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "eigenfunction-procedure",
+   "concept": "eigenfunction-expansion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-4-2",
+   "concept": "cosine-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-4-2",
+   "concept": "even-periodic-extension",
+   "verb": "reinforces"
+  },
+  {
+   "span": "detected",
+   "concept": "decay-of-fourier-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-sine-cosine-series",
+   "concept": "sine-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-sine-cosine-series",
+   "concept": "cosine-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-sine-cosine-series",
+   "concept": "decay-of-fourier-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "bvp-setup",
+   "concept": "boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "bvp-method",
+   "concept": "fredholm-alternative",
+   "verb": "uses"
+  },
+  {
+   "span": "bvp-method",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "bvp-method",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-4-3",
+   "concept": "solving-a-boundary-value-problem-by-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-4-3",
+   "concept": "dirichlet-boundary-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-4-3",
+   "concept": "sine-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-dirichlet-bvp",
+   "concept": "term-by-term-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "not-eigenvalue",
+   "concept": "eigenvalue-of-a-boundary-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "bvp-graph",
+   "concept": "eigenfunction",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-bvp-series",
+   "concept": "solving-a-boundary-value-problem-by-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-bvp-series",
+   "concept": "fredholm-alternative",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-4-4",
+   "concept": "neumann-boundary-conditions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-4-4",
+   "concept": "cosine-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-4-4",
+   "concept": "solving-a-boundary-value-problem-by-series",
+   "verb": "reinforces"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "dirichlet-bvp",
+   "what": "the coefficients of the solution of the Dirichlet problem",
+   "source": "Differential Equations for Engineers, 4.4 Sine and cosine series, Example 4.4.3",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kx(t) = \\sum_{n=1}^\\infty \\kbn \\sin (n \\pi t)"
+      },
+      {
+       "text": "A Fourier series may be differentiated term by term: differentiated twice, $\\sin (n \\pi t)$ becomes $-n^2\\pi^2 \\sin (n \\pi t)$.",
+       "src": "4.3, Theorem 4.3.2"
+      },
+      {
+       "tex": "\\kf(t) = \\sum_{n=1}^\\infty \\frac{2\\, {(-1)}^{n+1}}{n \\pi} \\sin (n \\pi t)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{xdd}{\\kxdprime(t)} + \\mk{two}{2} \\mk{x}{\\kx(t)} = \\mk{f}{\\kf(t)}",
+      "src": "Example 4.4.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xdd}{\\kxdprime(t)} + \\mk{two}{2} \\mk{x}{\\underbrace{\\sum_{n=1}^\\infty \\kbn \\sin (n \\pi t)}_{\\kx}} = \\mk{f}{\\kf(t)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{xdd}{\\underbrace{\\sum_{n=1}^\\infty - \\kbn n^2 \\pi^2 \\sin (n \\pi t)}_{\\kxdprime}} + \\mk{two}{2} \\mk{x}{\\underbrace{\\sum_{n=1}^\\infty \\kbn \\sin (n \\pi t)}_{\\kx}} = \\mk{f}{\\kf(t)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\sum_{n=1}^\\infty \\kbn \\bigl(2 - n^2 \\pi^2 \\bigr) \\sin (n \\pi t)} = \\mk{f}{\\kf(t)}",
+       "uses": [],
+       "map": {
+        "xdd": "s",
+        "two": "s",
+        "x": "s"
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\sum_{n=1}^\\infty \\kbn \\bigl(2 - n^2 \\pi^2 \\bigr) \\sin (n \\pi t)} = \\mk{f}{\\sum_{n=1}^\\infty \\frac{2\\, {(-1)}^{n+1}}{n \\pi} \\sin (n \\pi t)}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "Example 4.4.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "A sine series determines its coefficients: if $\\kf(t) = \\sum_{n=1}^\\infty \\kbn \\sin (n \\pi t)$ on $0 < t < 1$, then $\\kbn = 2 \\int_0^1 \\kf(t) \\sin (n \\pi t) \\, dt$.",
+       "src": "4.4, Theorem 4.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sum_{n=1}^\\infty \\kbn \\bigl(2 - n^2 \\pi^2 \\bigr) \\sin (n \\pi t)} = \\mk{f}{\\sum_{n=1}^\\infty \\frac{2\\, {(-1)}^{n+1}}{n \\pi} \\sin (n \\pi t)}",
+      "src": "Example 4.4.3",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kbn \\bigl(2 - n^2 \\pi^2\\bigr)} = \\mk{f}{\\frac{2\\,{(-1)}^{n+1}}{n \\pi}}",
+       "uses": [
+        1
+       ],
+       "cap": "The two sides are sine series of one function, so the coefficients of each $\\sin (n \\pi t)$ agree."
+      },
+      {
+       "tex": "\\mk{b}{\\kbn} = \\mk{f}{\\frac{2\\,{(-1)}^{n+1}}{n \\pi (2 - n^2 \\pi^2)}}",
+       "uses": [],
+       "map": {
+        "s": "b"
+       }
+      }
+     ],
+     "src": "Example 4.4.3"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "4.4.1",
+   "source_number": "4.4.1",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "odd-even-recall"
+   },
+   "cite": "odd-even-recall",
+   "prompt": "<p>Take two functions $f(t)$ and $g(t)$ and define their product $h(t) = f(t)g(t)$.</p><ol type=\"a\"><li>Suppose both $f(t)$ and $g(t)$ are odd. Is $h(t)$ odd or even?</li><li>Suppose one is even and one is odd. Is $h(t)$ odd or even?</li><li>Suppose both are even. Is $h(t)$ odd or even?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Even: $h(-t) = f(-t)g(-t) = \\bigl(-f(t)\\bigr)\\bigl(-g(t)\\bigr) = f(t)g(t) = h(t)$. b) Odd: with $f$ even and $g$ odd, $h(-t) = f(t)\\bigl(-g(t)\\bigr) = -h(t)$, and the same with the roles swapped. c) Even: $h(-t) = f(t)g(t) = h(t)$. Products of odd and even functions follow the sign rule of products of $-1$ and $1$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "4.4.2",
+   "source_number": "4.4.2",
+   "kind": "inline-exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "extensions"
+   },
+   "cite": "extensions",
+   "prompt": "<p>Check that $\\kFodd(t)$ is odd and $\\kFeven(t)$ is even. For $\\kFodd$, assume $\\kf(0) = \\kf(L) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $-L < t < 0$, the point $-t$ lies in $(0, L)$, so $\\kFodd(-t) = \\kf(-t)$ while $\\kFodd(t) = -\\kf(-t)$: $\\kFodd(-t) = -\\kFodd(t)$; for $0 < t < L$ it is the same statement read the other way. At $t = 0$, $\\kFodd(0) = \\kf(0) = 0 = -\\kFodd(0)$. At $t = \\pm L$, periodicity gives $\\kFodd(-L) = \\kFodd(L) = \\kf(L) = 0 = -\\kFodd(L)$; these two points are where $\\kf(0) = \\kf(L) = 0$ is needed. For the even extension, $\\kFeven(t) = \\kf(-t) = \\kFeven(-t)$ for $-L < t < 0$, and $\\kFeven(-L) = \\kFeven(L)$ by periodicity, with no condition on $\\kf$. Any other $t$ is $s + 2Lk$ with $s$ in $(-L, L]$, and $-t = -s - 2Lk$, so both $2L$-periodic extensions keep the symmetry on the whole line."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "4.4.3",
+   "source_number": "4.4.3",
+   "kind": "inline-exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "inline",
+    "after": "ex-4-4-2"
+   },
+   "cite": "detected",
+   "prompt": "<ol type=\"a\"><li>Compute the derivative of the even periodic extension of $\\kf(t)$ above and verify it has jump discontinuities. Use the actual definition of $\\kf(t)$, not its cosine series!</li><li>Why is it that the derivative of the even periodic extension of $\\kf(t)$ is the odd periodic extension of $f'(t)$?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The even periodic extension of $\\kf(t) = t^2$ on $[0, \\pi]$ is $t^2$ on $[-\\pi, \\pi]$, repeated with period $2\\pi$. Its derivative is $2t$ on $(-\\pi, \\pi)$, repeated: just left of $t = \\pi$ it tends to $2\\pi$, and just right of $\\pi$ the extension is $(t - 2\\pi)^2$, whose derivative $2(t - 2\\pi)$ tends to $-2\\pi$. So the derivative jumps by $-4\\pi$ at every odd multiple of $\\pi$ (and does not exist there): jump discontinuities, as the $1/n$ decay of its sine coefficients says. b) On $(0, L)$ the even extension is $\\kf(t)$, with derivative $f'(t)$; on $(-L, 0)$ it is $\\kf(-t)$, whose derivative by the chain rule is $-f'(-t)$. That is exactly the odd extension of $f'$: $f'(t)$ on $(0, L)$ and $-f'(-t)$ on $(-L, 0)$, and both are $2L$-periodic."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "4.4.4",
+   "source_number": "4.4.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "extensions",
+   "prompt": "<p>Take $\\kf(t) = {(t-1)}^2$ defined on $0 \\leq t \\leq 1$.</p><ol type=\"a\"><li>Sketch the plot of the even periodic extension of $\\kf$.</li><li>Sketch the plot of the odd periodic extension of $\\kf$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The even extension is $(\\lvert t \\rvert - 1)^2$ on $[-1, 1]$, repeated with period $2$: an arch of height $1$ at $t = 0$ coming down to $0$ at $t = \\pm 1$ with zero slope. It is continuous, with a corner at every even integer, where the slope jumps from $2$ to $-2$, and smooth at the odd integers. b) The odd extension is $(t-1)^2$ on $[0, 1]$ and $-(t+1)^2$ on $(-1, 0)$, repeated with period $2$. Since $\\kf(0) = 1 \\neq 0$, it jumps from $-1$ up to $1$ at every even integer, where it takes the value $1$; at the odd integers it passes through $0$ with zero slope. Figure 4.12 draws both for $(t-1)^2$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "4.4.5",
+   "source_number": "4.4.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-4-1",
+   "prompt": "<p>Find the Fourier series of both the odd and even periodic extension of the function $\\kf(t) = {(t-1)}^2$ for $0 \\leq t \\leq 1$. Can you tell which extension is continuous from the Fourier-series coefficients?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $L = 1$: $\\kazero = 2\\int_0^1 (t-1)^2 \\, dt = \\frac{2}{3}$ and $\\kan = 2\\int_0^1 (t-1)^2 \\cos(n\\pi t) \\, dt = \\frac{4}{\\pi^2 n^2}$, so $\\kFeven(t) = \\frac{1}{3} + \\sum_{n=1}^\\infty \\frac{4}{\\pi^2 n^2} \\cos(n\\pi t)$. And $\\kbn = 2\\int_0^1 (t-1)^2 \\sin(n\\pi t) \\, dt = \\frac{2\\bigl(\\pi^2 n^2 - 2 + 2{(-1)}^n\\bigr)}{\\pi^3 n^3}$ (that is $\\frac{2(\\pi^2 n^2 - 4)}{\\pi^3 n^3}$ for odd $n$ and $\\frac{2}{\\pi n}$ for even $n$), so $\\kFodd(t) = \\sum_{n=1}^\\infty \\frac{2(\\pi^2 n^2 - 2 + 2{(-1)}^n)}{\\pi^3 n^3} \\sin(n\\pi t)$. Yes: the cosine coefficients decay like $\\frac{1}{n^2}$, so the even extension is continuous (it has corners only), while the sine coefficients decay only like $\\frac{1}{n}$, so the odd extension has jumps, at the even integers, since $\\kf(0) = 1$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "4.4.6",
+   "source_number": "4.4.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-4-1",
+   "prompt": "<p>Find the Fourier series of both the odd and even periodic extension of the function $\\kf(t) = t$ for $0 \\leq t \\leq \\pi$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Even: $\\kazero = \\frac{2}{\\pi}\\int_0^\\pi t \\, dt = \\pi$ and $\\kan = \\frac{2}{\\pi}\\int_0^\\pi t\\cos(nt) \\, dt = \\frac{2\\bigl({(-1)}^n - 1\\bigr)}{\\pi n^2}$, which is $-\\frac{4}{\\pi n^2}$ for odd $n$ and $0$ for even $n$: $\\kFeven(t) = \\frac{\\pi}{2} - \\sum_{n \\text{ odd}} \\frac{4}{\\pi n^2}\\cos(nt)$, the series of $\\lvert t \\rvert$ on $[-\\pi, \\pi]$. Odd: $\\kbn = \\frac{2}{\\pi}\\int_0^\\pi t\\sin(nt) \\, dt = \\frac{2{(-1)}^{n+1}}{n}$: $\\kFodd(t) = \\sum_{n=1}^\\infty \\frac{2{(-1)}^{n+1}}{n}\\sin(nt)$, the sawtooth of 4.2."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "4.4.7",
+   "source_number": "4.4.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-4-1",
+   "prompt": "<p>Find the Fourier series of the even periodic extension of the function $\\kf(t) = \\sin t$ for $0 \\leq t \\leq \\pi$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kazero = \\frac{2}{\\pi}\\int_0^\\pi \\sin t \\, dt = \\frac{4}{\\pi}$ and $a_1 = \\frac{2}{\\pi}\\int_0^\\pi \\sin t \\cos t \\, dt = 0$. For $n \\geq 2$, writing $\\sin t \\cos (nt) = \\frac{1}{2}\\bigl(\\sin((1+n)t) + \\sin((1-n)t)\\bigr)$ gives $\\kan = \\frac{2\\bigl({(-1)}^{n+1} - 1\\bigr)}{\\pi(n^2 - 1)}$, which is $-\\frac{4}{\\pi(n^2-1)}$ for even $n$ and $0$ for odd $n$. So $\\kFeven(t) = \\frac{2}{\\pi} - \\sum_{n \\text{ even}} \\frac{4}{\\pi(n^2-1)}\\cos(nt) = \\frac{2}{\\pi} - \\frac{4}{3\\pi}\\cos(2t) - \\frac{4}{15\\pi}\\cos(4t) - \\cdots$, the series of $\\lvert \\sin t \\rvert$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "4.4.8",
+   "source_number": "4.4.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bvp-method",
+   "prompt": "<p>Consider</p>$$ \\kxdprime(t) + 4 \\kx(t) = \\kf(t) , $$<p>where $\\kf(t) = 1$ on $0 &lt; t &lt; 1$.</p><ol type=\"a\"><li>Solve for the Dirichlet conditions $\\kx(0)=0, \\kx(1) = 0$.</li><li>Solve for the Neumann conditions $\\kxprime(0)=0, \\kxprime(1) = 0$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The sine series of $\\kf(t) = 1$ on $[0, 1]$ has $\\kcn = 2\\int_0^1 \\sin(n\\pi t) \\, dt = \\frac{2\\bigl(1 - {(-1)}^n\\bigr)}{n\\pi}$, that is $\\frac{4}{n\\pi}$ for odd $n$ and $0$ for even $n$. With $\\kx = \\sum \\kbn \\sin(n\\pi t)$, $\\kxdprime + 4\\kx = \\sum \\kbn (4 - n^2\\pi^2) \\sin(n\\pi t)$, so $\\kbn = \\frac{\\kcn}{4 - n^2\\pi^2}$ ($4$ is not an eigenvalue): $\\kx(t) = \\sum_{n \\text{ odd}} \\frac{4}{n\\pi(4 - n^2\\pi^2)} \\sin(n\\pi t)$. b) The cosine series of $1$ is $1$ itself ($\\kczero = 2$, $\\kcn = 0$). With $\\kx = \\frac{\\kazero}{2} + \\sum \\kan \\cos(n\\pi t)$, $\\kxdprime + 4\\kx = 2\\kazero + \\sum \\kan (4 - n^2\\pi^2)\\cos(n\\pi t) = 1$, so $\\kazero = \\frac{1}{2}$ and every $\\kan = 0$: $\\kx(t) = \\frac{1}{4}$, which indeed has $\\kxprime = 0$ and $\\kxdprime + 4\\kx = 1$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "4.4.9",
+   "source_number": "4.4.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bvp-method",
+   "prompt": "<p>Consider</p>$$ \\kxdprime(t) + 9 \\kx(t) = \\kf(t) , $$<p>for $\\kf(t) = \\sin (2\\pi t)$ on $0 &lt; t &lt; 1$.</p><ol type=\"a\"><li>Solve for the Dirichlet conditions $\\kx(0)=0, \\kx(1) = 0$.</li><li>Solve for the Neumann conditions $\\kxprime(0)=0, \\kxprime(1) = 0$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kf(t) = \\sin(2\\pi t)$ is already its own sine series on $[0,1]$: $c_2 = 1$ and every other $\\kcn = 0$. So $\\kbn = 0$ for $n \\neq 2$ and $b_2 (9 - 4\\pi^2) = 1$: $\\kx(t) = \\frac{\\sin(2\\pi t)}{9 - 4\\pi^2}$. b) The cosine series of $\\sin(2\\pi t)$ on $[0, 1]$: $\\kczero = 2\\int_0^1 \\sin(2\\pi t) \\, dt = 0$, $c_2 = 0$, and for $n \\neq 2$, $\\kcn = 2\\int_0^1 \\sin(2\\pi t)\\cos(n\\pi t) \\, dt = \\frac{4\\bigl({(-1)}^n - 1\\bigr)}{\\pi(n^2 - 4)}$, which is $-\\frac{8}{\\pi(n^2-4)}$ for odd $n$ and $0$ for even $n$. With $\\kx = \\frac{\\kazero}{2} + \\sum \\kan \\cos(n\\pi t)$, $\\kxdprime + 9\\kx = \\frac{9\\kazero}{2} + \\sum \\kan (9 - n^2\\pi^2)\\cos(n\\pi t)$, so $\\kazero = 0$ and $\\kan = \\frac{\\kcn}{9 - n^2\\pi^2}$: $\\kx(t) = \\sum_{n \\text{ odd}} \\frac{-8}{\\pi(n^2-4)(9 - n^2\\pi^2)} \\cos(n\\pi t) = \\frac{8}{3\\pi(9 - \\pi^2)}\\cos(\\pi t) - \\frac{8}{5\\pi(9 - 9\\pi^2)}\\cos(3\\pi t) - \\cdots$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "4.4.10",
+   "source_number": "4.4.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bvp-method",
+   "prompt": "<p>Consider</p>$$ \\kxdprime(t) + 3 \\kx(t) = \\kf(t) , \\quad \\kx(0) = 0, \\quad \\kx(1) = 0, $$<p>where $\\kf(t) = \\sum_{n=1}^\\infty \\kbn \\sin (n \\pi t)$. Write the solution $\\kx(t)$ as a Fourier series, where the coefficients are given in terms of $\\kbn$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\kx = \\sum_{n=1}^\\infty \\beta_n \\sin(n\\pi t)$, which satisfies $\\kx(0) = \\kx(1) = 0$. Then $\\kxdprime + 3\\kx = \\sum \\beta_n (3 - n^2\\pi^2)\\sin(n\\pi t) = \\sum \\kbn \\sin(n\\pi t)$, so $\\beta_n = \\frac{\\kbn}{3 - n^2\\pi^2}$, which is allowed since $3 - n^2\\pi^2 \\neq 0$ ($3$ is not an eigenvalue): $\\kx(t) = \\sum_{n=1}^\\infty \\frac{\\kbn}{3 - n^2\\pi^2}\\sin(n\\pi t)$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "4.4.11",
+   "source_number": "4.4.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "extensions",
+   "prompt": "<p>Let $\\kf(t) = t^2(2-t)$ for $0 \\leq t \\leq 2$. Let $F(t)$ be the odd periodic extension. Compute $F(1)$, $F(2)$, $F(3)$, $F(-1)$, $F({9}/{2})$, $F(101)$, $F(103)$. Note: Do <strong>not</strong> compute the sine series.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "F(1)",
+      "value": 1
+     },
+     {
+      "part": "F(2)",
+      "value": 0
+     },
+     {
+      "part": "F(3)",
+      "value": -1
+     },
+     {
+      "part": "F(−1)",
+      "value": -1
+     },
+     {
+      "part": "F(9/2)",
+      "value": 0.375
+     },
+     {
+      "part": "F(101)",
+      "value": 1
+     },
+     {
+      "part": "F(103)",
+      "value": -1
+     }
+    ],
+    "solution": "Here $L = 2$, so $F$ is odd and $4$-periodic. $F(1) = \\kf(1) = 1$ and $F(2) = \\kf(2) = 0$. $F(-1) = -\\kf(1) = -1$, and $F(3) = F(-1) = -1$. $F(9/2) = F(1/2) = \\kf(1/2) = \\frac{1}{4}\\cdot\\frac{3}{2} = \\frac{3}{8}$. Since $101 = 4 \\cdot 25 + 1$, $F(101) = F(1) = 1$; since $103 = 4\\cdot 26 - 1$, $F(103) = F(-1) = -1$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "4.4.101",
+   "source_number": "4.4.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-4-1",
+   "prompt": "<p>Let $\\kf(t) = {t}/{3}$ on $0 \\leq t &lt; 3$.</p><ol type=\"a\"><li>Find the Fourier series of the even periodic extension.</li><li>Find the Fourier series of the odd periodic extension.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) ${1}/{2} + \\sum\\limits_{\\substack{n=1\\\\n\\text{ odd}}}^\\infty \\frac{-4}{\\pi^2 n^2} \\cos\\bigl(\\frac{n\\pi}{3} t \\bigr)$ b) $\\sum\\limits_{n=1}^\\infty \\frac{2{(-1)}^{n+1}}{\\pi n} \\sin\\bigl(\\frac{n\\pi}{3} t \\bigr)$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "4.4.102",
+   "source_number": "4.4.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-4-4-1",
+   "prompt": "<p>Let $\\kf(t) = \\cos(2t)$ on $0 \\leq t &lt; \\pi$.</p><ol type=\"a\"><li>Find the Fourier series of the even periodic extension.</li><li>Find the Fourier series of the odd periodic extension.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\cos(2t)$ b) $\\sum\\limits_{\\substack{n=1 \\\\n \\text{ odd}}}^\\infty \\frac{4n}{\\pi n^2 - 4 \\pi} \\sin(n t)$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "4.4.103",
+   "source_number": "4.4.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "extensions",
+   "prompt": "<p>Let $\\kf(t)$ be defined on $0 \\leq t &lt; 1$. Consider the average of the two extensions $g(t) = \\frac{\\kFodd(t)+ \\kFeven(t)}{2}$.</p><ol type=\"a\"><li>What is $g(t)$ if $0 \\leq t &lt; 1$ (Justify!)</li><li>What is $g(t)$ if $-1 &lt; t &lt; 0$ (Justify!)</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\kf(t)$ b) $0$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "4.4.104",
+   "source_number": "4.4.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bvp-method",
+   "prompt": "<p>Let $\\kf(t) = \\sum_{n=1}^\\infty \\frac{1}{n^2} \\sin(nt)$. Solve $\\kxdprime - \\kx = \\kf(t)$ for the Dirichlet conditions $\\kx(0) = 0$ and $\\kx(\\pi) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\sum\\limits_{n=1}^\\infty \\frac{-1}{n^2(1+n^2)} \\sin(nt)$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "4.4.105",
+   "source_number": "4.4.105",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bvp-method",
+   "prompt": "<p><strong>challenging</strong> Let $\\kf(t) = t + \\sum_{n=1}^\\infty \\frac{1}{2^n} \\sin(nt)$. Solve $\\kxdprime + \\pi \\kx = \\kf(t)$ for the Dirichlet conditions $\\kx(0) = 0$ and $\\kx(\\pi) = 1$. Hint: Note that $\\frac{t}{\\pi}$ satisfies the given Dirichlet conditions.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{t}{\\pi} + \\sum\\limits_{n=1}^\\infty \\frac{1}{2^n(\\pi-n^2)} \\sin(nt)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "odd-function"
+  },
+  {
+   "exercise": "e1",
+   "concept": "even-function"
+  },
+  {
+   "exercise": "e2",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e2",
+   "concept": "even-periodic-extension"
+  },
+  {
+   "exercise": "e3",
+   "concept": "even-periodic-extension"
+  },
+  {
+   "exercise": "e3",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e3",
+   "concept": "decay-of-fourier-coefficients"
+  },
+  {
+   "exercise": "e4",
+   "concept": "even-periodic-extension"
+  },
+  {
+   "exercise": "e4",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e5",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e5",
+   "concept": "cosine-series"
+  },
+  {
+   "exercise": "e5",
+   "concept": "decay-of-fourier-coefficients"
+  },
+  {
+   "exercise": "e6",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e6",
+   "concept": "cosine-series"
+  },
+  {
+   "exercise": "e7",
+   "concept": "cosine-series"
+  },
+  {
+   "exercise": "e8",
+   "concept": "solving-a-boundary-value-problem-by-series"
+  },
+  {
+   "exercise": "e8",
+   "concept": "dirichlet-boundary-conditions"
+  },
+  {
+   "exercise": "e8",
+   "concept": "neumann-boundary-conditions"
+  },
+  {
+   "exercise": "e9",
+   "concept": "solving-a-boundary-value-problem-by-series"
+  },
+  {
+   "exercise": "e9",
+   "concept": "dirichlet-boundary-conditions"
+  },
+  {
+   "exercise": "e9",
+   "concept": "neumann-boundary-conditions"
+  },
+  {
+   "exercise": "e10",
+   "concept": "solving-a-boundary-value-problem-by-series"
+  },
+  {
+   "exercise": "e10",
+   "concept": "dirichlet-boundary-conditions"
+  },
+  {
+   "exercise": "e11",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e101",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e101",
+   "concept": "cosine-series"
+  },
+  {
+   "exercise": "e102",
+   "concept": "sine-series"
+  },
+  {
+   "exercise": "e102",
+   "concept": "cosine-series"
+  },
+  {
+   "exercise": "e103",
+   "concept": "odd-periodic-extension"
+  },
+  {
+   "exercise": "e103",
+   "concept": "even-periodic-extension"
+  },
+  {
+   "exercise": "e104",
+   "concept": "solving-a-boundary-value-problem-by-series"
+  },
+  {
+   "exercise": "e104",
+   "concept": "dirichlet-boundary-conditions"
+  },
+  {
+   "exercise": "e105",
+   "concept": "solving-a-boundary-value-problem-by-series"
+  },
+  {
+   "exercise": "e105",
+   "concept": "dirichlet-boundary-conditions"
+  }
+ ],
+ "footnotes": []
+}

@@ -1,0 +1,545 @@
+{
+  "id": "5",
+  "dir": "ch05",
+  "title": "More on eigenvalue problems",
+  "sections": [
+    {
+      "id": "5.1",
+      "module": "slproblems:section",
+      "title": "Sturm–Liouville problems",
+      "slug": ""
+    },
+    {
+      "id": "5.2",
+      "module": "sec:appeig",
+      "title": "Higher-order eigenvalue problems",
+      "slug": ""
+    },
+    {
+      "id": "5.3",
+      "module": "sps:section",
+      "title": "Steady periodic solutions",
+      "slug": ""
+    }
+  ],
+  "variables": [
+    {
+      "sym": "X",
+      "type": "function",
+      "meaning": "the unknown X(x) of an eigenvalue problem X″ + λX = 0 with its boundary conditions, the factor of x in a separated solution",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-conditions"
+    },
+    {
+      "sym": "X_n",
+      "type": "function",
+      "meaning": "the eigenfunction Xₙ(x) belonging to the nth eigenvalue of the eigenvalue problem in x",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-decomposition-recap"
+    },
+    {
+      "sym": "T_n",
+      "type": "function",
+      "meaning": "the factor Tₙ(t) of t with Tₙ(0) = 1 such that Tₙ(t)Xₙ(x) solves the heat equation",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-decomposition-recap"
+    },
+    {
+      "sym": "u",
+      "type": "function",
+      "meaning": "the temperature u(x, t) of the wire in the heat equation u_t = k u_xx, recalled from Chapter 4",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-robin"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the initial temperature f(x) = u(x, 0), and later any piecewise smooth function on [a, b] to be written as an eigenfunction series",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-decomposition-recap"
+    },
+    {
+      "sym": "y",
+      "concept": "dependent-variable",
+      "meaning": "the dependent variable, an unknown function",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-eq-5-1"
+    },
+    {
+      "sym": "y_prime",
+      "type": "derivative",
+      "meaning": "the derivative of y, the same as dy/dx",
+      "section": "5.1",
+      "anchor": "5.1-proper-factor"
+    },
+    {
+      "sym": "y_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative of y",
+      "section": "5.1",
+      "anchor": "5.1-proper-factor"
+    },
+    {
+      "sym": "p",
+      "type": "function",
+      "meaning": "the coefficient p(x) inside the derivative of the Sturm–Liouville equation (p(x)y′)′ − q(x)y + λr(x)y = 0, continuous and positive on [a, b] for a regular problem",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-eq-5-1"
+    },
+    {
+      "sym": "q",
+      "type": "function",
+      "meaning": "the coefficient q(x) of y in the Sturm–Liouville equation, continuous and nonnegative for a regular problem",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-eq-5-1"
+    },
+    {
+      "sym": "r",
+      "concept": "weight-function",
+      "meaning": "the coefficient r(x) of λy in the Sturm–Liouville equation, the weight function of the inner product, positive on [a, b]",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-eq-5-1"
+    },
+    {
+      "sym": "λ",
+      "concept": "eigenvalue-of-a-boundary-value-problem",
+      "meaning": "the parameter of the Sturm–Liouville problem; the values that admit a nontrivial solution are its eigenvalues",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-eq-5-1"
+    },
+    {
+      "sym": "λ_n",
+      "concept": "eigenvalue-of-a-boundary-value-problem",
+      "meaning": "the nth eigenvalue of a regular Sturm–Liouville problem, in the increasing sequence λ₁ < λ₂ < λ₃ < ⋯ (labelled from λ₀ when zero is an eigenvalue)",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-thm-5-1-1"
+    },
+    {
+      "sym": "y_n",
+      "concept": "eigenfunction",
+      "meaning": "the eigenfunction yₙ(x) belonging to λₙ, unique up to a constant multiple",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-thm-5-1-1"
+    },
+    {
+      "sym": "h",
+      "meaning": "the constant of the Robin boundary conditions hX(0) − X′(0) = 0, hX(L) + X′(L) = 0, positive in Example 5.1.3",
+      "section": "5.1",
+      "anchor": "5.1-eq-robin-conditions"
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "a second function on [a, b], paired with f in the inner product ⟨f, g⟩",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-weight"
+    },
+    {
+      "sym": "inner",
+      "concept": "weighted-inner-product",
+      "meaning": "the inner product ⟨f, g⟩ = ∫ₐᵇ f(x)g(x)r(x) dx of two functions with respect to the weight r",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-inner-product"
+    },
+    {
+      "sym": "c_n",
+      "type": "sequence",
+      "meaning": "the coefficients of the eigenfunction decomposition f(x) = Σ cₙyₙ(x), cₘ = ⟨f, yₘ⟩/⟨yₘ, yₘ⟩",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-eq-5-3"
+    },
+    {
+      "sym": "y",
+      "type": "function",
+      "meaning": "the transverse displacement y(x, t) of the point x of the beam at time t",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-transversal"
+    },
+    {
+      "sym": "y_xxxx",
+      "type": "derivative",
+      "meaning": "the fourth partial derivative ∂⁴y/∂x⁴ of the beam's displacement",
+      "section": "5.2",
+      "anchor": "5.2-eq-5-5"
+    },
+    {
+      "sym": "y_tt",
+      "type": "derivative",
+      "meaning": "the second partial derivative ∂²y/∂t² of the displacement, its acceleration",
+      "section": "5.2",
+      "anchor": "5.2-eq-5-5"
+    },
+    {
+      "sym": "y_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative ∂²y/∂x² of the displacement, zero at a hinged or a free end",
+      "section": "5.2",
+      "anchor": "5.2-eq-5-5"
+    },
+    {
+      "sym": "y_t",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂y/∂t of the displacement, the velocity of the beam, zero at t = 0 in (5.5)",
+      "section": "5.2",
+      "anchor": "5.2-eq-5-5"
+    },
+    {
+      "sym": "y_x",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂y/∂x, the slope of the beam, zero at a clamped end",
+      "section": "5.2",
+      "anchor": "5.2-eq-clamped-end"
+    },
+    {
+      "sym": "y_xxx",
+      "type": "derivative",
+      "meaning": "the third partial derivative ∂³y/∂x³ of the displacement, zero at a free end",
+      "section": "5.2",
+      "anchor": "5.2-eq-free-end"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the initial shape f(x) = y(x, 0) of the beam, decomposed in its sine series",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-hinged-setup"
+    },
+    {
+      "sym": "X",
+      "type": "function",
+      "meaning": "the factor X(x) of the separated solution y(x, t) = X(x)T(t) of the beam equation, satisfying X⁽⁴⁾ − λX = 0",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-separation"
+    },
+    {
+      "sym": "T",
+      "type": "function",
+      "meaning": "the factor T(t) of the separated solution y(x, t) = X(x)T(t) of the beam equation, satisfying T″ + λa⁴T = 0",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-separation"
+    },
+    {
+      "sym": "X_4prime",
+      "type": "derivative",
+      "meaning": "the fourth derivative X⁽⁴⁾ of X with respect to x",
+      "section": "5.2",
+      "anchor": "5.2-separation"
+    },
+    {
+      "sym": "X_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative X″ of X, zero at a hinged end",
+      "section": "5.2",
+      "anchor": "5.2-eq-beam-X-conditions"
+    },
+    {
+      "sym": "T_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative T″ of T with respect to t",
+      "section": "5.2",
+      "anchor": "5.2-separation"
+    },
+    {
+      "sym": "T_prime",
+      "type": "derivative",
+      "meaning": "the derivative T′ of T, zero at t = 0 since the beam is let go from rest",
+      "section": "5.2",
+      "anchor": "5.2-initial-velocity"
+    },
+    {
+      "sym": "λ",
+      "concept": "eigenvalue-of-a-boundary-value-problem",
+      "meaning": "the separation constant of the beam equation, X⁽⁴⁾/X = −T″/(a⁴T) = λ, an eigenvalue of the fourth-order problem for X",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-separation"
+    },
+    {
+      "sym": "ω",
+      "meaning": "the fourth root ω = ⁴√λ of the eigenvalue, introduced to avoid writing the fourth root; positive",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-fourth-root"
+    },
+    {
+      "sym": "λ_n",
+      "concept": "eigenvalue-of-a-boundary-value-problem",
+      "meaning": "the nth eigenvalue λₙ = n⁴π⁴ of the hinged beam",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-beam-eigenvalues"
+    },
+    {
+      "sym": "X_n",
+      "type": "function",
+      "meaning": "the eigenfunction Xₙ(x) = sin(nπx) of the hinged beam",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-beam-eigenvalues"
+    },
+    {
+      "sym": "T_n",
+      "type": "function",
+      "meaning": "the time factor Tₙ(t) = cos(n²π²a²t) with Tₙ(0) = 1, so that XₙTₙ satisfies every homogeneous condition",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-time-factor"
+    },
+    {
+      "sym": "b_n",
+      "type": "sequence",
+      "meaning": "the coefficients of the sine series f(x) = Σ bₙ sin(nπx) of the initial shape",
+      "section": "5.2",
+      "redefines": true,
+      "anchor": "5.2-beam-series"
+    },
+    {
+      "sym": "y",
+      "type": "function",
+      "meaning": "the displacement y(x, t) of the string at position x and time t",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-eq-5-6"
+    },
+    {
+      "sym": "y_tt",
+      "type": "derivative",
+      "meaning": "the second partial derivative ∂²y/∂t² of the string's displacement, its acceleration",
+      "section": "5.3",
+      "anchor": "5.3-eq-5-6"
+    },
+    {
+      "sym": "y_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative ∂²y/∂x² of the string's displacement",
+      "section": "5.3",
+      "anchor": "5.3-eq-5-6"
+    },
+    {
+      "sym": "y_t",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂y/∂t, the velocity of the string",
+      "section": "5.3",
+      "anchor": "5.3-eq-5-6"
+    },
+    {
+      "sym": "f",
+      "type": "function",
+      "meaning": "the initial position f(x) = y(x, 0) of the string; for the forced string, f(x) = −y_p(x, 0)",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-eq-5-6"
+    },
+    {
+      "sym": "g",
+      "type": "function",
+      "meaning": "the initial velocity g(x) = y_t(x, 0) of the string; for the forced string, g(x) = −∂y_p/∂t(x, 0)",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-eq-5-6"
+    },
+    {
+      "sym": "A_n",
+      "type": "sequence",
+      "meaning": "the cosine coefficients of the free vibration y = Σ (Aₙ cos(nπat/L) + Bₙ sin(nπat/L)) sin(nπx/L), determined by the initial position",
+      "section": "5.3",
+      "anchor": "5.3-natural-frequencies"
+    },
+    {
+      "sym": "B_n",
+      "type": "sequence",
+      "meaning": "the sine coefficients of the free vibration, determined by the initial velocity",
+      "section": "5.3",
+      "anchor": "5.3-natural-frequencies"
+    },
+    {
+      "sym": "ω",
+      "type": "frequency",
+      "meaning": "the angular frequency of the forcing F₀ cos(ωt); in the underground problem, the yearly frequency with ωt = 2π when t = 1 year",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-forcing"
+    },
+    {
+      "sym": "y_p",
+      "concept": "particular-solution-of-the-forced-string",
+      "meaning": "the particular solution y_p(x, t) = X(x) cos(ωt) of the forced wave equation (5.7) satisfying only y(0, t) = y(L, t) = 0",
+      "section": "5.3",
+      "ref": "yp",
+      "anchor": "5.3-split-setup"
+    },
+    {
+      "sym": "y_c",
+      "concept": "complementary-solution",
+      "meaning": "the solution y_c of the free problem (5.6) with f = −y_p(x, 0) and g = −∂y_p/∂t(x, 0), so that y = y_c + y_p satisfies (5.7) and (5.8)",
+      "section": "5.3",
+      "ref": "yc",
+      "anchor": "5.3-split"
+    },
+    {
+      "sym": "X",
+      "type": "function",
+      "meaning": "the factor X(x) of the guess y_p = X(x) cos(ωt), and of h = X(x)e^(iωt) in the underground problem",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-eq-guess"
+    },
+    {
+      "sym": "X_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative X″ of X with respect to x",
+      "section": "5.3",
+      "anchor": "5.3-drv-forced-string-yp"
+    },
+    {
+      "sym": "w",
+      "type": "function",
+      "meaning": "the solution w(x, t) of the free string problem of Example 5.3.1, set to y_c",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-dalembert-use"
+    },
+    {
+      "sym": "F",
+      "type": "function",
+      "meaning": "the odd 2-periodic extension F of w(x, 0) in Example 5.3.1, used in d'Alembert's formula",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-dalembert-use"
+    },
+    {
+      "sym": "u",
+      "meaning": "the temperature u(x, t) at depth x underground at time t",
+      "section": "5.3",
+      "redefines": true,
+      "concept": "underground-temperature-solution",
+      "anchor": "5.3-ground-model"
+    },
+    {
+      "sym": "u_t",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂u/∂t of the underground temperature",
+      "section": "5.3",
+      "anchor": "5.3-surface"
+    },
+    {
+      "sym": "u_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative ∂²u/∂x² of the underground temperature with respect to depth",
+      "section": "5.3",
+      "anchor": "5.3-surface"
+    },
+    {
+      "sym": "V",
+      "type": "function",
+      "meaning": "the coefficient V(x) of cos(ωt) in the steady periodic form u = V(x) cos(ωt) + W(x) sin(ωt)",
+      "section": "5.3",
+      "anchor": "5.3-eq-underground-trial"
+    },
+    {
+      "sym": "W",
+      "type": "function",
+      "meaning": "the coefficient W(x) of sin(ωt) in the steady periodic form u = V(x) cos(ωt) + W(x) sin(ωt)",
+      "section": "5.3",
+      "anchor": "5.3-eq-underground-trial"
+    },
+    {
+      "sym": "h",
+      "type": "function",
+      "meaning": "the complex-valued function h(x, t) = X(x)e^(iωt) whose real part is u, solving h_t = kh_xx with h(0, t) = A₀e^(iωt)",
+      "section": "5.3",
+      "redefines": true,
+      "anchor": "5.3-eq-underground-h"
+    },
+    {
+      "sym": "h_t",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂h/∂t of the complex-valued h",
+      "section": "5.3",
+      "anchor": "5.3-eq-5-12"
+    },
+    {
+      "sym": "h_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative ∂²h/∂x² of the complex-valued h",
+      "section": "5.3",
+      "anchor": "5.3-eq-5-12"
+    },
+    {
+      "sym": "X_prime",
+      "type": "derivative",
+      "meaning": "the derivative X′(x) of the unknown of the eigenvalue problem",
+      "section": "5.1",
+      "redefines": true,
+      "anchor": "5.1-conditions"
+    },
+    {
+      "sym": "X_dprime",
+      "type": "derivative",
+      "meaning": "the second derivative X″(x)",
+      "section": "5.1",
+      "anchor": "5.1-conditions"
+    },
+    {
+      "sym": "u_t",
+      "type": "derivative",
+      "meaning": "the partial derivative ∂u/∂t in subscript notation",
+      "section": "5.1",
+      "anchor": "5.1-robin"
+    },
+    {
+      "sym": "u_xx",
+      "type": "derivative",
+      "meaning": "the second partial derivative ∂²u/∂x² in subscript notation",
+      "section": "5.1",
+      "anchor": "5.1-robin"
+    },
+    {
+      "sym": "dy/dx",
+      "type": "derivative",
+      "meaning": "the derivative of y with respect to x",
+      "section": "5.1",
+      "anchor": "5.1-eq-5-1"
+    },
+    {
+      "sym": "c",
+      "type": "sequence",
+      "meaning": "the coefficient cₘ of the eigenfunction decomposition, cₙ written with the index m",
+      "section": "5.1",
+      "anchor": "5.1-eq-5-4"
+    },
+    {
+      "sym": "∂4y/∂x4",
+      "type": "derivative",
+      "meaning": "the fourth partial derivative of y with respect to x",
+      "section": "5.2",
+      "anchor": "5.2-eq-beam-equation"
+    },
+    {
+      "sym": "∂2y/∂t2",
+      "type": "derivative",
+      "meaning": "the second partial derivative of y with respect to t",
+      "section": "5.2",
+      "anchor": "5.2-eq-beam-equation"
+    }
+  ]
+}

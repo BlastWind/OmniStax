@@ -1,0 +1,283 @@
+{
+ "id": "0.3",
+ "module": "classification:section",
+ "chapter": "0",
+ "title": "Classification of differential equations",
+ "short": "Classification of differential equations",
+ "lead": "Before an equation is solved it can be sorted by its shape: <span data-concept=\"ordinary-differential-equation\">ordinary</span> or <span data-concept=\"partial-differential-equation\">partial</span>, one equation or a <span data-concept=\"system-of-differential-equations\">system</span>, its <span data-concept=\"order-of-a-differential-equation\">order</span>, <span data-concept=\"linear-differential-equation\">linear</span> or <span data-concept=\"nonlinear-differential-equation\">nonlinear</span>, and for the linear ones whether it is <span data-concept=\"homogeneous-linear-equation\">homogeneous</span>, has <span data-concept=\"constant-coefficient-equation\">constant coefficients</span> and is <span data-concept=\"autonomous-differential-equation\">autonomous</span>. This section names those categories, with the equations that recur through the book as its examples.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (less than one lecture or left as reading, and the [BD] section number) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 0.3.101–0.3.103 carry the book’s own answers. Exercises 0.3.1–0.3.4, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, each classification checked with SymPy first. The book prints no inline exercise in this section.",
+ "figures": [
+  {
+   "id": "sim-pendulum",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "nonlinear-pendulum",
+   "label": "the solution of the pendulum equation θ″ + sin θ = 0",
+   "figures": ["sim-pendulum"]
+  },
+  {
+   "id": "linear-pendulum",
+   "label": "the solution of the linear equation θ″ + θ = 0",
+   "figures": ["sim-pendulum"]
+  }
+ ],
+ "coverage": [
+  {"span": "system", "concept": "system-of-differential-equations", "verb": "introduces"},
+  {"span": "order", "concept": "order-of-a-differential-equation", "verb": "introduces"},
+  {"span": "linear", "concept": "linear-differential-equation", "verb": "introduces"},
+  {"span": "coefficients", "concept": "coefficients-of-a-linear-equation", "verb": "introduces"},
+  {"span": "nonlinear", "concept": "nonlinear-differential-equation", "verb": "introduces"},
+  {"span": "homogeneous", "concept": "homogeneous-linear-equation", "verb": "introduces"},
+  {"span": "homogeneous", "concept": "nonhomogeneous-linear-equation", "verb": "introduces"},
+  {"span": "constant-coefficient", "concept": "constant-coefficient-equation", "verb": "introduces"},
+  {"span": "variable-coefficient", "concept": "variable-coefficient-equation", "verb": "introduces"},
+  {"span": "autonomous", "concept": "autonomous-differential-equation", "verb": "introduces"},
+  {"span": "classification-intro", "concept": "differential-equation", "verb": "uses"},
+  {"span": "classification-intro", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "classification-intro", "concept": "partial-differential-equation", "verb": "uses"},
+  {"span": "ode-pde-list", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "ode-pde-list", "concept": "partial-differential-equation", "verb": "uses"},
+  {"span": "ode-pde-list", "concept": "independent-variable", "verb": "uses"},
+  {"span": "examples-ode", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "examples-ode", "concept": "exponential-growth", "verb": "uses"},
+  {"span": "examples-pde", "concept": "partial-differential-equation", "verb": "uses"},
+  {"span": "system", "concept": "differential-equation", "verb": "uses"},
+  {"span": "eq-system", "concept": "system-of-differential-equations", "verb": "uses"},
+  {"span": "eq-system", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "maxwell", "concept": "system-of-differential-equations", "verb": "uses"},
+  {"span": "maxwell-note", "concept": "system-of-differential-equations", "verb": "uses"},
+  {"span": "maxwell-note", "concept": "partial-differential-equation", "verb": "uses"},
+  {"span": "order", "concept": "system-of-differential-equations", "verb": "uses"},
+  {"span": "order", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "order", "concept": "second-order-differential-equation", "verb": "uses"},
+  {"span": "eq-beam", "concept": "order-of-a-differential-equation", "verb": "uses"},
+  {"span": "eq-beam", "concept": "partial-differential-equation", "verb": "uses"},
+  {"span": "first-order-form", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "first-order-form", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "first-order-form", "concept": "order-of-a-differential-equation", "verb": "uses"},
+  {"span": "linear", "concept": "dependent-variable", "verb": "uses"},
+  {"span": "linear", "concept": "independent-variable", "verb": "uses"},
+  {"span": "linear", "concept": "system-of-differential-equations", "verb": "uses"},
+  {"span": "linear", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "eq-2", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "coefficients", "concept": "independent-variable", "verb": "uses"},
+  {"span": "coefficients", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "eq-3", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "nonlinear", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "nonlinear", "concept": "system-of-differential-equations", "verb": "uses"},
+  {"span": "burgers", "concept": "nonlinear-differential-equation", "verb": "uses"},
+  {"span": "burgers", "concept": "second-order-differential-equation", "verb": "uses"},
+  {"span": "burgers", "concept": "partial-differential-equation", "verb": "uses"},
+  {"span": "eq-4", "concept": "nonlinear-differential-equation", "verb": "uses"},
+  {"span": "eq-4", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "eq-5", "concept": "nonlinear-differential-equation", "verb": "uses"},
+  {"span": "eq-5", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "pendulum", "concept": "nonlinear-differential-equation", "verb": "uses"},
+  {"span": "pendulum", "concept": "dependent-variable", "verb": "uses"},
+  {"span": "pendulum", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "pendulum", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "sim-pendulum", "concept": "nonlinear-differential-equation", "verb": "uses"},
+  {"span": "sim-pendulum", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "sim-pendulum", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "homogeneous", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "homogeneous", "concept": "dependent-variable", "verb": "uses"},
+  {"span": "homogeneous", "concept": "independent-variable", "verb": "uses"},
+  {"span": "homogeneous", "concept": "exponential-growth", "verb": "uses"},
+  {"span": "homogeneous", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "eq-homogeneous", "concept": "homogeneous-linear-equation", "verb": "uses"},
+  {"span": "homogeneous-compare", "concept": "homogeneous-linear-equation", "verb": "uses"},
+  {"span": "homogeneous-compare", "concept": "nonhomogeneous-linear-equation", "verb": "uses"},
+  {"span": "constant-coefficient", "concept": "coefficients-of-a-linear-equation", "verb": "uses"},
+  {"span": "constant-coefficient", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "constant-coefficient", "concept": "dependent-variable", "verb": "uses"},
+  {"span": "constant-coefficient", "concept": "nonhomogeneous-linear-equation", "verb": "uses"},
+  {"span": "constant-coefficient", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "eq-constant-coefficient", "concept": "constant-coefficient-equation", "verb": "uses"},
+  {"span": "variable-coefficient", "concept": "independent-variable", "verb": "uses"},
+  {"span": "variable-coefficient", "concept": "constant-coefficient-equation", "verb": "uses"},
+  {"span": "variable-coefficient", "concept": "nonhomogeneous-linear-equation", "verb": "uses"},
+  {"span": "variable-coefficient", "concept": "second-order-differential-equation", "verb": "uses"},
+  {"span": "variable-coefficient", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "variable-coefficient", "concept": "partial-differential-equation", "verb": "uses"},
+  {"span": "variable-coefficient", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "variable-coefficient", "concept": "coefficients-of-a-linear-equation", "verb": "uses"},
+  {"span": "autonomous", "concept": "system-of-differential-equations", "verb": "uses"},
+  {"span": "autonomous", "concept": "independent-variable", "verb": "uses"},
+  {"span": "autonomous", "concept": "ordinary-differential-equation", "verb": "uses"},
+  {"span": "autonomous", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "eq-autonomous", "concept": "autonomous-differential-equation", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "0.3.1",
+   "source_number": "0.3.1",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "linear",
+   "prompt": "<p>Classify the following equations. Are they ODEs or PDEs? Is it an equation or a system? What is the order? Is it linear or nonlinear, and if it is linear, is it homogeneous, constant-coefficient? If it is an ODE, is it autonomous?</p><ol type=\"a\"><li>$\\displaystyle \\sin(t) \\kdtwoxdt + \\cos(t) \\kx = t^2$</li><li>$\\displaystyle \\frac{\\partial u}{\\partial x} + 3 \\frac{\\partial u}{\\partial y} = xy$</li><li>$\\displaystyle \\kydprime+3\\ky+5\\kx=0, \\quad \\kxdprime+\\kx-\\ky=0$</li><li>$\\displaystyle \\frac{\\partial^2 u}{\\partial t^2} + u\\frac{\\partial^2 u}{\\partial s^2} = 0$</li><li>$\\displaystyle \\kxdprime+t\\kx^2=t$</li><li>$\\displaystyle \\frac{d^4 x}{dt^4} = 0$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) ODE, a single equation, second order (the highest derivative is $\\kdtwoxdt$), linear ($\\kx$ and $\\kdtwoxdt$ appear only to the first power, each multiplied by a function of $t$), nonhomogeneous (the term $t^2$ stands alone), not constant-coefficient (the coefficients $\\sin(t)$ and $\\cos(t)$ are not constants), and not autonomous ($t$ appears explicitly). b) PDE ($u$ depends on the two variables $x$ and $y$), a single equation, first order, linear, nonhomogeneous (the term $xy$ stands alone), constant-coefficient (the coefficients are $1$ and $3$). c) ODE, a system of two equations in $\\kx$ and $\\ky$, second order, linear, homogeneous (every term carries $\\kx$, $\\ky$ or one of their derivatives), constant-coefficient, and autonomous ($t$ does not appear explicitly). d) PDE, a single equation, second order, nonlinear, because $u$ multiplies $\\frac{\\partial^2 u}{\\partial s^2}$. e) ODE, a single equation, second order, nonlinear because of the second power $\\kx^2$; it is also not autonomous, since $t$ appears explicitly. f) ODE, a single equation, fourth order, linear, homogeneous, constant-coefficient, and autonomous."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "0.3.2",
+   "source_number": "0.3.2",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "maxwell-note",
+   "prompt": "<p>If $\\vec{u} = (u_1,u_2,u_3)$ is a vector, we have the divergence $\\nabla \\cdot \\vec{u} = \\frac{\\partial u_1}{\\partial x} + \\frac{\\partial u_2}{\\partial y} + \\frac{\\partial u_3}{\\partial z}$ and the curl $\\nabla \\times \\vec{u} = \\Bigl( \\frac{\\partial u_3}{\\partial y} - \\frac{\\partial u_2}{\\partial z} , ~ \\frac{\\partial u_1}{\\partial z} - \\frac{\\partial u_3}{\\partial x} , ~ \\frac{\\partial u_2}{\\partial x} - \\frac{\\partial u_1}{\\partial y} \\Bigr)$. Notice that the curl of a vector is still a vector. Write out Maxwell’s equations in terms of partial derivatives and classify the system.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\vec{D} = (D_1, D_2, D_3)$, $\\vec{B} = (B_1, B_2, B_3)$, $\\vec{E} = (E_1, E_2, E_3)$, $\\vec{H} = (H_1, H_2, H_3)$ and $\\vec{J} = (J_1, J_2, J_3)$, each component a function of $x$, $y$, $z$ and $t$. The two divergence equations are $\\frac{\\partial D_1}{\\partial x} + \\frac{\\partial D_2}{\\partial y} + \\frac{\\partial D_3}{\\partial z} = \\rho$ and $\\frac{\\partial B_1}{\\partial x} + \\frac{\\partial B_2}{\\partial y} + \\frac{\\partial B_3}{\\partial z} = 0$. Each curl equation is three equations, one per component: $\\frac{\\partial E_3}{\\partial y} - \\frac{\\partial E_2}{\\partial z} = -\\frac{\\partial B_1}{\\partial t}$, $\\frac{\\partial E_1}{\\partial z} - \\frac{\\partial E_3}{\\partial x} = -\\frac{\\partial B_2}{\\partial t}$, $\\frac{\\partial E_2}{\\partial x} - \\frac{\\partial E_1}{\\partial y} = -\\frac{\\partial B_3}{\\partial t}$, and $\\frac{\\partial H_3}{\\partial y} - \\frac{\\partial H_2}{\\partial z} = J_1 + \\frac{\\partial D_1}{\\partial t}$, $\\frac{\\partial H_1}{\\partial z} - \\frac{\\partial H_3}{\\partial x} = J_2 + \\frac{\\partial D_2}{\\partial t}$, $\\frac{\\partial H_2}{\\partial x} - \\frac{\\partial H_1}{\\partial y} = J_3 + \\frac{\\partial D_3}{\\partial t}$. That is eight equations in the twelve unknown functions $D_1, \\ldots, H_3$ of the four independent variables: a system of partial differential equations, of first order (only first partial derivatives appear), and linear, since every unknown and every derivative appears to the first power, multiplied by $1$ or $-1$ and never by another unknown or inside another function; so the system is also constant-coefficient. The charge density $\\rho$ and the current $J_1, J_2, J_3$ are given functions of the independent variables standing alone, so the system is nonhomogeneous wherever $\\rho$ or $\\vec{J}$ is not zero, and homogeneous in empty space, where $\\rho = 0$ and $\\vec{J} = \\vec{0}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "0.3.3",
+   "source_number": "0.3.3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "linear",
+   "prompt": "<p>Suppose $F$ is a linear function of two variables, that is, $F(x,y) = ax+by$ for constants $a$ and $b$. Suppose $a \\neq 0$. Classify equations of the form $F(\\kyprime,\\ky) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$F(\\kyprime, \\ky) = a\\kyprime + b\\ky$, so the equation is $a\\kyprime + b\\ky = 0$ with $a \\neq 0$. It is an ordinary differential equation (one independent variable, call it $t$), a single equation, of first order, linear ($\\kyprime$ and $\\ky$ appear only to the first power, multiplied by constants), homogeneous (no term stands alone), constant-coefficient ($a$ and $b$ are constants), and autonomous (the independent variable does not appear). Dividing by $a$ it reads $\\kyprime = -\\frac{b}{a}\\ky$, the exponential growth or decay equation, whose solutions are $\\ky = Ce^{-bt/a}$; when $b = 0$ the solutions are the constants."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "0.3.4",
+   "source_number": "0.3.4",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {"at": "end"},
+   "cite": "variable-coefficient",
+   "prompt": "<p>Write down an explicit example of a third-order, linear, variable-coefficient (i.e. not constant-coefficient), nonautonomous, nonhomogeneous system of two ODEs such that every derivative that could appear, does appear.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "One example, with $\\kx$ and $\\ky$ functions of $t$: $\\kxtprime + t\\kxdprime + \\kxprime + \\kx + \\kytprime + \\kydprime + \\kyprime + \\ky = t$ and $\\kxtprime + \\kxdprime + \\kxprime + \\kx + \\kytprime + \\kydprime + \\kyprime + e^{t}\\ky = 1$. It is a system of two ODEs in the two unknowns $\\kx$ and $\\ky$; third order, since $\\kxtprime$ and $\\kytprime$ appear and nothing higher; linear, because every unknown and every derivative appears to the first power, multiplied by a function of $t$ alone; variable-coefficient, as the coefficient $t$ of $\\kxdprime$ in the first equation and $e^{t}$ of $\\ky$ in the second are not constants; nonautonomous, since $t$ appears explicitly; and nonhomogeneous, because the terms $t$ and $1$ stand alone. Each equation carries all of $\\kx$, $\\kxprime$, $\\kxdprime$, $\\kxtprime$, $\\ky$, $\\kyprime$, $\\kydprime$ and $\\kytprime$, so every derivative that could appear does. Any other nonconstant coefficients and nonzero right-hand sides work as well."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "0.3.101",
+   "source_number": "0.3.101",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "linear",
+   "prompt": "<p>Classify the following equations. Are they ODEs or PDEs? Is it an equation or a system? What is the order? Is it linear or nonlinear, and if it is linear, is it homogeneous, constant-coefficient? If it is an ODE, is it autonomous?</p><ol type=\"a\"><li>$\\displaystyle \\frac{\\partial^2 v}{\\partial x^2} + 3 \\frac{\\partial^2 v}{\\partial y^2} = \\sin(x)$</li><li>$\\displaystyle \\kdxdt + \\cos(t) \\kx = t^2+t+1$</li><li>$\\displaystyle \\frac{d^7 F}{dx^7} = 3F(x)$</li><li>$\\displaystyle \\kydprime+8\\kyprime=1$</li><li>$\\displaystyle \\kxdprime+t\\ky\\kxprime=0, \\quad \\kydprime+t\\kx\\ky = 0$</li><li>$\\displaystyle \\frac{\\partial u}{\\partial t} = \\frac{\\partial^2 u}{\\partial s^2} + u^2$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) PDE, equation, $2^{\\text{nd}}$-order, linear, nonhomogeneous, constant-coefficient. b) ODE, equation, $1^{\\text{st}}$-order, linear, nonhomogeneous, not constant-coefficient, not autonomous. c) ODE, equation, $7^{\\text{th}}$-order, linear, homogeneous, constant-coefficient, autonomous. d) ODE, equation, $2^{\\text{nd}}$-order, linear, nonhomogeneous, constant-coefficient, autonomous. e) ODE, system, $2^{\\text{nd}}$-order, nonlinear. f) PDE, equation, $2^{\\text{nd}}$-order, nonlinear."
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "0.3.102",
+   "source_number": "0.3.102",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "eq-2",
+   "prompt": "<p>Write down the general <em>zero</em>th-order linear ordinary differential equation. Write down the general solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "equation: $a(x) \\ky = b(x)$, solution: $\\ky = \\frac{b(x)}{a(x)}$."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "0.3.103",
+   "source_number": "0.3.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "linear",
+   "prompt": "<p>For which $k$ is $\\kdxdt+\\kx^k = t^{k+2}$ linear? Hint: There are two answers.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$k=0$ or $k=1$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "order-of-a-differential-equation"},
+  {"exercise": "e1", "concept": "linear-differential-equation"},
+  {"exercise": "e1", "concept": "nonlinear-differential-equation"},
+  {"exercise": "e1", "concept": "homogeneous-linear-equation"},
+  {"exercise": "e1", "concept": "constant-coefficient-equation"},
+  {"exercise": "e1", "concept": "autonomous-differential-equation"},
+  {"exercise": "e1", "concept": "system-of-differential-equations"},
+  {"exercise": "e1", "concept": "partial-differential-equation"},
+  {"exercise": "e2", "concept": "system-of-differential-equations"},
+  {"exercise": "e2", "concept": "linear-differential-equation"},
+  {"exercise": "e2", "concept": "partial-differential-equation"},
+  {"exercise": "e3", "concept": "linear-differential-equation"},
+  {"exercise": "e3", "concept": "homogeneous-linear-equation"},
+  {"exercise": "e3", "concept": "constant-coefficient-equation"},
+  {"exercise": "e3", "concept": "autonomous-differential-equation"},
+  {"exercise": "e4", "concept": "order-of-a-differential-equation"},
+  {"exercise": "e4", "concept": "variable-coefficient-equation"},
+  {"exercise": "e4", "concept": "nonhomogeneous-linear-equation"},
+  {"exercise": "e4", "concept": "autonomous-differential-equation"},
+  {"exercise": "e4", "concept": "system-of-differential-equations"},
+  {"exercise": "e101", "concept": "order-of-a-differential-equation"},
+  {"exercise": "e101", "concept": "linear-differential-equation"},
+  {"exercise": "e101", "concept": "nonlinear-differential-equation"},
+  {"exercise": "e101", "concept": "homogeneous-linear-equation"},
+  {"exercise": "e101", "concept": "constant-coefficient-equation"},
+  {"exercise": "e101", "concept": "autonomous-differential-equation"},
+  {"exercise": "e101", "concept": "system-of-differential-equations"},
+  {"exercise": "e101", "concept": "partial-differential-equation"},
+  {"exercise": "e102", "concept": "linear-differential-equation"},
+  {"exercise": "e102", "concept": "order-of-a-differential-equation"},
+  {"exercise": "e103", "concept": "linear-differential-equation"}
+ ],
+ "footnotes": []
+}

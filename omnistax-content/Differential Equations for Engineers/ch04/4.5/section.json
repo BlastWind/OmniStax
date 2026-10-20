@@ -1,0 +1,676 @@
+{
+ "id": "4.5",
+ "module": "appoffourier:section",
+ "chapter": "4",
+ "title": "Applications of Fourier series",
+ "short": "Applications of Fourier series",
+ "lead": "A <span data-concept=\"mass-spring-system\">mass on a spring</span> is pushed by a force that repeats itself without being a simple cosine: a jetpack that fires for a second and rests for a second. This section writes such a force as a <span data-concept=\"fourier-series\">Fourier series</span>, answers each of its <span data-concept=\"harmonic\">harmonics</span> with a harmonic of the motion, and asks what happens when one harmonic sits at the <span data-concept=\"natural-frequency\">natural frequency</span> of the spring.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] section number) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.5.101–4.5.104 carry the book’s own answers, each checked with SymPy. The inline exercise 4.5.1 and exercises 4.5.2–4.5.6, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed coefficient checked with SymPy first. The book’s note that exercises numbered 101 and higher have solutions is the exercises_lead.",
+ "figures": [
+  {
+   "id": "sim-jetpack",
+   "kind": "sim",
+   "number": "4.14",
+   "originals": [
+    "/media/ch04/afs-steadyex.svg",
+    "/media/ch04/massfigforce.svg"
+   ],
+   "original_caption": "Plot of the steady periodic solution xₛₚ of Example 4.5.1.",
+   "draws": [
+    "function",
+    "frequency"
+   ],
+   "facts": [
+    "#f2a33a",
+    "#ffd166"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-harmonic-resonance",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "frequency",
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "setup",
+   "concept": "periodically-forced-oscillation",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-guess",
+   "concept": "steady-periodic-solution-by-fourier-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance-setup",
+   "concept": "resonance-with-periodic-forcing",
+   "verb": "introduces"
+  },
+  {
+   "span": "setup",
+   "concept": "forced-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "setup",
+   "concept": "mass-spring-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "setup",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "steady-periodic",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "steady-periodic",
+   "concept": "complementary-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "steady-periodic",
+   "concept": "complementary-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "steady-periodic",
+   "concept": "particular-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "steady-periodic",
+   "concept": "steady-state-solution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "undamped-form",
+   "concept": "natural-frequency",
+   "verb": "reinforces"
+  },
+  {
+   "span": "series-intro",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "reinforces"
+  },
+  {
+   "span": "series-intro",
+   "concept": "solving-a-boundary-value-problem-by-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-forcing-series",
+   "concept": "fourier-series-with-half-period-l",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-4-5-1",
+   "concept": "steady-periodic-solution-by-fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-5-1",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-5-1",
+   "concept": "periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-5-1",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "jetpack-check",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-jetpack",
+   "concept": "steady-state-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-jetpack",
+   "concept": "resonance-with-periodic-forcing",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-jetpack",
+   "concept": "harmonic",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-setup",
+   "concept": "resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resonance-conflict",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance-conflict",
+   "concept": "method-of-undetermined-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "not-periodic",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "not-periodic",
+   "concept": "resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "overtones-resonance",
+   "concept": "overtones",
+   "verb": "reinforces"
+  },
+  {
+   "span": "overtones-resonance",
+   "concept": "fundamental-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "overtones-resonance",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harmonic-resonance",
+   "concept": "harmonic",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harmonic-resonance",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harmonic-resonance",
+   "concept": "natural-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harmonic-resonance",
+   "concept": "overtones",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-harmonic-resonance",
+   "concept": "resonance-with-periodic-forcing",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-5-2",
+   "concept": "resonance-with-periodic-forcing",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-5-2",
+   "concept": "square-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-5-2",
+   "concept": "periodic-extension",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-5-2",
+   "concept": "particular-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "eats-harmonic",
+   "concept": "harmonic",
+   "verb": "uses"
+  },
+  {
+   "span": "eats-harmonic",
+   "concept": "complementary-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eats-harmonic",
+   "concept": "complementary-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-resonant-term",
+   "concept": "term-by-term-differentiation",
+   "verb": "uses"
+  },
+  {
+   "span": "damped-remark",
+   "concept": "practical-resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "damped-remark",
+   "concept": "resonance",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "resonant-term",
+   "what": "the coefficients of the resonant harmonic",
+   "source": "Differential Equations for Engineers, 4.5 Applications of Fourier series, Example 4.5.2",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A Fourier series may be differentiated term by term when the differentiated series converges, as it does here.",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kxp(t)} = \\mk{a}{a_3 t \\cos (3 \\pi t )} + \\mk{b}{b_3 t \\sin (3 \\pi t)} + \\mk{s}{\\sum_{\\substack{n=1 \\\\ n~\\text{odd} \\\\ n \\neq 3}}^\\infty \\kbn \\sin (n \\pi t)}",
+      "src": "Example 4.5.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{{\\kxp}'(t)} = \\mk{a}{a_3 \\cos (3 \\pi t) - 3 \\pi a_3 \\, t \\sin (3 \\pi t)} + \\mk{b}{b_3 \\sin (3 \\pi t) + 3 \\pi b_3 \\, t \\cos (3 \\pi t)} + \\mk{s}{\\sum_{\\substack{n=1 \\\\ n~\\text{odd} \\\\ n \\neq 3}}^\\infty n \\pi \\kbn \\cos (n \\pi t)}",
+       "uses": [
+        0
+       ],
+       "cap": "The product rule: $(t\\cos(3\\pi t))' = \\cos(3\\pi t) - 3\\pi t\\sin(3\\pi t)$ and $(t\\sin(3\\pi t))' = \\sin(3\\pi t) + 3\\pi t\\cos(3\\pi t)$; the series is differentiated term by term."
+      },
+      {
+       "tex": "\\mk{x}{{\\kxp}''(t)} = \\mk{a}{- 6 a_3 \\pi \\, \\sin (3 \\pi t) - 9\\pi^2 a_3 \\, t \\, \\cos (3 \\pi t)} + \\mk{b}{6 b_3 \\pi \\, \\cos (3 \\pi t) - 9\\pi^2 b_3 \\, t \\, \\sin (3 \\pi t)} + \\mk{s}{\\sum_{\\substack{n=1 \\\\ n~\\text{odd} \\\\ n \\neq 3}}^\\infty (-n^2 \\pi^2 \\kbn ) \\, \\sin (n \\pi t)}",
+       "uses": [
+        0
+       ],
+       "cap": "Differentiating once more, by the product rule again and term by term."
+      }
+     ],
+     "src": "Example 4.5.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "2 \\kxdprime + 18 \\pi^2 \\kx = \\kF(t)",
+       "src": "(4.10)"
+      },
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\mk{x}{\\kxp(t)} = \\mk{a}{a_3 t \\cos (3 \\pi t )} + \\mk{b}{b_3 t \\sin (3 \\pi t)} + \\mk{s}{\\sum_{\\substack{n=1 \\\\ n~\\text{odd} \\\\ n \\neq 3}}^\\infty \\kbn \\sin (n \\pi t)}",
+       "src": "Example 4.5.2"
+      },
+      {
+       "tex": "\\kF(t) = \\sum_{\\substack{n=1 \\\\ n \\text{ odd}}}^\\infty \\frac{4}{\\pi n} \\sin (n \\pi t)",
+       "src": "Example 4.5.2, Exercise 4.5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{2{\\kxp}'' + 18\\pi^2 \\kxp} = \\mk{F}{\\kF(t)}",
+      "src": "(4.10)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{- 12 a_3 \\pi \\sin (3 \\pi t) - 18\\pi^2 a_3 t \\cos (3 \\pi t) + 18 \\pi^2 a_3 t \\cos (3 \\pi t)} + \\mk{b}{12 b_3 \\pi \\cos (3 \\pi t) - 18\\pi^2 b_3 t \\sin (3 \\pi t) + 18 \\pi^2 b_3 t \\sin (3 \\pi t)} + \\mk{s}{\\sum_{\\substack{n=1 \\\\ n~\\text{odd} \\\\ n \\neq 3}}^\\infty (-2n^2 \\pi^2 \\kbn + 18\\pi^2 \\kbn) \\, \\sin (n \\pi t)} = \\mk{F}{\\kF(t)}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "L": [
+         "a",
+         "b",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{a}{- 12 a_3 \\pi \\sin (3 \\pi t)} + \\mk{b}{12 b_3 \\pi \\cos (3 \\pi t)} + \\mk{s}{\\sum_{\\substack{n=1 \\\\ n~\\text{odd} \\\\ n \\neq 3}}^\\infty (-2n^2 \\pi^2 \\kbn + 18\\pi^2 \\kbn) \\sin (n \\pi t)} = \\mk{F}{\\kF(t)}",
+       "uses": [],
+       "cap": "The terms in $t\\cos(3\\pi t)$ and $t\\sin(3\\pi t)$ cancel, because $\\cos(3\\pi t)$ and $\\sin(3\\pi t)$ solve the complementary equation $2x'' + 18\\pi^2 x = 0$; only the terms the product rule brought in survive, and they are what the forcing can be matched against."
+      },
+      {
+       "tex": "\\mk{a}{- 12 a_3 \\pi \\sin (3 \\pi t)} + \\mk{b}{12 b_3 \\pi \\cos (3 \\pi t)} + \\mk{s}{\\sum_{\\substack{n=1 \\\\ n~\\text{odd} \\\\ n \\neq 3}}^\\infty (-2n^2 \\pi^2 \\kbn + 18\\pi^2 \\kbn) \\sin (n \\pi t)} = \\mk{F}{\\sum_{\\substack{n=1 \\\\ n \\text{ odd}}}^\\infty \\frac{4}{\\pi n} \\sin (n \\pi t)}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "src": "Example 4.5.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "Two series in $\\sin(n \\pi t)$ and $\\cos(n \\pi t)$ that are equal for every $t$ have the same coefficients.",
+       "src": "4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{- 12 a_3 \\pi \\sin (3 \\pi t)} + \\mk{b}{12 b_3 \\pi \\cos (3 \\pi t)} + \\mk{s}{\\sum_{\\substack{n=1 \\\\ n~\\text{odd} \\\\ n \\neq 3}}^\\infty (-2n^2 \\pi^2 \\kbn + 18\\pi^2 \\kbn) \\sin (n \\pi t)} = \\mk{F}{\\sum_{\\substack{n=1 \\\\ n \\text{ odd}}}^\\infty \\frac{4}{\\pi n} \\sin (n \\pi t)}",
+      "src": "Example 4.5.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{-12 a_3 \\pi} = \\mk{F3}{\\frac{4}{3\\pi}} , \\qquad \\mk{b}{12 b_3 \\pi} = \\mk{z}{0} , \\qquad \\mk{s}{-2n^2 \\pi^2 \\kbn + 18\\pi^2 \\kbn} = \\mk{F}{\\frac{4}{n\\pi}} \\quad (n \\text{ odd}, \\ n \\neq 3)",
+       "uses": [
+        1
+       ],
+       "map": {
+        "F": [
+         "F3",
+         "z",
+         "F"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{a}{a_3 = \\frac{4/(3\\pi)}{-12\\pi} = \\frac{-1}{9\\pi^2}} , \\qquad \\mk{b}{b_3 = 0} , \\qquad \\mk{s}{\\kbn = \\frac{4}{n\\pi(18\\pi^2 - 2n^2 \\pi^2)} = \\frac{2}{\\pi^3 n(9 - n^2)}} \\quad (n \\text{ odd}, \\ n \\neq 3)",
+       "uses": [],
+       "map": {
+        "F3": "a",
+        "z": "b",
+        "F": "s"
+       }
+      }
+     ],
+     "src": "Example 4.5.2"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "4.5.1",
+   "source_number": "4.5.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "eq-square-forcing"
+   },
+   "cite": "eq-square-forcing",
+   "prompt": "<p>Compute the Fourier series of $\\kF$ to verify the equation above.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kF$ is odd, so $\\kF(t)\\cos(n\\pi t)$ is odd and $\\kcn = \\int_{-1}^1 \\kF(t) \\cos(n\\pi t)\\,dt = 0$ for every $n \\geq 0$, the constant $\\kczero$ included. The product $\\kF(t)\\sin(n\\pi t)$ is even, so $\\kdn = \\int_{-1}^1 \\kF(t)\\sin(n\\pi t)\\,dt = 2\\int_0^1 \\sin(n\\pi t)\\,dt = 2\\left[\\frac{-\\cos(n\\pi t)}{n\\pi}\\right]_{t=0}^1 = \\frac{2\\bigl(1-(-1)^n\\bigr)}{\\pi n}$, which is $\\frac{4}{\\pi n}$ for odd $n$ and $0$ for even $n$. Hence $\\kF(t) = \\sum_{n \\text{ odd}} \\frac{4}{\\pi n}\\sin(n\\pi t)$, as claimed. (This $\\kF$ is also twice the jetpack forcing of Example 4.5.1 less $1$, and $2\\bigl(\\frac{1}{2} + \\sum_{n \\text{ odd}} \\frac{2}{\\pi n}\\sin(n\\pi t)\\bigr) - 1$ is the same series.)"
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "4.5.2",
+   "source_number": "4.5.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-guess",
+   "prompt": "<p>Let $\\kF(t) = \\frac{1}{2} + \\sum_{n=1}^\\infty \\frac{1}{n^2} \\cos (n \\pi t)$. Find the steady periodic solution to $\\kxdprime + 2 \\kx = \\kF(t)$. Express your solution as a Fourier series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $\\komegazero = \\sqrt{2}$ is not a multiple of $\\pi$, no term of $\\kF$ conflicts with the complementary solution. $\\kF$ has only cosines, so try $\\kx = \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\kan \\cos(n\\pi t)$. Plugging in, the constant terms give $2 \\cdot \\frac{\\kazero}{2} = \\frac{1}{2}$, so $\\frac{\\kazero}{2} = \\frac{1}{4}$, and the $\\cos(n\\pi t)$ terms give $\\kan(2 - n^2\\pi^2) = \\frac{1}{n^2}$. Hence $$\\kxsp(t) = \\frac{1}{4} + \\sum_{n=1}^\\infty \\frac{1}{n^2(2 - n^2\\pi^2)} \\cos(n\\pi t) .$$"
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "4.5.3",
+   "source_number": "4.5.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-guess",
+   "prompt": "<p>Let $\\kF(t) = \\sum_{n=1}^\\infty \\frac{1}{n^3} \\sin (n \\pi t)$. Find the steady periodic solution to $\\kxdprime + \\kxprime + \\kx = \\kF(t)$. Express your solution as a Fourier series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With damping there is never a conflict. Try $\\kx = \\sum_{n=1}^\\infty \\bigl[\\kan\\cos(n\\pi t) + \\kbn\\sin(n\\pi t)\\bigr]$ (no constant, as $\\kF$ has none). For the $n$th harmonic, $\\kxdprime + \\kxprime + \\kx$ gives $\\bigl[(1 - n^2\\pi^2)\\kan + n\\pi\\kbn\\bigr]\\cos(n\\pi t) + \\bigl[(1 - n^2\\pi^2)\\kbn - n\\pi\\kan\\bigr]\\sin(n\\pi t)$, which must equal $\\frac{1}{n^3}\\sin(n\\pi t)$. The cosine equation gives $\\kan = \\frac{-n\\pi}{1 - n^2\\pi^2}\\kbn$, and then the sine equation, with $(1 - n^2\\pi^2)^2 + n^2\\pi^2 = n^4\\pi^4 - n^2\\pi^2 + 1$, gives $\\kbn = \\frac{1 - n^2\\pi^2}{n^3(n^4\\pi^4 - n^2\\pi^2 + 1)}$ and $\\kan = \\frac{-\\pi}{n^2(n^4\\pi^4 - n^2\\pi^2 + 1)}$. Hence $$\\kxsp(t) = \\sum_{n=1}^\\infty \\frac{-n\\pi\\cos(n\\pi t) + (1 - n^2\\pi^2)\\sin(n\\pi t)}{n^3(n^4\\pi^4 - n^2\\pi^2 + 1)} .$$"
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "4.5.4",
+   "source_number": "4.5.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-guess",
+   "prompt": "<p>Let $\\kF(t) = \\sum_{n=1}^\\infty \\frac{1}{n^2} \\cos (n \\pi t)$. Find the steady periodic solution to $\\kxdprime + 4 \\kx = \\kF(t)$. Express your solution as a Fourier series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Here $\\komegazero = 2$, not a multiple of $\\pi$, so nothing conflicts. $\\kF$ has only cosines and no constant term, so try $\\kx = \\sum_{n=1}^\\infty \\kan\\cos(n\\pi t)$. Plugging in, $\\kan(4 - n^2\\pi^2) = \\frac{1}{n^2}$, so $$\\kxsp(t) = \\sum_{n=1}^\\infty \\frac{1}{n^2(4 - n^2\\pi^2)} \\cos(n\\pi t) .$$"
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "4.5.5",
+   "source_number": "4.5.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-guess",
+   "prompt": "<p>Let $\\kF(t) = t$ for $-1 &lt; t &lt; 1$ and extended periodically. Find the steady periodic solution to $\\kxdprime + \\kx = \\kF(t)$. Express your solution as a series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kF$ is odd, so its series has only sines, with $\\kdn = \\int_{-1}^1 t\\sin(n\\pi t)\\,dt = 2\\int_0^1 t\\sin(n\\pi t)\\,dt = \\frac{2(-1)^{n+1}}{n\\pi}$ (integration by parts). Since $\\komegazero = 1$ is not a multiple of $\\pi$, try $\\kx = \\sum_{n=1}^\\infty \\kbn\\sin(n\\pi t)$: plugging in gives $\\kbn(1 - n^2\\pi^2) = \\kdn$. Hence $$\\kxsp(t) = \\sum_{n=1}^\\infty \\frac{2(-1)^{n+1}}{n\\pi(1 - n^2\\pi^2)} \\sin(n\\pi t) .$$"
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "4.5.6",
+   "source_number": "4.5.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-resonant-guess",
+   "prompt": "<p>Let $\\kF(t) = t$ for $-1 &lt; t &lt; 1$ and extended periodically. Find the steady periodic solution to $\\kxdprime + \\pi^2 \\kx = \\kF(t)$. Express your solution as a series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "As in Exercise 4.5.5, $\\kF(t) = \\sum_{n=1}^\\infty \\frac{2(-1)^{n+1}}{n\\pi}\\sin(n\\pi t)$. Now $\\komegazero = \\pi = \\frac{1 \\cdot \\pi}{L}$ with $L = 1$: the first harmonic $\\sin(\\pi t)$ of $\\kF$ solves the complementary equation, so there is pure resonance and no steady periodic solution exists. Multiplying the offending term by $t$, try $\\kxp = t\\bigl(a_1\\cos(\\pi t) + b_1\\sin(\\pi t)\\bigr) + \\sum_{n=2}^\\infty \\kbn\\sin(n\\pi t)$. The $t$ terms give $-2\\pi a_1\\sin(\\pi t) + 2\\pi b_1\\cos(\\pi t)$, which must equal $\\frac{2}{\\pi}\\sin(\\pi t)$, so $a_1 = -\\frac{1}{\\pi^2}$ and $b_1 = 0$; for $n \\geq 2$, $\\kbn(\\pi^2 - n^2\\pi^2) = \\frac{2(-1)^{n+1}}{n\\pi}$. Hence $$\\kxp(t) = -\\frac{1}{\\pi^2}\\, t\\cos(\\pi t) + \\sum_{n=2}^\\infty \\frac{2(-1)^{n+1}}{n\\pi^3(1 - n^2)} \\sin(n\\pi t) ,$$ which grows without bound; every solution is this plus $c_1\\cos(\\pi t) + c_2\\sin(\\pi t)$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "4.5.101",
+   "source_number": "4.5.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-guess",
+   "prompt": "<p>Let $\\kF(t) = \\sin(2\\pi t) + 0.1 \\cos(10 \\pi t)$. Find the steady periodic solution to $\\kxdprime + \\sqrt{2}\\, \\kx = \\kF(t)$. Express your solution as a Fourier series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx = \\frac{1}{\\sqrt{2}-4 \\pi^2} \\sin(2\\pi t) + \\frac{0.1}{\\sqrt{2}-100 \\pi^2} \\cos(10 \\pi t)$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "4.5.102",
+   "source_number": "4.5.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-guess",
+   "prompt": "<p>Let $\\kF(t) = \\sum_{n=1}^\\infty e^{-n} \\cos(2 n t)$. Find the steady periodic solution to $\\kxdprime + 3 \\kx = \\kF(t)$. Express your solution as a Fourier series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx = \\sum\\limits_{n=1}^\\infty \\frac{e^{-n}}{3-{(2n)}^2} \\cos(2n t)$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "4.5.103",
+   "source_number": "4.5.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series-guess",
+   "prompt": "<p>Let $\\kF(t) = \\lvert t \\rvert$ for $-1 \\leq t \\leq 1$ extended periodically. Find the steady periodic solution to $\\kxdprime + \\sqrt{3}\\, \\kx = \\kF(t)$. Express your solution as a series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx = \\frac{1}{2\\sqrt{3}} + \\sum\\limits_{\\substack{n=1 \\\\ n \\text{ odd}}}^\\infty \\frac{-4}{n^2 \\pi^2 (\\sqrt{3}-n^2 \\pi^2)} \\cos (n \\pi t)$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "4.5.104",
+   "source_number": "4.5.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-resonant-guess",
+   "prompt": "<p>Let $\\kF(t) = \\lvert t \\rvert$ for $-1 \\leq t \\leq 1$ extended periodically. Find the steady periodic solution to $\\kxdprime + \\pi^2 \\kx = \\kF(t)$. Express your solution as a series.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kx = \\frac{1}{2\\pi^2} - \\frac{2}{\\pi^3} t \\sin(\\pi t) + \\sum\\limits_{\\substack{n=3 \\\\ n \\text{ odd}}}^\\infty \\frac{-4}{n^2 \\pi^4 (1-n^2)} \\cos (n \\pi t)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e1",
+   "concept": "square-wave"
+  },
+  {
+   "exercise": "e2",
+   "concept": "steady-periodic-solution-by-fourier-series"
+  },
+  {
+   "exercise": "e3",
+   "concept": "steady-periodic-solution-by-fourier-series"
+  },
+  {
+   "exercise": "e3",
+   "concept": "periodically-forced-oscillation"
+  },
+  {
+   "exercise": "e4",
+   "concept": "steady-periodic-solution-by-fourier-series"
+  },
+  {
+   "exercise": "e5",
+   "concept": "steady-periodic-solution-by-fourier-series"
+  },
+  {
+   "exercise": "e5",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e6",
+   "concept": "resonance-with-periodic-forcing"
+  },
+  {
+   "exercise": "e6",
+   "concept": "steady-periodic-solution-by-fourier-series"
+  },
+  {
+   "exercise": "e101",
+   "concept": "steady-periodic-solution-by-fourier-series"
+  },
+  {
+   "exercise": "e102",
+   "concept": "steady-periodic-solution-by-fourier-series"
+  },
+  {
+   "exercise": "e103",
+   "concept": "steady-periodic-solution-by-fourier-series"
+  },
+  {
+   "exercise": "e103",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e104",
+   "concept": "resonance-with-periodic-forcing"
+  },
+  {
+   "exercise": "e104",
+   "concept": "fourier-coefficients"
+  }
+ ],
+ "footnotes": []
+}

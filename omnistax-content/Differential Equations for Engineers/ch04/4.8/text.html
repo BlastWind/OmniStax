@@ -1,0 +1,68 @@
+<section id="the-problem">
+<h2>The wave problem</h2>
+<p id="why-dalembert">We have solved the <span data-concept="wave-equation">wave equation</span> by using <span data-concept="fourier-series">Fourier series</span>. But it is often more convenient to use the so-called <em><span data-concept="dalemberts-formula">d’Alembert solution to the wave equation</span></em><sup class="fn" data-note="fn-dalembert"></sup>. While this solution can be derived using <span data-concept="fourier-series">Fourier series</span> as well, it is really an awkward use of those concepts. It is easier and more instructive to derive this solution by making a correct change of variables to get an equation that can be solved by simple integration.</p>
+<p id="problem-setup">Suppose we wish to solve the <span data-concept="wave-equation">wave equation</span></p>
+<div class="equation" id="eq-4-15">$$ \kytt = a^2 \kyxx \tag{4.15}$$</div>
+<p id="side-conditions">in the <span data-type="region">region $0 < x < L$ and $t > 0$</span> subject to the <span data-concept="wave-equation-side-conditions">side conditions</span></p>
+<div class="equation" id="eq-4-16">$$ \begin{array}{ll} \ky(0,t) = \ky(L,t) = 0 & \qquad \text{for } \; t > 0 , \\ \ky(x,0) = \kf(x) & \qquad \text{for } \; 0 < x < L , \\ \kyt(x,0) = \kg(x) & \qquad \text{for } \; 0 < x < L . \end{array} \tag{4.16}$$</div>
+</section>
+
+<section id="change-of-variables">
+<h2>Change of variables</h2>
+<p id="change-variables">We will transform the equation into a simpler form where it can be solved by simple integration. We change variables to $\xi = x - at$, $\eta = x + at$. The <a href="/calculus/ch14/14.5/#14.5-fs-id1167794044156">chain rule</a> says:</p>
+<figure class="dv" id="drv-characteristic-change"></figure>
+<p id="integrate-twice">Therefore, the <span data-concept="wave-equation">wave equation</span> <a href="#eq-4-15">(4.15)</a> transforms into $\kyxieta = 0$. It is easy to find the general solution to this new equation by integrating twice. Keeping $\xi$ constant, we integrate with respect to $\eta$ first<sup class="fn" data-note="fn-eta"></sup> and note that the constant of integration depends on $\xi$; for each $\xi$, we may get a different constant of integration. We get $y_{\xi} = C(\xi)$. Next, we integrate with respect to $\xi$ and note that the constant of integration depends on $\eta$. Thus, $\ky = \int C(\xi) \, d\xi + \kB(\eta)$. The solution must, therefore, be of the following form for some functions $\kA(\xi)$ and $\kB(\eta)$:</p>
+<div class="equation" id="eq-wave-general-solution">$$ \ky = \kA(\xi) + \kB(\eta) = \kA(x-at) + \kB(x+at) . $$</div>
+<p id="two-waves">The solution is a <span data-concept="superposition-for-pdes">superposition</span> of <span data-ref="wave-right wave-left">two functions (waves) traveling at speed $a$ in opposite directions</span>. The coordinates $\xi$ and $\eta$ are called the <em><span data-concept="characteristic-coordinates">characteristic coordinates</span></em>, and a similar technique can be applied to more complicated <span data-concept="classes-of-second-order-pdes">hyperbolic PDEs</span>. In <a href="/diffyqs/ch01/1.9/">§1.9</a> it is used to solve <span data-concept="first-order-linear-pde">first-order linear PDEs</span>. Basically, to solve the <span data-concept="wave-equation">wave equation</span> (or more general <span data-concept="classes-of-second-order-pdes">hyperbolic equations</span>) we find certain <span data-concept="characteristic-curve">characteristic curves</span> along which the equation is really just an <span data-concept="ordinary-differential-equation">ODE</span>, or a pair of <span data-concept="ordinary-differential-equation">ODEs</span>. In this case, these are the curves where $\xi$ and $\eta$ are constant.</p>
+</section>
+
+<section id="dalembert-formula">
+<h2>D’Alembert’s formula</h2>
+<p id="definitions">We know what any solution must look like, but we need to solve for the given <span data-concept="wave-equation-side-conditions">side conditions</span>. We will just give the formula and see that it works. Let $\kF(x)$ denote the <span data-concept="odd-periodic-extension">odd periodic extension</span> of $\kf(x)$, and let $\kG(x)$ denote the <span data-concept="odd-periodic-extension">odd periodic extension</span> of $\kg(x)$. Define</p>
+<div class="equation" id="eq-dalembert-waves">$$ \kA(x) = \frac{1}{2} \kF(x) - \frac{1}{2a} \int_0^x \kG(s) \,ds , \qquad \kB(x) = \frac{1}{2} \kF(x) + \frac{1}{2a} \int_0^x \kG(s) \,ds . $$</div>
+<p id="claim">We claim these $\kA(x)$ and $\kB(x)$ give the solution. Explicitly, the solution is $\ky(x,t) = \kA(x-at) + \kB(x+at)$ or in other words:</p>
+<div class="equation" id="eq-4-17">$$ \boxed{~~ \begin{aligned} \ky(x,t) & = \frac{1}{2} \kF(x-at) - \frac{1}{2a} \int_0^{x-at} \kG(s) \,ds + \frac{1}{2} \kF(x+at) + \frac{1}{2a} \int_0^{x+at} \kG(s) \,ds \\ & = \frac{\kF(x-at) + \kF(x+at)}{2} + \frac{1}{2a} \int_{x-at}^{x+at} \kG(s) \,ds . \end{aligned} ~~} \tag{4.17}$$</div>
+<p id="check-intro">Let us check that the <span data-concept="dalemberts-formula">d’Alembert formula</span> really works.</p>
+<figure class="dv" id="drv-dalembert-check"></figure>
+<p id="voila">And voilà, it works.</p>
+<div class="example" id="ex-4-8-1">
+<h3>Example 4.8.1</h3>
+<p id="impulse-setup">D’Alembert says that the solution is a <span data-concept="superposition-for-pdes">superposition</span> of <span data-ref="wave-right wave-left">two functions (waves) moving in opposite directions at “speed” $a$</span>. To get an idea of how it works, we work out the following example. Consider the simpler setup</p>
+$$ \begin{array}{ll} \kytt = \kyxx & \qquad \text{for } \; 0 < x < 1 \text{ and } t > 0, \\ \ky(0,t) = \ky(1,t) = 0 & \qquad \text{for } \; t > 0, \\ \ky(x,0) = \kf(x) & \qquad \text{for } \; 0 < x < 1, \\ \kyt(x,0) = 0 & \qquad \text{for } \; 0 < x < 1 . \end{array} $$
+<p>Let $\kf(x)$ be the following triangular impulse of height 1 centered at $x=0.5$:</p>
+$$ \kf(x) = \begin{cases} 0 & \text{if } \; \phantom{0.5}0 \leq x < 0.45, \\ 20\,(x-0.45) & \text{if } \; 0.45 \leq x < 0.5, \\ 20\,(0.55-x) & \text{if } \; \phantom{5}0.5 \leq x < 0.55, \\ 0 & \text{if } \; 0.55 \leq x \leq 1 . \end{cases} $$
+<p>The graph of this impulse is the top left plot in Figure 4.24.</p>
+<p id="impulse-solution">Let $\kF(x)$ be the <span data-concept="odd-periodic-extension">odd periodic extension</span> of $\kf(x)$. Then <a href="#eq-4-17">(4.17)</a> says that the solution is</p>
+$$ \ky(x,t) = \frac{\kF(x-t) + \kF(x+t)}{2} . $$
+<p id="impulse-value">It is not hard to compute specific values of $\ky(x,t)$. For example, to compute $\ky(0.1,0.6)$, we notice $x-t = -0.5$ and $x+t = 0.7$. Now $\kF(-0.5) = -\kf(0.5) = - 20\,(0.55 - 0.5) = -1$ and $\kF(0.7) = \kf(0.7) = 0$. Hence $\ky(0.1,0.6) = \frac{-1 + 0}{2} = -0.5$. As you can see, the <span data-concept="dalemberts-formula">d’Alembert solution</span> is much easier to actually compute and to plot than the <span data-concept="fourier-series">Fourier series</span> solution. See Figure 4.24 for plots of the solution $\ky$ for several different $t$.</p>
+<figure class="sim" id="sim-dalembert" data-figure="4.24" data-original="/media/ch04/dalemb-impuls-1-2.svg,/media/ch04/dalemb-impuls-3-4.svg" data-original-caption="Plot of the d’Alembert solution for t = 0, t = 0.2, t = 0.4, and t = 0.6.">
+  <div class="sim-head"><span class="eyebrow">Figure 4.24</span><span>The string of Example 4.8.1 is the sum $\ky = \kA(x - at) + \kB(x + at)$ of <span data-ref="wave-right wave-left">two waves</span>: <span data-ref="wave-right">$\kA(x - at)$, moving right</span>, and <span data-ref="wave-left">$\kB(x + at)$, moving left</span>, each half the <span data-concept="odd-periodic-extension">odd periodic extension</span> $\kF$ of the impulse. Beyond the fixed ends their mirrored, upside-down copies come in, so a bump that reaches an end comes back inverted, as at $t = 0.6$. Below, the $(x, t)$ plane: the corners ride the <span data-concept="characteristic-curve">characteristic lines</span> $x \mp at = \text{constant}$, and the string at $x$ at time $t$ has felt only the initial shape between the feet $x - at$ and $x + at$ of its two <span data-concept="characteristic-curve">characteristics</span>, the <span data-concept="wavefronts">wavefronts</span>. A plucked string (Example 4.7.1) and a struck one (Exercise 4.7.6, with $\kf = 0$ and $\kg = -1$, so the waves are $\mp \kH(x \mp at)/(2a)$) split the same way.</span></div>
+</figure>
+</div>
+</section>
+
+<section id="another-way">
+<h2>Another way to solve for the side conditions</h2>
+<p id="procedure">It is perhaps easier and more useful to remember the procedure rather than memorizing the formula itself. The important thing is that a solution to the <span data-concept="wave-equation">wave equation</span> is a <span data-concept="superposition-for-pdes">superposition</span> of <span data-ref="wave-right wave-left">two waves traveling in opposite directions</span>. That is,</p>
+$$ \ky(x,t) = \kA(x-at) + \kB(x+at) . $$
+<p id="stages">If you think about it, the exact formulas for $\kA$ and $\kB$ are not hard to guess once you realize what kind of <span data-concept="wave-equation-side-conditions">side conditions</span> $\ky(x,t)$ is supposed to satisfy. Let us walk through the formula again, but slightly differently. The best approach is to do it in stages. When $\kg(x) = 0$ (and hence $\kG(x) = 0$), the solution is</p>
+$$ \frac{ \kF(x-at) + \kF(x+at) }{2} . $$
+<p id="h-define">On the other hand, when $\kf(x) = 0$ (and hence $\kF(x) = 0$), we let</p>
+$$ \kH(x) = \int_0^x \kG(s) \,ds . $$
+<p>The solution in this case is</p>
+$$ \frac{1}{2a} \int_{x-at}^{x+at} \kG(s) \,ds = \frac{ -\kH(x-at) + \kH(x+at) }{2a} . $$
+<p id="by-superposition">By <span data-concept="superposition-for-pdes">superposition</span>, we get a solution for the general <span data-concept="wave-equation-side-conditions">side conditions</span> <a href="#eq-4-16">(4.16)</a> (when neither $\kf(x)$ nor $\kg(x)$ are identically zero).</p>
+<div class="equation" id="eq-4-18">$$ \ky(x,t) = \frac{ \kF(x-at) + \kF(x+at) }{2} + \frac{ -\kH(x-at) + \kH(x+at) }{2a} . \tag{4.18}$$</div>
+<p id="minus-sign">Do note the minus sign before the $\kH$ and the $a$ in the second denominator.</p>
+<div class="exercises" data-place="minus-sign"></div>
+<p id="warning"><strong>Warning:</strong> Make sure you use the <span data-concept="odd-periodic-extension">odd periodic extensions</span> $\kF(x)$ and $\kG(x)$, when you have formulas for $\kf(x)$ and $\kg(x)$. The thing is, those formulas in general hold only for $0 < x < L$ and are not usually equal to $\kF(x)$ and $\kG(x)$ for other $x$.</p>
+</section>
+
+<section id="remarks">
+<h2>Some remarks</h2>
+<p id="corners-stay">We remark that the formula $\ky(x,t) = \kA(x-at) + \kB(x+at)$ is the reason why the solution of the <span data-concept="wave-equation">wave equation</span> does not get “nicer” as time goes on, that is, why in the examples where the initial conditions had corners, the solution also has corners at every time $t$.</p>
+<p id="not-differentiable">The corners bring us to another interesting remark. Nobody ever notices at first that our example solutions are not even differentiable (they have corners): In <a href="#ex-4-8-1">Example 4.8.1</a> above, the solution is not differentiable whenever $x=t+0.5$ or $x=-t+0.5$ for example. Really, to be able to compute $\kyxx$ or $\kytt$, you need not one, but two derivatives. Fear not, we could think of a shape that is very nearly $\kF(x)$ but does have two derivatives by rounding the corners a little bit, and then the solution would be very nearly $\frac{\kF(x-t)+\kF(x+t)}{2}$ and nobody would notice the switch.</p>
+<p id="long-string">One final remark is what the <span data-concept="dalemberts-formula">d’Alembert solution</span> tells us about what bits of the initial conditions influence the solution at a certain point. We can figure this out by “traveling backwards along the <span data-concept="characteristic-curve">characteristics</span>.” Suppose that the string is very long (perhaps infinite) for simplicity. Since the solution at time $t$ is</p>
+$$ \ky(x,t) = \frac{\kF(x-at) + \kF(x+at)}{2} + \frac{1}{2a} \int_{x-at}^{x+at} \kG(s) \,ds , $$
+<p id="wavefronts">we notice that we have only used the initial conditions in the interval $[x-at,x+at]$. The endpoints of this interval are called the <em><span data-concept="wavefronts">wavefronts</span></em>, as that is where the wave front is, given an initial ($t=0$) disturbance at $x$. If $a=1$, an observer sitting at $x=0$ at time $t=1$ has only seen the initial conditions for $x$ in the interval $[-1,1]$ and is blissfully unaware of anything else. This is why, for example, we do not know that a supernova has occurred in the universe until we see its light, millions of years from the time when it happened.</p>
+</section>

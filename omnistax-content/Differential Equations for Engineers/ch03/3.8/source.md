@@ -209,7 +209,6 @@ $e^{tA}=\left[ \begin{smallmatrix} 2{e}^{3t}-4{e}^{2t}+3{e}^{t} & \quad \frac{3{
 
 :::exercise {exercise-3-8-103} number=3.8.103 answered=yes src=ch-systems.tex:5860
 PROBLEM:
-[2]
 
 a) Compute $e^{tA}$ where $A=\left[ \begin{smallmatrix} 3 & -1 \\ 1 & 1 \end{smallmatrix}\right]$.
 b) Solve $\vec{x}\,' = A \vec{x}$ for $\vec{x}(0) = \left[ \begin{smallmatrix} 1 \\ 2 \end{smallmatrix}\right]$.

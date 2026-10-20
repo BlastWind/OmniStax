@@ -1,0 +1,945 @@
+{
+ "id": "4.9",
+ "module": "dirich:section",
+ "chapter": "4",
+ "title": "Steady state temperature and the Laplacian",
+ "short": "Steady state and the Laplacian",
+ "lead": "When the temperatures on the edges of a wire or a plate are held fixed, the temperature settles into a <span data-concept=\"steady-state-temperature\">steady state</span>. This section finds that steady state, first along a wire and then over a rectangular plate, where it meets the <span data-concept=\"laplace-operator\">Laplacian</span>, <span data-concept=\"harmonic-function\">harmonic functions</span> and the <span data-concept=\"dirichlet-problem\">Dirichlet problem</span>, solved by <span data-concept=\"separation-of-variables-for-pdes\">separation of variables</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (one lecture, §9.7 in [EP], §10.8 in [BD]) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.9.101 and 4.9.102 carry the book’s own answers. Exercises 4.9.1–4.9.11, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, each checked by computation: every solution substituted into the Laplace equation and its four edge conditions with SymPy, and the centre value of Exercise 4.9.11 summed numerically.",
+ "figures": [
+  {
+   "id": "sim-square-plate",
+   "kind": "sim",
+   "number": "4.25",
+   "originals": [
+    "/media/ch04/dirichsetup.svg",
+    "/media/ch04/dirichsquareplot.svg"
+   ],
+   "original_caption": "Steady state temperature of a square plate, three sides held at zero and one side held at π.",
+   "widths": [],
+   "draws": [
+    "function",
+    "region"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "steady-state",
+   "concept": "steady-state-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "one-variable",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "one-variable",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "u-linear",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "wire",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-steady-state-wire",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "straight-line",
+   "concept": "steady-state-temperature",
+   "verb": "reinforces"
+  },
+  {
+   "span": "two-dimensions",
+   "concept": "two-dimensional-heat-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-dimensions",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-19",
+   "concept": "two-dimensional-heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "laplacian-def",
+   "concept": "laplace-operator",
+   "verb": "introduces"
+  },
+  {
+   "span": "laplacian-def",
+   "concept": "two-dimensional-heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "laplacian-def",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "laplace-equation",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "laplace-equation",
+   "concept": "two-dimensional-heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-laplace",
+   "concept": "laplace-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "laplace-def",
+   "concept": "laplaces-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "laplace-def",
+   "concept": "harmonic-function",
+   "verb": "introduces"
+  },
+  {
+   "span": "laplace-def",
+   "concept": "classes-of-second-order-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "no-hilltop",
+   "concept": "harmonic-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "no-hilltop",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "dirichlet-problem",
+   "concept": "dirichlet-problem",
+   "verb": "introduces"
+  },
+  {
+   "span": "dirichlet-problem",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "four-edges",
+   "concept": "superposing-the-four-edge-problems",
+   "verb": "introduces"
+  },
+  {
+   "span": "four-edges",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "four-edges",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "setup",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-20",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-21",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-22",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-23",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-24",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-square-plate",
+   "concept": "dirichlet-problem-on-a-rectangle",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-square-plate",
+   "concept": "harmonic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-square-plate",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "method",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "try-product",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-laplace",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-laplace",
+   "concept": "eigenvalues-with-zero-endpoint-values",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-laplace",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-laplace",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "building-blocks",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "suppose-series",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "then-solution",
+   "concept": "dirichlet-problem-on-a-rectangle",
+   "verb": "introduces"
+  },
+  {
+   "span": "series-check",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "series-check",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-9-1",
+   "concept": "dirichlet-problem-on-a-rectangle",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-sine-series",
+   "concept": "sine-series",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-sine-series",
+   "concept": "square-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-solution",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "four-problems",
+   "concept": "superposing-the-four-edge-problems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "four-problems",
+   "concept": "superposition-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "four-problems",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "rubber-sheet",
+   "concept": "harmonic-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rubber-sheet",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "separation-laplace",
+   "what": "the building blocks $X_n$ and $Y_n$ of the Dirichlet problem on a rectangle",
+   "source": "Differential Equations for Engineers, 4.9 Steady state temperature and the Laplacian: separation of variables on the rectangle",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\Delta \\ku = \\kuxx + \\kuyy = 0",
+       "src": "(4.20)"
+      },
+      {
+       "tex": "\\ku(x,y) = \\kX(x)\\kY(y)",
+       "src": "4.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{xx}{\\kuxx} + \\mk{yy}{\\kuyy} = \\mk{z}{0}",
+      "src": "(4.20)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xx}{\\kXdprime\\kY} + \\mk{yy}{\\kX\\kYdprime} = \\mk{z}{0}",
+       "uses": [
+        1
+       ],
+       "cap": "Differentiating $\\ku = \\kX\\kY$ twice in $x$ leaves the factor $\\kY(y)$ alone, and twice in $y$ leaves $\\kX(x)$ alone."
+      },
+      {
+       "tex": "- \\mk{xx}{\\frac{\\kXdprime}{\\kX}} = \\mk{yy}{\\frac{\\kYdprime}{\\kY}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{l}{\\klambda} = - \\mk{xx}{\\frac{\\kXdprime}{\\kX}} = \\mk{yy}{\\frac{\\kYdprime}{\\kY}}",
+       "uses": [],
+       "cap": "The left-hand side only depends on $x$ and the right-hand side only depends on $y$. Therefore, there is some constant $\\lambda$ equal to both."
+      },
+      {
+       "tex": "\\mk{xx}{\\kXdprime + \\klambda \\kX} = \\mk{zx}{0} , \\qquad \\mk{yy}{\\kYdprime - \\klambda \\kY} = \\mk{zy}{0}",
+       "uses": [],
+       "map": {
+        "l": [
+         "xx",
+         "yy"
+        ]
+       }
+      }
+     ],
+     "src": "4.9"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\ku(0,y) = 0 , \\qquad \\ku(w,y) = 0",
+       "src": "(4.21), (4.23)"
+      },
+      {
+       "text": "The problem $\\kXdprime + \\klambda \\kX = 0$, $\\kX(0) = 0$, $\\kX(L) = 0$ has a nontrivial solution if and only if $\\klambda = \\frac{n^2 \\pi^2}{L^2}$ for an integer $n \\geq 1$, and the solution is then a multiple of $\\sin \\left( \\frac{n \\pi}{L} x \\right)$.",
+       "src": "4.1, Boundary value problems"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{eq}{\\kXdprime + \\klambda \\kX} = \\mk{z}{0}",
+      "src": "4.9",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{eq}{\\kXdprime + \\klambda \\kX} = \\mk{z}{0} , \\qquad \\mk{bc}{\\kX(0) = \\kX(w) = 0}",
+       "uses": [
+        1
+       ],
+       "cap": "The homogeneous boundary conditions: $\\ku(0,y) = \\kX(0)\\kY(y) = 0$ for every $y$, and $\\kY$ is not identically zero for a nontrivial solution, so $\\kX(0) = 0$; in the same way $\\kX(w) = 0$."
+      },
+      {
+       "tex": "\\mk{l}{\\klambda = \\klambdan = \\frac{n^2 \\pi^2}{w^2}} , \\qquad \\mk{eq}{\\kXn(x) = \\sin \\left( \\frac{n \\pi}{w} x \\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "We have already seen this eigenvalue problem, with $w$ in place of $L$."
+      }
+     ],
+     "src": "4.9"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The general solution of $y'' = k^2 y$ is $y(x) = D_1 \\cosh(kx) + D_2 \\sinh(kx)$.",
+       "src": "0.2, Introduction to differential equations"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{eq}{\\kYdprime - \\klambda \\kY} = \\mk{z}{0}",
+      "src": "4.9",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{eq}{\\kYdprime - \\frac{n^2 \\pi^2}{w^2} \\kY} = \\mk{z}{0}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{eq}{\\kYn(y) = A_n \\cosh \\left( \\frac{n \\pi}{w} y \\right) + B_n \\sinh \\left( \\frac{n \\pi}{w} y \\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "For these given $\\klambdan$ this is $\\kYdprime = k^2 \\kY$ with $k = \\frac{n \\pi}{w}$, one equation for each $n$."
+      }
+     ],
+     "num": "(4.25)",
+     "src": "4.9"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "There is only one condition on $\\kYn$, so we can pick one of $A_n$ or $B_n$ to be something convenient: it will be useful to have $\\kYn(0) = 1$.",
+       "src": "4.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Y}{\\kYn(0)} = \\mk{A}{A_n \\cosh \\left( 0 \\right)} + \\mk{B}{B_n \\sinh \\left( 0 \\right)}",
+      "src": "(4.25)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Y}{\\kYn(0)} = \\mk{A}{A_n}",
+       "uses": [],
+       "cap": "Here $\\cosh 0 = 1$ and $\\sinh 0 = 0$."
+      },
+      {
+       "tex": "\\mk{Y}{1} = \\mk{A}{A_n}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{A}{A_n} = \\mk{Y}{1}",
+       "uses": []
+      }
+     ],
+     "src": "4.9"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\ku(x,h) = 0",
+       "src": "(4.22)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Y}{\\kYn(y)} = \\mk{A}{A_n} \\mk{c}{\\cosh \\left( \\frac{n \\pi}{w} y \\right)} + \\mk{B}{B_n} \\mk{s}{\\sinh \\left( \\frac{n \\pi}{w} y \\right)}",
+      "src": "(4.25)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Y}{\\kYn(y)} = \\mk{c}{\\cosh \\left( \\frac{n \\pi}{w} y \\right)} + \\mk{B}{B_n} \\mk{s}{\\sinh \\left( \\frac{n \\pi}{w} y \\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{Y}{0 = \\kYn(h)} = \\mk{c}{\\cosh \\left( \\frac{n \\pi h}{w} \\right)} + \\mk{B}{B_n} \\mk{s}{\\sinh \\left( \\frac{n \\pi h}{w} \\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "The condition (4.22) says $\\kXn(x)\\kYn(h) = 0$ for every $x$, so $\\kYn(h) = 0$."
+      },
+      {
+       "tex": "\\mk{B}{B_n} = \\frac{- \\mk{c}{\\cosh \\left( \\frac{n \\pi h}{w} \\right)}}{\\mk{s}{\\sinh \\left( \\frac{n \\pi h}{w} \\right)}}",
+       "uses": []
+      }
+     ],
+     "src": "4.9"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      },
+      {
+       "step": 4
+      },
+      {
+       "tex": "\\sinh(\\alpha-\\beta) = \\sinh(\\alpha) \\cosh(\\beta) - \\cosh(\\alpha) \\sinh(\\beta)",
+       "src": "4.9"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Y}{\\kYn(y)} = \\mk{A}{A_n} \\mk{c}{\\cosh \\left( \\frac{n \\pi}{w} y \\right)} + \\mk{B}{B_n} \\mk{s}{\\sinh \\left( \\frac{n \\pi}{w} y \\right)}",
+      "src": "(4.25)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Y}{\\kYn(y)} = \\mk{c}{\\cosh \\left( \\frac{n \\pi}{w} y \\right)} - \\mk{B}{\\frac{\\cosh \\left( \\frac{n \\pi h}{w} \\right)}{\\sinh \\left( \\frac{n \\pi h}{w} \\right)}} \\mk{s}{\\sinh \\left( \\frac{n \\pi}{w} y \\right)}",
+       "uses": [
+        1,
+        2
+       ],
+       "map": {
+        "A": "c"
+       }
+      },
+      {
+       "tex": "\\mk{Y}{\\kYn(y)} = \\frac{\\mk{c}{\\sinh \\left( \\frac{n \\pi h}{w} \\right)\\cosh \\left( \\frac{n \\pi y}{w} \\right)} - \\mk{s}{\\cosh \\left( \\frac{n \\pi h}{w} \\right)\\sinh \\left( \\frac{n \\pi y}{w} \\right)}}{\\mk{d}{\\sinh \\left( \\frac{n \\pi h}{w} \\right)}}",
+       "uses": [],
+       "map": {
+        "B": [
+         "s",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{Y}{\\kYn(y)} = \\frac{\\mk{n}{\\sinh \\left( \\frac{n \\pi (h-y) }{w} \\right)}}{\\mk{d}{\\sinh \\left( \\frac{n \\pi h}{w} \\right)}}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "c": "n",
+        "s": "n"
+       },
+       "cap": "The identity with $\\alpha = \\frac{n \\pi h}{w}$ and $\\beta = \\frac{n \\pi y}{w}$."
+      }
+     ],
+     "src": "4.9"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "4.9.1",
+   "source_number": "4.9.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "then-solution",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; \\pi$ and $0 &lt; y &lt; \\pi$, solve the problem</p>$$ \\Delta \\ku = 0, \\quad \\ku(x,0) = \\sin x, \\quad \\ku(x,\\pi) = 0, \\quad \\ku(0,y) = 0, \\quad \\ku(\\pi,y) = 0 . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = \\sin x \\, \\dfrac{\\sinh(\\pi - y)}{\\sinh \\pi}$. This is the boxed solution with $w = h = \\pi$, so that $\\frac{n\\pi}{w} = n$, and the bottom data $\\kf(x) = \\sin x$ is already its own sine series: $b_1 = 1$ and every other $\\kbn = 0$. Only the term $n = 1$ remains, $\\sin x \\,\\frac{\\sinh(\\pi - y)}{\\sinh \\pi}$. Check: $\\kuxx = -\\ku$ and $\\kuyy = \\ku$, so $\\Delta \\ku = 0$; at $y = 0$ the factor is $1$ and $\\ku = \\sin x$; at $y = \\pi$ it is $\\sinh 0 = 0$; and $\\sin 0 = \\sin \\pi = 0$ on the two sides."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "4.9.2",
+   "source_number": "4.9.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "then-solution",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; 1$ and $0 &lt; y &lt; 1$, solve the problem</p>$$ \\begin{array}{ll} \\kuxx + \\kuyy = 0, &amp; \\\\ \\ku(x,0) = \\sin (\\pi x) - \\sin (2\\pi x), \\quad &amp; \\ku(x,1) = 0, \\\\ \\ku(0,y) = 0, \\quad &amp; \\ku(1,y) = 0 . \\end{array} $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = \\sin(\\pi x)\\,\\dfrac{\\sinh\\bigl(\\pi(1-y)\\bigr)}{\\sinh \\pi} - \\sin(2\\pi x)\\,\\dfrac{\\sinh\\bigl(2\\pi(1-y)\\bigr)}{\\sinh(2\\pi)}$. With $w = h = 1$ the building blocks are $\\kun(x,y) = \\sin(n\\pi x)\\,\\frac{\\sinh(n\\pi(1-y))}{\\sinh(n\\pi)}$, and the bottom data is already a sine series with $b_1 = 1$, $b_2 = -1$ and all other $\\kbn = 0$, so $\\ku = \\ku_1 - \\ku_2$. Check: each term is harmonic ($\\kuxx = -n^2\\pi^2 \\ku_n = -\\kuyy$ term by term), vanishes at $x = 0$, $x = 1$ and $y = 1$, and at $y = 0$ the sum is $\\sin(\\pi x) - \\sin(2\\pi x)$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "4.9.3",
+   "source_number": "4.9.3",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "no-hilltop",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; 1$ and $0 &lt; y &lt; 1$, solve the problem</p>$$ \\begin{align*} &amp; \\kuxx + \\kuyy = 0, \\\\ &amp; \\ku(x,0) = \\ku(x,1) = \\ku(0,y) = \\ku(1,y) = C . \\end{align*} $$<p>for some constant $C$. Hint: Guess, then check your intuition.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = C$. A plate whose four edges are all held at the temperature $C$ stays at $C$ everywhere. Check: a constant has $\\kuxx = \\kuyy = 0$, and it equals $C$ on every edge. It also agrees with the intuition of the section: a harmonic function has no hilltop or valley inside, so with all the boundary values equal to $C$ the solution can be neither above nor below $C$ anywhere."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "4.9.4",
+   "source_number": "4.9.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "laplace-def",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; \\pi$ and $0 &lt; y &lt; \\pi$, solve</p>$$ \\Delta \\ku = 0, \\quad \\ku(x,0) = 0, \\quad \\ku(x,\\pi) = \\pi, \\quad \\ku(0,y) = y, \\quad \\ku(\\pi,y) = y . $$<p>Hint: Try a solution of the form $\\ku(x,y) = \\kX(x) + \\kY(y)$ (different separation of variables).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = y$. With $\\ku = \\kX(x) + \\kY(y)$, the condition $\\ku(x,0) = \\kX(x) + \\kY(0) = 0$ for every $x$ says $\\kX$ is the constant $c = -\\kY(0)$. Then $\\ku(0,y) = c + \\kY(y) = y$ gives $\\kY(y) = y - c$, so $\\ku = c + (y - c) = y$. Check: $\\Delta \\ku = \\kXdprime + \\kYdprime = 0 + 0 = 0$, $\\ku(x,0) = 0$, $\\ku(x,\\pi) = \\pi$, and $\\ku(0,y) = \\ku(\\pi,y) = y$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "4.9.5",
+   "source_number": "4.9.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-problems",
+   "prompt": "<p>Use the solution of Exercise 4.9.4 to solve</p>$$ \\Delta \\ku = 0, \\quad \\ku(x,0) = \\sin x, \\quad \\ku(x,\\pi) = \\pi, \\quad \\ku(0,y) = y, \\quad \\ku(\\pi,y) = y . $$<p>Hint: Use superposition.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = y + \\sin x\\,\\dfrac{\\sinh(\\pi - y)}{\\sinh \\pi}$. By superposition, add the solution $y$ of Exercise 4.9.4 (bottom $0$, top $\\pi$, sides $y$) and the solution $\\sin x \\, \\frac{\\sinh(\\pi - y)}{\\sinh \\pi}$ of Exercise 4.9.1 (bottom $\\sin x$, the other three edges $0$). Both are harmonic, so the sum is, and its edge values add: bottom $0 + \\sin x$, top $\\pi + 0$, sides $y + 0$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "4.9.6",
+   "source_number": "4.9.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drv-separation-laplace",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; w$ and $0 &lt; y &lt; h$, solve the problem</p>$$ \\begin{array}{ll} \\kuxx + \\kuyy = 0, &amp; \\\\ \\ku(x,0) = 0, \\quad &amp; \\ku(x,h) = \\kf(x), \\\\ \\ku(0,y) = 0, \\quad &amp; \\ku(w,y) = 0. \\end{array} $$<p>The solution should be in series form using the Fourier-series coefficients of $\\kf(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = \\displaystyle\\sum_{n=1}^\\infty \\kbn \\sin \\left( \\frac{n \\pi}{w} x \\right) \\frac{\\sinh \\left( \\frac{n \\pi y}{w} \\right)}{\\sinh \\left( \\frac{n \\pi h}{w} \\right)}$, where $\\kf(x) = \\sum \\kbn \\sin\\left(\\frac{n\\pi x}{w}\\right)$, that is $\\kbn = \\frac{2}{w}\\int_0^w \\kf(x) \\sin\\left(\\frac{n\\pi x}{w}\\right)dx$. Separation of variables goes as in the section: $\\kXn(x) = \\sin\\left(\\frac{n\\pi}{w}x\\right)$ with $\\klambdan = \\frac{n^2\\pi^2}{w^2}$, but now the homogeneous condition is $\\kY(0) = 0$, so $\\kYn$ is a multiple of $\\sinh\\left(\\frac{n\\pi y}{w}\\right)$, scaled so that $\\kYn(h) = 1$. Equivalently, replace $y$ by $h - y$ in the boxed solution, which turns the plate upside down. Each term is harmonic, vanishes on the bottom and the two sides, and at $y = h$ the series is the sine series of $\\kf$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "4.9.7",
+   "source_number": "4.9.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drv-separation-laplace",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; w$ and $0 &lt; y &lt; h$, solve the problem</p>$$ \\begin{array}{ll} \\kuxx + \\kuyy = 0, &amp; \\\\ \\ku(x,0) = 0, \\quad &amp; \\ku(x,h) = 0, \\\\ \\ku(0,y) = \\kf(y), \\quad &amp; \\ku(w,y) = 0. \\end{array} $$<p>The solution should be in series form using the Fourier-series coefficients of $\\kf(y)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = \\displaystyle\\sum_{n=1}^\\infty \\kbn \\sin \\left( \\frac{n \\pi}{h} y \\right) \\frac{\\sinh \\left( \\frac{n \\pi (w-x)}{h} \\right)}{\\sinh \\left( \\frac{n \\pi w}{h} \\right)}$, with $\\kbn = \\frac{2}{h}\\int_0^h \\kf(y) \\sin\\left(\\frac{n\\pi y}{h}\\right)dy$, the sine coefficients of $\\kf$ on $[0,h]$. The roles of $x$ and $y$ swap: now $\\kY(0) = \\kY(h) = 0$, so $\\kYdprime + \\lambda\\kY = 0$ gives $\\lambda_n = \\frac{n^2\\pi^2}{h^2}$ and $\\kYn(y) = \\sin\\left(\\frac{n\\pi}{h}y\\right)$, while $\\kXdprime - \\lambda_n\\kX = 0$ with $\\kX(w) = 0$ and $\\kX(0) = 1$ gives, by the same sinh identity, $\\kXn(x) = \\frac{\\sinh(n\\pi(w-x)/h)}{\\sinh(n\\pi w/h)}$. Each term is harmonic and zero on the top, bottom and right edges, and at $x = 0$ the series is the sine series of $\\kf(y)$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "4.9.8",
+   "source_number": "4.9.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drv-separation-laplace",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; w$ and $0 &lt; y &lt; h$, solve the problem</p>$$ \\begin{array}{ll} \\kuxx + \\kuyy = 0, &amp; \\\\ \\ku(x,0) = 0, \\quad &amp; \\ku(x,h) = 0, \\\\ \\ku(0,y) = 0, \\quad &amp; \\ku(w,y) = \\kf(y). \\end{array} $$<p>The solution should be in series form using the Fourier-series coefficients of $\\kf(y)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = \\displaystyle\\sum_{n=1}^\\infty \\kbn \\sin \\left( \\frac{n \\pi}{h} y \\right) \\frac{\\sinh \\left( \\frac{n \\pi x}{h} \\right)}{\\sinh \\left( \\frac{n \\pi w}{h} \\right)}$, with $\\kbn = \\frac{2}{h}\\int_0^h \\kf(y) \\sin\\left(\\frac{n\\pi y}{h}\\right)dy$. As in Exercise 4.9.7 the eigenfunctions are $\\sin\\left(\\frac{n\\pi}{h}y\\right)$ in $y$, but now $\\kX(0) = 0$, so $\\kXn$ is a multiple of $\\sinh\\left(\\frac{n\\pi x}{h}\\right)$, scaled so that $\\kXn(w) = 1$ (equivalently, replace $x$ by $w - x$ in the answer to Exercise 4.9.7). Each term is harmonic and zero on the top, bottom and left edges, and at $x = w$ the series is the sine series of $\\kf(y)$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "4.9.9",
+   "source_number": "4.9.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-problems",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; 1$ and $0 &lt; y &lt; 1$, solve the problem</p>$$ \\begin{array}{ll} \\kuxx + \\kuyy = 0, &amp; \\\\ \\ku(x,0) = \\sin (9 \\pi x), \\quad &amp; \\ku(x,1) = \\sin (2 \\pi x), \\\\ \\ku(0,y) = 0, \\quad &amp; \\ku(1,y) = 0 . \\end{array} $$<p>Hint: Use superposition.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = \\sin(9\\pi x)\\,\\dfrac{\\sinh\\bigl(9\\pi(1-y)\\bigr)}{\\sinh(9\\pi)} + \\sin(2\\pi x)\\,\\dfrac{\\sinh(2\\pi y)}{\\sinh(2\\pi)}$. Split the problem in two. With the top at $0$ and the bottom at $\\sin(9\\pi x)$, the boxed solution with $w = h = 1$ has the single coefficient $b_9 = 1$. With the bottom at $0$ and the top at $\\sin(2\\pi x)$, Exercise 4.9.6 has the single coefficient $b_2 = 1$. Their sum is harmonic, zero on both sides, $\\sin(9\\pi x) + 0$ at $y = 0$ and $0 + \\sin(2\\pi x)$ at $y = 1$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "4.9.10",
+   "source_number": "4.9.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-problems",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; 1$ and $0 &lt; y &lt; 1$, solve the problem</p>$$ \\begin{align*} &amp; \\kuxx + \\kuyy = 0, \\\\ &amp; \\ku(x,0) = \\sin (\\pi x), \\quad \\ku(x,1) = \\sin (\\pi x), \\\\ &amp; \\ku(0,y) = \\sin (\\pi y), \\quad \\ku(1,y) = \\sin (\\pi y) . \\end{align*} $$<p>Hint: Use superposition.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(x,y) = \\sin(\\pi x)\\,\\dfrac{\\sinh\\bigl(\\pi(1-y)\\bigr) + \\sinh(\\pi y)}{\\sinh \\pi} + \\sin(\\pi y)\\,\\dfrac{\\sinh\\bigl(\\pi(1-x)\\bigr) + \\sinh(\\pi x)}{\\sinh \\pi}$, which can also be written $\\ku = \\frac{\\sin(\\pi x)\\cosh(\\pi(y - 1/2)) + \\sin(\\pi y)\\cosh(\\pi(x - 1/2))}{\\cosh(\\pi/2)}$. Solve four problems, each with one edge carrying its data and the other three at $0$: the bottom by the boxed solution, the top by Exercise 4.9.6, the left side by Exercise 4.9.7 and the right side by Exercise 4.9.8, each with the single coefficient $b_1 = 1$ ($w = h = 1$). Their sum is harmonic, and on each edge exactly one of the four terms is nonzero (the others vanish since $\\sin 0 = \\sin \\pi = 0$ and $\\sinh 0 = 0$), giving $\\sin(\\pi x)$ on the bottom and the top and $\\sin(\\pi y)$ on the sides."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "4.9.11",
+   "source_number": "4.9.11",
+   "kind": "exercise",
+   "bloom": "Evaluate",
+   "tag": "challenging",
+   "place": {
+    "at": "end"
+   },
+   "cite": "four-edges",
+   "prompt": "<p>Using only your intuition find $\\ku({1}/{2},{1}/{2})$, for the problem $\\Delta \\ku = 0$, where $\\ku(0,y) = \\ku(1,y) = 100$ for $0 &lt; y &lt; 1$, and $\\ku(x,0) = \\ku(x,1) = 0$ for $0 &lt; x &lt; 1$. Explain.</p>",
+   "answer": {
+    "type": "number",
+    "value": 50,
+    "generated_by": "ai",
+    "solution": "$\\ku(1/2, 1/2) = 50$. Turn the square a quarter turn: the problem $v$ with $100$ on the top and bottom and $0$ on the sides has the same value at the centre as $\\ku$, since the centre stays where it is and the square looks the same. Now add the two: $\\ku + v$ is harmonic and equals $100$ on all four edges, so by superposition and Exercise 4.9.3, $\\ku + v = 100$ everywhere. At the centre $\\ku = v$, so $2\\ku(1/2,1/2) = 100$ and $\\ku(1/2,1/2) = 50$. Summing the series solution (the side problems of Exercises 4.9.7 and 4.9.8 with $f(y) = 100$) at the centre gives $50$ as well."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "4.9.101",
+   "source_number": "4.9.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "then-solution",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; 1$ and $0 &lt; y &lt; 1$, solve the problem</p>$$ \\Delta \\ku = 0, \\quad \\ku(x,0) = \\sum_{n=1}^\\infty \\frac{1}{n^2} \\sin (n \\pi x), \\quad \\ku(x,1) = 0, \\quad \\ku(0,y) = 0, \\quad \\ku(1,y) = 0 . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ku(x,y) = \\sum\\limits_{n=1}^\\infty \\frac{1}{n^2} \\sin ( n \\pi x ) \\left( \\frac{\\sinh ( n \\pi (1-y) )}{\\sinh ( n \\pi )} \\right)$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "4.9.102",
+   "source_number": "4.9.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "then-solution",
+   "prompt": "<p>In the region described by $0 &lt; x &lt; 1$ and $0 &lt; y &lt; 2$, solve the problem</p>$$ \\Delta \\ku = 0, \\quad \\ku(x,0) = 0.1 \\sin (\\pi x), \\quad \\ku(x,2) = 0, \\quad \\ku(0,y) = 0, \\quad \\ku(1,y) = 0 . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ku(x,y) = 0.1 \\sin ( \\pi x ) \\left( \\frac{\\sinh ( \\pi (2-y) )} {\\sinh ( 2 \\pi )} \\right)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  },
+  {
+   "exercise": "e2",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  },
+  {
+   "exercise": "e2",
+   "concept": "superposition-for-pdes"
+  },
+  {
+   "exercise": "e3",
+   "concept": "harmonic-function"
+  },
+  {
+   "exercise": "e3",
+   "concept": "dirichlet-problem"
+  },
+  {
+   "exercise": "e4",
+   "concept": "laplaces-equation"
+  },
+  {
+   "exercise": "e4",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e5",
+   "concept": "superposition-for-pdes"
+  },
+  {
+   "exercise": "e5",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  },
+  {
+   "exercise": "e6",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  },
+  {
+   "exercise": "e6",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e7",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  },
+  {
+   "exercise": "e7",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e8",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  },
+  {
+   "exercise": "e8",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e9",
+   "concept": "superposing-the-four-edge-problems"
+  },
+  {
+   "exercise": "e9",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  },
+  {
+   "exercise": "e10",
+   "concept": "superposing-the-four-edge-problems"
+  },
+  {
+   "exercise": "e10",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  },
+  {
+   "exercise": "e11",
+   "concept": "superposing-the-four-edge-problems"
+  },
+  {
+   "exercise": "e11",
+   "concept": "harmonic-function"
+  },
+  {
+   "exercise": "e101",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  },
+  {
+   "exercise": "e102",
+   "concept": "dirichlet-problem-on-a-rectangle"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-laplace",
+   "kind": "book",
+   "number": "21",
+   "html": "Named after the French mathematician <a href=\"https://en.wikipedia.org/wiki/Laplace\">Pierre-Simon, marquis de Laplace</a> (1749–1827)."
+  },
+  {
+   "id": "fn-dirichlet",
+   "kind": "book",
+   "number": "22",
+   "html": "Named after the German mathematician <a href=\"https://en.wikipedia.org/wiki/Dirichlet\">Johann Peter Gustav Lejeune Dirichlet</a> (1805–1859)."
+  }
+ ]
+}

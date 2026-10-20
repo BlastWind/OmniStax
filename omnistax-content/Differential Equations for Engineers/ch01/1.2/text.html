@@ -1,0 +1,68 @@
+<p id="general-form">As we said, the general <span data-concept="first-order-differential-equation">first-order equation</span> we are studying looks like</p>
+$$ \kyprime = \kf(x,\ky). $$
+<p>Frequently, we cannot simply solve these kinds of equations explicitly. It would be nice if we could at least figure out the shape and behavior of the <span data-concept="solution-to-a-differential-equation">solutions</span>, or find approximate <span data-concept="solution-to-a-differential-equation">solutions</span>.</p>
+
+<section id="slope-fields">
+<h2>Slope fields</h2>
+<p id="slope-at-a-point">The equation $\kyprime = \kf(x,\ky)$ gives you a slope at each point in the $(x,y)$-plane. And this is the slope a <span data-concept="solution-to-a-differential-equation">solution</span> $\ky(x)$ would have at $x$ if its value was $\ky$. In other words, $\kf(x,\ky)$ is the slope of a <span data-concept="solution-to-a-differential-equation">solution</span> whose graph runs through the point $(x,y)$. At a point $(x,y)$, we draw a short line with the slope $\kf(x,\ky)$. For example, if $\kf(x,\ky) = x\ky$, then at point $(2,1.5)$ we draw a short line of slope $x\ky = 2 \times 1.5 = 3$. If $\ky(x)$ is a <span data-concept="solution-to-a-differential-equation">solution</span> and $\ky(2) = 1.5$, then the equation mandates that $\kyprime(2) = 3$. See Figure 1.2.</p>
+<p id="slope-field-def">To get an idea of how <span data-concept="solution-to-a-differential-equation">solutions</span> behave, we draw such lines at lots of points in the plane, not just the point $(2,1.5)$. We would ideally want to see the slope at every point, but that is just not possible. Usually we pick a grid of points fine enough so that it shows the behavior, but not too fine so that we can still recognize the individual lines. We call this picture the <em><span data-concept="direction-field">slope field</span></em> of the equation. See Figure 1.3 for the <span data-concept="direction-field">slope field</span> of the equation $\kyprime = x\ky$. In practice, one does not do this by hand; a computer can do the drawing.</p>
+<p id="sketching-solutions">Suppose we are given a specific <span data-concept="initial-value">initial condition</span> $\ky(x_0) = y_0$. A <span data-concept="solution-to-a-differential-equation">solution</span>, that is, the graph of the <span data-concept="solution-to-a-differential-equation">solution</span>, would be a curve that follows the slopes we drew. For a few sample <span data-concept="solution-to-a-differential-equation">solutions</span>, see Figure 1.4. It is easy to roughly <span data-concept="reading-a-slope-field">sketch (or at least imagine) possible solutions</span> in the <span data-concept="direction-field">slope field</span>, just from looking at the <span data-concept="direction-field">slope field</span> itself. You simply sketch a line that roughly fits the little line segments and goes through your <span data-concept="initial-value">initial condition</span>.</p>
+<figure class="sim" id="sim-slope-xy" data-figure="1.2 + 1.3 + 1.4" data-original="/media/ch01/1-3-xysl-one.svg,/media/ch01/1-3-xysl.svg,/media/ch01/1-3-xysl-sol.svg" data-original-caption="(Figure 1.2) The slope y′ = xy at (2, 1.5). (Figure 1.3) Slope field of y′ = xy. (Figure 1.4) Slope field of y′ = xy with a graph of solutions satisfying y(0) = 0.2, y(0) = 0, and y(0) = −0.2." data-original-width="432,432,432">
+  <div class="sim-head"><span class="eyebrow">Figure 1.2 + 1.3 + 1.4</span><span>The <span data-concept="direction-field">slope field</span> of $\kyprime = x\ky$: at every point a short line of slope $x\ky$, and through the point $(x_0, y_0)$ the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky = y_0 e^{(x^2 - x_0^2)/2}$ that follows those lines out both ways. The three solutions with $\ky(0) = 0.2$, $0$ and $-0.2$ stay for comparison, wherever the point sits in the field.</span></div>
+</figure>
+<p id="reading-behavior">By looking at the <span data-concept="direction-field">slope field</span>, we get a lot of information about the behavior of <span data-concept="solution-to-a-differential-equation">solutions</span> without having to solve the equation. For example, in Figure 1.4 we see what the <span data-concept="solution-to-a-differential-equation">solutions</span> do when the <span data-concept="initial-value">initial conditions</span> are $\ky(0) &gt; 0$, $\ky(0) = 0$, and $\ky(0) &lt; 0$. A small change in the <span data-concept="initial-value">initial condition</span> causes quite different behavior. We see this behavior just from the <span data-concept="direction-field">slope field</span> and imagining what <span data-concept="solution-to-a-differential-equation">solutions</span> ought to do.</p>
+<p id="decay-field">We see a different behavior for the equation $\kyprime = -\ky$. For the <span data-concept="direction-field">slope field</span> and a few <span data-concept="solution-to-a-differential-equation">solutions</span>, see Figure 1.5. If we think of moving from left to right (perhaps $x$ is time and time is usually increasing), then we see that no matter what $\ky(0)$ is, all <span data-concept="solution-to-a-differential-equation">solutions</span> tend to zero as $x$ tends to infinity. Again that behavior is clear from simply looking at the <span data-concept="direction-field">slope field</span> itself.</p>
+<figure class="sim" id="fig-decay-field" data-figure="1.5" data-original="/media/ch01/1-3-mysl-sol.svg" data-original-caption="Slope field of y′ = −y with a graph of a few solutions." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 1.5</span><span>The <span data-concept="direction-field">slope field</span> of $\kyprime = -\ky$ and three <span data-concept="solution-to-a-differential-equation">solutions</span> starting at the left edge: every slope points toward the $x$-axis, so whatever $\ky(-3)$ is, the solution tends to zero as $x$ grows.</span></div>
+</figure>
+</section>
+
+<section id="existence">
+<h2>Existence and uniqueness</h2>
+<p id="two-questions">It seems that if we want a <span data-concept="solution-to-a-differential-equation">solution</span> starting at some point, we could just follow the <span data-concept="direction-field">slope field</span>. With that in mind, we wish to ask two fundamental questions about the problem</p>
+$$ \kyprime = \kf(x,\ky), \qquad \ky(x_0) = y_0. $$
+<ol type="i">
+<li>Does a <span data-concept="solution-to-a-differential-equation">solution</span> <em>exist</em>?</li>
+<li>Is the <span data-concept="solution-to-a-differential-equation">solution</span> <em>unique</em> (if it exists)?</li>
+</ol>
+<p>What do you think is the answer? The answer to both questions seems to be yes, does it not? Well, it really is yes most of the time. But there are cases when the answer to either question can be no.</p>
+<p id="deterministic">Since the equations we encounter in applications come from real life situations, it seems logical that a <span data-concept="solution-to-a-differential-equation">solution</span> always exists. It also has to be unique if we believe our universe is deterministic. If the <span data-concept="solution-to-a-differential-equation">solution</span> does not exist, or if it is not unique, we have probably not devised the correct model. Hence, it is good to know when things go wrong and why.</p>
+<div class="example" id="ex-1-2-1">
+<h3>Example 1.2.1</h3>
+<p>Attempt to solve:</p>
+$$ \kyprime = \frac{1}{x}, \qquad \ky(0) = 0 . $$
+<p>Integrate to find the <span data-concept="general-solution">general solution</span> $\ky = \ln \, \lvert x \rvert + C$. The <span data-concept="solution-to-a-differential-equation">solution</span> does not exist at $x=0$. See Figure 1.6. You may say one can see the division by zero a mile away, but the equation may have been written as the seemingly harmless $x \kyprime = 1$.</p>
+<figure class="sim" id="fig-reciprocal-field" data-figure="1.6" data-original="/media/ch01/1-3-xinv-sol.svg" data-original-caption="Slope field of y′ = 1/x." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 1.6</span><span>The <span data-concept="direction-field">slope field</span> of $\kyprime = 1/x$ with the <span data-concept="solution-to-a-differential-equation">solutions</span> $\ky = \ln\,\lvert x \rvert + C$ on either side of the $y$-axis, where no slope is defined: every solution falls away as $x$ nears $0$, and none passes through $(0, 0)$.</span></div>
+</figure>
+</div>
+<div class="example" id="ex-1-2-2">
+<h3>Example 1.2.2</h3>
+<p>Solve:</p>
+$$ \kyprime = 2 \sqrt{\lvert \ky \rvert}, \qquad \ky(0) = 0 . $$
+<p>See Figure 1.7. Note that $\ky=0$ is a <span data-concept="solution-to-a-differential-equation">solution</span>. But another <span data-concept="solution-to-a-differential-equation">solution</span> is the function</p>
+$$ \ky(x) = \begin{cases} x^2 &amp; \text{if } \; x \geq 0,\\ -x^2 &amp; \text{if } \; x &lt; 0. \end{cases} $$
+<figure class="sim" id="sim-nonunique" data-figure="1.7" data-original="/media/ch01/1-3-sqrt-sol.svg" data-original-caption="Slope field of y′ = 2√|y| with two solutions satisfying y(0) = 0." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 1.7</span><span>The <span data-concept="direction-field">slope field</span> of $\kyprime = 2\sqrt{\lvert \ky \rvert}$ and two <span data-concept="solution-to-a-differential-equation">solutions</span> through $(0, 0)$: $\ky = 0$ and the one that leaves the axis at the origin. A third joins the $x$-axis at $x = b$ and leaves it at $x = a$, and every choice of the two junctions is another solution through the origin that follows the field.</span></div>
+</figure>
+</div>
+<p id="picard-intro">It is hard to tell by staring at the <span data-concept="direction-field">slope field</span> that the <span data-concept="solution-to-a-differential-equation">solution</span> is not unique. Is there any hope? Of course there is. We have the following theorem, known as <span data-concept="picards-theorem">Picard’s theorem</span><sup class="fn" data-note="fn-picard"></sup>.</p>
+<div class="note" id="thm-1-2-1">
+<div class="eyebrow">Theorem 1.2.1</div>
+<h3><span data-concept="picards-theorem">Picard’s theorem on existence and uniqueness</span></h3>
+<p>If $\kf(x,\ky)$ is <a href="/calculus/ch14/14.2/">continuous</a> (as a function of two variables) and <a href="/calculus/ch14/14.3/">$\kpfy$</a> exists and is continuous near some $(x_0,y_0)$, then a <span data-concept="solution-to-a-differential-equation">solution</span> to</p>
+$$ \kyprime = \kf(x,\ky), \qquad \ky(x_0) = y_0, $$
+<p>exists (at least for $x$ in some small interval) and is unique.</p>
+</div>
+<p id="picard-hypothesis">Note that the problems $\kyprime = {1}/{x}$, $\ky(0) = 0$ and $\kyprime = 2 \sqrt{\lvert \ky \rvert}$, $\ky(0) = 0$ do not satisfy the hypothesis of the theorem. Even if we can use the theorem, we ought to be careful about this existence business. It is quite possible that the <span data-concept="solution-to-a-differential-equation">solution</span> only exists for a short while.</p>
+<div class="example" id="ex-1-2-3">
+<h3>Example 1.2.3</h3>
+<p>For some constant $A$, solve:</p>
+$$ \kyprime = \ky^2, \qquad \ky(0) = A . $$
+<p>We know how to solve this equation. First assume that $A \neq 0$, so $\ky$ is not equal to zero at least for some $x$ near 0. So $\kxprime = {1}/{\ky^2}$, so $x = {-1}/{\ky} + C$, so $\ky = \frac{1}{C-x}$. If $\ky(0) = A$, then $C = {1}/{A}$ so</p>
+$$ \ky = \frac{1}{{1}/{A} - x} . $$
+<p>If $A=0$, then $\ky=0$ is a <span data-concept="solution-to-a-differential-equation">solution</span>.</p>
+<p>For instance, when $A=1$ the <span data-concept="solution-to-a-differential-equation">solution</span> “<span data-concept="interval-of-existence">blows up</span>” at $x=1$. Hence, the <span data-concept="solution-to-a-differential-equation">solution</span> does not exist for all $x$ even if the equation itself is nice everywhere—it only exists in the interval $(-\infty,1)$. The equation $\kyprime = \ky^2$ certainly looks nice.</p>
+</div>
+<p id="global">For most of this course, we will be interested in equations where <span data-concept="picards-theorem">existence and uniqueness</span> hold, and in fact hold “globally” unlike for the equation $\kyprime=\ky^2$.</p>
+</section>

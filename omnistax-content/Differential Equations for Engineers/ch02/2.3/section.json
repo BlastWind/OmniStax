@@ -1,0 +1,408 @@
+{
+ "id": "2.3",
+ "module": "sec:hol",
+ "chapter": "2",
+ "title": "Higher-order linear ODEs",
+ "short": "Higher-order linear ODEs",
+ "lead": "What the last two sections said about second-order linear equations carries over to <span data-concept=\"higher-order-linear-equation\">linear equations of any order</span> $n$, with two <span data-concept=\"solution-to-a-differential-equation\">solutions</span> replaced by $n$. This section states those results for the general homogeneous equation of order $n$, works out what <span data-concept=\"linear-independence-of-several-functions\">linear independence</span> means for more than two functions, and solves <span data-concept=\"constant-coefficient-equation\">constant-coefficient</span> equations of higher order, including those whose roots are repeated or complex.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": []
+ },
+ "built": "2026-10-19",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 2.3.101–2.3.106 carry the book’s own answers. The book answers no exercise below 101; each of 2.3.1–2.3.11 carries an AI-marked solution stating the answer and the reasoning, every computed value checked with SymPy first. The yes-or-no independence questions are answered as a choice with the combination or the argument beneath.",
+ "figures": [],
+ "referents": [],
+ "coverage": [
+  {"span": "hol-general", "concept": "higher-order-linear-equation", "verb": "introduces"},
+  {"span": "thm-2-3-1", "concept": "superposition-for-higher-order-equations", "verb": "introduces"},
+  {"span": "thm-2-3-2", "concept": "existence-and-uniqueness-for-higher-order-linear-equations", "verb": "introduces"},
+  {"span": "linear-independence", "concept": "linear-independence-of-several-functions", "verb": "introduces"},
+  {"span": "linear-dependence", "concept": "linear-dependence", "verb": "introduces"},
+  {"span": "thm-2-3-3", "concept": "general-solution-of-a-higher-order-homogeneous-equation", "verb": "introduces"},
+  {"span": "song-and-dance", "concept": "solving-higher-order-constant-coefficient-equations", "verb": "introduces"},
+  {"span": "repeated-real", "concept": "solutions-for-repeated-real-roots", "verb": "introduces"},
+  {"span": "repeated-complex", "concept": "solutions-for-repeated-complex-roots", "verb": "introduces"},
+  {"span": "hol-intro", "concept": "higher-order-linear-equation", "verb": "uses"},
+  {"span": "hol-overview", "concept": "higher-order-linear-equation", "verb": "uses"},
+  {"span": "hol-overview", "concept": "second-order-linear-differential-equation", "verb": "uses"},
+  {"span": "hol-overview", "concept": "linear-independence-of-several-functions", "verb": "uses"},
+  {"span": "hol-overview", "concept": "constant-coefficient-equation", "verb": "uses"},
+  {"span": "thm-2-3-1", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "thm-2-3-1", "concept": "higher-order-linear-equation", "verb": "uses"},
+  {"span": "thm-2-3-1", "concept": "superposition-principle", "verb": "reinforces"},
+  {"span": "linear-combination", "concept": "linear-combination", "verb": "reinforces"},
+  {"span": "linear-combination", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "linear-combination", "concept": "existence-and-uniqueness-for-higher-order-linear-equations", "verb": "uses"},
+  {"span": "linear-combination", "concept": "nonhomogeneous-linear-equation", "verb": "uses"},
+  {"span": "thm-2-3-2", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "thm-2-3-2", "concept": "initial-value", "verb": "uses"},
+  {"span": "thm-2-3-2", "concept": "existence-and-uniqueness-for-linear-equations", "verb": "reinforces"},
+  {"span": "linear-independence", "concept": "linear-independence", "verb": "reinforces"},
+  {"span": "linear-dependence", "concept": "linear-independence-of-several-functions", "verb": "uses"},
+  {"span": "linear-dependence", "concept": "linear-combination", "verb": "uses"},
+  {"span": "ex-2-3-1", "concept": "linear-independence-of-several-functions", "verb": "uses"},
+  {"span": "ex-2-3-2", "concept": "linear-dependence", "verb": "uses"},
+  {"span": "ex-2-3-2", "concept": "hyperbolic-functions", "verb": "reinforces"},
+  {"span": "enough-solutions", "concept": "linear-independence-of-several-functions", "verb": "uses"},
+  {"span": "enough-solutions", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "enough-solutions", "concept": "general-solution-of-a-higher-order-homogeneous-equation", "verb": "uses"},
+  {"span": "enough-solutions", "concept": "general-solution-to-a-homogeneous-equation", "verb": "reinforces"},
+  {"span": "thm-2-3-3", "concept": "linear-independence-of-several-functions", "verb": "uses"},
+  {"span": "thm-2-3-3", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "thm-2-3-3", "concept": "higher-order-linear-equation", "verb": "uses"},
+  {"span": "song-and-dance", "concept": "constant-coefficient-equation", "verb": "uses"},
+  {"span": "song-and-dance", "concept": "higher-order-linear-equation", "verb": "uses"},
+  {"span": "song-and-dance", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "song-and-dance", "concept": "linear-independence-of-several-functions", "verb": "uses"},
+  {"span": "song-and-dance", "concept": "order-of-a-differential-equation", "verb": "uses"},
+  {"span": "song-and-dance", "concept": "solving-with-the-characteristic-equation", "verb": "reinforces"},
+  {"span": "ex-2-3-3", "concept": "solving-higher-order-constant-coefficient-equations", "verb": "uses"},
+  {"span": "ex-2-3-3", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-3-3", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "ex-2-3-3", "concept": "linear-independence-of-several-functions", "verb": "uses"},
+  {"span": "ex-2-3-3", "concept": "solutions-for-repeated-real-roots", "verb": "uses"},
+  {"span": "ex-2-3-3", "concept": "solution-for-complex-conjugate-roots", "verb": "uses"},
+  {"span": "ex-2-3-3", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-2-3-3", "concept": "particular-solution", "verb": "uses"},
+  {"span": "repeated-real", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "repeated-real", "concept": "solution-for-a-repeated-real-root", "verb": "reinforces"},
+  {"span": "repeated-real-combination", "concept": "linear-combination", "verb": "uses"},
+  {"span": "repeated-real-combination", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "repeated-real-combination", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-3-4", "concept": "solutions-for-repeated-real-roots", "verb": "uses"},
+  {"span": "ex-2-3-4", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-3-4", "concept": "characteristic-equation", "verb": "reinforces"},
+  {"span": "repeated-complex", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "repeated-complex", "concept": "second-order-linear-differential-equation", "verb": "uses"},
+  {"span": "repeated-complex", "concept": "solution-for-complex-conjugate-roots", "verb": "reinforces"},
+  {"span": "ex-2-3-5", "concept": "solutions-for-repeated-complex-roots", "verb": "uses"},
+  {"span": "ex-2-3-5", "concept": "solutions-for-repeated-real-roots", "verb": "uses"},
+  {"span": "ex-2-3-5", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-2-3-5", "concept": "characteristic-equation", "verb": "reinforces"}
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "2.3.1",
+   "source_number": "2.3.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-2-3-3",
+   "prompt": "<p>Find the general solution for $\\kytprime - \\kydprime + \\kyprime - \\ky = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Try $\\ky = e^{\\kr x}$: the characteristic equation is $\\kr^3 - \\kr^2 + \\kr - 1 = 0$. Plugging in $\\kr = 1$ gives $1 - 1 + 1 - 1 = 0$, so $(\\kr - 1)$ is a factor, and dividing, $\\kr^3 - \\kr^2 + \\kr - 1 = (\\kr - 1)(\\kr^2 + 1)$. The roots are $\\kr = 1$ and $\\kr = \\pm i$, so the three linearly independent solutions are $e^{x}$, $\\cos x$ and $\\sin x$, and the general solution is $\\ky = C_1 e^{x} + C_2 \\cos x + C_3 \\sin x$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "2.3.2",
+   "source_number": "2.3.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "repeated-real",
+   "prompt": "<p>Find the general solution for $\\kyfourth - 5 \\kytprime + 6 \\kydprime = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation is $\\kr^4 - 5\\kr^3 + 6\\kr^2 = \\kr^2(\\kr^2 - 5\\kr + 6) = \\kr^2(\\kr - 2)(\\kr - 3) = 0$. The roots with multiplicity are $\\kr = 0, 0, 2, 3$. The root $0$ repeated twice gives the solutions $e^{0x} = 1$ and $xe^{0x} = x$; the roots $2$ and $3$ give $e^{2x}$ and $e^{3x}$. So $\\ky = C_1 + C_2 x + C_3 e^{2x} + C_4 e^{3x}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "2.3.3",
+   "source_number": "2.3.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "repeated-complex",
+   "prompt": "<p>Find the general solution for $\\kytprime + 2 \\kydprime + 2 \\kyprime = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The characteristic equation is $\\kr^3 + 2\\kr^2 + 2\\kr = \\kr(\\kr^2 + 2\\kr + 2) = \\kr\\bigl({(\\kr + 1)}^2 + 1\\bigr) = 0$. The roots are $\\kr = 0$ and the complex pair $\\kr = -1 \\pm i$ (so $\\kalpha = -1$, $\\kbeta = 1$). The root $0$ gives the constant solution $1$ and the pair gives $e^{-x}\\cos x$ and $e^{-x}\\sin x$, so $\\ky = C_1 + C_2 e^{-x} \\cos x + C_3 e^{-x} \\sin x$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "2.3.4",
+   "source_number": "2.3.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "repeated-real",
+   "prompt": "<p>Suppose the characteristic equation for an ODE is ${(\\kr-1)}^2{(\\kr-2)}^2 = 0$.</p><ol type=\"a\"><li>Find such a differential equation.</li><li>Find its general solution.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) Multiply out: ${(\\kr-1)}^2{(\\kr-2)}^2 = (\\kr^2 - 2\\kr + 1)(\\kr^2 - 4\\kr + 4) = \\kr^4 - 6\\kr^3 + 13\\kr^2 - 12\\kr + 4$. Reading the powers of $\\kr$ as derivatives, one such equation is $\\kyfourth - 6\\kytprime + 13\\kydprime - 12\\kyprime + 4\\ky = 0$ (any nonzero constant multiple of it has the same characteristic equation). b) The roots with multiplicity are $1, 1, 2, 2$, so the root $1$ gives $e^{x}$ and $xe^{x}$, the root $2$ gives $e^{2x}$ and $xe^{2x}$, and $\\ky = (C_1 + C_2 x)\\,e^{x} + (C_3 + C_4 x)\\,e^{2x}$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "2.3.5",
+   "source_number": "2.3.5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "repeated-complex",
+   "prompt": "<p>Suppose that a fourth-order equation has a solution $\\ky = 2 e^{4x} x \\cos x$.</p><ol type=\"a\"><li>Find such an equation.</li><li>Find the initial conditions that the given solution satisfies.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {"part": "b) y(0)", "value": 0},
+     {"part": "b) y′(0)", "value": 2},
+     {"part": "b) y″(0)", "value": 16},
+     {"part": "b) y‴(0)", "value": 90}
+    ],
+    "solution": "a) The solution is a constant times $x\\,e^{\\kalpha x}\\cos(\\kbeta x)$ with $\\kalpha = 4$ and $\\kbeta = 1$: the factor $x$ says the complex pair $4 \\pm i$ is repeated, and a fourth-order equation has exactly four roots, so the roots are $4 \\pm i$, each with multiplicity 2. The characteristic polynomial is ${\\bigl({(\\kr-4)}^2 + 1\\bigr)}^2 = {(\\kr^2 - 8\\kr + 17)}^2 = \\kr^4 - 16\\kr^3 + 98\\kr^2 - 272\\kr + 289$, so the equation is $\\kyfourth - 16\\kytprime + 98\\kydprime - 272\\kyprime + 289\\ky = 0$. b) Differentiate $\\ky = 2x\\,e^{4x}\\cos x$ and set $x = 0$: $\\ky(0) = 0$, $\\kyprime(0) = 2$, $\\kydprime(0) = 16$, $\\kytprime(0) = 90$. A quick way to see the numbers: write $\\ky = 2x\\,v$ with $v = e^{4x}\\cos x$, the real part of $e^{(4+i)x}$, so $v(0) = 1$, $v'(0) = 4$ and $v''(0) = 15$ (the real parts of $1$, $4+i$ and ${(4+i)}^2 = 15 + 8i$); then by the product rule $\\kyprime(0) = 2v(0) = 2$, $\\kydprime(0) = 4v'(0) = 16$ and $\\kytprime(0) = 6v''(0) = 90$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "2.3.6",
+   "source_number": "2.3.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "repeated-complex",
+   "prompt": "<p>Find the general solution for the equation of Exercise 2.3.5.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The equation of Exercise 2.3.5 has the roots $4 \\pm i$, each with multiplicity 2. The pair repeated twice gives $e^{4x}\\cos x$, $xe^{4x}\\cos x$, $e^{4x}\\sin x$ and $xe^{4x}\\sin x$, so $\\ky = (C_1 + C_2 x)\\,e^{4x} \\cos x + (C_3 + C_4 x)\\,e^{4x} \\sin x$. The given solution $2xe^{4x}\\cos x$ is the case $C_2 = 2$, $C_1 = C_3 = C_4 = 0$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "2.3.7",
+   "source_number": "2.3.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "linear-dependence",
+   "prompt": "<p>Let $f(x) = e^x - \\cos x$, $g(x) = e^x + \\cos x$, and $h(x) = \\cos x$. Are $f(x)$, $g(x)$, and $h(x)$ linearly independent? If so, show it, if not, find a linear combination that works.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": ["Yes, linearly independent", "No, linearly dependent"],
+    "correct": 1,
+    "solution": "No, they are linearly dependent: $f(x) - g(x) + 2h(x) = (e^x - \\cos x) - (e^x + \\cos x) + 2\\cos x = 0$ for all $x$, a linear combination with the constants $1, -1, 2$ not all zero. Equivalently, $g(x) = f(x) + 2h(x)$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "2.3.8",
+   "source_number": "2.3.8",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "linear-dependence",
+   "prompt": "<p>Let $f(x) = 0$, $g(x) = \\cos x$, and $h(x) = \\sin x$. Are $f(x)$, $g(x)$, and $h(x)$ linearly independent? If so, show it, if not, find a linear combination that works.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": ["Yes, linearly independent", "No, linearly dependent"],
+    "correct": 1,
+    "solution": "No, they are linearly dependent. Since $f(x) = 0$, the combination $1 \\cdot f(x) + 0 \\cdot g(x) + 0 \\cdot h(x) = 0$ holds for all $x$ with $c_1 = 1 \\neq 0$, so the equation $c_1 f + c_2 g + c_3 h = 0$ has a solution other than the trivial one. Any list of functions that contains the zero function is linearly dependent, whatever the other functions are."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "2.3.9",
+   "source_number": "2.3.9",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "ex-2-3-1",
+   "prompt": "<p>Are $x$, $x^2$, and $x^4$ linearly independent? If so, show it, if not, find a linear combination that gives $0$.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": ["Yes, linearly independent", "No, linearly dependent"],
+    "correct": 0,
+    "solution": "Yes. Suppose $c_1 x + c_2 x^2 + c_3 x^4 = 0$ for all $x$. The left-hand side is a polynomial of degree at most 4; a nonzero polynomial of degree at most 4 has at most 4 zeros, so a polynomial that is zero for all $x$ is identically zero and every coefficient vanishes: $c_1 = c_2 = c_3 = 0$. (Or evaluate at $x = 1$, $-1$ and $2$: $c_1 + c_2 + c_3 = 0$, $-c_1 + c_2 + c_3 = 0$ and $2c_1 + 4c_2 + 16c_3 = 0$; the first two give $c_1 = 0$ and $c_2 = -c_3$, and the third then gives $12c_3 = 0$.)"
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "2.3.10",
+   "source_number": "2.3.10",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "ex-2-3-1",
+   "prompt": "<p>Are $e^x$, $xe^x$, and $x^2e^x$ linearly independent? If so, show it, if not, find a linear combination that gives $0$.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": ["Yes, linearly independent", "No, linearly dependent"],
+    "correct": 0,
+    "solution": "Yes. Suppose $c_1 e^x + c_2 xe^x + c_3 x^2 e^x = 0$ for all $x$. Divide through by $e^x$, which is never zero: $c_1 + c_2 x + c_3 x^2 = 0$ for all $x$. A nonzero polynomial of degree at most 2 has at most 2 zeros, so this polynomial is identically zero and $c_1 = c_2 = c_3 = 0$. These are exactly the solutions a root repeated three times gives, so they had better be linearly independent."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "2.3.11",
+   "source_number": "2.3.11",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {"at": "end"},
+   "cite": "repeated-complex",
+   "prompt": "<p>Find an equation such that $\\ky=xe^{-2x}\\sin(3x)$ is a solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The function $xe^{-2x}\\sin(3x)$ is $x\\,e^{\\kalpha x}\\sin(\\kbeta x)$ with $\\kalpha = -2$ and $\\kbeta = 3$, which comes from the complex pair $\\kr = -2 \\pm 3i$ repeated (the factor $x$). So take the roots $-2 \\pm 3i$, each with multiplicity 2: the characteristic polynomial is ${\\bigl({(\\kr+2)}^2 + 9\\bigr)}^2 = {(\\kr^2 + 4\\kr + 13)}^2 = \\kr^4 + 8\\kr^3 + 42\\kr^2 + 104\\kr + 169$, and $\\kyfourth + 8\\kytprime + 42\\kydprime + 104\\kyprime + 169\\ky = 0$ is such an equation. Its general solution $(C_1 + C_2 x)\\,e^{-2x}\\cos(3x) + (C_3 + C_4 x)\\,e^{-2x}\\sin(3x)$ contains the given function as $C_4 = 1$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "2.3.101",
+   "source_number": "2.3.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "repeated-real",
+   "prompt": "<p>Find the general solution of $\\kyfifth-\\kyfourth=0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=C_1 e^x +C_2 x^3 + C_3 x^2 +C_4 x + C_5$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "2.3.102",
+   "source_number": "2.3.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-2-3-3",
+   "prompt": "<p>Suppose that the characteristic equation of a third-order differential equation has roots $\\pm 2i$ and 3.</p><ol type=\"a\"><li>What is the characteristic equation?</li><li>Find the corresponding differential equation.</li><li>Find the general solution.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\kr^3-3\\kr^2+4\\kr-12 = 0$ b) $\\kytprime-3\\kydprime+4\\kyprime-12\\ky = 0$ c) $\\ky = C_1 e^{3x} + C_2 \\sin(2x) + C_3 \\cos(2x)$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "2.3.103",
+   "source_number": "2.3.103",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "thm-2-3-2",
+   "prompt": "<p>Solve $1001\\kytprime+3.2\\kydprime+\\pi \\kyprime-\\sqrt{4} \\ky = 0$, $\\ky(0)=0$, $\\kyprime(0) = 0$, $\\kydprime(0) = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=0$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "2.3.104",
+   "source_number": "2.3.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "linear-dependence",
+   "prompt": "<p>Are $e^{x}$, $e^{x+1}$, $e^{2x}$, $\\sin(x)$ linearly independent? If so, show it, if not find a linear combination that gives $0$.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": ["Yes, linearly independent", "No, linearly dependent"],
+    "correct": 1,
+    "solution": "No. $e^1 e^x - e^{x+1} = 0$."
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "2.3.105",
+   "source_number": "2.3.105",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "ex-2-3-1",
+   "prompt": "<p>Are $\\sin(x)$, $x$, $x\\sin(x)$ linearly independent? If so, show it, if not find a linear combination that gives $0$.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": ["Yes, linearly independent", "No, linearly dependent"],
+    "correct": 0,
+    "solution": "Yes. (Hint: First note that $\\sin(x)$ is bounded. Then note that $x$ and $x\\sin(x)$ cannot be multiples of each other.)"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "2.3.106",
+   "source_number": "2.3.106",
+   "kind": "exercise",
+   "bloom": "Create",
+   "place": {"at": "end"},
+   "cite": "ex-2-3-3",
+   "prompt": "<p>Find an equation such that $\\ky=\\cos(x)$, $\\ky=\\sin(x)$, $\\ky=e^x$ are solutions.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kytprime-\\kydprime+\\kyprime-\\ky=0$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "solving-higher-order-constant-coefficient-equations"},
+  {"exercise": "e1", "concept": "general-solution-of-a-higher-order-homogeneous-equation"},
+  {"exercise": "e2", "concept": "solving-higher-order-constant-coefficient-equations"},
+  {"exercise": "e2", "concept": "solutions-for-repeated-real-roots"},
+  {"exercise": "e3", "concept": "solving-higher-order-constant-coefficient-equations"},
+  {"exercise": "e3", "concept": "solutions-for-repeated-complex-roots"},
+  {"exercise": "e4", "concept": "solving-higher-order-constant-coefficient-equations"},
+  {"exercise": "e4", "concept": "solutions-for-repeated-real-roots"},
+  {"exercise": "e5", "concept": "solving-higher-order-constant-coefficient-equations"},
+  {"exercise": "e5", "concept": "solutions-for-repeated-complex-roots"},
+  {"exercise": "e6", "concept": "solutions-for-repeated-complex-roots"},
+  {"exercise": "e6", "concept": "general-solution-of-a-higher-order-homogeneous-equation"},
+  {"exercise": "e7", "concept": "linear-independence-of-several-functions"},
+  {"exercise": "e7", "concept": "linear-dependence"},
+  {"exercise": "e8", "concept": "linear-independence-of-several-functions"},
+  {"exercise": "e8", "concept": "linear-dependence"},
+  {"exercise": "e9", "concept": "linear-independence-of-several-functions"},
+  {"exercise": "e10", "concept": "linear-independence-of-several-functions"},
+  {"exercise": "e10", "concept": "solutions-for-repeated-real-roots"},
+  {"exercise": "e11", "concept": "solving-higher-order-constant-coefficient-equations"},
+  {"exercise": "e11", "concept": "solutions-for-repeated-complex-roots"},
+  {"exercise": "e101", "concept": "solving-higher-order-constant-coefficient-equations"},
+  {"exercise": "e101", "concept": "solutions-for-repeated-real-roots"},
+  {"exercise": "e102", "concept": "solving-higher-order-constant-coefficient-equations"},
+  {"exercise": "e102", "concept": "general-solution-of-a-higher-order-homogeneous-equation"},
+  {"exercise": "e103", "concept": "existence-and-uniqueness-for-higher-order-linear-equations"},
+  {"exercise": "e104", "concept": "linear-independence-of-several-functions"},
+  {"exercise": "e104", "concept": "linear-dependence"},
+  {"exercise": "e105", "concept": "linear-independence-of-several-functions"},
+  {"exercise": "e106", "concept": "solving-higher-order-constant-coefficient-equations"},
+  {"exercise": "e106", "concept": "general-solution-of-a-higher-order-homogeneous-equation"}
+ ],
+ "footnotes": [
+  {
+   "id": "fn-monic",
+   "kind": "book",
+   "number": "11",
+   "html": "The word monic means that the coefficient of the top degree $\\kr^d$, in our case $\\kr^3$, is $1$."
+  }
+ ]
+}

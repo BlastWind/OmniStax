@@ -1,102 +1,102 @@
 <section id="integrating">
 <h2>Integrating <em>y</em>′ = <em>f</em>(<em>x</em>)</h2>
-<p>A <span data-concept="first-order-differential-equation">first-order ODE</span> is an equation of the form</p>
-$$\kdydx = \kf(x,\ky) ,$$
+<p id="first-order-form">A <span data-concept="first-order-differential-equation">first-order ODE</span> is an equation of the form</p>
+$$ \kdydx = \kf(x,\ky) , $$
 <p>or just</p>
-$$\kyprime = \kf(x,\ky) .$$
+$$ \kyprime = \kf(x,\ky) . $$
 <p>In general, there is no simple formula or procedure one can follow to find <span data-concept="solution-to-a-differential-equation">solutions</span>. In the next few lectures, we will look at cases where <span data-concept="solution-to-a-differential-equation">solutions</span> are not difficult to obtain. In this section, we consider the case when $\kf$ is a function of $x$ alone, that is, the equation is</p>
-<div class="equation" id="ias-inteq">$$\kyprime = \kf(x) .\tag{1.1}$$</div>
-<p>We can integrate (<span data-concept="antiderivative">antidifferentiate</span>) both sides of the equation with respect to $x$:</p>
-$$\int \kyprime(x) \,dx = \int \kf(x) \,dx + C ,$$
+<div class="equation" id="eq-1-1">$$ \kyprime = \kf(x) . \tag{1.1}$$</div>
+<p id="solve-by-integrating">We can <span data-concept="antiderivative">integrate</span> (<span data-concept="antiderivative">antidifferentiate</span>) both sides of the equation with respect to $x$:</p>
+$$ \int \kyprime(x) \,dx = \int \kf(x) \,dx + C , $$
 <p>that is,</p>
-$$\ky(x) = \int \kf(x) \,dx + C .$$
-<p>This $\ky(x)$ is actually the <span data-concept="general-solution">general solution</span>. So to solve <a href="#ias-inteq">(1.1)</a>, we find some <span data-concept="antiderivative">antiderivative</span> of $\kf(x)$ and then we add an arbitrary constant to get the <span data-concept="general-solution">general solution</span>.</p>
-<div class="example" id="example-1-1-1">
+<div class="equation" id="eq-integral-general">$$ \ky(x) = \int \kf(x) \,dx + C . $$</div>
+<p id="general-by-integrating">This $\ky(x)$ is actually the <span data-concept="general-solution">general solution</span>. So to solve <a href="#eq-1-1">(1.1)</a>, we find some <span data-concept="antiderivative">antiderivative</span> of $\kf(x)$ and then we add an arbitrary constant to get the <span data-concept="general-solution">general solution</span>.</p>
+<div class="example" id="ex-1-1-1">
 <h3>Example 1.1.1</h3>
 <p>Find the <span data-concept="general-solution">general solution</span> of $\kyprime = 3 x^2$.</p>
 <p>Elementary calculus tells us that the <span data-concept="general-solution">general solution</span> must be $\ky = x^3 + C$. Let us check by differentiating: $\kyprime = 3x^2$. We got <em>precisely</em> our equation back.</p>
 </div>
-<p id="antiderivative-def">Now is a good time to discuss a point about calculus notation and terminology. Calculus textbooks muddy the waters by talking about the integral as primarily the so-called <span data-concept="antiderivative">indefinite integral</span>. The <span data-concept="antiderivative">indefinite integral</span> is really the <em><span data-concept="antiderivative">antiderivative</span></em> (in fact the whole one-parameter family of <span data-concept="antiderivative">antiderivatives</span>). There really exists only one integral and that is the definite integral. The only reason for the indefinite integral notation is that we can always write an <span data-concept="antiderivative">antiderivative</span> as a definite integral. That is, by the fundamental theorem of calculus, we can always write $\int \kf(x) \,dx + C$ as</p>
-$$\int_{x_0}^x \kf(t) \,dt + C .$$
-<p>Hence the terminology <em>to integrate</em> when we may really mean <em>to <span data-concept="antiderivative">antidifferentiate</span></em>. Integration is just one way to compute the <span data-concept="antiderivative">antiderivative</span> (and it is a way that always works, see the following examples). Integration is defined as the area under the graph—it only happens to also compute <span data-concept="antiderivative">antiderivatives</span>. For the sake of consistency, we will keep using the indefinite integral notation when we want an <span data-concept="antiderivative">antiderivative</span>, and you should <em>always</em> think of the definite integral as a way to write it.</p>
+<p id="antiderivative-def">Now is a good time to discuss a point about calculus notation and terminology. Calculus textbooks muddy the waters by talking about the integral as primarily the so-called <span data-concept="antiderivative">indefinite integral</span>. The <span data-concept="antiderivative">indefinite integral</span> is really the <em><span data-concept="antiderivative">antiderivative</span></em> (in fact the whole one-parameter family of <span data-concept="antiderivative">antiderivatives</span>). There really exists only one integral and that is the definite integral. The only reason for the indefinite integral notation is that we can always write an <span data-concept="antiderivative">antiderivative</span> as a definite integral. That is, by the <a href="/calculus/ch05/5.3/#5.3-ftc2">fundamental theorem of calculus</a>, we can always write $\int \kf(x) \,dx + C$ as</p>
+<div class="equation" id="eq-antiderivative-definite">$$ \int_{x_0}^x \kf(t) \,dt + C . $$</div>
+<p>Hence the terminology <em>to <span data-concept="antiderivative">integrate</span></em> when we may really mean <em>to <span data-concept="antiderivative">antidifferentiate</span></em>. Integration is just one way to compute the <span data-concept="antiderivative">antiderivative</span> (and it is a way that always works, see the following examples). Integration is defined as the area under the graph—it only happens to also compute <span data-concept="antiderivative">antiderivatives</span>. For the sake of consistency, we will keep using the indefinite integral notation when we want an <span data-concept="antiderivative">antiderivative</span>, and you should <em>always</em> think of the definite integral as a way to write it.</p>
 <p id="ivp-integral">Normally, we also have an <span data-concept="initial-value">initial condition</span> such as $\ky(x_0) = y_0$ for some two numbers $x_0$ and $y_0$ ($x_0$ is often 0, but not always). We can then write the <span data-concept="solution-to-a-differential-equation">solution</span> as a definite integral in a nice way. Suppose our problem is $\kyprime = \kf(x)$, $\ky(x_0) = y_0$. Then the <span data-concept="solution-to-a-differential-equation">solution</span> is</p>
-<div class="equation" id="int-eqdef">$$\ky(x) = \int_{x_0}^x \kf(t) \,dt + y_0 .\tag{1.2}$$</div>
-<p>Let us check! We compute $\kyprime = \kf(x)$ via the fundamental theorem of calculus, and by Jupiter, $\ky$ is a <span data-concept="solution-to-a-differential-equation">solution</span>. Is it the one satisfying the <span data-concept="initial-value">initial condition</span>? Well, $\ky(x_0) = \int_{x_0}^{x_0} \kf(t)\,dt + y_0 = y_0$. It is!</p>
-<p id="closed-form-def">Do note that the definite integral and the <span data-concept="antiderivative">indefinite integral</span> (<span data-concept="antiderivative">antidifferentiation</span>) are completely different beasts. The definite integral always evaluates to a number. Therefore, <a href="#int-eqdef">(1.2)</a> is a formula we can plug into the calculator or a computer, and it will be happy to calculate specific values for us. We will easily be able to plot the <span data-concept="solution-to-a-differential-equation">solution</span> and work with it just like with any other function. It is not so crucial to always find a <span data-concept="closed-form">closed form</span><sup class="fn" data-note="fn-closed-form"></sup> for the <span data-concept="antiderivative">antiderivative</span>.</p>
-<div class="example" id="example-1-1-2">
+<div class="equation" id="eq-1-2">$$ \ky(x) = \int_{x_0}^x \kf(t) \,dt + y_0 . \tag{1.2}$$</div>
+<p id="ivp-check">Let us check! We compute $\kyprime = \kf(x)$ via the fundamental theorem of calculus, and by Jupiter, $\ky$ is a <span data-concept="solution-to-a-differential-equation">solution</span>. Is it the one satisfying the <span data-concept="initial-value">initial condition</span>? Well, $\ky(x_0) = \int_{x_0}^{x_0} \kf(t)\,dt + y_0 = y_0$. It is!</p>
+<p id="closed-form-def">Do note that the definite integral and the <span data-concept="antiderivative">indefinite integral</span> (<span data-concept="antiderivative">antidifferentiation</span>) are completely different beasts. The definite integral always evaluates to a number. Therefore, <a href="#eq-1-2">(1.2)</a> is a formula we can plug into the calculator or a computer, and it will be happy to calculate specific values for us. We will easily be able to plot the <span data-concept="solution-to-a-differential-equation">solution</span> and work with it just like with any other function. It is not so crucial to always find a <span data-concept="closed-form">closed form</span><sup class="fn" data-note="fn-closed-form"></sup> for the <span data-concept="antiderivative">antiderivative</span>.</p>
+<div class="example" id="ex-1-1-2">
 <h3>Example 1.1.2</h3>
 <p>Solve</p>
-$$\kyprime = e^{-x^2}, \qquad \ky(0) = 1 .$$
+$$ \kyprime = e^{-x^2}, \qquad \ky(0) = 1 . $$
 <p>By the preceding discussion, the <span data-concept="solution-to-a-differential-equation">solution</span> must be</p>
-$$\ky(x) = \int_0^x e^{-t^2} \,dt + 1 .$$
+$$ \ky(x) = \int_0^x e^{-t^2} \,dt + 1 . $$
 <p>Here is a good way to make fun of your friends taking second-semester calculus. Tell them to find the <span data-concept="closed-form">closed-form</span> <span data-concept="solution-to-a-differential-equation">solution</span>. Ha ha ha (bad math joke). It is not possible (in <span data-concept="closed-form">closed form</span>). There is absolutely nothing wrong with writing the <span data-concept="solution-to-a-differential-equation">solution</span> as a definite integral. This particular integral is in fact very important in statistics.</p>
-<figure class="sim" id="sim-integral-solution" data-figure="" data-original="" data-original-caption="">
-  <div class="sim-head"><span class="eyebrow">Sim</span><span>The <span data-concept="solution-to-a-differential-equation">solution</span> of $\kyprime = e^{-x^2}$, $\ky(0) = y_0$, as a definite integral: the shaded area under $e^{-t^2}$ from $0$ to $x$, added to $y_0$, is the height of the graph of $\ky$ at $x$, though $\ky$ has no <span data-concept="closed-form">closed form</span>.</span></div>
+<figure class="sim" id="sim-integral-solution">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The <span data-concept="solution-to-a-differential-equation">solution</span> $\ky(x) = \int_0^x e^{-t^2}\,dt + y_0$ of $\kyprime = e^{-x^2}$, $\ky(0) = y_0$, is a number for every $x$: the area under $e^{-t^2}$ from $0$ to $x$, added to $y_0$. As the point moves along the graph of $\ky$, the shaded area becomes the rise of $\ky$ above $y_0$, though $\ky$ has no <span data-concept="closed-form">closed form</span>.</span></div>
 </figure>
 </div>
 </section>
 <section id="y-of-x-swapped">
 <h2>Equations <em>y</em>′ = <em>f</em>(<em>y</em>)</h2>
-<p>Using this method, we can also solve equations of the form</p>
-$$\kyprime = \kf(\ky) .$$
-<p>We write the equation in Leibniz notation:</p>
-$$\kdydx = \kf(\ky) .$$
-<p>We use the inverse function theorem from calculus to switch the roles of $x$ and $\ky$, that is, we treat $x$ as a function of $\ky$ and find</p>
-$$\frac{dx}{dy} = \frac{1}{\kf(\ky)} .$$
-<p>What we are doing seems like algebra with $dx$ and $dy$. It is tempting to just do algebra with $dx$ and $dy$ as if they were numbers. And in this case it does work. Be careful, however, as this sort of hand-waving calculation can lead to trouble, especially when more than one in<span data-concept="dependent-variable">dependent variable</span> is involved. At this point, we integrate with respect to $\ky$,</p>
-$$x(\ky) = \int \frac{1}{\kf(\ky)} \,dy + C .$$
+<p id="f-of-y-form">Using this method, we can also solve equations of the form</p>
+$$ \kyprime = \kf(\ky) . $$
+<p>We write the equation in <a href="/calculus/ch03/3.2/#3.2-leibniz-paragraph">Leibniz notation</a>:</p>
+$$ \kdydx = \kf(\ky) . $$
+<p id="switch-roles">We use the <a href="/calculus/ch03/3.7/#3.7-inverse-function-theorem-note">inverse function theorem</a> from calculus to <span data-concept="solving-y-prime-equals-f-of-y">switch the roles of $x$ and $\ky$</span>, that is, we treat $x$ as a function of $\ky$ and find</p>
+<div class="equation" id="eq-dx-dy">$$ \kdxdy = \frac{1}{\kf(\ky)} . $$</div>
+<p>What we are doing seems like algebra with $dx$ and $dy$. It is tempting to just do algebra with $dx$ and $dy$ as if they were numbers. And in this case it does work. Be careful, however, as this sort of hand-waving calculation can lead to trouble, especially when more than one <span data-concept="independent-variable">independent variable</span> is involved. At this point, we integrate with respect to $\ky$,</p>
+<div class="equation" id="eq-x-of-y">$$ x(\ky) = \int \frac{1}{\kf(\ky)} \,dy + C . $$</div>
 <p>That is not quite the form we wanted the <span data-concept="solution-to-a-differential-equation">solution</span> in, so we next try to solve for $\ky$.</p>
-<div class="example" id="example-1-1-3">
+<div class="example" id="ex-1-1-3">
 <h3>Example 1.1.3</h3>
-<p>Previously, we guessed $\kyprime = ky$ (for some $k > 0$) has the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=Ce^{kx}$. We could have found the <span data-concept="solution-to-a-differential-equation">solution</span> by integrating. First we note that $\ky=0$ is a <span data-concept="solution-to-a-differential-equation">solution</span>. Henceforth, we assume $\ky \neq 0$. We write</p>
-$$\frac{dx}{dy} = \frac{1}{ky} .$$
+<p>Previously, we guessed $\kyprime = k\ky$ (for some $k > 0$) has the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=Ce^{kx}$. We could have found the <span data-concept="solution-to-a-differential-equation">solution</span> by integrating. First we note that $\ky=0$ is a <span data-concept="solution-to-a-differential-equation">solution</span>. Henceforth, we assume $\ky \neq 0$. We write</p>
+$$ \kdxdy = \frac{1}{k\ky} . $$
 <p>We integrate in $\ky$ to obtain</p>
-$$x(\ky) = x = \frac{1}{k} \ln \, \lvert \ky \rvert + D,$$
+$$ x(\ky) = x = \frac{1}{k} \ln \, \lvert \ky \rvert + D, $$
 <p>where $D$ is an arbitrary constant. Now we solve for $\ky$ (actually for $\lvert \ky \rvert$).</p>
-$$\lvert \ky \rvert = e^{kx-kD} = e^{-kD} e^{k x} .$$
+$$ \lvert \ky \rvert = e^{kx-kD} = e^{-kD} e^{k x} . $$
 <p>If we replace $e^{-kD}$ with an arbitrary constant $C$, we can get rid of the absolute value bars (which we can do as $D$ was arbitrary). In this way, we also incorporate the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=0$. We get the same <span data-concept="general-solution">general solution</span> as we guessed before, $\ky = Ce^{kx}$.</p>
 </div>
-<div class="example" id="example-1-1-4">
+<div class="example" id="ex-1-1-4">
 <h3>Example 1.1.4</h3>
 <p>Find the <span data-concept="general-solution">general solution</span> of $\kyprime = \ky^2$.</p>
 <p>First we note that $\ky=0$ is a <span data-concept="solution-to-a-differential-equation">solution</span>. We can now assume that $\ky \neq 0$. Write</p>
-$$\frac{dx}{dy} = \frac{1}{\ky^2} .$$
+$$ \kdxdy = \frac{1}{\ky^2} . $$
 <p>We integrate to get</p>
-$$x = \frac{-1}{\ky} + C .$$
+$$ x = \frac{-1}{\ky} + C . $$
 <p>We solve for $\ky = \frac{1}{C-x}$. So the <span data-concept="general-solution">general solution</span> is</p>
-$$\ky = \frac{1}{C-x} \qquad \text{together with} \qquad \ky = 0.$$
-<p>Note the singularities of the <span data-concept="solution-to-a-differential-equation">solution</span>. If, for example, $C=1$, then the <span data-concept="solution-to-a-differential-equation">solution</span> “blows up” as we approach $x=1$. See Figure 1.1. Generally, it is hard to tell from just looking at the equation itself how the <span data-concept="solution-to-a-differential-equation">solution</span> is going to behave. The equation $\kyprime = \ky^2$ is very nice and defined everywhere, but the <span data-concept="solution-to-a-differential-equation">solution</span> is only defined on the interval $(-\infty, C)$ or $(C, \infty)$. Usually when this happens, we only consider the <span data-concept="solution-to-a-differential-equation">solution</span> on one of these intervals and not both. For example, if we impose an <span data-concept="initial-value">initial condition</span> $\ky(0) = 1$, then the <span data-concept="solution-to-a-differential-equation">solution</span> is $\ky=\frac{1}{1-x}$, and we consider this <span data-concept="solution-to-a-differential-equation">solution</span> only for $x$ on the interval $(-\infty,1)$, because our initial $x$ (that is, $0$) is in this interval. In the figure, it is the left side of the graph.</p>
-<figure class="sim" id="sim-blowup" data-figure="1.1" data-original="/media/ch01/1over1mx.svg" data-original-caption="Plot of y=1/(1−x).">
-  <div class="sim-head"><span class="eyebrow">Figure 1.1</span><span>The <span data-concept="solution-to-a-differential-equation">solution</span> $\ky = \frac{1}{C-x}$ of $\kyprime = \ky^2$ through the initial point $(x_0, y_0)$, with $C = x_0 + 1/y_0$: the branch on the interval that holds $x_0$ is the solution, the other branch is drawn faint, and the dashed line $x = C$ is where it blows up. At $(0, 1)$ it is $\ky = \frac{1}{1-x}$ on $(-\infty, 1)$; at $(2, -1)$ the same formula on $(1, \infty)$.</span></div>
+$$ \ky = \frac{1}{C-x} \qquad \text{together with} \qquad \ky = 0. $$
+<p id="blow-up">Note the singularities of the <span data-concept="solution-to-a-differential-equation">solution</span>. If, for example, $C=1$, then the <span data-concept="solution-to-a-differential-equation">solution</span> “<span data-concept="interval-of-existence">blows up</span>” as we approach $x=1$. See Figure 1.1. Generally, it is hard to tell from just looking at the equation itself how the <span data-concept="solution-to-a-differential-equation">solution</span> is going to behave. The equation $\kyprime = \ky^2$ is very nice and defined everywhere, but the <span data-concept="solution-to-a-differential-equation">solution</span> is <span data-concept="interval-of-existence">only defined on the interval</span> $(-\infty, C)$ or $(C, \infty)$. Usually when this happens, we only consider the <span data-concept="solution-to-a-differential-equation">solution</span> on one of these intervals and not both. For example, if we impose an <span data-concept="initial-value">initial condition</span> $\ky(0) = 1$, then the <span data-concept="solution-to-a-differential-equation">solution</span> is $\ky=\frac{1}{1-x}$, and we consider this <span data-concept="solution-to-a-differential-equation">solution</span> only for $x$ on the interval $(-\infty,1)$, because our initial $x$ (that is, $0$) is in this interval. In the figure, it is the left side of the graph.</p>
+<figure class="sim" id="sim-blowup" data-figure="1.1" data-original="/media/ch01/1over1mx.svg" data-original-caption="Plot of y = 1/(1 − x)." data-original-width="432">
+  <div class="sim-head"><span class="eyebrow">Figure 1.1</span><span>The <span data-concept="solution-to-a-differential-equation">solution</span> $\ky = \frac{1}{C-x}$ of $\kyprime = \ky^2$ through the initial point $(x_0, y_0)$, where $C = x_0 + 1/y_0$. The branch on the side of the dashed line $x = C$ that holds $x_0$ is the solution, and it <span data-concept="interval-of-existence">blows up</span> at $x = C$; the other branch is a different solution of the same formula. Through $(0, 1)$ it is $\ky = \frac{1}{1-x}$ on $(-\infty, 1)$, and through $(2, -1)$ the same formula on $(1, \infty)$.</span></div>
 </figure>
-<p>On the other hand, if we impose the <span data-concept="initial-value">initial condition</span> $\ky(2)=-1$ instead, then we again get the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=\frac{1}{1-x}$. Now, however, it is the right-hand side of the graph, that is, it is defined on the interval $(1,\infty)$, as that is the interval containing $2$, the initial $x$.</p>
+<p id="right-branch">On the other hand, if we impose the <span data-concept="initial-value">initial condition</span> $\ky(2)=-1$ instead, then we again get the <span data-concept="solution-to-a-differential-equation">solution</span> $\ky=\frac{1}{1-x}$. Now, however, it is the right-hand side of the graph, that is, it is <span data-concept="interval-of-existence">defined on the interval</span> $(1,\infty)$, as that is the interval containing $2$, the initial $x$.</p>
 </div>
 </section>
 <section id="velocity">
 <h2>Velocity, acceleration and distance</h2>
-<p>Classical problems leading to <span data-concept="differential-equation">differential equations</span> solvable by integration are problems dealing with velocity, acceleration, and distance. You have surely seen these problems before in your calculus class.</p>
-<div class="example" id="example-1-1-5">
+<p id="classical-problems">Classical problems leading to <span data-concept="differential-equation">differential equations</span> <span data-concept="integral-solution">solvable by integration</span> are problems dealing with velocity, acceleration, and distance. You have surely seen these problems before in your calculus class.</p>
+<div class="example" id="ex-1-1-5">
 <h3>Example 1.1.5</h3>
 <p>Suppose a car drives at a speed of $e^{t/2}$ meters per second, where $t$ is time in seconds. How far did the car get in 2 seconds (starting at $t=0$)? How far in 10 seconds?</p>
 <p>Let $\kx$ denote the distance the car traveled. The equation is</p>
-$$\kxprime = e^{t/2} .$$
+$$ \kxprime = e^{t/2} . $$
 <p>We just integrate this equation to get that</p>
-$$\kx(t) = 2 e^{t/2} + C .$$
+$$ \kx(t) = 2 e^{t/2} + C . $$
 <p>We still need to figure out $C$. We know that when $t=0$, then $\kx=0$. That is, $\kx(0) = 0$. So</p>
-$$0 = \kx(0) = 2e^{0/2} + C = 2 + C .$$
+$$ 0 = \kx(0) = 2e^{0/2} + C = 2 + C . $$
 <p>Thus $C = -2$ and</p>
-$$\kx(t) = 2 e^{t/2} - 2 .$$
+$$ \kx(t) = 2 e^{t/2} - 2 . $$
 <p>Now we just plug in to get where the car is at 2 and at 10 seconds. We obtain</p>
-$$\kx(2) = 2e^{2/2} - 2 \approx 3.44 \text{ meters} , \qquad \kx(10) = 2e^{10/2} - 2 \approx 294 \text{ meters} .$$
+$$ \kx(2) = 2e^{2/2} - 2 \approx 3.44 \text{ meters} , \qquad \kx(10) = 2e^{10/2} - 2 \approx 294 \text{ meters} . $$
 </div>
-<div class="example" id="example-1-1-6">
+<div class="example" id="ex-1-1-6">
 <h3>Example 1.1.6</h3>
 <p>Suppose that the car accelerates at $t^2\,\mathrm{m}/\mathrm{s^2}$. At time $t=0$ the car is at the 1-meter mark and is traveling at 10 m/s. Where is the car at time $t=10$?</p>
 <p>Well, this is actually a <span data-concept="second-order-differential-equation">second-order problem</span>. If $\kx$ is the distance traveled, then $\kxprime$ is the velocity, and $\kxdprime$ is the acceleration. The equation with <span data-concept="initial-value">initial conditions</span> is</p>
-$$\kxdprime = t^2 , \qquad \kx(0) = 1 , \qquad \kxprime(0) = 10 .$$
+$$ \kxdprime = t^2 , \qquad \kx(0) = 1 , \qquad \kxprime(0) = 10 . $$
 <p>We can add a new <span data-concept="dependent-variable">dependent variable</span> $\kv$ and declare that $\kxprime = \kv$. Then we solve</p>
-$$\kvprime = t^2, \qquad \kv(0) = 10 .$$
-<p>Once we find $\kv$, we solve $\kxprime = \kv$, $\kx(0)=1$ to find $\kx$. We leave the integration to the reader.</p>
+$$ \kvprime = t^2, \qquad \kv(0) = 10 . $$
+<p><span data-concept="integrating-twice">Once we find $\kv$, we solve $\kxprime = \kv$, $\kx(0)=1$ to find $\kx$</span>. We leave the integration to the reader.</p>
 </div>
-<div class="exercises" data-place="example-1-1-6"></div>
+<div class="exercises" data-place="ex-1-1-6"></div>
 </section>

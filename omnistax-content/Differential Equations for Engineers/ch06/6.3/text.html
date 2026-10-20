@@ -1,0 +1,88 @@
+<section id="the-convolution">
+<h2>The convolution</h2>
+<p id="convolution">The <span data-concept="laplace-transform">Laplace transformation</span> of a product is not the product of the <span data-concept="laplace-transform">transforms</span>. All hope is not lost, however. We simply have to use a different type of “product.” Take <span data-ref="conv-f conv-g">two functions</span> <span data-ref="conv-f">$\kf(t)$</span> and <span data-ref="conv-g">$\kg(t)$</span> defined for $t \geq 0$, and define the <em><span data-concept="convolution">convolution</span></em><sup class="fn" data-note="fn-convolution-general"></sup> of <span data-ref="conv-f">$\kf(t)$</span> and <span data-ref="conv-g">$\kg(t)$</span> as</p>
+<div class="equation" id="eq-6-2">$$ \boxed{~~ (\kfconvg)(t) \overset{\text{def}}{=} \int_0^t \kf(\tau) \kg(t-\tau) \, d\tau . ~~} \tag{6.2}$$</div>
+<p id="another-function">As you can see, the <span data-concept="convolution">convolution</span> of <span data-ref="conv-f conv-g">two functions</span> of $t$ is another function of $t$.</p>
+<div class="example" id="ex-6-3-1">
+<h3>Example 6.3.1</h3>
+<p>Take <span data-ref="conv-f">$\kf(t) = e^t$</span> and <span data-ref="conv-g">$\kg(t) = t$</span> for $t \geq 0$. Then</p>
+$$ (\kfconvg)(t) = \int_0^t e^\tau (t-\tau) \, d\tau = e^t - t - 1 . $$
+<p>To solve the integral we did one <a href="/calculus/ch07/7.1/">integration by parts</a>.</p>
+</div>
+<figure class="sim" id="sim-convolution">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>To <span data-concept="convolution">convolve</span>, flip <span data-ref="conv-g">$\kg$</span> and slide it: <span data-ref="conv-g">$\kg(t-\tau)$</span> is <span data-ref="conv-g">$\kg$</span> run backward from $\tau = t$. As $t$ runs, the flipped copy slides right across <span data-ref="conv-f">$\kf(\tau)$</span>; where <span data-ref="conv-f conv-g">both</span> are defined, on $0 \leq \tau \leq t$, their product is shaded, and its <span data-type="integral">area</span> is the height of $(\kfconvg)(t)$ traced below, an area that counts negative wherever the product dips below the axis. Pick a pair: Example 6.3.1’s $e^t$ and $t$, Example 6.3.2’s $\sin(\omega t)$ and $\cos(\omega t)$, whose <span data-type="integral">area</span> grows like the $t$ in front of $\frac{1}{2}\, t \sin(\omega t)$ whatever $\omega$ is, Example 6.3.3’s $t$ and $e^{-t}$, or Exercise 6.3.101’s $\cos t$ and $e^{-t}$.</span></div>
+</figure>
+<div class="example" id="ex-6-3-2">
+<h3>Example 6.3.2</h3>
+<p>Take <span data-ref="conv-f">$\kf(t) = \sin (\omega t)$</span> and <span data-ref="conv-g">$\kg(t) = \cos (\omega t)$</span> for $t \geq 0$. Then</p>
+$$ (\kfconvg)(t) = \int_0^t \sin ( \omega \tau ) \, \cos \bigl( \omega (t-\tau) \bigr) \, d\tau . $$
+<p>Apply the identity</p>
+$$ \cos (\theta) \sin (\psi) = \frac{1}{2} \, \bigl( \sin (\theta + \psi) - \sin (\theta - \psi) \bigr) , $$
+<p>to get</p>
+$$ \begin{split} (\kfconvg)(t) & = \int_0^t \frac{1}{2} \, \bigl( \sin (\omega t) - \sin (\omega t - 2 \omega \tau ) \bigr) \, d\tau \\ & = \left[ \frac{1}{2} \, \tau \sin (\omega t) - \frac{1}{4\omega} \, \cos (\omega t - 2 \omega \tau) \right]_{\tau=0}^t \\ & = \frac{1}{2} \, t \sin (\omega t) . \end{split} $$
+<p>The formula holds only for $t \geq 0$. The functions <span data-ref="conv-f">$\kf$</span>, <span data-ref="conv-g">$\kg$</span>, and $\kfconvg$ are undefined for $t &lt; 0$.</p>
+</div>
+<p id="convolution-properties"><span data-concept="properties-of-convolution">Convolution has many properties that make it behave like a product</span>. Let $c$ be a constant and <span data-ref="conv-f">$\kf$</span>, <span data-ref="conv-g">$\kg$</span>, and $\kh$ be functions. It is a calculus exercise to verify that</p>
+<div class="equation" id="eq-convolution-properties">$$ \begin{align*} & \kf * \kg = \kg * \kf , \\ & (c \kf) * \kg = \kf * (c \kg) = c (\kfconvg) , \\ & (\kf+\kg) * \kh = \kf * \kh + \kg * \kh , \\ & ( \kfconvg ) * \kh = \kf * ( \kg * \kh ) . \end{align*} $$</div>
+<p id="commuted">The first property means that $(\kfconvg)(t) = \int_0^t \kf(\tau) \kg(t-\tau) \, d\tau = \int_0^t \kf(t-\tau) \kg(\tau) \, d\tau$. The most interesting property for us is the following theorem.</p>
+<div class="note" id="thm-6-3-1">
+<div class="eyebrow">Theorem 6.3.1</div>
+<p>If <span data-ref="conv-f">$\kf(t)$</span> and <span data-ref="conv-g">$\kg(t)$</span> are of <span data-concept="exponential-order">exponential order</span>, then so is $(\kfconvg)(t)$ and</p>
+<div class="equation" id="eq-convolution-theorem">$$ \boxed{~~ \mathcal{L} \bigl\{ (\kfconvg)(t) \bigr\} = \mathcal{L} \left\{ \int_0^t \kf(\tau) \kg(t-\tau) \, d\tau \right\} = \mathcal{L} \bigl\{ \kf(t) \bigr\} \mathcal{L} \bigl\{ \kg(t) \bigr\} . ~~} $$</div>
+</div>
+<p id="in-other-words">In other words, <span data-concept="convolution-theorem">the Laplace transform of a convolution is the product of the Laplace transforms</span>: ${\mathcal{L}} \bigl\{ (\kfconvg)(t) \bigr\} = \kF(s)\kG(s)$, or in reverse, ${\mathcal{L}}^{-1} \bigl\{ \kF(s) \kG(s) \bigr\} = (\kfconvg)(t)$.</p>
+<figure class="dv" id="drv-convolution-theorem"></figure>
+<div class="example" id="ex-6-3-3">
+<h3>Example 6.3.3</h3>
+<p>Suppose we wish to find the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> of</p>
+$$ \frac{1}{s^2(s+1)} = \frac{1}{s^2} \, \frac{1}{s+1} . $$
+<p>We recognize the two entries of <a href="/diffyqs/ch06/6.1/#6.1-tab-6-1">Table 6.2</a><sup class="fn" data-note="c-table-6-2"></sup>:</p>
+$$ \mathcal{L}^{-1} \left\{ \frac{1}{s^2} \right\} = t \qquad \text{and} \qquad \mathcal{L}^{-1} \left\{ \frac{1}{s+1} \right\} = e^{-t} . $$
+<p>Therefore, we <span data-concept="inverting-a-product-by-convolution">convolve</span> <span data-ref="conv-f">$t$</span> and <span data-ref="conv-g">$e^{-t}$</span>,</p>
+$$ \mathcal{L}^{-1} \left\{ \frac{1}{s^2} \, \frac{1}{s+1} \right\} = \int_0^t \tau e^{-(t-\tau)} \,d\tau = e^{-t}+t-1 . $$
+<p>The calculation of the integral involved an <a href="/calculus/ch07/7.1/">integration by parts</a>.</p>
+</div>
+</section>
+
+<section id="solving-odes">
+<h2>Solving ODEs</h2>
+<p id="full-power">The next example demonstrates the full power of the <span data-concept="convolution">convolution</span> and the <span data-concept="laplace-transform">Laplace transform</span>. We can give the <span data-concept="solution-to-a-differential-equation">solution</span> to the <span data-concept="forced-motion">forced oscillation</span> problem for any forcing function as a <span data-type="integral">definite integral</span>.</p>
+<div class="example" id="ex-6-3-4">
+<h3>Example 6.3.4</h3>
+<p>Find the <span data-concept="solution-to-a-differential-equation">solution</span> to</p>
+<div class="equation" id="eq-undamped-forced">$$ \kxdprime + \komegazero^2 \kx = \kf(t) , \quad \kx(0) = 0, \quad \kxprime(0) = 0 , $$</div>
+<p>for an arbitrary function $\kf(t)$.</p>
+<p id="apply-transform">We first apply the <span data-concept="laplace-transform">Laplace transform</span> to the equation. Denote the <span data-concept="laplace-transform">transform</span> of $\kx(t)$ by $\kX(s)$ and the <span data-concept="laplace-transform">transform</span> of $\kf(t)$ by $\kF(s)$ as usual.</p>
+<figure class="dv" id="drv-forced-oscillation-convolution"></figure>
+</div>
+<p id="resonance">Notice one more feature of the example above. We can now see how the <span data-concept="laplace-transform">Laplace transform</span> handles <span data-concept="resonance">resonance</span>. Suppose that $\kf(t) = \cos (\komegazero t)$. Then</p>
+$$ \kx(t) = \int_0^t \frac{\sin (\komegazero \tau)}{\komegazero} \, \cos \bigl( \komegazero (t-\tau) \bigr) \, d\tau = \frac{1}{\komegazero} \int_0^t \sin ( \komegazero \tau ) \, \cos \bigl(\komegazero (t-\tau) \bigr) \, d\tau . $$
+<p>We have computed the <span data-concept="convolution">convolution</span> of sine and cosine in <a href="#ex-6-3-2">Example 6.3.2</a>. Hence</p>
+$$ \kx(t) = \left( \frac{1}{\komegazero} \right) \, \left( \frac{1}{2} \, t \sin ( \komegazero t ) \right) = \frac{1}{2 \komegazero} \, t \sin ( \komegazero t ). $$
+<p id="grows">Note the $t$ in front of the sine. The <span data-concept="solution-to-a-differential-equation">solution</span>, therefore, grows without bound as $t$ gets large, meaning we get <span data-concept="resonance">resonance</span>.</p>
+<p id="general-idea">The general idea here is that if $\kH(s)$ is the <span data-concept="transfer-function">transfer function</span>, then $\kX(s)=\kH(s)\kF(s)$. If we find the $\kh(t) = {\mathcal{L}}^{-1}\bigl\{ \kH(s) \bigr\}$, then</p>
+<div class="equation" id="eq-convolution-solution">$$ \kx(t) = {\mathcal{L}}^{-1}\bigl\{ \kX(s) \bigr\} = {\mathcal{L}}^{-1}\bigl\{ \kF(s)\kH(s) \bigr\} = (\kf * \kh)(t) = \int_0^t \kf(\tau) \kh(t-\tau) \, d\tau . $$</div>
+<p id="any-forcing">Hence, <span data-concept="convolution-solution">we can solve any <span data-concept="constant-coefficient-equation">constant-coefficient</span> equation with an arbitrary forcing function $\kf(t)$ as a definite integral using convolution</span>. A <span data-type="integral">definite integral</span>, rather than a <span data-concept="closed-form">closed-form</span> <span data-concept="solution-to-a-differential-equation">solution</span>, is usually enough for most practical purposes. It is not hard to numerically evaluate a <span data-type="integral">definite integral</span>.</p>
+</section>
+
+<section id="volterra">
+<h2>Volterra integral equation</h2>
+<p id="volterra-equation">An <span data-concept="integral-equation">integral equation</span> involving <span data-concept="convolution">convolution</span> that comes up, for example, when studying systems with memory effects is the <em><span data-concept="volterra-integral-equation">Volterra integral equation</span></em><sup class="fn" data-note="fn-volterra"></sup></p>
+<div class="equation" id="eq-volterra">$$ \kx(t) = \kf(t) + \int_0^t \kg(t-\tau) \kx(\tau) \, d\tau . $$</div>
+<p id="volterra-divide">Here $\kf(t)$ and $\kg(t)$ are known functions and $\kx(t)$ is an unknown we wish to solve for. We have $\kx(t) = \kf(t) + (\kg * \kx)(t)$, so the question is: If <span data-concept="convolution">convolution</span> is like a product, can we also “divide” to solve this equation? We apply the <span data-concept="laplace-transform">Laplace transform</span> to the equation to obtain</p>
+$$ \kX(s) = \kF(s) + \kG(s) \kX(s) , $$
+<p>where $\kX(s)$, $\kF(s)$, and $\kG(s)$ are the <span data-concept="laplace-transform">Laplace transforms</span> of $\kx(t)$, $\kf(t)$, and $\kg(t)$, respectively. We find</p>
+<div class="equation" id="eq-volterra-transform">$$ \kX(s) = \frac{\kF(s)}{1-\kG(s)} . $$</div>
+<p id="volterra-invert">To find $\kx(t)$, we now need to find the <span data-concept="inverse-laplace-transform">inverse Laplace transform</span> of $\kX(s)$.</p>
+<div class="example" id="ex-6-3-5">
+<h3>Example 6.3.5</h3>
+<p>Solve</p>
+$$ \kx(t) = e^{-t} + \int_0^t \sinh(t-\tau) \kx(\tau) \, d\tau . $$
+<p>We apply the <span data-concept="laplace-transform">Laplace transform</span> to obtain</p>
+$$ \kX(s) = \frac{1}{s+1} + \frac{1}{s^2-1} \kX(s) , $$
+<p>or</p>
+$$ \kX(s) = \frac{\frac{1}{s+1}}{1- \frac{1}{s^2-1}} = \frac{s-1}{s^2 - 2} = \frac{s}{s^2 - 2} - \frac{1}{s^2 - 2} . $$
+<p>It is not hard to apply <a href="/diffyqs/ch06/6.1/#6.1-tab-6-1">Table 6.1</a> to find</p>
+$$ \kx(t) = \cosh \bigl( \sqrt{2} \, t \bigr) - \frac{1}{\sqrt{2}} \sinh \bigl( \sqrt{2}\, t \bigr). $$
+</div>
+</section>

@@ -1,0 +1,68 @@
+<section id="beam">
+<h2>Transversal vibrations of a beam</h2>
+<p id="transversal">The <span data-concept="eigenfunction-decomposition">eigenfunction series</span> can arise even from <span data-concept="higher-order-linear-equation">higher-order equations</span>. Consider an elastic beam (say made of steel). We will study the <em><span data-concept="transversal-vibrations">transversal vibrations</span></em> (vibrations where the beam “bends”) of the beam. Suppose the beam lies along the $x$-axis and let $\ky(x,t)$ measure the displacement of the point $x$ on the beam at time $t$. See Figure 5.2.</p>
+<figure class="sim" id="sim-beam-vibration" data-figure="5.2" data-original="/media/ch05/trans-beam.svg" data-original-caption="Transversal vibrations of a beam.">
+  <div class="sim-head"><span class="eyebrow">Figure 5.2</span><span>A beam of length $1$ lies along the $x$-axis, <span data-concept="hinged-end-of-a-beam">hinged</span> at both ends, and its displacement $\ky(x,t)$ is the <span data-concept="hinged-beam-solution">series solution</span> of <a href="#eq-5-5">(5.5)</a>, $\ky(x,t) = \sum \kbn \sin (n \pi x) \cos (n^2 \pi^2 a^2 t)$. It is released from rest either from Example 5.2.1’s shape $\kf(x) = \frac{x(x-1)}{10}$ or from one <span data-concept="eigenfunction">eigenfunction</span> $\sin (n \pi x)$ alone; the displacement is drawn six times taller than it is, and the point $x = \frac{1}{4}$ is traced below. Mode $n$ swings at the <span data-concept="natural-frequencies-of-a-beam">natural frequency</span> <span data-type="frequency">$n^2 \pi^2 a^2$</span>, so mode 2 swings four times as fast as mode 1 and mode 3 nine times as fast, and a larger $a$ speeds every mode up by the factor $a^2$.</span></div>
+</figure>
+<p id="beam-equation">The equation that governs this setup is</p>
+<div class="equation" id="eq-beam-equation">$$ a^4 \kpfouryx + \kptwoyt = 0, $$</div>
+<p id="beam-constant">for some constant $a &gt; 0$. Let us not worry about the physics<sup class="fn" data-note="fn-beam-constants"></sup>.</p>
+<p id="hinged-setup">Suppose the beam is of length 1 and <span data-concept="hinged-end-of-a-beam">simply supported (hinged)</span> at the ends. The beam is displaced by some function $\kf(x)$ at time $t=0$ and then let go (initial velocity is 0). Then $\ky$ satisfies:</p>
+<div class="equation" id="eq-5-5">$$ \begin{aligned} & a^4 \kyxxxx + \kytt = 0 \qquad (0 < x < 1, \enspace t > 0), \\ & \ky(0,t) = \kyxx(0,t) = 0 , \\ & \ky(1,t) = \kyxx(1,t) = 0 , \\ & \ky(x,0) = \kf(x), \qquad \kyt(x,0) = 0 . \end{aligned} \tag{5.5} $$</div>
+<div id="separation">
+<p>Again we try $\ky(x,t) = \kX(x)\kT(t)$ and plug in to get $a^4 \kXfour\kT + \kX\kTdprime = 0$ or</p>
+$$ \frac{\kXfour}{\kX} = \frac{- \kTdprime}{a^4\kT} = \klambda . $$
+</div>
+<p>The equations are</p>
+<div class="equation" id="eq-beam-separated">$$ \kTdprime + \klambda a^4 \kT = 0 \qquad \text{and} \qquad \kXfour - \klambda \kX = 0 . $$</div>
+<p id="boundary-to-X">The <span data-concept="side-conditions">boundary conditions</span> $\ky(0,t) = \kyxx(0,t) = 0$ and $\ky(1,t) = \kyxx(1,t) = 0$ imply</p>
+<div class="equation" id="eq-beam-X-conditions">$$ \kX(0) = \kXdprime(0) = 0 \qquad \text{and} \qquad \kX(1) = \kXdprime(1) = 0 . $$</div>
+<p id="initial-velocity">The <span data-concept="side-conditions">initial homogeneous condition</span> $\kyt(x,0) = 0$ implies</p>
+$$ \kTprime(0) = 0 . $$
+<p>As usual, we leave the <span data-concept="side-conditions">nonhomogeneous</span> $\ky(x,0) = \kf(x)$ for later.</p>
+<p id="positive">Considering the equation for $\kT$, that is, $\kTdprime + \klambda a^4 \kT = 0$, physical intuition leads us to the fact that if $\klambda$ is an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span> then $\klambda &gt; 0$: We expect vibration and not exponential growth or decay in the $t$ direction (there is no friction in our model for instance). So there are no negative <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span>. Similarly, $\klambda = 0$ is not an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span>.</p>
+<div class="exercises" data-place="positive"></div>
+</section>
+
+<section id="eigenvalues">
+<h2>The eigenvalues and the series solution</h2>
+<p id="fourth-root">Let $\komega = \sqrt[4]{\klambda}$, that is, $\komega^4 = \klambda$, to avoid writing the fourth root all the time. Notice $\komega &gt; 0$. The <span data-concept="general-solution-of-a-higher-order-homogeneous-equation">general solution</span> to $\kXfour - \komega^4 \kX = 0$ is</p>
+$$ \kX(x) = A e^{\komega x} + B e^{-\komega x} + C \sin (\komega x) + D \cos (\komega x) . $$
+<p id="conditions-at-zero">Now $0 = \kX(0) = A+B+D$, $0 = \kXdprime(0) = \komega^2 (A + B - D)$. Solving, $D = 0$ and $B = -A$. So</p>
+$$ \kX(x) = A e^{\komega x} - A e^{-\komega x} + C \sin (\komega x) . $$
+<p id="beam-eigenvalues">Also $0 = \kX(1) = A (e^{\komega} - e^{-\komega}) + C \sin \komega$, and $0 = \kXdprime(1) = A \komega^2 (e^{\komega} - e^{-\komega}) - C \komega^2 \sin \komega$. This means that $C \sin \komega = 0$ and $A (e^{\komega} - e^{-\komega}) = 2 A \sinh \komega = 0$. If $\komega &gt; 0$, then $\sinh \komega \neq 0$ and so $A = 0$. Thus $C \neq 0$, otherwise $\klambda$ is not an <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalue</span>. Also, $\komega$ must be an integer multiple of $\pi$. Hence $\komega = n \pi$ and $n \geq 1$ (as $\komega &gt; 0$). We can take $C=1$. So the <span data-concept="eigenvalue-of-a-boundary-value-problem">eigenvalues</span> are $\klambdan = n^4 \pi^4$, and corresponding <span data-concept="eigenfunction">eigenfunctions</span> are $\sin (n \pi x)$.</p>
+<p id="time-factor">Now $\kTdprime + n^4 \pi^4 a^4 \kT = 0$. The <span data-concept="general-solution-to-a-homogeneous-equation">general solution</span> is $\kT(t) = A \sin (n^2 \pi^2 a^2 t) + B \cos (n^2 \pi^2 a^2 t)$. But $\kTprime(0) = 0$ and hence $A=0$. We take $B=1$ to make $\kT(0) = 1$ for convenience. So our solutions are $\kTn(t) = \cos (n^2 \pi^2 a^2 t)$.</p>
+<figure class="dv" id="drv-hinged-beam"></figure>
+<p id="beam-series">The <span data-concept="eigenfunction">eigenfunctions</span> are just the sines, so we decompose the function $\kf(x)$ using the <span data-concept="sine-series">sine series</span>. That is, we find numbers $\kbn$ such that for $0 &lt; x &lt; 1$,</p>
+$$ \kf(x) = \sum_{n=1}^\infty \kbn \sin (n \pi x) . $$
+<p>Then the solution to <a href="#eq-5-5">(5.5)</a> is</p>
+<div class="equation" id="eq-hinged-beam-series">$$ \ky(x,t) = \sum_{n=1}^\infty \kbn \kXn(x) \kTn(t) = \sum_{n=1}^\infty \kbn \sin (n \pi x) \cos ( n^2 \pi^2 a^2 t ) . $$</div>
+<p id="homogeneous-check">The point is that $\kXn\kTn$ is a solution that satisfies all the <span data-concept="side-conditions">homogeneous conditions</span> (all conditions except the initial position). And since $\kTn(0) = 1$,</p>
+$$ \ky(x,0) = \sum_{n=1}^\infty \kbn \kXn(x) \kTn(0) = \sum_{n=1}^\infty \kbn \kXn(x) = \sum_{n=1}^\infty \kbn \sin (n \pi x) = \kf(x) . $$
+<p>So $\ky(x,t)$ solves <a href="#eq-5-5">(5.5)</a>.</p>
+<p id="timbre">The <span data-concept="natural-frequencies-of-a-beam">natural (angular) frequencies</span> of the system are <span data-type="frequency">$n^2 \pi^2 a^2$</span>. These frequencies are all integer multiples of the <span data-concept="fundamental-frequency">fundamental frequency</span> <span data-type="frequency">$\pi^2 a^2$</span>, so we get a nice musical note. The exact frequencies and their amplitudes are what musicians call the <em><span data-concept="timbre">timbre</span></em> of the note (outside of music it is called the <span data-concept="spectrum">spectrum</span>).</p>
+<p id="xylophone">The <span data-concept="timbre">timbre</span> of <span data-ref="beam">a simply supported beam</span> is different from that of <span data-ref="string">a vibrating string</span>, where we get “more” of the lower frequencies since we get all integer multiples, $1,2,3,4,5,\ldots$. For <span data-ref="beam">a simply supported beam</span>, we get only the square multiples $1,4,9,16,25,\ldots$, and so we get something much closer to a pure sound. The sound of <span data-ref="beam">a xylophone or vibraphone</span> is, therefore, very different from that of <span data-ref="string">a guitar or piano</span>.</p>
+<figure class="sim" id="sim-beam-timbre">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="beam">The hinged beam</span> and <span data-ref="string">a string</span> tuned to the same <span data-concept="fundamental-frequency">fundamental frequency</span> <span data-type="frequency">$\pi^2 a^2$</span> are released from the same shape, so the coefficients $\kbn$ of its <span data-concept="sine-series">sine series</span> are the same for both; each rung stands at a <span data-concept="natural-frequencies-of-a-beam">natural frequency</span>, <span data-type="frequency">$n^2 \pi^2 a^2$</span> for <span data-ref="beam">the beam</span> and <span data-type="frequency">$n \pi^2 a^2$</span> for <span data-ref="string">the string</span>, with the height $|\kbn|$ scaled so that the fundamental’s is $1$: the share of mode $n$ in the <span data-concept="timbre">timbre</span>. Up to $26$ times the fundamental <span data-ref="string">the string</span> sounds a rung at every multiple its shape excites, <span data-ref="beam">the beam</span> only at the squares; the shape may be Example 5.2.1’s or a pluck at the middle or a quarter of the way along.</span></div>
+</figure>
+<div class="example" id="ex-5-2-1">
+<h3>Example 5.2.1</h3>
+<p>Consider $\kf(x) = \frac{x(x-1)}{10}$. On $0 &lt; x &lt; 1$ (you know how to do this by now)</p>
+$$ \kf(x) = \sum_{\substack{n=1\\n \text{~odd}}}^\infty \frac{-4}{5\pi^3 n^3} \sin (n \pi x) . $$
+<p>Hence, the solution to <a href="#eq-5-5">(5.5)</a> with the given initial position $\kf(x)$ is</p>
+$$ \ky(x,t) = \sum_{\substack{n=1\\n \text{~odd}}}^\infty \frac{-4}{5\pi^3 n^3} \sin (n \pi x) \cos ( n^2 \pi^2 a^2 t ) . $$
+</div>
+</section>
+
+<section id="ends">
+<h2>Other end conditions</h2>
+<p id="end-conditions">There are other <span data-concept="side-conditions">boundary conditions</span> than just <span data-concept="hinged-end-of-a-beam">hinged ends</span>. There are three basic possibilities: <span data-concept="hinged-end-of-a-beam">hinged</span>, <span data-concept="free-end-of-a-beam">free</span>, or <span data-concept="clamped-end-of-a-beam">fixed</span>. Consider the end at $x=0$. For the other end, it is the same idea. If the end is <em><span data-concept="hinged-end-of-a-beam">hinged</span></em>, then</p>
+<div class="equation" id="eq-hinged-end">$$ \ky(0,t) = \kyxx(0,t) = 0 . $$</div>
+<p id="free-end">If the end is <em><span data-concept="free-end-of-a-beam">free</span></em>, that is, it is just floating in air, then</p>
+<div class="equation" id="eq-free-end">$$ \kyxx(0,t) = \kyxxx(0,t) = 0 . $$</div>
+<p id="clamped-end">And finally, if the end is <em><span data-concept="clamped-end-of-a-beam">clamped</span></em> or <em><span data-concept="clamped-end-of-a-beam">fixed</span></em>, for example it is welded to a wall, then</p>
+<div class="equation" id="eq-clamped-end">$$ \ky(0,t) = \kyx(0,t) = 0 . $$</div>
+<figure class="sim" id="sim-beam-ends">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The end $x = 0$ of a beam in each of the three basic states, the beam’s shape near it drawn to meet that end’s two conditions, and its slope $\kyx(0,t)$ drawn as a short tangent. <span data-concept="hinged-end-of-a-beam">Hinged</span> on a pin, the end cannot move but turns freely, $\ky(0,t) = \kyxx(0,t) = 0$; <span data-concept="free-end-of-a-beam">free</span>, the end floats and may both move and tilt, and $\kyxx(0,t) = \kyxxx(0,t) = 0$; <span data-concept="clamped-end-of-a-beam">clamped</span> in a wall, the end can neither move nor tilt, $\ky(0,t) = \kyx(0,t) = 0$. Each change of end bends the beam from one state into the next.</span></div>
+</figure>
+</section>

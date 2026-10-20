@@ -1,0 +1,920 @@
+{
+ "id": "7.2",
+ "module": "seriessols:section",
+ "chapter": "7",
+ "title": "Series solutions of linear second-order ODEs",
+ "short": "Series solutions of second-order ODEs",
+ "lead": "A <span data-concept=\"second-order-linear-differential-equation\">linear second-order equation</span> whose coefficients are polynomials can be attacked near an <span data-concept=\"ordinary-point\">ordinary point</span> by trying a <span data-concept=\"power-series\">power series</span> and solving for its <span data-concept=\"power-series-coefficients\">coefficients</span>. The section works the method on $\\kydprime - \\ky = 0$, then on <span data-concept=\"airys-equation\">Airy’s equation</span>, whose solutions no elementary function gives, and on <span data-concept=\"hermites-equation\">Hermite’s equation</span>, asking when a series solution is a polynomial.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "In the following exercises, when asked to solve an equation using power series methods, you should find the first few terms of the series, and if possible find a general formula for the $k^{\\text{th}}$ coefficient.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 7.2.101–7.2.103 carry the book’s own answers. Exercises 7.2.1–7.2.8, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every coefficient checked with SymPy first. The book’s instruction above the set is the exercises_lead.",
+ "figures": [
+  {
+   "id": "sim-series-solution",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "series",
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-airy",
+   "kind": "sim",
+   "number": "7.3",
+   "originals": [
+    "/media/ch07/ps-airy.svg"
+   ],
+   "original_caption": "The two solutions y₁ and y₂ to Airy’s equation.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "series"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-hermite",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "series",
+    "sequence"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "consider",
+   "concept": "second-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "consider",
+   "concept": "homogeneous-linear-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-polynomial-coefficient-ode",
+   "concept": "second-order-linear-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "try-series",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "try-series",
+   "concept": "power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-series-solution-ansatz",
+   "concept": "power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-series-solution-ansatz",
+   "concept": "power-series-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-series-solution-ansatz",
+   "concept": "power-series-center",
+   "verb": "uses"
+  },
+  {
+   "span": "solve-for-coefficients",
+   "concept": "power-series-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ordinary-point-def",
+   "concept": "ordinary-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "singular-point-def",
+   "concept": "singular-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "singular-point-def",
+   "concept": "ordinary-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "try-power-series",
+   "concept": "power-series-solution-of-a-differential-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "try-power-series",
+   "concept": "ordinary-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "try-power-series",
+   "concept": "constant-coefficient-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "try-power-series",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-series-recurrence",
+   "concept": "term-by-term-differentiation-and-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-series-recurrence",
+   "concept": "reindexing-a-series",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-series-recurrence",
+   "concept": "power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "recurrence",
+   "concept": "recurrence-relation",
+   "verb": "introduces"
+  },
+  {
+   "span": "recurrence",
+   "concept": "power-series-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "recurrence",
+   "concept": "power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-series-solution",
+   "concept": "recurrence-relation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-series-solution",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-series-solution",
+   "concept": "power-series-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-series-solution",
+   "concept": "recurrence-relation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-series-solution",
+   "concept": "power-series-solution-of-a-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-series-solution",
+   "concept": "partial-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-series-solution",
+   "concept": "power-series-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-series-solution",
+   "concept": "hyperbolic-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "no-elementary",
+   "concept": "power-series-solution-of-a-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "airy-def",
+   "concept": "airys-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-7-2-2",
+   "concept": "series-solutions-of-airys-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-7-2-2",
+   "concept": "ordinary-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-7-2-2",
+   "concept": "power-series-solution-of-a-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-7-2-2",
+   "concept": "term-by-term-differentiation-and-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "airy-reindex",
+   "concept": "reindexing-a-series",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-airy-recurrence",
+   "concept": "recurrence-relation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-airy-solutions",
+   "concept": "power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "airy-general",
+   "concept": "general-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "airy-general",
+   "concept": "general-solution-to-a-homogeneous-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "airy-general",
+   "concept": "initial-value",
+   "verb": "uses"
+  },
+  {
+   "span": "airy-general",
+   "concept": "solving-an-initial-value-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-airy",
+   "concept": "series-solutions-of-airys-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-airy",
+   "concept": "airys-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-airy",
+   "concept": "recurrence-relation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-airy",
+   "concept": "partial-sum",
+   "verb": "uses"
+  },
+  {
+   "span": "airy-properties",
+   "concept": "series-solutions-of-airys-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "airy-properties",
+   "concept": "four-fundamental-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "polynomial-preview",
+   "concept": "polynomial-as-a-power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "hermite-def",
+   "concept": "hermites-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-7-2-3",
+   "concept": "power-series-solution-of-a-differential-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-7-2-3",
+   "concept": "term-by-term-differentiation-and-integration",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-7-2-3",
+   "concept": "reindexing-a-series",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-hermite-recurrence",
+   "concept": "recurrence-relation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "hermite-polynomial",
+   "concept": "polynomial-solutions-of-hermites-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "hermite-polynomial",
+   "concept": "polynomial-as-a-power-series",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-hermite",
+   "concept": "polynomial-solutions-of-hermites-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-hermite",
+   "concept": "hermites-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-hermite",
+   "concept": "power-series-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-hermite",
+   "concept": "partial-sum",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "series-recurrence",
+   "what": "the recurrence relation for $y'' - y = 0$",
+   "source": "Differential Equations for Engineers, 7.2 Series solutions of linear second-order ODEs, Example 7.2.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A convergent power series can be differentiated term by term: $\\frac{d}{dx} \\sum_{k=0}^\\infty \\ka_k x^k = \\sum_{k=1}^\\infty k \\ka_k x^{k-1}$.",
+       "src": "7.1"
+      },
+      {
+       "text": "A series is reindexed by replacing $k$ with $k+2$: the series does not change, only where it starts.",
+       "src": "7.1, Example 7.1.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\ky} = \\mk{s}{\\sum_{k=0}^\\infty \\ka_k x^k}",
+      "src": "Example 7.2.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\kyprime} = \\mk{s}{\\sum_{k=1}^\\infty k \\ka_k x^{k-1}}",
+       "uses": [
+        0
+       ],
+       "cap": "If we differentiate, the $k=0$ term is a constant and hence disappears."
+      },
+      {
+       "tex": "\\mk{y}{\\kydprime} = \\mk{s}{\\sum_{k=2}^\\infty k(k-1) \\ka_k x^{k-2}}",
+       "uses": [
+        0
+       ],
+       "cap": "We differentiate yet again; now the $k=1$ term disappears."
+      },
+      {
+       "tex": "\\mk{y}{\\kydprime} = \\mk{s}{\\sum_{k=0}^\\infty (k+2)(k+1) \\ka_{k+2} x^k}",
+       "uses": [
+        1
+       ],
+       "cap": "We need to subtract $\\ky$ from $\\kydprime$, so we reindex the series for $\\kydprime$: replace $k$ with $k+2$."
+      }
+     ],
+     "src": "Example 7.2.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\mk{y}{\\ky} = \\mk{s}{\\sum_{k=0}^\\infty \\ka_k x^k}",
+       "src": "Example 7.2.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0} = \\mk{L}{\\kydprime - \\ky}",
+      "src": "Example 7.2.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0} = \\mk{p}{\\sum_{k=0}^\\infty (k+2)(k+1) \\ka_{k+2} x^k} - \\mk{q}{\\sum_{k=0}^\\infty \\ka_k x^k}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "L": [
+         "p",
+         "q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{z}{0} = \\mk{s}{\\sum_{k=0}^\\infty \\Bigl( (k+2)(k+1) \\ka_{k+2} x^k - \\ka_k x^k \\Bigr)}",
+       "uses": [],
+       "map": {
+        "p": "s",
+        "q": "s"
+       }
+      },
+      {
+       "tex": "\\mk{z}{0} = \\mk{s}{\\sum_{k=0}^\\infty \\bigl( (k+2)(k+1) \\ka_{k+2} - \\ka_k \\bigr) x^k}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{c}{(k+2)(k+1) \\ka_{k+2} - \\ka_k} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "s": "c"
+       },
+       "cap": "As $\\kydprime - \\ky$ is supposed to be equal to 0, the coefficients of the resulting series must be equal to 0, for every $k = 0, 1, 2, 3, \\ldots$"
+      },
+      {
+       "tex": "\\mk{a}{\\ka_{k+2}} = \\mk{r}{\\frac{\\ka_k}{(k+2)(k+1)}}",
+       "uses": [],
+       "map": {
+        "c": [
+         "a",
+         "r"
+        ]
+       }
+      }
+     ],
+     "src": "Example 7.2.1"
+    }
+   ]
+  },
+  {
+   "id": "series-solution",
+   "what": "the series solution of $y'' - y = 0$",
+   "source": "Differential Equations for Engineers, 7.2 Series solutions of linear second-order ODEs, Example 7.2.1",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{a}{\\ka_{k+2}} = \\mk{r}{\\frac{\\ka_k}{(k+2)(k+1)}}",
+      "src": "Example 7.2.1, the recurrence relation"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\ka_2} = \\mk{r}{\\frac{\\ka_0}{2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\ka_4} = \\mk{m}{\\frac{\\ka_2}{4 \\cdot 3}} = \\mk{r}{\\frac{\\ka_0}{4 \\cdot 3 \\cdot 2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\ka_{2n}} = \\mk{r}{\\frac{\\ka_0}{(2n)!}}",
+       "uses": [],
+       "cap": "For even $k$, that is, $k = 2n$: each step divides by the next two integers, so the denominator collects every integer from $2n$ down to 1."
+      }
+     ],
+     "src": "Example 7.2.1"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{a}{\\ka_{k+2}} = \\mk{r}{\\frac{\\ka_k}{(k+2)(k+1)}}",
+      "src": "Example 7.2.1, the recurrence relation"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\ka_3} = \\mk{r}{\\frac{\\ka_1}{3 \\cdot 2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\ka_5} = \\mk{m}{\\frac{\\ka_3}{5 \\cdot 4}} = \\mk{r}{\\frac{\\ka_1}{5 \\cdot 4 \\cdot 3 \\cdot 2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\ka_{2n+1}} = \\mk{r}{\\frac{\\ka_1}{(2n+1)!}}",
+       "uses": [],
+       "cap": "For odd $k$, that is, $k = 2n+1$, the same steps start from $\\ka_1$."
+      }
+     ],
+     "src": "Example 7.2.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "Since $\\cosh x = \\frac{e^x + e^{-x}}{2}$ and $\\sinh x = \\frac{e^x - e^{-x}}{2}$, adding and subtracting the series $e^{\\pm x} = \\sum_{k=0}^\\infty \\frac{(\\pm x)^k}{k!}$ gives $\\cosh x = \\sum_{n=0}^\\infty \\frac{x^{2n}}{(2n)!}$ and $\\sinh x = \\sum_{n=0}^\\infty \\frac{x^{2n+1}}{(2n+1)!}$.",
+       "src": "0.2; 7.1, Example 7.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\ky} = \\mk{s}{\\sum_{k=0}^\\infty \\ka_k x^k}",
+      "src": "Example 7.2.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{y}{\\ky} = \\mk{s}{\\sum_{n=0}^\\infty \\left( \\frac{\\ka_0}{(2n)!} \\,x^{2n} + \\frac{\\ka_1}{(2n+1)!} \\,x^{2n+1} \\right)}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "We write down the series for the solution, its even terms $k = 2n$ beside its odd terms $k = 2n+1$."
+      },
+      {
+       "tex": "\\mk{y}{\\ky} = \\mk{c}{\\ka_0 \\sum_{n=0}^\\infty \\frac{1}{(2n)!} \\,x^{2n}} + \\mk{h}{\\ka_1 \\sum_{n=0}^\\infty \\frac{1}{(2n+1)!} \\,x^{2n+1}}",
+       "uses": [],
+       "map": {
+        "s": [
+         "c",
+         "h"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{y}{\\ky} = \\mk{c}{\\ka_0 \\cosh x} + \\mk{h}{\\ka_1 \\sinh x}",
+       "uses": [
+        2
+       ],
+       "cap": "We recognize the two series as the hyperbolic cosine and sine."
+      }
+     ],
+     "src": "Example 7.2.1"
+    }
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-airy",
+   "kind": "book",
+   "number": "41",
+   "html": "Named after the English mathematician <a href=\"http://en.wikipedia.org/wiki/George_Biddell_Airy\">Sir George Biddell Airy</a> (1801–1892)."
+  },
+  {
+   "id": "fn-hermite",
+   "kind": "book",
+   "number": "42",
+   "html": "Named after the French mathematician <a href=\"http://en.wikipedia.org/wiki/Hermite\">Charles Hermite</a> (1822–1901)."
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "7.2.1",
+   "source_number": "7.2.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-series-solution-ansatz",
+   "prompt": "<p>Use power series methods to solve $\\kydprime+\\ky = 0$ at the point $x_0 = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Try $\\ky = \\sum_{k=0}^\\infty \\ka_k {(x-1)}^k$. The equation has constant coefficients, so in powers of $x - 1$ it keeps its form, and differentiating twice and reindexing gives $\\sum_{k=0}^\\infty \\bigl( (k+2)(k+1)\\ka_{k+2} + \\ka_k \\bigr) {(x-1)}^k = 0$. The recurrence relation is $\\ka_{k+2} = \\frac{-\\ka_k}{(k+2)(k+1)}$ with $\\ka_0$ and $\\ka_1$ arbitrary. Then $\\ka_2 = -\\frac{\\ka_0}{2}$, $\\ka_3 = -\\frac{\\ka_1}{6}$, $\\ka_4 = \\frac{\\ka_0}{24}$, $\\ka_5 = \\frac{\\ka_1}{120}$, and in general $\\ka_{2n} = \\frac{(-1)^n \\ka_0}{(2n)!}$, $\\ka_{2n+1} = \\frac{(-1)^n \\ka_1}{(2n+1)!}$. So $\\ky = \\ka_0 \\Bigl( 1 - \\frac{{(x-1)}^2}{2} + \\frac{{(x-1)}^4}{24} - \\cdots \\Bigr) + \\ka_1 \\Bigl( (x-1) - \\frac{{(x-1)}^3}{6} + \\frac{{(x-1)}^5}{120} - \\cdots \\Bigr)$, and the two series are recognized: $\\ky = \\ka_0 \\cos (x-1) + \\ka_1 \\sin (x-1)$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "7.2.2",
+   "source_number": "7.2.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-airy-recurrence",
+   "prompt": "<p>Use power series methods to solve $\\kydprime+4x\\ky = 0$ at the point $x_0 = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Plug in $\\ky = \\sum_{k=0}^\\infty \\ka_k x^k$ and reindex as for Airy’s equation: $0 = 2\\ka_2 + \\sum_{k=1}^\\infty \\bigl( (k+2)(k+1)\\ka_{k+2} + 4\\ka_{k-1} \\bigr) x^k$. So $\\ka_2 = 0$ and $\\ka_{k+2} = \\frac{-4\\ka_{k-1}}{(k+2)(k+1)}$, which jumps in steps of three: $\\ka_{3n+2} = 0$, $\\ka_3 = -\\frac{2}{3}\\ka_0$, $\\ka_4 = -\\frac{1}{3}\\ka_1$, $\\ka_6 = \\frac{4}{45}\\ka_0$, $\\ka_7 = \\frac{2}{63}\\ka_1$, $\\ka_9 = -\\frac{2}{405}\\ka_0$, $\\ka_{10} = -\\frac{4}{2835}\\ka_1$, and in general $\\ka_{3n} = \\frac{(-4)^n \\ka_0}{2 \\cdot 3 \\cdot 5 \\cdot 6 \\cdots (3n-1) \\cdot (3n)}$, $\\ka_{3n+1} = \\frac{(-4)^n \\ka_1}{3 \\cdot 4 \\cdot 6 \\cdot 7 \\cdots (3n) \\cdot (3n+1)}$. Hence $\\ky = \\ka_0 \\Bigl( 1 - \\frac{2}{3}x^3 + \\frac{4}{45}x^6 - \\frac{2}{405}x^9 + \\cdots \\Bigr) + \\ka_1 \\Bigl( x - \\frac{1}{3}x^4 + \\frac{2}{63}x^7 - \\frac{4}{2835}x^{10} + \\cdots \\Bigr)$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "7.2.3",
+   "source_number": "7.2.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-airys-equation",
+   "prompt": "<p>Use power series methods to solve $\\kydprime-x\\ky = 0$ at the point $x_0 = 1$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $x = 1 + (x-1)$, so the equation is $\\kydprime - \\ky - (x-1)\\ky = 0$, and try $\\ky = \\sum_{k=0}^\\infty \\ka_k {(x-1)}^k$. The coefficient of ${(x-1)}^k$ gives $(k+2)(k+1)\\ka_{k+2} - \\ka_k - \\ka_{k-1} = 0$ (with $\\ka_{-1} = 0$), so $\\ka_{k+2} = \\frac{\\ka_k + \\ka_{k-1}}{(k+2)(k+1)}$. Then $\\ka_2 = \\frac{\\ka_0}{2}$, $\\ka_3 = \\frac{\\ka_0 + \\ka_1}{6}$, $\\ka_4 = \\frac{\\ka_0 + 2\\ka_1}{24}$, $\\ka_5 = \\frac{4\\ka_0 + \\ka_1}{120}$, $\\ka_6 = \\frac{5\\ka_0 + 6\\ka_1}{720}$, and $\\ky = \\ka_0 \\Bigl( 1 + \\frac{{(x-1)}^2}{2} + \\frac{{(x-1)}^3}{6} + \\frac{{(x-1)}^4}{24} + \\frac{{(x-1)}^5}{30} + \\cdots \\Bigr) + \\ka_1 \\Bigl( (x-1) + \\frac{{(x-1)}^3}{6} + \\frac{{(x-1)}^4}{12} + \\frac{{(x-1)}^5}{120} + \\cdots \\Bigr)$. The recurrence ties three coefficients together, and no simple general formula for $\\ka_k$ comes out of it."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "7.2.4",
+   "source_number": "7.2.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-series-solution-ansatz",
+   "prompt": "<p>Use power series methods to solve $\\kydprime+x^2\\ky = 0$ at the point $x_0 = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\ky = \\sum_{k=0}^\\infty \\ka_k x^k$ and $x^2\\ky = \\sum_{k=2}^\\infty \\ka_{k-2} x^k$: $0 = 2\\ka_2 + 6\\ka_3 x + \\sum_{k=2}^\\infty \\bigl( (k+2)(k+1)\\ka_{k+2} + \\ka_{k-2} \\bigr) x^k$. So $\\ka_2 = \\ka_3 = 0$ and $\\ka_{k+2} = \\frac{-\\ka_{k-2}}{(k+2)(k+1)}$: the coefficients jump in steps of four, and only $\\ka_{4n}$ and $\\ka_{4n+1}$ are nonzero, $\\ka_{4n} = \\frac{(-1)^n \\ka_0}{3 \\cdot 4 \\cdot 7 \\cdot 8 \\cdots (4n-1) \\cdot (4n)}$ and $\\ka_{4n+1} = \\frac{(-1)^n \\ka_1}{4 \\cdot 5 \\cdot 8 \\cdot 9 \\cdots (4n) \\cdot (4n+1)}$. So $\\ky = \\ka_0 \\Bigl( 1 - \\frac{x^4}{12} + \\frac{x^8}{672} - \\frac{x^{12}}{88704} + \\cdots \\Bigr) + \\ka_1 \\Bigl( x - \\frac{x^5}{20} + \\frac{x^9}{1440} - \\frac{x^{13}}{224640} + \\cdots \\Bigr)$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "7.2.5",
+   "source_number": "7.2.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-series-solution-ansatz",
+   "prompt": "<p>The methods work for other orders than second order. Try the methods of this section to solve the first-order system $\\kyprime-x\\ky = 0$ at the point $x_0 = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\ky = \\sum_{k=0}^\\infty \\ka_k x^k$, we have $\\kyprime = \\sum_{k=0}^\\infty (k+1)\\ka_{k+1} x^k$ and $x\\ky = \\sum_{k=1}^\\infty \\ka_{k-1} x^k$, so $0 = \\ka_1 + \\sum_{k=1}^\\infty \\bigl( (k+1)\\ka_{k+1} - \\ka_{k-1} \\bigr) x^k$. Hence $\\ka_1 = 0$ and $\\ka_{k+1} = \\frac{\\ka_{k-1}}{k+1}$: every odd coefficient is 0, and $\\ka_{2n} = \\frac{\\ka_0}{2 \\cdot 4 \\cdots (2n)} = \\frac{\\ka_0}{2^n n!}$. Only one constant is arbitrary, as for a first-order equation: $\\ky = \\ka_0 \\sum_{n=0}^\\infty \\frac{x^{2n}}{2^n n!} = \\ka_0 \\Bigl( 1 + \\frac{x^2}{2} + \\frac{x^4}{8} + \\frac{x^6}{48} + \\cdots \\Bigr) = \\ka_0 e^{x^2/2}$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "7.2.6",
+   "source_number": "7.2.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-polynomial-coefficient-ode",
+   "prompt": "<p><strong>Chebyshev’s equation of order $p$</strong></p><ol type=\"a\"><li>Solve $(1-x^2)\\kydprime-x\\kyprime + p^2\\ky = 0$ using power series methods at $x_0=0$.</li><li>For what $p$ is there a polynomial solution?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) With $\\ky = \\sum_{k=0}^\\infty \\ka_k x^k$, the coefficient of $x^k$ in $(1-x^2)\\kydprime - x\\kyprime + p^2\\ky$ is $(k+2)(k+1)\\ka_{k+2} - k(k-1)\\ka_k - k\\ka_k + p^2\\ka_k$, so $\\ka_{k+2} = \\frac{k^2 - p^2}{(k+2)(k+1)} \\ka_k$. Then $\\ka_2 = -\\frac{p^2}{2}\\ka_0$, $\\ka_3 = \\frac{1-p^2}{6}\\ka_1$, $\\ka_4 = \\frac{(4-p^2)(-p^2)}{24}\\ka_0$, $\\ka_5 = \\frac{(9-p^2)(1-p^2)}{120}\\ka_1$, and in general $\\ka_{2m} = \\frac{(-p^2)(2^2-p^2)\\cdots((2m-2)^2-p^2)}{(2m)!}\\ka_0$, $\\ka_{2m+1} = \\frac{(1-p^2)(3^2-p^2)\\cdots((2m-1)^2-p^2)}{(2m+1)!}\\ka_1$, so $\\ky = \\ka_0 \\Bigl( 1 - \\frac{p^2}{2}x^2 + \\frac{p^2(p^2-4)}{24}x^4 - \\cdots \\Bigr) + \\ka_1 \\Bigl( x + \\frac{1-p^2}{6}x^3 + \\frac{(1-p^2)(9-p^2)}{120}x^5 + \\cdots \\Bigr)$. b) The factor $k^2 - p^2$ is zero at $k = |p|$ exactly when $p$ is an integer. Then the coefficient of degree $|p| + 2$ is 0 and so is every later one of the same parity: for even $p$ the series in $\\ka_0$ is a polynomial of degree $|p|$, for odd $p$ the series in $\\ka_1$. So there is a polynomial solution exactly when $p$ is an integer; for example, $p = 2$ gives $1 - 2x^2$ and $p = 3$ gives $x - \\frac{4}{3}x^3$. For any other $p$ no factor vanishes and both series go on forever."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "7.2.7",
+   "source_number": "7.2.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hermite-polynomial",
+   "prompt": "<p>Find a polynomial solution to $(x^2+1) \\kydprime-2x\\kyprime+2\\ky = 0$ using power series methods.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\ky = \\sum_{k=0}^\\infty \\ka_k x^k$, the coefficient of $x^k$ is $(k+2)(k+1)\\ka_{k+2} + \\bigl( k(k-1) - 2k + 2 \\bigr)\\ka_k = (k+2)(k+1)\\ka_{k+2} + (k-1)(k-2)\\ka_k$, so $\\ka_{k+2} = -\\frac{(k-1)(k-2)}{(k+2)(k+1)}\\ka_k$. Then $\\ka_2 = -\\ka_0$, while the factor $(k-1)(k-2)$ is zero at $k = 1$ and $k = 2$, so $\\ka_3 = \\ka_4 = 0$ and every later coefficient is 0. So $\\ky = \\ka_0 (1 - x^2) + \\ka_1 x$: every solution is a polynomial, for example $\\ky = x$ or $\\ky = 1 - x^2$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "7.2.8",
+   "source_number": "7.2.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-series-solution-ansatz",
+   "prompt": "<ol type=\"a\"><li>Use power series methods to solve $(1-x)\\kydprime+\\ky = 0$ at the point $x_0 = 0$.</li><li>Use the solution to part a) to find a solution for $x\\kydprime+\\ky=0$ around the point $x_0=1$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) With $\\ky = \\sum_{k=0}^\\infty \\ka_k x^k$, the coefficient of $x^k$ is $(k+2)(k+1)\\ka_{k+2} - (k+1)k\\ka_{k+1} + \\ka_k = 0$, so $\\ka_{k+2} = \\frac{k(k+1)\\ka_{k+1} - \\ka_k}{(k+2)(k+1)}$. Then $\\ka_2 = -\\frac{\\ka_0}{2}$, $\\ka_3 = -\\frac{\\ka_0 + \\ka_1}{6}$, $\\ka_4 = -\\frac{\\ka_0 + 2\\ka_1}{24}$, $\\ka_5 = -\\frac{2\\ka_0 + 5\\ka_1}{120}$, and $\\ky = \\ka_0 \\Bigl( 1 - \\frac{x^2}{2} - \\frac{x^3}{6} - \\frac{x^4}{24} - \\frac{x^5}{60} - \\cdots \\Bigr) + \\ka_1 \\Bigl( x - \\frac{x^3}{6} - \\frac{x^4}{12} - \\frac{x^5}{24} - \\cdots \\Bigr)$; the recurrence ties neighbouring coefficients together, and no simple general formula comes out of it. b) Put $s = 1 - x$. Then $x = 1 - s$ and the second derivative in $x$ equals the second derivative in $s$, so $x\\kydprime + \\ky = 0$ becomes $(1-s)\\frac{d^2\\ky}{ds^2} + \\ky = 0$, the equation of part a) in $s$, and $x = 1$ is $s = 0$. So $\\ky = \\sum_{k=0}^\\infty \\ka_k {(1-x)}^k$ with the $\\ka_k$ of part a): $\\ky = \\ka_0 \\Bigl( 1 - \\frac{{(1-x)}^2}{2} - \\frac{{(1-x)}^3}{6} - \\cdots \\Bigr) + \\ka_1 \\Bigl( (1-x) - \\frac{{(1-x)}^3}{6} - \\frac{{(1-x)}^4}{12} - \\cdots \\Bigr)$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "7.2.101",
+   "source_number": "7.2.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-series-solution-ansatz",
+   "prompt": "<p>Use power series methods to solve $\\kydprime + 2 x^3 \\ky = 0$ at the point $x_0 = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ka_2 = 0$, $\\ka_3 = 0$, $\\ka_4 = 0$, recurrence relation (for $k \\geq 5$): $\\ka_k = \\frac{- 2 \\ka_{k-5}}{k(k-1)}$, so: $\\ky(x) = \\ka_0 + \\ka_1 x -\\frac{\\ka_0}{10} x^5 - \\frac{\\ka_1}{15} x^6 + \\frac{\\ka_0}{450} x^{10} + \\frac{\\ka_1}{825} x^{11} - \\frac{\\ka_0}{47250} x^{15} - \\frac{\\ka_1}{99000} x^{16} + \\cdots$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "7.2.102",
+   "source_number": "7.2.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "tag": "challenging",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-airys-equation",
+   "prompt": "<p>Power-series methods also work for nonhomogeneous equations.</p><ol type=\"a\"><li>Use power series methods to solve $\\kydprime - x \\ky = \\frac{1}{1-x}$ at the point $x_0 = 0$. Hint: Recall the geometric series.</li><li>Now solve for the initial condition $\\ky(0)=0$, $\\kyprime(0)=0$.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\ka_2 = \\frac{1}{2}$, and for $k \\geq 3$ we have $\\ka_k = \\frac{\\ka_{k-3} + 1}{k(k-1)}$, so $\\ky(x) = \\ka_0 + \\ka_1 x + \\frac{1}{2} x^2 + \\frac{\\ka_0 + 1}{6} x^3 + \\frac{\\ka_1 + 1}{12} x^4 + \\frac{3}{40} x^5 + \\frac{\\ka_0 + 7}{180} x^6 + \\frac{\\ka_1 + 13}{504} x^7 + \\frac{43}{2240} x^8 + \\frac{\\ka_0 + 187}{12960} x^9 + \\frac{\\ka_1 + 517}{45360} x^{10} + \\cdots$ b) $\\ky(x) = \\frac{1}{2} x^2 + \\frac{1}{6} x^3 + \\frac{1}{12} x^4 + \\frac{3}{40} x^5 + \\frac{7}{180} x^6 + \\frac{13}{504} x^7 + \\frac{43}{2240} x^8 + \\frac{187}{12960} x^9 + \\frac{517}{45360} x^{10} + \\cdots$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "7.2.103",
+   "source_number": "7.2.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "singular-point-def",
+   "prompt": "<p>Attempt to solve $x^2 \\kydprime - \\ky = 0$ at $x_0 = 0$ using the power series method of this section ($x_0$ is a singular point). Can you find at least one solution? Can you find more than one solution?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Applying the method of this section directly we obtain $\\ka_k = 0$ for all $k$ and so $\\ky(x) = 0$ is the only solution we find."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e1",
+   "concept": "power-series-center"
+  },
+  {
+   "exercise": "e1",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e2",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e2",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "power-series-center"
+  },
+  {
+   "exercise": "e3",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e4",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e4",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e5",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e5",
+   "concept": "first-order-differential-equation"
+  },
+  {
+   "exercise": "e6",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e6",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e6",
+   "concept": "polynomial-as-a-power-series"
+  },
+  {
+   "exercise": "e7",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "polynomial-as-a-power-series"
+  },
+  {
+   "exercise": "e8",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e8",
+   "concept": "power-series-center"
+  },
+  {
+   "exercise": "e101",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e101",
+   "concept": "recurrence-relation"
+  },
+  {
+   "exercise": "e102",
+   "concept": "power-series-solution-of-a-differential-equation"
+  },
+  {
+   "exercise": "e102",
+   "concept": "nonhomogeneous-linear-equation"
+  },
+  {
+   "exercise": "e102",
+   "concept": "geometric-series"
+  },
+  {
+   "exercise": "e102",
+   "concept": "solving-an-initial-value-problem"
+  },
+  {
+   "exercise": "e103",
+   "concept": "singular-point"
+  },
+  {
+   "exercise": "e103",
+   "concept": "power-series-solution-of-a-differential-equation"
+  }
+ ]
+}

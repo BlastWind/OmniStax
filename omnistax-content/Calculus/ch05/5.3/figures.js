@@ -127,7 +127,7 @@ const integral = (f, a, b) => {
     const span = Math.abs(x - c.a) > 1e-6, ave = span ? Fx / (x - c.a) : fx;
     if (span) {
       line(ctx, top.X(c.a), top.Y(ave), top.X(x), top.Y(ave), fc, 3, [10, 10]);
-      text(ctx, '$\\kfave$', top.X(x) + (x > c.a ? 12 : -12), top.Y(ave), fc, { size: 22, weight: 600, align: x > c.a ? 'left' : 'right', base: 'middle', tex: true, bg: PAL.panel });
+      text(ctx, '$\\kfave$', top.X(Math.max(c.a, x)) + 12, top.Y(ave), fc, { size: 22, weight: 600, align: 'left', base: 'middle', tex: true, bg: PAL.panel });
     }
     P.draw(ctx, top, fc);
     text(ctx, `$\\kf(t)=${c.tex}$`, top.box.r - 6, top.box.t + 6, fc, { size: 22, weight: 600, align: 'right', base: 'top', tex: true, bg: PAL.panel });

@@ -109,11 +109,11 @@ PROBLEM:
 For the equation $x^2 y'' - x y' = 0$, find two solutions, show that they are linearly independent and find the general solution. Hint: Try $y = x^r$.
 :::
 
-[2] Equations of the form $a x^2 y'' + b x y' + c y = 0$ are called *Euler’s equations{index-entry:Euler’s equation}* or *Cauchy–Euler equations{index-entry:Cauchy–Euler equation}*. They are solved by trying $y=x^r$ and solving for $r$ (assume $x \geq 0$ for simplicity).
+Equations of the form $a x^2 y'' + b x y' + c y = 0$ are called *Euler’s equations{index-entry:Euler’s equation}* or *Cauchy–Euler equations{index-entry:Cauchy–Euler equation}*. They are solved by trying $y=x^r$ and solving for $r$ (assume $x \geq 0$ for simplicity).
 
 :::exercise {sol-eulerex} number=2.1.6 answered=no src=ch-higher-order-ode.tex:293 label=sol:eulerex
 PROBLEM:
-[2] Suppose that ${(b-a)}^2-4ac > 0$.
+Suppose that ${(b-a)}^2-4ac > 0$.
 
 a) Find a formula for the general solution of Euler’s equation (see above) $a x^2 y'' + b x y' + c y = 0$. Hint: Try $y=x^r$ and find a formula for $r$.
 b) What happens when ${(b-a)}^2-4ac = 0$ or ${(b-a)}^2-4ac < 0$?

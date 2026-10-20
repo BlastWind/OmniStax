@@ -14,6 +14,7 @@ None. The salt in the tanks of 3.1 is drawn as a shade of the tank's own referen
 - `matrix`: A, P, P(t), M, K, X(t), E, D, e^{tA}, A⁻¹, Aᵀ, the identity I.
 - `eigenvalue`: λ, λ_k, a ± ib, α of 3.6 (α² an eigenvalue), −ω², the multiplicities' eigenvalue.
 - `frequency`: the natural frequencies ω_i of 3.6, the forcing ω.
+- `region`: the parallelogram, image of the unit square under [a b; c d], in 3.2's `sim-determinant-area` (a book type, no new hue).
 - `vector-field`: the direction field of 3.1 and 3.5.
 - `curve`: a trajectory (solution curve) in the phase plane.
 - `point`: an initial point (x₀, y₀) and the critical point at the origin.
@@ -30,4 +31,6 @@ Untyped, in ink: t, x as independent variables; the arbitrary constants c₁, C�
 - 3.6 `sim-three-carts`: `mass-1`, `mass-2`, `mass-3`.
 - 3.6 `sim-normal-modes`, `sim-forced-carts`: `cart-1`, `cart-2` (one group, the two carts of Example 3.6.1).
 - 3.6 `sim-railcars`: `car-1`, `car-2`.
+- 3.8 `sim-exponential-flow`: `column-1`, `column-2` (the two columns of e^{tA}, each the solution through (1, 0) or (0, 1)).
+- 3.9 `sim-eigen-decomposition`: `xi-1`, `xi-2` (the components ξ₁v⃗₁, ξ₂v⃗₂; no `ref` on the ξ rows).
 - Everywhere else a single curve, vector or point keeps its category.

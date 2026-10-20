@@ -1,0 +1,955 @@
+{
+ "id": "8.2",
+ "module": "nlinstability:section",
+ "chapter": "8",
+ "title": "Stability and classification of isolated critical points",
+ "short": "Stability of critical points",
+ "lead": "Near a <span data-concept=\"critical-point-of-a-system\">critical point</span> a nonlinear system can often be read from its <span data-concept=\"linearization-of-a-system\">linearization</span>. This section says when: it defines <span data-concept=\"isolated-critical-point\">isolated</span> points and <span data-concept=\"almost-linear-system\">almost linear</span> systems, sorts critical points by the <span data-concept=\"eigenvalue\">eigenvalues</span> of the <span data-concept=\"jacobian-matrix\">Jacobian matrix</span>, makes stability precise, looks at the trouble a <span data-concept=\"center\">center</span> brings, and finds the trajectories of <span data-concept=\"conservative-equation\">conservative equations</span> from their <span data-concept=\"hamiltonian\">energy</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 8.2.101–8.2.104 carry the book’s own answers. Exercises 8.2.1–8.2.7, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every critical point, Jacobian matrix and eigenvalue checked with SymPy first and the closed trajectories of 8.2.1 b) checked numerically. The book’s note that exercises numbered 101 and higher have solutions is the exercises_lead.",
+ "figures": [
+  {
+   "id": "sim-saddle-sink",
+   "kind": "sim",
+   "number": "8.3",
+   "originals": [
+    "/media/ch08/nlin-ex813-new.svg"
+   ],
+   "original_caption": "The phase portrait with few sample trajectories of x′ = −y − x², y′ = −x + y².",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "eigenvalue",
+    "matrix",
+    "derivative",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-saddle-spiral",
+   "kind": "sim",
+   "number": "8.4",
+   "originals": [
+    "/media/ch08/nlin-ex813.svg"
+   ],
+   "original_caption": "The phase portrait with few sample trajectories of x′ = y + y²eˣ, y′ = x.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "eigenvalue",
+    "matrix",
+    "derivative",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-false-center",
+   "kind": "sim",
+   "number": "8.5",
+   "originals": [
+    "/media/ch08/nlin-unstable-centerfig.svg"
+   ],
+   "original_caption": "An unstable critical point (spiral source) at the origin for x′ = y, y′ = −x + y³, even if the linearization has a center.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "vector-field",
+    "curve",
+    "point",
+    "eigenvalue",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-energy-levels",
+   "kind": "sim",
+   "draws": [
+    "integral",
+    "curve",
+    "point",
+    "vector-field",
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "isolated",
+   "concept": "isolated-critical-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "almost-linear",
+   "concept": "almost-linear-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "classification",
+   "concept": "classification-of-critical-points",
+   "verb": "introduces"
+  },
+  {
+   "span": "stability",
+   "concept": "stable-critical-point-of-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "stability",
+   "concept": "unstable-critical-point-of-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "asymptotic",
+   "concept": "asymptotically-stable-critical-point",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-8-2-1",
+   "concept": "classifying-critical-points-of-a-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "center",
+   "concept": "stable-center",
+   "verb": "introduces"
+  },
+  {
+   "span": "center-trouble",
+   "concept": "linearization-with-a-center",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservative",
+   "concept": "conservative-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "hamiltonian",
+   "concept": "hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservative-general",
+   "concept": "trajectories-of-a-conservative-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "conservative-classification",
+   "concept": "critical-points-of-a-conservative-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "isolated",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "almost-linear",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "almost-linear",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "almost-linear",
+   "concept": "linearization-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "almost-linear-example",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "almost-linear-example",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "not-almost-linear",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "classification",
+   "concept": "behavior-of-planar-linear-systems",
+   "verb": "reinforces"
+  },
+  {
+   "span": "classification",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "classification",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "classification",
+   "concept": "linearization-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "tab-8-1",
+   "concept": "source",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-8-1",
+   "concept": "sink",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-8-1",
+   "concept": "saddle-point",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-8-1",
+   "concept": "spiral-source",
+   "verb": "reinforces"
+  },
+  {
+   "span": "tab-8-1",
+   "concept": "spiral-sink",
+   "verb": "reinforces"
+  },
+  {
+   "span": "stability",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-1",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-1",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-1",
+   "concept": "classification-of-critical-points",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-1",
+   "concept": "phase-portrait",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-2-1-saddle",
+   "concept": "saddle-point",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-1-saddle",
+   "concept": "almost-linear-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-1-saddle",
+   "concept": "unstable-critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-1-sink",
+   "concept": "sink",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-1-sink",
+   "concept": "asymptotically-stable-critical-point",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-1-sink",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-saddle-sink",
+   "concept": "classifying-critical-points-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-saddle-sink",
+   "concept": "classification-of-critical-points",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-saddle-sink",
+   "concept": "vector-field-of-a-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "sim-saddle-sink",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-2",
+   "concept": "classifying-critical-points-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-2",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-2",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-2-saddle",
+   "concept": "saddle-point",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-2-spiral",
+   "concept": "spiral-source",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-2-2-spiral",
+   "concept": "unstable-critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-saddle-spiral",
+   "concept": "classifying-critical-points-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-saddle-spiral",
+   "concept": "spiral-source",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-saddle-spiral",
+   "concept": "vector-field-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "center",
+   "concept": "center",
+   "verb": "reinforces"
+  },
+  {
+   "span": "center-trouble",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "center-trouble",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-3",
+   "concept": "linearization-with-a-center",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-3",
+   "concept": "linearization-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-3-eigenvalues",
+   "concept": "eigenvalue",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-false-center",
+   "concept": "linearization-with-a-center",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-false-center",
+   "concept": "stable-center",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-false-center",
+   "concept": "trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "moral",
+   "concept": "linearization-with-a-center",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative",
+   "concept": "pendulum-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "hamiltonian-trick",
+   "concept": "conservative-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-hamiltonian",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "hamiltonian",
+   "concept": "exact-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "hamiltonian",
+   "concept": "potential-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-8-2-4",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-4",
+   "concept": "trajectories-of-a-conservative-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-4-closed",
+   "concept": "stable-center",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-8-2-4-closed",
+   "concept": "closed-trajectory",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-energy-levels",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-energy-levels",
+   "concept": "trajectories-of-a-conservative-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-energy-levels",
+   "concept": "critical-points-of-a-conservative-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative-general",
+   "concept": "conservative-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative-general",
+   "concept": "critical-point-of-a-system",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative-classification",
+   "concept": "jacobian-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative-classification",
+   "concept": "almost-linear-system",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-conservative-eigenvalues",
+   "concept": "critical-points-of-a-conservative-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-conservative-eigenvalues",
+   "concept": "characteristic-equation-of-a-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative-dichotomy",
+   "concept": "saddle-point",
+   "verb": "uses"
+  },
+  {
+   "span": "conservative-dichotomy",
+   "concept": "stable-center",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "hamiltonian",
+   "what": "the Hamiltonian of a conservative equation",
+   "source": "Differential Equations for Engineers, 8.2 Stability and classification of isolated critical points",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kxprime = \\ky, \\qquad \\kyprime = -\\kf(\\kx)",
+       "src": "8.2"
+      },
+      {
+       "text": "Thinking of $\\ky$ as a function of $\\kx$ for a moment, the chain rule gives $\\kyprime = \\kdydx \\kxprime$.",
+       "src": "Calculus, 3.6 The Chain Rule"
+      },
+      {
+       "tex": "\\int \\ky \\kdydx \\,d\\kx = \\frac{1}{2} \\ky^2",
+       "src": "Calculus, 5.5 Substitution"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kxdprime} + \\mk{f}{\\kf(\\kx)} = 0",
+      "src": "8.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kyprime} + \\mk{f}{\\kf(\\kx)} = 0",
+       "uses": [
+        0
+       ],
+       "cap": "As $\\kxprime = \\ky$, the second derivative $\\kxdprime$ is $\\kyprime$."
+      },
+      {
+       "tex": "\\mk{a}{\\kdydx \\kxprime} + \\mk{f}{\\kf(\\kx)} = 0",
+       "uses": [
+        1
+       ],
+       "cap": "The prime indicates a derivative with respect to $t$; the chain rule turns it into a derivative with respect to $\\kx$ times $\\kxprime$."
+      },
+      {
+       "tex": "\\mk{a}{\\ky \\kdydx} + \\mk{f}{\\kf(\\kx)} = 0",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\int \\ky \\kdydx \\,d\\kx} + \\mk{f}{\\int \\kf(\\kx)\\, d\\kx} = \\mk{c}{C}",
+       "uses": [],
+       "cap": "We integrate with respect to $\\kx$; the constants of integration gather into one constant $C$."
+      },
+      {
+       "tex": "\\mk{a}{\\frac{1}{2} \\ky^2} + \\mk{f}{\\int \\kf(\\kx)\\, d\\kx} = \\mk{c}{C}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "8.2"
+    }
+   ]
+  },
+  {
+   "id": "conservative-eigenvalues",
+   "what": "the eigenvalues at a critical point of a conservative equation",
+   "source": "Differential Equations for Engineers, 8.2 Stability and classification of isolated critical points",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The eigenvalues $\\klambda$ of a matrix $A$ are the solutions of $\\det(A - \\klambda I) = 0$.",
+       "src": "3.4"
+      },
+      {
+       "tex": "\\kJ = \\begin{bmatrix} 0 & 1 \\\\ -\\kf'(\\kx) & 0 \\end{bmatrix}",
+       "src": "8.2"
+      },
+      {
+       "tex": "\\det \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} = ad - bc",
+       "src": "3.2"
+      }
+     ],
+     "then": {
+      "tex": "0 = \\mk{d}{\\det(\\kJ - \\klambda I)}",
+      "src": "8.2",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "0 = \\mk{d}{\\det \\begin{bmatrix} -\\klambda & 1 \\\\ -\\kf'(\\kx) & -\\klambda \\end{bmatrix}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "0 = \\mk{d}{\\klambda^2 + \\kf'(\\kx)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\klambda^2} = \\mk{r}{-\\kf'(\\kx)}",
+       "uses": [],
+       "map": {
+        "d": [
+         "l",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{l}{\\klambda} = \\mk{r}{\\pm \\sqrt{-\\kf'(\\kx)}}",
+       "uses": [],
+       "cap": "Take the square root of both sides; a negative $-\\kf'(\\kx)$ gives the two purely imaginary roots $\\pm i\\sqrt{\\kf'(\\kx)}$."
+      }
+     ],
+     "src": "8.2"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "8.2.1",
+   "source_number": "8.2.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "classification",
+   "prompt": "<p>For the systems below, find and classify the critical points. Also indicate if the equilibria are stable, asymptotically stable, or unstable.</p><ol type=\"a\"><li>$\\kxprime=-\\kx+3\\kx^2, \\kyprime=-\\ky$</li><li>$\\kxprime=\\kx^2+\\ky^2-1$, $\\kyprime=\\kx$</li><li>$\\kxprime=\\ky e^{\\kx}$, $\\kyprime=\\ky-\\kx+\\ky^2$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $\\kyprime = 0$ forces $\\ky = 0$ and $-\\kx + 3\\kx^2 = \\kx(3\\kx - 1) = 0$, so the critical points are $(0,0)$ and $(\\tfrac{1}{3},0)$. The Jacobian matrix is $\\left[ \\begin{smallmatrix} -1+6\\kx & 0 \\\\ 0 & -1 \\end{smallmatrix} \\right]$. At $(0,0)$ it is $\\left[ \\begin{smallmatrix} -1 & 0 \\\\ 0 & -1 \\end{smallmatrix} \\right]$ with the eigenvalue $-1$ (twice), real and negative: a sink, asymptotically stable. At $(\\tfrac{1}{3},0)$ it is $\\left[ \\begin{smallmatrix} 1 & 0 \\\\ 0 & -1 \\end{smallmatrix} \\right]$ with eigenvalues $1$ and $-1$: a saddle, unstable. b) $\\kyprime = 0$ forces $\\kx = 0$, then $\\ky^2 = 1$: the critical points are $(0,1)$ and $(0,-1)$. The Jacobian matrix is $\\left[ \\begin{smallmatrix} 2\\kx & 2\\ky \\\\ 1 & 0 \\end{smallmatrix} \\right]$. At $(0,1)$ it is $\\left[ \\begin{smallmatrix} 0 & 2 \\\\ 1 & 0 \\end{smallmatrix} \\right]$ with eigenvalues $\\pm\\sqrt{2}$: a saddle, unstable. At $(0,-1)$ it is $\\left[ \\begin{smallmatrix} 0 & -2 \\\\ 1 & 0 \\end{smallmatrix} \\right]$ with eigenvalues $\\pm i\\sqrt{2}$, so the linearization has a center and Table 8.1 decides nothing. A further argument does: the trajectories satisfy $(\\kx^2+\\ky^2-1)\\,d\\ky - \\kx\\,d\\kx = 0$, which the integrating factor $e^{-2\\ky}$ makes exact (§1.8), with potential $F(\\kx,\\ky) = \\tfrac{1}{4}(1 - 2\\kx^2 - 2\\ky^2 - 2\\ky)e^{-2\\ky}$. So $F$ is constant on every trajectory, and it has a strict local maximum $e^2/4$ at $(0,-1)$; the trajectories near $(0,-1)$ are therefore closed curves around it, and $(0,-1)$ is a stable center (stable, not asymptotically stable). c) $\\kxprime = 0$ forces $\\ky = 0$ (as $e^{\\kx} &gt; 0$), and then $-\\kx = 0$: the only critical point is $(0,0)$. The Jacobian matrix is $\\left[ \\begin{smallmatrix} \\ky e^{\\kx} & e^{\\kx} \\\\ -1 & 1+2\\ky \\end{smallmatrix} \\right]$, which at $(0,0)$ is $\\left[ \\begin{smallmatrix} 0 & 1 \\\\ -1 & 1 \\end{smallmatrix} \\right]$, with $\\klambda^2 - \\klambda + 1 = 0$ and eigenvalues $\\tfrac{1}{2} \\pm i\\tfrac{\\sqrt{3}}{2}$: complex with positive real part, a spiral source, unstable."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "8.2.2",
+   "source_number": "8.2.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservative-classification",
+   "prompt": "<p>Find the implicit equations of the trajectories of the following conservative systems. Next find their critical points (if any) and classify them.</p><ol type=\"a\"><li>$\\kxdprime+ \\kx+\\kx^3 = 0$</li><li>$\\theta''+\\sin \\theta = 0$</li><li>$z''+ (z-1)(z+1) = 0$</li><li>$\\kxdprime+ \\kx^2+1 = 0$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In each, $\\ky$ is the derivative of the unknown, the trajectories are $\\tfrac{1}{2}\\ky^2 + \\int f = C$, the critical points sit on the axis where $f = 0$, and each is a saddle where $f' &lt; 0$ and a stable center where $f' &gt; 0$. a) $f(\\kx) = \\kx + \\kx^3$: $\\tfrac{1}{2}\\ky^2 + \\tfrac{1}{2}\\kx^2 + \\tfrac{1}{4}\\kx^4 = C$. As $\\kx + \\kx^3 = \\kx(1+\\kx^2)$, the only critical point is $(0,0)$, and $f'(0) = 1 &gt; 0$ (eigenvalues $\\pm i$): a stable center. b) $f(\\theta) = \\sin\\theta$: $\\tfrac{1}{2}\\ky^2 - \\cos\\theta = C$. The critical points are $(k\\pi, 0)$ for every integer $k$, where $f'(k\\pi) = \\cos(k\\pi) = (-1)^k$: for even $k$ a stable center, for odd $k$ an unstable saddle. c) $f(z) = z^2 - 1$: $\\tfrac{1}{2}\\ky^2 + \\tfrac{1}{3}z^3 - z = C$. The critical points are $(-1,0)$ and $(1,0)$, and $f'(z) = 2z$: $f'(-1) = -2 &lt; 0$, so $(-1,0)$ is an unstable saddle; $f'(1) = 2 &gt; 0$, so $(1,0)$ is a stable center. d) $f(\\kx) = \\kx^2 + 1$: $\\tfrac{1}{2}\\ky^2 + \\tfrac{1}{3}\\kx^3 + \\kx = C$. As $\\kx^2 + 1 &gt; 0$ for every real $\\kx$, there are no critical points."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "8.2.3",
+   "source_number": "8.2.3",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "almost-linear",
+   "prompt": "<p>Find and classify the critical point(s) of $\\kxprime = -\\kx^2$, $\\kyprime = -\\ky^2$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The only critical point is $(0,0)$. There the Jacobian matrix $\\left[ \\begin{smallmatrix} -2\\kx & 0 \\\\ 0 & -2\\ky \\end{smallmatrix} \\right]$ is the zero matrix, which is not invertible, so the system is not almost linear and Table 8.1 does not apply. The equations decouple: $\\kx = \\frac{x_0}{1+x_0 t}$ and $\\ky = \\frac{y_0}{1+y_0 t}$. Both $\\kxprime \\le 0$ and $\\kyprime \\le 0$, so both coordinates always decrease. A start with $x_0 \\ge 0$ and $y_0 \\ge 0$ approaches the origin, but a start with a negative coordinate, however close to the origin, has that coordinate decrease without bound (it runs off to $-\\infty$ at $t = -1/x_0$). So the critical point is unstable; it attracts only the starts in the closed first quadrant."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "8.2.4",
+   "source_number": "8.2.4",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-8-2-1",
+   "prompt": "<p>Suppose $\\kxprime=-\\kx\\ky$, $\\kyprime=\\kx^2-1-\\ky$.</p><ol type=\"a\"><li>Show there are two spiral sinks at $(-1,0)$ and $(1,0)$.</li><li>For any initial point of the form $(0,y_0)$, find the trajectory.</li><li>Can a trajectory starting at $(x_0,y_0)$ where $x_0 &gt; 0$ spiral into the critical point at $(-1,0)$? Why or why not?</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) The Jacobian matrix is $\\left[ \\begin{smallmatrix} -\\ky & -\\kx \\\\ 2\\kx & -1 \\end{smallmatrix} \\right]$. At $(1,0)$ it is $\\left[ \\begin{smallmatrix} 0 & -1 \\\\ 2 & -1 \\end{smallmatrix} \\right]$ and at $(-1,0)$ it is $\\left[ \\begin{smallmatrix} 0 & 1 \\\\ -2 & -1 \\end{smallmatrix} \\right]$; both have trace $-1$ and determinant $2$, so both have $\\klambda^2 + \\klambda + 2 = 0$ and eigenvalues $-\\tfrac{1}{2} \\pm i\\tfrac{\\sqrt{7}}{2}$: complex with negative real part, two spiral sinks. (The system has a third critical point, $(0,-1)$, a saddle with eigenvalues $1$ and $-1$.) b) On $\\kx = 0$ we have $\\kxprime = 0$, so $\\kx$ stays $0$, and $\\kyprime = -1 - \\ky$, so $\\ky = -1 + (y_0 + 1)e^{-t}$. The trajectory runs along the $y$-axis toward $(0,-1)$, from above if $y_0 &gt; -1$ and from below if $y_0 &lt; -1$; for $y_0 = -1$ it stays at the critical point $(0,-1)$. c) No. By part b) the whole $y$-axis is made of trajectories, and by uniqueness trajectories cannot cross. A trajectory starting with $x_0 &gt; 0$ therefore stays in the half plane $\\kx &gt; 0$ and cannot reach $(-1,0)$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "8.2.5",
+   "source_number": "8.2.5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-8-2-3",
+   "prompt": "<p>In the example $\\kxprime=\\ky$, $\\kyprime=\\ky^3-\\kx$, show that for any trajectory, the distance from the origin is an increasing function. Conclude that at the origin the system behaves like a spiral source. Hint: Consider $f(t) = {\\bigl(\\kx(t)\\bigr)}^2 + {\\bigl(\\ky(t)\\bigr)}^2$ and show it has positive derivative.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $f(t) = \\kx^2 + \\ky^2$, $f'(t) = 2\\kx\\kxprime + 2\\ky\\kyprime = 2\\kx\\ky + 2\\ky(\\ky^3 - \\kx) = 2\\ky^4 \\ge 0$. It is zero only at instants where $\\ky = 0$, and a trajectory other than the origin does not stay on the $x$-axis (there $\\kyprime = -\\kx \\neq 0$), so $f$ is strictly increasing, and so is the distance $\\sqrt{f}$ from the origin. Near the origin the system turns like its linearization, whose eigenvalues are $\\pm i$, while the distance keeps growing: every trajectory winds outward, and the origin behaves like a spiral source, unstable, though the linearization has a center."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "8.2.6",
+   "source_number": "8.2.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hamiltonian",
+   "prompt": "<p>Suppose $f$ is always positive. Find the trajectories of $\\kxdprime+f(\\kxprime) = 0$. Are there any critical points?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write it as the system $\\kxprime = \\ky$, $\\kyprime = -f(\\ky)$. A critical point needs $\\ky = 0$ and $f(0) = 0$, which is impossible as $f &gt; 0$: there are no critical points. Thinking of $\\ky$ as a function of $\\kx$, $\\kdydx = \\frac{\\kyprime}{\\kxprime} = -\\frac{f(\\ky)}{\\ky}$, so $\\frac{\\ky}{f(\\ky)}\\,d\\ky = -d\\kx$ and the trajectories are $\\int \\frac{\\ky}{f(\\ky)}\\,d\\ky = -\\kx + C$. Along each, $\\kyprime = -f(\\ky) &lt; 0$, so $\\ky$ always decreases."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "8.2.7",
+   "source_number": "8.2.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "isolated",
+   "prompt": "<p>Suppose that $\\kxprime = \\kf(\\kx,\\ky)$, $\\kyprime = \\kg(\\kx,\\ky)$. Suppose that $\\kg(\\kx,\\ky) &gt; 1$ for all $\\kx$ and $\\ky$. Are there any critical points? What can we say about the trajectories as $t$ goes to infinity?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No: a critical point needs $\\kg(\\kx,\\ky) = 0$, but $\\kg &gt; 1$ everywhere. Along every solution $\\kyprime = \\kg &gt; 1$, so $\\ky(t) &gt; y_0 + t$ for $t &gt; 0$, and $\\ky(t) \\to \\infty$ as $t \\to \\infty$: every trajectory goes up without bound."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "8.2.101",
+   "source_number": "8.2.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "classification",
+   "prompt": "<p>For the systems below, find and classify the critical points.</p><ol type=\"a\"><li>$\\kxprime=-\\kx+\\kx^2$, $\\kyprime=\\ky$</li><li>$\\kxprime=\\ky-\\ky^2-\\kx$, $\\kyprime=-\\kx$</li><li>$\\kxprime=\\kx\\ky$, $\\kyprime=\\kx+\\ky-1$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $(0,0)$: saddle (unstable), $(1,0)$: source (unstable), b) $(0,0)$: spiral sink (asymptotically stable), $(0,1)$: saddle (unstable), c) $(1,0)$: saddle (unstable), $(0,1)$: source (unstable)"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "8.2.102",
+   "source_number": "8.2.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservative-classification",
+   "prompt": "<p>Find the implicit equations of the trajectories of the following conservative systems. Next find their critical points (if any) and classify them.</p><ol type=\"a\"><li>$\\kxdprime+ \\kx^2 = 4$</li><li>$\\kxdprime+ e^{\\kx} = 0$</li><li>$\\kxdprime+ (\\kx+1)e^{\\kx} = 0$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\frac{1}{2}\\ky^2 + \\frac{1}{3}\\kx^3 -4\\kx = C$, critical points: $(-2,0)$, an unstable saddle, and $(2,0)$, a stable center. b) $\\frac{1}{2}\\ky^2 + e^{\\kx} = C$, no critical points. c) $\\frac{1}{2}\\ky^2 + \\kx e^{\\kx} = C$, critical point at $(-1,0)$ is a stable center."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "8.2.103",
+   "source_number": "8.2.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conservative-general",
+   "prompt": "<p>The conservative system $\\kxdprime+\\kx^3 = 0$ is not almost linear. Classify its critical point(s) nonetheless.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Critical point at $(0,0)$. Trajectories are $\\ky = \\pm \\sqrt{2C-({1}/{2})\\kx^4}$, for $C &gt; 0$, these give closed curves around the origin, so the critical point is a stable center."
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "8.2.104",
+   "source_number": "8.2.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "stability",
+   "prompt": "<p>Derive an analogous classification of critical points for equations in one dimension, such as $\\kxprime= f(\\kx)$ based on the derivative. A point $x_0$ is critical when $f(x_0) = 0$ and almost linear if in addition $f'(x_0) \\neq 0$. Figure out if the critical point is stable or unstable depending on the sign of $f'(x_0)$. Explain. Hint: see <a href=\"/diffyqs/ch01/1.6/\">§1.6</a>.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "A critical point $x_0$ is stable if $f'(x_0) &lt; 0$ and unstable when $f'(x_0) &gt; 0$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "classifying-critical-points-of-a-system"
+  },
+  {
+   "exercise": "e1",
+   "concept": "classification-of-critical-points"
+  },
+  {
+   "exercise": "e1",
+   "concept": "linearization-with-a-center"
+  },
+  {
+   "exercise": "e2",
+   "concept": "hamiltonian"
+  },
+  {
+   "exercise": "e2",
+   "concept": "critical-points-of-a-conservative-equation"
+  },
+  {
+   "exercise": "e2",
+   "concept": "conservative-equation"
+  },
+  {
+   "exercise": "e3",
+   "concept": "almost-linear-system"
+  },
+  {
+   "exercise": "e3",
+   "concept": "unstable-critical-point-of-a-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "classifying-critical-points-of-a-system"
+  },
+  {
+   "exercise": "e4",
+   "concept": "classification-of-critical-points"
+  },
+  {
+   "exercise": "e5",
+   "concept": "linearization-with-a-center"
+  },
+  {
+   "exercise": "e5",
+   "concept": "unstable-critical-point-of-a-system"
+  },
+  {
+   "exercise": "e6",
+   "concept": "hamiltonian"
+  },
+  {
+   "exercise": "e6",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e7",
+   "concept": "critical-point-of-a-system"
+  },
+  {
+   "exercise": "e101",
+   "concept": "classifying-critical-points-of-a-system"
+  },
+  {
+   "exercise": "e101",
+   "concept": "classification-of-critical-points"
+  },
+  {
+   "exercise": "e102",
+   "concept": "hamiltonian"
+  },
+  {
+   "exercise": "e102",
+   "concept": "critical-points-of-a-conservative-equation"
+  },
+  {
+   "exercise": "e103",
+   "concept": "trajectories-of-a-conservative-equation"
+  },
+  {
+   "exercise": "e103",
+   "concept": "stable-center"
+  },
+  {
+   "exercise": "e104",
+   "concept": "classification-of-critical-points"
+  },
+  {
+   "exercise": "e104",
+   "concept": "classifying-critical-points"
+  }
+ ],
+ "footnotes": []
+}

@@ -88,7 +88,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     pts.push({ x: end.x, y: end.y, r: 14, name: `P(60) = ${fmt(p60, 0)}` });
     dot(ctx, ax.X(0), ax.Y(a), pc, true, 10);
     dot(ctx, ax.X(10), ax.Y(b), pc, true, 10);
-    label(ctx, `P(0) = ${fmt(a, 0)}`, ax.X(0), ax.Y(a), { side: 'above', color: pc, size: 20, weight: 600 });
+    label(ctx, `P(0) = ${fmt(a, 0)}`, ax.X(0) + 50, ax.Y(a), { side: 'above', color: pc, size: 20, weight: 600 });   /* set right of the tick labels */
     label(ctx, `P(10) = ${fmt(b, 0)}`, ax.X(10), ax.Y(b), { side: 'above', color: pc, size: 20, weight: 600 });
     headline(ctx, `P(0) = ${fmt(a, 0)}, P(10) = ${fmt(b, 0)}: the population is multiplied by ${fmt(r, 2)} every 10 s, so P(60) = ${fmt(p60, 0)}.`);
     ro.set(`k = \\frac{\\ln(${fmt(b, 0)}/${fmt(a, 0)})}{10} = ${n(k, 4)},\\quad \\kP(t) = ${fmt(a, 0)}\\,e^{${n(k, 4)}t},\\quad \\kP(60) = ${fmt(a, 0)}\\left(\\tfrac{${fmt(b, 0)}}{${fmt(a, 0)}}\\right)^{6} = ${fmt(p60, 0)}`);
@@ -136,7 +136,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
     } else {
       const a = e.sign * kr * kr * yr, py = f(x0), tip = Math.max(-4, Math.min(4, py + 0.5 * e.sign * k * k * py));
       if (Math.abs(tip - py) > 0.05 && Math.abs(py) <= 4) arrow(ctx, ax.X(x0), ax.Y(py), ax.X(x0), ax.Y(tip), dc, 4);
-      hits.push({ x: ax.X(x0), y: ax.Y((py + tip) / 2), r: 14, name: `second derivative y″ = ${e.sign < 0 ? '−' : ''}k²y` });
+      hits.push({ x: ax.X(x0), y: ax.Y((py + tip) / 2), r: 14, name: `second derivative y″ = ${e.sign < 0 ? '−' : ''}k²y, drawn at half its length` });
       tex = `${e.sol(k)},\\quad \\kydprime(${n(xr)}) = ${e.sign < 0 ? '-' : ''}(${n(kr)})^2 \\cdot ${par(yr)} = ${n(a)}`;
       const pull = Math.abs(yr) < 0.005 ? 'and the curve crosses zero without bending.'
         : e.sign < 0 ? 'pulling the curve back toward zero.' : 'pushing the curve away from zero.';
@@ -155,7 +155,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
    and feet is dashed, and the widest gap between the two is bracketed. Equal scales in feet: x −400 to 400,
    height 0 to 700. */
 (function () {
-  const d = sim('sim-gateway-arch', 600);
+  const d = sim('sim-gateway-arch', 640);
   const L = 299.2239, A0 = 68.7672, C0 = 3.0022, H = A0 * (Math.cosh(C0) - 1);
   const cs = ctl(d.controls, { label: 'C', cls: '', key: 'C', min: 0.25, max: 4, step: 0.0001, value: C0, unit: '', dec: 4, detents: [C0] });
   const ro = readout(d);
@@ -180,7 +180,7 @@ const clip = (ctx, box, draw) => { ctx.save(); ctx.beginPath(); ctx.rect(box.l, 
       { x: ax.X(u * L), y: ax.Y(cat(u * L)), r: 14, name: 'the catenary y = A(cosh(Cx/L) − 1), turned over' },
       { x: ax.X(u * L), y: ax.Y(parab(u * L)), r: 14, name: 'the parabola through the same top and feet' }]);
     headline(ctx, `C = ${fmt(c, 4)}: the catenary and the parabola through the same top and feet differ by up to ${gtxt}.`);
-    ro.set(`y = A\\left(\\cosh\\left(\\tfrac{C}{L}x\\right) - 1\\right),\\quad A = ${n(A, 4)},\\ C = ${n(c, 4)},\\ L = 299.2239,\\quad A(\\cosh C - 1) = ${n(A * (Math.cosh(c) - 1), 2)}\\ \\text{ft}`);
+    ro.set(`\\ky = A\\left(\\cosh\\left(\\tfrac{C}{L}x\\right) - 1\\right),\\quad A =${n(A, 4)},\\ C = ${n(c, 4)},\\ L = 299.2239,\\quad A(\\cosh C - 1) = ${n(A * (Math.cosh(c) - 1), 2)}\\ \\text{ft}`);
   }
   still(d, draw);
 })();

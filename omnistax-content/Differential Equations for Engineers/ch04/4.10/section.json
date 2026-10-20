@@ -1,0 +1,1299 @@
+{
+ "id": "4.10",
+ "module": "dirichdisc:section",
+ "chapter": "4",
+ "title": "Dirichlet problem in the circle and the Poisson kernel",
+ "short": "Dirichlet problem in the circle",
+ "lead": "The <span data-concept=\"dirichlet-problem\">Dirichlet problem</span> moves from the rectangle to the disc, where polar coordinates are the natural ones. This section rewrites the Laplacian in polar coordinates, separates variables to solve the problem on the disc with a series built from the boundary data, and then rewrites that series as a single integral against the <span data-concept=\"poisson-kernel\">Poisson kernel</span>, whose shape says how the boundary values are weighted.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) and the book’s unnumbered sketch of polar coordinates are left out, and the runs of displayed equations the book works step by step are drawn as derivations in place of the printed lines.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 4.10.101–4.10.104 carry the book’s own answers, each checked with SymPy and none contradicted. The inline exercise 4.10.1 and exercises 4.10.2–4.10.9, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-disc",
+   "kind": "sim",
+   "number": "4.26",
+   "folds": [
+    "4.27"
+   ],
+   "originals": [
+    "/media/ch04/dirichdiscsetup.svg",
+    "/media/ch04/dirichdisc-tenspeed.svg",
+    "/media/ch04/dirichdisc-zero2y.svg"
+   ],
+   "original_caption": "(Figure 4.26) The solution of the Dirichlet problem in the disc with cos(10 θ) as boundary data. (Figure 4.27) The solution of the Dirichlet problem with boundary data 0 for y < 0 and 2y for y > 0.",
+   "widths": [],
+   "draws": [
+    "function"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-poisson-kernel",
+   "kind": "sim",
+   "originals": [
+    "/media/ch04/poisson.svg"
+   ],
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "facts": [
+    "spectrum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "polar-recall",
+   "concept": "polar-coordinate-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "polar-laplacian",
+   "concept": "laplacian-in-polar-coordinates",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-disc-series-solution",
+   "concept": "dirichlet-problem-on-the-disc",
+   "verb": "introduces"
+  },
+  {
+   "span": "geometric-series",
+   "concept": "sum-of-a-geometric-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "kernel-idea",
+   "concept": "poisson-kernel",
+   "verb": "introduces"
+  },
+  {
+   "span": "mean-value",
+   "concept": "mean-value-property",
+   "verb": "introduces"
+  },
+  {
+   "span": "polar-recall",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "problem",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "problem",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "problem",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "problem",
+   "concept": "polar-coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-26",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-26",
+   "concept": "laplace-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-disc",
+   "concept": "dirichlet-problem-on-the-disc",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-disc",
+   "concept": "harmonic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-disc",
+   "concept": "polar-coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-disc",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "reverse",
+   "concept": "laplace-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "reverse",
+   "concept": "polar-coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-polar-laplacian",
+   "concept": "polar-coordinate-system",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-polar-laplacian",
+   "concept": "laplace-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-polar-laplacian",
+   "concept": "laplace-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "separate",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-disc",
+   "concept": "separation-of-variables-for-pdes",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-disc",
+   "concept": "laplacian-in-polar-coordinates",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-separation-disc",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "theta-equation",
+   "concept": "eigenvalues-with-periodic-conditions",
+   "verb": "uses"
+  },
+  {
+   "span": "theta-equation",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "expand-g",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "expand-g",
+   "concept": "periodic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "expand-g",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-disc-coefficients",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-10-1",
+   "concept": "dirichlet-problem-on-the-disc",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-10-2",
+   "concept": "dirichlet-problem-on-the-disc",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-10-2",
+   "concept": "fourier-series",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-10-2",
+   "concept": "steady-state-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-4-10-2",
+   "concept": "laplaces-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-idea",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-other",
+   "concept": "heat-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-poisson-series",
+   "concept": "poisson-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-poisson-series",
+   "concept": "fourier-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-poisson-series",
+   "concept": "dirichlet-problem-on-the-disc",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-series",
+   "concept": "complex-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-series",
+   "concept": "poisson-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-poisson-exponentials",
+   "concept": "eulers-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-poisson-exponentials",
+   "concept": "complex-exponential",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-poisson-exponentials",
+   "concept": "poisson-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-poisson-closed-form",
+   "concept": "sum-of-a-geometric-series",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-poisson-closed-form",
+   "concept": "eulers-formula",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-poisson-closed-form",
+   "concept": "poisson-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-poisson-solution",
+   "concept": "poisson-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-poisson-solution",
+   "concept": "dirichlet-problem",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-poisson-kernel",
+   "concept": "poisson-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-poisson-kernel",
+   "concept": "mean-value-property",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-poisson-kernel",
+   "concept": "dirichlet-problem-on-the-disc",
+   "verb": "uses"
+  },
+  {
+   "span": "geometric-meaning",
+   "concept": "poisson-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-mean-value",
+   "concept": "poisson-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "mean-value",
+   "concept": "harmonic-function",
+   "verb": "uses"
+  },
+  {
+   "span": "not-constant",
+   "concept": "laplacian-in-polar-coordinates",
+   "verb": "reinforces"
+  },
+  {
+   "span": "boundary-condition",
+   "concept": "dirichlet-problem-on-the-disc",
+   "verb": "reinforces"
+  },
+  {
+   "span": "kernel-uses",
+   "concept": "poisson-kernel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "geometric-from-one",
+   "concept": "sum-of-a-geometric-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "weighted-average",
+   "concept": "poisson-kernel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "weighted-average",
+   "concept": "mean-value-property",
+   "verb": "reinforces"
+  },
+  {
+   "span": "limits-remark",
+   "concept": "poisson-kernel",
+   "verb": "reinforces"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "polar-laplacian",
+   "what": "$\\frac{1}{r^2} u_{\\theta\\theta} + u_{rr}$ in terms of the derivatives in $x$ and $y$",
+   "source": "Differential Equations for Engineers, 4.10 Dirichlet problem in the circle and the Poisson kernel, Laplace in polar coordinates",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "x = r \\cos \\theta , \\quad y = r \\sin \\theta",
+       "src": "4.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{x} = \\mk{xc}{r \\cos \\theta} , \\quad \\mk{y}{y} = \\mk{yc}{r \\sin \\theta}",
+      "uses": [
+       0
+      ],
+      "src": "4.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{xr}{x_r} = \\mk{xrc}{\\cos \\theta}, \\quad \\mk{xt}{x_\\theta} = \\mk{xtc}{- r \\sin \\theta}, \\quad \\mk{yr}{y_r} = \\mk{yrc}{\\sin \\theta}, \\quad \\mk{yt}{y_\\theta} = \\mk{ytc}{r \\cos \\theta}",
+       "uses": [],
+       "map": {
+        "x": [
+         "xr",
+         "xt"
+        ],
+        "xc": [
+         "xrc",
+         "xtc"
+        ],
+        "y": [
+         "yr",
+         "yt"
+        ],
+        "yc": [
+         "yrc",
+         "ytc"
+        ]
+       },
+       "cap": "Differentiate each in $r$ with $\\theta$ held fixed, and in $\\theta$ with $r$ held fixed."
+      }
+     ],
+     "src": "4.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kur} = \\mk{a}{\\kux}\\, \\mk{ax}{x_r} + \\mk{b}{\\kuy}\\, \\mk{by}{y_r}",
+      "src": "Calculus, 14.5",
+      "why": "By chain rule, with $u$ a function of $x$ and $y$, which are functions of $r$ and $\\theta$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kur} = \\mk{ax}{\\cos(\\theta)}\\, \\mk{a}{\\kux} + \\mk{by}{\\sin(\\theta)}\\, \\mk{b}{\\kuy}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "4.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "The mixed partial derivatives agree: $u_{yx} = u_{xy}$.",
+       "src": "Calculus, 14.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kurr} = \\mk{c}{\\cos(\\theta)} \\bigl( \\mk{a}{\\kuxx}\\, \\mk{ax}{x_r} + \\mk{b}{\\kuxy}\\, \\mk{by}{y_r} \\bigr) + \\mk{s}{\\sin(\\theta)} \\bigl( \\mk{d}{u_{yx}}\\, \\mk{dx}{x_r} + \\mk{e}{\\kuyy}\\, \\mk{ey}{y_r} \\bigr)",
+      "uses": [
+       0
+      ],
+      "why": "Differentiate $u_r = \\cos(\\theta) u_x + \\sin(\\theta) u_y$ in $r$: the coefficients do not depend on $r$, and $u_x$ and $u_y$ are differentiated by the chain rule again."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kurr} = \\mk{c}{\\cos(\\theta)} \\bigl( \\mk{a}{\\kuxx}\\, \\mk{ax}{\\cos(\\theta)} + \\mk{b}{\\kuxy}\\, \\mk{by}{\\sin(\\theta)} \\bigr) + \\mk{s}{\\sin(\\theta)} \\bigl( \\mk{d}{u_{yx}}\\, \\mk{dx}{\\cos(\\theta)} + \\mk{e}{\\kuyy}\\, \\mk{ey}{\\sin(\\theta)} \\bigr)",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kurr} = \\mk{a}{\\cos^2(\\theta) \\kuxx} + \\mk{b}{2 \\cos(\\theta)\\sin(\\theta) \\kuxy} + \\mk{e}{\\sin^2(\\theta) \\kuyy}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "c": [
+         "a",
+         "b"
+        ],
+        "ax": "a",
+        "by": "b",
+        "s": [
+         "b",
+         "e"
+        ],
+        "d": "b",
+        "dx": "b",
+        "ey": "e"
+       }
+      }
+     ],
+     "src": "4.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kutheta} = \\mk{a}{\\kux}\\, \\mk{ax}{x_\\theta} + \\mk{b}{\\kuy}\\, \\mk{by}{y_\\theta}",
+      "src": "Calculus, 14.5",
+      "why": "Similarly for the $\\theta$ derivative: the chain rule, now differentiating in $\\theta$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kutheta} = \\mk{ax}{-r\\sin(\\theta)}\\, \\mk{a}{\\kux} + \\mk{by}{r\\cos(\\theta)}\\, \\mk{b}{\\kuy}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "4.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "The product rule: $(fg)' = f'g + fg'$.",
+       "src": "Calculus, 3.3"
+      },
+      {
+       "text": "The mixed partial derivatives agree: $u_{yx} = u_{xy}$.",
+       "src": "Calculus, 14.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kuthetatheta} = \\mk{p}{-r\\cos(\\theta) \\kux} \\mk{c}{-r\\sin(\\theta)} \\bigl( \\mk{a}{\\kuxx}\\, \\mk{ax}{x_\\theta} + \\mk{b}{\\kuxy}\\, \\mk{by}{y_\\theta} \\bigr) \\mk{q}{-r\\sin(\\theta) \\kuy} + \\mk{s}{r\\cos(\\theta)} \\bigl( \\mk{d}{u_{yx}}\\, \\mk{dx}{x_\\theta} + \\mk{e}{\\kuyy}\\, \\mk{ey}{y_\\theta} \\bigr)",
+      "uses": [
+       0,
+       2
+      ],
+      "why": "Differentiate $u_\\theta = -r\\sin(\\theta) u_x + r\\cos(\\theta) u_y$ in $\\theta$. Note that we have to use the product rule for the second derivative: the coefficients depend on $\\theta$ too."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kuthetatheta} = \\mk{p}{-r\\cos(\\theta) \\kux} \\mk{c}{-r\\sin(\\theta)} \\bigl( \\mk{a}{\\kuxx}\\, \\mk{ax}{(-r\\sin(\\theta))} + \\mk{b}{\\kuxy}\\, \\mk{by}{r\\cos(\\theta)} \\bigr) \\mk{q}{-r\\sin(\\theta) \\kuy} + \\mk{s}{r\\cos(\\theta)} \\bigl( \\mk{d}{u_{yx}}\\, \\mk{dx}{(-r\\sin(\\theta))} + \\mk{e}{\\kuyy}\\, \\mk{ey}{r\\cos(\\theta)} \\bigr)",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kuthetatheta} = \\mk{p}{-r\\cos(\\theta) \\kux} \\mk{q}{-r\\sin(\\theta) \\kuy} + \\mk{a}{r^2 \\sin^2(\\theta) \\kuxx} \\mk{b}{-r^2 2\\sin(\\theta)\\cos(\\theta) \\kuxy} + \\mk{e}{r^2 \\cos^2(\\theta) \\kuyy}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "c": [
+         "a",
+         "b"
+        ],
+        "ax": "a",
+        "by": "b",
+        "s": [
+         "b",
+         "e"
+        ],
+        "d": "b",
+        "dx": "b",
+        "ey": "e"
+       }
+      }
+     ],
+     "src": "4.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\cos^2(\\theta) + \\sin^2(\\theta) = 1",
+       "src": "Calculus, 1.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kuthetatheta} = \\mk{p}{-r\\cos(\\theta) \\kux} \\mk{q}{-r\\sin(\\theta) \\kuy} + \\mk{a}{r^2 \\sin^2(\\theta) \\kuxx} \\mk{b}{-r^2 2\\sin(\\theta)\\cos(\\theta) \\kuxy} + \\mk{e}{r^2 \\cos^2(\\theta) \\kuyy}",
+      "uses": [
+       0
+      ],
+      "why": "Let us now try to find $u_{xx} + u_{yy}$. We start with $\\frac{1}{r^2} u_{\\theta\\theta}$ to get rid of those pesky $r^2$s."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{1}{r^2} \\kuthetatheta} = \\mk{p}{-\\frac{1}{r}\\cos(\\theta) \\kux} \\mk{q}{-\\frac{1}{r}\\sin(\\theta) \\kuy} + \\mk{a}{\\sin^2(\\theta) \\kuxx} \\mk{b}{-2\\sin(\\theta)\\cos(\\theta) \\kuxy} + \\mk{e}{\\cos^2(\\theta) \\kuyy}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{1}{r^2} \\kuthetatheta} + \\mk{R}{\\kurr} = \\mk{p}{-\\frac{1}{r}\\cos(\\theta) \\kux} \\mk{q}{-\\frac{1}{r}\\sin(\\theta) \\kuy} + \\mk{a}{\\sin^2(\\theta) \\kuxx} \\mk{b}{-2\\sin(\\theta)\\cos(\\theta) \\kuxy} + \\mk{e}{\\cos^2(\\theta) \\kuyy} + \\mk{a2}{\\cos^2(\\theta) \\kuxx} + \\mk{b2}{2 \\cos(\\theta)\\sin(\\theta) \\kuxy} + \\mk{e2}{\\sin^2(\\theta) \\kuyy}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{1}{r^2} \\kuthetatheta} + \\mk{R}{\\kurr} = \\mk{a}{\\bigl(\\sin^2(\\theta) + \\cos^2(\\theta)\\bigr) \\kuxx} + \\mk{e}{\\bigl(\\cos^2(\\theta) + \\sin^2(\\theta)\\bigr) \\kuyy} \\mk{p}{-\\frac{1}{r}\\cos(\\theta) \\kux} \\mk{q}{-\\frac{1}{r}\\sin(\\theta) \\kuy}",
+       "uses": [],
+       "map": {
+        "a2": "a",
+        "e2": "e"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{1}{r^2} \\kuthetatheta} + \\mk{R}{\\kurr} = \\mk{a}{\\kuxx} + \\mk{e}{\\kuyy} \\mk{p}{- \\frac{1}{r} \\cos(\\theta) \\kux} \\mk{q}{- \\frac{1}{r} \\sin(\\theta) \\kuy}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "4.10"
+    }
+   ]
+  },
+  {
+   "id": "separation-disc",
+   "what": "the two separated equations on the disc",
+   "source": "Differential Equations for Engineers, 4.10 Dirichlet problem in the circle and the Poisson kernel, Series solution",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\Delta \\ku = 0",
+       "src": "(4.26)"
+      },
+      {
+       "tex": "\\Delta \\ku = \\frac{1}{r^2} \\kuthetatheta + \\frac{1}{r} \\kur + \\kurr",
+       "src": "4.10"
+      },
+      {
+       "tex": "\\ku(r,\\theta) = \\kR(r)\\kTheta(\\theta)",
+       "src": "4.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0} = \\mk{L}{\\Delta \\ku}",
+      "uses": [
+       0
+      ],
+      "src": "4.10"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{0} = \\mk{a}{\\frac{1}{r^2} \\kuthetatheta} + \\mk{b}{\\frac{1}{r} \\kur} + \\mk{c}{\\kurr}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": [
+         "a",
+         "b",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{z}{0} = \\mk{a}{\\frac{1}{r^2} \\kR \\kThetadprime} + \\mk{b}{\\frac{1}{r} \\kRprime \\kTheta} + \\mk{c}{\\kRdprime \\kTheta}",
+       "uses": [
+        2
+       ],
+       "cap": "With $u = R\\Theta$, each derivative falls on the factor that depends on its variable: $u_{\\theta\\theta} = R\\Theta''$, $u_r = R'\\Theta$ and $u_{rr} = R''\\Theta$."
+      }
+     ],
+     "src": "4.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "A function of $\\theta$ alone that equals a function of $r$ alone for every $r$ and $\\theta$ is a constant.",
+       "src": "4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{0} = \\mk{a}{\\frac{1}{r^2} \\kR \\kThetadprime} + \\mk{b}{\\frac{1}{r} \\kRprime \\kTheta} + \\mk{c}{\\kRdprime \\kTheta}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\frac{1}{r^2} \\kR \\kThetadprime} = \\mk{bc}{- \\left(\\frac{1}{r} \\kRprime + \\kRdprime\\right) \\kTheta}",
+       "uses": [],
+       "map": {
+        "b": "bc",
+        "c": "bc"
+       }
+      },
+      {
+       "tex": "\\mk{a}{\\frac{\\kThetadprime}{\\kTheta}} = \\mk{bc}{- \\frac{r \\kRprime + r^2 \\kRdprime}{\\kR}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\frac{\\kThetadprime}{\\kTheta}} = \\mk{bc}{- \\frac{r \\kRprime + r^2 \\kRdprime}{\\kR}} = \\mk{l}{-\\klambda}",
+       "uses": [
+        1
+       ],
+       "cap": "We put $R$ on one side and $\\Theta$ on the other and conclude that both sides must be constant; we call the constant $-\\lambda$."
+      }
+     ],
+     "src": "4.10"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\frac{\\kThetadprime}{\\kTheta}} = \\mk{bc}{- \\frac{r \\kRprime + r^2 \\kRdprime}{\\kR}} = \\mk{l}{-\\klambda}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\kThetadprime} = \\mk{l}{-\\klambda \\kTheta} , \\qquad \\mk{bc}{r \\kRprime + r^2 \\kRdprime} = \\mk{l2}{\\klambda \\kR}",
+       "uses": [],
+       "map": {
+        "l": [
+         "l",
+         "l2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{a}{\\kThetadprime} + \\mk{l}{\\klambda \\kTheta} = 0 , \\qquad \\mk{bc}{r^2 \\kRdprime + r \\kRprime} \\mk{l2}{-\\klambda \\kR} = 0",
+       "uses": []
+      }
+     ],
+     "src": "4.10"
+    }
+   ]
+  },
+  {
+   "id": "poisson-series",
+   "what": "the Poisson kernel as a series",
+   "source": "Differential Equations for Engineers, 4.10 Dirichlet problem in the circle and the Poisson kernel, Poisson kernel",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\ku(r,\\theta) = \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\Bigl[ \\kan r^n \\cos(n \\theta) + \\kbn r^n \\sin(n \\theta) \\Bigr]",
+       "src": "4.10"
+      },
+      {
+       "tex": "\\kan = \\frac{1}{\\pi} \\int_{-\\pi}^\\pi \\kg(\\alpha) \\cos (n\\alpha) \\, d\\alpha \\ (n \\geq 0), \\qquad \\kbn = \\frac{1}{\\pi} \\int_{-\\pi}^\\pi \\kg(\\alpha) \\sin (n\\alpha) \\, d\\alpha",
+       "src": "4.10"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{u}{\\ku(r,\\theta)} = \\mk{h}{\\frac{\\kazero}{2}} + \\mk{S}{\\sum_{n=1}^\\infty} \\Bigl[ \\mk{a}{\\kan} \\mk{rc}{r^n \\cos(n \\theta)} + \\mk{b}{\\kbn} \\mk{rs}{r^n \\sin(n \\theta)} \\Bigr]",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{u}{\\ku(r,\\theta)} = \\mk{h}{\\underbrace{ \\left( \\frac{1}{2\\pi} \\int_{-\\pi}^\\pi \\kg(\\alpha) \\, d\\alpha \\right) }_{\\frac{\\kazero}{2}}} + \\mk{S}{\\sum_{n=1}^\\infty} \\Biggl[ \\mk{a}{\\underbrace{ \\left( \\frac{1}{\\pi} \\int_{-\\pi}^\\pi \\kg(\\alpha) \\cos (n\\alpha) \\, d\\alpha \\right) }_{\\kan}} \\mk{rc}{r^n \\cos(n \\theta)} + \\mk{b}{\\underbrace{ \\left( \\frac{1}{\\pi} \\int_{-\\pi}^\\pi \\kg(\\alpha) \\sin (n\\alpha) \\, d\\alpha \\right) }_{\\kbn}} \\mk{rs}{r^n \\sin(n \\theta)} \\Biggr]",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{u}{\\ku(r,\\theta)} = \\mk{I}{\\frac{1}{2\\pi} \\int_{-\\pi}^\\pi} \\left( \\mk{h}{\\kg(\\alpha)} + \\mk{S}{2 \\sum_{n=1}^\\infty} \\mk{a}{\\kg(\\alpha) \\cos (n\\alpha)} \\, \\mk{rc}{r^n \\cos(n \\theta)} + \\mk{b}{\\kg(\\alpha) \\sin (n\\alpha)} \\, \\mk{rs}{r^n \\sin(n \\theta)} \\right) \\,d\\alpha",
+       "uses": [],
+       "cap": "Every integral is over the same interval, so the sum of the integrals is one integral of the sum; writing $\\frac{1}{\\pi} = 2 \\cdot \\frac{1}{2\\pi}$ puts a single $\\frac{1}{2\\pi}$ in front."
+      },
+      {
+       "tex": "\\mk{u}{\\ku(r,\\theta)} = \\mk{I}{\\frac{1}{2\\pi} \\int_{-\\pi}^\\pi} \\underbrace{ \\left( \\mk{h}{1} + \\mk{S}{2 \\sum_{n=1}^\\infty} r^n \\bigl( \\mk{a}{\\cos (n\\alpha) \\cos(n \\theta)} + \\mk{b}{\\sin (n\\alpha) \\sin(n \\theta)} \\bigr) \\right) }_{\\kP(r,\\theta,\\alpha)} \\mk{g}{\\kg(\\alpha)} \\,d\\alpha",
+       "uses": [],
+       "map": {
+        "h": [
+         "h",
+         "g"
+        ],
+        "rc": "a",
+        "rs": "b"
+       }
+      }
+     ],
+     "src": "4.10"
+    }
+   ]
+  },
+  {
+   "id": "poisson-exponentials",
+   "what": "the Poisson kernel through complex exponentials",
+   "source": "Differential Equations for Engineers, 4.10 Dirichlet problem in the circle and the Poisson kernel, Poisson kernel",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kP(r,\\theta,\\alpha) = 1 + 2 \\sum_{n=1}^\\infty r^n \\bigl( \\cos (n\\alpha) \\cos(n \\theta) + \\sin (n\\alpha) \\sin(n \\theta) \\bigr)",
+       "src": "4.10"
+      },
+      {
+       "tex": "\\cos(a - b) = \\cos a \\cos b + \\sin a \\sin b",
+       "src": "Calculus, 1.3"
+      },
+      {
+       "tex": "e^{i \\theta} = \\cos \\theta + i \\sin \\theta , \\qquad e^{-i \\theta} = \\cos \\theta - i \\sin \\theta",
+       "src": "2.2, Theorem 2.2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kP(r,\\theta,\\alpha)} = \\mk{one}{1} + \\mk{two}{2} \\mk{S}{\\sum_{n=1}^\\infty} \\mk{r}{r^n} \\mk{c}{\\bigl( \\cos (n\\alpha) \\cos(n \\theta) + \\sin (n\\alpha) \\sin(n \\theta) \\bigr)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kP(r,\\theta,\\alpha)} = \\mk{one}{1} + \\mk{two}{2} \\mk{S}{\\sum_{n=1}^\\infty} \\mk{r}{r^n} \\mk{c}{\\cos \\bigl(n(\\theta-\\alpha)\\bigr)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kP(r,\\theta,\\alpha)} = \\mk{one}{1} + \\mk{S}{\\sum_{n=1}^\\infty} \\mk{r}{r^n} \\mk{c}{\\bigl( e^{in(\\theta-\\alpha)} + e^{-in(\\theta-\\alpha)} \\bigr)}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "two": "c"
+       },
+       "cap": "Adding the two halves of Euler's formula gives $2\\cos x = e^{ix} + e^{-ix}$."
+      },
+      {
+       "tex": "\\mk{P}{\\kP(r,\\theta,\\alpha)} = \\mk{one}{1} + \\mk{S}{\\sum_{n=1}^\\infty {\\bigl( re^{i(\\theta-\\alpha)}\\bigr)}^{n}} + \\mk{T}{\\sum_{n=1}^\\infty {\\bigl( re^{-i(\\theta-\\alpha)}\\bigr)}^{n}}",
+       "uses": [],
+       "map": {
+        "S": [
+         "S",
+         "T"
+        ],
+        "r": [
+         "S",
+         "T"
+        ],
+        "c": [
+         "S",
+         "T"
+        ]
+       },
+       "cap": "Since $r^n e^{\\pm in(\\theta-\\alpha)} = \\bigl(re^{\\pm i(\\theta-\\alpha)}\\bigr)^n$, the sum splits into two sums of powers, each of which converges."
+      }
+     ],
+     "src": "4.10"
+    }
+   ]
+  },
+  {
+   "id": "poisson-closed-form",
+   "what": "the Poisson kernel in closed form",
+   "source": "Differential Equations for Engineers, 4.10 Dirichlet problem in the circle and the Poisson kernel, Poisson kernel",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kP(r,\\theta,\\alpha) = 1 + \\sum_{n=1}^\\infty {\\bigl( re^{i(\\theta-\\alpha)}\\bigr)}^{n} + \\sum_{n=1}^\\infty {\\bigl( re^{-i(\\theta-\\alpha)}\\bigr)}^{n}",
+       "src": "4.10"
+      },
+      {
+       "tex": "\\sum_{n=1}^\\infty z^n = \\frac{z}{1-z}",
+       "src": "4.10"
+      },
+      {
+       "text": "$\\lvert re^{\\pm i(\\theta-\\alpha)} \\rvert = r < 1$.",
+       "src": "4.10"
+      },
+      {
+       "tex": "e^{i \\theta} = \\cos \\theta + i \\sin \\theta , \\qquad e^{-i \\theta} = \\cos \\theta - i \\sin \\theta",
+       "src": "2.2, Theorem 2.2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{\\kP(r,\\theta,\\alpha)} = \\mk{one}{1} + \\mk{S}{\\sum_{n=1}^\\infty {\\bigl( re^{i(\\theta-\\alpha)}\\bigr)}^{n}} + \\mk{T}{\\sum_{n=1}^\\infty {\\bigl( re^{-i(\\theta-\\alpha)}\\bigr)}^{n}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{\\kP(r,\\theta,\\alpha)} = \\mk{one}{1} + \\mk{S}{\\frac{re^{i(\\theta-\\alpha)}}{1-re^{i(\\theta-\\alpha)}}} + \\mk{T}{\\frac{re^{-i(\\theta-\\alpha)}}{1-re^{-i(\\theta-\\alpha)}}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{P}{\\kP(r,\\theta,\\alpha)} = \\frac{ \\mk{one}{\\bigl(1-re^{i(\\theta-\\alpha)}\\bigr)\\bigl(1-re^{-i(\\theta-\\alpha)}\\bigr)} + \\mk{S}{\\bigl(1-re^{-i(\\theta-\\alpha)}\\bigr)re^{i(\\theta-\\alpha)}} + \\mk{T}{\\bigl(1-re^{i(\\theta-\\alpha)}\\bigr)re^{-i(\\theta-\\alpha)}}} {\\mk{D}{\\bigl(1-re^{i(\\theta-\\alpha)}\\bigr)\\bigl(1-re^{-i(\\theta-\\alpha)}\\bigr)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{P}{\\kP(r,\\theta,\\alpha)} = \\frac{\\mk{N}{1 -r^2}}{\\mk{D}{1 - re^{i(\\theta-\\alpha)} - re^{-i(\\theta-\\alpha)} +r^2}}",
+       "uses": [],
+       "map": {
+        "one": "N",
+        "S": "N",
+        "T": "N"
+       },
+       "cap": "Multiplying out, everything in the numerator cancels but $1 - r^2$, since $re^{i(\\theta-\\alpha)} \\cdot re^{-i(\\theta-\\alpha)} = r^2$; the same product is the $r^2$ of the denominator."
+      },
+      {
+       "tex": "\\mk{P}{\\kP(r,\\theta,\\alpha)} = \\frac{\\mk{N}{1 -r^2}}{\\mk{D}{1 - 2r\\cos(\\theta-\\alpha) +r^2}}",
+       "uses": [
+        3
+       ],
+       "cap": "Adding the two halves of Euler's formula, $e^{ix} + e^{-ix} = 2\\cos x$."
+      }
+     ],
+     "src": "4.10"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "4.10.1",
+   "source_number": "4.10.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "eq-rod-boundary-series"
+   },
+   "cite": "eq-rod-boundary-series",
+   "prompt": "<p>Compute the series for $\\ku(1,\\theta)$ and verify that it really is what we have just claimed. Hint: Be careful, make sure not to divide by zero.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\kg(\\theta) = 2\\sin\\theta$ on $[0, \\pi]$ and $0$ on $(-\\pi, 0)$: $\\kazero = \\frac{1}{\\pi}\\int_0^\\pi 2\\sin\\theta\\,d\\theta = \\frac{4}{\\pi}$, so $\\frac{\\kazero}{2} = \\frac{2}{\\pi}$. For $n = 1$, $a_1 = \\frac{1}{\\pi}\\int_0^\\pi 2\\sin\\theta\\cos\\theta\\,d\\theta = 0$ and $b_1 = \\frac{1}{\\pi}\\int_0^\\pi 2\\sin^2\\theta\\,d\\theta = 1$, which gives the term $\\sin(\\theta)$. For $n \\geq 2$, writing $2\\sin\\theta\\cos(n\\theta) = \\sin\\bigl((n+1)\\theta\\bigr) - \\sin\\bigl((n-1)\\theta\\bigr)$ gives $\\kan = \\frac{2\\bigl(1 + (-1)^n\\bigr)}{\\pi(1 - n^2)}$, which is $0$ for odd $n$ and $\\frac{-4}{\\pi(4k^2-1)}$ for $n = 2k$; similarly $\\kbn = \\frac{1}{\\pi}\\int_0^\\pi 2\\sin\\theta\\sin(n\\theta)\\,d\\theta = 0$ for $n \\geq 2$. The formula for $\\kan$ has $1 - n^2$ in the denominator, which is zero at $n = 1$: that is the case to compute on its own. Altogether $\\ku(1,\\theta) = \\frac{2}{\\pi} + \\sin(\\theta) + \\sum_{k=1}^\\infty \\frac{-4}{\\pi(4k^2-1)}\\cos(2k\\theta)$, as claimed."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "4.10.2",
+   "source_number": "4.10.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expand-g",
+   "prompt": "<p>Using series, solve $\\Delta \\ku = 0$, $\\ku(1,\\theta) = \\lvert \\theta \\rvert$, for $-\\pi < \\theta \\leq \\pi$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ku(r,\\theta) = \\frac{\\pi}{2} - \\sum_{n\\ \\text{odd}} \\frac{4}{\\pi n^2}\\, r^n \\cos(n\\theta) = \\frac{\\pi}{2} - \\frac{4}{\\pi}\\Bigl( r\\cos\\theta + \\frac{r^3}{9}\\cos(3\\theta) + \\frac{r^5}{25}\\cos(5\\theta) + \\cdots \\Bigr)$. The data $\\lvert\\theta\\rvert$ is even, so every $\\kbn = 0$. Next $\\kazero = \\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}\\lvert\\theta\\rvert\\,d\\theta = \\pi$, so $\\frac{\\kazero}{2} = \\frac{\\pi}{2}$, and $\\kan = \\frac{2}{\\pi}\\int_0^\\pi \\theta\\cos(n\\theta)\\,d\\theta = \\frac{2\\bigl((-1)^n - 1\\bigr)}{\\pi n^2}$, which is $-\\frac{4}{\\pi n^2}$ for odd $n$ and $0$ for even $n$. Multiplying the $n^{\\text{th}}$ term of this Fourier series by $r^n$ gives the solution."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "4.10.3",
+   "source_number": "4.10.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "expand-g",
+   "prompt": "<p>Using series solve $\\Delta \\ku = 0$, $\\ku(1,\\theta) = \\kg(\\theta)$ for the following data. Hint: trig identities.</p><ol type=\"a\"><li>$\\kg(\\theta) = {1}/{2} + 3\\sin(\\theta) + \\cos(3\\theta)$</li><li>$\\kg(\\theta) = 3\\cos(3\\theta) + 3\\sin(3\\theta) + \\sin(9\\theta)$</li><li>$\\kg(\\theta) = 2 \\cos(\\theta+1)$</li><li>$\\kg(\\theta) = \\sin^2(\\theta)$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each $\\kg$ is already a finite Fourier series (after a trig identity), so the solution multiplies its $n^{\\text{th}}$ term by $r^n$. a) $\\ku = \\frac{1}{2} + 3r\\sin(\\theta) + r^3\\cos(3\\theta)$. b) $\\ku = 3r^3\\cos(3\\theta) + 3r^3\\sin(3\\theta) + r^9\\sin(9\\theta)$. c) $2\\cos(\\theta + 1) = 2\\cos(1)\\cos(\\theta) - 2\\sin(1)\\sin(\\theta)$, so $\\ku = 2\\cos(1)\\,r\\cos(\\theta) - 2\\sin(1)\\,r\\sin(\\theta) = 2r\\cos(\\theta + 1)$, that is $2\\cos(1)\\,x - 2\\sin(1)\\,y$. d) $\\sin^2(\\theta) = \\frac{1}{2} - \\frac{1}{2}\\cos(2\\theta)$, so $\\ku = \\frac{1}{2} - \\frac{r^2}{2}\\cos(2\\theta)$, that is $\\frac{1}{2} - \\frac{x^2 - y^2}{2}$. Each is harmonic and equals $\\kg$ at $r = 1$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "4.10.4",
+   "source_number": "4.10.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-poisson-solution",
+   "prompt": "<p>Using the Poisson kernel, give the solution to $\\Delta \\ku = 0$, where $\\ku(1,\\theta)$ is zero for $\\theta$ outside the interval $[-{\\pi}/{4},{\\pi}/{4}]$ and $\\ku(1,\\theta)$ is 1 for $\\theta$ on the interval $[-{\\pi}/{4},{\\pi}/{4}]$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $\\kg(\\alpha) = 1$ on $[-\\pi/4, \\pi/4]$ and $0$ elsewhere, only that interval contributes: $\\ku(r,\\theta) = \\frac{1}{2\\pi}\\int_{-\\pi/4}^{\\pi/4} \\frac{1 - r^2}{1 - 2r\\cos(\\theta - \\alpha) + r^2}\\,d\\alpha$. At the centre this is the average of the data, $\\ku(0,0) = \\frac{1}{2\\pi}\\cdot\\frac{\\pi}{2} = \\frac{1}{4}$. The integral can also be done in closed form: the kernel has antiderivative $2\\arctan\\Bigl(\\frac{1+r}{1-r}\\tan\\frac{\\alpha - \\theta}{2}\\Bigr)$ in $\\alpha$, so for $\\lvert\\theta\\rvert < 3\\pi/4$, $\\ku(r,\\theta) = \\frac{1}{\\pi}\\Bigl[\\arctan\\Bigl(\\frac{1+r}{1-r}\\tan\\frac{\\pi/4 - \\theta}{2}\\Bigr) + \\arctan\\Bigl(\\frac{1+r}{1-r}\\tan\\frac{\\pi/4 + \\theta}{2}\\Bigr)\\Bigr]$; for example $\\ku(\\tfrac{1}{2}, 0) \\approx 0.569$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "4.10.5",
+   "source_number": "4.10.5",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weighted-average",
+   "prompt": "<ol type=\"a\"><li>Draw a graph for the Poisson kernel as a function of $\\alpha$ when $r={1}/{2}$ and $\\theta = 0$.</li><li>Describe what happens to the graph when you make $r$ bigger (as it approaches 1).</li><li>Knowing that the solution $\\ku(r,\\theta)$ is the weighted average of $\\kg(\\theta)$ with the Poisson kernel as the weight, explain what your answer to part b) means.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "a) P at α = 0",
+      "value": 3
+     },
+     {
+      "part": "a) P at α = π",
+      "value": 0.3333,
+      "tol": 0.001
+     }
+    ],
+    "solution": "a) $\\kP(\\tfrac{1}{2}, 0, \\alpha) = \\frac{1 - \\frac{1}{4}}{1 - \\cos\\alpha + \\frac{1}{4}} = \\frac{3}{5 - 4\\cos\\alpha}$: an even, $2\\pi$-periodic bump with its maximum $3$ at $\\alpha = 0$, the value $\\frac{3}{5}$ at $\\alpha = \\pm\\frac{\\pi}{2}$ and its minimum $\\frac{1}{3}$ at $\\alpha = \\pm\\pi$. b) In general the peak at $\\alpha = \\theta$ is $\\frac{1+r}{1-r}$ and the value opposite is $\\frac{1-r}{1+r}$; as $r \\to 1$ the peak grows without bound, the kernel tends to $0$ away from $\\alpha = \\theta$, and the bump gets narrower, while the area under it stays $2\\pi$ (the solution for $\\kg = 1$ is $\\ku = 1$). c) The total weight is always $1$, and as the point $(r,\\theta)$ approaches the boundary point $(1,\\theta)$ nearly all of it goes to the boundary values $\\kg(\\alpha)$ with $\\alpha$ near $\\theta$. So $\\ku(r,\\theta) \\to \\kg(\\theta)$ as $r \\to 1$ (where $\\kg$ is continuous): near the edge the solution is decided by the nearby boundary data, and the solution takes on its boundary values."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "4.10.6",
+   "source_number": "4.10.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-disc-series-solution",
+   "prompt": "<p>Let $\\kg(\\theta)$ be the function $xy = \\cos \\theta \\sin \\theta$ on the boundary. Use the series solution to find a solution to the Dirichlet problem $\\Delta \\ku = 0$, $\\ku(1,\\theta) = \\kg(\\theta)$. Now convert the solution to Cartesian coordinates $x$ and $y$. Is this solution surprising? Hint: Use your trig identities.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\cos\\theta\\sin\\theta = \\frac{1}{2}\\sin(2\\theta)$ is a one-term Fourier series, so $\\ku(r,\\theta) = \\frac{r^2}{2}\\sin(2\\theta) = r^2\\cos\\theta\\sin\\theta = (r\\cos\\theta)(r\\sin\\theta) = xy$. It is not really surprising: $xy$ is itself harmonic, $\\kuxx + \\kuyy = 0 + 0 = 0$, and it has the right boundary values, so the boundary data extended by the same formula is already the solution."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "4.10.7",
+   "source_number": "4.10.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "r-equation",
+   "prompt": "<p>Carry out the computation we needed in the separation of variables and solve $r^2 \\kRdprime + r \\kRprime - n^2 \\kR = 0$, for $n=0,1,2,3,\\ldots$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Try $\\kR = r^s$: then $r\\kRprime = s r^s$ and $r^2\\kRdprime = s(s-1)r^s$, so the equation becomes $\\bigl(s(s-1) + s - n^2\\bigr)r^s = (s^2 - n^2)r^s = 0$, and $s = \\pm n$. For $n > 0$ the two roots give $\\kRn = A r^n + B r^{-n}$. For $n = 0$ the root $s = 0$ is double and gives only $r^0 = 1$; trying $r^0\\ln r = \\ln r$: $\\kRprime = \\frac{1}{r}$, $\\kRdprime = -\\frac{1}{r^2}$, and $r^2\\bigl(-\\frac{1}{r^2}\\bigr) + r\\cdot\\frac{1}{r} = 0$, so $\\kR_0 = A + B\\ln r$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "4.10.8",
+   "source_number": "4.10.8",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "finite-at-origin",
+   "prompt": "<p><strong>challenging</strong> Derive the series solution to the Dirichlet problem if the region is a circle of radius $\\rho$ rather than 1. That is, solve $\\Delta \\ku = 0$, $\\ku(\\rho,\\theta) = \\kg(\\theta)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The separation of variables does not see the radius: as before $\\lambda = n^2$, $\\kThetan = \\kan\\cos(n\\theta) + \\kbn\\sin(n\\theta)$ and, finite at the origin, $\\kRn = r^n$. Now choose the constants so that the boundary condition holds at $r = \\rho$: $\\ku(r,\\theta) = \\frac{\\kazero}{2} + \\sum_{n=1}^\\infty \\Bigl(\\frac{r}{\\rho}\\Bigr)^n\\bigl[\\kan\\cos(n\\theta) + \\kbn\\sin(n\\theta)\\bigr]$, where $\\kan = \\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}\\kg(\\theta)\\cos(n\\theta)\\,d\\theta$ and $\\kbn = \\frac{1}{\\pi}\\int_{-\\pi}^{\\pi}\\kg(\\theta)\\sin(n\\theta)\\,d\\theta$ are the Fourier coefficients of $\\kg$. At $r = \\rho$ every factor $(r/\\rho)^n$ is 1 and the series is the Fourier series of $\\kg$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "4.10.9",
+   "source_number": "4.10.9",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-disc-series-solution",
+   "prompt": "<p><strong>challenging</strong></p><ol type=\"a\"><li>Find the solution for $\\Delta \\ku = 0$, $\\ku(1,\\theta) = x^2y^3 + 5 x^2$. Write the answer in Cartesian coordinates.</li><li>Now solve $\\Delta \\ku = 0$, $\\ku(1,\\theta) = x^k y^\\ell$. Write the solution in Cartesian coordinates.</li><li>Given a polynomial $P(x,y) = \\sum_{j=0}^m \\sum_{k=0}^n c_{j,k} x^j y^k$, solve $\\Delta \\ku = 0$, $\\ku(1,\\theta) = P(x,y)$ (that is, write down the formula for the answer). Write the answer in Cartesian coordinates.</li></ol><p>Notice the answer is again a polynomial in $x$ and $y$. See also Exercise 4.10.6.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "On the circle $x = \\cos\\theta$, $y = \\sin\\theta$, so a polynomial in $x$ and $y$ is a finite Fourier series; multiplying its $n^{\\text{th}}$ term by $r^n$ replaces $e^{in\\theta}$ by $(x + iy)^n$ and $e^{-in\\theta}$ by $(x - iy)^n$. a) $\\ku = \\frac{5}{2} + \\frac{5}{2}x^2 - \\frac{5}{2}y^2 + \\frac{1}{8}y + \\frac{3}{16}x^2y - \\frac{1}{16}y^3 - \\frac{5}{16}x^4y + \\frac{5}{8}x^2y^3 - \\frac{1}{16}y^5$, which is also $x^2y^3 + 5x^2 - \\frac{1}{16}(x^2 + y^2 - 1)(5x^2y + y^3 + 2y + 40)$: harmonic, and equal to the data where $x^2 + y^2 = 1$. b) With $\\cos\\theta = \\frac{e^{i\\theta} + e^{-i\\theta}}{2}$ and $\\sin\\theta = \\frac{e^{i\\theta} - e^{-i\\theta}}{2i}$, the binomial theorem gives $\\ku(x,y) = \\frac{1}{2^{k+\\ell}\\, i^{\\ell}} \\sum_{j=0}^{k}\\sum_{q=0}^{\\ell} \\binom{k}{j}\\binom{\\ell}{q}(-1)^{\\ell-q}\\, H_{2j+2q-k-\\ell}(x,y)$, where $H_m = (x+iy)^m$ for $m \\geq 0$ and $H_m = (x-iy)^{-m}$ for $m < 0$; it is a real harmonic polynomial of degree at most $k + \\ell$ (for example $x^2 \\mapsto \\frac{1 + x^2 - y^2}{2}$ and $xy \\mapsto xy$). c) The problem is linear, so by superposition $\\ku = \\sum_{j=0}^m \\sum_{k=0}^n c_{j,k}\\, u_{j,k}(x,y)$, where $u_{j,k}$ is the answer to b) for $x^j y^k$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "4.10.101",
+   "source_number": "4.10.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-disc-series-solution",
+   "prompt": "<p>Using series solve $\\Delta \\ku = 0$, $\\ku(1,\\theta) = 1+ \\sum\\limits_{n=1}^\\infty \\frac{1}{n^2}\\sin(n\\theta)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ku = 1+ \\sum\\limits_{n=1}^\\infty \\frac{1}{n^2}r^n\\sin(n\\theta)$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "4.10.102",
+   "source_number": "4.10.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-disc-series-solution",
+   "prompt": "<p>Using the series solution find the solution to $\\Delta \\ku = 0$, $\\ku(1,\\theta) = 1- \\cos(\\theta)$. Express the solution in Cartesian coordinates (that is, using $x$ and $y$).</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ku = 1-x$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "4.10.103",
+   "source_number": "4.10.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-polar-laplacian",
+   "prompt": "<ol type=\"a\"><li>Try and guess a solution to $\\Delta \\ku = -1$, $\\ku(1,\\theta) = 0$. Hint: Try a solution that only depends on $r$. Also, don’t worry about the boundary condition at first.</li><li>Now solve $\\Delta \\ku = -1$, $\\ku(1,\\theta) = \\sin(2\\theta)$ using superposition.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\ku = \\frac{-1}{4} r^2 + \\frac{1}{4}$ b) $\\ku = \\frac{-1}{4} r^2 + \\frac{1}{4} + r^2 \\sin(2\\theta)$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "4.10.104",
+   "source_number": "4.10.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-poisson-solution",
+   "prompt": "<p><strong>challenging</strong> Derive the Poisson kernel solution if the region is a circle of radius $\\rho$ rather than 1. That is, solve $\\Delta \\ku = 0$, $\\ku(\\rho,\\theta) = \\kg(\\theta)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\displaystyle \\ku(r,\\theta) = \\frac{1}{2\\pi} \\int_{-\\pi}^{\\pi} \\frac{\\rho^2 -r^2}{\\rho^2 - 2r\\rho\\cos(\\theta-\\alpha) +r^2} \\kg(\\alpha) \\, d\\alpha$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e1",
+   "concept": "dirichlet-problem-on-the-disc"
+  },
+  {
+   "exercise": "e2",
+   "concept": "dirichlet-problem-on-the-disc"
+  },
+  {
+   "exercise": "e2",
+   "concept": "fourier-coefficients"
+  },
+  {
+   "exercise": "e3",
+   "concept": "dirichlet-problem-on-the-disc"
+  },
+  {
+   "exercise": "e4",
+   "concept": "poisson-kernel"
+  },
+  {
+   "exercise": "e5",
+   "concept": "poisson-kernel"
+  },
+  {
+   "exercise": "e5",
+   "concept": "mean-value-property"
+  },
+  {
+   "exercise": "e6",
+   "concept": "dirichlet-problem-on-the-disc"
+  },
+  {
+   "exercise": "e6",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "e6",
+   "concept": "harmonic-function"
+  },
+  {
+   "exercise": "e7",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e7",
+   "concept": "dirichlet-problem-on-the-disc"
+  },
+  {
+   "exercise": "e8",
+   "concept": "dirichlet-problem-on-the-disc"
+  },
+  {
+   "exercise": "e8",
+   "concept": "separation-of-variables-for-pdes"
+  },
+  {
+   "exercise": "e9",
+   "concept": "dirichlet-problem-on-the-disc"
+  },
+  {
+   "exercise": "e9",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "e9",
+   "concept": "superposition-for-pdes"
+  },
+  {
+   "exercise": "e101",
+   "concept": "dirichlet-problem-on-the-disc"
+  },
+  {
+   "exercise": "e102",
+   "concept": "dirichlet-problem-on-the-disc"
+  },
+  {
+   "exercise": "e102",
+   "concept": "polar-coordinate-system"
+  },
+  {
+   "exercise": "e103",
+   "concept": "laplacian-in-polar-coordinates"
+  },
+  {
+   "exercise": "e103",
+   "concept": "superposition-for-pdes"
+  },
+  {
+   "exercise": "e104",
+   "concept": "poisson-kernel"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-poisson",
+   "kind": "book",
+   "number": "23",
+   "html": "Named for the French mathematician <a href=\"https://en.wikipedia.org/wiki/Sim%C3%A9on_Denis_Poisson\">Siméon Denis Poisson</a> (1781–1840)."
+  }
+ ]
+}

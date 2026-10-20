@@ -166,7 +166,6 @@ Set up the form of the particular solution but do not solve for the coefficients
 
 :::exercise {exercise-2-5-007} number=2.5.7 answered=no src=ch-higher-order-ode.tex:2576
 PROBLEM:
-[2]
 
 a) Using variation of parameters, find a particular solution of $y''-2y'+y = e^x$.
 b) Find a particular solution using undetermined coefficients.
@@ -186,7 +185,6 @@ For an arbitrary constant $c$ find a particular solution to $y''-y=e^{cx}$. Hint
 
 :::exercise {exercise-diffvarparunder} number=2.5.10 answered=no src=ch-higher-order-ode.tex:2599 label=exercise:diffvarparunder
 PROBLEM:
-[2]
 
 a) Using variation of parameters, find a particular solution of $y''-y = e^x$.
 b) Find a particular solution using undetermined coefficients.

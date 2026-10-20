@@ -1,0 +1,893 @@
+{
+ "id": "6.3",
+ "module": "convolution:section",
+ "chapter": "6",
+ "title": "Convolution",
+ "short": "Convolution",
+ "lead": "The transform of a product is not the product of the transforms, so this section builds a different product of two functions, the <span data-concept=\"convolution\">convolution</span>, and asks what the <span data-concept=\"laplace-transform\">Laplace transform</span> does to it. It then turns to a forced oscillation with any forcing whatever and to an <span data-concept=\"integral-equation\">integral equation</span> of a system with memory.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count and the [EP] and [BD] section numbers) is left out; the skipped proof of Theorem 6.3.1 and the worked lines of Example 6.3.4 are drawn as derivations.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 6.3.101–6.3.104 carry the book’s own answers, each checked with SymPy and none contradicted. Exercises 6.3.1–6.3.9, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked first with SymPy, and 6.3.3–6.3.5 and 6.3.9 by integrating the equation numerically against the convolution integral.",
+ "figures": [
+  {
+   "id": "sim-convolution",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "integral"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "conv-f",
+   "label": "the function f",
+   "figures": [
+    "sim-convolution"
+   ]
+  },
+  {
+   "id": "conv-g",
+   "label": "the function g",
+   "figures": [
+    "sim-convolution"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "convolution",
+   "concept": "convolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "convolution",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-6-2",
+   "concept": "convolution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "another-function",
+   "concept": "convolution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-3-1",
+   "concept": "convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-convolution",
+   "concept": "convolution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-3-2",
+   "concept": "convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "convolution-properties",
+   "concept": "properties-of-convolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "commuted",
+   "concept": "properties-of-convolution",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thm-6-3-1",
+   "concept": "convolution-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-6-3-1",
+   "concept": "exponential-order",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-6-3-1",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "in-other-words",
+   "concept": "convolution-theorem",
+   "verb": "reinforces"
+  },
+  {
+   "span": "in-other-words",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-3",
+   "concept": "inverting-a-product-by-convolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-6-3-3",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-3",
+   "concept": "laplace-transform-table",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-3-3",
+   "concept": "convolution-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "full-power",
+   "concept": "convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "full-power",
+   "concept": "forced-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "full-power",
+   "concept": "solution-to-a-differential-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-4",
+   "concept": "undamped-forced-motion",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-4",
+   "concept": "natural-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-4",
+   "concept": "transform-of-a-derivative",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-4",
+   "concept": "transfer-function",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-6-3-4",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-4",
+   "concept": "convolution-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-4",
+   "concept": "solving-odes-with-the-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-4",
+   "concept": "properties-of-convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance",
+   "concept": "resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "resonance",
+   "concept": "convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "grows",
+   "concept": "resonance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "general-idea",
+   "concept": "transfer-function",
+   "verb": "uses"
+  },
+  {
+   "span": "general-idea",
+   "concept": "convolution-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "general-idea",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "any-forcing",
+   "concept": "convolution-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "any-forcing",
+   "concept": "constant-coefficient-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "any-forcing",
+   "concept": "closed-form",
+   "verb": "uses"
+  },
+  {
+   "span": "volterra-equation",
+   "concept": "volterra-integral-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "volterra-equation",
+   "concept": "integral-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "volterra-divide",
+   "concept": "convolution",
+   "verb": "uses"
+  },
+  {
+   "span": "volterra-divide",
+   "concept": "laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "volterra-divide",
+   "concept": "convolution-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "volterra-invert",
+   "concept": "inverse-laplace-transform",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-5",
+   "concept": "volterra-integral-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-6-3-5",
+   "concept": "laplace-transform-table",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "convolution-theorem",
+   "what": "the Laplace transform of a convolution",
+   "source": "Differential Equations for Engineers, 6.3 Convolution, Theorem 6.3.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kF(s) = \\mathcal{L}\\bigl\\{\\kf(t)\\bigr\\} = \\int_0^\\infty e^{-st}\\kf(t)\\,dt",
+       "src": "6.1, The transform"
+      },
+      {
+       "tex": "(\\kfconvg)(t) = \\int_0^t \\kf(\\tau)\\kg(t-\\tau)\\,d\\tau",
+       "src": "(6.2)"
+      },
+      {
+       "text": "$\\kf(t)$ and $\\kg(t)$ are of exponential order, so for $s$ large enough the double integral converges absolutely.",
+       "src": "Theorem 6.3.1"
+      },
+      {
+       "text": "An absolutely convergent double integral over the region $0 \\leq \\tau \\leq t \\lt \\infty$ may be taken in either order: $\\tau$ from $0$ to $t$ inside $t$ from $0$ to $\\infty$, or $t$ from $\\tau$ to $\\infty$ inside $\\tau$ from $0$ to $\\infty$.",
+       "src": "Calculus, 15.2"
+      },
+      {
+       "text": "In an integral over $t$ with $\\tau$ fixed, substitute $u = t - \\tau$, so $du = dt$, and $t = \\tau$ becomes $u = 0$.",
+       "src": "Calculus, 5.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\mathcal{L}\\bigl\\{(\\kfconvg)(t)\\bigr\\}} = \\mk{o}{\\int_0^\\infty} \\mk{e}{e^{-st}}\\, \\mk{c}{(\\kfconvg)(t)} \\, \\mk{dt}{dt}",
+      "uses": [
+       0
+      ],
+      "why": "The definition of the transform, applied to the function $\\kfconvg$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\mathcal{L}\\bigl\\{(\\kfconvg)(t)\\bigr\\}} = \\mk{o}{\\int_0^\\infty} \\mk{e}{e^{-st}}\\, \\mk{c}{\\int_0^t \\kf(\\tau)\\kg(t-\\tau)\\,d\\tau} \\, \\mk{dt}{dt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\mathcal{L}\\bigl\\{(\\kfconvg)(t)\\bigr\\}} = \\mk{o}{\\int_0^\\infty} \\mk{i}{\\int_0^t} \\mk{p}{e^{-s\\tau}\\kf(\\tau)\\, e^{-s(t-\\tau)}\\kg(t-\\tau)} \\, \\mk{dtau}{d\\tau} \\, \\mk{dt}{dt}",
+       "uses": [],
+       "map": {
+        "e": "p",
+        "c": [
+         "i",
+         "p",
+         "dtau"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\mathcal{L}\\bigl\\{(\\kfconvg)(t)\\bigr\\}} = \\mk{o}{\\int_0^\\infty} \\mk{i}{\\int_\\tau^\\infty} \\mk{p}{e^{-s\\tau}\\kf(\\tau)\\, e^{-s(t-\\tau)}\\kg(t-\\tau)} \\, \\mk{dt}{dt} \\, \\mk{dtau}{d\\tau}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "Both integrals run over the region $0 \\leq \\tau \\leq t$; taken the other way round, $\\tau$ runs from $0$ to $\\infty$ outside and $t$ from $\\tau$ to $\\infty$ inside."
+      },
+      {
+       "tex": "\\mk{L}{\\mathcal{L}\\bigl\\{(\\kfconvg)(t)\\bigr\\}} = \\mk{o}{\\int_0^\\infty} \\mk{f}{e^{-s\\tau}\\kf(\\tau)} \\mk{i}{\\int_\\tau^\\infty} \\mk{g}{e^{-s(t-\\tau)}\\kg(t-\\tau)} \\, \\mk{dt}{dt} \\, \\mk{dtau}{d\\tau}",
+       "uses": [],
+       "map": {
+        "p": [
+         "f",
+         "g"
+        ]
+       },
+       "cap": "The factor $e^{-s\\tau}\\kf(\\tau)$ does not depend on $t$, so it comes out of the inner integral."
+      },
+      {
+       "tex": "\\mk{L}{\\mathcal{L}\\bigl\\{(\\kfconvg)(t)\\bigr\\}} = \\mk{o}{\\int_0^\\infty} \\mk{f}{e^{-s\\tau}\\kf(\\tau)} \\mk{i}{\\int_0^\\infty} \\mk{g}{e^{-su}\\kg(u)} \\, \\mk{dt}{du} \\, \\mk{dtau}{d\\tau}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\mathcal{L}\\bigl\\{(\\kfconvg)(t)\\bigr\\}} = \\mk{o}{\\int_0^\\infty} \\mk{f}{e^{-s\\tau}\\kf(\\tau)} \\, \\mk{G}{\\kG(s)} \\, \\mk{dtau}{d\\tau}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "i": "G",
+        "g": "G",
+        "dt": "G"
+       },
+       "cap": "The inner integral is the transform of $\\kg$, whatever letter its variable goes by, and it is a constant in $\\tau$."
+      },
+      {
+       "tex": "\\mk{L}{\\mathcal{L}\\bigl\\{(\\kfconvg)(t)\\bigr\\}} = \\mk{F}{\\kF(s)} \\, \\mk{G}{\\kG(s)}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "o": "F",
+        "f": "F",
+        "dtau": "F"
+       }
+      }
+     ],
+     "src": "Theorem 6.3.1"
+    }
+   ]
+  },
+  {
+   "id": "forced-oscillation-convolution",
+   "what": "the solution of $x'' + \\omega_0^2 x = f(t)$ as a convolution",
+   "source": "Differential Equations for Engineers, 6.3 Convolution, Example 6.3.4",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kxdprime + \\komegazero^2 \\kx = \\kf(t) , \\quad \\kx(0) = 0, \\quad \\kxprime(0) = 0"
+      },
+      {
+       "text": "The Laplace transform is linear: $\\mathcal{L}\\{a\\kf + b\\kg\\} = a\\mathcal{L}\\{\\kf\\} + b\\mathcal{L}\\{\\kg\\}$.",
+       "src": "Theorem 6.1.1"
+      },
+      {
+       "tex": "\\mathcal{L}\\bigl\\{\\kxdprime\\bigr\\} = s^2 \\kX(s) - s\\kx(0) - \\kxprime(0)",
+       "src": "6.2, Table 6.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\mathcal{L}\\bigl\\{\\kxdprime\\bigr\\}} + \\mk{w}{\\komegazero^2}\\, \\mk{b}{\\mathcal{L}\\bigl\\{\\kx\\bigr\\}} = \\mk{F}{\\mathcal{L}\\bigl\\{\\kf(t)\\bigr\\}}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "Apply the transform to both sides of the equation; by linearity it goes term by term."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{s^2 \\kX(s) - s\\kx(0) - \\kxprime(0)} + \\mk{w}{\\komegazero^2}\\, \\mk{b}{\\kX(s)} = \\mk{F}{\\kF(s)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{s^2 \\kX(s)} + \\mk{w}{\\komegazero^2}\\, \\mk{b}{\\kX(s)} = \\mk{F}{\\kF(s)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{b}{\\kX(s)} = \\mk{h}{\\frac{1}{s^2+ \\komegazero^2}}\\, \\mk{F}{\\kF(s)}",
+       "uses": [],
+       "map": {
+        "a": [
+         "b",
+         "h"
+        ],
+        "w": "h"
+       }
+      }
+     ],
+     "src": "Example 6.3.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kH(s) = \\frac{1}{s^2+ \\komegazero^2}",
+       "src": "6.2, Transfer functions"
+      },
+      {
+       "tex": "{\\mathcal{L}}^{-1} \\bigl\\{ \\kF(s) \\kG(s) \\bigr\\} = (\\kfconvg)(t)",
+       "src": "Theorem 6.3.1"
+      },
+      {
+       "tex": "{\\mathcal{L}}^{-1} \\left\\{ \\frac{1}{s^2+ \\komegazero^2} \\right\\} = \\frac{\\sin (\\komegazero t)}{\\komegazero}",
+       "src": "6.1, Table 6.1"
+      },
+      {
+       "tex": "(\\kfconvg)(t) = \\int_0^t \\kf(\\tau) \\kg(t-\\tau) \\, d\\tau",
+       "src": "(6.2)"
+      },
+      {
+       "tex": "\\kf * \\kg = \\kg * \\kf"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kx(t)} = \\mathcal{L}^{-1}\\Bigl\\{ \\mk{h}{\\frac{1}{s^2+ \\komegazero^2}}\\, \\mk{F}{\\kF(s)} \\Bigr\\}",
+      "uses": [
+       0
+      ],
+      "why": "$\\kx(t)$ is the inverse transform of $\\kX(s)$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kx(t)} = \\mathcal{L}^{-1}\\Bigl\\{ \\mk{h}{\\kH(s)}\\, \\mk{F}{\\kF(s)} \\Bigr\\}",
+       "uses": [
+        1
+       ],
+       "cap": "$\\kH(s) = \\frac{1}{s^2+ \\komegazero^2}$ is the transfer function of the equation."
+      },
+      {
+       "tex": "\\mk{x}{\\kx(t)} = \\Bigl( \\mk{h}{\\frac{\\sin (\\komegazero t)}{\\komegazero}} * \\mk{F}{\\kf(t)} \\Bigr)",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx(t)} = \\int_0^t \\mk{h}{\\frac{\\sin (\\komegazero \\tau)}{\\komegazero}}\\, \\mk{F}{\\kf(t-\\tau)} \\, d\\tau",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\kx(t)} = \\int_0^t \\mk{F}{\\kf(\\tau)}\\, \\mk{h}{\\frac{\\sin \\bigl( \\komegazero (t-\\tau) \\bigr)}{\\komegazero}} \\, d\\tau",
+       "uses": [
+        5
+       ],
+       "cap": "Reverse the order of the convolution."
+      }
+     ],
+     "src": "Example 6.3.4"
+    }
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "fn-convolution-general",
+   "kind": "book",
+   "number": "31",
+   "html": "For those who have seen convolution before, you may have seen it defined as $(\\kfconvg)(t) = \\int_{-\\infty}^\\infty \\kf(\\tau) \\kg(t-\\tau) \\, d\\tau$. This definition agrees with <a href=\"#eq-6-2\">(6.2)</a> if you define $\\kf(t)$ and $\\kg(t)$ to be zero for $t &lt; 0$. When discussing the Laplace transform, the definition we gave is sufficient. Convolution does occur in many other applications, however, where you may have to use the more general definition with infinities."
+  },
+  {
+   "id": "c-table-6-2",
+   "kind": "correction",
+   "html": "The book writes Table 6.2, which lists the transforms of derivatives; the two entries $\\mathcal{L}\\{t\\} = \\frac{1}{s^2}$ and $\\mathcal{L}\\{e^{-t}\\} = \\frac{1}{s+1}$ are in <a href=\"/diffyqs/ch06/6.1/#6.1-tab-6-1\">Table 6.1</a>."
+  },
+  {
+   "id": "fn-volterra",
+   "kind": "book",
+   "number": "32",
+   "html": "Named for the Italian mathematician <a href=\"https://en.wikipedia.org/wiki/Vito_Volterra\">Vito Volterra</a> (1860–1940)."
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "6.3.1",
+   "source_number": "6.3.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "convolution",
+   "prompt": "<p>Let $\\kf(t) = t^2$ for $t \\geq 0$, and $\\kg(t) = \\ku(t-1)$. Compute $\\kfconvg$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$(\\kfconvg)(t) = \\frac{(t-1)^3}{3}\\,\\ku(t-1)$, that is, $0$ for $t < 1$ and $\\frac{(t-1)^3}{3}$ for $t \\geq 1$. By (6.2), $(\\kfconvg)(t) = \\int_0^t \\tau^2\\, \\ku(t-\\tau-1)\\, d\\tau$, and $\\ku(t-\\tau-1) = 1$ exactly when $\\tau \\leq t - 1$, else $0$. For $t < 1$ the integrand is zero on all of $[0,t]$, so the convolution is $0$. For $t \\geq 1$ it is $\\int_0^{t-1} \\tau^2 \\, d\\tau = \\frac{(t-1)^3}{3}$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "6.3.2",
+   "source_number": "6.3.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "convolution",
+   "prompt": "<p>Let $\\kf(t) = t$ for $t \\geq 0$, and $\\kg(t) = \\sin t$ for $t \\geq 0$. Compute $\\kfconvg$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$(\\kfconvg)(t) = t - \\sin t$. By commutativity, $(\\kfconvg)(t) = \\int_0^t (t-\\tau) \\sin \\tau \\, d\\tau = t\\int_0^t \\sin\\tau\\,d\\tau - \\int_0^t \\tau \\sin\\tau\\,d\\tau = t(1-\\cos t) - (\\sin t - t\\cos t) = t - \\sin t$, where $\\int_0^t \\tau\\sin\\tau\\,d\\tau = \\sin t - t\\cos t$ is one integration by parts. As a check, $\\mathcal{L}\\{t - \\sin t\\} = \\frac{1}{s^2} - \\frac{1}{s^2+1} = \\frac{1}{s^2(s^2+1)} = \\mathcal{L}\\{t\\}\\,\\mathcal{L}\\{\\sin t\\}$, as Theorem 6.3.1 says."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "6.3.3",
+   "source_number": "6.3.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-idea",
+   "prompt": "<p>Find the solution to</p>$$ m \\kxdprime + c \\kxprime + k \\kx = \\kf(t) , \\quad \\kx(0) = 0, \\quad \\kxprime(0) = 0 , $$<p>for an arbitrary function $\\kf(t)$, where $m &gt; 0$, $c &gt; 0$, $k &gt; 0$, and $c^2 - 4km &gt; 0$ (the system is overdamped). Write the solution as a definite integral.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = \\int_0^t \\kf(\\tau)\\, \\frac{e^{r_1 (t-\\tau)} - e^{r_2 (t-\\tau)}}{m(r_1 - r_2)} \\, d\\tau$, where $r_1, r_2 = \\frac{-c \\pm \\sqrt{c^2 - 4km}}{2m}$. Transforming with zero initial conditions gives $(ms^2 + cs + k)\\kX(s) = \\kF(s)$, so $\\kX = \\kH\\kF$ with $\\kH(s) = \\frac{1}{ms^2+cs+k} = \\frac{1}{m(s-r_1)(s-r_2)}$, the roots real and distinct since $c^2 - 4km &gt; 0$. Partial fractions give $\\kH(s) = \\frac{1}{m(r_1-r_2)}\\left(\\frac{1}{s-r_1} - \\frac{1}{s-r_2}\\right)$, so $\\kh(t) = \\frac{e^{r_1 t} - e^{r_2 t}}{m(r_1 - r_2)}$, and $\\kx = \\kf * \\kh$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "6.3.4",
+   "source_number": "6.3.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-idea",
+   "prompt": "<p>Find the solution to</p>$$ m \\kxdprime + c \\kxprime + k \\kx = \\kf(t) , \\quad \\kx(0) = 0, \\quad \\kxprime(0) = 0 , $$<p>for an arbitrary function $\\kf(t)$, where $m &gt; 0$, $c &gt; 0$, $k &gt; 0$, and $c^2 - 4km &lt; 0$ (the system is underdamped). Write the solution as a definite integral.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = \\int_0^t \\kf(\\tau)\\, \\frac{e^{-p(t-\\tau)} \\sin\\bigl(\\omega_1 (t-\\tau)\\bigr)}{m \\omega_1} \\, d\\tau$, where $p = \\frac{c}{2m}$ and $\\omega_1 = \\frac{\\sqrt{4km - c^2}}{2m} = \\sqrt{\\frac{k}{m} - p^2}$. Transforming gives $\\kX(s) = \\kH(s)\\kF(s)$ with $\\kH(s) = \\frac{1}{ms^2+cs+k}$. Completing the square, $ms^2 + cs + k = m\\bigl((s+p)^2 + \\omega_1^2\\bigr)$, so $\\kH(s) = \\frac{1}{m\\omega_1}\\,\\frac{\\omega_1}{(s+p)^2+\\omega_1^2}$, and the first shifting property with $\\mathcal{L}\\{\\sin(\\omega_1 t)\\} = \\frac{\\omega_1}{s^2+\\omega_1^2}$ gives $\\kh(t) = \\frac{e^{-pt}\\sin(\\omega_1 t)}{m\\omega_1}$. Then $\\kx = \\kf * \\kh$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "6.3.5",
+   "source_number": "6.3.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-idea",
+   "prompt": "<p>Find the solution to</p>$$ m \\kxdprime + c \\kxprime + k \\kx = \\kf(t) , \\quad \\kx(0) = 0, \\quad \\kxprime(0) = 0 , $$<p>for an arbitrary function $\\kf(t)$, where $m &gt; 0$, $c &gt; 0$, $k &gt; 0$, and $c^2 = 4km$ (the system is critically damped). Write the solution as a definite integral.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = \\int_0^t \\kf(\\tau)\\, \\frac{(t-\\tau)\\, e^{-p(t-\\tau)}}{m} \\, d\\tau$, where $p = \\frac{c}{2m}$. Transforming gives $\\kX(s) = \\kH(s)\\kF(s)$ with $\\kH(s) = \\frac{1}{ms^2+cs+k}$. Since $c^2 = 4km$, the quadratic is a perfect square, $ms^2 + cs + k = m(s+p)^2$, so $\\kH(s) = \\frac{1}{m}\\,\\frac{1}{(s+p)^2}$, and the first shifting property with $\\mathcal{L}\\{t\\} = \\frac{1}{s^2}$ gives $\\kh(t) = \\frac{t e^{-pt}}{m}$. Then $\\kx = \\kf * \\kh$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "6.3.6",
+   "source_number": "6.3.6",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volterra-equation",
+   "prompt": "<p>Solve</p>$$ \\kx(t) = e^{-t} + \\int_0^t \\cos(t-\\tau) \\kx(\\tau) \\, d\\tau . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = \\frac{2}{3} e^{-t} + \\frac{1}{3} e^{t/2} \\cos\\left(\\frac{\\sqrt{3}}{2}\\, t\\right) + \\frac{1}{\\sqrt{3}}\\, e^{t/2} \\sin\\left(\\frac{\\sqrt{3}}{2}\\, t\\right)$. This is a Volterra equation with $\\kf(t) = e^{-t}$ and $\\kg(t) = \\cos t$, so $\\kF(s) = \\frac{1}{s+1}$, $\\kG(s) = \\frac{s}{s^2+1}$, and $\\kX(s) = \\frac{\\kF(s)}{1-\\kG(s)} = \\frac{1}{s+1}\\,\\frac{s^2+1}{s^2-s+1} = \\frac{s^2+1}{s^3+1}$. Partial fractions: $\\frac{s^2+1}{(s+1)(s^2-s+1)} = \\frac{2/3}{s+1} + \\frac{1}{3}\\,\\frac{s+1}{s^2-s+1}$, and $\\frac{s+1}{s^2-s+1} = \\frac{(s-\\frac{1}{2}) + \\frac{3}{2}}{(s-\\frac{1}{2})^2 + \\frac{3}{4}}$. The first shifting property with the transforms of cosine and sine at $\\omega = \\frac{\\sqrt{3}}{2}$ inverts it to $e^{t/2}\\cos\\left(\\frac{\\sqrt{3}}{2}t\\right) + \\sqrt{3}\\, e^{t/2}\\sin\\left(\\frac{\\sqrt{3}}{2}t\\right)$; multiplying by $\\frac{1}{3}$ gives the answer."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "6.3.7",
+   "source_number": "6.3.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "volterra-equation",
+   "prompt": "<p>Solve</p>$$ \\kx(t) = \\cos t + \\int_0^t \\cos(t-\\tau) \\kx(\\tau) \\, d\\tau . $$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = e^{t/2}\\left(\\cos\\left(\\frac{\\sqrt{3}}{2}\\, t\\right) + \\frac{1}{\\sqrt{3}} \\sin\\left(\\frac{\\sqrt{3}}{2}\\, t\\right)\\right)$. Here $\\kf(t) = \\kg(t) = \\cos t$, so $\\kF(s) = \\kG(s) = \\frac{s}{s^2+1}$ and $\\kX(s) = \\frac{\\kF(s)}{1-\\kG(s)} = \\frac{s}{s^2-s+1} = \\frac{(s-\\frac{1}{2}) + \\frac{1}{2}}{(s-\\frac{1}{2})^2 + \\frac{3}{4}}$. By the first shifting property, with $\\omega = \\frac{\\sqrt{3}}{2}$, the first part inverts to $e^{t/2}\\cos(\\omega t)$ and the second, $\\frac{1}{2\\omega}\\,\\frac{\\omega}{(s-\\frac{1}{2})^2+\\omega^2}$, to $\\frac{1}{\\sqrt{3}}\\, e^{t/2}\\sin(\\omega t)$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "6.3.8",
+   "source_number": "6.3.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-3-3",
+   "prompt": "<p>Compute ${\\mathcal{L}}^{-1} \\left\\{ \\frac{s}{{(s^2+4)}^2} \\right\\}$ using convolution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\frac{t}{4}\\sin(2t)$. Write $\\frac{s}{(s^2+4)^2} = \\frac{s}{s^2+4}\\cdot\\frac{1}{s^2+4}$. From Table 6.1, $\\mathcal{L}^{-1}\\left\\{\\frac{s}{s^2+4}\\right\\} = \\cos(2t)$ and $\\mathcal{L}^{-1}\\left\\{\\frac{1}{s^2+4}\\right\\} = \\frac{1}{2}\\sin(2t)$. By Theorem 6.3.1 the inverse is $\\cos(2t) * \\frac{1}{2}\\sin(2t) = \\frac{1}{2}\\bigl(\\sin(2t) * \\cos(2t)\\bigr)$, using the properties of convolution, and Example 6.3.2 with $\\omega = 2$ gives $\\sin(2t) * \\cos(2t) = \\frac{1}{2}\\, t\\sin(2t)$. So the answer is $\\frac{1}{4}\\, t\\sin(2t)$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "6.3.9",
+   "source_number": "6.3.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-idea",
+   "prompt": "<p>Write down the solution to $\\kxdprime-2\\kx=e^{-t^2}$, $\\kx(0)=0$, $\\kxprime(0)=0$ as a definite integral. Hint: Do not try to compute the Laplace transform of $e^{-t^2}$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\kx(t) = \\int_0^t e^{-\\tau^2}\\, \\frac{\\sinh\\bigl(\\sqrt{2}\\,(t-\\tau)\\bigr)}{\\sqrt{2}} \\, d\\tau$. Transforming with zero initial conditions gives $(s^2 - 2)\\kX(s) = \\kF(s)$, where $\\kF$ is the (uncomputed) transform of $e^{-t^2}$, so $\\kX = \\kH\\kF$ with $\\kH(s) = \\frac{1}{s^2-2}$. From Table 6.1, $\\mathcal{L}\\{\\sinh(\\sqrt{2}\\,t)\\} = \\frac{\\sqrt{2}}{s^2-2}$, so $\\kh(t) = \\frac{\\sinh(\\sqrt{2}\\,t)}{\\sqrt{2}}$, and $\\kx(t) = \\int_0^t \\kf(\\tau)\\kh(t-\\tau)\\,d\\tau$ with $\\kf(\\tau) = e^{-\\tau^2}$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "6.3.101",
+   "source_number": "6.3.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "convolution",
+   "prompt": "<p>Let $\\kf(t) = \\cos t$ for $t \\geq 0$, and $\\kg(t) = e^{-t}$. Compute $\\kfconvg$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}(\\cos t + \\sin t - e^{-t})$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "6.3.102",
+   "source_number": "6.3.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-6-3-3",
+   "prompt": "<p>Compute ${\\mathcal{L}}^{-1} \\left\\{ \\frac{5}{s^4+s^2} \\right\\}$ using convolution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$5t-5\\sin t$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "6.3.103",
+   "source_number": "6.3.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-idea",
+   "prompt": "<p>Solve $\\kxdprime+\\kx = \\sin t$, $\\kx(0) = 0$, $\\kxprime(0)=0$ using convolution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\frac{1}{2}(\\sin t - t \\cos t)$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "6.3.104",
+   "source_number": "6.3.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "general-idea",
+   "prompt": "<p>Solve $\\kxtprime+\\kxprime = \\kf(t)$, $\\kx(0) = 0$, $\\kxprime(0)=0$, $\\kxdprime(0)=0$ using convolution. Write the result as a definite integral.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\int_0^t \\kf(\\tau) \\bigl( 1 - \\cos (t-\\tau)\\bigr)\\, d\\tau$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "convolution"
+  },
+  {
+   "exercise": "e1",
+   "concept": "unit-step-function"
+  },
+  {
+   "exercise": "e2",
+   "concept": "convolution"
+  },
+  {
+   "exercise": "e2",
+   "concept": "properties-of-convolution"
+  },
+  {
+   "exercise": "e3",
+   "concept": "convolution-solution"
+  },
+  {
+   "exercise": "e3",
+   "concept": "transfer-function"
+  },
+  {
+   "exercise": "e3",
+   "concept": "convolution-theorem"
+  },
+  {
+   "exercise": "e4",
+   "concept": "convolution-solution"
+  },
+  {
+   "exercise": "e4",
+   "concept": "transfer-function"
+  },
+  {
+   "exercise": "e4",
+   "concept": "convolution-theorem"
+  },
+  {
+   "exercise": "e5",
+   "concept": "convolution-solution"
+  },
+  {
+   "exercise": "e5",
+   "concept": "transfer-function"
+  },
+  {
+   "exercise": "e5",
+   "concept": "convolution-theorem"
+  },
+  {
+   "exercise": "e4",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e5",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e3",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e6",
+   "concept": "volterra-integral-equation"
+  },
+  {
+   "exercise": "e6",
+   "concept": "partial-fraction-decomposition"
+  },
+  {
+   "exercise": "e6",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e7",
+   "concept": "volterra-integral-equation"
+  },
+  {
+   "exercise": "e7",
+   "concept": "first-shifting-property"
+  },
+  {
+   "exercise": "e8",
+   "concept": "inverting-a-product-by-convolution"
+  },
+  {
+   "exercise": "e8",
+   "concept": "convolution-theorem"
+  },
+  {
+   "exercise": "e9",
+   "concept": "convolution-solution"
+  },
+  {
+   "exercise": "e9",
+   "concept": "transfer-function"
+  },
+  {
+   "exercise": "e101",
+   "concept": "convolution"
+  },
+  {
+   "exercise": "e102",
+   "concept": "inverting-a-product-by-convolution"
+  },
+  {
+   "exercise": "e102",
+   "concept": "convolution-theorem"
+  },
+  {
+   "exercise": "e103",
+   "concept": "convolution-solution"
+  },
+  {
+   "exercise": "e103",
+   "concept": "resonance"
+  },
+  {
+   "exercise": "e104",
+   "concept": "convolution-solution"
+  },
+  {
+   "exercise": "e104",
+   "concept": "transfer-function"
+  }
+ ]
+}

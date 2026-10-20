@@ -122,7 +122,7 @@ function scene3(d, o) {
   const mode = F.choice(d.controls, { key: 'bands', aria: 'bands', options: [{ value: 'frustums', label: 'frustums' }, { value: 'cylinders', label: 'cylinders' }], value: 'frustums' });
   const ns = ctl(d.controls, { label: 'n', cls: '', key: 'n', min: 1, max: 30, step: 1, value: 4, unit: '', dec: 0 });
   const ro = readout(d);
-  const S = hasGL() ? scene3(d, { s: 0.9, at: [1.75, 0.2, 0], dist: 9, tilt: 0.36, yaw: -0.35 }) : null;
+  const S = hasGL() ? scene3(d, { s: 0.9, at: [1.75, 0.6, 0], dist: 10, tilt: 0.36, yaw: -0.35 }) : null;
   function draw() {
     const n = ns.v, w = (b - a) / n, cyl = mode.value === 'cylinders', t = mode.mix((v) => (v === 'cylinders' ? 1 : 0));
     let sum = 0, side = 0;
@@ -130,7 +130,7 @@ function scene3(d, o) {
     if (S) {
       const { v, g } = S; S.reset();
       F.mesh.arrow(g, [-0.5, 0, 0], [4.4, 0, 0], 0.022, PAL.muted); v.label('x', [4.6, 0, 0], g);
-      F.mesh.arrow(g, [0, -0.2, 0], [0, 2.9, 0], 0.022, PAL.muted); v.label('y', [0, 3.1, 0], g);
+      F.mesh.arrow(g, [0, -0.2, 0], [0, 2.3, 0], 0.022, PAL.muted); v.label('y', [0, 2.5, 0], g);
       const sc = C('surface'), ic = C('integral'), fc = C('function');
       v.pickable(RV.mesh(g, line2(f, a, b, 80), { y: 0 }, sc, { closed: false, alpha: 0.22, edges: null }).children[0], 'the surface of revolution');
       for (let i = 0; i < n; i++) {

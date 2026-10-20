@@ -1,0 +1,1156 @@
+{
+  "types": [],
+  "symbols": [
+    {
+      "sym": "θ_prime",
+      "latex": "\\theta'",
+      "macro": "\\kthetaprime"
+    },
+    {
+      "sym": "∂f/∂x",
+      "latex": "\\frac{\\partial f}{\\partial x}",
+      "macro": "\\kpfx"
+    },
+    {
+      "sym": "∂g/∂x",
+      "latex": "\\frac{\\partial g}{\\partial x}",
+      "macro": "\\kpgx"
+    },
+    {
+      "sym": "∂g/∂y",
+      "latex": "\\frac{\\partial g}{\\partial y}",
+      "macro": "\\kpgy"
+    },
+    {
+      "sym": "z_prime",
+      "latex": "z'",
+      "macro": "\\kzprime"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "planar-autonomous-system",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Two-dimensional autonomous system",
+      "terms": [
+        "autonomous system"
+      ],
+      "statement": "A two-dimensional autonomous system is x′ = f(x, y), y′ = g(x, y), where f and g are functions of two variables and the derivatives are taken with respect to time t; its solutions are functions x(t) and y(t), and it is best thought of as the single vector equation (8.1), whose phase portrait and vector field are drawn as for a linear system.",
+      "forms": [
+        {
+          "id": "eq-planar-autonomous-system",
+          "latex": "\\begin{bmatrix} x \\\\ y \\end{bmatrix}' = \\begin{bmatrix} f(x,y) \\\\ g(x,y) \\end{bmatrix}",
+          "ktex": "\\begin{bmatrix} \\kx \\\\ \\ky \\end{bmatrix}' = \\begin{bmatrix} \\kf(\\kx,\\ky) \\\\ \\kg(\\kx,\\ky) \\end{bmatrix}",
+          "anchor": "8.1-eq-8-1"
+        },
+        {
+          "id": "eq-planar-autonomous-system-scalar",
+          "latex": "x' = f(x,y), \\qquad y' = g(x,y)",
+          "ktex": "\\kxprime = \\kf(\\kx,\\ky), \\qquad \\kyprime = \\kg(\\kx,\\ky)",
+          "anchor": "8.1-eq-autonomous-system"
+        }
+      ]
+    },
+    {
+      "id": "critical-point-of-a-system",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Critical point of a system",
+      "terms": [
+        "critical point",
+        "critical points"
+      ],
+      "type": "point",
+      "statement": "The critical points of the system x′ = f(x, y), y′ = g(x, y) are the points (x, y) where both f(x, y) = 0 and g(x, y) = 0, so that the derivatives of both x and y are zero; they are the points where trajectories start, end or go around, and where the behavior of the system is in some sense the most complicated.",
+      "forms": [
+        {
+          "id": "eq-critical-point-of-a-system",
+          "latex": "\\begin{bmatrix} f(x,y) \\\\ g(x,y) \\end{bmatrix} = \\vec{0}",
+          "ktex": "\\begin{bmatrix} \\kf(\\kx,\\ky) \\\\ \\kg(\\kx,\\ky) \\end{bmatrix} = \\vec{0}",
+          "anchor": "8.1-eq-critical-point"
+        }
+      ]
+    },
+    {
+      "id": "equilibrium-solution-of-a-system",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Equilibrium solution of a system",
+      "terms": [
+        "equilibria",
+        "equilibrium",
+        "equilibrium solutions",
+        "equilibrium solution"
+      ],
+      "type": "function",
+      "statement": "Critical points are also called equilibria, since at a critical point (x₀, y₀) the system has the equilibrium solution x(t) = x₀, y(t) = y₀, a solution that never moves; the concept is exactly the one of a single autonomous equation.",
+      "forms": [
+        {
+          "id": "eq-equilibrium-solution-of-a-system",
+          "latex": "x(t) = x_0, \\quad y(t) = y_0",
+          "ktex": "\\kx(t) = x_0, \\quad \\ky(t) = y_0",
+          "anchor": "8.1-eq-equilibrium-solution"
+        }
+      ]
+    },
+    {
+      "id": "jacobian-matrix",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Jacobian matrix",
+      "terms": [
+        "Jacobian matrix"
+      ],
+      "symbol": "J",
+      "type": "matrix",
+      "statement": "The Jacobian matrix of the vector-valued function [f(x, y); g(x, y)] at (x₀, y₀) is the matrix of its first partial derivatives evaluated there, the several-variables version of the derivative; it gives the best linear approximation of the function as x and y vary near (x₀, y₀).",
+      "forms": [
+        {
+          "id": "eq-jacobian-matrix",
+          "latex": "\\begin{bmatrix} \\frac{\\partial f}{\\partial x}(x_0,y_0) & \\frac{\\partial f}{\\partial y}(x_0,y_0) \\\\ \\frac{\\partial g}{\\partial x}(x_0,y_0) & \\frac{\\partial g}{\\partial y}(x_0,y_0) \\end{bmatrix}",
+          "ktex": "\\begin{bmatrix} \\kpfx(x_0,y_0) & \\kpfy(x_0,y_0) \\\\ \\kpgx(x_0,y_0) & \\kpgy(x_0,y_0) \\end{bmatrix}",
+          "anchor": "8.1-eq-jacobian"
+        }
+      ]
+    },
+    {
+      "id": "linearization-of-a-system",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Linearization",
+      "terms": [
+        "linearization"
+      ],
+      "statement": "At a critical point (x₀, y₀), change variables to u = x − x₀, v = y − y₀ so that (u, v) = (0, 0) corresponds to (x₀, y₀); the linearization of the system is the linear system [u; v]′ = J(x₀, y₀)[u; v], whose matrix is the Jacobian at the critical point. Its phase portrait is close to the nonlinear one near the critical point, so it tells the local behavior without solving the nonlinear equations.",
+      "forms": [
+        {
+          "id": "eq-linearization-of-a-system",
+          "latex": "\\begin{bmatrix} u \\\\ v \\end{bmatrix}' = \\begin{bmatrix} \\frac{\\partial f}{\\partial x}(x_0,y_0) & \\frac{\\partial f}{\\partial y}(x_0,y_0) \\\\ \\frac{\\partial g}{\\partial x}(x_0,y_0) & \\frac{\\partial g}{\\partial y}(x_0,y_0) \\end{bmatrix} \\begin{bmatrix} u \\\\ v \\end{bmatrix}",
+          "ktex": "\\begin{bmatrix} \\ku \\\\ \\kv \\end{bmatrix}' = \\begin{bmatrix} \\kpfx(x_0,y_0) & \\kpfy(x_0,y_0) \\\\ \\kpgx(x_0,y_0) & \\kpgy(x_0,y_0) \\end{bmatrix} \\begin{bmatrix} \\ku \\\\ \\kv \\end{bmatrix}",
+          "anchor": "8.1-eq-linearization"
+        },
+        {
+          "id": "eq-linearization-variables",
+          "latex": "u = x - x_0, \\qquad v = y - y_0",
+          "ktex": "\\ku = \\kx - x_0, \\qquad \\kv = \\ky - y_0",
+          "anchor": "8.1-eq-shift"
+        }
+      ]
+    },
+    {
+      "id": "finding-critical-points-and-linearizations",
+      "kind": "skill",
+      "section": "8.1",
+      "name": "Finding critical points and linearizations",
+      "statement": "Solve f(x, y) = 0 and g(x, y) = 0 together for the critical points; compute the Jacobian matrix of partial derivatives once, as a matrix of functions; evaluate it at each critical point and write the linearization in the shifted variables u = x − x₀, v = y − y₀. The same steps work in three or more variables with a bigger Jacobian."
+    },
+    {
+      "id": "isolated-critical-point",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Isolated critical point",
+      "terms": [
+        "isolated",
+        "isolated critical point"
+      ],
+      "type": "point",
+      "statement": "A critical point is isolated if it is the only critical point in some small neighborhood of the point: if we zoom in enough, it is the only critical point we see. A whole curve of critical points is not isolated."
+    },
+    {
+      "id": "almost-linear-system",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Almost linear system",
+      "terms": [
+        "almost linear"
+      ],
+      "statement": "A system is almost linear at a critical point (x₀, y₀) if the critical point is isolated and the Jacobian matrix at the point is invertible, or equivalently if the linearized system has an isolated critical point. Then the nonlinear terms are very small near the point and the system behaves like its linearization."
+    },
+    {
+      "id": "stable-critical-point-of-a-system",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Stable critical point of a system",
+      "terms": [
+        "stable critical point",
+        "stable"
+      ],
+      "type": "point",
+      "statement": "A critical point (x₀, y₀) is stable if, given any small distance ε to (x₀, y₀), there is a perhaps smaller radius such that any trajectory starting within that radius never goes further than ε from (x₀, y₀). Informally, start close to the critical point and follow a trajectory: you go towards, or at least not away from, the point."
+    },
+    {
+      "id": "unstable-critical-point-of-a-system",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Unstable critical point of a system",
+      "terms": [
+        "unstable critical point",
+        "unstable"
+      ],
+      "type": "point",
+      "statement": "An unstable critical point is one that is not stable: some trajectories that start arbitrarily close to it move away."
+    },
+    {
+      "id": "asymptotically-stable-critical-point",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Asymptotically stable critical point",
+      "terms": [
+        "asymptotically stable"
+      ],
+      "type": "point",
+      "statement": "A stable critical point (x₀, y₀) is asymptotically stable if every solution (x(t), y(t)) with an initial condition sufficiently close to (x₀, y₀) tends to it: the limit of (x(t), y(t)) as t → ∞ is (x₀, y₀).",
+      "forms": [
+        {
+          "id": "eq-asymptotically-stable-critical-point",
+          "latex": "\\lim_{t \\to \\infty} \\bigl( x(t), y(t) \\bigr) = (x_0,y_0)",
+          "ktex": "\\lim_{t \\to \\infty} \\bigl( \\kx(t), \\ky(t) \\bigr) = (x_0,y_0)",
+          "anchor": "8.2-eq-asymptotically-stable-critical-point"
+        }
+      ]
+    },
+    {
+      "id": "classification-of-critical-points",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Behavior near an isolated critical point",
+      "terms": [
+        "source",
+        "unstable node",
+        "sink",
+        "stable node",
+        "saddle",
+        "spiral source",
+        "spiral sink"
+      ],
+      "statement": "Where a system is almost linear at an isolated critical point, the eigenvalues of the Jacobian matrix there decide the behavior as for a linear system (Table 8.1): real and both positive, a source, unstable; real and both negative, a sink, asymptotically stable; real of opposite signs, a saddle, unstable; complex with positive real part, a spiral source, unstable; complex with negative real part, a spiral sink, asymptotically stable. The one case missing from Table 3.1 is the center, which needs more work."
+    },
+    {
+      "id": "classifying-critical-points-of-a-system",
+      "kind": "skill",
+      "section": "8.2",
+      "name": "Classifying critical points of a system",
+      "statement": "Find the critical points, check that each is isolated, compute the Jacobian matrix there and its eigenvalues, confirm the matrix is invertible so the system is almost linear, and read the behavior and stability off Table 8.1; when the eigenvalues are purely imaginary the table is silent and a further argument is needed."
+    },
+    {
+      "id": "stable-center",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Stable center",
+      "terms": [
+        "center",
+        "stable center"
+      ],
+      "type": "point",
+      "statement": "A critical point around which trajectories travel in closed orbits in some direction is called a center or a stable center. It is not asymptotically stable, as the trajectories never approach the point, but starting sufficiently close you stay close, so it is stable."
+    },
+    {
+      "id": "linearization-with-a-center",
+      "kind": "idea",
+      "section": "8.2",
+      "name": "The trouble with centers",
+      "statement": "When the Jacobian at a critical point has purely imaginary eigenvalues the linearization has a center, but the real part of the eigenvalues of the Jacobian at nearby points can have either sign, so the nonlinear trajectories may be pulled towards or away from the point: the critical point may be a stable center, a spiral sink or a spiral source. The test is inconclusive and further, often case-by-case, analysis is needed, as when the second derivative test fails."
+    },
+    {
+      "id": "conservative-equation",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Conservative equation",
+      "terms": [
+        "conservative equation"
+      ],
+      "statement": "An equation of the form x″ + f(x) = 0, where f(x) is an arbitrary function, is called a conservative equation: there is no friction, so the energy in the system is conserved. Written as a system it is x′ = y, y′ = −f(x). The pendulum equation is one.",
+      "forms": [
+        {
+          "id": "eq-conservative-equation",
+          "latex": "x'' + f(x) = 0",
+          "ktex": "\\kxdprime + \\kf(\\kx) = 0",
+          "anchor": "8.2-eq-conservative-equation"
+        },
+        {
+          "id": "eq-conservative-system",
+          "latex": "x' = y, \\qquad y' = -f(x)",
+          "ktex": "\\kxprime = \\ky, \\qquad \\kyprime = -\\kf(\\kx)",
+          "anchor": "8.2-eq-conservative-system"
+        }
+      ]
+    },
+    {
+      "id": "hamiltonian",
+      "kind": "definition",
+      "section": "8.2",
+      "name": "Hamiltonian",
+      "terms": [
+        "Hamiltonian",
+        "energy"
+      ],
+      "statement": "Thinking of y as a function of x for a moment, the chain rule gives x″ = y dy/dx, so y dy/dx + f(x) = 0; integrating in x gives ½y² + ∫f(x) dx = C, an implicit equation for the trajectories with a different C on each. The value of C is conserved on any trajectory, and the expression is called the Hamiltonian or the energy of the system; y dy/dx + f(x) = 0 is an exact equation and the Hamiltonian is its potential function.",
+      "forms": [
+        {
+          "id": "eq-hamiltonian",
+          "latex": "\\frac{1}{2} y^2 + \\int f(x)\\, dx = C",
+          "ktex": "\\frac{1}{2} \\ky^2 + \\int \\kf(\\kx)\\, d\\kx = C",
+          "anchor": "8.2-drv-hamiltonian"
+        },
+        {
+          "id": "eq-conservative-chain-rule",
+          "latex": "x'' = y' = \\frac{dy}{dx} x' = y \\frac{dy}{dx}",
+          "ktex": "\\kxdprime = \\kyprime = \\kdydx \\kxprime = \\ky \\kdydx",
+          "anchor": "8.2-drv-hamiltonian"
+        }
+      ]
+    },
+    {
+      "id": "trajectories-of-a-conservative-equation",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Trajectories of a conservative equation",
+      "statement": "Solving the Hamiltonian for y, the trajectories of x″ + f(x) = 0 are y = ±√(−2∫f(x) dx + 2C), so every trajectory is mirrored across the x-axis; for x″ + x − x² = 0 they are y = ±√(−x² + ⅔x³ + 2C), and near the origin they are closed curves, which shows the origin is a stable center.",
+      "forms": [
+        {
+          "id": "eq-conservative-trajectories",
+          "latex": "y = \\pm \\sqrt{ - 2 \\int f(x)\\, dx + 2C}",
+          "ktex": "\\ky = \\pm \\sqrt{ - 2 \\int \\kf(\\kx)\\, d\\kx + 2C}",
+          "anchor": "8.2-eq-conservative-trajectories"
+        }
+      ]
+    },
+    {
+      "id": "critical-points-of-a-conservative-equation",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Critical points of a conservative equation",
+      "statement": "All critical points of x″ + f(x) = 0 lie on the x-axis, where f(x) = 0; the Jacobian there is [0 1; −f′(x) 0], with eigenvalues λ = ±√(−f′(x)), so the point is almost linear when f′(x) ≠ 0 and is either an unstable saddle point (f′(x) < 0) or a stable center (f′(x) > 0). There are never any sinks, sources or spirals, since the trajectories are mirrored across the x-axis.",
+      "forms": [
+        {
+          "id": "eq-conservative-eigenvalues",
+          "latex": "\\lambda = \\pm \\sqrt{-f'(x)}",
+          "ktex": "\\klambda = \\pm \\sqrt{-\\kf'(\\kx)}",
+          "anchor": "8.2-drv-conservative-eigenvalues"
+        },
+        {
+          "id": "eq-conservative-jacobian",
+          "latex": "\\begin{bmatrix} 0 & 1 \\\\ -f'(x) & 0 \\end{bmatrix}",
+          "ktex": "\\begin{bmatrix} 0 & 1 \\\\ -\\kf'(\\kx) & 0 \\end{bmatrix}",
+          "anchor": "8.2-eq-conservative-jacobian"
+        },
+        {
+          "id": "eq-conservative-characteristic",
+          "latex": "0 = \\det(J - \\lambda I) = \\lambda^2 + f'(x)",
+          "ktex": "0 = \\det(\\kJ - \\klambda I) = \\klambda^2 + \\kf'(\\kx)",
+          "anchor": "8.2-drv-conservative-eigenvalues"
+        }
+      ]
+    },
+    {
+      "id": "nonlinear-pendulum",
+      "kind": "result",
+      "section": "8.3",
+      "name": "Nonlinear pendulum",
+      "statement": "With ω = θ′, the pendulum equation θ″ + (g/L) sin θ = 0 is the conservative system [θ; ω]′ = [ω; −(g/L) sin θ]. Its critical points are (kπ, 0) for every integer k, all isolated; the Jacobian is [0 1; −(g/L) cos θ 0] with eigenvalues ±√(−(g/L) cos θ), so the even multiples of π (the pendulum hanging down) are stable centers and the odd multiples (the pendulum upside down) are unstable saddles.",
+      "forms": [
+        {
+          "id": "eq-pendulum-system",
+          "latex": "\\begin{bmatrix} \\theta \\\\ \\omega \\end{bmatrix}' = \\begin{bmatrix} \\omega \\\\ - \\frac{g}{L} \\sin \\theta \\end{bmatrix}",
+          "ktex": "\\begin{bmatrix} \\ktheta \\\\ \\komega \\end{bmatrix}' = \\begin{bmatrix} \\komega \\\\ - \\frac{g}{L} \\sin \\ktheta \\end{bmatrix}",
+          "anchor": "8.3-eq-pendulum-system"
+        },
+        {
+          "id": "eq-pendulum-jacobian",
+          "latex": "\\begin{bmatrix} 0 & 1 \\\\ - \\frac{g}{L} \\cos \\theta & 0 \\end{bmatrix}",
+          "ktex": "\\begin{bmatrix} 0 & 1 \\\\ - \\frac{g}{L} \\cos \\ktheta & 0 \\end{bmatrix}",
+          "anchor": "8.3-eq-pendulum-jacobian"
+        },
+        {
+          "id": "eq-pendulum-eigenvalues",
+          "latex": "\\lambda = \\pm \\sqrt{-\\frac{g}{L}\\cos \\theta}",
+          "ktex": "\\klambda = \\pm \\sqrt{-\\frac{g}{L}\\cos \\ktheta}",
+          "anchor": "8.3-pendulum-classification"
+        }
+      ]
+    },
+    {
+      "id": "pendulum-motions",
+      "kind": "idea",
+      "section": "8.3",
+      "name": "Motions of the pendulum",
+      "statement": "Started at θ = 0 with a small angular velocity the trajectory goes around (0, 0) in an approximate circle: short swings back and forth, where the linearization is good. Given a big enough push the pendulum goes across the top and keeps spinning, the wavy curves that never cross the horizontal axis, fastest at the bottom and slowest near the top. The equilibrium θ = 0 (hanging down) is stable; θ = π (upside down) is unstable, since the tiniest push sets it swinging."
+    },
+    {
+      "id": "pendulum-trajectories",
+      "kind": "result",
+      "section": "8.3",
+      "name": "Energy and trajectories of the pendulum",
+      "statement": "The quantity ½ω² − (g/L) cos θ, the energy or Hamiltonian, is conserved by any solution, so the trajectories are ω = ±√((2g/L) cos θ + C); released from rest at the angle θ₀, C = −(2g/L) cos θ₀ and the trajectory is ω = ±√(2g/L)√(cos θ − cos θ₀).",
+      "forms": [
+        {
+          "id": "eq-pendulum-energy",
+          "latex": "\\frac{1}{2} \\omega^2 - \\frac{g}{L} \\cos \\theta",
+          "ktex": "\\frac{1}{2} \\komega^2 - \\frac{g}{L} \\cos \\ktheta",
+          "anchor": "8.3-eq-pendulum-energy"
+        },
+        {
+          "id": "eq-pendulum-trajectories",
+          "latex": "\\omega = \\pm \\sqrt{ \\frac{2g}{L} \\cos \\theta + C}",
+          "ktex": "\\komega = \\pm \\sqrt{ \\frac{2g}{L} \\cos \\ktheta + C}",
+          "anchor": "8.3-eq-pendulum-trajectories"
+        },
+        {
+          "id": "eq-pendulum-trajectory-from-rest",
+          "latex": "\\omega = \\pm \\sqrt{ \\frac{2g}{L}} \\sqrt{ \\cos \\theta - \\cos \\theta_0 }",
+          "ktex": "\\komega = \\pm \\sqrt{ \\frac{2g}{L}} \\sqrt{ \\cos \\ktheta - \\cos \\theta_0 }",
+          "condition": "released from rest at θ₀",
+          "anchor": "8.3-eq-pendulum-trajectory-from-rest"
+        }
+      ]
+    },
+    {
+      "id": "period-of-the-nonlinear-pendulum",
+      "kind": "result",
+      "section": "8.3",
+      "name": "Period of the nonlinear pendulum",
+      "symbol": "T",
+      "statement": "By the symmetry of the trajectory about both axes, the period is four times the time from angle 0 to θ₀: inverting ω = dθ/dt gives dt/dθ = √(L/2g)/√(cos θ − cos θ₀), so T = 4√(L/2g)∫₀^θ₀ dθ/√(cos θ − cos θ₀), an improper integral that must be approximated numerically. The linearized period T_linear = 2π√(L/g) does not depend on θ₀; the true period grows with θ₀, the relative error being 0.048 % at 5°, 3.8 % at 45° and 15 % at 90°, and T → ∞ as θ₀ ↑ π.",
+      "forms": [
+        {
+          "id": "eq-pendulum-period",
+          "latex": "T = 4 \\sqrt{\\frac{L}{2g}} \\int_0^{\\theta_0} \\frac{1}{\\sqrt{\\cos \\theta - \\cos \\theta_0 }}\\, d\\theta",
+          "ktex": "\\kT = 4 \\sqrt{\\frac{L}{2g}} \\int_0^{\\theta_0} \\frac{1}{\\sqrt{\\cos \\ktheta - \\cos \\theta_0 }}\\, d\\ktheta",
+          "anchor": "8.3-period-integral"
+        },
+        {
+          "id": "eq-pendulum-dt-dtheta",
+          "latex": "\\frac{dt}{d\\theta} = \\sqrt{\\frac{L}{2g}} \\frac{1}{\\sqrt{\\cos \\theta - \\cos \\theta_0 }}",
+          "ktex": "\\frac{dt}{d\\ktheta} = \\sqrt{\\frac{L}{2g}} \\frac{1}{\\sqrt{\\cos \\ktheta - \\cos \\theta_0 }}",
+          "anchor": "8.3-period-integral"
+        },
+        {
+          "id": "eq-linear-pendulum-period",
+          "latex": "T_{\\text{linear}} = 2\\pi \\sqrt{\\frac{L}{g}}",
+          "ktex": "T_{\\text{linear}} = 2\\pi \\sqrt{\\frac{L}{g}}",
+          "anchor": "8.3-eq-linear-pendulum-period"
+        },
+        {
+          "id": "eq-pendulum-period-limit",
+          "latex": "\\lim_{\\theta_0 \\uparrow \\pi} T = \\infty",
+          "ktex": "\\lim_{\\theta_0 \\uparrow \\pi} \\kT = \\infty",
+          "anchor": "8.3-eq-pendulum-period-limit"
+        }
+      ]
+    },
+    {
+      "id": "predator-prey-system",
+      "kind": "definition",
+      "section": "8.3",
+      "name": "Predator–prey system",
+      "terms": [
+        "predator-prey",
+        "Lotka–Volterra"
+      ],
+      "statement": "The predator-prey or Lotka–Volterra system models two interacting species, x the prey (hares) and y the predator (foxes): x′ = (a − by)x, y′ = (cx − d)y with positive parameters a, b, c, d. The prey grow exponentially (ax) but are eaten in proportion to the predators (−byx); the predators grow with their food (cxy) and die naturally (−dy). It also arises in economics and in chemical reactions.",
+      "forms": [
+        {
+          "id": "eq-predator-prey",
+          "latex": "x' = (a-by)x, \\qquad y' = (cx-d)y",
+          "ktex": "\\kxprime = (a-b\\ky)\\kx, \\qquad \\kyprime = (c\\kx-d)\\ky",
+          "anchor": "8.3-eq-predator-prey"
+        },
+        {
+          "id": "eq-predator-prey-example",
+          "latex": "x' = (0.4-0.01y)x, \\qquad y' = (0.003x-0.3)y",
+          "ktex": "\\kxprime = (0.4-0.01\\ky)\\kx, \\qquad \\kyprime = (0.003\\kx-0.3)\\ky",
+          "anchor": "8.3-eq-predator-prey-example"
+        }
+      ]
+    },
+    {
+      "id": "predator-prey-critical-points",
+      "kind": "result",
+      "section": "8.3",
+      "name": "Equilibria of the predator–prey system",
+      "statement": "The critical points are (0, 0), no animals at all, and (d/c, a/b). The Jacobian [a − by, −bx; cy, cx − d] is [a 0; 0 −d] at the origin, a saddle: foxes without hares die out, hares without foxes multiply without check. At (d/c, a/b) it is [0, −bd/c; ac/b, 0] with λ = ±i√(ad), purely imaginary, so linearization cannot decide between a stable center, a spiral sink and a spiral source.",
+      "forms": [
+        {
+          "id": "eq-predator-prey-equilibrium",
+          "latex": "\\left(\\frac{d}{c}, \\frac{a}{b}\\right)",
+          "ktex": "\\left(\\frac{d}{c}, \\frac{a}{b}\\right)",
+          "anchor": "8.3-pp-critical-points"
+        },
+        {
+          "id": "eq-predator-prey-jacobian",
+          "latex": "\\begin{bmatrix} a-by & -bx \\\\ cy & cx-d \\end{bmatrix}",
+          "ktex": "\\begin{bmatrix} a-b\\ky & -b\\kx \\\\ c\\ky & c\\kx-d \\end{bmatrix}",
+          "anchor": "8.3-eq-predator-prey-jacobian"
+        },
+        {
+          "id": "eq-predator-prey-eigenvalues",
+          "latex": "\\lambda = \\pm i \\sqrt{ad}",
+          "ktex": "\\klambda = \\pm i \\sqrt{ad}",
+          "condition": "at (d/c, a/b)",
+          "anchor": "8.3-pp-eigenvalues"
+        }
+      ]
+    },
+    {
+      "id": "constant-of-motion",
+      "kind": "definition",
+      "section": "8.3",
+      "name": "Constant of motion",
+      "terms": [
+        "constant of motion"
+      ],
+      "statement": "A constant of motion is a quantity that does not change with time along the trajectories, like the energy of a conservative system. For the predator-prey system C = y^a x^d e^(−cx − by) is one, so the trajectories are the level curves of y^a x^d / e^(cx + by); the critical point (d/c, a/b) is a maximum of C and is therefore a stable equilibrium, and neither population explodes or dies out.",
+      "forms": [
+        {
+          "id": "eq-constant-of-motion",
+          "latex": "C = \\frac{y^a x^d}{e^{cx+by}} = y^a x^d e^{-cx-by}",
+          "ktex": "C = \\frac{\\ky^a \\kx^d}{e^{c\\kx+b\\ky}} = \\ky^a \\kx^d e^{-c\\kx-b\\ky}",
+          "anchor": "8.3-eq-constant-of-motion"
+        }
+      ]
+    },
+    {
+      "id": "checking-a-constant-of-motion",
+      "kind": "skill",
+      "section": "8.3",
+      "name": "Checking a constant of motion",
+      "statement": "A constant is something that does not change with time, so differentiate the candidate C with respect to t by the product and chain rules, substitute the equations of the system for x′ and y′, and simplify; C is a constant of motion when C′ = 0."
+    },
+    {
+      "id": "van-der-pol-oscillator",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Van der Pol oscillator",
+      "terms": [
+        "Van der Pol oscillator"
+      ],
+      "statement": "The Van der Pol oscillator is x″ − μ(1 − x²)x′ + x = 0 with μ a positive constant; it originated with electrical circuits and finds applications in biology, seismology and elsewhere. With y = x′ its trajectories quickly settle on one closed curve, and a solution quickly tends to a periodic one; for μ = 0 it is x″ + x = 0, a linear system with a center whose trajectories are all circles.",
+      "forms": [
+        {
+          "id": "eq-van-der-pol",
+          "latex": "x''-\\mu(1-x^2) x' + x = 0",
+          "ktex": "\\kxdprime-\\mu(1-\\kx^2) \\kxprime + \\kx = 0",
+          "anchor": "8.4-eq-van-der-pol"
+        }
+      ]
+    },
+    {
+      "id": "relaxation-oscillation",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Relaxation oscillation",
+      "terms": [
+        "relaxation oscillation"
+      ],
+      "statement": "The Van der Pol oscillator is an example of relaxation oscillation: the word refers to the sudden jump, the very steep part of the solution. For larger μ the steep part is more pronounced; for smaller μ the limit cycle looks more like a circle."
+    },
+    {
+      "id": "closed-trajectory",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Closed trajectory",
+      "terms": [
+        "closed trajectory",
+        "closed curves"
+      ],
+      "type": "curve",
+      "statement": "A trajectory in the phase portrait that is a closed curve, a loop, is called a closed trajectory."
+    },
+    {
+      "id": "limit-cycle",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Limit cycle",
+      "terms": [
+        "limit cycle"
+      ],
+      "type": "curve",
+      "statement": "A limit cycle is a closed trajectory such that at least one other trajectory spirals into it or spirals out of it; the closed curve of the Van der Pol equation is one. The circles of the linear system x′ = y, y′ = −x are closed trajectories but not limit cycles, since no trajectory spirals onto any of them."
+    },
+    {
+      "id": "asymptotically-stable-limit-cycle",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Asymptotically stable limit cycle",
+      "terms": [
+        "asymptotically stable",
+        "asymptotically unstable"
+      ],
+      "statement": "If all trajectories that start near a limit cycle spiral into it, the limit cycle is called asymptotically stable, as the Van der Pol cycle is. The unit circle of x′ = y + (x² + y² − 1)²x, y′ = −x + (x² + y² − 1)²y is a limit cycle that is not asymptotically stable: starts inside spiral out to it, starts outside spiral off to infinity; and with the factor unsquared the circle is asymptotically unstable, every nearby trajectory spiralling away."
+    },
+    {
+      "id": "periodic-orbit",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Periodic orbit",
+      "terms": [
+        "periodic orbit"
+      ],
+      "type": "curve",
+      "statement": "Any solution of an autonomous system that starts on a closed trajectory is periodic, and the curve is called a periodic orbit: if (x(t₀), y(t₀)) lies on one, then x(t) and y(t) are periodic functions with the same period, some P with x(t) = x(t + P) and y(t) = y(t + P).",
+      "forms": [
+        {
+          "id": "eq-periodic-orbit",
+          "latex": "x(t) = x(t+P), \\qquad y(t) = y(t+P)",
+          "ktex": "\\kx(t) = \\kx(t+P), \\qquad \\ky(t) = \\ky(t+P)",
+          "anchor": "8.4-periodic-orbit"
+        }
+      ]
+    },
+    {
+      "id": "poincare-bendixson-theorem",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Poincaré–Bendixson theorem",
+      "terms": [
+        "Poincaré–Bendixson Theorem"
+      ],
+      "statement": "Let x′ = f(x, y), y′ = g(x, y), with f and g having continuous derivatives on a closed bounded region R of the plane containing no critical points. If a solution (x(t), y(t)) stays in R for all t ≥ t₀, then either it is periodic or it tends towards a periodic solution in R: in the long term it is very close to a periodic orbit or spirals towards a limit cycle. The theorem is qualitative, holds only in two dimensions, and says nothing when R contains critical points.",
+      "forms": [
+        {
+          "id": "eq-planar-system-with-continuous-derivatives",
+          "latex": "x' = f(x,y), \\qquad y' = g(x,y)",
+          "ktex": "\\kxprime = \\kf(\\kx,\\ky), \\qquad \\kyprime = \\kg(\\kx,\\ky)",
+          "condition": "f and g with continuous derivatives on a region R",
+          "anchor": "8.4-eq-8-2"
+        }
+      ]
+    },
+    {
+      "id": "existence-inside-a-closed-trajectory",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Solutions inside a closed trajectory",
+      "statement": "By Picard's theorem a solution exists a little forward or backward from any point as long as f and g have continuous derivatives, so once a closed trajectory is found, every solution starting inside it exists for all time and stays bounded inside it, and the Poincaré–Bendixson theorem applies to every initial point inside the curve."
+    },
+    {
+      "id": "simply-connected-region",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Simply connected region",
+      "terms": [
+        "simply connected region",
+        "simply connected"
+      ],
+      "type": "region",
+      "statement": "A simply connected region is a region with no holes we can go around: the entire plane and the inside of the unit disc are simply connected, but the plane minus a point is not, since it has a hole at the origin."
+    },
+    {
+      "id": "divergence",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Divergence",
+      "terms": [
+        "divergence"
+      ],
+      "statement": "The expression ∂f/∂x + ∂g/∂y is called the divergence of the vector field [f; g]. It measures how much the vector field is expanding at a point, and comes up in many other contexts.",
+      "forms": [
+        {
+          "id": "eq-divergence-of-a-plane-field",
+          "latex": "\\frac{\\partial f}{\\partial x} + \\frac{\\partial g}{\\partial y}",
+          "ktex": "\\kpfx + \\kpgy",
+          "anchor": "8.4-divergence"
+        }
+      ]
+    },
+    {
+      "id": "bendixson-dulac-theorem",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Bendixson–Dulac theorem",
+      "terms": [
+        "Bendixson–Dulac Theorem"
+      ],
+      "statement": "If R is a simply connected region and the divergence ∂f/∂x + ∂g/∂y is either always positive or always negative on R, except perhaps on a small set such as isolated points or curves, then the system has no closed trajectory inside R, and hence no limit cycle and no nonconstant periodic solution that stays in R: particles that drift ever further apart cannot travel in loops. The region must be simply connected; outside a circle the conclusion can fail."
+    },
+    {
+      "id": "ruling-out-closed-trajectories",
+      "kind": "skill",
+      "section": "8.4",
+      "name": "Ruling out closed trajectories",
+      "statement": "Compute the divergence f_x + g_y and find where it keeps one sign; on a simply connected region where it does, there is no closed trajectory. Where it changes sign along a curve, check the direction of the vectors on that curve: if they all point into one side, no trajectory crosses back, so no closed trajectory can straddle the curve either."
+    },
+    {
+      "id": "chaotic-system",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "Chaotic system",
+      "terms": [
+        "chaotic systems",
+        "chaotic",
+        "chaos"
+      ],
+      "statement": "A chaotic system is deterministic, with precise order behind the scenes, but extremely sensitive to initial conditions: a small change in the initial conditions, or a small numerical error, produces a very different solution after a reasonably short time, so it is almost impossible to approximate numerically for long times and cannot in general be solved analytically. The weather is the best-known example, which is why forecasts are not to be trusted more than a few days out; the climate, the long-term behavior, can still be studied."
+    },
+    {
+      "id": "lorenz-system",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "Lorenz system",
+      "terms": [
+        "Lorenz system"
+      ],
+      "statement": "The Lorenz system x′ = −10x + 10y, y′ = 28x − y − xz, z′ = −(8/3)z + xy, in which Edward Lorenz first noticed chaotic behavior in the 1960s while modeling thermally induced air convection, is an autonomous system in three dimensions whose solutions depend sensitively on their initial conditions.",
+      "forms": [
+        {
+          "id": "eq-lorenz-system",
+          "latex": "x' = -10x +10y, \\qquad y' = 28x-y-xz, \\qquad z'=-\\frac{8}{3}z + xy",
+          "ktex": "\\kxprime = -10\\kx +10\\ky, \\qquad \\kyprime = 28\\kx-\\ky-\\kx\\kz, \\qquad \\kzprime=-\\frac{8}{3}\\kz + \\kx\\ky",
+          "anchor": "8.5-eq-lorenz-system"
+        }
+      ]
+    },
+    {
+      "id": "double-pendulum",
+      "kind": "idea",
+      "section": "8.5",
+      "name": "Double pendulum",
+      "statement": "A pendulum hung on the end of another pendulum is a simple chaotic system the reader can build from a string and two nuts; its equations are complicated and their derivation tedious, but the movement of the bottom mass appears chaotic, which is the basis of a number of desk toys."
+    },
+    {
+      "id": "duffing-equation",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "Duffing equation",
+      "terms": [
+        "Duffing equation"
+      ],
+      "statement": "The Duffing equation x″ + ax′ + bx + cx³ = C cos(ωt), with constants a, b, c, C, ω, is a forced mass-spring system whose spring does not obey Hooke's law exactly because of the cx³ term; for c ≠ 0 it has no closed-form solution. The case x″ + 0.05x′ + x³ = 8 cos t behaves chaotically: it is not autonomous, so no vector field can be drawn, but trajectories from the nearby starts (2, 3) and (2, 2.9) stay close for a while and then diverge completely.",
+      "forms": [
+        {
+          "id": "eq-duffing-equation",
+          "latex": "x'' + a x' + bx + cx^3 = C \\cos(\\omega t)",
+          "ktex": "\\kxdprime + a \\kxprime + b\\kx + c\\kx^3 = C \\cos(\\komega t)",
+          "anchor": "8.5-eq-duffing-equation"
+        },
+        {
+          "id": "eq-duffing-example",
+          "latex": "x''+0.05 x' + x^3 = 8\\cos(t)",
+          "ktex": "\\kxdprime+0.05 \\kxprime + \\kx^3 = 8\\cos(t)",
+          "anchor": "8.5-eq-duffing-example"
+        }
+      ]
+    },
+    {
+      "id": "poincare-section",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "Poincaré section",
+      "terms": [
+        "Poincaré section"
+      ],
+      "statement": "A Poincaré section looks at the system at a sequence of times instead of over an interval, like a strobe flashing at a fixed frequency; for a forced equation the right frequency is the forcing's, so for the Duffing equation the points are (x(2πk), y(2πk)), after skipping some number of steps at the start to discard the transient, which depends on the initial condition. A phase shift φ strobes at 2πk + φ instead and gives a rotated, moved and slightly distorted picture.",
+      "forms": [
+        {
+          "id": "eq-poincare-section",
+          "latex": "\\bigl(x(0),y(0)\\bigr), \\quad \\bigl(x(2\\pi),y(2\\pi)\\bigr), \\quad \\bigl(x(4\\pi),y(4\\pi)\\bigr), \\quad \\ldots",
+          "ktex": "\\bigl(\\kx(0),\\ky(0)\\bigr), \\quad \\bigl(\\kx(2\\pi),\\ky(2\\pi)\\bigr), \\quad \\bigl(\\kx(4\\pi),\\ky(4\\pi)\\bigr), \\quad \\ldots",
+          "anchor": "8.5-eq-poincare-section"
+        }
+      ]
+    },
+    {
+      "id": "attractor",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "Attractor",
+      "terms": [
+        "attractor"
+      ],
+      "statement": "Given a sequence of points, an attractor is a set towards which the points eventually get closer and closer: they are attracted. The Poincaré section is not the attractor itself, but its points lie so close to it that they show its shape, whatever initial condition they come from and whatever small numerical errors they carry."
+    },
+    {
+      "id": "strange-attractor",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "Strange attractor",
+      "terms": [
+        "strange attractor"
+      ],
+      "statement": "The curious pattern the Poincaré section of the Duffing equation settles on is a strange attractor: a very complicated set with fractal structure, which shows the same complicated structure however far you zoom in. The chaotic system is not random at all; given the strobing frequency, its eventual state is narrowed down to the points of the attractor."
+    },
+    {
+      "id": "attractor-of-a-forced-linear-oscillator",
+      "kind": "result",
+      "section": "8.5",
+      "name": "Attractor of a forced linear oscillator",
+      "statement": "For the non-chaotic equation x″ + 2px′ + ω₀²x = (F₀/m) cos(ωt), the Duffing equation without its x³ term, the steady periodic solution is x = C cos(ωt + γ), so strobing at the forcing frequency ω gives a single point in the phase plane: the attractor is one point, since any difference due to the initial conditions dies away and the motion settles into the same steady periodic motion.",
+      "forms": [
+        {
+          "id": "eq-steady-periodic-strobed",
+          "latex": "x = C \\cos (\\omega t + \\gamma)",
+          "ktex": "\\kx = C \\cos (\\komega t + \\gamma)",
+          "anchor": "8.5-eq-steady-periodic-strobed"
+        }
+      ]
+    },
+    {
+      "id": "chaos-needs-three-dimensions",
+      "kind": "idea",
+      "section": "8.5",
+      "name": "Chaos needs three dimensions",
+      "statement": "In two dimensions chaotic behavior needs a forced, non-autonomous system like the Duffing equation, since by the Poincaré–Bendixson theorem a solution of an autonomous planar system that exists for all future time goes to infinity, is periodic, approaches a loop or tends to a critical point. In three dimensions even an autonomous system, like the Lorenz system, can be chaotic: there is too much room."
+    },
+    {
+      "id": "lorenz-attractor",
+      "kind": "definition",
+      "section": "8.5",
+      "name": "Lorenz attractor",
+      "terms": [
+        "Lorenz attractor"
+      ],
+      "statement": "The solutions of the Lorenz system tend to an attractor in space, the Lorenz attractor, a strange attractor with fractal structure, seen by following one trajectory for long enough once it is near the attractor: it spins some seemingly random number of times on the left loop (x < 0), then on the right (x > 0), and so on, like a few days of warm weather and then a few of cold. The weather cannot be predicted, but the climate can: it stays near the attractor."
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "planar-autonomous-system",
+      "prereq": "autonomous-system"
+    },
+    {
+      "concept": "critical-point-of-a-system",
+      "prereq": "planar-autonomous-system"
+    },
+    {
+      "concept": "critical-point-of-a-system",
+      "prereq": "equilibrium-point"
+    },
+    {
+      "concept": "equilibrium-solution-of-a-system",
+      "prereq": "critical-point-of-a-system"
+    },
+    {
+      "concept": "equilibrium-solution-of-a-system",
+      "prereq": "equilibrium-solution"
+    },
+    {
+      "concept": "jacobian-matrix",
+      "prereq": "planar-autonomous-system"
+    },
+    {
+      "concept": "jacobian-matrix",
+      "prereq": "matrix"
+    },
+    {
+      "concept": "linearization-of-a-system",
+      "prereq": "jacobian-matrix"
+    },
+    {
+      "concept": "linearization-of-a-system",
+      "prereq": "critical-point-of-a-system"
+    },
+    {
+      "concept": "linearization-of-a-system",
+      "prereq": "constant-coefficient-system"
+    },
+    {
+      "concept": "finding-critical-points-and-linearizations",
+      "prereq": "linearization-of-a-system"
+    },
+    {
+      "concept": "isolated-critical-point",
+      "prereq": "critical-point-of-a-system"
+    },
+    {
+      "concept": "almost-linear-system",
+      "prereq": "isolated-critical-point"
+    },
+    {
+      "concept": "almost-linear-system",
+      "prereq": "linearization-of-a-system"
+    },
+    {
+      "concept": "almost-linear-system",
+      "prereq": "invertible-matrix"
+    },
+    {
+      "concept": "stable-critical-point-of-a-system",
+      "prereq": "critical-point-of-a-system"
+    },
+    {
+      "concept": "stable-critical-point-of-a-system",
+      "prereq": "trajectory"
+    },
+    {
+      "concept": "unstable-critical-point-of-a-system",
+      "prereq": "stable-critical-point-of-a-system"
+    },
+    {
+      "concept": "asymptotically-stable-critical-point",
+      "prereq": "stable-critical-point-of-a-system"
+    },
+    {
+      "concept": "classification-of-critical-points",
+      "prereq": "almost-linear-system"
+    },
+    {
+      "concept": "classification-of-critical-points",
+      "prereq": "behavior-of-planar-linear-systems"
+    },
+    {
+      "concept": "classification-of-critical-points",
+      "prereq": "asymptotically-stable-critical-point"
+    },
+    {
+      "concept": "classification-of-critical-points",
+      "prereq": "unstable-critical-point-of-a-system"
+    },
+    {
+      "concept": "classifying-critical-points-of-a-system",
+      "prereq": "classification-of-critical-points"
+    },
+    {
+      "concept": "classifying-critical-points-of-a-system",
+      "prereq": "finding-critical-points-and-linearizations"
+    },
+    {
+      "concept": "stable-center",
+      "prereq": "center"
+    },
+    {
+      "concept": "stable-center",
+      "prereq": "asymptotically-stable-critical-point"
+    },
+    {
+      "concept": "linearization-with-a-center",
+      "prereq": "stable-center"
+    },
+    {
+      "concept": "linearization-with-a-center",
+      "prereq": "classification-of-critical-points"
+    },
+    {
+      "concept": "conservative-equation",
+      "prereq": "second-order-differential-equation"
+    },
+    {
+      "concept": "conservative-equation",
+      "prereq": "converting-to-a-first-order-system"
+    },
+    {
+      "concept": "hamiltonian",
+      "prereq": "conservative-equation"
+    },
+    {
+      "concept": "hamiltonian",
+      "prereq": "exact-equation"
+    },
+    {
+      "concept": "trajectories-of-a-conservative-equation",
+      "prereq": "hamiltonian"
+    },
+    {
+      "concept": "critical-points-of-a-conservative-equation",
+      "prereq": "trajectories-of-a-conservative-equation"
+    },
+    {
+      "concept": "critical-points-of-a-conservative-equation",
+      "prereq": "classification-of-critical-points"
+    },
+    {
+      "concept": "critical-points-of-a-conservative-equation",
+      "prereq": "stable-center"
+    },
+    {
+      "concept": "nonlinear-pendulum",
+      "prereq": "pendulum-equation"
+    },
+    {
+      "concept": "nonlinear-pendulum",
+      "prereq": "critical-points-of-a-conservative-equation"
+    },
+    {
+      "concept": "pendulum-motions",
+      "prereq": "nonlinear-pendulum"
+    },
+    {
+      "concept": "pendulum-motions",
+      "prereq": "small-angle-approximation"
+    },
+    {
+      "concept": "pendulum-trajectories",
+      "prereq": "nonlinear-pendulum"
+    },
+    {
+      "concept": "period-of-the-nonlinear-pendulum",
+      "prereq": "pendulum-trajectories"
+    },
+    {
+      "concept": "period-of-the-nonlinear-pendulum",
+      "prereq": "period"
+    },
+    {
+      "concept": "predator-prey-system",
+      "prereq": "planar-autonomous-system"
+    },
+    {
+      "concept": "predator-prey-system",
+      "prereq": "exponential-growth"
+    },
+    {
+      "concept": "predator-prey-critical-points",
+      "prereq": "predator-prey-system"
+    },
+    {
+      "concept": "predator-prey-critical-points",
+      "prereq": "classifying-critical-points-of-a-system"
+    },
+    {
+      "concept": "predator-prey-critical-points",
+      "prereq": "linearization-with-a-center"
+    },
+    {
+      "concept": "constant-of-motion",
+      "prereq": "predator-prey-critical-points"
+    },
+    {
+      "concept": "constant-of-motion",
+      "prereq": "hamiltonian"
+    },
+    {
+      "concept": "checking-a-constant-of-motion",
+      "prereq": "constant-of-motion"
+    },
+    {
+      "concept": "van-der-pol-oscillator",
+      "prereq": "second-order-differential-equation"
+    },
+    {
+      "concept": "van-der-pol-oscillator",
+      "prereq": "converting-to-a-first-order-system"
+    },
+    {
+      "concept": "relaxation-oscillation",
+      "prereq": "van-der-pol-oscillator"
+    },
+    {
+      "concept": "closed-trajectory",
+      "prereq": "trajectory"
+    },
+    {
+      "concept": "limit-cycle",
+      "prereq": "closed-trajectory"
+    },
+    {
+      "concept": "asymptotically-stable-limit-cycle",
+      "prereq": "limit-cycle"
+    },
+    {
+      "concept": "periodic-orbit",
+      "prereq": "closed-trajectory"
+    },
+    {
+      "concept": "poincare-bendixson-theorem",
+      "prereq": "periodic-orbit"
+    },
+    {
+      "concept": "poincare-bendixson-theorem",
+      "prereq": "limit-cycle"
+    },
+    {
+      "concept": "poincare-bendixson-theorem",
+      "prereq": "critical-point-of-a-system"
+    },
+    {
+      "concept": "existence-inside-a-closed-trajectory",
+      "prereq": "picards-theorem-for-systems"
+    },
+    {
+      "concept": "existence-inside-a-closed-trajectory",
+      "prereq": "poincare-bendixson-theorem"
+    },
+    {
+      "concept": "divergence",
+      "prereq": "vector-field"
+    },
+    {
+      "concept": "divergence",
+      "prereq": "planar-autonomous-system"
+    },
+    {
+      "concept": "bendixson-dulac-theorem",
+      "prereq": "divergence"
+    },
+    {
+      "concept": "bendixson-dulac-theorem",
+      "prereq": "simply-connected-region"
+    },
+    {
+      "concept": "bendixson-dulac-theorem",
+      "prereq": "closed-trajectory"
+    },
+    {
+      "concept": "ruling-out-closed-trajectories",
+      "prereq": "bendixson-dulac-theorem"
+    },
+    {
+      "concept": "chaotic-system",
+      "prereq": "initial-condition-for-a-system"
+    },
+    {
+      "concept": "lorenz-system",
+      "prereq": "autonomous-system"
+    },
+    {
+      "concept": "lorenz-system",
+      "prereq": "chaotic-system"
+    },
+    {
+      "concept": "double-pendulum",
+      "prereq": "chaotic-system"
+    },
+    {
+      "concept": "double-pendulum",
+      "prereq": "pendulum-equation"
+    },
+    {
+      "concept": "duffing-equation",
+      "prereq": "forced-vibrations"
+    },
+    {
+      "concept": "duffing-equation",
+      "prereq": "chaotic-system"
+    },
+    {
+      "concept": "poincare-section",
+      "prereq": "duffing-equation"
+    },
+    {
+      "concept": "poincare-section",
+      "prereq": "transient-solution"
+    },
+    {
+      "concept": "attractor",
+      "prereq": "poincare-section"
+    },
+    {
+      "concept": "strange-attractor",
+      "prereq": "attractor"
+    },
+    {
+      "concept": "attractor-of-a-forced-linear-oscillator",
+      "prereq": "attractor"
+    },
+    {
+      "concept": "attractor-of-a-forced-linear-oscillator",
+      "prereq": "steady-state-solution"
+    },
+    {
+      "concept": "chaos-needs-three-dimensions",
+      "prereq": "poincare-bendixson-theorem"
+    },
+    {
+      "concept": "chaos-needs-three-dimensions",
+      "prereq": "lorenz-system"
+    },
+    {
+      "concept": "lorenz-attractor",
+      "prereq": "lorenz-system"
+    },
+    {
+      "concept": "lorenz-attractor",
+      "prereq": "strange-attractor"
+    }
+  ]
+}

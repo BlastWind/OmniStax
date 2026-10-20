@@ -105,7 +105,7 @@ e) $\frac{1}{3-2i} = \frac{1}{3-2i} \frac{3+2i}{3+2i} = \frac{3+2i}{13} = \frac{
 
 :::
 
-[2] We also define the exponential $e^{a+ib}$ of a complex number by writing down the Taylor series and plugging in the complex number. Most properties of the exponential follow from its Taylor series, and so these properties hold for the complex exponential too. For example, we have the property: $e^{x+y} = e^x e^y$. In particular, $e^{a+ib} = e^a e^{ib}$. Hence, if we can compute $e^{ib}$, we can compute $e^{a+ib}$. For $e^{ib}$, we use the so-called *{index:Euler’s formula}*.
+We also define the exponential $e^{a+ib}$ of a complex number by writing down the Taylor series and plugging in the complex number. Most properties of the exponential follow from its Taylor series, and so these properties hold for the complex exponential too. For example, we have the property: $e^{x+y} = e^x e^y$. In particular, $e^{a+ib} = e^a e^{ib}$. Hence, if we can compute $e^{ib}$, we can compute $e^{a+ib}$. For $e^{ib}$, we use the so-called *{index:Euler’s formula}*.
 
 :::theorem {thm:eulersformula} Theorem 2.2.2 (Euler’s formula)
 

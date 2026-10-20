@@ -1,0 +1,1103 @@
+{
+ "id": "A.4",
+ "module": "subspaces:section",
+ "chapter": "A",
+ "title": "Subspaces, dimension, and the kernel",
+ "short": "Subspaces and the kernel",
+ "lead": "A <span data-concept=\"subspace\">subspace</span> is a set of vectors closed under addition and scaling, like the <span data-concept=\"kernel\">kernel</span> of a matrix or the <span data-concept=\"span\">span</span> of a few vectors. This section measures a subspace by a <span data-concept=\"basis\">basis</span> and its <span data-concept=\"dimension\">dimension</span>, finds a basis of the kernel from the reduced row echelon form, and sets the <span data-concept=\"rank\">rank</span> of a matrix beside its <span data-concept=\"nullity\">nullity</span>, which leads to a simple version of the <span data-concept=\"fredholm-alternative-for-matrices\">Fredholm alternative</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises A.4.101–A.4.103 carry the book’s own answers, each confirmed by computation. Exercises A.4.1–A.4.6, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-rank-nullity",
+   "kind": "sim",
+   "draws": [
+    "vector",
+    "matrix"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "kernel-of-a",
+   "label": "the kernel of A",
+   "figures": [
+    "sim-rank-nullity"
+   ]
+  },
+  {
+   "id": "column-space-of-a",
+   "label": "the column space of A",
+   "figures": [
+    "sim-rank-nullity"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "kernel-motivation",
+   "concept": "kernel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "kernel-motivation",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-motivation",
+   "concept": "euclidean-space",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-def",
+   "concept": "subspace",
+   "verb": "introduces"
+  },
+  {
+   "span": "subspace-def",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-def",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-def",
+   "concept": "euclidean-space",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-subspace",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-subspace",
+   "concept": "vector-addition",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-subspace",
+   "concept": "scalar-multiplication",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-closed",
+   "concept": "linear-combination",
+   "verb": "reinforces"
+  },
+  {
+   "span": "subspace-closed",
+   "concept": "span",
+   "verb": "reinforces"
+  },
+  {
+   "span": "subspace-closed",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-closed",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-1",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-1",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-1",
+   "concept": "euclidean-space",
+   "verb": "uses"
+  },
+  {
+   "span": "basis-setup",
+   "concept": "linear-independence-of-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "basis-setup",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "basis",
+   "concept": "basis",
+   "verb": "introduces"
+  },
+  {
+   "span": "basis",
+   "concept": "dimension",
+   "verb": "introduces"
+  },
+  {
+   "span": "basis",
+   "concept": "span",
+   "verb": "reinforces"
+  },
+  {
+   "span": "basis",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "basis",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-dimension",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-1",
+   "concept": "unique-representation-in-a-basis",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-a-4-1",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-1",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-1",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-1",
+   "concept": "scalar",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-theorem-a-4-1",
+   "concept": "unique-representation-in-a-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-theorem-a-4-1",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "k-tuple",
+   "concept": "unique-representation-in-a-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "k-tuple",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "k-tuple",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "many-bases",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "many-bases",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "many-bases",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-2",
+   "concept": "standard-unit-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-a-4-2",
+   "concept": "linear-independence-of-vectors",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-a-4-2",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-2",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-2",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-2",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-dimension-of-rn",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-dimension-of-rn",
+   "concept": "euclidean-space",
+   "verb": "uses"
+  },
+  {
+   "span": "row-column-subspaces",
+   "concept": "row-space",
+   "verb": "reinforces"
+  },
+  {
+   "span": "row-column-subspaces",
+   "concept": "column-space",
+   "verb": "reinforces"
+  },
+  {
+   "span": "row-column-subspaces",
+   "concept": "rank",
+   "verb": "reinforces"
+  },
+  {
+   "span": "row-column-subspaces",
+   "concept": "span",
+   "verb": "reinforces"
+  },
+  {
+   "span": "row-column-subspaces",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "row-column-subspaces",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-3",
+   "concept": "finding-a-linearly-independent-subset",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-a-4-3",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-3",
+   "concept": "column-space",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-3",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-3",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-3",
+   "concept": "row-reduction",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-x",
+   "concept": "finding-a-linearly-independent-subset",
+   "verb": "reinforces"
+  },
+  {
+   "span": "subspace-x",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-x",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "subspace-x",
+   "concept": "column-space",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-4",
+   "concept": "reduced-row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-4",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-4",
+   "concept": "column-space",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-4",
+   "concept": "row-space",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-4",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-4",
+   "concept": "span",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-4",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "pivots-count",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "pivots-count",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "pivots-count",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-2",
+   "concept": "rank-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-a-4-2",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-2",
+   "concept": "column-space",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-2",
+   "concept": "row-space",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-2",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-subspace",
+   "concept": "kernel-is-a-subspace",
+   "verb": "introduces"
+  },
+  {
+   "span": "kernel-subspace",
+   "concept": "kernel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "kernel-subspace",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-kernel-is-a-subspace",
+   "concept": "kernel-is-a-subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-kernel-is-a-subspace",
+   "concept": "linear-mapping",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-kernel-is-a-subspace",
+   "concept": "kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "nullity",
+   "concept": "nullity",
+   "verb": "introduces"
+  },
+  {
+   "span": "nullity",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "nullity",
+   "concept": "kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "differential-operators",
+   "concept": "kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "differential-operators",
+   "concept": "linear-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "differential-operators",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "differential-operators",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-procedure",
+   "concept": "basis-of-the-kernel",
+   "verb": "introduces"
+  },
+  {
+   "span": "kernel-procedure",
+   "concept": "reduced-row-echelon-form",
+   "verb": "reinforces"
+  },
+  {
+   "span": "kernel-procedure",
+   "concept": "kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-procedure",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-5",
+   "concept": "basis-of-the-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-5",
+   "concept": "kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-5",
+   "concept": "basis",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-5",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-5",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-a-4-5",
+   "concept": "reduced-row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "all-solutions",
+   "concept": "basis-of-the-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "all-solutions",
+   "concept": "linear-combination",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-steps",
+   "concept": "basis-of-the-kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-steps",
+   "concept": "reduced-row-echelon-form",
+   "verb": "uses"
+  },
+  {
+   "span": "kernel-steps",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-plus-nullity",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-plus-nullity",
+   "concept": "column-space",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-plus-nullity",
+   "concept": "kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-plus-nullity",
+   "concept": "pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "rank-plus-nullity",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-3",
+   "concept": "rank-nullity-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "thm-a-4-3",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-3",
+   "concept": "nullity",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-4-3",
+   "concept": "kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-rank-nullity",
+   "concept": "rank-nullity-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm",
+   "concept": "fredholm-alternative-for-matrices",
+   "verb": "introduces"
+  },
+  {
+   "span": "fredholm",
+   "concept": "rank-nullity-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm",
+   "concept": "rank",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm",
+   "concept": "nullity",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-cases",
+   "concept": "fredholm-alternative-for-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-cases",
+   "concept": "square-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-cases",
+   "concept": "kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-why",
+   "concept": "fredholm-alternative-for-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-why",
+   "concept": "rank-nullity-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-why",
+   "concept": "column-space",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-why",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "fredholm-why",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rank-nullity",
+   "concept": "rank-nullity-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rank-nullity",
+   "concept": "fredholm-alternative-for-matrices",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rank-nullity",
+   "concept": "kernel",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rank-nullity",
+   "concept": "column-space",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rank-nullity",
+   "concept": "dimension",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rank-nullity",
+   "concept": "subspace",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-rank-nullity",
+   "concept": "basis-of-the-kernel",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "kernel-is-a-subspace",
+   "what": "the kernel is a subspace",
+   "source": "Differential Equations for Engineers, A.4 Subspaces, dimension, and the kernel",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kL\\kvecx = \\kveczero"
+      },
+      {
+       "tex": "\\kL\\kvecy = \\kveczero"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kL(\\kvecx+\\kvecy)} = \\mk{a}{\\kL\\kvecx} + \\mk{b}{\\kL\\kvecy}",
+      "src": "A.1, Linear mappings and matrices",
+      "why": "A matrix is a linear mapping, so it takes a sum to the sum of the images."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kL(\\kvecx+\\kvecy)} = \\mk{a}{\\kveczero} + \\mk{b}{\\kL\\kvecy}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kL(\\kvecx+\\kvecy)} = \\mk{a}{\\kveczero} + \\mk{b}{\\kveczero}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kL(\\kvecx+\\kvecy)} = \\mk{z}{\\kveczero}",
+       "uses": [],
+       "map": {
+        "a": "z",
+        "b": "z"
+       }
+      }
+     ],
+     "src": "A.4, Kernel"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kL\\kvecx = \\kveczero"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\kL(\\alpha \\kvecx)} = \\mk{s}{\\alpha} \\mk{a}{\\kL \\kvecx}",
+      "src": "A.1, Linear mappings and matrices",
+      "why": "A matrix is a linear mapping, so a scalar comes out in front."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\kL(\\alpha \\kvecx)} = \\mk{s}{\\alpha} \\mk{a}{\\kveczero}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\kL(\\alpha \\kvecx)} = \\mk{z}{\\kveczero}",
+       "uses": [],
+       "map": {
+        "s": "z",
+        "a": "z"
+       }
+      }
+     ],
+     "src": "A.4, Kernel"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "A.4.1",
+   "source_number": "A.4.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "subspace-x",
+   "prompt": "<p>For the following sets of vectors, find a basis for the subspace spanned by the vectors, and find the dimension of the subspace.</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ 1 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} -1 \\\\ -1 \\\\ -1 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 5 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 0 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 0 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} -4 \\\\ -3 \\\\ 5 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 2 \\\\ 3 \\\\ 3 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 2 \\\\ 0 \\\\ 2 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 1 \\\\ 3 \\\\ 0 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 0 \\\\ 2 \\\\ 2 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} -1 \\\\ -1 \\\\ 2 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 1 \\\\ 3 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 0 \\\\ 2 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} -1 \\\\ -1 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 3 \\\\ 1 \\\\ 3 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 2 \\\\ 4 \\\\ -4 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} -5 \\\\ -5 \\\\ -2 \\end{smallmatrix} \\right]$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Form the matrix with the given vectors as columns and row reduce: the pivot columns are a basis of the span, and their number is its dimension. a) The second vector is $-1$ times the first, so only the first column is a pivot column: a basis is $\\{(1,1,1)\\}$ and the dimension is 1. b) The third vector is $-1$ times the second, while $(1,0,5)$ and $(0,1,0)$ are linearly independent (neither is a multiple of the other): a basis is $\\{(1,0,5), (0,1,0)\\}$, dimension 2. c) The matrix with these three columns has determinant $-60 \\neq 0$, so all three columns are pivot columns: the three vectors are a basis, and the dimension is 3 (the span is ${\\mathbb R}^3$). d) $(-1,-1,2) = -(1,3,0) + (0,2,2)$, and the first two are linearly independent: a basis is $\\{(1,3,0), (0,2,2)\\}$, dimension 2. e) $(1,3)$ and $(0,2)$ are linearly independent, so they already span ${\\mathbb R}^2$, and $(-1,-1) = -(1,3) + (0,2)$: a basis is $\\{(1,3), (0,2)\\}$, dimension 2. f) The matrix with these three columns has determinant $-30 \\neq 0$, so all three vectors are a basis, and the dimension is 3. Any other basis of the same subspace is also correct; the dimension is the same for every basis."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "A.4.2",
+   "source_number": "A.4.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "kernel-steps",
+   "prompt": "<p>For the following matrices, find a basis for the kernel (nullspace).</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 1 & 1 & 1 \\\\ 1 & 1 & 5 \\\\ 1 & 1 & -4 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 2 & -1 & -3 \\\\ 4 & 0 & -4 \\\\ -1 & 1 & 2 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} -4 & 4 & 4 \\\\ -1 & 1 & 1 \\\\ -5 & 5 & 5 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} -2 & 1 & 1 & 1 \\\\ -4 & 2 & 2 & 2 \\\\ 1 & 0 & 4 & 3 \\end{smallmatrix} \\right]$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Find the reduced row echelon form, then write one vector for each non-pivot column: $-1$ in that column's entry, $0$ in the entries of the other non-pivot columns, and in the entries of the pivot columns the values of the non-pivot column in the corresponding rows. a) The reduced row echelon form is $\\left[ \\begin{smallmatrix} 1 & 1 & 0 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \\end{smallmatrix} \\right]$; column 2 is the non-pivot column, so the kernel has the basis $\\left[ \\begin{smallmatrix} 1 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right]$. b) The reduced row echelon form is $\\left[ \\begin{smallmatrix} 1 & 0 & -1 \\\\ 0 & 1 & 1 \\\\ 0 & 0 & 0 \\end{smallmatrix} \\right]$; column 3 is the non-pivot column, so the kernel has the basis $\\left[ \\begin{smallmatrix} -1 \\\\ 1 \\\\ -1 \\end{smallmatrix} \\right]$. c) The reduced row echelon form is $\\left[ \\begin{smallmatrix} 1 & -1 & -1 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{smallmatrix} \\right]$; columns 2 and 3 are non-pivot columns, so the kernel has the basis $\\left[ \\begin{smallmatrix} -1 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right]$, $\\left[ \\begin{smallmatrix} -1 \\\\ 0 \\\\ -1 \\end{smallmatrix} \\right]$. d) The reduced row echelon form is $\\left[ \\begin{smallmatrix} 1 & 0 & 4 & 3 \\\\ 0 & 1 & 9 & 7 \\\\ 0 & 0 & 0 & 0 \\end{smallmatrix} \\right]$; columns 3 and 4 are non-pivot columns, so the kernel has the basis $\\left[ \\begin{smallmatrix} 4 \\\\ 9 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right]$, $\\left[ \\begin{smallmatrix} 3 \\\\ 7 \\\\ 0 \\\\ -1 \\end{smallmatrix} \\right]$. Each vector can be checked by multiplying the original matrix by it, which gives $\\kveczero$; nonzero multiples of these vectors, such as ${col(-1,1,0)}$ in a), are bases just as well."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "A.4.3",
+   "source_number": "A.4.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-a-4-3",
+   "prompt": "<p>Suppose a $5 \\times 5$ matrix $\\kA$ has rank 3. What is the nullity?</p>",
+   "answer": {
+    "type": "number",
+    "value": 2,
+    "generated_by": "ai",
+    "solution": "By the Rank–Nullity theorem, $n = r + k$, where $n = 5$ is the number of columns and $r = 3$ the rank. So the nullity is $k = n - r = 5 - 3 = 2$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "A.4.4",
+   "source_number": "A.4.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "subspace-def",
+   "prompt": "<p>Suppose that $X$ is the set of all the vectors of ${\\mathbb{R}}^3$ whose third component is zero. Is $X$ a subspace? And if so, find a basis and the dimension.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes. If $\\kvecx = (x_1, x_2, 0)$ and $\\kvecy = (y_1, y_2, 0)$ are in $X$ and $\\alpha$ is a scalar, then $\\kvecx + \\kvecy = (x_1 + y_1, x_2 + y_2, 0)$ and $\\alpha \\kvecx = (\\alpha x_1, \\alpha x_2, 0)$ again have third component zero, so they are in $X$ and $X$ is a subspace. Every vector of $X$ is $(a, b, 0) = a \\kvece_1 + b \\kvece_2$, and $\\kvece_1 = (1,0,0)$, $\\kvece_2 = (0,1,0)$ are linearly independent, so $\\{(1,0,0), (0,1,0)\\}$ is a basis of $X$ and $\\dim X = 2$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "A.4.5",
+   "source_number": "A.4.5",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "fredholm-cases",
+   "prompt": "<p>Consider a square matrix $\\kA$, and suppose that $\\kvecx$ is a nonzero vector such that $\\kA \\kvecx = \\kveczero$. What does the Fredholm alternative say about invertibility of $\\kA$?</p>",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "$\\kA$ is invertible.",
+     "$\\kA$ is not invertible."
+    ],
+    "correct": 1,
+    "generated_by": "ai",
+    "solution": "A nonzero solution of $\\kA \\kvecx = \\kveczero$ exists, so the first of the two mutually exclusive possibilities holds, and the second does not: $\\kA \\kvecx = \\kvecb$ does not have a unique solution for every $\\kvecb$. If $\\kA$ were invertible, $\\kvecx = \\kAinv \\kvecb$ would be the unique solution of $\\kA \\kvecx = \\kvecb$ for every $\\kvecb$ (and $\\kAinv \\kveczero = \\kveczero$ the only solution of $\\kA \\kvecx = \\kveczero$). So $\\kA$ is not invertible."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "A.4.6",
+   "source_number": "A.4.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-a-4-3",
+   "prompt": "<p>Consider</p>$$ M = \\begin{bmatrix} 1 & 2 & 3 \\\\ 2 & ? & ? \\\\ -1 & ? & ? \\end{bmatrix} . $$<p>If the nullity of this matrix is 2, fill in the question marks. Hint: What is the rank?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By the Rank–Nullity theorem, $3 = r + 2$, so the rank of $M$ is $r = 1$. By the Rank theorem the row space then has dimension 1, so every row is a multiple of the first row $(1, 2, 3)$. The second row starts with $2$, so it is $2(1,2,3) = (2,4,6)$; the third starts with $-1$, so it is $-(1,2,3) = (-1,-2,-3)$. Hence $M = \\left[ \\begin{smallmatrix} 1 & 2 & 3 \\\\ 2 & 4 & 6 \\\\ -1 & -2 & -3 \\end{smallmatrix} \\right]$. Check: its reduced row echelon form $\\left[ \\begin{smallmatrix} 1 & 2 & 3 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{smallmatrix} \\right]$ has one pivot and two non-pivot columns, so the nullity is 2."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "A.4.101",
+   "source_number": "A.4.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "subspace-x",
+   "prompt": "<p>For the following sets of vectors, find a basis for the subspace spanned by the vectors, and find the dimension of the subspace.</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 1 \\\\ 2 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ 1 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 2 \\\\ 2 \\\\ 2 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ 2 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 5 \\\\ 3 \\\\ 1 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 5 \\\\ -1 \\\\ 5 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} -1 \\\\ 3 \\\\ -4 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 2 \\\\ 2 \\\\ 4 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 2 \\\\ 2 \\\\ 3 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 4 \\\\ 4 \\\\ -3 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 2 \\\\ 0 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 3 \\\\ 0 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 2 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] , \\quad \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 2 \\end{smallmatrix} \\right]$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\left[ \\begin{smallmatrix} 1 \\\\ 2 \\end{smallmatrix} \\right] , \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\end{smallmatrix} \\right]$ dimension 2, b) $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ 1 \\end{smallmatrix} \\right] , \\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ 2 \\end{smallmatrix} \\right]$ dimension 2, c) $\\left[ \\begin{smallmatrix} 5 \\\\ 3 \\\\ 1 \\end{smallmatrix} \\right] , \\left[ \\begin{smallmatrix} 5 \\\\ -1 \\\\ 5 \\end{smallmatrix} \\right] , \\left[ \\begin{smallmatrix} -1 \\\\ 3 \\\\ -4 \\end{smallmatrix} \\right]$ dimension 3, d) $\\left[ \\begin{smallmatrix} 2 \\\\ 2 \\\\ 4 \\end{smallmatrix} \\right] , \\left[ \\begin{smallmatrix} 2 \\\\ 2 \\\\ 3 \\end{smallmatrix} \\right]$ dimension 2, e) $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\end{smallmatrix} \\right]$ dimension 1, f) $\\left[ \\begin{smallmatrix} 1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right] , \\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ 2 \\end{smallmatrix} \\right]$ dimension 2"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "A.4.102",
+   "source_number": "A.4.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "kernel-steps",
+   "prompt": "<p>For the following matrices, find a basis for the kernel (nullspace).</p><ol type=\"a\"><li>$\\left[ \\begin{smallmatrix} 2 & 6 & 1 & 9 \\\\ 1 & 3 & 2 & 9 \\\\ 3 & 9 & 0 & 9 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 2 & -2 & -5 \\\\ -1 & 1 & 5 \\\\ -5 & 5 & -3 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 1 & -5 & -4 \\\\ 2 & 3 & 5 \\\\ -3 & 5 & 2 \\end{smallmatrix} \\right]$</li><li>$\\left[ \\begin{smallmatrix} 0 & 4 & 4 \\\\ 0 & 1 & 1 \\\\ 0 & 5 & 5 \\end{smallmatrix} \\right]$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\left[ \\begin{smallmatrix} 3 \\\\ -1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right]$, $\\left[ \\begin{smallmatrix} 3 \\\\ 0 \\\\ 3 \\\\ -1 \\end{smallmatrix} \\right]$ b) $\\left[ \\begin{smallmatrix} -1 \\\\ -1 \\\\ 0 \\end{smallmatrix} \\right]$ c) $\\left[ \\begin{smallmatrix} 1 \\\\ 1 \\\\ -1 \\end{smallmatrix} \\right]$ d) $\\left[ \\begin{smallmatrix} -1 \\\\ 0 \\\\ 0 \\end{smallmatrix} \\right]$, $\\left[ \\begin{smallmatrix} 0 \\\\ 1 \\\\ -1 \\end{smallmatrix} \\right]$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "A.4.103",
+   "source_number": "A.4.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-a-4-3",
+   "prompt": "<p>Suppose the column space of a $9 \\times 5$ matrix $\\kA$ is of dimension 3. Find</p><ol type=\"a\"><li>Rank of $\\kA$.</li><li>Nullity of $\\kA$.</li><li>Dimension of the row space of $\\kA$.</li><li>Dimension of the nullspace of $\\kA$.</li><li>Size of the maximum subset of linearly independent rows of $\\kA$.</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3
+     },
+     {
+      "part": "b",
+      "value": 2
+     },
+     {
+      "part": "c",
+      "value": 3
+     },
+     {
+      "part": "d",
+      "value": 2
+     },
+     {
+      "part": "e",
+      "value": 3
+     }
+    ],
+    "solution": "a) 3 b) 2 c) 3 d) 2 e) 3"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "span"
+  },
+  {
+   "exercise": "e1",
+   "concept": "basis"
+  },
+  {
+   "exercise": "e1",
+   "concept": "dimension"
+  },
+  {
+   "exercise": "e1",
+   "concept": "finding-a-linearly-independent-subset"
+  },
+  {
+   "exercise": "e2",
+   "concept": "basis-of-the-kernel"
+  },
+  {
+   "exercise": "e2",
+   "concept": "kernel"
+  },
+  {
+   "exercise": "e2",
+   "concept": "reduced-row-echelon-form"
+  },
+  {
+   "exercise": "e3",
+   "concept": "rank-nullity-theorem"
+  },
+  {
+   "exercise": "e3",
+   "concept": "nullity"
+  },
+  {
+   "exercise": "e4",
+   "concept": "subspace"
+  },
+  {
+   "exercise": "e4",
+   "concept": "basis"
+  },
+  {
+   "exercise": "e4",
+   "concept": "dimension"
+  },
+  {
+   "exercise": "e5",
+   "concept": "fredholm-alternative-for-matrices"
+  },
+  {
+   "exercise": "e5",
+   "concept": "invertible-matrix"
+  },
+  {
+   "exercise": "e6",
+   "concept": "rank-nullity-theorem"
+  },
+  {
+   "exercise": "e6",
+   "concept": "rank-theorem"
+  },
+  {
+   "exercise": "e6",
+   "concept": "nullity"
+  },
+  {
+   "exercise": "e101",
+   "concept": "span"
+  },
+  {
+   "exercise": "e101",
+   "concept": "basis"
+  },
+  {
+   "exercise": "e101",
+   "concept": "dimension"
+  },
+  {
+   "exercise": "e101",
+   "concept": "finding-a-linearly-independent-subset"
+  },
+  {
+   "exercise": "e102",
+   "concept": "basis-of-the-kernel"
+  },
+  {
+   "exercise": "e102",
+   "concept": "kernel"
+  },
+  {
+   "exercise": "e103",
+   "concept": "rank-theorem"
+  },
+  {
+   "exercise": "e103",
+   "concept": "rank-nullity-theorem"
+  },
+  {
+   "exercise": "e103",
+   "concept": "nullity"
+  },
+  {
+   "exercise": "e103",
+   "concept": "linear-independence-of-vectors"
+  }
+ ],
+ "footnotes": []
+}

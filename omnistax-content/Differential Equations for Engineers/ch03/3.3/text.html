@@ -1,0 +1,87 @@
+<section id="matrix-functions">
+<h2>Vector- and matrix-valued functions</h2>
+<p id="vector-valued">A <span data-concept="matrix-valued-function">matrix-</span> or <span data-concept="vector-valued-function">vector-valued function</span> is simply a <span data-concept="matrix">matrix</span> or a <span data-concept="vector">vector</span> whose <span data-concept="matrix-entry">entries</span> depend on some variable. If $t$ is the <span data-concept="independent-variable">independent variable</span>, we write a <em><span data-concept="vector-valued-function">vector-valued function</span></em> $\kvecx(t)$ as</p>
+<div class="equation" id="eq-vector-valued-function">$$ \kvecx(t) = \begin{bmatrix} \kxone(t) \\ \kxtwo(t) \\ \vdots \\ \kxn(t) \end{bmatrix} . $$</div>
+<p id="matrix-valued">Similarly a <em><span data-concept="matrix-valued-function">matrix-valued function</span></em> $\kA(t)$ is</p>
+<div class="equation" id="eq-matrix-valued-function">$$ \kA(t) = \begin{bmatrix} a_{11}(t) & a_{12}(t) & \cdots & a_{1n}(t) \\ a_{21}(t) & a_{22}(t) & \cdots & a_{2n}(t) \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1}(t) & a_{n2}(t) & \cdots & a_{nn}(t) \end{bmatrix} . $$</div>
+<p id="matrix-derivative">The <span data-concept="derivative-of-a-matrix-valued-function">derivative</span> $\kAprime(t)$ or $\frac{d\kA}{dt}$ is just the <span data-concept="matrix-valued-function">matrix-valued function</span> whose $ij^{\text{th}}$ <span data-concept="matrix-entry">entry</span> is $\kaij'(t)$.</p>
+<p id="differentiation-rules"><span data-concept="differentiation-rules-for-matrix-valued-functions">Rules of differentiation</span> of <span data-concept="matrix-valued-function">matrix-valued functions</span> are similar to <a href="/calculus/ch03/3.3/#3.3-basic-rules">rules for normal functions</a>. Let $\kA(t)$ and $\kB(t)$ be <span data-concept="matrix-valued-function">matrix-valued functions</span>. Let $c$ be a <span data-concept="scalar">scalar</span> and $\kC$ a constant <span data-concept="matrix">matrix</span>. Then</p>
+<div class="equation" id="eq-matrix-differentiation-rules">$$ \begin{aligned} \bigl(\kA(t)+\kB(t)\bigr)' & = \kAprime(t) + \kBprime(t), \\ \bigl(\kA(t)\kB(t)\bigr)' & = \kAprime(t)\kB(t) + \kA(t)\kBprime(t), \\ \bigl(c\kA(t)\bigr)' & = c\kAprime(t), \\ \bigl(\kC\kA(t)\bigr)' & = \kC\kAprime(t), \\ \bigl(\kA(t)\,\kC\bigr)' & = \kAprime(t)\,\kC . \end{aligned} $$</div>
+<p id="order-of-multiplication">Note the order of the <span data-concept="matrix-product">multiplication</span> in the last two expressions.</p>
+</section>
+
+<section id="linear-systems">
+<h2>First-order linear systems</h2>
+<p id="first-order-linear-system">A <em><span data-concept="first-order-linear-system">first-order linear system of ODEs</span></em> is a system that can be written as the vector equation</p>
+<div class="equation" id="eq-first-order-linear-system">$$ \kvecxprime(t) = \kP(t)\kvecx(t) + \kvecf(t), $$</div>
+<p id="suppress-t">where $\kP(t)$ is a <span data-concept="matrix-valued-function">matrix-valued function</span>, and $\kvecx(t)$ and $\kvecf(t)$ are <span data-concept="vector-valued-function">vector-valued functions</span>. We will often suppress the dependence on $t$ and only write $\kvecxprime = \kP\kvecx + \kvecf$. A <span data-concept="solution-to-a-system">solution</span> of the system is a <span data-concept="vector-valued-function">vector-valued function</span> $\kvecx$ satisfying the vector equation.</p>
+<p id="linear-example">For example, the equations</p>
+$$ \begin{aligned} \kxoneprime &= 2t \kxone + e^t \kxtwo + t^2 , \\ \kxtwoprime &= \frac{\kxone}{t} -\kxtwo + e^t , \end{aligned} $$
+<p>can be written as</p>
+$$ \kvecxprime = \begin{bmatrix} 2t & e^t \\ {1}/{t} & -1 \end{bmatrix} \kvecx + \begin{bmatrix} t^2 \\ e^t \end{bmatrix} . $$
+<p id="constant-coefficient">We will mostly concentrate on equations that are not just linear, but are in fact <em><span data-concept="constant-coefficient-system">constant-coefficient</span></em> equations. That is, the <span data-concept="matrix">matrix</span> $\kP$ will be constant; it will not depend on $t$.</p>
+<p id="homogeneous-system">When $\kvecf = \vec{0}$ (the zero <span data-concept="vector">vector</span>), we say the system is <em><span data-concept="homogeneous-system">homogeneous</span></em>. For <span data-concept="homogeneous-system">homogeneous linear systems</span>, we have the principle of <span data-concept="superposition-for-systems">superposition</span>, just like for <a href="/diffyqs/ch02/2.1/#2.1-thm-2-1-1">single <span data-concept="homogeneous-linear-equation">homogeneous linear equations</span></a>.</p>
+<div class="note" id="thm-3-3-1">
+<div class="eyebrow">Theorem 3.3.1</div>
+<h3><span data-concept="superposition-for-systems">Superposition</span></h3>
+<p>Let $\kvecxprime = \kP\kvecx$ be a <span data-concept="homogeneous-system">linear homogeneous system</span> of ODEs. Suppose that $\kvecxone,\kvecxtwo,\ldots,\kvecxn$ are $n$ <span data-concept="solution-to-a-system">solutions</span> of the equation and $c_1,c_2,\ldots,c_n$ are any constants, then</p>
+<div class="equation" id="eq-3-2">$$ \kvecx = c_1 \kvecxone + c_2 \kvecxtwo + \cdots + c_n \kvecxn , \tag{3.2}$$</div>
+<p>is also a <span data-concept="solution-to-a-system">solution</span>. Furthermore, if this is a system of $n$ equations ($\kP$ is $n\times n$), and $\kvecxone,\kvecxtwo,\ldots,\kvecxn$ are <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span>, then every <span data-concept="solution-to-a-system">solution</span> $\kvecx$ can be written as <a href="#eq-3-2">(3.2)</a>.</p>
+</div>
+</section>
+
+<section id="fundamental">
+<h2>Linear independence and the fundamental matrix</h2>
+<p id="linearly-independent"><span data-concept="linear-independence-of-vector-valued-functions">Linear independence</span> for <span data-concept="vector-valued-function">vector-valued functions</span> is the <a href="/diffyqs/ch02/2.3/#2.3-linear-independence">same idea as for normal functions</a>. The <span data-concept="vector-valued-function">vector-valued functions</span> $\kvecxone,\kvecxtwo,\ldots,\kvecxn$ are <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span> when</p>
+<div class="equation" id="eq-linear-independence-of-vector-valued-functions">$$ c_1 \kvecxone + c_2 \kvecxtwo + \cdots + c_n \kvecxn = \vec{0} $$</div>
+<p>has only the solution $c_1 = c_2 = \cdots = c_n = 0$, where the equation must hold for all $t$.</p>
+<div class="example" id="ex-3-3-1">
+<h3>Example 3.3.1</h3>
+<p>$\kvecxone = \Bigl[ \begin{smallmatrix} t^2 \\ t \end{smallmatrix} \Bigr]$, $\kvecxtwo = \Bigl[ \begin{smallmatrix} 0 \\ 1+t \end{smallmatrix} \Bigr]$, $\kvecxthree = \Bigl[ \begin{smallmatrix} -t^2 \\ 1 \end{smallmatrix} \Bigr]$ are <span data-concept="linear-independence-of-vector-valued-functions">linearly dependent</span> because $\kvecxone + \kvecxthree = \kvecxtwo$, and this holds for all $t$. So $c_1 = 1$, $c_2 = -1$, and $c_3 = 1$ above will work.</p>
+<p>On the other hand, if we change the example slightly to $\kvecxone = \Bigl[ \begin{smallmatrix} t^2 \\ t \end{smallmatrix} \Bigr]$, $\kvecxtwo = \Bigl[ \begin{smallmatrix} 0 \\ t \end{smallmatrix} \Bigr]$, $\kvecxthree = \Bigl[ \begin{smallmatrix} -t^2 \\ 1 \end{smallmatrix} \Bigr]$, then the functions are <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span>. First write $c_1 \kvecxone + c_2 \kvecxtwo + c_3 \kvecxthree = \vec{0}$ and note that it has to hold for all $t$. We get that</p>
+$$ c_1 \kvecxone + c_2 \kvecxtwo + c_3 \kvecxthree = \begin{bmatrix} c_1 t^2 - c_3 t^2 \\ c_1 t + c_2 t + c_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix} . $$
+<p>In other words $c_1 t^2 - c_3 t^2 = 0$ and $c_1 t + c_2 t + c_3 = 0$. If we set $t = 0$, then the second equation becomes $c_3 = 0$. But then the first equation becomes $c_1 t^2 = 0$ for all $t$ and so $c_1 = 0$. Thus the second equation is just $c_2 t = 0$, which means $c_2 = 0$. So $c_1 = c_2 = c_3 = 0$ is the only solution and $\kvecxone$, $\kvecxtwo$, and $\kvecxthree$ are <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span>.</p>
+</div>
+<p id="fundamental-combination">The <span data-concept="linear-combination">linear combination</span> $c_1 \kvecxone + c_2 \kvecxtwo + \cdots + c_n \kvecxn$ could always be written as</p>
+<div class="equation" id="eq-fundamental-matrix-solution">$$ \kX(t)\,\vec{c} , $$</div>
+<p id="fundamental-matrix">where $\kX(t)$ is the <span data-concept="matrix">matrix</span> with columns $\kvecxone, \kvecxtwo, \ldots, \kvecxn$, and $\vec{c}$ is the <span data-concept="vector">column vector</span> with <span data-concept="matrix-entry">entries</span> $c_1, c_2, \ldots, c_n$. Assuming that $\kvecxone,\kvecxtwo,\ldots,\kvecxn$ are <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span>, the <span data-concept="matrix-valued-function">matrix-valued function</span> $\kX(t)$ is called a <em><span data-concept="fundamental-matrix">fundamental matrix</span></em>, or a <em><span data-concept="fundamental-matrix">fundamental matrix solution</span></em>. Note that the <span data-concept="fundamental-matrix">fundamental matrix</span> is not unique; if you take any constant <span data-concept="invertible-matrix">invertible</span> $n\times n$ <span data-concept="matrix">matrix</span> $\kC$, then $\kX(t) \kC$ is another <span data-concept="fundamental-matrix">fundamental matrix</span>.</p>
+</section>
+
+<section id="nonhomogeneous">
+<h2>Nonhomogeneous systems and initial conditions</h2>
+<p id="nonhomogeneous-intro">To solve nonhomogeneous <span data-concept="first-order-linear-system">first-order linear systems</span>, we use the <a href="/diffyqs/ch02/2.5/#2.5-thm-2-5-1">same technique as we applied to solve single linear nonhomogeneous equations</a>.</p>
+<div class="note" id="thm-3-3-2">
+<div class="eyebrow">Theorem 3.3.2</div>
+<p>Let $\kvecxprime = \kP\kvecx + \kvecf$ be a <span data-concept="first-order-linear-system">linear system of ODEs</span>. Suppose $\kvecxp$ is one <span data-concept="particular-solution">particular solution</span>. Then every <span data-concept="solution-to-a-system">solution</span> can be written as</p>
+<div class="equation" id="eq-xc-plus-xp">$$ \kvecx = \kvecxc + \kvecxp , $$</div>
+<p>where $\kvecxc$ is a <span data-concept="solution-to-a-system">solution</span> to the <span data-concept="homogeneous-system">associated homogeneous equation</span> ($\kvecxprime = \kP\kvecx$).</p>
+</div>
+<p id="procedure">The procedure for systems is the same as for single equations. We find a <span data-concept="particular-solution">particular solution</span> to the nonhomogeneous equation, then we find the <span data-concept="general-solution-to-a-system">general solution</span> to the <span data-concept="homogeneous-system">associated homogeneous equation</span>, and finally we add the two together.</p>
+<p id="initial-condition">Alright, suppose you have found the <span data-concept="general-solution-to-a-system">general solution</span> of $\kvecxprime = \kP\kvecx + \kvecf$. Next suppose you are given an <span data-concept="initial-condition-for-a-system">initial condition</span> of the form</p>
+<div class="equation" id="eq-system-initial-condition-vector">$$ \kvecx(t_0) = \kvecb $$</div>
+<p id="general-with-fundamental">for some fixed $t_0$ and a constant <span data-concept="vector">vector</span> $\kvecb$. Let $\kX(t)$ be a <span data-concept="fundamental-matrix">fundamental matrix solution</span> of the <span data-concept="homogeneous-system">associated homogeneous equation</span> (i.e. columns of $\kX(t)$ are <span data-concept="solution-to-a-system">solutions</span>). The <span data-concept="general-solution-to-a-system">general solution</span> can be written as</p>
+<div class="equation" id="eq-general-solution-with-fundamental-matrix">$$ \kvecx(t) = \kX(t)\,\vec{c} + \kvecxp(t). $$</div>
+<p id="seeking-c">We are seeking a <span data-concept="vector">vector</span> $\vec{c}$ such that</p>
+$$ \kvecb = \kvecx(t_0) = \kX(t_0)\,\vec{c} + \kvecxp(t_0). $$
+<p>In other words, we are solving for $\vec{c}$ the nonhomogeneous system of linear equations</p>
+<div class="equation" id="eq-initial-condition-for-a-system">$$ \kX(t_0)\,\vec{c} = \kvecb - \kvecxp(t_0) . $$</div>
+<div class="example" id="ex-3-3-2">
+<h3>Example 3.3.2</h3>
+<p>In <a href="/diffyqs/ch03/3.1/#3.1-ex-3-1-1">Example 3.1.1</a>, we solved the system</p>
+$$ \begin{align*} \kxoneprime & = \kxone , \\ \kxtwoprime & = \kxone - \kxtwo , \end{align*} $$
+<p>with <span data-concept="initial-condition-for-a-system">initial conditions</span> $\kxone(0) = 1$, $\kxtwo(0) = 2$. Let us consider this problem in the language of this section. The system is <span data-concept="homogeneous-system">homogeneous</span>, so $\kvecf(t) = \vec{0}$. We write the system and the <span data-concept="initial-condition-for-a-system">initial conditions</span> as</p>
+$$ \kvecxprime = \begin{bmatrix} 1 & 0 \\ 1 & -1 \end{bmatrix} \kvecx , \qquad \kvecx(0) = \begin{bmatrix} 1 \\ 2 \end{bmatrix} . $$
+<p>Ignoring the <span data-concept="initial-condition-for-a-system">initial condition</span> for a moment, the <span data-concept="general-solution-to-a-system">general solution</span> is $\kxone = c_1 e^t$ and $\kxtwo = \frac{c_1}{2}e^{t} + c_2e^{-t}$. Letting $c_1=1$ and $c_2=0$, we obtain the <span data-concept="solution-to-a-system">solution</span> $\kvecx(t) = \left[ \begin{smallmatrix} e^t \\ (1/2) e^t \end{smallmatrix} \right]$. Letting $c_1=0$ and $c_2=1$, we obtain $\kvecx(t) = \left[ \begin{smallmatrix} 0 \\ e^{-t} \end{smallmatrix} \right]$. These two <span data-concept="solution-to-a-system">solutions</span> are <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span>, as can be seen by setting $t=0$, and noting that the resulting constant <span data-concept="vector">vectors</span> are <span data-concept="linear-independence-of-vector-valued-functions">linearly independent</span>. In matrix notation, a <span data-concept="fundamental-matrix">fundamental matrix solution</span> is, therefore,</p>
+$$ \kX(t) = \begin{bmatrix} e^t & 0 \\ \frac{1}{2} e^t & e^{-t} \end{bmatrix} . $$
+<p>To solve the initial value problem, we solve for $\vec{c}$ in the equation</p>
+$$ \kX(0)\,\vec{c} = \kvecb , $$
+<p>or in other words,</p>
+$$ \begin{bmatrix} 1 & 0 \\ \frac{1}{2} & 1 \end{bmatrix} \vec{c} = \begin{bmatrix} 1 \\ 2 \end{bmatrix} . $$
+<p>A single <a href="/diffyqs/ch03/3.2/"><span data-concept="elementary-row-operations">elementary row operation</span></a> shows $\vec{c} = \left[ \begin{smallmatrix} 1 \\ 3/2 \end{smallmatrix} \right]$. Our <span data-concept="solution-to-a-system">solution</span> is</p>
+$$ \kvecx(t) = \kX(t)\,\vec{c} = \begin{bmatrix} e^t & 0 \\ \frac{1}{2} e^t & e^{-t} \end{bmatrix} \begin{bmatrix} 1 \\ \frac{3}{2} \end{bmatrix} = \begin{bmatrix} e^t \\ \frac{1}{2} e^t + \frac{3}{2} e^{-t} \end{bmatrix} . $$
+<p>This new <span data-concept="solution-to-a-system">solution</span> agrees with our previous <span data-concept="solution-to-a-system">solution</span> from <a href="/diffyqs/ch03/3.1/">§3.1</a>.</p>
+</div>
+<figure class="sim" id="sim-superposition">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The two <span data-concept="solution-to-a-system">solutions</span> of Example 3.3.2, $\kvecxone(t) = (e^t, \tfrac{1}{2}e^t)$ and $\kvecxtwo(t) = (0, e^{-t})$, are the columns of the <span data-concept="fundamental-matrix">fundamental matrix</span> $\kX(t)$. Scaled by the constants that $\kX(0)\,\vec{c} = \kvecb$ gives and added head to tail, they make the <span data-concept="solution-to-a-system">solution</span> $\kvecx(t) = c_1\kvecxone(t) + c_2\kvecxtwo(t)$ at every instant, and its tip traces the <span data-concept="trajectory">trajectory</span> from $\kvecb$. The first stays on the line through $(2, 1)$ and grows; the second stays on the $\kxtwo$-axis and dies away. Move $\kvecb$.</span></div>
+</figure>
+</section>

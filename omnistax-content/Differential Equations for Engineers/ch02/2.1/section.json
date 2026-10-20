@@ -1,0 +1,557 @@
+{
+ "id": "2.1",
+ "module": "solinear:section",
+ "chapter": "2",
+ "title": "Second-order linear ODEs",
+ "short": "Second-order linear ODEs",
+ "lead": "The equation $\\kydprime + \\kp(x)\\kyprime + \\kq(x)\\ky = \\kf(x)$ is the subject of this chapter. This section asks what makes it <span data-concept=\"linear-differential-equation\">linear</span> and <span data-concept=\"homogeneous-linear-equation\">homogeneous</span>, how the <span data-concept=\"solution-to-a-differential-equation\">solutions</span> of a homogeneous equation combine, what two <span data-concept=\"initial-value\">initial conditions</span> determine, when two solutions are enough to describe every other, and how a second solution can be found from one that is already known.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count, that reduction of order is optional, and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 2.1.101–2.1.105 carry the book’s own answers. The inline exercise 2.1.1 and exercises 2.1.2–2.1.10, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first. The paragraph on Euler’s equations that the book prints before Exercise 2.1.6, and the sentence it prints after it, are kept in that exercise’s prompt.",
+ "figures": [
+  {
+   "id": "sim-two-conditions",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "derivative",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {"span": "second-order-linear", "concept": "second-order-linear-differential-equation", "verb": "introduces"},
+  {"span": "thm-2-1-1", "concept": "superposition-principle", "verb": "introduces"},
+  {"span": "linear-combination", "concept": "linear-combination", "verb": "introduces"},
+  {"span": "operator", "concept": "operator", "verb": "introduces"},
+  {"span": "linear-operator", "concept": "linear-operator", "verb": "introduces"},
+  {"span": "thm-2-1-2", "concept": "existence-and-uniqueness-for-linear-equations", "verb": "introduces"},
+  {"span": "linearly-independent", "concept": "linear-independence", "verb": "introduces"},
+  {"span": "thm-2-1-3", "concept": "general-solution-to-a-homogeneous-equation", "verb": "introduces"},
+  {"span": "reduction-method", "concept": "reduction-of-order", "verb": "introduces"},
+  {"span": "second-order-linear", "concept": "second-order-differential-equation", "verb": "uses"},
+  {"span": "linear-meaning", "concept": "linear-differential-equation", "verb": "reinforces"},
+  {"span": "homogeneous", "concept": "homogeneous-linear-equation", "verb": "reinforces"},
+  {"span": "seen-already", "concept": "four-fundamental-equations", "verb": "uses"},
+  {"span": "seen-already", "concept": "homogeneous-linear-equation", "verb": "uses"},
+  {"span": "superposition-intro", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "superposition-intro", "concept": "homogeneous-linear-equation", "verb": "uses"},
+  {"span": "thm-2-1-1", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "thm-2-1-1", "concept": "homogeneous-linear-equation", "verb": "uses"},
+  {"span": "linear-combination", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "linear-combination", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "linear-combination", "concept": "superposition-principle", "verb": "uses"},
+  {"span": "proof-superposition", "concept": "superposition-principle", "verb": "uses"},
+  {"span": "drv-superposition", "concept": "superposition-principle", "verb": "uses"},
+  {"span": "drv-superposition", "concept": "linear-combination", "verb": "uses"},
+  {"span": "operator", "concept": "second-order-linear-differential-equation", "verb": "uses"},
+  {"span": "linear-operator", "concept": "operator", "verb": "uses"},
+  {"span": "linear-operator", "concept": "superposition-principle", "verb": "uses"},
+  {"span": "cosh-sinh", "concept": "hyperbolic-functions", "verb": "reinforces"},
+  {"span": "cosh-sinh", "concept": "superposition-principle", "verb": "uses"},
+  {"span": "cosh-sinh", "concept": "linear-combination", "verb": "uses"},
+  {"span": "cosh-sinh", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "hyperbolic-properties", "concept": "hyperbolic-functions", "verb": "uses"},
+  {"span": "hyperbolic-properties", "concept": "derivatives-of-hyperbolic-functions", "verb": "reinforces"},
+  {"span": "eq-hyperbolic-properties", "concept": "derivatives-of-hyperbolic-functions", "verb": "uses"},
+  {"span": "eq-hyperbolic-properties", "concept": "hyperbolic-functions", "verb": "uses"},
+  {"span": "eu-intro", "concept": "linear-differential-equation", "verb": "uses"},
+  {"span": "eu-intro", "concept": "existence-and-uniqueness-for-linear-equations", "verb": "uses"},
+  {"span": "thm-2-1-2", "concept": "initial-value", "verb": "uses"},
+  {"span": "thm-2-1-2", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "thm-2-1-2", "concept": "second-order-linear-differential-equation", "verb": "uses"},
+  {"span": "ivp-examples", "concept": "existence-and-uniqueness-for-linear-equations", "verb": "reinforces"},
+  {"span": "ivp-examples", "concept": "initial-value", "verb": "uses"},
+  {"span": "ivp-examples", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "eq-ivp-cos-sin", "concept": "existence-and-uniqueness-for-linear-equations", "verb": "uses"},
+  {"span": "eq-ivp-cosh-sinh", "concept": "existence-and-uniqueness-for-linear-equations", "verb": "uses"},
+  {"span": "eq-ivp-cosh-sinh", "concept": "hyperbolic-functions", "verb": "uses"},
+  {"span": "cosh-sinh-cleaner", "concept": "hyperbolic-functions", "verb": "uses"},
+  {"span": "cosh-sinh-cleaner", "concept": "initial-value", "verb": "uses"},
+  {"span": "sim-two-conditions", "concept": "existence-and-uniqueness-for-linear-equations", "verb": "uses"},
+  {"span": "sim-two-conditions", "concept": "initial-value", "verb": "uses"},
+  {"span": "sim-two-conditions", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "two-conditions", "concept": "initial-value", "verb": "uses"},
+  {"span": "two-conditions", "concept": "second-order-differential-equation", "verb": "uses"},
+  {"span": "two-conditions", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "question", "concept": "superposition-principle", "verb": "uses"},
+  {"span": "question", "concept": "homogeneous-linear-equation", "verb": "uses"},
+  {"span": "question", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "linearly-independent", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "thm-2-1-3", "concept": "linear-independence", "verb": "uses"},
+  {"span": "thm-2-1-3", "concept": "general-solution", "verb": "reinforces"},
+  {"span": "thm-2-1-3", "concept": "homogeneous-linear-equation", "verb": "uses"},
+  {"span": "thm-2-1-3", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "cos-sin-independent", "concept": "linear-independence", "verb": "uses"},
+  {"span": "cos-sin-independent", "concept": "general-solution", "verb": "uses"},
+  {"span": "cos-sin-independent", "concept": "general-solution-to-a-homogeneous-equation", "verb": "uses"},
+  {"span": "cos-sin-independent", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "x2-xinv", "concept": "linear-independence", "verb": "reinforces"},
+  {"span": "x2-xinv", "concept": "general-solution", "verb": "uses"},
+  {"span": "x2-xinv", "concept": "general-solution-to-a-homogeneous-equation", "verb": "uses"},
+  {"span": "x2-xinv", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "reduction-method", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "reduction-method", "concept": "homogeneous-linear-equation", "verb": "uses"},
+  {"span": "drv-reduction-of-order", "concept": "reduction-of-order", "verb": "uses"},
+  {"span": "reduction-w", "concept": "reduction-of-order", "verb": "reinforces"},
+  {"span": "reduction-w", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "reduction-w", "concept": "integrating-factor", "verb": "uses"},
+  {"span": "reduction-w", "concept": "antiderivative", "verb": "uses"},
+  {"span": "reduction-w", "concept": "general-solution", "verb": "uses"},
+  {"span": "reduction-w", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "reduction-formula", "concept": "reduction-of-order", "verb": "uses"},
+  {"span": "reduction-formula", "concept": "first-order-linear-differential-equation", "verb": "uses"},
+  {"span": "reduction-formula", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "drv-reduction-of-order-formula", "concept": "reduction-of-order", "verb": "uses"},
+  {"span": "drv-reduction-of-order-formula", "concept": "integrating-factor-method", "verb": "uses"},
+  {"span": "reduction-remember", "concept": "reduction-of-order", "verb": "reinforces"},
+  {"span": "reduction-remember", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "nonhomogeneous-pointer", "concept": "general-solution", "verb": "uses"},
+  {"span": "nonhomogeneous-pointer", "concept": "homogeneous-linear-equation", "verb": "uses"},
+  {"span": "nonhomogeneous-pointer", "concept": "solution-to-a-differential-equation", "verb": "uses"}
+ ],
+ "derivations": [
+  {
+   "id": "superposition",
+   "what": "the superposition of two solutions, Theorem 2.1.1",
+   "source": "Differential Equations for Engineers, 2.1 Second-order linear ODEs, proof of Theorem 2.1.1",
+   "nodes": [
+    {
+     "assumes": [
+      {"tex": "\\ky = C_1 \\kyone + C_2 \\kytwo"},
+      {"text": "$\\kyone$ is a solution of the homogeneous equation (2.2): $\\kyonedprime + \\kp\\kyoneprime + \\kq\\kyone = 0$.", "src": "Theorem 2.1.1"},
+      {"text": "$\\kytwo$ is a solution of the homogeneous equation (2.2): $\\kytwodprime + \\kp\\kytwoprime + \\kq\\kytwo = 0$.", "src": "Theorem 2.1.1"},
+      {"text": "The derivative of a sum of constant multiples is the same sum of the derivatives: $(C_1 \\kyone + C_2 \\kytwo)' = C_1 \\kyoneprime + C_2 \\kytwoprime$, and once more for the second derivative.", "src": "Calculus, 3.3 Differentiation Rules"}
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kydprime + \\kp\\kyprime + \\kq\\ky} = \\mk{a}{(C_1 \\kyone + C_2 \\kytwo)''} + \\mk{b}{\\kp(C_1 \\kyone + C_2 \\kytwo)'} + \\mk{c}{\\kq(C_1 \\kyone + C_2 \\kytwo)}",
+      "uses": [0],
+      "src": "2.1, proof of Theorem 2.1.1"
+     },
+     "steps": [
+      {"tex": "\\mk{L}{\\kydprime + \\kp\\kyprime + \\kq\\ky} = \\mk{a1}{C_1 \\kyonedprime} + \\mk{a2}{C_2 \\kytwodprime} + \\mk{b1}{C_1 \\kp \\kyoneprime} + \\mk{b2}{C_2 \\kp \\kytwoprime} + \\mk{c1}{C_1 \\kq \\kyone} + \\mk{c2}{C_2 \\kq \\kytwo}", "uses": [3], "map": {"a": ["a1", "a2"], "b": ["b1", "b2"], "c": ["c1", "c2"]}},
+      {"tex": "\\mk{L}{\\kydprime + \\kp\\kyprime + \\kq\\ky} = \\mk{y1}{C_1 ( \\kyonedprime + \\kp \\kyoneprime + \\kq \\kyone )} + \\mk{y2}{C_2 ( \\kytwodprime + \\kp \\kytwoprime + \\kq \\kytwo )}", "uses": [], "map": {"a1": "y1", "b1": "y1", "c1": "y1", "a2": "y2", "b2": "y2", "c2": "y2"}},
+      {"tex": "\\mk{L}{\\kydprime + \\kp\\kyprime + \\kq\\ky} = \\mk{y1}{C_1 \\cdot 0} + \\mk{y2}{C_2 \\cdot 0}", "uses": [1, 2]},
+      {"tex": "\\mk{L}{\\kydprime + \\kp\\kyprime + \\kq\\ky} = \\mk{z}{0}", "uses": [], "map": {"y1": "z", "y2": "z"}}
+     ],
+     "src": "2.1, proof of Theorem 2.1.1"
+    }
+   ]
+  },
+  {
+   "id": "reduction-of-order",
+   "what": "the equation for v in the reduction of order",
+   "source": "Differential Equations for Engineers, 2.1 Second-order linear ODEs, reduction of order",
+   "nodes": [
+    {
+     "assumes": [
+      {"text": "The derivative of a product: $(fg)' = f'g + fg'$.", "src": "Calculus, 3.3 Product Rule"}
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kytwo} = \\mk{u}{\\kyone}\\,\\mk{v}{\\kv}",
+      "uses": [],
+      "src": "2.1, reduction of order"
+     },
+     "steps": [
+      {"tex": "\\mk{y}{\\kytwoprime} = \\mk{a}{\\kyoneprime \\kv} + \\mk{b}{\\kyone \\kvprime}", "uses": [0], "map": {"u": ["a", "b"], "v": ["a", "b"]}}
+     ],
+     "src": "2.1, reduction of order"
+    },
+    {
+     "assumes": [
+      {"step": 0},
+      {"text": "The derivative of a product: $(fg)' = f'g + fg'$.", "src": "Calculus, 3.3 Product Rule"}
+     ],
+     "then": {
+      "tex": "\\mk{y}{\\kytwoprime} = \\mk{a}{\\kyoneprime \\kv} + \\mk{b}{\\kyone \\kvprime}",
+      "uses": []
+     },
+     "steps": [
+      {"tex": "\\mk{y}{\\kytwodprime} = \\mk{a}{\\kyonedprime \\kv + \\kyoneprime \\kvprime} + \\mk{b}{\\kyoneprime \\kvprime + \\kyone \\kvdprime}", "uses": [1]},
+      {"tex": "\\mk{y}{\\kytwodprime} = \\mk{a}{\\kyonedprime \\kv} + \\mk{m}{2 \\kyoneprime \\kvprime} + \\mk{b}{\\kyone \\kvdprime}", "uses": [], "map": {"a": ["a", "m"], "b": ["m", "b"]}}
+     ],
+     "src": "2.1, reduction of order"
+    },
+    {
+     "assumes": [
+      {"step": 0},
+      {"step": 1},
+      {"tex": "\\kytwo = \\kyone \\kv", "src": "2.1, reduction of order"},
+      {"text": "$\\kytwo$ is to solve the homogeneous equation: $\\kytwodprime + \\kp(x) \\kytwoprime + \\kq(x) \\kytwo = 0$.", "src": "(2.2)"},
+      {"text": "$\\kyone$ is a solution: $\\kyonedprime + \\kp(x) \\kyoneprime + \\kq(x) \\kyone = 0$.", "src": "2.1, reduction of order"}
+     ],
+     "then": {
+      "tex": "\\mk{z}{0} = \\mk{a}{\\kytwodprime} + \\mk{b}{\\kp(x) \\kytwoprime} + \\mk{c}{\\kq(x) \\kytwo}",
+      "uses": [3],
+      "src": "2.1, reduction of order"
+     },
+     "steps": [
+      {"tex": "\\mk{z}{0} = \\mk{a}{\\kyonedprime \\kv + 2 \\kyoneprime \\kvprime + \\kyone \\kvdprime} + \\mk{b}{\\kp(x) ( \\kyoneprime \\kv + \\kyone \\kvprime )} + \\mk{c}{\\kq(x) \\kyone \\kv}", "uses": [0, 1, 2]},
+      {"tex": "\\mk{z}{0} = \\mk{vdd}{\\kyone \\kvdprime} + \\mk{vd}{(2 \\kyoneprime + \\kp(x) \\kyone) \\kvprime} + \\mk{v}{\\bigl( \\kyonedprime + \\kp(x) \\kyoneprime + \\kq(x) \\kyone \\bigr) \\kv}", "uses": [], "map": {"a": ["vdd", "vd", "v"], "b": ["vd", "v"], "c": ["v"]}},
+      {"tex": "\\mk{z}{0} = \\mk{vdd}{\\kyone \\kvdprime} + \\mk{vd}{(2 \\kyoneprime + \\kp(x) \\kyone) \\kvprime} + \\mk{v}{0 \\cdot \\kv}", "uses": [4]},
+      {"tex": "\\mk{z}{0} = \\mk{vdd}{\\kyone \\kvdprime} + \\mk{vd}{(2 \\kyoneprime + \\kp(x) \\kyone) \\kvprime}", "uses": []}
+     ],
+     "src": "2.1, reduction of order"
+    }
+   ]
+  },
+  {
+   "id": "reduction-of-order-formula",
+   "what": "the reduction-of-order formula",
+   "source": "Differential Equations for Engineers, 2.1 Second-order linear ODEs, reduction of order",
+   "nodes": [
+    {
+     "assumes": [
+      {"text": "$\\kyone$ is a nonzero solution, so we may divide by it.", "src": "2.1, reduction of order"}
+     ],
+     "then": {
+      "tex": "\\mk{wd}{\\kyone \\kwprime} + \\mk{c}{(2 \\kyoneprime + \\kp(x) \\kyone) \\kw} = \\mk{z}{0}",
+      "uses": [],
+      "src": "2.1, reduction of order"
+     },
+     "steps": [
+      {"tex": "\\mk{wd}{\\kwprime} + \\mk{c}{\\left( \\frac{2 \\kyoneprime}{\\kyone} + \\kp(x) \\right) \\kw} = \\mk{z}{0}", "uses": [0]}
+     ]
+    },
+    {
+     "assumes": [
+      {"text": "The first-order linear equation $\\kwprime + P(x)\\kw = 0$ is solved with the integrating factor $r(x) = e^{\\int P(x)\\,dx}$.", "src": "1.4"},
+      {"tex": "\\int \\frac{2 \\kyoneprime}{\\kyone}\\,dx = 2 \\ln \\lvert \\kyone \\rvert", "src": "Calculus, 5.6"}
+     ],
+     "then": {
+      "tex": "\\mk{r}{r(x)} = \\mk{e}{e^{\\int \\left( \\frac{2 \\kyoneprime}{\\kyone} + \\kp(x) \\right) dx}}",
+      "uses": [0]
+     },
+     "steps": [
+      {"tex": "\\mk{r}{r(x)} = \\mk{e}{e^{2 \\ln \\lvert \\kyone \\rvert + \\int \\kp(x)\\,dx}}", "uses": [1]},
+      {"tex": "\\mk{r}{r(x)} = \\mk{e}{{\\bigl( \\kyone \\bigr)}^2 e^{\\int \\kp(x)\\,dx}}", "uses": [], "cap": "An exponential of a sum is a product of exponentials, and $e^{2 \\ln \\lvert \\kyone \\rvert} = \\lvert \\kyone \\rvert^2 = (\\kyone)^2$."}
+     ]
+    },
+    {
+     "assumes": [
+      {"step": 0},
+      {"step": 1},
+      {"text": "Multiplied by its integrating factor, the left-hand side becomes the derivative of $r(x)\\kw$: $r(x)\\kwprime + r(x)P(x)\\kw = \\bigl( r(x) \\kw \\bigr)'$.", "src": "1.4"}
+     ],
+     "then": {
+      "tex": "\\mk{wd}{\\kwprime} + \\mk{c}{\\left( \\frac{2 \\kyoneprime}{\\kyone} + \\kp(x) \\right) \\kw} = \\mk{z}{0}",
+      "uses": []
+     },
+     "steps": [
+      {"tex": "\\mk{lhs}{\\bigl( r(x) \\kw \\bigr)'} = \\mk{z}{0}", "uses": [2], "map": {"wd": "lhs", "c": "lhs"}},
+      {"tex": "\\mk{lhs}{r(x) \\kw} = \\mk{z}{C}", "uses": [], "cap": "Antidifferentiate both sides; $C$ is the constant of integration."},
+      {"tex": "\\mk{lhs}{{\\bigl( \\kyone \\bigr)}^2 e^{\\int \\kp(x)\\,dx}\\, \\kw} = \\mk{z}{C}", "uses": [1]},
+      {"tex": "\\mk{w}{\\kw} = \\mk{z}{C \\, \\frac{e^{-\\int \\kp(x)\\,dx}}{{\\bigl( \\kyone \\bigr)}^2}}", "uses": [], "map": {"lhs": "w"}}
+     ]
+    },
+    {
+     "assumes": [
+      {"step": 2},
+      {"tex": "\\kw = \\kvprime", "src": "2.1, reduction of order"},
+      {"tex": "\\kytwo(x) = \\kyone(x) \\kv(x)", "src": "2.1, reduction of order"},
+      {"text": "Any $C$ works, so take $C = 1$.", "src": "2.1, reduction of order"}
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\kw} = \\mk{z}{C \\, \\frac{e^{-\\int \\kp(x)\\,dx}}{{\\bigl( \\kyone \\bigr)}^2}}",
+      "uses": []
+     },
+     "steps": [
+      {"tex": "\\mk{w}{\\kvprime} = \\mk{z}{C \\, \\frac{e^{-\\int \\kp(x)\\,dx}}{{\\bigl( \\kyone \\bigr)}^2}}", "uses": [1]},
+      {"tex": "\\mk{w}{\\kv} = \\mk{z}{C \\int \\frac{e^{-\\int \\kp(x)\\,dx}}{{\\bigl( \\kyone \\bigr)}^2} \\,dx}", "uses": [], "cap": "Antidifferentiate $\\kw$ to find $\\kv$."},
+      {"tex": "\\mk{w}{\\kv} = \\mk{z}{\\int \\frac{e^{-\\int \\kp(x)\\,dx}}{{\\bigl( \\kyone \\bigr)}^2} \\,dx}", "uses": [3]},
+      {"tex": "\\mk{y}{\\kytwo(x)} = \\mk{a}{\\kyone(x)} \\mk{z}{\\int \\frac{e^{-\\int \\kp(x)\\,dx}}{{\\bigl(\\kyone(x)\\bigr)}^2} \\,dx}", "uses": [2], "map": {"w": "y"}}
+     ],
+     "src": "2.1, reduction of order"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "2.1.1",
+   "source_number": "2.1.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {"at": "inline", "after": "eq-hyperbolic-properties"},
+   "cite": "eq-hyperbolic-properties",
+   "prompt": "<p>Derive these properties using the definitions of $\\sinh$ and $\\cosh$ in terms of exponentials.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\cosh x = \\frac{e^{x} + e^{-x}}{2}$ and $\\sinh x = \\frac{e^{x} - e^{-x}}{2}$. At $x = 0$ both exponentials equal $1$, so $\\cosh 0 = \\frac{1 + 1}{2} = 1$ and $\\sinh 0 = \\frac{1 - 1}{2} = 0$. Differentiating term by term, $\\frac{d}{dx}\\cosh x = \\frac{e^{x} - e^{-x}}{2} = \\sinh x$ and $\\frac{d}{dx}\\sinh x = \\frac{e^{x} + e^{-x}}{2} = \\cosh x$. Finally, $\\cosh^2 x - \\sinh^2 x = \\frac{(e^{x} + e^{-x})^2 - (e^{x} - e^{-x})^2}{4} = \\frac{(e^{2x} + 2 + e^{-2x}) - (e^{2x} - 2 + e^{-2x})}{4} = \\frac{4}{4} = 1$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "2.1.2",
+   "source_number": "2.1.2",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "linearly-independent",
+   "prompt": "<p>Show that $\\ky=e^x$ and $\\ky=e^{2x}$ are linearly independent.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Suppose $e^{2x} = A e^{x}$ for some constant $A$ and all $x$. Dividing by $e^{x}$, which is never zero, gives $A = e^{2x}/e^{x} = e^{x}$, which is not a constant: it is $1$ at $x = 0$ and $e$ at $x = 1$. So neither function is a constant multiple of the other, and $e^{x}$ and $e^{2x}$ are linearly independent."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "2.1.3",
+   "source_number": "2.1.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "second-order-linear",
+   "prompt": "<p>Take $\\kydprime + 5 \\ky = 10 x + 5$. Find (guess!) a solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\ky = 2x + 1$. The right-hand side is a polynomial of degree one, so try $\\ky = ax + b$: then $\\kydprime = 0$ and the equation reads $5ax + 5b = 10x + 5$, so $a = 2$ and $b = 1$. Check: $\\kydprime + 5\\ky = 0 + 5(2x + 1) = 10x + 5$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "2.1.4",
+   "source_number": "2.1.4",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "linear-operator",
+   "prompt": "<p>Prove the superposition principle for nonhomogeneous equations. Suppose that $\\kyone$ is a solution to $L \\kyone = \\kf(x)$ and $\\kytwo$ is a solution to $L \\kytwo = g(x)$ (same linear operator $L$). Show that $\\ky = \\kyone+\\kytwo$ solves $L\\ky = \\kf(x) + g(x)$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $L$ is linear, $L(C_1 \\kyone + C_2 \\kytwo) = C_1 L\\kyone + C_2 L\\kytwo$; with $C_1 = C_2 = 1$ this gives $L\\ky = L(\\kyone + \\kytwo) = L\\kyone + L\\kytwo = \\kf(x) + g(x)$. Written out, $L\\ky = (\\kyone + \\kytwo)'' + \\kp(\\kyone + \\kytwo)' + \\kq(\\kyone + \\kytwo) = (\\kyonedprime + \\kp\\kyoneprime + \\kq\\kyone) + (\\kytwodprime + \\kp\\kytwoprime + \\kq\\kytwo) = \\kf(x) + g(x)$, because the derivative of a sum is the sum of the derivatives."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "2.1.5",
+   "source_number": "2.1.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-1-3",
+   "prompt": "<p>For the equation $x^2 \\kydprime - x \\kyprime = 0$, find two solutions, show that they are linearly independent and find the general solution. Hint: Try $\\ky = x^r$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\ky = x^r$, $\\kyprime = r x^{r-1}$ and $\\kydprime = r(r-1)x^{r-2}$, so $x^2\\kydprime - x\\kyprime = \\bigl(r(r-1) - r\\bigr)x^r = (r^2 - 2r)x^r = r(r - 2)x^r$, which is zero for $r = 0$ and for $r = 2$. Two solutions are $\\kyone = 1$ and $\\kytwo = x^2$. They are linearly independent, since $\\kytwo/\\kyone = x^2$ is not a constant. By Theorem 2.1.3 the general solution is $\\ky = C_1 + C_2 x^2$."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "2.1.6",
+   "source_number": "2.1.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "thm-2-1-3",
+   "prompt": "<p>Equations of the form $a x^2 \\kydprime + b x \\kyprime + c \\ky = 0$ are called <em>Euler’s equations</em> or <em>Cauchy–Euler equations</em>. They are solved by trying $\\ky=x^r$ and solving for $r$ (assume $x \\geq 0$ for simplicity).</p><p>Suppose that ${(b-a)}^2-4ac > 0$.</p><ol type=\"a\"><li>Find a formula for the general solution of Euler’s equation (see above) $a x^2 \\kydprime + b x \\kyprime + c \\ky = 0$. Hint: Try $\\ky=x^r$ and find a formula for $r$.</li><li>What happens when ${(b-a)}^2-4ac = 0$ or ${(b-a)}^2-4ac < 0$?</li></ol><p>We will revisit the case when ${(b-a)}^2-4ac < 0$ later.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) With $\\ky = x^r$, $\\kyprime = r x^{r-1}$ and $\\kydprime = r(r-1)x^{r-2}$, so $a x^2 \\kydprime + b x \\kyprime + c \\ky = \\bigl(ar(r-1) + br + c\\bigr)x^r = \\bigl(ar^2 + (b-a)r + c\\bigr)x^r$. Since $x^r \\neq 0$ for $x > 0$, $\\ky = x^r$ is a solution exactly when $ar^2 + (b-a)r + c = 0$, that is, when $r = \\frac{(a-b) \\pm \\sqrt{(b-a)^2 - 4ac}}{2a}$. When $(b-a)^2 - 4ac > 0$ these are two distinct real numbers $r_1$ and $r_2$, and the solutions $x^{r_1}$ and $x^{r_2}$ are linearly independent, since their ratio $x^{r_1 - r_2}$ is not a constant. By Theorem 2.1.3 the general solution is $\\ky = C_1 x^{r_1} + C_2 x^{r_2}$. b) When $(b-a)^2 - 4ac = 0$ there is only one root, $r = \\frac{a-b}{2a}$, so trying $x^r$ gives only one solution and a second, linearly independent one has to be found some other way (see Exercise 2.1.7). When $(b-a)^2 - 4ac < 0$ the two roots are complex conjugates, so $x^r$ is a complex-valued function and real solutions have to be extracted from it; the book revisits this case later."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "2.1.7",
+   "source_number": "2.1.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "thm-2-1-3",
+   "prompt": "<p>Same equation as in Exercise 2.1.6. Suppose ${(b-a)}^2-4ac = 0$. Find a formula for the general solution of $a x^2 \\kydprime + b x \\kyprime + c \\ky = 0$. Hint: Try $\\ky=x^r \\ln x$ for the second solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Now $ar^2 + (b-a)r + c = 0$ has the single root $r = \\frac{a-b}{2a}$, so one solution is $\\kyone = x^r$. Try $\\kytwo = x^r \\ln x$: then $\\kytwoprime = r x^{r-1}\\ln x + x^{r-1}$ and $\\kytwodprime = r(r-1)x^{r-2}\\ln x + (2r-1)x^{r-2}$, so $a x^2 \\kytwodprime + b x \\kytwoprime + c \\kytwo = \\bigl(ar^2 + (b-a)r + c\\bigr)x^r \\ln x + (2ar - a + b)x^r$. The first bracket is zero because $r$ is a root, and $2ar - a + b = (a - b) - a + b = 0$. So $x^r \\ln x$ is a solution, and it is linearly independent of $x^r$ because their ratio $\\ln x$ is not a constant. The general solution is $\\ky = C_1 x^r + C_2 x^r \\ln x$ with $r = \\frac{a-b}{2a}$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "2.1.8",
+   "source_number": "2.1.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "tag": "reduction of order",
+   "place": {"at": "end"},
+   "cite": "reduction-method",
+   "prompt": "<p>Suppose $\\kyone$ is a solution to $\\kydprime + \\kp(x) \\kyprime + \\kq(x) \\ky = 0$. By directly plugging into the equation, show that</p>$$ \\kytwo(x) = \\kyone(x) \\int \\frac{e^{-\\int \\kp(x)\\,dx}}{{\\bigl(\\kyone(x)\\bigr)}^2} \\,dx $$<p>is also a solution.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\kytwo = \\kyone \\kv$ with $\\kv = \\int \\frac{e^{-\\int \\kp\\,dx}}{(\\kyone)^2}\\,dx$, so that $\\kvprime = \\frac{e^{-\\int \\kp\\,dx}}{(\\kyone)^2}$. Differentiating $\\kvprime$ (the exponent has derivative $-\\kp$, and $(\\kyone)^{-2}$ has derivative $-2\\kyoneprime(\\kyone)^{-3}$) gives $\\kvdprime = -\\kp\\,\\kvprime - \\frac{2\\kyoneprime}{\\kyone}\\kvprime$, that is, $\\kyone\\kvdprime = -(2\\kyoneprime + \\kp\\kyone)\\kvprime$. By the product rule, $\\kytwoprime = \\kyoneprime\\kv + \\kyone\\kvprime$ and $\\kytwodprime = \\kyonedprime\\kv + 2\\kyoneprime\\kvprime + \\kyone\\kvdprime$, so $\\kytwodprime + \\kp\\kytwoprime + \\kq\\kytwo = (\\kyonedprime + \\kp\\kyoneprime + \\kq\\kyone)\\kv + \\kyone\\kvdprime + (2\\kyoneprime + \\kp\\kyone)\\kvprime$. The first bracket is zero because $\\kyone$ is a solution, and the last two terms cancel by the identity just found. Hence $\\kytwo$ is a solution."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "2.1.9",
+   "source_number": "2.1.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "tag": "Chebyshev’s equation of order 1",
+   "place": {"at": "end"},
+   "cite": "reduction-w",
+   "prompt": "<p>Take $(1-x^2)\\kydprime-x\\kyprime + \\ky = 0$.</p><ol type=\"a\"><li>Show that $\\ky=x$ is a solution.</li><li>Use reduction of order to find a second linearly independent solution.</li><li>Write down the general solution.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) With $\\ky = x$, $\\kyprime = 1$ and $\\kydprime = 0$, so $(1-x^2)\\cdot 0 - x\\cdot 1 + x = 0$. b) Dividing by $1 - x^2$ puts the equation in the form $\\kydprime - \\frac{x}{1-x^2}\\kyprime + \\frac{1}{1-x^2}\\ky = 0$, so $\\kp(x) = -\\frac{x}{1-x^2}$ and $e^{-\\int \\kp(x)\\,dx} = e^{\\int \\frac{x}{1-x^2}\\,dx} = e^{-\\frac{1}{2}\\ln(1-x^2)} = \\frac{1}{\\sqrt{1-x^2}}$ for $-1 < x < 1$. With $\\kyone = x$, $\\kv = \\int \\frac{dx}{x^2\\sqrt{1-x^2}} = -\\frac{\\sqrt{1-x^2}}{x}$ (differentiate to check), so $\\kytwo = \\kyone\\kv = -\\sqrt{1-x^2}$; any constant multiple will do, so take $\\kytwo = \\sqrt{1-x^2}$. It is linearly independent of $x$ since $\\sqrt{1-x^2}/x$ is not a constant. Check: $\\kytwoprime = -\\frac{x}{\\sqrt{1-x^2}}$ and $\\kytwodprime = -\\frac{1}{(1-x^2)^{3/2}}$, so $(1-x^2)\\kytwodprime - x\\kytwoprime + \\kytwo = \\frac{-1 + x^2 + (1-x^2)}{\\sqrt{1-x^2}} = 0$. c) $\\ky = C_1 x + C_2\\sqrt{1-x^2}$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "2.1.10",
+   "source_number": "2.1.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "tag": "Hermite’s equation of order 2",
+   "place": {"at": "end"},
+   "cite": "reduction-w",
+   "prompt": "<p>Take $\\kydprime-2x\\kyprime + 4\\ky = 0$.</p><ol type=\"a\"><li>Show that $\\ky=1-2x^2$ is a solution.</li><li>Use reduction of order to find a second linearly independent solution. (It’s OK to leave a definite integral in the formula.)</li><li>Write down the general solution.</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) With $\\ky = 1 - 2x^2$, $\\kyprime = -4x$ and $\\kydprime = -4$, so $\\kydprime - 2x\\kyprime + 4\\ky = -4 + 8x^2 + 4 - 8x^2 = 0$. b) Here $\\kp(x) = -2x$, so $e^{-\\int \\kp(x)\\,dx} = e^{x^2}$, and with $\\kyone = 1 - 2x^2$ the reduction-of-order formula gives $\\kv = \\int \\frac{e^{x^2}}{(1-2x^2)^2}\\,dx$, which has no closed form; write it as the definite integral $\\kv(x) = \\int_0^x \\frac{e^{t^2}}{(1-2t^2)^2}\\,dt$ on an interval that avoids $x = \\pm\\frac{1}{\\sqrt 2}$, where $\\kyone = 0$ (for instance $-\\frac{1}{\\sqrt 2} < x < \\frac{1}{\\sqrt 2}$). Then $\\kytwo = (1 - 2x^2)\\int_0^x \\frac{e^{t^2}}{(1-2t^2)^2}\\,dt$, and it is linearly independent of $\\kyone$ since $\\kytwo/\\kyone = \\kv$ is not a constant ($\\kvprime = e^{x^2}/(1-2x^2)^2$ is never zero). c) $\\ky = C_1(1 - 2x^2) + C_2(1 - 2x^2)\\int_0^x \\frac{e^{t^2}}{(1-2t^2)^2}\\,dt$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "2.1.101",
+   "source_number": "2.1.101",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "linearly-independent",
+   "prompt": "<p>Are $\\sin(x)$ and $e^x$ linearly independent? Justify.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": ["Yes", "No"],
+    "correct": 0,
+    "solution": "Yes. To justify try to find a constant $A$ such that $\\sin(x) = A e^x$ for all $x$."
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "2.1.102",
+   "source_number": "2.1.102",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "linearly-independent",
+   "prompt": "<p>Are $e^x$ and $e^{x+2}$ linearly independent? Justify.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": ["Yes", "No"],
+    "correct": 1,
+    "solution": "No. $e^{x+2} = e^2 e^x$."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "2.1.103",
+   "source_number": "2.1.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "second-order-linear",
+   "prompt": "<p>Guess a solution to $\\kydprime + \\kyprime + \\ky= 5$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=5$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "2.1.104",
+   "source_number": "2.1.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "thm-2-1-3",
+   "prompt": "<p>Find the general solution to $x \\kydprime + \\kyprime = 0$. Hint: It is a first-order ODE in $\\kyprime$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=C_1 \\ln(x) + C_2$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "2.1.105",
+   "source_number": "2.1.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "seen-already",
+   "prompt": "<p>Write down an equation (guess) for which we have the solutions $e^x$ and $e^{2x}$. Hint: Try an equation of the form $\\kydprime+A\\kyprime+B\\ky = 0$ for constants $A$ and $B$, plug in both $e^x$ and $e^{2x}$ and solve for $A$ and $B$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\kydprime-3\\kyprime+2\\ky = 0$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "hyperbolic-functions"},
+  {"exercise": "e1", "concept": "derivatives-of-hyperbolic-functions"},
+  {"exercise": "e2", "concept": "linear-independence"},
+  {"exercise": "e3", "concept": "second-order-linear-differential-equation"},
+  {"exercise": "e3", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e4", "concept": "superposition-principle"},
+  {"exercise": "e4", "concept": "linear-operator"},
+  {"exercise": "e5", "concept": "linear-independence"},
+  {"exercise": "e5", "concept": "general-solution-to-a-homogeneous-equation"},
+  {"exercise": "e6", "concept": "general-solution-to-a-homogeneous-equation"},
+  {"exercise": "e6", "concept": "linear-independence"},
+  {"exercise": "e7", "concept": "general-solution-to-a-homogeneous-equation"},
+  {"exercise": "e7", "concept": "linear-independence"},
+  {"exercise": "e8", "concept": "reduction-of-order"},
+  {"exercise": "e9", "concept": "reduction-of-order"},
+  {"exercise": "e9", "concept": "general-solution-to-a-homogeneous-equation"},
+  {"exercise": "e10", "concept": "reduction-of-order"},
+  {"exercise": "e10", "concept": "general-solution-to-a-homogeneous-equation"},
+  {"exercise": "e101", "concept": "linear-independence"},
+  {"exercise": "e102", "concept": "linear-independence"},
+  {"exercise": "e103", "concept": "second-order-linear-differential-equation"},
+  {"exercise": "e103", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e104", "concept": "general-solution-to-a-homogeneous-equation"},
+  {"exercise": "e104", "concept": "general-solution"},
+  {"exercise": "e105", "concept": "second-order-linear-differential-equation"},
+  {"exercise": "e105", "concept": "solution-to-a-differential-equation"}
+ ],
+ "footnotes": []
+}

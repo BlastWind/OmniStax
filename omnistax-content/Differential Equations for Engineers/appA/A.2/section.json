@@ -1,0 +1,1374 @@
+{
+  "id": "A.2",
+  "module": "matalg:section",
+  "chapter": "A",
+  "title": "Matrix algebra",
+  "short": "Matrix algebra",
+  "lead": "This section builds an algebra of <span data-concept=\"matrix\">matrices</span> out of what they do as <span data-concept=\"linear-mapping\">linear mappings</span>: adding them, scaling them, composing them as a <span data-concept=\"matrix-product\">product</span>, and asking which rules of the algebra of numbers survive. Along the way it meets the <span data-concept=\"matrix-inverse\">inverse</span>, <span data-concept=\"diagonal-matrix\">diagonal matrices</span> and the <span data-concept=\"transpose\">transpose</span>.",
+  "objectives": [],
+  "summary_html": "",
+  "notes": "The section notes (the lecture count) are left out.",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-19",
+  "exercises_lead": "",
+  "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises A.2.101–A.2.105 carry the book’s own answers, each confirmed by computation. Exercises A.2.1–A.2.5, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every value checked by computation.",
+  "figures": [
+    {
+      "id": "sim-composition",
+      "kind": "sim",
+      "draws": [
+        "vector",
+        "matrix"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "referents": [],
+  "coverage": [
+    {
+      "span": "one-by-one-intro",
+      "concept": "one-by-one-matrices",
+      "verb": "introduces"
+    },
+    {
+      "span": "one-by-one-intro",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-intro",
+      "concept": "linear-mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-intro",
+      "concept": "mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-sum",
+      "concept": "mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-compose",
+      "concept": "mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-product",
+      "concept": "mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-product",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-product",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-def",
+      "concept": "mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-def",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-def",
+      "concept": "matrix-addition",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-def",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-def",
+      "concept": "one-by-one-matrices",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-sum-on-vector",
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-sum-on-vector",
+      "concept": "matrix-addition",
+      "verb": "uses"
+    },
+    {
+      "span": "entrywise",
+      "concept": "matrix-addition",
+      "verb": "reinforces"
+    },
+    {
+      "span": "entrywise",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "check-vector",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "check-vector",
+      "concept": "vector-addition",
+      "verb": "uses"
+    },
+    {
+      "span": "sizes-mismatch",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "sizes-mismatch",
+      "concept": "matrix-addition",
+      "verb": "uses"
+    },
+    {
+      "span": "zero-matrix",
+      "concept": "zero-matrix",
+      "verb": "introduces"
+    },
+    {
+      "span": "zero-matrix",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "zero-matrix",
+      "concept": "matrix-addition",
+      "verb": "uses"
+    },
+    {
+      "span": "zero-notation",
+      "concept": "zero-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar-def",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar-def",
+      "concept": "scalar",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar-def",
+      "concept": "scalar-multiplication-of-a-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-scalar-on-vector",
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-scalar-on-vector",
+      "concept": "scalar-multiplication-of-a-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "scalar-entrywise",
+      "concept": "scalar-multiplication-of-a-matrix",
+      "verb": "reinforces"
+    },
+    {
+      "span": "scalar-entrywise",
+      "concept": "scalar-multiplication",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-rules",
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication",
+      "verb": "introduces"
+    },
+    {
+      "span": "addition-rules",
+      "concept": "zero-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-rules",
+      "concept": "scalar",
+      "verb": "uses"
+    },
+    {
+      "span": "addition-rules",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-addition-properties",
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-addition-properties",
+      "concept": "zero-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "composition",
+      "concept": "matrix-product-as-composition",
+      "verb": "introduces"
+    },
+    {
+      "span": "composition",
+      "concept": "linear-mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "composition",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-product-composition",
+      "concept": "matrix-product-as-composition",
+      "verb": "uses"
+    },
+    {
+      "span": "composition-sizes",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "composition-sizes",
+      "concept": "mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "composition-sizes",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-product-sizes",
+      "concept": "matrix-product-as-composition",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product",
+      "concept": "dot-product",
+      "verb": "reinforces"
+    },
+    {
+      "span": "dot-product",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product",
+      "concept": "row-vector",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product-matrices",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product-matrices",
+      "concept": "dot-product",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product-matrices",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-product-matrices",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-product",
+      "concept": "matrix-product",
+      "verb": "reinforces"
+    },
+    {
+      "span": "matrix-product",
+      "concept": "dot-product",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-product",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-product",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-product-entry-as-composition",
+      "concept": "matrix-product-as-composition",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-product-entry-as-composition",
+      "concept": "dot-product",
+      "verb": "uses"
+    },
+    {
+      "span": "product-example",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-a-1",
+      "concept": "matrix-product-as-composition",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-a-1",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-vector",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-vector",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-vector",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "matrix-vector",
+      "concept": "matrix-vector-product",
+      "verb": "uses"
+    },
+    {
+      "span": "columns",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "columns",
+      "concept": "mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "columns",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "columns",
+      "concept": "matrix-product-as-composition",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-matrix-product-columns",
+      "concept": "matrix-product-as-composition",
+      "verb": "uses"
+    },
+    {
+      "span": "columns-example",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "columns-example",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "columns-example",
+      "concept": "matrix-product-as-composition",
+      "verb": "uses"
+    },
+    {
+      "span": "columns-remember",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "identity",
+      "concept": "identity-matrix",
+      "verb": "reinforces"
+    },
+    {
+      "span": "identity",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "identity",
+      "concept": "square-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "identity-example",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "identity-left",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "mult-rules",
+      "concept": "rules-of-matrix-algebra",
+      "verb": "reinforces"
+    },
+    {
+      "span": "mult-rules",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "mult-rules",
+      "concept": "scalar",
+      "verb": "uses"
+    },
+    {
+      "span": "mult-rules-display",
+      "concept": "rules-of-matrix-algebra",
+      "verb": "uses"
+    },
+    {
+      "span": "mult-rules-display",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-a-2-1",
+      "concept": "rules-of-matrix-algebra",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-a-2-1",
+      "concept": "scalar",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-a-2-1",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "ex-a-2-1",
+      "concept": "scalar-multiplication-of-a-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "noncommutative",
+      "concept": "noncommutativity-of-matrix-multiplication",
+      "verb": "introduces"
+    },
+    {
+      "span": "noncommutative",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "noncommutative",
+      "concept": "commuting-matrices",
+      "verb": "uses"
+    },
+    {
+      "span": "noncommutative-example",
+      "concept": "noncommutativity-of-matrix-multiplication",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-noncommutative",
+      "concept": "noncommutativity-of-matrix-multiplication",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-noncommutative",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-composition",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-composition",
+      "concept": "matrix-product-as-composition",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-composition",
+      "concept": "mapping",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-composition",
+      "concept": "noncommutativity-of-matrix-multiplication",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-composition",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "sim-composition",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "failing",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "failing-rules",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "failing-rules",
+      "concept": "cancellation-with-an-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "failing-rules",
+      "concept": "zero-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-def",
+      "concept": "matrix-inverse",
+      "verb": "reinforces"
+    },
+    {
+      "span": "inverse-def",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-def",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "invertible",
+      "concept": "invertible-matrix",
+      "verb": "reinforces"
+    },
+    {
+      "span": "invertible",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-inverse",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-inverse",
+      "concept": "one-by-one-matrices",
+      "verb": "uses"
+    },
+    {
+      "span": "one-by-one-inverse",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "cancellation",
+      "concept": "cancellation-with-an-inverse",
+      "verb": "introduces"
+    },
+    {
+      "span": "cancellation",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "cancellation-computation",
+      "concept": "commuting-matrices",
+      "verb": "uses"
+    },
+    {
+      "span": "cancellation-computation",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-cancellation",
+      "concept": "cancellation-with-an-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-cancellation",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-cancellation",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-cancellation",
+      "concept": "rules-of-matrix-algebra",
+      "verb": "uses"
+    },
+    {
+      "span": "drv-cancellation",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "cancellation-right",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "cancellation-right",
+      "concept": "cancellation-with-an-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-unique",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-unique",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-unique",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-unique",
+      "concept": "cancellation-with-an-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-unique",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-2x2",
+      "concept": "inverse-of-a-2x2-matrix",
+      "verb": "reinforces"
+    },
+    {
+      "span": "inverse-2x2",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "inverse-2x2",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "singular-example",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "singular-example",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "singular-try",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "singular-try",
+      "concept": "matrix-inverse",
+      "verb": "uses"
+    },
+    {
+      "span": "singular-try",
+      "concept": "inverse-of-a-2x2-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "invertible-when",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "invertible-when",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "invertible-when",
+      "concept": "inverse-of-a-2x2-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "determinant",
+      "concept": "determinant",
+      "verb": "reinforces"
+    },
+    {
+      "span": "determinant",
+      "concept": "invertible-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "determinant",
+      "concept": "square-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "determinant",
+      "concept": "inverse-of-a-2x2-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-def",
+      "concept": "diagonal-matrix",
+      "verb": "reinforces"
+    },
+    {
+      "span": "diagonal-def",
+      "concept": "square-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-def",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-def",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-vector",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-vector",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-vector",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-rows",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-product",
+      "concept": "diagonal-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-product",
+      "concept": "matrix-entry",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-inverse",
+      "concept": "inverse-of-a-diagonal-matrix",
+      "verb": "introduces"
+    },
+    {
+      "span": "eq-diagonal-inverse",
+      "concept": "inverse-of-a-diagonal-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-diagonal-inverse",
+      "concept": "diagonal-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-check",
+      "concept": "inverse-of-a-diagonal-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-check",
+      "concept": "identity-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "diagonal-why",
+      "concept": "diagonal-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-def",
+      "concept": "transpose",
+      "verb": "reinforces"
+    },
+    {
+      "span": "transpose-def",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-size",
+      "concept": "transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-size",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-product",
+      "concept": "transpose-of-a-product",
+      "verb": "introduces"
+    },
+    {
+      "span": "transpose-product",
+      "concept": "transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-product",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-transpose-of-product",
+      "concept": "transpose-of-a-product",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-verify",
+      "concept": "matrix-product",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-verify",
+      "concept": "transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-verify",
+      "concept": "transpose-of-a-product",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-ax",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-ax",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-ax",
+      "concept": "transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "transpose-ax",
+      "concept": "row-vector",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-transpose-of-ax",
+      "concept": "transpose-of-a-product",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-transpose",
+      "concept": "dot-product-via-transpose",
+      "verb": "introduces"
+    },
+    {
+      "span": "dot-transpose",
+      "concept": "transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-transpose",
+      "concept": "dot-product",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-transpose",
+      "concept": "vector",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-dot-product-transpose",
+      "concept": "dot-product-via-transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-dot-product-transpose",
+      "concept": "dot-product",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-software",
+      "concept": "dot-product",
+      "verb": "uses"
+    },
+    {
+      "span": "dot-software",
+      "concept": "dot-product-via-transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "symmetric",
+      "concept": "symmetric-matrix",
+      "verb": "reinforces"
+    },
+    {
+      "span": "symmetric",
+      "concept": "matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "symmetric",
+      "concept": "transpose",
+      "verb": "uses"
+    },
+    {
+      "span": "symmetric-square",
+      "concept": "symmetric-matrix",
+      "verb": "uses"
+    },
+    {
+      "span": "symmetric-square",
+      "concept": "square-matrix",
+      "verb": "uses"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "cancellation",
+      "what": "the cancellation rule",
+      "source": "Differential Equations for Engineers, A.2 Matrix algebra",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "$\\kA$ is invertible: its inverse $\\kAinv$ exists."
+            },
+            {
+              "tex": "\\kAinv\\kA = \\kI",
+              "src": "A.2, Inverse"
+            },
+            {
+              "tex": "\\kA(\\kB\\kC) = (\\kA\\kB)\\kC",
+              "src": "A.2, Some rules of matrix algebra"
+            },
+            {
+              "tex": "\\kI\\kA = \\kA",
+              "src": "A.2, Some rules of matrix algebra"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{a1}{\\kA}\\mk{b}{\\kB} = \\mk{a2}{\\kA}\\mk{c}{\\kC}"
+          },
+          "steps": [
+            {
+              "tex": "\\mk{i1}{\\kAinv}\\mk{a1}{\\kA}\\mk{b}{\\kB} = \\mk{i2}{\\kAinv}\\mk{a2}{\\kA}\\mk{c}{\\kC}",
+              "uses": [
+                0
+              ],
+              "cap": "Multiply both sides by $\\kAinv$, and on the same side, the left: matrices do not commute, so $\\kAinv\\kA\\kB$ and $\\kA\\kB\\kAinv$ need not be equal."
+            },
+            {
+              "tex": "\\mk{e1}{\\kI}\\mk{b}{\\kB} = \\mk{e2}{\\kI}\\mk{c}{\\kC}",
+              "uses": [
+                1,
+                2
+              ],
+              "cap": "By the associative law $\\kAinv\\kA\\kB = (\\kAinv\\kA)\\kB$, and $\\kAinv\\kA = \\kI$.",
+              "map": {
+                "i1": "e1",
+                "a1": "e1",
+                "i2": "e2",
+                "a2": "e2"
+              }
+            },
+            {
+              "tex": "\\mk{b}{\\kB} = \\mk{c}{\\kC}",
+              "uses": [
+                3
+              ]
+            }
+          ],
+          "src": "A.2, Inverse"
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e1",
+      "source_id": "A.2.1",
+      "source_number": "A.2.1",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "entrywise",
+      "prompt": "<p>Add the following matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} -1 & 2 & 2 \\\\ 5 & 8 & -1 \\end{bmatrix} + \\begin{bmatrix} 3 & 2 & 3 \\\\ 8 & 3 & 5 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 2 & 4 \\\\ 2 & 3 & 1 \\\\ 0 & 5 & 1 \\end{bmatrix} + \\begin{bmatrix} 2 & -8 & -3 \\\\ 3 & 1 & 0 \\\\ 6 & -4 & 1 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "a) $\\begin{bmatrix} 2 & 4 & 5 \\\\ 13 & 11 & 4 \\end{bmatrix}$ b) $\\begin{bmatrix} 3 & -6 & 1 \\\\ 5 & 4 & 1 \\\\ 6 & 1 & 2 \\end{bmatrix}$. The two matrices of each part are of the same size, so we add them element-wise: each entry of the sum is the sum of the entries in the same place. In a) the first row is $-1+3,\\ 2+2,\\ 2+3 = 2,\\ 4,\\ 5$ and the second $5+8,\\ 8+3,\\ -1+5 = 13,\\ 11,\\ 4$. In b) the rows are $1+2,\\ 2-8,\\ 4-3 = 3,\\ -6,\\ 1$, then $2+3,\\ 3+1,\\ 1+0 = 5,\\ 4,\\ 1$, then $0+6,\\ 5-4,\\ 1+1 = 6,\\ 1,\\ 2$."
+      }
+    },
+    {
+      "id": "e2",
+      "source_id": "A.2.2",
+      "source_number": "A.2.2",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "scalar-entrywise",
+      "prompt": "<p>Compute</p><ol type=\"a\"><li>$3\\begin{bmatrix} 0 & 3 \\\\ -2 & 2 \\end{bmatrix} + 6 \\begin{bmatrix} 1 & 5 \\\\ -1 & 5 \\end{bmatrix}$</li><li>$2\\begin{bmatrix} -3 & 1 \\\\ 2 & 2 \\end{bmatrix} - 3 \\begin{bmatrix} 2 & -1 \\\\ 3 & 2 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "a) $\\begin{bmatrix} 6 & 39 \\\\ -12 & 36 \\end{bmatrix}$ b) $\\begin{bmatrix} -12 & 5 \\\\ -5 & -2 \\end{bmatrix}$. Scaling a matrix by a scalar scales every entry, and then the two matrices are added (or subtracted) element-wise. In a) $3\\begin{bmatrix} 0 & 3 \\\\ -2 & 2 \\end{bmatrix} = \\begin{bmatrix} 0 & 9 \\\\ -6 & 6 \\end{bmatrix}$ and $6\\begin{bmatrix} 1 & 5 \\\\ -1 & 5 \\end{bmatrix} = \\begin{bmatrix} 6 & 30 \\\\ -6 & 30 \\end{bmatrix}$, whose sum is $\\begin{bmatrix} 6 & 39 \\\\ -12 & 36 \\end{bmatrix}$. In b) $2\\begin{bmatrix} -3 & 1 \\\\ 2 & 2 \\end{bmatrix} = \\begin{bmatrix} -6 & 2 \\\\ 4 & 4 \\end{bmatrix}$ and $3\\begin{bmatrix} 2 & -1 \\\\ 3 & 2 \\end{bmatrix} = \\begin{bmatrix} 6 & -3 \\\\ 9 & 6 \\end{bmatrix}$, whose difference is $\\begin{bmatrix} -12 & 5 \\\\ -5 & -2 \\end{bmatrix}$."
+      }
+    },
+    {
+      "id": "e3",
+      "source_id": "A.2.3",
+      "source_number": "A.2.3",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "matrix-product",
+      "prompt": "<p>Multiply the following matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} -1 & 2 \\\\ 3 & 1 \\\\ 5 & 8 \\end{bmatrix}\\begin{bmatrix} 3 & -1 & 3 & 1 \\\\ 8 & 3 & 2 & -3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 2 & 3 \\\\ 3 & 1 & 1 \\\\ 1 & 0 & 3 \\end{bmatrix}\\begin{bmatrix} 2 & 3 & 1 & 7 \\\\ 1 & 2 & 3 & -1 \\\\ 1 & -1 & 3 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 4 & 1 & 6 & 3 \\\\ 5 & 6 & 5 & 0 \\\\ 4 & 6 & 6 & 0 \\end{bmatrix}\\begin{bmatrix} 2 & 5 \\\\ 1 & 2 \\\\ 3 & 5 \\\\ 5 & 6 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 1 & 4 \\\\ 0 & 5 & 1 \\end{bmatrix}\\begin{bmatrix} 2 & 2 \\\\ 1 & 0 \\\\ 6 & 4 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "a) $\\begin{bmatrix} 13 & 7 & 1 & -7 \\\\ 17 & 0 & 11 & 0 \\\\ 79 & 19 & 31 & -19 \\end{bmatrix}$ b) $\\begin{bmatrix} 7 & 4 & 16 & 5 \\\\ 8 & 10 & 9 & 20 \\\\ 5 & 0 & 10 & 7 \\end{bmatrix}$ c) $\\begin{bmatrix} 42 & 70 \\\\ 31 & 62 \\\\ 32 & 62 \\end{bmatrix}$ d) $\\begin{bmatrix} 27 & 18 \\\\ 11 & 4 \\end{bmatrix}$. In each part the middle sizes match ($[3 \\times 2][2 \\times 4] = [3 \\times 4]$, $[3 \\times 3][3 \\times 4] = [3 \\times 4]$, $[3 \\times 4][4 \\times 2] = [3 \\times 2]$, $[2 \\times 3][3 \\times 2] = [2 \\times 2]$), and the $ij^{\\text{th}}$ entry of the product is the dot product $\\operatorname{row}_i \\cdot \\operatorname{column}_j$. For example, the top left entry of a) is $(-1)(3) + (2)(8) = 13$, of b) $(1)(2) + (2)(1) + (3)(1) = 7$, of c) $(4)(2) + (1)(1) + (6)(3) + (3)(5) = 42$, and of d) $(1)(2) + (1)(1) + (4)(6) = 27$; every other entry is found the same way."
+      }
+    },
+    {
+      "id": "e4",
+      "source_id": "A.2.4",
+      "source_number": "A.2.4",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "inverse-2x2",
+      "prompt": "<p>Compute the inverse of the given matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} -3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & -1 \\\\ 1 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 4 \\\\ 1 & 3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 2 \\\\ 1 & 4 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "a) $\\begin{bmatrix} -1/3 \\end{bmatrix}$ b) $\\begin{bmatrix} 0 & 1 \\\\ -1 & 0 \\end{bmatrix}$ c) $\\begin{bmatrix} -3 & 4 \\\\ 1 & -1 \\end{bmatrix}$ d) $\\begin{bmatrix} 2/3 & -1/3 \\\\ -1/6 & 1/3 \\end{bmatrix}$. For a $1 \\times 1$ matrix $[a]$ the inverse is $[1/a]$, so a) is $[-1/3]$. For the $2 \\times 2$ matrices use $\\left[ \\begin{smallmatrix} a & b \\\\ c & d \\end{smallmatrix} \\right]^{-1} = \\frac{1}{ad-bc} \\left[ \\begin{smallmatrix} d & -b \\\\ -c & a \\end{smallmatrix} \\right]$: in b) $ad - bc = 0 - (-1)(1) = 1$, giving $\\begin{bmatrix} 0 & 1 \\\\ -1 & 0 \\end{bmatrix}$; in c) $ad - bc = 3 - 4 = -1$, giving $-\\begin{bmatrix} 3 & -4 \\\\ -1 & 1 \\end{bmatrix}$; in d) $ad - bc = 8 - 2 = 6$, giving $\\frac{1}{6}\\begin{bmatrix} 4 & -2 \\\\ -1 & 2 \\end{bmatrix}$. Each determinant is nonzero, so each matrix is invertible, and multiplying each answer by its matrix gives $\\kI$."
+      }
+    },
+    {
+      "id": "e5",
+      "source_id": "A.2.5",
+      "source_number": "A.2.5",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "diagonal-inverse",
+      "prompt": "<p>Compute the inverse of the given matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} -2 & 0 \\\\ 0 & 1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 3 & 0 & 0 \\\\ 0 & -2 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & -1 & 0 & 0 \\\\ 0 & 0 & 0.01 & 0 \\\\ 0 & 0 & 0 & -5 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "a) $\\begin{bmatrix} -1/2 & 0 \\\\ 0 & 1 \\end{bmatrix}$ b) $\\begin{bmatrix} 1/3 & 0 & 0 \\\\ 0 & -1/2 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$ c) $\\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 0 & -1 & 0 & 0 \\\\ 0 & 0 & 100 & 0 \\\\ 0 & 0 & 0 & -1/5 \\end{bmatrix}$. Each matrix is diagonal with no zero on the diagonal, so we simply invert each diagonal element: $-2$ becomes $-1/2$ and $1$ stays $1$; $3, -2, 1$ become $1/3, -1/2, 1$; $1, -1, 0.01, -5$ become $1, -1, 100, -1/5$. Multiplying two diagonal matrices multiplies their diagonal entries, so each product with the original matrix is $\\kI$."
+      }
+    },
+    {
+      "id": "e101",
+      "source_id": "A.2.101",
+      "source_number": "A.2.101",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "entrywise",
+      "prompt": "<p>Add the following matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} 2 & 1 & 0 \\\\ 1 & 1 & -1 \\end{bmatrix} + \\begin{bmatrix} 5 & 3 & 4 \\\\ 1 & 2 & 5 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 6 & -2 & 3 \\\\ 7 & 3 & 3 \\\\ 8 & -1 & 2 \\end{bmatrix} + \\begin{bmatrix} -1 & -1 & -3 \\\\ 6 & 7 & 3 \\\\ -9 & 4 & -1 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a) $\\begin{bmatrix} 7 & 4 & 4 \\\\ 2 & 3 & 4 \\end{bmatrix}$ b) $\\begin{bmatrix} 5 & -3 & 0 \\\\ 13 & 10 & 6 \\\\ -1 & 3 & 1 \\end{bmatrix}$"
+      }
+    },
+    {
+      "id": "e102",
+      "source_id": "A.2.102",
+      "source_number": "A.2.102",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "scalar-entrywise",
+      "prompt": "<p>Compute</p><ol type=\"a\"><li>$2\\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix} + 3 \\begin{bmatrix} -1 & 3 \\\\ 1 & 2 \\end{bmatrix}$</li><li>$3\\begin{bmatrix} 2 & -1 \\\\ 1 & 3 \\end{bmatrix} - 2 \\begin{bmatrix} 2 & 1 \\\\ -1 & 2 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a) $\\begin{bmatrix} -1 & 13 \\\\ 9 & 14 \\end{bmatrix}$ b) $\\begin{bmatrix} 2 & -5 \\\\ 5 & 5 \\end{bmatrix}$"
+      }
+    },
+    {
+      "id": "e103",
+      "source_id": "A.2.103",
+      "source_number": "A.2.103",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "matrix-product",
+      "prompt": "<p>Multiply the following matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} 2 & 1 & 4 \\\\ 3 & 4 & 4 \\end{bmatrix}\\begin{bmatrix} 2 & 4 \\\\ 6 & 3 \\\\ 3 & 5 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 3 & 3 \\\\ 2 & -2 & 1 \\\\ 3 & 5 & -2 \\end{bmatrix}\\begin{bmatrix} 6 & 6 & 2 \\\\ 4 & 6 & 0 \\\\ 2 & 0 & 4 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 3 & 4 & 1 \\\\ 2 & -1 & 0 \\\\ 4 & -1 & 5 \\end{bmatrix}\\begin{bmatrix} 0 & 2 & 5 & 0 \\\\ 2 & 0 & 5 & 2 \\\\ 3 & 6 & 1 & 6 \\end{bmatrix}$</li><li>$\\begin{bmatrix} -2 & -2 \\\\ 5 & 3 \\\\ 2 & 1 \\end{bmatrix}\\begin{bmatrix} 0 & 3 \\\\ 1 & 3 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a) $\\begin{bmatrix} 22 & 31 \\\\ 42 & 44 \\end{bmatrix}$ b) $\\begin{bmatrix} 18 & 18 & 12 \\\\ 6 & 0 & 8 \\\\ 34 & 48 & -2 \\end{bmatrix}$ c) $\\begin{bmatrix} 11 & 12 & 36 & 14 \\\\ -2 & 4 & 5 & -2 \\\\ 13 & 38 & 20 & 28 \\end{bmatrix}$ d) $\\begin{bmatrix} -2 & -12 \\\\ 3 & 24 \\\\ 1 & 9 \\end{bmatrix}$"
+      }
+    },
+    {
+      "id": "e104",
+      "source_id": "A.2.104",
+      "source_number": "A.2.104",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "inverse-2x2",
+      "prompt": "<p>Compute the inverse of the given matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} 2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 2 \\\\ 3 & 5 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 4 & 2 \\\\ 4 & 4 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a) $\\begin{bmatrix} {1}/{2} \\end{bmatrix}$ b) $\\begin{bmatrix} 0 & 1 \\\\ 1 & 0 \\end{bmatrix}$ c) $\\begin{bmatrix} -5 & 2 \\\\ 3 & -1 \\end{bmatrix}$ d) $\\begin{bmatrix} {1}/{2} & {-1}/{4} \\\\ {-1}/{2} & {1}/{2} \\end{bmatrix}$"
+      }
+    },
+    {
+      "id": "e105",
+      "source_id": "A.2.105",
+      "source_number": "A.2.105",
+      "kind": "exercise",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "diagonal-inverse",
+      "prompt": "<p>Compute the inverse of the given matrices</p><ol type=\"a\"><li>$\\begin{bmatrix} 2 & 0 \\\\ 0 & 3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 4 & 0 & 0 \\\\ 0 & 5 & 0 \\\\ 0 & 0 & -1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} -1 & 0 & 0 & 0 \\\\ 0 & 2 & 0 & 0 \\\\ 0 & 0 & 3 & 0 \\\\ 0 & 0 & 0 & 0.1 \\end{bmatrix}$</li></ol>",
+      "answer": {
+        "type": "open",
+        "generated_by": "source",
+        "solution": "a) $\\begin{bmatrix} {1}/{2} & 0 \\\\ 0 & {1}/{3} \\end{bmatrix}$ b) $\\begin{bmatrix} {1}/{4} & 0 & 0 \\\\ 0 & {1}/{5} & 0 \\\\ 0 & 0 & -1 \\end{bmatrix}$ c) $\\begin{bmatrix} -1 & 0 & 0 & 0 \\\\ 0 & {1}/{2} & 0 & 0 \\\\ 0 & 0 & {1}/{3} & 0 \\\\ 0 & 0 & 0 & 10 \\end{bmatrix}$"
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "e1",
+      "concept": "matrix-addition"
+    },
+    {
+      "exercise": "e1",
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication"
+    },
+    {
+      "exercise": "e2",
+      "concept": "scalar-multiplication-of-a-matrix"
+    },
+    {
+      "exercise": "e2",
+      "concept": "matrix-addition"
+    },
+    {
+      "exercise": "e2",
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication"
+    },
+    {
+      "exercise": "e3",
+      "concept": "matrix-product"
+    },
+    {
+      "exercise": "e3",
+      "concept": "dot-product"
+    },
+    {
+      "exercise": "e3",
+      "concept": "matrix-product-as-composition"
+    },
+    {
+      "exercise": "e4",
+      "concept": "matrix-inverse"
+    },
+    {
+      "exercise": "e4",
+      "concept": "inverse-of-a-2x2-matrix"
+    },
+    {
+      "exercise": "e4",
+      "concept": "invertible-matrix"
+    },
+    {
+      "exercise": "e5",
+      "concept": "inverse-of-a-diagonal-matrix"
+    },
+    {
+      "exercise": "e5",
+      "concept": "diagonal-matrix"
+    },
+    {
+      "exercise": "e5",
+      "concept": "matrix-inverse"
+    },
+    {
+      "exercise": "e101",
+      "concept": "matrix-addition"
+    },
+    {
+      "exercise": "e101",
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication"
+    },
+    {
+      "exercise": "e102",
+      "concept": "scalar-multiplication-of-a-matrix"
+    },
+    {
+      "exercise": "e102",
+      "concept": "matrix-addition"
+    },
+    {
+      "exercise": "e102",
+      "concept": "properties-of-matrix-addition-and-scalar-multiplication"
+    },
+    {
+      "exercise": "e103",
+      "concept": "matrix-product"
+    },
+    {
+      "exercise": "e103",
+      "concept": "dot-product"
+    },
+    {
+      "exercise": "e103",
+      "concept": "matrix-product-as-composition"
+    },
+    {
+      "exercise": "e104",
+      "concept": "matrix-inverse"
+    },
+    {
+      "exercise": "e104",
+      "concept": "inverse-of-a-2x2-matrix"
+    },
+    {
+      "exercise": "e104",
+      "concept": "invertible-matrix"
+    },
+    {
+      "exercise": "e105",
+      "concept": "inverse-of-a-diagonal-matrix"
+    },
+    {
+      "exercise": "e105",
+      "concept": "diagonal-matrix"
+    },
+    {
+      "exercise": "e105",
+      "concept": "matrix-inverse"
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "fn-physicists",
+      "kind": "book",
+      "number": "61",
+      "html": "As a side note, mathematicians write $\\kvecy^T\\kvecx$ and physicists write $\\kvecx^T\\kvecy$. Shhh…don’t tell anyone, but the physicists are probably right on this."
+    },
+    {
+      "id": "fn-appreciate",
+      "kind": "book",
+      "number": "62",
+      "html": "Although so far we have not learned enough about matrices to really appreciate them."
+    }
+  ]
+}

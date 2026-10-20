@@ -1,6 +1,6 @@
 # Chapter 3 config: Systems of ODEs
 
-Status: agreed by carry-over from `ch00/config.md` (2026-10-19); only the chapter-specific lines differ.
+Status: agreed by carry-over from `ch00/config.md` (2026-10-19); only the chapter-specific lines differ. Built 2026-10-19: sections 3.1–3.9 and the chapter pass (anchors, the footnote number, one glossary move, one concept statement, two variables meanings, the COLOR.md `region` and 3.8 referents lines).
 
 1. Start: `ch03/3.1`, then 3.2 … 3.9 in order.
 2. Loop: build straight through with no stops; plans and decisions are reported afterwards.
@@ -22,4 +22,5 @@ Status: agreed by carry-over from `ch00/config.md` (2026-10-19); only the chapte
 18. Types: the fifteen of `book.json`; no new type.
 19. Recolour: `colours:default -- diffyqs` is run by the orchestrator at the end, not in this chapter pass.
 20. Title: the book is published as *Differential Equations for Engineers*.
-21. Derivations (root rule 29): every printed derivation block is built unless it is a worked example of the section's own method or a one-line move; hidden ones only at score 4 or more; each plan names its candidates.
+21. Footnotes (chapter pass, 2026-10-19, after `ch01/config.md` line 21): a book footnote's `number` is the book's running number. Chapter 2 ends at 13; Chapter 3's one is 3.8 moler-van-loan 14 (`ch-systems.tex` has one `\footnote`; every other 3.M/section.json has none). Chapter 4 continues from 15.
+22. Derivations (root rule 29): every printed derivation block is built unless it is a worked example of the section's own method or a one-line move; hidden ones only at score 4 or more; each plan names its candidates.

@@ -1,0 +1,456 @@
+{
+  "id": "8",
+  "dir": "ch08",
+  "title": "Nonlinear systems",
+  "sections": [
+    {
+      "id": "8.1",
+      "module": "linearization:section",
+      "title": "Linearization, critical points, and equilibria"
+    },
+    {
+      "id": "8.2",
+      "module": "nlinstability:section",
+      "title": "Stability and classification of isolated critical points"
+    },
+    {
+      "id": "8.3",
+      "module": "nlinapps:section",
+      "title": "Applications of nonlinear systems"
+    },
+    {
+      "id": "8.4",
+      "module": "limitcycles:section",
+      "title": "Limit cycles"
+    },
+    {
+      "id": "8.5",
+      "module": "sec:chaos",
+      "title": "Chaos"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "x",
+      "meaning": "the first unknown of the system x′ = f(x, y), y′ = g(x, y), a function of the time t; also the dependent variable of the second-order equation it comes from",
+      "section": "8.1",
+      "concept": "dependent-variable",
+      "redefines": true,
+      "anchor": "8.1-planar-system"
+    },
+    {
+      "sym": "y",
+      "meaning": "the second unknown of the system x′ = f(x, y), y′ = g(x, y), a function of the time t; for an equation x″ = F(x, x′) written as a system, y = x′",
+      "section": "8.1",
+      "concept": "dependent-variable",
+      "redefines": true,
+      "anchor": "8.1-planar-system"
+    },
+    {
+      "sym": "x_prime",
+      "meaning": "the derivative of x with respect to t",
+      "section": "8.1",
+      "type": "derivative",
+      "anchor": "8.1-planar-system"
+    },
+    {
+      "sym": "y_prime",
+      "meaning": "the derivative of y with respect to t",
+      "section": "8.1",
+      "type": "derivative",
+      "anchor": "8.1-planar-system"
+    },
+    {
+      "sym": "x_dprime",
+      "meaning": "the second derivative of x with respect to t, in a second-order equation written as a system",
+      "section": "8.1",
+      "type": "derivative",
+      "anchor": "8.1-ex-8-1-1"
+    },
+    {
+      "sym": "f",
+      "meaning": "the right-hand side f(x, y) of x′ = f(x, y), the first component of the system's vector field, a function of two variables",
+      "section": "8.1",
+      "type": "function",
+      "redefines": true,
+      "anchor": "8.1-planar-system"
+    },
+    {
+      "sym": "g",
+      "meaning": "the right-hand side g(x, y) of y′ = g(x, y), the second component of the system's vector field, a function of two variables",
+      "section": "8.1",
+      "type": "function",
+      "redefines": true,
+      "anchor": "8.1-planar-system"
+    },
+    {
+      "sym": "θ",
+      "meaning": "the angle of the pendulum, the dependent variable of the pendulum equation, a function of t",
+      "section": "8.1",
+      "concept": "dependent-variable",
+      "anchor": "8.1-pendulum"
+    },
+    {
+      "sym": "θ_dprime",
+      "meaning": "the second derivative of θ with respect to t",
+      "section": "8.1",
+      "type": "derivative",
+      "anchor": "8.1-pendulum"
+    },
+    {
+      "sym": "u",
+      "meaning": "the shifted variable u = x − x₀ of the linearization at the critical point (x₀, y₀), a function of t",
+      "section": "8.1",
+      "type": "function",
+      "redefines": true,
+      "anchor": "8.1-shift"
+    },
+    {
+      "sym": "v",
+      "meaning": "the shifted variable v = y − y₀ of the linearization at the critical point (x₀, y₀), a function of t",
+      "section": "8.1",
+      "type": "function",
+      "redefines": true,
+      "anchor": "8.1-shift"
+    },
+    {
+      "sym": "∂f/∂x",
+      "meaning": "the partial derivative of f(x, y) with respect to x, an entry of the Jacobian matrix",
+      "section": "8.1",
+      "type": "derivative",
+      "anchor": "8.1-jacobian"
+    },
+    {
+      "sym": "∂f/∂y",
+      "meaning": "the partial derivative of f(x, y) with respect to y, an entry of the Jacobian matrix",
+      "section": "8.1",
+      "type": "derivative",
+      "anchor": "8.1-jacobian"
+    },
+    {
+      "sym": "∂g/∂x",
+      "meaning": "the partial derivative of g(x, y) with respect to x, an entry of the Jacobian matrix",
+      "section": "8.1",
+      "type": "derivative",
+      "anchor": "8.1-jacobian"
+    },
+    {
+      "sym": "∂g/∂y",
+      "meaning": "the partial derivative of g(x, y) with respect to y, an entry of the Jacobian matrix",
+      "section": "8.1",
+      "type": "derivative",
+      "anchor": "8.1-jacobian"
+    },
+    {
+      "sym": "x",
+      "meaning": "the first unknown of the system x′ = f(x, y), y′ = g(x, y), a function of the time t; also the dependent variable of the conservative equation x″ + f(x) = 0",
+      "section": "8.2",
+      "concept": "dependent-variable",
+      "anchor": "8.2-not-almost-linear"
+    },
+    {
+      "sym": "y",
+      "meaning": "the second unknown of the system, a function of the time t; for the conservative equation x″ + f(x) = 0, y = x′",
+      "section": "8.2",
+      "concept": "dependent-variable",
+      "anchor": "8.2-not-almost-linear"
+    },
+    {
+      "sym": "x_prime",
+      "meaning": "the derivative of x with respect to t",
+      "section": "8.2",
+      "type": "derivative",
+      "anchor": "8.2-not-almost-linear"
+    },
+    {
+      "sym": "y_prime",
+      "meaning": "the derivative of y with respect to t",
+      "section": "8.2",
+      "type": "derivative",
+      "anchor": "8.2-not-almost-linear"
+    },
+    {
+      "sym": "x_dprime",
+      "meaning": "the second derivative of x with respect to t, in the conservative equation x″ + f(x) = 0",
+      "section": "8.2",
+      "type": "derivative",
+      "anchor": "8.2-eq-conservative-equation"
+    },
+    {
+      "sym": "dy/dx",
+      "meaning": "the derivative of y with respect to x, thinking of y as a function of x along a trajectory",
+      "section": "8.2",
+      "type": "derivative",
+      "anchor": "8.2-hamiltonian-trick"
+    },
+    {
+      "sym": "f",
+      "meaning": "the right-hand side f(x, y) of x′ = f(x, y), a function of two variables; in a conservative equation x″ + f(x) = 0, the arbitrary function f(x) of x alone",
+      "section": "8.2",
+      "type": "function",
+      "redefines": true,
+      "anchor": "8.2-eq-conservative-equation"
+    },
+    {
+      "sym": "g",
+      "meaning": "the right-hand side g(x, y) of y′ = g(x, y), a function of two variables",
+      "section": "8.2",
+      "type": "function"
+    },
+    {
+      "sym": "J",
+      "meaning": "the Jacobian matrix of the system",
+      "section": "8.2",
+      "concept": "jacobian-matrix",
+      "redefines": true,
+      "anchor": "8.2-conservative-classification"
+    },
+    {
+      "sym": "λ",
+      "meaning": "an eigenvalue of the Jacobian matrix at a critical point",
+      "section": "8.2",
+      "type": "eigenvalue",
+      "redefines": true,
+      "anchor": "8.2-ex-8-2-3-eigenvalues"
+    },
+    {
+      "sym": "θ",
+      "meaning": "the angular displacement of the pendulum from the vertical, a function of t; the horizontal axis of the pendulum's phase plane",
+      "section": "8.3",
+      "concept": "dependent-variable",
+      "anchor": "8.3-pendulum-equation"
+    },
+    {
+      "sym": "θ_prime",
+      "meaning": "the derivative of θ with respect to t, the angular velocity of the pendulum",
+      "section": "8.3",
+      "type": "derivative",
+      "anchor": "8.3-pendulum-system"
+    },
+    {
+      "sym": "θ_dprime",
+      "meaning": "the second derivative of θ with respect to t",
+      "section": "8.3",
+      "type": "derivative",
+      "anchor": "8.3-pendulum-equation"
+    },
+    {
+      "sym": "ω",
+      "meaning": "the angular velocity ω = θ′ of the pendulum, the second variable of the pendulum's system; the vertical axis of its phase plane",
+      "section": "8.3",
+      "type": "derivative",
+      "redefines": true,
+      "anchor": "8.3-pendulum-system"
+    },
+    {
+      "sym": "g",
+      "meaning": "the gravitational acceleration, a constant of the pendulum equation",
+      "section": "8.3",
+      "redefines": true,
+      "anchor": "8.3-pendulum-equation"
+    },
+    {
+      "sym": "T",
+      "meaning": "the period of the nonlinear pendulum, the time it takes to swing back and forth once",
+      "section": "8.3",
+      "concept": "period-of-the-nonlinear-pendulum",
+      "redefines": true,
+      "anchor": "8.3-period-integral"
+    },
+    {
+      "sym": "x",
+      "meaning": "the number of hares, the prey, a function of t",
+      "section": "8.3",
+      "concept": "dependent-variable",
+      "redefines": true,
+      "anchor": "8.3-eq-hares-foxes"
+    },
+    {
+      "sym": "y",
+      "meaning": "the number of foxes, the predator, a function of t",
+      "section": "8.3",
+      "concept": "dependent-variable",
+      "redefines": true,
+      "anchor": "8.3-eq-hares-foxes"
+    },
+    {
+      "sym": "x_prime",
+      "meaning": "the rate of change of the hare population",
+      "section": "8.3",
+      "type": "derivative",
+      "redefines": true,
+      "anchor": "8.3-eq-predator-prey"
+    },
+    {
+      "sym": "y_prime",
+      "meaning": "the rate of change of the fox population",
+      "section": "8.3",
+      "type": "derivative",
+      "redefines": true,
+      "anchor": "8.3-eq-predator-prey"
+    },
+    {
+      "sym": "λ",
+      "meaning": "an eigenvalue of the Jacobian matrix at a critical point",
+      "section": "8.3",
+      "type": "eigenvalue",
+      "anchor": "8.3-pendulum-classification"
+    },
+    {
+      "sym": "x",
+      "meaning": "the first unknown of the system x′ = f(x, y), y′ = g(x, y), a function of the time t; the displacement of the Van der Pol oscillator",
+      "section": "8.4",
+      "concept": "dependent-variable",
+      "anchor": "8.4-eq-8-2"
+    },
+    {
+      "sym": "y",
+      "meaning": "the second unknown of the system, a function of the time t; for the Van der Pol oscillator, y = x′",
+      "section": "8.4",
+      "concept": "dependent-variable",
+      "anchor": "8.4-eq-8-2"
+    },
+    {
+      "sym": "x_prime",
+      "meaning": "the derivative of x with respect to t",
+      "section": "8.4",
+      "type": "derivative",
+      "redefines": true,
+      "anchor": "8.4-eq-8-2"
+    },
+    {
+      "sym": "y_prime",
+      "meaning": "the derivative of y with respect to t",
+      "section": "8.4",
+      "type": "derivative",
+      "redefines": true,
+      "anchor": "8.4-eq-8-2"
+    },
+    {
+      "sym": "x_dprime",
+      "meaning": "the second derivative of x with respect to t, in the Van der Pol equation",
+      "section": "8.4",
+      "type": "derivative",
+      "anchor": "8.4-eq-van-der-pol"
+    },
+    {
+      "sym": "f",
+      "meaning": "the right-hand side f(x, y) of x′ = f(x, y), with continuous derivatives on the region R",
+      "section": "8.4",
+      "type": "function",
+      "anchor": "8.4-eq-8-2"
+    },
+    {
+      "sym": "g",
+      "meaning": "the right-hand side g(x, y) of y′ = g(x, y), with continuous derivatives on the region R",
+      "section": "8.4",
+      "type": "function",
+      "redefines": true,
+      "anchor": "8.4-eq-8-2"
+    },
+    {
+      "sym": "∂f/∂x",
+      "meaning": "the partial derivative of f with respect to x, the first term of the divergence",
+      "section": "8.4",
+      "type": "derivative",
+      "anchor": "8.4-thm-8-4-2"
+    },
+    {
+      "sym": "∂g/∂y",
+      "meaning": "the partial derivative of g with respect to y, the second term of the divergence",
+      "section": "8.4",
+      "type": "derivative",
+      "anchor": "8.4-thm-8-4-2"
+    },
+    {
+      "sym": "R",
+      "meaning": "a region of the plane: closed and bounded in the Poincaré–Bendixson theorem, simply connected in the Bendixson–Dulac theorem",
+      "section": "8.4",
+      "type": "region",
+      "redefines": true,
+      "anchor": "8.4-gensys-region"
+    },
+    {
+      "sym": "P",
+      "meaning": "the period of a periodic orbit, with x(t) = x(t + P) and y(t) = y(t + P)",
+      "section": "8.4",
+      "redefines": true,
+      "anchor": "8.4-periodic-orbit"
+    },
+    {
+      "sym": "x",
+      "meaning": "the first unknown of the Duffing equation or the Lorenz system, a function of t",
+      "section": "8.5",
+      "concept": "dependent-variable",
+      "anchor": "8.5-lorenz-intro"
+    },
+    {
+      "sym": "y",
+      "meaning": "the second unknown: y = x′ for the Duffing equation, the second variable of the Lorenz system",
+      "section": "8.5",
+      "concept": "dependent-variable",
+      "redefines": true,
+      "anchor": "8.5-lorenz-intro"
+    },
+    {
+      "sym": "z",
+      "meaning": "the third variable of the Lorenz system, a function of t",
+      "section": "8.5",
+      "concept": "dependent-variable",
+      "redefines": true,
+      "anchor": "8.5-lorenz-intro"
+    },
+    {
+      "sym": "x_prime",
+      "meaning": "the derivative of x with respect to t",
+      "section": "8.5",
+      "type": "derivative",
+      "redefines": true,
+      "anchor": "8.5-lorenz-intro"
+    },
+    {
+      "sym": "y_prime",
+      "meaning": "the derivative of y with respect to t",
+      "section": "8.5",
+      "type": "derivative",
+      "redefines": true,
+      "anchor": "8.5-lorenz-intro"
+    },
+    {
+      "sym": "z_prime",
+      "meaning": "the derivative of z with respect to t",
+      "section": "8.5",
+      "type": "derivative",
+      "anchor": "8.5-lorenz-intro"
+    },
+    {
+      "sym": "x_dprime",
+      "meaning": "the second derivative of x with respect to t, in the Duffing equation",
+      "section": "8.5",
+      "type": "derivative",
+      "anchor": "8.5-duffing"
+    },
+    {
+      "sym": "ω",
+      "meaning": "the forcing frequency of the Duffing equation and of the forced mass-spring system, the strobing frequency of the Poincaré section",
+      "section": "8.5",
+      "type": "frequency",
+      "redefines": true,
+      "anchor": "8.5-duffing"
+    },
+    {
+      "sym": "ω_0",
+      "meaning": "the natural frequency of the forced mass-spring system x″ + 2px′ + ω₀²x = (F₀/m) cos(ωt)",
+      "section": "8.5",
+      "type": "frequency",
+      "anchor": "8.5-strobed-linear"
+    },
+    {
+      "sym": "p",
+      "meaning": "half the damping rate 2p of the forced mass-spring system, a parameter",
+      "section": "8.5",
+      "redefines": true,
+      "anchor": "8.5-strobed-linear"
+    }
+  ]
+}

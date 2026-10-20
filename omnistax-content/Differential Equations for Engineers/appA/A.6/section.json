@@ -1,0 +1,1047 @@
+{
+ "id": "A.6",
+ "module": "det:section",
+ "chapter": "A",
+ "title": "Determinant",
+ "short": "Determinant",
+ "lead": "The <span data-concept=\"determinant\">determinant</span> of a <span data-concept=\"square-matrix\">square matrix</span>: defined outright for $1 \\times 1$ and $2 \\times 2$ matrices, read as what a $2 \\times 2$ matrix does to areas in the plane, and extended to larger matrices by <span data-concept=\"cofactor-expansion\">cofactor expansion</span>; then how it is computed for <span data-concept=\"triangular-matrix\">triangular matrices</span>, and what it says about products and <span data-concept=\"matrix-inverse\">inverses</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section note (the lecture count) is left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises A.6.101–A.6.104 carry the book’s own answers, each confirmed by computation. Exercises A.6.1–A.6.7, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first.",
+ "figures": [
+  {
+   "id": "sim-unit-square-image",
+   "kind": "sim",
+   "number": "A.7",
+   "originals": [
+    "/media/appA/linalg-imagesquare.svg"
+   ],
+   "original_caption": "Image of the unit square via the mapping A.",
+   "draws": [
+    "matrix",
+    "vector",
+    "region"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {
+   "span": "determinant-def",
+   "concept": "determinant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "determinant-def",
+   "concept": "square-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "determinant-def",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "determinant-def",
+   "concept": "matrix-entry",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-det-1x1",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-det-2x2",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "area-scale",
+   "concept": "determinant-as-area-scale",
+   "verb": "reinforces"
+  },
+  {
+   "span": "area-scale",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "area-scale",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "area-scale",
+   "concept": "linear-mapping",
+   "verb": "uses"
+  },
+  {
+   "span": "area-scale",
+   "concept": "euclidean-space",
+   "verb": "uses"
+  },
+  {
+   "span": "unit-square",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "unit-square",
+   "concept": "matrix-vector-product",
+   "verb": "uses"
+  },
+  {
+   "span": "image-square",
+   "concept": "determinant-as-area-scale",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-unit-square-image",
+   "concept": "area-of-a-parallelogram",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-unit-square-image",
+   "concept": "determinant-as-area-scale",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-unit-square-image",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-unit-square-image",
+   "concept": "invertibility-and-the-determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-unit-square-image",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "parallelogram",
+   "concept": "area-of-a-parallelogram",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallelogram",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-parallelogram-area-determinant",
+   "concept": "area-of-a-parallelogram",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-parallelogram-area-determinant",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "carries",
+   "concept": "area-of-a-parallelogram",
+   "verb": "uses"
+  },
+  {
+   "span": "carries",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "submatrix",
+   "concept": "cofactor-expansion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "submatrix",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "submatrix",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-cofactor-first-row",
+   "concept": "cofactor-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-cofactor-first-row",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "cofactor-3x3",
+   "concept": "cofactor-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "cofactor-3x3",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "cofactor-3x3",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "any-row",
+   "concept": "cofactor-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-cofactor-row",
+   "concept": "cofactor-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-cofactor-row",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "second-row",
+   "concept": "cofactor-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "cofactors",
+   "concept": "cofactor-expansion",
+   "verb": "reinforces"
+  },
+  {
+   "span": "cofactors",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "cofactors",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "column",
+   "concept": "cofactor-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-cofactor-column",
+   "concept": "cofactor-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-cofactor-column",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "transpose-fact",
+   "concept": "determinant-of-the-transpose",
+   "verb": "introduces"
+  },
+  {
+   "span": "transpose-fact",
+   "concept": "transpose",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-det-transpose",
+   "concept": "determinant-of-the-transpose",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-det-transpose",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "upper-triangular",
+   "concept": "triangular-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "upper-triangular",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "lower-triangular",
+   "concept": "triangular-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "lower-triangular",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "triangular-det",
+   "concept": "determinant-of-a-triangular-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "triangular-det",
+   "concept": "triangular-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "triangular-det",
+   "concept": "cofactor-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "triangular-det",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "in-general",
+   "concept": "triangular-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-det-triangular",
+   "concept": "determinant-of-a-triangular-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "diagonal",
+   "concept": "diagonal-matrix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "diagonal",
+   "concept": "triangular-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "diagonal",
+   "concept": "determinant-of-a-triangular-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "identity",
+   "concept": "identity-matrix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "identity",
+   "concept": "diagonal-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-det-identity",
+   "concept": "determinant-of-a-triangular-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-det-identity",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "det-product",
+   "concept": "determinant-as-area-scale",
+   "verb": "uses"
+  },
+  {
+   "span": "det-product",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "det-product",
+   "concept": "matrix-product-as-composition",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-6-1",
+   "concept": "determinant-of-a-product",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thm-a-6-1",
+   "concept": "matrix-product",
+   "verb": "uses"
+  },
+  {
+   "span": "det-inverses",
+   "concept": "determinant-of-an-inverse",
+   "verb": "introduces"
+  },
+  {
+   "span": "det-inverses",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "det-inverses",
+   "concept": "determinant-of-a-product",
+   "verb": "uses"
+  },
+  {
+   "span": "det-inverses",
+   "concept": "identity-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "det-inverses",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-det-inverse-product",
+   "concept": "determinant-of-an-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "neither-zero",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "neither-zero",
+   "concept": "determinant-of-an-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-6-2",
+   "concept": "invertibility-and-the-determinant",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thm-a-6-2",
+   "concept": "invertible-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "thm-a-6-2",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "det-of-inverse",
+   "concept": "determinant-of-an-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "det-of-inverse",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-det-inverse",
+   "concept": "determinant-of-an-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "without-computing",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "without-computing",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-determinant-of-an-inverse",
+   "concept": "determinant-of-an-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-determinant-of-an-inverse",
+   "concept": "determinant-of-a-product",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-determinant-of-an-inverse",
+   "concept": "determinant-of-a-triangular-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-determinant-of-an-inverse",
+   "concept": "matrix-inverse",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-2x2",
+   "concept": "inverse-of-a-2x2-matrix",
+   "verb": "reinforces"
+  },
+  {
+   "span": "eq-inverse-2x2",
+   "concept": "inverse-of-a-2x2-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-2x2-note",
+   "concept": "inverse-of-a-2x2-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-2x2-note",
+   "concept": "determinant",
+   "verb": "uses"
+  },
+  {
+   "span": "inverse-2x2-note",
+   "concept": "matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "notation",
+   "concept": "determinant",
+   "verb": "uses"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "determinant-of-an-inverse",
+   "what": "the determinant of an inverse",
+   "source": "Differential Equations for Engineers, A.6 Determinant",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kA$ and $\\kB$ are inverses, that is, $\\kA\\kB = \\kI$."
+      },
+      {
+       "tex": "\\det(\\kA\\kB) = \\det(\\kA)\\det(\\kB)",
+       "src": "Theorem A.6.1"
+      },
+      {
+       "tex": "\\det(\\kI) = 1",
+       "src": "A.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\det(\\kA)\\det(\\kB)} = \\mk{r}{\\det(\\kA\\kB)}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{l}{\\det(\\kA)\\det(\\kB)} = \\mk{r}{\\det(\\kI)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{l}{\\det(\\kA)\\det(\\kB)} = \\mk{r}{1}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "src": "A.6, Products, inverses, and notation"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The inverse $\\kB$ of $\\kA$ is written $\\kAinv$.",
+       "src": "A.2, Inverse"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{l}{\\det(\\kA)\\det(\\kB)} = \\mk{r}{1}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\det(\\kA)}\\,\\mk{b}{\\det(\\kAinv)} = \\mk{r}{1}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "l": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{b}{\\det(\\kAinv)} = \\frac{\\mk{r}{1}}{\\mk{a}{\\det(\\kA)}}",
+       "uses": [],
+       "cap": "The product is $1$, so $\\det(\\kA)$ is not zero, and we may divide by it."
+      }
+     ],
+     "src": "A.6, Products, inverses, and notation"
+    }
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "A.6.1",
+   "source_number": "A.6.1",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-cofactor-row",
+   "prompt": "<p>Compute the determinant of the following matrices:</p><ol type=\"a\"><li>$\\begin{bmatrix} 3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 3 \\\\ 2 & 1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 1 \\\\ 4 & 2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 1 & 2 & 3 \\\\ 0 & 4 & 5 \\\\ 0 & 0 & 6 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 1 & 0 \\\\ -2 & 7 & -3 \\\\ 0 & 2 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 1 & 3 \\\\ 8 & 6 & 3 \\\\ 7 & 9 & 7 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 2 & 5 & 7 \\\\ 0 & 0 & 2 & -3 \\\\ 3 & 4 & 5 & 7 \\\\ 0 & 0 & 2 & 4 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 1 & 2 & 0 \\\\ 1 & 1 & -1 & 2 \\\\ 1 & 1 & 2 & 1 \\\\ 2 & -1 & -2 & 3 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3
+     },
+     {
+      "part": "b",
+      "value": -5
+     },
+     {
+      "part": "c",
+      "value": 0
+     },
+     {
+      "part": "d",
+      "value": 24
+     },
+     {
+      "part": "e",
+      "value": 12
+     },
+     {
+      "part": "f",
+      "value": 85
+     },
+     {
+      "part": "g",
+      "value": 84
+     },
+     {
+      "part": "h",
+      "value": -3
+     }
+    ],
+    "solution": "a) The determinant of a $1 \\times 1$ matrix is its only entry: $3$. b) $1 \\cdot 1 - 3 \\cdot 2 = -5$. c) $2 \\cdot 2 - 1 \\cdot 4 = 0$. d) The matrix is upper triangular, so its determinant is the product of the diagonal entries: $1 \\cdot 4 \\cdot 6 = 24$. e) Expand along the third row, whose only nonzero entry is $a_{32} = 2$, with sign ${(-1)}^{3+2} = -1$: $-2 \\det \\left( \\left[ \\begin{smallmatrix} 2 & 0 \\\\ -2 & -3 \\end{smallmatrix} \\right] \\right) = -2(-6) = 12$. f) Expand along the first row: $2 (6 \\cdot 7 - 3 \\cdot 9) - 1 (8 \\cdot 7 - 3 \\cdot 7) + 3 (8 \\cdot 9 - 6 \\cdot 7) = 2 \\cdot 15 - 35 + 3 \\cdot 30 = 85$. g) Expand along the first column, whose only nonzero entry is $a_{31} = 3$, with sign ${(-1)}^{3+1} = 1$: $3 \\det \\left( \\left[ \\begin{smallmatrix} 2 & 5 & 7 \\\\ 0 & 2 & -3 \\\\ 0 & 2 & 4 \\end{smallmatrix} \\right] \\right)$, and expanding that along its first column gives $3 \\cdot 2 \\, (2 \\cdot 4 - (-3) \\cdot 2) = 3 \\cdot 2 \\cdot 14 = 84$. h) Expand along the first row, where only $a_{12} = 1$ and $a_{13} = 2$ are nonzero: $-1 \\cdot \\det \\left( \\left[ \\begin{smallmatrix} 1 & -1 & 2 \\\\ 1 & 2 & 1 \\\\ 2 & -2 & 3 \\end{smallmatrix} \\right] \\right) + 2 \\det \\left( \\left[ \\begin{smallmatrix} 1 & 1 & 2 \\\\ 1 & 1 & 1 \\\\ 2 & -1 & 3 \\end{smallmatrix} \\right] \\right) = -1 \\cdot (-3) + 2 \\cdot (-3) = -3$, each $3 \\times 3$ determinant by its own first row: $1 \\cdot 8 + 1 \\cdot 1 + 2 \\cdot (-6) = -3$ and $1 \\cdot 4 - 1 \\cdot 1 + 2 \\cdot (-3) = -3$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "A.6.2",
+   "source_number": "A.6.2",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-a-6-2",
+   "prompt": "<p>For which $x$ are the following matrices singular (not invertible).</p><ol type=\"a\"><li>$\\begin{bmatrix} 2 & 3 \\\\ 2 & x \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & x \\\\ 1 & 2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} x & 1 \\\\ 4 & x \\end{bmatrix}$</li><li>$\\begin{bmatrix} x & 0 & 1 \\\\ 1 & 4 & 2 \\\\ 1 & 6 & 2 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3
+     },
+     {
+      "part": "b",
+      "value": 4
+     },
+     {
+      "part": "c, x > 0",
+      "value": 2
+     },
+     {
+      "part": "c, x < 0",
+      "value": -2
+     },
+     {
+      "part": "d",
+      "value": 0.5
+     }
+    ],
+    "solution": "By Theorem A.6.2 a matrix is singular exactly when its determinant is zero. a) $2x - 3 \\cdot 2 = 2x - 6 = 0$, so $x = 3$. b) $2 \\cdot 2 - x \\cdot 1 = 4 - x = 0$, so $x = 4$. c) $x^2 - 4 = 0$, so $x = 2$ or $x = -2$. d) Expand along the first row: $x (4 \\cdot 2 - 2 \\cdot 6) - 0 + 1 (1 \\cdot 6 - 4 \\cdot 1) = -4x + 2 = 0$, so $x = \\frac{1}{2}$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "A.6.3",
+   "source_number": "A.6.3",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-det-inverse",
+   "prompt": "<p>Compute</p>$$ \\det \\left( \\begin{bmatrix} 2 & 1 & 2 & 3 \\\\ 0 & 8 & 6 & 5 \\\\ 0 & 0 & 3 & 9 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix}^{-1} \\right) $$<p>without computing the inverse.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 0.020833333333333332,
+    "tol": 0.001,
+    "solution": "The matrix is upper triangular, so its determinant is the product of its diagonal entries, $2 \\cdot 8 \\cdot 3 \\cdot 1 = 48$. Since $\\det(\\kAinv) = \\frac{1}{\\det(\\kA)}$, the determinant of its inverse is $\\frac{1}{48}$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "A.6.4",
+   "source_number": "A.6.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-a-6-1",
+   "prompt": "<p>Suppose</p>$$ L = \\begin{bmatrix} 1 & 0 & 0 & 0 \\\\ 2 & 1 & 0 & 0 \\\\ 7 & \\pi & 1 & 0 \\\\ 2^8 & 5 & -99 & 1 \\end{bmatrix} \\qquad \\text{and} \\qquad U = \\begin{bmatrix} 5 & 9 & 1 & -\\sin(1) \\\\ 0 & 1 & 88 & -1 \\\\ 0 & 0 & 1 & 3 \\\\ 0 & 0 & 0 & 1 \\end{bmatrix} . $$<p>Let $\\kA = LU$. Compute $\\det(\\kA)$ in a simple way, without computing what is $\\kA$. Hint: First read off $\\det(L)$ and $\\det(U)$.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 5,
+    "solution": "$L$ is lower triangular with every diagonal entry $1$, so $\\det(L) = 1 \\cdot 1 \\cdot 1 \\cdot 1 = 1$; $U$ is upper triangular with diagonal entries $5, 1, 1, 1$, so $\\det(U) = 5$. By Theorem A.6.1, $\\det(\\kA) = \\det(LU) = \\det(L)\\det(U) = 1 \\cdot 5 = 5$."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "A.6.5",
+   "source_number": "A.6.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "area-scale",
+   "prompt": "<p>Consider the linear mapping from ${\\mathbb R}^2$ to ${\\mathbb R}^2$ given by the matrix $\\kA = \\left[ \\begin{smallmatrix} 1 & x \\\\ 2 & 1 \\end{smallmatrix} \\right]$ for some number $x$. You wish to make $\\kA$ such that it doubles the area of every geometric figure. What are the possibilities for $x$ (there are two answers).</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "x with det(A) = 2",
+      "value": -0.5
+     },
+     {
+      "part": "x with det(A) = −2",
+      "value": 1.5
+     }
+    ],
+    "solution": "$\\kA$ multiplies every area by $\\lvert\\det(\\kA)\\rvert$, so it doubles areas exactly when $\\lvert\\det(\\kA)\\rvert = 2$. Here $\\det(\\kA) = 1 \\cdot 1 - x \\cdot 2 = 1 - 2x$. Then $1 - 2x = 2$ gives $x = -\\frac{1}{2}$ (orientation kept), and $1 - 2x = -2$ gives $x = \\frac{3}{2}$ (the axes flipped)."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "A.6.6",
+   "source_number": "A.6.6",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-a-6-1",
+   "prompt": "<p>Suppose $\\kA$ and $S$ are $n \\times n$ matrices, and $S$ is invertible. Suppose that $\\det(\\kA) = 3$. Compute $\\det(S^{-1}\\kA S)$ and $\\det(S\\kA S^{-1})$. Justify your answer using the theorems in this section.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {
+      "part": "det(S⁻¹AS)",
+      "value": 3
+     },
+     {
+      "part": "det(SAS⁻¹)",
+      "value": 3
+     }
+    ],
+    "solution": "Both are $3$. Since $S$ is invertible, $\\det(S) \\neq 0$ by Theorem A.6.2, and $\\det(S^{-1}) = \\frac{1}{\\det(S)}$. By Theorem A.6.1, applied twice, $\\det(S^{-1}\\kA S) = \\det(S^{-1})\\det(\\kA)\\det(S) = \\frac{1}{\\det(S)} \\cdot 3 \\cdot \\det(S) = 3$, and in the same way $\\det(S\\kA S^{-1}) = \\det(S)\\det(\\kA)\\det(S^{-1}) = 3$."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "A.6.7",
+   "source_number": "A.6.7",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "diagonal",
+   "prompt": "<p>Let $\\kA$ be an $n \\times n$ matrix such that $\\det(\\kA)=1$. Compute $\\det(x \\kA)$ given a number $x$. Hint: First try computing $\\det(x\\kI)$, then note that $x\\kA = (x\\kI)\\kA$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\det(x\\kA) = x^n$. The matrix $x\\kI$ is diagonal with all $n$ diagonal entries equal to $x$, so $\\det(x\\kI) = x \\cdot x \\cdots x = x^n$. Since $x\\kA = (x\\kI)\\kA$, Theorem A.6.1 gives $\\det(x\\kA) = \\det(x\\kI)\\det(\\kA) = x^n \\cdot 1 = x^n$."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "A.6.101",
+   "source_number": "A.6.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-cofactor-row",
+   "prompt": "<p>Compute the determinant of the following matrices:</p><ol type=\"a\"><li>$\\begin{bmatrix} -2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & -2 \\\\ 1 & 3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 2 \\\\ 2 & 2 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 9 & -11 \\\\ 0 & -1 & 5 \\\\ 0 & 0 & 3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 2 & 1 & 0 \\\\ -2 & 7 & 3 \\\\ 1 & 1 & 0 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 5 & 1 & 3 \\\\ 4 & 1 & 1 \\\\ 4 & 5 & 1 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 3 & 2 & 5 & 7 \\\\ 0 & 0 & 2 & 0 \\\\ 0 & 4 & 5 & 0 \\\\ 2 & 1 & 2 & 4 \\end{bmatrix}$</li><li>$\\begin{bmatrix} 0 & 2 & 1 & 0 \\\\ 1 & 2 & -3 & 4 \\\\ 5 & 6 & -7 & 8 \\\\ 1 & 2 & 3 & -2 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": -2
+     },
+     {
+      "part": "b",
+      "value": 8
+     },
+     {
+      "part": "c",
+      "value": 0
+     },
+     {
+      "part": "d",
+      "value": -6
+     },
+     {
+      "part": "e",
+      "value": -3
+     },
+     {
+      "part": "f",
+      "value": 28
+     },
+     {
+      "part": "g",
+      "value": 16
+     },
+     {
+      "part": "h",
+      "value": -24
+     }
+    ],
+    "solution": "a) $-2$ b) $8$ c) $0$ d) $-6$ e) $-3$ f) $28$ g) $16$ h) $-24$"
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "A.6.102",
+   "source_number": "A.6.102",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thm-a-6-2",
+   "prompt": "<p>For which $x$ are the following matrices singular (not invertible):</p><ol type=\"a\"><li>$\\begin{bmatrix} 1 & 3 \\\\ 1 & x \\end{bmatrix}$</li><li>$\\begin{bmatrix} 3 & x \\\\ 1 & 3 \\end{bmatrix}$</li><li>$\\begin{bmatrix} x & 3 \\\\ 3 & x \\end{bmatrix}$</li><li>$\\begin{bmatrix} x & 1 & 0 \\\\ 1 & 4 & 0 \\\\ 1 & 6 & 2 \\end{bmatrix}$</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3
+     },
+     {
+      "part": "b",
+      "value": 9
+     },
+     {
+      "part": "c, x > 0",
+      "value": 3
+     },
+     {
+      "part": "c, x < 0",
+      "value": -3
+     },
+     {
+      "part": "d",
+      "value": 0.25
+     }
+    ],
+    "solution": "a) $3$ b) $9$ c) $\\pm 3$ d) ${1}/{4}$"
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "A.6.103",
+   "source_number": "A.6.103",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-det-inverse",
+   "prompt": "<p>Compute</p>$$ \\det \\left( \\begin{bmatrix} 3 & 4 & 7 & 12 \\\\ 0 & -1 & 9 & -8 \\\\ 0 & 0 & -2 & 4 \\\\ 0 & 0 & 0 & 2 \\end{bmatrix}^{-1} \\right) $$<p>without computing the inverse.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.08333333333333333,
+    "tol": 0.001,
+    "solution": "${1}/{12}$"
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "A.6.104",
+   "source_number": "A.6.104",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "inverse-2x2",
+   "prompt": "<p>Find all the $x$ that make the matrix inverse</p>$$ \\begin{bmatrix} 1 & 2 \\\\ 1 & x \\end{bmatrix}^{-1} $$<p>have only integer entries (no fractions). Note that there are two answers.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "smaller x",
+      "value": 1
+     },
+     {
+      "part": "larger x",
+      "value": 3
+     }
+    ],
+    "solution": "$1$ and $3$"
+   },
+   "tag": "challenging"
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "e1",
+   "concept": "determinant"
+  },
+  {
+   "exercise": "e1",
+   "concept": "cofactor-expansion"
+  },
+  {
+   "exercise": "e1",
+   "concept": "determinant-of-a-triangular-matrix"
+  },
+  {
+   "exercise": "e2",
+   "concept": "invertibility-and-the-determinant"
+  },
+  {
+   "exercise": "e2",
+   "concept": "determinant"
+  },
+  {
+   "exercise": "e3",
+   "concept": "determinant-of-an-inverse"
+  },
+  {
+   "exercise": "e3",
+   "concept": "determinant-of-a-triangular-matrix"
+  },
+  {
+   "exercise": "e4",
+   "concept": "determinant-of-a-product"
+  },
+  {
+   "exercise": "e4",
+   "concept": "determinant-of-a-triangular-matrix"
+  },
+  {
+   "exercise": "e5",
+   "concept": "determinant-as-area-scale"
+  },
+  {
+   "exercise": "e5",
+   "concept": "determinant"
+  },
+  {
+   "exercise": "e6",
+   "concept": "determinant-of-a-product"
+  },
+  {
+   "exercise": "e6",
+   "concept": "determinant-of-an-inverse"
+  },
+  {
+   "exercise": "e7",
+   "concept": "determinant-of-a-product"
+  },
+  {
+   "exercise": "e7",
+   "concept": "determinant-of-a-triangular-matrix"
+  },
+  {
+   "exercise": "e101",
+   "concept": "determinant"
+  },
+  {
+   "exercise": "e101",
+   "concept": "cofactor-expansion"
+  },
+  {
+   "exercise": "e101",
+   "concept": "determinant-of-a-triangular-matrix"
+  },
+  {
+   "exercise": "e102",
+   "concept": "invertibility-and-the-determinant"
+  },
+  {
+   "exercise": "e102",
+   "concept": "determinant"
+  },
+  {
+   "exercise": "e103",
+   "concept": "determinant-of-an-inverse"
+  },
+  {
+   "exercise": "e103",
+   "concept": "determinant-of-a-triangular-matrix"
+  },
+  {
+   "exercise": "e104",
+   "concept": "inverse-of-a-2x2-matrix"
+  },
+  {
+   "exercise": "e104",
+   "concept": "determinant"
+  }
+ ],
+ "footnotes": []
+}

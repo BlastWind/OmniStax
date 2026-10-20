@@ -1,0 +1,552 @@
+{
+ "id": "0.2",
+ "module": "introde:section",
+ "chapter": "0",
+ "title": "Introduction to differential equations",
+ "short": "Introduction to differential equations",
+ "lead": "A <span data-concept=\"differential-equation\">differential equation</span> ties an unknown function to its derivatives, and solving one means finding that function. This section says what a <span data-concept=\"solution-to-a-differential-equation\">solution</span> is and how to check one, follows a <span data-concept=\"mathematical-model\">model</span> from a Petri dish of bacteria to a number, and names four equations whose solutions are worth memorizing.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "The section notes (the lecture count and the [EP] and [BD] section numbers) are left out.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-fable-5-1",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-19",
+ "exercises_lead": "Exercises with numbers 101 and higher have solutions.",
+ "exercise_notes": "Bloom levels and concept tags are AI-generated. Exercises 0.2.101–0.2.106 carry the book’s own answers. The inline exercises 0.2.1–0.2.3 and exercises 0.2.4–0.2.14, which the book leaves unanswered, carry AI-marked solutions stating the answer and the reasoning, every computed value checked with SymPy first. The book’s note that exercises numbered 101 and higher have solutions is the exercises_lead.",
+ "figures": [
+  {
+   "id": "sim-solutions-family",
+   "kind": "sim",
+   "number": "1",
+   "originals": [
+    "/media/ch00/intro-plots-alt.svg"
+   ],
+   "original_caption": "A few solutions of dx/dt + x = 2 cos t.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-modelling-cycle",
+   "kind": "figure",
+   "originals": [
+    "/media/ch00/1-1-fig.svg"
+   ],
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-bacteria",
+   "kind": "sim",
+   "number": "2",
+   "originals": [
+    "/media/ch00/intro-plotbact.svg"
+   ],
+   "original_caption": "Bacteria growth in the first 60 seconds.",
+   "widths": [
+    432
+   ],
+   "draws": [
+    "function",
+    "point"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-four-fundamental",
+   "kind": "sim",
+   "draws": [
+    "function",
+    "derivative"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-gateway-arch",
+   "kind": "sim",
+   "draws": [
+    "function"
+   ],
+   "ai": [
+    {
+     "model": "claude-fable-5-1",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [],
+ "coverage": [
+  {"span": "de-definition", "concept": "differential-equation", "verb": "introduces"},
+  {"span": "de-definition", "concept": "dependent-variable", "verb": "introduces"},
+  {"span": "de-definition", "concept": "independent-variable", "verb": "introduces"},
+  {"span": "de-definition", "concept": "first-order-differential-equation", "verb": "introduces"},
+  {"span": "solution-claim", "concept": "solution-to-a-differential-equation", "verb": "introduces"},
+  {"span": "solution-claim", "concept": "verifying-a-solution", "verb": "introduces"},
+  {"span": "ode-pde", "concept": "ordinary-differential-equation", "verb": "introduces"},
+  {"span": "ode-pde", "concept": "partial-differential-equation", "verb": "introduces"},
+  {"span": "modelling", "concept": "real-world-problem", "verb": "introduces"},
+  {"span": "modelling", "concept": "mathematical-model", "verb": "introduces"},
+  {"span": "modelling", "concept": "mathematical-solution", "verb": "introduces"},
+  {"span": "ex-0-2-1", "concept": "exponential-growth", "verb": "introduces"},
+  {"span": "initial-condition", "concept": "initial-value", "verb": "introduces"},
+  {"span": "initial-condition", "concept": "general-solution", "verb": "introduces"},
+  {"span": "initial-condition", "concept": "particular-solution", "verb": "introduces"},
+  {"span": "initial-condition", "concept": "solving-an-initial-value-problem", "verb": "introduces"},
+  {"span": "four-fundamental-intro", "concept": "four-fundamental-equations", "verb": "introduces"},
+  {"span": "fund-oscillation", "concept": "second-order-differential-equation", "verb": "introduces"},
+  {"span": "hyperbolic", "concept": "hyperbolic-functions", "verb": "introduces"},
+  {"span": "hyperbolic", "concept": "derivatives-of-hyperbolic-functions", "verb": "introduces"},
+  {"span": "catenary", "concept": "catenary", "verb": "introduces"},
+  {"span": "solution-claim", "concept": "differential-equation", "verb": "uses"},
+  {"span": "solution-claim", "concept": "dependent-variable", "verb": "uses"},
+  {"span": "solution-claim", "concept": "independent-variable", "verb": "uses"},
+  {"span": "general-family", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-solutions-family", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "sim-solutions-family", "concept": "general-solution", "verb": "uses"},
+  {"span": "ode-pde", "concept": "independent-variable", "verb": "uses"},
+  {"span": "fig-modelling-cycle", "concept": "real-world-problem", "verb": "uses"},
+  {"span": "fig-modelling-cycle", "concept": "mathematical-model", "verb": "uses"},
+  {"span": "fig-modelling-cycle", "concept": "mathematical-solution", "verb": "uses"},
+  {"span": "modelling", "concept": "differential-equation", "verb": "uses"},
+  {"span": "ex-0-2-1", "concept": "mathematical-model", "verb": "uses"},
+  {"span": "ex-0-2-1", "concept": "mathematical-solution", "verb": "uses"},
+  {"span": "ex-0-2-1", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "ex-0-2-1", "concept": "verifying-a-solution", "verb": "uses"},
+  {"span": "ex-0-2-1", "concept": "first-order-differential-equation", "verb": "uses"},
+  {"span": "sim-bacteria", "concept": "exponential-growth", "verb": "uses"},
+  {"span": "sim-bacteria", "concept": "initial-value", "verb": "uses"},
+  {"span": "initial-condition", "concept": "exponential-growth", "verb": "uses"},
+  {"span": "initial-condition", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "four-fundamental-intro", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "four-fundamental-intro", "concept": "verifying-a-solution", "verb": "uses"},
+  {"span": "eq-fund-growth", "concept": "general-solution", "verb": "uses"},
+  {"span": "eq-fund-growth", "concept": "exponential-growth", "verb": "uses"},
+  {"span": "eq-fund-decay", "concept": "general-solution", "verb": "uses"},
+  {"span": "eq-fund-oscillation", "concept": "general-solution", "verb": "uses"},
+  {"span": "fund-two-constants", "concept": "second-order-differential-equation", "verb": "uses"},
+  {"span": "fund-two-constants", "concept": "general-solution", "verb": "uses"},
+  {"span": "eq-fund-exponentials", "concept": "general-solution", "verb": "uses"},
+  {"span": "eq-fund-exponentials", "concept": "hyperbolic-functions", "verb": "uses"},
+  {"span": "sim-four-fundamental", "concept": "four-fundamental-equations", "verb": "uses"},
+  {"span": "sim-four-fundamental", "concept": "derivatives-of-hyperbolic-functions", "verb": "uses"},
+  {"span": "sim-four-fundamental", "concept": "solution-to-a-differential-equation", "verb": "uses"},
+  {"span": "ex-0-2-2", "concept": "particular-solution", "verb": "uses"},
+  {"span": "ex-0-2-2", "concept": "initial-value", "verb": "uses"},
+  {"span": "ex-0-2-2", "concept": "general-solution", "verb": "uses"},
+  {"span": "ex-0-2-2", "concept": "solving-an-initial-value-problem", "verb": "uses"},
+  {"span": "ex-0-2-2", "concept": "second-order-differential-equation", "verb": "uses"},
+  {"span": "catenary", "concept": "hyperbolic-functions", "verb": "uses"},
+  {"span": "eq-gateway-arch", "concept": "catenary", "verb": "uses"},
+  {"span": "sim-gateway-arch", "concept": "catenary", "verb": "uses"},
+  {"span": "sim-gateway-arch", "concept": "hyperbolic-functions", "verb": "uses"}
+ ],
+ "exercises": [
+  {
+   "id": "e1",
+   "source_id": "0.2.1",
+   "source_number": "0.2.1",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {"at": "inline", "after": "eq-fund-decay"},
+   "cite": "eq-fund-decay",
+   "prompt": "<p>Check that the $\\ky$ given is really a solution to the equation above.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate $\\ky = Ce^{-kx}$: $\\kdydx = -kCe^{-kx}$. The right-hand side of $\\kdydx = -k\\ky$ is $-k \\cdot Ce^{-kx} = -kCe^{-kx}$, the same, so $\\ky = Ce^{-kx}$ is a solution for every constant $C$."
+   }
+  },
+  {
+   "id": "e2",
+   "source_id": "0.2.2",
+   "source_number": "0.2.2",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {"at": "inline", "after": "fund-two-constants"},
+   "cite": "eq-fund-oscillation",
+   "prompt": "<p>Check that the $\\ky$ given is really a solution to the equation above.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Differentiate twice: $\\kdydx = -C_1 k \\sin(kx) + C_2 k \\cos(kx)$ and $\\kdtwoydx = -C_1 k^2 \\cos(kx) - C_2 k^2 \\sin(kx) = -k^2 \\bigl(C_1 \\cos(kx) + C_2 \\sin(kx)\\bigr) = -k^2 \\ky$. That is the equation, so $\\ky = C_1 \\cos(kx) + C_2 \\sin(kx)$ is a solution for every $C_1$ and $C_2$."
+   }
+  },
+  {
+   "id": "e3",
+   "source_id": "0.2.3",
+   "source_number": "0.2.3",
+   "kind": "inline-exercise",
+   "bloom": "Apply",
+   "place": {"at": "inline", "after": "hyperbolic"},
+   "cite": "eq-fund-exponentials",
+   "prompt": "<p>Check that both forms of the $\\ky$ given are really solutions to the equation above.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $\\ky = C_1 e^{kx} + C_2 e^{-kx}$: $\\kdydx = C_1 k e^{kx} - C_2 k e^{-kx}$ and $\\kdtwoydx = C_1 k^2 e^{kx} + C_2 k^2 e^{-kx} = k^2 \\ky$. For $\\ky = D_1 \\cosh(kx) + D_2 \\sinh(kx)$, since $\\frac{d}{dx}\\cosh x = \\sinh x$ and $\\frac{d}{dx}\\sinh x = \\cosh x$: $\\kdydx = D_1 k \\sinh(kx) + D_2 k \\cosh(kx)$ and $\\kdtwoydx = D_1 k^2 \\cosh(kx) + D_2 k^2 \\sinh(kx) = k^2 \\ky$. Both forms satisfy $\\kdtwoydx = k^2 \\ky$."
+   }
+  },
+  {
+   "id": "e4",
+   "source_id": "0.2.4",
+   "source_number": "0.2.4",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "solution-claim",
+   "prompt": "<p>Show that $\\kx = e^{4t}$ is a solution to $\\kxtprime - 12 \\kxdprime + 48 \\kxprime - 64 \\kx = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Compute $\\kxprime = 4e^{4t}$, $\\kxdprime = 16e^{4t}$ and $\\kxtprime = 64e^{4t}$. Then $\\kxtprime - 12\\kxdprime + 48\\kxprime - 64\\kx = (64 - 192 + 192 - 64)\\,e^{4t} = 0$, so $\\kx = e^{4t}$ is a solution."
+   }
+  },
+  {
+   "id": "e5",
+   "source_id": "0.2.5",
+   "source_number": "0.2.5",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "solution-claim",
+   "prompt": "<p>Show that $\\kx = e^{t}$ is not a solution to $\\kxtprime - 12 \\kxdprime + 48 \\kxprime - 64 \\kx = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Every derivative of $e^{t}$ is $e^{t}$, so $\\kxprime = \\kxdprime = \\kxtprime = e^{t}$ and the left-hand side is $(1 - 12 + 48 - 64)\\,e^{t} = -27e^{t}$, which is never $0$. So $\\kx = e^{t}$ is not a solution."
+   }
+  },
+  {
+   "id": "e6",
+   "source_id": "0.2.6",
+   "source_number": "0.2.6",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "solution-claim",
+   "prompt": "<p>Is $\\ky = \\sin t$ a solution to ${\\left( \\kdydt \\right)}^2 = 1 - \\ky^2$? Justify.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "ai",
+    "options": ["Yes", "No"],
+    "correct": 0,
+    "solution": "Yes. With $\\ky = \\sin t$, $\\kdydt = \\cos t$, so the left-hand side is $\\cos^2 t$, and the right-hand side is $1 - \\sin^2 t = \\cos^2 t$. The two sides agree for every $t$, so $\\ky = \\sin t$ is a solution."
+   }
+  },
+  {
+   "id": "e7",
+   "source_id": "0.2.7",
+   "source_number": "0.2.7",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "solution-claim",
+   "prompt": "<p>Let $\\kydprime + 2\\kyprime - 8\\ky = 0$. Now try a solution of the form $\\ky = e^{rx}$ for some (unknown) constant $r$. Is this a solution for some $r$? If so, find all such $r$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\ky = e^{rx}$, $\\kyprime = re^{rx}$ and $\\kydprime = r^2 e^{rx}$, so $\\kydprime + 2\\kyprime - 8\\ky = (r^2 + 2r - 8)\\,e^{rx}$. Since $e^{rx}$ is never zero, this is $0$ exactly when $r^2 + 2r - 8 = (r - 2)(r + 4) = 0$. So $\\ky = e^{rx}$ is a solution for $r = 2$ and for $r = -4$, and for no other $r$."
+   }
+  },
+  {
+   "id": "e8",
+   "source_id": "0.2.8",
+   "source_number": "0.2.8",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "initial-condition",
+   "prompt": "<p>Verify that $\\kx = C e^{-2t}$ is a solution to $\\kxprime = -2\\kx$. Find $C$ to solve for the initial condition $\\kx(0) = 100$.</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 100,
+    "solution": "$\\kxprime = -2Ce^{-2t} = -2\\kx$, so $\\kx = Ce^{-2t}$ is a solution for every $C$. At $t = 0$, $\\kx(0) = Ce^{0} = C$, so $\\kx(0) = 100$ gives $C = 100$, and the particular solution is $\\kx = 100e^{-2t}$."
+   }
+  },
+  {
+   "id": "e9",
+   "source_id": "0.2.9",
+   "source_number": "0.2.9",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "initial-condition",
+   "prompt": "<p>Verify that $\\kx = C_1 e^{-t} + C_2 e^{2t}$ is a solution to $\\kxdprime - \\kxprime - 2 \\kx = 0$. Find $C_1$ and $C_2$ to solve for the initial conditions $\\kx(0) = 10$ and $\\kxprime(0) = 0$.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {"part": "C₁", "value": 6.6667, "tol": 0.001},
+     {"part": "C₂", "value": 3.3333, "tol": 0.001}
+    ],
+    "solution": "$\\kxprime = -C_1 e^{-t} + 2C_2 e^{2t}$ and $\\kxdprime = C_1 e^{-t} + 4C_2 e^{2t}$, so $\\kxdprime - \\kxprime - 2\\kx = (C_1 + C_1 - 2C_1)\\,e^{-t} + (4C_2 - 2C_2 - 2C_2)\\,e^{2t} = 0$: a solution for every $C_1$ and $C_2$. The conditions give $\\kx(0) = C_1 + C_2 = 10$ and $\\kxprime(0) = -C_1 + 2C_2 = 0$, so $C_1 = 2C_2$, $3C_2 = 10$, $C_2 = \\frac{10}{3}$ and $C_1 = \\frac{20}{3}$. The particular solution is $\\kx = \\frac{20}{3}e^{-t} + \\frac{10}{3}e^{2t}$."
+   }
+  },
+  {
+   "id": "e10",
+   "source_id": "0.2.10",
+   "source_number": "0.2.10",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "solution-claim",
+   "prompt": "<p>Find a solution to ${(\\kxprime)}^2 + \\kx^2 = 4$ using your knowledge of derivatives of functions that you know from basic calculus.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Try $\\kx = 2\\sin t$: $\\kxprime = 2\\cos t$ and ${(\\kxprime)}^2 + \\kx^2 = 4\\cos^2 t + 4\\sin^2 t = 4$, so it is a solution. So is $\\kx = 2\\cos t$, by the same identity, and so are the constant solutions $\\kx = 2$ and $\\kx = -2$, for which $\\kxprime = 0$."
+   }
+  },
+  {
+   "id": "e11",
+   "source_id": "0.2.11",
+   "source_number": "0.2.11",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "four-fundamental-intro",
+   "prompt": "<p>Solve:</p><ol type=\"a\"><li>$\\dfrac{dA}{dt} = -10 A, \\quad A(0)=5$</li><li>$\\dfrac{dH}{dx} = 3 H, \\quad H(0)=1$</li><li>$\\kdtwoydx = 4 \\ky, \\quad \\ky(0)=0, \\quad \\kyprime(0)=1$</li><li>$\\dfrac{d^2x}{dy^2} = -9 x, \\quad x(0)=1, \\quad x'(0)=0$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "a) $A = 5e^{-10t}$: the general solution of $\\frac{dA}{dt} = -10A$ is $A = Ce^{-10t}$, and $A(0) = C = 5$. b) $H = e^{3x}$: $H = Ce^{3x}$ with $H(0) = C = 1$. c) $\\ky = \\tfrac{1}{2}\\sinh(2x)$: the general solution of $\\kdtwoydx = 4\\ky$ is $\\ky = D_1 \\cosh(2x) + D_2 \\sinh(2x)$; $\\ky(0) = D_1 = 0$ and $\\kyprime(0) = 2D_2 = 1$, so $D_2 = \\tfrac{1}{2}$. In exponentials, $\\ky = \\tfrac{1}{4}e^{2x} - \\tfrac{1}{4}e^{-2x}$. d) $x = \\cos(3y)$: the general solution of $\\frac{d^2x}{dy^2} = -9x$ is $x = C_1 \\cos(3y) + C_2 \\sin(3y)$; $x(0) = C_1 = 1$ and $x'(0) = 3C_2 = 0$, so $C_2 = 0$."
+   }
+  },
+  {
+   "id": "e12",
+   "source_id": "0.2.12",
+   "source_number": "0.2.12",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "eq-fund-growth",
+   "prompt": "<p>Is there a solution to $\\kyprime = \\ky$, such that $\\ky(0) = \\ky(1)$?</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Yes, exactly one: $\\ky = 0$. Writing $t$ for the independent variable, every solution of $\\kyprime = \\ky$ is $\\ky = Ce^{t}$ (the first fundamental equation with $k = 1$), so $\\ky(0) = C$ and $\\ky(1) = Ce$. The condition $C = Ce$ gives $C(e - 1) = 0$, and since $e \\neq 1$, $C = 0$. So the only such solution is the zero function $\\ky = 0$."
+   }
+  },
+  {
+   "id": "e13",
+   "source_id": "0.2.13",
+   "source_number": "0.2.13",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-0-2-1",
+   "prompt": "<p>The population of city X was 100 thousand 20 years ago, and it was 120 thousand 10 years ago. Assuming constant growth, you can use the exponential population model (like for the bacteria). What do you estimate the population is now?</p>",
+   "answer": {
+    "type": "number",
+    "generated_by": "ai",
+    "value": 144,
+    "unit": "thousand",
+    "solution": "Let $t$ be the time in years measured from 20 years ago and $\\kP(t) = Ce^{kt}$ the population in thousands. Then $\\kP(0) = C = 100$ and $\\kP(10) = 100e^{10k} = 120$, so $e^{10k} = 1.2$ and $k = \\frac{\\ln 1.2}{10} \\approx 0.0182$. Now is $t = 20$, and $\\kP(20) = 100e^{20k} = 100 \\cdot (e^{10k})^2 = 100 \\cdot (1.2)^2 = 144$. The population is about 144 thousand."
+   }
+  },
+  {
+   "id": "e14",
+   "source_id": "0.2.14",
+   "source_number": "0.2.14",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "ex-0-2-1",
+   "prompt": "<p>Suppose that a football coach gets a salary of one million dollars now, and a raise of $10\\%$ every year (so exponential model, like population of bacteria). Let $s$ be the salary in millions of dollars, and $t$ is time in years.</p><ol type=\"a\"><li>What are $s(0)$ and $s(1)$?</li><li>Approximately how many years will it take for the salary to be 10 million?</li><li>Approximately how many years will it take for the salary to be 20 million?</li><li>Approximately how many years will it take for the salary to be 30 million?</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "ai",
+    "parts": [
+     {"part": "a) s(0)", "value": 1, "unit": "million"},
+     {"part": "a) s(1)", "value": 1.1, "unit": "million"},
+     {"part": "b)", "value": 24.2, "unit": "years"},
+     {"part": "c)", "value": 31.4, "unit": "years"},
+     {"part": "d)", "value": 35.7, "unit": "years"}
+    ],
+    "solution": "a) $s(0) = 1$ and $s(1) = 1.1$, the salary after one raise of $10\\%$. b) With $s(t) = Ce^{kt}$, $C = s(0) = 1$ and $e^{k} = s(1)/s(0) = 1.1$, so $s(t) = (1.1)^t = e^{t \\ln 1.1}$. Then $s = 10$ when $t = \\frac{\\ln 10}{\\ln 1.1} \\approx \\frac{2.3026}{0.0953} \\approx 24.2$ years. c) $s = 20$ when $t = \\frac{\\ln 20}{\\ln 1.1} \\approx 31.4$ years. d) $s = 30$ when $t = \\frac{\\ln 30}{\\ln 1.1} \\approx 35.7$ years."
+   }
+  },
+  {
+   "id": "e101",
+   "source_id": "0.2.101",
+   "source_number": "0.2.101",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "solution-claim",
+   "prompt": "<p>Show that $\\kx = e^{-2t}$ is a solution to $\\kxdprime + 4\\kxprime + 4\\kx = 0$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "Compute $\\kxprime = -2e^{-2t}$ and $\\kxdprime = 4e^{-2t}$. Then $(4e^{-2t}) + 4 (-2e^{-2t}) + 4 (e^{-2t}) = 0$."
+   }
+  },
+  {
+   "id": "e102",
+   "source_id": "0.2.102",
+   "source_number": "0.2.102",
+   "kind": "exercise",
+   "bloom": "Understand",
+   "place": {"at": "end"},
+   "cite": "solution-claim",
+   "prompt": "<p>Is $\\ky = x^2$ a solution to $x^2\\kydprime - 2\\ky = 0$? Justify.</p>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": ["Yes", "No"],
+    "correct": 0,
+    "solution": "Yes."
+   }
+  },
+  {
+   "id": "e103",
+   "source_id": "0.2.103",
+   "source_number": "0.2.103",
+   "kind": "exercise",
+   "bloom": "Analyze",
+   "place": {"at": "end"},
+   "cite": "solution-claim",
+   "prompt": "<p>Let $x\\kydprime - \\kyprime = 0$. Try a solution of the form $\\ky = x^r$. Is this a solution for some $r$? If so, find all such $r$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\ky=x^r$ is a solution for $r=0$ and $r=2$."
+   }
+  },
+  {
+   "id": "e104",
+   "source_id": "0.2.104",
+   "source_number": "0.2.104",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "initial-condition",
+   "prompt": "<p>Verify that $\\kx=C_1e^t+C_2$ is a solution to $\\kxdprime-\\kxprime = 0$. Find $C_1$ and $C_2$ so that $\\kx$ satisfies $\\kx(0) = 10$ and $\\kxprime(0) = 100$.</p>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {"part": "C₁", "value": 100},
+     {"part": "C₂", "value": -90}
+    ],
+    "solution": "$C_1 = 100$, $C_2 = -90$"
+   }
+  },
+  {
+   "id": "e105",
+   "source_id": "0.2.105",
+   "source_number": "0.2.105",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "four-fundamental-intro",
+   "prompt": "<p>Solve $\\frac{d\\varphi}{ds} = 8 \\varphi$ and $\\varphi(0) = -9$.</p>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$\\varphi = -9 e^{8s}$"
+   }
+  },
+  {
+   "id": "e106",
+   "source_id": "0.2.106",
+   "source_number": "0.2.106",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {"at": "end"},
+   "cite": "four-fundamental-intro",
+   "prompt": "<p>Solve:</p><ol type=\"a\"><li>$\\kdxdt = -4\\kx, \\quad \\kx(0)=9$</li><li>$\\kdtwoxdt = -4\\kx, \\quad \\kx(0)=1, \\quad \\kxprime(0)=2$</li><li>$\\dfrac{dp}{dq} = 3 p, \\quad p(0)=4$</li><li>$\\dfrac{d^2T}{dx^2} = 4 T, \\quad T(0)=0, \\quad T'(0)=6$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "a) $\\kx=9e^{-4t}$ b) $\\kx=\\cos(2t)+\\sin(2t)$ c) $p=4e^{3q}$ d) $T=3\\sinh(2x)$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {"exercise": "e1", "concept": "verifying-a-solution"},
+  {"exercise": "e1", "concept": "four-fundamental-equations"},
+  {"exercise": "e2", "concept": "verifying-a-solution"},
+  {"exercise": "e2", "concept": "four-fundamental-equations"},
+  {"exercise": "e3", "concept": "verifying-a-solution"},
+  {"exercise": "e3", "concept": "derivatives-of-hyperbolic-functions"},
+  {"exercise": "e4", "concept": "verifying-a-solution"},
+  {"exercise": "e4", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e5", "concept": "verifying-a-solution"},
+  {"exercise": "e5", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e6", "concept": "verifying-a-solution"},
+  {"exercise": "e6", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e7", "concept": "verifying-a-solution"},
+  {"exercise": "e7", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e8", "concept": "verifying-a-solution"},
+  {"exercise": "e8", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e9", "concept": "verifying-a-solution"},
+  {"exercise": "e9", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e10", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e11", "concept": "four-fundamental-equations"},
+  {"exercise": "e11", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e12", "concept": "general-solution"},
+  {"exercise": "e12", "concept": "four-fundamental-equations"},
+  {"exercise": "e13", "concept": "exponential-growth"},
+  {"exercise": "e13", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e14", "concept": "exponential-growth"},
+  {"exercise": "e14", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e101", "concept": "verifying-a-solution"},
+  {"exercise": "e101", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e102", "concept": "verifying-a-solution"},
+  {"exercise": "e102", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e103", "concept": "verifying-a-solution"},
+  {"exercise": "e103", "concept": "solution-to-a-differential-equation"},
+  {"exercise": "e104", "concept": "verifying-a-solution"},
+  {"exercise": "e104", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e105", "concept": "four-fundamental-equations"},
+  {"exercise": "e105", "concept": "solving-an-initial-value-problem"},
+  {"exercise": "e106", "concept": "four-fundamental-equations"},
+  {"exercise": "e106", "concept": "solving-an-initial-value-problem"}
+ ],
+ "footnotes": []
+}
