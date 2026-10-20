@@ -51,7 +51,7 @@ Inside each module, in order: learning objectives in `<md:abstract>`; the narrat
 - **Media** notes (links to applets and videos) are dropped and named in `notes`; an applet on an idea the section teaches is the trigger for a Sim of our own.
 - A **Student Project** is kept as a note at its place in the text with its numbered questions; it is not an exercise, since the book keys none of it.
 
-Exercise numbers run through the chapter: section exercises, then the review exercises. The key covers the odd-numbered ones (2872 of 5870 section exercises, 220 of 446 review exercises), inline as `<solution>`; no even one is keyed. An exercise group's stem paragraph ("For the following exercises, …") is carried by each card of the group. "[T]" stays at the head of the prompt. An unkeyed computational exercise is left out and named in `exercise_notes`; an unkeyed proof or explanation is kept with an AI-marked approach (root rule 13), unless the chapter's `config.md` says otherwise. No answer is ever generated.
+Exercise numbers run through the chapter: section exercises, then the review exercises. The key covers the odd-numbered ones (2872 of 5870 section exercises, 220 of 446 review exercises), inline as `<solution>`; no even one is keyed. An exercise group's stem paragraph ("For the following exercises, …") is carried by each card of the group. "[T]" stays at the head of the prompt. What becomes of an unkeyed exercise is the chapter's `config.md`'s to say, chosen on the exercise count report (root rule 13); the chapters built so far left a computational one out and named it in `exercise_notes`, and kept a proof or explanation with an AI-marked approach. A keyed answer always comes from the book's solution.
 
 ## Licence and attribution
 
