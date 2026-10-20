@@ -1,0 +1,118 @@
+<section id="opening">
+<p>We saw earlier that the electric field can be represented in terms of <span data-concept="field-mode-expansion">a set of quantized harmonic oscillator modes</span>,</p>
+<div class="equation" id="eq-9-1">$$\hat{\mathbf{E}} = \sum_{k,\alpha}\sqrt{\frac{\hbar\komegak}{2\epsilon_0 \kV}}\hat{\epsilon}_\alpha\left(\hat{a}_{k,\alpha}e^{i(\kk\cdot\mathbf{r} - \komegak \kt)} + h.c.\right), \tag{9.1}$$</div>
+<p>where $\komegak$ and $\hat{\epsilon}_\alpha$ are the frequency and <span data-concept="light-polarization">polarization</span> of the mode $\{k, \alpha\}$. Note that this expression is in the <span data-concept="heisenberg-picture">Heisenberg picture</span>, and has the time dependence of the <span data-concept="creation-annihilation-operators">annihilation operators</span> explicitly written out, so $\hat{a}_{k,\alpha}$ above is the time-dependent <span data-concept="creation-annihilation-operators">annihilation operator</span> evaluated at $\kt = 0$. The <span data-concept="hamiltonian">Hamiltonian</span> for such a field can also be expressed in terms of the <span data-concept="creation-annihilation-operators">creation and annihilation operators</span>,</p>
+<div class="equation" id="eq-9-2">$$\kH = \frac{1}{2}\int dV\left(\epsilon_0 E^2 + \frac{B^2}{\mu_0}\right) \tag{9.2}$$</div>
+<div class="equation" id="eq-9-3">$$= \sum_{k,\alpha}\hbar\komegak\left(\hat{a}^\dagger_{k,\alpha}\hat{a}_{k,\alpha} + \frac{1}{2}\right), \tag{9.3}$$</div>
+<p>and its eigenbasis is formed by the <span data-concept="fock-states" id="fock">number states or “Fock” states</span> $\{|n_{k,\alpha}\rangle\}$ obeying</p>
+<div class="equation" id="eq-9-4">$$\hat{n}_{k,\alpha}|n_{k,\alpha}\rangle = \hat{a}^\dagger_{k,\alpha}\hat{a}_{k,\alpha}|n_{k,\alpha}\rangle = n_{k,\alpha}|n_{k,\alpha}\rangle \tag{9.4}$$</div>
+<p>where $n_{k,\alpha}$ is the number of photons in the mode $\{k, \alpha\}$.</p>
+<p>Many properties of quantum fields can be understood by <span data-concept="single-mode-field" id="single-mode">examining the evolution of a single mode</span>. Such a description is also quantitatively appropriate for atoms interacting with the quantum field of a high <span data-concept="cavity-finesse">finesse</span> cavity, so we will frequently simplify our discussion by considering only <span data-concept="single-mode-field">a single mode</span>.</p>
+</section>
+
+<section id="thermal">
+<h2>9.1.1 Thermal states</h2>
+<p>A <span data-concept="single-mode-field">single mode</span> field in thermal equilibrium with its <span data-concept="open-system">environment</span> at temperature $\kT$ can be described by a <span data-concept="density-operator">density operator</span></p>
+<div class="equation" id="eq-9-5">$$\krhohat = \frac{e^{-\kH/k_B \kT}}{\mathrm{Tr}[e^{-\kH/k_B \kT}]}. \tag{9.5}$$</div>
+<p>Expressed in the Fock basis, the <span data-concept="density-matrix">density matrix</span> is purely diagonal with elements</p>
+<div class="equation" id="eq-9-6">$$\krhonn = e^{-n\hbar\komega/k_B \kT}\cdot(1 - e^{-\hbar\komega/k_B \kT}) \tag{9.6}$$</div>
+<p>corresponding to the probability to find $n$ photons in the cavity.</p>
+<p>The resulting probability distribution for photon number is known as the <span data-concept="photon-statistics" id="photon-statistics">“photon distribution” or “photon statistics”</span>. <span data-concept="thermal-photon-distribution">The thermal state</span> is most likely to have zero photons in it, and <span data-concept="mean-photon-number" id="mean-photon-number">the average number</span></p>
+<div class="equation" id="eq-9-7">$$\knbar = \sum_n n\krhonn = \frac{1}{e^{\hbar\komega/k_B \kT} - 1} \tag{9.7}$$</div>
+<p>reflects the fact that photons obey <span data-concept="bose-einstein-distribution">Bose-Einstein statistics</span> with $\mu = 0$. The expectation value of the electric field vanishes</p>
+<div class="equation" id="eq-9-8">$$\langle\kEhat\rangle \propto \langle\hat{a}\rangle = 0 \tag{9.8}$$</div>
+<p>because <span data-concept="thermal-photon-distribution">the thermal field</span> is incoherent, and thus has an undefined phase.</p>
+<p>Note that <span data-concept="photon-statistics">photon statistics</span> in <span data-concept="multimode-thermal-statistics" id="multimode-thermal">a multimode thermal field</span> look very different than this <span data-concept="single-mode-field">single mode</span> example. Whereas each mode in a multimode field would most likely contain no photons, when one sums over all such <span data-concept="cavity-modes">modes</span>, the most likely total photon number will be finite and the distribution looks more like a Poissonian. For example, sunlight corresponds to <span data-concept="multimode-thermal-statistics">a multimode thermal field</span>. In order to probe the <span data-concept="photon-statistics">photon statistics</span> associated with the thermal nature of sunlight, it is necessary to design an experiment in which the sunlight acts as if it were <span data-concept="single-mode-field">a single-mode field</span>. One way to do this would be to simultaneously filter the sunlight to a bandwidth $\Delta\omega$ and observe the photon arrival times using a detector which is gated for a time much shorter than $1/\Delta\omega$.</p>
+</section>
+
+<section id="coherent">
+<h2>9.1.2 Coherent states</h2>
+<p>To understand the correspondence between our semi-classical description and the quantum mechanical approach, it is desirable to find a quantum state which corresponds to the classical coherent field of a laser. The defining characteristic of the laser field is a well defined, finite <span data-concept="expectation-value">expectation value</span> for the electric field, so we seek a state $|\kpsi\rangle$ satisfying</p>
+<div class="equation" id="eq-9-9">$$\langle\kpsi|\kEhat|\kpsi\rangle = E. \tag{9.9}$$</div>
+<p>We have seen that <span data-concept="thermal-photon-distribution">the thermal state</span> does not have a finite electric field expectation value, and the <span data-concept="fock-states">Fock states</span> likewise have vanishing electric field. Motivated by <a href="#eq-9-9">Eq. (9.9)</a>, we will consider an eigenstate $|\kalphacoh\rangle$ of the photon <span data-concept="creation-annihilation-operators">annihilation operator</span>,</p>
+<div class="equation" id="eq-9-10">$$\hat{a}|\kalphacoh\rangle = \kalphacoh|\kalphacoh\rangle. \tag{9.10}$$</div>
+<p>This so-called <span data-concept="coherent-state" id="coherent-state">“coherent state”</span> in fact corresponds to classical laser light.</p>
+<p>As we hoped, <span data-concept="coherent-state">the coherent state</span> has a well-defined expectation value for the electric field</p>
+<div class="equation" id="eq-9-11">$$\langle\kalphacoh|\kEhat|\kalphacoh\rangle = \sqrt{\frac{\hbar\komega}{2\epsilon_0 \kV}}\left(\kalphacoh e^{i(\kk\cdot\mathbf{r} - i\komega \kt)} + c.c.\right), \tag{9.11}$$<sup class="fn" data-note="c-eq-9-11"></sup></div>
+<p>and the <span data-concept="mean-photon-number">average number</span> of photons in <span data-concept="coherent-state">the coherent state</span> is</p>
+<div class="equation" id="eq-9-12">$$\langle\kalphacoh|\hat{a}^\dagger\hat{a}|\kalphacoh\rangle = |\kalphacoh|^2. \tag{9.12}$$</div>
+
+<h3>The quadrature components</h3>
+<p>In analogy to the <span data-concept="field-quadratures">position and momentum operators</span> of the simple harmonic oscillator, we can introduce <span data-concept="quadrature-operators" id="quadrature-operators">the quadrature operators</span></p>
+<div class="equation" id="eq-9-13">$$\kxquad = \frac{1}{\sqrt{2}}\left(\hat{a} + \hat{a}^\dagger\right) \tag{9.13}$$</div>
+<div class="equation" id="eq-9-14">$$\kpquad = \frac{1}{i\sqrt{2}}\left(\hat{a} - \hat{a}^\dagger\right). \tag{9.14}$$</div>
+<p>The uncertainty in these operators,</p>
+<div class="equation" id="eq-9-15">$$\langle\delta x^2\rangle = \frac{1}{2} \tag{9.15}$$</div>
+<div class="equation" id="eq-9-16">$$\langle\delta p^2\rangle = \frac{1}{2}, \tag{9.16}$$</div>
+<p>is the <span data-concept="coherent-state-uncertainty" id="most-classical">“most classical”</span> we could hope for, since the Heisenberg <span data-concept="heisenberg-uncertainty-principle">uncertainty principle</span> limits $\delta x\delta p \geq 1/2$ The <span data-concept="quadrature-operators">quadrature operators</span> have a well defined physical meaning for the electromagnetic field. The electric field operator given by <a href="#eq-9-1">Eq. (9.1)</a> can be re-written in terms of the two components</p>
+<div class="equation" id="eq-9-17">$$\kEhat \propto \kxquad\cos\komega \kt + \kpquad\sin\komega \kt. \tag{9.17}$$</div>
+<p>For example, if this electric field is mixed with some other field (referred to as a <span data-concept="local-oscillator" id="local-oscillator">“local oscillator”</span>)</p>
+<div class="equation" id="eq-9-18">$$E_{LO} \sim \cos\komega \kt, \tag{9.18}$$</div>
+<p>then $\kxquad$ would yield the<span data-concept="quadrature-operators">“in phase”</span> component while $\kpquad$ gives the <span data-concept="quadrature-operators">“out of phase”</span> component.</p>
+
+<h3>The shift operator</h3>
+<p><span data-concept="coherent-state">Coherent states</span> can be generated from the vacuum state by the <span data-concept="shift-operator" id="shift-operator">“shift operator”</span></p>
+<div class="equation" id="eq-9-19">$$\kDshift = e^{\kalphacoh\hat{a}^\dagger - \kalphacoh^*\hat{a}}, \tag{9.19}$$</div>
+<p>which shifts the state in the plane of $\kxquad$ and $\kpquad$ so that $\kDshift|0\rangle = |\kalphacoh\rangle$. Similarly,</p>
+<div class="equation" id="eq-9-20">$$\hat{D}^{-1}(\kalphacoh)\hat{a}\kDshift = \hat{a} + \kalphacoh. \tag{9.20}$$</div>
+<p>To prove <a href="#eq-9-19">Eq. 9.19</a>, we will use the fact that if two operators satisfy $[\hat{A}, [\hat{A}, \hat{B}]] = [\hat{B}, [\hat{A}, \hat{B}]] = 0$, then</p>
+<div class="equation" id="eq-9-21">$$e^{\hat{A}+\hat{B}} = e^{\hat{A}}e^{\hat{B}}e^{-[\hat{A},\hat{B}]/2}. \tag{9.21}$$</div>
+<p>Consequently, when the <span data-concept="shift-operator">shift operator</span> acts on the vacuum, it generates a <span data-concept="coherent-state">coherent state</span>.</p>
+<figure class="dv" id="drv-shift-operator-on-vacuum"></figure>
+
+<h3>Photon statistics in a coherent state</h3>
+<p>The probability to find $n$ photons in a <span data-concept="coherent-state">coherent state</span> <span data-concept="poisson-photon-statistics" id="poisson">follows a Poisson distribution</span>, which has variance equal to its mean.</p>
+<figure class="dv" id="drv-coherent-photon-statistics"></figure>
+<p>For strong fields, $n \gg 1$,<sup class="fn" data-note="c-n-strong"></sup> the standard deviation $\sqrt{\langle\Delta n^2\rangle}$ is much smaller than the mean, so the intensity becomes better defined as the coherent field becomes larger.</p>
+<figure class="sim" id="sim-coherent" data-figure="9.1 + 9.2" data-original="/media/ch09/fig-9-1.png,/media/ch09/fig-9-2.png" data-original-caption="(Figure 9.1) Any coherent state can be represented by an area in {x̂, p̂} phase space. The distance to the origin is proportional to the absolute value of the coherent state |α|, while the angle is the argument of α. The uncertainty in the quadrature operators is represented by a circle with a diameter of √2. Note that other textbooks choose to define x̂ = ½(â + â†), p̂ = (1/2i)(â − â†), which gets rid of the √2 factors. (Figure 9.2) The photon number distribution for a coherent state with |α|² = 10.">
+  <div class="sim-head"><span class="eyebrow">Figure 9.1 + 9.2</span><span>On the left, <span data-concept="coherent-state">the coherent state</span> $|\kalphacoh\rangle$ in the plane of $\kxquad$ and $\kpquad$: a circle of diameter $\sqrt{2}$, the <span data-concept="coherent-state-uncertainty">uncertainty</span> $\langle\delta x^2\rangle = \langle\delta p^2\rangle = 1/2$ of each quadrature, a distance $\sqrt{2}|\kalphacoh|$ from the origin at the angle $\kphi$, the argument of $\kalphacoh$. The dashed line turns at $\komega$ and picks out the quadrature $\kxquad\cos\komega\kt + \kpquad\sin\komega\kt$, to which the field is proportional by <a href="#eq-9-17">Eq. (9.17)</a>; the circle's shadow on it is traced on the lower right as a band about the mean field. Above it is <span data-concept="poisson-photon-statistics">the photon number distribution</span> $\krhonn$ of the same state. Drag $|\kalphacoh|$ and watch the mean photon number grow as $|\kalphacoh|^2$ but its spread only as $|\kalphacoh|$, while the circle and the band keep their size; drag $\kphi$ to slide the field from <span data-concept="quadrature-operators">in phase</span> with the <span data-concept="local-oscillator">local oscillator</span> $\cos\komega\kt$ to <span data-concept="quadrature-operators">out of phase</span>. The field is in units of $\sqrt{\hbar\komega/\epsilon_0\kV}$.</span></div>
+</figure>
+
+<h3>Classical dipole radiation</h3>
+<p id="dipole-radiation">The <span data-concept="coherent-state">coherent state</span> also corresponds to <span data-concept="classical-dipole-radiation" id="dipole-field">the field produced by a classical oscillating dipole</span>. To see this, consider the <span data-concept="hamiltonian">Hamiltonian</span> for such a dipole,</p>
+<div class="equation" id="eq-9-29">$$\kH = -d\kEhat = -d_0\cos\komega \kt\kEhat. \tag{9.29}$$</div>
+<p>Moving back to the Schrodinger picture, and working in the <span data-concept="rotating-wave-approximation">RWA</span> and the <span data-concept="rotating-frame">rotating frame</span>, the <span data-concept="hamiltonian">Hamiltonian</span> becomes $-(d_0E_0/2)\hat{a}^\dagger + h.c.$, so that after a time $\kt$ the <span data-concept="time-evolution-operator">time evolution operator</span> acts as the <span data-concept="shift-operator">shift operator</span>:</p>
+<div class="equation" id="eq-9-30">$$|\kpsi\rangle = e^{-i\kH\kt/\hbar}|0\rangle = e^{\kalphacoh\hat{a} - \kalphacoh^*\hat{a}^\dagger}|0\rangle \tag{9.30}$$<sup class="fn" data-note="c-eq-9-30"></sup></div>
+<p>where $\kalphacoh = id_0E_0\kt/2\hbar$.</p>
+
+<h3>Generalization to multimode fields</h3>
+<p>These properties of the <span data-concept="coherent-state">coherent state</span> show that they do indeed provide a quantum description of classical laser light. The <span data-concept="coherent-state">coherent states</span>, however, can also be generalized to multimode situations by <span data-concept="multimode-coherent-state" id="multimode-coherent">taking the direct product of a coherent state in each mode</span>.</p>
+<div class="equation" id="eq-9-31">$$|\kpsi\rangle = \prod_k|\kalphacoh_k\rangle. \tag{9.31}$$</div>
+<p>The expectation value of the electric field in <span data-concept="multimode-coherent-state">this multimode state</span> is</p>
+<div class="equation" id="eq-9-32">$$E(r, \kt) = \langle\kpsi|\kEhat|\kpsi\rangle \tag{9.32}$$</div>
+<div class="equation" id="eq-9-33">$$= \sum_k\underbrace{\sqrt{\frac{\hbar\komegak}{2\epsilon_0 \kV}}\kalphacoh_k}_{E_k}e^{i(\kk\cdot\mathbf{r} - i\komegak \kt)} + c.c. \tag{9.33}$$<sup class="fn" data-note="c-eq-9-33"></sup></div>
+<p>where $E_k$ is the Fourier component of the $k^{th}$ mode of the classical field.</p>
+
+<h3>Quasi-probability distributions</h3>
+<p>Whereas the <span data-concept="fock-states">number states</span> formed a basis for the electromagnetic field, <span data-concept="coherent-state-overcompleteness" id="overcomplete">the coherent states form an overcomplete set</span>. We can prove completeness by showing that the identity operator is proportional to the sum of all <span data-concept="coherent-state">coherent states</span>.</p>
+<figure class="dv" id="drv-coherent-state-completeness"></figure>
+<p>However, using <a href="#drv-shift-operator-on-vacuum">Eq. (9.24)</a>, we can directly verify that different <span data-concept="coherent-state">coherent states</span> are not orthogonal, so they provide an unnecessarily large set of states for describing an arbitrary field.</p>
+<figure class="dv" id="drv-coherent-state-overlap"></figure>
+<p>The <span data-concept="coherent-state">coherent state</span> representation of a <span data-concept="density-operator">density operator</span> $\krhohat$ nevertheless remains useful, and we define <span data-concept="p-representation" id="p-representation">the quasi-probability distribution $\kPalpha$</span> by</p>
+<div class="equation" id="eq-9-40">$$\krhohat = \int\kPalpha|\kalphacoh\rangle\langle\kalphacoh|d^2\kalphacoh. \tag{9.40}$$</div>
+<p>This <span data-concept="p-representation">quasi-probability distribution</span> has some interesting properties. Firstly, it acts like a probability distribution when you consider the <span data-concept="expectation-value">expectation value</span> of any normally ordered operator $\hat{O}$:</p>
+<div class="equation" id="eq-9-41">$$\langle\hat{O}\rangle = \int\kPalpha\langle\kalphacoh|\hat{O}|\kalphacoh\rangle d^2\kalphacoh \tag{9.41}$$</div>
+<div class="equation" id="eq-9-42">$$= \int\kPalpha O(\kalphacoh)d^2\kalphacoh \tag{9.42}$$</div>
+<p>Second, it is worth noting that this distribution always exists, and can be found using the formula</p>
+<div class="equation" id="eq-9-43">$$\kPalpha = \frac{e^{|\kalphacoh|^2}}{\pi^2}\int\langle-\beta|\rho|\beta\rangle e^{|\beta|^2}e^{-\beta\kalphacoh^* + \beta^*\kalphacoh}d^2\beta. \tag{9.43}$$</div>
+<p>This relationship can be derived after a bit of algebra by calculating $\langle-\beta|\rho|\beta\rangle$ (see <em>e.g.</em>, Scully and Zubairy, p. 76).</p>
+<p>The <span data-concept="p-representation">quasi-probability distribution</span> $\kPalpha$ is not a proper probability distribution because it can take on negative values. In particular, the negative values are associated with <span data-concept="nonclassical-light" id="nonclassical">non-classical properties of the electromagnetic field</span>, and mark a boundary between quantum and classical states.</p>
+
+<h3>Linear optical transformations of coherent states</h3>
+<p><span data-concept="linear-optical-transformations" id="linear-transformations">Linear transformations are defined as effects independent of the incident light power</span>, and a <span data-concept="coherent-state">coherent state</span> will remain a <span data-concept="coherent-state">coherent state</span> under a <span data-concept="linear-optical-transformations">linear transformation</span>. The simplest examples of <span data-concept="linear-optical-transformations">linear transformations</span> are phase shifts and <span data-concept="beamsplitter-transformation">beam splitters</span>. As its name might imply, the phase shift only changes the phase of a <span data-concept="coherent-state">coherent state</span></p>
+<div class="equation" id="eq-9-44">$$E \rightarrow Ee^{i\kphi} \Rightarrow \hat{a} \rightarrow \hat{a}e^{i\kphi}. \tag{9.44}$$</div>
+<p><span data-concept="beamsplitter-transformation" id="beamsplitter">A beamsplitter characterized by a transmission amplitude $t$ and reflection amplitude $r$</span> transforms two input electric fields $E_1^\mathrm{in}, E_1^\mathrm{in}$<sup class="fn" data-note="c-e-in"></sup> into two output electric field<sup class="fn" data-note="footnote-1"></sup></p>
+<div class="equation" id="eq-9-45">$$E_1^\mathrm{out} = tE_1^\mathrm{in} + irE_2^\mathrm{in} \tag{9.45}$$</div>
+<div class="equation" id="eq-9-46">$$E_2^\mathrm{out} = tE_2^\mathrm{in} + irE_1^\mathrm{in}. \tag{9.46}$$</div>
+<p>Since these are linear relations, the same must hold true for the photon <span data-concept="creation-annihilation-operators">annihilation operators</span>:</p>
+<div class="equation" id="eq-9-48">$$\hat{a}_1^\mathrm{out} = t\hat{a}_1^\mathrm{in} + ir\hat{a}_2^\mathrm{in} \tag{9.48}$$</div>
+<div class="equation" id="eq-9-49">$$\hat{a}_2^\mathrm{out} = t\hat{a}_2^\mathrm{in} + ir\hat{a}_1^\mathrm{in}. \tag{9.49}$$</div>
+<p>Suppose that the inputs are $|\kalphacoh_1\rangle|\kalphacoh_2\rangle$. The resulting output field obeys</p>
+<div class="equation" id="eq-9-50">$$\hat{a}_1^\mathrm{out}|\kalphacoh_1\rangle|\kalphacoh_2\rangle = (t\kalphacoh_1^\mathrm{in} + ir\kalphacoh_2^\mathrm{in})|\kalphacoh_1\rangle|\kalphacoh_2\rangle, \tag{9.50}$$</div>
+<p>which is thus also a <span data-concept="coherent-state">coherent state</span>. The bottom line is that <span data-concept="linear-optical-transformations">linear optical operations</span> do not change the quantum statistical properties of <span data-concept="coherent-state">coherent states</span>.</p>
+<p>Note that <span data-concept="beamsplitter-unitary" id="beamsplitter-unitary">the beam splitter transformation can be viewed as resulting from a coupling of two simple harmonic oscillators</span>, since</p>
+<div class="equation" id="eq-9-51">$$\begin{pmatrix} \hat{a}_1 \\ \hat{a}_2 \end{pmatrix}^\mathrm{out} = \hat{U}\begin{pmatrix} \hat{a}_1 \\ \hat{a}_2 \end{pmatrix}^\mathrm{in} \tag{9.51}$$</div>
+<p>where the unitary operator</p>
+<div class="equation" id="eq-9-52">$$\hat{U} = e^{i\ktheta\hat{a}_1\hat{a}_2^\dagger + i\ktheta\hat{a}_2\hat{a}_1^\dagger} \tag{9.52}$$</div>
+<p>can be written in terms of a parameter $\ktheta$ related to the transmission and reflection coefficients.</p>
+</section>

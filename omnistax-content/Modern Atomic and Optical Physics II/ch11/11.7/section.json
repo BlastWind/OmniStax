@@ -1,0 +1,329 @@
+{
+ "id": "11.7",
+ "chapter": "11",
+ "title": "Higher-order coherence of atomic matter waves",
+ "short": "Higher-order coherence",
+ "lead": "Whether atomic interactions can make <span data-concept=\"nonclassical-matter-requirements\">non-classical states of matter</span>: a toy model of $N$ atoms tunnelling between the two sides of a <span data-concept=\"double-well-model\">double-well potential</span>, without interactions and with strong repulsion, and the <span data-concept=\"optical-lattice-potential\">optical lattice potentials</span> that confine atoms in arrays of such wells.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "MIT 8.422 Problem Set 4, Problem 2 is set in five parts, restated in Lukin's notation with AI-written solutions, since the course published no key; its numerical parts are held for want of a key: the deBroglie wavelength of a ⁶Li MOT at 500 µK and the bound on its size in (b), the detector's timing resolution in (c)(ii), and the order of magnitude of the cell's growth and the occupations of a cell in (d). The problem detects atoms one at a time where this section works with a double well; it is the course's one problem on the higher-order coherence of matter waves.",
+ "figures": [
+  {
+   "id": "sim-double-well",
+   "kind": "sim",
+   "number": "11.13",
+   "originals": [
+    "/media/ch11/fig-11-13.png"
+   ],
+   "original_caption": "A double-well potential for cold atoms. A finite barrier separates the two localized states, so atoms can tunnel between them at rate $t$. This tunnelling produces two delocalized states: the ground state is a symmetric combination of left and right $|+\\rangle = (1/\\sqrt{2})\\left(|L\\rangle + |R\\rangle\\right)$, and the excited state $|-\\rangle = (1/\\sqrt{2})\\left(|L\\rangle - |R\\rangle\\right)$ is higher in energy by $2t$.",
+   "draws": [
+    "coupling",
+    "energy",
+    "population"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "double-well-span",
+   "concept": "double-well-model",
+   "verb": "introduces"
+  },
+  {
+   "span": "coherent-gs",
+   "concept": "double-well-coherent-ground-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "fock-gs",
+   "concept": "double-well-fock-ground-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "nonclassical",
+   "concept": "nonclassical-matter-requirements",
+   "verb": "introduces"
+  },
+  {
+   "span": "lattice-potential",
+   "concept": "optical-lattice-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "nonclassical-light",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "second-order-correlation",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "bose-condensation",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "condensate-interference-fringes",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "gross-pitaevskii-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "double-well",
+   "concept": "second-quantization",
+   "verb": "uses"
+  },
+  {
+   "span": "double-well",
+   "concept": "coherent-state",
+   "verb": "uses"
+  },
+  {
+   "span": "double-well",
+   "concept": "coherent-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "double-well",
+   "concept": "fock-states",
+   "verb": "uses"
+  },
+  {
+   "span": "double-well",
+   "concept": "dissipation-destroys-nonclassicality",
+   "verb": "uses"
+  },
+  {
+   "span": "double-well",
+   "concept": "optical-lattice",
+   "verb": "uses"
+  },
+  {
+   "span": "double-well",
+   "concept": "s-wave-scattering-length",
+   "verb": "uses"
+  },
+  {
+   "span": "double-well",
+   "concept": "feshbach-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "optical-lattice",
+   "concept": "dipole-force",
+   "verb": "uses"
+  },
+  {
+   "span": "optical-lattice",
+   "concept": "ac-stark-shift",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "hw4-2a",
+   "source_id": "hw4.2a",
+   "source_number": "Problem Set 4, Problem 2(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the problem's setting is repeated at the start of the part and its figure, after Baym's Lectures on Quantum Mechanics, is described in words.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order",
+   "prompt": "This problem illustrates the coherence and collimation requirements for performing a Hanbury Brown and Twiss (HBT) experiment with atoms (ignore gravity). If a free particle starts at point $A$ at time $t = 0$ with an amplitude (wavefunction) $\\psi_A$, then the amplitude at another point 1 and time $t = \\tau$ is proportional to $\\psi_A e^{i(\\mathbf{k}\\cdot\\mathbf{r}_{A1} - \\omega\\tau)}$, where $\\mathbf{r}_{A1}$ is the vector from $A$ to 1, $\\mathbf{k}$ is the particle's wavevector, and $\\hbar\\omega$ is its total energy. Particles leave points $A$ and $B$ of a source of transverse dimension $W$ and are detected at points 1 and 2 of a detector of transverse dimension $w$, a distance $d$ away. Assume we have a particle at $A$ with amplitude $\\psi_A$ and one at $B$ with amplitude $\\psi_B$. The joint probability $P$ of finding one particle at 1 and one at 2 is $$P = \\left|\\psi_A e^{i\\phi_{A1}}\\psi_B e^{i\\phi_{B2}} \\pm \\psi_A e^{i\\phi_{A2}}\\psi_B e^{i\\phi_{B1}}\\right|^2$$ and is proportional to the second-order coherence function $g^{(2)}(1, 2)$. The $\\pm$ is for bosons/fermions and makes the two-particle wavefunction symmetric/antisymmetric under the exchange of particles. Here, $\\phi_{A1} = \\mathbf{k}_A\\cdot\\mathbf{r}_{A1} - \\omega\\tau$ is the phase factor for the path from point $A$ to detector 1, etc. Calculate $P$ as a function of $\\mathbf{r}_{21}$, the vector from point 2 to point 1 on the detector.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Factoring out the amplitudes, $$P = |\\psi_A|^2|\\psi_B|^2\\left|e^{i(\\phi_{A1}+\\phi_{B2})} \\pm e^{i(\\phi_{A2}+\\phi_{B1})}\\right|^2 = 2|\\psi_A|^2|\\psi_B|^2\\left[1 \\pm \\cos(\\phi_{A1}+\\phi_{B2}-\\phi_{A2}-\\phi_{B1})\\right].$$ The energies cancel in the difference, since each term carries both particles' $-\\omega\\tau$. With $\\mathbf{r}_{A1} - \\mathbf{r}_{A2} = \\mathbf{r}_1 - \\mathbf{r}_2 = \\mathbf{r}_{21}$ and $\\mathbf{r}_{B2} - \\mathbf{r}_{B1} = -\\mathbf{r}_{21}$, the phase is $(\\mathbf{k}_A - \\mathbf{k}_B)\\cdot\\mathbf{r}_{21}$, so $$P = 2|\\psi_A|^2|\\psi_B|^2\\left[1 \\pm \\cos\\left((\\mathbf{k}_A - \\mathbf{k}_B)\\cdot\\mathbf{r}_{21}\\right)\\right].$$ Distinguishable particles would give the constant $2|\\psi_A|^2|\\psi_B|^2$, so $g^{(2)}(1,2) = 1 \\pm \\cos((\\mathbf{k}_A - \\mathbf{k}_B)\\cdot\\mathbf{r}_{21})$: at $\\mathbf{r}_{21} = 0$ bosons arrive together twice as often ($g^{(2)} = 2$, bunching) and fermions never ($g^{(2)} = 0$, antibunching), the atomic counterpart of the bunching and antibunching of light in Section 9.3."
+   }
+  },
+  {
+   "id": "hw4-2b",
+   "source_id": "hw4.2b",
+   "source_number": "Problem Set 4, Problem 2(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the problem's setting is repeated at the start of the part and its figure, after Baym's Lectures on Quantum Mechanics, is described in words; MIT's $\\lambda_{dB}$, the deBroglie wavelength $h/p$ at $\\mathbf{k}_0$, is said not to be the thermal $\\lambda_{dB}$ of Eq. (11.1); the numerical estimate for a ${}^6$Li MOT at 500 µK with $d = 10$ cm is left out.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order",
+   "prompt": "This problem illustrates the coherence and collimation requirements for performing a Hanbury Brown and Twiss (HBT) experiment with atoms (ignore gravity). If a free particle starts at point $A$ at time $t = 0$ with an amplitude (wavefunction) $\\psi_A$, then the amplitude at another point 1 and time $t = \\tau$ is proportional to $\\psi_A e^{i(\\mathbf{k}\\cdot\\mathbf{r}_{A1} - \\omega\\tau)}$, where $\\mathbf{r}_{A1}$ is the vector from $A$ to 1, $\\mathbf{k}$ is the particle's wavevector, and $\\hbar\\omega$ is its total energy. Particles leave points $A$ and $B$ of a source of transverse dimension $W$ and are detected at points 1 and 2 of a detector of transverse dimension $w$, a distance $d$ away. Assume you are given a source (e.g. a ball of trapped atoms) with transverse dimension $W$ and detector with transverse dimension $w$ where $|\\mathbf{r}_{21}| \\le w$. The distance between source and detector $d$ is much greater than all other distances. The transverse component of the phase factor in part (a), whose $P = 2|\\psi_A|^2|\\psi_B|^2[1 \\pm \\cos((\\mathbf{k}_A - \\mathbf{k}_B)\\cdot\\mathbf{r}_{21})]$, can be written: $\\phi_t = (\\mathbf{k}_A - \\mathbf{k}_B)_t\\cdot(\\mathbf{r}_{21})_t$. Assume that the signal at the detector is mainly due to atoms with wavevectors distributed around $\\mathbf{k}_0$. Argue that the transverse collimation required to see second order correlation effects can be expressed as $Ww \\ll d\\lambda_{dB}$, where $\\lambda_{dB}$ is the deBroglie wavelength corresponding to $\\mathbf{k}_0$, $2\\pi/|\\mathbf{k}_0| = h/p$, not the thermal deBroglie wavelength of Eq. (11.1). (Hint: How does $\\phi_t$ vary for atoms originating at different points in the source and being detected at different points on the detector?)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An atom of wavevector magnitude $k_0$ that leaves the source at transverse position $\\mathbf{x}_s$ and reaches the detector at $\\mathbf{x}_d$ travels nearly along the axis, with transverse wavevector $\\mathbf{k}_t \\approx k_0(\\mathbf{x}_d - \\mathbf{x}_s)/d$. For the two atoms of a coincidence, from $A$ and $B$, the difference $(\\mathbf{k}_A - \\mathbf{k}_B)_t$ ranges up to about $k_0W/d$ as $A$ and $B$ run over the source, and $(\\mathbf{r}_{21})_t$ ranges up to $w$, so $$|\\phi_t| \\lesssim \\frac{k_0Ww}{d} = \\frac{2\\pi Ww}{d\\lambda_{dB}}.$$ The signal sums over all source points and detector points. If $\\phi_t$ varies by $2\\pi$ or more across them, the cosine of part (a) averages away and $P$ falls to the constant of distinguishable particles. The correlation survives only if $\\phi_t \\ll 2\\pi$ for every pair, that is $$Ww \\ll d\\lambda_{dB}:$$ seen from the detector, the source must be smaller than one transverse coherence length $d\\lambda_{dB}/w$."
+   }
+  },
+  {
+   "id": "hw4-2c-i",
+   "source_id": "hw4.2ci",
+   "source_number": "Problem Set 4, Problem 2(c)(i)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the problem's setting is repeated at the start of the part and its figure, after Baym's Lectures on Quantum Mechanics, is described in words; MIT's width $\\gamma$ in $p(\\mathbf{k}_A - \\mathbf{k}_B) = e^{-|\\mathbf{k}_A - \\mathbf{k}_B|^2\\gamma^2}$ is written with $\\Delta k = 1/\\gamma$, since $\\gamma$ is a decay rate in Lukin.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order",
+   "prompt": "This problem illustrates the coherence and collimation requirements for performing a Hanbury Brown and Twiss (HBT) experiment with atoms (ignore gravity). If a free particle starts at point $A$ at time $t = 0$ with an amplitude (wavefunction) $\\psi_A$, then the amplitude at another point 1 and time $t = \\tau$ is proportional to $\\psi_A e^{i(\\mathbf{k}\\cdot\\mathbf{r}_{A1} - \\omega\\tau)}$, where $\\mathbf{r}_{A1}$ is the vector from $A$ to 1, $\\mathbf{k}$ is the particle's wavevector, and $\\hbar\\omega$ is its total energy. Particles leave points $A$ and $B$ of a source of transverse dimension $W$ and are detected at points 1 and 2 of a detector of transverse dimension $w$, a distance $d$ away. The longitudinal component of the phase factor in part (a), whose $P = 2|\\psi_A|^2|\\psi_B|^2[1 \\pm \\cos((\\mathbf{k}_A - \\mathbf{k}_B)\\cdot\\mathbf{r}_{21})]$, can be written: $\\phi_l = (\\mathbf{k}_A - \\mathbf{k}_B)_l\\cdot(\\mathbf{r}_{21})_l$. Assume a Gaussian distribution of wavevector differences $p(\\mathbf{k}_A - \\mathbf{k}_B) = e^{-|\\mathbf{k}_A - \\mathbf{k}_B|^2/\\Delta k^2}$ where the width $\\Delta k$ is related to the temperature of the atoms. Calculate $\\langle P\\rangle$ using this distribution and your result from part (a). Sketch $\\langle P\\rangle$ for both fermions and bosons, indicating the extent of $(\\mathbf{r}_{21})_l$ over which the second order correlation effect can be seen. (Hint: Use the fact that $\\phi_t \\ll 2\\pi$ from part (b) to simplify the integral.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\phi_t \\ll 2\\pi$ only the longitudinal phase matters: $P = 2|\\psi_A|^2|\\psi_B|^2[1 \\pm \\cos(q x)]$, with $q = (\\mathbf{k}_A - \\mathbf{k}_B)_l$ and $x = (\\mathbf{r}_{21})_l$. Averaging over the normalized Gaussian, $$\\langle\\cos(qx)\\rangle = \\int_{-\\infty}^{\\infty}\\frac{e^{-q^2/\\Delta k^2}}{\\sqrt{\\pi}\\,\\Delta k}\\cos(qx)\\,dq = e^{-\\Delta k^2x^2/4},$$ so $$\\langle P\\rangle = 2|\\psi_A|^2|\\psi_B|^2\\left[1 \\pm e^{-\\Delta k^2(\\mathbf{r}_{21})_l^2/4}\\right].$$ For bosons $\\langle P\\rangle$ is a Gaussian bump rising to twice the background at $(\\mathbf{r}_{21})_l = 0$; for fermions it is a Gaussian dip to zero there. Both return to the background $2|\\psi_A|^2|\\psi_B|^2$ beyond $|(\\mathbf{r}_{21})_l| \\approx 2/\\Delta k$, the extent of the correlation. For a thermal gas each wavevector component spreads as $e^{-\\hbar^2k^2/2mk_BT}$, so the difference has $\\Delta k^2 = 4mk_BT/\\hbar^2$ and the exponent is $-2\\pi(\\mathbf{r}_{21})_l^2/\\lambda_\\mathrm{dB}^2$ with the thermal $\\lambda_\\mathrm{dB}$ of Eq. (11.1): the correlation extends over about a thermal deBroglie wavelength."
+   }
+  },
+  {
+   "id": "hw4-2c-ii",
+   "source_id": "hw4.2cii",
+   "source_number": "Problem Set 4, Problem 2(c)(ii)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the problem's setting is repeated at the start of the part and its figure, after Baym's Lectures on Quantum Mechanics, is described in words; the estimate of the detector's timing resolution for the ${}^6$Li MOT with $\\tau = 0.1$ s is left out.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order",
+   "prompt": "This problem illustrates the coherence and collimation requirements for performing a Hanbury Brown and Twiss (HBT) experiment with atoms (ignore gravity). If a free particle starts at point $A$ at time $t = 0$ with an amplitude (wavefunction) $\\psi_A$, then the amplitude at another point 1 and time $t = \\tau$ is proportional to $\\psi_A e^{i(\\mathbf{k}\\cdot\\mathbf{r}_{A1} - \\omega\\tau)}$, where $\\mathbf{r}_{A1}$ is the vector from $A$ to 1, $\\mathbf{k}$ is the particle's wavevector, and $\\hbar\\omega$ is its total energy. Particles leave points $A$ and $B$ of a source of transverse dimension $W$ and are detected at points 1 and 2 of a detector of transverse dimension $w$, a distance $d$ away. Now assume you have a pulsed source of atoms with longitudinal dimension $L$. Atoms are released at time $t = 0$ and detected at some later time $t = \\tau$. Give geometric arguments to show that the wavevectors of detected atoms must obey $|(\\mathbf{k}_A - \\mathbf{k}_B)_l| \\le \\frac{mvL}{\\hbar d}$, where the velocity $v = \\frac{d}{\\tau}$. This implies that the different velocity groups separate during the expansion, narrowing (by a factor $\\frac{L}{d}$) the velocity distribution of atoms detected at any particular time.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An atom detected at time $\\tau$ left the source from somewhere along its length, at longitudinal position $z$ between $-L/2$ and $L/2$, and covered the distance $d - z$ in the time $\\tau$, so its velocity was $(d - z)/\\tau$. The atoms arriving together at $\\tau$ therefore have velocities spread over at most $L/\\tau = vL/d$, with $v = d/\\tau$, and their wavevectors $m\\mathbf{v}/\\hbar$ differ by at most $$|(\\mathbf{k}_A - \\mathbf{k}_B)_l| \\le \\frac{m}{\\hbar}\\frac{L}{\\tau} = \\frac{mvL}{\\hbar d}.$$ During the flight each velocity group moves to its own place, faster atoms from the back of the cloud catching up with slower ones from the front, so a detector open at one instant sees only a slice of the velocity distribution, of relative width $\\Delta v/v = L/d$, however hot the source."
+   }
+  },
+  {
+   "id": "hw4-2d",
+   "source_id": "hw4.2d",
+   "source_number": "Problem Set 4, Problem 2(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the problem's setting is repeated at the start of the part and its figure, after Baym's Lectures on Quantum Mechanics, is described in words; MIT's $\\lambda_{dB}$, the deBroglie wavelength $h/p$ at $\\mathbf{k}_0$, is said not to be the thermal $\\lambda_{dB}$ of Eq. (11.1); the order of magnitude of the increase and the estimates of the average occupation of a cell for the ${}^6$Li MOT, a BEC and a degenerate Fermi cloud are left out.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "higher-order",
+   "prompt": "This problem illustrates the coherence and collimation requirements for performing a Hanbury Brown and Twiss (HBT) experiment with atoms (ignore gravity). If a free particle starts at point $A$ at time $t = 0$ with an amplitude (wavefunction) $\\psi_A$, then the amplitude at another point 1 and time $t = \\tau$ is proportional to $\\psi_A e^{i(\\mathbf{k}\\cdot\\mathbf{r}_{A1} - \\omega\\tau)}$, where $\\mathbf{r}_{A1}$ is the vector from $A$ to 1, $\\mathbf{k}$ is the particle's wavevector, and $\\hbar\\omega$ is its total energy. Particles leave points $A$ and $B$ of a source of transverse dimension $W$ and are detected at points 1 and 2 of a detector of transverse dimension $w$, a distance $d$ away. We now pull all the pieces together, with the pulsed source of longitudinal dimension $L$ of part (c)(ii). The peak in $g^{(2)}(1, 2)$ is visible for $(\\mathbf{k}_A - \\mathbf{k}_B)\\cdot\\mathbf{r}_{21} \\le 2\\pi$. This is equivalent to saying that we must detect atoms from within a single phase space cell, defined by $\\delta p_x\\delta x \\le h$ (and likewise for $y$ and $z$). In our trapped atom sample, the 3D volume of a phase space cell is $\\delta x\\delta y\\delta z = (\\lambda_{dB})^3$, with $\\lambda_{dB} = h/p$ as in part (b). Liouville's theorem says that as our ball of atoms expands, the number of phase space cells remains constant. Verify that, by using this pulsed source, the volume of a coherent phase space cell is increased by a factor $d^3/W^2L$ by the time atoms reach the detector.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the trap a phase-space cell has $\\delta p_i\\,\\delta x_i = h$, and with the atoms' momentum spread $\\delta p \\approx p$ its side is $h/p = \\lambda_{dB}$. The atoms reaching one point of the detector have their momentum spread narrowed by the geometry: longitudinally to $\\delta p_l = mvL/d = pL/d$ by part (c)(ii), and in each transverse direction to $\\delta p_t \\approx pW/d$, the range of directions from a source of width $W$ seen at distance $d$, as in part (b). A coherent cell, $\\delta x_i = h/\\delta p_i$, then has $$\\delta x\\,\\delta y\\,\\delta z = \\frac{h}{pW/d}\\cdot\\frac{h}{pW/d}\\cdot\\frac{h}{pL/d} = \\lambda_{dB}^3\\,\\frac{d^3}{W^2L}.$$ This is Liouville's theorem at work: the phase-space volume, and so the number of cells, is fixed, so as the momentum spread seen at one point falls by $W/d$, $W/d$ and $L/d$, the cell's extent grows by $d/W$, $d/W$ and $d/L$. A detector and a timing window smaller than this cell see atoms of a single cell, where the bosons' bunching and the fermions' antibunching show."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "hw4-2a",
+   "concept": "hanbury-brown-twiss"
+  },
+  {
+   "exercise": "hw4-2a",
+   "concept": "photon-bunching"
+  },
+  {
+   "exercise": "hw4-2a",
+   "concept": "second-order-correlation"
+  },
+  {
+   "exercise": "hw4-2b",
+   "concept": "hanbury-brown-twiss"
+  },
+  {
+   "exercise": "hw4-2b",
+   "concept": "de-broglie-wavelength"
+  },
+  {
+   "exercise": "hw4-2c-i",
+   "concept": "second-order-correlation"
+  },
+  {
+   "exercise": "hw4-2c-i",
+   "concept": "photon-bunching"
+  },
+  {
+   "exercise": "hw4-2c-ii",
+   "concept": "hanbury-brown-twiss"
+  },
+  {
+   "exercise": "hw4-2d",
+   "concept": "hanbury-brown-twiss"
+  },
+  {
+   "exercise": "hw4-2d",
+   "concept": "de-broglie-wavelength"
+  }
+ ],
+ "referents": [
+  {
+   "id": "well-L",
+   "label": "the left well",
+   "figures": [
+    "sim-double-well"
+   ]
+  },
+  {
+   "id": "well-R",
+   "label": "the right well",
+   "figures": [
+    "sim-double-well"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-eq-11-171",
+   "kind": "correction",
+   "html": "The book prints the same eigenvalue $\\kalphacoh$ in Eqs. (11.170) and (11.171), and then $|\\kalphacoh_R|^2 = |\\kalphacoh|^2 = N/2$. Each well has its own amplitude: $\\hat{a}_R|\\kalphacoh\\rangle = \\kalphacoh_R|\\kalphacoh\\rangle$ and $\\hat{a}_L|\\kalphacoh\\rangle = \\kalphacoh_L|\\kalphacoh\\rangle$, with $|\\kalphacoh_R|^2 = |\\kalphacoh_L|^2 = N/2$."
+  },
+  {
+   "id": "c-number-uncertainty",
+   "kind": "correction",
+   "html": "The number uncertainty of a coherent state holding $N/2$ atoms on average is $\\sqrt{N/2}$, which grows with $N$; it is the relative uncertainty, $\\sqrt{N/2}/(N/2) = \\sqrt{2/N}$, that falls as $1/\\sqrt{N}$."
+  },
+  {
+   "id": "c-josephson",
+   "kind": "correction",
+   "html": "The book prints the factor $N\\kt/2$. With $|\\kalphacoh_L|^2 = |\\kalphacoh_R|^2 = N/2$ and $\\kt$ real, <a href=\"#eq-11-168\">Eq. (11.168)</a> gives $\\kEdw = -\\kt(\\kalphacoh_R^*\\kalphacoh_L + \\kalphacoh_L^*\\kalphacoh_R) = -N\\kt\\cos(\\kphiR - \\kphiL)$, whose minimum $-N\\kt$ is the energy of the $N$ atoms in $|+\\rangle$, each at $-\\kt$."
+  },
+  {
+   "id": "c-eq-11-175",
+   "kind": "correction",
+   "html": "The book's state holds $2N$ atoms, $N$ in each well, and is not normalized. The ground state of $N$ atoms, $N/2$ in each well, is $|\\psi_N\\rangle = (\\hat{a}_L^\\dagger\\hat{a}_R^\\dagger)^{N/2}|\\mathrm{vac}\\rangle/(N/2)!$."
+  }
+ ]
+}

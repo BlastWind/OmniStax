@@ -1,0 +1,455 @@
+{
+ "id": "7",
+ "dir": "ch07",
+ "title": "Adiabatic Processes",
+ "intro": {},
+ "sections": [
+  {
+   "id": "7.1",
+   "title": "The adiabatic theorem for time-dependent Hamiltonians"
+  },
+  {
+   "id": "7.2",
+   "title": "Adiabaticity for the two-level system"
+  },
+  {
+   "id": "7.3",
+   "title": "Adiabatic processes in multi-level systems"
+  },
+  {
+   "id": "7.4",
+   "title": "Analysis of STIRAP: The condition for adiabatic following"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "epsilon",
+   "section": "7.1",
+   "type": "energy",
+   "meaning": "The instantaneous eigenvalue ϵ_k(t) of the Hamiltonian Ĥ(t), indexed like its eigenstate",
+   "anchor": "7.1-eq-7-1"
+  },
+  {
+   "sym": "c_inst",
+   "section": "7.1",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude c_l(t) of the state on the instantaneous eigenstate |ϵ_l(t)⟩",
+   "anchor": "7.1-eq-7-2"
+  },
+  {
+   "sym": "omega",
+   "section": "7.1",
+   "type": "frequency",
+   "unit": "rad/s",
+   "meaning": "The frequency ω_l = ϵ_l/ℏ of the instantaneous eigenstate |ϵ_l⟩, measured from ϵ_k",
+   "anchor": "7.1-drv-adiabatic-condition",
+   "redefines": true
+  },
+  {
+   "sym": "tau",
+   "section": "7.1",
+   "type": "time",
+   "unit": "s",
+   "meaning": "The timescale on which the Hamiltonian changes",
+   "anchor": "7.1-adiabaticity",
+   "redefines": true
+  },
+  {
+   "sym": "H",
+   "section": "7.1",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system"
+  },
+  {
+   "sym": "psi",
+   "section": "7.1",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space"
+  },
+  {
+   "sym": "t",
+   "section": "7.1",
+   "type": "time",
+   "meaning": "Time"
+  },
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "section": "7.3"
+  },
+  {
+   "sym": "Delta",
+   "concept": "lambda-detunings",
+   "meaning": "The single-photon detuning Δ of the two fields from the excited state |3⟩ of the three-level system",
+   "section": "7.3",
+   "redefines": true
+  },
+  {
+   "sym": "delta",
+   "concept": "lambda-detunings",
+   "meaning": "The two-photon detuning δ = Δ₁ − Δ₂ of the Λ system",
+   "section": "7.3"
+  },
+  {
+   "sym": "Delta_1",
+   "concept": "lambda-detunings",
+   "ref": "pump",
+   "meaning": "The single-photon detuning Δ₁ of the pump field from the transition |1⟩ → |3⟩",
+   "section": "7.3"
+  },
+  {
+   "sym": "Delta_2",
+   "concept": "lambda-detunings",
+   "ref": "stokes",
+   "meaning": "The single-photon detuning Δ₂ of the Stokes field from the transition |2⟩ → |3⟩",
+   "section": "7.3"
+  },
+  {
+   "sym": "Omega_1",
+   "concept": "rabi-frequency",
+   "ref": "pump",
+   "meaning": "The Rabi frequency of the pump field, which couples |1⟩ to the excited state",
+   "section": "7.3"
+  },
+  {
+   "sym": "Omega_2",
+   "concept": "rabi-frequency",
+   "ref": "stokes",
+   "meaning": "The Rabi frequency of the Stokes field on the transition |2⟩ → |3⟩",
+   "section": "7.3"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The total Rabi frequency Ω = √(|Ω₁|² + |Ω₂|²) of the two fields of the three-level system",
+   "section": "7.3",
+   "redefines": true
+  },
+  {
+   "sym": "Omega_3",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency of the field coupling the metastable state |3⟩ to the excited state |2⟩ of the four-level system",
+   "section": "7.3"
+  },
+  {
+   "sym": "Omega_4",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency of the field coupling the metastable state |4⟩ to the excited state |2⟩ of the four-level system",
+   "section": "7.3"
+  },
+  {
+   "sym": "theta",
+   "concept": "mixing-angle",
+   "meaning": "The mixing angle of the dark state, tan θ = Ω₁/Ω₂; in the four-level system tan θ = Ω₁/√(|Ω₃|² + |Ω₄|²)",
+   "section": "7.3",
+   "redefines": true
+  },
+  {
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The second mixing angle: of the dressed states |Φ±⟩ through tan 2φ, and in the four-level system the angle that sets the second dark state",
+   "section": "7.3"
+  },
+  {
+   "sym": "epsilon_p",
+   "concept": "dressed-state-energies",
+   "meaning": "The energy of the dressed state |Φ₊⟩ of the three-level system",
+   "section": "7.3"
+  },
+  {
+   "sym": "epsilon_m",
+   "concept": "dressed-state-energies",
+   "meaning": "The energy of the dressed state |Φ₋⟩ of the three-level system",
+   "section": "7.3"
+  },
+  {
+   "sym": "epsilon_0",
+   "concept": "dressed-state-energies",
+   "meaning": "The energy of the dressed state |Φ₀⟩, the dark state, of the three-level system",
+   "section": "7.3"
+  },
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "section": "7.2",
+   "anchor": "7.2-eq-7-11"
+  },
+  {
+   "sym": "t",
+   "meaning": "Time",
+   "section": "7.3",
+   "type": "time"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "section": "7.2"
+  },
+  {
+   "sym": "tau",
+   "meaning": "The timescale on which the Hamiltonian changes",
+   "section": "7.3",
+   "type": "time"
+  },
+  {
+   "sym": "Delta",
+   "concept": "detuning",
+   "meaning": "The time-dependent detuning Δ(t) of the two-level system; the bare state |2⟩ sits at −ℏΔ",
+   "unit": "rad/s",
+   "section": "7.2",
+   "anchor": "7.2-eq-7-11"
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "section": "7.3"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω = ℰμ/ℏ",
+   "unit": "rad/s",
+   "section": "7.2",
+   "anchor": "7.2-opening-p"
+  },
+  {
+   "sym": "A_area",
+   "concept": "pulse-area",
+   "meaning": "The pulse area A = ∫2Ω dt",
+   "section": "7.3"
+  },
+  {
+   "sym": "theta",
+   "concept": "mixing-angle",
+   "meaning": "The mixing angle θ(t) of the instantaneous eigenstates |±⟩",
+   "unit": "rad",
+   "section": "7.2",
+   "anchor": "7.2-eq-7-16"
+  },
+  {
+   "sym": "epsilon_pm",
+   "concept": "dressed-state-energies",
+   "meaning": "The energies of the dressed states |±⟩",
+   "section": "7.2",
+   "anchor": "7.2-eq-7-15"
+  },
+  {
+   "sym": "epsilon_p",
+   "concept": "dressed-state-energies",
+   "ref": "dressed-plus",
+   "meaning": "The energy of the dressed state |+⟩",
+   "section": "7.2",
+   "anchor": "7.2-drv-two-level-adiabaticity"
+  },
+  {
+   "sym": "epsilon_m",
+   "concept": "dressed-state-energies",
+   "ref": "dressed-minus",
+   "meaning": "The energy of the dressed state |−⟩",
+   "section": "7.2",
+   "anchor": "7.2-drv-two-level-adiabaticity"
+  },
+  {
+   "sym": "A_area",
+   "concept": "pulse-area",
+   "meaning": "The pulse area A = ∫2Ω dt",
+   "unit": "rad",
+   "section": "7.2",
+   "anchor": "7.2-drv-pulse-area-condition"
+  },
+  {
+   "sym": "P_LZ",
+   "concept": "landau-zener",
+   "meaning": "The probability of complete state transfer to |2⟩ in the Landau–Zener model",
+   "section": "7.2",
+   "anchor": "7.2-eq-7-22"
+  },
+  {
+   "sym": "alpha",
+   "meaning": "The rate α at which the detuning is swept, Δ = αt",
+   "unit": "rad/s²",
+   "section": "7.2",
+   "anchor": "7.2-landau-zener-p"
+  },
+  {
+   "sym": "tau",
+   "type": "time",
+   "meaning": "The timescale on which the Hamiltonian changes",
+   "unit": "s",
+   "section": "7.2",
+   "anchor": "7.2-rap-motivation"
+  },
+  {
+   "sym": "P_1",
+   "concept": "born-rule",
+   "ref": "lvl-1",
+   "meaning": "The occupation probability of |1⟩",
+   "section": "7.2"
+  },
+  {
+   "sym": "P_2",
+   "concept": "born-rule",
+   "ref": "lvl-2",
+   "meaning": "The occupation probability of |2⟩",
+   "section": "7.2"
+  },
+  {
+   "sym": "Omega_1",
+   "concept": "rabi-frequency",
+   "ref": "pump",
+   "meaning": "The Rabi frequency of the pump field, which couples |1⟩ to the excited state",
+   "anchor": "7.4-eq-7-39",
+   "section": "7.4"
+  },
+  {
+   "sym": "Omega_2",
+   "concept": "rabi-frequency",
+   "ref": "stokes",
+   "meaning": "The Rabi frequency of the Stokes field on the transition |2⟩ → |3⟩",
+   "anchor": "7.4-eq-7-40",
+   "section": "7.4"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The total Rabi frequency Ω = √(|Ω₁|² + |Ω₂|²) of the two fields of the three-level system",
+   "anchor": "7.4-eq-7-39",
+   "redefines": true,
+   "section": "7.4"
+  },
+  {
+   "sym": "Omega_3",
+   "concept": "rabi-frequency",
+   "ref": "four-s",
+   "meaning": "The Rabi frequency of the field coupling the metastable state |3⟩ to the excited state |2⟩ of the four-level system",
+   "section": "7.4"
+  },
+  {
+   "sym": "Omega_4",
+   "concept": "rabi-frequency",
+   "ref": "four-c",
+   "meaning": "The Rabi frequency of the field coupling the metastable state |4⟩ to the excited state |2⟩ of the four-level system",
+   "section": "7.4"
+  },
+  {
+   "sym": "gamma_13",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₃ between the ground state and the excited state",
+   "unit": "s⁻¹",
+   "anchor": "7.4-eq-7-43",
+   "section": "7.4"
+  },
+  {
+   "sym": "c_1",
+   "concept": "probability-amplitude",
+   "ref": "lvl-1",
+   "meaning": "The probability amplitude of the ground state |1⟩",
+   "anchor": "7.4-stochastic",
+   "section": "7.4"
+  },
+  {
+   "sym": "c_2",
+   "concept": "probability-amplitude",
+   "ref": "lvl-2",
+   "meaning": "The probability amplitude of the metastable lower state |2⟩ of the Λ system",
+   "anchor": "7.4-stochastic",
+   "redefines": true,
+   "section": "7.4"
+  },
+  {
+   "sym": "c_3",
+   "concept": "lambda-equations-of-motion",
+   "ref": "lvl-3",
+   "meaning": "The probability amplitude of the excited state |3⟩ of the Λ system",
+   "anchor": "7.4-stochastic",
+   "section": "7.4"
+  },
+  {
+   "sym": "c_inst",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude c_i of the bare state |i⟩, i = 1, 2, 3 (in Figure 7.5, of |1⟩, |3⟩, |4⟩ of the four-level system)",
+   "anchor": "7.4-eq-7-44",
+   "redefines": true,
+   "section": "7.4"
+  },
+  {
+   "sym": "rho_11",
+   "concept": "density-matrix-populations",
+   "ref": "lvl-1",
+   "meaning": "The population of the level |1⟩",
+   "anchor": "7.4-mixture",
+   "section": "7.4"
+  },
+  {
+   "sym": "rho_22",
+   "concept": "density-matrix-populations",
+   "ref": "lvl-2",
+   "meaning": "The population of the level |2⟩",
+   "anchor": "7.4-drv-stirap-fidelity",
+   "section": "7.4"
+  },
+  {
+   "sym": "rho_hat",
+   "concept": "density-operator",
+   "meaning": "The density operator of the system",
+   "section": "7.4"
+  },
+  {
+   "sym": "P_jump",
+   "concept": "jump-probability",
+   "meaning": "The probability that a quantum jump occurs during the evolution",
+   "anchor": "7.4-eq-7-56",
+   "section": "7.4"
+  },
+  {
+   "sym": "Omega_NA",
+   "concept": "nonadiabatic-rabi-frequency",
+   "meaning": "The Rabi frequency Ω_NA = 1/τ with which the finite pulse time couples the dark state |D⟩ to the bright state |B⟩",
+   "anchor": "7.4-omega-na",
+   "section": "7.4"
+  },
+  {
+   "sym": "gamma_B",
+   "concept": "bright-state-escape-rate",
+   "meaning": "The escape rate out of the bright state |B⟩",
+   "anchor": "7.4-eq-7-64",
+   "section": "7.4"
+  },
+  {
+   "sym": "Delta_omega",
+   "type": "frequency",
+   "unit": "rad/s",
+   "meaning": "The linewidth Δω = Ω²/γ₁₃ of the dark resonance",
+   "anchor": "7.4-eit",
+   "section": "7.4"
+  },
+  {
+   "sym": "tau",
+   "type": "time",
+   "meaning": "The timescale on which the Hamiltonian changes",
+   "section": "7.4"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "section": "7.4"
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "section": "7.4"
+  },
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "section": "7.4"
+  }
+ ]
+}

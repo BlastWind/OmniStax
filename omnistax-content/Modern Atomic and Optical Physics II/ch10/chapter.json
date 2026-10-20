@@ -1,0 +1,439 @@
+{
+ "id": "10",
+ "dir": "ch10",
+ "title": "Trapped ions: quantum state engineering",
+ "intro": {},
+ "sections": [
+  {
+   "id": "10.1",
+   "title": "Ion traps"
+  },
+  {
+   "id": "10.2",
+   "title": "Model: An ion in a harmonic trap"
+  },
+  {
+   "id": "10.3",
+   "title": "Quantum state engineering"
+  },
+  {
+   "id": "10.4",
+   "title": "Ion trap quantum computation"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "B",
+   "type": "magnetic-field",
+   "meaning": "The magnetic field of the Penning trap, along its axis",
+   "unit": "T",
+   "section": "10.1",
+   "anchor": "10.1-sim-penning"
+  },
+  {
+   "sym": "omega_c",
+   "type": "frequency",
+   "meaning": "The cyclotron frequency eB/m of a free ion in the field B",
+   "unit": "rad/s",
+   "section": "10.1",
+   "anchor": "10.1-sim-penning"
+  },
+  {
+   "sym": "omega_plus",
+   "type": "frequency",
+   "meaning": "The frequency of the ion’s cyclotron motion in the Penning trap",
+   "unit": "rad/s",
+   "section": "10.1",
+   "anchor": "10.1-sim-penning"
+  },
+  {
+   "sym": "omega_minus",
+   "type": "frequency",
+   "meaning": "The frequency of the ion’s magnetron motion in the Penning trap",
+   "unit": "rad/s",
+   "section": "10.1",
+   "anchor": "10.1-sim-penning"
+  },
+  {
+   "sym": "omega_z",
+   "type": "frequency",
+   "meaning": "The frequency of the ion’s axial motion along the magnetic field in the Penning trap",
+   "unit": "rad/s",
+   "section": "10.1",
+   "anchor": "10.1-sim-penning"
+  },
+  {
+   "sym": "Omega_RF",
+   "type": "frequency",
+   "meaning": "The radio frequency at which the Paul trap’s potential oscillates",
+   "unit": "rad/s",
+   "section": "10.1",
+   "anchor": "10.1-sim-paul"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "section": "10.1",
+   "anchor": "10.1-sim-paul"
+  },
+  {
+   "section": "10.2",
+   "sym": "nu",
+   "concept": "trap-frequency",
+   "meaning": "The trap frequency ν: the frequency of the harmonic oscillator that confines the ion, the spacing of its motional levels",
+   "unit": "rad/s",
+   "anchor": "10.2-trap-frequency",
+   "redefines": true
+  },
+  {
+   "section": "10.2",
+   "sym": "x_ion",
+   "concept": "ion-position-momentum",
+   "type": "length",
+   "meaning": "The position operator x̂ of the trapped ion",
+   "unit": "m",
+   "anchor": "10.2-eq-10-2"
+  },
+  {
+   "section": "10.2",
+   "sym": "p",
+   "concept": "ion-position-momentum",
+   "type": "momentum",
+   "meaning": "The momentum operator p̂ of the trapped ion",
+   "unit": "kg·m/s",
+   "anchor": "10.2-eq-10-3"
+  },
+  {
+   "section": "10.2",
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the ion",
+   "unit": "kg",
+   "anchor": "10.2-eq-10-2"
+  },
+  {
+   "section": "10.2",
+   "sym": "H_motion",
+   "concept": "motional-hamiltonian",
+   "meaning": "The Hamiltonian of the ion’s motion in the trap",
+   "unit": "J",
+   "anchor": "10.2-eq-10-4"
+  },
+  {
+   "section": "10.2",
+   "sym": "a_0",
+   "concept": "harmonic-oscillator-length",
+   "meaning": "The harmonic oscillator length: the size of the ion’s motional ground state",
+   "unit": "m",
+   "anchor": "10.2-eq-10-5"
+  },
+  {
+   "section": "10.2",
+   "sym": "H_electronic",
+   "concept": "ion-electronic-hamiltonian",
+   "meaning": "The Hamiltonian of the ion’s two internal levels, decay neglected",
+   "unit": "J",
+   "anchor": "10.2-eq-10-6"
+  },
+  {
+   "section": "10.2",
+   "sym": "omega_eg",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The frequency of the ion’s internal transition: |e⟩ lies ħω_eg above |g⟩",
+   "unit": "rad/s",
+   "anchor": "10.2-eq-10-6"
+  },
+  {
+   "section": "10.2",
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The decay rate of the excited state; in sideband cooling, the fluorescence rate of the cooling transition",
+   "unit": "s⁻¹",
+   "anchor": "10.2-gamma-tau"
+  },
+  {
+   "section": "10.2",
+   "sym": "tau",
+   "type": "time",
+   "meaning": "The timescale over which the ion is manipulated",
+   "unit": "s",
+   "anchor": "10.2-gamma-tau"
+  },
+  {
+   "section": "10.2",
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency of the laser on the |g⟩ → |e⟩ transition",
+   "unit": "rad/s",
+   "anchor": "10.2-eq-10-9"
+  },
+  {
+   "section": "10.2",
+   "sym": "Delta",
+   "type": "frequency",
+   "meaning": "The detuning Δ = ω − ω_eg of the laser from the bare internal transition (in a Raman transition, the lasers’ detuning from the intermediate level)",
+   "unit": "rad/s",
+   "anchor": "10.2-eq-10-14",
+   "redefines": true
+  },
+  {
+   "section": "10.2",
+   "sym": "omega",
+   "type": "frequency",
+   "meaning": "The frequency of the laser",
+   "unit": "rad/s",
+   "anchor": "10.2-eq-10-7",
+   "redefines": true
+  },
+  {
+   "section": "10.2",
+   "sym": "k_mag",
+   "type": "wavevector",
+   "meaning": "The wavevector of the laser along the trap axis, so that ħk is the momentum one photon gives the ion",
+   "unit": "m⁻¹",
+   "anchor": "10.2-eq-10-7"
+  },
+  {
+   "section": "10.2",
+   "sym": "E_env",
+   "concept": "slowly-varying-envelope",
+   "meaning": "The amplitude ℰ of the laser field",
+   "unit": "V/m",
+   "anchor": "10.2-eq-10-7"
+  },
+  {
+   "section": "10.2",
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "unit": "s",
+   "anchor": "10.2-eq-10-7"
+  },
+  {
+   "section": "10.2",
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The phase φ of the standing wave relative to the trap minimum",
+   "unit": "rad",
+   "anchor": "10.2-eq-10-8",
+   "redefines": true
+  },
+  {
+   "section": "10.2",
+   "sym": "lambda",
+   "type": "length",
+   "meaning": "The wavelength of the laser, λ = 2π/k",
+   "unit": "m",
+   "anchor": "10.2-eq-10-12"
+  },
+  {
+   "section": "10.2",
+   "sym": "eta_LD",
+   "concept": "lamb-dicke-parameter",
+   "meaning": "The Lamb-Dicke parameter η = 2πa₀/λ: the size of the ion’s motional ground state against the laser wavelength",
+   "anchor": "10.2-ld-parameter"
+  },
+  {
+   "section": "10.2",
+   "sym": "omega_R",
+   "concept": "recoil-frequency",
+   "meaning": "The recoil frequency, ħω_R = (ħk)²/2m",
+   "unit": "rad/s",
+   "anchor": "10.2-eq-10-13"
+  },
+  {
+   "section": "10.2",
+   "sym": "H_r",
+   "concept": "lamb-dicke-hamiltonian",
+   "meaning": "The trapped ion’s Hamiltonian in a running wave, in the rotating frame",
+   "unit": "J",
+   "anchor": "10.2-eq-10-14"
+  },
+  {
+   "section": "10.2",
+   "sym": "H_s",
+   "concept": "standing-wave-couplings",
+   "meaning": "The trapped ion’s Hamiltonian in a standing wave, in the rotating frame",
+   "unit": "J",
+   "anchor": "10.2-eq-10-15"
+  },
+  {
+   "section": "10.2",
+   "sym": "H_0",
+   "concept": "ion-bare-spectrum",
+   "meaning": "The bare Hamiltonian of the ion’s motion and internal levels, whose eigenstates are |g⟩|n⟩ and |e⟩|n⟩",
+   "unit": "J",
+   "anchor": "10.2-eq-10-16"
+  },
+  {
+   "section": "10.2",
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the trapped ion and the laser, and its forms on the bare resonance and the sidebands",
+   "unit": "J",
+   "anchor": "10.2-drv-sideband-couplings"
+  },
+  {
+   "section": "10.2",
+   "sym": "g",
+   "concept": "single-photon-rabi-frequency",
+   "meaning": "The vacuum Rabi coupling of cavity QED, whose place ηΩ takes for the trapped ion",
+   "unit": "rad/s",
+   "anchor": "10.2-red-jc"
+  },
+  {
+   "section": "10.3",
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "anchor": "10.3-eq-10-27"
+  },
+  {
+   "section": "10.3",
+   "sym": "c_n",
+   "concept": "probability-amplitude",
+   "meaning": "The expansion coefficient of the state on the basis state |n⟩",
+   "anchor": "10.3-eq-10-27"
+  },
+  {
+   "section": "10.3",
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency of the laser on the |g⟩ → |e⟩ transition",
+   "unit": "rad/s",
+   "anchor": "10.3-sim-state-prep"
+  },
+  {
+   "section": "10.3",
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "unit": "s",
+   "anchor": "10.3-sim-state-prep"
+  },
+  {
+   "section": "10.3",
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The phase φ of a laser pulse, which sets the phase of the coupling it drives between |g⟩ and |e⟩",
+   "unit": "rad",
+   "anchor": "10.3-sim-state-prep",
+   "redefines": true
+  },
+  {
+   "section": "10.4",
+   "sym": "nu",
+   "concept": "trap-frequency",
+   "meaning": "The trap frequency ν: the frequency of the harmonic oscillator that confines the ion, the spacing of its motional levels",
+   "unit": "rad/s",
+   "anchor": "10.4-ion-string"
+  },
+  {
+   "section": "10.4",
+   "sym": "nu_s",
+   "concept": "ion-normal-modes",
+   "meaning": "The frequency √3ν of the stretch mode of two ions in the trap",
+   "unit": "rad/s",
+   "anchor": "10.4-normal-modes"
+  },
+  {
+   "section": "10.4",
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the ion",
+   "unit": "kg",
+   "anchor": "10.4-eq-10-31"
+  },
+  {
+   "section": "10.4",
+   "sym": "r_dist",
+   "type": "length",
+   "meaning": "The position r_i of ion i along the trap axis",
+   "unit": "m",
+   "anchor": "10.4-eq-10-31",
+   "redefines": true
+  },
+  {
+   "section": "10.4",
+   "sym": "p_cm",
+   "type": "momentum",
+   "meaning": "The momentum p_i of ion i; p = (p₂ − p₁)/√2 is the relative momentum of the stretch mode",
+   "unit": "kg·m/s",
+   "anchor": "10.4-eq-10-31",
+   "redefines": true
+  },
+  {
+   "section": "10.4",
+   "sym": "x_disp",
+   "type": "length",
+   "meaning": "The displacement x_i of ion i from its equilibrium position; x = (x₂ − x₁)/√2 is the relative coordinate of the stretch mode",
+   "unit": "m",
+   "anchor": "10.4-drv-two-ion-expansion"
+  },
+  {
+   "section": "10.4",
+   "sym": "X_cm",
+   "type": "length",
+   "meaning": "The center-of-mass coordinate X = (x₁ + x₂)/√2 of two ions",
+   "unit": "m",
+   "anchor": "10.4-eq-10-33"
+  },
+  {
+   "section": "10.4",
+   "sym": "P_cm",
+   "type": "momentum",
+   "meaning": "The center-of-mass momentum P = (p₁ + p₂)/√2 of two ions",
+   "unit": "kg·m/s",
+   "anchor": "10.4-eq-10-35"
+  },
+  {
+   "section": "10.4",
+   "sym": "a_sep",
+   "type": "length",
+   "meaning": "The equilibrium separation a of two ions in the trap",
+   "unit": "m",
+   "anchor": "10.4-drv-two-ion-expansion"
+  },
+  {
+   "section": "10.4",
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of two trapped ions: Ĥ_motion of their motion, Ĥ_int of their coupling to the lasers, Ĥ of the whole",
+   "unit": "J",
+   "anchor": "10.4-eq-10-31",
+   "redefines": true
+  },
+  {
+   "section": "10.4",
+   "sym": "k_mag",
+   "type": "wavevector",
+   "meaning": "The wavevector of the laser along the trap axis, so that ħk is the momentum one photon gives the ion",
+   "unit": "m⁻¹",
+   "anchor": "10.4-eq-10-38"
+  },
+  {
+   "section": "10.4",
+   "sym": "Delta",
+   "type": "frequency",
+   "meaning": "The detuning Δ = ω − ω_eg of the laser from the bare internal transition (in a Raman transition, the lasers’ detuning from the intermediate level)",
+   "unit": "rad/s",
+   "anchor": "10.4-eq-10-38"
+  },
+  {
+   "section": "10.4",
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency of the laser on the |g⟩ → |e⟩ transition",
+   "unit": "rad/s",
+   "anchor": "10.4-eq-10-38"
+  },
+  {
+   "section": "10.4",
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "anchor": "10.4-eq-10-44"
+  }
+ ]
+}

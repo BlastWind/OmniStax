@@ -1,0 +1,36 @@
+<section id="opening">
+<p>Qualitatively, a gas at high temperature should behave classically, with each atom behaving like a point particle with a well-defined position and momentum. At low temperature, the atoms are best described as <span data-concept="de-broglie-wavelength">matter wavepackets</span>, whose size is set by <span data-concept="de-broglie-wavelength" id="debroglie">the deBroglie wavelength</span></p>
+<div class="equation" id="eq-11-1">$$\klambdadB = \sqrt{\frac{2\pi\hbar^2}{\km k_B\kT}}. \tag{11.1}$$</div>
+<p>When <span data-concept="de-broglie-wavelength">the atomic wavepackets</span> start to overlap in position, the quantum statistics of the atoms becomes important. <span data-concept="bec-criterion" id="criterion">A quantitative calculation shows that the transition between primarily classical and primarily quantum mechanical behaviour occurs</span> when <span data-concept="atom-number-density" id="density">the density $\kndens$</span> and <span data-concept="critical-temperature">the temperature $\kTc$</span> satisfy</p>
+<div class="equation" id="eq-11-2">$$\kndens\ \klambdadB(\kTc)^3 = \zeta(3/2) \approx 2.612, \tag{11.2}$$</div>
+<p>or</p>
+<div class="equation" id="eq-11-3">$$k_B\kTc = \frac{2\pi\hbar^2}{\km\lambda_{dB}^2} = \frac{2\pi\hbar^2}{\km}\left(\frac{\kndens}{2.612}\right)^{2/3}. \tag{11.3}$$</div>
+<p>For Bose atoms below <span data-concept="critical-temperature" id="critical-temperature">this critical temperature</span>, $0 &lt; \kT &lt; \kTc$, a macroscopic number of atoms will occupy the lowest energy state–even at finite temperature. This so-called <span data-concept="bose-condensation" id="bose-condensation">Bose condensation</span> will occur only if the atom cloud is both dense and cold, which means that <span data-concept="bec-criterion">the phase space density</span> must be large.</p>
+<figure class="sim" id="sim-degeneracy">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>A thin slice through a uniform gas of ⁸⁷Rb atoms at <span data-concept="atom-number-density">density</span> $\kndens$, each atom carrying its <span data-concept="de-broglie-wavelength">matter wavepacket</span>, a disc $\klambdadB$ across. The two bars under the slice compare $\klambdadB$ with the spacing between atoms, $\kndens^{-1/3}$. Cool the gas and the wavepackets swell; raise the density and the atoms crowd together. The wavepackets of neighbours overlap where $\kndens\klambdadB^3$ reaches 2.612, at <span data-concept="critical-temperature">the critical temperature</span> $\kTc$. Below it, atoms leave the thermal cloud for <span data-concept="bose-condensation">the condensate</span>, a single wave spread through the whole gas, and the graph follows their share $\kNgs/N$ by <a href="#eq-11-9">Eq. (11.9)</a>, with the steeper rise of a harmonic trap, <a href="#eq-11-10">Eq. (11.10)</a>, at the same $\kTc$ beside it.</span></div>
+</figure>
+</section>
+
+<section id="bose-einstein-statistics">
+<h2>11.1.1 Bose-Einstein statistics</h2>
+<p><span data-concept="bose-einstein-distribution" id="be-statistics">Bose-Einstein statistics</span> describe the behaviour of <span data-concept="indistinguishability-statistics">indistinguishable particles</span> with integer spin, and thus determine how an ensemble of $N$ identical Bose atoms with some total energy $\kEtot$ will distribute themselves among the possible energy states.</p>
+<p>It is worth noting <span data-concept="indistinguishability-statistics" id="distinguishability">the role that distinguishability plays in determining this distribution</span>. From statistical mechanics, we know that the weight of a certain arrangement of atoms is given by the number of ways that arrangement can be formed – or, in some sense, how random that arrangement is. The distinguishability of particles plays a crucial role in determining this weight. For example, consider 10 particles distributing themselves between two states. When the particles are distinguishable, the statistical weight of the $\{5, 5\}$ arrangement is 252 times greater than the statistical weight of the $\{10, 0\}$ arrangement. When the particles are <span data-concept="indistinguishability-statistics">indistinguishable</span>, the two configurations have equal weight. This illustrates the huge change in statistics obtained upon losing the ability to distinguish particles.</p>
+<p>In the grand canonical ensemble, $N$ Bose particles with total energy $\kEtot$ will distribute themselves among a set of energy levels $\kepsi$ according to <span data-concept="bose-einstein-distribution">the Bose-Einstein distribution</span>,</p>
+<div class="equation" id="eq-11-4">$$\kni = \frac{1}{e^{(\kepsi - \kmuchem)/k_B\kT} - 1}, \tag{11.4}$$</div>
+<p>where $\kni$ is the number of particles occupying energy level $\kepsi$, and</p>
+<div class="equation" id="eq-11-5">$$N = \sum_i \kni \tag{11.5}$$</div>
+<div class="equation" id="eq-11-6">$$\kEtot = \sum_i \kepsi \kni. \tag{11.6}$$</div>
+<p>This set $\{\kni\}$ represents the most random way to distribute the energy $\kEtot$ among $N$ atoms occupying the energy states $\{\kepsi\}$. At sufficiently low temperature, the most random distribution is obtained by putting a large fraction of the atoms into the ground state $\kepszero$ and letting the remaining atoms occupy higher energy states. <span data-concept="ground-state-occupation-bookkeeping" id="bookkeeping">When converting these summations into integrals, it is therefore important to keep track of the atoms occupying the ground state $\kepszero$</span>, so that</p>
+<div class="equation" id="eq-11-7">$$N = \frac{1}{e^{(\kepszero - \kmuchem)/k_B\kT} - 1} + \int\frac{g(\keps)}{e^{(\kepsi - \kmuchem)/k_B\kT} - 1}d\keps \tag{11.7}$$<sup class="fn" data-note="c-eq-11-7"></sup></div>
+<div class="equation" id="eq-11-8">$$\kEtot = \frac{\kepszero}{e^{(\kepszero - \kmuchem)/k_B\kT} - 1} + \int\keps\frac{g(\keps)}{e^{(\kepsi - \kmuchem)/k_B\kT} - 1}d\keps, \tag{11.8}$$<sup class="fn" data-note="c-eq-11-8"></sup></div>
+<p>where $g(\keps)$ is <span data-concept="ground-state-occupation-bookkeeping">the density of states</span> appropriate to the geometry of the problem.</p>
+</section>
+
+<section id="bec-ideal-gas">
+<h2>11.1.2 BEC in an ideal gas</h2>
+<p>For non-interacting and unconfined bosons, the textbook treatment outlined above results in <span data-concept="ideal-gas-condensate-fraction" id="gs-occupation">a macroscopic ground state occupation number</span></p>
+<div class="equation" id="eq-11-9">$$\kNgs = N\left(1 - \left(\frac{\kT}{\kTc}\right)^{3/2}\right), \tag{11.9}$$</div>
+<p>where $N$ is the total number of atoms and $\kTc$ is <span data-concept="critical-temperature">the condensation temperature</span>. One can also find the temperature dependence for a slightly more realistic scenario when the atoms are confined to a three-dimensional harmonic oscillator trap:</p>
+<div class="equation" id="eq-11-10">$$\kNgs = N\left(1 - \left(\frac{\kT}{\kTc}\right)^3\right). \tag{11.10}$$</div>
+<p>In reality, however, even the <span data-concept="dilute-quantum-gas">dilute atomic gases</span> interact, and even weak interactions can have a large effect on the dynamics of <span data-concept="bose-condensation">the condensate</span>.</p>
+</section>

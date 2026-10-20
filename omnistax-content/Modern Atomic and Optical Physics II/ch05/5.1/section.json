@@ -1,0 +1,995 @@
+{
+ "id": "5.1",
+ "chapter": "5",
+ "title": "Raman transitions in the Λ level configuration",
+ "short": "Raman transitions in the Λ system",
+ "lead": "Two fields joining two lower levels through one excited level: the <span data-concept=\"lambda-system\">Λ system</span>'s equations in the Schrodinger, density-matrix and stochastic-wavefunction pictures, the <span data-concept=\"effective-raman-coupling\">effective Raman coupling</span> far from resonance, the probe's <span data-concept=\"two-photon-resonance\">two-photon resonance</span> and its dressed-state reading, <span data-concept=\"two-photon-rabi-oscillations\">two-photon Rabi oscillations</span>, and how many excited states, Doppler shifts, phases and other configurations change the picture.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "fig-lambda",
+   "kind": "figure",
+   "number": "5.2",
+   "originals": [
+    "/media/ch05/fig-5-2.png"
+   ],
+   "original_caption": "The Λ system under consideration, with the single- and two-photon detunings shown. Squiggly lines indicate possible decay paths",
+   "draws": [
+    "frequency",
+    "coupling",
+    "rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-raman-absorption",
+   "kind": "sim",
+   "number": "5.3",
+   "originals": [
+    "/media/ch05/fig-5-3.png"
+   ],
+   "original_caption": "The imaginary part of the probe beam susceptibility as a function of the probe beam detuning. The absorption of Ω₁ exhibits a double resonance lineshape in the presence of a far-off resonant coupling beam Ω₂. In this calculation, γ₁₂ = 0, so the single-photon and two-photon resonances have the same peak value, but the linewidth of the two-photon peak is significantly narrower.",
+   "draws": [
+    "susceptibility",
+    "frequency",
+    "coupling",
+    "rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-photon-rabi",
+   "kind": "sim",
+   "draws": [
+    "coupling",
+    "frequency",
+    "population",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "focus",
+   "concept": "multiphoton-process-classes",
+   "verb": "introduces"
+  },
+  {
+   "span": "lambda-def",
+   "concept": "lambda-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "detunings",
+   "concept": "lambda-detunings",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-1",
+   "concept": "lambda-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-3",
+   "concept": "lambda-equations-of-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "raman",
+   "concept": "raman-transition",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-10",
+   "concept": "lambda-density-matrix-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-17",
+   "concept": "complex-decay-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-21",
+   "concept": "lambda-non-hermitian-evolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-31",
+   "concept": "probe-susceptibility",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-photon-res",
+   "concept": "two-photon-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-36",
+   "concept": "raman-unitarity-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "dresses",
+   "concept": "raman-dressed-states",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-41",
+   "concept": "two-photon-rabi-oscillations",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-42",
+   "concept": "many-excited-states-raman",
+   "verb": "introduces"
+  },
+  {
+   "span": "doppler-free",
+   "concept": "doppler-free-raman",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-sensitivity",
+   "concept": "raman-phase-insensitivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "configurations",
+   "concept": "three-level-configurations",
+   "verb": "introduces"
+  },
+  {
+   "span": "cascade",
+   "concept": "cascade-two-photon-differences",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-5-3",
+   "concept": "schrodinger-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-3",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-10",
+   "concept": "density-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-10",
+   "concept": "lindblad-master-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-17",
+   "concept": "coherence-decay-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-21",
+   "concept": "monte-carlo-wavefunction",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-21",
+   "concept": "effective-hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-21",
+   "concept": "quantum-jump",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-22",
+   "concept": "jump-probability",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-31",
+   "concept": "susceptibility",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-36",
+   "concept": "unitary-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "dresses",
+   "concept": "dressed-states",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-5-42",
+   "concept": "ac-stark-shift",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler",
+   "concept": "doppler-broadening",
+   "verb": "uses"
+  },
+  {
+   "span": "cascade",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-raman-coupling",
+   "concept": "effective-raman-coupling",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-weak-probe-coherences",
+   "concept": "weak-probe-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-raman-resonance",
+   "concept": "two-photon-detuning-shifted",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-raman-coupling",
+   "concept": "adiabatic-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-raman-coupling",
+   "concept": "rabi-frequency",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "lvl-1",
+   "label": "the ground state |1⟩",
+   "figures": [
+    "fig-lambda",
+    "sim-two-photon-rabi"
+   ]
+  },
+  {
+   "id": "lvl-2",
+   "label": "the metastable state |2⟩",
+   "figures": [
+    "fig-lambda",
+    "sim-two-photon-rabi"
+   ]
+  },
+  {
+   "id": "lvl-3",
+   "label": "the excited state |3⟩",
+   "figures": [
+    "fig-lambda",
+    "sim-two-photon-rabi"
+   ]
+  },
+  {
+   "id": "field-1",
+   "label": "the probe field Ω₁, ν₁",
+   "figures": [
+    "fig-lambda",
+    "sim-two-photon-rabi"
+   ]
+  },
+  {
+   "id": "field-2",
+   "label": "the coupling field Ω₂, ν₂",
+   "figures": [
+    "fig-lambda",
+    "sim-two-photon-rabi"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-fig-9-3",
+   "kind": "correction",
+   "html": "The book cites Figure 9.3. The Λ system it describes is drawn in Figure 5.2."
+  },
+  {
+   "id": "c-eq-5-20",
+   "kind": "correction",
+   "html": "The book prints the number (5.20) on an empty line under (5.19); no equation is missing."
+  },
+  {
+   "id": "c-schrodinger",
+   "kind": "correction",
+   "html": "The book prints $i\\hbar|\\kpsi\\rangle = \\kHeff|\\kpsi\\rangle$ without the time derivative. The Schrodinger equation is $i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle = \\kHeff|\\kpsi\\rangle$."
+  },
+  {
+   "id": "c-real-complex",
+   "kind": "correction",
+   "html": "The book writes “real and complex parts”. The second is the imaginary part of the denominator, $-i\\kdeltaprime$."
+  },
+  {
+   "id": "c-fig-7-3",
+   "kind": "correction",
+   "html": "The book cites Figure 7.3. The three-level configurations are drawn in Figure 5.1, at the opening of this chapter."
+  },
+  {
+   "id": "c-eq-5-21",
+   "kind": "correction",
+   "html": "Eq. (5.21) adds the decay terms with $\\hbar$ to the Hamiltonian of Eq. (5.1), which carries none. In the frequency units of Eq. (5.1) the decay terms are $-\\frac{i\\kgammathree}{2}|3\\rangle\\langle 3| - \\frac{i\\kgammatwo}{2}|2\\rangle\\langle 2|$, as the equations of motion that follow use them."
+  },
+  {
+   "id": "c-eq-5-10",
+   "kind": "correction",
+   "html": "The book prints $+i[\\kH, \\rho]$, with only $\\mathcal{L}_{31}$ and $\\mathcal{L}_{32}$. The equations of motion (5.12)–(5.16) that follow are those of $\\dot{\\rho} = \\mathcal{L}_{31}(\\rho) + \\mathcal{L}_{32}(\\rho) + \\mathcal{L}_{21}(\\rho) - i[\\kH, \\rho]$: the Schrodinger evolution $-i[\\kH, \\rho]$ for $\\kH$ in units of $\\hbar$, with the decay at $\\gamma'$ from $|2\\rangle$ to $|1\\rangle$ included."
+  },
+  {
+   "id": "c-eq-5-38",
+   "kind": "correction",
+   "html": "With the Hamiltonian (5.1), whose couplings carry a minus sign, the states to first order in $\\kOmegatwo/\\kDelta$ are $|+\\rangle \\approx |3\\rangle + \\frac{\\kOmegatwo^*}{\\kDelta}|2\\rangle$ and $|-\\rangle \\approx |2\\rangle - \\frac{\\kOmegatwo}{\\kDelta}|3\\rangle$; the admixture of $|3\\rangle$ in $|-\\rangle$ is the $-\\kOmegatwo/\\kDelta$ that (5.6) gives $\\kcthree$ when $\\kctwo = 1$. The book prints both with the opposite sign. The widths that follow depend only on $|\\kOmegatwo|^2/\\kDelta^2$ and are unchanged."
+  },
+  {
+   "id": "c-eq-5-31",
+   "kind": "correction",
+   "html": "The book leaves out the density of atoms. The susceptibility is the polarization of $N/\\kV$ atoms per unit field, as in Eq. (4.43): $\\kchione = \\frac{N}{\\kV}\\frac{|\\kmu|^2}{\\hbar\\epsilon_0}\\frac{\\krhothreeone}{\\kOmegaone}$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "raman-coupling",
+   "what": "the effective two-photon coupling of a far-detuned Λ system",
+   "source": "Modern Atomic and Optical Physics II, 5.1 Raman transitions in the Λ level configuration, 5.1.1 The Schrodinger equation approach",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The single-photon detunings are large and similar, $\\kDeltaone \\sim \\kDeltatwo = \\kDelta \\gg \\kOmegaone, \\kOmegatwo, \\kgammathree, \\kdelta$, so to lowest order in $\\kOmega_{1,2}/\\kDelta$ the excited state amplitude is constant.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcthree}} = \\mk{D}{i\\kDeltaone \\kcthree} + \\mk{R}{i\\kOmegaone \\kcone + i\\kOmegatwo \\kctwo}",
+      "src": "(5.5)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} = \\mk{D}{i\\kDelta \\kcthree} + \\mk{R}{i\\kOmegaone \\kcone + i\\kOmegatwo \\kctwo}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{D}{\\kcthree} = \\mk{R}{-\\frac{\\kOmegaone\\kcone + \\kOmegatwo\\kctwo}{\\kDelta}}",
+       "uses": []
+      }
+     ],
+     "num": "(5.6)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{i\\kOmegaone^* \\kcthree}",
+      "src": "(5.3)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{-i\\kOmegaone^*\\frac{\\kOmegaone\\kcone + \\kOmegatwo\\kctwo}{\\kDelta}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{a}{-i\\frac{|\\kOmegaone|^2}{\\kDelta}\\kcone} - \\mk{b}{i\\frac{\\kOmegatwo\\kOmegaone^*}{\\kDelta}\\kctwo}",
+       "uses": [],
+       "map": {
+        "R": [
+         "a",
+         "b"
+        ]
+       }
+      }
+     ],
+     "num": "(5.7)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kctwo}} = \\mk{d}{i\\kdelta \\kctwo} + \\mk{R}{i\\kOmegatwo^* \\kcthree}",
+      "src": "(5.4)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kctwo}} = \\mk{d}{i\\kdelta \\kctwo} - \\mk{R}{i\\kOmegatwo^*\\frac{\\kOmegaone\\kcone + \\kOmegatwo\\kctwo}{\\kDelta}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kctwo}} = \\mk{d}{i\\kdelta \\kctwo} - \\mk{s}{i\\frac{|\\kOmegatwo|^2}{\\kDelta}\\kctwo} - \\mk{b}{i\\frac{\\kOmegaone\\kOmegatwo^*}{\\kDelta}\\kcone}",
+       "uses": [],
+       "map": {
+        "R": [
+         "s",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kctwo}} = \\mk{d}{i(\\kdelta - \\frac{|\\kOmegatwo|^2}{\\kDelta})\\kctwo} - \\mk{b}{i\\frac{\\kOmegaone\\kOmegatwo^*}{\\kDelta}\\kcone}",
+       "uses": [],
+       "map": {
+        "s": "d"
+       }
+      }
+     ],
+     "num": "(5.8)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\dot{\\kctildetwo} = i\\kdelta\\kctildetwo + i\\kOmega \\kcone",
+       "src": "(2.10)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{i\\kOmegaeff\\kcone} = \\mk{b}{-i\\frac{\\kOmegaone\\kOmegatwo^*}{\\kDelta}\\kcone}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "The term of (5.8) in $c_1$ stands where $i\\Omega c_1$ stands in the two-level equation (2.10)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\kOmegaeff} = \\mk{b}{-\\frac{\\kOmegatwo^*\\kOmegaone}{\\kDelta}}",
+       "uses": []
+      }
+     ],
+     "num": "(5.9)"
+    }
+   ]
+  },
+  {
+   "id": "lambda-density-matrix",
+   "what": "the density matrix equations of the Λ system",
+   "source": "Modern Atomic and Optical Physics II, 5.1 Raman transitions in the Λ level configuration, 5.1.2 The density matrix approach",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = -\\kDeltaone|3\\rangle\\langle 3| - \\kdelta|2\\rangle\\langle 2| - \\left(\\kOmegaone|3\\rangle\\langle 1| + \\kOmegatwo|3\\rangle\\langle 2| + \\kOmegaone^*|1\\rangle\\langle 3| + \\kOmegatwo^*|2\\rangle\\langle 3|\\right)",
+       "src": "(5.1)"
+      },
+      {
+       "tex": "\\mathcal{L}_{31} = -\\frac{\\gamma_{3\\rightarrow 1}}{2}\\left(\\sigma_{31}\\sigma_{13}\\rho - \\sigma_{13}\\rho\\sigma_{31} + h.c.\\right)",
+       "src": "(5.11)"
+      },
+      {
+       "text": "The Liouvillians carry decay from $|3\\rangle$ to $|1\\rangle$ at rate $\\kgamma$, from $|3\\rangle$ to $|2\\rangle$ at rate $\\tilde{\\gamma}$, and from $|2\\rangle$ to $|1\\rangle$ at rate $\\gamma'$.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhooneone}} = \\mk{H}{-i\\langle 1|[\\kH, \\rho]|1\\rangle} + \\mk{D}{\\langle 1|\\mathcal{L}(\\rho)|1\\rangle}",
+      "src": "(5.10)",
+      "uses": [],
+      "why": "The element $\\langle 1|\\cdot|1\\rangle$ of the equation of motion, with $\\mathcal{L}$ the sum of the Liouvillians."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\krhooneone}} = \\mk{H}{-i\\left(-\\kOmegaone^*\\krhothreeone + \\rho_{13}\\kOmegaone\\right)} + \\mk{D}{\\langle 1|\\mathcal{L}(\\rho)|1\\rangle}",
+       "uses": [0],
+       "cap": "Of $\\hat{H}$, only $-\\Omega_1^*|1\\rangle\\langle 3|$ reaches $\\langle 1|$ on the left and only $-\\Omega_1|3\\rangle\\langle 1|$ reaches $|1\\rangle$ on the right."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhooneone}} = \\mk{H}{-i\\kOmegaone\\rho_{13} + i\\kOmegaone^*\\krhothreeone} + \\mk{D}{\\langle 1|\\mathcal{L}(\\rho)|1\\rangle}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhooneone}} = \\mk{H}{-i\\kOmegaone\\rho_{13} + i\\kOmegaone^*\\krhothreeone} + \\mk{D}{\\kgamma\\rho_{33} + \\gamma'\\krhotwotwo}",
+       "uses": [1, 2],
+       "cap": "By (5.11), a decay from $|i\\rangle$ to $|j\\rangle$ at rate $\\Gamma$ adds $\\Gamma\\rho_{ii}$ to $\\dot{\\rho}_{jj}$, through $\\sigma_{ji}\\rho\\sigma_{ij} = \\rho_{ii}|j\\rangle\\langle j|$, and takes $\\Gamma\\rho_{ii}$ from $\\dot{\\rho}_{ii}$."
+      }
+     ],
+     "num": "(5.12)",
+     "note": "The book prints (5.10) with $+i[\\kH, \\rho]$ and only $\\mathcal{L}_{31}$ and $\\mathcal{L}_{32}$. The equations (5.12)–(5.16) it gives follow from $\\dot{\\rho} = -i[\\kH, \\rho]$ with the decay $\\gamma'$ from $|2\\rangle$ to $|1\\rangle$ included, which is what is worked here."
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = -\\kDeltaone|3\\rangle\\langle 3| - \\kdelta|2\\rangle\\langle 2| - \\left(\\kOmegaone|3\\rangle\\langle 1| + \\kOmegatwo|3\\rangle\\langle 2| + \\kOmegaone^*|1\\rangle\\langle 3| + \\kOmegatwo^*|2\\rangle\\langle 3|\\right)",
+       "src": "(5.1)"
+      },
+      {
+       "tex": "\\mathcal{L}_{31} = -\\frac{\\gamma_{3\\rightarrow 1}}{2}\\left(\\sigma_{31}\\sigma_{13}\\rho - \\sigma_{13}\\rho\\sigma_{31} + h.c.\\right)",
+       "src": "(5.11)"
+      },
+      {
+       "text": "The Liouvillians carry decay from $|3\\rangle$ to $|1\\rangle$ at rate $\\kgamma$, from $|3\\rangle$ to $|2\\rangle$ at rate $\\tilde{\\gamma}$, and from $|2\\rangle$ to $|1\\rangle$ at rate $\\gamma'$.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{H}{-i\\langle 2|[\\kH, \\rho]|2\\rangle} + \\mk{D}{\\langle 2|\\mathcal{L}(\\rho)|2\\rangle}",
+      "src": "(5.10)",
+      "uses": [],
+      "why": "The element $\\langle 2|\\cdot|2\\rangle$ of the equation of motion, with $\\mathcal{L}$ the sum of the Liouvillians."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{H}{-i\\left(-\\kOmegatwo^*\\rho_{32} + \\rho_{23}\\kOmegatwo\\right)} + \\mk{D}{\\langle 2|\\mathcal{L}(\\rho)|2\\rangle}",
+       "uses": [0],
+       "cap": "Of $\\hat{H}$, $-\\Omega_2^*|2\\rangle\\langle 3|$ reaches $\\langle 2|$ and $-\\Omega_2|3\\rangle\\langle 2|$ reaches $|2\\rangle$; the term $-\\delta|2\\rangle\\langle 2|$ cancels between the two sides of the commutator."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{H}{-i\\kOmegatwo\\rho_{23} + i\\kOmegatwo^*\\rho_{32}} + \\mk{D}{\\langle 2|\\mathcal{L}(\\rho)|2\\rangle}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{H}{-i\\kOmegatwo\\rho_{23} + i\\kOmegatwo^*\\rho_{32}} + \\mk{D}{-\\gamma'\\krhotwotwo + \\tilde{\\gamma}\\rho_{33}}",
+       "uses": [1, 2],
+       "cap": "By (5.11), a decay from $|i\\rangle$ to $|j\\rangle$ at rate $\\Gamma$ adds $\\Gamma\\rho_{ii}$ to $\\dot{\\rho}_{jj}$, through $\\sigma_{ji}\\rho\\sigma_{ij} = \\rho_{ii}|j\\rangle\\langle j|$, and takes $\\Gamma\\rho_{ii}$ from $\\dot{\\rho}_{ii}$."
+      }
+     ],
+     "num": "(5.13)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = -\\kDeltaone|3\\rangle\\langle 3| - \\kdelta|2\\rangle\\langle 2| - \\left(\\kOmegaone|3\\rangle\\langle 1| + \\kOmegatwo|3\\rangle\\langle 2| + \\kOmegaone^*|1\\rangle\\langle 3| + \\kOmegatwo^*|2\\rangle\\langle 3|\\right)",
+       "src": "(5.1)"
+      },
+      {
+       "text": "Each coherence $\\rho_{ij}$ decays at the rate $\\gamma_{ij}$, which takes in nonradiative decoherence.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{H}{-i\\langle 2|[\\kH, \\rho]|1\\rangle} + \\mk{D}{\\langle 2|\\mathcal{L}(\\rho)|1\\rangle}",
+      "src": "(5.10)",
+      "uses": [],
+      "why": "The element $\\langle 2|\\cdot|1\\rangle$ of the equation of motion, with $\\mathcal{L}$ the sum of the Liouvillians."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{H}{-i\\left(-\\kdelta\\krhotwoone - \\kOmegatwo^*\\krhothreeone + \\rho_{23}\\kOmegaone\\right)} + \\mk{D}{\\langle 2|\\mathcal{L}(\\rho)|1\\rangle}",
+       "uses": [0],
+       "cap": "Of $\\hat{H}$, $-\\delta|2\\rangle\\langle 2|$ and $-\\Omega_2^*|2\\rangle\\langle 3|$ reach $\\langle 2|$, and $-\\Omega_1|3\\rangle\\langle 1|$ reaches $|1\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{H}{i\\kdelta\\krhotwoone + i\\kOmegatwo^*\\krhothreeone - i\\kOmegaone\\rho_{23}} + \\mk{D}{\\langle 2|\\mathcal{L}(\\rho)|1\\rangle}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{H}{i\\kdelta\\krhotwoone + i\\kOmegatwo^*\\krhothreeone - i\\kOmegaone\\rho_{23}} - \\mk{D}{\\kgammaonetwo\\krhotwoone}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{D}{-\\left(\\kgammaonetwo - i\\kdelta\\right)\\krhotwoone} + \\mk{H}{i\\kOmegatwo^*\\krhothreeone - i\\kOmegaone\\rho_{23}}",
+       "uses": [],
+       "map": {
+        "H": [
+         "D",
+         "H"
+        ]
+       }
+      }
+     ],
+     "num": "(5.14)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = -\\kDeltaone|3\\rangle\\langle 3| - \\kdelta|2\\rangle\\langle 2| - \\left(\\kOmegaone|3\\rangle\\langle 1| + \\kOmegatwo|3\\rangle\\langle 2| + \\kOmegaone^*|1\\rangle\\langle 3| + \\kOmegatwo^*|2\\rangle\\langle 3|\\right)",
+       "src": "(5.1)"
+      },
+      {
+       "text": "Each coherence $\\rho_{ij}$ decays at the rate $\\gamma_{ij}$, which takes in nonradiative decoherence.",
+       "src": "5.1"
+      },
+      {
+       "text": "$\\kDelta = \\kDeltaone$.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\rho}_{31}} = \\mk{H}{-i\\langle 3|[\\kH, \\rho]|1\\rangle} + \\mk{D}{\\langle 3|\\mathcal{L}(\\rho)|1\\rangle}",
+      "src": "(5.10)",
+      "uses": [],
+      "why": "The element $\\langle 3|\\cdot|1\\rangle$ of the equation of motion, with $\\mathcal{L}$ the sum of the Liouvillians."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\rho}_{31}} = \\mk{H}{-i\\left(-\\kDeltaone\\krhothreeone - \\kOmegaone\\krhooneone - \\kOmegatwo\\krhotwoone + \\rho_{33}\\kOmegaone\\right)} + \\mk{D}{\\langle 3|\\mathcal{L}(\\rho)|1\\rangle}",
+       "uses": [0],
+       "cap": "Of $\\hat{H}$, $-\\Delta_1|3\\rangle\\langle 3|$, $-\\Omega_1|3\\rangle\\langle 1|$ and $-\\Omega_2|3\\rangle\\langle 2|$ reach $\\langle 3|$, and $-\\Omega_1|3\\rangle\\langle 1|$ reaches $|1\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\rho}_{31}} = \\mk{H}{i\\kDelta\\krhothreeone + i\\kOmegatwo\\krhotwoone + i\\kOmegaone\\left(\\krhooneone - \\rho_{33}\\right)} + \\mk{D}{\\langle 3|\\mathcal{L}(\\rho)|1\\rangle}",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\rho}_{31}} = \\mk{H}{i\\kDelta\\krhothreeone + i\\kOmegatwo\\krhotwoone + i\\kOmegaone\\left(\\krhooneone - \\rho_{33}\\right)} - \\mk{D}{\\kgammaonethree\\krhothreeone}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\rho}_{31}} = \\mk{D}{-\\left(\\kgammaonethree - i\\kDelta\\right)\\krhothreeone} + \\mk{H}{i\\kOmegatwo\\krhotwoone + i\\kOmegaone\\left(\\krhooneone - \\rho_{33}\\right)}",
+       "uses": [],
+       "map": {
+        "H": [
+         "D",
+         "H"
+        ]
+       }
+      }
+     ],
+     "num": "(5.15)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = -\\kDeltaone|3\\rangle\\langle 3| - \\kdelta|2\\rangle\\langle 2| - \\left(\\kOmegaone|3\\rangle\\langle 1| + \\kOmegatwo|3\\rangle\\langle 2| + \\kOmegaone^*|1\\rangle\\langle 3| + \\kOmegatwo^*|2\\rangle\\langle 3|\\right)",
+       "src": "(5.1)"
+      },
+      {
+       "text": "Each coherence $\\rho_{ij}$ decays at the rate $\\gamma_{ij}$, which takes in nonradiative decoherence.",
+       "src": "5.1"
+      },
+      {
+       "text": "$\\kDelta = \\kDeltaone$.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\rho}_{32}} = \\mk{H}{-i\\langle 3|[\\kH, \\rho]|2\\rangle} + \\mk{D}{\\langle 3|\\mathcal{L}(\\rho)|2\\rangle}",
+      "src": "(5.10)",
+      "uses": [],
+      "why": "The element $\\langle 3|\\cdot|2\\rangle$ of the equation of motion, with $\\mathcal{L}$ the sum of the Liouvillians."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\rho}_{32}} = \\mk{H}{-i\\left(-\\kDeltaone\\rho_{32} - \\kOmegaone\\krhoonetwo - \\kOmegatwo\\krhotwotwo + \\kdelta\\rho_{32} + \\kOmegatwo\\rho_{33}\\right)} + \\mk{D}{\\langle 3|\\mathcal{L}(\\rho)|2\\rangle}",
+       "uses": [0],
+       "cap": "Of $\\hat{H}$, $-\\Delta_1|3\\rangle\\langle 3|$, $-\\Omega_1|3\\rangle\\langle 1|$ and $-\\Omega_2|3\\rangle\\langle 2|$ reach $\\langle 3|$, and $-\\delta|2\\rangle\\langle 2|$ and $-\\Omega_2|3\\rangle\\langle 2|$ reach $|2\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\rho}_{32}} = \\mk{H}{i(\\kDelta - \\kdelta)\\rho_{32} + i\\kOmegatwo\\left(\\krhotwotwo - \\rho_{33}\\right) + i\\kOmegaone\\krhoonetwo} + \\mk{D}{\\langle 3|\\mathcal{L}(\\rho)|2\\rangle}",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\rho}_{32}} = \\mk{H}{i(\\kDelta - \\kdelta)\\rho_{32} + i\\kOmegatwo\\left(\\krhotwotwo - \\rho_{33}\\right) + i\\kOmegaone\\krhoonetwo} - \\mk{D}{\\gamma_{23}\\rho_{32}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\rho}_{32}} = \\mk{D}{-\\left(\\gamma_{23} - i(\\kDelta - \\kdelta)\\right)\\rho_{32}} + \\mk{H}{i\\kOmegatwo\\left(\\krhotwotwo - \\rho_{33}\\right) + i\\kOmegaone\\krhoonetwo}",
+       "uses": [],
+       "map": {
+        "H": [
+         "D",
+         "H"
+        ]
+       }
+      }
+     ],
+     "num": "(5.16)"
+    }
+   ]
+  },
+  {
+   "id": "weak-probe-coherences",
+   "what": "the Λ system under a weak probe",
+   "source": "Modern Atomic and Optical Physics II, 5.1 Raman transitions in the Λ level configuration, 5.1.3 The stochastic wavefunction method",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "To zeroth order in $\\kOmegaone$ a system that starts in $|1\\rangle$ stays there: $\\kcone \\approx 1$.",
+       "src": "5.1"
+      },
+      {
+       "text": "For a pure state $\\rho_{ij} = c_ic_j^*$, as $\\krhotwoone = \\kctwo\\kcone^*$.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krhooneone} = \\mk{c}{|\\kcone|^2}",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\krhooneone} = \\mk{c}{|\\kcone|^2} = \\mk{o}{1}",
+       "uses": [0]
+      }
+     ],
+     "num": "(5.28)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kGammaonetwo\\kctwo = i\\kOmegatwo^* \\kcthree",
+       "src": "(5.26)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{G}{\\kGammaonethree\\kcthree} = \\mk{a}{i\\kOmegaone} + \\mk{b}{i\\kOmegatwo \\kctwo}",
+      "src": "(5.27)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{G}{\\kGammaonethree\\kcthree} = \\mk{a}{i\\kOmegaone} + \\mk{b}{i\\kOmegatwo\\frac{i\\kOmegatwo^*\\kcthree}{\\kGammaonetwo}}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{G}{\\kGammaonethree\\kcthree} = \\mk{a}{i\\kOmegaone} - \\mk{b}{\\frac{|\\kOmegatwo|^2}{\\kGammaonetwo}\\kcthree}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{G}{\\left(\\kGammaonethree + \\frac{|\\kOmegatwo|^2}{\\kGammaonetwo}\\right)\\kcthree} = \\mk{a}{i\\kOmegaone}",
+       "uses": [],
+       "map": {
+        "b": "G"
+       }
+      },
+      {
+       "tex": "\\mk{G}{\\kcthree} = \\mk{a}{\\frac{i\\kOmegaone\\kGammaonetwo}{\\kGammaonetwo\\kGammaonethree + |\\kOmegatwo|^2}}",
+       "uses": [],
+       "cap": "Dividing, and multiplying above and below by $\\Gamma_{12}$."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "To zeroth order in $\\kOmegaone$ a system that starts in $|1\\rangle$ stays there: $\\kcone \\approx 1$.",
+       "src": "5.1"
+      },
+      {
+       "text": "For a pure state $\\rho_{ij} = c_ic_j^*$, as $\\krhotwoone = \\kctwo\\kcone^*$.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{G}{\\kGammaonetwo\\kctwo} = \\mk{R}{i\\kOmegatwo^* \\kcthree}",
+      "src": "(5.26)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{G}{\\kctwo} = \\mk{R}{\\frac{i\\kOmegatwo^*\\kcthree}{\\kGammaonetwo}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{G}{\\kctwo} = \\mk{R}{\\frac{i\\kOmegatwo^*}{\\kGammaonetwo}\\frac{i\\kOmegaone\\kGammaonetwo}{\\kGammaonetwo\\kGammaonethree + |\\kOmegatwo|^2}}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{G}{\\kctwo} = \\mk{R}{-\\frac{\\kOmegaone\\kOmegatwo^*}{\\kGammaonetwo\\kGammaonethree + |\\kOmegatwo|^2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\krhotwoone} = \\mk{G}{\\kcone^* \\kctwo} = \\mk{R}{-\\frac{\\kOmegaone\\kOmegatwo^*}{\\kGammaonetwo\\kGammaonethree + |\\kOmegatwo|^2}}",
+       "uses": [1, 2]
+      }
+     ],
+     "num": "(5.29)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "To zeroth order in $\\kOmegaone$ a system that starts in $|1\\rangle$ stays there: $\\kcone \\approx 1$.",
+       "src": "5.1"
+      },
+      {
+       "text": "For a pure state $\\rho_{ij} = c_ic_j^*$, as $\\krhotwoone = \\kctwo\\kcone^*$.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krhothreeone} = \\mk{c}{\\kcone^* \\kcthree}",
+      "uses": [2]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\krhothreeone} = \\mk{c}{\\kcone^* \\kcthree} = \\mk{R}{i\\kOmegaone\\frac{\\kGammaonetwo}{\\kGammaonetwo\\kGammaonethree + |\\kOmegatwo|^2}}",
+       "uses": [0, 1]
+      }
+     ],
+     "num": "(5.30)"
+    }
+   ]
+  },
+  {
+   "id": "probe-response",
+   "what": "the response of the Λ system to the probe",
+   "source": "Modern Atomic and Optical Physics II, 5.1 Raman transitions in the Λ level configuration, 5.1.4 Large detuning Δ, weak Ω₁",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{L}{\\krhothreeone} = \\mk{R}{i\\kOmegaone\\frac{\\kGammaonetwo}{\\kGammaonetwo\\kGammaonethree + |\\kOmegatwo|^2}}",
+      "src": "(5.30)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone}} = \\mk{R}{\\frac{i\\kGammaonetwo}{\\kGammaonetwo\\kGammaonethree + |\\kOmegatwo|^2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone}} = \\mk{R}{\\frac{i}{\\kGammaonethree}\\left(\\frac{\\kGammaonetwo}{\\kGammaonetwo + |\\kOmegatwo|^2/\\kGammaonethree}\\right)}",
+       "uses": [],
+       "cap": "Dividing above and below by $\\Gamma_{13}$."
+      }
+     ],
+     "num": "(5.32)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone}} = \\mk{R}{\\frac{i}{\\kGammaonethree}\\left(\\frac{\\kGammaonetwo}{\\kGammaonetwo + |\\kOmegatwo|^2/\\kGammaonethree}\\right)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone}} = \\mk{R}{\\frac{i}{\\kGammaonethree}\\left(1 - \\frac{|\\kOmegatwo|^2/\\kGammaonethree}{\\kGammaonetwo + |\\kOmegatwo|^2/\\kGammaonethree}\\right)}",
+       "uses": [],
+       "cap": "Writing $a/(a + b) = 1 - b/(a + b)$."
+      }
+     ],
+     "num": "(5.33)"
+    }
+   ]
+  },
+  {
+   "id": "raman-resonance",
+   "what": "the width and shift of the two-photon resonance",
+   "source": "Modern Atomic and Optical Physics II, 5.1 Raman transitions in the Λ level configuration, 5.1.4 Large detuning Δ, weak Ω₁",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kGammaonethree = \\kgammaonethree - i\\kDelta",
+       "src": "(5.18)"
+      },
+      {
+       "text": "$\\kDelta \\gg \\kgammaonethree$, so $\\kGammaonethree \\approx -i\\kDelta$.",
+       "src": "5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone}} = \\mk{R}{\\frac{i}{\\kGammaonethree}\\left(1 - \\frac{|\\kOmegatwo|^2/\\kGammaonethree}{\\kGammaonetwo + |\\kOmegatwo|^2/\\kGammaonethree}\\right)}",
+      "src": "(5.33)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone}} = \\mk{a}{\\frac{i}{\\kGammaonethree}} - \\mk{b}{\\frac{i}{\\kGammaonethree}\\frac{|\\kOmegatwo|^2/\\kGammaonethree}{\\kGammaonetwo + |\\kOmegatwo|^2/\\kGammaonethree}}",
+       "uses": [],
+       "map": {
+        "R": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone} - \\frac{i}{\\kGammaonethree}} = \\mk{b}{-\\frac{i}{\\kGammaonethree}\\frac{|\\kOmegatwo|^2/\\kGammaonethree}{\\kGammaonetwo + |\\kOmegatwo|^2/\\kGammaonethree}}",
+       "uses": [],
+       "map": {
+        "a": "L"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone} - \\frac{i}{\\kGammaonethree}} = \\mk{b}{-\\frac{i|\\kOmegatwo|^2/\\kGammaonethree^2}{\\kGammaonetwo + |\\kOmegatwo|^2/\\kGammaonethree}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone} - \\frac{i}{\\kGammaonethree}} \\approx \\mk{b}{\\frac{i|\\kOmegatwo|^2/\\kDelta^2}{\\kGammaonetwo + |\\kOmegatwo|^2/\\kGammaonethree}}",
+       "uses": [1],
+       "cap": "In the numerator, to leading order, $\\Gamma_{13}^2 \\approx -\\Delta^2$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone} - \\frac{i}{\\kGammaonethree}} \\approx \\mk{b}{\\frac{i|\\kOmegatwo|^2/\\kDelta^2}{\\kGammaonetwo + (|\\kOmegatwo|^2/\\kDelta^2)(\\kgammaonethree + i\\kDelta)}}",
+       "uses": [0, 1],
+       "cap": "In the denominator the decay is kept to first order: $1/\\Gamma_{13} = (\\gamma_{13} + i\\Delta)/(\\gamma_{13}^2 + \\Delta^2) \\approx (\\gamma_{13} + i\\Delta)/\\Delta^2$."
+      }
+     ],
+     "num": "(5.34)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kGammaonetwo = \\kgammaonetwo - i\\kdelta",
+       "src": "(5.17)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone} - \\frac{i}{\\kGammaonethree}} \\approx \\mk{b}{\\frac{i|\\kOmegatwo|^2/\\kDelta^2}{\\kGammaonetwo + (|\\kOmegatwo|^2/\\kDelta^2)(\\kgammaonethree + i\\kDelta)}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone} - \\frac{i}{\\kGammaonethree}} \\approx \\mk{b}{\\frac{i|\\kOmegatwo|^2/\\kDelta^2}{\\kgammaonetwo - i\\kdelta + \\kgammaonethree|\\kOmegatwo|^2/\\kDelta^2 + i|\\kOmegatwo|^2/\\kDelta}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\krhothreeone}{\\kOmegaone} - \\frac{i}{\\kGammaonethree}} \\approx \\mk{b}{\\frac{i|\\kOmegatwo|^2/\\kDelta^2}{\\underbrace{\\kgammaonetwo + \\kgammaonethree(|\\kOmegatwo|^2/\\kDelta^2)}_{\\kgammaeff} - i\\underbrace{(\\kdelta - |\\kOmegatwo|^2/\\kDelta)}_{\\kdeltaprime}}}",
+       "uses": [],
+       "cap": "Gathering the real and the imaginary parts of the denominator."
+      }
+     ],
+     "num": "(5.35)",
+     "note": "The book prints the real part of the denominator as $(\\kgammaonetwo/2) + (\\kgammaonethree/2)(|\\kOmegatwo|^2/\\kDelta^2)$; expanding (5.34) gives it without the halves, as the text after it and (5.39) state."
+    }
+   ]
+  }
+ ]
+}

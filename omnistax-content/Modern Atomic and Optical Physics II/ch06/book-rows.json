@@ -1,0 +1,352 @@
+{
+ "symbols": [
+  {
+   "sym": "H_eff",
+   "latex": "\\hat{H}_\\mathrm{eff}",
+   "macro": "\\kHeff"
+  },
+  {
+   "sym": "c_hat_k",
+   "latex": "\\hat{c}_k",
+   "macro": "\\kchatk"
+  },
+  {
+   "sym": "gamma_k",
+   "latex": "\\gamma_k",
+   "macro": "\\kgammak"
+  },
+  {
+   "sym": "delta_p",
+   "latex": "\\delta p_\\alpha",
+   "macro": "\\kdeltap"
+  },
+  {
+   "sym": "a_1",
+   "latex": "a_1",
+   "macro": "\\kaone"
+  },
+  {
+   "sym": "a_2",
+   "latex": "a_2",
+   "macro": "\\katwo"
+  },
+  {
+   "sym": "delta_p_k",
+   "latex": "\\delta p_{k,\\alpha}",
+   "macro": "\\kdeltapk"
+  },
+  {
+   "sym": "delta_p_atom",
+   "latex": "\\delta p",
+   "macro": "\\kdeltapatom"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "monte-carlo-wavefunction",
+   "kind": "idea",
+   "section": "6.1",
+   "name": "Monte Carlo wavefunction",
+   "terms": [
+    "stochastic or Monte Carlo wavefunctions",
+    "Monte Carlo wavefunctions",
+    "stochastic wavefunction",
+    "Monte Carlo Wavefunction method"
+   ],
+   "type": "state",
+   "statement": "The master equation can be simulated by a stochastic wavefunction: a state vector that evolves under an effective Hamiltonian and jumps at random, whose average over many trajectories gives the density matrix."
+  },
+  {
+   "id": "lindblad-master-equation",
+   "kind": "result",
+   "section": "6.1",
+   "name": "General form of the master equation",
+   "terms": [
+    "Liouvillian operator",
+    "Liouvillian"
+   ],
+   "statement": "The most general form of the master equation allowed by physics adds to the coherent evolution a Liouvillian built from arbitrary operators ĉ_k with rates γ_k; the thermal reservoir's master equation is the case ĉ_{2k} = √(n̄+1)Ŝ_k, ĉ_{2k+1} = √n̄ Ŝ_k†.",
+   "forms": [
+    {
+     "id": "eq-6-1",
+     "latex": "\\frac{d\\hat{\\rho}_S}{dt} = \\frac{1}{i\\hbar}[\\hat{H}_S, \\hat{\\rho}_S] + \\mathcal{L}(\\hat{\\rho}_S)",
+     "anchor": "6.1-eq-6-1"
+    },
+    {
+     "id": "eq-6-2",
+     "latex": "\\mathcal{L}(\\hat{\\rho}_S) = -\\sum_k \\frac{\\gamma_k}{2}\\left(\\hat{c}_k^\\dagger\\hat{c}_k\\hat{\\rho}_S + \\hat{\\rho}_S\\hat{c}_k^\\dagger\\hat{c}_k - 2\\hat{c}_k\\hat{\\rho}_S\\hat{c}_k^\\dagger\\right)",
+     "anchor": "6.1-eq-6-2"
+    },
+    {
+     "id": "eq-6-3",
+     "latex": "\\hat{c}_{2k} = \\sqrt{\\bar{n}+1}\\hat{S}_k",
+     "anchor": "6.1-eq-6-3"
+    },
+    {
+     "id": "eq-6-4",
+     "latex": "\\hat{c}_{2k+1} = \\sqrt{\\bar{n}}\\hat{S}_k^\\dagger",
+     "anchor": "6.1-eq-6-4"
+    }
+   ]
+  },
+  {
+   "id": "effective-hamiltonian",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "Effective non-Hermitian Hamiltonian",
+   "symbol": "H_eff",
+   "terms": [
+    "effective Hamiltonian",
+    "non-Hermitian Hamiltonian"
+   ],
+   "type": "energy",
+   "statement": "The first two terms of the master equation act like evolution under an effective Hamiltonian, the system Hamiltonian with an imaginary part −iℏΣγ_k ĉ_k†ĉ_k/2; it is not Hermitian, so it does not conserve the norm.",
+   "forms": [
+    {
+     "id": "eq-6-7",
+     "latex": "\\hat{H}_\\mathrm{eff} = \\hat{H}_S - i\\hbar\\sum_k \\frac{\\gamma_k}{2}\\hat{c}_k^\\dagger\\hat{c}_k",
+     "anchor": "6.1-eq-6-7"
+    },
+    {
+     "id": "eq-6-8",
+     "latex": "\\frac{d\\hat{\\rho}_S}{dt} = \\sum_\\alpha p_\\alpha\\left(\\frac{1}{i\\hbar}\\left(\\hat{H}_\\mathrm{eff}|\\psi_\\alpha\\rangle\\langle\\psi_\\alpha| - |\\psi_\\alpha\\rangle\\langle\\psi_\\alpha|\\hat{H}_\\mathrm{eff}^\\dagger\\right) + \\sum_k \\gamma_k\\hat{c}_k|\\psi_\\alpha\\rangle\\langle\\psi_\\alpha|\\hat{c}_k^\\dagger\\right)",
+     "anchor": "6.1-drv-effective-hamiltonian-master-equation"
+    },
+    {
+     "id": "eq-6-9",
+     "latex": "i\\hbar\\frac{d}{dt}|\\psi_\\alpha\\rangle = \\hat{H}_\\mathrm{eff}|\\psi_\\alpha\\rangle",
+     "anchor": "6.1-eq-6-9"
+    }
+   ]
+  },
+  {
+   "id": "quantum-jump",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "Quantum jump",
+   "symbol": "c_hat_k",
+   "terms": [
+    "quantum jump",
+    "quantum jumps",
+    "jump"
+   ],
+   "statement": "The last term of the master equation is a quantum jump operator that changes |ψ_α⟩ into the state ĉ_k|ψ_α⟩ with some probability.",
+   "forms": [
+    {
+     "id": "eq-6-jump",
+     "latex": "|\\phi_{k,\\alpha}\\rangle = \\hat{c}_k|\\psi_\\alpha\\rangle",
+     "anchor": "6.1-jump-state"
+    },
+    {
+     "id": "eq-6-19",
+     "latex": "|\\tilde{\\phi}_{k,\\alpha}\\rangle = \\sqrt{\\frac{\\gamma_k\\delta t}{\\delta p_{k,\\alpha}}}|\\phi_{k,\\alpha}\\rangle",
+     "anchor": "6.1-eq-6-19"
+    }
+   ]
+  },
+  {
+   "id": "jump-probability",
+   "kind": "definition",
+   "section": "6.1",
+   "name": "Jump probability",
+   "symbol": "delta_p",
+   "type": "population",
+   "statement": "In a small time δt the state jumps through channel k with probability δp_{k,α} = δtγ_k⟨ψ_α|ĉ_k†ĉ_k|ψ_α⟩, and through any channel with δp_α, the norm lost by the no-jump evolution.",
+   "forms": [
+    {
+     "id": "eq-6-15",
+     "latex": "\\delta p_\\alpha = \\delta t\\sum_k \\gamma_k\\langle\\psi_\\alpha|\\hat{c}_k^\\dagger\\hat{c}_k|\\psi_\\alpha\\rangle",
+     "anchor": "6.1-eq-6-15"
+    },
+    {
+     "id": "eq-6-14",
+     "latex": "\\delta p_{k,\\alpha} = \\delta t\\gamma_k\\langle\\psi_\\alpha|\\hat{c}_k^\\dagger\\hat{c}_k|\\psi_\\alpha\\rangle",
+     "anchor": "6.1-eq-6-14"
+    },
+    {
+     "id": "eq-6-16",
+     "latex": "\\langle\\psi_\\alpha(t+\\delta t)|\\psi_\\alpha(t+\\delta t)\\rangle = 1 - \\sum_k \\delta p_{k,\\alpha} = 1 - \\delta p_\\alpha",
+     "anchor": "6.1-drv-no-jump-probability"
+    }
+   ]
+  },
+  {
+   "id": "no-jump-evolution",
+   "kind": "result",
+   "section": "6.1",
+   "name": "No-jump evolution",
+   "terms": [
+    "never jumped"
+   ],
+   "type": "state",
+   "statement": "A system that has not jumped evolves in discrete time under the effective Hamiltonian and is renormalized by √(1 − δp_α).",
+   "forms": [
+    {
+     "id": "eq-6-17",
+     "latex": "|\\tilde{\\psi}_\\alpha(t+\\delta t)\\rangle = \\frac{1 + \\hat{H}_\\mathrm{eff}\\delta t/i\\hbar}{\\sqrt{1-\\delta p_\\alpha}}|\\psi_\\alpha(t)\\rangle",
+     "anchor": "6.1-eq-6-17"
+    },
+    {
+     "id": "eq-6-10",
+     "latex": "|\\psi_\\alpha(t+\\delta t)\\rangle = \\left(1 + \\frac{\\hat{H}_\\mathrm{eff}\\delta t}{i\\hbar}\\right)|\\psi_\\alpha(t)\\rangle",
+     "anchor": "6.1-eq-6-10"
+    }
+   ]
+  },
+  {
+   "id": "stochastic-master-equation",
+   "kind": "result",
+   "section": "6.1",
+   "name": "Master equation as jump statistics",
+   "terms": [
+    "probability interpretation"
+   ],
+   "type": "state",
+   "statement": "Written in discrete time with normalized states, the master equation says that after δt the system evolves under Ĥ_eff with probability 1 − δp_α, or jumps into |φ̃_{k,α}⟩ with probability δp_{k,α}.",
+   "forms": [
+    {
+     "id": "eq-6-21",
+     "latex": "\\hat{\\rho}_S(t+\\delta t) = \\sum_\\alpha p_\\alpha\\left((1-\\delta p_\\alpha)|\\tilde{\\psi}_\\alpha(t+\\delta t)\\rangle\\langle\\tilde{\\psi}_\\alpha(t+\\delta t)| + \\sum_k \\delta p_{k,\\alpha}|\\tilde{\\phi}_{k,\\alpha}\\rangle\\langle\\tilde{\\phi}_{k,\\alpha}|\\right)",
+     "anchor": "6.1-drv-jump-decomposition"
+    },
+    {
+     "id": "eq-6-20",
+     "latex": "\\hat{\\rho}_S(t+\\delta t) = \\sum_\\alpha p_\\alpha\\left(|\\psi_\\alpha(t+\\delta t)\\rangle\\langle\\psi_\\alpha(t+\\delta t)| + \\delta t\\sum_k \\gamma_k|\\phi_{k,\\alpha}\\rangle\\langle\\phi_{k,\\alpha}|\\right)",
+     "anchor": "6.1-drv-jump-decomposition"
+    }
+   ]
+  },
+  {
+   "id": "monte-carlo-procedure",
+   "kind": "skill",
+   "section": "6.1",
+   "name": "Monte Carlo procedure",
+   "terms": [
+    "Monte Carlo Procedure",
+    "sample algorithm"
+   ],
+   "statement": "Simulate the master equation by evolving a state vector step by step, drawing a random number each step to decide between no-jump evolution and a jump, repeating for N trajectories and averaging them into the density matrix."
+  },
+  {
+   "id": "mcwf-two-level-decay",
+   "kind": "result",
+   "section": "6.2",
+   "name": "Monte Carlo decay of a two-level atom",
+   "type": "state",
+   "statement": "A decaying two-level atom jumps with probability δtγ|a₂|² per step; if it does not jump, its excited population decays more slowly than e^{−γt}, while the average over trajectories decays as e^{−γt}.",
+   "forms": [
+    {
+     "id": "eq-6-26",
+     "latex": "|\\tilde{\\psi}(t)\\rangle = \\frac{1}{\\sqrt{|a_1|^2 + |a_2|^2e^{-\\gamma t}}}\\left(a_1|1\\rangle + a_2e^{-(\\gamma/2+i\\Delta)t}|2\\rangle\\right)",
+     "anchor": "6.2-drv-no-jump-two-level-state"
+    },
+    {
+     "id": "eq-6-23",
+     "latex": "\\delta p = \\delta t\\gamma|a_2|^2",
+     "anchor": "6.2-drv-two-level-jump-probability"
+    },
+    {
+     "id": "eq-6-24",
+     "latex": "\\hat{H}_\\mathrm{eff} = \\Delta|2\\rangle\\langle 2| - \\frac{i\\gamma}{2}\\hat{c}^\\dagger\\hat{c}",
+     "anchor": "6.2-eq-6-24"
+    }
+   ]
+  },
+  {
+   "id": "null-measurement",
+   "kind": "idea",
+   "section": "6.2",
+   "name": "Not detecting a photon is a measurement",
+   "statement": "Not detecting a photon is also a measurement on the system: it makes the state evolve so that at long times the atom ends up in |1⟩ even if it never emits a photon."
+  },
+  {
+   "id": "monte-carlo-use-cases",
+   "kind": "idea",
+   "section": "6.2",
+   "name": "When to use the Monte Carlo method",
+   "statement": "The Monte Carlo method is advantageous when the Hilbert space is too large for the density matrix or when measurement-dependent feedback is wanted; otherwise it is a method of last resort."
+  },
+  {
+   "id": "non-hermitian-evolution",
+   "kind": "idea",
+   "section": "6.3",
+   "name": "Non-Hermitian evolution",
+   "terms": [
+    "non-Hermitian Schrodinger equation",
+    "non-Hermitian Hamiltonian evolution",
+    "effective Schrodinger equation"
+   ],
+   "statement": "Where quantum jumps are improbable over the time considered, a system can be treated by the non-Hermitian Schrödinger equation alone, the imaginary parts of the energy accounting for finite lifetimes; probability then leaks from the system without the record of where it goes.",
+   "forms": [
+    {
+     "id": "eq-6-jump-weak",
+     "latex": "\\int dt\\,\\gamma\\rho_{22} \\propto |\\Omega|^2",
+     "anchor": "6.3-jump-weak"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "lindblad-master-equation",
+   "prereq": "generalized-master-equation"
+  },
+  {
+   "concept": "effective-hamiltonian",
+   "prereq": "lindblad-master-equation"
+  },
+  {
+   "concept": "quantum-jump",
+   "prereq": "lindblad-master-equation"
+  },
+  {
+   "concept": "no-jump-evolution",
+   "prereq": "effective-hamiltonian"
+  },
+  {
+   "concept": "jump-probability",
+   "prereq": "no-jump-evolution"
+  },
+  {
+   "concept": "jump-probability",
+   "prereq": "expectation-value"
+  },
+  {
+   "concept": "stochastic-master-equation",
+   "prereq": "jump-probability"
+  },
+  {
+   "concept": "stochastic-master-equation",
+   "prereq": "quantum-jump"
+  },
+  {
+   "concept": "monte-carlo-wavefunction",
+   "prereq": "stochastic-master-equation"
+  },
+  {
+   "concept": "monte-carlo-procedure",
+   "prereq": "monte-carlo-wavefunction"
+  },
+  {
+   "concept": "mcwf-two-level-decay",
+   "prereq": "monte-carlo-procedure"
+  },
+  {
+   "concept": "null-measurement",
+   "prereq": "mcwf-two-level-decay"
+  },
+  {
+   "concept": "monte-carlo-use-cases",
+   "prereq": "monte-carlo-procedure"
+  },
+  {
+   "concept": "non-hermitian-evolution",
+   "prereq": "effective-hamiltonian"
+  },
+  {
+   "concept": "non-hermitian-evolution",
+   "prereq": "density-matrix-populations"
+  }
+ ],
+ "types": []
+}

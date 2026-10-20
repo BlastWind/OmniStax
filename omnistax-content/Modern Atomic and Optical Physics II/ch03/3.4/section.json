@@ -1,0 +1,916 @@
+{
+ "id": "3.4",
+ "chapter": "3",
+ "title": "The master equation",
+ "short": "The master equation",
+ "lead": "The <span data-concept=\"master-equation\">master equation</span> of an <span data-concept=\"open-system\">open system</span> in its general form, what it costs and when it can be trusted, and its use for a driven <span data-concept=\"two-level-atom\">two-level atom</span>: the <span data-concept=\"optical-bloch-equations\">optical Bloch equations</span>, how <span data-concept=\"density-matrix-populations\">populations</span> and <span data-concept=\"density-matrix-coherences\">coherences</span> decay, <span data-concept=\"dephasing-rate\">dephasing</span>, and how the atom responds to a weak field and to a constant field of any strength.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "MIT 8.422 Problem Set 6, Problem 3 and Problem Set 7, Problem 1 are set in parts, restated in Lukin's notation with AI-written solutions, since the course published no key; no part is numerical, so none is held.",
+ "figures": [
+  {
+   "id": "sim-damped-bloch",
+   "kind": "sim",
+   "draws": [
+    "state",
+    "coupling",
+    "frequency",
+    "rate",
+    "population",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "eq-3-79",
+   "concept": "generalized-master-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "cost",
+   "concept": "master-equation-cost",
+   "verb": "introduces"
+  },
+  {
+   "span": "factorization",
+   "concept": "memoryless-reservoir-factorization",
+   "verb": "introduces"
+  },
+  {
+   "span": "irreversibility",
+   "concept": "irreversibility-boundary",
+   "verb": "introduces"
+  },
+  {
+   "span": "obe",
+   "concept": "optical-bloch-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-spontaneous",
+   "concept": "thermal-and-spontaneous-transitions",
+   "verb": "introduces"
+  },
+  {
+   "span": "coherence-decay",
+   "concept": "coherence-decay-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "dephasing",
+   "concept": "dephasing-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "lorentzian",
+   "concept": "weak-field-response",
+   "verb": "introduces"
+  },
+  {
+   "span": "steady-state",
+   "concept": "steady-state-coherence",
+   "verb": "introduces"
+  },
+  {
+   "span": "pumping-rate",
+   "concept": "optical-pumping-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "saturated",
+   "concept": "saturation",
+   "verb": "introduces"
+  },
+  {
+   "span": "rate-equations",
+   "concept": "rate-equations",
+   "verb": "introduces"
+  },
+  {
+   "span": "remarks",
+   "concept": "master-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "remarks",
+   "concept": "markovian-environment",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-79",
+   "concept": "reduced-density-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "channels",
+   "concept": "system-reservoir-hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "cost",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "cost",
+   "concept": "density-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "factorization",
+   "concept": "correlation-time",
+   "verb": "uses"
+  },
+  {
+   "span": "factorization",
+   "concept": "reservoir-correlation-functions",
+   "verb": "uses"
+  },
+  {
+   "span": "irreversibility",
+   "concept": "reversible-evolution",
+   "verb": "uses"
+  },
+  {
+   "span": "irreversibility",
+   "concept": "open-system",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-84",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "obe",
+   "concept": "density-matrix-populations",
+   "verb": "uses"
+  },
+  {
+   "span": "obe",
+   "concept": "density-matrix-coherences",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-spontaneous",
+   "concept": "mean-thermal-photon-number",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-spontaneous",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "steady-state",
+   "concept": "rabi-oscillations",
+   "verb": "uses"
+  },
+  {
+   "span": "saturated",
+   "concept": "pure-and-mixed-states",
+   "verb": "uses"
+  },
+  {
+   "span": "rate-equations",
+   "concept": "adiabatic-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-damped-bloch",
+   "concept": "coherence-bound",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-optical-bloch-equations",
+   "concept": "two-level-master-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-steady-state-population",
+   "concept": "steady-state-population",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "hw6-3a",
+   "source_id": "hw6.3a",
+   "source_number": "Problem Set 6, Problem 3(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $|e\\rangle$, $|g\\rangle$ are $|2\\rangle$, $|1\\rangle$, its $\\rho_{eg}$, $\\rho_{ge}$ are $\\rho_{21}$, $\\rho_{12}$, and $T_2$ is named $1/\\gamma_{12}$ in the problem's opening, which this part carries; MIT's preamble on the next week's lecture is left out.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dephasing",
+   "prompt": "What is the physical meaning of the decay of the off-diagonal elements of the atomic density matrix, $\\rho_{21}$ and $\\rho_{12}$, due to spontaneous emission and other processes? Three very simple models for this kind of quantum noise, which leads to loss of <em>phase coherence</em>, and gives rise to decoherence times characterized by $T_2 = 1/\\gamma_{12}$, are the following. One physical origin for the decay of the off-diagonal elements of the atomic density matrix (this decay is known as “phase damping”) is random phase noise. Suppose that we have an atom in the arbitrary state $$\\rho = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix},$$ excited by far off-resonance light of random intensity. The effect of this light on the state is an AC stark shift $|2\\rangle \\to e^{i\\theta}|2\\rangle$, which we may model as a rotation $R_z(\\theta)$, where the angle of rotation $\\theta$ is random, distributed as a Gaussian with mean 0 and variance $2\\lambda t$. Give $\\rho(\\theta) = R_z(\\theta)\\rho R_z^\\dagger(\\theta)$, and the expected density matrix $\\bar{\\rho}(t) = \\langle\\rho(\\theta)\\rangle$, averaged over this Gaussian distribution.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the basis $\\{|1\\rangle, |2\\rangle\\}$ the shift is $R_z(\\theta) = \\mathrm{diag}(1, e^{i\\theta})$, so $$\\rho(\\theta) = R_z(\\theta)\\rho R_z^\\dagger(\\theta) = \\begin{bmatrix} a & b\\,e^{-i\\theta} \\\\ c\\,e^{i\\theta} & d \\end{bmatrix}.$$ For a Gaussian $\\theta$ of mean 0 and variance $\\sigma^2 = 2\\lambda t$, $\\langle e^{\\pm i\\theta}\\rangle = e^{-\\sigma^2/2} = e^{-\\lambda t}$, so $$\\bar{\\rho}(t) = \\begin{bmatrix} a & b\\,e^{-\\lambda t} \\\\ c\\,e^{-\\lambda t} & d \\end{bmatrix}.$$ The populations $\\rho_{11} = a$ and $\\rho_{22} = d$ are untouched while the coherences decay at the rate $\\lambda$: each atom keeps a definite but unknown phase, and averaging over the unknown phases washes out $\\rho_{12}$ and $\\rho_{21}$. This is the dephasing of Eq. (3.93) with $\\gamma_d = \\lambda$; with no population decay $\\gamma_{12} = \\gamma_d$ and $T_2 = 1/\\lambda$. A symmetric $R_z(\\theta) = \\mathrm{diag}(e^{-i\\theta/2}, e^{i\\theta/2})$ gives the same matrices."
+   }
+  },
+  {
+   "id": "hw6-3b",
+   "source_id": "hw6.3b",
+   "source_number": "Problem Set 6, Problem 3(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $|e\\rangle$, $|g\\rangle$ are $|2\\rangle$, $|1\\rangle$ and its $\\rho_{eg}$, $\\rho_{ge}$ are $\\rho_{21}$, $\\rho_{12}$; the coupling constant MIT calls $\\gamma$ is renamed $\\chi$, since $\\gamma$ is the decay rate here, and the environment states $|0\\rangle$, $|1\\rangle$ are written $|0\\rangle_E$, $|1\\rangle_E$, since $|1\\rangle$ is the atom's ground state; the part opens with one line saying what phase damping is.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dephasing",
+   "prompt": "Phase damping of the two-level atom, the decay of the off-diagonal elements $\\rho_{21}$ and $\\rho_{12}$ of its density matrix: Another physical origin for phase damping is elastic collisions. Assume the two-level atom bounces along a waveguide, interacting with the walls without loosing kinetic energy, but changing its trajectory slightly at each bounce, in a manner depending on the state of the atom. This can be modeled by a Hamiltonian interacting the atom with a single mode environment, $$H_{SE} = |2\\rangle\\langle 2| \\otimes \\left[\\chi|0\\rangle_E\\langle 1|_E + \\chi^*|1\\rangle_E\\langle 0|_E\\right],$$ with coupling constant $\\chi$. This Hamiltonian flips the state of the environment between $|0\\rangle_E$ and $|1\\rangle_E$ with a rate $\\chi$, when the atom is in the excited state. This is a simple model for a state-dependent interaction with the environment. Compute the evolution of an initial atomic state $a|1\\rangle + b|2\\rangle$ coupled to an environment $|0\\rangle_E$, evolved for a small differential timestep $dt$, and give the density matrix of the atom $\\rho(t)$ for small $t$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\hbar = 1$, as the problem's “rate” $\\chi$ implies, $H_{SE}$ leaves $|1\\rangle|0\\rangle_E$ alone and turns $|2\\rangle|0\\rangle_E$ within $\\{|2\\rangle|0\\rangle_E, |2\\rangle|1\\rangle_E\\}$: $$|\\psi(t)\\rangle = a|1\\rangle|0\\rangle_E + b|2\\rangle\\left[\\cos(|\\chi|t)|0\\rangle_E - i\\frac{\\chi^*}{|\\chi|}\\sin(|\\chi|t)|1\\rangle_E\\right],$$ which for a step $dt$ is $a|1\\rangle|0\\rangle_E + b|2\\rangle\\left[(1 - |\\chi|^2dt^2/2)|0\\rangle_E - i\\chi^*dt\\,|1\\rangle_E\\right]$. Tracing over the environment, each coherence is multiplied by the overlap of the environment states the two levels leave behind, $\\langle 0|_E\\left(\\cos|\\chi|t\\,|0\\rangle_E - \\ldots\\right) = \\cos|\\chi|t$: $$\\rho(t) = \\begin{bmatrix} |a|^2 & ab^*\\cos|\\chi|t \\\\ a^*b\\cos|\\chi|t & |b|^2 \\end{bmatrix} \\approx \\begin{bmatrix} |a|^2 & ab^*(1 - |\\chi|^2t^2/2) \\\\ a^*b(1 - |\\chi|^2t^2/2) & |b|^2 \\end{bmatrix}.$$ The populations are unchanged and the coherences shrink because the environment now records, in part, which level the atom is in: this is the reduced density operator of Eq. (3.21) losing purity. For one bounce the loss is quadratic in time; if every bounce of duration $dt$ meets a fresh environment in $|0\\rangle_E$, the factors compound to $(1 - |\\chi|^2dt^2/2)^{t/dt} \\approx e^{-|\\chi|^2 dt\\, t/2}$, phase damping at $\\gamma_d = |\\chi|^2dt/2$, the exponential decay of (a) and (c)."
+   }
+  },
+  {
+   "id": "hw6-3c",
+   "source_id": "hw6.3c",
+   "source_number": "Problem Set 6, Problem 3(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $|e\\rangle$ is $|2\\rangle$ and its $\\rho_{eg}$, $\\rho_{ge}$ are $\\rho_{21}$, $\\rho_{12}$; the part opens with one line saying what phase damping is, and MIT's closing paragraph on the three models follows it.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dephasing",
+   "prompt": "Phase damping of the two-level atom, the decay of the off-diagonal elements $\\rho_{21}$ and $\\rho_{12}$ of its density matrix: A third physical model for phase damping is the following scenario (which you may think a bit unphysical). Suppose the two-level atom is subject to a force which randomly flips the phase of the atom by $-1$, changing $|2\\rangle \\to -|2\\rangle$, with probability $(1 - e^{-\\lambda t})/2$ at each moment in time. Assuming the density matrix is initially arbitrary, give $\\rho(t)$ averaged over this random phase flip process. An amazing fact about these three models is that if phase damping is known to be happening to an atom, say during traversal through some black box, without additional knowledge about what is inside the black box, there is <em>in principle, no way to distinguish</em> between which of the above physical processes is causing the phase damping! They are perfectly equivalent and equally legitimate. This is fundamental to why quantum error correction can work: phase noise can be modeled as either no error happens to the state, or a phase flip “error” occurs (analogous to bit errors in a communication channel), even if the actual physical process is a different one.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $p = (1 - e^{-\\lambda t})/2$ the flip $Z = \\mathrm{diag}(1, -1)$ acts with probability $p$, so $$\\rho(t) = (1 - p)\\rho + pZ\\rho Z.$$ $Z\\rho Z$ keeps the diagonal and reverses the sign of the off-diagonal elements, so the populations are unchanged and the coherences are multiplied by $(1 - p) - p = 1 - 2p = e^{-\\lambda t}$: $$\\rho(t) = \\begin{bmatrix} \\rho_{11} & \\rho_{12}e^{-\\lambda t} \\\\ \\rho_{21}e^{-\\lambda t} & \\rho_{22} \\end{bmatrix}.$$ This is the same $\\bar{\\rho}(t)$ as part (a): pure dephasing at $\\gamma_d = \\lambda$, adding $\\lambda$ to $\\gamma_{12}$ in Eq. (3.93) without touching $\\rho_{11}$ or $\\rho_{22}$."
+   }
+  },
+  {
+   "id": "hw7-1a",
+   "source_id": "hw7.1a",
+   "source_number": "Problem Set 7, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $\\rho_{ee}$, $\\rho_{gg}$, $\\rho_{ge}$, $\\rho_{eg}$ are $\\rho_{22}$, $\\rho_{11}$, $\\rho_{12}$, $\\rho_{21}$; MIT's Rabi frequency $\\Omega$ is written $2\\Omega$, so its $\\frac{1}{4}|\\Omega|^2$ is $|\\Omega|^2$ and its conditions $|\\Omega| \\ll \\Gamma$ and $|\\Omega|t \\ll 1$ read $2|\\Omega| \\ll \\gamma$ and $2|\\Omega|t \\ll 1$; $\\Gamma$ is $\\gamma$ and $\\omega_0 - \\omega_L$ is $-\\delta$, with $\\delta = \\nu - \\omega$. The two equations are then Eqs. (3.86) and (3.88) with $\\bar{n} = 0$ and $\\Omega$ real.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lorentzian",
+   "prompt": "The time-independent form of the optical Bloch equations (eg, see API p. 359), including spontaneous emission, and the rotating wave approximation, is: $$\\dot{\\rho}_{22} = i\\Omega(\\rho_{21} - \\rho_{12}) - \\gamma\\rho_{22}$$ $$\\dot{\\rho}_{12} = -i\\delta\\rho_{12} - i\\Omega(\\rho_{22} - \\rho_{11}) - \\frac{\\gamma}{2}\\rho_{12},$$ where the remaining two components of the density matrix are given by $\\rho_{11} = 1 - \\rho_{22}$, and $\\rho_{21} = \\rho_{12}^*$. It is insightful to study these equations in the limit of weak excitation, and for short evolution times. Show that the solution of these equations to lowest order in $|\\Omega|$, and in the limit $2|\\Omega| \\ll \\gamma$, with the initial conditions $\\rho_{22} = 0$ and $\\rho_{12} = 0$, gives $$\\rho_{22} = \\frac{|\\Omega|^2}{\\delta^2 + \\left(\\frac{\\gamma}{2}\\right)^2}\\left[1 + e^{-\\gamma t} - 2\\cos(\\delta t)e^{-\\gamma t/2}\\right].$$ What does this solution reduce to in the limit of an infinitely narrow linewidth ($\\gamma \\to 0$)?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "To lowest order in $\\Omega$ the populations stay where they start, so $\\rho_{22} - \\rho_{11} \\approx -1$ in the coherence equation: $$\\dot{\\rho}_{12} = -\\left(\\frac{\\gamma}{2} + i\\delta\\right)\\rho_{12} + i\\Omega \\quad\\Rightarrow\\quad \\rho_{12}(t) = \\frac{i\\Omega}{\\gamma/2 + i\\delta}\\left[1 - e^{-(\\gamma/2 + i\\delta)t}\\right].$$ The population equation is $\\dot{\\rho}_{22} = -\\gamma\\rho_{22} + 2\\Omega\\,\\mathrm{Im}\\,\\rho_{12}$, since $i\\Omega(\\rho_{12}^* - \\rho_{12}) = 2\\Omega\\,\\mathrm{Im}\\,\\rho_{12}$. The same equation holds for $|\\rho_{12}|^2$: $\\frac{d}{dt}|\\rho_{12}|^2 = 2\\,\\mathrm{Re}(\\rho_{12}^*\\dot{\\rho}_{12}) = -\\gamma|\\rho_{12}|^2 + 2\\Omega\\,\\mathrm{Im}\\,\\rho_{12}$, and both start at 0, so $\\rho_{22} = |\\rho_{12}|^2$: $$\\rho_{22} = \\frac{|\\Omega|^2}{\\delta^2 + \\gamma^2/4}\\left|1 - e^{-\\gamma t/2}e^{-i\\delta t}\\right|^2 = \\frac{|\\Omega|^2}{\\delta^2 + (\\gamma/2)^2}\\left[1 + e^{-\\gamma t} - 2\\cos(\\delta t)e^{-\\gamma t/2}\\right].$$ The condition $2|\\Omega| \\ll \\gamma$ keeps $\\rho_{22} \\ll 1$ at all times, so the lowest order holds throughout; at long times $\\rho_{22} \\to |\\Omega|^2/(\\delta^2 + \\gamma^2/4)$, the weak-field limit $R_{opt}/\\gamma$ of Eq. (3.100). For $\\gamma \\to 0$, $$\\rho_{22} = \\frac{2|\\Omega|^2}{\\delta^2}\\left(1 - \\cos\\delta t\\right) = \\frac{4|\\Omega|^2}{\\delta^2}\\sin^2\\frac{\\delta t}{2},$$ the small-$\\Omega$ form of the detuned Rabi oscillation $\\frac{4|\\Omega|^2}{4|\\Omega|^2 + \\delta^2}\\sin^2\\left(\\frac{\\sqrt{4|\\Omega|^2 + \\delta^2}}{2}t\\right)$: it oscillates at $\\delta$ without settling, and it holds only while $\\rho_{22} \\ll 1$, that is for $|\\Omega| \\ll |\\delta|$ or $|\\Omega|t \\ll 1$."
+   }
+  },
+  {
+   "id": "hw7-1b",
+   "source_id": "hw7.1b",
+   "source_number": "Problem Set 7, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $\\rho_{ee}$, $\\rho_{gg}$, $\\rho_{ge}$, $\\rho_{eg}$ are $\\rho_{22}$, $\\rho_{11}$, $\\rho_{12}$, $\\rho_{21}$; MIT's Rabi frequency $\\Omega$ is written $2\\Omega$, so its $\\frac{1}{4}|\\Omega|^2$ is $|\\Omega|^2$ and its conditions $|\\Omega| \\ll \\Gamma$ and $|\\Omega|t \\ll 1$ read $2|\\Omega| \\ll \\gamma$ and $2|\\Omega|t \\ll 1$; $\\Gamma$ is $\\gamma$ and $\\omega_0 - \\omega_L$ is $-\\delta$, with $\\delta = \\nu - \\omega$. The two equations are then Eqs. (3.86) and (3.88) with $\\bar{n} = 0$ and $\\Omega$ real. The part repeats the two equations.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lorentzian",
+   "prompt": "For the optical Bloch equations with spontaneous emission, $$\\dot{\\rho}_{22} = i\\Omega(\\rho_{21} - \\rho_{12}) - \\gamma\\rho_{22}$$ $$\\dot{\\rho}_{12} = -i\\delta\\rho_{12} - i\\Omega(\\rho_{22} - \\rho_{11}) - \\frac{\\gamma}{2}\\rho_{12},$$ with $\\rho_{11} = 1 - \\rho_{22}$ and $\\rho_{21} = \\rho_{12}^*$: Show that the solution of these equations to lowest order in $|\\Omega|$ in the limit $2|\\Omega|t \\ll 1$, with the initial conditions $\\rho_{22} = 0$ and $\\rho_{12} = 0$, gives $$\\rho_{22} = |\\Omega|^2t^2.$$ This result is independent of the detuning $-\\delta$ and the decay rate $\\gamma$. Why?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "To lowest order in $|\\Omega|$ the solution is that of part (a), $\\rho_{22} = |\\rho_{12}|^2$ with $\\rho_{12} = \\frac{i\\Omega}{\\gamma/2 + i\\delta}\\left[1 - e^{-(\\gamma/2 + i\\delta)t}\\right]$. At short times $1 - e^{-(\\gamma/2 + i\\delta)t} \\approx (\\gamma/2 + i\\delta)t$, so $\\rho_{12} \\approx i\\Omega t$ and $$\\rho_{22} = |\\Omega|^2t^2;$$ equivalently, the bracket of part (a) expands to $(\\delta^2 + \\gamma^2/4)t^2$, which cancels its denominator. The detuning and the decay drop out because they act only through the factor $e^{-(\\gamma/2 + i\\delta)t}$, and at short times it has not yet moved from 1: the coherence $\\rho_{12} \\approx i\\Omega t$ builds up linearly and in phase with the drive, as the amplitude of $|2\\rangle$ does in first-order perturbation theory, before the decay has removed any of it ($\\gamma t \\ll 1$) or the detuning has turned its phase against the drive ($|\\delta|t \\ll 1$). The population, the square of that amplitude, grows as $t^2$. The result therefore needs $\\gamma t \\ll 1$ and $|\\delta|t \\ll 1$ as well as $2|\\Omega|t \\ll 1$, which keeps $\\rho_{22} \\ll 1$ so that the lowest order holds."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "hw6-3a",
+   "concept": "dephasing-rate"
+  },
+  {
+   "exercise": "hw6-3a",
+   "concept": "density-matrix-coherences"
+  },
+  {
+   "exercise": "hw6-3b",
+   "concept": "dephasing-rate"
+  },
+  {
+   "exercise": "hw6-3b",
+   "concept": "reduced-density-operator"
+  },
+  {
+   "exercise": "hw6-3c",
+   "concept": "dephasing-rate"
+  },
+  {
+   "exercise": "hw6-3c",
+   "concept": "coherence-decay-rate"
+  },
+  {
+   "exercise": "hw7-1a",
+   "concept": "optical-bloch-equations"
+  },
+  {
+   "exercise": "hw7-1a",
+   "concept": "weak-field-response"
+  },
+  {
+   "exercise": "hw7-1b",
+   "concept": "optical-bloch-equations"
+  },
+  {
+   "exercise": "hw7-1b",
+   "concept": "weak-field-response"
+  }
+ ],
+ "referents": [
+  {
+   "id": "lvl-1",
+   "label": "the ground state |1⟩",
+   "figures": [
+    "sim-damped-bloch"
+   ]
+  },
+  {
+   "id": "lvl-2",
+   "label": "the excited state |2⟩",
+   "figures": [
+    "sim-damped-bloch"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-eq-3-95",
+   "kind": "correction",
+   "html": "The book prints $\\krhoonetwo(\\kdeltanu)$ in the transform of $\\krhotwoone(\\kt)$. It is $\\krhotwoone(\\kt) = \\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}\\krhotwoone(\\kdeltanu)$, the component $\\krhotwoone(\\kdeltanu)$ that Eq. (3.97) solves for."
+  },
+  {
+   "id": "c-eq-3-84",
+   "kind": "correction",
+   "html": "Not a misprint but an unstated change of sign: Section 2.1 couples the levels through $-\\hbar\\kOmega|2\\rangle\\langle 1|$ (from $-\\hat{\\mu}\\cdot\\mathbf{E}$), so that $\\dot{\\kctildetwo} = i\\kdelta\\kctildetwo + i\\kOmega\\kcone$, while Eq. (3.84) takes $+\\hbar\\kOmega|2\\rangle\\langle 1|$. Eqs. (3.86)–(3.89) and (3.99) follow correctly from (3.84); in Section 2.1's convention every $\\kOmega$ in them changes sign, and (3.99) reads $\\krhotwoone = i\\kOmega(\\krhooneone - \\krhotwotwo)/(\\kgammatwoone - i\\kdelta)$, as Eq. (4.43) takes it. Populations and rates are the same either way."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "memoryless-factorization",
+   "what": "the factorization for a reservoir with no memory",
+   "source": "Modern Atomic and Optical Physics II, 3.4 Master equation, 3.4.1 Remarks on the generalized master equation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\krhotilde(\\kt) = \\krhotilde_S(\\kt_i) \\otimes \\krhotilde_R(\\kt_i) + \\krhotilde_{corr}(\\kt_i, \\kt)",
+       "src": "(3.81)"
+      },
+      {
+       "text": "The system and reservoir do not interact before $\\kt_i$, so the state is factorizable up to $\\kt_i$.",
+       "src": "3.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\krhotilde} = \\mk{R}{\\frac{1}{i\\hbar}[\\kHtilde_{SR}, \\krhotilde]}",
+      "src": "(3.40)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\krhotilde(\\kt) - \\krhotilde(\\kt_i)} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt_i}^{\\kt}d\\kt'[\\kHtilde_{SR}(\\kt'), \\krhotilde(\\kt')]}",
+       "uses": [],
+       "cap": "Integrating both sides from $t_i$ to $t$."
+      },
+      {
+       "tex": "\\mk{L}{\\krhotilde_{corr}(\\kt_i, \\kt)} \\approx \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt_i}^{\\kt}d\\kt'[\\kHtilde_{SR}(\\kt'), \\krhotilde_S(\\kt_i) \\otimes \\krhotilde_R(\\kt_i)]}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "To leading order $\\tilde{\\rho}(t')$ is replaced by the factorized state at $t_i$, and what $\\tilde{\\rho}(t)$ holds beyond it is the correlation."
+      }
+     ],
+     "num": "(3.82)",
+     "note": "The book prints the integral of Eq. (3.82) without its $d\\kt'$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The neglected change is what $\\krhotilde_{corr}(\\kt_i, \\kt)$ adds to the first term of Eq. (3.48).",
+       "src": "(3.48)"
+      },
+      {
+       "text": "The time correlation function of a reservoir with no memory is a delta function in time.",
+       "src": "3.3.3"
+      },
+      {
+       "text": "The intervals of integration, $\\kt_i$ to $\\kt$ and $\\kt$ to $\\kt + \\kDeltat$, do not overlap.",
+       "src": "3.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\Delta\\krhotilde_S} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{\\kt+\\kDeltat}d\\kt''\\ \\mathrm{Tr}_R[\\kHtilde_{SR}(\\kt''), \\krhotilde_{corr}(\\kt_i, \\kt)]}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\Delta\\krhotilde_S} \\approx \\mk{R}{\\frac{1}{(i\\hbar)^2}\\int_{\\kt_i}^{\\kt}d\\kt'\\int_{\\kt}^{\\kt+\\kDeltat}d\\kt''\\ \\mathrm{Tr}_R[\\kHtilde_{SR}(\\kt''), [\\kHtilde_{SR}(\\kt'), \\krhotilde_S(\\kt_i) \\otimes \\krhotilde_R(\\kt_i)]]}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\Delta\\krhotilde_S} \\propto \\mk{R}{\\int_{\\kt_i}^{\\kt} d\\kt'\\int_{\\kt}^{\\kt+\\kDeltat}d\\kt''\\underbrace{\\langle\\kHtilde_{SR}(\\kt'')\\kHtilde_{SR}(\\kt')\\rangle}_{\\propto\\ \\delta(\\kt'' - \\kt')}}",
+       "uses": [
+        2
+       ],
+       "cap": "Expanding the commutators, every term carries a correlation of the reservoir between the times $t'$ and $t''$."
+      },
+      {
+       "tex": "\\mk{L}{\\Delta\\krhotilde_S} = \\mk{R}{0}",
+       "uses": [
+        3
+       ],
+       "cap": "The delta function is zero everywhere within the region of integration."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "optical-bloch-equations",
+   "what": "the optical Bloch equations",
+   "source": "Modern Atomic and Optical Physics II, 3.4 Master equation, 3.4.2 Example: The two-level atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For the two-level atom $\\kShat = |1\\rangle\\langle 2| = \\sigma_{12}$ in Eq. (3.79), with $\\sigma_{ij} = |i\\rangle\\langle j|$, and a single decay channel of rate $\\kgamma$.",
+       "src": "3.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\begin{aligned}\\mk{L}{\\frac{\\Delta\\krhoS}{\\kDeltat}} = {} &\\mk{b}{-\\sum_p\\frac{\\kgammap}{2}\\knbar\\left(\\kShat_p\\kShat_p^\\dagger\\krhoS - \\kShat_p^\\dagger\\krhoS\\kShat_p\\right) + h.c.} \\\\ &\\mk{a}{-\\sum_p\\frac{\\kgammap}{2}(\\knbar + 1)\\left(\\kShat_p^\\dagger\\kShat_p\\krhoS - \\kShat_p\\krhoS\\kShat_p^\\dagger\\right) + h.c.} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}\\end{aligned}",
+      "src": "(3.79)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\frac{\\Delta\\krhoS}{\\kDeltat}} = {} &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\left(\\sigma_{12}\\sigma_{21}\\krhoS - \\sigma_{21}\\krhoS\\sigma_{12}\\right) + h.c.} \\\\ &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\left(\\sigma_{21}\\sigma_{12}\\krhoS - \\sigma_{12}\\krhoS\\sigma_{21}\\right) + h.c.} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}\\end{aligned}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\frac{\\Delta\\krhoS}{\\kDeltat}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\left(\\sigma_{22}\\krhoS - \\sigma_{12}\\krhoS\\sigma_{21}\\right) + h.c.} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\left(\\sigma_{11}\\krhoS - \\sigma_{21}\\krhoS\\sigma_{12}\\right) + h.c.} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}\\end{aligned}",
+       "uses": [],
+       "cap": "$\\sigma_{12}\\sigma_{21} = \\sigma_{11}$ and $\\sigma_{21}\\sigma_{12} = \\sigma_{22}$; the row in $\\bar{n} + 1$ is written first."
+      }
+     ],
+     "num": "(3.85)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The matrix elements $\\langle i|\\frac{\\Delta\\krhoS}{\\kDeltat}|j\\rangle = \\dot{\\rho}_{ij}$ are taken, with $\\sigma_{ij}|k\\rangle = \\delta_{jk}|i\\rangle$.",
+       "src": "3.4.2"
+      },
+      {
+       "tex": "\\kHS = -\\hbar\\kdelta|2\\rangle\\langle 2| + \\hbar\\kOmega^*|1\\rangle\\langle 2| + \\hbar\\kOmega|2\\rangle\\langle 1|",
+       "src": "(3.84)"
+      }
+     ],
+     "then": {
+      "tex": "\\begin{aligned}\\mk{L}{\\frac{\\Delta\\krhoS}{\\kDeltat}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\left(\\sigma_{22}\\krhoS - \\sigma_{12}\\krhoS\\sigma_{21}\\right) + h.c.} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\left(\\sigma_{11}\\krhoS - \\sigma_{21}\\krhoS\\sigma_{12}\\right) + h.c.} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}\\end{aligned}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\frac{\\Delta\\krhoS}{\\kDeltat}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\left(\\sigma_{22}\\krhoS + \\krhoS\\sigma_{22} - 2\\sigma_{12}\\krhoS\\sigma_{21}\\right)} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\left(\\sigma_{11}\\krhoS + \\krhoS\\sigma_{11} - 2\\sigma_{21}\\krhoS\\sigma_{12}\\right)} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}\\end{aligned}",
+       "uses": [],
+       "cap": "Writing out each Hermitian conjugate, $(\\sigma_{22}\\rho - \\sigma_{12}\\rho\\sigma_{21})^\\dagger = \\rho\\sigma_{22} - \\sigma_{12}\\rho\\sigma_{21}$ and $(\\sigma_{11}\\rho - \\sigma_{21}\\rho\\sigma_{12})^\\dagger = \\rho\\sigma_{11} - \\sigma_{21}\\rho\\sigma_{12}$."
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\dot{\\krhotwotwo}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\langle 2|\\sigma_{22}\\krhoS + \\krhoS\\sigma_{22} - 2\\sigma_{12}\\krhoS\\sigma_{21}|2\\rangle} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\langle 2|\\sigma_{11}\\krhoS + \\krhoS\\sigma_{11} - 2\\sigma_{21}\\krhoS\\sigma_{12}|2\\rangle} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}\\langle 2|[\\kHS, \\krhoS]|2\\rangle}\\end{aligned}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)(2\\krhotwotwo)} \\mk{b}{-\\frac{\\kgamma}{2}\\knbar(-2\\krhooneone)} + \\mk{c}{\\frac{1}{i\\hbar}(\\hbar\\kOmega\\krhoonetwo - \\hbar\\kOmega^*\\krhotwoone)}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$\\sigma_{12}\\rho\\sigma_{21} = \\rho_{22}|1\\rangle\\langle 1|$ and $\\sigma_{21}\\rho\\sigma_{12} = \\rho_{11}|2\\rangle\\langle 2|$; with Eq. (3.84), $\\langle 2|\\hat{H}_S\\rho|2\\rangle = -\\hbar\\delta\\rho_{22} + \\hbar\\Omega\\rho_{12}$ and $\\langle 2|\\rho\\hat{H}_S|2\\rangle = -\\hbar\\delta\\rho_{22} + \\hbar\\Omega^*\\rho_{21}$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma(\\knbar + 1)\\krhotwotwo} + \\mk{b}{\\kgamma\\knbar\\krhooneone} + \\mk{c}{i\\kOmega^*\\krhotwoone - i\\kOmega\\krhoonetwo}",
+       "uses": []
+      }
+     ],
+     "num": "(3.86)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The matrix elements $\\langle i|\\frac{\\Delta\\krhoS}{\\kDeltat}|j\\rangle = \\dot{\\rho}_{ij}$ are taken, with $\\sigma_{ij}|k\\rangle = \\delta_{jk}|i\\rangle$.",
+       "src": "3.4.2"
+      },
+      {
+       "tex": "\\kHS = -\\hbar\\kdelta|2\\rangle\\langle 2| + \\hbar\\kOmega^*|1\\rangle\\langle 2| + \\hbar\\kOmega|2\\rangle\\langle 1|",
+       "src": "(3.84)"
+      }
+     ],
+     "then": {
+      "tex": "\\begin{aligned}\\mk{L}{\\frac{\\Delta\\krhoS}{\\kDeltat}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\left(\\sigma_{22}\\krhoS - \\sigma_{12}\\krhoS\\sigma_{21}\\right) + h.c.} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\left(\\sigma_{11}\\krhoS - \\sigma_{21}\\krhoS\\sigma_{12}\\right) + h.c.} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}\\end{aligned}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\frac{\\Delta\\krhoS}{\\kDeltat}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\left(\\sigma_{22}\\krhoS + \\krhoS\\sigma_{22} - 2\\sigma_{12}\\krhoS\\sigma_{21}\\right)} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\left(\\sigma_{11}\\krhoS + \\krhoS\\sigma_{11} - 2\\sigma_{21}\\krhoS\\sigma_{12}\\right)} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}\\end{aligned}",
+       "uses": [],
+       "cap": "Writing out each Hermitian conjugate, $(\\sigma_{22}\\rho - \\sigma_{12}\\rho\\sigma_{21})^\\dagger = \\rho\\sigma_{22} - \\sigma_{12}\\rho\\sigma_{21}$ and $(\\sigma_{11}\\rho - \\sigma_{21}\\rho\\sigma_{12})^\\dagger = \\rho\\sigma_{11} - \\sigma_{21}\\rho\\sigma_{12}$."
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\dot{\\krhooneone}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\langle 1|\\sigma_{22}\\krhoS + \\krhoS\\sigma_{22} - 2\\sigma_{12}\\krhoS\\sigma_{21}|1\\rangle} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\langle 1|\\sigma_{11}\\krhoS + \\krhoS\\sigma_{11} - 2\\sigma_{21}\\krhoS\\sigma_{12}|1\\rangle} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}\\langle 1|[\\kHS, \\krhoS]|1\\rangle}\\end{aligned}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhooneone}} = \\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)(-2\\krhotwotwo)} \\mk{b}{-\\frac{\\kgamma}{2}\\knbar(2\\krhooneone)} + \\mk{c}{\\frac{1}{i\\hbar}(\\hbar\\kOmega^*\\krhotwoone - \\hbar\\kOmega\\krhoonetwo)}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$\\sigma_{12}\\rho\\sigma_{21} = \\rho_{22}|1\\rangle\\langle 1|$ and $\\sigma_{21}\\rho\\sigma_{12} = \\rho_{11}|2\\rangle\\langle 2|$; with Eq. (3.84), $\\langle 1|\\hat{H}_S\\rho|1\\rangle = \\hbar\\Omega^*\\rho_{21}$ and $\\langle 1|\\rho\\hat{H}_S|1\\rangle = \\hbar\\Omega\\rho_{12}$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhooneone}} = \\mk{a}{\\kgamma(\\knbar + 1)\\krhotwotwo} \\mk{b}{- \\kgamma\\knbar\\krhooneone} \\mk{c}{- i\\kOmega^*\\krhotwoone + i\\kOmega\\krhoonetwo}",
+       "uses": []
+      }
+     ],
+     "num": "(3.87)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The matrix elements $\\langle i|\\frac{\\Delta\\krhoS}{\\kDeltat}|j\\rangle = \\dot{\\rho}_{ij}$ are taken, with $\\sigma_{ij}|k\\rangle = \\delta_{jk}|i\\rangle$.",
+       "src": "3.4.2"
+      },
+      {
+       "tex": "\\kHS = -\\hbar\\kdelta|2\\rangle\\langle 2| + \\hbar\\kOmega^*|1\\rangle\\langle 2| + \\hbar\\kOmega|2\\rangle\\langle 1|",
+       "src": "(3.84)"
+      }
+     ],
+     "then": {
+      "tex": "\\begin{aligned}\\mk{L}{\\frac{\\Delta\\krhoS}{\\kDeltat}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\left(\\sigma_{22}\\krhoS - \\sigma_{12}\\krhoS\\sigma_{21}\\right) + h.c.} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\left(\\sigma_{11}\\krhoS - \\sigma_{21}\\krhoS\\sigma_{12}\\right) + h.c.} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}\\end{aligned}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\frac{\\Delta\\krhoS}{\\kDeltat}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\left(\\sigma_{22}\\krhoS + \\krhoS\\sigma_{22} - 2\\sigma_{12}\\krhoS\\sigma_{21}\\right)} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\left(\\sigma_{11}\\krhoS + \\krhoS\\sigma_{11} - 2\\sigma_{21}\\krhoS\\sigma_{12}\\right)} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}\\end{aligned}",
+       "uses": [],
+       "cap": "Writing out each Hermitian conjugate, $(\\sigma_{22}\\rho - \\sigma_{12}\\rho\\sigma_{21})^\\dagger = \\rho\\sigma_{22} - \\sigma_{12}\\rho\\sigma_{21}$ and $(\\sigma_{11}\\rho - \\sigma_{21}\\rho\\sigma_{12})^\\dagger = \\rho\\sigma_{11} - \\sigma_{21}\\rho\\sigma_{12}$."
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\dot{\\krhoonetwo}} = {} &\\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\langle 1|\\sigma_{22}\\krhoS + \\krhoS\\sigma_{22} - 2\\sigma_{12}\\krhoS\\sigma_{21}|2\\rangle} \\\\ &\\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\langle 1|\\sigma_{11}\\krhoS + \\krhoS\\sigma_{11} - 2\\sigma_{21}\\krhoS\\sigma_{12}|2\\rangle} \\\\ &+\\mk{c}{\\frac{1}{i\\hbar}\\langle 1|[\\kHS, \\krhoS]|2\\rangle}\\end{aligned}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhoonetwo}} = \\mk{a}{-\\frac{\\kgamma}{2}(\\knbar + 1)\\krhoonetwo} \\mk{b}{-\\frac{\\kgamma}{2}\\knbar\\krhoonetwo} + \\mk{c}{\\frac{1}{i\\hbar}(\\hbar\\kOmega^*\\krhotwotwo + \\hbar\\kdelta\\krhoonetwo - \\hbar\\kOmega^*\\krhooneone)}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Only $\\langle 1|\\rho\\sigma_{22}|2\\rangle$ and $\\langle 1|\\sigma_{11}\\rho|2\\rangle$ survive, each $\\rho_{12}$; with Eq. (3.84), $\\langle 1|\\hat{H}_S\\rho|2\\rangle = \\hbar\\Omega^*\\rho_{22}$ and $\\langle 1|\\rho\\hat{H}_S|2\\rangle = -\\hbar\\delta\\rho_{12} + \\hbar\\Omega^*\\rho_{11}$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhoonetwo}} = \\mk{a}{-\\frac{\\kgamma}{2}(2\\knbar + 1)\\krhoonetwo} \\mk{c}{- i\\kdelta\\krhoonetwo - i\\kOmega^*(\\krhotwotwo - \\krhooneone)}",
+       "uses": [],
+       "map": {
+        "b": "a"
+       }
+      }
+     ],
+     "num": "(3.88)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "text": "Hermiticity, $\\krhoonetwo = \\krhotwoone^*$; the populations are real.",
+       "src": "3.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhoonetwo}} = \\mk{a}{-\\frac{\\kgamma}{2}(2\\knbar + 1)\\krhoonetwo} \\mk{c}{- i\\kdelta\\krhoonetwo - i\\kOmega^*(\\krhotwotwo - \\krhooneone)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{a}{-\\frac{\\kgamma}{2}(2\\knbar + 1)\\krhotwoone} \\mk{c}{+ i\\kdelta\\krhotwoone + i\\kOmega(\\krhotwotwo - \\krhooneone)}",
+       "uses": [
+        1
+       ],
+       "cap": "Taking the complex conjugate."
+      }
+     ],
+     "num": "(3.89)"
+    }
+   ]
+  },
+  {
+   "id": "weak-field-response",
+   "what": "the response of the coherence to a weak field",
+   "source": "Modern Atomic and Optical Physics II, 3.4 Master equation, 3.4.3 Atomic response to a resonant field",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For a weak field the populations change by terms $\\propto \\kOmega^2$, so to lowest order $\\krhooneone \\approx \\krhooneone^{(0)}$ and $\\krhotwotwo \\approx \\krhotwotwo^{(0)}$.",
+       "src": "3.4.3"
+      },
+      {
+       "tex": "\\kgammatwoone = \\frac{2\\knbar + 1}{2}\\kgamma",
+       "src": "(3.92)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{a}{-\\frac{\\kgamma}{2}(2\\knbar + 1)\\krhotwoone} \\mk{c}{+ i\\kdelta\\krhotwoone} + \\mk{o}{i\\kOmega(\\krhotwotwo - \\krhooneone)}",
+      "src": "(3.89)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{a}{-\\kgammatwoone\\krhotwoone} \\mk{c}{+ i\\kdelta\\krhotwoone} + \\mk{o}{i\\kOmega(\\krhotwotwo - \\krhooneone)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwoone}} \\approx \\mk{a}{-(\\kgammatwoone - i\\kdelta)\\krhotwoone} + \\mk{o}{i\\kOmega(\\krhotwotwo^{(0)} - \\krhooneone^{(0)})}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "c": "a"
+       }
+      }
+     ],
+     "num": "(3.94)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\krhotwoone(\\kt) = \\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}\\krhotwoone(\\kdeltanu)",
+       "src": "(3.95)"
+      },
+      {
+       "tex": "\\kOmega(\\kt) = \\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}\\kOmega(\\kdeltanu)",
+       "src": "(3.96)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhotwoone}} \\approx \\mk{a}{-(\\kgammatwoone - i\\kdelta)\\krhotwoone} + \\mk{o}{i\\kOmega(\\krhotwotwo^{(0)} - \\krhooneone^{(0)})}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}(-i\\kdeltanu)\\krhotwoone(\\kdeltanu)} = \\mk{a}{\\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}\\Big[-(\\kgammatwoone - i\\kdelta)\\krhotwoone(\\kdeltanu)} + \\mk{o}{i\\kOmega(\\kdeltanu)(\\krhotwotwo^{(0)} - \\krhooneone^{(0)})\\Big]}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Substituting the transforms; the time derivative brings down $-i\\delta\\nu$."
+      },
+      {
+       "tex": "\\mk{L}{-i\\kdeltanu\\krhotwoone(\\kdeltanu)} = \\mk{a}{-(\\kgammatwoone - i\\kdelta)\\krhotwoone(\\kdeltanu)} + \\mk{o}{i\\kOmega(\\kdeltanu)(\\krhotwotwo^{(0)} - \\krhooneone^{(0)})}",
+       "uses": [],
+       "cap": "Two transforms that agree have the same component at each frequency $\\delta\\nu$."
+      },
+      {
+       "tex": "\\mk{a}{(\\kgammatwoone - i\\kdelta - i\\kdeltanu)\\krhotwoone(\\kdeltanu)} = \\mk{o}{i\\kOmega(\\kdeltanu)(\\krhotwotwo^{(0)} - \\krhooneone^{(0)})}",
+       "uses": [],
+       "map": {
+        "L": "a"
+       }
+      },
+      {
+       "tex": "\\mk{a}{\\krhotwoone(\\kdeltanu)} = \\mk{o}{\\kOmega(\\kdeltanu)\\frac{i(\\krhotwotwo^{(0)} - \\krhooneone^{(0)})}{\\kgammatwoone - i(\\kdelta + \\kdeltanu)}}",
+       "uses": []
+      }
+     ],
+     "num": "(3.97)"
+    }
+   ]
+  },
+  {
+   "id": "steady-state-population",
+   "what": "the steady-state population of a driven atom",
+   "source": "Modern Atomic and Optical Physics II, 3.4 Master equation, 3.4.3 Atomic response to a resonant field",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "In the steady state the time derivatives of the density matrix elements are zero.",
+       "src": "3.4.3"
+      },
+      {
+       "tex": "\\kgammatwoone = \\frac{2\\knbar + 1}{2}\\kgamma",
+       "src": "(3.92)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{a}{-\\frac{\\kgamma}{2}(2\\knbar + 1)\\krhotwoone} \\mk{c}{+ i\\kdelta\\krhotwoone} + \\mk{o}{i\\kOmega(\\krhotwotwo - \\krhooneone)}",
+      "src": "(3.89)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwoone}} = \\mk{a}{-\\kgammatwoone\\krhotwoone} \\mk{c}{+ i\\kdelta\\krhotwoone} + \\mk{o}{i\\kOmega(\\krhotwotwo - \\krhooneone)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{0} = \\mk{a}{-(\\kgammatwoone - i\\kdelta)\\krhotwoone} + \\mk{o}{i\\kOmega(\\krhotwotwo - \\krhooneone)}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "c": "a"
+       }
+      },
+      {
+       "tex": "\\mk{a}{\\krhotwoone} = \\mk{o}{\\frac{i\\kOmega(\\krhotwotwo - \\krhooneone)}{\\kgammatwoone - i\\kdelta}}",
+       "uses": [],
+       "map": {
+        "L": "o"
+       }
+      }
+     ],
+     "num": "(3.99)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "There are no thermal photons, $\\knbar = 0$.",
+       "src": "3.4.3"
+      },
+      {
+       "tex": "\\kGammatwoone = \\kgammatwoone - i\\kdelta",
+       "src": "3.4.3"
+      },
+      {
+       "tex": "\\kRopt = 2\\kgammatwoone\\left|\\frac{\\kOmega}{\\kGammatwoone}\\right|^2",
+       "src": "(3.101)"
+      },
+      {
+       "text": "Hermiticity, $\\krhoonetwo = \\krhotwoone^*$; the populations are real.",
+       "src": "3.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma(\\knbar + 1)\\krhotwotwo} + \\mk{b}{\\kgamma\\knbar\\krhooneone} + \\mk{c}{i\\kOmega^*\\krhotwoone - i\\kOmega\\krhoonetwo}",
+      "src": "(3.86)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma\\krhotwotwo} + \\mk{c}{i\\kOmega^*\\krhotwoone - i\\kOmega\\krhoonetwo}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "b": "a"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma\\krhotwotwo} + \\mk{c}{i\\kOmega^*\\frac{i\\kOmega(\\krhotwotwo - \\krhooneone)}{\\kGammatwoone} - i\\kOmega\\frac{-i\\kOmega^*(\\krhotwotwo - \\krhooneone)}{\\kGammatwoone^*}}",
+       "uses": [
+        0,
+        2,
+        4
+       ],
+       "cap": "$\\rho_{12}$ is the conjugate of $\\rho_{21}$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma\\krhotwotwo} \\mk{c}{- |\\kOmega|^2\\left(\\frac{1}{\\kGammatwoone} + \\frac{1}{\\kGammatwoone^*}\\right)(\\krhotwotwo - \\krhooneone)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma\\krhotwotwo} \\mk{c}{- 2\\kgammatwoone\\left|\\frac{\\kOmega}{\\kGammatwoone}\\right|^2(\\krhotwotwo - \\krhooneone)}",
+       "uses": [
+        2
+       ],
+       "cap": "$1/\\Gamma + 1/\\Gamma^* = 2\\,\\mathrm{Re}\\,\\Gamma/|\\Gamma|^2 = 2\\gamma_{21}/|\\Gamma_{21}|^2$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma\\krhotwotwo} + \\mk{c}{\\kRopt(\\krhooneone - \\krhotwotwo)}",
+       "uses": [
+        3
+       ]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "In the steady state the time derivatives of the density matrix elements are zero.",
+       "src": "3.4.3"
+      },
+      {
+       "tex": "\\krhooneone + \\krhotwotwo = \\mathrm{Tr}[\\krhoS] = 1",
+       "src": "3.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma\\krhotwotwo} + \\mk{c}{\\kRopt(\\krhooneone - \\krhotwotwo)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} = \\mk{a}{-\\kgamma\\krhotwotwo} + \\mk{c}{\\kRopt(1 - 2\\krhotwotwo)}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\krhotwotwo(\\kgamma + 2\\kRopt)} = \\mk{c}{\\kRopt}",
+       "uses": [],
+       "map": {
+        "L": "a"
+       }
+      },
+      {
+       "tex": "\\mk{a}{\\krhotwotwo} = \\mk{c}{\\frac{\\kRopt}{\\kgamma + 2\\kRopt}}",
+       "uses": []
+      }
+     ],
+     "num": "(3.100)"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,351 @@
+{
+ "id": "7.2",
+ "chapter": "7",
+ "title": "Adiabaticity for the two-level system",
+ "short": "Two-level adiabaticity",
+ "lead": "<span data-concept=\"two-level-atom\">A two-level system</span> whose <span data-concept=\"detuning\">detuning</span> and <span data-concept=\"rabi-frequency\">Rabi frequency</span> change in time: its <span data-concept=\"time-dependent-dressed-states\">time-dependent dressed states</span> and <span data-concept=\"mixing-angle\">mixing angle</span>, <span data-concept=\"adiabatic-return\">adiabatic return</span> and <span data-concept=\"rapid-adiabatic-passage\">rapid adiabatic passage</span>, the condition under which the system follows its instantaneous ground state, and <span data-concept=\"landau-zener\">the exactly solvable Landau-Zener model</span> of a linear sweep through resonance.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "The section prints no invitation, and no MIT 8.422 problem maps to Chapter 7.",
+ "figures": [
+  {
+   "id": "sim-adiabatic",
+   "kind": "sim",
+   "number": "7.1",
+   "originals": [
+    "/media/ch07/fig-7-1.png"
+   ],
+   "original_caption": "A comparison of adiabatic passage and adiabatic return. The time dependent parameters Δ and Ω lead to instantaneous eigenenergies ϵ±. Assuming that the system follows the instantaneous ground state, it will be in a mixture of states |1⟩ and |2⟩ with occupation probabilities P₁ and P₂ respectively. Clearly, adiabatic passage can result in state transfer, whereas adiabatic return leaves the system in its initial state.",
+   "draws": [
+    "frequency",
+    "coupling",
+    "energy",
+    "population",
+    "time",
+    "phase"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "td-dressed",
+   "concept": "time-dependent-dressed-states",
+   "verb": "introduces"
+  },
+  {
+   "span": "mixing-angle",
+   "concept": "mixing-angle",
+   "verb": "introduces"
+  },
+  {
+   "span": "return",
+   "concept": "adiabatic-return",
+   "verb": "introduces"
+  },
+  {
+   "span": "rap",
+   "concept": "rapid-adiabatic-passage",
+   "verb": "introduces"
+  },
+  {
+   "span": "adiabaticity-2l",
+   "concept": "two-level-adiabaticity-condition",
+   "verb": "introduces"
+  },
+  {
+   "span": "landau-zener",
+   "concept": "landau-zener",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-7-11",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "opening-p",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "opening-p",
+   "concept": "detuning",
+   "verb": "uses"
+  },
+  {
+   "span": "opening-p",
+   "concept": "rabi-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "opening-p",
+   "concept": "bare-states",
+   "verb": "uses"
+  },
+  {
+   "span": "diagonalize",
+   "concept": "instantaneous-eigenstates",
+   "verb": "uses"
+  },
+  {
+   "span": "td-dressed",
+   "concept": "dressed-states",
+   "verb": "uses"
+  },
+  {
+   "span": "td-dressed",
+   "concept": "dressed-state-energies",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-7-17",
+   "concept": "adiabaticity-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "rap-motivation",
+   "concept": "adiabatic-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "rap-motivation",
+   "concept": "rabi-oscillations",
+   "verb": "uses"
+  },
+  {
+   "span": "rap-motivation",
+   "concept": "born-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "return",
+   "concept": "superposition",
+   "verb": "uses"
+  },
+  {
+   "span": "passage-p",
+   "concept": "rapid-adiabatic-passage",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rapid",
+   "concept": "rapid-adiabatic-passage",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lz-correction",
+   "concept": "landau-zener",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-two-level-adiabaticity",
+   "concept": "nonadiabatic-coupling",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-pulse-area-condition",
+   "concept": "pulse-area",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "lvl-1",
+   "label": "the bare state |1⟩",
+   "figures": [
+    "sim-adiabatic"
+   ]
+  },
+  {
+   "id": "lvl-2",
+   "label": "the bare state |2⟩",
+   "figures": [
+    "sim-adiabatic"
+   ]
+  },
+  {
+   "id": "dressed-plus",
+   "label": "the instantaneous eigenstate |+⟩",
+   "figures": [
+    "sim-adiabatic"
+   ]
+  },
+  {
+   "id": "dressed-minus",
+   "label": "the instantaneous ground state |−⟩",
+   "figures": [
+    "sim-adiabatic"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-fig-9-3-cited",
+   "kind": "correction",
+   "html": "The book cites Fig. (9.3) and leaves the parenthesis open. The figure meant is Figure 7.1."
+  },
+  {
+   "id": "c-omega-over-delta",
+   "kind": "correction",
+   "html": "The ratio that runs from near $-\\infty$ to near $\\infty$ is $\\kDelta/\\kOmega$. As $\\kDelta$ is swept through resonance, $\\kOmega/\\kDelta$ passes from near 0 through $\\pm\\infty$ and back to near 0, while $\\tan 2\\ktheta = -2\\kOmega/\\kDelta$ turns the mixing angle by $\\pi/2$."
+  },
+  {
+   "id": "c-eq-7-21",
+   "kind": "correction",
+   "html": "As printed, $\\epsilon$ has the dimension of an inverse action. The dimensionless ratio that Eq. (7.19) compares with one is $\\epsilon = \\hbar\\dot{\\ktheta}/|\\kepsp - \\kepsm|$."
+  },
+  {
+   "id": "c-theta-dot",
+   "kind": "correction",
+   "html": "With $\\kDelta = \\kalpha\\kt$ and $\\kOmega = \\kOmega_0$, Eq. (7.16) gives $\\dot{\\ktheta} = \\kalpha\\kOmega_0/(\\kalpha^2\\kt^2 + 4\\kOmega_0^2)$, which at resonance is $\\kalpha/4\\kOmega_0$, not $\\kalpha/2\\kOmega_0$. With the splitting $2\\hbar\\kOmega_0$ the small parameter is $\\epsilon \\approx \\kalpha/8\\kOmega_0^2$."
+  },
+  {
+   "id": "c-eq-7-23",
+   "kind": "correction",
+   "html": "$\\kPLZ - 1$ is negative. The non-adiabatic correction is $1 - \\kPLZ = e^{-2\\pi|\\kOmega_0|^2/|\\kalpha|}$, exactly, by Eq. (7.22). In terms of $\\epsilon$ it is $e^{-\\pi/2\\epsilon}$ with the book's $\\epsilon \\approx \\kalpha/4\\kOmega_0^2$, and $e^{-\\pi/4\\epsilon}$ with $\\epsilon \\approx \\kalpha/8\\kOmega_0^2$."
+  },
+  {
+   "id": "c-fig-7-1",
+   "kind": "correction",
+   "html": "In the book's Adiabatic Passage panel the curve that starts at 1 is labelled $P_2$ and the curve that rises to 1 is labelled $P_1$. For the transfer from $|1\\rangle$ to $|2\\rangle$ that the caption and the text describe, the falling curve is $\\kPone$ and the rising one $\\kPtwo$, as the Adiabatic Return panel's colours have them.",
+   "figure": "sim-adiabatic"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "two-level-adiabaticity",
+   "what": "the adiabaticity condition for the two-level system",
+   "source": "Modern Atomic and Optical Physics II, 7.2 Adiabaticity for the two-level system, 7.2.2 Adiabaticity condition for the two-level system",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "|-\\rangle = \\sin\\ktheta(\\kt)|1\\rangle - \\cos\\ktheta(\\kt)|2\\rangle",
+       "src": "(7.14)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{|+\\rangle} = \\mk{R}{\\cos\\ktheta(\\kt)|1\\rangle + \\sin\\ktheta(\\kt)|2\\rangle}",
+      "src": "(7.13)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|\\dot{+}\\rangle} = \\mk{R}{\\dot{\\ktheta}(\\kt)\\left(-\\sin\\ktheta(\\kt)|1\\rangle + \\cos\\ktheta(\\kt)|2\\rangle\\right)}",
+       "uses": [],
+       "cap": "Differentiating in time: only the mixing angle changes."
+      },
+      {
+       "tex": "\\mk{L}{|\\dot{+}\\rangle} = \\mk{R}{-\\dot{\\ktheta}(\\kt)|-\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\dot{+}|-\\rangle} = \\mk{R}{-\\dot{\\ktheta}(\\kt)}",
+       "uses": [],
+       "cap": "$\\langle -|-\\rangle = 1$, and $\\dot{\\theta}$ is real."
+      }
+     ],
+     "num": "(7.18)",
+     "note": "The book prints $\\langle\\dot{+}|-\\rangle = \\dot{\\ktheta}(\\kt)$; differentiating (7.13) and projecting on (7.14) gives $-\\dot{\\ktheta}(\\kt)$. Only the magnitude enters (7.19)."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\frac{\\mk{n}{\\hbar|\\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle|}}{\\mk{d}{|\\keps_k - \\keps_l|}} \\ll \\mk{o}{1}",
+      "src": "(7.10)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\frac{\\mk{n}{\\hbar|\\langle -|\\dot{+}\\rangle|}}{\\mk{d}{|\\kepsp(\\kt) - \\kepsm(\\kt)|}} \\ll \\mk{o}{1}",
+       "uses": [],
+       "cap": "For the two dressed states, $k = +$ and $l = -$."
+      },
+      {
+       "tex": "\\frac{\\mk{n}{\\hbar|-\\dot{\\ktheta}(\\kt)|}}{\\mk{d}{|\\kepsp(\\kt) - \\kepsm(\\kt)|}} \\ll \\mk{o}{1}",
+       "uses": [
+        0
+       ],
+       "cap": "$\\langle -|\\dot{+}\\rangle$ is the complex conjugate of $\\langle\\dot{+}|-\\rangle$, which is real."
+      },
+      {
+       "tex": "\\mk{n}{\\hbar\\dot{\\ktheta}(\\kt)} \\ll \\mk{d}{|\\kepsp(\\kt) - \\kepsm(\\kt)|}",
+       "uses": [],
+       "cap": "Multiplying through by the splitting; in a sweep the mixing angle turns one way, so $|\\dot{\\theta}| = \\dot{\\theta}$."
+      }
+     ],
+     "num": "(7.19)"
+    }
+   ]
+  },
+  {
+   "id": "pulse-area-condition",
+   "what": "the adiabaticity condition as a pulse area",
+   "source": "Modern Atomic and Optical Physics II, 7.2 Adiabaticity for the two-level system, 7.2.2 Adiabaticity condition for the two-level system",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The energy difference is smallest when $\\kDelta$ sweeps through resonance: $\\kepsp(\\kt) - \\kepsm(\\kt) \\geq 2\\hbar\\kOmega(\\kt)$.",
+       "src": "7.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{\\hbar\\dot{\\ktheta}(\\kt)} \\ll \\mk{d}{|\\kepsp(\\kt) - \\kepsm(\\kt)|}",
+      "src": "(7.19)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n}{\\hbar\\dot{\\ktheta}(\\kt)} \\ll \\mk{d}{2\\hbar\\kOmega(\\kt)}",
+       "uses": [0],
+       "cap": "Held against the smallest splitting, the condition holds at every time."
+      },
+      {
+       "tex": "\\mk{n}{\\dot{\\ktheta}(\\kt)} \\ll \\mk{d}{2\\kOmega(\\kt)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{n}{\\int_{-\\infty}^{\\infty} d\\kt\\,\\dot{\\ktheta}(\\kt)} \\ll \\mk{d}{\\int_{-\\infty}^{\\infty} d\\kt\\, 2\\kOmega(\\kt)} = \\mk{A}{\\kAarea}",
+       "uses": [],
+       "cap": "Integrating over the whole pulse; the right side is the pulse area $A$."
+      }
+     ],
+     "num": "(7.20)"
+    }
+   ]
+  }
+ ]
+}

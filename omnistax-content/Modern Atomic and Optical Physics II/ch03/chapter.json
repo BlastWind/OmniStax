@@ -1,0 +1,555 @@
+{
+ "id": "3",
+ "dir": "ch03",
+ "title": "Mathematical methods for open systems",
+ "intro": {},
+ "sections": [
+  {
+   "id": "3.1",
+   "title": "The density operator"
+  },
+  {
+   "id": "3.2",
+   "title": "System and environment"
+  },
+  {
+   "id": "3.3",
+   "title": "The dynamics of an open system"
+  },
+  {
+   "id": "3.4",
+   "title": "The master equation"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "rho_S",
+   "concept": "reduced-density-operator",
+   "meaning": "The reduced density operator of the system",
+   "anchor": "3.2-drv-reduced-density-operator",
+   "section": "3.2"
+  },
+  {
+   "sym": "rho_hat",
+   "concept": "density-operator",
+   "meaning": "The density operator of the universe, the system and its environment together",
+   "anchor": "3.2-universe",
+   "section": "3.2",
+   "redefines": true
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the universe, the system and its environment together",
+   "anchor": "3.2-eq-3-17",
+   "section": "3.2",
+   "redefines": true
+  },
+  {
+   "sym": "S_hat",
+   "meaning": "A system observable",
+   "anchor": "3.2-drv-reduced-density-operator",
+   "section": "3.2"
+  },
+  {
+   "sym": "rho_hat",
+   "concept": "density-operator",
+   "meaning": "The density operator of the system",
+   "anchor": "3.1-eq-3-1",
+   "section": "3.1"
+  },
+  {
+   "sym": "rho_nn",
+   "concept": "density-matrix-populations",
+   "meaning": "The diagonal element of the density matrix: the probability of occupying the state |n⟩",
+   "anchor": "3.1-populations",
+   "section": "3.1"
+  },
+  {
+   "sym": "rho_nm",
+   "concept": "density-matrix-coherences",
+   "meaning": "The off-diagonal element of the density matrix between the states |n⟩ and |m⟩",
+   "anchor": "3.1-coherences",
+   "section": "3.1"
+  },
+  {
+   "sym": "rho_11",
+   "concept": "density-matrix-populations",
+   "ref": "lvl-1",
+   "meaning": "The population of the level |1⟩",
+   "anchor": "3.1-eq-3-7",
+   "section": "3.1"
+  },
+  {
+   "sym": "rho_22",
+   "concept": "density-matrix-populations",
+   "ref": "lvl-2",
+   "meaning": "The population of the level |2⟩",
+   "anchor": "3.1-eq-3-7",
+   "section": "3.1"
+  },
+  {
+   "sym": "rho_12",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |1⟩ and |2⟩",
+   "anchor": "3.1-eq-3-7",
+   "section": "3.1"
+  },
+  {
+   "sym": "rho_21",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂",
+   "anchor": "3.1-eq-3-7",
+   "section": "3.1"
+  },
+  {
+   "sym": "n_bar",
+   "concept": "mean-thermal-photon-number",
+   "meaning": "The mean number of photons in the thermal mode j",
+   "anchor": "3.1-eq-3-16",
+   "section": "3.1"
+  },
+  {
+   "sym": "T",
+   "type": "temperature",
+   "meaning": "The temperature",
+   "anchor": "3.1-eq-3-10",
+   "section": "3.1"
+  },
+  {
+   "sym": "S_hat",
+   "meaning": "A system observable",
+   "anchor": "3.1-drv-expectation-as-trace",
+   "section": "3.1"
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "anchor": "3.1-eq-3-1",
+   "section": "3.1"
+  },
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "anchor": "3.1-eq-3-10",
+   "section": "3.1"
+  },
+  {
+   "sym": "omega",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The atomic transition frequency: the two levels lie ħω apart",
+   "anchor": "3.1-thermal-atom",
+   "section": "3.1"
+  },
+  {
+   "sym": "c_1",
+   "concept": "probability-amplitude",
+   "ref": "lvl-1",
+   "meaning": "The probability amplitude of the ground state |1⟩",
+   "anchor": "3.1-pure-density-matrix",
+   "section": "3.1"
+  },
+  {
+   "sym": "c_2",
+   "concept": "probability-amplitude",
+   "ref": "lvl-2",
+   "meaning": "The probability amplitude of the excited state |2⟩",
+   "anchor": "3.1-pure-density-matrix",
+   "section": "3.1"
+  },
+  {
+   "sym": "nu",
+   "type": "frequency",
+   "meaning": "The frequency ν_j of field mode j, or ν of the classical field the modes replace",
+   "anchor": "3.1-thermal-field",
+   "section": "3.1",
+   "redefines": true
+  },
+  {
+   "sym": "H_SR",
+   "concept": "system-reservoir-hamiltonian",
+   "meaning": "The interaction Hamiltonian between system and reservoir",
+   "anchor": "3.3-eq-3-27",
+   "section": "3.3"
+  },
+  {
+   "sym": "H_S",
+   "type": "energy",
+   "meaning": "The system Hamiltonian, acting only on the system",
+   "anchor": "3.3-drv-density-operator-evolution",
+   "section": "3.3"
+  },
+  {
+   "sym": "H_R",
+   "type": "energy",
+   "meaning": "The reservoir Hamiltonian, acting only on the reservoir",
+   "anchor": "3.3-eq-3-27",
+   "section": "3.3"
+  },
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The total Hamiltonian of system and reservoir together",
+   "anchor": "3.3-eq-3-27",
+   "redefines": true,
+   "section": "3.3"
+  },
+  {
+   "sym": "H_tilde",
+   "concept": "system-reservoir-hamiltonian",
+   "meaning": "The interaction Hamiltonian in the interaction picture, H̃_SR",
+   "anchor": "3.3-eq-3-39",
+   "section": "3.3"
+  },
+  {
+   "sym": "tau_c",
+   "concept": "correlation-time",
+   "meaning": "The correlation time: the timescale on which the random field, or the reservoir, changes",
+   "anchor": "3.3-correlation-time",
+   "section": "3.3"
+  },
+  {
+   "sym": "tau_S",
+   "type": "time",
+   "meaning": "The typical timescale on which the system evolves",
+   "anchor": "3.3-born-markov",
+   "section": "3.3"
+  },
+  {
+   "sym": "Delta_t",
+   "type": "time",
+   "meaning": "The averaging time step, between the reservoir's correlation time and the system's evolution time",
+   "anchor": "3.3-coarse",
+   "section": "3.3"
+  },
+  {
+   "sym": "rho_S",
+   "concept": "reduced-density-operator",
+   "meaning": "The reduced density operator of the system",
+   "anchor": "3.4-eq-3-79",
+   "section": "3.4"
+  },
+  {
+   "sym": "F_R",
+   "concept": "bilinear-system-reservoir-coupling",
+   "meaning": "The reservoir operator of the interaction picture, carrying all the time dependence of H̃_SR",
+   "anchor": "3.3-eq-3-42",
+   "section": "3.3"
+  },
+  {
+   "sym": "Delta_t",
+   "type": "time",
+   "meaning": "The interval over which the master equation follows the change Δρ̂_S of the system",
+   "anchor": "3.4-eq-3-79",
+   "section": "3.4"
+  },
+  {
+   "sym": "S_hat",
+   "meaning": "A general system operator, coupled bilinearly to a reservoir operator",
+   "anchor": "3.3-eq-3-41",
+   "redefines": true,
+   "section": "3.3"
+  },
+  {
+   "sym": "gamma_p",
+   "type": "rate",
+   "meaning": "The rate of the p-th system-reservoir interaction",
+   "anchor": "3.4-channels",
+   "section": "3.4"
+  },
+  {
+   "sym": "rho_tilde",
+   "type": "state",
+   "meaning": "The density operator of system and reservoir in the interaction picture",
+   "anchor": "3.3-eq-3-38",
+   "section": "3.3"
+  },
+  {
+   "sym": "n_bar",
+   "concept": "mean-thermal-photon-number",
+   "meaning": "The mean number of thermal photons in a mode of the reservoir",
+   "anchor": "3.4-eq-3-79",
+   "section": "3.4"
+  },
+  {
+   "sym": "f_t",
+   "type": "frequency",
+   "meaning": "The random field: the fluctuating splitting ħf(t) of the spin, over ħ",
+   "anchor": "3.3-eq-3-32",
+   "section": "3.3"
+  },
+  {
+   "sym": "S_hat",
+   "meaning": "A general system operator, coupled bilinearly to a reservoir operator; Ŝ_p is that of the p-th interaction, and for the two-level atom Ŝ = |1⟩⟨2|",
+   "anchor": "3.4-channels",
+   "section": "3.4"
+  },
+  {
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The random phase one realization of the spin gathers, the integral of δf(t′) over time",
+   "anchor": "3.3-sim-spin-echo",
+   "section": "3.3"
+  },
+  {
+   "sym": "H_S",
+   "type": "energy",
+   "meaning": "The Hamiltonian of the system alone; for the two-level atom, its coherent interaction with the driving field",
+   "anchor": "3.4-eq-3-84",
+   "section": "3.4"
+  },
+  {
+   "sym": "rho_hat",
+   "concept": "density-operator",
+   "meaning": "The density operator of the universe, the system and its environment together",
+   "anchor": "3.3-drv-reduced-density-equation",
+   "redefines": true,
+   "section": "3.3"
+  },
+  {
+   "sym": "H_SR",
+   "concept": "system-reservoir-hamiltonian",
+   "meaning": "The interaction Hamiltonian between system and reservoir",
+   "anchor": "3.4-channels",
+   "section": "3.4"
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the universe, the system and its environment together",
+   "anchor": "3.3-drv-decaying-atom-density-matrix",
+   "redefines": true,
+   "section": "3.3"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "anchor": "3.4-eq-3-80",
+   "section": "3.4"
+  },
+  {
+   "sym": "rho_S",
+   "concept": "reduced-density-operator",
+   "meaning": "The reduced density operator of the system",
+   "anchor": "3.3-drv-density-operator-evolution",
+   "section": "3.3"
+  },
+  {
+   "sym": "rho_tilde",
+   "type": "state",
+   "meaning": "The density operator of system and reservoir in the interaction picture; ρ̃_S and ρ̃_R are those of the system and the reservoir, ρ̃_corr the correlations between them",
+   "anchor": "3.4-eq-3-80",
+   "section": "3.4"
+  },
+  {
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum",
+   "anchor": "3.3-decay",
+   "section": "3.3"
+  },
+  {
+   "sym": "tau_c",
+   "concept": "correlation-time",
+   "meaning": "The correlation time: the timescale on which the random field, or the reservoir, changes",
+   "anchor": "3.4-memoryless",
+   "section": "3.4"
+  },
+  {
+   "sym": "g",
+   "concept": "single-photon-rabi-frequency",
+   "meaning": "The single-photon Rabi frequency, the coupling of the atom to one mode of the field",
+   "anchor": "3.3-eq-3-43",
+   "section": "3.3"
+  },
+  {
+   "sym": "delta",
+   "concept": "detuning",
+   "meaning": "The detuning δ = ν − ω of the field from the atomic transition",
+   "anchor": "3.4-eq-3-84",
+   "section": "3.4"
+  },
+  {
+   "sym": "nu",
+   "type": "frequency",
+   "meaning": "The frequency ν_j of field mode j, or ν of the classical field the modes replace",
+   "anchor": "3.3-eq-3-44",
+   "section": "3.3"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω = ℰμ/ℏ",
+   "anchor": "3.4-eq-3-84",
+   "section": "3.4"
+  },
+  {
+   "sym": "omega",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The atomic transition frequency: the two levels lie ħω apart",
+   "anchor": "3.3-eq-3-44",
+   "section": "3.3"
+  },
+  {
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum",
+   "anchor": "3.4-drv-optical-bloch-equations",
+   "section": "3.4"
+  },
+  {
+   "sym": "n_bar",
+   "concept": "mean-thermal-photon-number",
+   "meaning": "The mean number of photons in the thermal mode j",
+   "anchor": "3.3-drv-thermal-correlator",
+   "section": "3.3"
+  },
+  {
+   "sym": "rho_11",
+   "concept": "density-matrix-populations",
+   "ref": "lvl-1",
+   "meaning": "The population of the level |1⟩; ρ₁₁⁽⁰⁾ its value before the weak field acts",
+   "anchor": "3.4-drv-optical-bloch-equations",
+   "section": "3.4"
+  },
+  {
+   "sym": "rho_22",
+   "concept": "density-matrix-populations",
+   "meaning": "The population of the level |2⟩",
+   "anchor": "3.3-drv-decaying-atom-density-matrix",
+   "section": "3.3"
+  },
+  {
+   "sym": "rho_22",
+   "concept": "density-matrix-populations",
+   "ref": "lvl-2",
+   "meaning": "The population of the level |2⟩; ρ₂₂⁽⁰⁾ its value before the weak field acts",
+   "anchor": "3.4-drv-optical-bloch-equations",
+   "section": "3.4"
+  },
+  {
+   "sym": "rho_12",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |1⟩ and |2⟩",
+   "anchor": "3.3-drv-decaying-atom-density-matrix",
+   "section": "3.3"
+  },
+  {
+   "sym": "rho_12",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |1⟩ and |2⟩",
+   "anchor": "3.4-drv-optical-bloch-equations",
+   "section": "3.4"
+  },
+  {
+   "sym": "rho_21",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂",
+   "anchor": "3.3-drv-decaying-atom-density-matrix",
+   "section": "3.3"
+  },
+  {
+   "sym": "rho_21",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂",
+   "anchor": "3.4-drv-optical-bloch-equations",
+   "section": "3.4"
+  },
+  {
+   "sym": "c_1",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude of the ground state |1⟩",
+   "anchor": "3.3-decay",
+   "section": "3.3"
+  },
+  {
+   "sym": "gamma_12",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₂",
+   "anchor": "3.4-coherence-decay",
+   "section": "3.4"
+  },
+  {
+   "sym": "c_2",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude of the excited state |2⟩",
+   "anchor": "3.3-decay",
+   "section": "3.3"
+  },
+  {
+   "sym": "gamma_21",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₂₁, equal to γ₁₂",
+   "anchor": "3.4-eq-3-92",
+   "section": "3.4"
+  },
+  {
+   "sym": "c_k",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude of the atom in |1⟩ with one photon in mode k",
+   "anchor": "3.3-decay",
+   "section": "3.3"
+  },
+  {
+   "sym": "gamma_1",
+   "type": "rate",
+   "ref": "lvl-1",
+   "meaning": "The rate of population decay out of the state |1⟩",
+   "anchor": "3.4-coherence-decay",
+   "section": "3.4"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "anchor": "3.3-decay",
+   "section": "3.3"
+  },
+  {
+   "sym": "gamma_2",
+   "type": "rate",
+   "ref": "lvl-2",
+   "meaning": "The rate of population decay out of the state |2⟩",
+   "anchor": "3.4-coherence-decay",
+   "section": "3.4"
+  },
+  {
+   "sym": "V",
+   "type": "volume",
+   "meaning": "The volume of the cavity in which the field is quantized",
+   "anchor": "3.3-sharply-peaked",
+   "section": "3.3"
+  },
+  {
+   "sym": "gamma_d",
+   "concept": "dephasing-rate",
+   "meaning": "The decoherence or dephasing rate: the decay of the coherences that leaves the populations alone",
+   "anchor": "3.4-dephasing",
+   "section": "3.4"
+  },
+  {
+   "sym": "delta_nu",
+   "type": "frequency",
+   "meaning": "The frequency δν of a Fourier component of the field and of the coherence, measured from the field's frequency ν",
+   "anchor": "3.4-eq-3-95",
+   "section": "3.4"
+  },
+  {
+   "sym": "Gamma_21",
+   "type": "rate",
+   "meaning": "The complex rate Γ₂₁ = γ₂₁ − iδ",
+   "anchor": "3.4-pumping-rate",
+   "section": "3.4"
+  },
+  {
+   "sym": "R_opt",
+   "concept": "optical-pumping-rate",
+   "meaning": "The optical pumping rate R_opt of the applied field",
+   "anchor": "3.4-drv-steady-state-population",
+   "section": "3.4"
+  }
+ ]
+}

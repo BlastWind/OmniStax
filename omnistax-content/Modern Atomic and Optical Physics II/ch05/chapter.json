@@ -1,0 +1,652 @@
+{
+ "id": "5",
+ "dir": "ch05",
+ "title": "Coherent interactions in multi-level systems",
+ "intro": {},
+ "sections": [
+  {
+   "id": "5.1",
+   "title": "Raman transitions in the Λ level configuration"
+  },
+  {
+   "id": "5.2",
+   "title": "Resonant excitation: Electromagnetically induced transparency"
+  },
+  {
+   "id": "5.3",
+   "title": "Parametric Processes"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "Delta_1",
+   "concept": "lambda-detunings",
+   "ref": "field-1",
+   "meaning": "The single-photon detuning Δ₁ = ν₁ − ω₁₃ of the probe field from the transition |1⟩ → |3⟩",
+   "unit": "rad/s",
+   "anchor": "5.1-detunings",
+   "section": "5.1"
+  },
+  {
+   "sym": "Delta_2",
+   "concept": "lambda-detunings",
+   "ref": "field-2",
+   "meaning": "The single-photon detuning Δ₂ = ν₂ − ω₂₃ of the coupling field from the transition |2⟩ → |3⟩",
+   "unit": "rad/s",
+   "anchor": "5.1-detunings",
+   "section": "5.1"
+  },
+  {
+   "sym": "delta",
+   "concept": "lambda-detunings",
+   "meaning": "The two-photon detuning δ = Δ₁ − Δ₂ of the Λ system",
+   "unit": "rad/s",
+   "anchor": "5.1-detunings",
+   "redefines": true,
+   "section": "5.1"
+  },
+  {
+   "sym": "Delta",
+   "concept": "lambda-detunings",
+   "meaning": "The common single-photon detuning of the Λ system, Δ₁ ∼ Δ₂ = Δ when both fields are far detuned",
+   "unit": "rad/s",
+   "anchor": "5.1-drv-raman-coupling",
+   "redefines": true,
+   "section": "5.1"
+  },
+  {
+   "sym": "Omega_1",
+   "concept": "rabi-frequency",
+   "ref": "field-1",
+   "meaning": "The Rabi frequency of the probe field on the transition |1⟩ → |3⟩",
+   "unit": "rad/s",
+   "anchor": "5.1-eq-5-1",
+   "section": "5.1"
+  },
+  {
+   "sym": "Omega_2",
+   "concept": "rabi-frequency",
+   "ref": "field-2",
+   "meaning": "The Rabi frequency of the coupling field on the transition |2⟩ → |3⟩",
+   "unit": "rad/s",
+   "anchor": "5.1-eq-5-1",
+   "section": "5.1"
+  },
+  {
+   "sym": "Omega_eff",
+   "concept": "effective-raman-coupling",
+   "meaning": "The effective Rabi frequency coupling |1⟩ and |2⟩ through the far-detuned |3⟩",
+   "unit": "rad/s",
+   "anchor": "5.1-drv-raman-coupling",
+   "section": "5.1"
+  },
+  {
+   "sym": "c_1",
+   "concept": "probability-amplitude",
+   "ref": "lvl-1",
+   "meaning": "The probability amplitude of the ground state |1⟩",
+   "anchor": "5.1-eq-5-2",
+   "section": "5.1"
+  },
+  {
+   "sym": "c_2",
+   "concept": "probability-amplitude",
+   "ref": "lvl-2",
+   "meaning": "The probability amplitude of the metastable lower state |2⟩ of the Λ system",
+   "anchor": "5.1-eq-5-2",
+   "redefines": true,
+   "section": "5.1"
+  },
+  {
+   "sym": "c_3",
+   "concept": "lambda-equations-of-motion",
+   "ref": "lvl-3",
+   "meaning": "The probability amplitude of the excited state |3⟩ of the Λ system",
+   "anchor": "5.1-eq-5-2",
+   "section": "5.1"
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "anchor": "5.1-eq-5-2",
+   "section": "5.1"
+  },
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "anchor": "5.1-eq-5-1",
+   "section": "5.1"
+  },
+  {
+   "sym": "H_eff",
+   "concept": "effective-hamiltonian",
+   "meaning": "The effective Hamiltonian: the system Hamiltonian with the non-Hermitian part −iℏΣ_k γ_k ĉ_k†ĉ_k/2",
+   "anchor": "5.1-eq-5-21",
+   "section": "5.1"
+  },
+  {
+   "sym": "t",
+   "meaning": "Time",
+   "type": "time",
+   "unit": "s",
+   "section": "5.1"
+  },
+  {
+   "sym": "nu",
+   "concept": "optical-frequency",
+   "meaning": "The frequency of the applied field",
+   "unit": "rad/s",
+   "anchor": "5.1-raman",
+   "section": "5.1"
+  },
+  {
+   "sym": "k",
+   "meaning": "The wavevector of the applied field",
+   "type": "wavevector",
+   "unit": "m⁻¹",
+   "anchor": "5.1-eq-5-43",
+   "section": "5.1"
+  },
+  {
+   "sym": "lambda",
+   "meaning": "The wavelength of the transition, λ = 2π/k₀",
+   "type": "length",
+   "unit": "m",
+   "anchor": "5.1-eq-5-36",
+   "section": "5.1"
+  },
+  {
+   "sym": "mu",
+   "meaning": "The dipole matrix element of the probe transition |1⟩ → |3⟩",
+   "type": "dipole",
+   "unit": "C·m",
+   "anchor": "5.1-eq-5-31",
+   "redefines": true,
+   "section": "5.1"
+  },
+  {
+   "sym": "gamma",
+   "meaning": "The rate of decay from |3⟩ to |1⟩, one part of the total decay rate γ₃",
+   "type": "rate",
+   "unit": "s⁻¹",
+   "redefines": true,
+   "section": "5.1"
+  },
+  {
+   "sym": "gamma_3",
+   "concept": "lambda-non-hermitian-evolution",
+   "ref": "lvl-3",
+   "meaning": "The total decay rate out of |3⟩",
+   "unit": "s⁻¹",
+   "anchor": "5.1-eq-5-21",
+   "section": "5.1"
+  },
+  {
+   "sym": "gamma_12",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₂ between the two lower states",
+   "unit": "s⁻¹",
+   "anchor": "5.1-drv-lambda-density-matrix",
+   "redefines": true,
+   "section": "5.1"
+  },
+  {
+   "sym": "Gamma_12",
+   "concept": "complex-decay-rate",
+   "meaning": "The complex decay parameter Γ₁₂ = γ₁₂ − iδ of the coherence ρ₂₁",
+   "unit": "s⁻¹",
+   "anchor": "5.1-eq-5-17",
+   "section": "5.1"
+  },
+  {
+   "sym": "Gamma_13",
+   "concept": "complex-decay-rate",
+   "meaning": "The complex decay parameter Γ₁₃ = γ₁₃ − iΔ of the coherence ρ₃₁",
+   "unit": "s⁻¹",
+   "anchor": "5.1-eq-5-18",
+   "section": "5.1"
+  },
+  {
+   "sym": "rho_11",
+   "concept": "density-matrix-populations",
+   "ref": "lvl-1",
+   "meaning": "The population of the level |1⟩",
+   "anchor": "5.1-drv-lambda-density-matrix",
+   "section": "5.1"
+  },
+  {
+   "sym": "rho_22",
+   "concept": "density-matrix-populations",
+   "ref": "lvl-2",
+   "meaning": "The population of the level |2⟩",
+   "anchor": "5.1-drv-lambda-density-matrix",
+   "section": "5.1"
+  },
+  {
+   "sym": "rho_12",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |1⟩ and |2⟩",
+   "anchor": "5.1-drv-lambda-density-matrix",
+   "section": "5.1"
+  },
+  {
+   "sym": "rho_21",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂",
+   "anchor": "5.1-raman",
+   "section": "5.1"
+  },
+  {
+   "sym": "P_jump",
+   "concept": "jump-probability",
+   "meaning": "The probability that a quantum jump occurs during the evolution",
+   "anchor": "5.1-eq-5-22",
+   "section": "5.1"
+  },
+  {
+   "sym": "omega",
+   "meaning": "The Fourier frequency conjugate to time in the transformed equations of motion",
+   "type": "frequency",
+   "unit": "rad/s",
+   "anchor": "5.1-eq-5-26",
+   "redefines": true,
+   "section": "5.1"
+  },
+  {
+   "sym": "chi_1",
+   "concept": "probe-susceptibility",
+   "ref": "field-1",
+   "meaning": "The linear susceptibility on the probe transition",
+   "anchor": "5.1-eq-5-31",
+   "section": "5.1"
+  },
+  {
+   "sym": "gamma_eff",
+   "concept": "two-photon-resonance",
+   "meaning": "The effective width of the two-photon resonance",
+   "unit": "s⁻¹",
+   "anchor": "5.1-drv-raman-resonance",
+   "section": "5.1"
+  },
+  {
+   "sym": "delta_prime",
+   "concept": "two-photon-detuning-shifted",
+   "meaning": "The effective two-photon detuning δ′ = δ − |Ω₂|²/Δ",
+   "unit": "rad/s",
+   "anchor": "5.1-drv-raman-resonance",
+   "section": "5.1"
+  },
+  {
+   "sym": "Delta_1",
+   "section": "5.2",
+   "concept": "lambda-detunings",
+   "ref": "field-1",
+   "unit": "rad/s",
+   "meaning": "The single-photon detuning Δ₁ = ν₁ − ω₁₃ of the probe field from the transition |1⟩ → |3⟩"
+  },
+  {
+   "sym": "Delta_2",
+   "section": "5.2",
+   "concept": "lambda-detunings",
+   "ref": "field-2",
+   "unit": "rad/s",
+   "meaning": "The single-photon detuning Δ₂ = ν₂ − ω₂₃ of the coupling field from the transition |2⟩ → |3⟩"
+  },
+  {
+   "sym": "delta",
+   "section": "5.2",
+   "concept": "lambda-detunings",
+   "unit": "rad/s",
+   "meaning": "The two-photon detuning δ = Δ₁ − Δ₂ of the Λ system"
+  },
+  {
+   "sym": "Delta",
+   "section": "5.2",
+   "concept": "lambda-detunings",
+   "unit": "rad/s",
+   "meaning": "The common single-photon detuning of the Λ system, Δ₁ ∼ Δ₂ = Δ when both fields are far detuned"
+  },
+  {
+   "sym": "Omega_1",
+   "section": "5.2",
+   "concept": "rabi-frequency",
+   "ref": "field-1",
+   "unit": "rad/s",
+   "meaning": "The Rabi frequency of the probe field on the transition |1⟩ → |3⟩"
+  },
+  {
+   "sym": "Omega_2",
+   "section": "5.2",
+   "concept": "rabi-frequency",
+   "ref": "field-2",
+   "unit": "rad/s",
+   "meaning": "The Rabi frequency of the coupling field on the transition |2⟩ → |3⟩"
+  },
+  {
+   "sym": "gamma_3",
+   "section": "5.2",
+   "concept": "lambda-non-hermitian-evolution",
+   "ref": "lvl-3",
+   "unit": "s⁻¹",
+   "meaning": "The total decay rate out of |3⟩"
+  },
+  {
+   "sym": "gamma_12",
+   "section": "5.2",
+   "concept": "coherence-decay-rate",
+   "unit": "s⁻¹",
+   "meaning": "The decay rate of the coherence ρ₁₂ between the two lower states"
+  },
+  {
+   "sym": "Gamma_12",
+   "section": "5.2",
+   "concept": "complex-decay-rate",
+   "unit": "s⁻¹",
+   "meaning": "The complex decay parameter Γ₁₂ = γ₁₂ − iδ of the coherence ρ₂₁"
+  },
+  {
+   "sym": "Gamma_13",
+   "section": "5.2",
+   "concept": "complex-decay-rate",
+   "unit": "s⁻¹",
+   "meaning": "The complex decay parameter Γ₁₃ = γ₁₃ − iΔ of the coherence ρ₃₁"
+  },
+  {
+   "sym": "H_eff",
+   "section": "5.2",
+   "concept": "effective-hamiltonian",
+   "meaning": "The effective Hamiltonian: the system Hamiltonian with the non-Hermitian part −iℏΣ_k γ_k ĉ_k†ĉ_k/2"
+  },
+  {
+   "sym": "rho_21",
+   "section": "5.2",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂"
+  },
+  {
+   "sym": "chi",
+   "section": "5.2",
+   "concept": "susceptibility",
+   "meaning": "The susceptibility of the medium for the probe field"
+  },
+  {
+   "sym": "n_ref",
+   "section": "5.2",
+   "concept": "refractive-index",
+   "meaning": "The index of refraction n(ω) = 1 + Re[χ]/2 for the probe"
+  },
+  {
+   "sym": "v_g",
+   "section": "5.2",
+   "concept": "group-velocity",
+   "unit": "m/s",
+   "meaning": "The group velocity of the probe pulse"
+  },
+  {
+   "sym": "nu_bar",
+   "section": "5.2",
+   "type": "frequency",
+   "unit": "rad/s",
+   "meaning": "The central frequency of the nearly monochromatic field, its carrier frequency"
+  },
+  {
+   "sym": "V",
+   "section": "5.2",
+   "type": "volume",
+   "unit": "m³",
+   "meaning": "The volume holding the N atoms"
+  },
+  {
+   "sym": "lambda",
+   "section": "5.2",
+   "type": "length",
+   "unit": "m",
+   "meaning": "The wavelength of the transition, λ = 2π/k₀"
+  },
+  {
+   "sym": "omega",
+   "section": "5.2",
+   "type": "frequency",
+   "unit": "rad/s",
+   "meaning": "The angular frequency of the probe light, in its dispersion relation ω(k)",
+   "redefines": true
+  },
+  {
+   "sym": "chi_2nd",
+   "concept": "second-order-susceptibility",
+   "meaning": "The second-order nonlinear susceptibility χ⁽²⁾, the ratio of the sum-frequency polarization to ε₀ℰ₁ℰ₂",
+   "anchor": "5.3-eq-5-61",
+   "section": "5.3"
+  },
+  {
+   "sym": "delta_eff",
+   "concept": "cascade-nonlinear-susceptibility",
+   "meaning": "The effective two-photon detuning of the cascade system, renormalized by the Stark shifts of the applied fields",
+   "unit": "rad/s",
+   "anchor": "5.3-eq-5-63",
+   "section": "5.3"
+  },
+  {
+   "sym": "Delta_k",
+   "concept": "wavevector-mismatch",
+   "meaning": "The wavevector mismatch Δk = k₁ + k₂ − k₃ of the three fields",
+   "unit": "m⁻¹",
+   "anchor": "5.3-drv-sfg-propagation",
+   "section": "5.3"
+  },
+  {
+   "sym": "E_env_1",
+   "concept": "slowly-varying-envelope",
+   "ref": "field-1",
+   "meaning": "The slowly varying amplitude ℰ₁ of the applied field of frequency ν₁",
+   "unit": "V/m",
+   "anchor": "5.3-cascade-intro",
+   "section": "5.3"
+  },
+  {
+   "sym": "E_env_2",
+   "concept": "slowly-varying-envelope",
+   "ref": "field-2",
+   "meaning": "The slowly varying amplitude ℰ₂ of the applied field of frequency ν₂",
+   "unit": "V/m",
+   "anchor": "5.3-cascade-intro",
+   "section": "5.3"
+  },
+  {
+   "sym": "E_env_3",
+   "concept": "sum-frequency-propagation",
+   "ref": "field-3",
+   "meaning": "The slowly varying amplitude ℰ₃ of the generated field at the sum frequency ν₃ = ν₁ + ν₂",
+   "unit": "V/m",
+   "anchor": "5.3-eq-5-66",
+   "section": "5.3"
+  },
+  {
+   "sym": "E_env",
+   "concept": "slowly-varying-envelope",
+   "meaning": "The slowly varying amplitude ℰ_i of field i, and Ẽ_i with its linear phase absorbed (Eq. 5.72); ℰ alone is the total field of Eq. (5.66) and the common amplitude ℰ₁ ∼ ℰ₂ ∼ ℰ of Eq. (5.80)",
+   "unit": "V/m",
+   "anchor": "5.3-eq-5-66",
+   "redefines": true,
+   "section": "5.3"
+  },
+  {
+   "sym": "z_prop",
+   "type": "length",
+   "meaning": "The distance along the direction of propagation ẑ",
+   "unit": "m",
+   "anchor": "5.3-eq-5-66",
+   "section": "5.3"
+  },
+  {
+   "sym": "L_med",
+   "type": "length",
+   "meaning": "The length of the nonlinear medium, at whose end the output field is read",
+   "unit": "m",
+   "anchor": "5.3-drv-sum-frequency-output",
+   "section": "5.3"
+  },
+  {
+   "sym": "P_nl",
+   "concept": "macroscopic-polarization",
+   "meaning": "The nonlinear polarization of the medium: P_{ν₁+ν₂} or P₃ at the sum frequency, and in Eq. (5.82) the polarization from three applied fields",
+   "unit": "C/m²",
+   "anchor": "5.3-eq-5-60",
+   "section": "5.3"
+  },
+  {
+   "sym": "chi",
+   "concept": "susceptibility",
+   "meaning": "The linear susceptibility χ_i of the medium at the frequency ν_i of field i; χ₃⁽¹⁾ is that of the generated field",
+   "anchor": "5.3-eq-5-67",
+   "redefines": true,
+   "section": "5.3"
+  },
+  {
+   "sym": "chi_3",
+   "concept": "third-order-susceptibility",
+   "meaning": "The third-order susceptibility χ⁽³⁾, the next order correction to the linear susceptibility",
+   "anchor": "5.3-eq-5-82",
+   "section": "5.3"
+  },
+  {
+   "sym": "nu",
+   "meaning": "The frequency ν_i of field i, applied (i = 1, 2) or generated (ν₃ = ν₁ + ν₂)",
+   "unit": "rad/s",
+   "anchor": "5.3-cascade-intro",
+   "redefines": true,
+   "section": "5.3",
+   "concept": "optical-frequency"
+  },
+  {
+   "sym": "k_mag",
+   "meaning": "The wavevector k_i of field i inside the medium",
+   "unit": "m⁻¹",
+   "type": "wavevector",
+   "anchor": "5.3-drv-sfg-propagation",
+   "redefines": true,
+   "section": "5.3"
+  },
+  {
+   "sym": "n_ref",
+   "concept": "refractive-index",
+   "meaning": "The index of refraction n_i of the medium at the frequency ν_i of field i",
+   "anchor": "5.3-drv-sfg-propagation",
+   "redefines": true,
+   "section": "5.3"
+  },
+  {
+   "sym": "mu",
+   "meaning": "The dipole matrix element μ_ij between the levels |i⟩ and |j⟩ of the cascade system; μ* in Eq. (5.64) is μ₁₂*",
+   "unit": "C·m",
+   "concept": "dipole-matrix-element",
+   "anchor": "5.3-eq-5-60",
+   "redefines": true,
+   "section": "5.3"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequencies Ω_1i and Ω_2i of the fields ℰ₁ and ℰ₂ on their transitions to the intermediate state |i⟩",
+   "unit": "rad/s",
+   "anchor": "5.3-eq-5-62",
+   "redefines": true,
+   "section": "5.3"
+  },
+  {
+   "sym": "Delta",
+   "type": "frequency",
+   "meaning": "The detuning Δ_i of the applied fields from the intermediate state |i⟩ of the cascade system",
+   "unit": "rad/s",
+   "anchor": "5.3-eq-5-62",
+   "redefines": true,
+   "section": "5.3"
+  },
+  {
+   "sym": "Omega_eff",
+   "concept": "effective-raman-coupling",
+   "meaning": "The effective two-photon Rabi frequency coupling |1⟩ and |2⟩ of the cascade system through the far-detuned intermediate states |i⟩",
+   "unit": "rad/s",
+   "anchor": "5.3-eq-5-62",
+   "redefines": true,
+   "section": "5.3"
+  },
+  {
+   "sym": "rho_12",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |1⟩ and |2⟩",
+   "anchor": "5.3-sfg",
+   "section": "5.3"
+  },
+  {
+   "sym": "rho_21",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂",
+   "anchor": "5.3-eq-5-63",
+   "section": "5.3"
+  },
+  {
+   "sym": "V",
+   "type": "volume",
+   "meaning": "The volume holding the N atoms",
+   "unit": "m³",
+   "anchor": "5.3-drv-cascade-susceptibility",
+   "section": "5.3"
+  },
+  {
+   "sym": "t",
+   "meaning": "Time",
+   "anchor": "5.3-eq-5-66",
+   "section": "5.3",
+   "type": "time",
+   "unit": "s"
+  },
+  {
+   "sym": "rho_31",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the excited state |3⟩ and the ground state |1⟩, driven by the probe",
+   "anchor": "5.1-drv-lambda-density-matrix",
+   "section": "5.1"
+  },
+  {
+   "sym": "gamma_13",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₃ between the ground state and the excited state",
+   "unit": "s⁻¹",
+   "anchor": "5.1-eq-5-18",
+   "section": "5.1"
+  },
+  {
+   "sym": "gamma_2",
+   "type": "rate",
+   "ref": "lvl-2",
+   "meaning": "The rate of population decay out of the state |2⟩",
+   "unit": "s⁻¹",
+   "anchor": "5.1-eq-5-21",
+   "section": "5.1"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "The velocity of the atom",
+   "unit": "m/s",
+   "anchor": "5.1-eq-5-43",
+   "section": "5.1"
+  },
+  {
+   "sym": "rho_31",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the excited state |3⟩ and the ground state |1⟩, driven by the probe",
+   "section": "5.2"
+  },
+  {
+   "sym": "gamma_13",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₃ between the ground state and the excited state",
+   "unit": "s⁻¹",
+   "section": "5.2"
+  }
+ ]
+}

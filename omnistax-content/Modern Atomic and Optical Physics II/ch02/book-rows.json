@@ -1,0 +1,1405 @@
+{
+ "symbols": [
+  {
+   "sym": "Omega",
+   "latex": "\\Omega",
+   "macro": "\\kOmega"
+  },
+  {
+   "sym": "delta",
+   "latex": "\\delta",
+   "macro": "\\kdelta"
+  },
+  {
+   "sym": "nu",
+   "latex": "\\nu",
+   "macro": "\\knu"
+  },
+  {
+   "sym": "omega",
+   "latex": "\\omega",
+   "macro": "\\komega"
+  },
+  {
+   "sym": "gamma",
+   "latex": "\\gamma",
+   "macro": "\\kgamma"
+  },
+  {
+   "sym": "c_1",
+   "latex": "c_1",
+   "macro": "\\kcone"
+  },
+  {
+   "sym": "c_2",
+   "latex": "c_2",
+   "macro": "\\kctwo"
+  },
+  {
+   "sym": "c_tilde_2",
+   "latex": "\\tilde{c}_2",
+   "macro": "\\kctildetwo"
+  },
+  {
+   "sym": "p_1",
+   "latex": "p_1",
+   "macro": "\\kpone"
+  },
+  {
+   "sym": "p_2",
+   "latex": "p_2",
+   "macro": "\\kptwo"
+  },
+  {
+   "sym": "E_env",
+   "latex": "\\mathcal{E}",
+   "macro": "\\kEenv"
+  },
+  {
+   "sym": "mu",
+   "latex": "\\mu",
+   "macro": "\\kmu"
+  },
+  {
+   "sym": "epsilon_pm",
+   "latex": "\\epsilon_\\pm",
+   "macro": "\\kepspm"
+  },
+  {
+   "sym": "H_tilde",
+   "latex": "\\tilde{H}",
+   "macro": "\\kHtilde"
+  },
+  {
+   "sym": "S_tilde",
+   "latex": "\\tilde{\\mathbf{S}}",
+   "macro": "\\kStilde"
+  },
+  {
+   "sym": "Omega_vec",
+   "latex": "\\boldsymbol{\\Omega}",
+   "macro": "\\kOmegavec"
+  },
+  {
+   "sym": "tau",
+   "latex": "\\tau",
+   "macro": "\\ktau"
+  },
+  {
+   "sym": "Delta",
+   "latex": "\\Delta",
+   "macro": "\\kDelta"
+  },
+  {
+   "sym": "Omega_k",
+   "latex": "\\Omega_k",
+   "macro": "\\kOmegak"
+  },
+  {
+   "sym": "omega_k",
+   "latex": "\\omega_k",
+   "macro": "\\komegak"
+  },
+  {
+   "sym": "delta_k",
+   "latex": "\\delta_k",
+   "macro": "\\kdeltak"
+  },
+  {
+   "sym": "c_k",
+   "latex": "c_k",
+   "macro": "\\kck"
+  },
+  {
+   "sym": "Delta_Stark",
+   "latex": "\\Delta_{Stark}",
+   "macro": "\\kDeltaStark"
+  },
+  {
+   "sym": "nu_k",
+   "latex": "\\nu_k",
+   "macro": "\\knuk"
+  },
+  {
+   "sym": "k",
+   "latex": "\\mathbf{k}",
+   "macro": "\\kk"
+  },
+  {
+   "sym": "V",
+   "latex": "V",
+   "macro": "\\kV"
+  },
+  {
+   "sym": "q_j",
+   "latex": "q",
+   "macro": "\\kqj"
+  },
+  {
+   "sym": "p_j",
+   "latex": "p",
+   "macro": "\\kpj"
+  },
+  {
+   "sym": "E_bar",
+   "latex": "\\bar{\\mathcal{E}}",
+   "macro": "\\kEbar"
+  },
+  {
+   "sym": "g",
+   "latex": "g",
+   "macro": "\\kg"
+  },
+  {
+   "sym": "V_af",
+   "latex": "\\hat{V}_{af}",
+   "macro": "\\kVaf"
+  },
+  {
+   "sym": "E_hat",
+   "latex": "\\hat{E}",
+   "macro": "\\kEhat"
+  },
+  {
+   "sym": "E_plus",
+   "latex": "\\hat{\\mathcal{E}}",
+   "macro": "\\kEplus"
+  },
+  {
+   "sym": "epsilon_p",
+   "latex": "\\epsilon_+",
+   "macro": "\\kepsp"
+  },
+  {
+   "sym": "epsilon_m",
+   "latex": "\\epsilon_-",
+   "macro": "\\kepsm"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "two-level-atom",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Two-level atom",
+   "terms": [
+    "two-level atom",
+    "two-level system"
+   ],
+   "type": "state",
+   "statement": "An atom may be approximated as a two-level system when the external field is weak and nearly on resonance with a single atomic transition, so that only the ground state and the near-resonant excited level have appreciable probability of occupation."
+  },
+  {
+   "id": "atomic-transition-frequency",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Atomic transition frequency",
+   "symbol": "omega",
+   "type": "frequency",
+   "statement": "The energy difference of the two atomic levels is ħω."
+  },
+  {
+   "id": "slowly-varying-envelope",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Nearly-monochromatic classical field",
+   "symbol": "E_env",
+   "terms": [
+    "slowly-varying envelope"
+   ],
+   "type": "electric-field",
+   "statement": "A nearly-monochromatic classical field oscillates at the optical frequency ν with a slowly-varying envelope that varies on a timescale much slower than the optical frequency and a length scale much larger than the optical wavelength.",
+   "forms": [
+    {
+     "id": "eq-2-1",
+     "latex": "\\mathbf{E}(\\mathbf{r}, t) = \\mathcal{E}(\\mathbf{r}, t)e^{-i(\\nu t - \\mathbf{k}\\cdot\\mathbf{r})} + \\mathcal{E}(\\mathbf{r}, t)^* e^{i(\\nu t - \\mathbf{k}\\cdot\\mathbf{r})}",
+     "anchor": "2.1-eq-2-1"
+    }
+   ]
+  },
+  {
+   "id": "optical-frequency",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Optical frequency of the field",
+   "symbol": "nu",
+   "type": "frequency",
+   "statement": "The angular frequency ν of the applied field, near the atomic transition frequency."
+  },
+  {
+   "id": "two-level-dipole-operator",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Dipole operator of a two-level atom",
+   "type": "dipole",
+   "statement": "Truncated to the two relevant levels, which carry no permanent dipole, the dipole operator only connects the two states through the dipole matrix elements.",
+   "forms": [
+    {
+     "id": "eq-2-dipole",
+     "latex": "\\hat{d} = |1\\rangle\\langle 2|\\mu_{1,2} + |2\\rangle\\langle 1|\\mu_{2,1}",
+     "anchor": "2.1-eq-dipole"
+    }
+   ]
+  },
+  {
+   "id": "two-level-hamiltonian",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Two-level atom in a classical field",
+   "type": "energy",
+   "statement": "The full Hamiltonian of the two-level atom and classical field is the excited-level energy minus the coupling of the atomic dipole to the field.",
+   "forms": [
+    {
+     "id": "eq-2-2",
+     "latex": "\\hat{H} = \\hbar\\omega|2\\rangle\\langle 2| - (|1\\rangle\\langle 2|\\mu_{1,2} + |2\\rangle\\langle 1|\\mu_{2,1}) \\cdot \\left(\\mathcal{E}e^{-i\\nu t} + \\mathcal{E}^* e^{i\\nu t}\\right)",
+     "anchor": "2.1-eq-2-2"
+    }
+   ]
+  },
+  {
+   "id": "two-level-equations-of-motion",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Two-level equations of motion",
+   "statement": "Expanding the state in the eigenstates of the free Hamiltonian, Schroedinger's equation gives coupled differential equations for the probability amplitudes c₁(t) and c₂(t).",
+   "forms": [
+    {
+     "id": "eq-2-3",
+     "latex": "|\\psi\\rangle = c_1(t)|1\\rangle + c_2(t)|2\\rangle",
+     "anchor": "2.1-eq-2-3"
+    },
+    {
+     "id": "eq-2-eom",
+     "latex": "i\\hbar\\dot{c}_2(t) = \\hbar\\omega\\, c_2(t) - \\left(\\mathcal{E}e^{-i\\nu t} + \\mathcal{E}^* e^{i\\nu t}\\right)\\mu_{21}c_1(t)",
+     "anchor": "2.1-drv-rotating-frame-equations"
+    }
+   ]
+  },
+  {
+   "id": "detuning",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Detuning",
+   "symbol": "delta",
+   "terms": [
+    "detuning",
+    "detuned"
+   ],
+   "type": "frequency",
+   "statement": "The difference between the optical frequency of the field and the atomic transition frequency.",
+   "forms": [
+    {
+     "id": "eq-2-detuning",
+     "latex": "\\delta = \\nu - \\omega",
+     "anchor": "2.1-detuning"
+    }
+   ]
+  },
+  {
+   "id": "rotating-frame",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Rotating frame",
+   "symbol": "c_tilde_2",
+   "terms": [
+    "rotating frame",
+    "slowly varying amplitude"
+   ],
+   "type": "amplitude",
+   "statement": "Defining a slowly varying amplitude removes the fast phase evolution at the optical frequency and the explicitly time dependent terms from the equations of motion.",
+   "forms": [
+    {
+     "id": "eq-2-5",
+     "latex": "c_2(t) = \\tilde{c}_2(t)e^{-i\\nu t}",
+     "anchor": "2.1-eq-2-5"
+    },
+    {
+     "id": "eq-2-6",
+     "latex": "i\\hbar\\dot{\\tilde{c}}_2(t) = -\\hbar\\delta\\tilde{c}_2(t) - \\left(\\mathcal{E} + \\mathcal{E}^* e^{2i\\nu t}\\right)\\mu c_1(t)",
+     "anchor": "2.1-drv-rotating-frame-equations"
+    },
+    {
+     "id": "eq-2-7",
+     "latex": "i\\hbar\\dot{c}_1(t) = -\\left(\\mathcal{E}e^{-2i\\nu t} + \\mathcal{E}^*\\right)\\mu^*\\tilde{c}_2(t)",
+     "anchor": "2.1-drv-rotating-frame-equations"
+    }
+   ]
+  },
+  {
+   "id": "rabi-frequency",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Rabi frequency",
+   "symbol": "Omega",
+   "terms": [
+    "Rabi frequency"
+   ],
+   "type": "coupling",
+   "statement": "The frequency at which the dynamics of the driven atom occur, the field envelope times the dipole matrix element over ħ.",
+   "forms": [
+    {
+     "id": "eq-2-8",
+     "latex": "\\Omega = \\mathcal{E}\\mu/\\hbar",
+     "anchor": "2.1-eq-2-8"
+    }
+   ]
+  },
+  {
+   "id": "rotating-wave-approximation",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Rotating wave approximation",
+   "terms": [
+    "rotating wave approximation",
+    "RWA"
+   ],
+   "statement": "When the field is near resonance and weak, the terms oscillating at twice the optical frequency have little effect on average and are neglected, leaving equations for the slowly varying amplitudes with no explicit time dependence.",
+   "forms": [
+    {
+     "id": "eq-2-9",
+     "latex": "\\text{(a) } \\delta \\ll \\nu, \\omega \\qquad \\text{(b) } \\Omega \\ll \\nu",
+     "anchor": "2.1-eq-2-9"
+    },
+    {
+     "id": "eq-2-10",
+     "latex": "\\dot{\\tilde{c}}_2(t) = i\\delta\\tilde{c}_2(t) + i\\Omega c_1(t)",
+     "anchor": "2.1-drv-rwa-equations"
+    },
+    {
+     "id": "eq-2-11",
+     "latex": "\\dot{c}_1(t) = i\\Omega^*\\tilde{c}_2(t)",
+     "anchor": "2.1-drv-rwa-equations"
+    }
+   ]
+  },
+  {
+   "id": "rabi-oscillations",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Rabi oscillations",
+   "terms": [
+    "Rabi oscillations"
+   ],
+   "statement": "On resonance the amplitudes evolve as sines and cosines and the populations of the two levels oscillate out of phase at the Rabi frequency, the periodic absorption and stimulated emission of radiation.",
+   "forms": [
+    {
+     "id": "eq-2-13",
+     "latex": "c_1(t) = \\cos|\\Omega|t",
+     "anchor": "2.1-drv-rabi-oscillations"
+    },
+    {
+     "id": "eq-2-14",
+     "latex": "\\tilde{c}_2(t) = i\\frac{\\Omega}{|\\Omega|}\\sin|\\Omega|t",
+     "anchor": "2.1-drv-rabi-oscillations"
+    },
+    {
+     "id": "eq-2-12",
+     "latex": "\\ddot{c}_1(t) = -|\\Omega|^2 c_1(t), \\quad \\ddot{\\tilde{c}}_2(t) = -|\\Omega|^2\\tilde{c}_2(t)",
+     "anchor": "2.1-drv-rabi-oscillations"
+    }
+   ]
+  },
+  {
+   "id": "atomic-polarization",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Polarization of the atom",
+   "terms": [
+    "polarization"
+   ],
+   "type": "dipole",
+   "statement": "The instantaneous polarization of the atom is the expectation of the dipole moment operator, which varies both on the fast optical timescale and on the slower timescale of the populations.",
+   "forms": [
+    {
+     "id": "eq-2-15",
+     "latex": "\\langle\\hat{d}\\rangle = c_1(t)^* c_2(t)\\mu^* + c_1(t)c_2(t)^*\\mu",
+     "anchor": "2.1-eq-2-15"
+    }
+   ]
+  },
+  {
+   "id": "pulse-area",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Pulse area",
+   "terms": [
+    "area under the applied field"
+   ],
+   "type": "phase",
+   "statement": "When the applied field amplitude varies in time without a chirp, the amplitudes depend only on the total area under the applied field.",
+   "forms": [
+    {
+     "id": "eq-2-18",
+     "latex": "c_1(t) = \\cos\\left(\\int|\\Omega|dt\\right)",
+     "anchor": "2.1-drv-pulse-area"
+    },
+    {
+     "id": "eq-2-19",
+     "latex": "\\tilde{c}_2(t) = i\\frac{\\Omega}{|\\Omega|}\\sin\\left(\\int|\\Omega|dt\\right)",
+     "anchor": "2.1-drv-pulse-area"
+    }
+   ]
+  },
+  {
+   "id": "adiabatic-elimination",
+   "kind": "skill",
+   "section": "2.1",
+   "name": "Adiabatic elimination",
+   "terms": [
+    "adiabatic elimination",
+    "adiabatically follows",
+    "adiabatic expansion"
+   ],
+   "statement": "For a far-detuned field the fast-oscillating part of the excited amplitude averages to zero, so one sets its derivative to zero and the excited amplitude adiabatically follows the ground amplitude.",
+   "forms": [
+    {
+     "id": "eq-2-adiabatic",
+     "latex": "\\tilde{c}_2 = -(\\Omega/\\delta)c_1",
+     "anchor": "2.1-adiabatic-follow"
+    },
+    {
+     "id": "eq-2-21",
+     "latex": "\\tilde{c}_2(t) = -\\frac{\\Omega}{\\delta}\\left(1 - e^{i\\delta t}\\right)",
+     "anchor": "2.1-drv-far-detuned-excitation"
+    }
+   ]
+  },
+  {
+   "id": "ac-stark-shift",
+   "kind": "result",
+   "section": "2.1",
+   "name": "AC Stark shift",
+   "terms": [
+    "AC Stark shift",
+    "light shift"
+   ],
+   "type": "frequency",
+   "statement": "A far off resonant field shifts the lower state energy by |Ω|²/δ.",
+   "forms": [
+    {
+     "id": "eq-2-22",
+     "latex": "c_1(t) \\approx c_1(0)e^{-i|\\Omega|^2 t/\\delta}",
+     "anchor": "2.1-drv-ac-stark-shift"
+    }
+   ]
+  },
+  {
+   "id": "rotating-frame-hamiltonian",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Effective Hamiltonian in the rotating frame",
+   "symbol": "H_tilde",
+   "type": "energy",
+   "statement": "The original Hamiltonian after the RWA, written in the rotating frame, has no explicit time dependence.",
+   "forms": [
+    {
+     "id": "eq-2-23",
+     "latex": "\\tilde{H} = -\\hbar\\delta|\\tilde{2}\\rangle\\langle\\tilde{2}| - \\hbar(\\Omega|\\tilde{2}\\rangle\\langle 1| + \\Omega^*|1\\rangle\\langle\\tilde{2}|)",
+     "anchor": "2.1-eq-2-23"
+    }
+   ]
+  },
+  {
+   "id": "bare-states",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Bare states",
+   "terms": [
+    "bare states",
+    "bare atomic states"
+   ],
+   "type": "state",
+   "statement": "The eigenstates of the system when no applied field is present."
+  },
+  {
+   "id": "dressed-states",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Dressed states",
+   "terms": [
+    "dressed states",
+    "dressed"
+   ],
+   "type": "state",
+   "statement": "The eigenvectors of the rotating-frame Hamiltonian are mixtures of the bare atomic states; on resonance they are their symmetric and antisymmetric combinations, and far off resonance they resemble the bare states with a small admixture of the other.",
+   "forms": [
+    {
+     "id": "eq-2-25",
+     "latex": "|-\\rangle = |1\\rangle - \\frac{\\Omega}{\\delta}|\\tilde{2}\\rangle",
+     "anchor": "2.1-eq-2-25"
+    },
+    {
+     "id": "eq-2-26",
+     "latex": "|+\\rangle = |\\tilde{2}\\rangle + \\frac{\\Omega^*}{\\delta}|1\\rangle",
+     "anchor": "2.1-eq-2-26"
+    }
+   ]
+  },
+  {
+   "id": "dressed-state-energies",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Dressed state energies",
+   "symbol": "epsilon_pm",
+   "type": "energy",
+   "statement": "The eigenenergies of the dressed states, split by twice the Rabi frequency on resonance and close to the bare energies far off resonance.",
+   "forms": [
+    {
+     "id": "eq-2-24",
+     "latex": "\\epsilon_\\pm = \\hbar\\left(-\\frac{\\delta}{2} \\mp \\sqrt{(\\frac{\\delta}{2})^2 + |\\Omega|^2}\\right)",
+     "anchor": "2.1-eq-2-24"
+    }
+   ]
+  },
+  {
+   "id": "bloch-sphere",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Bloch sphere",
+   "symbol": "S_tilde",
+   "terms": [
+    "Bloch sphere",
+    "Bloch picture"
+   ],
+   "type": "state",
+   "statement": "The state of the two-level system can be represented as a vector on the unit sphere, |2⟩ pointing along +ẑ and |1⟩ along −ẑ, with the spin operators of a two-level system as its components.",
+   "forms": [
+    {
+     "id": "eq-2-27",
+     "latex": "\\hat{S}_z = |2\\rangle\\langle 2| - |1\\rangle\\langle 1|",
+     "anchor": "2.1-eq-2-27"
+    },
+    {
+     "id": "eq-2-28",
+     "latex": "\\hat{S}_x = |1\\rangle\\langle 2| + |2\\rangle\\langle 1|",
+     "anchor": "2.1-eq-2-28"
+    },
+    {
+     "id": "eq-2-29",
+     "latex": "\\hat{S}_y = -i|2\\rangle\\langle 1| + i|1\\rangle\\langle 2|",
+     "anchor": "2.1-eq-2-29"
+    }
+   ]
+  },
+  {
+   "id": "bloch-precession",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Precession on the Bloch sphere",
+   "statement": "The Hamiltonian acts as an effective magnetic field, and the Bloch vector precesses about the drive vector made of the field and the detuning.",
+   "forms": [
+    {
+     "id": "eq-2-33",
+     "latex": "\\frac{d}{dt}\\tilde{\\mathbf{S}} = \\boldsymbol{\\Omega}(t) \\times \\tilde{\\mathbf{S}}",
+     "anchor": "2.1-eq-2-33"
+    },
+    {
+     "id": "eq-2-32",
+     "latex": "\\hat{H} = -\\frac{\\hbar\\delta}{2}\\left(\\hat{S}_z + 1\\right) - \\hbar\\left(\\mathrm{Re}\\,\\Omega\\right)\\hat{\\tilde{S}}_x - \\hbar\\left(\\mathrm{Im}\\,\\Omega^*\\right)\\hat{\\tilde{S}}_y",
+     "anchor": "2.1-eq-2-32"
+    }
+   ]
+  },
+  {
+   "id": "multilevel-rotating-frame",
+   "kind": "result",
+   "section": "2.1",
+   "name": "Rotating frame for multistate systems",
+   "statement": "A time-dependent unitary transformation that rotates each atomic state at its associated optical frequency gives a time independent Hamiltonian, so long as no atomic transition is linked by more than one applied field.",
+   "forms": [
+    {
+     "id": "eq-2-38",
+     "latex": "\\tilde{H} = \\hat{U}^{-1}\\hat{H}\\hat{U} - i\\hbar\\hat{U}^{-1}\\frac{dU}{dt}",
+     "anchor": "2.1-drv-multilevel-rotating-frame"
+    },
+    {
+     "id": "eq-2-35",
+     "latex": "\\hat{U} = e^{-i\\sum_k \\nu_k t|k\\rangle\\langle k|}",
+     "anchor": "2.1-eq-2-35"
+    },
+    {
+     "id": "eq-2-39",
+     "latex": "\\tilde{H} = \\sum_k \\hbar(\\omega_k - \\nu_k)|\\tilde{k}\\rangle\\langle\\tilde{k}| - \\hbar\\sum_k\\left(\\Omega_k|\\tilde{k}\\rangle\\langle\\tilde{1}| + \\Omega_k^*|\\tilde{1}\\rangle\\langle\\tilde{k}|\\right)",
+     "anchor": "2.1-drv-multilevel-rotating-frame"
+    }
+   ]
+  },
+  {
+   "id": "floquet-basis",
+   "kind": "definition",
+   "section": "2.1",
+   "name": "Floquet basis",
+   "terms": [
+    "Floquet basis",
+    "beatnote"
+   ],
+   "statement": "When two fields are near resonance with one transition, the amplitudes are expanded in a Fourier series in the beatnote frequency, whose components are all coupled.",
+   "forms": [
+    {
+     "id": "eq-2-floquet",
+     "latex": "c_i = \\sum_n c_i^{(n)}e^{in\\Delta t}",
+     "anchor": "2.1-floquet"
+    }
+   ]
+  },
+  {
+   "id": "bound-continuum-transition",
+   "kind": "definition",
+   "section": "2.2",
+   "name": "Bound to continuum transition",
+   "terms": [
+    "bound to continuum transitions",
+    "continuum"
+   ],
+   "statement": "A transition from a bound state to the continuum of unbound states, treated by discretizing the continuum in a box whose size approaches infinity.",
+   "forms": [
+    {
+     "id": "eq-2-42",
+     "latex": "\\hat{H} = \\sum_k \\hbar\\left(\\omega_k - \\nu\\right)|k\\rangle\\langle k| - \\hbar\\sum_k \\left(\\Omega_k|k\\rangle\\langle 1| + \\Omega_k^*|1\\rangle\\langle k|\\right)",
+     "anchor": "2.2-eq-2-42"
+    },
+    {
+     "id": "eq-2-44",
+     "latex": "\\dot{c}_1 = i\\sum_k \\Omega_k^* c_k",
+     "anchor": "2.2-drv-continuum-decay"
+    },
+    {
+     "id": "eq-2-45",
+     "latex": "\\dot{c}_k = i\\delta_k c_k + i\\Omega_k c_1",
+     "anchor": "2.2-drv-continuum-decay"
+    }
+   ]
+  },
+  {
+   "id": "memoryless-continuum",
+   "kind": "idea",
+   "section": "2.2",
+   "name": "Continuum without memory",
+   "terms": [
+    "memory"
+   ],
+   "statement": "Summed over a densely spaced continuum, the exponentials cancel except at t = t′, so the continuum acts on the bound state locally in time and has no memory of earlier configurations.",
+   "forms": [
+    {
+     "id": "eq-2-47",
+     "latex": "\\dot{c}_1(t) = -\\sum_k |\\Omega_k|^2\\int_0^t c_1(t')e^{-i\\delta_k(t'-t)}dt'",
+     "anchor": "2.2-drv-continuum-decay"
+    }
+   ]
+  },
+  {
+   "id": "principal-value-identity",
+   "kind": "result",
+   "section": "2.2",
+   "name": "Principal value identity",
+   "statement": "An identity from complex analysis splits the limit into a delta function and a principal value.",
+   "forms": [
+    {
+     "id": "eq-2-49",
+     "latex": "\\mathop{\\mathrm{lim}}\\limits_{\\epsilon\\to 0}\\frac{i}{\\delta_k + i\\epsilon} = \\pi\\delta(\\delta_k) + i\\mathcal{P}\\frac{1}{\\delta_k}",
+     "anchor": "2.2-eq-2-49"
+    }
+   ]
+  },
+  {
+   "id": "continuum-decay-rate",
+   "kind": "result",
+   "section": "2.2",
+   "name": "Decay into a continuum",
+   "symbol": "gamma",
+   "terms": [
+    "population decay",
+    "decay rate"
+   ],
+   "type": "rate",
+   "statement": "Coupling to the continuum makes the bound state population decay exponentially at the rate γ, precisely the rate Fermi's Golden Rule gives.",
+   "forms": [
+    {
+     "id": "eq-2-51",
+     "latex": "\\gamma = 2\\pi\\sum_k |\\Omega_k|^2\\delta(\\nu - \\omega_k)",
+     "anchor": "2.2-eq-2-51"
+    },
+    {
+     "id": "eq-2-50",
+     "latex": "\\dot{c}_1 = -c_1(\\underbrace{\\pi\\sum_k |\\Omega_k|^2\\delta(\\nu - \\omega_k)}_{\\gamma/2} - i\\underbrace{\\sum_k |\\Omega_k|^2\\mathcal{P}\\frac{1}{\\nu - \\omega_k}}_{\\Delta_{Stark}})",
+     "anchor": "2.2-drv-continuum-decay"
+    },
+    {
+     "id": "eq-2-decay",
+     "latex": "p_1(t) = p_1(0)e^{-\\gamma t}",
+     "anchor": "2.2-decay-law"
+    }
+   ]
+  },
+  {
+   "id": "fermi-golden-rule",
+   "kind": "result",
+   "section": "2.2",
+   "name": "Fermi's Golden Rule",
+   "terms": [
+    "Fermi’s Golden Rule"
+   ],
+   "statement": "First order perturbation theory gives a transition rate into a continuum, which the long time treatment reproduces because the continuum has no memory."
+  },
+  {
+   "id": "continuum-stark-shift",
+   "kind": "result",
+   "section": "2.2",
+   "name": "AC Stark shift from the continuum",
+   "symbol": "Delta_Stark",
+   "terms": [
+    "AC Stark effect"
+   ],
+   "type": "frequency",
+   "statement": "The continuum states also shift the bound state energy, most important for sub-threshold illumination, where the decay vanishes.",
+   "forms": [
+    {
+     "id": "eq-2-52",
+     "latex": "\\Delta_{Stark} = \\sum_k |\\Omega_k|^2\\mathcal{P}\\frac{1}{\\nu - \\omega_k}",
+     "anchor": "2.2-eq-2-52"
+    }
+   ]
+  },
+  {
+   "id": "outgoing-wavepacket",
+   "kind": "result",
+   "section": "2.2",
+   "name": "Outgoing wavepacket",
+   "terms": [
+    "wavepacket"
+   ],
+   "statement": "At long times the system is in a superposition of continuum states forming an outgoing wavepacket propagating away from the atom, behaviour that seems irreversible yet comes from unitary evolution.",
+   "forms": [
+    {
+     "id": "eq-2-54",
+     "latex": "c_k(t) = i\\frac{\\Omega_k}{\\gamma/2 + i\\delta_k}(1 - e^{-(\\gamma/2 + i\\delta_k)t})e^{i\\delta_k t}",
+     "anchor": "2.2-drv-continuum-amplitudes"
+    }
+   ]
+  },
+  {
+   "id": "spontaneous-emission",
+   "kind": "idea",
+   "section": "2.3",
+   "name": "Spontaneous emission",
+   "terms": [
+    "spontaneous emission",
+    "spontaneously emit"
+   ],
+   "statement": "Real atoms decay from an excited state even with no applied field, through their interaction with the vacuum modes of the field, which requires a quantum mechanical treatment of the electromagnetic field."
+  },
+  {
+   "id": "cavity-modes",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "Modes of a periodic cavity",
+   "terms": [
+    "eigenmodes",
+    "running waves",
+    "modes"
+   ],
+   "statement": "A field in a large cavity with periodic boundary conditions has running-wave eigenmodes with allowed wavevectors, two polarizations to each.",
+   "forms": [
+    {
+     "id": "eq-2-57",
+     "latex": "k_{\\alpha,j}L_\\alpha = 2\\pi j_\\alpha",
+     "anchor": "2.3-eq-2-57"
+    }
+   ]
+  },
+  {
+   "id": "field-mode-expansion",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Mode expansion of the field",
+   "statement": "An arbitrary excitation is expanded in the spatial modes, each with a time-dependent coordinate normalized to be the position of a harmonic oscillator.",
+   "forms": [
+    {
+     "id": "eq-2-58",
+     "latex": "E_x(z,t) = \\sum_j \\sqrt{\\frac{\\nu_j^2}{\\epsilon_0 V}}\\, q_j(t)e^{ik_jz}",
+     "anchor": "2.3-eq-2-58"
+    },
+    {
+     "id": "eq-2-60",
+     "latex": "E_x(z,t) = \\sum_j \\sqrt{\\frac{2\\nu_j^2}{\\epsilon_0 V}}\\, q_j\\sin k_jz",
+     "anchor": "2.3-eq-2-60"
+    }
+   ]
+  },
+  {
+   "id": "field-quadratures",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "Mode position and momentum",
+   "symbol": "q_j",
+   "type": "quadrature",
+   "statement": "Quantization identifies each mode's coordinate and its time derivative with non-commuting position and momentum operators, as for a harmonic oscillator of unit mass.",
+   "forms": [
+    {
+     "id": "eq-2-65",
+     "latex": "[\\hat{q}_j, \\hat{p}_{j'}] = i\\hbar\\delta_{j,j'}",
+     "anchor": "2.3-eq-2-65"
+    },
+    {
+     "id": "eq-2-64",
+     "latex": "q_j \\to \\hat{q}_j \\quad \\dot{q}_j \\to \\hat{p}_j",
+     "anchor": "2.3-eq-2-64"
+    }
+   ]
+  },
+  {
+   "id": "creation-annihilation-operators",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "Creation and annihilation operators",
+   "terms": [
+    "creation and annihilation operators",
+    "annihilation operator"
+   ],
+   "statement": "Operators that create and annihilate excitations of each mode and polarization.",
+   "forms": [
+    {
+     "id": "eq-2-66",
+     "latex": "\\hat{a}_j = \\frac{1}{\\sqrt{2\\hbar\\nu_j}}\\left(\\nu_j\\hat{q}_j + i\\hat{p}_j\\right)",
+     "anchor": "2.3-eq-2-66"
+    },
+    {
+     "id": "eq-2-67",
+     "latex": "\\hat{a}_j^\\dagger = \\frac{1}{\\sqrt{2\\hbar\\nu_j}}\\left(\\nu_j\\hat{q}_j - i\\hat{p}_j\\right)",
+     "anchor": "2.3-eq-2-67"
+    }
+   ]
+  },
+  {
+   "id": "field-hamiltonian",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Hamiltonian of the quantized field",
+   "type": "energy",
+   "statement": "The classical energy within the cavity is that of a set of harmonic oscillators, one per mode, with energy ħν_j per excitation and a vacuum energy of half that.",
+   "forms": [
+    {
+     "id": "eq-2-69",
+     "latex": "\\hat{H} = \\sum_j \\hbar\\nu_j\\left(\\hat{a}_j^\\dagger\\hat{a}_j + \\frac{1}{2}\\right)",
+     "anchor": "2.3-drv-field-hamiltonian-ladder"
+    },
+    {
+     "id": "eq-2-62",
+     "latex": "H = \\frac{1}{2}\\int dV\\left(\\epsilon_0E^2 + \\frac{1}{\\mu_0}B^2\\right)",
+     "anchor": "2.3-eq-2-62"
+    },
+    {
+     "id": "eq-2-68",
+     "latex": "\\hat{H} = \\frac{1}{2}\\sum_j\\left(\\nu_j^2\\hat{q}_j^2 + \\hat{p}_j^2\\right)",
+     "anchor": "2.3-drv-field-hamiltonian-ladder"
+    }
+   ]
+  },
+  {
+   "id": "quantized-electric-field",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Quantized electric field",
+   "terms": [
+    "positive and negative frequency components",
+    "positive frequency component"
+   ],
+   "type": "electric-field",
+   "statement": "The electric field operator expanded in running-wave excitations, divided into its positive and negative frequency components.",
+   "forms": [
+    {
+     "id": "eq-2-70",
+     "latex": "\\hat{E_\\alpha} = \\epsilon_\\alpha\\sum_j \\bar{\\mathcal{E}}_j\\frac{\\left(\\hat{a}_je^{i\\mathbf{k}_j\\cdot\\mathbf{r}} + \\hat{a}_j^\\dagger e^{-i\\mathbf{k}_j\\cdot\\mathbf{r}}\\right)}{\\sqrt{2}}",
+     "anchor": "2.3-eq-2-70"
+    },
+    {
+     "id": "eq-2-72",
+     "latex": "\\hat{E}_\\alpha = \\hat{\\mathcal{E}}_\\alpha + \\hat{\\mathcal{E}}_\\alpha^\\dagger",
+     "anchor": "2.3-eq-2-72"
+    },
+    {
+     "id": "eq-2-73",
+     "latex": "\\hat{\\mathcal{E}}_\\alpha = \\epsilon_\\alpha\\sum_j\\sqrt{\\frac{\\hbar\\nu_j}{2\\epsilon_0V}}\\hat{a}_je^{i\\mathbf{k}_j\\cdot\\mathbf{r}}",
+     "anchor": "2.3-eq-2-73"
+    }
+   ],
+   "symbol": "E_hat"
+  },
+  {
+   "id": "single-photon-field",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "Electric field of a single photon",
+   "symbol": "E_bar",
+   "type": "electric-field",
+   "statement": "The electric field associated with a single photon, a figure of merit for any phenomena relying on atomic interactions with a vacuum field.",
+   "forms": [
+    {
+     "id": "eq-2-71",
+     "latex": "\\bar{\\mathcal{E}}_j = \\sqrt{\\frac{\\hbar\\nu_j}{\\epsilon_0 V}}",
+     "anchor": "2.3-eq-2-71"
+    }
+   ]
+  },
+  {
+   "id": "atom-field-interaction",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Atom interacting with the quantized field",
+   "symbol": "V_af",
+   "type": "energy",
+   "statement": "Replacing the field in the dipole Hamiltonian by its operator gives four terms, of which only emission with decay and absorption with excitation conserve energy; the other two are the fast-rotating terms the RWA drops.",
+   "forms": [
+    {
+     "id": "eq-2-76",
+     "latex": "\\hat{V}_{af} = -\\sum_{j,\\alpha}\\hbar g_{j,\\alpha}|2\\rangle\\langle 1|\\hat{a}_{j,\\alpha} + \\hbar g_{j,\\alpha}^*|1\\rangle\\langle 2|\\hat{a}_{j,\\alpha}^\\dagger",
+     "anchor": "2.3-drv-atom-field-coupling"
+    },
+    {
+     "id": "eq-2-74",
+     "latex": "\\hat{V}_{af} = -\\hat{E}\\cdot\\hat{d}",
+     "anchor": "2.3-drv-atom-field-coupling"
+    }
+   ]
+  },
+  {
+   "id": "single-photon-rabi-frequency",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "Single-photon Rabi frequency",
+   "symbol": "g",
+   "terms": [
+    "single-photon Rabi frequency",
+    "single photon Rabi frequency",
+    "coupling constant"
+   ],
+   "type": "coupling",
+   "statement": "The coupling constant of the atom to one mode, the frequency at which an atom spontaneously emits and reabsorbs a single resonant photon.",
+   "forms": [
+    {
+     "id": "eq-2-77",
+     "latex": "g_{j,\\alpha} = \\frac{\\mu_\\alpha}{\\hbar}\\sqrt{\\frac{\\hbar\\nu_j}{2\\epsilon_0V}}e^{i\\mathbf{k}_j\\cdot\\mathbf{r}}",
+     "anchor": "2.3-drv-atom-field-coupling"
+    },
+    {
+     "id": "eq-2-85",
+     "latex": "g_k = \\frac{\\mu}{\\hbar}\\sqrt{\\frac{\\hbar\\nu_k}{2\\epsilon_0V}}",
+     "anchor": "2.3-drv-spontaneous-emission-rate"
+    }
+   ]
+  },
+  {
+   "id": "transverse-fields-and-gauge",
+   "kind": "idea",
+   "section": "2.3",
+   "name": "Transverse fields and gauge",
+   "terms": [
+    "transverse fields",
+    "longitudinal fields",
+    "gauge",
+    "canonical momentum"
+   ],
+   "statement": "Quantizing a source-free field treats only transverse fields, which avoids the vector potential and corresponds to an implicit choice of gauge; the canonical Hamiltonian with the momentum p − qA/c is the more general approach."
+  },
+  {
+   "id": "wigner-weisskopf",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Wigner-Weisskopf theory",
+   "terms": [
+    "Wigner-Weisskopf theory"
+   ],
+   "statement": "Projected onto the excited atom with no photon and the ground atom with one photon, spontaneous emission is a bound to continuum transition.",
+   "forms": [
+    {
+     "id": "eq-2-79",
+     "latex": "\\hat{H} = \\hbar\\omega|2,0\\rangle\\langle 2,0| + \\textstyle\\sum_k\\hbar\\nu_k|1,1_k\\rangle\\langle 1,1_k| - \\textstyle\\sum_k\\left(\\hbar g_k|2,0\\rangle\\langle 1,1_k| + \\hbar g_k^*|1,1_k\\rangle\\langle 2,0|\\right)",
+     "anchor": "2.3-eq-2-79"
+    },
+    {
+     "id": "eq-2-78",
+     "latex": "\\hat{H} = \\hbar\\omega|2\\rangle\\langle 2| + \\sum_j\\hbar\\nu_j\\left(\\hat{a}_j^\\dagger\\hat{a}_j + \\frac{1}{2}\\right) - \\sum_j\\left(\\hbar g_j|2\\rangle\\langle 1|\\hat{a}_j + \\hbar g_j^*|1\\rangle\\langle 2|\\hat{a}_j^\\dagger\\right)",
+     "anchor": "2.3-eq-2-78"
+    }
+   ]
+  },
+  {
+   "id": "lamb-shift",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Lamb shift",
+   "terms": [
+    "Lamb shift"
+   ],
+   "type": "frequency",
+   "statement": "The shift of the energy levels from the atom-field interaction, usually incorporated into a renormalized transition frequency, which changes in a different environment such as a cavity."
+  },
+  {
+   "id": "spontaneous-emission-rate",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Spontaneous emission rate",
+   "terms": [
+    "spontaneous emission rate",
+    "Einstein A coefficient"
+   ],
+   "type": "rate",
+   "statement": "The excited atom decays at a rate proportional to the square of the atomic dipole moment and the cube of the transition frequency.",
+   "forms": [
+    {
+     "id": "eq-2-89",
+     "latex": "\\gamma = \\frac{\\omega^3|\\mu|^2}{3\\pi\\epsilon_0\\hbar c^3}",
+     "anchor": "2.3-drv-spontaneous-emission-rate"
+    },
+    {
+     "id": "eq-2-80",
+     "latex": "\\gamma = 2\\pi\\sum_{\\mathbf{k},\\alpha}|g_{\\mathbf{k},\\alpha}|^2\\delta(\\nu_k - \\omega)",
+     "anchor": "2.3-drv-spontaneous-emission-rate"
+    },
+    {
+     "id": "eq-2-88",
+     "latex": "\\gamma = \\frac{2V}{3\\pi}\\int_0^\\infty k^2dk|g_k|^2\\delta(\\nu_k - \\omega) = \\frac{2\\omega^2V}{3\\pi c^3}|g_{k=\\omega/c}|^2",
+     "anchor": "2.3-drv-spontaneous-emission-rate"
+    }
+   ]
+  },
+  {
+   "id": "dipole-decay",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Decay of the atomic dipole",
+   "type": "dipole",
+   "statement": "For an atom starting in a superposition, the atomic dipole moment decays as e^{−γt/2}, unlike classical Rabi oscillations, with no buildup of atomic coherences.",
+   "forms": [
+    {
+     "id": "eq-2-94",
+     "latex": "\\langle\\psi|\\hat{d}|\\psi\\rangle = e^{-\\gamma t/2}\\left(c_2^0e^{-i\\omega t}(c_1^0)^*\\mu + c_1^0(c_2^0e^{-i\\omega t})^*\\mu^*\\right)",
+     "anchor": "2.3-drv-dipole-decay"
+    }
+   ]
+  },
+  {
+   "id": "emitted-photon-wavepacket",
+   "kind": "result",
+   "section": "2.3",
+   "name": "Wavepacket of the emitted photon",
+   "terms": [
+    "first order coherence",
+    "photon wavepacket"
+   ],
+   "statement": "The field emitted spontaneously has zero mean electric field and no first order coherence, but its one-photon amplitude describes a wavepacket outgoing from the atom at speed c with an exponentially decaying tail.",
+   "forms": [
+    {
+     "id": "eq-2-100",
+     "latex": "\\langle 0|\\hat{\\mathcal{E}}_\\alpha|\\psi\\rangle \\propto \\frac{e^{-\\gamma(t - z/c)/2}}{z}\\Theta(t - z/c)",
+     "anchor": "2.3-eq-2-100"
+    },
+    {
+     "id": "eq-2-95",
+     "latex": "|\\psi\\rangle = |1\\rangle\\otimes\\sum_{k,\\alpha}\\frac{g_{k,\\alpha}}{\\nu_k - \\omega + i\\gamma/2}e^{-i\\nu_kt}|1_{k,\\alpha}\\rangle",
+     "anchor": "2.3-eq-2-95"
+    },
+    {
+     "id": "eq-2-96",
+     "latex": "\\langle\\psi|\\hat{E}_\\alpha|\\psi\\rangle = 0",
+     "anchor": "2.3-eq-2-96"
+    }
+   ]
+  },
+  {
+   "id": "light-polarization",
+   "kind": "definition",
+   "section": "2.3",
+   "name": "Polarization of light",
+   "terms": [
+    "polarization vector",
+    "polarizations",
+    "polarization"
+   ],
+   "statement": "Each wavevector $\\mathbf{k}$ carries two modes, one for each polarization vector $\\epsilon_\\alpha$ orthogonal to $\\mathbf{k}$; the mode index $j$ includes both the mode number and the polarization of the wave."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "two-level-atom",
+   "prereq": "selection-rules"
+  },
+  {
+   "concept": "two-level-atom",
+   "prereq": "simple-quantum-systems"
+  },
+  {
+   "concept": "atomic-transition-frequency",
+   "prereq": "two-level-atom"
+  },
+  {
+   "concept": "optical-frequency",
+   "prereq": "slowly-varying-envelope"
+  },
+  {
+   "concept": "two-level-dipole-operator",
+   "prereq": "two-level-atom"
+  },
+  {
+   "concept": "two-level-hamiltonian",
+   "prereq": "two-level-dipole-operator"
+  },
+  {
+   "concept": "two-level-hamiltonian",
+   "prereq": "atomic-transition-frequency"
+  },
+  {
+   "concept": "two-level-hamiltonian",
+   "prereq": "optical-frequency"
+  },
+  {
+   "concept": "two-level-equations-of-motion",
+   "prereq": "two-level-hamiltonian"
+  },
+  {
+   "concept": "two-level-equations-of-motion",
+   "prereq": "probability-amplitude"
+  },
+  {
+   "concept": "detuning",
+   "prereq": "atomic-transition-frequency"
+  },
+  {
+   "concept": "detuning",
+   "prereq": "optical-frequency"
+  },
+  {
+   "concept": "rotating-frame",
+   "prereq": "two-level-equations-of-motion"
+  },
+  {
+   "concept": "rotating-frame",
+   "prereq": "detuning"
+  },
+  {
+   "concept": "rabi-frequency",
+   "prereq": "slowly-varying-envelope"
+  },
+  {
+   "concept": "rabi-frequency",
+   "prereq": "two-level-dipole-operator"
+  },
+  {
+   "concept": "rotating-wave-approximation",
+   "prereq": "rotating-frame"
+  },
+  {
+   "concept": "rotating-wave-approximation",
+   "prereq": "rabi-frequency"
+  },
+  {
+   "concept": "rabi-oscillations",
+   "prereq": "rotating-wave-approximation"
+  },
+  {
+   "concept": "rabi-oscillations",
+   "prereq": "born-rule"
+  },
+  {
+   "concept": "atomic-polarization",
+   "prereq": "rabi-oscillations"
+  },
+  {
+   "concept": "atomic-polarization",
+   "prereq": "expectation-value"
+  },
+  {
+   "concept": "pulse-area",
+   "prereq": "rabi-oscillations"
+  },
+  {
+   "concept": "adiabatic-elimination",
+   "prereq": "rotating-wave-approximation"
+  },
+  {
+   "concept": "ac-stark-shift",
+   "prereq": "adiabatic-elimination"
+  },
+  {
+   "concept": "rotating-frame-hamiltonian",
+   "prereq": "rotating-wave-approximation"
+  },
+  {
+   "concept": "bare-states",
+   "prereq": "two-level-atom"
+  },
+  {
+   "concept": "dressed-states",
+   "prereq": "rotating-frame-hamiltonian"
+  },
+  {
+   "concept": "dressed-states",
+   "prereq": "bare-states"
+  },
+  {
+   "concept": "dressed-state-energies",
+   "prereq": "dressed-states"
+  },
+  {
+   "concept": "bloch-sphere",
+   "prereq": "two-level-atom"
+  },
+  {
+   "concept": "bloch-precession",
+   "prereq": "bloch-sphere"
+  },
+  {
+   "concept": "bloch-precession",
+   "prereq": "rotating-frame-hamiltonian"
+  },
+  {
+   "concept": "bloch-precession",
+   "prereq": "heisenberg-picture"
+  },
+  {
+   "concept": "multilevel-rotating-frame",
+   "prereq": "rotating-frame-hamiltonian"
+  },
+  {
+   "concept": "multilevel-rotating-frame",
+   "prereq": "time-evolution-operator"
+  },
+  {
+   "concept": "floquet-basis",
+   "prereq": "multilevel-rotating-frame"
+  },
+  {
+   "concept": "bound-continuum-transition",
+   "prereq": "multilevel-rotating-frame"
+  },
+  {
+   "concept": "memoryless-continuum",
+   "prereq": "bound-continuum-transition"
+  },
+  {
+   "concept": "continuum-decay-rate",
+   "prereq": "memoryless-continuum"
+  },
+  {
+   "concept": "continuum-decay-rate",
+   "prereq": "principal-value-identity"
+  },
+  {
+   "concept": "fermi-golden-rule",
+   "prereq": "continuum-decay-rate"
+  },
+  {
+   "concept": "continuum-stark-shift",
+   "prereq": "continuum-decay-rate"
+  },
+  {
+   "concept": "continuum-stark-shift",
+   "prereq": "ac-stark-shift"
+  },
+  {
+   "concept": "outgoing-wavepacket",
+   "prereq": "continuum-decay-rate"
+  },
+  {
+   "concept": "spontaneous-emission",
+   "prereq": "two-level-atom"
+  },
+  {
+   "concept": "cavity-modes",
+   "prereq": "spontaneous-emission"
+  },
+  {
+   "concept": "field-mode-expansion",
+   "prereq": "cavity-modes"
+  },
+  {
+   "concept": "field-quadratures",
+   "prereq": "field-mode-expansion"
+  },
+  {
+   "concept": "field-quadratures",
+   "prereq": "commutator"
+  },
+  {
+   "concept": "creation-annihilation-operators",
+   "prereq": "field-quadratures"
+  },
+  {
+   "concept": "field-hamiltonian",
+   "prereq": "creation-annihilation-operators"
+  },
+  {
+   "concept": "quantized-electric-field",
+   "prereq": "creation-annihilation-operators"
+  },
+  {
+   "concept": "single-photon-field",
+   "prereq": "quantized-electric-field"
+  },
+  {
+   "concept": "atom-field-interaction",
+   "prereq": "quantized-electric-field"
+  },
+  {
+   "concept": "atom-field-interaction",
+   "prereq": "rotating-wave-approximation"
+  },
+  {
+   "concept": "single-photon-rabi-frequency",
+   "prereq": "atom-field-interaction"
+  },
+  {
+   "concept": "single-photon-rabi-frequency",
+   "prereq": "single-photon-field"
+  },
+  {
+   "concept": "transverse-fields-and-gauge",
+   "prereq": "quantized-electric-field"
+  },
+  {
+   "concept": "wigner-weisskopf",
+   "prereq": "single-photon-rabi-frequency"
+  },
+  {
+   "concept": "wigner-weisskopf",
+   "prereq": "field-hamiltonian"
+  },
+  {
+   "concept": "wigner-weisskopf",
+   "prereq": "continuum-decay-rate"
+  },
+  {
+   "concept": "lamb-shift",
+   "prereq": "wigner-weisskopf"
+  },
+  {
+   "concept": "lamb-shift",
+   "prereq": "continuum-stark-shift"
+  },
+  {
+   "concept": "spontaneous-emission-rate",
+   "prereq": "wigner-weisskopf"
+  },
+  {
+   "concept": "dipole-decay",
+   "prereq": "spontaneous-emission-rate"
+  },
+  {
+   "concept": "dipole-decay",
+   "prereq": "atomic-polarization"
+  },
+  {
+   "concept": "emitted-photon-wavepacket",
+   "prereq": "spontaneous-emission-rate"
+  },
+  {
+   "concept": "emitted-photon-wavepacket",
+   "prereq": "outgoing-wavepacket"
+  },
+  {
+   "concept": "light-polarization",
+   "prereq": "cavity-modes"
+  }
+ ],
+ "types": []
+}

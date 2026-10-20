@@ -1,0 +1,796 @@
+{
+ "id": "4.2",
+ "chapter": "4",
+ "title": "Linear optical propagation",
+ "short": "Linear propagation",
+ "lead": "How a field weak enough for the atoms to respond linearly travels through a resonant medium: the <span data-concept=\"susceptibility\">susceptibility</span> and the <span data-concept=\"absorption-coefficient\">absorption</span>, <span data-concept=\"refractive-index\">refraction</span> and <span data-concept=\"dispersion\">dispersion</span> it encodes, the susceptibility of a gas of <span data-concept=\"two-level-atom\">two-level atoms</span> on and far from resonance with its <span data-concept=\"absorption-cross-section\">absorption cross-section</span>, and how <span data-concept=\"homogeneous-broadening\">homogeneous</span> and <span data-concept=\"inhomogeneous-broadening\">inhomogeneous broadening</span>, <span data-concept=\"doppler-broadening\">Doppler broadening</span> above all, shape the absorption spectrum.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-susceptibility",
+   "kind": "sim",
+   "number": "4.1",
+   "originals": [
+    "/media/ch04/fig-4-1.png"
+   ],
+   "original_caption": "The real (refractive) and imaginary (absorptive) parts of the susceptibility for a two-level atom near resonance",
+   "draws": [
+    "susceptibility",
+    "frequency",
+    "rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-doppler",
+   "kind": "sim",
+   "number": "4.2",
+   "originals": [
+    "/media/ch04/fig-4-2.png"
+   ],
+   "original_caption": "The absorption spectrum for a Doppler broadened ensemble of atoms is much broader than the absorption spectrum of a single velocity class, which has a linewidth set by the dephasing rate γ₁₂.",
+   "draws": [
+    "susceptibility",
+    "frequency",
+    "rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "susceptibility",
+   "concept": "susceptibility",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-solution",
+   "concept": "linear-propagation-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "effect-absorption",
+   "concept": "absorption-coefficient",
+   "verb": "introduces"
+  },
+  {
+   "span": "effect-refraction",
+   "concept": "refractive-index",
+   "verb": "introduces"
+  },
+  {
+   "span": "effect-dispersion",
+   "concept": "dispersion",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonant-absorption",
+   "concept": "resonant-absorption",
+   "verb": "introduces"
+  },
+  {
+   "span": "unitary-limit",
+   "concept": "unitary-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "far-detuned",
+   "concept": "far-detuned-refraction",
+   "verb": "introduces"
+  },
+  {
+   "span": "homogeneous",
+   "concept": "homogeneous-broadening",
+   "verb": "introduces"
+  },
+  {
+   "span": "inhomogeneous",
+   "concept": "inhomogeneous-broadening",
+   "verb": "introduces"
+  },
+  {
+   "span": "doppler",
+   "concept": "doppler-broadening",
+   "verb": "introduces"
+  },
+  {
+   "span": "inhomogeneous-cross-section",
+   "concept": "inhomogeneous-cross-section",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-4-31",
+   "concept": "plane-wave-propagation-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "svea-valid",
+   "concept": "slowly-varying-envelope-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "opening-weak",
+   "concept": "slowly-varying-polarization",
+   "verb": "uses"
+  },
+  {
+   "span": "opening-weak",
+   "concept": "weak-field-response",
+   "verb": "uses"
+  },
+  {
+   "span": "opening-weak",
+   "concept": "density-matrix-coherences",
+   "verb": "uses"
+  },
+  {
+   "span": "two-level-obe",
+   "concept": "optical-bloch-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "two-level-obe",
+   "concept": "steady-state-coherence",
+   "verb": "uses"
+  },
+  {
+   "span": "two-level-obe",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "two-level-gamma",
+   "concept": "spontaneous-emission-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "two-level-gamma",
+   "concept": "dipole-matrix-element",
+   "verb": "uses"
+  },
+  {
+   "span": "two-level-gamma",
+   "concept": "coherence-decay-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-group-velocity",
+   "concept": "group-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-two-level-susceptibility",
+   "concept": "two-level-susceptibility",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-resonant-cross-section",
+   "concept": "absorption-cross-section",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "resonant-class",
+   "label": "the velocity class on resonance with the field",
+   "figures": [
+    "sim-doppler"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-resonant-field",
+   "kind": "correction",
+   "html": "The book writes “in a resonant field”. It is a resonant medium the light propagates in: the gas of atoms whose linear response the section works out, as the chapter’s title says."
+  },
+  {
+   "id": "c-eq-4-50",
+   "kind": "correction",
+   "html": "The book drops the factor $i\\kmu^2/\\hbar\\epsilon_0$ of Eq. (4.43), so as printed the two sides are only proportional. For atoms in the ground state, $\\kchi(\\kdeltanu) = i\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\int d\\kvz\\frac{\\knv}{\\kgammaonetwo - i(\\kdeltanu - k\\kvz)}$, the density $N/\\kV$ carried by $\\knv$ of Eq. (4.51)."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "linear-propagation",
+   "what": "the general solution for linear propagation",
+   "source": "Modern Atomic and Optical Physics II, 4.2 Linear optical propagation, opening",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kchi(\\kdeltanu) = \\frac{\\kPenv(\\kdeltanu)}{\\epsilon_0\\kEenv(\\kdeltanu)}",
+       "src": "(4.30)"
+      },
+      {
+       "text": "A function of time and its frequency components are related by $f(\\kt) = \\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}f(\\kdeltanu)$, so $\\partial/\\partial\\kt$ acts on a component as $-i\\kdeltanu$.",
+       "src": "(3.95)–(3.96)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} + \\mk{t}{\\frac{1}{c}\\frac{\\partial\\kEenv}{\\partial \\kt}} = \\mk{P}{\\frac{i\\kkbar}{2\\epsilon_0}\\kPenv}",
+      "src": "(4.31)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} - \\mk{t}{\\frac{i\\kdeltanu}{c}\\kEenv} = \\mk{P}{\\frac{i\\kkbar}{2\\epsilon_0}\\kPenv(\\kdeltanu)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} - \\mk{t}{\\frac{i\\kdeltanu}{c}\\kEenv} = \\mk{P}{\\frac{i\\kkbar}{2}\\underbrace{\\kchi(\\kdeltanu)\\kEenv}_{\\propto\\kPenv}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} = \\mk{t}{\\frac{i\\kdeltanu}{c}\\kEenv} + \\mk{P}{\\frac{i\\kkbar}{2}\\underbrace{\\kchi(\\kdeltanu)\\kEenv}_{\\propto\\kPenv}}",
+       "uses": []
+      }
+     ],
+     "num": "(4.32)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} = \\mk{t}{\\frac{i\\kdeltanu}{c}\\kEenv} + \\mk{P}{\\frac{i\\kkbar}{2}\\underbrace{\\kchi(\\kdeltanu)\\kEenv}_{\\propto\\kPenv}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEenv(\\kdeltanu, z)} = \\mk{R}{\\kEenv(\\kdeltanu, 0)e^{iz(\\kdeltanu/c + \\kkbar\\kchi(\\kdeltanu)/2)}}",
+       "uses": [],
+       "cap": "Each frequency component obeys $\\partial\\mathcal{E}/\\partial z = a\\,\\mathcal{E}$ with $a$ fixed along $z$, so it grows as $e^{az}$ from its value at $z = 0$."
+      }
+     ],
+     "num": "(4.33)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "A function of time and its frequency components are related by $f(\\kt) = \\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}f(\\kdeltanu)$, so $\\partial/\\partial\\kt$ acts on a component as $-i\\kdeltanu$.",
+       "src": "(3.95)–(3.96)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{R}{\\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}\\kEenv(\\kdeltanu, z)}",
+      "uses": [
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{R}{\\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}\\kEenv(\\kdeltanu, 0)e^{iz(\\kdeltanu/c + \\kkbar\\kchi(\\kdeltanu)/2)}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(4.34)"
+    }
+   ]
+  },
+  {
+   "id": "group-velocity",
+   "what": "the group velocity of a pulse",
+   "source": "Modern Atomic and Optical Physics II, 4.2 Linear optical propagation, 4.2.2 Dispersion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kchi(\\kdeltanu) \\approx \\kchi(0) + \\frac{d\\kchi}{d\\knu}\\kdeltanu",
+       "src": "(4.38)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{R}{\\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}\\kEenv(\\kdeltanu, 0)e^{iz(\\kdeltanu/c + \\kkbar\\kchi(\\kdeltanu)/2)}}",
+      "src": "(4.34)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{R}{\\int d(\\kdeltanu)\\kEenv(\\kdeltanu, 0)e^{-i\\kdeltanu \\kt}e^{iz(\\kdeltanu/c + \\kkbar(\\kchi(0) + \\frac{d\\kchi}{d\\knu}\\kdeltanu)/2)}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(4.39)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{R}{\\int d(\\kdeltanu)\\kEenv(\\kdeltanu, 0)e^{-i\\kdeltanu \\kt}e^{iz(\\kdeltanu/c + \\kkbar(\\kchi(0) + \\frac{d\\kchi}{d\\knu}\\kdeltanu)/2)}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{p}{e^{iz\\kkbar\\kchi(0)/2}}\\mk{R}{\\int d(\\kdeltanu)\\kEenv(\\kdeltanu, 0)e^{-i\\kdeltanu\\left(\\kt - z\\left(\\frac{1}{c} + \\frac{\\kkbar}{2}\\frac{d\\kchi}{d\\knu}\\right)\\right)}}",
+       "uses": [],
+       "cap": "Collecting the exponent by powers of $\\delta\\nu$; the term $iz\\bar{k}\\chi(0)/2$ does not depend on $\\delta\\nu$ and leaves the integral.",
+       "map": {
+        "R": [
+         "p",
+         "R"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{p}{e^{iz\\kkbar\\kchi(0)/2}}\\mk{R}{\\int d(\\kdeltanu)\\kEenv(\\kdeltanu, 0)e^{-i\\kdeltanu(\\kt - z/\\kvg)}}",
+       "uses": [],
+       "cap": "Writing the delay per unit length as $1/v_g = 1/c + (\\bar{k}/2)\\,d\\chi/d\\nu$."
+      }
+     ],
+     "num": "(4.40)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "At $z = 0$, (4.34) reads $\\kEenv(\\kt, 0) = \\int d(\\kdeltanu)e^{-i\\kdeltanu \\kt}\\kEenv(\\kdeltanu, 0)$.",
+       "src": "(4.34)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{p}{e^{iz\\kkbar\\kchi(0)/2}}\\mk{R}{\\int d(\\kdeltanu)\\kEenv(\\kdeltanu, 0)e^{-i\\kdeltanu(\\kt - z/\\kvg)}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{p}{e^{iz\\kkbar\\kchi(0)/2}}\\mk{R}{\\kEenv(\\kt - z/\\kvg, z = 0)}",
+       "uses": [
+        1
+       ],
+       "cap": "The integral is the field at $z = 0$ taken at the earlier time $t - z/v_g$."
+      }
+     ],
+     "num": "(4.41)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kkbar = \\knubar/c",
+       "src": "4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\frac{1}{\\kvg}} = \\mk{R}{\\frac{1}{c} + \\frac{\\kkbar}{2}\\frac{d\\kchi}{d\\knu}}",
+      "uses": [0],
+      "why": "The delay per unit length in (4.40)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kvg} = \\mk{R}{\\frac{1}{\\frac{1}{c} + \\frac{\\kkbar}{2}\\frac{d\\kchi}{d\\knu}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{\\kvg} = \\mk{R}{\\frac{c}{1 + \\frac{c\\kkbar}{2}\\frac{d\\kchi}{d\\knu}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{v}{\\kvg} = \\mk{R}{\\frac{c}{1 + \\frac{\\knubar}{2}\\frac{d\\kchi}{d\\knu}}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(4.42)"
+    }
+   ]
+  },
+  {
+   "id": "two-level-susceptibility",
+   "what": "the susceptibility of a gas of two-level atoms",
+   "source": "Modern Atomic and Optical Physics II, 4.2 Linear optical propagation, 4.2.3 Two level systems",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kPenv(\\kdeltanu) = \\frac{N}{\\kV}\\kmu\\krhotwoone(\\kdeltanu)e^{-i\\kkbar z}",
+       "src": "(4.29)"
+      },
+      {
+       "text": "For a weak field the populations stay at $\\krhooneone^0$ and $\\krhotwotwo^0$, and in the steady state the coherence at frequency $\\kdeltanu$ is $\\krhotwoone(\\kdeltanu) = \\frac{i\\kOmega(\\kdeltanu)(\\krhooneone^0 - \\krhotwotwo^0)}{\\kgammaonetwo - i\\kdeltanu}$, the carrier on resonance.",
+       "src": "(3.97)"
+      },
+      {
+       "text": "The local field that drives $\\krhotwoone$ carries the fast phase $e^{i\\kkbar z}$.",
+       "src": "4.1"
+      },
+      {
+       "tex": "\\kOmega = \\kmu\\kEenv/\\hbar",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{P}{\\frac{\\kPenv(\\kdeltanu)}{\\epsilon_0\\kEenv(\\kdeltanu)}}",
+      "src": "(4.30)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{pre}{\\frac{N}{\\kV}\\frac{\\kmu}{\\epsilon_0\\kEenv}}\\mk{rho}{\\krhotwoone(\\kdeltanu)}\\mk{ph}{e^{-i\\kkbar z}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "P": [
+         "pre",
+         "rho",
+         "ph"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{pre}{\\frac{N}{\\kV}\\frac{\\kmu}{\\epsilon_0\\kEenv}}\\mk{rho}{\\frac{i\\kOmega e^{i\\kkbar z}(\\krhooneone^0 - \\krhotwotwo^0)}{\\kgammaonetwo - i\\kdeltanu}}\\mk{ph}{e^{-i\\kkbar z}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{pre}{\\frac{N}{\\kV}\\frac{\\kmu}{\\epsilon_0\\kEenv}}\\mk{rho}{\\frac{i\\kOmega(\\krhooneone^0 - \\krhotwotwo^0)}{\\kgammaonetwo - i\\kdeltanu}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{pre}{\\frac{N}{\\kV}\\frac{\\kmu}{\\epsilon_0\\kEenv}}\\mk{rho}{\\frac{i\\kmu\\kEenv(\\krhooneone^0 - \\krhotwotwo^0)}{\\hbar(\\kgammaonetwo - i\\kdeltanu)}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{pre}{i\\frac{N}{\\kV}\\frac{\\kmu^2}{\\hbar\\epsilon_0}}\\mk{rho}{(\\krhooneone^0 - \\krhotwotwo^0)\\frac{1}{\\kgammaonetwo - i\\kdeltanu}}",
+       "uses": []
+      }
+     ],
+     "num": "(4.43)",
+     "note": "(3.97) carries $i(\\krhotwotwo^{(0)} - \\krhooneone^{(0)})$, with the sign of $\\kOmega$ that the Hamiltonian (3.84) takes; Chapter 4 takes the sign of the equations of motion of Section 2.1, as (4.43) shows, so that $\\mathrm{Im}[\\kchi] > 0$ is absorption."
+    }
+   ]
+  },
+  {
+   "id": "resonant-cross-section",
+   "what": "the resonant absorption cross-section",
+   "source": "Modern Atomic and Optical Physics II, 4.2 Linear optical propagation, 4.2.3 Two level systems, Resonant fields",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The field is resonant, $\\kdeltanu = 0$."
+      },
+      {
+       "text": "$\\krhooneone^0 = 1$, $\\krhotwotwo^0 = 0$: the upper state is negligibly populated.",
+       "src": "4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{pre}{i\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{pop}{(\\krhooneone^0 - \\krhotwotwo^0)}\\mk{L}{\\frac{\\kgamma}{\\kgammaonetwo - i\\kdeltanu}}",
+      "src": "(4.44)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{chi}{\\kchi(0)} = \\mk{pre}{i\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{pop}{(\\krhooneone^0 - \\krhotwotwo^0)}\\mk{L}{\\frac{\\kgamma}{\\kgammaonetwo}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi(0)} = \\mk{pre}{i\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{L}{\\frac{\\kgamma}{\\kgammaonetwo}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(4.45)"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{E}{\\kEenv(\\kt, z)} = \\mk{R}{\\kEenv e^{i\\kkbar\\kchi(0)z/2}}",
+      "src": "(4.35)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEenv(z)} = \\mk{R}{\\kEenv(0)e^{(-\\mathrm{Im}[\\kchi(0)] + i\\mathrm{Re}[\\kchi(0)])\\kkbar z/2}}",
+       "uses": [],
+       "cap": "Writing $\\chi(0) = \\mathrm{Re}[\\chi(0)] + i\\,\\mathrm{Im}[\\chi(0)]$, with $i^2 = -1$."
+      }
+     ],
+     "num": "(4.46)"
+    },
+    {
+     "assumes": [
+      {
+       "text": "$\\mathrm{Im}[\\kchi]$ attenuates the beam intensity exponentially with distance, at the rate $\\kalpha = \\kkbar\\,\\mathrm{Im}[\\kchi(0)]$.",
+       "src": "(4.36)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIint(z)} = \\mk{R}{\\kIint(0)e^{-\\kalpha z}}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIint(z)} = \\mk{R}{\\kIint(0)e^{-N\\ksigmatilde z/\\kV}}",
+       "uses": [],
+       "cap": "The cross-section $\\tilde{\\sigma}$ is defined by $N\\tilde{\\sigma}/V = \\alpha$, the loss rate shared among the atoms per volume."
+      }
+     ],
+     "num": "(4.47)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "$\\mathrm{Im}[\\kchi]$ attenuates the beam intensity exponentially with distance, at the rate $\\kalpha = \\kkbar\\,\\mathrm{Im}[\\kchi(0)]$.",
+       "src": "(4.36)"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "On resonance $\\kkbar = k_0 = 2\\pi/\\klambda$.",
+       "src": "4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ksigmatilde} = \\mk{R}{\\frac{\\kV}{N}\\kalpha}",
+      "uses": [0],
+      "why": "The definition of $\\tilde{\\sigma}$ in (4.47)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ksigmatilde} = \\mk{R}{\\frac{\\kV}{N}\\kkbar\\,\\mathrm{Im}[\\kchi(0)]}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\ksigmatilde} = \\mk{R}{\\frac{\\kV}{N}\\kkbar\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{\\kgamma}{\\kgammaonetwo}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\ksigmatilde} = \\mk{R}{\\kkbar\\frac{3}{8\\pi^2}\\klambda^3\\frac{\\kgamma}{\\kgammaonetwo}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\ksigmatilde} = \\mk{R}{\\frac{3}{4\\pi}\\klambda^2\\frac{\\kgamma}{\\kgammaonetwo}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(4.48)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "text": "For purely radiative broadening, $\\kgammaonetwo = \\kgamma/2$.",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\ksigmatilde} = \\mk{R}{\\frac{3}{4\\pi}\\klambda^2\\frac{\\kgamma}{\\kgammaonetwo}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\ksigmatilde} = \\mk{R}{\\frac{3}{2\\pi}\\klambda^2}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(4.49)"
+    }
+   ]
+  },
+  {
+   "id": "doppler-cross-section",
+   "what": "the resonant cross-section of a Doppler-broadened gas",
+   "source": "Modern Atomic and Optical Physics II, 4.2 Linear optical propagation, 4.2.4 Line-broadening mechanisms, Doppler broadening",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Atoms of velocity $\\kvz$ see the field Doppler shifted, so their detuning is $\\kdeltanu - \\kkmag\\kvz$.",
+       "src": "4.2"
+      },
+      {
+       "text": "The susceptibility sums the responses of all velocity classes, the class at $\\kvz$ holding $\\knv\\,d\\kvz$ atoms per volume.",
+       "src": "4.2"
+      },
+      {
+       "tex": "\\knv = \\frac{N}{\\kV}e^{-\\kvz^2/\\kvT^2}\\frac{1}{\\sqrt{\\pi}\\kvT}",
+       "src": "(4.51)"
+      },
+      {
+       "text": "The atoms are in the ground state, $\\krhooneone^0 = 1$, $\\krhotwotwo^0 = 0$.",
+       "src": "4.2"
+      },
+      {
+       "tex": "\\mathop{\\mathrm{lim}}\\limits_{\\epsilon\\to 0}\\frac{i}{\\kdeltak + i\\epsilon} = \\pi\\delta(\\kdeltak) + i\\mathcal{P}\\frac{1}{\\kdeltak}",
+       "src": "(2.49)"
+      },
+      {
+       "text": "Inhomogeneous broadening dominates, $\\kkmag\\kvT \\gg \\kgammaonetwo$.",
+       "src": "4.2"
+      },
+      {
+       "text": "The cross section is taken at $\\kdeltanu = 0$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{pre}{i\\frac{N}{\\kV}\\frac{\\kmu^2}{\\hbar\\epsilon_0}}\\mk{pop}{(\\krhooneone^0 - \\krhotwotwo^0)}\\mk{L}{\\frac{1}{\\kgammaonetwo - i\\kdeltanu}}",
+      "src": "(4.43)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{pre}{i\\frac{N}{\\kV}\\frac{\\kmu^2}{\\hbar\\epsilon_0}}\\mk{L}{\\frac{1}{\\kgammaonetwo - i\\kdeltanu}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi(\\kdeltanu)} = \\mk{pre}{i\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\int d\\kvz\\,\\knv}\\mk{L}{\\frac{1}{\\kgammaonetwo - i(\\kdeltanu - \\kkmag\\kvz)}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi(0)} = \\mk{pre}{i\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\int d\\kvz\\,\\knv}\\mk{L}{\\frac{1}{\\kgammaonetwo + i\\kkmag\\kvz}}",
+       "uses": [
+        6
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi(0)} = \\mk{pre}{i\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\int d\\kvz\\,\\knv}\\mk{L}{\\frac{\\kgammaonetwo - i\\kkmag\\kvz}{\\kgammaonetwo^2 + \\kkmag^2\\kvz^2}}",
+       "uses": [],
+       "cap": "Multiplying above and below by $\\gamma_{12} - ikv_z$."
+      },
+      {
+       "tex": "\\mk{chi}{\\mathrm{Im}[\\kchi(0)]} = \\mk{pre}{\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\int d\\kvz\\,\\knv}\\mk{L}{\\frac{\\kgammaonetwo}{\\kgammaonetwo^2 + \\kkmag^2\\kvz^2}}",
+       "uses": [],
+       "cap": "With $a$ and $b$ real, the imaginary part of $i(a - ib)$ is $a$."
+      },
+      {
+       "tex": "\\mk{chi}{\\mathrm{Im}[\\kchi(0)]} = \\mk{pre}{\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\int d\\kvz\\,\\knv}\\mk{L}{\\pi\\delta(\\kkmag\\kvz)}",
+       "uses": [
+        4,
+        5
+       ],
+       "cap": "The real part of (2.49) is $\\epsilon/(x^2 + \\epsilon^2) \\to \\pi\\delta(x)$; with $kv_T \\gg \\gamma_{12}$ the Lorentzian is narrow beside $n(v_z)$ and acts on it as $\\pi\\delta(kv_z)$."
+      },
+      {
+       "tex": "\\mk{chi}{\\mathrm{Im}[\\kchi(0)]} = \\mk{pre}{\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\frac{\\pi}{\\kkmag}n(0)}",
+       "uses": [],
+       "cap": "$\\delta(kv_z) = \\delta(v_z)/k$, which picks out the stationary atoms.",
+       "map": {
+        "L": "pre"
+       }
+      },
+      {
+       "tex": "\\mk{chi}{\\mathrm{Im}[\\kchi(0)]} = \\mk{pre}{\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\frac{N}{\\kV}\\frac{\\sqrt{\\pi}}{\\kkmag\\kvT}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "note": "The second line is (4.50) with the factor $i\\kmu^2/\\hbar\\epsilon_0$ of (4.43), which the book drops there."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The cross section $\\tilde{\\sigma}$ is defined by $\\kIint(z) = \\kIint(0)e^{-N\\tilde{\\sigma}z/\\kV}$, with the loss rate $N\\tilde{\\sigma}/\\kV = \\kkmag\\,\\mathrm{Im}[\\kchi(0)]$.",
+       "src": "(4.36), (4.47)"
+      },
+      {
+       "tex": "\\kgamma = \\frac{\\kmu^2 k_0^3}{3\\pi\\epsilon_0\\hbar}",
+       "src": "4.2"
+      },
+      {
+       "text": "$\\kkmag = k_0 = 2\\pi/\\klambda$ on resonance.",
+       "src": "4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\sigma_{inhom.}(0)} = \\mk{R}{\\frac{\\kV}{N}\\kkmag\\,\\mathrm{Im}[\\kchi(0)]}",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\sigma_{inhom.}(0)} = \\mk{R}{\\frac{\\kV}{N}\\kkmag\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\frac{N}{\\kV}\\frac{\\sqrt{\\pi}}{\\kkmag\\kvT}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\sigma_{inhom.}(0)} = \\mk{R}{\\frac{\\kmu^2}{\\hbar\\epsilon_0}\\frac{\\sqrt{\\pi}}{\\kvT}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\sigma_{inhom.}(0)} = \\mk{R}{\\frac{3\\pi\\kgamma}{\\kkmag^3}\\frac{\\sqrt{\\pi}}{\\kvT}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\sigma_{inhom.}(0)} = \\mk{R}{\\frac{3}{4\\pi}\\klambda^2\\frac{\\sqrt{\\pi}\\kgamma}{\\kkmag\\kvT}}",
+       "uses": [
+        3
+       ],
+       "cap": "Two of the three factors of $k$ are written as $2\\pi/\\lambda$."
+      }
+     ],
+     "num": "(4.52)"
+    }
+   ]
+  }
+ ]
+}

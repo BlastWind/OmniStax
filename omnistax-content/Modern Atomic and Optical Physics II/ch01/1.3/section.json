@@ -1,0 +1,641 @@
+{
+ "id": "1.3",
+ "chapter": "1",
+ "title": "Basic Atomic Physics",
+ "short": "Basic atomic physics",
+ "lead": "The structure of atoms that sets how they answer applied fields: the hydrogen atom and its degeneracies, the corrections that lift them one by one (screening, <span data-concept=\"fine-structure\">fine structure</span> and the <span data-concept=\"hyperfine-interaction\">hyperfine interaction</span>), the <span data-concept=\"zeeman-effect\">Zeeman effect</span> of a static magnetic field, and the <span data-concept=\"selection-rules\">selection rules</span> of the dipole interaction with light.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-fine-hyperfine",
+   "kind": "sim",
+   "draws": [
+    "energy"
+   ],
+   "facts": [
+    "#ffe200"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-zeeman-levels",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "magnetic-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "eq-1-14",
+   "concept": "hydrogen-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "hydrogen-levels",
+   "concept": "hydrogen-energy-levels",
+   "verb": "introduces"
+  },
+  {
+   "span": "rydberg-constant",
+   "concept": "rydberg-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "estimate",
+   "concept": "uncertainty-energy-estimate",
+   "verb": "introduces"
+  },
+  {
+   "span": "degeneracy-symmetry",
+   "concept": "degeneracy-and-symmetry",
+   "verb": "introduces"
+  },
+  {
+   "span": "principal-n",
+   "concept": "principal-quantum-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "l-lifting",
+   "concept": "l-degeneracy-lifting",
+   "verb": "introduces"
+  },
+  {
+   "span": "rydberg-states",
+   "concept": "rydberg-states",
+   "verb": "introduces"
+  },
+  {
+   "span": "fine-structure",
+   "concept": "fine-structure",
+   "verb": "introduces"
+  },
+  {
+   "span": "total-j",
+   "concept": "total-electronic-angular-momentum",
+   "verb": "introduces"
+  },
+  {
+   "span": "spin-orbit",
+   "concept": "spin-orbit-coupling",
+   "verb": "introduces"
+  },
+  {
+   "span": "darwin",
+   "concept": "darwin-term",
+   "verb": "introduces"
+  },
+  {
+   "span": "d-lines",
+   "concept": "d1-d2-lines",
+   "verb": "introduces"
+  },
+  {
+   "span": "parity",
+   "concept": "wavefunction-parity",
+   "verb": "introduces"
+  },
+  {
+   "span": "hyperfine",
+   "concept": "hyperfine-interaction",
+   "verb": "introduces"
+  },
+  {
+   "span": "total-f",
+   "concept": "total-angular-momentum-f",
+   "verb": "introduces"
+  },
+  {
+   "span": "alkali-ground",
+   "concept": "alkali-ground-hyperfine",
+   "verb": "introduces"
+  },
+  {
+   "span": "zeeman",
+   "concept": "zeeman-effect",
+   "verb": "introduces"
+  },
+  {
+   "span": "bohr-magneton",
+   "concept": "bohr-magneton",
+   "verb": "introduces"
+  },
+  {
+   "span": "lande",
+   "concept": "lande-g-factor",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-regimes",
+   "concept": "zeeman-field-regimes",
+   "verb": "introduces"
+  },
+  {
+   "span": "clebsch-gordan",
+   "concept": "clebsch-gordan-coefficients",
+   "verb": "introduces"
+  },
+  {
+   "span": "weak-zeeman",
+   "concept": "weak-field-zeeman-shift",
+   "verb": "introduces"
+  },
+  {
+   "span": "dipole-energy",
+   "concept": "dipole-interaction",
+   "verb": "introduces"
+  },
+  {
+   "span": "matrix-element",
+   "concept": "dipole-matrix-element",
+   "verb": "introduces"
+  },
+  {
+   "span": "selection-rules",
+   "concept": "selection-rules",
+   "verb": "introduces"
+  },
+  {
+   "span": "circular-basis",
+   "concept": "spherical-polarization-basis",
+   "verb": "introduces"
+  },
+  {
+   "span": "m-selection",
+   "concept": "polarization-selection-rules",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-1-14",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "hydrogen-levels",
+   "concept": "schrodinger-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "hydrogen-levels",
+   "concept": "stationary-states",
+   "verb": "uses"
+  },
+  {
+   "span": "estimate",
+   "concept": "heisenberg-uncertainty-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "degeneracies",
+   "concept": "commutator",
+   "verb": "uses"
+  },
+  {
+   "span": "parity",
+   "concept": "state-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "selection-rules",
+   "concept": "wavefunction-parity",
+   "verb": "uses"
+  },
+  {
+   "span": "weak-zeeman",
+   "concept": "total-angular-momentum-f",
+   "verb": "uses"
+  },
+  {
+   "span": "good-numbers",
+   "concept": "total-electronic-angular-momentum",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ex-rinf",
+   "source_id": "it is a good exercize to know how to derive an expression for it from basic principles",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "rinf-invitation"
+   },
+   "cite": "estimate",
+   "prompt": "Derive an expression for Rydberg’s constant $R_\\infty$ from basic principles.",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$E_0 = -R_\\infty \\sim -\\frac{me^4}{2\\hbar^2}$$ Taking Heisenberg’s inequality as an equality in the ground state, $\\Delta p \\cdot \\Delta r \\sim \\hbar$, the average energy is $E = \\frac{\\hbar^2}{2m\\Delta r^2} - \\frac{e^2}{\\Delta r}$; minimizing it with respect to $\\Delta r$ gives $\\Delta r \\sim \\frac{\\hbar^2}{me^2}$ and the ground state energy above, which is exact for an infinitely heavy nucleus."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ex-rinf",
+   "concept": "rydberg-constant"
+  },
+  {
+   "exercise": "ex-rinf",
+   "concept": "uncertainty-energy-estimate"
+  }
+ ],
+ "referents": [
+  {
+   "id": "na-3s",
+   "label": "the ground state of Na",
+   "figures": [
+    "sim-fine-hyperfine"
+   ]
+  },
+  {
+   "id": "na-3p",
+   "label": "the first excited state of Na",
+   "figures": [
+    "sim-fine-hyperfine"
+   ]
+  },
+  {
+   "id": "na-3p12",
+   "label": "the J = 1/2 excited state of Na",
+   "figures": [
+    "sim-fine-hyperfine"
+   ]
+  },
+  {
+   "id": "na-3p32",
+   "label": "the J = 3/2 excited state of Na",
+   "figures": [
+    "sim-fine-hyperfine"
+   ]
+  },
+  {
+   "id": "na-f1",
+   "label": "the F = 1 ground level of ²³Na",
+   "figures": [
+    "sim-fine-hyperfine",
+    "sim-zeeman-levels"
+   ]
+  },
+  {
+   "id": "na-f2",
+   "label": "the F = 2 ground level of ²³Na",
+   "figures": [
+    "sim-fine-hyperfine",
+    "sim-zeeman-levels"
+   ]
+  },
+  {
+   "id": "h-f0",
+   "label": "the F = 0 ground level of hydrogen",
+   "figures": [
+    "sim-zeeman-levels"
+   ]
+  },
+  {
+   "id": "h-f1",
+   "label": "the F = 1 ground level of hydrogen",
+   "figures": [
+    "sim-zeeman-levels"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-term-symbols",
+   "kind": "correction",
+   "html": "The book writes the term symbols ${}^3S_{1/2}$, ${}^3P_{1/2}$ and ${}^3P_{3/2}$ in this sentence. Sodium has one valence electron, so $S = 1/2$ and $2S + 1 = 2$: the levels are the doublets ${}^2S_{1/2}$, ${}^2P_{1/2}$ and ${}^2P_{3/2}$."
+  },
+  {
+   "id": "c-h-shifts",
+   "kind": "correction",
+   "html": "The book evaluates $F^2$, $I^2$ and $S^2$ as the squares of the quantum numbers. With the eigenvalues $F(F+1)$, $I(I+1)$ and $S(S+1)$, $\\kHHFS = (\\kAHFS/2)[F(F+1) - 3/2]$, and the shifts are $(\\kAHFS/4, -3\\kAHFS/4)$; the book prints $(\\kAHFS/4, -\\kAHFS/4)$."
+  },
+  {
+   "id": "c-h-splitting",
+   "kind": "correction",
+   "html": "With the eigenvalues of $F^2$, $I^2$ and $S^2$, the two levels are split by $\\kAHFS/4 - (-3\\kAHFS/4) = \\kAHFS$; the book prints $\\kAHFS/2$."
+  },
+  {
+   "id": "c-na-splitting",
+   "kind": "correction",
+   "html": "With $I = 3/2$ and the eigenvalues $F(F+1)$, $I(I+1)$ and $S(S+1)$, the shifts are $3\\kAHFS/4$ for $F = 2$ and $-5\\kAHFS/4$ for $F = 1$, so the two levels are separated by $2\\kAHFS$; the book prints $3\\kAHFS/2$, from the squares of the quantum numbers."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "rydberg-estimate",
+   "what": "an estimate of Rydberg's constant",
+   "source": "Modern Atomic and Optical Physics II, 1.3.1 Example: the hydrogen atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\langle\\hat{O}\\rangle = \\langle\\kpsi|\\hat{O}|\\kpsi\\rangle",
+       "src": "(1.6)"
+      },
+      {
+       "text": "The mean value of the momentum is zero for a bound state, $\\langle p\\rangle = 0$.",
+       "src": "1.3.1"
+      },
+      {
+       "tex": "\\Delta A = \\sqrt{\\langle(\\hat{A} - \\langle\\hat{A}\\rangle)^2\\rangle}",
+       "src": "1.2.4"
+      },
+      {
+       "text": "In the ground state Heisenberg's inequality is approximately obeyed as an equality, $\\kDeltap\\cdot\\kDeltar \\sim \\hbar$.",
+       "src": "(1.10)"
+      },
+      {
+       "text": "The average distance $\\langle r\\rangle$ is approximately $\\kDeltar$.",
+       "src": "1.3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH} = \\mk{K}{\\frac{\\kp^2}{2\\km}} - \\mk{V}{\\frac{e^2}{\\kr}}",
+      "src": "(1.14)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{E} = \\mk{K}{\\frac{\\langle p^2\\rangle}{2\\km}} - \\mk{V}{\\frac{e^2}{\\langle r\\rangle}}",
+       "uses": [
+        0
+       ],
+       "cap": "The energy of the ground state is the mean of $\\hat{H}$ in it; each term is replaced by its mean, the potential through the mean distance."
+      },
+      {
+       "tex": "\\mk{H}{E} = \\mk{K}{\\frac{\\kDeltap^2}{2\\km}} - \\mk{V}{\\frac{e^2}{\\langle r\\rangle}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "With $\\langle p\\rangle = 0$, $\\Delta p^2 = \\langle(p - \\langle p\\rangle)^2\\rangle = \\langle p^2\\rangle$."
+      },
+      {
+       "tex": "\\mk{H}{E} = \\mk{K}{\\frac{\\hbar^2}{2\\km\\kDeltar^2}} - \\mk{V}{\\frac{e^2}{\\langle r\\rangle}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{H}{E} = \\mk{K}{\\frac{\\hbar^2}{2\\km\\kDeltar^2}} - \\mk{V}{\\frac{e^2}{\\kDeltar}}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "num": "(1.15)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The ground state is the state of lowest energy, so $E$ is minimized with respect to $\\kDeltar$.",
+       "src": "1.3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{E} = \\mk{K}{\\frac{\\hbar^2}{2\\km\\kDeltar^2}} - \\mk{V}{\\frac{e^2}{\\kDeltar}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\frac{dE}{d\\kDeltar}} = -\\mk{K}{\\frac{\\hbar^2}{\\km\\kDeltar^3}} + \\mk{V}{\\frac{e^2}{\\kDeltar^2}}",
+       "uses": [],
+       "cap": "The derivative of $\\Delta r^{-2}$ is $-2\\Delta r^{-3}$, and that of $-\\Delta r^{-1}$ is $\\Delta r^{-2}$."
+      },
+      {
+       "tex": "-\\mk{K}{\\frac{\\hbar^2}{\\km\\kDeltar^3}} + \\mk{V}{\\frac{e^2}{\\kDeltar^2}} = \\mk{E}{0}",
+       "uses": [
+        1
+       ],
+       "cap": "At the minimum the derivative vanishes."
+      },
+      {
+       "tex": "\\mk{K}{\\frac{\\hbar^2}{\\km\\kDeltar}} = \\mk{V}{e^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{r}{\\kDeltar} \\sim \\mk{s}{\\frac{\\hbar^2}{\\km e^2}}",
+       "uses": [],
+       "map": {
+        "K": [
+         "r",
+         "s"
+        ],
+        "V": "s"
+       }
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The bound states have energies $\\kEn = -\\kRinf/n^2$, and the ground state is $n = 1$.",
+       "src": "1.3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{E} = \\mk{K}{\\frac{\\hbar^2}{2\\km\\kDeltar^2}} - \\mk{V}{\\frac{e^2}{\\kDeltar}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{E_0} \\sim \\mk{K}{\\frac{\\hbar^2}{2\\km}\\left(\\frac{\\km e^2}{\\hbar^2}\\right)^2} - \\mk{V}{e^2\\,\\frac{\\km e^2}{\\hbar^2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{E}{E_0} \\sim \\mk{K}{\\frac{\\km e^4}{2\\hbar^2}} - \\mk{V}{\\frac{\\km e^4}{\\hbar^2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{E}{E_0} \\sim \\mk{R}{-\\frac{\\km e^4}{2\\hbar^2}}",
+       "uses": [],
+       "map": {
+        "K": "R",
+        "V": "R"
+       }
+      },
+      {
+       "tex": "\\mk{E}{E_0} = \\mk{Ri}{-\\kRinf} \\sim \\mk{R}{-\\frac{\\km e^4}{2\\hbar^2}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(1.16)"
+    }
+   ]
+  },
+  {
+   "id": "fine-structure-splitting",
+   "what": "the fine-structure splitting of sodium's first excited state",
+   "source": "Modern Atomic and Optical Physics II, 1.3.4 Fine structure: lifting of the J degeneracy",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kJ = \\kS + \\kL",
+       "src": "1.3.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{J}{\\kJ\\cdot\\kJ} = \\mk{SL}{(\\kS + \\kL)\\cdot(\\kS + \\kL)}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{J}{\\kJ\\cdot\\kJ = J^2} = \\mk{L}{L^2} + \\mk{S}{S^2} + \\mk{X}{2\\kS\\cdot\\kL}",
+       "uses": [],
+       "cap": "Expanding the product; $\\hat{S}$ and $\\hat{L}$ act on different coordinates and commute, so $\\hat{S}\\cdot\\hat{L} = \\hat{L}\\cdot\\hat{S}$.",
+       "map": {
+        "SL": [
+         "L",
+         "S",
+         "X"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{X}{\\kS\\cdot\\kL} = \\frac{1}{2}(\\mk{J}{J^2} - \\mk{L}{L^2} - \\mk{S}{S^2})",
+       "uses": []
+      }
+     ],
+     "num": "(1.21)",
+     "note": "The book prints $\\hat{S}\\cdot L = J^2 - L^2 - S^2$, without the factor $\\tfrac{1}{2}$ that Eq. (1.22) carries."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kVSL} = \\mk{A}{\\kASO}\\mk{X}{\\kS\\cdot\\kL}",
+      "src": "(1.19)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kVSL} = \\mk{A}{(\\kASO/2)}(\\mk{J}{J^2} - \\mk{L}{L^2} - \\mk{S}{S^2})",
+       "uses": [
+        0
+       ],
+       "map": {
+        "X": [
+         "J",
+         "L",
+         "S"
+        ]
+       }
+      }
+     ],
+     "num": "(1.22)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "In a state of definite $J$, $L$ and $S$, the squares $J^2$, $L^2$ and $S^2$ take the values $J(J+1)$, $L(L+1)$ and $S(S+1)$, as in the factors of Eqs. (1.38) and (1.39).",
+       "src": "1.3.6"
+      },
+      {
+       "text": "The first excited state of Na has $L = 1$ and $S = 1/2$, so $J = 3/2$ or $J = 1/2$.",
+       "src": "1.3.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kVSL} = \\mk{A}{(\\kASO/2)}(\\mk{J}{J^2} - \\mk{L}{L^2} - \\mk{S}{S^2})",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\Delta E_J} = \\mk{A}{\\frac{\\kASO}{2}}[\\mk{J}{J(J+1)} - \\mk{L}{L(L+1)} - \\mk{S}{S(S+1)}]",
+       "uses": [
+        1
+       ],
+       "cap": "The shift of a level is the value $V_{SL}$ takes in it."
+      },
+      {
+       "tex": "\\mk{V}{\\Delta E_J} = \\mk{A}{\\frac{\\kASO}{2}}[\\mk{J}{J(J+1)} - \\mk{L}{2} - \\mk{S}{3/4}]",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\Delta E_{3/2} - \\Delta E_{1/2}} = \\mk{A}{\\frac{\\kASO}{2}}[\\mk{J}{(15/4 - 2 - 3/4) - (3/4 - 2 - 3/4)}]",
+       "uses": [
+        2
+       ],
+       "cap": "$J(J+1)$ is $15/4$ for $J = 3/2$ and $3/4$ for $J = 1/2$; the terms in $L$ and $S$ are the same in both and cancel.",
+       "map": {
+        "L": "J",
+        "S": "J"
+       }
+      },
+      {
+       "tex": "\\mk{V}{\\Delta E_{3/2} - \\Delta E_{1/2}} = \\mk{A}{\\frac{\\kASO}{2}} \\cdot \\mk{J}{3}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{V}{\\Delta E_{3/2} - \\Delta E_{1/2}} = \\mk{A}{\\frac{3\\kASO}{2}}",
+       "uses": [],
+       "map": {
+        "J": "A"
+       }
+      }
+     ],
+     "num": "(1.23)",
+     "note": "The book evaluates $J^2$, $L^2$ and $S^2$ as the squares of the quantum numbers, $\\frac{\\kASO}{2}[(9/4 - 1/4 - 1) - (1/4 - 1/4 - 1)] = \\kASO$. Their values are $J(J+1)$, $L(L+1)$ and $S(S+1)$, which give $3\\kASO/2$."
+    }
+   ]
+  }
+ ]
+}

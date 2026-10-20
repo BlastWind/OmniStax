@@ -1,0 +1,901 @@
+{
+ "id": "7.4",
+ "chapter": "7",
+ "title": "Analysis of STIRAP: The condition for adiabatic following",
+ "short": "Analysis of STIRAP",
+ "lead": "How slowly the fields of <span data-concept=\"stirap\">STIRAP</span> must change when the excited state decays: the adiabatic expansion and the condition it gives, the error from <span data-concept=\"quantum-jump\">quantum jumps</span> and the fidelity of the transfer, the same condition read again in a <span data-concept=\"bright-dark-basis\">partially diagonalized basis</span> of dark, bright and excited states, and remarks on <span data-concept=\"electromagnetically-induced-transparency\">EIT</span>, on preparing the <span data-concept=\"dark-state\">dark state</span> by <span data-concept=\"optical-pumping\">optical pumping</span>, and on populations and coherences in different bases.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "Figure 7.6, the neon beamsplitter data of Theuer et al., is not shown; its pulse sequences and the atoms' final momenta are recomputed in the simulation of Figure 7.5.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-four-level-pulses",
+   "kind": "sim",
+   "number": "7.5",
+   "folds": [
+    "7.6"
+   ],
+   "originals": [
+    "/media/ch07/fig-7-5.png"
+   ],
+   "original_caption": "Pulse sequence for the four-level system. Three fields, S = Ω₃ ,C = Ω₄, and P = Ω₁ are used to controllably transfer atoms from the initial state |1⟩ to some superposition of |3⟩ and |4⟩. The probability amplitudes in the final state are determined by the timing, phase and power of the control pulse Ω₄.",
+   "draws": [
+    "coupling",
+    "population",
+    "amplitude",
+    "time",
+    "momentum"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ],
+   "withheld": "Figure 7.6 reproduces published experimental data, which the book may not copy."
+  },
+  {
+   "id": "sim-dark-loss",
+   "kind": "sim",
+   "draws": [
+    "coupling",
+    "population",
+    "rate",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-two-bases",
+   "kind": "sim",
+   "number": "7.7",
+   "originals": [
+    "/media/ch07/fig-7-7.png"
+   ],
+   "original_caption": "Linearly polarized light near resonant with a J = 1 to J’ = 1 transition is most easily understood if the axis of quantization is chosen parallel to the axis of polarization. In this first case, the fields will clearly pump the atoms into the m∥ = 0 state. If we choose to analyze the problem in the perpendicular basis, we must identify the Λ system highlighted in red. The light will pump the populations into the associated dark state superposition of m⊥ = ±1, which is exactly equal to the state m∥ = 0.",
+   "draws": [
+    "population",
+    "coherence",
+    "state"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "eq-7-53",
+   "concept": "dark-state-adiabaticity-condition",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-7-44",
+   "concept": "adiabatic-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-7-56",
+   "concept": "quantum-jump-error",
+   "verb": "introduces"
+  },
+  {
+   "span": "partial-basis",
+   "concept": "bright-dark-basis",
+   "verb": "introduces"
+  },
+  {
+   "span": "omega-na",
+   "concept": "nonadiabatic-rabi-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-7-64",
+   "concept": "bright-state-escape-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "eit",
+   "concept": "adiabatic-following-eit",
+   "verb": "introduces"
+  },
+  {
+   "span": "pumping-dark",
+   "concept": "dark-state-optical-pumping",
+   "verb": "introduces"
+  },
+  {
+   "span": "coherence-population",
+   "concept": "coherence-population-basis",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "dark-state",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "dark-state-preparation",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "adiabatic-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "follow",
+   "concept": "stirap",
+   "verb": "uses"
+  },
+  {
+   "span": "stochastic",
+   "concept": "monte-carlo-wavefunction",
+   "verb": "uses"
+  },
+  {
+   "span": "stochastic",
+   "concept": "non-hermitian-evolution",
+   "verb": "uses"
+  },
+  {
+   "span": "stochastic",
+   "concept": "lambda-non-hermitian-evolution",
+   "verb": "uses"
+  },
+  {
+   "span": "stochastic",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "zeroth",
+   "concept": "dark-state",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-7-53",
+   "concept": "adiabaticity-condition",
+   "verb": "uses"
+  },
+  {
+   "span": "jumps-intro",
+   "concept": "quantum-jump",
+   "verb": "uses"
+  },
+  {
+   "span": "jumps-intro",
+   "concept": "jump-probability",
+   "verb": "uses"
+  },
+  {
+   "span": "landau",
+   "concept": "landau-zener",
+   "verb": "uses"
+  },
+  {
+   "span": "partial-basis",
+   "concept": "bare-states",
+   "verb": "uses"
+  },
+  {
+   "span": "partial-basis",
+   "concept": "dark-state",
+   "verb": "uses"
+  },
+  {
+   "span": "partial-basis",
+   "concept": "bright-state",
+   "verb": "uses"
+  },
+  {
+   "span": "partial-basis",
+   "concept": "three-level-dressed-states",
+   "verb": "uses"
+  },
+  {
+   "span": "omega-na",
+   "concept": "nonadiabatic-coupling",
+   "verb": "uses"
+  },
+  {
+   "span": "eit",
+   "concept": "electromagnetically-induced-transparency",
+   "verb": "uses"
+  },
+  {
+   "span": "eit",
+   "concept": "dark-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "mixture",
+   "concept": "pure-and-mixed-states",
+   "verb": "uses"
+  },
+  {
+   "span": "discovery",
+   "concept": "zeeman-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "discovery",
+   "concept": "lambda-detunings",
+   "verb": "uses"
+  },
+  {
+   "span": "pumping-dark",
+   "concept": "optical-pumping",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel",
+   "concept": "polarization-selection-rules",
+   "verb": "uses"
+  },
+  {
+   "span": "perpendicular",
+   "concept": "lambda-system",
+   "verb": "uses"
+  },
+  {
+   "span": "perpendicular",
+   "concept": "dark-state",
+   "verb": "uses"
+  },
+  {
+   "span": "applications",
+   "concept": "adiabatic-atomic-beamsplitter",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-7-65",
+   "concept": "dark-state-adiabaticity-condition",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pumping-dark",
+   "concept": "bright-dark-basis",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-stirap-fidelity",
+   "concept": "stirap-fidelity",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "pump",
+   "label": "the field Ω₁, which couples |1⟩ to the excited state",
+   "figures": [
+    "sim-four-level-pulses",
+    "sim-dark-loss"
+   ]
+  },
+  {
+   "id": "stokes",
+   "label": "the field Ω₂ on the transition |2⟩ → |3⟩",
+   "figures": [
+    "sim-dark-loss"
+   ]
+  },
+  {
+   "id": "lvl-1",
+   "label": "the initial state |1⟩",
+   "figures": [
+    "sim-dark-loss"
+   ]
+  },
+  {
+   "id": "lvl-2",
+   "label": "the final state |2⟩",
+   "figures": [
+    "sim-dark-loss"
+   ]
+  },
+  {
+   "id": "lvl-3",
+   "label": "the excited state |3⟩ = |E⟩",
+   "figures": [
+    "sim-dark-loss"
+   ]
+  },
+  {
+   "id": "four-1",
+   "label": "the initial state |1⟩ of the four-level system",
+   "figures": [
+    "sim-four-level-pulses"
+   ]
+  },
+  {
+   "id": "four-3",
+   "label": "the final state |3⟩ of the four-level system",
+   "figures": [
+    "sim-four-level-pulses"
+   ]
+  },
+  {
+   "id": "four-4",
+   "label": "the final state |4⟩ of the four-level system",
+   "figures": [
+    "sim-four-level-pulses"
+   ]
+  },
+  {
+   "id": "four-s",
+   "label": "the field S = Ω₃",
+   "figures": [
+    "sim-four-level-pulses"
+   ]
+  },
+  {
+   "id": "four-c",
+   "label": "the control field C = Ω₄",
+   "figures": [
+    "sim-four-level-pulses"
+   ]
+  },
+  {
+   "id": "dark",
+   "label": "the dark state |D⟩",
+   "figures": [
+    "sim-dark-loss"
+   ]
+  },
+  {
+   "id": "bright",
+   "label": "the bright state |B⟩",
+   "figures": [
+    "sim-dark-loss"
+   ]
+  },
+  {
+   "id": "pumped",
+   "label": "the state m∥ = 0, the dark superposition of m⊥ = ±1",
+   "figures": [
+    "sim-two-bases"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "footnote-2",
+   "kind": "book",
+   "number": "2",
+   "html": "This is tantamount to assuming that all decay goes into a fourth state outside of the system we're considering."
+  },
+  {
+   "id": "footnote-3",
+   "kind": "book",
+   "number": "3",
+   "html": "<p>Formally, we are seeking a solution to the vector differential equation</p><div class=\"equation\" id=\"eq-7-54\">$$\\dot{v} = M(\\kt/\\ktau)v(\\kt), \\tag{7.54}$$</div><p>which we guess is of the form $v(\\kt) = v^{(0)} + v^{(1)} + \\ldots$, where $v^{(0)}$ satisfies $M(\\kt/\\ktau)v^{(0)} = 0$. Substituting this result into the differential equation above, we find that</p><div class=\"equation\" id=\"eq-7-55\">$$\\dot{v}^{(0)} \\approx M(\\kt/\\ktau)\\left(v^{(0)} + v^{(1)}\\right), \\tag{7.55}$$</div><p>or $v^{(1)} = M^{-1}(\\kt/\\ktau)\\dot{v}^{(0)}$. Such an expansion fails for the system we are considering, however, because $M$ is singular and cannot be inverted. Nonetheless, we see that the expansion does tell us some useful information about how the higher-order correction scales. To properly solve this system using some kind of <span data-concept=\"adiabatic-expansion\">adiabatic expansion</span>, one should <span data-concept=\"adiabatic-elimination\">adiabatically eliminate</span> the excited state, but solve the resulting equations of motion for $\\kcinst_{1,2}$ exactly.</p>"
+  },
+  {
+   "id": "footnote-4",
+   "kind": "book",
+   "number": "4",
+   "html": "Note that our choice of $\\kOmegaone(\\kt), \\kOmegatwo(\\kt)$ as sines and cosines has led us to a constant non-adiabatic coupling, which makes the mathematics easier. Other functions would also lead to $\\kOmegaNA$, but in general it would be a function of time."
+  },
+  {
+   "id": "c-psi-paren",
+   "kind": "correction",
+   "html": "The book prints $|\\kpsi(\\kt))\\rangle$, with a doubled closing parenthesis; the state is $|\\kpsi(\\kt)\\rangle$."
+  },
+  {
+   "id": "c-c2-2",
+   "kind": "correction",
+   "html": "The book prints $\\kctwo^{(2)}$. The equation is one relation for the two first-order corrections $\\kcone^{(1)}$ and $\\kctwo^{(1)}$, as the sentence goes on to say."
+  },
+  {
+   "id": "c-eq-7-56",
+   "kind": "correction",
+   "html": "The book prints the integral without $d\\kt$ and with the factor $\\kgammaonethree$. With $\\dot{\\kcthree} = -\\kgammaonethree\\kcthree$ of Eq. (7.43), the norm of the state falls at the rate $2\\kgammaonethree|\\kcthree|^2$, so $\\kPjump = 2\\kgammaonethree\\int_0^{\\ktau}|\\kcthree|^2 d\\kt = 2\\kgammaonethree/\\kOmega^2\\ktau$, with $|\\kcthree| = 1/\\kOmega\\ktau$ from Eq. (7.51). The condition (7.57) is unchanged."
+  },
+  {
+   "id": "c-final-time",
+   "kind": "correction",
+   "html": "The book writes $\\kOmega\\ktau = \\pi/2$. The final state is reached at $\\kt = (\\pi/2)\\ktau$, where $\\kOmegaone = \\kOmega$ and $\\kOmegatwo = 0$, whatever $\\kOmega\\ktau$ is."
+  },
+  {
+   "id": "c-alzetta",
+   "kind": "correction",
+   "html": "The paper is G. Alzetta, A. Gozzini, L. Moi and G. Orriols, Il Nuovo Cimento B 36, 5 (1976); the book misspells the first author's name and the journal."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "stirap-zeroth-order",
+   "what": "the zeroth-order amplitudes of STIRAP",
+   "source": "Modern Atomic and Optical Physics II, 7.4 Analysis of STIRAP: The condition for adiabatic following, Analysis of the adiabaticity condition",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The lowest order solution is stationary: all time derivatives are neglected.",
+       "src": "7.4"
+      },
+      {
+       "tex": "\\dot{\\kctwo} = i\\kOmegatwo^*(\\kt)\\kcthree",
+       "src": "(7.42)"
+      },
+      {
+       "tex": "\\kOmegaone(\\kt) = \\kOmega\\sin\\frac{\\kt}{\\ktau},\\quad \\kOmegatwo(\\kt) = \\kOmega\\cos\\frac{\\kt}{\\ktau}",
+       "src": "(7.39), (7.40)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{i\\kOmegaone^*(\\kt)\\kcthree}",
+      "src": "(7.41)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} = \\mk{R}{i\\kOmegaone^*(\\kt)\\kcthree^{(0)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{R}{\\kcthree^{(0)}} = \\mk{L}{0}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$\\Omega_1$ and $\\Omega_2$ never vanish together; where $\\Omega_1 = 0$, (7.42) gives the same with $\\Omega_2 = \\Omega$."
+      }
+     ],
+     "num": "(7.47)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The lowest order solution is stationary: all time derivatives are neglected.",
+       "src": "7.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcthree}} = \\mk{g}{-\\kgammaonethree\\kcthree} + \\mk{R}{i\\left(\\kOmegaone(\\kt)\\kcone + \\kOmegatwo(\\kt)\\kctwo\\right)}",
+      "src": "(7.43)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} = \\mk{g}{-\\kgammaonethree\\kcthree^{(0)}} + \\mk{R}{i\\left(\\kOmegaone\\kcone^{(0)} + \\kOmegatwo\\kctwo^{(0)}\\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{0} = \\mk{R}{i\\left(\\kOmegaone\\kcone^{(0)} + \\kOmegatwo\\kctwo^{(0)}\\right)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{R}{\\kOmegaone\\kcone^{(0)} + \\kOmegatwo\\kctwo^{(0)}} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "L": "z"
+       }
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\langle\\kpsi|\\kpsi\\rangle = |\\kcone|^2 + |\\kctwo|^2 + |\\kcthree|^2 = 1",
+       "src": "7.4"
+      },
+      {
+       "text": "The system starts out in $|1\\rangle$ at $\\kt = 0$.",
+       "src": "7.4"
+      },
+      {
+       "tex": "\\kOmegaone(\\kt) = \\kOmega\\sin\\frac{\\kt}{\\ktau},\\quad \\kOmegatwo(\\kt) = \\kOmega\\cos\\frac{\\kt}{\\ktau}",
+       "src": "(7.39), (7.40)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{\\kOmegaone\\kcone^{(0)} + \\kOmegatwo\\kctwo^{(0)}} = \\mk{z}{0}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kcone^{(0)}} = \\mk{z}{\\frac{\\kOmegatwo}{\\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "With $c_2^{(0)} = -(\\Omega_1/\\Omega_2)c_1^{(0)}$ and $c_3^{(0)} = 0$, normalization fixes $|c_1^{(0)}|$; the sign is that of $c_1 = 1$ at $t = 0$."
+      },
+      {
+       "tex": "\\mk{R}{\\kcone^{(0)}} = \\mk{z}{\\frac{\\kOmegatwo}{\\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}}} = \\mk{c}{\\cos\\frac{\\kt}{\\ktau}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(7.45)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kOmegaone(\\kt) = \\kOmega\\sin\\frac{\\kt}{\\ktau},\\quad \\kOmegatwo(\\kt) = \\kOmega\\cos\\frac{\\kt}{\\ktau}",
+       "src": "(7.39), (7.40)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{\\kOmegaone\\kcone^{(0)} + \\kOmegatwo\\kctwo^{(0)}} = \\mk{z}{0}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kctwo^{(0)}} = \\mk{z}{-\\frac{\\kOmegaone}{\\kOmegatwo}\\kcone^{(0)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{\\kctwo^{(0)}} = \\mk{z}{-\\frac{\\kOmegaone}{\\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{R}{\\kctwo^{(0)}} = \\mk{z}{-\\frac{\\kOmegaone}{\\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}}} = \\mk{c}{-\\sin\\frac{\\kt}{\\ktau}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(7.46)"
+    }
+   ]
+  },
+  {
+   "id": "stirap-first-order",
+   "what": "the first-order corrections to STIRAP",
+   "source": "Modern Atomic and Optical Physics II, 7.4 Analysis of STIRAP: The condition for adiabatic following, Analysis of the adiabaticity condition",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kcinst_i = \\kcinst_i^{(0)} + \\kcinst_i^{(1)} + \\ldots",
+       "src": "(7.44)"
+      },
+      {
+       "text": "Each order is smaller by a power of $1/\\ktau$, and a time derivative brings in one more.",
+       "src": "7.4"
+      },
+      {
+       "tex": "\\kcthree^{(0)} = 0",
+       "src": "(7.47)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{i\\kOmegaone^*\\kcthree}",
+      "src": "(7.41)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}^{(0)} + \\dot{\\kcone}^{(1)}} = \\mk{R}{i\\kOmegaone^*(\\kcthree^{(0)} + \\kcthree^{(1)})}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}^{(0)}} = \\mk{R}{i\\kOmegaone^*\\kcthree^{(1)}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "To first order in $1/\\tau$: $\\dot{c}^{(1)}$ is of second order, and $c_3^{(0)} = 0$."
+      }
+     ],
+     "num": "(7.48)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kcinst_i = \\kcinst_i^{(0)} + \\kcinst_i^{(1)} + \\ldots",
+       "src": "(7.44)"
+      },
+      {
+       "text": "Each order is smaller by a power of $1/\\ktau$, and a time derivative brings in one more.",
+       "src": "7.4"
+      },
+      {
+       "tex": "\\kcthree^{(0)} = 0",
+       "src": "(7.47)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kctwo}} = \\mk{R}{i\\kOmegatwo^*\\kcthree}",
+      "src": "(7.42)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kctwo}^{(0)} + \\dot{\\kctwo}^{(1)}} = \\mk{R}{i\\kOmegatwo^*(\\kcthree^{(0)} + \\kcthree^{(1)})}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kctwo}^{(0)}} = \\mk{R}{i\\kOmegatwo^*\\kcthree^{(1)}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "To first order in $1/\\tau$: $\\dot{c}^{(1)}$ is of second order, and $c_3^{(0)} = 0$."
+      }
+     ],
+     "num": "(7.49)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kcinst_i = \\kcinst_i^{(0)} + \\kcinst_i^{(1)} + \\ldots",
+       "src": "(7.44)"
+      },
+      {
+       "text": "Each order is smaller by a power of $1/\\ktau$, and a time derivative brings in one more.",
+       "src": "7.4"
+      },
+      {
+       "tex": "\\kcthree^{(0)} = 0",
+       "src": "(7.47)"
+      },
+      {
+       "text": "The zeroth-order amplitudes obey $\\kOmegaone\\kcone^{(0)} + \\kOmegatwo\\kctwo^{(0)} = 0$: the stationary solution, (7.45) and (7.46).",
+       "src": "(7.45), (7.46)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcthree}} = \\mk{g}{-\\kgammaonethree\\kcthree} + \\mk{R}{i\\left(\\kOmegaone\\kcone + \\kOmegatwo\\kctwo\\right)}",
+      "src": "(7.43)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcthree}^{(0)} + \\dot{\\kcthree}^{(1)}} = \\mk{g}{-\\kgammaonethree(\\kcthree^{(0)} + \\kcthree^{(1)})} + \\mk{R}{i\\left(\\kOmegaone(\\kcone^{(0)} + \\kcone^{(1)}) + \\kOmegatwo(\\kctwo^{(0)} + \\kctwo^{(1)})\\right)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{0} = \\mk{g}{-\\kgammaonethree\\kcthree^{(1)}} + \\mk{R}{i\\left(\\kOmegaone\\kcone^{(1)} + \\kOmegatwo\\kctwo^{(1)}\\right)}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "cap": "To first order in $1/\\tau$: $c_3^{(0)} = 0$ for all times, so $\\dot{c}_3^{(0)} = 0$; $\\dot{c}_3^{(1)}$ is of second order."
+      }
+     ],
+     "num": "(7.50)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kcone^{(0)} = \\cos\\frac{\\kt}{\\ktau}",
+       "src": "(7.45)"
+      },
+      {
+       "tex": "\\kOmegaone(\\kt) = \\kOmega\\sin\\frac{\\kt}{\\ktau},\\quad \\kOmegatwo(\\kt) = \\kOmega\\cos\\frac{\\kt}{\\ktau}",
+       "src": "(7.39), (7.40)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcone}^{(0)}} = \\mk{R}{i\\kOmegaone^*\\kcthree^{(1)}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kcthree^{(1)}} = \\mk{L}{\\frac{\\dot{\\kcone}^{(0)}}{i\\kOmegaone^*}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{\\kcthree^{(1)}} = \\mk{L}{\\frac{-\\frac{1}{\\ktau}\\sin\\frac{\\kt}{\\ktau}}{i\\kOmega\\sin\\frac{\\kt}{\\ktau}}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Differentiating (7.45); the fields are real."
+      },
+      {
+       "tex": "\\mk{R}{\\kcthree^{(1)}} = \\mk{L}{\\frac{\\dot{\\kcone}^{(0)}}{i\\kOmegaone^*}} = \\mk{v}{\\frac{i}{\\kOmega\\ktau}}",
+       "uses": [],
+       "cap": "$-1/i = i$."
+      }
+     ],
+     "num": "(7.51)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{0} = \\mk{g}{-\\kgammaonethree\\kcthree^{(1)}} + \\mk{R}{i\\left(\\kOmegaone\\kcone^{(1)} + \\kOmegatwo\\kctwo^{(1)}\\right)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} = \\mk{g}{-\\kgammaonethree\\frac{i}{\\kOmega\\ktau}} + \\mk{R}{i\\left(\\kOmegaone\\kcone^{(1)} + \\kOmegatwo\\kctwo^{(1)}\\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{R}{i\\left(\\kOmegaone\\kcone^{(1)} + \\kOmegatwo\\kctwo^{(1)}\\right)} = \\mk{g}{\\frac{i\\kgammaonethree}{\\kOmega\\ktau}}",
+       "uses": [],
+       "map": {
+        "L": "g"
+       }
+      }
+     ],
+     "num": "(7.52)"
+    }
+   ]
+  },
+  {
+   "id": "stirap-fidelity",
+   "what": "the fidelity of STIRAP",
+   "source": "Modern Atomic and Optical Physics II, 7.4 Analysis of STIRAP: The condition for adiabatic following, Error due to quantum jumps",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\dot{\\kcone} = i\\kOmegaone^*(\\kt)\\kcthree",
+       "src": "(7.41)"
+      },
+      {
+       "tex": "\\dot{\\kctwo} = i\\kOmegatwo^*(\\kt)\\kcthree",
+       "src": "(7.42)"
+      },
+      {
+       "tex": "\\dot{\\kcthree} = -\\kgammaonethree\\kcthree + i\\left(\\kOmegaone(\\kt)\\kcone + \\kOmegatwo(\\kt)\\kctwo\\right)",
+       "src": "(7.43)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{N}{\\frac{d}{d\\kt}\\langle\\kpsi|\\kpsi\\rangle} = \\mk{R}{\\frac{d}{d\\kt}\\left(|\\kcone|^2 + |\\kctwo|^2 + |\\kcthree|^2\\right)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{N}{\\frac{d}{d\\kt}\\langle\\kpsi|\\kpsi\\rangle} = \\mk{R}{2\\,\\mathrm{Re}\\left(\\kcone^*\\dot{\\kcone} + \\kctwo^*\\dot{\\kctwo} + \\kcthree^*\\dot{\\kcthree}\\right)}",
+       "uses": [],
+       "cap": "$\\frac{d}{dt}|c|^2 = 2\\,\\mathrm{Re}(c^*\\dot{c})$."
+      },
+      {
+       "tex": "\\mk{N}{\\frac{d}{d\\kt}\\langle\\kpsi|\\kpsi\\rangle} = \\mk{R}{2\\,\\mathrm{Re}\\left(i\\kOmegaone\\kcone^*\\kcthree + i\\kOmegatwo\\kctwo^*\\kcthree - \\kgammaonethree|\\kcthree|^2 + i\\kcthree^*(\\kOmegaone\\kcone + \\kOmegatwo\\kctwo)\\right)}",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "cap": "The fields are real."
+      },
+      {
+       "tex": "\\mk{N}{\\frac{d}{d\\kt}\\langle\\kpsi|\\kpsi\\rangle} = \\mk{R}{-2\\kgammaonethree|\\kcthree|^2}",
+       "uses": [],
+       "cap": "The terms in $\\Omega_1$ and $\\Omega_2$ come in pairs $iz + iz^*$, which are imaginary."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kcthree^{(1)} = \\frac{i}{\\kOmega\\ktau}",
+       "src": "(7.51)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{N}{\\frac{d}{d\\kt}\\langle\\kpsi|\\kpsi\\rangle} = \\mk{R}{-2\\kgammaonethree|\\kcthree|^2}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{N}{\\frac{d}{d\\kt}|d|^2} \\approx \\mk{R}{-\\frac{2\\kgammaonethree}{\\kOmega^2\\ktau^2}|d|^2}",
+       "uses": [
+        1
+       ],
+       "cap": "The population stays in the dark state, of amplitude $d$, and $c_3$ follows it as in (7.51): $c_3 \\approx i\\,d/\\Omega\\tau$."
+      },
+      {
+       "tex": "\\mk{N}{|d(\\kt)|^2} \\approx \\mk{R}{e^{-2\\kgammaonethree\\kt/\\kOmega^2\\ktau^2}}",
+       "uses": [],
+       "cap": "Integrating from $|d(0)|^2 = 1$."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The transfer ends at $\\kt = (\\pi/2)\\ktau$, where $\\kOmegatwo = 0$ and the dark state is $-|2\\rangle$.",
+       "src": "7.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{N}{|d(\\kt)|^2} \\approx \\mk{R}{e^{-2\\kgammaonethree\\kt/\\kOmega^2\\ktau^2}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{N}{|d(\\tfrac{\\pi}{2}\\ktau)|^2} \\approx \\mk{R}{e^{-\\pi\\kgammaonethree/\\kOmega^2\\ktau}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{N}{\\krhotwotwo} = \\mk{R}{e^{-\\frac{\\pi\\kgammaonethree}{|\\kOmega|^2\\ktau}}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(7.58)",
+     "note": "The book prints the exponent $-\\pi\\kgammaonethree/2|\\kOmega|^2\\ktau$, half the loss worked here. Integrating (7.41)–(7.43) exactly agrees with the exponent without the 2: for $\\kgammaonethree/\\kOmega^2\\ktau = 0.05$ it gives 0.859, against 0.855 here and 0.924 from the book\\'s exponent."
+    }
+   ]
+  }
+ ]
+}

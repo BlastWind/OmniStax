@@ -1,0 +1,861 @@
+{
+ "id": "2.3",
+ "chapter": "2",
+ "title": "Quantized electromagnetic fields",
+ "short": "Quantized fields",
+ "lead": "The electromagnetic field quantized as a set of harmonic oscillators, one per mode, and a <span data-concept=\"two-level-atom\">two-level atom</span> coupled to it: the <span data-concept=\"single-photon-field\">field of a single photon</span>, the <span data-concept=\"single-photon-rabi-frequency\">single-photon Rabi frequency</span> and the energy-conserving terms of the interaction, then the Wigner-Weisskopf theory of <span data-concept=\"spontaneous-emission\">spontaneous emission</span>, its rate, the decay of the atomic dipole and the <span data-concept=\"emitted-photon-wavepacket\">wavepacket of the emitted photon</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "Both MIT 8.422 problems are kept whole, one card per part, restated in the notes' notation; MIT publishes no key, so every solution is an AI suggestion, and no part asks for a number, so none is held.",
+ "figures": [
+  {
+   "id": "sim-photon-wavepacket",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "dipole",
+    "rate",
+    "population",
+    "electric-field",
+    "length",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "spontaneous",
+   "concept": "spontaneous-emission",
+   "verb": "introduces"
+  },
+  {
+   "span": "eigenmodes",
+   "concept": "cavity-modes",
+   "verb": "introduces"
+  },
+  {
+   "span": "mode-expansion",
+   "concept": "field-mode-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-energy",
+   "concept": "field-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "quadratures",
+   "concept": "field-quadratures",
+   "verb": "introduces"
+  },
+  {
+   "span": "ladder-operators",
+   "concept": "creation-annihilation-operators",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-operator",
+   "concept": "quantized-electric-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "one-photon-field",
+   "concept": "single-photon-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "atom-field",
+   "concept": "atom-field-interaction",
+   "verb": "introduces"
+  },
+  {
+   "span": "single-photon-rabi",
+   "concept": "single-photon-rabi-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "transverse",
+   "concept": "transverse-fields-and-gauge",
+   "verb": "introduces"
+  },
+  {
+   "span": "ww-continuum",
+   "concept": "wigner-weisskopf",
+   "verb": "introduces"
+  },
+  {
+   "span": "lamb",
+   "concept": "lamb-shift",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay-rate",
+   "concept": "spontaneous-emission-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "dipole-decays",
+   "concept": "dipole-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "photon-wavepacket",
+   "concept": "emitted-photon-wavepacket",
+   "verb": "introduces"
+  },
+  {
+   "span": "spontaneous",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "quadratures",
+   "concept": "commutator",
+   "verb": "uses"
+  },
+  {
+   "span": "atom-field",
+   "concept": "dipole-interaction",
+   "verb": "uses"
+  },
+  {
+   "span": "rwa-terms",
+   "concept": "rotating-wave-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "rwa-terms",
+   "concept": "rabi-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "coupling",
+   "concept": "dipole-matrix-element",
+   "verb": "uses"
+  },
+  {
+   "span": "ww-continuum",
+   "concept": "bound-continuum-transition",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-rate",
+   "concept": "continuum-decay-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "lamb",
+   "concept": "continuum-stark-shift",
+   "verb": "uses"
+  },
+  {
+   "span": "no-rotating-frame",
+   "concept": "rotating-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "dipole-decays",
+   "concept": "rabi-oscillations",
+   "verb": "uses"
+  },
+  {
+   "span": "dipole-decays",
+   "concept": "expectation-value",
+   "verb": "uses"
+  },
+  {
+   "span": "photon-wavepacket",
+   "concept": "outgoing-wavepacket",
+   "verb": "uses"
+  },
+  {
+   "span": "einstein-a",
+   "concept": "spontaneous-emission-rate",
+   "verb": "reinforces"
+  },
+  {
+   "span": "polarizations",
+   "concept": "light-polarization",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "hw5-1a",
+   "source_id": "hw5.1a",
+   "source_number": "Problem Set 5, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in the notes' notation: MIT's photon frequency $\\omega$ is $\\nu$ here and its $H_I' = -\\mathbf{d}\\cdot\\mathbf{E}$ and $H_I$ are written $\\hat{V}_I' = -\\hat{d}\\cdot\\hat{E}$ and $\\hat{V}_I$ with operator hats, and the problem's figure of the two scattering processes is left out.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "canonical",
+   "prompt": "Rayleigh and Thomson scattering using two different interaction Hamiltonians. Elastic light scattering takes the system from state $|i\\rangle = |a;\\mathbf{k}\\epsilon\\rangle$ to state $|f\\rangle = |a;\\mathbf{k}'\\epsilon'\\rangle$ where $a$ is the (unchanged) state of the atom, and $\\mathbf{k}$ ($\\mathbf{k}'$) and $\\epsilon$ ($\\epsilon'$) the wavevector and polarization of the incident (scattered) photon. Calculate the transition matrix element $\\mathcal{T}_{fi}$ (i.e. matrix element of the $T$ matrix) in leading (non-zero) order for both Rayleigh and Thomson scattering ($\\hbar\\knu$ smaller/larger than excitation energies), for both the electric-dipole Hamiltonian $$\\hat{V}_I' = -\\hat{d}\\cdot\\kEhat$$ and the Coulomb-gauge interaction Hamiltonian $$\\hat{V}_I = -\\frac{q}{\\km}\\kp\\cdot\\hat{A}(\\mathbf{0}) + \\frac{q^2}{2\\km}\\hat{A}^2(\\mathbf{0}).$$ You will realize that Rayleigh scattering is more easily calculated with the dipole Hamiltonian, whereas the reverse is true for Thomson scattering. Of course, both Hamiltonians lead to the same answer. Try to advance with this problem as far as you can by yourself. If you get stuck, you will find a discussion of this problem in Exercises 3 and 4 in the book Atom-Photon Interactions.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the atom at $\\mathbf{r} = 0$ and write each mode's field as Eq. (2.73) does, $\\kEhat = \\sum_{\\mathbf{k}\\epsilon}\\epsilon\\,\\mathcal{E}_\\nu(\\hat{a} + \\hat{a}^\\dagger)$ with $\\mathcal{E}_\\nu = \\sqrt{\\hbar\\knu/2\\epsilon_0\\kV}$, and $\\hat{A} = -i\\sum_{\\mathbf{k}\\epsilon}\\epsilon\\,(\\mathcal{E}_\\nu/\\knu)(\\hat{a} - \\hat{a}^\\dagger)$, so that $\\kEhat = -\\partial_t\\hat{A}$. To second order $\\mathcal{T}_{fi} = \\langle f|\\hat{V}|i\\rangle + \\sum_n \\langle f|\\hat{V}|n\\rangle\\langle n|\\hat{V}|i\\rangle/(E_i - E_n)$, and elastic scattering has $\\knu' = \\knu$. <strong>Dipole Hamiltonian.</strong> A term linear in the field changes the photon number by one, so the first order vanishes. In second order either the incident photon is absorbed first (intermediate $|b;0\\rangle$, $E_i - E_n = \\hbar(\\knu - \\omega_{ba})$) or the scattered photon is emitted first ($|b;\\mathbf{k}\\epsilon,\\mathbf{k}'\\epsilon'\\rangle$, $E_i - E_n = -\\hbar(\\knu + \\omega_{ba})$): $$\\mathcal{T}_{fi} = \\frac{\\knu}{2\\epsilon_0\\kV}\\sum_b\\left[\\frac{(\\epsilon'^*\\cdot\\mathbf{d}_{ab})(\\epsilon\\cdot\\mathbf{d}_{ba})}{\\knu - \\omega_{ba}} - \\frac{(\\epsilon\\cdot\\mathbf{d}_{ab})(\\epsilon'^*\\cdot\\mathbf{d}_{ba})}{\\knu + \\omega_{ba}}\\right].$$ Rayleigh ($\\knu \\ll \\omega_{ba}$): both denominators are close to $\\mp\\omega_{ba}$, and $$\\mathcal{T}_{fi} \\approx -\\frac{\\hbar\\knu}{2\\epsilon_0\\kV}\\,\\epsilon'^*\\cdot\\alpha\\cdot\\epsilon, \\qquad \\alpha_{ij} = \\sum_b\\frac{d^i_{ab}d^j_{ba} + d^j_{ab}d^i_{ba}}{\\hbar\\omega_{ba}},$$ the static polarizability tensor of the state $a$; $\\mathcal{T}_{fi} \\propto \\knu$, so the cross section grows as $\\knu^4$. Thomson ($\\knu \\gg \\omega_{ba}$): expanding in $\\omega_{ba}/\\knu$, the $1/\\knu$ term is $\\langle a|[\\epsilon'^*\\cdot\\hat{d}, \\epsilon\\cdot\\hat{d}]|a\\rangle/\\knu = 0$, since the components of $\\hat{d} = q\\hat{\\mathbf{r}}$ commute, and the next term, with the Thomas-Reiche-Kuhn sum rule $\\sum_b \\omega_{ba}[(\\epsilon'^*\\cdot\\mathbf{r})_{ab}(\\epsilon\\cdot\\mathbf{r})_{ba} + (\\epsilon\\cdot\\mathbf{r})_{ab}(\\epsilon'^*\\cdot\\mathbf{r})_{ba}] = (\\hbar/\\km)\\,\\epsilon'^*\\cdot\\epsilon$, gives $$\\mathcal{T}_{fi} = \\frac{q^2\\hbar}{2\\epsilon_0\\kV\\km\\knu}\\,\\epsilon'^*\\cdot\\epsilon.$$ <strong>Coulomb-gauge Hamiltonian.</strong> The $\\hat{A}^2$ term annihilates $\\mathbf{k}\\epsilon$ and creates $\\mathbf{k}'\\epsilon'$ already in first order, in two orderings, so $\\mathcal{T}_{fi} = \\frac{q^2}{2\\km}\\cdot 2\\frac{\\mathcal{E}_\\nu^2}{\\knu^2}\\,\\epsilon'^*\\cdot\\epsilon = \\frac{q^2\\hbar}{2\\epsilon_0\\kV\\km\\knu}\\,\\epsilon'^*\\cdot\\epsilon$, the Thomson result at once; the second-order $\\kp\\cdot\\hat{A}$ terms are smaller by $\\omega_{ba}/\\knu$. For Rayleigh scattering the second-order $\\kp\\cdot\\hat{A}$ term, rewritten with $\\mathbf{p}_{ab} = i\\km\\omega_{ab}\\mathbf{r}_{ab}$, has a leading part that cancels the $\\hat{A}^2$ term by the same sum rule, and what survives is $-\\frac{\\hbar\\knu}{2\\epsilon_0\\kV}\\epsilon'^*\\cdot\\alpha\\cdot\\epsilon$: both Hamiltonians give the same two answers."
+   }
+  },
+  {
+   "id": "hw5-1b",
+   "source_id": "hw5.1b",
+   "source_number": "Problem Set 5, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in the notes' notation: MIT's photon frequency $\\omega$ is $\\nu$ here and its $H_I' = -\\mathbf{d}\\cdot\\mathbf{E}$ and $H_I$ are written $\\hat{V}_I' = -\\hat{d}\\cdot\\hat{E}$ and $\\hat{V}_I$ with operator hats, and the problem's figure of the two scattering processes is left out.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "canonical",
+   "prompt": "Rayleigh and Thomson scattering using two different interaction Hamiltonians. Elastic light scattering takes the system from state $|i\\rangle = |a;\\mathbf{k}\\epsilon\\rangle$ to state $|f\\rangle = |a;\\mathbf{k}'\\epsilon'\\rangle$ where $a$ is the (unchanged) state of the atom, and $\\mathbf{k}$ ($\\mathbf{k}'$) and $\\epsilon$ ($\\epsilon'$) the wavevector and polarization of the incident (scattered) photon. Show that the total cross section for Thomson scattering is given by $\\sigma_0 = \\frac{8\\pi}{3}r_0^2$ where $r_0$ is the classical electron radius. Try to advance with this problem as far as you can by yourself. If you get stuck, you will find a discussion of this problem in Exercises 3 and 4 in the book Atom-Photon Interactions.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "From (a), the Thomson amplitude is $\\mathcal{T}_{fi} = \\frac{q^2\\hbar}{2\\epsilon_0\\kV\\km\\knu}\\,\\epsilon'^*\\cdot\\epsilon$. Fermi's Golden Rule gives the rate into all final photons, $W = \\frac{2\\pi}{\\hbar}\\sum_{\\mathbf{k}'\\epsilon'}|\\mathcal{T}_{fi}|^2\\delta(\\hbar ck' - \\hbar ck)$. The sum over the two polarizations transverse to $\\mathbf{k}'$ is the one of Eqs. (2.82)–(2.84), $\\sum_{\\epsilon'}|\\epsilon'^*\\cdot\\epsilon|^2 = \\sin^2\\theta$ with $\\theta$ the angle between $\\mathbf{k}'$ and $\\epsilon$, and the angular integral is that of Eqs. (2.86)–(2.87), $\\int\\sin^2\\theta\\,d\\Omega = 8\\pi/3$. With $\\sum_{\\mathbf{k}'} \\to \\frac{\\kV}{(2\\pi)^3}\\int k'^2dk'\\,d\\Omega$ and $k = \\knu/c$, $$W = \\frac{2\\pi}{\\hbar}\\,\\frac{\\kV}{(2\\pi)^3}\\,\\frac{k^2}{\\hbar c}\\,\\frac{8\\pi}{3}\\left(\\frac{q^2\\hbar}{2\\epsilon_0\\kV\\km\\knu}\\right)^2 = \\frac{q^4}{6\\pi\\epsilon_0^2\\km^2c^3\\kV}.$$ One photon in the volume $\\kV$ is a flux $c/\\kV$, so $\\sigma_0 = W\\kV/c = \\frac{q^4}{6\\pi\\epsilon_0^2\\km^2c^4}$. With the classical electron radius $r_0 = \\frac{q^2}{4\\pi\\epsilon_0\\km c^2}$, $r_0^2 = \\frac{q^4}{16\\pi^2\\epsilon_0^2\\km^2c^4}$, and $$\\sigma_0 = \\frac{16\\pi^2}{6\\pi}r_0^2 = \\frac{8\\pi}{3}r_0^2,$$ independent of the photon frequency."
+   }
+  },
+  {
+   "id": "hw7-2a",
+   "source_id": "hw7.2a",
+   "source_number": "Problem Set 7, Problem 2(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in the notes' notation: MIT's cavity frequency $\\omega$, atomic frequency $\\omega_0$, coupling $\\Omega_1$, decay rate $\\Gamma$ and states $|e\\rangle$, $|g\\rangle$, $|0g\\rangle$, $|0e\\rangle$, $|1g\\rangle$ are $\\nu$, $\\omega$, $2g$, $\\gamma$ and $|2\\rangle$, $|1\\rangle$, $|1,0\\rangle$, $|2,0\\rangle$, $|1,1\\rangle$ here, and its generalized Rabi frequency $\\Omega$ is written $\\Omega'$, since $\\Omega$ is the notes' Rabi frequency.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ww-continuum",
+   "prompt": "One atom and one photon: spontaneous emission. A single atom coupled to a single mode of electromagnetic radiation undergoes spontaneous emission. What is the state of the atom during such spontaneous emission? Let us model the interaction of one atom with a single optical mode using the Jaynes-Cummings interaction $$\\kH = \\hbar\\knu\\hat{a}^\\dagger\\hat{a} + \\frac{\\hbar\\komega}{2}\\sigma_z + \\hbar\\kg(\\hat{a}^\\dagger\\sigma_- + \\hat{a}\\sigma_+)$$ where $\\kdelta = \\knu - \\komega$ is the detuning of the cavity frequency $\\knu$ from the atomic frequency $\\komega$, $\\kg$ is the coupling of the atom to the field and we defined $\\sigma_z = |2\\rangle\\langle 2| - |1\\rangle\\langle 1|$, $\\sigma_+ = |2\\rangle\\langle 1|$, $\\sigma_- = |1\\rangle\\langle 2|$. In the subspace where at most one quantum of energy is exchanged with the optical mode, we may write this Hamiltonian as a matrix $$\\kH = \\frac{\\hbar}{2}\\begin{bmatrix} -\\kdelta - 2\\komega & 0 & 0 \\\\ 0 & -\\kdelta & 2\\kg \\\\ 0 & 2\\kg & \\kdelta \\end{bmatrix},$$ where the basis states are $|1,0\\rangle$, $|2,0\\rangle$ and $|1,1\\rangle$. Here $|1\\rangle$ and $|2\\rangle$ are the ground and excited states of the atom, and the second label, $0$ or $1$, is the number of photons in the optical mode. Compute the full unitary evolution $U(\\kt) = e^{-i\\kH\\kt/\\hbar}$ under this Hamiltonian and obtain $$\\begin{aligned} U(\\kt) = {} & e^{i(\\kdelta/2+\\komega)\\kt}|1,0\\rangle\\langle 1,0| + \\left(\\cos(\\Omega'\\kt/2) + i\\frac{\\kdelta}{\\Omega'}\\sin(\\Omega'\\kt/2)\\right)|2,0\\rangle\\langle 2,0| \\\\ & + \\left(\\cos(\\Omega'\\kt/2) - i\\frac{\\kdelta}{\\Omega'}\\sin(\\Omega'\\kt/2)\\right)|1,1\\rangle\\langle 1,1| - i\\frac{2\\kg}{\\Omega'}\\sin(\\Omega'\\kt/2)\\left(|2,0\\rangle\\langle 1,1| + |1,1\\rangle\\langle 2,0|\\right) \\end{aligned}$$ Here $\\Omega' = \\sqrt{4\\kg^2 + \\kdelta^2}$ is the generalized Rabi frequency.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In this basis $\\kH$ is block diagonal. $|1,0\\rangle$ is an eigenstate with energy $-\\hbar(\\kdelta/2+\\komega)$, which gives the phase $e^{i(\\kdelta/2+\\komega)\\kt}$. In the block $\\{|2,0\\rangle, |1,1\\rangle\\}$, $\\kH = \\frac{\\hbar}{2}(-\\kdelta Z + 2\\kg X)$ with $Z$ and $X$ the Pauli matrices of the block; since $(-\\kdelta Z + 2\\kg X)^2 = \\Omega'^2$, $$e^{-i\\kH\\kt/\\hbar} = \\cos(\\Omega'\\kt/2) - i\\sin(\\Omega'\\kt/2)\\,\\frac{-\\kdelta Z + 2\\kg X}{\\Omega'},$$ whose diagonal elements are $\\cos(\\Omega'\\kt/2) \\pm i(\\kdelta/\\Omega')\\sin(\\Omega'\\kt/2)$ (plus on $|2,0\\rangle$, minus on $|1,1\\rangle$) and whose off-diagonal elements are $-i(2\\kg/\\Omega')\\sin(\\Omega'\\kt/2)$: the $U(\\kt)$ stated. The excitation oscillates between $|2,0\\rangle$ and $|1,1\\rangle$ at $\\Omega'$, which on resonance is $2\\kg$, the atom emitting and reabsorbing one photon."
+   }
+  },
+  {
+   "id": "hw7-2b",
+   "source_id": "hw7.2b",
+   "source_number": "Problem Set 7, Problem 2(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in the notes' notation: MIT's cavity frequency $\\omega$, atomic frequency $\\omega_0$, coupling $\\Omega_1$, decay rate $\\Gamma$ and states $|e\\rangle$, $|g\\rangle$, $|0g\\rangle$, $|0e\\rangle$, $|1g\\rangle$ are $\\nu$, $\\omega$, $2g$, $\\gamma$ and $|2\\rangle$, $|1\\rangle$, $|1,0\\rangle$, $|2,0\\rangle$, $|1,1\\rangle$ here, and its generalized Rabi frequency $\\Omega$ is written $\\Omega'$, since $\\Omega$ is the notes' Rabi frequency.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ww-continuum",
+   "prompt": "One atom and one photon: spontaneous emission. A single atom coupled to a single mode of electromagnetic radiation undergoes spontaneous emission. What is the state of the atom during such spontaneous emission? Let us model the interaction of one atom with a single optical mode using the Jaynes-Cummings interaction $$\\kH = \\hbar\\knu\\hat{a}^\\dagger\\hat{a} + \\frac{\\hbar\\komega}{2}\\sigma_z + \\hbar\\kg(\\hat{a}^\\dagger\\sigma_- + \\hat{a}\\sigma_+)$$ where $\\kdelta = \\knu - \\komega$ is the detuning of the cavity frequency $\\knu$ from the atomic frequency $\\komega$, $\\kg$ is the coupling of the atom to the field and we defined $\\sigma_z = |2\\rangle\\langle 2| - |1\\rangle\\langle 1|$, $\\sigma_+ = |2\\rangle\\langle 1|$, $\\sigma_- = |1\\rangle\\langle 2|$. In the subspace where at most one quantum of energy is exchanged with the optical mode, we may write this Hamiltonian as a matrix $$\\kH = \\frac{\\hbar}{2}\\begin{bmatrix} -\\kdelta - 2\\komega & 0 & 0 \\\\ 0 & -\\kdelta & 2\\kg \\\\ 0 & 2\\kg & \\kdelta \\end{bmatrix},$$ where the basis states are $|1,0\\rangle$, $|2,0\\rangle$ and $|1,1\\rangle$. Here $|1\\rangle$ and $|2\\rangle$ are the ground and excited states of the atom, and the second label, $0$ or $1$, is the number of photons in the optical mode. Suppose the atom starts out in the excited state $|2\\rangle$ and the cavity with no photon $|0\\rangle$. What is the state of the atom after time $\\kt$, <em>if the cavity is measured and found to have no photon</em>? What if one photon is found to be in the cavity?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "From (a), $|\\kpsi(\\kt)\\rangle = \\left(\\cos\\frac{\\Omega'\\kt}{2} + i\\frac{\\kdelta}{\\Omega'}\\sin\\frac{\\Omega'\\kt}{2}\\right)|2,0\\rangle - i\\frac{2\\kg}{\\Omega'}\\sin\\frac{\\Omega'\\kt}{2}|1,1\\rangle$. Finding no photon projects onto $|2,0\\rangle$: the atom is in the pure state $|2\\rangle$ (up to a phase), an outcome of probability $1 - \\frac{4\\kg^2}{\\Omega'^2}\\sin^2\\frac{\\Omega'\\kt}{2}$. Finding one photon projects onto $|1,1\\rangle$: the atom is in $|1\\rangle$, with probability $\\frac{4\\kg^2}{\\Omega'^2}\\sin^2\\frac{\\Omega'\\kt}{2}$. Either way the atom is left in one level, never in a superposition of the two."
+   }
+  },
+  {
+   "id": "hw7-2c",
+   "source_id": "hw7.2c",
+   "source_number": "Problem Set 7, Problem 2(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in the notes' notation: MIT's cavity frequency $\\omega$, atomic frequency $\\omega_0$, coupling $\\Omega_1$, decay rate $\\Gamma$ and states $|e\\rangle$, $|g\\rangle$, $|0g\\rangle$, $|0e\\rangle$, $|1g\\rangle$ are $\\nu$, $\\omega$, $2g$, $\\gamma$ and $|2\\rangle$, $|1\\rangle$, $|1,0\\rangle$, $|2,0\\rangle$, $|1,1\\rangle$ here, and its generalized Rabi frequency $\\Omega$ is written $\\Omega'$, since $\\Omega$ is the notes' Rabi frequency.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ww-continuum",
+   "prompt": "One atom and one photon: spontaneous emission. A single atom coupled to a single mode of electromagnetic radiation undergoes spontaneous emission. What is the state of the atom during such spontaneous emission? Let us model the interaction of one atom with a single optical mode using the Jaynes-Cummings interaction $$\\kH = \\hbar\\knu\\hat{a}^\\dagger\\hat{a} + \\frac{\\hbar\\komega}{2}\\sigma_z + \\hbar\\kg(\\hat{a}^\\dagger\\sigma_- + \\hat{a}\\sigma_+)$$ where $\\kdelta = \\knu - \\komega$ is the detuning of the cavity frequency $\\knu$ from the atomic frequency $\\komega$, $\\kg$ is the coupling of the atom to the field and we defined $\\sigma_z = |2\\rangle\\langle 2| - |1\\rangle\\langle 1|$, $\\sigma_+ = |2\\rangle\\langle 1|$, $\\sigma_- = |1\\rangle\\langle 2|$. In the subspace where at most one quantum of energy is exchanged with the optical mode, we may write this Hamiltonian as a matrix $$\\kH = \\frac{\\hbar}{2}\\begin{bmatrix} -\\kdelta - 2\\komega & 0 & 0 \\\\ 0 & -\\kdelta & 2\\kg \\\\ 0 & 2\\kg & \\kdelta \\end{bmatrix},$$ where the basis states are $|1,0\\rangle$, $|2,0\\rangle$ and $|1,1\\rangle$. Here $|1\\rangle$ and $|2\\rangle$ are the ground and excited states of the atom, and the second label, $0$ or $1$, is the number of photons in the optical mode. A reduced density matrix describes the state of part of a system, averaged over the possible states of the remainder. Suppose that at $\\kt = 0$ the atom starts out in a general mixed state with no photons in the cavity: $$\\begin{pmatrix}\\rho_{11} & \\rho_{12} \\\\ \\rho_{21} & \\rho_{22}\\end{pmatrix}\\otimes|0\\rangle\\langle 0|$$ Give a reduced density matrix describing the state of the atom at time $\\kt > 0$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $a(\\kt) = \\cos\\frac{\\Omega'\\kt}{2} + i\\frac{\\kdelta}{\\Omega'}\\sin\\frac{\\Omega'\\kt}{2}$, $b(\\kt) = -i\\frac{2\\kg}{\\Omega'}\\sin\\frac{\\Omega'\\kt}{2}$ and $\\phi = (\\kdelta/2+\\komega)\\kt$. $U$ sends $|1,0\\rangle \\to e^{i\\phi}|1,0\\rangle$ and $|2,0\\rangle \\to a|2,0\\rangle + b|1,1\\rangle$. Evolving $\\rho\\otimes|0\\rangle\\langle 0|$ and tracing over the photon, $$\\rho(\\kt) = \\begin{pmatrix}\\rho_{11} + |b|^2\\rho_{22} & e^{i\\phi}a^*\\rho_{12} \\\\ e^{-i\\phi}a\\,\\rho_{21} & |a|^2\\rho_{22}\\end{pmatrix}, \\qquad |b|^2 = 1 - |a|^2 = \\frac{4\\kg^2}{\\Omega'^2}\\sin^2\\frac{\\Omega'\\kt}{2}.$$ The excited population passes to the ground state with the photon, and the coherence is multiplied by $|a| \\le 1$, since the $|1,1\\rangle$ part has no coherence with $|1,0\\rangle$ once the photon is traced out."
+   }
+  },
+  {
+   "id": "hw7-2d",
+   "source_id": "hw7.2d",
+   "source_number": "Problem Set 7, Problem 2(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in the notes' notation: MIT's cavity frequency $\\omega$, atomic frequency $\\omega_0$, coupling $\\Omega_1$, decay rate $\\Gamma$ and states $|e\\rangle$, $|g\\rangle$, $|0g\\rangle$, $|0e\\rangle$, $|1g\\rangle$ are $\\nu$, $\\omega$, $2g$, $\\gamma$ and $|2\\rangle$, $|1\\rangle$, $|1,0\\rangle$, $|2,0\\rangle$, $|1,1\\rangle$ here, and its generalized Rabi frequency $\\Omega$ is written $\\Omega'$, since $\\Omega$ is the notes' Rabi frequency.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ww-continuum",
+   "prompt": "One atom and one photon: spontaneous emission. A single atom coupled to a single mode of electromagnetic radiation undergoes spontaneous emission. What is the state of the atom during such spontaneous emission? Let us model the interaction of one atom with a single optical mode using the Jaynes-Cummings interaction $$\\kH = \\hbar\\knu\\hat{a}^\\dagger\\hat{a} + \\frac{\\hbar\\komega}{2}\\sigma_z + \\hbar\\kg(\\hat{a}^\\dagger\\sigma_- + \\hat{a}\\sigma_+)$$ where $\\kdelta = \\knu - \\komega$ is the detuning of the cavity frequency $\\knu$ from the atomic frequency $\\komega$, $\\kg$ is the coupling of the atom to the field and we defined $\\sigma_z = |2\\rangle\\langle 2| - |1\\rangle\\langle 1|$, $\\sigma_+ = |2\\rangle\\langle 1|$, $\\sigma_- = |1\\rangle\\langle 2|$. In the subspace where at most one quantum of energy is exchanged with the optical mode, we may write this Hamiltonian as a matrix $$\\kH = \\frac{\\hbar}{2}\\begin{bmatrix} -\\kdelta - 2\\komega & 0 & 0 \\\\ 0 & -\\kdelta & 2\\kg \\\\ 0 & 2\\kg & \\kdelta \\end{bmatrix},$$ where the basis states are $|1,0\\rangle$, $|2,0\\rangle$ and $|1,1\\rangle$. Here $|1\\rangle$ and $|2\\rangle$ are the ground and excited states of the atom, and the second label, $0$ or $1$, is the number of photons in the optical mode. Suppose that the atom interacts with the cavity for a short time $\\Delta t$, after which the cavity is measured. Determine how its density matrix evolves under repeated short evolutions with the cavity. The cavity state is reset to $|0\\rangle$ after each interaction. What is the fixed point of this process? This shows how spontaneous emission emerges as the limiting case of a continuous readout of the photon field.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For one short interaction, $\\Omega'\\Delta t \\ll 1$, (c) gives $|b|^2 \\approx \\kg^2\\Delta t^2$ and $|a| \\approx 1 - \\kg^2\\Delta t^2/2$, and $e^{i\\phi}a^* \\approx e^{i\\komega\\Delta t}$ in phase. Resetting the cavity to $|0\\rangle$ makes every step the same map, so after $N$ steps, $\\kt = N\\Delta t$, $$\\rho_{22}(\\kt) = (1 - \\kg^2\\Delta t^2)^N\\rho_{22}(0) \\to e^{-\\kgamma\\kt}\\rho_{22}(0), \\quad \\rho_{11}(\\kt) = 1 - \\rho_{22}(\\kt), \\quad |\\rho_{12}(\\kt)| \\to e^{-\\kgamma\\kt/2}|\\rho_{12}(0)|,$$ with $\\kgamma = \\kg^2\\Delta t$ and the coherence turning at $\\komega$. The excited population decays at $\\kgamma$ and the atomic dipole at $\\kgamma/2$, as in Eq. (2.94). The fixed point is $\\rho = |1\\rangle\\langle 1|$, the atom in its ground state with no coherence."
+   }
+  },
+  {
+   "id": "hw7-2e",
+   "source_id": "hw7.2e",
+   "source_number": "Problem Set 7, Problem 2(e)",
+   "origin": "mit-8422",
+   "changes": "Restated in the notes' notation: MIT's cavity frequency $\\omega$, atomic frequency $\\omega_0$, coupling $\\Omega_1$, decay rate $\\Gamma$ and states $|e\\rangle$, $|g\\rangle$, $|0g\\rangle$, $|0e\\rangle$, $|1g\\rangle$ are $\\nu$, $\\omega$, $2g$, $\\gamma$ and $|2\\rangle$, $|1\\rangle$, $|1,0\\rangle$, $|2,0\\rangle$, $|1,1\\rangle$ here, and its generalized Rabi frequency $\\Omega$ is written $\\Omega'$, since $\\Omega$ is the notes' Rabi frequency; part e restates the setup of part d, which MIT cites as “d)”.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ww-continuum",
+   "prompt": "One atom and one photon: spontaneous emission. A single atom coupled to a single mode of electromagnetic radiation undergoes spontaneous emission. What is the state of the atom during such spontaneous emission? Let us model the interaction of one atom with a single optical mode using the Jaynes-Cummings interaction $$\\kH = \\hbar\\knu\\hat{a}^\\dagger\\hat{a} + \\frac{\\hbar\\komega}{2}\\sigma_z + \\hbar\\kg(\\hat{a}^\\dagger\\sigma_- + \\hat{a}\\sigma_+)$$ where $\\kdelta = \\knu - \\komega$ is the detuning of the cavity frequency $\\knu$ from the atomic frequency $\\komega$, $\\kg$ is the coupling of the atom to the field and we defined $\\sigma_z = |2\\rangle\\langle 2| - |1\\rangle\\langle 1|$, $\\sigma_+ = |2\\rangle\\langle 1|$, $\\sigma_- = |1\\rangle\\langle 2|$. In the subspace where at most one quantum of energy is exchanged with the optical mode, we may write this Hamiltonian as a matrix $$\\kH = \\frac{\\hbar}{2}\\begin{bmatrix} -\\kdelta - 2\\komega & 0 & 0 \\\\ 0 & -\\kdelta & 2\\kg \\\\ 0 & 2\\kg & \\kdelta \\end{bmatrix},$$ where the basis states are $|1,0\\rangle$, $|2,0\\rangle$ and $|1,1\\rangle$. Here $|1\\rangle$ and $|2\\rangle$ are the ground and excited states of the atom, and the second label, $0$ or $1$, is the number of photons in the optical mode. Let $|2\\rangle$ and $|1\\rangle$ be depicted as the south and north poles of a Bloch sphere representation of the atom. Plot the points $(|2\\rangle + |1\\rangle)/\\sqrt{2}$, $(|2\\rangle - |1\\rangle)/\\sqrt{2}$ and $|2\\rangle$. Recall that a two-dimensional density matrix $\\rho$ can be represented by a point $\\vec{r}$ <em>inside</em> the Bloch sphere, using $$\\rho = \\frac{I + \\vec{r}\\cdot\\vec{\\sigma}}{2}.$$ Plot how these three initial states evolve under repeated short evolutions with the cavity, in which the atom interacts with the cavity for a short time $\\Delta t$, the cavity is measured, and its state is reset to $|0\\rangle$ after each interaction.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $|1\\rangle$ at the north pole, $r_z = \\rho_{11} - \\rho_{22}$ and $r_x + ir_y = 2\\rho_{12}$, $r_x$ pointing to $(|2\\rangle + |1\\rangle)/\\sqrt{2}$. The three states start at $(r_x, r_z) = (1, 0)$ and $(-1, 0)$ on the equator and at the south pole $(0, -1)$. From (d), $r_z(\\kt) = 1 - (1 - r_z(0))e^{-\\kgamma\\kt}$, and the transverse part shrinks as $e^{-\\kgamma\\kt/2}$ while turning about the $z$ axis at $\\komega$. $|2\\rangle$ rises straight up the axis through the interior, $r_z = 1 - 2e^{-\\kgamma\\kt}$, through mixed states, to the north pole. Each equator state spirals inward and upward about the axis; in a frame turning at $\\komega$ it stays in its meridian plane on the parabola $r_z = 1 - r_x^2$, inside the sphere. All three end at $|1\\rangle$, the north pole."
+   }
+  },
+  {
+   "id": "hw7-2f",
+   "source_id": "hw7.2f",
+   "source_number": "Problem Set 7, Problem 2(f)",
+   "origin": "mit-8422",
+   "changes": "Restated in the notes' notation: MIT's cavity frequency $\\omega$, atomic frequency $\\omega_0$, coupling $\\Omega_1$, decay rate $\\Gamma$ and states $|e\\rangle$, $|g\\rangle$, $|0g\\rangle$, $|0e\\rangle$, $|1g\\rangle$ are $\\nu$, $\\omega$, $2g$, $\\gamma$ and $|2\\rangle$, $|1\\rangle$, $|1,0\\rangle$, $|2,0\\rangle$, $|1,1\\rangle$ here, and its generalized Rabi frequency $\\Omega$ is written $\\Omega'$, since $\\Omega$ is the notes' Rabi frequency; part f restates the setup of part d, which MIT cites as “d)”.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ww-continuum",
+   "prompt": "One atom and one photon: spontaneous emission. A single atom coupled to a single mode of electromagnetic radiation undergoes spontaneous emission. What is the state of the atom during such spontaneous emission? Let us model the interaction of one atom with a single optical mode using the Jaynes-Cummings interaction $$\\kH = \\hbar\\knu\\hat{a}^\\dagger\\hat{a} + \\frac{\\hbar\\komega}{2}\\sigma_z + \\hbar\\kg(\\hat{a}^\\dagger\\sigma_- + \\hat{a}\\sigma_+)$$ where $\\kdelta = \\knu - \\komega$ is the detuning of the cavity frequency $\\knu$ from the atomic frequency $\\komega$, $\\kg$ is the coupling of the atom to the field and we defined $\\sigma_z = |2\\rangle\\langle 2| - |1\\rangle\\langle 1|$, $\\sigma_+ = |2\\rangle\\langle 1|$, $\\sigma_- = |1\\rangle\\langle 2|$. In the subspace where at most one quantum of energy is exchanged with the optical mode, we may write this Hamiltonian as a matrix $$\\kH = \\frac{\\hbar}{2}\\begin{bmatrix} -\\kdelta - 2\\komega & 0 & 0 \\\\ 0 & -\\kdelta & 2\\kg \\\\ 0 & 2\\kg & \\kdelta \\end{bmatrix},$$ where the basis states are $|1,0\\rangle$, $|2,0\\rangle$ and $|1,1\\rangle$. Here $|1\\rangle$ and $|2\\rangle$ are the ground and excited states of the atom, and the second label, $0$ or $1$, is the number of photons in the optical mode. If the cavity is tuned far off resonance from the atom, emission into the cavity is strongly suppressed. It seems surprising that the results for the density matrix under repeated short evolutions with the cavity (the atom interacting for a short time $\\Delta t$, then the cavity measured and reset to $|0\\rangle$) are independent of the detuning $\\kdelta$. How can this be explained physically? <em>Hint</em>: What assumptions have you made?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The short-time evolution assumed $\\Omega'\\Delta t \\ll 1$, and so $\\kdelta\\Delta t \\ll 1$: the cavity is read out before the detuning has time to act. A measurement after $\\Delta t$ resolves the photon's energy only to about $\\hbar/\\Delta t$, so for $\\kdelta \\ll 1/\\Delta t$ the mode is in effect on resonance, and the emission probability per step, $\\frac{4\\kg^2}{\\Omega'^2}\\sin^2\\frac{\\Omega'\\Delta t}{2} \\approx \\kg^2\\Delta t^2$, does not depend on $\\kdelta$. This is the memoryless continuum of the Wigner-Weisskopf theory: a reservoir reset faster than $1/\\kdelta$ looks flat. If instead $\\kdelta\\Delta t \\gtrsim 1$, the probability per step is at most $4\\kg^2/\\kdelta^2$, the suppression the question describes."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "hw5-1a",
+   "concept": "atom-field-interaction"
+  },
+  {
+   "exercise": "hw5-1a",
+   "concept": "transverse-fields-and-gauge"
+  },
+  {
+   "exercise": "hw5-1a",
+   "concept": "dipole-interaction"
+  },
+  {
+   "exercise": "hw5-1a",
+   "concept": "quantized-electric-field"
+  },
+  {
+   "exercise": "hw5-1b",
+   "concept": "fermi-golden-rule"
+  },
+  {
+   "exercise": "hw5-1b",
+   "concept": "quantized-electric-field"
+  },
+  {
+   "exercise": "hw5-1b",
+   "concept": "spontaneous-emission-rate"
+  },
+  {
+   "exercise": "hw7-2a",
+   "concept": "atom-field-interaction"
+  },
+  {
+   "exercise": "hw7-2a",
+   "concept": "single-photon-rabi-frequency"
+  },
+  {
+   "exercise": "hw7-2a",
+   "concept": "rabi-oscillations"
+  },
+  {
+   "exercise": "hw7-2a",
+   "concept": "time-evolution-operator"
+  },
+  {
+   "exercise": "hw7-2b",
+   "concept": "single-photon-rabi-frequency"
+  },
+  {
+   "exercise": "hw7-2b",
+   "concept": "spontaneous-emission"
+  },
+  {
+   "exercise": "hw7-2b",
+   "concept": "born-rule"
+  },
+  {
+   "exercise": "hw7-2c",
+   "concept": "dipole-decay"
+  },
+  {
+   "exercise": "hw7-2c",
+   "concept": "spontaneous-emission"
+  },
+  {
+   "exercise": "hw7-2d",
+   "concept": "spontaneous-emission-rate"
+  },
+  {
+   "exercise": "hw7-2d",
+   "concept": "dipole-decay"
+  },
+  {
+   "exercise": "hw7-2d",
+   "concept": "wigner-weisskopf"
+  },
+  {
+   "exercise": "hw7-2e",
+   "concept": "bloch-sphere"
+  },
+  {
+   "exercise": "hw7-2e",
+   "concept": "dipole-decay"
+  },
+  {
+   "exercise": "hw7-2f",
+   "concept": "memoryless-continuum"
+  },
+  {
+   "exercise": "hw7-2f",
+   "concept": "wigner-weisskopf"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "footnote-4",
+   "kind": "book",
+   "number": "4",
+   "html": "For simplicity, here we consider photons propagating in a one-dimensional system to avoid more complicated expressions involving the vector nature of $\\kk$ and polarization vectors. The important point is that there is a pole in the complex lower half-plane in <a href=\"#eq-2-99\">Eq. (2.99)</a>. To evaluate this integral, we close the contour in the lower half-plane for $\\kt &gt; z/c$ and in the upper half-plane for $\\kt &lt; z/c$, which gives us the step function in the following line. For a more rigorous derivation, see <em>Scully and Zubairy</em>, pp. 209-210."
+  },
+  {
+   "id": "footnote-3",
+   "kind": "book",
+   "number": "3",
+   "html": "This treatment glosses over some subtlety associated with having complex-valued amplitudes for running waves - these complications also appear in the standing wave treatment if you allow for cosine-like as well as sine-like modes. Careful accounting for the real and imaginary parts of the amplitudes (or the sine and cosine amplitudes) yields the given form, where you will note that $\\hat{a}_j$ and $\\hat{a}_j^\\dagger$ multiply waves traveling in opposite directions."
+  },
+  {
+   "id": "c-eq-2-55",
+   "kind": "correction",
+   "html": "The book prints $\\partial^2\\kEfield/\\partial^2\\kt$. The second derivative is taken with respect to time twice, $\\partial^2\\kEfield/\\partial\\kt^2$."
+  },
+  {
+   "id": "c-eq-2-58",
+   "kind": "correction",
+   "html": "The book prints $\\knu_i^2$ under the root. The factor is $A_j = \\sqrt{\\knu_j^2/\\epsilon_0\\kV}$, with the mode index $j$ of the sum."
+  },
+  {
+   "id": "c-poisson",
+   "kind": "correction",
+   "html": "The book prints $\\nabla^2\\phi = 4\\pi\\rho$, the Gaussian form with the sign of Poisson's equation dropped. In the S.I. units of this section it reads $\\nabla^2\\phi = -\\rho/\\epsilon_0$."
+  },
+  {
+   "id": "c-canonical",
+   "kind": "correction",
+   "html": "The book prints $\\kp - q\\hat{A}/c$, the Gaussian form. In the S.I. units of this section the canonical momentum is $\\kp - q\\hat{A}$, and the Hamiltonian carries $(\\kp - q\\hat{A})^2/2\\km$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "field-hamiltonian-ladder",
+   "what": "the field Hamiltonian in creation and annihilation operators",
+   "source": "Modern Atomic and Optical Physics II, 2.3 Spontaneous emission, 2.3.1 Quantization",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{a}_j = \\frac{1}{\\sqrt{2\\hbar\\knu_j}}\\left(\\knu_j\\hat{\\kqj}_j + i\\hat{\\kpj}_j\\right)",
+       "src": "(2.66)"
+      },
+      {
+       "tex": "\\hat{a}_j^\\dagger = \\frac{1}{\\sqrt{2\\hbar\\knu_j}}\\left(\\knu_j\\hat{\\kqj}_j - i\\hat{\\kpj}_j\\right)",
+       "src": "(2.67)"
+      },
+      {
+       "tex": "[\\hat{\\kqj}_j, \\hat{\\kpj}_{j}] = i\\hbar",
+       "src": "(2.65)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{[\\hat{a}_j, \\hat{a}_j^\\dagger]} = \\mk{r}{\\frac{1}{2\\hbar\\knu_j}[\\knu_j\\hat{\\kqj}_j + i\\hat{\\kpj}_j,\\ \\knu_j\\hat{\\kqj}_j - i\\hat{\\kpj}_j]}",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{[\\hat{a}_j, \\hat{a}_j^\\dagger]} = \\mk{r}{\\frac{1}{2\\hbar\\knu_j}\\left(-i\\knu_j[\\hat{\\kqj}_j, \\hat{\\kpj}_j] + i\\knu_j[\\hat{\\kpj}_j, \\hat{\\kqj}_j]\\right)}",
+       "uses": [],
+       "cap": "The commutator is linear in each slot, and $\\hat{q}_j$ and $\\hat{p}_j$ each commute with themselves."
+      },
+      {
+       "tex": "\\mk{c}{[\\hat{a}_j, \\hat{a}_j^\\dagger]} = \\mk{r}{\\frac{1}{2\\hbar\\knu_j}\\left(-i\\knu_j(i\\hbar) + i\\knu_j(-i\\hbar)\\right)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{c}{[\\hat{a}_j, \\hat{a}_j^\\dagger]} = \\mk{r}{1}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{\\kqj}_j = \\sqrt{\\frac{\\hbar}{2\\knu_j}}\\left(\\hat{a}_j + \\hat{a}_j^\\dagger\\right)",
+       "src": "(2.66)"
+      },
+      {
+       "tex": "\\hat{\\kpj}_j = -i\\sqrt{\\frac{\\hbar\\knu_j}{2}}\\left(\\hat{a}_j - \\hat{a}_j^\\dagger\\right)",
+       "src": "(2.67)"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH} = \\mk{r}{\\frac{1}{2}\\sum_j\\left(\\knu_j^2\\hat{\\kqj}_j^2 + \\hat{\\kpj}_j^2\\right)}",
+      "src": "(2.68)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{r}{\\frac{1}{2}\\sum_j\\left(\\frac{\\hbar\\knu_j}{2}(\\hat{a}_j + \\hat{a}_j^\\dagger)^2 - \\frac{\\hbar\\knu_j}{2}(\\hat{a}_j - \\hat{a}_j^\\dagger)^2\\right)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{r}{\\sum_j\\frac{\\hbar\\knu_j}{4}\\cdot 2\\left(\\hat{a}_j\\hat{a}_j^\\dagger + \\hat{a}_j^\\dagger\\hat{a}_j\\right)}",
+       "uses": [],
+       "cap": "$(\\hat{a} + \\hat{a}^\\dagger)^2 - (\\hat{a} - \\hat{a}^\\dagger)^2 = 2(\\hat{a}\\hat{a}^\\dagger + \\hat{a}^\\dagger\\hat{a})$, the order of the operators kept."
+      },
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{r}{\\sum_j\\frac{\\hbar\\knu_j}{2}\\left(2\\hat{a}_j^\\dagger\\hat{a}_j + 1\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\hat{a}_j\\hat{a}_j^\\dagger = \\hat{a}_j^\\dagger\\hat{a}_j + 1$."
+      },
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{r}{\\sum_j \\hbar\\knu_j\\left(\\hat{a}_j^\\dagger\\hat{a}_j + \\frac{1}{2}\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(2.69)"
+    }
+   ]
+  },
+  {
+   "id": "atom-field-coupling",
+   "what": "the coupling of an atom to the quantized field",
+   "source": "Modern Atomic and Optical Physics II, 2.3 Spontaneous emission, 2.3.2 Atomic interactions with the quantized field",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kEhat_\\alpha = \\kEplus_\\alpha + \\kEplus_\\alpha^\\dagger",
+       "src": "(2.72)"
+      },
+      {
+       "tex": "\\hat{d} = \\kmu_\\alpha|2\\rangle\\langle 1| + \\kmu_\\alpha^*|1\\rangle\\langle 2|",
+       "src": "2.1.1"
+      },
+      {
+       "tex": "\\kEplus_\\alpha = \\epsilon_\\alpha\\sum_j\\sqrt{\\frac{\\hbar\\knu_j}{2\\epsilon_0\\kV}}\\hat{a}_je^{i\\kk_j\\cdot\\mathbf{r}}",
+       "src": "(2.73)"
+      },
+      {
+       "text": "The terms $\\hat{a}^\\dagger|2\\rangle\\langle 1|$ and $\\hat{a}|1\\rangle\\langle 2|$ do not conserve energy; since $\\hat{a}(\\kt) = \\hat{a}(0)e^{-i\\knu_j\\kt}$, they are the fast-rotating terms the rotating wave approximation neglects.",
+       "src": "2.3.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kVaf} = \\mk{E}{-\\kEhat}\\cdot\\mk{d}{\\hat{d}}",
+      "src": "(2.74)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kVaf} = \\mk{E}{-\\sum_\\alpha(\\kEplus_\\alpha + \\kEplus_\\alpha^\\dagger)}\\cdot\\mk{d}{(\\kmu_\\alpha|2\\rangle\\langle 1| + \\kmu_\\alpha^*|1\\rangle\\langle 2|)}",
+       "uses": [0, 1]
+      },
+      {
+       "tex": "\\mk{V}{\\kVaf} = \\mk{E}{-\\sum_{j,\\alpha}\\sqrt{\\frac{\\hbar\\knu_j}{2\\epsilon_0\\kV}}\\left(\\hat{a}_{j,\\alpha}e^{i\\kk_j\\cdot\\mathbf{r}} + \\hat{a}_{j,\\alpha}^\\dagger e^{-i\\kk_j\\cdot\\mathbf{r}}\\right)}\\mk{d}{(\\kmu_\\alpha|2\\rangle\\langle 1| + \\kmu_\\alpha^*|1\\rangle\\langle 2|)}",
+       "uses": [2],
+       "cap": "With $\\epsilon_\\alpha$ carried into the dipole component $\\mu_\\alpha$ along it."
+      },
+      {
+       "tex": "\\mk{V}{\\kVaf} = \\mk{E}{-\\sum_{j,\\alpha}\\sqrt{\\frac{\\hbar\\knu_j}{2\\epsilon_0\\kV}}\\left(\\kmu_\\alpha e^{i\\kk_j\\cdot\\mathbf{r}}|2\\rangle\\langle 1|\\hat{a}_{j,\\alpha} + \\kmu_\\alpha^* e^{-i\\kk_j\\cdot\\mathbf{r}}|1\\rangle\\langle 2|\\hat{a}_{j,\\alpha}^\\dagger\\right)}",
+       "uses": [3],
+       "map": {
+        "d": "E"
+       }
+      },
+      {
+       "tex": "\\mk{V}{\\kVaf} = \\mk{E}{-\\sum_{j,\\alpha}\\left(\\hbar \\kg_{j,\\alpha}|2\\rangle\\langle 1|\\hat{a}_{j,\\alpha} + \\hbar \\kg_{j,\\alpha}^*|1\\rangle\\langle 2|\\hat{a}_{j,\\alpha}^\\dagger\\right)},\\quad \\kg_{j,\\alpha} = \\frac{\\kmu_\\alpha}{\\hbar}\\sqrt{\\frac{\\hbar\\knu_j}{2\\epsilon_0\\kV}}e^{i\\kk_j\\cdot\\mathbf{r}}",
+       "uses": [],
+       "cap": "Naming the coefficient of $\\hbar|2\\rangle\\langle 1|\\hat{a}_{j,\\alpha}$; the second term carries its conjugate."
+      }
+     ],
+     "num": "(2.76), (2.77)",
+     "note": "The book prints Eq. (2.76) without the parentheses, so that its minus sign reaches only the first term; Eq. (2.78) restores them."
+    }
+   ]
+  },
+  {
+   "id": "spontaneous-emission-rate",
+   "what": "the spontaneous emission rate",
+   "source": "Modern Atomic and Optical Physics II, 2.3 Spontaneous emission, 2.3.4 Wigner-Weisskopf theory of spontaneous emission",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Projected onto $|2,0\\rangle$ and $|1,1_k\\rangle$, the Hamiltonian couples the state $|2,0\\rangle$ of energy $\\hbar\\komega$ to the states $|1,1_k\\rangle$ of energy $\\hbar\\knuk$ through $-\\hbar\\kg_k$.",
+       "src": "(2.79)"
+      },
+      {
+       "text": "In the limit of closely spaced photon frequencies, the effective Hamiltonian is that of a bound-to-continuum transition between the discrete state $|2, 0\\rangle$ and the continuum of states $|1, 1_k\\rangle$.",
+       "src": "2.3.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kgamma} = \\mk{R}{2\\pi\\sum_k |\\kOmegak|^2\\delta(\\knu - \\komegak)}",
+      "src": "(2.51)",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{2\\pi\\sum_{\\kk,\\alpha}|\\kg_{\\kk,\\alpha}|^2\\delta(\\knuk - \\komega)}",
+       "uses": [0],
+       "cap": "Against Eq. (2.42), the coupling $\\Omega_k$ becomes $g_{\\mathbf{k},\\alpha}$, and the detuning $\\nu - \\omega_k$ of a continuum state becomes $\\omega - \\nu_k$; the delta function is even."
+      }
+     ],
+     "num": "(2.80)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "With periodic boundary conditions $k_{\\alpha}L_\\alpha = 2\\pi j_\\alpha$, each allowed wavevector occupies a volume $(2\\pi)^3/\\kV$ of $\\kk$-space, so $\\sum_{\\kk} \\to \\frac{\\kV}{(2\\pi)^3}\\int d^3k$.",
+       "src": "(2.57)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kgamma} = \\mk{R}{2\\pi\\sum_{\\kk,\\alpha}|\\kg_{\\kk,\\alpha}|^2\\delta(\\knuk - \\komega)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{2\\pi\\frac{\\kV}{(2\\pi)^3}\\sum_\\alpha\\int d^3k\\,|\\kg_{\\kk,\\alpha}|^2\\delta(\\knuk - \\komega)}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{\\kV}{(2\\pi)^2}\\sum_\\alpha\\int k^2dk\\int d\\phi\\int\\sin\\theta d\\theta|\\kg_{\\kk,\\alpha}|^2\\delta(\\knuk - \\komega)}",
+       "uses": [],
+       "cap": "In spherical coordinates $d^3k = k^2dk\\,d\\phi\\,\\sin\\theta\\,d\\theta$, and $2\\pi/(2\\pi)^3 = 1/(2\\pi)^2$."
+      }
+     ],
+     "num": "(2.81)"
+    },
+    {
+     "assumes": [
+      {
+       "text": "With the $\\hat{z}$ axis along $\\hat{k}$, the allowed polarization vectors $\\epsilon_x$, $\\epsilon_y$ lie in the $\\hat{x} - \\hat{y}$ plane; the dipole $\\kmu$ makes the angle $\\theta$ with $\\hat{k}$, at azimuth $\\phi$.",
+       "src": "2.3.4"
+      },
+      {
+       "tex": "\\kg_k = \\frac{\\kmu}{\\hbar}\\sqrt{\\frac{\\hbar\\knuk}{2\\epsilon_0\\kV}}",
+       "src": "(2.85)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kg_{j,\\alpha}} = \\mk{R}{\\frac{\\kmu_\\alpha}{\\hbar}\\sqrt{\\frac{\\hbar\\knu_j}{2\\epsilon_0\\kV}}e^{i\\kk_j\\cdot\\mathbf{r}}}",
+      "src": "(2.77)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|\\kg_{\\kk,\\alpha}|^2} = \\mk{R}{\\frac{|\\kmu\\cdot\\epsilon_\\alpha|^2}{\\hbar^2}\\,\\frac{\\hbar\\knuk}{2\\epsilon_0\\kV}}",
+       "uses": [],
+       "cap": "$|e^{i\\mathbf{k}\\cdot\\mathbf{r}}| = 1$, and $\\mu_\\alpha = \\mu\\cdot\\epsilon_\\alpha$ is the dipole along the polarization."
+      },
+      {
+       "tex": "\\mk{L}{\\sum_\\alpha|\\kg_{\\kk,\\alpha}|^2} = \\mk{R}{\\frac{\\knuk}{2\\hbar\\epsilon_0\\kV}\\sum_{\\alpha=x,y}|\\kmu\\cdot\\epsilon_\\alpha|^2}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{\\sum_\\alpha|\\kg_{\\kk,\\alpha}|^2} = \\mk{R}{\\frac{\\knuk}{2\\hbar\\epsilon_0\\kV}\\left(|\\kmu\\sin\\theta\\cos\\phi|^2 + |\\kmu\\sin\\theta\\sin\\phi|^2\\right)}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{\\sum_\\alpha|\\kg_{\\kk,\\alpha}|^2} = \\mk{R}{\\frac{\\knuk|\\kmu|^2}{2\\hbar\\epsilon_0\\kV}\\sin^2\\theta}",
+       "uses": [],
+       "cap": "$\\cos^2\\phi + \\sin^2\\phi = 1$."
+      },
+      {
+       "tex": "\\mk{L}{\\sum_\\alpha|\\kg_{\\kk,\\alpha}|^2} = \\mk{R}{|\\kg_k|^2\\sin^2\\theta}",
+       "uses": [1]
+      }
+     ],
+     "num": "(2.84)",
+     "note": "The book prints $\\sin\\theta^2$ for $\\sin^2\\theta$, and a stray period inside the bracket of Eq. (2.83)."
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "text": "A running wave $e^{i(\\kk\\cdot\\mathbf{r} - \\knuk\\kt)}$ satisfies the wave equation (2.55) when $\\knuk = c|\\kk|$.",
+       "src": "(2.55)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{\\kV}{(2\\pi)^2}\\sum_\\alpha\\int k^2dk\\int d\\phi\\int\\sin\\theta d\\theta|\\kg_{\\kk,\\alpha}|^2\\delta(\\knuk - \\komega)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{\\kV}{(2\\pi)^2}\\int k^2dk\\int d\\phi\\int d\\theta\\sin\\theta\\,|\\kg_k|^2\\sin^2\\theta\\,\\delta(\\knuk - \\komega)}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{\\kV}{(2\\pi)^2}\\int k^2dk\\;2\\pi|\\kg_k|^2\\int d\\theta\\sin^3\\theta\\;\\delta(\\knuk - \\komega)}",
+       "uses": [],
+       "cap": "Nothing depends on $\\phi$, whose integral gives $2\\pi$."
+      },
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{\\kV}{(2\\pi)^2}\\int k^2dk\\;\\frac{8\\pi}{3}|\\kg_k|^2\\;\\delta(\\knuk - \\komega)}",
+       "uses": [],
+       "cap": "$\\int_0^\\pi\\sin^3\\theta\\,d\\theta = 4/3$."
+      },
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{2\\kV}{3\\pi}\\int_0^\\infty k^2dk|\\kg_k|^2\\delta(\\knuk - \\komega)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{2\\komega^2\\kV}{3\\pi c^3}|\\kg_{k=\\komega/c}|^2}",
+       "uses": [2],
+       "cap": "With $\\nu_k = ck$, $\\delta(ck - \\omega) = \\delta(k - \\omega/c)/c$, which sets $k = \\omega/c$."
+      }
+     ],
+     "num": "(2.88)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\kg_k = \\frac{\\kmu}{\\hbar}\\sqrt{\\frac{\\hbar\\knuk}{2\\epsilon_0\\kV}}",
+       "src": "(2.85)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{2\\komega^2\\kV}{3\\pi c^3}|\\kg_{k=\\komega/c}|^2}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{2\\komega^2\\kV}{3\\pi c^3}\\,\\frac{|\\kmu|^2}{\\hbar^2}\\,\\frac{\\hbar\\komega}{2\\epsilon_0\\kV}}",
+       "uses": [1],
+       "cap": "At $k = \\omega/c$, $\\nu_k = \\omega$."
+      },
+      {
+       "tex": "\\mk{g}{\\kgamma} = \\mk{R}{\\frac{\\komega^3|\\kmu|^2}{3\\pi\\epsilon_0\\hbar c^3}}",
+       "uses": []
+      }
+     ],
+     "num": "(2.89)"
+    }
+   ]
+  },
+  {
+   "id": "dipole-decay",
+   "what": "the decay of the atomic dipole",
+   "source": "Modern Atomic and Optical Physics II, 2.3 Spontaneous emission, 2.3.4 Wigner-Weisskopf theory of spontaneous emission",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{d} = \\kmu|2\\rangle\\langle 1| + \\kmu^*|1\\rangle\\langle 2|",
+       "src": "(2.75)"
+      },
+      {
+       "tex": "|\\kpsi(\\kt)\\rangle = e^{-\\kgamma \\kt/2}e^{-i\\komega \\kt}\\kctwo^0|2,0\\rangle + \\kcone^0|1,0\\rangle + \\sum_jc_j(\\kt)|1,1_j\\rangle",
+       "src": "2.3.4"
+      },
+      {
+       "text": "The single photon states are orthogonal to the radiation vacuum, $\\langle 0|1_j\\rangle = 0$.",
+       "src": "2.3.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\hat{d}\\rangle} = \\mk{R}{\\langle\\kpsi|\\hat{d}|\\kpsi\\rangle}",
+      "src": "(1.6)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\kpsi|\\hat{d}|\\kpsi\\rangle} = \\mk{a}{\\kmu^*\\langle\\kpsi|1\\rangle\\langle 2|\\kpsi\\rangle} + \\mk{b}{\\kmu\\langle\\kpsi|2\\rangle\\langle 1|\\kpsi\\rangle}",
+       "uses": [0],
+       "map": {
+        "R": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kpsi|\\hat{d}|\\kpsi\\rangle} = \\mk{E}{e^{-\\kgamma \\kt/2}}\\left(\\mk{a}{\\kctwo^0e^{-i\\komega \\kt}(\\kcone^0)^*\\kmu^*} + \\mk{b}{\\kcone^0(\\kctwo^0e^{-i\\komega \\kt})^*\\kmu}\\right)",
+       "uses": [1, 2],
+       "cap": "$\\langle 2|\\psi\\rangle$ is $e^{-\\gamma t/2}e^{-i\\omega t}c_2^0$ times the vacuum, which meets only the vacuum part $c_1^0$ of $\\langle 1|\\psi\\rangle$; the one-photon parts drop out."
+      }
+     ],
+     "num": "(2.94)",
+     "note": "The book writes $\\kmu$ on $\\langle\\kpsi|1\\rangle\\langle 2|\\kpsi\\rangle$ and $\\kmu^*$ on $\\langle\\kpsi|2\\rangle\\langle 1|\\kpsi\\rangle$ in Eqs. (2.93) and (2.94). With $\\hat{d} = \\kmu|2\\rangle\\langle 1| + \\kmu^*|1\\rangle\\langle 2|$, as in Eq. (2.75) and Eq. (2.15), the two are the other way round. The decay $e^{-\\kgamma\\kt/2}$ is the same either way."
+    }
+   ]
+  }
+ ]
+}

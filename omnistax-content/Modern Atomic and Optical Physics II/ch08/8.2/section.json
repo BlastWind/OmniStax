@@ -1,0 +1,948 @@
+{
+ "id": "8.2",
+ "chapter": "8",
+ "title": "Semiclassical description",
+ "short": "Semiclassical description",
+ "lead": "The light force on an atom treated as a classical particle, and its two parts: the <span data-concept=\"dipole-force\">dipole force</span> of far-detuned light, behind <span data-concept=\"dipole-trap\">dipole traps</span> and <span data-concept=\"optical-lattice\">optical lattices</span>, and the <span data-concept=\"dissipative-force\">dissipative force</span> of a plane wave, how large it can grow, and what it takes to <span data-concept=\"atomic-beam-slowing\">slow an atomic beam</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "MIT 8.422 Problem Set 8, Problem 1, Problem Set 10, Problem 3 and Problem Set 9, Problems 1 and 2 are set one card per part, restated in Lukin's notation with AI-written solutions, since the course published no key; Problem Set 9 asks for sodium numbers after each expression, and those values are held.",
+ "figures": [
+  {
+   "id": "sim-dipole-potential",
+   "kind": "sim",
+   "draws": [
+    "coupling",
+    "energy",
+    "force",
+    "frequency",
+    "rate",
+    "length"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "force-operator",
+   "concept": "light-force-operator",
+   "verb": "introduces"
+  },
+  {
+   "span": "semiclassical",
+   "concept": "semiclassical-light-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "validity",
+   "concept": "semiclassical-force-validity",
+   "verb": "introduces"
+  },
+  {
+   "span": "dipole-force-name",
+   "concept": "dipole-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "dipole-trap",
+   "concept": "dipole-trap",
+   "verb": "introduces"
+  },
+  {
+   "span": "optical-lattice",
+   "concept": "optical-lattice",
+   "verb": "introduces"
+  },
+  {
+   "span": "dissipative-force",
+   "concept": "dissipative-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "max-force",
+   "concept": "maximum-dissipative-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "beam-slowing",
+   "concept": "atomic-beam-slowing",
+   "verb": "introduces"
+  },
+  {
+   "span": "force-operator",
+   "concept": "heisenberg-picture",
+   "verb": "uses"
+  },
+  {
+   "span": "force-operator",
+   "concept": "commutator",
+   "verb": "uses"
+  },
+  {
+   "span": "force-operator",
+   "concept": "moving-atom-hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "validity-estimate",
+   "concept": "steady-state-coherence",
+   "verb": "uses"
+  },
+  {
+   "span": "validity-estimate",
+   "concept": "dephasing-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "validity-estimate",
+   "concept": "detuning",
+   "verb": "uses"
+  },
+  {
+   "span": "recoil-energy",
+   "concept": "recoil-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "validity-estimate",
+   "concept": "heisenberg-uncertainty-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "ratio",
+   "concept": "susceptibility",
+   "verb": "uses"
+  },
+  {
+   "span": "v-eff",
+   "concept": "ac-stark-shift",
+   "verb": "uses"
+  },
+  {
+   "span": "v-eff",
+   "concept": "dressed-states",
+   "verb": "uses"
+  },
+  {
+   "span": "multilevel",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler-term",
+   "concept": "recoil-shifted-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "kicks",
+   "concept": "atomic-recoil",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-8-25",
+   "concept": "saturation",
+   "verb": "uses"
+  },
+  {
+   "span": "max-force-text",
+   "concept": "spontaneous-emission-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "slowing",
+   "concept": "zeeman-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-dissipative-force",
+   "concept": "optical-pumping-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-scattering-force",
+   "concept": "steady-state-population",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "hw8-1a",
+   "source_id": "hw8.1a",
+   "source_number": "Problem Set 8, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's laser frequency $\\omega$ is $\\nu$ and the resonant frequency $\\omega_0$ is $\\omega$, so $\\delta = \\nu - \\omega$; the dipole moment $\\mathbf{p}$ along $\\hat{p}$ is $\\mathbf{d}$ along the unit vector $\\hat{\\mathbf{n}}$ and its quadrature $v$ is $w$ (Lukin's $p$ is momentum and $v$ velocity); the damping coefficient $\\gamma$ is $\\beta$, so MIT's $\\Gamma = \\gamma/m$ is $\\beta/m$, which is Lukin's decay rate $\\gamma$; MIT's phase $\\theta$ is kept (the field $\\cos(\\theta + \\nu t)$ makes $\\theta = -\\phi$ against Lukin's $\\Omega \\propto e^{i\\phi}$); a missing closing parenthesis in (2) is supplied.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "semiclassical",
+   "prompt": "In class, we will discuss light forces using the OBE. In preparation for this, you are asked here to consider a (semi-)classical derivation. Assume that a hydrogenic atom can be modeled classically as an electron harmonically bound to a nucleus, with a resonant frequency $\\omega$ and damping coefficient $\\beta$. The nucleus is fixed at position $\\mathbf{x}_0$ while the electron's position is denoted by $\\mathbf{x}$. Now suppose the atom is illuminated with an electromagnetic wave of the form $$\\mathbf{E}(\\mathbf{x}, t) = \\hat{e}E_0(\\mathbf{x})\\cos(\\theta(\\mathbf{x}) + \\nu t) \\qquad (1)$$ where $\\theta(\\mathbf{x})$ is the phase of the wave as a function of position $\\mathbf{x}$ at time $t = 0$. The dipole moment of the electron may be written as $$\\mathbf{d}(\\mathbf{x}, t) = \\hat{\\mathbf{n}}\\left(u\\cos(\\theta(\\mathbf{x}) + \\nu t) - w\\sin(\\theta(\\mathbf{x}) + \\nu t)\\right) \\qquad (2)$$ Then the force of the light on the atom is $$\\mathbf{F} = (\\mathbf{d}\\cdot\\hat{e})\\nabla E(\\mathbf{x}, t) \\qquad (3)$$ Time averaged force. Make the dipole approximation that $\\mathbf{E}(\\mathbf{x}) \\approx \\mathbf{E}(\\mathbf{x}_0)$. Show that the time averaged force is $$\\langle\\mathbf{F}\\rangle = \\frac{1}{2}(\\hat{\\mathbf{n}}\\cdot\\hat{e})\\left(u\\nabla E_0(\\mathbf{x}_0) + wE_0(\\mathbf{x}_0)\\nabla\\theta(\\mathbf{x}_0)\\right) \\qquad (4)$$ This expression is exactly analogous to the quantum-mechanically derived force. The first term is the dipole (stimulated) force, and the second term is the scattering (spontaneous) force.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\Phi = \\theta(\\mathbf{x}) + \\nu t$. Then $\\mathbf{d}\\cdot\\hat{e} = (\\hat{\\mathbf{n}}\\cdot\\hat{e})(u\\cos\\Phi - w\\sin\\Phi)$ and $\\nabla E = \\nabla E_0\\cos\\Phi - E_0\\sin\\Phi\\,\\nabla\\theta$, so $$\\mathbf{F} = (\\hat{\\mathbf{n}}\\cdot\\hat{e})\\left(u\\cos^2\\Phi\\,\\nabla E_0 + w\\sin^2\\Phi\\,E_0\\nabla\\theta - \\sin\\Phi\\cos\\Phi\\,(w\\nabla E_0 + uE_0\\nabla\\theta)\\right).$$ Over an optical period $\\langle\\cos^2\\Phi\\rangle = \\langle\\sin^2\\Phi\\rangle = \\tfrac{1}{2}$ and $\\langle\\sin\\Phi\\cos\\Phi\\rangle = 0$. In the dipole approximation $E_0$, $\\theta$ and their gradients are taken at $\\mathbf{x}_0$, which gives (4). The in-phase quadrature $u$ multiplies the amplitude gradient and the out-of-phase quadrature $w$ the phase gradient, the two terms of Eq. (8.18): the reactive force goes with $\\mathrm{Re}(\\rho_{21}/\\Omega)$ and $\\nabla|\\Omega|^2$, the dissipative with $\\mathrm{Im}(\\rho_{21}/\\Omega)$ and $\\nabla\\phi$."
+   }
+  },
+  {
+   "id": "hw8-1b",
+   "source_id": "hw8.1b",
+   "source_number": "Problem Set 8, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's laser frequency $\\omega$ is $\\nu$ and the resonant frequency $\\omega_0$ is $\\omega$, so $\\delta = \\nu - \\omega$; the dipole moment $\\mathbf{p}$ along $\\hat{p}$ is $\\mathbf{d}$ along the unit vector $\\hat{\\mathbf{n}}$ and its quadrature $v$ is $w$ (Lukin's $p$ is momentum and $v$ velocity); the damping coefficient $\\gamma$ is $\\beta$, so MIT's $\\Gamma = \\gamma/m$ is $\\beta/m$, which is Lukin's decay rate $\\gamma$; MIT's phase $\\theta$ is kept (the field $\\cos(\\theta + \\nu t)$ makes $\\theta = -\\phi$ against Lukin's $\\Omega \\propto e^{i\\phi}$); a missing closing parenthesis in (2) is supplied; the classical model is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dipole-force-name",
+   "prompt": "For the classical atom of this problem, an electron bound harmonically at $\\mathbf{x}_0$ with resonant frequency $\\omega$ and damping coefficient $\\beta$, in the wave $\\mathbf{E}(\\mathbf{x}, t) = \\hat{e}E_0(\\mathbf{x})\\cos(\\theta(\\mathbf{x}) + \\nu t)$, with dipole moment $\\mathbf{d} = \\hat{\\mathbf{n}}(u\\cos(\\theta + \\nu t) - w\\sin(\\theta + \\nu t))$ and force $\\mathbf{F} = (\\mathbf{d}\\cdot\\hat{e})\\nabla E(\\mathbf{x}, t)$: The potential picture. Recalculate the time averaged force on the atom from the instantaneous potential energy of a dipole in an electric field. How does this answer differ from that of 1a? Speculate as to why.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The instantaneous energy is $U = -\\mathbf{d}\\cdot\\mathbf{E} = -(\\hat{\\mathbf{n}}\\cdot\\hat{e})E_0(u\\cos\\Phi - w\\sin\\Phi)\\cos\\Phi$, whose time average is $\\langle U\\rangle = -\\tfrac{1}{2}(\\hat{\\mathbf{n}}\\cdot\\hat{e})uE_0$. Taking the dipole as given, $-\\nabla\\langle U\\rangle = \\tfrac{1}{2}(\\hat{\\mathbf{n}}\\cdot\\hat{e})u\\nabla E_0$: the dipole force of (4) and nothing else. The scattering term $\\tfrac{1}{2}(\\hat{\\mathbf{n}}\\cdot\\hat{e})wE_0\\nabla\\theta$ is missing, because the out-of-phase quadrature $w$ averages out of $\\langle U\\rangle$. It is missing for a reason: the $w$ part of the dipole is the part that absorbs energy from the field, and a force that comes from absorption is not the gradient of any potential. This is the book's distinction after Eq. (8.20): the reactive force is conservative, written as the gradient of $V_\\mathrm{eff} = \\hbar|\\Omega|^2/\\delta$, while the dissipative force, which pushes along the phase gradient $\\nabla\\phi = \\mathbf{k}$ of a plane wave, has no potential. A second difference concerns the dipole term itself: the dipole is induced, $u \\propto E_0$, and if $u$ is differentiated along with $E_0$ the gradient doubles. The energy of an induced dipole is half of $-\\mathbf{d}\\cdot\\mathbf{E}$, $\\langle U\\rangle = -\\tfrac{1}{4}(\\hat{\\mathbf{n}}\\cdot\\hat{e})uE_0$ with $u/E_0$ held fixed, and its gradient gives back the dipole term of (4)."
+   }
+  },
+  {
+   "id": "hw8-1c",
+   "source_id": "hw8.1c",
+   "source_number": "Problem Set 8, Problem 1(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's laser frequency $\\omega$ is $\\nu$ and the resonant frequency $\\omega_0$ is $\\omega$, so $\\delta = \\nu - \\omega$; the dipole moment $\\mathbf{p}$ along $\\hat{p}$ is $\\mathbf{d}$ along the unit vector $\\hat{\\mathbf{n}}$ and its quadrature $v$ is $w$ (Lukin's $p$ is momentum and $v$ velocity); the damping coefficient $\\gamma$ is $\\beta$, so MIT's $\\Gamma = \\gamma/m$ is $\\beta/m$, which is Lukin's decay rate $\\gamma$; MIT's phase $\\theta$ is kept (the field $\\cos(\\theta + \\nu t)$ makes $\\theta = -\\phi$ against Lukin's $\\Omega \\propto e^{i\\phi}$); a missing closing parenthesis in (2) is supplied; the classical model is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "semiclassical",
+   "prompt": "For the classical atom of this problem, an electron bound harmonically at $\\mathbf{x}_0$ with resonant frequency $\\omega$ and damping coefficient $\\beta$, in the wave $\\mathbf{E}(\\mathbf{x}, t) = \\hat{e}E_0(\\mathbf{x})\\cos(\\theta(\\mathbf{x}) + \\nu t)$, with dipole moment $\\mathbf{d} = \\hat{\\mathbf{n}}(u\\cos(\\theta + \\nu t) - w\\sin(\\theta + \\nu t))$ and force $\\mathbf{F} = (\\mathbf{d}\\cdot\\hat{e})\\nabla E(\\mathbf{x}, t)$: Dipole moment of electron. Now we will solve explicitly for the dipole moment of the electron. In complex notation, the equation of motion is $$m\\frac{\\partial^2\\mathbf{r}}{\\partial t^2} + \\beta\\frac{\\partial\\mathbf{r}}{\\partial t} + m\\omega^2\\mathbf{r} = -e\\hat{e}E_0(\\mathbf{x}_0)e^{i(\\theta(\\mathbf{x}_0) + \\nu t)} \\qquad (5)$$ where $\\mathbf{r} = \\mathbf{x} - \\mathbf{x}_0$. Solve this equation to find $\\mathbf{d} = -e\\mathbf{r}$. Substitute the quadrature components of $\\mathbf{d}$ into the force equation from part (a) to find that $$\\mathbf{F} = -\\frac{e^2}{2m\\omega}\\frac{\\delta\\nabla E_0^2 + \\gamma E_0^2\\nabla\\theta}{4\\delta^2 + \\gamma^2} \\qquad (6)$$ where $\\delta = \\nu - \\omega$ and $\\gamma = \\beta/m$. Make the approximation that $\\nu \\approx \\omega$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Try $\\mathbf{r} = \\mathbf{r}_0e^{i(\\theta + \\nu t)}$: $(m\\omega^2 - m\\nu^2 + i\\beta\\nu)\\mathbf{r}_0 = -e\\hat{e}E_0$. With $\\nu \\approx \\omega$, $\\omega^2 - \\nu^2 \\approx -2\\omega\\delta$ and $\\beta\\nu \\approx m\\omega\\gamma$, so $$\\mathbf{r}_0 = \\frac{e\\hat{e}E_0}{m\\omega(2\\delta - i\\gamma)} = \\frac{e\\hat{e}E_0(2\\delta + i\\gamma)}{m\\omega(4\\delta^2 + \\gamma^2)}.$$ The physical dipole is $\\mathbf{d} = \\mathrm{Re}(-e\\mathbf{r}) = -\\frac{e^2E_0}{m\\omega(4\\delta^2 + \\gamma^2)}\\hat{e}\\left(2\\delta\\cos\\Phi - \\gamma\\sin\\Phi\\right)$ with $\\Phi = \\theta + \\nu t$, so $\\hat{\\mathbf{n}} = \\hat{e}$, $u = -\\frac{2e^2E_0\\delta}{m\\omega(4\\delta^2 + \\gamma^2)}$ and $w = -\\frac{e^2E_0\\gamma}{m\\omega(4\\delta^2 + \\gamma^2)}$. Into (4): $$\\langle\\mathbf{F}\\rangle = -\\frac{e^2}{2m\\omega}\\frac{2\\delta E_0\\nabla E_0 + \\gamma E_0^2\\nabla\\theta}{4\\delta^2 + \\gamma^2} = -\\frac{e^2}{2m\\omega}\\frac{\\delta\\nabla E_0^2 + \\gamma E_0^2\\nabla\\theta}{4\\delta^2 + \\gamma^2}.$$ Below resonance ($\\delta < 0$) the in-phase part pulls the atom up the intensity gradient, the classical form of the book's sign rule for the dipole force; the $\\gamma$ term pushes along $-\\nabla\\theta$, the direction the wave travels, as the dissipative force does."
+   }
+  },
+  {
+   "id": "hw8-1d",
+   "source_id": "hw8.1d",
+   "source_number": "Problem Set 8, Problem 1(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's laser frequency $\\omega$ is $\\nu$ and the resonant frequency $\\omega_0$ is $\\omega$, so $\\delta = \\nu - \\omega$; the dipole moment $\\mathbf{p}$ along $\\hat{p}$ is $\\mathbf{d}$ along the unit vector $\\hat{\\mathbf{n}}$ and its quadrature $v$ is $w$ (Lukin's $p$ is momentum and $v$ velocity); the damping coefficient $\\gamma$ is $\\beta$, so MIT's $\\Gamma = \\gamma/m$ is $\\beta/m$, which is Lukin's decay rate $\\gamma$; MIT's phase $\\theta$ is kept (the field $\\cos(\\theta + \\nu t)$ makes $\\theta = -\\phi$ against Lukin's $\\Omega \\propto e^{i\\phi}$); a missing closing parenthesis in (2) is supplied; MIT's Rabi frequency $\\omega_R$ in (7) is $2\\Omega$ (Lukin's $\\omega_R$ is the recoil frequency), and the oscillator strength $f_{fi}$ is $f_{21}$.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "semiclassical",
+   "prompt": "For the classical atom of this problem, an electron bound harmonically at $\\mathbf{x}_0$ with resonant frequency $\\omega$ and damping coefficient $\\beta$, in the wave $\\mathbf{E}(\\mathbf{x}, t) = \\hat{e}E_0(\\mathbf{x})\\cos(\\theta(\\mathbf{x}) + \\nu t)$, with dipole moment $\\mathbf{d} = \\hat{\\mathbf{n}}(u\\cos(\\theta + \\nu t) - w\\sin(\\theta + \\nu t))$ and force $\\mathbf{F} = (\\mathbf{d}\\cdot\\hat{e})\\nabla E(\\mathbf{x}, t)$: part (c) gives $\\mathbf{F} = -\\frac{e^2}{2m\\omega}\\frac{\\delta\\nabla E_0^2 + \\gamma E_0^2\\nabla\\theta}{4\\delta^2 + \\gamma^2}$ with $\\gamma = \\beta/m$. Force on a two-level atom. The quantum mechanical expression for the light force on a two-level atom in the low intensity limit is $$\\mathbf{F} \\approx -\\frac{4\\hbar\\delta\\nabla|\\Omega|^2 + 4\\hbar\\gamma|\\Omega|^2\\nabla\\theta}{4\\delta^2 + \\gamma^2} \\qquad (7)$$ where $\\Omega$ is the Rabi frequency. Show that if we introduce the oscillator strength $f_{21}$ between the two levels, we may write $$\\mathbf{F}_\\mathrm{quantum} = f_{21}\\mathbf{F}_\\mathrm{classical} \\qquad (8)$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For the field $\\hat{e}E_0\\cos(\\theta + \\nu t)$ the envelope of Eq. (2.1) is $|\\mathcal{E}| = E_0/2$, so the Rabi frequency is $|\\Omega| = |\\mu|E_0/2\\hbar$ with $\\mu = e\\langle 2|\\hat{e}\\cdot\\mathbf{r}|1\\rangle$, and $$4|\\Omega|^2 = \\frac{e^2|\\langle 2|\\hat{e}\\cdot\\mathbf{r}|1\\rangle|^2E_0^2}{\\hbar^2}.$$ The oscillator strength is $f_{21} = \\frac{2m\\omega}{\\hbar}|\\langle 2|\\hat{e}\\cdot\\mathbf{r}|1\\rangle|^2$, so $4\\hbar|\\Omega|^2 = \\frac{e^2f_{21}}{2m\\omega}E_0^2$ and the gradient of the same, $4\\hbar\\nabla|\\Omega|^2 = \\frac{e^2f_{21}}{2m\\omega}\\nabla E_0^2$. Substituting into (7), $$\\mathbf{F}_\\mathrm{quantum} = -\\frac{e^2f_{21}}{2m\\omega}\\frac{\\delta\\nabla E_0^2 + \\gamma E_0^2\\nabla\\theta}{4\\delta^2 + \\gamma^2} = f_{21}\\mathbf{F}_\\mathrm{classical}.$$ Equation (7) is the book's Eq. (8.18) at low intensity: with $\\rho_{21}/\\Omega = i/(\\gamma_{12} - i\\delta)$ and $\\gamma_{12} = \\gamma/2$, $\\mathrm{Re}(\\rho_{21}/\\Omega) = -4\\delta/(4\\delta^2 + \\gamma^2)$ and $\\mathrm{Im}(\\rho_{21}/\\Omega) = 2\\gamma/(4\\delta^2 + \\gamma^2)$, and $\\nabla\\phi = -\\nabla\\theta$."
+   }
+  },
+  {
+   "id": "hw10-3a",
+   "source_id": "hw10.3a",
+   "source_number": "Problem Set 10, Problem 3(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's frequency $w$ is $\\nu$, the polarizability $\\alpha(w)$ is $\\alpha_\\mathrm{pol}(\\nu)$ (Lukin's $\\alpha$ is the absorption coefficient), and the thickness $d$ of reservoir B is $\\ell$; MIT's footnote is set as a parenthesis and its Figures 1 and 2 are described in words.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dipole-trap",
+   "prompt": "When atoms are loaded into a far-off resonant dipole trap, they are accelerated by the stimulated light force. In the absence of spontaneous emission, where does the kinetic energy come from? In this problem, we shall discuss this situation in an idealized geometry. A finite number of atoms is initially stored in reservoir A, and they can move into reservoir B thorough a thin capillary. Reservoir B, of thickness $\\ell$ along the beam and cross-section $A$, lies across the field region; a detector at D stands just beyond it. For simplicity we assume a non-divergent uniform electromagnetic (EM) field in an isolated region (total volume $V$). (The wavevector spread of the electromagnetic field near the region's boundary is important to explaining the acceleration and its transverse direction, but for simplicity we assume a plane wave.) Moreover, the EM field has large detuning $\\delta < 0$ (no spontaneous force) so that the atoms will move into the reservoir B at $t = t_0$. Assume that the atom density increases linearly up to $\\dot{n}\\Delta t$ during $\\Delta t$. Since the atoms shift the phase of the transmitted EM field, the frequency of the EM field measured at position D is shifted by $\\Delta\\nu$ in the lab frame: it is $\\nu$ before $t_0$, $\\nu - \\Delta\\nu$ from $t_0$ to $t_0 + \\Delta t$, and $\\nu$ again after. In this problem, we will show that the total energy change of the atoms in the reservoir B is equal to the energy decrease of the EM field accumulated between $t = t_0$ and $t = t_0 + \\Delta t$. First, let the incident EM field be $\\vec{E}_i \\propto \\hat{x}e^{i(\\nu t - kz)}$. When some atoms are introduced in the reservoir B, the index of refraction is changed: $n_r \\simeq 1 + \\frac{1}{2}n(t)\\alpha_\\mathrm{pol}(\\nu)$ where $\\alpha_\\mathrm{pol}(\\nu)$ is the polarizability. By considering the phase shift due to the atoms in the reservoir B, calculate a frequency shift $\\Delta\\nu$ of the EM field at the position D. You will get $\\vec{E}_D \\propto \\hat{x}e^{i([\\nu - \\Delta\\nu]t - kz)}$ when $t_0 < t < t_0 + \\Delta t$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Crossing B the wave gains the extra phase delay $k(n_r - 1)\\ell = \\frac{1}{2}k\\ell\\,n(t)\\alpha_\\mathrm{pol}$, so at D $\\vec{E}_D \\propto \\hat{x}\\exp\\left[i\\left(\\nu t - kz - \\tfrac{1}{2}k\\ell\\,n(t)\\alpha_\\mathrm{pol}\\right)\\right]$. The frequency is the time derivative of the phase: $$\\Delta\\nu = \\frac{1}{2}k\\ell\\,\\dot{n}\\,\\alpha_\\mathrm{pol}(\\nu) = \\frac{\\nu\\ell\\,\\dot{n}\\,\\alpha_\\mathrm{pol}(\\nu)}{2c}$$ for $t_0 < t < t_0 + \\Delta t$, while $\\dot{n}$ is constant, and zero before and after. Below resonance the polarizability is positive (the far-detuned medium is refractive, with $n_r > 1$ for $\\delta < 0$), so the light at D is red-shifted, as the problem's figure draws it."
+   }
+  },
+  {
+   "id": "hw10-3b",
+   "source_id": "hw10.3b",
+   "source_number": "Problem Set 10, Problem 3(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's frequency $w$ is $\\nu$, the polarizability $\\alpha(w)$ is $\\alpha_\\mathrm{pol}(\\nu)$ (Lukin's $\\alpha$ is the absorption coefficient), and the thickness $d$ of reservoir B is $\\ell$; MIT's footnote is set as a parenthesis and its Figures 1 and 2 are described in words; the set-up is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dipole-trap",
+   "prompt": "Atoms flow into a reservoir B (thickness $\\ell$, cross-section $A$) inside a uniform plane-wave field of frequency $\\nu$, far detuned with $\\delta < 0$, their density rising linearly as $n(t)$ at the rate $\\dot{n}$ from $t_0$ to $t_0 + \\Delta t$; the refractive index in B is $n_r \\simeq 1 + \\frac{1}{2}n(t)\\alpha_\\mathrm{pol}(\\nu)$, and the field at the detector D beyond B is shifted down to $\\nu - \\Delta\\nu$ while the density rises. With the result of (a) $\\Delta\\nu$, calculate the total energy decrease of the EM field, $\\Delta E_{EM}$, accumulated between $t = t_0$ and $t = t_0 + \\Delta t$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With no spontaneous emission no photon is lost; each photon crossing B leaves with its energy lowered by $\\hbar\\Delta\\nu$. A beam of intensity $I$ over the cross-section $A$ carries $IA/\\hbar\\nu$ photons per unit time, so $$\\Delta E_{EM} = \\hbar\\Delta\\nu\\,\\frac{IA}{\\hbar\\nu}\\,\\Delta t = \\frac{IA\\,\\Delta t}{\\nu}\\cdot\\frac{\\nu\\ell\\,\\dot{n}\\,\\alpha_\\mathrm{pol}}{2c} = \\frac{1}{2}\\frac{\\alpha_\\mathrm{pol}I}{c}\\,(\\dot{n}\\Delta t\\,A\\ell) = \\frac{1}{2}\\frac{\\alpha_\\mathrm{pol}I}{c}N,$$ where $N = \\dot{n}\\Delta t\\,A\\ell$ is the number of atoms in B at $t_0 + \\Delta t$. The field loses $\\alpha_\\mathrm{pol}I/2c$ for each atom that enters."
+   }
+  },
+  {
+   "id": "hw10-3c",
+   "source_id": "hw10.3c",
+   "source_number": "Problem Set 10, Problem 3(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's frequency $w$ is $\\nu$, the polarizability $\\alpha(w)$ is $\\alpha_\\mathrm{pol}(\\nu)$ (Lukin's $\\alpha$ is the absorption coefficient), and the thickness $d$ of reservoir B is $\\ell$; MIT's footnote is set as a parenthesis and its Figures 1 and 2 are described in words; the set-up is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "v-eff",
+   "prompt": "Atoms flow into a reservoir B (thickness $\\ell$, cross-section $A$) inside a uniform plane-wave field of frequency $\\nu$, far detuned with $\\delta < 0$, their density rising linearly as $n(t)$ at the rate $\\dot{n}$ from $t_0$ to $t_0 + \\Delta t$; the refractive index in B is $n_r \\simeq 1 + \\frac{1}{2}n(t)\\alpha_\\mathrm{pol}(\\nu)$, and the field at the detector D beyond B is shifted down to $\\nu - \\Delta\\nu$ while the density rises. By considering the Stark effect, we can calculate the polarizability $\\alpha_\\mathrm{pol}(\\nu)$. Given the $\\alpha_\\mathrm{pol}(\\nu)$, calculate the energy shift, $\\Delta E_{Stark}|_{t = t_0 + \\Delta t}$, due to the Stark effect. Is $\\Delta E_{Stark}$ equal to $\\Delta E_{EM}$? Why? (or Why not?)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Far from resonance each atom stays in its ground state, shifted by the AC Stark shift $V_\\mathrm{eff} = \\hbar|\\Omega|^2/\\delta$ (Eq. 8.20). For the field $E_0\\cos\\nu t$, $|\\Omega| = |\\mu|E_0/2\\hbar$, so $V_\\mathrm{eff} = |\\mu|^2E_0^2/4\\hbar\\delta$. An induced dipole $\\epsilon_0\\alpha_\\mathrm{pol}\\mathbf{E}$ (the normalization in which $n_r \\simeq 1 + \\frac{1}{2}n\\alpha_\\mathrm{pol}$) has energy $-\\frac{1}{2}\\epsilon_0\\alpha_\\mathrm{pol}\\langle E^2\\rangle = -\\frac{1}{4}\\epsilon_0\\alpha_\\mathrm{pol}E_0^2$; matching the two, $$\\alpha_\\mathrm{pol}(\\nu) = -\\frac{|\\mu|^2}{\\epsilon_0\\hbar\\delta},$$ positive for $\\delta < 0$. With $I = \\frac{1}{2}c\\epsilon_0E_0^2$ each atom's shift is $-\\alpha_\\mathrm{pol}I/2c$, and for the $N$ atoms in B $$\\Delta E_{Stark}|_{t_0 + \\Delta t} = -\\frac{1}{2}\\frac{\\alpha_\\mathrm{pol}I}{c}N.$$ It is equal and opposite to $\\Delta E_{EM}$ of part (b). The atoms fall into the light-shift well, and the kinetic energy they gain there is paid for by the field: each transmitted photon comes out red-shifted, and the energy the light loses is exactly the depth of the potential times the number of atoms that entered. Total energy is conserved with no spontaneous emission at all, which is why the dipole force is conservative."
+   }
+  },
+  {
+   "id": "hw9-1a",
+   "source_id": "hw9.1a",
+   "source_number": "Problem Set 9, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's transition frequency $\\omega_0$ is $\\omega$ and the laser frequency $\\omega$ is $\\nu$, so $\\delta \\equiv \\nu - \\omega$; the photon scattering rate $\\Gamma_s$ is $R_{sc}$ and the diffusion constant $\\mathcal{D}$ is $D$. MIT's sodium data stay in the prompt.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "max-force",
+   "prompt": "Consider the following questions for Na. Try to plug in numbers after obtaining an analytical expression. Na oven temperature $T = 600$ K; natural line width $\\gamma = 2\\pi \\times 10$ MHz; Zeeman splitting 1.4 MHz/gauss; wavelength $\\lambda = 2\\pi/k = 589$ nm. A Zeeman slower. If you want to slow an atomic beam efficiently, you have to compensate for the changing Doppler shift ($\\vec{k}\\cdot\\vec{v}$) during the deceleration. This can be done by sweeping the frequency of the slowing beam, i.e., chirping (as discussed in class). A method of producing a continuous beam of cold atoms is Zeeman slowing. A well collimated beam of atoms is originating from an oven with a temperature $T$. The beam propagates along a distance $L$ with a longitudinal magnetic field $B(x)$ ($0 < x < L$). A laser beam of intensity $I$ is counter propagating. Its frequency is detuned by $\\delta$ ($\\delta \\equiv \\nu - \\omega$) from the transition frequency at $B = 0$. Calculate the maximum deceleration $a_{max}$ you can achieve. Assume you could choose arbitrarily large laser intensities.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At arbitrarily large intensity the transition saturates and the dissipative force reaches its maximum, Eq. (8.27), $F_\\mathrm{max} = \\hbar k\\gamma/2$: one kick $\\hbar k$ per scattering event, at most $\\gamma/2$ events per unit time since the atom spends at most half its time excited. So $$a_{max} = \\frac{\\hbar k\\gamma}{2m},$$ with $m$ the mass of the sodium atom. It is the recoil velocity $\\hbar k/m$ gained $\\gamma/2$ times per unit time."
+   }
+  },
+  {
+   "id": "hw9-1b",
+   "source_id": "hw9.1b",
+   "source_number": "Problem Set 9, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's transition frequency $\\omega_0$ is $\\omega$ and the laser frequency $\\omega$ is $\\nu$, so $\\delta \\equiv \\nu - \\omega$; the photon scattering rate $\\Gamma_s$ is $R_{sc}$ and the diffusion constant $\\mathcal{D}$ is $D$. MIT's sodium data stay in the prompt.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beam-slowing",
+   "prompt": "Consider the following questions for Na. Try to plug in numbers after obtaining an analytical expression. Na oven temperature $T = 600$ K; natural line width $\\gamma = 2\\pi \\times 10$ MHz; Zeeman splitting 1.4 MHz/gauss; wavelength $\\lambda = 2\\pi/k = 589$ nm. A Zeeman slower. If you want to slow an atomic beam efficiently, you have to compensate for the changing Doppler shift ($\\vec{k}\\cdot\\vec{v}$) during the deceleration. This can be done by sweeping the frequency of the slowing beam, i.e., chirping (as discussed in class). A method of producing a continuous beam of cold atoms is Zeeman slowing. A well collimated beam of atoms is originating from an oven with a temperature $T$. The beam propagates along a distance $L$ with a longitudinal magnetic field $B(x)$ ($0 < x < L$). A laser beam of intensity $I$ is counter propagating. Its frequency is detuned by $\\delta$ ($\\delta \\equiv \\nu - \\omega$) from the transition frequency at $B = 0$. Assume you want to slow down atoms with speeds lower than the peak (most probable) velocity $v_{peak}$ of the thermal distribution to a stand still using the constant deceleration $fa_{max}$ ($0 < f < 1$). The Zeeman effect shifts the resonance $\\omega \\to \\omega + g\\mu_BB(x)$ (where $g\\mu_B = (2\\pi)1.4$ MHz/gauss, in this case). Calculate the spatial dependence of the magnetic field $B(x)$ and the length $L$ of the slower as a function of $f$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "At constant deceleration $a = fa_{max} = f\\hbar k\\gamma/2m$ an atom entering at $v_{peak}$ stops after $$L = \\frac{v_{peak}^2}{2fa_{max}} = \\frac{mv_{peak}^2}{f\\hbar k\\gamma},$$ and at $x$ it moves at $v(x) = \\sqrt{v_{peak}^2 - 2fa_{max}x} = v_{peak}\\sqrt{1 - x/L}$. The atom moves toward the laser, so it sees the light Doppler-shifted up to $\\nu + kv$, the $\\delta - kv$ of Eq. (8.22) with $v$ against $\\mathbf{k}$. It stays in resonance where $\\nu + kv(x) = \\omega + g\\mu_BB(x)$, that is $\\delta + kv(x) = g\\mu_BB(x)$: $$B(x) = \\frac{\\delta + kv_{peak}\\sqrt{1 - x/L}}{g\\mu_B}, \\qquad 0 < x < L.$$ The field falls as the square root of the distance left, from $(\\delta + kv_{peak})/g\\mu_B$ at the entrance to $\\delta/g\\mu_B$ at the end. A smaller $f$ makes a longer slower but leaves room for the atoms to keep up with the field profile."
+   }
+  },
+  {
+   "id": "hw9-1c",
+   "source_id": "hw9.1c",
+   "source_number": "Problem Set 9, Problem 1(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's transition frequency $\\omega_0$ is $\\omega$ and the laser frequency $\\omega$ is $\\nu$, so $\\delta \\equiv \\nu - \\omega$; the photon scattering rate $\\Gamma_s$ is $R_{sc}$ and the diffusion constant $\\mathcal{D}$ is $D$. MIT's sodium data stay in the prompt.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "kicks",
+   "prompt": "Consider the following questions for Na. Try to plug in numbers after obtaining an analytical expression. Na oven temperature $T = 600$ K; natural line width $\\gamma = 2\\pi \\times 10$ MHz; Zeeman splitting 1.4 MHz/gauss; wavelength $\\lambda = 2\\pi/k = 589$ nm. A Zeeman slower. If you want to slow an atomic beam efficiently, you have to compensate for the changing Doppler shift ($\\vec{k}\\cdot\\vec{v}$) during the deceleration. This can be done by sweeping the frequency of the slowing beam, i.e., chirping (as discussed in class). A method of producing a continuous beam of cold atoms is Zeeman slowing. A well collimated beam of atoms is originating from an oven with a temperature $T$. The beam propagates along a distance $L$ with a longitudinal magnetic field $B(x)$ ($0 < x < L$). A laser beam of intensity $I$ is counter propagating. Its frequency is detuned by $\\delta$ ($\\delta \\equiv \\nu - \\omega$) from the transition frequency at $B = 0$. Assume three different models for spontaneous emission: (i) Photons are emitted along the $\\pm\\hat{x}$ direction, (ii) isotropic emission, or (iii) emission in a dipole pattern. What is the momentum diffusion constant $D$ for the (longitudinal) $x$-component of the momentum in the three cases, at a given photon scattering rate $R_{sc}$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take $D$ by $d\\langle\\Delta p_x^2\\rangle/dt = 2D$. Each scattering event is an absorption from the beam, a kick of exactly $\\hbar k$ along $x$, and an emission, a kick $\\hbar k\\cos\\vartheta$ along $x$ in a random direction. The absorptions come at random times at the rate $R_{sc}$, so their number fluctuates as for a Poisson process and they add $\\hbar^2k^2R_{sc}$ to $d\\langle\\Delta p_x^2\\rangle/dt$; the emissions add $\\hbar^2k^2R_{sc}\\langle\\cos^2\\vartheta\\rangle$. Hence $$D = \\frac{1}{2}\\hbar^2k^2R_{sc}\\left(1 + \\langle\\cos^2\\vartheta\\rangle\\right).$$ (i) Emission along $\\pm\\hat{x}$: $\\langle\\cos^2\\vartheta\\rangle = 1$, $D = \\hbar^2k^2R_{sc}$. (ii) Isotropic: $\\langle\\cos^2\\vartheta\\rangle = \\frac{1}{3}$, $D = \\frac{2}{3}\\hbar^2k^2R_{sc}$. (iii) Dipole pattern: for a dipole perpendicular to $x$, the pattern $\\sin^2$ about the dipole axis gives $\\langle\\cos^2\\vartheta\\rangle = \\frac{2}{5}$ (the same holds for the $\\sigma$ pattern $1 + \\cos^2$ about the $x$ axis), $D = \\frac{7}{10}\\hbar^2k^2R_{sc}$. Here $R_{sc} = \\gamma\\rho_{22}$, the scattering rate of Eq. (8.24), which reaches $\\gamma/2$ at saturation."
+   }
+  },
+  {
+   "id": "hw9-2a",
+   "source_id": "hw9.2a",
+   "source_number": "Problem Set 9, Problem 2(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's transition frequency $\\omega_0$ is $\\omega$ and the laser frequency $\\omega$ is $\\nu$; the problem's opening and Problem 1's sodium data and set-up are repeated so the part stands alone, and $I = 5I_{sat}$ is also given as the saturation parameter $s = 2R_{opt}/\\gamma = 5$ for the atom at rest.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "max-force",
+   "prompt": "Consider the following questions for Na. Try to plug in numbers after obtaining an analytical expression. Na oven temperature $T = 600$ K; natural line width $\\gamma = 2\\pi \\times 10$ MHz; Zeeman splitting 1.4 MHz/gauss; wavelength $\\lambda = 2\\pi/k = 589$ nm. A well collimated beam of sodium atoms leaves an oven at temperature $T$; $v_{peak}$ is the peak (most probable) velocity of its thermal distribution. Slowing an atom with off-resonant light. Assume you want to slow an atom of velocity $v_{peak}$ with a counter propagating laser beam that is on resonance with the atom at rest. (Use $I = 5I_{sat}$, that is, the saturation parameter $s = 2R_{opt}/\\gamma = 5$ at zero velocity.) How long would it take? (Hint: Think about integrating the equation of motion)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "On resonance at rest, $\\delta = 0$, and an atom moving at $v$ toward the beam sees the detuning $kv$. Eq. (8.26) with $R_{opt}$ of Eq. (8.23) and $\\gamma_{12} = \\gamma/2$ gives the decelerating force $$F(v) = \\hbar k\\frac{\\gamma}{2}\\frac{s}{1 + s + 4k^2v^2/\\gamma^2},$$ where $s = 8|\\Omega|^2/\\gamma^2 = 5$. The equation of motion is $m\\,dv/dt = -F(v)$, so $dt = -\\frac{2m}{\\hbar k\\gamma s}\\left(1 + s + \\frac{4k^2v^2}{\\gamma^2}\\right)dv$. Integrating from $v_{peak}$ down to zero, $$t = \\frac{2m}{\\hbar k\\gamma s}\\left[(1 + s)v_{peak} + \\frac{4k^2v_{peak}^3}{3\\gamma^2}\\right].$$ For a thermal atom $kv_{peak} \\gg \\gamma$, so the cubic term dominates: the light is far off resonance for most of the slowing, the force is a small fraction of $\\hbar k\\gamma/2$, and the time is far longer than the $mv_{peak}/(\\hbar k\\gamma/2)$ a resonant, saturated force would take, which is why the Doppler shift must be compensated by a chirp or a Zeeman field."
+   }
+  },
+  {
+   "id": "hw9-2b",
+   "source_id": "hw9.2b",
+   "source_number": "Problem Set 9, Problem 2(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's transition frequency $\\omega_0$ is $\\omega$ and the laser frequency $\\omega$ is $\\nu$; the problem's opening and Problem 1's sodium data and set-up are repeated so the part stands alone, and $I = 5I_{sat}$ is also given as the saturation parameter $s = 2R_{opt}/\\gamma = 5$ for the atom at rest.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "max-force",
+   "prompt": "Consider the following questions for Na. Try to plug in numbers after obtaining an analytical expression. Na oven temperature $T = 600$ K; natural line width $\\gamma = 2\\pi \\times 10$ MHz; Zeeman splitting 1.4 MHz/gauss; wavelength $\\lambda = 2\\pi/k = 589$ nm. A well collimated beam of sodium atoms leaves an oven at temperature $T$; $v_{peak}$ is the peak (most probable) velocity of its thermal distribution. Slowing an atom with off-resonant light. Assume you want to slow an atom of velocity $v_{peak}$ with a counter propagating laser beam that is on resonance with the atom at rest. (Use $I = 5I_{sat}$, that is, the saturation parameter $s = 2R_{opt}/\\gamma = 5$ at zero velocity.) How far would the atom travel? (Hint: Think about integrating the equation of motion)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "On resonance at rest, $\\delta = 0$, and an atom moving at $v$ toward the beam sees the detuning $kv$. Eq. (8.26) with $R_{opt}$ of Eq. (8.23) and $\\gamma_{12} = \\gamma/2$ gives the decelerating force $$F(v) = \\hbar k\\frac{\\gamma}{2}\\frac{s}{1 + s + 4k^2v^2/\\gamma^2},$$ where $s = 8|\\Omega|^2/\\gamma^2 = 5$. The equation of motion is $m\\,dv/dt = -F(v)$, so $dt = -\\frac{2m}{\\hbar k\\gamma s}\\left(1 + s + \\frac{4k^2v^2}{\\gamma^2}\\right)dv$. The distance is $dx = v\\,dt$; integrating from $v_{peak}$ down to zero, $$x = \\frac{2m}{\\hbar k\\gamma s}\\left[\\frac{(1 + s)v_{peak}^2}{2} + \\frac{k^2v_{peak}^4}{\\gamma^2}\\right].$$ Again the second term dominates for $kv_{peak} \\gg \\gamma$; the first alone, $(1 + s)mv_{peak}^2/\\hbar k\\gamma s$, is the distance of a constant saturated force $\\hbar k\\frac{\\gamma}{2}\\frac{s}{1 + s}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "hw8-1a",
+   "concept": "semiclassical-light-force"
+  },
+  {
+   "exercise": "hw8-1b",
+   "concept": "dipole-force"
+  },
+  {
+   "exercise": "hw8-1b",
+   "concept": "dissipative-force"
+  },
+  {
+   "exercise": "hw8-1c",
+   "concept": "semiclassical-light-force"
+  },
+  {
+   "exercise": "hw8-1c",
+   "concept": "atomic-polarization"
+  },
+  {
+   "exercise": "hw8-1d",
+   "concept": "semiclassical-light-force"
+  },
+  {
+   "exercise": "hw8-1d",
+   "concept": "rabi-frequency"
+  },
+  {
+   "exercise": "hw10-3a",
+   "concept": "dipole-trap"
+  },
+  {
+   "exercise": "hw10-3a",
+   "concept": "far-detuned-refraction"
+  },
+  {
+   "exercise": "hw10-3b",
+   "concept": "dipole-trap"
+  },
+  {
+   "exercise": "hw10-3b",
+   "concept": "far-detuned-refraction"
+  },
+  {
+   "exercise": "hw10-3c",
+   "concept": "dipole-force"
+  },
+  {
+   "exercise": "hw10-3c",
+   "concept": "ac-stark-shift"
+  },
+  {
+   "exercise": "hw9-1a",
+   "concept": "maximum-dissipative-force"
+  },
+  {
+   "exercise": "hw9-1b",
+   "concept": "atomic-beam-slowing"
+  },
+  {
+   "exercise": "hw9-1b",
+   "concept": "recoil-shifted-resonance"
+  },
+  {
+   "exercise": "hw9-1b",
+   "concept": "zeeman-effect"
+  },
+  {
+   "exercise": "hw9-1c",
+   "concept": "dissipative-force"
+  },
+  {
+   "exercise": "hw9-1c",
+   "concept": "atomic-recoil"
+  },
+  {
+   "exercise": "hw9-1c",
+   "concept": "spontaneous-emission"
+  },
+  {
+   "exercise": "hw9-2a",
+   "concept": "maximum-dissipative-force"
+  },
+  {
+   "exercise": "hw9-2a",
+   "concept": "recoil-shifted-resonance"
+  },
+  {
+   "exercise": "hw9-2a",
+   "concept": "saturation-parameter"
+  },
+  {
+   "exercise": "hw9-2b",
+   "concept": "maximum-dissipative-force"
+  },
+  {
+   "exercise": "hw9-2b",
+   "concept": "recoil-shifted-resonance"
+  },
+  {
+   "exercise": "hw9-2b",
+   "concept": "saturation-parameter"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-gamma-alkali",
+   "kind": "correction",
+   "html": "The spontaneous decay rate of an alkali D line is $\\kgamma \\approx 3$–$6 \\times 10^7\\ \\mathrm{s}^{-1}$ ($\\kgamma/2\\pi \\approx 5$–$10$ MHz), not $10^6$ Hz. With it, $10^4$ scattering events at the maximum rate $\\kgamma/2$ of Eq. (8.27) take about half a millisecond; with $\\kgamma \\sim 10^6\\ \\mathrm{s}^{-1}$ they would take 20 ms."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "dissipative-force",
+   "what": "the dissipative force of a plane wave",
+   "source": "Modern Atomic and Optical Physics II, 8.2 Semiclassical description, Plane waves: the dissipative force",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For low intensities, $|\\Omega| \\ll \\gamma$, $\\rho_{21}/\\Omega = i/(\\gamma_{12} - i(\\delta - kv))$.",
+       "src": "8.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)} \\approx \\mk{R}{\\mathrm{Im}\\left(\\frac{i}{\\kgammaonetwo - i(\\kdelta - \\kkmag\\kvmag)}\\right)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)} \\approx \\mk{R}{\\mathrm{Im}\\left(\\frac{i(\\kgammaonetwo + i(\\kdelta - \\kkmag\\kvmag))}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvmag)^2}\\right)}",
+       "uses": [],
+       "cap": "Multiplying above and below by $\\gamma_{12} + i(\\delta - kv)$."
+      },
+      {
+       "tex": "\\mk{L}{\\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)} \\approx \\mk{R}{\\frac{\\kgammaonetwo}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvmag)^2}}",
+       "uses": []
+      }
+     ],
+     "num": "(8.22)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "A plane wave has a constant amplitude, $\\nabla|\\Omega|^2 = 0$, and the phase gradient $\\nabla\\phi = \\mathbf{k}$.",
+       "src": "8.1"
+      },
+      {
+       "text": "The optical pumping rate of Eq. (3.101), $R_{opt} = 2\\gamma_{12}|\\Omega|^2/(\\gamma_{12}^2 + \\delta^2)$, at the detuning $\\delta - kv$ the moving atom sees.",
+       "src": "(3.101)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFforce} = \\mk{p}{2\\hbar|\\kOmega|^2\\nabla\\kphi\\ \\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)} + \\mk{g}{\\hbar\\nabla|\\kOmega|^2\\mathrm{Re}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}",
+      "src": "(8.18)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFforce} = \\mk{p}{2\\hbar\\kk|\\kOmega|^2\\,\\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kFforce} \\approx \\mk{p}{\\hbar\\kk\\frac{2\\kgammaonetwo|\\kOmega|^2}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvmag)^2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kFforce} \\approx \\mk{p}{\\hbar\\kk\\frac{2\\kgammaonetwo|\\kOmega|^2}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvmag)^2}} = \\mk{R}{\\hbar\\kk\\kRopt}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(8.23)"
+    }
+   ]
+  },
+  {
+   "id": "light-force-operator",
+   "what": "the light force operator",
+   "source": "Modern Atomic and Optical Physics II, 8.2 Semiclassical description",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "In the position basis the momentum acts as $\\hat p = -i\\hbar\\nabla$.",
+       "src": "8.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{[\\kp, \\hat{O}(r)]\\psi(r)} = \\mk{R}{[-i\\hbar\\nabla, \\hat{O}(r)]\\psi(r)}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{[\\kp, \\hat{O}(r)]\\psi(r)} = \\mk{R}{-i\\hbar\\nabla(\\hat{O}(r)\\psi(r)) + i\\hbar\\hat{O}(r)\\nabla\\psi(r)}",
+       "uses": [],
+       "cap": "Writing out the commutator."
+      },
+      {
+       "tex": "\\mk{L}{[\\kp, \\hat{O}(r)]\\psi(r)} = \\mk{R}{-i\\hbar(\\nabla\\hat{O}(r))\\psi(r)}",
+       "uses": [],
+       "cap": "The product rule, $\\nabla(\\hat O\\psi) = (\\nabla\\hat O)\\psi + \\hat O\\nabla\\psi$."
+      }
+     ],
+     "num": "(8.13)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Of $\\hat H$ only the atom-laser interaction depends on the position; the external potential is neglected.",
+       "src": "8.1"
+      },
+      {
+       "tex": "\\kH_{AL} = -\\hbar\\kOmega(\\kr)|2\\rangle\\langle 1| - \\hbar\\kOmega(\\kr)^*|1\\rangle\\langle 2|",
+       "src": "(8.2)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{R}{\\frac{1}{i\\hbar}[\\kp, \\kH]}",
+      "src": "(8.9)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{R}{-[\\nabla, \\kH(\\kr)]}",
+       "uses": [
+        0
+       ],
+       "cap": "By Eq. (8.13) the commutator with $\\hat p$ is $-i\\hbar$ times the gradient, for any operator of position."
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{R}{-[\\nabla, \\kH(\\kr)]} = \\mk{g}{-\\nabla\\kH_{AL}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{R}{-[\\nabla, \\kH(\\kr)]} = \\mk{g}{\\hbar\\nabla\\kOmega|2\\rangle\\langle 1| + \\hbar\\nabla\\kOmega^*|1\\rangle\\langle 2|}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(8.10)"
+    }
+   ]
+  },
+  {
+   "id": "maximum-dissipative-force",
+   "what": "the maximum dissipative force",
+   "source": "Modern Atomic and Optical Physics II, 8.2 Semiclassical description, Plane waves: the dissipative force",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A plane wave has a constant amplitude, $\\nabla|\\Omega|^2 = 0$, and the phase gradient $\\nabla\\phi = \\mathbf{k}$.",
+       "src": "8.1"
+      },
+      {
+       "tex": "\\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right) = \\frac{\\kgammaonetwo}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvmag)^2}\\frac{\\kgamma}{\\kgamma + 2\\kRopt}",
+       "src": "(8.25)"
+      },
+      {
+       "text": "The optical pumping rate of Eq. (3.101), $R_{opt} = 2\\gamma_{12}|\\Omega|^2/(\\gamma_{12}^2 + \\delta^2)$, at the detuning $\\delta - kv$ the moving atom sees.",
+       "src": "(3.101)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFforce} = \\mk{p}{2\\hbar|\\kOmega|^2\\nabla\\kphi\\ \\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)} + \\mk{g}{\\hbar\\nabla|\\kOmega|^2\\mathrm{Re}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}",
+      "src": "(8.18)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFforce} = \\mk{p}{2\\hbar\\kk|\\kOmega|^2\\,\\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kFforce} = \\mk{p}{\\hbar\\kk\\frac{2\\kgammaonetwo|\\kOmega|^2}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvmag)^2}\\frac{\\kgamma}{\\kgamma + 2\\kRopt}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kFforce} = \\mk{p}{\\hbar\\kk\\frac{\\kgamma \\kRopt}{\\kgamma + 2\\kRopt}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(8.26)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "In the limit of large powers, $\\Omega \\gg \\gamma$, $R_{opt} \\to \\infty$.",
+       "src": "8.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFforce} = \\mk{p}{\\hbar\\kk\\frac{\\kgamma \\kRopt}{\\kgamma + 2\\kRopt}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFforce_\\mathrm{max}} = \\mk{p}{\\hbar\\kk\\frac{\\kgamma}{2}}",
+       "uses": [
+        1
+       ],
+       "cap": "As $R_{opt} \\to \\infty$, $R_{opt}/(\\gamma + 2R_{opt}) \\to 1/2$."
+      }
+     ],
+     "num": "(8.27)"
+    }
+   ]
+  },
+  {
+   "id": "scattering-force",
+   "what": "the dissipative force as momentum per scattering event",
+   "source": "Modern Atomic and Optical Physics II, 8.2 Semiclassical description, Plane waves: the dissipative force",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For an optical transition the radiation field is in the vacuum, $\\bar n = 0$.",
+       "src": "8.5"
+      },
+      {
+       "text": "The force is found from the steady state solution of the density matrix equations, $\\dot\\rho_{22} = 0$.",
+       "src": "8.2"
+      },
+      {
+       "text": "The density matrix is Hermitian, $\\rho_{12} = \\rho_{21}^*$.",
+       "src": "3.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma(\\knbar + 1)\\krhotwotwo + \\kgamma\\knbar\\krhooneone} + \\mk{c}{i\\kOmega^*\\krhotwoone - i\\kOmega\\krhoonetwo}",
+      "src": "(3.86)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\krhotwotwo}} = \\mk{a}{-\\kgamma\\krhotwotwo} + \\mk{c}{(-i\\kOmega^*\\krhotwoone + i\\kOmega\\krhoonetwo)}",
+       "uses": [
+        0
+       ],
+       "cap": "With $\\bar n = 0$; and the coupling of Eq. (8.2) carries the opposite sign to that of Eq. (3.84), so $\\Omega$ there is $-\\Omega$ here."
+      },
+      {
+       "tex": "\\mk{L}{0} = \\mk{a}{-\\kgamma\\krhotwotwo} + \\mk{c}{(-i\\kOmega^*\\krhotwoone + i\\kOmega\\krhoonetwo)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\kgamma\\krhotwotwo} = \\mk{c}{-i(\\kOmega^*\\krhotwoone - \\kOmega\\krhoonetwo)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\kgamma\\krhotwotwo} = \\mk{c}{-i|\\kOmega|^2\\left(\\frac{\\krhotwoone}{\\kOmega} - \\left(\\frac{\\krhotwoone}{\\kOmega}\\right)^*\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\Omega^*\\rho_{21} = |\\Omega|^2\\rho_{21}/\\Omega$, and $\\Omega\\rho_{12} = |\\Omega|^2(\\rho_{21}/\\Omega)^*$."
+      },
+      {
+       "tex": "\\mk{a}{\\kgamma\\krhotwotwo} = \\mk{c}{2|\\kOmega|^2\\,\\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}",
+       "uses": [],
+       "cap": "$z - z^* = 2i\\,\\mathrm{Im}\\,z$."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "A plane wave has a constant amplitude, $\\nabla|\\Omega|^2 = 0$, and the phase gradient $\\nabla\\phi = \\mathbf{k}$.",
+       "src": "8.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFforce} = \\mk{p}{2\\hbar|\\kOmega|^2\\nabla\\kphi\\ \\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)} + \\mk{g}{\\hbar\\nabla|\\kOmega|^2\\mathrm{Re}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}",
+      "src": "(8.18)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFforce} = \\mk{p}{\\hbar\\kk\\cdot 2|\\kOmega|^2\\,\\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kFforce} = \\mk{p}{\\hbar\\kk\\kgamma\\krhotwotwo}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(8.24)"
+    }
+   ]
+  },
+  {
+   "id": "semiclassical-light-force",
+   "what": "the semiclassical light force",
+   "source": "Modern Atomic and Optical Physics II, 8.2 Semiclassical description",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The atom is very nearly a classically moving ball, which feels the average force.",
+       "src": "8.2"
+      },
+      {
+       "tex": "\\kF = \\hbar\\nabla\\kOmega|2\\rangle\\langle 1| + \\hbar\\nabla\\kOmega^*|1\\rangle\\langle 2|",
+       "src": "(8.10)"
+      },
+      {
+       "tex": "\\langle|1\\rangle\\langle 2|\\rangle = \\mathrm{Tr}[\\rho|1\\rangle\\langle 2|] = \\krhotwoone",
+       "src": "(8.15)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFmag} = \\mk{a}{\\langle\\kF\\rangle}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFmag} = \\mk{a}{\\langle\\kF\\rangle} = \\mk{R}{\\hbar\\nabla\\kOmega\\langle|2\\rangle\\langle 1|\\rangle + \\hbar\\nabla\\kOmega^*\\langle|1\\rangle\\langle 2|\\rangle}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kFmag} = \\mk{a}{\\langle\\kF\\rangle} = \\mk{R}{\\hbar\\nabla\\kOmega\\krhoonetwo + \\hbar\\nabla\\kOmega^*\\krhotwoone}",
+       "uses": [
+        2
+       ],
+       "cap": "The indices are counterintuitive but correct: $\\langle|1\\rangle\\langle 2|\\rangle = \\rho_{21}$, and likewise $\\langle|2\\rangle\\langle 1|\\rangle = \\rho_{12}$."
+      }
+     ],
+     "num": "(8.14)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kOmega(\\kr) = |\\kOmega(\\kr)|e^{i\\kphi(\\kr)}",
+       "src": "(8.3)"
+      },
+      {
+       "text": "The density matrix is Hermitian, $\\rho_{12} = \\rho_{21}^*$.",
+       "src": "3.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFmag} = \\mk{a}{\\langle\\kF\\rangle} = \\mk{R}{\\hbar\\nabla\\kOmega\\krhoonetwo + \\hbar\\nabla\\kOmega^*\\krhotwoone}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFmag} = \\mk{R}{\\hbar\\kOmega^*\\nabla\\kOmega\\left(\\frac{\\krhoonetwo}{\\kOmega^*}\\right) + \\hbar\\kOmega\\nabla\\kOmega^*\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{F}{\\kFmag} = \\mk{R}{\\hbar\\left(\\frac{1}{2}\\nabla|\\kOmega|^2 + i|\\kOmega|^2\\nabla\\kphi\\right)\\left(\\frac{\\krhoonetwo}{\\kOmega^*}\\right) + \\hbar\\left(\\frac{1}{2}\\nabla|\\kOmega|^2 - i|\\kOmega|^2\\nabla\\kphi\\right)\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}",
+       "uses": [
+        1
+       ],
+       "cap": "With $\\Omega = |\\Omega|e^{i\\phi}$, $\\Omega^*\\nabla\\Omega = \\frac{1}{2}\\nabla|\\Omega|^2 + i|\\Omega|^2\\nabla\\phi$, and $\\Omega\\nabla\\Omega^*$ is its conjugate."
+      },
+      {
+       "tex": "\\mk{F}{\\kFmag} = \\mk{g}{\\hbar\\frac{1}{2}\\nabla|\\kOmega|^2\\left(\\frac{\\krhoonetwo}{\\kOmega^*} + \\frac{\\krhotwoone}{\\kOmega}\\right)} + \\mk{p}{i\\hbar|\\kOmega|^2\\nabla\\kphi\\left(\\frac{\\krhoonetwo}{\\kOmega^*} - \\frac{\\krhotwoone}{\\kOmega}\\right)}",
+       "uses": [],
+       "map": {
+        "R": [
+         "g",
+         "p"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{F}{\\kFmag} = \\mk{p}{\\underbrace{2\\hbar|\\kOmega|^2\\nabla\\kphi\\ \\mathrm{Im}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}_{\\text{dissipative}}} + \\mk{g}{\\underbrace{\\hbar\\nabla|\\kOmega|^2\\mathrm{Re}\\left(\\frac{\\krhotwoone}{\\kOmega}\\right)}_{\\text{reactive}}}",
+       "uses": [
+        2
+       ],
+       "cap": "Since $\\rho_{12}/\\Omega^* = (\\rho_{21}/\\Omega)^*$, the sum is $2\\,\\mathrm{Re}(\\rho_{21}/\\Omega)$ and the difference is $-2i\\,\\mathrm{Im}(\\rho_{21}/\\Omega)$."
+      }
+     ],
+     "num": "(8.18)"
+    }
+   ]
+  }
+ ]
+}

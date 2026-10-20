@@ -1,0 +1,343 @@
+{
+ "id": "7.1",
+ "chapter": "7",
+ "title": "The adiabatic theorem for time-dependent Hamiltonians",
+ "short": "The adiabatic theorem",
+ "lead": "How a quantum state behaves when its <span data-concept=\"hamiltonian\">Hamiltonian</span> changes in time: the <span data-concept=\"instantaneous-eigenstates\">instantaneous eigenstates</span> and the couplings their motion introduces, the condition under which a state prepared in one of them stays there, and the <span data-concept=\"dynamical-phase\">dynamical</span> and <span data-concept=\"geometric-phase\">geometric phases</span> it picks up on the way.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   }
+  ],
+  "figures": []
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [],
+ "coverage": [
+  {
+   "span": "instantaneous",
+   "concept": "instantaneous-eigenstates",
+   "verb": "introduces"
+  },
+  {
+   "span": "instantaneous",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "instantaneous",
+   "concept": "schrodinger-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "instantaneous",
+   "concept": "stationary-states",
+   "verb": "uses"
+  },
+  {
+   "span": "adiabatic-limit",
+   "concept": "adiabatic-theorem",
+   "verb": "introduces"
+  },
+  {
+   "span": "adiabatic-limit",
+   "concept": "instantaneous-eigenstates",
+   "verb": "uses"
+  },
+  {
+   "span": "adiabatic-limit",
+   "concept": "nonadiabatic-coupling",
+   "verb": "uses"
+  },
+  {
+   "span": "adiabatic-limit",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "perturbation",
+   "concept": "state-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "phases",
+   "concept": "dynamical-phase",
+   "verb": "introduces"
+  },
+  {
+   "span": "phases",
+   "concept": "geometric-phase",
+   "verb": "introduces"
+  },
+  {
+   "span": "phases",
+   "concept": "schrodinger-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-adiabatic-amplitudes",
+   "concept": "nonadiabatic-coupling",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-adiabatic-amplitudes",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-adiabatic-condition",
+   "concept": "adiabaticity-condition",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "footnote-1",
+   "kind": "book",
+   "number": "1",
+   "html": "In general, the real part of $\\langle\\epsilon_k|\\dot{\\epsilon}_k\\rangle$ vanishes, and we will neglect the <span data-concept=\"geometric-phase\">Berry phase</span> (imaginary component) in this treatment."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "adiabatic-amplitudes",
+   "what": "the equations of motion in the instantaneous eigenbasis",
+   "source": "Modern Atomic and Optical Physics II, 7.1 The adiabatic theorem for time-dependent Hamiltonians",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "|\\kpsi(\\kt)\\rangle = \\sum_l \\kcinst_l(\\kt)|\\epsilon_l(\\kt)\\rangle",
+       "src": "(7.2)"
+      },
+      {
+       "tex": "\\kH(\\kt_0)|\\epsilon_k(\\kt_0)\\rangle = \\keps_k(\\kt_0)|\\epsilon_k(\\kt_0)\\rangle",
+       "src": "(7.1)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar|\\dot{\\kpsi}(\\kt)\\rangle} = \\mk{R}{\\kH(\\kt)|\\kpsi(\\kt)\\rangle}",
+      "src": "7.1",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}\\sum_l \\kcinst_l(\\kt)|\\epsilon_l(\\kt)\\rangle} = \\mk{R}{\\kH(\\kt)\\sum_l \\kcinst_l(\\kt)|\\epsilon_l(\\kt)\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\sum_l\\left(\\dot{\\kcinst}_l(\\kt)|\\epsilon_l(\\kt)\\rangle + \\kcinst_l(\\kt)\\frac{d}{d\\kt}|\\epsilon_l(\\kt)\\rangle\\right)} = \\mk{R}{\\sum_l \\kcinst_l(\\kt)\\kH(\\kt)|\\epsilon_l(\\kt)\\rangle}",
+       "uses": [],
+       "cap": "The product rule: both the amplitudes and the eigenstates change in time."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\sum_l\\left(\\dot{\\kcinst}_l(\\kt)|\\epsilon_l(\\kt)\\rangle + \\kcinst_l(\\kt)\\frac{d}{d\\kt}|\\epsilon_l(\\kt)\\rangle\\right)} = \\mk{R}{\\sum_l \\kcinst_l(\\kt)\\keps_l(\\kt)|\\epsilon_l(\\kt)\\rangle}",
+       "uses": [
+        1
+       ],
+       "cap": "(7.1) holds at every instant $t_0$."
+      }
+     ],
+     "num": "(7.3)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The instantaneous eigenstates are orthonormal: $\\langle\\epsilon_k(\\kt)|\\epsilon_l(\\kt)\\rangle = \\delta_{kl}$.",
+       "src": "7.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\sum_l\\left(\\dot{\\kcinst}_l(\\kt)|\\epsilon_l(\\kt)\\rangle + \\kcinst_l(\\kt)\\frac{d}{d\\kt}|\\epsilon_l(\\kt)\\rangle\\right)} = \\mk{R}{\\sum_l \\kcinst_l(\\kt)\\keps_l(\\kt)|\\epsilon_l(\\kt)\\rangle}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\sum_l\\left(\\dot{\\kcinst}_l(\\kt)\\langle\\epsilon_k(\\kt)|\\epsilon_l(\\kt)\\rangle + \\kcinst_l(\\kt)\\langle\\epsilon_k(\\kt)|\\frac{d}{d\\kt}|\\epsilon_l(\\kt)\\rangle\\right)} = \\mk{R}{\\sum_l \\kcinst_l(\\kt)\\keps_l(\\kt)\\langle\\epsilon_k(\\kt)|\\epsilon_l(\\kt)\\rangle}",
+       "uses": [],
+       "cap": "Multiplying from the left by $\\langle\\epsilon_k(t)|$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcinst}_k(\\kt)} + \\mk{l}{i\\hbar\\sum_l \\kcinst_l(\\kt)\\langle\\epsilon_k(\\kt)|\\frac{d}{d\\kt}|\\epsilon_l(\\kt)\\rangle} = \\mk{R}{\\keps_k(\\kt)\\kcinst_k(\\kt)}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "L": [
+         "L",
+         "l"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcinst}_k(\\kt)} = \\mk{R}{\\keps_k(\\kt)\\kcinst_k(\\kt)} \\mk{l}{- i\\hbar\\sum_l \\kcinst_l(\\kt)\\langle\\epsilon_k(\\kt)|\\frac{d}{d\\kt}|\\epsilon_l(\\kt)\\rangle}",
+       "uses": []
+      }
+     ],
+     "num": "(7.4)"
+    }
+   ]
+  },
+  {
+   "id": "adiabatic-condition",
+   "what": "the condition for adiabaticity",
+   "source": "Modern Atomic and Optical Physics II, 7.1 The adiabatic theorem for time-dependent Hamiltonians, 7.1.1 The condition for adiabaticity",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Energies are measured from $\\keps_k$, with $\\komega_l = \\keps_l/\\hbar$.",
+       "src": "7.1"
+      },
+      {
+       "text": "The state is prepared in $|\\epsilon_k\\rangle$ and stays close to it: $|\\kcinst_k|^2 \\approx 1$, and the other amplitudes are small.",
+       "src": "7.1"
+      },
+      {
+       "text": "The eigenstates are non-degenerate, and $l \\neq k$.",
+       "src": "7.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\dot{\\kcinst}_l} = \\mk{d}{\\keps_l\\kcinst_l} \\mk{c}{- i\\hbar\\sum_m \\kcinst_m\\langle\\epsilon_l|\\dot{\\epsilon}_m\\rangle}",
+      "src": "(7.4)",
+      "uses": [],
+      "why": "(7.4) for the amplitude $c_l$ of another eigenstate, with $\\langle\\epsilon_l|\\dot{\\epsilon}_m\\rangle$ written for $\\langle\\epsilon_l|\\frac{d}{dt}|\\epsilon_m\\rangle$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcinst}_l} = \\mk{d}{-i\\frac{\\keps_l}{\\hbar}\\kcinst_l} \\mk{c}{- \\sum_m \\kcinst_m\\langle\\epsilon_l|\\dot{\\epsilon}_m\\rangle}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcinst}_l} = \\mk{d}{-i(\\komega_l - \\komega_k)\\kcinst_l} \\mk{c}{- \\sum_m \\kcinst_m\\langle\\epsilon_l|\\dot{\\epsilon}_m\\rangle}",
+       "uses": [
+        0
+       ],
+       "cap": "Measuring energies from $\\epsilon_k$ shifts $\\epsilon_l/\\hbar$ to $\\omega_l - \\omega_k$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcinst}_l} \\approx \\mk{d}{-i(\\komega_l - \\komega_k)\\kcinst_l} \\mk{c}{- \\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle\\kcinst_k(\\kt)}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "In perturbation theory only the coupling to the populated state $|\\epsilon_k\\rangle$ counts; the other amplitudes are small, and the diagonal term is dropped."
+      }
+     ],
+     "num": "(7.7)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The state is prepared in $|\\epsilon_k\\rangle$ and stays close to it: $|\\kcinst_k|^2 \\approx 1$, and the other amplitudes are small.",
+       "src": "7.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcinst}_l} \\approx \\mk{d}{-i(\\komega_l - \\komega_k)\\kcinst_l} \\mk{c}{- \\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle\\kcinst_k(\\kt)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcinst}_l} \\approx \\mk{d}{-i(\\komega_l - \\komega_k)\\kcinst_l} \\mk{c}{- \\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle\\cdot 1}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(7.8)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "Energies are measured from $\\keps_k$, with $\\komega_l = \\keps_l/\\hbar$.",
+       "src": "7.1"
+      },
+      {
+       "tex": "|\\kpsi(\\kt)\\rangle = \\sum_l \\kcinst_l(\\kt)|\\epsilon_l(\\kt)\\rangle",
+       "src": "(7.2)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcinst}_l} \\approx \\mk{d}{-i(\\komega_l - \\komega_k)\\kcinst_l} \\mk{c}{- \\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle\\cdot 1}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} \\approx \\mk{d}{-i(\\komega_l - \\komega_k)\\kcinst_l} \\mk{c}{- \\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle\\cdot 1}",
+       "uses": [],
+       "cap": "For a weak, slowly varying coupling, $c_l$ follows it: its own rate $\\omega_l - \\omega_k$ is fast by comparison, and $\\dot{c}_l \\approx 0$."
+      },
+      {
+       "tex": "\\mk{d}{\\kcinst_l} \\approx \\mk{c}{\\frac{-\\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle}{i(\\komega_l - \\komega_k)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\kcinst_l} \\approx \\mk{c}{-i\\hbar\\frac{\\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle}{\\keps_k - \\keps_l}}",
+       "uses": [
+        1
+       ],
+       "cap": "$-1/i = i$, and $\\hbar(\\omega_l - \\omega_k) = \\epsilon_l - \\epsilon_k$."
+      },
+      {
+       "tex": "\\mk{d}{|\\kpsi^{(1)}\\rangle} = \\mk{c}{-i\\hbar\\sum_{l \\neq k}\\frac{\\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle|\\epsilon_l\\rangle}{\\keps_k - \\keps_l}}",
+       "uses": [
+        2
+       ],
+       "cap": "The change in $|\\psi\\rangle$ is its part along the other eigenstates, $\\sum_{l \\neq k} c_l|\\epsilon_l\\rangle$ by (7.2)."
+      }
+     ],
+     "num": "(7.9)",
+     "note": "The book prints the sum over all $l$. It runs over $l \\neq k$: the term $l = k$ would have the denominator $\\keps_k - \\keps_k = 0$ and is not part of the change $|\\kpsi^{(1)}\\rangle$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "In the adiabatic limit $|\\epsilon_k(\\kt)\\rangle$ is essentially stationary, so negligible population leaks to the other states.",
+       "src": "7.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{|\\kpsi^{(1)}\\rangle} = \\mk{c}{-i\\hbar\\sum_{l \\neq k}\\frac{\\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle|\\epsilon_l\\rangle}{\\keps_k - \\keps_l}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\hbar\\frac{|\\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle|}{|\\keps_k - \\keps_l|}} \\ll \\mk{d}{1}",
+       "uses": [
+        1
+       ],
+       "cap": "Each component of $|\\psi^{(1)}\\rangle$ must be small for $|\\epsilon_k(t)\\rangle$ to stay stationary."
+      }
+     ],
+     "num": "(7.10)"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,503 @@
+{
+ "id": "2",
+ "dir": "ch02",
+ "title": "Basic processes in AMO physics and quantum optics",
+ "sections": [
+  {
+   "id": "2.1",
+   "title": "Atomic Transitions"
+  },
+  {
+   "id": "2.2",
+   "title": "Bound to Continuum Transitions"
+  },
+  {
+   "id": "2.3",
+   "title": "Quantized electromagnetic fields"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "anchor": "2.2-eq-2-42",
+   "section": "2.2"
+  },
+  {
+   "sym": "nu",
+   "concept": "optical-frequency",
+   "meaning": "The frequency of the applied field",
+   "anchor": "2.2-model",
+   "section": "2.2"
+  },
+  {
+   "sym": "omega_k",
+   "type": "frequency",
+   "ref": "continuum-k",
+   "meaning": "The frequency of the continuum state |k⟩, whose energy is ℏω_k",
+   "anchor": "2.2-model",
+   "section": "2.2",
+   "redefines": true
+  },
+  {
+   "sym": "Omega_k",
+   "concept": "rabi-frequency",
+   "ref": "continuum-k",
+   "meaning": "The Rabi frequency with which the applied field couples the continuum state |k⟩ to the bound state |1⟩",
+   "anchor": "2.2-model",
+   "section": "2.2",
+   "redefines": true
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "anchor": "2.2-eq-2-43",
+   "section": "2.2"
+  },
+  {
+   "sym": "c_1",
+   "concept": "probability-amplitude",
+   "ref": "bound-1",
+   "meaning": "The probability amplitude of the ground state |1⟩",
+   "anchor": "2.2-eq-2-43",
+   "section": "2.2"
+  },
+  {
+   "sym": "c_k",
+   "concept": "probability-amplitude",
+   "ref": "continuum-k",
+   "meaning": "The probability amplitude of the continuum state |k⟩",
+   "anchor": "2.2-eq-2-43",
+   "section": "2.2"
+  },
+  {
+   "sym": "delta_k",
+   "concept": "detuning",
+   "ref": "continuum-k",
+   "meaning": "The detuning ν − ω_k of the applied field from the continuum state |k⟩",
+   "anchor": "2.2-drv-continuum-decay",
+   "section": "2.2"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "anchor": "2.2-drv-continuum-decay",
+   "section": "2.2"
+  },
+  {
+   "sym": "gamma",
+   "concept": "continuum-decay-rate",
+   "meaning": "The rate at which the bound state population decays into the continuum",
+   "anchor": "2.2-decay",
+   "section": "2.2"
+  },
+  {
+   "sym": "Delta_Stark",
+   "concept": "continuum-stark-shift",
+   "meaning": "The shift of the bound state energy due to the AC Stark effect of the continuum states",
+   "anchor": "2.2-decay",
+   "section": "2.2"
+  },
+  {
+   "sym": "p_1",
+   "concept": "born-rule",
+   "ref": "bound-1",
+   "meaning": "The population of the ground state |1⟩",
+   "anchor": "2.2-decay-law",
+   "section": "2.2"
+  },
+  {
+   "sym": "q_j",
+   "concept": "field-quadratures",
+   "meaning": "The coordinate of field mode j, the position of a harmonic oscillator of unit mass; an operator once the field is quantized",
+   "anchor": "2.3-mode-expansion",
+   "section": "2.3"
+  },
+  {
+   "sym": "p_j",
+   "concept": "field-quadratures",
+   "meaning": "The momentum operator of field mode j, conjugate to its coordinate",
+   "anchor": "2.3-eq-2-64",
+   "section": "2.3"
+  },
+  {
+   "sym": "E_bar",
+   "concept": "single-photon-field",
+   "meaning": "The electric field associated with a single photon of mode j",
+   "anchor": "2.3-one-photon-field",
+   "section": "2.3"
+  },
+  {
+   "sym": "E_hat",
+   "concept": "quantized-electric-field",
+   "meaning": "The electric field operator, polarization component α",
+   "anchor": "2.3-eq-2-72",
+   "section": "2.3"
+  },
+  {
+   "sym": "E_plus",
+   "concept": "quantized-electric-field",
+   "meaning": "The positive frequency component of the electric field operator, proportional to the annihilation operators",
+   "anchor": "2.3-eq-2-72",
+   "section": "2.3"
+  },
+  {
+   "sym": "V_af",
+   "concept": "atom-field-interaction",
+   "meaning": "The interaction between the atom and the quantized field",
+   "anchor": "2.3-drv-atom-field-coupling",
+   "section": "2.3"
+  },
+  {
+   "sym": "g",
+   "concept": "single-photon-rabi-frequency",
+   "meaning": "The single-photon Rabi frequency, the coupling of the atom to one mode of the field",
+   "anchor": "2.3-drv-atom-field-coupling",
+   "section": "2.3"
+  },
+  {
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum",
+   "anchor": "2.3-decay-rate",
+   "redefines": true,
+   "section": "2.3"
+  },
+  {
+   "sym": "nu",
+   "type": "frequency",
+   "meaning": "The frequency ν_j of field mode j, or ν of the classical field the modes replace",
+   "anchor": "2.3-eq-2-58",
+   "redefines": true,
+   "section": "2.3"
+  },
+  {
+   "sym": "nu_k",
+   "type": "frequency",
+   "meaning": "The frequency of the photon mode k",
+   "anchor": "2.3-ww-states",
+   "section": "2.3",
+   "redefines": true
+  },
+  {
+   "sym": "k",
+   "type": "wavevector",
+   "meaning": "The wavevector of a field mode",
+   "anchor": "2.3-eigenmodes",
+   "section": "2.3"
+  },
+  {
+   "sym": "omega",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The atomic transition frequency: the two levels lie ħω apart",
+   "unit": "rad/s",
+   "section": "2.1",
+   "anchor": "2.1-transition-frequency"
+  },
+  {
+   "sym": "V",
+   "type": "volume",
+   "meaning": "The volume of the cavity in which the field is quantized",
+   "anchor": "2.3-eigenmodes",
+   "section": "2.3"
+  },
+  {
+   "sym": "nu",
+   "concept": "optical-frequency",
+   "meaning": "The frequency of the applied field",
+   "unit": "rad/s",
+   "section": "2.1",
+   "anchor": "2.1-optical-frequency"
+  },
+  {
+   "sym": "omega",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The atomic transition frequency: the two levels lie ħω apart",
+   "anchor": "2.3-eq-2-78",
+   "section": "2.3"
+  },
+  {
+   "sym": "E_env",
+   "concept": "slowly-varying-envelope",
+   "meaning": "The slowly-varying envelope of the applied field",
+   "unit": "V/m",
+   "section": "2.1",
+   "anchor": "2.1-optical-frequency"
+  },
+  {
+   "sym": "mu",
+   "type": "dipole",
+   "meaning": "The dipole matrix element μ = μ₂₁ = ⟨2|d̂|1⟩ of the transition",
+   "anchor": "2.3-coupling",
+   "section": "2.3"
+  },
+  {
+   "sym": "E_field",
+   "meaning": "The applied classical electric field",
+   "type": "electric-field",
+   "unit": "V/m",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-1"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω = ℰμ/ℏ",
+   "anchor": "2.3-rwa-terms",
+   "section": "2.3"
+  },
+  {
+   "sym": "k",
+   "meaning": "The wavevector of the applied field",
+   "type": "wavevector",
+   "unit": "m⁻¹",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-1"
+  },
+  {
+   "sym": "c_1",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude of the ground state with no photon, |1, 0⟩",
+   "anchor": "2.3-dipole-decays",
+   "redefines": true,
+   "section": "2.3"
+  },
+  {
+   "sym": "t",
+   "meaning": "Time",
+   "type": "time",
+   "unit": "s",
+   "section": "2.1"
+  },
+  {
+   "sym": "c_2",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude of the excited state with no photon, |2, 0⟩",
+   "anchor": "2.3-eq-2-90",
+   "section": "2.3",
+   "redefines": true
+  },
+  {
+   "sym": "r",
+   "meaning": "The position operator of the electron",
+   "type": "length",
+   "unit": "m",
+   "section": "2.1",
+   "anchor": "2.1-optical-frequency"
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "anchor": "2.3-eq-2-90",
+   "section": "2.3"
+  },
+  {
+   "sym": "mu",
+   "meaning": "The dipole matrix element μ = μ₂₁ = ⟨2|d̂|1⟩ of the transition",
+   "type": "dipole",
+   "unit": "C·m",
+   "section": "2.1",
+   "anchor": "2.1-detuning"
+  },
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "anchor": "2.3-drv-field-hamiltonian-ladder",
+   "section": "2.3"
+  },
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-2"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "anchor": "2.3-eq-2-55",
+   "section": "2.3"
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-3"
+  },
+  {
+   "sym": "E_field",
+   "type": "electric-field",
+   "meaning": "The electric field of the free field, with no sources",
+   "anchor": "2.3-eq-2-55",
+   "section": "2.3"
+  },
+  {
+   "sym": "B",
+   "type": "magnetic-field",
+   "meaning": "The magnetic field of the free field",
+   "anchor": "2.3-eq-2-56",
+   "section": "2.3"
+  },
+  {
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of a charged particle in the field",
+   "anchor": "2.3-canonical",
+   "section": "2.3"
+  },
+  {
+   "sym": "p",
+   "type": "momentum",
+   "meaning": "The momentum operator of a charged particle in the field",
+   "anchor": "2.3-canonical",
+   "section": "2.3"
+  },
+  {
+   "sym": "c_1",
+   "concept": "probability-amplitude",
+   "ref": "lvl-1",
+   "meaning": "The probability amplitude of the ground state |1⟩",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-3"
+  },
+  {
+   "sym": "c_2",
+   "concept": "probability-amplitude",
+   "ref": "lvl-2",
+   "meaning": "The probability amplitude of the excited state |2⟩",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-3"
+  },
+  {
+   "sym": "c_tilde_2",
+   "concept": "rotating-frame",
+   "ref": "lvl-2",
+   "meaning": "The slowly varying amplitude of |2⟩ in the frame rotating at ν, c₂ = c̃₂e^{−iνt}",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-5"
+  },
+  {
+   "sym": "delta",
+   "concept": "detuning",
+   "meaning": "The detuning δ = ν − ω of the field from the atomic transition",
+   "unit": "rad/s",
+   "section": "2.1",
+   "anchor": "2.1-detuning"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω = ℰμ/ℏ",
+   "unit": "rad/s",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-8"
+  },
+  {
+   "sym": "p_1",
+   "concept": "born-rule",
+   "ref": "lvl-1",
+   "meaning": "The population of the ground state |1⟩",
+   "section": "2.1",
+   "anchor": "2.1-rabi-oscillations"
+  },
+  {
+   "sym": "p_2",
+   "concept": "born-rule",
+   "ref": "lvl-2",
+   "meaning": "The population of the excited state |2⟩",
+   "section": "2.1",
+   "anchor": "2.1-rabi-oscillations"
+  },
+  {
+   "sym": "tau",
+   "meaning": "The renormalized time τ = ∫|Ω|dt, the area under the applied field",
+   "section": "2.1",
+   "anchor": "2.1-pulse-area",
+   "concept": "pulse-area"
+  },
+  {
+   "sym": "H_tilde",
+   "concept": "rotating-frame-hamiltonian",
+   "meaning": "The effective Hamiltonian in the rotating frame",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-23"
+  },
+  {
+   "sym": "epsilon_pm",
+   "concept": "dressed-state-energies",
+   "meaning": "The energies of the dressed states |±⟩",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-24"
+  },
+  {
+   "sym": "epsilon_p",
+   "concept": "dressed-state-energies",
+   "ref": "dressed-plus",
+   "meaning": "The energy of the dressed state |+⟩",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-26"
+  },
+  {
+   "sym": "epsilon_m",
+   "concept": "dressed-state-energies",
+   "ref": "dressed-minus",
+   "meaning": "The energy of the dressed state |−⟩",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-25"
+  },
+  {
+   "sym": "S_tilde",
+   "concept": "bloch-sphere",
+   "meaning": "The Bloch vector of the state in the rotating frame, S̃ = {S̃ₓ, S̃ᵧ, S̃_z}",
+   "section": "2.1",
+   "anchor": "2.1-bloch-vector"
+  },
+  {
+   "sym": "Omega_vec",
+   "meaning": "The drive vector Ω(t) = {−2 Re Ω, −2 Im Ω*, −δ} the Bloch vector precesses about",
+   "type": "coupling",
+   "unit": "rad/s",
+   "section": "2.1",
+   "anchor": "2.1-bloch-vector"
+  },
+  {
+   "sym": "Omega_k",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω_k = ℰ_kμ_k/ℏ of the field coupling |1⟩ to the excited state |k⟩",
+   "unit": "rad/s",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-34"
+  },
+  {
+   "sym": "omega_k",
+   "meaning": "The frequency of the transition from |1⟩ to the excited state |k⟩",
+   "type": "frequency",
+   "unit": "rad/s",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-34"
+  },
+  {
+   "sym": "nu_k",
+   "meaning": "The frequency of the field near resonance with the k-th transition",
+   "type": "frequency",
+   "unit": "rad/s",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-34"
+  },
+  {
+   "sym": "Delta",
+   "meaning": "The beatnote frequency Δ = ν_a − ν_b of two fields on one transition",
+   "type": "frequency",
+   "unit": "rad/s",
+   "section": "2.1",
+   "anchor": "2.1-eq-2-40"
+  }
+ ]
+}

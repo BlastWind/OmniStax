@@ -1,0 +1,809 @@
+{
+  "symbols": [
+    {
+      "sym": "theta",
+      "latex": "\\theta",
+      "macro": "\\ktheta"
+    },
+    {
+      "sym": "phi",
+      "latex": "\\phi",
+      "macro": "\\kphi"
+    },
+    {
+      "sym": "A_area",
+      "latex": "A",
+      "macro": "\\kAarea"
+    },
+    {
+      "sym": "P_LZ",
+      "latex": "P_{LZ}",
+      "macro": "\\kPLZ"
+    },
+    {
+      "sym": "Omega_NA",
+      "latex": "\\Omega_\\mathrm{NA}",
+      "macro": "\\kOmegaNA"
+    },
+    {
+      "sym": "gamma_B",
+      "latex": "\\gamma_B",
+      "macro": "\\kgammaB"
+    },
+    {
+      "sym": "P_jump",
+      "latex": "P_\\mathrm{jump}",
+      "macro": "\\kPjump"
+    },
+    {
+      "sym": "epsilon",
+      "latex": "\\epsilon",
+      "macro": "\\keps"
+    },
+    {
+      "sym": "c_inst",
+      "latex": "c",
+      "macro": "\\kcinst"
+    },
+    {
+      "sym": "P_1",
+      "latex": "P_1",
+      "macro": "\\kPone"
+    },
+    {
+      "sym": "Omega_3",
+      "latex": "\\Omega_3",
+      "macro": "\\kOmegathree"
+    },
+    {
+      "sym": "Omega_4",
+      "latex": "\\Omega_4",
+      "macro": "\\kOmegafour"
+    },
+    {
+      "sym": "epsilon_0",
+      "latex": "\\epsilon_0",
+      "macro": "\\kepszero"
+    },
+    {
+      "sym": "P_2",
+      "latex": "P_2",
+      "macro": "\\kPtwo"
+    },
+    {
+      "sym": "Delta_omega",
+      "latex": "\\Delta\\omega",
+      "macro": "\\kDeltaomega"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "instantaneous-eigenstates",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Instantaneous eigenstates",
+      "terms": [
+        "instantaneous eigenstates"
+      ],
+      "type": "state",
+      "statement": "At any given time t₀ the Hamiltonian Ĥ(t₀) has instantaneous eigenstates |ϵ_k(t₀)⟩ and eigenvalues ϵ_k(t₀), and an arbitrary state may be expanded in them.",
+      "forms": [
+        {
+          "id": "eq-7-1",
+          "latex": "\\hat{H}(t_0)|\\epsilon_k(t_0)\\rangle = \\epsilon_k(t_0)|\\epsilon_k(t_0)\\rangle",
+          "anchor": "7.1-eq-7-1"
+        },
+        {
+          "id": "eq-7-2",
+          "latex": "|\\psi(t)\\rangle = \\sum_l c_l(t)|\\epsilon_l(t)\\rangle",
+          "anchor": "7.1-eq-7-2"
+        }
+      ]
+    },
+    {
+      "id": "nonadiabatic-coupling",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Coupling by changing eigenstates",
+      "terms": [
+        "off-diagonal couplings"
+      ],
+      "statement": "The time dependence of the instantaneous eigenstates couples their amplitudes through the off-diagonal terms −iℏ⟨ϵ_k|ϵ̇_l⟩, so an eigenstate of a time-dependent Hamiltonian is not in general stationary.",
+      "forms": [
+        {
+          "id": "eq-7-4",
+          "latex": "i\\hbar\\dot{c}_k(t) = \\epsilon_k(t)c_k(t) - i\\hbar\\sum_l c_l(t)\\langle\\epsilon_k(t)|\\frac{d}{dt}|\\epsilon_l(t)\\rangle",
+          "anchor": "7.1-drv-adiabatic-amplitudes"
+        },
+        {
+          "id": "eq-7-6",
+          "latex": "i\\hbar\\frac{d}{dt}\\begin{pmatrix} c_1 \\\\ c_2 \\\\ \\vdots \\\\ c_N \\end{pmatrix} = \\begin{pmatrix} \\epsilon_1 & -i\\hbar\\langle\\epsilon_1|\\dot{\\epsilon}_2\\rangle & \\ldots & \\\\ -i\\hbar\\langle\\epsilon_2|\\dot{\\epsilon}_1\\rangle & \\epsilon_2 & & \\\\ \\vdots & & \\ddots & \\\\ & & & \\epsilon_N \\end{pmatrix}\\begin{pmatrix} c_1 \\\\ c_2 \\\\ \\vdots \\\\ c_N \\end{pmatrix}",
+          "anchor": "7.1-eq-7-6"
+        }
+      ]
+    },
+    {
+      "id": "adiabatic-theorem",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Adiabatic theorem",
+      "terms": [
+        "adiabatic",
+        "adiabatic theorem",
+        "adiabatically follow"
+      ],
+      "statement": "A system prepared in an instantaneous eigenstate of a Hamiltonian that changes slowly enough stays in that eigenstate as it evolves: this is the adiabatic limit, where negligible population leaks to other states."
+    },
+    {
+      "id": "adiabaticity-condition",
+      "kind": "result",
+      "section": "7.1",
+      "name": "Adiabaticity condition",
+      "terms": [
+        "adiabaticity condition"
+      ],
+      "statement": "The instantaneous eigenstate is stationary when the coupling ℏ|⟨ϵ_l|ϵ̇_k⟩| to every other eigenstate is small compared to their energy difference; a Hamiltonian changing on a timescale τ gives couplings ∝ 1/τ.",
+      "forms": [
+        {
+          "id": "eq-7-10",
+          "latex": "\\hbar\\frac{|\\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle|}{|\\epsilon_k - \\epsilon_l|} \\ll 1",
+          "anchor": "7.1-drv-adiabatic-condition"
+        },
+        {
+          "id": "eq-7-9",
+          "latex": "|\\psi^{(1)}\\rangle = -i\\hbar\\sum_l\\frac{\\langle\\epsilon_l|\\dot{\\epsilon}_k\\rangle|\\epsilon_l\\rangle}{\\epsilon_k - \\epsilon_l}",
+          "anchor": "7.1-drv-adiabatic-condition"
+        }
+      ]
+    },
+    {
+      "id": "dynamical-phase",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Dynamical phase",
+      "terms": [
+        "dynamical"
+      ],
+      "type": "phase",
+      "statement": "The dynamical phase e^{−i/ℏ∫ϵ_k dτ} comes from the diagonal part of the Schrödinger equation.",
+      "forms": [
+        {
+          "id": "eq-7-dynamical-phase",
+          "latex": "e^{-\\frac{i}{\\hbar}\\int_0^t d\\tau\\,\\epsilon_k(\\tau)}",
+          "anchor": "7.1-phases"
+        }
+      ]
+    },
+    {
+      "id": "geometric-phase",
+      "kind": "definition",
+      "section": "7.1",
+      "name": "Geometric phase",
+      "terms": [
+        "geometric",
+        "Berry's"
+      ],
+      "type": "phase",
+      "statement": "Even when the adiabaticity condition is satisfied, the neglected diagonal terms ⟨ϵ_k|ϵ̇_k⟩ may introduce a geometric or Berry's phase, added to the dynamical phase."
+    },
+    {
+      "id": "mixing-angle",
+      "kind": "definition",
+      "section": "7.2",
+      "name": "Mixing angle",
+      "symbol": "theta",
+      "terms": [
+        "mixing angle"
+      ],
+      "type": "phase",
+      "statement": "The mixing angle θ sets how much of each bare state the dressed states of a two-level system contain; it is fixed by the ratio of the Rabi frequency to the detuning.",
+      "forms": [
+        {
+          "id": "eq-7-16",
+          "latex": "\\theta(t) = -\\frac{1}{2}\\mathrm{arctan}\\,\\frac{2\\Omega(t)}{\\Delta(t)}",
+          "anchor": "7.2-eq-7-16"
+        }
+      ]
+    },
+    {
+      "id": "time-dependent-dressed-states",
+      "kind": "result",
+      "section": "7.2",
+      "name": "Time-dependent dressed states",
+      "terms": [
+        "time-dependent dressed states"
+      ],
+      "type": "state",
+      "statement": "For a two-level system with time-dependent detuning and Rabi frequency, the instantaneous eigenstates |±⟩ and eigenenergies ϵ± are a set of time-dependent dressed states and dressed energies.",
+      "forms": [
+        {
+          "id": "eq-7-13",
+          "latex": "|+\\rangle = \\cos\\theta(t)|1\\rangle + \\sin\\theta(t)|2\\rangle",
+          "anchor": "7.2-eq-7-13"
+        },
+        {
+          "id": "eq-7-14",
+          "latex": "|-\\rangle = \\sin\\theta(t)|1\\rangle - \\cos\\theta(t)|2\\rangle",
+          "anchor": "7.2-eq-7-14"
+        },
+        {
+          "id": "eq-7-15",
+          "latex": "\\epsilon_\\pm(t) = \\frac{\\hbar}{2}\\left(-\\Delta(t) \\pm \\sqrt{\\Delta(t)^2 + 4\\Omega(t)^2}\\right)",
+          "anchor": "7.2-eq-7-15"
+        },
+        {
+          "id": "eq-7-11",
+          "latex": "\\hat{H}(t) = -\\hbar\\Delta(t)|2\\rangle\\langle 2| - \\hbar\\Omega(t)\\left(|1\\rangle\\langle 2| + |2\\rangle\\langle 1|\\right)",
+          "anchor": "7.2-eq-7-11"
+        }
+      ]
+    },
+    {
+      "id": "adiabatic-return",
+      "kind": "idea",
+      "section": "7.2",
+      "name": "Adiabatic return",
+      "terms": [
+        "Adiabatic return"
+      ],
+      "statement": "With the detuning held constant and nonzero, a pulse Ω(t) takes a system adiabatically following |−⟩ into a superposition of |1⟩ and |2⟩ and, as the pulse ends, back to its initial state |1⟩."
+    },
+    {
+      "id": "rapid-adiabatic-passage",
+      "kind": "result",
+      "section": "7.2",
+      "name": "Rapid adiabatic passage",
+      "terms": [
+        "Rapid adiabatic passage",
+        "adiabatic passage",
+        "rapid"
+      ],
+      "statement": "Chirping the detuning through resonance while sending in a pulse carries the system along the avoided crossing from |1⟩ to |2⟩ with near unit probability, robustly against imprecise Δ, Ω and τ; it can be faster than the excited-state lifetime, hence “rapid”."
+    },
+    {
+      "id": "two-level-adiabaticity-condition",
+      "kind": "result",
+      "section": "7.2",
+      "name": "Adiabaticity condition for the two-level system",
+      "statement": "The two-level system follows |−⟩ when ℏθ̇ is small compared to the splitting ϵ₊ − ϵ₋ ≥ 2ℏΩ, which for passage amounts to a pulse area A ≫ 1 and a minimum time τ ≈ 1/Ω.",
+      "forms": [
+        {
+          "id": "eq-7-19",
+          "latex": "\\hbar\\dot{\\theta}(t) \\ll |\\epsilon_+(t) - \\epsilon_-(t)|",
+          "anchor": "7.2-drv-two-level-adiabaticity"
+        },
+        {
+          "id": "eq-7-17",
+          "latex": "\\frac{|\\dot{\\Omega}\\Delta - \\Omega\\dot{\\Delta}|}{4\\Omega^2 + \\Delta^2} \\ll \\sqrt{4\\Omega^2 + \\Delta^2}",
+          "anchor": "7.2-eq-7-17"
+        },
+        {
+          "id": "eq-7-18",
+          "latex": "\\langle\\dot{+}|-\\rangle = \\dot{\\theta}(t)",
+          "anchor": "7.2-drv-two-level-adiabaticity"
+        },
+        {
+          "id": "eq-7-20",
+          "latex": "\\int_{-\\infty}^{\\infty} dt\\,\\dot{\\theta}(t) \\ll \\int_{-\\infty}^{\\infty} dt\\, 2\\Omega(t) = A",
+          "anchor": "7.2-drv-pulse-area-condition"
+        }
+      ]
+    },
+    {
+      "id": "landau-zener",
+      "kind": "result",
+      "section": "7.2",
+      "name": "Landau-Zener model",
+      "symbol": "P_LZ",
+      "terms": [
+        "Landau-Zener model"
+      ],
+      "type": "population",
+      "statement": "For constant Ω₀ and a detuning swept linearly, Δ = αt, the probability of complete transfer is P_LZ = 1 − e^{−2π|Ω₀|²/|α|}; its non-adiabatic correction is not analytic in the small parameter and cannot be found by perturbation theory.",
+      "forms": [
+        {
+          "id": "eq-7-22",
+          "latex": "P_{LZ} = 1 - e^{-2\\pi\\frac{|\\Omega_0|^2}{|\\alpha|}}",
+          "anchor": "7.2-eq-7-22"
+        },
+        {
+          "id": "eq-7-23",
+          "latex": "P_{LZ} - 1 \\approx e^{-\\frac{\\pi}{2}\\frac{1}{\\epsilon}}",
+          "anchor": "7.2-eq-7-23"
+        },
+        {
+          "id": "eq-7-21",
+          "latex": "\\epsilon = \\frac{\\dot{\\theta}}{|\\epsilon_+ - \\epsilon_-|}",
+          "anchor": "7.2-eq-7-21"
+        }
+      ]
+    },
+    {
+      "id": "three-level-dressed-states",
+      "kind": "result",
+      "section": "7.3",
+      "name": "Dressed states of the three-level system",
+      "type": "state",
+      "statement": "At two-photon resonance the three-level Hamiltonian has dressed states |Φ±⟩ and |Φ₀⟩; |Φ₀⟩, with energy zero and no overlap with |3⟩, is the dark state, a superposition of |1⟩ and |2⟩ set by tan θ = Ω₁/Ω₂.",
+      "forms": [
+        {
+          "id": "eq-7-26",
+          "latex": "|\\Phi_0\\rangle = \\cos\\theta|1\\rangle - \\sin\\theta|2\\rangle",
+          "anchor": "7.3-drv-lambda-dressed-states"
+        },
+        {
+          "id": "eq-7-28",
+          "latex": "\\tan\\theta = \\frac{\\Omega_1}{\\Omega_2}",
+          "anchor": "7.3-drv-lambda-dressed-states"
+        },
+        {
+          "id": "eq-7-24",
+          "latex": "\\hat{H} = -\\Delta|3\\rangle\\langle 3| - \\Omega_1\\left(|3\\rangle\\langle 1| + |1\\rangle\\langle 3|\\right) - \\Omega_2\\left(|3\\rangle\\langle 2| + |2\\rangle\\langle 3|\\right)",
+          "anchor": "7.3-eq-7-24"
+        },
+        {
+          "id": "eq-7-25",
+          "latex": "|\\Phi_+\\rangle = \\sin\\theta\\sin\\phi|1\\rangle + \\cos\\theta\\sin\\phi|2\\rangle + \\cos\\phi|3\\rangle",
+          "anchor": "7.3-drv-lambda-dressed-states"
+        },
+        {
+          "id": "eq-7-27",
+          "latex": "|\\Phi_-\\rangle = \\sin\\theta\\cos\\phi|1\\rangle + \\cos\\theta\\cos\\phi|2\\rangle - \\sin\\phi|3\\rangle",
+          "anchor": "7.3-drv-lambda-dressed-states"
+        },
+        {
+          "id": "eq-7-29",
+          "latex": "\\tan 2\\phi = -\\frac{\\sqrt{|\\Omega_1|^2 + |\\Omega_2|^2}}{\\Delta} = -\\frac{\\Omega}{\\Delta}",
+          "anchor": "7.3-drv-lambda-dressed-states"
+        },
+        {
+          "id": "eq-7-30",
+          "latex": "\\epsilon_+ = \\frac{1}{2}\\left(-\\Delta + \\sqrt{\\Omega^2 + \\Delta^2}\\right)",
+          "anchor": "7.3-drv-lambda-dressed-states"
+        },
+        {
+          "id": "eq-7-31",
+          "latex": "\\epsilon_0 = 0",
+          "anchor": "7.3-drv-lambda-dressed-states"
+        },
+        {
+          "id": "eq-7-32",
+          "latex": "\\epsilon_- = \\frac{1}{2}\\left(-\\Delta - \\sqrt{\\Omega^2 + \\Delta^2}\\right)",
+          "anchor": "7.3-drv-lambda-dressed-states"
+        }
+      ]
+    },
+    {
+      "id": "stirap",
+      "kind": "result",
+      "section": "7.3",
+      "name": "Stimulated Raman adiabatic passage",
+      "terms": [
+        "Stimulated Raman adiabatic passage",
+        "STIRAP"
+      ],
+      "statement": "Sweeping the mixing angle slowly from 0 to π/2 with a counterintuitive pulse sequence carries the dark state from |1⟩ to −|2⟩ without ever populating |3⟩; the transfer is robust to pulse shape and timing and to the single-photon detuning, but sensitive to the two-photon detuning.",
+      "forms": [
+        {
+          "id": "eq-7-33",
+          "latex": "\\theta = 0 \\quad \\Rightarrow \\quad |\\Phi_0\\rangle = |1\\rangle",
+          "anchor": "7.3-eq-7-33"
+        },
+        {
+          "id": "eq-7-34",
+          "latex": "\\theta = \\frac{\\pi}{2} \\quad \\Rightarrow \\quad |\\Phi_0\\rangle = -|2\\rangle",
+          "anchor": "7.3-eq-7-34"
+        }
+      ]
+    },
+    {
+      "id": "four-level-dark-states",
+      "kind": "result",
+      "section": "7.3",
+      "name": "Four-level dark states",
+      "terms": [
+        "Four-level systems"
+      ],
+      "type": "state",
+      "statement": "Three metastable states resonantly coupled to one excited state have two degenerate dark states; because they are degenerate their nonadiabatic coupling can be used to prepare an arbitrary superposition c₃|3⟩ + c₄|4⟩, set by the phase and amplitude of the third field.",
+      "forms": [
+        {
+          "id": "eq-7-35",
+          "latex": "|\\Phi_1\\rangle = \\cos\\theta|1\\rangle - \\sin\\theta\\cos\\phi|3\\rangle - \\sin\\theta\\sin\\phi|4\\rangle",
+          "anchor": "7.3-drv-tripod-dark-states"
+        },
+        {
+          "id": "eq-7-36",
+          "latex": "|\\Phi_2\\rangle = \\sin\\phi|3\\rangle - \\cos\\phi|4\\rangle",
+          "anchor": "7.3-drv-tripod-dark-states"
+        },
+        {
+          "id": "eq-7-37",
+          "latex": "\\tan\\theta = \\frac{\\Omega_1}{\\sqrt{|\\Omega_3|^2 + |\\Omega_4|^2}}",
+          "anchor": "7.3-drv-tripod-dark-states"
+        },
+        {
+          "id": "eq-7-38",
+          "latex": "\\tan\\phi = \\frac{\\Omega_3}{\\Omega_4}",
+          "anchor": "7.3-drv-tripod-dark-states"
+        }
+      ]
+    },
+    {
+      "id": "adiabatic-atomic-beamsplitter",
+      "kind": "idea",
+      "section": "7.3",
+      "name": "Adiabatic beamsplitter for atoms",
+      "terms": [
+        "beamsplitter for atoms",
+        "atomic beamsplitter"
+      ],
+      "statement": "Atoms moving through three spatially separated beams are adiabatically transferred into a controllable mixture of |3⟩ and |4⟩, whose different momentum kicks map the internal state onto position: a beamsplitter for atoms."
+    },
+    {
+      "id": "dark-state-adiabaticity-condition",
+      "kind": "result",
+      "section": "7.4",
+      "name": "Adiabaticity condition with decay",
+      "statement": "With decay γ₁₃ from the excited state, the first-order corrections to dark-state following scale as γ₁₃/Ω²τ, so adiabatic following requires γ₁₃/Ω²τ ≪ 1, quite different from the condition for coherent evolution.",
+      "forms": [
+        {
+          "id": "eq-7-53",
+          "latex": "\\frac{\\gamma_{13}}{\\Omega^2\\tau} \\ll 1",
+          "anchor": "7.4-eq-7-53"
+        },
+        {
+          "id": "eq-7-39",
+          "latex": "\\Omega_1(t) = \\Omega\\sin\\frac{t}{\\tau}",
+          "anchor": "7.4-eq-7-39"
+        },
+        {
+          "id": "eq-7-40",
+          "latex": "\\Omega_2(t) = \\Omega\\cos\\frac{t}{\\tau}",
+          "anchor": "7.4-eq-7-40"
+        },
+        {
+          "id": "eq-7-41",
+          "latex": "\\dot{c}_1 = i\\Omega_1^*(t)c_3",
+          "anchor": "7.4-eq-7-41"
+        },
+        {
+          "id": "eq-7-42",
+          "latex": "\\dot{c}_2 = i\\Omega_2^*(t)c_3",
+          "anchor": "7.4-eq-7-42"
+        },
+        {
+          "id": "eq-7-43",
+          "latex": "\\dot{c}_3 = -\\gamma_{13}c_3 + i\\left(\\Omega_1(t)c_1 + \\Omega_2(t)c_2\\right)",
+          "anchor": "7.4-eq-7-43"
+        },
+        {
+          "id": "eq-7-51",
+          "latex": "c_3^{(1)} = \\frac{\\dot{c}_1^{(0)}}{i\\Omega_1^*} = \\frac{i}{\\Omega\\tau}",
+          "anchor": "7.4-drv-stirap-first-order"
+        }
+      ]
+    },
+    {
+      "id": "adiabatic-expansion",
+      "kind": "skill",
+      "section": "7.4",
+      "name": "Adiabatic expansion",
+      "statement": "Expand the amplitudes in powers of a small parameter ∝ 1/τ: the zeroth order is the stationary solution with time derivatives neglected, and each correction is driven by the time derivative of the order before.",
+      "forms": [
+        {
+          "id": "eq-7-44",
+          "latex": "c_i = c_i^{(0)} + c_i^{(1)} + \\ldots",
+          "anchor": "7.4-eq-7-44"
+        },
+        {
+          "id": "eq-7-55",
+          "latex": "\\dot{v}^{(0)} \\approx M(t/\\tau)\\left(v^{(0)} + v^{(1)}\\right)"
+        }
+      ]
+    },
+    {
+      "id": "quantum-jump-error",
+      "kind": "result",
+      "section": "7.4",
+      "name": "Error due to quantum jumps",
+      "type": "population",
+      "statement": "During the time τ the probability of a quantum jump is γ₁₃/Ω²τ, so the non-Hermitian evolution and the adiabatic approximation are valid in the same situations.",
+      "forms": [
+        {
+          "id": "eq-7-56",
+          "latex": "P_\\mathrm{jump} = \\gamma_{13}\\int_0^\\tau |c_3|^2 = \\frac{\\gamma_{13}}{\\Omega^2\\tau}",
+          "anchor": "7.4-eq-7-56"
+        },
+        {
+          "id": "eq-7-57",
+          "latex": "P_\\mathrm{jump} \\ll 1 \\Rightarrow \\frac{\\gamma_{13}}{\\Omega^2\\tau} \\ll 1",
+          "anchor": "7.4-eq-7-57"
+        }
+      ]
+    },
+    {
+      "id": "stirap-fidelity",
+      "kind": "result",
+      "section": "7.4",
+      "name": "Fidelity of adiabatic passage with decay",
+      "type": "population",
+      "statement": "The probability of ending in −|2⟩ is ρ₂₂ = e^{−πγ₁₃/2|Ω|²τ}, which unlike the Landau-Zener result permits an expansion in the small parameter γ₁₃/Ω²τ.",
+      "forms": [
+        {
+          "id": "eq-7-58",
+          "latex": "\\rho_{22} = e^{-\\frac{\\pi\\gamma_{13}}{2|\\Omega|^2\\tau}}",
+          "anchor": "7.4-drv-stirap-fidelity"
+        }
+      ]
+    },
+    {
+      "id": "bright-dark-basis",
+      "kind": "definition",
+      "section": "7.4",
+      "name": "Partially diagonalized basis",
+      "terms": [
+        "partially diagonalized basis"
+      ],
+      "type": "state",
+      "statement": "The dark state |D⟩, the bright state |B⟩ and the excited state |E⟩ form a partially diagonalized basis in which only |B⟩ couples to |E⟩, with Rabi frequency √(|Ω₁|² + |Ω₂|²).",
+      "forms": [
+        {
+          "id": "eq-7-59",
+          "latex": "|B\\rangle = \\frac{\\Omega_1|1\\rangle + \\Omega_2|2\\rangle}{\\sqrt{|\\Omega_1|^2 + |\\Omega_2|^2}}",
+          "anchor": "7.4-eq-7-59"
+        },
+        {
+          "id": "eq-7-60",
+          "latex": "|D\\rangle = \\frac{\\Omega_2|1\\rangle - \\Omega_1|2\\rangle}{\\sqrt{|\\Omega_1|^2 + |\\Omega_2|^2}}",
+          "anchor": "7.4-eq-7-60"
+        },
+        {
+          "id": "eq-7-61",
+          "latex": "|E\\rangle = |3\\rangle",
+          "anchor": "7.4-eq-7-61"
+        },
+        {
+          "id": "eq-7-62",
+          "latex": "\\hat{H}_\\mathrm{int} = -\\sqrt{|\\Omega_1|^2 + |\\Omega_2|^2}\\left(|B\\rangle\\langle E| + |E\\rangle\\langle B|\\right)",
+          "anchor": "7.4-eq-7-62"
+        }
+      ]
+    },
+    {
+      "id": "nonadiabatic-rabi-frequency",
+      "kind": "definition",
+      "section": "7.4",
+      "name": "Nonadiabatic coupling of dark and bright states",
+      "symbol": "Omega_NA",
+      "terms": [
+        "nonadiabatic coupling"
+      ],
+      "type": "coupling",
+      "statement": "The finite pulse time couples |D⟩ to |B⟩ like a weak field with Rabi frequency Ω_NA = 1/τ.",
+      "forms": [
+        {
+          "id": "eq-7-63",
+          "latex": "i\\hbar\\langle B|\\frac{d}{dt}|D\\rangle = -i\\hbar\\frac{1}{\\tau}",
+          "anchor": "7.4-eq-7-63"
+        }
+      ]
+    },
+    {
+      "id": "bright-state-escape-rate",
+      "kind": "result",
+      "section": "7.4",
+      "name": "Escape rate from the bright state",
+      "symbol": "gamma_B",
+      "type": "rate",
+      "statement": "Excitation to |E⟩ and its decay give |B⟩ a finite lifetime, with escape rate γ_B = Ω²/γ₁₃; the atom stays dark when 1/τ ≪ Ω²/γ₁₃, the same adiabaticity condition reached by reasoning physically.",
+      "forms": [
+        {
+          "id": "eq-7-64",
+          "latex": "\\gamma_B = \\frac{\\Omega^2}{\\gamma_{13}}",
+          "anchor": "7.4-eq-7-64"
+        },
+        {
+          "id": "eq-7-65",
+          "latex": "\\frac{1}{\\tau} \\ll \\frac{\\Omega^2}{\\gamma_{13}}",
+          "anchor": "7.4-eq-7-65"
+        }
+      ]
+    },
+    {
+      "id": "adiabatic-following-eit",
+      "kind": "idea",
+      "section": "7.4",
+      "name": "Adiabatic following and EIT",
+      "statement": "A probe pulse propagates through an EIT medium without loss only if it is longer than the inverse dark-resonance linewidth, τ ≫ γ₁₃/Ω², which is exactly the adiabatic following condition: the atoms follow the dark state in and back out as the pulse passes."
+    },
+    {
+      "id": "dark-state-optical-pumping",
+      "kind": "idea",
+      "section": "7.4",
+      "name": "Dark state preparation by optical pumping",
+      "terms": [
+        "Non-adiabatic dark state preparation"
+      ],
+      "statement": "A mixed state cannot be turned into the dark state by any Hamiltonian evolution, but optical pumping in the bright and dark basis prepares it by purely incoherent processes: atoms excited from |B⟩ decay into |D⟩ and remain."
+    },
+    {
+      "id": "coherence-population-basis",
+      "kind": "idea",
+      "section": "7.4",
+      "name": "Coherence as population in another basis",
+      "statement": "A coherence in one basis is a population distribution in another basis; for linearly polarized light on a J = 1 to J′ = 1 transition, the dark superposition of m_⊥ = ±1 is exactly the state m_∥ = 0."
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "instantaneous-eigenstates",
+      "prereq": "stationary-states"
+    },
+    {
+      "concept": "nonadiabatic-coupling",
+      "prereq": "instantaneous-eigenstates"
+    },
+    {
+      "concept": "nonadiabatic-coupling",
+      "prereq": "probability-amplitude"
+    },
+    {
+      "concept": "adiabatic-theorem",
+      "prereq": "nonadiabatic-coupling"
+    },
+    {
+      "concept": "adiabaticity-condition",
+      "prereq": "adiabatic-theorem"
+    },
+    {
+      "concept": "dynamical-phase",
+      "prereq": "instantaneous-eigenstates"
+    },
+    {
+      "concept": "geometric-phase",
+      "prereq": "adiabatic-theorem"
+    },
+    {
+      "concept": "geometric-phase",
+      "prereq": "dynamical-phase"
+    },
+    {
+      "concept": "mixing-angle",
+      "prereq": "dressed-states"
+    },
+    {
+      "concept": "time-dependent-dressed-states",
+      "prereq": "mixing-angle"
+    },
+    {
+      "concept": "time-dependent-dressed-states",
+      "prereq": "instantaneous-eigenstates"
+    },
+    {
+      "concept": "time-dependent-dressed-states",
+      "prereq": "dressed-state-energies"
+    },
+    {
+      "concept": "two-level-adiabaticity-condition",
+      "prereq": "adiabaticity-condition"
+    },
+    {
+      "concept": "two-level-adiabaticity-condition",
+      "prereq": "time-dependent-dressed-states"
+    },
+    {
+      "concept": "two-level-adiabaticity-condition",
+      "prereq": "pulse-area"
+    },
+    {
+      "concept": "adiabatic-return",
+      "prereq": "time-dependent-dressed-states"
+    },
+    {
+      "concept": "adiabatic-return",
+      "prereq": "adiabatic-theorem"
+    },
+    {
+      "concept": "rapid-adiabatic-passage",
+      "prereq": "two-level-adiabaticity-condition"
+    },
+    {
+      "concept": "landau-zener",
+      "prereq": "rapid-adiabatic-passage"
+    },
+    {
+      "concept": "stirap",
+      "prereq": "three-level-dressed-states"
+    },
+    {
+      "concept": "stirap",
+      "prereq": "adiabatic-theorem"
+    },
+    {
+      "concept": "four-level-dark-states",
+      "prereq": "three-level-dressed-states"
+    },
+    {
+      "concept": "adiabatic-atomic-beamsplitter",
+      "prereq": "four-level-dark-states"
+    },
+    {
+      "concept": "dark-state-adiabaticity-condition",
+      "prereq": "stirap"
+    },
+    {
+      "concept": "dark-state-adiabaticity-condition",
+      "prereq": "adiabaticity-condition"
+    },
+    {
+      "concept": "dark-state-adiabaticity-condition",
+      "prereq": "non-hermitian-evolution"
+    },
+    {
+      "concept": "dark-state-adiabaticity-condition",
+      "prereq": "adiabatic-expansion"
+    },
+    {
+      "concept": "quantum-jump-error",
+      "prereq": "dark-state-adiabaticity-condition"
+    },
+    {
+      "concept": "stirap-fidelity",
+      "prereq": "dark-state-adiabaticity-condition"
+    },
+    {
+      "concept": "bright-dark-basis",
+      "prereq": "three-level-dressed-states"
+    },
+    {
+      "concept": "nonadiabatic-rabi-frequency",
+      "prereq": "bright-dark-basis"
+    },
+    {
+      "concept": "nonadiabatic-rabi-frequency",
+      "prereq": "nonadiabatic-coupling"
+    },
+    {
+      "concept": "bright-state-escape-rate",
+      "prereq": "nonadiabatic-rabi-frequency"
+    },
+    {
+      "concept": "bright-state-escape-rate",
+      "prereq": "adiabatic-elimination"
+    },
+    {
+      "concept": "adiabatic-following-eit",
+      "prereq": "dark-state-adiabaticity-condition"
+    },
+    {
+      "concept": "dark-state-optical-pumping",
+      "prereq": "bright-dark-basis"
+    },
+    {
+      "concept": "coherence-population-basis",
+      "prereq": "dark-state-optical-pumping"
+    },
+    {
+      "concept": "coherence-population-basis",
+      "prereq": "polarization-selection-rules"
+    },
+    {
+      "concept": "adiabatic-following-eit",
+      "prereq": "electromagnetically-induced-transparency"
+    },
+    {
+      "concept": "dark-state-optical-pumping",
+      "prereq": "optical-pumping"
+    },
+    {
+      "concept": "three-level-dressed-states",
+      "prereq": "dark-state"
+    },
+    {
+      "concept": "stirap",
+      "prereq": "dark-state-preparation"
+    }
+  ],
+  "types": []
+}

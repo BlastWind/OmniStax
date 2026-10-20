@@ -1,0 +1,652 @@
+{
+ "id": "7.3",
+ "chapter": "7",
+ "title": "Adiabatic processes in multi-level systems",
+ "short": "Adiabatic processes in multi-level systems",
+ "lead": "<span data-concept=\"adiabatic-theorem\">Adiabatic following</span> in atoms of three and four levels: the <span data-concept=\"three-level-dressed-states\">dressed states</span> of the resonant three-level atom and its <span data-concept=\"dark-state\">dark state</span>, <span data-concept=\"stirap\">stimulated Raman adiabatic passage</span> with its counterintuitive pulse order, and the two degenerate dark states of a four-level system that make a <span data-concept=\"adiabatic-atomic-beamsplitter\">beamsplitter for atoms</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "Figure 7.3's experimental plots are not reproduced; the figure under its number computes the same two scans from the model.",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-stirap",
+   "kind": "sim",
+   "number": "7.2",
+   "originals": [
+    "/media/ch07/fig-7-2.png"
+   ],
+   "original_caption": "A possible pulse sequence to implement STIRAP in a three-level system. The two pulses are timed to smoothly change the mixing angle from 0 to π/2, resulting in a transfer of population between the lower metastable states.",
+   "draws": [
+    "coupling",
+    "phase",
+    "energy",
+    "population",
+    "time",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-stirap-scans",
+   "kind": "sim",
+   "number": "7.3",
+   "draws": [
+    "population",
+    "frequency",
+    "phase",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ],
+   "withheld": "Figure 7.3 reproduces published experimental data, which the book may not copy."
+  },
+  {
+   "id": "sim-four-level",
+   "kind": "sim",
+   "number": "7.4",
+   "originals": [
+    "/media/ch07/fig-7-4.png"
+   ],
+   "original_caption": "The four-level system under consideration. In our calculations we have assumed that all of the applied fields are resonant with the associated atomic transition.",
+   "draws": [
+    "coupling",
+    "amplitude",
+    "state",
+    "phase"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "lvl-1",
+   "label": "the state |1⟩",
+   "figures": [
+    "sim-stirap"
+   ]
+  },
+  {
+   "id": "lvl-2",
+   "label": "the state |2⟩",
+   "figures": [
+    "sim-stirap",
+    "sim-stirap-scans"
+   ]
+  },
+  {
+   "id": "lvl-3",
+   "label": "the excited state |3⟩",
+   "figures": [
+    "sim-stirap"
+   ]
+  },
+  {
+   "id": "pump",
+   "label": "the pump field Ω₁",
+   "figures": [
+    "sim-stirap",
+    "sim-stirap-scans"
+   ]
+  },
+  {
+   "id": "stokes",
+   "label": "the Stokes field Ω₂",
+   "figures": [
+    "sim-stirap",
+    "sim-stirap-scans"
+   ]
+  },
+  {
+   "id": "dark",
+   "label": "the dark state |Φ₀⟩",
+   "figures": [
+    "sim-stirap"
+   ]
+  },
+  {
+   "id": "four-1",
+   "label": "the metastable state |1⟩ of the four-level system",
+   "figures": [
+    "sim-four-level"
+   ]
+  },
+  {
+   "id": "four-2",
+   "label": "the excited state |2⟩ of the four-level system",
+   "figures": [
+    "sim-four-level"
+   ]
+  },
+  {
+   "id": "four-3",
+   "label": "the metastable state |3⟩ of the four-level system",
+   "figures": [
+    "sim-four-level"
+   ]
+  },
+  {
+   "id": "four-4",
+   "label": "the metastable state |4⟩ of the four-level system",
+   "figures": [
+    "sim-four-level"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "dressed3",
+   "concept": "three-level-dressed-states",
+   "verb": "introduces"
+  },
+  {
+   "span": "stirap",
+   "concept": "stirap",
+   "verb": "introduces"
+  },
+  {
+   "span": "dark4",
+   "concept": "four-level-dark-states",
+   "verb": "introduces"
+  },
+  {
+   "span": "beamsplitter",
+   "concept": "adiabatic-atomic-beamsplitter",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "three-level-configurations",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "adiabatic-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "dark-state",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "electromagnetically-induced-transparency",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "lambda-detunings",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "rabi-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "bare-states",
+   "verb": "uses"
+  },
+  {
+   "span": "dark-par",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "dark-par",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "stirap-sec",
+   "concept": "instantaneous-eigenstates",
+   "verb": "uses"
+  },
+  {
+   "span": "stirap-sec",
+   "concept": "mixing-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "stirap-sec",
+   "concept": "superposition",
+   "verb": "uses"
+  },
+  {
+   "span": "counter",
+   "concept": "dark-state-preparation",
+   "verb": "uses"
+  },
+  {
+   "span": "four-level",
+   "concept": "bright-state",
+   "verb": "uses"
+  },
+  {
+   "span": "four-level",
+   "concept": "nonadiabatic-coupling",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "footnotes": [
+  {
+   "id": "c-d13",
+   "kind": "correction",
+   "html": "The book prints $|D_{13}\\rangle$. With $\\kOmegaone = 0$ the remaining three-level system is $|2\\rangle$, $|3\\rangle$, $|4\\rangle$, so its dark state is $|D_{34}\\rangle$, as the next sentence calls it."
+  },
+  {
+   "id": "c-omega4",
+   "kind": "correction",
+   "html": "The book prints $\\kOmegafour$. The field off in the first step is $\\kOmegaone$; turned on, it leaves $|D_{34}\\rangle$ alone, since that state has no part in $|1\\rangle$ and is not coupled to $|2\\rangle$."
+  },
+  {
+   "id": "c-fig-7-4",
+   "kind": "correction",
+   "figure": "sim-four-level",
+   "html": "The book's Figure 7.4 labels the excited level $|4\\rangle$, the same label as the lower level on the right. The text's excited state is $|2\\rangle$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "lambda-dressed-states",
+   "what": "the dressed states of the resonant Λ system",
+   "source": "Modern Atomic and Optical Physics II, 7.3 Adiabatic processes in multi-level systems",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\tan\\ktheta = \\frac{\\kOmegaone}{\\kOmegatwo}",
+       "src": "(7.28)"
+      },
+      {
+       "tex": "\\kOmega = \\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}",
+       "src": "(7.29)"
+      },
+      {
+       "tex": "|B\\rangle = \\frac{\\kOmegaone|1\\rangle + \\kOmegatwo|2\\rangle}{\\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}}",
+       "src": "(7.59)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH} = \\mk{d}{-\\kDelta|3\\rangle\\langle 3|} \\mk{a}{- \\kOmegaone\\left(|3\\rangle\\langle 1| + |1\\rangle\\langle 3|\\right)} \\mk{b}{- \\kOmegatwo\\left(|3\\rangle\\langle 2| + |2\\rangle\\langle 3|\\right)}",
+      "src": "(7.24)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{d}{-\\kDelta|3\\rangle\\langle 3|} \\mk{c}{- |3\\rangle\\left(\\kOmegaone\\langle 1| + \\kOmegatwo\\langle 2|\\right) - \\left(\\kOmegaone|1\\rangle + \\kOmegatwo|2\\rangle\\right)\\langle 3|}",
+       "uses": [],
+       "map": {
+        "a": "c",
+        "b": "c"
+       }
+      },
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{d}{-\\kDelta|3\\rangle\\langle 3|} \\mk{c}{- \\kOmega|3\\rangle\\left(\\sin\\ktheta\\langle 1| + \\cos\\ktheta\\langle 2|\\right) - \\kOmega\\left(\\sin\\ktheta|1\\rangle + \\cos\\ktheta|2\\rangle\\right)\\langle 3|}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "With $\\tan\\theta = \\Omega_1/\\Omega_2$ and the fields real, $\\Omega_1 = \\Omega\\sin\\theta$ and $\\Omega_2 = \\Omega\\cos\\theta$."
+      },
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{d}{-\\kDelta|3\\rangle\\langle 3|} \\mk{c}{- \\kOmega\\left(|3\\rangle\\langle B| + |B\\rangle\\langle 3|\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "By (7.59), $|B\\rangle = \\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\tan\\ktheta = \\frac{\\kOmegaone}{\\kOmegatwo}",
+       "src": "(7.28)"
+      },
+      {
+       "tex": "\\kOmega = \\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}",
+       "src": "(7.29)"
+      },
+      {
+       "tex": "|B\\rangle = \\frac{\\kOmegaone|1\\rangle + \\kOmegatwo|2\\rangle}{\\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}}",
+       "src": "(7.59)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH} = \\mk{d}{-\\kDelta|3\\rangle\\langle 3|} \\mk{c}{- \\kOmega\\left(|3\\rangle\\langle B| + |B\\rangle\\langle 3|\\right)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH(a|1\\rangle + b|2\\rangle)} = \\mk{c}{-\\kOmega|3\\rangle\\langle B|(a|1\\rangle + b|2\\rangle)}",
+       "uses": [],
+       "cap": "On a state of the lower levels, which has no part along $|3\\rangle$, only the term $|3\\rangle\\langle B|$ acts."
+      },
+      {
+       "tex": "\\mk{H}{\\kH(a|1\\rangle + b|2\\rangle)} = \\mk{c}{-\\kOmega(a\\sin\\ktheta + b\\cos\\ktheta)|3\\rangle}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "cap": "With $\\tan\\theta = \\Omega_1/\\Omega_2$ and the fields real, $\\Omega_1 = \\Omega\\sin\\theta$ and $\\Omega_2 = \\Omega\\cos\\theta$, so $|B\\rangle = \\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$."
+      },
+      {
+       "tex": "\\mk{P}{|\\Phi_0\\rangle} = \\mk{S}{\\cos\\ktheta|1\\rangle - \\sin\\ktheta|2\\rangle},\\quad \\mk{e}{\\kepszero} = \\mk{c}{0}",
+       "uses": [],
+       "cap": "$a = \\cos\\theta$, $b = -\\sin\\theta$ makes the bracket vanish: a normalized eigenstate of eigenvalue zero.",
+       "map": {
+        "H": [
+         "P",
+         "e"
+        ]
+       }
+      }
+     ],
+     "num": "(7.26), (7.31)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kepspm(\\kt) = \\frac{\\hbar}{2}\\left(-\\kDelta(\\kt) \\pm \\sqrt{\\kDelta(\\kt)^2 + 4\\kOmega(\\kt)^2}\\right)",
+       "src": "(7.15)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH} = \\mk{d}{-\\kDelta|3\\rangle\\langle 3|} \\mk{c}{- \\kOmega\\left(|3\\rangle\\langle B| + |B\\rangle\\langle 3|\\right)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{c}{-\\begin{pmatrix} 0 & \\kOmega \\\\ \\kOmega & \\kDelta \\end{pmatrix}}",
+       "uses": [],
+       "cap": "In the basis $|B\\rangle$, $|3\\rangle$, which the Hamiltonian maps into each other.",
+       "map": {
+        "d": "c"
+       }
+      },
+      {
+       "tex": "\\mk{H}{\\kepspm} = \\mk{c}{\\frac{1}{2}\\left(-\\kDelta \\pm \\sqrt{4\\kOmega^2 + \\kDelta^2}\\right)}",
+       "uses": [
+        1
+       ],
+       "cap": "This is the matrix of (7.12), with $|B\\rangle$ for $|1\\rangle$, $|3\\rangle$ for $|2\\rangle$, a constant $\\Omega$ and $\\hbar = 1$."
+      }
+     ],
+     "num": "(7.30), (7.32)",
+     "note": "The book prints $\\kOmega^2$ under the root in (7.30) and (7.32); the eigenvalues of (7.24) have $4\\kOmega^2$, as (7.15) has for the two-level atom, and are $\\pm\\kOmega$ on resonance."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 2
+      },
+      {
+       "tex": "|B\\rangle = \\frac{\\kOmegaone|1\\rangle + \\kOmegatwo|2\\rangle}{\\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}}",
+       "src": "(7.59)"
+      },
+      {
+       "tex": "\\tan\\ktheta = \\frac{\\kOmegaone}{\\kOmegatwo}",
+       "src": "(7.28)"
+      },
+      {
+       "tex": "\\kOmega = \\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}",
+       "src": "(7.29)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{|\\Phi_+\\rangle} = \\mk{S}{\\sin\\kphi|B\\rangle + \\cos\\kphi|3\\rangle}",
+      "uses": [],
+      "why": "The eigenstate of energy $\\epsilon_+$ lies in the pair $|B\\rangle$, $|3\\rangle$; a normalized state there is written with an angle $\\phi$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{-\\kOmega\\cos\\kphi} = \\mk{b}{\\kepsp\\sin\\kphi}",
+       "uses": [
+        0
+       ],
+       "cap": "The $|B\\rangle$ part of $\\hat{H}|\\Phi_+\\rangle = \\epsilon_+|\\Phi_+\\rangle$: $\\langle B|\\hat{H}|3\\rangle = -\\Omega$ and $\\langle B|\\hat{H}|B\\rangle = 0$."
+      },
+      {
+       "tex": "\\mk{a}{\\tan\\kphi} = \\mk{b}{-\\frac{\\kOmega}{\\kepsp}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\tan 2\\kphi} = \\mk{b}{\\frac{-2\\kOmega/\\kepsp}{1 - \\kOmega^2/\\kepsp^2}}",
+       "uses": [],
+       "cap": "$\\tan 2\\phi = 2\\tan\\phi/(1 - \\tan^2\\phi)$."
+      },
+      {
+       "tex": "\\mk{a}{\\tan 2\\kphi} = \\mk{b}{\\frac{2\\kOmega}{\\kDelta}}",
+       "uses": [
+        1
+       ],
+       "cap": "$\\epsilon_+$ solves $\\epsilon^2 + \\Delta\\epsilon - \\Omega^2 = 0$, so $1 - \\Omega^2/\\epsilon_+^2 = -\\Delta/\\epsilon_+$."
+      },
+      {
+       "tex": "\\mk{Q}{|\\Phi_+\\rangle} = \\mk{T}{\\sin\\ktheta\\sin\\kphi|1\\rangle + \\cos\\ktheta\\sin\\kphi|2\\rangle + \\cos\\kphi|3\\rangle},\\quad \\mk{a}{\\tan 2\\kphi} = \\mk{b}{\\frac{2\\kOmega}{\\kDelta}}",
+       "uses": [
+        2,
+        3,
+        4
+       ],
+       "cap": "With $\\tan\\theta = \\Omega_1/\\Omega_2$ and the fields real, $\\Omega_1 = \\Omega\\sin\\theta$ and $\\Omega_2 = \\Omega\\cos\\theta$, so $|B\\rangle = \\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$."
+      }
+     ],
+     "num": "(7.25), (7.29)",
+     "note": "The book prints $\\tan 2\\kphi = -\\kOmega/\\kDelta$. With the couplings $-\\kOmegaone$, $-\\kOmegatwo$ of (7.24) and the signs of (7.25) and (7.27), the angle obeys $\\tan 2\\kphi = 2\\kOmega/\\kDelta$, as the factor 2 of (7.15) suggests."
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "tex": "|B\\rangle = \\frac{\\kOmegaone|1\\rangle + \\kOmegatwo|2\\rangle}{\\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}}",
+       "src": "(7.59)"
+      },
+      {
+       "tex": "\\tan\\ktheta = \\frac{\\kOmegaone}{\\kOmegatwo}",
+       "src": "(7.28)"
+      },
+      {
+       "tex": "\\kOmega = \\sqrt{|\\kOmegaone|^2 + |\\kOmegatwo|^2}",
+       "src": "(7.29)"
+      },
+      {
+       "text": "Eigenstates of a Hermitian Hamiltonian with different energies are orthogonal.",
+       "src": "1.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{P}{|\\Phi_-\\rangle} = \\mk{S}{\\cos\\kphi|B\\rangle - \\sin\\kphi|3\\rangle}",
+      "uses": [
+       0,
+       4
+      ],
+      "why": "The other eigenstate of the pair $|B\\rangle$, $|3\\rangle$, orthogonal to $|\\Phi_+\\rangle = \\sin\\phi|B\\rangle + \\cos\\phi|3\\rangle$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{P}{|\\Phi_-\\rangle} = \\mk{S}{\\sin\\ktheta\\cos\\kphi|1\\rangle + \\cos\\ktheta\\cos\\kphi|2\\rangle - \\sin\\kphi|3\\rangle}",
+       "uses": [
+        1,
+        2,
+        3
+       ],
+       "cap": "With $\\tan\\theta = \\Omega_1/\\Omega_2$ and the fields real, $\\Omega_1 = \\Omega\\sin\\theta$ and $\\Omega_2 = \\Omega\\cos\\theta$, so $|B\\rangle = \\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$."
+      }
+     ],
+     "num": "(7.27)"
+    }
+   ]
+  },
+  {
+   "id": "tripod-dark-states",
+   "what": "the two dark states of the four-level system",
+   "source": "Modern Atomic and Optical Physics II, 7.3 Adiabatic processes in multi-level systems, 7.3.2 Four-level systems",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Each field $\\kOmega_i$ couples the metastable state $|i\\rangle$ to the excited state $|2\\rangle$, on resonance and with real Rabi frequencies, as the fields of (7.24) do.",
+       "src": "7.3"
+      },
+      {
+       "text": "A dark state is a superposition of the metastable states that is not coupled to the excited state.",
+       "src": "7.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH} = \\mk{R}{-\\kOmegaone\\left(|2\\rangle\\langle 1| + |1\\rangle\\langle 2|\\right) - \\kOmegathree\\left(|2\\rangle\\langle 3| + |3\\rangle\\langle 2|\\right) - \\kOmegafour\\left(|2\\rangle\\langle 4| + |4\\rangle\\langle 2|\\right)}",
+      "src": "7.3",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH(a_1|1\\rangle + a_3|3\\rangle + a_4|4\\rangle)} = \\mk{R}{-(\\kOmegaone a_1 + \\kOmegathree a_3 + \\kOmegafour a_4)|2\\rangle}",
+       "uses": [],
+       "cap": "Acting on a state of the metastable levels: every term that ends in $\\langle 2|$ gives zero."
+      },
+      {
+       "tex": "\\mk{R}{\\kOmegaone a_1 + \\kOmegathree a_3 + \\kOmegafour a_4} = \\mk{z}{0}",
+       "uses": [
+        1
+       ]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{\\kOmegaone a_1 + \\kOmegathree a_3 + \\kOmegafour a_4} = \\mk{z}{0}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kOmegathree a_3 + \\kOmegafour a_4} = \\mk{z}{0}",
+       "uses": [],
+       "cap": "A dark state with no part along $|1\\rangle$: $a_1 = 0$."
+      },
+      {
+       "tex": "\\mk{R}{\\kOmegathree\\sin\\kphi - \\kOmegafour\\cos\\kphi} = \\mk{z}{0}",
+       "uses": [],
+       "cap": "Writing the normalized amplitudes as $a_3 = \\sin\\phi$ and $a_4 = -\\cos\\phi$."
+      },
+      {
+       "tex": "\\mk{P}{|\\Phi_2\\rangle} = \\mk{S}{\\sin\\kphi|3\\rangle - \\cos\\kphi|4\\rangle},\\quad \\mk{t}{\\tan\\kphi} = \\mk{v}{\\frac{\\kOmegafour}{\\kOmegathree}}",
+       "uses": [],
+       "map": {
+        "R": [
+         "t",
+         "v"
+        ],
+        "z": "v"
+       }
+      }
+     ],
+     "num": "(7.36), (7.38)",
+     "note": "The book prints $\\tan\\kphi = \\kOmegathree/\\kOmegafour$. For $|\\Phi_2\\rangle$ to be dark it must be orthogonal to the bright combination $\\kOmegaone|1\\rangle + \\kOmegathree|3\\rangle + \\kOmegafour|4\\rangle$, which needs $\\tan\\kphi = \\kOmegafour/\\kOmegathree$; with that angle $|\\Phi_1\\rangle$ is dark too and (7.37) holds."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{\\kOmegaone a_1 + \\kOmegathree a_3 + \\kOmegafour a_4} = \\mk{z}{0}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kOmegaone\\cos\\ktheta - \\sin\\ktheta\\left(\\kOmegathree\\cos\\kphi + \\kOmegafour\\sin\\kphi\\right)} = \\mk{z}{0}",
+       "uses": [
+        1
+       ],
+       "cap": "Taking $a_1 = \\cos\\theta$ and the rest along $-(\\cos\\phi|3\\rangle + \\sin\\phi|4\\rangle)$, the combination of $|3\\rangle$ and $|4\\rangle$ orthogonal to $|\\Phi_2\\rangle$."
+      },
+      {
+       "tex": "\\mk{R}{\\kOmegaone\\cos\\ktheta - \\sin\\ktheta\\sqrt{|\\kOmegathree|^2 + |\\kOmegafour|^2}} = \\mk{z}{0}",
+       "uses": [
+        1
+       ],
+       "cap": "With $\\tan\\phi = \\Omega_4/\\Omega_3$, $\\cos\\phi = \\Omega_3/\\sqrt{\\Omega_3^2 + \\Omega_4^2}$ and $\\sin\\phi = \\Omega_4/\\sqrt{\\Omega_3^2 + \\Omega_4^2}$."
+      },
+      {
+       "tex": "\\mk{P}{|\\Phi_1\\rangle} = \\mk{S}{\\cos\\ktheta|1\\rangle - \\sin\\ktheta\\cos\\kphi|3\\rangle - \\sin\\ktheta\\sin\\kphi|4\\rangle},\\quad \\mk{t}{\\tan\\ktheta} = \\mk{v}{\\frac{\\kOmegaone}{\\sqrt{|\\kOmegathree|^2 + |\\kOmegafour|^2}}}",
+       "uses": [],
+       "map": {
+        "R": [
+         "t",
+         "v"
+        ],
+        "z": "v"
+       }
+      }
+     ],
+     "num": "(7.35), (7.37)"
+    }
+   ]
+  }
+ ]
+}

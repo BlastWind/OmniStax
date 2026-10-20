@@ -1,0 +1,158 @@
+{
+  "id": "10.3",
+  "chapter": "10",
+  "title": "Quantum state engineering",
+  "short": "Quantum state engineering",
+  "lead": "How laser pulses on the <span data-concept=\"atomic-transition-frequency\">bare resonance</span> and the <span data-concept=\"sideband-couplings\">red sideband</span> can take a trapped ion from its ground state to any chosen state of its motion, from a single <span data-concept=\"internal-motional-swap\">swap of the internal state onto the motion</span> to a procedure that builds <span data-concept=\"motional-state-engineering\">an arbitrary superposition of Fock states</span> rung by rung.",
+  "objectives": [],
+  "summary_html": "",
+  "notes": "",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-11",
+  "exercises_lead": "",
+  "exercise_notes": "",
+  "figures": [
+    {
+      "id": "sim-state-prep",
+      "kind": "sim",
+      "draws": [
+        "coupling",
+        "phase",
+        "population",
+        "time"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "arbitrary",
+      "concept": "motional-state-engineering",
+      "verb": "introduces"
+    },
+    {
+      "span": "unitary-series",
+      "concept": "pulse-sequence-unitary",
+      "verb": "introduces"
+    },
+    {
+      "span": "swap",
+      "concept": "internal-motional-swap",
+      "verb": "introduces"
+    },
+    {
+      "span": "procedure",
+      "concept": "motional-state-preparation",
+      "verb": "introduces"
+    },
+    {
+      "span": "opening",
+      "concept": "ion-hilbert-space",
+      "verb": "uses"
+    },
+    {
+      "span": "opening",
+      "concept": "probability-amplitude",
+      "verb": "uses"
+    },
+    {
+      "span": "opening",
+      "concept": "fock-states",
+      "verb": "uses"
+    },
+    {
+      "span": "opening",
+      "concept": "coherent-state",
+      "verb": "uses"
+    },
+    {
+      "span": "opening",
+      "concept": "squeezed-state",
+      "verb": "uses"
+    },
+    {
+      "span": "opening",
+      "concept": "schrodinger-cat-state",
+      "verb": "uses"
+    },
+    {
+      "span": "arbitrary-state",
+      "concept": "sideband-couplings",
+      "verb": "uses"
+    },
+    {
+      "span": "arbitrary-state",
+      "concept": "atomic-transition-frequency",
+      "verb": "uses"
+    },
+    {
+      "span": "arbitrary-state",
+      "concept": "pulse-area",
+      "verb": "uses"
+    },
+    {
+      "span": "arbitrary-state",
+      "concept": "probability-amplitude",
+      "verb": "uses"
+    },
+    {
+      "span": "arbitrary-state",
+      "concept": "motional-state-engineering",
+      "verb": "uses"
+    },
+    {
+      "span": "arbitrary-state",
+      "concept": "pulse-sequence-unitary",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [],
+  "exercise_concepts": [],
+  "referents": [
+    {
+      "id": "lvl-g",
+      "label": "the ground state |g⟩",
+      "figures": [
+        "sim-state-prep"
+      ]
+    },
+    {
+      "id": "lvl-e",
+      "label": "the excited state |e⟩",
+      "figures": [
+        "sim-state-prep"
+      ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "c-step-1",
+      "kind": "correction",
+      "html": "True on the first round only. The red-sideband pulse also turns every lower pair $|g\\rangle|n\\rangle \\leftrightarrow |e\\rangle|n-1\\rangle$ at its own $\\eta\\kOmega\\sqrt{n}$, and the bare-resonance pulse of step (2) mixes $|g\\rangle|n\\rangle$ with $|e\\rangle|n\\rangle$ on every rung, so on later rounds $|e\\rangle|N-1\\rangle$ already holds amplitude and a $\\pi$ pulse would swap it back into $|g\\rangle|N\\rangle$. The pulse that empties $|g\\rangle|N\\rangle$ has the area and phase that turn the pair’s two amplitudes wholly onto $|e\\rangle|N-1\\rangle$, worked out from the whole state at that round (C. K. Law and J. H. Eberly, Phys. Rev. Lett. 76, 1055 (1996)); it is never longer than a $\\pi$ pulse."
+    },
+    {
+      "id": "c-step-2",
+      "kind": "correction",
+      "html": "The length alone is not enough: $|g\\rangle|N-1\\rangle$ already holds amplitude, and the bare-resonance pulse empties $|e\\rangle|N-1\\rangle$ into it only when the laser’s phase $\\kphi$ is chosen too, so that the two amplitudes add on $|g\\rangle|N-1\\rangle$."
+    }
+  ]
+}

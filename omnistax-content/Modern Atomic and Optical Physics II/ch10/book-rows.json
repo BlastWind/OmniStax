@@ -1,0 +1,1028 @@
+{
+ "symbols": [
+  {
+   "sym": "a_0",
+   "latex": "a_0",
+   "macro": "\\kazero"
+  },
+  {
+   "sym": "H_motion",
+   "latex": "\\hat{H}_\\mathrm{motion}",
+   "macro": "\\kHmotion"
+  },
+  {
+   "sym": "H_electronic",
+   "latex": "\\hat{H}_\\mathrm{electronic}",
+   "macro": "\\kHelectronic"
+  },
+  {
+   "sym": "omega_eg",
+   "latex": "\\omega_{eg}",
+   "macro": "\\komegaeg"
+  },
+  {
+   "sym": "eta_LD",
+   "latex": "\\eta",
+   "macro": "\\ketaLD"
+  },
+  {
+   "sym": "H_r",
+   "latex": "\\hat{H}_r",
+   "macro": "\\kHr"
+  },
+  {
+   "sym": "H_s",
+   "latex": "\\hat{H}_s",
+   "macro": "\\kHs"
+  },
+  {
+   "sym": "H_0",
+   "latex": "\\hat{H}_0",
+   "macro": "\\kHzero"
+  },
+  {
+   "sym": "nu_s",
+   "latex": "\\sqrt{3}\\nu",
+   "macro": "\\knus"
+  },
+  {
+   "sym": "omega_c",
+   "latex": "\\omega_c",
+   "macro": "\\komegac"
+  },
+  {
+   "sym": "omega_plus",
+   "latex": "\\omega_+",
+   "macro": "\\komegaplus"
+  },
+  {
+   "sym": "omega_minus",
+   "latex": "\\omega_-",
+   "macro": "\\komegaminus"
+  },
+  {
+   "sym": "omega_z",
+   "latex": "\\omega_z",
+   "macro": "\\komegaz"
+  },
+  {
+   "sym": "Omega_RF",
+   "latex": "\\Omega_\\mathrm{RF}",
+   "macro": "\\kOmegaRF"
+  },
+  {
+   "sym": "x_ion",
+   "latex": "\\hat{x}",
+   "macro": "\\kxion"
+  },
+  {
+   "sym": "x_disp",
+   "latex": "x",
+   "macro": "\\kxdisp"
+  },
+  {
+   "sym": "X_cm",
+   "latex": "X",
+   "macro": "\\kXcm"
+  },
+  {
+   "sym": "P_cm",
+   "latex": "P",
+   "macro": "\\kPcm"
+  },
+  {
+   "sym": "a_sep",
+   "latex": "a",
+   "macro": "\\kasep"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "ion-trap-principle",
+   "kind": "result",
+   "section": "10.1",
+   "name": "Confining ions",
+   "statement": "Ions respond strongly to applied electric fields through the Coulomb force, which allows extremely tight traps, but one cannot create a static electric field minimum, so an ion cannot be confined by static electric fields alone; magnetic fields or RF electric fields provide the 3D confinement."
+  },
+  {
+   "id": "penning-trap",
+   "kind": "definition",
+   "section": "10.1",
+   "name": "Penning trap",
+   "terms": [
+    "Penning trap",
+    "cyclotron motion",
+    "magnetron motion"
+   ],
+   "statement": "The Penning trap confines the ion in two dimensions by its cyclotron motion in a magnetic field and in the third by charged endcaps; the crossed electric and magnetic fields add a larger-scale magnetron motion."
+  },
+  {
+   "id": "quadrupole-potential",
+   "kind": "definition",
+   "section": "10.1",
+   "name": "Quadrupole potential",
+   "statement": "A quadrupole electric potential whose coefficients sum to zero by Laplace's equation, so that with α = −β, γ = 0 it confines in one direction and repels in the other.",
+   "forms": [
+    {
+     "id": "eq-10-1",
+     "latex": "\\Phi = \\phi_0\\left(\\alpha x^2 + \\beta y^2 + \\gamma z^2\\right)",
+     "anchor": "10.1-eq-10-1"
+    },
+    {
+     "id": "eq-10-laplace",
+     "latex": "\\alpha + \\beta + \\gamma = 0",
+     "anchor": "10.1-laplace"
+    }
+   ]
+  },
+  {
+   "id": "paul-trap",
+   "kind": "definition",
+   "section": "10.1",
+   "name": "Paul trap",
+   "terms": [
+    "Paul trap"
+   ],
+   "statement": "The Paul trap simulates an electric field minimum with a high-frequency quadrupole potential: averaged over many cycles of the oscillating saddle, the net effect is to confine the ion, in three dimensions with charged endcaps added."
+  },
+  {
+   "id": "micromotion",
+   "kind": "definition",
+   "section": "10.1",
+   "name": "Micromotion",
+   "terms": [
+    "micromotion"
+   ],
+   "statement": "The ion follows the motion of the oscillating trap, 180 degrees out of phase with it, so it meets the repulsive potential near the centre and the confining one far from it."
+  },
+  {
+   "id": "trapped-ion-model",
+   "kind": "idea",
+   "section": "10.2",
+   "name": "Trapped-ion model",
+   "statement": "For our purposes an ion trap can be approximated by a harmonic oscillator potential, the ion subject to laser excitation and spontaneous emission."
+  },
+  {
+   "id": "ion-qubit-levels",
+   "kind": "idea",
+   "section": "10.2",
+   "name": "Cooling and qubit transitions",
+   "terms": [
+    "metastable state",
+    "quadrupole transition"
+   ],
+   "statement": "A dipole allowed transition relaxes quickly and is used for laser cooling and for readout by fluorescence; a long-lived metastable state driven on a quadrupole transition, with lifetime around a second, is used for encoding information."
+  },
+  {
+   "id": "ion-hilbert-space",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Internal and motional states",
+   "type": "state",
+   "statement": "The Hilbert space of the trapped ion is a two level system together with a harmonic oscillator ladder of Fock states describing its quantized motion."
+  },
+  {
+   "id": "ion-position-momentum",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Ion position and momentum operators",
+   "statement": "The ion's position and momentum are written with the creation and annihilation operators of a quantum of vibrational energy in a trap of frequency ν.",
+   "forms": [
+    {
+     "id": "eq-10-2",
+     "latex": "\\hat{x} = \\sqrt{\\frac{\\hbar}{2m\\nu}}\\left(\\hat{a} + \\hat{a}^\\dagger\\right)",
+     "anchor": "10.2-eq-10-2"
+    },
+    {
+     "id": "eq-10-3",
+     "latex": "\\hat{p} = i\\sqrt{\\frac{\\hbar m\\nu}{2}}\\left(\\hat{a}^\\dagger - \\hat{a}\\right)",
+     "anchor": "10.2-eq-10-3"
+    }
+   ]
+  },
+  {
+   "id": "trap-frequency",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Trap frequency",
+   "type": "frequency",
+   "statement": "The harmonic oscillator frequency ν of the trap, around 10 MHz for ions thanks to the strong Coulomb interaction."
+  },
+  {
+   "id": "motional-hamiltonian",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Motional Hamiltonian",
+   "symbol": "H_motion",
+   "type": "energy",
+   "statement": "The Hamiltonian of the ion's motion counts its vibrational quanta, each of energy ℏν.",
+   "forms": [
+    {
+     "id": "eq-10-4",
+     "latex": "\\hat{H}_\\mathrm{motion} = \\hbar\\nu\\hat{a}^\\dagger\\hat{a}",
+     "anchor": "10.2-eq-10-4"
+    }
+   ]
+  },
+  {
+   "id": "harmonic-oscillator-length",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Harmonic oscillator length",
+   "symbol": "a_0",
+   "type": "length",
+   "statement": "The characteristic size of the ion's motional ground-state wave function, for tightly trapped ions significantly smaller than optical wavelengths.",
+   "forms": [
+    {
+     "id": "eq-10-5",
+     "latex": "a_0 = \\sqrt{\\frac{\\hbar}{2m\\nu}}",
+     "anchor": "10.2-eq-10-5"
+    }
+   ]
+  },
+  {
+   "id": "ion-electronic-hamiltonian",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Electronic Hamiltonian",
+   "symbol": "H_electronic",
+   "type": "energy",
+   "statement": "With spontaneous emission neglected, the ion's internal levels are a two-level system with ground state |g⟩ and excited state |e⟩ at ℏω_eg.",
+   "forms": [
+    {
+     "id": "eq-10-6",
+     "latex": "\\hat{H}_\\mathrm{electronic} = \\hbar\\omega_{eg}|e\\rangle\\langle e|",
+     "anchor": "10.2-eq-10-6"
+    }
+   ]
+  },
+  {
+   "id": "negligible-decay-condition",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Negligible decay",
+   "statement": "To neglect decay the rate γ must be small compared with the inverse of the manipulation time τ; this is reached with a metastable state driven on a quadrupole transition or with a far-detuned Raman transition, which reduces the effective linewidth by (Ω/∆)².",
+   "forms": [
+    {
+     "id": "eq-10-gamma-tau",
+     "latex": "\\gamma\\tau \\ll 1",
+     "anchor": "10.2-gamma-tau"
+    }
+   ]
+  },
+  {
+   "id": "ion-laser-hamiltonian",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Ion-laser interaction",
+   "type": "energy",
+   "statement": "The laser field acts at the ion's position, so x becomes the operator x̂ in the interaction Hamiltonian, for a running wave or a standing wave.",
+   "forms": [
+    {
+     "id": "eq-10-9",
+     "latex": "\\hat{H}_\\mathrm{running} = -\\hbar\\left(\\Omega|e\\rangle\\langle g|e^{i(k\\hat{x}-\\omega t)} + h.c.\\right)",
+     "anchor": "10.2-eq-10-9"
+    },
+    {
+     "id": "eq-10-10",
+     "latex": "\\hat{H}_\\mathrm{standing} = -\\hbar\\left(\\Omega|e\\rangle\\langle g|\\sin{(k\\hat{x} + \\phi)}e^{-i\\omega t} + h.c.\\right)",
+     "anchor": "10.2-eq-10-10"
+    },
+    {
+     "id": "eq-10-7",
+     "latex": "E_\\mathrm{running} = \\mathcal{E}e^{i(kx-\\omega t)} + c.c.",
+     "anchor": "10.2-eq-10-7"
+    },
+    {
+     "id": "eq-10-8",
+     "latex": "E_\\mathrm{standing} = \\mathcal{E}\\sin{(kx + \\phi)}e^{-i\\omega t} + c.c.",
+     "anchor": "10.2-eq-10-8"
+    }
+   ]
+  },
+  {
+   "id": "ion-momentum-kick",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Momentum kick",
+   "statement": "Absorbing a photon gives the ion a momentum kick ℏk, which can excite higher vibrational states, so laser excitation manipulates the centre of mass motion.",
+   "forms": [
+    {
+     "id": "eq-10-11",
+     "latex": "|g\\rangle|p\\rangle \\rightarrow |e\\rangle e^{ik\\hat{x}}|p\\rangle = |e\\rangle|p + \\hbar k\\rangle",
+     "anchor": "10.2-eq-10-11"
+    }
+   ]
+  },
+  {
+   "id": "lamb-dicke-parameter",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Lamb-Dicke parameter",
+   "terms": [
+    "Lamb-Dicke parameter"
+   ],
+   "symbol": "eta_LD",
+   "statement": "The ratio of the ion's spatial extent to the laser wavelength, a small parameter for tight traps; it is also the square root of the recoil frequency over the trap frequency.",
+   "forms": [
+    {
+     "id": "eq-10-12",
+     "latex": "\\eta = \\frac{2\\pi a_0}{\\lambda}",
+     "anchor": "10.2-eq-10-12"
+    },
+    {
+     "id": "eq-10-13",
+     "latex": "\\eta = \\sqrt{\\frac{\\omega_R}{\\nu}}",
+     "anchor": "10.2-eq-10-13"
+    }
+   ]
+  },
+  {
+   "id": "lamb-dicke-regime",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Lamb-Dicke regime",
+   "terms": [
+    "Lamb-Dicke regime"
+   ],
+   "statement": "The limit in which the ion is so tightly bound that a photon's recoil energy cannot excite a higher vibrational state, so the photon momentum is absorbed by the trap rather than the ion; the real expansion parameter is η√n."
+  },
+  {
+   "id": "lamb-dicke-hamiltonian",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Trapped-ion Hamiltonian",
+   "symbol": "H_r",
+   "type": "energy",
+   "statement": "In the rotating frame the trapped ion's total Hamiltonian is the motion, the detuned internal level and the laser coupling, with η in the exponent for a running wave or in the sine for a standing wave.",
+   "forms": [
+    {
+     "id": "eq-10-14",
+     "latex": "\\hat{H}_r = \\hbar\\nu\\hat{a}^\\dagger\\hat{a} - \\hbar\\Delta|e\\rangle\\langle e| - \\hbar\\left(\\Omega|e\\rangle\\langle g|e^{i\\eta(\\hat{a}+\\hat{a}^\\dagger)} + h.c.\\right)",
+     "anchor": "10.2-eq-10-14"
+    },
+    {
+     "id": "eq-10-15",
+     "latex": "\\hat{H}_s = \\hbar\\nu\\hat{a}^\\dagger\\hat{a} - \\hbar\\Delta|e\\rangle\\langle e| - \\hbar\\left(\\Omega|e\\rangle\\langle g|\\sin\\left(\\eta(\\hat{a} + \\hat{a}^\\dagger) + \\phi\\right) + h.c.\\right)",
+     "anchor": "10.2-eq-10-15"
+    }
+   ]
+  },
+  {
+   "id": "ion-bare-spectrum",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Bare ion spectrum",
+   "symbol": "H_0",
+   "type": "energy",
+   "statement": "The bare states |g⟩|n⟩ and |e⟩|n⟩ are the ground and excited electronic levels, well separated since ω_eg ≫ ν, each subdivided into motional states spaced by ν.",
+   "forms": [
+    {
+     "id": "eq-10-16",
+     "latex": "\\hat{H}_0 = \\hbar\\nu\\hat{a}^\\dagger\\hat{a} + \\hbar\\omega_{eg}|e\\rangle\\langle e|",
+     "anchor": "10.2-eq-10-16"
+    },
+    {
+     "id": "eq-10-17",
+     "latex": "\\hat{H}_0|g\\rangle|n\\rangle = \\hbar n\\nu|g\\rangle|n\\rangle",
+     "anchor": "10.2-eq-10-17"
+    },
+    {
+     "id": "eq-10-18",
+     "latex": "\\hat{H}_0|e\\rangle|n\\rangle = \\hbar(n\\nu + \\omega_{eg})|e\\rangle|n\\rangle",
+     "anchor": "10.2-eq-10-18"
+    }
+   ]
+  },
+  {
+   "id": "sideband-couplings",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Carrier and sideband couplings",
+   "terms": [
+    "red sideband",
+    "blue sideband"
+   ],
+   "type": "coupling",
+   "statement": "To lowest order in η a running wave couples |g⟩|n⟩ only to |e⟩|n⟩ with strength Ω and to |e⟩|n±1⟩ with strengths ηΩ√(n+1) and ηΩ√n; the three transitions are addressed individually by tuning the laser, and the sideband Rabi frequency grows with the phonon number.",
+   "forms": [
+    {
+     "id": "eq-10-19",
+     "latex": "\\langle g|\\langle n|\\hat{H}|e\\rangle|m\\rangle = -\\hbar\\Omega^*\\langle n|e^{-i\\eta(\\hat{a}+\\hat{a}^\\dagger)}|m\\rangle",
+     "anchor": "10.2-drv-sideband-couplings"
+    },
+    {
+     "id": "eq-10-20",
+     "latex": "\\langle g|\\langle n|\\hat{H}|e\\rangle|n\\rangle = -\\hbar\\Omega^*\\left(1 + \\mathcal{O}(\\eta^2)\\right)",
+     "anchor": "10.2-drv-sideband-couplings"
+    },
+    {
+     "id": "eq-10-21",
+     "latex": "\\langle g|\\langle n|\\hat{H}|e\\rangle|n+1\\rangle = -\\hbar\\Omega^*\\left(-i\\eta\\sqrt{n+1} + \\mathcal{O}(\\eta^3)\\right)",
+     "anchor": "10.2-drv-sideband-couplings"
+    },
+    {
+     "id": "eq-10-22",
+     "latex": "\\langle g|\\langle n|\\hat{H}|e\\rangle|n-1\\rangle = -\\hbar\\Omega^*\\left(-i\\eta\\sqrt{n} + \\mathcal{O}(\\eta^3)\\right)",
+     "anchor": "10.2-drv-sideband-couplings"
+    }
+   ]
+  },
+  {
+   "id": "carrier-transition",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Bare-resonance transition",
+   "type": "energy",
+   "statement": "With the laser on the bare atomic resonance and weak enough, Ω ≪ ν/η, the sidebands are suppressed and the internal and motional degrees of freedom decouple: the ion cycles between internal states without changing its motional state.",
+   "forms": [
+    {
+     "id": "eq-10-23",
+     "latex": "\\hat{H} = \\hbar\\nu\\hat{a}^\\dagger\\hat{a} - \\hbar\\Delta|e\\rangle\\langle e| - \\hbar\\Omega\\left(|e\\rangle\\langle g| + |g\\rangle\\langle e|\\right)",
+     "anchor": "10.2-eq-10-23"
+    },
+    {
+     "id": "eq-10-carrier-condition",
+     "latex": "\\Omega \\ll \\nu/\\eta",
+     "anchor": "10.2-carrier-condition"
+    }
+   ]
+  },
+  {
+   "id": "red-sideband-jaynes-cummings",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Red sideband as Jaynes-Cummings model",
+   "type": "energy",
+   "statement": "On the red sideband the ion obeys a Jaynes-Cummings model, internal transitions accompanied by creation or annihilation of a phonon, with the vacuum Rabi coupling replaced by g → ηΩ.",
+   "forms": [
+    {
+     "id": "eq-10-24",
+     "latex": "\\hat{H} = \\hbar\\nu\\hat{a}^\\dagger\\hat{a} - \\hbar\\Delta|e\\rangle\\langle e| - i\\hbar\\eta\\Omega\\left(|e\\rangle\\langle g|\\hat{a} + |g\\rangle\\langle e|\\hat{a}^\\dagger\\right)",
+     "anchor": "10.2-eq-10-24"
+    }
+   ]
+  },
+  {
+   "id": "trapped-ion-strong-coupling",
+   "kind": "idea",
+   "section": "10.2",
+   "name": "Strong coupling with ions",
+   "statement": "Since the coupling ηΩ grows with laser power, the strong coupling regime is significantly easier to attain with ion traps than in cavity QED, and the coupling can be switched on and off with the laser."
+  },
+  {
+   "id": "anti-jaynes-cummings",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Anti-Jaynes-Cummings model",
+   "terms": [
+    "anti-Jaynes Cummings"
+   ],
+   "type": "energy",
+   "statement": "On the blue sideband the ion obeys an anti-Jaynes Cummings Hamiltonian, internal excitation accompanied by emission of a phonon and vice versa.",
+   "forms": [
+    {
+     "id": "eq-10-25",
+     "latex": "\\hat{H} = \\hbar\\nu\\hat{a}^\\dagger\\hat{a} - \\hbar\\Delta|e\\rangle\\langle e| - i\\hbar\\eta\\Omega\\left(|e\\rangle\\langle g|\\hat{a}^\\dagger + |g\\rangle\\langle e|\\hat{a}\\right)",
+     "anchor": "10.2-eq-10-25"
+    }
+   ]
+  },
+  {
+   "id": "standing-wave-couplings",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Standing-wave couplings",
+   "symbol": "H_s",
+   "type": "energy",
+   "statement": "In a standing wave the phase φ of the wave relative to the trap minimum is a further control: at φ = 0 the vertical transitions are eliminated and only the sidebands remain.",
+   "forms": [
+    {
+     "id": "eq-10-26",
+     "latex": "\\hat{H}_s = \\hbar\\nu\\hat{a}^\\dagger\\hat{a} - \\hbar\\Delta|e\\rangle\\langle e| - \\hbar\\left(\\Omega|e\\rangle\\langle g|\\left(\\sin\\phi + \\eta(\\hat{a} + \\hat{a}^\\dagger)\\cos\\phi + \\mathcal{O}(\\eta^2)\\right) + h.c.\\right)",
+     "anchor": "10.2-eq-10-26"
+    }
+   ]
+  },
+  {
+   "id": "sideband-cooling",
+   "kind": "definition",
+   "section": "10.2",
+   "name": "Sideband cooling",
+   "terms": [
+    "sideband cooling"
+   ],
+   "statement": "A laser on the red sideband of an allowed transition lowers the motional energy in every excitation cycle while emission goes into all three transitions, pumping the ion on average into the trap ground state, which is dark to the laser."
+  },
+  {
+   "id": "resolved-sideband-condition",
+   "kind": "result",
+   "section": "10.2",
+   "name": "Resolved sidebands",
+   "statement": "The cooling rate is set by the fluorescence rate γ, but cooling into the ground state requires γ ≪ ν so that off-resonant excitation of the direct and blue sideband transitions can be neglected; a second laser coupling the forbidden level to an allowed one tunes the effective emission rate.",
+   "forms": [
+    {
+     "id": "eq-10-resolved",
+     "latex": "\\gamma \\ll \\nu",
+     "anchor": "10.2-resolved"
+    }
+   ]
+  },
+  {
+   "id": "motional-state-engineering",
+   "kind": "definition",
+   "section": "10.3",
+   "name": "Arbitrary motional state",
+   "type": "state",
+   "statement": "An arbitrary motional state of the ion, with coefficients c_n that could be a Fock, coherent, squeezed or Schrodinger cat state; engineering such states is crucial to quantum gates in an ion trap.",
+   "forms": [
+    {
+     "id": "eq-10-27",
+     "latex": "|\\psi\\rangle = |g\\rangle \\otimes \\sum_{n=0}^{\\infty} c_n|n\\rangle",
+     "anchor": "10.3-eq-10-27"
+    }
+   ]
+  },
+  {
+   "id": "pulse-sequence-unitary",
+   "kind": "idea",
+   "section": "10.3",
+   "name": "Pulse sequence",
+   "statement": "Laser pulses on the bare and sideband transitions are a series of unitary transformations linking an initial state to a final one.",
+   "forms": [
+    {
+     "id": "eq-10-28",
+     "latex": "|f\\rangle = U_N U_{N-1}\\ldots U_2 U_1|i\\rangle",
+     "anchor": "10.3-eq-10-28"
+    }
+   ]
+  },
+  {
+   "id": "internal-motional-swap",
+   "kind": "result",
+   "section": "10.3",
+   "name": "Swap onto the motion",
+   "statement": "A π pulse on the red sideband swaps information from the internal state onto the motional state.",
+   "forms": [
+    {
+     "id": "eq-10-29",
+     "latex": "|i\\rangle = (\\alpha|g\\rangle + \\beta|e\\rangle) \\otimes |0\\rangle",
+     "anchor": "10.3-eq-10-29"
+    },
+    {
+     "id": "eq-10-30",
+     "latex": "|f\\rangle = |g\\rangle \\otimes (\\alpha|0\\rangle + \\beta|1\\rangle)",
+     "anchor": "10.3-eq-10-30"
+    }
+   ]
+  },
+  {
+   "id": "motional-state-preparation",
+   "kind": "skill",
+   "section": "10.3",
+   "name": "Preparing a motional state",
+   "statement": "Working backwards from the target state, alternate red-sideband and bare-resonance pulses empty the highest rung of the oscillator into the next until all the population is in the ground state; the inverse sequence prepares the state."
+  },
+  {
+   "id": "ion-string",
+   "kind": "idea",
+   "section": "10.4",
+   "name": "Ion string",
+   "statement": "Ions in one anisotropic trap repel each other into a string spaced by 5-10 μm, far enough for a focussed laser to resolve each, while the Coulomb interaction couples their motion into phonon modes of different frequencies and spatial forms."
+  },
+  {
+   "id": "two-ion-motion",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "Two ions in a trap",
+   "type": "energy",
+   "statement": "Two ions feel the harmonic confinement and their Coulomb repulsion, which to lowest order in their displacements from equilibrium adds a spring between them.",
+   "forms": [
+    {
+     "id": "eq-10-31",
+     "latex": "\\hat{H}_{motion} = \\sum_i\\left(\\frac{p_i^2}{2m} + \\frac{m}{2}\\nu^2 r_i^2\\right) + \\frac{e^2}{4\\pi\\epsilon_0|r_1 - r_2|}",
+     "anchor": "10.4-eq-10-31"
+    },
+    {
+     "id": "eq-10-32",
+     "latex": "\\hat{H}_{motion} = \\sum_i\\frac{p_i^2}{2m} + \\frac{m\\nu^2}{2}\\left(x_1^2 + x_2^2 + (x_2 - x_1)^2\\right)",
+     "anchor": "10.4-drv-two-ion-expansion"
+    }
+   ]
+  },
+  {
+   "id": "ion-normal-modes",
+   "kind": "result",
+   "section": "10.4",
+   "name": "Centre-of-mass and stretch modes",
+   "symbol": "nu_s",
+   "type": "frequency",
+   "statement": "The two ions vibrate in a centre-of-mass mode at frequency ν and a stretch mode at √3ν, the symmetric and antisymmetric combinations of their displacements.",
+   "forms": [
+    {
+     "id": "eq-10-37",
+     "latex": "\\hat{H}_{motion} = \\left(\\frac{P^2}{2m} + \\frac{m}{2}\\nu^2 X^2\\right) + \\left(\\frac{p^2}{2m} + \\frac{m}{2}3\\nu^2 x^2\\right)",
+     "anchor": "10.4-drv-two-ion-normal-modes"
+    },
+    {
+     "id": "eq-10-33",
+     "latex": "X = \\frac{1}{\\sqrt{2}}(x_1 + x_2)",
+     "anchor": "10.4-eq-10-33"
+    },
+    {
+     "id": "eq-10-34",
+     "latex": "x = \\frac{1}{\\sqrt{2}}(x_2 - x_1)",
+     "anchor": "10.4-eq-10-34"
+    },
+    {
+     "id": "eq-10-35",
+     "latex": "P = \\frac{1}{\\sqrt{2}}(p_1 + p_2)",
+     "anchor": "10.4-eq-10-35"
+    },
+    {
+     "id": "eq-10-36",
+     "latex": "p = \\frac{1}{\\sqrt{2}}(p_2 - p_1)",
+     "anchor": "10.4-eq-10-36"
+    }
+   ]
+  },
+  {
+   "id": "two-ion-laser-hamiltonian",
+   "kind": "result",
+   "section": "10.4",
+   "name": "Two-ion Hamiltonian",
+   "type": "energy",
+   "statement": "Each ion's laser couples its internal state to both phonon modes, with its own Lamb-Dicke parameter per mode, and the two modes can be separately addressed by choosing the laser detuning.",
+   "forms": [
+    {
+     "id": "eq-10-39",
+     "latex": "\\begin{aligned} \\hat{H} = {} & \\hbar\\nu\\hat{a}_{cm}^\\dagger\\hat{a}_{cm} + \\hbar\\sqrt{3}\\nu\\hat{a}_s^\\dagger\\hat{a}_s - \\sum_i\\hbar\\Delta_i|e\\rangle_{ii}\\langle e| \\\\ & -\\hbar\\Omega_1\\left(|e\\rangle_{11}\\langle g|e^{i\\eta_{cm}(\\hat{a}_{cm}+\\hat{a}_{cm}^\\dagger)}e^{-i\\eta_s(\\hat{a}_s+\\hat{a}_s^\\dagger)} + h.c.\\right) \\\\ & -\\hbar\\Omega_2\\left(|e\\rangle_{22}\\langle g|e^{i\\eta_{cm}(\\hat{a}_{cm}+\\hat{a}_{cm}^\\dagger)}e^{i\\eta_s(\\hat{a}_s+\\hat{a}_s^\\dagger)} + h.c.\\right) \\end{aligned}",
+     "anchor": "10.4-drv-two-ion-hamiltonian"
+    },
+    {
+     "id": "eq-10-38",
+     "latex": "\\hat{H}_{int} = -\\sum_i\\left(\\hbar\\Delta_i|e\\rangle_{ii}\\langle e| + \\hbar\\Omega_i\\left(|e\\rangle_{ii}\\langle g|e^{ikx_i} + h.c.\\right)\\right)",
+     "anchor": "10.4-eq-10-38"
+    }
+   ]
+  },
+  {
+   "id": "qubit",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "Qubit",
+   "terms": [
+    "qubit"
+   ],
+   "type": "state",
+   "statement": "A two-level quantum system storing information, its internal states read as bit values |g⟩ = |0⟩ and |e⟩ = |1⟩ and the information encoded in the state α|0⟩ + β|1⟩."
+  },
+  {
+   "id": "universal-gate-set",
+   "kind": "result",
+   "section": "10.4",
+   "name": "Universal computation",
+   "statement": "If each qubit can be addressed and rotated arbitrarily, universal computation needs only one non-trivial gate coupling any two-qubit pair."
+  },
+  {
+   "id": "pi-phase-gate",
+   "kind": "definition",
+   "section": "10.4",
+   "name": "π phase gate",
+   "terms": [
+    "phase gate"
+   ],
+   "statement": "The two-qubit gate that flips the sign of one qubit's excited state only if the other qubit is also excited.",
+   "forms": [
+    {
+     "id": "eq-10-43",
+     "latex": "|1\\rangle|1\\rangle \\rightarrow -|1\\rangle|1\\rangle",
+     "anchor": "10.4-eq-10-43"
+    },
+    {
+     "id": "eq-10-40",
+     "latex": "|0\\rangle|0\\rangle \\rightarrow |0\\rangle|0\\rangle",
+     "anchor": "10.4-eq-10-40"
+    },
+    {
+     "id": "eq-10-41",
+     "latex": "|0\\rangle|1\\rangle \\rightarrow |0\\rangle|1\\rangle",
+     "anchor": "10.4-eq-10-41"
+    },
+    {
+     "id": "eq-10-42",
+     "latex": "|1\\rangle|0\\rangle \\rightarrow |1\\rangle|0\\rangle",
+     "anchor": "10.4-eq-10-42"
+    }
+   ]
+  },
+  {
+   "id": "phase-gate-requirements",
+   "kind": "idea",
+   "section": "10.4",
+   "name": "Phase gate requirements",
+   "statement": "The trapped-ion phase gate needs the vibrational modes cooled to the ground state and an auxiliary level degenerate with the excited state, coupled to the ground state by an orthogonal laser polarization.",
+   "forms": [
+    {
+     "id": "eq-10-44",
+     "latex": "|\\psi\\rangle = \\sum_x c_x|x_{N-1}\\ldots x_0\\rangle_\\mathrm{ion} \\otimes |0\\rangle_\\mathrm{phonon}",
+     "anchor": "10.4-eq-10-44"
+    }
+   ]
+  },
+  {
+   "id": "ion-trap-phase-gate",
+   "kind": "result",
+   "section": "10.4",
+   "name": "Ion-trap phase gate",
+   "statement": "A phase gate between ions m and n writes qubit m onto the collective motion with a red-sideband π pulse, applies a 2π pulse to the auxiliary level of ion n conditional on the motion, and writes the motion back onto qubit m, leaving the state unchanged unless both qubits were excited, when it changes sign."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "penning-trap",
+   "prereq": "ion-trap-principle"
+  },
+  {
+   "concept": "quadrupole-potential",
+   "prereq": "ion-trap-principle"
+  },
+  {
+   "concept": "paul-trap",
+   "prereq": "micromotion"
+  },
+  {
+   "concept": "micromotion",
+   "prereq": "quadrupole-potential"
+  },
+  {
+   "concept": "trapped-ion-model",
+   "prereq": "paul-trap"
+  },
+  {
+   "concept": "trapped-ion-model",
+   "prereq": "two-level-atom"
+  },
+  {
+   "concept": "ion-qubit-levels",
+   "prereq": "trapped-ion-model"
+  },
+  {
+   "concept": "ion-qubit-levels",
+   "prereq": "spontaneous-emission-rate"
+  },
+  {
+   "concept": "ion-hilbert-space",
+   "prereq": "trapped-ion-model"
+  },
+  {
+   "concept": "ion-hilbert-space",
+   "prereq": "fock-states"
+  },
+  {
+   "concept": "ion-position-momentum",
+   "prereq": "trap-frequency"
+  },
+  {
+   "concept": "ion-position-momentum",
+   "prereq": "creation-annihilation-operators"
+  },
+  {
+   "concept": "trap-frequency",
+   "prereq": "trapped-ion-model"
+  },
+  {
+   "concept": "motional-hamiltonian",
+   "prereq": "ion-position-momentum"
+  },
+  {
+   "concept": "harmonic-oscillator-length",
+   "prereq": "ion-position-momentum"
+  },
+  {
+   "concept": "ion-electronic-hamiltonian",
+   "prereq": "ion-hilbert-space"
+  },
+  {
+   "concept": "ion-electronic-hamiltonian",
+   "prereq": "atomic-transition-frequency"
+  },
+  {
+   "concept": "negligible-decay-condition",
+   "prereq": "ion-qubit-levels"
+  },
+  {
+   "concept": "negligible-decay-condition",
+   "prereq": "raman-transition"
+  },
+  {
+   "concept": "ion-laser-hamiltonian",
+   "prereq": "ion-position-momentum"
+  },
+  {
+   "concept": "ion-laser-hamiltonian",
+   "prereq": "rotating-wave-approximation"
+  },
+  {
+   "concept": "ion-momentum-kick",
+   "prereq": "ion-laser-hamiltonian"
+  },
+  {
+   "concept": "ion-momentum-kick",
+   "prereq": "atomic-recoil"
+  },
+  {
+   "concept": "lamb-dicke-parameter",
+   "prereq": "harmonic-oscillator-length"
+  },
+  {
+   "concept": "lamb-dicke-parameter",
+   "prereq": "recoil-frequency"
+  },
+  {
+   "concept": "lamb-dicke-regime",
+   "prereq": "lamb-dicke-parameter"
+  },
+  {
+   "concept": "lamb-dicke-regime",
+   "prereq": "ion-momentum-kick"
+  },
+  {
+   "concept": "lamb-dicke-hamiltonian",
+   "prereq": "ion-laser-hamiltonian"
+  },
+  {
+   "concept": "lamb-dicke-hamiltonian",
+   "prereq": "lamb-dicke-parameter"
+  },
+  {
+   "concept": "lamb-dicke-hamiltonian",
+   "prereq": "motional-hamiltonian"
+  },
+  {
+   "concept": "lamb-dicke-hamiltonian",
+   "prereq": "rotating-frame-hamiltonian"
+  },
+  {
+   "concept": "ion-bare-spectrum",
+   "prereq": "motional-hamiltonian"
+  },
+  {
+   "concept": "ion-bare-spectrum",
+   "prereq": "ion-electronic-hamiltonian"
+  },
+  {
+   "concept": "ion-bare-spectrum",
+   "prereq": "bare-states"
+  },
+  {
+   "concept": "sideband-couplings",
+   "prereq": "lamb-dicke-hamiltonian"
+  },
+  {
+   "concept": "sideband-couplings",
+   "prereq": "ion-bare-spectrum"
+  },
+  {
+   "concept": "sideband-couplings",
+   "prereq": "lamb-dicke-regime"
+  },
+  {
+   "concept": "carrier-transition",
+   "prereq": "sideband-couplings"
+  },
+  {
+   "concept": "red-sideband-jaynes-cummings",
+   "prereq": "sideband-couplings"
+  },
+  {
+   "concept": "red-sideband-jaynes-cummings",
+   "prereq": "jaynes-cummings-model"
+  },
+  {
+   "concept": "trapped-ion-strong-coupling",
+   "prereq": "red-sideband-jaynes-cummings"
+  },
+  {
+   "concept": "trapped-ion-strong-coupling",
+   "prereq": "strong-coupling-regime"
+  },
+  {
+   "concept": "anti-jaynes-cummings",
+   "prereq": "red-sideband-jaynes-cummings"
+  },
+  {
+   "concept": "standing-wave-couplings",
+   "prereq": "sideband-couplings"
+  },
+  {
+   "concept": "sideband-cooling",
+   "prereq": "sideband-couplings"
+  },
+  {
+   "concept": "sideband-cooling",
+   "prereq": "optical-pumping"
+  },
+  {
+   "concept": "resolved-sideband-condition",
+   "prereq": "sideband-cooling"
+  },
+  {
+   "concept": "motional-state-engineering",
+   "prereq": "ion-hilbert-space"
+  },
+  {
+   "concept": "motional-state-engineering",
+   "prereq": "probability-amplitude"
+  },
+  {
+   "concept": "pulse-sequence-unitary",
+   "prereq": "motional-state-engineering"
+  },
+  {
+   "concept": "pulse-sequence-unitary",
+   "prereq": "time-evolution-operator"
+  },
+  {
+   "concept": "pulse-sequence-unitary",
+   "prereq": "carrier-transition"
+  },
+  {
+   "concept": "pulse-sequence-unitary",
+   "prereq": "red-sideband-jaynes-cummings"
+  },
+  {
+   "concept": "internal-motional-swap",
+   "prereq": "pulse-sequence-unitary"
+  },
+  {
+   "concept": "internal-motional-swap",
+   "prereq": "pulse-area"
+  },
+  {
+   "concept": "motional-state-preparation",
+   "prereq": "internal-motional-swap"
+  },
+  {
+   "concept": "ion-string",
+   "prereq": "trapped-ion-model"
+  },
+  {
+   "concept": "two-ion-motion",
+   "prereq": "ion-string"
+  },
+  {
+   "concept": "two-ion-motion",
+   "prereq": "motional-hamiltonian"
+  },
+  {
+   "concept": "ion-normal-modes",
+   "prereq": "two-ion-motion"
+  },
+  {
+   "concept": "two-ion-laser-hamiltonian",
+   "prereq": "ion-normal-modes"
+  },
+  {
+   "concept": "two-ion-laser-hamiltonian",
+   "prereq": "lamb-dicke-hamiltonian"
+  },
+  {
+   "concept": "qubit",
+   "prereq": "two-level-atom"
+  },
+  {
+   "concept": "qubit",
+   "prereq": "superposition"
+  },
+  {
+   "concept": "universal-gate-set",
+   "prereq": "qubit"
+  },
+  {
+   "concept": "pi-phase-gate",
+   "prereq": "universal-gate-set"
+  },
+  {
+   "concept": "phase-gate-requirements",
+   "prereq": "pi-phase-gate"
+  },
+  {
+   "concept": "phase-gate-requirements",
+   "prereq": "sideband-cooling"
+  },
+  {
+   "concept": "phase-gate-requirements",
+   "prereq": "two-ion-laser-hamiltonian"
+  },
+  {
+   "concept": "ion-trap-phase-gate",
+   "prereq": "phase-gate-requirements"
+  },
+  {
+   "concept": "ion-trap-phase-gate",
+   "prereq": "internal-motional-swap"
+  }
+ ],
+ "types": []
+}

@@ -1,0 +1,1025 @@
+{
+ "id": "8",
+ "dir": "ch08",
+ "title": "Atomic motion in laser light",
+ "intro": {},
+ "sections": [
+  {
+   "id": "8.1",
+   "title": "Incorporating center of mass motion into atom-light interactions"
+  },
+  {
+   "id": "8.2",
+   "title": "Semiclassical description"
+  },
+  {
+   "id": "8.3",
+   "title": "Doppler Cooling"
+  },
+  {
+   "id": "8.4",
+   "title": "Dissipation and quantum noise: the Heisenberg-Langevin approach"
+  },
+  {
+   "id": "8.5",
+   "title": "The Heisenberg-Langevin formalism applied to Doppler cooling"
+  },
+  {
+   "id": "8.6",
+   "title": "Sub-Doppler cooling"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "H",
+   "section": "8.1",
+   "concept": "moving-atom-hamiltonian",
+   "meaning": "The Hamiltonian of an atom moving in laser light, its center-of-mass motion included",
+   "anchor": "8.1-eq-8-1",
+   "redefines": true
+  },
+  {
+   "sym": "p",
+   "section": "8.1",
+   "type": "momentum",
+   "meaning": "The momentum operator of the atom’s center of mass",
+   "unit": "kg·m/s",
+   "anchor": "8.1-two-levels",
+   "redefines": true
+  },
+  {
+   "sym": "p_cm",
+   "section": "8.1",
+   "type": "momentum",
+   "meaning": "The momentum of the atom’s center of mass, an eigenvalue of its momentum operator",
+   "unit": "kg·m/s",
+   "anchor": "8.1-drv-plane-wave-coupling"
+  },
+  {
+   "sym": "r",
+   "section": "8.1",
+   "type": "length",
+   "meaning": "The position operator of the atom’s center of mass",
+   "unit": "m",
+   "anchor": "8.1-two-levels",
+   "redefines": true
+  },
+  {
+   "sym": "m",
+   "section": "8.1",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg",
+   "anchor": "8.1-eq-8-1",
+   "redefines": true
+  },
+  {
+   "sym": "k",
+   "section": "8.1",
+   "type": "wavevector",
+   "meaning": "The wavevector of the applied field",
+   "unit": "m⁻¹",
+   "anchor": "8.1-plane-wave-phase"
+  },
+  {
+   "sym": "k_mag",
+   "section": "8.1",
+   "type": "wavevector",
+   "meaning": "The wavevector of the light, written unbold, so that ħk is the momentum one photon gives the atom",
+   "unit": "m⁻¹",
+   "anchor": "8.1-drv-plane-wave-coupling"
+  },
+  {
+   "sym": "V",
+   "section": "8.1",
+   "type": "energy",
+   "meaning": "The external potential acting on the atom’s center of mass",
+   "unit": "J",
+   "anchor": "8.1-eq-8-1",
+   "redefines": true
+  },
+  {
+   "sym": "Omega",
+   "section": "8.1",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω(r̂) = |Ω(r̂)|e^{iφ(r̂)} of the laser at the atom’s position",
+   "unit": "rad/s",
+   "anchor": "8.1-eq-8-3",
+   "redefines": true
+  },
+  {
+   "sym": "phi",
+   "section": "8.1",
+   "type": "phase",
+   "meaning": "The phase φ(r̂) of the laser at the atom’s position, k·r for a plane wave",
+   "unit": "rad",
+   "anchor": "8.1-eq-8-3",
+   "redefines": true
+  },
+  {
+   "sym": "omega",
+   "section": "8.1",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The atomic transition frequency: the two levels lie ħω apart",
+   "unit": "rad/s",
+   "anchor": "8.1-resonance"
+  },
+  {
+   "sym": "omega_R",
+   "section": "8.1",
+   "concept": "recoil-frequency",
+   "meaning": "The recoil frequency: the kinetic energy (ħk)²/2m one photon’s momentum gives the atom, divided by ħ",
+   "unit": "rad/s",
+   "anchor": "8.1-recoil-energy"
+  },
+  {
+   "sym": "omega_res",
+   "section": "8.1",
+   "concept": "recoil-shifted-resonance",
+   "meaning": "The resonant frequency of the transition |p⟩|1⟩ → |p + ħk⟩|2⟩, shifted from ω₁₂ by the Doppler and recoil shifts",
+   "unit": "rad/s",
+   "anchor": "8.1-drv-recoil-shifted-resonance"
+  },
+  {
+   "sym": "gamma",
+   "section": "8.1",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum",
+   "anchor": "8.1-recoil-scale"
+  },
+  {
+   "sym": "F_mag",
+   "concept": "dissipative-force",
+   "meaning": "The dissipative force on the atom along z: of one beam in Eq. (8.28), of the two counterpropagating beams together in Eq. (8.29)",
+   "unit": "N",
+   "anchor": "8.3-drv-doppler-force-expansion",
+   "section": "8.3",
+   "redefines": true
+  },
+  {
+   "sym": "F_p",
+   "concept": "dissipative-force",
+   "ref": "beam-plus",
+   "meaning": "The force of the beam travelling along +z",
+   "unit": "N",
+   "anchor": "8.3-eq-8-29",
+   "section": "8.3"
+  },
+  {
+   "sym": "F_m",
+   "concept": "dissipative-force",
+   "ref": "beam-minus",
+   "meaning": "The force of the beam travelling along −z",
+   "unit": "N",
+   "anchor": "8.3-eq-8-29",
+   "section": "8.3"
+  },
+  {
+   "sym": "R_opt_0",
+   "concept": "zero-velocity-excitation-rate",
+   "meaning": "The optical excitation rate of an atom at zero velocity",
+   "unit": "s⁻¹",
+   "anchor": "8.3-zero-velocity-rate",
+   "section": "8.3"
+  },
+  {
+   "sym": "eta",
+   "concept": "friction-coefficient",
+   "meaning": "The friction coefficient of the viscous force F = ηmv_z of two counterpropagating beams",
+   "unit": "s⁻¹",
+   "anchor": "8.3-friction-coefficient",
+   "section": "8.3"
+  },
+  {
+   "sym": "v_c",
+   "concept": "capture-range",
+   "meaning": "The critical velocity, at which the cooling force is largest; the capture range is −v_c < v < v_c",
+   "unit": "m/s",
+   "anchor": "8.3-capture-range",
+   "section": "8.3"
+  },
+  {
+   "sym": "omega_R",
+   "concept": "recoil-frequency",
+   "meaning": "The recoil frequency, ħω_R = (ħk)²/2m",
+   "unit": "rad/s",
+   "section": "8.3"
+  },
+  {
+   "sym": "delta",
+   "concept": "detuning",
+   "meaning": "The detuning δ = ν − ω of the field from the atomic transition",
+   "section": "8.3"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω = ℰμ/ℏ",
+   "section": "8.3"
+  },
+  {
+   "sym": "gamma_12",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₂, the homogeneous linewidth",
+   "section": "8.3"
+  },
+  {
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum",
+   "section": "8.3"
+  },
+  {
+   "sym": "R_opt",
+   "concept": "optical-pumping-rate",
+   "meaning": "The optical pumping rate R_opt of the applied field",
+   "section": "8.3"
+  },
+  {
+   "sym": "k",
+   "type": "wavevector",
+   "meaning": "The wavevector of the applied field",
+   "unit": "m⁻¹",
+   "section": "8.3"
+  },
+  {
+   "sym": "k_mag",
+   "type": "wavevector",
+   "meaning": "The wavevector of the light, written unbold, so that ħk is the momentum one photon gives the atom",
+   "unit": "m⁻¹",
+   "section": "8.3"
+  },
+  {
+   "sym": "v",
+   "type": "velocity",
+   "meaning": "The velocity of the atom",
+   "unit": "m/s",
+   "section": "8.3"
+  },
+  {
+   "sym": "v_mag",
+   "type": "velocity",
+   "meaning": "The velocity of the atom along the beams",
+   "unit": "m/s",
+   "section": "8.3"
+  },
+  {
+   "sym": "v_z",
+   "type": "velocity",
+   "meaning": "The velocity of an atom along the beam, the z direction",
+   "unit": "m/s",
+   "section": "8.3"
+  },
+  {
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg",
+   "section": "8.3"
+  },
+  {
+   "sym": "p_cm",
+   "type": "momentum",
+   "meaning": "The momentum of the atom’s center of mass",
+   "unit": "kg·m/s",
+   "section": "8.3"
+  },
+  {
+   "sym": "B",
+   "type": "magnetic-field",
+   "meaning": "The magnetic field of the trap, B₀z ẑ along the axis of its coils",
+   "unit": "T",
+   "section": "8.3"
+  },
+  {
+   "section": "8.2",
+   "sym": "F",
+   "concept": "light-force-operator",
+   "meaning": "The force operator on the atom, the rate of change of its momentum operator",
+   "unit": "N",
+   "anchor": "8.2-eq-8-9",
+   "redefines": true
+  },
+  {
+   "section": "8.2",
+   "sym": "F_mag",
+   "concept": "semiclassical-light-force",
+   "meaning": "The average force ⟨F̂⟩ of the light on an atom moving as a classical particle",
+   "unit": "N",
+   "anchor": "8.2-drv-semiclassical-light-force"
+  },
+  {
+   "section": "8.2",
+   "sym": "F_force",
+   "concept": "dissipative-force",
+   "meaning": "The dissipative force on the atom, along the wavevector k of the light; F_max is its largest value",
+   "unit": "N",
+   "anchor": "8.2-drv-dissipative-force"
+  },
+  {
+   "section": "8.2",
+   "sym": "V_eff",
+   "concept": "dipole-force",
+   "meaning": "The dipole potential ħ|Ω|²/δ, the AC Stark shift of the ground state; for many levels the operator of Eq. (8.21)",
+   "unit": "J",
+   "anchor": "8.2-v-eff"
+  },
+  {
+   "section": "8.2",
+   "sym": "p",
+   "type": "momentum",
+   "meaning": "The momentum operator of the atom’s center of mass",
+   "unit": "kg·m/s",
+   "anchor": "8.2-eq-8-9"
+  },
+  {
+   "section": "8.2",
+   "sym": "H",
+   "concept": "moving-atom-hamiltonian",
+   "meaning": "The Hamiltonian of an atom moving in laser light, its center-of-mass motion included",
+   "anchor": "8.2-eq-8-9"
+  },
+  {
+   "section": "8.2",
+   "sym": "r",
+   "type": "length",
+   "meaning": "The position operator of the atom’s center of mass",
+   "unit": "m",
+   "anchor": "8.2-drv-light-force-operator"
+  },
+  {
+   "section": "8.2",
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg",
+   "anchor": "8.2-recoil-energy"
+  },
+  {
+   "section": "8.2",
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω(r̂) = |Ω(r̂)|e^{iφ(r̂)} of the laser at the atom’s position",
+   "unit": "rad/s",
+   "anchor": "8.2-drv-light-force-operator"
+  },
+  {
+   "section": "8.2",
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The phase φ(r̂) of the laser at the atom’s position, k·r for a plane wave",
+   "unit": "rad",
+   "anchor": "8.2-drv-semiclassical-light-force"
+  },
+  {
+   "section": "8.2",
+   "sym": "k",
+   "type": "wavevector",
+   "meaning": "The wavevector of the applied field",
+   "unit": "m⁻¹",
+   "anchor": "8.2-drv-dissipative-force"
+  },
+  {
+   "section": "8.2",
+   "sym": "k_mag",
+   "type": "wavevector",
+   "meaning": "The wavevector of the light, written unbold, so that ħk is the momentum one photon gives the atom",
+   "unit": "m⁻¹",
+   "anchor": "8.2-recoil-energy"
+  },
+  {
+   "section": "8.2",
+   "sym": "omega_R",
+   "concept": "recoil-frequency",
+   "meaning": "The recoil frequency: the kinetic energy (ħk)²/2m one photon’s momentum gives the atom, divided by ħ",
+   "unit": "rad/s",
+   "anchor": "8.2-recoil-energy"
+  },
+  {
+   "section": "8.2",
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum",
+   "unit": "s⁻¹",
+   "anchor": "8.2-drv-scattering-force"
+  },
+  {
+   "section": "8.2",
+   "sym": "rho_12",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |1⟩ and |2⟩",
+   "anchor": "8.2-drv-semiclassical-light-force"
+  },
+  {
+   "section": "8.2",
+   "sym": "rho_21",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂",
+   "anchor": "8.2-drv-semiclassical-light-force"
+  },
+  {
+   "section": "8.2",
+   "sym": "rho_22",
+   "concept": "density-matrix-populations",
+   "meaning": "The population of the level |2⟩",
+   "anchor": "8.2-drv-scattering-force"
+  },
+  {
+   "section": "8.2",
+   "sym": "gamma_12",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₂",
+   "unit": "s⁻¹",
+   "anchor": "8.2-validity-estimate"
+  },
+  {
+   "section": "8.2",
+   "sym": "R_opt",
+   "concept": "optical-pumping-rate",
+   "meaning": "The optical pumping rate R_opt of the applied field",
+   "unit": "s⁻¹",
+   "anchor": "8.2-drv-dissipative-force"
+  },
+  {
+   "section": "8.2",
+   "sym": "chi",
+   "concept": "susceptibility",
+   "meaning": "The susceptibility, the ratio of the polarization to ε₀ times the field",
+   "anchor": "8.2-ratio"
+  },
+  {
+   "section": "8.2",
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "unit": "s",
+   "anchor": "8.2-validity-estimate"
+  },
+  {
+   "section": "8.2",
+   "sym": "lambda",
+   "type": "length",
+   "meaning": "The optical wavelength, λ = 2π/k",
+   "unit": "m",
+   "anchor": "8.2-validity-estimate"
+  },
+  {
+   "section": "8.2",
+   "sym": "delta",
+   "concept": "detuning",
+   "meaning": "The detuning δ = ν − ω of the field from the atomic transition",
+   "unit": "rad/s",
+   "anchor": "8.2-validity-estimate"
+  },
+  {
+   "section": "8.2",
+   "sym": "v_mag",
+   "type": "velocity",
+   "meaning": "The velocity of the atom along the light, so that kv is its Doppler shift",
+   "unit": "m/s",
+   "anchor": "8.2-doppler-term"
+  },
+  {
+   "section": "8.4",
+   "sym": "p_cm",
+   "meaning": "The momentum of the heavy particle in its bath of lighter particles",
+   "redefines": true,
+   "type": "momentum"
+  },
+  {
+   "section": "8.4",
+   "sym": "eta",
+   "concept": "friction-coefficient",
+   "meaning": "The friction coefficient of the heavy particle’s viscous drag −ηp",
+   "redefines": true
+  },
+  {
+   "section": "8.4",
+   "sym": "f_t",
+   "concept": "langevin-equation",
+   "meaning": "The Langevin force f(t): the random force on the heavy particle from its collisions with the lighter particles",
+   "redefines": true
+  },
+  {
+   "section": "8.4",
+   "sym": "D_diff",
+   "concept": "diffusion-coefficient",
+   "meaning": "The diffusion coefficient, the strength of the Langevin force’s correlations; D_μν is its generalization to the quantum Langevin operators"
+  },
+  {
+   "section": "8.4",
+   "sym": "t",
+   "meaning": "Time",
+   "type": "time"
+  },
+  {
+   "section": "8.4",
+   "sym": "m",
+   "meaning": "The mass of the heavy particle",
+   "redefines": true,
+   "type": "mass"
+  },
+  {
+   "section": "8.4",
+   "sym": "T",
+   "meaning": "The temperature",
+   "type": "temperature"
+  },
+  {
+   "section": "8.4",
+   "sym": "F",
+   "concept": "light-force-operator",
+   "meaning": "The force operator on the atom, the rate of change of its momentum operator"
+  },
+  {
+   "section": "8.4",
+   "sym": "H",
+   "meaning": "The total Hamiltonian of system and reservoir together",
+   "redefines": true,
+   "type": "energy"
+  },
+  {
+   "section": "8.4",
+   "sym": "H_S",
+   "meaning": "The system Hamiltonian, acting only on the system",
+   "type": "energy"
+  },
+  {
+   "section": "8.4",
+   "sym": "H_R",
+   "meaning": "The reservoir Hamiltonian, acting only on the reservoir",
+   "type": "energy"
+  },
+  {
+   "section": "8.4",
+   "sym": "H_SR",
+   "concept": "system-reservoir-hamiltonian",
+   "meaning": "The interaction Hamiltonian between system and reservoir"
+  },
+  {
+   "section": "8.4",
+   "sym": "S_hat",
+   "meaning": "A general system operator, coupled bilinearly to a reservoir operator; for the two-level atom Ŝ = σ̂₁₂ = |1⟩⟨2|"
+  },
+  {
+   "section": "8.4",
+   "sym": "g",
+   "concept": "single-photon-rabi-frequency",
+   "meaning": "The single-photon Rabi frequency, the coupling of the atom to one mode of the field"
+  },
+  {
+   "section": "8.4",
+   "sym": "nu",
+   "meaning": "The frequency ν_j of field mode j",
+   "type": "frequency"
+  },
+  {
+   "section": "8.4",
+   "sym": "omega",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The atomic transition frequency: the two levels lie ħω apart"
+  },
+  {
+   "section": "8.4",
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum"
+  },
+  {
+   "section": "8.4",
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω = ℰμ/ℏ"
+  },
+  {
+   "section": "8.4",
+   "sym": "f_hat",
+   "concept": "quantum-langevin-force",
+   "meaning": "The quantum Langevin force f̂(t), the free evolution of the reservoir’s initial field modes"
+  },
+  {
+   "section": "8.4",
+   "sym": "F_noise",
+   "concept": "generalized-einstein-relation",
+   "meaning": "The quantum Langevin operator 𝓕̂_μ of the operator Â_μ, with zero mean and delta-correlated moments 2D_μν"
+  },
+  {
+   "sym": "F",
+   "concept": "light-force-operator",
+   "meaning": "The force operator on the atom, the rate of change of its momentum operator",
+   "unit": "N",
+   "anchor": "8.5-eq-8-79",
+   "section": "8.5"
+  },
+  {
+   "sym": "F_mag",
+   "concept": "semiclassical-light-force",
+   "meaning": "The average force ⟨F̂⟩ of the light on an atom moving as a classical particle",
+   "unit": "N",
+   "anchor": "8.5-drv-fluctuating-force",
+   "redefines": true,
+   "section": "8.5"
+  },
+  {
+   "sym": "F_noise",
+   "concept": "laser-cooling-noise-force",
+   "meaning": "The noise force 𝓕̂₁₂(t) = (σ̂₂₂ − σ̂₁₁)f̂(t) on the coherence σ̂₁₂ of the laser-driven two-level atom",
+   "anchor": "8.5-eq-8-83",
+   "redefines": true,
+   "section": "8.5"
+  },
+  {
+   "sym": "f_hat",
+   "concept": "quantum-langevin-force",
+   "meaning": "The quantum Langevin force f̂(t), the free evolution of the reservoir’s initial field modes",
+   "anchor": "8.5-drv-coherence-noise",
+   "section": "8.5"
+  },
+  {
+   "sym": "S_hat",
+   "meaning": "A general system operator, coupled bilinearly to a reservoir operator; for the two-level atom Ŝ = σ̂₁₂ = |1⟩⟨2|",
+   "anchor": "8.5-average-fluctuation",
+   "section": "8.5"
+  },
+  {
+   "sym": "H_S",
+   "type": "energy",
+   "meaning": "The system Hamiltonian, acting only on the system",
+   "unit": "J",
+   "anchor": "8.5-drv-coherence-noise",
+   "section": "8.5"
+  },
+  {
+   "sym": "H",
+   "concept": "moving-atom-hamiltonian",
+   "meaning": "The Hamiltonian of an atom moving in laser light, its center-of-mass motion included",
+   "anchor": "8.5-drv-noise-moment",
+   "redefines": true,
+   "section": "8.5"
+  },
+  {
+   "sym": "D_diff",
+   "concept": "laser-cooling-diffusion",
+   "meaning": "The momentum diffusion constant of a laser-cooled atom, 2Dδ(t − t′) = ⟨δF̂(t)δF̂(t′)⟩",
+   "unit": "kg²·m²/s³",
+   "anchor": "8.5-diffusion-constant",
+   "redefines": true,
+   "section": "8.5"
+  },
+  {
+   "sym": "T_D",
+   "concept": "doppler-limit",
+   "meaning": "The Doppler temperature, the final temperature Doppler cooling reaches",
+   "unit": "K",
+   "anchor": "8.5-final-temperature",
+   "section": "8.5"
+  },
+  {
+   "sym": "Omega_tilde",
+   "type": "coupling",
+   "meaning": "Twice the Rabi frequency, Ω̃ = 2Ω, counting the two counterpropagating beams and the diffusion from absorption",
+   "unit": "rad/s",
+   "anchor": "8.5-two-factors",
+   "section": "8.5"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω = ℰμ/ℏ",
+   "unit": "rad/s",
+   "anchor": "8.5-hl-doppler",
+   "section": "8.5"
+  },
+  {
+   "sym": "k_mag",
+   "type": "wavevector",
+   "meaning": "The wavevector of the light, written unbold, so that ħk is the momentum one photon gives the atom",
+   "unit": "m⁻¹",
+   "anchor": "8.5-hl-doppler",
+   "section": "8.5"
+  },
+  {
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum",
+   "unit": "s⁻¹",
+   "anchor": "8.5-drv-coherence-noise",
+   "section": "8.5"
+  },
+  {
+   "sym": "gamma_12",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₂, the homogeneous linewidth",
+   "unit": "s⁻¹",
+   "anchor": "8.5-drv-doppler-limit",
+   "section": "8.5"
+  },
+  {
+   "sym": "delta",
+   "concept": "detuning",
+   "meaning": "The detuning δ = ν − ω of the field from the atomic transition",
+   "unit": "rad/s",
+   "anchor": "8.5-drv-noise-moment",
+   "section": "8.5"
+  },
+  {
+   "sym": "R_opt",
+   "concept": "optical-pumping-rate",
+   "meaning": "The optical pumping rate R_opt of the applied field",
+   "unit": "s⁻¹",
+   "anchor": "8.5-drv-doppler-limit",
+   "section": "8.5"
+  },
+  {
+   "sym": "R_opt_0",
+   "concept": "zero-velocity-excitation-rate",
+   "meaning": "The optical excitation rate of an atom at zero velocity",
+   "unit": "s⁻¹",
+   "anchor": "8.5-drv-diffusion-constant",
+   "section": "8.5"
+  },
+  {
+   "sym": "eta",
+   "concept": "friction-coefficient",
+   "meaning": "The friction coefficient of the viscous force F = ηmv_z of two counterpropagating beams",
+   "unit": "s⁻¹",
+   "anchor": "8.5-drv-doppler-limit",
+   "redefines": true,
+   "section": "8.5"
+  },
+  {
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg",
+   "anchor": "8.5-drv-doppler-limit",
+   "redefines": true,
+   "section": "8.5"
+  },
+  {
+   "sym": "p_cm",
+   "type": "momentum",
+   "meaning": "The momentum of the atom’s center of mass",
+   "unit": "kg·m/s",
+   "anchor": "8.5-diffusion-physics",
+   "redefines": true,
+   "section": "8.5"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "unit": "s",
+   "anchor": "8.5-drv-coherence-noise",
+   "section": "8.5"
+  },
+  {
+   "sym": "T",
+   "type": "temperature",
+   "meaning": "The temperature",
+   "unit": "K",
+   "anchor": "8.5-noise-moment",
+   "section": "8.5"
+  },
+  {
+   "sym": "omega",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The atomic transition frequency: the two levels lie ħω apart",
+   "unit": "rad/s",
+   "anchor": "8.5-noise-moment",
+   "section": "8.5"
+  },
+  {
+   "sym": "lambda",
+   "type": "length",
+   "meaning": "The optical wavelength, λ = 2π/k",
+   "unit": "m",
+   "anchor": "8.5-reabsorption",
+   "section": "8.5"
+  },
+  {
+   "sym": "r_dist",
+   "type": "length",
+   "meaning": "The distance from the atom that emitted the photon",
+   "unit": "m",
+   "anchor": "8.5-reabsorption",
+   "section": "8.5"
+  },
+  {
+   "section": "8.6",
+   "sym": "E_field",
+   "concept": "polarization-gradient",
+   "meaning": "The lin⊥lin field of two counterpropagating beams with crossed linear polarizations",
+   "unit": "V/m",
+   "anchor": "8.6-drv-lin-perp-lin-field",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "nu",
+   "concept": "optical-frequency",
+   "meaning": "The frequency of the applied field",
+   "unit": "rad/s"
+  },
+  {
+   "section": "8.6",
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "unit": "s"
+  },
+  {
+   "section": "8.6",
+   "sym": "k_mag",
+   "type": "wavevector",
+   "meaning": "The wavevector of the light, written unbold, so that ħk is the momentum one photon gives the atom",
+   "unit": "m⁻¹"
+  },
+  {
+   "section": "8.6",
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω of each beam; Ω₊ = Ω cos kz and Ω₋ = Ω sin kz are its σ₊ and σ₋ parts",
+   "anchor": "8.6-eq-8-103",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "Omega_p",
+   "concept": "rabi-frequency",
+   "ref": "sigma-plus",
+   "meaning": "The Rabi frequency Ω₊ = Ω cos kz of the σ₊ standing wave",
+   "anchor": "8.6-eq-8-103",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "Omega_m",
+   "concept": "rabi-frequency",
+   "ref": "sigma-minus",
+   "meaning": "The Rabi frequency Ω₋ = Ω sin kz of the σ₋ standing wave",
+   "anchor": "8.6-eq-8-104",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "delta",
+   "concept": "detuning",
+   "meaning": "The detuning δ = ν − ω of the field from the atomic transition"
+  },
+  {
+   "section": "8.6",
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum"
+  },
+  {
+   "section": "8.6",
+   "sym": "gamma_12",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₂, the homogeneous linewidth"
+  },
+  {
+   "section": "8.6",
+   "sym": "Delta",
+   "concept": "ac-stark-shift",
+   "meaning": "The light shift Δ^{σ±}_m of ground sublevel m by σ± light",
+   "anchor": "8.6-eq-8-99",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "H",
+   "concept": "ground-state-light-shift-potential",
+   "meaning": "The effective atom-laser Hamiltonian Ĥ^eff_AL of the far-detuned lin⊥lin field",
+   "anchor": "8.6-drv-sisyphus-light-shifts",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "U",
+   "concept": "ground-state-light-shift-potential",
+   "meaning": "The light-shift potential U_m(z) of ground sublevel m, the diagonal of Ĥ^eff_AL",
+   "unit": "J",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "F_mag",
+   "concept": "sisyphus-force",
+   "meaning": "The force on the atom in the lin⊥lin field: the reactive force F_reactive, and in Figure 8.6 the Sisyphus force F_S beside the Doppler force F_D",
+   "unit": "N",
+   "anchor": "8.6-drv-sisyphus-reactive-force",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "R_opt",
+   "concept": "optical-pumping-rate",
+   "meaning": "The optical pumping rate R_opt of the applied field"
+  },
+  {
+   "section": "8.6",
+   "sym": "Delta_rho",
+   "type": "population",
+   "meaning": "The population difference ρ_{½½} − ρ_{−½−½} of the two ground sublevels"
+  },
+  {
+   "section": "8.6",
+   "sym": "tau_P",
+   "concept": "sisyphus-pumping-rate",
+   "meaning": "The optical pumping time between the two ground sublevels, 1/τ_P = (2/9)R_opt",
+   "unit": "s",
+   "anchor": "8.6-drv-population-relaxation"
+  },
+  {
+   "section": "8.6",
+   "sym": "omega_R",
+   "concept": "recoil-frequency",
+   "meaning": "The recoil frequency, ħω_R = (ħk)²/2m"
+  },
+  {
+   "section": "8.6",
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg"
+  },
+  {
+   "section": "8.6",
+   "sym": "v_mag",
+   "type": "velocity",
+   "meaning": "The velocity of the atom along the beams",
+   "unit": "m/s"
+  },
+  {
+   "section": "8.6",
+   "sym": "v_c",
+   "concept": "capture-range",
+   "meaning": "The Sisyphus capture velocity v_c = 1/2kτ_P; v_c^S and v_c^D are the Sisyphus and Doppler capture velocities",
+   "unit": "m/s",
+   "anchor": "8.6-drv-sisyphus-solution",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "lambda",
+   "type": "length",
+   "meaning": "The optical wavelength, λ = 2π/k",
+   "unit": "m"
+  },
+  {
+   "section": "8.6",
+   "sym": "eta_S",
+   "concept": "sisyphus-friction",
+   "meaning": "The Sisyphus friction coefficient of the average force ⟨F_reactive⟩ = η_S vm",
+   "unit": "s⁻¹",
+   "anchor": "8.6-drv-sisyphus-solution"
+  },
+  {
+   "section": "8.6",
+   "sym": "eta",
+   "concept": "friction-coefficient",
+   "meaning": "The friction coefficient of the viscous force F = ηmv_z of two counterpropagating beams",
+   "unit": "s⁻¹"
+  },
+  {
+   "section": "8.6",
+   "sym": "D_diff",
+   "concept": "laser-cooling-diffusion",
+   "meaning": "The momentum diffusion coefficients D_sp of spontaneous emission and D_dp of the fluctuating dipole force",
+   "anchor": "8.6-eq-8-131",
+   "redefines": true
+  },
+  {
+   "section": "8.6",
+   "sym": "T_S",
+   "concept": "sisyphus-limit",
+   "meaning": "The Sisyphus temperature, the final temperature Sisyphus cooling reaches",
+   "unit": "K",
+   "anchor": "8.6-drv-sisyphus-limit"
+  },
+  {
+   "section": "8.6",
+   "sym": "T_R",
+   "concept": "recoil-limit",
+   "meaning": "The recoil temperature, the temperature of an atom with the recoil energy",
+   "unit": "K",
+   "anchor": "8.6-recoil-limit"
+  },
+  {
+   "section": "8.6",
+   "sym": "T_D",
+   "concept": "doppler-limit",
+   "meaning": "The Doppler temperature, the final temperature Doppler cooling reaches",
+   "unit": "K"
+  },
+  {
+   "section": "8.6",
+   "sym": "p_cm",
+   "type": "momentum",
+   "meaning": "The momentum of the atom’s center of mass",
+   "unit": "kg·m/s"
+  }
+ ]
+}

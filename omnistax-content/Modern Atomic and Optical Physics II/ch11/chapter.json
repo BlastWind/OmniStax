@@ -1,0 +1,1213 @@
+{
+ "id": "11",
+ "dir": "ch11",
+ "title": "Quantum dynamics of atomic matter waves",
+ "intro": {},
+ "sections": [
+  {
+   "id": "11.1",
+   "title": "Introduction"
+  },
+  {
+   "id": "11.2",
+   "title": "Experimental History"
+  },
+  {
+   "id": "11.3",
+   "title": "Experimental techniques used in Bose condensation of atoms"
+  },
+  {
+   "id": "11.4",
+   "title": "Atomic interactions"
+  },
+  {
+   "id": "11.5",
+   "title": "Excitations in a Bose condensate"
+  },
+  {
+   "id": "11.6",
+   "title": "First-order coherence of Bose condensates"
+  },
+  {
+   "id": "11.7",
+   "title": "Higher-order coherence of atomic matter waves"
+  },
+  {
+   "id": "11.8",
+   "title": "Cold atoms in an optical lattice"
+  }
+ ],
+ "variables": [
+  {
+   "section": "11.1",
+   "sym": "lambda_dB",
+   "concept": "de-broglie-wavelength",
+   "meaning": "The thermal de Broglie wavelength, the size of an atom’s matter wavepacket at temperature T",
+   "unit": "m",
+   "anchor": "11.1-eq-11-1"
+  },
+  {
+   "section": "11.1",
+   "sym": "T",
+   "type": "temperature",
+   "meaning": "The temperature of the gas",
+   "unit": "K",
+   "anchor": "11.1-eq-11-1"
+  },
+  {
+   "section": "11.1",
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg",
+   "anchor": "11.1-eq-11-1"
+  },
+  {
+   "section": "11.1",
+   "sym": "n_dens",
+   "concept": "atom-number-density",
+   "meaning": "The density of the gas, its atoms per unit volume",
+   "unit": "m⁻³",
+   "anchor": "11.1-density"
+  },
+  {
+   "section": "11.1",
+   "sym": "T_c",
+   "concept": "critical-temperature",
+   "meaning": "The critical temperature, below which a macroscopic number of Bose atoms occupy the lowest energy state",
+   "unit": "K",
+   "anchor": "11.1-eq-11-2"
+  },
+  {
+   "section": "11.1",
+   "sym": "n_i",
+   "concept": "bose-einstein-distribution",
+   "meaning": "The number of particles occupying the energy level ϵ_i",
+   "anchor": "11.1-eq-11-4"
+  },
+  {
+   "section": "11.1",
+   "sym": "epsilon_i",
+   "type": "energy",
+   "meaning": "An energy level of a single atom",
+   "unit": "J",
+   "anchor": "11.1-eq-11-4"
+  },
+  {
+   "section": "11.1",
+   "sym": "mu_chem",
+   "concept": "chemical-potential",
+   "meaning": "The chemical potential, which fixes the number of particles in the grand canonical ensemble",
+   "unit": "J",
+   "anchor": "11.1-eq-11-4"
+  },
+  {
+   "section": "11.1",
+   "sym": "E_tot",
+   "type": "energy",
+   "meaning": "The total energy of the N atoms",
+   "unit": "J",
+   "anchor": "11.1-eq-11-6"
+  },
+  {
+   "section": "11.1",
+   "sym": "epsilon_0",
+   "type": "energy",
+   "meaning": "The energy ϵ₀ of the single-atom ground state",
+   "unit": "J",
+   "anchor": "11.1-eq-11-7"
+  },
+  {
+   "section": "11.1",
+   "sym": "epsilon",
+   "type": "energy",
+   "meaning": "The energy of a single-atom state, the variable of the integrals over the density of states g(ϵ)",
+   "unit": "J",
+   "anchor": "11.1-eq-11-7"
+  },
+  {
+   "section": "11.1",
+   "sym": "N_gs",
+   "concept": "ideal-gas-condensate-fraction",
+   "meaning": "The number of atoms in the ground state, the condensate",
+   "anchor": "11.1-eq-11-9"
+  },
+  {
+   "section": "11.5",
+   "sym": "psi_GP",
+   "concept": "gross-pitaevskii-equation",
+   "meaning": "The condensate wavefunction, normalized to the atom number",
+   "anchor": "11.5-eq-11-142"
+  },
+  {
+   "section": "11.5",
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "unit": "s",
+   "anchor": "11.5-drv-linearized-field-equation"
+  },
+  {
+   "section": "11.5",
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg",
+   "anchor": "11.5-drv-linearized-field-equation"
+  },
+  {
+   "section": "11.5",
+   "sym": "V",
+   "type": "energy",
+   "meaning": "The external potential acting on the atom’s center of mass",
+   "unit": "J",
+   "anchor": "11.5-drv-linearized-field-equation",
+   "redefines": true
+  },
+  {
+   "section": "11.5",
+   "sym": "U_0",
+   "concept": "interacting-bose-gas-hamiltonian",
+   "meaning": "The strength U₀ = 4πℏ²a/m of the contact interaction between two atoms",
+   "unit": "J·m³",
+   "anchor": "11.5-drv-linearized-field-equation"
+  },
+  {
+   "section": "11.5",
+   "sym": "omega",
+   "type": "frequency",
+   "meaning": "An angular frequency: ω_j of the condensate’s normal mode j, ω_min of its lowest excitation, and ω₁, ω₂ of the two Bragg lasers",
+   "unit": "rad/s",
+   "anchor": "11.5-eq-11-144",
+   "redefines": true
+  },
+  {
+   "section": "11.5",
+   "sym": "mu_chem",
+   "concept": "chemical-potential",
+   "meaning": "The chemical potential, which fixes the number of particles in the grand canonical ensemble",
+   "unit": "J",
+   "anchor": "11.5-eq-11-144"
+  },
+  {
+   "section": "11.3",
+   "sym": "E_B",
+   "concept": "surface-sticking",
+   "meaning": "The binding energy of an atom to the surface",
+   "unit": "J",
+   "anchor": "11.3-eq-11-11"
+  },
+  {
+   "section": "11.5",
+   "sym": "n_0",
+   "concept": "condensate-density",
+   "meaning": "The density of the condensate",
+   "unit": "m⁻³",
+   "anchor": "11.5-eq-11-150"
+  },
+  {
+   "section": "11.3",
+   "sym": "tau_R",
+   "concept": "surface-resonance-time",
+   "meaning": "The resonance time, how long an atom stays stuck to the surface",
+   "unit": "s",
+   "anchor": "11.3-drv-surface-resonance-time"
+  },
+  {
+   "section": "11.6",
+   "sym": "psi_GP",
+   "concept": "gross-pitaevskii-equation",
+   "meaning": "The condensate wavefunction, normalized to the atom number",
+   "anchor": "11.6-two-clouds"
+  },
+  {
+   "section": "11.5",
+   "sym": "q",
+   "type": "wavevector",
+   "meaning": "The wavevector of an excitation of the condensate; q_c is the cross-over between sound-like and particle-like excitations, q_min the smallest a trapped cloud allows",
+   "unit": "m⁻¹",
+   "anchor": "11.5-eq-11-148"
+  },
+  {
+   "section": "11.3",
+   "sym": "lambda_DB",
+   "concept": "de-broglie-wavelength",
+   "meaning": "The thermal de Broglie wavelength of the atom",
+   "unit": "m",
+   "anchor": "11.3-eq-11-11"
+  },
+  {
+   "section": "11.6",
+   "sym": "Delta_R_s",
+   "type": "length",
+   "meaning": "The distance between the two condensates before they are released",
+   "unit": "m",
+   "anchor": "11.6-sim-two-condensates"
+  },
+  {
+   "section": "11.5",
+   "sym": "epsilon_q",
+   "concept": "free-particle-energy",
+   "meaning": "The energy ℏ²q²/2m of a free particle of wavevector q",
+   "unit": "J",
+   "anchor": "11.5-free-energy"
+  },
+  {
+   "section": "11.3",
+   "sym": "n_dens",
+   "concept": "atom-number-density",
+   "meaning": "The density of the gas, its atoms per unit volume",
+   "unit": "m⁻³",
+   "anchor": "11.3-eq-11-11"
+  },
+  {
+   "section": "11.6",
+   "sym": "Delta_R",
+   "concept": "condensate-interference-fringes",
+   "type": "length",
+   "meaning": "The spacing of the interference fringes of two expanding condensates",
+   "unit": "m",
+   "anchor": "11.6-sim-two-condensates"
+  },
+  {
+   "section": "11.5",
+   "sym": "omega_q",
+   "concept": "bogoliubov-spectrum",
+   "meaning": "The frequency of the condensate’s excitation of wavevector q",
+   "unit": "rad/s",
+   "anchor": "11.5-drv-bogoliubov-spectrum"
+  },
+  {
+   "section": "11.3",
+   "sym": "v_bar",
+   "type": "velocity",
+   "meaning": "The mean velocity of the atoms",
+   "unit": "m/s",
+   "anchor": "11.3-drv-surface-resonance-time"
+  },
+  {
+   "section": "11.6",
+   "sym": "tau",
+   "type": "time",
+   "meaning": "The time the released cloud expands before it is imaged",
+   "unit": "s",
+   "redefines": true,
+   "anchor": "11.6-sim-two-condensates"
+  },
+  {
+   "section": "11.5",
+   "sym": "s_sound",
+   "concept": "sound-velocity",
+   "meaning": "The speed of sound in the condensate",
+   "unit": "m/s",
+   "anchor": "11.5-eq-11-153"
+  },
+  {
+   "section": "11.3",
+   "sym": "T",
+   "type": "temperature",
+   "meaning": "The temperature",
+   "unit": "K",
+   "anchor": "11.3-eq-11-11"
+  },
+  {
+   "section": "11.6",
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg",
+   "anchor": "11.6-sim-two-condensates"
+  },
+  {
+   "section": "11.5",
+   "sym": "xi_heal",
+   "concept": "healing-length",
+   "meaning": "The healing length, over which the condensate wavefunction recovers from a wall",
+   "unit": "m",
+   "anchor": "11.5-eq-11-154"
+  },
+  {
+   "section": "11.3",
+   "sym": "mu_B",
+   "meaning": "The Bohr magneton, the unit of the electron’s and the nucleus’s magnetic moments",
+   "unit": "J/T",
+   "anchor": "11.3-eq-11-13",
+   "type": "magnetic-moment"
+  },
+  {
+   "section": "11.6",
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The relative phase of the two condensates",
+   "unit": "rad",
+   "redefines": true,
+   "anchor": "11.6-sim-two-condensates"
+  },
+  {
+   "section": "11.5",
+   "sym": "k_mag",
+   "type": "wavevector",
+   "meaning": "The wavevectors k₁, k₂ of the two Bragg lasers, written unbold",
+   "unit": "m⁻¹",
+   "anchor": "11.5-bragg",
+   "redefines": true
+  },
+  {
+   "section": "11.3",
+   "sym": "B_z",
+   "meaning": "The component of a static magnetic field along ẑ",
+   "unit": "T",
+   "anchor": "11.3-eq-11-13",
+   "type": "magnetic-field"
+  },
+  {
+   "section": "11.6",
+   "sym": "Delta_z",
+   "type": "length",
+   "meaning": "The distance between the two regions of the cloud from which atoms are outcoupled",
+   "unit": "m",
+   "anchor": "11.6-sim-spatial-coherence"
+  },
+  {
+   "section": "11.5",
+   "sym": "k",
+   "type": "wavevector",
+   "meaning": "The wavevectors k₁, k₂ of the two Bragg lasers",
+   "unit": "m⁻¹",
+   "anchor": "11.5-eq-11-155",
+   "redefines": true
+  },
+  {
+   "section": "11.6",
+   "sym": "lambda_dB",
+   "concept": "de-broglie-wavelength",
+   "meaning": "The thermal de Broglie wavelength, the size of an atom’s matter wavepacket at temperature T",
+   "unit": "m",
+   "anchor": "11.6-sim-spatial-coherence"
+  },
+  {
+   "section": "11.5",
+   "sym": "v_mag",
+   "type": "velocity",
+   "meaning": "The velocity of an object moving through the condensate",
+   "unit": "m/s",
+   "anchor": "11.5-drv-landau-critical-velocity",
+   "redefines": true
+  },
+  {
+   "section": "11.6",
+   "sym": "T",
+   "type": "temperature",
+   "meaning": "The temperature of the gas",
+   "unit": "K",
+   "anchor": "11.6-sim-spatial-coherence"
+  },
+  {
+   "section": "11.5",
+   "sym": "p_cm",
+   "type": "momentum",
+   "meaning": "Momentum: Δp_object is what the moving object gives an excitation; p of an atom released from the trap, p_BEC and p_T the momentum scales of a condensate and a thermal cloud",
+   "unit": "kg·m/s",
+   "anchor": "11.5-eq-11-157",
+   "redefines": true
+  },
+  {
+   "section": "11.6",
+   "sym": "T_c",
+   "concept": "critical-temperature",
+   "meaning": "The critical temperature, below which a macroscopic number of Bose atoms occupy the lowest energy state",
+   "unit": "K",
+   "anchor": "11.6-sim-spatial-coherence"
+  },
+  {
+   "section": "11.5",
+   "sym": "epsilon",
+   "type": "energy",
+   "meaning": "The energy of the moving object; Δϵ_object is what it gives an excitation",
+   "unit": "J",
+   "anchor": "11.5-eq-11-158",
+   "redefines": true
+  },
+  {
+   "section": "11.3",
+   "sym": "B",
+   "meaning": "The magnetic field of the trap",
+   "unit": "T",
+   "anchor": "11.3-eq-11-15",
+   "type": "magnetic-field"
+  },
+  {
+   "section": "11.6",
+   "sym": "N_gs",
+   "concept": "ideal-gas-condensate-fraction",
+   "meaning": "The number of atoms in the ground state, the condensate",
+   "anchor": "11.6-sim-spatial-coherence"
+  },
+  {
+   "section": "11.5",
+   "sym": "v_c",
+   "concept": "landau-criterion",
+   "meaning": "The Landau critical velocity, above which a moving object can create excitations",
+   "unit": "m/s",
+   "anchor": "11.5-drv-landau-critical-velocity",
+   "redefines": true
+  },
+  {
+   "section": "11.3",
+   "sym": "theta",
+   "type": "phase",
+   "meaning": "The angle of the magnetic field’s direction at the atom",
+   "unit": "rad",
+   "anchor": "11.3-eq-11-14",
+   "redefines": true
+  },
+  {
+   "section": "11.5",
+   "sym": "a_t",
+   "concept": "trap-length",
+   "meaning": "The characteristic size of the harmonic trap, its oscillator length",
+   "unit": "m",
+   "anchor": "11.5-eq-11-160"
+  },
+  {
+   "section": "11.3",
+   "sym": "omega_Larmor",
+   "concept": "adiabatic-spin-following",
+   "meaning": "The Larmor frequency μ_B B_z/ℏ at which the spin precesses about the field",
+   "unit": "rad/s",
+   "anchor": "11.3-eq-11-14"
+  },
+  {
+   "section": "11.5",
+   "sym": "a_scat",
+   "concept": "s-wave-scattering-length",
+   "meaning": "The s-wave scattering length",
+   "unit": "m",
+   "anchor": "11.5-drv-attractive-stability"
+  },
+  {
+   "section": "11.3",
+   "sym": "mu_mag",
+   "type": "magnetic-moment",
+   "meaning": "The magnetic moment of the trapped atom",
+   "unit": "J/T",
+   "anchor": "11.3-eq-11-17"
+  },
+  {
+   "section": "11.5",
+   "sym": "tau",
+   "type": "time",
+   "meaning": "The time the released cloud expands before it is imaged",
+   "unit": "s",
+   "anchor": "11.5-observation",
+   "redefines": true
+  },
+  {
+   "section": "11.3",
+   "sym": "n_0",
+   "type": "density",
+   "meaning": "The atom density at the centre of the trap",
+   "unit": "m⁻³",
+   "anchor": "11.3-eq-11-17"
+  },
+  {
+   "section": "11.5",
+   "sym": "r_dist",
+   "type": "length",
+   "meaning": "The position of an atom after the cloud has expanded, r = pτ/m",
+   "unit": "m",
+   "anchor": "11.5-observation",
+   "redefines": true
+  },
+  {
+   "section": "11.3",
+   "sym": "eta_ev",
+   "concept": "linear-trap-atom-number",
+   "meaning": "The ratio η = μB₀/k_BT of the trap’s depth to the thermal energy",
+   "anchor": "11.3-drv-linear-trap-atom-number"
+  },
+  {
+   "section": "11.5",
+   "sym": "a_c",
+   "type": "length",
+   "meaning": "The size of the atom cloud in the trap",
+   "unit": "m",
+   "anchor": "11.5-eq-11-164"
+  },
+  {
+   "section": "11.3",
+   "sym": "V_geo",
+   "type": "volume",
+   "meaning": "The geometric volume 4πρ₀³/3 of the trap",
+   "unit": "m³",
+   "anchor": "11.3-drv-linear-trap-atom-number"
+  },
+  {
+   "section": "11.5",
+   "sym": "R_exp",
+   "type": "length",
+   "meaning": "The size of the cloud after expansion: R_BEC of a condensate, R_T of a thermal cloud",
+   "unit": "m",
+   "anchor": "11.5-eq-11-165"
+  },
+  {
+   "section": "11.3",
+   "sym": "g_in",
+   "concept": "two-body-loss",
+   "meaning": "The rate constant of the inelastic two-body processes",
+   "unit": "m³/s",
+   "anchor": "11.3-eq-11-22"
+  },
+  {
+   "section": "11.5",
+   "sym": "T",
+   "type": "temperature",
+   "meaning": "The temperature of the gas",
+   "unit": "K",
+   "anchor": "11.5-eq-11-167"
+  },
+  {
+   "section": "11.3",
+   "sym": "Gamma_th",
+   "type": "rate",
+   "meaning": "The thermalization rate of the trapped atoms",
+   "unit": "s⁻¹",
+   "anchor": "11.3-eq-11-29"
+  },
+  {
+   "section": "11.3",
+   "sym": "sigma_el",
+   "concept": "evaporation-rate",
+   "meaning": "The cross-section for elastic collisions between the atoms",
+   "unit": "m²",
+   "anchor": "11.3-eq-11-29"
+  },
+  {
+   "section": "11.3",
+   "sym": "n_ref",
+   "concept": "refractive-index",
+   "meaning": "The complex index of refraction of the atom cloud",
+   "anchor": "11.3-eq-11-35"
+  },
+  {
+   "section": "11.3",
+   "sym": "d_OD",
+   "concept": "absorption-imaging",
+   "meaning": "The optical depth of the atom cloud along the line of sight",
+   "anchor": "11.3-eq-11-37"
+  },
+  {
+   "section": "11.3",
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The phase the atom cloud imprints on an off-resonant probe beam",
+   "unit": "rad",
+   "anchor": "11.3-eq-11-38",
+   "redefines": true
+  },
+  {
+   "section": "11.4",
+   "sym": "r_0",
+   "concept": "dilute-quantum-gas",
+   "meaning": "The range of the van der Waals tail, the size an atom presents in a collision",
+   "unit": "m",
+   "anchor": "11.4-eq-11-42"
+  },
+  {
+   "section": "11.4",
+   "sym": "U_r",
+   "concept": "van-der-waals-potential",
+   "meaning": "The interaction potential between two atoms at separation r",
+   "unit": "J",
+   "anchor": "11.4-eq-11-39"
+  },
+  {
+   "section": "11.4",
+   "sym": "f_k",
+   "concept": "scattering-amplitude",
+   "meaning": "The scattering amplitude at relative wavevector k into the angle θ",
+   "unit": "m",
+   "anchor": "11.4-eq-11-45"
+  },
+  {
+   "section": "11.4",
+   "sym": "sigma_sc",
+   "concept": "scattering-cross-section",
+   "meaning": "The scattering cross-section, an area",
+   "unit": "m²",
+   "anchor": "11.4-eq-11-50"
+  },
+  {
+   "section": "11.4",
+   "sym": "delta_l",
+   "concept": "scattering-phase-shift",
+   "meaning": "The phase shift of the partial wave of angular momentum l",
+   "unit": "rad",
+   "anchor": "11.4-eq-11-60"
+  },
+  {
+   "section": "11.4",
+   "sym": "a_scat",
+   "concept": "s-wave-scattering-length",
+   "meaning": "The s-wave scattering length",
+   "unit": "m",
+   "anchor": "11.4-eq-11-65"
+  },
+  {
+   "section": "11.4",
+   "sym": "a_bg",
+   "concept": "feshbach-resonance",
+   "meaning": "The background scattering length of the open channel, away from the resonance",
+   "unit": "m",
+   "anchor": "11.4-eq-11-100"
+  },
+  {
+   "section": "11.4",
+   "sym": "U_0",
+   "concept": "interacting-bose-gas-hamiltonian",
+   "meaning": "The strength U₀ = 4πℏ²a/m of the contact interaction between two atoms",
+   "unit": "J·m³",
+   "anchor": "11.4-eq-11-111"
+  },
+  {
+   "section": "11.4",
+   "sym": "psi_hat",
+   "concept": "matter-field-operator",
+   "meaning": "The matter field operator, which annihilates an atom at position r",
+   "anchor": "11.4-eq-11-119"
+  },
+  {
+   "section": "11.4",
+   "sym": "psi_GP",
+   "concept": "gross-pitaevskii-equation",
+   "meaning": "The condensate wavefunction, normalized to the atom number",
+   "anchor": "11.4-drv-gross-pitaevskii-equation"
+  },
+  {
+   "section": "11.4",
+   "sym": "E_mf",
+   "concept": "condensate-ground-state",
+   "meaning": "The mean-field interaction energy per atom, U₀|ψ̃|² ∼ U₀N/V",
+   "unit": "J",
+   "anchor": "11.4-eq-11-134"
+  },
+  {
+   "section": "11.4",
+   "sym": "a_t",
+   "concept": "trap-length",
+   "meaning": "The characteristic size of the harmonic trap, its oscillator length",
+   "unit": "m",
+   "anchor": "11.4-trap-size"
+  },
+  {
+   "section": "11.4",
+   "sym": "xi_heal",
+   "concept": "healing-length",
+   "meaning": "The healing length, over which the condensate wavefunction recovers from a wall",
+   "unit": "m",
+   "anchor": "11.4-eq-11-140"
+  },
+  {
+   "section": "11.4",
+   "sym": "n_0",
+   "concept": "condensate-density",
+   "meaning": "The density of the condensate",
+   "unit": "m⁻³",
+   "anchor": "11.4-eq-11-140"
+  },
+  {
+   "section": "11.4",
+   "sym": "k_mag",
+   "type": "wavevector",
+   "meaning": "The magnitude of the relative wavevector of the two colliding atoms",
+   "unit": "m⁻¹",
+   "anchor": "11.4-eq-11-43",
+   "redefines": true
+  },
+  {
+   "section": "11.4",
+   "sym": "k",
+   "type": "wavevector",
+   "meaning": "The relative wavevector of the colliding atoms, incident k and scattered k′; in Eq. (11.119) the wavevector of a momentum mode",
+   "unit": "m⁻¹",
+   "anchor": "11.4-eq-11-51",
+   "redefines": true
+  },
+  {
+   "section": "11.4",
+   "sym": "mu_red",
+   "type": "mass",
+   "meaning": "The reduced mass m₁m₂/(m₁ + m₂) of the colliding pair",
+   "unit": "kg",
+   "anchor": "11.4-eq-11-42"
+  },
+  {
+   "section": "11.4",
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg",
+   "anchor": "11.4-drv-mean-field-energy"
+  },
+  {
+   "section": "11.4",
+   "sym": "n_dens",
+   "concept": "atom-number-density",
+   "meaning": "The density of the gas, its atoms per unit volume",
+   "unit": "m⁻³",
+   "anchor": "11.4-degenerate"
+  },
+  {
+   "section": "11.4",
+   "sym": "T",
+   "type": "temperature",
+   "meaning": "The temperature of the gas",
+   "unit": "K",
+   "anchor": "11.4-degenerate"
+  },
+  {
+   "section": "11.4",
+   "sym": "T_c",
+   "concept": "critical-temperature",
+   "meaning": "The critical temperature, below which a macroscopic number of Bose atoms occupy the lowest energy state",
+   "unit": "K",
+   "anchor": "11.4-degenerate"
+  },
+  {
+   "section": "11.4",
+   "sym": "E_res",
+   "type": "energy",
+   "meaning": "The resonance energy of the closed channel's bound state, measured from the open channel's threshold and shifted by the coupling",
+   "unit": "J",
+   "anchor": "11.4-drv-feshbach-scattering-length"
+  },
+  {
+   "section": "11.4",
+   "sym": "Delta_Fesh",
+   "type": "energy",
+   "meaning": "The strength of the Feshbach resonance",
+   "unit": "J",
+   "anchor": "11.4-drv-feshbach-scattering-length"
+  },
+  {
+   "section": "11.4",
+   "sym": "V_0",
+   "type": "energy",
+   "meaning": "The height of a square barrier, or the depth of a square well, of radius r₀",
+   "unit": "J",
+   "anchor": "11.4-eq-11-71"
+  },
+  {
+   "section": "11.4",
+   "sym": "V",
+   "type": "volume",
+   "meaning": "The volume holding the N atoms",
+   "unit": "m³",
+   "anchor": "11.4-drv-mean-field-energy",
+   "redefines": true
+  },
+  {
+   "section": "11.4",
+   "sym": "V_trap",
+   "type": "energy",
+   "meaning": "The trapping potential acting on each atom",
+   "unit": "J",
+   "anchor": "11.4-eq-11-110"
+  },
+  {
+   "section": "11.4",
+   "sym": "V_r",
+   "type": "energy",
+   "meaning": "The trapping potential acting on each atom",
+   "unit": "J",
+   "anchor": "11.4-eq-11-134"
+  },
+  {
+   "section": "11.4",
+   "sym": "H",
+   "type": "energy",
+   "meaning": "The Hamiltonian of the system",
+   "unit": "J",
+   "anchor": "11.4-eq-11-110"
+  },
+  {
+   "section": "11.4",
+   "sym": "p",
+   "type": "momentum",
+   "meaning": "The momentum operator of the atom’s center of mass",
+   "unit": "kg·m/s",
+   "anchor": "11.4-eq-11-122"
+  },
+  {
+   "section": "11.4",
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "unit": "s",
+   "anchor": "11.4-drv-field-equation-of-motion"
+  },
+  {
+   "section": "11.4",
+   "sym": "psi",
+   "type": "state",
+   "meaning": "The wavefunction of the relative motion of the two colliding atoms",
+   "anchor": "11.4-eq-11-43",
+   "redefines": true
+  },
+  {
+   "section": "11.4",
+   "sym": "omega_t",
+   "type": "frequency",
+   "meaning": "The frequency of the harmonic trap",
+   "unit": "rad/s",
+   "anchor": "11.4-eq-11-134"
+  },
+  {
+   "section": "11.4",
+   "sym": "mu_chem",
+   "concept": "chemical-potential",
+   "meaning": "The chemical potential, which fixes the number of particles in the grand canonical ensemble",
+   "unit": "J",
+   "anchor": "11.4-drv-mean-field-energy"
+  },
+  {
+   "section": "11.4",
+   "sym": "mu_B",
+   "type": "magnetic-moment",
+   "meaning": "The Bohr magneton, the unit of the electron’s and the nucleus’s magnetic moments",
+   "unit": "J/T",
+   "anchor": "11.4-fesh-tune"
+  },
+  {
+   "section": "11.7",
+   "sym": "t",
+   "meaning": "The tunnelling amplitude between neighbouring wells or lattice sites, t_{i,j} for the sites i and j",
+   "unit": "J",
+   "anchor": "11.7-eq-11-168",
+   "redefines": true,
+   "concept": "lattice-hopping"
+  },
+  {
+   "section": "11.7",
+   "sym": "U_0",
+   "meaning": "The interaction energy of two atoms on one site, a well of the double well or of the lattice",
+   "unit": "J",
+   "anchor": "11.7-eq-11-172",
+   "redefines": true,
+   "concept": "on-site-interaction"
+  },
+  {
+   "section": "11.7",
+   "sym": "alpha_coh",
+   "concept": "coherent-amplitude",
+   "meaning": "The coherent amplitude: the eigenvalue of the annihilation operator in the coherent state |α⟩, α = |α|e^{iφ}",
+   "anchor": "11.7-eq-11-170"
+  },
+  {
+   "section": "11.7",
+   "sym": "phi_L",
+   "type": "phase",
+   "ref": "well-L",
+   "meaning": "The phase of the coherent state in the left well",
+   "unit": "rad",
+   "anchor": "11.7-josephson"
+  },
+  {
+   "section": "11.7",
+   "sym": "phi_R",
+   "type": "phase",
+   "ref": "well-R",
+   "meaning": "The phase of the coherent state in the right well",
+   "unit": "rad",
+   "anchor": "11.7-josephson"
+  },
+  {
+   "section": "11.7",
+   "sym": "E_dw",
+   "type": "energy",
+   "meaning": "The energy of the atoms in the double well: the kinetic energy of the classical Josephson device, and the ground-state energy E₀",
+   "unit": "J",
+   "anchor": "11.7-josephson"
+  },
+  {
+   "section": "11.7",
+   "sym": "a_scat",
+   "concept": "s-wave-scattering-length",
+   "meaning": "The s-wave scattering length",
+   "unit": "m",
+   "anchor": "11.7-making-fock"
+  },
+  {
+   "section": "11.7",
+   "sym": "V",
+   "type": "energy",
+   "meaning": "The external potential acting on the atom’s center of mass",
+   "unit": "J",
+   "anchor": "11.7-eq-11-176",
+   "redefines": true
+  },
+  {
+   "section": "11.7",
+   "sym": "lambda",
+   "type": "length",
+   "meaning": "The optical wavelength, λ = 2π/k",
+   "unit": "m",
+   "anchor": "11.7-lattice-light"
+  },
+  {
+   "section": "11.8",
+   "sym": "H",
+   "type": "energy",
+   "meaning": "The Hamiltonian of the system",
+   "unit": "J",
+   "anchor": "11.8-eq-11-177"
+  },
+  {
+   "section": "11.8",
+   "sym": "p_cm",
+   "type": "momentum",
+   "meaning": "The momentum of an atom, p_i of atom i",
+   "unit": "kg·m/s",
+   "redefines": true,
+   "anchor": "11.8-eq-11-177"
+  },
+  {
+   "section": "11.8",
+   "sym": "m",
+   "type": "mass",
+   "meaning": "The mass of the atom",
+   "unit": "kg",
+   "anchor": "11.8-eq-11-177"
+  },
+  {
+   "section": "11.8",
+   "sym": "V",
+   "type": "energy",
+   "meaning": "The external potential acting on the atom’s center of mass",
+   "unit": "J",
+   "redefines": true,
+   "anchor": "11.8-eq-11-177"
+  },
+  {
+   "section": "11.8",
+   "sym": "U_pair",
+   "type": "energy",
+   "meaning": "The interaction potential between two atoms at x_i and x_j",
+   "unit": "J",
+   "anchor": "11.8-eq-11-177"
+  },
+  {
+   "section": "11.8",
+   "sym": "a_s",
+   "concept": "s-wave-scattering-length",
+   "meaning": "The s-wave scattering length",
+   "unit": "m",
+   "anchor": "11.8-eq-11-178"
+  },
+  {
+   "section": "11.8",
+   "sym": "psi_hat",
+   "concept": "matter-field-operator",
+   "meaning": "The matter field operator, which annihilates an atom at position r",
+   "anchor": "11.8-opening"
+  },
+  {
+   "section": "11.8",
+   "sym": "V_0",
+   "type": "energy",
+   "meaning": "The depth of the optical lattice",
+   "unit": "J",
+   "redefines": true,
+   "anchor": "11.8-eq-11-184"
+  },
+  {
+   "section": "11.8",
+   "sym": "K_L",
+   "type": "wavevector",
+   "meaning": "The wavevector of the light forming the lattice",
+   "unit": "m⁻¹",
+   "anchor": "11.8-eq-11-184"
+  },
+  {
+   "section": "11.8",
+   "sym": "nu_T",
+   "concept": "lattice-site-oscillator",
+   "meaning": "The angular frequency of an atom’s oscillation in one lattice site",
+   "unit": "rad/s",
+   "anchor": "11.8-drv-site-frequency"
+  },
+  {
+   "section": "11.8",
+   "sym": "E_R",
+   "concept": "lattice-recoil-energy",
+   "meaning": "The recoil energy ℏ²K_L²/2m of the lattice",
+   "unit": "J",
+   "anchor": "11.8-recoil-energy"
+  },
+  {
+   "section": "11.8",
+   "sym": "a_HO",
+   "type": "length",
+   "meaning": "The size of the oscillator ground state of one lattice site",
+   "unit": "m",
+   "anchor": "11.8-eq-11-191"
+  },
+  {
+   "section": "11.8",
+   "sym": "V_trap",
+   "type": "energy",
+   "meaning": "The trapping potential acting on each atom",
+   "unit": "J",
+   "anchor": "11.8-eq-11-192"
+  },
+  {
+   "section": "11.8",
+   "sym": "epsilon_i",
+   "type": "energy",
+   "meaning": "The energy of an atom on lattice site i",
+   "unit": "J",
+   "redefines": true,
+   "anchor": "11.8-eq-11-193"
+  },
+  {
+   "section": "11.8",
+   "sym": "t",
+   "concept": "lattice-hopping",
+   "meaning": "The tunnelling amplitude between neighbouring wells or lattice sites, t_{i,j} for the sites i and j",
+   "unit": "J",
+   "redefines": true,
+   "anchor": "11.8-hopping"
+  },
+  {
+   "section": "11.8",
+   "sym": "U_0",
+   "concept": "on-site-interaction",
+   "meaning": "The interaction energy of two atoms on one site, a well of the double well or of the lattice",
+   "unit": "J",
+   "redefines": true,
+   "anchor": "11.8-drv-on-site-interaction"
+  },
+  {
+   "section": "11.8",
+   "sym": "k",
+   "type": "wavevector",
+   "meaning": "The wavevector of a momentum mode of the lattice",
+   "unit": "m⁻¹",
+   "redefines": true,
+   "anchor": "11.8-eq-11-196"
+  },
+  {
+   "section": "11.8",
+   "sym": "k_mag",
+   "type": "wavevector",
+   "meaning": "The wavevector of a momentum mode of the one-dimensional lattice, written unbold",
+   "unit": "m⁻¹",
+   "redefines": true,
+   "anchor": "11.8-drv-weak-lattice-band"
+  },
+  {
+   "section": "11.8",
+   "sym": "a_lat",
+   "type": "length",
+   "meaning": "The spacing between lattice sites",
+   "unit": "m",
+   "anchor": "11.8-drv-weak-lattice-band"
+  },
+  {
+   "section": "11.8",
+   "sym": "psi",
+   "type": "state",
+   "meaning": "The ground state of the atoms in the lattice",
+   "redefines": true,
+   "anchor": "11.8-eq-11-200"
+  },
+  {
+   "section": "11.8",
+   "sym": "T",
+   "type": "temperature",
+   "meaning": "The temperature of the gas",
+   "unit": "K",
+   "anchor": "11.8-qpt"
+  },
+  {
+   "section": "11.8",
+   "sym": "nu_fill",
+   "concept": "filling-factor",
+   "meaning": "The filling factor, the number of atoms per lattice site",
+   "anchor": "11.8-eq-11-204"
+  },
+  {
+   "section": "11.8",
+   "sym": "c_n",
+   "type": "amplitude",
+   "meaning": "The expansion coefficient of the state on the basis state |n⟩",
+   "anchor": "11.8-eq-11-205"
+  },
+  {
+   "section": "11.8",
+   "sym": "alpha",
+   "type": "quadrature",
+   "meaning": "The coherent-state amplitude of one lattice site, |α|² its mean occupancy",
+   "redefines": true,
+   "anchor": "11.8-eq-11-207"
+  },
+  {
+   "section": "11.8",
+   "sym": "E_SF",
+   "type": "energy",
+   "meaning": "The energy per site of the superfluid state of the simple mean-field model",
+   "unit": "J",
+   "anchor": "11.8-drv-mott-transition-estimate"
+  },
+  {
+   "section": "11.8",
+   "sym": "E_MI",
+   "type": "energy",
+   "meaning": "The energy per site of the Mott insulator state of the simple mean-field model",
+   "unit": "J",
+   "anchor": "11.8-eq-11-209"
+  },
+  {
+   "section": "11.8",
+   "sym": "Delta_E_ex",
+   "type": "energy",
+   "meaning": "The exchange energy by which hopping lowers the energy of each atom of the Mott insulator",
+   "unit": "J",
+   "anchor": "11.8-bose-hubbard"
+  },
+  {
+   "section": "11.8",
+   "sym": "theta",
+   "type": "phase",
+   "meaning": "The mixing angle of the variational site state of Eq. (11.211)",
+   "unit": "rad",
+   "redefines": true,
+   "anchor": "11.8-eq-11-211"
+  },
+  {
+   "section": "11.8",
+   "sym": "Delta_eps",
+   "concept": "mott-gap",
+   "type": "energy",
+   "meaning": "The energy needed to delocalize one atom of the Mott insulator, its excitation gap",
+   "unit": "J",
+   "anchor": "11.8-gap"
+  },
+  {
+   "section": "11.8",
+   "sym": "mu_chem",
+   "concept": "chemical-potential",
+   "meaning": "The chemical potential, which fixes the number of particles in the grand canonical ensemble",
+   "anchor": "11.8-sim-wedding-cake"
+  },
+  {
+   "section": "11.8",
+   "sym": "tau",
+   "type": "time",
+   "meaning": "The time since the lattice ramp began",
+   "unit": "s",
+   "redefines": true,
+   "anchor": "11.8-sim-mott-ramp"
+  }
+ ]
+}

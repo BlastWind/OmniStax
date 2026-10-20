@@ -1,0 +1,250 @@
+{
+ "id": "3.1",
+ "chapter": "3",
+ "title": "The density operator",
+ "short": "The density operator",
+ "lead": "The <span data-concept=\"density-operator\">density operator</span>, which describes a quantum system known only through the probabilities of its states: <span data-concept=\"pure-and-mixed-states\">pure and mixed states</span>, the properties every density operator has, how <span data-concept=\"expectation-value\">expectation values</span> follow from it, the <span data-concept=\"density-matrix\">density matrix</span> with its <span data-concept=\"density-matrix-populations\">populations</span> and <span data-concept=\"density-matrix-coherences\">coherences</span>, and two systems in thermal equilibrium, a <span data-concept=\"two-level-atom\">two-level atom</span> and a mode of the radiation field.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-thermal",
+   "kind": "sim",
+   "draws": [
+    "population",
+    "energy",
+    "frequency",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "density-operator-def",
+   "concept": "density-operator",
+   "verb": "introduces"
+  },
+  {
+   "span": "pure-mixed",
+   "concept": "pure-and-mixed-states",
+   "verb": "introduces"
+  },
+  {
+   "span": "properties",
+   "concept": "density-operator-properties",
+   "verb": "introduces"
+  },
+  {
+   "span": "expectation",
+   "concept": "density-operator-expectation",
+   "verb": "introduces"
+  },
+  {
+   "span": "density-matrix",
+   "concept": "density-matrix",
+   "verb": "introduces"
+  },
+  {
+   "span": "populations",
+   "concept": "density-matrix-populations",
+   "verb": "introduces"
+  },
+  {
+   "span": "coherences",
+   "concept": "density-matrix-coherences",
+   "verb": "introduces"
+  },
+  {
+   "span": "maximal-coherence",
+   "concept": "coherence-bound",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-atom",
+   "concept": "thermal-two-level-atom",
+   "verb": "introduces"
+  },
+  {
+   "span": "thermal-field",
+   "concept": "thermal-radiation-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "bose-einstein",
+   "concept": "mean-thermal-photon-number",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "state-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "density-operator-def",
+   "concept": "born-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "expectation",
+   "concept": "observable",
+   "verb": "uses"
+  },
+  {
+   "span": "expectation",
+   "concept": "expectation-value",
+   "verb": "uses"
+  },
+  {
+   "span": "coherences",
+   "concept": "two-level-dipole-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "pure-density-matrix",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "pure-density-matrix",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-atom",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-atom",
+   "concept": "atomic-transition-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-atom",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-field",
+   "concept": "cavity-modes",
+   "verb": "uses"
+  },
+  {
+   "span": "thermal-field",
+   "concept": "creation-annihilation-operators",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "lvl-1",
+   "label": "the ground state |1⟩",
+   "figures": [
+    "sim-thermal"
+   ]
+  },
+  {
+   "id": "lvl-2",
+   "label": "the excited state |2⟩",
+   "figures": [
+    "sim-thermal"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-property-3",
+   "kind": "correction",
+   "html": "The book prints $\\langle n|\\krhohat^2|m\\rangle \\leq \\langle n|\\krhohat|m\\rangle$ for any states $|m\\rangle$ and $|n\\rangle$. The inequality holds for the diagonal elements, $\\langle n|\\krhohat^2|n\\rangle \\leq \\langle n|\\krhohat|n\\rangle$ for any state $|n\\rangle$, since the eigenvalues of $\\krhohat$ lie between 0 and 1; off-diagonal elements are complex and are not ordered. Equality for every $|n\\rangle$ means $\\krhohat^2 = \\krhohat$, which holds only for a pure state."
+  },
+  {
+   "id": "c-eq-3-16",
+   "kind": "correction",
+   "html": "The book prints $\\sum_n\\krhonn$, which is 1 by property (2). The average photon number is $\\knbar_j = \\sum_n n\\,\\krhonn$, which with Eq. (3.14) gives $1/(e^{\\hbar\\knu_j/k_B \\kT} - 1)$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "expectation-as-trace",
+   "what": "the expectation value as a trace",
+   "source": "Modern Atomic and Optical Physics II, 3.1 The density operator",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\krhohat = \\sum_\\alpha p_\\alpha|\\kpsi_\\alpha\\rangle\\langle\\kpsi_\\alpha|",
+       "src": "(3.1)"
+      },
+      {
+       "tex": "\\sum_n|n\\rangle\\langle n| = 1",
+       "src": "3.1"
+      },
+      {
+       "tex": "\\mathrm{Tr}[\\hat{A}] = \\sum_n\\langle n|\\hat{A}|n\\rangle",
+       "src": "3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\kShat\\rangle} = \\mk{R}{\\sum_\\alpha p_\\alpha\\langle\\kpsi_\\alpha|\\kShat|\\kpsi_\\alpha\\rangle}",
+      "src": "(3.2)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\kShat\\rangle} = \\mk{R}{\\sum_{\\alpha,n} p_\\alpha\\langle\\kpsi_\\alpha|\\kShat|n\\rangle\\langle n|\\kpsi_\\alpha\\rangle}",
+       "uses": [
+        1
+       ],
+       "cap": "Inserting the completeness relation between $\\hat{S}$ and $|\\psi_\\alpha\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kShat\\rangle} = \\mk{R}{\\sum_n\\langle n|\\left(\\sum_\\alpha p_\\alpha|\\kpsi_\\alpha\\rangle\\langle\\kpsi_\\alpha|\\right)\\kShat|n\\rangle}",
+       "uses": [],
+       "cap": "Each $\\langle n|\\psi_\\alpha\\rangle$ is a number and is moved to the front."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kShat\\rangle} = \\mk{R}{\\sum_n\\langle n|\\krhohat\\kShat|n\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kShat\\rangle} = \\mk{R}{\\mathrm{Tr}[\\krhohat\\kShat]}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(3.5)"
+    }
+   ]
+  }
+ ]
+}

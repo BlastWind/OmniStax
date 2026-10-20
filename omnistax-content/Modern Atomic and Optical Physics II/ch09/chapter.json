@@ -1,0 +1,836 @@
+{
+ "id": "9",
+ "dir": "ch09",
+ "title": "Quantum properties of light interacting with matter",
+ "intro": {},
+ "sections": [
+  {
+   "id": "9.1",
+   "title": "Basic properties of quantum fields"
+  },
+  {
+   "id": "9.2",
+   "title": "Interactions between a single-mode radiation field and a two level atom"
+  },
+  {
+   "id": "9.3",
+   "title": "The effects of dissipation on quantum fields"
+  },
+  {
+   "id": "9.4",
+   "title": "Quantum dynamics in non-linear mixing processes"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "g",
+   "concept": "single-photon-rabi-frequency",
+   "meaning": "The single-photon Rabi frequency, the coupling of the atom to one mode of the field",
+   "anchor": "9.2-eq-9-53",
+   "section": "9.2"
+  },
+  {
+   "sym": "H",
+   "concept": "jaynes-cummings-model",
+   "meaning": "The Jaynes-Cummings Hamiltonian of the atom and one resonant cavity mode, in the rotating frame",
+   "anchor": "9.2-eq-9-53",
+   "section": "9.2",
+   "redefines": true
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "anchor": "9.2-eq-9-54",
+   "section": "9.2"
+  },
+  {
+   "sym": "c_n",
+   "concept": "probability-amplitude",
+   "meaning": "The expansion coefficient of the state on the basis state |n⟩",
+   "anchor": "9.2-eq-9-54",
+   "section": "9.2"
+  },
+  {
+   "sym": "c_np1",
+   "concept": "probability-amplitude",
+   "meaning": "The expansion coefficient of the state on the basis state |n+1⟩",
+   "anchor": "9.2-drv-jaynes-cummings-equations",
+   "section": "9.2"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "section": "9.2",
+   "anchor": "9.2-jc-pairs"
+  },
+  {
+   "sym": "H_eff",
+   "type": "energy",
+   "meaning": "The Jaynes-Cummings Hamiltonian projected onto the two states |2⟩_a|0⟩ and |1⟩_a|1⟩",
+   "anchor": "9.2-eq-9-61",
+   "section": "9.2",
+   "redefines": true
+  },
+  {
+   "sym": "alpha_coh",
+   "concept": "coherent-amplitude",
+   "meaning": "The coherent amplitude: the eigenvalue of the annihilation operator in the coherent state |α⟩, α = |α|e^{iφ}",
+   "anchor": "9.2-eq-9-63",
+   "section": "9.2"
+  },
+  {
+   "sym": "tau_Rabi",
+   "concept": "coherent-state-rabi-oscillations",
+   "meaning": "The period of the atom’s Rabi oscillations in a coherent field",
+   "anchor": "9.2-drv-naive-rabi-oscillation",
+   "section": "9.2"
+  },
+  {
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The phase g√(n+1)t of the sine and cosine for the Fock component |n⟩",
+   "anchor": "9.2-drv-rabi-phase-expansion",
+   "section": "9.2",
+   "redefines": true
+  },
+  {
+   "sym": "tau_collapse",
+   "concept": "rabi-collapse",
+   "meaning": "The time after which the Rabi oscillations in a coherent field collapse",
+   "anchor": "9.2-eq-9-70",
+   "section": "9.2"
+  },
+  {
+   "sym": "tau_revival",
+   "concept": "rabi-revival",
+   "meaning": "The time at which the collapsed Rabi oscillations revive",
+   "anchor": "9.2-eq-9-71",
+   "section": "9.2"
+  },
+  {
+   "sym": "p_2",
+   "concept": "born-rule",
+   "meaning": "The population of the excited state |2⟩",
+   "section": "9.2",
+   "anchor": "9.2-sim-collapse-revival"
+  },
+  {
+   "sym": "rho_hat",
+   "concept": "reduced-density-operator",
+   "meaning": "The density operator of the cavity field, the atom traced out",
+   "section": "9.2",
+   "anchor": "9.2-sim-collapse-revival",
+   "redefines": true
+  },
+  {
+   "sym": "n_bar",
+   "meaning": "The mean photon number of the mode, Σ n ρ_nn: the Bose-Einstein mean of a thermal mode, |α|² of a coherent state",
+   "anchor": "9.2-naive",
+   "section": "9.2",
+   "concept": "mean-photon-number"
+  },
+  {
+   "section": "9.1",
+   "sym": "alpha_coh",
+   "concept": "coherent-amplitude",
+   "meaning": "The coherent amplitude: the eigenvalue of the annihilation operator in the coherent state |α⟩, α = |α|e^{iφ}",
+   "anchor": "9.1-eq-9-10"
+  },
+  {
+   "section": "9.1",
+   "sym": "x_quad",
+   "concept": "quadrature-operators",
+   "meaning": "The in-phase quadrature operator of the mode, (â + â†)/√2",
+   "anchor": "9.1-eq-9-13"
+  },
+  {
+   "section": "9.1",
+   "sym": "p_quad",
+   "concept": "quadrature-operators",
+   "meaning": "The out-of-phase quadrature operator of the mode, (â − â†)/i√2",
+   "anchor": "9.1-eq-9-14"
+  },
+  {
+   "section": "9.1",
+   "sym": "D_shift",
+   "concept": "shift-operator",
+   "meaning": "The shift operator, which displaces a state by α in the plane of x̂ and p̂",
+   "anchor": "9.1-eq-9-19"
+  },
+  {
+   "section": "9.1",
+   "sym": "P_alpha",
+   "concept": "p-representation",
+   "meaning": "The quasi-probability distribution of the field over the coherent states |α⟩",
+   "anchor": "9.1-eq-9-40"
+  },
+  {
+   "section": "9.1",
+   "sym": "n_bar",
+   "meaning": "The mean photon number of the mode, Σ n ρ_nn: the Bose-Einstein mean of a thermal mode, |α|² of a coherent state",
+   "anchor": "9.1-eq-9-7",
+   "redefines": true,
+   "concept": "mean-photon-number"
+  },
+  {
+   "section": "9.1",
+   "sym": "T",
+   "type": "temperature",
+   "meaning": "The temperature",
+   "anchor": "9.1-eq-9-5"
+  },
+  {
+   "section": "9.1",
+   "sym": "omega",
+   "type": "frequency",
+   "meaning": "The frequency of the field mode",
+   "anchor": "9.1-eq-9-6",
+   "redefines": true
+  },
+  {
+   "section": "9.1",
+   "sym": "omega_k",
+   "type": "frequency",
+   "meaning": "The frequency of the field mode {k, α}",
+   "anchor": "9.1-eq-9-1",
+   "redefines": true
+  },
+  {
+   "section": "9.1",
+   "sym": "k",
+   "type": "wavevector",
+   "meaning": "The wavevector of a field mode",
+   "anchor": "9.1-eq-9-1"
+  },
+  {
+   "section": "9.1",
+   "sym": "V",
+   "type": "volume",
+   "meaning": "The volume of the cavity in which the field is quantized",
+   "anchor": "9.1-eq-9-1"
+  },
+  {
+   "section": "9.1",
+   "sym": "E_hat",
+   "concept": "quantized-electric-field",
+   "meaning": "The electric field operator",
+   "anchor": "9.1-eq-9-8"
+  },
+  {
+   "section": "9.1",
+   "sym": "rho_nn",
+   "concept": "density-matrix-populations",
+   "meaning": "The diagonal element of the density matrix: the probability of occupying the state |n⟩",
+   "anchor": "9.1-eq-9-6"
+  },
+  {
+   "section": "9.1",
+   "sym": "rho_hat",
+   "concept": "density-operator",
+   "meaning": "The density operator of the system",
+   "anchor": "9.1-eq-9-5"
+  },
+  {
+   "section": "9.1",
+   "sym": "theta",
+   "type": "phase",
+   "meaning": "The beamsplitter parameter, which sets its transmission and reflection coefficients",
+   "anchor": "9.1-eq-9-52",
+   "redefines": true
+  },
+  {
+   "section": "9.1",
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The phase of the coherent amplitude, α = |α|e^{iφ}, and the phase a phase shift adds",
+   "anchor": "9.1-drv-coherent-state-completeness",
+   "redefines": true
+  },
+  {
+   "section": "9.1",
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "anchor": "9.1-eq-9-2"
+  },
+  {
+   "section": "9.1",
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "anchor": "9.1-eq-9-1"
+  },
+  {
+   "section": "9.1",
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "anchor": "9.1-eq-9-9"
+  },
+  {
+   "sym": "kappa",
+   "concept": "cavity-loss-rate",
+   "meaning": "The cavity loss rate: the rate at which the intracavity field energy leaks out through the partially transmitting mirror",
+   "unit": "s⁻¹",
+   "anchor": "9.3-loss-rate",
+   "section": "9.3"
+  },
+  {
+   "sym": "gamma_eff",
+   "concept": "purcell-effect",
+   "meaning": "The effective decay rate of the atom coupled to the overdamped cavity mode, γ_eff^open in an open cavity and γ_eff^closed in a closed one",
+   "unit": "s⁻¹",
+   "anchor": "9.3-purcell",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "Q_fac",
+   "concept": "quality-factor",
+   "meaning": "The quality factor of the cavity mode",
+   "anchor": "9.3-q-factor",
+   "section": "9.3"
+  },
+  {
+   "sym": "F_fin",
+   "concept": "cavity-finesse",
+   "meaning": "The cavity finesse: the number of times a photon circulates in the cavity on average before leaking out",
+   "anchor": "9.3-finesse",
+   "section": "9.3"
+  },
+  {
+   "sym": "g2",
+   "concept": "second-order-correlation",
+   "meaning": "The normalized second order correlation function",
+   "anchor": "9.3-g2-def",
+   "section": "9.3"
+  },
+  {
+   "sym": "F_noise",
+   "concept": "cavity-noise-correlations",
+   "meaning": "The noise operator of the cavity mode: the outside field leaking in through the mirror",
+   "anchor": "9.3-eq-9-89",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "meaning": "The rate at which the atom emits into free space modes other than the cavity mode",
+   "unit": "s⁻¹",
+   "anchor": "9.3-cqed-system",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "g",
+   "concept": "single-photon-rabi-frequency",
+   "meaning": "The single-photon Rabi frequency, the coupling of the atom to one mode of the field",
+   "unit": "s⁻¹",
+   "anchor": "9.3-cqed-system",
+   "section": "9.3"
+  },
+  {
+   "sym": "nu",
+   "type": "frequency",
+   "meaning": "The frequency of the cavity mode",
+   "unit": "rad/s",
+   "anchor": "9.3-cavity-frequency",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "nu_bar",
+   "type": "frequency",
+   "meaning": "The center frequency of the cavity resonance",
+   "unit": "rad/s",
+   "anchor": "9.3-centre-frequency",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "nu_k",
+   "type": "frequency",
+   "meaning": "The frequency of the continuum mode â_k outside the cavity",
+   "unit": "rad/s",
+   "anchor": "9.3-cavity-frequency",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "delta",
+   "concept": "detuning",
+   "meaning": "The detuning δ = ν − ω of the cavity mode from the atomic transition",
+   "unit": "rad/s",
+   "anchor": "9.3-cavity-detuning",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "delta_k",
+   "type": "frequency",
+   "meaning": "The detuning of the free-field mode â_k from the cavity mode",
+   "unit": "rad/s",
+   "anchor": "9.3-eq-9-130",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "omega",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The atomic transition frequency: the two levels lie ħω apart",
+   "unit": "rad/s",
+   "anchor": "9.3-cavity-detuning",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "c_11",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude of |1⟩_a|1⟩: the atom in |1⟩ and one photon in the cavity",
+   "anchor": "9.3-eq-9-112",
+   "section": "9.3"
+  },
+  {
+   "sym": "c_20",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude of |2⟩_a|0⟩: the atom excited and the cavity empty",
+   "anchor": "9.3-eq-9-112",
+   "section": "9.3"
+  },
+  {
+   "sym": "c_k",
+   "concept": "probability-amplitude",
+   "meaning": "The probability amplitude of |1⟩_a|0⟩|1_k⟩: the photon in the free-field mode k",
+   "anchor": "9.3-eq-9-131",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "H",
+   "concept": "jaynes-cummings-model",
+   "meaning": "The Jaynes-Cummings Hamiltonian of the atom and the cavity mode, in the frame rotating at the atomic frequency",
+   "anchor": "9.3-eq-9-110",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "H_eff",
+   "concept": "effective-hamiltonian",
+   "meaning": "The non-Hermitian effective Hamiltonian of cavity loss and atomic decay",
+   "anchor": "9.3-eq-9-115",
+   "section": "9.3"
+  },
+  {
+   "sym": "rho_hat",
+   "concept": "density-operator",
+   "meaning": "The density operator of the system: the cavity mode, or the atom and the cavity mode together",
+   "anchor": "9.3-cavity-master",
+   "section": "9.3"
+  },
+  {
+   "sym": "E_cav",
+   "type": "electric-field",
+   "meaning": "The classical field E(t) inside the cavity; E_in is the field incident on the cavity and E_out the field leaving it",
+   "unit": "V/m",
+   "anchor": "9.3-round-trip",
+   "section": "9.3"
+  },
+  {
+   "sym": "E_hat",
+   "concept": "quantized-electric-field",
+   "meaning": "The input field operator Ê_in(t): the field outside the cavity leaking in through the mirror",
+   "anchor": "9.3-input-field",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "E_env",
+   "type": "electric-field",
+   "meaning": "The field operator 𝓔(r, t) at the detectors, at position r and time t",
+   "anchor": "9.3-eq-9-133",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "L_med",
+   "type": "length",
+   "meaning": "The length of the cavity",
+   "unit": "m",
+   "anchor": "9.3-round-trip",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "lambda",
+   "type": "length",
+   "meaning": "The wavelength of the cavity mode and the atomic transition",
+   "unit": "m",
+   "anchor": "9.3-open-closed",
+   "section": "9.3"
+  },
+  {
+   "sym": "V",
+   "type": "volume",
+   "meaning": "The volume of the cavity mode",
+   "unit": "m³",
+   "anchor": "9.3-mode-volume",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "mu",
+   "type": "dipole",
+   "meaning": "The dipole matrix element of the atomic transition",
+   "unit": "C·m",
+   "anchor": "9.3-mode-volume",
+   "section": "9.3"
+  },
+  {
+   "sym": "P_nl",
+   "concept": "macroscopic-polarization",
+   "meaning": "The polarization of the medium inside the cavity",
+   "unit": "C/m²",
+   "anchor": "9.3-eq-9-87",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "Delta_t",
+   "type": "time",
+   "meaning": "The round trip time 2L/c of the cavity",
+   "unit": "s",
+   "anchor": "9.3-round-trip",
+   "redefines": true,
+   "section": "9.3"
+  },
+  {
+   "sym": "x_quad",
+   "concept": "quadrature-operators",
+   "meaning": "The in-phase quadrature operator of the mode, (â + â†)/√2",
+   "anchor": "9.3-drv-damped-quadrature-variance",
+   "section": "9.3"
+  },
+  {
+   "sym": "p_quad",
+   "meaning": "The out-of-phase quadrature operator of the mode, (â − â†)/i√2",
+   "anchor": "9.3-variance-stays",
+   "section": "9.3",
+   "concept": "quadrature-operators"
+  },
+  {
+   "sym": "alpha_coh",
+   "concept": "coherent-amplitude",
+   "meaning": "The coherent amplitude: the eigenvalue of the annihilation operator in the coherent state |α⟩, α = |α|e^{iφ}",
+   "anchor": "9.3-coherent-example",
+   "section": "9.3"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "section": "9.3"
+  },
+  {
+   "sym": "sigma_gain",
+   "concept": "linear-amplifier-noise",
+   "meaning": "The gain coefficient σ > 1 of a linear amplifier",
+   "anchor": "9.4-amp-noise",
+   "section": "9.4"
+  },
+  {
+   "sym": "beta_gain",
+   "concept": "degenerate-opo",
+   "meaning": "The gain β of degenerate down-conversion: the pump power and the nonlinear susceptibility in one constant, β = β̃e^{i(θ−π/2)}",
+   "unit": "s⁻¹",
+   "anchor": "9.4-eq-9-140",
+   "section": "9.4"
+  },
+  {
+   "sym": "beta_tilde",
+   "concept": "phase-dependent-amplification",
+   "meaning": "The magnitude β̃ of the gain of degenerate down-conversion, the rate at which one quadrature grows and the other shrinks",
+   "unit": "s⁻¹",
+   "anchor": "9.4-phase-gain-def",
+   "section": "9.4"
+  },
+  {
+   "sym": "xi_pdc",
+   "concept": "photon-pair-state",
+   "meaning": "The pair amplitude ξ = −iβ*t of non-degenerate down-conversion",
+   "anchor": "9.4-pair-limits",
+   "section": "9.4"
+  },
+  {
+   "sym": "r_sq",
+   "concept": "squeezed-interferometry",
+   "meaning": "The squeezing parameter r: the squeezed quadrature's noise is e^{−2r}/2",
+   "anchor": "9.4-interferometry",
+   "section": "9.4"
+  },
+  {
+   "sym": "S_coll",
+   "concept": "spin-squeezing",
+   "meaning": "The collective spin S = Σ_i S_i of N atoms, and its components S_x, S_y, S_z",
+   "anchor": "9.4-eq-9-207",
+   "section": "9.4"
+  },
+  {
+   "sym": "H_eff",
+   "concept": "opo-heisenberg-langevin",
+   "meaning": "The effective Hamiltonian of down-conversion: ℏ(βâ² + β*â†²)/2 for one mode, ℏ(βâ₁â₂ + β*â₁†â₂†) for two",
+   "anchor": "9.4-eq-9-152",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "x_quad",
+   "concept": "quadrature-operators",
+   "meaning": "The quadrature x̂ = (âe^{iθ/2} + â†e^{−iθ/2})/√2 of the cavity mode, weighted by the pump phase θ: the quadrature the pump amplifies",
+   "anchor": "9.4-eq-9-162",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "p_quad",
+   "concept": "quadrature-operators",
+   "meaning": "The quadrature p̂ = (âe^{iθ/2} − â†e^{−iθ/2})/i√2 of the cavity mode, weighted by the pump phase θ: the quadrature the pump attenuates",
+   "anchor": "9.4-eq-9-163",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "P_quad",
+   "concept": "quadrature-operators",
+   "meaning": "The momentum quadrature P̂ of a field in the Fourier domain, P̂_out that of the output field; P̂_φ the quadrature a homodyne detector reads at local-oscillator phase φ",
+   "anchor": "9.4-eq-9-189",
+   "section": "9.4"
+  },
+  {
+   "sym": "kappa",
+   "concept": "cavity-loss-rate",
+   "meaning": "The cavity loss rate: the rate at which the intracavity field energy leaks out through the partially transmitting mirror",
+   "unit": "s⁻¹",
+   "anchor": "9.4-damped",
+   "section": "9.4"
+  },
+  {
+   "sym": "F_noise",
+   "concept": "cavity-noise-correlations",
+   "meaning": "The noise operator of the cavity mode: the outside field leaking in through the mirror; 𝓕̂_x, 𝓕̂_p its quadratures, 𝓕̂₁₃ the noise on the atomic coherence σ̂₁₃",
+   "anchor": "9.4-damped",
+   "section": "9.4"
+  },
+  {
+   "sym": "E_env",
+   "concept": "slowly-varying-envelope",
+   "meaning": "The slowly varying amplitude ℰ_i of field i in down-conversion: the pump ℰ₀ and the generated fields ℰ₁, ℰ₂",
+   "unit": "V/m",
+   "anchor": "9.4-degenerate",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "E_pm",
+   "type": "electric-field",
+   "meaning": "The normal modes ℰ± = ℰ₁ ± ℰ₁* of degenerate down-conversion",
+   "unit": "V/m",
+   "anchor": "9.4-phase-gain-def",
+   "section": "9.4"
+  },
+  {
+   "sym": "E_p",
+   "type": "electric-field",
+   "meaning": "The normal mode ℰ₊ = ℰ₁ + ℰ₁*, de-amplified at the rate β̃",
+   "unit": "V/m",
+   "anchor": "9.4-drv-phase-dependent-amplification",
+   "section": "9.4"
+  },
+  {
+   "sym": "E_m",
+   "type": "electric-field",
+   "meaning": "The normal mode ℰ₋ = ℰ₁ − ℰ₁*, amplified at the rate β̃",
+   "unit": "V/m",
+   "anchor": "9.4-drv-phase-dependent-amplification",
+   "section": "9.4"
+  },
+  {
+   "sym": "E_cav",
+   "type": "electric-field",
+   "meaning": "The classical field E(t) inside the cavity; E_in is the field incident on the cavity and E_out the field leaving it",
+   "unit": "V/m",
+   "anchor": "9.4-eq-9-186",
+   "section": "9.4"
+  },
+  {
+   "sym": "E_hat",
+   "concept": "quantized-electric-field",
+   "meaning": "The field operator Ê_out of the light leaving the cavity",
+   "anchor": "9.4-eq-9-187",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "P_nl",
+   "concept": "macroscopic-polarization",
+   "meaning": "The polarization that drives the generated fields: P₁ and P₂ of the fields ℰ₁ and ℰ₂, and P at the cavity frequency",
+   "unit": "C/m²",
+   "anchor": "9.4-degenerate",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "chi_2nd",
+   "concept": "second-order-susceptibility",
+   "meaning": "The second-order nonlinear susceptibility χ⁽²⁾ of the medium",
+   "anchor": "9.4-degenerate",
+   "section": "9.4"
+  },
+  {
+   "sym": "chi",
+   "concept": "susceptibility",
+   "meaning": "The linear susceptibility χ_i of the medium at the frequency of field i",
+   "anchor": "9.4-degenerate",
+   "section": "9.4"
+  },
+  {
+   "sym": "Delta_k",
+   "concept": "wavevector-mismatch",
+   "meaning": "The wavevector mismatch Δk of the pump and the two generated fields",
+   "unit": "m⁻¹",
+   "anchor": "9.4-degenerate",
+   "section": "9.4"
+  },
+  {
+   "sym": "nu",
+   "type": "frequency",
+   "meaning": "The frequency ν₀ of the pump, ν_c of the cavity, and ν₁, ν₂ of the generated fields",
+   "unit": "rad/s",
+   "anchor": "9.4-degenerate",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "Delta",
+   "type": "frequency",
+   "meaning": "The detuning Δ of the classical pump from the |1⟩ → |2⟩ transition of the cascade atom",
+   "unit": "rad/s",
+   "anchor": "9.4-adiabatic",
+   "section": "9.4"
+  },
+  {
+   "sym": "delta",
+   "concept": "detuning",
+   "meaning": "The detuning δ of the generated field from the intermediate state |3⟩ of the cascade atom",
+   "unit": "rad/s",
+   "anchor": "9.4-adiabatic",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "Omega",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequency Ω₀ of the classical pump on the |1⟩ → |2⟩ transition",
+   "unit": "rad/s",
+   "anchor": "9.4-adiabatic",
+   "section": "9.4"
+  },
+  {
+   "sym": "g",
+   "concept": "single-photon-rabi-frequency",
+   "meaning": "The single-photon Rabi frequency, the coupling of the atom to one mode of the field",
+   "anchor": "9.4-eq-9-144",
+   "section": "9.4"
+  },
+  {
+   "sym": "mu",
+   "concept": "dipole-matrix-element",
+   "meaning": "The dipole matrix element μ_ij between the levels |i⟩ and |j⟩ of the cascade atom",
+   "unit": "C·m",
+   "anchor": "9.4-eq-9-138",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "rho_31",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the intermediate state |3⟩ and the ground state |1⟩ of the cascade atom",
+   "anchor": "9.4-eq-9-138",
+   "section": "9.4"
+  },
+  {
+   "sym": "gamma_13",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence σ̂₁₃ between |1⟩ and the intermediate state |3⟩",
+   "unit": "s⁻¹",
+   "anchor": "9.4-eq-9-146",
+   "section": "9.4"
+  },
+  {
+   "sym": "H",
+   "concept": "hamiltonian",
+   "meaning": "The Hamiltonian of the system",
+   "anchor": "9.4-eq-9-144",
+   "section": "9.4"
+  },
+  {
+   "sym": "theta",
+   "type": "phase",
+   "meaning": "The phase θ of the pump, which sets the phase of the gain, β = β̃e^{i(θ−π/2)}",
+   "unit": "rad",
+   "anchor": "9.4-eq-9-161",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "phi",
+   "type": "phase",
+   "meaning": "The phase φ of the local oscillator, and the phase φ = π/2 + δφ that one arm of the interferometer adds",
+   "unit": "rad",
+   "anchor": "9.4-drv-homodyne-difference",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "omega",
+   "type": "frequency",
+   "meaning": "The Fourier frequency of the output field, measured from the cavity frequency",
+   "unit": "rad/s",
+   "anchor": "9.4-eq-9-188",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "n_bar",
+   "concept": "mean-thermal-photon-number",
+   "meaning": "The mean number of thermal photons in a mode of the reservoir",
+   "anchor": "9.4-damped",
+   "redefines": true,
+   "section": "9.4"
+  },
+  {
+   "sym": "alpha_coh",
+   "concept": "coherent-amplitude",
+   "meaning": "The coherent amplitude: the eigenvalue of the annihilation operator in the coherent state |α⟩, α = |α|e^{iφ}",
+   "anchor": "9.4-eq-9-170",
+   "section": "9.4"
+  },
+  {
+   "sym": "psi",
+   "concept": "state-vector",
+   "meaning": "The state vector of the system, an element of its Hilbert space",
+   "anchor": "9.4-drv-pair-state",
+   "section": "9.4"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "unit": "s",
+   "anchor": "9.4-eq-9-140",
+   "section": "9.4"
+  }
+ ]
+}

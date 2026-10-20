@@ -1,0 +1,952 @@
+{
+ "id": "8.6",
+ "chapter": "8",
+ "title": "Sub-Doppler cooling",
+ "short": "Sub-Doppler cooling",
+ "lead": "Why atoms cool below the <span data-concept=\"doppler-limit\">Doppler limit</span> in two beams of crossed linear polarization: on a J = 1/2 → 3/2 transition the <span data-concept=\"polarization-gradient\">polarization gradient</span> gives the two ground sublevels <span data-concept=\"ground-state-light-shift-potential\">light-shift hills</span> a quarter wavelength apart, and <span data-concept=\"optical-pumping\">optical pumping</span> that lags the moving atom makes it climb more than it descends; the friction this gives, its <span data-concept=\"capture-range\">capture velocity</span>, and the temperature where it stops.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-cg-levels",
+   "kind": "sim",
+   "number": "8.4",
+   "originals": [
+    "/media/ch08/fig-8-4.png"
+   ],
+   "original_caption": "The level configuration used to explain sub-Doppler cooling. The Clebsch-Gordon coefficients for each transition are given. Note that the m = ±1/2 → m = ±1/2 transitions are coupled only by spontaneous emission.",
+   "draws": [
+    "frequency",
+    "coupling",
+    "rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-sisyphus",
+   "kind": "sim",
+   "number": "8.5",
+   "originals": [
+    "/media/ch08/fig-8-5.png"
+   ],
+   "original_caption": "The Sisyphus cooling mechanism. As the atom moves through the polarization gradient fields, its internal energy level (illustrated in green) follows the Stark-shifted ground state. In regions where σ± light dominates, the atom is optically pumped into the m = ±1/2 level. For a red-detuned beam, the atom is always optically pumped into the lower energy state, so it must lose kinetic energy with each cycle.",
+   "draws": [
+    "energy",
+    "velocity",
+    "time",
+    "length",
+    "coupling",
+    "frequency",
+    "mass",
+    "wavevector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-sisyphus-doppler",
+   "kind": "sim",
+   "number": "8.6",
+   "originals": [
+    "/media/ch08/fig-8-6.png"
+   ],
+   "original_caption": "Comparison of Doppler force and Sisyphus force. The Doppler force can cool relatively hot atoms down to the Doppler limit. Only slowly-moving atoms can be cooled by the Sisyphus mechanism, but the Sisyphus friction coefficient (proportional to the slope of the curve at v = 0) is much larger, so much lower final temperatures can be reached.",
+   "draws": [
+    "force",
+    "velocity",
+    "friction",
+    "frequency",
+    "coupling",
+    "rate",
+    "wavevector",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "sigma-plus",
+   "label": "the σ₊ light, the σ₊ standing wave of the lin⊥lin field",
+   "figures": [
+    "sim-cg-levels",
+    "sim-sisyphus"
+   ]
+  },
+  {
+   "id": "sigma-minus",
+   "label": "the σ₋ light, the σ₋ standing wave of the lin⊥lin field",
+   "figures": [
+    "sim-cg-levels",
+    "sim-sisyphus"
+   ]
+  },
+  {
+   "id": "lvl-g-plus",
+   "label": "the m = +1/2 ground sublevel",
+   "figures": [
+    "sim-cg-levels",
+    "sim-sisyphus"
+   ]
+  },
+  {
+   "id": "lvl-g-minus",
+   "label": "the m = −1/2 ground sublevel",
+   "figures": [
+    "sim-cg-levels",
+    "sim-sisyphus"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "sub-doppler",
+   "concept": "sub-doppler-cooling",
+   "verb": "introduces"
+  },
+  {
+   "span": "lin-perp-lin",
+   "concept": "polarization-gradient",
+   "verb": "introduces"
+  },
+  {
+   "span": "light-shift-differs",
+   "concept": "ground-state-light-shift-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "sisyphus-name",
+   "concept": "sisyphus-cooling",
+   "verb": "introduces"
+  },
+  {
+   "span": "lag-force",
+   "concept": "sisyphus-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "sisyphus-friction",
+   "concept": "sisyphus-friction",
+   "verb": "introduces"
+  },
+  {
+   "span": "compare",
+   "concept": "doppler-sisyphus-comparison",
+   "verb": "introduces"
+  },
+  {
+   "span": "time-lag",
+   "concept": "sisyphus-nonadiabaticity",
+   "verb": "introduces"
+  },
+  {
+   "span": "sisyphus-limit",
+   "concept": "sisyphus-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "recoil-limit",
+   "concept": "recoil-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "sub-recoil",
+   "concept": "sub-recoil-cooling",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "doppler-limit",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "doppler-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "lin-perp-lin",
+   "concept": "spherical-polarization-basis",
+   "verb": "uses"
+  },
+  {
+   "span": "detuning-observation",
+   "concept": "ac-stark-shift",
+   "verb": "uses"
+  },
+  {
+   "span": "detuning-observation",
+   "concept": "detuning",
+   "verb": "uses"
+  },
+  {
+   "span": "light-shift-differs",
+   "concept": "clebsch-gordan-coefficients",
+   "verb": "uses"
+  },
+  {
+   "span": "light-shift-differs",
+   "concept": "rabi-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "pumping",
+   "concept": "dipole-force",
+   "verb": "uses"
+  },
+  {
+   "span": "pumping",
+   "concept": "dressed-states",
+   "verb": "uses"
+  },
+  {
+   "span": "pumping",
+   "concept": "optical-pumping",
+   "verb": "uses"
+  },
+  {
+   "span": "rate-equation",
+   "concept": "optical-pumping-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-8-110",
+   "concept": "rate-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-8-110",
+   "concept": "adiabatic-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "expansion",
+   "concept": "adiabatic-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "compare",
+   "concept": "friction-coefficient",
+   "verb": "uses"
+  },
+  {
+   "span": "time-lag",
+   "concept": "adiabatic-theorem",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-sp",
+   "concept": "laser-cooling-diffusion",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-sp",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "sisyphus-limit",
+   "concept": "einstein-relation",
+   "verb": "uses"
+  },
+  {
+   "span": "recoil-limit",
+   "concept": "recoil-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "sub-recoil",
+   "concept": "raman-transition",
+   "verb": "uses"
+  },
+  {
+   "span": "sub-recoil",
+   "concept": "dark-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-population-relaxation",
+   "concept": "sisyphus-pumping-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-sisyphus-solution",
+   "concept": "capture-range",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "footnotes": [
+  {
+   "id": "footnote-4",
+   "kind": "book",
+   "number": "4",
+   "html": "<p>see Dalibard and Cohen-Tannoudji, JOSA B, p2023 (1989) for further details.</p>"
+  },
+  {
+   "id": "c-early-1990s",
+   "kind": "correction",
+   "html": "The first temperatures below the Doppler limit were measured in 1988, in sodium molasses (P. D. Lett <i>et al.</i>, Phys. Rev. Lett. 61, 169 (1988)), and Dalibard and Cohen-Tannoudji's explanation followed in 1989: the experiments belong to the late 1980s."
+  },
+  {
+   "id": "c-td-hbar-gamma",
+   "kind": "correction",
+   "html": "By Eq. (8.96) the Doppler limit is $k_B\\kTD = \\hbar\\kgammaonetwo = \\hbar\\kgamma/2$ for a radiatively broadened atom; the book's $\\kTD = \\hbar\\kgamma$ leaves out Boltzmann's constant and the factor $1/2$."
+  },
+  {
+   "id": "c-large-detuning",
+   "kind": "correction",
+   "html": "Cooling needs red detuning, $\\kdelta < 0$, so the condition is $|\\kdelta| \\gg \\kgamma$."
+  },
+  {
+   "id": "c-omega-squared",
+   "kind": "correction",
+   "html": "$|\\kOmega|^2$ is meant: $\\kRopt = |\\kOmega|^2\\kgamma/((\\kgamma/2)^2 + \\kdelta^2)$."
+  },
+  {
+   "id": "c-capture-scaling",
+   "kind": "correction",
+   "html": "By Eq. (8.130) the Sisyphus capture velocity scales with the optical pumping rate $|\\kOmega|^2\\kgamma/\\kdelta^2$, not with the AC Stark shift $|\\kOmega|^2/\\kdelta$: at a fixed light shift it still falls as $1/|\\kdelta|$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "lag-force",
+   "what": "the force from the lagging populations",
+   "source": "Modern Atomic and Optical Physics II, 8.6.3 Quantitative analysis of sub-Doppler cooling",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kFmag_\\mathrm{reactive} = \\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\sin(2\\kkmag z)\\left(|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}| - | -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|\\right)",
+       "src": "(8.109)"
+      },
+      {
+       "tex": "\\kDeltarho \\approx \\cos(2\\kkmag\\kvmag\\kt) + 2\\kkmag\\kvmag\\ktauP\\sin(2\\kkmag\\kvmag\\kt)",
+       "src": "(8.119)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\langle \\kFmag\\rangle} = \\mk{R}{\\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\left\\langle\\sin(2\\kkmag z)\\kDeltarho\\right\\rangle}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\langle \\kFmag\\rangle} = \\mk{R}{\\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\left\\langle\\sin(2\\kkmag z)\\left(\\cos(2\\kkmag z) + 2\\kkmag\\kvmag\\tau_p\\sin(2\\kkmag z)\\right)\\right\\rangle}",
+       "uses": [
+        1
+       ],
+       "cap": "With $z = vt$."
+      },
+      {
+       "tex": "\\mk{F}{\\langle \\kFmag\\rangle} = \\mk{R}{\\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}2\\kkmag\\kvmag\\ktauP\\left\\langle\\sin^2(2\\kkmag z)\\right\\rangle}",
+       "uses": [],
+       "cap": "The term in $\\sin 2kz\\cos 2kz$ averages to zero over a wavelength."
+      },
+      {
+       "tex": "\\mk{F}{\\langle \\kFmag\\rangle} = \\mk{R}{\\frac{2}{3}\\hbar \\kkmag^2\\kvmag\\ktauP\\frac{|\\kOmega|^2}{\\kdelta}}",
+       "uses": [],
+       "cap": "$\\langle\\sin^2 2kz\\rangle = \\frac12$."
+      }
+     ],
+     "num": "(8.122)"
+    }
+   ]
+  },
+  {
+   "id": "lin-perp-lin-field",
+   "what": "the field of the lin⊥lin configuration",
+   "source": "Modern Atomic and Optical Physics II, 8.6.1 Experimental Observations",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{E}{\\kEfield} = \\mk{R}{E_0e^{i\\knu \\kt}\\left(\\hat{x}e^{i\\kkmag z} + i\\hat{y}e^{-i\\kkmag z}\\right)} + c.c.",
+      "src": "(8.97)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEfield} = \\mk{R}{E_0e^{i\\knu \\kt}\\left(\\hat{x}(\\cos \\kkmag z + i\\sin \\kkmag z) + i\\hat{y}(\\cos \\kkmag z - i\\sin \\kkmag z)\\right)} + c.c.",
+       "uses": [],
+       "cap": "Euler's formula, $e^{\\pm ikz} = \\cos kz \\pm i\\sin kz$."
+      },
+      {
+       "tex": "\\mk{E}{\\kEfield} = \\mk{R}{E_0e^{i\\knu \\kt}\\left(\\underbrace{(\\hat{x} + i\\hat{y})}_{\\sigma_+}\\cos \\kkmag z + i\\underbrace{(\\hat{x} - i\\hat{y})}_{\\sigma_-}\\sin \\kkmag z\\right)} + c.c.",
+       "uses": []
+      }
+     ],
+     "num": "(8.98)"
+    }
+   ]
+  },
+  {
+   "id": "population-lag",
+   "what": "the lag of the populations behind the moving atom",
+   "source": "Modern Atomic and Optical Physics II, 8.6.3 Quantitative analysis of sub-Doppler cooling",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The velocity is small: $\\Delta\\rho$ stays close to $\\cos(2kvt)$, the first step of the adiabatic expansion.",
+       "src": "8.6.3"
+      },
+      {
+       "text": "The atom moves as $z = vt$.",
+       "src": "8.6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{-\\frac{1}{\\ktauP}\\left(\\kDeltarho - \\cos(2\\kkmag\\kvmag\\kt)\\right)}",
+      "src": "(8.117)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\kDeltarho} = \\mk{c}{\\cos(2\\kkmag\\kvmag\\kt)} - \\mk{L}{\\ktauP\\frac{d}{d\\kt}\\kDeltarho}",
+       "uses": [],
+       "map": {
+        "R": [
+         "D",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{D}{\\kDeltarho} \\approx \\mk{c}{\\cos(2\\kkmag\\kvmag\\kt)} - \\mk{L}{\\tau_p\\frac{d}{d\\kt}\\cos(2\\kkmag\\kvmag\\kt)}",
+       "uses": [0],
+       "cap": "To first order in $v$ the derivative of $\\Delta\\rho$ is that of $\\cos(2kvt)$."
+      },
+      {
+       "tex": "\\mk{D}{\\kDeltarho} \\approx \\mk{c}{\\cos(2\\kkmag\\kvmag\\kt)} + \\mk{L}{2\\kkmag\\kvmag\\ktauP\\sin(2\\kkmag\\kvmag\\kt)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{D}{\\kDeltarho} \\approx \\mk{c}{\\cos 2\\kkmag(z - \\kvmag\\ktauP)}",
+       "uses": [1],
+       "cap": "$\\cos a + b\\sin a \\approx \\cos(a - b)$ to first order in $b$, with $a = 2kz$ and $b = 2kv\\tau_P$.",
+       "map": {
+        "L": "c"
+       }
+      }
+     ],
+     "num": "(8.120)"
+    }
+   ]
+  },
+  {
+   "id": "population-relaxation",
+   "what": "the relaxation of the ground-state populations",
+   "source": "Modern Atomic and Optical Physics II, 8.6.3 Quantitative analysis of sub-Doppler cooling",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{d\\kt}\\rho_{\\frac{1}{2}\\frac{1}{2}} = -\\frac{2}{9}\\kRopt\\sin^2(\\kkmag z)\\rho_{\\frac{1}{2}\\frac{1}{2}} + \\frac{2}{9}\\kRopt\\cos^2(\\kkmag z)\\rho_{-\\frac{1}{2}-\\frac{1}{2}}",
+       "src": "(8.110)"
+      },
+      {
+       "tex": "\\rho_{\\frac{1}{2}\\frac{1}{2}} + \\rho_{-\\frac{1}{2}-\\frac{1}{2}} = 1",
+       "src": "(8.111)"
+      },
+      {
+       "text": "The population difference is $\\Delta\\rho = \\rho_{\\frac12\\frac12} - \\rho_{-\\frac12-\\frac12}$.",
+       "src": "8.6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{\\frac{d}{d\\kt}\\rho_{\\frac{1}{2}\\frac{1}{2}} - \\frac{d}{d\\kt}\\rho_{-\\frac{1}{2}-\\frac{1}{2}}}",
+      "uses": [2]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{2\\frac{d}{d\\kt}\\rho_{\\frac{1}{2}\\frac{1}{2}}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{2\\left(-\\frac{2}{9}\\kRopt\\sin^2(\\kkmag z)\\rho_{\\frac{1}{2}\\frac{1}{2}} + \\frac{2}{9}\\kRopt\\cos^2(\\kkmag z)\\rho_{-\\frac{1}{2}-\\frac{1}{2}}\\right)}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{\\frac{2}{9}\\kRopt\\left(-\\sin^2(\\kkmag z)(1 + \\kDeltarho) + \\cos^2(\\kkmag z)(1 - \\kDeltarho)\\right)}",
+       "uses": [1, 2],
+       "cap": "$\\rho_{\\pm\\frac12\\pm\\frac12} = (1 \\pm \\Delta\\rho)/2$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{\\frac{2}{9}\\kRopt\\left(\\cos(2\\kkmag z) - \\kDeltarho\\right)}",
+       "uses": [],
+       "cap": "$\\cos^2 - \\sin^2 = \\cos 2kz$ and $\\cos^2 + \\sin^2 = 1$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{-\\frac{2}{9}\\kRopt\\left(\\kDeltarho - \\cos(2\\kkmag z)\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(8.112)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{-\\frac{2}{9}\\kRopt\\left(\\kDeltarho - \\cos(2\\kkmag z)\\right)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{-\\frac{1}{\\ktauP}\\left(\\kDeltarho - \\cos(2\\kkmag z)\\right)},\\qquad \\mk{t}{\\frac{1}{\\ktauP} = \\frac{2}{9}\\kRopt}",
+       "uses": [],
+       "cap": "A relaxation process: naming its rate $1/\\tau_P$."
+      }
+     ],
+     "num": "(8.113)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "In the steady state the population difference no longer changes.",
+       "src": "8.6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{-\\frac{1}{\\ktauP}\\left(\\kDeltarho - \\cos(2\\kkmag z)\\right)},\\qquad \\mk{t}{\\frac{1}{\\ktauP} = \\frac{2}{9}\\kRopt}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} = \\mk{R}{-\\frac{1}{\\ktauP}\\left(\\kDeltarho_{SS} - \\cos(2\\kkmag z)\\right)}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{R}{\\kDeltarho_{SS}} = \\mk{c}{\\cos(2\\kkmag z)}",
+       "uses": []
+      }
+     ],
+     "num": "(8.114)"
+    }
+   ]
+  },
+  {
+   "id": "sisyphus-friction",
+   "what": "the Sisyphus friction coefficient",
+   "source": "Modern Atomic and Optical Physics II, 8.6.3 Quantitative analysis of sub-Doppler cooling",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kvc = \\frac{\\klambda}{18\\pi}\\kRopt = \\frac{\\kRopt}{9\\kkmag}",
+       "src": "(8.124)"
+      },
+      {
+       "text": "For low powers and large detuning, $|\\delta| \\gg \\gamma, \\Omega$, the optical pumping rate is $R_{opt} \\approx |\\Omega|^2\\gamma/\\delta^2$.",
+       "src": "8.6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\ketaS\\kvmag\\km} = \\mk{R}{\\frac{1}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\frac{\\kvmag/\\kvc}{1 + (\\kvmag/\\kvc)^2}}",
+      "src": "(8.125)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\ketaS} = \\mk{R}{\\frac{1}{3}\\frac{\\hbar \\kkmag|\\kOmega|^2}{\\kdelta\\km\\kvc}\\left(\\frac{1}{1 + (\\kvmag/\\kvc)^2}\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{\\ketaS} = \\mk{R}{\\frac{1}{3}\\frac{9\\hbar \\kkmag^2|\\kOmega|^2}{\\kdelta\\km\\kRopt}\\left(\\frac{1}{1 + (\\kvmag/\\kvc)^2}\\right)}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{e}{\\ketaS} = \\mk{R}{3\\frac{\\hbar \\kkmag^2|\\kOmega|^2\\kdelta^2}{\\kdelta\\km|\\kOmega|^2\\kgamma}\\left(\\frac{1}{1 + (\\kvmag/\\kvc)^2}\\right)}",
+       "uses": [1],
+       "cap": "The intensity of the applied fields cancels."
+      },
+      {
+       "tex": "\\mk{e}{\\ketaS} = \\mk{R}{3\\frac{\\hbar \\kkmag^2}{\\km}\\frac{\\kdelta}{\\kgamma}\\left(\\frac{1}{1 + (\\kvmag/\\kvc)^2}\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(8.126)"
+    }
+   ]
+  },
+  {
+   "id": "sisyphus-light-shifts",
+   "what": "the light shifts of the two ground states in lin⊥lin light",
+   "source": "Modern Atomic and Optical Physics II, 8.6.2 Sisyphus Cooling",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kDelta^{\\sigma_+}_{1/2} = \\frac{|\\kOmegap|^2}{\\kdelta}",
+       "src": "(8.99)"
+      },
+      {
+       "tex": "\\kDelta^{\\sigma_+}_{-1/2} = \\frac{|\\kOmegap|^2}{3\\kdelta}",
+       "src": "(8.100)"
+      },
+      {
+       "tex": "\\kDelta^{\\sigma_-}_{1/2} = \\frac{|\\kOmegam|^2}{3\\kdelta}",
+       "src": "(8.101)"
+      },
+      {
+       "tex": "\\kDelta^{\\sigma_-}_{-1/2} = \\frac{|\\kOmegam|^2}{\\kdelta}",
+       "src": "(8.102)"
+      },
+      {
+       "tex": "\\kOmegap = \\kOmega\\cos \\kkmag z",
+       "src": "(8.103)"
+      },
+      {
+       "tex": "\\kOmegam = \\kOmega\\sin \\kkmag z",
+       "src": "(8.104)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH^\\mathrm{eff}_{AL}} = \\mk{R}{\\hbar\\sum_{m=\\pm\\frac{1}{2}}(\\kDelta^{\\sigma_+}_m + \\kDelta^{\\sigma_-}_m)|m\\rangle\\langle m|}",
+      "src": "(8.105)",
+      "uses": [],
+      "why": "In the far-detuned regime the light shifts of the two polarizations add."
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{H}{\\kH^\\mathrm{eff}_{AL}} &= \\mk{u}{\\hbar\\left(\\frac{|\\kOmegap|^2}{\\kdelta} + \\frac{|\\kOmegam|^2}{3\\kdelta}\\right)|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}|} \\\\ &\\quad + \\mk{d}{\\hbar\\left(\\frac{|\\kOmegap|^2}{3\\kdelta} + \\frac{|\\kOmegam|^2}{\\kdelta}\\right)| -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|}\\end{aligned}",
+       "uses": [0, 1, 2, 3],
+       "map": {
+        "R": [
+         "u",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{H}{\\kH^\\mathrm{eff}_{AL}} &= \\mk{u}{\\hbar\\frac{|\\kOmega|^2}{\\kdelta}\\left(\\cos^2 \\kkmag z + \\frac{1}{3}\\sin^2 \\kkmag z\\right)|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}|} \\\\ &\\quad + \\mk{d}{\\hbar\\frac{|\\kOmega|^2}{\\kdelta}\\left(\\frac{1}{3}\\cos^2 \\kkmag z + \\sin^2 \\kkmag z\\right)| -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|}\\end{aligned}",
+       "uses": [4, 5]
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{H}{\\kH^\\mathrm{eff}_{AL}} &= \\mk{u}{\\hbar\\frac{|\\kOmega|^2}{\\kdelta}\\left(1 - \\frac{2}{3}\\sin^2 \\kkmag z\\right)|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}|} \\\\ &\\quad + \\mk{d}{\\hbar\\frac{|\\kOmega|^2}{\\kdelta}\\left(1 - \\frac{2}{3}\\cos^2 \\kkmag z\\right)| -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|}\\end{aligned}",
+       "uses": [],
+       "cap": "$\\cos^2 kz + \\frac{1}{3}\\sin^2 kz = 1 - \\frac{2}{3}\\sin^2 kz$, and likewise with $\\sin$ and $\\cos$ exchanged."
+      }
+     ],
+     "num": "(8.106), (8.107)",
+     "note": "The book prints the second line, Eq. (8.107), without the plus sign that joins it to Eq. (8.106): the Hamiltonian is the sum of the two lines."
+    }
+   ]
+  },
+  {
+   "id": "sisyphus-limit",
+   "what": "the Sisyphus cooling limit",
+   "source": "Modern Atomic and Optical Physics II, 8.6.4 The Sisyphus cooling limit",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kDdiff = \\km\\keta k_B\\kT",
+       "src": "(8.48)"
+      },
+      {
+       "text": "The friction rate in the Einstein relation is the magnitude $|\\eta_S|$; $\\eta_S$ has the sign of $\\delta$, negative where the light cools.",
+       "src": "8.6.3"
+      },
+      {
+       "tex": "\\kDdiff_{sp} = (\\hbar \\kkmag)^2\\frac{|\\kOmega|^2\\kgamma/2}{(\\kgamma/2)^2 + \\kdelta^2}",
+       "src": "(8.131)"
+      },
+      {
+       "tex": "\\kDdiff_{dp} = \\frac{3(\\hbar \\kkmag)^2\\kdelta^2}{4\\kgamma}\\frac{\\kOmega^2/2}{\\kdelta^2 + (\\kgamma/2)^2}",
+       "src": "(8.132)"
+      },
+      {
+       "tex": "\\ketaS = 3\\frac{\\hbar \\kkmag^2}{\\km}\\frac{\\kdelta}{\\kgamma}",
+       "src": "(8.127)"
+      },
+      {
+       "text": "The detuning is large, $|\\delta| \\gg \\gamma$.",
+       "src": "8.6.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{k_B\\kTS} = \\mk{a}{\\frac{\\kDdiff_{sp} + \\kDdiff_{dp}}{\\km|\\ketaS|}}",
+      "uses": [0, 1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{k_B\\kTS} = \\mk{a}{\\frac{\\kDdiff_{sp} + \\kDdiff_{dp}}{\\km|\\ketaS|}} \\approx \\mk{R}{\\frac{\\kDdiff_{dp}}{\\km|\\ketaS|}}",
+       "uses": [2, 3, 5],
+       "cap": "For large detuning $D_{sp}$ falls as $1/\\delta^2$ while $D_{dp}$ stays finite, so the second dominates."
+      },
+      {
+       "tex": "\\mk{T}{k_B\\kTS} = \\mk{a}{\\frac{\\kDdiff_{sp} + \\kDdiff_{dp}}{\\km|\\ketaS|}} \\approx \\mk{R}{\\frac{3(\\hbar\\kkmag)^2|\\kOmega|^2/8\\kgamma}{3\\hbar\\kkmag^2|\\kdelta|/\\kgamma}}",
+       "uses": [3, 4, 5]
+      },
+      {
+       "tex": "\\mk{T}{k_B\\kTS} = \\mk{a}{\\frac{\\kDdiff_{sp} + \\kDdiff_{dp}}{\\km|\\ketaS|}} \\approx \\mk{R}{\\frac{\\hbar|\\kOmega|^2}{8|\\kdelta|}}",
+       "uses": []
+      }
+     ],
+     "num": "(8.133)",
+     "note": "The book prints $\\hbar|\\Omega|^2/8\\delta$, which is negative for the cooling detuning $\\delta < 0$; with $m|\\eta_S|$ in the denominator the temperature is $\\hbar|\\Omega|^2/8|\\delta|$."
+    }
+   ]
+  },
+  {
+   "id": "sisyphus-reactive-force",
+   "what": "the reactive force in lin⊥lin light",
+   "source": "Modern Atomic and Optical Physics II, 8.6.3 Quantitative analysis of sub-Doppler cooling",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kH^\\mathrm{eff}_{AL} = \\hbar\\frac{|\\kOmega|^2}{\\kdelta}\\left(1 - \\frac{2}{3}\\sin^2 \\kkmag z\\right)|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}| + \\hbar\\frac{|\\kOmega|^2}{\\kdelta}\\left(1 - \\frac{2}{3}\\cos^2 \\kkmag z\\right)| -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|",
+       "src": "(8.106), (8.107)"
+      },
+      {
+       "text": "A conservative force is minus the gradient of its potential, as for the dipole force.",
+       "src": "(8.20)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFmag_\\mathrm{reactive}} = \\mk{R}{-\\sum_{m=\\pm 1/2}\\hbar\\nabla(\\kDelta^{\\sigma_+}_m + \\kDelta^{\\sigma_-}_m)|m\\rangle\\langle m|}",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFmag_\\mathrm{reactive}} = \\mk{u}{-\\hbar\\nabla\\left[\\frac{|\\kOmega|^2}{\\kdelta}\\left(1 - \\frac{2}{3}\\sin^2 \\kkmag z\\right)\\right]|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}|} - \\mk{d}{\\hbar\\nabla\\left[\\frac{|\\kOmega|^2}{\\kdelta}\\left(1 - \\frac{2}{3}\\cos^2 \\kkmag z\\right)\\right]| -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|}",
+       "uses": [0],
+       "map": {
+        "R": [
+         "u",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{F}{\\kFmag_\\mathrm{reactive}} = \\mk{u}{\\frac{2}{3}\\hbar\\kkmag\\frac{|\\kOmega|^2}{\\kdelta}2\\sin \\kkmag z\\cos \\kkmag z\\,|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}|} - \\mk{d}{\\frac{2}{3}\\hbar\\kkmag\\frac{|\\kOmega|^2}{\\kdelta}2\\sin \\kkmag z\\cos \\kkmag z\\,| -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|}",
+       "uses": [],
+       "cap": "$\\frac{d}{dz}\\sin^2 kz = 2k\\sin kz\\cos kz = -\\frac{d}{dz}\\cos^2 kz$."
+      },
+      {
+       "tex": "\\mk{F}{\\kFmag_\\mathrm{reactive}} = \\mk{S}{\\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\sin(2\\kkmag z)\\left(|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}| - | -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|\\right)}",
+       "uses": [],
+       "cap": "$2\\sin kz\\cos kz = \\sin 2kz$.",
+       "map": {
+        "u": "S",
+        "d": "S"
+       }
+      }
+     ],
+     "num": "(8.109)",
+     "note": "The book prints Eq. (8.108) without the minus sign of a force derived from a potential; Eq. (8.109) is the gradient taken with it."
+    }
+   ]
+  },
+  {
+   "id": "sisyphus-solution",
+   "what": "the Sisyphus force at any velocity",
+   "source": "Modern Atomic and Optical Physics II, 8.6.3 Quantitative analysis of sub-Doppler cooling",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The velocity does not change over the optical pumping time $\\tau_P$, so the population difference follows the drive at its frequency: $\\Delta\\rho = A\\cos 2kvt + B\\sin 2kvt$.",
+       "src": "8.6.3"
+      },
+      {
+       "text": "The atom moves as $z = vt$.",
+       "src": "8.6.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kDeltarho} = \\mk{R}{-\\frac{1}{\\ktauP}\\left(\\kDeltarho - \\cos(2\\kkmag\\kvmag\\kt)\\right)}",
+      "src": "(8.117)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{2\\kkmag\\kvmag\\ktauP\\left(-A\\sin(2\\kkmag\\kvmag\\kt) + B\\cos(2\\kkmag\\kvmag\\kt)\\right)} = \\mk{R}{(1 - A)\\cos(2\\kkmag\\kvmag\\kt) - B\\sin(2\\kkmag\\kvmag\\kt)}",
+       "uses": [0],
+       "cap": "Multiplying by $\\tau_P$ and substituting the trial solution."
+      },
+      {
+       "tex": "\\mk{c}{2\\kkmag\\kvmag\\ktauP B = 1 - A},\\qquad \\mk{s}{2\\kkmag\\kvmag\\ktauP A = B}",
+       "uses": [],
+       "cap": "Matching the cosine and the sine terms.",
+       "map": {
+        "L": [
+         "c",
+         "s"
+        ],
+        "R": [
+         "c",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{c}{(\\kvmag/\\kvc)B = 1 - A},\\qquad \\mk{s}{(\\kvmag/\\kvc)A = B}",
+       "uses": [],
+       "cap": "Naming the capture velocity $v_c = 1/2k\\tau_P$."
+      },
+      {
+       "tex": "\\mk{c}{A = \\frac{1}{1 + (\\kvmag/\\kvc)^2}},\\qquad \\mk{s}{B = \\frac{\\kvmag/\\kvc}{1 + (\\kvmag/\\kvc)^2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{D}{\\kDeltarho} = \\mk{c}{\\frac{1}{1 + (\\kvmag/\\kvc)^2}\\cos(2\\kkmag z)} + \\mk{s}{\\frac{\\kvmag/\\kvc}{1 + (\\kvmag/\\kvc)^2}\\sin(2\\kkmag z)}",
+       "uses": [1]
+      }
+     ],
+     "num": "(8.123)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\frac{1}{\\ktauP} = \\frac{2}{9}\\kRopt",
+       "src": "(8.113)"
+      },
+      {
+       "text": "The wavevector is $k = 2\\pi/\\lambda$.",
+       "src": "8.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\kvc} = \\mk{R}{\\frac{1}{2\\kkmag\\ktauP}}",
+      "uses": [0],
+      "why": "The capture velocity named in the solution."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\kvc} = \\mk{R}{\\frac{1}{2\\kkmag\\ktauP}} = \\mk{a}{\\frac{2\\kRopt}{9\\cdot 2\\kkmag}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{v}{\\kvc} = \\mk{R}{\\frac{1}{2\\kkmag\\ktauP}} = \\mk{a}{\\frac{\\klambda}{18\\pi}\\kRopt}",
+       "uses": [2]
+      }
+     ],
+     "num": "(8.124)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kFmag_\\mathrm{reactive} = \\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\sin(2\\kkmag z)\\left(|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}| - | -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|\\right)",
+       "src": "(8.109)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\langle \\kFmag_\\mathrm{reactive}\\rangle} = \\mk{R}{\\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\left\\langle\\sin(2\\kkmag z)\\kDeltarho\\right\\rangle}",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\langle \\kFmag_\\mathrm{reactive}\\rangle} = \\mk{R}{\\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\left\\langle\\sin(2\\kkmag z)\\left(\\frac{\\cos(2\\kkmag z)}{1 + (\\kvmag/\\kvc)^2} + \\frac{(\\kvmag/\\kvc)\\sin(2\\kkmag z)}{1 + (\\kvmag/\\kvc)^2}\\right)\\right\\rangle}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{F}{\\langle \\kFmag_\\mathrm{reactive}\\rangle} = \\mk{R}{\\frac{1}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\frac{\\kvmag/\\kvc}{1 + (\\kvmag/\\kvc)^2}}",
+       "uses": [],
+       "cap": "Averaging over several wavelengths, $\\langle\\sin 2kz\\cos 2kz\\rangle = 0$ and $\\langle\\sin^2 2kz\\rangle = \\frac12$."
+      },
+      {
+       "tex": "\\mk{F}{\\langle \\kFmag_\\mathrm{reactive}\\rangle} = \\mk{R}{\\frac{1}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\frac{\\kvmag/\\kvc}{1 + (\\kvmag/\\kvc)^2}} = \\mk{e}{\\ketaS\\kvmag\\km}",
+       "uses": [],
+       "cap": "Naming the Sisyphus friction coefficient $\\eta_S$."
+      }
+     ],
+     "num": "(8.125)"
+    }
+   ]
+  },
+  {
+   "id": "steady-state-force",
+   "what": "the force at the steady-state populations",
+   "source": "Modern Atomic and Optical Physics II, 8.6.3 Quantitative analysis of sub-Doppler cooling",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kFmag_\\mathrm{reactive} = \\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\sin(2\\kkmag z)\\left(|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}| - | -\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|\\right)",
+       "src": "(8.109)"
+      },
+      {
+       "tex": "\\kDeltarho_{SS} = \\cos(2\\kkmag z)",
+       "src": "(8.114)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFmag^{SS}_\\mathrm{reactive}} = \\mk{R}{\\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\sin(2\\kkmag z)\\kDeltarho_{SS}}",
+      "src": "(8.115)",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFmag^{SS}_\\mathrm{reactive}} = \\mk{R}{\\frac{2}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\sin(2\\kkmag z)\\cos(2\\kkmag z)}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{F}{\\kFmag^{SS}_\\mathrm{reactive}} = \\mk{R}{\\frac{1}{3}\\hbar \\kkmag\\frac{|\\kOmega|^2}{\\kdelta}\\sin(4\\kkmag z)}",
+       "uses": [],
+       "cap": "$\\sin 2x\\cos 2x = \\frac12\\sin 4x$."
+      }
+     ],
+     "num": "(8.116)"
+    }
+   ]
+  }
+ ]
+}

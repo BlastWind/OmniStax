@@ -1,0 +1,1015 @@
+{
+ "symbols": [
+  {
+   "sym": "P_pol",
+   "latex": "\\mathbf{P}",
+   "macro": "\\kPpol"
+  },
+  {
+   "sym": "P_env",
+   "latex": "\\mathcal{P}",
+   "macro": "\\kPenv"
+  },
+  {
+   "sym": "nu_bar",
+   "latex": "\\bar{\\nu}",
+   "macro": "\\knubar"
+  },
+  {
+   "sym": "k_bar",
+   "latex": "\\bar{k}",
+   "macro": "\\kkbar"
+  },
+  {
+   "sym": "chi",
+   "latex": "\\chi",
+   "macro": "\\kchi"
+  },
+  {
+   "sym": "chi_n",
+   "latex": "\\chi_n",
+   "macro": "\\kchin"
+  },
+  {
+   "sym": "chi_3",
+   "latex": "\\chi^{(3)}",
+   "macro": "\\kchithree"
+  },
+  {
+   "sym": "alpha",
+   "latex": "\\alpha",
+   "macro": "\\kalpha"
+  },
+  {
+   "sym": "n_ref",
+   "latex": "n",
+   "macro": "\\knref"
+  },
+  {
+   "sym": "v_g",
+   "latex": "v_g",
+   "macro": "\\kvg"
+  },
+  {
+   "sym": "delta_nu",
+   "latex": "\\delta\\nu",
+   "macro": "\\kdeltanu"
+  },
+  {
+   "sym": "v_z",
+   "latex": "v_z",
+   "macro": "\\kvz"
+  },
+  {
+   "sym": "v_T",
+   "latex": "v_T",
+   "macro": "\\kvT"
+  },
+  {
+   "sym": "n_v",
+   "latex": "n(v_z)",
+   "macro": "\\knv"
+  },
+  {
+   "sym": "lambda",
+   "latex": "\\lambda",
+   "macro": "\\klambda"
+  },
+  {
+   "sym": "I_int",
+   "latex": "I",
+   "macro": "\\kIint"
+  },
+  {
+   "sym": "sigma_tilde",
+   "latex": "\\tilde{\\sigma}",
+   "macro": "\\ksigmatilde"
+  },
+  {
+   "sym": "s_sat",
+   "latex": "s",
+   "macro": "\\kssat"
+  },
+  {
+   "sym": "Omega_pm",
+   "latex": "\\Omega_\\pm",
+   "macro": "\\kOmegapm"
+  },
+  {
+   "sym": "E_pm",
+   "latex": "\\mathcal{E}_\\pm",
+   "macro": "\\kEpm"
+  },
+  {
+   "sym": "Omega_p",
+   "latex": "\\Omega_+",
+   "macro": "\\kOmegap"
+  },
+  {
+   "sym": "Omega_m",
+   "latex": "\\Omega_-",
+   "macro": "\\kOmegam"
+  },
+  {
+   "sym": "E_p",
+   "latex": "\\mathcal{E}_+",
+   "macro": "\\kEp"
+  },
+  {
+   "sym": "E_m",
+   "latex": "\\mathcal{E}_-",
+   "macro": "\\kEm"
+  },
+  {
+   "sym": "k_mag",
+   "latex": "k",
+   "macro": "\\kkmag"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "macroscopic-polarization",
+   "kind": "definition",
+   "section": "4.1",
+   "name": "Macroscopic polarization",
+   "terms": [
+    "macroscopic polarization"
+   ],
+   "symbol": "P_pol",
+   "type": "dipole",
+   "statement": "The polarization of an atomic ensemble is the dipole moment per volume of the atoms in a small volume, each atom contributing ⟨d̂⟩ = μρ₂₁ + μ*ρ₁₂; it varies in space as the fields do.",
+   "forms": [
+    {
+     "id": "eq-4-4",
+     "latex": "P(r_i) = \\frac{N_i}{V_i}\\sum_{r_j \\in V_i}\\left(\\mu\\rho_{21}(r_j) + \\mu^*\\rho_{12}(r_j)\\right)"
+    },
+    {
+     "id": "eq-4-1",
+     "latex": "\\langle\\hat{d}\\rangle = \\mu\\rho_{21} + \\mu^*\\rho_{12}"
+    },
+    {
+     "id": "eq-4-2",
+     "latex": "P = \\frac{N}{V}\\left(\\mu\\rho_{21} + \\mu^*\\rho_{12}\\right)"
+    }
+   ]
+  },
+  {
+   "id": "independent-atoms",
+   "kind": "idea",
+   "section": "4.1",
+   "name": "Independent atoms",
+   "statement": "An ensemble may be treated atom by atom with the single-atom optical Bloch equations when the atoms do not interact strongly, each is damped by its own reservoir (|r_i − r_j| > λ), and the applied field is classical; the ensemble density matrix then factorizes into a product of single-atom density matrices.",
+   "forms": [
+    {
+     "id": "eq-4-3",
+     "latex": "\\hat{\\rho}_{ensemble} = \\prod_{j=1}^{N}\\hat{\\rho}^{(1)} \\otimes \\ldots \\otimes \\hat{\\rho}^{(N)}"
+    }
+   ]
+  },
+  {
+   "id": "maxwell-equations-with-polarization",
+   "kind": "result",
+   "section": "4.1",
+   "name": "Maxwell equations with a polarization source",
+   "statement": "Self-consistency requires the polarization the field induces to act back as a source term in the Maxwell equations governing the light.",
+   "forms": [
+    {
+     "id": "eq-4-5",
+     "latex": "\\nabla \\times \\mathbf{E} = -\\frac{\\partial\\mathbf{B}}{\\partial t}"
+    },
+    {
+     "id": "eq-4-6",
+     "latex": "\\nabla \\times \\mathbf{B} = \\frac{1}{c^2}\\frac{\\partial}{\\partial t}\\left(\\mathbf{E} + \\frac{1}{\\epsilon_0}\\mathbf{P}\\right)"
+    }
+   ]
+  },
+  {
+   "id": "wave-equation-with-polarization",
+   "kind": "result",
+   "section": "4.1",
+   "name": "Wave equation with a polarization source",
+   "statement": "Without unbound charges and currents the Maxwell equations become a wave equation for E driven by the second time derivative of the polarization.",
+   "forms": [
+    {
+     "id": "eq-4-10",
+     "latex": "\\nabla^2\\mathbf{E} - \\frac{1}{c^2}\\frac{\\partial^2\\mathbf{E}}{\\partial t^2} = \\frac{1}{\\epsilon_0 c^2}\\frac{\\partial^2\\mathbf{P}}{\\partial t^2}",
+     "anchor": "4.1-drv-wave-equation"
+    }
+   ]
+  },
+  {
+   "id": "slowly-varying-envelope-approximation",
+   "kind": "idea",
+   "section": "4.1",
+   "name": "Slowly-varying envelope approximation",
+   "terms": [
+    "slowly-varying envelope approximation",
+    "slowly varying envelope approximation",
+    "SVEA"
+   ],
+   "statement": "A nearly monochromatic field and its polarization are written as envelopes on a carrier of central frequency ν̄ and wavevector k̄ = ν̄/c; keeping only the lowest derivatives of envelopes that vary slowly on the optical period and wavelength reduces the second-order wave equation to first order.",
+   "forms": [
+    {
+     "id": "eq-4-11",
+     "latex": "\\mathbf{E}(r, t) = \\mathcal{E}(r, t)e^{i\\bar{k}z - i\\bar{\\nu}t} + c.c.",
+     "anchor": "4.1-eq-4-11"
+    },
+    {
+     "id": "eq-4-19",
+     "latex": "|\\bar{\\nu}\\mathcal{P}| \\gg |\\tfrac{\\partial}{\\partial t}\\mathcal{P}|",
+     "anchor": "4.1-drv-svea-propagation"
+    },
+    {
+     "id": "eq-4-20",
+     "latex": "|\\bar{\\nu}\\mathcal{E}| \\gg |\\tfrac{\\partial}{\\partial t}\\mathcal{E}|",
+     "anchor": "4.1-drv-svea-propagation"
+    },
+    {
+     "id": "eq-4-21",
+     "latex": "|\\bar{k}\\mathcal{E}| \\gg |\\tfrac{\\partial}{\\partial z}\\mathcal{E}|",
+     "anchor": "4.1-drv-svea-propagation"
+    }
+   ]
+  },
+  {
+   "id": "slowly-varying-polarization",
+   "kind": "definition",
+   "section": "4.1",
+   "name": "Slowly varying polarization",
+   "terms": [
+    "slowly varying polarization amplitude",
+    "slowly varying polarization"
+   ],
+   "symbol": "P_env",
+   "type": "dipole",
+   "statement": "The slowly varying polarization amplitude 𝒫 is the envelope of the polarization on the carrier; it is proportional to the positive-frequency component of the dipole operator in the rotating frame, 𝒫 = (N/V)μρ₂₁(z)e^{−ik̄z} for two-level atoms.",
+   "forms": [
+    {
+     "id": "eq-4-12",
+     "latex": "\\mathbf{P}(r, t) = \\mathcal{P}(r, t)e^{i\\bar{k}z - i\\bar{\\nu}t} + c.c.",
+     "anchor": "4.1-eq-4-12"
+    }
+   ]
+  },
+  {
+   "id": "svea-propagation-equation",
+   "kind": "result",
+   "section": "4.1",
+   "name": "Propagation equation for slowly varying amplitudes",
+   "statement": "In the slowly-varying envelope approximation the envelope obeys a first-order equation: transverse diffraction, propagation at c, and the slowly varying polarization as the source.",
+   "forms": [
+    {
+     "id": "eq-4-24",
+     "latex": "\\frac{1}{2i\\bar{k}}\\nabla_\\perp^2\\mathcal{E} + \\frac{\\partial}{\\partial z}\\mathcal{E} + \\frac{1}{c}\\frac{\\partial}{\\partial t}\\mathcal{E} = \\frac{i\\bar{k}}{2\\epsilon_0}\\mathcal{P}",
+     "anchor": "4.1-drv-svea-propagation"
+    },
+    {
+     "id": "eq-4-13",
+     "latex": "\\frac{1}{2i\\bar{k}}\\nabla_\\perp^2\\mathcal{E} + \\frac{\\partial\\mathcal{E}}{\\partial z} + \\frac{1}{c}\\frac{\\partial\\mathcal{E}}{\\partial t} = \\frac{i\\bar{k}}{2\\epsilon_0}\\mathcal{P}",
+     "anchor": "4.1-drv-svea-propagation"
+    }
+   ]
+  },
+  {
+   "id": "plane-wave-propagation-equation",
+   "kind": "result",
+   "section": "4.1",
+   "name": "Plane-wave propagation equation",
+   "statement": "For a plane wave the transverse term vanishes and the envelope obeys ∂𝓔/∂z + (1/c)∂𝓔/∂t = (ik̄/2ε₀)𝒫.",
+   "forms": [
+    {
+     "id": "eq-4-25",
+     "latex": "\\frac{\\partial}{\\partial z}\\mathcal{E} + \\frac{1}{c}\\frac{\\partial}{\\partial t}\\mathcal{E} = \\frac{i\\bar{k}}{2\\epsilon_0}\\mathcal{P}",
+     "anchor": "4.1-eq-4-25"
+    }
+   ]
+  },
+  {
+   "id": "optical-frequency-comb",
+   "kind": "definition",
+   "section": "4.1",
+   "name": "Optical frequency comb",
+   "terms": [
+    "optical frequency comb"
+   ],
+   "statement": "A periodic train of short optical pulses is a comb of harmonics in the Fourier domain: the harmonic spacing sets the repetition rate and the occupied bandwidth the pulse duration.",
+   "forms": [
+    {
+     "id": "eq-4-26",
+     "latex": "E = \\sum_n\\mathcal{E}_n(z, t)e^{inkz - i\\nu_n t}",
+     "anchor": "4.1-eq-4-26"
+    }
+   ]
+  },
+  {
+   "id": "multimode-svea",
+   "kind": "result",
+   "section": "4.1",
+   "name": "SVEA for many harmonics",
+   "terms": [
+    "coupled Maxwell-Bloch equations",
+    "Maxwell-Bloch equations"
+   ],
+   "statement": "When each harmonic has a slowly varying envelope, the propagation equation holds harmonic by harmonic, for arbitrarily short pulses; the atomic response couples the harmonics, giving the coupled Maxwell-Bloch equations.",
+   "forms": [
+    {
+     "id": "eq-4-28",
+     "latex": "\\frac{1}{2i\\bar{k}}\\nabla_\\perp^2\\mathcal{E}_n + \\frac{\\partial}{\\partial z}\\mathcal{E}_n + \\frac{1}{c}\\frac{\\partial}{\\partial t}\\mathcal{E}_n = \\frac{i\\bar{k}}{2\\epsilon_0}\\mathcal{P}_n",
+     "anchor": "4.1-eq-4-28"
+    },
+    {
+     "id": "eq-4-27",
+     "latex": "P = \\sum_n\\mathcal{P}_n(z, t)e^{inkz - i\\nu_n t}",
+     "anchor": "4.1-eq-4-27"
+    }
+   ]
+  },
+  {
+   "id": "susceptibility",
+   "kind": "definition",
+   "section": "4.2",
+   "name": "Susceptibility",
+   "terms": [
+    "susceptibility"
+   ],
+   "symbol": "chi",
+   "type": "susceptibility",
+   "statement": "When the atoms respond linearly the polarization is proportional to the field, and the constant of proportionality, the susceptibility χ, entirely characterizes the atom-photon interaction in the linear regime.",
+   "forms": [
+    {
+     "id": "eq-4-30",
+     "latex": "\\chi(\\delta\\nu) = \\frac{\\mathcal{P}(\\delta\\nu)}{\\epsilon_0\\mathcal{E}(\\delta\\nu)}",
+     "anchor": "4.2-eq-4-30"
+    },
+    {
+     "id": "eq-4-29",
+     "latex": "\\mathcal{P}(\\delta\\nu) = \\frac{N}{V}\\mu\\rho_{21}(\\delta\\nu)e^{-i\\bar{k}z}",
+     "anchor": "4.2-eq-4-29"
+    }
+   ]
+  },
+  {
+   "id": "linear-propagation-solution",
+   "kind": "result",
+   "section": "4.2",
+   "name": "General solution for linear propagation",
+   "statement": "In the linear regime each frequency component of the field propagates separately, acquiring the phase z(δν/c + k̄χ(δν)/2); transforming back to time gives the field anywhere from its spectrum at one place.",
+   "forms": [
+    {
+     "id": "eq-4-34",
+     "latex": "\\mathcal{E}(t, z) = \\int d(\\delta\\nu)e^{-i\\delta\\nu t}\\mathcal{E}(\\delta\\nu, 0)e^{iz(\\delta\\nu/c + \\bar{k}\\chi(\\delta\\nu)/2)}",
+     "anchor": "4.2-drv-linear-propagation"
+    },
+    {
+     "id": "eq-4-32",
+     "latex": "\\frac{\\partial\\mathcal{E}}{\\partial z} = \\frac{i\\delta\\nu}{c}\\mathcal{E} + \\frac{i\\bar{k}}{2}\\chi(\\delta\\nu)\\mathcal{E}",
+     "anchor": "4.2-drv-linear-propagation"
+    },
+    {
+     "id": "eq-4-33",
+     "latex": "\\mathcal{E}(\\delta\\nu, z) = \\mathcal{E}(\\delta\\nu, 0)e^{iz(\\delta\\nu/c + \\bar{k}\\chi(\\delta\\nu)/2)}",
+     "anchor": "4.2-drv-linear-propagation"
+    }
+   ]
+  },
+  {
+   "id": "absorption-coefficient",
+   "kind": "definition",
+   "section": "4.2",
+   "name": "Absorption coefficient",
+   "terms": [
+    "absorption"
+   ],
+   "symbol": "alpha",
+   "type": "susceptibility",
+   "statement": "The imaginary part of the susceptibility attenuates or amplifies the beam intensity exponentially with distance at the rate α = k̄ Im[χ(0)].",
+   "forms": [
+    {
+     "id": "eq-4-36",
+     "latex": "\\alpha = \\bar{k}\\ \\mathrm{Im}[\\chi(0)]",
+     "anchor": "4.2-eq-4-36"
+    }
+   ]
+  },
+  {
+   "id": "refractive-index",
+   "kind": "definition",
+   "section": "4.2",
+   "name": "Index of refraction",
+   "terms": [
+    "index of refraction",
+    "refraction"
+   ],
+   "symbol": "n_ref",
+   "type": "susceptibility",
+   "statement": "The real part of the susceptibility shifts the phase of the field linearly with distance, a change of wavevector k̄ → k̄ + k̄Re[χ]/2, or of the index of refraction.",
+   "forms": [
+    {
+     "id": "eq-4-37",
+     "latex": "n = 1 + \\frac{\\mathrm{Re}[\\chi(0)]}{2}",
+     "anchor": "4.2-eq-4-37"
+    },
+    {
+     "id": "eq-4-35",
+     "latex": "\\mathcal{E}(t, z) = \\mathcal{E}e^{i\\bar{k}\\chi(0)z/2}",
+     "anchor": "4.2-eq-4-35"
+    }
+   ]
+  },
+  {
+   "id": "dispersion",
+   "kind": "idea",
+   "section": "4.2",
+   "name": "Dispersion",
+   "terms": [
+    "dispersion"
+   ],
+   "statement": "Dispersion results from the frequency dependence of the susceptibility; expanding χ about resonance, the first term gives refraction, the second the group velocity, the third group velocity dispersion.",
+   "forms": [
+    {
+     "id": "eq-4-38",
+     "latex": "\\chi(\\delta\\nu) \\approx \\chi(0) + \\frac{d\\chi}{d\\nu}\\delta\\nu + \\ldots",
+     "anchor": "4.2-eq-4-38"
+    }
+   ]
+  },
+  {
+   "id": "group-velocity",
+   "kind": "definition",
+   "section": "4.2",
+   "name": "Group velocity",
+   "terms": [
+    "group velocity"
+   ],
+   "symbol": "v_g",
+   "type": "velocity",
+   "statement": "Keeping the slope of the susceptibility, the envelope propagates unchanged in shape at the group velocity v_g.",
+   "forms": [
+    {
+     "id": "eq-4-42",
+     "latex": "v_g = \\frac{c}{1 + \\frac{\\bar{\\nu}}{2}\\frac{d\\chi}{d\\nu}}",
+     "anchor": "4.2-drv-group-velocity"
+    },
+    {
+     "id": "eq-4-41",
+     "latex": "\\mathcal{E}(t, z) = e^{iz\\bar{k}\\chi(0)/2}\\mathcal{E}(t - z/v_g, z = 0)",
+     "anchor": "4.2-drv-group-velocity"
+    }
+   ]
+  },
+  {
+   "id": "two-level-susceptibility",
+   "kind": "result",
+   "section": "4.2",
+   "name": "Susceptibility of two-level atoms",
+   "statement": "For a dilute gas of two-level atoms in the steady state the susceptibility is a Lorentzian of linewidth γ₁₂, proportional to the density, λ³ and the population difference.",
+   "forms": [
+    {
+     "id": "eq-4-44",
+     "latex": "\\chi(\\delta\\nu) = i\\frac{3}{8\\pi^2}\\frac{N}{V}\\lambda^3\\left(\\rho_{11}^0 - \\rho_{22}^0\\right)\\frac{\\gamma}{\\gamma_{12} - i\\delta\\nu}",
+     "anchor": "4.2-eq-4-44"
+    },
+    {
+     "id": "eq-4-43",
+     "latex": "\\chi(\\delta\\nu) = i\\frac{N}{V}\\frac{\\mu^2}{\\hbar\\epsilon_0}\\left(\\rho_{11}^0 - \\rho_{22}^0\\right)\\frac{1}{\\gamma_{12} - i\\delta\\nu}",
+     "anchor": "4.2-drv-two-level-susceptibility"
+    }
+   ]
+  },
+  {
+   "id": "resonant-absorption",
+   "kind": "result",
+   "section": "4.2",
+   "name": "Absorption on resonance",
+   "statement": "On resonance the susceptibility is purely imaginary: there is no refraction but there is absorption, and the field decays exponentially.",
+   "forms": [
+    {
+     "id": "eq-4-45",
+     "latex": "\\chi(0) = i\\frac{3}{8\\pi^2}\\frac{N}{V}\\lambda^3\\frac{\\gamma}{\\gamma_{12}}",
+     "anchor": "4.2-drv-resonant-cross-section"
+    },
+    {
+     "id": "eq-4-46",
+     "latex": "\\mathcal{E}(z) = \\mathcal{E}(0)e^{(-\\mathrm{Im}[\\chi(0)] + i\\mathrm{Re}[\\chi(0)])\\bar{k}z/2}",
+     "anchor": "4.2-drv-resonant-cross-section"
+    }
+   ]
+  },
+  {
+   "id": "absorption-cross-section",
+   "kind": "definition",
+   "section": "4.2",
+   "name": "Absorption cross-section",
+   "terms": [
+    "absorption cross-section",
+    "cross section"
+   ],
+   "symbol": "sigma_tilde",
+   "statement": "The intensity decays as I(z) = I(0)e^{−Nσ̃z/V}, defining the absorption cross-section σ̃ = (3/4π)λ²γ/γ₁₂.",
+   "forms": [
+    {
+     "id": "eq-4-48",
+     "latex": "\\tilde{\\sigma} = \\frac{3}{4\\pi}\\lambda^2\\frac{\\gamma}{\\gamma_{12}}",
+     "anchor": "4.2-drv-resonant-cross-section"
+    },
+    {
+     "id": "eq-4-47",
+     "latex": "I(z) = I(0)e^{-N\\tilde{\\sigma}z/V}",
+     "anchor": "4.2-drv-resonant-cross-section"
+    }
+   ]
+  },
+  {
+   "id": "unitary-limit",
+   "kind": "result",
+   "section": "4.2",
+   "name": "Unitary limit",
+   "terms": [
+    "unitary limit"
+   ],
+   "statement": "For purely radiative broadening the resonant cross section is 3λ²/2π, independent of the dipole moment: the maximal absorption cross section, the unitary limit.",
+   "forms": [
+    {
+     "id": "eq-4-49",
+     "latex": "\\tilde{\\sigma} \\to \\frac{3}{2\\pi}\\lambda^2",
+     "anchor": "4.2-drv-resonant-cross-section"
+    }
+   ]
+  },
+  {
+   "id": "far-detuned-refraction",
+   "kind": "result",
+   "section": "4.2",
+   "name": "Far-detuned medium is refractive",
+   "statement": "Far from resonance Im[χ] ∝ 1/δν² is much smaller than Re[χ] ∝ 1/δν, so the medium is almost entirely refractive and absorbs little."
+  },
+  {
+   "id": "homogeneous-broadening",
+   "kind": "definition",
+   "section": "4.2",
+   "name": "Homogeneous broadening",
+   "terms": [
+    "homogeneous"
+   ],
+   "statement": "A homogeneous linewidth comes from processes that affect every atom equally."
+  },
+  {
+   "id": "inhomogeneous-broadening",
+   "kind": "definition",
+   "section": "4.2",
+   "name": "Inhomogeneous broadening",
+   "terms": [
+    "inhomogenous",
+    "inhomogeneous broadening"
+   ],
+   "statement": "Inhomogeneous broadening widens the line of an ensemble but not of its constituent atoms, which see different transition frequencies (local fields in solids, Doppler shifts in a thermal gas); it can hide the homogeneous linewidth."
+  },
+  {
+   "id": "doppler-broadening",
+   "kind": "result",
+   "section": "4.2",
+   "name": "Doppler broadening",
+   "terms": [
+    "Doppler broadening",
+    "Doppler broadened"
+   ],
+   "statement": "An atom of velocity v_z sees the field shifted to ν − kv_z, so a thermal gas absorbs each frequency through one velocity class; summing the velocity classes gives a Lorentzian spectrum for γ₁₂ ≫ kv_T and a Gaussian of width ~kv_T in the opposite limit, which grows as the square root of the temperature.",
+   "forms": [
+    {
+     "id": "eq-4-50",
+     "latex": "\\chi(\\delta\\nu) \\approx \\int dv_z\\frac{n(v_z)}{\\gamma_{12} - i(\\delta\\nu - kv_z)}",
+     "anchor": "4.2-eq-4-50"
+    },
+    {
+     "id": "eq-4-51",
+     "latex": "n(v_z) = \\frac{N}{V}e^{-v_z^2/v_T^2}\\frac{1}{\\sqrt{\\pi}v_T}",
+     "anchor": "4.2-eq-4-51"
+    }
+   ]
+  },
+  {
+   "id": "inhomogeneous-cross-section",
+   "kind": "result",
+   "section": "4.2",
+   "name": "Cross section of a Doppler-broadened gas",
+   "statement": "Inhomogeneous broadening reduces the resonant cross section by about γ₁₂/kv_T.",
+   "forms": [
+    {
+     "id": "eq-4-52",
+     "latex": "\\sigma_{inhom.}(0) = \\frac{3}{4\\pi}\\lambda^2\\frac{\\sqrt{\\pi}\\gamma}{kv_T}",
+     "anchor": "4.2-drv-doppler-cross-section"
+    }
+   ]
+  },
+  {
+   "id": "nonlinear-susceptibility",
+   "kind": "definition",
+   "section": "4.3",
+   "name": "Nonlinear susceptibility",
+   "terms": [
+    "nonlinear susceptibility"
+   ],
+   "symbol": "chi_n",
+   "type": "susceptibility",
+   "statement": "For a strong continuous-wave field in the steady state, the saturated population difference γ/(γ + 2R_opt) multiplies the linear susceptibility; χ_n applies only to continuous-wave steady states.",
+   "forms": [
+    {
+     "id": "eq-4-58",
+     "latex": "\\chi_n(\\delta) = \\frac{3}{8\\pi^2}\\frac{N}{V}\\lambda^3\\frac{i\\gamma}{\\gamma_{12} - i\\delta}\\frac{\\gamma}{\\gamma + 2R_{opt}}",
+     "anchor": "4.3-drv-nonlinear-susceptibility"
+    },
+    {
+     "id": "eq-4-56",
+     "latex": "\\chi_n(\\delta) = \\frac{\\mathcal{P}(\\delta)}{\\epsilon_0\\mathcal{E}(\\delta)}",
+     "anchor": "4.3-drv-nonlinear-susceptibility"
+    },
+    {
+     "id": "eq-4-54",
+     "latex": "\\rho_{11} - \\rho_{22} = \\frac{\\gamma}{\\gamma + 2R_{opt}}",
+     "anchor": "4.3-eq-4-54"
+    }
+   ]
+  },
+  {
+   "id": "nonlinear-propagation",
+   "kind": "result",
+   "section": "4.3",
+   "name": "Nonlinear propagation of a continuous-wave field",
+   "terms": [
+    "saturating absorption"
+   ],
+   "statement": "For a continuous-wave field the time derivatives drop and ∂𝓔/∂z is set by χ_n, which depends on the field through R_opt: as the field grows, the absorption diminishes.",
+   "forms": [
+    {
+     "id": "eq-4-59",
+     "latex": "\\frac{\\partial\\mathcal{E}}{\\partial z} = i\\bar{k}\\chi_n(\\delta)\\mathcal{E}",
+     "anchor": "4.3-drv-nonlinear-propagation"
+    }
+   ]
+  },
+  {
+   "id": "saturation-parameter",
+   "kind": "definition",
+   "section": "4.3",
+   "name": "Saturation parameter",
+   "terms": [
+    "saturation parameter"
+   ],
+   "symbol": "s_sat",
+   "statement": "The saturation parameter s = 2R_opt/γ, on resonance 4|Ω|²/γ₁₂γ, compares the optical pumping rate with decay; for s ≫ 1 the field bleaches the medium.",
+   "forms": [
+    {
+     "id": "eq-4-63",
+     "latex": "s = \\frac{2R_{opt}}{\\gamma}",
+     "anchor": "4.3-eq-4-63"
+    },
+    {
+     "id": "eq-4-62",
+     "latex": "s = \\frac{4|\\Omega|^2}{\\gamma_{12}\\gamma}",
+     "anchor": "4.3-eq-4-62"
+    }
+   ]
+  },
+  {
+   "id": "resonant-saturation",
+   "kind": "result",
+   "section": "4.3",
+   "name": "Saturation on resonance",
+   "terms": [
+    "bleaches"
+   ],
+   "statement": "On resonance Im[χ_n] falls as 1/(1+s); a field near the saturation intensity first decays linearly with distance and then, once weak, exponentially.",
+   "forms": [
+    {
+     "id": "eq-4-61",
+     "latex": "\\mathrm{Im}[\\chi_n(0)] = \\frac{3}{8\\pi^2}\\frac{N}{V}\\lambda^3\\frac{\\gamma}{\\gamma_{12}}\\frac{1}{1 + s}",
+     "anchor": "4.3-eq-4-61"
+    }
+   ]
+  },
+  {
+   "id": "kerr-effect",
+   "kind": "definition",
+   "section": "4.3",
+   "name": "Kerr effect",
+   "terms": [
+    "Kerr effect",
+    "self-phase modulation",
+    "self-focussing"
+   ],
+   "statement": "Far from resonance the refractive index depends on the intensity, n = n₀ + n₂I, which gives self-phase modulation and self-focussing or de-focussing of a finite beam.",
+   "forms": [
+    {
+     "id": "eq-4-64",
+     "latex": "\\chi_n \\approx -\\frac{3}{8\\pi^2}\\frac{N}{V}\\lambda^3\\frac{\\gamma}{\\delta}\\left(1 - \\frac{4|\\Omega|^2\\gamma_{12}}{\\delta^2\\gamma}\\right)",
+     "anchor": "4.3-drv-far-detuned-susceptibility"
+    }
+   ]
+  },
+  {
+   "id": "third-order-susceptibility",
+   "kind": "definition",
+   "section": "4.3",
+   "name": "Third-order susceptibility",
+   "symbol": "chi_3",
+   "type": "susceptibility",
+   "statement": "For weak fields the susceptibility expands as χ + χ⁽³⁾|E|² + …, χ⁽³⁾ being the leading nonlinear correction in a system with inversion symmetry.",
+   "forms": [
+    {
+     "id": "eq-4-65",
+     "latex": "\\chi_n = \\chi + \\chi^{(3)}|E|^2 + \\ldots",
+     "anchor": "4.3-eq-4-65"
+    },
+    {
+     "id": "eq-5-82",
+     "latex": "\\chi^{(3)} = \\frac{P}{\\epsilon_0\\mathcal{E}_1\\mathcal{E}_2\\mathcal{E}_3}",
+     "anchor": "5.3-eq-5-82",
+     "section": "5.3"
+    }
+   ]
+  },
+  {
+   "id": "saturation-intensity",
+   "kind": "result",
+   "section": "4.3",
+   "name": "Saturation intensity",
+   "type": "intensity",
+   "statement": "A radiatively broadened transition saturates at resonance when 8|Ω|² ≈ γ², an intensity of a few mW/cm² for the alkali atoms; in a Doppler-broadened gas that field saturates only one velocity class."
+  },
+  {
+   "id": "optical-pumping",
+   "kind": "idea",
+   "section": "4.3",
+   "name": "Optical pumping",
+   "terms": [
+    "optical pumping"
+   ],
+   "statement": "With another long-lived level the excited atom can decay out of the driven transition, so population ends up there and saturation needs R_opt only to exceed that slow decay."
+  },
+  {
+   "id": "saturation-spectroscopy",
+   "kind": "idea",
+   "section": "4.3",
+   "name": "Saturation spectroscopy",
+   "terms": [
+    "Saturation spectroscopy",
+    "saturated spectroscopy"
+   ],
+   "statement": "Two counterpropagating beams of one frequency, a strong pump and a weak probe, address the velocity classes ν = Δ ± kv_z; near resonance both address the stationary atoms, and the probe absorption shows a sharp feature with the natural linewidth inside the Doppler profile.",
+   "forms": [
+    {
+     "id": "eq-4-66",
+     "latex": "\\mathbf{E} = \\mathcal{E}_+e^{-i\\nu t + ikz} + \\mathcal{E}_-e^{-i\\nu t - ikz} + c.c",
+     "anchor": "4.3-eq-4-66"
+    }
+   ]
+  },
+  {
+   "id": "saturated-absorption-dip",
+   "kind": "result",
+   "section": "4.3",
+   "name": "Saturated absorption dip",
+   "terms": [
+    "saturated absorption"
+   ],
+   "statement": "To lowest order in the pump the probe absorption has a dip of Doppler-free width γ₁₂ at δ = 0.",
+   "forms": [
+    {
+     "id": "eq-4-75",
+     "latex": "\\mathrm{Im}[\\chi_-]_\\mathrm{sat} \\approx -\\frac{|\\mu|^2 n}{\\epsilon_0\\hbar k}\\frac{2\\pi|\\Omega_+|^2(\\gamma_{12}/\\gamma)}{(\\gamma_{12}^2 + \\delta^2)}",
+     "anchor": "4.3-drv-saturated-absorption-dip"
+    },
+    {
+     "id": "eq-4-74",
+     "latex": "\\chi_- = \\frac{|\\mu|^2}{\\epsilon_0\\hbar}\\int dv_z n(v_z)\\frac{i}{\\gamma_{12} - i(\\delta + kv_z)}\\left(1 - \\frac{S(\\delta - kv_z)}{1 + S(\\delta - kv_z)}\\right)",
+     "anchor": "4.3-drv-probe-susceptibility"
+    },
+    {
+     "id": "eq-4-72",
+     "latex": "\\rho_{21}^{(v_z)-} \\approx \\left(\\frac{\\gamma_{12}^2 + (\\delta - kv_z)^2}{\\gamma_{12}^2 + (\\delta - kv_z)^2 + 4|\\Omega_+|^2(\\gamma_{12}/\\gamma)}\\right)\\left(\\frac{i\\Omega_-}{\\gamma_{12} - i(\\delta + kv_z)}\\right)",
+     "anchor": "4.3-drv-probe-coherence"
+    },
+    {
+     "id": "eq-4-76",
+     "latex": "\\int_{-\\infty}^{\\infty}\\frac{1}{1 + (x - a)^2}\\frac{1}{1 + (x + a)^2} = \\frac{\\pi}{2(1 + a^2)}",
+     "anchor": "4.3-drv-saturated-absorption-dip"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "macroscopic-polarization",
+   "prereq": "dipole-matrix-element"
+  },
+  {
+   "concept": "macroscopic-polarization",
+   "prereq": "atomic-polarization"
+  },
+  {
+   "concept": "independent-atoms",
+   "prereq": "macroscopic-polarization"
+  },
+  {
+   "concept": "maxwell-equations-with-polarization",
+   "prereq": "independent-atoms"
+  },
+  {
+   "concept": "wave-equation-with-polarization",
+   "prereq": "maxwell-equations-with-polarization"
+  },
+  {
+   "concept": "slowly-varying-envelope-approximation",
+   "prereq": "slowly-varying-envelope"
+  },
+  {
+   "concept": "slowly-varying-envelope-approximation",
+   "prereq": "wave-equation-with-polarization"
+  },
+  {
+   "concept": "slowly-varying-polarization",
+   "prereq": "slowly-varying-envelope-approximation"
+  },
+  {
+   "concept": "slowly-varying-polarization",
+   "prereq": "macroscopic-polarization"
+  },
+  {
+   "concept": "svea-propagation-equation",
+   "prereq": "slowly-varying-polarization"
+  },
+  {
+   "concept": "plane-wave-propagation-equation",
+   "prereq": "svea-propagation-equation"
+  },
+  {
+   "concept": "optical-frequency-comb",
+   "prereq": "slowly-varying-envelope-approximation"
+  },
+  {
+   "concept": "multimode-svea",
+   "prereq": "optical-frequency-comb"
+  },
+  {
+   "concept": "multimode-svea",
+   "prereq": "svea-propagation-equation"
+  },
+  {
+   "concept": "susceptibility",
+   "prereq": "slowly-varying-polarization"
+  },
+  {
+   "concept": "linear-propagation-solution",
+   "prereq": "susceptibility"
+  },
+  {
+   "concept": "linear-propagation-solution",
+   "prereq": "plane-wave-propagation-equation"
+  },
+  {
+   "concept": "absorption-coefficient",
+   "prereq": "linear-propagation-solution"
+  },
+  {
+   "concept": "refractive-index",
+   "prereq": "linear-propagation-solution"
+  },
+  {
+   "concept": "dispersion",
+   "prereq": "linear-propagation-solution"
+  },
+  {
+   "concept": "group-velocity",
+   "prereq": "dispersion"
+  },
+  {
+   "concept": "two-level-susceptibility",
+   "prereq": "susceptibility"
+  },
+  {
+   "concept": "two-level-susceptibility",
+   "prereq": "spontaneous-emission-rate"
+  },
+  {
+   "concept": "resonant-absorption",
+   "prereq": "two-level-susceptibility"
+  },
+  {
+   "concept": "resonant-absorption",
+   "prereq": "absorption-coefficient"
+  },
+  {
+   "concept": "absorption-cross-section",
+   "prereq": "resonant-absorption"
+  },
+  {
+   "concept": "unitary-limit",
+   "prereq": "absorption-cross-section"
+  },
+  {
+   "concept": "far-detuned-refraction",
+   "prereq": "two-level-susceptibility"
+  },
+  {
+   "concept": "far-detuned-refraction",
+   "prereq": "refractive-index"
+  },
+  {
+   "concept": "inhomogeneous-broadening",
+   "prereq": "homogeneous-broadening"
+  },
+  {
+   "concept": "doppler-broadening",
+   "prereq": "inhomogeneous-broadening"
+  },
+  {
+   "concept": "doppler-broadening",
+   "prereq": "two-level-susceptibility"
+  },
+  {
+   "concept": "inhomogeneous-cross-section",
+   "prereq": "doppler-broadening"
+  },
+  {
+   "concept": "inhomogeneous-cross-section",
+   "prereq": "absorption-cross-section"
+  },
+  {
+   "concept": "nonlinear-susceptibility",
+   "prereq": "two-level-susceptibility"
+  },
+  {
+   "concept": "nonlinear-propagation",
+   "prereq": "nonlinear-susceptibility"
+  },
+  {
+   "concept": "nonlinear-propagation",
+   "prereq": "plane-wave-propagation-equation"
+  },
+  {
+   "concept": "saturation-parameter",
+   "prereq": "nonlinear-susceptibility"
+  },
+  {
+   "concept": "resonant-saturation",
+   "prereq": "saturation-parameter"
+  },
+  {
+   "concept": "resonant-saturation",
+   "prereq": "nonlinear-propagation"
+  },
+  {
+   "concept": "kerr-effect",
+   "prereq": "nonlinear-susceptibility"
+  },
+  {
+   "concept": "kerr-effect",
+   "prereq": "refractive-index"
+  },
+  {
+   "concept": "third-order-susceptibility",
+   "prereq": "nonlinear-susceptibility"
+  },
+  {
+   "concept": "saturation-intensity",
+   "prereq": "saturation-parameter"
+  },
+  {
+   "concept": "optical-pumping",
+   "prereq": "saturation-parameter"
+  },
+  {
+   "concept": "saturation-spectroscopy",
+   "prereq": "doppler-broadening"
+  },
+  {
+   "concept": "saturation-spectroscopy",
+   "prereq": "saturation-intensity"
+  },
+  {
+   "concept": "saturated-absorption-dip",
+   "prereq": "saturation-spectroscopy"
+  },
+  {
+   "concept": "two-level-susceptibility",
+   "prereq": "steady-state-coherence"
+  },
+  {
+   "concept": "two-level-susceptibility",
+   "prereq": "weak-field-response"
+  },
+  {
+   "concept": "nonlinear-susceptibility",
+   "prereq": "steady-state-coherence"
+  },
+  {
+   "concept": "saturation-parameter",
+   "prereq": "optical-pumping-rate"
+  },
+  {
+   "concept": "independent-atoms",
+   "prereq": "density-matrix"
+  }
+ ],
+ "types": []
+}

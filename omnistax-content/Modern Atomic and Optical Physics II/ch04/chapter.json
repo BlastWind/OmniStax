@@ -1,0 +1,413 @@
+{
+ "id": "4",
+ "dir": "ch04",
+ "title": "Propagation of light in a resonant medium",
+ "intro": {},
+ "sections": [
+  {
+   "id": "4.1",
+   "title": "The slowly-varying envelope approximation"
+  },
+  {
+   "id": "4.2",
+   "title": "Linear optical propagation"
+  },
+  {
+   "id": "4.3",
+   "title": "Nonlinear atomic response"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "P_pol",
+   "concept": "macroscopic-polarization",
+   "meaning": "The macroscopic polarization of the medium, the dipole moment per volume of its atoms",
+   "unit": "C/m²",
+   "section": "4.1",
+   "anchor": "4.1-drv-wave-equation"
+  },
+  {
+   "sym": "P_env",
+   "concept": "slowly-varying-polarization",
+   "meaning": "The slowly varying polarization amplitude, the envelope of the polarization on the carrier",
+   "unit": "C/m²",
+   "section": "4.1",
+   "anchor": "4.1-sv-polarization"
+  },
+  {
+   "sym": "E_field",
+   "type": "electric-field",
+   "meaning": "The electric field of the light propagating through the medium",
+   "unit": "V/m",
+   "section": "4.1",
+   "anchor": "4.1-wave-equation"
+  },
+  {
+   "sym": "E_env",
+   "concept": "slowly-varying-envelope",
+   "meaning": "The slowly varying envelope of the propagating field on its carrier",
+   "unit": "V/m",
+   "section": "4.1",
+   "anchor": "4.1-envelope"
+  },
+  {
+   "sym": "nu_bar",
+   "type": "frequency",
+   "meaning": "The central frequency of the nearly monochromatic field, its carrier frequency",
+   "unit": "rad/s",
+   "section": "4.1",
+   "anchor": "4.1-envelope"
+  },
+  {
+   "sym": "k_bar",
+   "type": "wavevector",
+   "meaning": "The wavevector of the carrier, k̄ = ν̄/c",
+   "unit": "m⁻¹",
+   "section": "4.1",
+   "anchor": "4.1-carrier"
+  },
+  {
+   "sym": "nu",
+   "concept": "optical-frequency",
+   "meaning": "The frequency ν_n of the n-th harmonic of an optical frequency comb",
+   "unit": "rad/s",
+   "section": "4.1",
+   "anchor": "4.1-comb"
+  },
+  {
+   "sym": "t",
+   "type": "time",
+   "meaning": "Time",
+   "unit": "s",
+   "section": "4.1"
+  },
+  {
+   "sym": "mu",
+   "type": "dipole",
+   "meaning": "The dipole matrix element of the two-level transition",
+   "unit": "C·m",
+   "section": "4.1",
+   "anchor": "4.1-two-level-polarization"
+  },
+  {
+   "sym": "V",
+   "type": "volume",
+   "meaning": "The volume holding the N atoms",
+   "unit": "m³",
+   "section": "4.1",
+   "anchor": "4.1-two-level-polarization"
+  },
+  {
+   "section": "4.2",
+   "sym": "chi",
+   "concept": "susceptibility",
+   "meaning": "The susceptibility, the ratio of the polarization to ε₀ times the field at each frequency component δν",
+   "anchor": "4.2-susceptibility"
+  },
+  {
+   "section": "4.2",
+   "sym": "P_env",
+   "concept": "slowly-varying-polarization",
+   "unit": "C/m²",
+   "meaning": "The slowly varying polarization amplitude, the envelope of the polarization on the carrier"
+  },
+  {
+   "section": "4.2",
+   "sym": "E_env",
+   "concept": "slowly-varying-envelope",
+   "unit": "V/m",
+   "meaning": "The slowly varying envelope of the propagating field on its carrier"
+  },
+  {
+   "section": "4.2",
+   "sym": "delta_nu",
+   "type": "frequency",
+   "unit": "rad/s",
+   "meaning": "The frequency of a component of the field measured from the central frequency ν̄, which sits on the atomic resonance"
+  },
+  {
+   "section": "4.2",
+   "sym": "nu_bar",
+   "type": "frequency",
+   "unit": "rad/s",
+   "meaning": "The central frequency of the nearly monochromatic field, its carrier frequency"
+  },
+  {
+   "section": "4.2",
+   "sym": "k_bar",
+   "type": "wavevector",
+   "unit": "m⁻¹",
+   "meaning": "The wavevector of the carrier, k̄ = ν̄/c"
+  },
+  {
+   "section": "4.2",
+   "sym": "alpha",
+   "concept": "absorption-coefficient",
+   "unit": "m⁻¹",
+   "meaning": "The rate per distance at which the beam intensity is attenuated, α = k̄ Im[χ(0)]",
+   "anchor": "4.2-eq-4-36"
+  },
+  {
+   "section": "4.2",
+   "sym": "n_ref",
+   "concept": "refractive-index",
+   "meaning": "The index of refraction, n = 1 + Re[χ(0)]/2",
+   "anchor": "4.2-eq-4-37"
+  },
+  {
+   "section": "4.2",
+   "sym": "v_g",
+   "concept": "group-velocity",
+   "unit": "m/s",
+   "meaning": "The group velocity, at which the envelope propagates",
+   "anchor": "4.2-drv-group-velocity"
+  },
+  {
+   "section": "4.2",
+   "sym": "nu",
+   "concept": "optical-frequency",
+   "unit": "rad/s",
+   "redefines": true,
+   "meaning": "The frequency of the applied field"
+  },
+  {
+   "section": "4.2",
+   "sym": "omega",
+   "concept": "atomic-transition-frequency",
+   "unit": "rad/s",
+   "meaning": "The atomic transition frequency: the two levels lie ħω apart"
+  },
+  {
+   "section": "4.2",
+   "sym": "mu",
+   "type": "dipole",
+   "unit": "C·m",
+   "meaning": "The dipole matrix element of the two-level transition"
+  },
+  {
+   "section": "4.2",
+   "sym": "V",
+   "type": "volume",
+   "unit": "m³",
+   "meaning": "The volume holding the N atoms"
+  },
+  {
+   "section": "4.2",
+   "sym": "t",
+   "type": "time",
+   "unit": "s",
+   "meaning": "Time"
+  },
+  {
+   "section": "4.2",
+   "sym": "gamma",
+   "concept": "spontaneous-emission-rate",
+   "unit": "s⁻¹",
+   "meaning": "The spontaneous emission rate: the decay of 2.2 with the vacuum modes of the field as the continuum"
+  },
+  {
+   "section": "4.2",
+   "sym": "gamma_12",
+   "concept": "coherence-decay-rate",
+   "unit": "s⁻¹",
+   "meaning": "The decay rate of the coherence ρ₁₂, the linewidth of the susceptibility of a single atom"
+  },
+  {
+   "section": "4.2",
+   "sym": "rho_11",
+   "concept": "density-matrix-populations",
+   "meaning": "The population of the level |1⟩; ρ₁₁⁰ its value in the weak field"
+  },
+  {
+   "section": "4.2",
+   "sym": "rho_22",
+   "concept": "density-matrix-populations",
+   "meaning": "The population of the level |2⟩; ρ₂₂⁰ its value in the weak field"
+  },
+  {
+   "section": "4.2",
+   "sym": "rho_21",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂; here its Fourier component at δν"
+  },
+  {
+   "section": "4.2",
+   "sym": "lambda",
+   "type": "length",
+   "unit": "m",
+   "meaning": "The wavelength of the transition, λ = 2π/k₀"
+  },
+  {
+   "section": "4.2",
+   "sym": "I_int",
+   "type": "intensity",
+   "unit": "W/m²",
+   "meaning": "The intensity of the beam"
+  },
+  {
+   "section": "4.2",
+   "sym": "sigma_tilde",
+   "concept": "absorption-cross-section",
+   "unit": "m²",
+   "meaning": "The absorption cross-section of one atom on resonance",
+   "anchor": "4.2-drv-resonant-cross-section"
+  },
+  {
+   "section": "4.2",
+   "sym": "v_z",
+   "type": "velocity",
+   "unit": "m/s",
+   "meaning": "The velocity of an atom along the beam, the z direction"
+  },
+  {
+   "section": "4.2",
+   "sym": "v_T",
+   "type": "velocity",
+   "unit": "m/s",
+   "meaning": "The characteristic velocity corresponding to the atomic temperature"
+  },
+  {
+   "section": "4.2",
+   "sym": "n_v",
+   "type": "density",
+   "unit": "s/m⁴",
+   "meaning": "The thermal velocity distribution: the number of atoms per volume per unit of v_z"
+  },
+  {
+   "section": "4.2",
+   "sym": "T",
+   "type": "temperature",
+   "unit": "K",
+   "meaning": "The temperature of the gas"
+  },
+  {
+   "sym": "chi_n",
+   "concept": "nonlinear-susceptibility",
+   "meaning": "The nonlinear susceptibility χ_n(δ) of the two-level medium in a strong continuous-wave field",
+   "anchor": "4.3-nonlinear-susceptibility",
+   "section": "4.3"
+  },
+  {
+   "sym": "chi_3",
+   "concept": "third-order-susceptibility",
+   "meaning": "The third-order susceptibility χ⁽³⁾, the next order correction to the linear susceptibility",
+   "anchor": "4.3-chi-3",
+   "section": "4.3"
+  },
+  {
+   "sym": "s_sat",
+   "concept": "saturation-parameter",
+   "meaning": "The saturation parameter s, 4|Ω|²/γ₁₂γ on resonance and 2R_opt/γ at any detuning",
+   "anchor": "4.3-saturation-parameter",
+   "section": "4.3"
+  },
+  {
+   "sym": "Omega_pm",
+   "concept": "rabi-frequency",
+   "meaning": "The Rabi frequencies Ω± = μℰ±/ℏ of the forward and backward fields",
+   "section": "4.3"
+  },
+  {
+   "sym": "Omega_p",
+   "concept": "rabi-frequency",
+   "ref": "pump",
+   "meaning": "The Rabi frequency Ω₊ = μℰ₊/ℏ of the strong forward field",
+   "section": "4.3"
+  },
+  {
+   "sym": "Omega_m",
+   "concept": "rabi-frequency",
+   "ref": "probe",
+   "meaning": "The Rabi frequency Ω₋ = μℰ₋/ℏ of the weak backward field",
+   "section": "4.3"
+  },
+  {
+   "sym": "E_pm",
+   "concept": "slowly-varying-envelope",
+   "meaning": "The envelopes ℰ± of the forward and backward fields",
+   "section": "4.3"
+  },
+  {
+   "sym": "E_p",
+   "concept": "slowly-varying-envelope",
+   "ref": "pump",
+   "meaning": "The envelope ℰ₊ of the strong field in the forward direction",
+   "anchor": "4.3-eq-4-66",
+   "section": "4.3"
+  },
+  {
+   "sym": "E_m",
+   "concept": "slowly-varying-envelope",
+   "ref": "probe",
+   "meaning": "The envelope ℰ₋ of the weak field in the backward direction",
+   "anchor": "4.3-eq-4-66",
+   "section": "4.3"
+  },
+  {
+   "sym": "Delta",
+   "concept": "atomic-transition-frequency",
+   "meaning": "The bare atomic resonance Δ that the two beams are tuned near",
+   "anchor": "4.3-spectroscopy",
+   "section": "4.3"
+  },
+  {
+   "sym": "rho_11",
+   "concept": "density-matrix-populations",
+   "meaning": "The population of the level |1⟩",
+   "section": "4.3"
+  },
+  {
+   "sym": "rho_22",
+   "concept": "density-matrix-populations",
+   "meaning": "The population of the level |2⟩",
+   "section": "4.3"
+  },
+  {
+   "sym": "rho_21",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂",
+   "anchor": "4.3-eq-4-53",
+   "section": "4.3"
+  },
+  {
+   "sym": "gamma_12",
+   "concept": "coherence-decay-rate",
+   "meaning": "The decay rate of the coherence ρ₁₂, the homogeneous linewidth",
+   "section": "4.3"
+  },
+  {
+   "sym": "R_opt",
+   "concept": "optical-pumping-rate",
+   "meaning": "The optical pumping rate R_opt of the applied field",
+   "anchor": "4.3-eq-4-55",
+   "section": "4.3"
+  },
+  {
+   "section": "4.2",
+   "sym": "k_mag",
+   "type": "wavevector",
+   "unit": "m⁻¹",
+   "meaning": "The magnitude of the wavevector of the light along z, so that kv_z is an atom’s Doppler shift"
+  },
+  {
+   "section": "4.3",
+   "sym": "k_mag",
+   "type": "wavevector",
+   "unit": "m⁻¹",
+   "meaning": "The magnitude of the wavevector of the light along z, so that kv_z is an atom’s Doppler shift"
+  },
+  {
+   "section": "4.1",
+   "sym": "rho_21",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |2⟩ and |1⟩, the complex conjugate of ρ₁₂",
+   "anchor": "4.1-two-level-polarization"
+  },
+  {
+   "section": "4.1",
+   "sym": "rho_12",
+   "concept": "density-matrix-coherences",
+   "meaning": "The coherence between the levels |1⟩ and |2⟩, the complex conjugate of ρ₂₁"
+  }
+ ]
+}

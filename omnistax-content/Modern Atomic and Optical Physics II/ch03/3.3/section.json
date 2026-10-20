@@ -1,0 +1,963 @@
+{
+ "id": "3.3",
+ "chapter": "3",
+ "title": "The dynamics of an open system",
+ "short": "Dynamics of an open system",
+ "lead": "How the <span data-concept=\"reduced-density-operator\">reduced density operator</span> of an <span data-concept=\"open-system\">open system</span> evolves: tracing the equation of motion over the <span data-concept=\"open-system\">reservoir</span>, <span data-concept=\"spin-in-fluctuating-field\">a spin in a fluctuating field</span> as the model of an <span data-concept=\"open-system\">environment</span>, its <span data-concept=\"correlation-time\">correlation time</span> and the line between reversible and <span data-concept=\"markovian-environment\">Markovian</span> dephasing, and the <span data-concept=\"born-markov-approximation\">Born-Markov</span> derivation that turns the <span data-concept=\"reservoir-correlation-functions\">correlation functions</span> of the reservoir into the <span data-concept=\"master-equation\">master equation</span> for an atom in a <span data-concept=\"thermal-radiation-field\">thermal radiation field</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-spin-echo",
+   "kind": "sim",
+   "draws": [
+    "coherence",
+    "frequency",
+    "time",
+    "phase"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "entangled",
+   "concept": "system-environment-entanglement",
+   "verb": "introduces"
+  },
+  {
+   "span": "half-rate",
+   "concept": "decaying-atom-reduced-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-3-27",
+   "concept": "system-reservoir-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "fluctuating-field",
+   "concept": "spin-in-fluctuating-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "stationary",
+   "concept": "stationary-random-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "correlation-time",
+   "concept": "correlation-time",
+   "verb": "introduces"
+  },
+  {
+   "span": "gaussian",
+   "concept": "gaussian-random-process",
+   "verb": "introduces"
+  },
+  {
+   "span": "reversible",
+   "concept": "reversible-evolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "markovian",
+   "concept": "markovian-environment",
+   "verb": "introduces"
+  },
+  {
+   "span": "interaction-picture",
+   "concept": "open-system-interaction-picture",
+   "verb": "introduces"
+  },
+  {
+   "span": "bilinear",
+   "concept": "bilinear-system-reservoir-coupling",
+   "verb": "introduces"
+  },
+  {
+   "span": "born-markov",
+   "concept": "born-markov-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-shift",
+   "concept": "reservoir-energy-shift",
+   "verb": "introduces"
+  },
+  {
+   "span": "correlation-functions",
+   "concept": "reservoir-correlation-functions",
+   "verb": "introduces"
+  },
+  {
+   "span": "sharply-peaked",
+   "concept": "thermal-field-correlator",
+   "verb": "introduces"
+  },
+  {
+   "span": "master-equation",
+   "concept": "master-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "entangled",
+   "concept": "open-system",
+   "verb": "uses"
+  },
+  {
+   "span": "decay",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "decay",
+   "concept": "spontaneous-emission-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "decay",
+   "concept": "density-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "half-rate",
+   "concept": "density-matrix-coherences",
+   "verb": "uses"
+  },
+  {
+   "span": "half-rate",
+   "concept": "density-matrix-populations",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-33",
+   "concept": "time-evolution-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "s-plus",
+   "concept": "density-matrix-coherences",
+   "verb": "uses"
+  },
+  {
+   "span": "s-plus",
+   "concept": "expectation-value",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-3-43",
+   "concept": "atom-field-interaction",
+   "verb": "uses"
+  },
+  {
+   "span": "sharply-peaked",
+   "concept": "wigner-weisskopf",
+   "verb": "uses"
+  },
+  {
+   "span": "master-equation",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "markovian",
+   "concept": "open-system",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-density-operator-evolution",
+   "concept": "density-operator-equation-of-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-density-operator-evolution",
+   "concept": "density-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-density-operator-evolution",
+   "concept": "reduced-density-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-density-operator-evolution",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-reduced-density-equation",
+   "concept": "reduced-density-operator-dynamics",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-thermal-correlator",
+   "concept": "thermal-radiation-field",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-thermal-correlator",
+   "concept": "mean-thermal-photon-number",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-master-equation",
+   "concept": "principal-value-identity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "footnote-1",
+   "kind": "book",
+   "number": "1",
+   "html": "This relationship between bandwidth and <span data-concept=\"correlation-time\">correlation time</span> of the <span data-concept=\"open-system\">reservoir</span> is often, but not always, true. For example, if the system consists of an ensemble of atoms with spatial extent $L$ larger than the optical wavelength $\\lambda_0$, and the <span data-concept=\"open-system\">environment</span> consists of the electromagnetic field, the <span data-concept=\"correlation-time\">correlation time</span> $\\ktauc \\sim L/c$ corresponds to the time it takes for a photon to leave the medium, since a photon released by one atom can be absorbed by another a time $\\ktauc$ later."
+  },
+  {
+   "id": "footnote-2",
+   "kind": "book",
+   "number": "2",
+   "html": "The <span data-concept=\"born-markov-approximation\">Born approximation</span> is actually slightly stronger than this. It states that the <span data-concept=\"open-system\">reservoir</span> is large enough that the assumption of factorizability is good at all times as far as calculating the system dynamics is concerned."
+  },
+  {
+   "id": "c-eq-3-33",
+   "kind": "correction",
+   "html": "The book prints $+i$ in the exponent. The evolution operator of $\\kHSR = \\hbar\\kft(\\kt)\\hat{S}_z$ is $\\hat{U} = e^{-i\\int_0^{\\kt}\\kft(\\kt')d\\kt'\\hat{S}_z}$, since $\\kHSR$ at different times commutes with itself; with it $\\hat{U}^\\dagger\\hat{S}_+\\hat{U} = e^{i\\int_0^{\\kt}\\kft(\\kt')d\\kt'}\\hat{S}_+$, the phase of Eq. (3.34)."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "density-operator-evolution",
+   "what": "the equation of motion of the density operator",
+   "source": "Modern Atomic and Optical Physics II, 3.3 System-reservoir interactions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The probabilities $p_\\alpha$ of the mixture are constant in time.",
+       "src": "(3.1)"
+      },
+      {
+       "tex": "i\\hbar|\\dot{\\kpsi}_\\alpha^S\\rangle = \\kHS|\\kpsi_\\alpha^S\\rangle",
+       "src": "(1.11)"
+      },
+      {
+       "text": "The conjugate of the Schroedinger equation, $-i\\hbar\\langle\\dot{\\kpsi}_\\alpha^S| = \\langle\\kpsi_\\alpha^S|\\kHS$, since $\\kHS$ is Hermitian.",
+       "src": "(1.11), (1.5)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\krhoS} = \\mk{R}{\\sum_\\alpha p_\\alpha|\\kpsi_\\alpha^S\\rangle\\langle\\kpsi_\\alpha^S|}",
+      "src": "(3.1)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\krhoS}} = \\mk{R}{\\sum_\\alpha p_\\alpha(i\\hbar|\\dot{\\kpsi}_\\alpha^S\\rangle\\langle\\kpsi_\\alpha^S| + |\\kpsi_\\alpha^S\\rangle\\,i\\hbar\\langle\\dot{\\kpsi}_\\alpha^S|)}",
+       "uses": [
+        0
+       ],
+       "cap": "Differentiating by the product rule and multiplying by $i\\hbar$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\krhoS}} = \\mk{R}{\\sum_\\alpha p_\\alpha(\\kHS|\\kpsi_\\alpha^S\\rangle\\langle\\kpsi_\\alpha^S| - |\\kpsi_\\alpha^S\\rangle\\langle\\kpsi_\\alpha^S|\\kHS)}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\krhoS}} = \\mk{R}{\\kHS\\krhoS - \\krhoS\\kHS}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhoS}} = \\mk{R}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]}",
+       "uses": []
+      }
+     ],
+     "num": "(3.23)",
+     "note": "The book prints $\\frac{1}{i\\hbar}[\\kHS, \\krhoS]$ as equal to $i\\hbar\\dot{\\krhoS}$ of Eq. (3.22); the factor $\\frac{1}{i\\hbar}$ belongs with $\\dot{\\krhoS}$, the form of Eq. (3.28)."
+    }
+   ]
+  },
+  {
+   "id": "decaying-atom-density-matrix",
+   "what": "the reduced density matrix of a decaying atom",
+   "source": "Modern Atomic and Optical Physics II, 3.3 System-reservoir interactions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "|\\kpsi(\\kt)\\rangle = \\kcone|1\\rangle \\otimes |0\\rangle + \\kctwo(\\kt)|2\\rangle \\otimes |0\\rangle + \\sum_k \\kck(\\kt)|1\\rangle \\otimes |1_k\\rangle",
+       "src": "3.3"
+      },
+      {
+       "text": "In the frame rotating at the atomic frequency $\\komega$, the excited amplitude decays as $\\kctwo(\\kt) = \\kctwo e^{-\\kgamma\\kt/2}$.",
+       "src": "(2.90)"
+      },
+      {
+       "text": "Probability is conserved: $|\\kcone|^2 + |\\kctwo(\\kt)|^2 + \\sum_k|\\kck(\\kt)|^2 = 1$.",
+       "src": "2.3.4"
+      },
+      {
+       "text": "For the initial pure state the density matrix has $\\rho_{ij}(0) = c_i c_j^*$.",
+       "src": "3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\krhoS} = \\mk{R}{\\mathrm{Tr}_R[|\\kpsi(\\kt)\\rangle\\langle\\kpsi(\\kt)|]}",
+      "src": "(3.21)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\krhoS} = \\mk{R}{\\sum_{n=0}^\\infty\\sum_k\\langle n_k|\\kpsi(\\kt)\\rangle\\langle\\kpsi(\\kt)|n_k\\rangle}",
+       "uses": [],
+       "cap": "The trace over the field runs over the $n$-photon Fock states $|n_k\\rangle$ of every mode $k$."
+      },
+      {
+       "tex": "\\mk{L}{\\krhoS} = \\mk{R}{\\Big(|\\kcone|^2 + \\sum_k|\\kck(\\kt)|^2\\Big)|1\\rangle\\langle 1| + |\\kctwo(\\kt)|^2|2\\rangle\\langle 2| + \\kcone\\kctwo(\\kt)^*|1\\rangle\\langle 2| + \\kctwo(\\kt)\\kcone^*|2\\rangle\\langle 1|}",
+       "uses": [
+        0
+       ],
+       "cap": "Only $\\langle 0|$ meets the parts with no photon, and only $\\langle 1_k|$ meets $c_k(t)|1\\rangle \\otimes |1_k\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{\\krhoS} = \\mk{R}{\\begin{pmatrix} |\\kcone|^2 + \\sum_k|\\kck(\\kt)|^2 & \\kcone\\kctwo^* e^{-\\kgamma {\\kt}/2} \\\\ \\kctwo\\kcone^* e^{-\\kgamma {\\kt}/2} & |\\kctwo|^2 e^{-\\kgamma {\\kt}} \\end{pmatrix}}",
+       "uses": [
+        1
+       ],
+       "cap": "As a matrix in the basis $\\{|1\\rangle, |2\\rangle\\}$."
+      },
+      {
+       "tex": "\\mk{L}{\\krhoS} = \\mk{R}{\\begin{pmatrix} 1 - \\krhotwotwo(0)e^{-\\kgamma {\\kt}} & \\krhoonetwo(0)e^{-\\kgamma {\\kt}/2} \\\\ \\krhotwoone(0)e^{-\\kgamma {\\kt}/2} & \\krhotwotwo(0)e^{-\\kgamma {\\kt}} \\end{pmatrix}}",
+       "uses": [
+        2,
+        3
+       ]
+      }
+     ],
+     "num": "(3.26)"
+    }
+   ]
+  },
+  {
+   "id": "reduced-density-equation",
+   "what": "the equation of motion of the reduced density operator",
+   "source": "Modern Atomic and Optical Physics II, 3.3.1 General formalism",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = \\kHS + \\kHR + \\kHSR",
+       "src": "(3.27)"
+      },
+      {
+       "tex": "\\krhoS = \\mathrm{Tr}_R[\\krhohat]",
+       "src": "(3.21)"
+      },
+      {
+       "text": "$\\kHS$ acts only on the system degrees of freedom, so the trace over the reservoir passes it.",
+       "src": "3.3.1"
+      },
+      {
+       "text": "The trace is invariant under cyclic permutations of the reservoir operators, so $\\mathrm{Tr}_R[[\\kHR, \\krhohat]] = 0$.",
+       "src": "3.3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\krhohat}} = \\mk{R}{\\frac{1}{i\\hbar}[\\kH, \\krhohat]}",
+      "src": "(3.28)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\krhohat}} = \\mk{R}{\\frac{1}{i\\hbar}[\\kHS + \\kHR + \\kHSR, \\krhohat]}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhoS}} = \\mk{R}{\\frac{1}{i\\hbar}\\mathrm{Tr}_R[[\\kHS + \\kHR + \\kHSR, \\krhohat]]}",
+       "uses": [
+        1
+       ],
+       "cap": "Tracing over the reservoir degrees of freedom on both sides."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhoS}} = \\mk{s}{\\frac{1}{i\\hbar}\\mathrm{Tr}_R[[\\kHS, \\krhohat]]} + \\mk{r}{\\frac{1}{i\\hbar}\\mathrm{Tr}_R[[\\kHR, \\krhohat]]} + \\mk{i}{\\frac{1}{i\\hbar}\\mathrm{Tr}_R[[\\kHSR, \\krhohat]]}",
+       "uses": [],
+       "map": {
+        "R": [
+         "s",
+         "r",
+         "i"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhoS}} = \\mk{s}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]} + \\mk{r}{\\frac{1}{i\\hbar}\\mathrm{Tr}_R[[\\kHR, \\krhohat]]} + \\mk{i}{\\frac{1}{i\\hbar}\\mathrm{Tr}_R[[\\kHSR, \\krhohat]]}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\krhoS}} = \\mk{s}{\\frac{1}{i\\hbar}[\\kHS, \\krhoS]} + \\mk{r}{\\frac{1}{i\\hbar}\\underbrace{\\mathrm{Tr}_R[[\\kHR, \\krhohat]]}_{=0}} + \\mk{i}{\\frac{1}{i\\hbar}\\mathrm{Tr}_R[[\\kHSR, \\krhohat]]}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(3.31)"
+    }
+   ]
+  },
+  {
+   "id": "coarse-grained-change",
+   "what": "the change of the density operator over a short interval",
+   "source": "Modern Atomic and Optical Physics II, 3.3.3 Density operator method for a Markovian reservoir",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d{\\kt}}\\krhotilde} = \\mk{R}{\\frac{1}{i\\hbar}[\\kHtilde_{SR}, \\krhotilde]}",
+      "src": "(3.40)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\underbrace{\\krhotilde({\\kt} + \\kDeltat) - \\krhotilde({\\kt})}_{\\Delta\\krhotilde}} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'[\\kHtilde_{SR}({\\kt}'), \\krhotilde({\\kt}')]}",
+       "uses": [],
+       "cap": "Integrating both sides from $t$ to $t + \\Delta t$."
+      }
+     ],
+     "num": "(3.45)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "$\\kt' - \\kt < \\kDeltat$.",
+       "src": "3.3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\krhotilde({\\kt} + \\kDeltat) - \\krhotilde({\\kt})} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'[\\kHtilde_{SR}({\\kt}'), \\krhotilde({\\kt}')]}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\krhotilde({\\kt}') - \\krhotilde({\\kt})} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}'}d{\\kt}''[\\kHtilde_{SR}({\\kt}''), \\krhotilde({\\kt}'')]}",
+       "uses": [
+        1
+       ],
+       "cap": "The same integration, from $t$ to $t'$, which lies within the interval."
+      },
+      {
+       "tex": "\\mk{L}{\\krhotilde({\\kt}')} \\approx \\mk{t}{\\krhotilde({\\kt})} + \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}'}d{\\kt}''[\\kHtilde_{SR}({\\kt}''), \\krhotilde({\\kt}'')]}",
+       "uses": [],
+       "map": {
+        "L": [
+         "L",
+         "t"
+        ]
+       }
+      }
+     ],
+     "num": "(3.46)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\krhoS = \\mathrm{Tr}_R[\\krhohat]",
+       "src": "(3.21)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\Delta\\krhotilde} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'[\\kHtilde_{SR}({\\kt}'), \\krhotilde({\\kt}')]}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde} = {} &\\mk{a}{\\tfrac{1}{i\\hbar}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'[\\kHtilde_{SR}({\\kt}'), \\krhotilde({\\kt})]} \\\\ &+ \\mk{b}{\\tfrac{1}{(i\\hbar)^2}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''[\\kHtilde_{SR}({\\kt}'), [\\kHtilde_{SR}({\\kt}''), \\krhotilde({\\kt}'')]]}\\end{aligned}",
+       "uses": [
+        1
+       ],
+       "cap": "The expansion of $\\tilde{\\rho}(t')$ goes inside the commutator.",
+       "map": {
+        "R": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S} = {} &\\mk{a}{\\tfrac{1}{i\\hbar}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\ \\mathrm{Tr}_R[\\kHtilde_{SR}({\\kt}'), \\krhotilde({\\kt})]} \\\\ &+ \\mk{b}{\\tfrac{1}{(i\\hbar)^2}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\ \\mathrm{Tr}_R[\\kHtilde_{SR}({\\kt}'), [\\kHtilde_{SR}({\\kt}''), \\krhotilde({\\kt}'')]]}\\end{aligned}",
+       "uses": [
+        2
+       ],
+       "cap": "Tracing over the reservoir degrees of freedom."
+      }
+     ],
+     "num": "(3.48)"
+    }
+   ]
+  },
+  {
+   "id": "first-reservoir-term",
+   "what": "the first-order effect of the reservoir",
+   "source": "Modern Atomic and Optical Physics II, 3.3.3 Density operator method for a Markovian reservoir",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kHtilde_{SR} = \\kShat\\kFR({\\kt})^\\dagger + \\kFR({\\kt})\\kShat^\\dagger",
+       "src": "(3.42)"
+      },
+      {
+       "text": "The state is factorizable, $\\krhotilde({\\kt}) = \\krhotilde_S({\\kt}) \\otimes \\krhotilde_R({\\kt})$, and the correction $\\krhotilde_{corr}$ is neglected to leading order, since $\\kDeltat \\ll \\ktauS$.",
+       "src": "(3.49), (3.50)"
+      },
+      {
+       "tex": "\\langle\\kFR({\\kt}')^\\dagger\\rangle = \\mathrm{Tr}_R\\{\\kFR({\\kt}')^\\dagger\\krhotilde_R({\\kt})\\}",
+       "src": "(3.53)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\Delta\\krhotilde_S^{(1)}} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\ \\mathrm{Tr}_R[\\kHtilde_{SR}({\\kt}'), \\krhotilde({\\kt})]}",
+      "src": "(3.48)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\Delta\\krhotilde_S^{(1)}} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\ \\mathrm{Tr}_R[\\kShat\\kFR({\\kt}')^\\dagger + \\kFR({\\kt}')\\kShat^\\dagger, \\krhotilde_S({\\kt}) \\otimes \\krhotilde_R({\\kt})]}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\Delta\\krhotilde_S^{(1)}} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\ [\\kShat, \\krhotilde_S({\\kt})] \\otimes \\mathrm{Tr}_R\\{\\kFR({\\kt}')^\\dagger\\krhotilde_R({\\kt})\\} - h.c.}",
+       "uses": [],
+       "cap": "The system operators come out of the trace over the reservoir, which is cyclic in the reservoir operators, so the terms in $\\hat{S}$ give $[\\hat{S}, \\tilde{\\rho}_S]\\,\\mathrm{Tr}_R\\{\\hat{F}_R^\\dagger\\tilde{\\rho}_R\\}$; the terms in $\\hat{S}^\\dagger$ are minus the Hermitian conjugate of these, since $\\tilde{\\rho}_S$ and $\\tilde{\\rho}_R$ are Hermitian."
+      },
+      {
+       "tex": "\\mk{L}{\\Delta\\krhotilde_S^{(1)}} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\ [\\kShat, \\krhotilde_S({\\kt})] \\otimes \\langle\\kFR({\\kt}')^\\dagger\\rangle - h.c.}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\Delta\\krhotilde_S^{(1)}} = \\mk{R}{\\frac{1}{i\\hbar}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\ [\\underbrace{\\kShat\\langle\\kFR({\\kt}')^\\dagger\\rangle + \\kShat^\\dagger\\langle\\kFR({\\kt}')\\rangle}_{\\kHS'}, \\krhotilde_S({\\kt})]}",
+       "uses": [],
+       "cap": "Minus the Hermitian conjugate of $[\\hat{S}, \\tilde{\\rho}_S]\\langle\\hat{F}_R^\\dagger\\rangle$ is $[\\hat{S}^\\dagger, \\tilde{\\rho}_S]\\langle\\hat{F}_R\\rangle$, which joins it in one commutator."
+      }
+     ],
+     "num": "(3.54)",
+     "note": "The book prints $\\mathrm{Tr}\\{\\kFR({\\kt}')^\\dagger, \\krhotilde_R({\\kt})\\}$ in Eq. (3.52), with a comma and without the subscript $R$; the trace over the reservoir of the product is meant, as Eq. (3.53) writes it."
+    }
+   ]
+  },
+  {
+   "id": "second-reservoir-term",
+   "what": "the second-order effect of the reservoir in correlation functions",
+   "source": "Modern Atomic and Optical Physics II, 3.3.3 Density operator method for a Markovian reservoir",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "g^{++}({\\kt}', {\\kt}'') = \\mathrm{Tr}_R[\\kFR({\\kt}')^\\dagger\\kFR({\\kt}'')^\\dagger\\krhotilde_R]",
+       "src": "(3.61)"
+      },
+      {
+       "text": "The reservoir density operator $\\krhotilde_R$ is Hermitian.",
+       "src": "3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{g^{--}({\\kt}', {\\kt}'')} = \\mk{R}{\\mathrm{Tr}_R[\\kFR({\\kt}')\\kFR({\\kt}'')\\krhotilde_R]}",
+      "src": "(3.58)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{g^{--}({\\kt}', {\\kt}'')^*} = \\mk{R}{\\mathrm{Tr}_R[\\kFR({\\kt}')\\kFR({\\kt}'')\\krhotilde_R]^\\dagger}",
+       "uses": [],
+       "cap": "The conjugate of a trace is the trace of the adjoint."
+      },
+      {
+       "tex": "\\mk{L}{g^{--}({\\kt}', {\\kt}'')^*} = \\mk{R}{\\mathrm{Tr}_R[\\krhotilde_R\\kFR({\\kt}'')^\\dagger\\kFR({\\kt}')^\\dagger]}",
+       "uses": [
+        1
+       ],
+       "cap": "$(\\hat{X}\\hat{Y}\\hat{Z})^\\dagger = \\hat{Z}^\\dagger\\hat{Y}^\\dagger\\hat{X}^\\dagger$."
+      },
+      {
+       "tex": "\\mk{L}{g^{--}({\\kt}', {\\kt}'')^*} = \\mk{R}{g^{++}({\\kt}'', {\\kt}')}",
+       "uses": [
+        0
+       ],
+       "cap": "Permuting cyclically, $\\mathrm{Tr}_R[\\tilde{\\rho}_R\\hat{F}_R(t'')^\\dagger\\hat{F}_R(t')^\\dagger] = \\mathrm{Tr}_R[\\hat{F}_R(t'')^\\dagger\\hat{F}_R(t')^\\dagger\\tilde{\\rho}_R]$."
+      }
+     ],
+     "num": "(3.65)"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The reservoir density operator $\\krhotilde_R$ is Hermitian.",
+       "src": "3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{\\mathrm{Tr}_R[\\kFR({\\kt}')^\\dagger\\kFR({\\kt}'')\\krhotilde_R]}",
+      "src": "(3.59)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{g^{+-}({\\kt}', {\\kt}'')^*} = \\mk{R}{\\mathrm{Tr}_R[\\kFR({\\kt}')^\\dagger\\kFR({\\kt}'')\\krhotilde_R]^\\dagger}",
+       "uses": [],
+       "cap": "The conjugate of a trace is the trace of the adjoint."
+      },
+      {
+       "tex": "\\mk{L}{g^{+-}({\\kt}', {\\kt}'')^*} = \\mk{R}{\\mathrm{Tr}_R[\\krhotilde_R\\kFR({\\kt}'')^\\dagger\\kFR({\\kt}')]}",
+       "uses": [
+        0
+       ],
+       "cap": "$(\\hat{X}\\hat{Y}\\hat{Z})^\\dagger = \\hat{Z}^\\dagger\\hat{Y}^\\dagger\\hat{X}^\\dagger$."
+      },
+      {
+       "tex": "\\mk{L}{g^{+-}({\\kt}', {\\kt}'')^*} = \\mk{R}{g^{+-}({\\kt}'', {\\kt}')}",
+       "uses": [],
+       "cap": "Permuting cyclically, as in Eq. (3.59)."
+      }
+     ],
+     "num": "(3.68)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kHtilde_{SR}({\\kt}) = \\kFR({\\kt})\\kShat^\\dagger + \\kFR({\\kt})^\\dagger\\kShat",
+       "src": "(3.42)"
+      },
+      {
+       "text": "The state is factorizable at $\\kt$, and the correction $\\krhotilde_{corr}$ is neglected to leading order, since $\\kDeltat \\ll \\ktauS$.",
+       "src": "(3.49), (3.50)"
+      },
+      {
+       "text": "The two-time correlation functions $g^{--}$, $g^{+-}$, $g^{-+}$ and $g^{++}$ of the reservoir operators are the traces of Eqs. (3.58)–(3.61), each of which may be permuted cyclically in the reservoir operators.",
+       "src": "(3.58)–(3.61)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = \\mk{R}{\\frac{1}{(i\\hbar)^2}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\ \\mathrm{Tr}_R[\\kHtilde_{SR}({\\kt}'), [\\kHtilde_{SR}({\\kt}''), \\krhotilde({\\kt}'')]]}",
+      "src": "(3.48)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = {} &\\mk{A}{\\frac{1}{(i\\hbar)^2}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\ \\mathrm{Tr}_R[\\kFR({\\kt}')\\kShat^\\dagger + \\kFR({\\kt}')^\\dagger\\kShat,} \\\\ &\\mk{B}{[\\kFR({\\kt}'')\\kShat^\\dagger + \\kFR({\\kt}'')^\\dagger\\kShat, \\krhotilde({\\kt}'')]]}\\end{aligned}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "R": [
+         "A",
+         "B"
+        ]
+       }
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S^{(2)}} \\approx {} &\\mk{A}{\\frac{1}{(i\\hbar)^2}\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\ \\mathrm{Tr}_R[\\kFR({\\kt}')\\kShat^\\dagger + \\kFR({\\kt}')^\\dagger\\kShat,} \\\\ &\\mk{B}{[\\kFR({\\kt}'')\\kShat^\\dagger + \\kFR({\\kt}'')^\\dagger\\kShat, \\krhotilde_S({\\kt})\\krhotilde_R({\\kt})]]}\\end{aligned}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = {} &\\tfrac{1}{(i\\hbar)^2}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\Big(\\mk{r1}{\\mathrm{Tr}_R\\left\\{\\left(\\kFR({\\kt}')\\kShat^\\dagger + \\kFR({\\kt}')^\\dagger\\kShat\\right)\\left(\\kFR({\\kt}'')\\kShat^\\dagger + \\kFR({\\kt}'')^\\dagger\\kShat\\right)\\krhotilde_S({\\kt})\\krhotilde_R({\\kt})\\right\\}} \\\\ &\\mk{r2}{-\\mathrm{Tr}_R\\left\\{\\left(\\kFR({\\kt}')\\kShat^\\dagger + \\kFR({\\kt}')^\\dagger\\kShat\\right)\\krhotilde_S({\\kt})\\krhotilde_R({\\kt})\\left(\\kFR({\\kt}'')\\kShat^\\dagger + \\kFR({\\kt}'')^\\dagger\\kShat\\right)\\right\\}} \\\\ &\\mk{r3}{-\\mathrm{Tr}_R\\left\\{\\left(\\kFR({\\kt}'')\\kShat^\\dagger + \\kFR({\\kt}'')^\\dagger\\kShat\\right)\\krhotilde_S({\\kt})\\krhotilde_R({\\kt})\\left(\\kFR({\\kt}')\\kShat^\\dagger + \\kFR({\\kt}')^\\dagger\\kShat\\right)\\right\\}} \\\\ &\\mk{r4}{+\\mathrm{Tr}_R\\left\\{\\krhotilde_S({\\kt})\\krhotilde_R({\\kt})\\left(\\kFR({\\kt}'')\\kShat^\\dagger + \\kFR({\\kt}'')^\\dagger\\kShat\\right)\\left(\\kFR({\\kt}')\\kShat^\\dagger + \\kFR({\\kt}')^\\dagger\\kShat\\right)\\right\\}}\\Big)\\end{aligned}",
+       "uses": [],
+       "cap": "Expanding the double commutator, $[\\hat{A}, [\\hat{B}, \\hat{\\rho}]] = \\hat{A}\\hat{B}\\hat{\\rho} - \\hat{A}\\hat{\\rho}\\hat{B} - \\hat{B}\\hat{\\rho}\\hat{A} + \\hat{\\rho}\\hat{B}\\hat{A}$, with $\\hat{A}$ at $t'$ and $\\hat{B}$ at $t''$.",
+       "map": {
+        "A": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ],
+        "B": [
+         "r1",
+         "r2",
+         "r3",
+         "r4"
+        ]
+       }
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = {} &\\tfrac{1}{(i\\hbar)^2}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\Big(\\mk{r1}{g^{--}({\\kt}', {\\kt}'')\\kShat^\\dagger\\kShat^\\dagger\\krhotilde_S({\\kt}) + g^{-+}({\\kt}', {\\kt}'')\\kShat^\\dagger\\kShat\\krhotilde_S({\\kt}) + g^{+-}({\\kt}', {\\kt}'')\\kShat\\kShat^\\dagger\\krhotilde_S({\\kt}) + g^{++}({\\kt}', {\\kt}'')\\kShat\\kShat\\krhotilde_S({\\kt})} \\\\ &\\mk{r2}{-g^{--}({\\kt}'', {\\kt}')\\kShat^\\dagger\\krhotilde_S({\\kt})\\kShat^\\dagger - g^{-+}({\\kt}'', {\\kt}')\\kShat\\krhotilde_S({\\kt})\\kShat^\\dagger - g^{+-}({\\kt}'', {\\kt}')\\kShat^\\dagger\\krhotilde_S({\\kt})\\kShat - g^{++}({\\kt}'', {\\kt}')\\kShat\\krhotilde_S({\\kt})\\kShat} \\\\ &\\mk{r3}{-g^{--}({\\kt}', {\\kt}'')\\kShat^\\dagger\\krhotilde_S({\\kt})\\kShat^\\dagger - g^{-+}({\\kt}', {\\kt}'')\\kShat\\krhotilde_S({\\kt})\\kShat^\\dagger - g^{+-}({\\kt}', {\\kt}'')\\kShat^\\dagger\\krhotilde_S({\\kt})\\kShat - g^{++}({\\kt}', {\\kt}'')\\kShat\\krhotilde_S({\\kt})\\kShat} \\\\ &\\mk{r4}{+g^{--}({\\kt}'', {\\kt}')\\krhotilde_S({\\kt})\\kShat^\\dagger\\kShat^\\dagger + g^{-+}({\\kt}'', {\\kt}')\\krhotilde_S({\\kt})\\kShat^\\dagger\\kShat + g^{+-}({\\kt}'', {\\kt}')\\krhotilde_S({\\kt})\\kShat\\kShat^\\dagger + g^{++}({\\kt}'', {\\kt}')\\krhotilde_S({\\kt})\\kShat\\kShat}\\Big)\\end{aligned}",
+       "uses": [
+        4
+       ],
+       "cap": "The system operators come out of each trace, and each trace of reservoir operators, permuted cyclically, is one of the correlation functions."
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = {} &\\tfrac{1}{(i\\hbar)^2}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\Big(\\mk{m1}{g^{--}({\\kt}', {\\kt}'')\\left(\\kShat^\\dagger\\kShat^\\dagger\\krhotilde_S({\\kt}) - \\kShat^\\dagger\\krhotilde_S({\\kt})\\kShat^\\dagger\\right) + g^{-+}({\\kt}', {\\kt}'')\\left(\\kShat^\\dagger\\kShat\\krhotilde_S({\\kt}) - \\kShat\\krhotilde_S({\\kt})\\kShat^\\dagger\\right)} \\\\ &+\\mk{m2}{g^{+-}({\\kt}', {\\kt}'')\\left(\\kShat\\kShat^\\dagger\\krhotilde_S({\\kt}) - \\kShat^\\dagger\\krhotilde_S({\\kt})\\kShat\\right) + g^{++}({\\kt}', {\\kt}'')\\left(\\kShat\\kShat\\krhotilde_S({\\kt}) - \\kShat\\krhotilde_S({\\kt})\\kShat\\right)} \\\\ &+\\mk{hc}{h.c.}\\Big)\\end{aligned}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "The second and fourth rows are the Hermitian conjugates of the third and first: $g^{--}(t', t'')^* = g^{++}(t'', t')$, $g^{+-}(t', t'')^* = g^{+-}(t'', t')$, and in the same way $g^{-+}(t', t'')^* = g^{-+}(t'', t')$.",
+       "map": {
+        "r1": [
+         "m1",
+         "m2"
+        ],
+        "r3": [
+         "m1",
+         "m2"
+        ],
+        "r2": "hc",
+        "r4": "hc"
+       }
+      }
+     ],
+     "num": "(3.70)",
+     "note": "The book prints $g^{--}({\\kt}'', {\\kt})$ as the first correlator of the second row of Eq. (3.62); it is $g^{--}({\\kt}'', {\\kt}')$, like the others of that row. The page also cuts the second row of Eq. (3.70) at its margin; it is completed from Eq. (3.69)."
+    }
+   ]
+  },
+  {
+   "id": "thermal-correlator",
+   "what": "the correlation function of a thermal radiation field",
+   "source": "Modern Atomic and Optical Physics II, 3.3.3 Density operator method for a Markovian reservoir",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kFR({\\kt}) = -\\sum_j\\hbar \\kg_j\\hat{a}_j e^{-i(\\knu_j - \\komega){\\kt}}",
+       "src": "(3.44)"
+      },
+      {
+       "text": "In a thermal state $\\langle\\hat{a}_j^\\dagger\\hat{a}_k\\rangle = \\delta_{jk}\\knbar_j$.",
+       "src": "3.3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{\\mathrm{Tr}_R[\\kFR({\\kt}')^\\dagger\\kFR({\\kt}'')\\krhotilde_R]}",
+      "src": "(3.59)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{\\mathrm{Tr}_R\\Big[\\Big(-\\sum_j\\hbar\\kg_j^*\\hat{a}_j^\\dagger e^{i(\\knu_j - \\komega){\\kt}'}\\Big)\\Big(-\\sum_k\\hbar\\kg_k\\hat{a}_k e^{-i(\\knu_k - \\komega){\\kt}''}\\Big)\\krhotilde_R\\Big]}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{\\hbar^2\\sum_{j,k}\\kg_j^* \\kg_k\\langle\\hat{a}_j^\\dagger\\hat{a}_k\\rangle e^{i(\\knu_j - \\komega){\\kt}' - i(\\knu_k - \\komega){\\kt}''}}",
+       "uses": [],
+       "cap": "The trace with $\\tilde{\\rho}_R$ is the expectation value, $\\mathrm{Tr}_R[\\hat{X}\\tilde{\\rho}_R] = \\langle\\hat{X}\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{\\hbar^2\\sum_j|\\kg_j|^2\\knbar_j e^{i(\\knu_j - \\komega)({\\kt}' - {\\kt}'')}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(3.72)"
+    }
+   ]
+  },
+  {
+   "id": "master-equation",
+   "what": "the master equation",
+   "source": "Modern Atomic and Optical Physics II, 3.3.3 Density operator method for a Markovian reservoir",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For the radiation field $g^{--} = g^{++} = 0$.",
+       "src": "3.3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = {} &\\tfrac{1}{(i\\hbar)^2}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\Big(\\mk{a}{g^{--}({\\kt}', {\\kt}'')\\left(\\kShat^\\dagger\\kShat^\\dagger\\krhotilde_S({\\kt}) - \\kShat^\\dagger\\krhotilde_S({\\kt})\\kShat^\\dagger\\right)} \\\\ &+\\mk{b}{g^{-+}({\\kt}', {\\kt}'')\\left(\\kShat^\\dagger\\kShat\\krhotilde_S({\\kt}) - \\kShat\\krhotilde_S({\\kt})\\kShat^\\dagger\\right)} + \\mk{c}{g^{+-}({\\kt}', {\\kt}'')\\left(\\kShat\\kShat^\\dagger\\krhotilde_S({\\kt}) - \\kShat^\\dagger\\krhotilde_S({\\kt})\\kShat\\right)} \\\\ &+\\mk{d}{g^{++}({\\kt}', {\\kt}'')\\left(\\kShat\\kShat\\krhotilde_S({\\kt}) - \\kShat\\krhotilde_S({\\kt})\\kShat\\right)} + \\mk{h}{h.c.}\\Big)\\end{aligned}",
+      "src": "(3.70)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = {} &\\tfrac{1}{(i\\hbar)^2}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\Big\\{\\mk{c}{g^{+-}({\\kt}', {\\kt}'')\\left(\\kShat\\kShat^\\dagger\\krhotilde_S - \\kShat^\\dagger\\krhotilde_S\\kShat\\right)} \\\\ &+\\mk{b}{g^{-+}({\\kt}', {\\kt}'')\\left(\\kShat^\\dagger\\kShat\\krhotilde_S - \\kShat\\krhotilde_S\\kShat^\\dagger\\right)}\\Big\\} + \\mk{h}{h.c.}\\end{aligned}",
+       "uses": [
+        0
+       ],
+       "cap": "With $\\tilde{\\rho}_S$ written for $\\tilde{\\rho}_S(t)$."
+      }
+     ],
+     "num": "(3.73)"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The integral is evaluated as in the Wigner-Weisskopf approximation: at long times $\\int_{-\\infty}^0 e^{i(\\komega - \\knu_j)s}ds = \\pi\\delta(\\knu_j - \\komega) - i\\mathcal{P}\\frac{1}{\\komega - \\knu_j}$, by Eq. (2.49), and the principal part, an energy shift, is incorporated into the bare system Hamiltonian.",
+       "src": "(2.49), 3.3.3"
+      },
+      {
+       "tex": "\\kgamma = 2\\pi\\sum_j|\\kg_j|^2\\delta(\\knu_j - \\komega)",
+       "src": "(2.80)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{\\hbar^2\\sum_j|\\kg_j|^2\\knbar_j e^{i(\\knu_j - \\komega)({\\kt}' - {\\kt}'')}}",
+      "src": "(3.72)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{-\\frac{1}{\\hbar^2}\\int_{\\kt}^{{\\kt}'}d{\\kt}''g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{-\\sum_j\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\ |\\kg_j|^2\\knbar_j e^{i(\\komega - \\knu_j)({\\kt}'' - {\\kt}')}}",
+       "uses": [],
+       "cap": "Integrating both sides over $t''$ from $t$ to $t'$ and multiplying by $-1/\\hbar^2$."
+      },
+      {
+       "tex": "\\mk{L}{-\\frac{1}{\\hbar^2}\\int_{\\kt}^{{\\kt}'}d{\\kt}''g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{-\\pi\\sum_j|\\kg_j|^2\\knbar_j\\delta(\\knu_j - \\komega)}",
+       "uses": [
+        0
+       ],
+       "cap": "With $s = t'' - t'$ the integral runs over $s \\leq 0$, and the correlation time is short."
+      },
+      {
+       "tex": "\\mk{L}{-\\frac{1}{\\hbar^2}\\int_{\\kt}^{{\\kt}'}d{\\kt}''g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{-\\frac{\\kgamma}{2}\\knbar(\\komega)}",
+       "uses": [
+        1
+       ],
+       "cap": "The delta function sets $\\nu_j = \\omega$, so $\\bar{n}_j$ is taken at the atomic frequency."
+      }
+     ],
+     "num": "(3.76)",
+     "note": "The book prints $d\\kt'$ on the right of Eq. (3.74); the integral runs over $\\kt''$, as on the left."
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "$g^{-+}$ is the same as $g^{+-}$ with $\\langle\\hat{a}_j^\\dagger\\hat{a}_j\\rangle$ replaced by $\\langle\\hat{a}_j\\hat{a}_j^\\dagger\\rangle = \\langle\\hat{a}_j^\\dagger\\hat{a}_j\\rangle + 1$.",
+       "src": "3.3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{-\\frac{1}{\\hbar^2}\\int_{\\kt}^{{\\kt}'}d{\\kt}''g^{+-}({\\kt}', {\\kt}'')} = \\mk{R}{-\\frac{\\kgamma}{2}\\knbar(\\komega)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{-\\frac{1}{\\hbar^2}\\int_{\\kt}^{{\\kt}'}d{\\kt}''g^{-+}({\\kt}', {\\kt}'')} = \\mk{R}{-\\frac{\\kgamma}{2}(\\knbar(\\komega) + 1)}",
+       "uses": [
+        1
+       ],
+       "cap": "The calculation proceeds in the same manner, with $\\bar{n}_j$ replaced by $\\bar{n}_j + 1$."
+      }
+     ],
+     "num": "(3.77)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "text": "The remaining integral over $\\kt'$ may be approximated by $\\kDeltat$ times the integrand, because $\\kDeltat$ is small compared to the time variation of the integrand.",
+       "src": "3.3.3"
+      },
+      {
+       "text": "For the atom-field interaction $\\langle\\kFR\\rangle = 0$, and the first term $\\Delta\\krhotilde_S^{(1)}$ vanishes.",
+       "src": "(3.54)"
+      }
+     ],
+     "then": {
+      "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = {} &\\tfrac{1}{(i\\hbar)^2}\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\int_{\\kt}^{{\\kt}'}d{\\kt}''\\Big\\{\\mk{c}{g^{+-}({\\kt}', {\\kt}'')\\left(\\kShat\\kShat^\\dagger\\krhotilde_S - \\kShat^\\dagger\\krhotilde_S\\kShat\\right)} \\\\ &+\\mk{b}{g^{-+}({\\kt}', {\\kt}'')\\left(\\kShat^\\dagger\\kShat\\krhotilde_S - \\kShat\\krhotilde_S\\kShat^\\dagger\\right)}\\Big\\} + \\mk{h}{h.c.}\\end{aligned}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = {} &\\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\Big\\{\\mk{c}{\\Big(-\\frac{1}{\\hbar^2}\\int_{\\kt}^{{\\kt}'}d{\\kt}''g^{+-}({\\kt}', {\\kt}'')\\Big)\\left(\\kShat\\kShat^\\dagger\\krhotilde_S - \\kShat^\\dagger\\krhotilde_S\\kShat\\right)} \\\\ &+\\mk{b}{\\Big(-\\frac{1}{\\hbar^2}\\int_{\\kt}^{{\\kt}'}d{\\kt}''g^{-+}({\\kt}', {\\kt}'')\\Big)\\left(\\kShat^\\dagger\\kShat\\krhotilde_S - \\kShat\\krhotilde_S\\kShat^\\dagger\\right)}\\Big\\} + \\mk{h}{h.c.}\\end{aligned}",
+       "uses": [],
+       "cap": "$1/(i\\hbar)^2 = -1/\\hbar^2$, and the inner integral acts on the correlation functions alone."
+      },
+      {
+       "tex": "\\mk{L}{\\Delta\\krhotilde_S^{(2)}} = \\textstyle\\int_{\\kt}^{{\\kt}+\\kDeltat}d{\\kt}'\\Big\\{\\mk{c}{-\\frac{\\kgamma}{2}\\knbar(\\komega)\\left(\\kShat\\kShat^\\dagger\\krhotilde_S - \\kShat^\\dagger\\krhotilde_S\\kShat\\right)}\\mk{b}{- \\frac{\\kgamma}{2}(\\knbar(\\komega) + 1)\\left(\\kShat^\\dagger\\kShat\\krhotilde_S - \\kShat\\krhotilde_S\\kShat^\\dagger\\right)}\\Big\\} + \\mk{h}{h.c.}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\Delta\\krhotilde_S} = \\kDeltat\\Big\\{\\mk{c}{-\\frac{\\kgamma}{2}\\knbar(\\komega)\\left(\\kShat\\kShat^\\dagger\\krhotilde_S - \\kShat^\\dagger\\krhotilde_S\\kShat\\right)}\\mk{b}{- \\frac{\\kgamma}{2}(\\knbar(\\komega) + 1)\\left(\\kShat^\\dagger\\kShat\\krhotilde_S - \\kShat\\krhotilde_S\\kShat^\\dagger\\right)}\\Big\\} + \\mk{h}{h.c.}",
+       "uses": [
+        3,
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\Delta\\krhotilde_S}{\\kDeltat}} = \\mk{c}{-\\frac{\\kgamma}{2}\\knbar(\\komega)\\left(\\kShat\\kShat^\\dagger\\krhotilde_S - \\kShat^\\dagger\\krhotilde_S\\kShat\\right)} \\mk{b}{- \\frac{\\kgamma}{2}(\\knbar(\\komega) + 1)\\left(\\kShat^\\dagger\\kShat\\krhotilde_S - \\kShat\\krhotilde_S\\kShat^\\dagger\\right)} + \\mk{h}{h.c.}",
+       "uses": [],
+       "cap": "Dividing through by $\\Delta t$ gives a time-averaged differential equation for $\\tilde{\\rho}_S$."
+      }
+     ],
+     "num": "(3.78)"
+    }
+   ]
+  }
+ ]
+}

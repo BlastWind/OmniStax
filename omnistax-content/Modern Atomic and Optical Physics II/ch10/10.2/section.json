@@ -1,0 +1,585 @@
+{
+  "id": "10.2",
+  "chapter": "10",
+  "title": "Model: An ion in a harmonic trap",
+  "short": "An ion in a harmonic trap",
+  "lead": "The trapped ion as a <span data-concept=\"two-level-atom\">two-level system</span> riding a harmonic oscillator ladder: the size of its motional ground state, the <span data-concept=\"lamb-dicke-parameter\">Lamb-Dicke parameter</span> that compares it with the laser’s wavelength, the transitions a laser addresses on the bare resonance and on the <span data-concept=\"sideband-couplings\">red and blue sidebands</span>, their kinship with the <span data-concept=\"jaynes-cummings-model\">Jaynes-Cummings model</span> of <span data-concept=\"cavity-qed\">cavity QED</span>, and <span data-concept=\"sideband-cooling\">sideband cooling</span> into the ground state of the trap.",
+  "objectives": [],
+  "summary_html": "",
+  "notes": "",
+  "ai": {
+    "text": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ],
+    "figures": [
+      {
+        "model": "claude-opus-5-5",
+        "effort": "high"
+      }
+    ]
+  },
+  "built": "2026-10-11",
+  "exercises_lead": "",
+  "exercise_notes": "MIT 8.422 Problem Set 10, Problem 2 is set in parts (a) to (c), restated in Lukin's notation with AI-written solutions, since the course published no key; part (d), the steady-state temperatures and time constants for ⁸⁸Sr, is numerical with no key and is held.",
+  "figures": [
+    {
+      "id": "fig-ion-trap",
+      "kind": "figure",
+      "number": "10.3",
+      "originals": [
+        "/media/ch10/fig-10-3.png"
+      ],
+      "original_caption": "Model of an ion confined to a 1D harmonic oscillator trap, subject to laser excitation and spontaneous emission.",
+      "draws": [
+        "coupling",
+        "rate",
+        "energy"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "fig-ion-levels",
+      "kind": "figure",
+      "number": "10.4",
+      "originals": [
+        "/media/ch10/fig-10-4.png"
+      ],
+      "original_caption": "The internal and external degrees of freedom of an ion in a harmonic oscillator trap. Note that the dipole allowed transition is used for cooling the ion, whereas the dipole forbidden transition is used for encoding information in the ion.",
+      "draws": [
+        "rate",
+        "energy"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-sideband-ladder",
+      "kind": "sim",
+      "number": "10.5",
+      "folds": [
+        "10.6"
+      ],
+      "originals": [
+        "/media/ch10/fig-10-5.png",
+        "/media/ch10/fig-10-6.png"
+      ],
+      "original_caption": "(Figure 10.5) When the laser is tuned to the bare atomic resonance, the atom cycles between internal states without changing its motional state. By tuning the laser to the blue or the red sideband, different motional states can also be addressed. (Figure 10.6) The transitions induced by a laser tuned to the red or blue sideband. Note that, unlike the vertical transitions, the Rabi frequency for sideband transitions changes as a function of the number of phonons $\\sim \\eta\\Omega\\sqrt{n}$.",
+      "draws": [
+        "coupling",
+        "frequency",
+        "population",
+        "time"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    },
+    {
+      "id": "sim-sideband-cooling",
+      "kind": "sim",
+      "draws": [
+        "frequency",
+        "rate",
+        "population"
+      ],
+      "ai": [
+        {
+          "model": "claude-opus-5-5",
+          "effort": "high",
+          "part": "built"
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "span": "model",
+      "concept": "trapped-ion-model",
+      "verb": "introduces"
+    },
+    {
+      "span": "qubit-levels",
+      "concept": "ion-qubit-levels",
+      "verb": "introduces"
+    },
+    {
+      "span": "hilbert-space",
+      "concept": "ion-hilbert-space",
+      "verb": "introduces"
+    },
+    {
+      "span": "trap-frequency",
+      "concept": "trap-frequency",
+      "verb": "introduces"
+    },
+    {
+      "span": "eq-10-2",
+      "concept": "ion-position-momentum",
+      "verb": "introduces"
+    },
+    {
+      "span": "eq-10-4",
+      "concept": "motional-hamiltonian",
+      "verb": "introduces"
+    },
+    {
+      "span": "eq-10-5",
+      "concept": "harmonic-oscillator-length",
+      "verb": "introduces"
+    },
+    {
+      "span": "eq-10-6",
+      "concept": "ion-electronic-hamiltonian",
+      "verb": "introduces"
+    },
+    {
+      "span": "gamma-tau",
+      "concept": "negligible-decay-condition",
+      "verb": "introduces"
+    },
+    {
+      "span": "momentum-kick",
+      "concept": "ion-momentum-kick",
+      "verb": "introduces"
+    },
+    {
+      "span": "x-operator",
+      "concept": "ion-laser-hamiltonian",
+      "verb": "introduces"
+    },
+    {
+      "span": "ld-parameter",
+      "concept": "lamb-dicke-parameter",
+      "verb": "introduces"
+    },
+    {
+      "span": "ld-regime",
+      "concept": "lamb-dicke-regime",
+      "verb": "introduces"
+    },
+    {
+      "span": "eq-10-14",
+      "concept": "lamb-dicke-hamiltonian",
+      "verb": "introduces"
+    },
+    {
+      "span": "eq-10-16",
+      "concept": "ion-bare-spectrum",
+      "verb": "introduces"
+    },
+    {
+      "span": "lowest-order",
+      "concept": "sideband-couplings",
+      "verb": "introduces"
+    },
+    {
+      "span": "carrier",
+      "concept": "carrier-transition",
+      "verb": "introduces"
+    },
+    {
+      "span": "red-jc",
+      "concept": "red-sideband-jaynes-cummings",
+      "verb": "introduces"
+    },
+    {
+      "span": "strong",
+      "concept": "trapped-ion-strong-coupling",
+      "verb": "introduces"
+    },
+    {
+      "span": "anti-jc",
+      "concept": "anti-jaynes-cummings",
+      "verb": "introduces"
+    },
+    {
+      "span": "standing",
+      "concept": "standing-wave-couplings",
+      "verb": "introduces"
+    },
+    {
+      "span": "cooling",
+      "concept": "sideband-cooling",
+      "verb": "introduces"
+    },
+    {
+      "span": "resolved",
+      "concept": "resolved-sideband-condition",
+      "verb": "introduces"
+    },
+    {
+      "span": "model",
+      "concept": "spontaneous-emission",
+      "verb": "uses"
+    },
+    {
+      "span": "qubit-levels",
+      "concept": "laser-cooling",
+      "verb": "uses"
+    },
+    {
+      "span": "hilbert-space",
+      "concept": "fock-states",
+      "verb": "uses"
+    },
+    {
+      "span": "hilbert-space",
+      "concept": "two-level-atom",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-10-2",
+      "concept": "creation-annihilation-operators",
+      "verb": "uses"
+    },
+    {
+      "span": "gamma-tau",
+      "concept": "raman-transition",
+      "verb": "uses"
+    },
+    {
+      "span": "x-operator",
+      "concept": "rotating-wave-approximation",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-10-13",
+      "concept": "recoil-frequency",
+      "verb": "uses"
+    },
+    {
+      "span": "eq-10-14",
+      "concept": "rotating-frame",
+      "verb": "uses"
+    },
+    {
+      "span": "red-jc",
+      "concept": "jaynes-cummings-model",
+      "verb": "uses"
+    },
+    {
+      "span": "red-jc",
+      "concept": "cavity-qed",
+      "verb": "uses"
+    },
+    {
+      "span": "strong",
+      "concept": "strong-coupling-regime",
+      "verb": "uses"
+    },
+    {
+      "span": "strong",
+      "concept": "single-photon-rabi-frequency",
+      "verb": "uses"
+    },
+    {
+      "span": "cooling",
+      "concept": "optical-pumping",
+      "verb": "uses"
+    },
+    {
+      "span": "resolved",
+      "concept": "spontaneous-emission-rate",
+      "verb": "uses"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "hw10-2a",
+      "source_id": "hw10.2a",
+      "source_number": "Problem Set 10, Problem 2(a)",
+      "origin": "mit-8422",
+      "changes": "Restated in Lukin's notation: MIT's $\\Omega$ is written $2\\Omega$, so that $\\Omega$ is the Rabi frequency of Eq. (10.9); $\\omega_0$ is $\\omega_{eg}$, $x_0$ is $a_0$, the state $|n\\rangle|g\\rangle$ is written $|g\\rangle|n\\rangle$, and MIT's round-bracket kets are written $|\\,\\rangle$.",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cooling",
+      "prompt": "As we have seen in class, optical pumping involves using a laser to drive a sequence of atomic transitions into a specific state from which further transitions cannot occur. This method can be used for laser cooling atoms, when the transitions involved are between discrete states of different motional energy (phonons). Such is the case with sideband cooling, which is essentially optical pumping of an atom which is spatially confined in a harmonic potential; this can be, for example, a trapped ion. Sideband cooling is a very powerful laser cooling technique, which can be used to cool ions to their motional ground state. This problem looks at sideband cooling of a two-level ion in one dimension. Consider the Hamiltonian of a two-level atom, with raising and lowering operators $\\hat{\\sigma}_\\pm$, interacting with a quantized laser field, through the usual Jaynes-Cummings interaction: $$\\hat{H}_I = 2\\hbar\\Omega(\\hat{\\sigma}_+ + \\hat{\\sigma}_-)\\cos(k\\hat{x} - \\omega t).$$ Suppose that the atom is an ion (of mass $m$) which is confined in a harmonic potential, such that the Lamb-Dicke parameter $\\eta = ka_0 \\ll 1$, where $a_0 = \\sqrt{\\hbar/(2m\\nu)}$ is the size of the ground state wavefunction, and $\\nu$ is the motional frequency of the ion. Expand the interaction Hamiltonian to first order in $\\eta$ and transform to the frame defined by $$\\hat{H}_0 = \\frac{\\hbar\\omega_{eg}}{2}\\hat{\\sigma}_z + \\hbar\\nu\\hat{a}^\\dagger\\hat{a},$$ where $\\hat{\\sigma}_+ = |e\\rangle\\langle g|$ and $\\hat{\\sigma}_- = |g\\rangle\\langle e|$ are the raising and lowering operators, $\\hat{\\sigma}_z = |e\\rangle\\langle e| - |g\\rangle\\langle g|$ is the $\\hat{z}$ axis Pauli matrix, and $\\hat{a}$ and $\\hat{a}^\\dagger$ are the motional raising and lowering operators. What are the Rabi frequencies $\\Omega_{n,n-1}$ and $\\Omega_{n,n+1}$ for transitions $|g\\rangle|n\\rangle \\to |e\\rangle|n-1\\rangle$ (red sideband) and $|g\\rangle|n\\rangle \\to |e\\rangle|n+1\\rangle$ (blue sideband)?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "By Eq. (10.2), $k\\hat{x} = ka_0(\\hat{a} + \\hat{a}^\\dagger) = \\eta(\\hat{a} + \\hat{a}^\\dagger)$, so to first order $e^{\\pm ik\\hat{x}} \\approx 1 \\pm i\\eta(\\hat{a} + \\hat{a}^\\dagger)$. In the frame of $\\hat{H}_0$, $\\hat{\\sigma}_+ \\to \\hat{\\sigma}_+e^{i\\omega_{eg}t}$, $\\hat{a} \\to \\hat{a}e^{-i\\nu t}$ and $\\hat{a}^\\dagger \\to \\hat{a}^\\dagger e^{i\\nu t}$. Writing the cosine as two exponentials and dropping the terms that rotate at $\\omega + \\omega_{eg}$ (the RWA), $$\\hat{H}_I \\approx \\hbar\\Omega\\,\\hat{\\sigma}_+e^{-i\\Delta t}\\left[1 + i\\eta\\left(\\hat{a}e^{-i\\nu t} + \\hat{a}^\\dagger e^{i\\nu t}\\right)\\right] + h.c.,$$ with $\\Delta = \\omega - \\omega_{eg}$: Eq. (10.14) to first order in $\\eta$, up to the sign of the coupling. Three terms appear: $\\hat{\\sigma}_+$, resonant at $\\Delta = 0$ with strength $\\Omega$ (Eq. 10.20); $\\hat{\\sigma}_+\\hat{a}$, resonant at $\\Delta = -\\nu$; and $\\hat{\\sigma}_+\\hat{a}^\\dagger$, resonant at $\\Delta = +\\nu$. With $\\langle n-1|\\hat{a}|n\\rangle = \\sqrt{n}$ and $\\langle n+1|\\hat{a}^\\dagger|n\\rangle = \\sqrt{n+1}$, $$\\Omega_{n,n-1} = \\eta\\Omega\\sqrt{n}, \\qquad \\Omega_{n,n+1} = \\eta\\Omega\\sqrt{n+1},$$ as Eqs. (10.21) and (10.22) state. These are couplings in Lukin's sense: on its resonance a sideband flops the population as $\\sin^2(\\eta\\Omega\\sqrt{n}\\,t)$. In MIT's convention, where the Rabi frequency is twice the coupling, they read $2\\eta\\Omega\\sqrt{n}$ and $2\\eta\\Omega\\sqrt{n+1}$, that is $\\eta\\Omega_\\mathrm{MIT}\\sqrt{n}$ and $\\eta\\Omega_\\mathrm{MIT}\\sqrt{n+1}$. The red sideband has no partner for $n = 0$: $|g\\rangle|0\\rangle$ is dark to it."
+      }
+    },
+    {
+      "id": "hw10-2b",
+      "source_id": "hw10.2b",
+      "source_number": "Problem Set 10, Problem 2(b)",
+      "origin": "mit-8422",
+      "changes": "Restated in Lukin's notation: MIT's $\\Omega$ is written $2\\Omega$, so that $\\Omega$ is the Rabi frequency of Eq. (10.9); $\\omega_0$ is $\\omega_{eg}$, $x_0$ is $a_0$, the state $|n\\rangle|g\\rangle$ is written $|g\\rangle|n\\rangle$, and MIT's round-bracket kets are written $|\\,\\rangle$; $\\Gamma$ is $\\gamma$, and the problem's set-up is repeated at the start of the part.",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cooling",
+      "prompt": "For the two-level ion of mass $m$ in a harmonic trap of frequency $\\nu$, driven through $\\hat{H}_I = 2\\hbar\\Omega(\\hat{\\sigma}_+ + \\hat{\\sigma}_-)\\cos(k\\hat{x} - \\omega t)$ with Lamb-Dicke parameter $\\eta \\ll 1$, its excited state $|e\\rangle$ decaying at the rate $\\gamma$ and the red and blue sideband Rabi frequencies $\\Omega_{n,n-1}$, $\\Omega_{n,n+1}$ of part (a): Because every cooling cycle involves spontaneous emission, coherences decay rapidly and the cooling dynamics are adequately described by rate equations. The population of the harmonic oscillator level $|n\\rangle$, $p_n = \\mathrm{Tr}_A\\langle n|\\rho|n\\rangle$ where $\\mathrm{Tr}_A$ denotes the trace over the atomic state, increases due to the spontaneous Raman transitions $|g\\rangle|n-1\\rangle \\to |g\\rangle|n\\rangle$ and $|g\\rangle|n+1\\rangle \\to |g\\rangle|n\\rangle$ and decreases due to the spontaneous Raman transitions $|g\\rangle|n\\rangle \\to |g\\rangle|n-1\\rangle$ and $|g\\rangle|n\\rangle \\to |g\\rangle|n+1\\rangle$. Note that each spontaneous Raman transition can happen in two ways; for example $|g\\rangle|n\\rangle \\to |g\\rangle|n+1\\rangle$ can proceed via either $|g\\rangle|n\\rangle \\to |e\\rangle|n\\rangle \\to |g\\rangle|n+1\\rangle$ or $|g\\rangle|n\\rangle \\to |e\\rangle|n+1\\rangle \\to |g\\rangle|n+1\\rangle$. Use the Rabi frequencies $\\Omega_{n,n-1}$ and $\\Omega_{n,n+1}$ from part (a) to write down the rate equation for $p_n$. Assume for simplicity that the laser power is below saturation ($\\Omega \\ll \\gamma$), and write your answer in the form $$\\frac{dp_n}{dt} = nA_+p_{n-1} + (n+1)A_-p_{n+1} - (n+1)A_+p_n - nA_-p_n.$$ What are the rates $A_\\pm$?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Below saturation each route is an excitation followed at once by a decay. A transition driven with coupling $\\Omega'$ at detuning $\\delta'$ is excited at the rate $$R = \\frac{\\gamma\\Omega'^2}{\\delta'^2 + \\gamma^2/4},$$ the optical pumping rate $R_{opt}$ of Eq. (4.55) with $\\gamma_{12} = \\gamma/2$. With $\\Delta = \\omega - \\omega_{eg}$, the bare resonance is detuned by $\\Delta$, the red sideband by $\\Delta + \\nu$ and the blue sideband by $\\Delta - \\nu$. The decay changes $n$ by the same expansion of the photon's recoil $e^{-ik\\hat{x}}$: down by one with probability $\\eta^2 n$, up by one with probability $\\eta^2(n+1)$, and otherwise not at all (the emission taken along the trap axis, as the problem's one dimension has it). So $|g\\rangle|n\\rangle \\to |g\\rangle|n-1\\rangle$ goes at $$n\\,\\eta^2\\Omega^2\\gamma\\left[\\frac{1}{(\\Delta + \\nu)^2 + \\gamma^2/4} + \\frac{1}{\\Delta^2 + \\gamma^2/4}\\right],$$ the first term a red-sideband excitation (coupling $\\eta\\Omega\\sqrt{n}$) followed by a decay that keeps $n - 1$, the second an excitation on the bare resonance (coupling $\\Omega$) followed by a decay on the red sideband. Likewise $|g\\rangle|n\\rangle \\to |g\\rangle|n+1\\rangle$ goes at $n+1$ times the same bracket with $\\Delta - \\nu$ in its first term. Collecting the gains from $n \\mp 1$ and the losses from $n$ gives the stated form with $$A_\\mp = \\eta^2\\Omega^2\\gamma\\left[\\frac{1}{(\\Delta \\pm \\nu)^2 + \\gamma^2/4} + \\frac{1}{\\Delta^2 + \\gamma^2/4}\\right],$$ $A_-$ the cooling rate per phonon and $A_+$ the heating rate. In MIT's $\\Omega$, twice this one, the prefactor reads $\\eta^2\\Omega_\\mathrm{MIT}^2\\gamma/4$."
+      }
+    },
+    {
+      "id": "hw10-2c",
+      "source_id": "hw10.2c",
+      "source_number": "Problem Set 10, Problem 2(c)",
+      "origin": "mit-8422",
+      "changes": "Restated in Lukin's notation: MIT's $\\Omega$ is written $2\\Omega$, so that $\\Omega$ is the Rabi frequency of Eq. (10.9); $\\omega_0$ is $\\omega_{eg}$, $x_0$ is $a_0$, the state $|n\\rangle|g\\rangle$ is written $|g\\rangle|n\\rangle$, and MIT's round-bracket kets are written $|\\,\\rangle$; $\\Gamma$ is $\\gamma$, $\\delta$ is $\\Delta = \\omega - \\omega_{eg}$, and the rate equation of part (b) is repeated at the start of the part.",
+      "kind": "problem",
+      "bloom": "Apply",
+      "place": {
+        "at": "end"
+      },
+      "cite": "cooling",
+      "prompt": "For the trapped ion of parts (a) and (b), whose phonon populations obey $\\frac{dp_n}{dt} = nA_+p_{n-1} + (n+1)A_-p_{n+1} - (n+1)A_+p_n - nA_-p_n$ with the laser detuned by $\\Delta = \\omega - \\omega_{eg}$ and the excited state decaying at $\\gamma$: Write down a differential equation for $$\\langle n\\rangle = \\sum_{n=0}^{\\infty} np_n$$ and solve it. You should find that cooling occurs for $A_- > A_+$. What is the steady state temperature in the resolved sideband limit ($\\gamma \\ll \\nu$) when $\\Delta = -\\nu$? How long does it take to reach this temperature?",
+      "answer": {
+        "type": "open",
+        "generated_by": "ai",
+        "solution": "Multiply the rate equation by $n$ and sum, shifting the index of the first two terms: $\\sum_n n^2 p_{n-1} = \\sum_m (m+1)^2 p_m$ and $\\sum_n n(n+1)p_{n+1} = \\sum_m (m-1)m\\,p_m$. The $A_+$ terms leave $\\sum_m[(m+1)^2 - m(m+1)]p_m = \\langle n\\rangle + 1$ and the $A_-$ terms $\\sum_m[(m-1)m - m^2]p_m = -\\langle n\\rangle$, so $$\\frac{d\\langle n\\rangle}{dt} = -(A_- - A_+)\\langle n\\rangle + A_+,$$ solved by $$\\langle n\\rangle(t) = \\langle n\\rangle_{ss} + \\left(\\langle n\\rangle(0) - \\langle n\\rangle_{ss}\\right)e^{-(A_- - A_+)t}, \\qquad \\langle n\\rangle_{ss} = \\frac{A_+}{A_- - A_+}.$$ It settles only if $A_- > A_+$; otherwise $\\langle n\\rangle$ grows without bound. At $\\Delta = -\\nu$ with $\\gamma \\ll \\nu$ the red sideband is resonant, $A_- \\approx \\eta^2\\Omega^2\\gamma(4/\\gamma^2 + 1/\\nu^2) \\approx 4\\eta^2\\Omega^2/\\gamma$, while heating comes only off resonance, from the blue sideband $2\\nu$ away and the bare resonance $\\nu$ away: $A_+ \\approx \\eta^2\\Omega^2\\gamma\\left(\\frac{1}{4\\nu^2} + \\frac{1}{\\nu^2}\\right) = \\frac{5}{4}\\frac{\\eta^2\\Omega^2\\gamma}{\\nu^2}$. So $$\\langle n\\rangle_{ss} \\approx \\frac{A_+}{A_-} = \\frac{5}{16}\\left(\\frac{\\gamma}{\\nu}\\right)^2 \\ll 1,$$ and the ion is in $|0\\rangle$ nearly always. For a thermal distribution $\\langle n\\rangle = 1/(e^{\\hbar\\nu/k_BT} - 1)$, so the steady state temperature is $$k_BT = \\frac{\\hbar\\nu}{\\ln(1 + 1/\\langle n\\rangle_{ss})} \\approx \\frac{\\hbar\\nu}{\\ln\\left(16\\nu^2/5\\gamma^2\\right)},$$ set by $\\nu$ and only logarithmically by $\\gamma$. It is reached in a few times the time constant $$\\frac{1}{A_- - A_+} \\approx \\frac{\\gamma}{4\\eta^2\\Omega^2},$$ long compared with $1/\\gamma$ since the drive is weak, $\\Omega \\ll \\gamma$, and longer still by $1/\\eta^2$."
+      }
+    }
+  ],
+  "exercise_concepts": [
+    {
+      "exercise": "hw10-2a",
+      "concept": "sideband-couplings"
+    },
+    {
+      "exercise": "hw10-2a",
+      "concept": "lamb-dicke-regime"
+    },
+    {
+      "exercise": "hw10-2b",
+      "concept": "sideband-cooling"
+    },
+    {
+      "exercise": "hw10-2b",
+      "concept": "sideband-couplings"
+    },
+    {
+      "exercise": "hw10-2c",
+      "concept": "sideband-cooling"
+    },
+    {
+      "exercise": "hw10-2c",
+      "concept": "resolved-sideband-condition"
+    }
+  ],
+  "referents": [
+    {
+      "id": "lvl-g",
+      "label": "the ground state |g⟩",
+      "figures": [
+        "fig-ion-levels",
+        "sim-sideband-ladder"
+      ]
+    },
+    {
+      "id": "lvl-e",
+      "label": "the excited state |e⟩",
+      "figures": [
+        "fig-ion-levels",
+        "sim-sideband-ladder"
+      ]
+    }
+  ],
+  "footnotes": [
+    {
+      "id": "c-fig-10-4",
+      "kind": "correction",
+      "figure": "fig-ion-levels",
+      "html": "The book’s figure labels the upper level of the dipole-allowed transition $|e\\rangle$ and that of the dipole-forbidden transition $|r\\rangle$. The text calls the long-lived upper level of the forbidden transition, the one that encodes information, $|e\\rangle$ (10.2.2), and the figure here does the same."
+    },
+    {
+      "id": "c-eta-numbers",
+      "kind": "correction",
+      "html": "The two estimates disagree. With $\\komegaR \\sim$ kHz and $\\knu \\sim 10$ MHz, <a href=\"#eq-10-13\">Eq. (10.13)</a> gives $\\ketaLD \\sim 0.01$, not the $0.1$ of <a href=\"#eq-10-12\">Eq. (10.12)</a>. For a calcium ion on its 729 nm line $\\komegaR/2\\pi \\approx 10$ kHz, and a trap of $\\knu/2\\pi \\approx 1$ MHz gives $\\ketaLD \\approx 0.1$."
+    },
+    {
+      "id": "c-eq-10-16",
+      "kind": "correction",
+      "html": "The book prints $-\\hbar\\omega_{ge}|e\\rangle\\langle e|$. The excited level lies $\\hbar\\komegaeg$ above $|g\\rangle$, as in <a href=\"#eq-10-6\">Eq. (10.6)</a> and the eigenvalue $\\hbar(n\\knu + \\komegaeg)$ of <a href=\"#eq-10-18\">Eq. (10.18)</a>, so the term is $+\\hbar\\komegaeg|e\\rangle\\langle e|$."
+    },
+    {
+      "id": "c-eq-10-24",
+      "kind": "correction",
+      "html": "With the factor $i$ the coupling term is not Hermitian. Expanding $e^{i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)} \\approx 1 + i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)$ in <a href=\"#eq-10-14\">Eq. (10.14)</a> and keeping the red-sideband terms gives $-i\\hbar\\ketaLD\\left(\\kOmega|e\\rangle\\langle g|\\hat{a} - \\kOmega^*|g\\rangle\\langle e|\\hat{a}^\\dagger\\right)$: for real $\\kOmega$, the printed term with a relative minus sign. It differs from $-\\hbar\\ketaLD\\kOmega\\left(|e\\rangle\\langle g|\\hat{a} + |g\\rangle\\langle e|\\hat{a}^\\dagger\\right)$ only by the phase of $|e\\rangle$, so the dynamics are the same."
+    },
+    {
+      "id": "c-eq-10-25",
+      "kind": "correction",
+      "html": "As in Eq. (10.24), the factor $i$ makes the coupling term non-Hermitian. The blue-sideband terms of <a href=\"#eq-10-14\">Eq. (10.14)</a> are $-i\\hbar\\ketaLD\\left(\\kOmega|e\\rangle\\langle g|\\hat{a}^\\dagger - \\kOmega^*|g\\rangle\\langle e|\\hat{a}\\right)$."
+    }
+  ],
+  "derivations": [
+    {
+      "id": "sideband-couplings",
+      "what": "the carrier and sideband couplings of a trapped ion",
+      "source": "Modern Atomic and Optical Physics II, 10.2 Trapped ions, 10.2.3",
+      "nodes": [
+        {
+          "assumes": [
+            {
+              "text": "Of the coupling term of (10.14), only its Hermitian conjugate, $-\\hbar\\kOmega^*e^{-i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)}|g\\rangle\\langle e|$, connects $|e\\rangle$ to $\\langle g|$.",
+              "src": "(10.14)"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|m\\rangle} = \\mk{R}{\\langle g|\\langle n|\\kHr|e\\rangle|m\\rangle}",
+            "src": "(10.14)",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|m\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\langle n|e^{-i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)}|m\\rangle}",
+              "uses": [
+                0
+              ]
+            }
+          ],
+          "num": "(10.19)",
+          "note": "The book prints $-\\hbar\\kOmega\\langle n|e^{i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)}|m\\rangle$, which is the element between $\\langle e|\\langle n|$ and $|g\\rangle|m\\rangle$. Between $\\langle g|\\langle n|$ and $|e\\rangle|m\\rangle$ the coupling enters through its Hermitian conjugate."
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "To lowest order in $\\ketaLD$, $e^{-i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)} \\approx 1 - i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)$.",
+              "src": "10.2.3"
+            },
+            {
+              "text": "The motional states $|n\\rangle$ are orthonormal.",
+              "src": "(11.116)"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|m\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\langle n|e^{-i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)}|m\\rangle}",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|n\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\left(\\langle n|n\\rangle - i\\ketaLD\\langle n|(\\hat{a}+\\hat{a}^\\dagger)|n\\rangle + \\mathcal{O}(\\ketaLD^2)\\right)}",
+              "uses": [
+                1
+              ]
+            },
+            {
+              "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|n\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\left(1 + \\mathcal{O}(\\ketaLD^2)\\right)}",
+              "uses": [
+                2
+              ],
+              "cap": "$\\hat{a}$ and $\\hat{a}^\\dagger$ change $n$ by one, so $\\langle n|(\\hat{a}+\\hat{a}^\\dagger)|n\\rangle = 0$."
+            }
+          ],
+          "num": "(10.20)",
+          "note": "The book prints $\\kOmega$ for $\\kOmega^*$; the two agree for real $\\kOmega$."
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "To lowest order in $\\ketaLD$, $e^{-i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)} \\approx 1 - i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)$.",
+              "src": "10.2.3"
+            },
+            {
+              "text": "The motional states $|n\\rangle$ are orthonormal.",
+              "src": "(11.116)"
+            },
+            {
+              "tex": "\\hat{a}|n+1\\rangle = \\sqrt{n+1}|n\\rangle",
+              "src": "(11.118)"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|m\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\langle n|e^{-i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)}|m\\rangle}",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|n+1\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\left(\\langle n|n+1\\rangle - i\\ketaLD\\langle n|(\\hat{a}+\\hat{a}^\\dagger)|n+1\\rangle + \\mathcal{O}(\\ketaLD^3)\\right)}",
+              "uses": [
+                1
+              ],
+              "cap": "The $\\eta^2$ term changes $n$ by 0 or 2, so the next correction is of order $\\eta^3$."
+            },
+            {
+              "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|n+1\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\left(-i\\ketaLD\\sqrt{n+1} + \\mathcal{O}(\\ketaLD^3)\\right)}",
+              "uses": [
+                2,
+                3
+              ]
+            }
+          ],
+          "num": "(10.21)",
+          "note": "The book prints $-\\hbar\\kOmega\\left(\\ketaLD\\sqrt{n+1} + \\mathcal{O}(\\ketaLD^3)\\right)$: $\\kOmega$ for $\\kOmega^*$, which agree for real $\\kOmega$, and without the phase $-i$ that the first-order term carries."
+        },
+        {
+          "assumes": [
+            {
+              "step": 0
+            },
+            {
+              "text": "To lowest order in $\\ketaLD$, $e^{-i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)} \\approx 1 - i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)$.",
+              "src": "10.2.3"
+            },
+            {
+              "text": "The motional states $|n\\rangle$ are orthonormal.",
+              "src": "(11.116)"
+            },
+            {
+              "tex": "\\hat{a}^\\dagger|n-1\\rangle = \\sqrt{n}|n\\rangle",
+              "src": "(11.117)"
+            }
+          ],
+          "then": {
+            "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|m\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\langle n|e^{-i\\ketaLD(\\hat{a}+\\hat{a}^\\dagger)}|m\\rangle}",
+            "uses": []
+          },
+          "steps": [
+            {
+              "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|n-1\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\left(\\langle n|n-1\\rangle - i\\ketaLD\\langle n|(\\hat{a}+\\hat{a}^\\dagger)|n-1\\rangle + \\mathcal{O}(\\ketaLD^3)\\right)}",
+              "uses": [
+                1
+              ],
+              "cap": "The $\\eta^2$ term changes $n$ by 0 or 2, so the next correction is of order $\\eta^3$."
+            },
+            {
+              "tex": "\\mk{L}{\\langle g|\\langle n|\\kH|e\\rangle|n-1\\rangle} = \\mk{R}{-\\hbar\\kOmega^*\\left(-i\\ketaLD\\sqrt{n} + \\mathcal{O}(\\ketaLD^3)\\right)}",
+              "uses": [
+                2,
+                3
+              ]
+            }
+          ],
+          "num": "(10.22)",
+          "note": "The book prints $-\\hbar\\kOmega\\left(\\ketaLD\\sqrt{n} + \\mathcal{O}(\\ketaLD^3)\\right)$: $\\kOmega$ for $\\kOmega^*$, and without the phase $-i$ that the first-order term carries."
+        }
+      ]
+    }
+  ]
+}

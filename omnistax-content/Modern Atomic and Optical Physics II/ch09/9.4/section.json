@@ -1,0 +1,2106 @@
+{
+ "id": "9.4",
+ "chapter": "9",
+ "title": "Quantum dynamics in non-linear mixing processes",
+ "short": "Non-linear mixing processes",
+ "lead": "Linear and nonlinear amplification of quantum fields: <span data-concept=\"degenerate-opo\">degenerate</span> and <span data-concept=\"nondegenerate-pdc\">non-degenerate parametric down-conversion</span>, from its classical equations to an effective Hamiltonian for photon pairs; the correlated pairs and the <span data-concept=\"squeezed-state\">squeezed states</span> it makes; how cavity loss bears on squeezing inside the cavity and in the light that leaves it; <span data-concept=\"homodyne-detection\">homodyne detection</span>; squeezed light in interferometry; and <span data-concept=\"spin-squeezing\">squeezing</span> and entanglement with atoms.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "MIT 8.422 Problem Set 1, Problem 3, Problem Set 3, Problems 2 and 3, and Problem Set 4, Problem 1 are set one card per part, restated in Lukin's notation with AI-written solutions, since the course published no key. Problem Set 1, Problem 3 asks for numerical plots of the Q function: each part asks instead for the analytic Q(α) and the problem's questions, and its plots are held.",
+ "figures": [
+  {
+   "id": "fig-opo",
+   "kind": "figure",
+   "number": "9.9",
+   "originals": [
+    "/media/ch09/fig-9-9.png"
+   ],
+   "original_caption": "The optical parametric oscillator is formed by atoms with a cascade level configuration inside a cavity with resonance frequency ν_c = ν₀/2.",
+   "draws": [
+    "frequency",
+    "electric-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-squeezing",
+   "kind": "sim",
+   "number": "9.10",
+   "originals": [
+    "/media/ch09/fig-9-10.png"
+   ],
+   "original_caption": "Phase space representation of the noise in the vacuum state, a coherent state, and a squeezed state.",
+   "draws": [
+    "quadrature",
+    "state",
+    "phase",
+    "coupling",
+    "time",
+    "frequency",
+    "electric-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-output-squeezing",
+   "kind": "sim",
+   "number": "9.11",
+   "originals": [
+    "/media/ch09/fig-9-11.png"
+   ],
+   "original_caption": "Squeezing in the momentum quadrature component of the output field, relative to the noise of a coherent state (known as the “standard quantum limit”).",
+   "draws": [
+    "quadrature",
+    "frequency",
+    "rate",
+    "coupling"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-homodyne",
+   "kind": "figure",
+   "number": "9.12",
+   "originals": [
+    "/media/ch09/fig-9-12.png"
+   ],
+   "original_caption": "Schematic for homodyne detection of the quantum field â. A local oscillator b̂_LO is mixed with the signal on a beamsplitter, and the two output fields are subtracted to provide a phase-sensitive measurement of the quadrature components of â.",
+   "draws": [],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-phase-shift",
+   "kind": "sim",
+   "number": "9.13",
+   "originals": [
+    "/media/ch09/fig-9-13.png"
+   ],
+   "original_caption": "Three methods for measuring a phase shift φ. (a) Using a coherent state, the quadrature variance in p̂ sets a minimum value of φ which can be measured. (b) Using a squeezed state with ⟨ΔP²⟩ < 1/2, a more precise measurement can be made. (c) A similar improvement in precision can be obtained simply by using a larger coherent field, which is considerably easier to create than a squeezed state.",
+   "draws": [
+    "quadrature",
+    "state",
+    "phase"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-interferometer",
+   "kind": "figure",
+   "number": "9.14",
+   "originals": [
+    "/media/ch09/fig-9-14.png"
+   ],
+   "original_caption": "An experimental configuration for measuring a phase shift δφ using squeezed light to improve the precision (see PRL 59 278 (1987) and PRL 59 2153 (1987).",
+   "draws": [
+    "phase"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "amp-noise",
+   "concept": "linear-amplifier-noise",
+   "verb": "introduces"
+  },
+  {
+   "span": "opo",
+   "concept": "degenerate-opo",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-gain",
+   "concept": "phase-dependent-amplification",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-9-152",
+   "concept": "opo-heisenberg-langevin",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-9-155",
+   "concept": "nondegenerate-pdc",
+   "verb": "introduces"
+  },
+  {
+   "span": "number-correlations",
+   "concept": "photon-number-correlations",
+   "verb": "introduces"
+  },
+  {
+   "span": "heralded",
+   "concept": "heralded-single-photons",
+   "verb": "introduces"
+  },
+  {
+   "span": "post-selection",
+   "concept": "post-selection",
+   "verb": "introduces"
+  },
+  {
+   "span": "squeezed-def",
+   "concept": "squeezed-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "damped",
+   "concept": "damped-squeezing",
+   "verb": "introduces"
+  },
+  {
+   "span": "threshold",
+   "concept": "steady-state-squeezing",
+   "verb": "introduces"
+  },
+  {
+   "span": "output-field",
+   "concept": "output-squeezing",
+   "verb": "introduces"
+  },
+  {
+   "span": "homodyne",
+   "concept": "homodyne-detection",
+   "verb": "introduces"
+  },
+  {
+   "span": "interferometry",
+   "concept": "squeezed-interferometry",
+   "verb": "introduces"
+  },
+  {
+   "span": "spin-squeezing",
+   "concept": "spin-squeezing",
+   "verb": "introduces"
+  },
+  {
+   "span": "atom-photon",
+   "concept": "atom-photon-entanglement",
+   "verb": "introduces"
+  },
+  {
+   "span": "degenerate",
+   "concept": "parametric-processes",
+   "verb": "uses"
+  },
+  {
+   "span": "degenerate",
+   "concept": "second-order-susceptibility",
+   "verb": "uses"
+  },
+  {
+   "span": "amp-noise",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "hl-approach",
+   "concept": "heisenberg-langevin-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "adiabatic",
+   "concept": "adiabatic-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "squeezed-def",
+   "concept": "coherent-state",
+   "verb": "uses"
+  },
+  {
+   "span": "squeezed-def",
+   "concept": "quadrature-operators",
+   "verb": "uses"
+  },
+  {
+   "span": "damped",
+   "concept": "cavity-langevin-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "damped",
+   "concept": "cavity-loss-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "damped",
+   "concept": "cavity-noise-correlations",
+   "verb": "uses"
+  },
+  {
+   "span": "output-field",
+   "concept": "input-output-relation",
+   "verb": "uses"
+  },
+  {
+   "span": "homodyne",
+   "concept": "local-oscillator",
+   "verb": "uses"
+  },
+  {
+   "span": "homodyne",
+   "concept": "beamsplitter-transformation",
+   "verb": "uses"
+  },
+  {
+   "span": "number-correlations",
+   "concept": "thermal-photon-distribution",
+   "verb": "uses"
+  },
+  {
+   "span": "undepleted",
+   "concept": "undepleted-pump-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "atom-photon",
+   "concept": "raman-transition",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-pair-state",
+   "concept": "photon-pair-state",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "hw1-3i",
+   "source_id": "hw1.3i",
+   "source_number": "Problem Set 1, Problem 3(i)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's brackets $|\\alpha)$, $(\\alpha|$ are written $|\\alpha\\rangle$, $\\langle\\alpha|$; the $Q$ function, which Lukin does not define (his quasi-probability distribution is the $P$ function of Eq. (9.40)), is kept as MIT defines it; the problem's leave to answer numerically is left out and its request to compute and plot becomes compute and describe, the plots held; MIT's angles $\\theta$, $\\phi$ of the state are kept: they are not the pump phase $\\theta$ of Eq. (9.161) or the local-oscillator phase $\\phi$ of Eq. (9.198).",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeezed-def",
+   "prompt": "Pseudo-probability distributions such as the $Q(\\alpha)$ function provide useful and insightful ways to depict quantum states of light. In this problem, we explore some important states and their depictions. The $Q(\\alpha)$ function is defined as $$Q_\\rho(\\alpha) \\equiv \\langle\\alpha|\\rho|\\alpha\\rangle, \\qquad (12)$$ and it is readily computed by using the fact that any pure state $\\rho = |\\psi\\rangle\\langle\\psi|$ can be represented using $$|\\psi\\rangle = \\sum_{n=0}^{\\infty} c_n|n\\rangle, \\qquad (13)$$ and $$\\langle n|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\frac{\\alpha^n}{\\sqrt{n!}}. \\qquad (14)$$ Compute and describe $$Q_1(\\alpha) = |\\langle\\alpha|\\psi_1\\rangle|^2, \\qquad (15)$$ for $$|\\psi_1\\rangle = \\cos\\frac{\\theta}{2}|0\\rangle + e^{i\\phi}\\sin\\frac{\\theta}{2}|12\\rangle, \\qquad (16)$$ where $|12\\rangle$ is the twelve photon number eigenstate, for various values of $\\phi$ and $\\theta$. Is this a minimum uncertainty state? Is it a squeezed state?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By (14), $\\langle\\alpha|n\\rangle = e^{-|\\alpha|^2/2}(\\alpha^*)^n/\\sqrt{n!}$, so $$Q_1(\\alpha) = e^{-|\\alpha|^2}\\left|\\cos\\frac{\\theta}{2} + e^{i\\phi}\\sin\\frac{\\theta}{2}\\frac{(\\alpha^*)^{12}}{\\sqrt{12!}}\\right|^2 = e^{-|\\alpha|^2}\\left[\\cos^2\\frac{\\theta}{2} + \\sin^2\\frac{\\theta}{2}\\frac{|\\alpha|^{24}}{12!} + \\sin\\theta\\frac{|\\alpha|^{12}}{\\sqrt{12!}}\\cos(\\phi - 12\\arg\\alpha)\\right].$$ At $\\theta = 0$ it is the vacuum's Gaussian at the origin; at $\\theta = \\pi$ it is the Fock state's ring, peaked at $|\\alpha|^2 = 12$ and the same at every $\\arg\\alpha$, since a number state has no phase. In between both are there, and their cross term adds a twelve-fold ripple around the origin, strongest near $|\\alpha|^2 = 6$ where the two amplitudes overlap; changing $\\phi$ turns the ripple by $\\phi/12$, and $\\theta$ sets how much of each state the picture holds. Since $|\\psi_1\\rangle$ holds only $|0\\rangle$ and $|12\\rangle$, $\\langle\\hat{a}\\rangle = \\langle\\hat{a}^2\\rangle = 0$, so every quadrature of Eqs. (9.13)–(9.14), at any angle, has $$\\langle\\Delta\\hat{x}^2\\rangle = \\frac{1}{2} + \\langle\\hat{a}^\\dagger\\hat{a}\\rangle = \\frac{1}{2} + 12\\sin^2\\frac{\\theta}{2}.$$ The product $\\langle\\Delta\\hat{x}^2\\rangle\\langle\\Delta\\hat{p}^2\\rangle = (1/2 + 12\\sin^2(\\theta/2))^2$ exceeds $1/4$ unless $\\theta = 0$: the state is not a minimum-uncertainty state (except the vacuum), and since no quadrature falls below $1/2$ it is not squeezed."
+   }
+  },
+  {
+   "id": "hw1-3ii",
+   "source_id": "hw1.3ii",
+   "source_number": "Problem Set 1, Problem 3(ii)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's brackets $|\\alpha)$, $(\\alpha|$ are written $|\\alpha\\rangle$, $\\langle\\alpha|$; the $Q$ function, which Lukin does not define (his quasi-probability distribution is the $P$ function of Eq. (9.40)), is kept as MIT defines it; the problem's leave to answer numerically is left out and its request to compute and plot becomes compute and describe, the plots held; the amplitude of the two coherent states is written $\\alpha_0$ to keep it apart from the argument $\\alpha$ of $Q$, which MIT writes with the same letter, and the instruction to plot on a logarithmic scale is stated as what that plot shows. The state is the even Schrödinger cat of Section 9.2.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeezed-def",
+   "prompt": "For the $Q$ function $Q_\\rho(\\alpha) \\equiv \\langle\\alpha|\\rho|\\alpha\\rangle$ of a pure state $\\rho = |\\psi\\rangle\\langle\\psi|$, computed from $|\\psi\\rangle = \\sum_n c_n|n\\rangle$ and $\\langle n|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\alpha^n/\\sqrt{n!}$: Compute $$Q_2(\\alpha) = |\\langle\\alpha|\\psi_2\\rangle|^2, \\qquad (17)$$ for $$|\\psi_2\\rangle = \\frac{|\\alpha_0\\rangle + |-\\alpha_0\\rangle}{\\sqrt{2}}, \\qquad (18)$$ say, with $\\alpha_0 = 3$. On a logarithmic scale you should see interference fringes around the origin. What is that due to?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\langle\\alpha|\\pm\\alpha_0\\rangle = e^{-|\\alpha|^2/2 - |\\alpha_0|^2/2 \\pm \\alpha^*\\alpha_0}$, for real $\\alpha_0$ $$Q_2(\\alpha) = \\frac{1}{2}e^{-|\\alpha|^2 - \\alpha_0^2}\\left|e^{\\alpha^*\\alpha_0} + e^{-\\alpha^*\\alpha_0}\\right|^2 = e^{-|\\alpha|^2 - \\alpha_0^2}\\left[\\cosh(2\\alpha_0\\,\\mathrm{Re}\\,\\alpha) + \\cos(2\\alpha_0\\,\\mathrm{Im}\\,\\alpha)\\right].$$ (The state as written has norm $1 + e^{-2\\alpha_0^2}$, which for $\\alpha_0 = 3$ differs from 1 by $10^{-8}$.) The cosh term is two Gaussians, $\\frac{1}{2}e^{-|\\alpha \\mp \\alpha_0|^2}$, at $\\pm\\alpha_0 = \\pm 3$. The cosine term is a set of fringes running along $\\mathrm{Im}\\,\\alpha$ with period $\\pi/\\alpha_0 \\approx 1.05$, weighted by $e^{-|\\alpha|^2 - \\alpha_0^2}$: near the origin they are about $e^{-9} \\approx 10^{-4}$ of the peaks, which is why they show only on a logarithmic scale. They come from the interference of the two components, the cross terms $\\langle\\alpha|\\alpha_0\\rangle\\langle-\\alpha_0|\\alpha\\rangle$ that a statistical mixture of $|\\alpha_0\\rangle$ and $|-\\alpha_0\\rangle$ would not have: the fringes are the coherence of the superposition, the mark of a Schrödinger cat, which $Q$, smoothing over a vacuum-sized disc, keeps only as this small ripple."
+   }
+  },
+  {
+   "id": "hw1-3iii",
+   "source_id": "hw1.3iii",
+   "source_number": "Problem Set 1, Problem 3(iii)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's brackets $|\\alpha)$, $(\\alpha|$ are written $|\\alpha\\rangle$, $\\langle\\alpha|$; the $Q$ function, which Lukin does not define (his quasi-probability distribution is the $P$ function of Eq. (9.40)), is kept as MIT defines it; the problem's leave to answer numerically is left out and its request to compute and plot becomes compute and describe, the plots held; MIT's phase $\\phi$ of the state is kept: it is not the local-oscillator phase $\\phi$ of Eq. (9.198).",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeezed-def",
+   "prompt": "For the $Q$ function $Q_\\rho(\\alpha) \\equiv \\langle\\alpha|\\rho|\\alpha\\rangle$ of a pure state $\\rho = |\\psi\\rangle\\langle\\psi|$, computed from $|\\psi\\rangle = \\sum_n c_n|n\\rangle$ and $\\langle n|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\alpha^n/\\sqrt{n!}$: Compute $$Q_3(\\alpha) = |\\langle\\alpha|\\psi_3\\rangle|^2, \\qquad (19)$$ for $$|\\psi_3\\rangle = \\frac{1}{\\sqrt{N}}\\sum_{k=1}^{N} e^{ik\\phi}|k\\rangle, \\qquad (20)$$ where $|k\\rangle$ is a Fock state of $k$ photons, say with $N = 10$ and $\\phi = \\pi/4$. How would you interpret the physical meaning of this state? What happens as $N \\to \\infty$? Is this a squeezed state, and how so?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$$Q_3(\\alpha) = \\frac{e^{-|\\alpha|^2}}{N}\\left|\\sum_{k=1}^{N}\\frac{|\\alpha|^k}{\\sqrt{k!}}e^{ik(\\phi - \\arg\\alpha)}\\right|^2.$$ The terms add in phase where $\\arg\\alpha = \\phi$, so $Q_3$ is a crescent lying along the direction $\\pi/4$, narrow in angle and spread in $|\\alpha|$ over the range $1 \\lesssim |\\alpha|^2 \\lesssim N$ that its photon numbers fill. The state is a truncated phase state: equal weight on every photon number from 1 to $N$, each with the phase $e^{ik\\phi}$ that a field of phase $\\phi$ gives its $k$-photon amplitude. It describes a field of well-defined phase $\\phi$ and very uncertain photon number: for $N = 10$, $\\bar{n} = 5.5$ and $\\langle\\Delta n^2\\rangle = 8.25$, against 5.5 for a coherent state. As $N \\to \\infty$ its phase distribution $\\left|\\sum_k e^{ik(\\phi - \\varphi)}\\right|^2/N$ narrows about $\\phi$ like $1/N$ while its number distribution becomes flat and unbounded: it tends to an (unnormalizable) eigenstate of phase. It is squeezed in the number-phase sense, not in a quadrature: its phase spread falls like $1/N$, against $1/(2\\sqrt{\\bar{n}}) \\sim 1/\\sqrt{2N}$ for a coherent state of the same mean number, at the price of super-Poissonian number noise. No quadrature variance falls below the vacuum's $1/2$, though (for $N = 10$ the smallest, at right angles to the direction $\\phi$, is about 1.2), so it is not a squeezed state in the sense of Eqs. (9.168)–(9.169)."
+   }
+  },
+  {
+   "id": "hw1-3iv",
+   "source_id": "hw1.3iv",
+   "source_number": "Problem Set 1, Problem 3(iv)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's brackets $|\\alpha)$, $(\\alpha|$ are written $|\\alpha\\rangle$, $\\langle\\alpha|$; the $Q$ function, which Lukin does not define (his quasi-probability distribution is the $P$ function of Eq. (9.40)), is kept as MIT defines it; the problem's leave to answer numerically is left out and its request to compute and plot becomes compute and describe, the plots held; MIT's squeezing parameter $\\epsilon$ is Lukin's $r$ of Eq. (9.201).",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeezed-def",
+   "prompt": "For the $Q$ function $Q_\\rho(\\alpha) \\equiv \\langle\\alpha|\\rho|\\alpha\\rangle$ of a pure state $\\rho = |\\psi\\rangle\\langle\\psi|$, computed from $|\\psi\\rangle = \\sum_n c_n|n\\rangle$ and $\\langle n|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\alpha^n/\\sqrt{n!}$: Compute $$Q_4(\\alpha) = |\\langle\\alpha|0_r\\rangle|^2, \\qquad (21)$$ where $|0_r\\rangle = S(r)|0\\rangle$ is the squeezed vacuum with parameter $r$. You may use $$S(r)|0\\rangle = \\frac{1}{\\sqrt{\\cosh r}}\\sum_{n=0}^{\\infty}\\frac{\\sqrt{(2n)!}}{2^n n!}(\\tanh r)^n|2n\\rangle. \\qquad (22)$$ Compare $r = 0.2$, $1.2$ and $4$, for example. Look for the signatures of squeezing.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\langle\\alpha|2n\\rangle = e^{-|\\alpha|^2/2}(\\alpha^*)^{2n}/\\sqrt{(2n)!}$, the sum is $\\sum_n (\\alpha^{*2}\\tanh r/2)^n/n! = e^{\\alpha^{*2}\\tanh r/2}$, so $$Q_4(\\alpha) = \\frac{1}{\\cosh r}\\exp\\left[-|\\alpha|^2 + \\tanh r\\,\\mathrm{Re}(\\alpha^{*2})\\right] = \\frac{1}{\\cosh r}\\exp\\left[-(1 - \\tanh r)(\\mathrm{Re}\\,\\alpha)^2 - (1 + \\tanh r)(\\mathrm{Im}\\,\\alpha)^2\\right].$$ It is a Gaussian ellipse at the origin, stretched along $\\mathrm{Re}\\,\\alpha$ and compressed along $\\mathrm{Im}\\,\\alpha$, with variances $\\frac{1}{2(1 \\mp \\tanh r)} = \\frac{1}{4}(e^{\\pm 2r} + 1)$ against $\\frac{1}{2}$ for the vacuum ($r = 0$). At $r = 0.2$ ($\\tanh r = 0.20$) it is barely elliptical; at $r = 1.2$ ($\\tanh r = 0.83$) it is a clear cigar, about 3.3 times longer than wide; at $r = 4$ ($\\tanh r = 0.9993$) a long thin line along $\\mathrm{Re}\\,\\alpha$. The signatures of squeezing are the ellipse itself, one axis growing as the other shrinks, and a narrow width that never falls below $1/\\sqrt{2}$ of the vacuum's: $Q$ is the state's quadrature noise smoothed by one vacuum disc, $\\frac{1}{4}e^{-2r}$ of squeezed noise plus $\\frac{1}{4}$ from the smoothing along $\\mathrm{Im}\\,\\alpha$. In Lukin's units the squeezed quadrature has $\\langle\\Delta\\hat{p}^2\\rangle = \\frac{1}{2}e^{-2r}$, Eq. (9.201). The state holds only even photon numbers, as Lukin notes after Eq. (9.170)."
+   }
+  },
+  {
+   "id": "hw1-3v",
+   "source_id": "hw1.3v",
+   "source_number": "Problem Set 1, Problem 3(v)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's brackets $|\\alpha)$, $(\\alpha|$ are written $|\\alpha\\rangle$, $\\langle\\alpha|$; the $Q$ function, which Lukin does not define (his quasi-probability distribution is the $P$ function of Eq. (9.40)), is kept as MIT defines it; the problem's leave to answer numerically is left out and its request to compute and plot becomes compute and describe, the plots held; MIT's Kerr strength $\\xi$ is written $K$, since $\\xi$ is the down-conversion parameter of Eq. (9.157), the coherent state $|\\beta\\rangle$ is written $|\\alpha_0\\rangle$, since $\\beta$ is the gain of Eq. (9.140), and $\\hbar = 1$ as in MIT's Hamiltonian; the closing sample plot is left out.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeezed-def",
+   "prompt": "For the $Q$ function $Q_\\rho(\\alpha) \\equiv \\langle\\alpha|\\rho|\\alpha\\rangle$ of a pure state $\\rho = |\\psi\\rangle\\langle\\psi|$, computed from $|\\psi\\rangle = \\sum_n c_n|n\\rangle$ and $\\langle n|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\alpha^n/\\sqrt{n!}$: Compute $$Q_5(\\alpha) = |\\langle\\alpha|e^{iH_{kerr}t}|\\alpha_0\\rangle|^2, \\qquad (23)$$ where the Kerr effect Hamiltonian is $$H_{kerr} = K\\hat{a}^\\dagger\\hat{a}(\\hat{a}^\\dagger\\hat{a} - 1) = Kn(n - 1). \\qquad (24)$$ This is easily computed by using the number basis representation of the coherent state $|\\alpha_0\\rangle$. Take $\\alpha_0 = 4$ and $K = \\pi/128$, for example, and follow it as a function of time. At what time does the initial coherent state evolve to become two superposed coherent states? When does it return to its original state? The Kerr-type nonlinearity is important both in nonlinear optics, and in interacting cold atomic gasses. It produces interesting and useful squeezed states.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the number basis $e^{iH_{kerr}t}|\\alpha_0\\rangle = e^{-|\\alpha_0|^2/2}\\sum_n \\frac{\\alpha_0^n}{\\sqrt{n!}}e^{iKtn(n-1)}|n\\rangle$, so $$Q_5(\\alpha) = e^{-|\\alpha|^2 - |\\alpha_0|^2}\\left|\\sum_n \\frac{(\\alpha^*\\alpha_0)^n}{n!}e^{iKtn(n-1)}\\right|^2.$$ The phase $Ktn(n-1)$ is quadratic in $n$, so each number component turns at its own rate: the disc of $|\\alpha_0\\rangle$ at $|\\alpha| = 4$ first shears into a crescent along its circle, squeezed across it, and then spreads round the circle. Since $n(n-1)$ is always even, at $Kt = \\pi$ every phase is $e^{i\\pi n(n-1)} = 1$ and the state is $|\\alpha_0\\rangle$ again: with $K = \\pi/128$, at $t = 128$. Halfway, at $Kt = \\pi/2$ ($t = 64$), the phase $e^{i\\pi n(n-1)/2}$ runs $1, 1, -1, -1$ for $n \\equiv 0, 1, 2, 3 \\pmod 4$, which is $\\frac{1}{\\sqrt{2}}\\left[e^{-i\\pi/4}i^n + e^{i\\pi/4}(-i)^n\\right]$, so $$e^{iH_{kerr}t}|\\alpha_0\\rangle = \\frac{1}{\\sqrt{2}}\\left(e^{-i\\pi/4}|i\\alpha_0\\rangle + e^{i\\pi/4}|-i\\alpha_0\\rangle\\right):$$ two superposed coherent states at $\\pm 4i$, a quarter turn from where it started, a Schrödinger cat like those of Section 9.2. At other simple fractions of $t = 128$ the state passes through superpositions of more coherent states spaced round the circle."
+   }
+  },
+  {
+   "id": "hw3-2a",
+   "source_id": "hw3.2a",
+   "source_number": "Problem Set 3, Problem 2(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats; MIT's mode frequency $\\omega$ is kept (it is the cavity frequency $\\nu_c$ of Section 9.4.1, not the Fourier frequency $\\omega$ of Eq. (9.188)); the problem's Hamiltonian is Lukin's $\\hat{H}_\\mathrm{eff}$ of Eq. (9.152) in the frame rotating at $\\omega$, with $\\beta = -2i\\Lambda$, so $\\tilde{\\beta} = 2\\Lambda$ and $\\theta = 0$ in Eq. (9.161).",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hl-approach",
+   "prompt": "Consider a mode $(\\mathbf{k}, \\boldsymbol{\\varepsilon})$ with wavevector $\\mathbf{k}$ and polarization vector $\\boldsymbol{\\varepsilon}$ of the electromagnetic field with frequency $\\omega$ whose Hamiltonian $H$ is given by $$H = \\hbar\\omega\\hat{a}^\\dagger\\hat{a} + i\\hbar\\Lambda\\left((\\hat{a}^\\dagger)^2e^{-2i\\omega t} - \\hat{a}^2e^{2i\\omega t}\\right), \\qquad (2)$$ where $\\hat{a}^\\dagger$ and $\\hat{a}$ are the creation and annihilation operators of the mode. The first term of Eq. (2) is the energy of the mode for the free field. The second term describes a two-photon interaction process such as parametric amplification (a classical wave of frequency $2\\omega$ generating two photons with frequency $\\omega$). $\\Lambda$ is a real quantity characterizing the strength of the interaction. Write the equation of motion for $\\hat{a}(t)$ using the Heisenberg picture. Take $$\\hat{a}(t) = \\hat{b}(t)e^{-i\\omega t}. \\qquad (3)$$ What are the equations of motion for $\\hat{b}(t)$ and $\\hat{b}^\\dagger(t)$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the Heisenberg picture $\\frac{d\\hat{a}}{dt} = \\frac{i}{\\hbar}[H, \\hat{a}]$, since $\\hat{a}$ has no explicit time dependence. With $[\\hat{a}^\\dagger\\hat{a}, \\hat{a}] = -\\hat{a}$, $[(\\hat{a}^\\dagger)^2, \\hat{a}] = -2\\hat{a}^\\dagger$ and $[\\hat{a}^2, \\hat{a}] = 0$, $$\\frac{d\\hat{a}}{dt} = -i\\omega\\hat{a} + 2\\Lambda e^{-2i\\omega t}\\hat{a}^\\dagger.$$ Substituting $\\hat{a} = \\hat{b}e^{-i\\omega t}$ and $\\hat{a}^\\dagger = \\hat{b}^\\dagger e^{i\\omega t}$, the left side is $\\left(\\frac{d\\hat{b}}{dt} - i\\omega\\hat{b}\\right)e^{-i\\omega t}$, the free terms cancel, and $$\\frac{d\\hat{b}}{dt} = 2\\Lambda\\hat{b}^\\dagger, \\qquad \\frac{d\\hat{b}^\\dagger}{dt} = 2\\Lambda\\hat{b}.$$ These are Lukin's Eqs. (9.150)–(9.151) with $-i\\beta^* = 2\\Lambda$, that is $\\beta = -2i\\Lambda$: in the rotating frame the Hamiltonian is $i\\hbar\\Lambda((\\hat{b}^\\dagger)^2 - \\hat{b}^2) = \\frac{\\hbar}{2}(\\beta\\hat{b}^2 + \\beta^*(\\hat{b}^\\dagger)^2)$, the effective Hamiltonian of Eq. (9.152)."
+   }
+  },
+  {
+   "id": "hw3-2b",
+   "source_id": "hw3.2b",
+   "source_number": "Problem Set 3, Problem 2(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats; MIT's mode frequency $\\omega$ is kept (it is the cavity frequency $\\nu_c$ of Section 9.4.1, not the Fourier frequency $\\omega$ of Eq. (9.188)); the problem's Hamiltonian is Lukin's $\\hat{H}_\\mathrm{eff}$ of Eq. (9.152) in the frame rotating at $\\omega$, with $\\beta = -2i\\Lambda$, so $\\tilde{\\beta} = 2\\Lambda$ and $\\theta = 0$ in Eq. (9.161); MIT's quadratures $b_P$, $b_Q$ are kept: they are Lukin's $\\hat{x}/\\sqrt{2}$ and $\\hat{p}/\\sqrt{2}$ of Eqs. (9.162)–(9.163) at $\\theta = 0$ (Lukin's quadratures carry $1/\\sqrt{2}$, MIT's $1/2$); MIT's field amplitude $\\mathcal{E}_\\omega$ is kept; the problem's Hamiltonian is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeezed-def",
+   "prompt": "For the mode with $H = \\hbar\\omega\\hat{a}^\\dagger\\hat{a} + i\\hbar\\Lambda\\left((\\hat{a}^\\dagger)^2e^{-2i\\omega t} - \\hat{a}^2e^{2i\\omega t}\\right)$ and $\\hat{a}(t) = \\hat{b}(t)e^{-i\\omega t}$: Using the Heisenberg picture, the contribution of the mode $(\\mathbf{k}, \\boldsymbol{\\varepsilon})$ to the electric field is written $$\\mathbf{E}_\\mathbf{k}(\\mathbf{r}, t) = i\\mathcal{E}_\\omega\\boldsymbol{\\varepsilon}\\left(\\hat{a}(t)e^{i\\mathbf{k}\\cdot\\mathbf{r}} - \\hat{a}^\\dagger(t)e^{-i\\mathbf{k}\\cdot\\mathbf{r}}\\right) \\qquad (4)$$ where $\\hat{a}(t)$ is the solution of Eq. (3). Show that $$\\hat{b}_P(t) = \\frac{\\hat{b}(t) + \\hat{b}^\\dagger(t)}{2} \\quad\\text{and}\\quad \\hat{b}_Q(t) = \\frac{\\hat{b}(t) - \\hat{b}^\\dagger(t)}{2i} \\qquad (5)$$ (where $\\hat{b}(t)$ is defined in Eq. (3)) represent physically two quadrature components of the field. Find the equations of motion of $\\hat{b}_P(t)$ and $\\hat{b}_Q(t)$ and give their solutions, assuming that $\\hat{b}_P(0)$ and $\\hat{b}_Q(0)$ are known. Give the corresponding solutions for $\\hat{b}(t)$ and $\\hat{b}^\\dagger(t)$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\chi = \\mathbf{k}\\cdot\\mathbf{r} - \\omega t$ and $\\hat{b} = \\hat{b}_P + i\\hat{b}_Q$, $$\\mathbf{E}_\\mathbf{k} = i\\mathcal{E}_\\omega\\boldsymbol{\\varepsilon}\\left(\\hat{b}e^{i\\chi} - \\hat{b}^\\dagger e^{-i\\chi}\\right) = -2\\mathcal{E}_\\omega\\boldsymbol{\\varepsilon}\\left(\\hat{b}_P\\sin\\chi + \\hat{b}_Q\\cos\\chi\\right):$$ $\\hat{b}_P$ and $\\hat{b}_Q$ are Hermitian and multiply the two oscillations of the field a quarter period apart, so they are its two quadrature components, as $\\hat{x}$ and $\\hat{p}$ are in Lukin's Eq. (9.17). From part (a), $$\\frac{d\\hat{b}_P}{dt} = \\frac{2\\Lambda(\\hat{b}^\\dagger + \\hat{b})}{2} = 2\\Lambda\\hat{b}_P, \\qquad \\frac{d\\hat{b}_Q}{dt} = \\frac{2\\Lambda(\\hat{b}^\\dagger - \\hat{b})}{2i} = -2\\Lambda\\hat{b}_Q,$$ so $$\\hat{b}_P(t) = \\hat{b}_P(0)e^{2\\Lambda t}, \\qquad \\hat{b}_Q(t) = \\hat{b}_Q(0)e^{-2\\Lambda t},$$ Lukin's Eqs. (9.166)–(9.167) with $\\tilde{\\beta} = 2\\Lambda$. Recombining, $$\\hat{b}(t) = \\hat{b}(0)\\cosh 2\\Lambda t + \\hat{b}^\\dagger(0)\\sinh 2\\Lambda t, \\qquad \\hat{b}^\\dagger(t) = \\hat{b}^\\dagger(0)\\cosh 2\\Lambda t + \\hat{b}(0)\\sinh 2\\Lambda t.$$"
+   }
+  },
+  {
+   "id": "hw3-2c",
+   "source_id": "hw3.2c",
+   "source_number": "Problem Set 3, Problem 2(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats; MIT's mode frequency $\\omega$ is kept (it is the cavity frequency $\\nu_c$ of Section 9.4.1, not the Fourier frequency $\\omega$ of Eq. (9.188)); the problem's Hamiltonian is Lukin's $\\hat{H}_\\mathrm{eff}$ of Eq. (9.152) in the frame rotating at $\\omega$, with $\\beta = -2i\\Lambda$, so $\\tilde{\\beta} = 2\\Lambda$ and $\\theta = 0$ in Eq. (9.161); MIT's quadratures $b_P$, $b_Q$ are kept (Lukin's $\\hat{x}/\\sqrt{2}$, $\\hat{p}/\\sqrt{2}$); the problem's Hamiltonian and quadratures are repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeezed-def",
+   "prompt": "For the mode with $H = \\hbar\\omega\\hat{a}^\\dagger\\hat{a} + i\\hbar\\Lambda\\left((\\hat{a}^\\dagger)^2e^{-2i\\omega t} - \\hat{a}^2e^{2i\\omega t}\\right)$, $\\hat{a}(t) = \\hat{b}(t)e^{-i\\omega t}$, and the quadratures $\\hat{b}_P = (\\hat{b} + \\hat{b}^\\dagger)/2$, $\\hat{b}_Q = (\\hat{b} - \\hat{b}^\\dagger)/2i$: Assume that at $t = 0$, the electromagnetic field is in the vacuum state. Calculate at time $t$ the mean number of photons $\\langle N\\rangle$ in the mode $(\\mathbf{k}, \\boldsymbol{\\varepsilon})$ as well as the dispersion $\\Delta b_P(t)$ and $\\Delta b_Q(t)$ on the two quadrature components of the field. Explain the results.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "From part (b), $\\hat{b}(t) = \\hat{b}(0)\\cosh 2\\Lambda t + \\hat{b}^\\dagger(0)\\sinh 2\\Lambda t$, and in the vacuum only $\\langle\\hat{b}(0)\\hat{b}^\\dagger(0)\\rangle = 1$ survives, so $$\\langle N\\rangle = \\langle\\hat{b}^\\dagger\\hat{b}\\rangle = \\sinh^2 2\\Lambda t.$$ The means $\\langle\\hat{b}_P\\rangle$ and $\\langle\\hat{b}_Q\\rangle$ stay zero, and the vacuum has $\\langle\\hat{b}_P(0)^2\\rangle = \\langle\\hat{b}_Q(0)^2\\rangle = 1/4$, so $$\\Delta b_P(t) = \\frac{1}{2}e^{2\\Lambda t}, \\qquad \\Delta b_Q(t) = \\frac{1}{2}e^{-2\\Lambda t}, \\qquad \\Delta b_P\\Delta b_Q = \\frac{1}{4}.$$ The interaction creates photons in pairs out of the vacuum, their number growing as $\\sinh^2 2\\Lambda t$, while the mean field stays zero: the state is a squeezed vacuum. One quadrature's noise is amplified and the other's falls below the vacuum value $1/2$, and their product stays at the minimum $[\\hat{b}_P, \\hat{b}_Q] = i/2$ allows. These are Lukin's Eqs. (9.168)–(9.169) in his units, $\\langle\\Delta\\hat{x}^2\\rangle = 2\\Delta b_P^2 = \\frac{1}{2}e^{2\\tilde{\\beta}t}$."
+   }
+  },
+  {
+   "id": "hw3-3a",
+   "source_id": "hw3.3a",
+   "source_number": "Problem Set 3, Problem 3(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats; MIT's “question 2” is Problem Set 3, Problem 2, set in this section; the squeezing parameter printed “r = 2Λr” is read $r = 2\\Lambda t_0$, Lukin's $r$ of Eq. (9.201) with $\\tilde{\\beta} = 2\\Lambda$; the power transmission $T = t^2$ is written $T = |t|^2$ with Lukin's amplitude $t$ of Eq. (9.80); the Hamiltonian of question 2 is written out.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "squeezed-def",
+   "prompt": "We now look at noise properties of squeezed states generated by the two-photon Hamiltonian $H = \\hbar\\omega\\hat{a}^\\dagger\\hat{a} + i\\hbar\\Lambda\\left((\\hat{a}^\\dagger)^2e^{-2i\\omega t} - \\hat{a}^2e^{2i\\omega t}\\right)$ of question 2. The results obtained will be useful here, namely, the transformations under squeezing of $\\hat{b}$ and $\\hat{b}^\\dagger$, of the quadrature components $\\hat{b}_P$ and $\\hat{b}_Q$ and of their dispersions $\\Delta b_P$ and $\\Delta b_Q$. We again start with a vacuum state at $t = 0$ and, for simplicity, fix the interaction time to $t = t_0$. Let us define the squeezing parameter of the resulting squeezed vacuum state $r = 2\\Lambda t_0$. Calculate the photon number variance $\\langle\\Delta n^2\\rangle$ of this squeezed vacuum state. How is it related to the variance of the two quadrature components of the field $\\langle\\Delta b_P^2\\rangle$ and $\\langle\\Delta b_Q^2\\rangle$? Take the limit of large squeezing $r \\gg 1$. How does the photon number variance scale with the mean photon number of the squeezed vacuum state? Compare this scaling to a strong coherent state (classical laser beam).",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\hat{b} = \\hat{b}_0\\cosh r + \\hat{b}_0^\\dagger\\sinh r$ acting on the vacuum, $\\bar{n} = \\sinh^2 r$ and $\\langle\\hat{b}^2\\rangle = \\sinh r\\cosh r$; the state is Gaussian, so $\\langle\\hat{b}^{\\dagger 2}\\hat{b}^2\\rangle = 2\\bar{n}^2 + |\\langle\\hat{b}^2\\rangle|^2$ and $$\\langle\\Delta n^2\\rangle = \\langle\\hat{b}^{\\dagger 2}\\hat{b}^2\\rangle + \\bar{n} - \\bar{n}^2 = 2\\sinh^2 r\\cosh^2 r = 2\\bar{n}(\\bar{n} + 1).$$ In terms of the quadratures, $\\langle\\Delta b_P^2\\rangle = \\frac{1}{4}e^{2r}$, $\\langle\\Delta b_Q^2\\rangle = \\frac{1}{4}e^{-2r}$, $\\bar{n} = \\langle\\Delta b_P^2\\rangle + \\langle\\Delta b_Q^2\\rangle - \\frac{1}{2}$ and $$\\langle\\Delta n^2\\rangle = 2\\left(\\langle\\Delta b_P^2\\rangle^2 + \\langle\\Delta b_Q^2\\rangle^2\\right) - \\frac{1}{4} = \\frac{1}{2}\\sinh^2 2r.$$ For $r \\gg 1$, $\\bar{n} \\approx e^{2r}/4$ and $\\langle\\Delta n^2\\rangle \\approx 2\\bar{n}^2$: the number noise is set by the large, anti-squeezed quadrature and grows as the square of the mean, $\\Delta n \\approx \\sqrt{2}\\,\\bar{n}$, more even than thermal light's $\\bar{n}(\\bar{n} + 1)$. A strong coherent state has Poissonian $\\langle\\Delta n^2\\rangle = \\bar{n}$, $\\Delta n = \\sqrt{\\bar{n}}$, so relative to its mean the squeezed vacuum's photon number is far noisier, although one of its quadratures is quieter than the vacuum's."
+   }
+  },
+  {
+   "id": "hw3-3b",
+   "source_id": "hw3.3b",
+   "source_number": "Problem Set 3, Problem 3(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats; MIT's “question 2” is Problem Set 3, Problem 2, set in this section; the squeezing parameter printed “r = 2Λr” is read $r = 2\\Lambda t_0$, Lukin's $r$ of Eq. (9.201) with $\\tilde{\\beta} = 2\\Lambda$; the power transmission $T = t^2$ is written $T = |t|^2$ with Lukin's amplitude $t$ of Eq. (9.80); MIT's problem 1 is Problem Set 3, Problem 1, set in Section 9.3, and its beam splitter model of loss is Lukin's Eq. (9.80); the squeezed vacuum's variances are repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "damped",
+   "prompt": "For the squeezed vacuum of squeezing parameter $r = 2\\Lambda t_0$, with $\\langle\\Delta b_P^2\\rangle = \\frac{1}{4}e^{2r}$ and $\\langle\\Delta b_Q^2\\rangle = \\frac{1}{4}e^{-2r}$: Consider now that our squeezed vacuum state is attenuated, and as in problem 1, we model the loss with a unitary beam splitter with vacuum state input at the second port. Let $T = |t|^2$ be the transmission coefficient of the beam splitter (where $t$ is the amplitude transmission coefficient) and $R = 1 - T$ is the reflection coefficient. Let us quantify the quality of the squeezed state by the ratio $c^2$ of variances of the two quadratures (larger variance over smaller variance). At what attenuation (value of $T$) is the quality of squeezing $c^2$ reduced by a factor of 2?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "By Eq. (9.80) the transmitted mode is $t\\hat{b} + i\\sqrt{1 - |t|^2}\\,\\hat{b}_\\mathrm{vac}$, so each quadrature variance becomes $T$ times its own plus $R$ times the vacuum's $\\frac{1}{4}$: $$\\langle\\Delta b_P^2\\rangle' = \\frac{1}{4}(Te^{2r} + R), \\qquad \\langle\\Delta b_Q^2\\rangle' = \\frac{1}{4}(Te^{-2r} + R),$$ and $c^2 = (Te^{2r} + R)/(Te^{-2r} + R)$, from $c_0^2 = e^{4r}$ at $T = 1$ down to 1 at $T = 0$. Setting $c^2 = e^{4r}/2$ with $R = 1 - T$ and solving the linear equation for $T$, $$T = \\frac{e^{4r} - 2}{e^{4r} + e^{2r} - 2} = \\frac{e^{4r} - 2}{(e^{2r} + 2)(e^{2r} - 1)},$$ which needs $e^{4r} > 2$. For large squeezing $T \\approx 1 - e^{-2r}$: a loss of only $R \\approx e^{-2r}$, the squeezed variance's own fraction of the vacuum noise, already halves the quality, because the vacuum noise let in by the beam splitter fills the quiet quadrature first. For $r = 1$, $T \\approx 0.88$."
+   }
+  },
+  {
+   "id": "hw3-3ci",
+   "source_id": "hw3.3ci",
+   "source_number": "Problem Set 3, Problem 3(c)i",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats; MIT's “question 2” is Problem Set 3, Problem 2, set in this section; the squeezing parameter printed “r = 2Λr” is read $r = 2\\Lambda t_0$, Lukin's $r$ of Eq. (9.201) with $\\tilde{\\beta} = 2\\Lambda$; the power transmission $T = t^2$ is written $T = |t|^2$ with Lukin's amplitude $t$ of Eq. (9.80); the local oscillator $|\\alpha\\rangle$ is a coherent state of amplitude $\\alpha$ as in Section 9.1; the sketch is answered in words.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homodyne",
+   "prompt": "For the squeezed vacuum of squeezing parameter $r$, attenuated on a beam splitter of transmission $T = |t|^2$ and reflection $R = 1 - T$ as in part (b): Now let us see what happens to the squeezed vacuum state when we replace the vacuum state input at the second port of the beam splitter with a coherent state $|\\alpha\\rangle$ (local oscillator (LO)). Remember that mixing with a coherent state on a beam splitter approximates a displacement operation. Assume that the coherent state displaces the squeezed vacuum along the lower-variance quadrature (this corresponds to a choice of phase of $\\alpha$). Sketch the phase space of the output state. What is the mean photon number at the output? Express the result in terms of the mean photon numbers of the input states.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The output port carries $t\\hat{b} + r_{bs}\\hat{a}_{LO}$ with $|r_{bs}|^2 = R$: the attenuated squeezed vacuum of part (b), displaced by the coherent amplitude $r_{bs}\\alpha$, of size $\\sqrt{R}|\\alpha|$. In phase space it is the squeezed ellipse, long along $b_P$ (variance $\\frac{1}{4}(Te^{2r} + R)$) and short along $b_Q$ (variance $\\frac{1}{4}(Te^{-2r} + R)$), carried a distance $\\sqrt{R}|\\alpha|$ out along $b_Q$: its narrow direction points along its own displacement, so the noise in its distance from the origin, the amplitude, is the squeezed noise, and the noise in its angle, the phase, is the stretched one. The mean photon number is $$\\langle n\\rangle = R|\\alpha|^2 + T\\sinh^2 r = R\\,\\bar{n}_{LO} + T\\,\\bar{n}_{sq},$$ each input's mean number weighted by the fraction of it the port receives, with no interference term, since the squeezed vacuum has zero mean field."
+   }
+  },
+  {
+   "id": "hw3-3cii",
+   "source_id": "hw3.3cii",
+   "source_number": "Problem Set 3, Problem 3(c)ii",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats; MIT's “question 2” is Problem Set 3, Problem 2, set in this section; the squeezing parameter printed “r = 2Λr” is read $r = 2\\Lambda t_0$, Lukin's $r$ of Eq. (9.201) with $\\tilde{\\beta} = 2\\Lambda$; the power transmission $T = t^2$ is written $T = |t|^2$ with Lukin's amplitude $t$ of Eq. (9.80); the arrangement of part (c) is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homodyne",
+   "prompt": "For the squeezed vacuum of squeezing parameter $r$, attenuated on a beam splitter of transmission $T = |t|^2$ and reflection $R = 1 - T$ as in part (b), whose second input now carries a coherent local oscillator $|\\alpha\\rangle$ that displaces it along its lower-variance quadrature: What is the photon number variance at the output? (Hint: remember from class notes, that the squeezed vacuum state is composed of even-photon-number eigenstates only.) Identify the different contributions. Take the limit of large squeezing and small attenuation (such that it does not degrade the quality of squeezing; refer to part (b)).",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write the output mode as $\\hat{c} = \\gamma + \\delta\\hat{c}$, with $\\gamma = r_{bs}\\alpha$ along the low-variance quadrature $b_Q$ ($|\\gamma|^2 = R|\\alpha|^2$) and $\\delta\\hat{c}$ the attenuated squeezed vacuum, whose odd moments vanish (it holds even photon numbers, and loss keeps it Gaussian with zero mean). Then $\\hat{n} = |\\gamma|^2 + 2|\\gamma|\\delta\\hat{b}_Q + \\delta\\hat{c}^\\dagger\\delta\\hat{c}$, the middle and last terms are uncorrelated, and $$\\langle\\Delta n^2\\rangle = 4|\\gamma|^2\\langle\\Delta b_Q^2\\rangle' + \\langle\\Delta n^2\\rangle_{sq}' = R|\\alpha|^2\\left(Te^{-2r} + R\\right) + T\\sinh^2 r\\left(2T\\cosh^2 r + R\\right).$$ The first term is the beat of the strong local oscillator with the noise of the squeezed quadrature, the homodyne term of Lukin's Eq. (9.199); the second is the attenuated squeezed vacuum's own number noise, $2\\bar{n}(\\bar{n} + 1)$ at $T = 1$ as in part (a). For large squeezing with $R \\ll e^{-2r}$ (part (b)), $$\\langle\\Delta n^2\\rangle \\approx R|\\alpha|^2e^{-2r} + 2\\sinh^2 r\\cosh^2 r \\approx R|\\alpha|^2e^{-2r} + \\frac{e^{4r}}{8}.$$"
+   }
+  },
+  {
+   "id": "hw3-3ciii",
+   "source_id": "hw3.3ciii",
+   "source_number": "Problem Set 3, Problem 3(c)iii",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats; MIT's “question 2” is Problem Set 3, Problem 2, set in this section; the squeezing parameter printed “r = 2Λr” is read $r = 2\\Lambda t_0$, Lukin's $r$ of Eq. (9.201) with $\\tilde{\\beta} = 2\\Lambda$; the power transmission $T = t^2$ is written $T = |t|^2$ with Lukin's amplitude $t$ of Eq. (9.80); the arrangement of part (c) is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "homodyne",
+   "prompt": "For the squeezed vacuum of squeezing parameter $r$, attenuated on a beam splitter of transmission $T = |t|^2$ and reflection $R = 1 - T$ as in part (b), whose second input now carries a coherent local oscillator $|\\alpha\\rangle$ that displaces it along its lower-variance quadrature: Can sub-Poissonian photon number fluctuations be achieved at the output? If so, what are the constraints on the strength of the LO $|\\alpha|^2$? Can you give intuitive reasoning for why mixing with the LO changes the nature of photon number fluctuations of the squeezed state? This goes to show that squeezing can be measured on a single photo-detector, without the need to measure field quadratures.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Sub-Poissonian means $\\langle\\Delta n^2\\rangle < \\langle n\\rangle$. With parts (c)i and (c)ii, $$\\langle\\Delta n^2\\rangle - \\langle n\\rangle = -R|\\alpha|^2T(1 - e^{-2r}) + T^2\\sinh^2 r\\cosh 2r,$$ which is negative when $$R|\\alpha|^2 > \\frac{T\\sinh^2 r\\cosh 2r}{1 - e^{-2r}}.$$ So yes, for any $r > 0$, once the local oscillator is strong enough; for $T \\to 1$ and $r \\gg 1$ the condition is $R|\\alpha|^2 \\gtrsim e^{4r}/8 \\approx 2\\bar{n}_{sq}^2$, the displacing field outweighing the square of the squeezed vacuum's photon number. The reason: a strong displacement turns photon-number noise into the noise of the quadrature along the displacement, $\\langle\\Delta n^2\\rangle \\approx 4|\\gamma|^2\\langle\\Delta b_Q^2\\rangle$, as in homodyne detection, Eq. (9.199). For a coherent state that quadrature carries the vacuum's noise and the counts are Poissonian, $\\langle\\Delta n^2\\rangle = |\\gamma|^2$; displacing along the squeezed quadrature puts its noise $e^{-2r}$ below the vacuum's, so the counts are quieter than Poisson by about that factor, once this beat term outweighs the squeezed vacuum's own large number noise. A single photodetector counting photons thus sees the squeezing."
+   }
+  },
+  {
+   "id": "hw4-1a",
+   "source_id": "hw4.1a",
+   "source_number": "Problem Set 4, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats and MIT's brackets $|\\cdot)$ are written $|\\cdot\\rangle$; MIT's beamsplitter $B$ is Lukin's Eqs. (9.48)–(9.49) with $t = r = 1/\\sqrt{2}$, its phase shifter $P$ is Eq. (9.44), and $M$ is the difference count $\\hat{n}_-$ of Eq. (9.203); MIT's sketch of the interferometer is described in words.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interferometry",
+   "prompt": "The Yurke state $|\\psi\\rangle = (|n\\rangle|n-1\\rangle + |n-1\\rangle|n\\rangle)/\\sqrt{2}$ allows one to obtain a measurement of an unknown phase $\\phi$ with uncertainty $\\Delta\\phi = \\sqrt{2}/n$,<sup class=\"fn\" data-note=\"c-hw4-1a\"></sup> using a Mach-Zehnder interferometer. Methods for experimentally realizing these states have been proposed, for example, using Bose-Einstein condensates [Castin &amp; Dalibard, Phys. Rev. A vol. 55, p. 4330, 1997]. For this problem, use the following definition for the beamsplitter: $$B\\hat{a}B^\\dagger = \\frac{1}{\\sqrt{2}}(\\hat{a} + i\\hat{b}), \\qquad B\\hat{b}B^\\dagger = \\frac{1}{\\sqrt{2}}(\\hat{b} + i\\hat{a}). \\qquad (1)$$ Let us now analyze the Mach-Zehnder interferometer, fed with a Yurke state as input, in which modes $\\hat{a}$ and $\\hat{b}$ meet on a first 50/50 beamsplitter, mode $\\hat{a}$ then passes a phase shifter $P$, and the two are recombined on a second beamsplitter. Work in the Schrödinger picture, by doing the following. Let the input be the Yurke state, $|\\phi_0\\rangle = |\\psi\\rangle$, let the state after the first 50/50 beamsplitter be $|\\phi_1\\rangle = B|\\phi_0\\rangle$, the state after the phase shifter be $|\\phi_2\\rangle = P|\\phi_1\\rangle$, and the state after the final 50/50 beamsplitter be $|\\phi_3\\rangle = B^\\dagger|\\phi_2\\rangle$. Give expressions for $|\\phi_1\\rangle$, $|\\phi_2\\rangle$, and $|\\phi_3\\rangle$. Note that the transform of the phase shifter $P$ is $P\\hat{a}P^\\dagger = \\hat{a}e^{i\\phi}$. Double-check that when $\\phi = 0$, the output is the same as the input $|\\phi_3\\rangle = |\\phi_0\\rangle$. Hint: write these states in terms of operators acting on the vacuum.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write the Yurke state with operators on the vacuum, $|\\phi_0\\rangle = \\frac{1}{\\sqrt{\\mathcal{N}}}\\left[(\\hat{a}^\\dagger)^n(\\hat{b}^\\dagger)^{n-1} + (\\hat{a}^\\dagger)^{n-1}(\\hat{b}^\\dagger)^n\\right]|0\\rangle$ with $\\mathcal{N} = 2\\,n!\\,(n-1)!$. Every element leaves the vacuum alone, so a state is transformed by transforming its creation operators: $B\\hat{a}^\\dagger B^\\dagger = (\\hat{a}^\\dagger - i\\hat{b}^\\dagger)/\\sqrt{2}$ and $B\\hat{b}^\\dagger B^\\dagger = (\\hat{b}^\\dagger - i\\hat{a}^\\dagger)/\\sqrt{2}$, the conjugates of (1), and $P\\hat{a}^\\dagger P^\\dagger = \\hat{a}^\\dagger e^{-i\\phi}$. Hence $$|\\phi_1\\rangle = \\frac{1}{\\sqrt{\\mathcal{N}}}\\left[\\left(\\tfrac{\\hat{a}^\\dagger - i\\hat{b}^\\dagger}{\\sqrt{2}}\\right)^n\\left(\\tfrac{\\hat{b}^\\dagger - i\\hat{a}^\\dagger}{\\sqrt{2}}\\right)^{n-1} + \\left(\\tfrac{\\hat{a}^\\dagger - i\\hat{b}^\\dagger}{\\sqrt{2}}\\right)^{n-1}\\left(\\tfrac{\\hat{b}^\\dagger - i\\hat{a}^\\dagger}{\\sqrt{2}}\\right)^n\\right]|0\\rangle,$$ $|\\phi_2\\rangle$ is the same with every $\\hat{a}^\\dagger$ replaced by $\\hat{a}^\\dagger e^{-i\\phi}$, and since $B^\\dagger\\hat{a}^\\dagger B = (\\hat{a}^\\dagger + i\\hat{b}^\\dagger)/\\sqrt{2}$ and $B^\\dagger\\hat{b}^\\dagger B = (\\hat{b}^\\dagger + i\\hat{a}^\\dagger)/\\sqrt{2}$, the whole interferometer sends $$\\hat{a}^\\dagger \\to e^{-i\\phi/2}\\left(c\\,\\hat{a}^\\dagger + s\\,\\hat{b}^\\dagger\\right), \\qquad \\hat{b}^\\dagger \\to e^{-i\\phi/2}\\left(-s\\,\\hat{a}^\\dagger + c\\,\\hat{b}^\\dagger\\right), \\qquad c = \\cos\\tfrac{\\phi}{2},\\ s = \\sin\\tfrac{\\phi}{2},$$ so that $$|\\phi_3\\rangle = \\frac{e^{-i(2n-1)\\phi/2}}{\\sqrt{\\mathcal{N}}}\\left[(c\\hat{a}^\\dagger + s\\hat{b}^\\dagger)^n(-s\\hat{a}^\\dagger + c\\hat{b}^\\dagger)^{n-1} + (c\\hat{a}^\\dagger + s\\hat{b}^\\dagger)^{n-1}(-s\\hat{a}^\\dagger + c\\hat{b}^\\dagger)^n\\right]|0\\rangle.$$ At $\\phi = 0$, $c = 1$ and $s = 0$, and $|\\phi_3\\rangle = |\\phi_0\\rangle$: the two beamsplitters undo each other."
+   }
+  },
+  {
+   "id": "hw4-1b",
+   "source_id": "hw4.1b",
+   "source_number": "Problem Set 4, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats and MIT's brackets $|\\cdot)$ are written $|\\cdot\\rangle$; MIT's beamsplitter $B$ is Lukin's Eqs. (9.48)–(9.49) with $t = r = 1/\\sqrt{2}$, its phase shifter $P$ is Eq. (9.44), and $M$ is the difference count $\\hat{n}_-$ of Eq. (9.203); MIT's sketch of the interferometer is described in words; the interferometer and the Yurke state are repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interferometry",
+   "prompt": "For the Mach-Zehnder interferometer of this problem (beamsplitters $B\\hat{a}B^\\dagger = (\\hat{a} + i\\hat{b})/\\sqrt{2}$, $B\\hat{b}B^\\dagger = (\\hat{b} + i\\hat{a})/\\sqrt{2}$, a phase shifter $P\\hat{a}P^\\dagger = \\hat{a}e^{i\\phi}$ in arm $\\hat{a}$ between them, and the output state $B^\\dagger PB|\\text{input}\\rangle$) fed with the Yurke state $(|n\\rangle|n-1\\rangle + |n-1\\rangle|n\\rangle)/\\sqrt{2}$: What is the uncertainty with which you can determine $\\phi$ using the Yurke state input? This is $$\\langle\\Delta\\phi^2\\rangle = \\frac{\\langle\\Delta M^2\\rangle}{\\left|\\partial\\langle M\\rangle/\\partial\\phi\\right|^2}, \\qquad (2)$$ where $M = \\hat{a}^\\dagger\\hat{a} - \\hat{b}^\\dagger\\hat{b}$ is the difference in the photon numbers measured at the outputs of the interferometer. Compute $\\langle\\Delta\\phi^2\\rangle$, evaluated at $\\phi = 0$ (the point at which the interferometer is balanced), using the $|\\phi_3\\rangle$ you obtained above. You should find $\\Delta\\phi = \\sqrt{2}/n$.<sup class=\"fn\" data-note=\"c-hw4-1b\"></sup>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the Heisenberg picture the interferometer turns $\\hat{a}^\\dagger$ and $\\hat{b}^\\dagger$ through the angle $\\phi/2$ of part (a), so, with the averages taken in the input state, $$\\langle M\\rangle_\\phi = \\cos\\phi\\,\\langle M\\rangle_0 - \\sin\\phi\\,\\langle\\hat{a}^\\dagger\\hat{b} + \\hat{b}^\\dagger\\hat{a}\\rangle_0.$$ For the Yurke state $\\langle M\\rangle_0 = 0$, since its two components have $M = \\pm 1$, and $\\hat{a}^\\dagger\\hat{b}$ takes $|n-1\\rangle|n\\rangle$ to $n|n\\rangle|n-1\\rangle$, so $\\langle\\hat{a}^\\dagger\\hat{b}\\rangle_0 = \\langle\\hat{b}^\\dagger\\hat{a}\\rangle_0 = n/2$ and $\\langle M\\rangle_\\phi = -n\\sin\\phi$. At $\\phi = 0$ the output is the input, on which $M^2 = 1$, so $\\langle\\Delta M^2\\rangle = 1$, and the slope is $|\\partial\\langle M\\rangle/\\partial\\phi| = n$: $$\\langle\\Delta\\phi^2\\rangle = \\frac{1}{n^2}, \\qquad \\Delta\\phi = \\frac{1}{n}.$$ The uncertainty falls as the inverse of the photon number, the Heisenberg scaling, against $1/\\sqrt{\\bar{n}}$ for a coherent state (part (d))."
+   }
+  },
+  {
+   "id": "hw4-1c",
+   "source_id": "hw4.1c",
+   "source_number": "Problem Set 4, Problem 1(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats and MIT's brackets $|\\cdot)$ are written $|\\cdot\\rangle$; MIT's beamsplitter $B$ is Lukin's Eqs. (9.48)–(9.49) with $t = r = 1/\\sqrt{2}$, its phase shifter $P$ is Eq. (9.44), and $M$ is the difference count $\\hat{n}_-$ of Eq. (9.203); MIT's sketch of the interferometer is described in words; MIT's “using the same diagram as above” refers to the arrangement described in part (a), which is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interferometry",
+   "prompt": "For the Mach-Zehnder interferometer of this problem (beamsplitters $B\\hat{a}B^\\dagger = (\\hat{a} + i\\hat{b})/\\sqrt{2}$, $B\\hat{b}B^\\dagger = (\\hat{b} + i\\hat{a})/\\sqrt{2}$, a phase shifter $P\\hat{a}P^\\dagger = \\hat{a}e^{i\\phi}$ in arm $\\hat{a}$ between them, and the output state $B^\\dagger PB|\\text{input}\\rangle$): In lecture, we used the Heisenberg picture to compute statistics about interferometer performance with coherent state inputs. For comparison with the Yurke state, let's now work out what happens with coherent states in the Schrödinger picture. Using the same arrangement, let the input now be a coherent state and a vacuum state, $|\\psi_0\\rangle = |\\alpha\\rangle|0\\rangle$. Just as for the Yurke state, let the state after the first 50/50 beamsplitter be $|\\psi_1\\rangle = B|\\psi_0\\rangle$, the state after the phase shifter be $|\\psi_2\\rangle = P|\\psi_1\\rangle$, and the state after the final 50/50 beamsplitter be $|\\psi_3\\rangle = B^\\dagger|\\psi_2\\rangle$. Give expressions for $|\\psi_1\\rangle$, $|\\psi_2\\rangle$, and $|\\psi_3\\rangle$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A coherent state is a displaced vacuum, $|\\alpha\\rangle|0\\rangle = e^{\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}}|0\\rangle$ (Eq. (9.19)), and transforming the creation operators as in part (a) moves its amplitude: $$|\\psi_1\\rangle = \\left|\\tfrac{\\alpha}{\\sqrt{2}}\\right\\rangle_a\\left|\\tfrac{-i\\alpha}{\\sqrt{2}}\\right\\rangle_b, \\qquad |\\psi_2\\rangle = \\left|\\tfrac{\\alpha e^{-i\\phi}}{\\sqrt{2}}\\right\\rangle_a\\left|\\tfrac{-i\\alpha}{\\sqrt{2}}\\right\\rangle_b, \\qquad |\\psi_3\\rangle = \\left|\\alpha e^{-i\\phi/2}\\cos\\tfrac{\\phi}{2}\\right\\rangle_a\\left|\\alpha e^{-i\\phi/2}\\sin\\tfrac{\\phi}{2}\\right\\rangle_b.$$ The outputs stay coherent states, as Lukin's Eq. (9.50) says a beamsplitter keeps them; at $\\phi = 0$ all the light leaves in $\\hat{a}$, $|\\psi_3\\rangle = |\\alpha\\rangle|0\\rangle$."
+   }
+  },
+  {
+   "id": "hw4-1d",
+   "source_id": "hw4.1d",
+   "source_number": "Problem Set 4, Problem 1(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: operators wear hats and MIT's brackets $|\\cdot)$ are written $|\\cdot\\rangle$; MIT's beamsplitter $B$ is Lukin's Eqs. (9.48)–(9.49) with $t = r = 1/\\sqrt{2}$, its phase shifter $P$ is Eq. (9.44), and $M$ is the difference count $\\hat{n}_-$ of Eq. (9.203); MIT's sketch of the interferometer is described in words; the interferometer is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "interferometry",
+   "prompt": "For the Mach-Zehnder interferometer of this problem (beamsplitters $B\\hat{a}B^\\dagger = (\\hat{a} + i\\hat{b})/\\sqrt{2}$, $B\\hat{b}B^\\dagger = (\\hat{b} + i\\hat{a})/\\sqrt{2}$, a phase shifter $P\\hat{a}P^\\dagger = \\hat{a}e^{i\\phi}$ in arm $\\hat{a}$ between them, and the output state $B^\\dagger PB|\\text{input}\\rangle$) fed with $|\\alpha\\rangle|0\\rangle$: Given the quantum fluctuations of the coherent state, use uncertainty propagation to determine the uncertainty with which you can determine $\\phi$ using the coherent state input, as a function of $\\bar{n} = |\\alpha|^2$ and the phase shift angle $\\phi$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "From part (c) the outputs are coherent states with mean numbers $\\bar{n}\\cos^2(\\phi/2)$ and $\\bar{n}\\sin^2(\\phi/2)$, so, the two independent Poisson variances adding, $$\\langle M\\rangle = \\bar{n}\\cos\\phi, \\qquad \\langle\\Delta M^2\\rangle = \\bar{n}\\cos^2\\tfrac{\\phi}{2} + \\bar{n}\\sin^2\\tfrac{\\phi}{2} = \\bar{n}.$$ With $|\\partial\\langle M\\rangle/\\partial\\phi| = \\bar{n}|\\sin\\phi|$, $$\\Delta\\phi = \\frac{\\sqrt{\\bar{n}}}{\\bar{n}|\\sin\\phi|} = \\frac{1}{\\sqrt{\\bar{n}}\\,|\\sin\\phi|}.$$ It is smallest at $\\phi = \\pi/2$, $\\Delta\\phi = 1/\\sqrt{\\bar{n}}$, the shot-noise or standard quantum limit, and diverges at $\\phi = 0$, where all the light leaves one port and $\\langle M\\rangle$ is flat. This is Lukin's $\\delta\\phi_\\mathrm{min} \\sim e^{-r}/\\sqrt{n}$ of Eq. (9.202) at $r = 0$: squeezing the empty port lowers it by $e^{-r}$, and the Yurke state of part (b) reaches $1/n$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "hw1-3i",
+   "concept": "fock-states"
+  },
+  {
+   "exercise": "hw1-3i",
+   "concept": "coherent-state-uncertainty"
+  },
+  {
+   "exercise": "hw1-3ii",
+   "concept": "schrodinger-cat-state"
+  },
+  {
+   "exercise": "hw1-3ii",
+   "concept": "coherent-state"
+  },
+  {
+   "exercise": "hw1-3iii",
+   "concept": "fock-states"
+  },
+  {
+   "exercise": "hw1-3iii",
+   "concept": "coherent-state-uncertainty"
+  },
+  {
+   "exercise": "hw1-3iv",
+   "concept": "squeezed-state"
+  },
+  {
+   "exercise": "hw1-3iv",
+   "concept": "squeezed-interferometry"
+  },
+  {
+   "exercise": "hw1-3v",
+   "concept": "kerr-effect"
+  },
+  {
+   "exercise": "hw1-3v",
+   "concept": "schrodinger-cat-state"
+  },
+  {
+   "exercise": "hw3-2a",
+   "concept": "opo-heisenberg-langevin"
+  },
+  {
+   "exercise": "hw3-2a",
+   "concept": "heisenberg-picture"
+  },
+  {
+   "exercise": "hw3-2b",
+   "concept": "squeezed-state"
+  },
+  {
+   "exercise": "hw3-2b",
+   "concept": "quadrature-operators"
+  },
+  {
+   "exercise": "hw3-2c",
+   "concept": "squeezed-state"
+  },
+  {
+   "exercise": "hw3-2c",
+   "concept": "coherent-state-uncertainty"
+  },
+  {
+   "exercise": "hw3-3a",
+   "concept": "squeezed-state"
+  },
+  {
+   "exercise": "hw3-3a",
+   "concept": "photon-statistics"
+  },
+  {
+   "exercise": "hw3-3b",
+   "concept": "beamsplitter-loss-model"
+  },
+  {
+   "exercise": "hw3-3b",
+   "concept": "squeezed-state"
+  },
+  {
+   "exercise": "hw3-3ci",
+   "concept": "shift-operator"
+  },
+  {
+   "exercise": "hw3-3ci",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw3-3cii",
+   "concept": "photon-statistics"
+  },
+  {
+   "exercise": "hw3-3cii",
+   "concept": "squeezed-state"
+  },
+  {
+   "exercise": "hw3-3ciii",
+   "concept": "poisson-photon-statistics"
+  },
+  {
+   "exercise": "hw3-3ciii",
+   "concept": "homodyne-detection"
+  },
+  {
+   "exercise": "hw4-1a",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw4-1a",
+   "concept": "linear-optical-transformations"
+  },
+  {
+   "exercise": "hw4-1b",
+   "concept": "squeezed-interferometry"
+  },
+  {
+   "exercise": "hw4-1b",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw4-1c",
+   "concept": "coherent-state"
+  },
+  {
+   "exercise": "hw4-1c",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw4-1d",
+   "concept": "squeezed-interferometry"
+  },
+  {
+   "exercise": "hw4-1d",
+   "concept": "poisson-photon-statistics"
+  }
+ ],
+ "referents": [
+  {
+   "id": "lvl-1",
+   "label": "the ground state |1⟩",
+   "figures": [
+    "fig-opo"
+   ]
+  },
+  {
+   "id": "lvl-2",
+   "label": "the upper state |2⟩",
+   "figures": [
+    "fig-opo"
+   ]
+  },
+  {
+   "id": "lvl-3",
+   "label": "the intermediate state |3⟩",
+   "figures": [
+    "fig-opo"
+   ]
+  },
+  {
+   "id": "pump",
+   "label": "the pump field ℰ₀ at ν₀",
+   "figures": [
+    "fig-opo"
+   ]
+  },
+  {
+   "id": "generated",
+   "label": "the generated field ℰ₁ = ℰ₂ at ν_c",
+   "figures": [
+    "fig-opo"
+   ]
+  },
+  {
+   "id": "signal",
+   "label": "the signal field â",
+   "figures": [
+    "fig-homodyne"
+   ]
+  },
+  {
+   "id": "lo",
+   "label": "the local oscillator b̂_LO",
+   "figures": [
+    "fig-homodyne"
+   ]
+  },
+  {
+   "id": "sq-in",
+   "label": "the squeezed input â_i",
+   "figures": [
+    "fig-interferometer"
+   ]
+  },
+  {
+   "id": "coh-in",
+   "label": "the coherent input b̂_i",
+   "figures": [
+    "fig-interferometer"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-eq-9-146",
+   "kind": "correction",
+   "html": "The book prints the left side as $\\dot{\\sigma}_{13}^{(j)}$, without the hat its right side carries; it is the time derivative of the operator $\\hat{\\sigma}_{13}^{(j)}$. Its term $-i\\kg_j\\hat{a}^\\dagger\\hat{\\sigma}_{12}^{(j)}$ also has the wrong sign: with the Hamiltonian (9.144), $[\\hat{\\sigma}_{32}, \\hat{\\sigma}_{13}] = -\\hat{\\sigma}_{12}$ and $[\\hat{\\sigma}_{31}, \\hat{\\sigma}_{13}] = \\hat{\\sigma}_{33} - \\hat{\\sigma}_{11}$, so the two coupling terms are $+i\\kg_j\\hat{a}^\\dagger\\hat{\\sigma}_{12}^{(j)} + i\\kg_j\\hat{a}(\\hat{\\sigma}_{11} - \\hat{\\sigma}_{33})$, with the same sign. As printed, adiabatic elimination would give the two terms of Eq. (9.147) opposite signs and the two terms of Eq. (9.149) would cancel; with the sign corrected it gives Eq. (9.147) up to an overall sign set by the sign of $\\kdelta$, which changes only the phase of $\\kbetagain$."
+  },
+  {
+   "id": "c-sigma-21",
+   "kind": "correction",
+   "html": "The book prints $\\hat{\\sigma}_{12} = \\kOmega_0/\\kDelta$. The operator replaced by its classical value is $\\hat{\\sigma}_{21}$, as the same sentence and the next one say: $\\hat{\\sigma}_{21} \\approx \\kOmega_0/\\kDelta$."
+  },
+  {
+   "id": "c-eq-9-158",
+   "kind": "correction",
+   "html": "The book prints $p(n) = \\tanh^2\\kxipdc/\\cosh^2\\kxipdc$, with no dependence on $n$. The thermal distribution of each mode is $p(n) = \\tanh^{2n}\\kxipdc/\\cosh^2\\kxipdc$, whose mean photon number is $\\sinh^2\\kxipdc$."
+  },
+  {
+   "id": "c-beta-kappa",
+   "kind": "correction",
+   "html": "The book writes $\\kbetagain$ here and in the conditions $\\kbetagain \\gt \\kkappa/2$, $\\kbetagain \\lt \\kkappa/2$, $\\kbetagain = \\kkappa/2$ and $\\kbetagain \\to \\kkappa/2$ that follow. The rate compared with $\\kkappa$ is the real gain $\\kbetatilde$ of Eqs. (9.174)–(9.185): $\\kkappa \\gg \\kbetatilde$, and threshold at $\\kbetatilde = \\kkappa/2$."
+  },
+  {
+   "id": "c-eq-9-205",
+   "kind": "correction",
+   "html": "With $\\kphi = \\pi/2 + \\delta\\kphi$, Eq. (9.204) has $\\cos\\kphi \\approx -\\delta\\kphi$ and $\\sin\\kphi \\approx 1$, and the squeezed vacuum has $\\langle\\hat{a}_i\\rangle = 0$, so $\\langle\\hat{n}_-\\rangle \\approx -\\delta\\kphi\\langle\\hat{b}_i^\\dagger\\hat{b}_i\\rangle = -\\bar{\\beta}^2\\delta\\kphi$, the squeezed vacuum's few photons neglected. The book's extra factor $\\bar{\\beta}$ and its sign do not follow from Eq. (9.204)."
+  },
+  {
+   "id": "c-eq-9-208",
+   "kind": "correction",
+   "html": "For $N$ spin-½ atoms polarized along $z$, each atom has $S_{i,x}^2 = S_{i,y}^2 = 1/4$ (with $\\hbar = 1$) and different atoms are uncorrelated, so $\\langle\\kScoll_x^2\\rangle = \\langle\\kScoll_y^2\\rangle = N/4$, not $N/2$; the atom shot noise in Eqs. (9.209) and (9.210) is likewise $N/4$."
+  },
+  {
+   "id": "c-hw4-1a",
+   "kind": "correction",
+   "html": "With the beamsplitter of this problem the Yurke state gives $\\Delta\\phi = 1/n$, as part (b) shows; the $\\sqrt{2}/n$ printed here is larger by $\\sqrt{2}$."
+  },
+  {
+   "id": "c-hw4-1b",
+   "kind": "correction",
+   "html": "Evaluated with the problem's own beamsplitter and phase shifter, $\\langle M\\rangle = -n\\sin\\phi$ and $\\langle\\Delta M^2\\rangle = 1$ at $\\phi = 0$, so $\\Delta\\phi = 1/n$, not $\\sqrt{2}/n$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "damped-quadrature-equations",
+   "what": "the quadrature equations in a damped cavity",
+   "source": "Modern Atomic and Optical Physics II, 9.4.3 Effects of loss",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d\\hat{a}}{d\\kt} = -i\\kbetagain^*\\hat{a}^\\dagger - \\frac{\\kkappa}{2}\\hat{a} + \\kFnoise",
+       "src": "(9.171)"
+      },
+      {
+       "tex": "\\frac{d\\hat{a}^\\dagger}{d\\kt} = i\\kbetagain\\hat{a} - \\frac{\\kkappa}{2}\\hat{a}^\\dagger + \\kFnoise^\\dagger",
+       "src": "(9.172)"
+      },
+      {
+       "tex": "\\frac{d\\kxquad}{d\\kt} = \\kbetatilde\\kxquad",
+       "src": "(9.164)"
+      },
+      {
+       "tex": "\\kxquad = \\frac{1}{\\sqrt{2}}\\left(\\hat{a}e^{i\\ktheta/2} + \\hat{a}^\\dagger e^{-i\\ktheta/2}\\right)",
+       "src": "(9.162)"
+      },
+      {
+       "tex": "\\kFnoise_x = \\frac{1}{\\sqrt{2}}\\left(\\kFnoise e^{i\\ktheta/2} + \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)",
+       "src": "(9.176)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{R}{\\frac{1}{\\sqrt{2}}\\left(\\frac{d\\hat{a}}{d\\kt}e^{i\\ktheta/2} + \\frac{d\\hat{a}^\\dagger}{d\\kt}e^{-i\\ktheta/2}\\right)}",
+      "uses": [
+       3
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{b}{\\frac{1}{\\sqrt{2}}\\left(-i\\kbetagain^*\\hat{a}^\\dagger e^{i\\ktheta/2} + i\\kbetagain\\hat{a}e^{-i\\ktheta/2}\\right)} - \\mk{k}{\\frac{\\kkappa}{2}\\frac{1}{\\sqrt{2}}\\left(\\hat{a}e^{i\\ktheta/2} + \\hat{a}^\\dagger e^{-i\\ktheta/2}\\right)} + \\mk{f}{\\frac{1}{\\sqrt{2}}\\left(\\kFnoise e^{i\\ktheta/2} + \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "R": [
+         "b",
+         "k",
+         "f"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{b}{\\kbetatilde\\kxquad} - \\mk{k}{\\frac{\\kkappa}{2}\\frac{1}{\\sqrt{2}}\\left(\\hat{a}e^{i\\ktheta/2} + \\hat{a}^\\dagger e^{-i\\ktheta/2}\\right)} + \\mk{f}{\\frac{1}{\\sqrt{2}}\\left(\\kFnoise e^{i\\ktheta/2} + \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "The $\\beta$ terms are those of the lossless equations, which give Eq. (9.164)."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{b}{\\kbetatilde\\kxquad} - \\mk{k}{\\frac{\\kkappa}{2}\\kxquad} + \\mk{f}{\\frac{1}{\\sqrt{2}}\\left(\\kFnoise e^{i\\ktheta/2} + \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{b}{\\kbetatilde\\kxquad} - \\mk{k}{\\frac{\\kkappa}{2}\\kxquad} + \\mk{f}{\\kFnoise_x}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = -\\mk{x}{\\left(\\frac{\\kkappa}{2} - \\kbetatilde\\right)\\kxquad} + \\mk{f}{\\kFnoise_x}",
+       "uses": [],
+       "map": {
+        "b": "x",
+        "k": "x"
+       }
+      }
+     ],
+     "num": "(9.174)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d\\hat{a}}{d\\kt} = -i\\kbetagain^*\\hat{a}^\\dagger - \\frac{\\kkappa}{2}\\hat{a} + \\kFnoise",
+       "src": "(9.171)"
+      },
+      {
+       "tex": "\\frac{d\\hat{a}^\\dagger}{d\\kt} = i\\kbetagain\\hat{a} - \\frac{\\kkappa}{2}\\hat{a}^\\dagger + \\kFnoise^\\dagger",
+       "src": "(9.172)"
+      },
+      {
+       "tex": "\\frac{d\\kpquad}{d\\kt} = -\\kbetatilde\\kpquad",
+       "src": "(9.165)"
+      },
+      {
+       "tex": "\\kpquad = \\frac{1}{\\sqrt{2}i}\\left(\\hat{a}e^{i\\ktheta/2} - \\hat{a}^\\dagger e^{-i\\ktheta/2}\\right)",
+       "src": "(9.163)"
+      },
+      {
+       "tex": "\\kFnoise_p = \\frac{1}{\\sqrt{2}i}\\left(\\kFnoise e^{i\\ktheta/2} - \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)",
+       "src": "(9.177)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = \\mk{R}{\\frac{1}{\\sqrt{2}i}\\left(\\frac{d\\hat{a}}{d\\kt}e^{i\\ktheta/2} - \\frac{d\\hat{a}^\\dagger}{d\\kt}e^{-i\\ktheta/2}\\right)}",
+      "uses": [
+       3
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = \\mk{b}{\\frac{1}{\\sqrt{2}i}\\left(-i\\kbetagain^*\\hat{a}^\\dagger e^{i\\ktheta/2} - i\\kbetagain\\hat{a}e^{-i\\ktheta/2}\\right)} - \\mk{k}{\\frac{\\kkappa}{2}\\frac{1}{\\sqrt{2}i}\\left(\\hat{a}e^{i\\ktheta/2} - \\hat{a}^\\dagger e^{-i\\ktheta/2}\\right)} + \\mk{f}{\\frac{1}{\\sqrt{2}i}\\left(\\kFnoise e^{i\\ktheta/2} - \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)}",
+       "uses": [
+        0,
+        1
+       ],
+       "map": {
+        "R": [
+         "b",
+         "k",
+         "f"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = -\\mk{b}{\\kbetatilde\\kpquad} - \\mk{k}{\\frac{\\kkappa}{2}\\frac{1}{\\sqrt{2}i}\\left(\\hat{a}e^{i\\ktheta/2} - \\hat{a}^\\dagger e^{-i\\ktheta/2}\\right)} + \\mk{f}{\\frac{1}{\\sqrt{2}i}\\left(\\kFnoise e^{i\\ktheta/2} - \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "The $\\beta$ terms are those of the lossless equations, which give Eq. (9.165)."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = -\\mk{b}{\\kbetatilde\\kpquad} - \\mk{k}{\\frac{\\kkappa}{2}\\kpquad} + \\mk{f}{\\frac{1}{\\sqrt{2}i}\\left(\\kFnoise e^{i\\ktheta/2} - \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = -\\mk{b}{\\kbetatilde\\kpquad} - \\mk{k}{\\frac{\\kkappa}{2}\\kpquad} + \\mk{f}{\\kFnoise_p}",
+       "uses": [
+        4
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = -\\mk{x}{\\left(\\frac{\\kkappa}{2} + \\kbetatilde\\right)\\kpquad} + \\mk{f}{\\kFnoise_p}",
+       "uses": [],
+       "map": {
+        "b": "x",
+        "k": "x"
+       }
+      }
+     ],
+     "num": "(9.175)"
+    }
+   ]
+  },
+  {
+   "id": "damped-squeezing",
+   "what": "the squeezing in a damped cavity",
+   "source": "Modern Atomic and Optical Physics II, 9.4.3 Effects of loss",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\langle\\kFnoise(\\kt)\\kFnoise^\\dagger(\\kt')\\rangle = \\kkappa\\delta(\\kt - \\kt')",
+       "src": "(9.173)"
+      },
+      {
+       "text": "With the field outside in the vacuum, $\\langle\\hat{\\mathcal F}\\hat{\\mathcal F}\\rangle$, $\\langle\\hat{\\mathcal F}^\\dagger\\hat{\\mathcal F}^\\dagger\\rangle$ and $\\langle\\hat{\\mathcal F}^\\dagger\\hat{\\mathcal F}\\rangle$ vanish: $\\hat{\\mathcal F}$ annihilates the vacuum.",
+       "src": "9.3.2"
+      },
+      {
+       "tex": "\\kFnoise_x = \\frac{1}{\\sqrt{2}}\\left(\\kFnoise e^{i\\ktheta/2} + \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)",
+       "src": "(9.176)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\langle\\kFnoise_x(\\kt)\\kFnoise_x(\\kt')\\rangle} = \\mk{R}{\\frac{1}{2}\\langle(\\kFnoise(\\kt) e^{i\\ktheta/2} + \\kFnoise^\\dagger(\\kt) e^{-i\\ktheta/2})(\\kFnoise(\\kt') e^{i\\ktheta/2} + \\kFnoise^\\dagger(\\kt') e^{-i\\ktheta/2})\\rangle}",
+      "uses": [
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\langle\\kFnoise_x(\\kt)\\kFnoise_x(\\kt')\\rangle} = \\mk{R}{\\frac{1}{2}\\langle\\kFnoise(\\kt)\\kFnoise^\\dagger(\\kt')\\rangle}",
+       "uses": [
+        1
+       ],
+       "cap": "Only the ordering $\\hat{\\mathcal F}\\hat{\\mathcal F}^\\dagger$ survives, and its phases cancel."
+      },
+      {
+       "tex": "\\mk{c}{\\langle\\kFnoise_x(\\kt)\\kFnoise_x(\\kt')\\rangle} = \\mk{R}{\\frac{\\kkappa}{2}\\delta(\\kt - \\kt')}",
+       "uses": [
+        0
+       ]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\langle\\kFnoise(\\kt)\\kFnoise^\\dagger(\\kt')\\rangle = \\kkappa\\delta(\\kt - \\kt')",
+       "src": "(9.173)"
+      },
+      {
+       "text": "With the field outside in the vacuum, $\\langle\\hat{\\mathcal F}\\hat{\\mathcal F}\\rangle$, $\\langle\\hat{\\mathcal F}^\\dagger\\hat{\\mathcal F}^\\dagger\\rangle$ and $\\langle\\hat{\\mathcal F}^\\dagger\\hat{\\mathcal F}\\rangle$ vanish: $\\hat{\\mathcal F}$ annihilates the vacuum.",
+       "src": "9.3.2"
+      },
+      {
+       "tex": "\\kFnoise_p = \\frac{1}{\\sqrt{2}i}\\left(\\kFnoise e^{i\\ktheta/2} - \\kFnoise^\\dagger e^{-i\\ktheta/2}\\right)",
+       "src": "(9.177)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\langle\\kFnoise_p(\\kt)\\kFnoise_p(\\kt')\\rangle} = \\mk{R}{-\\frac{1}{2}\\langle(\\kFnoise(\\kt) e^{i\\ktheta/2} - \\kFnoise^\\dagger(\\kt) e^{-i\\ktheta/2})(\\kFnoise(\\kt') e^{i\\ktheta/2} - \\kFnoise^\\dagger(\\kt') e^{-i\\ktheta/2})\\rangle}",
+      "uses": [
+       3
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\langle\\kFnoise_p(\\kt)\\kFnoise_p(\\kt')\\rangle} = \\mk{R}{\\frac{1}{2}\\langle\\kFnoise(\\kt)\\kFnoise^\\dagger(\\kt')\\rangle}",
+       "uses": [
+        2
+       ],
+       "cap": "Only the ordering $\\hat{\\mathcal F}\\hat{\\mathcal F}^\\dagger$ survives; it enters with a minus sign, which cancels the $-\\frac{1}{2}$, and its phases cancel."
+      },
+      {
+       "tex": "\\mk{c}{\\langle\\kFnoise_p(\\kt)\\kFnoise_p(\\kt')\\rangle} = \\mk{R}{\\frac{\\kkappa}{2}\\delta(\\kt - \\kt')}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{x}{\\langle\\kFnoise_x(\\kt)\\kFnoise_x(\\kt')\\rangle} = \\mk{c}{\\langle\\kFnoise_p(\\kt)\\kFnoise_p(\\kt')\\rangle} = \\mk{R}{\\frac{\\kkappa}{2}\\delta(\\kt - \\kt')}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(9.178)"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = -\\mk{x}{\\left(\\frac{\\kkappa}{2} - \\kbetatilde\\right)\\kxquad} + \\mk{f}{\\kFnoise_x}",
+      "src": "(9.174)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\left(e^{(\\kkappa/2 - \\kbetatilde)\\kt}\\kxquad\\right)} = \\mk{f}{e^{(\\kkappa/2 - \\kbetatilde)\\kt}\\kFnoise_x}",
+       "uses": [],
+       "cap": "Multiplying by the exponential joins the decay term to the derivative.",
+       "map": {
+        "x": "L"
+       }
+      },
+      {
+       "tex": "\\mk{L}{e^{(\\kkappa/2 - \\kbetatilde)\\kt}\\kxquad(\\kt) - \\kxquad(0)} = \\mk{f}{\\int_0^{\\kt} d\\kt' e^{(\\kkappa/2 - \\kbetatilde)\\kt'}\\kFnoise_x(\\kt')}",
+       "uses": [],
+       "cap": "Integrating from $0$ to $t$."
+      },
+      {
+       "tex": "\\mk{L}{\\kxquad(\\kt)} = \\mk{q0}{e^{-(\\kkappa/2 - \\kbetatilde)\\kt}\\kxquad(0)} + \\mk{f}{\\int_0^{\\kt} d\\kt' e^{-(\\kkappa/2 - \\kbetatilde)(\\kt - \\kt')}\\kFnoise_x(\\kt')}",
+       "uses": []
+      }
+     ],
+     "num": "(9.179)"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = -\\mk{x}{\\left(\\frac{\\kkappa}{2} + \\kbetatilde\\right)\\kpquad} + \\mk{f}{\\kFnoise_p}",
+      "src": "(9.175)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\left(e^{(\\kkappa/2 + \\kbetatilde)\\kt}\\kpquad\\right)} = \\mk{f}{e^{(\\kkappa/2 + \\kbetatilde)\\kt}\\kFnoise_p}",
+       "uses": [],
+       "cap": "Multiplying by the exponential joins the decay term to the derivative.",
+       "map": {
+        "x": "L"
+       }
+      },
+      {
+       "tex": "\\mk{L}{e^{(\\kkappa/2 + \\kbetatilde)\\kt}\\kpquad(\\kt) - \\kpquad(0)} = \\mk{f}{\\int_0^{\\kt} d\\kt' e^{(\\kkappa/2 + \\kbetatilde)\\kt'}\\kFnoise_p(\\kt')}",
+       "uses": [],
+       "cap": "Integrating from $0$ to $t$."
+      },
+      {
+       "tex": "\\mk{L}{\\kpquad(\\kt)} = \\mk{q0}{e^{-(\\kkappa/2 + \\kbetatilde)\\kt}\\kpquad(0)} + \\mk{f}{\\int_0^{\\kt} d\\kt' e^{-(\\kkappa/2 + \\kbetatilde)(\\kt - \\kt')}\\kFnoise_p(\\kt')}",
+       "uses": []
+      }
+     ],
+     "num": "(9.180)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The cavity mode starts in a coherent state, with variance $1/2$ in each quadrature, uncorrelated with the noise from outside.",
+       "src": "9.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\langle\\Delta\\kxquad^2(\\kt)\\rangle} = \\mk{R}{\\langle\\kxquad(\\kt)^2\\rangle - \\langle\\kxquad(\\kt)\\rangle^2}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\langle\\Delta\\kxquad^2(\\kt)\\rangle} = \\mk{a}{e^{-(\\kkappa - 2\\kbetatilde)\\kt}\\langle\\Delta\\kxquad^2(0)\\rangle} + \\mk{n}{\\int_0^{\\kt}\\int_0^{\\kt} d\\kt'd\\kt'' e^{-(\\kkappa/2 - \\kbetatilde)(\\kt - \\kt')}e^{-(\\kkappa/2 - \\kbetatilde)(\\kt - \\kt'')}\\langle\\kFnoise_x(\\kt')\\kFnoise_x(\\kt'')\\rangle}",
+       "uses": [
+        0,
+        2
+       ],
+       "cap": "Squaring the solution: the cross terms with the noise average to zero.",
+       "map": {
+        "R": [
+         "a",
+         "n"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta\\kxquad^2(\\kt)\\rangle} = \\mk{a}{e^{-(\\kkappa - 2\\kbetatilde)\\kt}\\langle\\Delta\\kxquad^2(0)\\rangle} + \\mk{n}{\\frac{\\kkappa}{2}\\int_0^{\\kt} d\\kt' e^{-(\\kkappa - 2\\kbetatilde)(\\kt - \\kt')}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta\\kxquad^2(\\kt)\\rangle} = \\mk{a}{\\frac{1}{2}e^{-(\\kkappa - 2\\kbetatilde)\\kt}} + \\mk{n}{\\frac{\\kkappa}{2}\\frac{1 - e^{-(\\kkappa - 2\\kbetatilde)\\kt}}{\\kkappa - 2\\kbetatilde}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(9.181)",
+     "note": "The book prints the exponents as $-(\\kappa/2 - \\tilde\\beta)t$. The variance decays at twice the rate of the amplitude in Eq. (9.179), so its exponent is $-(\\kappa - 2\\tilde\\beta)t$; with $\\kappa = 0$ the result is Eq. (9.168)."
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The cavity mode starts in a coherent state, with variance $1/2$ in each quadrature, uncorrelated with the noise from outside.",
+       "src": "9.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\langle\\Delta\\kpquad^2(\\kt)\\rangle} = \\mk{R}{\\langle\\kpquad(\\kt)^2\\rangle - \\langle\\kpquad(\\kt)\\rangle^2}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\langle\\Delta\\kpquad^2(\\kt)\\rangle} = \\mk{a}{e^{-(\\kkappa + 2\\kbetatilde)\\kt}\\langle\\Delta\\kpquad^2(0)\\rangle} + \\mk{n}{\\int_0^{\\kt}\\int_0^{\\kt} d\\kt'd\\kt'' e^{-(\\kkappa/2 + \\kbetatilde)(\\kt - \\kt')}e^{-(\\kkappa/2 + \\kbetatilde)(\\kt - \\kt'')}\\langle\\kFnoise_p(\\kt')\\kFnoise_p(\\kt'')\\rangle}",
+       "uses": [
+        0,
+        2
+       ],
+       "cap": "Squaring the solution: the cross terms with the noise average to zero.",
+       "map": {
+        "R": [
+         "a",
+         "n"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta\\kpquad^2(\\kt)\\rangle} = \\mk{a}{e^{-(\\kkappa + 2\\kbetatilde)\\kt}\\langle\\Delta\\kpquad^2(0)\\rangle} + \\mk{n}{\\frac{\\kkappa}{2}\\int_0^{\\kt} d\\kt' e^{-(\\kkappa + 2\\kbetatilde)(\\kt - \\kt')}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta\\kpquad^2(\\kt)\\rangle} = \\mk{a}{\\frac{1}{2}e^{-(\\kkappa + 2\\kbetatilde)\\kt}} + \\mk{n}{\\frac{\\kkappa}{2}\\frac{1 - e^{-(\\kkappa + 2\\kbetatilde)\\kt}}{\\kkappa + 2\\kbetatilde}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(9.182)",
+     "note": "The book prints the exponents as $-(\\kappa/2 + \\tilde\\beta)t$. The variance decays at twice the rate of the amplitude in Eq. (9.180), so its exponent is $-(\\kappa + 2\\tilde\\beta)t$; with $\\kappa = 0$ the result is Eq. (9.169)."
+    },
+    {
+     "assumes": [
+      {
+       "step": 5
+      },
+      {
+       "text": "At long times, $t \\to \\infty$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\langle\\Delta\\kpquad^2(\\kt)\\rangle} = \\mk{a}{\\frac{1}{2}e^{-(\\kkappa + 2\\kbetatilde)\\kt}} + \\mk{n}{\\frac{\\kkappa}{2}\\frac{1 - e^{-(\\kkappa + 2\\kbetatilde)\\kt}}{\\kkappa + 2\\kbetatilde}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\langle\\Delta\\kpquad^2\\rangle} \\to \\mk{n}{\\frac{\\kkappa}{2(\\kkappa + 2\\kbetatilde)}}",
+       "uses": [
+        1
+       ],
+       "cap": "Both exponentials vanish.",
+       "map": {
+        "a": "n"
+       }
+      }
+     ],
+     "num": "(9.183)"
+    }
+   ]
+  },
+  {
+   "id": "homodyne-difference",
+   "what": "the difference current of homodyne detection",
+   "source": "Modern Atomic and Optical Physics II, 9.4.3 Effects of loss",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "(\\hat{a}_\\mathrm{out}^{(1)})^\\dagger\\hat{a}_\\mathrm{out}^{(1)} = \\frac{1}{2}\\left(\\hat{a}^\\dagger\\hat{a} + \\hat{b}_{LO}^\\dagger\\hat{b}_{LO}\\right) + \\frac{i}{2}\\left(\\hat{a}^\\dagger\\hat{b}_{LO} - \\hat{b}_{LO}^\\dagger\\hat{a}\\right)",
+       "src": "(9.194)"
+      },
+      {
+       "tex": "(\\hat{a}_\\mathrm{out}^{(2)})^\\dagger\\hat{a}_\\mathrm{out}^{(2)} = \\frac{1}{2}\\left(\\hat{a}^\\dagger\\hat{a} + \\hat{b}_{LO}^\\dagger\\hat{b}_{LO}\\right) - \\frac{i}{2}\\left(\\hat{a}^\\dagger\\hat{b}_{LO} - \\hat{b}_{LO}^\\dagger\\hat{a}\\right)",
+       "src": "(9.195)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\hat{n}_-} = \\mk{a}{(\\hat{a}_\\mathrm{out}^{(1)})^\\dagger\\hat{a}_\\mathrm{out}^{(1)}} - \\mk{b}{(\\hat{a}_\\mathrm{out}^{(2)})^\\dagger\\hat{a}_\\mathrm{out}^{(2)}}",
+      "src": "(9.196)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\hat{n}_-} = \\mk{a}{\\frac{1}{2}\\left(\\hat{a}^\\dagger\\hat{a} + \\hat{b}_{LO}^\\dagger\\hat{b}_{LO}\\right) + \\frac{i}{2}\\left(\\hat{a}^\\dagger\\hat{b}_{LO} - \\hat{b}_{LO}^\\dagger\\hat{a}\\right)} - \\mk{b}{\\left(\\frac{1}{2}\\left(\\hat{a}^\\dagger\\hat{a} + \\hat{b}_{LO}^\\dagger\\hat{b}_{LO}\\right) - \\frac{i}{2}\\left(\\hat{a}^\\dagger\\hat{b}_{LO} - \\hat{b}_{LO}^\\dagger\\hat{a}\\right)\\right)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\hat{n}_-} = \\mk{R}{i\\left(\\hat{a}^\\dagger\\hat{b}_{LO} - \\hat{b}_{LO}^\\dagger\\hat{a}\\right)}",
+       "uses": [],
+       "map": {
+        "a": "R",
+        "b": "R"
+       }
+      }
+     ],
+     "num": "(9.197)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The local oscillator is in the coherent state $|\\beta\\rangle$ with $\\beta = \\bar\\beta e^{i\\phi}$, so $\\hat b_{LO}|\\beta\\rangle = \\bar\\beta e^{i\\phi}|\\beta\\rangle$.",
+       "src": "(9.10)"
+      },
+      {
+       "text": "The signal and local oscillator start in the state $|\\psi\\rangle = |\\psi\\rangle_a|\\beta\\rangle$.",
+       "src": "9.4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\hat{n}_-\\rangle} = \\mk{R}{\\langle i\\left(\\hat{a}^\\dagger\\hat{b}_{LO} - \\hat{b}_{LO}^\\dagger\\hat{a}\\right)\\rangle}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\hat{n}_-\\rangle} = \\mk{R}{\\bar{\\beta}\\langle i\\left(\\hat{a}^\\dagger e^{i\\kphi} - \\hat{a}e^{-i\\kphi}\\right)\\rangle}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "$\\hat b_{LO}$ takes $\\bar\\beta e^{i\\phi}$ out of $|\\beta\\rangle$, and $\\hat b_{LO}^\\dagger$ takes $\\bar\\beta e^{-i\\phi}$ out of $\\langle\\beta|$."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\hat{n}_-\\rangle} = \\mk{R}{\\bar{\\beta}\\langle i\\left(\\hat{a}^\\dagger e^{i\\kphi} - \\hat{a}e^{-i\\kphi}\\right)\\rangle} = \\mk{P}{\\bar{\\beta}\\langle \\kPquad_{\\kphi}\\rangle}",
+       "uses": [],
+       "cap": "Naming the signal quadrature $\\hat P_\\phi = i(\\hat a^\\dagger e^{i\\phi} - \\hat a e^{-i\\phi})$."
+      }
+     ],
+     "num": "(9.198)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The local oscillator is strong, $\\bar\\beta \\gg 1$.",
+       "src": "9.4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\Delta\\hat{n}_-^2\\rangle} = \\mk{R}{\\langle\\hat{n}_-^2\\rangle - \\langle\\hat{n}_-\\rangle^2}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\Delta\\hat{n}_-^2\\rangle} \\approx \\mk{R}{\\bar{\\beta}^2\\left(\\langle\\kPquad_{\\kphi}^2\\rangle - \\langle\\kPquad_{\\kphi}\\rangle^2\\right)}",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "cap": "For $\\bar\\beta \\gg 1$ the local oscillator's own fluctuations, of order one, are negligible beside $\\bar\\beta$, and $\\hat n_-$ acts as $\\bar\\beta\\hat P_\\phi$."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\Delta\\hat{n}_-^2\\rangle} \\approx \\mk{R}{\\bar{\\beta}^2\\langle\\Delta \\kPquad_{\\kphi}^2\\rangle}",
+       "uses": []
+      }
+     ],
+     "num": "(9.199)"
+    }
+   ]
+  },
+  {
+   "id": "homodyne-intensities",
+   "what": "the intensities at the two detectors",
+   "source": "Modern Atomic and Optical Physics II, 9.4.3 Effects of loss",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{a}_\\mathrm{out}^{(1)} = \\frac{1}{\\sqrt{2}}\\left(\\hat{a} + i\\hat{b}_{LO}\\right)",
+       "src": "(9.192)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{(\\hat{a}_\\mathrm{out}^{(1)})^\\dagger\\hat{a}_\\mathrm{out}^{(1)}} = \\mk{R}{\\frac{1}{2}\\left(\\hat{a}^\\dagger - i\\hat{b}_{LO}^\\dagger\\right)\\left(\\hat{a} + i\\hat{b}_{LO}\\right)}",
+      "uses": [0],
+      "why": "The adjoint of $\\hat a + i\\hat b_{LO}$ is $\\hat a^\\dagger - i\\hat b_{LO}^\\dagger$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{(\\hat{a}_\\mathrm{out}^{(1)})^\\dagger\\hat{a}_\\mathrm{out}^{(1)}} = \\mk{R}{\\frac{1}{2}\\left(\\hat{a}^\\dagger\\hat{a} + i\\hat{a}^\\dagger\\hat{b}_{LO} - i\\hat{b}_{LO}^\\dagger\\hat{a} + \\hat{b}_{LO}^\\dagger\\hat{b}_{LO}\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{(\\hat{a}_\\mathrm{out}^{(1)})^\\dagger\\hat{a}_\\mathrm{out}^{(1)}} = \\mk{R}{\\frac{1}{2}\\left(\\hat{a}^\\dagger\\hat{a} + \\hat{b}_{LO}^\\dagger\\hat{b}_{LO}\\right) + \\frac{i}{2}\\left(\\hat{a}^\\dagger\\hat{b}_{LO} - \\hat{b}_{LO}^\\dagger\\hat{a}\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(9.194)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{a}_\\mathrm{out}^{(2)} = \\frac{1}{\\sqrt{2}}\\left(i\\hat{a} + \\hat{b}_{LO}\\right)",
+       "src": "(9.193)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{(\\hat{a}_\\mathrm{out}^{(2)})^\\dagger\\hat{a}_\\mathrm{out}^{(2)}} = \\mk{R}{\\frac{1}{2}\\left(-i\\hat{a}^\\dagger + \\hat{b}_{LO}^\\dagger\\right)\\left(i\\hat{a} + \\hat{b}_{LO}\\right)}",
+      "uses": [0],
+      "why": "The adjoint of $i\\hat a + \\hat b_{LO}$ is $-i\\hat a^\\dagger + \\hat b_{LO}^\\dagger$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{(\\hat{a}_\\mathrm{out}^{(2)})^\\dagger\\hat{a}_\\mathrm{out}^{(2)}} = \\mk{R}{\\frac{1}{2}\\left(\\hat{a}^\\dagger\\hat{a} - i\\hat{a}^\\dagger\\hat{b}_{LO} + i\\hat{b}_{LO}^\\dagger\\hat{a} + \\hat{b}_{LO}^\\dagger\\hat{b}_{LO}\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{(\\hat{a}_\\mathrm{out}^{(2)})^\\dagger\\hat{a}_\\mathrm{out}^{(2)}} = \\mk{R}{\\frac{1}{2}\\left(\\hat{a}^\\dagger\\hat{a} + \\hat{b}_{LO}^\\dagger\\hat{b}_{LO}\\right) - \\frac{i}{2}\\left(\\hat{a}^\\dagger\\hat{b}_{LO} - \\hat{b}_{LO}^\\dagger\\hat{a}\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(9.195)"
+    }
+   ]
+  },
+  {
+   "id": "output-squeezing",
+   "what": "the squeezing of the output field",
+   "source": "Modern Atomic and Optical Physics II, 9.4.3 Effects of loss",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "In the Fourier domain $d/dt$ becomes $i\\omega$.",
+       "src": "9.4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\kPquad}{d\\kt}} = -\\mk{x}{\\left(\\frac{\\kkappa}{2} + \\kbetatilde\\right)\\kPquad} + \\mk{R}{\\kFnoise_p}",
+      "src": "(9.175)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\komega\\kPquad(\\komega)} = -\\mk{x}{\\left(\\frac{\\kkappa}{2} + \\kbetatilde\\right)\\kPquad(\\komega)} + \\mk{R}{\\kFnoise_p(\\komega)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\left(i\\komega + \\frac{\\kkappa}{2} + \\kbetatilde\\right)\\kPquad(\\komega)} = \\mk{R}{\\kFnoise_p(\\komega)}",
+       "uses": [],
+       "map": {
+        "x": "L"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\kPquad(\\komega)} = \\mk{R}{\\frac{\\kFnoise_p(\\komega)}{i\\komega + (\\kkappa/2 + \\kbetatilde)}}",
+       "uses": []
+      }
+     ],
+     "num": "(9.190)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{o}{\\kPquad_\\mathrm{out}(\\komega)} = -\\mk{f}{\\frac{\\kFnoise_p(\\komega)}{\\sqrt{\\kkappa}}} + \\mk{p}{\\sqrt{\\kkappa}\\kPquad(\\komega)}",
+      "src": "(9.189)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{o}{\\kPquad_\\mathrm{out}(\\komega)} = -\\mk{f}{\\frac{\\kFnoise_p(\\komega)}{\\sqrt{\\kkappa}}} + \\mk{p}{\\sqrt{\\kkappa}\\frac{\\kFnoise_p(\\komega)}{i\\komega + (\\kkappa/2 + \\kbetatilde)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{o}{\\kPquad_\\mathrm{out}(\\komega)} = \\mk{p}{\\frac{\\kFnoise_p(\\komega)}{\\sqrt{\\kkappa}}\\left(\\frac{\\kkappa}{i\\komega + (\\kkappa/2 + \\kbetatilde)} - 1\\right)}",
+       "uses": [],
+       "map": {
+        "f": "p"
+       }
+      }
+     ],
+     "num": "(9.191)"
+    }
+   ]
+  },
+  {
+   "id": "pair-state",
+   "what": "the state of photon pairs",
+   "source": "Modern Atomic and Optical Physics II, 9.4.1 Nonlinear amplification",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kHeff = \\hbar\\left(\\kbetagain\\hat{a}_1\\hat{a}_2 + \\kbetagain^*\\hat{a}_1^\\dagger\\hat{a}_2^\\dagger\\right)",
+       "src": "(9.155)"
+      },
+      {
+       "text": "The annihilation operators annihilate the vacuum, $\\hat a_1|\\mathrm{vac}\\rangle = \\hat a_2|\\mathrm{vac}\\rangle = 0$.",
+       "src": "9.1"
+      },
+      {
+       "tex": "|n, m\\rangle = (\\hat{a}_1^\\dagger)^n(\\hat{a}_2^\\dagger)^m|\\mathrm{vac}\\rangle",
+       "src": "9.4.1"
+      },
+      {
+       "tex": "\\kxipdc = -i\\kbetagain^* \\kt",
+       "src": "9.4.1"
+      },
+      {
+       "tex": "[\\hat{a}, \\hat{a}^\\dagger] = 1",
+       "src": "(11.114)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{|\\kpsi\\rangle} = \\mk{R}{e^{-i\\kHeff \\kt/\\hbar}|\\mathrm{vac}\\rangle}",
+      "src": "(9.156)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|\\kpsi\\rangle} = \\mk{v}{|\\mathrm{vac}\\rangle} - \\mk{p1}{\\frac{i\\kt}{\\hbar}\\kHeff|\\mathrm{vac}\\rangle} - \\mk{p2}{\\frac{\\kt^2}{2\\hbar^2}\\kHeff^2|\\mathrm{vac}\\rangle} + \\ldots",
+       "uses": [],
+       "cap": "The exponential as its power series, to second order in $t$.",
+       "map": {
+        "R": [
+         "v",
+         "p1",
+         "p2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{|\\kpsi\\rangle} = \\mk{v}{|\\mathrm{vac}\\rangle} - \\mk{p1}{i\\kbetagain^*\\kt\\,\\hat{a}_1^\\dagger\\hat{a}_2^\\dagger|\\mathrm{vac}\\rangle} - \\mk{p2}{\\frac{\\kt^2}{2}\\left(\\kbetagain^{*2}(\\hat{a}_1^\\dagger\\hat{a}_2^\\dagger)^2 + |\\kbetagain|^2\\hat{a}_1\\hat{a}_2\\hat{a}_1^\\dagger\\hat{a}_2^\\dagger\\right)|\\mathrm{vac}\\rangle} + \\ldots",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "On the vacuum only $\\hat a_1^\\dagger\\hat a_2^\\dagger$ survives in $\\hat H_\\mathrm{eff}$, and in $\\hat H_\\mathrm{eff}^2$ only $(\\hat a_1^\\dagger\\hat a_2^\\dagger)^2$ and $\\hat a_1\\hat a_2\\hat a_1^\\dagger\\hat a_2^\\dagger$."
+      },
+      {
+       "tex": "\\mk{L}{|\\kpsi\\rangle} = \\mk{v}{\\left(1 - \\frac{|\\kbetagain|^2\\kt^2}{2}\\right)|\\mathrm{vac}\\rangle} - \\mk{p1}{i\\kbetagain^*\\kt|1, 1\\rangle} - \\mk{p2}{\\frac{\\kbetagain^{*2}\\kt^2}{2}|2, 2\\rangle} + \\ldots",
+       "uses": [
+        2,
+        4
+       ],
+       "cap": "$\\hat a_1\\hat a_2\\hat a_1^\\dagger\\hat a_2^\\dagger|\\mathrm{vac}\\rangle = |\\mathrm{vac}\\rangle$ by $[\\hat a, \\hat a^\\dagger] = 1$.",
+       "map": {
+        "p2": [
+         "v",
+         "p2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{|\\kpsi\\rangle} = \\mk{v}{\\left(1 - \\frac{|\\kxipdc|^2}{2}\\right)|\\mathrm{vac}\\rangle} + \\mk{p1}{\\kxipdc|1, 1\\rangle} + \\mk{p2}{\\frac{\\kxipdc^2}{2}|2, 2\\rangle} + \\ldots",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(9.157)",
+     "note": "The book prints $|\\mathrm{vac}\\rangle + \\xi|1, 1\\rangle + \\xi^2|2, 2\\rangle + \\ldots$. At second order the coefficient of $|2, 2\\rangle = (\\hat a_1^\\dagger)^2(\\hat a_2^\\dagger)^2|\\mathrm{vac}\\rangle$ is $\\xi^2/2$, and the vacuum amplitude falls by $|\\xi|^2/2$, keeping the state normalized."
+    }
+   ]
+  },
+  {
+   "id": "phase-dependent-amplification",
+   "what": "the normal modes of degenerate down-conversion",
+   "source": "Modern Atomic and Optical Physics II, 9.4.1 Nonlinear amplification",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{\\partial\\kEenv_1}{\\partial \\kt} = i\\kbetagain\\kEenv_1^*",
+       "src": "(9.140)"
+      },
+      {
+       "tex": "\\frac{\\partial\\kEenv_1^*}{\\partial \\kt} = -i\\kbetagain^*\\kEenv_1",
+       "src": "(9.141)"
+      },
+      {
+       "text": "The phase of $\\beta$ is chosen purely imaginary, $\\beta = i\\tilde\\beta$ with $\\tilde\\beta$ real.",
+       "src": "9.4.1"
+      },
+      {
+       "text": "The normal modes are $\\mathcal{E}_\\pm = \\mathcal{E}_1 \\pm \\mathcal{E}_1^*$.",
+       "src": "9.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\partial \\kEp}{\\partial \\kt}} = \\mk{R}{\\frac{\\partial \\kEenv_1}{\\partial \\kt} + \\frac{\\partial \\kEenv_1^*}{\\partial \\kt}}",
+      "uses": [3]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\partial \\kEp}{\\partial \\kt}} = \\mk{R}{i\\kbetagain\\kEenv_1^* - i\\kbetagain^*\\kEenv_1}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial \\kEp}{\\partial \\kt}} = \\mk{R}{-\\kbetatilde\\kEenv_1^* - \\kbetatilde\\kEenv_1}",
+       "uses": [
+        2
+       ],
+       "cap": "With $\\beta = i\\tilde\\beta$, $i\\beta = -\\tilde\\beta$ and $-i\\beta^* = -i(-i\\tilde\\beta) = -\\tilde\\beta$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial \\kEp}{\\partial \\kt}} = \\mk{R}{-\\kbetatilde(\\kEenv_1 + \\kEenv_1^*)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial \\kEp}{\\partial \\kt}} = \\mk{R}{-\\kbetatilde\\kEp}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(9.142)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{\\partial\\kEenv_1}{\\partial \\kt} = i\\kbetagain\\kEenv_1^*",
+       "src": "(9.140)"
+      },
+      {
+       "tex": "\\frac{\\partial\\kEenv_1^*}{\\partial \\kt} = -i\\kbetagain^*\\kEenv_1",
+       "src": "(9.141)"
+      },
+      {
+       "text": "The phase of $\\beta$ is chosen purely imaginary, $\\beta = i\\tilde\\beta$ with $\\tilde\\beta$ real.",
+       "src": "9.4.1"
+      },
+      {
+       "text": "The normal modes are $\\mathcal{E}_\\pm = \\mathcal{E}_1 \\pm \\mathcal{E}_1^*$.",
+       "src": "9.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\partial \\kEm}{\\partial \\kt}} = \\mk{R}{\\frac{\\partial \\kEenv_1}{\\partial \\kt} - \\frac{\\partial \\kEenv_1^*}{\\partial \\kt}}",
+      "uses": [3]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\partial \\kEm}{\\partial \\kt}} = \\mk{R}{i\\kbetagain\\kEenv_1^* + i\\kbetagain^*\\kEenv_1}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial \\kEm}{\\partial \\kt}} = \\mk{R}{-\\kbetatilde\\kEenv_1^* + \\kbetatilde\\kEenv_1}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial \\kEm}{\\partial \\kt}} = \\mk{R}{\\kbetatilde(\\kEenv_1 - \\kEenv_1^*)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\partial \\kEm}{\\partial \\kt}} = \\mk{R}{\\kbetatilde\\kEm}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(9.143)",
+     "note": "The book prints $\\partial\\mathcal{E}_-^*/\\partial t$ on the left; the normal mode that obeys the equation is $\\mathcal{E}_- = \\mathcal{E}_1 - \\mathcal{E}_1^*$."
+    }
+   ]
+  },
+  {
+   "id": "quadrature-squeezing",
+   "what": "the squeezing of the quadratures",
+   "source": "Modern Atomic and Optical Physics II, 9.4.2 Squeezed states",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d\\hat{a}}{d\\kt} = -i\\kbetagain^*\\hat{a}^\\dagger",
+       "src": "(9.150)"
+      },
+      {
+       "tex": "\\frac{d\\hat{a}^\\dagger}{d\\kt} = i\\kbetagain\\hat{a}",
+       "src": "(9.151)"
+      },
+      {
+       "tex": "\\kbetagain = \\kbetatilde e^{i(\\ktheta - \\pi/2)}",
+       "src": "(9.161)"
+      },
+      {
+       "tex": "\\kxquad = \\frac{1}{\\sqrt{2}}\\left(\\hat{a}e^{i\\ktheta/2} + \\hat{a}^\\dagger e^{-i\\ktheta/2}\\right)",
+       "src": "(9.162)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{R}{\\frac{1}{\\sqrt{2}}\\left(\\frac{d\\hat{a}}{d\\kt}e^{i\\ktheta/2} + \\frac{d\\hat{a}^\\dagger}{d\\kt}e^{-i\\ktheta/2}\\right)}",
+      "uses": [3]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{R}{\\frac{1}{\\sqrt{2}}\\left(-i\\kbetagain^*\\hat{a}^\\dagger e^{i\\ktheta/2} + i\\kbetagain\\hat{a}e^{-i\\ktheta/2}\\right)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{R}{\\frac{1}{\\sqrt{2}}\\left(\\kbetatilde\\hat{a}^\\dagger e^{-i\\ktheta/2} + \\kbetatilde\\hat{a}e^{i\\ktheta/2}\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "By Eq. (9.161), $-i\\beta^* = \\tilde\\beta e^{-i\\theta}$ and $i\\beta = \\tilde\\beta e^{i\\theta}$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{R}{\\kbetatilde\\kxquad}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(9.164)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d\\hat{a}}{d\\kt} = -i\\kbetagain^*\\hat{a}^\\dagger",
+       "src": "(9.150)"
+      },
+      {
+       "tex": "\\frac{d\\hat{a}^\\dagger}{d\\kt} = i\\kbetagain\\hat{a}",
+       "src": "(9.151)"
+      },
+      {
+       "tex": "\\kbetagain = \\kbetatilde e^{i(\\ktheta - \\pi/2)}",
+       "src": "(9.161)"
+      },
+      {
+       "tex": "\\kpquad = \\frac{1}{\\sqrt{2}i}\\left(\\hat{a}e^{i\\ktheta/2} - \\hat{a}^\\dagger e^{-i\\ktheta/2}\\right)",
+       "src": "(9.163)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = \\mk{R}{\\frac{1}{\\sqrt{2}i}\\left(\\frac{d\\hat{a}}{d\\kt}e^{i\\ktheta/2} - \\frac{d\\hat{a}^\\dagger}{d\\kt}e^{-i\\ktheta/2}\\right)}",
+      "uses": [3]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = \\mk{R}{\\frac{1}{\\sqrt{2}i}\\left(-i\\kbetagain^*\\hat{a}^\\dagger e^{i\\ktheta/2} - i\\kbetagain\\hat{a}e^{-i\\ktheta/2}\\right)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = \\mk{R}{\\frac{1}{\\sqrt{2}i}\\left(\\kbetatilde\\hat{a}^\\dagger e^{-i\\ktheta/2} - \\kbetatilde\\hat{a}e^{i\\ktheta/2}\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "By Eq. (9.161), $-i\\beta^* = \\tilde\\beta e^{-i\\theta}$ and $i\\beta = \\tilde\\beta e^{i\\theta}$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = \\mk{R}{-\\kbetatilde\\kpquad}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(9.165)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\kxquad}{d\\kt}} = \\mk{R}{\\kbetatilde\\kxquad}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kxquad(\\kt)} = \\mk{R}{\\kxquad(0)e^{\\kbetatilde \\kt}}",
+       "uses": [],
+       "cap": "Integrating."
+      }
+     ],
+     "num": "(9.166)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\kpquad}{d\\kt}} = \\mk{R}{-\\kbetatilde\\kpquad}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kpquad(\\kt)} = \\mk{R}{\\kpquad(0)e^{-\\kbetatilde \\kt}}",
+       "uses": [],
+       "cap": "Integrating."
+      }
+     ],
+     "num": "(9.167)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "The cavity mode starts out in a coherent state, whose quadratures have the variance $1/2$.",
+       "src": "(9.15), (9.16)"
+      },
+      {
+       "text": "The $x$ quadrature is amplified, $\\tilde\\beta > 0$.",
+       "src": "9.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\Delta\\kxquad^2\\rangle} = \\mk{R}{\\langle\\kxquad(\\kt)^2\\rangle - \\langle\\kxquad(\\kt)\\rangle^2}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\Delta\\kxquad^2\\rangle} = \\mk{R}{\\left(\\langle\\kxquad(0)^2\\rangle - \\langle\\kxquad(0)\\rangle^2\\right)e^{2\\kbetatilde \\kt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\Delta\\kxquad^2\\rangle} = \\mk{R}{\\frac{1}{2}e^{2\\kbetatilde \\kt}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\Delta\\kxquad^2\\rangle} = \\mk{R}{\\frac{1}{2}e^{2\\kbetatilde \\kt}} \\to \\mk{i}{\\infty}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(9.168)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "text": "The cavity mode starts out in a coherent state, whose quadratures have the variance $1/2$.",
+       "src": "(9.15), (9.16)"
+      },
+      {
+       "text": "The $x$ quadrature is amplified, $\\tilde\\beta > 0$.",
+       "src": "9.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\Delta\\kpquad^2\\rangle} = \\mk{R}{\\langle\\kpquad(\\kt)^2\\rangle - \\langle\\kpquad(\\kt)\\rangle^2}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\Delta\\kpquad^2\\rangle} = \\mk{R}{\\left(\\langle\\kpquad(0)^2\\rangle - \\langle\\kpquad(0)\\rangle^2\\right)e^{-2\\kbetatilde \\kt}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\Delta\\kpquad^2\\rangle} = \\mk{R}{\\frac{1}{2}e^{-2\\kbetatilde \\kt}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\Delta\\kpquad^2\\rangle} = \\mk{R}{\\frac{1}{2}e^{-2\\kbetatilde \\kt}} \\to \\mk{i}{0}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(9.169)"
+    }
+   ]
+  },
+  {
+   "id": "squeezed-phase-sensitivity",
+   "what": "the smallest phase a squeezed field resolves",
+   "source": "Modern Atomic and Optical Physics II, 9.4.3 Effects of loss",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\Delta P = \\langle x\\rangle\\delta\\kphi",
+       "src": "(9.200)"
+      },
+      {
+       "tex": "\\langle\\Delta P^2\\rangle = \\frac{1}{2}e^{-2\\krsq}",
+       "src": "(9.201)"
+      },
+      {
+       "text": "The smallest phase that can be measured gives a signal equal to the noise.",
+       "src": "9.4.3"
+      },
+      {
+       "text": "A field of $n$ photons has $\\langle\\hat x\\rangle \\sim \\sqrt{n}$, as $\\bar n = |\\alpha|^2$ for a coherent state.",
+       "src": "(9.27)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\kxquad\\rangle\\delta\\kphi_\\mathrm{min}} = \\mk{R}{\\sqrt{\\langle\\Delta P^2\\rangle}}",
+      "uses": [0, 2]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\kxquad\\rangle\\delta\\kphi_\\mathrm{min}} = \\mk{R}{\\frac{1}{\\sqrt{2}}e^{-\\krsq}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\delta\\kphi_\\mathrm{min}} = \\mk{R}{\\frac{1}{\\sqrt{2}\\langle\\kxquad\\rangle}e^{-\\krsq}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\delta\\kphi_\\mathrm{min}} \\sim \\mk{R}{\\frac{1}{\\langle\\kxquad\\rangle}e^{-\\krsq}} \\sim \\mk{n}{\\frac{1}{\\sqrt{n}}e^{-\\krsq}}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(9.202)"
+    }
+   ]
+  },
+  {
+   "id": "squeezing-equations",
+   "what": "the operator equations of degenerate down-conversion",
+   "source": "Modern Atomic and Optical Physics II, 9.4.1 Nonlinear amplification",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\hat{a}}{d\\kt}} = \\mk{R}{-2i\\sum_j \\frac{\\kOmega_0}{\\kDelta\\kdelta}\\kg_j^2\\hat{a}^\\dagger}",
+      "uses": [],
+      "src": "(9.149)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d\\hat{a}}{d\\kt}} = \\mk{R}{-i\\kbetagain^*\\hat{a}^\\dagger}",
+       "uses": [],
+       "cap": "Identifying the constant of proportionality $\\beta^* = 2\\sum_j \\Omega_0 g_j^2/\\Delta\\delta$."
+      }
+     ],
+     "num": "(9.150)",
+     "note": "The book identifies $\\beta^* = -2\\sum_j \\Omega_0^* g_j^2/\\Delta\\delta$; matching Eq. (9.149) to Eq. (9.150) gives $\\beta^* = 2\\sum_j \\Omega_0 g_j^2/\\Delta\\delta$. Only the phase of $\\beta$ differs, and Eq. (9.161) chooses that phase freely."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\hat{a}}{d\\kt}} = \\mk{R}{-i\\kbetagain^*\\hat{a}^\\dagger}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d\\hat{a}^\\dagger}{d\\kt}} = \\mk{R}{i\\kbetagain\\hat{a}}",
+       "uses": [],
+       "cap": "Taking the Hermitian conjugate."
+      }
+     ],
+     "num": "(9.151)"
+    }
+   ]
+  },
+  {
+   "id": "two-photon-drive",
+   "what": "the field equation of degenerate down-conversion",
+   "source": "Modern Atomic and Optical Physics II, 9.4.1 Nonlinear amplification",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{\\sigma}_{13}^{(j)} = -\\frac{\\kOmega_0}{\\kDelta\\kdelta}\\kg_j\\hat{a}^\\dagger - \\frac{\\kg_j\\hat{a}}{\\kdelta}",
+       "src": "(9.147)"
+      },
+      {
+       "tex": "\\hat{\\sigma}_{32} \\approx -\\frac{\\kOmega_0}{\\kDelta\\kdelta}\\kg_j\\hat{a}^\\dagger",
+       "src": "(9.148)"
+      },
+      {
+       "text": "The phase-matching condition is fulfilled: the term in $\\hat a$, a shift of the cavity frequency, is tuned away.",
+       "src": "9.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d\\hat{a}}{d\\kt}} = \\mk{R}{i\\sum_j \\left(\\kg_j\\hat{\\sigma}_{32}^{(j)} + \\kg_j\\hat{\\sigma}_{13}^{(j)}\\right)}",
+      "src": "(9.145)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d\\hat{a}}{d\\kt}} = \\mk{R}{i\\sum_j \\left(-\\frac{\\kOmega_0}{\\kDelta\\kdelta}\\kg_j^2\\hat{a}^\\dagger - \\frac{\\kOmega_0}{\\kDelta\\kdelta}\\kg_j^2\\hat{a}^\\dagger - \\frac{\\kg_j^2}{\\kdelta}\\hat{a}\\right)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\hat{a}}{d\\kt}} = \\mk{p}{-2i\\sum_j \\frac{\\kOmega_0}{\\kDelta\\kdelta}\\kg_j^2\\hat{a}^\\dagger} - \\mk{s}{i\\sum_j\\frac{\\kg_j^2}{\\kdelta}\\hat{a}}",
+       "uses": [],
+       "map": {
+        "R": [
+         "p",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d\\hat{a}}{d\\kt}} = \\mk{p}{-2i\\sum_j \\frac{\\kOmega_0}{\\kDelta\\kdelta}\\kg_j^2\\hat{a}^\\dagger}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(9.149)"
+    }
+   ]
+  }
+ ]
+}

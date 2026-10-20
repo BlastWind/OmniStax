@@ -1,0 +1,1870 @@
+{
+ "id": "11.4",
+ "chapter": "11",
+ "title": "Atomic interactions",
+ "short": "Atomic interactions",
+ "lead": "How two cold atoms interact: the <span data-concept=\"van-der-waals-potential\">van der Waals</span> tail, scattering theory in the <span data-concept=\"s-wave-dominance\">ultracold limit</span>, where one number, the <span data-concept=\"s-wave-scattering-length\">s-wave scattering length</span>, stands in for the whole potential, the scattering of identical particles and of a matter wave crossing a cloud of atoms, <span data-concept=\"feshbach-resonance\">Feshbach resonances</span> that tune the interactions with a magnetic field, and the second-quantized theory of the interacting Bose gas, down to the <span data-concept=\"gross-pitaevskii-equation\">Gross-Pitaevski equation</span>, the <span data-concept=\"thomas-fermi-approximation\">Thomas-Fermi</span> condensate and its <span data-concept=\"healing-length\">healing length</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "MIT 8.422 Problem Set 5, Problem 2 and Problem Set 6, Problem 1 are set in six parts, restated in Lukin's notation with AI-written solutions, since the course published no key; no part is numerical, so none is held.",
+ "figures": [
+  {
+   "id": "sim-regions",
+   "kind": "sim",
+   "number": "11.5",
+   "originals": [
+    "/media/ch11/fig-11-5.png"
+   ],
+   "original_caption": "The Schrodinger equation can be approximately solved for small r in region A and for large r in region B. In the ultracold limit kr₀ ≪ 1 the regions of validity overlap, the two solutions can be matched for r₀ < r < 1/k.",
+   "draws": [
+    "energy",
+    "length",
+    "wavevector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-square-well",
+   "kind": "sim",
+   "number": "11.6",
+   "folds": [
+    "11.7"
+   ],
+   "originals": [
+    "/media/ch11/fig-11-6.png",
+    "/media/ch11/fig-11-7.png"
+   ],
+   "original_caption": "(Figure 11.6) The scattering length can be visualized as the intercept of the asymptote to the wavefunction in the region r₀ ≪ r ≪ 1/k. (Figure 11.7) The wavefunction and scattering length for the hard sphere, the repulsive potential, and the attractive potential",
+   "draws": [
+    "length",
+    "energy",
+    "state"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-feshbach",
+   "kind": "sim",
+   "number": "11.8",
+   "folds": [
+    "11.9"
+   ],
+   "originals": [
+    "/media/ch11/fig-11-8.png",
+    "/media/ch11/fig-11-9.png"
+   ],
+   "original_caption": "(Figure 11.8) The upper potential corresponds to a “closed” channel, with many unoccupied bound states. The lower or “open” channel corresponds to the initial internal state of the atoms. When a bound state in the closed channel approaches the threshold energy in the open channel, any small coupling between the two channels can have a large effect, leading to dramatic changes in the scattering length in the open channel. (Figure 11.9) The form of the scattering length in the vicinity of a Feshbach resonance",
+   "draws": [
+    "energy",
+    "length",
+    "magnetic-field",
+    "magnetic-moment"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-thomas-fermi",
+   "kind": "sim",
+   "draws": [
+    "density",
+    "length",
+    "energy",
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "dilute",
+   "concept": "dilute-quantum-gas",
+   "verb": "introduces"
+  },
+  {
+   "span": "vdw",
+   "concept": "van-der-waals-potential",
+   "verb": "introduces"
+  },
+  {
+   "span": "relative-motion",
+   "concept": "relative-motion-scattering",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-11-45",
+   "concept": "scattering-amplitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "cross-section",
+   "concept": "scattering-cross-section",
+   "verb": "introduces"
+  },
+  {
+   "span": "born",
+   "concept": "born-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "partial-waves",
+   "concept": "partial-wave-expansion",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-shift",
+   "concept": "scattering-phase-shift",
+   "verb": "introduces"
+  },
+  {
+   "span": "s-wave-only",
+   "concept": "s-wave-dominance",
+   "verb": "introduces"
+  },
+  {
+   "span": "scattering-length",
+   "concept": "s-wave-scattering-length",
+   "verb": "introduces"
+  },
+  {
+   "span": "interpretation",
+   "concept": "scattering-length-signs",
+   "verb": "introduces"
+  },
+  {
+   "span": "pseudopotential",
+   "concept": "s-wave-pseudopotential",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-11-81",
+   "concept": "identical-particle-scattering",
+   "verb": "introduces"
+  },
+  {
+   "span": "slab-phase",
+   "concept": "matter-wave-index",
+   "verb": "introduces"
+  },
+  {
+   "span": "strong-dilute",
+   "concept": "strongly-interacting-dilute-gas",
+   "verb": "introduces"
+  },
+  {
+   "span": "weakly-bound",
+   "concept": "weakly-bound-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "feshbach",
+   "concept": "feshbach-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-11-110",
+   "concept": "interacting-bose-gas-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "second-quantization",
+   "concept": "second-quantization",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-11-119",
+   "concept": "matter-field-operator",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-11-127",
+   "concept": "noninteracting-condensate-ground-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "gp",
+   "concept": "gross-pitaevskii-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "symmetry-breaking",
+   "concept": "matter-wave-symmetry-breaking",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-11-133",
+   "concept": "condensate-ground-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "trap-size",
+   "concept": "trap-length",
+   "verb": "introduces"
+  },
+  {
+   "span": "thomas-fermi",
+   "concept": "thomas-fermi-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "healing",
+   "concept": "healing-length",
+   "verb": "introduces"
+  },
+  {
+   "span": "condensate-density",
+   "concept": "condensate-density",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "bose-condensation",
+   "verb": "uses"
+  },
+  {
+   "span": "degenerate",
+   "concept": "critical-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "diagonal-elements",
+   "concept": "dipole-matrix-element",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-11-44",
+   "concept": "schrodinger-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "indist",
+   "concept": "indistinguishability-statistics",
+   "verb": "uses"
+  },
+  {
+   "span": "refraction",
+   "concept": "refractive-index",
+   "verb": "uses"
+  },
+  {
+   "span": "fesh-tune",
+   "concept": "zeeman-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "sq-operators",
+   "concept": "creation-annihilation-operators",
+   "verb": "uses"
+  },
+  {
+   "span": "coherent-assumption",
+   "concept": "coherent-state",
+   "verb": "uses"
+  },
+  {
+   "span": "kerr",
+   "concept": "kerr-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-contact-hamiltonian",
+   "concept": "second-quantized-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-mean-field-energy",
+   "concept": "chemical-potential",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "hw5-2a",
+   "source_id": "hw5.2a",
+   "source_number": "Problem Set 5, Problem 2(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's atoms $a$ and $b$ are atoms 1 and 2, $\\mathbf{d}_a$, $\\mathbf{d}_b$ are $\\mathbf{d_1}$, $\\mathbf{d_2}$, the separation $\\mathbf{R}$ is $\\mathbf{r}$ and $H_{el}(R)$ is $\\hat{V}_d(r)$ of Eq. (11.40), written with $\\mathbf{r}/r$ for $\\hat{\\mathbf{R}}$; the states $|g_ag_b\\rangle$, $|i_ag_b\\rangle$ are $|0,0\\rangle$, $|n,0\\rangle$; the words “discussed in class” are left out.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vdw-attractive",
+   "prompt": "Long-range (van der Waals) interaction between ground-state atoms. The electrostatic interaction between atoms 1 and 2 is described to first order by the dipole-dipole term $$\\hat{V}_d(r) = \\frac{\\mathbf{d_1}\\cdot\\mathbf{d_2}}{r^3} - 3\\frac{(\\mathbf{d_1}\\cdot\\mathbf{r})(\\mathbf{d_2}\\cdot\\mathbf{r})}{r^5},$$ where $\\mathbf{d_1} = e\\mathbf{r}_1$ is the electric dipole operator of atom 1, $\\mathbf{d_2} = e\\mathbf{r}_2$ is the electric dipole operator of atom 2, and $\\mathbf{r}$, of length $r$, is a position vector pointing from the nucleus of atom 1 to the nucleus of atom 2. We will use time-independent perturbation theory to calculate the effect of $\\hat{V}_d$. This is simpler than the time-dependent perturbation expansion and does not lead to a virtual-photon picture of the van der Waals interaction. Notation: let $|0,0\\rangle$ denote atom 1 and atom 2 in the ground state, and $|n,0\\rangle$ atom 1 in an excited state $|n\\rangle$ and atom 2 in the ground state. What is the first non-vanishing term in the series for the perturbed ground state energy of the system?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The first-order term vanishes: $\\langle 0,0|\\hat{V}_d|0,0\\rangle$ is built from $\\langle 0|\\mathbf{d_1}|0\\rangle$ and $\\langle 0|\\mathbf{d_2}|0\\rangle$, and a ground state of definite parity has no permanent dipole. The first non-vanishing term is second order, $$\\Delta E = \\sum_{(n,n')\\neq(0,0)}\\frac{|\\langle n,n'|\\hat{V}_d|0,0\\rangle|^2}{2E_0 - E_n - E_{n'}}.$$ Since $\\hat{V}_d$ carries one dipole of each atom, $\\langle n,0|\\hat{V}_d|0,0\\rangle$ contains $\\langle 0|\\mathbf{d_2}|0\\rangle = 0$: only states with both atoms excited contribute. With $z$ along $\\mathbf{r}$, $\\hat{V}_d = (d_{1x}d_{2x} + d_{1y}d_{2y} - 2d_{1z}d_{2z})/r^3$; for spherically symmetric ground states the products of different components cancel in the sum over each level's sublevels and every component carries the same $|\\langle 0|d_z|n\\rangle|^2$, so the weights $1 + 1 + 4$ give $$\\Delta E = \\frac{6}{r^6}\\sum_{n,n'}\\frac{|\\langle 0|d_{1z}|n\\rangle|^2|\\langle 0|d_{2z}|n'\\rangle|^2}{2E_0 - E_n - E_{n'}} = -\\frac{C_6}{r^6},$$ Eq. (11.41) for two atoms of one kind. Every denominator is negative, so $C_6 > 0$ and the interaction is attractive; in Lukin's form $C_6 = \\hbar^2\\krzero^4/2\\kmured$, Eq. (11.42)."
+   }
+  },
+  {
+   "id": "hw5-2b",
+   "source_id": "hw5.2b",
+   "source_number": "Problem Set 5, Problem 2(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's atoms $a$ and $b$ are atoms 1 and 2, $\\mathbf{d}_a$, $\\mathbf{d}_b$ are $\\mathbf{d_1}$, $\\mathbf{d_2}$, the separation $\\mathbf{R}$ is $\\mathbf{r}$ and $H_{el}(R)$ is $\\hat{V}_d(r)$ of Eq. (11.40), written with $\\mathbf{r}/r$ for $\\hat{\\mathbf{R}}$; the states $|g_ag_b\\rangle$, $|i_ag_b\\rangle$ are $|0,0\\rangle$, $|n,0\\rangle$, $f_{ig}$ and $\\omega_{ig}$ are $f_{n0}$ and $\\omega_{n0}$, and the electron's mass is written $m_e$ (Lukin's $m$ is the atom's); the problem's opening is repeated so the part stands alone.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vdw-attractive",
+   "prompt": "The electrostatic interaction between atoms 1 and 2 is described to first order by the dipole-dipole term $$\\hat{V}_d(r) = \\frac{\\mathbf{d_1}\\cdot\\mathbf{d_2}}{r^3} - 3\\frac{(\\mathbf{d_1}\\cdot\\mathbf{r})(\\mathbf{d_2}\\cdot\\mathbf{r})}{r^5},$$ where $\\mathbf{d_1} = e\\mathbf{r}_1$ is the electric dipole operator of atom 1, $\\mathbf{d_2} = e\\mathbf{r}_2$ is the electric dipole operator of atom 2, and $\\mathbf{r}$, of length $r$, is a position vector pointing from the nucleus of atom 1 to the nucleus of atom 2. We will use time-independent perturbation theory to calculate the effect of $\\hat{V}_d$. This is simpler than the time-dependent perturbation expansion and does not lead to a virtual-photon picture of the van der Waals interaction. Notation: let $|0,0\\rangle$ denote atom 1 and atom 2 in the ground state, and $|n,0\\rangle$ atom 1 in an excited state $|n\\rangle$ and atom 2 in the ground state. Dipole matrix elements in atomic physics are often discussed in terms of “oscillator strength,” $f_{n0} = \\frac{2m_e\\omega_{n0}}{\\hbar}|\\langle n|x|0\\rangle|^2$. Note: $\\omega_{n0} = \\frac{E_n - E_0}{\\hbar}$, so $f_{n0}$ is positive for absorption and negative for emission. Also, $\\sum_n f_{n0} = 1$, the Thomas-Reiche-Kuhn sum rule. Express your result for the perturbed ground state energy in terms of oscillator strengths. You will have to make some arguments (non-mathematical if you prefer) about the symmetry of photon emission to get rid of annoying cross terms.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The cross terms are products such as $\\langle n|d_x|0\\rangle\\langle n|d_y|0\\rangle^*$. Summed over the degenerate sublevels of an excited level they vanish: the ground state has no preferred direction, so an atom falling back to it emits every polarization alike and the components of the dipole are uncorrelated. For the same reason each component carries the same weight, $\\sum_{\\text{sublevels}}|\\langle n|d_z|0\\rangle|^2 = e^2|\\langle n|x|0\\rangle|^2 = \\frac{e^2\\hbar f_{n0}}{2m_e\\omega_{n0}}$. Putting this into the second-order result, with $2E_0 - E_n - E_{n'} = -\\hbar(\\omega_{n0} + \\omega_{n'0})$, $$\\Delta E = -\\frac{C_6}{r^6}, \\qquad C_6 = \\frac{3\\hbar e^4}{2m_e^2}\\sum_{n,n'}\\frac{f^{(1)}_{n0}f^{(2)}_{n'0}}{\\omega^{(1)}_{n0}\\,\\omega^{(2)}_{n'0}\\left(\\omega^{(1)}_{n0} + \\omega^{(2)}_{n'0}\\right)},$$ where the superscripts name the atom. This is London's formula; $C_6 = \\hbar^2\\krzero^4/2\\kmured$ in Lukin's Eq. (11.42)."
+   }
+  },
+  {
+   "id": "hw5-2c",
+   "source_id": "hw5.2c",
+   "source_number": "Problem Set 5, Problem 2(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's atoms $a$ and $b$ are atoms 1 and 2, $\\mathbf{d}_a$, $\\mathbf{d}_b$ are $\\mathbf{d_1}$, $\\mathbf{d_2}$, the separation $\\mathbf{R}$ is $\\mathbf{r}$ and $H_{el}(R)$ is $\\hat{V}_d(r)$ of Eq. (11.40), written with $\\mathbf{r}/r$ for $\\hat{\\mathbf{R}}$; the states $|g_ag_b\\rangle$, $|i_ag_b\\rangle$ are $|0,0\\rangle$, $|n,0\\rangle$, $f_{ig}$ is $f_{n0}$, the polarizabilities $\\alpha_g^{(a)}$, $\\alpha_g^{(b)}$ are $\\alpha^{(1)}$, $\\alpha^{(2)}$, and the electron's mass is written $m_e$; the problem's opening and part (b)'s result are summarized so the part stands alone.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "vdw-attractive",
+   "prompt": "Two ground-state atoms 1 and 2 at separation $r$ attract through the van der Waals interaction $\\kUr = -C_6/r^6$, where, in terms of the oscillator strengths $f_{n0} = \\frac{2m_e\\omega_{n0}}{\\hbar}|\\langle n|x|0\\rangle|^2$ of each atom (with $\\sum_n f_{n0} = 1$, the Thomas-Reiche-Kuhn sum rule), $C_6 = \\frac{3\\hbar e^4}{2m_e^2}\\sum_{n,n'}\\frac{f^{(1)}_{n0}f^{(2)}_{n'0}}{\\omega^{(1)}_{n0}\\omega^{(2)}_{n'0}(\\omega^{(1)}_{n0} + \\omega^{(2)}_{n'0})}$. We can estimate $C_6$ using the approximation that the oscillator strength $f_{n0}$ is large for only one transition, $|0\\rangle \\to |n\\rangle$. The $|nS\\rangle \\to |(n+1)P\\rangle$ transitions in alkali atoms are the classic examples, with $f \\approx 0.98$. Use this in combination with the sum rule above and the definition of the static polarizability of the ground state: $$\\alpha = 2e^2\\sum_n\\frac{|\\langle n|z|0\\rangle|^2}{E_n - E_0}$$ and express your result for $C_6$ in terms of the polarizabilities $\\alpha^{(1)}$ and $\\alpha^{(2)}$. (You should not have any summation signs in your final answer.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Let atom $j$ have its one strong transition at $\\omega_j$, carrying the whole sum rule, $f \\approx 1$. Its polarizability is then $$\\alpha^{(j)} = 2e^2\\sum_n\\frac{\\hbar f_{n0}/2m_e\\omega_{n0}}{\\hbar\\omega_{n0}} = \\frac{e^2}{m_e}\\sum_n\\frac{f_{n0}}{\\omega_{n0}^2} \\approx \\frac{e^2}{m_e\\omega_j^2},$$ and the double sum keeps one term: $$C_6 \\approx \\frac{3\\hbar e^4}{2m_e^2}\\frac{1}{\\omega_1\\omega_2(\\omega_1 + \\omega_2)} = \\frac{3\\hbar}{2}\\,\\alpha^{(1)}\\alpha^{(2)}\\frac{\\omega_1\\omega_2}{\\omega_1 + \\omega_2}.$$ Eliminating the frequencies with $\\omega_j = e/\\sqrt{m_e\\alpha^{(j)}}$, $$C_6 \\approx \\frac{3\\hbar e}{2\\sqrt{m_e}}\\,\\frac{\\alpha^{(1)}\\alpha^{(2)}}{\\sqrt{\\alpha^{(1)}} + \\sqrt{\\alpha^{(2)}}}.$$ For two atoms of one kind this is London's $C_6 = \\frac{3}{4}\\hbar\\omega\\alpha^2$: the van der Waals coefficient grows as the square of the polarizability."
+   }
+  },
+  {
+   "id": "hw6-1a",
+   "source_id": "hw6.1a",
+   "source_number": "Problem Set 6, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's atoms $a$ and $b$ are atoms 1 and 2, the separation $R$ is $r$, the transition energies $E_i^{(a)} - E_g^{(a)}$ and $E_i^{(b)} - E_g^{(b)}$ are $\\hbar\\omega_1$ and $\\hbar\\omega_2$, and the states $|i_ag_b\\rangle$, $|g_ai_b\\rangle$ are $|e,g\\rangle$, $|g,e\\rangle$; the dipole-dipole interaction of Eq. (11.40) is named, which MIT's problem takes from Problem Set 5.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-11-40",
+   "prompt": "Long-range interaction between an excited atom and a ground-state atom. Consider the case where one atom is excited and the other atom is in its ground state. For simplicity model each atom as a two level system with one ground state $|g\\rangle$ and one excited state $|e\\rangle$, the two atoms interacting through the dipole-dipole term $\\hat{V}_d(r)$ of Eq. (11.40) at separation $r$. Assume you have two atoms 1 and 2 with almost (but not quite) degenerate ground $\\leftrightarrow$ excited state transition energies $\\hbar\\omega_1 \\approx \\hbar\\omega_2$. How does the energy of the state $|e,g\\rangle$, atom 1 excited and atom 2 in its ground state, change as a function of the separation $r$ for large distances? What about state $|g,e\\rangle$? For what separation does perturbation theory become invalid?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The first-order shift $\\langle e,g|\\hat{V}_d|e,g\\rangle$ contains $\\langle e|\\mathbf{d_1}|e\\rangle$ and $\\langle g|\\mathbf{d_2}|g\\rangle$, both zero. $\\hat{V}_d$ changes the state of both atoms at once, and in the two-level model the only state it connects $|e,g\\rangle$ to is $|g,e\\rangle$ (reaching $|g,g\\rangle$ or $|e,e\\rangle$ would need a diagonal dipole element), with $$V = \\langle g,e|\\hat{V}_d|e,g\\rangle = \\frac{\\mathbf{d}_1\\cdot\\mathbf{d}_2 - 3(\\mathbf{d}_1\\cdot\\hat{\\mathbf{r}})(\\mathbf{d}_2\\cdot\\hat{\\mathbf{r}})}{r^3}, \\qquad \\mathbf{d}_1 = \\langle g|\\mathbf{d_1}|e\\rangle,\\ \\mathbf{d}_2 = \\langle e|\\mathbf{d_2}|g\\rangle.$$ In second order $$\\Delta E_{e,g} = \\frac{|V|^2}{\\hbar(\\omega_1 - \\omega_2)}, \\qquad \\Delta E_{g,e} = -\\frac{|V|^2}{\\hbar(\\omega_1 - \\omega_2)},$$ both falling as $1/r^6$: the two nearly degenerate states repel, the upper pushed up and the lower down, with a coefficient made large by the small denominator. Perturbation theory fails when the coupling is as large as the splitting, $|V| \\approx \\hbar|\\omega_1 - \\omega_2|$, at $r \\approx \\left(|\\langle g|\\mathbf{d}|e\\rangle|^2/\\hbar|\\omega_1 - \\omega_2|\\right)^{1/3}$; closer in the two states mix strongly and the shifts become $\\pm|V| \\propto 1/r^3$, as in part (b)."
+   }
+  },
+  {
+   "id": "hw6-1b",
+   "source_id": "hw6.1b",
+   "source_number": "Problem Set 6, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's atoms $a$ and $b$ are atoms 1 and 2, the separation $R$ is $r$, the transition energies $E_i^{(a)} - E_g^{(a)}$ and $E_i^{(b)} - E_g^{(b)}$ are $\\hbar\\omega_1$ and $\\hbar\\omega_2$, and the states $|i_ag_b\\rangle$, $|g_ai_b\\rangle$ are $|e,g\\rangle$, $|g,e\\rangle$; the problem's opening is repeated so the part stands alone, and the interaction of Eq. (11.40) is named.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-11-40",
+   "prompt": "Consider the case where one atom is excited and the other atom is in its ground state. For simplicity model each atom as a two level system with one ground state $|g\\rangle$ and one excited state $|e\\rangle$, the two atoms interacting through the dipole-dipole term $\\hat{V}_d(r)$ of Eq. (11.40) at separation $r$. Now assume you have two identical (i.e. same transition energy) atoms. Calculate the long-range interaction potential curves for the case of one excited atom and one ground state atom.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\omega_1 = \\omega_2 = \\omega$ the states $|e,g\\rangle$ and $|g,e\\rangle$ are degenerate at $\\hbar\\omega$, and $\\hbar\\omega$ is shifted already in first order of degenerate perturbation theory. $\\hat{V}_d$ couples the two by $V = [\\,|\\mathbf{d}_{eg}|^2 - 3|\\mathbf{d}_{eg}\\cdot\\hat{\\mathbf{r}}|^2]/r^3$, real for identical atoms, with $\\mathbf{d}_{eg} = \\langle e|\\mathbf{d}|g\\rangle$. The eigenstates are the symmetric and antisymmetric $|\\pm\\rangle = (|e,g\\rangle \\pm |g,e\\rangle)/\\sqrt{2}$, with $$E_\\pm = \\hbar\\omega \\pm \\frac{C_3}{r^3}, \\qquad C_3 = |\\mathbf{d}_{eg}|^2(1 - 3\\cos^2\\theta)$$ for a dipole along a fixed axis at angle $\\theta$ to $\\mathbf{r}$ ($C_3 = -2|\\mathbf{d}_{eg}|^2$ along $\\mathbf{r}$, $+|\\mathbf{d}_{eg}|^2$ across it). One curve is attractive and the other repulsive, and both fall only as $1/r^3$: at long range the excitation hopping between identical atoms far outweighs the $1/r^6$ van der Waals interaction of two ground-state atoms."
+   }
+  },
+  {
+   "id": "hw6-1c",
+   "source_id": "hw6.1c",
+   "source_number": "Problem Set 6, Problem 1(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's atoms $a$ and $b$ are atoms 1 and 2, the separation $R$ is $r$, the transition energies $E_i^{(a)} - E_g^{(a)}$ and $E_i^{(b)} - E_g^{(b)}$ are $\\hbar\\omega_1$ and $\\hbar\\omega_2$, and the states $|i_ag_b\\rangle$, $|g_ai_b\\rangle$ are $|e,g\\rangle$, $|g,e\\rangle$, and MIT's decay rate $\\Gamma$ is Lukin's $\\gamma$; the setting of part (b) is repeated so the part stands alone.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "eq-11-40",
+   "prompt": "Consider the case where one atom is excited and the other atom is in its ground state. For simplicity model each atom as a two level system with one ground state $|g\\rangle$ and one excited state $|e\\rangle$, the two atoms interacting through the dipole-dipole term $\\hat{V}_d(r)$ of Eq. (11.40) at separation $r$. For two identical atoms, one excited and one in its ground state, the long-range interaction potential curves are $\\hbar\\omega \\pm C_3/r^3$. What is the relation between the spontaneous decay rate $\\gamma$ of the atom and its long-range interaction coefficient $C_3$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Both are set by the same dipole matrix element. In the Gaussian units of Eq. (11.40) the spontaneous emission rate is $\\gamma = \\frac{4\\omega^3|\\mathbf{d}_{eg}|^2}{3\\hbar c^3}$ (Lukin's $\\omega^3|\\mu|^2/3\\pi\\epsilon_0\\hbar c^3$ with $1/4\\pi\\epsilon_0 \\to 1$), so $$|\\mathbf{d}_{eg}|^2 = \\frac{3}{4}\\hbar\\gamma\\left(\\frac{c}{\\omega}\\right)^3 = \\frac{3}{4}\\hbar\\gamma\\left(\\frac{\\lambda}{2\\pi}\\right)^3, \\qquad C_3 = \\frac{3}{4}\\hbar\\gamma\\left(\\frac{\\lambda}{2\\pi}\\right)^3(1 - 3\\cos^2\\theta).$$ The interaction coefficient is $C_3 \\sim \\hbar\\gamma(\\lambda/2\\pi)^3$: a strong line makes a strong resonant interaction, and at $r \\sim \\lambda/2\\pi$ the shift is of the order of the natural width $\\hbar\\gamma$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "hw5-2a",
+   "concept": "van-der-waals-potential"
+  },
+  {
+   "exercise": "hw5-2a",
+   "concept": "dipole-matrix-element"
+  },
+  {
+   "exercise": "hw5-2b",
+   "concept": "van-der-waals-potential"
+  },
+  {
+   "exercise": "hw5-2b",
+   "concept": "dipole-matrix-element"
+  },
+  {
+   "exercise": "hw5-2c",
+   "concept": "van-der-waals-potential"
+  },
+  {
+   "exercise": "hw5-2c",
+   "concept": "dipole-matrix-element"
+  },
+  {
+   "exercise": "hw6-1a",
+   "concept": "van-der-waals-potential"
+  },
+  {
+   "exercise": "hw6-1a",
+   "concept": "dipole-matrix-element"
+  },
+  {
+   "exercise": "hw6-1b",
+   "concept": "van-der-waals-potential"
+  },
+  {
+   "exercise": "hw6-1b",
+   "concept": "dipole-matrix-element"
+  },
+  {
+   "exercise": "hw6-1c",
+   "concept": "van-der-waals-potential"
+  },
+  {
+   "exercise": "hw6-1c",
+   "concept": "spontaneous-emission-rate"
+  }
+ ],
+ "referents": [
+  {
+   "id": "open-channel",
+   "label": "the open channel",
+   "figures": [
+    "sim-feshbach"
+   ]
+  },
+  {
+   "id": "closed-channel",
+   "label": "the closed channel",
+   "figures": [
+    "sim-feshbach"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-spacing",
+   "kind": "correction",
+   "html": "The book prints the interatomic spacing as $\\kndens \\sim 1nm$. The spacing is $\\kndens^{-1/3} \\sim 1\\,\\mathrm{nm}$ at the liquid density $\\kndens \\sim 10^{21}\\ \\mathrm{cm}^{-3}$."
+  },
+  {
+   "id": "c-identical-angle",
+   "kind": "correction",
+   "html": "The book prints $\\pi + \\theta$. Exchanging two identical particles takes the relative position $\\mathbf{r}$ to $-\\mathbf{r}$, so the scattering angle $\\theta$ goes to $\\pi - \\theta$."
+  },
+  {
+   "id": "c-eq-11-81",
+   "kind": "correction",
+   "html": "The book prints $f_k(\\pi + \\theta)$. The exchanged amplitude is $f_k(\\pi - \\theta)$, the partner of the exchanged incident wave $e^{-i\\kkmag z}$."
+  },
+  {
+   "id": "c-eq-11-83",
+   "kind": "correction",
+   "html": "The first line prints $e^{iK_zx_0}$ for the incident wave. The incident wave travels along $z$ and is $e^{iKz_0}$, as in the second line."
+  },
+  {
+   "id": "c-eq-11-86",
+   "kind": "correction",
+   "html": "The book prints a positive exponent. For $\\kascat > 0$ the wave slows in the slab, $\\delta K = -4\\pi\\kascat\\kndens/K$ as <a href=\"#eq-11-87\">(11.87)</a> says, and the slab leaves the phase $A \\approx e^{i\\,\\delta K\\,L} = e^{-i4\\pi\\kascat\\kndens L/K}$."
+  },
+  {
+   "id": "c-eq-11-88",
+   "kind": "correction",
+   "html": "As printed the kinetic energy rises in the slab. With $\\delta K$ of <a href=\"#eq-11-87\">(11.87)</a> it falls, $\\delta(\\hbar^2K^2/2\\km) = \\hbar^2K\\,\\delta K/\\km = -4\\pi\\hbar^2\\kascat\\kndens/\\km$; the positive $4\\pi\\hbar^2\\kascat\\kndens/\\km$ is the mean-field potential energy the particle gains in the slab, the energy cost of the next sentence."
+  },
+  {
+   "id": "c-eq-11-116",
+   "kind": "correction",
+   "html": "The book's state is not normalized. Normalized, $|n_1, n_2\\ldots\\rangle = \\prod_i\\frac{(\\hat{b}_i^\\dagger)^{n_i}}{\\sqrt{n_i!}}|\\mathrm{vac}\\rangle$, as <a href=\"#eq-11-117\">(11.117)</a> requires."
+  },
+  {
+   "id": "c-eq-11-127",
+   "kind": "correction",
+   "html": "The book's state is not normalized. Normalized, $|\\Psi\\rangle = \\frac{(\\hat{b}_0^\\dagger)^N}{\\sqrt{N!}}|\\mathrm{vac}\\rangle$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "born-amplitude",
+   "what": "the scattering amplitude in the Born approximation",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.2",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kpsi_k(\\mathbf{r}) \\approx e^{i\\kkmag z}",
+       "src": "(11.52)"
+      },
+      {
+       "text": "The incident wave $\\kk$ points along $\\hat{z}$, so $\\kkmag z = \\kk\\cdot\\mathbf{r}$.",
+       "src": "11.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{f}{\\kfk} = \\frac{-\\kmured}{2\\pi\\hbar^2}\\int d^3\\mathbf{r}'\\mk{e}{e^{-i\\kk'\\cdot\\mathbf{r}'}}\\mk{U}{U(\\mathbf{r}')}\\mk{p}{\\kpsi_k(\\mathbf{r}')}",
+      "src": "(11.51)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{f}{\\kfk} \\approx \\frac{-\\kmured}{2\\pi\\hbar^2}\\int d^3\\mathbf{r}'\\mk{e}{e^{-i\\kk'\\cdot\\mathbf{r}'}}\\mk{U}{U(\\mathbf{r}')}\\mk{p}{e^{i\\kkmag z'}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfk} \\approx \\frac{-\\kmured}{2\\pi\\hbar^2}\\int d^3\\mathbf{r}'\\mk{e}{e^{-i\\kk'\\cdot\\mathbf{r}'}}\\mk{U}{U(\\mathbf{r}')}\\mk{p}{e^{i\\kk\\cdot\\mathbf{r}'}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{f}{\\kfk} \\approx \\frac{-\\kmured}{2\\pi\\hbar^2}\\int d^3\\mathbf{r}'\\mk{e}{e^{-i(\\kk'-\\kk)\\cdot\\mathbf{r}'}}\\mk{U}{U(\\mathbf{r}')}",
+       "uses": [],
+       "map": {
+        "p": "e"
+       }
+      }
+     ],
+     "num": "(11.53)"
+    }
+   ]
+  },
+  {
+   "id": "partial-wave-amplitude",
+   "what": "the scattering amplitude in terms of the phase shifts",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.2",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "R_l^{(B)}(r) \\propto \\frac{(-1)^{l+1}e^{-i\\kkmag r} + e^{i\\kkmag r+2i\\kdeltal}}{r}",
+       "src": "(11.60)"
+      },
+      {
+       "tex": "e^{i\\kkmag z} \\approx \\sum_{l=0}^{\\infty}\\frac{2l+1}{2i\\kkmag}P_l(\\cos\\theta)\\frac{1}{r}\\left((-1)^{l+1}e^{-i\\kkmag r} + e^{i\\kkmag r}\\right)",
+       "src": "(11.47)"
+      },
+      {
+       "text": "Only the incident plane wave carries incoming waves $e^{-i\\kkmag r}$; the scattered wave is outgoing.",
+       "src": "(11.45)"
+      },
+      {
+       "tex": "\\lim_{r\\to\\infty}\\kpsi_k(\\mathbf{r}) = e^{i\\kkmag z} + \\kfk\\frac{e^{i\\kkmag r}}{r}",
+       "src": "(11.45)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kpsi} = \\mk{R}{\\sum_{l=0}^{\\infty}A_lP_l(\\cos\\theta)R_l(r)}",
+      "src": "(11.55)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kpsi} \\approx \\mk{R}{\\sum_{l=0}^{\\infty}B_lP_l(\\cos\\theta)\\frac{(-1)^{l+1}e^{-i\\kkmag r} + e^{i\\kkmag r+2i\\kdeltal}}{r}}",
+       "uses": [
+        0
+       ],
+       "cap": "Far from the scatterer, $kr \\gg 1$, each radial function takes the form (11.60); the constants of proportionality go into new coefficients $B_l$."
+      },
+      {
+       "tex": "\\mk{L}{\\kpsi} \\approx \\mk{R}{\\sum_{l=0}^{\\infty}\\frac{2l+1}{2i\\kkmag}P_l(\\cos\\theta)\\frac{(-1)^{l+1}e^{-i\\kkmag r} + e^{i\\kkmag r+2i\\kdeltal}}{r}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "The incoming waves $e^{-ikr}$ of $\\psi$ are those of the plane wave alone, so their coefficients match those of (11.47) term by term: $B_l = (2l+1)/2ik$."
+      },
+      {
+       "tex": "\\mk{L}{\\kpsi - e^{i\\kkmag z}} \\approx \\mk{R}{\\sum_{l=0}^{\\infty}\\frac{2l+1}{2i\\kkmag}P_l(\\cos\\theta)\\left(e^{2i\\kdeltal} - 1\\right)\\frac{e^{i\\kkmag r}}{r}}",
+       "uses": [
+        1
+       ],
+       "cap": "Subtracting the plane wave (11.47): the incoming waves cancel, and $e^{ikr + 2i\\delta_l} - e^{ikr} = (e^{2i\\delta_l} - 1)e^{ikr}$."
+      },
+      {
+       "tex": "\\mk{L}{\\kfk\\frac{e^{i\\kkmag r}}{r}} = \\mk{R}{\\sum_{l=0}^{\\infty}\\frac{2l+1}{2i\\kkmag}P_l(\\cos\\theta)\\left(e^{2i\\kdeltal} - 1\\right)\\frac{e^{i\\kkmag r}}{r}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kfk} = \\mk{R}{\\sum_{l=0}^{\\infty}P_l(\\cos\\theta)\\frac{2l+1}{2i\\kkmag}\\left(e^{2i\\kdeltal} - 1\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(11.62)"
+    }
+   ]
+  },
+  {
+   "id": "partial-wave-ultracold",
+   "what": "the partial-wave amplitudes in the ultracold limit",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.2",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "In the ultracold limit $\\kkmag\\krzero \\ll 1$ the phase shift $\\kdeltal$ is small.",
+       "src": "11.4.2"
+      },
+      {
+       "tex": "\\kdeltal \\approx c(\\krzero\\kkmag)^{2l+1}",
+       "src": "11.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kfk} = \\mk{R}{\\sum_{l=0}^{\\infty}P_l(\\cos\\theta)\\frac{2l+1}{2i\\kkmag}\\left(e^{2i\\kdeltal} - 1\\right)}",
+      "src": "(11.62)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{f_l} = \\mk{R}{\\frac{e^{2i\\kdeltal} - 1}{2i\\kkmag}}",
+       "uses": [],
+       "cap": "The amplitude $f_l$ of partial wave $l$ is its term of the sum without the factor $(2l+1)P_l(\\cos\\theta)$."
+      },
+      {
+       "tex": "\\mk{L}{f_l} \\approx \\mk{R}{\\frac{\\kdeltal}{\\kkmag}}",
+       "uses": [
+        0
+       ],
+       "cap": "For small $\\delta_l$, $e^{2i\\delta_l} - 1 \\approx 2i\\delta_l$."
+      },
+      {
+       "tex": "\\mk{L}{f_l} \\approx \\mk{R}{c\\krzero(\\krzero\\kkmag)^{2l}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(11.63)"
+    }
+   ]
+  },
+  {
+   "id": "s-wave-amplitude",
+   "what": "the s-wave phase shift and scattering amplitude",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.3",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "S-wave scattering is the partial wave $l = 0$.",
+       "src": "11.4.3"
+      },
+      {
+       "text": "The double factorial has $1!! = 1$ and $(-1)!! = 1$.",
+       "src": "11.4.2"
+      },
+      {
+       "tex": "\\kascat = -\\frac{c_2}{c_1}",
+       "src": "(11.65)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{t}{\\tan\\kdeltal} = \\mk{c}{\\frac{c_2}{c_1}}\\mk{k}{\\frac{\\kkmag^{2l+1}}{(2l-1)!!(2l+1)!!}}",
+      "src": "(11.61)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{t}{\\tan\\delta_0} = \\mk{c}{\\frac{c_2}{c_1}}\\mk{k}{\\frac{\\kkmag}{(-1)!!\\,1!!}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\tan\\delta_0} = \\mk{c}{\\frac{c_2}{c_1}}\\mk{k}{\\kkmag}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{t}{\\tan\\delta_0} = \\mk{c}{-}\\mk{k}{\\kkmag}\\mk{a}{\\kascat}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "c": [
+         "c",
+         "a"
+        ]
+       }
+      }
+     ],
+     "num": "(11.66)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "S-wave scattering is the partial wave $l = 0$.",
+       "src": "11.4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kfk} = \\mk{R}{\\sum_{l=0}^{\\infty}P_l(\\cos\\theta)\\frac{2l+1}{2i\\kkmag}\\left(e^{2i\\kdeltal} - 1\\right)}",
+      "src": "(11.62)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{f_0} = \\mk{R}{\\frac{e^{2i\\delta_0} - 1}{2i\\kkmag}}",
+       "uses": [
+        1
+       ],
+       "cap": "For $l = 0$ the factor $(2l+1)P_0(\\cos\\theta)$ is 1, so the s-wave term of the sum is $f_0$."
+      },
+      {
+       "tex": "\\mk{L}{f_0} = \\mk{R}{\\frac{1}{2i\\kkmag}\\,\\frac{2i\\tan\\delta_0}{1 - i\\tan\\delta_0}}",
+       "uses": [],
+       "cap": "$e^{2i\\delta} = \\frac{1 + i\\tan\\delta}{1 - i\\tan\\delta}$, since $\\frac{\\cos\\delta + i\\sin\\delta}{\\cos\\delta - i\\sin\\delta} = \\frac{e^{i\\delta}}{e^{-i\\delta}}$; so $e^{2i\\delta} - 1 = \\frac{2i\\tan\\delta}{1 - i\\tan\\delta}$."
+      },
+      {
+       "tex": "\\mk{L}{f_0} = \\mk{R}{\\frac{\\tan\\delta_0}{\\kkmag(1 - i\\tan\\delta_0)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{f_0} = \\mk{R}{\\frac{-\\kkmag\\kascat}{\\kkmag(1 + i\\kkmag\\kascat)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{f_0} = \\mk{R}{-\\frac{\\kascat}{1+i\\kkmag\\kascat}}",
+       "uses": []
+      }
+     ],
+     "num": "(11.67)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{f_0} = \\mk{R}{-\\frac{\\kascat}{1+i\\kkmag\\kascat}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\lim_{\\kkmag\\to 0}f_0} = \\mk{R}{-\\kascat}",
+       "uses": [],
+       "cap": "As $k \\to 0$ the term $ika$ in the denominator vanishes."
+      }
+     ],
+     "num": "(11.68)"
+    }
+   ]
+  },
+  {
+   "id": "mean-field-energy",
+   "what": "the mean-field energy and chemical potential",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.3",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kUr = \\frac{4\\pi\\hbar^2\\kascat}{2\\kmured}\\delta^3(\\mathbf{r})",
+       "src": "(11.78)"
+      },
+      {
+       "text": "At zero temperature, without interactions, all of the atoms pile into the single-particle ground state.",
+       "src": "11.4.7"
+      },
+      {
+       "text": "In a homogeneous gas of volume $\\kV$ the single-particle ground state is the $\\kk = 0$ wave, $1/\\sqrt{\\kV}$.",
+       "src": "(11.119)"
+      },
+      {
+       "tex": "\\kmured = \\frac{m_1m_2}{m_1 + m_2}",
+       "src": "11.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\Delta E_0} = \\mk{R}{\\langle\\phi_0|\\sum_{\\langle i,j\\rangle}U(r_{ij})|\\phi_0\\rangle}",
+      "src": "(11.79)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\Delta E_0} = \\mk{R}{\\sum_{\\langle i,j\\rangle}\\frac{4\\pi\\hbar^2\\kascat}{2\\kmured}\\langle\\phi_0|\\delta^3(\\mathbf{r}_{ij})|\\phi_0\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\Delta E_0} = \\mk{R}{\\sum_{\\langle i,j\\rangle}\\frac{4\\pi\\hbar^2\\kascat}{2\\kmured}\\frac{1}{\\kV}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Each atom is spread with density $|1/\\sqrt{V}|^2 = 1/V$, so $\\int d^3\\mathbf{r}_i\\,d^3\\mathbf{r}_j\\,\\frac{1}{V^2}\\delta^3(\\mathbf{r}_i - \\mathbf{r}_j) = \\frac{1}{V}$."
+      },
+      {
+       "tex": "\\mk{E}{\\Delta E_0} = \\mk{R}{\\frac{N(N-1)}{2}\\frac{1}{\\kV}\\frac{4\\pi\\hbar^2\\kascat}{2\\kmured}}",
+       "uses": [],
+       "cap": "Each of the $N(N-1)/2$ pairs of atoms gives the same term."
+      },
+      {
+       "tex": "\\mk{E}{\\Delta E_0} = \\mk{R}{\\frac{N(N-1)}{2}\\frac{1}{\\kV}\\frac{4\\pi\\hbar^2\\kascat}{\\km}}",
+       "uses": [
+        3
+       ],
+       "cap": "For two atoms of the same mass $m$, $\\mu = m/2$."
+      }
+     ],
+     "num": "(11.79)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The $\\kk = 0$ state carries no kinetic energy, so the ground-state energy is the interaction energy, $E_0 = \\Delta E_0$.",
+       "src": "(11.44), (11.119)"
+      },
+      {
+       "text": "The gas holds many atoms, $N \\gg 1$.",
+       "src": "11.4.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{\\kmuchem} = \\mk{R}{\\frac{\\partial E_0}{\\partial N}}",
+      "src": "(11.80)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\kmuchem} = \\mk{R}{\\frac{\\partial \\Delta E_0}{\\partial N}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{m}{\\kmuchem} = \\mk{R}{\\frac{\\partial}{\\partial N}\\left(\\frac{N(N-1)}{2}\\right)\\frac{4\\pi\\hbar^2\\kascat}{\\km\\kV}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{m}{\\kmuchem} = \\mk{R}{\\left(N - \\frac{1}{2}\\right)\\frac{4\\pi\\hbar^2\\kascat}{\\km\\kV}}",
+       "uses": [],
+       "cap": "$\\frac{d}{dN}\\frac{N^2 - N}{2} = N - \\frac{1}{2}$."
+      },
+      {
+       "tex": "\\mk{m}{\\kmuchem} \\approx \\mk{R}{\\frac{4\\pi\\hbar^2\\kascat}{\\km}\\frac{N}{\\kV}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(11.80)"
+    }
+   ]
+  },
+  {
+   "id": "identical-particle-cross-section",
+   "what": "the cross-section of identical particles",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.4",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kpsi_k(r) = \\frac{e^{i\\kkmag z} + \\epsilon e^{-i\\kkmag z}}{\\sqrt{2}} + \\frac{\\kfk + \\epsilon f_k(\\pi - \\theta)}{\\sqrt{2}}\\frac{e^{i\\kkmag r}}{r}",
+       "src": "(11.81)"
+      },
+      {
+       "text": "The collisions are elastic, $v_\\mathrm{final} = v_\\mathrm{initial}$.",
+       "src": "11.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\frac{d\\ksigmasc}{d\\Omega}} = \\mk{f}{|\\kfk|^2}\\mk{v}{\\frac{v_\\mathrm{final}}{v_\\mathrm{initial}}}",
+      "src": "(11.49)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\frac{d\\ksigmasc}{d\\Omega}} = \\mk{f}{\\left|\\frac{\\kfk + \\epsilon f_k(\\pi - \\theta)}{\\sqrt{2}}\\right|^2}\\mk{v}{\\frac{v_\\mathrm{final}}{v_\\mathrm{initial}}}",
+       "uses": [
+        0
+       ],
+       "cap": "The amplitude of the outgoing wave $e^{ikr}/r$ in (11.81) takes the place of $f_k(\\theta)$."
+      },
+      {
+       "tex": "\\mk{s}{\\frac{d\\ksigmasc}{d\\Omega}} = \\mk{f}{\\left|\\frac{\\kfk + \\epsilon f_k(\\pi - \\theta)}{\\sqrt{2}}\\right|^2}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(11.82)",
+     "note": "The book prints $f_k(\\pi + \\theta)$ in (11.81) and (11.82). Exchanging the two particles takes the relative position $\\mathbf{r}$ to $-\\mathbf{r}$, and the angle $\\theta$ to $\\pi - \\theta$, so the exchanged amplitude is $f_k(\\pi - \\theta)$."
+    }
+   ]
+  },
+  {
+   "id": "weakly-bound-state",
+   "what": "the weakly bound state of a large scattering length",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.6",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Outside the range of the potential, $r > \\krzero$, the effect of the potential is negligible.",
+       "src": "11.4.2"
+      },
+      {
+       "text": "S-wave scattering is the partial wave $l = 0$.",
+       "src": "11.4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d^2}{dr^2}R_l(r) + \\frac{2}{r}\\frac{d}{dr}R_l(r)}\\mk{l}{ - \\frac{l(l+1)}{r^2}R_l(r)}\\mk{U}{ - \\frac{2\\kmured}{\\hbar^2}\\kUr R_l(r)} = \\mk{k}{-\\kkmag^2R_l(r)}",
+      "src": "(11.57)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{\\frac{d^2}{dr^2}R_0(r) + \\frac{2}{r}\\frac{d}{dr}R_0(r)} = \\mk{k}{-\\kkmag^2R_0(r)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\frac{1}{r}\\frac{d^2}{dr^2}\\big(rR_0(r)\\big)} = \\mk{k}{-\\kkmag^2R_0(r)}",
+       "uses": [],
+       "cap": "$\\frac{d^2}{dr^2}(rR) = r\\frac{d^2R}{dr^2} + 2\\frac{dR}{dr}$."
+      },
+      {
+       "tex": "\\mk{d}{\\frac{d^2}{dr^2}\\big(rR_0(r)\\big)} = \\mk{k}{-\\kkmag^2\\,rR_0(r)}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "A bound state has negative energy, $\\kkmag^2 < 0$, and a wavefunction that vanishes as $r \\to \\infty$.",
+       "src": "11.4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{\\frac{d^2}{dr^2}\\big(rR_0(r)\\big)} = \\mk{k}{-\\kkmag^2\\,rR_0(r)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{rR_0(r)} \\propto \\mk{k}{e^{-\\sqrt{-\\kkmag^2}\\,r}}",
+       "uses": [
+        1
+       ],
+       "cap": "With $k^2 < 0$ the solutions are $e^{\\pm\\sqrt{-k^2}\\,r}$; only the decaying one vanishes at large $r$."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "R_0^{(B)}(r) \\propto 1 - \\frac{\\kascat}{r}",
+       "src": "(11.64)"
+      },
+      {
+       "text": "For large positive $\\kascat \\gg \\krzero$ the region $\\krzero < r \\ll \\kascat$ exists, where both forms hold.",
+       "src": "11.4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{rR_0(r)} \\propto \\mk{k}{e^{-\\sqrt{-\\kkmag^2}\\,r}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{rR_0(r)} \\propto \\mk{k}{1 - \\sqrt{-\\kkmag^2}\\,r}",
+       "uses": [],
+       "cap": "For $\\sqrt{-k^2}\\,r \\ll 1$, $e^{-x} \\approx 1 - x$."
+      },
+      {
+       "tex": "\\mk{d}{rR_0(r)} \\propto \\mk{k}{r - \\frac{1}{\\sqrt{-\\kkmag^2}}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{k}{\\frac{1}{\\sqrt{-\\kkmag^2}}} = \\mk{a}{\\kascat}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Times $r$, (11.64) reads $rR_0 \\propto r - a$; where both forms hold, the two lines cross zero at the same $r$."
+      },
+      {
+       "tex": "\\mk{k}{\\kkmag^2} = \\mk{a}{-\\frac{1}{\\kascat^2}}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "text": "The bound state is normalized, $\\int |R_0^{(0)}|^2 d^3\\mathbf{r} = 1$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{d}{rR_0(r)} \\propto \\mk{k}{e^{-\\sqrt{-\\kkmag^2}\\,r}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{d}{R_0^{(0)}(r)} = \\mk{C}{C}\\mk{k}{\\frac{e^{-\\sqrt{-\\kkmag^2}\\,r}}{r}}",
+       "uses": [],
+       "cap": "Writing the constant of proportionality as $C$."
+      },
+      {
+       "tex": "\\mk{d}{R_0^{(0)}(r)} = \\mk{C}{C}\\mk{k}{\\frac{e^{-r/\\kascat}}{r}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{d}{R_0^{(0)}(r)} = \\mk{C}{\\frac{1}{\\sqrt{2\\pi\\kascat}}}\\mk{k}{\\frac{e^{-r/\\kascat}}{r}}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\int|R|^2d^3\\mathbf{r} = 4\\pi C^2\\int_0^\\infty e^{-2r/a}dr = 2\\pi a\\,C^2$, which is 1 for $C = 1/\\sqrt{2\\pi a}$."
+      }
+     ],
+     "num": "(11.91)",
+     "note": "The book prints $R_0^{(0)}(r) = e^{-r/\\kascat}/\\sqrt{2\\pi\\kascat r}$, with $r$ under the square root; the normalized state has $r$ outside it."
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{E_0} = \\mk{k}{\\frac{\\hbar^2\\kkmag^2}{2\\kmured}}",
+      "src": "(11.44)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{E_0} = \\mk{k}{-\\frac{\\hbar^2}{2\\kmured\\kascat^2}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(11.92)"
+    }
+   ]
+  },
+  {
+   "id": "closed-channel-coupling",
+   "what": "the effect of the closed channel on the open channel",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.6",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\psi_c = \\sum_{m=1}^{\\infty}\\alpha_m\\psi_c^m",
+       "src": "(11.96)"
+      },
+      {
+       "tex": "\\left(\\hat{\\xi} + U_c(r) - E_m\\right)\\psi_c^m = 0",
+       "src": "(11.95)"
+      },
+      {
+       "text": "The $\\psi_c^m$ are orthonormal, $\\langle\\psi_c^n|\\psi_c^m\\rangle = \\delta_{nm}$.",
+       "src": "11.4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\left(\\hat{\\xi} + U_c(r) - E\\right)\\psi_c} + \\mk{g}{g\\psi_o} = 0",
+      "src": "(11.94)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\sum_m\\alpha_m\\left(\\hat{\\xi} + U_c(r) - E\\right)\\psi_c^m} + \\mk{g}{g\\psi_o} = 0",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\sum_m\\alpha_m\\left(E_m - E\\right)\\psi_c^m} + \\mk{g}{g\\psi_o} = 0",
+       "uses": [
+        1
+       ],
+       "cap": "By (11.95), $(\\hat{\\xi} + U_c)\\psi_c^m = E_m\\psi_c^m$."
+      },
+      {
+       "tex": "\\mk{L}{\\alpha_n\\left(E_n - E\\right)} + \\mk{g}{\\langle\\psi_c^n|g|\\psi_o\\rangle} = 0",
+       "uses": [
+        2
+       ],
+       "cap": "Taking the inner product with $\\psi_c^n$."
+      },
+      {
+       "tex": "\\mk{L}{\\alpha_n} = \\mk{g}{-\\frac{\\langle\\psi_c^n|g|\\psi_o\\rangle}{E_n - E}}",
+       "uses": []
+      }
+     ],
+     "num": "(11.97)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Close to resonance, only one of the coefficients, $\\alpha_{res}$, has an appreciable physical effect.",
+       "src": "11.4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\psi_c} = \\mk{R}{\\sum_{m=1}^{\\infty}\\alpha_m\\psi_c^m}",
+      "src": "(11.96)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\psi_c(r)} \\approx \\mk{R}{\\alpha_{res}\\psi_c^{res}(r)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\psi_c(r)} \\approx \\mk{R}{-\\frac{\\langle\\psi_c^{res}|g|\\psi_o\\rangle}{E_{res} - E}\\psi_c^{res}(r)}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(11.98)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\left(\\hat{\\xi} + U_o(r) - E\\right)\\psi_o} + \\mk{g}{g\\psi_c} = 0",
+      "src": "(11.93)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\left(\\hat{\\xi} + U_o(r) - E\\right)\\psi_o} = \\mk{g}{-g\\psi_c}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\left(\\hat{\\xi} + U_o(r) - E\\right)\\psi_o(r)} = \\mk{g}{g(r)\\frac{\\langle\\psi_c^{res}|g|\\psi_o\\rangle}{E_{res} - E}\\psi_c^{res}(r)}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(11.99)",
+     "note": "The book says this expression is substituted into Eq. (11.94); it goes into the open-channel equation, Eq. (11.93)."
+    }
+   ]
+  },
+  {
+   "id": "feshbach-scattering-length",
+   "what": "the scattering length near a Feshbach resonance",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.6",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\chi = 1 - \\frac{\\kabg}{r}",
+       "src": "(11.100)"
+      },
+      {
+       "tex": "\\eta = A\\left(1 - \\frac{b}{r}\\right)",
+       "src": "(11.102)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{o}{\\psi_o} = \\mk{a}{\\alpha\\chi} + \\mk{b}{\\beta\\eta}",
+      "src": "11.4.6",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{o}{\\psi_o} = \\mk{a}{\\alpha\\left(1 - \\frac{\\kabg}{r}\\right)} + \\mk{b}{\\beta A\\left(1 - \\frac{b}{r}\\right)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{o}{\\psi_o} = \\mk{c}{(\\alpha + \\beta A)} - \\mk{r}{\\frac{\\alpha\\kabg + \\beta Ab}{r}}",
+       "uses": [],
+       "map": {
+        "a": [
+         "c",
+         "r"
+        ],
+        "b": [
+         "c",
+         "r"
+        ]
+       }
+      }
+     ],
+     "num": "(11.103)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "R_0^{(B)}(r) \\propto 1 - \\frac{\\kascat}{r}",
+       "src": "(11.64)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{o}{\\psi_o} = \\mk{c}{(\\alpha + \\beta A)} - \\mk{r}{\\frac{\\alpha\\kabg + \\beta Ab}{r}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{o}{\\psi_o} = \\mk{c}{(\\alpha + \\beta A)}\\mk{r}{\\left(1 - \\frac{\\alpha\\kabg + \\beta Ab}{\\alpha + \\beta A}\\,\\frac{1}{r}\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\kascat} = \\mk{r}{\\frac{\\alpha\\kabg + \\beta Ab}{\\alpha + \\beta A}}",
+       "uses": [
+        1
+       ],
+       "cap": "The scattering length is the $a$ of the form $1 - a/r$, (11.64).",
+       "map": {
+        "o": "s",
+        "c": "s"
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\kascat} = \\mk{r}{\\kabg + A\\frac{b - \\kabg}{\\frac{\\alpha}{\\beta} + A}}",
+       "uses": []
+      }
+     ],
+     "num": "(11.104)"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The complete solution is the superposition $\\psi_o = \\alpha\\chi + \\beta\\eta$.",
+       "src": "11.4.6"
+      },
+      {
+       "tex": "\\left(\\hat{\\xi} + U_o(r) - E\\right)\\chi = 0",
+       "src": "(11.100)"
+      },
+      {
+       "tex": "\\left(\\hat{\\xi} + U_o(r) - E\\right)\\eta = g(r)\\psi_c^{res}(r)",
+       "src": "(11.101)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\left(\\hat{\\xi} + U_o(r) - E\\right)\\psi_o(r)} = \\mk{g}{g(r)\\frac{\\langle\\psi_c^{res}|g|\\psi_o\\rangle}{E_{res} - E}\\psi_c^{res}(r)}",
+      "src": "(11.99)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\left(\\hat{\\xi} + U_o(r) - E\\right)(\\alpha\\chi + \\beta\\eta)} = \\mk{g}{g(r)\\frac{\\alpha\\langle\\psi_c^{res}|g|\\chi\\rangle + \\beta\\langle\\psi_c^{res}|g|\\eta\\rangle}{E_{res} - E}\\psi_c^{res}(r)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\beta g(r)\\psi_c^{res}(r)} = \\mk{g}{g(r)\\frac{\\alpha\\langle\\psi_c^{res}|g|\\chi\\rangle + \\beta\\langle\\psi_c^{res}|g|\\eta\\rangle}{E_{res} - E}\\psi_c^{res}(r)}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\beta(E_{res} - E)} = \\mk{g}{\\alpha\\langle\\psi_c^{res}|g|\\chi\\rangle + \\beta\\langle\\psi_c^{res}|g|\\eta\\rangle}",
+       "uses": [],
+       "cap": "Both sides are multiples of $g\\psi_c^{res}$, so the multiples are equal."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\alpha}{\\beta}} = \\mk{g}{\\frac{E_{res} - E - \\langle\\psi_c^{res}|g|\\eta\\rangle}{\\langle\\psi_c^{res}|g|\\chi\\rangle}}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\kascat} = \\mk{r}{\\kabg + A\\frac{b - \\kabg}{\\frac{\\alpha}{\\beta} + A}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kascat} = \\mk{r}{\\kabg + A\\frac{b - \\kabg}{\\frac{E_{res} - E - \\langle\\psi_c^{res}|g|\\eta\\rangle}{\\langle\\psi_c^{res}|g|\\chi\\rangle} + A}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{s}{\\kascat} = \\mk{r}{\\kabg + \\frac{A(b - \\kabg)\\langle\\psi_c^{res}|g|\\chi\\rangle}{E_{res} + \\langle\\psi_c^{res}|g|A\\chi - \\eta\\rangle - E}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\kascat} = \\mk{r}{\\kabg\\left(1 + \\frac{\\overbrace{(A/\\kabg)(b - \\kabg)\\langle\\psi_c^{res}|g|\\chi\\rangle}^{\\kDeltaFesh}}{\\underbrace{E_{res} + \\langle\\psi_c^{res}|g|A\\chi - \\eta\\rangle}_{\\kEres} - E}\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(11.105)",
+     "note": "The book prints $\\langle\\psi_c^{res}|g|\\eta\\rangle$ in the numerator. Solving for $\\alpha/\\beta$ puts the matrix element of the homogeneous solution there, $\\langle\\psi_c^{res}|g|\\chi\\rangle$."
+    }
+   ]
+  },
+  {
+   "id": "feshbach-binding-energy",
+   "what": "the binding energy of the weakly bound level near a Feshbach resonance",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.6",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kascat \\approx \\kabg\\left(1 + \\frac{\\kDeltaFesh}{\\kEres}\\right)",
+       "src": "(11.107)"
+      },
+      {
+       "text": "Near resonance the scattering length diverges, $|\\kDeltaFesh/\\kEres| \\gg 1$.",
+       "src": "11.4.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{E_0} = \\mk{k}{-\\frac{\\hbar^2}{2\\kmured\\kascat^2}}",
+      "src": "(11.92)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{|E_0|} = \\mk{k}{\\frac{\\hbar^2}{2\\kmured\\kascat^2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{E}{|E_0|} \\approx \\mk{k}{\\frac{\\hbar^2}{2\\kmured(\\kabg\\kDeltaFesh/\\kEres)^2}}",
+       "uses": [0, 1]
+      },
+      {
+       "tex": "\\mk{E}{|E_0|} \\approx \\mk{k}{\\frac{\\hbar^2}{2\\kmured}\\frac{(\\kEres)^2}{\\kabg^2\\kDeltaFesh^2}}",
+       "uses": []
+      }
+     ],
+     "num": "(11.109)"
+    }
+   ]
+  },
+  {
+   "id": "field-commutator",
+   "what": "the commutator of the matter field operators",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.7",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kpsihat = \\frac{1}{\\sqrt{\\kV}}\\sum_\\mathbf{k}e^{i\\kk\\cdot\\mathbf{r}}\\hat{b}_\\mathbf{k}",
+       "src": "(11.119)"
+      },
+      {
+       "tex": "[\\hat{b}_\\mathbf{k}, \\hat{b}_{\\mathbf{k}'}^\\dagger] = \\delta_{\\mathbf{k},\\mathbf{k}'}",
+       "src": "11.4.7"
+      },
+      {
+       "tex": "\\sum_\\mathbf{k} e^{i\\kk\\cdot(\\mathbf{r}-\\mathbf{r}')} = \\kV\\delta(\\mathbf{r} - \\mathbf{r}')",
+       "src": "11.4.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{[\\kpsihat, \\hat{\\psi}^\\dagger(\\mathbf{r}')]} = \\mk{R}{\\kpsihat\\hat{\\psi}^\\dagger(\\mathbf{r}') - \\hat{\\psi}^\\dagger(\\mathbf{r}')\\kpsihat}",
+      "src": "11.4.7",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{[\\kpsihat, \\hat{\\psi}^\\dagger(\\mathbf{r}')]} = \\mk{R}{\\frac{1}{\\kV}\\sum_{\\mathbf{k},\\mathbf{k}'}e^{i\\kk\\cdot\\mathbf{r}}e^{-i\\kk'\\cdot\\mathbf{r}'}[\\hat{b}_\\mathbf{k}, \\hat{b}_{\\mathbf{k}'}^\\dagger]}",
+       "uses": [
+        0
+       ],
+       "cap": "The adjoint of (11.119) is $\\hat{\\psi}^\\dagger(\\mathbf{r}') = \\frac{1}{\\sqrt{V}}\\sum_{\\mathbf{k}'}e^{-i\\mathbf{k}'\\cdot\\mathbf{r}'}\\hat{b}_{\\mathbf{k}'}^\\dagger$."
+      },
+      {
+       "tex": "\\mk{L}{[\\kpsihat, \\hat{\\psi}^\\dagger(\\mathbf{r}')]} = \\mk{R}{\\frac{1}{\\kV}\\sum_{\\mathbf{k}}e^{i\\kk\\cdot(\\mathbf{r}-\\mathbf{r}')}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{[\\kpsihat, \\hat{\\psi}^\\dagger(\\mathbf{r}')]} = \\mk{R}{\\delta(\\mathbf{r} - \\mathbf{r}')}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(11.120)"
+    }
+   ]
+  },
+  {
+   "id": "contact-hamiltonian",
+   "what": "the Hamiltonian with a contact interaction",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.7",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "In cold, dilute atomic gases the interaction potential can be replaced by the s-wave pseudopotential.",
+       "src": "11.4.7"
+      },
+      {
+       "tex": "V_\\mathrm{int}(r) \\approx \\kUzero\\delta(r)",
+       "src": "(11.111)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH} = \\mk{o}{\\int d^3\\mathbf{r}\\ \\hat{\\psi}^\\dagger(\\mathbf{r})\\left(\\frac{\\kp^2}{2\\km} + \\kVtrap(\\mathbf{r})\\right)\\kpsihat} + \\mk{i}{\\frac{1}{2}\\int d^3\\mathbf{r}\\int d^3\\mathbf{r}'\\ \\hat{\\psi}^\\dagger(\\mathbf{r})\\hat{\\psi}^\\dagger(\\mathbf{r}')V_{int}(\\mathrm{r} - \\mathrm{r}')\\hat{\\psi}(\\mathbf{r}')\\kpsihat}",
+      "src": "(11.122), (11.123)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{o}{\\int d^3\\mathbf{r}\\ \\hat{\\psi}^\\dagger(\\mathbf{r})\\left(\\frac{\\kp^2}{2\\km} + \\kVtrap(\\mathbf{r})\\right)\\kpsihat} + \\mk{i}{\\frac{\\kUzero}{2}\\int d^3\\mathbf{r}\\int d^3\\mathbf{r}'\\ \\hat{\\psi}^\\dagger(\\mathbf{r})\\hat{\\psi}^\\dagger(\\mathbf{r}')\\delta(\\mathbf{r} - \\mathbf{r}')\\hat{\\psi}(\\mathbf{r}')\\kpsihat}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{o}{\\int d^3\\mathbf{r}\\ \\hat{\\psi}^\\dagger(\\mathbf{r})\\left(\\frac{\\kp^2}{2\\km} + \\kVtrap(\\mathbf{r})\\right)\\kpsihat} + \\mk{i}{\\frac{\\kUzero}{2}\\int d^3\\mathbf{r}\\ \\hat{\\psi}^\\dagger(\\mathbf{r})\\hat{\\psi}^\\dagger(\\mathbf{r})\\kpsihat\\kpsihat}",
+       "uses": [],
+       "cap": "The delta function sets $\\mathbf{r}' = \\mathbf{r}$ in the $\\mathbf{r}'$ integral."
+      },
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{o}{\\int d^3\\mathbf{r}\\ \\hat{\\psi}^\\dagger(\\mathbf{r})\\left(\\frac{\\kp^2}{2\\km} + \\kVtrap(\\mathbf{r}) + \\frac{\\kUzero}{2}\\hat{\\psi}^\\dagger(\\mathbf{r})\\kpsihat\\right)\\kpsihat}",
+       "uses": [],
+       "map": {
+        "i": "o"
+       }
+      }
+     ],
+     "num": "(11.124)"
+    }
+   ]
+  },
+  {
+   "id": "field-equation-of-motion",
+   "what": "the equation of motion of the matter field operator",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.7",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = \\int d^3\\mathbf{r}\\ \\hat{\\psi}^\\dagger(\\mathbf{r})\\left(\\frac{\\kp^2}{2\\km} + \\kVtrap(\\mathbf{r}) + \\frac{\\kUzero}{2}\\hat{\\psi}^\\dagger(\\mathbf{r})\\kpsihat\\right)\\kpsihat",
+       "src": "(11.124)"
+      },
+      {
+       "tex": "[\\kpsihat, \\hat{\\psi}^\\dagger(\\mathbf{r}')] = \\delta(\\mathbf{r} - \\mathbf{r}')",
+       "src": "(11.120)"
+      },
+      {
+       "text": "The kinetic energy acts in position space as $-\\hbar^2\\nabla^2/2m$.",
+       "src": "(11.44)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\hat{\\psi}} = \\mk{R}{[\\hat{\\psi}, \\kH]}",
+      "src": "(1.13)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\hat{\\psi}} = \\mk{K}{[\\hat{\\psi}, \\int d^3\\mathbf{r}'\\ \\hat{\\psi}^\\dagger(\\mathbf{r}')\\left(\\frac{\\kp^2}{2\\km} + \\kVtrap\\right)\\hat{\\psi}(\\mathbf{r}')]} + \\mk{I}{[\\hat{\\psi}, \\int d^3\\mathbf{r}'\\ \\frac{\\kUzero}{2}\\hat{\\psi}^\\dagger(\\mathbf{r}')\\hat{\\psi}^\\dagger(\\mathbf{r}')\\hat{\\psi}(\\mathbf{r}')\\hat{\\psi}(\\mathbf{r}')]}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "R": [
+         "K",
+         "I"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\hat{\\psi}} = \\mk{K}{\\left(\\frac{\\kp^2}{2\\km} + \\kVtrap\\right)\\hat{\\psi}} + \\mk{I}{[\\hat{\\psi}, \\int d^3\\mathbf{r}'\\ \\frac{\\kUzero}{2}\\hat{\\psi}^\\dagger(\\mathbf{r}')\\hat{\\psi}^\\dagger(\\mathbf{r}')\\hat{\\psi}(\\mathbf{r}')\\hat{\\psi}(\\mathbf{r}')]}",
+       "uses": [
+        1
+       ],
+       "cap": "$\\hat{\\psi}(\\mathbf{r})$ commutes with the annihilation operators, so $[\\hat{\\psi}(\\mathbf{r}), \\hat{\\psi}^\\dagger(\\mathbf{r}')\\hat{A}\\hat{\\psi}(\\mathbf{r}')] = \\delta(\\mathbf{r} - \\mathbf{r}')\\hat{A}\\hat{\\psi}(\\mathbf{r}')$; the delta function does the $\\mathbf{r}'$ integral."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\hat{\\psi}} = \\mk{K}{\\left(\\frac{\\kp^2}{2\\km} + \\kVtrap\\right)\\hat{\\psi}} + \\mk{I}{\\kUzero\\hat{\\psi}^\\dagger\\hat{\\psi}\\hat{\\psi}}",
+       "uses": [
+        1
+       ],
+       "cap": "By $[A, BC] = [A, B]C + B[A, C]$, $[\\hat{\\psi}(\\mathbf{r}), \\hat{\\psi}^\\dagger(\\mathbf{r}')^2] = 2\\delta(\\mathbf{r} - \\mathbf{r}')\\hat{\\psi}^\\dagger(\\mathbf{r}')$, and the 2 cancels the $\\frac{1}{2}$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\hat{\\psi}} = \\mk{K}{\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kVtrap + \\kUzero\\hat{\\psi}^\\dagger\\hat{\\psi}\\right)\\hat{\\psi}}",
+       "uses": [
+        2
+       ],
+       "map": {
+        "I": "K"
+       }
+      }
+     ],
+     "num": "(11.128)"
+    }
+   ]
+  },
+  {
+   "id": "gross-pitaevskii-equation",
+   "what": "the Gross-Pitaevski equation",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.7",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{\\psi} = \\kpsiGP + \\delta\\hat{\\psi}",
+       "src": "(11.129)"
+      },
+      {
+       "tex": "\\langle\\delta\\hat{\\psi}^\\dagger\\delta\\hat{\\psi}\\rangle \\ll \\langle\\hat{\\psi}^\\dagger\\hat{\\psi}\\rangle",
+       "src": "(11.130)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\hat{\\psi}} = \\mk{K}{\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kVtrap + \\kUzero\\hat{\\psi}^\\dagger\\hat{\\psi}\\right)\\hat{\\psi}}",
+      "src": "(11.128)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{\\partial\\kpsiGP}{\\partial \\kt}} = \\mk{K}{\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kVtrap + \\kUzero|\\kpsiGP|^2\\right)\\kpsiGP}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "With the fluctuations $\\delta\\hat{\\psi}$ small, the field operator is replaced by its mean value $\\psi$, and $\\hat{\\psi}^\\dagger\\hat{\\psi}$ by $|\\psi|^2$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{\\partial\\kpsiGP}{\\partial \\kt}} = \\mk{k}{-\\frac{\\hbar^2}{2\\km}\\nabla^2\\kpsiGP} + \\mk{v}{\\kVtrap\\kpsiGP} + \\mk{u}{\\kUzero|\\kpsiGP|^2\\kpsiGP}",
+       "uses": [],
+       "map": {
+        "K": [
+         "k",
+         "v",
+         "u"
+        ]
+       }
+      }
+     ],
+     "num": "(11.131)"
+    }
+   ]
+  },
+  {
+   "id": "thomas-fermi-condensate",
+   "what": "the Thomas-Fermi condensate in a harmonic trap",
+   "source": "Modern Atomic and Optical Physics II, 11.4 Atomic interactions, 11.4.7",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "When the interactions between atoms are strong and repulsive, $\\kUzero > 0$, the kinetic energy term can be neglected.",
+       "src": "11.4.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{m}{\\kmuchem\\tilde{\\psi}} = \\mk{R}{\\left(-\\frac{\\hbar^2}{2\\km}\\nabla^2 + \\kVr + \\kUzero|\\tilde{\\psi}|^2\\right)\\tilde{\\psi}}",
+      "src": "(11.134)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{m}{\\kmuchem\\tilde{\\psi}} = \\mk{R}{\\left(\\kVr + \\kUzero|\\tilde{\\psi}|^2\\right)\\tilde{\\psi}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{m}{\\kmuchem} = \\mk{R}{\\kVr + \\kUzero|\\tilde{\\psi}|^2}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{|\\tilde{\\psi}|^2} = \\mk{m}{\\left\\{\\begin{array}{cc} \\frac{\\kmuchem - \\kVr}{\\kUzero} & \\text{for r such that } \\kVr < \\kmuchem \\\\ 0 & \\text{for larger r.} \\end{array}\\right.}",
+       "uses": [],
+       "cap": "A density cannot be negative, so where $V(r) > \\mu$ the condensate is absent."
+      }
+     ],
+     "num": "(11.136)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kpsiGP = \\tilde{\\psi}e^{-i\\kmuchem \\kt/\\hbar}",
+       "src": "(11.133)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{N}{N} = \\mk{I}{\\int d^3\\mathbf{r}|\\kpsiGP|^2}",
+      "src": "(11.132)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{N}{N} = \\mk{I}{\\int d^3\\mathbf{r}|\\tilde{\\psi}|^2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{N}{N} = \\mk{I}{\\int\\frac{\\kmuchem - \\kVr}{\\kUzero}d^3\\mathbf{r}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(11.137)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kVr = \\frac{\\km}{2}\\komegat^2r^2",
+       "src": "(10.31)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{V(\\bar{a})} = \\mk{m}{\\kmuchem}",
+      "uses": [0],
+      "why": "The density of (11.136) falls to zero at the radius $\\bar{a}$ where $V(\\bar{a}) = \\mu$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\frac{\\km}{2}\\komegat^2\\bar{a}^2} = \\mk{m}{\\kmuchem}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\bar{a}^2} = \\mk{m}{\\frac{2\\kmuchem}{\\km\\komegat^2}}",
+       "uses": [],
+       "map": {
+        "V": [
+         "a",
+         "m"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\kVr = \\frac{\\km}{2}\\komegat^2r^2",
+       "src": "(10.31)"
+      },
+      {
+       "tex": "\\kat^2 = \\frac{\\hbar}{\\km\\komegat}",
+       "src": "(11.126)"
+      },
+      {
+       "tex": "\\kUzero = \\frac{4\\pi\\hbar^2\\kascat}{\\km}",
+       "src": "(11.111)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{N}{N} = \\mk{I}{\\int\\frac{\\kmuchem - \\kVr}{\\kUzero}d^3\\mathbf{r}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{N}{N} = \\mk{I}{\\frac{4\\pi}{\\kUzero}\\int_0^{\\bar{a}}\\left(\\kmuchem - \\frac{\\km}{2}\\komegat^2r^2\\right)r^2dr}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "The condensate fills the sphere out to $\\bar{a}$, and $d^3\\mathbf{r} = 4\\pi r^2dr$."
+      },
+      {
+       "tex": "\\mk{N}{N} = \\mk{I}{\\frac{4\\pi}{\\kUzero}\\left(\\frac{\\kmuchem\\bar{a}^3}{3} - \\frac{\\km\\komegat^2\\bar{a}^5}{10}\\right)}",
+       "uses": [],
+       "cap": "$\\int_0^{\\bar a}r^2dr = \\bar{a}^3/3$ and $\\int_0^{\\bar a}r^4dr = \\bar{a}^5/5$."
+      },
+      {
+       "tex": "\\mk{N}{N} = \\mk{I}{\\frac{8\\pi}{15}\\frac{\\kmuchem\\bar{a}^3}{\\kUzero}}",
+       "uses": [
+        1
+       ],
+       "cap": "$m\\omega_t^2\\bar{a}^2 = 2\\mu$, so the second term is $\\mu\\bar{a}^3/5$."
+      },
+      {
+       "tex": "\\mk{N}{N} = \\mk{I}{\\frac{8\\pi}{15}\\frac{\\kmuchem\\kat^3}{\\kUzero}\\left(\\frac{2\\kmuchem}{\\hbar\\komegat}\\right)^{3/2}}",
+       "uses": [
+        1,
+        3
+       ],
+       "cap": "$\\bar{a}^2 = 2\\mu/m\\omega_t^2 = a_t^2\\,(2\\mu/\\hbar\\omega_t)$."
+      },
+      {
+       "tex": "\\mk{N}{N} = \\mk{I}{\\frac{1}{15}\\frac{\\kat}{\\kascat}\\left(\\frac{2\\kmuchem}{\\hbar\\komegat}\\right)^{5/2}}",
+       "uses": [
+        3,
+        4
+       ],
+       "cap": "With $U_0 = 4\\pi\\hbar^2a/m$, $\\frac{8\\pi}{15}\\frac{m a_t^3}{4\\pi\\hbar^2 a}\\mu = \\frac{2}{15}\\frac{a_t}{a}\\frac{\\mu}{\\hbar\\omega_t}$, since $m a_t^2 = \\hbar/\\omega_t$."
+      },
+      {
+       "tex": "\\mk{I}{\\kmuchem} = \\mk{N}{\\frac{\\hbar\\komegat}{2}\\left(\\frac{15N\\kascat}{\\kat}\\right)^{2/5}}",
+       "uses": []
+      }
+     ],
+     "num": "(11.138)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\kat^2 = \\frac{\\hbar}{\\km\\komegat}",
+       "src": "(11.126)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\bar{a}^2} = \\mk{m}{\\frac{2\\kmuchem}{\\km\\komegat^2}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{a}{\\bar{a}^2} = \\mk{m}{\\kat^2\\,\\frac{2\\kmuchem}{\\hbar\\komegat}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\bar{a}^2} = \\mk{m}{\\kat^2\\left(\\frac{15N\\kascat}{\\kat}\\right)^{2/5}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{a}{\\bar{a}} = \\mk{m}{\\kat\\cdot\\left(\\frac{15N\\kascat}{\\kat}\\right)^{1/5}}",
+       "uses": []
+      }
+     ],
+     "num": "(11.139)",
+     "note": "The book prints the power $2/5$ in (11.139). That power belongs to $\\bar{a}^2$; the radius goes as the $1/5$ power."
+    }
+   ]
+  }
+ ]
+}

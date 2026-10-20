@@ -1,0 +1,1222 @@
+{
+ "symbols": [
+  {
+   "sym": "rho_hat",
+   "latex": "\\hat{\\rho}",
+   "macro": "\\krhohat"
+  },
+  {
+   "sym": "rho_nn",
+   "latex": "\\rho_{nn}",
+   "macro": "\\krhonn"
+  },
+  {
+   "sym": "rho_nm",
+   "latex": "\\rho_{nm}",
+   "macro": "\\krhonm"
+  },
+  {
+   "sym": "rho_11",
+   "latex": "\\rho_{11}",
+   "macro": "\\krhooneone"
+  },
+  {
+   "sym": "rho_22",
+   "latex": "\\rho_{22}",
+   "macro": "\\krhotwotwo"
+  },
+  {
+   "sym": "rho_12",
+   "latex": "\\rho_{12}",
+   "macro": "\\krhoonetwo"
+  },
+  {
+   "sym": "rho_21",
+   "latex": "\\rho_{21}",
+   "macro": "\\krhotwoone"
+  },
+  {
+   "sym": "rho_S",
+   "latex": "\\hat{\\rho}_S",
+   "macro": "\\krhoS"
+  },
+  {
+   "sym": "rho_tilde",
+   "latex": "\\tilde{\\rho}",
+   "macro": "\\krhotilde"
+  },
+  {
+   "sym": "n_bar",
+   "latex": "\\bar{n}",
+   "macro": "\\knbar"
+  },
+  {
+   "sym": "T",
+   "latex": "T",
+   "macro": "\\kT"
+  },
+  {
+   "sym": "H_S",
+   "latex": "\\hat{H}_S",
+   "macro": "\\kHS"
+  },
+  {
+   "sym": "H_R",
+   "latex": "\\hat{H}_R",
+   "macro": "\\kHR"
+  },
+  {
+   "sym": "H_SR",
+   "latex": "\\hat{H}_{SR}",
+   "macro": "\\kHSR"
+  },
+  {
+   "sym": "S_hat",
+   "latex": "\\hat{S}",
+   "macro": "\\kShat"
+  },
+  {
+   "sym": "F_R",
+   "latex": "\\hat{F}_R",
+   "macro": "\\kFR"
+  },
+  {
+   "sym": "f_t",
+   "latex": "f",
+   "macro": "\\kft"
+  },
+  {
+   "sym": "tau_c",
+   "latex": "\\tau_c",
+   "macro": "\\ktauc"
+  },
+  {
+   "sym": "tau_S",
+   "latex": "\\tau_S",
+   "macro": "\\ktauS"
+  },
+  {
+   "sym": "Delta_t",
+   "latex": "\\Delta t",
+   "macro": "\\kDeltat"
+  },
+  {
+   "sym": "gamma_p",
+   "latex": "\\gamma_p",
+   "macro": "\\kgammap"
+  },
+  {
+   "sym": "gamma_12",
+   "latex": "\\gamma_{12}",
+   "macro": "\\kgammaonetwo"
+  },
+  {
+   "sym": "gamma_d",
+   "latex": "\\gamma_d",
+   "macro": "\\kgammad"
+  },
+  {
+   "sym": "R_opt",
+   "latex": "R_{opt}",
+   "macro": "\\kRopt"
+  },
+  {
+   "sym": "Gamma_21",
+   "latex": "\\Gamma_{21}",
+   "macro": "\\kGammatwoone"
+  },
+  {
+   "sym": "gamma_21",
+   "latex": "\\gamma_{21}",
+   "macro": "\\kgammatwoone"
+  },
+  {
+   "sym": "gamma_1",
+   "latex": "\\gamma_1",
+   "macro": "\\kgammaone"
+  },
+  {
+   "sym": "gamma_2",
+   "latex": "\\gamma_2",
+   "macro": "\\kgammatwo"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "density-operator",
+   "kind": "definition",
+   "section": "3.1",
+   "name": "Density operator",
+   "symbol": "rho_hat",
+   "terms": [
+    "density operator"
+   ],
+   "type": "state",
+   "statement": "A system that occupies each of the quantum states |ψ_α⟩ with probability p_α is represented by a density operator, which can describe classical ensembles as well as quantum states.",
+   "forms": [
+    {
+     "id": "eq-3-1",
+     "latex": "\\hat{\\rho} = \\sum_\\alpha p_\\alpha|\\psi_\\alpha\\rangle\\langle\\psi_\\alpha|",
+     "anchor": "3.1-eq-3-1"
+    }
+   ]
+  },
+  {
+   "id": "pure-and-mixed-states",
+   "kind": "definition",
+   "section": "3.1",
+   "name": "Pure and mixed states",
+   "terms": [
+    "pure state",
+    "mixed state",
+    "statistical mixture"
+   ],
+   "type": "state",
+   "statement": "If there exists a basis in which the density operator is |φ⟩⟨φ| the system is in a pure state; if not, it is in a mixed state; if the off-diagonal elements vanish, it is a statistical mixture of basis states."
+  },
+  {
+   "id": "density-operator-properties",
+   "kind": "result",
+   "section": "3.1",
+   "name": "Properties of the density operator",
+   "statement": "Any density operator is Hermitian and has unit trace, and the inequality ρ̂² ≤ ρ̂ is an equality only for a pure state.",
+   "forms": [
+    {
+     "id": "eq-3-trace",
+     "latex": "\\mathrm{Tr}[\\hat{\\rho}] = \\sum_n\\langle n|\\hat{\\rho}|n\\rangle = 1",
+     "anchor": "3.1-prop-2"
+    },
+    {
+     "id": "eq-3-hermitian",
+     "latex": "\\hat{\\rho} = \\hat{\\rho}^\\dagger",
+     "anchor": "3.1-prop-1"
+    }
+   ]
+  },
+  {
+   "id": "density-operator-expectation",
+   "kind": "result",
+   "section": "3.1",
+   "name": "Expectation values from the density operator",
+   "statement": "The expectation value of an observable is the trace of its product with the density operator.",
+   "forms": [
+    {
+     "id": "eq-3-5",
+     "latex": "\\langle\\hat{S}\\rangle = \\mathrm{Tr}[\\hat{\\rho}\\hat{S}]",
+     "anchor": "3.1-drv-expectation-as-trace"
+    },
+    {
+     "id": "eq-3-2",
+     "latex": "\\langle\\hat{S}\\rangle = \\sum_\\alpha p_\\alpha\\langle\\psi_\\alpha|\\hat{S}|\\psi_\\alpha\\rangle",
+     "anchor": "3.1-drv-expectation-as-trace"
+    }
+   ]
+  },
+  {
+   "id": "density-matrix",
+   "kind": "definition",
+   "section": "3.1",
+   "name": "Density matrix",
+   "terms": [
+    "density matrix"
+   ],
+   "statement": "In a basis {|n⟩} the density operator is a matrix with elements ρ_{n,n'} = ⟨n|ρ̂|n'⟩.",
+   "forms": [
+    {
+     "id": "eq-3-6",
+     "latex": "\\hat{\\rho} = \\sum_{n,n'}|n\\rangle\\langle n|\\hat{\\rho}|n'\\rangle\\langle n'|",
+     "anchor": "3.1-eq-3-6"
+    },
+    {
+     "id": "eq-3-7",
+     "latex": "\\hat{\\rho} = \\rho_{11}|1\\rangle\\langle 1| + \\rho_{12}|1\\rangle\\langle 2| + \\rho_{21}|2\\rangle\\langle 1| + \\rho_{22}|2\\rangle\\langle 2|",
+     "anchor": "3.1-eq-3-7"
+    }
+   ]
+  },
+  {
+   "id": "density-matrix-populations",
+   "kind": "definition",
+   "section": "3.1",
+   "name": "Populations",
+   "symbol": "rho_nn",
+   "type": "population",
+   "statement": "The diagonal elements ρ_nn of the density matrix are the probabilities of occupying the states |n⟩."
+  },
+  {
+   "id": "density-matrix-coherences",
+   "kind": "definition",
+   "section": "3.1",
+   "name": "Coherences",
+   "symbol": "rho_nm",
+   "type": "coherence",
+   "statement": "The off-diagonal elements ρ_nm are the expectation values of the coherence between levels |n⟩ and |m⟩, such as the atomic dipole operator."
+  },
+  {
+   "id": "coherence-bound",
+   "kind": "result",
+   "section": "3.1",
+   "name": "Bound on the coherences",
+   "terms": [
+    "maximal coherence"
+   ],
+   "statement": "A pure state has the maximal off-diagonal components allowed, the maximal coherence; a mixed state only satisfies the inequality.",
+   "forms": [
+    {
+     "id": "eq-3-9",
+     "latex": "|\\rho_{ij}|^2 \\leq \\rho_{ii}\\rho_{jj}",
+     "anchor": "3.1-eq-3-9"
+    },
+    {
+     "id": "eq-3-8",
+     "latex": "|\\rho_{ij}|^2 = \\rho_{ii}\\rho_{jj}",
+     "anchor": "3.1-eq-3-8"
+    }
+   ]
+  },
+  {
+   "id": "thermal-two-level-atom",
+   "kind": "result",
+   "section": "3.1",
+   "name": "Two-level atom in thermal equilibrium",
+   "type": "state",
+   "statement": "A two-level atom in thermal equilibrium is in a mixed state whose populations depend on the transition frequency relative to the temperature: well above k_BT/ℏ the atom is in its ground state.",
+   "forms": [
+    {
+     "id": "eq-3-12",
+     "latex": "\\hat{\\rho} = \\frac{1}{2\\cosh\\hbar\\omega/2k_B T}\\begin{pmatrix} e^{\\hbar\\omega/2k_B T} & 0 \\\\ 0 & e^{-\\hbar\\omega/2k_B T} \\end{pmatrix}",
+     "anchor": "3.1-eq-3-12"
+    },
+    {
+     "id": "eq-3-10",
+     "latex": "\\hat{\\rho} = \\frac{e^{-\\hat{H}/k_B T}}{\\mathrm{Tr}[e^{-\\hat{H}/k_B T}]}",
+     "anchor": "3.1-eq-3-10"
+    }
+   ]
+  },
+  {
+   "id": "thermal-radiation-field",
+   "kind": "result",
+   "section": "3.1",
+   "name": "Radiation field in thermal equilibrium",
+   "type": "state",
+   "statement": "A thermal mode of the radiation field is a statistical mixture of photon number states, so the expectation value of its annihilation operator vanishes.",
+   "forms": [
+    {
+     "id": "eq-3-14",
+     "latex": "\\hat{\\rho}^{(j)}_{nm} = \\delta_{nm}e^{-\\hbar\\nu_j n/k_B T}\\left(1 - e^{-\\hbar\\nu_j/k_B T}\\right)",
+     "anchor": "3.1-eq-3-14"
+    },
+    {
+     "id": "eq-3-13",
+     "latex": "\\hat{\\rho}^{(j)} = \\frac{e^{-\\hbar\\nu_j\\hat{a}_j^\\dagger\\hat{a}_j/k_B T}}{\\mathrm{Tr}[e^{-\\hbar\\nu_j\\hat{a}_j^\\dagger\\hat{a}_j/k_B T}]}",
+     "anchor": "3.1-eq-3-13"
+    },
+    {
+     "id": "eq-3-15",
+     "latex": "\\langle\\hat{a}_j\\rangle = 0",
+     "anchor": "3.1-eq-3-15"
+    }
+   ]
+  },
+  {
+   "id": "mean-thermal-photon-number",
+   "kind": "result",
+   "section": "3.1",
+   "name": "Mean thermal photon number",
+   "symbol": "n_bar",
+   "statement": "The average photon number of a thermal mode obeys the Bose-Einstein distribution.",
+   "forms": [
+    {
+     "id": "eq-3-16",
+     "latex": "\\bar{n}_j = \\langle\\hat{a}_j^\\dagger\\hat{a}_j\\rangle = \\frac{1}{e^{(\\hbar\\nu_j/k_B T)} - 1}",
+     "anchor": "3.1-eq-3-16"
+    }
+   ]
+  },
+  {
+   "id": "open-system",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Open system",
+   "terms": [
+    "open system",
+    "environment",
+    "reservoir",
+    "universe"
+   ],
+   "statement": "The universe is composed of the system and the environment, or reservoir, a large number of degrees of freedom over which we have no control; a system that interacts with its environment is an open system."
+  },
+  {
+   "id": "reduced-density-operator",
+   "kind": "definition",
+   "section": "3.2",
+   "name": "Reduced density operator",
+   "symbol": "rho_S",
+   "terms": [
+    "reduced density operator"
+   ],
+   "type": "state",
+   "statement": "The expectation value of a system operator can always be found from the reduced density operator, the trace of the universe density operator over the reservoir states; it need not describe a pure state.",
+   "forms": [
+    {
+     "id": "eq-3-21",
+     "latex": "\\hat{\\rho}_S = \\mathrm{Tr}_R[\\hat{\\rho}]",
+     "anchor": "3.2-drv-reduced-density-operator"
+    },
+    {
+     "id": "eq-3-20",
+     "latex": "\\langle\\hat{S}\\rangle = \\mathrm{Tr}_S[\\hat{S}\\hat{\\rho}_S]",
+     "anchor": "3.2-drv-reduced-density-operator"
+    }
+   ]
+  },
+  {
+   "id": "density-operator-equation-of-motion",
+   "kind": "result",
+   "section": "3.3",
+   "name": "Equation of motion of the density operator",
+   "statement": "Under a Hamiltonian alone the density operator evolves by its commutator with the Hamiltonian.",
+   "forms": [
+    {
+     "id": "eq-3-28",
+     "latex": "\\dot{\\hat{\\rho}} = \\frac{1}{i\\hbar}[\\hat{H}, \\hat{\\rho}]",
+     "anchor": "3.3-drv-reduced-density-equation"
+    },
+    {
+     "id": "eq-3-23",
+     "latex": "i\\hbar\\dot{\\hat{\\rho}}_S = [\\hat{H}_S, \\hat{\\rho}_S]",
+     "anchor": "3.3-drv-density-operator-evolution"
+    }
+   ]
+  },
+  {
+   "id": "system-environment-entanglement",
+   "kind": "idea",
+   "section": "3.3",
+   "name": "System-environment entanglement",
+   "terms": [
+    "entangled"
+   ],
+   "statement": "Coupling evolves an initial product of system and environment states into a state that cannot be factored; the system and environment are then entangled."
+  },
+  {
+   "id": "decaying-atom-reduced-state",
+   "kind": "result",
+   "section": "3.3",
+   "name": "Reduced state of a decaying atom",
+   "type": "state",
+   "statement": "An atom spontaneously emitting into the vacuum has a reduced density matrix whose off-diagonal elements decay at half the rate of the excited state population, as for any interaction that conserves energy.",
+   "forms": [
+    {
+     "id": "eq-3-26",
+     "latex": "\\hat{\\rho}_S = \\begin{pmatrix} 1 - \\rho_{22}(0)e^{-\\gamma t} & \\rho_{12}(0)e^{-\\gamma t/2} \\\\ \\rho_{21}(0)e^{-\\gamma t/2} & \\rho_{22}(0)e^{-\\gamma t} \\end{pmatrix}",
+     "anchor": "3.3-drv-decaying-atom-density-matrix"
+    }
+   ]
+  },
+  {
+   "id": "system-reservoir-hamiltonian",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "System, reservoir and interaction Hamiltonians",
+   "symbol": "H_SR",
+   "type": "energy",
+   "statement": "The total Hamiltonian is the sum of a system term, a reservoir term and an interaction term containing products of system operators with reservoir operators.",
+   "forms": [
+    {
+     "id": "eq-3-27",
+     "latex": "\\hat{H} = \\hat{H}_S + \\hat{H}_R + \\hat{H}_{SR}",
+     "anchor": "3.3-eq-3-27"
+    }
+   ]
+  },
+  {
+   "id": "reduced-density-operator-dynamics",
+   "kind": "result",
+   "section": "3.3",
+   "name": "Evolution of the reduced density operator",
+   "statement": "Tracing the equation of motion over the reservoir, the system Hamiltonian acts as it would alone, the reservoir Hamiltonian has no net effect, and the interaction requires special treatment.",
+   "forms": [
+    {
+     "id": "eq-3-31",
+     "latex": "\\dot{\\hat{\\rho}}_S = \\frac{1}{i\\hbar}[\\hat{H}_S, \\hat{\\rho}_S] + \\frac{1}{i\\hbar}\\mathrm{Tr}_R[[\\hat{H}_{SR}, \\hat{\\rho}]]",
+     "anchor": "3.3-drv-reduced-density-equation"
+    }
+   ]
+  },
+  {
+   "id": "spin-in-fluctuating-field",
+   "kind": "idea",
+   "section": "3.3",
+   "name": "Spin in a fluctuating magnetic field",
+   "statement": "A spin whose splitting ħf(t) is a random field picks up a random phase on its off-diagonal element, which depends on the moments of f(t).",
+   "forms": [
+    {
+     "id": "eq-3-32",
+     "latex": "\\hat{H}_{SR} = \\hbar f(t)\\hat{S}_z",
+     "anchor": "3.3-eq-3-32"
+    },
+    {
+     "id": "eq-3-34",
+     "latex": "\\langle\\hat{S}_+\\rangle = \\langle e^{i\\int_0^t f(t')dt'}\\hat{S}_+(0)\\rangle",
+     "anchor": "3.3-eq-3-34"
+    }
+   ]
+  },
+  {
+   "id": "stationary-random-process",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "Stationary random process",
+   "terms": [
+    "stationary processes"
+   ],
+   "statement": "A random process characterized at each time by a probability distribution is stationary when its expectation value is constant; its variance describes the typical deviations from that average.",
+   "forms": [
+    {
+     "id": "eq-3-35",
+     "latex": "f(t) = \\langle f\\rangle + \\delta f(t)",
+     "anchor": "3.3-eq-3-35"
+    }
+   ]
+  },
+  {
+   "id": "correlation-time",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "Correlation time",
+   "symbol": "tau_c",
+   "type": "time",
+   "statement": "The correlation time represents the timescale on which a random process changes: its variance ⟨δf(t)δf(t')⟩ is nearly constant for |t − t'| < τ_c."
+  },
+  {
+   "id": "gaussian-random-process",
+   "kind": "result",
+   "section": "3.3",
+   "name": "Gaussian random process",
+   "terms": [
+    "Gaussian"
+   ],
+   "statement": "For a Gaussian probability distribution the mean and the variance specify all higher moments, which factorize pairwise; with zero mean all odd moments vanish.",
+   "forms": [
+    {
+     "id": "eq-3-36",
+     "latex": "\\langle\\delta f(t_1)\\delta f(t_2)\\ldots\\delta f(t_n)\\rangle = \\sum\\langle\\delta f(t_1)\\delta f(t_2)\\rangle\\langle\\delta f(t_3)\\ldots\\rangle",
+     "anchor": "3.3-eq-3-36"
+    }
+   ]
+  },
+  {
+   "id": "reversible-evolution",
+   "kind": "idea",
+   "section": "3.3",
+   "name": "Reversible dephasing",
+   "terms": [
+    "reversible evolution",
+    "spin echo"
+   ],
+   "statement": "On times shorter than the correlation time each realization precesses at a random but fixed rate, so the ensemble dephases reversibly and a spin echo can undo it."
+  },
+  {
+   "id": "markovian-environment",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "Markovian environment",
+   "terms": [
+    "Markovian environment",
+    "Markovian"
+   ],
+   "statement": "On times long compared to the correlation time the dephasing is irreversible; a reservoir with so short a memory is a Markovian environment, described by a Markov process with an infinitely short correlation time."
+  },
+  {
+   "id": "open-system-interaction-picture",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "Interaction picture for an open system",
+   "statement": "Transforming by the free evolution of system and reservoir leaves only the dynamics due to the interaction.",
+   "forms": [
+    {
+     "id": "eq-3-40",
+     "latex": "\\frac{d}{dt}\\tilde{\\rho} = \\frac{1}{i\\hbar}[\\tilde{H}_{SR}, \\tilde{\\rho}]",
+     "anchor": "3.3-eq-3-40"
+    },
+    {
+     "id": "eq-3-38",
+     "latex": "\\tilde{\\rho} = e^{i(\\hat{H}_R + \\hat{H}_S)t/\\hbar}\\hat{\\rho}e^{-i(\\hat{H}_R + \\hat{H}_S)t/\\hbar}",
+     "anchor": "3.3-eq-3-38"
+    }
+   ]
+  },
+  {
+   "id": "bilinear-system-reservoir-coupling",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "Bilinear system-reservoir coupling",
+   "symbol": "F_R",
+   "statement": "The interaction is a bilinear product of a system operator and a reservoir operator; in the interaction picture all its time dependence goes into the reservoir operator F̂_R(t).",
+   "forms": [
+    {
+     "id": "eq-3-41",
+     "latex": "\\hat{H}_{SR} = \\hat{S}\\hat{R}^\\dagger + \\hat{R}\\hat{S}^\\dagger",
+     "anchor": "3.3-eq-3-41"
+    },
+    {
+     "id": "eq-3-42",
+     "latex": "\\tilde{H}_{SR} = \\hat{S}\\hat{F}_R(t)^\\dagger + \\hat{F}_R(t)\\hat{S}^\\dagger",
+     "anchor": "3.3-eq-3-42"
+    },
+    {
+     "id": "eq-3-44",
+     "latex": "\\tilde{H}_{SR} = -\\sum_j\\hbar g_j\\hat{a}_j e^{-i(\\nu_j - \\omega)t}|2\\rangle\\langle 1| - \\sum_j\\hbar g_j^*\\hat{a}_j^\\dagger e^{i(\\nu_j - \\omega)t}|1\\rangle\\langle 2|",
+     "anchor": "3.3-eq-3-44"
+    }
+   ]
+  },
+  {
+   "id": "born-markov-approximation",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "Born-Markov approximation",
+   "terms": [
+    "Born-Markov Approximation",
+    "Born approximation"
+   ],
+   "statement": "The reservoir is large, so it is not affected by the system and the universe stays factorizable, and broadband, so its correlation time is much shorter than the time on which the system evolves; averaging over a step τ_c ≪ ∆t ≪ τ_S then gives equations of motion for the system alone.",
+   "forms": [
+    {
+     "id": "eq-3-49",
+     "latex": "\\tilde{\\rho}(t) = \\tilde{\\rho}_S(t) \\otimes \\tilde{\\rho}_R(t)",
+     "anchor": "3.3-eq-3-49"
+    },
+    {
+     "id": "eq-3-coarse",
+     "latex": "\\tau_c \\ll \\Delta t \\ll \\tau_S",
+     "anchor": "3.3-coarse"
+    }
+   ]
+  },
+  {
+   "id": "reservoir-energy-shift",
+   "kind": "result",
+   "section": "3.3",
+   "name": "First-order reservoir term",
+   "statement": "To first order the reservoir adds to the system Hamiltonian a term set by the mean of the reservoir operator, which vanishes for the atom-field interaction.",
+   "forms": [
+    {
+     "id": "eq-3-54",
+     "latex": "\\Delta\\tilde{\\rho}_S^{(1)} = \\frac{1}{i\\hbar}\\int_t^{t+\\Delta t}dt'\\ [\\hat{S}\\langle\\hat{F}_R(t')^\\dagger\\rangle + \\hat{S}^\\dagger\\langle\\hat{F}_R(t')\\rangle, \\tilde{\\rho}_S(t)]",
+     "anchor": "3.3-drv-first-reservoir-term"
+    }
+   ]
+  },
+  {
+   "id": "reservoir-correlation-functions",
+   "kind": "definition",
+   "section": "3.3",
+   "name": "Reservoir correlation functions",
+   "statement": "The second-order effect of the reservoir is written through two-time correlation functions of the reservoir operators.",
+   "forms": [
+    {
+     "id": "eq-3-59",
+     "latex": "g^{+-}(t', t'') = \\mathrm{Tr}_R[\\hat{F}_R(t')^\\dagger\\hat{F}_R(t'')\\tilde{\\rho}_R]",
+     "anchor": "3.3-eq-3-59"
+    },
+    {
+     "id": "eq-3-58",
+     "latex": "g^{--}(t', t'') = \\mathrm{Tr}_R[\\hat{F}_R(t')\\hat{F}_R(t'')\\tilde{\\rho}_R]",
+     "anchor": "3.3-eq-3-58"
+    },
+    {
+     "id": "eq-3-60",
+     "latex": "g^{-+}(t', t'') = \\mathrm{Tr}_R[\\hat{F}_R(t')\\hat{F}_R(t'')^\\dagger\\tilde{\\rho}_R]",
+     "anchor": "3.3-eq-3-60"
+    },
+    {
+     "id": "eq-3-61",
+     "latex": "g^{++}(t', t'') = \\mathrm{Tr}_R[\\hat{F}_R(t')^\\dagger\\hat{F}_R(t'')^\\dagger\\tilde{\\rho}_R]",
+     "anchor": "3.3-eq-3-61"
+    }
+   ]
+  },
+  {
+   "id": "thermal-field-correlator",
+   "kind": "result",
+   "section": "3.3",
+   "name": "Correlator of a thermal radiation field",
+   "statement": "For a thermal radiation field the correlator depends only on the time difference and is sharply peaked, with width the reservoir correlation time; as the volume grows it becomes a delta function, the Wigner-Weisskopf approximation.",
+   "forms": [
+    {
+     "id": "eq-3-72",
+     "latex": "g^{+-}(t', t'') = \\hbar^2\\sum_j|g_j|^2\\bar{n}_j e^{i(\\nu_j - \\omega)(t' - t'')}",
+     "anchor": "3.3-drv-thermal-correlator"
+    },
+    {
+     "id": "eq-3-76",
+     "latex": "-\\frac{1}{\\hbar^2}\\int_t^{t'}dt''g^{+-}(t', t'') = -\\frac{\\gamma}{2}\\bar{n}(\\omega)",
+     "anchor": "3.3-drv-master-equation"
+    }
+   ]
+  },
+  {
+   "id": "master-equation",
+   "kind": "result",
+   "section": "3.3",
+   "name": "Master equation",
+   "terms": [
+    "master equation"
+   ],
+   "type": "state",
+   "statement": "The master equation is the time-averaged equation of motion of the reduced density operator of a system coupled to a Markovian reservoir; it treats non-unitary behavior and preserves the trace.",
+   "forms": [
+    {
+     "id": "eq-3-78",
+     "latex": "\\frac{\\Delta\\tilde{\\rho}_S}{\\Delta t} = -\\frac{\\gamma}{2}\\bar{n}(\\omega)\\left(\\hat{S}\\hat{S}^\\dagger\\tilde{\\rho}_S - \\hat{S}^\\dagger\\tilde{\\rho}_S\\hat{S}\\right) - \\frac{\\gamma}{2}(\\bar{n}(\\omega) + 1)\\left(\\hat{S}^\\dagger\\hat{S}\\tilde{\\rho}_S - \\hat{S}\\tilde{\\rho}_S\\hat{S}^\\dagger\\right) + h.c.",
+     "anchor": "3.3-drv-master-equation"
+    }
+   ]
+  },
+  {
+   "id": "generalized-master-equation",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Generalized master equation",
+   "type": "state",
+   "statement": "In the Schrodinger picture the master equation sums over incoherent system-reservoir interactions, each with its own rate γ_p, and adds the system Hamiltonian.",
+   "forms": [
+    {
+     "id": "eq-3-79",
+     "latex": "\\frac{\\Delta\\hat{\\rho}_S}{\\Delta t} = -\\sum_p\\frac{\\gamma_p}{2}\\bar{n}\\left(\\hat{S}_p\\hat{S}_p^\\dagger\\hat{\\rho}_S - \\hat{S}_p^\\dagger\\hat{\\rho}_S\\hat{S}_p\\right) - \\sum_p\\frac{\\gamma_p}{2}(\\bar{n} + 1)\\left(\\hat{S}_p^\\dagger\\hat{S}_p\\hat{\\rho}_S - \\hat{S}_p\\hat{\\rho}_S\\hat{S}_p^\\dagger\\right) + h.c. + \\frac{1}{i\\hbar}[\\hat{H}_S, \\hat{\\rho}_S]",
+     "anchor": "3.4-eq-3-79"
+    }
+   ]
+  },
+  {
+   "id": "master-equation-cost",
+   "kind": "idea",
+   "section": "3.4",
+   "name": "Cost of the master equation",
+   "statement": "An n-level system needs n equations for its amplitudes, but O(n²) for its density matrix once the environment is included."
+  },
+  {
+   "id": "memoryless-reservoir-factorization",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Factorization for a memoryless reservoir",
+   "statement": "For a reservoir with no memory the correlations built up before an interval do not contribute within it, so the factorization assumption holds; corrections scale as τ_c².",
+   "forms": [
+    {
+     "id": "eq-3-83",
+     "latex": "\\Delta\\tilde{\\rho}_S \\propto \\int_{t_i}^t dt'\\int_t^{t+\\Delta t}dt''\\langle\\tilde{H}_{SR}(t'')\\tilde{H}_{SR}(t')\\rangle",
+     "anchor": "3.4-drv-memoryless-factorization"
+    }
+   ]
+  },
+  {
+   "id": "irreversibility-boundary",
+   "kind": "idea",
+   "section": "3.4",
+   "name": "Irreversibility as the system boundary",
+   "statement": "A memoryless reservoir forgets all previous correlations, so information is lost and the dynamics are irreversible; any part of the environment that is time reversible is included in the system. The master equation may not suffice when interaction terms interfere or the reservoir interaction is reversible."
+  },
+  {
+   "id": "two-level-master-equation",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Master equation of a driven two-level atom",
+   "type": "state",
+   "statement": "A driven two-level atom coupled to a thermal field evolves under the coherent drive and the reservoir terms with Ŝ = σ₁₂.",
+   "forms": [
+    {
+     "id": "eq-3-85",
+     "latex": "\\frac{\\Delta\\hat{\\rho}_S}{\\Delta t} = -\\frac{\\gamma}{2}(\\bar{n} + 1)\\left(\\sigma_{22}\\hat{\\rho}_S - \\sigma_{12}\\hat{\\rho}_S\\sigma_{21}\\right) - \\frac{\\gamma}{2}\\bar{n}\\left(\\sigma_{11}\\hat{\\rho}_S - \\sigma_{21}\\hat{\\rho}_S\\sigma_{12}\\right) + h.c. + \\frac{1}{i\\hbar}[\\hat{H}_S, \\hat{\\rho}_S]",
+     "anchor": "3.4-drv-optical-bloch-equations"
+    },
+    {
+     "id": "eq-3-84",
+     "latex": "\\hat{H}_S = -\\hbar\\delta|2\\rangle\\langle 2| + \\hbar\\Omega^*|1\\rangle\\langle 2| + \\hbar\\Omega|2\\rangle\\langle 1|",
+     "anchor": "3.4-eq-3-84"
+    }
+   ]
+  },
+  {
+   "id": "optical-bloch-equations",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Optical Bloch equations",
+   "terms": [
+    "optical Bloch equations"
+   ],
+   "statement": "The matrix elements of the master equation give four differential equations for the density matrix, only two independent, with contributions from coherent driving, thermal photons and spontaneous emission.",
+   "forms": [
+    {
+     "id": "eq-3-86",
+     "latex": "\\dot{\\rho}_{22} = -\\gamma(\\bar{n} + 1)\\rho_{22} + \\gamma\\bar{n}\\rho_{11} + i\\Omega^*\\rho_{21} - i\\Omega\\rho_{12}",
+     "anchor": "3.4-drv-optical-bloch-equations"
+    },
+    {
+     "id": "eq-3-87",
+     "latex": "\\dot{\\rho}_{11} = \\gamma(\\bar{n} + 1)\\rho_{22} - \\gamma\\bar{n}\\rho_{11} - i\\Omega^*\\rho_{21} + i\\Omega\\rho_{12}",
+     "anchor": "3.4-drv-optical-bloch-equations"
+    },
+    {
+     "id": "eq-3-88",
+     "latex": "\\dot{\\rho}_{12} = -\\frac{\\gamma}{2}(2\\bar{n} + 1)\\rho_{12} - i\\delta\\rho_{12} - i\\Omega^*(\\rho_{22} - \\rho_{11})",
+     "anchor": "3.4-drv-optical-bloch-equations"
+    },
+    {
+     "id": "eq-3-89",
+     "latex": "\\dot{\\rho}_{21} = -\\frac{\\gamma}{2}(2\\bar{n} + 1)\\rho_{21} + i\\delta\\rho_{21} + i\\Omega(\\rho_{22} - \\rho_{11})",
+     "anchor": "3.4-drv-optical-bloch-equations"
+    }
+   ]
+  },
+  {
+   "id": "thermal-and-spontaneous-transitions",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Thermal and spontaneous transitions",
+   "statement": "Thermal photons lead to incoherent transitions in both directions, whereas spontaneous emission only lets population leak from ρ₂₂ into ρ₁₁.",
+   "forms": [
+    {
+     "id": "eq-3-90",
+     "latex": "\\dot{\\rho}_{22} = \\gamma\\bar{n}(\\rho_{11} - \\rho_{22}) - \\gamma\\rho_{22} + \\ldots",
+     "anchor": "3.4-eq-3-90"
+    },
+    {
+     "id": "eq-3-91",
+     "latex": "\\dot{\\rho}_{11} = \\gamma\\bar{n}(\\rho_{22} - \\rho_{11}) + \\gamma\\rho_{22} + \\ldots",
+     "anchor": "3.4-eq-3-91"
+    }
+   ]
+  },
+  {
+   "id": "coherence-decay-rate",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Decay rate of the coherences",
+   "symbol": "gamma_12",
+   "type": "rate",
+   "statement": "Incoherent processes only decrease the coherences, at half the sum of the population decay rates out of the two states, not into them.",
+   "forms": [
+    {
+     "id": "eq-3-92",
+     "latex": "\\gamma_{12} = \\frac{\\gamma_1 + \\gamma_2}{2} = \\frac{2\\bar{n} + 1}{2}\\gamma = \\gamma_{21}",
+     "anchor": "3.4-eq-3-92"
+    }
+   ]
+  },
+  {
+   "id": "dephasing-rate",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "Dephasing rate",
+   "symbol": "gamma_d",
+   "terms": [
+    "decoherence",
+    "dephasing rate"
+   ],
+   "type": "rate",
+   "statement": "Processes that decrease the coherences without affecting the populations, such as a laser's finite linewidth or atom-atom interactions, enter the master equation phenomenologically as the decoherence or dephasing rate.",
+   "forms": [
+    {
+     "id": "eq-3-93",
+     "latex": "\\gamma_{12} = \\gamma_{21} = \\frac{\\gamma_1 + \\gamma_2}{2} + \\gamma_d",
+     "anchor": "3.4-eq-3-93"
+    }
+   ]
+  },
+  {
+   "id": "weak-field-response",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Weak-field response",
+   "statement": "In a weak field the populations are frozen and the coherence at each frequency is a Lorentzian in the effective detuning, linear in the field like a classical dipole.",
+   "forms": [
+    {
+     "id": "eq-3-97",
+     "latex": "\\rho_{21}(\\delta\\nu) = \\Omega(\\delta\\nu)\\frac{i(\\rho_{22}^{(0)} - \\rho_{11}^{(0)})}{\\gamma_{21} - i(\\delta + \\delta\\nu)}",
+     "anchor": "3.4-drv-weak-field-response"
+    },
+    {
+     "id": "eq-3-94",
+     "latex": "\\dot{\\rho}_{21} \\approx -(\\gamma_{21} - i\\delta)\\rho_{21} + i\\Omega(\\rho_{22}^{(0)} - \\rho_{11}^{(0)})",
+     "anchor": "3.4-drv-weak-field-response"
+    },
+    {
+     "id": "eq-3-98",
+     "latex": "\\rho_{ij}(\\delta\\nu) = \\Omega_{ij}(\\delta\\nu)\\frac{i(\\rho_{ii}^{(0)} - \\rho_{jj}^{(0)})}{\\gamma_{ij} - i(\\delta_{ij} + \\delta\\nu)}",
+     "anchor": "3.4-eq-3-98"
+    }
+   ]
+  },
+  {
+   "id": "steady-state-coherence",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Steady-state coherence",
+   "type": "coherence",
+   "statement": "A constant field drives damped Rabi oscillations into a steady state, where the coherence follows the population difference.",
+   "forms": [
+    {
+     "id": "eq-3-99",
+     "latex": "\\rho_{21} = \\frac{i\\Omega(\\rho_{22} - \\rho_{11})}{\\gamma_{21} - i\\delta}",
+     "anchor": "3.4-drv-steady-state-population"
+    }
+   ]
+  },
+  {
+   "id": "optical-pumping-rate",
+   "kind": "definition",
+   "section": "3.4",
+   "name": "Optical pumping rate",
+   "symbol": "R_opt",
+   "type": "rate",
+   "statement": "The applied coherent field acts like an incoherent pumping rate R_opt.",
+   "forms": [
+    {
+     "id": "eq-3-101",
+     "latex": "R_{opt} = 2\\gamma_{21}\\left|\\frac{\\Omega}{\\Gamma_{21}}\\right|^2",
+     "anchor": "3.4-drv-steady-state-population"
+    }
+   ]
+  },
+  {
+   "id": "steady-state-population",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Steady-state excited population",
+   "type": "population",
+   "statement": "With no thermal photons the steady excited state population is set by the ratio of the pumping rate to the decay rate.",
+   "forms": [
+    {
+     "id": "eq-3-100",
+     "latex": "\\rho_{22} = \\frac{R_{opt}}{\\gamma + 2R_{opt}}",
+     "anchor": "3.4-drv-steady-state-population"
+    }
+   ]
+  },
+  {
+   "id": "saturation",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Saturation",
+   "terms": [
+    "saturated"
+   ],
+   "statement": "A weak field leaves the atom in its ground state with an excited population proportional to the intensity; a strong field leaves an equal mixture of ground and excited states, and the response is saturated.",
+   "forms": [
+    {
+     "id": "eq-3-103",
+     "latex": "R_{opt} \\gg \\gamma \\quad \\Rightarrow \\quad \\rho_{22} \\to \\frac{1}{2}",
+     "anchor": "3.4-eq-3-103"
+    },
+    {
+     "id": "eq-3-102",
+     "latex": "R_{opt} \\ll \\gamma \\quad \\Rightarrow \\quad \\rho_{22} \\to 0",
+     "anchor": "3.4-eq-3-102"
+    }
+   ]
+  },
+  {
+   "id": "rate-equations",
+   "kind": "result",
+   "section": "3.4",
+   "name": "Rate equations",
+   "terms": [
+    "rate equations"
+   ],
+   "statement": "When the coherences adiabatically follow the population difference, |Ω|² ≪ γ₂₁² + δ², the populations obey rate equations, as for an atom in incoherent radiation.",
+   "forms": [
+    {
+     "id": "eq-3-104",
+     "latex": "\\dot{\\rho}_{22} = -\\gamma\\rho_{22} + R_{opt}(\\rho_{11} - \\rho_{22}) \\ \\text{ with } \\ \\dot{\\rho}_{11} = -\\dot{\\rho}_{22}",
+     "anchor": "3.4-eq-3-104"
+    }
+   ]
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "density-operator",
+   "prereq": "state-vector"
+  },
+  {
+   "concept": "density-operator",
+   "prereq": "born-rule"
+  },
+  {
+   "concept": "pure-and-mixed-states",
+   "prereq": "density-operator"
+  },
+  {
+   "concept": "density-operator-properties",
+   "prereq": "pure-and-mixed-states"
+  },
+  {
+   "concept": "density-operator-expectation",
+   "prereq": "density-operator"
+  },
+  {
+   "concept": "density-operator-expectation",
+   "prereq": "expectation-value"
+  },
+  {
+   "concept": "density-matrix",
+   "prereq": "density-operator"
+  },
+  {
+   "concept": "density-matrix-populations",
+   "prereq": "density-matrix"
+  },
+  {
+   "concept": "density-matrix-coherences",
+   "prereq": "density-matrix"
+  },
+  {
+   "concept": "coherence-bound",
+   "prereq": "density-matrix-populations"
+  },
+  {
+   "concept": "coherence-bound",
+   "prereq": "density-matrix-coherences"
+  },
+  {
+   "concept": "coherence-bound",
+   "prereq": "density-operator-properties"
+  },
+  {
+   "concept": "thermal-two-level-atom",
+   "prereq": "pure-and-mixed-states"
+  },
+  {
+   "concept": "thermal-two-level-atom",
+   "prereq": "density-matrix"
+  },
+  {
+   "concept": "thermal-two-level-atom",
+   "prereq": "two-level-atom"
+  },
+  {
+   "concept": "thermal-radiation-field",
+   "prereq": "pure-and-mixed-states"
+  },
+  {
+   "concept": "thermal-radiation-field",
+   "prereq": "density-matrix"
+  },
+  {
+   "concept": "thermal-radiation-field",
+   "prereq": "creation-annihilation-operators"
+  },
+  {
+   "concept": "mean-thermal-photon-number",
+   "prereq": "thermal-radiation-field"
+  },
+  {
+   "concept": "mean-thermal-photon-number",
+   "prereq": "density-operator-expectation"
+  },
+  {
+   "concept": "open-system",
+   "prereq": "density-operator"
+  },
+  {
+   "concept": "reduced-density-operator",
+   "prereq": "open-system"
+  },
+  {
+   "concept": "reduced-density-operator",
+   "prereq": "density-operator-expectation"
+  },
+  {
+   "concept": "density-operator-equation-of-motion",
+   "prereq": "density-operator"
+  },
+  {
+   "concept": "density-operator-equation-of-motion",
+   "prereq": "schrodinger-equation"
+  },
+  {
+   "concept": "system-environment-entanglement",
+   "prereq": "open-system"
+  },
+  {
+   "concept": "decaying-atom-reduced-state",
+   "prereq": "reduced-density-operator"
+  },
+  {
+   "concept": "decaying-atom-reduced-state",
+   "prereq": "system-environment-entanglement"
+  },
+  {
+   "concept": "decaying-atom-reduced-state",
+   "prereq": "spontaneous-emission-rate"
+  },
+  {
+   "concept": "decaying-atom-reduced-state",
+   "prereq": "density-matrix-coherences"
+  },
+  {
+   "concept": "system-reservoir-hamiltonian",
+   "prereq": "open-system"
+  },
+  {
+   "concept": "system-reservoir-hamiltonian",
+   "prereq": "hamiltonian"
+  },
+  {
+   "concept": "reduced-density-operator-dynamics",
+   "prereq": "reduced-density-operator"
+  },
+  {
+   "concept": "reduced-density-operator-dynamics",
+   "prereq": "density-operator-equation-of-motion"
+  },
+  {
+   "concept": "reduced-density-operator-dynamics",
+   "prereq": "system-reservoir-hamiltonian"
+  },
+  {
+   "concept": "spin-in-fluctuating-field",
+   "prereq": "system-reservoir-hamiltonian"
+  },
+  {
+   "concept": "spin-in-fluctuating-field",
+   "prereq": "density-matrix-coherences"
+  },
+  {
+   "concept": "spin-in-fluctuating-field",
+   "prereq": "time-evolution-operator"
+  },
+  {
+   "concept": "correlation-time",
+   "prereq": "stationary-random-process"
+  },
+  {
+   "concept": "gaussian-random-process",
+   "prereq": "stationary-random-process"
+  },
+  {
+   "concept": "reversible-evolution",
+   "prereq": "spin-in-fluctuating-field"
+  },
+  {
+   "concept": "reversible-evolution",
+   "prereq": "correlation-time"
+  },
+  {
+   "concept": "markovian-environment",
+   "prereq": "reversible-evolution"
+  },
+  {
+   "concept": "open-system-interaction-picture",
+   "prereq": "reduced-density-operator-dynamics"
+  },
+  {
+   "concept": "bilinear-system-reservoir-coupling",
+   "prereq": "open-system-interaction-picture"
+  },
+  {
+   "concept": "bilinear-system-reservoir-coupling",
+   "prereq": "atom-field-interaction"
+  },
+  {
+   "concept": "born-markov-approximation",
+   "prereq": "markovian-environment"
+  },
+  {
+   "concept": "born-markov-approximation",
+   "prereq": "bilinear-system-reservoir-coupling"
+  },
+  {
+   "concept": "reservoir-energy-shift",
+   "prereq": "born-markov-approximation"
+  },
+  {
+   "concept": "reservoir-correlation-functions",
+   "prereq": "born-markov-approximation"
+  },
+  {
+   "concept": "thermal-field-correlator",
+   "prereq": "reservoir-correlation-functions"
+  },
+  {
+   "concept": "thermal-field-correlator",
+   "prereq": "mean-thermal-photon-number"
+  },
+  {
+   "concept": "thermal-field-correlator",
+   "prereq": "spontaneous-emission-rate"
+  },
+  {
+   "concept": "master-equation",
+   "prereq": "thermal-field-correlator"
+  },
+  {
+   "concept": "generalized-master-equation",
+   "prereq": "master-equation"
+  },
+  {
+   "concept": "master-equation-cost",
+   "prereq": "generalized-master-equation"
+  },
+  {
+   "concept": "memoryless-reservoir-factorization",
+   "prereq": "generalized-master-equation"
+  },
+  {
+   "concept": "irreversibility-boundary",
+   "prereq": "memoryless-reservoir-factorization"
+  },
+  {
+   "concept": "two-level-master-equation",
+   "prereq": "generalized-master-equation"
+  },
+  {
+   "concept": "optical-bloch-equations",
+   "prereq": "two-level-master-equation"
+  },
+  {
+   "concept": "thermal-and-spontaneous-transitions",
+   "prereq": "optical-bloch-equations"
+  },
+  {
+   "concept": "coherence-decay-rate",
+   "prereq": "optical-bloch-equations"
+  },
+  {
+   "concept": "dephasing-rate",
+   "prereq": "coherence-decay-rate"
+  },
+  {
+   "concept": "weak-field-response",
+   "prereq": "coherence-decay-rate"
+  },
+  {
+   "concept": "steady-state-coherence",
+   "prereq": "coherence-decay-rate"
+  },
+  {
+   "concept": "optical-pumping-rate",
+   "prereq": "steady-state-coherence"
+  },
+  {
+   "concept": "steady-state-population",
+   "prereq": "optical-pumping-rate"
+  },
+  {
+   "concept": "saturation",
+   "prereq": "steady-state-population"
+  },
+  {
+   "concept": "rate-equations",
+   "prereq": "optical-pumping-rate"
+  },
+  {
+   "concept": "rate-equations",
+   "prereq": "adiabatic-elimination"
+  }
+ ],
+ "types": []
+}

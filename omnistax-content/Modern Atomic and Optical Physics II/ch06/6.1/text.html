@@ -1,0 +1,57 @@
+<section id="formalism">
+<p>The description on which both groups converged begins with <span data-concept="lindblad-master-equation">the most general form of the master equation</span>,</p>
+<div class="equation" id="eq-6-1">$$\frac{d\krhoS}{d\kt} = \frac{1}{i\hbar}[\kH_S, \krhoS] + \mathcal{L}(\krhoS), \tag{6.1}$$</div>
+<p>where the <span data-concept="lindblad-master-equation">Liouvillian operator</span> can be expressed as</p>
+<div class="equation" id="eq-6-2">$$\mathcal{L}(\krhoS) = -\sum_k \frac{\kgammak}{2}\left(\kchatk^\dagger\kchatk\krhoS + \krhoS\kchatk^\dagger\kchatk - 2\kchatk\krhoS\kchatk^\dagger\right). \tag{6.2}$$</div>
+<p>It can be shown that <a href="#eq-6-1">Eq. (6.1)</a> is <span data-concept="lindblad-master-equation">the most general form for a master equation</span> allowed by physics, and it has the added advantage that it is notationally compact. Since it is the most general form, it must contain <span data-concept="master-equation">the master equation</span> we derived by assuming a certain kind of <span data-concept="open-system">environment</span>. To see this, identify the (in principle arbitrary) operators $\kchatk$ with</p>
+<div class="equation" id="eq-6-3">$$\hat{c}_{2k} = \sqrt{\knbar+1}\,\hat{S}_k \tag{6.3}$$</div>
+<div class="equation" id="eq-6-4">$$\hat{c}_{2k+1} = \sqrt{\knbar}\,\hat{S}_k^\dagger, \tag{6.4}$$</div>
+<p>in which case both the decay and absorption terms are included in <a href="#eq-6-1">Eq. (6.1)</a>.</p>
+<p>Combining <a href="#eq-6-1">Eq. (6.1)</a> with the definition for $\mathcal{L}(\krhoS)$, and expanding $\krhoS = \sum_\alpha p_\alpha|\kpsi_\alpha\rangle\langle\kpsi_\alpha|$, we can rewrite the <span data-concept="lindblad-master-equation">master equation</span> in a suggestive form.</p>
+<figure class="dv" id="drv-master-equation-pure-states"></figure>
+<p>The first two terms can be rewritten in terms of <span data-concept="effective-hamiltonian" id="effective-hamiltonian">an effective Hamiltonian</span>,</p>
+<div class="equation" id="eq-6-7">$$\kHeff = \kH_S - i\hbar\sum_k \frac{\kgammak}{2}\kchatk^\dagger\kchatk. \tag{6.7}$$</div>
+<figure class="dv" id="drv-effective-hamiltonian-master-equation"></figure>
+<p>This form for the first two terms resembles the <span data-concept="master-equation">master equation</span> for a <span data-concept="pure-and-mixed-states">pure state</span> evolving according to $\kHeff$; the final term we will interpret as a “<span data-concept="quantum-jump" id="quantum-jump">quantum jump</span>” operator which changes $|\kpsi_\alpha\rangle$ into another state <span id="jump-state">$|\phi_{k,\alpha}\rangle = \kchatk|\kpsi_\alpha\rangle$</span> with some probability.</p>
+<p>The <span data-concept="schrodinger-equation">Schrodinger equation</span> corresponding to the first two terms of <a href="#drv-effective-hamiltonian-master-equation">Eq. (6.8)</a> is</p>
+<div class="equation" id="eq-6-9">$$i\hbar\frac{d}{d\kt}|\kpsi_\alpha\rangle = \kHeff|\kpsi_\alpha\rangle, \tag{6.9}$$</div>
+<p>and since we are interested in using <a href="#drv-effective-hamiltonian-master-equation">Eq. (6.8)</a> to describe a stochastic evolution, we will write it in discrete time,</p>
+<div class="equation" id="eq-6-10">$$|\kpsi_\alpha(\kt+\delta\kt)\rangle = \left(1 + \frac{\kHeff\delta\kt}{i\hbar}\right)|\kpsi_\alpha(\kt)\rangle. \tag{6.10}$$</div>
+<p>Note that $|\tilde{\kpsi}_\alpha(\kt+\delta\kt)\rangle$<sup class="fn" data-note="c-tilde"></sup> is not normalized because the <span data-concept="effective-hamiltonian">effective Hamiltonian</span> is not Hermitian.</p>
+<figure class="dv" id="drv-no-jump-norm"></figure>
+<p>To simplify notation, we define</p>
+<div class="equation" id="eq-6-14">$$\kdeltapk = \delta\kt\,\kgammak\langle\kpsi_\alpha|\kchatk^\dagger\kchatk|\kpsi_\alpha\rangle \tag{6.14}$$</div>
+<div class="equation" id="eq-6-15">$$\kdeltap = \delta\kt\sum_k \kgammak\langle\kpsi_\alpha|\kchatk^\dagger\kchatk|\kpsi_\alpha\rangle. \tag{6.15}$$</div>
+<figure class="dv" id="drv-no-jump-probability"></figure>
+<p>We now know the proper normalization for the state at time $\kt+\delta\kt$:</p>
+<div class="equation" id="eq-6-17">$$|\tilde{\kpsi}_\alpha(\kt+\delta\kt)\rangle = \frac{1 + \kHeff\delta\kt/i\hbar}{\sqrt{1-\kdeltap}}|\kpsi_\alpha(\kt)\rangle. \tag{6.17}$$</div>
+<p>This normalized state corresponds the state of a system evolving solely under the influence of the first two terms in the <span data-concept="lindblad-master-equation">master equation</span>, i.e. a system which has <span data-concept="no-jump-evolution">never jumped</span> into one of the $|\phi_{k,\alpha}\rangle$.</p>
+<p>The “<span data-concept="quantum-jump">quantum jump</span>” states $|\phi_{k,\alpha}\rangle$ are not normalized either, since</p>
+<div class="equation" id="eq-6-18">$$\langle\phi_{k,\alpha}|\phi_{k,\alpha}\rangle = \langle\kpsi_\alpha|\kchatk^\dagger\kchatk|\kpsi_\alpha\rangle = \frac{\kdeltapk}{\kgammak\delta\kt}. \tag{6.18}$$</div>
+<p>Again, we will define a normalized state</p>
+<div class="equation" id="eq-6-19">$$|\tilde{\phi}_{k,\alpha}\rangle = \sqrt{\frac{\kgammak\delta\kt}{\kdeltapk}}|\phi_{k,\alpha}\rangle \tag{6.19}$$</div>
+<p>to explicitly keep track of probability conservation.</p>
+<p>Like the <span data-concept="schrodinger-equation">Schrodinger equation</span>, the <span data-concept="lindblad-master-equation">master equation</span> may be written for discrete times $\delta\kt$.</p>
+<figure class="dv" id="drv-jump-decomposition"></figure>
+<p>By rewriting the <span data-concept="master-equation">master equation</span> in this form, we can use a <span data-concept="stochastic-master-equation">probability interpretation</span> to gain intuition – and develop numerics – for the resulting system dynamics. <a href="#drv-jump-decomposition">Eq. (6.21)</a> has two terms, which lead to two possible outcomes after a time $\delta\kt$ :</p>
+<p>(1) with probability $(1-\kdeltap)$, the system evolves according to $\kHeff$, and remains in state $|\tilde{\kpsi}_\alpha\rangle$.</p>
+<p>(2) with probability $\kdeltap$, the system <span data-concept="quantum-jump">jumps</span> into another state; in particular it <span data-concept="quantum-jump">jumps</span> into state $|\tilde{\phi}_{k,\alpha}\rangle$ with probability $\kdeltapk$.</p>
+<p><span data-concept="monte-carlo-wavefunction" id="statistical-picture">This statistical picture of a state vector evolution</span> provides a clear procedure for simulation which only requires computation of the <span data-concept="state-vector">state vector</span> (rather than <span data-concept="density-matrix">density matrix</span>) elements. A <span data-concept="monte-carlo-procedure">sample algorithm</span> is summarized in <a href="#table-6-1">Table (6.1)</a>.</p>
+<div class="book-table" id="table-6-1">
+  <div class="tcap"><span class="eyebrow">Table 6.1</span><span><span data-concept="monte-carlo-procedure">Monte Carlo Procedure</span></span></div>
+  <table>
+    <tbody>
+      <tr><td>(1) Pick initial state $|\kpsi_\alpha\rangle$</td></tr>
+      <tr><td>(2) Pick a random number r</td></tr>
+      <tr><td>(3) For an appropriate time interval $\delta\kt$, calculate $\kdeltap$. If $\kdeltap &lt; r$, replace $|\kpsi_\alpha\rangle$ by $(1 - i\delta\kt\kHeff/\hbar)|\kpsi_\alpha\rangle/\sqrt{1-\kdeltap}$. If $\sum_{k=1}^{K}\kdeltapk \leq r &lt; \sum_{k=1}^{K+1}\kdeltapk$, replace $|\kpsi_\alpha\rangle$ by $|\tilde{\phi}_{k,\alpha}\rangle$<sup class="fn" data-note="c-table-step-3"></sup></td></tr>
+      <tr><td>(4) Repeat steps (2) and (3) for the desired length of time.</td></tr>
+      <tr><td>(5) Repeat steps (1-4) N times to generate a distribution of outcomes.</td></tr>
+      <tr><td>(6) If necessary, repeat steps (1-5) for all possible initial states $|\kpsi_\alpha\rangle$.</td></tr>
+      <tr><td>(7) <span data-concept="density-matrix">Density matrix</span> evolution: $\krhoS(\kt) = \sum_\alpha p_\alpha|\kpsi_\alpha(\kt)\rangle\langle\kpsi_\alpha(\kt)|/N$.<sup class="fn" data-note="c-table-step-7"></sup></td></tr>
+    </tbody>
+  </table>
+</div>
+<figure class="sim" id="sim-monte-carlo">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The procedure of the table run on a two-level atom that decays from $|2\rangle$ to $|1\rangle$ through one channel, $\hat{c} = |1\rangle\langle 2|$ at the rate $\kgamma$, and may be driven on resonance at the Rabi frequency $\kOmega$. Every trajectory starts from the same state and evolves under the <span data-concept="effective-hamiltonian">effective Hamiltonian</span> until a random number makes it <span data-concept="quantum-jump">jump</span> into $|1\rangle$. The faint curves are single trajectories, the solid curve the average of $\kptwo$ over all $N$ of them, and the dashed curve the <span data-concept="master-equation">master equation</span>. Raise $N$ and the average settles onto the <span data-concept="master-equation">master equation</span>; drive the atom and each trajectory keeps oscillating while their average damps. Time is in units of $1/\kgamma$ and $|\kOmega|$ in units of $\kgamma$.</span></div>
+</figure>
+</section>

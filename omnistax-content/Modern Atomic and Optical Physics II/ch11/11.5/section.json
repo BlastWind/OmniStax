@@ -1,0 +1,580 @@
+{
+ "id": "11.5",
+ "chapter": "11",
+ "title": "Excitations in a Bose condensate",
+ "short": "Excitations in a Bose condensate",
+ "lead": "The elementary excitations of a <span data-concept=\"bose-condensation\">Bose condensate</span>: the <span data-concept=\"bogoliubov-approximation\">Bogoliubov approximation</span> and its equations, the <span data-concept=\"bogoliubov-spectrum\">excitation spectrum</span> of a uniform condensate and how <span data-concept=\"bragg-spectroscopy\">Bragg scattering</span> probes it, the <span data-concept=\"landau-criterion\">Landau criterion</span> for <span data-concept=\"landau-criterion\">superfluidity</span>, why a condensate with attractive interactions survives only in a finite trap, and how expansion images tell a condensate from a thermal cloud.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-bogoliubov",
+   "kind": "sim",
+   "number": "11.10",
+   "originals": [
+    "/media/ch11/fig-11-10.png"
+   ],
+   "original_caption": "The Bogoliubov excitation spectrum for a condensate confined in a homogeneous potential. Note that in the presence of interactions, a critical velocity must be reached in order to excite the condensate while conserving energy and momentum.",
+   "draws": [
+    "frequency",
+    "energy",
+    "velocity",
+    "wavevector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-attractive",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "energy",
+    "length",
+    "wavevector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "bogoliubov-equations",
+   "concept": "bogoliubov-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "dispersion",
+   "concept": "bogoliubov-spectrum",
+   "verb": "introduces"
+  },
+  {
+   "span": "free-energy",
+   "concept": "free-particle-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "sound-velocity",
+   "concept": "sound-velocity",
+   "verb": "introduces"
+  },
+  {
+   "span": "bragg",
+   "concept": "bragg-spectroscopy",
+   "verb": "introduces"
+  },
+  {
+   "span": "landau",
+   "concept": "landau-criterion",
+   "verb": "introduces"
+  },
+  {
+   "span": "finite-number",
+   "concept": "attractive-condensate-stability",
+   "verb": "introduces"
+  },
+  {
+   "span": "expansion",
+   "concept": "expansion-signature",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-eq-11-154",
+   "kind": "correction",
+   "html": "The book prints $\\km\\kssound/(\\sqrt{2}\\hbar)$ as the last expression. Since $\\knzero\\kUzero = \\km\\kssound^2$ by <a href=\"#eq-11-153\">(11.153)</a>, $\\hbar^{-1}\\sqrt{2\\km\\knzero\\kUzero} = \\sqrt{2}\\,\\km\\kssound/\\hbar$, a factor of 2 larger."
+  },
+  {
+   "id": "c-eq-11-158",
+   "kind": "correction",
+   "html": "The book prints $\\Delta\\keps_\\mathrm{object} = \\komegaq$. The energy given to the excitation is $\\Delta\\keps_\\mathrm{object} = \\hbar\\komegaq$."
+  },
+  {
+   "id": "c-eq-11-165",
+   "kind": "correction",
+   "html": "The book prints $\\kt$ for the expansion time the paragraph calls $\\ktau$: $\\kRexp_\\mathrm{BEC} \\sim \\hbar\\ktau/(\\kac\\km)$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "linearized-field-equation",
+   "what": "the linearized equation for the fluctuations",
+   "source": "Modern Atomic and Optical Physics II, 11.5 Excitations in a Bose condensate, 11.5.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{\\psi} = \\kpsiGP + \\delta\\hat{\\psi}",
+       "src": "(11.142)"
+      },
+      {
+       "text": "The fluctuations $\\delta\\hat{\\psi}$ are small, so terms beyond first order in them are dropped.",
+       "src": "11.5.1"
+      },
+      {
+       "tex": "i\\hbar\\frac{\\partial\\kpsiGP}{\\partial \\kt} = -\\frac{\\hbar^2}{2\\km}\\nabla^2\\kpsiGP + \\kV(r)\\kpsiGP + \\kUzero|\\kpsiGP|^2\\kpsiGP",
+       "src": "(11.131)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\hat{\\psi}} = \\mk{K}{\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kVtrap + \\kUzero\\hat{\\psi}^\\dagger\\hat{\\psi}\\right)\\hat{\\psi}}",
+      "src": "(11.128)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{\\partial}{\\partial \\kt}(\\kpsiGP + \\delta\\hat{\\psi})} = \\mk{K}{\\left(-\\frac{\\hbar^2}{2\\km}\\nabla^2 + \\kV(r)\\right)(\\kpsiGP + \\delta\\hat{\\psi}) + \\kUzero(\\kpsiGP^* + \\delta\\hat{\\psi}^\\dagger)(\\kpsiGP + \\delta\\hat{\\psi})^2}",
+       "uses": [
+        0
+       ],
+       "cap": "The trap potential $V_\\mathrm{trap}$ is written $V(r)$ from here on."
+      },
+      {
+       "tex": "\\mk{Lp}{i\\hbar\\frac{\\partial\\kpsiGP}{\\partial \\kt}} + \\mk{Ld}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\delta\\hat{\\psi}} = \\mk{Rp}{\\left(-\\frac{\\hbar^2}{2\\km}\\nabla^2 + \\kV(r)\\right)\\kpsiGP + \\kUzero|\\kpsiGP|^2\\kpsiGP} + \\mk{Rd}{\\left(-\\frac{\\hbar^2}{2\\km}\\nabla^2 + \\kV(r)\\right)\\delta\\hat{\\psi} + \\kUzero\\delta\\hat{\\psi}^\\dagger\\kpsiGP^2 + 2\\kUzero|\\kpsiGP|^2\\delta\\hat{\\psi}}",
+       "uses": [
+        1
+       ],
+       "cap": "To first order, $(\\psi^* + \\delta\\hat{\\psi}^\\dagger)(\\psi + \\delta\\hat{\\psi})^2 \\approx |\\psi|^2\\psi + \\psi^2\\delta\\hat{\\psi}^\\dagger + 2|\\psi|^2\\delta\\hat{\\psi}$.",
+       "map": {
+        "L": [
+         "Lp",
+         "Ld"
+        ],
+        "K": [
+         "Rp",
+         "Rd"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{Ld}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\delta\\hat{\\psi}} = \\mk{Rd}{\\left(-\\frac{\\hbar^2}{2\\km}\\nabla^2 + \\kV(r)\\right)\\delta\\hat{\\psi} + \\kUzero\\delta\\hat{\\psi}^\\dagger\\kpsiGP^2 + 2\\kUzero|\\kpsiGP|^2\\delta\\hat{\\psi}}",
+       "uses": [
+        2
+       ],
+       "cap": "The terms in $\\psi$ alone are the Gross-Pitaevski equation, (11.131), and cancel."
+      }
+     ],
+     "num": "(11.143)"
+    }
+   ]
+  },
+  {
+   "id": "bogoliubov-equations",
+   "what": "the Bogoliubov equations",
+   "source": "Modern Atomic and Optical Physics II, 11.5 Excitations in a Bose condensate, 11.5.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\kpsiGP = \\tilde{\\kpsiGP}e^{-i\\kmuchem \\kt/\\hbar}$, with $\\tilde{\\kpsiGP} \\in \\mathbb{R}$.",
+       "src": "11.5.1"
+      },
+      {
+       "tex": "\\delta\\hat{\\psi} = e^{-i\\kmuchem \\kt/\\hbar}\\sum_j\\left(u_j(r)\\hat{\\alpha}_j e^{-i\\komega_j \\kt} - v_j^*(r)\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt}\\right)",
+       "src": "(11.144)"
+      },
+      {
+       "text": "The coefficients for each normal mode are independent, so there is a set of equations for each mode $j$.",
+       "src": "11.5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Ld}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\delta\\hat{\\psi}} = \\mk{Rd}{\\left(-\\frac{\\hbar^2}{2\\km}\\nabla^2 + \\kV(r)\\right)\\delta\\hat{\\psi} + \\kUzero\\delta\\hat{\\psi}^\\dagger\\kpsiGP^2 + 2\\kUzero|\\kpsiGP|^2\\delta\\hat{\\psi}}",
+      "src": "(11.143)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Ld}{i\\hbar\\frac{\\partial}{\\partial \\kt}\\delta\\hat{\\psi}} = \\mk{R}{\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kV(r) + 2\\kUzero\\tilde{\\kpsiGP}^2\\right)\\delta\\hat{\\psi}} + \\mk{U}{\\kUzero\\tilde{\\kpsiGP}^2e^{-2i\\kmuchem \\kt/\\hbar}\\delta\\hat{\\psi}^\\dagger}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "Rd": [
+         "R",
+         "U"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{Ld}{(\\kmuchem + \\hbar\\komega_j)u_j\\hat{\\alpha}_je^{-i\\komega_j \\kt} - (\\kmuchem - \\hbar\\komega_j)v_j^*\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt}} = \\mk{R}{\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kV(r) + 2\\kUzero\\tilde{\\kpsiGP}^2\\right)(u_j\\hat{\\alpha}_je^{-i\\komega_j \\kt} - v_j^*\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt})} + \\mk{U}{\\kUzero\\tilde{\\kpsiGP}^2(u_j^*\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt} - v_j\\hat{\\alpha}_je^{-i\\komega_j \\kt})}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Mode by mode. The time derivative brings $\\mu + \\hbar\\omega_j$ and $\\mu - \\hbar\\omega_j$ down from the two exponentials, $\\delta\\hat{\\psi}^\\dagger$ carries $e^{i\\mu t/\\hbar}$, and the common factor $e^{-i\\mu t/\\hbar}$ cancels."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Ld}{(\\kmuchem + \\hbar\\komega_j)u_j\\hat{\\alpha}_je^{-i\\komega_j \\kt} - (\\kmuchem - \\hbar\\komega_j)v_j^*\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt}} = \\mk{R}{\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kV(r) + 2\\kUzero\\tilde{\\kpsiGP}^2\\right)(u_j\\hat{\\alpha}_je^{-i\\komega_j \\kt} - v_j^*\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt})} + \\mk{U}{\\kUzero\\tilde{\\kpsiGP}^2(u_j^*\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt} - v_j\\hat{\\alpha}_je^{-i\\komega_j \\kt})}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Ld}{(\\kmuchem + \\hbar\\komega_j)u_j} = \\mk{R}{\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kV(r) + 2\\kUzero\\tilde{\\kpsiGP}^2\\right)u_j}\\mk{U}{ - \\kUzero\\tilde{\\kpsiGP}^2v_j}",
+       "uses": [],
+       "cap": "Equating the terms $\\propto e^{-i\\omega_j t}$."
+      },
+      {
+       "tex": "\\mk{R}{\\left(-\\kmuchem - \\hbar\\komega_j - \\frac{\\hbar^2\\nabla^2}{2\\km} + \\kV(r) + 2\\kUzero\\tilde{\\kpsiGP}^2\\right)u_j(r)} = \\mk{U}{\\kUzero\\tilde{\\kpsiGP}^2 v_j(r)}",
+       "uses": [],
+       "map": {
+        "Ld": "R"
+       }
+      }
+     ],
+     "num": "(11.146)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The operator $-\\hbar^2\\nabla^2/2m + V(r)$ is real, as is $\\tilde{\\kpsiGP}$.",
+       "src": "11.5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Ld}{(\\kmuchem + \\hbar\\komega_j)u_j\\hat{\\alpha}_je^{-i\\komega_j \\kt} - (\\kmuchem - \\hbar\\komega_j)v_j^*\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt}} = \\mk{R}{\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kV(r) + 2\\kUzero\\tilde{\\kpsiGP}^2\\right)(u_j\\hat{\\alpha}_je^{-i\\komega_j \\kt} - v_j^*\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt})} + \\mk{U}{\\kUzero\\tilde{\\kpsiGP}^2(u_j^*\\hat{\\alpha}_j^\\dagger e^{i\\komega_j \\kt} - v_j\\hat{\\alpha}_je^{-i\\komega_j \\kt})}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Ld}{-(\\kmuchem - \\hbar\\komega_j)v_j^*} = \\mk{R}{-\\left(-\\frac{\\hbar^2\\nabla^2}{2\\km} + \\kV(r) + 2\\kUzero\\tilde{\\kpsiGP}^2\\right)v_j^*} + \\mk{U}{\\kUzero\\tilde{\\kpsiGP}^2u_j^*}",
+       "uses": [],
+       "cap": "Equating the terms $\\propto e^{i\\omega_j t}$."
+      },
+      {
+       "tex": "\\mk{R}{\\left(-\\kmuchem + \\hbar\\komega_j - \\frac{\\hbar^2\\nabla^2}{2\\km} + \\kV(r) + 2\\kUzero\\tilde{\\kpsiGP}^2\\right)v_j^*} = \\mk{U}{\\kUzero\\tilde{\\kpsiGP}^2 u_j^*}",
+       "uses": [],
+       "map": {
+        "Ld": "R"
+       }
+      },
+      {
+       "tex": "\\mk{R}{\\left(-\\kmuchem + \\hbar\\komega_j - \\frac{\\hbar^2\\nabla^2}{2\\km} + \\kV(r) + 2\\kUzero\\tilde{\\kpsiGP}^2\\right)v_j(r)} = \\mk{U}{\\kUzero\\tilde{\\kpsiGP}^2 u_j(r)}",
+       "uses": [
+        1
+       ],
+       "cap": "Taking the complex conjugate."
+      }
+     ],
+     "num": "(11.147)"
+    }
+   ]
+  },
+  {
+   "id": "bogoliubov-spectrum",
+   "what": "the Bogoliubov dispersion relation",
+   "source": "Modern Atomic and Optical Physics II, 11.5 Excitations in a Bose condensate, 11.5.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The negative square root does not satisfy the normalization condition (11.145).",
+       "src": "11.5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{M}{\\begin{pmatrix} \\kepsq + \\knzero\\kUzero - \\hbar\\komegaq & -\\knzero\\kUzero \\\\ -\\knzero\\kUzero & \\kepsq + \\knzero\\kUzero + \\hbar\\komegaq \\end{pmatrix}\\begin{pmatrix} u_q \\\\ v_q \\end{pmatrix}} = \\mk{z}{0}",
+      "src": "(11.150)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{M}{(\\kepsq + \\knzero\\kUzero - \\hbar\\komegaq)(\\kepsq + \\knzero\\kUzero + \\hbar\\komegaq) - (\\knzero\\kUzero)^2} = \\mk{z}{0}",
+       "uses": [],
+       "cap": "A solution with $(u_q, v_q) \\neq 0$ needs the determinant of the matrix to vanish."
+      },
+      {
+       "tex": "\\mk{M}{(\\kepsq + \\knzero\\kUzero)^2 - (\\hbar\\komegaq)^2 - (\\knzero\\kUzero)^2} = \\mk{z}{0}",
+       "uses": [],
+       "cap": "A difference of squares, $(x - y)(x + y) = x^2 - y^2$."
+      },
+      {
+       "tex": "\\mk{w}{(\\hbar\\komegaq)^2} = \\mk{M}{\\kepsq^2 + 2\\knzero\\kUzero\\kepsq}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{w}{\\hbar\\komegaq} = \\mk{M}{\\sqrt{\\kepsq^2 + 2\\knzero\\kUzero\\kepsq}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(11.151)"
+    }
+   ]
+  },
+  {
+   "id": "landau-critical-velocity",
+   "what": "the Landau critical velocity",
+   "source": "Modern Atomic and Optical Physics II, 11.5 Excitations in a Bose condensate, 11.5.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\Delta \\kpcm_\\mathrm{object} = \\hbar \\kq",
+       "src": "(11.157)"
+      },
+      {
+       "tex": "\\Delta\\keps_\\mathrm{object} = \\hbar\\komegaq",
+       "src": "(11.158)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\Delta\\keps_\\mathrm{object}} \\leq \\mk{p}{\\Delta \\kpcm}\\mk{v}{\\kvmag}",
+      "src": "11.5.1",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\hbar\\komegaq} \\leq \\mk{p}{\\hbar \\kq}\\mk{v}{\\kvmag}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\kvmag} \\geq \\frac{\\mk{e}{\\komegaq}}{\\mk{p}{\\kq}}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\hbar\\komegaq = \\sqrt{\\kepsq^2 + 2\\knzero\\kUzero\\kepsq}",
+       "src": "(11.151)"
+      },
+      {
+       "tex": "\\kepsq = \\hbar^2\\kq^2/2\\km",
+       "src": "11.5.1"
+      },
+      {
+       "tex": "\\kssound = \\sqrt{\\frac{\\knzero\\kUzero}{\\km}}",
+       "src": "(11.153)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\kvc} = \\mk{m}{\\min_{\\kq}\\frac{\\komegaq}{\\kq}}",
+      "uses": [0],
+      "why": "The object can create an excitation once $v$ exceeds $\\omega_q/q$ for some $q$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\kvc} = \\mk{m}{\\min_{\\kq}\\frac{\\sqrt{\\kepsq^2 + 2\\knzero\\kUzero\\kepsq}}{\\hbar\\kq}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\kvc} = \\mk{m}{\\min_{\\kq}\\sqrt{\\frac{\\hbar^2\\kq^2}{4\\km^2} + \\frac{\\knzero\\kUzero}{\\km}}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\kvc} = \\mk{m}{\\sqrt{\\frac{\\knzero\\kUzero}{\\km}}}",
+       "uses": [],
+       "cap": "The root grows with $q$, so its least value is reached as $q \\to 0$."
+      },
+      {
+       "tex": "\\mk{c}{\\kvc} = \\mk{m}{\\kssound}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(11.159)",
+     "note": "The book prints $\\Delta\\keps_\\mathrm{object} = \\komegaq$ in (11.158) and $\\kvmag > \\kvc = \\kepsq/\\hbar\\kq$ in (11.159), the free-particle energy over the momentum. The energy given to the excitation is $\\hbar\\komegaq$, so the condition is $\\kvmag \\geq \\komegaq/\\kq$ for some $\\kq$, and the critical velocity is the least $\\komegaq/\\kq$, the speed of sound $\\kssound$."
+    }
+   ]
+  },
+  {
+   "id": "attractive-stability",
+   "what": "the stability of a condensate with attractive interactions",
+   "source": "Modern Atomic and Optical Physics II, 11.5 Excitations in a Bose condensate, 11.5.2",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The interactions are attractive, $\\kUzero = -|\\kUzero|$.",
+       "src": "11.5.2"
+      },
+      {
+       "tex": "\\kq_\\mathrm{min} \\approx \\frac{1}{\\kat}",
+       "src": "(11.160)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\hbar\\komegaq} = \\mk{M}{\\sqrt{\\kepsq^2 + 2\\knzero\\kUzero\\kepsq}}",
+      "src": "(11.151)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{w}{\\hbar\\komegaq} = \\mk{M}{\\sqrt{\\kepsq^2 - 2\\knzero|\\kUzero|\\kepsq}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{w}{\\hbar\\komega_\\mathrm{min}} = \\mk{M}{\\sqrt{\\epsilon_{\\kq_\\mathrm{min}}^2 - 2\\knzero|\\kUzero|\\epsilon_{\\kq_\\mathrm{min}}}}",
+       "uses": [
+        1
+       ],
+       "cap": "The lowest excitation has the smallest wave-vector the cloud allows."
+      }
+     ],
+     "num": "(11.161)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The condensate is stable when the minimum energy is real.",
+       "src": "11.5.2"
+      },
+      {
+       "tex": "\\kepsq = \\hbar^2\\kq^2/2\\km",
+       "src": "11.5.1"
+      },
+      {
+       "tex": "\\kq_\\mathrm{min} \\approx \\frac{1}{\\kat}",
+       "src": "(11.160)"
+      },
+      {
+       "tex": "\\knzero = N/V",
+       "src": "(11.140)"
+      },
+      {
+       "tex": "\\kUzero = \\frac{4\\pi\\hbar^2\\kascat}{\\km}",
+       "src": "(11.111)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\hbar\\komega_\\mathrm{min}} = \\mk{M}{\\sqrt{\\epsilon_{\\kq_\\mathrm{min}}^2 - 2\\knzero|\\kUzero|\\epsilon_{\\kq_\\mathrm{min}}}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\epsilon_{\\kq_\\mathrm{min}}} \\geq \\mk{R}{2\\knzero|\\kUzero|}",
+       "uses": [
+        1
+       ],
+       "cap": "The root is real when $\\epsilon^2 \\geq 2n_0|U_0|\\epsilon$, that is when $\\epsilon \\geq 2n_0|U_0|$.",
+       "map": {
+        "w": "e",
+        "M": "R"
+       }
+      },
+      {
+       "tex": "\\mk{e}{\\frac{\\hbar^2}{2\\kat^2\\km}} \\geq \\mk{R}{2\\knzero|\\kUzero|}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\frac{\\hbar^2}{\\kat^2\\km}} \\geq \\mk{R}{4\\knzero|\\kUzero|}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{\\frac{\\hbar^2}{\\kat^2\\km}} \\geq \\mk{R}{4\\knzero|\\kUzero|} = \\mk{S}{\\frac{16\\pi\\hbar^2N}{\\km V}|\\kascat|}",
+       "uses": [
+        4,
+        5
+       ]
+      }
+     ],
+     "num": "(11.162)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The cloud is localized within the trap length $\\kat$, so its volume is $V \\sim \\kat^3$.",
+       "src": "11.5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\frac{\\hbar^2}{\\kat^2\\km}} \\geq \\mk{R}{4\\knzero|\\kUzero|} = \\mk{S}{\\frac{16\\pi\\hbar^2N}{\\km V}|\\kascat|}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\frac{\\hbar^2}{\\kat^2\\km}} \\gtrsim \\mk{S}{\\frac{16\\pi\\hbar^2N}{\\km\\kat^3}|\\kascat|}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{N}{N} \\lesssim \\mk{e}{\\frac{\\kat}{16\\pi|\\kascat|}}",
+       "uses": [],
+       "map": {
+        "S": [
+         "N",
+         "e"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{N}{N_\\mathrm{max}} \\sim \\mk{e}{\\frac{\\kat}{|\\kascat|}}",
+       "uses": [],
+       "cap": "Up to a number of order one."
+      }
+     ],
+     "num": "(11.163)"
+    }
+   ]
+  }
+ ]
+}

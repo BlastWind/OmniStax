@@ -1,0 +1,1658 @@
+{
+ "id": "9.3",
+ "chapter": "9",
+ "title": "The effects of dissipation on quantum fields",
+ "short": "Dissipation and quantum fields",
+ "lead": "What dissipation does to quantum fields: loss as a <span data-concept=\"beamsplitter-loss-model\">beamsplitter</span>, the lossy cavity treated classically and then quantum mechanically with its noise, why loss returns every field to classical light, and <span data-concept=\"cavity-qed\">cavity quantum electrodynamics</span>, where one atom, one cavity mode and two decay channels meet in the <span data-concept=\"jaynes-cummings-ladder\">dressed-state ladder</span>, <span data-concept=\"strong-coupling-regime\">strong coupling</span>, the <span data-concept=\"purcell-effect\">Purcell effect</span>, single photons on demand and the <span data-concept=\"second-order-correlation\">correlation function</span> that detects them.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "MIT 8.422 Problem Set 1, Problem 2, Problem Set 2, Problem 2, Problem Set 3, Problem 1, Problem Set 8, Problem 2 and Problem Set 10, Problem 1(f) are set part by part in Lukin's notation with AI-written solutions, since the course published no key; no part is numerical, so none is held. Problem Set 10, Problem 1(a)–(e) treat the semiclassical dressed atom of Section 2.1 and are set there.",
+ "figures": [
+  {
+   "id": "fig-cat",
+   "kind": "figure",
+   "number": "9.4",
+   "originals": [
+    "/media/ch09/fig-9-4.png"
+   ],
+   "original_caption": "A phase space depiction of the field state $\\sim |i\\alpha\\rangle - |-i\\alpha\\rangle$ near $\\tau_{Revival}/2$.",
+   "draws": [
+    "quadrature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-bs-loss",
+   "kind": "figure",
+   "number": "9.5",
+   "originals": [
+    "/media/ch09/fig-9-5.png"
+   ],
+   "original_caption": "A beamsplitter model for loss.",
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-lossy-cavity",
+   "kind": "figure",
+   "number": "9.6",
+   "originals": [
+    "/media/ch09/fig-9-6.png"
+   ],
+   "original_caption": "Model used to analyze dissipation in a lossy cavity.",
+   "draws": [
+    "electric-field",
+    "length"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-damped-field",
+   "kind": "sim",
+   "draws": [
+    "quadrature",
+    "state",
+    "rate",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "fig-cqed-reservoirs",
+   "kind": "figure",
+   "number": "9.7",
+   "originals": [
+    "/media/ch09/fig-9-7.png"
+   ],
+   "original_caption": "The system-reservoir division for cavity quantum electrodynamics. The quantum field in the cavity is treated as part of the total system, and it decays to a reservoir of modes corresponding to the leak out of the cavity. The atom reservoir corresponds to a different set of free space modes, into which the atom can decay directly.",
+   "draws": [
+    "coupling",
+    "rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-jc-ladder",
+   "kind": "sim",
+   "number": "9.8",
+   "originals": [
+    "/media/ch09/fig-9-8.png"
+   ],
+   "original_caption": "The dressed-state basis and dissipative couplings. (a) The natural basis corresponds to a ground state and an infinite ladder of independent two-level systems each coupled by $g\\sqrt{n}$, where $n$ is the maximum number of photons in the cavity for that pair of states. Each manifold can be exactly diagonalized, leading to the dressed state basis. (b) Atomic decay and cavity loss lead to couplings between the different manifolds, since they allow energy to leave the system. Consequently decays not only introduce an energy width to the dressed states, but also mix the independent dressed state manifolds.",
+   "draws": [
+    "coupling",
+    "frequency",
+    "rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-vacuum-rabi",
+   "kind": "sim",
+   "draws": [
+    "coupling",
+    "rate",
+    "frequency",
+    "amplitude",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "bs-loss",
+   "concept": "beamsplitter-loss-model",
+   "verb": "introduces"
+  },
+  {
+   "span": "loss-rate",
+   "concept": "cavity-loss-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "round-trip",
+   "concept": "classical-cavity-evolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "input-output",
+   "concept": "input-output-relation",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantum-cavity-eq",
+   "concept": "cavity-langevin-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "microscopic",
+   "concept": "cavity-reservoir-model",
+   "verb": "introduces"
+  },
+  {
+   "span": "noise-correlations",
+   "concept": "cavity-noise-correlations",
+   "verb": "introduces"
+  },
+  {
+   "span": "cavity-master",
+   "concept": "cavity-master-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "coherent-example",
+   "concept": "damped-coherent-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "nonclassical-loss",
+   "concept": "dissipation-destroys-nonclassicality",
+   "verb": "introduces"
+  },
+  {
+   "span": "atoms-drive",
+   "concept": "cavity-driven-by-atoms",
+   "verb": "introduces"
+  },
+  {
+   "span": "open-closed",
+   "concept": "open-and-closed-cavities",
+   "verb": "introduces"
+  },
+  {
+   "span": "cqed-master",
+   "concept": "cqed-master-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "dressed-basis",
+   "concept": "jaynes-cummings-ladder",
+   "verb": "introduces"
+  },
+  {
+   "span": "vrs",
+   "concept": "vacuum-rabi-splitting",
+   "verb": "introduces"
+  },
+  {
+   "span": "collective",
+   "concept": "collective-enhancement",
+   "verb": "introduces"
+  },
+  {
+   "span": "no-jump",
+   "concept": "cqed-no-jump-evolution",
+   "verb": "introduces"
+  },
+  {
+   "span": "purcell",
+   "concept": "purcell-effect",
+   "verb": "introduces"
+  },
+  {
+   "span": "q-factor",
+   "concept": "quality-factor",
+   "verb": "introduces"
+  },
+  {
+   "span": "finesse",
+   "concept": "cavity-finesse",
+   "verb": "introduces"
+  },
+  {
+   "span": "mode-volume",
+   "concept": "cavity-mode-coupling",
+   "verb": "introduces"
+  },
+  {
+   "span": "figure-of-merit",
+   "concept": "strong-coupling-figure-of-merit",
+   "verb": "introduces"
+  },
+  {
+   "span": "closed-decay",
+   "concept": "suppressed-decay",
+   "verb": "introduces"
+  },
+  {
+   "span": "microwave",
+   "concept": "microwave-cqed",
+   "verb": "introduces"
+  },
+  {
+   "span": "single-photon",
+   "concept": "cavity-single-photon-source",
+   "verb": "introduces"
+  },
+  {
+   "span": "hbt",
+   "concept": "hanbury-brown-twiss",
+   "verb": "introduces"
+  },
+  {
+   "span": "g2-def",
+   "concept": "second-order-correlation",
+   "verb": "introduces"
+  },
+  {
+   "span": "bunching",
+   "concept": "photon-bunching",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "linear-optical-transformations",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "coherent-state",
+   "verb": "uses"
+  },
+  {
+   "span": "bs-loss",
+   "concept": "beamsplitter-transformation",
+   "verb": "uses"
+  },
+  {
+   "span": "bs-loss",
+   "concept": "fock-states",
+   "verb": "uses"
+  },
+  {
+   "span": "quantum-cavity-eq",
+   "concept": "creation-annihilation-operators",
+   "verb": "uses"
+  },
+  {
+   "span": "microscopic",
+   "concept": "open-system",
+   "verb": "uses"
+  },
+  {
+   "span": "microscopic",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "cavity-master",
+   "concept": "heisenberg-langevin-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "cavity-master",
+   "concept": "master-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "cavity-master",
+   "concept": "density-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "coherent-example",
+   "concept": "coherent-state",
+   "verb": "uses"
+  },
+  {
+   "span": "variance-stays",
+   "concept": "quadrature-operators",
+   "verb": "uses"
+  },
+  {
+   "span": "variance-stays",
+   "concept": "coherent-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "nonclassical-loss",
+   "concept": "squeezed-state",
+   "verb": "uses"
+  },
+  {
+   "span": "nonclassical-loss",
+   "concept": "quadrature-operators",
+   "verb": "uses"
+  },
+  {
+   "span": "atoms-drive",
+   "concept": "heisenberg-langevin-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "cqed-system",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "cqed-system",
+   "concept": "cavity-qed",
+   "verb": "uses"
+  },
+  {
+   "span": "open-closed",
+   "concept": "spontaneous-emission-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "jc-hamiltonian",
+   "concept": "jaynes-cummings-model",
+   "verb": "uses"
+  },
+  {
+   "span": "cavity-detuning",
+   "concept": "detuning",
+   "verb": "uses"
+  },
+  {
+   "span": "cavity-detuning",
+   "concept": "fock-states",
+   "verb": "uses"
+  },
+  {
+   "span": "dressed-basis",
+   "concept": "dressed-states",
+   "verb": "uses"
+  },
+  {
+   "span": "collective",
+   "concept": "dispersion",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-112",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "heff",
+   "concept": "effective-hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "weak-damping",
+   "concept": "vacuum-rabi-oscillations",
+   "verb": "uses"
+  },
+  {
+   "span": "weak-damping",
+   "concept": "strong-coupling-regime",
+   "verb": "uses"
+  },
+  {
+   "span": "purcell-elimination",
+   "concept": "adiabatic-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "purcell-shift",
+   "concept": "lamb-shift",
+   "verb": "uses"
+  },
+  {
+   "span": "purcell-shift",
+   "concept": "spontaneous-emission-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "microwave",
+   "concept": "rydberg-states",
+   "verb": "uses"
+  },
+  {
+   "span": "single-photon",
+   "concept": "fock-states",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-132",
+   "concept": "wigner-weisskopf",
+   "verb": "uses"
+  },
+  {
+   "span": "hbt",
+   "concept": "beamsplitter-transformation",
+   "verb": "uses"
+  },
+  {
+   "span": "bunching",
+   "concept": "coherent-state",
+   "verb": "uses"
+  },
+  {
+   "span": "bunching",
+   "concept": "thermal-photon-distribution",
+   "verb": "uses"
+  },
+  {
+   "span": "input-field",
+   "concept": "cavity-noise-correlations",
+   "verb": "reinforces"
+  },
+  {
+   "span": "figure-of-merit",
+   "concept": "strong-coupling-regime",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "hw2-2a",
+   "source_id": "hw2.2a",
+   "source_number": "Problem Set 2, Problem 2(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the mode operator carries its hat, $\\hat{a}$, and MIT's reflection amplitude $r$, with $|r|^2 + |t|^2 = 1$, is the $i\\sqrt{1-|t|^2}$ of Eq. (9.80).",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bs-loss",
+   "prompt": "In this problem, we study the attenuation of coherent state using a beam splitter model. In the Heisenberg picture, one intuitive model for an optical attenuator in quantum optics is to multiply the annihilation operator by a complex transmission coefficient $t$, where $|t| < 1$, i.e. Define the attenuating operator $\\mathcal{T}$, we have $\\mathcal{T}\\hat{a}\\mathcal{T}^\\dagger = t\\hat{a}$. Show that for the attenuating operator defined above, a coherent state will have its photon number fluctuation below shot noise. i.e. for the unattenuated state $|\\alpha\\rangle$, with $\\bar{n} = \\Delta n^2 = |\\alpha|^2$, the attenuated state would have $\\bar{n}' = |t|^2|\\alpha|^2$, and $\\Delta n'^2 = |t|^4|\\alpha|^2$, which violates the minimum uncertainty.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\mathcal{T}\\hat{a}\\mathcal{T}^\\dagger = t\\hat{a}$, every moment follows by replacing $\\hat{a}$ with $t\\hat{a}$: $\\bar{n}' = |t|^2\\langle\\hat{a}^\\dagger\\hat{a}\\rangle = |t|^2|\\alpha|^2$, and $\\langle n'^2\\rangle = |t|^4\\langle(\\hat{a}^\\dagger\\hat{a})^2\\rangle = |t|^4(|\\alpha|^4 + |\\alpha|^2)$, so $$\\Delta n'^2 = |t|^4|\\alpha|^2 = |t|^2\\,\\bar{n}' < \\bar{n}'.$$ The attenuated light would be quieter than the shot noise $\\Delta n^2 = \\bar{n}$ of a coherent state of the same mean, which no attenuation of classical light can produce. The quadratures say the same: for real $t$, $\\hat{x} = (\\hat{a} + \\hat{a}^\\dagger)/\\sqrt{2}$ becomes $t\\hat{x}$, so $\\langle\\delta\\hat{x}^2\\rangle$ and $\\langle\\delta\\hat{p}^2\\rangle$ both fall from $1/2$ to $|t|^2/2$, and their product to $|t|^4/4$, below the minimum uncertainty $1/4$ that the coherent state already meets. The root of it: $[t\\hat{a}, t^*\\hat{a}^\\dagger] = |t|^2 \\neq 1$, so the map keeps no commutator and cannot come from a unitary evolution."
+   }
+  },
+  {
+   "id": "hw2-2b",
+   "source_id": "hw2.2b",
+   "source_number": "Problem Set 2, Problem 2(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the mode operator carries its hat, $\\hat{a}$, and MIT's reflection amplitude $r$, with $|r|^2 + |t|^2 = 1$, is the $i\\sqrt{1-|t|^2}$ of Eq. (9.80); Problem 1(a), which part (b) leans on, is Problem Set 2, Problem 1(a), set in Section 9.1, and the attenuator of part (a) is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bs-loss",
+   "prompt": "For the attenuator of part (a), $\\mathcal{T}\\hat{a}\\mathcal{T}^\\dagger = t\\hat{a}$: We now see that this most intuitive definition does not give a physical result for an attenuated coherent state. In fact, it's not a unitary transformation and does not correspond to quantum time evolution. One correct model instead, is to formulate attenuation as photons going through a beam splitter, where the attenuating part is still given by a transmission scaling factor $t$, but from the other port of the beam splitter, a vacuum state mixes in with a reflection which has a reflection scaling factor $r$, with $|r|^2 + |t|^2 = 1$. Show that with this beam splitter model, the photon number fluctuation of a coherent state, after attenuation, still follows shot noise. Argue using result from Problem Set 2, Problem 1(a), that a coherent state will always be transmitted as an attenuated coherent state. This problem shows that any kind of attenuation (e.g. dissipation) couples the quantum system to an open port which allows vacuum fluctuations to enter. Any kind of dissipation adds fluctuations to the attenuated quantum state.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the beamsplitter model $\\hat{a}_\\mathrm{out} = t\\hat{a} + r\\hat{b}$ with $\\hat{b}$ in vacuum (Eq. (9.80), where $r = i\\sqrt{1-|t|^2}$). Now $[\\hat{a}_\\mathrm{out}, \\hat{a}_\\mathrm{out}^\\dagger] = |t|^2 + |r|^2 = 1$, and since $\\hat{b}|0\\rangle = 0$, $$\\hat{a}_\\mathrm{out}|\\alpha\\rangle|0\\rangle = t\\alpha\\,|\\alpha\\rangle|0\\rangle:$$ the input is an eigenstate of the output annihilation operator. Hence $\\bar{n}' = \\langle\\hat{a}_\\mathrm{out}^\\dagger\\hat{a}_\\mathrm{out}\\rangle = |t|^2|\\alpha|^2$ and $\\langle\\hat{a}_\\mathrm{out}^{\\dagger 2}\\hat{a}_\\mathrm{out}^2\\rangle = |t\\alpha|^4$, so $\\langle n'^2\\rangle = |t\\alpha|^4 + |t\\alpha|^2$ and $$\\Delta n'^2 = |t|^2|\\alpha|^2 = \\bar{n}',$$ shot noise again. Written out, $\\Delta n'^2 = |t|^4|\\alpha|^2 + |t|^2|r|^2|\\alpha|^2$: the second term, which part (a) lacked, is the beat of the signal against the vacuum fluctuations entering the open port. By Problem 1(a) the beamsplitter is unitary and conserves $n_a + n_b$, so it leaves the vacuum $|0\\rangle|0\\rangle$ alone and turns the displacement that makes $|\\alpha\\rangle|0\\rangle$ from it into displacements of both outputs: $|\\alpha\\rangle|0\\rangle \\to |t\\alpha\\rangle|r\\alpha\\rangle$. The transmitted light is the coherent state $|t\\alpha\\rangle$, the lost light the coherent state $|r\\alpha\\rangle$, and the two are not entangled."
+   }
+  },
+  {
+   "id": "hw3-1a",
+   "source_id": "hw3.1a",
+   "source_number": "Problem Set 3, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "MIT's drawing of the interferometer is described in words, its fringe visibility $V$ is written $\\mathcal{V}$ (in Lukin $V$ is the mode volume), and the beamsplitters are defined by their action on the modes.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bs-loss",
+   "prompt": "Lossy interferometer. A real interferometer usually suffers from loss of photons in its arms, or due to imperfect beamsplitters. The effect of such loss can be modeled by a beamsplitter, as we explore in this problem. Our starting point is the standard Mach-Zehnder interferometer, which uses two 50/50 beamsplitters, and has a phase shifter of variable delay $\\phi$: modes $b$ and $a$ enter the first beamsplitter, the phase shifter sits in one arm, and the second beamsplitter recombines the arms onto the outputs $b$ and $a$. In the absence of loss, and given an input $|10\\rangle$ (notation $|ba\\rangle$), a photon is measured to be output in mode $b$ with probability $P_b = \\cos^2(\\phi/2)$. The fringe visibility of the output signal is $$\\mathcal{V} = \\frac{\\max(P_b) - \\min(P_b)}{\\max(P_b) + \\min(P_b)},$$ where the min and max are taken over $\\phi$. Show that $\\mathcal{V} = 1$ for this ideal situation.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Over $\\phi$, $P_b = \\cos^2(\\phi/2)$ reaches $\\max(P_b) = 1$ at $\\phi = 0$ and $\\min(P_b) = 0$ at $\\phi = \\pi$, so $\\mathcal{V} = (1 - 0)/(1 + 0) = 1$: with no loss the photon can be steered wholly into either output, and the fringe has full contrast."
+   }
+  },
+  {
+   "id": "hw3-1b",
+   "source_id": "hw3.1b",
+   "source_number": "Problem Set 3, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "MIT's drawing of the interferometer is described in words, its fringe visibility $V$ is written $\\mathcal{V}$ (in Lukin $V$ is the mode volume), and the beamsplitters are defined by their action on the modes. The definition of the visibility is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bs-loss",
+   "prompt": "In the Mach-Zehnder interferometer with a phase shifter $\\phi$: The fringe visibility of the output signal is $$\\mathcal{V} = \\frac{\\max(P_b) - \\min(P_b)}{\\max(P_b) + \\min(P_b)},$$ where the min and max are taken over $\\phi$. Suppose now that one arm of the interferometer is lossy, and we model this loss with a beamsplitter. Three modes $a$, $b$, $c$ run from top to bottom: the 50/50 beamsplitter $B$ mixes $a$ and $b$, the phase shifter $\\phi$ sits in arm $a$, a beamsplitter of angle $\\theta$ couples arm $b$ to mode $c$, and $B^\\dagger$ recombines $a$ and $b$ before detectors at the outputs $a'$ and $b'$. The 50/50 beamsplitter $B$ acts as $B\\hat{a}B^\\dagger = (\\hat{a} + \\hat{b})/\\sqrt{2}$ and $B\\hat{b}B^\\dagger = (-\\hat{a} + \\hat{b})/\\sqrt{2}$ on the upper and lower modes it mixes, as in Problem Set 2, Problem 1(d), and a beamsplitter of angle $\\theta$ leaves a photon in the mode it taps with amplitude $\\cos\\theta$ and moves it into the other mode with amplitude $\\sin\\theta$. Let the input state be $|\\phi_0\\rangle = |010\\rangle$ (using notation $|cba\\rangle$ for the three modes). The two outer beamsplitters are the usual 50/50 beamsplitters of the Mach-Zehnder interferometer, while the new middle beamsplitter has angle $\\theta$. When $\\theta = 0$, no photons are lost from $b$ into $c$, and when $\\theta = \\pi/2$, any photon in $b$ is moved into mode $c$, modeling complete loss. Give the intermediate states $|\\phi_1\\rangle$ (after $B$), $|\\phi_2\\rangle$ (after the phase shifter and the lossy beamsplitter) and $|\\phi_3\\rangle$ (after $B^\\dagger$), and compute the probability that a photon is found at the output in mode $b$, as a function of $\\phi$ and $\\theta$. What is the fringe visibility as a function of $\\theta$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write the states as $|cba\\rangle$. With $B\\hat{b}^\\dagger B^\\dagger = (-\\hat{a}^\\dagger + \\hat{b}^\\dagger)/\\sqrt{2}$, $$|\\phi_1\\rangle = \\frac{|010\\rangle - |001\\rangle}{\\sqrt{2}}.$$ The phase shifter multiplies the photon in $a$ by $e^{i\\phi}$, and the lossy beamsplitter sends a photon in $b$ to $\\cos\\theta\\,|010\\rangle + \\sin\\theta\\,|100\\rangle$: $$|\\phi_2\\rangle = \\frac{\\cos\\theta\\,|010\\rangle + \\sin\\theta\\,|100\\rangle - e^{i\\phi}|001\\rangle}{\\sqrt{2}}.$$ $B^\\dagger$ sends $\\hat{a}^\\dagger \\to (\\hat{a}^\\dagger - \\hat{b}^\\dagger)/\\sqrt{2}$ and $\\hat{b}^\\dagger \\to (\\hat{a}^\\dagger + \\hat{b}^\\dagger)/\\sqrt{2}$, so $$|\\phi_3\\rangle = \\frac{\\cos\\theta + e^{i\\phi}}{2}|010\\rangle + \\frac{\\cos\\theta - e^{i\\phi}}{2}|001\\rangle + \\frac{\\sin\\theta}{\\sqrt{2}}|100\\rangle.$$ The photon is found in $b$ with $$P_b = \\frac{|\\cos\\theta + e^{i\\phi}|^2}{4} = \\frac{1 + \\cos^2\\theta + 2\\cos\\theta\\cos\\phi}{4},$$ which is $\\cos^2(\\phi/2)$ at $\\theta = 0$. Over $\\phi$ it swings between $(1 \\pm \\cos\\theta)^2/4$, so $$\\mathcal{V} = \\frac{2\\cos\\theta}{1 + \\cos^2\\theta},$$ 1 with no loss and 0 at complete loss, where only the arm $a$ reaches the output and nothing interferes. The loss leaves the two arms with unequal amplitudes, 1 and $\\cos\\theta$, and the contrast falls with their mismatch."
+   }
+  },
+  {
+   "id": "hw3-1c",
+   "source_id": "hw3.1c",
+   "source_number": "Problem Set 3, Problem 1(c)",
+   "origin": "mit-8422",
+   "changes": "MIT's drawing of the interferometer is described in words, its fringe visibility $V$ is written $\\mathcal{V}$ (in Lukin $V$ is the mode volume), and the beamsplitters are defined by their action on the modes. The definition of the visibility is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bs-loss",
+   "prompt": "In the Mach-Zehnder interferometer with a phase shifter $\\phi$: The fringe visibility of the output signal is $$\\mathcal{V} = \\frac{\\max(P_b) - \\min(P_b)}{\\max(P_b) + \\min(P_b)},$$ where the min and max are taken over $\\phi$. Now let both arms of the interferometer be lossy, modeled with two beamsplitters. Four modes $a$, $b$, $c$, $d$ run from top to bottom, with one photon entering in $b$ and the others in vacuum: the 50/50 beamsplitter $B$ mixes $b$ and $c$, the phase shifter $\\phi$ sits in arm $b$, a beamsplitter of angle $\\theta'$ couples arm $b$ to mode $a$ and one of angle $\\theta$ couples arm $c$ to mode $d$, and $B^\\dagger$ recombines $b$ and $c$ before detectors at the outputs $b'$ and $c'$. The 50/50 beamsplitter $B$ acts as $B\\hat{a}B^\\dagger = (\\hat{a} + \\hat{b})/\\sqrt{2}$ and $B\\hat{b}B^\\dagger = (-\\hat{a} + \\hat{b})/\\sqrt{2}$ on the upper and lower modes it mixes, as in Problem Set 2, Problem 1(d), and a beamsplitter of angle $\\theta$ leaves a photon in the mode it taps with amplitude $\\cos\\theta$ and moves it into the other mode with amplitude $\\sin\\theta$. The top beamsplitter has angle $\\theta'$, and the bottom one $\\theta$. Give the intermediate states $|\\phi_1\\rangle$ through $|\\phi_4\\rangle$ (after $B$, after the phase shifter, after the two lossy beamsplitters, after $B^\\dagger$), and compute the probability that a photon is found at the output in mode $b$, as a function of $\\phi$ and $\\Delta\\theta = \\theta - \\theta'$. What is the fringe visibility as a function of $\\Delta\\theta$? Suppose you include only cases when at least one photon is measured to be output in $b$ or $c$ (in other words, throw away the case when no photons are measured at the output). How does the visibility change, when using this conditional probability? The case when $\\Delta\\theta = 0$ is known as the balanced loss Mach-Zehnder interferometer, and your results should show why balancing the loss in the two arms is helpful. Restricting cases to when at least one photon is detected implements a simple kind of quantum error detection code!",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Label each state by the mode the photon is in, $|1_x\\rangle$. Here $b$ is the upper mode of the pair $B$ mixes, so $B\\hat{b}^\\dagger B^\\dagger = (\\hat{b}^\\dagger + \\hat{c}^\\dagger)/\\sqrt{2}$, and $$|\\phi_1\\rangle = \\frac{|1_b\\rangle + |1_c\\rangle}{\\sqrt{2}}, \\qquad |\\phi_2\\rangle = \\frac{e^{i\\phi}|1_b\\rangle + |1_c\\rangle}{\\sqrt{2}},$$ $$|\\phi_3\\rangle = \\frac{e^{i\\phi}\\left(\\cos\\theta'|1_b\\rangle + \\sin\\theta'|1_a\\rangle\\right) + \\cos\\theta|1_c\\rangle + \\sin\\theta|1_d\\rangle}{\\sqrt{2}}.$$ $B^\\dagger$ sends $\\hat{b}^\\dagger \\to (\\hat{b}^\\dagger - \\hat{c}^\\dagger)/\\sqrt{2}$ and $\\hat{c}^\\dagger \\to (\\hat{b}^\\dagger + \\hat{c}^\\dagger)/\\sqrt{2}$: $$|\\phi_4\\rangle = \\frac{e^{i\\phi}\\cos\\theta' + \\cos\\theta}{2}|1_b\\rangle + \\frac{\\cos\\theta - e^{i\\phi}\\cos\\theta'}{2}|1_c\\rangle + \\frac{e^{i\\phi}\\sin\\theta'|1_a\\rangle + \\sin\\theta|1_d\\rangle}{\\sqrt{2}}.$$ So $$P_b = \\frac{\\cos^2\\theta + \\cos^2\\theta' + 2\\cos\\theta\\cos\\theta'\\cos\\phi}{4}, \\qquad \\mathcal{V} = \\frac{2\\cos\\theta\\cos\\theta'}{\\cos^2\\theta + \\cos^2\\theta'} = 1 - \\frac{(\\cos\\theta - \\cos\\theta')^2}{\\cos^2\\theta + \\cos^2\\theta'}.$$ The visibility is 1 whenever $\\Delta\\theta = 0$, however large the common loss, and near balance it falls only quadratically, $\\mathcal{V} \\approx 1 - \\frac{1}{2}\\tan^2\\theta\\,\\Delta\\theta^2$. The photon reaches $b$ or $c$ with probability $P_b + P_c = (\\cos^2\\theta + \\cos^2\\theta')/2$, so on the condition of a detection $$P_{b|\\mathrm{det}} = \\frac{1}{2}\\left(1 + \\mathcal{V}\\cos\\phi\\right).$$ The visibility is unchanged, since dividing $P_b$ by a constant leaves the ratio alone, but the fringe now swings about $1/2$, and with balanced loss it is $\\cos^2(\\phi/2)$, exactly the lossless interferometer's. The runs in which the photon was lost are those with no click at all; discarding them removes the loss, which is the error detection."
+   }
+  },
+  {
+   "id": "hw3-1d",
+   "source_id": "hw3.1d",
+   "source_number": "Problem Set 3, Problem 1(d)",
+   "origin": "mit-8422",
+   "changes": "MIT's drawing of the interferometer is described in words, its fringe visibility $V$ is written $\\mathcal{V}$ (in Lukin $V$ is the mode volume), and the beamsplitters are defined by their action on the modes.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "bs-loss",
+   "prompt": "For the lossy Mach-Zehnder interferometers of parts (b) and (c): In the scenarios above, a single photon input was used. Do any of the visibilities change if a coherent state were input instead? If not, then describe a situation in which the effects of loss would distinguish interferometers used with single photons versus coherent state inputs.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "No. Every element is linear in the mode operators, so a coherent state $|\\beta\\rangle$ entering in $b$ leaves as a product of coherent states whose amplitudes are $\\beta$ times the single-photon amplitudes of parts (b) and (c): output $b$ of part (c) holds $|\\beta(e^{i\\phi}\\cos\\theta' + \\cos\\theta)/2\\rangle$, for instance. The mean count at each output is $|\\beta|^2 P_b$, the same fringe, and every visibility is the same. Loss tells the two inputs apart through what a detection says about a run. With one photon, a click at $b$ or $c$ proves the photon was not lost, so conditioning on a detection removes balanced loss entirely, as in part (c). With a coherent state, the lost and the transmitted light are independent coherent states, $|\\beta\\sin\\theta\\rangle$ and $|\\beta\\cos\\theta\\rangle$ on an arm (the attenuated coherent state of Eq. (9.80)), so a click carries no news of the loss and no conditioning undoes it; the loss only scales the mean count. The difference shows wherever several photons must arrive together: an input of $N$ photons whose interference is read from $N$-fold coincidences keeps only a fraction $\\cos^{2N}\\theta$ of them through an arm, while a coherent beam's count falls only as $\\cos^2\\theta$."
+   }
+  },
+  {
+   "id": "hw8-2a",
+   "source_id": "hw8.2a",
+   "source_number": "Problem Set 8, Problem 2(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's cavity leak rate $\\Gamma$ is written $\\kappa$, the cavity loss rate of Section 9.3 (not the atomic $\\gamma$), the cavity frequency $\\omega$ is $\\nu$, and the mode operators carry hats.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cavity-master",
+   "prompt": "Master equation for a damped optical cavity. A Fabry-Perot cavity can be modeled as being made of a high reflectivity mirror and a perfect mirror with fixed spacing. Clearly, photons stored inside this cavity will gradually leak out the partially reflecting mirror, causing the state inside to change. This process is described by a master equation, much like an atom coupled to fields is described by the optical Bloch equation. In this problem, we explore a simple derivation of such a master equation, for a single mode cavity. Let $\\hat{a}$ and $\\hat{a}^\\dagger$ describe the optical mode of interest within the cavity, with characteristic energy $\\hbar\\nu$, described by the Hamiltonian $H_0 = \\hbar\\nu\\hat{a}^\\dagger\\hat{a}$. Let $|\\psi\\rangle$ be the initial cavity state. Let us suppose that photons leak out of the cavity at a rate proportional to the photon number in the cavity and to $\\kappa$, which parameterizes the leakiness of the leaky mirror. Thus the probability that a photon leaks out within the infinitesimal timestep between $t$ and $t + dt$ is given by $dp = \\kappa\\,dt\\langle\\psi|\\hat{a}^\\dagger\\hat{a}|\\psi\\rangle$. And with a probability $1 - dp$ it doesn't. For these two cases we model the time evolution as follows: if a photon leaks out, the cavity state becomes $|\\tilde{\\psi}_1\\rangle = \\hat{a}\\sqrt{\\kappa\\,dt}|\\psi\\rangle$; if no photon leaks out, the state becomes $|\\tilde{\\psi}_0\\rangle = e^{-iHt/\\hbar}|\\psi\\rangle$<sup class=\"fn\" data-note=\"c-hw8-dt\"></sup> having evolved under the “Hamiltonian” $H = H_0 - i(\\hbar\\kappa/2)\\hat{a}^\\dagger\\hat{a}$. Note that $H$ is not Hermitian. It has an imaginary term, so it is “lossy”. Evolving a state forward in time with $H$ yields an un-normalized state. The two un-normalized states $|\\tilde{\\psi}_0\\rangle$ and $|\\tilde{\\psi}_1\\rangle$ will later be two “components” of the density matrix. Compute the normalized states $|\\psi_0\\rangle$ and $|\\psi_1\\rangle$. Provide some words of justification for the lossy term in $H$ (for instance, why is it proportional to $\\hat{a}^\\dagger\\hat{a}$?). Where you encounter exponentials of $H$ or $H^\\dagger$ (which is NOT equal to $H$), expand them to first order in $dt$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Over the step $dt$, $e^{-iH\\,dt/\\hbar} \\approx 1 - i\\nu\\,dt\\,\\hat{a}^\\dagger\\hat{a} - \\frac{\\kappa}{2}dt\\,\\hat{a}^\\dagger\\hat{a}$, so $$\\langle\\tilde{\\psi}_0|\\tilde{\\psi}_0\\rangle = \\langle\\psi|e^{iH^\\dagger dt/\\hbar}e^{-iH\\,dt/\\hbar}|\\psi\\rangle \\approx 1 - \\kappa\\,dt\\langle\\hat{a}^\\dagger\\hat{a}\\rangle = 1 - dp:$$ the Hermitian part cancels and only the anti-Hermitian part removes norm. Likewise $\\langle\\tilde{\\psi}_1|\\tilde{\\psi}_1\\rangle = \\kappa\\,dt\\langle\\hat{a}^\\dagger\\hat{a}\\rangle = dp$. The normalized states are $$|\\psi_0\\rangle = \\frac{e^{-iH\\,dt/\\hbar}|\\psi\\rangle}{\\sqrt{1 - dp}} \\approx \\left[1 - i\\nu\\,dt\\,\\hat{a}^\\dagger\\hat{a} - \\frac{\\kappa}{2}dt\\left(\\hat{a}^\\dagger\\hat{a} - \\langle\\hat{a}^\\dagger\\hat{a}\\rangle\\right)\\right]|\\psi\\rangle, \\qquad |\\psi_1\\rangle = \\frac{\\hat{a}|\\psi\\rangle}{\\sqrt{\\langle\\psi|\\hat{a}^\\dagger\\hat{a}|\\psi\\rangle}}.$$ The lossy term is fixed by consistency: the no-jump branch must lose exactly the norm $dp$ that the jump branch gains, and $dp = \\kappa\\,dt\\langle\\hat{a}^\\dagger\\hat{a}\\rangle$ requires the anti-Hermitian part $-i(\\hbar\\kappa/2)\\hat{a}^\\dagger\\hat{a}$. It is proportional to $\\hat{a}^\\dagger\\hat{a}$ because every photon leaks independently at the rate $\\kappa$, so the chance of a leak grows with the photon number. Not seeing a photon leave is itself information: in the no-jump branch the amplitude of $|n\\rangle$ falls as $e^{-\\kappa n t/2}$, so the state shifts toward fewer photons, which is the term $-\\frac{\\kappa}{2}(\\hat{a}^\\dagger\\hat{a} - \\langle\\hat{a}^\\dagger\\hat{a}\\rangle)$. This is the cavity part of the effective Hamiltonian $\\hat{H}_\\mathrm{eff}$ of Eq. (9.115)."
+   }
+  },
+  {
+   "id": "hw8-2b",
+   "source_id": "hw8.2b",
+   "source_number": "Problem Set 8, Problem 2(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's cavity leak rate $\\Gamma$ is written $\\kappa$, the cavity loss rate of Section 9.3 (not the atomic $\\gamma$), the cavity frequency $\\omega$ is $\\nu$, and the mode operators carry hats; the definitions of part (a) are repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cavity-master",
+   "prompt": "For the leaky cavity of part (a), with $H_0 = \\hbar\\nu\\hat{a}^\\dagger\\hat{a}$, $H = H_0 - i(\\hbar\\kappa/2)\\hat{a}^\\dagger\\hat{a}$, $dp = \\kappa\\,dt\\langle\\psi|\\hat{a}^\\dagger\\hat{a}|\\psi\\rangle$, $|\\tilde{\\psi}_0\\rangle = e^{-iHdt/\\hbar}|\\psi\\rangle$ and $|\\tilde{\\psi}_1\\rangle = \\hat{a}\\sqrt{\\kappa\\,dt}|\\psi\\rangle$: At time $t$, suppose the cavity starts in the pure quantum state $\\rho(t) = |\\psi\\rangle\\langle\\psi|$. At time $t + dt$ the state of the leaky cavity system is given by $$\\rho(t+dt) = (1 - dp)|\\psi_0\\rangle\\langle\\psi_0| + dp|\\psi_1\\rangle\\langle\\psi_1|.$$ Rewrite this density matrix, building it out of the the un-normalized states described in part (a). The only bras or kets to appear in your final expression should be $|\\psi\\rangle$ and $\\langle\\psi|$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $(1 - dp)|\\psi_0\\rangle\\langle\\psi_0| = |\\tilde{\\psi}_0\\rangle\\langle\\tilde{\\psi}_0|$ and $dp\\,|\\psi_1\\rangle\\langle\\psi_1| = |\\tilde{\\psi}_1\\rangle\\langle\\tilde{\\psi}_1|$, $$\\rho(t+dt) = |\\tilde{\\psi}_0\\rangle\\langle\\tilde{\\psi}_0| + |\\tilde{\\psi}_1\\rangle\\langle\\tilde{\\psi}_1| = e^{-iH\\,dt/\\hbar}|\\psi\\rangle\\langle\\psi|e^{iH^\\dagger dt/\\hbar} + \\kappa\\,dt\\,\\hat{a}|\\psi\\rangle\\langle\\psi|\\hat{a}^\\dagger.$$ The normalizations cancel, so $\\rho(t+dt)$ is linear in $\\rho(t) = |\\psi\\rangle\\langle\\psi|$, and the same expression holds for any mixture of such states."
+   }
+  },
+  {
+   "id": "hw8-2c",
+   "source_id": "hw8.2c",
+   "source_number": "Problem Set 8, Problem 2(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's cavity leak rate $\\Gamma$ is written $\\kappa$, the cavity loss rate of Section 9.3 (not the atomic $\\gamma$), the cavity frequency $\\omega$ is $\\nu$, and the mode operators carry hats; the definitions of part (a) are repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cavity-master",
+   "prompt": "For the leaky cavity of parts (a) and (b), with $H_0 = \\hbar\\nu\\hat{a}^\\dagger\\hat{a}$ and the non-Hermitian $H = H_0 - i(\\hbar\\kappa/2)\\hat{a}^\\dagger\\hat{a}$: Compute $\\rho(t+dt) - \\rho(t)$ for small $dt$, and write the coarse-grained differential equation $$\\frac{d}{dt}\\rho(t) \\approx \\frac{\\rho(t+dt) - \\rho(t)}{dt}.$$ Show that this has the proper Lindblad form of $$\\frac{d\\rho}{dt} = -\\frac{i}{\\hbar}[H_0, \\rho] - \\frac{1}{2}\\left(C^\\dagger C\\rho - 2C\\rho C^\\dagger + \\rho C^\\dagger C\\right),$$ and identify what $C$ and $C^\\dagger$ are for this case.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "To first order, $e^{-iH\\,dt/\\hbar}\\rho\\,e^{iH^\\dagger dt/\\hbar} = \\rho - \\frac{i}{\\hbar}dt\\,(H\\rho - \\rho H^\\dagger)$, and with $H = H_0 - i(\\hbar\\kappa/2)\\hat{a}^\\dagger\\hat{a}$, $$H\\rho - \\rho H^\\dagger = [H_0, \\rho] - i\\frac{\\hbar\\kappa}{2}\\left(\\hat{a}^\\dagger\\hat{a}\\rho + \\rho\\hat{a}^\\dagger\\hat{a}\\right).$$ Adding the jump term of part (b), $$\\frac{d\\rho}{dt} = -\\frac{i}{\\hbar}[H_0, \\rho] - \\frac{\\kappa}{2}\\left(\\hat{a}^\\dagger\\hat{a}\\rho - 2\\hat{a}\\rho\\hat{a}^\\dagger + \\rho\\hat{a}^\\dagger\\hat{a}\\right),$$ the Lindblad form with $C = \\sqrt{\\kappa}\\,\\hat{a}$ and $C^\\dagger = \\sqrt{\\kappa}\\,\\hat{a}^\\dagger$, the jump operator $\\hat{c}_k$ of Section 6.1 for a photon leaving the cavity. The dissipator is Eq. (9.102) at zero temperature, $n = 0$, and the cavity term of Eq. (9.109)."
+   }
+  },
+  {
+   "id": "hw10-1f",
+   "source_id": "hw10.1f",
+   "source_number": "Problem Set 10, Problem 1(f)",
+   "origin": "mit-8422",
+   "changes": "Only part (f) is set here: parts (a)–(e) treat the semiclassical dressed atom of Section 2.1 and its light force. The dressed atom in a classical field is Problem Set 7, Problem 3, set in Section 2.1 in Lukin's notation.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-basis",
+   "prompt": "The Dressed Atom. In Problem Set 7, Problem 3, you looked already at the dressed atom picture using a classical external field. Can you explain how the two pictures are connected: (a) the time dependent solutions derived with the classical field (b) the time-independent solutions derived in class using a quantized electromagnetic field.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With the quantized field, the Jaynes-Cummings Hamiltonian $\\hat{H} = \\hbar\\nu\\hat{a}^\\dagger\\hat{a} + \\hbar\\omega|2\\rangle\\langle 2| + \\hbar g(\\hat{a}^\\dagger\\hat{\\sigma}_{12} + \\hat{a}\\hat{\\sigma}_{21})$ couples only the pairs $|1\\rangle_a|n\\rangle$ and $|2\\rangle_a|n-1\\rangle$, whose energies $n\\hbar\\nu$ and $\\hbar\\omega + (n-1)\\hbar\\nu$ differ by $\\hbar\\delta$, $\\delta = \\nu - \\omega$, with the matrix element $\\hbar g\\sqrt{n}$. Each pair is a time-independent two-level problem; its eigenstates are the dressed states of the $n$-th rung, split by $\\hbar\\sqrt{4g^2 n + \\delta^2}$ (Figure 9.8a), and the rungs repeat every $\\hbar\\nu$. A classical field is a coherent state with $\\bar{n} = |\\alpha|^2 \\gg 1$: over the photon numbers $\\bar{n} \\pm \\sqrt{\\bar{n}}$ it occupies, $g\\sqrt{n}$ changes by only a fraction $1/2\\sqrt{\\bar{n}}$, so every rung it touches has the same splitting, and $g\\sqrt{\\bar{n}}$ is the classical Rabi frequency $\\Omega = \\mu\\mathcal{E}/\\hbar$ of the field amplitude $\\mathcal{E} = \\bar{\\mathcal{E}}\\sqrt{\\bar{n}}$. Measured from its centre, one rung's $2\\times 2$ Hamiltonian is the rotating-frame Hamiltonian $\\tilde{H}$ of Eq. (2.23) with $\\Omega \\to g\\sqrt{n}$: the same eigenvalues $\\pm\\hbar\\sqrt{\\Omega^2 + \\delta^2/4}$, the same dressed states, the same light shift $\\hbar\\Omega^2/\\delta$ far from resonance. The rotating frame of the classical picture, $c_2 = \\tilde{c}_2 e^{-i\\nu t}$, removes the energy $\\hbar\\nu$ that the quantized picture books as one photon more or less, so the classical dressed states are the quantized ones with the photon label dropped; the time-dependent solutions in the laboratory frame are superpositions over neighbouring rungs, whose phases $e^{-in\\nu t}$ beat at $\\nu$ to give the oscillating field. The quantized picture holds what the classical one cannot: the $\\sqrt{n}$ dependence that matters at small $n$ (the vacuum Rabi splitting $2g$ at $n = 1$, the collapse and revival of Section 9.2), and spontaneous emission as a step down the ladder, which the classical picture must add by hand."
+   }
+  },
+  {
+   "id": "hw1-2a",
+   "source_id": "hw1.2a",
+   "source_number": "Problem Set 1, Problem 2(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the mode operators carry hats, and MIT's drawing of the apparatus is described in words. MIT's beamsplitter, $(\\hat{a} \\pm \\hat{b})/\\sqrt{2}$, is real, where Lukin's of Section 9.1 puts a factor $i$ on reflection.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hbt",
+   "prompt": "The Hanbury-Brown Twiss experiment and $g^{(2)}(\\tau)$. The second-order coherence function $g^{(2)}(\\tau)$ is often measured in the laboratory using an experiment first developed by Hanbury-Brown and Twiss in the 1950's, for studying the light from distant stars. This experiment involves mixing light from the input source with the vacuum, $|0\\rangle$, on a 50/50 beamsplitter, and measuring the intensity-intensity correlation function at the output using two detectors and a coincidence circuit: the two outputs of the beamsplitter fall on detectors $D_1$ and $D_2$, whose signals meet in a coincidence detector. This problem examines how this experiment measures $g^{(2)}(\\tau)$, and what results are obtained for different input states of light. Let $\\hat{a}$, $\\hat{a}^\\dagger$, and $\\hat{b}$, $\\hat{b}^\\dagger$ be the raising and lowering operators for the two modes of light input to the beamsplitter, and let the unitary transformation performed by the beamsplitter be defined by $$\\hat{a}_1 = U\\hat{a}U^\\dagger = \\frac{\\hat{a} + \\hat{b}}{\\sqrt{2}}, \\qquad \\hat{b}_1 = U\\hat{b}U^\\dagger = \\frac{\\hat{a} - \\hat{b}}{\\sqrt{2}}.$$ For light input in state $|\\psi\\rangle$, you are given that the output of the coincidence circuit is a voltage $$V_\\psi = V_0\\langle\\psi, 0|\\hat{a}_1^\\dagger\\hat{a}_1\\hat{b}_1^\\dagger\\hat{b}_1|\\psi, 0\\rangle,$$ where $V_0$ is some proportionality constant, and $|\\psi, 0\\rangle$ denotes a state with $|\\psi\\rangle$ in mode “$a$” and $|0\\rangle$ in mode “$b$”. In other words, the voltage is the average of the product of the two detected photon signals. Show that $V_\\psi$ gives a measure of $g^{(2)}(\\tau)$, $$g^{(2)}(\\tau) = \\frac{\\langle\\hat{a}^\\dagger\\hat{a}^\\dagger\\hat{a}\\hat{a}\\rangle}{\\langle\\hat{a}^\\dagger\\hat{a}\\rangle^2}$$ up to an additive offset and normalization.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Mode $b$ is in vacuum, so $\\hat{b}|\\psi, 0\\rangle = 0$ and $\\langle\\psi, 0|\\hat{b}^\\dagger = 0$. In $\\hat{a}_1^\\dagger\\hat{a}_1\\hat{b}_1^\\dagger\\hat{b}_1 = \\frac{1}{4}(\\hat{a}^\\dagger + \\hat{b}^\\dagger)(\\hat{a} + \\hat{b})(\\hat{a}^\\dagger - \\hat{b}^\\dagger)(\\hat{a} - \\hat{b})$ the last factor therefore acts as $\\hat{a}$ and the first as $\\hat{a}^\\dagger$, leaving $$V_\\psi = \\frac{V_0}{4}\\langle\\hat{a}^\\dagger\\left(\\hat{a}\\hat{a}^\\dagger - \\hat{a}\\hat{b}^\\dagger + \\hat{b}\\hat{a}^\\dagger - \\hat{b}\\hat{b}^\\dagger\\right)\\hat{a}\\rangle = \\frac{V_0}{4}\\left(\\langle\\hat{a}^\\dagger\\hat{a}\\hat{a}^\\dagger\\hat{a}\\rangle - \\langle\\hat{a}^\\dagger\\hat{a}\\rangle\\right) = \\frac{V_0}{4}\\langle\\hat{a}^\\dagger\\hat{a}^\\dagger\\hat{a}\\hat{a}\\rangle,$$ since the terms with a lone $\\hat{b}^\\dagger$ or $\\hat{b}$ vanish, $\\langle 0|\\hat{b}\\hat{b}^\\dagger|0\\rangle = 1$, and $\\hat{a}\\hat{a}^\\dagger - 1 = \\hat{a}^\\dagger\\hat{a}$. Each detector alone sees $\\langle\\hat{a}_1^\\dagger\\hat{a}_1\\rangle = \\langle\\hat{b}_1^\\dagger\\hat{b}_1\\rangle = \\frac{1}{2}\\langle\\hat{a}^\\dagger\\hat{a}\\rangle$, so dividing by the product of the two mean signals gives $$\\frac{V_\\psi}{\\langle\\hat{a}_1^\\dagger\\hat{a}_1\\rangle\\langle\\hat{b}_1^\\dagger\\hat{b}_1\\rangle} = V_0\\,g^{(2)}:$$ the coincidence voltage measures $g^{(2)}$ up to normalization. The vacuum entering the open port is what removes the term $\\langle\\hat{a}^\\dagger\\hat{a}\\rangle$, the offset that the product $\\langle(\\hat{a}^\\dagger\\hat{a})^2\\rangle$ of one detector's signal with itself would carry. Reading the two detectors at $t$ and $t + \\tau$ gives the numerator $\\langle\\hat{a}^\\dagger(t)\\hat{a}^\\dagger(t+\\tau)\\hat{a}(t+\\tau)\\hat{a}(t)\\rangle$ of $g^{(2)}(\\tau)$; for one mode this is Eq. (9.134)."
+   }
+  },
+  {
+   "id": "hw1-2b",
+   "source_id": "hw1.2b",
+   "source_number": "Problem Set 1, Problem 2(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the mode operators carry hats, and MIT's drawing of the apparatus is described in words. MIT's beamsplitter, $(\\hat{a} \\pm \\hat{b})/\\sqrt{2}$, is real, where Lukin's of Section 9.1 puts a factor $i$ on reflection.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hbt",
+   "prompt": "In the Hanbury-Brown Twiss experiment: The classical expression for $g^{(2)}$ is $$g^{(2)}_{cl}(\\tau) = \\frac{\\langle\\bar{I}(t)\\bar{I}(t+\\tau)\\rangle}{\\langle\\bar{I}\\rangle^2}.$$ Prove that $g^{(2)}_{cl}(0) \\geq 1$. It is helpful to use the fact that $\\langle(\\bar{I}(t) - \\langle\\bar{I}(t)\\rangle)^2\\rangle \\geq 0$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For stationary light $\\langle\\bar{I}(t)\\rangle = \\langle\\bar{I}\\rangle$ at every time, so $$0 \\leq \\langle(\\bar{I}(t) - \\langle\\bar{I}\\rangle)^2\\rangle = \\langle\\bar{I}(t)^2\\rangle - \\langle\\bar{I}\\rangle^2,$$ and $g^{(2)}_{cl}(0) = \\langle\\bar{I}^2\\rangle/\\langle\\bar{I}\\rangle^2 \\geq 1$, with equality only for an intensity that does not fluctuate. Any classical field, however noisy, has $g^{(2)}(0) \\geq 1$: the thermal value 2 (bunching) is allowed, while a measured value below 1 (antibunching, such as the single photon's 0) has no classical explanation."
+   }
+  },
+  {
+   "id": "hw1-2c",
+   "source_id": "hw1.2c",
+   "source_number": "Problem Set 1, Problem 2(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the mode operators carry hats, and MIT's drawing of the apparatus is described in words. MIT's beamsplitter, $(\\hat{a} \\pm \\hat{b})/\\sqrt{2}$, is real, where Lukin's of Section 9.1 puts a factor $i$ on reflection. The definition of $g^{(2)}$ is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hbt",
+   "prompt": "With $g^{(2)}(\\tau) = \\langle\\hat{a}^\\dagger\\hat{a}^\\dagger\\hat{a}\\hat{a}\\rangle/\\langle\\hat{a}^\\dagger\\hat{a}\\rangle^2$ as measured in the Hanbury-Brown Twiss experiment: Compute $g^{(2)}(\\tau)$ for the following input light states: $$|\\psi_1\\rangle = |\\alpha\\rangle = e^{-|\\alpha|^2/2}\\sum_k \\frac{\\alpha^k}{\\sqrt{k!}}|k\\rangle \\quad \\text{(a coherent state)}, \\qquad |\\psi_2\\rangle = |2\\rangle \\quad \\text{(the number state } n = 2\\text{)}.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "For $|\\alpha\\rangle$, $\\hat{a}|\\alpha\\rangle = \\alpha|\\alpha\\rangle$, so $\\langle\\hat{a}^\\dagger\\hat{a}^\\dagger\\hat{a}\\hat{a}\\rangle = |\\alpha|^4$ and $\\langle\\hat{a}^\\dagger\\hat{a}\\rangle = |\\alpha|^2$: $g^{(2)} = 1$, and for every $\\tau$, since a freely evolving single mode has $\\hat{a}(t) = \\hat{a}e^{-i\\nu t}$ and the delay changes nothing. For $|2\\rangle$, $\\hat{a}\\hat{a}|2\\rangle = \\sqrt{2}|0\\rangle$, so $\\langle\\hat{a}^\\dagger\\hat{a}^\\dagger\\hat{a}\\hat{a}\\rangle = 2$ and $\\langle\\hat{a}^\\dagger\\hat{a}\\rangle = 2$: $g^{(2)} = 2/4 = 1/2$. That is below the classical bound of part (b), photon antibunching. For any number state $|n\\rangle$, $g^{(2)} = n(n-1)/n^2 = 1 - 1/n$, which is 0 for the single photon state."
+   }
+  },
+  {
+   "id": "hw1-2d",
+   "source_id": "hw1.2d",
+   "source_number": "Problem Set 1, Problem 2(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: the mode operators carry hats, and MIT's drawing of the apparatus is described in words. MIT's beamsplitter, $(\\hat{a} \\pm \\hat{b})/\\sqrt{2}$, is real, where Lukin's of Section 9.1 puts a factor $i$ on reflection. The definition of $g^{(2)}$ is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hbt",
+   "prompt": "With $g^{(2)}(\\tau) = \\langle\\hat{a}^\\dagger\\hat{a}^\\dagger\\hat{a}\\hat{a}\\rangle/\\langle\\hat{a}^\\dagger\\hat{a}\\rangle^2$ as measured in the Hanbury-Brown Twiss experiment: Compute $g^{(2)}(\\tau)$ for the following input light states, as a function of $\\alpha$: $$|\\psi_3\\rangle = \\frac{|\\alpha\\rangle + |-\\alpha\\rangle}{\\sqrt{2}}, \\qquad |\\psi_4\\rangle = \\frac{|\\alpha\\rangle - |-\\alpha\\rangle}{\\sqrt{2}}.$$ Do either of these two states show non-classical second-order coherence? Why (or why not)?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Since $\\langle\\alpha|-\\alpha\\rangle = e^{-2|\\alpha|^2}$, the factor $1/\\sqrt{2}$ normalizes them only for large $|\\alpha|$; with $N_\\pm = 2(1 \\pm e^{-2|\\alpha|^2})$ the states are $(|\\alpha\\rangle \\pm |-\\alpha\\rangle)/\\sqrt{N_\\pm}$. The annihilation operator flips the parity, $\\hat{a}(|\\alpha\\rangle \\pm |-\\alpha\\rangle) = \\alpha(|\\alpha\\rangle \\mp |-\\alpha\\rangle)$, while $\\hat{a}^2(|\\alpha\\rangle \\pm |-\\alpha\\rangle) = \\alpha^2(|\\alpha\\rangle \\pm |-\\alpha\\rangle)$. So $\\langle\\hat{a}^\\dagger\\hat{a}^\\dagger\\hat{a}\\hat{a}\\rangle = |\\alpha|^4$ for both, $\\langle\\hat{a}^\\dagger\\hat{a}\\rangle = |\\alpha|^2 N_\\mp/N_\\pm$, and $$g^{(2)}_3 = \\left(\\frac{N_+}{N_-}\\right)^2 = \\coth^2|\\alpha|^2, \\qquad g^{(2)}_4 = \\left(\\frac{N_-}{N_+}\\right)^2 = \\tanh^2|\\alpha|^2,$$ for every $\\tau$. The even state $|\\psi_3\\rangle$ has $g^{(2)} > 1$, bunched, which a classical field could also give; the odd state $|\\psi_4\\rangle$ has $g^{(2)} < 1$, antibunched, which part (b) forbids every classical field: it shows non-classical second-order coherence. Both tend to the coherent value 1 as $|\\alpha|$ grows. As $\\alpha \\to 0$ the odd state becomes the single photon $|1\\rangle$, with $g^{(2)} \\to 0$, and the even state the vacuum with a small two-photon part, with $g^{(2)} \\to \\infty$. The Schrodinger cat $\\sim|i\\alpha\\rangle - |-i\\alpha\\rangle$ of Section 9.2 is the odd state at a rotated phase, with the same $g^{(2)} = \\tanh^2|\\alpha|^2$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "hw2-2a",
+   "concept": "beamsplitter-loss-model"
+  },
+  {
+   "exercise": "hw2-2a",
+   "concept": "poisson-photon-statistics"
+  },
+  {
+   "exercise": "hw2-2b",
+   "concept": "beamsplitter-loss-model"
+  },
+  {
+   "exercise": "hw2-2b",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw3-1a",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw3-1b",
+   "concept": "beamsplitter-loss-model"
+  },
+  {
+   "exercise": "hw3-1b",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw3-1c",
+   "concept": "beamsplitter-loss-model"
+  },
+  {
+   "exercise": "hw3-1c",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw3-1d",
+   "concept": "beamsplitter-loss-model"
+  },
+  {
+   "exercise": "hw3-1d",
+   "concept": "coherent-state"
+  },
+  {
+   "exercise": "hw8-2a",
+   "concept": "cavity-master-equation"
+  },
+  {
+   "exercise": "hw8-2a",
+   "concept": "no-jump-evolution"
+  },
+  {
+   "exercise": "hw8-2a",
+   "concept": "cavity-loss-rate"
+  },
+  {
+   "exercise": "hw8-2b",
+   "concept": "cavity-master-equation"
+  },
+  {
+   "exercise": "hw8-2b",
+   "concept": "quantum-jump"
+  },
+  {
+   "exercise": "hw8-2c",
+   "concept": "cavity-master-equation"
+  },
+  {
+   "exercise": "hw8-2c",
+   "concept": "lindblad-master-equation"
+  },
+  {
+   "exercise": "hw10-1f",
+   "concept": "jaynes-cummings-ladder"
+  },
+  {
+   "exercise": "hw10-1f",
+   "concept": "dressed-states"
+  },
+  {
+   "exercise": "hw1-2a",
+   "concept": "hanbury-brown-twiss"
+  },
+  {
+   "exercise": "hw1-2a",
+   "concept": "second-order-correlation"
+  },
+  {
+   "exercise": "hw1-2b",
+   "concept": "second-order-correlation"
+  },
+  {
+   "exercise": "hw1-2c",
+   "concept": "photon-bunching"
+  },
+  {
+   "exercise": "hw1-2c",
+   "concept": "second-order-correlation"
+  },
+  {
+   "exercise": "hw1-2d",
+   "concept": "photon-bunching"
+  },
+  {
+   "exercise": "hw1-2d",
+   "concept": "schrodinger-cat-state"
+  }
+ ],
+ "referents": [
+  {
+   "id": "cat-plus",
+   "label": "the component |iα⟩",
+   "figures": [
+    "fig-cat"
+   ]
+  },
+  {
+   "id": "cat-minus",
+   "label": "the component |−iα⟩",
+   "figures": [
+    "fig-cat"
+   ]
+  },
+  {
+   "id": "signal",
+   "label": "the signal â_in",
+   "figures": [
+    "fig-bs-loss"
+   ]
+  },
+  {
+   "id": "vacuum",
+   "label": "the vacuum field b̂_vac",
+   "figures": [
+    "fig-bs-loss"
+   ]
+  },
+  {
+   "id": "atom",
+   "label": "the atom",
+   "figures": [
+    "fig-cqed-reservoirs",
+    "sim-jc-ladder",
+    "sim-vacuum-rabi"
+   ]
+  },
+  {
+   "id": "cavity",
+   "label": "the cavity mode",
+   "figures": [
+    "fig-cqed-reservoirs",
+    "sim-jc-ladder",
+    "sim-vacuum-rabi"
+   ]
+  },
+  {
+   "id": "res-free",
+   "label": "the free-space modes the atom decays into",
+   "figures": [
+    "fig-cqed-reservoirs"
+   ]
+  },
+  {
+   "id": "res-leak",
+   "label": "the modes the cavity leaks into",
+   "figures": [
+    "fig-cqed-reservoirs"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "footnote-2",
+   "kind": "book",
+   "number": "2",
+   "html": "For further details, the derivation of the cavity input/output relations was first given in Phys. Rev. A <strong>31</strong>, 3761 (1985) by Gardiner and Collett."
+  },
+  {
+   "id": "footnote-3",
+   "kind": "book",
+   "number": "3",
+   "html": "<p>More directly, one can examine the initial state $|\\kalphacoh\\rangle|0\\rangle_r$, where $|0\\rangle_r$ refers to the reservoir in the vacuum state. It can be readily seen that</p><div class=\"equation\" id=\"eq-9-105\">$$\\hat{a}(\\kt)|\\kalphacoh\\rangle|0\\rangle_r = e^{-\\kkappa \\kt/2}\\kalphacoh|\\kalphacoh\\rangle|0\\rangle_r, \\tag{9.105}$$</div><p>such that the state at later times corresponds to a <span data-concept=\"coherent-state\">coherent state</span> $|\\kalphacoh e^{-\\kkappa \\kt/2}\\rangle$.</p>"
+  },
+  {
+   "id": "c-lossless",
+   "kind": "correction",
+   "html": "The book writes “a perfect mirror”. The relation $r^2 + t^2 = 1$ holds for a lossless mirror, one that absorbs nothing; the perfectly reflecting mirror of Figure 9.6 has $r = 1$."
+  },
+  {
+   "id": "c-eq-9-102",
+   "kind": "correction",
+   "html": "The book writes the density operator $\\krhohat$ on the left of Eq. (9.102) and $\\rho$ on the right; both are the cavity's density operator $\\krhohat$."
+  },
+  {
+   "id": "c-eq-9-108",
+   "kind": "correction",
+   "html": "The book writes the atomic operator $\\hat{\\sigma}_{\\alpha,\\beta}$ with no index $j$. The sum runs over the atoms, and the operator is the lowering operator $\\hat{\\sigma}^{(j)}_{12}$ of atom $j$."
+  },
+  {
+   "id": "c-vrs",
+   "kind": "correction",
+   "html": "The book calls the splitting $\\kg$. On resonance the two dressed states of the lowest pair lie at $\\pm\\hbar\\kg$, so the vacuum Rabi splitting is $2\\kg$, as Figure 9.8a's $\\sqrt{4\\kg^2 + \\kdelta^2}$ gives at $\\kdelta = 0$."
+  },
+  {
+   "id": "c-collective",
+   "kind": "correction",
+   "html": "With $N$ atoms the coupling grows to $\\kg\\sqrt{N}$, and the splitting, twice the coupling, to $2\\kg\\sqrt{N}$; the book writes $\\kg\\sqrt{N}$."
+  },
+  {
+   "id": "c-eq-9-113",
+   "kind": "correction",
+   "html": "With $\\kH$ of Eq. (9.110), the Schrodinger equation gives $\\dot{\\kconeone} = -i\\kdelta\\kconeone - i\\kg\\kctwozero$ and $\\dot{\\kctwozero} = -i\\kg\\kconeone$ (for real $\\kg$). Eqs. (9.113) and (9.114) as printed are their complex conjugates: they give the same populations, with every phase reversed."
+  },
+  {
+   "id": "c-eq-9-116",
+   "kind": "correction",
+   "html": "In the sign convention of Eq. (9.110) the no-jump equations are $\\dot{\\kconeone} = -(\\frac{\\kkappa}{2} + i\\kdelta)\\kconeone - i\\kg\\kctwozero$ and $\\dot{\\kctwozero} = -i\\kg\\kconeone - \\frac{\\kgamma}{2}\\kctwozero$; Eqs. (9.116) and (9.117) as printed are their complex conjugates, with the same populations."
+  },
+  {
+   "id": "c-circular",
+   "kind": "correction",
+   "html": "A circular state of principal quantum number $n = 50$ has the largest orbital angular momentum allowed, $l = n - 1 = 49$: the state is N=50, L=49."
+  },
+  {
+   "id": "c-eq-9-132",
+   "kind": "correction",
+   "html": "Eqs. (9.118) and (9.119) at $\\kgamma = \\kdelta = 0$ give $\\kconeone = (2i\\kg/\\kkappa)\\kctwozero$ and $\\kctwozero \\propto e^{-(2\\kg^2/\\kkappa)\\kt}$, so the free-space amplitudes form a Lorentzian of half-width $2\\kg^2/\\kkappa$, $\\kck \\sim (2t_k\\kg/\\kkappa)/(2\\kg^2/\\kkappa + i\\kdeltak)$ up to the sign convention of $\\kdeltak$, where the book has $\\kg^2/\\kkappa$."
+  },
+  {
+   "id": "c-envelope",
+   "kind": "correction",
+   "html": "The field envelope decays as the amplitude $\\kctwozero$ does, $\\sim e^{-(2\\kg^2/\\kkappa)\\kt}$ by Eq. (9.119) at $\\kgamma = \\kdelta = 0$, where the book writes $e^{-(\\kg^2/\\kkappa)\\kt}$; the emitted intensity then decays at $4\\kg^2/\\kkappa$, the Purcell rate of Eq. (9.120)."
+  },
+  {
+   "id": "c-hw8-dt",
+   "kind": "correction",
+   "html": "MIT prints $e^{-iHt/\\hbar}$; over the step from $t$ to $t + dt$ the no-jump evolution is $e^{-iH\\,dt/\\hbar}$, as the rest of the problem uses."
+  },
+  {
+   "id": "c-eq-9-133",
+   "kind": "correction",
+   "html": "Eqs. (9.133) and (9.134) print $\\kEenv(r_1, \\kt_1\\rangle$ without its closing parenthesis: $\\kEenv(r_1, \\kt_1)\\rangle$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "cavity-field-evolution",
+   "what": "the classical evolution of the cavity field",
+   "source": "Modern Atomic and Optical Physics II, 9.3.1 Dynamics of a single mode field in a lossy cavity",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kDeltat = 2\\kLmed/c",
+       "src": "9.3.1"
+      },
+      {
+       "tex": "\\frac{\\kEcav(\\kt+\\kDeltat) - \\kEcav(\\kt)}{\\kDeltat} \\to \\frac{d}{d\\kt}\\kEcav(\\kt)",
+       "src": "(9.82)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kEcav(\\kt+\\kDeltat)} = \\mk{in}{t\\kEcav_\\mathrm{in}(\\kt)} + \\mk{r}{r\\kEcav(\\kt)}",
+      "src": "(9.81)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kEcav(\\kt+\\kDeltat) - \\kEcav(\\kt)} = \\mk{in}{t\\kEcav_\\mathrm{in}(\\kt)} - \\mk{r}{(1-r)\\kEcav(\\kt)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\kEcav(\\kt+\\kDeltat) - \\kEcav(\\kt)}{\\kDeltat}} = \\mk{in}{\\frac{t}{\\kDeltat}\\kEcav_\\mathrm{in}(\\kt)} - \\mk{r}{\\frac{1-r}{\\kDeltat}\\kEcav(\\kt)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kEcav(\\kt)} = \\mk{in}{\\frac{t}{\\kDeltat}\\kEcav_\\mathrm{in}(\\kt)} - \\mk{r}{\\frac{1-r}{\\kDeltat}\\kEcav(\\kt)}",
+       "uses": [
+        1
+       ],
+       "cap": "Converting this difference equation into a differential equation."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kEcav(\\kt)} = -\\mk{r}{\\frac{(1-r)c}{2\\kLmed}\\kEcav(\\kt)} + \\mk{in}{\\frac{tc}{2\\kLmed}\\kEcav_\\mathrm{in}(\\kt)}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(9.83)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "For a lossless mirror, $r^2 + t^2 = 1$.",
+       "src": "9.3.1"
+      },
+      {
+       "text": "The mirror transmits little, $t \\ll 1$, so $r$ is close to $1$.",
+       "src": "9.3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k}{\\kkappa} = \\mk{d}{\\frac{2c(1-r)}{2\\kLmed}}",
+      "uses": [
+       0
+      ],
+      "why": "The loss rate is defined so that the cavity field of Eq. (9.83) decays as $-\\frac{\\kappa}{2}E$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k}{\\kkappa} = \\mk{d}{\\frac{2c(1-r)}{2\\kLmed}} \\approx \\mk{a}{\\frac{(1+r)(1-r)c}{2\\kLmed}}",
+       "uses": [
+        2
+       ],
+       "cap": "With $r$ close to $1$, $2 \\approx 1 + r$."
+      },
+      {
+       "tex": "\\mk{k}{\\kkappa} = \\mk{d}{\\frac{2c(1-r)}{2\\kLmed}} \\approx \\mk{a}{\\frac{(1-r^2)c}{2\\kLmed}}",
+       "uses": [],
+       "cap": "A difference of squares, $(1+r)(1-r) = 1 - r^2$."
+      },
+      {
+       "tex": "\\mk{k}{\\kkappa} = \\mk{d}{\\frac{2c(1-r)}{2\\kLmed}} \\approx \\mk{a}{\\frac{t^2 c}{2\\kLmed}}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(9.84)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kEcav(\\kt)} = -\\mk{r}{\\frac{(1-r)c}{2\\kLmed}\\kEcav(\\kt)} + \\mk{in}{\\frac{tc}{2\\kLmed}\\kEcav_\\mathrm{in}(\\kt)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kEcav(\\kt)} = -\\mk{r}{\\frac{\\kkappa}{2}\\kEcav(\\kt)} + \\mk{in}{\\frac{tc}{2\\kLmed}\\kEcav_\\mathrm{in}(\\kt)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kEcav(\\kt)} = -\\mk{r}{\\frac{\\kkappa}{2}\\kEcav(\\kt)} + \\mk{in}{\\sqrt{\\frac{\\kkappa c}{2\\kLmed}}\\kEcav_\\mathrm{in}(\\kt)}",
+       "uses": [
+        1
+       ],
+       "cap": "With $\\kappa \\approx t^2c/2L$, $(tc/2L)^2 = \\kappa c/2L$."
+      }
+     ],
+     "num": "(9.85)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "text": "In the Fourier domain, $E(t) = \\int E(\\omega)e^{-i\\omega t}d\\omega$, so $d/dt$ becomes $-i\\omega$.",
+       "src": "9.3.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kEcav(\\kt)} = -\\mk{r}{\\frac{\\kkappa}{2}\\kEcav(\\kt)} + \\mk{in}{\\sqrt{\\frac{\\kkappa c}{2\\kLmed}}\\kEcav_\\mathrm{in}(\\kt)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{-i\\komega\\kEcav(\\komega)} = -\\mk{r}{\\frac{\\kkappa}{2}\\kEcav(\\komega)} + \\mk{in}{\\sqrt{\\frac{\\kkappa c}{2\\kLmed}}\\kEcav_\\mathrm{in}(\\komega)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{(\\kkappa/2 - i\\komega)\\kEcav(\\komega)} = \\mk{in}{\\sqrt{\\frac{\\kkappa c}{2\\kLmed}}\\kEcav_\\mathrm{in}(\\komega)}",
+       "uses": [],
+       "map": {
+        "r": "L"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\kEcav(\\komega)} = \\mk{in}{\\frac{\\sqrt{\\kkappa c/2\\kLmed}}{\\kkappa/2 - i\\komega}\\kEcav_\\mathrm{in}(\\komega)}",
+       "uses": []
+      }
+     ],
+     "num": "(9.86)"
+    }
+   ]
+  },
+  {
+   "id": "damped-coherent-amplitude",
+   "what": "the decay of the cavity field amplitude",
+   "source": "Modern Atomic and Optical Physics II, 9.3.2 Quantum mechanical treatment of the cavity mode",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{a}} = \\mk{R}{\\frac{-\\kkappa}{2}\\hat{a}} + \\mk{F}{\\kFnoise}",
+      "src": "(9.89)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\left(e^{\\kkappa\\kt/2}\\hat{a}\\right)} = \\mk{F}{e^{\\kkappa\\kt/2}\\kFnoise(\\kt)}",
+       "uses": [],
+       "cap": "Multiplying by $e^{\\kappa t/2}$ joins the decay term to the derivative: $\\frac{d}{dt}(e^{\\kappa t/2}\\hat a) = e^{\\kappa t/2}(\\dot{\\hat a} + \\frac{\\kappa}{2}\\hat a)$.",
+       "map": {
+        "R": "L"
+       }
+      },
+      {
+       "tex": "\\mk{L}{e^{\\kkappa\\kt/2}\\hat{a}(\\kt) - \\hat{a}(0)} = \\mk{F}{\\int_0^{\\kt}\\kFnoise(\\kt')e^{\\kkappa\\kt'/2}d\\kt'}",
+       "uses": [],
+       "cap": "Integrating from $0$ to $t$."
+      },
+      {
+       "tex": "\\mk{L}{\\hat{a}(\\kt)} = \\mk{a0}{e^{-\\kkappa \\kt/2}\\hat{a}(0)} + \\mk{F}{\\int_0^{\\kt} \\kFnoise(\\kt')e^{-\\kkappa(\\kt-\\kt')/2}d\\kt'}",
+       "uses": []
+      }
+     ],
+     "num": "(9.103)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The radiation bath is initially in the vacuum state."
+      },
+      {
+       "tex": "\\kFnoise = -\\sum_k t_k\\hat{a}_k(0)e^{i(\\knu-\\knuk)\\kt}",
+       "src": "(9.97)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\hat{a}(\\kt)} = \\mk{a0}{e^{-\\kkappa \\kt/2}\\hat{a}(0)} + \\mk{F}{\\int_0^{\\kt} \\kFnoise(\\kt')e^{-\\kkappa(\\kt-\\kt')/2}d\\kt'}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\hat{a}(\\kt)\\rangle} = \\mk{a0}{e^{-\\kkappa \\kt/2}\\langle\\hat{a}(0)\\rangle} + \\mk{F}{\\int_0^{\\kt} \\langle\\kFnoise(\\kt')\\rangle e^{-\\kkappa(\\kt-\\kt')/2}d\\kt'}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\hat{a}(\\kt)\\rangle} = \\mk{a0}{e^{-\\kkappa \\kt/2}\\langle\\hat{a}(0)\\rangle}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Every $\\hat a_k(0)$ in $\\hat{\\mathcal F}$ annihilates the vacuum, so $\\langle\\hat{\\mathcal F}\\rangle = 0$."
+      }
+     ],
+     "num": "(9.104)"
+    }
+   ]
+  },
+  {
+   "id": "damped-quadrature-variance",
+   "what": "the quadrature variance of a decaying cavity field",
+   "source": "Modern Atomic and Optical Physics II, 9.3.2 Quantum mechanical treatment of the cavity mode",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{a}(\\kt) = e^{-\\kkappa \\kt/2}\\hat{a}(0) + \\int_0^{\\kt} \\kFnoise(\\kt')e^{-\\kkappa(\\kt-\\kt')/2}d\\kt'",
+       "src": "(9.103)"
+      },
+      {
+       "tex": "\\kxquad = \\frac{1}{\\sqrt{2}}\\left(\\hat{a} + \\hat{a}^\\dagger\\right)",
+       "src": "(9.13)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{x}{\\kxquad(\\kt)} = \\mk{R}{\\frac{1}{\\sqrt{2}}\\left(\\hat{a}(\\kt) + \\hat{a}^\\dagger(\\kt)\\right)}",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{x}{\\kxquad(\\kt)} = \\mk{R}{\\frac{1}{\\sqrt{2}}\\left(\\hat{a}(0) + \\hat{a}^\\dagger(0)\\right)e^{-\\kkappa \\kt/2} + \\int_0^{\\kt}\\left(\\frac{\\kFnoise(\\kt') + \\kFnoise^\\dagger(\\kt')}{\\sqrt{2}}\\right)e^{-\\kkappa(\\kt-\\kt')/2}d\\kt'}",
+       "uses": [0],
+       "cap": "Eq. (9.103) and its adjoint."
+      },
+      {
+       "tex": "\\mk{x}{\\kxquad(\\kt)} = \\mk{x0}{\\kxquad(0)e^{-\\kkappa \\kt/2}} + \\mk{n}{\\int_0^{\\kt}\\left(\\frac{\\kFnoise(\\kt') + \\kFnoise^\\dagger(\\kt')}{\\sqrt{2}}\\right)e^{-\\kkappa(\\kt-\\kt')/2}d\\kt'}",
+       "uses": [1],
+       "map": {
+        "R": [
+         "x0",
+         "n"
+        ]
+       }
+      }
+     ],
+     "num": "(9.106)",
+     "note": "The book prints the integral of Eq. (9.106) without its variable; it is $\\int_0^t(\\ldots)\\,e^{-\\kappa(t-t')/2}\\,dt'$, as in Eq. (9.103)."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\langle\\kFnoise(\\kt)\\kFnoise^\\dagger(\\kt')\\rangle = (n+1)\\kkappa\\delta(\\kt-\\kt')",
+       "src": "(9.98)"
+      },
+      {
+       "tex": "\\langle\\kFnoise^\\dagger(\\kt)\\kFnoise(\\kt')\\rangle = n\\kkappa\\delta(\\kt-\\kt')",
+       "src": "(9.99)"
+      },
+      {
+       "text": "The radiation bath is initially in the vacuum state, $n = 0$."
+      },
+      {
+       "text": "The noise of Eq. (9.97) is made of reservoir operators at $t = 0$, so it is uncorrelated with the cavity mode and $\\langle\\hat{\\mathcal F}\\rangle = 0$.",
+       "src": "(9.97)"
+      },
+      {
+       "text": "In the vacuum $\\langle\\hat{\\mathcal F}\\hat{\\mathcal F}\\rangle = \\langle\\hat{\\mathcal F}^\\dagger\\hat{\\mathcal F}^\\dagger\\rangle = 0$: since $\\hat a_k(0)$ annihilates the vacuum on the right and $\\hat a_k^\\dagger(0)$ on the left.",
+       "src": "(9.97)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\langle\\delta\\kxquad^2(\\kt)\\rangle} = \\mk{R}{\\langle\\kxquad(\\kt)^2\\rangle - \\langle\\kxquad(\\kt)\\rangle^2}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\langle\\delta\\kxquad^2(\\kt)\\rangle} = \\mk{a}{\\langle\\delta\\kxquad^2(0)\\rangle e^{-\\kkappa \\kt}} + \\mk{n}{\\frac{1}{2}\\int_0^{\\kt}\\int_0^{\\kt}\\langle(\\kFnoise(\\kt') + \\kFnoise^\\dagger(\\kt'))(\\kFnoise(\\kt'') + \\kFnoise^\\dagger(\\kt''))\\rangle e^{-\\kkappa(\\kt-\\kt')/2}e^{-\\kkappa(\\kt-\\kt'')/2}d\\kt'd\\kt''}",
+       "uses": [0, 4],
+       "cap": "Squaring Eq. (9.106): the cross terms between $\\hat x(0)$ and the noise average to zero.",
+       "map": {
+        "R": [
+         "a",
+         "n"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\delta\\kxquad^2(\\kt)\\rangle} = \\mk{a}{\\langle\\delta\\kxquad^2(0)\\rangle e^{-\\kkappa \\kt}} + \\mk{n}{\\frac{1}{2}\\int_0^{\\kt}\\int_0^{\\kt}\\langle\\kFnoise(\\kt')\\kFnoise^\\dagger(\\kt'')\\rangle e^{-\\kkappa(\\kt-\\kt')/2}e^{-\\kkappa(\\kt-\\kt'')/2}d\\kt'd\\kt''}",
+       "uses": [2, 3, 5],
+       "cap": "In the vacuum only the ordering $\\hat{\\mathcal F}\\hat{\\mathcal F}^\\dagger$ survives."
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\delta\\kxquad^2(\\kt)\\rangle} = \\mk{a}{\\langle\\delta\\kxquad^2(0)\\rangle e^{-\\kkappa \\kt}} + \\mk{n}{\\frac{\\kkappa}{2}\\int_0^{\\kt}\\int_0^{\\kt}\\delta(\\kt'-\\kt'')e^{-\\kkappa(\\kt-\\kt')/2}e^{-\\kkappa(\\kt-\\kt'')/2}d\\kt'd\\kt''}",
+       "uses": [1, 3]
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\delta\\kxquad^2(\\kt)\\rangle} = \\mk{a}{\\langle\\delta\\kxquad^2(0)\\rangle e^{-\\kkappa \\kt}} + \\mk{n}{\\frac{\\kkappa}{2}\\int_0^{\\kt}e^{-\\kkappa(\\kt-\\kt')}d\\kt'}",
+       "uses": []
+      },
+      {
+       "tex": "\\Rightarrow \\mk{v}{\\langle\\delta\\kxquad^2(\\kt)\\rangle} = \\mk{a}{\\langle\\delta\\kxquad^2(0)\\rangle e^{-\\kkappa \\kt}} + \\mk{n}{\\frac{1}{2}\\left(1 - e^{-\\kkappa \\kt}\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(9.107)"
+    }
+   ]
+  },
+  {
+   "id": "purcell-elimination",
+   "what": "the atom coupled to an overdamped cavity",
+   "source": "Modern Atomic and Optical Physics II, 9.3.3 Cavity quantum electrodynamics",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The cavity decay overwhelms the coupling, $g < \\kappa$: the field mode is overdamped, and adiabatic elimination sets $\\dot c_{1,1} \\approx 0$.",
+       "src": "9.3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kconeone}} = -\\mk{a}{(\\frac{\\kkappa}{2} - i\\kdelta)\\kconeone} + \\mk{b}{i\\kg\\kctwozero}",
+      "src": "(9.116)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} \\approx -\\mk{a}{(\\frac{\\kkappa}{2} - i\\kdelta)\\kconeone} + \\mk{b}{i\\kg\\kctwozero}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{a}{(\\frac{\\kkappa}{2} - i\\kdelta)\\kconeone} \\approx \\mk{b}{i\\kg\\kctwozero}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\kconeone} = \\mk{b}{\\frac{i\\kg}{\\kkappa/2 - i\\kdelta}\\kctwozero}",
+       "uses": []
+      }
+     ],
+     "num": "(9.118)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kctwozero}} = \\mk{g}{i\\kg\\kconeone} - \\mk{y}{\\frac{\\kgamma}{2}\\kctwozero}",
+      "src": "(9.117)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kctwozero}} = \\mk{g}{i\\kg\\frac{i\\kg}{\\kkappa/2 - i\\kdelta}\\kctwozero} - \\mk{y}{\\frac{\\kgamma}{2}\\kctwozero}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kctwozero}} = -\\mk{g}{\\frac{\\kg^2}{\\kkappa/2 - i\\kdelta}\\kctwozero} - \\mk{y}{\\frac{\\kgamma}{2}\\kctwozero}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kctwozero}} = -\\mk{g}{\\frac{\\kg^2(\\kkappa/2 + i\\kdelta)}{\\kkappa^2/4 + \\kdelta^2}\\kctwozero} - \\mk{y}{\\frac{\\kgamma}{2}\\kctwozero}",
+       "uses": [],
+       "cap": "Multiplying above and below by $\\kappa/2 + i\\delta$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kctwozero}} = -\\mk{d}{\\left(\\frac{\\kgamma}{2} + \\frac{\\kkappa}{2}\\frac{\\kg^2}{\\kkappa^2/4 + \\kdelta^2}\\right)\\kctwozero} - \\mk{s}{i\\frac{\\kg^2\\kdelta}{\\kkappa^2/4 + \\kdelta^2}\\kctwozero}",
+       "uses": [],
+       "map": {
+        "g": [
+         "d",
+         "s"
+        ],
+        "y": "d"
+       }
+      }
+     ],
+     "num": "(9.119)",
+     "note": "From Eqs. (9.116)–(9.118) as printed the shift term comes out as $-ig^2\\delta/(\\kappa^2/4 + \\delta^2)$, where the book prints $+i$. The $+i$ is the sign in the convention of Eq. (9.110), in which Eqs. (9.116) and (9.117) are the complex conjugates of the printed ones and adiabatic elimination gives $c_{1,1} = -igc_{2,0}/(\\kappa/2 + i\\delta)$; the decay term is the same either way."
+    }
+   ]
+  },
+  {
+   "id": "purcell-rate",
+   "what": "the Purcell-enhanced decay rate",
+   "source": "Modern Atomic and Optical Physics II, 9.3.3 Cavity quantum electrodynamics",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\dot{\\kctwozero} = -\\left(\\frac{\\kgamma}{2} + \\frac{\\kkappa}{2}\\frac{\\kg^2}{\\kkappa^2/4 + \\kdelta^2}\\right)\\kctwozero - i\\frac{\\kg^2\\kdelta}{\\kkappa^2/4 + \\kdelta^2}\\kctwozero",
+       "src": "(9.119)"
+      },
+      {
+       "text": "The population of $|2\\rangle_a|0\\rangle$ is $|c_{2,0}|^2$, so it decays at twice the rate of the amplitude $c_{2,0}$.",
+       "src": "2.1"
+      },
+      {
+       "text": "At zero detuning, $\\delta = 0$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kgammaeff^\\mathrm{open}} = \\mk{R}{2\\left(\\frac{\\kgamma}{2} + \\frac{\\kkappa}{2}\\frac{\\kg^2}{\\kkappa^2/4 + \\kdelta^2}\\right)}",
+      "uses": [0, 1],
+      "why": "The population decays at twice the coefficient of $c_{2,0}$ in the first term of Eq. (9.119)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kgammaeff^\\mathrm{open}} = \\mk{R}{2\\left(\\frac{\\kgamma}{2} + \\frac{\\kkappa}{2}\\frac{\\kg^2}{\\kkappa^2/4}\\right)}",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{L}{\\kgammaeff^\\mathrm{open}} = \\mk{R}{\\kgamma + 4\\frac{\\kg^2}{\\kkappa}}",
+       "uses": []
+      }
+     ],
+     "num": "(9.120)"
+    }
+   ]
+  },
+  {
+   "id": "strong-coupling-figure-of-merit",
+   "what": "the figure of merit for strong coupling",
+   "source": "Modern Atomic and Optical Physics II, 9.3.3 Cavity quantum electrodynamics",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kg = \\kmu\\sqrt{\\frac{\\knu}{\\epsilon_0\\hbar \\kV}}",
+       "src": "(9.121)"
+      },
+      {
+       "tex": "\\frac{1}{\\kkappa} = \\frac{\\kLmed}{\\pi c}\\cdot \\kFfin",
+       "src": "(9.123)"
+      },
+      {
+       "tex": "\\kgamma = \\frac{\\komega^3|\\kmu|^2}{3\\pi\\epsilon_0\\hbar c^3}",
+       "src": "(2.89)"
+      },
+      {
+       "text": "The cavity mode is near resonance with the atom, $\\nu \\approx \\omega = 2\\pi c/\\lambda$.",
+       "src": "9.3.3"
+      },
+      {
+       "text": "A mode of diameter $d$ in a cavity of length $L$ has the volume $V \\sim Ld^2$.",
+       "src": "9.3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} = \\mk{g}{\\kg^2}\\cdot\\mk{k}{\\frac{1}{\\kkappa}}\\cdot\\mk{y}{\\frac{1}{\\kgamma}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} = \\mk{g}{\\frac{\\kmu^2\\knu}{\\epsilon_0\\hbar\\kV}}\\cdot\\mk{k}{\\frac{1}{\\kkappa}}\\cdot\\mk{y}{\\frac{1}{\\kgamma}}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} = \\mk{g}{\\frac{\\kmu^2\\knu}{\\epsilon_0\\hbar\\kV}}\\cdot\\mk{k}{\\frac{\\kLmed}{\\pi c}\\kFfin}\\cdot\\mk{y}{\\frac{1}{\\kgamma}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} = \\mk{g}{\\frac{\\kmu^2\\knu}{\\epsilon_0\\hbar\\kV}}\\cdot\\mk{k}{\\frac{\\kLmed}{\\pi c}\\kFfin}\\cdot\\mk{y}{\\frac{3\\pi\\epsilon_0\\hbar c^3}{\\komega^3\\kmu^2}}",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} \\approx \\mk{R}{\\frac{3c^2\\kLmed}{\\komega^2\\kV}\\kFfin}",
+       "uses": [3],
+       "cap": "The dipole moment cancels, and so do $\\epsilon_0\\hbar$ and $\\pi$; with $\\nu \\approx \\omega$, $\\nu/\\omega^3 \\approx 1/\\omega^2$.",
+       "map": {
+        "g": "R",
+        "k": "R",
+        "y": "R"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} \\sim \\mk{R}{\\frac{\\kLmed\\klambda^2}{\\kV}\\cdot \\kFfin}",
+       "uses": [3],
+       "cap": "With $c/\\omega = \\lambda/2\\pi$, $3c^2/\\omega^2 = 3\\lambda^2/4\\pi^2$, of order $\\lambda^2$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} \\sim \\mk{R}{\\frac{\\kLmed\\klambda^2}{\\kV}\\cdot \\kFfin} = \\mk{d}{\\frac{\\klambda^2}{d^2}\\cdot \\kFfin}",
+       "uses": [4]
+      }
+     ],
+     "num": "(9.125)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The diffraction limit for a cavity of length $L$ sets $d^2 \\sim \\lambda L$.",
+       "src": "9.3.3"
+      },
+      {
+       "tex": "\\kkappa \\approx \\frac{t^2 c}{2\\kLmed}",
+       "src": "(9.84)"
+      },
+      {
+       "tex": "\\frac{1}{\\kkappa} = \\frac{\\kLmed}{\\pi c}\\cdot \\kFfin",
+       "src": "(9.123)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} \\sim \\mk{R}{\\frac{\\kLmed\\klambda^2}{\\kV}\\cdot \\kFfin} = \\mk{d}{\\frac{\\klambda^2}{d^2}\\cdot \\kFfin}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} \\sim \\mk{d}{\\frac{\\klambda^2}{\\klambda\\kLmed}\\cdot \\kFfin}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} \\sim \\mk{d}{\\frac{\\klambda}{\\kLmed}\\cdot \\kFfin}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} \\sim \\mk{d}{\\frac{\\klambda}{\\kLmed}\\cdot\\frac{2\\pi}{t^2}}",
+       "uses": [2, 3],
+       "cap": "Eqs. (9.84) and (9.123) give $F = \\pi c/\\kappa L \\approx 2\\pi/t^2$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{\\kg^2}{\\kkappa\\kgamma}} \\sim \\mk{d}{\\frac{\\klambda}{\\kLmed}\\frac{1}{t^2}}",
+       "uses": []
+      }
+     ],
+     "num": "(9.126)"
+    }
+   ]
+  },
+  {
+   "id": "suppressed-decay",
+   "what": "the suppressed decay in a closed cavity",
+   "source": "Modern Atomic and Optical Physics II, 9.3.3 Cavity quantum electrodynamics",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\dot{\\kctwozero} = -\\left(\\frac{\\kgamma}{2} + \\frac{\\kkappa}{2}\\frac{\\kg^2}{\\kkappa^2/4 + \\kdelta^2}\\right)\\kctwozero - i\\frac{\\kg^2\\kdelta}{\\kkappa^2/4 + \\kdelta^2}\\kctwozero",
+       "src": "(9.119)"
+      },
+      {
+       "text": "The population of $|2\\rangle_a|0\\rangle$ is $|c_{2,0}|^2$, so it decays at twice the rate of the amplitude $c_{2,0}$.",
+       "src": "2.1"
+      },
+      {
+       "text": "An atom confined to a closed cavity cannot emit spontaneously into unconfined modes, so $\\gamma = 0$.",
+       "src": "9.3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kgammaeff^\\mathrm{closed}} = \\mk{R}{2\\left(\\frac{\\kgamma}{2} + \\frac{\\kkappa}{2}\\frac{\\kg^2}{\\kkappa^2/4 + \\kdelta^2}\\right)}",
+      "uses": [0, 1],
+      "why": "The population decays at twice the coefficient of $c_{2,0}$ in the first term of Eq. (9.119)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kgammaeff^\\mathrm{closed}} = \\mk{R}{2\\cdot\\frac{\\kkappa}{2}\\frac{\\kg^2}{\\kkappa^2/4 + \\kdelta^2}}",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{L}{\\kgammaeff^\\mathrm{closed}} = \\mk{R}{\\kkappa\\frac{\\kg^2}{\\kkappa^2/4 + \\kdelta^2}}",
+       "uses": []
+      }
+     ],
+     "num": "(9.128)",
+     "note": "The book prints $\\gamma_\\mathrm{eff}^\\mathrm{closed} = \\frac{\\kappa}{2}\\frac{g^2}{\\kappa^2/4 + \\delta^2}$, the decay rate of the amplitude $c_{2,0}$. The population decays twice as fast; at $\\delta = 0$ its rate is the $4g^2/\\kappa$ of Eq. (9.120) with $\\gamma = 0$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The cavity is far detuned, at the maximum detuning $\\delta = \\omega/2$, with $\\delta \\gg \\kappa$.",
+       "src": "9.3.3"
+      },
+      {
+       "tex": "\\kg = \\kmu\\sqrt{\\frac{\\knu}{\\epsilon_0\\hbar \\kV}}",
+       "src": "(9.121)"
+      },
+      {
+       "tex": "\\kkappa = \\frac{\\knu}{\\kQfac}",
+       "src": "(9.122)"
+      },
+      {
+       "tex": "\\kgamma = \\frac{\\komega^3|\\kmu|^2}{3\\pi\\epsilon_0\\hbar c^3}",
+       "src": "(2.89)"
+      },
+      {
+       "text": "The cavity mode is near resonance with the atom, $\\nu \\approx \\omega = 2\\pi c/\\lambda$.",
+       "src": "9.3.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kgammaeff^\\mathrm{closed}} = \\mk{R}{\\kkappa\\frac{\\kg^2}{\\kkappa^2/4 + \\kdelta^2}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kgammaeff^\\mathrm{closed}} \\sim \\mk{R}{\\kkappa\\frac{\\kg^2}{\\kdelta^2}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\kgammaeff^\\mathrm{closed}} \\sim \\mk{R}{\\frac{\\kg^2}{\\kkappa}\\frac{\\kkappa^2}{\\komega^2}}",
+       "uses": [1],
+       "cap": "With $\\delta = \\omega/2$, $\\kappa g^2/\\delta^2 = 4\\kappa g^2/\\omega^2$, of the order of $(g^2/\\kappa)(\\kappa^2/\\omega^2)$."
+      },
+      {
+       "tex": "\\mk{L}{\\kgammaeff^\\mathrm{closed}} \\sim \\mk{R}{\\frac{\\kg^2}{\\kkappa}\\frac{\\kkappa^2}{\\komega^2}} \\sim \\mk{b}{\\frac{\\kmu^2}{\\epsilon_0\\hbar\\kV\\kQfac}}",
+       "uses": [2, 3, 5],
+       "cap": "By Eqs. (9.121) and (9.122), $g^2\\kappa/\\omega^2 = \\mu^2\\nu^2/\\epsilon_0\\hbar VQ\\omega^2$, and $\\nu \\approx \\omega$."
+      },
+      {
+       "tex": "\\mk{L}{\\kgammaeff^\\mathrm{closed}} \\sim \\mk{R}{\\frac{\\kg^2}{\\kkappa}\\frac{\\kkappa^2}{\\komega^2}} \\sim \\mk{b}{\\frac{\\klambda^3}{\\kV}\\frac{\\kgamma}{\\kQfac}}",
+       "uses": [4, 5],
+       "cap": "By Eq. (2.89), $\\mu^2/\\epsilon_0\\hbar = 3\\pi\\gamma c^3/\\omega^3 = 3\\gamma\\lambda^3/8\\pi^2$, of the order of $\\gamma\\lambda^3$."
+      }
+     ],
+     "num": "(9.129)"
+    }
+   ]
+  }
+ ]
+}

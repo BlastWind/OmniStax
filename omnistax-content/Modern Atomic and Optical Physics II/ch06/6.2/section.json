@@ -1,0 +1,215 @@
+{
+ "id": "6.2",
+ "chapter": "6",
+ "title": "Example: Decay of a two-level atom",
+ "short": "Decay of a two-level atom",
+ "lead": "The <span data-concept=\"monte-carlo-wavefunction\">Monte Carlo wavefunction method</span> applied to a <span data-concept=\"two-level-atom\">two-level atom</span> that decays from a <span data-concept=\"superposition\">superposition</span>: the <span data-concept=\"jump-probability\">probability of a jump</span> in a small time step, the state of an atom that emits no photon, what not detecting a photon does to that state, and when the method is worth using.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "figures": [
+  {
+   "id": "sim-no-jump",
+   "kind": "sim",
+   "draws": [
+    "population",
+    "amplitude",
+    "rate",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {"span": "null-measurement", "concept": "null-measurement", "verb": "introduces"},
+  {"span": "use-cases", "concept": "monte-carlo-use-cases", "verb": "introduces"},
+  {"span": "mcwf-method", "concept": "monte-carlo-wavefunction", "verb": "uses"},
+  {"span": "initial-state", "concept": "two-level-atom", "verb": "uses"},
+  {"span": "initial-state", "concept": "pure-and-mixed-states", "verb": "uses"},
+  {"span": "eq-6-22", "concept": "quantum-jump", "verb": "uses"},
+  {"span": "eq-6-22", "concept": "jump-probability", "verb": "uses"},
+  {"span": "eq-6-24", "concept": "effective-hamiltonian", "verb": "uses"},
+  {"span": "mc-average", "concept": "monte-carlo-procedure", "verb": "uses"},
+  {"span": "use-cases", "concept": "density-matrix", "verb": "uses"},
+  {"span": "use-cases", "concept": "master-equation", "verb": "uses"},
+  {"span": "drv-no-jump-two-level-state", "concept": "mcwf-two-level-decay", "verb": "introduces"}
+ ],
+ "footnotes": [
+  {
+   "id": "c-eq-6-24",
+   "kind": "correction",
+   "html": "The book prints $+\\frac{i\\kgamma}{2}\\hat{c}^\\dagger\\hat{c}$. Eq. (6.7) gives the non-Hermitian part with a minus sign, and with $\\hbar = 1$ only the minus sign makes the amplitude of $|2\\rangle$ decay as Eqs. (6.25) and (6.26) say: $\\kHeff = \\kDelta|2\\rangle\\langle 2| - \\frac{i\\kgamma}{2}\\hat{c}^\\dagger\\hat{c}$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "two-level-jump-probability",
+   "what": "the jump probability of a decaying two-level atom",
+   "source": "Modern Atomic and Optical Physics II, 6.2 Example: Decay of a two-level atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The atom decays through one channel at the rate $\\kgamma$, with $\\hat{c} = |1\\rangle\\langle 2|$.",
+       "src": "6.2"
+      },
+      {
+       "tex": "|\\kpsi\\rangle = \\kaone|1\\rangle + \\katwo|2\\rangle",
+       "src": "6.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kdeltapatom} = \\mk{R}{\\delta\\kt\\kgamma\\langle\\kpsi|\\hat{c}^\\dagger\\hat{c}|\\kpsi\\rangle}",
+      "src": "(6.22)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kdeltapatom} = \\mk{R}{\\delta\\kt\\kgamma\\langle\\kpsi|2\\rangle\\langle 2|\\kpsi\\rangle}",
+       "uses": [
+        0
+       ],
+       "cap": "$\\hat{c}^\\dagger\\hat{c} = |2\\rangle\\langle 1|1\\rangle\\langle 2| = |2\\rangle\\langle 2|$."
+      },
+      {
+       "tex": "\\mk{p}{\\kdeltapatom} = \\mk{R}{\\delta\\kt\\kgamma|\\katwo|^2}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(6.23)"
+    }
+   ]
+  },
+  {
+   "id": "no-jump-two-level-state",
+   "what": "the state of a two-level atom that has not emitted",
+   "source": "Modern Atomic and Optical Physics II, 6.2 Example: Decay of a two-level atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kHeff = \\kDelta|2\\rangle\\langle 2| - \\frac{i\\kgamma}{2}\\hat{c}^\\dagger\\hat{c}",
+       "src": "(6.24)"
+      },
+      {
+       "text": "The atom decays through one channel at the rate $\\kgamma$, with $\\hat{c} = |1\\rangle\\langle 2|$.",
+       "src": "6.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\kHeff|\\kpsi\\rangle}",
+      "src": "(6.9)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\left(\\kDelta|2\\rangle\\langle 2| - \\frac{i\\kgamma}{2}\\hat{c}^\\dagger\\hat{c}\\right)|\\kpsi\\rangle}",
+       "uses": [
+        0
+       ],
+       "cap": "In units with $\\hbar = 1$, in which (6.24) is written."
+      },
+      {
+       "tex": "\\mk{L}{i\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\left(\\kDelta - \\frac{i\\kgamma}{2}\\right)|2\\rangle\\langle 2|\\kpsi\\rangle}",
+       "uses": [
+        1
+       ],
+       "cap": "$\\hat{c}^\\dagger\\hat{c} = |2\\rangle\\langle 2|$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{-\\left(\\frac{\\kgamma}{2} + i\\kDelta\\right)|2\\rangle\\langle 2|\\kpsi\\rangle}",
+       "uses": [],
+       "cap": "Dividing by $i$: $-i(\\Delta - i\\gamma/2) = -(\\gamma/2 + i\\Delta)$."
+      }
+     ],
+     "num": "(6.25)",
+     "note": "The book prints the right side as $-\\left(\\frac{\\kgamma}{2} + i\\kDelta\\right)|2\\rangle$, without $\\langle 2|\\kpsi\\rangle$, the amplitude it acts on, and (6.24) with $+\\frac{i\\kgamma}{2}\\hat{c}^\\dagger\\hat{c}$; the minus sign of (6.7) is what makes the amplitude of $|2\\rangle$ decay."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "|\\kpsi\\rangle = \\kaone|1\\rangle + \\katwo|2\\rangle",
+       "src": "6.2"
+      },
+      {
+       "text": "The state of an atom that has not jumped is the evolved state divided by its norm.",
+       "src": "(6.17)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{-\\left(\\frac{\\kgamma}{2} + i\\kDelta\\right)|2\\rangle\\langle 2|\\kpsi\\rangle}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}|1\\rangle + \\dot{\\kctwo}|2\\rangle} = \\mk{R}{-\\left(\\frac{\\kgamma}{2} + i\\kDelta\\right)\\kctwo|2\\rangle}",
+       "uses": [],
+       "cap": "Writing $|\\psi\\rangle = c_1|1\\rangle + c_2|2\\rangle$, so that $\\langle 2|\\psi\\rangle = c_2$."
+      },
+      {
+       "tex": "\\mk{a}{\\dot{\\kcone}} = \\mk{z}{0},\\quad \\mk{b}{\\dot{\\kctwo}} = \\mk{R}{-\\left(\\frac{\\kgamma}{2} + i\\kDelta\\right)\\kctwo}",
+       "uses": [],
+       "cap": "Matching the parts along $|1\\rangle$ and along $|2\\rangle$.",
+       "map": {
+        "L": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{a}{\\kcone(\\kt)} = \\mk{z}{\\kaone},\\quad \\mk{b}{\\kctwo(\\kt)} = \\mk{R}{\\katwo e^{-(\\kgamma/2+i\\kDelta)\\kt}}",
+       "uses": [
+        1
+       ],
+       "cap": "Each amplitude starts from its value in $|\\psi(0)\\rangle$; $c_2$ decays exponentially."
+      },
+      {
+       "tex": "\\mk{K}{|\\kpsi(\\kt)\\rangle} = \\mk{R}{\\kaone|1\\rangle + \\katwo e^{-(\\kgamma/2+i\\kDelta)\\kt}|2\\rangle}",
+       "uses": [],
+       "map": {
+        "a": "K",
+        "b": "K",
+        "z": "R"
+       }
+      },
+      {
+       "tex": "\\mk{K}{|\\tilde{\\kpsi}(\\kt)\\rangle} = \\mk{n}{\\frac{1}{\\sqrt{|\\kaone^2| + |\\katwo|^2e^{-\\kgamma\\kt}}}}\\mk{R}{\\left(\\kaone|1\\rangle + \\katwo e^{-(\\kgamma/2+i\\kDelta)\\kt}|2\\rangle\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "The squared norm is $|a_1|^2 + |a_2e^{-(\\gamma/2 + i\\Delta)t}|^2 = |a_1|^2 + |a_2|^2e^{-\\gamma t}$."
+      }
+     ],
+     "num": "(6.26)"
+    }
+   ]
+  }
+ ]
+}

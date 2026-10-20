@@ -1,0 +1,77 @@
+<section id="opening">
+<p>We have developed a basic understanding of <span data-concept="condensate-ground-state">the ground state wavefunction</span> for <span data-concept="bose-condensation">a Bose-Einstein condensate</span>; a more complete picture of condensate behaviour requires knowledge of the elementary excitations in a <span data-concept="bose-condensation">BEC</span>. A description of such excitations will allow us to account for the spectrum of the condensate, thermal effects at finite temperatures, and possible non-classical effects analogous to <span data-concept="squeezed-state">squeezing</span> of a photon field.</p>
+</section>
+
+<section id="bogoliubov-approximation">
+<h2>11.5.1 The Bogoliubov approximation</h2>
+<p>Our approach is motivated by an analogy to classical coherent beams, where the electric field operator $\hat{\mathcal{E}}$ is well approximated by a c-number $\mathcal{E}$ and some small operator deviation $\delta\hat{\mathcal{E}}$. For matter waves, we will replace <span data-concept="matter-field-operator">the field operator</span> with its average value and some small fluctuations about that average</p>
+<div class="equation" id="eq-11-142">$$\hat{\psi} = \kpsiGP + \delta\hat{\psi}. \tag{11.142}$$</div>
+<p>We can then linearize <span data-concept="heisenberg-picture">the Heisenberg equation</span> for $\hat{\psi}$ in the small quantity $\delta\hat{\psi}$, obtaining a set of linear coupled equations for $\delta\hat{\psi}$ and $\delta\hat{\psi}^\dagger$.</p>
+<figure class="dv" id="drv-linearized-field-equation"></figure>
+<p>Since these coupled equations are linear, we can solve them by looking for normal mode solutions. We will define operators $\hat{\alpha}_j$ and $\hat{\alpha}_j{}^\dagger$ which annihilate and create bosonic excitations in the normal mode with frequency $\komega_j$; since the excitations are bosons, their <span data-concept="creation-annihilation-operators">creation and annihilation operators</span> obey Bose statistics $[\hat{\alpha}_j, \hat{\alpha}_k{}^\dagger] = \delta_{jk}$. We can expand $\delta\hat{\psi}$ in terms of the normal modes</p>
+<div class="equation" id="eq-11-144">$$\delta\hat{\psi} = e^{-i\kmuchem \kt/\hbar}\sum_j\left(u_j(r)\hat{\alpha}_j e^{-i\komega_j \kt} - v_j^*(r)\hat{\alpha}_j^\dagger e^{i\komega_j \kt}\right), \tag{11.144}$$</div>
+<p>and the field operator will be properly normalized if</p>
+<div class="equation" id="eq-11-145">$$|u_j|^2 - |v_j|^2 = 1. \tag{11.145}$$</div>
+<p>When we substitute our expansion for $\delta\hat{\psi}$ into <a href="#drv-linearized-field-equation">Eq. (11.143)</a>, we find that the coefficients for each normal mode are independent, so we obtain a set of equations for each mode $j$.</p>
+<figure class="dv" id="drv-bogoliubov-equations"></figure>
+<p>These time independent equations give the eigenfrequencies $\komega_j$ and eigenmodes $\{u_j, v_j\}$ of excitations in the condensate, and are known as the <span data-concept="bogoliubov-approximation" id="bogoliubov-equations">“Bogoliubov equations”</span>.</p>
+
+<h3>Example: homogeneous potential</h3>
+<p>The <span data-concept="bogoliubov-approximation">Bogoliubov equations</span> are particularly transparent for a condensate in a uniform potential $\kV(x) = 0$. <span data-concept="thomas-fermi-approximation">The Thomas-Fermi approximation</span> gives $\tilde{\kpsiGP} = \sqrt{\knzero}$, where $\knzero$ is <span data-concept="condensate-density">the condensate density</span> and $\kmuchem = \knzero\kUzero$ is <span data-concept="chemical-potential">the chemical potential</span>. Since there is no explicit dependence on position anywhere in the problem, the eigenmodes are most easily obtained in the Fourier domain,</p>
+<div class="equation" id="eq-11-148">$$u_j(r) = u_q e^{i\kq r} \tag{11.148}$$</div>
+<div class="equation" id="eq-11-149">$$v_j(r) = v_q e^{i\kq r}. \tag{11.149}$$</div>
+<p>The <span data-concept="bogoliubov-approximation">Bogoliubov equations</span> become</p>
+<div class="equation" id="eq-11-150">$$\begin{pmatrix} \kepsq + \knzero\kUzero - \hbar\komegaq &amp; -\knzero\kUzero \\ -\knzero\kUzero &amp; \kepsq + \knzero\kUzero + \hbar\komegaq \end{pmatrix}\begin{pmatrix} u_q \\ v_q \end{pmatrix} = 0, \tag{11.150}$$</div>
+<p><span data-concept="free-particle-energy" id="free-energy">where $\kepsq = \hbar^2\kq^2/2\km$</span>. To find the eigenvalues and eigenmodes associated with excitations in the homogenous condensate, we need only solve this matrix equation. The frequencies $\komegaq$ follow from setting the determinant of the matrix to zero, yielding <span data-concept="bogoliubov-spectrum" id="dispersion">the dispersion relation</span>.</p>
+<figure class="dv" id="drv-bogoliubov-spectrum"></figure>
+<p>Note that we have taken the positive square root because the negative one will not satisfy the normalization condition <a href="#eq-11-145">Eq. (11.145)</a>. Due to the presence of interactions, <span data-concept="bogoliubov-spectrum">the dispersion relation</span> is qualitatively different from that of <span data-concept="free-particle-energy">a free particle $\hbar\komegaq = \kepsq$</span>. In the large-wavenumber and small-wavenumber regimes, the frequency is</p>
+<div class="equation" id="eq-11-152">$$\hbar\komegaq = \begin{cases} \kepsq + \knzero\kUzero &amp; \text{large q} \\ \hbar \kq\kssound &amp; \text{small q,} \end{cases} \tag{11.152}$$</div>
+<p>which correspond to <span data-concept="bogoliubov-spectrum">particle-like</span> and <span data-concept="bogoliubov-spectrum">sound-like</span> excitations respectively. The <span data-concept="bogoliubov-spectrum">sound-like spectrum</span> has <span data-concept="sound-velocity" id="sound-velocity">an associated sound velocity</span></p>
+<div class="equation" id="eq-11-153">$$\kssound = \sqrt{\frac{\knzero\kUzero}{\km}}, \tag{11.153}$$</div>
+<p>and the cross-over between the two regimes occurs near a critical wave-vector</p>
+<div class="equation" id="eq-11-154">$$\kq_c \sim \hbar^{-1}\sqrt{2\km\knzero\kUzero} \sim \frac{1}{\kxiheal} \sim \frac{\km\kssound}{\sqrt{2}\hbar}. \tag{11.154}$$<sup class="fn" data-note="c-eq-11-154"></sup></div>
+<figure class="sim" id="sim-bogoliubov" data-figure="11.10" data-original="/media/ch11/fig-11-10.png" data-original-caption="The Bogoliubov excitation spectrum for a condensate confined in a homogeneous potential. Note that in the presence of interactions, a critical velocity must be reached in order to excite the condensate while conserving energy and momentum.">
+  <div class="sim-head"><span class="eyebrow">Figure 11.10</span><span><span data-concept="bogoliubov-spectrum">The excitation spectrum</span> $\komegaq$ of a uniform ⁸⁷Rb condensate against the wavevector $\kq$, beside <span data-concept="free-particle-energy">the free-particle energy</span> $\kepsq$ and the sound line $\kq\kssound$. Raise $\knzero\kUzero$ from zero and the free parabola bends into a straight line of slope $\kssound$ at small $\kq$, the cross-over $\kq_c \sim 1/\kxiheal$ moving out as $\sqrt{\knzero\kUzero}$. An object moving at $\kvmag$ through the condensate can give an excitation momentum $\hbar\kq$ and energy $\hbar\komegaq$ only where its line $\kq\kvmag$ rises above the spectrum: below $\kvmag = \kssound$ the line never does, and the object feels no drag. Turn $\kUzero$ negative and the long-wavelength frequencies become imaginary, the dashed branch: the uniform condensate is unstable. Frequencies are $\komega/2\pi$ in kHz and $\knzero\kUzero$ is given as $\knzero\kUzero/h$.</span></div>
+</figure>
+<p>Physically, the long-wavelength excitations correspond to collective excitations of the condensate, and are responsible for the phenomenon of <span data-concept="landau-criterion">superfluidity</span>. Once the wavelength approaches <span data-concept="healing-length">the inverse healing length</span>, the condensate ceases to behave as a continuum, and single-particle-like excitations dominate.</p>
+
+<h3>Probing the excitation spectrum - under construction</h3>
+<p>Experiments have measured the excitation spectrum in a gaseous Bose condensate using <span data-concept="bragg-spectroscopy" id="bragg">a Bragg scattering technique</span>. Two lasers with frequencies $\komega_1, \komega_2$ and wavevectors $\kkmag_1$ and $\kkmag_2$ can interact with the condensate to create excitations when their energy and momentum difference matches the quasiparticle spectrum. Absorption of a photon excites an atom from the condensate, while stimulated emission into the second optical mode de-excites an atom back into the condensate. <span data-concept="adiabatic-elimination">Adiabatically eliminating</span> the atomic excited states leads to an interaction of the form</p>
+<div class="equation" id="eq-11-155">$$\hat{H} \propto \int d^3\mathbf{r}\hat{\psi}^\dagger(\mathbf{r})\hat{\psi}(\mathbf{r})e^{i(\kk_1 - \kk_2)\cdot\mathbf{r}}e^{-i(\komega_1 - \komega_2)\kt}. \tag{11.155}$$</div>
+<p>Expanding out $\hat{\psi} = \kpsiGP + \delta\hat{\psi}$, and keeping only the terms linear in $\delta\hat{\psi}$, results in terms that can create or annihilate quasiparticles. For a homogeneous potential in one dimension, this interaction includes terms of the form</p>
+<div class="equation" id="eq-11-156">$$\hat{H} \propto \int dx\ \tilde{\kpsiGP}\sum_{\kq}\left(u_q e^{i\kq x}\hat{\alpha}_q e^{-i\komegaq \kt} - v_q^* e^{-i\kq x}\hat{\alpha}_q^\dagger e^{i\komegaq \kt}\right)e^{i(\kkmag_1 - \kkmag_2)x}e^{-i(\komega_1 - \komega_2)\kt}. \tag{11.156}$$</div>
+<p>The integral over $x$ enforces momentum conservation in creation of a quasiparticle at momentum $\kq = \kkmag_1 - \kkmag_2$, while the time dependence leads to resonance at $\komegaq = \komega_1 - \komega_2$. Notably this interaction permits <span data-concept="bragg-spectroscopy">Bragg scattering</span> even at zero temperature, where the initial occupation of quasiparticle modes vanishes.</p>
+
+<h3>Superfluidity of repulsive atoms</h3>
+<p><span data-concept="landau-criterion">Superfluidity</span> requires that an object can move slowly through the fluid without experiencing any drag. Since drag is the macroscopic manifestation of excitations in a medium, we will see that the excitation spectrum of a repulsive Bose condensate implies <span data-concept="landau-criterion">superfluidity</span>. In particular, consider an object moving at velocity $\kvmag$ through a Bose condensate. It will only create an excitation if it can resonantly impart its momentum and energy to an elementary excitation:</p>
+<div class="equation" id="eq-11-157">$$\Delta \kpcm_\mathrm{object} = \hbar \kq \tag{11.157}$$</div>
+<div class="equation" id="eq-11-158">$$\Delta\keps_\mathrm{object} = \komegaq. \tag{11.158}$$<sup class="fn" data-note="c-eq-11-158"></sup></div>
+<p>Kinematics require that $\Delta\keps_\mathrm{object} \leq \Delta \kpcm \kvmag$, so the object can only create an excitation if it is moving faster than some <span data-concept="landau-criterion">critical velocity</span>.</p>
+<figure class="dv" id="drv-landau-critical-velocity"></figure>
+<p>This represents <span data-concept="landau-criterion" id="landau">the so-called Landau criterion for superfluidity</span>, which states that objects moving slower than <span data-concept="sound-velocity">the speed of sound</span> do not produce excitations.</p>
+</section>
+
+<section id="attractive-interactions">
+<h2>11.5.2 BEC with attractive interactions</h2>
+<p>If the interatomic potential is attractive $\kUzero &lt; 0$, long-wavelength excitations $\kq \rightarrow 0$ have an imaginary frequency $\hbar\komegaq$. This implies that the condensate is unstable! Experimentally, however, stable condensates with attractive interactions have been observed. <span data-concept="attractive-condensate-stability" id="finite-number">The explanation for the stability lies in the finite number of atoms confined to the trap.</span></p>
+<p>If an atomic cloud is localized within <span data-concept="trap-length">a characteristic trap length $\kat$</span>, the minimum wave-vector allowed by the system is of order</p>
+<div class="equation" id="eq-11-160">$$\kq_\mathrm{min} \approx \frac{1}{\kat}. \tag{11.160}$$</div>
+<figure class="dv" id="drv-attractive-stability"></figure>
+<p>If condensate size exceeds $N_\mathrm{max}$, the attractive interactions will destabilize it and it will collapse.</p>
+<figure class="sim" id="sim-attractive">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>The excitation spectrum of a ⁷Li condensate, whose atoms attract, against the wavevector $\kq$. Where $\kepsq &lt; 2\knzero|\kUzero|$ the frequency $\komegaq$ is imaginary, the dashed branch: such a mode grows instead of oscillating. A cloud of size $\kat$ holds no wave longer than itself, so the shaded wavevectors below $\kq_\mathrm{min} = 1/\kat$ are not there. Weaken the attraction or tighten the trap until the shaded band covers the whole dashed branch: then $\komega_\mathrm{min}$ is real and <a href="#drv-attractive-stability">(11.162)</a> holds, and the <span data-concept="attractive-condensate-stability">condensate is stable despite the attraction</span>. Frequencies are $\komega/2\pi$ in Hz.</span></div>
+</figure>
+</section>
+
+<section id="observation">
+<h2>11.5.3 Observation of BEC</h2>
+<p>As we mentioned earlier in the chapter, typical experiments probe the cold atom cloud using <span data-concept="absorption-imaging">absorption imaging</span> with near-resonant light. In certain cases, one could image the condensate in the trap, obtaining a spatial profile of the atom cloud. Alternately, <span data-concept="time-of-flight-imaging">by releasing the cold atom cloud from the trap and allowing it to expand for a time $\ktau$</span>, the momentum distribution of the atoms $\kpcm$ is mapped onto the spatial distribution $\krdist = \kpcm\ktau/\km$. <span data-concept="expansion-signature" id="expansion">Such expansion images provide a means for distinguishing a cold, thermal atom cloud from a condensate.</span> In a condensate, the momentum distribution follows from the size of the atom cloud $\kac$ and <span data-concept="heisenberg-uncertainty-principle">the uncertainty principle</span>,</p>
+<div class="equation" id="eq-11-164">$$\kpcm_\mathrm{BEC} \sim \frac{\hbar}{\kac}, \tag{11.164}$$</div>
+<p>resulting in a post-expansion spatial distribution</p>
+<div class="equation" id="eq-11-165">$$\kRexp_\mathrm{BEC} \sim \frac{\hbar \kt}{\kac\km} \tag{11.165}$$<sup class="fn" data-note="c-eq-11-165"></sup></div>
+<p>In contrast, a thermal cloud of atoms will have a gaussian distribution of momenta in the trap</p>
+<div class="equation" id="eq-11-166">$$P_\mathrm{thermal}(\kpcm) \sim e^{-\kpcm^2/\kpcm_T^2} \tag{11.166}$$</div>
+<p>leading to a gaussian spatial distribution</p>
+<div class="equation" id="eq-11-167">$$P_\mathrm{thermal}(\kRexp) \sim e^{-\kRexp^2/\kRexp_T^2}, \tag{11.167}$$</div>
+<p>where $\kRexp_T$ and $\kpcm_T$ are the distance and momentum scale for an atom cloud at temperature $\kT$. The two momentum distributions are qualitatively different. By fitting the observed image to <span data-concept="expansion-signature">a bimodal distribution</span> corresponding to a gaussian thermal cloud and a parabolic condensate, one can accurately calculate the proportion of condensed atoms.</p>
+</section>

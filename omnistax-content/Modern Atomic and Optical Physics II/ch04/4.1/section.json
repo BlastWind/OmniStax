@@ -1,0 +1,383 @@
+{
+ "id": "4.1",
+ "chapter": "4",
+ "title": "The slowly-varying envelope approximation",
+ "short": "Slowly-varying envelope",
+ "lead": "How light propagating through a medium of atoms is described: the <span data-concept=\"wave-equation-with-polarization\">wave equation</span> with the atoms’ <span data-concept=\"macroscopic-polarization\">polarization</span> as its source, and the <span data-concept=\"slowly-varying-envelope-approximation\">slowly-varying envelope approximation</span>, which writes the field and polarization as envelopes on a carrier and gives a propagation equation for the envelope, for a single carrier and for the harmonics of an <span data-concept=\"optical-frequency-comb\">optical frequency comb</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [],
+ "coverage": [
+  {
+   "span": "maxwell",
+   "concept": "maxwell-equations-with-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave-equation",
+   "concept": "wave-equation-with-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "svea",
+   "concept": "slowly-varying-envelope-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "sv-polarization",
+   "concept": "slowly-varying-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "evolution-equation",
+   "concept": "svea-propagation-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-4-25",
+   "concept": "plane-wave-propagation-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-level-polarization",
+   "concept": "independent-atoms",
+   "verb": "introduces"
+  },
+  {
+   "span": "comb",
+   "concept": "optical-frequency-comb",
+   "verb": "introduces"
+  },
+  {
+   "span": "multimode",
+   "concept": "multimode-svea",
+   "verb": "introduces"
+  },
+  {
+   "span": "envelope",
+   "concept": "slowly-varying-envelope",
+   "verb": "uses"
+  },
+  {
+   "span": "carrier",
+   "concept": "optical-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "two-level-polarization",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "two-level-polarization",
+   "concept": "rotating-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "two-level-polarization",
+   "concept": "dipole-matrix-element",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-wave-equation",
+   "concept": "macroscopic-polarization",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-eq-4-28",
+   "kind": "correction",
+   "html": "The book writes $\\kkbar$ in both coefficients for every harmonic. Each harmonic carries its own wavevector $k_n = \\knu_n/c$, the $nk$ of Eq. (4.26), so the equation for $\\kEenv_n$ reads $\\frac{1}{2ik_n}\\nabla_\\perp^2\\kEenv_n + \\frac{\\partial}{\\partial z}\\kEenv_n + \\frac{1}{c}\\frac{\\partial}{\\partial \\kt}\\kEenv_n = \\frac{ik_n}{2\\epsilon_0}\\kPenv_n$; with $\\kkbar$ it holds only while the comb’s bandwidth is small beside $\\knubar$, not for arbitrarily short pulses."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "wave-equation",
+   "what": "the wave equation in a polarizable medium",
+   "source": "Modern Atomic and Optical Physics II, 4.1 The slowly-varying envelope approximation",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\nabla \\times \\kB = \\frac{1}{c^2}\\frac{\\partial}{\\partial \\kt}\\left(\\kEfield + \\frac{1}{\\epsilon_0}\\kPpol\\right)",
+       "src": "(4.6)"
+      },
+      {
+       "text": "In the absence of unbound charges, $\\nabla \\cdot \\kEfield = 0$.",
+       "src": "4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\nabla \\times \\kEfield} = \\mk{R}{-\\frac{\\partial\\kB}{\\partial \\kt}}",
+      "src": "(4.5)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\nabla \\times (\\nabla \\times \\kEfield)} = \\mk{R}{-\\frac{\\partial}{\\partial \\kt}(\\nabla \\times \\kB)}",
+       "uses": [],
+       "cap": "Taking the curl of both sides; the curl acts on position alone, so it passes through $\\partial/\\partial t$."
+      },
+      {
+       "tex": "\\mk{L}{\\nabla \\times (\\nabla \\times \\kEfield)} = \\mk{R}{-\\frac{1}{c^2}\\frac{\\partial^2}{\\partial \\kt^2}\\left(\\kEfield + \\frac{1}{\\epsilon_0}\\kPpol\\right)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{div}{\\nabla(\\nabla \\cdot \\kEfield)} - \\mk{lap}{\\nabla^2\\kEfield} = \\mk{R}{-\\frac{1}{c^2}\\frac{\\partial^2}{\\partial \\kt^2}\\left(\\kEfield + \\frac{1}{\\epsilon_0}\\kPpol\\right)}",
+       "uses": [],
+       "cap": "The identity $\\nabla \\times (\\nabla \\times \\mathbf{A}) = \\nabla(\\nabla \\cdot \\mathbf{A}) - \\nabla^2\\mathbf{A}$.",
+       "map": {
+        "L": [
+         "div",
+         "lap"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{lap}{-\\nabla^2\\kEfield} = \\mk{R}{-\\frac{1}{c^2}\\frac{\\partial^2}{\\partial \\kt^2}\\left(\\kEfield + \\frac{1}{\\epsilon_0}\\kPpol\\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{lap}{-\\nabla^2\\kEfield} = \\mk{Et}{-\\frac{1}{c^2}\\frac{\\partial^2\\kEfield}{\\partial \\kt^2}} - \\mk{Pt}{\\frac{1}{\\epsilon_0 c^2}\\frac{\\partial^2\\kPpol}{\\partial \\kt^2}}",
+       "uses": [],
+       "map": {
+        "R": [
+         "Et",
+         "Pt"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{lap}{\\nabla^2\\kEfield} - \\mk{Et}{\\frac{1}{c^2}\\frac{\\partial^2\\kEfield}{\\partial \\kt^2}} = \\mk{Pt}{\\frac{1}{\\epsilon_0 c^2}\\frac{\\partial^2\\kPpol}{\\partial \\kt^2}}",
+       "uses": []
+      }
+     ],
+     "num": "(4.10)",
+     "src": "4.1",
+     "note": "Footnote 1 prints $\\nabla(\\nabla \\cdot \\kEenv)$ in (4.7), the divergence of the envelope. The identity gives the divergence of the field, $\\nabla(\\nabla \\cdot \\kEfield)$, which is the term that vanishes; the footnote numbers the result (4.9)."
+    }
+   ]
+  },
+  {
+   "id": "svea-propagation",
+   "what": "the propagation equation for slowly varying amplitudes",
+   "source": "Modern Atomic and Optical Physics II, 4.1 The slowly-varying envelope approximation",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{E}{\\kEfield} = \\mk{R}{\\kEenv e^{i\\kkbar z - i\\knubar \\kt} + c.c.}",
+      "src": "(4.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\nabla^2\\kEfield} = \\mk{R}{\\left(\\nabla^2\\kEenv + 2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv - \\kkbar^2\\kEenv\\right)e^{i\\kkbar z - i\\knubar \\kt} + c.c.}",
+       "uses": [],
+       "cap": "Each $\\partial/\\partial z$ that falls on $e^{i\\bar{k}z}$ brings down $i\\bar{k}$, so the Laplacian of the product gives the cross term $2i\\bar{k}\\,\\partial\\mathcal{E}/\\partial z$ and $-\\bar{k}^2\\mathcal{E}$."
+      }
+     ],
+     "num": "(4.14)"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{E}{\\kEfield} = \\mk{R}{\\kEenv e^{i\\kkbar z - i\\knubar \\kt} + c.c.}",
+      "src": "(4.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\frac{\\partial^2}{\\partial \\kt^2}\\kEfield} = \\mk{R}{\\left(\\frac{\\partial^2}{\\partial \\kt^2}\\kEenv - 2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv - \\knubar^2\\kEenv\\right)e^{i\\kkbar z - i\\knubar \\kt} + c.c.}",
+       "uses": [],
+       "cap": "Each $\\partial/\\partial t$ that falls on $e^{-i\\bar{\\nu}t}$ brings down $-i\\bar{\\nu}$."
+      }
+     ],
+     "num": "(4.15)"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{E}{\\kPpol} = \\mk{R}{\\kPenv e^{i\\kkbar z - i\\knubar \\kt} + c.c.}",
+      "src": "(4.12)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\frac{\\partial^2}{\\partial \\kt^2}\\kPpol} = \\mk{R}{\\left(\\frac{\\partial^2}{\\partial \\kt^2}\\kPenv - 2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kPenv - \\knubar^2\\kPenv\\right)e^{i\\kkbar z - i\\knubar \\kt} + c.c.}",
+       "uses": [],
+       "cap": "As for the field, each $\\partial/\\partial t$ on $e^{-i\\bar{\\nu}t}$ brings down $-i\\bar{\\nu}$."
+      }
+     ],
+     "num": "(4.16)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\nabla^2\\kEfield} - \\mk{T}{\\frac{1}{c^2}\\frac{\\partial^2\\kEfield}{\\partial \\kt^2}} = \\mk{P}{\\frac{1}{\\epsilon_0 c^2}\\frac{\\partial^2\\kPpol}{\\partial \\kt^2}}",
+      "src": "(4.10)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\left(\\nabla^2\\kEenv + 2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv - \\kkbar^2\\kEenv\\right)e^{i\\kkbar z - i\\knubar \\kt} + c.c.} - \\mk{T}{\\frac{1}{c^2}\\left(\\frac{\\partial^2}{\\partial \\kt^2}\\kEenv - 2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv - \\knubar^2\\kEenv\\right)e^{i\\kkbar z - i\\knubar \\kt} + c.c.} = \\mk{P}{\\frac{1}{\\epsilon_0 c^2}\\left(\\frac{\\partial^2}{\\partial \\kt^2}\\kPenv - 2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kPenv - \\knubar^2\\kPenv\\right)e^{i\\kkbar z - i\\knubar \\kt} + c.c.}",
+       "uses": [0, 1, 2]
+      },
+      {
+       "tex": "\\mk{L}{\\nabla^2\\kEenv} + \\mk{z}{2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv} - \\mk{k}{\\kkbar^2\\kEenv} - \\frac{1}{c^2}\\Big(\\mk{t2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kEenv} - \\mk{t1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv} - \\mk{n}{\\knubar^2\\kEenv}\\Big) = \\frac{1}{\\epsilon_0 c^2}\\Big(\\mk{P2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kPenv} - \\mk{P1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kPenv} - \\mk{P0}{\\knubar^2\\kPenv}\\Big)",
+       "uses": [],
+       "cap": "The terms in $e^{i\\bar{k}z - i\\bar{\\nu}t}$ and their complex conjugates oscillate oppositely, so each set balances on its own, and the common factor is divided out.",
+       "map": {
+        "L": [
+         "L",
+         "z",
+         "k"
+        ],
+        "T": [
+         "t2",
+         "t1",
+         "n"
+        ],
+        "P": [
+         "P2",
+         "P1",
+         "P0"
+        ]
+       }
+      }
+     ],
+     "num": "(4.17)–(4.18)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "tex": "\\knubar = c\\kkbar",
+       "src": "4.1"
+      },
+      {
+       "text": "$\\nabla_\\perp^2 = \\frac{\\partial^2}{\\partial x^2} + \\frac{\\partial^2}{\\partial y^2}$, so $\\nabla^2 = \\nabla_\\perp^2 + \\frac{\\partial^2}{\\partial z^2}$.",
+       "src": "4.1"
+      },
+      {
+       "tex": "|\\knubar\\kPenv| \\gg |\\frac{\\partial}{\\partial \\kt}\\kPenv|",
+       "src": "(4.19)"
+      },
+      {
+       "tex": "|\\knubar\\kEenv| \\gg |\\frac{\\partial}{\\partial \\kt}\\kEenv|",
+       "src": "(4.20)"
+      },
+      {
+       "tex": "|\\kkbar\\kEenv| \\gg |\\frac{\\partial}{\\partial z}\\kEenv|",
+       "src": "(4.21)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\nabla^2\\kEenv} + \\mk{z}{2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv} - \\mk{k}{\\kkbar^2\\kEenv} - \\frac{1}{c^2}\\Big(\\mk{t2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kEenv} - \\mk{t1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv} - \\mk{n}{\\knubar^2\\kEenv}\\Big) = \\frac{1}{\\epsilon_0 c^2}\\Big(\\mk{P2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kPenv} - \\mk{P1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kPenv} - \\mk{P0}{\\knubar^2\\kPenv}\\Big)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\nabla^2\\kEenv} + \\mk{z}{2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv} - \\frac{1}{c^2}\\Big(\\mk{t2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kEenv} - \\mk{t1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv}\\Big) = \\frac{1}{\\epsilon_0 c^2}\\Big(\\mk{P2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kPenv} - \\mk{P1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kPenv} - \\mk{P0}{\\knubar^2\\kPenv}\\Big)",
+       "uses": [1],
+       "cap": "With $\\bar{\\nu} = c\\bar{k}$, the terms $-\\bar{k}^2\\mathcal{E}$ and $\\bar{\\nu}^2\\mathcal{E}/c^2$ cancel."
+      },
+      {
+       "tex": "\\mk{L}{\\nabla_\\perp^2\\kEenv} + \\mk{zz}{\\frac{\\partial^2}{\\partial z^2}\\kEenv} + \\mk{z}{2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv} - \\frac{1}{c^2}\\Big(\\mk{t2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kEenv} - \\mk{t1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv}\\Big) = \\frac{1}{\\epsilon_0 c^2}\\Big(\\mk{P2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kPenv} - \\mk{P1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kPenv} - \\mk{P0}{\\knubar^2\\kPenv}\\Big)",
+       "uses": [2],
+       "map": {
+        "L": [
+         "L",
+         "zz"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\nabla_\\perp^2\\kEenv} + \\mk{z}{2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv} - \\frac{1}{c^2}\\Big(\\mk{t2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kEenv} - \\mk{t1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv}\\Big) = \\frac{1}{\\epsilon_0 c^2}\\Big(\\mk{P2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kPenv} - \\mk{P1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kPenv} - \\mk{P0}{\\knubar^2\\kPenv}\\Big)",
+       "uses": [5],
+       "cap": "Each $\\partial/\\partial z$ on $\\mathcal{E}$ costs a factor small beside $\\bar{k}$, so $\\partial^2\\mathcal{E}/\\partial z^2$ is negligible beside $2i\\bar{k}\\,\\partial\\mathcal{E}/\\partial z$."
+      },
+      {
+       "tex": "\\mk{L}{\\nabla_\\perp^2\\kEenv} + \\mk{z}{2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv} + \\mk{t1}{\\frac{1}{c^2}2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv} = \\frac{1}{\\epsilon_0 c^2}\\Big(\\mk{P2}{\\frac{\\partial^2}{\\partial \\kt^2}\\kPenv} - \\mk{P1}{2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kPenv} - \\mk{P0}{\\knubar^2\\kPenv}\\Big)",
+       "uses": [4],
+       "cap": "Likewise $\\partial^2\\mathcal{E}/\\partial t^2$ is negligible beside $2i\\bar{\\nu}\\,\\partial\\mathcal{E}/\\partial t$."
+      },
+      {
+       "tex": "\\mk{L}{\\nabla_\\perp^2\\kEenv} + \\mk{z}{2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv} + \\mk{t1}{\\frac{1}{c^2}2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv} = \\mk{P0}{-\\frac{1}{\\epsilon_0 c^2}\\knubar^2\\kPenv}",
+       "uses": [3],
+       "cap": "Both time derivatives of $\\mathcal{P}$ are small beside $\\bar{\\nu}^2\\mathcal{P}$."
+      }
+     ],
+     "num": "(4.23)",
+     "note": "The book prints the number (4.22) on an empty line under (4.21); no equation is missing."
+    },
+    {
+     "assumes": [
+      {
+       "step": 4
+      },
+      {
+       "tex": "\\knubar = c\\kkbar",
+       "src": "4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\nabla_\\perp^2\\kEenv} + \\mk{z}{2i\\kkbar\\frac{\\partial}{\\partial z}\\kEenv} + \\mk{t1}{\\frac{1}{c^2}2i\\knubar\\frac{\\partial}{\\partial \\kt}\\kEenv} = \\mk{P0}{-\\frac{1}{\\epsilon_0 c^2}\\knubar^2\\kPenv}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{1}{2i\\kkbar}\\nabla_\\perp^2\\kEenv} + \\mk{z}{\\frac{\\partial}{\\partial z}\\kEenv} + \\mk{t1}{\\frac{\\knubar}{c^2\\kkbar}\\frac{\\partial}{\\partial \\kt}\\kEenv} = \\mk{P0}{-\\frac{\\knubar^2}{2i\\kkbar\\epsilon_0 c^2}\\kPenv}",
+       "uses": [],
+       "cap": "Dividing by $2i\\bar{k}$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{1}{2i\\kkbar}\\nabla_\\perp^2\\kEenv} + \\mk{z}{\\frac{\\partial}{\\partial z}\\kEenv} + \\mk{t1}{\\frac{1}{c}\\frac{\\partial}{\\partial \\kt}\\kEenv} = \\mk{P0}{\\frac{i\\kkbar}{2\\epsilon_0}\\kPenv}",
+       "uses": [1],
+       "cap": "With $\\bar{\\nu} = c\\bar{k}$, and $-1/i = i$."
+      }
+     ],
+     "num": "(4.13), (4.24)"
+    }
+   ]
+  }
+ ]
+}

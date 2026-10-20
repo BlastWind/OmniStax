@@ -1,0 +1,167 @@
+{
+ "id": "3.2",
+ "chapter": "3",
+ "title": "System and environment",
+ "short": "System and environment",
+ "lead": "A system that is one part of a larger <span data-concept=\"open-system\">universe</span>, the rest of which is its <span data-concept=\"open-system\">environment</span>: how the expectation value of an operator acting on the system alone is found from a <span data-concept=\"reduced-density-operator\">reduced density operator</span>, the trace of the universe’s <span data-concept=\"density-operator\">density operator</span> over the <span data-concept=\"open-system\">environment</span>, and why that operator need not describe a <span data-concept=\"pure-and-mixed-states\">pure state</span> when the system is open.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": []
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [],
+ "coverage": [
+  {
+   "span": "universe",
+   "concept": "open-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "universe",
+   "concept": "density-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "universe",
+   "concept": "state-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "reduced",
+   "concept": "reduced-density-operator",
+   "verb": "introduces"
+  },
+  {
+   "span": "reduced",
+   "concept": "expectation-value",
+   "verb": "uses"
+  },
+  {
+   "span": "reduced",
+   "concept": "density-operator-expectation",
+   "verb": "uses"
+  },
+  {
+   "span": "open",
+   "concept": "density-operator-properties",
+   "verb": "uses"
+  },
+  {
+   "span": "open",
+   "concept": "pure-and-mixed-states",
+   "verb": "uses"
+  },
+  {
+   "span": "open",
+   "concept": "open-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-reduced-density-operator",
+   "concept": "density-operator",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [],
+ "derivations": [
+  {
+   "id": "reduced-density-operator",
+   "what": "the reduced density operator",
+   "source": "Modern Atomic and Optical Physics II, 3.2 System and environment",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\sum_{n,e}|n, e\\rangle\\langle n, e| = 1",
+       "src": "(3.17)"
+      },
+      {
+       "text": "The operator $\\kShat$ acts only on the system, so $\\langle e|$ can be moved past $\\kShat$.",
+       "src": "3.2"
+      },
+      {
+       "tex": "\\mathrm{Tr}_S[\\hat{A}] = \\sum_n\\langle n|\\hat{A}|n\\rangle",
+       "src": "3.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\kShat\\rangle} = \\mk{R}{\\langle\\kpsi|\\kShat|\\kpsi\\rangle}",
+      "src": "(1.6)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\kShat\\rangle} = \\mk{R}{\\sum_{n,e}\\langle n, e|\\kShat|\\kpsi\\rangle\\langle\\kpsi|n, e\\rangle}",
+       "uses": [
+        0
+       ],
+       "cap": "Inserting the completeness relation of the product basis and moving the number $\\langle\\psi|n, e\\rangle$ to the end."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kShat\\rangle} = \\mk{R}{\\sum_n\\langle n|\\kShat\\,\\underbrace{\\left(\\sum_e\\langle e|\\kpsi\\rangle\\langle\\kpsi|e\\rangle\\right)}_{\\krhoS}|n\\rangle}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kShat\\rangle} = \\mk{R}{\\mathrm{Tr}_S[\\kShat\\krhoS]}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(3.20)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\krhohat = |\\kpsi\\rangle\\langle\\kpsi|",
+       "src": "3.2"
+      },
+      {
+       "tex": "\\mathrm{Tr}_R[\\hat{A}] = \\sum_e\\langle e|\\hat{A}|e\\rangle",
+       "src": "3.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\krhoS} = \\mk{R}{\\sum_e\\langle e|\\kpsi\\rangle\\langle\\kpsi|e\\rangle}",
+      "src": "(3.19)",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\krhoS} = \\mk{R}{\\sum_e\\langle e|\\krhohat|e\\rangle}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\krhoS} = \\mk{R}{\\mathrm{Tr}_R[\\krhohat]}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(3.21)"
+    }
+   ]
+  }
+ ]
+}

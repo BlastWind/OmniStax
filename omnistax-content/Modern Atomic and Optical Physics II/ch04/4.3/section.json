@@ -1,0 +1,716 @@
+{
+ "id": "4.3",
+ "chapter": "4",
+ "title": "Nonlinear atomic response",
+ "short": "Nonlinear response",
+ "lead": "How a two-level medium answers a strong continuous-wave field: the <span data-concept=\"nonlinear-susceptibility\">nonlinear susceptibility</span>, saturation on resonance and the <span data-concept=\"saturation-intensity\">intensity</span> it takes, the intensity-dependent index far from resonance, the leading third-order correction, <span data-concept=\"optical-pumping\">optical pumping</span>, and <span data-concept=\"saturation-spectroscopy\">saturation spectroscopy</span>, which uses a strong pump and a weak probe to see through <span data-concept=\"doppler-broadening\">Doppler broadening</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-saturated-decay",
+   "kind": "sim",
+   "number": "4.3",
+   "originals": [
+    "/media/ch04/fig-4-3.png"
+   ],
+   "original_caption": "An incident field with intensity equal to the saturation intensity initially decays linearly with distance. Once the field is sufficiently weak that nonlinear effects are negligible, the intensity decays exponentially.",
+   "draws": [
+    "intensity",
+    "susceptibility"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-saturation-spectroscopy",
+   "kind": "sim",
+   "number": "4.4",
+   "folds": [
+    "4.5"
+   ],
+   "originals": [
+    "/media/ch04/fig-4-4.png",
+    "/media/ch04/fig-4-5.png"
+   ],
+   "original_caption": "(Figure 4.4) The forward and backward propagating beams interact with the velocity class of atoms for which they are resonant. The velocity classes begin to overlap as the optical frequency ν approaches the bare atomic resonance (Figure 4.5) The absorption spectrum for the weak probe in the presence of a counterpropagating strong field of the same frequency.",
+   "draws": [
+    "frequency",
+    "coupling",
+    "rate",
+    "density",
+    "susceptibility"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "nonlinear-susceptibility",
+   "concept": "nonlinear-susceptibility",
+   "verb": "introduces"
+  },
+  {
+   "span": "nonlinear-propagation",
+   "concept": "nonlinear-propagation",
+   "verb": "introduces"
+  },
+  {
+   "span": "saturation-parameter",
+   "concept": "saturation-parameter",
+   "verb": "introduces"
+  },
+  {
+   "span": "bleaches",
+   "concept": "resonant-saturation",
+   "verb": "introduces"
+  },
+  {
+   "span": "kerr-effect",
+   "concept": "kerr-effect",
+   "verb": "introduces"
+  },
+  {
+   "span": "chi-3",
+   "concept": "third-order-susceptibility",
+   "verb": "introduces"
+  },
+  {
+   "span": "saturation-intensity",
+   "concept": "saturation-intensity",
+   "verb": "introduces"
+  },
+  {
+   "span": "optical-pumping",
+   "concept": "optical-pumping",
+   "verb": "introduces"
+  },
+  {
+   "span": "saturation-spectroscopy",
+   "concept": "saturation-spectroscopy",
+   "verb": "introduces"
+  },
+  {
+   "span": "sat-dip",
+   "concept": "saturated-absorption-dip",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "density-matrix",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-53",
+   "concept": "steady-state-coherence",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-54",
+   "concept": "steady-state-population",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-4-55",
+   "concept": "optical-pumping-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "kerr-effect",
+   "concept": "refractive-index",
+   "verb": "uses"
+  },
+  {
+   "span": "saturation-intensity",
+   "concept": "saturation",
+   "verb": "uses"
+  },
+  {
+   "span": "optical-pumping",
+   "concept": "alkali-ground-hyperfine",
+   "verb": "uses"
+  },
+  {
+   "span": "spectroscopy",
+   "concept": "homogeneous-broadening",
+   "verb": "uses"
+  },
+  {
+   "span": "spectroscopy",
+   "concept": "inhomogeneous-broadening",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler-classes",
+   "concept": "doppler-broadening",
+   "verb": "uses"
+  },
+  {
+   "span": "sat-spectrum",
+   "concept": "absorption-coefficient",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-nonlinear-susceptibility",
+   "concept": "susceptibility",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-nonlinear-susceptibility",
+   "concept": "two-level-susceptibility",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-nonlinear-propagation",
+   "concept": "plane-wave-propagation-equation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "pump",
+   "label": "the strong field ℰ₊",
+   "figures": [
+    "sim-saturation-spectroscopy"
+   ]
+  },
+  {
+   "id": "probe",
+   "label": "the weak field ℰ₋",
+   "figures": [
+    "sim-saturation-spectroscopy"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-eq-4-53",
+   "kind": "correction",
+   "html": "The book prints $-i$, the sign of Eq. (3.99). Eqs. (4.43), (4.58) and (4.69) take $\\krhotwoone = i\\kOmega(\\krhooneone - \\krhotwotwo)/(\\kgammaonetwo - i\\kdelta)$, which follows from the equations of motion $\\dot{\\kctildetwo} = i\\kdelta\\kctildetwo + i\\kOmega\\kcone$ and $\\dot{\\kcone} = i\\kOmega^*\\kctildetwo$ of Section 2.1 and makes $\\mathrm{Im}[\\kchin] &gt; 0$, an absorption; with $-i$, Eq. (4.57) would give $\\kchin$ the opposite sign to Eq. (4.58)."
+  },
+  {
+   "id": "c-fig-4-4",
+   "kind": "correction",
+   "figure": "sim-saturation-spectroscopy",
+   "html": "The book's Figure 4.4 labels the strong field's velocity class $k\\kvz = \\kDelta - \\knu$ and the weak field's $k\\kvz = \\knu - \\kDelta$. The text has the strong field resonant with the atoms for which $\\knu = \\kDelta + k\\kvz$, so its class is $k\\kvz = \\knu - \\kDelta$ and the weak field's $k\\kvz = \\kDelta - \\knu$. The panel titles $\\kDelta - \\knu &gt; \\kgamma$ and $\\kDelta - \\knu &lt; \\kgamma$ mean $|\\kDelta - \\knu|$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "nonlinear-susceptibility",
+   "what": "the nonlinear susceptibility of two-level atoms",
+   "source": "Modern Atomic and Optical Physics II, 4.3 Nonlinear atomic response",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For two-level atoms $\\kPenv = \\frac{N}{\\kV}\\kmu\\krhotwoone$, with $\\krhotwoone$ taken without the fast phase $e^{i\\kkbar z}$ of the local field.",
+       "src": "4.1"
+      },
+      {
+       "tex": "\\krhotwoone = \\frac{i\\kOmega}{\\kgammaonetwo - i\\kdelta}(\\krhooneone - \\krhotwotwo)",
+       "src": "(4.53)"
+      },
+      {
+       "tex": "\\krhooneone - \\krhotwotwo = \\frac{\\kgamma}{\\kgamma + 2\\kRopt}",
+       "src": "(4.54)"
+      },
+      {
+       "tex": "\\kOmega = \\kmu\\kEenv/\\hbar",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\kgamma = \\frac{\\kmu^2 k_0^3}{3\\pi\\epsilon_0\\hbar}",
+       "src": "4.2"
+      },
+      {
+       "tex": "k_0 = 2\\pi/\\klambda",
+       "src": "4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{chi}{\\kchin(\\kdelta)} = \\mk{P}{\\frac{\\kPenv(\\kdelta)}{\\epsilon_0\\kEenv(\\kdelta)}}",
+      "src": "(4.56)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} = \\mk{pre}{\\frac{1}{\\epsilon_0\\kEenv(\\kdelta)}\\frac{N}{\\kV}\\kmu}\\mk{rho}{\\krhotwoone(\\kdelta)}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "P": [
+         "pre",
+         "rho"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} = \\mk{pre}{\\frac{1}{\\epsilon_0\\kEenv}\\frac{N}{\\kV}\\kmu}\\mk{L}{\\frac{i\\kOmega}{\\kgammaonetwo - i\\kdelta}}\\mk{pop}{(\\krhooneone - \\krhotwotwo)}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "rho": [
+         "L",
+         "pop"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} = \\mk{pre}{\\frac{1}{\\epsilon_0\\kEenv}\\frac{N}{\\kV}\\kmu}\\mk{L}{\\frac{i\\kOmega}{\\kgammaonetwo - i\\kdelta}}\\mk{pop}{\\frac{\\kgamma}{\\kgamma + 2\\kRopt}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} = \\mk{pre}{\\frac{1}{\\epsilon_0\\kEenv}\\frac{N}{\\kV}\\kmu}\\mk{L}{\\frac{i\\kmu\\kEenv}{\\hbar(\\kgammaonetwo - i\\kdelta)}}\\mk{pop}{\\frac{\\kgamma}{\\kgamma + 2\\kRopt}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} = \\mk{pre}{\\frac{N}{\\kV}\\frac{\\kmu^2}{\\hbar\\epsilon_0}}\\mk{L}{\\frac{i}{\\kgammaonetwo - i\\kdelta}}\\mk{pop}{\\frac{\\kgamma}{\\kgamma + 2\\kRopt}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} = \\mk{pre}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{L}{\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}}\\mk{pop}{\\frac{\\kgamma}{\\kgamma + 2\\kRopt}}",
+       "uses": [
+        4,
+        5
+       ],
+       "cap": "From the decay rate, $\\mu^2/\\hbar\\epsilon_0 = 3\\pi\\gamma/k_0^3 = 3\\lambda^3\\gamma/8\\pi^2$."
+      }
+     ],
+     "num": "(4.58)",
+     "note": "The book prints (4.53) with $-i$; the $+i$ that (4.43) takes gives (4.58) as printed."
+    }
+   ]
+  },
+  {
+   "id": "nonlinear-propagation",
+   "what": "the nonlinear propagation equation",
+   "source": "Modern Atomic and Optical Physics II, 4.3 Nonlinear atomic response",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For continuous-wave fields the time derivatives in the wave equation are disregarded.",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\kchin(\\kdelta) = \\frac{\\kPenv(\\kdelta)}{\\epsilon_0\\kEenv(\\kdelta)}",
+       "src": "(4.56)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} + \\mk{t}{\\frac{1}{c}\\frac{\\partial\\kEenv}{\\partial \\kt}} = \\mk{P}{\\frac{i\\kkbar}{2\\epsilon_0}\\kPenv}",
+      "src": "(4.31)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} = \\mk{P}{\\frac{i\\kkbar}{2\\epsilon_0}\\kPenv}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} = \\mk{P}{\\frac{i\\kkbar}{2}\\kchin(\\kdelta)\\kEenv}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(4.59)",
+     "note": "The book prints $i\\kkbar\\kchin(\\kdelta)\\kEenv$ in (4.59) and (4.60), without the factor $\\tfrac{1}{2}$ that the plane-wave equation (4.31) carries; with it the intensity decays at $\\kalpha = \\kkbar\\,\\mathrm{Im}[\\kchin]$, as (4.36) defines it."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kchin(\\kdelta) = \\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}\\frac{\\kgamma}{\\kgamma + 2\\kRopt}",
+       "src": "(4.58)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} = \\mk{P}{\\frac{i\\kkbar}{2}\\kchin(\\kdelta)\\kEenv}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{z}{\\frac{\\partial\\kEenv}{\\partial z}} = \\mk{P}{\\frac{i\\kkbar}{2}\\left(\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}\\frac{\\kgamma}{\\kgamma + 2\\kRopt}\\right)\\kEenv}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(4.60)",
+     "note": "As in (4.59), the book omits the factor $\\tfrac{1}{2}$."
+    }
+   ]
+  },
+  {
+   "id": "far-detuned-susceptibility",
+   "what": "the nonlinear susceptibility far from resonance",
+   "source": "Modern Atomic and Optical Physics II, 4.3 Nonlinear atomic response, Far-detuned fields",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Very large detuning, $\\kdelta \\gg \\kOmega, \\kgamma$, and so $\\kdelta \\gg \\kgammaonetwo$.",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\kRopt = \\frac{2|\\kOmega|^2\\kgammaonetwo}{\\kgammaonetwo^2 + \\kdelta^2}",
+       "src": "(4.55)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{chi}{\\kchin(\\kdelta)} = \\mk{pre}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{L}{\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}}\\mk{pop}{\\frac{\\kgamma}{\\kgamma + 2\\kRopt}}",
+      "src": "(4.58)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{chi}{\\kchin} \\approx \\mk{pre}{-\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{L}{\\frac{\\kgamma}{\\kdelta}}\\mk{pop}{\\frac{\\kgamma}{\\kgamma + 2\\kRopt}}",
+       "uses": [
+        0
+       ],
+       "cap": "With $\\delta \\gg \\gamma_{12}$, $\\gamma_{12} - i\\delta \\approx -i\\delta$, and $i/(-i) = -1$."
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin} \\approx \\mk{pre}{-\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{L}{\\frac{\\kgamma}{\\kdelta}}\\mk{pop}{\\left(1 - \\frac{2\\kRopt}{\\kgamma}\\right)}",
+       "uses": [
+        0
+       ],
+       "cap": "Far from resonance $2R_{opt} \\ll \\gamma$, and $\\gamma/(\\gamma + 2R_{opt}) = 1/(1 + 2R_{opt}/\\gamma) \\approx 1 - 2R_{opt}/\\gamma$ to first order."
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin} \\approx \\mk{pre}{-\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{L}{\\frac{\\kgamma}{\\kdelta}}\\mk{pop}{\\left(1 - \\frac{4|\\kOmega|^2\\kgammaonetwo}{\\kgamma(\\kgammaonetwo^2 + \\kdelta^2)}\\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin} \\approx \\mk{pre}{-\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{L}{\\frac{\\kgamma}{\\kdelta}}\\mk{pop}{\\left(1 - \\frac{4|\\kOmega|^2\\kgammaonetwo}{\\kdelta^2\\kgamma}\\right)}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(4.64)"
+    }
+   ]
+  },
+  {
+   "id": "weak-saturation-expansion",
+   "what": "the leading nonlinear correction to the susceptibility",
+   "source": "Modern Atomic and Optical Physics II, 4.3 Nonlinear atomic response, Weakly saturated regime",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The field is weak, $2\\kRopt \\ll \\kgamma$.",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\kRopt = \\frac{2|\\kOmega|^2\\kgammaonetwo}{\\kgammaonetwo^2 + \\kdelta^2}",
+       "src": "(4.55)"
+      },
+      {
+       "tex": "\\kOmega = \\kmu\\kEenv/\\hbar",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{chi}{\\kchin(\\kdelta)} = \\mk{pre}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{L}{\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}}\\mk{pop}{\\frac{\\kgamma}{\\kgamma + 2\\kRopt}}",
+      "src": "(4.58)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} \\approx \\mk{pre}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3}\\mk{L}{\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}}\\mk{pop}{\\left(1 - \\frac{2\\kRopt}{\\kgamma}\\right)}",
+       "uses": [
+        0
+       ],
+       "cap": "$\\gamma/(\\gamma + 2R_{opt}) = 1/(1 + 2R_{opt}/\\gamma) \\approx 1 - 2R_{opt}/\\gamma$ to first order."
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} \\approx \\mk{lin}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}} - \\mk{nl}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}\\frac{2\\kRopt}{\\kgamma}}",
+       "uses": [],
+       "map": {
+        "pre": [
+         "lin",
+         "nl"
+        ],
+        "L": [
+         "lin",
+         "nl"
+        ],
+        "pop": [
+         "nl"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} \\approx \\mk{lin}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}} - \\mk{nl}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}\\frac{4|\\kOmega|^2\\kgammaonetwo}{\\kgamma(\\kgammaonetwo^2 + \\kdelta^2)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} \\approx \\mk{lin}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}} - \\mk{nl}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}\\frac{4|\\kmu|^2|\\kEenv|^2\\kgammaonetwo}{\\hbar^2\\kgamma(\\kgammaonetwo^2 + \\kdelta^2)}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchin(\\kdelta)} \\approx \\mk{lin}{\\frac{3}{8\\pi^2}\\frac{N}{\\kV}\\klambda^3\\frac{i\\kgamma}{\\kgammaonetwo - i\\kdelta}} - \\mk{c3}{\\left(\\frac{3\\klambda^3}{2\\pi^2\\hbar^2}\\frac{N}{\\kV}\\frac{i}{\\kgammaonetwo - i\\kdelta}\\frac{|\\kmu|^2\\kgammaonetwo}{\\kgammaonetwo^2 + \\kdelta^2}\\right)}\\mk{E2}{|\\kEenv|^2}",
+       "uses": [],
+       "map": {
+        "nl": [
+         "c3",
+         "E2"
+        ]
+       }
+      }
+     ],
+     "note": "The book writes $|E|^2$ for the squared field amplitude $|\\kEenv|^2$."
+    }
+   ]
+  },
+  {
+   "id": "probe-coherence",
+   "what": "the probe coherence of atoms saturated by the pump",
+   "source": "Modern Atomic and Optical Physics II, 4.3 Nonlinear atomic response, 4.3.1 Saturation spectroscopy",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "(\\krhooneone - \\krhotwotwo)^{(\\kvz)} = \\frac{1}{1 + S(\\kdelta - \\kkmag\\kvz)}",
+       "src": "(4.70)"
+      },
+      {
+       "tex": "S(\\kdelta - \\kkmag\\kvz) = \\frac{4|\\kOmegap|^2(\\kgammaonetwo/\\kgamma)}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvz)^2}",
+       "src": "(4.71)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{rho}{\\krhotwoone^{(\\kvz)-}} \\approx \\mk{R}{\\frac{i\\kOmegam(\\krhooneone - \\krhotwotwo)^{(\\kvz)}}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}}",
+      "src": "(4.69)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{rho}{\\krhotwoone^{(\\kvz)-}} \\approx \\mk{pop}{\\left(\\frac{1}{1 + S(\\kdelta - \\kkmag\\kvz)}\\right)}\\mk{L}{\\left(\\frac{i\\kOmegam}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}\\right)}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "R": [
+         "pop",
+         "L"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{rho}{\\krhotwoone^{(\\kvz)-}} \\approx \\mk{pop}{\\left(\\frac{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvz)^2}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvz)^2 + 4|\\kOmegap|^2(\\kgammaonetwo/\\kgamma)}\\right)}\\mk{L}{\\left(\\frac{i\\kOmegam}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}\\right)}",
+       "uses": [
+        1
+       ],
+       "cap": "Multiplying above and below by $\\gamma_{12}^2 + (\\delta - kv_z)^2$."
+      }
+     ],
+     "num": "(4.72)"
+    }
+   ]
+  },
+  {
+   "id": "probe-susceptibility",
+   "what": "the susceptibility of the probe",
+   "source": "Modern Atomic and Optical Physics II, 4.3 Nonlinear atomic response, 4.3.1 Saturation spectroscopy",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "P_- = \\int d\\kvz\\kmu^*\\krhotwoone^{(\\kvz)-}\\knv",
+       "src": "(4.73)"
+      },
+      {
+       "tex": "\\krhotwoone^{(\\kvz)-} \\approx \\frac{i\\kOmegam}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}\\frac{1}{1 + S(\\kdelta - \\kkmag\\kvz)}",
+       "src": "(4.69)–(4.70)"
+      },
+      {
+       "tex": "\\kOmegapm = \\kmu\\kEpm/\\hbar",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{chi}{\\kchi_-} = \\mk{P}{\\frac{P_-}{\\epsilon_0\\kEm}}",
+      "src": "4.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{chi}{\\kchi_-} = \\mk{pre}{\\frac{1}{\\epsilon_0\\kEm}\\int d\\kvz\\,\\kmu^*\\knv}\\mk{rho}{\\krhotwoone^{(\\kvz)-}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "P": [
+         "pre",
+         "rho"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi_-} = \\mk{pre}{\\frac{1}{\\epsilon_0\\kEm}\\int d\\kvz\\,\\kmu^*\\knv}\\mk{L}{\\frac{i\\kOmegam}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}}\\mk{sat}{\\frac{1}{1 + S(\\kdelta - \\kkmag\\kvz)}}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "rho": [
+         "L",
+         "sat"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi_-} = \\mk{pre}{\\frac{|\\kmu|^2}{\\epsilon_0\\hbar}\\int d\\kvz \\knv}\\mk{L}{\\frac{i}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}}\\mk{sat}{\\frac{1}{1 + S(\\kdelta - \\kkmag\\kvz)}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi_-} = \\mk{pre}{\\frac{|\\kmu|^2}{\\epsilon_0\\hbar}\\int d\\kvz \\knv}\\mk{L}{\\frac{i}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}}\\mk{sat}{\\left(1 - \\frac{S(\\kdelta - \\kkmag\\kvz)}{1 + S(\\kdelta - \\kkmag\\kvz)}\\right)}",
+       "uses": [],
+       "cap": "Writing $1/(1 + S) = 1 - S/(1 + S)$ separates the unsaturated absorption from the saturated part."
+      }
+     ],
+     "num": "(4.74)"
+    }
+   ]
+  },
+  {
+   "id": "saturated-absorption-dip",
+   "what": "the saturated absorption dip",
+   "source": "Modern Atomic and Optical Physics II, 4.3 Nonlinear atomic response, 4.3.1 Saturation spectroscopy, The saturated absorption spectrum",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "To lowest order in $\\kOmegap$, $S/(1 + S) \\approx S$.",
+       "src": "4.3"
+      },
+      {
+       "tex": "S(\\kdelta - \\kkmag\\kvz) = \\frac{4|\\kOmegap|^2(\\kgammaonetwo/\\kgamma)}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvz)^2}",
+       "src": "(4.71)"
+      },
+      {
+       "text": "The thermal distribution is nearly constant over the velocities that make the dip, $\\knv = n$.",
+       "src": "4.3"
+      },
+      {
+       "tex": "\\int_{-\\infty}^{\\infty}\\frac{dx}{\\left(1 + (x - a)^2\\right)\\left(1 + (x + a)^2\\right)} = \\frac{\\pi}{2(1 + a^2)}",
+       "src": "(4.76)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{chi}{\\kchi_-} = \\mk{pre}{\\frac{|\\kmu|^2}{\\epsilon_0\\hbar}\\int d\\kvz \\knv}\\mk{L}{\\frac{i}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}}\\mk{sat}{\\left(1 - \\frac{S(\\kdelta - \\kkmag\\kvz)}{1 + S(\\kdelta - \\kkmag\\kvz)}\\right)}",
+      "src": "(4.74)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{chi}{\\kchi_-} \\approx \\mk{pre}{\\frac{|\\kmu|^2}{\\epsilon_0\\hbar}\\int d\\kvz \\knv}\\mk{L}{\\frac{i}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}}\\mk{sat}{\\left(1 - S(\\kdelta - \\kkmag\\kvz)\\right)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi_-} \\approx \\mk{pre}{\\frac{|\\kmu|^2}{\\epsilon_0\\hbar}\\int d\\kvz \\knv}\\mk{L}{\\frac{i}{\\kgammaonetwo - i(\\kdelta + \\kkmag\\kvz)}}\\mk{sat}{\\left(1 - \\frac{4|\\kOmegap|^2(\\kgammaonetwo/\\kgamma)}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvz)^2}\\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\kchi_-} = \\mk{pre}{\\frac{|\\kmu|^2}{\\epsilon_0\\hbar}\\int d\\kvz \\knv}\\mk{L}{\\frac{i\\left(\\kgammaonetwo + i(\\kdelta + \\kkmag\\kvz)\\right)}{\\kgammaonetwo^2 + (\\kdelta + \\kkmag\\kvz)^2}}\\mk{sat}{\\left(1 - \\frac{4|\\kOmegap|^2(\\kgammaonetwo/\\kgamma)}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvz)^2}\\right)}",
+       "uses": [],
+       "cap": "Multiplying above and below by $\\gamma_{12} + i(\\delta + kv_z)$."
+      },
+      {
+       "tex": "\\mk{chi}{\\mathrm{Im}[\\kchi_-]_\\mathrm{sat}} \\approx \\mk{pre}{-\\frac{|\\kmu|^2}{\\epsilon_0\\hbar}\\int d\\kvz\\,\\knv}\\mk{L}{\\frac{\\kgammaonetwo}{\\kgammaonetwo^2 + (\\kdelta + \\kkmag\\kvz)^2}}\\mk{sat}{\\frac{4|\\kOmegap|^2(\\kgammaonetwo/\\kgamma)}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvz)^2}}",
+       "uses": [],
+       "cap": "The saturated part is the term in $|\\Omega_+|^2$; with $a$ and $b$ real, the imaginary part of $i(a + ib)$ is $a$."
+      },
+      {
+       "tex": "\\mk{chi}{\\mathrm{Im}[\\kchi_-]_\\mathrm{sat}} \\approx \\mk{pre}{-\\frac{|\\kmu|^2}{\\epsilon_0\\hbar}\\int d\\kvz\\, n}\\mk{L}{\\frac{\\kgammaonetwo}{\\kgammaonetwo^2 + (\\kdelta + \\kkmag\\kvz)^2}}\\mk{sat}{\\frac{4|\\kOmegap|^2(\\kgammaonetwo/\\kgamma)}{\\kgammaonetwo^2 + (\\kdelta - \\kkmag\\kvz)^2}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\mathrm{Im}[\\kchi_-]_\\mathrm{sat}} \\approx \\mk{pre}{-\\frac{|\\kmu|^2 n}{\\epsilon_0\\hbar\\kkmag}\\frac{4|\\kOmegap|^2}{\\kgamma\\kgammaonetwo}}\\mk{I}{\\int_{-\\infty}^{\\infty}\\frac{dx}{\\left(1 + (x + a)^2\\right)\\left(1 + (x - a)^2\\right)}}",
+       "uses": [],
+       "cap": "With $x = kv_z/\\gamma_{12}$ and $a = \\delta/\\gamma_{12}$, so that $dv_z = \\gamma_{12}\\,dx/k$ and each Lorentzian takes a factor $1/\\gamma_{12}^2$.",
+       "map": {
+        "L": "I",
+        "sat": "I"
+       }
+      },
+      {
+       "tex": "\\mk{chi}{\\mathrm{Im}[\\kchi_-]_\\mathrm{sat}} \\approx \\mk{pre}{-\\frac{|\\kmu|^2 n}{\\epsilon_0\\hbar\\kkmag}\\frac{4|\\kOmegap|^2}{\\kgamma\\kgammaonetwo}}\\mk{I}{\\frac{\\pi}{2(1 + \\kdelta^2/\\kgammaonetwo^2)}}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{chi}{\\mathrm{Im}[\\kchi_-]_\\mathrm{sat}} = \\mk{pre}{-\\frac{|\\kmu|^2 n}{\\epsilon_0\\hbar \\kkmag}\\frac{2\\pi|\\kOmegap|^2(\\kgammaonetwo/\\kgamma)}{(\\kgammaonetwo^2 + \\kdelta^2)}}",
+       "uses": [],
+       "map": {
+        "I": "pre"
+       }
+      }
+     ],
+     "num": "(4.75)",
+     "note": "The book prints (4.76) without its $dx$."
+    }
+   ]
+  }
+ ]
+}

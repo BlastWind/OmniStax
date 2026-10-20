@@ -1,0 +1,1612 @@
+{
+  "symbols": [
+    {
+      "sym": "F_force",
+      "latex": "\\mathbf{F}",
+      "macro": "\\kFforce"
+    },
+    {
+      "sym": "omega_R",
+      "latex": "\\omega_R",
+      "macro": "\\komegaR"
+    },
+    {
+      "sym": "V_eff",
+      "latex": "V_\\mathrm{eff}",
+      "macro": "\\kVeff"
+    },
+    {
+      "sym": "R_opt_0",
+      "latex": "R^0_\\mathrm{opt}",
+      "macro": "\\kRoptzero"
+    },
+    {
+      "sym": "eta",
+      "latex": "\\eta",
+      "macro": "\\keta"
+    },
+    {
+      "sym": "v_c",
+      "latex": "v_c",
+      "macro": "\\kvc"
+    },
+    {
+      "sym": "D_diff",
+      "latex": "D",
+      "macro": "\\kDdiff"
+    },
+    {
+      "sym": "f_hat",
+      "latex": "\\hat{f}",
+      "macro": "\\kfhat"
+    },
+    {
+      "sym": "F_noise",
+      "latex": "\\hat{\\mathcal{F}}",
+      "macro": "\\kFnoise"
+    },
+    {
+      "sym": "T_D",
+      "latex": "T_D",
+      "macro": "\\kTD"
+    },
+    {
+      "sym": "tau_P",
+      "latex": "\\tau_P",
+      "macro": "\\ktauP"
+    },
+    {
+      "sym": "Delta_rho",
+      "latex": "\\Delta\\rho",
+      "macro": "\\kDeltarho"
+    },
+    {
+      "sym": "eta_S",
+      "latex": "\\eta_S",
+      "macro": "\\ketaS"
+    },
+    {
+      "sym": "T_S",
+      "latex": "T_S",
+      "macro": "\\kTS"
+    },
+    {
+      "sym": "T_R",
+      "latex": "T_R",
+      "macro": "\\kTR"
+    },
+    {
+      "sym": "p_cm",
+      "latex": "p",
+      "macro": "\\kpcm"
+    },
+    {
+      "sym": "omega_res",
+      "latex": "\\omega_\\mathrm{res}",
+      "macro": "\\komegares"
+    },
+    {
+      "sym": "F_mag",
+      "latex": "F",
+      "macro": "\\kFmag"
+    },
+    {
+      "sym": "v_mag",
+      "latex": "v",
+      "macro": "\\kvmag"
+    },
+    {
+      "sym": "F_p",
+      "latex": "F_+",
+      "macro": "\\kFp"
+    },
+    {
+      "sym": "F_m",
+      "latex": "F_-",
+      "macro": "\\kFm"
+    },
+    {
+      "sym": "Omega_tilde",
+      "latex": "\\tilde{\\Omega}",
+      "macro": "\\kOmegatilde"
+    },
+    {
+      "sym": "r_dist",
+      "latex": "r",
+      "macro": "\\krdist"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "moving-atom-hamiltonian",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Hamiltonian of a moving atom",
+      "symbol": "H",
+      "type": "energy",
+      "statement": "The Hamiltonian of an atom moving in laser light adds its centre-of-mass kinetic energy p̂²/2m and an external potential V(r̂) to the field and atom-field terms, and in the RWA the laser coupling Ω(r̂) = |Ω(r̂)|e^{iφ(r̂)} depends on the position operator.",
+      "forms": [
+        {
+          "id": "eq-8-1",
+          "latex": "\\hat{H} = \\hat{H}_F + \\hat{H}_{AF} + \\frac{\\hat{p}^2}{2m} + V(\\hat{r})",
+          "anchor": "8.1-eq-8-1"
+        },
+        {
+          "id": "eq-8-2",
+          "latex": "\\hat{H}_{AL} = -\\hbar\\Omega(\\hat{r})|2\\rangle\\langle 1| - \\hbar\\Omega(\\hat{r})^*|1\\rangle\\langle 2|",
+          "anchor": "8.1-eq-8-2"
+        },
+        {
+          "id": "eq-8-3",
+          "latex": "\\Omega(\\hat{r}) = |\\Omega(\\hat{r})|e^{i\\phi(\\hat{r})}",
+          "anchor": "8.1-eq-8-3"
+        }
+      ]
+    },
+    {
+      "id": "atomic-recoil",
+      "kind": "result",
+      "section": "8.1",
+      "name": "Atomic recoil",
+      "terms": [
+        "atomic recoil"
+      ],
+      "type": "momentum",
+      "statement": "A plane wave of phase k·r couples |p⟩|1⟩ to |p + ℏk⟩|2⟩: absorbing a photon changes the atom's centre-of-mass momentum by ℏk as well as its internal state.",
+      "forms": [
+        {
+          "id": "eq-8-6",
+          "latex": "\\hat{H}_{AL} = -\\hbar|\\Omega(\\hat{r})| \\int \\left(|2\\rangle|p + \\hbar k\\rangle\\langle p|\\langle 1| + |1\\rangle|p\\rangle\\langle p + \\hbar k|\\langle 2|\\right) dp",
+          "anchor": "8.1-drv-plane-wave-coupling"
+        },
+        {
+          "id": "eq-8-5",
+          "latex": "e^{ik\\cdot\\hat{r}} = \\int dp'|p' + \\hbar k\\rangle\\langle p'|",
+          "anchor": "8.1-drv-plane-wave-coupling"
+        }
+      ]
+    },
+    {
+      "id": "recoil-frequency",
+      "kind": "definition",
+      "section": "8.1",
+      "name": "Recoil frequency",
+      "terms": [
+        "recoil energy",
+        "recoil shifts"
+      ],
+      "symbol": "omega_R",
+      "type": "frequency",
+      "statement": "The recoil frequency ω_R is the kinetic energy (ℏk)²/2m of an atom kicked by one photon, divided by ℏ.",
+      "forms": [
+        {
+          "id": "eq-8-recoil-frequency",
+          "latex": "\\hbar\\omega_R = \\frac{(\\hbar k)^2}{2m}",
+          "anchor": "8.2-recoil-energy"
+        }
+      ]
+    },
+    {
+      "id": "recoil-shifted-resonance",
+      "kind": "result",
+      "section": "8.1",
+      "name": "Doppler and recoil shifts of resonance",
+      "terms": [
+        "Doppler shift"
+      ],
+      "type": "frequency",
+      "statement": "The transition |p⟩|1⟩ → |p + ℏk⟩|2⟩ is resonant at ω₁₂ shifted by the Doppler shift pk/m = vk and by the recoil shift ℏk²/2m.",
+      "symbol": "omega_res",
+      "forms": [
+        {
+          "id": "eq-8-8",
+          "latex": "\\omega_\\mathrm{res} = \\omega_{12} + \\frac{pk}{m} + \\frac{\\hbar k^2}{2m}",
+          "anchor": "8.1-drv-recoil-shifted-resonance"
+        },
+        {
+          "id": "eq-8-7",
+          "latex": "\\omega_\\mathrm{res} = \\omega_{12} + \\frac{(p + \\hbar k)^2}{2m\\hbar} - \\frac{p^2}{2m\\hbar}",
+          "anchor": "8.1-drv-recoil-shifted-resonance"
+        }
+      ]
+    },
+    {
+      "id": "light-force-operator",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Force operator",
+      "symbol": "F",
+      "type": "force",
+      "statement": "In the Heisenberg picture the force on the atom is the commutator of its momentum with the Hamiltonian, which for the laser coupling is ℏ∇Ω|2⟩⟨1| + h.c.",
+      "forms": [
+        {
+          "id": "eq-8-10",
+          "latex": "\\hat{F} = -[\\nabla, \\hat{H}(\\hat{r})] = \\hbar\\nabla\\Omega|2\\rangle\\langle 1| + \\hbar\\nabla\\Omega^*|1\\rangle\\langle 2|",
+          "anchor": "8.2-drv-light-force-operator"
+        },
+        {
+          "id": "eq-8-9",
+          "latex": "\\frac{d}{dt}\\hat{p} = \\frac{1}{i\\hbar}[\\hat{p}, \\hat{H}] = \\hat{F}",
+          "anchor": "8.2-eq-8-9"
+        },
+        {
+          "id": "eq-8-13",
+          "latex": "[\\hat{p}, \\hat{O}(r)] = -i\\hbar\\nabla\\hat{O}(r)",
+          "anchor": "8.2-force-operator"
+        }
+      ]
+    },
+    {
+      "id": "semiclassical-light-force",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Reactive and dissipative light forces",
+      "terms": [
+        "semiclassical",
+        "reactive",
+        "dissipative"
+      ],
+      "symbol": "F_mag",
+      "type": "force",
+      "statement": "Treating the atom as a classical ball feeling the average force, the light force splits into a dissipative part from the phase gradient and Im(ρ₂₁/Ω) and a reactive part from the intensity gradient and Re(ρ₂₁/Ω).",
+      "forms": [
+        {
+          "id": "eq-8-18",
+          "latex": "F = 2\\hbar|\\Omega|^2\\nabla\\phi\\ \\mathrm{Im}\\left(\\frac{\\rho_{21}}{\\Omega}\\right) + \\hbar\\nabla|\\Omega|^2\\mathrm{Re}\\left(\\frac{\\rho_{21}}{\\Omega}\\right)",
+          "anchor": "8.2-drv-semiclassical-light-force"
+        },
+        {
+          "id": "eq-8-14",
+          "latex": "F = \\langle\\hat{F}\\rangle = \\hbar\\nabla\\Omega\\rho_{12} + \\hbar\\nabla\\Omega^*\\rho_{21}",
+          "anchor": "8.2-drv-semiclassical-light-force"
+        },
+        {
+          "id": "eq-8-15",
+          "latex": "\\langle|1\\rangle\\langle 2|\\rangle = \\mathrm{Tr}[\\rho|1\\rangle\\langle 2|] = \\rho_{21}",
+          "anchor": "8.2-drv-semiclassical-light-force"
+        }
+      ]
+    },
+    {
+      "id": "semiclassical-force-validity",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Validity of the semiclassical force",
+      "statement": "The steady-state force on a classically moving atom holds for times long against 1/γ₁₂ and 1/δ and short against the recoil time, ω_R ≪ 1/t ≪ max(γ₁₂, δ).",
+      "forms": [
+        {
+          "id": "eq-8-19",
+          "latex": "\\omega_R \\ll 1/t \\ll \\max(\\gamma_{12}, \\delta)",
+          "anchor": "8.2-eq-8-19"
+        }
+      ]
+    },
+    {
+      "id": "dipole-force",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Dipole force",
+      "terms": [
+        "dipole force"
+      ],
+      "symbol": "V_eff",
+      "type": "force",
+      "statement": "Far from resonance the force is reactive, the gradient of the AC Stark shift ℏ|Ω|²/δ; it is conservative and draws atoms to field maxima for δ < 0 and to minima for δ > 0.",
+      "forms": [
+        {
+          "id": "eq-8-20",
+          "latex": "F = -\\hbar\\nabla\\left(\\frac{|\\Omega|^2}{\\delta}\\right)",
+          "anchor": "8.2-eq-8-20"
+        },
+        {
+          "id": "eq-8-21",
+          "latex": "V_\\mathrm{eff} = \\hbar\\sum_i \\frac{|\\Omega_i|^2}{\\delta_i}|i\\rangle\\langle i|",
+          "anchor": "8.2-eq-8-21"
+        }
+      ]
+    },
+    {
+      "id": "dipole-trap",
+      "kind": "idea",
+      "section": "8.2",
+      "name": "Dipole trap",
+      "terms": [
+        "dipole trap"
+      ],
+      "statement": "A tightly focused red-detuned beam attracts atoms to its region of maximum intensity and confines them with little spontaneous emission."
+    },
+    {
+      "id": "optical-lattice",
+      "kind": "idea",
+      "section": "8.2",
+      "name": "Optical lattice",
+      "terms": [
+        "optical lattice",
+        "atomic crystals"
+      ],
+      "statement": "A standing wave makes a periodic dipole potential with wells spaced by about λ/2, and orthogonal beams add dimensions: a model crystal of atoms and light."
+    },
+    {
+      "id": "dissipative-force",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Dissipative force",
+      "terms": [
+        "dissipative force"
+      ],
+      "symbol": "F_force",
+      "type": "force",
+      "statement": "In a plane wave the force is dissipative: a kick ℏk per absorbed photon, the spontaneous photon going into 4π, so the force is ℏk times the scattering rate, ℏkR_opt at low intensity, with the Doppler shift kv in the detuning.",
+      "forms": [
+        {
+          "id": "eq-8-23",
+          "latex": "\\mathbf{F} \\approx \\hbar\\mathbf{k}\\frac{2\\gamma_{12}|\\Omega|^2}{\\gamma_{12}^2 + (\\delta - kv)^2} = \\hbar\\mathbf{k}R_\\mathrm{opt}",
+          "anchor": "8.2-drv-dissipative-force"
+        },
+        {
+          "id": "eq-8-24",
+          "latex": "\\mathbf{F} = \\hbar\\mathbf{k}\\gamma\\rho_{22}",
+          "anchor": "8.2-drv-scattering-force"
+        },
+        {
+          "id": "eq-8-22",
+          "latex": "\\mathrm{Im}\\left(\\frac{\\rho_{21}}{\\Omega}\\right) \\approx \\frac{\\gamma_{12}}{\\gamma_{12}^2 + (\\delta - kv)^2}",
+          "anchor": "8.2-drv-dissipative-force"
+        }
+      ]
+    },
+    {
+      "id": "maximum-dissipative-force",
+      "kind": "result",
+      "section": "8.2",
+      "name": "Maximum dissipative force",
+      "type": "force",
+      "statement": "As the transition saturates the dissipative force reaches ℏkγ/2, since the atom spends at most half its time in the excited state.",
+      "forms": [
+        {
+          "id": "eq-8-27",
+          "latex": "\\mathbf{F}_\\mathrm{max} = \\hbar\\mathbf{k}\\frac{\\gamma}{2}",
+          "anchor": "8.2-drv-maximum-dissipative-force"
+        },
+        {
+          "id": "eq-8-26",
+          "latex": "\\mathbf{F} = \\hbar\\mathbf{k}\\frac{\\gamma R_{opt}}{\\gamma + 2R_{opt}}",
+          "anchor": "8.2-drv-maximum-dissipative-force"
+        },
+        {
+          "id": "eq-8-25",
+          "latex": "\\mathrm{Im}\\left(\\frac{\\rho_{21}}{\\Omega}\\right) = \\frac{\\gamma_{12}}{\\gamma_{12}^2 + (\\delta - kv)^2}\\frac{\\gamma}{\\gamma + 2R_{opt}}",
+          "anchor": "8.2-eq-8-25"
+        }
+      ]
+    },
+    {
+      "id": "atomic-beam-slowing",
+      "kind": "idea",
+      "section": "8.2",
+      "name": "Slowing an atomic beam",
+      "terms": [
+        "chirped"
+      ],
+      "statement": "Slowing a beam takes some 10⁴ kicks over milliseconds and about a metre, and the atom stays in resonance as its Doppler shift changes only if the laser is chirped or a varying magnetic field Zeeman-shifts it."
+    },
+    {
+      "id": "laser-cooling",
+      "kind": "idea",
+      "section": "8.1",
+      "name": "Laser cooling",
+      "terms": [
+        "laser cooling"
+      ],
+      "statement": "Light can cool atoms: its forces not only slow them but narrow their velocity distribution, until a limit set by each scheme's heating."
+    },
+    {
+      "id": "doppler-cooling",
+      "kind": "idea",
+      "section": "8.3",
+      "name": "Doppler cooling",
+      "terms": [
+        "Doppler cooling",
+        "cooling"
+      ],
+      "statement": "Cooling needs a force that depends on velocity, slowing hot atoms more than cool ones; Doppler cooling takes it from the Doppler shift in the dissipative force."
+    },
+    {
+      "id": "zero-velocity-excitation-rate",
+      "kind": "definition",
+      "section": "8.3",
+      "name": "Zero-velocity excitation rate",
+      "symbol": "R_opt_0",
+      "type": "rate",
+      "statement": "R⁰_opt is the optical excitation rate of an atom at rest, 2γ₁₂|Ω|²/(γ₁₂² + δ²).",
+      "forms": [
+        {
+          "id": "eq-8-zero-velocity-rate",
+          "latex": "R_\\mathrm{opt}^0 = \\frac{2\\gamma_{12}|\\Omega|^2}{\\gamma_{12}^2 + \\delta^2}",
+          "anchor": "8.3-zero-velocity-rate"
+        }
+      ]
+    },
+    {
+      "id": "low-velocity-doppler-force",
+      "kind": "result",
+      "section": "8.3",
+      "name": "Doppler force at low velocity",
+      "type": "force",
+      "statement": "For k·v ≪ δ, γ₁₂ the dissipative force is a velocity-independent kick ℏkR⁰_opt plus a term in (k·v) whose sign does not depend on the sign of k.",
+      "forms": [
+        {
+          "id": "eq-8-28",
+          "latex": "F \\approx \\hbar\\mathbf{k}R_\\mathrm{opt}^0\\left(1 + \\frac{2\\delta\\mathbf{k}\\cdot\\mathbf{v}}{\\gamma_{12}^2 + \\delta^2}\\right)",
+          "anchor": "8.3-drv-doppler-force-expansion"
+        }
+      ]
+    },
+    {
+      "id": "friction-coefficient",
+      "kind": "definition",
+      "section": "8.3",
+      "name": "Friction coefficient",
+      "terms": [
+        "friction coefficient",
+        "viscous force"
+      ],
+      "symbol": "eta",
+      "type": "friction",
+      "statement": "Two counterpropagating beams cancel the kicks and leave a viscous force ηmv_z, with friction coefficient η proportional to δ: red detuning cools and blue detuning heats.",
+      "forms": [
+        {
+          "id": "eq-8-30",
+          "latex": "\\eta = \\frac{8\\hbar k^2}{m}\\frac{\\delta\\gamma_{12}|\\Omega|^2}{(\\gamma_{12}^2 + \\delta^2)^2}",
+          "anchor": "8.3-drv-friction-coefficient"
+        },
+        {
+          "id": "eq-8-29",
+          "latex": "F = F_+ + F_- = \\eta m v_z",
+          "anchor": "8.3-eq-8-29"
+        }
+      ]
+    },
+    {
+      "id": "optical-molasses",
+      "kind": "idea",
+      "section": "8.3",
+      "name": "Optical molasses",
+      "terms": [
+        "optical molasses"
+      ],
+      "statement": "Three orthogonal pairs of counterpropagating red-detuned beams give independent viscous forces along each axis and cool the atom in three dimensions."
+    },
+    {
+      "id": "maximum-friction-coefficient",
+      "kind": "result",
+      "section": "8.3",
+      "name": "Maximum friction coefficient",
+      "type": "friction",
+      "statement": "The friction coefficient is largest near δ ∼ γ₁₂ and, at saturation on a radiatively broadened line, reaches ω_R/2, so atoms lose momentum at a rate of order the recoil frequency.",
+      "forms": [
+        {
+          "id": "eq-8-33",
+          "latex": "\\eta_\\mathrm{max} = \\frac{1}{2}\\omega_R",
+          "anchor": "8.3-eq-8-33"
+        },
+        {
+          "id": "eq-8-31",
+          "latex": "\\eta = \\frac{\\hbar k^2}{m}\\frac{R_\\mathrm{opt}^0(\\delta = 0)}{\\gamma_{12}}",
+          "anchor": "8.3-eq-8-31"
+        },
+        {
+          "id": "eq-8-32",
+          "latex": "\\eta \\to \\frac{\\hbar k^2}{8m}\\frac{\\gamma}{\\gamma_{12}}",
+          "anchor": "8.3-eq-8-32"
+        }
+      ]
+    },
+    {
+      "id": "capture-range",
+      "kind": "definition",
+      "section": "8.3",
+      "name": "Capture range",
+      "terms": [
+        "capture range",
+        "critical velocity",
+        "capture velocity"
+      ],
+      "symbol": "v_c",
+      "type": "velocity",
+      "statement": "The capture range −v_c < v < v_c is the band of velocities effectively cooled, v_c being where the force is largest; v_c is about the dominant rate (γ₁₂, Ω or δ) divided by k.",
+      "forms": [
+        {
+          "id": "eq-8-capture-range",
+          "latex": "F_\\mathrm{max} = |F(\\pm v_c)|",
+          "anchor": "8.3-capture-range"
+        }
+      ]
+    },
+    {
+      "id": "magneto-optical-trap",
+      "kind": "idea",
+      "section": "8.3",
+      "name": "Magneto-optical trap",
+      "terms": [
+        "magneto-optical trap",
+        "MOT"
+      ],
+      "statement": "A magnetic field gradient Zeeman-shifts the levels with position, and cross-circularly polarized molasses beams on a J = 0 → J = 1 transition then push the atom back to the centre while cooling it."
+    },
+    {
+      "id": "langevin-equation",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Langevin equation",
+      "terms": [
+        "Langevin equation",
+        "Langevin force",
+        "Brownian motion"
+      ],
+      "symbol": "f_t",
+      "type": "force",
+      "statement": "Brownian motion of a heavy particle is a viscous drag −ηp plus a fluctuating Langevin force f(t) of zero mean whose correlation, in the rapid-collision limit, is 2Dδ(t − t′).",
+      "forms": [
+        {
+          "id": "eq-8-34",
+          "latex": "\\frac{d}{dt}p = -\\eta p + f(t)",
+          "anchor": "8.4-eq-8-34"
+        },
+        {
+          "id": "eq-8-35",
+          "latex": "\\langle f(t)\\rangle = 0",
+          "anchor": "8.4-eq-8-35"
+        },
+        {
+          "id": "eq-8-36",
+          "latex": "\\langle f(t)f(t')\\rangle = 2Dg(t-t')",
+          "anchor": "8.4-eq-8-36"
+        },
+        {
+          "id": "eq-8-38",
+          "latex": "g(t-t') \\rightarrow \\delta(t-t')",
+          "anchor": "8.4-eq-8-38"
+        }
+      ]
+    },
+    {
+      "id": "diffusion-coefficient",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Diffusion coefficient",
+      "terms": [
+        "diffusion coefficient",
+        "diffusion constant"
+      ],
+      "symbol": "D_diff",
+      "type": "diffusion",
+      "statement": "The diffusion coefficient D measures the strength of the fluctuating force through ⟨f(t)f(t′)⟩ = 2Dg(t − t′), with g normalized to unit area.",
+      "forms": [
+        {
+          "id": "eq-8-37",
+          "latex": "\\int_{-\\infty}^{\\infty} g(t-t')dt = 1",
+          "anchor": "8.4-eq-8-37"
+        }
+      ]
+    },
+    {
+      "id": "langevin-momentum-spread",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Momentum spread under the Langevin force",
+      "type": "momentum",
+      "statement": "The mean momentum decays as e^{−ηt}, unaffected by the noise, while the mean square momentum relaxes to D/η, a kinetic energy D/2mη.",
+      "forms": [
+        {
+          "id": "eq-8-44",
+          "latex": "\\overline{p^2(t)} = \\overline{p(0)^2}e^{-2\\eta t} + \\frac{D}{\\eta}\\left(1 - e^{-2\\eta t}\\right)",
+          "anchor": "8.4-drv-mean-square-momentum"
+        },
+        {
+          "id": "eq-8-39",
+          "latex": "p(t) = p(0)e^{-\\eta t} + \\int_0^t dt' f(t')e^{-\\eta(t-t')}",
+          "anchor": "8.4-drv-langevin-solution"
+        },
+        {
+          "id": "eq-8-40",
+          "latex": "\\overline{p(t)} = \\overline{p(0)}e^{-\\eta t}",
+          "anchor": "8.4-drv-langevin-solution"
+        },
+        {
+          "id": "eq-8-46",
+          "latex": "\\lim_{t\\rightarrow\\infty}\\overline{p(t)^2} \\rightarrow \\frac{D}{\\eta}",
+          "anchor": "8.4-drv-long-time-momentum"
+        },
+        {
+          "id": "eq-8-47",
+          "latex": "E_\\mathrm{kinetic} = \\frac{\\overline{p^2}}{2m} \\rightarrow \\frac{D}{2m\\eta}",
+          "anchor": "8.4-drv-long-time-momentum"
+        }
+      ]
+    },
+    {
+      "id": "einstein-relation",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Einstein relation",
+      "terms": [
+        "Einstein relation"
+      ],
+      "type": "diffusion",
+      "statement": "In thermal equilibrium the balance of damping and diffusion fixes the temperature, D = mηk_BT: dissipation at finite temperature always brings fluctuations.",
+      "forms": [
+        {
+          "id": "eq-8-48",
+          "latex": "D = m\\eta k_BT",
+          "anchor": "8.4-drv-einstein-relation"
+        }
+      ]
+    },
+    {
+      "id": "random-walk",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Random walk",
+      "terms": [
+        "random walk"
+      ],
+      "statement": "Without friction the particle only receives kicks, its mean square momentum grows linearly in time and no equilibrium is reached.",
+      "forms": [
+        {
+          "id": "eq-8-49",
+          "latex": "\\overline{p^2} = Dt",
+          "anchor": "8.4-eq-8-49"
+        }
+      ]
+    },
+    {
+      "id": "naive-operator-damping",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Damped operators without noise",
+      "statement": "Adding decay terms −γσ̂ to the Heisenberg equations of atomic operators makes their commutator decay exponentially, which is unphysical.",
+      "forms": [
+        {
+          "id": "eq-8-52",
+          "latex": "\\frac{d}{dt}[\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}] = -\\gamma_{\\alpha,\\beta}[\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}]",
+          "anchor": "8.4-drv-naive-commutator-decay"
+        },
+        {
+          "id": "eq-8-50",
+          "latex": "\\frac{d}{dt}\\hat{\\sigma}_{\\alpha,\\beta} = \\frac{i}{\\hbar}[\\hat{H}, \\hat{\\sigma}_{\\alpha,\\beta}]",
+          "anchor": "8.4-eq-8-50"
+        }
+      ]
+    },
+    {
+      "id": "system-reservoir-operator-equation",
+      "kind": "result",
+      "section": "8.4",
+      "name": "System operators coupled to a reservoir",
+      "statement": "With H_SR = −R̂†Ŝ − Ŝ†R̂, any system operator Â evolves by its system Hamiltonian plus terms in the reservoir operator R̂, which for a two-level atom in the radiation field is Σ ℏg_j â_j acting on Ŝ = σ̂₁₂.",
+      "forms": [
+        {
+          "id": "eq-8-57",
+          "latex": "\\frac{d}{dt}\\hat{A} = \\frac{i}{\\hbar}[\\hat{H}_S, \\hat{A}] + \\frac{i}{\\hbar}\\hat{R}^\\dagger[\\hat{A}, \\hat{S}] + \\frac{i}{\\hbar}[\\hat{A}, \\hat{S}^\\dagger]\\hat{R}",
+          "anchor": "8.4-drv-system-operator-equation"
+        },
+        {
+          "id": "eq-8-54",
+          "latex": "\\hat{H}_{SR} = -\\hat{R}^\\dagger\\hat{S} - \\hat{S}^\\dagger\\hat{R}",
+          "anchor": "8.4-eq-8-54"
+        },
+        {
+          "id": "eq-8-55",
+          "latex": "\\hat{R} = \\sum_j \\hbar g_j\\hat{a}_j",
+          "anchor": "8.4-eq-8-55"
+        },
+        {
+          "id": "eq-8-56",
+          "latex": "\\hat{S} = \\hat{\\sigma}_{12} = |1\\rangle\\langle 2|",
+          "anchor": "8.4-eq-8-56"
+        },
+        {
+          "id": "eq-8-58",
+          "latex": "\\frac{d}{dt}\\hat{\\sigma}_{12} = \\frac{i}{\\hbar}[\\hat{H}_S, \\hat{\\sigma}_{12}] + \\frac{i}{\\hbar}\\left(\\hat{\\sigma}_{11} - \\hat{\\sigma}_{22}\\right)\\hat{R}",
+          "anchor": "8.4-drv-system-operator-equation"
+        }
+      ]
+    },
+    {
+      "id": "reservoir-operator-solution",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Reservoir operator in the Markov approximation",
+      "statement": "Integrating the field modes, the reservoir operator is a free-field term plus a source term that, for a slowly varying system and a broad reservoir, becomes the decay (γ/2)Ŝ.",
+      "forms": [
+        {
+          "id": "eq-8-61",
+          "latex": "\\hat{R}(t) = i\\hbar\\left(-i\\sum_j g_j\\hat{a}_j(0)e^{-i(\\nu_j-\\omega)t} + \\int_0^t dt'\\sum_j|g_j|^2e^{-i(\\nu_j-\\omega)(t-t')}\\hat{S}(t')\\right)",
+          "anchor": "8.4-drv-reservoir-operator"
+        },
+        {
+          "id": "eq-8-60",
+          "latex": "\\dot{\\hat{a}}_j = -i(\\nu_j - \\omega)\\hat{a}_j + ig_j^*\\hat{S}",
+          "anchor": "8.4-drv-reservoir-operator"
+        },
+        {
+          "id": "eq-8-62",
+          "latex": "\\int_0^t dt'\\sum_j|g_j|^2e^{-i(\\nu_j-\\omega)(t-t')}\\hat{S}(t') \\rightarrow \\frac{\\gamma}{2}\\hat{S}(t)",
+          "anchor": "8.4-drv-markov-decay"
+        }
+      ]
+    },
+    {
+      "id": "quantum-langevin-force",
+      "kind": "definition",
+      "section": "8.4",
+      "name": "Quantum Langevin force",
+      "terms": [
+        "quantum Langevin force",
+        "quantum Langevin operator",
+        "Langevin noise operator"
+      ],
+      "symbol": "f_hat",
+      "statement": "The quantum Langevin force f̂(t) is the free evolution of the initial field modes: its mean vanishes in a thermal reservoir and its second moments are delta-correlated, n(ω)γ in normal order and (n(ω) + 1)γ in antinormal order.",
+      "forms": [
+        {
+          "id": "eq-8-63",
+          "latex": "\\hat{f}(t) = -i\\sum_j g_j\\hat{a}_j(0)e^{-i(\\nu_j-\\omega)t}",
+          "anchor": "8.4-eq-8-63"
+        },
+        {
+          "id": "eq-8-66",
+          "latex": "\\langle\\hat{f}(t)^\\dagger\\hat{f}(t')\\rangle = n(\\omega)\\gamma\\delta(t-t')",
+          "anchor": "8.4-drv-quantum-langevin-moments"
+        },
+        {
+          "id": "eq-8-67",
+          "latex": "\\langle\\hat{f}(t)\\hat{f}(t')^\\dagger\\rangle = \\left(n(\\omega) + 1\\right)\\gamma\\delta(t-t')",
+          "anchor": "8.4-drv-quantum-langevin-moments"
+        },
+        {
+          "id": "eq-8-64",
+          "latex": "\\langle\\hat{f}(t)^\\dagger\\hat{f}(t')\\rangle = \\sum_{j,j'}g_j^*g_{j'}\\langle\\hat{a}_j(0)^\\dagger\\hat{a}_{j'}(0)\\rangle e^{i(\\nu_j-\\omega)t}e^{-i(\\nu_{j'}-\\omega)t'}",
+          "anchor": "8.4-drv-quantum-langevin-moments"
+        }
+      ]
+    },
+    {
+      "id": "heisenberg-langevin-equation",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Heisenberg-Langevin equation",
+      "terms": [
+        "Heisenberg-Langevin equation",
+        "Heisenberg-Langevin approach"
+      ],
+      "statement": "Substituting R̂ = iℏ((γ/2)Ŝ + f̂) into the system equation gives the Heisenberg-Langevin equation: every dissipation (γ/2)Ŝ comes with fluctuations f̂.",
+      "forms": [
+        {
+          "id": "eq-8-69",
+          "latex": "\\frac{d}{dt}\\hat{A} = \\frac{i}{\\hbar}[\\hat{H}_S, \\hat{A}] + \\left(\\frac{\\gamma}{2}\\hat{S}^\\dagger + \\hat{f}^\\dagger\\right)[\\hat{A}, \\hat{S}] - [\\hat{A}, \\hat{S}^\\dagger]\\left(\\frac{\\gamma}{2}\\hat{S} + \\hat{f}\\right)",
+          "anchor": "8.4-drv-heisenberg-langevin-equation"
+        },
+        {
+          "id": "eq-8-68",
+          "latex": "\\hat{R}(t) = i\\hbar\\left(\\frac{\\gamma}{2}\\hat{S}(t) + \\hat{f}(t)\\right)",
+          "anchor": "8.4-drv-heisenberg-langevin-equation"
+        }
+      ]
+    },
+    {
+      "id": "heisenberg-langevin-master-equation",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Equivalence with the master equation",
+      "statement": "For a vacuum reservoir the expectation value of the Heisenberg-Langevin equation matches the master equation of an atom in vacuum term by term.",
+      "forms": [
+        {
+          "id": "eq-8-70",
+          "latex": "\\frac{d}{dt}\\langle\\hat{A}\\rangle = \\frac{i}{\\hbar}\\langle[\\hat{H}_S, \\hat{A}]\\rangle + \\frac{\\gamma}{2}\\left(2\\langle\\hat{S}^\\dagger\\hat{A}\\hat{S}\\rangle - \\langle\\hat{A}\\hat{S}^\\dagger\\hat{S}\\rangle - \\langle\\hat{S}^\\dagger\\hat{S}\\hat{A}\\rangle\\right)",
+          "anchor": "8.4-eq-8-70"
+        }
+      ]
+    },
+    {
+      "id": "generalized-einstein-relation",
+      "kind": "result",
+      "section": "8.4",
+      "name": "Generalized Einstein relation",
+      "terms": [
+        "generalized Einstein relation",
+        "quantum fluctuation-dissipation theorem",
+        "fluctuation-dissipation theorem",
+        "white noise"
+      ],
+      "symbol": "F_noise",
+      "statement": "Writing the Heisenberg-Langevin equations as dÂ_μ/dt = d̂_μ + 𝓕̂_μ with ⟨𝓕̂_μ𝓕̂_ν⟩ = 2D_μνδ(t − t′), the diffusion coefficients follow from the deterministic evolution alone, for any system coupled to a Markovian reservoir.",
+      "forms": [
+        {
+          "id": "eq-8-73",
+          "latex": "2D_{\\mu\\nu} = \\frac{d}{dt}\\langle\\hat{A}_\\mu\\hat{A}_\\nu\\rangle - \\langle\\hat{A}_\\mu\\hat{d}_\\nu\\rangle - \\langle\\hat{d}_\\mu\\hat{A}_\\nu\\rangle",
+          "anchor": "8.4-eq-8-73"
+        },
+        {
+          "id": "eq-8-71",
+          "latex": "\\frac{d}{dt}\\hat{A}_\\mu = \\hat{d}_\\mu + \\hat{\\mathcal{F}}_\\mu",
+          "anchor": "8.4-eq-8-71"
+        },
+        {
+          "id": "eq-8-72",
+          "latex": "\\langle\\hat{\\mathcal{F}}_\\mu(t)\\hat{\\mathcal{F}}_\\nu(t')\\rangle = 2D_{\\mu\\nu}\\delta(t-t')",
+          "anchor": "8.4-eq-8-72"
+        },
+        {
+          "id": "eq-8-75",
+          "latex": "\\langle\\hat{A}_\\mu(t)\\hat{\\mathcal{F}}_\\nu(t)\\rangle = D_{\\mu\\nu}",
+          "anchor": "8.4-drv-fluctuation-dissipation-theorem"
+        }
+      ]
+    },
+    {
+      "id": "laser-cooling-noise-force",
+      "kind": "result",
+      "section": "8.5",
+      "name": "Noise force on a laser-cooled atom",
+      "terms": [
+        "noise force"
+      ],
+      "symbol": "F_noise",
+      "statement": "For a two-level atom in a vacuum radiation bath the Heisenberg-Langevin equation of σ̂₁₂ carries the noise force 𝓕̂₁₂ = (σ̂₂₂ − σ̂₁₁)f̂, whose only nonvanishing moment is γδ(t − t′); it makes the light force fluctuate about its mean.",
+      "forms": [
+        {
+          "id": "eq-8-83",
+          "latex": "\\hat{\\mathcal{F}}_{12}(t) = \\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)\\hat{f}(t)",
+          "anchor": "8.5-eq-8-83"
+        },
+        {
+          "id": "eq-8-79",
+          "latex": "\\hat{F} = -i\\hbar k\\Omega^*\\hat{\\sigma}_{12} + h.c.",
+          "anchor": "8.5-eq-8-79"
+        },
+        {
+          "id": "eq-8-80",
+          "latex": "\\hat{F} = \\langle\\hat{F}\\rangle + \\delta\\hat{F}",
+          "anchor": "8.5-eq-8-80"
+        },
+        {
+          "id": "eq-8-82",
+          "latex": "\\frac{d}{dt}\\hat{\\sigma}_{12} = \\frac{i}{\\hbar}[\\hat{H}_S, \\hat{\\sigma}_{12}] - \\frac{\\gamma}{2}\\hat{\\sigma}_{12} + \\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)\\hat{f}(t)",
+          "anchor": "8.5-drv-coherence-noise"
+        },
+        {
+          "id": "eq-8-84",
+          "latex": "\\langle\\hat{\\mathcal{F}}_{12}(t)\\hat{\\mathcal{F}}_{12}(t')^\\dagger\\rangle = \\gamma\\delta(t-t')",
+          "anchor": "8.5-drv-noise-moment"
+        }
+      ]
+    },
+    {
+      "id": "force-fluctuations",
+      "kind": "result",
+      "section": "8.5",
+      "name": "Fluctuating light force",
+      "type": "force",
+      "statement": "Eliminating σ̂₁₂ adiabatically, the fluctuating force is the noise force filtered by γ/2 − iδ, delta-correlated with strength (ℏk)²|Ω̃|²γ/((γ/2)² + δ²), Ω̃ = 2Ω counting both beams and absorption.",
+      "forms": [
+        {
+          "id": "eq-8-90",
+          "latex": "\\langle\\delta\\hat{F}(t)\\delta\\hat{F}(t')\\rangle = (\\hbar k)^2\\frac{|\\tilde{\\Omega}|^2\\gamma}{(\\gamma/2)^2 + \\delta^2}\\delta(t-t')",
+          "anchor": "8.5-drv-fluctuating-force"
+        },
+        {
+          "id": "eq-8-85",
+          "latex": "\\frac{d}{dt}\\hat{\\sigma}_{12} = \\frac{i}{\\hbar}[\\hat{H}_{AL}, \\hat{\\sigma}_{12}] - (\\frac{\\gamma}{2} - i\\delta)\\hat{\\sigma}_{12} + \\hat{\\mathcal{F}}_{12}(t)",
+          "anchor": "8.5-drv-noise-moment"
+        },
+        {
+          "id": "eq-8-88",
+          "latex": "\\hat{\\sigma}_{12} = \\frac{\\hat{\\mathcal{F}}_{12}(t)}{\\gamma/2 - i\\delta} + \\frac{i}{\\hbar(\\gamma/2 - i\\delta)}[\\hat{H}_{AL}, \\hat{\\sigma}_{12}]",
+          "anchor": "8.5-drv-fluctuating-force"
+        },
+        {
+          "id": "eq-8-89",
+          "latex": "\\delta\\hat{F} = -i\\hbar k\\Omega^*\\frac{\\hat{\\mathcal{F}}_{12}(t)}{\\gamma/2 - i\\delta} + h.c.",
+          "anchor": "8.5-drv-fluctuating-force"
+        }
+      ]
+    },
+    {
+      "id": "laser-cooling-diffusion",
+      "kind": "result",
+      "section": "8.5",
+      "name": "Momentum diffusion in laser cooling",
+      "terms": [
+        "momentum diffusion"
+      ],
+      "symbol": "D_diff",
+      "type": "diffusion",
+      "statement": "The momentum diffusion constant of Doppler cooling is 2(ℏk)²R⁰_opt: a random walk in momentum with steps ℏk at the rate of spontaneous emission.",
+      "forms": [
+        {
+          "id": "eq-8-92",
+          "latex": "D = 2(\\hbar k)^2R^0_\\mathrm{opt}",
+          "anchor": "8.5-drv-diffusion-constant"
+        },
+        {
+          "id": "eq-8-91",
+          "latex": "D = (\\hbar k)^2\\frac{|\\tilde{\\Omega}|^2\\gamma/2}{(\\gamma/2)^2 + \\delta^2}",
+          "anchor": "8.5-drv-diffusion-constant"
+        }
+      ]
+    },
+    {
+      "id": "doppler-limit",
+      "kind": "result",
+      "section": "8.5",
+      "name": "Doppler cooling limit",
+      "terms": [
+        "Doppler limit",
+        "Doppler cooling limit"
+      ],
+      "symbol": "T_D",
+      "type": "temperature",
+      "statement": "Through the Einstein relation the pumping rate drops out of the temperature, k_BT_D = ℏ(δ² + γ₁₂²)/2δ, smallest at δ ≈ γ₁₂ where k_BT_D = ℏγ₁₂: the Doppler limit set by the linewidth alone.",
+      "forms": [
+        {
+          "id": "eq-8-96",
+          "latex": "k_BT_D = \\hbar\\gamma_{12}",
+          "anchor": "8.5-drv-doppler-limit"
+        },
+        {
+          "id": "eq-8-95",
+          "latex": "k_BT_D = \\frac{\\hbar\\left(\\delta^2 + \\gamma_{12}^2\\right)}{2\\delta}",
+          "anchor": "8.5-drv-doppler-limit"
+        },
+        {
+          "id": "eq-8-94",
+          "latex": "k_BT_D = \\frac{D}{m\\eta}",
+          "anchor": "8.5-drv-doppler-limit"
+        },
+        {
+          "id": "eq-8-93",
+          "latex": "\\eta = \\frac{4R_\\mathrm{opt}}{m}\\frac{\\hbar k^2\\delta}{\\delta^2 + \\gamma_{12}^2}",
+          "anchor": "8.5-drv-doppler-limit"
+        }
+      ]
+    },
+    {
+      "id": "laser-attenuation",
+      "kind": "idea",
+      "section": "8.5",
+      "name": "Laser attenuation in a dense sample",
+      "terms": [
+        "Laser attenuation",
+        "optically thick"
+      ],
+      "statement": "An optically thick sample attenuates the cooling beams, so the forces acquire a spatial gradient: an extra dipole force and position-dependent cooling."
+    },
+    {
+      "id": "photon-reabsorption",
+      "kind": "idea",
+      "section": "8.5",
+      "name": "Spontaneous photon reabsorption",
+      "terms": [
+        "Spontaneous photon reabsorption"
+      ],
+      "statement": "A spontaneous photon reabsorbed by a nearby atom kicks it away from the emitter, an effective repulsion between atoms within about a wavelength."
+    },
+    {
+      "id": "sub-doppler-cooling",
+      "kind": "idea",
+      "section": "8.6",
+      "name": "Sub-Doppler cooling",
+      "terms": [
+        "sub-Doppler"
+      ],
+      "statement": "Alkali atoms were cooled ten times below the Doppler limit, in ways sensitive to the beams' polarizations and favoured by large detuning, pointing to the atoms' multilevel structure and AC Stark shifts."
+    },
+    {
+      "id": "polarization-gradient",
+      "kind": "result",
+      "section": "8.6",
+      "name": "Polarization gradient",
+      "terms": [
+        "polarization gradient",
+        "lin⊥lin"
+      ],
+      "type": "electric-field",
+      "statement": "Two counterpropagating beams with crossed linear polarizations (lin⊥lin) make two cross-circularly polarized standing waves shifted by π/2, so the circular polarization changes with position.",
+      "forms": [
+        {
+          "id": "eq-8-98",
+          "latex": "\\mathbf{E} = E_0e^{i\\nu t}\\left((\\hat{x} + i\\hat{y})\\cos kz + i(\\hat{x} - i\\hat{y})\\sin kz\\right) + c.c.",
+          "anchor": "8.6-drv-lin-perp-lin-field"
+        },
+        {
+          "id": "eq-8-97",
+          "latex": "\\mathbf{E} = E_0e^{i\\nu t}\\left(\\hat{x}e^{ikz} + i\\hat{y}e^{-ikz}\\right) + c.c.",
+          "anchor": "8.6-drv-lin-perp-lin-field"
+        }
+      ]
+    },
+    {
+      "id": "ground-state-light-shift-potential",
+      "kind": "result",
+      "section": "8.6",
+      "name": "Light-shift potentials of the ground sublevels",
+      "type": "energy",
+      "statement": "On a J = 1/2 → J′ = 3/2 transition, unequal Clebsch-Gordan coefficients give the two ground sublevels different AC Stark shifts, and in the lin⊥lin field they become potentials ℏ|Ω|²/δ(1 − (2/3)sin²kz) and ℏ|Ω|²/δ(1 − (2/3)cos²kz) shifted by a quarter wavelength.",
+      "forms": [
+        {
+          "id": "eq-8-106",
+          "latex": "\\hat{H}^\\mathrm{eff}_{AL} = \\hbar\\frac{|\\Omega|^2}{\\delta}\\left(1 - \\frac{2}{3}\\sin^2 kz\\right)|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}| + \\hbar\\frac{|\\Omega|^2}{\\delta}\\left(1 - \\frac{2}{3}\\cos^2 kz\\right)|-\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|",
+          "anchor": "8.6-drv-sisyphus-light-shifts"
+        },
+        {
+          "id": "eq-8-99",
+          "latex": "\\Delta^{\\sigma_+}_{1/2} = \\frac{|\\Omega_+|^2}{\\delta}, \\quad \\Delta^{\\sigma_+}_{-1/2} = \\frac{|\\Omega_+|^2}{3\\delta}",
+          "anchor": "8.6-eq-8-99"
+        },
+        {
+          "id": "eq-8-101",
+          "latex": "\\Delta^{\\sigma_-}_{1/2} = \\frac{|\\Omega_-|^2}{3\\delta}, \\quad \\Delta^{\\sigma_-}_{-1/2} = \\frac{|\\Omega_-|^2}{\\delta}",
+          "anchor": "8.6-eq-8-101"
+        },
+        {
+          "id": "eq-8-103",
+          "latex": "\\Omega_+ = \\Omega\\cos kz, \\quad \\Omega_- = \\Omega\\sin kz",
+          "anchor": "8.6-eq-8-103"
+        }
+      ]
+    },
+    {
+      "id": "sisyphus-cooling",
+      "kind": "idea",
+      "section": "8.6",
+      "name": "Sisyphus cooling",
+      "terms": [
+        "Sisyphus"
+      ],
+      "statement": "The local polarization optically pumps the moving atom into the lower light-shifted sublevel, so it keeps climbing hills and loses the potential energy to the spontaneous photon."
+    },
+    {
+      "id": "sisyphus-pumping-rate",
+      "kind": "result",
+      "section": "8.6",
+      "name": "Optical pumping between ground sublevels",
+      "symbol": "tau_P",
+      "type": "time",
+      "statement": "Rate equations for the ground populations relax the population difference Δρ at the rate 1/τ_P = (2/9)R_opt towards its local steady value cos 2kz.",
+      "forms": [
+        {
+          "id": "eq-8-113",
+          "latex": "\\frac{1}{\\tau_P} = \\frac{2}{9}R_\\mathrm{opt}",
+          "anchor": "8.6-drv-population-relaxation"
+        },
+        {
+          "id": "eq-8-110",
+          "latex": "\\frac{d}{dt}\\rho_{\\frac{1}{2}\\frac{1}{2}} = -\\frac{2}{9}R_\\mathrm{opt}\\sin^2(kz)\\rho_{\\frac{1}{2}\\frac{1}{2}} + \\frac{2}{9}R_\\mathrm{opt}\\cos^2(kz)\\rho_{-\\frac{1}{2}-\\frac{1}{2}}",
+          "anchor": "8.6-eq-8-110"
+        },
+        {
+          "id": "eq-8-112",
+          "latex": "\\frac{d}{dt}\\Delta\\rho = -\\frac{2}{9}R_\\mathrm{opt}\\left(\\Delta\\rho - \\cos(2kz)\\right)",
+          "anchor": "8.6-drv-population-relaxation"
+        },
+        {
+          "id": "eq-8-114",
+          "latex": "\\Delta\\rho_{SS} = \\cos(2kz)",
+          "anchor": "8.6-drv-population-relaxation"
+        }
+      ]
+    },
+    {
+      "id": "sisyphus-force",
+      "kind": "result",
+      "section": "8.6",
+      "name": "Sisyphus cooling force",
+      "type": "force",
+      "statement": "The reactive force on the ground sublevels averages to zero if the populations follow their steady state; the lag τ_P of the moving atom's populations gives a velocity-dependent average force.",
+      "forms": [
+        {
+          "id": "eq-8-122",
+          "latex": "\\langle F\\rangle = \\frac{2}{3}\\hbar k^2v\\tau_P\\frac{|\\Omega|^2}{\\delta}",
+          "anchor": "8.6-drv-lag-force"
+        },
+        {
+          "id": "eq-8-109",
+          "latex": "F_\\mathrm{reactive} = \\frac{2}{3}\\hbar k\\frac{|\\Omega|^2}{\\delta}\\sin(2kz)\\left(|\\tfrac{1}{2}\\rangle\\langle\\tfrac{1}{2}| - |-\\tfrac{1}{2}\\rangle\\langle -\\tfrac{1}{2}|\\right)",
+          "anchor": "8.6-drv-sisyphus-reactive-force"
+        },
+        {
+          "id": "eq-8-116",
+          "latex": "F^{SS}_\\mathrm{reactive} = \\frac{1}{3}\\hbar k\\frac{|\\Omega|^2}{\\delta}\\sin(4kz)",
+          "anchor": "8.6-drv-steady-state-force"
+        },
+        {
+          "id": "eq-8-117",
+          "latex": "\\frac{d}{dt}\\Delta\\rho = -\\frac{1}{\\tau_P}\\left(\\Delta\\rho - \\cos(2kvt)\\right)",
+          "anchor": "8.6-eq-8-117"
+        },
+        {
+          "id": "eq-8-120",
+          "latex": "\\Delta\\rho \\approx \\cos 2k(z - v\\tau_P)",
+          "anchor": "8.6-drv-population-lag"
+        }
+      ]
+    },
+    {
+      "id": "sisyphus-friction",
+      "kind": "result",
+      "section": "8.6",
+      "name": "Sisyphus friction coefficient",
+      "symbol": "eta_S",
+      "type": "friction",
+      "statement": "Solving the lagging populations exactly gives an average force with capture velocity v_c = 1/2kτ_P and, at low power, a friction coefficient η_S = 3(ℏk²/m)(δ/γ) independent of the intensity.",
+      "forms": [
+        {
+          "id": "eq-8-127",
+          "latex": "\\eta_S = 3\\frac{\\hbar k^2}{m}\\frac{\\delta}{\\gamma}",
+          "anchor": "8.6-eq-8-127"
+        },
+        {
+          "id": "eq-8-125",
+          "latex": "\\langle F_\\mathrm{reactive}\\rangle = \\frac{1}{3}\\hbar k\\frac{|\\Omega|^2}{\\delta}\\frac{v/v_c}{1 + (v/v_c)^2} = \\eta_Svm",
+          "anchor": "8.6-drv-sisyphus-solution"
+        },
+        {
+          "id": "eq-8-124",
+          "latex": "v_c = \\frac{1}{2k\\tau_P} = \\frac{\\lambda}{18\\pi}R_\\mathrm{opt}",
+          "anchor": "8.6-drv-sisyphus-solution"
+        },
+        {
+          "id": "eq-8-123",
+          "latex": "\\Delta\\rho = \\frac{1}{1 + (v/v_c)^2}\\cos(2kz) + \\frac{v/v_c}{1 + (v/v_c)^2}\\sin(2kz)",
+          "anchor": "8.6-drv-sisyphus-solution"
+        },
+        {
+          "id": "eq-8-126",
+          "latex": "\\eta_S = 3\\frac{\\hbar k^2}{m}\\frac{\\delta}{\\gamma}\\left(\\frac{1}{1 + (v/v_c)^2}\\right)",
+          "anchor": "8.6-drv-sisyphus-friction"
+        }
+      ]
+    },
+    {
+      "id": "doppler-sisyphus-comparison",
+      "kind": "result",
+      "section": "8.6",
+      "name": "Doppler and Sisyphus cooling compared",
+      "statement": "At low power and large detuning the Doppler friction vanishes as |Ω|²/δ³ while the Sisyphus friction grows with δ, but the Sisyphus capture velocity shrinks with the pumping rate |Ω|²γ/δ².",
+      "forms": [
+        {
+          "id": "eq-8-128",
+          "latex": "\\eta_D = 8\\frac{\\hbar k^2}{m}\\frac{\\gamma_{12}|\\Omega|^2}{\\delta^3}",
+          "anchor": "8.6-eq-8-128"
+        },
+        {
+          "id": "eq-8-129",
+          "latex": "\\eta_S = 3\\frac{\\hbar k^2}{m\\gamma}\\delta",
+          "anchor": "8.6-eq-8-129"
+        },
+        {
+          "id": "eq-8-130",
+          "latex": "v^S_c \\sim \\frac{\\lambda}{18\\pi}\\frac{|\\Omega|^2}{\\delta^2}\\gamma",
+          "anchor": "8.6-eq-8-130"
+        }
+      ]
+    },
+    {
+      "id": "sisyphus-nonadiabaticity",
+      "kind": "idea",
+      "section": "8.6",
+      "name": "Non-adiabaticity in Sisyphus cooling",
+      "statement": "Sisyphus cooling needs the populations to lag the atom's position: populations that adiabatically follow it gain downhill what they lose uphill."
+    },
+    {
+      "id": "sisyphus-limit",
+      "kind": "result",
+      "section": "8.6",
+      "name": "Sisyphus cooling limit",
+      "symbol": "T_S",
+      "type": "temperature",
+      "statement": "Diffusion from spontaneous kicks and from the fluctuating dipole force, set against η_S by the Einstein relation, gives k_BT_S ≈ ℏ|Ω|²/8δ: of the order of the depth of the light-shift potential.",
+      "forms": [
+        {
+          "id": "eq-8-133",
+          "latex": "k_BT_S = \\frac{D_{sp} + D_{dp}}{m|\\eta_S|} \\approx \\frac{\\hbar|\\Omega|^2}{8\\delta}",
+          "anchor": "8.6-drv-sisyphus-limit"
+        },
+        {
+          "id": "eq-8-131",
+          "latex": "D_{sp} = (\\hbar k)^2\\frac{|\\Omega|^2\\gamma/2}{(\\gamma/2)^2 + \\delta^2}",
+          "anchor": "8.6-eq-8-131"
+        },
+        {
+          "id": "eq-8-132",
+          "latex": "D_{dp} = \\left\\langle 2\\hbar^2k^2\\frac{\\delta^2}{\\gamma}\\frac{\\Omega^2/2}{\\delta^2 + (\\gamma/2)^2}\\sin^4(2kz)\\right\\rangle = \\frac{3(\\hbar k)^2\\delta^2}{4\\gamma}\\frac{\\Omega^2/2}{\\delta^2 + (\\gamma/2)^2}",
+          "anchor": "8.6-eq-8-132"
+        }
+      ]
+    },
+    {
+      "id": "recoil-limit",
+      "kind": "result",
+      "section": "8.6",
+      "name": "Recoil limit",
+      "symbol": "T_R",
+      "type": "temperature",
+      "statement": "An atom localized in one potential well has momentum uncertainty of order 2πℏ/λ, so the classical analysis stops at the recoil energy ℏω_R, far below the Doppler limit.",
+      "forms": [
+        {
+          "id": "eq-8-135",
+          "latex": "E^\\mathrm{kinetic}_\\mathrm{min} \\sim \\hbar\\omega_R",
+          "anchor": "8.6-eq-8-135"
+        },
+        {
+          "id": "eq-8-134",
+          "latex": "\\delta p \\approx \\frac{2\\pi\\hbar}{\\lambda}",
+          "anchor": "8.6-eq-8-134"
+        }
+      ]
+    },
+    {
+      "id": "sub-recoil-cooling",
+      "kind": "idea",
+      "section": "8.6",
+      "name": "Sub-recoil cooling",
+      "terms": [
+        "sub-recoil"
+      ],
+      "statement": "Cooling below ω_R needs a quantum treatment of the motion and uses two-photon transitions or dark resonances."
+    }
+  ],
+  "concept_prereqs": [
+    {
+      "concept": "moving-atom-hamiltonian",
+      "prereq": "rotating-wave-approximation"
+    },
+    {
+      "concept": "atomic-recoil",
+      "prereq": "moving-atom-hamiltonian"
+    },
+    {
+      "concept": "recoil-frequency",
+      "prereq": "atomic-recoil"
+    },
+    {
+      "concept": "recoil-shifted-resonance",
+      "prereq": "recoil-frequency"
+    },
+    {
+      "concept": "light-force-operator",
+      "prereq": "heisenberg-picture"
+    },
+    {
+      "concept": "light-force-operator",
+      "prereq": "moving-atom-hamiltonian"
+    },
+    {
+      "concept": "semiclassical-light-force",
+      "prereq": "light-force-operator"
+    },
+    {
+      "concept": "semiclassical-light-force",
+      "prereq": "density-operator-expectation"
+    },
+    {
+      "concept": "semiclassical-light-force",
+      "prereq": "density-matrix-coherences"
+    },
+    {
+      "concept": "semiclassical-light-force",
+      "prereq": "susceptibility"
+    },
+    {
+      "concept": "semiclassical-force-validity",
+      "prereq": "semiclassical-light-force"
+    },
+    {
+      "concept": "semiclassical-force-validity",
+      "prereq": "recoil-frequency"
+    },
+    {
+      "concept": "semiclassical-force-validity",
+      "prereq": "steady-state-coherence"
+    },
+    {
+      "concept": "semiclassical-force-validity",
+      "prereq": "heisenberg-uncertainty-principle"
+    },
+    {
+      "concept": "dipole-force",
+      "prereq": "semiclassical-force-validity"
+    },
+    {
+      "concept": "dipole-force",
+      "prereq": "ac-stark-shift"
+    },
+    {
+      "concept": "dipole-force",
+      "prereq": "dressed-states"
+    },
+    {
+      "concept": "dipole-trap",
+      "prereq": "dipole-force"
+    },
+    {
+      "concept": "optical-lattice",
+      "prereq": "dipole-force"
+    },
+    {
+      "concept": "dissipative-force",
+      "prereq": "semiclassical-force-validity"
+    },
+    {
+      "concept": "dissipative-force",
+      "prereq": "steady-state-population"
+    },
+    {
+      "concept": "maximum-dissipative-force",
+      "prereq": "dissipative-force"
+    },
+    {
+      "concept": "maximum-dissipative-force",
+      "prereq": "saturation"
+    },
+    {
+      "concept": "atomic-beam-slowing",
+      "prereq": "maximum-dissipative-force"
+    },
+    {
+      "concept": "atomic-beam-slowing",
+      "prereq": "recoil-shifted-resonance"
+    },
+    {
+      "concept": "atomic-beam-slowing",
+      "prereq": "zeeman-effect"
+    },
+    {
+      "concept": "doppler-cooling",
+      "prereq": "dissipative-force"
+    },
+    {
+      "concept": "doppler-cooling",
+      "prereq": "recoil-shifted-resonance"
+    },
+    {
+      "concept": "zero-velocity-excitation-rate",
+      "prereq": "optical-pumping-rate"
+    },
+    {
+      "concept": "low-velocity-doppler-force",
+      "prereq": "doppler-cooling"
+    },
+    {
+      "concept": "low-velocity-doppler-force",
+      "prereq": "zero-velocity-excitation-rate"
+    },
+    {
+      "concept": "friction-coefficient",
+      "prereq": "low-velocity-doppler-force"
+    },
+    {
+      "concept": "optical-molasses",
+      "prereq": "friction-coefficient"
+    },
+    {
+      "concept": "maximum-friction-coefficient",
+      "prereq": "friction-coefficient"
+    },
+    {
+      "concept": "maximum-friction-coefficient",
+      "prereq": "saturation"
+    },
+    {
+      "concept": "capture-range",
+      "prereq": "friction-coefficient"
+    },
+    {
+      "concept": "magneto-optical-trap",
+      "prereq": "optical-molasses"
+    },
+    {
+      "concept": "magneto-optical-trap",
+      "prereq": "weak-field-zeeman-shift"
+    },
+    {
+      "concept": "magneto-optical-trap",
+      "prereq": "polarization-selection-rules"
+    },
+    {
+      "concept": "langevin-equation",
+      "prereq": "friction-coefficient"
+    },
+    {
+      "concept": "diffusion-coefficient",
+      "prereq": "langevin-equation"
+    },
+    {
+      "concept": "langevin-momentum-spread",
+      "prereq": "diffusion-coefficient"
+    },
+    {
+      "concept": "einstein-relation",
+      "prereq": "langevin-momentum-spread"
+    },
+    {
+      "concept": "random-walk",
+      "prereq": "langevin-momentum-spread"
+    },
+    {
+      "concept": "naive-operator-damping",
+      "prereq": "heisenberg-picture"
+    },
+    {
+      "concept": "naive-operator-damping",
+      "prereq": "optical-bloch-equations"
+    },
+    {
+      "concept": "system-reservoir-operator-equation",
+      "prereq": "naive-operator-damping"
+    },
+    {
+      "concept": "reservoir-operator-solution",
+      "prereq": "system-reservoir-operator-equation"
+    },
+    {
+      "concept": "quantum-langevin-force",
+      "prereq": "reservoir-operator-solution"
+    },
+    {
+      "concept": "quantum-langevin-force",
+      "prereq": "langevin-equation"
+    },
+    {
+      "concept": "heisenberg-langevin-equation",
+      "prereq": "quantum-langevin-force"
+    },
+    {
+      "concept": "heisenberg-langevin-master-equation",
+      "prereq": "heisenberg-langevin-equation"
+    },
+    {
+      "concept": "generalized-einstein-relation",
+      "prereq": "heisenberg-langevin-equation"
+    },
+    {
+      "concept": "generalized-einstein-relation",
+      "prereq": "einstein-relation"
+    },
+    {
+      "concept": "laser-cooling-noise-force",
+      "prereq": "generalized-einstein-relation"
+    },
+    {
+      "concept": "force-fluctuations",
+      "prereq": "laser-cooling-noise-force"
+    },
+    {
+      "concept": "force-fluctuations",
+      "prereq": "adiabatic-elimination"
+    },
+    {
+      "concept": "laser-cooling-diffusion",
+      "prereq": "force-fluctuations"
+    },
+    {
+      "concept": "laser-cooling-diffusion",
+      "prereq": "random-walk"
+    },
+    {
+      "concept": "doppler-limit",
+      "prereq": "laser-cooling-diffusion"
+    },
+    {
+      "concept": "doppler-limit",
+      "prereq": "maximum-friction-coefficient"
+    },
+    {
+      "concept": "laser-attenuation",
+      "prereq": "doppler-cooling"
+    },
+    {
+      "concept": "laser-attenuation",
+      "prereq": "absorption-coefficient"
+    },
+    {
+      "concept": "photon-reabsorption",
+      "prereq": "doppler-cooling"
+    },
+    {
+      "concept": "sub-doppler-cooling",
+      "prereq": "doppler-limit"
+    },
+    {
+      "concept": "sub-doppler-cooling",
+      "prereq": "ac-stark-shift"
+    },
+    {
+      "concept": "polarization-gradient",
+      "prereq": "sub-doppler-cooling"
+    },
+    {
+      "concept": "polarization-gradient",
+      "prereq": "spherical-polarization-basis"
+    },
+    {
+      "concept": "ground-state-light-shift-potential",
+      "prereq": "polarization-gradient"
+    },
+    {
+      "concept": "ground-state-light-shift-potential",
+      "prereq": "dipole-force"
+    },
+    {
+      "concept": "ground-state-light-shift-potential",
+      "prereq": "clebsch-gordan-coefficients"
+    },
+    {
+      "concept": "sisyphus-cooling",
+      "prereq": "ground-state-light-shift-potential"
+    },
+    {
+      "concept": "sisyphus-cooling",
+      "prereq": "optical-pumping"
+    },
+    {
+      "concept": "sisyphus-pumping-rate",
+      "prereq": "sisyphus-cooling"
+    },
+    {
+      "concept": "sisyphus-pumping-rate",
+      "prereq": "rate-equations"
+    },
+    {
+      "concept": "sisyphus-force",
+      "prereq": "sisyphus-pumping-rate"
+    },
+    {
+      "concept": "sisyphus-force",
+      "prereq": "adiabatic-expansion"
+    },
+    {
+      "concept": "sisyphus-friction",
+      "prereq": "sisyphus-force"
+    },
+    {
+      "concept": "sisyphus-friction",
+      "prereq": "capture-range"
+    },
+    {
+      "concept": "doppler-sisyphus-comparison",
+      "prereq": "sisyphus-friction"
+    },
+    {
+      "concept": "sisyphus-nonadiabaticity",
+      "prereq": "sisyphus-force"
+    },
+    {
+      "concept": "sisyphus-nonadiabaticity",
+      "prereq": "adiabatic-theorem"
+    },
+    {
+      "concept": "sisyphus-limit",
+      "prereq": "sisyphus-friction"
+    },
+    {
+      "concept": "recoil-limit",
+      "prereq": "sisyphus-limit"
+    },
+    {
+      "concept": "sub-recoil-cooling",
+      "prereq": "recoil-limit"
+    },
+    {
+      "concept": "sub-recoil-cooling",
+      "prereq": "dark-resonance"
+    },
+    {
+      "concept": "doppler-cooling",
+      "prereq": "laser-cooling"
+    }
+  ],
+  "types": []
+}

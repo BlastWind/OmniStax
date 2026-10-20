@@ -1,0 +1,55 @@
+<section id="states">
+<h2>1.2.1 States</h2>
+<p class="cite-target">We briefly review basic quantum mechanics and some elementary results of atomic physics.</p>
+<p>The most complete knowledge of the system is contained in the <span data-concept="state-vector">state vector</span> $|\kpsi\rangle$, which is an element of a Hilbert space $\mathcal{H}$. We can expand the <span data-concept="state-vector">state vector</span> $|\kpsi\rangle$ in any orthonormal basis $\{|n\rangle\}$ of the Hilbert space,</p>
+<div class="equation" id="eq-1-1">$$|\kpsi\rangle = \sum_n |n\rangle\langle n|\kpsi\rangle. \tag{1.1}$$</div>
+<p>For convenience, we write $\kcn = \langle n|\kpsi\rangle$ for the projection of <span data-concept="state-vector">the state $|\kpsi\rangle$</span> on the basis state $|n\rangle$, which gives us the <span data-concept="probability-amplitude">expansion coefficients</span> of <span data-concept="state-vector">the state $|\kpsi\rangle$</span> in the basis $\{|n\rangle\}$. <span data-concept="born-rule">The probability of finding the system in the state $|n\rangle$</span> is then $\kPn = |\kcn|^2$.</p>
+</section>
+
+<section id="superpositions">
+<h2>1.2.2 Superpositions - Interference</h2>
+<p class="cite-target">Quantum mechanics allows for <span data-concept="superposition">superpositions</span> of states, in particular, for two states</p>
+<div class="equation" id="eq-1-2">$$|\kpsi_1\rangle = \sum_n \kcn^{(1)}|n\rangle \text{ and} \tag{1.2}$$</div>
+<div class="equation" id="eq-1-3">$$|\kpsi_2\rangle = \sum_n \kcn^{(2)}|n\rangle, \tag{1.3}$$</div>
+<p>their <span data-concept="superposition">superposition</span> $\frac{1}{\sqrt{2}}(|\kpsi_1\rangle + |\kpsi_2\rangle)$ has the unique property that <span data-concept="born-rule">the probability of being in state $|n\rangle$</span> is not in general given by the sum of <span data-concept="born-rule">probabilities</span>. Instead it is given by the absolute value of the sum of <em><span data-concept="probability-amplitude">amplitudes</span></em></p>
+<div class="equation" id="eq-1-4">$$\kPn = \frac{1}{2}\left|\kcn^{(1)} + \kcn^{(2)}\right|^2 \neq \frac{1}{2}(\kPn^{(1)} + \kPn^{(2)}) \tag{1.4}$$</div>
+<p>This inequality occurs as a result of the <span data-concept="superposition">interference term</span> between the two components of <span data-concept="state-vector">state vector</span>, given in this case by $\kcn^{(1)*}\kcn^{(2)}$.</p>
+</section>
+
+<section id="observables">
+<h2>1.2.3 Observables</h2>
+<p class="cite-target"><span data-concept="observable">Observables</span> in quantum mechanics are represented by Hermitian operators acting on states of the Hilbert space. An operator $\hat{O}$ is Hermitian when for any two states $|\kpsi_{1,2}\rangle$ in the Hilbert space, we have</p>
+<div class="equation" id="eq-1-5">$$\langle\kpsi_1|\hat{O}|\kpsi_2\rangle = (\langle\kpsi_2|\hat{O}|\kpsi_1\rangle)^*. \tag{1.5}$$</div>
+<p>The <span data-concept="expectation-value">expectation value</span> of the <span data-concept="observable">observable</span> $\hat{O}$ when the system is in <span data-concept="state-vector">state $|\kpsi\rangle$</span> is</p>
+<div class="equation" id="eq-1-6">$$\langle\hat{O}\rangle = \langle\kpsi|\hat{O}|\kpsi\rangle. \tag{1.6}$$</div>
+<p>When the operator $\hat{O}$ is diagonal in the basis $\{|n\rangle\}$, we have</p>
+<div class="equation" id="eq-1-7">$$\hat{O}|n\rangle = \mathcal{O}_n|n\rangle \tag{1.7}$$</div>
+<div class="equation" id="eq-1-8">$$\Rightarrow \langle\hat{O}\rangle = \sum_n \mathcal{O}_n|\kcn|^2 = \sum_n \mathcal{O}_n p_n \tag{1.8}$$</div>
+<p>where $\mathcal{O}_n$ denotes the n<sup>th</sup> eigenvalue of the operator $\hat{O}$. Note that if the system is in an eigenstate of $\hat{O}$, we always get the same result upon repeated measurements of the <span data-concept="observable">observable</span> $\hat{O}$.</p>
+</section>
+
+<section id="uncertainty-principle">
+<h2>1.2.4 Uncertainty principle</h2>
+<p class="cite-target">In general operators <span data-concept="commutator">do no commute</span>, i.e.</p>
+<div class="equation" id="eq-1-9">$$[\hat{A}, \hat{B}] = i\hat{C} \tag{1.9}$$</div>
+<p>so that for $\hat{C} \neq 0$, the operators $\hat{A}$ and $\hat{B}$ do not have the same eigenstates.</p>
+<p><span data-concept="heisenberg-uncertainty-principle">Heisenberg’s uncertainty principle</span> states that for any two operators $\hat{A}$ and $\hat{B}$, we have</p>
+<div class="equation" id="eq-1-10">$$\Delta A \cdot \Delta B \geq \frac{1}{2}\langle[\hat{A}, \hat{B}]\rangle \tag{1.10}$$</div>
+<p>where $\Delta A = \sqrt{\langle(\hat{A} - \langle\hat{A}\rangle)^2\rangle}$.</p>
+</section>
+
+<section id="schrodinger-picture">
+<h2>1.2.5 Time evolution: Schrodinger’s picture</h2>
+<p class="cite-target">In non-relativistic quantum mechanics, the dynamics of the system is described by <span data-concept="schrodinger-equation">Schrodinger’s equation</span>: in Schrodinger’s picture the <span data-concept="state-vector">state vector</span> describing the state of the system evolves in time, while the operators describing the <span data-concept="observable">observables</span> corresponding to possible measurements on the system are stationary.</p>
+<p>The <span data-concept="state-vector">state vector</span> evolves in time according to</p>
+<div class="equation" id="eq-1-11">$$i\hbar\frac{d}{d\kt}|\kpsi\rangle = \kH|\kpsi\rangle \tag{1.11}$$</div>
+<p>where $\kH$ is the <span data-concept="hamiltonian">Hamiltonian</span> of the system. The <span data-concept="stationary-states">stationary solutions</span> of <span data-concept="schrodinger-equation">Schrodinger’s equation</span> are given by $|\kEn\rangle$ where $\kH|\kEn\rangle = \kEn|\kEn\rangle$. Any state can be expanded in the the basis of <span data-concept="stationary-states">eigenstates of $\kH$</span>, and in that basis the time evolution of the <span data-concept="state-vector">state vector</span> takes a particularly simple form, namely</p>
+<div class="equation" id="eq-1-12">$$|\kpsi(\kt)\rangle = \sum_n e^{-i\kEn\kt/\hbar}\kcn|\kEn\rangle \tag{1.12}$$</div>
+<p>corresponding to the initial state $|\kpsi(0)\rangle$ with <span data-concept="probability-amplitude">expansion coefficients</span> $\kcn = \langle \kEn|\kpsi(0)\rangle$. In the basis of its eigenstates, the <span data-concept="hamiltonian">Hamiltonian</span> is diagonal $\kH = \sum_n |\kEn\rangle \kEn\langle \kEn|$. The time evolution equation can also be formally integrated to yield the time evolved state $|\kpsi(\kt)\rangle = \exp[-i\kH\kt/\hbar]|\kpsi(0)\rangle = \hat{U}(\kt)|\kpsi(0)\rangle$, where $\hat{U}(\kt)$ is the <span data-concept="time-evolution-operator">time evolution operator</span>.</p>
+</section>
+
+<section id="heisenberg-picture">
+<h2>1.2.6 Time evolution: Heisenberg picture</h2>
+<p class="cite-target">In Heisenberg’s picture, the <span data-concept="state-vector">state vector</span> describing the initial state of the system does not evolve in time, rather the <span data-concept="observable">observables</span> describing possible measurements on the system at time $\kt$, depend explicitely on time and evolve according to <span data-concept="heisenberg-picture">Heisenberg’s equation of motion</span></p>
+<div class="equation" id="eq-1-13">$$i\hbar\frac{d}{d\kt}\hat{O}(\kt) = [\hat{O}, \kH] + i\hbar\frac{\partial\hat{O}}{\partial \kt}. \tag{1.13}$$</div>
+</section>

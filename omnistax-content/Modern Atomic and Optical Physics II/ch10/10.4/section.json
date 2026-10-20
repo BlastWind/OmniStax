@@ -1,0 +1,505 @@
+{
+ "id": "10.4",
+ "chapter": "10",
+ "title": "Ion trap quantum computation",
+ "short": "Ion trap quantum computation",
+ "lead": "How trapped ions become a quantum computer: two ions in one trap share their motion through the Coulomb repulsion, which splits into a <span data-concept=\"ion-normal-modes\">center-of-mass mode and a stretch mode</span>; the internal levels serve as <span data-concept=\"qubit\">qubits</span>, and the shared motion carries the interaction a two-qubit <span data-concept=\"pi-phase-gate\">phase gate</span> needs.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-ion-string",
+   "kind": "sim",
+   "number": "10.7",
+   "draws": [
+    "frequency",
+    "length",
+    "time"
+   ],
+   "conventions": [
+    "Ca"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ],
+   "withheld": "Figure 10.7 is a raster image of unstated origin, which the book may not copy."
+  },
+  {
+   "id": "fig-gate-levels",
+   "kind": "figure",
+   "number": "10.8",
+   "originals": [
+    "/media/ch10/fig-10-8.png"
+   ],
+   "original_caption": "The four levels used to implement the phase gate. A dipole allowed transition is used to cool the ion, while an auxiliary state is used to implement the phase shift of the qubit states.",
+   "draws": [
+    "coupling",
+    "rate",
+    "state"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-phase-gate",
+   "kind": "sim",
+   "number": "10.9",
+   "originals": [
+    "/media/ch10/fig-10-9.png"
+   ],
+   "original_caption": "A conditional phase gate is implemented in three steps. The first step writes the state of qubit m onto the collective motion of the ions. The second step conditionally changes the phase of the qubit n by applying a 2π pulse to the auxiliary level, which changes the sign only if the qubit m is in the excited state and qubit n is in the ground state. The third step writes the collective motion back onto qubit m, inducing an overall sign change due to two consecutive π pulses. The final state is unchanged unless both qubits were in their excited state, in which case it is multiplied by an overall negative sign.",
+   "draws": [
+    "coupling"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "ion-string",
+   "concept": "ion-string",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-10-31",
+   "concept": "two-ion-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "normal-modes",
+   "concept": "ion-normal-modes",
+   "verb": "introduces"
+  },
+  {
+   "span": "qubit",
+   "concept": "qubit",
+   "verb": "introduces"
+  },
+  {
+   "span": "universal",
+   "concept": "universal-gate-set",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-gate",
+   "concept": "pi-phase-gate",
+   "verb": "introduces"
+  },
+  {
+   "span": "requirements",
+   "concept": "phase-gate-requirements",
+   "verb": "introduces"
+  },
+  {
+   "span": "procedure",
+   "concept": "ion-trap-phase-gate",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "motional-state-engineering",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-10-31",
+   "concept": "trapped-ion-model",
+   "verb": "uses"
+  },
+  {
+   "span": "normal-modes",
+   "concept": "trap-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "qubit",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "qubit",
+   "concept": "superposition",
+   "verb": "uses"
+  },
+  {
+   "span": "architecture",
+   "concept": "carrier-transition",
+   "verb": "uses"
+  },
+  {
+   "span": "requirements",
+   "concept": "sideband-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "auxiliary",
+   "concept": "light-polarization",
+   "verb": "uses"
+  },
+  {
+   "span": "procedure",
+   "concept": "internal-motional-swap",
+   "verb": "uses"
+  },
+  {
+   "span": "sim-phase-gate",
+   "concept": "sideband-couplings",
+   "verb": "uses"
+  },
+  {
+   "span": "fig-gate-levels",
+   "concept": "selection-rules",
+   "verb": "uses"
+  },
+  {
+   "span": "fig-gate-levels",
+   "concept": "quantum-jump",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-two-ion-hamiltonian",
+   "concept": "two-ion-laser-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-two-ion-hamiltonian",
+   "concept": "lamb-dicke-hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-two-ion-hamiltonian",
+   "concept": "lamb-dicke-parameter",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "mode-cm",
+   "label": "the center-of-mass mode",
+   "figures": [
+    "sim-ion-string"
+   ]
+  },
+  {
+   "id": "mode-s",
+   "label": "the stretch mode",
+   "figures": [
+    "sim-ion-string"
+   ]
+  },
+  {
+   "id": "lvl-g",
+   "label": "the ground state |g⟩",
+   "figures": [
+    "fig-gate-levels",
+    "sim-phase-gate"
+   ]
+  },
+  {
+   "id": "lvl-e",
+   "label": "the excited state |e⟩",
+   "figures": [
+    "fig-gate-levels",
+    "sim-phase-gate"
+   ]
+  },
+  {
+   "id": "lvl-aux",
+   "label": "the auxiliary level",
+   "figures": [
+    "fig-gate-levels",
+    "sim-phase-gate"
+   ]
+  },
+  {
+   "id": "ion-m",
+   "label": "the m-th ion",
+   "figures": [
+    "sim-phase-gate"
+   ]
+  },
+  {
+   "id": "ion-n",
+   "label": "the n-th ion",
+   "figures": [
+    "sim-phase-gate"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-fig-10-8",
+   "kind": "correction",
+   "figure": "fig-gate-levels",
+   "html": "The book's Figure 10.8 labels the qubit's excited state $|r_0\\rangle$ and the auxiliary level $|r_1\\rangle$. The text calls the first $|e\\rangle = |1\\rangle$, and the second an auxiliary ionic level."
+  },
+  {
+   "id": "c-fig-10-9",
+   "kind": "correction",
+   "figure": "sim-phase-gate",
+   "html": "The book's Figure 10.9 writes $|r_0, n\\rangle$ for the state the text calls $|e\\rangle|n\\rangle$, the excited ion with $n$ phonons, and $|r_1, n\\rangle$ for the auxiliary level with $n$ phonons."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "two-ion-expansion",
+   "what": "the motion of two ions near equilibrium",
+   "source": "Modern Atomic and Optical Physics II, 10.4 Ion trap quantum computation, 10.4.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The ions sit on the trap axis at $\\krdist_i = \\langle\\krdist_i\\rangle + \\kxdisp_i$, with $\\langle\\krdist_1\\rangle = -\\kasep/2$ and $\\langle\\krdist_2\\rangle = \\kasep/2$.",
+       "src": "10.4.1"
+      },
+      {
+       "text": "The displacements $\\kxdisp_i$ are small, so terms beyond second order in them are dropped.",
+       "src": "10.4.1"
+      },
+      {
+       "text": "At the equilibrium positions the trap's pull on each ion, $\\km\\knu^2\\kasep/2$, balances the Coulomb repulsion $e^2/4\\pi\\epsilon_0\\kasep^2$.",
+       "src": "10.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH_{motion}} = \\mk{p}{\\sum_i\\frac{\\kpcm_i^2}{2\\km}} + \\mk{t}{\\sum_i\\frac{\\km}{2}\\knu^2\\krdist_i^2} + \\mk{c}{\\frac{e^2}{4\\pi\\epsilon_0|\\krdist_1 - \\krdist_2|}}",
+      "src": "(10.31)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH_{motion}} = \\mk{p}{\\sum_i\\frac{\\kpcm_i^2}{2\\km}} + \\mk{t}{\\frac{\\km\\knu^2}{2}\\left((\\kxdisp_1 - \\kasep/2)^2 + (\\kxdisp_2 + \\kasep/2)^2\\right)} + \\mk{c}{\\frac{e^2}{4\\pi\\epsilon_0(\\kasep + \\kxdisp_2 - \\kxdisp_1)}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{H}{\\kH_{motion}} \\approx \\mk{p}{\\sum_i\\frac{\\kpcm_i^2}{2\\km}} + \\mk{t}{\\frac{\\km\\knu^2}{2}\\left((\\kxdisp_1 - \\kasep/2)^2 + (\\kxdisp_2 + \\kasep/2)^2\\right)} + \\mk{c}{\\frac{e^2}{4\\pi\\epsilon_0\\kasep}\\left(1 - \\frac{\\kxdisp_2 - \\kxdisp_1}{\\kasep} + \\frac{(\\kxdisp_2 - \\kxdisp_1)^2}{\\kasep^2}\\right)}",
+       "uses": [
+        1
+       ],
+       "cap": "$\\frac{1}{a + u} \\approx \\frac{1}{a}\\left(1 - \\frac{u}{a} + \\frac{u^2}{a^2}\\right)$ for small $u = x_2 - x_1$."
+      },
+      {
+       "tex": "\\mk{H}{\\kH_{motion}} \\approx \\mk{p}{\\sum_i\\frac{\\kpcm_i^2}{2\\km}} + \\mk{t}{\\frac{\\km\\knu^2}{2}(\\kxdisp_1^2 + \\kxdisp_2^2)} + \\mk{l}{\\left(\\frac{\\km\\knu^2\\kasep}{2} - \\frac{e^2}{4\\pi\\epsilon_0\\kasep^2}\\right)(\\kxdisp_2 - \\kxdisp_1)} + \\mk{c}{\\frac{e^2}{4\\pi\\epsilon_0\\kasep^3}(\\kxdisp_2 - \\kxdisp_1)^2}",
+       "uses": [],
+       "cap": "Multiplying out and dropping the constant terms, which do not affect the motion.",
+       "map": {
+        "t": [
+         "t",
+         "l"
+        ],
+        "c": [
+         "l",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{H}{\\kH_{motion}} = \\mk{p}{\\sum_i\\frac{\\kpcm_i^2}{2\\km}} + \\mk{t}{\\frac{\\km\\knu^2}{2}\\left(\\kxdisp_1^2 + \\kxdisp_2^2 + (\\kxdisp_2 - \\kxdisp_1)^2\\right)}",
+       "uses": [
+        2
+       ],
+       "cap": "The balance $m\\nu^2a/2 = e^2/4\\pi\\epsilon_0a^2$ removes the linear term and turns $e^2/4\\pi\\epsilon_0a^3$ into $m\\nu^2/2$.",
+       "map": {
+        "l": "t",
+        "c": "t"
+       }
+      }
+     ],
+     "num": "(10.32)"
+    }
+   ]
+  },
+  {
+   "id": "two-ion-normal-modes",
+   "what": "the normal modes of two trapped ions",
+   "source": "Modern Atomic and Optical Physics II, 10.4 Ion trap quantum computation, 10.4.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kXcm = \\frac{1}{\\sqrt{2}}(\\kxdisp_1 + \\kxdisp_2),\\quad \\kxdisp = \\frac{1}{\\sqrt{2}}(\\kxdisp_2 - \\kxdisp_1)",
+       "src": "(10.33), (10.34)"
+      },
+      {
+       "tex": "\\kPcm = \\frac{1}{\\sqrt{2}}(\\kpcm_1 + \\kpcm_2),\\quad \\kpcm = \\frac{1}{\\sqrt{2}}(\\kpcm_2 - \\kpcm_1)",
+       "src": "(10.35), (10.36)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH_{motion}} = \\mk{p}{\\sum_i\\frac{\\kpcm_i^2}{2\\km}} + \\mk{t}{\\frac{\\km\\knu^2}{2}\\left(\\kxdisp_1^2 + \\kxdisp_2^2 + (\\kxdisp_2 - \\kxdisp_1)^2\\right)}",
+      "src": "(10.32)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH_{motion}} = \\mk{p}{\\sum_i\\frac{\\kpcm_i^2}{2\\km}} + \\mk{t}{\\frac{\\km\\knu^2}{2}\\left(\\kXcm^2 + \\kxdisp^2 + 2\\kxdisp^2\\right)}",
+       "uses": [
+        0
+       ],
+       "cap": "$x_1^2 + x_2^2 = X^2 + x^2$ and $x_2 - x_1 = \\sqrt{2}\\,x$."
+      },
+      {
+       "tex": "\\mk{H}{\\kH_{motion}} = \\mk{p}{\\sum_i\\frac{\\kpcm_i^2}{2\\km}} + \\mk{t}{\\frac{\\km\\knu^2}{2}\\left(\\kXcm^2 + 3\\kxdisp^2\\right)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{H}{\\kH_{motion}} = \\mk{p}{\\frac{\\kPcm^2 + \\kpcm^2}{2\\km}} + \\mk{t}{\\frac{\\km\\knu^2}{2}\\left(\\kXcm^2 + 3\\kxdisp^2\\right)}",
+       "uses": [
+        1
+       ],
+       "cap": "Likewise $p_1^2 + p_2^2 = P^2 + p^2$."
+      },
+      {
+       "tex": "\\mk{H}{\\kH_{motion}} = \\mk{X}{\\left(\\frac{\\kPcm^2}{2\\km} + \\frac{\\km}{2}\\knu^2 \\kXcm^2\\right)} + \\mk{x}{\\left(\\frac{\\kpcm^2}{2\\km} + \\frac{\\km}{2}3\\knu^2 \\kxdisp^2\\right)}",
+       "uses": [],
+       "map": {
+        "p": [
+         "X",
+         "x"
+        ],
+        "t": [
+         "X",
+         "x"
+        ]
+       }
+      }
+     ],
+     "num": "(10.37)"
+    }
+   ]
+  },
+  {
+   "id": "two-ion-hamiltonian",
+   "what": "the Hamiltonian of two trapped ions in the laser light",
+   "source": "Modern Atomic and Optical Physics II, 10.4 Ion trap quantum computation, 10.4.1",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{x} = \\sqrt{\\frac{\\hbar}{2\\km\\knu}}\\left(\\hat{a} + \\hat{a}^\\dagger\\right)",
+       "src": "(10.2)"
+      },
+      {
+       "tex": "{\\kH_{motion}} = {\\left(\\frac{\\kPcm^2}{2\\km} + \\frac{\\km}{2}\\knu^2 \\kXcm^2\\right)} + {\\left(\\frac{\\kpcm^2}{2\\km} + \\frac{\\km}{2}3\\knu^2 \\kxdisp^2\\right)}",
+       "src": "(10.37)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kkmag\\kxdisp_{1,2}} = \\mk{R}{\\frac{\\kkmag}{\\sqrt{2}}(\\kXcm \\mp \\kxdisp)}",
+      "src": "(10.33), (10.34)",
+      "uses": [],
+      "why": "Adding and subtracting (10.33) and (10.34) gives $x_1$ and $x_2$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kkmag\\kxdisp_{1,2}} = \\mk{R}{\\frac{\\kkmag}{\\sqrt{2}}\\left(\\sqrt{\\frac{\\hbar}{2\\km\\knu}}(\\hat{a}_{cm}+\\hat{a}_{cm}^\\dagger) \\mp \\sqrt{\\frac{\\hbar}{2\\km\\knus}}(\\hat{a}_{s}+\\hat{a}_{s}^\\dagger)\\right)}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "Each bracket of (10.37) is an oscillator of mass $m$, the center-of-mass mode at $\\nu$ and the stretch mode at $\\sqrt{3}\\nu$, so (10.2) holds for each at its own frequency."
+      },
+      {
+       "tex": "\\mk{L}{\\kkmag\\kxdisp_{1,2}} = \\mk{R}{\\eta_{cm}(\\hat{a}_{cm}+\\hat{a}_{cm}^\\dagger) \\mp \\eta_s(\\hat{a}_{s}+\\hat{a}_{s}^\\dagger)}",
+       "uses": [],
+       "cap": "Writing $\\eta_{cm} = k\\sqrt{\\hbar/4m\\nu}$ and $\\eta_s = k\\sqrt{\\hbar/4m\\sqrt{3}\\nu}$, the Lamb-Dicke parameters of the two modes."
+      }
+     ],
+     "note": "The book uses $\\eta_{cm}$ and $\\eta_s$ in (10.39) without defining them. In terms of the single-ion parameter $\\ketaLD = \\kkmag\\kazero$ of (10.12), $\\eta_{cm} = \\ketaLD/\\sqrt{2}$ and $\\eta_s = \\ketaLD/(\\sqrt{2}\\cdot 3^{1/4}) \\approx 0.54\\,\\ketaLD$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "{\\kH_{motion}} = {\\left(\\frac{\\kPcm^2}{2\\km} + \\frac{\\km}{2}\\knu^2 \\kXcm^2\\right)} + {\\left(\\frac{\\kpcm^2}{2\\km} + \\frac{\\km}{2}3\\knu^2 \\kxdisp^2\\right)}",
+       "src": "(10.37)"
+      },
+      {
+       "tex": "\\kH_\\mathrm{motion} = \\hbar\\knu\\hat{a}^\\dagger\\hat{a}",
+       "src": "(10.4)"
+      },
+      {
+       "tex": "\\kH_{int} = -\\sum_i\\left(\\hbar\\kDelta_i|e\\rangle_{ii}\\langle e| + \\hbar\\kOmega_i\\left(|e\\rangle_{ii}\\langle g|e^{i\\kkmag \\kxdisp_i} + h.c.\\right)\\right)",
+       "src": "(10.38)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH} = \\mk{M}{\\kH_{motion}} + \\mk{I}{\\kH_{int}}",
+      "src": "10.4.1",
+      "uses": [],
+      "why": "The full Hamiltonian is the motion of the two ions and their coupling to the light."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH} = \\mk{M}{\\hbar\\knu\\hat{a}_{cm}^\\dagger\\hat{a}_{cm} + \\hbar\\knus\\hat{a}_s^\\dagger\\hat{a}_s} + \\mk{I}{\\kH_{int}}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Each mode of (10.37) is an oscillator, $\\hbar\\nu\\hat{a}_{cm}^\\dagger\\hat{a}_{cm}$ and $\\hbar\\sqrt{3}\\nu\\hat{a}_s^\\dagger\\hat{a}_s$ as in (10.4)."
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{H}{\\kH} = {} & \\mk{M}{\\hbar\\knu\\hat{a}_{cm}^\\dagger\\hat{a}_{cm} + \\hbar\\knus\\hat{a}_s^\\dagger\\hat{a}_s} \\mk{D}{- \\sum_i\\hbar\\kDelta_i|e\\rangle_{ii}\\langle e|} \\\\ & \\mk{one}{-\\hbar\\kOmega_1\\left(|e\\rangle_{11}\\langle g|e^{i\\kkmag\\kxdisp_1} + h.c.\\right)} \\\\ & \\mk{two}{-\\hbar\\kOmega_2\\left(|e\\rangle_{22}\\langle g|e^{i\\kkmag\\kxdisp_2} + h.c.\\right)}\\end{aligned}",
+       "uses": [
+        3
+       ],
+       "map": {
+        "I": [
+         "D",
+         "one",
+         "two"
+        ]
+       }
+      },
+      {
+       "tex": "\\begin{aligned}\\mk{H}{\\kH} = {} & \\mk{M}{\\hbar\\knu\\hat{a}_{cm}^\\dagger\\hat{a}_{cm} + \\hbar\\knus\\hat{a}_s^\\dagger\\hat{a}_s} \\mk{D}{- \\sum_i\\hbar\\kDelta_i|e\\rangle_{ii}\\langle e|} \\\\ & \\mk{one}{-\\hbar\\kOmega_1\\left(|e\\rangle_{11}\\langle g|e^{i\\eta_{cm}(\\hat{a}_{cm}+\\hat{a}_{cm}^\\dagger)}e^{-i\\eta_s(\\hat{a}_{s}+\\hat{a}_{s}^\\dagger)} + h.c.\\right)} \\\\ & \\mk{two}{-\\hbar\\kOmega_2\\left(|e\\rangle_{22}\\langle g|e^{i\\eta_{cm}(\\hat{a}_{cm}+\\hat{a}_{cm}^\\dagger)}e^{i\\eta_s(\\hat{a}_{s}+\\hat{a}_{s}^\\dagger)} + h.c.\\right)}.\\end{aligned}",
+       "uses": [
+        0
+       ],
+       "cap": "The operators of the two modes commute, so $e^{A \\mp B} = e^Ae^{\\mp B}$."
+      }
+     ],
+     "num": "(10.39)"
+    }
+   ]
+  }
+ ]
+}

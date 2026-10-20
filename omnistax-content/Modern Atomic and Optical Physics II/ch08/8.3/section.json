@@ -1,0 +1,374 @@
+{
+ "id": "8.3",
+ "chapter": "8",
+ "title": "Doppler Cooling",
+ "short": "Doppler cooling",
+ "lead": "How light can cool atoms rather than only slow them: a velocity-dependent force from two counterpropagating beams, its <span data-concept=\"friction-coefficient\">friction coefficient</span> and <span data-concept=\"capture-range\">capture range</span>, <span data-concept=\"optical-molasses\">optical molasses</span> in three dimensions, the <span data-concept=\"magneto-optical-trap\">magneto-optical trap</span>, and why the cooling must stop at a limit.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-doppler-force",
+   "kind": "sim",
+   "number": "8.1",
+   "folds": [
+    "8.2"
+   ],
+   "originals": [
+    "/media/ch08/fig-8-1.png",
+    "/media/ch08/fig-8-2.png"
+   ],
+   "original_caption": "(Figure 8.1) Counterpropagating beams used for Doppler cooling. (Figure 8.2) Doppler cooling force at finite velocity. For red-detuned beams, atoms with positive velocities experience a negative force and vice versa. The maximum force is experienced by atoms traveling at the critical velocity ±v_c.",
+   "draws": [
+    "velocity",
+    "force",
+    "frequency",
+    "friction",
+    "wavevector",
+    "rate",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-molasses",
+   "kind": "sim",
+   "draws": [
+    "velocity",
+    "frequency",
+    "friction",
+    "time",
+    "wavevector",
+    "rate",
+    "coupling",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-mot",
+   "kind": "sim",
+   "number": "8.3",
+   "originals": [
+    "/media/ch08/fig-8-3.png"
+   ],
+   "original_caption": "The magneto-optical trap. Top: A typical configuration of red-detuned laser beams and magnetic field. Bottom: Trapping forces for a J=0 → J = 1 atomic transition.",
+   "draws": [
+    "length",
+    "frequency",
+    "force",
+    "magnetic-field",
+    "wavevector",
+    "rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "referents": [
+  {
+   "id": "beam-plus",
+   "label": "the beam travelling along +z",
+   "figures": [
+    "sim-doppler-force",
+    "sim-mot"
+   ]
+  },
+  {
+   "id": "beam-minus",
+   "label": "the beam travelling along −z",
+   "figures": [
+    "sim-doppler-force",
+    "sim-mot"
+   ]
+  },
+  {
+   "id": "lvl-ground",
+   "label": "the J = 0 ground state",
+   "figures": [
+    "sim-mot"
+   ]
+  },
+  {
+   "id": "lvl-m-minus",
+   "label": "the m = −1 sublevel of J = 1",
+   "figures": [
+    "sim-mot"
+   ]
+  },
+  {
+   "id": "lvl-m-zero",
+   "label": "the m = 0 sublevel of J = 1",
+   "figures": [
+    "sim-mot"
+   ]
+  },
+  {
+   "id": "lvl-m-plus",
+   "label": "the m = +1 sublevel of J = 1",
+   "figures": [
+    "sim-mot"
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "doppler-cooling",
+   "concept": "doppler-cooling",
+   "verb": "introduces"
+  },
+  {
+   "span": "zero-velocity-rate",
+   "concept": "zero-velocity-excitation-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "friction-coefficient",
+   "concept": "friction-coefficient",
+   "verb": "introduces"
+  },
+  {
+   "span": "optical-molasses",
+   "concept": "optical-molasses",
+   "verb": "introduces"
+  },
+  {
+   "span": "friction-largest",
+   "concept": "maximum-friction-coefficient",
+   "verb": "introduces"
+  },
+  {
+   "span": "capture-range",
+   "concept": "capture-range",
+   "verb": "introduces"
+  },
+  {
+   "span": "mot-idea",
+   "concept": "magneto-optical-trap",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "dissipative-force",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "atomic-recoil",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler-picture",
+   "concept": "recoil-shifted-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "doppler-picture",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "friction-largest",
+   "concept": "coherence-decay-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "friction-largest",
+   "concept": "optical-pumping-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "friction-largest",
+   "concept": "spontaneous-emission-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-8-33",
+   "concept": "recoil-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "rate-omega-r",
+   "concept": "semiclassical-force-validity",
+   "verb": "uses"
+  },
+  {
+   "span": "mot-config",
+   "concept": "zeeman-effect",
+   "verb": "uses"
+  },
+  {
+   "span": "mot-config",
+   "concept": "polarization-selection-rules",
+   "verb": "uses"
+  },
+  {
+   "span": "limit-kicks",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-doppler-force-expansion",
+   "concept": "low-velocity-doppler-force",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "footnotes": [
+  {
+   "id": "c-eta-sign",
+   "kind": "correction",
+   "html": "The book writes $\\frac{d}{dt}\\kpcm = -\\keta\\kpcm$ with $\\keta$ positive. By <a href=\"#eq-8-29\">Eqs. (8.29)</a>–<a href=\"#drv-friction-coefficient\">(8.30)</a> $\\keta$ has the sign of $\\kdelta$ and is negative when the beams cool ($\\kdelta < 0$), so the equation of motion is $\\frac{d}{dt}\\kpcm = \\keta\\kpcm$; here and in Eqs. (8.31)–(8.33) $\\keta$ stands for its magnitude $|\\keta|$, which is largest near $\\kdelta = -\\kgammaonetwo$."
+  },
+  {
+   "id": "c-cooling-timescale",
+   "kind": "correction",
+   "html": "The book calls $\\komegaR \\sim 10$ kHz a timescale. It is the rate of cooling; the timescale for cooling is $1/\\komegaR$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "doppler-force-expansion",
+   "what": "the dissipative force on a slowly moving atom",
+   "source": "Modern Atomic and Optical Physics II, 8.3 Doppler Cooling, Optical molasses",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The atom moves slowly, $\\mathbf{k}\\cdot\\mathbf{v} \\ll \\delta, \\gamma_{12}$.",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFmag} \\approx \\mk{R}{\\hbar\\kk\\frac{2\\kgammaonetwo|\\kOmega|^2}{\\kgammaonetwo^2 + (\\kdelta - \\kk\\cdot\\kv)^2}}",
+      "src": "(8.23)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kFmag} \\approx \\mk{R}{\\hbar\\kk\\frac{2\\kgammaonetwo|\\kOmega|^2}{\\kgammaonetwo^2 + \\kdelta^2 - 2\\kdelta\\kk\\cdot\\kv}}",
+       "uses": [
+        0
+       ],
+       "cap": "To first order in $\\mathbf{k}\\cdot\\mathbf{v}$, $(\\delta - \\mathbf{k}\\cdot\\mathbf{v})^2 \\approx \\delta^2 - 2\\delta\\,\\mathbf{k}\\cdot\\mathbf{v}$."
+      },
+      {
+       "tex": "\\mk{F}{\\kFmag} \\approx \\mk{R}{\\hbar\\kk\\frac{2\\kgammaonetwo|\\kOmega|^2}{\\kgammaonetwo^2 + \\kdelta^2}\\left(1 + \\frac{2\\kdelta\\kk\\cdot\\kv}{\\kgammaonetwo^2 + \\kdelta^2}\\right)}",
+       "uses": [
+        0
+       ],
+       "cap": "$1/(A - x) \\approx (1 + x/A)/A$ for small $x$."
+      },
+      {
+       "tex": "\\mk{F}{\\kFmag} \\approx \\mk{R}{\\hbar\\kk\\underbrace{\\frac{2\\kgammaonetwo|\\kOmega|^2}{\\kgammaonetwo^2 + \\kdelta^2}}_{\\kRoptzero}\\left(1 + \\frac{2\\kdelta\\kk\\cdot\\kv}{\\kgammaonetwo^2 + \\kdelta^2}\\right)}",
+       "uses": [],
+       "cap": "Naming the optical excitation rate at zero velocity, $R^0_{opt}$."
+      }
+     ],
+     "num": "(8.28)"
+    }
+   ]
+  },
+  {
+   "id": "friction-coefficient",
+   "what": "the Doppler friction coefficient",
+   "source": "Modern Atomic and Optical Physics II, 8.3 Doppler Cooling, Optical molasses",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kFmag \\approx \\hbar\\kk\\kRoptzero\\left(1 + \\frac{2\\kdelta\\kk\\cdot\\kv}{\\kgammaonetwo^2 + \\kdelta^2}\\right),\\quad \\kRoptzero = \\frac{2\\kgammaonetwo|\\kOmega|^2}{\\kgammaonetwo^2 + \\kdelta^2}",
+       "src": "(8.28)"
+      },
+      {
+       "text": "The two beams counterpropagate along $\\pm z$, $\\mathbf{k} = \\pm k\\hat{z}$, so $\\mathbf{k}\\cdot\\mathbf{v} = \\pm kv_z$.",
+       "src": "8.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{S}{\\kFp + \\kFm} = \\mk{p}{\\hbar\\kkmag\\kRoptzero\\left(1 + \\frac{2\\kdelta\\kkmag\\kvz}{\\kgammaonetwo^2 + \\kdelta^2}\\right)} - \\mk{m}{\\hbar\\kkmag\\kRoptzero\\left(1 - \\frac{2\\kdelta\\kkmag\\kvz}{\\kgammaonetwo^2 + \\kdelta^2}\\right)}",
+      "uses": [0, 1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{S}{\\kFp + \\kFm} = \\mk{R}{\\frac{4\\hbar\\kkmag^2\\kdelta\\kRoptzero}{\\kgammaonetwo^2 + \\kdelta^2}\\kvz}",
+       "uses": [],
+       "cap": "The velocity-independent forces cancel.",
+       "map": {
+        "p": "R",
+        "m": "R"
+       }
+      },
+      {
+       "tex": "\\mk{S}{\\kFp + \\kFm} = \\mk{R}{\\frac{8\\hbar\\kkmag^2}{\\km}\\frac{\\kdelta\\kgammaonetwo|\\kOmega|^2}{(\\kgammaonetwo^2 + \\kdelta^2)^2}\\km\\kvz}",
+       "uses": [
+        0
+       ]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\keta \\km \\kvz} = \\mk{S}{\\kFp + \\kFm}",
+      "src": "(8.29)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\keta \\km \\kvz} = \\mk{S}{\\frac{8\\hbar\\kkmag^2}{\\km}\\frac{\\kdelta\\kgammaonetwo|\\kOmega|^2}{(\\kgammaonetwo^2 + \\kdelta^2)^2}\\km\\kvz}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{e}{\\keta} = \\mk{S}{\\frac{8\\hbar\\kkmag^2}{\\km}\\frac{\\kdelta\\kgammaonetwo|\\kOmega|^2}{(\\kgammaonetwo^2 + \\kdelta^2)^2}}",
+       "uses": []
+      }
+     ],
+     "num": "(8.30)"
+    }
+   ]
+  }
+ ]
+}

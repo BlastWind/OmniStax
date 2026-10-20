@@ -1,0 +1,279 @@
+{
+ "id": "8.1",
+ "chapter": "8",
+ "title": "Incorporating center of mass motion into atom-light interactions",
+ "short": "Center of mass motion",
+ "lead": "How an atom's center-of-mass motion enters its interaction with laser light: the <span data-concept=\"moving-atom-hamiltonian\">Hamiltonian of a moving</span> <span data-concept=\"two-level-atom\">two-level atom</span>, the momentum a plane wave gives the atom when it drives a transition, and <span data-concept=\"recoil-shifted-resonance\">the Doppler and recoil shifts</span> this brings to the resonance.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-recoil",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "energy",
+    "frequency",
+    "wavevector",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "moving-hamiltonian",
+   "concept": "moving-atom-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "two-levels",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "two-levels",
+   "concept": "rabi-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "hamiltonian-parts",
+   "concept": "field-hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "hamiltonian-parts",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "hamiltonian-parts",
+   "concept": "system-reservoir-hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "hamiltonian-parts",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "rwa-coupling",
+   "concept": "rotating-wave-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "atomic-recoil",
+   "concept": "atomic-recoil",
+   "verb": "introduces"
+  },
+  {
+   "span": "resonance",
+   "concept": "rabi-oscillations",
+   "verb": "uses"
+  },
+  {
+   "span": "resonance",
+   "concept": "atomic-transition-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "resonant-frequency",
+   "concept": "recoil-shifted-resonance",
+   "verb": "introduces"
+  },
+  {
+   "span": "recoil-energy",
+   "concept": "recoil-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "recoil-scale",
+   "concept": "spontaneous-emission-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "recoil-scale",
+   "concept": "raman-transition",
+   "verb": "uses"
+  },
+  {
+   "span": "recoil-scale",
+   "concept": "laser-cooling",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "lvl-1",
+   "label": "the ground state |1⟩",
+   "figures": [
+    "sim-recoil"
+   ]
+  },
+  {
+   "id": "lvl-2",
+   "label": "the excited state |2⟩",
+   "figures": [
+    "sim-recoil"
+   ]
+  }
+ ],
+ "footnotes": [],
+ "derivations": [
+  {
+   "id": "plane-wave-coupling",
+   "what": "the plane wave in the momentum basis",
+   "source": "Modern Atomic and Optical Physics II, 8.1 Incorporating center of mass motion into atom-light interactions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Momentum is a good quantum number, and its eigenstates are complete: $\\int dp\\,|p\\rangle\\langle p| = 1$.",
+       "src": "8.1"
+      },
+      {
+       "tex": "\\langle p|e^{i\\kkmag\\cdot\\kr}|p'\\rangle = \\delta(\\kpcm-(\\kpcm'+\\hbar\\kkmag))",
+       "src": "(8.4)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{e^{i\\kkmag\\cdot\\kr}} = \\mk{R}{\\int d\\kpcm|p\\rangle\\langle p|\\,e^{i\\kkmag\\cdot\\kr}\\int d\\kpcm'|p'\\rangle\\langle p'|}",
+      "uses": [
+       0
+      ],
+      "why": "Two completeness relations, one on each side."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{e^{i\\kkmag\\cdot\\kr}} = \\mk{R}{\\int d\\kpcm \\int d\\kpcm'|p\\rangle \\underbrace{\\langle p|e^{i\\kkmag\\cdot\\kr}|p'\\rangle}_{\\delta(\\kpcm-(\\kpcm'+\\hbar\\kkmag))} \\langle p'|}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{e^{i\\kkmag\\cdot\\kr}} = \\mk{R}{\\int d\\kpcm'|p' + \\hbar k\\rangle\\langle p'|}",
+       "uses": [],
+       "cap": "The delta function sets $p = p' + \\hbar k$."
+      }
+     ],
+     "num": "(8.5)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kOmega(\\kr) = |\\kOmega(\\kr)|e^{i\\kphi(\\kr)}",
+       "src": "(8.3)"
+      },
+      {
+       "text": "A running wave has a constant amplitude $|\\Omega|$ and the phase $\\phi = \\mathbf{k}\\cdot\\mathbf{r}$.",
+       "src": "8.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH_{AL}} = -\\mk{a}{\\hbar\\kOmega(\\kr)|2\\rangle\\langle 1|} - \\mk{b}{\\hbar\\kOmega(\\kr)^*|1\\rangle\\langle 2|}",
+      "src": "(8.2)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kH_{AL}} = -\\mk{a}{\\hbar|\\kOmega(\\kr)|e^{i\\kkmag\\cdot\\kr}|2\\rangle\\langle 1|} - \\mk{b}{\\hbar|\\kOmega(\\kr)|e^{-i\\kkmag\\cdot\\kr}|1\\rangle\\langle 2|}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{H}{\\kH_{AL}} = -\\mk{a}{\\hbar|\\kOmega(\\kr)|\\int d\\kpcm\\,|2\\rangle|p + \\hbar k\\rangle\\langle p|\\langle 1|} - \\mk{b}{\\hbar|\\kOmega(\\kr)|\\int d\\kpcm\\,|1\\rangle|p\\rangle\\langle p + \\hbar k|\\langle 2|}",
+       "uses": [
+        0
+       ],
+       "cap": "$e^{-i\\mathbf{k}\\cdot\\hat{\\mathbf{r}}}$ is the adjoint of $e^{i\\mathbf{k}\\cdot\\hat{\\mathbf{r}}}$, so it is $\\int dp\\,|p\\rangle\\langle p + \\hbar k|$."
+      },
+      {
+       "tex": "\\mk{H}{\\kH_{AL}} = \\mk{R}{-\\hbar|\\kOmega(\\kr)| \\int \\left(|2\\rangle|p + \\hbar k\\rangle\\langle p|\\langle 1| + |1\\rangle|p\\rangle\\langle p + \\hbar k|\\langle 2|\\right) d\\kpcm}",
+       "uses": [],
+       "map": {
+        "a": "R",
+        "b": "R"
+       }
+      }
+     ],
+     "num": "(8.6)"
+    }
+   ]
+  },
+  {
+   "id": "recoil-shifted-resonance",
+   "what": "the Doppler and recoil shifts of the resonance",
+   "source": "Modern Atomic and Optical Physics II, 8.1 Incorporating center of mass motion into atom-light interactions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The plane wave couples $|p\\rangle|1\\rangle$ to $|p + \\hbar k\\rangle|2\\rangle$.",
+       "src": "(8.6)"
+      },
+      {
+       "text": "The kinetic energy of the atom is $\\hat p^2/2m$.",
+       "src": "(8.1)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{w}{\\komegares} = \\mk{i}{\\komega_{12}} + \\mk{k}{\\frac{(\\kpcm + \\hbar\\kkmag)^2}{2\\km\\hbar} - \\frac{\\kpcm^2}{2\\km\\hbar}}",
+      "uses": [
+       0,
+       1
+      ],
+      "why": "The two states differ by the internal energy $\\hbar\\omega_{12}$ and by their kinetic energies."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{w}{\\komegares} = \\mk{i}{\\komega_{12}} + \\mk{k}{\\frac{\\kpcm^2 + 2\\hbar\\kpcm\\kkmag + \\hbar^2\\kkmag^2}{2\\km\\hbar} - \\frac{\\kpcm^2}{2\\km\\hbar}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{w}{\\komegares} = \\mk{i}{\\komega_{12}} + \\mk{d}{\\frac{\\kpcm\\kkmag}{\\km}} + \\mk{r}{\\frac{\\hbar\\kkmag^2}{2\\km}}",
+       "uses": [],
+       "map": {
+        "k": [
+         "d",
+         "r"
+        ]
+       }
+      }
+     ],
+     "num": "(8.8)"
+    }
+   ]
+  }
+ ]
+}

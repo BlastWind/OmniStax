@@ -1,0 +1,821 @@
+{
+ "id": "9.2",
+ "chapter": "9",
+ "title": "Interactions between a single-mode radiation field and a two level atom",
+ "short": "The Jaynes-Cummings model",
+ "lead": "A single <span data-concept=\"two-level-atom\">two-level atom</span> coupled to one mode of a cavity: the <span data-concept=\"jaynes-cummings-model\">Jaynes-Cummings model</span> and its exact solution, <span data-concept=\"vacuum-rabi-oscillations\">vacuum Rabi oscillations</span> of an excited atom in an empty cavity, and, for a <span data-concept=\"coherent-state\">coherent</span> field, the <span data-concept=\"rabi-revival\">collapse and revival</span> of <span data-concept=\"rabi-oscillations\">Rabi oscillations</span> and the field's splitting into a <span data-concept=\"schrodinger-cat-state\">Schrödinger cat</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "No exercise belongs to this section: the book prints no invitation here, and the MIT 8.422 problems on cat states, Problem Set 1, Problems 2(d) and 3(ii), are set with 9.3 and 9.4.",
+ "figures": [
+  {
+   "id": "sim-collapse-revival",
+   "kind": "sim",
+   "number": "9.3",
+   "originals": [
+    "/media/ch09/fig-9-3.png"
+   ],
+   "original_caption": "Collapse and revival of Rabi oscillations for a cavity field initially in a coherent state with α = 4.",
+   "draws": [
+    "population",
+    "time",
+    "coupling",
+    "state",
+    "quadrature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "cavity-qed",
+   "concept": "cavity-qed",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-9-53",
+   "concept": "jaynes-cummings-model",
+   "verb": "introduces"
+  },
+  {
+   "span": "jc-pairs",
+   "concept": "jaynes-cummings-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "vacuum-rabi",
+   "concept": "vacuum-rabi-oscillations",
+   "verb": "introduces"
+  },
+  {
+   "span": "strong-coupling",
+   "concept": "strong-coupling-regime",
+   "verb": "introduces"
+  },
+  {
+   "span": "classical-rabi",
+   "concept": "coherent-state-rabi-oscillations",
+   "verb": "introduces"
+  },
+  {
+   "span": "collapse",
+   "concept": "rabi-collapse",
+   "verb": "introduces"
+  },
+  {
+   "span": "revival",
+   "concept": "rabi-revival",
+   "verb": "introduces"
+  },
+  {
+   "span": "cat",
+   "concept": "schrodinger-cat-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "linear-optical-transformations",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "single-mode-field",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "cavity-qed",
+   "concept": "cavity-finesse",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-53",
+   "concept": "rotating-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-54",
+   "concept": "fock-states",
+   "verb": "uses"
+  },
+  {
+   "span": "vacuum-rabi",
+   "concept": "rabi-oscillations",
+   "verb": "uses"
+  },
+  {
+   "span": "strong-coupling",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "strong-coupling",
+   "concept": "wigner-weisskopf",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-63",
+   "concept": "coherent-state",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-63",
+   "concept": "coherent-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "naive",
+   "concept": "poisson-photon-statistics",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-field-splitting",
+   "concept": "atom-field-entanglement",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-jaynes-cummings-equations",
+   "concept": "schrodinger-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-jaynes-cummings-equations",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "comp-plus",
+   "label": "the component |αe^{+igt/2√n̄}⟩",
+   "figures": [
+    "sim-collapse-revival"
+   ]
+  },
+  {
+   "id": "comp-minus",
+   "label": "the component |αe^{−igt/2√n̄}⟩",
+   "figures": [
+    "sim-collapse-revival"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-eq-11-6-cited",
+   "kind": "correction",
+   "html": "The book cites Eq. (11.6) here, and twice more for the ground state and excited state contributions worked out below. The equation meant each time is Eq. (9.65), the general solution for a coherent field."
+  },
+  {
+   "id": "c-coherence",
+   "kind": "correction",
+   "html": "The overlap of the two components is $\\langle i\\kalphacoh|-i\\kalphacoh\\rangle = e^{-2|\\kalphacoh|^2}$, so the classical coherence $|\\langle\\hat{a}\\rangle|$ is at most of order $|\\kalphacoh|e^{-2|\\kalphacoh|^2}$; the book's $e^{-|\\kalphacoh|^2}$ lacks the factor 2 in the exponent. Either way it is exponentially small."
+  },
+  {
+   "id": "c-fig-9-3",
+   "kind": "correction",
+   "figure": "sim-collapse-revival",
+   "html": "The book's figure labels the revival $\\ktaurevival = \\kalphacoh/\\kg$. Eq. (9.71) gives $\\ktaurevival \\sim 2\\pi|\\kalphacoh|/\\kg$, which for $\\kalphacoh = 4$ is about $25/\\kg$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "jaynes-cummings-equations",
+   "what": "the Jaynes-Cummings equations for the amplitudes",
+   "source": "Modern Atomic and Optical Physics II, 9.2.1 The Jaynes-Cummings model",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "|n\\rangle = \\frac{(\\hat{a}^\\dagger)^n}{\\sqrt{n!}}|0\\rangle",
+       "src": "(11.205)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k}{|n+1\\rangle} = \\mk{R}{\\frac{(\\hat{a}^\\dagger)^{n+1}}{\\sqrt{(n+1)!}}|0\\rangle}",
+      "src": "(11.205)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k}{|n+1\\rangle} = \\mk{R}{\\frac{\\hat{a}^\\dagger(\\hat{a}^\\dagger)^n}{\\sqrt{(n+1)!}}|0\\rangle}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{k}{|n+1\\rangle} = \\mk{c}{\\frac{\\sqrt{n!}}{\\sqrt{(n+1)!}}}\\mk{a}{\\hat{a}^\\dagger|n\\rangle}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "R": [
+         "c",
+         "a"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{k}{|n+1\\rangle} = \\mk{c}{\\frac{1}{\\sqrt{n+1}}}\\mk{a}{\\hat{a}^\\dagger|n\\rangle}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{a}{\\hat{a}^\\dagger|n\\rangle} = \\mk{c}{\\sqrt{n+1}}\\mk{k}{|n+1\\rangle}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = -\\hbar \\kg\\hat{a}|2\\rangle\\langle 1| - \\hbar \\kg^*\\hat{a}^\\dagger|1\\rangle\\langle 2|",
+       "src": "(9.53)"
+      },
+      {
+       "tex": "|\\kpsi(\\kt)\\rangle = \\sum_n \\kcn^{(1)}(\\kt)|1\\rangle_a\\otimes|n\\rangle + \\kcn^{(2)}(\\kt)|2\\rangle_a\\otimes|n\\rangle",
+       "src": "(9.55)"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "The atomic states and the Fock states are orthonormal.",
+       "src": "9.1, 9.2.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\kH|\\kpsi\\rangle}",
+      "src": "(1.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\,{}_a\\langle 2|\\langle n|\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{{}_a\\langle 2|\\langle n|\\kH|\\kpsi\\rangle}",
+       "uses": [],
+       "cap": "Taking the overlap of both sides with $\\langle 2|_a\\langle n|$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcn}^{(2)}} = \\mk{R}{-\\hbar\\kg\\langle n|\\hat{a}|n+1\\rangle\\,\\kcnpone^{(1)}}",
+       "uses": [
+        0,
+        1,
+        3
+       ],
+       "cap": "The states are orthonormal, so the left side picks out $c_n^{(2)}$; of $\\hat{H}$ only $-\\hbar g\\hat{a}|2\\rangle\\langle 1|$ reaches $\\langle 2|_a$, from the component $c_{n+1}^{(1)}|1\\rangle_a|n+1\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcn}^{(2)}} = \\mk{R}{-\\hbar\\kg\\sqrt{n+1}\\,\\kcnpone^{(1)}}",
+       "uses": [
+        2
+       ],
+       "cap": "$\\langle n|\\hat{a}$ is the adjoint of $\\hat{a}^\\dagger|n\\rangle = \\sqrt{n+1}\\,|n+1\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcn}^{(2)}} = \\mk{R}{i\\kg\\sqrt{n+1}\\,\\kcnpone^{(1)}}",
+       "uses": [],
+       "cap": "Dividing by $i\\hbar$, with $-1/i = i$."
+      }
+     ],
+     "num": "(9.56)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = -\\hbar \\kg\\hat{a}|2\\rangle\\langle 1| - \\hbar \\kg^*\\hat{a}^\\dagger|1\\rangle\\langle 2|",
+       "src": "(9.53)"
+      },
+      {
+       "tex": "|\\kpsi(\\kt)\\rangle = \\sum_n \\kcn^{(1)}(\\kt)|1\\rangle_a\\otimes|n\\rangle + \\kcn^{(2)}(\\kt)|2\\rangle_a\\otimes|n\\rangle",
+       "src": "(9.55)"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "The atomic states and the Fock states are orthonormal.",
+       "src": "9.1, 9.2.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\kH|\\kpsi\\rangle}",
+      "src": "(1.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\,{}_a\\langle 1|\\langle n+1|\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{{}_a\\langle 1|\\langle n+1|\\kH|\\kpsi\\rangle}",
+       "uses": [],
+       "cap": "Taking the overlap of both sides with $\\langle 1|_a\\langle n+1|$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcnpone}^{(1)}} = \\mk{R}{-\\hbar\\kg^*\\langle n+1|\\hat{a}^\\dagger|n\\rangle\\,\\kcn^{(2)}}",
+       "uses": [
+        0,
+        1,
+        3
+       ],
+       "cap": "Of $\\hat{H}$ only $-\\hbar g^*\\hat{a}^\\dagger|1\\rangle\\langle 2|$ reaches $\\langle 1|_a$, from the component $c_n^{(2)}|2\\rangle_a|n\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcnpone}^{(1)}} = \\mk{R}{-\\hbar\\kg^*\\sqrt{n+1}\\,\\kcn^{(2)}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcnpone}^{(1)}} = \\mk{R}{i\\kg^*\\sqrt{n+1}\\,\\kcn^{(2)}}",
+       "uses": [],
+       "cap": "Dividing by $i\\hbar$, with $-1/i = i$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcnpone}^{(1)}} = \\mk{R}{i\\kg\\sqrt{n+1}\\,\\kcn^{(2)}}",
+       "uses": [],
+       "cap": "With the coupling taken real, $g^* = g$, as Eq. (9.57) writes it."
+      }
+     ],
+     "num": "(9.57)"
+    }
+   ]
+  },
+  {
+   "id": "jaynes-cummings-solution",
+   "what": "the Jaynes-Cummings amplitudes",
+   "source": "Modern Atomic and Optical Physics II, 9.2.1 The Jaynes-Cummings model",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\dot{\\kcnpone}^{(1)} = i\\kg\\sqrt{n+1}\\,\\kcn^{(2)}",
+       "src": "(9.57)"
+      },
+      {
+       "text": "The amplitudes evolve as sines and cosines: a solution of $\\ddot{x} = -\\omega^2 x$ is a sum of $\\cos\\omega t$ and $\\sin\\omega t$.",
+       "src": "2.1.1"
+      },
+      {
+       "text": "The atom starts in the excited state, so $\\kcn^{(2)}(0) = \\kcn(0)$ and $\\kcnpone^{(1)}(0) = 0$.",
+       "src": "(9.54)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcn}^{(2)}} = \\mk{R}{i\\kg\\sqrt{n+1}\\,\\kcnpone^{(1)}}",
+      "src": "(9.56)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\ddot{\\kcn}^{(2)}} = \\mk{R}{i\\kg\\sqrt{n+1}\\,\\dot{\\kcnpone}^{(1)}}",
+       "uses": [],
+       "cap": "Differentiating once more."
+      },
+      {
+       "tex": "\\mk{L}{\\ddot{\\kcn}^{(2)}} = \\mk{R}{i\\kg\\sqrt{n+1}\\cdot i\\kg\\sqrt{n+1}\\,\\kcn^{(2)}}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{\\ddot{\\kcn}^{(2)}} = \\mk{R}{-\\kg^2(n+1)\\,\\kcn^{(2)}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\kcn^{(2)}(\\kt)} = \\mk{a}{A\\cos(\\kg\\sqrt{n+1}\\kt)} + \\mk{b}{B\\sin(\\kg\\sqrt{n+1}\\kt)}",
+       "uses": [1],
+       "map": {
+        "R": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\kcn^{(2)}(\\kt)} = \\mk{a}{\\kcn(0)\\cos(\\kg\\sqrt{n+1}\\kt)} + \\mk{b}{B\\sin(\\kg\\sqrt{n+1}\\kt)}",
+       "uses": [2],
+       "cap": "At $t = 0$, $c_n^{(2)}(0) = A = c_n(0)$."
+      },
+      {
+       "tex": "\\mk{L}{\\kcn^{(2)}(\\kt)} = \\mk{a}{\\kcn(0)\\cos\\left(\\kg\\sqrt{n+1}\\kt\\right)}",
+       "uses": [2],
+       "cap": "$\\dot{c}_n^{(2)}(0) = Bg\\sqrt{n+1}$, while Eq. (9.56) gives $\\dot{c}_n^{(2)}(0) = ig\\sqrt{n+1}\\,c_{n+1}^{(1)}(0) = 0$, so $B = 0$."
+      }
+     ],
+     "num": "(9.59)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\dot{\\kcn}^{(2)} = i\\kg\\sqrt{n+1}\\,\\kcnpone^{(1)}",
+       "src": "(9.56)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kcn^{(2)}(\\kt)} = \\mk{a}{\\kcn(0)\\cos\\left(\\kg\\sqrt{n+1}\\kt\\right)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcn}^{(2)}(\\kt)} = \\mk{a}{-\\kg\\sqrt{n+1}\\,\\kcn(0)\\sin\\left(\\kg\\sqrt{n+1}\\kt\\right)}",
+       "uses": [],
+       "cap": "Differentiating."
+      },
+      {
+       "tex": "\\mk{L}{i\\kg\\sqrt{n+1}\\,\\kcnpone^{(1)}(\\kt)} = \\mk{a}{-\\kg\\sqrt{n+1}\\,\\kcn(0)\\sin\\left(\\kg\\sqrt{n+1}\\kt\\right)}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\kcnpone^{(1)}(\\kt)} = \\mk{a}{i\\kcn(0)\\sin\\left(\\kg\\sqrt{n+1}\\kt\\right)}",
+       "uses": [],
+       "cap": "Dividing by $ig\\sqrt{n+1}$, with $-1/i = i$."
+      }
+     ],
+     "num": "(9.58)"
+    }
+   ]
+  },
+  {
+   "id": "coherent-field-state",
+   "what": "the state of the atom in a coherent field",
+   "source": "Modern Atomic and Optical Physics II, 9.2.2 Initial vacuum field: vacuum Rabi oscillations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "|\\kalphacoh\\rangle = e^{-|\\kalphacoh|^2/2}\\sum_n\\frac{\\kalphacoh^n}{\\sqrt{n!}}|n\\rangle",
+       "src": "(9.24)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{|\\kpsi_0\\rangle} = \\mk{R}{|2\\rangle_a\\otimes|\\kalphacoh\\rangle}",
+      "src": "(9.63)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|\\kpsi_0\\rangle} = \\mk{R}{|2\\rangle_a\\otimes\\sum_n\\underbrace{e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}}_{\\kcn(0)}|n\\rangle}",
+       "uses": [0]
+      }
+     ],
+     "num": "(9.64)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The Hamiltonian couples the state $|2\\rangle_a|n\\rangle$ to the state $|1\\rangle_a|n+1\\rangle$ and back.",
+       "src": "9.2.1"
+      },
+      {
+       "tex": "\\kcnpone^{(1)}(\\kt) = i\\kcn(0)\\sin\\left(\\kg\\sqrt{n+1}\\kt\\right)",
+       "src": "(9.58)"
+      },
+      {
+       "tex": "\\kcn^{(2)}(\\kt) = \\kcn(0)\\cos\\left(\\kg\\sqrt{n+1}\\kt\\right)",
+       "src": "(9.59)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} = \\mk{R}{\\sum_n \\kcn^{(1)}(\\kt)|1\\rangle_a\\otimes|n\\rangle + \\kcn^{(2)}(\\kt)|2\\rangle_a\\otimes|n\\rangle}",
+      "src": "(9.55)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} = \\sum_n\\left(\\mk{s}{\\kcnpone^{(1)}(\\kt)|1\\rangle_a|n+1\\rangle} + \\mk{c}{\\kcn^{(2)}(\\kt)|2\\rangle_a|n\\rangle}\\right)",
+       "uses": [1],
+       "cap": "Starting from $|2\\rangle_a$, only the pairs $|2\\rangle_a|n\\rangle$, $|1\\rangle_a|n+1\\rangle$ are reached, so $c_0^{(1)}$ stays zero and the first sum runs over $|n+1\\rangle$.",
+       "map": {
+        "R": [
+         "s",
+         "c"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} = \\sum_n\\left(\\mk{s}{i\\kcn(0)\\sin\\left(\\kg\\sqrt{n+1}\\kt\\right)|1\\rangle_a|n+1\\rangle} + \\mk{c}{\\kcn(0)\\cos\\left(\\kg\\sqrt{n+1}\\kt\\right)|2\\rangle_a|n\\rangle}\\right)",
+       "uses": [2, 3]
+      },
+      {
+       "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} = \\sum_n \\mk{cn}{e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}}\\left(\\mk{s}{i\\sin\\left(\\kg\\sqrt{n+1}\\kt\\right)|1\\rangle_a|n+1\\rangle} + \\mk{c}{\\cos\\left(\\kg\\sqrt{n+1}\\kt\\right)|2\\rangle_a|n\\rangle}\\right)",
+       "uses": [0],
+       "map": {
+        "s": [
+         "s",
+         "cn"
+        ],
+        "c": [
+         "c",
+         "cn"
+        ]
+       }
+      }
+     ],
+     "num": "(9.65)"
+    }
+   ]
+  },
+  {
+   "id": "naive-rabi-oscillation",
+   "what": "the classical Rabi oscillation of the naive approximation",
+   "source": "Modern Atomic and Optical Physics II, 9.2.2 Initial vacuum field: vacuum Rabi oscillations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For large $\\knbar$ the Poisson distribution has the narrow width $\\Delta n/\\knbar = 1/\\sqrt{\\knbar}$, and $\\sqrt{n+1} \\approx \\sqrt{\\knbar}$ over the range $n\\in[\\knbar - \\Delta n, \\knbar + \\Delta n]$ that carries the sum.",
+       "src": "9.2.2"
+      },
+      {
+       "tex": "|\\kalphacoh\\rangle = e^{-|\\kalphacoh|^2/2}\\sum_n\\frac{\\kalphacoh^n}{\\sqrt{n!}}|n\\rangle",
+       "src": "(9.24)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} = \\sum_n \\mk{cn}{e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}}\\left(\\mk{s}{i\\sin\\left(\\kg\\sqrt{n+1}\\kt\\right)|1\\rangle_a|n+1\\rangle} + \\mk{c}{\\cos\\left(\\kg\\sqrt{n+1}\\kt\\right)|2\\rangle_a|n\\rangle}\\right)",
+      "src": "(9.65)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} \\approx \\sum_n \\mk{cn}{e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}}\\left(\\mk{s}{i\\sin\\left(\\kg\\sqrt{\\knbar}\\kt\\right)|1\\rangle_a|n+1\\rangle} + \\mk{c}{\\cos\\left(\\kg\\sqrt{\\knbar}\\kt\\right)|2\\rangle_a|n\\rangle}\\right)",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} \\approx \\sum_n \\mk{cn}{e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}}\\left(\\mk{s}{i\\sin\\left(\\kg\\sqrt{\\knbar}\\kt\\right)|1\\rangle_a|n\\rangle} + \\mk{c}{\\cos\\left(\\kg\\sqrt{\\knbar}\\kt\\right)|2\\rangle_a|n\\rangle}\\right)",
+       "uses": [0],
+       "cap": "Over the same range the amplitudes of neighbouring Fock states are nearly equal, $|c_{n-1}(0)/c_n(0)| = \\sqrt{n}/|\\alpha| \\approx 1$, so $|n+1\\rangle$ is replaced by $|n\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} = \\left(\\mk{s}{i\\sin\\left(\\kg\\sqrt{\\knbar}\\kt\\right)|1\\rangle_a} + \\mk{c}{\\cos\\left(\\kg\\sqrt{\\knbar}\\kt\\right)|2\\rangle_a}\\right)\\otimes\\mk{cn}{|\\kalphacoh\\rangle}",
+       "uses": [1],
+       "cap": "The sum left over $n$ is the coherent state of Eq. (9.24)."
+      }
+     ],
+     "num": "(9.66)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\knbar = |\\kalphacoh|^2",
+       "src": "(9.27)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{\\ktauRabi} \\sim \\mk{R}{\\frac{1}{\\kg\\sqrt{\\knbar}}}",
+      "uses": [0],
+      "why": "The atomic amplitudes oscillate at the angular frequency $g\\sqrt{\\bar{n}}$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{\\ktauRabi} \\sim \\mk{R}{\\frac{1}{\\kg\\sqrt{\\knbar}}} \\sim \\mk{R2}{\\frac{1}{|\\kalphacoh|\\kg}}",
+       "uses": [1]
+      }
+     ],
+     "num": "(9.67)"
+    }
+   ]
+  },
+  {
+   "id": "rabi-phase-expansion",
+   "what": "the phase of each Fock component",
+   "source": "Modern Atomic and Optical Physics II, 9.2.2 Initial vacuum field: vacuum Rabi oscillations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "$\\knbar$ is large and $n = \\knbar + \\delta n$, with $\\delta n/\\knbar$ small.",
+       "src": "9.2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{p}{\\kphi_n} = \\mk{R}{\\kg\\sqrt{n+1}\\kt}",
+      "uses": [],
+      "why": "The phase of the sine and cosine of Eq. (9.65)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{p}{\\kphi_n} \\approx \\mk{R}{\\kg\\sqrt{\\knbar + \\delta n}\\,\\kt}",
+       "uses": [0],
+       "cap": "For large $\\bar{n}$ the $1$ of $n + 1$ is dropped."
+      },
+      {
+       "tex": "\\mk{p}{\\kphi_n} \\approx \\mk{R}{\\kg\\kt\\sqrt{\\knbar}\\left(1 + \\frac{\\delta n}{2\\knbar}\\right)}",
+       "uses": [],
+       "cap": "To first order in $\\delta n/\\bar{n}$, $\\sqrt{1 + \\delta n/\\bar{n}} \\approx 1 + \\delta n/2\\bar{n}$."
+      },
+      {
+       "tex": "\\mk{p}{\\kphi_n} \\approx \\mk{R}{\\kg\\kt\\sqrt{\\knbar}\\left(\\frac{\\knbar + n}{2\\knbar}\\right)}",
+       "uses": [0]
+      }
+     ],
+     "num": "(9.69)"
+    }
+   ]
+  },
+  {
+   "id": "field-splitting",
+   "what": "the field splitting into two coherent states",
+   "source": "Modern Atomic and Optical Physics II, 9.2.2 Initial vacuum field: vacuum Rabi oscillations",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kphi_n = \\kg\\sqrt{n+1}\\kt",
+       "src": "(9.68)"
+      },
+      {
+       "tex": "\\kphi_n \\approx \\kg\\kt\\sqrt{\\knbar}\\left(\\frac{\\knbar + n}{2\\knbar}\\right)",
+       "src": "(9.72)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{i\\sin(\\kg\\sqrt{n+1}\\kt)} = \\mk{R}{i\\sin\\kphi_n}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{i\\sin(\\kg\\sqrt{n+1}\\kt)} = \\mk{R}{\\frac{1}{2}\\left(e^{i\\kphi_n} - e^{-i\\kphi_n}\\right)}",
+       "uses": [],
+       "cap": "$\\sin\\phi = (e^{i\\phi} - e^{-i\\phi})/2i$."
+      },
+      {
+       "tex": "\\mk{s}{i\\sin(\\kg\\sqrt{n+1}\\kt)} \\approx \\mk{R}{\\frac{1}{2}\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}e^{i\\kg n\\kt/2\\sqrt{\\knbar}} - e^{-i\\kg\\sqrt{\\knbar}\\kt/2}e^{-i\\kg n\\kt/2\\sqrt{\\knbar}}\\right)}",
+       "uses": [1],
+       "cap": "Eq. (9.72) splits as $\\phi_n \\approx g\\sqrt{\\bar{n}}t/2 + gnt/2\\sqrt{\\bar{n}}$."
+      }
+     ],
+     "num": "(9.74)",
+     "note": "The book prints Eq. (9.74) without the factor $\\frac{1}{2}$ of Eq. (9.73); the $\\frac{1}{2}$ of Eq. (9.76) comes from it."
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "|\\kalphacoh\\rangle = e^{-|\\kalphacoh|^2/2}\\sum_n\\frac{\\kalphacoh^n}{\\sqrt{n!}}|n\\rangle",
+       "src": "(9.24)"
+      },
+      {
+       "text": "Over the relevant range of $n$, $|n+1\\rangle$ is replaced by $|n\\rangle$, as in Eq. (9.66).",
+       "src": "(9.66)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{|1\\rangle_a\\,{}_a\\langle 1|\\kpsi(\\kt)\\rangle} = \\mk{R}{\\sum_n e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}\\,i\\sin(\\kg\\sqrt{n+1}\\kt)|1\\rangle_a|n+1\\rangle}",
+      "src": "(9.65)",
+      "uses": [],
+      "why": "The ground state part of Eq. (9.65)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|1\\rangle_a\\,{}_a\\langle 1|\\kpsi(\\kt)\\rangle} \\approx \\mk{R}{\\sum_n e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}\\,\\frac{1}{2}\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}e^{i\\kg n\\kt/2\\sqrt{\\knbar}} - e^{-i\\kg\\sqrt{\\knbar}\\kt/2}e^{-i\\kg n\\kt/2\\sqrt{\\knbar}}\\right)|1\\rangle_a|n+1\\rangle}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{|1\\rangle_a\\,{}_a\\langle 1|\\kpsi(\\kt)\\rangle} \\approx \\mk{R}{\\sum_n e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}\\,\\frac{1}{2}\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}e^{i\\kg n\\kt/2\\sqrt{\\knbar}} - e^{-i\\kg\\sqrt{\\knbar}\\kt/2}e^{-i\\kg n\\kt/2\\sqrt{\\knbar}}\\right)|1\\rangle_a|n\\rangle}",
+       "uses": [2]
+      },
+      {
+       "tex": "\\mk{L}{|1\\rangle_a\\,{}_a\\langle 1|\\kpsi(\\kt)\\rangle} \\approx \\mk{R}{\\frac{1}{2}|1\\rangle_a\\otimes\\sum_n e^{-|\\kalphacoh|^2/2}\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}\\frac{(\\kalphacoh e^{i\\kg\\kt/2\\sqrt{\\knbar}})^n}{\\sqrt{n!}} - e^{-i\\kg\\sqrt{\\knbar}\\kt/2}\\frac{(\\kalphacoh e^{-i\\kg\\kt/2\\sqrt{\\knbar}})^n}{\\sqrt{n!}}\\right)|n\\rangle}",
+       "uses": [],
+       "cap": "$\\alpha^n e^{\\pm ignt/2\\sqrt{\\bar{n}}} = (\\alpha e^{\\pm igt/2\\sqrt{\\bar{n}}})^n$."
+      },
+      {
+       "tex": "\\mk{L}{|1\\rangle_a\\,{}_a\\langle 1|\\kpsi(\\kt)\\rangle} \\approx \\mk{R}{\\frac{1}{2}|1\\rangle_a\\otimes\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle - e^{-i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{-i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle\\right)}",
+       "uses": [1],
+       "cap": "Each sum is the coherent state of Eq. (9.24) with the amplitude $\\alpha e^{\\pm igt/2\\sqrt{\\bar{n}}}$, of magnitude $|\\alpha|$."
+      }
+     ],
+     "num": "(9.76)",
+     "note": "The book's first row of Eq. (9.76) drops the ket $|n\\rangle$, and its second row keeps a $\\sum_n$ although the sum has already built the coherent states."
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kphi_n = \\kg\\sqrt{n+1}\\kt",
+       "src": "(9.68)"
+      },
+      {
+       "tex": "\\kphi_n \\approx \\kg\\kt\\sqrt{\\knbar}\\left(\\frac{\\knbar + n}{2\\knbar}\\right)",
+       "src": "(9.72)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{s}{\\cos(\\kg\\sqrt{n+1}\\kt)} = \\mk{R}{\\cos\\kphi_n}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\cos(\\kg\\sqrt{n+1}\\kt)} = \\mk{R}{\\frac{1}{2}\\left(e^{i\\kphi_n} + e^{-i\\kphi_n}\\right)}",
+       "uses": [],
+       "cap": "$\\cos\\phi = (e^{i\\phi} + e^{-i\\phi})/2$."
+      },
+      {
+       "tex": "\\mk{s}{\\cos(\\kg\\sqrt{n+1}\\kt)} \\approx \\mk{R}{\\frac{1}{2}\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}e^{i\\kg n\\kt/2\\sqrt{\\knbar}} + e^{-i\\kg\\sqrt{\\knbar}\\kt/2}e^{-i\\kg n\\kt/2\\sqrt{\\knbar}}\\right)}",
+       "uses": [1]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "|\\kalphacoh\\rangle = e^{-|\\kalphacoh|^2/2}\\sum_n\\frac{\\kalphacoh^n}{\\sqrt{n!}}|n\\rangle",
+       "src": "(9.24)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{|2\\rangle_a\\,{}_a\\langle 2|\\kpsi(\\kt)\\rangle} = \\mk{R}{\\sum_n e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}\\cos(\\kg\\sqrt{n+1}\\kt)|2\\rangle_a|n\\rangle}",
+      "src": "(9.65)",
+      "uses": [],
+      "why": "The excited state part of Eq. (9.65)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|2\\rangle_a\\,{}_a\\langle 2|\\kpsi(\\kt)\\rangle} \\approx \\mk{R}{\\sum_n e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}\\,\\frac{1}{2}\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}e^{i\\kg n\\kt/2\\sqrt{\\knbar}} + e^{-i\\kg\\sqrt{\\knbar}\\kt/2}e^{-i\\kg n\\kt/2\\sqrt{\\knbar}}\\right)|2\\rangle_a|n\\rangle}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{|2\\rangle_a\\,{}_a\\langle 2|\\kpsi(\\kt)\\rangle} \\approx \\mk{R}{\\frac{1}{2}|2\\rangle_a\\otimes\\sum_n e^{-|\\kalphacoh|^2/2}\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}\\frac{(\\kalphacoh e^{i\\kg\\kt/2\\sqrt{\\knbar}})^n}{\\sqrt{n!}} + e^{-i\\kg\\sqrt{\\knbar}\\kt/2}\\frac{(\\kalphacoh e^{-i\\kg\\kt/2\\sqrt{\\knbar}})^n}{\\sqrt{n!}}\\right)|n\\rangle}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{|2\\rangle_a\\,{}_a\\langle 2|\\kpsi(\\kt)\\rangle} \\approx \\mk{R}{\\frac{1}{2}|2\\rangle_a\\otimes\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle + e^{-i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{-i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle\\right)}",
+       "uses": [1]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 3
+      },
+      {
+       "tex": "|\\alpha_+\\rangle = \\frac{1}{\\sqrt{2}}\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle + e^{-i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{-i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle\\right)",
+       "src": "(9.78)"
+      },
+      {
+       "tex": "|\\alpha_-\\rangle = \\frac{1}{\\sqrt{2}}\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle - e^{-i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{-i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle\\right)",
+       "src": "(9.79)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} = \\mk{g}{|1\\rangle_a\\,{}_a\\langle 1|\\kpsi(\\kt)\\rangle} + \\mk{e}{|2\\rangle_a\\,{}_a\\langle 2|\\kpsi(\\kt)\\rangle}",
+      "uses": [],
+      "why": "The atom has the two states $|1\\rangle$ and $|2\\rangle$."
+     },
+     "steps": [
+      {
+       "tex": "\\begin{aligned}\\mk{L}{|\\kpsi(\\kt)\\rangle} \\approx {} &\\mk{g}{\\frac{1}{2}|1\\rangle_a\\otimes\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle - e^{-i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{-i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle\\right)} \\\\ &+ \\mk{e}{\\frac{1}{2}|2\\rangle_a\\otimes\\left(e^{i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle + e^{-i\\kg\\sqrt{\\knbar}\\kt/2}|\\kalphacoh e^{-i\\kg\\kt/2\\sqrt{\\knbar}}\\rangle\\right)}\\end{aligned}",
+       "uses": [0, 1]
+      },
+      {
+       "tex": "\\mk{L}{|\\kpsi(\\kt)\\rangle} = \\frac{1}{\\sqrt{2}}\\left(\\mk{e}{|2\\rangle_a|\\alpha_+\\rangle} + \\mk{g}{|1\\rangle_a|\\alpha_-\\rangle}\\right)",
+       "uses": [2, 3],
+       "cap": "$\\frac{1}{2} = \\frac{1}{\\sqrt{2}}\\cdot\\frac{1}{\\sqrt{2}}$, one factor going into each of $|\\alpha_\\pm\\rangle$."
+      }
+     ],
+     "num": "(9.77)"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1672 @@
+{
+ "id": "2.1",
+ "chapter": "2",
+ "title": "Atomic Transitions",
+ "short": "Atomic transitions",
+ "lead": "The simplest atom-field system, two atomic levels driven by a nearly resonant classical field: the <span data-concept=\"rotating-frame\">rotating frame</span> and the <span data-concept=\"rotating-wave-approximation\">rotating wave approximation</span>, <span data-concept=\"rabi-oscillations\">Rabi oscillations</span> and pulse area, <span data-concept=\"adiabatic-elimination\">adiabatic elimination</span> and the <span data-concept=\"ac-stark-shift\">light shift</span>, <span data-concept=\"dressed-states\">dressed states</span>, the <span data-concept=\"bloch-sphere\">Bloch sphere</span>, and how the treatment extends to atoms with many levels and fields.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "MIT 8.422 Problem Set 7, Problem 3 and Problem Set 10, Problem 1(a)–(e), its continuation, are set in ten parts, restated in Lukin's notation with AI-written solutions, since the course published no key; no part is numerical, so none is held. Part (f) of Problem Set 10, Problem 1 needs the quantized field and is set in Section 9.3.",
+ "figures": [
+  {
+   "id": "fig-level-scheme",
+   "kind": "figure",
+   "number": "2.1",
+   "originals": [
+    "/media/ch02/fig-2-1.png"
+   ],
+   "original_caption": "The structure of the two-level system. The applied classical field has angular frequency ν, while the atomic levels are separated by energy ħω.",
+   "draws": [
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-pulse-area",
+   "kind": "sim",
+   "draws": [
+    "coupling",
+    "phase",
+    "population",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-dressed",
+   "kind": "sim",
+   "number": "2.2",
+   "originals": [
+    "/media/ch02/fig-2-2.png"
+   ],
+   "original_caption": "(a) Pictorial representation of moving to the rotating frame. In the absence of an applied field, the two atomic levels are split by atomic transition frequency ω. Upon application of a classical field with frequency ν, we move to a frame rotating at frequency ν, in which the state |2̃⟩ has energy −δ = ω − ν. In the rotating wave approximation, these states |1⟩ and |2̃⟩ are coupled by a static mixing term Ω. (b) The dressed state energy levels (red) are shown as a function of detuning. For reference, the bare state energy levels (dashed, blue) are also shown. The bare states are the eigenstates of the system when no applied field is present (Ω = 0).",
+   "draws": [
+    "frequency",
+    "coupling",
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  },
+  {
+   "id": "sim-bloch",
+   "kind": "sim",
+   "number": "2.3",
+   "originals": [
+    "/media/ch02/fig-2-3.png"
+   ],
+   "original_caption": "(a) An arbitrary state of a two-level system can be represented as a vector on the unit sphere. Here we are working in the rotating frame. (b) When no external fields are applied, the system precesses at the energy difference (in the rotating frame) between the two states. c) In the presence of a resonant applied field, the state precesses around an axis in the x-y plane whose azimuthal angle is determined by the phase of the applied field.",
+   "draws": [
+    "state",
+    "coupling",
+    "frequency",
+    "population",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "two-level-def",
+   "concept": "two-level-atom",
+   "verb": "introduces"
+  },
+  {
+   "span": "transition-frequency",
+   "concept": "atomic-transition-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "envelope",
+   "concept": "slowly-varying-envelope",
+   "verb": "introduces"
+  },
+  {
+   "span": "optical-frequency",
+   "concept": "optical-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-dipole",
+   "concept": "two-level-dipole-operator",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-2-2",
+   "concept": "two-level-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "detuning",
+   "concept": "detuning",
+   "verb": "introduces"
+  },
+  {
+   "span": "rotating-frame",
+   "concept": "rotating-frame",
+   "verb": "introduces"
+  },
+  {
+   "span": "rabi-frequency",
+   "concept": "rabi-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "rwa",
+   "concept": "rotating-wave-approximation",
+   "verb": "introduces"
+  },
+  {
+   "span": "rabi-oscillations",
+   "concept": "rabi-oscillations",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarization",
+   "concept": "atomic-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "pulse-area",
+   "concept": "pulse-area",
+   "verb": "introduces"
+  },
+  {
+   "span": "adiabatic-elimination",
+   "concept": "adiabatic-elimination",
+   "verb": "introduces"
+  },
+  {
+   "span": "light-shift",
+   "concept": "ac-stark-shift",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-2-23",
+   "concept": "rotating-frame-hamiltonian",
+   "verb": "introduces"
+  },
+  {
+   "span": "bare-states",
+   "concept": "bare-states",
+   "verb": "introduces"
+  },
+  {
+   "span": "dressed-states",
+   "concept": "dressed-states",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-2-24",
+   "concept": "dressed-state-energies",
+   "verb": "introduces"
+  },
+  {
+   "span": "bloch-sphere",
+   "concept": "bloch-sphere",
+   "verb": "introduces"
+  },
+  {
+   "span": "precession",
+   "concept": "bloch-precession",
+   "verb": "introduces"
+  },
+  {
+   "span": "multilevel",
+   "concept": "multilevel-rotating-frame",
+   "verb": "introduces"
+  },
+  {
+   "span": "floquet",
+   "concept": "floquet-basis",
+   "verb": "introduces"
+  },
+  {
+   "span": "opening",
+   "concept": "selection-rules",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-2-2",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "optical-frequency",
+   "concept": "dipole-matrix-element",
+   "verb": "uses"
+  },
+  {
+   "span": "rabi-oscillations",
+   "concept": "born-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "polarization",
+   "concept": "expectation-value",
+   "verb": "uses"
+  },
+  {
+   "span": "bloch-invitation",
+   "concept": "heisenberg-picture",
+   "verb": "uses"
+  },
+  {
+   "span": "multilevel",
+   "concept": "time-evolution-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-rotating-frame-equations",
+   "concept": "two-level-equations-of-motion",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-rotating-frame-equations",
+   "concept": "schrodinger-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-rotating-frame-equations",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ex-bloch-eom",
+   "source_id": "it is a useful exercise to show that the Hamiltonian of Eq. (2.32) leads to the equations of motion",
+   "kind": "exercise",
+   "bloom": "Apply",
+   "place": {
+    "at": "inline",
+    "after": "bloch-vector"
+   },
+   "cite": "bloch-invitation",
+   "prompt": "Working in the Heisenberg picture, show that the Hamiltonian of Eq. (2.32), its constant term ignored, leads to the equations of motion of Eq. (2.33).",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$\\frac{d}{dt}\\tilde{\\mathbf{S}} = \\boldsymbol{\\Omega}(t) \\times \\tilde{\\mathbf{S}},$$ where the vector $\\tilde{\\mathbf{S}} = \\left\\{\\tilde{S}_x, \\tilde{S}_y, \\tilde{S}_z\\right\\}$ and $\\boldsymbol{\\Omega}(t) = \\{-2\\,\\mathrm{Re}\\,\\Omega(t), -2\\,\\mathrm{Im}\\,\\Omega^*(t), -\\delta\\}$."
+   }
+  },
+  {
+   "id": "hw7-3a",
+   "source_id": "hw7.3a",
+   "source_number": "Problem Set 7, Problem 3(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|g\\rangle$, $|e\\rangle$ are $|1\\rangle$, $|2\\rangle$.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "A two-level atom driven by a classical laser field is often conveniently studied in a stationary basis, that is, the basis defined by the eigenstates of the Hamiltonian. These basis states are known as dressed states, and they are useful for interpreting many phenomena and solving problems in atomic physics. Let the Hamiltonian for the classically driven atom be $$H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right],$$ where $X$, $Y$, and $Z$ are the usual Pauli matrices, $\\omega$ is the energy difference between the atomic levels $|2\\rangle$ and $|1\\rangle$, $\\nu$ is the laser frequency, and $\\Omega = eE_0\\langle 1|z|2\\rangle/2\\hbar$ is the Rabi frequency. Write the coupled time-dependent Schrodinger equations using a solution anzatz of the form $|\\psi(t)\\rangle = a e^{i\\omega_1 t}|1\\rangle + b e^{i\\omega_2 t}|2\\rangle$. Choose the frequencies such that the equations are steady-state, containing no oscillating terms.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $Z = |2\\rangle\\langle 2| - |1\\rangle\\langle 1|$ and $X\\cos\\nu t + Y\\sin\\nu t = e^{-i\\nu t}|2\\rangle\\langle 1| + e^{i\\nu t}|1\\rangle\\langle 2|$, projecting $i\\hbar\\frac{d}{dt}|\\psi\\rangle = H|\\psi\\rangle$ onto $|1\\rangle$ and $|2\\rangle$ gives $$i\\dot a = \\left(\\omega_1 - \\frac{\\omega}{2}\\right)a + \\Omega e^{i(\\omega_2 - \\omega_1 + \\nu)t}\\, b, \\qquad i\\dot b = \\left(\\omega_2 + \\frac{\\omega}{2}\\right)b + \\Omega e^{-i(\\omega_2 - \\omega_1 + \\nu)t}\\, a.$$ The oscillating factors vanish when $\\omega_2 - \\omega_1 = -\\nu$. The symmetric choice $\\omega_1 = \\nu/2$, $\\omega_2 = -\\nu/2$, with $\\delta = \\nu - \\omega$, gives the steady-state equations $$i\\dot a = \\frac{\\delta}{2}a + \\Omega b, \\qquad i\\dot b = -\\frac{\\delta}{2}b + \\Omega a.$$ Any other choice with $\\omega_2 - \\omega_1 = -\\nu$ adds the same constant to both diagonal terms, an overall phase. The choice $\\omega_1 = 0$, $\\omega_2 = -\\nu$ is Lukin's rotating frame of Eq. (2.5), $b = \\tilde{c}_2$."
+   }
+  },
+  {
+   "id": "hw7-3b",
+   "source_id": "hw7.3b",
+   "source_number": "Problem Set 7, Problem 3(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|g\\rangle$, $|e\\rangle$ are $|1\\rangle$, $|2\\rangle$; the problem's Hamiltonian is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "For the driven two-level atom with $H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right]$: The Schrodinger equations you have just written are identical to those for a system with a Hamiltonian that is a function of the Rabi frequency and the detuning $\\delta = \\nu - \\omega$ only. Give this Hamiltonian; denote it as $H'$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Reading the equations of part (a) as $i\\hbar\\frac{d}{dt}(a, b) = H'(a, b)$, in the basis $\\{|1\\rangle, |2\\rangle\\}$ $$H' = \\hbar\\begin{pmatrix} \\delta/2 & \\Omega \\\\ \\Omega & -\\delta/2 \\end{pmatrix} = -\\frac{\\hbar\\delta}{2}Z + \\hbar\\Omega X.$$ It has no time dependence and depends on $\\Omega$ and $\\delta$ only. It is the rotating-frame Hamiltonian $\\tilde{H}$ of Eq. (2.23) plus the constant $\\hbar\\delta/2$, with the coupling of the opposite sign, since this $H$ writes the drive with a plus sign where Lukin's $-\\hat{d}\\cdot\\mathbf{E}$ has a minus."
+   }
+  },
+  {
+   "id": "hw7-3c",
+   "source_id": "hw7.3c",
+   "source_number": "Problem Set 7, Problem 3(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|g\\rangle$, $|e\\rangle$ are $|1\\rangle$, $|2\\rangle$; MIT's effective Rabi frequency $\\Omega$ is renamed $\\Omega'$ so that it does not collide with Lukin's $\\Omega$, and the problem's Hamiltonian is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "For the driven two-level atom with $H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right]$: Write $H'$ in terms of trigonometric functions, where $\\sin 2\\theta = 2\\Omega/\\Omega'$, where $\\Omega' = \\sqrt{4\\Omega^2 + \\delta^2}$ is the “effective” Rabi frequency.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\sin 2\\theta = 2\\Omega/\\Omega'$ and $\\cos 2\\theta = \\delta/\\Omega'$, $$H' = \\frac{\\hbar\\Omega'}{2}\\left(-\\cos 2\\theta\\, Z + \\sin 2\\theta\\, X\\right) = \\frac{\\hbar\\Omega'}{2}\\begin{pmatrix} \\cos 2\\theta & \\sin 2\\theta \\\\ \\sin 2\\theta & -\\cos 2\\theta \\end{pmatrix}$$ in the basis $\\{|1\\rangle, |2\\rangle\\}$: a field of strength $\\Omega'$ tilted by $2\\theta$ from the $z$ axis, the drive vector $\\boldsymbol{\\Omega}$ of Eq. (2.33) up to sign. On resonance $2\\theta = \\pi/2$; far detuned, $2\\theta \\to 0$."
+   }
+  },
+  {
+   "id": "hw7-3d",
+   "source_id": "hw7.3d",
+   "source_number": "Problem Set 7, Problem 3(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|g\\rangle$, $|e\\rangle$ are $|1\\rangle$, $|2\\rangle$; MIT's effective Rabi frequency $\\Omega$ is written $\\Omega' = \\sqrt{4\\Omega^2 + \\delta^2}$, and the problem's Hamiltonian is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "For the driven two-level atom with $H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right]$: Diagonalize $H'$ to find the eigenvalues and associated eigenvectors.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The eigenvalues are $\\pm\\frac{\\hbar\\Omega'}{2} = \\pm\\hbar\\sqrt{\\frac{\\delta^2}{4} + \\Omega^2}$, with eigenvectors $$+\\frac{\\hbar\\Omega'}{2}:\\ \\cos\\theta\\,|1\\rangle + \\sin\\theta\\,|2\\rangle, \\qquad -\\frac{\\hbar\\Omega'}{2}:\\ -\\sin\\theta\\,|1\\rangle + \\cos\\theta\\,|2\\rangle,$$ as the half-angle identities show: the matrix of part (c) maps $(\\cos\\theta, \\sin\\theta)$ to $(\\cos(2\\theta - \\theta), \\sin(2\\theta - \\theta))$. These are the dressed states. Their splitting $\\hbar\\Omega' = 2\\hbar\\sqrt{(\\delta/2)^2 + \\Omega^2}$ is $\\epsilon_- - \\epsilon_+$ of Eq. (2.24), and the eigenvalues are $\\epsilon_\\mp + \\hbar\\delta/2$: the lower state $-\\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$ is Lukin's $|+\\rangle$ and the upper $\\cos\\theta|1\\rangle + \\sin\\theta|2\\rangle$ his $|-\\rangle$, up to the sign of $\\Omega$. On resonance $\\theta = \\pi/4$ and they are $(|1\\rangle \\pm |2\\rangle)/\\sqrt{2}$, split by $2\\Omega$; far detuned, $\\theta \\approx \\Omega/\\delta$, the upper state is $|1\\rangle + (\\Omega/\\delta)|2\\rangle$ with energy $\\hbar\\delta/2 + \\hbar\\Omega^2/\\delta$, the light shift $\\hbar\\Omega^2/\\delta$ of Eq. (2.25) above the frame's constant."
+   }
+  },
+  {
+   "id": "hw7-3e",
+   "source_id": "hw7.3e",
+   "source_number": "Problem Set 7, Problem 3(e)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|g\\rangle$, $|e\\rangle$ are $|1\\rangle$, $|2\\rangle$; MIT's effective Rabi frequency $\\Omega$ is written $\\Omega' = \\sqrt{4\\Omega^2 + \\delta^2}$, and the problem's Hamiltonian is repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "For the driven two-level atom with $H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right]$: Use these results to find the time-dependent solutions to the Schrodinger equations for $H$, in the original frame of reference.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Each dressed state evolves with its own phase, $e^{\\mp i\\Omega' t/2}$ for energy $\\pm\\hbar\\Omega'/2$, and the frame of part (a) is undone by $|\\psi(t)\\rangle = e^{i\\nu t/2}a(t)|1\\rangle + e^{-i\\nu t/2}b(t)|2\\rangle$. With $A = -\\sin\\theta\\, a(0) + \\cos\\theta\\, b(0)$ and $B = \\cos\\theta\\, a(0) + \\sin\\theta\\, b(0)$, $$|\\psi(t)\\rangle = \\left[-A\\sin\\theta\\, e^{i\\Omega' t/2} + B\\cos\\theta\\, e^{-i\\Omega' t/2}\\right]e^{i\\nu t/2}|1\\rangle + \\left[A\\cos\\theta\\, e^{i\\Omega' t/2} + B\\sin\\theta\\, e^{-i\\Omega' t/2}\\right]e^{-i\\nu t/2}|2\\rangle.$$ For the atom starting in $|1\\rangle$ this is $$|\\psi(t)\\rangle = \\left[\\cos\\frac{\\Omega' t}{2} - i\\frac{\\delta}{\\Omega'}\\sin\\frac{\\Omega' t}{2}\\right]e^{i\\nu t/2}|1\\rangle - i\\frac{2\\Omega}{\\Omega'}\\sin\\frac{\\Omega' t}{2}\\, e^{-i\\nu t/2}|2\\rangle,$$ so $p_2 = \\frac{4\\Omega^2}{4\\Omega^2 + \\delta^2}\\sin^2\\frac{\\Omega' t}{2}$: Rabi oscillations at the effective frequency, their contrast reduced by the detuning. On resonance this is $p_2 = \\sin^2\\Omega t$, Eqs. (2.13)–(2.14)."
+   }
+  },
+  {
+   "id": "hw10-1a",
+   "source_id": "hw10.1a",
+   "source_number": "Problem Set 10, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, as in Problem Set 7, Problem 3: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|a\\rangle$, $|b\\rangle$ are $|1\\rangle$, $|2\\rangle$; the earlier problem's Hamiltonian and dressed states are repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "For the driven two-level atom with $H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right]$ of Problem Set 7, Problem 3, whose rotating-frame Hamiltonian $H' = \\hbar\\begin{pmatrix} \\delta/2 & \\Omega \\\\ \\Omega & -\\delta/2 \\end{pmatrix}$ has the dressed states $\\cos\\theta|1\\rangle + \\sin\\theta|2\\rangle$ and $-\\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$ at $\\pm\\hbar\\Omega'/2$, with $\\Omega' = \\sqrt{4\\Omega^2 + \\delta^2}$ and $\\sin 2\\theta = 2\\Omega/\\Omega'$: Identify the a.c. Stark shift in the dressed states. It appears as a shift in the energy levels of the two dressed states relative to the uncoupled states. What is the Stark shift in the limit $\\Omega \\ll |\\delta|$? Write the dressed states in this limit.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "In the rotating frame the uncoupled states sit at $+\\hbar\\delta/2$ ($|1\\rangle$) and $-\\hbar\\delta/2$ ($|2\\rangle$); the coupling pushes them apart to $\\pm\\hbar\\Omega'/2$. Each level moves by $\\frac{\\hbar}{2}(\\Omega' - |\\delta|)$, the one continuing $|1\\rangle$ in the direction of $\\delta$ and the one continuing $|2\\rangle$ opposite. For $\\Omega \\ll |\\delta|$, $\\Omega' \\approx |\\delta| + 2\\Omega^2/|\\delta|$, so $$\\Delta E_1 = +\\frac{\\hbar\\Omega^2}{\\delta}, \\qquad \\Delta E_2 = -\\frac{\\hbar\\Omega^2}{\\delta},$$ the light shift of Section 2.1: red detuning ($\\delta < 0$) lowers the ground state. In this limit $\\theta \\approx \\Omega/\\delta$ ($\\pi/2 + \\Omega/\\delta$ for $\\delta < 0$), and to first order in $\\Omega/\\delta$ the dressed states are $$|1\\rangle + \\frac{\\Omega}{\\delta}|2\\rangle, \\qquad |2\\rangle - \\frac{\\Omega}{\\delta}|1\\rangle:$$ each bare state with a small admixture of the other."
+   }
+  },
+  {
+   "id": "hw10-1b",
+   "source_id": "hw10.1b",
+   "source_number": "Problem Set 10, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, as in Problem Set 7, Problem 3: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|a\\rangle$, $|b\\rangle$ are $|1\\rangle$, $|2\\rangle$; the earlier problem's Hamiltonian and dressed states are repeated at the start of the part; MIT's $\\mathcal{P}(\\omega_L, t)$ is written $P(\\nu, t)$ and its $\\alpha(\\omega_L)$ is $\\alpha(\\nu)$.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "For the driven two-level atom with $H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right]$ of Problem Set 7, Problem 3, whose rotating-frame Hamiltonian $H' = \\hbar\\begin{pmatrix} \\delta/2 & \\Omega \\\\ \\Omega & -\\delta/2 \\end{pmatrix}$ has the dressed states $\\cos\\theta|1\\rangle + \\sin\\theta|2\\rangle$ and $-\\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$ at $\\pm\\hbar\\Omega'/2$, with $\\Omega' = \\sqrt{4\\Omega^2 + \\delta^2}$ and $\\sin 2\\theta = 2\\Omega/\\Omega'$: The polarization is the expectation value of the dipole operator for the dressed state. It can also be written $P(\\nu, t) = \\alpha(\\nu)E_0\\cos(\\nu t)$. Compare these two expressions, and express $\\alpha(\\nu)$ as a function of $|\\langle 1|z|2\\rangle|^2$. Substitute the oscillator strength $f_{12} = \\frac{2m\\omega}{\\hbar}|\\langle 1|z|2\\rangle|^2$ into the expression and compare it with the known expression $\\alpha(\\nu) = \\frac{e^2}{m}\\frac{f_{12}}{\\omega^2 - \\nu^2}$. Where do they agree? Comment briefly on the physics of $\\nu \\to \\omega$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take the atom in the dressed state continuing $|1\\rangle$, for $\\Omega \\ll |\\delta|$. In the original frame (the ansatz of Problem 7.3(a), $\\omega_1 = \\nu/2$, $\\omega_2 = -\\nu/2$) it is $e^{i\\nu t/2}|1\\rangle + \\frac{\\Omega}{\\delta}e^{-i\\nu t/2}|2\\rangle$. With the dipole $-ez$ and $z_{12} = \\langle 1|z|2\\rangle$ real, $$P = -e\\langle z\\rangle = -\\frac{2e z_{12}\\Omega}{\\delta}\\cos\\nu t = \\frac{e^2|z_{12}|^2}{\\hbar(\\omega - \\nu)}E_0\\cos\\nu t,$$ using $\\Omega = eE_0 z_{12}/2\\hbar$ and $\\delta = \\nu - \\omega$. So $\\alpha(\\nu) = \\frac{e^2|z_{12}|^2}{\\hbar(\\omega - \\nu)}$. The oscillator expression with $f_{12}$ substituted is $$\\alpha(\\nu) = \\frac{2e^2\\omega|z_{12}|^2}{\\hbar(\\omega^2 - \\nu^2)} = \\frac{e^2|z_{12}|^2}{\\hbar}\\left[\\frac{1}{\\omega - \\nu} + \\frac{1}{\\omega + \\nu}\\right].$$ They agree near resonance, $\\nu \\approx \\omega$, where the first term dominates. As $\\nu \\to \\omega$ both diverge: the dressed-state result needed $\\Omega \\ll |\\delta|$ and fails there, and in a real atom spontaneous decay (the linewidth $\\gamma$) and saturation keep the response finite, the polarization then lagging the field by $\\pi/2$ (absorption)."
+   }
+  },
+  {
+   "id": "hw10-1c",
+   "source_id": "hw10.1c",
+   "source_number": "Problem Set 10, Problem 1(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, as in Problem Set 7, Problem 3: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|a\\rangle$, $|b\\rangle$ are $|1\\rangle$, $|2\\rangle$; the earlier problem's Hamiltonian and dressed states are repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "For the driven two-level atom with $H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right]$ of Problem Set 7, Problem 3, whose rotating-frame Hamiltonian $H' = \\hbar\\begin{pmatrix} \\delta/2 & \\Omega \\\\ \\Omega & -\\delta/2 \\end{pmatrix}$ has the dressed states $\\cos\\theta|1\\rangle + \\sin\\theta|2\\rangle$ and $-\\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$ at $\\pm\\hbar\\Omega'/2$, with $\\Omega' = \\sqrt{4\\Omega^2 + \\delta^2}$ and $\\sin 2\\theta = 2\\Omega/\\Omega'$: Let $\\nu \\to 0$, and write the d.c. polarizability for both expressions. What approximation has been made that accounts for the difference?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The dressed-state result gives $\\alpha(0) = \\frac{e^2|z_{12}|^2}{\\hbar\\omega}$, the oscillator expression $\\alpha(0) = \\frac{2e^2|z_{12}|^2}{\\hbar\\omega}$, twice as large. The difference is the rotating wave approximation: $H$ keeps only the co-rotating part of the drive, and so loses the counter-rotating term $1/(\\omega + \\nu)$, which near resonance is negligible but at $\\nu = 0$ equals the resonant term $1/(\\omega - \\nu)$. A static field has no rotating sense, and both terms count equally."
+   }
+  },
+  {
+   "id": "hw10-1d",
+   "source_id": "hw10.1d",
+   "source_number": "Problem Set 10, Problem 1(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, as in Problem Set 7, Problem 3: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|a\\rangle$, $|b\\rangle$ are $|1\\rangle$, $|2\\rangle$; the earlier problem's Hamiltonian and dressed states are repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "For the driven two-level atom with $H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right]$ of Problem Set 7, Problem 3, whose rotating-frame Hamiltonian $H' = \\hbar\\begin{pmatrix} \\delta/2 & \\Omega \\\\ \\Omega & -\\delta/2 \\end{pmatrix}$ has the dressed states $\\cos\\theta|1\\rangle + \\sin\\theta|2\\rangle$ and $-\\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$ at $\\pm\\hbar\\Omega'/2$, with $\\Omega' = \\sqrt{4\\Omega^2 + \\delta^2}$ and $\\sin 2\\theta = 2\\Omega/\\Omega'$: Let $|\\psi(t = 0)\\rangle = |1\\rangle$. Express $|\\psi(t)\\rangle$ as a linear superposition of the dressed states. What is the probability $P(t)$ that $|\\psi(t)\\rangle$ will be found in the state $|1\\rangle$? This shows that the dressed states contain the physics of Rabi “nutation” or oscillation.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $|u\\rangle = \\cos\\theta|1\\rangle + \\sin\\theta|2\\rangle$ (energy $+\\hbar\\Omega'/2$) and $|l\\rangle = -\\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$ ($-\\hbar\\Omega'/2$), $|1\\rangle = \\cos\\theta|u\\rangle - \\sin\\theta|l\\rangle$, so in the rotating frame $$|\\psi(t)\\rangle = \\cos\\theta\\, e^{-i\\Omega' t/2}|u\\rangle - \\sin\\theta\\, e^{i\\Omega' t/2}|l\\rangle,$$ and the original frame only adds the phases $e^{\\pm i\\nu t/2}$ to $|1\\rangle$, $|2\\rangle$. Then $\\langle 1|\\psi\\rangle = \\cos^2\\theta\\, e^{-i\\Omega' t/2} + \\sin^2\\theta\\, e^{i\\Omega' t/2}$ up to a phase, and $$P(t) = \\cos^2\\frac{\\Omega' t}{2} + \\cos^2 2\\theta\\sin^2\\frac{\\Omega' t}{2} = 1 - \\frac{4\\Omega^2}{4\\Omega^2 + \\delta^2}\\sin^2\\frac{\\Omega' t}{2}.$$ The two dressed states each evolve with a steady phase; their beat at the splitting $\\Omega'$ is the Rabi oscillation at the generalized Rabi frequency, complete on resonance ($\\theta = \\pi/4$)."
+   }
+  },
+  {
+   "id": "hw10-1e",
+   "source_id": "hw10.1e",
+   "source_number": "Problem Set 10, Problem 1(e)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, as in Problem Set 7, Problem 3: MIT's $\\Omega_1$ is written $2\\Omega$, $\\omega_0$ is $\\omega$, $\\omega_L$ is $\\nu$, $\\delta_L = \\omega_L - \\omega_0$ is $\\delta$, and $|a\\rangle$, $|b\\rangle$ are $|1\\rangle$, $|2\\rangle$; the earlier problem's Hamiltonian and dressed states are repeated at the start of the part.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dressed-states",
+   "prompt": "For the driven two-level atom with $H = \\frac{\\hbar\\omega}{2}Z + \\hbar\\Omega\\left[X\\cos(\\nu t) + Y\\sin(\\nu t)\\right]$ of Problem Set 7, Problem 3, whose rotating-frame Hamiltonian $H' = \\hbar\\begin{pmatrix} \\delta/2 & \\Omega \\\\ \\Omega & -\\delta/2 \\end{pmatrix}$ has the dressed states $\\cos\\theta|1\\rangle + \\sin\\theta|2\\rangle$ and $-\\sin\\theta|1\\rangle + \\cos\\theta|2\\rangle$ at $\\pm\\hbar\\Omega'/2$, with $\\Omega' = \\sqrt{4\\Omega^2 + \\delta^2}$ and $\\sin 2\\theta = 2\\Omega/\\Omega'$: Use your solution to find the stimulated light force on each of the two dressed states.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Where the field, and so $\\Omega(\\mathbf{r})$, varies in space, an atom that follows a dressed state adiabatically moves in its energy $\\pm\\hbar\\Omega'/2$ as a potential: $$\\mathbf{F}_\\pm = \\mp\\frac{\\hbar}{2}\\nabla\\Omega' = \\mp\\frac{2\\hbar\\Omega}{\\Omega'}\\nabla\\Omega = \\mp\\hbar\\sin 2\\theta\\,\\nabla\\Omega.$$ The upper dressed state is pushed toward weak field, the lower one toward strong field, with equal and opposite forces. For $\\delta > 0$ an atom in $|1\\rangle$ follows the upper state and is repelled from the light; for $\\delta < 0$ it follows the lower state and is drawn in. Far from resonance the force on the ground state is $-\\nabla(\\hbar\\Omega^2/\\delta)$, the gradient of the light shift of part (a): the dipole force of Section 8.2. An atom in a superposition feels the two forces weighted by its dressed-state populations."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ex-bloch-eom",
+   "concept": "bloch-precession"
+  },
+  {
+   "exercise": "ex-bloch-eom",
+   "concept": "heisenberg-picture"
+  },
+  {
+   "exercise": "hw7-3a",
+   "concept": "rotating-frame"
+  },
+  {
+   "exercise": "hw7-3a",
+   "concept": "two-level-equations-of-motion"
+  },
+  {
+   "exercise": "hw7-3b",
+   "concept": "rotating-frame-hamiltonian"
+  },
+  {
+   "exercise": "hw7-3b",
+   "concept": "detuning"
+  },
+  {
+   "exercise": "hw7-3c",
+   "concept": "rotating-frame-hamiltonian"
+  },
+  {
+   "exercise": "hw7-3c",
+   "concept": "rabi-frequency"
+  },
+  {
+   "exercise": "hw7-3d",
+   "concept": "dressed-states"
+  },
+  {
+   "exercise": "hw7-3d",
+   "concept": "dressed-state-energies"
+  },
+  {
+   "exercise": "hw7-3e",
+   "concept": "dressed-states"
+  },
+  {
+   "exercise": "hw7-3e",
+   "concept": "rabi-oscillations"
+  },
+  {
+   "exercise": "hw10-1a",
+   "concept": "ac-stark-shift"
+  },
+  {
+   "exercise": "hw10-1a",
+   "concept": "dressed-state-energies"
+  },
+  {
+   "exercise": "hw10-1b",
+   "concept": "dressed-states"
+  },
+  {
+   "exercise": "hw10-1b",
+   "concept": "rotating-wave-approximation"
+  },
+  {
+   "exercise": "hw10-1c",
+   "concept": "rotating-wave-approximation"
+  },
+  {
+   "exercise": "hw10-1d",
+   "concept": "dressed-states"
+  },
+  {
+   "exercise": "hw10-1d",
+   "concept": "rabi-oscillations"
+  },
+  {
+   "exercise": "hw10-1e",
+   "concept": "dressed-state-energies"
+  },
+  {
+   "exercise": "hw10-1e",
+   "concept": "dressed-states"
+  }
+ ],
+ "referents": [
+  {
+   "id": "lvl-1",
+   "label": "the ground state |1⟩",
+   "figures": [
+    "fig-level-scheme",
+    "sim-pulse-area",
+    "sim-dressed",
+    "sim-bloch"
+   ]
+  },
+  {
+   "id": "lvl-2",
+   "label": "the excited state |2⟩",
+   "figures": [
+    "fig-level-scheme",
+    "sim-pulse-area",
+    "sim-dressed",
+    "sim-bloch"
+   ]
+  },
+  {
+   "id": "dressed-plus",
+   "label": "the dressed state |+⟩",
+   "figures": [
+    "sim-dressed"
+   ]
+  },
+  {
+   "id": "dressed-minus",
+   "label": "the dressed state |−⟩",
+   "figures": [
+    "sim-dressed"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "footnote-1",
+   "kind": "book",
+   "number": "1",
+   "html": "The corrections to this adiabatic following can be obtained by substituting this solution into <a href=\"#drv-rwa-equations\">(2.10)</a>, resulting in $\\kctildetwo = -(\\kOmega/\\kdelta)\\kcone + (i/\\kdelta)d/d\\kt((\\kOmega/\\kdelta)\\kcone) + ....$ This procedure is sometimes called an <span data-concept=\"adiabatic-elimination\">adiabatic expansion</span>."
+  },
+  {
+   "id": "c-eq-2-2",
+   "kind": "correction",
+   "html": "The book prints a period inside the closing bracket, $\\kEenv^* e^{i\\knu \\kt}.)$. The field factor is $(\\kEenv e^{-i\\knu \\kt} + \\kEenv^* e^{i\\knu \\kt})$."
+  },
+  {
+   "id": "c-eq-2-10-cited",
+   "kind": "correction",
+   "html": "The book cites Eq. (2.10). The equation for $\\dot{\\kcone}$ is Eq. (2.11): substituting $\\kctildetwo = -(\\kOmega/\\kdelta)\\kcone$ into $\\dot{\\kcone} = i\\kOmega^*\\kctildetwo$ gives $\\dot{\\kcone} = -i(|\\kOmega|^2/\\kdelta)\\kcone$."
+  },
+  {
+   "id": "c-eq-2-25",
+   "kind": "correction",
+   "html": "The book prints $\\kepsm = |\\kOmega|^2/\\kdelta$ and $\\kepsp = -\\kdelta - |\\kOmega|^2/\\kdelta$. Eq. (2.24) carries the factor $\\hbar$, so the far-detuned energies are $\\kepsm \\approx \\hbar|\\kOmega|^2/\\kdelta$ and $\\kepsp \\approx -\\hbar\\kdelta - \\hbar|\\kOmega|^2/\\kdelta$."
+  },
+  {
+   "id": "c-fig-2-2b",
+   "kind": "correction",
+   "html": "The book's Figure 2.2b labels the upper branch $|+\\rangle$ and the lower $|-\\rangle$. By Eq. (2.24) $\\kepsp = \\hbar(-\\kdelta/2 - \\sqrt{(\\kdelta/2)^2 + |\\kOmega|^2})$ is the lower energy, as Eqs. (2.25) and (2.26) confirm, so the upper branch is $|-\\rangle$ and the lower $|+\\rangle$."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "rotating-frame-equations",
+   "what": "the equations of motion in the rotating frame",
+   "source": "Modern Atomic and Optical Physics II, 2.1.1 The Two-Level Atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = \\hbar\\komega|2\\rangle\\langle 2| - (|1\\rangle\\langle 2|\\kmu_{1,2} + |2\\rangle\\langle 1|\\kmu_{2,1})\\left(\\kEenv e^{-i\\knu \\kt} + \\kEenv^* e^{i\\knu \\kt}\\right)",
+       "src": "(2.2)"
+      },
+      {
+       "tex": "|\\kpsi\\rangle = \\kcone(\\kt)|1\\rangle + \\kctwo(\\kt)|2\\rangle",
+       "src": "(2.3)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\kH|\\kpsi\\rangle}",
+      "src": "(2.4)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle 2|i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\langle 2|\\kH|\\kpsi\\rangle}",
+       "uses": [],
+       "cap": "Taking the overlap of both sides with $\\langle 2|$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kctwo}(\\kt)} = \\mk{w}{\\hbar\\komega\\, \\kctwo(\\kt)} - \\mk{R}{\\left(\\kEenv e^{-i\\knu \\kt} + \\kEenv^* e^{i\\knu \\kt}\\right)\\kmu_{21}\\kcone(\\kt)}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "The states are orthonormal, so $\\langle 2|\\psi\\rangle = c_2$; of $\\hat{H}$ only $\\hbar\\omega|2\\rangle\\langle 2|$ and the term in $|2\\rangle\\langle 1|\\mu_{2,1}$ reach $\\langle 2|$.",
+       "map": {
+        "R": [
+         "w",
+         "R"
+        ]
+       }
+      }
+     ],
+     "src": "2.1.1"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = \\hbar\\komega|2\\rangle\\langle 2| - (|1\\rangle\\langle 2|\\kmu_{1,2} + |2\\rangle\\langle 1|\\kmu_{2,1})\\left(\\kEenv e^{-i\\knu \\kt} + \\kEenv^* e^{i\\knu \\kt}\\right)",
+       "src": "(2.2)"
+      },
+      {
+       "tex": "|\\kpsi\\rangle = \\kcone(\\kt)|1\\rangle + \\kctwo(\\kt)|2\\rangle",
+       "src": "(2.3)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\kH|\\kpsi\\rangle}",
+      "src": "(2.4)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle 1|i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\langle 1|\\kH|\\kpsi\\rangle}",
+       "uses": [],
+       "cap": "Taking the overlap of both sides with $\\langle 1|$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcone}(\\kt)} = -\\mk{R}{\\left(\\kEenv e^{-i\\knu \\kt} + \\kEenv^* e^{i\\knu \\kt}\\right)\\kmu_{12}\\kctwo(\\kt)}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "Only the term in $|1\\rangle\\langle 2|\\mu_{1,2}$ of $\\hat{H}$ reaches $\\langle 1|$."
+      }
+     ],
+     "src": "2.1.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kctwo(\\kt) = \\kctildetwo(\\kt)e^{-i\\knu \\kt}",
+       "src": "(2.5)"
+      },
+      {
+       "tex": "\\kdelta = \\knu - \\komega",
+       "src": "2.1.1"
+      },
+      {
+       "tex": "\\kmu = \\kmu_{21}",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\dot{\\kctwo}(\\kt)} = \\mk{w}{\\hbar\\komega\\, \\kctwo(\\kt)} - \\mk{R}{\\left(\\kEenv e^{-i\\knu \\kt} + \\kEenv^* e^{i\\knu \\kt}\\right)\\kmu_{21}\\kcone(\\kt)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar(\\dot{\\kctildetwo} - i\\knu\\kctildetwo)e^{-i\\knu \\kt}} = \\mk{w}{\\hbar\\komega\\, \\kctildetwo e^{-i\\knu \\kt}} - \\mk{R}{\\left(\\kEenv e^{-i\\knu \\kt} + \\kEenv^* e^{i\\knu \\kt}\\right)\\kmu_{21}\\kcone(\\kt)}",
+       "uses": [
+        1
+       ],
+       "cap": "With $c_2 = \\tilde{c}_2e^{-i\\nu t}$, the product rule gives $\\dot{c}_2 = (\\dot{\\tilde{c}}_2 - i\\nu\\tilde{c}_2)e^{-i\\nu t}$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar(\\dot{\\kctildetwo} - i\\knu\\kctildetwo)} = \\mk{w}{\\hbar\\komega\\, \\kctildetwo} - \\mk{R}{\\left(\\kEenv + \\kEenv^* e^{2i\\knu \\kt}\\right)\\kmu_{21}\\kcone(\\kt)}",
+       "uses": [],
+       "cap": "Multiplying through by $e^{i\\nu t}$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kctildetwo}(\\kt)} = \\mk{w}{-\\hbar(\\knu - \\komega)\\kctildetwo(\\kt)} - \\mk{R}{\\left(\\kEenv + \\kEenv^* e^{2i\\knu \\kt}\\right)\\kmu_{21}\\kcone(\\kt)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kctildetwo}(\\kt)} = \\mk{w}{-\\hbar\\kdelta\\kctildetwo(\\kt)} - \\mk{R}{\\left(\\kEenv + \\kEenv^* e^{2i\\knu \\kt}\\right)\\kmu \\kcone(\\kt)}",
+       "uses": [
+        2,
+        3
+       ]
+      }
+     ],
+     "num": "(2.6)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\kctwo(\\kt) = \\kctildetwo(\\kt)e^{-i\\knu \\kt}",
+       "src": "(2.5)"
+      },
+      {
+       "tex": "\\langle\\kpsi_1|\\hat{O}|\\kpsi_2\\rangle = (\\langle\\kpsi_2|\\hat{O}|\\kpsi_1\\rangle)^*",
+       "src": "(1.5)"
+      },
+      {
+       "tex": "\\kmu = \\kmu_{21}",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\dot{\\kcone}(\\kt)} = -\\mk{R}{\\left(\\kEenv e^{-i\\knu \\kt} + \\kEenv^* e^{i\\knu \\kt}\\right)\\kmu_{12}\\kctwo(\\kt)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcone}(\\kt)} = -\\mk{R}{\\left(\\kEenv e^{-i\\knu \\kt} + \\kEenv^* e^{i\\knu \\kt}\\right)\\kmu_{12}\\kctildetwo(\\kt)e^{-i\\knu \\kt}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcone}(\\kt)} = -\\mk{R}{\\left(\\kEenv e^{-2i\\knu \\kt} + \\kEenv^*\\right)\\kmu_{12}\\kctildetwo(\\kt)}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcone}(\\kt)} = -\\mk{R}{\\left(\\kEenv e^{-2i\\knu \\kt} + \\kEenv^*\\right)\\kmu^*\\kctildetwo(\\kt)}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "The dipole operator is Hermitian, so $\\mu_{12} = \\mu_{21}^* = \\mu^*$."
+      }
+     ],
+     "num": "(2.7)"
+    }
+   ]
+  },
+  {
+   "id": "rwa-equations",
+   "what": "the equations of motion in the rotating wave approximation",
+   "source": "Modern Atomic and Optical Physics II, 2.1.1 The Two-Level Atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Under the conditions (2.9) the terms $\\propto e^{\\pm 2i\\nu t}$, which oscillate at twice the optical frequency, are neglected: the rotating wave approximation.",
+       "src": "(2.9)"
+      },
+      {
+       "tex": "\\kOmega = \\kEenv\\kmu/\\hbar",
+       "src": "(2.8)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\dot{\\kctildetwo}(\\kt)} = \\mk{w}{-\\hbar\\kdelta\\kctildetwo(\\kt)} - \\mk{R}{\\left(\\kEenv + \\kEenv^* e^{2i\\knu \\kt}\\right)\\kmu \\kcone(\\kt)}",
+      "src": "(2.6)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kctildetwo}(\\kt)} = \\mk{w}{-\\hbar\\kdelta\\kctildetwo(\\kt)} - \\mk{R}{\\kEenv\\kmu \\kcone(\\kt)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kctildetwo}(\\kt)} = \\mk{w}{i\\kdelta\\kctildetwo(\\kt)} + \\mk{R}{i\\frac{\\kEenv\\kmu}{\\hbar}\\kcone(\\kt)}",
+       "uses": [],
+       "cap": "Dividing by $i\\hbar$, with $1/i = -i$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kctildetwo}(\\kt)} = \\mk{w}{i\\kdelta\\kctildetwo(\\kt)} + \\mk{R}{i\\kOmega \\kcone(\\kt)}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(2.10)"
+    },
+    {
+     "assumes": [
+      {
+       "text": "Under the conditions (2.9) the terms $\\propto e^{\\pm 2i\\nu t}$, which oscillate at twice the optical frequency, are neglected: the rotating wave approximation.",
+       "src": "(2.9)"
+      },
+      {
+       "tex": "\\kOmega = \\kEenv\\kmu/\\hbar",
+       "src": "(2.8)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\dot{\\kcone}(\\kt)} = -\\mk{R}{\\left(\\kEenv e^{-2i\\knu \\kt} + \\kEenv^*\\right)\\kmu^*\\kctildetwo(\\kt)}",
+      "src": "(2.7)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcone}(\\kt)} = -\\mk{R}{\\kEenv^*\\kmu^*\\kctildetwo(\\kt)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}(\\kt)} = \\mk{R}{i\\frac{\\kEenv^*\\kmu^*}{\\hbar}\\kctildetwo(\\kt)}",
+       "uses": [],
+       "cap": "Dividing by $i\\hbar$, with $1/i = -i$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}(\\kt)} = \\mk{R}{i\\kOmega^*\\kctildetwo(\\kt)}",
+       "uses": [
+        1
+       ],
+       "cap": "The conjugate of Eq. (2.8) is $\\Omega^* = \\mathcal{E}^*\\mu^*/\\hbar$."
+      }
+     ],
+     "num": "(2.11)"
+    }
+   ]
+  },
+  {
+   "id": "rabi-oscillations",
+   "what": "Rabi oscillations on resonance",
+   "source": "Modern Atomic and Optical Physics II, 2.1.1 The Two-Level Atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\dot{\\kctildetwo}(\\kt) = i\\kdelta\\kctildetwo(\\kt) + i\\kOmega \\kcone(\\kt)",
+       "src": "(2.10)"
+      },
+      {
+       "text": "The field is on resonance, $\\kdelta = 0$, with constant $\\kOmega$.",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcone}(\\kt)} = \\mk{R}{i\\kOmega^*\\kctildetwo(\\kt)}",
+      "src": "(2.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\ddot{\\kcone}(\\kt)} = \\mk{R}{i\\kOmega^*\\dot{\\kctildetwo}(\\kt)}",
+       "uses": [
+        1
+       ],
+       "cap": "Differentiating once more; $\\Omega$ is constant."
+      },
+      {
+       "tex": "\\mk{L}{\\ddot{\\kcone}(\\kt)} = \\mk{R}{i\\kOmega^*\\,i\\kOmega\\kcone(\\kt)}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\ddot{\\kcone}(\\kt)} = \\mk{R}{-|\\kOmega|^2 \\kcone(\\kt)}",
+       "uses": []
+      }
+     ],
+     "num": "(2.12)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\dot{\\kcone}(\\kt) = i\\kOmega^*\\kctildetwo(\\kt)",
+       "src": "(2.11)"
+      },
+      {
+       "text": "The field is on resonance, $\\kdelta = 0$, with constant $\\kOmega$.",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kctildetwo}(\\kt)} = \\mk{d}{i\\kdelta\\kctildetwo(\\kt)} + \\mk{R}{i\\kOmega \\kcone(\\kt)}",
+      "src": "(2.10)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kctildetwo}(\\kt)} = \\mk{R}{i\\kOmega \\kcone(\\kt)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\ddot{\\kctildetwo}(\\kt)} = \\mk{R}{i\\kOmega\\dot{\\kcone}(\\kt)}",
+       "uses": [
+        1
+       ],
+       "cap": "Differentiating once more; $\\Omega$ is constant."
+      },
+      {
+       "tex": "\\mk{L}{\\ddot{\\kctildetwo}(\\kt)} = \\mk{R}{i\\kOmega\\, i\\kOmega^*\\kctildetwo(\\kt)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\ddot{\\kctildetwo}(\\kt)} = \\mk{R}{-|\\kOmega|^2\\kctildetwo(\\kt)}",
+       "uses": []
+      }
+     ],
+     "num": "(2.12)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The amplitudes evolve as sines and cosines: a solution of $\\ddot{x} = -|\\kOmega|^2 x$ is a sum of $\\cos|\\kOmega|\\kt$ and $\\sin|\\kOmega|\\kt$.",
+       "src": "2.1.1"
+      },
+      {
+       "text": "The atom is initially in the state $|1\\rangle$: $\\kcone(0) = 1$, $\\kctildetwo(0) = 0$.",
+       "src": "2.1.1"
+      },
+      {
+       "tex": "\\dot{\\kcone}(\\kt) = i\\kOmega^*\\kctildetwo(\\kt)",
+       "src": "(2.11)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\ddot{\\kcone}(\\kt)} = \\mk{R}{-|\\kOmega|^2 \\kcone(\\kt)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kcone(\\kt)} = \\mk{a}{a\\cos|\\kOmega|\\kt} + \\mk{b}{b\\sin|\\kOmega|\\kt}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "R": [
+         "a",
+         "b"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\kcone(\\kt)} = \\mk{a}{\\cos|\\kOmega|\\kt} + \\mk{b}{b\\sin|\\kOmega|\\kt}",
+       "uses": [
+        2
+       ],
+       "cap": "At $t = 0$, $c_1(0) = a = 1$."
+      },
+      {
+       "tex": "\\mk{L}{\\kcone(\\kt)} = \\mk{a}{\\cos|\\kOmega|\\kt}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "$\\dot{c}_1(0) = b|\\Omega|$, while Eq. (2.11) gives $\\dot{c}_1(0) = i\\Omega^*\\tilde{c}_2(0) = 0$, so $b = 0$."
+      }
+     ],
+     "num": "(2.13)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "tex": "\\dot{\\kcone}(\\kt) = i\\kOmega^*\\kctildetwo(\\kt)",
+       "src": "(2.11)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{c}{\\kcone(\\kt)} = \\mk{R}{\\cos|\\kOmega|\\kt}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{c}{\\dot{\\kcone}(\\kt)} = \\mk{R}{-|\\kOmega|\\sin|\\kOmega|\\kt}",
+       "uses": [],
+       "cap": "Differentiating."
+      },
+      {
+       "tex": "\\mk{c}{i\\kOmega^*\\kctildetwo(\\kt)} = \\mk{R}{-|\\kOmega|\\sin|\\kOmega|\\kt}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{c}{\\kctildetwo(\\kt)} = \\mk{R}{i\\frac{|\\kOmega|}{\\kOmega^*}\\sin|\\kOmega|\\kt}",
+       "uses": [],
+       "cap": "Dividing by $i\\Omega^*$, with $1/i = -i$."
+      },
+      {
+       "tex": "\\mk{c}{\\kctildetwo(\\kt)} = \\mk{R}{i\\frac{\\kOmega}{|\\kOmega|}\\sin|\\kOmega|\\kt}",
+       "uses": [],
+       "cap": "$|\\Omega|/\\Omega^* = |\\Omega|\\Omega/|\\Omega|^2 = \\Omega/|\\Omega|$."
+      }
+     ],
+     "num": "(2.14)"
+    }
+   ]
+  },
+  {
+   "id": "pulse-area",
+   "what": "the amplitudes under a pulse of given area",
+   "source": "Modern Atomic and Optical Physics II, 2.1.1 The Two-Level Atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The time is renormalized by $d\\ktau = |\\kOmega(\\kt)|d\\kt$, or $\\ktau = \\int|\\kOmega|d\\kt$.",
+       "src": "2.1.1"
+      },
+      {
+       "text": "The field is on resonance, $\\kdelta = 0$.",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kctildetwo(\\kt)} = \\mk{d}{i\\kdelta\\kctildetwo(\\kt)} + \\mk{R}{i\\kOmega \\kcone(\\kt)}",
+      "src": "(2.10)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kctildetwo(\\kt)} = \\mk{R}{i\\kOmega \\kcone(\\kt)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{|\\kOmega|\\frac{d}{d\\ktau}\\kctildetwo(\\ktau)} = \\mk{R}{i\\kOmega \\kcone(\\ktau)}",
+       "uses": [
+        0
+       ],
+       "cap": "With $d\\tau = |\\Omega|dt$, $d/dt = |\\Omega|\\,d/d\\tau$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\ktau}\\kctildetwo(\\ktau)} = \\mk{R}{i(\\kOmega/|\\kOmega|)\\kcone(\\ktau)}",
+       "uses": []
+      }
+     ],
+     "num": "(2.16)"
+    },
+    {
+     "assumes": [
+      {
+       "text": "The time is renormalized by $d\\ktau = |\\kOmega(\\kt)|d\\kt$, or $\\ktau = \\int|\\kOmega|d\\kt$.",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kcone(\\kt)} = \\mk{R}{i\\kOmega^*\\kctildetwo(\\kt)}",
+      "src": "(2.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{|\\kOmega|\\frac{d}{d\\ktau}\\kcone(\\ktau)} = \\mk{R}{i\\kOmega^*\\kctildetwo(\\ktau)}",
+       "uses": [
+        0
+       ],
+       "cap": "With $d\\tau = |\\Omega|dt$, $d/dt = |\\Omega|\\,d/d\\tau$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\ktau}\\kcone(\\ktau)} = \\mk{R}{i(\\kOmega^*/|\\kOmega|)\\kctildetwo(\\ktau)}",
+       "uses": []
+      }
+     ],
+     "num": "(2.17)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The pulse is not chirped, so $\\kOmega/|\\kOmega|$ is constant.",
+       "src": "2.1.1"
+      },
+      {
+       "text": "The time is renormalized by $d\\ktau = |\\kOmega(\\kt)|d\\kt$, or $\\ktau = \\int|\\kOmega|d\\kt$.",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kcone(\\kt)} = \\mk{R}{\\cos|\\kOmega|\\kt}",
+      "src": "(2.13)",
+      "uses": [2]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kcone(\\ktau)} = \\mk{R}{\\cos\\ktau}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "In $\\tau$ the equations are those of a resonant field of constant Rabi frequency $\\Omega/|\\Omega|$, of modulus one, so its solution holds with $|\\Omega|t$ replaced by $\\tau$."
+      },
+      {
+       "tex": "\\mk{L}{\\kcone(\\kt)} = \\mk{R}{\\cos\\left(\\int|\\kOmega|d\\kt\\right)}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(2.18)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "The pulse is not chirped, so $\\kOmega/|\\kOmega|$ is constant.",
+       "src": "2.1.1"
+      },
+      {
+       "text": "The time is renormalized by $d\\ktau = |\\kOmega(\\kt)|d\\kt$, or $\\ktau = \\int|\\kOmega|d\\kt$.",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kctildetwo(\\kt)} = \\mk{R}{i\\frac{\\kOmega}{|\\kOmega|}\\sin|\\kOmega|\\kt}",
+      "src": "(2.14)",
+      "uses": [2]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kctildetwo(\\ktau)} = \\mk{R}{i\\frac{\\kOmega}{|\\kOmega|}\\sin\\ktau}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "In $\\tau$ the equations are those of a resonant field of constant Rabi frequency $\\Omega/|\\Omega|$, of modulus one, so its solution holds with $|\\Omega|t$ replaced by $\\tau$."
+      },
+      {
+       "tex": "\\mk{L}{\\kctildetwo(\\kt)} = \\mk{R}{i\\frac{\\kOmega}{|\\kOmega|}\\sin\\left(\\int|\\kOmega|d\\kt\\right)}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(2.19)"
+    }
+   ]
+  },
+  {
+   "id": "far-detuned-excitation",
+   "what": "the excited amplitude in a far-detuned field, to lowest order",
+   "source": "Modern Atomic and Optical Physics II, 2.1.1 The Two-Level Atom, far-detuned field",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A field far from resonance hardly ever causes transitions, so to lowest order $\\kcone(\\kt) = 1$.",
+       "src": "2.1.1"
+      },
+      {
+       "text": "The atom starts in $|1\\rangle$, so $\\kctildetwo(0) = 0$."
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kctildetwo}} = \\mk{d}{i\\kdelta\\kctildetwo} + \\mk{R}{i\\kOmega\\kcone}",
+      "src": "(2.10)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kctildetwo}} = \\mk{d}{i\\kdelta\\kctildetwo} + \\mk{R}{i\\kOmega}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kctildetwo(\\kt)} = \\mk{R}{\\int_0^{\\kt} i\\kOmega e^{i\\kdelta(\\kt-\\kt')}d\\kt'}",
+       "uses": [
+        1
+       ],
+       "cap": "The solution of $\\dot{x} = i\\delta x + f$ with $x(0) = 0$ is $x(t) = \\int_0^t f e^{i\\delta(t - t')}dt'$, as differentiating it shows.",
+       "map": {
+        "d": "R"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\kctildetwo(\\kt)} = \\mk{R}{i\\kOmega e^{i\\kdelta\\kt}\\,\\frac{1 - e^{-i\\kdelta\\kt}}{i\\kdelta}}",
+       "uses": [],
+       "cap": "$\\int_0^t e^{-i\\delta t'}dt' = (1 - e^{-i\\delta t})/(i\\delta)$."
+      },
+      {
+       "tex": "\\mk{L}{\\kctildetwo(\\kt)} = \\mk{R}{-\\frac{\\kOmega}{\\kdelta}\\left(1 - e^{i\\kdelta \\kt}\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(2.21)"
+    }
+   ]
+  },
+  {
+   "id": "ac-stark-shift",
+   "what": "the light shift by adiabatic elimination",
+   "source": "Modern Atomic and Optical Physics II, 2.1.1 The Two-Level Atom, far-detuned field",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Since $i\\kdelta\\kctildetwo$ is very large, the time-varying part of $\\kctildetwo$ is dominated by fast oscillations which average to zero, and $\\dot{\\kctildetwo} \\approx 0$.",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kctildetwo}} = \\mk{d}{i\\kdelta\\kctildetwo} + \\mk{R}{i\\kOmega\\kcone}",
+      "src": "(2.10)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} \\approx \\mk{d}{i\\kdelta\\kctildetwo} + \\mk{R}{i\\kOmega\\kcone}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{d}{\\kctildetwo} = \\mk{R}{-(\\kOmega/\\kdelta)\\kcone}",
+       "uses": [],
+       "map": {
+        "L": "R"
+       }
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{i\\kOmega^*\\kctildetwo}",
+      "src": "(2.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{i\\kOmega^*\\left(-\\frac{\\kOmega}{\\kdelta}\\right)\\kcone}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{-i(|\\kOmega|^2/\\kdelta)\\kcone}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\kcone(\\kt)} \\approx \\mk{R}{\\kcone(0)e^{-i|\\kOmega|^2 \\kt/\\kdelta}}",
+       "uses": [],
+       "cap": "An amplitude obeying $\\dot{x} = -iax$ with constant $a$ evolves as $x(t) = x(0)e^{-iat}$."
+      }
+     ],
+     "num": "(2.22)"
+    }
+   ]
+  },
+  {
+   "id": "dressed-states",
+   "what": "the dressed states of the two-level atom",
+   "source": "Modern Atomic and Optical Physics II, 2.1.1 The Two-Level Atom, dressed states",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{H}{\\kHtilde} = \\mk{R}{-\\hbar\\kdelta|\\tilde{2}\\rangle\\langle\\tilde{2}| - \\hbar(\\kOmega|\\tilde{2}\\rangle\\langle 1| + \\kOmega^*|1\\rangle\\langle\\tilde{2}|)}",
+      "src": "(2.23)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kHtilde} = \\mk{R}{\\begin{pmatrix} 0 & -\\hbar\\kOmega^* \\\\ -\\hbar\\kOmega & -\\hbar\\kdelta \\end{pmatrix}}",
+       "uses": [],
+       "cap": "As a matrix in the basis $\\{|1\\rangle, |\\tilde{2}\\rangle\\}$."
+      },
+      {
+       "tex": "\\mk{H}{\\det(\\kHtilde - \\epsilon)} = \\mk{R}{(-\\epsilon)(-\\hbar\\kdelta - \\epsilon) - \\hbar^2|\\kOmega|^2} = \\mk{z}{0}",
+       "uses": [],
+       "cap": "The eigenenergies $\\epsilon$ are the roots of $\\det(\\tilde{H} - \\epsilon) = 0$."
+      },
+      {
+       "tex": "\\mk{R}{\\epsilon^2 + \\hbar\\kdelta\\epsilon - \\hbar^2|\\kOmega|^2} = \\mk{z}{0}",
+       "uses": [],
+       "map": {
+        "H": "R"
+       }
+      },
+      {
+       "tex": "\\mk{e}{\\kepspm} = \\mk{R}{\\hbar\\left(-\\frac{\\kdelta}{2} \\mp \\sqrt{(\\frac{\\kdelta}{2})^2 + |\\kOmega|^2}\\right)}",
+       "uses": [],
+       "cap": "The two roots of the quadratic, $\\epsilon_+$ taking the lower sign.",
+       "map": {
+        "z": "e"
+       }
+      }
+     ],
+     "num": "(2.24)"
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{H}{\\kHtilde(a|1\\rangle + b|\\tilde{2}\\rangle)} = \\mk{e}{\\epsilon(a|1\\rangle + b|\\tilde{2}\\rangle)}",
+      "src": "(2.23)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{-\\hbar\\kOmega^* b} = \\mk{e}{\\epsilon a}",
+       "uses": [],
+       "cap": "The component along $|1\\rangle$, with $\\tilde{H}$ as the matrix of node 1."
+      },
+      {
+       "tex": "\\mk{H}{b} = \\mk{e}{-\\frac{\\epsilon}{\\hbar\\kOmega^*}a}",
+       "uses": []
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "text": "In a resonant field $\\kdelta = 0$.",
+       "src": "2.1.1"
+      },
+      {
+       "tex": "|\\tilde{1}\\rangle = (|\\kOmega|/\\kOmega)\\,|1\\rangle",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{b} = \\mk{e}{-\\frac{\\epsilon}{\\hbar\\kOmega^*}a}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{b_\\pm} = \\mk{e}{\\pm\\frac{|\\kOmega|}{\\kOmega^*}a_\\pm}",
+       "uses": [
+        0,
+        2
+       ],
+       "cap": "At $\\delta = 0$, Eq. (2.24) gives $\\epsilon_\\pm = \\mp\\hbar|\\Omega|$."
+      },
+      {
+       "tex": "\\mk{H}{b_\\pm} = \\mk{e}{\\pm\\frac{\\kOmega}{|\\kOmega|}a_\\pm}",
+       "uses": [],
+       "cap": "$|\\Omega|/\\Omega^* = \\Omega/|\\Omega|$."
+      },
+      {
+       "tex": "\\mk{H}{|\\pm\\rangle} = \\mk{e}{(|\\tilde{1}\\rangle \\pm |\\tilde{2}\\rangle)/\\sqrt{2}}",
+       "uses": [
+        3
+       ],
+       "cap": "Taking $a_\\pm = |\\Omega|/(\\sqrt{2}\\,\\Omega)$ makes $b_\\pm = \\pm 1/\\sqrt{2}$ and the state normalized."
+      }
+     ],
+     "src": "2.1.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "A far off resonant field has $\\kdelta \\gg |\\kOmega|$, with $\\kdelta > 0$.",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\kepspm} = \\mk{R}{\\hbar\\left(-\\frac{\\kdelta}{2} \\mp \\sqrt{(\\frac{\\kdelta}{2})^2 + |\\kOmega|^2}\\right)}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\kepspm} \\approx \\mk{R}{\\hbar\\left(-\\frac{\\kdelta}{2} \\mp \\left(\\frac{\\kdelta}{2} + \\frac{|\\kOmega|^2}{\\kdelta}\\right)\\right)}",
+       "uses": [
+        1
+       ],
+       "cap": "For $|\\Omega| \\ll \\delta$, $\\sqrt{(\\delta/2)^2 + |\\Omega|^2} = \\frac{\\delta}{2}\\sqrt{1 + 4|\\Omega|^2/\\delta^2} \\approx \\frac{\\delta}{2} + \\frac{|\\Omega|^2}{\\delta}$."
+      },
+      {
+       "tex": "\\mk{e}{\\kepsm} \\approx \\mk{R}{\\hbar\\frac{|\\kOmega|^2}{\\kdelta}},\\qquad \\mk{p}{\\kepsp} \\approx \\mk{Q}{-\\hbar\\kdelta - \\hbar\\frac{|\\kOmega|^2}{\\kdelta}}",
+       "uses": [],
+       "map": {
+        "e": [
+         "e",
+         "p"
+        ],
+        "R": [
+         "R",
+         "Q"
+        ]
+       }
+      }
+     ],
+     "num": "(2.25), (2.26)",
+     "note": "The book prints $\\kepsm = |\\kOmega|^2/\\kdelta$ and $\\kepsp = -\\kdelta - |\\kOmega|^2/\\kdelta$, without the factor $\\hbar$ that Eq. (2.24) carries."
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{b} = \\mk{e}{-\\frac{\\epsilon}{\\hbar\\kOmega^*}a}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{b_-} \\approx \\mk{e}{-\\frac{\\kOmega}{\\kdelta}a_-},\\qquad \\mk{p}{a_+} \\approx \\mk{Q}{\\frac{\\kOmega^*}{\\kdelta}b_+}",
+       "uses": [
+        1
+       ],
+       "cap": "With $\\epsilon_- \\approx \\hbar|\\Omega|^2/\\delta$, $b_- = -(|\\Omega|^2/\\delta\\Omega^*)a_- = -(\\Omega/\\delta)a_-$; with $\\epsilon_+ \\approx -\\hbar\\delta$ to lowest order, $b_+ \\approx (\\delta/\\Omega^*)a_+$.",
+       "map": {
+        "H": [
+         "H",
+         "p"
+        ],
+        "e": [
+         "e",
+         "Q"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{H}{|-\\rangle} = \\mk{e}{|1\\rangle - \\frac{\\kOmega}{\\kdelta}|\\tilde{2}\\rangle},\\qquad \\mk{p}{|+\\rangle} = \\mk{Q}{|\\tilde{2}\\rangle + \\frac{\\kOmega^*}{\\kdelta}|1\\rangle}",
+       "uses": [],
+       "cap": "Taking $a_- = 1$ and $b_+ = 1$; both states are normalized to first order in $\\Omega/\\delta$."
+      }
+     ],
+     "num": "(2.25), (2.26)"
+    }
+   ]
+  },
+  {
+   "id": "multilevel-rotating-frame",
+   "what": "the Hamiltonian of a multilevel atom in the rotating frame",
+   "source": "Modern Atomic and Optical Physics II, 2.1.1, Generalization to Multistate Systems",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{U}|\\tilde{\\psi}\\rangle = |\\kpsi\\rangle",
+       "src": "2.1.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\kH|\\kpsi\\rangle}",
+      "src": "(1.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}\\left(\\hat{U}|\\tilde{\\psi}\\rangle\\right)} = \\mk{R}{\\kH\\hat{U}|\\tilde{\\psi}\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\left(\\hat{U}\\frac{d}{d\\kt}|\\tilde{\\psi}\\rangle + \\left(\\frac{d\\hat{U}}{d\\kt}\\right)|\\tilde{\\psi}\\rangle\\right)} = \\mk{R}{\\kH\\hat{U}|\\tilde{\\psi}\\rangle}",
+       "uses": [],
+       "cap": "The product rule."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\hat{U}\\frac{d}{d\\kt}|\\tilde{\\psi}\\rangle} = \\mk{R}{\\kH\\hat{U}|\\tilde{\\psi}\\rangle} - \\mk{u}{i\\hbar\\frac{d\\hat{U}}{d\\kt}|\\tilde{\\psi}\\rangle}",
+       "uses": [],
+       "map": {
+        "L": [
+         "L",
+         "u"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\tilde{\\psi}\\rangle} = (\\mk{R}{\\hat{U}^{-1}\\kH\\hat{U}} - \\mk{u}{i\\hbar\\hat{U}^{-1}\\frac{d\\hat{U}}{d\\kt}})|\\tilde{\\psi}\\rangle",
+       "uses": [],
+       "cap": "Multiplying from the left by $\\hat{U}^{-1}$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\tilde{\\psi}\\rangle} = \\mk{R}{\\kHtilde|\\tilde{\\psi}\\rangle},\\qquad \\kHtilde = \\hat{U}^{-1}\\kH\\hat{U} - i\\hbar\\hat{U}^{-1}\\frac{d\\hat{U}}{d\\kt}",
+       "uses": [],
+       "cap": "Naming the operator in brackets $\\tilde{H}$, the Hamiltonian in the rotating frame.",
+       "map": {
+        "u": "R"
+       }
+      }
+     ],
+     "num": "(2.37), (2.38)",
+     "note": "The book prints $dU/d\\kt$ for the derivative $d\\hat{U}/d\\kt$ of the operator, and a stray closing parenthesis in Eq. (2.37)."
+    },
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{U}{\\hat{U}} = \\mk{R}{e^{-i\\sum_k \\knuk \\kt|k\\rangle\\langle k|}}",
+      "src": "(2.35)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{U}{\\frac{d\\hat{U}}{d\\kt}} = \\mk{R}{-i\\sum_k\\knuk|k\\rangle\\langle k|\\,\\hat{U}}",
+       "uses": [],
+       "cap": "Differentiating the exponential; the operator in its exponent commutes with itself at all times."
+      },
+      {
+       "tex": "\\mk{U}{-i\\hbar\\hat{U}^{-1}\\frac{d\\hat{U}}{d\\kt}} = \\mk{R}{-i\\hbar(-i)\\sum_k\\knuk|k\\rangle\\langle k|}",
+       "uses": [],
+       "cap": "$\\hat{U}$ commutes with $\\sum_k\\nu_k|k\\rangle\\langle k|$, so $\\hat{U}^{-1}$ meets $\\hat{U}$ and cancels it."
+      },
+      {
+       "tex": "\\mk{U}{-i\\hbar\\hat{U}^{-1}\\frac{d\\hat{U}}{d\\kt}} = \\mk{R}{-\\sum_k\\hbar\\knuk|\\tilde{k}\\rangle\\langle\\tilde{k}|}",
+       "uses": []
+      }
+     ],
+     "note": "The book says the second term is $\\sum_k \\hbar\\knuk|\\tilde{k}\\rangle\\langle\\tilde{k}|$. It is $-\\sum_k \\hbar\\knuk|\\tilde{k}\\rangle\\langle\\tilde{k}|$, the sign with which Eq. (2.39) carries it."
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{U}^{-1}|k\\rangle = e^{i\\knuk\\kt}|k\\rangle,\\quad \\langle 1|\\hat{U} = \\langle 1|",
+       "src": "(2.35)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kH_{RWA}} = \\mk{w}{\\sum_k \\hbar\\komegak|k\\rangle\\langle k|} - \\mk{c}{\\hbar\\sum_k\\left(\\kOmegak e^{-i\\knuk \\kt}|k\\rangle\\langle 1| + \\kOmegak^* e^{i\\knuk \\kt}|1\\rangle\\langle k|\\right)}",
+      "src": "(2.34)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\hat{U}^{-1}\\kH_{RWA}\\hat{U}} = \\mk{w}{\\sum_k \\hbar\\komegak|k\\rangle\\langle k|} - \\mk{c}{\\hbar\\sum_k\\left(\\kOmegak e^{-i\\knuk \\kt}\\hat{U}^{-1}|k\\rangle\\langle 1|\\hat{U} + \\kOmegak^* e^{i\\knuk \\kt}\\hat{U}^{-1}|1\\rangle\\langle k|\\hat{U}\\right)}",
+       "uses": [],
+       "cap": "$\\hat{U}$ commutes with each $|k\\rangle\\langle k|$, which it multiplies by a phase."
+      },
+      {
+       "tex": "\\mk{H}{\\hat{U}^{-1}\\kH_{RWA}\\hat{U}} = \\mk{w}{\\sum_k \\hbar\\komegak|k\\rangle\\langle k|} - \\mk{c}{\\hbar\\sum_k\\left(\\kOmegak|k\\rangle\\langle 1| + \\kOmegak^*|1\\rangle\\langle k|\\right)}",
+       "uses": [
+        0
+       ]
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{H}{\\kHtilde} = \\mk{a}{\\hat{U}^{-1}\\kH\\hat{U}} - \\mk{b}{i\\hbar\\hat{U}^{-1}\\frac{d\\hat{U}}{d\\kt}}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{H}{\\kHtilde} = \\mk{a}{\\sum_k \\hbar\\komegak|k\\rangle\\langle k| - \\hbar\\sum_k\\left(\\kOmegak|k\\rangle\\langle 1| + \\kOmegak^*|1\\rangle\\langle k|\\right)} - \\mk{b}{\\sum_k\\hbar\\knuk|k\\rangle\\langle k|}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{H}{\\kHtilde} = \\mk{w}{\\sum_k \\hbar(\\komegak - \\knuk)|\\tilde{k}\\rangle\\langle\\tilde{k}|} - \\mk{c}{\\hbar\\sum_k\\left(\\kOmegak|\\tilde{k}\\rangle\\langle\\tilde{1}| + \\kOmegak^*|\\tilde{1}\\rangle\\langle\\tilde{k}|\\right)}",
+       "uses": [],
+       "cap": "Writing the states of the new basis with tildes.",
+       "map": {
+        "a": [
+         "w",
+         "c"
+        ],
+        "b": "w"
+       }
+      }
+     ],
+     "num": "(2.39)"
+    }
+   ]
+  }
+ ]
+}

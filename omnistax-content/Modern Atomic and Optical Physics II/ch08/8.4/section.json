@@ -1,0 +1,1155 @@
+{
+ "id": "8.4",
+ "chapter": "8",
+ "title": "Dissipation and quantum noise: the Heisenberg-Langevin approach",
+ "short": "Heisenberg-Langevin approach",
+ "lead": "How dissipation brings noise with it: the classical <span data-concept=\"langevin-equation\">Langevin</span> description of <span data-concept=\"langevin-equation\">Brownian motion</span>, with its friction, diffusion and the <span data-concept=\"einstein-relation\">Einstein relation</span>, and its quantum counterpart, the <span data-concept=\"heisenberg-langevin-equation\">Heisenberg-Langevin equations</span>, in which a reservoir adds a <span data-concept=\"quantum-langevin-force\">quantum Langevin force</span> to every decay.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-brownian",
+   "kind": "sim",
+   "draws": [
+    "momentum",
+    "friction",
+    "diffusion",
+    "time",
+    "mass",
+    "temperature"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "langevin-equation-name",
+   "concept": "langevin-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffusion-coefficient-name",
+   "concept": "diffusion-coefficient",
+   "verb": "introduces"
+  },
+  {
+   "span": "einstein-relation-name",
+   "concept": "einstein-relation",
+   "verb": "introduces"
+  },
+  {
+   "span": "random-walk-name",
+   "concept": "random-walk",
+   "verb": "introduces"
+  },
+  {
+   "span": "quantum-langevin-force-name",
+   "concept": "quantum-langevin-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "heisenberg-langevin-equation-name",
+   "concept": "heisenberg-langevin-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "master-equivalence",
+   "concept": "heisenberg-langevin-master-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "generalized-einstein-relation",
+   "concept": "generalized-einstein-relation",
+   "verb": "introduces"
+  },
+  {
+   "span": "langevin-equation",
+   "concept": "friction-coefficient",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-8-50",
+   "concept": "heisenberg-picture",
+   "verb": "uses"
+  },
+  {
+   "span": "naive-damping",
+   "concept": "optical-bloch-equations",
+   "verb": "uses"
+  },
+  {
+   "span": "naive-damping",
+   "concept": "commutator",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-8-53",
+   "concept": "system-reservoir-hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-8-55",
+   "concept": "single-photon-rabi-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "coherent-field",
+   "concept": "rabi-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "markov",
+   "concept": "wigner-weisskopf",
+   "verb": "uses"
+  },
+  {
+   "span": "markov",
+   "concept": "born-markov-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-8-70",
+   "concept": "master-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "einstein-analogue",
+   "concept": "markovian-environment",
+   "verb": "uses"
+  },
+  {
+   "span": "hl-opening",
+   "concept": "semiclassical-light-force",
+   "verb": "uses"
+  },
+  {
+   "span": "hl-opening",
+   "concept": "light-force-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "hl-opening",
+   "concept": "doppler-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "einstein-analogue",
+   "concept": "einstein-relation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "quantum-langevin-force",
+   "concept": "langevin-equation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "generalized-einstein",
+   "concept": "diffusion-coefficient",
+   "verb": "reinforces"
+  },
+  {
+   "span": "drv-mean-square-momentum",
+   "concept": "langevin-momentum-spread",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-naive-commutator-decay",
+   "concept": "naive-operator-damping",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-system-operator-equation",
+   "concept": "system-reservoir-operator-equation",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-reservoir-operator",
+   "concept": "reservoir-operator-solution",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-markov-decay",
+   "concept": "spontaneous-emission-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-quantum-langevin-moments",
+   "concept": "mean-thermal-photon-number",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "c-eq-8-45",
+   "kind": "correction",
+   "html": "The book says the square momentum simply decays exponentially for $\\keta\\kt \\ll 1$. To first order in $\\keta\\kt$, Eq. (8.44) gives $\\overline{\\kpcm^2} \\approx \\overline{\\kpcm(0)^2}(1 - 2\\keta\\kt) + 2\\kDdiff\\kt$: the square momentum falls only for a particle that starts above equilibrium, $\\overline{\\kpcm(0)^2} > \\kDdiff/\\keta$, and Eq. (8.45) holds when $\\overline{\\kpcm(0)^2} \\gg \\kDdiff/\\keta$; a particle starting at rest gains $\\overline{\\kpcm^2} = 2\\kDdiff\\kt$."
+  },
+  {
+   "id": "c-eq-8-49",
+   "kind": "correction",
+   "html": "The book prints $\\overline{\\kpcm^2} = \\kDdiff\\kt$. As $\\keta \\rightarrow 0$, $\\frac{\\kDdiff}{\\keta}(1 - e^{-2\\keta\\kt}) \\rightarrow 2\\kDdiff\\kt$, so Eq. (8.44) gives $\\overline{\\kpcm^2} = \\overline{\\kpcm(0)^2} + 2\\kDdiff\\kt$, and $2\\kDdiff\\kt$ for a particle starting at rest."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "einstein-relation",
+   "what": "the Einstein relation",
+   "source": "Modern Atomic and Optical Physics II, 8.4.1 Brownian motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "E_\\mathrm{kinetic} \\rightarrow \\frac{\\kDdiff}{2\\km\\keta}",
+       "src": "(8.47)"
+      },
+      {
+       "text": "At thermal equilibrium $E_\\mathrm{kinetic} = (1/2)k_BT$ for a one-dimensional system.",
+       "src": "8.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{E_\\mathrm{kinetic}} = \\mk{R}{\\frac{\\kDdiff}{2\\km\\keta}}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\frac{1}{2}k_B\\kT} = \\mk{R}{\\frac{\\kDdiff}{2\\km\\keta}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{R}{\\kDdiff} = \\mk{E}{\\km\\keta k_B\\kT}",
+       "uses": []
+      }
+     ],
+     "num": "(8.48)"
+    }
+   ]
+  },
+  {
+   "id": "fluctuation-dissipation-theorem",
+   "what": "the quantum fluctuation-dissipation theorem",
+   "source": "Modern Atomic and Optical Physics II, 8.4.2 The Heisenberg-Langevin approach",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{d\\kt}\\hat{A}_\\mu = \\hat{d}_\\mu + \\kFnoise_\\mu",
+       "src": "(8.71)"
+      },
+      {
+       "tex": "\\langle\\kFnoise_\\mu(\\kt)\\kFnoise_\\nu(\\kt')\\rangle = 2\\kDdiff_{\\mu\\nu}\\delta(\\kt-\\kt')",
+       "src": "(8.72)"
+      },
+      {
+       "text": "By causality $\\hat A_\\mu(t - \\Delta t)$ is not correlated with $\\hat{\\mathcal F}_\\nu(t)$, and $\\langle\\hat{\\mathcal F}_\\nu(t)\\rangle = 0$.",
+       "src": "8.4.2"
+      },
+      {
+       "text": "$\\hat d_\\mu$ is deterministic, so its term is at most proportional to $\\Delta t$, which is taken small.",
+       "src": "8.4.2"
+      },
+      {
+       "text": "A delta function at the endpoint of the region of integration counts with a factor of $1/2$, as in the Wigner-Weisskopf theory.",
+       "src": "2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\hat{A}_\\mu(\\kt)} = \\mk{a}{\\hat{A}_\\mu(\\kt-\\Delta \\kt)} + \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\left(\\hat{d}_\\mu(\\kt') + \\kFnoise_\\mu(\\kt')\\right)}",
+      "uses": [
+       0
+      ],
+      "why": "Eq. (8.71) integrated from $t - \\Delta t$ to $t$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\hat{A}_\\mu(\\kt)\\kFnoise_\\nu(\\kt)\\rangle} = \\mk{a}{\\langle\\hat{A}_\\mu(\\kt-\\Delta \\kt)\\kFnoise_\\nu(\\kt)\\rangle} + \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\left(\\langle\\hat{d}_\\mu(\\kt')\\kFnoise_\\nu(\\kt)\\rangle + \\langle\\kFnoise_\\mu(\\kt')\\kFnoise_\\nu(\\kt)\\rangle\\right)}",
+       "uses": [],
+       "cap": "Multiplying by $\\hat{\\mathcal F}_\\nu(t)$ on the right and averaging."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\hat{A}_\\mu(\\kt)\\kFnoise_\\nu(\\kt)\\rangle} = \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\left(\\langle\\hat{d}_\\mu(\\kt')\\kFnoise_\\nu(\\kt)\\rangle + \\langle\\kFnoise_\\mu(\\kt')\\kFnoise_\\nu(\\kt)\\rangle\\right)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\hat{A}_\\mu(\\kt)\\kFnoise_\\nu(\\kt)\\rangle} = \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\langle\\kFnoise_\\mu(\\kt')\\kFnoise_\\nu(\\kt)\\rangle}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\hat{A}_\\mu(\\kt)\\kFnoise_\\nu(\\kt)\\rangle} = \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\,2\\kDdiff_{\\mu\\nu}\\delta(\\kt'-\\kt)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\hat{A}_\\mu(\\kt)\\kFnoise_\\nu(\\kt)\\rangle} = \\mk{i}{\\kDdiff_{\\mu\\nu}}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "num": "(8.75)",
+     "note": "The book prints $\\hat F_\\mu(t')$ in the last term of Eq. (8.74). It is the Langevin operator $\\hat{\\mathcal F}_\\mu(t')$ of Eq. (8.71), whose correlation with $\\hat{\\mathcal F}_\\nu(t)$ is Eq. (8.72); $\\hat F$ is the force operator."
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\frac{d}{d\\kt}\\hat{A}_\\mu = \\hat{d}_\\mu + \\kFnoise_\\mu",
+       "src": "(8.71)"
+      },
+      {
+       "tex": "\\langle\\kFnoise_\\mu(\\kt)\\kFnoise_\\nu(\\kt')\\rangle = 2\\kDdiff_{\\mu\\nu}\\delta(\\kt-\\kt')",
+       "src": "(8.72)"
+      },
+      {
+       "text": "By causality $\\hat A_\\mu(t - \\Delta t)$ is not correlated with $\\hat{\\mathcal F}_\\nu(t)$, and $\\langle\\hat{\\mathcal F}_\\nu(t)\\rangle = 0$.",
+       "src": "8.4.2"
+      },
+      {
+       "text": "$\\hat d_\\mu$ is deterministic, so its term is at most proportional to $\\Delta t$, which is taken small.",
+       "src": "8.4.2"
+      },
+      {
+       "text": "A delta function at the endpoint of the region of integration counts with a factor of $1/2$, as in the Wigner-Weisskopf theory.",
+       "src": "2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\hat{A}_\\mu(\\kt)} = \\mk{a}{\\hat{A}_\\mu(\\kt-\\Delta \\kt)} + \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\left(\\hat{d}_\\mu(\\kt') + \\kFnoise_\\mu(\\kt')\\right)}",
+      "uses": [
+       0
+      ],
+      "why": "Eq. (8.71) integrated from $t - \\Delta t$ to $t$."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\kFnoise_\\nu(\\kt)\\hat{A}_\\mu(\\kt)\\rangle} = \\mk{a}{\\langle\\kFnoise_\\nu(\\kt)\\hat{A}_\\mu(\\kt-\\Delta \\kt)\\rangle} + \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\left(\\langle\\kFnoise_\\nu(\\kt)\\hat{d}_\\mu(\\kt')\\rangle + \\langle\\kFnoise_\\nu(\\kt)\\kFnoise_\\mu(\\kt')\\rangle\\right)}",
+       "uses": [],
+       "cap": "Multiplying by $\\hat{\\mathcal F}_\\nu(t)$ on the left and averaging."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kFnoise_\\nu(\\kt)\\hat{A}_\\mu(\\kt)\\rangle} = \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\left(\\langle\\kFnoise_\\nu(\\kt)\\hat{d}_\\mu(\\kt')\\rangle + \\langle\\kFnoise_\\nu(\\kt)\\kFnoise_\\mu(\\kt')\\rangle\\right)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kFnoise_\\nu(\\kt)\\hat{A}_\\mu(\\kt)\\rangle} = \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\langle\\kFnoise_\\nu(\\kt)\\kFnoise_\\mu(\\kt')\\rangle}",
+       "uses": [
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kFnoise_\\nu(\\kt)\\hat{A}_\\mu(\\kt)\\rangle} = \\mk{i}{\\int_{\\kt-\\Delta \\kt}^{\\kt} d\\kt'\\,2\\kDdiff_{\\nu\\mu}\\delta(\\kt-\\kt')}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kFnoise_\\nu(\\kt)\\hat{A}_\\mu(\\kt)\\rangle} = \\mk{i}{\\kDdiff_{\\nu\\mu}}",
+       "uses": [
+        4
+       ]
+      }
+     ],
+     "num": "(8.76)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\frac{d}{d\\kt}\\hat{A}_\\mu = \\hat{d}_\\mu + \\kFnoise_\\mu",
+       "src": "(8.71)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\langle\\hat{A}_\\mu\\hat{A}_\\nu\\rangle} = \\mk{n}{\\langle\\hat{A}_\\mu\\frac{d\\hat{A}_\\nu}{d\\kt}\\rangle} + \\mk{m}{\\langle\\frac{d\\hat{A}_\\mu}{d\\kt}\\hat{A}_\\nu\\rangle}",
+      "uses": [],
+      "why": "The product rule."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\langle\\hat{A}_\\mu\\hat{A}_\\nu\\rangle} = \\mk{n}{\\langle\\hat{A}_\\mu(d_\\nu + \\kFnoise_\\nu)\\rangle} + \\mk{m}{\\langle(d_\\mu + \\kFnoise_\\mu)\\hat{A}_\\nu\\rangle}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\langle\\hat{A}_\\mu\\hat{A}_\\nu\\rangle} = \\mk{n}{\\langle\\hat{A}_\\mu\\hat{d}_\\nu\\rangle + \\kDdiff_{\\mu\\nu}} + \\mk{m}{\\langle\\hat{d}_\\mu\\hat{A}_\\nu\\rangle + \\kDdiff_{\\mu\\nu}}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "Eq. (8.76) with the labels exchanged gives $\\langle\\hat{\\mathcal F}_\\mu\\hat A_\\nu\\rangle = D_{\\mu\\nu}$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\langle\\hat{A}_\\mu\\hat{A}_\\nu\\rangle - \\langle\\hat{A}_\\mu\\hat{d}_\\nu\\rangle - \\langle\\hat{d}_\\mu\\hat{A}_\\nu\\rangle} = \\mk{A}{2\\langle\\hat{A}_\\mu\\kFnoise_\\nu\\rangle} = \\mk{D}{2\\kDdiff_{\\mu\\nu}}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "n": [
+         "L",
+         "D"
+        ],
+        "m": [
+         "L",
+         "D"
+        ]
+       }
+      }
+     ],
+     "num": "(8.78)"
+    }
+   ]
+  },
+  {
+   "id": "heisenberg-langevin-equation",
+   "what": "the Heisenberg-Langevin equation",
+   "source": "Modern Atomic and Optical Physics II, 8.4.2 The Heisenberg-Langevin approach",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kfhat(\\kt) = -i\\sum_j \\kg_j\\hat{a}_j(0)e^{-i(\\knu_j-\\komega)\\kt}",
+       "src": "(8.63)"
+      },
+      {
+       "tex": "\\int_0^{\\kt} d\\kt'\\sum_j|\\kg_j|^2e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt') \\rightarrow \\frac{\\kgamma}{2}\\kShat(\\kt)",
+       "src": "(8.62)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\hat{R}(\\kt)} = i\\hbar\\left(\\mk{f}{-i\\sum_j \\kg_j\\hat{a}_j(0)e^{-i(\\knu_j-\\komega)\\kt}} + \\mk{s}{\\int_0^{\\kt} d\\kt'\\sum_j|\\kg_j|^2e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt')}\\right)",
+      "src": "(8.61)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\hat{R}(\\kt)} = i\\hbar\\left(\\mk{f}{\\kfhat(\\kt)} + \\mk{s}{\\int_0^{\\kt} d\\kt'\\sum_j|\\kg_j|^2e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt')}\\right)",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\hat{R}(\\kt)} = i\\hbar\\left(\\mk{s}{\\frac{\\kgamma}{2}\\kShat(\\kt)} + \\mk{f}{\\kfhat(\\kt)}\\right)",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(8.68)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} + \\mk{r1}{\\frac{i}{\\hbar}\\hat{R}^\\dagger[\\hat{A}, \\kShat]} + \\mk{r2}{\\frac{i}{\\hbar}[\\hat{A}, \\kShat^\\dagger]\\hat{R}}",
+      "src": "(8.57)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} + \\mk{r1}{\\frac{i}{\\hbar}(-i\\hbar)\\left(\\frac{\\kgamma}{2}\\kShat^\\dagger + \\kfhat^\\dagger\\right)[\\hat{A}, \\kShat]} + \\mk{r2}{\\frac{i}{\\hbar}[\\hat{A}, \\kShat^\\dagger](i\\hbar)\\left(\\frac{\\kgamma}{2}\\kShat + \\kfhat\\right)}",
+       "uses": [
+        0
+       ],
+       "cap": "The adjoint of Eq. (8.68) is $\\hat R^\\dagger = -i\\hbar(\\frac{\\gamma}{2}\\hat S^\\dagger + \\hat f^\\dagger)$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} + \\mk{r1}{\\left(\\frac{\\kgamma}{2}\\kShat^\\dagger + \\kfhat^\\dagger\\right)[\\hat{A}, \\kShat]} - \\mk{r2}{[\\hat{A}, \\kShat^\\dagger]\\left(\\frac{\\kgamma}{2}\\kShat + \\kfhat\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(8.69)"
+    }
+   ]
+  },
+  {
+   "id": "langevin-solution",
+   "what": "the solution of the Langevin equation",
+   "source": "Modern Atomic and Optical Physics II, 8.4.1 Brownian motion",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\kpcm} = \\mk{R}{-\\keta \\kpcm} + \\mk{f}{\\kft(\\kt)}",
+      "src": "(8.34)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\left(e^{\\keta\\kt}\\kpcm\\right)} = \\mk{f}{e^{\\keta\\kt}\\kft(\\kt)}",
+       "uses": [],
+       "cap": "Multiplying by $e^{\\eta t}$ joins the drag to the derivative: $\\frac{d}{dt}(e^{\\eta t}p) = e^{\\eta t}(\\dot p + \\eta p)$.",
+       "map": {
+        "R": "L"
+       }
+      },
+      {
+       "tex": "\\mk{L}{e^{\\keta\\kt}\\kpcm(\\kt) - \\kpcm(0)} = \\mk{f}{\\int_0^{\\kt} d\\kt' e^{\\keta\\kt'}\\kft(\\kt')}",
+       "uses": [],
+       "cap": "Integrating from $0$ to $t$."
+      },
+      {
+       "tex": "\\mk{L}{\\kpcm(\\kt)} = \\mk{a}{\\kpcm(0)e^{-\\keta \\kt}} + \\mk{f}{\\int_0^{\\kt} d\\kt' \\kft(\\kt')e^{-\\keta(\\kt-\\kt')}}",
+       "uses": []
+      }
+     ],
+     "num": "(8.39)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The momentum is averaged over timescales large compared to the collision rate.",
+       "src": "8.4.1"
+      },
+      {
+       "tex": "\\langle \\kft(\\kt)\\rangle = 0",
+       "src": "(8.35)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kpcm(\\kt)} = \\mk{a}{\\kpcm(0)e^{-\\keta \\kt}} + \\mk{f}{\\int_0^{\\kt} d\\kt' \\kft(\\kt')e^{-\\keta(\\kt-\\kt')}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\overline{\\kpcm(\\kt)}} = \\mk{a}{\\overline{\\kpcm(0)}e^{-\\keta \\kt}} + \\mk{f}{\\int_0^{\\kt} d\\kt' \\overline{\\kft(\\kt')}e^{-\\keta(\\kt-\\kt')}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\overline{\\kpcm(\\kt)}} = \\mk{a}{\\overline{\\kpcm(0)}e^{-\\keta \\kt}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(8.40)"
+    }
+   ]
+  },
+  {
+   "id": "long-time-momentum",
+   "what": "the momentum spread at long times",
+   "source": "Modern Atomic and Optical Physics II, 8.4.1 Brownian motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "At long times, $\\eta t \\gg 1$.",
+       "src": "8.4.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\overline{\\kpcm^2(\\kt)}} = \\mk{a}{\\overline{\\kpcm(0)^2}e^{-2\\keta \\kt}} + \\mk{R}{\\frac{\\kDdiff}{\\keta}\\left(1 - e^{-2\\keta \\kt}\\right)}",
+      "uses": [],
+      "src": "(8.44)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\mathop{\\mathrm{lim}}\\limits_{\\kt\\rightarrow\\infty}\\overline{\\kpcm(\\kt)^2}} \\rightarrow \\mk{R}{\\frac{\\kDdiff}{\\keta}}",
+       "uses": [
+        0
+       ],
+       "cap": "The viscous term is exponentially damped.",
+       "map": {
+        "a": "R"
+       }
+      }
+     ],
+     "num": "(8.46)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "The kinetic energy is $p^2/2m$.",
+       "src": "(8.1)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{E_\\mathrm{kinetic}} = \\mk{p}{\\frac{\\overline{\\kpcm^2}}{2\\km}}",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{E_\\mathrm{kinetic}} = \\mk{p}{\\frac{\\overline{\\kpcm^2}}{2\\km}} \\rightarrow \\mk{R}{\\frac{\\kDdiff}{2\\km\\keta}}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(8.47)"
+    }
+   ]
+  },
+  {
+   "id": "markov-decay",
+   "what": "the source term as a decay",
+   "source": "Modern Atomic and Optical Physics II, 8.4.2 The Heisenberg-Langevin approach",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The atomic operator $\\hat S(t)$ changes slowly in time, and the reservoir bandwidth is very broad.",
+       "src": "8.4.2"
+      },
+      {
+       "tex": "\\int_0^{\\kt} e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt' = \\pi\\delta(\\kdeltak) + i\\mathcal{P}\\frac{1}{\\kdeltak}",
+       "src": "2.2"
+      },
+      {
+       "text": "The principal-value part, a shift of the energy, is incorporated into a renormalized atomic frequency.",
+       "src": "2.3"
+      },
+      {
+       "tex": "\\kgamma = 2\\pi\\sum_{\\kk,\\alpha}|\\kg_{\\kk,\\alpha}|^2\\delta(\\knuk - \\komega)",
+       "src": "(2.80)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\int_0^{\\kt} d\\kt'\\sum_j|\\kg_j|^2e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt')} \\approx \\mk{R}{\\sum_j|\\kg_j|^2\\int_0^{\\kt} d\\kt' e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\,\\kShat(\\kt)}",
+      "uses": [0],
+      "why": "$\\hat S$ changes slowly, so it is taken out of the integral at its present value."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\int_0^{\\kt} d\\kt'\\sum_j|\\kg_j|^2e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt')} \\rightarrow \\mk{R}{\\sum_j|\\kg_j|^2\\left(\\pi\\delta(\\knu_j-\\komega) - i\\mathcal{P}\\frac{1}{\\knu_j-\\komega}\\right)\\kShat(\\kt)}",
+       "uses": [
+        1
+       ],
+       "cap": "At long times the integral is that of 2.2 with $\\delta_k$ replaced by $-(\\nu_j - \\omega)$."
+      },
+      {
+       "tex": "\\mk{L}{\\int_0^{\\kt} d\\kt'\\sum_j|\\kg_j|^2e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt')} \\rightarrow \\mk{R}{\\pi\\sum_j|\\kg_j|^2\\delta(\\knu_j-\\komega)\\,\\kShat(\\kt)}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\int_0^{\\kt} d\\kt'\\sum_j|\\kg_j|^2e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt')} \\rightarrow \\mk{R}{\\frac{\\kgamma}{2}\\kShat(\\kt)}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(8.62)"
+    }
+   ]
+  },
+  {
+   "id": "mean-square-momentum",
+   "what": "the mean square momentum of a Brownian particle",
+   "source": "Modern Atomic and Optical Physics II, 8.4.1 Brownian motion",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "{\\kpcm(\\kt)} = {\\kpcm(0)e^{-\\keta \\kt}} + {\\int_0^{\\kt} d\\kt' \\kft(\\kt')e^{-\\keta(\\kt-\\kt')}}",
+       "src": "(8.39)"
+      },
+      {
+       "tex": "\\langle \\kft(\\kt)\\rangle = 0",
+       "src": "(8.35)"
+      },
+      {
+       "tex": "\\langle \\kft(\\kt)\\kft(\\kt')\\rangle = 2\\kDdiff g(\\kt-\\kt')",
+       "src": "(8.36)"
+      },
+      {
+       "tex": "g(\\kt-\\kt') \\rightarrow \\delta(\\kt-\\kt')",
+       "src": "(8.38)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\overline{\\kpcm^2(\\kt)}} = \\mk{R}{\\langle\\kpcm(\\kt)^2\\rangle}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\overline{\\kpcm^2(\\kt)}} = \\mk{R}{\\langle\\left(\\kpcm(0)e^{-\\keta \\kt} + \\int_0^{\\kt} d\\kt' \\kft(\\kt')e^{-\\keta(\\kt-\\kt')}\\right)^2\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\overline{\\kpcm^2(\\kt)}} = \\mk{a}{\\overline{\\kpcm(0)^2}e^{-2\\keta \\kt}} + \\mk{n}{\\int_0^{\\kt}\\int_0^{\\kt} d\\kt'd\\kt''\\langle \\kft(\\kt')\\kft(\\kt'')\\rangle e^{-\\keta(\\kt-\\kt')}e^{-\\keta(\\kt-\\kt'')}}",
+       "uses": [
+        1
+       ],
+       "cap": "Squaring: the terms linear in $f$ vanish because the average Langevin force is zero.",
+       "map": {
+        "R": [
+         "a",
+         "n"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\overline{\\kpcm^2(\\kt)}} = \\mk{a}{\\overline{\\kpcm(0)^2}e^{-2\\keta \\kt}} + \\mk{n}{\\int_0^{\\kt}\\int_0^{\\kt} d\\kt'd\\kt'' 2\\kDdiff\\delta(\\kt'-\\kt'')e^{-\\keta(\\kt-\\kt')}e^{-\\keta(\\kt-\\kt'')}}",
+       "uses": [
+        2,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\overline{\\kpcm^2(\\kt)}} = \\mk{a}{\\overline{\\kpcm(0)^2}e^{-2\\keta \\kt}} + \\mk{n}{2\\kDdiff\\int_0^{\\kt} d\\kt' e^{-2\\keta(\\kt-\\kt')}}",
+       "uses": [],
+       "cap": "The delta function sets $t'' = t'$."
+      },
+      {
+       "tex": "\\mk{L}{\\overline{\\kpcm^2(\\kt)}} = \\mk{a}{\\overline{\\kpcm(0)^2}e^{-2\\keta \\kt}} + \\mk{n}{\\frac{\\kDdiff}{\\keta}\\left(1 - e^{-2\\keta \\kt}\\right)}",
+       "uses": []
+      }
+     ],
+     "num": "(8.44)"
+    }
+   ]
+  },
+  {
+   "id": "naive-commutator-decay",
+   "what": "the decay of the commutator under naive dephasing",
+   "source": "Modern Atomic and Optical Physics II, 8.4.2 The Heisenberg-Langevin approach",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The naive dephasing terms: $\\dot{\\hat\\sigma}_{\\alpha,\\beta} \\sim -\\gamma_{\\alpha,\\beta}\\hat\\sigma_{\\alpha,\\beta}$ for every coherence.",
+       "src": "8.4.2"
+      },
+      {
+       "text": "A coherence and its conjugate decay at the same rate, $\\gamma_{\\beta,\\alpha} = \\gamma_{\\alpha,\\beta}$.",
+       "src": "(3.93)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}[\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}]} = \\mk{a}{[\\frac{d}{d\\kt}\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}]} + \\mk{b}{[\\hat{\\sigma}_{\\beta,\\alpha}, \\frac{d}{d\\kt}\\hat{\\sigma}_{\\alpha,\\beta}]}",
+      "src": "(8.51)",
+      "uses": [],
+      "why": "The product rule."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}[\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}]} = \\mk{a}{[-\\gamma_{\\beta,\\alpha}\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}]} + \\mk{b}{[\\hat{\\sigma}_{\\beta,\\alpha}, -\\gamma_{\\alpha,\\beta}\\hat{\\sigma}_{\\alpha,\\beta}]}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}[\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}]} = \\mk{R}{-(\\gamma_{\\beta,\\alpha} + \\gamma_{\\alpha,\\beta})[\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}]}",
+       "uses": [],
+       "map": {
+        "a": "R",
+        "b": "R"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}[\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}]} = \\mk{R}{-2\\gamma_{\\alpha,\\beta}[\\hat{\\sigma}_{\\beta,\\alpha}, \\hat{\\sigma}_{\\alpha,\\beta}]}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(8.52)",
+     "note": "The book prints the rate $-\\gamma_{\\alpha,\\beta}$. Each of the two terms of Eq. (8.51) contributes, so the commutator decays at $\\gamma_{\\alpha,\\beta} + \\gamma_{\\beta,\\alpha} = 2\\gamma_{\\alpha,\\beta}$."
+    }
+   ]
+  },
+  {
+   "id": "quantum-langevin-moments",
+   "what": "the second moments of the quantum Langevin force",
+   "source": "Modern Atomic and Optical Physics II, 8.4.2 The Heisenberg-Langevin approach",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kfhat(\\kt) = -i\\sum_j \\kg_j\\hat{a}_j(0)e^{-i(\\knu_j-\\komega)\\kt}",
+       "src": "(8.63)"
+      },
+      {
+       "text": "The reservoir is initially in a thermal state: $\\langle\\hat a_j^\\dagger(0)\\hat a_{j'}(0)\\rangle = n(\\nu_j)\\delta_{jj'}$.",
+       "src": "3.1"
+      },
+      {
+       "text": "In the Markov approximation $n$ varies little over the broad reservoir, which turns $\\sum_j|g_j|^2 e^{-i(\\nu_j - \\omega)\\tau}$ into $2\\pi\\sum_j|g_j|^2\\delta(\\nu_j - \\omega)\\,\\delta(\\tau)$.",
+       "src": "8.4.2"
+      },
+      {
+       "tex": "\\kgamma = 2\\pi\\sum_{\\kk,\\alpha}|\\kg_{\\kk,\\alpha}|^2\\delta(\\knuk - \\komega)",
+       "src": "(2.80)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\kfhat(\\kt)^\\dagger\\kfhat(\\kt')\\rangle} = \\mk{R}{\\left\\langle\\left(i\\sum_j \\kg_j^*\\hat{a}_j(0)^\\dagger e^{i(\\knu_j-\\komega)\\kt}\\right)\\left(-i\\sum_{j'} \\kg_{j'}\\hat{a}_{j'}(0)e^{-i(\\knu_{j'}-\\komega)\\kt'}\\right)\\right\\rangle}",
+      "uses": [0],
+      "why": "Eq. (8.63) and its adjoint."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\kfhat(\\kt)^\\dagger\\kfhat(\\kt')\\rangle} = \\mk{R}{\\sum_{j,j'}\\kg_j^*\\kg_{j'}\\langle\\hat{a}_j(0)^\\dagger\\hat{a}_{j'}(0)\\rangle e^{i(\\knu_j-\\komega)\\kt}e^{-i(\\knu_{j'}-\\komega)\\kt'}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kfhat(\\kt)^\\dagger\\kfhat(\\kt')\\rangle} = \\mk{R}{\\sum_j|\\kg_j|^2n(\\knu_j)e^{-i(\\knu_j-\\komega)(\\kt'-\\kt)}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kfhat(\\kt)^\\dagger\\kfhat(\\kt')\\rangle} = \\mk{R}{n(\\komega)\\kgamma\\delta(\\kt-\\kt')}",
+       "uses": [
+        2,
+        3
+       ]
+      }
+     ],
+     "num": "(8.66)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kfhat(\\kt) = -i\\sum_j \\kg_j\\hat{a}_j(0)e^{-i(\\knu_j-\\komega)\\kt}",
+       "src": "(8.63)"
+      },
+      {
+       "text": "The reservoir is initially in a thermal state: $\\langle\\hat a_j^\\dagger(0)\\hat a_{j'}(0)\\rangle = n(\\nu_j)\\delta_{jj'}$.",
+       "src": "3.1"
+      },
+      {
+       "text": "In the Markov approximation $n$ varies little over the broad reservoir, which turns $\\sum_j|g_j|^2 e^{-i(\\nu_j - \\omega)\\tau}$ into $2\\pi\\sum_j|g_j|^2\\delta(\\nu_j - \\omega)\\,\\delta(\\tau)$.",
+       "src": "8.4.2"
+      },
+      {
+       "tex": "\\kgamma = 2\\pi\\sum_{\\kk,\\alpha}|\\kg_{\\kk,\\alpha}|^2\\delta(\\knuk - \\komega)",
+       "src": "(2.80)"
+      },
+      {
+       "tex": "[\\hat{a}_j, \\hat{a}_j^\\dagger] = 1",
+       "src": "2.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\rangle} = \\mk{R}{\\left\\langle\\left(-i\\sum_j \\kg_j\\hat{a}_j(0)e^{-i(\\knu_j-\\komega)\\kt}\\right)\\left(i\\sum_{j'} \\kg_{j'}^*\\hat{a}_{j'}(0)^\\dagger e^{i(\\knu_{j'}-\\komega)\\kt'}\\right)\\right\\rangle}",
+      "uses": [0],
+      "why": "Eq. (8.63) and its adjoint."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\rangle} = \\mk{R}{\\sum_{j,j'}\\kg_j\\kg_{j'}^*\\langle\\hat{a}_j(0)\\hat{a}_{j'}(0)^\\dagger\\rangle e^{-i(\\knu_j-\\komega)\\kt}e^{i(\\knu_{j'}-\\komega)\\kt'}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\rangle} = \\mk{R}{\\sum_j|\\kg_j|^2\\left(n(\\knu_j) + 1\\right)e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}}",
+       "uses": [
+        1,
+        4
+       ],
+       "cap": "$\\hat a_j\\hat a_j^\\dagger = \\hat a_j^\\dagger\\hat a_j + 1$."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\rangle} = \\mk{R}{\\left(n(\\komega) + 1\\right)\\kgamma\\delta(\\kt-\\kt')}",
+       "uses": [
+        2,
+        3
+       ]
+      }
+     ],
+     "num": "(8.67)"
+    }
+   ]
+  },
+  {
+   "id": "reservoir-operator",
+   "what": "the reservoir operator driven by the system",
+   "source": "Modern Atomic and Optical Physics II, 8.4.2 The Heisenberg-Langevin approach",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "In a frame rotating at $\\omega$ the field Hamiltonian of Eq. (2.69) is $\\hat H_R = \\sum_j \\hbar(\\nu_j - \\omega)\\hat a_j^\\dagger\\hat a_j$.",
+       "src": "(2.69)"
+      },
+      {
+       "tex": "\\kHSR = -\\hat{R}^\\dagger\\kShat - \\kShat^\\dagger\\hat{R}",
+       "src": "(8.54)"
+      },
+      {
+       "tex": "\\hat{R} = \\sum_j \\hbar \\kg_j\\hat{a}_j",
+       "src": "(8.55)"
+      },
+      {
+       "tex": "[\\hat{a}_j, \\hat{a}_j^\\dagger] = 1",
+       "src": "2.3"
+      },
+      {
+       "text": "System and reservoir operators commute; $\\hat A$ is a system operator.",
+       "src": "8.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\hat{a}}_j} = \\mk{R}{\\frac{i}{\\hbar}[\\kHR + \\kHSR, \\hat{a}_j]}",
+      "src": "(8.59)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\hat{a}}_j} = \\mk{z}{\\frac{i}{\\hbar}[\\kHR, \\hat{a}_j]} + \\mk{s}{\\frac{i}{\\hbar}[\\kHSR, \\hat{a}_j]}",
+       "uses": [],
+       "map": {
+        "R": [
+         "z",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\hat{a}}_j} = \\mk{z}{-i(\\knu_j-\\komega)\\hat{a}_j} + \\mk{s}{\\frac{i}{\\hbar}[\\kHSR, \\hat{a}_j]}",
+       "uses": [
+        0,
+        3
+       ],
+       "cap": "$[\\hat a_j^\\dagger\\hat a_j, \\hat a_j] = -\\hat a_j$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\hat{a}}_j} = \\mk{z}{-i(\\knu_j-\\komega)\\hat{a}_j} + \\mk{s}{\\frac{i}{\\hbar}\\left(-[\\hat{R}^\\dagger, \\hat{a}_j]\\kShat\\right)}",
+       "uses": [
+        1,
+        4
+       ],
+       "cap": "$\\hat a_j$ commutes with $\\hat S$ and with $\\hat R$; only $\\hat R^\\dagger$ fails to commute."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\hat{a}}_j} = \\mk{z}{-i(\\knu_j-\\komega)\\hat{a}_j} + \\mk{s}{i\\kg_j^*\\kShat}",
+       "uses": [
+        2,
+        3
+       ],
+       "cap": "$\\hat R^\\dagger = \\sum_j\\hbar g_j^*\\hat a_j^\\dagger$, and $[\\hat a_j^\\dagger, \\hat a_j] = -1$."
+      }
+     ],
+     "num": "(8.60)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\hat{a}}_j} = \\mk{z}{-i(\\knu_j-\\komega)\\hat{a}_j} + \\mk{s}{i\\kg_j^*\\kShat}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\left(e^{i(\\knu_j-\\komega)\\kt}\\hat{a}_j\\right)} = \\mk{s}{i\\kg_j^*e^{i(\\knu_j-\\komega)\\kt}\\kShat(\\kt)}",
+       "uses": [],
+       "cap": "Multiplying by $e^{i(\\nu_j - \\omega)t}$ joins the free evolution to the derivative.",
+       "map": {
+        "z": "L"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\hat{a}_j(\\kt)} = \\mk{a0}{\\hat{a}_j(0)e^{-i(\\knu_j-\\komega)\\kt}} + \\mk{s}{i\\kg_j^*\\int_0^{\\kt} d\\kt' e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt')}",
+       "uses": [],
+       "cap": "Integrating from $0$ to $t$ and multiplying back by $e^{-i(\\nu_j - \\omega)t}$."
+      }
+     ]
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\hat{R} = \\sum_j \\hbar \\kg_j\\hat{a}_j",
+       "src": "(8.55)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\hat{R}(\\kt)} = \\mk{R}{\\sum_j \\hbar \\kg_j\\hat{a}_j(\\kt)}",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\hat{R}(\\kt)} = \\mk{z}{\\sum_j \\hbar\\kg_j\\hat{a}_j(0)e^{-i(\\knu_j-\\komega)\\kt}} + \\mk{s}{i\\hbar\\int_0^{\\kt} d\\kt'\\sum_j|\\kg_j|^2e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt')}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "R": [
+         "z",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\hat{R}(\\kt)} = \\mk{T}{i\\hbar\\left(-i\\sum_j \\kg_j\\hat{a}_j(0)e^{-i(\\knu_j-\\komega)\\kt} + \\int_0^{\\kt} d\\kt'\\sum_j|\\kg_j|^2e^{-i(\\knu_j-\\komega)(\\kt-\\kt')}\\kShat(\\kt')\\right)}",
+       "uses": [],
+       "map": {
+        "z": "T",
+        "s": "T"
+       }
+      }
+     ],
+     "num": "(8.61)"
+    }
+   ]
+  },
+  {
+   "id": "system-operator-equation",
+   "what": "the equation of motion of a system operator",
+   "source": "Modern Atomic and Optical Physics II, 8.4.2 The Heisenberg-Langevin approach",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = \\kHS + \\kHR + \\kHSR",
+       "src": "(8.53)"
+      },
+      {
+       "tex": "\\kHSR = -\\hat{R}^\\dagger\\kShat - \\kShat^\\dagger\\hat{R}",
+       "src": "(8.54)"
+      },
+      {
+       "text": "System and reservoir operators commute; $\\hat A$ is a system operator.",
+       "src": "8.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{R}{\\frac{i}{\\hbar}[\\kH, \\hat{A}]}",
+      "src": "(8.50)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} + \\mk{z}{\\frac{i}{\\hbar}[\\kHR, \\hat{A}]} + \\mk{s}{\\frac{i}{\\hbar}[\\kHSR, \\hat{A}]}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "R": [
+         "h",
+         "z",
+         "s"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} + \\mk{s}{\\frac{i}{\\hbar}[\\kHSR, \\hat{A}]}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} + \\mk{s}{\\frac{i}{\\hbar}[-\\hat{R}^\\dagger\\kShat - \\kShat^\\dagger\\hat{R}, \\hat{A}]}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} - \\mk{r1}{\\frac{i}{\\hbar}\\hat{R}^\\dagger[\\kShat, \\hat{A}]} - \\mk{r2}{\\frac{i}{\\hbar}[\\kShat^\\dagger, \\hat{A}]\\hat{R}}",
+       "uses": [
+        2
+       ],
+       "cap": "The reservoir operators commute with $\\hat A$ and come out of each commutator.",
+       "map": {
+        "s": [
+         "r1",
+         "r2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} + \\mk{r1}{\\frac{i}{\\hbar}\\hat{R}^\\dagger[\\hat{A}, \\kShat]} + \\mk{r2}{\\frac{i}{\\hbar}[\\hat{A}, \\kShat^\\dagger]\\hat{R}}",
+       "uses": []
+      }
+     ],
+     "num": "(8.57)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "text": "Take $\\hat A = \\hat\\sigma_{12}$ and $\\hat S = \\hat\\sigma_{12}$.",
+       "src": "8.4.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} + \\mk{r1}{\\frac{i}{\\hbar}\\hat{R}^\\dagger[\\hat{A}, \\kShat]} + \\mk{r2}{\\frac{i}{\\hbar}[\\hat{A}, \\kShat^\\dagger]\\hat{R}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{\\sigma}_{12}]} + \\mk{r1}{\\frac{i}{\\hbar}\\hat{R}^\\dagger[\\hat{\\sigma}_{12}, \\hat{\\sigma}_{12}]} + \\mk{r2}{\\frac{i}{\\hbar}[\\hat{\\sigma}_{12}, \\hat{\\sigma}_{21}]\\hat{R}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{\\sigma}_{12}]} + \\mk{r2}{\\frac{i}{\\hbar}[\\hat{\\sigma}_{12}, \\hat{\\sigma}_{21}]\\hat{R}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{\\sigma}_{12}]} + \\mk{r2}{\\frac{i}{\\hbar}\\left(\\hat{\\sigma}_{11} - \\hat{\\sigma}_{22}\\right)\\hat{R}}",
+       "uses": [],
+       "cap": "$[\\hat\\sigma_{12}, \\hat\\sigma_{21}] = |1\\rangle\\langle 1| - |2\\rangle\\langle 2| = \\hat\\sigma_{11} - \\hat\\sigma_{22}$."
+      }
+     ],
+     "num": "(8.58)"
+    }
+   ]
+  }
+ ]
+}

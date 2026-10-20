@@ -1,0 +1,843 @@
+{
+ "id": "8.5",
+ "chapter": "8",
+ "title": "The Heisenberg-Langevin formalism applied to Doppler cooling",
+ "short": "Langevin theory of Doppler cooling",
+ "lead": "<span data-concept=\"heisenberg-langevin-equation\">The Heisenberg-Langevin equation</span> applied to a <span data-concept=\"two-level-atom\">two-level atom</span> in counterpropagating beams: <span data-concept=\"laser-cooling-noise-force\">the noise force</span> the vacuum field puts on the atom, the <span data-concept=\"laser-cooling-diffusion\">momentum diffusion</span> it causes, the temperature at which this heating balances <span data-concept=\"doppler-cooling\">Doppler cooling</span>, and what changes when the atoms are dense enough to shade and push one another.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "MIT 8.422 Problem Set 9, Problem 3 is set one card per part, restated in Lukin's notation with AI-written solutions, since the course published no key; it asks for no numbers, so nothing is held. Problem Set 9, Problem 1(c), the momentum diffusion constant for three emission patterns, bears on 8.5.1 and is set in 8.2 with the rest of its problem.",
+ "figures": [
+  {
+   "id": "sim-doppler-limit",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "coupling",
+    "rate",
+    "diffusion",
+    "friction",
+    "temperature",
+    "mass",
+    "wavevector"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "noise-force",
+   "concept": "laser-cooling-noise-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "diffusion-constant",
+   "concept": "laser-cooling-diffusion",
+   "verb": "introduces"
+  },
+  {
+   "span": "final-temperature",
+   "concept": "doppler-limit",
+   "verb": "introduces"
+  },
+  {
+   "span": "optically-thick",
+   "concept": "laser-attenuation",
+   "verb": "introduces"
+  },
+  {
+   "span": "reabsorption-force",
+   "concept": "photon-reabsorption",
+   "verb": "introduces"
+  },
+  {
+   "span": "hl-doppler",
+   "concept": "heisenberg-langevin-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "hl-doppler",
+   "concept": "doppler-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "hl-doppler",
+   "concept": "light-force-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "hl-doppler",
+   "concept": "rabi-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "average-fluctuation",
+   "concept": "semiclassical-light-force",
+   "verb": "uses"
+  },
+  {
+   "span": "average-fluctuation",
+   "concept": "open-system",
+   "verb": "uses"
+  },
+  {
+   "span": "average-fluctuation",
+   "concept": "heisenberg-langevin-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "noise-intro",
+   "concept": "quantum-langevin-force",
+   "verb": "uses"
+  },
+  {
+   "span": "noise-moment",
+   "concept": "mean-thermal-photon-number",
+   "verb": "uses"
+  },
+  {
+   "span": "slow-processes",
+   "concept": "adiabatic-elimination",
+   "verb": "uses"
+  },
+  {
+   "span": "two-factors",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-analogy",
+   "concept": "langevin-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-analogy",
+   "concept": "diffusion-coefficient",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-physics",
+   "concept": "random-walk",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-physics",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-physics",
+   "concept": "zero-velocity-excitation-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "diffusion-physics",
+   "concept": "atomic-recoil",
+   "verb": "uses"
+  },
+  {
+   "span": "final-temperature-intro",
+   "concept": "einstein-relation",
+   "verb": "uses"
+  },
+  {
+   "span": "final-temperature-intro",
+   "concept": "friction-coefficient",
+   "verb": "uses"
+  },
+  {
+   "span": "final-temperature-intro",
+   "concept": "dissipative-force",
+   "verb": "uses"
+  },
+  {
+   "span": "final-temperature-intro",
+   "concept": "doppler-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "optimum",
+   "concept": "detuning",
+   "verb": "uses"
+  },
+  {
+   "span": "optimum",
+   "concept": "coherence-decay-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "radiative",
+   "concept": "spontaneous-emission-rate",
+   "verb": "uses"
+  },
+  {
+   "span": "equilibrium",
+   "concept": "thermal-radiation-field",
+   "verb": "uses"
+  },
+  {
+   "span": "attenuation",
+   "concept": "dipole-force",
+   "verb": "uses"
+  },
+  {
+   "span": "attenuation",
+   "concept": "doppler-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "reabsorption",
+   "concept": "spontaneous-emission",
+   "verb": "uses"
+  },
+  {
+   "span": "reabsorption",
+   "concept": "atomic-recoil",
+   "verb": "uses"
+  },
+  {
+   "span": "reabsorption",
+   "concept": "heisenberg-langevin-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "reabsorption",
+   "concept": "reservoir-operator-solution",
+   "verb": "uses"
+  },
+  {
+   "span": "reabsorption",
+   "concept": "quantum-langevin-force",
+   "verb": "uses"
+  },
+  {
+   "span": "reabsorption",
+   "concept": "master-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-fluctuating-force",
+   "concept": "force-fluctuations",
+   "verb": "introduces"
+  },
+  {
+   "span": "drv-noise-moment",
+   "concept": "detuning",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-doppler-limit",
+   "concept": "optical-pumping-rate",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "hw9-3a",
+   "source_id": "hw9.3a",
+   "source_number": "Problem Set 9, Problem 3(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's spring constant $\\kappa$ is $K$ (Lukin's $\\kappa$ is a cavity's decay rate), the separation $d$ of two atoms is $r$ (Lukin's $d$ is the dipole moment, and 8.5.3 writes $r$), and the fraction $f$ of atoms that absorb is $f_b$ (Lukin's $f$ is the Langevin force); the set's sodium data, which this problem does not use, are left out, and the problem's opening is repeated so the part stands alone.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reabsorption",
+   "prompt": "Density Limit in a MOT. In a 3-D magneto-optical trap, the density of the trapped atoms is limited by a net outward radiation pressure which opposes the trapping force. We can divide the density-dependent photon-pressure force into two parts. First there is a repulsive ‘radiation trapping force’ due to atoms absorbing photons scattered from other atoms in the trap. Also, there is an attractive ‘attenuation force’ which is caused by atoms at the side of the cloud attenuating the laser beams, thus creating an intensity imbalance which leads to an inward force. Show that the radiation trapping force obeys the equation $$\\nabla\\cdot\\mathbf{F}_R = \\frac{6\\sigma_L\\sigma_RIn}{c},$$ where $I$ is the intensity of one of the trapping laser beams, $n$ is the number density of atoms in the cloud, $\\sigma_L$ is the cross-section for absorption of the laser beam, and $\\sigma_R$ is the cross-section for absorption of the scattered light. (Hint: Find the magnitude of the force between two atoms separated by a distance $r$, where one atom re-radiates a laser photon and the second atom absorbs it. Now, since this is an inverse-square force, you can use Gauss’ law to find $\\nabla\\cdot\\mathbf{F}_R$. Assume that photons are only scattered twice.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "An atom sits in the six trapping beams, each of intensity $I$, and absorbs from each with cross-section $\\sigma_L$, so it scatters the power $6\\sigma_LI$. Taking the scattered light as leaving it isotropically, its intensity at a distance $r$ is $6\\sigma_LI/4\\pi r^2$. A second atom there absorbs it with cross-section $\\sigma_R$; each absorbed photon gives it a kick $\\hbar k = \\hbar\\omega/c$ directed away from the first atom (the reabsorption kick of 8.5.3), so the force is the absorbed power divided by $c$: $$\\mathbf{F}(\\mathbf{r}) = \\frac{6\\sigma_L\\sigma_RI}{4\\pi c}\\frac{\\hat{\\mathbf{r}}}{r^2}.$$ This is a repulsive inverse-square force, Coulomb's law between like charges with $q_1q_2/4\\pi\\epsilon_0$ replaced by $6\\sigma_L\\sigma_RI/4\\pi c$. Because each photon is scattered only twice, the pair forces simply add: the force on an atom is the sum of this force over a density $n$ of sources, just as $\\mathbf{E}$ is the sum over a charge density $\\rho$. Gauss' law, $\\nabla\\cdot\\mathbf{E} = 4\\pi\\rho\\,(1/4\\pi\\epsilon_0)$, then gives $$\\nabla\\cdot\\mathbf{F}_R = 4\\pi n\\,\\frac{6\\sigma_L\\sigma_RI}{4\\pi c} = \\frac{6\\sigma_L\\sigma_RIn}{c}.$$"
+   }
+  },
+  {
+   "id": "hw9-3b",
+   "source_id": "hw9.3b",
+   "source_number": "Problem Set 9, Problem 3(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's spring constant $\\kappa$ is $K$ (Lukin's $\\kappa$ is a cavity's decay rate), the separation $d$ of two atoms is $r$ (Lukin's $d$ is the dipole moment, and 8.5.3 writes $r$), and the fraction $f$ of atoms that absorb is $f_b$ (Lukin's $f$ is the Langevin force); the set's sodium data, which this problem does not use, are left out, and the problem's opening is repeated so the part stands alone; the definitions of part (a) are repeated.",
+   "kind": "problem",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reabsorption",
+   "prompt": "Density Limit in a MOT. In a 3-D magneto-optical trap, the density of the trapped atoms is limited by a net outward radiation pressure which opposes the trapping force. We can divide the density-dependent photon-pressure force into two parts. First there is a repulsive ‘radiation trapping force’ due to atoms absorbing photons scattered from other atoms in the trap. Also, there is an attractive ‘attenuation force’ which is caused by atoms at the side of the cloud attenuating the laser beams, thus creating an intensity imbalance which leads to an inward force. The attenuation force may be obtained simply by replacing $\\sigma_R$ with $-\\sigma_L$, so that $$\\nabla\\cdot\\mathbf{F}_A = -\\frac{6\\sigma_L^2In}{c}.$$ Here $I$ is the intensity of one of the trapping laser beams, $n$ is the number density of atoms in the cloud, $\\sigma_L$ is the cross-section for absorption of the laser beam, and $\\sigma_R$ is the cross-section for absorption of the scattered light. Explain why this is so.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Every atom that absorbs laser light takes that light out of the beam and leaves a shadow behind it. A second atom in the shadow is pushed less by that beam than by the opposite one, so it feels a force toward the first atom. The shadow is a deficit of laser light flowing away from the first atom, the scattered flux of (a) with its sign reversed, and the second atom feels it with its cross-section for laser light, $\\sigma_L$, not $\\sigma_R$, because what is missing is laser light. Hence $\\sigma_R \\to -\\sigma_L$. Directly: of the pair of beams along $x$, the one travelling toward $+x$ obeys $dI_+/dx = -n\\sigma_LI_+$ and the one travelling toward $-x$ obeys $dI_-/dx = +n\\sigma_LI_-$. An atom feels $F_x = \\sigma_L(I_+ - I_-)/c$, so $$\\frac{\\partial F_x}{\\partial x} = -\\frac{n\\sigma_L^2(I_+ + I_-)}{c} \\approx -\\frac{2\\sigma_L^2In}{c}$$ in a cloud thin enough that $I_+ \\approx I_- \\approx I$. The pairs along $y$ and $z$ add the same, and $\\nabla\\cdot\\mathbf{F}_A = -6\\sigma_L^2In/c$: the force points inward because every atom's shadowed side faces the middle of the cloud."
+   }
+  },
+  {
+   "id": "hw9-3c",
+   "source_id": "hw9.3c",
+   "source_number": "Problem Set 9, Problem 3(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's spring constant $\\kappa$ is $K$ (Lukin's $\\kappa$ is a cavity's decay rate), the separation $d$ of two atoms is $r$ (Lukin's $d$ is the dipole moment, and 8.5.3 writes $r$), and the fraction $f$ of atoms that absorb is $f_b$ (Lukin's $f$ is the Langevin force); the set's sodium data, which this problem does not use, are left out, and the problem's opening is repeated so the part stands alone; the results of parts (a) and (b) are stated.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reabsorption",
+   "prompt": "Density Limit in a MOT. In a 3-D magneto-optical trap, the density of the trapped atoms is limited by a net outward radiation pressure which opposes the trapping force. We can divide the density-dependent photon-pressure force into two parts. First there is a repulsive ‘radiation trapping force’ due to atoms absorbing photons scattered from other atoms in the trap. Also, there is an attractive ‘attenuation force’ which is caused by atoms at the side of the cloud attenuating the laser beams, thus creating an intensity imbalance which leads to an inward force. The radiation trapping force obeys $\\nabla\\cdot\\mathbf{F}_R = 6\\sigma_L\\sigma_RIn/c$ and the attenuation force $\\nabla\\cdot\\mathbf{F}_A = -6\\sigma_L^2In/c$. Here $I$ is the intensity of one of the trapping laser beams, $n$ is the number density of atoms in the cloud, $\\sigma_L$ is the cross-section for absorption of the laser beam, and $\\sigma_R$ is the cross-section for absorption of the scattered light. The total force is the sum of $\\mathbf{F}_R$, $\\mathbf{F}_A$, and the trapping force $\\mathbf{F}_T = -K\\mathbf{r}$, where $K$ is the spring constant of the trap. For stability we require that the total force is attractive, $\\nabla\\cdot\\mathbf{F}_{total} < 0$. Find the maximum density of the trapped cloud at a given $K$ from the condition $\\nabla\\cdot\\mathbf{F}_{total} = 0$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "The trapping force has $\\nabla\\cdot\\mathbf{F}_T = -K\\nabla\\cdot\\mathbf{r} = -3K$. The condition $\\nabla\\cdot(\\mathbf{F}_R + \\mathbf{F}_A + \\mathbf{F}_T) = 0$ reads $$\\frac{6\\sigma_L(\\sigma_R - \\sigma_L)In}{c} - 3K = 0,$$ so $$n_{max} = \\frac{Kc}{2\\sigma_L(\\sigma_R - \\sigma_L)I}.$$ The light pressure limits the density only when $\\sigma_R > \\sigma_L$, so that reabsorption outweighs attenuation. The limit does not depend on the number of atoms: once it is reached, loading more atoms makes the cloud larger, not denser. A stiffer trap raises it and more intense light, at fixed $K$, lowers it."
+   }
+  },
+  {
+   "id": "hw9-3d",
+   "source_id": "hw9.3d",
+   "source_number": "Problem Set 9, Problem 3(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's spring constant $\\kappa$ is $K$ (Lukin's $\\kappa$ is a cavity's decay rate), the separation $d$ of two atoms is $r$ (Lukin's $d$ is the dipole moment, and 8.5.3 writes $r$), and the fraction $f$ of atoms that absorb is $f_b$ (Lukin's $f$ is the Langevin force); the set's sodium data, which this problem does not use, are left out, and the problem's opening is repeated so the part stands alone; the definitions of part (a) are repeated.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reabsorption",
+   "prompt": "Density Limit in a MOT. In a 3-D magneto-optical trap, the density of the trapped atoms is limited by a net outward radiation pressure which opposes the trapping force. We can divide the density-dependent photon-pressure force into two parts. First there is a repulsive ‘radiation trapping force’ due to atoms absorbing photons scattered from other atoms in the trap. Also, there is an attractive ‘attenuation force’ which is caused by atoms at the side of the cloud attenuating the laser beams, thus creating an intensity imbalance which leads to an inward force. Here $I$ is the intensity of one of the trapping laser beams, $n$ is the number density of atoms in the cloud, $\\sigma_L$ is the cross-section for absorption of the laser beam, and $\\sigma_R$ is the cross-section for absorption of the scattered light. Give a qualitative argument for whether we expect $\\sigma_R = \\sigma_L$, $\\sigma_R > \\sigma_L$, or $\\sigma_R < \\sigma_L$. (Hint: sketch the absorption and emission spectra for an atom in a strong laser field with a red detuning.)",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "We expect $\\sigma_R > \\sigma_L$. In a strong field the atom is described by its dressed states (2.1), split by $\\hbar\\sqrt{\\delta^2 + 4|\\Omega|^2}$. The light it scatters has an elastic part at the laser frequency $\\nu$ and two inelastic sidebands at $\\nu \\pm \\sqrt{\\delta^2 + 4|\\Omega|^2}$. A second atom in the same field absorbs most strongly at its light-shifted resonance, which for red detuning, $\\delta < 0$, lies at $\\nu + \\sqrt{\\delta^2 + 4|\\Omega|^2}$: near the bare resonance $\\omega$, pushed slightly beyond it, away from the laser, by the AC Stark shift. That is exactly where the upper sideband of the scattered light falls, while the lower sideband lies where the dressed atom hardly absorbs (it even shows gain). The elastic part is absorbed like the laser, with $\\sigma_L$, which is small since the laser is detuned. So the scattered light carries a component much nearer the absorption maximum than the laser, and on average $\\sigma_R > \\sigma_L$. In a weak field the scattering is almost all elastic and $\\sigma_R \\to \\sigma_L$, which is why the density limit of (c) matters most in a strongly driven trap."
+   }
+  },
+  {
+   "id": "hw9-3e",
+   "source_id": "hw9.3e",
+   "source_number": "Problem Set 9, Problem 3(e)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's spring constant $\\kappa$ is $K$ (Lukin's $\\kappa$ is a cavity's decay rate), the separation $d$ of two atoms is $r$ (Lukin's $d$ is the dipole moment, and 8.5.3 writes $r$), and the fraction $f$ of atoms that absorb is $f_b$ (Lukin's $f$ is the Langevin force); the set's sodium data, which this problem does not use, are left out, and the problem's opening is repeated so the part stands alone; the definitions of part (a) and the trapping force of part (c) are repeated.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "reabsorption",
+   "prompt": "Density Limit in a MOT. In a 3-D magneto-optical trap, the density of the trapped atoms is limited by a net outward radiation pressure which opposes the trapping force. We can divide the density-dependent photon-pressure force into two parts. First there is a repulsive ‘radiation trapping force’ due to atoms absorbing photons scattered from other atoms in the trap. Also, there is an attractive ‘attenuation force’ which is caused by atoms at the side of the cloud attenuating the laser beams, thus creating an intensity imbalance which leads to an inward force. Here $I$ is the intensity of one of the trapping laser beams, $n$ is the number density of atoms in the cloud, $\\sigma_L$ is the cross-section for absorption of the laser beam, and $\\sigma_R$ is the cross-section for absorption of the scattered light. The trapping force is $\\mathbf{F}_T = -K\\mathbf{r}$, with $K$ the spring constant of the trap, and $n_{max}$ is the density at which $\\nabla\\cdot(\\mathbf{F}_R + \\mathbf{F}_A + \\mathbf{F}_T) = 0$. Suppose that some of the atoms can be put into a ‘dark state’, so that only a fraction $f_b$ of the atoms absorb the trapping light. How do $F_R$, $F_A$ and $F_T$ vary with $f_b$? What happens to the limiting density $n_{max}$? This is the concept of the Dark SPOT trap (PRL 70, 2253 (1993)).",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Only the bright atoms, a fraction $f_b$ at any time, scatter and absorb. The radiation trapping force has sources of density $f_bn$ and acts on an atom only while it is bright, a fraction $f_b$ of the time, so on average $F_R \\propto f_b^2$: $\\nabla\\cdot\\mathbf{F}_R = 6f_b^2\\sigma_L\\sigma_RIn/c$. The attenuation force likewise comes from the shadows of $f_bn$ atoms and acts on bright atoms, $F_A \\propto f_b^2$: $\\nabla\\cdot\\mathbf{F}_A = -6f_b^2\\sigma_L^2In/c$. The trapping force is itself a light force, felt only while the atom absorbs, so $F_T \\propto f_b$: $\\mathbf{F}_T = -f_bK\\mathbf{r}$. Setting the divergence of the sum to zero gives $$n_{max} = \\frac{Kc}{2f_b\\sigma_L(\\sigma_R - \\sigma_L)I},$$ larger by $1/f_b$: the repulsion grows with the square of the bright fraction and the confinement only with its first power. In the Dark SPOT trap the repumping light is kept out of the trap's center, so most atoms there wait in a dark hyperfine state and the cloud reaches a density many times that of an ordinary MOT, held by a weaker average trap."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "hw9-3a",
+   "concept": "photon-reabsorption"
+  },
+  {
+   "exercise": "hw9-3a",
+   "concept": "absorption-cross-section"
+  },
+  {
+   "exercise": "hw9-3a",
+   "concept": "magneto-optical-trap"
+  },
+  {
+   "exercise": "hw9-3b",
+   "concept": "laser-attenuation"
+  },
+  {
+   "exercise": "hw9-3b",
+   "concept": "absorption-cross-section"
+  },
+  {
+   "exercise": "hw9-3c",
+   "concept": "photon-reabsorption"
+  },
+  {
+   "exercise": "hw9-3c",
+   "concept": "laser-attenuation"
+  },
+  {
+   "exercise": "hw9-3c",
+   "concept": "magneto-optical-trap"
+  },
+  {
+   "exercise": "hw9-3d",
+   "concept": "photon-reabsorption"
+  },
+  {
+   "exercise": "hw9-3d",
+   "concept": "dressed-states"
+  },
+  {
+   "exercise": "hw9-3d",
+   "concept": "absorption-cross-section"
+  },
+  {
+   "exercise": "hw9-3e",
+   "concept": "photon-reabsorption"
+  },
+  {
+   "exercise": "hw9-3e",
+   "concept": "laser-attenuation"
+  },
+  {
+   "exercise": "hw9-3e",
+   "concept": "magneto-optical-trap"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "footnote-2",
+   "kind": "book",
+   "number": "2",
+   "html": "<p>The validity of this approximation is most easily seen by solving exactly in the Fourier domain, where the relevant terms lead to a contribution to the coherence</p><div class=\"equation\" id=\"eq-8-86\">$$\\hat{\\sigma}_{12}(\\omega) = \\frac{\\kFnoise_{12}(\\omega)}{\\kgamma/2 + i(\\omega - \\kdelta)}. \\tag{8.86}$$</div><p>The correlation function for the atomic operator (which appears in the expression for the force) is then</p><div class=\"equation\" id=\"eq-8-87\">$$\\langle\\hat{\\sigma}_{12}(\\omega)\\hat{\\sigma}_{12}^\\dagger(\\omega')\\rangle = \\frac{2D\\delta(\\omega + \\omega')}{(\\kgamma/2 + i(\\omega - \\kdelta))(\\kgamma/2 - i(\\omega' - \\kdelta))}. \\tag{8.87}$$</div><p>Our approximation of neglecting the time derivative corresponds to neglecting the frequency in the denominator, which should have a negligible contribution at frequencies much lower than $\\kgamma$.</p>"
+  },
+  {
+   "id": "footnote-3",
+   "kind": "book",
+   "number": "3",
+   "html": "There are two factors of two incorporated here: one comes from adding <span data-concept=\"force-fluctuations\">the force fluctuations</span> from the two counterpropagating beams, neglecting any interference effects (for example by alternating the direction of the beam and considering only the average intensity of each beam.) The second factor of 2 comes from the fact that we have derived here only <span data-concept=\"laser-cooling-diffusion\">the diffusion</span> associated with <span data-concept=\"spontaneous-emission\">spontaneous emission</span>, and there is an equivalent component associated with absorption. See Bill Phillip’s notes http://cua.mit.edu/8.422_S13/Reading%20Material/phil92_varenna.pdf for further details."
+  },
+  {
+   "id": "c-rms-momentum",
+   "kind": "correction",
+   "html": "The book writes $\\sqrt{\\langle \\kpcm^2\\rangle} = \\sqrt{\\kDdiff\\kt}$, following its Eq. (8.49), which drops a factor of two. With the diffusion constant defined by $2\\kDdiff\\delta(\\kt-\\kt') = \\langle\\delta\\kF(\\kt)\\delta\\kF(\\kt')\\rangle$, kicks with no friction give $\\langle \\kpcm^2\\rangle = 2\\kDdiff\\kt$ for an atom starting at rest, so the root mean squared momentum grows as $\\sqrt{2\\kDdiff\\kt}$."
+  },
+  {
+   "id": "c-eq-8-95",
+   "kind": "correction",
+   "html": "Cooling needs red detuning: <a href=\"#drv-doppler-limit\">Eq. (8.93)</a> gives $\\keta$ the sign of $\\kdelta$, so the beams cool for $\\kdelta < 0$, and the optimal detuning is $\\kdelta \\approx -\\kgammaonetwo$, where <a href=\"#drv-doppler-limit\">Eq. (8.96)</a> holds."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "coherence-noise",
+   "what": "the Heisenberg-Langevin equation of the atomic coherence",
+   "source": "Modern Atomic and Optical Physics II, 8.5.1 Momentum diffusion in laser cooling of a two-level atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "For an atom in a radiation field bath, $\\hat A = \\hat\\sigma_{12}$ and $\\hat S = \\hat\\sigma_{12}$.",
+       "src": "(8.56)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{A}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{A}]} + \\mk{r1}{\\left(\\frac{\\kgamma}{2}\\kShat^\\dagger + \\kfhat^\\dagger\\right)[\\hat{A}, \\kShat]} - \\mk{r2}{[\\hat{A}, \\kShat^\\dagger]\\left(\\frac{\\kgamma}{2}\\kShat + \\kfhat\\right)}",
+      "src": "(8.69)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{\\sigma}_{12}]} + \\mk{r1}{\\left(\\frac{\\kgamma}{2}\\hat{\\sigma}_{21} + \\kfhat^\\dagger\\right)[\\hat{\\sigma}_{12}, \\hat{\\sigma}_{12}]} - \\mk{r2}{[\\hat{\\sigma}_{12}, \\hat{\\sigma}_{21}]\\left(\\frac{\\kgamma}{2}\\hat{\\sigma}_{12} + \\kfhat\\right)}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{\\sigma}_{12}]} - \\mk{r2}{\\left(\\hat{\\sigma}_{11} - \\hat{\\sigma}_{22}\\right)\\left(\\frac{\\kgamma}{2}\\hat{\\sigma}_{12} + \\kfhat(\\kt)\\right)}",
+       "uses": [],
+       "cap": "$[\\hat\\sigma_{12}, \\hat\\sigma_{12}] = 0$ and $[\\hat\\sigma_{12}, \\hat\\sigma_{21}] = \\hat\\sigma_{11} - \\hat\\sigma_{22}$."
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{\\sigma}_{12}]} - \\mk{g}{\\frac{\\kgamma}{2}\\hat{\\sigma}_{12}} + \\mk{f}{\\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)\\kfhat(\\kt)}",
+       "uses": [],
+       "cap": "$(\\hat\\sigma_{11} - \\hat\\sigma_{22})\\hat\\sigma_{12} = \\hat\\sigma_{12}$.",
+       "map": {
+        "r2": [
+         "g",
+         "f"
+        ]
+       }
+      }
+     ],
+     "num": "(8.82)"
+    }
+   ]
+  },
+  {
+   "id": "diffusion-constant",
+   "what": "the momentum diffusion constant of Doppler cooling",
+   "source": "Modern Atomic and Optical Physics II, 8.5.1 Momentum diffusion in laser cooling of a two-level atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\langle\\delta\\kF(\\kt)\\delta\\kF(\\kt')\\rangle = (\\hbar\\kkmag)^2\\frac{|\\kOmegatilde|^2\\kgamma}{(\\kgamma/2)^2 + \\kdelta^2}\\delta(\\kt-\\kt')",
+       "src": "(8.90)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{2\\kDdiff\\delta(\\kt-\\kt')} = \\mk{R}{\\langle\\delta\\kF(\\kt)\\delta\\kF(\\kt')\\rangle}",
+      "uses": [],
+      "why": "By analogy to the diffusion model of Brownian motion, Eqs. (8.36) and (8.38)."
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{2\\kDdiff\\delta(\\kt-\\kt')} = \\mk{R}{(\\hbar\\kkmag)^2\\frac{|\\kOmegatilde|^2\\kgamma}{(\\kgamma/2)^2 + \\kdelta^2}\\delta(\\kt-\\kt')}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{D}{\\kDdiff} = \\mk{R}{(\\hbar\\kkmag)^2\\frac{|\\kOmegatilde|^2\\kgamma/2}{(\\kgamma/2)^2 + \\kdelta^2}}",
+       "uses": []
+      }
+     ],
+     "num": "(8.91)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kOmegatilde = 2\\kOmega",
+       "src": "8.5.1"
+      },
+      {
+       "tex": "\\kRoptzero = \\frac{|\\kOmega|^2\\kgamma}{\\kdelta^2 + (\\kgamma/2)^2}",
+       "src": "8.5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{D}{\\kDdiff} = \\mk{R}{(\\hbar\\kkmag)^2\\frac{|\\kOmegatilde|^2\\kgamma/2}{(\\kgamma/2)^2 + \\kdelta^2}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{D}{\\kDdiff} = \\mk{R}{(\\hbar\\kkmag)^2\\frac{|\\kOmegatilde|^2\\kgamma/2}{(\\kgamma/2)^2 + \\kdelta^2}} = \\mk{a}{(\\hbar\\kkmag)^2\\frac{4|\\kOmega|^2\\kgamma/2}{(\\kgamma/2)^2 + \\kdelta^2}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{D}{\\kDdiff} = \\mk{R}{(\\hbar\\kkmag)^2\\frac{|\\kOmegatilde|^2\\kgamma/2}{(\\kgamma/2)^2 + \\kdelta^2}} = \\mk{a}{2(\\hbar\\kkmag)^2\\frac{|\\kOmega|^2\\kgamma}{(\\kgamma/2)^2 + \\kdelta^2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{D}{\\kDdiff} = \\mk{R}{(\\hbar\\kkmag)^2\\frac{|\\kOmegatilde|^2\\kgamma/2}{(\\kgamma/2)^2 + \\kdelta^2}} = \\mk{a}{2(\\hbar\\kkmag)^2\\kRoptzero}",
+       "uses": [2]
+      }
+     ],
+     "num": "(8.92)"
+    }
+   ]
+  },
+  {
+   "id": "doppler-limit",
+   "what": "the Doppler cooling limit",
+   "source": "Modern Atomic and Optical Physics II, 8.5.2 The Doppler cooling limit",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The zero-velocity optical pumping rate, $R_{opt} = 2\\gamma_{12}|\\Omega|^2/(\\gamma_{12}^2 + \\delta^2)$.",
+       "src": "(8.28)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{e}{\\keta} = \\mk{R}{\\frac{8\\hbar \\kkmag^2}{\\km}\\frac{\\kdelta\\kgammaonetwo|\\kOmega|^2}{(\\kgammaonetwo^2 + \\kdelta^2)^2}}",
+      "src": "(8.30)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{e}{\\keta} = \\mk{R}{\\frac{4}{\\km}\\frac{\\hbar\\kkmag^2\\kdelta}{\\kdelta^2 + \\kgammaonetwo^2}\\cdot\\frac{2\\kgammaonetwo|\\kOmega|^2}{\\kgammaonetwo^2 + \\kdelta^2}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{e}{\\keta} = \\mk{R}{\\frac{4\\kRopt}{\\km}\\frac{\\hbar\\kkmag^2\\kdelta}{\\kdelta^2 + \\kgammaonetwo^2}}",
+       "uses": [0]
+      }
+     ],
+     "num": "(8.93)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kDdiff = \\km\\keta k_B\\kT",
+       "src": "(8.48)"
+      },
+      {
+       "text": "The friction rate in the Einstein relation is the damping rate of Eq. (8.34), the magnitude $|\\eta|$; by Eq. (8.93) $\\eta$ has the sign of $\\delta$, negative for the red detuning that cools.",
+       "src": "8.3"
+      },
+      {
+       "tex": "\\kDdiff = 2(\\hbar\\kkmag)^2\\kRopt",
+       "src": "(8.92)"
+      },
+      {
+       "text": "For a radiatively broadened transition, $\\gamma_{12} = \\gamma/2$, the pumping rates of Eqs. (8.92) and (8.93) are the same.",
+       "src": "(3.92)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{k_B\\kTD} = \\mk{R}{\\frac{\\kDdiff}{\\km|\\keta|}}",
+      "uses": [1, 2]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{k_B\\kTD} = \\mk{R}{\\frac{2(\\hbar\\kkmag)^2\\kRopt}{\\km|\\keta|}}",
+       "uses": [3]
+      },
+      {
+       "tex": "\\mk{T}{k_B\\kTD} = \\mk{R}{\\frac{2(\\hbar\\kkmag)^2\\kRopt}{4\\kRopt\\hbar\\kkmag^2|\\kdelta|/(\\kdelta^2 + \\kgammaonetwo^2)}}",
+       "uses": [0, 4]
+      },
+      {
+       "tex": "\\mk{T}{k_B\\kTD} = \\mk{R}{\\frac{\\hbar\\left(\\kdelta^2 + \\kgammaonetwo^2\\right)}{2|\\kdelta|}}",
+       "uses": [],
+       "cap": "The optical pumping rate drops out."
+      }
+     ],
+     "num": "(8.95)",
+     "note": "The book prints $k_BT_D = D/m\\eta = \\hbar(\\delta^2 + \\gamma_{12}^2)/2\\delta$. Since $\\eta$ has the sign of $\\delta$ and the beams cool only for $\\delta < 0$, the temperature as printed is negative; the Einstein relation takes the magnitude $|\\eta|$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "At the optimal detuning, $\\delta \\approx -\\gamma_{12}$.",
+       "src": "8.5.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{T}{k_B\\kTD} = \\mk{R}{\\frac{\\hbar\\left(\\kdelta^2 + \\kgammaonetwo^2\\right)}{2|\\kdelta|}}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{T}{k_B\\kTD} = \\mk{R}{\\frac{\\hbar\\cdot 2\\kgammaonetwo^2}{2\\kgammaonetwo}}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{T}{k_B\\kTD} = \\mk{R}{\\hbar\\kgammaonetwo}",
+       "uses": []
+      }
+     ],
+     "num": "(8.96)"
+    }
+   ]
+  },
+  {
+   "id": "fluctuating-force",
+   "what": "the fluctuating light force",
+   "source": "Modern Atomic and Optical Physics II, 8.5.1 Momentum diffusion in laser cooling of a two-level atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The processes of interest are slow compared to $\\gamma$, so the time derivative is disregarded.",
+       "src": "8.5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{a}{\\frac{i}{\\hbar}[\\kH_{AL}, \\hat{\\sigma}_{12}]} - \\mk{g}{(\\frac{\\kgamma}{2} - i\\kdelta)\\hat{\\sigma}_{12}} + \\mk{f}{\\kFnoise_{12}(\\kt)}",
+      "src": "(8.85)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{0} \\approx \\mk{a}{\\frac{i}{\\hbar}[\\kH_{AL}, \\hat{\\sigma}_{12}]} - \\mk{g}{(\\frac{\\kgamma}{2} - i\\kdelta)\\hat{\\sigma}_{12}} + \\mk{f}{\\kFnoise_{12}(\\kt)}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{g}{(\\frac{\\kgamma}{2} - i\\kdelta)\\hat{\\sigma}_{12}} \\approx \\mk{f}{\\kFnoise_{12}(\\kt)} + \\mk{a}{\\frac{i}{\\hbar}[\\kH_{AL}, \\hat{\\sigma}_{12}]}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{g}{\\hat{\\sigma}_{12}} = \\mk{f}{\\frac{\\kFnoise_{12}(\\kt)}{\\kgamma/2 - i\\kdelta}} + \\mk{a}{\\frac{i}{\\hbar(\\kgamma/2 - i\\kdelta)}[\\kH_{AL}, \\hat{\\sigma}_{12}]}",
+       "uses": []
+      }
+     ],
+     "num": "(8.88)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kF = \\langle\\kF\\rangle + \\delta\\kF",
+       "src": "(8.80)"
+      },
+      {
+       "text": "The Hamiltonian terms are accounted for in the average force $\\langle F\\rangle$.",
+       "src": "8.5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{s}{-i\\hbar\\kkmag\\kOmega^*\\hat{\\sigma}_{12}} + h.c.",
+      "src": "(8.79)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kF} = \\mk{s}{-i\\hbar\\kkmag\\kOmega^*\\left(\\frac{\\kFnoise_{12}(\\kt)}{\\kgamma/2 - i\\kdelta} + \\frac{i}{\\hbar(\\kgamma/2 - i\\kdelta)}[\\kH_{AL}, \\hat{\\sigma}_{12}]\\right)} + h.c.",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{F}{\\delta\\kF} = \\mk{s}{-i\\hbar\\kkmag\\kOmega^*\\frac{\\kFnoise_{12}(\\kt)}{\\kgamma/2 - i\\kdelta}} + h.c",
+       "uses": [1, 2],
+       "cap": "Since the Hamiltonian terms were accounted for in the average force, the fluctuating force is the noise term and its conjugate."
+      }
+     ],
+     "num": "(8.89)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\langle\\kFnoise_{12}(\\kt)\\kFnoise_{12}(\\kt')^\\dagger\\rangle = \\kgamma\\delta(\\kt-\\kt')",
+       "src": "(8.84)"
+      },
+      {
+       "text": "In the vacuum $\\langle\\hat{\\mathcal F}_{12}\\hat{\\mathcal F}_{12}^\\dagger\\rangle$ is the only nonvanishing second moment of the noise.",
+       "src": "8.5.1"
+      },
+      {
+       "text": "$\\tilde\\Omega = 2\\Omega$ accounts for the two counterpropagating beams and for the diffusion from absorption as well as spontaneous emission.",
+       "src": "8.5.1, footnote 3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\delta\\kF(\\kt)\\delta\\kF(\\kt')\\rangle} = \\mk{R}{\\left\\langle\\left(-i\\hbar\\kkmag\\kOmega^*\\frac{\\kFnoise_{12}(\\kt)}{\\kgamma/2 - i\\kdelta} + h.c.\\right)\\left(-i\\hbar\\kkmag\\kOmega^*\\frac{\\kFnoise_{12}(\\kt')}{\\kgamma/2 - i\\kdelta} + h.c.\\right)\\right\\rangle}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\delta\\kF(\\kt)\\delta\\kF(\\kt')\\rangle} = \\mk{R}{(\\hbar\\kkmag)^2|\\kOmega|^2\\frac{\\langle\\kFnoise_{12}(\\kt)\\kFnoise_{12}(\\kt')^\\dagger\\rangle}{|\\kgamma/2 - i\\kdelta|^2}}",
+       "uses": [2],
+       "cap": "Only the product of the noise term at $t$ with the conjugate at $t^{\\prime}$ survives."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\delta\\kF(\\kt)\\delta\\kF(\\kt')\\rangle} = \\mk{R}{(\\hbar\\kkmag)^2\\frac{|\\kOmega|^2\\kgamma}{(\\kgamma/2)^2 + \\kdelta^2}\\delta(\\kt-\\kt')}",
+       "uses": [1]
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\delta\\kF(\\kt)\\delta\\kF(\\kt')\\rangle} = \\mk{R}{(\\hbar\\kkmag)^2\\frac{|\\kOmegatilde|^2\\kgamma}{(\\kgamma/2)^2 + \\kdelta^2}\\delta(\\kt-\\kt')}",
+       "uses": [3],
+       "cap": "Both beams, and absorption beside spontaneous emission, each double the fluctuations: $|\\Omega|^2 \\to |\\tilde\\Omega|^2 = 4|\\Omega|^2$."
+      }
+     ],
+     "num": "(8.90)"
+    }
+   ]
+  },
+  {
+   "id": "noise-moment",
+   "what": "the noise force on the coherence",
+   "source": "Modern Atomic and Optical Physics II, 8.5.1 Momentum diffusion in laser cooling of a two-level atom",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kFnoise_{12}(\\kt) = \\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)\\kfhat(\\kt)",
+       "src": "(8.83)"
+      },
+      {
+       "tex": "\\langle\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\rangle = \\left(n(\\komega) + 1\\right)\\kgamma\\delta(\\kt-\\kt')",
+       "src": "(8.67)"
+      },
+      {
+       "text": "For optical transitions the radiation field is in a vacuum state, $n(\\omega) = 0$.",
+       "src": "8.5.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\langle\\kFnoise_{12}(\\kt)\\kFnoise_{12}(\\kt')^\\dagger\\rangle} = \\mk{m}{\\langle\\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)\\rangle}",
+      "uses": [0]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\langle\\kFnoise_{12}(\\kt)\\kFnoise_{12}(\\kt')^\\dagger\\rangle} = \\mk{m}{\\langle\\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)^2\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\rangle}",
+       "uses": [],
+       "cap": "The noise is correlated only at $t = t^{\\prime}$, where the atomic operators commute with $\\hat f$."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kFnoise_{12}(\\kt)\\kFnoise_{12}(\\kt')^\\dagger\\rangle} = \\mk{m}{\\langle\\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)^2\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\rangle} = \\mk{R}{\\langle\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\rangle}",
+       "uses": [],
+       "cap": "$(\\hat\\sigma_{22} - \\hat\\sigma_{11})^2 = \\hat\\sigma_{22} + \\hat\\sigma_{11} = 1$ for the two-level atom."
+      },
+      {
+       "tex": "\\mk{L}{\\langle\\kFnoise_{12}(\\kt)\\kFnoise_{12}(\\kt')^\\dagger\\rangle} = \\mk{m}{\\langle\\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)^2\\kfhat(\\kt)\\kfhat(\\kt')^\\dagger\\rangle} = \\mk{R}{\\kgamma\\delta(\\kt-\\kt')}",
+       "uses": [1, 2]
+      }
+     ],
+     "num": "(8.84)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kFnoise_{12}(\\kt) = \\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)\\kfhat(\\kt)",
+       "src": "(8.83)"
+      },
+      {
+       "text": "In the rotating frame the system Hamiltonian is $\\hat H_S = -\\hbar\\delta|2\\rangle\\langle 2| + \\hat H_{AL}$.",
+       "src": "(3.84)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{\\sigma}_{12}]} - \\mk{g}{\\frac{\\kgamma}{2}\\hat{\\sigma}_{12}} + \\mk{f}{\\left(\\hat{\\sigma}_{22} - \\hat{\\sigma}_{11}\\right)\\kfhat(\\kt)}",
+      "uses": [],
+      "src": "(8.82)"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{h}{\\frac{i}{\\hbar}[\\kHS, \\hat{\\sigma}_{12}]} - \\mk{g}{\\frac{\\kgamma}{2}\\hat{\\sigma}_{12}} + \\mk{f}{\\kFnoise_{12}(\\kt)}",
+       "uses": [0]
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{a}{\\frac{i}{\\hbar}[\\kH_{AL}, \\hat{\\sigma}_{12}]} + \\mk{d}{i\\kdelta\\hat{\\sigma}_{12}} - \\mk{g}{\\frac{\\kgamma}{2}\\hat{\\sigma}_{12}} + \\mk{f}{\\kFnoise_{12}(\\kt)}",
+       "uses": [1],
+       "cap": "Separating the detuning: $\\frac{i}{\\hbar}[-\\hbar\\delta\\hat\\sigma_{22}, \\hat\\sigma_{12}] = -i\\delta[\\hat\\sigma_{22}, \\hat\\sigma_{12}] = i\\delta\\hat\\sigma_{12}$.",
+       "map": {
+        "h": [
+         "a",
+         "d"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\frac{d}{d\\kt}\\hat{\\sigma}_{12}} = \\mk{a}{\\frac{i}{\\hbar}[\\kH_{AL}, \\hat{\\sigma}_{12}]} - \\mk{g}{(\\frac{\\kgamma}{2} - i\\kdelta)\\hat{\\sigma}_{12}} + \\mk{f}{\\kFnoise_{12}(\\kt)}",
+       "uses": [],
+       "map": {
+        "d": "g"
+       }
+      }
+     ],
+     "num": "(8.85)"
+    }
+   ]
+  }
+ ]
+}

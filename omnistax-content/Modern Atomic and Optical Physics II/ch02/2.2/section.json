@@ -1,0 +1,468 @@
+{
+ "id": "2.2",
+ "chapter": "2",
+ "title": "Bound to Continuum Transitions",
+ "short": "Bound to continuum",
+ "lead": "A single bound state coupled by an applied field to a <span data-concept=\"bound-continuum-transition\">continuum</span> of unbound states, as in photoionization: the equations of motion for the amplitudes, the approximations that reduce them to one equation for the bound state, what it says about the bound state’s <span data-concept=\"born-rule\">population</span> and energy, and the state the <span data-concept=\"bound-continuum-transition\">continuum</span> is left in.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "",
+ "figures": [
+  {
+   "id": "sim-continuum-decay",
+   "kind": "sim",
+   "draws": [
+    "time",
+    "population",
+    "frequency",
+    "rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "bound-continuum",
+   "concept": "bound-continuum-transition",
+   "verb": "introduces"
+  },
+  {
+   "span": "memory",
+   "concept": "memoryless-continuum",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-2-49",
+   "concept": "principal-value-identity",
+   "verb": "introduces"
+  },
+  {
+   "span": "decay",
+   "concept": "continuum-decay-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "golden-rule",
+   "concept": "fermi-golden-rule",
+   "verb": "introduces"
+  },
+  {
+   "span": "stark",
+   "concept": "continuum-stark-shift",
+   "verb": "introduces"
+  },
+  {
+   "span": "wavepacket",
+   "concept": "outgoing-wavepacket",
+   "verb": "introduces"
+  },
+  {
+   "span": "model",
+   "concept": "rotating-wave-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "model",
+   "concept": "rotating-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "model",
+   "concept": "rabi-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "model",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-2-43",
+   "concept": "two-level-atom",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-2-43",
+   "concept": "schrodinger-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-2-43",
+   "concept": "probability-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-2-43",
+   "concept": "state-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "stark",
+   "concept": "ac-stark-shift",
+   "verb": "uses"
+  },
+  {
+   "span": "wavepacket",
+   "concept": "rabi-oscillations",
+   "verb": "uses"
+  },
+  {
+   "span": "wavepacket",
+   "concept": "superposition",
+   "verb": "uses"
+  },
+  {
+   "span": "decay-law",
+   "concept": "born-rule",
+   "verb": "uses"
+  },
+  {
+   "span": "drv-continuum-decay",
+   "concept": "detuning",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [],
+ "exercise_concepts": [],
+ "referents": [
+  {
+   "id": "bound-1",
+   "label": "the bound state |1⟩",
+   "figures": [
+    "sim-continuum-decay"
+   ]
+  },
+  {
+   "id": "continuum-k",
+   "label": "the continuum states |k⟩",
+   "figures": [
+    "sim-continuum-decay"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "footnote-2",
+   "kind": "book",
+   "number": "2",
+   "html": "For example, $\\mathcal{P}\\int_{-|a|}^{|b|}\\frac{1}{x}dx = \\mathop{\\mathrm{lim}}\\limits_{\\epsilon\\to 0}\\left(\\int_{-|a|}^{-\\epsilon}\\frac{1}{x}dx + \\int_{\\epsilon}^{|b|}\\frac{1}{x}dx\\right)$"
+  },
+  {
+   "id": "c-unbound",
+   "kind": "correction",
+   "html": "The book prints “each bound state $|k\\rangle$”. The states $|k\\rangle$ are the unbound states of the continuum, each coupled to the single bound state $|1\\rangle$."
+  },
+  {
+   "id": "c-decay-law",
+   "kind": "correction",
+   "html": "The book prints $\\kcone(\\kt) = \\kcone(0)e^{-\\kgamma \\kt/2 + i\\kDeltaStark \\kt}$, with the sign it gives the shift in Eq. (2.50). The identity (2.49) gives $\\dot{\\kcone} = -\\kcone(\\kgamma/2 + i\\kDeltaStark)$, so $\\kcone(\\kt) = \\kcone(0)e^{-\\kgamma \\kt/2 - i\\kDeltaStark \\kt}$, the sign of the light shift of Eq. (2.22)."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "continuum-decay",
+   "what": "the decay and energy shift of a state coupled to a continuum",
+   "source": "Modern Atomic and Optical Physics II, 2.2 Bound to Continuum Transitions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = \\sum_k \\hbar\\left(\\komegak - \\knu\\right)|k\\rangle\\langle k| - \\hbar\\sum_k \\left(\\kOmegak|k\\rangle\\langle 1| + \\kOmegak^*|1\\rangle\\langle k|\\right)",
+       "src": "(2.42)"
+      },
+      {
+       "tex": "|\\kpsi\\rangle = \\kcone|1\\rangle + \\sum_k \\kck|k\\rangle",
+       "src": "(2.43)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\kH|\\kpsi\\rangle}",
+      "src": "(1.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcone}} = \\mk{R}{\\langle 1|\\kH|\\kpsi\\rangle}",
+       "uses": [
+        1
+       ],
+       "cap": "Taking the overlap with $\\langle 1|$; the states are orthonormal, so $\\langle 1|\\psi\\rangle = c_1$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kcone}} = \\mk{R}{-\\hbar\\sum_k \\kOmegak^* \\kck}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "Only the terms $|1\\rangle\\langle k|$ of $\\hat{H}$ reach $\\langle 1|$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{i\\sum_k \\kOmegak^* \\kck}",
+       "uses": [],
+       "cap": "Dividing by $i\\hbar$, with $1/i = -i$."
+      }
+     ],
+     "num": "(2.44)"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kH = \\sum_k \\hbar\\left(\\komegak - \\knu\\right)|k\\rangle\\langle k| - \\hbar\\sum_k \\left(\\kOmegak|k\\rangle\\langle 1| + \\kOmegak^*|1\\rangle\\langle k|\\right)",
+       "src": "(2.42)"
+      },
+      {
+       "tex": "|\\kpsi\\rangle = \\kcone|1\\rangle + \\sum_k \\kck|k\\rangle",
+       "src": "(2.43)"
+      },
+      {
+       "tex": "\\kdeltak = \\knu - \\komegak",
+       "src": "2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{i\\hbar\\frac{d}{d\\kt}|\\kpsi\\rangle} = \\mk{R}{\\kH|\\kpsi\\rangle}",
+      "src": "(1.11)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kck}} = \\mk{R}{\\langle k|\\kH|\\kpsi\\rangle}",
+       "uses": [
+        1
+       ],
+       "cap": "Taking the overlap with $\\langle k|$."
+      },
+      {
+       "tex": "\\mk{L}{i\\hbar\\dot{\\kck}} = \\mk{w}{\\hbar(\\komegak - \\knu)\\kck} - \\mk{R}{\\hbar\\kOmegak\\kcone}",
+       "uses": [
+        0,
+        1
+       ],
+       "cap": "Of $\\hat{H}$ only $\\hbar(\\omega_k - \\nu)|k\\rangle\\langle k|$ and the term in $|k\\rangle\\langle 1|$ reach $\\langle k|$.",
+       "map": {
+        "R": [
+         "w",
+         "R"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kck}} = \\mk{w}{-i(\\komegak - \\knu)\\kck} + \\mk{R}{i\\kOmegak \\kcone}",
+       "uses": [],
+       "cap": "Dividing by $i\\hbar$."
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kck}} = \\mk{w}{i\\kdeltak \\kck} + \\mk{R}{i\\kOmegak \\kcone}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "num": "(2.45)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "text": "The atom starts out in the ground state: $\\kcone = 1$ and $\\kck = 0$.",
+       "src": "2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kck}} = \\mk{w}{i\\kdeltak \\kck} + \\mk{R}{i\\kOmegak \\kcone}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kck(\\kt)} = \\mk{R}{i\\kOmegak\\int_0^{\\kt} \\kcone(\\kt')e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'}",
+       "uses": [
+        1
+       ],
+       "cap": "Formal integration: the solution of $\\dot{x} = i\\delta_k x + f(t)$ with $x(0) = 0$ is $\\int_0^t f(t')e^{i\\delta_k(t - t')}dt'$, as differentiating it shows.",
+       "map": {
+        "w": "R"
+       }
+      }
+     ],
+     "num": "(2.46)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 2
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{i\\sum_k \\kOmegak^* \\kck}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}(\\kt)} = \\mk{R}{i\\sum_k \\kOmegak^*\\, i\\kOmegak\\int_0^{\\kt} \\kcone(\\kt')e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}(\\kt)} = \\mk{R}{-\\sum_k |\\kOmegak|^2\\int_0^{\\kt} \\kcone(\\kt')e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'}",
+       "uses": []
+      }
+     ],
+     "num": "(2.47)"
+    },
+    {
+     "assumes": [
+      {
+       "text": "An infinitesimal imaginary part is added to $\\kdeltak$, $\\kdeltak \\to \\kdeltak + i\\epsilon$ with $\\epsilon \\to 0$, so that the integrand dies away at early times.",
+       "src": "2.2"
+      },
+      {
+       "text": "The long time limit is taken, so the term $e^{(i\\kdeltak - \\epsilon)\\kt}$ in the numerator vanishes.",
+       "src": "2.2"
+      },
+      {
+       "tex": "\\mathop{\\mathrm{lim}}\\limits_{\\epsilon\\to 0}\\frac{i}{\\kdeltak + i\\epsilon} = \\pi\\delta(\\kdeltak) + i\\mathcal{P}\\frac{1}{\\kdeltak}",
+       "src": "(2.49)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\int_0^{\\kt} e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'} = \\mk{R}{\\mathop{\\mathrm{lim}}\\limits_{\\epsilon\\to 0}\\int_0^{\\kt} e^{-i(\\kdeltak + i\\epsilon)(\\kt'-\\kt)}d\\kt'}",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\int_0^{\\kt} e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'} = \\mk{R}{\\mathop{\\mathrm{lim}}\\limits_{\\epsilon\\to 0}\\frac{i(1 - e^{(i\\kdeltak - \\epsilon)\\kt})}{\\kdeltak + i\\epsilon}}",
+       "uses": [],
+       "cap": "With $s = t' - t$ running from $-t$ to $0$, $\\int_{-t}^0 e^{-i(\\delta_k + i\\epsilon)s}ds = \\frac{1 - e^{i(\\delta_k + i\\epsilon)t}}{-i(\\delta_k + i\\epsilon)}$."
+      },
+      {
+       "tex": "\\mk{I}{\\int_0^{\\kt} e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'} = \\mk{R}{\\mathop{\\mathrm{lim}}\\limits_{\\epsilon\\to 0}\\frac{i}{\\kdeltak + i\\epsilon}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\int_0^{\\kt} e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'} = \\mk{R}{\\pi\\delta(\\kdeltak) + i\\mathcal{P}\\frac{1}{\\kdeltak}}",
+       "uses": [
+        2
+       ]
+      }
+     ],
+     "note": "The book prints the exponent as $-i(\\kdeltak - i\\epsilon)(\\kt'-\\kt)$, whose integral grows at long times; the exponent that gives its right side is $-i(\\kdeltak + i\\epsilon)(\\kt'-\\kt)$."
+    },
+    {
+     "assumes": [
+      {
+       "step": 3
+      },
+      {
+       "step": 4
+      },
+      {
+       "text": "Since the detunings $\\kdeltak$ are summed over, the exponential is appreciably different from zero only when $\\kt' = \\kt$; to lowest order, with $\\kcone$ slowly varying, $\\kcone(\\kt') = \\kcone(\\kt)$.",
+       "src": "2.2"
+      },
+      {
+       "tex": "\\kdeltak = \\knu - \\komegak",
+       "src": "2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\dot{\\kcone}(\\kt)} = \\mk{R}{-\\sum_k |\\kOmegak|^2\\int_0^{\\kt} \\kcone(\\kt')e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}(\\kt)} = \\mk{R}{-\\kcone(\\kt)\\sum_k |\\kOmegak|^2\\int_0^{\\kt} e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{-\\kcone\\sum_k |\\kOmegak|^2\\left(\\pi\\delta(\\kdeltak) + i\\mathcal{P}\\frac{1}{\\kdeltak}\\right)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\dot{\\kcone}} = \\mk{R}{-\\kcone(\\underbrace{\\pi\\sum_k |\\kOmegak|^2\\delta(\\knu - \\komegak)}_{\\kgamma/2} + i\\underbrace{\\sum_k |\\kOmegak|^2\\mathcal{P}\\frac{1}{\\knu - \\komegak}}_{\\kDeltaStark})}",
+       "uses": [
+        3
+       ]
+      }
+     ],
+     "num": "(2.50)",
+     "note": "The book prints $-i$ before $\\kDeltaStark$, and with it $\\kcone(\\kt) = \\kcone(0)e^{-\\kgamma \\kt/2 + i\\kDeltaStark \\kt}$. The identity (2.49) gives $+i$, so $\\kcone(\\kt) = \\kcone(0)e^{-\\kgamma\\kt/2 - i\\kDeltaStark\\kt}$, the sign of the light shift of Eq. (2.22) for a single level."
+    }
+   ]
+  },
+  {
+   "id": "continuum-amplitudes",
+   "what": "the amplitudes of the continuum states",
+   "source": "Modern Atomic and Optical Physics II, 2.2 Bound to Continuum Transitions",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The amplitude of the ground state evolves as $\\kcone(\\kt) = \\kcone(0)e^{-\\kgamma \\kt/2}$, with $\\kcone(0) = 1$, once the energy shift is disregarded or incorporated into a renormalized atomic frequency.",
+       "src": "2.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kck(\\kt)} = \\mk{R}{i\\kOmegak\\int_0^{\\kt} \\kcone(\\kt')e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'}",
+      "src": "(2.46)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kck(\\kt)} = \\mk{R}{i\\kOmegak\\int_0^{\\kt} e^{-\\kgamma \\kt'/2}e^{-i\\kdeltak(\\kt'-\\kt)}d\\kt'}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\kck(\\kt)} = \\mk{R}{i\\kOmegak e^{i\\kdeltak\\kt}\\int_0^{\\kt} e^{-(\\kgamma/2 + i\\kdeltak)\\kt'}d\\kt'}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\kck(\\kt)} = \\mk{R}{i\\frac{\\kOmegak}{\\kgamma/2 + i\\kdeltak}(1 - e^{-(\\kgamma/2 + i\\kdeltak)\\kt})e^{i\\kdeltak \\kt}}",
+       "uses": [],
+       "cap": "$\\int_0^t e^{-at'}dt' = (1 - e^{-at})/a$, with $a = \\gamma/2 + i\\delta_k$."
+      }
+     ],
+     "num": "(2.54)"
+    }
+   ]
+  }
+ ]
+}

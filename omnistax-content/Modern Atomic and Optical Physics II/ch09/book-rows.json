@@ -1,0 +1,2253 @@
+{
+ "symbols": [
+  {
+   "sym": "kappa",
+   "latex": "\\kappa",
+   "macro": "\\kkappa"
+  },
+  {
+   "sym": "alpha_coh",
+   "latex": "\\alpha",
+   "macro": "\\kalphacoh"
+  },
+  {
+   "sym": "x_quad",
+   "latex": "\\hat{x}",
+   "macro": "\\kxquad"
+  },
+  {
+   "sym": "p_quad",
+   "latex": "\\hat{p}",
+   "macro": "\\kpquad"
+  },
+  {
+   "sym": "D_shift",
+   "latex": "\\hat{D}(\\alpha)",
+   "macro": "\\kDshift"
+  },
+  {
+   "sym": "P_alpha",
+   "latex": "P(\\alpha)",
+   "macro": "\\kPalpha"
+  },
+  {
+   "sym": "tau_Rabi",
+   "latex": "\\tau_\\mathrm{Rabi}",
+   "macro": "\\ktauRabi"
+  },
+  {
+   "sym": "tau_collapse",
+   "latex": "\\tau_\\mathrm{Collapse}",
+   "macro": "\\ktaucollapse"
+  },
+  {
+   "sym": "tau_revival",
+   "latex": "\\tau_\\mathrm{Revival}",
+   "macro": "\\ktaurevival"
+  },
+  {
+   "sym": "Q_fac",
+   "latex": "Q",
+   "macro": "\\kQfac"
+  },
+  {
+   "sym": "F_fin",
+   "latex": "F",
+   "macro": "\\kFfin"
+  },
+  {
+   "sym": "g2",
+   "latex": "g^{(2)}",
+   "macro": "\\kgtwo"
+  },
+  {
+   "sym": "sigma_gain",
+   "latex": "\\sigma",
+   "macro": "\\ksigmagain"
+  },
+  {
+   "sym": "beta_gain",
+   "latex": "\\beta",
+   "macro": "\\kbetagain"
+  },
+  {
+   "sym": "beta_tilde",
+   "latex": "\\tilde{\\beta}",
+   "macro": "\\kbetatilde"
+  },
+  {
+   "sym": "xi_pdc",
+   "latex": "\\xi",
+   "macro": "\\kxipdc"
+  },
+  {
+   "sym": "r_sq",
+   "latex": "r",
+   "macro": "\\krsq"
+  },
+  {
+   "sym": "S_coll",
+   "latex": "\\mathbf{S}",
+   "macro": "\\kScoll"
+  },
+  {
+   "sym": "c_np1",
+   "latex": "c_{n+1}",
+   "macro": "\\kcnpone"
+  },
+  {
+   "sym": "c_11",
+   "latex": "c_{1,1}",
+   "macro": "\\kconeone"
+  },
+  {
+   "sym": "c_20",
+   "latex": "c_{2,0}",
+   "macro": "\\kctwozero"
+  },
+  {
+   "sym": "E_cav",
+   "latex": "E",
+   "macro": "\\kEcav"
+  },
+  {
+   "sym": "P_quad",
+   "latex": "\\hat{P}",
+   "macro": "\\kPquad"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "fock-states",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Fock states",
+   "terms": [
+    "Fock states",
+    "number states"
+   ],
+   "type": "state",
+   "statement": "The eigenbasis of the field Hamiltonian is formed by the number states, or Fock states, each holding a definite number of photons in its mode.",
+   "forms": [
+    {
+     "id": "eq-9-4",
+     "latex": "\\hat{n}_{k,\\alpha}|n_{k,\\alpha}\\rangle = \\hat{a}^\\dagger_{k,\\alpha}\\hat{a}_{k,\\alpha}|n_{k,\\alpha}\\rangle = n_{k,\\alpha}|n_{k,\\alpha}\\rangle",
+     "anchor": "9.1-eq-9-4"
+    },
+    {
+     "id": "eq-9-3",
+     "latex": "\\hat{H} = \\sum_{k,\\alpha}\\hbar\\omega_k\\left(\\hat{a}^\\dagger_{k,\\alpha}\\hat{a}_{k,\\alpha} + \\frac{1}{2}\\right)",
+     "anchor": "9.1-eq-9-3"
+    }
+   ]
+  },
+  {
+   "id": "single-mode-field",
+   "kind": "idea",
+   "section": "9.1",
+   "name": "Single-mode description",
+   "statement": "Many properties of quantum fields can be understood from the evolution of a single mode, which is also quantitatively right for atoms in the field of a high finesse cavity."
+  },
+  {
+   "id": "photon-statistics",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Photon statistics",
+   "terms": [
+    "photon distribution",
+    "photon statistics"
+   ],
+   "type": "population",
+   "statement": "The probability distribution for the number of photons in a mode, the diagonal of the field's density matrix in the Fock basis."
+  },
+  {
+   "id": "thermal-photon-distribution",
+   "kind": "result",
+   "section": "9.1",
+   "name": "Single-mode thermal state",
+   "type": "population",
+   "statement": "A single mode in thermal equilibrium has a diagonal density matrix whose photon distribution falls exponentially with n, so zero photons is most likely, the mean is the Bose-Einstein n̄, and the mean field vanishes.",
+   "forms": [
+    {
+     "id": "eq-9-6",
+     "latex": "\\rho_{nn} = e^{-n\\hbar\\omega/k_B T}\\cdot(1 - e^{-\\hbar\\omega/k_B T})",
+     "anchor": "9.1-eq-9-6"
+    },
+    {
+     "id": "eq-9-5",
+     "latex": "\\hat{\\rho} = \\frac{e^{-\\hat{H}/k_B T}}{\\mathrm{Tr}[e^{-\\hat{H}/k_B T}]}",
+     "anchor": "9.1-eq-9-5"
+    },
+    {
+     "id": "eq-9-7",
+     "latex": "\\overline{n} = \\sum_n n\\rho_{nn} = \\frac{1}{e^{\\hbar\\omega/k_B T} - 1}",
+     "anchor": "9.1-eq-9-7"
+    },
+    {
+     "id": "eq-9-8",
+     "latex": "\\langle\\hat{E}\\rangle \\propto \\langle\\hat{a}\\rangle = 0",
+     "anchor": "9.1-eq-9-8"
+    }
+   ]
+  },
+  {
+   "id": "multimode-thermal-statistics",
+   "kind": "idea",
+   "section": "9.1",
+   "name": "Multimode thermal light",
+   "statement": "Summed over many modes, each most likely empty, a thermal field's total photon number is most likely finite and its distribution looks Poissonian; sunlight shows single-mode statistics only when filtered to a bandwidth Δω and detected in gates shorter than 1/Δω."
+  },
+  {
+   "id": "coherent-state",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Coherent state",
+   "terms": [
+    "coherent state"
+   ],
+   "type": "state",
+   "statement": "The eigenstate |α⟩ of the photon annihilation operator, the quantum state of the classical coherent field of a laser, with a well-defined mean electric field.",
+   "forms": [
+    {
+     "id": "eq-9-10",
+     "latex": "\\hat{a}|\\alpha\\rangle = \\alpha|\\alpha\\rangle",
+     "anchor": "9.1-eq-9-10"
+    },
+    {
+     "id": "eq-9-9",
+     "latex": "\\langle\\psi|\\hat{E}|\\psi\\rangle = E",
+     "anchor": "9.1-eq-9-9"
+    }
+   ]
+  },
+  {
+   "id": "coherent-amplitude",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Coherent amplitude",
+   "symbol": "alpha_coh",
+   "type": "quadrature",
+   "statement": "The eigenvalue α of a coherent state: the mean field is proportional to it and the mean photon number is |α|².",
+   "forms": [
+    {
+     "id": "eq-9-12",
+     "latex": "\\langle\\alpha|\\hat{a}^\\dagger\\hat{a}|\\alpha\\rangle = |\\alpha|^2",
+     "anchor": "9.1-eq-9-12"
+    },
+    {
+     "id": "eq-9-11",
+     "latex": "\\langle\\alpha|\\hat{E}|\\alpha\\rangle = \\sqrt{\\frac{\\hbar\\omega}{2\\epsilon_0 V}}\\left(\\alpha e^{i(\\mathbf{k}\\cdot\\mathbf{r} - \\omega t)} + c.c.\\right)",
+     "anchor": "9.1-eq-9-11"
+    }
+   ]
+  },
+  {
+   "id": "quadrature-operators",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Quadrature operators",
+   "terms": [
+    "quadrature operators",
+    "quadrature components",
+    "in phase",
+    "out of phase"
+   ],
+   "symbol": "x_quad",
+   "type": "quadrature",
+   "statement": "In analogy to position and momentum of an oscillator, x̂ and p̂ are the Hermitian combinations of â and â†; the field is x̂ cos ωt + p̂ sin ωt, so they are its in-phase and out-of-phase components.",
+   "forms": [
+    {
+     "id": "eq-9-13",
+     "latex": "\\hat{x} = \\frac{1}{\\sqrt{2}}\\left(\\hat{a} + \\hat{a}^\\dagger\\right)",
+     "anchor": "9.1-eq-9-13"
+    },
+    {
+     "id": "eq-9-14",
+     "latex": "\\hat{p} = \\frac{1}{i\\sqrt{2}}\\left(\\hat{a} - \\hat{a}^\\dagger\\right)",
+     "anchor": "9.1-eq-9-14"
+    },
+    {
+     "id": "eq-9-17",
+     "latex": "\\hat{E} \\propto \\hat{x}\\cos\\omega t + \\hat{p}\\sin\\omega t",
+     "anchor": "9.1-eq-9-17"
+    }
+   ]
+  },
+  {
+   "id": "coherent-state-uncertainty",
+   "kind": "result",
+   "section": "9.1",
+   "name": "Minimum uncertainty of a coherent state",
+   "terms": [
+    "most classical"
+   ],
+   "statement": "A coherent state has quadrature variances of 1/2 each, the most classical the uncertainty principle δxδp ≥ 1/2 allows; in phase space it is a disc of diameter √2 at a distance √2|α| from the origin.",
+   "forms": [
+    {
+     "id": "eq-9-15",
+     "latex": "\\langle\\delta x^2\\rangle = \\frac{1}{2}",
+     "anchor": "9.1-eq-9-15"
+    },
+    {
+     "id": "eq-9-16",
+     "latex": "\\langle\\delta p^2\\rangle = \\frac{1}{2}",
+     "anchor": "9.1-eq-9-16"
+    }
+   ]
+  },
+  {
+   "id": "local-oscillator",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Local oscillator",
+   "terms": [
+    "local oscillator"
+   ],
+   "statement": "A reference field cos ωt mixed with a signal, against which x̂ gives the in-phase and p̂ the out-of-phase component.",
+   "forms": [
+    {
+     "id": "eq-9-18",
+     "latex": "E_{LO} \\sim \\cos\\omega t",
+     "anchor": "9.1-eq-9-18"
+    }
+   ]
+  },
+  {
+   "id": "shift-operator",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Shift operator",
+   "terms": [
+    "shift operator"
+   ],
+   "symbol": "D_shift",
+   "statement": "The operator D̂(α) = exp(αâ† − α*â) displaces a state in the x̂, p̂ plane; acting on the vacuum it makes the coherent state, whose Fock expansion follows from the identity for exponentials of operators with c-number commutator.",
+   "forms": [
+    {
+     "id": "eq-9-19",
+     "latex": "\\hat{D}(\\alpha) = e^{\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}}",
+     "anchor": "9.1-eq-9-19"
+    },
+    {
+     "id": "eq-9-20",
+     "latex": "\\hat{D}^{-1}(\\alpha)\\hat{a}\\hat{D}(\\alpha) = \\hat{a} + \\alpha",
+     "anchor": "9.1-eq-9-20"
+    },
+    {
+     "id": "eq-9-21",
+     "latex": "e^{\\hat{A}+\\hat{B}} = e^{\\hat{A}}e^{\\hat{B}}e^{-[\\hat{A},\\hat{B}]/2}",
+     "anchor": "9.1-eq-9-21"
+    },
+    {
+     "id": "eq-9-24",
+     "latex": "\\hat{D}(\\alpha)|0\\rangle = e^{-|\\alpha|^2/2}\\sum_n\\frac{\\alpha^n}{\\sqrt{n!}}|n\\rangle = |\\alpha\\rangle",
+     "anchor": "9.1-drv-shift-operator-on-vacuum"
+    }
+   ]
+  },
+  {
+   "id": "poisson-photon-statistics",
+   "kind": "result",
+   "section": "9.1",
+   "name": "Poisson statistics of a coherent state",
+   "terms": [
+    "Poisson distribution"
+   ],
+   "type": "population",
+   "statement": "The photon number of a coherent state follows a Poisson distribution with variance equal to its mean |α|², so for large fields the intensity grows better defined.",
+   "forms": [
+    {
+     "id": "eq-9-26",
+     "latex": "\\rho_{nn} = e^{-|\\alpha|^2}\\frac{|\\alpha|^{2n}}{n!}",
+     "anchor": "9.1-drv-coherent-photon-statistics"
+    },
+    {
+     "id": "eq-9-27",
+     "latex": "\\bar{n} = |\\alpha|^2",
+     "anchor": "9.1-drv-coherent-photon-statistics"
+    },
+    {
+     "id": "eq-9-28",
+     "latex": "\\langle\\Delta n^2\\rangle = \\bar{n} = |\\alpha|^2",
+     "anchor": "9.1-drv-coherent-photon-statistics"
+    }
+   ]
+  },
+  {
+   "id": "classical-dipole-radiation",
+   "kind": "result",
+   "section": "9.1",
+   "name": "Coherent state from a classical dipole",
+   "statement": "A classical oscillating dipole driving the field evolves the vacuum by the shift operator, so the field it radiates is a coherent state with α = id₀E₀t/2ℏ.",
+   "forms": [
+    {
+     "id": "eq-9-30",
+     "latex": "|\\psi\\rangle = e^{-i\\hat{H}t/\\hbar}|0\\rangle = e^{\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}}|0\\rangle",
+     "anchor": "9.1-eq-9-30"
+    },
+    {
+     "id": "eq-9-29",
+     "latex": "\\hat{H} = -d\\hat{E} = -d_0\\cos\\omega t\\hat{E}",
+     "anchor": "9.1-eq-9-29"
+    }
+   ]
+  },
+  {
+   "id": "multimode-coherent-state",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Multimode coherent state",
+   "type": "state",
+   "statement": "A product of coherent states in every mode, whose mean field is the classical field with Fourier components E_k ∝ α_k.",
+   "forms": [
+    {
+     "id": "eq-9-31",
+     "latex": "|\\psi\\rangle = \\prod_k|\\alpha_k\\rangle",
+     "anchor": "9.1-eq-9-31"
+    },
+    {
+     "id": "eq-9-33",
+     "latex": "E(r,t) = \\sum_k\\sqrt{\\frac{\\hbar\\omega_k}{2\\epsilon_0 V}}\\alpha_k e^{i(\\mathbf{k}\\cdot\\mathbf{r} - \\omega_k t)} + c.c.",
+     "anchor": "9.1-eq-9-33"
+    }
+   ]
+  },
+  {
+   "id": "coherent-state-overcompleteness",
+   "kind": "result",
+   "section": "9.1",
+   "name": "Overcompleteness of coherent states",
+   "terms": [
+    "overcomplete"
+   ],
+   "statement": "The coherent states resolve the identity, (1/π)∫d²α|α⟩⟨α| = 1, but are not orthogonal, |⟨α|β⟩| = e^{−|α−β|²/2}, so they form an overcomplete set.",
+   "forms": [
+    {
+     "id": "eq-9-38",
+     "latex": "1 = \\frac{1}{\\pi}\\int d^2\\alpha|\\alpha\\rangle\\langle\\alpha|",
+     "anchor": "9.1-drv-coherent-state-completeness"
+    },
+    {
+     "id": "eq-9-39",
+     "latex": "|\\langle\\alpha|\\beta\\rangle| = e^{-(1/2)|\\alpha-\\beta|^2}",
+     "anchor": "9.1-drv-coherent-state-overlap"
+    },
+    {
+     "id": "eq-9-34",
+     "latex": "\\int|\\alpha\\rangle\\langle\\alpha|d^2\\alpha = \\sum_{m,n}\\int e^{-|\\alpha|^2}\\frac{\\alpha^m\\alpha^{*n}}{\\sqrt{m!n!}}|m\\rangle\\langle n|d^2\\alpha",
+     "anchor": "9.1-drv-coherent-state-completeness"
+    }
+   ]
+  },
+  {
+   "id": "p-representation",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Quasi-probability distribution",
+   "terms": [
+    "quasi-probability distribution"
+   ],
+   "symbol": "P_alpha",
+   "statement": "The density operator written as ∫P(α)|α⟩⟨α|d²α; P(α) always exists, gives normally ordered expectation values as a probability would, but can be negative.",
+   "forms": [
+    {
+     "id": "eq-9-40",
+     "latex": "\\hat{\\rho} = \\int P(\\alpha)|\\alpha\\rangle\\langle\\alpha|d^2\\alpha",
+     "anchor": "9.1-eq-9-40"
+    },
+    {
+     "id": "eq-9-42",
+     "latex": "\\langle\\hat{O}\\rangle = \\int P(\\alpha)O(\\alpha)d^2\\alpha",
+     "anchor": "9.1-eq-9-42"
+    },
+    {
+     "id": "eq-9-43",
+     "latex": "P(\\alpha) = \\frac{e^{|\\alpha|^2}}{\\pi^2}\\int\\langle-\\beta|\\rho|\\beta\\rangle e^{|\\beta|^2}e^{-\\beta\\alpha^* + \\beta^*\\alpha}d^2\\beta",
+     "anchor": "9.1-eq-9-43"
+    }
+   ]
+  },
+  {
+   "id": "nonclassical-light",
+   "kind": "idea",
+   "section": "9.1",
+   "name": "Nonclassical states of light",
+   "terms": [
+    "non-classical"
+   ],
+   "statement": "Negative values of P(α) are associated with non-classical properties of the field and mark a boundary between quantum and classical states."
+  },
+  {
+   "id": "linear-optical-transformations",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Linear optical transformations",
+   "terms": [
+    "linear transformations"
+   ],
+   "statement": "Effects independent of the incident power, such as phase shifts and beamsplitters, under which a coherent state stays coherent; a phase shift takes â to âe^{iφ}.",
+   "forms": [
+    {
+     "id": "eq-9-44",
+     "latex": "E \\rightarrow Ee^{i\\phi} \\Rightarrow \\hat{a} \\rightarrow \\hat{a}e^{i\\phi}",
+     "anchor": "9.1-eq-9-44"
+    }
+   ]
+  },
+  {
+   "id": "beamsplitter-transformation",
+   "kind": "result",
+   "section": "9.1",
+   "name": "Beamsplitter transformation",
+   "terms": [
+    "beamsplitter",
+    "beam splitter"
+   ],
+   "statement": "A lossless beamsplitter with transmission t and reflection r mixes the two input annihilation operators linearly and unitarily (|r|² + |t|² = 1), so two coherent inputs leave as coherent states.",
+   "forms": [
+    {
+     "id": "eq-9-48",
+     "latex": "\\hat{a}_1^\\mathrm{out} = t\\hat{a}_1^\\mathrm{in} + ir\\hat{a}_2^\\mathrm{in}",
+     "anchor": "9.1-eq-9-48"
+    },
+    {
+     "id": "eq-9-49",
+     "latex": "\\hat{a}_2^\\mathrm{out} = t\\hat{a}_2^\\mathrm{in} + ir\\hat{a}_1^\\mathrm{in}",
+     "anchor": "9.1-eq-9-49"
+    },
+    {
+     "id": "eq-9-45",
+     "latex": "E_1^\\mathrm{out} = tE_1^\\mathrm{in} + irE_2^\\mathrm{in}",
+     "anchor": "9.1-eq-9-45"
+    },
+    {
+     "id": "eq-9-47",
+     "latex": "U = \\begin{pmatrix} t & ir \\\\ ir & t \\end{pmatrix}",
+     "anchor": "9.1-beamsplitter"
+    },
+    {
+     "id": "eq-9-50",
+     "latex": "\\hat{a}_1^\\mathrm{out}|\\alpha_1\\rangle|\\alpha_2\\rangle = (t\\alpha_1 + ir\\alpha_2)|\\alpha_1\\rangle|\\alpha_2\\rangle",
+     "anchor": "9.1-eq-9-50"
+    }
+   ]
+  },
+  {
+   "id": "beamsplitter-unitary",
+   "kind": "result",
+   "section": "9.1",
+   "name": "Beamsplitter as coupled oscillators",
+   "statement": "The beamsplitter transformation is the unitary exp(iθâ₁â₂† + iθâ₂â₁†) of two coupled harmonic oscillators, θ set by t and r.",
+   "forms": [
+    {
+     "id": "eq-9-52",
+     "latex": "\\hat{U} = e^{i\\theta\\hat{a}_1\\hat{a}_2^\\dagger + i\\theta\\hat{a}_2\\hat{a}_1^\\dagger}",
+     "anchor": "9.1-eq-9-52"
+    },
+    {
+     "id": "eq-9-51",
+     "latex": "\\begin{pmatrix} \\hat{a}_1 \\\\ \\hat{a}_2 \\end{pmatrix}^\\mathrm{out} = \\hat{U}\\begin{pmatrix} \\hat{a}_1 \\\\ \\hat{a}_2 \\end{pmatrix}^\\mathrm{in}",
+     "anchor": "9.1-eq-9-51"
+    }
+   ]
+  },
+  {
+   "id": "cavity-qed",
+   "kind": "idea",
+   "section": "9.2",
+   "name": "Cavity quantum electrodynamics",
+   "terms": [
+    "cavity quantum electrodynamics",
+    "CQED"
+   ],
+   "statement": "A single atom confined in a high finesse cavity interacting with its single mode, an intrinsically anharmonic medium for the quantum field."
+  },
+  {
+   "id": "jaynes-cummings-model",
+   "kind": "definition",
+   "section": "9.2",
+   "name": "Jaynes-Cummings model",
+   "terms": [
+    "Jaynes-Cummings model",
+    "Jaynes-Cummings Hamiltonian"
+   ],
+   "type": "energy",
+   "statement": "The coherent coupling of a two-level atom to one resonant cavity mode in the rotating frame: absorbing a photon raises the atom, and the atom's relaxation emits one.",
+   "forms": [
+    {
+     "id": "eq-9-53",
+     "latex": "\\hat{H} = -\\hbar g\\hat{a}|2\\rangle\\langle 1| - \\hbar g^*\\hat{a}^\\dagger|1\\rangle\\langle 2|",
+     "anchor": "9.2-eq-9-53"
+    }
+   ]
+  },
+  {
+   "id": "jaynes-cummings-solution",
+   "kind": "result",
+   "section": "9.2",
+   "name": "Jaynes-Cummings dynamics",
+   "type": "amplitude",
+   "statement": "The Hamiltonian couples each pair |2⟩|n⟩, |1⟩|n+1⟩ alone, which oscillates at g√(n+1); the general solution sums these pairs.",
+   "forms": [
+    {
+     "id": "eq-9-58",
+     "latex": "c_{n+1}^{(1)}(t) = ic_n(0)\\sin\\left(g\\sqrt{n+1}t\\right)",
+     "anchor": "9.2-drv-jaynes-cummings-solution"
+    },
+    {
+     "id": "eq-9-59",
+     "latex": "c_n^{(2)}(t) = c_n(0)\\cos\\left(g\\sqrt{n+1}t\\right)",
+     "anchor": "9.2-drv-jaynes-cummings-solution"
+    },
+    {
+     "id": "eq-9-56",
+     "latex": "\\dot{c}_n^{(2)} = ig\\sqrt{n+1}c_{n+1}^{(1)}",
+     "anchor": "9.2-drv-jaynes-cummings-equations"
+    },
+    {
+     "id": "eq-9-57",
+     "latex": "\\dot{c}_{n+1}^{(1)} = ig\\sqrt{n+1}c_n^{(2)}",
+     "anchor": "9.2-drv-jaynes-cummings-equations"
+    },
+    {
+     "id": "eq-9-55",
+     "latex": "|\\psi(t)\\rangle = \\sum_n c_n^{(1)}(t)|1\\rangle_a\\otimes|n\\rangle + c_n^{(2)}(t)|2\\rangle_a\\otimes|n\\rangle",
+     "anchor": "9.2-eq-9-55"
+    }
+   ]
+  },
+  {
+   "id": "vacuum-rabi-oscillations",
+   "kind": "result",
+   "section": "9.2",
+   "name": "Vacuum Rabi oscillations",
+   "terms": [
+    "vacuum Rabi oscillations",
+    "vacuum Rabi frequency"
+   ],
+   "type": "state",
+   "statement": "An excited atom in an empty cavity exchanges its excitation reversibly with one photon in a well-defined mode at the vacuum Rabi frequency g, unlike spontaneous emission into a continuum.",
+   "forms": [
+    {
+     "id": "eq-9-62",
+     "latex": "|\\psi(t)\\rangle = \\cos gt|2\\rangle_a|0\\rangle + i\\sin gt|1\\rangle_a|1\\rangle",
+     "anchor": "9.2-eq-9-62"
+    },
+    {
+     "id": "eq-9-61",
+     "latex": "\\hat{H}_\\mathrm{eff} = -\\hbar g|2\\rangle_a|0\\rangle\\langle 1|_a\\langle 1| - \\hbar g^*|1\\rangle_a|1\\rangle\\langle 2|_a\\langle 0|",
+     "anchor": "9.2-eq-9-61"
+    }
+   ]
+  },
+  {
+   "id": "strong-coupling-regime",
+   "kind": "definition",
+   "section": "9.2",
+   "name": "Strong coupling regime",
+   "terms": [
+    "strong coupling regime",
+    "strong-coupling regime"
+   ],
+   "statement": "The regime in which the atom-cavity coupling g dominates dissipation: an excited atom gives its energy to the cavity mode faster than it emits into free space, g² > γκ.",
+   "forms": [
+    {
+     "id": "eq-9-124",
+     "latex": "g^2 > \\gamma\\kappa",
+     "section": "9.3",
+     "anchor": "9.3-eq-9-124"
+    }
+   ]
+  },
+  {
+   "id": "coherent-state-rabi-oscillations",
+   "kind": "result",
+   "section": "9.2",
+   "name": "Rabi oscillations in a coherent field",
+   "symbol": "tau_Rabi",
+   "type": "time",
+   "statement": "Replacing √(n+1) by √n̄ for a coherent field leaves the field coherent and gives classical Rabi oscillations of the atom with period about 1/(g|α|).",
+   "forms": [
+    {
+     "id": "eq-9-67",
+     "latex": "\\tau_\\mathrm{Rabi} \\sim \\frac{1}{g\\sqrt{\\bar{n}}} \\sim \\frac{1}{|\\alpha|g}",
+     "anchor": "9.2-drv-naive-rabi-oscillation"
+    },
+    {
+     "id": "eq-9-65",
+     "latex": "|\\psi(t)\\rangle = \\sum_n e^{-|\\alpha|^2/2}\\frac{\\alpha^n}{\\sqrt{n!}}\\left(i\\sin\\left(g\\sqrt{n+1}t\\right)|1\\rangle_a|n+1\\rangle + \\cos\\left(g\\sqrt{n+1}t\\right)|2\\rangle_a|n\\rangle\\right)",
+     "anchor": "9.2-drv-coherent-field-state"
+    }
+   ]
+  },
+  {
+   "id": "rabi-collapse",
+   "kind": "result",
+   "section": "9.2",
+   "name": "Collapse of Rabi oscillations",
+   "terms": [
+    "collapse"
+   ],
+   "symbol": "tau_collapse",
+   "type": "time",
+   "statement": "The photon number spread δn makes each Fock component's phase g√(n+1)t differ; once gtδn/√n̄ reaches unity, about t ∼ 1/g, they dephase and the Rabi oscillations damp out.",
+   "forms": [
+    {
+     "id": "eq-9-70",
+     "latex": "\\tau_\\mathrm{Collapse} \\sim \\frac{\\sqrt{\\bar{n}}}{\\delta n g} \\sim \\frac{1}{g}",
+     "anchor": "9.2-eq-9-70"
+    },
+    {
+     "id": "eq-9-69",
+     "latex": "\\phi_n \\approx gt\\sqrt{\\bar{n}}\\left(1 + \\frac{\\delta n}{2\\bar{n}}\\right)",
+     "anchor": "9.2-drv-rabi-phase-expansion"
+    }
+   ]
+  },
+  {
+   "id": "rabi-revival",
+   "kind": "result",
+   "section": "9.2",
+   "name": "Revival of Rabi oscillations",
+   "terms": [
+    "revival",
+    "collapse and revival"
+   ],
+   "symbol": "tau_revival",
+   "type": "time",
+   "statement": "At longer times the phase corrections of the dominant Fock states reach multiples of π and the oscillations revive, imperfectly, at about 2π√n̄/g, a generic feature of isolated quantum nonlinear systems.",
+   "forms": [
+    {
+     "id": "eq-9-71",
+     "latex": "\\tau_\\mathrm{Revival} \\sim 2\\pi\\frac{\\sqrt{\\bar{n}}}{g} \\sim 2\\frac{\\pi|\\alpha|}{g}",
+     "anchor": "9.2-eq-9-71"
+    }
+   ]
+  },
+  {
+   "id": "atom-field-entanglement",
+   "kind": "result",
+   "section": "9.2",
+   "name": "Field splitting in the Jaynes-Cummings model",
+   "type": "state",
+   "statement": "A coherent field interacting with the atom splits into two coherent components rotating in opposite directions in phase space, entangled with the atom, so the field no longer stays coherent.",
+   "forms": [
+    {
+     "id": "eq-9-77",
+     "latex": "|\\psi(t)\\rangle = \\frac{1}{\\sqrt{2}}\\left(|2\\rangle_a|\\alpha_+\\rangle + |1\\rangle_a|\\alpha_-\\rangle\\right)",
+     "anchor": "9.2-drv-field-splitting"
+    },
+    {
+     "id": "eq-9-78",
+     "latex": "|\\alpha_\\pm\\rangle = \\frac{1}{\\sqrt{2}}\\left(e^{ig\\sqrt{\\bar{n}}t/2}|\\alpha e^{igt/2\\sqrt{\\bar{n}}}\\rangle \\pm e^{-ig\\sqrt{\\bar{n}}t/2}|\\alpha e^{-igt/2\\sqrt{\\bar{n}}}\\rangle\\right)",
+     "anchor": "9.2-drv-field-splitting"
+    }
+   ]
+  },
+  {
+   "id": "schrodinger-cat-state",
+   "kind": "definition",
+   "section": "9.2",
+   "name": "Schrödinger cat state",
+   "terms": [
+    "Schrodinger cat"
+   ],
+   "type": "state",
+   "statement": "A superposition of two macroscopically distinguishable coherent states such as |iα⟩ ± |−iα⟩, with exponentially small classical coherence but higher order quantum coherence, easily destroyed by decoherence."
+  },
+  {
+   "id": "beamsplitter-loss-model",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Beamsplitter model of loss",
+   "statement": "Loss is a beamsplitter: the signal is attenuated by t while vacuum entering the other port adds fluctuations; a coherent state |α⟩ leaves as |tα⟩, but a Fock state does not stay a Fock state.",
+   "forms": [
+    {
+     "id": "eq-9-80",
+     "latex": "\\hat{a}_\\mathrm{out} = t\\hat{a}_\\mathrm{in} + i\\sqrt{1-|t|^2}\\hat{b}_\\mathrm{vac}",
+     "anchor": "9.3-eq-9-80"
+    }
+   ]
+  },
+  {
+   "id": "cavity-loss-rate",
+   "kind": "definition",
+   "section": "9.3",
+   "name": "Cavity loss rate",
+   "terms": [
+    "cavity loss rate",
+    "cavity decay rate"
+   ],
+   "symbol": "kappa",
+   "type": "rate",
+   "statement": "The rate κ at which the intracavity field energy leaks through a partially transmitting mirror, set by its transmission and the round-trip time.",
+   "forms": [
+    {
+     "id": "eq-9-84",
+     "latex": "\\kappa = \\frac{2c(1-r)}{2L} \\approx \\frac{t^2 c}{2L}",
+     "anchor": "9.3-drv-cavity-field-evolution"
+    }
+   ]
+  },
+  {
+   "id": "classical-cavity-evolution",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Classical cavity field equation",
+   "type": "electric-field",
+   "statement": "Counting one round trip, the intracavity field decays at κ/2 and is fed by the input field; its response is a Lorentzian of width κ, and a medium adds a polarization drive.",
+   "forms": [
+    {
+     "id": "eq-9-85",
+     "latex": "\\frac{d}{dt}E(t) = -\\frac{\\kappa}{2}E(t) + \\sqrt{\\frac{\\kappa c}{2L}}E_\\mathrm{in}(t)",
+     "anchor": "9.3-drv-cavity-field-evolution"
+    },
+    {
+     "id": "eq-9-81",
+     "latex": "E(t+\\Delta t) = tE_\\mathrm{in}(t) + rE(t)",
+     "anchor": "9.3-drv-cavity-field-evolution"
+    },
+    {
+     "id": "eq-9-83",
+     "latex": "\\frac{d}{dt}E(t) = -\\frac{(1-r)c}{2L}E(t) + \\frac{tc}{2L}E_\\mathrm{in}(t)",
+     "anchor": "9.3-drv-cavity-field-evolution"
+    },
+    {
+     "id": "eq-9-86",
+     "latex": "E(\\omega) = \\frac{\\sqrt{\\kappa c/2L}}{\\kappa/2 - i\\omega}E_\\mathrm{in}(\\omega)",
+     "anchor": "9.3-drv-cavity-field-evolution"
+    },
+    {
+     "id": "eq-9-87",
+     "latex": "\\frac{d}{dt}E(t) = -\\frac{\\kappa}{2}E(t) + \\sqrt{\\frac{\\kappa c}{2L}}E_\\mathrm{in}(t) + \\frac{i\\bar{\\nu}P}{2\\epsilon_0}",
+     "anchor": "9.3-eq-9-87"
+    }
+   ]
+  },
+  {
+   "id": "input-output-relation",
+   "kind": "definition",
+   "section": "9.3",
+   "name": "Input-output relation",
+   "terms": [
+    "input-output relationship",
+    "input-output relations"
+   ],
+   "statement": "The output field of a cavity is the reflected input field plus the transmitted cavity field.",
+   "forms": [
+    {
+     "id": "eq-9-88",
+     "latex": "E_\\mathrm{out} = -rE_\\mathrm{in} + tE",
+     "anchor": "9.3-eq-9-88"
+    }
+   ]
+  },
+  {
+   "id": "cavity-langevin-equation",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Quantum cavity mode equation",
+   "statement": "Replacing the cavity field by â and adding the noise that goes with the decay gives a Heisenberg-Langevin equation: â decays at κ/2 and is driven by a noise operator.",
+   "forms": [
+    {
+     "id": "eq-9-89",
+     "latex": "\\frac{d}{dt}\\hat{a} = \\frac{-\\kappa}{2}\\hat{a} + \\hat{\\mathcal{F}}",
+     "anchor": "9.3-eq-9-89"
+    }
+   ]
+  },
+  {
+   "id": "cavity-reservoir-model",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Microscopic model of cavity loss",
+   "statement": "Mirrors couple the cavity mode to continuum modes â_k with coefficients t_k; with Ŝ = â this is the spontaneous emission model, and the Wigner-Weisskopf approximation gives the decay rate κ = 2π|t_k|²D(ν) and the noise operator.",
+   "forms": [
+    {
+     "id": "eq-9-96",
+     "latex": "\\kappa = 2\\pi\\sum_k |t_k|^2\\delta(\\nu-\\nu_k) = 2\\pi|t_k|^2 D(\\nu)",
+     "anchor": "9.3-eq-9-96"
+    },
+    {
+     "id": "eq-9-90",
+     "latex": "\\hat{V}_{SR} = i\\hbar\\sum_k t_k \\hat{a}\\hat{a}_k^\\dagger e^{-i(\\nu-\\nu_k)t} + h.c.",
+     "anchor": "9.3-eq-9-90"
+    },
+    {
+     "id": "eq-9-95",
+     "latex": "\\dot{a}(t) \\approx -\\frac{\\kappa}{2}a(t) + \\hat{\\mathcal{F}}(t)",
+     "anchor": "9.3-eq-9-95"
+    },
+    {
+     "id": "eq-9-97",
+     "latex": "\\hat{\\mathcal{F}} = -\\sum_k t_k\\hat{a}_k(0)e^{i(\\nu-\\nu_k)t}",
+     "anchor": "9.3-eq-9-97"
+    },
+    {
+     "id": "eq-9-94",
+     "latex": "\\dot{a}(t) = -\\sum_k t_k e^{i(\\nu-\\nu_k)t}a_k(0) - |t_k|^2\\int_0^t dt'\\, a(t')e^{i(\\nu-\\nu_k)(t-t')}",
+     "anchor": "9.3-eq-9-94"
+    }
+   ]
+  },
+  {
+   "id": "cavity-noise-correlations",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Cavity noise operator",
+   "terms": [
+    "input field"
+   ],
+   "statement": "The cavity noise is the outside field leaking in through the mirror, the input field; in a thermal environment of n photons its correlators are (n+1)κδ(t−t′) and nκδ(t−t′).",
+   "forms": [
+    {
+     "id": "eq-9-98",
+     "latex": "\\langle\\hat{\\mathcal{F}}(t)\\hat{\\mathcal{F}}^\\dagger(t')\\rangle = (n+1)\\kappa\\delta(t-t')",
+     "anchor": "9.3-eq-9-98"
+    },
+    {
+     "id": "eq-9-99",
+     "latex": "\\langle\\hat{\\mathcal{F}}^\\dagger(t)\\hat{\\mathcal{F}}(t')\\rangle = n\\kappa\\delta(t-t')",
+     "anchor": "9.3-eq-9-99"
+    },
+    {
+     "id": "eq-9-100",
+     "latex": "\\hat{\\mathcal{F}}(t) = -\\sqrt{\\frac{\\kappa}{D(\\nu)}}\\hat{E}_\\mathrm{in}(t)",
+     "anchor": "9.3-eq-9-100"
+    },
+    {
+     "id": "eq-9-101",
+     "latex": "\\hat{E}_\\mathrm{in}(t) = \\sqrt{\\frac{1}{2\\pi}}\\sum_k e^{i(\\nu-\\nu_k)t}a_k(0)",
+     "anchor": "9.3-eq-9-101"
+    }
+   ]
+  },
+  {
+   "id": "cavity-master-equation",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Master equation of a damped cavity",
+   "type": "state",
+   "statement": "With Ŝ = â the general master equation describes cavity loss and its fluctuations, equivalent to the Heisenberg-Langevin description.",
+   "forms": [
+    {
+     "id": "eq-9-102",
+     "latex": "\\frac{d}{dt}\\hat{\\rho} = -\\frac{\\kappa}{2}(n+1)\\left(\\hat{a}^\\dagger\\hat{a}\\rho - \\hat{a}\\rho\\hat{a}^\\dagger\\right) - \\frac{\\kappa}{2}n\\left(\\rho\\hat{a}\\hat{a}^\\dagger - \\hat{a}^\\dagger\\rho\\hat{a}\\right) + h.c.",
+     "anchor": "9.3-eq-9-102"
+    }
+   ]
+  },
+  {
+   "id": "damped-coherent-state",
+   "kind": "result",
+   "section": "9.3",
+   "name": "A coherent state in a lossy cavity",
+   "statement": "A coherent cavity field decaying into vacuum stays coherent, |αe^{−κt/2}⟩: its mean decays while the quadrature variances stay 1/2.",
+   "forms": [
+    {
+     "id": "eq-9-104",
+     "latex": "\\langle\\hat{a}(t)\\rangle = e^{-\\kappa t/2}\\langle\\hat{a}(0)\\rangle",
+     "anchor": "9.3-drv-damped-coherent-amplitude"
+    },
+    {
+     "id": "eq-9-103",
+     "latex": "\\hat{a}(t) = e^{-\\kappa t/2}\\hat{a}(0) + \\int_0^t \\hat{\\mathcal{F}}(t')e^{-\\kappa(t-t')/2}dt'",
+     "anchor": "9.3-drv-damped-coherent-amplitude"
+    },
+    {
+     "id": "eq-9-107",
+     "latex": "\\langle\\delta\\hat{x}^2(t)\\rangle = \\langle\\delta\\hat{x}^2(0)\\rangle e^{-\\kappa t} + \\frac{1}{2}\\left(1 - e^{-\\kappa t}\\right)",
+     "anchor": "9.3-drv-damped-quadrature-variance"
+    },
+    {
+     "id": "eq-9-105",
+     "latex": "\\hat{a}(t)|\\alpha\\rangle|0\\rangle_r = e^{-\\kappa t/2}\\alpha|\\alpha\\rangle|0\\rangle_r"
+    }
+   ]
+  },
+  {
+   "id": "dissipation-destroys-nonclassicality",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Loss washes out nonclassical states",
+   "statement": "Whatever the initial state, cavity loss drives the quadrature variances to 1/2, so squeezed and other nonclassical states lose their nonclassical coherence; generating them competes with dissipation."
+  },
+  {
+   "id": "cavity-driven-by-atoms",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Cavity mode driven by atoms",
+   "statement": "Atoms in the cavity add a driving term to the mode's Langevin equation, the quantum analogue of the medium's polarization; for many atoms and strong fields this Heisenberg-Langevin approach is nearly classical, while for few photons and atoms the master equation or stochastic wavefunction serves better.",
+   "forms": [
+    {
+     "id": "eq-9-108",
+     "latex": "\\frac{d}{dt}\\hat{a} = -\\frac{\\kappa}{2}\\hat{a} + \\hat{\\mathcal{F}} + i\\sum_j g_j^*\\hat{\\sigma}_{\\alpha,\\beta}",
+     "anchor": "9.3-eq-9-108"
+    }
+   ]
+  },
+  {
+   "id": "open-and-closed-cavities",
+   "kind": "definition",
+   "section": "9.3",
+   "name": "Open and closed cavities",
+   "terms": [
+    "open cavity",
+    "closed cavity"
+   ],
+   "statement": "An open cavity confines the mode in one dimension (L ≫ λ), so the atom still decays to free space at nearly its free-space rate; a closed cavity confines the field in three (L ∼ λ) and can strongly suppress spontaneous emission."
+  },
+  {
+   "id": "cqed-master-equation",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Master equation of cavity QED",
+   "type": "state",
+   "statement": "The atom and cavity mode together form the system: Jaynes-Cummings evolution with the cavity detuned by δ, cavity loss at κ and atomic decay to free space at γ.",
+   "forms": [
+    {
+     "id": "eq-9-109",
+     "latex": "\\dot{\\hat{\\rho}} = -\\tfrac{i}{\\hbar}[\\hat{H},\\hat{\\rho}] - \\tfrac{\\kappa}{2}\\left(\\hat{a}^\\dagger\\hat{a}\\hat{\\rho} + \\hat{\\rho}\\hat{a}^\\dagger\\hat{a} - 2\\hat{a}\\hat{\\rho}\\hat{a}^\\dagger\\right) - \\tfrac{\\gamma}{2}\\left(\\hat{\\sigma}_{21}\\hat{\\sigma}_{12}\\hat{\\rho} + \\hat{\\rho}\\hat{\\sigma}_{21}\\hat{\\sigma}_{12} - 2\\hat{\\sigma}_{12}\\hat{\\rho}\\hat{\\sigma}_{21}\\right)",
+     "anchor": "9.3-eq-9-109"
+    },
+    {
+     "id": "eq-9-110",
+     "latex": "\\hat{H} = \\hbar\\delta\\hat{a}^\\dagger\\hat{a} + \\hbar g\\hat{a}^\\dagger\\hat{\\sigma}_{12} + \\hbar g^*\\hat{a}\\hat{\\sigma}_{21}",
+     "anchor": "9.3-eq-9-110"
+    }
+   ]
+  },
+  {
+   "id": "jaynes-cummings-ladder",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Dressed states of the Jaynes-Cummings ladder",
+   "terms": [
+    "dressed state basis"
+   ],
+   "statement": "Each pair |1⟩|n⟩, |2⟩|n−1⟩ is a two-level system coupled by g√n and diagonalized on its own into dressed states; decay couples the manifolds and broadens them."
+  },
+  {
+   "id": "vacuum-rabi-splitting",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Vacuum Rabi splitting",
+   "terms": [
+    "vacuum Rabi splitting"
+   ],
+   "type": "coupling",
+   "statement": "Probed in reflection, a resonant atom-cavity system shows its lowest dressed states as two peaks split by twice the coupling, 2g, the vacuum Rabi splitting."
+  },
+  {
+   "id": "collective-enhancement",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Collective enhancement",
+   "terms": [
+    "collective enhancement"
+   ],
+   "type": "coupling",
+   "statement": "With N atoms at the cavity antinode the coupling grows to g√N and the vacuum Rabi splitting to 2g√N; classically, the atoms’ dispersion shifts the cavity resonance."
+  },
+  {
+   "id": "cqed-no-jump-evolution",
+   "kind": "result",
+   "section": "9.3",
+   "name": "No-jump dynamics of cavity QED",
+   "terms": [
+    "no-jump"
+   ],
+   "type": "amplitude",
+   "statement": "Starting from |2⟩|0⟩, only |1⟩|1⟩ is coupled coherently; with the non-Hermitian Hamiltonian of cavity loss and atomic decay the no-jump amplitudes evolve exactly, and for g ≫ γ, κ they show weakly damped vacuum Rabi oscillations.",
+   "forms": [
+    {
+     "id": "eq-9-116",
+     "latex": "\\dot{c}_{1,1} = -(\\frac{\\kappa}{2} + i\\delta)c_{1,1} - igc_{2,0}",
+     "anchor": "9.3-eq-9-116"
+    },
+    {
+     "id": "eq-9-117",
+     "latex": "\\dot{c}_{2,0} = -igc_{1,1} - \\frac{\\gamma}{2}c_{2,0}",
+     "anchor": "9.3-eq-9-117"
+    },
+    {
+     "id": "eq-9-115",
+     "latex": "\\hat{H}_{eff} = -i\\frac{\\kappa}{2}\\hat{a}^\\dagger\\hat{a} - i\\frac{\\gamma}{2}\\hat{\\sigma}_{21}\\hat{\\sigma}_{12}",
+     "anchor": "9.3-eq-9-115"
+    },
+    {
+     "id": "eq-9-112",
+     "latex": "|\\psi\\rangle = c_{1,1}|1\\rangle_a|1\\rangle + c_{2,0}|2\\rangle_a|0\\rangle",
+     "anchor": "9.3-eq-9-112"
+    }
+   ]
+  },
+  {
+   "id": "purcell-effect",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Purcell effect",
+   "terms": [
+    "Purcell effect"
+   ],
+   "symbol": "gamma_eff",
+   "type": "rate",
+   "statement": "When the cavity is overdamped, g < κ, eliminating the photon amplitude modifies the atom's decay rate and Lamb shift; in an open cavity at zero detuning the decay is enhanced by 4g²/κ.",
+   "forms": [
+    {
+     "id": "eq-9-120",
+     "latex": "\\gamma^\\mathrm{open}_\\mathrm{eff} = \\gamma + 4\\frac{g^2}{\\kappa}",
+     "anchor": "9.3-drv-purcell-rate"
+    },
+    {
+     "id": "eq-9-118",
+     "latex": "c_{1,1} = \\frac{-ig}{\\kappa/2 + i\\delta}c_{2,0}",
+     "anchor": "9.3-drv-purcell-elimination"
+    },
+    {
+     "id": "eq-9-119",
+     "latex": "\\dot{c}_{2,0} = -\\left(\\frac{\\gamma}{2} + \\frac{\\kappa}{2}\\frac{g^2}{\\kappa^2/4 + \\delta^2}\\right)c_{2,0} + i\\frac{g^2\\delta}{\\kappa^2/4 + \\delta^2}c_{2,0}",
+     "anchor": "9.3-drv-purcell-elimination"
+    }
+   ]
+  },
+  {
+   "id": "quality-factor",
+   "kind": "definition",
+   "section": "9.3",
+   "name": "Quality factor",
+   "terms": [
+    "quality factor"
+   ],
+   "symbol": "Q_fac",
+   "statement": "The cavity decay rate is the mode frequency over the quality factor Q.",
+   "forms": [
+    {
+     "id": "eq-9-122",
+     "latex": "\\kappa = \\frac{\\nu}{Q}",
+     "anchor": "9.3-eq-9-122"
+    }
+   ]
+  },
+  {
+   "id": "cavity-finesse",
+   "kind": "definition",
+   "section": "9.3",
+   "name": "Cavity finesse",
+   "terms": [
+    "finesse"
+   ],
+   "symbol": "F_fin",
+   "statement": "The finesse F is the mean number of times a photon circulates before leaking out; the photon lifetime 1/κ is F times the round-trip time.",
+   "forms": [
+    {
+     "id": "eq-9-123",
+     "latex": "\\frac{1}{\\kappa} = \\frac{L}{\\pi c}\\cdot F",
+     "anchor": "9.3-eq-9-123"
+    }
+   ]
+  },
+  {
+   "id": "cavity-mode-coupling",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Coupling to a cavity mode",
+   "terms": [
+    "mode volume"
+   ],
+   "type": "coupling",
+   "statement": "The atom-cavity coupling g grows with the dipole moment and falls as one over the square root of the mode volume.",
+   "forms": [
+    {
+     "id": "eq-9-121",
+     "latex": "g = \\mu\\sqrt{\\frac{\\nu}{\\epsilon_0\\hbar V}}",
+     "anchor": "9.3-eq-9-121"
+    }
+   ]
+  },
+  {
+   "id": "strong-coupling-figure-of-merit",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Figure of merit for strong coupling",
+   "statement": "The ratio g²/κγ is independent of the atom, ∼ (λ²/d²)F with d the mode diameter, largest for small cavities with high reflectivity; it is the chance that the atom meets the photon before the photon leaves.",
+   "forms": [
+    {
+     "id": "eq-9-125",
+     "latex": "\\frac{g^2}{\\kappa\\gamma} \\sim \\frac{L\\lambda^2}{V}\\cdot F = \\frac{\\lambda^2}{d^2}\\cdot F",
+     "anchor": "9.3-drv-strong-coupling-figure-of-merit"
+    },
+    {
+     "id": "eq-9-126",
+     "latex": "\\frac{g^2}{\\kappa\\gamma} \\sim \\frac{\\lambda}{L}\\frac{1}{t^2}",
+     "anchor": "9.3-drv-strong-coupling-figure-of-merit"
+    },
+    {
+     "id": "eq-9-127",
+     "latex": "P_\\mathrm{interaction} \\sim \\lambda^2\\cdot L\\cdot\\frac{1}{Ld^2}\\cdot F",
+     "anchor": "9.3-eq-9-127"
+    }
+   ]
+  },
+  {
+   "id": "suppressed-decay",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Suppressed decay in a closed cavity",
+   "type": "rate",
+   "statement": "In a closed cavity γ = 0 and the atom decays only through the cavity, at a rate strongly suppressed when the cavity is far detuned, by the quality factor when V ∼ λ³.",
+   "forms": [
+    {
+     "id": "eq-9-128",
+     "latex": "\\gamma^\\mathrm{closed}_\\mathrm{eff} = \\kappa\\frac{g^2}{\\kappa^2/4 + \\delta^2}",
+     "anchor": "9.3-drv-suppressed-decay"
+    },
+    {
+     "id": "eq-9-129",
+     "latex": "\\gamma^\\mathrm{closed}_\\mathrm{eff} \\sim \\frac{g^2}{\\kappa}\\frac{\\kappa^2}{\\omega^2} \\sim \\frac{\\lambda^3}{V}\\frac{\\gamma}{Q}",
+     "anchor": "9.3-drv-suppressed-decay"
+    }
+   ]
+  },
+  {
+   "id": "microwave-cqed",
+   "kind": "idea",
+   "section": "9.3",
+   "name": "Microwave cavity QED with Rydberg atoms",
+   "terms": [
+    "circular states"
+   ],
+   "statement": "At microwave frequencies closed cavities are possible, γ ∝ ω³ is small and g ∝ √ω, and circular Rydberg states with large dipoles and second-long lifetimes give the highest ratio of coherent evolution to decoherence, provided thermal photons are removed."
+  },
+  {
+   "id": "cavity-single-photon-source",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Single photons on demand",
+   "statement": "An excited emitter strongly coupled to a cavity emits one photon into the cavity mode’s direction, a bound-to-free problem whose wavepacket envelope decays at 2g²/κ; a three-level atom can shape it, and the process is coherent and reversible.",
+   "forms": [
+    {
+     "id": "eq-9-132",
+     "latex": "c_k \\sim \\frac{t_k g/\\kappa}{g^2/\\kappa + i\\delta_k}",
+     "anchor": "9.3-eq-9-132"
+    },
+    {
+     "id": "eq-9-130",
+     "latex": "\\hat{H}_{c-f} = -\\hbar\\sum_k t_k\\hat{a}_k^\\dagger\\hat{a}e^{i\\delta_k t} + h.c.",
+     "anchor": "9.3-eq-9-130"
+    },
+    {
+     "id": "eq-9-131",
+     "latex": "|\\psi\\rangle = c_{2,0}|2\\rangle_a|0\\rangle|vac\\rangle + c_{1,1}|1\\rangle_a|1\\rangle|vac\\rangle + \\sum_k c_k|1\\rangle_a|0\\rangle|1_k\\rangle",
+     "anchor": "9.3-eq-9-131"
+    }
+   ]
+  },
+  {
+   "id": "hanbury-brown-twiss",
+   "kind": "idea",
+   "section": "9.3",
+   "name": "Hanbury-Brown-Twiss setup",
+   "terms": [
+    "Hanbury-Brown-Twiss",
+    "joint probability"
+   ],
+   "statement": "Splitting a signal on a beamsplitter onto two detectors measures joint probabilities: a single photon never registers on both at once."
+  },
+  {
+   "id": "second-order-correlation",
+   "kind": "definition",
+   "section": "9.3",
+   "name": "Second-order correlation function",
+   "terms": [
+    "second order correlation function"
+   ],
+   "symbol": "g2",
+   "statement": "The normalized intensity correlation g⁽²⁾ of the field at two points and times, which factorizes for coherent states and is sensitive to a higher order coherence than a laser's classical coherence.",
+   "forms": [
+    {
+     "id": "eq-9-134",
+     "latex": "g^{(2)}(t_1 - t_2) = \\frac{G^{(2)}}{\\langle\\mathcal{E}^\\dagger(r_1,t_1)\\mathcal{E}(r_1,t_1)\\rangle\\langle\\mathcal{E}^\\dagger(r_2,t_2)\\mathcal{E}(r_2,t_2)\\rangle}",
+     "anchor": "9.3-eq-9-134"
+    },
+    {
+     "id": "eq-9-133",
+     "latex": "G^{(2)} = \\langle\\mathcal{E}^\\dagger(r_1,t_1)\\mathcal{E}^\\dagger(r_2,t_2)\\mathcal{E}(r_2,t_2)\\mathcal{E}(r_1,t_1)\\rangle",
+     "anchor": "9.3-eq-9-133"
+    }
+   ]
+  },
+  {
+   "id": "photon-bunching",
+   "kind": "result",
+   "section": "9.3",
+   "name": "Bunching and antibunching",
+   "terms": [
+    "bunching",
+    "anti-bunching"
+   ],
+   "statement": "g⁽²⁾(0) is 1 for a coherent state, 2 for a thermal state (bunching) and 0 for a single photon (antibunching)."
+  },
+  {
+   "id": "linear-amplifier-noise",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Noise of a linear amplifier",
+   "terms": [
+    "no cloning theorem",
+    "linear amplification"
+   ],
+   "symbol": "sigma_gain",
+   "statement": "A linear amplifier of gain σ > 1 adds noise from spontaneous emission that keeps the commutators fixed, so, as the no cloning theorem demands, a quantum state cannot be amplified without losing information.",
+   "forms": [
+    {
+     "id": "eq-9-135",
+     "latex": "\\hat{a}_\\mathrm{out} = \\sqrt{\\sigma}\\hat{a}_\\mathrm{in} + \\sqrt{\\sigma - 1}\\hat{b}^\\dagger",
+     "anchor": "9.4-eq-9-135"
+    }
+   ]
+  },
+  {
+   "id": "degenerate-opo",
+   "kind": "definition",
+   "section": "9.4",
+   "name": "Degenerate optical parametric oscillator",
+   "terms": [
+    "degenerate optical parametric oscillator",
+    "OPO",
+    "parametric down-conversion"
+   ],
+   "symbol": "beta_gain",
+   "type": "coupling",
+   "statement": "Parametric down-conversion in a cavity at half the pump frequency, so both generated fields are the one cavity mode, driven by its own conjugate with gain β set by pump and χ⁽²⁾.",
+   "forms": [
+    {
+     "id": "eq-9-140",
+     "latex": "\\frac{\\partial\\mathcal{E}_1}{\\partial t} = i\\beta\\mathcal{E}_1^*",
+     "anchor": "9.4-eq-9-140"
+    },
+    {
+     "id": "eq-9-136",
+     "latex": "P_1 \\sim \\frac{\\chi^{(2)}}{2}\\mathcal{E}_0\\mathcal{E}_2^* + \\frac{\\chi_1}{2}\\mathcal{E}_1",
+     "anchor": "9.4-eq-9-136"
+    },
+    {
+     "id": "eq-9-139",
+     "latex": "P \\sim \\chi^{(2)}\\mathcal{E}_0\\mathcal{E}_1^* + \\frac{\\chi_1 + \\chi_2}{2}\\mathcal{E}_1",
+     "anchor": "9.4-eq-9-139"
+    },
+    {
+     "id": "eq-9-141",
+     "latex": "\\frac{\\partial\\mathcal{E}_1^*}{\\partial t} = -i\\beta^*\\mathcal{E}_1",
+     "anchor": "9.4-eq-9-141"
+    }
+   ]
+  },
+  {
+   "id": "phase-dependent-amplification",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Phase-dependent amplification",
+   "symbol": "beta_tilde",
+   "type": "coupling",
+   "statement": "In the normal modes E₁ ± E₁* one is amplified and the other de-amplified at rate β̃, so the gain depends on the field's phase relative to the pump.",
+   "forms": [
+    {
+     "id": "eq-9-142",
+     "latex": "\\frac{\\partial\\mathcal{E}_+}{\\partial t} = -\\tilde{\\beta}\\mathcal{E}_+",
+     "anchor": "9.4-drv-phase-dependent-amplification"
+    },
+    {
+     "id": "eq-9-143",
+     "latex": "\\frac{\\partial\\mathcal{E}_-}{\\partial t} = \\tilde{\\beta}\\mathcal{E}_-",
+     "anchor": "9.4-drv-phase-dependent-amplification"
+    }
+   ]
+  },
+  {
+   "id": "opo-heisenberg-langevin",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Quantum degenerate down-conversion",
+   "type": "energy",
+   "statement": "For a strong classical pump and large detunings the Heisenberg-Langevin equations of a cascade atom in the cavity eliminate adiabatically to dâ/dt = −iβ*â†, the classical equation with E → â, from the effective Hamiltonian of photon-pair absorption and emission.",
+   "forms": [
+    {
+     "id": "eq-9-152",
+     "latex": "\\hat{H}_\\mathrm{eff} = \\frac{\\hbar}{2}\\left(\\beta\\hat{a}^2 + \\beta^*(\\hat{a}^\\dagger)^2\\right)",
+     "anchor": "9.4-eq-9-152"
+    },
+    {
+     "id": "eq-9-150",
+     "latex": "\\frac{d\\hat{a}}{dt} = -i\\beta^*\\hat{a}^\\dagger",
+     "anchor": "9.4-drv-squeezing-equations"
+    },
+    {
+     "id": "eq-9-144",
+     "latex": "\\hat{H} = -\\hbar\\hat{a}^\\dagger\\sum_j \\left(g_j\\hat{\\sigma}_{32}^{(j)} + g_j\\hat{\\sigma}_{13}^{(j)}\\right) + h.c.",
+     "anchor": "9.4-eq-9-144"
+    },
+    {
+     "id": "eq-9-147",
+     "latex": "\\hat{\\sigma}_{13}^{(j)} = -\\frac{\\Omega_0}{\\Delta\\delta}g_j\\hat{a}^\\dagger - \\frac{g_j\\hat{a}}{\\delta}",
+     "anchor": "9.4-eq-9-147"
+    },
+    {
+     "id": "eq-9-149",
+     "latex": "\\frac{d\\hat{a}}{dt} = -2i\\sum_j \\frac{\\Omega_0}{\\Delta\\delta}g_j^2\\hat{a}^\\dagger",
+     "anchor": "9.4-drv-two-photon-drive"
+    }
+   ]
+  },
+  {
+   "id": "nondegenerate-pdc",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Non-degenerate down-conversion",
+   "type": "energy",
+   "statement": "Two phase-matched modes amplified together obey dâ₂/dt = −iβ*â₁†, from an effective Hamiltonian that creates and destroys photons in pairs, one in each mode.",
+   "forms": [
+    {
+     "id": "eq-9-155",
+     "latex": "\\hat{H}_\\mathrm{eff} = \\hbar\\left(\\beta\\hat{a}_1\\hat{a}_2 + \\beta^*\\hat{a}_1^\\dagger\\hat{a}_2^\\dagger\\right)",
+     "anchor": "9.4-eq-9-155"
+    },
+    {
+     "id": "eq-9-153",
+     "latex": "\\frac{d\\hat{a}_2}{dt} = -i\\beta^*\\hat{a}_1^\\dagger",
+     "anchor": "9.4-eq-9-153"
+    }
+   ]
+  },
+  {
+   "id": "photon-pair-state",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Photon pairs from down-conversion",
+   "symbol": "xi_pdc",
+   "type": "state",
+   "statement": "From the vacuum, non-degenerate down-conversion makes |vac⟩ + ξ|1,1⟩ + ξ²|2,2⟩ + …: correlated pairs from spontaneous emission for ξ < 1, stimulated emission and squeezing for ξ ≫ 1.",
+   "forms": [
+    {
+     "id": "eq-9-157",
+     "latex": "|\\psi\\rangle = |\\mathrm{vac}\\rangle + \\xi|1, 1\\rangle + \\xi^2|2, 2\\rangle + \\ldots",
+     "anchor": "9.4-drv-pair-state"
+    },
+    {
+     "id": "eq-9-156",
+     "latex": "|\\psi\\rangle = e^{-i\\hat{H}_\\mathrm{eff}t/\\hbar}|\\mathrm{vac}\\rangle",
+     "anchor": "9.4-drv-pair-state"
+    }
+   ]
+  },
+  {
+   "id": "photon-number-correlations",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Correlated photon numbers",
+   "terms": [
+    "shot-noise limit"
+   ],
+   "statement": "Each down-converted mode alone is thermal, yet the photon-number difference of the two is exactly zero, far below the shot-noise limit n₁ + n₂ of a beam divided on a beamsplitter.",
+   "forms": [
+    {
+     "id": "eq-9-159",
+     "latex": "\\Delta\\hat{n}|\\psi\\rangle = (\\hat{n}_1 - \\hat{n}_2)|\\psi\\rangle = 0",
+     "anchor": "9.4-eq-9-159"
+    },
+    {
+     "id": "eq-9-158",
+     "latex": "p(n) = \\frac{\\tanh^{2n}\\xi}{\\cosh^2\\xi}",
+     "anchor": "9.4-eq-9-158"
+    }
+   ]
+  },
+  {
+   "id": "heralded-single-photons",
+   "kind": "idea",
+   "section": "9.4",
+   "name": "Heralded single photons",
+   "terms": [
+    "heralded single photon"
+   ],
+   "statement": "Detecting a photon in one down-converted mode heralds precisely one in the other."
+  },
+  {
+   "id": "post-selection",
+   "kind": "definition",
+   "section": "9.4",
+   "name": "Post-selection",
+   "terms": [
+    "post-selection"
+   ],
+   "statement": "Conditioning all later measurements on detecting both photons of a probabilistically generated pair, so that a polarization-entangled state is used only when it was made and not lost.",
+   "forms": [
+    {
+     "id": "eq-9-160",
+     "latex": "|\\psi\\rangle = |\\mathrm{vac}\\rangle + \\frac{\\xi}{\\sqrt{2}}\\left(|1_H, 1_V\\rangle + |1_V, 1_H\\rangle\\right) + \\mathcal{O}(\\xi^2)",
+     "anchor": "9.4-eq-9-160"
+    }
+   ]
+  },
+  {
+   "id": "squeezed-state",
+   "kind": "definition",
+   "section": "9.4",
+   "name": "Squeezed state",
+   "terms": [
+    "squeezed",
+    "squeezed state",
+    "squeezed states"
+   ],
+   "type": "state",
+   "statement": "A degenerate down-converter amplifies one phase-weighted quadrature and attenuates the other, so a coherent state's variances change in opposite directions while their product stays 1/4; from the vacuum it holds only even photon numbers.",
+   "forms": [
+    {
+     "id": "eq-9-168",
+     "latex": "\\langle\\Delta\\hat{x}^2\\rangle = \\frac{1}{2}e^{2\\tilde{\\beta}t}",
+     "anchor": "9.4-drv-quadrature-squeezing"
+    },
+    {
+     "id": "eq-9-169",
+     "latex": "\\langle\\Delta\\hat{p}^2\\rangle = \\frac{1}{2}e^{-2\\tilde{\\beta}t}",
+     "anchor": "9.4-drv-quadrature-squeezing"
+    },
+    {
+     "id": "eq-9-170",
+     "latex": "|\\psi\\rangle_{Sq} = e^{-i(\\beta^*(\\hat{a}^\\dagger)^2 + \\beta\\hat{a}^2)t/2}|\\alpha\\rangle",
+     "anchor": "9.4-eq-9-170"
+    },
+    {
+     "id": "eq-9-162",
+     "latex": "\\hat{x} = \\frac{1}{\\sqrt{2}}\\left(\\hat{a}e^{i\\theta/2} + \\hat{a}^\\dagger e^{-i\\theta/2}\\right)",
+     "anchor": "9.4-eq-9-162"
+    },
+    {
+     "id": "eq-9-161",
+     "latex": "\\beta = \\tilde{\\beta}e^{i(\\theta - \\pi/2)}",
+     "anchor": "9.4-eq-9-161"
+    },
+    {
+     "id": "eq-9-166",
+     "latex": "\\hat{x}(t) = \\hat{x}(0)e^{\\tilde{\\beta}t}",
+     "anchor": "9.4-drv-quadrature-squeezing"
+    }
+   ]
+  },
+  {
+   "id": "damped-squeezing",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Squeezing in a damped cavity",
+   "statement": "Cavity loss adds decay κ/2 and vacuum noise to each quadrature, so the squeezed variance approaches κ/2(κ + 2β̃) instead of zero.",
+   "forms": [
+    {
+     "id": "eq-9-183",
+     "latex": "\\langle\\Delta\\hat{p}^2\\rangle \\to \\frac{\\kappa}{2(\\kappa + 2\\tilde{\\beta})}",
+     "anchor": "9.4-drv-damped-squeezing"
+    },
+    {
+     "id": "eq-9-174",
+     "latex": "\\frac{d\\hat{x}}{dt} = -\\left(\\frac{\\kappa}{2} - \\tilde{\\beta}\\right)\\hat{x} + \\hat{\\mathcal{F}}_x",
+     "anchor": "9.4-drv-damped-quadrature-equations"
+    },
+    {
+     "id": "eq-9-175",
+     "latex": "\\frac{d\\hat{p}}{dt} = -\\left(\\frac{\\kappa}{2} + \\tilde{\\beta}\\right)\\hat{p} + \\hat{\\mathcal{F}}_p",
+     "anchor": "9.4-drv-damped-quadrature-equations"
+    },
+    {
+     "id": "eq-9-178",
+     "latex": "\\langle\\hat{\\mathcal{F}}_x(t)\\hat{\\mathcal{F}}_x(t')\\rangle = \\langle\\hat{\\mathcal{F}}_p(t)\\hat{\\mathcal{F}}_p(t')\\rangle = \\frac{\\kappa}{2}\\delta(t - t')",
+     "anchor": "9.4-drv-damped-squeezing"
+    },
+    {
+     "id": "eq-9-182",
+     "latex": "\\langle\\Delta\\hat{p}^2(t)\\rangle = \\frac{1}{2}e^{-(\\kappa + 2\\tilde{\\beta})t} + \\frac{\\kappa}{2}\\frac{1 - e^{-(\\kappa + 2\\tilde{\\beta})t}}{\\kappa + 2\\tilde{\\beta}}",
+     "anchor": "9.4-drv-damped-squeezing"
+    }
+   ]
+  },
+  {
+   "id": "steady-state-squeezing",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Steady-state squeezing",
+   "terms": [
+    "threshold"
+   ],
+   "statement": "Below threshold, β̃ < κ/2, the intracavity variances reach steady values and squeezing is at most 50% at threshold, limited by vacuum leaking in; above it the undepleted-pump analysis fails.",
+   "forms": [
+    {
+     "id": "eq-9-185",
+     "latex": "\\langle\\Delta\\hat{p}^2\\rangle \\to \\frac{\\kappa}{2(\\kappa + 2\\tilde{\\beta})}",
+     "anchor": "9.4-eq-9-185"
+    },
+    {
+     "id": "eq-9-184",
+     "latex": "\\langle\\Delta\\hat{x}^2\\rangle \\to \\frac{\\kappa}{2(\\kappa - 2\\tilde{\\beta})}",
+     "anchor": "9.4-eq-9-184"
+    }
+   ]
+  },
+  {
+   "id": "output-squeezing",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Squeezing in the output field",
+   "terms": [
+    "standard quantum limit"
+   ],
+   "statement": "By the quantum input-output relation the reflected vacuum and the transmitted cavity field interfere, so at threshold and zero frequency the output quadrature is perfectly squeezed, over a Lorentzian of width ∼κ relative to the standard quantum limit.",
+   "forms": [
+    {
+     "id": "eq-9-191",
+     "latex": "\\hat{P}_\\mathrm{out}(\\omega) = \\frac{\\hat{\\mathcal{F}}_p(\\omega)}{\\sqrt{\\kappa}}\\left(\\frac{\\kappa}{i\\omega + (\\kappa/2 + \\tilde{\\beta})} - 1\\right)",
+     "anchor": "9.4-drv-output-squeezing"
+    },
+    {
+     "id": "eq-9-187",
+     "latex": "\\hat{E}_\\mathrm{out} = -\\frac{\\hat{\\mathcal{F}}}{\\sqrt{\\kappa}} + \\sqrt{\\kappa}\\hat{a}",
+     "anchor": "9.4-eq-9-187"
+    },
+    {
+     "id": "eq-9-190",
+     "latex": "\\hat{P}(\\omega) = \\frac{\\hat{\\mathcal{F}}_p(\\omega)}{i\\omega + (\\kappa/2 + \\tilde{\\beta})}",
+     "anchor": "9.4-drv-output-squeezing"
+    }
+   ]
+  },
+  {
+   "id": "homodyne-detection",
+   "kind": "definition",
+   "section": "9.4",
+   "name": "Homodyne detection",
+   "terms": [
+    "homodyne detection"
+   ],
+   "statement": "Mixing the signal with a strong local oscillator of phase φ on a 50/50 beamsplitter and subtracting the two photocurrents measures the signal's quadrature P_φ, amplified by the oscillator amplitude.",
+   "forms": [
+    {
+     "id": "eq-9-198",
+     "latex": "\\langle\\hat{n}_-\\rangle = \\bar{\\beta}\\langle i\\left(\\hat{a}^\\dagger e^{i\\phi} - \\hat{a}e^{-i\\phi}\\right)\\rangle = \\bar{\\beta}\\langle P_\\phi\\rangle",
+     "anchor": "9.4-drv-homodyne-difference"
+    },
+    {
+     "id": "eq-9-199",
+     "latex": "\\langle\\Delta\\hat{n}_-^2\\rangle \\approx \\bar{\\beta}^2\\langle\\Delta P_\\phi^2\\rangle",
+     "anchor": "9.4-drv-homodyne-difference"
+    },
+    {
+     "id": "eq-9-197",
+     "latex": "\\hat{n}_- = i\\left(\\hat{a}^\\dagger\\hat{b}_{LO} - \\hat{b}_{LO}^\\dagger\\hat{a}\\right)",
+     "anchor": "9.4-drv-homodyne-difference"
+    },
+    {
+     "id": "eq-9-192",
+     "latex": "\\hat{a}_\\mathrm{out}^{(1)} = \\frac{1}{\\sqrt{2}}\\left(\\hat{a} + i\\hat{b}_{LO}\\right)",
+     "anchor": "9.4-eq-9-192"
+    }
+   ]
+  },
+  {
+   "id": "squeezed-interferometry",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Squeezed light in interferometry",
+   "terms": [
+    "squeezing parameter"
+   ],
+   "symbol": "r_sq",
+   "statement": "With squeezing parameter r the quadrature noise falls to e^{−2r}/2, so the smallest measurable phase falls to e^{−r}/√n; in practice a stronger coherent field gives a similar gain more easily.",
+   "forms": [
+    {
+     "id": "eq-9-202",
+     "latex": "\\delta\\phi_\\mathrm{min} \\sim \\frac{1}{\\langle\\hat{x}\\rangle}e^{-r} \\sim \\frac{1}{\\sqrt{n}}e^{-r}",
+     "anchor": "9.4-drv-squeezed-phase-sensitivity"
+    },
+    {
+     "id": "eq-9-201",
+     "latex": "\\langle\\Delta P^2\\rangle = \\frac{1}{2}e^{-2r}",
+     "anchor": "9.4-eq-9-201"
+    },
+    {
+     "id": "eq-9-200",
+     "latex": "\\Delta P = \\langle x\\rangle\\delta\\phi",
+     "anchor": "9.4-eq-9-200"
+    },
+    {
+     "id": "eq-9-204",
+     "latex": "\\hat{n}_- = \\cos\\phi\\left(\\hat{b}_i^\\dagger\\hat{b}_i - \\hat{a}_i^\\dagger\\hat{a}_i\\right) - i\\sin\\phi\\left(\\hat{a}_i^\\dagger\\hat{b}_i - \\hat{b}_i^\\dagger\\hat{a}_i\\right)",
+     "anchor": "9.4-eq-9-204"
+    },
+    {
+     "id": "eq-9-206",
+     "latex": "\\langle\\Delta\\hat{n}_-^2\\rangle_{(\\delta\\phi \\approx 0)} \\sim \\bar{\\beta}^2\\langle\\Delta P^2\\rangle_a \\to 0",
+     "anchor": "9.4-eq-9-206"
+    }
+   ]
+  },
+  {
+   "id": "spin-squeezing",
+   "kind": "definition",
+   "section": "9.4",
+   "name": "Spin squeezing",
+   "terms": [
+    "atom shot noise",
+    "collective",
+    "spin squeezing"
+   ],
+   "symbol": "S_coll",
+   "type": "angular-momentum",
+   "statement": "For N polarized spin-½ atoms the collective spin's orthogonal projections fluctuate at the atom shot noise; interactions can squeeze one projection below it at the expense of the other.",
+   "forms": [
+    {
+     "id": "eq-9-207",
+     "latex": "\\mathbf{S} = \\sum_i^N S_i",
+     "anchor": "9.4-eq-9-207"
+    },
+    {
+     "id": "eq-9-208",
+     "latex": "\\langle\\mathbf{S}_x^2\\rangle = \\langle\\mathbf{S}_y^2\\rangle = \\frac{N}{4}",
+     "anchor": "9.4-eq-9-208"
+    },
+    {
+     "id": "eq-9-209",
+     "latex": "\\langle\\mathbf{S}_x^2\\rangle < \\frac{N}{4}",
+     "anchor": "9.4-eq-9-209"
+    }
+   ]
+  },
+  {
+   "id": "atom-photon-entanglement",
+   "kind": "result",
+   "section": "9.4",
+   "name": "Atom-photon correlations",
+   "type": "energy",
+   "statement": "N-atom Raman scattering has the form of non-degenerate down-conversion between the photon mode and the collective spin, so detecting the photon heralds an entangled atomic excitation.",
+   "forms": [
+    {
+     "id": "eq-9-212",
+     "latex": "\\hat{H} = g\\hat{a}^\\dagger\\mathbf{S}^\\dagger + g^*\\hat{a}\\mathbf{S}",
+     "anchor": "9.4-eq-9-212"
+    },
+    {
+     "id": "eq-9-211",
+     "latex": "\\hat{H} = g\\hat{a}^\\dagger\\sum_i^N S_i^\\dagger + g^*\\hat{a}\\sum_i^N S_i",
+     "anchor": "9.4-eq-9-211"
+    }
+   ]
+  },
+  {
+   "id": "mean-photon-number",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "Mean photon number",
+   "terms": [
+    "mean photon number",
+    "average number"
+   ],
+   "symbol": "n_bar",
+   "statement": "The average number of photons in a mode, the mean of its photon distribution: the Bose-Einstein mean for a thermal state, |α|² for a coherent state."
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "fock-states",
+   "prereq": "field-hamiltonian"
+  },
+  {
+   "concept": "single-mode-field",
+   "prereq": "cavity-modes"
+  },
+  {
+   "concept": "photon-statistics",
+   "prereq": "fock-states"
+  },
+  {
+   "concept": "photon-statistics",
+   "prereq": "density-matrix-populations"
+  },
+  {
+   "concept": "thermal-photon-distribution",
+   "prereq": "photon-statistics"
+  },
+  {
+   "concept": "thermal-photon-distribution",
+   "prereq": "mean-thermal-photon-number"
+  },
+  {
+   "concept": "thermal-photon-distribution",
+   "prereq": "single-mode-field"
+  },
+  {
+   "concept": "multimode-thermal-statistics",
+   "prereq": "thermal-photon-distribution"
+  },
+  {
+   "concept": "coherent-state",
+   "prereq": "fock-states"
+  },
+  {
+   "concept": "coherent-state",
+   "prereq": "quantized-electric-field"
+  },
+  {
+   "concept": "coherent-amplitude",
+   "prereq": "coherent-state"
+  },
+  {
+   "concept": "quadrature-operators",
+   "prereq": "creation-annihilation-operators"
+  },
+  {
+   "concept": "coherent-state-uncertainty",
+   "prereq": "coherent-amplitude"
+  },
+  {
+   "concept": "coherent-state-uncertainty",
+   "prereq": "quadrature-operators"
+  },
+  {
+   "concept": "coherent-state-uncertainty",
+   "prereq": "heisenberg-uncertainty-principle"
+  },
+  {
+   "concept": "local-oscillator",
+   "prereq": "quadrature-operators"
+  },
+  {
+   "concept": "shift-operator",
+   "prereq": "coherent-amplitude"
+  },
+  {
+   "concept": "poisson-photon-statistics",
+   "prereq": "shift-operator"
+  },
+  {
+   "concept": "classical-dipole-radiation",
+   "prereq": "shift-operator"
+  },
+  {
+   "concept": "classical-dipole-radiation",
+   "prereq": "rotating-wave-approximation"
+  },
+  {
+   "concept": "multimode-coherent-state",
+   "prereq": "coherent-amplitude"
+  },
+  {
+   "concept": "coherent-state-overcompleteness",
+   "prereq": "shift-operator"
+  },
+  {
+   "concept": "p-representation",
+   "prereq": "coherent-state-overcompleteness"
+  },
+  {
+   "concept": "p-representation",
+   "prereq": "density-operator"
+  },
+  {
+   "concept": "nonclassical-light",
+   "prereq": "p-representation"
+  },
+  {
+   "concept": "linear-optical-transformations",
+   "prereq": "coherent-state"
+  },
+  {
+   "concept": "beamsplitter-transformation",
+   "prereq": "linear-optical-transformations"
+  },
+  {
+   "concept": "beamsplitter-unitary",
+   "prereq": "beamsplitter-transformation"
+  },
+  {
+   "concept": "cavity-qed",
+   "prereq": "single-mode-field"
+  },
+  {
+   "concept": "jaynes-cummings-model",
+   "prereq": "cavity-qed"
+  },
+  {
+   "concept": "jaynes-cummings-model",
+   "prereq": "single-photon-rabi-frequency"
+  },
+  {
+   "concept": "jaynes-cummings-model",
+   "prereq": "rotating-frame-hamiltonian"
+  },
+  {
+   "concept": "jaynes-cummings-model",
+   "prereq": "fock-states"
+  },
+  {
+   "concept": "jaynes-cummings-solution",
+   "prereq": "jaynes-cummings-model"
+  },
+  {
+   "concept": "jaynes-cummings-solution",
+   "prereq": "rabi-oscillations"
+  },
+  {
+   "concept": "vacuum-rabi-oscillations",
+   "prereq": "jaynes-cummings-solution"
+  },
+  {
+   "concept": "vacuum-rabi-oscillations",
+   "prereq": "wigner-weisskopf"
+  },
+  {
+   "concept": "strong-coupling-regime",
+   "prereq": "vacuum-rabi-oscillations"
+  },
+  {
+   "concept": "coherent-state-rabi-oscillations",
+   "prereq": "jaynes-cummings-solution"
+  },
+  {
+   "concept": "coherent-state-rabi-oscillations",
+   "prereq": "poisson-photon-statistics"
+  },
+  {
+   "concept": "rabi-collapse",
+   "prereq": "coherent-state-rabi-oscillations"
+  },
+  {
+   "concept": "rabi-revival",
+   "prereq": "rabi-collapse"
+  },
+  {
+   "concept": "atom-field-entanglement",
+   "prereq": "rabi-revival"
+  },
+  {
+   "concept": "schrodinger-cat-state",
+   "prereq": "atom-field-entanglement"
+  },
+  {
+   "concept": "schrodinger-cat-state",
+   "prereq": "superposition"
+  },
+  {
+   "concept": "beamsplitter-loss-model",
+   "prereq": "beamsplitter-transformation"
+  },
+  {
+   "concept": "cavity-loss-rate",
+   "prereq": "beamsplitter-loss-model"
+  },
+  {
+   "concept": "classical-cavity-evolution",
+   "prereq": "cavity-loss-rate"
+  },
+  {
+   "concept": "classical-cavity-evolution",
+   "prereq": "macroscopic-polarization"
+  },
+  {
+   "concept": "input-output-relation",
+   "prereq": "classical-cavity-evolution"
+  },
+  {
+   "concept": "cavity-langevin-equation",
+   "prereq": "classical-cavity-evolution"
+  },
+  {
+   "concept": "cavity-langevin-equation",
+   "prereq": "heisenberg-langevin-equation"
+  },
+  {
+   "concept": "cavity-reservoir-model",
+   "prereq": "cavity-langevin-equation"
+  },
+  {
+   "concept": "cavity-noise-correlations",
+   "prereq": "cavity-reservoir-model"
+  },
+  {
+   "concept": "cavity-noise-correlations",
+   "prereq": "generalized-einstein-relation"
+  },
+  {
+   "concept": "cavity-master-equation",
+   "prereq": "cavity-reservoir-model"
+  },
+  {
+   "concept": "damped-coherent-state",
+   "prereq": "cavity-noise-correlations"
+  },
+  {
+   "concept": "damped-coherent-state",
+   "prereq": "coherent-state-uncertainty"
+  },
+  {
+   "concept": "dissipation-destroys-nonclassicality",
+   "prereq": "damped-coherent-state"
+  },
+  {
+   "concept": "dissipation-destroys-nonclassicality",
+   "prereq": "nonclassical-light"
+  },
+  {
+   "concept": "cavity-driven-by-atoms",
+   "prereq": "cavity-langevin-equation"
+  },
+  {
+   "concept": "open-and-closed-cavities",
+   "prereq": "cavity-qed"
+  },
+  {
+   "concept": "open-and-closed-cavities",
+   "prereq": "spontaneous-emission-rate"
+  },
+  {
+   "concept": "cqed-master-equation",
+   "prereq": "jaynes-cummings-model"
+  },
+  {
+   "concept": "cqed-master-equation",
+   "prereq": "cavity-master-equation"
+  },
+  {
+   "concept": "cqed-master-equation",
+   "prereq": "lindblad-master-equation"
+  },
+  {
+   "concept": "jaynes-cummings-ladder",
+   "prereq": "cqed-master-equation"
+  },
+  {
+   "concept": "jaynes-cummings-ladder",
+   "prereq": "dressed-states"
+  },
+  {
+   "concept": "vacuum-rabi-splitting",
+   "prereq": "jaynes-cummings-ladder"
+  },
+  {
+   "concept": "collective-enhancement",
+   "prereq": "vacuum-rabi-splitting"
+  },
+  {
+   "concept": "collective-enhancement",
+   "prereq": "dispersion"
+  },
+  {
+   "concept": "cqed-no-jump-evolution",
+   "prereq": "cqed-master-equation"
+  },
+  {
+   "concept": "cqed-no-jump-evolution",
+   "prereq": "no-jump-evolution"
+  },
+  {
+   "concept": "purcell-effect",
+   "prereq": "cqed-no-jump-evolution"
+  },
+  {
+   "concept": "purcell-effect",
+   "prereq": "open-and-closed-cavities"
+  },
+  {
+   "concept": "purcell-effect",
+   "prereq": "lamb-shift"
+  },
+  {
+   "concept": "quality-factor",
+   "prereq": "cavity-loss-rate"
+  },
+  {
+   "concept": "cavity-finesse",
+   "prereq": "cavity-loss-rate"
+  },
+  {
+   "concept": "cavity-mode-coupling",
+   "prereq": "single-photon-rabi-frequency"
+  },
+  {
+   "concept": "strong-coupling-figure-of-merit",
+   "prereq": "strong-coupling-regime"
+  },
+  {
+   "concept": "strong-coupling-figure-of-merit",
+   "prereq": "cavity-mode-coupling"
+  },
+  {
+   "concept": "strong-coupling-figure-of-merit",
+   "prereq": "cavity-finesse"
+  },
+  {
+   "concept": "strong-coupling-figure-of-merit",
+   "prereq": "absorption-cross-section"
+  },
+  {
+   "concept": "suppressed-decay",
+   "prereq": "purcell-effect"
+  },
+  {
+   "concept": "suppressed-decay",
+   "prereq": "quality-factor"
+  },
+  {
+   "concept": "microwave-cqed",
+   "prereq": "open-and-closed-cavities"
+  },
+  {
+   "concept": "microwave-cqed",
+   "prereq": "rydberg-states"
+  },
+  {
+   "concept": "cavity-single-photon-source",
+   "prereq": "purcell-effect"
+  },
+  {
+   "concept": "cavity-single-photon-source",
+   "prereq": "emitted-photon-wavepacket"
+  },
+  {
+   "concept": "hanbury-brown-twiss",
+   "prereq": "beamsplitter-transformation"
+  },
+  {
+   "concept": "second-order-correlation",
+   "prereq": "hanbury-brown-twiss"
+  },
+  {
+   "concept": "photon-bunching",
+   "prereq": "second-order-correlation"
+  },
+  {
+   "concept": "photon-bunching",
+   "prereq": "poisson-photon-statistics"
+  },
+  {
+   "concept": "photon-bunching",
+   "prereq": "thermal-photon-distribution"
+  },
+  {
+   "concept": "linear-amplifier-noise",
+   "prereq": "beamsplitter-loss-model"
+  },
+  {
+   "concept": "degenerate-opo",
+   "prereq": "difference-frequency-generation"
+  },
+  {
+   "concept": "degenerate-opo",
+   "prereq": "phase-matching"
+  },
+  {
+   "concept": "degenerate-opo",
+   "prereq": "cavity-langevin-equation"
+  },
+  {
+   "concept": "phase-dependent-amplification",
+   "prereq": "degenerate-opo"
+  },
+  {
+   "concept": "opo-heisenberg-langevin",
+   "prereq": "phase-dependent-amplification"
+  },
+  {
+   "concept": "opo-heisenberg-langevin",
+   "prereq": "cavity-driven-by-atoms"
+  },
+  {
+   "concept": "opo-heisenberg-langevin",
+   "prereq": "adiabatic-elimination"
+  },
+  {
+   "concept": "nondegenerate-pdc",
+   "prereq": "opo-heisenberg-langevin"
+  },
+  {
+   "concept": "photon-pair-state",
+   "prereq": "nondegenerate-pdc"
+  },
+  {
+   "concept": "photon-number-correlations",
+   "prereq": "photon-pair-state"
+  },
+  {
+   "concept": "photon-number-correlations",
+   "prereq": "thermal-photon-distribution"
+  },
+  {
+   "concept": "heralded-single-photons",
+   "prereq": "photon-number-correlations"
+  },
+  {
+   "concept": "post-selection",
+   "prereq": "photon-pair-state"
+  },
+  {
+   "concept": "squeezed-state",
+   "prereq": "opo-heisenberg-langevin"
+  },
+  {
+   "concept": "squeezed-state",
+   "prereq": "coherent-state-uncertainty"
+  },
+  {
+   "concept": "damped-squeezing",
+   "prereq": "squeezed-state"
+  },
+  {
+   "concept": "damped-squeezing",
+   "prereq": "cavity-noise-correlations"
+  },
+  {
+   "concept": "steady-state-squeezing",
+   "prereq": "damped-squeezing"
+  },
+  {
+   "concept": "output-squeezing",
+   "prereq": "steady-state-squeezing"
+  },
+  {
+   "concept": "output-squeezing",
+   "prereq": "input-output-relation"
+  },
+  {
+   "concept": "homodyne-detection",
+   "prereq": "local-oscillator"
+  },
+  {
+   "concept": "homodyne-detection",
+   "prereq": "beamsplitter-transformation"
+  },
+  {
+   "concept": "squeezed-interferometry",
+   "prereq": "homodyne-detection"
+  },
+  {
+   "concept": "squeezed-interferometry",
+   "prereq": "squeezed-state"
+  },
+  {
+   "concept": "spin-squeezing",
+   "prereq": "squeezed-state"
+  },
+  {
+   "concept": "atom-photon-entanglement",
+   "prereq": "spin-squeezing"
+  },
+  {
+   "concept": "atom-photon-entanglement",
+   "prereq": "post-selection"
+  },
+  {
+   "concept": "mean-photon-number",
+   "prereq": "photon-statistics"
+  },
+  {
+   "concept": "poisson-photon-statistics",
+   "prereq": "mean-photon-number"
+  }
+ ],
+ "types": []
+}

@@ -1,0 +1,911 @@
+{
+ "id": "9.1",
+ "chapter": "9",
+ "title": "Basic properties of quantum fields",
+ "short": "Quantum fields",
+ "lead": "The quantum states of <span data-concept=\"single-mode-field\">a single mode</span> of the radiation field: <span data-concept=\"thermal-photon-distribution\">the thermal state</span> and its <span data-concept=\"photon-statistics\">photon statistics</span>, <span data-concept=\"coherent-state\">the coherent state</span> of a laser seen in the plane of the <span data-concept=\"quadrature-operators\">quadrature operators</span>, the <span data-concept=\"shift-operator\">shift operator</span> that makes it, its photon number distribution, coherent states of many modes, the <span data-concept=\"p-representation\">quasi-probability distribution</span> $\\kPalpha$, and phase shifts and <span data-concept=\"beamsplitter-transformation\">beamsplitters</span> as <span data-concept=\"linear-optical-transformations\">linear transformations</span>.",
+ "objectives": [],
+ "summary_html": "",
+ "notes": "",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   }
+  ]
+ },
+ "built": "2026-10-11",
+ "exercises_lead": "",
+ "exercise_notes": "MIT 8.422 Problem Set 1, Problem 1 and Problem Set 2, Problem 1 are set part by part, restated in Lukin's notation with AI-written solutions, since the course published no key; the numerical sharpness of the beamsplitter's split for n = 10 and n = 100 in Problem Set 2, Problem 1(d) is held, and the card asks for it as a function of n.",
+ "figures": [
+  {
+   "id": "sim-coherent",
+   "kind": "sim",
+   "number": "9.1",
+   "folds": [
+    "9.2"
+   ],
+   "originals": [
+    "/media/ch09/fig-9-1.png",
+    "/media/ch09/fig-9-2.png"
+   ],
+   "original_caption": "(Figure 9.1) Any coherent state can be represented by an area in {x̂, p̂} phase space. The distance to the origin is proportional to the absolute value of the coherent state |α|, while the angle is the argument of α. The uncertainty in the quadrature operators is represented by a circle with a diameter of √2. Note that other textbooks choose to define x̂ = ½(â + â†), p̂ = (1/2i)(â − â†), which gets rid of the √2 factors. (Figure 9.2) The photon number distribution for a coherent state with |α|² = 10.",
+   "draws": [
+    "state",
+    "quadrature",
+    "phase",
+    "population"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "built"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "fock",
+   "concept": "fock-states",
+   "verb": "introduces"
+  },
+  {
+   "span": "single-mode",
+   "concept": "single-mode-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "photon-statistics",
+   "concept": "photon-statistics",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-9-6",
+   "concept": "thermal-photon-distribution",
+   "verb": "introduces"
+  },
+  {
+   "span": "multimode-thermal",
+   "concept": "multimode-thermal-statistics",
+   "verb": "introduces"
+  },
+  {
+   "span": "coherent-state",
+   "concept": "coherent-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-9-10",
+   "concept": "coherent-amplitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "quadrature-operators",
+   "concept": "quadrature-operators",
+   "verb": "introduces"
+  },
+  {
+   "span": "most-classical",
+   "concept": "coherent-state-uncertainty",
+   "verb": "introduces"
+  },
+  {
+   "span": "local-oscillator",
+   "concept": "local-oscillator",
+   "verb": "introduces"
+  },
+  {
+   "span": "shift-operator",
+   "concept": "shift-operator",
+   "verb": "introduces"
+  },
+  {
+   "span": "poisson",
+   "concept": "poisson-photon-statistics",
+   "verb": "introduces"
+  },
+  {
+   "span": "dipole-field",
+   "concept": "classical-dipole-radiation",
+   "verb": "introduces"
+  },
+  {
+   "span": "multimode-coherent",
+   "concept": "multimode-coherent-state",
+   "verb": "introduces"
+  },
+  {
+   "span": "overcomplete",
+   "concept": "coherent-state-overcompleteness",
+   "verb": "introduces"
+  },
+  {
+   "span": "p-representation",
+   "concept": "p-representation",
+   "verb": "introduces"
+  },
+  {
+   "span": "nonclassical",
+   "concept": "nonclassical-light",
+   "verb": "introduces"
+  },
+  {
+   "span": "linear-transformations",
+   "concept": "linear-optical-transformations",
+   "verb": "introduces"
+  },
+  {
+   "span": "beamsplitter",
+   "concept": "beamsplitter-transformation",
+   "verb": "introduces"
+  },
+  {
+   "span": "beamsplitter-unitary",
+   "concept": "beamsplitter-unitary",
+   "verb": "introduces"
+  },
+  {
+   "span": "eq-9-1",
+   "concept": "field-mode-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-1",
+   "concept": "quantized-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "heisenberg-picture",
+   "verb": "uses"
+  },
+  {
+   "span": "opening",
+   "concept": "creation-annihilation-operators",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-2",
+   "concept": "hamiltonian",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-5",
+   "concept": "density-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-6",
+   "concept": "density-matrix-populations",
+   "verb": "uses"
+  },
+  {
+   "span": "eq-9-7",
+   "concept": "mean-thermal-photon-number",
+   "verb": "uses"
+  },
+  {
+   "span": "most-classical",
+   "concept": "heisenberg-uncertainty-principle",
+   "verb": "uses"
+  },
+  {
+   "span": "quadrature-operators",
+   "concept": "field-quadratures",
+   "verb": "uses"
+  },
+  {
+   "span": "dipole-radiation",
+   "concept": "rotating-wave-approximation",
+   "verb": "uses"
+  },
+  {
+   "span": "dipole-radiation",
+   "concept": "rotating-frame",
+   "verb": "uses"
+  },
+  {
+   "span": "dipole-radiation",
+   "concept": "time-evolution-operator",
+   "verb": "uses"
+  },
+  {
+   "span": "mean-photon-number",
+   "concept": "mean-photon-number",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "hw1-1a",
+   "source_id": "hw1.1a",
+   "source_number": "Problem Set 1, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, with hats on the operators ($\\hat{a}$, $\\hat{D}(\\alpha)$).",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "overcomplete",
+   "prompt": "Properties of the coherent state $|\\alpha\\rangle$. Compute the overlap of two coherent states $\\langle\\alpha|\\beta\\rangle$, for arbitrary complex $\\alpha$ and $\\beta$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With the Fock expansion of Eq. (9.24), $|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\sum_n \\frac{\\alpha^n}{\\sqrt{n!}}|n\\rangle$, and $\\langle m|n\\rangle = \\delta_{mn}$, $$\\langle\\alpha|\\beta\\rangle = e^{-(|\\alpha|^2 + |\\beta|^2)/2}\\sum_n \\frac{(\\alpha^*\\beta)^n}{n!} = e^{-\\frac{1}{2}|\\alpha|^2 - \\frac{1}{2}|\\beta|^2 + \\alpha^*\\beta}.$$ Since $-\\frac{1}{2}|\\alpha|^2 - \\frac{1}{2}|\\beta|^2 + \\alpha^*\\beta = -\\frac{1}{2}|\\alpha - \\beta|^2 + i\\,\\mathrm{Im}(\\alpha^*\\beta)$, $$\\langle\\alpha|\\beta\\rangle = e^{-\\frac{1}{2}|\\alpha-\\beta|^2}\\,e^{i\\,\\mathrm{Im}(\\alpha^*\\beta)},$$ whose magnitude is Eq. (9.39). It is never zero: two coherent states are not orthogonal, only nearly so once $|\\alpha - \\beta| \\gg 1$, when their circles in the plane of $\\hat{x}$ and $\\hat{p}$ no longer overlap."
+   }
+  },
+  {
+   "id": "hw1-1b",
+   "source_id": "hw1.1b",
+   "source_number": "Problem Set 1, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, with hats on the operators ($\\hat{a}$, $\\hat{D}(\\alpha)$).",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "overcomplete",
+   "prompt": "For the coherent states $|\\alpha\\rangle$: Prove that the coherent states form an over-complete basis, that is $$\\int|\\alpha\\rangle\\langle\\alpha|\\frac{d^2\\alpha}{\\pi} = I.$$",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Insert the expansion of Eq. (9.24) and write $\\alpha = |\\alpha|e^{i\\phi}$, $d^2\\alpha = |\\alpha|\\,d|\\alpha|\\,d\\phi$: $$\\int|\\alpha\\rangle\\langle\\alpha|d^2\\alpha = \\sum_{m,n}\\frac{|m\\rangle\\langle n|}{\\sqrt{m!n!}}\\int_0^\\infty d|\\alpha|\\,e^{-|\\alpha|^2}|\\alpha|^{m+n+1}\\int_0^{2\\pi}d\\phi\\,e^{i(m-n)\\phi}.$$ The angular integral is $2\\pi\\delta_{mn}$, and with $u = |\\alpha|^2$ the radial one is $\\int_0^\\infty e^{-u}u^n\\,du/2 = n!/2$. Each diagonal term is then $\\frac{1}{n!}\\cdot 2\\pi\\cdot\\frac{n!}{2} = \\pi$, so $\\int|\\alpha\\rangle\\langle\\alpha|d^2\\alpha = \\pi\\sum_n|n\\rangle\\langle n| = \\pi I$, which is the claim (Eqs. 9.34–9.38). The set is over-complete because its members are not orthogonal (part (a)): it resolves the identity yet any one coherent state can be expanded in the others."
+   }
+  },
+  {
+   "id": "hw1-1c",
+   "source_id": "hw1.1c",
+   "source_number": "Problem Set 1, Problem 1(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, with hats on the operators ($\\hat{a}$, $\\hat{D}(\\alpha)$, $\\hat{A}$, $\\hat{B}$).",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "shift-operator",
+   "prompt": "For the coherent states $|\\alpha\\rangle$: The BCH Lemma states that $e^{\\hat{A}}e^{\\hat{B}} = e^{\\hat{A}+\\hat{B}+[\\hat{A},\\hat{B}]/2}$ for operators $\\hat{A}$ and $\\hat{B}$ satisfying $[\\hat{A}, \\hat{B}] = c$, where $c$ is a complex number. Use this lemma to prove that the displacement operator $\\hat{D}(\\alpha)$ defined by $\\hat{D}(\\alpha)|0\\rangle = |\\alpha\\rangle$ may be written as $\\hat{D}(\\alpha) = \\exp\\left[\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}\\right]$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Take $\\hat{A} = \\alpha\\hat{a}^\\dagger$, $\\hat{B} = -\\alpha^*\\hat{a}$. Then $[\\hat{A}, \\hat{B}] = -|\\alpha|^2[\\hat{a}^\\dagger, \\hat{a}] = |\\alpha|^2$, a number, so the lemma gives $$e^{\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}} = e^{\\alpha\\hat{a}^\\dagger}e^{-\\alpha^*\\hat{a}}e^{-|\\alpha|^2/2},$$ Eq. (9.21) with (9.23). On the vacuum $e^{-\\alpha^*\\hat{a}}|0\\rangle = |0\\rangle$, since $\\hat{a}|0\\rangle = 0$, and $e^{\\alpha\\hat{a}^\\dagger}|0\\rangle = \\sum_n\\frac{\\alpha^n(\\hat{a}^\\dagger)^n}{n!}|0\\rangle = \\sum_n\\frac{\\alpha^n}{\\sqrt{n!}}|n\\rangle$, so $$e^{\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}}|0\\rangle = e^{-|\\alpha|^2/2}\\sum_n\\frac{\\alpha^n}{\\sqrt{n!}}|n\\rangle.$$ This state is the coherent state: applying $\\hat{a}$ lowers each $|n\\rangle$ to $\\sqrt{n}|n-1\\rangle$ and returns $\\alpha$ times the same sum, so it is the eigenstate of Eq. (9.10), normalized since $e^{-|\\alpha|^2}\\sum_n|\\alpha|^{2n}/n! = 1$. Hence $\\exp[\\alpha\\hat{a}^\\dagger - \\alpha^*\\hat{a}]|0\\rangle = |\\alpha\\rangle$, Eqs. (9.22)–(9.25). The exponent is anti-Hermitian, so the operator is unitary, as a displacement must be; it shifts $\\hat{a}$ to $\\hat{a} + \\alpha$, Eq. (9.20)."
+   }
+  },
+  {
+   "id": "hw1-1d",
+   "source_id": "hw1.1d",
+   "source_number": "Problem Set 1, Problem 1(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, with hats on the operators ($\\hat{a}$, $\\hat{D}(\\alpha)$, $\\hat{E}_x$).",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "most-classical",
+   "prompt": "For the coherent states $|\\alpha\\rangle$: Let the electric field operator be $\\hat{E}_x(t) = E_0\\left[\\hat{a}(t) + \\hat{a}^\\dagger(t)\\right]\\sin(kz)$, where $E_0 = \\sqrt{\\hbar\\omega/V\\epsilon_0}$ is the average electric field created by one photon inside the cavity volume $V$. For a freely evolving coherent state $|\\alpha\\rangle = |\\alpha(t)\\rangle$, compute the average electric field $\\langle E_x\\rangle = \\langle\\alpha|\\hat{E}_x(t)|\\alpha\\rangle$ and the root-mean-square deviation of the electric field $\\sqrt{\\langle\\Delta E_x^2\\rangle} = \\sqrt{\\langle\\alpha|\\hat{E}_x^2(t)|\\alpha\\rangle - |\\langle E_x\\rangle|^2}$. Why is $\\sqrt{\\langle\\Delta E_x^2\\rangle}$ independent of time and field strength $|\\alpha|$? Why does this result hold even for the vacuum state $\\alpha = 0$?",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Free evolution gives $\\hat{a}(t) = \\hat{a}e^{-i\\omega t}$. With $\\alpha = |\\alpha|e^{i\\theta}$, $$\\langle E_x\\rangle = E_0\\sin(kz)\\left(\\alpha e^{-i\\omega t} + \\alpha^*e^{i\\omega t}\\right) = 2E_0|\\alpha|\\cos(\\omega t - \\theta)\\sin(kz).$$ For the square, normal ordering with $\\hat{a}\\hat{a}^\\dagger = \\hat{a}^\\dagger\\hat{a} + 1$ gives $$\\langle\\hat{E}_x^2\\rangle = E_0^2\\sin^2(kz)\\left[\\left(\\alpha e^{-i\\omega t} + \\alpha^*e^{i\\omega t}\\right)^2 + 1\\right],$$ so $\\langle\\Delta E_x^2\\rangle = E_0^2\\sin^2(kz)$ and $\\sqrt{\\langle\\Delta E_x^2\\rangle} = E_0|\\sin(kz)|$, the field of one photon. It depends on neither $t$ nor $|\\alpha|$ because the coherent state is the displaced vacuum: by Eq. (9.20) $\\hat{D}^{-1}(\\alpha)\\hat{a}\\hat{D}(\\alpha) = \\hat{a} + \\alpha$, so the deviation $\\hat{E}_x - \\langle E_x\\rangle$ in $|\\alpha\\rangle$ has the statistics $\\hat{E}_x$ has in $|0\\rangle$. In the quadratures of Eqs. (9.13)–(9.17), $\\hat{a}e^{-i\\omega t} + \\hat{a}^\\dagger e^{i\\omega t} = \\sqrt{2}(\\hat{x}\\cos\\omega t + \\hat{p}\\sin\\omega t)$, whose variance is $2\\cdot\\frac{1}{2} = 1$ at every $\\omega t$ since $\\langle\\delta x^2\\rangle = \\langle\\delta p^2\\rangle = 1/2$ with no correlation. The result holds for the vacuum because the spread comes from $[\\hat{a}, \\hat{a}^\\dagger] = 1$, the zero-point term $\\frac{1}{2}\\hbar\\omega$ of Eq. (9.3): the vacuum has $\\langle E_x\\rangle = 0$ but fluctuations of one photon's field."
+   }
+  },
+  {
+   "id": "hw1-1e",
+   "source_id": "hw1.1e",
+   "source_number": "Problem Set 1, Problem 1(e)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation, with hats on the operators ($\\hat{a}$, $\\hat{D}(\\alpha)$); the phase distribution $P(\\phi)$ is MIT's and is not the quasi-probability distribution $P(\\alpha)$ of Eq. (9.40).",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "poisson",
+   "prompt": "For the coherent states $|\\alpha\\rangle$: In quantum mechanics, there is no unique choice for a phase operator. To better understand the phase properties of a state, here we give you one possible definition of a phase probability distribution. For a coherent state $|\\alpha\\rangle$ with $\\alpha = |\\alpha|e^{i\\theta}$ it can be defined as being $$P(\\phi) = \\frac{1}{2\\pi}\\left|\\sum_n\\langle n|e^{-in\\phi}|\\alpha\\rangle\\right|^2,$$ which can be shown to obey the normalization condition $\\int_0^{2\\pi}d\\phi\\,P(\\phi) = 1$. Show that this definition gives the expected results for coherent states, which for large values of $\\alpha$ approach classical states. Show that this definition gives an undefined phase for number states.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With Eq. (9.24), $\\sum_n e^{-in\\phi}\\langle n|\\alpha\\rangle = e^{-|\\alpha|^2/2}\\sum_n\\frac{|\\alpha|^n}{\\sqrt{n!}}e^{in(\\theta - \\phi)}$, so $$P(\\phi) = \\frac{1}{2\\pi}\\left|\\sum_n\\sqrt{\\rho_{nn}}\\,e^{in(\\theta-\\phi)}\\right|^2,$$ with $\\rho_{nn}$ the Poisson weights of Eq. (9.26); normalization follows because $\\int_0^{2\\pi}e^{i(n-m)\\phi}d\\phi = 2\\pi\\delta_{nm}$ and $\\sum_n\\rho_{nn} = 1$. All terms add in phase at $\\phi = \\theta$, so $P(\\phi)$ peaks at the argument of $\\alpha$. For $\\bar{n} = |\\alpha|^2 \\gg 1$ the weights are close to a Gaussian of width $\\sqrt{\\bar{n}}$ about $\\bar{n}$, $\\sqrt{\\rho_{nn}} \\approx (2\\pi\\bar{n})^{-1/4}e^{-(n-\\bar{n})^2/4\\bar{n}}$, and replacing the sum by an integral gives $$P(\\phi) \\approx \\sqrt{\\frac{2|\\alpha|^2}{\\pi}}\\,e^{-2|\\alpha|^2(\\phi - \\theta)^2},$$ a Gaussian of width $\\Delta\\phi = 1/2|\\alpha|$ about $\\theta$. As $|\\alpha|$ grows the phase becomes sharp, as for a classical field, and $\\Delta n\\,\\Delta\\phi = |\\alpha|\\cdot\\frac{1}{2|\\alpha|} = \\frac{1}{2}$: the circle of diameter $\\sqrt{2}$ at distance $\\sqrt{2}|\\alpha|$ in Figure 9.1 subtends the angle $1/|\\alpha|$. For a number state $|m\\rangle$ the sum is the single term $e^{-im\\phi}$, so $P(\\phi) = 1/2\\pi$ for every $\\phi$: every phase is equally likely and the phase is undefined, like the thermal field of Eq. (9.8)."
+   }
+  },
+  {
+   "id": "hw2-1a",
+   "source_id": "hw2.1a",
+   "source_number": "Problem Set 2, Problem 1(a)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's modes $a$, $b$ are written $\\hat{a}_1$, $\\hat{a}_2$ and its operator $B$ is written $\\hat{B}$; it is not the $\\hat{U}$ of Eq. (9.52), which gives the reflected arm the phase $i$.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beamsplitter-unitary",
+   "prompt": "The quantum beamsplitter. Let the beamsplitter operator $\\hat{B}$, acting with angle $\\theta$ on modes $\\hat{a}_1$ and $\\hat{a}_2$, be defined by $$\\hat{B} = \\exp\\left[\\theta\\left(\\hat{a}_1^\\dagger\\hat{a}_2 - \\hat{a}_1\\hat{a}_2^\\dagger\\right)\\right].$$ In lecture, we noted that $\\hat{B}$ conserves total photon number, and leaves coherent states as coherent states. In this problem, you can prove those claims for yourself. Prove that $\\hat{B}$ leaves $n_1 + n_2 = \\hat{a}_1^\\dagger\\hat{a}_1 + \\hat{a}_2^\\dagger\\hat{a}_2$ unchanged. Also prove that $\\hat{B}^\\dagger\\hat{B} = I$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $\\hat{B} = e^{\\theta\\hat{G}}$ with $\\hat{G} = \\hat{a}_1^\\dagger\\hat{a}_2 - \\hat{a}_1\\hat{a}_2^\\dagger$. From $[\\hat{a}_1^\\dagger, \\hat{a}_1^\\dagger\\hat{a}_1] = -\\hat{a}_1^\\dagger$ and $[\\hat{a}_2, \\hat{a}_2^\\dagger\\hat{a}_2] = \\hat{a}_2$, $$[\\hat{a}_1^\\dagger\\hat{a}_2, \\hat{a}_1^\\dagger\\hat{a}_1 + \\hat{a}_2^\\dagger\\hat{a}_2] = -\\hat{a}_1^\\dagger\\hat{a}_2 + \\hat{a}_1^\\dagger\\hat{a}_2 = 0,$$ and likewise for $\\hat{a}_1\\hat{a}_2^\\dagger$: one photon leaves one mode as one enters the other. So $[\\hat{G}, n_1 + n_2] = 0$, every power of $\\hat{G}$ commutes with $n_1 + n_2$, and $\\hat{B}^\\dagger(n_1 + n_2)\\hat{B} = n_1 + n_2$. Since $\\hat{G}^\\dagger = \\hat{a}_2^\\dagger\\hat{a}_1 - \\hat{a}_2\\hat{a}_1^\\dagger = -\\hat{G}$, $\\hat{B}^\\dagger = e^{-\\theta\\hat{G}} = \\hat{B}^{-1}$ and $\\hat{B}^\\dagger\\hat{B} = I$: the beamsplitter is unitary, which is footnote 1's $|r|^2 + |t|^2 = 1$, no losses."
+   }
+  },
+  {
+   "id": "hw2-1b",
+   "source_id": "hw2.1b",
+   "source_number": "Problem Set 2, Problem 1(b)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's modes $a$, $b$ are written $\\hat{a}_1$, $\\hat{a}_2$ and its operator $B$ is written $\\hat{B}$; it is not the $\\hat{U}$ of Eq. (9.52), which gives the reflected arm the phase $i$; the state is written with mode 1 first, $|\\alpha\\rangle_1|0\\rangle_2$ for MIT's $|0\\rangle_b|\\alpha\\rangle_a$.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beamsplitter",
+   "prompt": "For the beamsplitter $\\hat{B} = \\exp\\left[\\theta\\left(\\hat{a}_1^\\dagger\\hat{a}_2 - \\hat{a}_1\\hat{a}_2^\\dagger\\right)\\right]$ acting on modes $\\hat{a}_1$ and $\\hat{a}_2$: Let $|\\alpha\\rangle$ be a coherent state. Compute $\\hat{B}|\\alpha\\rangle_1|0\\rangle_2$, and show that the output is a tensor product of coherent states for all $\\theta$. Your result should be consistent with the intuition that the beamsplitter has well defined transmission and reflection coefficients; give these as a function of $\\theta$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "With $\\hat{G}$ as in part (a), $[\\hat{G}, \\hat{a}_1^\\dagger] = -\\hat{a}_2^\\dagger$ and $[\\hat{G}, \\hat{a}_2^\\dagger] = \\hat{a}_1^\\dagger$, so $$\\hat{B}\\hat{a}_1^\\dagger\\hat{B}^\\dagger = \\hat{a}_1^\\dagger\\cos\\theta - \\hat{a}_2^\\dagger\\sin\\theta.$$ The vacuum is unchanged, $\\hat{B}|0\\rangle_1|0\\rangle_2 = |0\\rangle_1|0\\rangle_2$, since both terms of $\\hat{G}$ annihilate it. Writing the input with the shift operator of Eq. (9.19), $|\\alpha\\rangle_1|0\\rangle_2 = \\hat{D}_1(\\alpha)|0\\rangle|0\\rangle$, $$\\hat{B}|\\alpha\\rangle_1|0\\rangle_2 = \\hat{B}\\hat{D}_1(\\alpha)\\hat{B}^\\dagger|0\\rangle|0\\rangle = e^{\\alpha\\cos\\theta\\,\\hat{a}_1^\\dagger - \\alpha^*\\cos\\theta\\,\\hat{a}_1}e^{-\\alpha\\sin\\theta\\,\\hat{a}_2^\\dagger + \\alpha^*\\sin\\theta\\,\\hat{a}_2}|0\\rangle|0\\rangle = |\\alpha\\cos\\theta\\rangle_1|-\\alpha\\sin\\theta\\rangle_2,$$ the two exponents commuting because they act on different modes. The output is a product of coherent states for every $\\theta$, with transmission coefficient $t = \\cos\\theta$ and reflection coefficient $-\\sin\\theta$, so $|t|^2 + |r|^2 = 1$ and the mean photon numbers $|\\alpha|^2\\cos^2\\theta$ and $|\\alpha|^2\\sin^2\\theta$ add to $|\\alpha|^2$. In the form of Eq. (9.45) with nothing in port 2, $ir = -\\sin\\theta$; Lukin's $\\hat{U}$ of Eq. (9.52) gives the same split with the reflected amplitude multiplied by $i$ instead of $-1$."
+   }
+  },
+  {
+   "id": "hw2-1c",
+   "source_id": "hw2.1c",
+   "source_number": "Problem Set 2, Problem 1(c)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's modes $a$, $b$ are written $\\hat{a}_1$, $\\hat{a}_2$ and its operator $B$ is written $\\hat{B}$; it is not the $\\hat{U}$ of Eq. (9.52), which gives the reflected arm the phase $i$; MIT's spin operators $s_z$, $s_\\pm$ are kept as MIT defines them.",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beamsplitter-unitary",
+   "prompt": "For the beamsplitter $\\hat{B} = \\exp\\left[\\theta\\left(\\hat{a}_1^\\dagger\\hat{a}_2 - \\hat{a}_1\\hat{a}_2^\\dagger\\right)\\right]$ acting on modes $\\hat{a}_1$ and $\\hat{a}_2$: There is close connection between the Lie group SU(2) and the algebra of two coupled harmonic oscillators, which is useful for understanding $\\hat{B}$. Let's define $$s_z = \\hat{a}_1^\\dagger\\hat{a}_1 - \\hat{a}_2^\\dagger\\hat{a}_2, \\qquad s_+ = \\hat{a}_1^\\dagger\\hat{a}_2, \\qquad s_- = \\hat{a}_1\\hat{a}_2^\\dagger,$$ and let $s_\\pm = (s_x \\pm is_y)/2$. What is $\\hat{B}(\\theta)$ in spin space? What is $\\hat{a}_1^\\dagger\\hat{a}_1 + \\hat{a}_2^\\dagger\\hat{a}_2$ in spin space? Show that $s_x$, $s_y$, and $s_z$ have the same commutation relations as the Pauli matrices. This relationship also explains why $\\hat{a}_1^\\dagger\\hat{a}_1 + \\hat{a}_2^\\dagger\\hat{a}_2$ is invariant; it is the Casimir operator of the algebra.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "From $s_\\pm = (s_x \\pm is_y)/2$, $s_x = s_+ + s_- = \\hat{a}_1^\\dagger\\hat{a}_2 + \\hat{a}_1\\hat{a}_2^\\dagger$ and $s_y = -i(s_+ - s_-)$. The exponent of $\\hat{B}$ is $\\theta(s_+ - s_-) = i\\theta s_y$, so $$\\hat{B}(\\theta) = e^{i\\theta s_y} = e^{2i\\theta S_y}, \\qquad S_y = s_y/2,$$ a rotation about the $y$ axis of spin space through the angle $2\\theta$ (in the sense $e^{-i\\varphi S_y}$ with $\\varphi = -2\\theta$); at the 50/50 point $\\theta = \\pi/4$, $\\hat{B}s_z\\hat{B}^\\dagger = -s_x$: the photon-number difference is turned into the interference term. Lukin's $\\hat{U}$ of Eq. (9.52) is $e^{i\\theta s_x}$, a rotation about $x$. The commutators: $[s_+, s_-] = \\hat{a}_1^\\dagger\\hat{a}_1[\\hat{a}_2, \\hat{a}_2^\\dagger] + [\\hat{a}_1^\\dagger, \\hat{a}_1]\\hat{a}_2^\\dagger\\hat{a}_2 = s_z$ and $[s_z, s_\\pm] = \\pm 2s_\\pm$, which give $$[s_x, s_y] = 2is_z, \\qquad [s_y, s_z] = 2is_x, \\qquad [s_z, s_x] = 2is_y,$$ the relations $[\\sigma_x, \\sigma_y] = 2i\\sigma_z$ of the Pauli matrices. With $N = \\hat{a}_1^\\dagger\\hat{a}_1 + \\hat{a}_2^\\dagger\\hat{a}_2$, $s_+s_- + s_-s_+ = 2n_1n_2 + N$ gives $$s_x^2 + s_y^2 + s_z^2 = N(N + 2), \\qquad \\mathbf{S}^2 = \\frac{N}{2}\\left(\\frac{N}{2} + 1\\right):$$ $N$ fixes the total spin $N/2$. It is the Casimir operator, commuting with $s_x$, $s_y$, $s_z$, so it commutes with $\\hat{B}$ and is invariant, as part (a) found directly."
+   }
+  },
+  {
+   "id": "hw2-1d",
+   "source_id": "hw2.1d",
+   "source_number": "Problem Set 2, Problem 1(d)",
+   "origin": "mit-8422",
+   "changes": "Restated in Lukin's notation: MIT's modes $a$, $b$ are written $\\hat{a}_1$, $\\hat{a}_2$ and its operator $B$ is written $\\hat{B}$; it is not the $\\hat{U}$ of Eq. (9.52), which gives the reflected arm the phase $i$; the state is written $|n\\rangle_1|0\\rangle_2$ for MIT's $|0\\rangle_b|n\\rangle_a$, and the sharpness asked for $n = 10$ and $n = 100$ is left out.",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "beamsplitter",
+   "prompt": "For the beamsplitter $\\hat{B} = \\exp\\left[\\theta\\left(\\hat{a}_1^\\dagger\\hat{a}_2 - \\hat{a}_1\\hat{a}_2^\\dagger\\right)\\right]$ acting on modes $\\hat{a}_1$ and $\\hat{a}_2$: How does a beamsplitter transform an input photon-number eigenstate? Let $\\hat{B}(\\theta) = \\exp\\left[\\theta\\left(\\hat{a}_1^\\dagger\\hat{a}_2 - \\hat{a}_1\\hat{a}_2^\\dagger\\right)\\right]$, and $\\hat{B} = \\hat{B}(\\pi/4)$ be a 50/50 beamsplitter, such that $$\\hat{B}\\hat{a}_1\\hat{B}^\\dagger = \\frac{\\hat{a}_1 + \\hat{a}_2}{\\sqrt{2}} \\quad\\text{and}\\quad \\hat{B}\\hat{a}_2\\hat{B}^\\dagger = \\frac{-\\hat{a}_1 + \\hat{a}_2}{\\sqrt{2}}.$$<sup class=\"fn\" data-note=\"c-hw2-1d\"></sup> Compute $\\hat{B}|n\\rangle_1|0\\rangle_2$. Note that the result is not $|n/2\\rangle|n/2\\rangle$, because $|n\\rangle$ is a photon number eigenstate, and not a coherent state. What photon number states have the largest amplitude? How sharp is the distribution as a function of $n$, if a general solution exists? Hint: use the binomial expansion on $(\\hat{a}_1^\\dagger + \\hat{a}_2^\\dagger)^n$.",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "Write $|n\\rangle_1|0\\rangle_2 = \\frac{(\\hat{a}_1^\\dagger)^n}{\\sqrt{n!}}|0\\rangle|0\\rangle$ and use $\\hat{B}|0\\rangle|0\\rangle = |0\\rangle|0\\rangle$. With the relations as printed, $\\hat{B}\\hat{a}_1^\\dagger\\hat{B}^\\dagger = (\\hat{a}_1^\\dagger + \\hat{a}_2^\\dagger)/\\sqrt{2}$, and the binomial expansion gives $$\\hat{B}|n\\rangle_1|0\\rangle_2 = \\frac{1}{\\sqrt{n!}\\,2^{n/2}}\\sum_{k=0}^{n}\\binom{n}{k}(\\hat{a}_1^\\dagger)^{n-k}(\\hat{a}_2^\\dagger)^k|0\\rangle|0\\rangle = \\sum_{k=0}^{n}\\sqrt{\\frac{1}{2^n}\\binom{n}{k}}\\;|n-k\\rangle_1|k\\rangle_2.$$ With $\\hat{B}$ as defined the amplitudes carry an extra $(-1)^k$, which changes no probability. The photons leave in an entangled superposition of all splits $(n-k, k)$, not in a product state, with probabilities $P(k) = \\binom{n}{k}/2^n$: each photon goes either way independently with probability 1/2. The largest amplitude is the even split $k = n/2$ for even $n$, or the two splits $k = (n \\pm 1)/2$ for odd $n$. The binomial distribution has mean $n/2$ and standard deviation $\\sqrt{n}/2$, so its relative width is $1/\\sqrt{n}$: for large $n$ it approaches a Gaussian about $n/2$, sharper relative to the mean as $n$ grows but wider in absolute terms, and the chance of the exact even split falls as $\\binom{n}{n/2}/2^n \\approx \\sqrt{2/\\pi n}$."
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "hw1-1a",
+   "concept": "coherent-state-overcompleteness"
+  },
+  {
+   "exercise": "hw1-1a",
+   "concept": "coherent-state"
+  },
+  {
+   "exercise": "hw1-1b",
+   "concept": "coherent-state-overcompleteness"
+  },
+  {
+   "exercise": "hw1-1c",
+   "concept": "shift-operator"
+  },
+  {
+   "exercise": "hw1-1c",
+   "concept": "coherent-state"
+  },
+  {
+   "exercise": "hw1-1d",
+   "concept": "coherent-state-uncertainty"
+  },
+  {
+   "exercise": "hw1-1d",
+   "concept": "quadrature-operators"
+  },
+  {
+   "exercise": "hw1-1e",
+   "concept": "coherent-amplitude"
+  },
+  {
+   "exercise": "hw1-1e",
+   "concept": "poisson-photon-statistics"
+  },
+  {
+   "exercise": "hw1-1e",
+   "concept": "fock-states"
+  },
+  {
+   "exercise": "hw2-1a",
+   "concept": "beamsplitter-unitary"
+  },
+  {
+   "exercise": "hw2-1b",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw2-1b",
+   "concept": "linear-optical-transformations"
+  },
+  {
+   "exercise": "hw2-1c",
+   "concept": "beamsplitter-unitary"
+  },
+  {
+   "exercise": "hw2-1d",
+   "concept": "beamsplitter-transformation"
+  },
+  {
+   "exercise": "hw2-1d",
+   "concept": "fock-states"
+  }
+ ],
+ "referents": [],
+ "footnotes": [
+  {
+   "id": "footnote-1",
+   "kind": "book",
+   "number": "1",
+   "html": "<p>Unitarity of this <span data-concept=\"beamsplitter-transformation\">beamsplitter</span> transformation requires that $|r|^2 + |t|^2 = 1$, which states that there are no losses due to the <span data-concept=\"beamsplitter-transformation\">beamsplitter</span>, and the less trivial relationship $rt^* - r^*t = 0$. This can be derived by letting</p><div class=\"equation\" id=\"eq-9-47\">$$U = \\begin{pmatrix} t &amp; ir \\\\ ir &amp; t \\end{pmatrix}, \\tag{9.47}$$</div><p>and solving $UU^\\dagger = 1$.</p>"
+  },
+  {
+   "id": "c-eq-9-11",
+   "kind": "correction",
+   "html": "The book prints the exponent $i(\\kk\\cdot\\mathbf{r} - i\\komega\\kt)$ with a stray $i$. As in Eq. (9.1), it is $i(\\kk\\cdot\\mathbf{r} - \\komega\\kt)$."
+  },
+  {
+   "id": "c-n-strong",
+   "kind": "correction",
+   "html": "The condition is on the mean photon number, $\\knbar \\gg 1$."
+  },
+  {
+   "id": "c-eq-9-30",
+   "kind": "correction",
+   "html": "The book prints $e^{\\kalphacoh\\hat{a} - \\kalphacoh^*\\hat{a}^\\dagger}$. With the Hamiltonian $-(d_0E_0/2)\\hat{a}^\\dagger + h.c.$ and $\\kalphacoh = id_0E_0\\kt/2\\hbar$, $e^{-i\\kH\\kt/\\hbar} = e^{\\kalphacoh\\hat{a}^\\dagger - \\kalphacoh^*\\hat{a}}$, the shift operator of Eq. (9.19)."
+  },
+  {
+   "id": "c-eq-9-33",
+   "kind": "correction",
+   "html": "The book prints the exponent $i(\\kk\\cdot\\mathbf{r} - i\\komegak\\kt)$ with a stray $i$. As in Eq. (9.1), it is $i(\\kk\\cdot\\mathbf{r} - \\komegak\\kt)$."
+  },
+  {
+   "id": "c-e-in",
+   "kind": "correction",
+   "html": "The two input fields are $E_1^\\mathrm{in}$ and $E_2^\\mathrm{in}$, as Eqs. (9.45) and (9.46) use them."
+  },
+  {
+   "id": "c-hw2-1d",
+   "kind": "correction",
+   "html": "With $\\hat{B}$ as defined, $\\hat{B}\\hat{a}_1\\hat{B}^\\dagger = \\hat{a}_1\\cos\\theta - \\hat{a}_2\\sin\\theta$, which at $\\theta = \\pi/4$ is $(\\hat{a}_1 - \\hat{a}_2)/\\sqrt{2}$, and $\\hat{B}\\hat{a}_2\\hat{B}^\\dagger = (\\hat{a}_1 + \\hat{a}_2)/\\sqrt{2}$. The relations printed are those of $\\hat{B}^\\dagger\\hat{a}_1\\hat{B}$ and $\\hat{B}^\\dagger\\hat{a}_2\\hat{B}$, or of $\\hat{B}(-\\pi/4)$; either sign gives the same photon-number probabilities."
+  }
+ ],
+ "derivations": [
+  {
+   "id": "shift-operator-on-vacuum",
+   "what": "the coherent state from the shift operator",
+   "source": "Modern Atomic and Optical Physics II, 9.1.2 Coherent states",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "e^{\\hat{A}+\\hat{B}} = e^{\\hat{A}}e^{\\hat{B}}e^{-[\\hat{A},\\hat{B}]/2}",
+       "src": "(9.21)"
+      },
+      {
+       "text": "Eq. (9.21) holds when $[\\hat{A}, [\\hat{A}, \\hat{B}]] = [\\hat{B}, [\\hat{A}, \\hat{B}]] = 0$.",
+       "src": "9.1.2"
+      },
+      {
+       "tex": "[\\hat{a}, \\hat{a}^\\dagger] = 1",
+       "src": "(11.114)"
+      },
+      {
+       "tex": "\\hat{n}|n\\rangle = \\hat{a}^\\dagger\\hat{a}|n\\rangle = n|n\\rangle",
+       "src": "(9.4)"
+      },
+      {
+       "tex": "|n\\rangle = \\frac{(\\hat{a}^\\dagger)^n}{\\sqrt{n!}}|0\\rangle",
+       "src": "(11.205)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kDshift|0\\rangle} = \\mk{R}{e^{\\kalphacoh\\hat{a}^\\dagger - \\kalphacoh^*\\hat{a}}|0\\rangle}",
+      "src": "(9.19)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kDshift|0\\rangle} = \\mk{c}{e^{-|\\kalphacoh|^2/2}}\\mk{e1}{e^{\\kalphacoh\\hat{a}^\\dagger}}\\mk{e2}{e^{-\\kalphacoh^*\\hat{a}}}|0\\rangle",
+       "uses": [
+        0,
+        1,
+        2
+       ],
+       "cap": "With $\\hat{A} = \\alpha\\hat{a}^\\dagger$ and $\\hat{B} = -\\alpha^*\\hat{a}$, $[\\hat{A}, \\hat{B}] = |\\alpha|^2[\\hat{a}, \\hat{a}^\\dagger] = |\\alpha|^2$, a number, which commutes with both.",
+       "map": {
+        "R": [
+         "c",
+         "e1",
+         "e2"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\kDshift|0\\rangle} = \\mk{c}{e^{-|\\kalphacoh|^2/2}}\\mk{e1}{e^{\\kalphacoh\\hat{a}^\\dagger}}|0\\rangle",
+       "uses": [
+        3
+       ],
+       "cap": "The vacuum holds no photons, so $\\hat{a}|0\\rangle$ has zero norm, $\\langle 0|\\hat{a}^\\dagger\\hat{a}|0\\rangle = 0$: every term of $e^{-\\alpha^*\\hat{a}}$ but the first annihilates $|0\\rangle$."
+      },
+      {
+       "tex": "\\mk{L}{\\kDshift|0\\rangle} = \\mk{c}{e^{-|\\kalphacoh|^2/2}}\\mk{e1}{\\sum_n\\frac{\\kalphacoh^n(\\hat{a}^\\dagger)^n}{n!}}|0\\rangle",
+       "uses": [],
+       "cap": "The exponential as its power series."
+      },
+      {
+       "tex": "\\mk{L}{\\kDshift|0\\rangle} = \\mk{c}{e^{-|\\kalphacoh|^2/2}}\\mk{e1}{\\sum_n\\frac{\\kalphacoh^n}{\\sqrt{n!}}|n\\rangle}",
+       "uses": [
+        4
+       ],
+       "cap": "$(\\hat{a}^\\dagger)^n|0\\rangle = \\sqrt{n!}\\,|n\\rangle$."
+      }
+     ],
+     "num": "(9.24)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\hat{a}|\\kalphacoh\\rangle = \\kalphacoh|\\kalphacoh\\rangle",
+       "src": "(9.10)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\kDshift|0\\rangle} = \\mk{c}{e^{-|\\kalphacoh|^2/2}}\\mk{e1}{\\sum_n\\frac{\\kalphacoh^n}{\\sqrt{n!}}|n\\rangle}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\kDshift|0\\rangle} = \\mk{R}{|\\kalphacoh\\rangle}",
+       "uses": [
+        1
+       ],
+       "cap": "The state is normalized and an eigenstate of $\\hat{a}$ with eigenvalue $\\alpha$, since $[\\hat{a}, e^{\\alpha\\hat{a}^\\dagger}] = \\alpha e^{\\alpha\\hat{a}^\\dagger}$ and $\\hat{a}|0\\rangle = 0$; it is the coherent state.",
+       "map": {
+        "c": "R",
+        "e1": "R"
+       }
+      }
+     ],
+     "num": "(9.25)"
+    }
+   ]
+  },
+  {
+   "id": "coherent-photon-statistics",
+   "what": "the photon statistics of a coherent state",
+   "source": "Modern Atomic and Optical Physics II, 9.1.2 Coherent states",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "A pure state $|\\kpsi\\rangle$ has the density operator $\\krhohat = |\\kpsi\\rangle\\langle\\kpsi|$, the sum of Eq. (3.1) with a single term.",
+       "src": "(3.1)"
+      },
+      {
+       "tex": "|\\kalphacoh\\rangle = e^{-|\\kalphacoh|^2/2}\\sum_m\\frac{\\kalphacoh^m}{\\sqrt{m!}}|m\\rangle",
+       "src": "(9.24)"
+      },
+      {
+       "text": "The Fock states are orthonormal, $\\langle n|m\\rangle = \\delta_{n,m}$, the eigenbasis of the Hamiltonian (9.3).",
+       "src": "9.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{r}{\\krhonn} = \\mk{R}{\\langle n|\\krhohat|n\\rangle}",
+      "src": "(3.6)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{r}{\\krhonn} = \\mk{R}{\\langle n|\\kalphacoh\\rangle\\langle\\kalphacoh|n\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{r}{\\krhonn} = \\mk{R}{|\\langle n|\\kalphacoh\\rangle|^2}",
+       "uses": [],
+       "cap": "$\\langle\\alpha|n\\rangle = \\langle n|\\alpha\\rangle^*$."
+      },
+      {
+       "tex": "\\mk{r}{\\krhonn} = \\mk{R}{\\left|e^{-|\\kalphacoh|^2/2}\\frac{\\kalphacoh^n}{\\sqrt{n!}}\\right|^2}",
+       "uses": [
+        1,
+        2
+       ],
+       "cap": "Of the sum only the term $m = n$ survives the overlap with $\\langle n|$."
+      },
+      {
+       "tex": "\\mk{r}{\\krhonn} = \\mk{R}{e^{-|\\kalphacoh|^2}\\frac{|\\kalphacoh|^{2n}}{n!}}",
+       "uses": []
+      }
+     ],
+     "num": "(9.26)",
+     "note": "The book prints $\\kalphacoh^{2n}$ for $|\\kalphacoh|^{2n}$; the probability is real, the squared magnitude of the amplitude of Eq. (9.24)."
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\hat{n} = \\hat{a}^\\dagger\\hat{a}",
+       "src": "(9.4)"
+      },
+      {
+       "tex": "\\langle\\kalphacoh|\\hat{a}^\\dagger\\hat{a}|\\kalphacoh\\rangle = |\\kalphacoh|^2",
+       "src": "(9.12)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{n}{\\knbar} = \\mk{R}{\\langle\\kalphacoh|\\hat{n}|\\kalphacoh\\rangle}",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{n}{\\knbar} = \\mk{R}{\\langle\\kalphacoh|\\hat{a}^\\dagger\\hat{a}|\\kalphacoh\\rangle}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{n}{\\knbar} = \\mk{R}{|\\kalphacoh|^2}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "num": "(9.27)"
+    },
+    {
+     "assumes": [
+      {
+       "step": 1
+      },
+      {
+       "tex": "\\Delta A = \\sqrt{\\langle(\\hat{A} - \\langle\\hat{A}\\rangle)^2\\rangle}",
+       "src": "1.2.4"
+      },
+      {
+       "tex": "\\hat{n} = \\hat{a}^\\dagger\\hat{a}",
+       "src": "(9.4)"
+      },
+      {
+       "tex": "[\\hat{a}, \\hat{a}^\\dagger] = 1",
+       "src": "(11.114)"
+      },
+      {
+       "tex": "\\hat{a}|\\kalphacoh\\rangle = \\kalphacoh|\\kalphacoh\\rangle",
+       "src": "(9.10)"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{v}{\\langle\\Delta n^2\\rangle} = \\mk{R}{\\langle(\\hat{n} - \\knbar)^2\\rangle}",
+      "uses": [1]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{v}{\\langle\\Delta n^2\\rangle} = \\mk{R}{\\langle\\hat{n}^2\\rangle} - \\mk{m}{\\knbar^2}",
+       "uses": [],
+       "cap": "Expanding the square, with $\\langle\\hat{n}\\rangle = \\bar{n}$.",
+       "map": {
+        "R": [
+         "R",
+         "m"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta n^2\\rangle} = \\mk{R}{\\langle\\kalphacoh|\\hat{a}^\\dagger\\hat{a}\\hat{a}^\\dagger\\hat{a}|\\kalphacoh\\rangle} - \\mk{m}{\\knbar^2}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta n^2\\rangle} = \\mk{R}{\\langle\\kalphacoh|\\hat{a}^\\dagger(\\hat{a}^\\dagger\\hat{a} + 1)\\hat{a}|\\kalphacoh\\rangle} - \\mk{m}{\\knbar^2}",
+       "uses": [
+        3
+       ],
+       "cap": "$\\hat{a}\\hat{a}^\\dagger = \\hat{a}^\\dagger\\hat{a} + 1$."
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta n^2\\rangle} = \\mk{R}{|\\kalphacoh|^4 + |\\kalphacoh|^2} - \\mk{m}{\\knbar^2}",
+       "uses": [
+        4
+       ],
+       "cap": "$\\hat{a}$ takes $\\alpha$ out of $|\\alpha\\rangle$, and $\\hat{a}^\\dagger$ takes $\\alpha^*$ out of $\\langle\\alpha|$."
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta n^2\\rangle} = \\mk{R}{|\\kalphacoh|^4 + |\\kalphacoh|^2} - \\mk{m}{|\\kalphacoh|^4}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta n^2\\rangle} = \\mk{R}{|\\kalphacoh|^2}",
+       "uses": [],
+       "map": {
+        "m": "R"
+       }
+      },
+      {
+       "tex": "\\mk{v}{\\langle\\Delta n^2\\rangle} = \\mk{nb}{\\knbar} = \\mk{R}{|\\kalphacoh|^2}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "num": "(9.28)"
+    }
+   ]
+  },
+  {
+   "id": "coherent-state-completeness",
+   "what": "the completeness of the coherent states",
+   "source": "Modern Atomic and Optical Physics II, 9.1.2 Coherent states",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "Writing $\\kalphacoh = |\\kalphacoh|e^{i\\kphi}$.",
+       "src": "9.1.2"
+      },
+      {
+       "text": "The Fock states form a basis of the mode, $\\sum_n|n\\rangle\\langle n| = 1$, the eigenbasis of the Hamiltonian (9.3).",
+       "src": "9.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k}{|\\kalphacoh\\rangle} = \\mk{R}{e^{-|\\kalphacoh|^2/2}\\sum_m\\frac{\\kalphacoh^m}{\\sqrt{m!}}|m\\rangle}",
+      "src": "(9.24)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k}{|\\kalphacoh\\rangle\\langle\\kalphacoh|} = \\mk{R}{e^{-|\\kalphacoh|^2}\\sum_{m,n}\\frac{\\kalphacoh^m\\kalphacoh^{*n}}{\\sqrt{m!n!}}|m\\rangle\\langle n|}",
+       "uses": [],
+       "cap": "Multiplying by $\\langle\\alpha|$, the adjoint of the same sum, with index $n$."
+      },
+      {
+       "tex": "\\mk{k}{\\int|\\kalphacoh\\rangle\\langle\\kalphacoh|d^2\\kalphacoh} = \\mk{R}{\\sum_{m,n}\\int e^{-|\\kalphacoh|^2}\\frac{\\kalphacoh^m\\kalphacoh^{*n}}{\\sqrt{m!n!}}|m\\rangle\\langle n|d^2\\kalphacoh}",
+       "uses": [],
+       "cap": "Integrating over the plane of $\\alpha$."
+      },
+      {
+       "tex": "\\mk{k}{\\int|\\kalphacoh\\rangle\\langle\\kalphacoh|d^2\\kalphacoh} = \\sum_{m,n}\\frac{1}{\\sqrt{m!n!}}\\mk{rad}{\\int_0^\\infty d|\\kalphacoh|\\, e^{-|\\kalphacoh|^2}|\\kalphacoh|^{m+n+1}}\\mk{ang}{\\int_0^{2\\pi}d\\kphi\\, e^{i(m-n)\\kphi}}|m\\rangle\\langle n|",
+       "uses": [
+        0
+       ],
+       "cap": "In polar form $\\alpha^m\\alpha^{*n} = |\\alpha|^{m+n}e^{i(m-n)\\phi}$ and $d^2\\alpha = |\\alpha|\\,d|\\alpha|\\,d\\phi$.",
+       "map": {
+        "R": [
+         "rad",
+         "ang"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{k}{\\int|\\kalphacoh\\rangle\\langle\\kalphacoh|d^2\\kalphacoh} = \\sum_{m,n}\\frac{1}{\\sqrt{m!n!}}\\mk{rad}{\\int_0^\\infty d|\\kalphacoh|\\, e^{-|\\kalphacoh|^2}|\\kalphacoh|^{m+n+1}}\\mk{ang}{2\\pi\\delta_{m,n}}|m\\rangle\\langle n|",
+       "uses": [],
+       "cap": "The angular integral vanishes unless $m = n$, when it is $2\\pi$."
+      },
+      {
+       "tex": "\\mk{k}{\\int|\\kalphacoh\\rangle\\langle\\kalphacoh|d^2\\kalphacoh} = \\sum_{m,n}\\frac{1}{\\sqrt{m!n!}}\\mk{rad}{\\frac{n!}{2}}\\mk{ang}{2\\pi\\delta_{m,n}}|m\\rangle\\langle n|",
+       "uses": [],
+       "cap": "With $m = n$ and $u = |\\alpha|^2$ the radial integral is $\\frac{1}{2}\\int_0^\\infty u^n e^{-u}du = \\frac{n!}{2}$."
+      },
+      {
+       "tex": "\\mk{k}{\\int|\\kalphacoh\\rangle\\langle\\kalphacoh|d^2\\kalphacoh} = \\mk{S}{\\sum_{m,n}\\frac{\\pi n!}{\\sqrt{m!n!}}\\delta_{m,n}|m\\rangle\\langle n|}",
+       "uses": [],
+       "map": {
+        "rad": "S",
+        "ang": "S"
+       }
+      },
+      {
+       "tex": "\\mk{k}{\\int|\\kalphacoh\\rangle\\langle\\kalphacoh|d^2\\kalphacoh} = \\mk{S}{\\pi\\sum_n|n\\rangle\\langle n|}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{k}{\\int|\\kalphacoh\\rangle\\langle\\kalphacoh|d^2\\kalphacoh} = \\mk{S}{\\pi}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{one}{1} = \\mk{k}{\\frac{1}{\\pi}\\int d^2\\kalphacoh|\\kalphacoh\\rangle\\langle\\kalphacoh|}",
+       "uses": [],
+       "map": {
+        "S": "one"
+       }
+      }
+     ],
+     "num": "(9.38)",
+     "note": "The book prints the third line, Eq. (9.36), as $\\sum_{m,n}\\pi n!\\delta_{m,n}|m\\rangle\\langle n|$, dropping the factor $1/\\sqrt{m!n!}$ of Eq. (9.35); with it the sum is $\\pi\\sum_n|n\\rangle\\langle n|$, Eq. (9.37)."
+    }
+   ]
+  },
+  {
+   "id": "coherent-state-overlap",
+   "what": "the overlap of two coherent states",
+   "source": "Modern Atomic and Optical Physics II, 9.1.2 Coherent states",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "The Fock states are orthonormal, $\\langle n|m\\rangle = \\delta_{n,m}$, the eigenbasis of the Hamiltonian (9.3).",
+       "src": "9.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{k}{|\\beta\\rangle} = \\mk{R}{e^{-|\\beta|^2/2}\\sum_n\\frac{\\beta^n}{\\sqrt{n!}}|n\\rangle}",
+      "src": "(9.24)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{k}{\\langle\\kalphacoh|\\beta\\rangle} = \\mk{R}{e^{-|\\kalphacoh|^2/2 - |\\beta|^2/2}\\sum_{m,n}\\frac{\\kalphacoh^{*m}\\beta^n}{\\sqrt{m!n!}}\\langle m|n\\rangle}",
+       "uses": [],
+       "cap": "Taking the overlap with $\\langle\\alpha|$, the adjoint of the same sum for $\\alpha$, with index $m$."
+      },
+      {
+       "tex": "\\mk{k}{\\langle\\kalphacoh|\\beta\\rangle} = \\mk{R}{e^{-|\\kalphacoh|^2/2 - |\\beta|^2/2}\\sum_n\\frac{(\\kalphacoh^*\\beta)^n}{n!}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{k}{\\langle\\kalphacoh|\\beta\\rangle} = \\mk{R}{e^{-|\\kalphacoh|^2/2 - |\\beta|^2/2 + \\kalphacoh^*\\beta}}",
+       "uses": [],
+       "cap": "The sum is the power series of $e^{\\alpha^*\\beta}$."
+      },
+      {
+       "tex": "\\mk{k}{|\\langle\\kalphacoh|\\beta\\rangle|} = \\mk{R}{e^{-|\\kalphacoh|^2/2 - |\\beta|^2/2 + \\mathrm{Re}(\\kalphacoh^*\\beta)}}",
+       "uses": [],
+       "cap": "$|e^z| = e^{\\mathrm{Re}\\,z}$."
+      },
+      {
+       "tex": "\\mk{k}{|\\langle\\kalphacoh|\\beta\\rangle|} = \\mk{R}{e^{-(1/2)|\\kalphacoh-\\beta|^2}}",
+       "uses": [],
+       "cap": "$|\\alpha - \\beta|^2 = |\\alpha|^2 + |\\beta|^2 - 2\\,\\mathrm{Re}(\\alpha^*\\beta)$."
+      }
+     ],
+     "num": "(9.39)"
+    }
+   ]
+  }
+ ]
+}
