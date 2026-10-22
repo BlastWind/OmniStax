@@ -1,0 +1,779 @@
+{
+ "id": "14.6",
+ "module": "m42229",
+ "chapter": "14",
+ "title": "对流",
+ "short": "对流",
+ "lead": "对流是由运动的物质携带的<span data-concept=\"heat\">热量</span>，就像被<span data-ref=\"furnace\">热风炉</span>加热的空气和<span data-ref=\"pot\">锅</span>底的水，因各自变得密度较小而上升。空气和水的这同一种运动，决定了风让人觉得多冷，皮毛和双层玻璃窗如何隔热，以及风、海洋和蒸发的汗液带走多少<span data-concept=\"heat\">热量</span>。",
+ "objectives": [
+  "讨论通过对流进行热传递的方式。"
+ ],
+ "summary_html": "<ul><li>对流是通过<span data-concept=\"mass\">物质</span>的宏观运动实现的<span data-concept=\"heat\">热</span>传递。对流可以是自然对流，也可以是强制对流，通常比热传导更快地传递<span data-concept=\"thermal-energy\">热能</span>。表 14.4 给出风寒温度，表明流动的空气与温度低得多的静止空气具有同样的致冷效果。<em>伴有相变的对流</em>可以把<span data-concept=\"energy\">能量</span>从寒冷区域传递到温暖区域。</li></ul>",
+ "notes": "书中未给答案的五道习题已略去：与 15 m/s 下 −5 °C 空气致冷效果相同的静止空气温度、一位 60.0 kg 的女士必须蒸发的水量、每分钟吸入 500 m³ 冷空气的教室、泵到皮肤的血液以及玻璃咖啡壶；本书的句子“循环系统用于身体”照原样保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。有五道习题没有给出答案，已略去：与 15 m/s 下 −5 °C 空气致冷效果相同的静止空气温度、一位 60.0 kg 的女士为降温 0.750 °C 必须蒸发的水量、每分钟吸入 500 m³ 冷空气的教室、每分钟泵到皮肤的 2.00 L 血液，以及玻璃咖啡壶。关于风扇的“理解检测”框，本书在 14.5 节中也印有，湖的习题在 14.2 节中也有；每一节在自己的 id 下保留各自的副本。关于对流最强的两个条件的 AP 题答案为（a），是判分选择题；关于海风的 AP 题没有答案，作为开放题保留，附有 AI 撰写并已标明的建议思路，两道思考题的建议思路亦然。呼吸习题的（a）至（c）部分答案为数值，（d）部分为讨论，保留在解中。基拉韦厄火山习题的卡片上带有图 14.27。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-convective-loop",
+   "kind": "sim",
+   "number": "14.21",
+   "folds": [
+    "14.22"
+   ],
+   "originals": [
+    "/media/ch14/Figure_15_06_01a.jpg",
+    "/media/ch14/Figure_15_06_02a.jpg"
+   ],
+   "original_caption": "被所谓重力式热风炉加热的空气膨胀并上升，形成对流环流，把能量传递到房间的其他部分。当空气在天花板和外墙处冷却时，它收缩，最终变得比房间里的空气密度更大，并下沉到地板。像这样使用自然对流的供暖系统，只要设计得当，可以相当高效地使整座房屋均匀升温。（图 14.22）对流在这锅水内部的热传递中起着重要作用。热量一旦传导到内部，传向锅中其他部分的热传递主要靠对流。较热的水膨胀，密度减小，上升而把热量传递到水的其他区域，而较冷的水则下沉到底部。这一过程不断重复。",
+   "widths": [
+    275,
+    200
+   ],
+   "draws": [
+    "density",
+    "temperature"
+   ],
+   "facts": [
+    "#e8892b",
+    "#4a90d9"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the buoyant force, no longer the headline's path"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-house-turnover",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "time",
+    "energy",
+    "power",
+    "volume",
+    "mass",
+    "specific-heat"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "turnover label on two lines inside the walls; note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-wind-chill",
+   "kind": "sim",
+   "draws": [
+    "temperature",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "wind label moved off the person's head"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-fur",
+   "kind": "sim",
+   "number": "14.23",
+   "originals": [
+    "/media/ch14/Figure_15_06_03a.jpg"
+   ],
+   "original_caption": "皮毛里充满空气，把空气分隔成许多小气室。这里的对流非常缓慢，因为环流非常小。空气的低热导率使皮毛成为非常好的轻质隔热体。",
+   "draws": [
+    "density",
+    "temperature",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence with d through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-sweat",
+   "kind": "sim",
+   "draws": [
+    "power",
+    "time",
+    "energy",
+    "mass",
+    "latent-heat"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label off the head; rate line over the cup dropped; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-cumulus",
+   "kind": "photo",
+   "number": "14.24",
+   "draws": []
+  },
+  {
+   "id": "fig-thunderhead",
+   "kind": "photo",
+   "number": "14.25",
+   "widths": [
+    213
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-icebergs",
+   "kind": "photo",
+   "number": "14.26",
+   "widths": [
+    227
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "natural-convection",
+   "concept": "natural-convection",
+   "verb": "introduces"
+  },
+  {
+   "span": "natural-convection",
+   "concept": "convection",
+   "verb": "uses"
+  },
+  {
+   "span": "natural-convection",
+   "concept": "buoyant-force",
+   "verb": "uses"
+  },
+  {
+   "span": "natural-convection",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "natural-convection",
+   "concept": "volume-thermal-expansion",
+   "verb": "uses"
+  },
+  {
+   "span": "moving-mass",
+   "concept": "convection-heat-rate",
+   "verb": "introduces"
+  },
+  {
+   "span": "moving-mass",
+   "concept": "heat-and-temperature-change",
+   "verb": "uses"
+  },
+  {
+   "span": "moving-mass",
+   "concept": "specific-heat",
+   "verb": "uses"
+  },
+  {
+   "span": "moving-mass",
+   "concept": "calculate-mass-from-density",
+   "verb": "uses"
+  },
+  {
+   "span": "moving-mass",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "wind-chill",
+   "concept": "wind-chill",
+   "verb": "introduces"
+  },
+  {
+   "span": "wind-chill",
+   "concept": "conduction-by-molecular-collisions",
+   "verb": "uses"
+  },
+  {
+   "span": "wind-chill",
+   "concept": "natural-convection",
+   "verb": "reinforces"
+  },
+  {
+   "span": "trapped-air",
+   "concept": "air-as-insulator",
+   "verb": "introduces"
+  },
+  {
+   "span": "trapped-air",
+   "concept": "thermal-conductivity",
+   "verb": "uses"
+  },
+  {
+   "span": "trapped-air",
+   "concept": "natural-convection",
+   "verb": "reinforces"
+  },
+  {
+   "span": "phase-change",
+   "concept": "convection-with-phase-change",
+   "verb": "introduces"
+  },
+  {
+   "span": "phase-change",
+   "concept": "heat-of-vaporization",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-change",
+   "concept": "evaporation-below-boiling",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-change",
+   "concept": "evaporative-cooling",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-change",
+   "concept": "condensation-and-freezing-release-heat",
+   "verb": "uses"
+  },
+  {
+   "span": "phase-change",
+   "concept": "natural-convection",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2586676",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "wind-chill"
+   },
+   "cite": "wind-chill",
+   "prompt": "解释为什么夏天用风扇会让人感觉清爽！",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "使用风扇增加了空气的流动：身体附近的暖空气被来自别处的较冷空气取代。对流提高了热传递的速率，所以流动的空气比静止的空气“感觉”更凉。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1809999",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "natural-convection",
+   "prompt": "在哪两个条件下，流体中的对流最强？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "重力加速度大，且对于给定的温度变化，流体的密度变化很大。",
+     "重力加速度小，且对于给定的温度变化，流体的密度变化很大。",
+     "重力加速度大，且对于给定的温度变化，流体的密度变化很小。",
+     "重力加速度小，且对于给定的温度变化，流体的密度变化很小。"
+    ],
+    "correct": 0,
+    "hint": "自然对流由作用在被加热流体上的浮力驱动，而浮力等于被加热流体所排开的密度较大的流体的重力，减去它自身的重力。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1951877",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "natural-convection",
+   "prompt": "海风出现在海岸线一带，是从海洋吹向海岸的凉空气。不过，这只发生在白天，而且当陆地上的空气温度最高、水面上方的空气温度最低时，这种效应更强。到了夜晚，风向反转，从陆地吹向海洋。考虑到水和沙的比热容（沙的比热容与混凝土的大致相同），解释海风如何在白天形成并在夜晚改变方向。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "水的比热容约为沙或混凝土的五倍，所以在太阳给予同样热量的情况下，陆地升温比海洋多得多。白天，炽热的地面加热陆地上方的空气，空气膨胀，密度变小。水面上方较凉、密度较大的空气从它下方流入，并把它推向上方：这股流入的空气就是海风。当陆地最热、水最冷时，海风最强，因为此时驱动海风的密度差最大。到了夜晚，比热容小的陆地很快冷却，而水仍几乎保持原来的温暖。此时水面上方的空气是更暖、更轻的空气，因此上升，来自陆地的较凉空气流出，补上它的位置。这种风与由重力式热风炉供暖的房间是同一种对流环流，较暖的表面扮演热风炉的角色；当较暖的表面由陆地变为海洋时，风向就随之反转。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3069600",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "natural-convection",
+   "prompt": "使壁炉更节能的一种方法，是为其燃料的燃烧提供外部空气供应。另一种方法，是让室内空气绕着炉膛外侧循环，再回到房间里。请详细说明各自涉及的热传递方式。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "火吸入空气用于燃烧，并把它送上烟囱，而在普通壁炉中，这些空气就是房间里的暖空气。强制对流把房间里的暖空气通过烟囱排空，而从门窗周围吸入的冷空气又把房间重新填满，这正是例题 14.7 中的那种漏风。外部空气供应则改用室外空气来供给火焰，因此房间保住了自己的暖空气，也保住了通过开口以辐射方式、通过炉膛以热传导方式到达房间的热量。让室内空气绕着炉膛外侧循环，就使对流为房间效力，而不是与房间作对。热量穿过炉膛壁流入经过的空气，空气膨胀，密度变小，上升回到房间里，而较凉的室内空气从下方流入，轮到它受热。这一对流环流把热量从灼热的金属带入房间，而不是带上烟囱。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2402776",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "trapped-air",
+   "prompt": "在寒冷、晴朗的夜晚，马会睡在大树的遮蔽之下。这如何帮助它们保暖？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "大树的枝叶减缓了风，树下的空气比空地上的空气静得多。站在风中的马通过对流损失热量，表 14.4 的风寒温度就说明了这一点，因为流动的空气把马身体加热过的空气带走，换上冷空气；在树下，被加热的空气留在马的附近，热量只能通过几乎静止的空气以热传导方式离开马，而空气是不良导体。树的遮蔽还把马与晴朗的夜空隔开，空地上的动物会通过辐射向夜空损失热量，这是下一节的方式，所以树下的马通过这两种方式损失热量都更慢。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3090099",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wind-chill",
+   "prompt": "风速为多少时，$-10^\\circ\\text{C}$ 的空气所产生的风寒温度，与 $-29^\\circ\\text{C}$ 的静止空气相同？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 10,
+    "unit": "m/s",
+    "hint": "在表 14.4 中找到流动空气为 −10 °C 的那一行，沿这一行读到表项 −29 °C 处。",
+    "solution": "10 m/s"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3044160",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "刚冲好的一杯速溶咖啡上方的“蒸汽”，其实是水蒸气从热咖啡中蒸发出来之后凝结成的小液滴。如果 250 g 初始温度为 $90.0^\\circ\\text{C}$ 的热咖啡中有 2.00 g 蒸发掉，它的末温是多少？咖啡盛在 Styrofoam 杯中，因此可以忽略其他方式的热传递。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 85.7,
+    "unit": "°C",
+    "hint": "使 2.00 g 蒸发的热量 $\\kQh = mL_{\\text{v}}$（取咖啡温度下的汽化热）来自剩下的咖啡，剩下的咖啡温度下降 $\\kdTemp = \\kQh/mc$。",
+    "solution": "$85.7^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1890173",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "在炎热干燥的一天，湖面蒸发所带走的热传递，恰好与来自太阳的 $1.00\\ \\text{kW/m}^2$ 的入射热量平衡。每平方米在 1.00 h 内蒸发多少质量的水？请明确写出你是如何遵循“热传递效应的解题策略”中的各个步骤的。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.48,
+    "unit": "kg",
+    "hint": "在 1.00 h 内，每平方米接收 $\\kQh = (1000\\ \\text{W})(3600\\ \\text{s})$ 的热量，蒸发必须把它全部带走，因此 $m = \\kQh/L_{\\text{v}}$，其中取湖水温度下水的汽化热。",
+    "solution": "1.48 kg"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3437564",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moving-mass",
+   "figure": {
+    "src": "/media/ch14/Figure_15_06_07a-5e77.jpg",
+    "alt": "夏威夷基拉韦厄火山上熔岩流的景象。",
+    "caption": "夏威夷基拉韦厄火山上的熔岩流。（来源：J. P. Eaton, U.S. Geological Survey）"
+   },
+   "prompt": "夏威夷的基拉韦厄火山是世界上最活跃的火山，每天喷出约 $5 \\times 10^{5}\\ \\text{m}^3$ 的 $1200^\\circ\\text{C}$ 熔岩。如果这种熔岩的密度为 $2700\\ \\text{kg/m}^3$，并最终冷却到 $30^\\circ\\text{C}$，通过对流从地球传出的热传递速率是多少？假设熔岩的比热容与花岗岩的相同。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 20000.0,
+    "unit": "MW",
+    "hint": "每天移动的质量为 $m = \\krho V$；它在冷却中放出的热量为 $\\kQh = mc\\kdTemp$，其中花岗岩的比热容取自表 14.1；热传递速率就是这些热量除以一天的秒数。",
+    "solution": "$2 \\times 10^{4}\\ \\text{MW}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3095359",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "phase-change",
+   "prompt": "一个人吸入并呼出 2.00 L、$37.0^\\circ\\text{C}$ 的空气，每次呼吸都有 $4.00 \\times 10^{-2}\\ \\text{g}$ 的水从肺和呼吸道蒸发。（a）每次呼吸中，因蒸发而发生的热传递有多少？（b）如果这个人以每分钟 18.0 次的适中速率呼吸，以瓦特计的热传递速率是多少？（c）如果吸入空气的温度为 $20.0^\\circ\\text{C}$，使空气升温的热传递速率是多少？（d）讨论总热传递速率与典型代谢率的关系。对这个人来说，这种呼吸是否是热传递的主要形式？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 97.2,
+      "unit": "J",
+      "hint": "热量为 $\\kQh = mL_{\\text{v}}$，其中取体温下水的汽化热 2430 kJ/kg。"
+     },
+     {
+      "part": "b",
+      "value": 29.2,
+      "unit": "W",
+      "hint": "每分钟 18 次呼吸即每秒 0.300 次呼吸；把一次呼吸的热量乘以这个速率。"
+     },
+     {
+      "part": "c",
+      "value": 9.49,
+      "unit": "W",
+      "hint": "2.00 L 空气的质量由它的密度 1.29 kg/m³ 得出；使它升温 17.0 °C 所需的热量为 $\\kQh = mc\\kdTemp$，其中取空气的定压比热容，速率就是这些热量乘以呼吸速率。"
+     }
+    ],
+    "solution": "（a）97.2 J（b）29.2 W（c）9.49 W（d）总的热损失速率为 $29.2\\ \\text{W} + 9.49\\ \\text{W} = 38.7\\ \\text{W}$。睡眠时，我们的身体消耗 83 W 的功率，静坐时消耗 120 至 210 W。因此，对这个人来说，呼吸造成的总热损失速率不会是热损失的主要形式。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "wind-chill"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "natural-convection",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "natural-convection"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "natural-convection"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "water-moderates-temperature",
+   "weight": 3
+  },
+  {
+   "exercise": "cq1",
+   "concept": "natural-convection"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "heat-transfer-methods",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "air-as-insulator"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "wind-chill",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "wind-chill"
+  },
+  {
+   "exercise": "p3",
+   "concept": "convection-with-phase-change"
+  },
+  {
+   "exercise": "p3",
+   "concept": "heat-and-temperature-change",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "convection-with-phase-change"
+  },
+  {
+   "exercise": "p5",
+   "concept": "heat-of-vaporization",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "convection-heat-rate"
+  },
+  {
+   "exercise": "p7",
+   "concept": "heat-and-temperature-change",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "convection-with-phase-change"
+  },
+  {
+   "exercise": "p9",
+   "concept": "convection-heat-rate"
+  }
+ ],
+ "referents": [
+  {
+   "id": "house",
+   "label": "由重力式热风炉供暖的房屋",
+   "figures": [
+    "sim-convective-loop"
+   ]
+  },
+  {
+   "id": "furnace",
+   "label": "重力式热风炉",
+   "figures": [
+    "sim-convective-loop"
+   ]
+  },
+  {
+   "id": "pot",
+   "label": "一锅水",
+   "figures": [
+    "sim-convective-loop"
+   ]
+  },
+  {
+   "id": "burner",
+   "label": "锅下的灶头",
+   "figures": [
+    "sim-convective-loop"
+   ]
+  },
+  {
+   "id": "leaky-house",
+   "label": "例题 14.7 中的房屋",
+   "figures": [
+    "sim-house-turnover"
+   ]
+  },
+  {
+   "id": "person-wind",
+   "label": "站在风中的人",
+   "figures": [
+    "sim-wind-chill"
+   ]
+  },
+  {
+   "id": "air-thermometer",
+   "label": "测量流动空气的温度计",
+   "figures": [
+    "sim-wind-chill"
+   ]
+  },
+  {
+   "id": "chill-thermometer",
+   "label": "读出风寒温度的温度计",
+   "figures": [
+    "sim-wind-chill"
+   ]
+  },
+  {
+   "id": "warm-side",
+   "label": "空气层的温暖一侧：身体、内侧玻璃或内墙",
+   "figures": [
+    "sim-fur"
+   ]
+  },
+  {
+   "id": "layer",
+   "label": "被截留的空气层：皮毛、间隙或空腔",
+   "figures": [
+    "sim-fur"
+   ]
+  },
+  {
+   "id": "cold-side",
+   "label": "空气层的寒冷一侧",
+   "figures": [
+    "sim-fur"
+   ]
+  },
+  {
+   "id": "person-shade",
+   "label": "坐在阴凉处的人",
+   "figures": [
+    "sim-sweat"
+   ]
+  },
+  {
+   "id": "cup",
+   "label": "收集蒸发出的水的杯子",
+   "figures": [
+    "sim-sweat"
+   ]
+  }
+ ]
+}

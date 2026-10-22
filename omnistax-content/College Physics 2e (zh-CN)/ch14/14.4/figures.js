@@ -1,0 +1,220 @@
+/* Figures for section 14.4 Heat Transfer Methods. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['14.4'] = function (root, F) {
+const { el, PAL, alpha, choice, hover, register, begin, line, arrow, dot, text, topline, spring } = F;
+const sim = (id, H) => F.sim(root, id, H);
+const TAU = 2 * Math.PI;
+
+/* ---------- small helpers shared by the figures ---------- */
+/* a curved arrow along the quadratic Bezier p0, p1, p2 with its head laid along the end tangent */
+function carrow(ctx, [x0, y0], [x1, y1], [x2, y2], color, w) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(x0, y0);
+  const tx = x2 - x1, ty = y2 - y1, L = Math.hypot(tx, ty) || 1, ex = x2 - (tx / L) * 12, ey = y2 - (ty / L) * 12;
+  ctx.quadraticCurveTo(x1, y1, ex, ey); ctx.stroke(); ctx.restore();
+  arrow(ctx, x2 - (tx / L) * 26, y2 - (ty / L) * 26, x2, y2, color, w);
+}
+/* a wavy arrow from (x1, y1) to (x2, y2): the book's mark for radiation leaving a hot body */
+function wavy(ctx, x1, y1, x2, y2, color, w, amp) {
+  const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L, px = -uy, py = ux;
+  const body = L - 24, n = Math.max(24, Math.round(body / 5));
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath();
+  for (let i = 0; i <= n; i++) { const s = (i / n) * body, o = amp * Math.sin((s / 20) * TAU); const x = x1 + ux * s + px * o, y = y1 + uy * s + py * o; if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
+  ctx.stroke(); ctx.restore();
+  arrow(ctx, x1 + ux * body, y1 + uy * body, x2, y2, color, w);
+}
+/* a label written up the page, for the side of a chimney */
+function upright(ctx, s, x, y, color, size) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(-Math.PI / 2); text(ctx, s, 0, 0, color, { size, weight: 600, align: 'center', bg: PAL.panel }); ctx.restore();
+}
+function poly(ctx, pts, fill, stroke, w) {
+  ctx.save(); ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath();
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); } if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = w || 3; ctx.stroke(); } ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 14.13: the fireplace. The room, the chimney, the window and the
+   couch are the book's; the three methods are three named paths, and putting the fire out fades every path away, since nothing is
+   then hotter than anything else. Still: the section states no
+   rate and no time, so nothing here has a clock.
+===================================================================== */
+(function () {
+  const H = 720;
+  const d = sim('sim-fireplace', H);
+  const fire = choice(d.controls, { label: '\\text{火}', options: [{ value: 'on', label: '燃烧' }, { value: 'off', label: '熄灭' }], value: 'on', aria: '火是否在燃烧' });
+  /* the scene, in logical units: the chimney at the left, the room with its window at the right, the ground under both */
+  const CH = { l: 200, r: 340, top: 110, open: 440 };                 /* the chimney shaft and the height of its opening into the room */
+  const ROOM = { l: 340, r: 1240, t: 160, b: 640 };                    /* the room's front frame */
+  const BACK = { l: 460, r: 1120, t: 240, b: 560 };                    /* the back wall */
+  const GROUND = { t: 640, b: 700 };
+  const WIN = [[1150, 300], [1215, 268], [1215, 422], [1150, 442]];    /* the window on the right wall */
+  const FIRE = { x: 285, y: 600 };                                     /* the base of the flames */
+  /* the flame is the one colour on the page: the physical fact, in the flame's own orange and yellow (rule 7) */
+  const FLAME_OUT = '#f2a33a', FLAME_IN = '#ffd166';
+  const HEADS = {
+    on: '在壁炉中，热量通过全部三种方式传入房间，其中大部分通过辐射。',
+    off: '火熄灭、房间处于室外的温度时，没有温差，任何方式都不传递热量。',
+  };
+  function flame(ctx, x, y, s, outer, inner) {
+    ctx.save();
+    ctx.fillStyle = outer; ctx.beginPath(); ctx.moveTo(x - 46 * s, y);
+    ctx.bezierCurveTo(x - 60 * s, y - 50 * s, x - 20 * s, y - 70 * s, x - 6 * s, y - 128 * s);
+    ctx.bezierCurveTo(x + 6 * s, y - 80 * s, x + 30 * s, y - 84 * s, x + 26 * s, y - 40 * s);
+    ctx.bezierCurveTo(x + 40 * s, y - 44 * s, x + 50 * s, y - 24 * s, x + 46 * s, y);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = inner; ctx.beginPath(); ctx.moveTo(x - 22 * s, y);
+    ctx.bezierCurveTo(x - 30 * s, y - 30 * s, x - 8 * s, y - 40 * s, x - 2 * s, y - 76 * s);
+    ctx.bezierCurveTo(x + 4 * s, y - 46 * s, x + 20 * s, y - 40 * s, x + 22 * s, y);
+    ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+  function logs(ctx, x, y, burnt) {
+    const c = burnt ? alpha(F.ref('fire'), 0.55) : F.ref('fire');
+    ctx.save(); ctx.fillStyle = burnt ? alpha(PAL.ink, 0.25) : PAL.soft; ctx.strokeStyle = c; ctx.lineWidth = 3;
+    for (const [lx, ly, r] of [[x - 30, y + 14, 16], [x + 8, y + 16, 17], [x + 44, y + 14, 15], [x - 12, y - 10, 15], [x + 26, y - 10, 15]]) {
+      ctx.beginPath(); ctx.arc(lx, ly, r, 0, TAU); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.arc(lx, ly, r * 0.45, 0, TAU); ctx.stroke();
+    }
+    ctx.restore();
+  }
+  function couch(ctx, x, y) {                                          /* x, y: the front-left corner of the seat */
+    const w = 270, seat = 60, back = 70, arm = 34;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = F.ref('couch'); ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(x + arm, y - seat - back, w - 2 * arm, back + 10, 12); ctx.fill(); ctx.stroke();          /* the back */
+    ctx.beginPath(); ctx.roundRect(x, y - seat, w, seat, 10); ctx.fill(); ctx.stroke();                                    /* the seat */
+    ctx.beginPath(); ctx.roundRect(x, y - seat - 36, arm, seat + 36, 12); ctx.fill(); ctx.stroke();                          /* the arms */
+    ctx.beginPath(); ctx.roundRect(x + w - arm, y - seat - 36, arm, seat + 36, 12); ctx.fill(); ctx.stroke();
+    line(ctx, x + arm + (w - 2 * arm) / 2, y - seat - back + 8, x + arm + (w - 2 * arm) / 2, y - seat, PAL.muted, 2);
+    for (const lx of [x + 14, x + w - 14]) line(ctx, lx, y, lx, y + 16, F.ref('couch'), 4);
+    ctx.restore();
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const on = fire.value === 'on', lit = fire.a('on'), [ox, oy] = fire.off('on', [0, -24]);
+    const width = () => 4;
+    /* the ground, the chimney and the room */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.10); ctx.fillRect(CH.l - 20, GROUND.t, ROOM.r + 20 - (CH.l - 20), GROUND.b - GROUND.t); ctx.restore();
+    line(ctx, CH.l - 20, GROUND.t, ROOM.r + 20, GROUND.t, PAL.ink, 3); line(ctx, CH.l - 20, GROUND.b, ROOM.r + 20, GROUND.b, PAL.muted, 2);
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.06); ctx.fillRect(CH.l, CH.top, CH.r - CH.l, GROUND.t - CH.top); ctx.restore();
+    line(ctx, CH.l, CH.top, CH.l, GROUND.t, F.ref('chimney'), 10); line(ctx, CH.r, CH.top, CH.r, CH.open, F.ref('chimney'), 10);   /* the shaft's walls; the right one stops at the opening */
+    poly(ctx, [[ROOM.l, ROOM.t], [ROOM.r, ROOM.t], [BACK.r, BACK.t], [BACK.l, BACK.t]], alpha(PAL.ink, 0.04), PAL.ink, 3);          /* ceiling */
+    poly(ctx, [[BACK.l, BACK.b], [BACK.r, BACK.b], [ROOM.r, ROOM.b], [ROOM.l, ROOM.b]], alpha(PAL.ink, 0.12), PAL.ink, 3);          /* floor */
+    poly(ctx, [[ROOM.r, ROOM.t], [ROOM.r, ROOM.b], [BACK.r, BACK.b], [BACK.r, BACK.t]], alpha(PAL.ink, 0.08), PAL.ink, 3);          /* right wall */
+    poly(ctx, [[BACK.l, BACK.t], [BACK.r, BACK.t], [BACK.r, BACK.b], [BACK.l, BACK.b]], PAL.soft, PAL.ink, 3);                     /* back wall */
+    poly(ctx, [[ROOM.l, ROOM.t], [BACK.l, BACK.t], [BACK.l, BACK.b], [ROOM.l, ROOM.b]], alpha(PAL.ink, 0.08), PAL.ink, 3);          /* left wall */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.04); ctx.fillRect(CH.r, CH.open, BACK.l - CH.r, ROOM.b - CH.open); ctx.restore();  /* the opening of the hearth */
+    line(ctx, CH.r, CH.open, BACK.l, BACK.t + (CH.open - ROOM.t) * (BACK.b - BACK.t) / (ROOM.b - ROOM.t), PAL.ink, 3);
+    poly(ctx, WIN, PAL.panel, F.ref('window'), 3);                                                                                          /* the window */
+    line(ctx, 1182, 284, 1182, 432, F.ref('window'), 2); line(ctx, WIN[0][0], 371, WIN[1][0], 345, F.ref('window'), 2);
+    /* the couch and the fire */
+    couch(ctx, 640, 560);
+    logs(ctx, FIRE.x, FIRE.y + 18, !on);
+    /* the flame and the three paths exist only while a temperature difference drives them, and fade with the fire */
+    if (lit > 0) {
+      ctx.save(); ctx.globalAlpha = lit; ctx.translate(ox, oy);
+      flame(ctx, FIRE.x, FIRE.y + 6, 1, F.fact(FLAME_OUT), F.fact(FLAME_IN));
+      const cd = PAL.ink, cv = PAL.ink, rd = PAL.ink;
+      /* conduction: from under the logs down into the ground and along it */
+      ctx.save(); ctx.strokeStyle = cd; ctx.lineWidth = width('conduction'); ctx.beginPath(); ctx.moveTo(FIRE.x, GROUND.t + 4); ctx.lineTo(FIRE.x, GROUND.t + 32); ctx.quadraticCurveTo(FIRE.x, GROUND.t + 46, FIRE.x + 14, GROUND.t + 46); ctx.lineTo(500, GROUND.t + 46); ctx.stroke(); ctx.restore();
+      arrow(ctx, 480, GROUND.t + 46, 530, GROUND.t + 46, cd, width('conduction'));
+      text(ctx, '热传导（传入地面）', 548, GROUND.t + 46, cd, { size: 22, weight: 600, bg: PAL.panel });
+      /* convection: cold air in around the window and along the floor to the fire, hot air up the chimney */
+      carrow(ctx, [1146, 352], [1040, 400], [936, 566], cv, width('convection'));
+      carrow(ctx, [1146, 418], [1080, 500], [1010, 598], cv, width('convection'));
+      carrow(ctx, [1010, 610], [700, 646], [372, 614], cv, width('convection'));
+      carrow(ctx, [936, 578], [650, 600], [380, 590], cv, width('convection'));
+      for (const x of [CH.l + 42, CH.l + 98]) { arrow(ctx, x, 470, x, 300, cv, width('convection')); arrow(ctx, x, 280, x, 130, cv, width('convection')); }
+      text(ctx, '对流（冷空气进入）', 700, 612, cv, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+      text(ctx, '冷空气', 1252, 332, cv, { size: 19, weight: 600, bg: PAL.panel });
+      upright(ctx, '对流（热空气升入烟囱）', CH.l - 36, 300, cv, 22);
+      /* radiation: wavy arrows from the flames across the room */
+      wavy(ctx, 340, 520, 630, 452, rd, width('radiation'), 6);
+      wavy(ctx, 340, 566, 626, 516, rd, width('radiation'), 6);
+      text(ctx, '辐射', 470, 448, rd, { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+      ctx.restore();
+    }
+    topline(ctx, HEADS[fire.value]);
+    d.readout.replaceChildren();
+  }
+  hover(d.stage, () => [
+    { x: 1182, y: 356, r: 60, name: '窗户，冷空气由此进入房间' },
+    { x: 270, y: 260, r: 80, name: '烟囱，热空气由此排出' },
+    { x: FIRE.x, y: FIRE.y - 30, r: 70, name: fire.value === 'on' ? '炉床上的火' : '炉床，火已熄灭' },
+    { x: 775, y: 500, r: 90, name: '沙发' },
+    { x: 700, y: 672, r: 34, name: '房间下方的地面' },
+  ]);
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 14.14: the thermos bottle, cut away. A faithful copy for the
+   conceptual question that asks what each part is for: no slider, no
+   animation, the book's six labels beside their parts, and hover names for
+   the stopper, the neck and the air layer, which the question names too.
+===================================================================== */
+(function () {
+  const H = 720;
+  const d = sim('fig-thermos', H);
+  const CX = 620;                                                     /* the bottle's axis */
+  const CON = { l: 500, r: 740, t: 200, b: 690, neck: 36, top: 122 };  /* the outer container: shoulders at t, the neck half-width, the top of the neck */
+  const OUT = { l: 536, r: 704, t: 236, b: 640, neck: 28, top: 150 };  /* the vessel's outer glass wall */
+  const INN = { l: 558, r: 682, t: 258, b: 618, neck: 16, top: 150 };  /* the vessel's inner glass wall */
+  const LEVEL = 400;                                                   /* the liquid's surface */
+  /* a bottle outline: a rounded bottom, straight sides, shoulders curving in to a neck of the given half-width */
+  function bottle(ctx, b) {
+    ctx.beginPath(); ctx.moveTo(CX - b.neck, b.top); ctx.lineTo(CX - b.neck, b.t - 30);
+    ctx.bezierCurveTo(CX - b.neck, b.t + 10, b.l, b.t - 10, b.l, b.t + 40);
+    ctx.lineTo(b.l, b.b - 40); ctx.quadraticCurveTo(b.l, b.b, b.l + 40, b.b); ctx.lineTo(b.r - 40, b.b); ctx.quadraticCurveTo(b.r, b.b, b.r, b.b - 40);
+    ctx.lineTo(b.r, b.t + 40); ctx.bezierCurveTo(b.r, b.t - 10, CX + b.neck, b.t + 10, CX + b.neck, b.t - 30);
+    ctx.lineTo(CX + b.neck, b.top);
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    /* the container, thick-walled, and the air inside it */
+    ctx.save(); ctx.lineJoin = 'round'; bottle(ctx, CON); ctx.closePath(); ctx.fillStyle = alpha(F.ref('air-layer'), 0.14); ctx.fill(); ctx.strokeStyle = F.ref('container'); ctx.lineWidth = 12; ctx.stroke(); ctx.restore();
+    /* the vacuum between the two glass walls, empty, and the walls themselves with their silvered faces */
+    ctx.save(); bottle(ctx, OUT); ctx.closePath(); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.fillStyle = alpha(F.ref('vacuum'), 0.12); ctx.fill(); ctx.strokeStyle = F.ref('glass-walls'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+    ctx.save(); bottle(ctx, INN); ctx.closePath(); ctx.fillStyle = PAL.panel; ctx.fill(); ctx.strokeStyle = F.ref('glass-walls'); ctx.lineWidth = 3; ctx.stroke(); ctx.restore();
+    /* the silvering: a grey band along each wall's face onto the vacuum */
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 5; bottle(ctx, { ...OUT, l: OUT.l + 5, r: OUT.r - 5, b: OUT.b - 5, neck: OUT.neck - 5, top: OUT.top + 4 }); ctx.stroke(); bottle(ctx, { ...INN, l: INN.l - 5, r: INN.r + 5, b: INN.b + 5, neck: INN.neck + 5, top: INN.top + 4 }); ctx.stroke(); ctx.restore();
+    /* the liquid, up to its level */
+    ctx.save(); bottle(ctx, INN); ctx.closePath(); ctx.clip(); ctx.fillStyle = alpha(F.ref('liquid'), 0.22); ctx.fillRect(INN.l - 10, LEVEL, INN.r - INN.l + 20, INN.b - LEVEL + 20); ctx.restore();
+    line(ctx, INN.l + 2, LEVEL, INN.r - 2, LEVEL, F.ref('liquid'), 2);
+    /* the neck: the two walls meet at the lip, and the stopper closes it */
+    line(ctx, CX - OUT.neck, OUT.top, CX - INN.neck, INN.top, PAL.ink, 3); line(ctx, CX + OUT.neck, OUT.top, CX + INN.neck, INN.top, PAL.ink, 3);
+    ctx.save(); ctx.fillStyle = alpha(F.ref('stopper'), 0.4); ctx.strokeStyle = F.ref('stopper'); ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.roundRect(CX - 52, 86, 104, 38, 8); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(CX - 30, 124); ctx.lineTo(CX - 26, 166); ctx.quadraticCurveTo(CX, 182, CX + 26, 166); ctx.lineTo(CX + 30, 124); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.restore();
+    /* the spring centering device on each side, and the rubber support under the vessel */
+    spring(ctx, CON.l + 8, 380, OUT.l - 2, 380, 3, 7, F.ref('spring'), 3); spring(ctx, OUT.r + 2, 380, CON.r - 8, 380, 3, 7, F.ref('spring'), 3);
+    ctx.save(); ctx.fillStyle = alpha(F.ref('support'), 0.45); ctx.strokeStyle = F.ref('support'); ctx.lineWidth = 3; ctx.beginPath(); ctx.roundRect(CX - 22, OUT.b - 2, 44, CON.b - OUT.b + 2, 4); ctx.fill(); ctx.stroke(); ctx.restore();
+    /* the book's six labels, each beside its part with a leader to it */
+    const LAB = [
+      ['表面镀银的玻璃壁', 820, 236, 'left', 692, 300, 'glass-walls'],
+      ['弹簧定心装置', 820, 380, 'left', 722, 380, 'spring'],
+      ['外层容器', 820, 470, 'left', 742, 470, 'container'],
+      ['真空', 820, 560, 'left', 694, 560, 'vacuum'],
+      ['橡胶支座', 820, 662, 'left', 642, 664, 'support'],
+      ['热的或冷的液体', 420, 520, 'right', 600, 520, 'liquid'],
+    ];
+    for (const [s, lx, ly, align, hx, hy, id] of LAB) {
+      const ex = align === 'left' ? lx - 8 : lx + 8, rc = F.ref(id);
+      line(ctx, hx, hy, ex, ly, alpha(rc, 0.55), 1.5, [5, 6]); dot(ctx, hx, hy, rc, true, 4);
+      text(ctx, s, lx, ly, rc, { size: 22, weight: 600, align, bg: PAL.panel });
+    }
+    topline(ctx, '保温瓶的构造是为了同时减缓每一种热传递方式。');
+  }
+  hover(d.stage, () => [
+    { x: CX, y: 105, r: 50, name: '瓶塞' },
+    { x: CX, y: 175, r: 34, name: '薄壁的长玻璃颈' },
+    { x: 518, y: 520, r: 16, name: '内胆与外层容器之间的空气层' },
+    { x: 722, y: 520, r: 16, name: '内胆与外层容器之间的空气层' },
+    { x: CX, y: 520, r: 60, name: '热的或冷的液体' },
+    { x: 694, y: 560, r: 12, name: '两层玻璃壁之间的真空' },
+    { x: CX, y: 664, r: 24, name: '橡胶支座' },
+    { x: 722, y: 380, r: 20, name: '弹簧定心装置' },
+    { x: 518, y: 380, r: 20, name: '弹簧定心装置' },
+  ]);
+  register(d.fig, { update: () => {}, draw });
+})();
+};

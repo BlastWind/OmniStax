@@ -1,0 +1,793 @@
+{
+ "id": "14.5",
+ "module": "m42228",
+ "chapter": "14",
+ "title": "热传导",
+ "short": "热传导",
+ "lead": "瓷砖地面摸起来比<span data-concept=\"temperature\">温度</span>相同的地毯更冷，因为它把<span data-concept=\"heat\">热量</span>从你的脚上带走得更快。分子碰撞使<span data-concept=\"heat\">热量</span>在物质中传递，其速率由<span data-concept=\"temperature\">温差</span>、<span data-concept=\"area\">面积</span>、厚度和材料的<span data-concept=\"thermal-conductivity\">热导率</span>决定，正是它决定了一个 Styrofoam 箱一天内允许多少冰熔化。",
+ "objectives": [
+  "计算热导率。",
+  "观察碰撞中的热传导。",
+  "研究常见物质的热导率。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"heat\">热</span>传导是两个直接接触的物体之间的<span data-concept=\"heat\">热</span>传递。</li><li><span data-concept=\"heat\">热</span>传递速率 $\\kQh/\\kt$（单位<span data-concept=\"time\">时间</span>内的<span data-concept=\"energy\">能量</span>）与<span data-concept=\"temperature\">温差</span> $\\kTemptwo - \\kTempone$ 和接触<span data-concept=\"area\">面积</span> $A$ 成正比，与物体之间的<span data-concept=\"distance\">距离</span> $d$ 成反比：$$\\frac{\\kQh}{\\kt} = \\frac{kA(\\kTemptwo - \\kTempone)}{d}.$$</li></ul>",
+ "notes": "图 14.15（本节开头的隔热墙）略去；图 14.20（海象）连同其习题一并略去，书中没有给出该题的答案；书中未给出答案的七道习题略去；例题 14.6 中书里自己的笔误——把蒸发的水说成熔化——按原样保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。有七道习题书中没有给出答案，故略去：冬天的窗户、一只脚踩陶瓷一只脚踩地毯、踩火者、带照片的海象、羊毛衣服、阁楼隔热和投资回收期。关于 1.00 m² 的窗户、两个表面相差 13.0 °C 的“不合理的结果”一题，只取决于热传导方程，所以放在这里，source_section 为 14.7，（a）部分的答案为 1.46 kW，书中对（b）和（c）的回答写在它的解答里；14.7 的说明里也这样写明。前两道 AP 题涉及你在例题 14.1 中设计的实验，那是本书 AP 版中的一项，本版没有印出；两题都按书中印出的样子保留。两道 AP 题有答案，按选择题评分；另外两道是开放题，附有 AI 写的建议思路，两道思考题也是如此。“理解检测”框放在陈述方程的段落之后；书中在“对流”一节里又印了同一个框，各节各保留自己的一份。其余的都放在最后。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-collisions",
+   "kind": "sim",
+   "number": "14.16",
+   "originals": [
+    "/media/ch14/Figure_15_05_02a.jpg"
+   ],
+   "original_caption": "处于不同温度的两个物体中的分子具有不同的平均动能。在接触面上发生的碰撞倾向于把能量从高温区域传给低温区域。在这幅图中，低温区域（右侧）的一个分子在碰撞前能量较低，但与接触面碰撞后它的能量增大。相反，高温区域（左侧）的一个分子在碰撞前能量较高，但与接触面碰撞后它的能量减小。",
+   "widths": [],
+   "draws": [
+    "temperature",
+    "energy",
+    "time"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-slab",
+   "kind": "sim",
+   "number": "14.17",
+   "originals": [
+    "/media/ch14/Figure_15_05_03a.jpg"
+   ],
+   "original_caption": "热传导发生在任何材料中，这里用一根长方形的棒表示，无论是窗玻璃还是海象的皮下脂肪层。材料左侧的温度是 T2，右侧的温度是 T1，其中 T2 大于 T1。热传导的热传递速率与表面积 A、温差 T2 − T1 和物质的热导率 k 成正比。热传递速率与厚度 d 成反比。",
+   "widths": [
+    422
+   ],
+   "draws": [
+    "power",
+    "temperature",
+    "energy",
+    "time",
+    "area",
+    "position",
+    "thermal-conductivity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "cold body drawn over the current; labels clear of the bracket and each other"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-batts",
+   "kind": "photo",
+   "number": "14.18",
+   "widths": [
+    150
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "collisions",
+   "concept": "conduction-by-molecular-collisions",
+   "verb": "introduces"
+  },
+  {
+   "span": "collisions",
+   "concept": "conduction",
+   "verb": "uses"
+  },
+  {
+   "span": "collisions",
+   "concept": "kinetic-theory",
+   "verb": "uses"
+  },
+  {
+   "span": "collisions",
+   "concept": "thermal-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "collisions",
+   "concept": "heat-vs-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "conduction-rate",
+   "concept": "rate-of-conductive-heat-transfer",
+   "verb": "introduces"
+  },
+  {
+   "span": "conduction-rate",
+   "concept": "conduction-rate-scaling",
+   "verb": "introduces"
+  },
+  {
+   "span": "conduction-rate",
+   "concept": "conduction-by-molecular-collisions",
+   "verb": "uses"
+  },
+  {
+   "span": "conduction-rate",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "conduction-rate",
+   "concept": "watt",
+   "verb": "uses"
+  },
+  {
+   "span": "ice-box",
+   "concept": "conduction-with-phase-change",
+   "verb": "introduces"
+  },
+  {
+   "span": "ice-box",
+   "concept": "rate-of-conductive-heat-transfer",
+   "verb": "uses"
+  },
+  {
+   "span": "ice-box",
+   "concept": "heat-of-fusion",
+   "verb": "uses"
+  },
+  {
+   "span": "ice-box",
+   "concept": "energy-from-power",
+   "verb": "uses"
+  },
+  {
+   "span": "conductivities",
+   "concept": "thermal-conductivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "r-factor",
+   "concept": "r-factor",
+   "verb": "introduces"
+  },
+  {
+   "span": "r-factor",
+   "concept": "thermal-conductivity",
+   "verb": "uses"
+  },
+  {
+   "span": "r-factor",
+   "concept": "rate-of-conductive-heat-transfer",
+   "verb": "uses"
+  },
+  {
+   "span": "pan",
+   "concept": "temperature-difference-from-conduction",
+   "verb": "introduces"
+  },
+  {
+   "span": "pan",
+   "concept": "thermal-conductivity",
+   "verb": "reinforces"
+  },
+  {
+   "span": "pan",
+   "concept": "heat-of-vaporization",
+   "verb": "uses"
+  },
+  {
+   "span": "pan",
+   "concept": "rate-of-conductive-heat-transfer",
+   "verb": "uses"
+  },
+  {
+   "span": "pan",
+   "concept": "conduction-by-molecular-collisions",
+   "verb": "reinforces"
+  },
+  {
+   "span": "collisions",
+   "concept": "thermal-conductor-and-insulator",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2586676",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "conduction-rate"
+   },
+   "cite": "conduction-rate",
+   "prompt": "当所有空间尺寸都加倍时，热传导的热传递速率如何变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "因为面积是两个空间尺寸的乘积，所以每个尺寸加倍时，面积增大为原来的四倍 $(A_{\\text{final}} = (2d)^2 = 4d^2 = 4A_{\\text{initial}})$。而距离则只是加倍。由于温差和热导率系数与空间尺寸无关，热传导的热传递速率增大为原来的四除以二倍，即两倍：$$\\left(\\frac{\\kQh}{\\kt}\\right)_{\\text{final}} = \\frac{kA_{\\text{final}}(\\kTemptwo - \\kTempone)}{d_{\\text{final}}} = \\frac{k(4A_{\\text{initial}})(\\kTemptwo - \\kTempone)}{2d_{\\text{initial}}} = 2\\frac{kA_{\\text{initial}}(\\kTemptwo - \\kTempone)}{d_{\\text{initial}}} = 2\\left(\\frac{\\kQh}{\\kt}\\right)_{\\text{initial}}.$$"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3007976",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pan",
+   "prompt": "有些电炉有平整的陶瓷表面，加热元件隐藏在下面。放在加热元件上方的锅会被加热，而只在几厘米之外的表面摸起来却是安全的。为什么陶瓷——其热导率小于金属而大于良好的隔热体——是灶面的理想选择？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "陶瓷的导热能力好到足以让热量迅速穿过薄板传到锅上，又差到使热量不会沿表面向侧向传出很远。热传导速率为 $\\kQh/\\kt = kA(\\kTemptwo - \\kTempone)/d$，与热量必须传过的距离 $d$ 成反比。从加热元件笔直向上到锅，$d$ 只是板的厚度，几毫米，所以一旦板两侧的温差建立起来，即使热导率中等也会给出很大的速率。沿板侧向，热量必须传过几厘米，是十倍或更多的距离，并且要通过板的很小的横截面，所以速率要小得多，几厘米之外的表面仍然凉得可以触摸。热导率大数百倍的金属会让热量很容易地向侧向传递，整个表面都会变热，而良好的隔热体向上传过的热量太少，锅几乎不会变热。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1867934",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ice-box",
+   "figure": {
+    "src": "/media/ch14/Figure_15_05_05a.jpg",
+    "alt": "图中是一群乐师，穿着长长的、宽松的浅色长袍，长袍一直垂到脚。",
+    "caption": "图 14.19 许多埃及男子穿着 jellabiya。（来源：Zerida）"
+   },
+   "prompt": "遮住大部分身体的宽松白色衣服，对沙漠居民来说，无论在炎热的太阳下还是在寒冷的夜晚，都是理想的。解释这种衣服为什么在白天和夜晚都有利。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "宽松的衣服在布料和皮肤之间困住了一层静止的空气。空气是表 14.3 中最差的热导体之一，所以无论温差指向哪个方向，这一层空气都会减慢热传导。在炎热的太阳下，外面的空气和被阳光照射的布料比身体更热，被困住的空气限制了这些热量向内流动的快慢；白色还会把大部分阳光反射掉，而不是吸收。在寒冷的夜晚，身体是较热的一侧，同一层空气限制了身体的热量向外流动的快慢，就像冬天的厚衣服那样。由于布料遮住了身体的大部分，空气层很大，皮肤整天都处在阴凉和遮蔽之中。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2327968",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ice-box",
+   "prompt": "对于你在例题 14.1 中设计的实验，可以改变哪些变量，应该如何改变，才能缩短进行一次测量所需的时间？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "使用较少的冰（较小的 $m$）。",
+     "使用厚度更大的容器（较大的 $d$）。",
+     "使用表面积更小的容器（较小的 $A$）。",
+     "使容器外的环境温度更低（较小的 $\\kTemptwo$）。"
+    ],
+    "correct": 0,
+    "generated_by": "source",
+    "hint": "冰熔化所需的时间，等于它所需的热量 $mL_{\\text{f}}$ 除以热量传入的速率。想一想哪种改变会使这个时间缩短。",
+    "solution": "（a）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id3634426",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ice-box",
+   "prompt": "就你在例题 14.1 中设计的实验而言，为什么冰的温度发生变化就表明它已经完全熔化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只要冰和水同时存在，传入容器的热量就用于相变，$\\kQh = mL_{\\text{f}}$，混合物保持在 $0^\\circ\\text{C}$；在最后一块冰熔化之前，温度不会上升。一旦容器内物质的温度开始上升，热量就是在用于使水升温，$\\kQh = mc\\kdTemp$，这说明已经没有冰来吸收它了。因此，温度计第一次出现上升，标志着冰完全熔化的时刻，而直到这个时刻的时间，就是这次测量所需的时间。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id2508436",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conduction-rate",
+   "prompt": "下列哪一项正确描述了物质的热传导速率？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "速率随表面积增大和厚度减小而减小。",
+     "速率随温差和表面积增大而增大。",
+     "速率随温差减小和厚度增大而增大。",
+     "速率随温差减小和表面积增大而减小。"
+    ],
+    "correct": 1,
+    "generated_by": "source",
+    "hint": "在 $\\kQh/\\kt = kA(\\kTemptwo - \\kTempone)/d$ 中，面积和温差在分子上，厚度在分母上。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2387891",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conductivities",
+   "prompt": "你想设计一只汤锅，使它的热传导速率与银制的锅相同。你需要使用价格较低的材料，并限制锅的大小，使与灶上加热元件接触的表面积比假想的银锅最多大 50%。解释还可以调整哪些其他因素，以及调整多少，才能使你的设计成功。利用表 14.3 获得不同物质的热导率值。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "速率为 $\\kQh/\\kt = kA(\\kTemptwo - \\kTempone)/d$，所以在温差相同的情况下，乘积 $kA/d$ 必须与银锅的相同。银的 $k = 420\\ \\text{J/s}\\cdot\\text{m}\\cdot{}^\\circ\\text{C}$；铜为 390，只低 7%，铝为 220，约为一半。面积最多可以是银锅的 1.5 倍，所以剩下的因素是锅底的厚度。对于铜，若面积是银锅的 $420/390 = 1.08$ 倍，则在厚度相同时 $kA/d$ 与银锅相符；或者面积相同，而锅底的厚度是 $390/420 = 0.93$ 倍。对于铝，仅靠面积是不够的，因为 $1.5 \\times 220/420 = 0.79$。锅底还必须更薄，薄到 0.79 倍，如果面积不变，则要薄到 $220/420 = 0.52$ 倍。任何把面积增大（至 50% 的限度）、同时把锅底减薄，从而使 $kA/d$ 回到银的值的组合，都可以。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2590717",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conduction-rate",
+   "prompt": "（a）计算通过房屋墙壁的热传导速率，墙壁厚 13.0 cm，平均热导率是玻璃棉的两倍。假设没有窗和门。墙壁的表面积为 $120\\ \\text{m}^2$，内表面温度为 $18.0^\\circ\\text{C}$，外表面温度为 $5.00^\\circ\\text{C}$。（b）需要多少台 1 kW 的室内取暖器，才能抵消由热传导造成的热传递？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1010,
+      "unit": "W",
+      "hint": "取 $k$ 为表 14.3 中玻璃棉的 0.042 的两倍，并把厚度换算成米。"
+     },
+     {
+      "part": "(b)",
+      "value": 1,
+      "unit": "heater",
+      "hint": "用速率除以 1 kW，再向上取整为整数台取暖器。"
+     }
+    ],
+    "solution": "（a）$1.01 \\times 10^{3}\\ \\text{W}$（b）一台"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "eip-id1166654654652",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conduction-rate",
+   "prompt": "计算从人体向外的热传导速率，假设体内核心温度为 $37.0^\\circ\\text{C}$，皮肤温度为 $34.0^\\circ\\text{C}$，两者之间组织的平均厚度为 $1.00\\ \\text{cm}$，表面积为 $1.40\\ \\text{m}^2$。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 84,
+    "unit": "W",
+    "hint": "使用表 14.3 中不含血液的脂肪组织的热导率，温差取 $3.00^\\circ\\text{C}$。",
+    "solution": "84.0 W"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1344840",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ice-box",
+   "prompt": "一名男子一天摄入 3000 kcal 的食物，其中大部分转化用于维持体温。如果他通过蒸发水分（通过呼吸和出汗）失去其中一半的能量，有多少千克的水蒸发？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 2.59,
+    "unit": "kg",
+    "hint": "3000 kcal 的一半，换算成焦耳，就是热量 $\\kQh = mL_{\\text{v}}$；使用表 14.2 中体温下的汽化热 2430 kJ/kg。",
+    "solution": "2.59 kg"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3135336",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ice-box",
+   "prompt": "（a）一只表面积为 $1.40\\text{-m}^2$ 的大型动物，其 3.00 cm 厚的皮毛的热传导速率是多少？假设动物的皮肤温度为 $32.0^\\circ\\text{C}$，空气温度为 $-5.00^\\circ\\text{C}$，并且皮毛的热导率与空气相同。（b）这只动物一天需要摄入多少食物才能补充这一热传递？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 39.7,
+      "unit": "W",
+      "hint": "皮毛两侧的温差为 $37.0^\\circ\\text{C}$，$k$ 取空气的值。"
+     },
+     {
+      "part": "(b)",
+      "value": 820,
+      "unit": "kcal",
+      "hint": "用速率乘以一天的秒数得到焦耳数，再除以 4186 J/kcal。"
+     }
+    ],
+    "solution": "（a）39.7 W（b）820 kcal"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2677123",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conduction-rate",
+   "prompt": "比较通过一面厚 13.0 cm、面积为 $10.0\\ \\text{m}^2$、热导率是玻璃棉两倍的墙壁的热传导速率，与通过一扇厚 0.750 cm、面积为 $2.00\\ \\text{m}^2$ 的窗户的热传导速率，假设两者两侧的温差相同。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 35,
+    "unit": "to 1, window to wall",
+    "hint": "温差相同时，两个速率之比就是两者 $kA/d$ 之比，所以不需要温度。",
+    "solution": "35 比 1，窗户比墙壁"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1932684",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pan",
+   "prompt": "有些灶面是光滑的陶瓷，便于清洁。如果陶瓷厚 0.600 cm，热传导通过的面积和速率与例题 14.6 中算出的相同，那么它两侧的温差是多少？陶瓷的热导率与玻璃和砖相同。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1050,
+    "unit": "K",
+    "hint": "对热传导方程解出 $\\kTemptwo - \\kTempone$，取 2256 W、锅的面积 $1.54 \\times 10^{-2}\\ \\text{m}^2$ 和 $k = 0.84$。",
+    "solution": "$1.05 \\times 10^{3}\\ \\text{K}$"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3306098",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conduction-rate",
+   "prompt": "（a）计算通过一扇双层玻璃窗的热传导速率，该窗的面积为 $1.50\\text{-m}^2$，由两块厚 0.800 cm 的窗玻璃构成，中间隔着 1.00 cm 的空气间隙。内表面温度为 $15.0^\\circ\\text{C}$，外表面温度为 $-10.0^\\circ\\text{C}$。（提示：两块窗玻璃两侧的温降相同。先求出这个温降，再求空气间隙两侧的温降。本题忽略空气间隙中由对流引起的热传递增加。）（b）计算通过一扇厚 1.60 cm、面积相同、温度相同的窗户的热传导速率。把你的答案与（a）的结果比较。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 83,
+      "unit": "W",
+      "hint": "同一速率穿过每一层，所以每层的温降与该层的 $d/k$ 成正比，且总和为 $25.0^\\circ\\text{C}$。"
+     },
+     {
+      "part": "(b)",
+      "value": 24,
+      "unit": "times the double-paned rate",
+      "hint": "单层窗玻璃没有空气间隙；把 1.60 cm 厚玻璃的 $kA\\,\\kdTemp/d$ 与（a）的答案比较。"
+     }
+    ],
+    "solution": "（a）83 W（b）是双层玻璃窗的 24 倍。"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2603625",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conduction-rate",
+   "prompt": "对于人体，在以下条件下，通过身体组织的热传导的热传递速率是多少：组织厚度为 3.00 cm，温度变化为 $2.00^\\circ\\text{C}$，皮肤面积为 $1.50\\ \\text{m}^2$。这与每天约 2400 kcal 的能量摄入所产生的、传向身体的平均热传递速率相比如何？（不包括运动。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "rate",
+      "value": 20,
+      "unit": "W",
+      "hint": "使用不含血液的脂肪组织的热导率，并把厚度换算成米。"
+     },
+     {
+      "part": "share of the intake",
+      "value": 17.2,
+      "unit": "%",
+      "hint": "把每天 2400 kcal 换算成焦耳，再除以一天的秒数，得到瓦特数，然后取比值。"
+     }
+    ],
+    "solution": "20.0 W，占每天 2400 kcal 的 17.2%"
+   }
+  },
+  {
+   "id": "ur1",
+   "source_id": "fs-id2663242",
+   "source_section": "14.7",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "conduction-rate",
+   "tag": "不合理的结果",
+   "prompt": "（a）计算通过一扇面积为 $1.00\\ \\text{m}^2$、厚 0.750 cm 的窗户的热传导速率，其内表面温度为 $22.0^\\circ\\text{C}$，外表面温度为 $35.0^\\circ\\text{C}$。（b）这个结果有什么不合理之处？（c）是哪个前提或假设造成的？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 1460,
+    "unit": "W",
+    "hint": "使用表 14.3 中玻璃的热导率，在 0.00750 m 的厚度上取 $13.0^\\circ\\text{C}$ 的温差。",
+    "solution": "（a）1.46 kW（b）通过窗户的功率损失非常大。具有这种功率的电暖器就能使整个房间保持温暖。（c）窗户两个表面的温度相差并没有假设的那么大。内表面会更暖，外表面会更凉。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "conduction-rate-scaling"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "rate-of-conductive-heat-transfer",
+   "weight": 1
+  },
+  {
+   "exercise": "cq1",
+   "concept": "thermal-conductivity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "rate-of-conductive-heat-transfer",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "thermal-conductivity"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "conduction-by-molecular-collisions",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "conduction-with-phase-change"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "rate-of-conductive-heat-transfer",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "conduction-with-phase-change"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "heat-of-fusion",
+   "weight": 1
+  },
+  {
+   "exercise": "ap3",
+   "concept": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "thermal-conductivity"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "rate-of-conductive-heat-transfer",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "exercise": "p1",
+   "concept": "thermal-conductivity",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "exercise": "p5",
+   "concept": "conduction-with-phase-change"
+  },
+  {
+   "exercise": "p5",
+   "concept": "heat-of-vaporization",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "exercise": "p7",
+   "concept": "conduction-with-phase-change",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "conduction-rate-scaling"
+  },
+  {
+   "exercise": "p9",
+   "concept": "rate-of-conductive-heat-transfer",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "temperature-difference-from-conduction"
+  },
+  {
+   "exercise": "p11",
+   "concept": "thermal-conductivity",
+   "weight": 1
+  },
+  {
+   "exercise": "p13",
+   "concept": "conduction-rate-scaling"
+  },
+  {
+   "exercise": "p13",
+   "concept": "rate-of-conductive-heat-transfer",
+   "weight": 2
+  },
+  {
+   "exercise": "p15",
+   "concept": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "exercise": "p15",
+   "concept": "energy-from-power",
+   "weight": 1
+  },
+  {
+   "exercise": "ur1",
+   "concept": "rate-of-conductive-heat-transfer"
+  },
+  {
+   "exercise": "ur1",
+   "concept": "temperature-difference-from-conduction",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "hot-body",
+   "label": "高温物体",
+   "figures": [
+    "sim-collisions"
+   ]
+  },
+  {
+   "id": "cold-body",
+   "label": "低温物体",
+   "figures": [
+    "sim-collisions"
+   ]
+  },
+  {
+   "id": "slab",
+   "label": "这块材料平板",
+   "figures": [
+    "sim-slab"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-water-melts",
+   "kind": "correction",
+   "html": "书中说 1 g 水在一秒内熔化。其实是水在蒸发：2256 J 是这一克水的汽化热，正如第 2 步所算得的那样。"
+  }
+ ]
+}

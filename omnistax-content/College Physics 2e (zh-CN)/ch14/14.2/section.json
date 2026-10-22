@@ -1,0 +1,547 @@
+{
+ "id": "14.2",
+ "module": "m42224",
+ "chapter": "14",
+ "title": "温度变化与热容",
+ "short": "温度变化",
+ "lead": "使物体的<span data-concept=\"temperature\">温度</span>改变所需的<span data-concept=\"heat\">热量</span>，取决于<span data-concept=\"temperature\">温度</span>变化的幅度、<span data-concept=\"mass\">质量</span>的多少以及物质是什么，物质的作用由<span data-concept=\"specific-heat\">比热容</span>承担。同样的推理适用于锅里加热的水、下坡行驶的卡车的刹车，以及把<span data-ref=\"water\">冷水</span>倒入<span data-ref=\"pan\">热锅</span>，这是本书的第一个量热学问题。",
+ "objectives": [
+  "观察热传递以及温度和质量的变化。",
+  "计算两个物体之间发生热传递后的末温。"
+ ],
+ "summary_html": "<ul><li>使<span data-concept=\"mass\">质量</span>为 $m$ 的物体的<span data-concept=\"temperature\">温度</span>发生变化 $\\kdTemp$ 的<span data-concept=\"heat\">热</span>传递 $\\kQh$ 为 $\\kQh = mc\\kdTemp$，其中 $c$ 是材料的<span data-concept=\"specific-heat\">比热容</span>。这一关系也可以看作<span data-concept=\"specific-heat\">比热容</span>的定义。</li></ul>",
+ "notes": "图 14.6（乏燃料池）随它所属的反应堆习题一起略去，书中没有给出该题的答案；书中未给出答案的五道习题已略去；书中例题 14.1 自己的笔误，即 27.0 kJ 起初被写成 27.0 × 10⁴ J，按原样保留。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。五道习题没有给出答案，已略去：证明 1 cal/(g·°C) 等于 1 kcal/(kg·°C)，书中在“对流”中再次印出了这一点，14.6 的说明里也这样写明；1.00 kcal 传给 1.00 kg 的水、混凝土、钢和汞；比热容可以识别其物质的 0.250 kg 物块；在一杯水下面燃烧的花生；以及堆芯以 150 MW 升温的停堆反应堆，它的照片随之略去。关于一天摄入 2500 kcal、其中 95.0% 以热量形式传递的人的“不合理的结果”题，只用 $\\kQh = mc\\kdTemp$ 就能解决，所以放在这里，标为 source_section 14.7，（a）问的答案取 36 °C，书中对（b）和（c）的回答放在解答里；14.7 的说明里也这样写明。两道思考题的建议思路由 AI 撰写并已标明。“理解检测”框放在陈述公式的段落之后，其余内容都放在最后。数值答案允许 2% 的误差。",
+ "figures": [
+  {
+   "id": "sim-three-factors",
+   "kind": "sim",
+   "number": "14.4",
+   "originals": [
+    "/media/ch14/Figure_15_02_01.jpg"
+   ],
+   "original_caption": "引起温度变化所传递的热量 Q，取决于温度变化的大小、系统的质量，以及所涉及的物质和相。（a）所传递的热量与温度变化成正比。要使质量为 m 的物体的温度变化加倍，需要加入两倍的热量。（b）所传递的热量也与质量成正比。要使加倍的质量产生同样的温度变化，需要加入两倍的热量。（c）所传递的热量取决于物质及其相。如果使给定质量的铜产生温度变化 ΔT 需要热量 Q，那么在两种物质都没有相变的情况下，使同样质量的水产生同样的温度变化，所需的热量是它的 10.8 倍。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "energy",
+    "temperature",
+    "mass",
+    "specific-heat"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note through the macros, without the headline's ratio"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-truck-brakes",
+   "kind": "photo",
+   "number": "14.5",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-calorimetry",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "temperature",
+    "mass",
+    "specific-heat"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "pan label clear of the axis ticks; note cut to one sentence via macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "three-factors",
+   "concept": "three-factors-of-heat-transfer",
+   "verb": "introduces"
+  },
+  {
+   "span": "three-factors",
+   "concept": "heat",
+   "verb": "uses"
+  },
+  {
+   "span": "three-factors",
+   "concept": "thermal-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "three-factors",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "heat-equation",
+   "concept": "heat-and-temperature-change",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-equation",
+   "concept": "specific-heat",
+   "verb": "introduces"
+  },
+  {
+   "span": "heat-equation",
+   "concept": "three-factors-of-heat-transfer",
+   "verb": "reinforces"
+  },
+  {
+   "span": "heat-equation",
+   "concept": "units-of-heat",
+   "verb": "uses"
+  },
+  {
+   "span": "work-into-heat",
+   "concept": "temperature-rise-from-work",
+   "verb": "introduces"
+  },
+  {
+   "span": "work-into-heat",
+   "concept": "mechanical-equivalent-of-heat",
+   "verb": "uses"
+  },
+  {
+   "span": "work-into-heat",
+   "concept": "gravitational-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "work-into-heat",
+   "concept": "kinetic-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "work-into-heat",
+   "concept": "heat-and-temperature-change",
+   "verb": "uses"
+  },
+  {
+   "span": "specific-heats",
+   "concept": "specific-heat",
+   "verb": "reinforces"
+  },
+  {
+   "span": "specific-heats",
+   "concept": "mechanical-equivalent-of-heat",
+   "verb": "reinforces"
+  },
+  {
+   "span": "calorimetry",
+   "concept": "calorimetry",
+   "verb": "introduces"
+  },
+  {
+   "span": "calorimetry",
+   "concept": "final-temperature-from-heat-exchange",
+   "verb": "introduces"
+  },
+  {
+   "span": "calorimetry",
+   "concept": "water-moderates-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "calorimetry",
+   "concept": "heat-and-temperature-change",
+   "verb": "uses"
+  },
+  {
+   "span": "calorimetry",
+   "concept": "thermal-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "calorimetry",
+   "concept": "conservation-of-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "land-and-water",
+   "concept": "water-moderates-temperature",
+   "verb": "reinforces"
+  },
+  {
+   "span": "land-and-water",
+   "concept": "specific-heat",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3345408",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "heat-equation"
+   },
+   "cite": "heat-equation",
+   "prompt": "如果使一个物块的温度从 $25^\\circ\\text{C}$ 升高到 $30^\\circ\\text{C}$ 需要 25 kJ，那么把该物块从 $45^\\circ\\text{C}$ 加热到 $50^\\circ\\text{C}$ 需要多少热量？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "热传递只取决于温差。由于两种情况下的温差相同，所以第二种情况下需要的也是同样的 25 kJ。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3200990",
+   "kind": "conceptual-question",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "three-factors",
+   "prompt": "要改变一个物体的温度，所需的热传递受哪三个因素影响？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "温度的变化、物体的质量，以及组成物体的物质及其相。公式 $\\kQh = mc\\kdTemp$ 包含了这三者。热量与温度变化 $\\kdTemp$ 和质量 $m$ 成正比，而比热容 $c$ 是物质及其相的属性，可以在表 14.1 中查到。同样质量的水经历同样的温度变化，所需的热量是铜的 10.8 倍。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3225894",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-into-heat",
+   "prompt": "汽车的刹车在使汽车从速率 $\\kv$ 停下来时，温度升高 $\\kdTemp$。如果汽车最初的速率是两倍，$\\kdTemp$ 会大多少？你可以假设汽车停得足够快，以致没有热量从刹车传递出去。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "四倍。刹车通过把汽车的动能转化为刹车材料的内能来使汽车停下，而没有热量离开刹车，所以所有这些能量都用来升高它们的温度，因此 $\\kQh = \\tfrac{1}{2}M\\kv^2 = mc\\kdTemp$，其中 $M$ 是汽车的质量，$m$ 和 $c$ 属于刹车。所以温度升高与速率的平方成正比。速率加倍使动能变为四倍，而刹车的质量和比热容不变，所以温度升高为 $4\\kdTemp$。这就是例题 14.2 的推理，只是用汽车的动能代替了卡车损失的重力势能。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3109981",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-equation",
+   "prompt": "在炎热的一天，一个 80,000 L 的游泳池的温度升高了 $1.50^\\circ\\text{C}$。这期间的净热传递量是多少？忽略水蒸发损失之类的复杂因素。",
+   "answer": {
+    "type": "number",
+    "value": 502000000.0,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "1 升水的质量为 1 kg，所以游泳池里有 80,000 kg 的水；它的比热容见表 14.1。",
+    "solution": "$5.02 \\times 10^{8}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3034501",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-equation",
+   "prompt": "为了给一个 50.0 g 的玻璃婴儿奶瓶消毒，必须使它的温度从 $22.0^\\circ\\text{C}$ 升到 $95.0^\\circ\\text{C}$。需要多少热传递？",
+   "answer": {
+    "type": "number",
+    "value": 3070,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "把质量写成千克，并从表 14.1 中取玻璃的比热容；温度变化以开尔文计与以摄氏度计是相同的。",
+    "solution": "$3.07 \\times 10^{3}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3397911",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-into-heat",
+   "prompt": "两手相互摩擦，通过把功转化为热能来使手变暖。如果一位女士来回搓手，一共搓 20 次，每次搓动的距离为 7.50 cm，平均摩擦力为 40.0 N，温度升高多少？被加热的组织质量只有 0.100 kg，主要在手掌和手指。",
+   "answer": {
+    "type": "number",
+    "value": 0.171,
+    "unit": "°C",
+    "generated_by": "source",
+    "hint": "克服摩擦所做的功等于力乘以搓动的总距离，这些功全部变成组织中的热量；人体的比热容见表 14.1。",
+    "solution": "$0.171^\\circ\\text{C}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2423610",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-equation",
+   "prompt": "假设相同数量的热量传给质量不同的铜和水，使它们产生相同的温度变化。铜与水的质量之比是多少？",
+   "answer": {
+    "type": "number",
+    "value": 10.8,
+    "unit": "",
+    "generated_by": "source",
+    "hint": "令两个热量相等，$m_{\\text{Cu}}c_{\\text{Cu}}\\kdTemp = m_{\\text{W}}c_{\\text{W}}\\kdTemp$，温度变化就消去了。",
+    "solution": "10.8"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3449821",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-equation",
+   "prompt": "剧烈运动之后，一个 80.0 kg 的人体温为 $40.0^\\circ\\text{C}$。如果身体继续以 150 W 的功率产生能量，这个人必须以多大的功率（以瓦特计）传出热能，才能在 30.0 min 内使体温降到 $37.0^\\circ\\text{C}$？$(\\text{1 瓦特 = 1 焦耳/秒，即 1 W = 1 J/s})$。",
+   "answer": {
+    "type": "number",
+    "value": 617,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "求出体温下降 3.0 °C 时必须离开身体的热量，除以所允许的 1800 s，再加上身体继续产生的 150 W。",
+    "solution": "617 W"
+   }
+  },
+  {
+   "id": "ur1",
+   "source_id": "fs-id2604660",
+   "source_section": "14.7",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "heat-equation",
+   "prompt": "（a）一个 80.0 kg 的人一天摄入 2500 kcal 的食物，其中 95.0% 的能量以热量的形式传给身体，他的温度升高多少？（b）这个结果有什么不合理之处？（c）是哪个前提或假设造成的？",
+   "answer": {
+    "type": "number",
+    "value": 36,
+    "unit": "°C",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "用 1.000 kcal = 4186 J 把千卡换算成焦耳，取其中的 95.0%，并用表 14.1 中人体的比热容。",
+    "solution": "（a）$36^\\circ\\text{C}$（b）任何大于约 $3^\\circ\\text{C}$ 的温度升高都会大得不合理。在这种情况下，这个人的末温将升到 $73^\\circ\\text{C}$（$163^\\circ\\text{F}$）。（c）95% 热量保留的假设是不合理的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "heat-and-temperature-change"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "three-factors-of-heat-transfer"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "temperature-rise-from-work"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "kinetic-energy",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "heat-and-temperature-change"
+  },
+  {
+   "exercise": "p1",
+   "concept": "specific-heat",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "heat-and-temperature-change"
+  },
+  {
+   "exercise": "p3",
+   "concept": "specific-heat",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "temperature-rise-from-work"
+  },
+  {
+   "exercise": "p5",
+   "concept": "work",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "specific-heat",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "specific-heat"
+  },
+  {
+   "exercise": "p7",
+   "concept": "heat-and-temperature-change",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "heat-and-temperature-change"
+  },
+  {
+   "exercise": "p9",
+   "concept": "power",
+   "weight": 2
+  },
+  {
+   "exercise": "ur1",
+   "concept": "heat-and-temperature-change"
+  },
+  {
+   "exercise": "ur1",
+   "concept": "mechanical-equivalent-of-heat",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "copper-cylinder",
+   "label": "上方的圆柱体，1.00 kg 铜",
+   "figures": [
+    "sim-three-factors"
+   ]
+  },
+  {
+   "id": "lower-cylinder",
+   "label": "下方的圆柱体，由读者设定",
+   "figures": [
+    "sim-three-factors"
+   ]
+  },
+  {
+   "id": "pan",
+   "label": "例题 14.3 中的铝锅",
+   "figures": [
+    "sim-calorimetry"
+   ]
+  },
+  {
+   "id": "water",
+   "label": "倒入锅中的水",
+   "figures": [
+    "sim-calorimetry"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-pan-heat",
+   "kind": "correction",
+   "html": "书中印的是 $27.0 \\times 10^{4}$ J。乘积 $(0.500\\ \\text{kg})(900\\ \\text{J/(kg}\\cdot{}^\\circ\\text{C)})(60.0^\\circ\\text{C})$ 是 $2.70 \\times 10^{4}$ J，也就是后面的 27.0 kJ。"
+  }
+ ]
+}
