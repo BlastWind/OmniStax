@@ -1,0 +1,442 @@
+/* Figures for section 7.3 Gravitational Potential Energy. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['7.3'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, strip, axes, nice, curve, fixed, pinned } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* ---------- helpers shared by the figures ---------- */
+const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
+const commas = (s) => String(s).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const num = (x, d) => commas(fmt(x, d));
+/* a value in scientific form for the readout, as the book writes it */
+function sci(v, d = 2) { if (Math.abs(v) < 1e-9) return '0'; const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)}\\times10^{${e}}`; }
+const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
+function sciPlain(v, d = 2) { if (Math.abs(v) < 1e-9) return '0'; const e = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, e); return `${fmt(m, d)} × 10${String(e).split('').map((c) => SUP[c]).join('')}`; }
+
+/* a vertical energy bar: an outline holding `full` joules, filled to `val`. Where `mark` is
+   given, a dashed rule across the bar says how far the present setting can fill it, so the
+   outline is a fixed amount of energy rather than whatever the sliders happen to make. */
+function ebar(ctx, x, y0, w, full, val, cap, label, valText, mark) {
+  const h = cap * (full > 0 ? Math.min(1, val / full) : 0);
+  ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.7); ctx.fillRect(x, y0 - h, w, h); ctx.restore();
+  ctx.save(); ctx.strokeStyle = C('energy'); ctx.lineWidth = 2; ctx.strokeRect(x, y0 - cap, w, cap); ctx.restore();
+  if (mark !== undefined && full > 0) {
+    const ym = y0 - cap * Math.min(1, mark / full);
+    line(ctx, x - 8, ym, x + w + 8, ym, C('energy'), 2, [6, 6]);
+  }
+  text(ctx, label, x + w / 2, y0 + 24, C('energy'), { size: 18, weight: 600, align: 'center' });
+  text(ctx, valText, x + w / 2, y0 + 48, C('energy'), { size: 17, align: 'center' });
+}
+
+/* ---------- sprites, in ink, each under twelve path commands ---------- */
+/* a cuckoo-clock case hanging on the wall, its roof at (x, y) */
+function clockCase(ctx, x, y, color) {
+  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(x - 96, y + 34); ctx.lineTo(x, y); ctx.lineTo(x + 96, y + 34); ctx.lineTo(x + 70, y + 34);
+  ctx.lineTo(x + 70, y + 118); ctx.lineTo(x - 70, y + 118); ctx.lineTo(x - 70, y + 34); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.beginPath(); ctx.arc(x, y + 74, 24, 0, TAU); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x, y + 74); ctx.lineTo(x, y + 58); ctx.moveTo(x, y + 74); ctx.lineTo(x + 14, y + 80); ctx.stroke(); ctx.restore();
+}
+/* the pine-cone weight of a cuckoo clock, hanging with its top at (x, y) */
+function coneWeight(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = color; ctx.beginPath();
+  ctx.moveTo(x, y); ctx.lineTo(x + 17, y + 16); ctx.lineTo(x + 13, y + 48); ctx.lineTo(x, y + 64);
+  ctx.lineTo(x - 13, y + 48); ctx.lineTo(x - 17, y + 16); ctx.closePath(); ctx.fill(); ctx.restore();
+}
+/* a television set, its base centred on (x, y): a bezel round a screen, a pedestal stand */
+function tv(ctx, x, y, color, s = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s, s); ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+  ctx.fillStyle = color; ctx.beginPath(); ctx.rect(-34, -50, 68, 44); ctx.fill();
+  ctx.fillStyle = PAL.soft; ctx.beginPath(); ctx.rect(-29, -45, 58, 32); ctx.fill();
+  ctx.fillStyle = color; ctx.beginPath(); ctx.rect(-4, -6, 8, 6); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-20, 0); ctx.lineTo(20, 0); ctx.stroke(); ctx.restore();
+}
+/* =====================================================================
+   FIGURE 7.5: the cuckoo-clock weight wound up and let down. The weight
+   rises through h against a force equal to its weight and runs back
+   down; the bar beside it fills and empties, and the graph beside the
+   scene is PE_g against height. The winding takes time, so the figure
+   loops and gets the transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-cuckoo', 620);
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.1, max: 2, step: 0.05, value: 0.5, unit: 'kg', dec: 3, onInput: reset, aria: '重锤的质量' });
+  const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0.2, max: 2, step: 0.05, value: 1, unit: 'm', dec: 2, onInput: reset, aria: '重锤被举起的高度' });
+  const cy = cycle(() => 2, 1.1);
+  function reset() { cy.reset(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), up = tau <= 1, f = up ? tau : 2 - tau;
+    const E = m.v * G * h.v, PE = E * f;
+    const floorY = 540, SC = 160, yw = floorY - f * h.v * SC;
+    /* the scene */
+    strip(ctx, 110, 700, floorY + 14, 26);
+    clockCase(ctx, 340, 96, F.ref('clock'));
+    line(ctx, 340, 214, 340, yw, PAL.muted, 3);
+    coneWeight(ctx, 340, yw, F.ref('clock-weight'));
+    /* the label follows the weight down but never off the canvas */
+    text(ctx, fmt(m.v, 3) + ' kg', 340, Math.min(yw + 84, floorY + 56), C('mass'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    if (h.v * SC > 40) vbracket(ctx, 208, floorY, floorY - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
+    line(ctx, 190, floorY - h.v * SC, 360, floorY - h.v * SC, C('position'), 2, [8, 8]);
+    if (up) { arrow(ctx, 428, yw + 30, 428, yw - 54, C('force'), 5); text(ctx, 'F = mg = ' + fmt(m.v * G, 2) + ' N', 444, yw - 18, C('force'), { size: 18, weight: 600 }); }
+    else { arrow(ctx, 428, yw + 10, 428, yw + 94, PAL.muted, 5); text(ctx, '重锤下落', 444, yw + 54, PAL.muted, { size: 18 }); }
+    /* the bar is read against a fixed cap, 39.2 J, which is the most the sliders can store
+       (2 kg raised 2 m); the dashed rule across it is what this winding will reach. */
+    const CAP = 2 * G * 2;
+    ebar(ctx, 680, floorY, 62, CAP, PE, 330, 'PE_g', fmt(PE, 2) + ' J', E);
+    text(ctx, fmt(CAP, 1) + ' J', 711, floorY - 348, C('energy'), { size: 16, align: 'center' });
+    /* the graph beside the vertical scene: PE_g against the height of the weight */
+    /* fixed axes. The height axis is the slider's own range, 0 to 2 m, ticked every 0.5 m. The
+       energy the sliders can reach is 2 kg × 9.80 × 2 m = 39.2 J, but the default weight stores
+       4.9 J and would then sit in the bottom eighth of the box, so the energy axis is fixed at
+       0 to 6 J, ticked every 1 J, which holds the default winding comfortably; a heavier weight
+       runs off the top, where the line is clipped and the marker is pinned. Neither range moves. */
+    const HR = 2, ER = 6, box = { l: 890, r: 1330, t: 150, b: 480 };
+    const { X, Y } = axes(ctx, box, [0, HR], [0, ER], { xl: '重锤的高度（m）', xc: C('position'), yl: 'PE_g (J)', yc: C('energy'), nx: 4, ny: 6, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
+    const rate = m.v * G, hEnd = Math.min(h.v, ER / rate), hNow = Math.min(f * h.v, hEnd);
+    line(ctx, X(0), Y(0), X(hEnd), Y(rate * hEnd), C('energy'), 5);
+    line(ctx, X(hNow), box.b, X(hNow), Y(rate * hNow), C('position'), 2, [4, 8]);
+    dot(ctx, X(0), Y(0), C('energy'), false, 10);
+    pinned(ctx, box, X, Y, f * h.v, PE, C('energy'), fmt(PE, 2) + ' J');
+    text(ctx, '斜率为 mg = ' + fmt(m.v * G, 2) + ' N', box.l, box.b + 104, C('energy'), { size: 17, weight: 600 });
+    topline(ctx, f < 0.02 ? '重锤停在地板上，钟尚未储存任何能量。'
+      : f > 0.98 ? '重锤已完全上弦，升高了 ' + fmt(h.v, 2) + ' m，重物-地球系统储存了 ' + fmt(E, 2) + ' J。'
+      : (up ? '正在给钟上弦，重锤升高了 ' : '钟正在走动，重锤升高了 ') + fmt(f * h.v, 2) + ' m，所以已储存 ' + fmt(PE, 2) + ' J（共 ' + fmt(E, 2) + ' J）。');
+    readout(d.readout, `\\kdPEg = \\km\\kg\\kh = (${fmt(m.v, 3)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 2)}\\ \\text{m}) = ${fmt(E, 2)}\\ \\text{J}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 0.4), draw });
+})();
+
+/* =====================================================================
+   SIM: the ladder. Only differences in gravitational potential energy
+   matter, so moving the level at which the energy is called zero
+   changes every rung's value and leaves the climb between two rungs
+   alone. Nothing travels: a still picture that answers its sliders.
+===================================================================== */
+(function () {
+  const d = sim('sim-ladder', 660);
+  const M = 20, RISE = 0.3, NR = 8;                           /* a 20-kg crate and eight rungs, 0.30 m apart */
+  /* a rung is one of eight places, not a quantity, so each is picked from a list */
+  const rungs = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => ({ value: String(from + i), label: '梯级 ' + (from + i) }));
+  const a = F.select(d.controls, { label: '\\text{较低的梯级}', options: rungs(1, 7), value: '1', aria: '较低的梯级' });
+  const b = F.select(d.controls, { label: '\\text{较高的梯级}', options: rungs(2, 8), value: '2', aria: '较高的梯级' });
+  /* the zero level stops at −0.4 m: a metre below the ground it would be drawn off the foot of the canvas */
+  const z = ctl(d.controls, { label: '\\text{零势能面}', cls: 'position', min: -0.4, max: 2.4, step: 0.1, value: 0, unit: 'm', dec: 1, aria: '势能取为零的高度' });
+  function draw() {
+    const { ctx } = begin(d.c);
+    const av = Number(a.value), bv = Number(b.value);
+    const lo = Math.min(av, bv), hi = Math.max(lo + 1, Math.max(av, bv));
+    /* the crate and the marks glide from the rung left to the rung picked */
+    const ga = a.mix(Number), gb = b.mix(Number), gLo = Math.min(ga, gb) * RISE, gHi = Math.max(Math.min(ga, gb) + 1, ga, gb) * RISE;
+    const yLo = lo * RISE, yHi = hi * RISE, dPE = M * G * (yHi - yLo);
+    const ground = 560, SC = 130, Yp = (met) => ground - met * SC;
+    /* the scene: the ladder, its rungs labelled with the energy each one holds */
+    strip(ctx, 120, 700, ground + 14, 26);
+    /* the zero level runs across the scene but breaks round the rung numbers and their energies */
+    for (const [x1, x2] of [[150, 205], [240, 414], [512, 700]]) line(ctx, x1, Yp(z.v), x2, Yp(z.v), C('energy'), 3, [10, 10]);
+    line(ctx, 250, ground, 250, Yp(2.62), PAL.ink, 5); line(ctx, 400, ground, 400, Yp(2.62), PAL.ink, 5);
+    for (let n = 1; n <= NR; n++) {
+      const y = Yp(n * RISE), on = n === lo || n === hi;
+      line(ctx, 250, y, 400, y, on ? C('position') : PAL.ink, on ? 5 : 3);
+      text(ctx, fmt(M * G * (n * RISE - z.v), 1) + ' J', 424, y, on ? C('energy') : PAL.muted, { size: 17, weight: on ? 600 : 400 });
+      text(ctx, String(n), 232, y, on ? C('position') : PAL.muted, { size: 17, align: 'right' });
+    }
+    F.crate(ctx, 325, Yp(gHi) - 19, 72, 38, F.ref('crate'));
+    dot(ctx, 325, Yp(gLo), C('position'), false, 10);
+    vbracket(ctx, 196, Yp(gLo), Yp(gHi), C('position'), 'h = ' + fmt(yHi - yLo, 2) + ' m', -1);
+    text(ctx, '此处 PE_g = 0', 700, Yp(z.v) - 20, C('energy'), { size: 18, weight: 600, align: 'right' });
+    /* the graph beside: the same straight line, shifted by the choice of zero */
+    const lowM = -1, highM = 2.5;
+    /* fixed axes: with the zero level anywhere in its own range, −0.4 m to 2.4 m, the crate's
+       energy over the drawn heights stays inside 20 kg × 9.80 × 3.4 m = 666 J either way, so the
+       graph is always −1 m to 2.5 m by −700 J to 700 J, ticked every 200 J, and never rescales. */
+    const PR = 800, box = { l: 880, r: 1330, t: 150, b: 520 };
+    const { X, Y } = axes(ctx, box, [lowM, highM], [-PR, PR], { xl: '离地面的高度（m）', xc: C('position'), yl: 'PE_g (J)', yc: C('energy'), nx: 7, ny: 8, fx: (v) => fmt(v, 1), fy: (v) => fmt(v, 0) });
+    line(ctx, X(lowM), Y(M * G * (lowM - z.v)), X(highM), Y(M * G * (highM - z.v)), C('energy'), 5);
+    dot(ctx, X(z.v), Y(0), C('energy'), false, 10);
+    dot(ctx, X(yLo), Y(M * G * (yLo - z.v)), C('position'), true, 9);
+    dot(ctx, X(yHi), Y(M * G * (yHi - z.v)), C('position'), true, 9);
+    { const rt = yHi < 1.6; vbracket(ctx, rt ? X(yHi) + 34 : X(yLo) - 34, Y(M * G * (yLo - z.v)), Y(M * G * (yHi - z.v)), C('energy'), fmt(dPE, 1) + ' J', rt ? 1 : -1); }
+    topline(ctx, '从梯级 ' + lo + ' 爬到梯级 ' + hi + ' 储存 ' + fmt(dPE, 1) + ' J，无论零势能面取在何处。');
+    readout(d.readout, `\\kdPEg = \\km\\kg\\kh = (${fmt(M, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(yHi - yLo, 2)}\\ \\text{m}) = ${fmt(dPE, 1)}\\ \\text{J}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 7.6: the same television carried up the stairs and hoisted
+   straight up. Both travel at the same speed along paths of different
+   length, and their two energy bars arrive at the same height. The
+   journey takes time, so the figure loops and gets the transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-paths', 640);
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 5, max: 40, step: 1, value: 20, unit: 'kg', dec: 0, onInput: reset, aria: '电视机的质量' });
+  const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 2, max: 12, step: 0.5, value: 6, unit: 'm', dec: 1, onInput: reset, aria: '楼梯平台的高度' });
+  const run = ctl(d.controls, { label: '\\text{进深}', cls: '', min: 2, max: 14, step: 0.5, value: 6, unit: 'm', dec: 1, onInput: reset, aria: '楼梯的水平进深' });
+  const L1 = () => run.v + h.v, L2 = () => h.v;
+  const cy = cycle(() => L1(), 1.2);
+  function reset() { cy.reset(); }
+  /* where a walker is after travelling `s` along an eight-step staircase */
+  function stairs(s) {
+    const st = 8, dx = run.v / st, dy = h.v / st;
+    let x = 0, y = 0, left = s;
+    for (let i = 0; i < st; i++) {
+      const a = Math.min(left, dx); x += a; left -= a; if (left <= 0) break;
+      const c = Math.min(left, dy); y += c; left -= c; if (left <= 0) break;
+    }
+    return { x, y };
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const s1 = Math.min(cy.now(), L1()), s2 = Math.min(cy.now(), L2());
+    const SC = Math.min(560 / run.v, 320 / h.v);
+    const ground = 540, x0 = 150, Yp = (met) => ground - met * SC, Xp = (met) => x0 + met * SC;
+    const p1 = stairs(s1), pe1 = m.v * G * p1.y, pe2 = m.v * G * s2, full = m.v * G * h.v;
+    strip(ctx, 110, 1160, ground + 14, 26);
+    /* the staircase and the landing it reaches */
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(Xp(0), Yp(0));
+    for (let i = 0; i < 8; i++) { ctx.lineTo(Xp(((i + 1) * run.v) / 8), Yp((i * h.v) / 8)); ctx.lineTo(Xp(((i + 1) * run.v) / 8), Yp(((i + 1) * h.v) / 8)); }
+    ctx.stroke(); ctx.restore();
+    line(ctx, Xp(run.v), Yp(h.v), 1150, Yp(h.v), PAL.muted, 5);
+    line(ctx, Xp(0), Yp(0), Xp(0), Yp(h.v), PAL.rule, 2, [8, 8]);
+    vbracket(ctx, 116, Yp(0), Yp(h.v), C('position'), 'h = ' + fmt(h.v, 1) + ' m', 1);
+    /* the people stand to the scene's own scale, 1.75 m tall, within limits that keep them readable */
+    const PS = Math.max(0.42, Math.min(0.8, (1.75 * SC) / 150));
+    /* the pulley, its rope and the hoisted set; the hoister leans back on the rope with both hands */
+    const px = 1040, hy = Yp(0) - 118 * PS;
+    dot(ctx, px, Yp(h.v) - 26, PAL.ink, false, 18);
+    line(ctx, px - 18, Yp(h.v) - 26, px - 18, Yp(s2) - 52 * PS, PAL.ink, 3);
+    line(ctx, px + 18, Yp(h.v) - 26, px + 18, hy, PAL.ink, 3);
+    const hx = px + 18 + 46 * PS;
+    F.silhouette(ctx, { x: hx, y: Yp(0), s: PS, face: -1, pose: 'pull', hands: [{ x: 46, y: -118 }, { x: 50, y: -110 }], feet: [{ x: 26, y: 0 }, { x: -30, y: 0 }] });
+    tv(ctx, px - 18, Yp(s2), F.ref('tv-rope'), PS * 1.25);
+    /* the carried set: the climber walks the treads, her front foot already on the step above, the set held at her chest */
+    const riser = (h.v / 8) * SC;
+    const climbing = s1 > 0 && s1 < L1(), sw = climbing ? Math.sin(s1 * 2.4) : 0;
+    const cxp = Xp(p1.x), cyp = Yp(p1.y);
+    const frontUp = climbing ? -riser / PS : 0;
+    F.silhouette(ctx, { x: cxp, y: cyp, s: PS, pose: 'walk', hands: [{ x: 30, y: -96 }, { x: 26, y: -88 }],
+      feet: [{ x: 16 + 8 * sw, y: frontUp }, { x: -18 - 6 * sw, y: 0 }] });
+    tv(ctx, cxp + 44 * PS, cyp - 84 * PS, F.ref('tv-stairs'), PS * 1.1);
+    text(ctx, '沿楼梯上去', Xp(run.v / 2), ground + 62, F.ref('tv-stairs'), { size: 18, align: 'center' });
+    text(ctx, '竖直向上', px, ground + 62, F.ref('tv-rope'), { size: 18, align: 'center' });
+    /* the two accounts */
+    ebar(ctx, 1220, ground, 56, full, pe1, 300, '搬运', fmt(pe1, 0) + ' J');
+    ebar(ctx, 1300, ground, 56, full, pe2, 300, '吊起', fmt(pe2, 0) + ' J');
+    line(ctx, 1206, ground - 300, 1370, ground - 300, C('energy'), 2, [8, 6]);
+    text(ctx, 'mgh = ' + num(full, 0) + ' J', 1288, ground - 322, C('energy'), { size: 17, weight: 600, align: 'center' });
+    topline(ctx, s1 >= L1() - 1e-9
+      ? '两台电视机都已到达高 ' + fmt(h.v, 1) + ' m 的楼梯平台，一台走了 ' + fmt(L1(), 1) + ' m，另一台升高了 ' + fmt(h.v, 1) + ' m，各自获得 ' + num(full, 0) + ' J。'
+      : '被搬运的电视机走了 ' + fmt(s1, 1) + ' m，升高了 ' + fmt(p1.y, 1) + ' m；被吊起的电视机用去 ' + fmt(s2, 1) + ' m 的绳，升高了 ' + fmt(s2, 1) + ' m。');
+    readout(d.readout, `\\kdPEg = \\km\\kg\\kh = (${fmt(m.v, 0)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(${fmt(h.v, 1)}\\ \\text{m}) = ${num(full, 0)}\\ \\text{J}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => L1() / 5), draw });
+})();
+
+/* =====================================================================
+   SIM: the force that stops a fall (Example 7.6). The person falls
+   through h and the floor removes all of the kinetic energy over the
+   distance the knees bend, so the force goes as 1/d. The fall and the
+   stop take time, so the figure loops and gets the transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-landing', 700);
+  const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 0.5, max: 5, step: 0.1, value: 3, unit: 'm', dec: 2, onInput: reset, aria: '下落的高度' });
+  /* the two landings the section works out are marked on the slider, since the graph
+     beside the scene is a ratio scale and the interesting ground is all at its left-hand end */
+  const kb = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.005, max: 0.75, step: 0.005, value: 0.005, unit: 'm', dec: 3, onInput: reset, aria: '膝盖弯曲的距离', specials: [{ at: 0.005, label: '僵直' }, { at: 0.5, label: '弯曲' }] });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 120, step: 1, value: 60, unit: 'kg', dec: 1, onInput: reset, aria: '人的质量' });
+  const cy = cycle(() => 1.3, 1.0);
+  function reset() { cy.reset(); }
+  const lg = (v) => Math.log10(v);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), falling = tau < 1, p = falling ? 0 : Math.min(1, (tau - 1) / 0.3);
+    const KE = m.v * G * h.v, Fst = KE / kb.v, wgt = m.v * G;
+    /* fixed scene scale, 42 units to the metre: the slider reaches a 5 m fall, and at that
+       height the person's head and the mass label still stop short of the headline band. */
+    const floorY = 430, SC = 42, feet = falling ? floorY - h.v * SC * (1 - tau * tau) : floorY;
+    strip(ctx, 100, 660, floorY + 14, 26);
+    /* he falls standing and his knees give on landing: the joints run from the standing pose to the crouch as p goes 0 to 1 */
+    const A = F.silhouette.pose('stand'), B = F.silhouette.pose('crouch'), mix = (u, w) => ({ x: u.x + (w.x - u.x) * p, y: u.y + (w.y - u.y) * p });
+    const LS = 0.62;
+    F.silhouette(ctx, { x: 330, y: feet, s: LS, color: F.ref('jumper'), hip: mix(A.hip, B.hip), shoulder: mix(A.shoulder, B.shoulder), head: mix(A.head, B.head),
+      feet: [mix(A.feet[0], B.feet[0]), mix(A.feet[1], B.feet[1])], hands: [mix(A.hands[0], B.hands[0]), mix(A.hands[1], B.hands[1])] });
+    text(ctx, fmt(m.v, 1) + ' kg', 330, Math.max(104, feet - 150 * LS - 22), C('mass'), { size: 18, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    if (h.v * SC > 40) vbracket(ctx, 168, floorY, floorY - h.v * SC, C('position'), 'h = ' + fmt(h.v, 2) + ' m', -1);
+    line(ctx, 150, floorY - h.v * SC, 360, floorY - h.v * SC, C('position'), 2, [8, 8]);
+    if (!falling) {
+      const al = 70 + 150 * Math.min(1, lg(Fst / wgt) / 3) * p;
+      arrow(ctx, 440, floorY, 440, floorY - al, C('force'), 5);
+      text(ctx, 'F = ' + sciPlain(Fst) + ' N', 456, floorY - al - 4, C('force'), { size: 18, weight: 600 });
+      text(ctx, '膝盖弯曲 d = ' + fmt(kb.v * 100, 2) + ' cm', 330, floorY + 62, C('position'), { size: 18, weight: 600, align: 'center' });
+    } else {
+      arrow(ctx, 440, feet - 40, 440, feet + 44, C('force'), 5);
+      text(ctx, 'mg = ' + fmt(wgt, 0) + ' N', 456, feet + 4, C('force'), { size: 18, weight: 600 });
+      text(ctx, '着地时 KE = ' + num(KE, 0) + ' J', 330, floorY + 62, C('energy'), { size: 18, weight: 600, align: 'center' });
+    }
+    /* the graph beside: the stopping force against the distance the knees bend, both on ratio scales */
+    const box = { l: 800, r: 1330, t: 150, b: 560 };
+    const fx = (v) => ['1 mm', '1 cm', '10 cm', '1 m'][Math.round(v) + 3] ?? '';
+    const fy = (v) => ['100 N', '1 kN', '10 kN', '100 kN', '1 MN', '10 MN'][Math.round(v) - 2] ?? '';
+    const { X, Y } = axes(ctx, box, [-3, 0], [2, 7], { xl: '膝盖弯曲的距离', xc: C('position'), yl: '膝关节所受的力', yc: C('force'), nx: 3, ny: 5, fx, fy });
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    curve(ctx, (u) => lg(KE) - u, -3, 0, X, Y, C('force'), 5, 60);
+    line(ctx, X(-3), Y(lg(wgt)), X(0), Y(lg(wgt)), C('force'), 2, [10, 10]);
+    for (const q of [0.005, 0.5]) { dot(ctx, X(lg(q)), Y(lg(KE / q)), C('force'), false, 10); }
+    dot(ctx, X(lg(kb.v)), Y(lg(Fst)), C('force'), true, 9);
+    ctx.restore();
+    text(ctx, '重力，' + fmt(wgt, 0) + ' N', box.l + 12, Y(lg(wgt)) - 18, C('force'), { size: 17, weight: 600 });
+    text(ctx, '僵直着地', X(lg(0.005)) + 16, Y(lg(KE / 0.005)) - 26, PAL.muted, { size: 17 });
+    text(ctx, '弯曲双腿', X(lg(0.5)) - 16, Y(lg(KE / 0.5)) + 30, PAL.muted, { size: 17, align: 'right' });
+    topline(ctx, falling ? '从 ' + fmt(h.v, 2) + ' m 高处落下，人到达地面时具有 ' + num(KE, 0) + ' J 的动能。'
+      : '膝盖弯曲 ' + fmt(kb.v * 100, 2) + ' cm，所以地面在这段距离上带走 ' + num(KE, 0) + ' J，所用的力为 ' + sciPlain(Fst) + ' N，是重力的 ' + fmt(Fst / wgt, 0) + ' 倍。');
+    readout(d.readout, `\\kF = -\\frac{\\km\\kg\\kh}{\\kd} = -\\frac{(${fmt(m.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2)(-${fmt(h.v, 2)}\\ \\text{m})}{${sci(kb.v)}\\ \\text{m}} = ${sci(Fst)}\\ \\text{N}`,
+      kb.v >= 0.45 ? '' : '若弯曲 0.500 m 而不是 ' + fmt(kb.v * 100, 2) + ' cm，就会把这个力分摊到 ' + fmt(0.5 / kb.v, 0) + ' 倍的距离上，使力降到 ' + sciPlain(KE / 0.5) + ' N。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 0.26), draw });
+})();
+
+/* =====================================================================
+   FIGURE 7.8: the roller coaster running down its hill (Example 7.7).
+   The car speeds up as the hill falls away, and the graph below keeps
+   the account: the gravitational potential energy given up is the
+   kinetic energy gained. The descent takes time, so the figure loops
+   and gets the transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-coaster', 780);
+  const h = ctl(d.controls, { label: '\\kh', cls: 'position', min: 5, max: 40, step: 0.5, value: 20, unit: 'm', dec: 1, onInput: reset, aria: '山坡的高度' });
+  const v0 = ctl(d.controls, { label: '\\kvo', cls: 'velocity', min: 0, max: 10, step: 0.25, value: 0, unit: 'm/s', dec: 2, onInput: reset, aria: '坡顶的速率' });
+  const m = ctl(d.controls, { label: '\\km', cls: 'mass', min: 100, max: 2000, step: 50, value: 500, unit: 'kg', dec: 0, onInput: reset, aria: '过山车的质量' });
+  const X0 = 110, X1 = 1330, XH = 700, BASE = 430, SCY = 6;
+  const hgt = (x) => (x <= XH ? (h.v * (1 + Math.cos((Math.PI * (x - X0)) / (XH - X0)))) / 2 : 0);
+  const yOf = (x) => BASE - hgt(x) * SCY;
+  let tab = null;
+  /* the run, sampled once per slider setting: arc length, speed and the clock */
+  function table() {
+    if (tab) return tab;
+    const N = 300, xs = [], ts = [], ys = [];
+    let t = 0;
+    for (let i = 0; i <= N; i++) {
+      const x = X0 + ((X1 - X0) * i) / N, y = yOf(x);
+      if (i) { const ds = Math.hypot(x - xs[i - 1], y - ys[i - 1]) / SCY; const v = Math.max(0.8, Math.sqrt(v0.v * v0.v + 2 * G * (h.v - hgt(x)))); t += ds / v; }
+      xs.push(x); ys.push(y); ts.push(t);
+    }
+    tab = { xs, ys, ts, T: t };
+    return tab;
+  }
+  function reset() { tab = null; cy.reset(); }
+  const cy = cycle(() => table().T, 1.2);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tb = table(), tau = Math.min(cy.now(), tb.T);
+    let i = 1; while (i < tb.ts.length - 1 && tb.ts[i] < tau) i++;
+    /* at the very start the car stands at the first sample, so that the height fallen is
+       exactly zero and the readout's arithmetic agrees with the numbers it prints */
+    const j = tau <= 0 ? 0 : i, k = Math.max(j, 1);
+    const x = tb.xs[j], y = tb.ys[j], rot = Math.atan2(tb.ys[k] - tb.ys[k - 1], tb.xs[k] - tb.xs[k - 1]);
+    const fallen = h.v - hgt(x), v = Math.sqrt(v0.v * v0.v + 2 * G * fallen);
+    const KEi = 0.5 * m.v * v0.v * v0.v, Etot = KEi + m.v * G * h.v, KE = KEi + m.v * G * fallen, PE = m.v * G * (h.v - fallen);
+    /* the scene: the track, drawn as the book draws it */
+    ctx.save(); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 5; ctx.beginPath();
+    for (let k = 0; k <= 120; k++) { const xx = X0 + ((X1 - X0) * k) / 120; if (k) ctx.lineTo(xx, yOf(xx)); else ctx.moveTo(xx, yOf(xx)); }
+    ctx.stroke(); ctx.restore();
+    line(ctx, X0, BASE, X1, BASE, PAL.rule, 2, [8, 8]);
+    ctx.save(); ctx.translate(x, y - 2); ctx.rotate(rot); F.coasterCar(ctx, 0, 0, 1, F.ref('coaster')); ctx.restore();
+    vbracket(ctx, X0 - 34, BASE, BASE - h.v * SCY, C('position'), 'h = ' + fmt(h.v, 1) + ' m', 1);
+    line(ctx, X0 - 44, BASE - h.v * SCY, X0 + 40, BASE - h.v * SCY, C('position'), 2, [8, 8]);
+    /* the speed arrow is drawn ahead of the car while there is room for it, and behind the car
+       once the car is past x = 1100, so that neither the arrow nor its label leaves the canvas */
+    if (v > 1) {
+      const al = 50 + 130 * (v / Math.sqrt(v0.v * v0.v + 2 * G * h.v)), ahead = x < 1100;
+      const tail = ahead ? x + 40 : x - 40 - al;
+      arrow(ctx, tail, y - 40, tail + al, y - 40, C('velocity'), 5);
+      text(ctx, 'v = ' + fmt(v, 1) + ' m/s', ahead ? tail + al + 6 : tail - 6, y - 66, C('velocity'), { size: 18, weight: 600, align: ahead ? 'left' : 'right' });
+    }
+    /* the graph below the horizontal scene: the energy account against the height fallen */
+    /* fixed axes. The height axis is the slider's own range, 0 to 40 m, ticked every 10 m. The
+       energy the sliders can reach is ½ × 2000 kg × (10 m/s)² + 2000 kg × 9.80 × 40 m = 884 kJ,
+       but the default car carries 98 kJ and would then run along the base line, so the energy axis
+       is fixed at 0 to 150 kJ, ticked every 30 kJ, which holds the default hill comfortably; a
+       heavier car is clipped at the top edge and read off its pinned marker. Neither range moves. */
+    const HR = 40, ER = 150000, box = { l: 220, r: 1300, t: 510, b: 700 };
+    const { X, Y } = axes(ctx, box, [0, HR], [0, ER], { xl: '下落的高度（m）', xc: C('position'), yl: '能量（kJ）', yc: C('energy'), nx: 4, ny: 5, fx: (u) => fmt(u, 0), fy: (u) => fmt(u / 1000, 0) });
+    const rate = m.v * G, cl = (u) => Math.min(u, ER);
+    if (Etot <= ER) line(ctx, X(0), Y(Etot), X(h.v), Y(Etot), C('energy'), 2, [10, 10]);
+    const peStart = Math.max(0, h.v - ER / rate);                     /* where the falling PE line enters the box */
+    line(ctx, X(peStart), Y(cl(rate * (h.v - peStart))), X(h.v), Y(0), alpha(C('energy'), 0.55), 5);
+    const keEnd = Math.min(h.v, Math.max(0, (ER - KEi) / rate));      /* where the rising KE line leaves it */
+    if (KEi <= ER) line(ctx, X(0), Y(KEi), X(keEnd), Y(cl(KEi + rate * keEnd)), C('energy'), 5);
+    /* a label whose line has left the top of the box is not drawn, and the readout says the view is clipped */
+    if (rate * h.v * 0.55 < ER * 0.85) text(ctx, 'PE_g', X(h.v * 0.45), Y(rate * h.v * 0.55) + 26, alpha(C('energy'), 0.8), { size: 18, weight: 600, align: 'center' });
+    if (KEi + rate * h.v * 0.55 < ER * 0.85) text(ctx, 'KE', X(h.v * 0.55), Y(KEi + rate * h.v * 0.55) - 26, C('energy'), { size: 18, weight: 600, align: 'center' });
+    if (Etot <= ER * 0.9) text(ctx, '二者之和保持不变', X(h.v * 0.5), Y(Etot) - 22, C('energy'), { size: 17, weight: 600, align: 'center' });
+    line(ctx, X(fallen), box.b, X(fallen), Y(cl(Etot)), C('position'), 2, [4, 8]);
+    const pl = X(fallen) > box.l + 140;
+    pinned(ctx, box, X, Y, fallen, PE, alpha(C('energy'), 0.7), pl ? fmt(PE / 1000, 1) + ' kJ' : '');
+    pinned(ctx, box, X, Y, fallen, KE, C('energy'), pl ? fmt(KE / 1000, 1) + ' kJ' : '');
+    topline(ctx, fallen < 0.02 * h.v ? '在 ' + fmt(h.v, 1) + ' m 高的山坡顶，车因高度而具有 ' + fmt(m.v * G * h.v / 1000, 1) + ' kJ，因运动而具有 ' + fmt(KEi / 1000, 1) + ' kJ。'
+      : '车已下落 ' + fmt(fallen, 1) + ' m，速率为 ' + fmt(v, 1) + ' m/s，所以 ' + fmt(KE / 1000, 1) + ' kJ 已成为运动的能量（共 ' + fmt(Etot / 1000, 1) + ' kJ）。');
+    readout(d.readout, `\\kv = \\sqrt{2\\kg|\\kh| + \\kvo^2} = \\sqrt{2(9.80\\ \\text{m/s}^2)(${fmt(fallen, 2)}\\ \\text{m}) + (${fmt(v0.v, 2)}\\ \\text{m/s})^2} = ${fmt(v, 1)}\\ \\text{m/s}`,
+      (Etot > ER ? '总量 ' + fmt(Etot / 1000, 1) + ' kJ 超出了图像的上限，图像只画到 150 kJ。' : '') + (v0.v < 0.01 ? '' : '以 ' + fmt(v0.v, 2) + ' m/s 而不是从静止出发，只增加 ' + fmt(Math.sqrt(v0.v * v0.v + 2 * G * h.v) - Math.sqrt(2 * G * h.v), 2) + ' m/s，而山坡本身就给出 ' + fmt(Math.sqrt(2 * G * h.v), 1) + ' m/s。'));
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => table().T / 5), draw });
+})();
+
+/* =====================================================================
+   FIGURE 7.9: the marble rolling down a ruler propped on a book, the
+   take-home investigation. The marble rolls and then crosses a metre of
+   the level surface, and the graph below is the plot the investigation
+   asks for. The run takes time, so the figure loops and gets the
+   transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-marble', 690);
+  const rel = ctl(d.controls, { label: '\\kd', cls: 'position', min: 5, max: 30, step: 1, value: 10, unit: 'cm', dec: 0, onInput: reset, aria: '沿直尺的释放位置' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 5, max: 25, step: 1, value: 15, unit: '°', dec: 0, onInput: reset, aria: '斜面的倾角' });
+  const dm = () => rel.v / 100, sn = () => Math.sin(th.v * RAD), cs = () => Math.cos(th.v * RAD);
+  const acc = () => G * sn(), vEnd = () => Math.sqrt(2 * G * dm() * sn());
+  const t1 = () => Math.sqrt((2 * dm()) / acc()), t2 = () => 1 / vEnd();
+  const cy = cycle(() => t1() + t2(), 1.2);
+  function reset() { cy.reset(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = cy.now(), SC = 880, table = 250, RL = 0.3;
+    const xTop = 200, xBot = xTop + RL * cs() * SC, yTop = table - RL * sn() * SC;
+    const onRuler = tau < t1();
+    const s = onRuler ? Math.max(0, dm() - 0.5 * acc() * tau * tau) : 0;           /* distance from the low end */
+    const along = onRuler ? 0 : Math.min(1, vEnd() * (tau - t1()));                /* metres across the level */
+    const h = dm() * sn(), v = onRuler ? acc() * tau : vEnd();
+    /* the scene: a book, a ruler on it and the marble */
+    strip(ctx, 100, 1360, table + 14, 26);
+    F.book(ctx, 125, (yTop + table) / 2, 150, table - yTop, PAL.ink);
+    ctx.save(); ctx.strokeStyle = F.ref('ruler'); ctx.lineWidth = 8; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.moveTo(xTop, yTop); ctx.lineTo(xBot, table); ctx.stroke(); ctx.restore();
+    for (let c = 5; c <= 30; c += 5) { const f = c / 30, px = xTop + (xBot - xTop) * (1 - f), py = yTop + (table - yTop) * (1 - f); line(ctx, px, py - 12, px, py - 4, PAL.muted, 2); }
+    const mx = onRuler ? xBot - s * cs() * SC : xBot + along * SC, my = onRuler ? table - s * sn() * SC - 12 : table - 12;
+    dot(ctx, xBot - dm() * cs() * SC, table - dm() * sn() * SC - 12, C('position'), false, 10);
+    dot(ctx, mx, my, F.ref('marble'), true, 12);
+    hbracket(ctx, xBot, xBot + SC, table + 56, C('position'), '一米水平面');
+    vbracket(ctx, xBot + 26, table, table - dm() * sn() * SC, C('position'));
+    text(ctx, 'h = ' + fmt(h * 100, 1) + ' cm', xBot + 26, table - dm() * sn() * SC - 34, C('position'), { size: 20, weight: 600, align: 'center' });
+    if (v > 0.05) { const al = 40 + 130 * (v / Math.max(0.2, vEnd())); arrow(ctx, mx, my - 40, mx + al, my - 40, C('velocity'), 5); text(ctx, fmt(v, 2) + ' m/s', mx + al + 12, my - 40, C('velocity'), { size: 18, weight: 600 }); }
+    text(ctx, '释放位置 ' + fmt(rel.v, 0) + ' cm', xTop - 10, yTop - 34, PAL.muted, { size: 18 });
+    /* the graph below: the plot the investigation asks for */
+    /* fixed axes: the steepest incline the slider allows is 25°, where releasing at the far end of
+       the ruler gives v² = 2 × 9.80 × 0.30 × sin 25° = 2.49 m²/s², so the graph is always 0 to
+       0.3 m by 0 to 2.5 m²/s², ticked every 0.5, and never rescales with either slider. */
+    const VR = 2.5, box = { l: 240, r: 1300, t: 380, b: 600 };
+    const { X, Y } = axes(ctx, box, [0, 0.3], [0, VR], { xl: '在直尺上的释放位置（m）', xc: C('position'), yl: '水平面上的 v²（m²/s²）', yc: C('velocity'), nx: 3, ny: 5, fx: (u) => fmt(u, 1), fy: (u) => fmt(u, 1) });
+    line(ctx, X(0), Y(0), X(0.3), Y(2 * G * 0.3 * sn()), C('velocity'), 5);
+    for (const q of [0.1, 0.2, 0.3]) dot(ctx, X(q), Y(2 * G * q * sn()), C('velocity'), false, 10);
+    dot(ctx, X(dm()), Y(vEnd() * vEnd()), C('velocity'), true, 9);
+    topline(ctx, onRuler ? '在 ' + fmt(rel.v, 0) + ' cm 处释放，弹珠还剩 ' + fmt(s * 100, 1) + ' cm 的直尺，速率为 ' + fmt(v, 2) + ' m/s。'
+      : '在水平面上，弹珠以 ' + fmt(vEnd(), 2) + ' m/s 的速率通过这一米，所以这一米用时 ' + fmt(t2(), 2) + ' s。');
+    readout(d.readout, `\\kv = \\sqrt{2\\kg|\\kh|} = \\sqrt{2(9.80\\ \\text{m/s}^2)(${fmt(h, 4)}\\ \\text{m})} = ${fmt(vEnd(), 2)}\\ \\text{m/s}`,
+      '真实的弹珠是滚动而不是滑动，要把一部分能量用于转动，所以它到达时比这里算出的慢约 15%，而无论哪种情形，图线都保持为直线。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => (t1() + t2()) / 5), draw });
+})();
+};

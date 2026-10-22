@@ -1,0 +1,213 @@
+/* Figures for section 7.1 Work: The Scientific Definition. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['7.1'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, nice, pinned } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* ---------- small helpers shared by the two figures ---------- */
+const G = 9.80, TAU = 2 * Math.PI, RAD = Math.PI / 180;
+const SUPS = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
+const sup = (e) => String(e).split('').map((c) => SUPS[c]).join('');
+const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const tx$ = (s) => s.replace(/,/g, '{,}').replace(/ × 10([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)/, (_, e) => ' \\times 10^{' + [...e].map((c) => Object.keys(SUPS).find((k) => SUPS[k] === c)).join('') + '}');
+const sgn = (v) => (v < 0 ? '−' : '');
+/* three significant figures, never in exponent form, with commas */
+function sig3(x) {
+  if (Math.abs(x) < 1e-9) return '0';
+  const s = Math.abs(x).toPrecision(3);
+  return sgn(x) + (s.includes('e') || Math.abs(x) >= 1000 ? commas(String(Math.round(Math.abs(x)))) : s);
+}
+/* the same number in the book's scientific notation once it is very small or very large */
+function sci(x, dec) {
+  if (Math.abs(x) < 1e-12) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x)));
+  return e >= -2 && e <= 3 ? sig3(x) : sgn(x) + fmt(Math.abs(x) / Math.pow(10, e), dec) + ' × 10' + sup(e);
+}
+
+/* ---------- sprites, in ink ---------- */
+/* a lawn mower standing on the ground at (x, y), its handle reaching up and back */
+function mower(ctx, x, y, color, s = 1, face = 1) {
+  ctx.save(); ctx.translate(x, y); ctx.scale(s * face, s);
+  ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(-58, -14); ctx.lineTo(-58, -26); ctx.quadraticCurveTo(-54, -34, -40, -34); ctx.lineTo(30, -34); ctx.quadraticCurveTo(44, -34, 46, -14); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.ellipse(-14, -34, 22, 15, 0, Math.PI, 0); ctx.fill(); ctx.fillRect(-18, -54, 8, 6);
+  ctx.beginPath(); ctx.moveTo(34, -30); ctx.lineTo(88, -76); ctx.moveTo(74, -76); ctx.lineTo(102, -76); ctx.stroke();
+  ctx.fillStyle = PAL.panel; ctx.beginPath(); ctx.arc(-34, -14, 14, 0, TAU); ctx.moveTo(38, -14); ctx.arc(24, -14, 14, 0, TAU); ctx.fill();
+  ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(-34, -14, 14, 0, TAU); ctx.moveTo(38, -14); ctx.arc(24, -14, 14, 0, TAU); ctx.stroke();
+  ctx.restore();
+}
+/* a crate of side w whose base sits on (x, y) */
+function crate(ctx, x, y, w, color) {
+  ctx.save(); ctx.fillStyle = alpha(color, 0.15); ctx.strokeStyle = color; ctx.lineWidth = 4;
+  ctx.fillRect(x - w / 2, y - w, w, w); ctx.strokeRect(x - w / 2, y - w, w, w);
+  ctx.beginPath(); ctx.moveTo(x - w / 2, y - w); ctx.lineTo(x + w / 2, y); ctx.moveTo(x + w / 2, y - w); ctx.lineTo(x - w / 2, y); ctx.stroke(); ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 7.2: the five examples of work. A lawn mower is pushed along
+   level ground with a force F at an angle θ to the displacement d, and
+   the graph beneath follows the work as the mower goes. The work
+   accumulates while the mower travels, so the figure moves and takes
+   the transport; the five cases the book draws are five settings of the
+   angle and the displacement.
+===================================================================== */
+(function () {
+  const d = sim('sim-work', 840);
+  const Fc = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 150, step: 2.5, value: 75, unit: 'N', dec: 1, onInput: reset, aria: '力' });
+  const th = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 5, value: 35, unit: '°', dec: 0, onInput: reset, aria: '力与位移之间的夹角',
+    specials: [{ at: 90, label: '垂直' }, { at: 180, label: '相反' }] });
+  const dd = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0, max: 40, step: 0.5, value: 25, unit: 'm', dec: 1, onInput: reset, aria: '位移', specials: [{ at: 0, label: '无运动' }] });
+  const ro = F.readout(d);
+  const cy = cycle(() => 1, 1.2);            /* one trip per loop, counted as the fraction of it that is done */
+  function reset() { cy.reset(); }
+  const SC = 22, X0 = 400, GY = 420;         /* logical units to the metre, the start of the trip, the ground */
+  const MS = 1.3, PS = 1.0;                  /* the mower's scale and the person's; she stands 150 units, the mower's handle reaches 135 */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const Fv = Fc.v, ang = th.v, D = dd.v, cs = Math.cos(ang * RAD), sn = Math.sin(ang * RAD);
+    const s = D * cy.now(), W = Fv * s * cs, Wtot = Fv * D * cs;
+    const lab = F.labeller(ctx, 840);
+    /* the ground and the mower on it */
+    line(ctx, 60, GY, 1370, GY, PAL.muted, 3);
+    const mx = X0 + s * SC;
+    mower(ctx, mx, GY, F.ref('mower'), MS, -1);
+    /* the person behind the mower, both hands on the grip and her feet on the ground; she strides while it moves */
+    const gx = mx - 88 * MS, gy = GY - 76 * MS;
+    const walking = s > 0.05 && s < D - 0.05, sw = walking ? Math.sin(s * 1.6) : 0;
+    const px = gx - 58 * PS;
+    F.silhouette(ctx, { x: px, y: GY, s: PS, pose: 'push', color: F.ref('pusher'), hands: [{ x: (gx - px) / PS, y: (gy - GY) / PS + 2 }, { x: (gx - px) / PS - 4, y: (gy - GY) / PS + 8 }],
+      feet: [{ x: 10 + 18 * sw, y: 0 }, { x: -30 - 18 * sw, y: 0 }] });
+    /* the force at the grip, its head where the hands push and its tail back along the line of the push,
+       with the angle it makes with the direction of motion drawn at the tail. Nothing of the force is
+       drawn once the slider reaches zero: an arrow standing where no one is pushing would say that a
+       force is there, so below 0.05 N the arrow, its component and the angle all go. */
+    const pushing = Fv >= 0.05;
+    const L = 80 + Fv * 0.7, tx = gx - L * cs, ty = gy - L * sn;
+    if (pushing) {
+      /* a thin halo of the panel colour under the arrow keeps it legible where it crosses the body */
+      line(ctx, tx, ty, gx, gy, PAL.panel, 9);
+      /* the component of the force along the motion, which is the part of it that does the work */
+      if (Math.abs(cs) > 0.02 && sn > 0.2) {
+        line(ctx, gx, ty, gx, gy, C('force'), 2, [4, 8]);
+        arrow(ctx, tx, ty, gx, ty, C('force'), 4);
+        lab.add('F cos θ = ' + fmt(Fv * cs, 1).replace('-', '−') + ' N', (tx + gx) / 2, ty, 0, cs > 0 ? -1 : -1, C('force'), 20, 18);
+      }
+      arrow(ctx, tx, ty, gx, gy, C('force'), 5);
+      if (ang > 4 && ang < 176) F.angleArc(ctx, { x: tx, y: ty }, 40, -ang * RAD, 0, 'θ = ' + fmt(ang, 0) + '°', lab, C('angle'));
+      lab.add('F = ' + fmt(Fv, 1) + ' N', tx - 10 * cs, ty - 10 * sn, -cs, -sn - 0.4, C('force'), 22, 26);
+    } else {
+      lab.add('F = 0 N', gx, gy - 12, 0, -1, C('force'), 22, 30);
+    }
+    /* the displacement the force acts through */
+    line(ctx, X0, GY, X0, GY + 70, PAL.rule, 2, [4, 8]);
+    if (D > 0.05) {
+      line(ctx, X0 + D * SC, GY, X0 + D * SC, GY + 70, PAL.rule, 2, [4, 8]);
+      hbracket(ctx, X0, X0 + D * SC, 480, C('position'), 'd = ' + fmt(D, 1) + ' m');
+    }
+    lab.flush();
+    /* the graph: the work done against the distance the mower has travelled */
+    /* fixed axes. The distance axis is the slider's own range, 0 to 40 m, ticked every 10 m. The
+       work can reach 150 N × 40 m = 6000 J either way, but the default push does 1.5 kJ and would
+       then sit in an eighth of the height, so the work axis is fixed at −3000 to 3000 J, ticked
+       every 1000, which holds the default run comfortably; beyond that the line is drawn only as
+       far as the box reaches and the work so far is pinned at the edge. Neither range moves. */
+    const XR = 40, WR = 3000, box = { l: 200, r: 1290, t: 560, b: 750 };
+    const { X, Y } = axes(ctx, box, [0, XR], [-WR, WR], {
+      xl: '路程（m）', xc: C('position'), yl: '所做的功（J）', yc: C('energy'),
+      nx: 4, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => sig3(v),
+    });
+    if (D > 0.05) {
+      const rate = Fv * cs, sEnd = Math.abs(rate) > 1e-9 ? Math.min(D, WR / Math.abs(rate)) : D, sNow = Math.min(s, sEnd);
+      line(ctx, X(0), Y(0), X(sEnd), Y(rate * sEnd), PAL.rule, 3, [10, 10]);
+      line(ctx, X(0), Y(0), X(sNow), Y(rate * sNow), C('energy'), 5);
+      line(ctx, X(sNow), Y(0), X(sNow), Y(rate * sNow), PAL.rule, 2, [4, 8]);
+      pinned(ctx, box, X, Y, s, W, C('energy'), sig3(W) + ' J');
+      text(ctx, 'W = ' + sig3(W) + ' J', Math.min(X(sNow) + 18, box.r - 150), Y(rate * sNow) + (Wtot < 0 ? 30 : -28), C('energy'), { size: 22, weight: 600, bg: alpha(PAL.panel, 0.85) });
+    }
+    dot(ctx, X(0), Y(0), C('energy'), false, 10);
+    /* the headline and the readout */
+    topline(ctx, Fv < 0.05 ? '没有人在推割草机，所以对它没有做功。'
+      : D < 0.05 ? '割草机没有移动，所以不论人推得多用力，力都没有对它做功。'
+      : Math.abs(cs) < 0.005 ? '力垂直于运动，所以不论割草机走多远，它都不做功。'
+      : '割草机已经走了 ' + fmt(s, 1) + ' m（共 ' + fmt(D, 1) + ' m），到目前为止力对它做了 ' + sig3(W) + ' J 的功。');
+    /* the relation takes the form of the case: at 90° the cosine is the zero that empties the product,
+       and at 180° it bends into the minus sign of work done against the motion */
+    const nums = `(\\mk{Fv}{${fmt(Fv, 1)}}\\ \\text{N})(\\mk{dv}{${fmt(D, 1)}}\\ \\text{m})`;
+    ro.set(ang === 90
+      ? `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta} = ${nums}\\mk{cv}{\\cos 90^\\circ} = \\mk{Wv}{0}\\ \\text{J}`
+      : ang === 180
+        ? `\\mk{W}{\\kW} = \\mk{c}{-}\\mk{F}{\\kF}\\mk{d}{\\kd} = \\mk{cv}{-}${nums} = \\mk{Wv}{${tx$(sig3(Wtot))}}\\ \\text{J}`
+        : `\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta} = ${nums}\\mk{cv}{\\cos ${fmt(ang, 0)}^\\circ} = \\mk{Wv}{${tx$(sig3(Wtot))}}\\ \\text{J}`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 0.2), draw });
+})();
+
+/* =====================================================================
+   SIM: the size of a joule. A mass is lifted steadily through a height,
+   so the force on it is its weight and the angle between that force and
+   the displacement is zero, and the work is laid on a ladder of powers
+   of ten beside an apple, the lawn mower of Example 7.1, a food calorie
+   and a day's food energy. The figure answers its sliders and has no
+   time in it, so it is a still picture with no transport.
+===================================================================== */
+(function () {
+  const d = sim('sim-joule', 640);
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 0.05, max: 100, step: 0.05, value: 0.1, unit: 'kg', dec: 2, aria: '被举起物体的质量' });
+  const hh = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.2, max: 20, step: 0.1, value: 1, unit: 'm', dec: 2, aria: '举起的高度' });
+  const LO = -2, HI = 7, LX = 130, RX = 1330, BT = 420, BB = 520, GY = 330, CX = 700;
+  const Xe = (E) => LX + ((Math.log10(E) - LO) / (HI - LO)) * (RX - LX);
+  const DEC = ['0.01 J', '0.1 J', '1 J', '10 J', '100 J', '1 kJ', '10 kJ', '100 kJ', '1 MJ', '10 MJ'];
+  const MARKS = [
+    { E: 0.98, label: '举高约 1 米的一个苹果', row: 0, ref: 'apple' },
+    { E: 1536, label: '例题 7.1 中的割草机', row: 1 },
+    { E: 4186, label: '一大卡', row: 0, align: 'left' },
+    { E: 1.0e7, label: '一天的食物能量', row: 1 },
+  ];
+  function draw() {
+    const { ctx } = begin(d.c);
+    const m = mm.v, h = hh.v, Fw = m * G, W = Fw * h;
+    /* the scene: the mass held at the height it has been lifted through */
+    const side = 34 + 46 * Math.pow(m / 100, 1 / 3);
+    const vh = 20 + 90 * (Math.log10(h / 0.2) / Math.log10(100));
+    const base = GY - vh, top = base - side;
+    line(ctx, CX - 260, GY, CX + 260, GY, PAL.muted, 3);
+    crate(ctx, CX, base, side, PAL.ink);
+    line(ctx, CX - side / 2 - 96, GY, CX - side / 2 - 8, GY, PAL.rule, 2, [4, 8]);
+    line(ctx, CX - side / 2 - 96, base, CX - side / 2 - 8, base, PAL.rule, 2, [4, 8]);
+    vbracket(ctx, CX - side / 2 - 66, base, GY, C('position'), 'd = ' + fmt(h, 2) + ' m', -1);
+    arrow(ctx, CX, top - 8, CX, top - 68, C('force'), 5);
+    text(ctx, 'F = mg = ' + sig3(Fw) + ' N', CX + 22, top - 46, C('force'), { size: 22, weight: 600 });
+    text(ctx, 'm = ' + fmt(m, 2) + ' kg', CX + side / 2 + 22, base - side / 2, C('mass'), { size: 22, weight: 600 });
+    /* the ladder of energies, a power of ten to the rung */
+    for (let e = LO; e < HI; e += 2) {
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(Xe(Math.pow(10, e)), BT, Xe(Math.pow(10, e + 1)) - Xe(Math.pow(10, e)), BB - BT); ctx.restore();
+    }
+    for (let e = LO; e <= HI; e++) {
+      const x = Xe(Math.pow(10, e));
+      line(ctx, x, BT, x, BB, PAL.rule, 1.5);
+      text(ctx, DEC[e - LO], x, BB + 30, PAL.muted, { size: 17, align: 'center' });
+    }
+    line(ctx, LX, BB, RX, BB, PAL.muted, 2); line(ctx, LX, BT, RX, BT, PAL.rule, 1.5);
+    MARKS.forEach((k) => {
+      const x = Xe(k.E), ly = k.row ? 352 : 390;
+      const right = x > RX - 220, left = x < LX + 220;
+      const kc = k.ref ? F.ref(k.ref) : PAL.muted;
+      line(ctx, x, ly + 12, x, BB, kc, 2, [6, 8]);
+      dot(ctx, x, BB, kc, true, 7);
+      text(ctx, k.label, right ? RX : left ? LX : k.align ? x - 8 : x, ly, kc, { size: 18, align: right ? 'right' : left ? 'left' : k.align || 'center' });
+    });
+    /* where the work the sliders set falls among them */
+    const xw = Math.max(LX, Math.min(RX, Xe(W)));
+    line(ctx, xw, BT - 14, xw, BB + 12, C('energy'), 5);
+    dot(ctx, xw, BB, C('energy'), true, 11);
+    text(ctx, 'W = ' + sci(W, 2) + ' J', Math.max(LX + 110, Math.min(xw, RX - 110)), BB + 68, C('energy'), { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    topline(ctx, '把 ' + fmt(m, 2) + ' kg 的物体举高 ' + fmt(h, 2) + ' m 需要做 ' + sci(W, 2) + ' J 的功'
+      + (W > 0.7 && W < 1.4 ? '，约为一焦耳。' : '。'));
+    readout(d.readout, `\\kW = \\kF\\kd\\cos\\ktheta = (${tx$(sig3(Fw))}\\ \\text{N})(${fmt(h, 2)}\\ \\text{m})\\cos 0^\\circ = ${tx$(sci(W, 2))}\\ \\text{J}`,
+      '这么多功合 ' + sci(W / 4186, 2) + ' kcal，而例题 7.1 中的人一天大约摄入 2400 kcal，所以它占一天食物能量的 '
+      + sci(W / 4186 / 2400, 2) + '。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

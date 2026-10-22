@@ -1,0 +1,1332 @@
+{
+ "types": [
+  {
+   "id": "power",
+   "label": "功率",
+   "dimension": "W"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "W_net",
+   "latex": "W_{\\text{net}}",
+   "macro": "\\kWnet"
+  },
+  {
+   "sym": "W_nc",
+   "latex": "W_{\\text{nc}}",
+   "macro": "\\kWnc"
+  },
+  {
+   "sym": "W_c",
+   "latex": "W_{\\text{c}}",
+   "macro": "\\kWc"
+  },
+  {
+   "sym": "W_s",
+   "latex": "W_{\\text{s}}",
+   "macro": "\\kWs"
+  },
+  {
+   "sym": "W_app",
+   "latex": "W_{\\text{app}}",
+   "macro": "\\kWapp"
+  },
+  {
+   "sym": "W_fr",
+   "latex": "W_{\\text{fr}}",
+   "macro": "\\kWfr"
+  },
+  {
+   "sym": "W_gr",
+   "latex": "W_{\\text{gr}}",
+   "macro": "\\kWgr"
+  },
+  {
+   "sym": "W_N",
+   "latex": "W_{N}",
+   "macro": "\\kWN"
+  },
+  {
+   "sym": "W_total",
+   "latex": "W_{\\text{total}}",
+   "macro": "\\kWtot"
+  },
+  {
+   "sym": "W_out",
+   "latex": "W_{\\text{out}}",
+   "macro": "\\kWout"
+  },
+  {
+   "sym": "PE",
+   "latex": "\\text{PE}",
+   "macro": "\\kPEtot"
+  },
+  {
+   "sym": "PE_g",
+   "latex": "\\text{PE}_{\\text{g}}",
+   "macro": "\\kPEg"
+  },
+  {
+   "sym": "PE_s",
+   "latex": "\\text{PE}_{\\text{s}}",
+   "macro": "\\kPEs"
+  },
+  {
+   "sym": "KE_i",
+   "latex": "\\text{KE}_{\\text{i}}",
+   "macro": "\\kKEi"
+  },
+  {
+   "sym": "KE_f",
+   "latex": "\\text{KE}_{\\text{f}}",
+   "macro": "\\kKEf"
+  },
+  {
+   "sym": "PE_i",
+   "latex": "\\text{PE}_{\\text{i}}",
+   "macro": "\\kPEi"
+  },
+  {
+   "sym": "PE_f",
+   "latex": "\\text{PE}_{\\text{f}}",
+   "macro": "\\kPEf"
+  },
+  {
+   "sym": "ΔKE",
+   "latex": "\\Delta\\text{KE}",
+   "macro": "\\kdKE"
+  },
+  {
+   "sym": "ΔPE",
+   "latex": "\\Delta\\text{PE}",
+   "macro": "\\kdPE"
+  },
+  {
+   "sym": "ΔPE_g",
+   "latex": "\\Delta\\text{PE}_{\\text{g}}",
+   "macro": "\\kdPEg"
+  },
+  {
+   "sym": "OE",
+   "latex": "\\text{OE}",
+   "macro": "\\kOE"
+  },
+  {
+   "sym": "OE_i",
+   "latex": "\\text{OE}_{\\text{i}}",
+   "macro": "\\kOEi"
+  },
+  {
+   "sym": "OE_f",
+   "latex": "\\text{OE}_{\\text{f}}",
+   "macro": "\\kOEf"
+  },
+  {
+   "sym": "E",
+   "latex": "E",
+   "macro": "\\kE"
+  },
+  {
+   "sym": "E_in",
+   "latex": "E_{\\text{in}}",
+   "macro": "\\kEin"
+  },
+  {
+   "sym": "P",
+   "latex": "P",
+   "macro": "\\kP"
+  },
+  {
+   "sym": "d",
+   "latex": "d",
+   "macro": "\\kd"
+  },
+  {
+   "sym": "x_i",
+   "latex": "x_{\\text{i}}",
+   "macro": "\\kxi"
+  },
+  {
+   "sym": "h_i",
+   "latex": "h_{\\text{i}}",
+   "macro": "\\khi"
+  },
+  {
+   "sym": "h_f",
+   "latex": "h_{\\text{f}}",
+   "macro": "\\khf"
+  },
+  {
+   "sym": "F_fr",
+   "latex": "F_{\\text{fr}}",
+   "macro": "\\kFfr"
+  },
+  {
+   "sym": "Eff",
+   "latex": "\\text{Eff}"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "work",
+   "kind": "definition",
+   "section": "7.1",
+   "name": "功",
+   "symbol": "W",
+   "terms": [
+    "功"
+   ],
+   "type": "energy",
+   "statement": "在科学中，功不是努力，而是能量的传递。只有当系统发生位移，且力在该位移方向上有分量时，力才对系统做功，功等于这一分量与力作用的距离的乘积，$W = Fd\\cos\\theta$。",
+   "forms": [
+    {
+     "id": "eq-work",
+     "latex": "W = Fd\\cos\\theta",
+     "ktex": "\\kW = \\kF\\kd\\cos\\theta",
+     "condition": "恒力，且在一维中单向运动",
+     "anchor": "7.1-definition"
+    },
+    {
+     "id": "eq-work-force-distance",
+     "latex": "W = Fd",
+     "ktex": "\\kW = \\kF\\kd",
+     "section": "15.2",
+     "anchor": "15.2-pv-diagrams"
+    }
+   ]
+  },
+  {
+   "id": "work-sign",
+   "kind": "result",
+   "section": "7.1",
+   "name": "功的正负",
+   "statement": "力与位移之间的夹角决定功的正负。当力在运动方向上有分量时，功为正；当力与运动垂直或根本没有位移时，功为零；当力与运动方向相反，从而使系统失去能量时，功为负。"
+  },
+  {
+   "id": "joule",
+   "kind": "definition",
+   "section": "7.1",
+   "name": "焦耳",
+   "terms": [
+    "焦耳"
+   ],
+   "statement": "功和能量的单位是力乘以距离，在国际单位制中就是牛·米，它被命名为焦耳。一焦耳并不是很大的能量；它可以把一个 100 克的小苹果举起约 1 米的距离。",
+   "forms": [
+    {
+     "id": "eq-joule",
+     "latex": "1\\ \\text{J} = 1\\ \\text{N}\\cdot\\text{m} = 1\\ \\text{kg}\\cdot\\text{m}^2/\\text{s}^2",
+     "anchor": "7.1-joule-unit"
+    }
+   ]
+  },
+  {
+   "id": "calculate-work",
+   "kind": "skill",
+   "section": "7.1",
+   "name": "功的计算",
+   "statement": "把力、距离以及二者之间的夹角代入功的定义，就得到这个力所传递的能量。把答案与一个人一天所吃食物的能量相比，就能对一焦耳的大小有个感觉。"
+  },
+  {
+   "id": "energy",
+   "kind": "definition",
+   "section": "7.1",
+   "name": "能量",
+   "symbol": "E",
+   "terms": [
+    "能量"
+   ],
+   "type": "energy",
+   "statement": "能量是做功的能力。对系统所做的功把能量传递给它，系统所做的功把能量传递出去。"
+  },
+  {
+   "id": "work-transfers-energy",
+   "kind": "idea",
+   "section": "7.2",
+   "name": "功传递能量",
+   "statement": "对系统所做的功把能量送入系统，系统所做的功把能量带出系统。这些能量去向何处取决于具体情形：摩擦力把它以热的形式带走，而提着公文包上楼所做的功则储存在公文包-地球系统中，随时可以取回。"
+  },
+  {
+   "id": "net-work",
+   "kind": "definition",
+   "section": "7.2",
+   "name": "合外力的功",
+   "symbol": "W_net",
+   "terms": [
+    "合外力的功"
+   ],
+   "type": "energy",
+   "statement": "改变系统运动的功是合外力所做的功，它也等于各个力分别所做的功之和。垂直于位移的力，例如沿传送带滑动的包裹所受的重力或法向力，不做功，在求和时舍去。",
+   "forms": [
+    {
+     "id": "eq-wnet",
+     "latex": "W_{\\text{net}} = F_{\\text{net}}d\\cos\\theta",
+     "ktex": "\\kWnet = \\kFnet\\kd\\cos\\theta",
+     "anchor": "7.2-net-work"
+    },
+    {
+     "id": "eq-wnet-parallel",
+     "latex": "W_{\\text{net}} = F_{\\text{net}}d",
+     "ktex": "\\kWnet = \\kFnet\\kd",
+     "condition": "合外力平行于位移",
+     "anchor": "7.2-theorem"
+    }
+   ]
+  },
+  {
+   "id": "work-as-area",
+   "kind": "result",
+   "section": "7.2",
+   "name": "功即图像下的面积",
+   "statement": "以力沿运动方向的分量对距离作图，功就是线下方的面积。力恒定时这是显然的，力变化时依然成立，因为面积可以切成许多细条，每一条就是力在自己那一小段距离上所做的功。"
+  },
+  {
+   "id": "kinetic-energy",
+   "kind": "definition",
+   "section": "7.2",
+   "name": "动能",
+   "symbol": "KE",
+   "terms": [
+    "动能"
+   ],
+   "type": "energy",
+   "statement": "合外力的功所改变的量是质量的一半乘以速率的平方，它被命名为平动动能：物体由于运动而具有的能量。由于速率是平方的，以 100 km/h 行驶的汽车所具有的动能是以 50 km/h 行驶时的四倍，这有助于说明为什么高速碰撞破坏性如此之大。",
+   "forms": [
+    {
+     "id": "eq-ke",
+     "latex": "\\text{KE} = \\frac{1}{2}mv^2",
+     "ktex": "\\kKE = \\frac{1}{2}m\\kv^2",
+     "anchor": "7.2-kinetic-energy"
+    }
+   ]
+  },
+  {
+   "id": "work-energy-theorem",
+   "kind": "result",
+   "section": "7.2",
+   "name": "动能定理",
+   "terms": [
+    "动能定理"
+   ],
+   "statement": "把牛顿第二定律和恒定加速度下速率与距离的关系代入合外力的功，距离就消去了，剩下合外力的功等于动能的变化。这里是对沿运动方向的恒力导出的，但它普遍成立，甚至对方向和大小都变化的力也成立。",
+   "forms": [
+    {
+     "id": "eq-wet",
+     "latex": "W_{\\text{net}} = \\frac{1}{2}mv^2 - \\frac{1}{2}mv_0^2",
+     "ktex": "\\kWnet = \\frac{1}{2}m\\kv^2 - \\frac{1}{2}m\\kvo^2",
+     "anchor": "7.2-theorem"
+    },
+    {
+     "id": "eq-wnet-mad",
+     "latex": "W_{\\text{net}} = mad",
+     "ktex": "\\kWnet = m\\ka\\kd",
+     "condition": "恒定的合外力平行于位移",
+     "anchor": "7.2-theorem"
+    },
+    {
+     "id": "eq-work-energy-fluid",
+     "latex": "W_{\\text{net}} = \\frac{1}{2}mv^2 - \\frac{1}{2}mv_0^2",
+     "ktex": "\\kWnet = \\frac{1}{2}m\\kv^2 - \\frac{1}{2}m\\kvo^2",
+     "section": "12.2",
+     "anchor": "12.2-pressure-drop"
+    }
+   ]
+  },
+  {
+   "id": "speed-from-work-energy",
+   "kind": "skill",
+   "section": "7.2",
+   "name": "动能定理的应用",
+   "statement": "一旦知道了合外力的功和动能，问题的未知量可以是三者中的任何一个：末速率、引起这一变化的力，或者力作用的距离。通过能量求解通常比只用运动学和动力学更简短、更容易。"
+  },
+  {
+   "id": "potential-energy",
+   "kind": "definition",
+   "section": "7.3",
+   "name": "势能",
+   "symbol": "PE_i",
+   "terms": [
+    "势能"
+   ],
+   "type": "energy",
+   "statement": "克服一个能把能量还回来的力所做的功并没有丢失；它作为势能储存在系统中。势能是系统的性质，而不是单个物体的性质，因为它属于各部分的排布：举起一个重物把能量储存在重物-地球系统中，重物落下时系统又把它还回来。"
+  },
+  {
+   "id": "gravitational-potential-energy",
+   "kind": "result",
+   "section": "7.3",
+   "name": "重力势能",
+   "terms": [
+    "重力势能"
+   ],
+   "type": "energy",
+   "statement": "以恒定速率举起一个物体所需的力等于它的重力，所以把它举起一个高度所做的功是重力乘以高度。这个功就是物体-地球系统重力势能的变化，无论物体是被举起还是被放下它都相同，差别由高度的符号体现。",
+   "forms": [
+    {
+     "id": "eq-peg",
+     "latex": "\\Delta\\text{PE}_{\\text{g}} = mgh",
+     "ktex": "\\kdPEg = m\\kg\\kh",
+     "condition": "高度变化 h 与地球半径相比很小",
+     "anchor": "7.3-converting"
+    },
+    {
+     "id": "eq-w-lift",
+     "latex": "W = Fd = mgh",
+     "ktex": "\\kW = \\kF\\kd = m\\kg\\kh",
+     "condition": "物体以恒定速率被竖直向上举起",
+     "anchor": "7.3-lifting"
+    }
+   ]
+  },
+  {
+   "id": "pe-reference-level",
+   "kind": "idea",
+   "section": "7.3",
+   "name": "势能的参考平面",
+   "statement": "重力势能取决于相对位置，所以必须选定一个水平面，把那里的重力势能称为零。地球表面是通常的选择，但这种选择是任意的：与所做的功有关、因而有物理意义的是两个位置之间的差。梯子前两级之间的升高与最后两级之间的升高价值相同。"
+  },
+  {
+   "id": "path-independence-of-gravity",
+   "kind": "result",
+   "section": "7.3",
+   "name": "克服重力所做的功与路径无关",
+   "statement": "只要高度变化与地球半径相比很小，两点之间任何路径上的重力势能变化都是重力乘以高度变化，而不只是笔直举起的情形。因此，把质量、重力加速度和高度相乘，就取代了求沿复杂路径所做的功。"
+  },
+  {
+   "id": "pe-to-ke",
+   "kind": "result",
+   "section": "7.3",
+   "name": "势能转化为动能",
+   "statement": "释放一个被举起的物体，重力所做的功等于它放出的势能，所以动能恰好增加这么多。当摩擦可以忽略时，下落物体的速率就只取决于它的初速率和高度的变化，而与它的质量和所经路径无关。",
+   "forms": [
+    {
+     "id": "eq-ke-peg",
+     "latex": "-\\Delta\\text{PE}_{\\text{g}} = \\Delta\\text{KE}",
+     "ktex": "-\\kdPEg = \\kdKE",
+     "condition": "摩擦力所做的功可忽略",
+     "anchor": "7.3-coaster"
+    },
+    {
+     "id": "eq-v-from-h",
+     "latex": "v = \\sqrt{2g|h| + v_0^2}",
+     "ktex": "\\kv = \\sqrt{2\\kg|\\kh| + \\kvo^2}",
+     "condition": "摩擦力所做的功可忽略",
+     "anchor": "7.3-coaster"
+    }
+   ]
+  },
+  {
+   "id": "stopping-force-from-energy",
+   "kind": "skill",
+   "section": "7.3",
+   "name": "求使物体停止的力",
+   "statement": "落地的物体具有的动能必须由地面对它所做的功来消除，这个功是停止力乘以物体停下来时所经过的距离。由于距离在分母上，在半厘米内停下来所需的力是物体重力的几百倍，而弯曲双腿在半米内停下来则使这个力减小到百分之一。"
+  },
+  {
+   "id": "conservative-force",
+   "kind": "definition",
+   "section": "7.4",
+   "name": "保守力",
+   "terms": [
+    "保守力"
+   ],
+   "statement": "保守力是这样一种力：它所做的功，无论是它做的还是克服它所做的，都只取决于运动的起点和终点，而与二者之间的路径无关。重力是一种，理想弹簧的力是另一种。这一性质使这种力有了势能，所以根本不需要计算沿路径的功。",
+   "forms": [
+    {
+     "id": "eq-wc-pe",
+     "latex": "W_{\\text{c}} = -\\Delta\\text{PE}",
+     "ktex": "\\kWc = -\\kdPE",
+     "anchor": "7.4-conservation"
+    }
+   ]
+  },
+  {
+   "id": "elastic-potential-energy",
+   "kind": "result",
+   "section": "7.4",
+   "name": "弹簧的势能",
+   "terms": [
+    "弹簧的势能",
+    "弹性势能"
+   ],
+   "type": "energy",
+   "statement": "拉伸弹簧所需的力从零增大到劲度系数乘以伸长量，所以它的平均值是该值的一半，所做的功是劲度系数乘以伸长量平方的一半。同一个量也是力对伸长量的图像下三角形的面积，而且由于弹簧力是保守的，这个功被储存起来，可以完全取回。",
+   "forms": [
+    {
+     "id": "eq-pes",
+     "latex": "\\text{PE}_{\\text{s}} = \\frac{1}{2}kx^2",
+     "ktex": "\\kPEs = \\frac{1}{2}\\kk\\kx^2",
+     "condition": "胡克定律适用于该弹簧",
+     "anchor": "7.4-spring-energy"
+    },
+    {
+     "id": "eq-ws",
+     "latex": "W_{\\text{s}} = Fd = \\left(\\frac{kx}{2}\\right)x = \\frac{1}{2}kx^2",
+     "ktex": "\\kWs = \\kF\\kd = \\left(\\frac{\\kk\\kx}{2}\\right)\\kx = \\frac{1}{2}\\kk\\kx^2",
+     "condition": "胡克定律适用于该弹簧",
+     "anchor": "7.4-spring-energy"
+    },
+    {
+     "id": "eq-pe-el",
+     "latex": "\\text{PE}_{\\text{el}} = \\tfrac{1}{2} k x^2",
+     "ktex": "\\kPE = \\tfrac{1}{2}\\kk\\kx^2",
+     "section": "16.1",
+     "anchor": "16.1-elastic-energy"
+    }
+   ]
+  },
+  {
+   "id": "mechanical-energy",
+   "kind": "definition",
+   "section": "7.4",
+   "name": "机械能",
+   "terms": [
+    "机械能"
+   ],
+   "statement": "系统的动能与势能之和是它的机械能。把它写成一个量，就可以通过比较两种构型来解题。只有保守力作用时，能量只改变形式，在动能和各种势能之间转移，而总量保持不变。"
+  },
+  {
+   "id": "conservation-of-mechanical-energy",
+   "kind": "result",
+   "section": "7.4",
+   "name": "机械能守恒",
+   "terms": [
+    "机械能守恒"
+   ],
+   "statement": "如果只有保守力作用，动能定理说动能的变化是这些力所做的功，而这个功是势能变化的负值。因此两个变化相互抵消，系统的动能与势能之和为常量，起始时的值等于结束时的值。",
+   "forms": [
+    {
+     "id": "eq-cme",
+     "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}}",
+     "ktex": "\\kKEi + \\kPEi = \\kKEf + \\kPEf",
+     "condition": "只有保守力",
+     "anchor": "7.4-conservation"
+    },
+    {
+     "id": "eq-ke-pe-zero",
+     "latex": "\\Delta\\text{KE} + \\Delta\\text{PE} = 0",
+     "ktex": "\\kdKE + \\kdPE = 0",
+     "condition": "只有保守力",
+     "anchor": "7.4-conservation"
+    },
+    {
+     "id": "eq-cme-full",
+     "latex": "\\frac{1}{2}mv_{\\text{i}}^2 + mgh_{\\text{i}} + \\frac{1}{2}kx_{\\text{i}}^2 = \\frac{1}{2}mv_{\\text{f}}^2 + mgh_{\\text{f}} + \\frac{1}{2}kx_{\\text{f}}^2",
+     "ktex": "\\frac{1}{2}m\\kvi^2 + m\\kg\\khi + \\frac{1}{2}\\kk\\kxi^2 = \\frac{1}{2}m\\kvf^2 + m\\kg\\khf + \\frac{1}{2}\\kk\\kxf^2",
+     "condition": "只有保守力，即重力和弹簧力",
+     "anchor": "7.4-using-conservation"
+    }
+   ]
+  },
+  {
+   "id": "solve-with-mechanical-energy",
+   "kind": "skill",
+   "section": "7.4",
+   "name": "机械能守恒的应用",
+   "statement": "运用机械能守恒的方法是，写出系统在起点和终点所具有的每一种能量，通过恰当地选择高度和时刻划去为零的项，再解出剩下的那一项。其间路径的细节从不进入，这使得这个方法比跟踪各个力简短得多。"
+  },
+  {
+   "id": "nonconservative-force",
+   "kind": "definition",
+   "section": "7.5",
+   "name": "非保守力",
+   "terms": [
+    "非保守力"
+   ],
+   "statement": "非保守力是这样一种力：它所做的功取决于所经的路径，摩擦力就是明显的例子：两点之间的路线越长，克服它所做的功就越多。由于功取决于路径，无法为这种力定义势能，它所做的功必须直接计算。"
+  },
+  {
+   "id": "friction-dissipates-mechanical-energy",
+   "kind": "idea",
+   "section": "7.5",
+   "name": "摩擦引起的耗散",
+   "statement": "非保守力所做的功给系统增加机械能或从系统中移走机械能。摩擦力移走机械能：能量变成热能，扩散并离开系统，即使热能被截获并保存下来，它也不能完全转变回功，所以在这个意义上它也是损失了的。"
+  },
+  {
+   "id": "work-by-nonconservative-forces",
+   "kind": "result",
+   "section": "7.5",
+   "name": "非保守力的功",
+   "type": "energy",
+   "statement": "把合外力的功分成保守力所做的部分和非保守力所做的部分，并把保守力的部分换成势能变化的负值。余下的式子说明，总机械能的变化恰好等于非保守力所做的功：正功使它增加，负功使它减少，零功使它守恒。",
+   "forms": [
+    {
+     "id": "eq-wnc",
+     "latex": "W_{\\text{nc}} = \\Delta\\text{KE} + \\Delta\\text{PE}",
+     "ktex": "\\kWnc = \\kdKE + \\kdPE",
+     "anchor": "7.5-work-energy"
+    },
+    {
+     "id": "eq-wnet-split",
+     "latex": "W_{\\text{net}} = W_{\\text{nc}} + W_{\\text{c}}",
+     "ktex": "\\kWnet = \\kWnc + \\kWc",
+     "anchor": "7.5-work-energy"
+    },
+    {
+     "id": "eq-wnc-form",
+     "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} + W_{\\text{nc}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}}",
+     "ktex": "\\kKEi + \\kPEi + \\kWnc = \\kKEf + \\kPEf",
+     "anchor": "7.5-work-energy"
+    }
+   ]
+  },
+  {
+   "id": "solve-with-friction",
+   "kind": "skill",
+   "section": "7.5",
+   "name": "求解含摩擦的能量问题",
+   "statement": "问题中有摩擦时，它所做的功是摩擦力乘以距离，因为与运动方向相反而取负值，并与动能和势能一起列入能量方程。于是求距离或末速率只需一行，而跟踪各个力则要先把重力、法向力和摩擦力当作矢量合成。"
+  },
+  {
+   "id": "conservation-of-energy",
+   "kind": "axiom",
+   "section": "7.6",
+   "name": "能量守恒定律",
+   "terms": [
+    "能量守恒定律"
+   ],
+   "statement": "在任何过程中，总能量都是常量。它可以改变形式或从一个系统传到另一个系统，但总量保持不变，而写下这条定律就意味着，在机械能和非保守力的功之外，系统所含的每一种其他能量再加上一项。在大多数问题中，这些项除了少数几个以外，在起点和终点都相同，直接抵消。",
+   "forms": [
+    {
+     "id": "eq-conservation",
+     "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} + W_{\\text{nc}} + \\text{OE}_{\\text{i}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}} + \\text{OE}_{\\text{f}}",
+     "ktex": "\\kKEi + \\kPEi + \\kWnc + \\kOEi = \\kKEf + \\kPEf + \\kOEf",
+     "anchor": "7.6-other-energy"
+    }
+   ]
+  },
+  {
+   "id": "forms-of-energy",
+   "kind": "idea",
+   "section": "7.6",
+   "name": "能量的形式",
+   "statement": "除了机械形式之外，能量还有许多形式。电能随电荷的流动而传递，化学能存在于燃料或食物的化学键中，辐射能在电磁波中传播。核能来自原子核内部的变化，热能存在于原子和分子的无规则运动中。每一种都能转化为任何其他一种，而且每一种都能做功。"
+  },
+  {
+   "id": "energy-transformation",
+   "kind": "idea",
+   "section": "7.6",
+   "name": "能量的转化",
+   "statement": "能量从一种形式变为其他形式的变化时刻都在发生，大多数链条要经过好几种形式：煤中的化学能变成蒸汽中的热能，蒸汽中的热能变成旋转涡轮机的机械能，涡轮机的机械能又变成电能。照在太阳电池上的阳光变成电，再变成电动机的运动。"
+  },
+  {
+   "id": "efficiency",
+   "kind": "definition",
+   "section": "7.6",
+   "name": "效率",
+   "symbol": "Eff",
+   "terms": [
+    "效率"
+   ],
+   "statement": "能量在转化中是守恒的，但输出的有用能量或功总是少于输入的能量，效率就是二者之比。燃煤电厂把燃料中约 40% 的化学能转化为电能，其余的作为热能通过烟道和冷却塔离开。",
+   "forms": [
+    {
+     "id": "eq-efficiency",
+     "latex": "\\text{Eff} = \\frac{W_{\\text{out}}}{E_{\\text{in}}}",
+     "ktex": "\\text{Eff} = \\frac{\\kWout}{\\kEin}",
+     "anchor": "7.6-efficiency"
+    }
+   ]
+  },
+  {
+   "id": "energy-problem-solving",
+   "kind": "skill",
+   "section": "7.6",
+   "name": "求解能量问题",
+   "statement": "这一策略有六个步骤。确定系统以及问题要求什么。查看每一个力，问一问你是否知道它的势能。在每个力都是保守力时用机械能守恒，在有一个力不是保守力时用普遍的定律。在做任何代数运算之前先划去为零的项。然后检查符号和答案的大小是否合理。"
+  },
+  {
+   "id": "electrical-energy",
+   "kind": "definition",
+   "section": "7.6",
+   "name": "电能",
+   "terms": [
+    "电能"
+   ],
+   "statement": "电能是电荷流动所携带的能量。"
+  },
+  {
+   "id": "chemical-energy",
+   "kind": "definition",
+   "section": "7.6",
+   "name": "化学能",
+   "terms": [
+    "化学能"
+   ],
+   "statement": "化学能是物质中储存在原子和分子之间化学键里的能量，可以在化学反应中释放出来。"
+  },
+  {
+   "id": "radiant-energy",
+   "kind": "definition",
+   "section": "7.6",
+   "name": "辐射能",
+   "terms": [
+    "辐射能"
+   ],
+   "statement": "辐射能是电磁波所携带的能量。"
+  },
+  {
+   "id": "nuclear-energy",
+   "kind": "definition",
+   "section": "7.6",
+   "name": "核能",
+   "terms": [
+    "核能"
+   ],
+   "statement": "核能是原子核内部的变化所释放的能量，例如两个轻核的聚变或一个重核的裂变。"
+  },
+  {
+   "id": "thermal-energy-of-an-object",
+   "kind": "definition",
+   "section": "7.6",
+   "name": "热能",
+   "terms": [
+    "热能"
+   ],
+   "statement": "热能是物体内部由于其原子和分子的无规则运动而具有的能量，它决定了物体的温度。"
+  },
+  {
+   "id": "power",
+   "kind": "definition",
+   "section": "7.7",
+   "name": "功率",
+   "symbol": "P",
+   "terms": [
+    "功率"
+   ],
+   "type": "power",
+   "statement": "功率是做功的快慢，由于功是能量的传递，它也是能量消耗的快慢。一个 60 W 的灯泡每秒消耗 60 J。功率大意味着在短时间内做了大量的功或消耗了大量的能量，这是一辆直线加速赛车、一座火山和一枚火箭的共同之处。",
+   "forms": [
+    {
+     "id": "eq-power",
+     "latex": "P = \\frac{W}{t}",
+     "ktex": "\\kP = \\frac{\\kW}{\\kt}",
+     "anchor": "7.7-what-is-power"
+    },
+    {
+     "id": "eq-average-power-32",
+     "latex": "P = \\frac{E}{t}",
+     "ktex": "\\kP = \\frac{\\kE}{\\kt}",
+     "section": "32.5",
+     "anchor": "32.5-fusion-energy-and-power"
+    }
+   ]
+  },
+  {
+   "id": "watt",
+   "kind": "definition",
+   "section": "7.7",
+   "name": "瓦特",
+   "terms": [
+    "瓦特"
+   ],
+   "statement": "功率的国际单位是瓦特，即每秒一焦耳。较老的马力仍用于电动机和发动机，一马力是 746 瓦特，所以跑上楼梯的那位女士输出的功率略小于一马力；一个人可以在几秒钟内超过这个值，而一匹马可以维持几个小时。",
+   "forms": [
+    {
+     "id": "eq-watt",
+     "latex": "1\\ \\text{W} = 1\\ \\text{J/s}",
+     "anchor": "7.7-what-is-power"
+    },
+    {
+     "id": "eq-horsepower",
+     "latex": "1\\ \\text{hp} = 746\\ \\text{W}",
+     "anchor": "7.7-calculating-power"
+    }
+   ]
+  },
+  {
+   "id": "calculate-power",
+   "kind": "skill",
+   "section": "7.7",
+   "name": "功率的计算",
+   "statement": "求功率输出，首先要求出投入这项工作的全部功或能量，动能和重力势能都算在内，然后除以所用的时间。做一遍就能看出努力真正用到了哪里：在这位女士的 538 W 中，攀登几乎占了全部，而加速只占不到十五分之一。"
+  },
+  {
+   "id": "energy-from-power",
+   "kind": "result",
+   "section": "7.7",
+   "name": "由功率求能量",
+   "statement": "把功率的定义倒过来，一个设备所用的能量就是它的功率乘以它运行的时间。电费账单用千瓦时来写，即以千瓦计的功率与以小时计的时间的乘积，因为家用电器一次要以约一千瓦的功率工作几个小时，这使数字的大小很方便。",
+   "forms": [
+    {
+     "id": "eq-energy-pt",
+     "latex": "E = Pt",
+     "ktex": "\\kE = \\kP\\kt",
+     "anchor": "7.7-consumption"
+    }
+   ]
+  },
+  {
+   "id": "cost-of-energy",
+   "kind": "skill",
+   "section": "7.7",
+   "name": "估算能源费用",
+   "statement": "运行某样东西的费用是它的功率乘以运行时间再乘以每千瓦时的价格，所以只有功率和小时数都大时费用才高。这就是为什么应当着手处理热水器和空调，而不是只用几分钟却消耗很多的烤面包机，或者整天几乎不耗电的电钟。"
+  },
+  {
+   "id": "kilowatt-hour",
+   "kind": "definition",
+   "section": "7.7",
+   "name": "千瓦时",
+   "terms": [
+    "千瓦时"
+   ],
+   "statement": "千瓦时是能量的单位，即以一千瓦的功率用一小时所消耗的能量，电力公司就以它为单位对电能计费。",
+   "forms": [
+    {
+     "id": "eq-kilowatt-hour-2",
+     "latex": "1\\;\\text{kW}\\cdot\\text{h} = 3.6 \\times 10^{6}\\;\\text{J}"
+    }
+   ]
+  },
+  {
+   "id": "horsepower",
+   "kind": "definition",
+   "section": "7.7",
+   "name": "马力",
+   "terms": [
+    "马力"
+   ],
+   "statement": "马力是一种较老的非国际单位制的功率单位，一马力等于 746 瓦特。",
+   "forms": [
+    {
+     "id": "eq-horsepower-2",
+     "latex": "1\\;\\text{hp} = 746\\;\\text{W}"
+    }
+   ]
+  },
+  {
+   "id": "energy-conversion-in-humans",
+   "kind": "idea",
+   "section": "7.8",
+   "name": "作为能量转换器的人体",
+   "statement": "我们自己的身体就是能量转换的机器，能量守恒对它们也像对任何其他事物一样适用：储存在食物中的化学能变成功、热能，或者储存在脂肪组织中的化学能。每一部分各占多少，取决于吃了多少以及这个人活动多少，吃得超过所需的部分都转为脂肪。"
+  },
+  {
+   "id": "metabolic-rate",
+   "kind": "definition",
+   "section": "7.8",
+   "name": "代谢率",
+   "symbol": "P",
+   "terms": [
+    "代谢率"
+   ],
+   "type": "power",
+   "statement": "身体用食物能量来维持生命和做事的快慢是它的代谢率，它和任何其他功率一样是一种功率。静息时的代谢率是基础代谢率，约为 85 W，它分配给各个器官，肝脏和脾脏占最大的份额，脑次之。一天中消耗的大卡约有 75% 用于这些基本功能。"
+  },
+  {
+   "id": "oxygen-consumption-measures-energy",
+   "kind": "axiom",
+   "section": "7.8",
+   "name": "耗氧量与能量消耗",
+   "statement": "消化就是食物的氧化，所以一个人所消耗的能量与他吸入的氧气成正比：无论吃的是什么，每消耗一升氧气约消耗 20 kJ 的能量。因此，只要测量一个人的呼吸，就可以测出他的输出功率。"
+  },
+  {
+   "id": "useful-work",
+   "kind": "definition",
+   "section": "7.8",
+   "name": "有用功",
+   "terms": [
+    "有用功"
+   ],
+   "statement": "人所做的功指对外部世界做的功，例如举重、爬楼梯或加速跑。内功，例如心脏泵血或颤抖时肌肉相互拉扯，即使要消耗能量，也不计算在内；身体施加的力是非保守力，所以它们可以改变被作用物体的机械能。"
+  },
+  {
+   "id": "body-efficiency",
+   "kind": "skill",
+   "section": "7.8",
+   "name": "求某项活动的效率",
+   "statement": "一个人的效率是他所做的有用功除以他做这件事时代谢掉的食物能量，对大多数活动来说它都很小：骑自行车和攀登最多是五分之一，在水面游泳是五十分之一。从表中得知速率，从物理学得知有用功，就得到了这个比值，它也说明了为什么锻炼消耗那么多食物而举起的却那么少。"
+  },
+  {
+   "id": "basal-metabolic-rate",
+   "kind": "definition",
+   "section": "7.8",
+   "name": "基础代谢率",
+   "terms": [
+    "基础代谢率"
+   ],
+   "statement": "基础代谢率是一个人在静息时的总能量转换速率。"
+  },
+  {
+   "id": "renewable-energy",
+   "kind": "idea",
+   "section": "7.9",
+   "name": "可再生能源",
+   "terms": [
+    "可再生能源"
+   ],
+   "statement": "可再生能源是不会用尽的能源：水、风、太阳和生物质。它们在世界能源供应中仍只占很小的份额，但却是增长最快的部分，一些国家已经从中获得很大一部分电力，例如新西兰从水电获得电力。"
+  },
+  {
+   "id": "fossil-fuels",
+   "kind": "idea",
+   "section": "7.9",
+   "name": "化石燃料",
+   "terms": [
+    "化石燃料"
+   ],
+   "statement": "世界上约 85% 的能源来自不可再生的化石燃料，即石油、天然气和煤，仅石油就占大约三分之一，其中很大一部分用于运输。需求在过去五十年里增长了两倍，在未来三十年里可能再增长两倍，而化石燃料的使用与全球变暖之间很可能存在联系，使得摆脱它们变得紧迫。"
+  },
+  {
+   "id": "energy-and-economic-wellbeing",
+   "kind": "idea",
+   "section": "7.9",
+   "name": "能源消费与经济福祉",
+   "statement": "在大多数国家，以人均国内生产总值衡量的较高生活水平伴随着较高的人均能源使用，所以获得可靠的能源是经济增长的一个条件。使能源来源多样化可以改变这种依赖，并使电网在风暴或冲突之后更快恢复，过去二十年的各次中断已经表明了这一点。"
+  },
+  {
+   "id": "energy-degradation",
+   "kind": "idea",
+   "section": "7.9",
+   "name": "能量退降",
+   "statement": "能量守恒定律说，孤立系统中的总能量永不改变；节能的理念则是少用能源。二者并不矛盾。大多数能量转换最终都变成退降的废热：总量仍在，但它做有用功的潜力已经消失。这就是为什么能量不会消失而资源却会耗尽。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "work",
+   "prereq": "force"
+  },
+  {
+   "concept": "work",
+   "prereq": "displacement"
+  },
+  {
+   "concept": "work",
+   "prereq": "components-from-magnitude-angle"
+  },
+  {
+   "concept": "work-sign",
+   "prereq": "work"
+  },
+  {
+   "concept": "work-sign",
+   "prereq": "vector"
+  },
+  {
+   "concept": "joule",
+   "prereq": "work"
+  },
+  {
+   "concept": "joule",
+   "prereq": "derived-units"
+  },
+  {
+   "concept": "calculate-work",
+   "prereq": "work"
+  },
+  {
+   "concept": "calculate-work",
+   "prereq": "work-sign"
+  },
+  {
+   "concept": "calculate-work",
+   "prereq": "unit-conversion"
+  },
+  {
+   "concept": "work-transfers-energy",
+   "prereq": "work"
+  },
+  {
+   "concept": "net-work",
+   "prereq": "work"
+  },
+  {
+   "concept": "net-work",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "work-as-area",
+   "prereq": "work"
+  },
+  {
+   "concept": "work-as-area",
+   "prereq": "straight-line-graph"
+  },
+  {
+   "concept": "kinetic-energy",
+   "prereq": "work-transfers-energy"
+  },
+  {
+   "concept": "kinetic-energy",
+   "prereq": "mass"
+  },
+  {
+   "concept": "kinetic-energy",
+   "prereq": "instantaneous-speed"
+  },
+  {
+   "concept": "work-energy-theorem",
+   "prereq": "net-work"
+  },
+  {
+   "concept": "work-energy-theorem",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "work-energy-theorem",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "work-energy-theorem",
+   "prereq": "v-squared"
+  },
+  {
+   "concept": "speed-from-work-energy",
+   "prereq": "work-energy-theorem"
+  },
+  {
+   "concept": "speed-from-work-energy",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "potential-energy",
+   "prereq": "work"
+  },
+  {
+   "concept": "potential-energy",
+   "prereq": "work-transfers-energy"
+  },
+  {
+   "concept": "gravitational-potential-energy",
+   "prereq": "potential-energy"
+  },
+  {
+   "concept": "gravitational-potential-energy",
+   "prereq": "weight"
+  },
+  {
+   "concept": "gravitational-potential-energy",
+   "prereq": "acceleration-due-to-gravity"
+  },
+  {
+   "concept": "pe-reference-level",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "path-independence-of-gravity",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "pe-to-ke",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "pe-to-ke",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "pe-to-ke",
+   "prereq": "work-energy-theorem"
+  },
+  {
+   "concept": "pe-to-ke",
+   "prereq": "free-fall"
+  },
+  {
+   "concept": "stopping-force-from-energy",
+   "prereq": "pe-to-ke"
+  },
+  {
+   "concept": "stopping-force-from-energy",
+   "prereq": "work-energy-theorem"
+  },
+  {
+   "concept": "conservative-force",
+   "prereq": "path-independence-of-gravity"
+  },
+  {
+   "concept": "conservative-force",
+   "prereq": "potential-energy"
+  },
+  {
+   "concept": "elastic-potential-energy",
+   "prereq": "conservative-force"
+  },
+  {
+   "concept": "elastic-potential-energy",
+   "prereq": "hookes-law"
+  },
+  {
+   "concept": "elastic-potential-energy",
+   "prereq": "force-constant"
+  },
+  {
+   "concept": "elastic-potential-energy",
+   "prereq": "work-as-area"
+  },
+  {
+   "concept": "mechanical-energy",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "mechanical-energy",
+   "prereq": "potential-energy"
+  },
+  {
+   "concept": "conservation-of-mechanical-energy",
+   "prereq": "mechanical-energy"
+  },
+  {
+   "concept": "conservation-of-mechanical-energy",
+   "prereq": "conservative-force"
+  },
+  {
+   "concept": "conservation-of-mechanical-energy",
+   "prereq": "work-energy-theorem"
+  },
+  {
+   "concept": "solve-with-mechanical-energy",
+   "prereq": "conservation-of-mechanical-energy"
+  },
+  {
+   "concept": "solve-with-mechanical-energy",
+   "prereq": "elastic-potential-energy"
+  },
+  {
+   "concept": "solve-with-mechanical-energy",
+   "prereq": "gravitational-potential-energy"
+  },
+  {
+   "concept": "nonconservative-force",
+   "prereq": "conservative-force"
+  },
+  {
+   "concept": "nonconservative-force",
+   "prereq": "friction"
+  },
+  {
+   "concept": "nonconservative-force",
+   "prereq": "kinetic-friction"
+  },
+  {
+   "concept": "friction-dissipates-mechanical-energy",
+   "prereq": "nonconservative-force"
+  },
+  {
+   "concept": "friction-dissipates-mechanical-energy",
+   "prereq": "mechanical-energy"
+  },
+  {
+   "concept": "work-by-nonconservative-forces",
+   "prereq": "nonconservative-force"
+  },
+  {
+   "concept": "work-by-nonconservative-forces",
+   "prereq": "work-energy-theorem"
+  },
+  {
+   "concept": "work-by-nonconservative-forces",
+   "prereq": "conservation-of-mechanical-energy"
+  },
+  {
+   "concept": "solve-with-friction",
+   "prereq": "work-by-nonconservative-forces"
+  },
+  {
+   "concept": "solve-with-friction",
+   "prereq": "kinetic-friction-magnitude"
+  },
+  {
+   "concept": "solve-with-friction",
+   "prereq": "weight-components-on-incline"
+  },
+  {
+   "concept": "conservation-of-energy",
+   "prereq": "work-by-nonconservative-forces"
+  },
+  {
+   "concept": "conservation-of-energy",
+   "prereq": "conservation-of-mechanical-energy"
+  },
+  {
+   "concept": "forms-of-energy",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "energy-transformation",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "energy-transformation",
+   "prereq": "forms-of-energy"
+  },
+  {
+   "concept": "efficiency",
+   "prereq": "energy-transformation"
+  },
+  {
+   "concept": "efficiency",
+   "prereq": "work"
+  },
+  {
+   "concept": "energy-problem-solving",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "energy-problem-solving",
+   "prereq": "problem-solving-steps"
+  },
+  {
+   "concept": "energy-problem-solving",
+   "prereq": "solve-with-friction"
+  },
+  {
+   "concept": "power",
+   "prereq": "work"
+  },
+  {
+   "concept": "power",
+   "prereq": "elapsed-time"
+  },
+  {
+   "concept": "watt",
+   "prereq": "power"
+  },
+  {
+   "concept": "watt",
+   "prereq": "joule"
+  },
+  {
+   "concept": "calculate-power",
+   "prereq": "power"
+  },
+  {
+   "concept": "calculate-power",
+   "prereq": "mechanical-energy"
+  },
+  {
+   "concept": "energy-from-power",
+   "prereq": "power"
+  },
+  {
+   "concept": "cost-of-energy",
+   "prereq": "energy-from-power"
+  },
+  {
+   "concept": "cost-of-energy",
+   "prereq": "unit-conversion"
+  },
+  {
+   "concept": "energy-conversion-in-humans",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "energy-conversion-in-humans",
+   "prereq": "forms-of-energy"
+  },
+  {
+   "concept": "metabolic-rate",
+   "prereq": "power"
+  },
+  {
+   "concept": "metabolic-rate",
+   "prereq": "energy-conversion-in-humans"
+  },
+  {
+   "concept": "oxygen-consumption-measures-energy",
+   "prereq": "metabolic-rate"
+  },
+  {
+   "concept": "useful-work",
+   "prereq": "work"
+  },
+  {
+   "concept": "useful-work",
+   "prereq": "nonconservative-force"
+  },
+  {
+   "concept": "body-efficiency",
+   "prereq": "efficiency"
+  },
+  {
+   "concept": "body-efficiency",
+   "prereq": "metabolic-rate"
+  },
+  {
+   "concept": "body-efficiency",
+   "prereq": "useful-work"
+  },
+  {
+   "concept": "renewable-energy",
+   "prereq": "forms-of-energy"
+  },
+  {
+   "concept": "fossil-fuels",
+   "prereq": "forms-of-energy"
+  },
+  {
+   "concept": "fossil-fuels",
+   "prereq": "renewable-energy"
+  },
+  {
+   "concept": "energy-and-economic-wellbeing",
+   "prereq": "power"
+  },
+  {
+   "concept": "energy-and-economic-wellbeing",
+   "prereq": "fossil-fuels"
+  },
+  {
+   "concept": "energy-degradation",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "energy-degradation",
+   "prereq": "efficiency"
+  },
+  {
+   "concept": "energy",
+   "prereq": "work"
+  },
+  {
+   "concept": "electrical-energy",
+   "prereq": "energy"
+  },
+  {
+   "concept": "chemical-energy",
+   "prereq": "energy"
+  },
+  {
+   "concept": "radiant-energy",
+   "prereq": "energy"
+  },
+  {
+   "concept": "nuclear-energy",
+   "prereq": "energy"
+  },
+  {
+   "concept": "thermal-energy-of-an-object",
+   "prereq": "energy"
+  },
+  {
+   "concept": "thermal-energy-of-an-object",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "kilowatt-hour",
+   "prereq": "energy-from-power"
+  },
+  {
+   "concept": "kilowatt-hour",
+   "prereq": "watt"
+  },
+  {
+   "concept": "kilowatt-hour",
+   "prereq": "joule"
+  },
+  {
+   "concept": "horsepower",
+   "prereq": "power"
+  },
+  {
+   "concept": "horsepower",
+   "prereq": "watt"
+  },
+  {
+   "concept": "basal-metabolic-rate",
+   "prereq": "metabolic-rate"
+  }
+ ]
+}

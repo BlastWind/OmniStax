@@ -34,7 +34,8 @@
     "ch03",
     "ch04",
     "ch05",
-    "ch06"
+    "ch06",
+    "ch07"
   ],
   "intro": {
     "module": "m42955",
@@ -4019,7 +4020,7 @@
           "id": "eq-vbar-t",
           "latex": "\\bar v = \\frac{\\Delta x}{t}",
           "ktex": "\\kvb = \\frac{\\kdx}{\\kt}",
-          "condition": "the starting time t_0 taken to be zero",
+          "condition": "初时刻 t_0 取为零",
           "anchor": "2.3-average-velocity"
         }
       ]
@@ -4069,7 +4070,7 @@
           "id": "eq-vbar",
           "latex": "\\bar v = \\frac{v_0 + v}{2}",
           "ktex": "\\kvb = \\frac{\\kvo + \\kv}{2}",
-          "condition": "constant acceleration",
+          "condition": "加速度恒定",
           "anchor": "2.5-avg-velocity"
         }
       ]
@@ -4085,7 +4086,7 @@
           "id": "eq-v",
           "latex": "v = v_0 + a t",
           "ktex": "\\kv = \\kvo + \\ka\\kt",
-          "condition": "constant acceleration",
+          "condition": "加速度恒定",
           "anchor": "2.5-final-velocity"
         }
       ]
@@ -4101,7 +4102,7 @@
           "id": "eq-x",
           "latex": "x = x_0 + v_0 t + \\tfrac12 a t^2",
           "ktex": "\\kx = \\kxo + \\kvo\\kt + \\tfrac{1}{2}\\ka\\kt^2",
-          "condition": "constant acceleration",
+          "condition": "加速度恒定",
           "anchor": "2.5-position-quadratic"
         }
       ]
@@ -4117,7 +4118,7 @@
           "id": "eq-v2",
           "latex": "v^2 = v_0^2 + 2a(x - x_0)",
           "ktex": "\\kv^2 = \\kvo^2 + 2\\ka(\\kx - \\kxo)",
-          "condition": "constant acceleration",
+          "condition": "加速度恒定",
           "anchor": "2.5-velocity-squared"
         }
       ]
@@ -4163,7 +4164,7 @@
           "id": "eq-g",
           "latex": "g = 9.80\\ \\text{m/s}^2",
           "ktex": "\\kg = 9.80\\ \\text{m/s}^2",
-          "condition": "the average value on Earth; g varies from 9.78 to 9.83 m/s² with latitude, altitude and local geology",
+          "condition": "地球上的平均值；g 随纬度、海拔和当地地质情况在 9.78 到 9.83 m/s² 之间变化",
           "anchor": "2.7-accel-gravity"
         }
       ]
@@ -4258,12 +4259,12 @@
       "forms": [
         {
           "id": "eq-avg-speed",
-          "latex": "\\text{average speed} = \\frac{\\text{distance traveled}}{\\text{elapsed time}}",
+          "latex": "\\text{平均速率} = \\frac{\\text{路程}}{\\text{时间间隔}}",
           "anchor": "2.3-speed"
         },
         {
           "id": "eq-average-speed",
-          "latex": "\\text{average speed} = \\frac{\\text{distance}}{\\text{time}}",
+          "latex": "\\text{平均速率} = \\frac{\\text{距离}}{\\text{时间}}",
           "section": "1.2",
           "anchor": "1.2-ex-drive"
         }
@@ -4343,7 +4344,7 @@
           "id": "eq-unreasonable-v",
           "latex": "v = v_0 + at = 0 + (0.40\\ \\text{m/s}^2)(100\\ \\text{s}) = 40\\ \\text{m/s}",
           "ktex": "\\kv = \\kvo + \\ka\\kt = 0 + (0.40\\ \\text{m/s}^2)(100\\ \\text{s}) = 40\\ \\text{m/s}",
-          "condition": "the runner who accelerates at 0.40 m/s² for 100 s",
+          "condition": "跑步者以 0.40 m/s² 的加速度加速 100 s",
           "anchor": "2.6-unreasonable"
         },
         {
@@ -4374,21 +4375,21 @@
           "id": "eq-ff-y",
           "latex": "y = y_0 + v_0 t - \\tfrac12 g t^2",
           "ktex": "\\ky = \\kyo + \\kvo\\kt - \\tfrac{1}{2}\\kg\\kt^2",
-          "condition": "free fall with up taken as positive, so that a = −g",
+          "condition": "自由落体运动，向上为正，所以 a = −g",
           "anchor": "2.7-vertical-motion"
         },
         {
           "id": "eq-ff-v",
           "latex": "v = v_0 - gt",
           "ktex": "\\kv = \\kvo - \\kg\\kt",
-          "condition": "free fall with up taken as positive, so that a = −g",
+          "condition": "自由落体运动，向上为正，所以 a = −g",
           "anchor": "2.7-vertical-motion"
         },
         {
           "id": "eq-ff-v2",
           "latex": "v^2 = v_0^2 - 2g(y - y_0)",
           "ktex": "\\kv^2 = \\kvo^2 - 2\\kg(\\ky - \\kyo)",
-          "condition": "free fall with up taken as positive, so that a = −g",
+          "condition": "自由落体运动，向上为正，所以 a = −g",
           "anchor": "2.7-vertical-motion"
         }
       ]
@@ -4418,7 +4419,7 @@
           "id": "eq-a-from-fall",
           "latex": "a = \\frac{2(y - y_0)}{t^2}",
           "ktex": "\\ka = \\frac{2(\\ky - \\kyo)}{\\kt^2}",
-          "condition": "an object dropped from rest, v_0 = 0",
+          "condition": "物体由静止下落，v_0 = 0",
           "anchor": "2.7-ex-find-g"
         }
       ]
@@ -4446,15 +4447,15 @@
       "forms": [
         {
           "id": "eq-slope-x",
-          "latex": "\\text{slope} = \\frac{\\Delta x}{\\Delta t} = v",
-          "ktex": "\\text{slope} = \\frac{\\kdx}{\\kdt} = \\kv",
+          "latex": "\\text{斜率} = \\frac{\\Delta x}{\\Delta t} = v",
+          "ktex": "\\text{斜率} = \\frac{\\kdx}{\\kdt} = \\kv",
           "anchor": "2.8-x-t"
         },
         {
           "id": "eq-x-graph",
           "latex": "x = x_0 + \\bar v t",
           "ktex": "\\kx = \\kxo + \\kvb\\kt",
-          "condition": "read from a straight-line graph of position against time, whose slope is v̄ and whose intercept is x_0",
+          "condition": "取自位置对时间的直线图像，其斜率为 v̄，截距为 x_0",
           "anchor": "2.8-x-t"
         }
       ]
@@ -4468,15 +4469,15 @@
       "forms": [
         {
           "id": "eq-slope-v",
-          "latex": "\\text{slope} = \\frac{\\Delta v}{\\Delta t} = a",
-          "ktex": "\\text{slope} = \\frac{\\kdv}{\\kdt} = \\ka",
+          "latex": "\\text{斜率} = \\frac{\\Delta v}{\\Delta t} = a",
+          "ktex": "\\text{斜率} = \\frac{\\kdv}{\\kdt} = \\ka",
           "anchor": "2.8-v-t"
         },
         {
           "id": "eq-v-graph",
           "latex": "v = v_0 + at",
           "ktex": "\\kv = \\kvo + \\ka\\kt",
-          "condition": "read from a straight-line graph of velocity against time, whose slope is a and whose intercept is v_0",
+          "condition": "取自速度对时间的直线图像，其斜率为 a，截距为 v_0",
           "anchor": "2.8-v-t"
         }
       ]
@@ -4554,7 +4555,7 @@
         {
           "id": "eq-pythagoras",
           "latex": "a^2 + b^2 = c^2,\\quad c = \\sqrt{a^2 + b^2}",
-          "condition": "a right triangle with legs a and b and hypotenuse c",
+          "condition": "直角三角形，两条直角边为 a 和 b，斜边为 c",
           "anchor": "3.1-walking"
         }
       ]
@@ -4572,7 +4573,7 @@
         {
           "id": "eq-component-sum",
           "latex": "\\mathbf{A}_x + \\mathbf{A}_y = \\mathbf{A}",
-          "condition": "as vectors; the magnitudes A_x + A_y ≠ A",
+          "condition": "作为矢量相加；而大小 A_x + A_y ≠ A",
           "section": "3.3",
           "anchor": "3.3-components"
         }
@@ -4838,7 +4839,7 @@
           "id": "eq-Rx-subtraction",
           "latex": "R_x = A_x + (-B_x),\\quad R_y = A_y + (-B_y)",
           "ktex": "\\kRx = \\kAx + (-\\kBx),\\quad \\kRy = \\kAy + (-\\kBy)",
-          "condition": "the resultant of A − B",
+          "condition": "A − B 的合矢量",
           "anchor": "3.3-subtraction"
         }
       ]
@@ -4874,14 +4875,14 @@
           "id": "eq-proj-x",
           "latex": "x = x_0 + v_x t",
           "ktex": "\\kx = \\kxo + \\kvx\\kt",
-          "condition": "horizontal motion of a projectile, a_x = 0",
+          "condition": "抛体的水平运动，a_x = 0",
           "anchor": "3.4-steps"
         },
         {
           "id": "eq-proj-vx",
-          "latex": "v_x = v_{0x} = \\text{constant}",
-          "ktex": "\\kvx = \\kvox = \\text{constant}",
-          "condition": "horizontal motion of a projectile, a_x = 0",
+          "latex": "v_x = v_{0x} = \\text{常量}",
+          "ktex": "\\kvx = \\kvox = \\text{常量}",
+          "condition": "抛体的水平运动，a_x = 0",
           "anchor": "3.4-steps"
         }
       ]
@@ -4897,28 +4898,28 @@
           "id": "eq-proj-y",
           "latex": "y = y_0 + v_{0y}t - \\tfrac12 gt^2",
           "ktex": "\\ky = \\kyo + \\kvoy\\kt - \\tfrac{1}{2}\\kg\\kt^2",
-          "condition": "projectile motion with negligible air resistance and up taken as positive, so that a_y = −g",
+          "condition": "空气阻力可忽略的抛体运动，向上为正，所以 a_y = −g",
           "anchor": "3.4-steps"
         },
         {
           "id": "eq-proj-y-avg",
           "latex": "y = y_0 + \\tfrac12(v_{0y} + v_y)t",
           "ktex": "\\ky = \\kyo + \\tfrac{1}{2}(\\kvoy + \\kvy)\\kt",
-          "condition": "projectile motion with negligible air resistance and up taken as positive, so that a_y = −g",
+          "condition": "空气阻力可忽略的抛体运动，向上为正，所以 a_y = −g",
           "anchor": "3.4-steps"
         },
         {
           "id": "eq-proj-vy",
           "latex": "v_y = v_{0y} - gt",
           "ktex": "\\kvy = \\kvoy - \\kg\\kt",
-          "condition": "projectile motion with negligible air resistance and up taken as positive, so that a_y = −g",
+          "condition": "空气阻力可忽略的抛体运动，向上为正，所以 a_y = −g",
           "anchor": "3.4-steps"
         },
         {
           "id": "eq-proj-vy2",
           "latex": "v_y^2 = v_{0y}^2 - 2g(y - y_0)",
           "ktex": "\\kvy^2 = \\kvoy^2 - 2\\kg(\\ky - \\kyo)",
-          "condition": "projectile motion with negligible air resistance and up taken as positive, so that a_y = −g",
+          "condition": "空气阻力可忽略的抛体运动，向上为正，所以 a_y = −g",
           "anchor": "3.4-steps"
         }
       ]
@@ -4968,7 +4969,7 @@
           "id": "eq-h",
           "latex": "h = \\frac{v_{0y}^2}{2g}",
           "ktex": "\\kh = \\frac{\\kvoy^2}{2\\kg}",
-          "condition": "negligible air resistance",
+          "condition": "空气阻力可忽略",
           "anchor": "3.4-max-height"
         }
       ]
@@ -4988,7 +4989,7 @@
           "id": "eq-range",
           "latex": "R = \\frac{v_0^2 \\sin 2\\theta_0}{g}",
           "ktex": "\\kR = \\frac{\\kvo^2 \\sin 2\\theta_0}{\\kg}",
-          "condition": "level ground and negligible air resistance",
+          "condition": "水平地面，空气阻力可忽略",
           "anchor": "3.4-range"
         }
       ]
@@ -5060,7 +5061,7 @@
           "id": "eq-wind-components",
           "latex": "v_{\\text{tot}\\,x} = v_{\\text{w}x},\\quad v_{\\text{tot}\\,y} = v_{\\text{w}y} + v_{\\text{p}}",
           "ktex": "\\kvtotx = \\kvwx,\\quad \\kvtoty = \\kvwy + \\kvp",
-          "condition": "the plane of Example 3.7 heading due north, with the x-axis due east and the y-axis due north",
+          "condition": "例题 3.7 中的飞机正向北飞行，x 轴指向正东，y 轴指向正北",
           "anchor": "3.5-ex-plane"
         }
       ]
@@ -5133,14 +5134,14 @@
           "id": "eq-fs",
           "latex": "f_{\\text{s}} \\le \\mu_{\\text{s}} N",
           "ktex": "\\kfs \\le \\mu_{\\text{s}} \\kN",
-          "condition": "the two systems are in contact and are not moving relative to one another",
+          "condition": "两个系统相互接触，且彼此之间没有相对运动",
           "anchor": "5.1-magnitudes"
         },
         {
           "id": "eq-fs-max",
           "latex": "f_{\\text{s}(\\text{max})} = \\mu_{\\text{s}} N",
           "ktex": "\\kfsmax = \\mu_{\\text{s}} \\kN",
-          "condition": "static friction has reached its maximum and the object is about to move",
+          "condition": "静摩擦力已达到最大值，物体即将开始运动",
           "anchor": "5.1-magnitudes"
         }
       ]
@@ -5159,7 +5160,7 @@
           "id": "eq-fk",
           "latex": "f_{\\text{k}} = \\mu_{\\text{k}} N",
           "ktex": "\\kfk = \\mu_{\\text{k}} \\kN",
-          "condition": "the two systems are moving relative to one another and friction behaves simply",
+          "condition": "两个系统彼此之间有相对运动，且摩擦力遵循简单规律",
           "anchor": "5.1-magnitudes"
         }
       ]
@@ -5175,7 +5176,7 @@
           "id": "eq-fk-incline",
           "latex": "f_{\\text{k}} = \\mu_{\\text{k}} mg\\cos\\theta",
           "ktex": "\\kfk = \\mu_{\\text{k}} m\\kg\\cos\\theta",
-          "condition": "an object slides down a slope that makes an angle θ with the horizontal",
+          "condition": "物体沿与水平面成角 θ 的斜坡下滑",
           "anchor": "5.1-incline"
         },
         {
@@ -5188,7 +5189,7 @@
           "id": "eq-mu-tan",
           "latex": "\\mu_{\\text{k}} = \\frac{mg\\sin\\theta}{mg\\cos\\theta} = \\tan\\theta",
           "ktex": "\\mu_{\\text{k}} = \\frac{m\\kg\\sin\\theta}{m\\kg\\cos\\theta} = \\tan\\theta",
-          "condition": "the object slides down the slope at a constant velocity, so that the acceleration is zero",
+          "condition": "物体沿斜坡匀速下滑，所以加速度为零",
           "anchor": "5.1-incline"
         }
       ]
@@ -5211,14 +5212,14 @@
           "id": "eq-drag-force",
           "latex": "F_{\\text{D}} = \\frac{1}{2} C \\rho A v^2",
           "ktex": "\\kFD = \\frac{1}{2} C \\rho A \\kv^2",
-          "condition": "a large object such as a bicyclist, a car or a baseball, not moving too slowly",
+          "condition": "像骑自行车者、汽车或棒球这样的大物体，运动得不太慢",
           "anchor": "5.2-drag"
         },
         {
           "id": "eq-drag-prop",
           "latex": "F_{\\text{D}} \\propto v^2",
           "ktex": "\\kFD \\propto \\kv^2",
-          "condition": "a large object moving fast enough through a fluid",
+          "condition": "大物体在流体中运动得足够快",
           "anchor": "5.2-drag"
         },
         {
@@ -5253,7 +5254,7 @@
           "id": "eq-terminal-balance",
           "latex": "F_{\\text{net}} = mg - F_{\\text{D}} = ma = 0",
           "ktex": "\\kFnet = m\\kg - \\kFD = m\\ka = 0",
-          "condition": "at the terminal velocity",
+          "condition": "处于终极速度时",
           "anchor": "5.2-terminal"
         }
       ]
@@ -5269,7 +5270,7 @@
           "id": "eq-vt",
           "latex": "v_{\\text{t}} = \\sqrt{\\frac{2mg}{\\rho C A}}",
           "ktex": "\\kvt = \\sqrt{\\frac{2m\\kg}{\\rho C A}}",
-          "condition": "the drag force has grown equal to the weight",
+          "condition": "阻力已增大到等于重力",
           "anchor": "5.2-terminal"
         }
       ]
@@ -5288,7 +5289,7 @@
           "id": "eq-stokes",
           "latex": "F_{\\text{s}} = 6\\pi r \\eta v",
           "ktex": "\\kFs = 6\\pi r \\eta \\kv",
-          "condition": "the object is very small, is going very slowly, or is in a medium denser than air",
+          "condition": "物体非常小、运动得非常慢，或处在比空气更稠密的介质中",
           "anchor": "5.2-stokes"
         },
         {
@@ -5338,7 +5339,7 @@
           "id": "eq-delta-L",
           "latex": "\\Delta L = \\frac{1}{Y}\\frac{F}{A}L_0",
           "ktex": "\\kdL = \\frac{1}{\\kY}\\frac{\\kF}{A}\\kLo",
-          "condition": "a force applied parallel to the length of a wire or rod, stretching or compressing it",
+          "condition": "力平行于金属丝或杆的长度方向施加，使其拉伸或压缩",
           "anchor": "5.3-length"
         },
         {
@@ -5351,7 +5352,7 @@
           "id": "eq-k-rod",
           "latex": "k = \\frac{YA}{L_0}",
           "ktex": "\\kk = \\frac{\\kY A}{\\kLo}",
-          "condition": "the object is a uniform rod or wire of cross-sectional area A and length L₀",
+          "condition": "物体是横截面积为 A、长度为 L₀ 的均匀杆或金属丝",
           "anchor": "5.3-stress-strain"
         }
       ]
@@ -5385,8 +5386,8 @@
       "forms": [
         {
           "id": "eq-stress-strain",
-          "latex": "\\text{stress} = Y \\times \\text{strain}",
-          "ktex": "\\text{stress} = \\kY \\times \\text{strain}",
+          "latex": "\\text{应力} = Y \\times \\text{应变}",
+          "ktex": "\\text{应力} = \\kY \\times \\text{应变}",
           "anchor": "5.3-stress-strain"
         },
         {
@@ -5412,7 +5413,7 @@
           "id": "eq-shear",
           "latex": "\\Delta x = \\frac{1}{S}\\frac{F}{A}L_0",
           "ktex": "\\kdx = \\frac{1}{\\kS}\\frac{\\kF}{A}\\kLo",
-          "condition": "the force is applied perpendicular to L₀ and parallel to the cross-sectional area A",
+          "condition": "力垂直于 L₀、平行于横截面积 A 施加",
           "anchor": "5.3-shear"
         },
         {
@@ -5434,7 +5435,7 @@
           "id": "eq-bulk",
           "latex": "\\Delta V = \\frac{1}{B}\\frac{F}{A}V_0",
           "ktex": "\\Delta V = \\frac{1}{\\kBb}\\frac{\\kF}{A}V_0",
-          "condition": "the force per unit area is applied uniformly inward on all surfaces",
+          "condition": "单位面积上的力均匀地向内作用于所有表面",
           "anchor": "5.3-bulk"
         },
         {
@@ -5478,7 +5479,7 @@
           "id": "eq-work",
           "latex": "W = Fd\\cos\\theta",
           "ktex": "\\kW = \\kF\\kd\\cos\\theta",
-          "condition": "a constant force and one-way motion in one dimension",
+          "condition": "恒力，且在一维中单向运动",
           "anchor": "7.1-definition"
         },
         {
@@ -5562,7 +5563,7 @@
           "id": "eq-wnet-parallel",
           "latex": "W_{\\text{net}} = F_{\\text{net}}d",
           "ktex": "\\kWnet = \\kFnet\\kd",
-          "condition": "the net force parallel to the displacement",
+          "condition": "合外力平行于位移",
           "anchor": "7.2-theorem"
         }
       ]
@@ -5614,7 +5615,7 @@
           "id": "eq-wnet-mad",
           "latex": "W_{\\text{net}} = mad",
           "ktex": "\\kWnet = m\\ka\\kd",
-          "condition": "a constant net force parallel to the displacement",
+          "condition": "恒定的合外力平行于位移",
           "anchor": "7.2-theorem"
         },
         {
@@ -5660,14 +5661,14 @@
           "id": "eq-peg",
           "latex": "\\Delta\\text{PE}_{\\text{g}} = mgh",
           "ktex": "\\kdPEg = m\\kg\\kh",
-          "condition": "a change in height h that is small compared with the radius of Earth",
+          "condition": "高度变化 h 与地球半径相比很小",
           "anchor": "7.3-converting"
         },
         {
           "id": "eq-w-lift",
           "latex": "W = Fd = mgh",
           "ktex": "\\kW = \\kF\\kd = m\\kg\\kh",
-          "condition": "an object lifted straight up at constant speed",
+          "condition": "物体以恒定速率被竖直向上举起",
           "anchor": "7.3-lifting"
         }
       ]
@@ -5697,14 +5698,14 @@
           "id": "eq-ke-peg",
           "latex": "-\\Delta\\text{PE}_{\\text{g}} = \\Delta\\text{KE}",
           "ktex": "-\\kdPEg = \\kdKE",
-          "condition": "work done by frictional forces is negligible",
+          "condition": "摩擦力所做的功可忽略",
           "anchor": "7.3-coaster"
         },
         {
           "id": "eq-v-from-h",
           "latex": "v = \\sqrt{2g|h| + v_0^2}",
           "ktex": "\\kv = \\sqrt{2\\kg|\\kh| + \\kvo^2}",
-          "condition": "work done by frictional forces is negligible",
+          "condition": "摩擦力所做的功可忽略",
           "anchor": "7.3-coaster"
         }
       ]
@@ -5750,14 +5751,14 @@
           "id": "eq-pes",
           "latex": "\\text{PE}_{\\text{s}} = \\frac{1}{2}kx^2",
           "ktex": "\\kPEs = \\frac{1}{2}\\kk\\kx^2",
-          "condition": "Hooke's law applies to the spring",
+          "condition": "胡克定律适用于该弹簧",
           "anchor": "7.4-spring-energy"
         },
         {
           "id": "eq-ws",
           "latex": "W_{\\text{s}} = Fd = \\left(\\frac{kx}{2}\\right)x = \\frac{1}{2}kx^2",
           "ktex": "\\kWs = \\kF\\kd = \\left(\\frac{\\kk\\kx}{2}\\right)\\kx = \\frac{1}{2}\\kk\\kx^2",
-          "condition": "Hooke's law applies to the spring",
+          "condition": "胡克定律适用于该弹簧",
           "anchor": "7.4-spring-energy"
         },
         {
@@ -5793,21 +5794,21 @@
           "id": "eq-cme",
           "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}}",
           "ktex": "\\kKEi + \\kPEi = \\kKEf + \\kPEf",
-          "condition": "conservative forces only",
+          "condition": "只有保守力",
           "anchor": "7.4-conservation"
         },
         {
           "id": "eq-ke-pe-zero",
           "latex": "\\Delta\\text{KE} + \\Delta\\text{PE} = 0",
           "ktex": "\\kdKE + \\kdPE = 0",
-          "condition": "conservative forces only",
+          "condition": "只有保守力",
           "anchor": "7.4-conservation"
         },
         {
           "id": "eq-cme-full",
           "latex": "\\frac{1}{2}mv_{\\text{i}}^2 + mgh_{\\text{i}} + \\frac{1}{2}kx_{\\text{i}}^2 = \\frac{1}{2}mv_{\\text{f}}^2 + mgh_{\\text{f}} + \\frac{1}{2}kx_{\\text{f}}^2",
           "ktex": "\\frac{1}{2}m\\kvi^2 + m\\kg\\khi + \\frac{1}{2}\\kk\\kxi^2 = \\frac{1}{2}m\\kvf^2 + m\\kg\\khf + \\frac{1}{2}\\kk\\kxf^2",
-          "condition": "conservative forces only, a gravitational force and a spring",
+          "condition": "只有保守力，即重力和弹簧力",
           "anchor": "7.4-using-conservation"
         }
       ]
@@ -6093,8 +6094,8 @@
       "id": "energy-conversion-in-humans",
       "kind": "idea",
       "section": "7.8",
-      "name": "作为能量转化器的人体",
-      "statement": "我们自己的身体就是能量转化的机器，能量守恒对它们也像对任何其他事物一样适用：储存在食物中的化学能变成功、热能，或者储存在脂肪组织中的化学能。每一部分各占多少，取决于吃了多少以及这个人活动多少，吃得超过所需的部分都转为脂肪。"
+      "name": "作为能量转换器的人体",
+      "statement": "我们自己的身体就是能量转换的机器，能量守恒对它们也像对任何其他事物一样适用：储存在食物中的化学能变成功、热能，或者储存在脂肪组织中的化学能。每一部分各占多少，取决于吃了多少以及这个人活动多少，吃得超过所需的部分都转为脂肪。"
     },
     {
       "id": "metabolic-rate",
@@ -6140,7 +6141,7 @@
       "terms": [
         "基础代谢率"
       ],
-      "statement": "基础代谢率是一个人在静息时的总能量转化速率。"
+      "statement": "基础代谢率是一个人在静息时的总能量转换速率。"
     },
     {
       "id": "renewable-energy",
@@ -6174,7 +6175,7 @@
       "kind": "idea",
       "section": "7.9",
       "name": "能量退降",
-      "statement": "能量守恒定律说，孤立系统中的总能量永不改变；节能的理念则是少用能源。二者并不矛盾。大多数能量转化最终都变成退降的废热：总量仍在，但它做有用功的潜力已经消失。这就是为什么能量不会消失而资源却会耗尽。"
+      "statement": "能量守恒定律说，孤立系统中的总能量永不改变；节能的理念则是少用能源。二者并不矛盾。大多数能量转换最终都变成退降的废热：总量仍在，但它做有用功的潜力已经消失。这就是为什么能量不会消失而资源却会耗尽。"
     },
     {
       "id": "first-condition-equilibrium",
@@ -6185,13 +6186,13 @@
       "forms": [
         {
           "id": "eq-net-force-zero",
-          "latex": "\\text{net}\\;\\mathbf{F} = 0",
+          "latex": "\\text{合力}\\;\\mathbf{F} = 0",
           "anchor": "9.1-first-condition"
         },
         {
           "id": "eq-net-force-axes",
-          "latex": "\\text{net}\\;F_x = 0 \\quad\\text{and}\\quad \\text{net}\\;F_y = 0",
-          "ktex": "\\text{net}\\;\\kFx = 0 \\quad\\text{and}\\quad \\text{net}\\;\\kFy = 0",
+          "latex": "\\text{合力}\\;F_x = 0 \\quad\\text{和}\\quad \\text{合力}\\;F_y = 0",
+          "ktex": "\\text{合力}\\;\\kFx = 0 \\quad\\text{和}\\quad \\text{合力}\\;\\kFy = 0",
           "anchor": "9.1-first-condition"
         }
       ]
@@ -6214,7 +6215,7 @@
       "terms": [
         "动态平衡"
       ],
-      "statement": "以恒定速度运动的系统，其加速度同样为零，所以它与静止不动的系统一样满足第一条件。因此平衡并不等同于静止，这就是为什么一辆在路上平稳行驶的汽车也属于一章讲静力学的内容。"
+      "statement": "以恒定速度运动的系统，其加速度同样为零，所以它与静止不动的系统一样满足第一条件。因此平衡并不等同于静止，这就是为什么讲静力学的一章里也有一辆在路上平稳行驶的汽车。"
     },
     {
       "id": "point-of-application",
@@ -6300,14 +6301,14 @@
       "forms": [
         {
           "id": "eq-net-torque-zero",
-          "latex": "\\text{net}\\;\\tau = 0",
-          "ktex": "\\text{net}\\;\\ktau = 0",
+          "latex": "\\text{合力矩}\\;\\tau = 0",
+          "ktex": "\\text{合力矩}\\;\\ktau = 0",
           "anchor": "9.2-second-condition"
         },
         {
           "id": "eq-cw-ccw",
-          "latex": "\\text{net}\\;\\tau_{\\text{cw}} = -\\,\\text{net}\\;\\tau_{\\text{ccw}}",
-          "ktex": "\\text{net}\\;\\ktau_{\\text{cw}} = -\\,\\text{net}\\;\\ktau_{\\text{ccw}}",
+          "latex": "\\text{合力矩}\\;\\tau_{\\text{cw}} = -\\,\\text{合力矩}\\;\\tau_{\\text{ccw}}",
+          "ktex": "\\text{合力矩}\\;\\ktau_{\\text{cw}} = -\\,\\text{合力矩}\\;\\ktau_{\\text{ccw}}",
           "section": "9.4",
           "anchor": "9.4-unequal"
         }
@@ -6321,7 +6322,7 @@
       "terms": [
         "重心"
       ],
-      "statement": "物体的重力分布在它的整个身体上，但就力矩而言，可以认为全部重力作用在一个点上，即重心。这不是近似，而且正是因为如此，才能把到跷跷板上孩子的距离量到一个点，而不必量到孩子所占据的整片面积。"
+      "statement": "物体的重力分布在整个物体上，但就力矩而言，可以认为全部重力作用在一个点上，即重心。这不是近似，而且正是因为如此，才能把到跷跷板上孩子的距离量到一个点，而不必量到孩子所占据的整片面积。"
     },
     {
       "id": "balanced-seesaw",
@@ -6332,30 +6333,30 @@
       "forms": [
         {
           "id": "eq-seesaw-torques",
-          "latex": "\\tau_1 = r_1 w_1 \\quad\\text{and}\\quad \\tau_2 = -r_2 w_2",
-          "ktex": "\\ktauone = \\krone\\kwone \\quad\\text{and}\\quad \\ktautwo = -\\krtwo\\kwtwo",
-          "condition": "the torques taken about the pivot of the seesaw",
+          "latex": "\\tau_1 = r_1 w_1 \\quad\\text{和}\\quad \\tau_2 = -r_2 w_2",
+          "ktex": "\\ktauone = \\krone\\kwone \\quad\\text{和}\\quad \\ktautwo = -\\krtwo\\kwtwo",
+          "condition": "力矩取对跷跷板的支点",
           "anchor": "9.2-seesaw"
         },
         {
           "id": "eq-seesaw-balance",
           "latex": "r_2 w_2 = r_1 w_1",
           "ktex": "\\krtwo\\kwtwo = \\krone\\kwone",
-          "condition": "the seesaw balanced",
+          "condition": "跷跷板处于平衡",
           "anchor": "9.2-seesaw"
         },
         {
           "id": "eq-seesaw-distance",
           "latex": "r_2 = r_1\\frac{m_1}{m_2}",
           "ktex": "\\krtwo = \\krone\\frac{m_1}{m_2}",
-          "condition": "the seesaw balanced and of negligible mass",
+          "condition": "跷跷板处于平衡，且质量可忽略",
           "anchor": "9.2-seesaw"
         },
         {
           "id": "eq-pivot-force",
           "latex": "F_{\\text{p}} = w_1 + w_2",
           "ktex": "\\kFp = \\kwone + \\kwtwo",
-          "condition": "the seesaw of negligible mass",
+          "condition": "质量可忽略的跷跷板",
           "anchor": "9.2-seesaw"
         }
       ]
@@ -6375,7 +6376,7 @@
       "kind": "idea",
       "section": "9.3",
       "name": "回复力矩",
-      "statement": "物体被移开之后，它自身的重力所产生的力矩决定了它的平衡种类。如果该力矩使物体转回原来的位置，平衡就是稳定的；如果它使物体转得离原位更远，平衡就是不稳定的；如果没有力矩，平衡就是随遇的。"
+      "statement": "物体偏离平衡位置之后，它自身的重力所产生的力矩决定了它的平衡种类。如果该力矩使物体转回原来的位置，平衡就是稳定的；如果它使物体转得离原位更远，平衡就是不稳定的；如果没有力矩，平衡就是随遇的。"
     },
     {
       "id": "stable-equilibrium",
@@ -6385,7 +6386,7 @@
       "terms": [
         "稳定平衡"
       ],
-      "statement": "如果一个系统被移开时受到方向与位移相反的合力或合力矩，从而被驱使回到原来的地方，则它处于稳定平衡。碗底的弹珠和竖立在橡皮上的铅笔都是稳定的，而且大多数系统至少对小位移是稳定的。"
+      "statement": "如果一个系统偏离平衡时受到方向与位移相反的合力或合力矩，从而被驱使回到原来的地方，则它处于稳定平衡。碗底的弹珠和竖立在橡皮上的铅笔都是稳定的，而且大多数系统至少对小位移是稳定的。"
     },
     {
       "id": "unstable-equilibrium",
@@ -6395,7 +6396,7 @@
       "terms": [
         "不稳定平衡"
       ],
-      "statement": "如果一个系统被移开时受到方向与位移相同的合力或合力矩，从而加速离开它开始的地方，则它处于不稳定平衡。停在山顶上的球和立在笔尖上的铅笔都是不稳定的，尽管它们站立时平衡的两个条件都得到满足。"
+      "statement": "如果一个系统偏离平衡时受到方向与位移相同的合力或合力矩，从而加速离开它开始的地方，则它处于不稳定平衡。停在山顶上的球和立在笔尖上的铅笔都是不稳定的，尽管它们站立时平衡的两个条件都得到满足。"
     },
     {
       "id": "neutral-equilibrium",
@@ -6405,7 +6406,7 @@
       "terms": [
         "随遇平衡"
       ],
-      "statement": "如果一个系统的平衡并不取决于你把它移到哪里，则它处于随遇平衡。平桌上的弹珠和侧放着的圆铅笔只会停在你放的地方，因为无论物体移到何处，重心都仍在支撑点的正上方。一个物体可能在某个方向上属于一种，在另一个方向上属于另一种，马鞍上的弹珠就是如此。"
+      "statement": "如果一个系统的平衡并不取决于你把它移到哪里，则它处于随遇平衡。平坦桌面上的弹珠和侧放着的圆铅笔只会停在你放的地方，因为无论物体移到何处，重心都仍在支撑点的正上方。一个物体可能在某个方向上属于一种，在另一个方向上属于另一种，马鞍上的弹珠就是如此。"
     },
     {
       "id": "base-of-support",
@@ -6418,7 +6419,7 @@
       "id": "static-equilibrium-strategy",
       "kind": "skill",
       "section": "9.4",
-      "name": "求解静平衡问题",
+      "name": "求解静态平衡问题",
       "statement": "静力学是牛顿定律的一个特例，所以第 4 章的策略仍然适用，此外还有它自己的四个步骤。判断系统确实处于静态平衡。画出受力图，并标明每个力的大小、方向和作用点。应用平衡的两个条件之一或两者。检查答案在大小、方向和单位上是否合理。"
     },
     {
@@ -6439,7 +6440,7 @@
           "id": "eq-equal-hands",
           "latex": "F_R = F_L = \\frac{w}{2}",
           "ktex": "\\kFR = \\kFL = \\frac{\\kwgt}{2}",
-          "condition": "the center of gravity of the pole halfway between the hands",
+          "condition": "杆的重心在两手正中间",
           "anchor": "9.4-symmetric"
         }
       ]
@@ -6496,7 +6497,7 @@
           "id": "eq-lever-balance",
           "latex": "l_{\\text{i}}F_{\\text{i}} = l_{\\text{o}}F_{\\text{o}}",
           "ktex": "\\kli\\kFi = \\klo\\kFo",
-          "condition": "the nail not moving, so that the two torques about the pivot are equal",
+          "condition": "钉子不动，所以对支点的两个力矩相等",
           "anchor": "9.5-lever"
         },
         {
@@ -6541,13 +6542,13 @@
       "kind": "result",
       "section": "9.5",
       "name": "滑轮",
-      "statement": "普通滑轮改变绳中力的方向而不改变其大小，所以它的机械利益为 1。滑轮的组合确实能使力成倍增大：每一根直接向上拉载荷的绳都增加约等于张力的力，因为在无摩擦的系统中各处的张力几乎相同，所以这类绳的根数约等于该系统的机械利益。",
+      "statement": "定滑轮改变绳中力的方向而不改变其大小，所以它的机械利益为 1。滑轮的组合确实能使力成倍增大：每一根直接向上拉载荷的缆绳都增加约等于张力的力，因为在无摩擦的系统中各处的张力几乎相同，所以这类缆绳的根数约等于该系统的机械利益。",
       "forms": [
         {
           "id": "eq-pulley-force",
           "latex": "F_{\\text{o}} \\approx nT",
           "ktex": "\\kFo \\approx n\\kTf",
-          "condition": "frictionless pulleys, with n cables pulling directly on the load",
+          "condition": "滑轮无摩擦，有 n 根缆绳直接拉着载荷",
           "anchor": "9.5-pulleys"
         }
       ]
@@ -6576,7 +6577,7 @@
           "id": "eq-biceps-torque-balance",
           "latex": "r_2 w_{\\text{a}} + r_3 w_{\\text{b}} = r_1 F_{\\text{B}}",
           "ktex": "\\krtwo\\kwarm + \\krthree\\kwbook = \\krone\\kFB",
-          "condition": "the pivot taken at the elbow joint",
+          "condition": "支点取在肘关节处",
           "anchor": "9.6-biceps"
         }
       ]
@@ -6638,7 +6639,7 @@
           "id": "eq-momentum-mag",
           "latex": "p = mv",
           "ktex": "\\kp = m\\kv",
-          "condition": "only the magnitude of the momentum is considered",
+          "condition": "只考虑动量的大小",
           "anchor": "8.1-calculating"
         }
       ]
@@ -6673,13 +6674,13 @@
       "kind": "result",
       "section": "8.1",
       "name": "质量不变时的第二定律",
-      "statement": "当系统的质量不变时，动量的变化等于质量乘以速度的变化，再除以时间就得到加速度。因此，我们熟悉的第二定律形式 $F_{\\text{合}} = ma$，是质量不变时动量形式的特例。",
+      "statement": "当系统的质量不变时，动量的变化等于质量乘以速度的变化量，再除以时间就得到加速度。因此，我们熟悉的第二定律形式 $F_{\\text{net}} = ma$，是质量不变时动量形式的特例。",
       "forms": [
         {
           "id": "eq-newton2-const-mass",
           "latex": "F_{\\text{net}} = ma",
           "ktex": "\\kFnet = m\\ka",
-          "condition": "the mass of the system is constant",
+          "condition": "系统的质量不变",
           "anchor": "8.1-constant-mass"
         }
       ]
@@ -6707,7 +6708,7 @@
           "id": "eq-delta-p-const-mass",
           "latex": "\\Delta p = m\\Delta v",
           "ktex": "\\kdp = m\\kdv",
-          "condition": "the mass of the system is constant",
+          "condition": "系统的质量不变",
           "section": "8.1",
           "anchor": "8.1-constant-mass"
         },
@@ -6715,7 +6716,7 @@
           "id": "eq-delta-p-velocities",
           "latex": "\\Delta p = m\\Delta v = m(v_{\\text{f}} - v_i)",
           "ktex": "\\kdp = m\\kdv = m(\\kvf - \\kvi)",
-          "condition": "the mass of the system is constant",
+          "condition": "系统的质量不变",
           "section": "8.1",
           "anchor": "8.1-tennis"
         }
@@ -6741,14 +6742,14 @@
           "id": "eq-impulse-perpendicular",
           "latex": "\\Delta p_x = -2mu",
           "ktex": "\\Delta p_x = -2m\\ku",
-          "condition": "the ball strikes the wall along the perpendicular and rebounds with the same speed",
+          "condition": "球沿垂线撞墙，并以相同的速率弹回",
           "anchor": "8.2-billiard"
         },
         {
           "id": "eq-impulse-at-angle",
           "latex": "\\Delta p_x = -2mu\\;\\text{cos}\\;30^\\circ",
           "ktex": "\\Delta p_x = -2m\\ku\\;\\text{cos}\\;30^\\circ",
-          "condition": "the ball strikes the wall at 30° from the perpendicular and rebounds at the same angle with the same speed",
+          "condition": "球以与垂线成 30° 的角撞墙，并以同一角度、相同的速率弹回",
           "anchor": "8.2-billiard"
         }
       ]
@@ -6758,7 +6759,7 @@
       "kind": "idea",
       "section": "8.2",
       "name": "延长碰撞时间",
-      "statement": "一次停止所需的动量变化由质量和速率决定，所以如果把停止过程拉长到更长的时间，力就会更小。这就是为什么汽车有软垫仪表板、安全气囊和会溃缩的部件，也是为什么你落地时要翻滚，而不是直着腿僵硬地着地。"
+      "statement": "一次停止所需的动量变化由质量和速率决定，所以如果把停止过程拉长到更长的时间，力就会更小。这就是为什么汽车有带衬垫的仪表板、安全气囊和会溃缩的部件，也是为什么你落地时要翻滚，而不是直着腿僵硬地着地。"
     },
     {
       "id": "effective-force",
@@ -6821,14 +6822,14 @@
       "forms": [
         {
           "id": "eq-ptot-constant",
-          "latex": "p_{\\text{tot}} = \\text{constant}",
-          "ktex": "\\kptot = \\text{constant}",
+          "latex": "p_{\\text{tot}} = \\text{常量}",
+          "ktex": "\\kptot = \\text{常量}",
           "anchor": "8.3-conservation"
         },
         {
           "id": "eq-p-pair-constant",
-          "latex": "p_1 + p_2 = \\text{constant}",
-          "ktex": "\\kpone + \\kptwo = \\text{constant}",
+          "latex": "p_1 + p_2 = \\text{常量}",
+          "ktex": "\\kpone + \\kptwo = \\text{常量}",
           "anchor": "8.3-two-cars"
         },
         {
@@ -6841,14 +6842,14 @@
           "id": "eq-ptot-conserved",
           "latex": "p_{\\text{tot}} = {p'}_{\\text{tot}}",
           "ktex": "\\kptot = \\kptotprime",
-          "condition": "the system is isolated",
+          "condition": "系统是孤立的",
           "anchor": "8.3-conservation"
         },
         {
           "id": "eq-collision-momentum",
           "latex": "m_1 v_1 + m_2 v_2 = m_1 {v'}_1 + m_2 {v'}_2",
           "ktex": "m_1 \\kvone + m_2 \\kvtwo = m_1 \\kvoneprime + m_2 \\kvtwoprime",
-          "condition": "the net external force on the two-object system is zero",
+          "condition": "两物体系统所受的合外力为零",
           "section": "8.4",
           "anchor": "8.4-equations"
         }
@@ -6917,7 +6918,7 @@
           "id": "eq-elastic-kinetic-energy",
           "latex": "\\frac{1}{2}m_1{v_1}^2 + \\frac{1}{2}m_2{v_2}^2 = \\frac{1}{2}m_1{{v'}_1}^2 + \\frac{1}{2}m_2{{v'}_2}^2",
           "ktex": "\\frac{1}{2}m_1{\\kvone}^2 + \\frac{1}{2}m_2{\\kvtwo}^2 = \\frac{1}{2}m_1{\\kvoneprime}^2 + \\frac{1}{2}m_2{\\kvtwoprime}^2",
-          "condition": "the collision is elastic, so internal kinetic energy is conserved",
+          "condition": "碰撞是弹性的，所以内动能守恒",
           "anchor": "8.4-equations"
         }
       ]
@@ -6953,7 +6954,7 @@
           "id": "eq-v2-from-momentum",
           "latex": "{v'}_2 = \\frac{m_1}{m_2}(v_1 - {v'}_1)",
           "ktex": "\\kvtwoprime = \\frac{m_1}{m_2}(\\kvone - \\kvoneprime)",
-          "condition": "the second object is initially at rest",
+          "condition": "第二个物体最初静止",
           "anchor": "8.4-example"
         }
       ]
@@ -6973,7 +6974,7 @@
       "terms": [
         "非弹性碰撞"
       ],
-      "statement": "非弹性碰撞是内动能发生变化的碰撞。碰撞物体之间的力所做的功可以把内动能转化为热传递，也可以把储存的能量转化为内动能，所以在这里只有动量是可以依靠的。"
+      "statement": "非弹性碰撞是内动能发生变化的碰撞。碰撞物体之间的力所做的功可以把内动能转化为热传递，也可以把储存的能量转换为内动能，所以在这里只有动量是可以依靠的。"
     },
     {
       "id": "perfectly-inelastic-collision",
@@ -6983,13 +6984,13 @@
       "terms": [
         "完全非弹性碰撞"
       ],
-      "statement": "物体粘在一起的碰撞称为完全非弹性碰撞，因为在仍然保持动量守恒的前提下，它比任何其他种类的碰撞都更多地减少内动能。由于碰撞后两个物体共有一个末速度，仅靠动量守恒就足以求出它。",
+      "statement": "物体黏在一起的碰撞称为完全非弹性碰撞，因为在仍然保持动量守恒的前提下，它比任何其他种类的碰撞都更多地减少内动能。由于碰撞后两个物体共有一个末速度，仅靠动量守恒就足以求出它。",
       "forms": [
         {
           "id": "eq-perfectly-inelastic-momentum",
           "latex": "m_1 v_1 = (m_1 + m_2)v'",
           "ktex": "m_1 \\kvone = (m_1 + m_2)\\kvprime",
-          "condition": "the objects stick together and the second is initially at rest",
+          "condition": "两个物体黏在一起，且第二个物体最初静止",
           "anchor": "8.5-recoil"
         }
       ]
@@ -7005,7 +7006,7 @@
           "id": "eq-recoil-velocity",
           "latex": "v' = \\frac{m_1}{m_1 + m_2}v_1",
           "ktex": "\\kvprime = \\frac{m_1}{m_1 + m_2}\\kvone",
-          "condition": "the objects stick together and the second is initially at rest",
+          "condition": "两个物体黏在一起，且第二个物体最初静止",
           "anchor": "8.5-recoil"
         }
       ]
@@ -7030,7 +7031,7 @@
       "kind": "idea",
       "section": "8.5",
       "name": "碰撞中释放的能量",
-      "statement": "非弹性碰撞不仅会减少内动能，它还可以增加内动能。当碰撞过程中一根被压缩的弹簧被释放时，或者当爆炸螺栓把卫星从其运载器上推开时，储存的能量被转化为内动能，系统最终得到的比开始时更多。"
+      "statement": "非弹性碰撞不仅会减少内动能，它还可以增加内动能。当碰撞过程中一根被压缩的弹簧被释放时，或者当爆炸螺栓把卫星从其发射器上推开时，储存的能量被转化为内动能，系统最终得到的比开始时更多。"
     },
     {
       "id": "two-dimensional-collision",
@@ -7060,7 +7061,7 @@
           "id": "eq-momentum-x",
           "latex": "m_1 v_1 = m_1 {v'}_1\\;\\text{cos}\\;\\theta_1 + m_2 {v'}_2\\;\\text{cos}\\;\\theta_2",
           "ktex": "m_1 \\kvone = m_1 \\kvoneprime\\;\\text{cos}\\;\\theta_1 + m_2 \\kvtwoprime\\;\\text{cos}\\;\\theta_2",
-          "condition": "the second object is initially at rest and the x-axis is parallel to the velocity of the incoming object",
+          "condition": "第二个物体最初静止，且 x 轴平行于入射物体的速度",
           "anchor": "8.6-x-axis"
         },
         {
@@ -7082,7 +7083,7 @@
           "id": "eq-momentum-y",
           "latex": "0 = m_1 {v'}_1\\;\\text{sin}\\;\\theta_1 + m_2 {v'}_2\\;\\text{sin}\\;\\theta_2",
           "ktex": "0 = m_1 \\kvoneprime\\;\\text{sin}\\;\\theta_1 + m_2 \\kvtwoprime\\;\\text{sin}\\;\\theta_2",
-          "condition": "the second object is initially at rest and the x-axis is parallel to the velocity of the incoming object",
+          "condition": "第二个物体最初静止，且 x 轴平行于入射物体的速度",
           "anchor": "8.6-y-axis"
         },
         {
@@ -7104,7 +7105,7 @@
           "id": "eq-scattering-angle",
           "latex": "\\text{tan}\\;\\theta_2 = \\frac{{v'}_1\\;\\text{sin}\\;\\theta_1}{{v'}_1\\;\\text{cos}\\;\\theta_1 - v_1}",
           "ktex": "\\text{tan}\\;\\theta_2 = \\frac{\\kvoneprime\\;\\text{sin}\\;\\theta_1}{\\kvoneprime\\;\\text{cos}\\;\\theta_1 - \\kvone}",
-          "condition": "the second object is initially at rest",
+          "condition": "第二个物体最初静止",
           "anchor": "8.6-unseen"
         }
       ]
@@ -7120,14 +7121,14 @@
           "id": "eq-equal-mass-identity",
           "latex": "\\frac{1}{2}m{v_1}^2 = \\frac{1}{2}m{{v'}_1}^2 + \\frac{1}{2}m{{v'}_2}^2 + m{v'}_1{v'}_2\\;\\text{cos}(\\theta_1 - \\theta_2)",
           "ktex": "\\frac{1}{2}m{\\kvone}^2 = \\frac{1}{2}m{\\kvoneprime}^2 + \\frac{1}{2}m{\\kvtwoprime}^2 + m\\kvoneprime\\kvtwoprime\\;\\text{cos}(\\theta_1 - \\theta_2)",
-          "condition": "the two objects have equal masses and the second is initially at rest",
+          "condition": "两个物体质量相等，且第二个物体最初静止",
           "anchor": "8.6-equal-masses"
         },
         {
           "id": "eq-equal-mass-kinetic-energy",
           "latex": "\\frac{1}{2}m{v_1}^2 = \\frac{1}{2}m{{v'}_1}^2 + \\frac{1}{2}m{{v'}_2}^2",
           "ktex": "\\frac{1}{2}m{\\kvone}^2 = \\frac{1}{2}m{\\kvoneprime}^2 + \\frac{1}{2}m{\\kvtwoprime}^2",
-          "condition": "the two objects have equal masses, the collision is elastic and the second object is initially at rest",
+          "condition": "两个物体质量相等，碰撞是弹性的，且第二个物体最初静止",
           "anchor": "8.6-equal-masses"
         }
       ]
@@ -7142,7 +7143,7 @@
         {
           "id": "eq-separation-angle",
           "latex": "\\theta_1 - \\theta_2 = 90^\\circ",
-          "condition": "the two objects have equal masses, the collision is elastic and both of them move after it",
+          "condition": "两个物体质量相等，碰撞是弹性的，且碰撞后两者都在运动",
           "anchor": "8.6-separation"
         },
         {
@@ -7158,7 +7159,7 @@
       "kind": "idea",
       "section": "8.7",
       "name": "火箭推进",
-      "statement": "火箭、喷气发动机、泄气的气球和乌贼的运动都出于同一个原因：物质被强力从系统中喷出，对留下的部分产生大小相等、方向相反的反作用。喷出的气体并不推地面，这就是为什么火箭的推力在外太空比在发射台上更大。"
+      "statement": "火箭、喷气发动机、漏气的气球和乌贼的运动都出于同一个原因：物质被强力从系统中喷出，对留下的部分产生大小相等、方向相反的反作用。喷出的气体并不推地面，这就是为什么火箭的推力在外层空间比在发射台上更大。"
     },
     {
       "id": "rocket-thrust",
@@ -7208,7 +7209,7 @@
           "id": "eq-rocket-velocity",
           "latex": "v = v_{\\text{e}}\\;\\text{ln}\\;\\frac{m_0}{m_{\\text{r}}}",
           "ktex": "\\kv = \\kve\\;\\text{ln}\\;\\frac{m_0}{m_{\\text{r}}}",
-          "condition": "air resistance is absent, the gravitational force is neglected and the rocket starts from rest",
+          "condition": "没有空气阻力，忽略重力，且火箭从静止开始",
           "anchor": "8.7-mass-ratio"
         }
       ]
@@ -7283,14 +7284,14 @@
       "forms": [
         {
           "id": "eq-radian-revolution",
-          "latex": "2\\pi\\;\\text{rad} = 1\\;\\text{revolution} = 360^\\circ",
+          "latex": "2\\pi\\;\\text{rad} = 1\\;\\text{圈} = 360^\\circ",
           "anchor": "6.1-radians"
         },
         {
           "id": "eq-one-revolution",
           "latex": "\\Delta\\theta = \\frac{2\\pi r}{r} = 2\\pi",
           "ktex": "\\Delta\\theta = \\frac{2\\pi \\kr}{\\kr} = 2\\pi",
-          "condition": "one complete revolution",
+          "condition": "转完一整圈",
           "anchor": "6.1-radians"
         },
         {
@@ -7336,8 +7337,8 @@
       "forms": [
         {
           "id": "eq-v-romega",
-          "latex": "v = r\\omega \\quad\\text{or}\\quad \\omega = \\frac{v}{r}",
-          "ktex": "\\kv = \\kr\\kw \\quad\\text{or}\\quad \\kw = \\frac{\\kv}{\\kr}",
+          "latex": "v = r\\omega \\quad\\text{或}\\quad \\omega = \\frac{v}{r}",
+          "ktex": "\\kv = \\kr\\kw \\quad\\text{或}\\quad \\kw = \\frac{\\kv}{\\kr}",
           "anchor": "6.1-linear-angular"
         },
         {
@@ -7348,8 +7349,8 @@
         },
         {
           "id": "eq-omega-from-v",
-          "latex": "v = r\\omega \\quad\\text{or}\\quad \\omega = \\frac{v}{r}",
-          "ktex": "\\kv = \\kr\\kw \\quad\\text{or}\\quad \\kw = \\frac{\\kv}{\\kr}",
+          "latex": "v = r\\omega \\quad\\text{或}\\quad \\omega = \\frac{v}{r}",
+          "ktex": "\\kv = \\kr\\kw \\quad\\text{或}\\quad \\kw = \\frac{\\kv}{\\kr}",
           "section": "10.1",
           "anchor": "10.1-uniform-circular-motion"
         }
@@ -7406,7 +7407,7 @@
           "id": "eq-similar-triangles",
           "latex": "\\frac{\\Delta v}{v} = \\frac{\\Delta s}{r}",
           "ktex": "\\frac{\\kdv}{\\kv} = \\frac{\\kds}{\\kr}",
-          "condition": "the triangle of the velocities and the triangle of the radii are similar",
+          "condition": "速度构成的三角形与半径构成的三角形相似",
           "anchor": "6.2-magnitude"
         },
         {
@@ -7514,14 +7515,14 @@
           "id": "eq-mu-s",
           "latex": "\\mu_{\\text{s}} = \\frac{v^2}{rg}",
           "ktex": "\\mu_{\\text{s}} = \\frac{\\kv^2}{\\kr\\kg}",
-          "condition": "an unbanked curve taken at the greatest speed static friction allows",
+          "condition": "水平弯道，取静摩擦力所允许的最大速率",
           "anchor": "6.3-ex-flat-curve"
         },
         {
           "id": "eq-friction-centripetal",
           "latex": "F_{\\text{c}} = f = \\mu_{\\text{s}} N = \\mu_{\\text{s}} mg",
           "ktex": "\\kFc = \\kff = \\mu_{\\text{s}} \\kN = \\mu_{\\text{s}} m\\kg",
-          "condition": "an unbanked curve, where friction is the only horizontal force",
+          "condition": "水平弯道，其中摩擦力是唯一的水平力",
           "anchor": "6.3-ex-flat-curve"
         }
       ]
@@ -7550,28 +7551,28 @@
           "id": "eq-banking",
           "latex": "\\theta = \\tan^{-1}\\left(\\frac{v^2}{rg}\\right)",
           "ktex": "\\theta = \\tan^{-1}\\left(\\frac{\\kv^2}{\\kr\\kg}\\right)",
-          "condition": "an ideally banked curve, no friction",
+          "condition": "理想倾斜弯道，无摩擦",
           "anchor": "6.3-banked"
         },
         {
           "id": "eq-N-sin",
           "latex": "N\\sin\\theta = \\frac{mv^2}{r}",
           "ktex": "\\kN\\sin\\theta = \\frac{m\\kv^2}{\\kr}",
-          "condition": "an ideally banked curve, no friction",
+          "condition": "理想倾斜弯道，无摩擦",
           "anchor": "6.3-banked"
         },
         {
           "id": "eq-N-cos",
           "latex": "N\\cos\\theta = mg",
           "ktex": "\\kN\\cos\\theta = m\\kg",
-          "condition": "an ideally banked curve, no friction",
+          "condition": "理想倾斜弯道，无摩擦",
           "anchor": "6.3-banked"
         },
         {
           "id": "eq-tan-theta",
           "latex": "\\tan\\theta = \\frac{v^2}{rg}",
           "ktex": "\\tan\\theta = \\frac{\\kv^2}{\\kr\\kg}",
-          "condition": "an ideally banked curve, no friction",
+          "condition": "理想倾斜弯道，无摩擦",
           "anchor": "6.3-banked"
         }
       ]
@@ -7590,7 +7591,7 @@
           "id": "eq-ideal-speed",
           "latex": "v = (rg\\tan\\theta)^{1/2}",
           "ktex": "\\kv = (\\kr\\kg\\tan\\theta)^{1/2}",
-          "condition": "an ideally banked curve, no friction",
+          "condition": "理想倾斜弯道，无摩擦",
           "anchor": "6.3-ex-ideal-speed"
         }
       ]
@@ -7722,7 +7723,7 @@
           "id": "eq-mg-gravitation",
           "latex": "mg = G\\frac{mM}{r^2}",
           "ktex": "m\\kg = G\\frac{mM}{\\kr^2}",
-          "condition": "the weight of an object is the gravitational force between it and Earth",
+          "condition": "物体的重力就是它与地球之间的引力",
           "anchor": "6.5-g-from-gravity"
         }
       ]
@@ -7812,7 +7813,7 @@
           "id": "eq-kepler3",
           "latex": "\\frac{T_1^2}{T_2^2} = \\frac{r_1^3}{r_2^3}",
           "ktex": "\\frac{\\kTorbone^2}{\\kTorbtwo^2} = \\frac{\\krone^3}{\\krtwo^3}",
-          "condition": "two small masses orbiting the same large one",
+          "condition": "两个小质量绕同一个大质量运行",
           "anchor": "6.6-keplers-laws"
         }
       ]
@@ -7828,21 +7829,21 @@
           "id": "eq-v2-orbit",
           "latex": "G\\frac{M}{r} = v^2",
           "ktex": "G\\frac{M}{\\kr} = \\kv^2",
-          "condition": "a circular orbit",
+          "condition": "圆轨道",
           "anchor": "6.6-derivation"
         },
         {
           "id": "eq-Fnet-circular",
           "latex": "F_{\\text{net}} = ma_{\\text{c}} = m\\frac{v^2}{r}",
           "ktex": "\\kFnet = m\\kac = m\\frac{\\kv^2}{\\kr}",
-          "condition": "a circular orbit",
+          "condition": "圆轨道",
           "anchor": "6.6-derivation"
         },
         {
           "id": "eq-gravity-is-centripetal",
           "latex": "G\\frac{mM}{r^2} = m\\frac{v^2}{r}",
           "ktex": "G\\frac{mM}{\\kr^2} = m\\frac{\\kv^2}{\\kr}",
-          "condition": "a circular orbit, in which gravity supplies the whole centripetal force",
+          "condition": "圆轨道，其中引力提供全部向心力",
           "anchor": "6.6-derivation"
         }
       ]
@@ -7858,14 +7859,14 @@
           "id": "eq-T2",
           "latex": "T^2 = \\frac{4\\pi^2}{GM} r^3",
           "ktex": "\\kT^2 = \\frac{4\\pi^2}{GM} \\kr^3",
-          "condition": "a circular orbit about a mass M",
+          "condition": "绕质量 M 运行的圆轨道",
           "anchor": "6.6-derivation"
         },
         {
           "id": "eq-v-circumference",
           "latex": "v = \\frac{2\\pi r}{T}",
           "ktex": "\\kv = \\frac{2\\pi \\kr}{\\kT}",
-          "condition": "a circular orbit of period T",
+          "condition": "周期为 T 的圆轨道",
           "anchor": "6.6-derivation"
         }
       ]
@@ -7896,20 +7897,20 @@
       "id": "nonuniform-circular-motion",
       "kind": "definition",
       "section": "10.1",
-      "name": "Non-uniform circular motion",
-      "statement": "Non-uniform circular motion is circular motion in which the angular velocity changes, as it does for a merry-go-round a child starts from rest or a hard disk that slows to a halt."
+      "name": "变速圆周运动",
+      "statement": "变速圆周运动是角速度发生变化的圆周运动，例如孩子从静止开始推动的旋转木马，或是逐渐慢下来直至停止的硬盘。"
     },
     {
       "id": "angular-acceleration",
       "kind": "definition",
       "section": "10.1",
-      "name": "Angular acceleration",
+      "name": "角加速度",
       "symbol": "α",
       "terms": [
-        "angular acceleration"
+        "角加速度"
       ],
       "type": "angular-acceleration",
-      "statement": "Angular acceleration is the rate of change of angular velocity, $\\alpha = \\Delta\\omega / \\Delta t$, exactly as linear acceleration is the rate of change of velocity. Its units are radians per second squared, and the faster the angular velocity changes, the greater the angular acceleration.",
+      "statement": "角加速度是角速度的变化率，$\\alpha = \\Delta\\omega / \\Delta t$，这与线加速度是速度的变化率完全一样。它的单位是弧度每二次方秒，角速度变化得越快，角加速度就越大。",
       "forms": [
         {
           "id": "eq-angular-acceleration",
@@ -7923,13 +7924,13 @@
       "id": "tangential-acceleration",
       "kind": "definition",
       "section": "10.1",
-      "name": "Tangential acceleration",
+      "name": "切向加速度",
       "symbol": "a_t",
       "terms": [
-        "tangential acceleration"
+        "切向加速度"
       ],
       "type": "acceleration",
-      "statement": "In circular motion the linear acceleration that changes a point's speed lies tangent to the circle, so we call it tangential acceleration. As in straight-line motion, it is the change in the magnitude of the velocity divided by the time taken, and it tells how fast a point on the rim speeds up or slows down along its path.",
+      "statement": "在圆周运动中，改变一个点的速率的线加速度沿圆的切线方向，所以我们称之为切向加速度。与直线运动中一样，它是速度大小的变化量除以所用的时间，说明边缘上的点沿其路径加快或减慢得有多快。",
       "forms": [
         {
           "id": "eq-tangential-acceleration",
@@ -7943,15 +7944,15 @@
       "id": "tangential-and-centripetal-are-independent",
       "kind": "result",
       "section": "10.1",
-      "name": "Independence of tangential and centripetal acceleration",
-      "statement": "Centripetal acceleration changes the direction of the velocity but not its magnitude, and tangential acceleration changes the magnitude but not the direction. The two are perpendicular to each other, so a body in circular motion may have either, both or neither, and each may be considered on its own."
+      "name": "切向加速度与向心加速度的相互独立",
+      "statement": "向心加速度改变速度的方向而不改变其大小，切向加速度改变速度的大小而不改变其方向。两者相互垂直，所以做圆周运动的物体可以只有其中一个、两个都有或两个都没有，而且每一个都可以单独考虑。"
     },
     {
       "id": "tangential-angular-acceleration",
       "kind": "result",
       "section": "10.1",
-      "name": "Tangential and angular acceleration",
-      "statement": "Because the radius is constant in circular motion, the change in the linear velocity is the radius times the change in the angular velocity, and so the tangential acceleration is the radius times the angular acceleration. The greater the angular acceleration, the greater the tangential acceleration, and the smaller the wheel, the smaller the tangential acceleration it gives for the same angular acceleration.",
+      "name": "切向加速度与角加速度",
+      "statement": "因为圆周运动中半径不变，线速度的变化量等于半径乘以角速度的变化量，所以切向加速度等于半径乘以角加速度。角加速度越大，切向加速度就越大；对于相同的角加速度，车轮越小，它给出的切向加速度就越小。",
       "forms": [
         {
           "id": "eq-tangential-from-angular",
@@ -7971,47 +7972,47 @@
       "id": "rotational-translational-analogy",
       "kind": "idea",
       "section": "10.1",
-      "name": "Rotational and translational analogs",
-      "statement": "The angle of rotation, the angular velocity and the angular acceleration are the rotational counterparts of position, velocity and acceleration, and the radius joins each pair. The angle is the distance divided by the radius, the angular velocity is the velocity divided by the radius, and the angular acceleration is the tangential acceleration divided by the radius. With the analogy, everything you learned about straight-line motion carries over to rotation."
+      "name": "转动与平动的类比",
+      "statement": "转角、角速度和角加速度分别是位置、速度和加速度在转动中的对应量，而半径把每一对联系起来。转角是距离除以半径，角速度是速度除以半径，角加速度是切向加速度除以半径。有了这一类比，你学过的关于直线运动的一切都可以移到转动上来。"
     },
     {
       "id": "change-in-angular-velocity",
       "kind": "definition",
       "section": "10.1",
-      "name": "Change in angular velocity",
+      "name": "角速度的变化量",
       "symbol": "Δω",
       "terms": [
-        "change in angular velocity"
+        "角速度的变化量"
       ],
       "type": "angular-rate",
-      "statement": "The change in angular velocity is the difference between the final and the initial values of the angular velocity."
+      "statement": "角速度的变化量是角速度的末值与初值之差。"
     },
     {
       "id": "rotational-kinematic-equations",
       "kind": "result",
       "section": "10.2",
-      "name": "Rotational kinematic equations",
-      "statement": "Substituting $v = r\\omega$ and $a = r\\alpha$ into each of the four kinematic equations for straight-line motion makes the radius cancel, leaving four equations in the angle, the angular velocity, the angular acceleration and the time. They describe the motion without any reference to the forces or masses that produce it, and they hold whenever the angular acceleration is constant.",
+      "name": "转动运动学方程",
+      "statement": "把 $v = r\\omega$ 和 $a = r\\alpha$ 代入直线运动的四个运动学方程中的每一个，半径就会消去，留下关于转角、角速度、角加速度和时间的四个方程。它们描述运动时不涉及产生运动的任何力或质量，并且只要角加速度恒定就成立。",
       "forms": [
         {
           "id": "eq-omega-from-alpha-t",
           "latex": "\\omega = \\omega_0 + \\alpha t",
           "ktex": "\\kw = \\kwo + \\kalpha\\kt",
-          "condition": "constant angular acceleration",
+          "condition": "恒定角加速度",
           "anchor": "10.2-rotational-kinematics"
         },
         {
           "id": "eq-theta-quadratic",
           "latex": "\\theta = \\omega_0 t + \\frac{1}{2}\\alpha t^2",
           "ktex": "\\theta = \\kwo\\kt + \\frac{1}{2}\\kalpha\\kt^2",
-          "condition": "constant angular acceleration",
+          "condition": "恒定角加速度",
           "anchor": "10.2-four-equations"
         },
         {
           "id": "eq-omega-squared",
           "latex": "\\omega^2 = {\\omega_0}^2 + 2\\alpha\\theta",
           "ktex": "\\kw^2 = {\\kwo}^2 + 2\\kalpha\\theta",
-          "condition": "constant angular acceleration",
+          "condition": "恒定角加速度",
           "anchor": "10.2-four-equations"
         }
       ]
@@ -8020,8 +8021,8 @@
       "id": "average-angular-velocity",
       "kind": "result",
       "section": "10.2",
-      "name": "Average angular velocity",
-      "statement": "When the angular acceleration is constant, the average angular velocity is halfway between the initial and the final value, just as the average velocity is halfway between the initial and the final velocity in straight-line motion. The angle turned through is then simply the average angular velocity multiplied by the time.",
+      "name": "平均角速度",
+      "statement": "当角加速度恒定时，平均角速度处在初值与末值的正中间，就像直线运动中平均速度处在初速度与末速度的正中间一样。于是转过的角度就简单地等于平均角速度乘以时间。",
       "forms": [
         {
           "id": "eq-theta-from-average",
@@ -8041,13 +8042,13 @@
       "id": "linear-from-angular",
       "kind": "result",
       "section": "10.2",
-      "name": "Linear quantities from angular ones",
-      "statement": "Something spinning in place still carries its rim through a distance, and that distance is the radius times the angle turned through, in radians. In the same way the speed of a point on the rim is the radius times the angular velocity. Radians must always be used in these relationships, and because a radian is dimensionless the product of a length and an angle is a length.",
+      "name": "由角量求线量",
+      "statement": "原地旋转的物体仍然会使它的边缘经过一段距离，这段距离是半径乘以转过的角度（以弧度计）。同样，边缘上一点的速率是半径乘以角速度。这些关系中必须始终使用弧度，而且因为弧度是无量纲的，长度与角度的乘积仍是长度。",
       "forms": [
         {
           "id": "eq-distance-from-angle",
-          "latex": "\\theta = \\frac{x}{r} \\quad\\text{or}\\quad x = r\\theta",
-          "ktex": "\\theta = \\frac{\\kx}{\\kr} \\quad\\text{or}\\quad \\kx = \\kr\\theta",
+          "latex": "\\theta = \\frac{x}{r} \\quad\\text{或}\\quad x = r\\theta",
+          "ktex": "\\theta = \\frac{\\kx}{\\kr} \\quad\\text{或}\\quad \\kx = \\kr\\theta",
           "anchor": "10.2-ex-train"
         }
       ]
@@ -8056,25 +8057,25 @@
       "id": "rotational-kinematics-strategy",
       "kind": "skill",
       "section": "10.2",
-      "name": "Solving a rotational kinematics problem",
-      "statement": "Solve a rotational kinematics problem the way you solve a straight-line one. Check that it involves rotation and needs no forces or masses, identify the unknown, and list what is given. Choose the equation that contains the unknown and nothing else unknown, substitute with units, and ask whether the answer is reasonable. Thinking of the translational analog helps, because that motion is already familiar."
+      "name": "求解转动运动学问题",
+      "statement": "求解转动运动学问题，与求解直线运动问题的方法一样。检查它是否涉及转动且不需要力或质量，确定未知量，并列出已知量。选择含有未知量而别无其他未知量的方程，代入带单位的数值，并问一问答案是否合理。想一想平动中的类比量会有帮助，因为那种运动已经很熟悉了。"
     },
     {
       "id": "kinematics-of-rotational-motion",
       "kind": "definition",
       "section": "10.2",
-      "name": "Kinematics of rotational motion",
+      "name": "转动运动学",
       "terms": [
-        "kinematics of rotational motion"
+        "转动运动学"
       ],
-      "statement": "The kinematics of rotational motion describes the relationships among the rotation angle, angular velocity, angular acceleration and time, without regard to the forces and masses that cause the rotation."
+      "statement": "转动运动学描述转角、角速度、角加速度和时间之间的关系，而不考虑引起转动的力和质量。"
     },
     {
       "id": "torque-on-a-point-mass",
       "kind": "result",
       "section": "10.3",
-      "name": "Torque on a point mass",
-      "statement": "A force applied perpendicular to the radius gives a point mass an acceleration $a = F/m$, and since $a = r\\alpha$ this is $F = mr\\alpha$. Multiplying both sides by the radius turns the left side into the torque, and the result is the rotational analog of Newton's second law for a single point mass, with $mr^2$ standing where the mass stands in $F = ma$.",
+      "name": "质点所受的力矩",
+      "statement": "垂直于半径施加的力使质点获得加速度 $a = F/m$，又因 $a = r\\alpha$，这就是 $F = mr\\alpha$。两边同乘半径，左边就变成力矩，结果就是单个质点的牛顿第二定律的转动类比，其中 $mr^2$ 所处的位置正是 $F = ma$ 中质量所处的位置。",
       "forms": [
         {
           "id": "eq-torque-on-point-mass",
@@ -8094,14 +8095,14 @@
       "id": "moment-of-inertia",
       "kind": "definition",
       "section": "10.3",
-      "name": "Moment of inertia",
+      "name": "转动惯量",
       "symbol": "I",
       "terms": [
-        "rotational inertia",
-        "moment of inertia"
+        "转动惯量",
+        "转动惯量"
       ],
       "type": "rotational-inertia",
-      "statement": "To rotate anything other than a point mass, extend the idea of $mr^2$ to a whole body: the moment of inertia is the sum of $mr^2$ over all the point masses that make up the body. It plays the part in rotation that mass plays in straight-line motion, and its unit is the kilogram meter squared. Because the distance to the axis enters it, a body has a different moment of inertia about every axis.",
+      "statement": "要使质点以外的任何物体转动，就把 $mr^2$ 的概念推广到整个物体：转动惯量是组成该物体的所有质点的 $mr^2$ 之和。它在转动中所起的作用，就是质量在直线运动中所起的作用，它的单位是千克二次方米。因为它含有到转轴的距离，所以同一个物体绕每一根转轴都有不同的转动惯量。",
       "forms": [
         {
           "id": "eq-moment-of-inertia",
@@ -8115,26 +8116,26 @@
       "id": "mass-distribution-and-inertia",
       "kind": "idea",
       "section": "10.3",
-      "name": "Mass distribution and moment of inertia",
-      "statement": "The moment of inertia depends not only on how much mass a body has but on where that mass sits relative to the axis. A merry-go-round full of children is much easier to accelerate when the children stand close to the axis than when they all stand at the rim, though the mass is the same. The distance from the axis enters every term of the sum squared."
+      "name": "质量分布与转动惯量",
+      "statement": "转动惯量不仅取决于物体有多少质量，还取决于这些质量相对于转轴处在什么位置。载满孩子的旋转木马，当孩子们站在靠近转轴的地方时，要比他们都站在边缘时容易加速得多，尽管质量是一样的。到转轴的距离在求和的每一项中都是平方出现的。"
     },
     {
       "id": "newtons-second-law-rotation",
       "kind": "result",
       "section": "10.3",
-      "name": "Newton’s second law for rotation",
-      "statement": "The general relationship among torque, moment of inertia and angular acceleration is that the net torque equals the moment of inertia times the angular acceleration. The larger the torque the larger the angular acceleration, and the larger the moment of inertia the smaller it is. The relationship is valid for any torque, applied to any object, about any axis, which makes it the rotational form of Newton's second law.",
+      "name": "转动的牛顿第二定律",
+      "statement": "力矩、转动惯量和角加速度之间的一般关系是：合力矩等于转动惯量乘以角加速度。力矩越大，角加速度越大；转动惯量越大，角加速度越小。这一关系对任何力矩、作用于任何物体、绕任何转轴都成立，这使它成为牛顿第二定律的转动形式。",
       "forms": [
         {
           "id": "eq-second-law-rotation",
-          "latex": "\\text{net}\\;\\tau = I\\alpha",
-          "ktex": "\\text{net}\\;\\ktau = \\kI\\kalpha",
+          "latex": "\\text{合力矩}\\;\\tau = I\\alpha",
+          "ktex": "\\text{合力矩}\\;\\ktau = \\kI\\kalpha",
           "anchor": "10.3-second-law-rotation"
         },
         {
           "id": "eq-angular-acceleration-from-torque",
-          "latex": "\\alpha = \\frac{\\text{net}\\;\\tau}{I}",
-          "ktex": "\\kalpha = \\frac{\\text{net}\\;\\ktau}{\\kI}",
+          "latex": "\\alpha = \\frac{\\text{合力矩}\\;\\tau}{I}",
+          "ktex": "\\kalpha = \\frac{\\text{合力矩}\\;\\ktau}{\\kI}",
           "anchor": "10.3-second-law-rotation"
         }
       ]
@@ -8143,27 +8144,27 @@
       "id": "choosing-a-moment-of-inertia",
       "kind": "skill",
       "section": "10.3",
-      "name": "Choosing a moment of inertia",
-      "statement": "Calculating a moment of inertia by integration is beyond this text, so read it from the table of shapes for the body and axis at hand: a hoop about its axis, a disk, a rod about its end or its center, a sphere. When several bodies turn about one axis, their moments of inertia add, since each is a sum of $mr^2$ over the same axis."
+      "name": "选取转动惯量",
+      "statement": "用积分计算转动惯量超出了本书的范围，所以要根据手头的物体和转轴，从各种形状的表中查出：绕自身轴的细圆环、圆盘、绕端点或绕中心的杆、球。当几个物体绕同一根转轴转动时，它们的转动惯量相加，因为每一个都是绕同一转轴的 $mr^2$ 之和。"
     },
     {
       "id": "rotational-dynamics-strategy",
       "kind": "skill",
       "section": "10.3",
-      "name": "Solving a rotational dynamics problem",
-      "statement": "To set up a problem in rotational dynamics, check that it involves torque and mass and choose the system of interest. Draw a free body diagram of the external forces on it, and apply the rotational form of Newton's second law about the point of rotation. Take care over which moment of inertia belongs to the body and which axis you take the torques about. As always, check the answer for reasonableness."
+      "name": "求解转动动力学问题",
+      "statement": "要建立转动动力学问题，先检查它是否涉及力矩和质量，并选择所研究的系统。画出作用在它上面的外力的受力图，并绕转动点应用牛顿第二定律的转动形式。要留意哪个转动惯量属于该物体，以及你是绕哪根转轴取力矩的。和往常一样，要检查答案是否合理。"
     },
     {
       "id": "rotational-work",
       "kind": "result",
       "section": "10.4",
-      "name": "Rotational work",
-      "statement": "When a net force is kept perpendicular to the radius of a turning disk, the force is parallel to the displacement and the net work is the force times the arc length travelled. Multiplying and dividing by the radius turns the force into a torque and the arc length into an angle, so that the net work is the net torque times the angle turned through. Torque is analogous to force here, and angle to distance.",
+      "name": "力矩的功",
+      "statement": "当合力始终垂直于转动圆盘的半径时，力与位移平行，合外力的功等于力乘以所经过的弧长。乘以并除以半径，力就变成力矩，弧长就变成角度，于是合外力的功等于合力矩乘以转过的角度。在这里，力矩与力相类似，角度与距离相类似。",
       "forms": [
         {
           "id": "eq-rotational-work",
-          "latex": "\\text{net}\\;W = (\\text{net}\\;\\tau)\\theta",
-          "ktex": "\\text{net}\\;\\kW = (\\text{net}\\;\\ktau)\\theta",
+          "latex": "\\text{合外力的功}\\;W = (\\text{合力矩}\\;\\tau)\\theta",
+          "ktex": "\\text{合外力的功}\\;\\kW = (\\text{合力矩}\\;\\ktau)\\theta",
           "anchor": "10.4-rotational-work"
         }
       ]
@@ -8172,13 +8173,13 @@
       "id": "rotational-kinetic-energy",
       "kind": "result",
       "section": "10.4",
-      "name": "Rotational kinetic energy",
+      "name": "转动动能",
       "symbol": "KE_rot",
       "terms": [
-        "rotational kinetic energy"
+        "转动动能"
       ],
       "type": "energy",
-      "statement": "A body has kinetic energy by turning as well as by travelling, and the rotational kinetic energy is half the moment of inertia times the square of the angular velocity. The expression is exactly analogous to the translational one, with the moment of inertia standing where the mass stands and the angular velocity where the velocity stands.",
+      "statement": "物体既可以因平动而具有动能，也可以因转动而具有动能，转动动能等于转动惯量乘以角速度的平方的一半。这个表达式与平动动能的表达式完全类似，转动惯量所处的位置是质量所处的位置，角速度所处的位置是速度所处的位置。",
       "forms": [
         {
           "id": "eq-rotational-kinetic-energy",
@@ -8192,16 +8193,16 @@
       "id": "rotational-work-energy-theorem",
       "kind": "result",
       "section": "10.4",
-      "name": "Work-energy theorem for rotation",
+      "name": "转动的动能定理",
       "terms": [
-        "work-energy theorem"
+        "动能定理"
       ],
-      "statement": "Substituting the rotational form of Newton's second law into the expression for rotational work, and then using the kinematic relation between the angular velocity and the angle, gives the net work as the change in one half the moment of inertia times the square of the angular velocity. Net work changes the kinetic energy of a system, and for a turning body that kinetic energy is rotational.",
+      "statement": "把牛顿第二定律的转动形式代入力矩的功的表达式，再利用角速度与角度之间的运动学关系，就得到合外力的功等于二分之一转动惯量乘以角速度的平方的变化量。合外力的功改变系统的动能，对转动的物体来说，这个动能就是转动动能。",
       "forms": [
         {
           "id": "eq-rotational-work-energy-theorem",
-          "latex": "\\text{net}\\;W = \\frac{1}{2}I\\omega^2 - \\frac{1}{2}I{\\omega_0}^2",
-          "ktex": "\\text{net}\\;\\kW = \\frac{1}{2}\\kI\\kw^2 - \\frac{1}{2}\\kI{\\kwo}^2",
+          "latex": "\\text{合外力的功}\\;W = \\frac{1}{2}I\\omega^2 - \\frac{1}{2}I{\\omega_0}^2",
+          "ktex": "\\text{合外力的功}\\;\\kW = \\frac{1}{2}\\kI\\kw^2 - \\frac{1}{2}\\kI{\\kwo}^2",
           "anchor": "10.4-rotational-kinetic-energy"
         }
       ]
@@ -8210,8 +8211,8 @@
       "id": "rolling-splits-the-energy",
       "kind": "result",
       "section": "10.4",
-      "name": "Energy of a rolling body",
-      "statement": "A body rolling down an incline without slipping converts its gravitational potential energy into two kinds of kinetic energy at once, translational and rotational. The greater its moment of inertia, the more energy goes into turning and the less remains to carry it down the slope. A can of thick soup, whose contents turn with the can, therefore loses the race to a can of thin soup, and a can that slides without rolling wins.",
+      "name": "滚动物体的能量",
+      "statement": "沿斜面不打滑地滚下的物体，会把它的重力势能同时转化为两种动能，即平动动能和转动动能。它的转动惯量越大，用于转动的能量就越多，剩下用来带它下斜坡的就越少。因此，内容物随罐一起转动的一罐浓汤，会输给一罐稀汤，而一个只滑动不滚动的罐子则会赢。",
       "forms": [
         {
           "id": "eq-energy-of-a-rolling-body",
@@ -8231,20 +8232,20 @@
       "id": "rotational-energy-strategy",
       "kind": "skill",
       "section": "10.4",
-      "name": "Solving a rotational energy problem",
-      "statement": "Solve energy problems that involve rotation as you solve other energy problems. Check that work or energy is involved, choose the system, and decide which kinds of work and energy are present. For a closed system, set the initial kinetic and potential energy equal to the final, remembering that the kinetic energy may have both a translational and a rotational part. For an open system, account for the other forms of energy as well."
+      "name": "求解转动能量问题",
+      "statement": "求解涉及转动的能量问题，与求解其他能量问题的方法一样。检查是否涉及功或能量，选择系统，并判断存在哪几种功和能量。对于封闭系统，令初动能与初势能之和等于末动能与末势能之和，同时记住动能可能既有平动部分也有转动部分。对于开放系统，还要考虑其他形式的能量。"
     },
     {
       "id": "angular-momentum",
       "kind": "definition",
       "section": "10.5",
-      "name": "Angular momentum",
+      "name": "角动量",
       "symbol": "L",
       "terms": [
-        "angular momentum"
+        "角动量"
       ],
       "type": "angular-momentum",
-      "statement": "Angular momentum is the moment of inertia times the angular velocity, $L = I\\omega$, just as linear momentum is the mass times the velocity. Its units are kilogram meters squared per second.",
+      "statement": "角动量是转动惯量乘以角速度，$L = I\\omega$，就像线动量是质量乘以速度一样。它的单位是千克二次方米每秒。",
       "forms": [
         {
           "id": "eq-angular-momentum",
@@ -8258,13 +8259,13 @@
       "id": "torque-changes-angular-momentum",
       "kind": "result",
       "section": "10.5",
-      "name": "Torque and angular momentum",
-      "statement": "The net torque on a body is the rate of change of its angular momentum, $\\text{net}\\;\\tau = \\Delta L / \\Delta t$, which is the rotational form of Newton's second law written in terms of momentum.",
+      "name": "力矩与角动量",
+      "statement": "物体所受的合力矩是它的角动量的变化率，$\\text{合力矩}\\;\\tau = \\Delta L / \\Delta t$，这就是用动量写出的牛顿第二定律的转动形式。",
       "forms": [
         {
           "id": "eq-torque-changes-angular-momentum",
-          "latex": "\\text{net}\\;\\tau = \\frac{\\Delta L}{\\Delta t}",
-          "ktex": "\\text{net}\\;\\ktau = \\frac{\\kdLang}{\\kdt}",
+          "latex": "\\text{合力矩}\\;\\tau = \\frac{\\Delta L}{\\Delta t}",
+          "ktex": "\\text{合力矩}\\;\\ktau = \\frac{\\kdLang}{\\kdt}",
           "anchor": "10.5-torque-and-angular-momentum"
         }
       ]
@@ -8273,17 +8274,17 @@
       "id": "conservation-of-angular-momentum",
       "kind": "result",
       "section": "10.5",
-      "name": "Conservation of angular momentum",
+      "name": "角动量守恒",
       "terms": [
-        "law of conservation of angular momentum"
+        "角动量守恒定律"
       ],
-      "statement": "If the net torque on a system is zero, then its angular momentum does not change: this is the law of conservation of angular momentum, and it stands beside the conservation of energy and of linear momentum. It is why Earth keeps on spinning, since only the tides exert any significant retarding torque on it, and why a skater can spin for a long time on ice that opposes her very little.",
+      "statement": "如果系统所受的合力矩为零，那么它的角动量不变：这就是角动量守恒定律，它与能量守恒和线动量守恒并列。这就是地球能一直转下去的原因，因为只有潮汐对它施加任何显著的阻碍力矩；这也是滑冰者能在对她几乎没有阻碍的冰面上长时间旋转的原因。",
       "forms": [
         {
           "id": "eq-conservation-of-angular-momentum",
           "latex": "L = L'",
           "ktex": "\\kL = \\kLprime",
-          "condition": "zero net external torque",
+          "condition": "合外力矩为零",
           "anchor": "10.5-conservation"
         }
       ]
@@ -8292,14 +8293,14 @@
       "id": "spin-rate-from-moment-of-inertia",
       "kind": "result",
       "section": "10.5",
-      "name": "Spin rate and moment of inertia",
-      "statement": "When no net torque acts, angular momentum stays constant, so a body that reduces its moment of inertia must increase its angular velocity to keep the product the same. A skater pulling in her arms and her extended leg spins several times faster, an air mass whose radius narrows becomes a tornado, and the cloud of gas and dust that became the Solar System sped up as gravity drew it together.",
+      "name": "转速与转动惯量",
+      "statement": "当没有合力矩作用时，角动量保持不变，所以减小转动惯量的物体必须增大角速度，才能使乘积保持不变。滑冰者收拢双臂和伸出的腿，转得快好几倍；半径变窄的气团会变成龙卷风；而后来形成太阳系的气体和尘埃云，则在引力把它拉拢时转得更快了。",
       "forms": [
         {
           "id": "eq-spin-rate-from-inertia",
           "latex": "I\\omega = I'\\omega'",
           "ktex": "\\kI\\kw = \\kIprime\\kwprime",
-          "condition": "zero net external torque",
+          "condition": "合外力矩为零",
           "anchor": "10.5-skater"
         }
       ]
@@ -8308,15 +8309,15 @@
       "id": "work-done-in-pulling-in",
       "kind": "idea",
       "section": "10.5",
-      "name": "Work done in pulling in",
-      "statement": "The skater's angular momentum stays the same when she pulls in her arms, but her rotational kinetic energy rises sharply. The increase comes from the work she does pulling her arms inward against the force that holds them on their circles. Conserving angular momentum does not conserve rotational kinetic energy, because energy can enter from within the system while angular momentum cannot."
+      "name": "向内收拢所做的功",
+      "statement": "滑冰者收拢双臂时，她的角动量保持不变，但她的转动动能急剧增大。这一增加来自她把双臂向内收拢时所做的功，她是在克服使双臂沿圆周运动的那个力而做功。角动量守恒并不意味着转动动能守恒，因为能量可以从系统内部进入，而角动量不能。"
     },
     {
       "id": "angular-momentum-in-collisions",
       "kind": "result",
       "section": "10.6",
-      "name": "Angular momentum in a collision",
-      "statement": "A body moving in a straight line has an angular momentum about any pivot point beside its path, $L = mvr$, where $r$ is the perpendicular distance from the pivot to its line of motion. This is what lets a collision that sets bodies spinning be treated by the conservation of angular momentum.",
+      "name": "碰撞中的角动量",
+      "statement": "沿直线运动的物体，相对于其路径旁边的任何支点都有角动量，$L = mvr$，其中 $r$ 是支点到其运动直线的垂直距离。这使得使物体转动起来的碰撞可以用角动量守恒来处理。",
       "forms": [
         {
           "id": "eq-angular-momentum-of-a-point-mass",
@@ -8330,8 +8331,8 @@
       "id": "solving-a-rotational-collision",
       "kind": "skill",
       "section": "10.6",
-      "name": "Solving a rotational collision",
-      "statement": "When a body free to rotate takes part in a collision, set the angular momentum before equal to the angular momentum after, both about the same pivot point. Before, it is that of the incoming body as a point mass. After, it is the combined moment of inertia about the pivot times the angular velocity, where the combined moment of inertia is the sum of the separate ones about that axis.",
+      "name": "求解转动碰撞问题",
+      "statement": "当一个可以自由转动的物体参与碰撞时，令碰撞前的角动量等于碰撞后的角动量，两者都相对于同一个支点。碰撞前，它是入射物体作为质点的角动量。碰撞后，它是绕支点的总转动惯量乘以角速度，其中总转动惯量是各部分绕该转轴的转动惯量之和。",
       "forms": [
         {
           "id": "eq-angular-velocity-after-collision",
@@ -8357,33 +8358,33 @@
       "id": "energy-and-momentum-in-a-rotational-collision",
       "kind": "idea",
       "section": "10.6",
-      "name": "Energy and momentum in a rotational collision",
-      "statement": "A collision can conserve angular momentum while it loses kinetic energy, because the collision is inelastic. It need not conserve linear momentum either, because the force at the pivot may have a component along the incoming body's path. For the disk and stick, the kinetic energy falls from 22.5 J to 1.57 J while the linear momentum rises. The nail explains it: the stick pushes back on the nail, and the nail pushes forward on the stick."
+      "name": "转动碰撞中的能量与动量",
+      "statement": "碰撞可以保持角动量守恒而损失动能，因为这个碰撞是非弹性的。它也不一定保持线动量守恒，因为支点处的力可能有沿入射物体路径的分量。对圆盘和木棍来说，动能从 22.5 J 降到 1.57 J，而线动量却增大了。钉子解释了这一点：木棍向后推钉子，钉子向前推木棍。"
     },
     {
       "id": "percussion-point",
       "kind": "idea",
       "section": "10.6",
-      "name": "Percussion point",
-      "statement": "Striking the nailed stick at its far end pushes the nail backward and striking it near the nail pushes the nail forward, so there is a point in between at which no force is delivered to the pivot at all. That point is the percussion point. A tennis racquet and a baseball bat have one too, and a ball met there leaves little force and little vibration in the hand, which is what players call the sweet spot."
+      "name": "打击中心",
+      "statement": "打击钉住的木棍的远端会把钉子向后推，打击靠近钉子的地方则会把钉子向前推，所以在两者之间有一个点，在那里根本不会有力传给支点。这个点就是打击中心。网球拍和棒球棒也有打击中心，在那里击球，手上感到的力和振动都很小，这就是球员们所说的最佳击球点。"
     },
     {
       "id": "right-hand-rule",
       "kind": "skill",
       "section": "10.7",
-      "name": "Using the right-hand rule",
-      "statement": "Angular velocity and angular momentum are vectors, and their direction is found by curling the fingers of the right hand in the direction of the rotation: the thumb then points along the axis of rotation in the direction of both. Because the angular momentum is the moment of inertia times the angular velocity, and the moment of inertia is a positive number, the two point the same way."
+      "name": "使用右手定则",
+      "statement": "角速度和角动量是矢量，它们的方向这样来确定：右手四指沿转动的方向弯曲，拇指就沿转轴指向两者共同的方向。因为角动量是转动惯量乘以角速度，而转动惯量是正数，所以两者指向相同。"
     },
     {
       "id": "torque-sets-the-direction-of-angular-momentum",
       "kind": "result",
       "section": "10.7",
-      "name": "Direction of a change in angular momentum",
-      "statement": "The net torque is the rate of change of angular momentum, so the change in angular momentum points the way the torque points. When the torque is perpendicular to the angular momentum already there, the two add head to tail to give a new angular momentum of the same size pointing in a new direction, and the axis of rotation moves perpendicular to the forces applied rather than the way they push.",
+      "name": "角动量变化的方向",
+      "statement": "合力矩是角动量的变化率，所以角动量的变化量指向力矩所指的方向。当力矩垂直于原有的角动量时，两者首尾相接相加，得到大小相同而方向改变的新角动量，转轴就垂直于所施加的力移动，而不是沿力推的方向移动。",
       "forms": [
         {
           "id": "eq-torque-and-angular-momentum-vectors",
-          "latex": "\\text{net}\\;\\boldsymbol{\\tau} = \\frac{\\Delta\\mathbf{L}}{\\Delta t}",
+          "latex": "\\text{合力矩}\\;\\boldsymbol{\\tau} = \\frac{\\Delta\\mathbf{L}}{\\Delta t}",
           "anchor": "10.7-torque-direction"
         }
       ]
@@ -8392,54 +8393,54 @@
       "id": "gyroscopic-precession",
       "kind": "idea",
       "section": "10.7",
-      "name": "Gyroscopic precession",
-      "statement": "The weight of a spinning gyroscope and the force from its stand create a horizontal torque, always perpendicular to the angular momentum, so the direction of the angular momentum changes while its magnitude does not and the gyroscope precesses about a vertical axis instead of falling over. A gyroscope that is not spinning simply acquires angular momentum in the direction of the torque and falls. Earth precesses in the same way, once in about 26,000 years, under the torque of the Sun and the Moon on its nonspherical shape."
+      "name": "陀螺进动",
+      "statement": "旋转的陀螺仪所受的重力与其支架的作用力产生一个水平力矩，它始终垂直于角动量，所以角动量的方向改变而大小不变，陀螺仪绕竖直轴进动，而不会倒下。不旋转的陀螺仪则只是沿力矩的方向获得角动量并倒下。地球也以同样的方式进动，大约每 26,000 年一周，这是太阳和月球对它的非球形形状施加力矩的结果。"
     },
     {
       "id": "right-hand-rule-for-rotation",
       "kind": "definition",
       "section": "10.7",
-      "name": "Right-hand rule for rotation",
+      "name": "转动的右手定则",
       "terms": [
-        "right-hand rule"
+        "右手定则"
       ],
-      "statement": "The right-hand rule defines the directions of angular velocity and angular momentum: when the fingers of the right hand curl in the direction of the rotation, the thumb points in the direction of $\\omega$ and of $L$, along the axis of rotation."
+      "statement": "右手定则规定了角速度和角动量的方向：当右手四指沿转动的方向弯曲时，拇指就沿转轴指向 $\\omega$ 和 $L$ 的方向。"
     },
     {
       "id": "fluid",
       "kind": "definition",
       "section": "11.1",
-      "name": "Fluid",
+      "name": "流体",
       "terms": [
-        "fluids"
+        "流体"
       ],
-      "statement": "A fluid is a state of matter that yields to a sideways, or shearing, force, while a solid resists one. Liquids, gases, and plasmas are all fluids, because in each of them the particles slide past one another and the substance flows. This one property is what the rest of the chapter rests on: because a fluid cannot withstand a shearing force, it cannot exert one either, and so the force it exerts on any surface is perpendicular to that surface."
+      "statement": "流体是一种物质状态，它会在侧向力（即切向力）作用下屈服，而固体则抵抗这种力。液体、气体和等离子体都是流体，因为其中的粒子都能彼此滑过，物质得以流动。本章的其余内容都建立在这一性质之上：由于流体不能承受切向力，它也就不能施加切向力，因此它对任何表面所施的力都垂直于该表面。"
     },
     {
       "id": "phases-of-matter",
       "kind": "idea",
       "section": "11.1",
-      "name": "Phases of matter",
-      "statement": "Matter most commonly exists as a solid, a liquid, a gas, or a plasma. A solid has a definite shape and a specific volume, a liquid has a definite volume but takes the shape of whatever holds it, and a gas or a plasma has neither, since its particles move to fill the container. Knowing which phase a substance is in tells you at once whether it will flow and whether it can be compressed."
+      "name": "物态",
+      "statement": "物质最常以固体、液体、气体或等离子体的形式存在。固体有确定的形状和一定的体积，液体有确定的体积，但会取容纳它的容器的形状，而气体或等离子体两者都没有，因为它们的粒子会运动以充满容器。知道某种物质处于哪一种物态，就立刻能知道它是否会流动，以及是否能被压缩。"
     },
     {
       "id": "atomic-arrangement-and-phase",
       "kind": "idea",
       "section": "11.1",
-      "name": "Atomic arrangement and phase",
-      "statement": "The forces between atoms explain the phases. Atoms in a solid are in contact and held near their neighbors, so a solid keeps its shape and resists compression. Atoms in a liquid are also in close contact but can slide over one another, so a liquid flows and yet still resists compression. Atoms in a gas and charged particles in a plasma are far apart and pull on one another only weakly, so a gas both flows and compresses easily."
+      "name": "原子排列与物态",
+      "statement": "原子之间的力解释了各种物态。固体中的原子相互接触，并被束缚在邻近原子附近，所以固体保持其形状，并抵抗压缩。液体中的原子也彼此紧密接触，但可以相互滑过，所以液体能够流动，却仍然抵抗压缩。气体中的原子和等离子体中的带电粒子相距很远，彼此之间只有微弱的吸引，所以气体既能流动，又容易被压缩。"
     },
     {
       "id": "density",
       "kind": "definition",
       "section": "11.2",
-      "name": "Density",
+      "name": "密度",
       "symbol": "ρ_dens",
       "terms": [
-        "density"
+        "密度"
       ],
       "type": "density",
-      "statement": "Density is the mass per unit volume of a substance or object, and it is what the old riddle about a ton of feathers and a ton of bricks turns on: the two have the same mass, but the feathers occupy a far greater volume, so their density is much lower. Density is crucial in determining whether an object sinks or floats in a fluid, which is why the chapter defines it before it defines anything else.",
+      "statement": "密度是物质或物体单位体积的质量，关于一吨羽毛和一吨砖头的那个古老谜语，关键就在于它：两者的质量相同，但羽毛占据的体积要大得多，所以它的密度低得多。密度对于判断物体在流体中是下沉还是漂浮至关重要，这就是本章先定义密度、再定义其他一切的原因。",
       "forms": [
         {
           "id": "eq-density",
@@ -8453,15 +8454,15 @@
       "id": "density-identifies-substance",
       "kind": "idea",
       "section": "11.2",
-      "name": "Density identifies a substance",
-      "statement": "Every substance has its own density, so a measured density helps identify what an object is made of. Gold is about two and a half times as dense as iron, which is about two and a half times as dense as aluminum. Density also reveals the phase of matter and its substructure. Liquids and solids have roughly comparable densities because their atoms are in close contact, while gases are far less dense because large amounts of empty space separate their atoms."
+      "name": "密度可以识别物质",
+      "statement": "每种物质都有自己的密度，所以测得的密度有助于识别物体由什么构成。金的密度约为铁的两倍半，而铁的密度又约为铝的两倍半。密度还能揭示物质的物态和内部结构。液体和固体的密度大致相当，因为它们的原子紧密接触，而气体的密度则小得多，因为大量空隙把它们的原子隔开。"
     },
     {
       "id": "calculate-mass-from-density",
       "kind": "skill",
       "section": "11.2",
-      "name": "Finding a mass from a density",
-      "statement": "Solving $\\krho = m/V$ for the mass gives $m = \\krho V$, so once the volume of a body is known from its dimensions and its density is looked up, its mass follows. This is how the chapter weighs the water behind a dam, and it is the first step of almost every buoyancy calculation later in the chapter.",
+      "name": "由密度求质量",
+      "statement": "由 $\\krho = m/V$ 解出质量，得到 $m = \\krho V$，所以一旦由物体的尺寸得知其体积，并查得其密度，它的质量也就随之得出。本章就是这样称出水坝后面的水的质量的，这也是后面几乎所有浮力计算的第一步。",
       "forms": [
         {
           "id": "eq-mass-from-density",
@@ -8475,13 +8476,13 @@
       "id": "pressure",
       "kind": "definition",
       "section": "11.3",
-      "name": "Pressure",
+      "name": "压强",
       "symbol": "P_press",
       "terms": [
-        "pressure"
+        "压强"
       ],
       "type": "pressure",
-      "statement": "Pressure is the force divided by the area perpendicular to the force over which it acts. The same force can have a very different effect depending on the area it spreads over. A poke with a finger merely irritates, while the same force through the sharp end of a needle breaks the skin. Pressure applies to all states of matter, but it matters most in fluids.",
+      "statement": "压强是力除以该力所作用的、与力垂直的面积。同样大的力，作用在不同大小的面积上，效果可能大不相同。用手指戳一下只会令人不适，而同样大小的力通过针的尖端就会刺破皮肤。压强适用于物质的所有状态，但在流体中最为重要。",
       "forms": [
         {
           "id": "eq-pressure",
@@ -8495,8 +8496,8 @@
       "id": "pascal-unit",
       "kind": "definition",
       "section": "11.3",
-      "name": "Pascal",
-      "statement": "The SI unit of pressure is the pascal, which is one newton per square meter. Everyday pressures run to large numbers of pascals, so several other units stay in common use: millibars in meteorology, pounds per square inch for tire pressure, and millimeters of mercury for blood pressure. Knowing what each is worth in pascals is what lets a measurement taken with one instrument be compared with another.",
+      "name": "帕斯卡",
+      "statement": "压强的SI单位是帕斯卡，等于每平方米一牛顿。日常的压强要用很大的帕斯卡数值来表示，所以其他几种单位仍在通用：气象学中用毫巴，轮胎压强用磅每平方英寸，血压用毫米汞柱。知道其中每一种等于多少帕斯卡，才能把用一种仪器测得的结果与另一种相比较。",
       "forms": [
         {
           "id": "eq-pascal",
@@ -8509,15 +8510,15 @@
       "id": "pressure-is-scalar",
       "kind": "result",
       "section": "11.3",
-      "name": "Direction of fluid pressure",
-      "statement": "A static fluid cannot withstand a shearing force, and so it cannot exert one either. The force a fluid exerts on any surface is therefore perpendicular to that surface, and the fluid pushes on every surface at once: a swimmer feels pressure on all sides, and the air in a tire pushes outward on every part of it. The pressure itself is a scalar quantity and has no direction; only the forces it produces have one."
+      "name": "流体压强的方向",
+      "statement": "静止流体不能承受切向力，所以它也不能施加切向力。因此流体对任何表面所施的力都垂直于该表面，而且流体同时推着每一个表面：游泳者在各个方向上都感到压强，轮胎中的空气向外推着轮胎的每一个部分。压强本身是标量，没有方向；只有它所产生的力才有方向。"
     },
     {
       "id": "force-from-pressure",
       "kind": "skill",
       "section": "11.3",
-      "name": "Finding a force from a pressure",
-      "statement": "Rearranging the definition of pressure gives the force a pressure exerts on a surface, $\\kF = \\kPr A$. The force is directly proportional to the area acted upon as well as to the pressure itself, which is why the flat end of a gas cylinder must be strong and why a hammered nail can split wood.",
+      "name": "由压强求力",
+      "statement": "把压强的定义变形，就得到压强对表面所施的力，$\\kF = \\kPr A$。这个力既与受力面积成正比，也与压强本身成正比，这就是气瓶的平端必须结实的原因，也是用锤子敲进的钉子能劈开木头的原因。",
       "forms": [
         {
           "id": "eq-force-from-pressure",
@@ -8531,8 +8532,8 @@
       "id": "pressure-from-weight-of-fluid",
       "kind": "result",
       "section": "11.4",
-      "name": "Pressure due to the weight of a fluid",
-      "statement": "The pressure due to the weight of a fluid at a depth $h$ below its surface is $P = h\\rho g$, where $\\rho$ is the density of the fluid. The bottom of a container supports the whole weight of the fluid above it, $\\rho Ahg$, and dividing that weight by the area gives the pressure.",
+      "name": "流体的重力产生的压强",
+      "statement": "流体表面以下深度 $h$ 处由流体的重力产生的压强是 $P = h\\rho g$，其中 $\\rho$ 是流体的密度。容器的底部支撑着它上方全部流体的重力 $\\rho Ahg$，用这个重力除以面积就得到压强。",
       "forms": [
         {
           "id": "eq-pressure-depth",
@@ -8558,24 +8559,24 @@
       "id": "pressure-independent-of-container",
       "kind": "result",
       "section": "11.4",
-      "name": "Pressure independent of container shape",
-      "statement": "Because $\\kPr = \\kh\\krho\\kg$ contains no width and no length, the pressure at a point in a fluid does not depend on how much fluid there is or on the shape of its container. The average depth of the water at a dam sets the pressure on it, not how far the reservoir stretches behind it. A small column of water inside a ring of sandbags can balance a whole flooded river."
+      "name": "压强与容器形状无关",
+      "statement": "因为 $\\kPr = \\kh\\krho\\kg$ 中既不含宽度也不含长度，所以流体中某一点的压强并不取决于流体有多少，也不取决于容器的形状。决定水坝所受压强的是水的平均深度，而不是水库在它后面延伸多远。一圈沙袋里的一小柱水可以与一整条泛滥的河流相平衡。"
     },
     {
       "id": "depth-in-a-liquid-versus-a-gas",
       "kind": "idea",
       "section": "11.4",
-      "name": "Pressure with depth in liquids and gases",
-      "statement": "The result assumes the density is the same everywhere in the fluid. Liquids are nearly incompressible, so it holds in them to great depths. Gases compress easily, and their density falls with height, so the result applies to a gas only over a depth small enough that the density changes little, or with an average density standing in for the true one."
+      "name": "液体和气体中压强随深度的变化",
+      "statement": "这个结果假定流体中各处的密度相同。液体几乎不可压缩，所以在很大的深度上它仍然成立。气体很容易被压缩，它的密度随高度而下降，所以这个结果只适用于深度足够小、使密度变化不大的气体，或者用平均密度来代替真实密度的情形。"
     },
     {
       "id": "atmospheric-pressure",
       "kind": "definition",
       "section": "11.4",
-      "name": "Atmospheric pressure",
+      "name": "大气压强",
       "symbol": "P_atm",
       "type": "pressure",
-      "statement": "Atmospheric pressure is pressure due to the weight of a fluid like any other, in this case the weight of the air above a given height. On average at sea level a column of air standing on one square meter weighs $1.01\\times 10^{5}$ N, and that is one atmosphere. It falls as you climb, because there is less air above you, which is why your ears pop on a plane flight.",
+      "statement": "大气压强和任何其他流体一样，是由流体的重力产生的压强，这里指的是某一高度以上空气的重力。平均而言，在海平面上，立在一平方米上的一柱空气重 $1.01\\times 10^{5}$ N，这就是一个大气压。随着你爬高，它会下降，因为你上方的空气变少了，这就是你乘飞机时耳朵会发出爆响的原因。",
       "forms": [
         {
           "id": "eq-atmospheric-pressure",
@@ -8589,8 +8590,8 @@
       "id": "force-on-a-dam",
       "kind": "skill",
       "section": "11.4",
-      "name": "Finding the force on a wall",
-      "statement": "Pressure increases linearly with depth, so the average pressure on a vertical wall is the pressure at its average depth, and the force on the wall is that average pressure times the area of contact. This is how the force on a dam is found, and it is why a dam is built thicker at the bottom, where the pressure is greatest.",
+      "name": "求墙面所受的力",
+      "statement": "压强随深度线性增加，所以竖直墙面所受的平均压强就是其平均深度处的压强，而墙面所受的力就是这个平均压强乘以接触面积。水坝所受的力就是这样求出的，这也是水坝底部压强最大，因而要修得更厚的原因。",
       "forms": [
         {
           "id": "eq-average-pressure-depth",
@@ -8610,8 +8611,8 @@
       "id": "density-from-pressure-and-height",
       "kind": "skill",
       "section": "11.4",
-      "name": "Finding a density or a depth from a pressure",
-      "statement": "Because $\\kPr = \\kh\\krho\\kg$ ties three quantities together, any one of them follows from the other two. Solving for the density gives the average density of a fluid from the pressure it exerts and the height of its column, and solving for the height gives the depth at which a fluid reaches a stated pressure.",
+      "name": "由压强求密度或深度",
+      "statement": "因为 $\\kPr = \\kh\\krho\\kg$ 把三个量联系在一起，所以其中任何一个都可以由另外两个求出。解出密度，就得到由流体所施的压强和流体柱的高度求出的流体平均密度，解出高度，就得到流体达到给定压强时所处的深度。",
       "forms": [
         {
           "id": "eq-average-density-from-pressure",
@@ -8631,11 +8632,11 @@
       "id": "pascals-principle",
       "kind": "axiom",
       "section": "11.5",
-      "name": "Pascal’s principle",
+      "name": "帕斯卡原理",
       "terms": [
-        "Pascal’s principle"
+        "帕斯卡原理"
       ],
-      "statement": "A change in pressure applied to an enclosed fluid is transmitted undiminished to all portions of the fluid and to the walls of its container. The atoms in a fluid are free to move about, so they carry the change everywhere, and an enclosed fluid cannot flow away from the push as a river would. This experimentally verified fact is what makes pressure so important in fluids, since a pressure applied at one place is then known at every other.",
+      "statement": "施加在封闭流体上的压强变化，会不减弱地传递到流体的所有部分以及容器的器壁。流体中的原子可以自由运动，所以它们把这一变化带到各处，而封闭的流体不能像河水那样从推力下流走。这一经实验验证的事实，使压强在流体中如此重要，因为在一处施加的压强，在其他每一处也就都已知了。",
       "forms": [
         {
           "id": "eq-hydraulic-pressures-equal",
@@ -8649,22 +8650,22 @@
       "id": "pressures-add",
       "kind": "result",
       "section": "11.5",
-      "name": "Addition of pressures",
-      "statement": "A fluid transmits a change in pressure undiminished, so the total pressure in a fluid is the sum of the pressures from the different sources acting on it. The pressure 10.3 m down in a swimming pool is two atmospheres, half from the water above and half from the air above the water. The pressure anywhere in a fluid open to the air is the fluid's own pressure plus atmospheric pressure."
+      "name": "压强相加",
+      "statement": "流体会不减弱地传递压强的变化，所以流体中的总压强是作用在它上面的各个来源的压强之和。游泳池中 10.3 m 深处的压强是两个大气压，其中一半来自上方的水，一半来自水面上方的空气。敞开通向空气的流体中任何地方的压强，都是该流体自身的压强加上大气压强。"
     },
     {
       "id": "hydraulic-system",
       "kind": "definition",
       "section": "11.5",
-      "name": "A hydraulic system",
-      "statement": "A hydraulic system is an enclosed fluid system used to exert forces. Pushing on one piston raises the pressure everywhere in the fluid, and that pressure pushes on every other piston in the system. The advantage over a lever is that the pressure can be sent through tortuously curved lines to several places at once, which is what lets one brake pedal work four wheels."
+      "name": "液压系统",
+      "statement": "液压系统是用来施加力的封闭流体系统。推一个活塞会使流体中各处的压强升高，这个压强又推着系统中其他每个活塞。它相对于杠杆的优点是，压强可以通过曲折弯绕的管路同时送到几个地方，这就是一个制动踏板能带动四个车轮的原因。"
     },
     {
       "id": "hydraulic-force-ratio",
       "kind": "result",
       "section": "11.5",
-      "name": "Forces in a hydraulic system",
-      "statement": "In a simple hydraulic system with its two pistons at the same height, the pressure at one piston equals the pressure at the other, so $F_1/A_1 = F_2/A_2$. The force on the larger piston is larger by the ratio of the areas.",
+      "name": "液压系统中的力",
+      "statement": "在两个活塞处于同一高度的简单液压系统中，一个活塞处的压强等于另一个活塞处的压强，所以 $F_1/A_1 = F_2/A_2$。较大活塞上的力要大，大的倍数就是面积之比。",
       "forms": [
         {
           "id": "eq-hydraulic-force-ratio",
@@ -8684,32 +8685,32 @@
       "id": "hydraulic-work-limit",
       "kind": "result",
       "section": "11.5",
-      "name": "Work in a hydraulic system",
-      "statement": "A hydraulic system increases force the way a simple machine does, and like a simple machine it obeys conservation of energy. Work is force times the distance moved. The wheel cylinder moves through a smaller distance than the pedal cylinder by exactly the factor by which the force grows, so the work output equals the work input. The more wheel cylinders you add, the smaller the distance each one moves."
+      "name": "液压系统中的功",
+      "statement": "液压系统像简单机械一样增大力，也像简单机械一样遵守能量守恒。功是力乘以移动的距离。轮缸移动的距离比踏板缸小，小的倍数恰好等于力增大的倍数，所以输出的功等于输入的功。你加的轮缸越多，每个轮缸移动的距离就越小。"
     },
     {
       "id": "gauge-pressure",
       "kind": "definition",
       "section": "11.6",
-      "name": "Gauge pressure",
+      "name": "表压强",
       "symbol": "P_g",
       "terms": [
-        "gauge pressure"
+        "表压强"
       ],
       "type": "pressure",
-      "statement": "Gauge pressure is the pressure relative to atmospheric pressure. Pressure gauges are built to read zero at atmospheric pressure, which is why a tire with a gaping hole in it reads zero even though there is air inside."
+      "statement": "表压强是相对于大气压强的压强。压强计被制成在大气压强下读数为零，所以一个有大洞的轮胎，尽管里面有空气，读数仍然为零。"
     },
     {
       "id": "absolute-pressure",
       "kind": "definition",
       "section": "11.6",
-      "name": "Absolute pressure",
+      "name": "绝对压强",
       "symbol": "P_abs",
       "terms": [
-        "absolute pressure"
+        "绝对压强"
       ],
       "type": "pressure",
-      "statement": "Because pressures add, atmospheric pressure adds to the pressure in any fluid that is not enclosed in a rigid container. The total, or absolute, pressure is therefore the gauge pressure plus atmospheric pressure. Fluids push rather than pull, so in most cases the absolute pressure cannot be negative, and the smallest possible gauge pressure is $-\\kPatm$; there is no theoretical limit on how large a gauge pressure can be.",
+      "statement": "因为压强会相加，所以大气压强要加到任何未封闭在刚性容器中的流体的压强上。因此总压强，即绝对压强，等于表压强加大气压强。流体只推不拉，所以在大多数情况下绝对压强不能为负，最小可能的表压强是 $-\\kPatm$；而表压强可以多大，则没有理论上的限制。",
       "forms": [
         {
           "id": "eq-absolute-pressure",
@@ -8723,8 +8724,8 @@
       "id": "manometer",
       "kind": "skill",
       "section": "11.6",
-      "name": "Reading a manometer",
-      "statement": "A manometer is a U-shaped tube with one side open to the atmosphere. With both sides open the fluid stands at the same depth on each side, because atmospheric pressure pushes down equally on both. Connect one side to a source of pressure and the levels shift until the height difference balances the difference in pressure, so the gauge pressure is $\\kh\\krho\\kg$ and is found by measuring $\\kh$. The height difference is positive when the source is above atmospheric pressure and negative when it is below.",
+      "name": "读取压强计",
+      "statement": "压强计是一根U形管，其中一端通大气。两端都敞开时，两边的流体处在相同的深度，因为大气压强对两边的向下压力相等。把一端连到压强源上，液面就会移动，直到高度差与压强差相平衡，于是表压强就是 $\\kh\\krho\\kg$，通过测量 $\\kh$ 就能求出。压强源的压强高于大气压强时，高度差为正，低于大气压强时为负。",
       "forms": [
         {
           "id": "eq-gauge-pressure-manometer",
@@ -8738,8 +8739,8 @@
       "id": "barometer",
       "kind": "idea",
       "section": "11.6",
-      "name": "Barometer",
-      "statement": "A barometer is a tube with a nearly pure vacuum above the fluid rather than air, so it measures absolute pressure rather than gauge pressure, and what it measures is the pressure of the atmosphere. The mercury stands at whatever height makes the pressure due to its weight equal to atmospheric pressure, which is why atmospheric pressure is so often quoted in millimeters of mercury and why a barometer also works as an altimeter.",
+      "name": "气压计",
+      "statement": "气压计是一根管子，液体上方几乎是纯真空而不是空气，所以它测量的是绝对压强而不是表压强，而它测量的是大气的压强。水银柱停在某个高度，使水银的重力产生的压强等于大气压强，这就是大气压强常常用毫米汞柱来表示的原因，也是气压计还可以当作高度计使用的原因。",
       "forms": [
         {
           "id": "eq-barometer",
@@ -8753,35 +8754,35 @@
       "id": "blood-pressure-measurement",
       "kind": "idea",
       "section": "11.6",
-      "name": "Measuring blood pressure",
-      "statement": "An inflatable cuff on the upper arm squeezes until the pressure it applies cuts off blood flow below it, and a mercury manometer reads that pressure. As the cuff's pressure slowly drops, the value at which flow first begins is the systolic pressure, the maximum the heart produces. The value at which blood flows without interruption is the diastolic pressure, the minimum between beats. A young adult's typical reading is 120 mm Hg over 80 mm Hg. The manometer uses mercury because it is 13.6 times as dense as water and so gives a column short enough to read."
+      "name": "测量血压",
+      "statement": "上臂上的充气袖带不断收紧，直到它所施加的压强截断其下方的血流，然后用水银压强计读出这个压强。随着袖带的压强慢慢下降，血流刚开始出现时的值就是收缩压，即心脏产生的最大压强。血液毫无中断地流动时的值就是舒张压，即两次心跳之间的最小压强。年轻成年人的典型读数是 120 mm Hg 比 80 mm Hg。压强计使用水银，是因为水银的密度是水的 13.6 倍，因而给出的液柱短得便于读数。"
     },
     {
       "id": "systolic-pressure",
       "kind": "definition",
       "section": "11.6",
-      "name": "Systolic pressure",
+      "name": "收缩压",
       "terms": [
-        "systolic pressure"
+        "收缩压"
       ],
-      "statement": "Systolic pressure is the maximum blood pressure in the artery, reached during each beat because of the pumping action of the heart. In a young adult it is typically about 120 mm Hg."
+      "statement": "收缩压是动脉中血压的最大值，由于心脏的泵血作用，在每次心跳时达到。年轻成年人的收缩压通常约为 120 mm Hg。"
     },
     {
       "id": "diastolic-pressure",
       "kind": "definition",
       "section": "11.6",
-      "name": "Diastolic pressure",
+      "name": "舒张压",
       "terms": [
-        "diastolic pressure"
+        "舒张压"
       ],
-      "statement": "Diastolic pressure is the minimum blood pressure in the artery, reached between beats of the heart. In a young adult it is typically about 80 mm Hg."
+      "statement": "舒张压是动脉中血压的最小值，在两次心跳之间达到。年轻成年人的舒张压通常约为 80 mm Hg。"
     },
     {
       "id": "mm-hg",
       "kind": "definition",
       "section": "11.6",
-      "name": "Millimeter of mercury",
-      "statement": "A millimeter of mercury is the pressure that supports a column of mercury one millimeter high, which is 133 Pa. Mercury barometers and manometers are so common that atmospheric pressure and blood pressure are often quoted in this unit.",
+      "name": "毫米汞柱",
+      "statement": "一毫米汞柱是能支撑一毫米高水银柱的压强，等于 133 Pa。水银气压计和水银压强计非常普遍，所以大气压强和血压常常用这个单位来表示。",
       "forms": [
         {
           "id": "eq-mm-hg",
@@ -8794,13 +8795,13 @@
       "id": "buoyant-force",
       "kind": "definition",
       "section": "11.7",
-      "name": "Buoyant force",
+      "name": "浮力",
       "symbol": "F_B",
       "terms": [
-        "buoyant force"
+        "浮力"
       ],
       "type": "force",
-      "statement": "The buoyant force is the net upward force a fluid exerts on any object in it. It arises because pressure increases with depth, so the fluid pushes up on the bottom of the object harder than it pushes down on the top.",
+      "statement": "浮力是流体对其中任何物体所施的向上的净力。它的产生是因为压强随深度增加，所以流体向上推物体底部的力比向下推物体顶部的力更大。",
       "forms": [
         {
           "id": "eq-buoyant-force-difference",
@@ -8814,18 +8815,18 @@
       "id": "float-sink-suspend",
       "kind": "result",
       "section": "11.7",
-      "name": "Floating and sinking",
-      "statement": "The buoyant force competes with the object's weight. If the buoyant force is greater than the weight, the object rises to the surface and floats; if it is less, the object sinks; and if the two are equal, the object remains suspended at that depth. A submarine is built to move between the three by changing what it holds in its ballast tanks."
+      "name": "漂浮与下沉",
+      "statement": "浮力与物体的重力相抗衡。如果浮力大于重力，物体就上升到表面并漂浮；如果浮力小于重力，物体就下沉；如果两者相等，物体就悬浮在该深度。潜水艇的构造使它能通过改变压载舱中所装的东西，在这三种状态之间转换。"
     },
     {
       "id": "archimedes-principle",
       "kind": "result",
       "section": "11.7",
-      "name": "Archimedes’ principle",
+      "name": "阿基米德原理",
       "terms": [
-        "Archimedes’ principle"
+        "阿基米德原理"
       ],
-      "statement": "The buoyant force on an object equals the weight of the fluid it displaces. If the object were taken out, the space it occupied would be filled by fluid that the surrounding fluid holds up, so the buoyant force must equal the weight of that fluid.",
+      "statement": "物体所受的浮力等于它所排开的流体的重力。如果把物体拿走，它原来占据的空间会被流体填满，而周围的流体托住了这些流体，所以浮力必定等于那些流体的重力。",
       "forms": [
         {
           "id": "eq-archimedes",
@@ -8839,15 +8840,15 @@
       "id": "average-density-decides-floating",
       "kind": "result",
       "section": "11.7",
-      "name": "Average density and floating",
-      "statement": "An object floats when its average density is less than the density of the fluid around it. The fluid, having the higher density, contains more mass and hence more weight in the same volume, so the buoyant force, which is that weight, exceeds the object's own. This is why a lump of clay sinks and the same clay molded into the shape of a boat floats: the shape changes the average density, not the mass."
+      "name": "平均密度与漂浮",
+      "statement": "当物体的平均密度小于周围流体的密度时，物体漂浮。密度较大的流体在相同体积中含有较多的质量，因而重力也较大，所以浮力，即这个重力，就超过了物体自身的重力。这就是一块黏土会下沉，而把同样的黏土捏成船的形状却会漂浮的原因：形状改变的是平均密度，而不是质量。"
     },
     {
       "id": "fraction-submerged",
       "kind": "result",
       "section": "11.7",
-      "name": "Fraction submerged",
-      "statement": "The fraction of a floating object that lies below the surface is the ratio of its average density to the density of the fluid, $\\bar{\\rho}_{\\text{obj}}/\\rho_{\\text{fl}}$, because the volume submerged equals the volume of fluid displaced and the two have the same mass.",
+      "name": "浸入的比例",
+      "statement": "漂浮物体位于水面以下的部分所占的比例，是其平均密度与流体密度之比 $\\bar{\\rho}_{\\text{物体}}/\\rho_{\\text{流体}}$，因为浸入的体积等于排开的流体的体积，而两者具有相同的质量。",
       "forms": [
         {
           "id": "eq-fraction-submerged",
@@ -8866,11 +8867,11 @@
       "id": "specific-gravity",
       "kind": "definition",
       "section": "11.7",
-      "name": "Specific gravity",
+      "name": "相对密度",
       "terms": [
-        "specific gravity"
+        "相对密度"
       ],
-      "statement": "Specific gravity is the ratio of the density of an object to the density of a fluid, usually water, and it is dimensionless, so it comes out the same whatever units the densities are written in. A substance whose specific gravity is less than one floats, one greater than one sinks, and one exactly equal to one remains suspended, which is the state a scuba diver tries to reach. For a floating object the specific gravity is also the fraction submerged, which is what a hydrometer reads off directly.",
+      "statement": "相对密度是物体的密度与某种流体（通常是水）的密度之比，它是无量纲的，所以无论密度用什么单位写出，结果都相同。相对密度小于一的物质漂浮，大于一的物质下沉，恰好等于一的物质则悬浮，这正是水肺潜水员努力达到的状态。对于漂浮的物体，相对密度也是浸入的比例，这是液体比重计可以直接读出的。",
       "forms": [
         {
           "id": "eq-specific-gravity",
@@ -8884,8 +8885,8 @@
       "id": "apparent-weight-loss",
       "kind": "skill",
       "section": "11.7",
-      "name": "Finding a density by weighing twice",
-      "statement": "A submerged object appears to weigh less, and the apparent weight loss is exactly the weight of the fluid it displaces; on a balance that measures mass, the apparent mass loss is the mass of the fluid displaced. Weigh an object in air and again submerged in a fluid of known density, and its volume, and so its density, follow. The same two measurements give the density of the fluid instead when the density of the object is already known.",
+      "name": "通过两次称重求密度",
+      "statement": "浸没的物体看起来变轻了，而视重的减少量恰好等于它所排开的流体的重力；在测量质量的天平上，视质量的减少量就是所排开的流体的质量。把一个物体先在空气中称一次，再浸没在已知密度的流体中称一次，就能得出它的体积，进而得出它的密度。当物体的密度已知时，同样这两次测量则可以给出流体的密度。",
       "forms": [
         {
           "id": "eq-apparent-weight-loss",
@@ -8903,33 +8904,33 @@
       "id": "cohesive-forces",
       "kind": "definition",
       "section": "11.8",
-      "name": "Cohesive forces",
+      "name": "内聚力",
       "terms": [
-        "cohesive forces"
+        "内聚力"
       ],
-      "statement": "Cohesive forces are the attractive forces between molecules of the same type. They are what hold a liquid together in an open container, what draw its surface into the smallest area it can take, and what let a column of sap in a tree be pulled upward like a chain held together at every link."
+      "statement": "内聚力是同类分子之间的吸引力。正是它们把敞口容器中的液体聚在一起，把液体的表面拉成它所能取的最小面积，也使树中的一柱汁液能像每一环都连在一起的链条那样被向上拉起。"
     },
     {
       "id": "adhesive-forces",
       "kind": "definition",
       "section": "11.8",
-      "name": "Adhesive forces",
+      "name": "附着力",
       "terms": [
-        "adhesive forces"
+        "附着力"
       ],
-      "statement": "Adhesive forces are the attractive forces between molecules of different types. They are what make a drop cling to a window pane, what let water spread across bare paint but bead up on wax, and what draw blood into a small-diameter tube that merely touches a drop. The competition between adhesion and cohesion decides how a liquid meets a solid."
+      "statement": "附着力是不同类分子之间的吸引力。正是它们使一滴水附着在窗玻璃上，使水在裸露的油漆上铺展开而在蜡上却聚成珠，也使血液被吸入一根只是碰到一滴血的细管中。附着与内聚之间的竞争决定了液体如何与固体接触。"
     },
     {
       "id": "surface-tension",
       "kind": "definition",
       "section": "11.8",
-      "name": "Surface tension",
+      "name": "表面张力",
       "symbol": "γ",
       "terms": [
-        "surface tension"
+        "表面张力"
       ],
       "type": "surface-tension",
-      "statement": "Molecules at the surface of a liquid are pulled inward by their neighbors below, while molecules inside the liquid feel no net force at all, so the surface contracts to the smallest area it can. The surface then behaves like a stretched elastic sheet: it dents under an insect's foot and holds up a steel needle although the needle is far denser than water. Surface tension $\\kgamma$ is the force per unit length exerted by that stretched membrane, and it is greater for a liquid whose cohesive forces are stronger.",
+      "statement": "液体表面的分子被下方的邻近分子向内拉，而液体内部的分子则完全不受净力，所以表面收缩到它所能取的最小面积。于是表面表现得像一张拉紧的弹性薄膜：昆虫的脚会把它压出凹陷，它还能托住一根钢针，尽管钢针的密度比水大得多。表面张力 $\\kgamma$ 是这张拉紧的薄膜所施的单位长度上的力，内聚力越强的液体，表面张力越大。",
       "forms": [
         {
           "id": "eq-surface-tension",
@@ -8955,8 +8956,8 @@
       "id": "pressure-inside-a-bubble",
       "kind": "result",
       "section": "11.8",
-      "name": "Pressure inside a bubble",
-      "statement": "Surface tension pulls a bubble into a sphere and squeezes the gas inside, so the gauge pressure within a bubble is $4\\kgamma/r$. The smaller the bubble, the greater that excess pressure, which is why opening a valve between a small balloon and a large one empties the small one into the large one rather than the other way about.",
+      "name": "气泡内的压强",
+      "statement": "表面张力把气泡拉成球形，并挤压其中的气体，所以气泡内的表压强是 $4\\kgamma/r$。气泡越小，这个超出的压强就越大，这就是在一个小气球和一个大气球之间打开阀门时，会是小气球向大气球排空，而不是反过来的原因。",
       "forms": [
         {
           "id": "eq-bubble-pressure",
@@ -8970,30 +8971,30 @@
       "id": "alveoli-and-surfactant",
       "kind": "idea",
       "section": "11.8",
-      "name": "Surface tension in the lungs",
-      "statement": "The lungs end in hundreds of millions of mucus-lined sacs called alveoli, about 0.1 mm in diameter, and surface tension in their lining is enough to push air out without any muscle action at all. Because the pressure rises as a sac shrinks, small alveoli would empty into large ones and collapse; a lipoprotein surfactant in the lining prevents this by raising the wall tension as a sac stretches and lowering it as the sac contracts. An infant born without the surfactant has lungs that are very difficult to inflate."
+      "name": "肺中的表面张力",
+      "statement": "肺的末端是数以亿计的、内壁有黏液的小囊，称为肺泡，直径约 0.1 mm，肺泡内壁的表面张力就足以把空气挤出去，完全不需要任何肌肉活动。因为小囊缩小时压强会升高，小的肺泡就会向大的肺泡排空而塌陷；内壁中的脂蛋白表面活性物质通过在小囊伸展时增大壁的张力、在小囊收缩时减小壁的张力来防止这种情况。出生时没有这种表面活性物质的婴儿，肺非常难以充气。"
     },
     {
       "id": "contact-angle",
       "kind": "definition",
       "section": "11.8",
-      "name": "Contact angle",
+      "name": "接触角",
       "symbol": "θ",
       "terms": [
-        "contact angle"
+        "接触角"
       ],
       "type": "angle",
-      "statement": "Where a liquid meets a solid, the angle between the tangent to the liquid surface and the solid surface is the contact angle, and it says which of the two kinds of force is winning. A large angle means the cohesive forces are strong relative to the adhesive ones and the liquid draws itself into a droplet; a small angle means adhesion is flattening the drop against the solid. Water on waxed car paint stands at a large angle, water on bare paint at a small one."
+      "statement": "在液体与固体相接触的地方，液体表面的切线与固体表面之间的夹角就是接触角，它说明两种力中哪一种占上风。角度大，意味着内聚力相对于附着力较强，液体把自己拉成液滴；角度小，则意味着附着使液滴平铺在固体上。水在打了蜡的汽车漆面上形成大角度，在裸露的油漆上形成小角度。"
     },
     {
       "id": "capillary-action",
       "kind": "result",
       "section": "11.8",
-      "name": "Capillary action",
+      "name": "毛细现象",
       "terms": [
-        "capillary action"
+        "毛细现象"
       ],
-      "statement": "Capillary action is the tendency of a fluid to be raised or lowered in a narrow tube. Surface tension raises the liquid when the contact angle is less than $90^\\circ$ and lowers it when the angle is greater, to a height $h = 2\\gamma\\cos\\theta/\\rho gr$.",
+      "statement": "毛细现象是流体在窄管中被升高或降低的趋势。当接触角小于 $90^\\circ$ 时，表面张力使液体升高，当角度大于 $90^\\circ$ 时使液体降低，升降的高度为 $h = 2\\gamma\\cos\\theta/\\rho gr$。",
       "forms": [
         {
           "id": "eq-capillary-height",
@@ -9007,15 +9008,15 @@
       "id": "pressures-in-the-body",
       "kind": "idea",
       "section": "11.9",
-      "name": "Pressures in the body",
-      "statement": "The pressures measured in the body are gauge pressures, quoted in millimeters of mercury, and they are among the most useful indicators medicine has. Table 11.5 lists them: over a hundred millimeters of mercury in the large arteries at each beat, a few in the large veins, twelve to twenty-four in the eye, and pressures that are negative between the lungs and the ribs and in the esophagus."
+      "name": "人体内的压强",
+      "statement": "人体内测得的压强是表压强，用毫米汞柱表示，它们是医学所拥有的最有用的指标之一。表 11.5 列出了这些压强：大动脉中每次心跳时超过一百毫米汞柱，大静脉中是几毫米汞柱，眼中是十二到二十四毫米汞柱，而肺与肋骨之间以及食管中的压强则为负值。"
     },
     {
       "id": "blood-pressure-and-height",
       "kind": "result",
       "section": "11.9",
-      "name": "Blood pressure and height",
-      "statement": "Blood is a fluid with weight, so the pressure in it varies with height in the body exactly as in any other fluid. Standing up puts the feet about 1.4 m below the heart, which raises the pressure there by 108 mm Hg. Standing still for a long time lets blood accumulate in the legs and the legs swell. That is why soldiers standing at attention sometimes faint and why doctors recommend tight stockings for long flights.",
+      "name": "血压与高度",
+      "statement": "血液是有重力的流体，所以其中的压强随身体高度的变化，与其他任何流体中完全一样。站起来使双脚处在心脏下方约 1.4 m 处，这使那里的压强升高 108 mm Hg。长时间站着不动会使血液积聚在腿部，腿就会肿起来。这就是立正站着的士兵有时会晕倒，以及医生建议长途飞行时穿紧身长袜的原因。",
       "forms": [
         {
           "id": "eq-pressure-in-feet",
@@ -9029,11 +9030,11 @@
       "id": "intraocular-pressure",
       "kind": "definition",
       "section": "11.9",
-      "name": "Pressure in the eye",
+      "name": "眼内的压强",
       "terms": [
-        "intraocular pressure"
+        "眼内压"
       ],
-      "statement": "The pressure of the fluid inside the eye keeps its shape, normally in the range of 12.0 to 24.0 mm Hg. When something blocks the circulation of that fluid, the pressure builds, a condition called glaucoma, and it can reach 85.0 mm Hg. Over the $6.0\\;\\text{cm}^2$ at the back of the eye, that is a force of 6.8 N, the weight of about a 680 g mass resting on the eye, enough to damage the optic nerve permanently.",
+      "statement": "眼内流体的压强维持着眼球的形状，正常范围是 12.0 到 24.0 mm Hg。当某种东西阻塞了这种流体的循环时，压强就会积聚起来，这种情况称为青光眼，压强可以达到 85.0 mm Hg。在眼球后部 $6.0\\;\\text{cm}^2$ 的面积上，这相当于 6.8 N 的力，也就是约 680 g 的质量压在眼睛上的重力，足以永久损伤视神经。",
       "forms": [
         {
           "id": "eq-eye-force",
@@ -9047,42 +9048,42 @@
       "id": "lung-pressures",
       "kind": "idea",
       "section": "11.9",
-      "name": "Pressures in the lungs",
-      "statement": "The pressure inside the lungs drops below atmospheric pressure when muscle action in the diaphragm and the rib cage expands the chest, and that draws air in. It rises above atmospheric pressure when the muscles relax and surface tension in the alveoli contracts them, and that forces air out. The liquid attaching the lungs to the inside of the chest wall is at a negative gauge pressure of $-4$ to $-8$ mm Hg, and that attachment keeps the lungs from collapsing. Letting air into the chest cavity breaks it, and a lung may collapse."
+      "name": "肺内的压强",
+      "statement": "当膈肌和胸廓的肌肉活动使胸腔扩张时，肺内的压强降到大气压强以下，这就把空气吸入。当肌肉放松、肺泡中的表面张力使肺收缩时，压强升到大气压强以上，这就把空气挤出。把肺附着在胸壁内侧的液体处于 $-4$ 到 $-8$ mm Hg 的负表压强，这种附着使肺不致塌陷。让空气进入胸腔会破坏这种附着，肺就可能塌陷。"
     },
     {
       "id": "bladder-pressure",
       "kind": "idea",
       "section": "11.9",
-      "name": "Bladder pressure",
-      "statement": "Bladder pressure climbs steadily from zero to about 25 mm Hg as the bladder fills to its normal capacity of $500\\;\\text{cm}^3$. That pressure triggers the micturition reflex, which produces the feeling of needing to urinate and also contracts the muscles around the bladder, raising the pressure to over 100 mm Hg and accentuating the sensation. Coughing, straining, tight clothes and the weight of a fetus all add to the pressure and can trigger the reflex."
+      "name": "膀胱内压",
+      "statement": "随着膀胱充盈到其正常容量 $500\\;\\text{cm}^3$，膀胱内压从零稳步上升到约 25 mm Hg。这个压强触发排尿反射，产生想要排尿的感觉，同时还使膀胱周围的肌肉收缩，把压强升高到超过 100 mm Hg，从而加剧这种感觉。咳嗽、用力、紧身衣服和胎儿的重力都会增加这个压强，并可能触发这一反射。"
     },
     {
       "id": "skeletal-pressures",
       "kind": "idea",
       "section": "11.9",
-      "name": "Pressures in the skeletal system",
-      "statement": "The largest pressures in the body are in the joints and between the vertebrae, because large forces are applied over small areas. Lifting an object improperly can create 5000 N between two vertebrae over an area as small as $10\\;\\text{cm}^2$, which is $5.0\\times 10^{6}\\;\\text{N/m}^2$, about 50 atmospheres, and that is enough to damage the spinal discs and the bony vertebrae themselves."
+      "name": "骨骼系统中的压强",
+      "statement": "人体内最大的压强出现在关节中和椎骨之间，因为很大的力作用在很小的面积上。不正确地搬起物体，可以在两节椎骨之间的小到 $10\\;\\text{cm}^2$ 的面积上产生 5000 N 的力，也就是 $5.0\\times 10^{6}\\;\\text{N/m}^2$，约 50 个大气压，这足以损伤椎间盘和骨质椎骨本身。"
     },
     {
       "id": "glaucoma",
       "kind": "definition",
       "section": "11.9",
-      "name": "Glaucoma",
+      "name": "青光眼",
       "terms": [
-        "glaucoma"
+        "青光眼"
       ],
-      "statement": "Glaucoma is the condition caused by the buildup of fluid pressure in the eye when the circulation of that fluid is blocked. The raised pressure pushes on the retina and the optic nerve and can damage them."
+      "statement": "青光眼是眼中流体的循环被阻塞时，流体压强积聚所引起的病症。升高的压强压迫视网膜和视神经，并可能损伤它们。"
     },
     {
       "id": "micturition-reflex",
       "kind": "definition",
       "section": "11.9",
-      "name": "Micturition reflex",
+      "name": "排尿反射",
       "terms": [
-        "micturition reflex"
+        "排尿反射"
       ],
-      "statement": "The micturition reflex is the feeling of needing to urinate, triggered by the pressure in the bladder as it fills toward its normal capacity."
+      "statement": "排尿反射是想要排尿的感觉，由膀胱充盈、接近其正常容量时膀胱内的压强触发。"
     },
     {
       "id": "flow-rate",
@@ -24338,7 +24339,7 @@
           "id": "eq-fnet-floor",
           "latex": "F_{\\text{net}} = F_{\\text{floor}} - f",
           "ktex": "\\kFnet = \\kFfloor - \\kff",
-          "condition": "the professor, the cart and the equipment taken as one system",
+          "condition": "教授、小车和设备取作一个系统",
           "section": "4.4",
           "anchor": "4.4-choosing-a-system"
         },
@@ -24346,7 +24347,7 @@
           "id": "eq-fprof",
           "latex": "F_{\\text{prof}} = F_{\\text{net}} + f",
           "ktex": "\\kFprof = \\kFnet + \\kff",
-          "condition": "the cart and the equipment taken as the system",
+          "condition": "小车和设备取作系统",
           "section": "4.4",
           "anchor": "4.4-choosing-a-system"
         }
@@ -24368,7 +24369,7 @@
           "id": "eq-fapp-magnitude",
           "latex": "F_{\\text{app}} = \\sqrt{F_x^2 + F_y^2}",
           "ktex": "\\kFa = \\sqrt{\\kFx^2 + \\kFy^2}",
-          "condition": "the two applied forces are perpendicular",
+          "condition": "两个外加力相互垂直",
           "section": "4.7",
           "anchor": "4.7-drag"
         }
@@ -24408,7 +24409,7 @@
           "id": "eq-newton2-mag",
           "latex": "F_{\\text{net}} = ma",
           "ktex": "\\kFnet = m\\ka",
-          "condition": "only the magnitudes of the force and the acceleration are considered",
+          "condition": "只考虑力和加速度的大小",
           "anchor": "4.3-second-law"
         }
       ]
@@ -24527,7 +24528,7 @@
           "id": "eq-normal",
           "latex": "N = mg",
           "ktex": "\\kN = m\\kg",
-          "condition": "an object at rest on a horizontal surface that is not accelerating",
+          "condition": "静止在不加速的水平面上的物体",
           "anchor": "4.5-normal-force"
         }
       ]
@@ -24543,21 +24544,21 @@
           "id": "eq-w-parallel",
           "latex": "w_{\\parallel} = w\\sin\\theta = mg\\sin\\theta",
           "ktex": "\\kwpar = \\kwgt\\sin\\theta = m\\kg\\sin\\theta",
-          "condition": "an incline that makes an angle θ with the horizontal",
+          "condition": "与水平面成角 θ 的斜面",
           "anchor": "4.5-weight-on-incline"
         },
         {
           "id": "eq-w-perp",
           "latex": "w_{\\perp} = w\\cos\\theta = mg\\cos\\theta",
           "ktex": "\\kwperp = \\kwgt\\cos\\theta = m\\kg\\cos\\theta",
-          "condition": "an incline that makes an angle θ with the horizontal",
+          "condition": "与水平面成角 θ 的斜面",
           "anchor": "4.5-weight-on-incline"
         },
         {
           "id": "eq-N-incline",
           "latex": "N = w_{\\perp} = w\\cos\\theta = mg\\cos\\theta",
           "ktex": "\\kN = \\kwperp = \\kwgt\\cos\\theta = m\\kg\\cos\\theta",
-          "condition": "there is no motion perpendicular to the slope",
+          "condition": "垂直于斜坡方向没有运动",
           "section": "5.1",
           "anchor": "5.1-incline"
         }
@@ -24574,7 +24575,7 @@
           "id": "eq-a-incline",
           "latex": "a_{\\parallel} = g\\sin\\theta",
           "ktex": "\\kapar = \\kg\\sin\\theta",
-          "condition": "friction on the incline is negligible",
+          "condition": "斜面上的摩擦可忽略",
           "anchor": "4.5-weight-on-incline"
         }
       ]
@@ -24602,7 +24603,7 @@
           "id": "eq-tension-weight",
           "latex": "T = w = mg",
           "ktex": "\\kTf = \\kwgt = m\\kg",
-          "condition": "a rope of negligible mass supporting a stationary object",
+          "condition": "质量可忽略的绳子，吊着一个静止的物体",
           "anchor": "4.5-tension"
         }
       ]
@@ -24618,14 +24619,14 @@
           "id": "eq-tension-perp",
           "latex": "T = \\frac{F_{\\perp}}{2\\sin\\theta}",
           "ktex": "\\kTf = \\frac{\\kFperp}{2\\sin\\theta}",
-          "condition": "a force perpendicular to the length of a flexible connector, exerted at its middle",
+          "condition": "垂直于柔索长度方向、作用在其中点的力",
           "anchor": "4.5-large-tension"
         },
         {
           "id": "eq-tension-sag",
           "latex": "T = \\frac{w}{2\\sin\\theta}",
           "ktex": "\\kTf = \\frac{\\kwgt}{2\\sin\\theta}",
-          "condition": "a weight at the middle of a connector that sags by an angle θ on either side",
+          "condition": "重物挂在柔索中点，柔索两侧各下垂角度 θ",
           "anchor": "4.5-tightrope"
         }
       ]
@@ -24658,14 +24659,14 @@
           "id": "eq-fnet-x",
           "latex": "F_{\\text{net}\\,x} = ma",
           "ktex": "\\kFnetx = m\\ka",
-          "condition": "the system accelerates along the x-axis",
+          "condition": "系统沿 x 轴加速",
           "anchor": "4.6-axes"
         },
         {
           "id": "eq-a-incline-friction",
           "latex": "a_{\\parallel} = \\frac{mg\\sin\\theta - f}{m}",
           "ktex": "\\kapar = \\frac{m\\kg\\sin\\theta - \\kff}{m}",
-          "condition": "friction of magnitude f opposes the motion down the incline",
+          "condition": "大小为 f 的摩擦力阻碍沿斜面向下的运动",
           "section": "4.5",
           "anchor": "4.5-weight-on-incline"
         },
@@ -24673,7 +24674,7 @@
           "id": "eq-fnet-y",
           "latex": "F_{\\text{net}\\,y} = 0",
           "ktex": "\\kFnety = 0",
-          "condition": "the system has no acceleration along the y-axis",
+          "condition": "系统沿 y 轴没有加速度",
           "anchor": "4.6-axes"
         }
       ]
@@ -24696,7 +24697,7 @@
           "id": "eq-tension-two-wires",
           "latex": "T_1\\cos\\theta_1 = T_2\\cos\\theta_2, \\quad T_1\\sin\\theta_1 + T_2\\sin\\theta_2 = w",
           "ktex": "\\kTone\\cos\\theta_1 = \\kTtwo\\cos\\theta_2, \\quad \\kTone\\sin\\theta_1 + \\kTtwo\\sin\\theta_2 = \\kwgt",
-          "condition": "an object hanging at rest from two wires",
+          "condition": "物体由两根钢丝静止悬挂着",
           "anchor": "4.7-tensions"
         }
       ]
@@ -24713,7 +24714,7 @@
           "id": "eq-apparent-weight",
           "latex": "F_{\\text{s}} = ma + mg",
           "ktex": "\\kFs = m\\ka + m\\kg",
-          "condition": "a person standing on a scale in a system accelerating vertically",
+          "condition": "人站在秤上，系统在竖直方向加速",
           "anchor": "4.7-scale"
         }
       ]
@@ -24734,7 +24735,7 @@
           "id": "eq-drag",
           "latex": "F_{\\text{D}} = F_{\\text{app}} - ma",
           "ktex": "\\kFD = \\kFa - m\\ka",
-          "condition": "the drag is opposite to the applied force and the motion is along one line",
+          "condition": "阻力与外加力方向相反，运动沿一条直线",
           "anchor": "4.7-drag"
         }
       ]

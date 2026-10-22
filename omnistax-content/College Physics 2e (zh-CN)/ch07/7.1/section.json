@@ -1,0 +1,600 @@
+{
+ "id": "7.1",
+ "module": "m42146",
+ "chapter": "7",
+ "title": "功：科学定义",
+ "short": "功",
+ "lead": "参加考试和在水平地面上搬运重物，在日常意义上都是辛苦的<span data-concept=\"work\">工作</span>，而在科学意义上都不是<span data-concept=\"work\">功</span>。科学意义取决于<span data-concept=\"force\">力</span>对一个运动着的系统起什么作用，以及<span data-concept=\"force\">力</span>有多少沿着系统的<span data-concept=\"displacement\">位移</span>起作用。",
+ "objectives": [
+  "解释物体必须如何发生位移，作用在它上面的力才能做功。",
+  "解释力与位移的相对方向如何决定所做的功是正、是负还是为零。"
+ ],
+ "summary_html": "<ul><li><span data-concept=\"work\">功</span>是<span data-concept=\"force\">力</span>在物体发生位移时对其作用所实现的<span data-concept=\"energy\">能量</span>转移。</li><li><span data-concept=\"force\">力</span> $\\kF$ 对物体所做的<span data-concept=\"work\">功</span> $\\kW$，等于<span data-concept=\"force\">力</span>的大小 $\\kF$、<span data-concept=\"displacement\">位移</span>的大小 $\\kd$，以及二者之间<span data-concept=\"angle\">夹角</span> $\\theta$ 的余弦三者的乘积。用符号表示为 $$\\kW = \\kF\\kd\\cos\\theta.$$</li><li><span data-concept=\"work\">功</span>和<span data-concept=\"energy\">能量</span>的 SI 单位是焦耳（J），其中 $1\\ \\text{J} = 1\\ \\text{N}\\cdot\\text{m} = 1\\ \\text{kg}\\cdot\\text{m}^2/\\text{s}^2$。</li><li>如果<span data-concept=\"displacement\">位移</span>为零，或者与<span data-concept=\"force\">力</span>垂直，那么该<span data-concept=\"force\">力</span>所做的<span data-concept=\"work\">功</span>为零。</li><li>如果<span data-concept=\"force\">力</span>与<span data-concept=\"displacement\">位移</span>方向相同，所做的<span data-concept=\"work\">功</span>为正；如果方向相反，所做的<span data-concept=\"work\">功</span>为负。</li></ul>",
+ "notes": "电梯问题、爬楼梯的人、用掉两加仑汽油的汽车、拉着妹妹的男孩和 60.0 度斜坡上的救援雪橇，是本节没有给出答案的习题；其中书后答案里没有答案的四道已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成，答案仅取自书后答案。八道习题中有四道没有给出答案，已略去：75.0 kg 的人爬楼梯（fs-id1911221）、行驶 108 km 用掉两加仑汽油的汽车（fs-id1541465，这也是本节唯一一道让读者去查表 7.1 获得汽油能量的习题）、男孩用四轮小车拉着妹妹（fs-id1537085）和沿 60.0 度斜坡放下的救援雪橇（fs-id1548848）；属于后两道的两幅图随之略去，没有复制。习题 3 的电梯轿厢，书中只给出前两问的答案，第三问用文字回答：“合力为零”，所以把它设为两个数值，并把书中的完整答案放在解答里。三道思考题都没有给出答案，所以每道都附有 AI 撰写的建议思路，并已标明。本节的五道 AP 题中有三道留待后面的各节，因为每一道考查的都是本节没有介绍的内容：火箭发动机对 3.0 kg 载荷施加的力（fs-id2527597）连同它的距离—末速度表放到 7.2，因为它考查的是动能定理；力在 60 m 内逐渐增大、保持、再逐渐减小的起重机（fs-id2714107）连同它的图像放到 7.2，因为它考查的是变力所做的功，即力-距离图像下的面积；弹簧先压缩 x、再压缩 2x（fs-id2713956）引用了图 7.10（c），放到 7.4，因为它需要用到弹簧的势能。这三道都有答案，7.2 和 7.4 的说明里也这样写明。本节保留两道设计实验的 AP 题，它们都没有答案，都是附有 AI 撰写的建议思路的开放题。另有两道 AP 题取自 7.6，标为 source_section 7.6，因为每一道考查的都是功的科学定义，没有用到 7.6 介绍的任何内容：骡以 1200 N 的力拉驳船，与行进方向成 20 度角，走 10 km（fs-id772532），它有答案，设为带有书中四个选项的判分选择题；以及“描述你今天做过功的一个实例”（fs-id2338574），它没有答案，是附有 AI 撰写的建议思路的开放题；7.6 的说明里也这样写明。本章在任何地方都没有印出“理解检测”框，而三道思考题都要求读者自己想出并解释一个例子，这属于习题集的工作，所以本节没有任何内容放在正文中间。",
+ "figures": [
+  {
+   "id": "sim-work",
+   "kind": "sim",
+   "number": "7.2",
+   "originals": [
+    "/media/ch07/Figure_08_02_01.jpg"
+   ],
+   "original_caption": "功的实例。（a）力 F 对这台割草机所做的功为 Fd cos θ。注意 F cos θ 是力在运动方向上的分量。（b）手提公文包的人对公文包不做功，因为没有位移。没有能量传递到公文包上，也没有能量从公文包转出。（c）以恒定速率水平移动公文包的人对公文包不做功，也没有把能量传递给它。（d）以恒定速率把公文包提上楼梯，对公文包做了功，因为力 F 必然有一个沿运动方向的分量。能量传递到了公文包上，并且又可以用来做功。（e）公文包被放下时，能量从公文包转移出来，进入一台发电机。这里发电机对公文包所做的功为负，把能量从公文包中移走，因为 F 和 d 的方向相反。",
+   "widths": [
+    450
+   ],
+   "draws": [
+    "force",
+    "position",
+    "energy",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "mower redrawn, grip lowered, start moved in, labels, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-joule",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "position",
+    "energy",
+    "mass",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "calorie label off the mower leader; readout numbers in TeX"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "definition",
+   "concept": "work",
+   "verb": "introduces"
+  },
+  {
+   "span": "definition",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "definition",
+   "concept": "displacement",
+   "verb": "uses"
+  },
+  {
+   "span": "definition",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "definition",
+   "concept": "energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "work-cases",
+   "concept": "work-sign",
+   "verb": "introduces"
+  },
+  {
+   "span": "work-cases",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "work-cases",
+   "concept": "vector",
+   "verb": "uses"
+  },
+  {
+   "span": "joule-unit",
+   "concept": "joule",
+   "verb": "introduces"
+  },
+  {
+   "span": "joule-unit",
+   "concept": "derived-units",
+   "verb": "uses"
+  },
+  {
+   "span": "joule-unit",
+   "concept": "work",
+   "verb": "reinforces"
+  },
+  {
+   "span": "calculating",
+   "concept": "calculate-work",
+   "verb": "introduces"
+  },
+  {
+   "span": "calculating",
+   "concept": "work",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating",
+   "concept": "joule",
+   "verb": "uses"
+  },
+  {
+   "span": "calculating",
+   "concept": "unit-conversion",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id772532",
+   "source_section": "7.6",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "prompt": "在铁路发明之前，货物常常沿运河运输，由骡在岸上拉着驳船。如果一头骡施加 1200 N 的力，持续 10 km，连接骡和驳船的绳与行进方向成 20 度角，那么骡对驳船做了多少功？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "12 MJ",
+     "11 MJ",
+     "4.1 MJ",
+     "6 MJ"
+    ],
+    "correct": 1,
+    "hint": "绳不沿行进方向，所以只有力沿位移方向的分量做功，而且距离是以千米而不是米为单位。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2338574",
+   "source_section": "7.6",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating",
+   "prompt": "描述今天你按科学定义做过功的一个实例。然后计算你在那个实例中做了多少功，并写出计算过程。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把一个 5.0 kg 的背包从地板提到 0.75 m 高的书桌上，在科学意义上就是做功，大约需要 37 J。手对背包施加一个力，背包沿这个力的方向运动，这正是功所需要的两个条件。以恒定速率提起时，向上的力等于背包的重力，$\\kF = \\km\\kg = (5.0\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 49\\ \\text{N}$。位移同样向上，为 0.75 m，所以 $\\ktheta = 0^\\circ$，$\\cos\\ktheta = 1$。于是 $\\kW = \\kF\\kd\\cos\\ktheta = (49\\ \\text{N})(0.75\\ \\text{m})(1) = 37\\ \\text{J}$。折合成食物能量，就是 $(37\\ \\text{J})/(4186\\ \\text{J/kcal}) = 8.8\\times 10^{-3}\\ \\text{kcal}$，略少于百分之一大卡。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1277250",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "prompt": "你有一条小车轨道、一辆小车、几个砝码和一个位置传感滑轮。设计一个实验，考察作用在小车上的力在小车通过一段距离时是如何做功的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把一个已知质量的砝码挂在一根细绳上，细绳绕过位置传感滑轮并系在小车上，这样悬挂砝码的重力就是沿轨道拉小车的力。细绳平行于轨道，所以力与位移之间的夹角为零，对小车所做的功就是 $\\kW = \\kF\\kd$。让小车从静止释放，由滑轮记录它运动时的位置，并在几个时刻读出小车已经移动的距离。把这个距离乘以已知的力，就得到直到每个时刻为止所做的功，功对距离的图像应当是一条直线，其斜率就是力。换用更重的砝码重复，这条直线应当更陡，因为同样的距离现在需要更多的功；在更长的一段轨道上重复，功应当与距离成正比地增大。"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1271091",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-cases",
+   "prompt": "你有一条小车轨道、两辆小车、几个砝码、一个位置传感滑轮，以及一块可以铺在轨道上的地毯（粗糙表面）。设计一个实验，考察作用在小车上的力在小车通过一段距离时是如何做功的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把实验做两次，一次在没有铺东西的轨道上，一次在铺上地毯的轨道上。每次都用同样的已知力拉小车，这个力就是挂在细绳上、绕过位置传感滑轮的砝码的重力。细绳平行于轨道，所以两次中细绳对小车所做的功都是 $\\kW = \\kF\\kd$，同样的距离得到同样的数值。不同的是，地毯施加一个与运动方向相反的摩擦力。这个力与位移之间的夹角是 $180^\\circ$，它的余弦是 $-1$，摩擦力所做的功为负：它把能量从小车中取走，而不是给小车增加能量。给第二辆小车加上砝码，它对地毯压得更紧，摩擦力和它所做的负功都随之增大，而细绳所做的功保持不变。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2189314",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "definition",
+   "prompt": "举出一个我们在日常情况下认为是工作、但在科学意义上不是功的例子。在你的例子里，能量是否发生了转移或形式的改变？如果是，请解释在不做功的情况下这是如何实现的。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "双手把一个沉重的箱子稳稳地举在胸前，在日常意义上是很辛苦的工作，而在科学意义上一点功也没有做。箱子没有移动：$\\kd = 0$，所以不管你站多久，$\\kW = 0$。能量当然发生了转移，但不是转移给箱子。撑住你手臂的肌肉并不是一直整块地收缩着。它们的肌纤维每秒钟要放松、再抓紧许多次，所以肌肉是在你的身体内部相互对抗着做功，来自食物的化学能变成了热能，而没有进入箱子。箱子什么也没有得到，所以你把它放下，会发现它和原来完全一样。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1268060",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-cases",
+   "prompt": "举出一个存在力和位移、但力不做功的情形。解释它为什么不做功。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "以恒定速率提着公文包在水平地面上行走。你的手对公文包施加的力是向上的，因为它在抵抗重力托住公文包，而位移是水平的，所以二者之间的夹角是 $90^\\circ$。因为 $\\cos 90^\\circ = 0$，所以功为 $\\kW = \\kF\\kd\\cos 90^\\circ = 0$：有力，也有位移，但力没有沿运动方向的分量，所以没有能量传递给公文包。圆轨道上的卫星是同样的情形，只是规模更大，因为作用在它上面的引力总是指向圆心，而运动总是沿着圆周。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1913046",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "work-cases",
+   "prompt": "描述一种力作用了很长时间、但不做功的情形。并加以解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "你可以对一辆停着的汽车尽力推上一个小时。汽车没有移动，所以位移为零，你对它做的功是 $\\kW = \\kF(0)\\cos\\theta = 0$，不论力有多大、持续多久都一样。功不是力，也不是随时间累积的努力；它是力通过一段距离的作用，没有沿力的方向的位移，力就没有可以作用的距离，也没有能量传递给汽车。你付出的能量进入了你自己的肌肉，肌肉在相互对抗着做功时会发热。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2004860",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating",
+   "prompt": "超市收银员用 5.00 N 的力把一罐汤水平推了 0.600 m，他对这罐汤做了多少功？请用焦耳和千卡表示你的答案。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3.0,
+    "unit": "J",
+    "part": "the work in joules",
+    "hint": "推力和位移都是水平的，所以二者之间的夹角为零，$\\cos\\theta = 1$。一大卡是 4186 J。",
+    "solution": "$3.00\\ \\text{J} = 7.17\\times 10^{-4}\\ \\text{kcal}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id1102777",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating",
+   "prompt": "（a）计算缆绳对一部 1500 kg 的电梯轿厢所做的功，使它以恒定速率升高 40.0 m，假设摩擦力平均为 100 N。（b）在这一过程中，重力对电梯轿厢所做的功是多少？（c）对电梯轿厢所做的总功是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the work done by the cable",
+      "value": 592000.0,
+      "unit": "J",
+      "hint": "恒定速率时，缆绳必须同时平衡重力和摩擦力，并且它沿轿厢运动的方向拉。"
+     },
+     {
+      "part": "(b) the work done by the gravitational force",
+      "value": -588000.0,
+      "unit": "J",
+      "hint": "重力向下而轿厢向上运动，所以二者之间的夹角是 $180^\\circ$。"
+     }
+    ],
+    "solution": "（a）$5.92\\times 10^{5}\\ \\text{J}$。（b）$-5.88\\times 10^{5}\\ \\text{J}$。（c）合力为零。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1648144",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating",
+   "figure": {
+    "src": "/media/ch07/Figure_08_01_02a-7069.jpg",
+    "alt": "一个人正在把一个沉重的木箱推上斜面。人施加的力矢量 F 平行于斜面。",
+    "caption": "一名男子把木箱推上斜面。"
+   },
+   "prompt": "计算一位 85.0 kg 的男子沿斜面把木箱向上推 4.00 m 所做的功，斜面与水平面成 $20.0^\\circ$ 角，如图所示。他对木箱施加 500 N 的力，力平行于斜面，并以恒定速率运动。务必把他对木箱做的功<em>和</em>他为爬上斜面而对自己身体做的功都计算在内。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 3140.0,
+    "unit": "J",
+    "hint": "500 N 的推力平行于斜面，所以它在整个 4.00 m 上都做功；这名男子还要把自己的重力举过斜面所升高的高度。",
+    "solution": "$3.14\\times 10^{3}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1779446",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "calculating",
+   "prompt": "一位购物者在水平地面上以恒定速率把购物车推了 20.0 m，抵抗 35.0 N 的摩擦力。他推的方向在水平方向以下 $25.0^\\circ$。（a）摩擦力对购物车所做的功是多少？（b）重力对购物车所做的功是多少？（c）购物者对购物车所做的功是多少？（d）利用能量方面的考虑，求购物者施加的力。（e）对购物车所做的总功是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the work done by friction",
+      "value": -700.0,
+      "unit": "J",
+      "hint": "摩擦力与运动方向相反，所以它与位移之间的夹角是 $180^\\circ$。"
+     },
+     {
+      "part": "(b) the work done by the gravitational force",
+      "value": 0.0,
+      "unit": "J",
+      "hint": "地面是水平的，所以重力垂直于位移。"
+     },
+     {
+      "part": "(c) the work done by the shopper",
+      "value": 700.0,
+      "unit": "J"
+     },
+     {
+      "part": "(d) the force the shopper exerts",
+      "value": 38.6,
+      "unit": "N",
+      "hint": "只有他的推力沿运动方向的分量做功，所以用他所做的功除以 $\\kd\\cos 25.0^\\circ$。"
+     },
+     {
+      "part": "(e) the total work done on the cart",
+      "value": 0.0,
+      "unit": "J"
+     }
+    ],
+    "solution": "（a）$-700\\ \\text{J}$。（b）0。（c）700 J。（d）38.6 N。（e）0。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "work"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "calculate-work"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "work"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "calculate-work",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "joule"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "work"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "calculate-work"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "work"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "calculate-work"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "work-sign",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "work"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "work-sign",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "work-sign"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "work",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "work-sign"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "work",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "joule"
+  },
+  {
+   "exercise": "p1",
+   "concept": "calculate-work",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "work",
+   "weight": 2
+  },
+  {
+   "exercise": "p2",
+   "concept": "calculate-work"
+  },
+  {
+   "exercise": "p2",
+   "concept": "work"
+  },
+  {
+   "exercise": "p2",
+   "concept": "work-sign"
+  },
+  {
+   "exercise": "p3",
+   "concept": "calculate-work"
+  },
+  {
+   "exercise": "p3",
+   "concept": "work"
+  },
+  {
+   "exercise": "p4",
+   "concept": "calculate-work"
+  },
+  {
+   "exercise": "p4",
+   "concept": "work"
+  },
+  {
+   "exercise": "p4",
+   "concept": "work-sign"
+  }
+ ],
+ "referents": [
+  {
+   "id": "pusher",
+   "label": "推割草机的人",
+   "figures": [
+    "sim-work"
+   ]
+  },
+  {
+   "id": "mower",
+   "label": "割草机",
+   "figures": [
+    "sim-work"
+   ]
+  },
+  {
+   "id": "apple",
+   "label": "100 克的苹果",
+   "figures": [
+    "sim-joule"
+   ]
+  }
+ ]
+}

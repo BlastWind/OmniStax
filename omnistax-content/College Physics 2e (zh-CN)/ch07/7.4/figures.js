@@ -1,0 +1,325 @@
+/* Figures for section 7.4 Conservative Forces and Potential Energy. Boots against the section's text article. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['7.4'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, REDUCED, ctl, cycle, register, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, strip, axes, nice, pinned, spring, fixed, car } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+const G = 9.80, TAU = 2 * Math.PI;
+const SMOOTH = (u) => u * u * (3 - 2 * u);
+/* a stacked bar of energies: one filled band per term, drawn against the constant total */
+function stack(ctx, x0, y0, w, h, total, parts) {
+  let x = x0;
+  parts.forEach((p, i) => {
+    const pw = total > 0 ? (w * p.value) / total : 0;
+    if (pw > 0.5) {
+      ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.78 - 0.24 * i); ctx.fillRect(x, y0, pw, h); ctx.restore();
+      /* the label reads the same on every band, however pale its fill: ink on a
+         panel the colour of the page, never page-coloured letters on a faint one */
+      if (pw > 120) { text(ctx, p.label + ' = ' + fmt(p.value, 3) + ' J', x + pw / 2, y0 + h / 2, PAL.ink, { size: 18, weight: 600, align: 'center', bg: PAL.panel }); }
+    }
+    x += pw;
+  });
+  ctx.save(); ctx.strokeStyle = C('energy'); ctx.lineWidth = 2; ctx.strokeRect(x0, y0, w, h); ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 7.10: the spring stretched, and the triangle under the force
+   line whose area is the stored energy. Still: the energy depends only
+   on the stretch the spring is left at, so the figure answers its
+   sliders and nothing else.
+===================================================================== */
+(function () {
+  const d = sim('sim-spring-energy', 700);
+  const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 50, max: 500, step: 10, value: 250, unit: 'N/m', dec: 0, aria: '弹簧的劲度系数' });
+  const x = ctl(d.controls, { label: '\\kx', cls: 'position', min: 0, max: 0.2, step: 0.005, value: 0.04, unit: 'm', dec: 3, aria: '弹簧的伸长量' });
+  const XMAX = 0.2;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const xv = x.v, kv = k.v, Fv = kv * xv, pe = 0.5 * kv * xv * xv, SC = 1800;
+    /* the scene: a spring fixed at one end, stretched to the right */
+    const y = 200, wall = 150, nat = 380, rest = wall + 44 + nat, plate = rest + xv * SC;
+    strip(ctx, 110, 1310, y + 120, 30);
+    fixed(ctx, wall, y - 78, 44, 156);
+    spring(ctx, wall + 44, y, plate - 16, y, 13, 26, F.ref('spring'), 4);
+    line(ctx, plate - 16, y - 42, plate - 16, y + 42, F.ref('spring'), 8);
+    /* the reference stops above the bracket, whose label is centred on it when the stretch is small */
+    line(ctx, rest, y - 70, rest, y + 38, PAL.muted, 2, [8, 8]);
+    text(ctx, '原长', rest - 10, y - 60, PAL.muted, { size: 18, align: 'right' });
+    if (xv > 0.0005) {
+      hbracket(ctx, rest, plate - 16, y + 86, C('position'), 'x = ' + fmt(xv, 3) + ' m');
+      arrow(ctx, plate + 10, y, Math.min(plate + 70 + 320 * (Fv / (500 * XMAX)), 1370), y, C('force'), 5);
+      text(ctx, 'F = kx = ' + fmt(Fv, 1) + ' N', plate + 16, y - 36, C('force'), { weight: 600 });
+    } else {
+      text(ctx, '在这里无需用力保持弹簧。', plate + 26, y - 36, PAL.muted, { size: 19 });
+    }
+    /* the graph: the force against the stretch, and the work as the triangle under the line */
+    /* fixed axes. The sliders reach k = 500 N/m at x = 0.2 m, where the force is 100 N, but the
+       default spring needs only 10 N and its triangle would then be a sliver a tenth of the box
+       high, so the force axis is fixed from that default state at 0 to 25 N, ticked every 5 N,
+       and the stretch axis is the slider's own 0 to 0.2 m. A stiffer spring runs off the top:
+       everything inside the frame is clipped to it and the force is read off the pinned marker.
+       Neither range moves. */
+    const FR = 25, box = { l: 210, r: 1250, t: 380, b: 620 };
+    const { X, Y } = axes(ctx, box, [0, XMAX], [0, FR], { xl: '伸长量 x（m）', xc: C('position'), yl: '所需的力（N）', yc: C('force'), nx: 4, ny: 5, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    if (xv > 0.0005) {
+      ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.3); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(xv), Y(0)); ctx.lineTo(X(xv), Y(Fv)); ctx.closePath(); ctx.fill(); ctx.restore();
+      line(ctx, X(xv), Y(0), X(xv), Y(Math.min(Fv, FR)), C('position'), 2, [4, 8]);
+      if (Fv <= FR) dot(ctx, X(xv), Y(Fv), C('force'), true, 9);
+      const wide = xv > 0.11;
+      text(ctx, '面积 = ½kx² = ' + fmt(pe, 3) + ' J', wide ? X(xv * 0.5) : X(xv) + 20, Math.min(Y(Math.min(Fv, FR) * (wide ? 0.3 : 0.5)), box.b - 30), C('energy'), { size: 19, weight: 600, align: wide ? 'center' : 'left', bg: PAL.panel });
+    }
+    line(ctx, X(0), Y(0), X(XMAX), Y(kv * XMAX), C('force'), 5);
+    ctx.restore();
+    if (xv > 0.0005 && Fv > FR) pinned(ctx, box, X, Y, xv, Fv, C('force'), fmt(Fv, 1) + ' N');
+    text(ctx, '斜率 = k = ' + fmt(kv, 0) + ' N/m', box.l, box.b + 56, C('stiffness'), { size: 18, weight: 600 });
+    topline(ctx, xv < 0.0005 ? '弹簧处于原长，所以其中没有储存任何能量。'
+      : '弹簧被拉伸 ' + fmt(xv, 3) + ' m，以 ' + fmt(Fv, 1) + ' N 的力拉回，阴影三角形就是储存在其中的 ' + fmt(pe, 3) + ' J。');
+    readout(d.readout, `\\kPEs = \\tfrac{1}{2}\\kk\\kx^2 = \\tfrac{1}{2}(${fmt(kv, 0)}\\ \\text{N/m})(${fmt(xv, 3)}\\ \\text{m})^2 = ${fmt(pe, 3)}\\ \\text{J}`,
+      '力从 0 增大到 ' + fmt(Fv, 1) + ' N，所以它的平均值为 ½kx = ' + fmt(0.5 * Fv, 1) + ' N，这一平均力作用 ' + fmt(xv, 3) + ' m 所做的功为 ' + fmt(pe, 3) + ' J，与面积给出的答案相同。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: two compressions, x and 2x, and the larger triangle ruled into
+   four copies of the smaller. Still: it compares two configurations and
+   has no time in it.
+===================================================================== */
+(function () {
+  const d = sim('sim-double', 660);
+  const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 50, max: 500, step: 10, value: 250, unit: 'N/m', dec: 0, aria: '弹簧的劲度系数' });
+  const x = ctl(d.controls, { label: '\\kx', cls: 'position', min: 0.01, max: 0.06, step: 0.005, value: 0.02, unit: 'm', dec: 3, aria: '较小的压缩量' });
+  function draw() {
+    const { ctx } = begin(d.c);
+    const xv = x.v, kv = k.v, SC = 1500;
+    const pe1 = 0.5 * kv * xv * xv, pe2 = 4 * pe1;
+    /* the two springs, one squeezed twice as far as the other */
+    [[0, xv, '压缩了 x'], [1, 2 * xv, '压缩了 2x']].forEach(([i, xc, lab]) => {
+      const y = 120 + i * 120, wall = 180, nat = 380, rest = wall + 44 + nat, plate = rest - xc * SC;
+      fixed(ctx, wall, y - 44, 44, 88);
+      const sc = F.ref(i ? 'spring-2' : 'spring-1');
+      spring(ctx, wall + 44, y, plate - 10, y, 11, 20, sc, 4);
+      line(ctx, plate - 10, y - 30, plate - 10, y + 30, sc, 7);
+      line(ctx, rest, y - 38, rest, y + 38, PAL.muted, 2, [8, 8]);
+      hbracket(ctx, plate - 10, rest, y + 66, C('position'), fmt(xc, 3) + ' m');
+      text(ctx, lab, wall - 20, y, sc, { size: 19, align: 'right' });
+      text(ctx, '½kx² = ' + fmt(0.5 * kv * xc * xc, 3) + ' J', rest + 60, y, C('energy'), { size: 21, weight: 600 });
+    });
+    /* the graph: the big triangle cut into four copies of the small one */
+    /* fixed axes. The sliders reach 2x = 0.12 m and k(2x) = 60 N, but the default setting needs
+       only 10 N and the four triangles would then be a sliver a sixth of the box high, so the
+       force axis is fixed from that default state at 0 to 25 N, ticked every 5 N, and the
+       compression axis is the pair's own 0 to 0.12 m. A stiffer spring runs off the top: the
+       frame clips what it holds and the force is read off the pinned marker. Neither moves. */
+    const box = { l: 240, r: 1180, t: 350, b: 580 }, XR = 0.12, FR = 25;
+    const { X, Y } = axes(ctx, box, [0, XR], [0, FR], { xl: '压缩量 x（m）', xc: C('position'), yl: '所需的力（N）', yc: C('force'), nx: 4, ny: 5, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 0) });
+    const F1 = kv * xv, F2 = 2 * F1;
+    ctx.save(); ctx.beginPath(); ctx.rect(box.l, box.t, box.r - box.l, box.b - box.t); ctx.clip();
+    ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.3); ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(xv), Y(0)); ctx.lineTo(X(xv), Y(F1)); ctx.closePath(); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(C('energy'), 0.12); ctx.beginPath(); ctx.moveTo(X(xv), Y(0)); ctx.lineTo(X(2 * xv), Y(0)); ctx.lineTo(X(2 * xv), Y(F2)); ctx.lineTo(X(xv), Y(F1)); ctx.closePath(); ctx.fill(); ctx.restore();
+    line(ctx, X(xv), Y(0), X(xv), Y(F1), C('energy'), 2, [6, 6]);
+    line(ctx, X(xv), Y(F1), X(2 * xv), Y(F1), C('energy'), 2, [6, 6]);
+    line(ctx, X(xv), Y(0), X(2 * xv), Y(F1), C('energy'), 2, [6, 6]);
+    line(ctx, X(2 * xv), Y(0), X(2 * xv), Y(F2), C('position'), 2, [4, 8]);
+    line(ctx, X(0), Y(0), X(XR), Y(kv * XR), C('force'), 5);
+    ctx.restore();
+    pinned(ctx, box, X, Y, 2 * xv, F2, C('force'), fmt(F2, 1) + ' N');
+    /* the four copies are labelled inside when the small triangle is wide enough to hold a label, and once above it otherwise */
+    if (X(xv) - X(0) > 230) [[0.667, 0.167], [1.667, 0.167], [1.333, 0.333], [1.667, 0.667]].forEach(([fx, fy]) => text(ctx, fmt(pe1, 3) + ' J', X(xv * fx), Y(F2 * fy), C('energy'), { size: 17, align: 'center' }));
+    else text(ctx, '四个 ' + fmt(pe1, 3) + ' J 的三角形', X(2 * xv) + 24, Y(F2 * 0.5), C('energy'), { size: 17, weight: 600 });
+    if (2 * xv < XR - 0.006) text(ctx, '2x', X(2 * xv), box.b + 26, C('position'), { size: 18, weight: 600, align: 'center' });   /* at the far edge the 0.12 tick already reads it */
+    topline(ctx, '把这根弹簧压缩 ' + fmt(2 * xv, 3) + ' m 储存 ' + fmt(pe2, 3) + ' J，是 ' + fmt(pe1, 3) + ' J 的四倍，后者是压缩 ' + fmt(xv, 3) + ' m 所储存的。');
+    readout(d.readout, `\\frac{\\tfrac{1}{2}\\kk(2\\kx)^2}{\\tfrac{1}{2}\\kk\\kx^2} = \\frac{${fmt(pe2, 3)}\\ \\text{J}}{${fmt(pe1, 3)}\\ \\text{J}} = 4`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 7.11: the plucked guitar string. It swings through its rest
+   line endlessly, trading the energy of its shape for the energy of its
+   motion, so it moves; an endless oscillation has no period to scrub.
+===================================================================== */
+(function () {
+  const d = sim('sim-guitar', 520);
+  const x0 = ctl(d.controls, { label: '\\kx', cls: 'position', min: 0.002, max: 0.02, step: 0.001, value: 0.01, unit: 'm', dec: 3, onInput: reset, aria: '弦的拨动量' });
+  const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 200, max: 2000, step: 50, value: 800, unit: 'N/m', dec: 0, onInput: reset, aria: '弦的劲度系数' });
+  const cy = cycle(() => Infinity, 0);
+  function reset() { cy.reset(); }
+  /* The swing of a real string is far too fast to watch, so the figure slows it to five seconds
+     a swing at the default 800 N/m and keeps the rate a string's own rate goes by, the square
+     root of the force constant: a stiffer string comes back sooner, which is what the slider
+     shows as well as the energy it stores. */
+  const KREF = 800, SWING = 5;
+  const period = () => SWING * Math.sqrt(KREF / k.v);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const tau = REDUCED ? period() * 0.22 : cy.now();
+    const xv = x0.v * Math.cos((TAU / period()) * tau), SC = 7000;
+    const E = 0.5 * k.v * x0.v * x0.v, PE = 0.5 * k.v * xv * xv, KE = E - PE;
+    /* the scene: a guitar lying on its side, the string running from the nut on the headstock,
+       along the neck and over the sound hole to the bridge on the body, plucked at its middle */
+    const y = 270, nut = 150, bridge = 900, mid = (nut + bridge) / 2, dy = -xv * SC;
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+    /* the body, a figure of eight lying on its side: a rounded upper bout where the neck joins, a
+       waist, and a larger lower bout that carries the bridge, in the proportions of a classical guitar */
+    const bl = 560, br = 1040;
+    ctx.beginPath(); ctx.moveTo(bl + 26, y - 70);
+    ctx.bezierCurveTo(bl - 10, y - 70, bl - 10, y + 70, bl + 26, y + 70);
+    ctx.bezierCurveTo(bl + 90, y + 100, bl + 150, y + 100, bl + 200, y + 66);
+    ctx.bezierCurveTo(bl + 250, y + 40, bl + 300, y + 40, bl + 340, y + 80);
+    ctx.bezierCurveTo(bl + 400, y + 135, br + 30, y + 110, br, y);
+    ctx.bezierCurveTo(br + 30, y - 110, bl + 400, y - 135, bl + 340, y - 80);
+    ctx.bezierCurveTo(bl + 300, y - 40, bl + 250, y - 40, bl + 200, y - 66);
+    ctx.bezierCurveTo(bl + 150, y - 100, bl + 90, y - 100, bl + 26, y - 70);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    /* the headstock, its three tuning pegs and the nut */
+    ctx.beginPath(); ctx.moveTo(150, y - 22); ctx.lineTo(78, y - 32); ctx.lineTo(66, y - 18); ctx.lineTo(66, y + 18); ctx.lineTo(78, y + 32); ctx.lineTo(150, y + 22); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 2; [86, 108, 130].forEach((px) => { ctx.beginPath(); ctx.moveTo(px, y - 26); ctx.lineTo(px, y - 46); ctx.moveTo(px - 6, y - 46); ctx.lineTo(px + 6, y - 46); ctx.stroke(); });
+    /* the neck with its frets and position dots, running onto the body to the sound hole */
+    ctx.lineWidth = 3; ctx.fillStyle = alpha(PAL.ink, 0.12); ctx.beginPath(); ctx.rect(150, y - 19, 500, 38); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 2; for (let i = 1; i <= 14; i++) { const fx = 150 + 520 * (1 - Math.pow(2, -i / 12)); ctx.beginPath(); ctx.moveTo(fx, y - 19); ctx.lineTo(fx, y + 19); ctx.stroke(); }
+    ctx.fillStyle = PAL.muted; [3, 5, 7, 9, 12].forEach((i) => { const fx = 150 + 520 * (1 - Math.pow(2, -(i - 0.5) / 12)); ctx.beginPath(); ctx.arc(fx, y + 9, 3, 0, TAU); ctx.fill(); });
+    /* the sound hole with its rosette, and the nut and the bridge that hold the string */
+    ctx.fillStyle = alpha(PAL.ink, 0.55); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 6; ctx.beginPath(); ctx.arc(722, y, 42, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.arc(722, y, 36, 0, TAU); ctx.fill();
+    ctx.fillStyle = PAL.ink; ctx.fillRect(nut - 5, y - 24, 10, 48); ctx.fillRect(bridge - 10, y - 50, 20, 100);
+    ctx.fillStyle = PAL.panel; [-36, -18, 0, 18, 36].forEach((o) => { ctx.beginPath(); ctx.arc(bridge, y + o, 3, 0, TAU); ctx.fill(); });
+    ctx.restore();
+    line(ctx, nut, y, bridge, y, PAL.muted, 2, [10, 10]);
+    ctx.save(); ctx.strokeStyle = F.ref('string'); ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(78, y - 8); ctx.lineTo(nut, y); ctx.lineTo(mid, y + dy); ctx.lineTo(bridge, y); ctx.stroke(); ctx.restore();
+    dot(ctx, mid, y + dy, F.ref('string'), true, 8);
+    if (Math.abs(dy) > 30) {
+      vbracket(ctx, mid, y, y + dy, C('position'));
+      text(ctx, 'x = ' + fmt(Math.abs(xv), 4) + ' m', mid + 18, y + dy / 2, C('position'), { weight: 600, bg: PAL.panel });
+    }
+    text(ctx, '静止线', nut + 16, y + 34, PAL.muted, { size: 18 });
+    /* the two energies, side by side against the total the pluck put in */
+    const b0 = 440, bh = 250, bw = 78, bx = [1110, 1230];
+    line(ctx, bx[0] - 34, b0 - bh, bx[1] + bw + 34, b0 - bh, C('energy'), 2, [8, 6]);
+    text(ctx, '总量 ½kx₀² = ' + fmt(E, 3) + ' J', (bx[0] + bx[1] + bw) / 2, b0 - bh - 24, C('energy'), { size: 18, weight: 600, align: 'center' });
+    [[0, PE, 'PE_s'], [1, KE, 'KE']].forEach(([i, val, lab]) => {
+      const h = E > 0 ? (bh * Math.max(0, val)) / E : 0;
+      ctx.save(); ctx.fillStyle = alpha(C('energy'), i ? 0.4 : 0.78); ctx.fillRect(bx[i], b0 - h, bw, h); ctx.restore();
+      ctx.save(); ctx.strokeStyle = C('energy'); ctx.lineWidth = 2; ctx.strokeRect(bx[i], b0 - bh, bw, bh); ctx.restore();
+      text(ctx, lab, bx[i] + bw / 2, b0 + 24, C('energy'), { size: 18, weight: 600, align: 'center' });
+      text(ctx, fmt(Math.max(0, val), 3) + ' J', bx[i] + bw / 2, b0 + 48, C('energy'), { size: 17, align: 'center' });
+    });
+    topline(ctx, KE < 0.02 * E ? '拨到最大时弦瞬时静止，全部 ' + fmt(E, 3) + ' J 都储存在它的形状中。'
+      : PE < 0.02 * E ? '经过静止线时弦没有形变，所以全部 ' + fmt(E, 3) + ' J 都是它的运动的能量。'
+      : '弦离静止线 ' + fmt(Math.abs(xv), 4) + ' m，所以它的形状储存着 ' + fmt(PE, 3) + ' J，它的运动带有 ' + fmt(KE, 3) + ' J。');
+    readout(d.readout, `\\kPEs + \\kKE = ${fmt(PE, 3)}\\ \\text{J} + ${fmt(Math.max(0, KE), 3)}\\ \\text{J} = ${fmt(E, 3)}\\ \\text{J}`,
+      '这里摆动一次需要 ' + fmt(period(), 1) + ' s（劲度系数为 ' + fmt(k.v, 0) + ' N/m），因为弦回复的快慢取决于其劲度系数的平方根；真实的弦每秒要摆动几百次。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   FIGURE 7.12: the toy car of Example 7.8, launched by a compressed
+   spring and coasting to a shelf by either of two paths. It is a
+   journey with a time in it, so it runs a finite loop with the
+   scrubber, and the stacked bar keeps the account of the car that takes
+   the gradual rise.
+===================================================================== */
+(function () {
+  const d = sim('sim-toy-car', 640);
+  const xi = ctl(d.controls, { label: '\\kxi', cls: 'position', min: 0.01, max: 0.08, step: 0.005, value: 0.04, unit: 'm', dec: 3, onInput: reset, aria: '弹簧的压缩量' });
+  const k = ctl(d.controls, { label: '\\kk', cls: 'stiffness', min: 100, max: 500, step: 10, value: 250, unit: 'N/m', dec: 0, onInput: reset, aria: '弹簧的劲度系数' });
+  const hf = ctl(d.controls, { label: '\\khf', cls: 'position', min: 0, max: 0.25, step: 0.01, value: 0.18, unit: 'm', dec: 2, onInput: reset, aria: '搁板的高度' });
+  const M = 0.100, SC = 600, GY = 300, X0 = 250, X1 = 1060, LSC = 1200;
+  function reset() { cy.reset(); }
+  const energy = () => 0.5 * k.v * xi.v * xi.v;
+  const speedAt = (E, h) => Math.sqrt(Math.max(0, (2 * (E - M * G * h)) / M));
+  function buildA(h) {
+    const pts = [], a = 50 / (X1 - X0), b = 470 / (X1 - X0);
+    for (let i = 0; i <= 70; i++) { const s = i / 70, hh = s <= a ? 0 : s >= b ? h : h * SMOOTH((s - a) / (b - a)); pts.push([X0 + s * (X1 - X0), GY - hh * SC]); }
+    return pts;
+  }
+  function buildB(h) {
+    const pts = [], DIP = -0.22, R = 55, LX = 520, dipY = GY - DIP * SC, cyc = dipY - R;
+    for (let i = 0; i <= 22; i++) { const u = i / 22; pts.push([X0 + u * 170, GY + SMOOTH(u) * (dipY - GY)]); }
+    for (let i = 1; i <= 10; i++) pts.push([420 + (i / 10) * 100, dipY]);
+    for (let i = 1; i <= 48; i++) { const th = (i / 48) * TAU; pts.push([LX + R * Math.sin(th), cyc + R * Math.cos(th)]); }
+    for (let i = 1; i <= 14; i++) pts.push([LX + (i / 14) * 240, dipY]);
+    for (let i = 1; i <= 34; i++) { const u = i / 34; pts.push([760 + u * (X1 - 760), dipY + SMOOTH(u) * (GY - h * SC - dipY)]); }
+    return pts;
+  }
+  function timeline(pts, E) {
+    const ts = [0]; let stall = -1;
+    for (let i = 1; i < pts.length; i++) {
+      const hm = (GY - (pts[i][1] + pts[i - 1][1]) / 2) / SC, vm = speedAt(E, hm);
+      if (vm < 0.05) { stall = i - 1; break; }
+      ts.push(ts[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]) / SC / vm);
+    }
+    return { pts, ts, stall, T: ts[ts.length - 1] };
+  }
+  let memo = null;
+  function tracks() {
+    const key = k.v + '|' + xi.v + '|' + hf.v;
+    if (memo && memo.key === key) return memo;
+    const E = energy();
+    memo = { key, E, A: timeline(buildA(hf.v), E), B: timeline(buildB(hf.v), E), rel: (Math.PI / 2) * Math.sqrt(M / k.v) };
+    memo.T = memo.rel + Math.max(memo.A.T, memo.B.T);
+    return memo;
+  }
+  const cy = cycle(() => tracks().T, 1.4);
+  function at(tr, t) {
+    const ts = tr.ts, last = ts.length - 1;
+    if (t >= ts[last]) return { p: tr.pts[last], done: true };
+    let i = 1; while (i < last && ts[i] < t) i++;
+    const u = (t - ts[i - 1]) / (ts[i] - ts[i - 1] || 1);
+    return { p: [tr.pts[i - 1][0] + u * (tr.pts[i][0] - tr.pts[i - 1][0]), tr.pts[i - 1][1] + u * (tr.pts[i][1] - tr.pts[i - 1][1])], done: false };
+  }
+  function trace(ctx, pts, color, w, dash) {
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; if (dash) ctx.setLineDash(dash); ctx.beginPath();
+    pts.forEach(([px, py], i) => (i ? ctx.lineTo(px, py) : ctx.moveTo(px, py))); ctx.stroke(); ctx.restore();
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const T = tracks(), E = T.E, tau = cy.now();
+    const launching = tau < T.rel;
+    const xc = launching ? xi.v * Math.cos(Math.sqrt(k.v / M) * tau) : 0, tr = Math.max(0, tau - T.rel);
+    const A = at(T.A, tr), B = at(T.B, tr);
+    const hA = (GY - A.p[1]) / SC, hB = (GY - B.p[1]) / SC;
+    const vA = launching ? 0 : speedAt(E, hA), vB = launching ? 0 : speedAt(E, hB);
+    const peS = 0.5 * k.v * xc * xc, peA = M * G * hA, keA = Math.max(0, E - peS - peA);
+    /* the launcher */
+    const carA = launching ? [X0 - xc * LSC, GY] : A.p;
+    fixed(ctx, 60, GY - 86, 40, 86);
+    spring(ctx, 100, GY - 26, (launching ? carA[0] : X0) - 26, GY - 26, 10, 18, F.ref('launcher'), 4);
+    /* the two paths and the shelf they share */
+    trace(ctx, T.B.pts, PAL.muted, 3, [10, 10]);
+    trace(ctx, T.A.pts, PAL.ink, 4);
+    line(ctx, 60, GY, X0, GY, PAL.ink, 4);
+    line(ctx, X0, GY + 16, X0, GY - 150, PAL.rule, 1.5);
+    line(ctx, 110, GY - hf.v * SC, X1 + 40, GY - hf.v * SC, PAL.rule, 1.5);
+    if (hf.v > 0.005) vbracket(ctx, X1 + 26, GY, GY - hf.v * SC, C('position'), 'h_f = ' + fmt(hf.v, 2) + ' m', 1);
+    line(ctx, 120, 96, 180, 96, PAL.ink, 4);
+    text(ctx, '缓坡', 194, 96, F.ref('toy-car'), { size: 18 });
+    line(ctx, 120, 126, 180, 126, PAL.muted, 3, [10, 10]);
+    text(ctx, '凹处和圆环', 194, 126, F.ref('loop-car'), { size: 18 });
+    /* the two cars */
+    car(ctx, B.p[0], B.p[1] - 14, F.ref('loop-car'), 0.46);
+    car(ctx, carA[0], carA[1] - 14, F.ref('toy-car'), 0.46);
+    /* the label of the car on the dip goes below and behind it, since the two cars run
+       side by side at the start and a label above this one lands on the other car */
+    if (!launching && !B.done) text(ctx, fmt(vB, 2) + ' m/s', B.p[0] - 28, B.p[1] + 40, C('velocity'), { size: 18, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.9) });
+    if (!launching && vA > 0.02) { arrow(ctx, carA[0] + 24, carA[1] - 36, carA[0] + 24 + Math.min(40 + 70 * vA, 210), carA[1] - 36, C('velocity'), 5); text(ctx, 'v = ' + fmt(vA, 2) + ' m/s', carA[0] + 24, carA[1] - 62, C('velocity'), { size: 19, weight: 600, bg: alpha(PAL.panel, 0.9) }); }
+    if (launching) { hbracket(ctx, carA[0] - 26, X0, GY + 46, C('position'), 'x = ' + fmt(xc, 3) + ' m'); }
+    /* the account: the whole energy of the car on the gradual rise, however it is shared */
+    const bx = 260, bw = 800, by = 540, bh = 46;
+    stack(ctx, bx, by, bw, bh, E, [{ label: 'PE_s', value: peS }, { label: 'KE', value: keA }, { label: 'PE_g', value: peA }]);
+    text(ctx, '小车的总机械能始终为 ' + fmt(E, 3) + ' J', bx + bw / 2, by - 26, C('energy'), { size: 19, weight: 600, align: 'center' });
+    text(ctx, '弹簧中的 ' + fmt(peS, 3) + ' J，运动的 ' + fmt(keA, 3) + ' J，高度的 ' + fmt(peA, 3) + ' J', bx + bw / 2, by + bh + 26, C('energy'), { size: 17, align: 'center' });
+    const short = T.A.stall >= 0 || T.B.stall >= 0;
+    topline(ctx, launching ? '弹簧仍在推动，所以其中还剩 ' + fmt(peS, 3) + ' J，已有 ' + fmt(keA, 3) + ' J 变成了小车运动的能量。'
+      : short ? '弹簧储存了 ' + fmt(E, 3) + ' J，少于爬升所需的 ' + fmt(M * G * hf.v, 3) + ' J，所以小车在到达搁板之前就停了下来。'
+      : A.done && B.done ? '两辆车都在高 ' + fmt(hf.v, 2) + ' m 的搁板上，无论走哪条路径，速率都是 ' + fmt(speedAt(E, hf.v), 3) + ' m/s。'
+      : '在 ' + fmt(tr, 2) + ' s 时，坡上的小车高 ' + fmt(hA, 3) + ' m，速率为 ' + fmt(vA, 2) + ' m/s，绕圆环的车速率为 ' + fmt(vB, 2) + ' m/s。');
+    readout(d.readout, `\\tfrac{1}{2}\\kk\\kxi^2 = \\tfrac{1}{2}\\km\\kvf^2 + \\km\\kg\\khf \\;\\Rightarrow\\; ${fmt(E, 3)}\\ \\text{J} = ${fmt(Math.max(0, E - M * G * hf.v), 3)}\\ \\text{J} + ${fmt(M * G * hf.v, 3)}\\ \\text{J}`,
+      '上坡之前全部 ' + fmt(E, 3) + ' J 都是动能，所以小车离开弹簧时的速率为 ' + fmt(speedAt(E, 0), 2) + ' m/s，在 ' + fmt(hf.v, 2) + ' m 高的搁板顶端还剩 ' + fmt(speedAt(E, hf.v), 3) + ' m/s。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => tracks().T / 5), draw });
+})();
+};
