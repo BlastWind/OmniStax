@@ -223,11 +223,11 @@ function runs(ctx, parts, x, y, size) {
       const m0 = Math.floor(L / dv.cm + 1e-6) * dv.cm, m1 = m0 + dv.cm, x0 = Xm(m0), x1 = Xm(m1);
       hbracket(ctx, x0, x1, 330, PAL.ink);
       const lx = Math.min(Math.max((x0 + x1) / 2, BOX.l + 250), BOX.r - 250);
-      text(ctx, '最后一位数字在这两条刻线之间估算', lx, 308, PAL.ink, { size: 20, weight: 600, align: 'center' });
+      text(ctx, '最后一位数字在这两条刻线之间估读', lx, 308, PAL.ink, { size: 20, weight: 600, align: 'center' });
       text(ctx, '测量者写下 ' + reading + ' cm', BOX.r - 16, BOX.t + 20, PAL.ink, { size: 20, weight: 600, align: 'right' });
     }
     ctx.restore();
-    headline(ctx, aligned ? '用' + dv.name + '时，木棍读数为 ' + reading + ' cm，有' + words(n) + '位数字，其中 ' + last + ' 是估算的。'
+    headline(ctx, aligned ? '用' + dv.name + '时，木棍读数为 ' + reading + ' cm，有' + words(n) + '位数字，其中 ' + last + ' 是估读的。'
       : '刻度尺滑到木棍下方，直到它的零刻线与木棍的左端对齐。');
     readout(d.readout, `\\kLlen = ${reading}\\ \\text{cm}`,
       '写下的最后一位数字是第一位含有一定不确定度的数字。以厘米为刻度的刻度尺给出 ' + L.toFixed(0) + ' cm，' + words(sigfigs(L, 0)) + '位数字，而读数到 0.1 mm 的卡尺给出 ' + L.toFixed(2) + ' cm，' + words(sigfigs(L, 2)) + '位。');
