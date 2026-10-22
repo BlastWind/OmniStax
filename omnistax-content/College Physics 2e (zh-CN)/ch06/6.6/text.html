@@ -1,0 +1,109 @@
+<section id="orbits">
+<h2>无需计算机就能描述的轨道</h2>
+<p class="cite-target">引力轨道的例子比比皆是。数以百计的人造卫星和数以千计的碎片一起绕地球运行。月球绕地球的轨道自古以来就令人类着迷。行星、小行星、流星和彗星绕太阳的轨道同样引人入胜。如果我们再往远处看，就会看到数量几乎难以想象的恒星、星系和其他天体彼此环绕，并通过引力相互作用。</p>
+<p>所有这些<span data-concept="motion">运动</span>都受<span data-concept="force">引力</span>支配，并且可以在不同的精确程度上对它们加以描述。对复杂<span data-concept="system">系统</span>的精确描述必须借助大型计算机。然而，有一类重要的轨道无需使用计算机就能描述，研究它们会使我们受益匪浅。这类轨道具有以下特征：</p>
+<ol>
+<li><em>较小的<span data-concept="mass">质量</span> $\km$ 绕着大得多的<span data-concept="mass">质量</span> $\kM$ 运行</em>。这样我们就可以把这一<span data-concept="motion">运动</span>看作 $\kM$ 静止不动——实际上，就像是从置于 $\kM$ 上的<span data-concept="inertial-frame">惯性参考系</span>来看——而不会产生显著的误差。如果轨道受引力束缚，<span data-concept="mass">质量</span> $\km$ 就是 $\kM$ 的卫星。</li>
+<li><em><span data-concept="system">系统</span>与其他<span data-concept="mass">质量</span>相隔离</em>。这样我们就可以忽略外部<span data-concept="mass">质量</span>造成的任何微小影响。</li>
+</ol>
+<p>地球的卫星（包括月球）、绕太阳运行的物体以及其他行星的卫星，都在很好的<span data-concept="approximation-def">近似</span>程度上满足这些条件。从历史上看，人们最先研究的是行星，并有一套经典的、共三条的<span data-concept="law">定律</span>，称为开普勒行星<span data-concept="motion">运动</span><span data-concept="law">定律</span>，它们描述满足前述两个条件的所有物体的轨道（不仅仅是太阳系中的行星）。这些描述性<span data-concept="law">定律</span>以德国天文学家约翰内斯·开普勒（1571–1630）的名字命名，他对第谷·布拉赫（1546–1601）所做的大量一丝不苟地记录下来的行星<span data-concept="motion">运动</span>观测资料进行了仔细研究（历时约 20 年），之后提出了这些定律。对方法和数据如此认真地收集、如此详尽地记录，是优秀科学的标志。数据构成了证据，新的解释和意义正是由此建立起来的。</p>
+</section>
+
+<section id="keplers-laws">
+<h2>开普勒行星运动定律</h2>
+<p class="cite-target"><em>开普勒第一定律</em></p>
+<p>每个行星绕太阳的轨道都是椭圆，太阳位于椭圆的一个焦点上。</p>
+<figure class="sim" id="sim-ellipse" data-figure="6.26" data-original="/media/ch06/Figure_07_06_01a.jpg" data-original-width="300" data-original-caption="（a）椭圆是一条闭合曲线，曲线上一点到两个焦点（f_1 和 f_2）的距离之和为常量。可以像图中那样画出椭圆：在每个焦点处钉一枚钉子，再把一根细绳套在铅笔和两枚钉子上，然后在纸上描出一条线。圆是椭圆的特例，此时两个焦点重合（因此圆上任一点到圆心的距离都相同）。（b）对于任何闭合的引力轨道，m 沿椭圆路径运动，M 位于一个焦点上。开普勒第一定律说明的就是行星绕太阳运动时的这一事实。">
+  <div class="sim-head"><span class="eyebrow">Figure 6.26</span><span>在左侧，<span data-ref="pencil">一支铅笔</span>把绕过两枚钉子的细绳拉紧，无论<span data-ref="pencil">铅笔</span>走到哪里，<span data-type="position">从两枚钉子量起的两段距离</span>相加都等于细绳的<span data-concept="length">长度</span>。在右侧，同一条曲线是<span data-ref="planet">一颗行星</span>的轨道，<span data-ref="sun">物体</span> $\kM$ 位于两个焦点之一。让<span data-ref="pencil">铅笔</span>沿曲线移动，观察<span data-type="position">两段距离</span>此消彼长，而<span data-type="position">它们的和</span>保持不变。把偏心率减小到零，两个焦点就会在圆的圆心处重合。</span></div>
+</figure>
+<p><em>开普勒第二定律</em></p>
+<p>每个行星的运动都使得从太阳到该行星所引的假想线在相等的<span data-concept="time">时间</span>内扫过相等的<span data-concept="area">面积</span>（见图 6.27）。</p>
+<p><em>开普勒第三定律</em></p>
+<p>任意两个行星绕太阳运动的<span data-concept="period">周期</span>的平方之比，等于它们到太阳的平均<span data-concept="distance">距离</span>的立方之比。写成方程就是</p>
+$$\frac{\kTorbone^2}{\kTorbtwo^2} = \frac{\krone^3}{\krtwo^3},$$
+<p>其中 $\kT$ 是<span data-concept="period">周期</span>（绕行一周的<span data-concept="time">时间</span>），$\kr$ 是平均半径。此方程只适用于比较绕同一个大质量物体运行的两个小<span data-concept="mass">质量</span>。最重要的是，这只是一个描述性方程，并没有给出这种相等关系的原因。</p>
+<figure class="sim" id="sim-equal-areas" data-figure="6.27" data-original="/media/ch06/Figure_07_06_02a.jpg" data-original-width="300" data-original-caption="阴影区域的面积相等。m 从 A 到 B、从 C 到 D、从 E 到 F 所用的时间相等。m 离 M 最近时运动得最快。开普勒第二定律最初是为绕太阳运行的行星提出的，但它的适用范围更广。">
+  <div class="sim-head"><span class="eyebrow">Figure 6.27</span><span><span data-ref="planet">行星</span>绕位于焦点的<span data-ref="sun">物体</span> $\kM$ 运行一整圈，在相等时间内扫过的三个扇形被画上阴影，从 $\kM$ 引出的线依次扫过它们。观察<span data-ref="planet">行星</span>匆匆掠过离 $\kM$ 最近的扇形，又在最远的那个扇形里缓缓爬行，并注意到这三个扇形所覆盖的仍是<span data-type="area">相同的面积</span>。设定<span data-type="time">每次扫过持续多长时间</span>，或者让轨道更圆或更长，<span data-type="area">三块面积</span>依然相等。</span></div>
+</figure>
+<p>请再次注意，尽管出于历史原因，开普勒<span data-concept="law">定律</span>是针对绕太阳运行的行星表述的，但它们实际上对满足前面所述两个条件的一切物体都成立。</p>
+<div class="example" id="ex-satellite-period">
+<h3>例题 6.7 · 求地球卫星绕行一周的时间</h3>
+<p>已知<span data-ref="moon">月球</span>每 <span data-type="time">27.3 d</span> 绕<span data-ref="earth">地球</span>一周，且<span data-ref="moon">它</span>到<span data-ref="earth">地球</span>中心的<span data-type="position">平均<span data-concept="distance">距离</span></span>为 $3.84\times 10^{8}\ \text{m}$，求一颗在<span data-ref="earth">地球</span>表面上方<span data-type="position">平均高度 1500 km</span> 处运行的<span data-ref="satellite">人造卫星</span>的<span data-type="time"><span data-concept="period">周期</span></span>。</p>
+<h4>思路</h4>
+<p><span data-concept="period">周期</span>，即绕行一周的<span data-concept="time">时间</span>，与轨道半径之间的关系由开普勒第三<span data-concept="law">定律</span>给出，其数学形式为 $\frac{\kTorbone^2}{\kTorbtwo^2} = \frac{\krone^3}{\krtwo^3}$。我们用下标 1 表示<span data-ref="moon">月球</span>，用下标 2 表示<span data-ref="satellite">卫星</span>。要求的是 $\kTorbtwo$。已知信息告诉我们，<span data-ref="moon">月球</span>的<span data-type="position">轨道半径</span>为 $\krone = 3.84\times 10^{8}\ \text{m}$，<span data-ref="moon">月球</span>的<span data-type="time"><span data-concept="period">周期</span></span>为 $\kTorbone = \text{27.3 d}$。<span data-ref="satellite">人造卫星</span>在<span data-ref="earth">地球</span>表面上方的<span data-type="position">高度</span>是已知的，因此必须加上<span data-ref="earth">地球</span>的<span data-type="position">半径</span>（6380 km），得到 $\krtwo = (1500 + 6380)\ \text{km} = 7880\ \text{km}$。现在所有量都已知，因此可以求出 $\kTorbtwo$。</p>
+<h4>解</h4>
+<p>开普勒第三<span data-concept="law">定律</span>为</p>
+$$\frac{\kTorbone^2}{\kTorbtwo^2} = \frac{\krone^3}{\krtwo^3}.$$
+<p>为了解出 $\kTorbtwo$，我们交叉相乘并取平方根，得到</p>
+$$\kTorbtwo^2 = \kTorbone^2\left(\frac{\krtwo}{\krone}\right)^3$$
+$$\kTorbtwo = \kTorbone\left(\frac{\krtwo}{\krone}\right)^{3/2}.$$
+<p>代入已知数值，得到</p>
+$$\begin{aligned}\kTorbtwo &= \text{27.3 d}\times \frac{\text{24.0 h}}{\text{d}}\times \left(\frac{\text{7880 km}}{3.84\times 10^{5}\ \text{km}}\right)^{3/2} \\ &= \text{1.93 h.}\end{aligned}$$
+<h4>讨论</h4>
+<p>对于轨道相当低的卫星，这是一个<span data-type="time">合理的<span data-concept="period">周期</span></span>。有趣的是，这一高度上的任何卫星绕行一周所用的<span data-concept="time">时间</span>都相同。这一事实与<span data-ref="satellite">卫星</span>的<span data-type="mass"><span data-concept="mass">质量</span></span>比<span data-ref="earth">地球</span>的小这一条件有关。</p>
+</div>
+<p>一旦发现了适用范围广泛的<span data-concept="law">定律</span>（如开普勒定律），人们就会立刻去寻找更深层的意义。迈出下一大步的是牛顿，他提出了万有引力<span data-concept="law">定律</span>。开普勒能够发现的是正在发生<em>什么</em>，而牛顿发现了<span data-concept="force">引力</span>是其原因。</p>
+</section>
+
+<section id="derivation">
+<h2>圆轨道的开普勒第三定律的推导</h2>
+<p class="cite-target">我们将推导开普勒第三<span data-concept="law">定律</span>，出发点是牛顿<span data-concept="motion">运动</span><span data-concept="law">定律</span>和他的万有引力<span data-concept="law">定律</span>。要点在于说明，<span data-concept="force">引力</span>是开普勒<span data-concept="law">定律</span>的成因（不过我们只推导第三条）。</p>
+<p>考虑小<span data-concept="mass">质量</span> $\km$ 绕大<span data-concept="mass">质量</span> $\kM$ 的圆轨道，它满足本节开头所述的两个条件。引力为<span data-concept="mass">质量</span> $\km$ 提供<span data-type="force"><span data-concept="centripetal-force">向心力</span></span>。我们从应用于圆周<span data-concept="motion">运动</span>的牛顿第二<span data-concept="law">定律</span>出发。</p>
+<figure class="dv" id="drv-kepler-third-law"></figure>
+<p>$\km$ 被约去，这是常被提到的另一个事实的一个方面：在给定位置，所有<span data-concept="mass">质量</span>下落的<span data-concept="acceleration">加速度</span>都相同。这里我们看到，在给定的轨道半径 $\kr$ 处，所有<span data-concept="mass">质量</span>绕行的速率都相同。（前面那个例题的结果已经暗示了这一点。）</p>
+<figure class="sim" id="sim-third-law">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span>一颗<span data-type="mass">质量很小</span>的<span data-ref="satellite">卫星</span>绕<span data-ref="earth">一个中心天体</span>做圆轨道运行，<span data-type="force">引力</span>指向圆心，<span data-type="velocity">速度</span>沿切线方向。设定<span data-type="position">轨道半径</span>，读出这两个方程给出的<span data-type="velocity">速率</span>和<span data-type="time">周期</span>。<span data-ref="satellite">卫星</span>的<span data-type="mass">自身质量</span>在这两个方程中都没有出现。轨道旁边的图像画出<span data-type="time">周期</span>随<span data-type="position">半径</span>变化的关系，在这里开普勒第三定律是一条直线。<span data-ref="moon">月球</span>作为一个观测数据点落在这条直线上，改变<span data-ref="earth">中心天体</span>的<span data-type="mass">质量</span>，直线就会移动，直到穿过<span data-ref="moon">月球</span>的点。这就是求中心天体<span data-concept="mass">质量</span>的方法。</span></div>
+</figure>
+<p>请注意，开普勒第三<span data-concept="law">定律</span>只适用于比较同一中心天体的卫星，因为只有这样，中心天体的<span data-concept="mass">质量</span> $\kM$ 才会被约去。</p>
+</section>
+
+<section id="parent-mass">
+<h2>由卫星求中心天体的质量</h2>
+<p class="cite-target">现在来看，把 $\kT^2 = \frac{4\pi^2}{G\kM}\kr^3$ 解为比值 $\kr^3/\kT^2$ 会得到什么。我们得到一个关系式，它可以用来根据卫星的轨道确定中心天体的<span data-concept="mass">质量</span> $\kM$：</p>
+$$\frac{\kr^3}{\kT^2} = \frac{G}{4\pi^2}\kM.$$
+<p>如果已知某颗卫星的 $\kr$ 和 $\kT$，就可以算出中心天体的<span data-concept="mass">质量</span> $\kM$。这一原理已被广泛用来求有卫星的天体的<span data-concept="mass">质量</span>。此外，同一中心天体的所有卫星的比值 $\kr^3/\kT^2$ 应为常量（因为 $\kr^3/\kT^2 = G\kM/4\pi^2$）。（见表 6.2。）</p>
+<p>由表 6.2 可以清楚地看出，对太阳的所有列出的卫星以及木星的卫星来说，比值 $\kr^3/\kT^2$ 至少在第三位数字上是常量。该比值的微小差异有两个原因——$\kr$ 和 $\kT$ 数据的<span data-concept="uncertainty">不确定度</span>，以及其他天体引起的轨道摄动。有趣的是，这些摄动可以——而且已经——被用来预测新行星和新卫星的位置。这是对<span data-concept="universal-gravitation">牛顿万有引力定律</span>的又一次验证。</p>
+<div class="note">
+<div class="eyebrow">建立联系</div>
+<p>正如我们将在“粒子物理学”中看到的，<span data-concept="universal-gravitation">牛顿万有引力定律</span>被爱因斯坦的广义<span data-concept="relativity">相对论</span><span data-concept="theory">理论</span>修正。牛顿引力并没有严重的错误——对大多数情况来说，它过去是、现在仍然是一个极好的<span data-concept="approximation-def">近似</span>。爱因斯坦的修正在极强的引力<span data-concept="force-field">场</span>中最为显著，例如在<span data-concept="black-hole">黑洞</span>附近。不过，<span data-concept="general-relativity">广义相对论</span>还解释了诸如水星轨道与经典预言之间那种虽小但早已为人所知的偏差这样的现象。</p>
+</div>
+</section>
+
+<section id="simplicity">
+<h2>支持简洁性的理由</h2>
+<p class="cite-target">牛顿提出万有引力<span data-concept="law">定律</span>，在思想史上起到了关键作用。虽然详细讲述这段历史超出了本书的范围，但我们还是指出几个要点。国际天文学联合会（IAU）在 2006 年确定的行星定义指出，在太阳系中，行星是这样一种天体：</p>
+<ol>
+<li>绕太阳运行，</li>
+<li>具有足够的<span data-concept="mass">质量</span>，足以达到流体静力学平衡，并且</li>
+<li>已清除其轨道周围的邻近区域。</li>
+</ol>
+<p>仅满足上述前两条标准的非卫星天体被归类为“矮行星”。</p>
+<p>2006 年，在科学家修订了什么才算“真正的”行星的定义之后，冥王星被降级为“矮行星”。</p>
+<div class="book-table">
+  <div class="tcap"><span class="eyebrow">表 6.2</span><span>轨道数据与开普勒第三定律</span></div>
+  <table>
+    <thead><tr><th>中心天体</th><th>卫星</th><th>平均轨道半径 $\kr$（km）</th><th><span data-concept="period">周期</span> $\kT$（y）</th><th>$\kr^3/\kT^2$（km³/y²）</th></tr></thead>
+    <tbody>
+      <tr><td>地球</td><td>月球</td><td class="num">$3.84\times 10^{5}$</td><td class="num">0.07481</td><td class="num">$1.01\times 10^{19}$</td></tr>
+      <tr><td>太阳</td><td>水星</td><td class="num">$5.79\times 10^{7}$</td><td class="num">0.2409</td><td class="num">$3.34\times 10^{24}$</td></tr>
+      <tr><td rowspan="7"></td><td>金星</td><td class="num">$1.082\times 10^{8}$</td><td class="num">0.6150</td><td class="num">$3.35\times 10^{24}$</td></tr>
+      <tr><td>地球</td><td class="num">$1.496\times 10^{8}$</td><td class="num">1.000</td><td class="num">$3.35\times 10^{24}$</td></tr>
+      <tr><td>火星</td><td class="num">$2.279\times 10^{8}$</td><td class="num">1.881</td><td class="num">$3.35\times 10^{24}$</td></tr>
+      <tr><td>木星</td><td class="num">$7.783\times 10^{8}$</td><td class="num">11.86</td><td class="num">$3.35\times 10^{24}$</td></tr>
+      <tr><td>土星</td><td class="num">$1.427\times 10^{9}$</td><td class="num">29.46</td><td class="num">$3.35\times 10^{24}$</td></tr>
+      <tr><td>海王星</td><td class="num">$4.497\times 10^{9}$</td><td class="num">164.8</td><td class="num">$3.35\times 10^{24}$</td></tr>
+      <tr><td>冥王星</td><td class="num">$5.90\times 10^{9}$</td><td class="num">248.3</td><td class="num">$3.33\times 10^{24}$</td></tr>
+      <tr><td>木星</td><td>木卫一</td><td class="num">$4.22\times 10^{5}$</td><td class="num">0.00485 (1.77 d)</td><td class="num">$3.19\times 10^{21}$</td></tr>
+      <tr><td rowspan="3"></td><td>木卫二</td><td class="num">$6.71\times 10^{5}$</td><td class="num">0.00972 (3.55 d)</td><td class="num">$3.20\times 10^{21}$</td></tr>
+      <tr><td>木卫三</td><td class="num">$1.07\times 10^{6}$</td><td class="num">0.0196 (7.16 d)</td><td class="num">$3.19\times 10^{21}$</td></tr>
+      <tr><td>木卫四</td><td class="num">$1.88\times 10^{6}$</td><td class="num">0.0457 (16.19 d)</td><td class="num">$3.20\times 10^{21}$</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>万有引力<span data-concept="law">定律</span>是适用范围非常广泛的物理原理的一个很好的例子。那个关于<span data-concept="force">引力</span>的单一方程描述了引力起作用的所有情形。它为大量效应——例如太阳系中行星和卫星的轨道——给出了原因。它集中体现了<span data-concept="physics">物理学</span>内在的统一与简洁。</p>
+<p>在开普勒、哥白尼、伽利略、牛顿等人作出发现之前，人们认为太阳系是围绕<span data-ref="earth">地球</span>转动的，如图 6.28（a）所示。这被称为托勒密体系，得名于生活在公元 2 世纪的希腊哲学家。这一<span data-concept="model">模型</span>的特点是罗列了行星<span data-concept="motion">运动</span>的一系列事实，却没有因果关系的解释。每个天体似乎都有各自的规则，总体上缺乏简洁性。</p>
+<p>图 6.28（b）表示现代的哥白尼<span data-concept="model">模型</span>。在这一<span data-concept="model">模型</span>中，一小套规则和单一的根本<span data-concept="force">力</span>，不仅解释了太阳系中的所有<span data-concept="motion">运动</span>，而且解释了涉及引力的所有其他情形。<span data-concept="physics">物理学</span><span data-concept="law">定律</span>的广泛性与简洁性令人信服。随着我们对自然的认识不断增长，其<span data-concept="law">定律</span>的基本简洁性愈发明显。</p>
+<figure class="sim" id="sim-frames" data-figure="6.28" data-original="/media/ch06/Figure_07_06_03a.jpg" data-original-width="475" data-original-caption="（a）托勒密宇宙模型以地球为中心，月球、行星、太阳和恒星在复杂叠加的圆形路径上绕它旋转。这种地心模型可以通过增加更多的圆而变得越来越精确，但它纯粹是描述性的，没有任何关于这些运动成因的线索。（b）哥白尼模型以太阳为太阳系的中心。它可以由少数几条物理学定律完全解释，其中包括牛顿万有引力定律。">
+  <div class="sim-head"><span class="eyebrow">Figure 6.28</span><span><span data-ref="earth">地球</span>和<span data-ref="outer-planet">一颗外侧行星</span>按同一个时钟运行<span data-ref="earth outer-planet">各自的</span>轨道，并被画了两次。在右侧，<span data-ref="sun">太阳</span>位于中心，<span data-ref="earth outer-planet">每颗行星</span>都沿着一个简单的圆运动，其<span data-type="time">周期</span>仅由它的<span data-type="position">半径</span>决定。在左侧，同样的两种运动以<span data-ref="earth">地球</span>为中心画出，在那里，每当<span data-ref="earth">地球</span>超过<span data-ref="outer-planet">它</span>时，<span data-ref="outer-planet">外侧行星</span>就会<span data-ref="outer-planet">自己</span>折返一次。把<span data-ref="outer-planet">外侧行星</span>移得更远，或者保留更长的轨迹，观察右侧的那一条规则能够解释其中多少个这样的回环。</span></div>
+</figure>
+</section>

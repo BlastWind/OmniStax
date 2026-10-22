@@ -1,0 +1,1130 @@
+{
+ "id": "6.5",
+ "module": "m42143",
+ "chapter": "6",
+ "title": "牛顿万有引力定律",
+ "short": "万有引力",
+ "lead": "引力使我们的双脚不堪重负，把苹果从树上拉下来，并把<span data-ref=\"moon\">月球</span>保持在<span data-ref=\"moon\">其</span>轨道上，而牛顿是第一个把它写成在宇宙中处处成立的形式的人。他的万有引力定律解释了<span data-type=\"acceleration\">落体的加速度</span>、<span data-ref=\"earth\">地球本身</span>的质量、海洋潮汐和轨道上航天员的失重，而一项精巧的实验确定了它的引力常量。",
+ "objectives": [
+  "解释地球的引力。",
+  "描述月球对地球的引力效应。",
+  "讨论太空中的失重。",
+  "考察卡文迪什实验"
+ ],
+ "summary_html": "<ul><li>牛顿万有引力定律：宇宙中的每个粒子都以一个沿二者连线的<span data-concept=\"force\">力</span>吸引其他每个粒子。这个<span data-concept=\"force\">力</span>与它们<span data-concept=\"mass\">质量</span>的乘积成正比，与它们之间<span data-concept=\"distance\">距离</span>的平方成反比。用方程表示就是 $$\\kF = G\\frac{mM}{\\kr^2},$$ 其中 $\\kF$ 是<span data-concept=\"force\">引力</span>的大小。$G$ 是引力常量，其值为 $G = 6.674 \\times 10^{-11}\\ \\text{N}\\cdot\\text{m}^2\\text{/kg}^2$。</li><li>牛顿万有引力定律普遍适用。</li></ul>",
+ "notes": "习题 2、4、6 和 8 在书后答案中没有给出，因而略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案；习题 2、4、6 和 8（月球和太阳在地球处产生的加速度、太阳表面的重力加速度、用 $\\kac = \\kv^2/\\kr$ 重新求解的例题 6.6 的（b）问，以及海王星由冥王星产生的加速度与由天王星产生的加速度的比较）没有给出答案，因此略去。三道没有给出答案的 AP 题——使引力最大的条件、土卫六的质量，以及太阳在水星处的场与在地球处的场之比——保留为开放式题目，附有 AI 标明的建议思路，而不是作为评分的选择题；其中提到“方程 6.40”的那道题保留了书中的措辞，并引用了陈述该定律的段落。四道思考题没有给出答案，附有 AI 标明的建议思路。6.4 节把关于超距作用的思考题和关于轨道上的卫星是否处于自由落体运动的思考题，与本节一字不差地印了一遍；引力在这里引入，所以两道题都保留在这里，6.4 节则略去了它的副本。关于椭圆轨道上卫星受力图的思考题保留在这里，因为它所问的那个唯一的力就是本节引入的引力；它所问的速率变化，在“卫星与开普勒定律：对简洁性的论证”中由开普勒第二定律来讲。6.2 节中关于在 300 km 的高度处引力给出的加速度占表面加速度的百分比的习题，需要用到本节的 $\\kg = GM/\\kr^2$，但它没有给出答案，所以 6.2 节把它略去，而没有放在这里。",
+ "figures": [
+  {
+   "id": "fig-newton",
+   "kind": "photo",
+   "number": "6.17",
+   "widths": [
+    225
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-two-masses",
+   "kind": "sim",
+   "number": "6.18",
+   "originals": [
+    "/media/ch06/Figure_07_05_02a.jpg"
+   ],
+   "original_caption": "引力沿着连接这两个物体质心的连线。每个物体所受力的大小相同，这与牛顿第三定律一致。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the third-law fact"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-surface-gravity",
+   "kind": "sim",
+   "number": "6.19",
+   "originals": [
+    "/media/ch06/Figure_07_05_03a.jpg"
+   ],
+   "original_caption": "地球与其表面上一个物体的质心之间的距离，与地球的半径非常接近，因为地球比这个物体大得多。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "acceleration",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels clear of the axis and magnifier; clipped value in words; headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-earth-moon",
+   "kind": "sim",
+   "number": "6.20",
+   "originals": [
+    "/media/ch06/Figure_07_05_04a.jpg"
+   ],
+   "original_caption": "（a）地球和月球大约每月绕它们共同的质心转动一周。（b）它们的质心沿椭圆轨道绕太阳运行，但地球绕太阳的路径中带有“摆动”。人们在恒星的路径中也观察到了类似的摆动，并将其视为有行星绕这些恒星运行的直接证据。这一点很重要，因为行星反射的光往往太暗，无法被观测到。",
+   "widths": [
+    334
+   ],
+   "draws": [
+    "position",
+    "time",
+    "acceleration",
+    "angular-rate"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "names placed by a labeller clear of the bodies; headline typeset; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-tides",
+   "kind": "sim",
+   "number": "6.21",
+   "folds": [
+    "6.22"
+   ],
+   "originals": [
+    "/media/ch06/Figure_07_05_05a.jpg",
+    "/media/ch06/Figure_07_05_06a.jpg"
+   ],
+   "original_caption": "月球引起海洋潮汐，一方面是因为它对近侧的水的吸引大于对地球的吸引，另一方面是因为它对地球的吸引大于对远侧的水的吸引。距离和大小没有按比例画出。对于地月系统的这一简化表示，任何地点每天都有两次高潮和两次低潮，因为地球在潮汐隆起之下自转。（a、b）大潮：当地球、月球和太阳排成一线时，出现最高的潮汐。（c）小潮：当太阳位于与地月连线成 90º 处时，出现最低的潮汐。请注意，此图没有按比例绘制。",
+   "widths": [
+    400,
+    400
+   ],
+   "draws": [
+    "force",
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to two clauses"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: scene of bodies and two tidal forces, pulls in the bar panel"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-black-hole",
+   "kind": "photo",
+   "number": "6.23",
+   "widths": [
+    300
+   ],
+   "draws": []
+  },
+  {
+   "id": "fig-astronauts",
+   "kind": "photo",
+   "number": "6.24",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-cavendish",
+   "kind": "sim",
+   "number": "6.25",
+   "originals": [
+    "/media/ch06/Figure_07_05_08a.jpg"
+   ],
+   "original_caption": "卡文迪什用这样的装置，通过观察纤维中产生的扭转（扭绞）量，来测量两个悬挂的球（m）与台座上的两个球（M）之间的引力。质量之间的距离可以改变，以检验力对距离的依赖关系。这类现代实验仍在继续探索引力。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "force",
+    "position",
+    "mass"
+   ],
+   "facts": [
+    "#ffffff",
+    "#c9a45c",
+    "#585c66",
+    "#f6f8fb",
+    "#f0a828",
+    "#fff1c0"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "spot travel measured from the true zero; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "universal-law",
+   "concept": "universal-gravitation",
+   "verb": "introduces"
+  },
+  {
+   "span": "universal-law",
+   "concept": "center-of-mass",
+   "verb": "introduces"
+  },
+  {
+   "span": "universal-law",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "universal-law",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "universal-law",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "gravitational-constant",
+   "concept": "gravitational-constant",
+   "verb": "introduces"
+  },
+  {
+   "span": "gravitational-constant",
+   "concept": "universal-gravitation",
+   "verb": "reinforces"
+  },
+  {
+   "span": "gravitational-constant",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "g-from-gravity",
+   "concept": "g-from-gravitation",
+   "verb": "introduces"
+  },
+  {
+   "span": "g-from-gravity",
+   "concept": "universal-gravitation",
+   "verb": "uses"
+  },
+  {
+   "span": "g-from-gravity",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "g-from-gravity",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "g-from-gravity",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "g-from-gravity",
+   "concept": "mass",
+   "verb": "uses"
+  },
+  {
+   "span": "moon",
+   "concept": "gravity-as-centripetal-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "moon",
+   "concept": "universal-gravitation",
+   "verb": "uses"
+  },
+  {
+   "span": "moon",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-moon",
+   "concept": "gravity-as-centripetal-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-moon",
+   "concept": "g-from-gravitation",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-moon",
+   "concept": "centripetal-acceleration-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-moon",
+   "concept": "angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-moon",
+   "concept": "linear-angular-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "tides",
+   "concept": "tides",
+   "verb": "introduces"
+  },
+  {
+   "span": "tides",
+   "concept": "universal-gravitation",
+   "verb": "uses"
+  },
+  {
+   "span": "tides",
+   "concept": "center-of-mass",
+   "verb": "uses"
+  },
+  {
+   "span": "weightlessness",
+   "concept": "weightlessness",
+   "verb": "introduces"
+  },
+  {
+   "span": "weightlessness",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "weightlessness",
+   "concept": "acceleration-due-to-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "weightlessness",
+   "concept": "apparent-weight",
+   "verb": "uses"
+  },
+  {
+   "span": "weightlessness",
+   "concept": "microgravity",
+   "verb": "introduces"
+  },
+  {
+   "span": "cavendish",
+   "concept": "cavendish-experiment",
+   "verb": "introduces"
+  },
+  {
+   "span": "cavendish",
+   "concept": "mass-from-g",
+   "verb": "introduces"
+  },
+  {
+   "span": "cavendish",
+   "concept": "gravitational-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "cavendish",
+   "concept": "g-from-gravitation",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1372020",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "g-from-gravity",
+   "prompt": "木星的质量约为地球的 300 倍，半径约为地球的 11 倍。木星表面的重力加速度与地球表面的相比如何？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "更大",
+     "更小",
+     "大致相同",
+     "信息不足"
+    ],
+    "correct": 0,
+    "hint": "表面处的加速度为 $\\kg = GM/\\kr^2$，所以要把质量增大的倍数与半径增大的倍数的平方作比较。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id674030",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "universal-law",
+   "prompt": "已知牛顿万有引力定律（方程 6.40），在什么情况下引力最大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$G$ 是一个常量，人们认为它在宇宙中处处相同，所以关于它的任何东西都不能改变。定律所提到的另外两样东西则可以改变。在 $\\kF = GmM/\\kr^2$ 中，力随两个质量的乘积增大，随它们质心之间距离的平方减小，所以当两个质量尽可能大、它们之间的距离尽可能小时，引力最大。由于距离是以平方的形式出现的，缩小间隙比增加质量更快地改变力。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1110266",
+   "kind": "ap-test-prep",
+   "bloom": "Remember",
+   "place": {
+    "at": "end"
+   },
+   "cite": "gravitational-constant",
+   "prompt": "在公式 $\\kg = \\frac{GM}{\\kr^2}$ 中，<em>G</em> 代表什么？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "重力加速度",
+     "在宇宙中处处相同的引力常量",
+     "与半径成反比的引力常量",
+     "把惯性质量乘以它就得到引力质量的那个因子"
+    ],
+    "correct": 1,
+    "hint": "重力加速度已经在公式的左边，而本节给了 $G$ 一个测得的值，并称它是普适的。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1678996",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cavendish",
+   "prompt": "土星的卫星土卫六的半径为 $2.58 \\times 10^{6}\\ \\text{m}$，测得的引力场为 $1.35\\ \\text{m/s}^2$。它的质量是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "土卫六的质量为 $\\kM = 1.35 \\times 10^{23}\\ \\text{kg}$。质量为 $\\kM$、半径为 $\\kr$ 的天体表面的引力场为 $\\kg = G\\kM/\\kr^2$，像本节对地球所做的那样整理，得 $\\kM = \\kg\\kr^2/G$。右边的每个量都是已知的，所以 $$\\kM = \\frac{(1.35\\ \\text{m/s}^2)(2.58 \\times 10^{6}\\ \\text{m})^2}{6.674 \\times 10^{-11}\\ \\text{N}\\cdot\\text{m}^2/\\text{kg}^2} = \\frac{8.99 \\times 10^{12}\\ \\text{m}^3/\\text{s}^2}{6.674 \\times 10^{-11}\\ \\text{N}\\cdot\\text{m}^2/\\text{kg}^2} = 1.35 \\times 10^{23}\\ \\text{kg}.$$ 这约为地球质量 $5.98 \\times 10^{24}\\ \\text{kg}$ 的 2%，这就是为什么土卫六表面的场比 $9.80\\ \\text{m/s}^2$ 弱得多，尽管它的半径约为地球的 40%。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1841502",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "g-from-gravity",
+   "prompt": "新发现的一颗行星，质量是地球的两倍，半径也是地球的两倍。它的引力场的大小大约是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$19\\ \\text{m/s}^2$",
+     "$4.9\\ \\text{m/s}^2$",
+     "$2.5\\ \\text{m/s}^2$",
+     "$9.8\\ \\text{m/s}^2$"
+    ],
+    "correct": 1,
+    "hint": "在 $\\kg = GM/\\kr^2$ 中，质量加倍使场加倍，半径加倍，而半径是以平方的形式出现的。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1545601",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "g-from-gravity",
+   "prompt": "地球离太阳 $1.5 \\times 10^{11}\\ \\text{m}$。水星离太阳 $5.7 \\times 10^{10}\\ \\text{m}$。太阳在水星处的引力场（$g_{\\text{SM}}$）与太阳在地球处的引力场（$g_{\\text{SE}}$）相比如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "太阳在水星处的引力场约为它在地球处的场的 6.9 倍，$g_{\\text{SM}} \\approx 6.9\\,g_{\\text{SE}}$。太阳在离其中心距离 $\\kr$ 处产生的场为 $\\kg = G\\kM/\\kr^2$，两颗行星用的是同一个 $G$ 和同一个太阳质量 $\\kM$，所以两个场之比只取决于两个距离：$$\\frac{g_{\\text{SM}}}{g_{\\text{SE}}} = \\frac{r_{\\text{SE}}^2}{r_{\\text{SM}}^2} = \\left(\\frac{1.5 \\times 10^{11}\\ \\text{m}}{5.7 \\times 10^{10}\\ \\text{m}}\\right)^2 = (2.63)^2 = 6.9.$$ 水星比地球离太阳近约 2.6 倍，而且由于场按距离的平方反比减小，水星处的场强了这个倍数的平方。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id959677",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "universal-law",
+   "prompt": "超距作用，比如引力的情形，曾被认为是不合逻辑的，因此是不真实的。物理学中真理的最终判据是什么？为什么这种作用最终被接受了？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "物理学中真理的最终判据是观察。当测量结果与关于自然的某个陈述所预言的相符时，物理学家就接受它，至于它听起来是否合乎逻辑，任何论证都不能解决这个问题。超距作用看起来不合逻辑，是因为每一种熟悉的力都是通过接触起作用的，而引力却是隔着空无一物的空间起作用，中间什么也没有。物理学家之所以接受它，是因为牛顿定律预言了他们能够测量的东西，而且预言得非常好。同一个公式既解释了落体，也解释了月球的运动，还给出了人们早已知道卫星、行星和彗星所遵循的圆锥曲线。卡文迪什后来在实验室里测量两个普通质量之间得到的 $G$ 值，对月球和行星同样适用。后来的工作把万有引力描述为空间和时间的弯曲，但这条定律仍然成立，因为它与观察相符。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3122954",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "weightlessness",
+   "prompt": "两位朋友在交谈。安娜说，轨道上的卫星处于自由落体运动，因为卫星一直在朝地球下落。汤姆说，轨道上的卫星不处于自由落体运动，因为重力加速度不是 $9.80\\ \\text{m/s}^2$。你同意谁的看法，为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "安娜是对的。自由落体运动意味着引力是唯一作用的力，而轨道上的卫星恰恰如此：它一直在朝地球下落，同时地球表面在它下方弯曲退去，所以它永远落不到地面。汤姆用错了判据。重力加速度为 $\\kg = GM/\\kr^2$，而 $9.80\\ \\text{m/s}^2$ 只是它在地球表面那个距离处的值；更远处这个值更小，卫星以属于它自己那个距离的值下落。这也是为什么里面的航天员处于失重状态。他们与卫星一起处于自由落体运动，以重力加速度加速，并非超出了引力的作用范围，而且轨道上并不存在零重力。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3233493",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "universal-law",
+   "prompt": "为椭圆轨道上的卫星画一幅受力图，说明为什么它在接近其中心天体时速率增大，在远离时速率减小。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "卫星只受一个力的作用，即中心天体的引力。因此受力图只是一个从卫星出发、沿着连接两个质心的连线、指向中心天体的箭头。在椭圆上的两个位置，在它旁边画出速度箭头。在圆轨道上，力总是与速度成直角，所以它只能使卫星转向，永远不能改变它的速率。在椭圆轨道上，卫星并不总是以与两个物体连线成直角的方向运动。在它靠近时，力的一部分沿着运动方向，速率增大。在它远离时，这一部分指向后方，速率减小。两个箭头之间的夹角告诉你正在发生的是哪一种情形。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1890173",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "universal-law",
+   "prompt": "牛顿运动定律和万有引力定律最早令人信服地证明了自然界潜在的简洁性与统一性。此后又发现了许多其他例子，我们现在期望在复杂的情形中找到这种潜在的秩序。有没有证据表明，在新的探索中总会找到这样的秩序？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "对此没有证明。牛顿运动定律和万有引力定律表明，大量不同的事物——一只落下的苹果、我们自己的重力、月球的轨道、行星和彗星的路径——都来自一条简单的陈述。此后物理学家一次又一次地发现了同样的统一性。这一记录是在尚未探索的领域中寻找潜在秩序的一个很好的理由，也是我们期望找到它的原因。但这种期望来自经验，而不是来自某个定理。只有在新领域中的观察和测量才能显示那里有秩序，而一次没有发现任何秩序的探索，就只能如实报告这一点。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1845493",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "cavendish",
+   "prompt": "地球不是一个完美的球体。它的半径以及 <em>g</em> 的值都随纬度而变化。（a）已知北极的重力加速度为 $9.807\\ \\text{m/s}^2$，极地处地球的半径为 6356.8 km，求地球的质量。（b）将它与公认值 $5.972 \\times 10^{24}\\ \\text{kg}$ 作比较。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 5.95296e+24,
+    "unit": "kg",
+    "hint": "从 $\\kg = GM/\\kr^2$ 出发，把它整理成求质量的形式 $M = \\kg\\kr^2/G$；半径必须以米为单位。",
+    "solution": "（a） $\\kg = \\frac{GM}{\\kr^2} \\Rightarrow M = \\frac{\\kr^2 \\kg}{G} = 5.95296 \\times 10^{24}\\ \\text{kg}$\n\n（b）这个值比公认值略小，但可以测出，二者在第三位有效数字上不同。我们用来求 <em>g</em> 的方程假定了一个球体，但我们已经指出，极地的半径比赤道的小。这一计算给出的是半径为我们所用值的球体的质量——而忽略了该半径之外的额外质量。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1427117",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "g-from-gravity",
+   "prompt": "（a）月球表面的重力加速度是多少？（b）火星表面的呢？火星的质量为 $6.418 \\times 10^{23}\\ \\text{kg}$，半径为 $3.38 \\times 10^{6}\\ \\text{m}$。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the Moon",
+      "value": 1.62,
+      "unit": "m/s²",
+      "hint": "用 $\\kg = GM/\\kr^2$，代入月球的质量和半径；二者都在天文数据表中。"
+     },
+     {
+      "part": "(b) Mars",
+      "value": 3.75,
+      "unit": "m/s²",
+      "hint": "同一个关系式，代入题目给出的火星的质量和半径。"
+     }
+    ],
+    "solution": "（a） $1.62\\ \\text{m/s}^2$\n\n（b） $3.75\\ \\text{m/s}^2$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3135282",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moon",
+   "prompt": "月球和地球绕它们共同的质心转动，该质心位于距地心约 4700 km 处。（这在地表以下 1690 km 处。）（a）计算月球的引力在该点产生的加速度的大小。（b）计算地心在每个太阴月（约 27.3 d）绕该点转动一周时的向心加速度的大小，并与（a）问中求得的加速度作比较。评论二者是否相等，以及为什么应该或不应该相等。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3.42e-05,
+      "unit": "m/s²",
+      "hint": "用 $\\kg = GM/\\kr^2$，代入月球的质量，以及月球到距地心 4700 km 的那一点的距离。"
+     },
+     {
+      "part": "(b)",
+      "value": 3.34e-05,
+      "unit": "m/s²",
+      "hint": "地心每 27.3 d 绕半径为 4700 km 的圆转一周，所以 $\\kac = \\kr\\kw^2$，其中 $\\kw = 2\\pi/\\kT$。"
+     }
+    ],
+    "solution": "（a） $3.42 \\times 10^{-5}\\ \\text{m/s}^2$\n\n（b） $3.34 \\times 10^{-5}\\ \\text{m/s}^2$\n\n两个值几乎相同。人们会预期，在系统的核心处，引力与向心力相同。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1516358",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "universal-law",
+   "prompt": "（a）计算在婴儿出生时，一位 100 kg 的父亲对 0.200 m 外的 4.20 kg 婴儿施加的引力的大小（他在协助接生，所以离孩子很近）。（b）计算当木星处于离地球最近的位置、相距约 $6.29 \\times 10^{11}\\ \\text{m}$ 时，木星对该婴儿的力的大小。木星对婴儿的力与父亲对婴儿的力相比如何？房间里的其他物体和医院的建筑物也施加类似的引力。（当然，也可能有一个未知的力在起作用，但科学家首先需要确信存在这种效应，更不用说确信是一个未知的力引起了它。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the father",
+      "value": 7.01e-07,
+      "unit": "N",
+      "hint": "把两个质量和间距直接代入 $\\kF = GmM/\\kr^2$。"
+     },
+     {
+      "part": "(b) Jupiter",
+      "value": 1.35e-06,
+      "unit": "N",
+      "hint": "同一个关系式，代入木星的质量和给定的距离；质量大得多，距离也大得多。"
+     },
+     {
+      "part": "(b) the ratio of the father’s force to Jupiter’s",
+      "value": 0.521,
+      "hint": "用（a）中的力除以（b）中的力。"
+     }
+    ],
+    "solution": "（a） $7.01 \\times 10^{-7}\\ \\text{N}$\n\n（b） $1.35 \\times 10^{-6}\\ \\text{N}$，$0.521$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1422828",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "moon",
+   "prompt": "（a）太阳每 $2.60 \\times 10^{8}\\ \\text{y}$ 绕银河系一周，轨道近似为圆，平均半径为 $3.00 \\times 10^{4}$ 光年。（光年是光在 1 y 内传播的距离。）计算太阳在其银河系轨道上的向心加速度。你的结果是否支持“可以把一个近似的惯性参考系建立在太阳上”这一主张？（b）计算太阳在其银河系轨道上的平均速率。这个答案是否让你感到意外？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 1.66e-10,
+      "unit": "m/s²",
+      "hint": "把半径换算成米，把周期换算成秒，然后用 $\\kac = \\kr\\kw^2$，其中 $\\kw = 2\\pi/\\kT$。"
+     },
+     {
+      "part": "(b)",
+      "value": 217000.0,
+      "unit": "m/s",
+      "hint": "轨道的周长除以周期，或者用 $\\kv = \\kr\\kw$。"
+     }
+    ],
+    "solution": "（a） $1.66 \\times 10^{-10}\\ \\text{m/s}^2$\n\n（b） $2.17 \\times 10^{5}\\ \\text{m/s}$"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id3202966",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "universal-law",
+   "prompt": "<em>不合理的结果</em> 一座距某人 10.0 km 的山对他施加的引力，等于他的重力的 2.00%。（a）计算这座山的质量。（b）将这座山的质量与地球的质量作比较。（c）这些结果有什么不合理之处？（d）哪些前提不合理或不一致？（请注意，精确的引力测量可以很容易地探测到附近山体的影响以及当地地质的变化。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) the mass of the mountain",
+      "value": 2.937e+17,
+      "unit": "kg",
+      "hint": "令 $GmM/\\kr^2$ 等于 $0.0200\\,m\\kg$；此人的质量被消去，留下山的质量。"
+     },
+     {
+      "part": "(b) the fraction of Earth’s mass",
+      "value": 4.91e-08,
+      "hint": "用（a）中求得的质量除以地球的质量。"
+     }
+    ],
+    "solution": "（a） $2.937 \\times 10^{17}\\ \\text{kg}$\n\n（b）为地球质量的 $4.91 \\times 10^{-8}$。\n\n（c）这座山的质量及其占地球质量的比例都太大了。\n\n（d）假定这座山施加的引力太大了。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "g-from-gravitation"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "universal-gravitation",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "universal-gravitation"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "gravitational-constant",
+   "weight": 1
+  },
+  {
+   "exercise": "ap3",
+   "concept": "gravitational-constant"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "mass-from-g"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "g-from-gravitation",
+   "weight": 3
+  },
+  {
+   "exercise": "ap5",
+   "concept": "g-from-gravitation"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "g-from-gravitation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "universal-gravitation"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "gravitational-constant",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "weightlessness"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "g-from-gravitation",
+   "weight": 3
+  },
+  {
+   "exercise": "cq2",
+   "concept": "free-fall",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "universal-gravitation"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "free-body-diagram",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "universal-gravitation"
+  },
+  {
+   "exercise": "p1",
+   "concept": "mass-from-g"
+  },
+  {
+   "exercise": "p1",
+   "concept": "g-from-gravitation",
+   "weight": 3
+  },
+  {
+   "exercise": "p3",
+   "concept": "g-from-gravitation"
+  },
+  {
+   "exercise": "p5",
+   "concept": "gravity-as-centripetal-force"
+  },
+  {
+   "exercise": "p5",
+   "concept": "center-of-mass",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "g-from-gravitation",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "universal-gravitation"
+  },
+  {
+   "exercise": "p7",
+   "concept": "gravitational-constant",
+   "weight": 1
+  },
+  {
+   "exercise": "p9",
+   "concept": "centripetal-acceleration-magnitude"
+  },
+  {
+   "exercise": "p9",
+   "concept": "gravity-as-centripetal-force",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "g-from-gravitation",
+   "weight": 1
+  },
+  {
+   "exercise": "p10",
+   "concept": "unreasonable-results"
+  },
+  {
+   "exercise": "p10",
+   "concept": "universal-gravitation",
+   "weight": 3
+  }
+ ],
+ "referents": [
+  {
+   "id": "small-body",
+   "label": "质量为 m 的物体",
+   "figures": [
+    "sim-two-masses"
+   ]
+  },
+  {
+   "id": "large-body",
+   "label": "质量为 M 的物体",
+   "figures": [
+    "sim-two-masses"
+   ]
+  },
+  {
+   "id": "house",
+   "label": "地面上的房屋",
+   "figures": [
+    "sim-surface-gravity"
+   ]
+  },
+  {
+   "id": "earth",
+   "label": "地球",
+   "figures": [
+    "sim-earth-moon",
+    "sim-surface-gravity",
+    "sim-tides"
+   ]
+  },
+  {
+   "id": "moon",
+   "label": "月球",
+   "figures": [
+    "sim-earth-moon",
+    "sim-tides"
+   ]
+  },
+  {
+   "id": "sun",
+   "label": "太阳",
+   "figures": [
+    "sim-tides"
+   ]
+  },
+  {
+   "id": "water",
+   "label": "海水",
+   "figures": [
+    "sim-tides"
+   ]
+  },
+  {
+   "id": "coast",
+   "label": "标记的海岸",
+   "figures": [
+    "sim-tides"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "gravity-acceleration",
+   "what": "重力加速度",
+   "source": "《大学物理（第2版）》，6.5 牛顿万有引力定律",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "物体的重力 $\\km\\kg$ 就是它与地球之间的引力。",
+       "src": "6.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kF} = \\mk{G}{G}\\frac{\\mk{M}{\\km\\kM}}{\\mk{r}{\\kr^2}}",
+      "src": "6.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\km\\kg} = \\mk{G}{G}\\frac{\\mk{M}{\\km\\kM}}{\\mk{r}{\\kr^2}}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kg} = \\mk{G}{G}\\frac{\\mk{M}{\\kM}}{\\mk{r}{\\kr^2}}",
+       "uses": []
+      }
+     ],
+     "src": "6.5"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "G = 6.67 \\times 10^{-11}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{kg}^2}",
+       "src": "6.5"
+      },
+      {
+       "tex": "\\kM = 5.98 \\times 10^{24}\\ \\text{kg},\\quad \\kr = 6.38 \\times 10^{6}\\ \\text{m}"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kg} = \\mk{G}{G}\\frac{\\mk{M}{\\kM}}{\\mk{r}{\\kr^2}}",
+      "src": "6.5",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{F}{\\kg} = \\mk{G}{\\left(6.67 \\times 10^{-11}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{kg}^2}\\right)} \\times \\frac{\\mk{M}{\\kM}}{\\mk{r}{\\kr^2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kg} = \\mk{G}{\\left(6.67 \\times 10^{-11}\\ \\frac{\\text{N}\\cdot\\text{m}^2}{\\text{kg}^2}\\right)} \\times \\frac{\\mk{M}{5.98 \\times 10^{24}\\ \\text{kg}}}{\\mk{r}{(6.38 \\times 10^{6}\\ \\text{m})^2}}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{F}{\\kg} = \\mk{G}{9.80\\ \\text{m/s}^2}",
+       "uses": [],
+       "map": {
+        "M": "G",
+        "r": "G"
+       }
+      }
+     ],
+     "src": "6.5"
+    }
+   ]
+  }
+ ]
+}

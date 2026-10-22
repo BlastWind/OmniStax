@@ -1,0 +1,472 @@
+{
+ "id": "6",
+ "dir": "ch06",
+ "title": "匀速圆周运动与引力",
+ "intro": {
+  "module": "m42140",
+  "slug": "6-introduction-to-uniform-circular-motion-and-gravitation"
+ },
+ "sections": [
+  {
+   "id": "6.1",
+   "module": "m42083",
+   "title": "转角与角速度",
+   "slug": "6-1-rotation-angle-and-angular-velocity"
+  },
+  {
+   "id": "6.2",
+   "module": "m42084",
+   "title": "向心加速度",
+   "slug": "6-2-centripetal-acceleration"
+  },
+  {
+   "id": "6.3",
+   "module": "m42086",
+   "title": "向心力",
+   "slug": "6-3-centripetal-force"
+  },
+  {
+   "id": "6.4",
+   "module": "m42142",
+   "title": "虚拟力与非惯性参考系：科里奥利力",
+   "slug": "6-4-fictitious-forces-and-non-inertial-frames-the-coriolis-force"
+  },
+  {
+   "id": "6.5",
+   "module": "m42143",
+   "title": "牛顿万有引力定律",
+   "slug": "6-5-newtons-universal-law-of-gravitation"
+  },
+  {
+   "id": "6.6",
+   "module": "m42144",
+   "title": "卫星与开普勒定律：对简洁性的论证",
+   "slug": "6-6-satellites-and-keplers-laws-an-argument-for-simplicity"
+  }
+ ],
+ "variables": [
+  {
+   "sym": "Δθ",
+   "concept": "rotation-angle",
+   "meaning": "转角，转动的量；弧长与曲率半径之比",
+   "unit": "rad",
+   "section": "6.1",
+   "anchor": "6.1-rotation-angle"
+  },
+  {
+   "sym": "Δs",
+   "concept": "arc-length",
+   "meaning": "弧长，一点沿圆形路径所走过的路程",
+   "unit": "m",
+   "section": "6.1",
+   "anchor": "6.1-rotation-angle"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "圆形路径的曲率半径，从转动中心到运动的点",
+   "unit": "m",
+   "section": "6.1",
+   "anchor": "6.1-rotation-angle"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "角速度，转角的变化率",
+   "unit": "rad/s",
+   "section": "6.1",
+   "anchor": "6.1-angular-velocity"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "转动物体上一点的线速率或切向速率，例如光盘上的凹坑或轮胎的胎面",
+   "unit": "m/s",
+   "section": "6.1",
+   "anchor": "6.1-linear-angular"
+  },
+  {
+   "sym": "Δt",
+   "concept": "elapsed-time",
+   "meaning": "转角 Δθ 发生所用的时间",
+   "unit": "s",
+   "section": "6.1",
+   "anchor": "6.1-angular-velocity"
+  },
+  {
+   "sym": "a_c",
+   "concept": "centripetal-acceleration",
+   "meaning": "向心加速度，物体在匀速圆周运动中的加速度，指向曲率中心",
+   "unit": "m/s²",
+   "section": "6.2",
+   "anchor": "6.2-direction"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "物体绕圆运动的恒定速率，也就是它的切向速率",
+   "unit": "m/s",
+   "section": "6.2",
+   "anchor": "6.2-magnitude"
+  },
+  {
+   "sym": "v_1",
+   "concept": "instantaneous-velocity",
+   "meaning": "物体在所比较的两点中第一点处的速度，沿该处圆的切线",
+   "unit": "m/s",
+   "section": "6.2",
+   "anchor": "6.2-magnitude"
+  },
+  {
+   "sym": "v_2",
+   "concept": "instantaneous-velocity",
+   "meaning": "物体在第二点处的速度，大小等于 v₁，方向不同",
+   "unit": "m/s",
+   "section": "6.2",
+   "anchor": "6.2-magnitude"
+  },
+  {
+   "sym": "Δv",
+   "concept": "instantaneous-velocity",
+   "meaning": "两点之间速度的变化量，直接指向曲率中心",
+   "unit": "m/s",
+   "section": "6.2",
+   "anchor": "6.2-direction"
+  },
+  {
+   "sym": "Δs",
+   "concept": "arc-length",
+   "meaning": "所比较速度的两点之间的弧长",
+   "unit": "m",
+   "section": "6.2",
+   "anchor": "6.2-magnitude"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "圆形路径的半径",
+   "unit": "m",
+   "section": "6.2",
+   "anchor": "6.2-magnitude"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "物体绕圆运动的角速度",
+   "unit": "rad/s",
+   "section": "6.2",
+   "anchor": "6.2-magnitude"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度，向心加速度通常拿来与它比较的加速度",
+   "unit": "m/s²",
+   "section": "6.2",
+   "anchor": "6.2-centrifuge"
+  },
+  {
+   "sym": "F_c",
+   "concept": "centripetal-force",
+   "meaning": "向心力，引起匀速圆周运动的任何合力；它指向曲率中心",
+   "unit": "N",
+   "section": "6.3",
+   "anchor": "6.3-centripetal-force"
+  },
+  {
+   "sym": "a_c",
+   "concept": "centripetal-acceleration",
+   "meaning": "向心加速度，向心力所提供的加速度",
+   "unit": "m/s²",
+   "section": "6.3",
+   "anchor": "6.3-centripetal-force"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "在圆周上运动的物体的质量；它在摩擦因数和倾斜角中都被约去",
+   "unit": "kg",
+   "section": "6.3",
+   "anchor": "6.3-centripetal-force"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "物体绕弯道运动的速率",
+   "unit": "m/s",
+   "section": "6.3",
+   "anchor": "6.3-two-forms"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "弯道的曲率半径；向心力越大，半径 r 越小",
+   "unit": "m",
+   "section": "6.3",
+   "anchor": "6.3-radius"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "物体绕弯道运动的角速度",
+   "unit": "rad/s",
+   "section": "6.3",
+   "anchor": "6.3-two-forms"
+  },
+  {
+   "sym": "f_fric",
+   "concept": "friction",
+   "meaning": "轮胎与路面之间的摩擦力，在水平弯道上它就是全部的向心力",
+   "unit": "N",
+   "section": "6.3",
+   "anchor": "6.3-ex-flat-curve"
+  },
+  {
+   "sym": "N",
+   "concept": "normal-force",
+   "meaning": "路面对汽车的法向力，垂直于路面",
+   "unit": "N",
+   "section": "6.3",
+   "anchor": "6.3-ex-flat-curve"
+  },
+  {
+   "sym": "w",
+   "concept": "weight",
+   "meaning": "汽车的重力，作用在它上面的引力",
+   "unit": "N",
+   "section": "6.3",
+   "anchor": "6.3-banked"
+  },
+  {
+   "sym": "μ_s",
+   "concept": "coefficient-of-friction",
+   "meaning": "轮胎与路面之间的静摩擦因数",
+   "unit": "",
+   "section": "6.3",
+   "anchor": "6.3-ex-flat-curve"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "倾斜弯道的角度，从水平面起算",
+   "unit": "°",
+   "section": "6.3",
+   "anchor": "6.3-banked"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "重力加速度",
+   "unit": "m/s²",
+   "section": "6.3",
+   "anchor": "6.3-ex-flat-curve"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "转动参考系的角速度：旋转木马、离心机或地球本身",
+   "unit": "rad/s",
+   "section": "6.4",
+   "anchor": "6.4-centrifugal"
+  },
+  {
+   "sym": "F",
+   "concept": "force",
+   "meaning": "两个物体中每一个对另一个所施引力的大小；两者相等，正如牛顿第三定律所要求",
+   "unit": "N",
+   "section": "6.5",
+   "anchor": "6.5-universal-law"
+  },
+  {
+   "sym": "G",
+   "concept": "gravitational-constant",
+   "meaning": "引力常量，一个被认为在宇宙中处处相同的比例因子",
+   "unit": "N·m²/kg²",
+   "section": "6.5",
+   "anchor": "6.5-universal-law"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "两个物体中较小者的质量，例如站在地球上的物体",
+   "unit": "kg",
+   "section": "6.5",
+   "anchor": "6.5-universal-law"
+  },
+  {
+   "sym": "M",
+   "concept": "mass",
+   "meaning": "两个物体中较大者的质量，例如地球",
+   "unit": "kg",
+   "section": "6.5",
+   "anchor": "6.5-universal-law"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "universal-gravitation",
+   "type": "position",
+   "meaning": "两个物体质心之间的距离",
+   "redefines": true,
+   "unit": "m",
+   "section": "6.5",
+   "anchor": "6.5-universal-law"
+  },
+  {
+   "sym": "g",
+   "concept": "acceleration-due-to-gravity",
+   "type": "acceleration",
+   "meaning": "在距质量为 M 的物体中心 r 处的重力加速度",
+   "unit": "m/s²",
+   "section": "6.5",
+   "anchor": "6.5-g-from-gravity"
+  },
+  {
+   "sym": "a_c",
+   "concept": "centripetal-acceleration",
+   "meaning": "月球在其轨道上的向心加速度，牛顿将它与地球引力在该处产生的加速度相比较",
+   "unit": "m/s²",
+   "section": "6.5",
+   "anchor": "6.5-moon"
+  },
+  {
+   "sym": "ω",
+   "concept": "angular-velocity",
+   "meaning": "月球绕地球的角速度",
+   "unit": "rad/s",
+   "section": "6.5",
+   "anchor": "6.5-moon"
+  },
+  {
+   "sym": "T",
+   "concept": "period",
+   "meaning": "轨道的周期，绕轨道一整圈的时间",
+   "unit": "s",
+   "section": "6.6",
+   "anchor": "6.6-keplers-laws"
+  },
+  {
+   "sym": "T_orb1",
+   "concept": "period",
+   "meaning": "同一中心天体的两颗卫星中第一颗的周期",
+   "unit": "s",
+   "section": "6.6",
+   "anchor": "6.6-keplers-laws",
+   "ref": "moon"
+  },
+  {
+   "sym": "T_orb2",
+   "concept": "period",
+   "meaning": "同一中心天体的两颗卫星中第二颗的周期",
+   "unit": "s",
+   "section": "6.6",
+   "anchor": "6.6-keplers-laws",
+   "ref": "satellite"
+  },
+  {
+   "sym": "r_curv",
+   "concept": "circular-path-radius",
+   "meaning": "卫星圆轨道的曲率半径，即它到行星中心的平均距离",
+   "unit": "m",
+   "section": "6.6",
+   "anchor": "6.6-keplers-laws"
+  },
+  {
+   "sym": "r_1",
+   "concept": "circular-path-radius",
+   "meaning": "第一颗卫星的平均轨道半径",
+   "unit": "m",
+   "section": "6.6",
+   "anchor": "6.6-keplers-laws",
+   "ref": "moon"
+  },
+  {
+   "sym": "r_2",
+   "concept": "circular-path-radius",
+   "meaning": "第二颗卫星的平均轨道半径",
+   "unit": "m",
+   "section": "6.6",
+   "anchor": "6.6-keplers-laws",
+   "ref": "satellite"
+  },
+  {
+   "sym": "M",
+   "concept": "mass",
+   "meaning": "卫星所绕转的中心天体的质量",
+   "unit": "kg",
+   "section": "6.6",
+   "anchor": "6.6-orbits"
+  },
+  {
+   "sym": "m",
+   "concept": "mass",
+   "meaning": "卫星的质量，它在本节的每一个结果中都被约去",
+   "unit": "kg",
+   "section": "6.6",
+   "anchor": "6.6-orbits"
+  },
+  {
+   "sym": "G",
+   "concept": "gravitational-constant",
+   "meaning": "引力常量",
+   "unit": "N·m²/kg²",
+   "section": "6.6",
+   "anchor": "6.6-derivation"
+  },
+  {
+   "sym": "v",
+   "concept": "instantaneous-velocity",
+   "meaning": "卫星的轨道速率，周长除以周期",
+   "unit": "m/s",
+   "section": "6.6",
+   "anchor": "6.6-derivation"
+  },
+  {
+   "sym": "F_net",
+   "concept": "net-external-force",
+   "meaning": "卫星所受的合外力，即中心天体的引力",
+   "unit": "N",
+   "section": "6.6",
+   "anchor": "6.6-derivation"
+  },
+  {
+   "sym": "a_c",
+   "concept": "centripetal-acceleration",
+   "meaning": "卫星的向心加速度",
+   "unit": "m/s²",
+   "section": "6.6",
+   "anchor": "6.6-derivation"
+  },
+  {
+   "sym": "Δθ",
+   "concept": "rotation-angle",
+   "meaning": "转角，转动的量；弧长与曲率半径之比",
+   "unit": "rad",
+   "section": "6.2"
+  },
+  {
+   "sym": "Δθ",
+   "concept": "rotation-angle",
+   "meaning": "转角，转动的量；弧长与曲率半径之比",
+   "unit": "rad",
+   "section": "6.5"
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "太阳相对于地月连线的角度，大潮时为零，小潮时为 90°",
+   "unit": "°",
+   "section": "6.5",
+   "redefines": true
+  },
+  {
+   "sym": "θ",
+   "concept": "angle",
+   "meaning": "在椭圆上确定铅笔位置的角度，以曲线的中心为基点度量",
+   "unit": "°",
+   "section": "6.6",
+   "redefines": true
+  }
+ ]
+}
