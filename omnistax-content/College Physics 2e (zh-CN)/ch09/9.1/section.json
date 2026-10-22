@@ -1,0 +1,439 @@
+{
+ "id": "9.1",
+ "module": "m42170",
+ "chapter": "9",
+ "title": "平衡的第一条件",
+ "short": "第一条件",
+ "lead": "平衡对系统提出两项要求，第一项涉及系统所受的<span data-concept=\"net-external-force\">合外力</span>，并且要沿每个轴同时成立。你把这个条件用在<span data-ref=\"person\">一个静止不动的人</span>身上，用在<span data-ref=\"car\">一辆汽车</span>身上，它以<span data-type=\"velocity\">恒定速度</span>行驶，还用在<span data-ref=\"stick\">一根冰球杆</span>身上，它受到<span data-type=\"force\">两个大小相等、方向相反的力</span>的推动，由此看这个条件能保证什么、不能保证什么。",
+ "objectives": [
+  "陈述平衡的第一条件。",
+  "解释静态平衡。",
+  "解释动态平衡。"
+ ],
+ "summary_html": "<ul><li>静力学研究处于平衡的<span data-concept=\"force\">力</span>。</li><li>要达到平衡，必须满足两个条件；平衡被定义为没有直线或转动的<span data-concept=\"acceleration\">加速度</span>的运动。</li><li>达到平衡所必需的第一个条件是：系统所受的<span data-concept=\"net-external-force\">合外力</span>必须为零，即 $\\text{合力}\\;\\mathbf{F}=0$。</li></ul>",
+ "notes": "出版方关于力矩的 PhET 模拟的链接已略去；本节没有习题集，其余内容均未略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和建议思路由 AI 生成。本节没有印出习题集、AP 题，也没有“理解检测”框，因此这里没有任何内容取自书后答案，也没有因缺少答案而略去什么。它的两道思考题没有答案，因为本书的思考题都没有答案，所以每道题都附有一条由 AI 撰写并已标明的建议思路。第一道很短，是对它所在段落的检查，因此按规则 12 为这类检查保留的位置，放在静态平衡与动态平衡两幅图之后；第二道指向平衡定义中的转动那一半，放在末尾。没有任何习题取自其他小节：9.4 的五道 AP 题已对照本节读过，跷跷板估算题和悬伸的一摞书这两道归入 9.2 和 9.3，而绳上的木板、桥墩和未知质量这三道都需要第二条件，仍留在 9.4。",
+ "figures": [
+  {
+   "id": "sim-person",
+   "kind": "sim",
+   "number": "9.2",
+   "originals": [
+    "/media/ch09/Figure_10_01_01a.jpg"
+   ],
+   "original_caption": "这个静止不动的人处于静态平衡。作用在他身上的力之和为零。在这个例子中，两个力都沿竖直方向。",
+   "widths": [
+    220
+   ],
+   "draws": [
+    "force",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the weight, through the macros; true minus"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-car",
+   "kind": "sim",
+   "number": "9.3",
+   "originals": [
+    "/media/ch09/Figure_10_01_02a.jpg"
+   ],
+   "original_caption": "这辆汽车处于动态平衡，因为它以恒定速度运动。有水平方向和竖直方向的力，但沿任何方向的合外力都为零。轮胎与路面之间的外加力 F_app 与空气阻力相平衡，汽车的重力由法向力支撑，这里画出的四个轮胎所受的法向力相等。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "force",
+    "velocity",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one line through the macros; F_app label off the w arrow"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-equilibrium",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "velocity",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels stepped off one another; repeated notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-stick",
+   "kind": "sim",
+   "number": "9.4",
+   "folds": [
+    "9.5"
+   ],
+   "originals": [
+    "/media/ch09/Figure_10_01_03a.jpg",
+    "/media/ch09/Figure_10_01_04a.jpg"
+   ],
+   "original_caption": "（图 9.4）一根冰球杆平放在冰面上，有两个大小相等、方向相反的水平力作用在它上面。摩擦可以忽略，重力被冰面的支撑（一个法向力）所平衡。因此，合力 F = 0。达到了平衡，在这里是静态平衡。（图 9.5）同样的力作用在其他点上，杆发生转动，实际上是发生加速转动。这里合力 F = 0，但系统并未处于平衡。因此，合力 F = 0 是达到平衡的必要条件，但不是充分条件。",
+   "widths": [
+    225,
+    280
+   ],
+   "draws": [
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "FBD clear of the force label; helpers darker; notes cut"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "animated: the stick turns from rest once the lines of action part"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "first-condition",
+   "concept": "first-condition-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "first-condition",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "first-condition",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "first-condition",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "first-condition",
+   "concept": "acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "first-condition",
+   "concept": "resolve-forces-into-components",
+   "verb": "uses"
+  },
+  {
+   "span": "static-and-dynamic",
+   "concept": "static-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "static-and-dynamic",
+   "concept": "dynamic-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "static-and-dynamic",
+   "concept": "first-condition-equilibrium",
+   "verb": "reinforces"
+  },
+  {
+   "span": "static-and-dynamic",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "static-and-dynamic",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "static-and-dynamic",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "static-and-dynamic",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "static-and-dynamic",
+   "concept": "instantaneous-velocity",
+   "verb": "uses"
+  },
+  {
+   "span": "static-and-dynamic",
+   "concept": "newtons-first-law",
+   "verb": "uses"
+  },
+  {
+   "span": "application-point",
+   "concept": "point-of-application",
+   "verb": "introduces"
+  },
+  {
+   "span": "application-point",
+   "concept": "first-condition-equilibrium",
+   "verb": "reinforces"
+  },
+  {
+   "span": "application-point",
+   "concept": "external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "application-point",
+   "concept": "force",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id2603151",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "static-and-dynamic",
+   "prompt": "对于处于动态平衡的运动物体，其速度有什么可说的？画一幅这样的物体的示意图，用标注清楚的箭头表示作用在物体上的所有外力。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它的速度是恒定的。这不只是速率保持不变：速度的大小和方向都不改变，所以加速度为零，由牛顿第二定律，作用在物体上的合外力为零。因此，以恒定速率拐弯的汽车并不处于动态平衡，因为它的方向在改变。画示意图时，取图 9.3 中沿水平路面行驶的那辆汽车。从轮胎处向前画一个箭头，标注 F_app，表示路面对轮胎施加的力；向后画一个长度完全相同的箭头，标注 f，表示空气阻力；从车身中部竖直向下画一个长箭头，标注 w，表示它的重力；在每个轮胎处画一个向上的箭头，标注 N，四个箭头的长度之和等于 w 的长度。水平方向的一对力相互抵消，竖直方向的力也相互抵消，所以沿每个方向的合外力都为零，汽车保持着它的速度。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2601562",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "application-point",
+   "prompt": "在什么条件下，转动的物体可以处于平衡？举一个例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "平衡指的是没有直线加速度或转动加速度的运动，所以转动的物体以恒定的转速转动、并且作用在它上面的合外力也为零时，就处于平衡。匀速转动是恒定速度在转动方面的对应，动态平衡也是如此。一个在润滑良好的车轴上自由转动的轮子就是一个例子：车轴承担它的重力，没有什么使它的转动加快或减慢，轮子保持以起初的转速转动。图 9.5 中的冰球杆不是这样的例子，因为它的转动是加速的，所以仅凭第一条件无法判定这个问题。下一节将加入力矩，第二条件就是用力矩来表述的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "dynamic-equilibrium"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "first-condition-equilibrium",
+   "weight": 1
+  },
+  {
+   "exercise": "cq1",
+   "concept": "free-body-diagram",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "point-of-application"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "dynamic-equilibrium",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "first-condition-equilibrium",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "person",
+   "label": "人",
+   "figures": [
+    "sim-person"
+   ]
+  },
+  {
+   "id": "pack",
+   "label": "背包",
+   "figures": [
+    "sim-person"
+   ]
+  },
+  {
+   "id": "car",
+   "label": "汽车",
+   "figures": [
+    "sim-car"
+   ]
+  },
+  {
+   "id": "pusher",
+   "label": "你，在推",
+   "figures": [
+    "sim-equilibrium"
+   ]
+  },
+  {
+   "id": "crate",
+   "label": "木箱",
+   "figures": [
+    "sim-equilibrium"
+   ]
+  },
+  {
+   "id": "stick",
+   "label": "冰球杆",
+   "figures": [
+    "sim-stick"
+   ]
+  }
+ ]
+}

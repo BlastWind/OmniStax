@@ -1,0 +1,879 @@
+{
+ "id": "9.3",
+ "module": "m42172",
+ "chapter": "9",
+ "title": "稳定性",
+ "short": "稳定性",
+ "lead": "物体可以同时满足平衡的两个条件，却仍会在最轻微的推动下倒下，而物体发生位移后它的<span data-concept=\"weight\">重力</span>起什么作用，则把平衡分成三种。你在一支铅笔、一颗弹珠和一个站立的人身上检验每一种，并探究支撑面和重心与倾倒有什么关系。",
+ "objectives": [
+  "说明平衡的类型。",
+  "描述稳定平衡和不稳定平衡。",
+  "描述随遇平衡。"
+ ],
+ "summary_html": "<ul><li>一个系统，若在偏离平衡时受到的合<span data-concept=\"force\">力</span>或合力矩的方向与<span data-concept=\"displacement\">位移</span>的方向相反，就称它处于稳定平衡。</li><li>一个系统，若在偏离平衡时受到的合<span data-concept=\"force\">力</span>或合力矩的方向与偏离平衡的<span data-concept=\"displacement\">位移</span>的方向相同，就处于不稳定平衡。</li><li>若一个系统的平衡与其相对原来<span data-concept=\"position\">位置</span>的<span data-concept=\"displacement\">位移</span>无关，就称它处于随遇平衡。</li></ul>",
+ "notes": "习题 2、4、6、8 和 10 在书后答案中没有给出，因而略去；随习题 6 一起略去的还有风中鸡的插图，只有该题提到它。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6、8 和 10 没有给出答案，因而略去。关于一摞叠放的书的 AP 题印在 9.4 中，但它问的是这摞书倾倒之前必须知道什么，这正是本节引入的支撑面，所以把它放在这里，其 source_section 为 9.4，9.4 的说明中也写明了这一点。两道思考题的建议思路由 AI 撰写，并已标明；关于交通锥的 AP 题附有本书自己的答案。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-doll",
+   "kind": "photo",
+   "number": "9.9",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-eraser",
+   "kind": "sim",
+   "number": "9.10",
+   "folds": [
+    "9.11",
+    "9.12"
+   ],
+   "originals": [
+    "/media/ch09/Figure_10_03_02aa.jpg",
+    "/media/ch09/Figure_10_03_02bb.jpg",
+    "/media/ch09/Figure_10_03_02cc.jpg"
+   ],
+   "original_caption": "（图 9.10）这支铅笔处于平衡状态。作用在铅笔上的合力为零，对任一支点的合力矩也为零。（图 9.11）如果铅笔向一侧（逆时针）稍有偏离，它就不再处于平衡。它的重力产生一个顺时针的力矩，使铅笔回到其平衡位置。（图 9.12）如果铅笔偏离得太远，由它的重力引起的力矩方向就变为逆时针，使位移增大。",
+   "widths": [
+    200,
+    200,
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout signed as the graph; drop line clear of the r-perp label"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-point",
+   "kind": "sim",
+   "number": "9.13",
+   "folds": [
+    "9.14"
+   ],
+   "originals": [
+    "/media/ch09/Figure_10_03_03aa.jpg",
+    "/media/ch09/Figure_10_03_03bb.jpg"
+   ],
+   "original_caption": "（图 9.13）此图表示不稳定平衡，尽管平衡的两个条件都得到满足。（图 9.14）如果铅笔受到哪怕很小的位移，它的重力就会产生一个与位移方向相同的力矩，使位移增大。",
+   "widths": [
+    200,
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption names the length slider; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-neutral",
+   "kind": "sim",
+   "number": "9.15",
+   "originals": [
+    "/media/ch09/Figure_10_03_04a.jpg"
+   ],
+   "original_caption": "（a）这里表示的是随遇平衡。平面上球体的重心位于支撑点的正上方，与它在表面上的位置无关。因此，球体在任何位置都处于平衡，受到位移后会停在原处。（b）由于铅笔的横截面是圆形，它对垂直于其长度方向的位移处于随遇平衡。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption no longer names the removed radius; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-marble",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "F-parallel arrow named; helper darker; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-stance",
+   "kind": "sim",
+   "number": "9.16",
+   "originals": [
+    "/media/ch09/Figure_10_03_05a.jpg"
+   ],
+   "original_caption": "（a）成年人的重心位于髋关节（人体的主要支点之一）上方，并处于两只间距很窄的脚之间。就像立在橡皮上的铅笔一样，这个人对侧向位移处于稳定平衡，但较小的位移就会使他的重心落到支撑面之外，使他变得不稳定。（b）按图示方式弯曲身体时，降低重心可增强稳定性。把两脚分得更开以扩大支撑面，也可增强稳定性。",
+   "widths": [
+    375
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "hips follow the cg in a frontal crouch; readout signed; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-chicken",
+   "kind": "sim",
+   "number": "9.17",
+   "originals": [
+    "/media/ch09/Figure_10_03_06a.jpg"
+   ],
+   "original_caption": "鸡的重心在髋关节下方。鸡处于稳定平衡。鸡的身体由髋部从上方支撑，在两髋之间起着摆的作用。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: front-view chicken sprite, labeller labels, signed readout"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "types",
+   "concept": "center-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "types",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "types",
+   "concept": "static-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "stable",
+   "concept": "stable-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "stable",
+   "concept": "restoring-torque",
+   "verb": "introduces"
+  },
+  {
+   "span": "stable",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "stable",
+   "concept": "torque-depends-on-pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "unstable",
+   "concept": "unstable-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "unstable",
+   "concept": "restoring-torque",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unstable",
+   "concept": "torque-sign-convention",
+   "verb": "uses"
+  },
+  {
+   "span": "neutral",
+   "concept": "neutral-equilibrium",
+   "verb": "introduces"
+  },
+  {
+   "span": "neutral",
+   "concept": "center-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "neutral",
+   "concept": "stable-equilibrium",
+   "verb": "reinforces"
+  },
+  {
+   "span": "neutral",
+   "concept": "unstable-equilibrium",
+   "verb": "reinforces"
+  },
+  {
+   "span": "limits",
+   "concept": "base-of-support",
+   "verb": "introduces"
+  },
+  {
+   "span": "limits",
+   "concept": "stable-equilibrium",
+   "verb": "reinforces"
+  },
+  {
+   "span": "limits",
+   "concept": "unstable-equilibrium",
+   "verb": "reinforces"
+  },
+  {
+   "span": "limits",
+   "concept": "center-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "animals",
+   "concept": "base-of-support",
+   "verb": "reinforces"
+  },
+  {
+   "span": "animals",
+   "concept": "restoring-torque",
+   "verb": "reinforces"
+  },
+  {
+   "span": "design",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "design",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "design",
+   "concept": "base-of-support",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id3163270",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unstable",
+   "prompt": "请用力矩的概念解释，为什么底面着地放置的交通锥处于稳定平衡，而尖端着地放置的交通锥处于不稳定平衡。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "两个物体都处于平衡。但是，如果在它们的侧面施加一个力，它们的反应会不同。底面着地的锥体如果向侧面发生位移，它的重心仍在其底面上方，它会回到原来的位置。尖端着地的交通锥向侧面发生位移时，它的重心会偏离它的底部，产生一个力矩，使它加速倒向地面。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1362521",
+   "source_section": "9.4",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limits",
+   "figure": {
+    "src": "/media/ch09/Figure_09_S3_03.jpg",
+    "alt": "三个矩形，下边、左边和右边是蓝色粗边框，右边有一条稍微内凹的黑色细线，表示三本书。底部那本书的左右两侧各有一条向下的黑色短竖线，下方有一个双向黑色箭头，标注 Width。底部那本书的左侧有两条短横线，之间有一个黑色竖直短双向箭头，标注 Depth。三本书叠放在一起，第二本向右错开，第三本在第二本上向右错开得更多。第二本书的边缘用一个标注 1” 的双向箭头标出，箭头位于底部那本书左边缘上方的一条竖线与第二本书左边缘上方的一条竖线之间。",
+    "caption": "三本相互错开叠放的书。"
+   },
+   "prompt": "一组学生正在把一摞相同的书叠起来，每本书都比下面一本多伸出 1 英寸。他们想估算，在这摞书倾倒之前，最多能把多少本书叠在一起。要进行这一计算，他们需要知道下面哪些信息？<ol type=\"I\"><li>每本书的质量</li><li>每本书的宽度</li><li>每本书的深度</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "仅 I",
+     "仅 I 和 II",
+     "仅 I 和 III",
+     "仅 II",
+     "I、II 和 III"
+    ],
+    "correct": 3,
+    "hint": "当某本书上方所有书的重心越过下面那本书的边缘时，这摞书就会倾倒，所以要问一问这三项测量中哪一项决定了那条边缘的位置。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1370333",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "neutral",
+   "prompt": "如图 9.12 所示侧放着的圆铅笔，对垂直于其长度方向的位移处于随遇平衡。它对平行于其长度方向的位移，稳定性如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它沿长度方向同样处于随遇平衡。在水平平面上沿自身长度方向推动时，铅笔是滑动而不是滚动，但它的重心高度不变，并且始终在铅笔与表面接触的那一部分的正上方。因此重力和法向力仍在同一直线上，重力对支撑点的力臂为零，铅笔在任何位置都不受力矩。它的平衡与它被移到哪里无关，这正是随遇平衡的含义。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1368647",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limits",
+   "prompt": "说明悬索桥需要高塔来保证稳定平衡的原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "悬索桥的桥面悬挂在缆索上，缆索从桥面向上越过塔，再向下通到锚碇，所以桥是从上方悬挂的，而不是从下方保持平衡的。塔越高，缆索从桥面升起得越陡。更陡的缆索把更多的张力用于托住桥面，而更少用于把塔向内拉，所以同样的载荷只需要较小的张力。高塔还把桥面悬挂点抬到远高于桥面重心的位置。被支撑在重心上方的物体，其表现像鸡而不像铅笔：当风或车辆使它发生位移时，它的重力绕这些支撑点产生一个与位移方向相反的力矩，把它拉回来。低塔会使缆索几乎成水平，需要极大的张力才能支撑同样的重力，而且桥面上方几乎没有什么能在位移之后使它恢复。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2858061",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limits",
+   "figure": {
+    "src": "/media/ch09/Figure_10_03_07a-e190.jpg",
+    "alt": "图 a 中，一匹马靠着墙站立，双腿交叉。一位看上去昏昏欲睡的骑手靠在墙上。图 b 是同一匹马的后视图，但这次没有骑手。马的后腿交叉，臀部靠在墙上。墙的反作用力 F 作用在马身上离地面一点二米的高度。马的重力作用在靠近尾根的重心上。重心离地面一点四米。重力的作用线离马的脚零点三五米。"
+   },
+   "prompt": "假设一匹马像图中那样靠在墙上，模仿喜剧电影 <em>Cat Ballou</em> 中的一个场景。假定该力是水平的，并利用情形示意图中的数据，计算作用在墙上的力。注意，作用在墙上的力与作用在马上的力大小相等、方向相反，使马保持平衡。马和骑手的总质量为 500 kg。设数据精确到三位数字。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1430,
+    "unit": "N",
+    "hint": "取马脚处为支点，使那里的力没有力臂，再让重力的力矩与墙的作用力的力矩相抵。",
+    "solution": "$F_{\\text{墙}} = 1.43 \\times 10^{3}\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1403061",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limits",
+   "figure": {
+    "src": "/media/ch09/Figure_10_03_07a-e190.jpg",
+    "alt": "图 a 中，一匹马靠着墙站立，双腿交叉。一位看上去昏昏欲睡的骑手靠在墙上。图 b 是同一匹马的后视图，但这次没有骑手。马的后腿交叉，臀部靠在墙上。墙的反作用力 F 作用在马身上离地面一点二米的高度。马的重力作用在靠近尾根的重心上。重心离地面一点四米。重力的作用线离马的脚零点三五米。"
+   },
+   "prompt": "（a）假设马的质心位于两脚中间，计算图中马的每只脚所受力的大小和方向（有两只脚着地）。马和骑手的总质量为 500 kg。（b）蹄与地面之间的最小摩擦因数是多少？注意，墙施加的力是水平的。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2550,
+      "unit": "N",
+      "hint": "每只脚承受向上的一半重力和侧向的一半墙的作用力；把这两个分量合成，再从竖直方向量取角度。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.292,
+      "unit": "",
+      "hint": "摩擦力必须提供全部水平力，所以把它与两只脚上的法向力相比较。"
+     }
+    ],
+    "solution": "a) $2.55 \\times 10^{3}\\ \\text{N}$，在竖直方向左侧 16.3°（即朝向墙）\nb) 0.292"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2658775",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limits",
+   "figure": {
+    "src": "/media/ch09/Figure_10_03_08a-99e4.jpg",
+    "alt": "一堵十七米高的墙立在地面上，用十根斜撑支撑。图的底部可以看到棕色的地面。从侧面只能看到一根斜撑。斜撑与墙成三十五度角。斜撑的接触点离地八点五米。你需要求出这根斜撑对墙施加的支撑力。"
+   },
+   "prompt": "图中显示的是一堵在建的、高 17.0 m、长 11.0 m 的墙及其斜撑。这堵墙在没有斜撑时处于稳定平衡，但可以绕其底部转动。如果强风对墙每平方米施加 650 N 的水平力，计算 10 根斜撑中每一根所施的力。假设风的合力作用在墙高一半的位置，并假设所有斜撑施加的力相等，且平行于它们的长度方向。忽略墙的厚度。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 21200,
+    "unit": "N",
+    "hint": "取墙的底部为支点。风的力矩等于它的总力乘以墙高的一半，而每根斜撑只有垂直于墙的那个分量起作用。",
+    "solution": "$F_{\\text{B}} = 2.12 \\times 10^{4}\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2877285",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types",
+   "figure": {
+    "src": "/media/ch09/Figure_10_03_10a.jpg",
+    "alt": "图中是一座小吊桥。有一块竖直的木板和一块水平的木板。水平木板的左端连在竖直木板中部附近。连接处画有一个铰链。一根金属丝系在水平木板的右端，越过竖直木板的顶端，连到一个滑轮上。金属丝与水平木板成四十度角。铰链处的反作用力 F 倾斜 θ 角。",
+    "caption": "A small drawbridge, showing the forces on the hinges ($F$), its weight ($w$), and the tension in its wires ($T$)."
+   },
+   "prompt": "假设图中吊桥的重力完全由它的铰链和对岸支撑，因此它的缆绳是松弛的。桥的质量为 2500 kg。（a）如果支撑点正好在缆绳连接点的下方，对岸承担了重力的多大一部分？（b）在这种情况下，铰链对桥施加的力的方向和大小是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.167,
+      "unit": "",
+      "hint": "取铰链处为支点，使铰链的作用力不出现，再让位于重心的重力的力矩与远端支撑力的力矩相抵。"
+     },
+     {
+      "part": "(b)",
+      "value": 20000,
+      "unit": "N",
+      "hint": "然后由第一条件得出重力中剩下的、需要铰链承担的部分。"
+     }
+    ],
+    "solution": "a) 0.167，即重力的大约六分之一由对岸支撑。\nb) $F = 2.0 \\times 10^{4}\\ \\text{N}$，竖直向上。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1376448",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "types",
+   "figure": {
+    "src": "/media/ch09/Figure_10_03_11a.jpg",
+    "alt": "一块人字形广告牌，形状为三角形。三角形的底边长一点一零米。另外两边在顶部用铰链连接。一条水平的链条连在两条腿上，在铰链下方零点五零米处。铰链离底边的高度是一点三零米。两条腿的重心画在各自的中点处。图上标注：均匀木板，中心处为重心。",
+    "caption": "一块人字形广告牌，展示了张力。"
+   },
+   "prompt": "一块人字形广告牌按图所示构造。牌的质量为 8.00 kg。（a）假设牌腿与人行道之间没有摩擦，计算链条中的张力。（b）两侧各对铰链施加多大的力？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 21.6,
+      "unit": "N",
+      "hint": "只取一条腿，以顶部的铰链为支点，让它的重力、地面的法向力和链条的力矩平衡。"
+     },
+     {
+      "part": "(b)",
+      "value": 21.6,
+      "unit": "N",
+      "hint": "知道链条的张力之后，对同一条腿用第一条件，就得出铰链处的力。"
+     }
+    ],
+    "solution": "a) 21.6 N\nb) 21.6 N"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1016740",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "limits",
+   "figure": {
+    "src": "/media/ch09/Figure_10_03_12a-b4fb.jpg",
+    "alt": "图中是一名手持两个彩球的体操运动员。一只手水平向左伸出，另一只手竖直。运动员正在尝试完成一个完全劈叉。她两腿的跨度是一点八米，一只脚离重心的距离是零点九米。女孩的重力标为七百牛顿。一只脚离重心的竖直距离是零点三零米。",
+    "caption": "一名运动员做完全劈叉。图中标出了重心以及各段到重心的距离。"
+   },
+   "prompt": "一名运动员正在尝试做劈叉。根据图中给出的信息，计算地板对每只脚所施力的大小和方向。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 350,
+    "unit": "N",
+    "hint": "重心位于两脚中间，所以两个力相等；然后由第一条件把 700 N 的重力分给它们。",
+    "solution": "350 N，竖直向上"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "stable-equilibrium"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "unstable-equilibrium"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "restoring-torque"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "base-of-support",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "base-of-support"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "center-of-gravity",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "neutral-equilibrium"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "stable-equilibrium",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "stable-equilibrium"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "restoring-torque",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "center-of-gravity",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "p1",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "base-of-support",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "first-condition-equilibrium"
+  },
+  {
+   "exercise": "p3",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "p3",
+   "concept": "base-of-support",
+   "weight": 1
+  },
+  {
+   "exercise": "p5",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "p5",
+   "concept": "torque-from-lever-arm"
+  },
+  {
+   "exercise": "p5",
+   "concept": "base-of-support",
+   "weight": 1
+  },
+  {
+   "exercise": "p7",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "p7",
+   "concept": "first-condition-equilibrium"
+  },
+  {
+   "exercise": "p7",
+   "concept": "center-of-gravity",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "p9",
+   "concept": "first-condition-equilibrium"
+  },
+  {
+   "exercise": "p9",
+   "concept": "choose-pivot-to-simplify",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "first-condition-equilibrium"
+  },
+  {
+   "exercise": "p11",
+   "concept": "center-of-gravity"
+  },
+  {
+   "exercise": "p11",
+   "concept": "base-of-support",
+   "weight": 1
+  }
+ ],
+ "referents": [
+  {
+   "id": "pencil",
+   "label": "铅笔",
+   "figures": [
+    "sim-eraser",
+    "sim-point",
+    "sim-neutral"
+   ]
+  },
+  {
+   "id": "sphere",
+   "label": "球体",
+   "figures": [
+    "sim-neutral"
+   ]
+  },
+  {
+   "id": "ball",
+   "label": "球",
+   "figures": [
+    "sim-marble"
+   ]
+  },
+  {
+   "id": "person",
+   "label": "人",
+   "figures": [
+    "sim-stance"
+   ]
+  },
+  {
+   "id": "chicken",
+   "label": "鸡",
+   "figures": [
+    "sim-chicken"
+   ]
+  }
+ ]
+}

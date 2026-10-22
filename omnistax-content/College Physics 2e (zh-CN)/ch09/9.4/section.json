@@ -1,0 +1,446 @@
+{
+ "id": "9.4",
+ "module": "m42173",
+ "chapter": "9",
+ "title": "静力学的应用，包括解题策略",
+ "short": "静力学的应用",
+ "lead": "静力学就是把牛顿定律应用于不加速的系统，而平衡的两个条件构成了一套四步方法，其中包括支点的选取。你将针对<span data-ref=\"vaulter\">一位撑杆跳运动员</span>以三种方式握持<span data-ref=\"pole\">一根撑杆</span>的情形，把这些步骤走一遍：撑杆的重心分别在<span data-ref=\"right-hand left-hand\">他的两手</span>之间、更靠近一只手以及超出两手之外。",
+ "objectives": [
+  "讨论静力学在现实生活中的应用。",
+  "陈述并讨论静力学中的各种解题策略。"
+ ],
+ "summary_html": "<ul><li>静力学可以应用于各种各样的情形，从升起吊桥到不良姿势和背部劳损。我们已经讨论了专门适用于静力学的解题策略。静力学是牛顿定律的特例，一般的解题策略，以及“解题策略”一节中讨论的牛顿定律的专门策略，都仍然适用。</li></ul>",
+ "notes": "本节的两道习题在书后答案中没有给出答案，因而略去；PhET 模拟的说明也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案来自书后答案：关于汽车停在两个桥墩之间的 AP 题有答案，它按书中给出的两个力以及书中对汽车继续行驶时会发生什么的说明来设置。本节印出的两道习题，即靠在檐沟上的梯子和握在距左手 2.00 m 处的撑杆，在书后答案中没有给出答案，因而略去；其中第二道是书中检验“相对于重心对称放置的支持力平分重力”这一结果的唯一题目。关于由细绳支撑的木板的 AP 题和关于用力矩测量未知质量的 AP 题同样没有答案，因此各自保留为开放式题目，并附有标明为 AI 撰写的建议思路，前者的选项照书中印出的样子给出，而不作为判分选择题。本节的五道 AP 题中有两道与其他小节放在一起，二者的 source_section 都是 9.4：对孩子在跷跷板上所产生力矩的最佳估计只涉及力矩的大小，别无其他，因此与 9.2 放在一起；每本书都比下面一本多伸出一截的那摞书，问的是这摞书何时倾倒，这取决于支撑面，因此与 9.3 放在一起，并带上它的图。关于头顶重物保持平衡的思考题没有答案，因此它的建议思路由 AI 撰写。",
+ "figures": [
+  {
+   "id": "sim-pole",
+   "kind": "sim",
+   "number": "9.18",
+   "folds": [
+    "9.19",
+    "9.20"
+   ],
+   "originals": [
+    "/media/ch09/Figure_10_04_01a.jpg",
+    "/media/ch09/Figure_10_04_01b.jpg",
+    "/media/ch09/Figure_10_04_01c.jpg"
+   ],
+   "original_caption": "（图 9.18）一位撑杆跳运动员用双手水平握着一根撑杆。（图 9.19）一位撑杆跳运动员用双手水平握着一根撑杆。重心靠近他的右手。（图 9.20）一位撑杆跳运动员用双手水平握着一根撑杆。重心在这位运动员的左侧。",
+   "widths": [
+    300,
+    300,
+    300
+   ],
+   "draws": [
+    "force",
+    "position",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "w label off the hand label; note cut to F_L through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-pivot",
+   "kind": "sim",
+   "draws": [
+    "torque",
+    "force",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bar-cap note folded into the key line; repeated note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "strategy",
+   "concept": "static-equilibrium-strategy",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "choose-pivot-to-simplify",
+   "verb": "introduces"
+  },
+  {
+   "span": "strategy",
+   "concept": "static-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "newtons-laws-problem-solving",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "problem-solving-steps",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "strategy",
+   "concept": "torque-depends-on-pivot",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetric",
+   "concept": "symmetric-support",
+   "verb": "introduces"
+  },
+  {
+   "span": "symmetric",
+   "concept": "center-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetric",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetric",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetric",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "symmetric",
+   "concept": "static-equilibrium-strategy",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unequal",
+   "concept": "unequal-support-forces",
+   "verb": "introduces"
+  },
+  {
+   "span": "unequal",
+   "concept": "choose-pivot-to-simplify",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unequal",
+   "concept": "symmetric-support",
+   "verb": "reinforces"
+  },
+  {
+   "span": "unequal",
+   "concept": "torque-sign-convention",
+   "verb": "uses"
+  },
+  {
+   "span": "unequal",
+   "concept": "torque-from-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "unequal",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "unequal",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "unequal",
+   "concept": "center-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "unequal",
+   "concept": "static-equilibrium-strategy",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id820981",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "symmetric",
+   "prompt": "游览某些国家时，你可能会看到有人头顶重物保持平衡。请解释为什么重物的质心必须正好位于此人颈椎的上方。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把重物当作系统，并把支点取在颈椎处，支持力就作用在那里。该力作用在支点上，所以它的力臂为零，不产生力矩。重物受到的另一个力只有它的重力，作用在重物的质心。如果质心正好位于颈椎的上方，重力的作用线就通过支点，它的力臂也为零，重物所受的合力矩无需任何其他帮助就为零。把质心移向一侧，重力就有了力臂。它的力矩会使重物从头上转落，颈部肌肉必须提供大小相等、方向相反的力矩才能使它留在原处。这些肌肉附着在离关节很近的地方，所以它们的力臂很短，必须用很大的力拉。让重物的质心位于颈椎之上来搬运，是平衡的第二条件自行成立的唯一位置。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1743606",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unequal",
+   "prompt": "一块重 10 N、密度均匀的木板长 5 米。它的左端由一根细绳支撑，细绳承受 3 N 的向上的力。为了防止细绳断裂，一个人必须在木板下表面的某个位置施加 7 N 的向上的力。要使木板处于静态平衡，他们需要把这个力施加在距木板左边缘多远的位置？<ol type=\"a\"><li>$\\frac{3}{7}$ m</li><li>$\\frac{5}{2}$ m</li><li>$\\frac{25}{7}$ m</li><li>$\\frac{30}{7}$ m</li><li>5 m</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "$\\frac{25}{7}$ m，约 3.57 m（距左边缘），选项（c）。木板受三个力：细绳在左边缘以 3 N 向上拉，10 N 的重力在重心处向下作用，此人在距左边缘 $d$ 处以 7 N 向上推。木板密度均匀，所以它的重心在中点，距左边缘 2.5 m。把支点取在左边缘，细绳的力臂为零，它的力矩就消去了。于是平衡的第二条件，即合力矩 $\\ktau = 0$，要求此人所施的力的逆时针力矩等于重力的顺时针力矩：$(7\\ \\text{N})d = (10\\ \\text{N})(2.5\\ \\text{m})$，所以 $d = \\frac{25}{7}\\ \\text{m} = 3.57\\ \\text{m}$。第一条件也成立，因为向上的 $3\\ \\text{N} + 7\\ \\text{N}$ 与 10 N 的重力平衡，而且 3.57 m 落在 5 m 长的木板上。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1892207",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "unequal",
+   "prompt": "一座桥由相距 20 米的两个桥墩支撑。左、右两个桥墩都对桥提供向上的力，分别记作 $\\kFL$ 和 $\\kFR$。<ol><li>如果一辆 1000 kg 的汽车停在距左桥墩 5 米的位置，桥将对左、右桥墩提供多大的力？</li><li>当汽车向桥的右侧驶去时，$\\kFL$ 和 $\\kFR$ 将如何变化？</li></ol>",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "F_L",
+      "value": 7350,
+      "unit": "N",
+      "hint": "把支点取在右桥墩处，这样右桥墩的力没有力臂，就消去了。汽车的重力是 $mg$，它作用在距该支点 15 m 处。"
+     },
+     {
+      "part": "F_R",
+      "value": 2450,
+      "unit": "N",
+      "hint": "一旦第一个力已知，平衡的第一条件就给出第二个力：两个桥墩的力之和等于汽车的重力。"
+     }
+    ],
+    "solution": "$\\kFL = 7350\\ \\text{N}$，$\\kFR = 2450\\ \\text{N}$。当汽车向桥的右侧移动时，$\\kFL$ 将减小，$\\kFR$ 将增大。恰好行驶到桥的正中间时，$\\kFL$ 和 $\\kFR$ 都将是 4900 N。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1249019",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "strategy",
+   "prompt": "给一名学生一个质量未知的物体。不使用秤，设计一个实验步骤，详细说明如何通过实验求出这个质量的大小。你的说明必须包含力矩的概念，所有步骤都应按顺序给出。你可以附上标注好的装置示意图，帮助你描述。要写得足够详细，使另一名学生能够按你的步骤进行操作。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "用一根均匀杆和一个刀口做成天平，并用已知质量的物体作为标准。先把杆搁在刀口上，杆上什么都不挂，滑动它直到平衡。这时刀口支撑杆的位置就是杆自身的重心，所以杆的重力作用在支点上，力臂为零，在后面的一切步骤中都不产生力矩。把质量未知的物体挂在一侧，距刀口 $r_1$，把已知质量的物体挂在另一侧，距刀口 $r_2$。沿杆滑动已知质量的物体，直到杆再次平衡。这时杆处于静态平衡：它既不加速也不转动，所以关于刀口的合力矩为零，两个力矩大小相等、方向相反，$m_1 g r_1 = m_2 g r_2$。两侧的重力加速度相同，可以消去，所以未知质量为 $m_1 = m_2 r_2 / r_1$。测量刀口到两个悬挂点的两个距离，把平衡过程重复两三次，取平均值。然后检查答案是否合理：较重的物体必须放得离刀口更近，而且结果的大小应当是手能够判断的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "center-of-gravity"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "symmetric-support",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "unequal-support-forces"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "choose-pivot-to-simplify"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "center-of-gravity",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "unequal-support-forces"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "choose-pivot-to-simplify"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "second-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "static-equilibrium-strategy"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "balanced-seesaw",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "vaulter",
+   "label": "撑杆跳运动员",
+   "figures": [
+    "sim-pole"
+   ]
+  },
+  {
+   "id": "pole",
+   "label": "撑杆",
+   "figures": [
+    "sim-pole",
+    "sim-pivot"
+   ]
+  },
+  {
+   "id": "right-hand",
+   "label": "右手",
+   "figures": [
+    "sim-pole"
+   ]
+  },
+  {
+   "id": "left-hand",
+   "label": "左手",
+   "figures": [
+    "sim-pole"
+   ]
+  }
+ ]
+}

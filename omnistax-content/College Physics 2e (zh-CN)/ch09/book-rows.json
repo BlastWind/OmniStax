@@ -1,0 +1,937 @@
+{
+ "types": [
+  {
+   "id": "torque",
+   "label": "力矩",
+   "dimension": "N·m"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "τ",
+   "latex": "\\tau",
+   "macro": "\\ktau"
+  },
+  {
+   "sym": "τ_1",
+   "latex": "\\tau_1",
+   "macro": "\\ktauone"
+  },
+  {
+   "sym": "τ_2",
+   "latex": "\\tau_2",
+   "macro": "\\ktautwo"
+  },
+  {
+   "sym": "r_lever",
+   "latex": "r",
+   "macro": "\\krlev"
+  },
+  {
+   "sym": "r_perp",
+   "latex": "r_{\\perp}",
+   "macro": "\\krperp"
+  },
+  {
+   "sym": "r_bperp",
+   "latex": "r_{\\text{b}\\perp}",
+   "macro": "\\krbperp"
+  },
+  {
+   "sym": "r_3",
+   "latex": "r_3",
+   "macro": "\\krthree"
+  },
+  {
+   "sym": "F_p",
+   "latex": "F_{\\text{p}}",
+   "macro": "\\kFp"
+  },
+  {
+   "sym": "w_1",
+   "latex": "w_1",
+   "macro": "\\kwone"
+  },
+  {
+   "sym": "w_2",
+   "latex": "w_2",
+   "macro": "\\kwtwo"
+  },
+  {
+   "sym": "F_L",
+   "latex": "F_{\\text{L}}",
+   "macro": "\\kFL"
+  },
+  {
+   "sym": "F_R",
+   "latex": "F_{\\text{R}}",
+   "macro": "\\kFR"
+  },
+  {
+   "sym": "MA",
+   "latex": "\\text{MA}"
+  },
+  {
+   "sym": "F_i",
+   "latex": "F_{\\text{i}}",
+   "macro": "\\kFi"
+  },
+  {
+   "sym": "F_o",
+   "latex": "F_{\\text{o}}",
+   "macro": "\\kFo"
+  },
+  {
+   "sym": "F_nail",
+   "latex": "F_{\\text{n}}",
+   "macro": "\\kFnail"
+  },
+  {
+   "sym": "l_i",
+   "latex": "l_{\\text{i}}",
+   "macro": "\\kli"
+  },
+  {
+   "sym": "l_o",
+   "latex": "l_{\\text{o}}",
+   "macro": "\\klo"
+  },
+  {
+   "sym": "F_B",
+   "latex": "F_{\\text{B}}",
+   "macro": "\\kFB"
+  },
+  {
+   "sym": "F_E",
+   "latex": "F_{\\text{E}}",
+   "macro": "\\kFE"
+  },
+  {
+   "sym": "F_V",
+   "latex": "F_{\\text{V}}",
+   "macro": "\\kFV"
+  },
+  {
+   "sym": "F_Vx",
+   "latex": "F_{\\text{V}x}",
+   "macro": "\\kFVx"
+  },
+  {
+   "sym": "F_Vy",
+   "latex": "F_{\\text{V}y}",
+   "macro": "\\kFVy"
+  },
+  {
+   "sym": "w_a",
+   "latex": "w_{\\text{a}}",
+   "macro": "\\kwarm"
+  },
+  {
+   "sym": "w_b",
+   "latex": "w_{\\text{b}}",
+   "macro": "\\kwbook"
+  },
+  {
+   "sym": "w_ub",
+   "latex": "w_{\\text{ub}}",
+   "macro": "\\kwub"
+  },
+  {
+   "sym": "w_box",
+   "latex": "w_{\\text{box}}",
+   "macro": "\\kwbox"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "first-condition-equilibrium",
+   "kind": "result",
+   "section": "9.1",
+   "name": "平衡的第一条件",
+   "statement": "牛顿第二定律指出，只有当合外力作用于系统时，系统才会加速，所以不加速的系统所受的合外力为零。这就是平衡的第一条件；又因为力有分量，所以它沿每一个坐标轴同时成立：沿水平方向和沿竖直方向，合外力都为零。",
+   "forms": [
+    {
+     "id": "eq-net-force-zero",
+     "latex": "\\text{合力}\\;\\mathbf{F} = 0",
+     "anchor": "9.1-first-condition"
+    },
+    {
+     "id": "eq-net-force-axes",
+     "latex": "\\text{合力}\\;F_x = 0 \\quad\\text{和}\\quad \\text{合力}\\;F_y = 0",
+     "ktex": "\\text{合力}\\;\\kFx = 0 \\quad\\text{和}\\quad \\text{合力}\\;\\kFy = 0",
+     "anchor": "9.1-first-condition"
+    }
+   ]
+  },
+  {
+   "id": "static-equilibrium",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "静态平衡",
+   "terms": [
+    "静态平衡"
+   ],
+   "statement": "处于静态平衡的系统是静止不动的，所以它的加速度为零，第一条件成立。本章开头的书桌、桥梁和山峰就是这种情形，而本章几乎每一道题设定的也是这种情形。"
+  },
+  {
+   "id": "dynamic-equilibrium",
+   "kind": "definition",
+   "section": "9.1",
+   "name": "动态平衡",
+   "terms": [
+    "动态平衡"
+   ],
+   "statement": "以恒定速度运动的系统，其加速度同样为零，所以它与静止不动的系统一样满足第一条件。因此平衡并不等同于静止，这就是为什么讲静力学的一章里也有一辆在路上平稳行驶的汽车。"
+  },
+  {
+   "id": "point-of-application",
+   "kind": "idea",
+   "section": "9.1",
+   "name": "力的作用点",
+   "statement": "力作用在何处，决定了它是否使物体转动，所以合外力为零是平衡的必要条件，但不是充分条件。沿同一直线的两个大小相等、方向相反的力，使一根冰球杆保持不动，而同样的两个力若作用在不同的位置，就会使它转动起来。"
+  },
+  {
+   "id": "torque",
+   "kind": "definition",
+   "section": "9.2",
+   "name": "力矩",
+   "symbol": "τ",
+   "terms": [
+    "力矩"
+   ],
+   "statement": "力矩是力的转动对应量：它度量一个力改变转动的效果有多大。开门就能说明它取决于什么。你推得越用力，门开得越快，所以力矩随力增大；在靠近铰链处推几乎没有作用，所以它随到支点的距离增大；沿着门的方向推则毫无作用，所以只有力垂直于该距离的分量才起作用，这正是因子 $\\sin\\theta$ 所给出的。",
+   "forms": [
+    {
+     "id": "eq-torque",
+     "latex": "\\tau = rF\\sin\\theta",
+     "ktex": "\\ktau = \\krlev\\kF\\sin\\theta",
+     "anchor": "9.2-torque-defined"
+    }
+   ]
+  },
+  {
+   "id": "perpendicular-lever-arm",
+   "kind": "definition",
+   "section": "9.2",
+   "name": "垂直力臂",
+   "symbol": "r_perp",
+   "terms": [
+    "垂直力臂"
+   ],
+   "type": "position",
+   "statement": "垂直力臂是从支点到力的作用线的最短距离。它把距离和角度合成了一个长度，而且它在图中往往比分别测量 $r$ 和 $\\theta$ 更容易看出来。",
+   "forms": [
+    {
+     "id": "eq-perp-lever-arm",
+     "latex": "r_{\\perp} = r\\sin\\theta",
+     "ktex": "\\krperp = \\krlev\\sin\\theta",
+     "anchor": "9.2-torque-defined"
+    }
+   ]
+  },
+  {
+   "id": "torque-from-lever-arm",
+   "kind": "result",
+   "section": "9.2",
+   "name": "由力臂求力矩",
+   "statement": "因为垂直力臂已经包含了角度，所以力矩就是力臂乘以力。力矩的这两种表达式同样有效，用哪一种，取决于图中哪一种更容易找到。",
+   "forms": [
+    {
+     "id": "eq-torque-perp",
+     "latex": "\\tau = r_{\\perp}F",
+     "ktex": "\\ktau = \\krperp\\kF",
+     "anchor": "9.2-torque-defined"
+    }
+   ]
+  },
+  {
+   "id": "torque-depends-on-pivot",
+   "kind": "idea",
+   "section": "9.2",
+   "name": "力矩的支点",
+   "statement": "在指定支点之前，力矩没有意义，因为它的定义中的距离和角度都是从该点量起的。同一个力对不同的点有不同的力矩，而这个点可以在物体之内或之外的任何地方，不论物体能否绕它转动。重要的是，一道题中的所有力矩都要对同一个点来取。"
+  },
+  {
+   "id": "torque-sign-convention",
+   "kind": "definition",
+   "section": "9.2",
+   "name": "顺时针力矩与逆时针力矩",
+   "statement": "对于在平面内的转动，力矩有两种可能的方向，即绕所选支点的顺时针或逆时针，方向相反的力矩取相反的符号。通常的约定是逆时针力矩为正，顺时针力矩为负，这使得作用在物体上的力矩可以当作普通的带符号的数相加。"
+  },
+  {
+   "id": "second-condition-equilibrium",
+   "kind": "result",
+   "section": "9.2",
+   "name": "平衡的第二条件",
+   "statement": "达到平衡所需的第二个条件是系统所受的合外力矩为零，从而系统没有加速转动。它弥补了第一条件所遗漏的东西：偏离中心被推动的冰球杆没有合力，但确实有合力矩。如果该条件对某一个支点成立，那么它对其他任何支点也成立，所以你可以自由地选择支点。",
+   "forms": [
+    {
+     "id": "eq-net-torque-zero",
+     "latex": "\\text{合力矩}\\;\\tau = 0",
+     "ktex": "\\text{合力矩}\\;\\ktau = 0",
+     "anchor": "9.2-second-condition"
+    },
+    {
+     "id": "eq-cw-ccw",
+     "latex": "\\text{合力矩}\\;\\tau_{\\text{cw}} = -\\,\\text{合力矩}\\;\\tau_{\\text{ccw}}",
+     "ktex": "\\text{合力矩}\\;\\ktau_{\\text{cw}} = -\\,\\text{合力矩}\\;\\ktau_{\\text{ccw}}",
+     "section": "9.4",
+     "anchor": "9.4-unequal"
+    }
+   ]
+  },
+  {
+   "id": "center-of-gravity",
+   "kind": "definition",
+   "section": "9.2",
+   "name": "重心",
+   "terms": [
+    "重心"
+   ],
+   "statement": "物体的重力分布在整个物体上，但就力矩而言，可以认为全部重力作用在一个点上，即重心。这不是近似，而且正是因为如此，才能把到跷跷板上孩子的距离量到一个点，而不必量到孩子所占据的整片面积。"
+  },
+  {
+   "id": "balanced-seesaw",
+   "kind": "skill",
+   "section": "9.2",
+   "name": "跷跷板的平衡",
+   "statement": "要使跷跷板平衡，就对它的支点取力矩，这使支持力的力矩为零，然后令两个孩子的力矩大小相等、方向相反。于是较重的孩子必须坐得离支点更近，即 $r_2 = r_1 m_1 / m_2$，而第一条件给出支持力等于两个重力之和。",
+   "forms": [
+    {
+     "id": "eq-seesaw-torques",
+     "latex": "\\tau_1 = r_1 w_1 \\quad\\text{和}\\quad \\tau_2 = -r_2 w_2",
+     "ktex": "\\ktauone = \\krone\\kwone \\quad\\text{和}\\quad \\ktautwo = -\\krtwo\\kwtwo",
+     "condition": "力矩取对跷跷板的支点",
+     "anchor": "9.2-seesaw"
+    },
+    {
+     "id": "eq-seesaw-balance",
+     "latex": "r_2 w_2 = r_1 w_1",
+     "ktex": "\\krtwo\\kwtwo = \\krone\\kwone",
+     "condition": "跷跷板处于平衡",
+     "anchor": "9.2-seesaw"
+    },
+    {
+     "id": "eq-seesaw-distance",
+     "latex": "r_2 = r_1\\frac{m_1}{m_2}",
+     "ktex": "\\krtwo = \\krone\\frac{m_1}{m_2}",
+     "condition": "跷跷板处于平衡，且质量可忽略",
+     "anchor": "9.2-seesaw"
+    },
+    {
+     "id": "eq-pivot-force",
+     "latex": "F_{\\text{p}} = w_1 + w_2",
+     "ktex": "\\kFp = \\kwone + \\kwtwo",
+     "condition": "质量可忽略的跷跷板",
+     "anchor": "9.2-seesaw"
+    }
+   ]
+  },
+  {
+   "id": "newton-meter",
+   "kind": "definition",
+   "section": "9.2",
+   "name": "牛·米",
+   "terms": [
+    "力矩的 SI 单位"
+   ],
+   "statement": "力矩的 SI 单位是牛乘以米，通常写作 N·m。一个 40 N 的力垂直地推在离铰链 0.800 m 处的门上，产生的力矩为 32 N·m。"
+  },
+  {
+   "id": "restoring-torque",
+   "kind": "idea",
+   "section": "9.3",
+   "name": "回复力矩",
+   "statement": "物体偏离平衡位置之后，它自身的重力所产生的力矩决定了它的平衡种类。如果该力矩使物体转回原来的位置，平衡就是稳定的；如果它使物体转得离原位更远，平衡就是不稳定的；如果没有力矩，平衡就是随遇的。"
+  },
+  {
+   "id": "stable-equilibrium",
+   "kind": "definition",
+   "section": "9.3",
+   "name": "稳定平衡",
+   "terms": [
+    "稳定平衡"
+   ],
+   "statement": "如果一个系统偏离平衡时受到方向与位移相反的合力或合力矩，从而被驱使回到原来的地方，则它处于稳定平衡。碗底的弹珠和竖立在橡皮上的铅笔都是稳定的，而且大多数系统至少对小位移是稳定的。"
+  },
+  {
+   "id": "unstable-equilibrium",
+   "kind": "definition",
+   "section": "9.3",
+   "name": "不稳定平衡",
+   "terms": [
+    "不稳定平衡"
+   ],
+   "statement": "如果一个系统偏离平衡时受到方向与位移相同的合力或合力矩，从而加速离开它开始的地方，则它处于不稳定平衡。停在山顶上的球和立在笔尖上的铅笔都是不稳定的，尽管它们站立时平衡的两个条件都得到满足。"
+  },
+  {
+   "id": "neutral-equilibrium",
+   "kind": "definition",
+   "section": "9.3",
+   "name": "随遇平衡",
+   "terms": [
+    "随遇平衡"
+   ],
+   "statement": "如果一个系统的平衡并不取决于你把它移到哪里，则它处于随遇平衡。平坦桌面上的弹珠和侧放着的圆铅笔只会停在你放的地方，因为无论物体移到何处，重心都仍在支撑点的正上方。一个物体可能在某个方向上属于一种，在另一个方向上属于另一种，马鞍上的弹珠就是如此。"
+  },
+  {
+   "id": "base-of-support",
+   "kind": "result",
+   "section": "9.3",
+   "name": "支撑面",
+   "statement": "站在一个表面上的物体，只有当它的重心位于支撑面之上时，才保持稳定平衡。一旦重心越过了支撑面，重力产生的力矩就改变方向，物体就会倾倒。所以两脚分开使支撑面变宽，膝盖弯曲使重心降低，都会使你更稳定。一只鸡的重心在髋的下方、两只宽大的脚之间，所以它比人稳定得多。"
+  },
+  {
+   "id": "static-equilibrium-strategy",
+   "kind": "skill",
+   "section": "9.4",
+   "name": "求解静态平衡问题",
+   "statement": "静力学是牛顿定律的一个特例，所以第 4 章的策略仍然适用，此外还有它自己的四个步骤。判断系统确实处于静态平衡。画出受力图，并标明每个力的大小、方向和作用点。应用平衡的两个条件之一或两者。检查答案在大小、方向和单位上是否合理。"
+  },
+  {
+   "id": "choose-pivot-to-simplify",
+   "kind": "skill",
+   "section": "9.4",
+   "name": "选取支点",
+   "statement": "因为第二条件对任何支点的选择都成立，所以可以选择使工作变得容易的支点。有用的选择是使未知力的力矩为零的那些点：作用在支点上的力没有力臂，而沿通过支点的直线作用的力，其夹角为零。选取肘、髋或题目所问的那只手，就能把两个未知量变成一个。"
+  },
+  {
+   "id": "symmetric-support",
+   "kind": "result",
+   "section": "9.4",
+   "name": "对称支撑",
+   "statement": "当支持力关于重心对称地作用时，每个力承担相等的一份重力。于是两个条件同时成立。这些力之和等于重力，而且对重心而言，重力没有力臂，两个相等的力又位于相等的距离处，所以它们的力矩相互抵消。均匀桌子的四条腿各承担其重力的四分之一，也是同样的道理。",
+   "forms": [
+    {
+     "id": "eq-equal-hands",
+     "latex": "F_R = F_L = \\frac{w}{2}",
+     "ktex": "\\kFR = \\kFL = \\frac{\\kwgt}{2}",
+     "condition": "杆的重心在两手正中间",
+     "anchor": "9.4-symmetric"
+    }
+   ]
+  },
+  {
+   "id": "unequal-support-forces",
+   "kind": "result",
+   "section": "9.4",
+   "name": "不对称支撑",
+   "statement": "把重心移离中间，两个支撑就不再均等地分担重力：离重心较近的支撑承担得更多，正如抬着一件重物的两个人中离得较近的那个一样。这些力之和仍等于重力，所以在第二条件给出第一个力之后，第一条件就给出第二个力。如果重心位于两个支撑之外，就有一个力反向，而且两个力都变得很大，这就是为什么握住撑杆的一端比握住它的中间要难得多。",
+   "forms": [
+    {
+     "id": "eq-hands-sum",
+     "latex": "F_L + F_R = w = mg",
+     "ktex": "\\kFL + \\kFR = \\kwgt = mg",
+     "anchor": "9.4-unequal"
+    }
+   ]
+  },
+  {
+   "id": "simple-machine",
+   "kind": "definition",
+   "section": "9.5",
+   "name": "简单机械",
+   "statement": "简单机械是一种使我们所施加的力成倍增大或增强的装置，通常以我们施力所经过的距离为代价。杠杆、齿轮、滑轮、楔和螺旋都是常见的例子。机械并不创造能量，因为它所做的功不可能多于输入给它的功；它改变的是完成这项工作需要多大的力。"
+  },
+  {
+   "id": "mechanical-advantage",
+   "kind": "definition",
+   "section": "9.5",
+   "name": "机械利益",
+   "symbol": "MA",
+   "terms": [
+    "机械利益"
+   ],
+   "statement": "机械的机械利益是输出力与输入力之比。它是一个纯数：机械利益大于 1，意味着机械输出的力比输入的更大；机械利益小于 1（如铁锹或汽车车轴），则意味着它输出的力更小，而换来了别的东西。",
+   "forms": [
+    {
+     "id": "eq-mechanical-advantage",
+     "latex": "\\text{MA} = \\frac{F_{\\text{o}}}{F_{\\text{i}}}",
+     "ktex": "\\text{MA} = \\frac{\\kFo}{\\kFi}",
+     "anchor": "9.5-machines"
+    }
+   ]
+  },
+  {
+   "id": "lever",
+   "kind": "result",
+   "section": "9.5",
+   "name": "杠杆",
+   "statement": "杠杆是一根绕固定位置转动的刚性杆，这个位置称为支点。因为杆绕该点转动，所以平衡的第二条件适用于它：当载荷不动时，输入力的力矩等于输出力的力矩，所以输入力乘以它的力臂，等于输出力乘以它自己的力臂。起钉器、独轮手推车、铁锹和跷跷板都是杠杆，它们的区别仅在于支点相对于两个力所处的位置。",
+   "forms": [
+    {
+     "id": "eq-lever-balance",
+     "latex": "l_{\\text{i}}F_{\\text{i}} = l_{\\text{o}}F_{\\text{o}}",
+     "ktex": "\\kli\\kFi = \\klo\\kFo",
+     "condition": "钉子不动，所以对支点的两个力矩相等",
+     "anchor": "9.5-lever"
+    },
+    {
+     "id": "eq-input-force",
+     "latex": "F_{\\text{i}} = F_{\\text{o}}\\frac{l_{\\text{o}}}{l_{\\text{i}}}",
+     "ktex": "\\kFi = \\kFo\\frac{\\klo}{\\kli}",
+     "anchor": "9.5-wheelbarrow"
+    }
+   ]
+  },
+  {
+   "id": "lever-mechanical-advantage",
+   "kind": "result",
+   "section": "9.5",
+   "name": "杠杆的机械利益",
+   "statement": "把杠杆的力矩平衡式重新整理，就成了关于力的陈述：杠杆的机械利益是输入力臂与输出力臂之比。起钉器的手柄越长，它能施加的力就越大，手柄越短，力就越小。",
+   "forms": [
+    {
+     "id": "eq-lever-ma",
+     "latex": "\\text{MA} = \\frac{F_{\\text{o}}}{F_{\\text{i}}} = \\frac{l_{\\text{i}}}{l_{\\text{o}}}",
+     "ktex": "\\text{MA} = \\frac{\\kFo}{\\kFi} = \\frac{\\kli}{\\klo}",
+     "anchor": "9.5-lever"
+    }
+   ]
+  },
+  {
+   "id": "crank-and-wheel",
+   "kind": "result",
+   "section": "9.5",
+   "name": "曲柄、轮与齿轮",
+   "statement": "曲柄是绕其支点转过一整圈的杠杆，而由车轴驱动的车轮则是同样的东西。这样的机械看起来可能不像杠杆，但物理是相同的：它的机械利益是两个半径之比。曲柄通常有很大的机械利益，而驱动大得多的车轮的汽车车轴，其机械利益远小于 1。",
+   "forms": [
+    {
+     "id": "eq-crank-ma",
+     "latex": "\\text{MA} = \\frac{r_{\\text{i}}}{r_{\\text{o}}}",
+     "anchor": "9.5-crank"
+    }
+   ]
+  },
+  {
+   "id": "pulley-mechanical-advantage",
+   "kind": "result",
+   "section": "9.5",
+   "name": "滑轮",
+   "statement": "定滑轮改变绳中力的方向而不改变其大小，所以它的机械利益为 1。滑轮的组合确实能使力成倍增大：每一根直接向上拉载荷的缆绳都增加约等于张力的力，因为在无摩擦的系统中各处的张力几乎相同，所以这类缆绳的根数约等于该系统的机械利益。",
+   "forms": [
+    {
+     "id": "eq-pulley-force",
+     "latex": "F_{\\text{o}} \\approx nT",
+     "ktex": "\\kFo \\approx n\\kTf",
+     "condition": "滑轮无摩擦，有 n 根缆绳直接拉着载荷",
+     "anchor": "9.5-pulleys"
+    }
+   ]
+  },
+  {
+   "id": "muscle-lever-system",
+   "kind": "idea",
+   "section": "9.6",
+   "name": "作为杠杆的肌肉与关节",
+   "statement": "肢体是一根以关节为支点的杠杆，而使它运动的肌肉通过肌腱附着在非常靠近该关节的地方。因此肌肉的力臂比载荷的力臂短得多，所以这个系统是一台机械利益远小于 1 的简单机械，肌肉必须比肢体对外界的推力拉得用力得多。肌肉只能收缩，这就是它们成对出现的原因，一块屈肌使肢体弯曲，一块伸肌使它伸开。"
+  },
+  {
+   "id": "muscle-force-from-torque",
+   "kind": "result",
+   "section": "9.6",
+   "name": "肌肉中的力",
+   "statement": "把支点取在关节处，使关节力的力矩为零，只剩肌肉力一个未知量，所以只用第二条件就能求出它：肌肉的力矩必须与它所托着的重力的力矩平衡。因为肌肉的力臂是那个小的，所以答案很大。肱二头肌托着前臂和一本 4.00 kg 的书，所施加的力为 470 N，是它所支撑的重力的 7.38 倍。",
+   "forms": [
+    {
+     "id": "eq-biceps-force",
+     "latex": "F_{\\text{B}} = \\frac{r_2 w_{\\text{a}} + r_3 w_{\\text{b}}}{r_1}",
+     "ktex": "\\kFB = \\frac{\\krtwo\\kwarm + \\krthree\\kwbook}{\\krone}",
+     "anchor": "9.6-biceps"
+    },
+    {
+     "id": "eq-biceps-torque-balance",
+     "latex": "r_2 w_{\\text{a}} + r_3 w_{\\text{b}} = r_1 F_{\\text{B}}",
+     "ktex": "\\krtwo\\kwarm + \\krthree\\kwbook = \\krone\\kFB",
+     "condition": "支点取在肘关节处",
+     "anchor": "9.6-biceps"
+    }
+   ]
+  },
+  {
+   "id": "joint-force",
+   "kind": "result",
+   "section": "9.6",
+   "name": "关节中的力",
+   "statement": "一旦知道了肌肉力，平衡的第一条件就给出关节中的力，而且它也很大。肌肉能收缩但不能推，所以肌肉和关节沿相反的方向拉，它们的力相减，剩下实际所支撑的重力。",
+   "forms": [
+    {
+     "id": "eq-vertebrae-magnitude",
+     "latex": "F_{\\text{V}} = \\sqrt{F_{\\text{V}x}^{2} + F_{\\text{V}y}^{2}}",
+     "ktex": "\\kFV = \\sqrt{\\kFVx^{2} + \\kFVy^{2}}",
+     "anchor": "9.6-lifting"
+    },
+    {
+     "id": "eq-vertebrae-direction",
+     "latex": "\\theta = \\tan^{-1}\\left(\\frac{F_{\\text{V}y}}{F_{\\text{V}x}}\\right)",
+     "ktex": "\\theta = \\tan^{-1}\\left(\\frac{\\kFVy}{\\kFVx}\\right)",
+     "anchor": "9.6-lifting"
+    }
+   ]
+  },
+  {
+   "id": "posture-and-back-strain",
+   "kind": "idea",
+   "section": "9.6",
+   "name": "姿势与背部劳损",
+   "statement": "站直时，上身的重心位于髋部支点的正上方，所以它的重力没有力臂，不产生力矩，也不需要肌肉动作来平衡它。身体前倾时，重心移到髋的前面。下背部的肌肉必须抵消由此产生的力矩，而它们的力臂非常小，所以必须非常用力地拉。用背部而不是用腿搬举重物，会使同样的这些力又大上好几倍。"
+  },
+  {
+   "id": "benefits-of-short-lever-arms",
+   "kind": "idea",
+   "section": "9.6",
+   "name": "肌肉靠近关节的附着",
+   "statement": "肌肉附着在靠近它们所推动的关节的地方，是因为短的力臂让一次小的收缩就能在短时间内使肢体摆过很大的距离。这种安排以力换取速度，而且还为许多关节及其工作的大范围活动留出了空间。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "first-condition-equilibrium",
+   "prereq": "newtons-second-law"
+  },
+  {
+   "concept": "first-condition-equilibrium",
+   "prereq": "net-external-force"
+  },
+  {
+   "concept": "first-condition-equilibrium",
+   "prereq": "free-body-diagram"
+  },
+  {
+   "concept": "first-condition-equilibrium",
+   "prereq": "resolve-forces-into-components"
+  },
+  {
+   "concept": "static-equilibrium",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "static-equilibrium",
+   "prereq": "newtons-first-law"
+  },
+  {
+   "concept": "dynamic-equilibrium",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "dynamic-equilibrium",
+   "prereq": "acceleration"
+  },
+  {
+   "concept": "dynamic-equilibrium",
+   "prereq": "instantaneous-velocity"
+  },
+  {
+   "concept": "point-of-application",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "point-of-application",
+   "prereq": "force"
+  },
+  {
+   "concept": "torque",
+   "prereq": "force"
+  },
+  {
+   "concept": "torque",
+   "prereq": "point-of-application"
+  },
+  {
+   "concept": "perpendicular-lever-arm",
+   "prereq": "torque"
+  },
+  {
+   "concept": "perpendicular-lever-arm",
+   "prereq": "resolving-vector"
+  },
+  {
+   "concept": "torque-from-lever-arm",
+   "prereq": "torque"
+  },
+  {
+   "concept": "torque-from-lever-arm",
+   "prereq": "perpendicular-lever-arm"
+  },
+  {
+   "concept": "torque-depends-on-pivot",
+   "prereq": "torque"
+  },
+  {
+   "concept": "torque-sign-convention",
+   "prereq": "torque"
+  },
+  {
+   "concept": "torque-sign-convention",
+   "prereq": "torque-depends-on-pivot"
+  },
+  {
+   "concept": "second-condition-equilibrium",
+   "prereq": "torque"
+  },
+  {
+   "concept": "second-condition-equilibrium",
+   "prereq": "torque-sign-convention"
+  },
+  {
+   "concept": "second-condition-equilibrium",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "center-of-gravity",
+   "prereq": "center-of-mass"
+  },
+  {
+   "concept": "center-of-gravity",
+   "prereq": "weight"
+  },
+  {
+   "concept": "balanced-seesaw",
+   "prereq": "second-condition-equilibrium"
+  },
+  {
+   "concept": "balanced-seesaw",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "balanced-seesaw",
+   "prereq": "center-of-gravity"
+  },
+  {
+   "concept": "balanced-seesaw",
+   "prereq": "weight"
+  },
+  {
+   "concept": "restoring-torque",
+   "prereq": "torque"
+  },
+  {
+   "concept": "restoring-torque",
+   "prereq": "center-of-gravity"
+  },
+  {
+   "concept": "restoring-torque",
+   "prereq": "weight"
+  },
+  {
+   "concept": "stable-equilibrium",
+   "prereq": "restoring-torque"
+  },
+  {
+   "concept": "stable-equilibrium",
+   "prereq": "second-condition-equilibrium"
+  },
+  {
+   "concept": "unstable-equilibrium",
+   "prereq": "restoring-torque"
+  },
+  {
+   "concept": "unstable-equilibrium",
+   "prereq": "second-condition-equilibrium"
+  },
+  {
+   "concept": "neutral-equilibrium",
+   "prereq": "restoring-torque"
+  },
+  {
+   "concept": "neutral-equilibrium",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "base-of-support",
+   "prereq": "stable-equilibrium"
+  },
+  {
+   "concept": "base-of-support",
+   "prereq": "center-of-gravity"
+  },
+  {
+   "concept": "base-of-support",
+   "prereq": "normal-force"
+  },
+  {
+   "concept": "static-equilibrium-strategy",
+   "prereq": "static-equilibrium"
+  },
+  {
+   "concept": "static-equilibrium-strategy",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "static-equilibrium-strategy",
+   "prereq": "second-condition-equilibrium"
+  },
+  {
+   "concept": "static-equilibrium-strategy",
+   "prereq": "free-body-diagram"
+  },
+  {
+   "concept": "static-equilibrium-strategy",
+   "prereq": "newtons-laws-problem-solving"
+  },
+  {
+   "concept": "static-equilibrium-strategy",
+   "prereq": "problem-solving-steps"
+  },
+  {
+   "concept": "choose-pivot-to-simplify",
+   "prereq": "torque-depends-on-pivot"
+  },
+  {
+   "concept": "choose-pivot-to-simplify",
+   "prereq": "second-condition-equilibrium"
+  },
+  {
+   "concept": "choose-pivot-to-simplify",
+   "prereq": "static-equilibrium-strategy"
+  },
+  {
+   "concept": "symmetric-support",
+   "prereq": "center-of-gravity"
+  },
+  {
+   "concept": "symmetric-support",
+   "prereq": "second-condition-equilibrium"
+  },
+  {
+   "concept": "symmetric-support",
+   "prereq": "weight"
+  },
+  {
+   "concept": "unequal-support-forces",
+   "prereq": "symmetric-support"
+  },
+  {
+   "concept": "unequal-support-forces",
+   "prereq": "choose-pivot-to-simplify"
+  },
+  {
+   "concept": "unequal-support-forces",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "simple-machine",
+   "prereq": "force"
+  },
+  {
+   "concept": "simple-machine",
+   "prereq": "work"
+  },
+  {
+   "concept": "mechanical-advantage",
+   "prereq": "simple-machine"
+  },
+  {
+   "concept": "lever",
+   "prereq": "simple-machine"
+  },
+  {
+   "concept": "lever",
+   "prereq": "torque"
+  },
+  {
+   "concept": "lever",
+   "prereq": "second-condition-equilibrium"
+  },
+  {
+   "concept": "lever-mechanical-advantage",
+   "prereq": "lever"
+  },
+  {
+   "concept": "lever-mechanical-advantage",
+   "prereq": "mechanical-advantage"
+  },
+  {
+   "concept": "lever-mechanical-advantage",
+   "prereq": "perpendicular-lever-arm"
+  },
+  {
+   "concept": "crank-and-wheel",
+   "prereq": "lever-mechanical-advantage"
+  },
+  {
+   "concept": "crank-and-wheel",
+   "prereq": "rotation-angle"
+  },
+  {
+   "concept": "pulley-mechanical-advantage",
+   "prereq": "mechanical-advantage"
+  },
+  {
+   "concept": "pulley-mechanical-advantage",
+   "prereq": "tension"
+  },
+  {
+   "concept": "pulley-mechanical-advantage",
+   "prereq": "free-body-diagram"
+  },
+  {
+   "concept": "muscle-lever-system",
+   "prereq": "lever"
+  },
+  {
+   "concept": "muscle-lever-system",
+   "prereq": "mechanical-advantage"
+  },
+  {
+   "concept": "muscle-force-from-torque",
+   "prereq": "muscle-lever-system"
+  },
+  {
+   "concept": "muscle-force-from-torque",
+   "prereq": "second-condition-equilibrium"
+  },
+  {
+   "concept": "muscle-force-from-torque",
+   "prereq": "choose-pivot-to-simplify"
+  },
+  {
+   "concept": "muscle-force-from-torque",
+   "prereq": "weight"
+  },
+  {
+   "concept": "joint-force",
+   "prereq": "muscle-force-from-torque"
+  },
+  {
+   "concept": "joint-force",
+   "prereq": "first-condition-equilibrium"
+  },
+  {
+   "concept": "joint-force",
+   "prereq": "newtons-third-law"
+  },
+  {
+   "concept": "joint-force",
+   "prereq": "magnitude-direction-from-components"
+  },
+  {
+   "concept": "posture-and-back-strain",
+   "prereq": "center-of-gravity"
+  },
+  {
+   "concept": "posture-and-back-strain",
+   "prereq": "base-of-support"
+  },
+  {
+   "concept": "posture-and-back-strain",
+   "prereq": "muscle-force-from-torque"
+  },
+  {
+   "concept": "benefits-of-short-lever-arms",
+   "prereq": "muscle-lever-system"
+  },
+  {
+   "concept": "benefits-of-short-lever-arms",
+   "prereq": "mechanical-advantage"
+  },
+  {
+   "concept": "newton-meter",
+   "prereq": "torque"
+  },
+  {
+   "concept": "newton-meter",
+   "prereq": "newton-unit"
+  }
+ ]
+}

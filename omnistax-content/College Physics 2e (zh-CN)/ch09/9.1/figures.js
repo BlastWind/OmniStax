@@ -1,0 +1,306 @@
+/* Figures for section 9.1 The First Condition for Equilibrium.
+   Boots against the section's text article. A body in equilibrium has no time
+   in it, so the person, the car and the crate are still pictures with no
+   transport. The hockey stick moves: the book's curved arrows are the sense
+   it turns, so it turns on a clock once its forces leave one line. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['9.1'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, vbracket, car, fixed, silhouette, crate, label } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- helpers shared by the figures ---------- */
+const G = 9.80, TAU = 2 * Math.PI;
+const commas = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const N0 = (x) => commas(fmt(x, 0)).replace(/^-/, '\u2212');   /* a force in whole newtons, with commas and a true minus */
+const NT = (x) => commas(fmt(x, 0)).replace(/,/g, '{,}');              /* the same number, written for KaTeX */
+const cap = (L, m) => Math.max(0, Math.min(L, m));
+
+/* a free-body diagram: a dot at (cx, cy) with one arrow per force, each scaled by its own k */
+function fbd(ctx, cx, cy, forces, title, body) {
+  const reach = Math.max(...forces.map((f) => Math.abs(f.v) * f.k), 60);
+  if (title) text(ctx, title, cx, cy - reach - 48, PAL.muted, { size: 18, align: 'center' });
+  forces.forEach((f) => {
+    const L = Math.abs(f.v) * f.k; if (L < 4) return;
+    const ex = cx + f.dx * L, ey = cy + f.dy * L;
+    arrow(ctx, cx, cy, ex, ey, f.c, 4);
+    const ax = f.dx > 0.5 ? 'left' : f.dx < -0.5 ? 'right' : 'center';
+    text(ctx, f.label, ex + f.dx * 14, ey + f.dy * 20 + (f.off ?? 0), f.c, { size: 19, weight: 600, align: ax });
+  });
+  dot(ctx, cx, cy, body || PAL.ink, true, 8);
+}
+
+/* The forces along one axis added with their signs: one bar per force, then their
+   sum. `top` is the full height of the column in newtons, fixed per figure from
+   the slider maxima and never from the values on show, so that raising a mass
+   lengthens the bars instead of leaving the picture unchanged. */
+function balance(ctx, box, items, title, top) {
+  const total = items.reduce((s, it) => s + it.v, 0);
+  const all = items.concat([{ label: '合力', v: total, c: PAL.ink }]);
+  const max = top;
+  const y0 = (box.t + box.b) / 2, hh = (box.b - box.t) / 2 - 40;
+  const n = all.length, w = (box.r - box.l) / n;
+  if (title) text(ctx, title, (box.l + box.r) / 2, box.t - 26, PAL.muted, { size: 18, align: 'center' });
+  line(ctx, box.l, y0, box.r, y0, PAL.muted, 2);
+  all.forEach((it, i) => {
+    const x = box.l + w * (i + 0.5), h = (Math.max(-1, Math.min(1, it.v / max))) * hh;
+    if (Math.abs(h) < 3) dot(ctx, x, y0, it.c, true, 8); else line(ctx, x, y0, x, y0 - h, it.c, 22);
+    text(ctx, it.label, x, box.b + 6, it.c, { size: 18, weight: 600, align: 'center' });
+    text(ctx, N0(it.v), x, y0 - h - (h >= 0 ? 22 : -22), it.c, { size: 17, align: 'center' });
+  });
+}
+
+/* ---------- sprites, in ink ---------- */
+/* a person standing still, the feet on (x, y), about 225 units tall, with a pack on the back
+   when he carries one; the pack hangs from the shoulders and grows with its mass */
+const PS = 1.5;
+function person(ctx, x, y, color, pack, packColor) {
+  if (pack > 0) {
+    const h = 44 + Math.min(70, pack * 1.7), sh = { x: x + 2 * PS, y: y - 118 * PS };
+    ctx.save(); ctx.strokeStyle = packColor || color; ctx.lineWidth = 3; ctx.fillStyle = PAL.soft; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.roundRect(sh.x - 14 * PS - 44, sh.y + 4, 46, h, 8); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(sh.x - 14 * PS, sh.y + 10); ctx.lineTo(sh.x - 2, sh.y - 4); ctx.stroke();   /* the strap */
+    ctx.restore();
+  }
+  silhouette(ctx, { x, y, s: PS, pose: 'stand', color });
+}
+/* an ice hockey stick seen from above: the shaft from a to b with the blade angled off a, drawn as one filled shape */
+function hockeyStick(ctx, ax, ay, bx, by, color) {
+  ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  ctx.lineWidth = 14; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+  ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(bx, by); ctx.lineTo(bx + 6, by - 14); ctx.stroke();       /* the tape at the grip */
+  ctx.beginPath(); ctx.moveTo(ax - 4, ay - 12); ctx.lineTo(ax - 150, ay + 26); ctx.lineTo(ax - 158, ay + 50); ctx.lineTo(ax - 8, ay + 12); ctx.closePath(); ctx.fill();
+  ctx.restore();
+}
+
+/* =====================================================================
+   FIGURE 9.2: the motionless person. Standing still has no time in it, so
+   the figure answers its sliders and carries no transport. The column on
+   the right adds the two vertical forces with their signs.
+===================================================================== */
+(function () {
+  const d = sim('sim-person', 660);
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 40, max: 120, step: 0.5, value: 70, unit: 'kg', dec: 1, aria: '人的质量' });
+  const mp = ctl(d.controls, { label: '\\km_{\\htmlData{ref=pack}{\\text{背包}}}', cls: 'mass', min: 0, max: 40, step: 0.5, value: 0, unit: 'kg', dec: 1, aria: '他背负的背包的质量' });
+  function draw() {
+    const { ctx } = begin(d.c);
+    const w = (mm.v + mp.v) * G, cf = C('force'), K = 170 / 1600, L = cap(w * K, 170);
+    const gy = 430, cx = 330, cgy = gy - 90 * PS;          /* the center of gravity, a little above the hips */
+    fixed(ctx, 90, gy, 480, 24);
+    const cp = F.ref('person');
+    person(ctx, cx, gy, cp, mp.v, F.ref('pack'));
+    dot(ctx, cx, cgy, cp, true, 7);
+    arrow(ctx, cx, cgy, cx, cgy + L, cf, 5);
+    label(ctx, 'w = ' + N0(w) + ' N', cx, cgy + L, { side: 'right', color: cf, gap: 34, size: 21 });
+    arrow(ctx, cx, gy + 24 + L, cx, gy + 24, cf, 5);
+    label(ctx, 'N = ' + N0(w) + ' N', cx, gy + 24 + L * 0.6, { side: 'right', color: cf, gap: 22, size: 21 });
+    text(ctx, mp.v > 0 ? '一个质量为 ' + fmt(mm.v, 1) + ' kg 的人，背着质量为 ' + fmt(mp.v, 1) + ' kg 的背包' : '一个质量为 ' + fmt(mm.v, 1) + ' kg 的人，静止站立',
+      cx, 100, PAL.muted, { size: 18, align: 'center' });
+    fbd(ctx, 790, 390, [
+      { dx: 0, dy: -1, v: w, k: K, label: 'N', c: cf },
+      { dx: 0, dy: 1, v: w, k: K, label: 'w', c: cf },
+    ], '人和背包所受的力', cp);
+    /* the column runs to 1600 N, the heaviest person and pack the sliders reach */
+    balance(ctx, { l: 1010, r: 1340, t: 220, b: 560 }, [
+      { label: 'N', v: w, c: cf },
+      { label: 'w', v: -w, c: cf },
+    ], '竖直方向的力，连同正负号相加', 1600);
+    headline(ctx, '地面向上的推力为 ' + N0(w) + ' N，恰好等于他的重量，所以作用在他身上的合外力为零。');
+    readout(d.readout, `\\text{合力}\\;\\kFy = \\kN - \\kwgt = ${NT(w)}\\ \\text{N} - ${NT(w)}\\ \\text{N} = 0`,
+      `$\\kwgt = (${fmt(mm.v + mp.v, 1)}\\ \\text{kg})(9.80\\ \\text{m/s}^2) = ${NT(w)}\\ \\text{N}$`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 9.3: the car at constant velocity. A steady velocity has no time
+   in it either, since nothing about the scene changes as the clock runs,
+   so this figure is still as well. The two columns add the horizontal and
+   the vertical forces separately, which is what the second equation of the
+   section asks for.
+===================================================================== */
+(function () {
+  const d = sim('sim-car', 900);
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 800, max: 1600, step: 10, value: 1200, unit: 'kg', dec: 0, aria: '汽车的质量' });
+  const Fa = ctl(d.controls, { label: '\\kFa', cls: 'force', min: 0, max: 2000, step: 10, value: 700, unit: 'N', dec: 0, aria: '轮胎与路面之间的外加力',
+    specials: [{ at: () => ff.v, label: '平衡' }] });
+  const ff = ctl(d.controls, { label: '\\kff', cls: 'force', min: 0, max: 2000, step: 10, value: 700, unit: 'N', dec: 0, aria: '汽车所受的空气阻力',
+    specials: [{ at: () => Fa.v, label: '平衡' }] });
+  Fa.refresh();
+  function draw() {
+    const { ctx } = begin(d.c);
+    const w = mm.v * G, net = Fa.v - ff.v, ok = Math.abs(net) < 1e-9;
+    const cf = C('force'), cv = C('velocity');
+    const kv = 190 / 15680, kh = 200 / 2000;              /* the two axes are drawn to scales of their own */
+    const gy = 330, cx = 700, s = 4.6, cgy = gy - 14 * s;   /* the car's center of gravity, low in the body */
+    const LW = cap(w * kv, 190), LFa = cap(Fa.v * kh, 200), Lf = cap(ff.v * kh, 200);
+    line(ctx, 100, gy, 1300, gy, PAL.muted, 3);
+    const cc = F.ref('car');
+    car(ctx, cx, gy - 16 * s, cc, s);
+    if (ok) {
+      arrow(ctx, cx - 110, 130, cx + 130, 130, cv, 5);
+      text(ctx, 'v 恒定', cx + 10, 98, cv, { size: 21, weight: 600, align: 'center' });
+    }
+    /* the book draws the support as four equal arrows, one at each tire, so each is a quarter of N */
+    [-120, -72, 72, 120].forEach((o) => arrow(ctx, cx + o, gy + 34, cx + o, gy + 34 - LW / 4, cf, 4));
+    label(ctx, '每个轮胎处为 N 的四分之一', cx + 150, gy + 40, { side: 'right', color: cf, gap: 8, size: 20 });
+    dot(ctx, cx, cgy, cc, true, 7);
+    arrow(ctx, cx, cgy, cx, cgy + LW, cf, 5);
+    label(ctx, 'w = ' + N0(w) + ' N', cx, cgy + LW, { side: 'below', color: cf, gap: 22, size: 21 });
+    /* the tires drive the car forward where they meet the road, and the air pushes back on the body */
+    arrow(ctx, cx - 24 * s, gy - 6, cx - 24 * s + LFa, gy - 6, cf, 5);
+    label(ctx, 'F_app = ' + N0(Fa.v) + ' N', cx - 24 * s, gy - 6, { side: 'left', color: cf, gap: 36, size: 20 });
+    arrow(ctx, cx + 42 * s + Lf, gy - 60, cx + 42 * s, gy - 60, cf, 5);
+    label(ctx, 'f = ' + N0(ff.v) + ' N', cx + 42 * s + Lf, gy - 60, { side: 'right', color: cf, gap: 16, size: 20 });
+    fbd(ctx, 250, 720, [
+      { dx: 0, dy: -1, v: w, k: 130 / 15680, label: 'N', c: cf },
+      { dx: 0, dy: 1, v: w, k: 130 / 15680, label: 'w', c: cf },
+      { dx: 1, dy: 0, v: Fa.v, k: 150 / 2000, label: 'F_app', c: cf },
+      { dx: -1, dy: 0, v: ff.v, k: 150 / 2000, label: 'f', c: cf },
+    ], '汽车所受的力', cc);
+    text(ctx, '水平方向和竖直方向的力各按自己的标度绘制。', 700, 884, PAL.muted, { size: 17, align: 'center' });
+    /* the columns run to the slider maxima: 2000 N along the road, and 15,680 N across it, which a 1600 kg car weighs */
+    balance(ctx, { l: 520, r: 880, t: 620, b: 840 }, [
+      { label: 'F_app', v: Fa.v, c: cf },
+      { label: 'f', v: -ff.v, c: cf },
+    ], '沿路面方向', 2000);
+    balance(ctx, { l: 990, r: 1340, t: 620, b: 840 }, [
+      { label: 'N', v: w, c: cf },
+      { label: 'w', v: -w, c: cf },
+    ], '垂直于路面方向', 15680);
+    headline(ctx, ok
+      ? '轮胎施加的 ' + N0(Fa.v) + ' N 与 ' + N0(ff.v) + ' N 的空气阻力相互抵消，所以汽车保持恒定速度。'
+      : '沿路面方向的合外力为 ' + N0(net) + ' N，所以汽车' + (net > 0 ? '加速' : '减速') + '，不处于平衡。');
+    readout(d.readout, `\\text{合力}\\;\\kFx = \\kFa - \\kff = ${NT(Fa.v)}\\ \\text{N} - ${NT(ff.v)}\\ \\text{N} = ${NT(net)}\\ \\text{N}`,
+      `垂直于路面方向，$\\text{合力}\\;\\kFy = \\kN - \\kwgt = ${NT(w)}\\ \\text{N} - ${NT(w)}\\ \\text{N} = 0$。`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 9.4 + 9.5: the ice hockey stick, with the two equal and opposite
+   forces first along one line and then applied at different places. The
+   book draws the scene twice because print cannot slide the forces along
+   the stick; one slider walks from the first drawing to the second. Moving:
+   the book's curved arrows are the sense the stick turns, so once the lines
+   of action part it turns that way, faster and faster, from a faint copy of
+   where it lay; on one line it stays where it is. The forces stay
+   horizontal at the points where they act.
+===================================================================== */
+(function () {
+  const d = sim('sim-stick', 720);
+  const Fm = ctl(d.controls, { label: '\\kF', cls: 'force', min: 5, max: 60, step: 0.5, value: 30, unit: 'N', dec: 1, aria: '两个力各自的大小', onInput: reset });
+  const dd = ctl(d.controls, { label: 'd', cls: 'position', min: 0, max: 0.6, step: 0.02, value: 0, unit: 'm', dec: 2, aria: '两条作用线之间的距离',
+    specials: [{ at: 0, label: '同一条直线' }], onInput: reset });
+  const SC = 300;                                          /* logical units to the metre */
+  /* the turn grows as t² over the 5 s loop (an accelerated rotation from rest) to an angle proportional to F d,
+     36° at the slider maxima (60 N, 0.60 m), so 7.5° at 30 N and 0.30 m */
+  const T = 5, TURN = (36 * Math.PI / 180) / (60 * 0.6), cy = F.cycle(() => T, 1.2);
+  function reset() { cy.reset(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const cf = C('force'), off = dd.v * SC / 2, L = cap(Fm.v * (190 / 60), 190);
+    const ax = 620, ay = 600, bx = 780, by = 230, mid = 415, ox = 700;
+    const xOf = (y) => ax + (ay - y) * (bx - ax) / (ay - by);
+    const yA = mid - off, yB = mid + off, xA = xOf(yA), xB = xOf(yB);
+    const k = cy.now() / T, th = off > 4 ? TURN * Fm.v * dd.v * k * k : 0, co = Math.cos(th), si = Math.sin(th);
+    const rot = (x, y) => [ox + (x - ox) * co - (y - mid) * si, mid + (x - ox) * si + (y - mid) * co];
+    const [pAx, pAy] = rot(xA, yA), [pBx, pBy] = rot(xB, yB);
+    line(ctx, 250, yA, 1000, yA, alpha(PAL.ink, 0.35), 2.5, [10, 10]);
+    if (off > 0) line(ctx, 250, yB, 1000, yB, alpha(PAL.ink, 0.35), 2.5, [10, 10]);
+    if (th > 0.004) F.faded(ctx, 0.22, [0, 0], () => hockeyStick(ctx, ax, ay, bx, by, F.ref('stick')));
+    ctx.save(); ctx.translate(ox, mid); ctx.rotate(th); ctx.translate(-ox, -mid);
+    hockeyStick(ctx, ax, ay, bx, by, F.ref('stick'));
+    ctx.restore();
+    arrow(ctx, pAx - L - 10, pAy, pAx - 10, pAy, cf, 5);
+    label(ctx, 'F = ' + fmt(Fm.v, 1) + ' N', pAx - L - 10, pAy, { side: 'left', color: cf, gap: 14, size: 21 });
+    arrow(ctx, pBx + L + 10, pBy, pBx + 10, pBy, cf, 5);
+    label(ctx, 'F = ' + fmt(Fm.v, 1) + ' N', pBx + L + 10, pBy, { side: 'right', color: cf, gap: 14, size: 21 });
+    if (off > 4) {
+      vbracket(ctx, 310, yA, yB, C('position'), 'd = ' + fmt(dd.v, 2) + ' m', -1);
+      text(ctx, '杆在转动。', 700, 130, PAL.muted, { size: 19, align: 'center' });
+    }
+    fbd(ctx, 1220, 415, [
+      { dx: 1, dy: 0, v: Fm.v, k: 110 / 60, label: 'F', c: cf },
+      { dx: -1, dy: 0, v: Fm.v, k: 110 / 60, label: 'F', c: cf },
+    ], '受力图', F.ref('stick'));
+    text(ctx, '每个 d 值下都是同一幅图', 1220, 500, PAL.muted, { size: 17, align: 'center' });
+    headline(ctx, off > 4
+      ? '两个 ' + fmt(Fm.v, 1) + ' N 的力之和仍为零，但它们的作用线相距 ' + fmt(dd.v, 2) + ' m。'
+      : '两个 ' + fmt(Fm.v, 1) + ' N 的力作用在同一条直线上，合外力为零。');
+    readout(d.readout, `\\text{合力}\\;\\kF = \\kF - \\kF = ${fmt(Fm.v, 1)}\\ \\text{N} - ${fmt(Fm.v, 1)}\\ \\text{N} = 0`);
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   SIM: one crate, at rest and sliding. The speed is a slider and not a
+   clock: at every setting the scene is one frozen moment, and the forces
+   do not depend on how long the crate has been going. The figure exists
+   because the book draws static equilibrium on a person and dynamic
+   equilibrium on a car, so the reader never sees one body in both states
+   with the same forces on it.
+===================================================================== */
+(function () {
+  const d = sim('sim-equilibrium', 860);
+  const mm = ctl(d.controls, { label: '\\km', cls: 'mass', min: 20, max: 150, step: 1, value: 100, unit: 'kg', dec: 0, aria: '木箱的质量' });
+  const Fa = ctl(d.controls, { label: '\\kFa', cls: 'force', min: 0, max: 400, step: 5, value: 150, unit: 'N', dec: 0, aria: '推力的大小' });
+  const vv = ctl(d.controls, { label: '\\kv', cls: 'velocity', min: 0, max: 20, step: 0.5, value: 0, unit: 'm/s', dec: 1, aria: '木箱的恒定速率',
+    specials: [{ at: 0, label: '静止' }] });
+  function draw() {
+    const { ctx } = begin(d.c);
+    const w = mm.v * G, moving = vv.v > 0.01, cf = C('force'), cv = C('velocity');
+    const kv = 170 / 1470, kh = 200 / 400;                 /* the two axes are drawn to scales of their own */
+    const gy = 320, cx = 560, LF = cap(Fa.v * kh, 200), LW = cap(w * kv, 170);
+    const CW = 150, CH = 120, cl = cx - CW / 2, cgy = gy - CH / 2;
+    fixed(ctx, 100, gy, 820, 22);
+    /* the person who pushes, hands flat on the crate's side, and the crate itself */
+    const cu = F.ref('pusher'), ck = F.ref('crate');
+    if (Fa.v > 0) silhouette(ctx, { x: cl - 52, y: gy, s: 1.34, pose: 'push', color: cu, hands: [{ x: 39, y: -70 }, { x: 40, y: -62 }] });
+    else silhouette(ctx, { x: cl - 60, y: gy, s: 1.34, pose: 'stand', color: cu });
+    crate(ctx, cx, cgy, CW, CH, ck);
+    dot(ctx, cx, cgy, ck, true, 7);
+    /* the four labels step round the crate, the pusher and one another at every slider setting */
+    const lab = F.labeller(ctx, 860, { headline: 2 });
+    lab.block(cl, cgy - CH / 2, cl + CW, gy);
+    lab.block(cx - 3, cgy, cx + 3, cgy + LW);
+    lab.block(100, gy, 920, gy + 22);
+    if (LF > 4) {
+      arrow(ctx, cl, cgy - 28, cl + LF, cgy - 28, cf, 5);
+      arrow(ctx, cx, gy - 8, cx - LF, gy - 8, cf, 5);
+      lab.add('F_app = ' + N0(Fa.v) + ' N', cx + 20, cgy - CH / 2, 0, -1, cf, 21, 26);
+      lab.add('f = ' + N0(Fa.v) + ' N', cx - LF, gy + 22, -0.6, 0.8, cf, 21, 20);
+    }
+    arrow(ctx, cx, cgy, cx, cgy + LW, cf, 5);
+    arrow(ctx, cx + 60, gy, cx + 60, gy - LW, cf, 5);
+    lab.add('w = ' + N0(w) + ' N', cx, cgy + LW, 0.5, 0.87, cf, 21, 20);
+    lab.add('N = ' + N0(w) + ' N', cx + 60, gy - LW, 0.93, -0.37, cf, 21, 16);
+    if (moving) {
+      arrow(ctx, cx + 160, gy - 170, cx + 160 + 30 + vv.v * 8, gy - 170, cv, 5);
+      text(ctx, 'v = ' + fmt(vv.v, 1) + ' m/s，恒定', cx + 160, gy - 202, cv, { size: 21, weight: 600 });
+    }
+    lab.flush();
+    fbd(ctx, 1140, 300, [
+      { dx: 0, dy: -1, v: w, k: 130 / 1470, label: 'N', c: cf },
+      { dx: 0, dy: 1, v: w, k: 130 / 1470, label: 'w', c: cf },
+      { dx: 1, dy: 0, v: Fa.v, k: 150 / 400, label: 'F_app', c: cf },
+      { dx: -1, dy: 0, v: Fa.v, k: 150 / 400, label: 'f', c: cf },
+    ], '木箱所受的力', ck);
+    /* the columns run to the slider maxima: 400 N along the floor, and 1470 N across it, which a 150 kg crate weighs */
+    balance(ctx, { l: 180, r: 560, t: 600, b: 820 }, [
+      { label: 'F_app', v: Fa.v, c: cf },
+      { label: 'f', v: -Fa.v, c: cf },
+    ], '沿地面方向', 400);
+    balance(ctx, { l: 760, r: 1140, t: 600, b: 820 }, [
+      { label: 'N', v: w, c: cf },
+      { label: 'w', v: -w, c: cf },
+    ], '垂直于地面方向', 1470);
+    headline(ctx, moving
+      ? '速率为 ' + fmt(vv.v, 1) + ' m/s 时，木箱处于动态平衡，其上的四个力与它静止时所受的相同。'
+      : '静止时木箱处于静态平衡，因为推力与摩擦力相互抵消，重力和地面的作用力也相互抵消。');
+    readout(d.readout, `\\text{合力}\\;\\kFx = \\kFa - \\kff = ${NT(Fa.v)}\\ \\text{N} - ${NT(Fa.v)}\\ \\text{N} = 0`,
+      `垂直于地面方向，$\\text{合力}\\;\\kFy = \\kN - \\kwgt = ${NT(w)}\\ \\text{N} - ${NT(w)}\\ \\text{N} = 0$。`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

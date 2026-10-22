@@ -1,0 +1,1052 @@
+{
+ "id": "9.6",
+ "module": "m42175",
+ "chapter": "9",
+ "title": "肌肉与关节中的力和力矩",
+ "short": "肌肉与关节",
+ "lead": "肌肉、骨骼和关节是静力学一些最有趣的应用。你要算出托着<span data-ref=\"book\">一本书</span>的<span data-ref=\"biceps\">肱二头肌</span>中的<span data-type=\"force\">力</span>，以及<span data-ref=\"elbow\">肘关节</span>所承受的<span data-type=\"force\">力</span>，再把同样的算法用到搬举<span data-ref=\"box\">一个箱子</span>的<span data-ref=\"lifter\">人</span>的背部，并追问身体从肌肉的这种附着方式中得到了什么。",
+ "objectives": [
+  "解释肌肉所施加的力。",
+  "说明不良姿势如何造成背部劳损。",
+  "讨论骨骼肌附着在靠近关节处的好处。",
+  "讨论肌肉、骨骼和关节真实系统中的各种复杂情况。"
+ ],
+ "summary_html": "<ul><li>静力学在理解我们肌肉和骨骼的日常劳损方面起着重要作用。</li><li>身体中的许多杠杆系统的机械利益远小于 1，因为我们的许多肌肉附着在靠近关节处。</li><li>姿势良好的人站立或坐着时，其重心位于髋部支点的正上方，从而避免背部劳损和椎间盘损伤。</li></ul>",
+ "notes": "本节十五道习题中有七道在书后答案中没有给出答案，故予略去，其中有关于弹性绳的综合概念题、棕榈树题和自拟习题，而对“有限大小物体的二维碰撞”的引用是纯文本，因为第 10 章尚未制作。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案，其中涵盖 AP 题以及习题 1、3、5、7、8、10、12 和 14；七道思考题没有答案，代之以标明为 AI 撰写的建议思路。习题 2、4、6、9、11、13 和 15 没有给出答案，因而略去：跟腱、腿部锻炼装置、120° 时的肱二头肌、父亲抱起孩子、关于弹性绳的综合概念题、需要用到第 8 章冲量的棕榈树题，以及自拟习题。习题 12，即俯卧撑，保留了书中的四个小问和书后的全部答案，四个小问全部设为判分小问：（c）问所做的功，（d）问输出功率，二者是第 7 章的概念，所以这两个小问以较低的权重标注 7.1 的计算功和 7.7 的计算功率，该题其余部分保留本节的概念。没有任何内容留待后面的小节，也没有取自其他小节的内容：书中在此印出的每一道题都建立在平衡的两个条件之上，这两个条件由 9.1 和 9.2 给出。",
+ "figures": [
+  {
+   "id": "sim-forearm",
+   "kind": "sim",
+   "number": "9.25",
+   "originals": [
+    "/media/ch09/Figure_10_06_01a.jpg"
+   ],
+   "original_caption": "（a）图中所示为一个人托着一本书的前臂。肱二头肌施加力 F_B 来支撑前臂和书的重力。假定肱三头肌处于放松状态。（b）这里可以看到一个近似等效的力学系统，其支点位于肘关节，如例题 9.4 中所见。",
+   "widths": [
+    400
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to F_E through the macros; no book at 0 kg"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-posture",
+   "kind": "sim",
+   "number": "9.26",
+   "originals": [
+    "/media/ch09/Figure_10_06_02a.jpg"
+   ],
+   "original_caption": "（a）良好的姿势使上身的重心位于髋部的支点上方，从而无需肌肉活动来使身体保持平衡。（b）不良姿势需要背部肌肉用力，以抵消上身的重力绕支点产生的顺时针力矩。背部肌肉的有效垂直力臂 r_b⊥ 很小，因此必须施加很大的力 F_b。请注意，双腿向后倾斜，以使整个身体的重心保持在脚部支撑面的上方。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "position",
+    "torque",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels off the body, lever arm below the ground; notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-stance",
+   "kind": "photo",
+   "number": "9.27",
+   "widths": [
+    269
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-lift",
+   "kind": "sim",
+   "number": "9.28",
+   "originals": [
+    "/media/ch09/Figure_10_06_04a.jpg"
+   ],
+   "original_caption": "此图表明，一个人用背部搬举时，由于背部肌肉的有效垂直力臂很小，背部肌肉会施加很大的力，椎骨也会承受很大的力。这里所示的数据已在前面的例题 9.5 中作了分析。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "force",
+    "position",
+    "mass",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "F_B label behind the back; tau line lifted"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: silhouette holding the box by its handles, labeller labels"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-lever-arm-trade",
+   "kind": "sim",
+   "draws": [
+    "position",
+    "angle"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "scene raised clear of the bars; phi label off the forearm; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "muscles-levers",
+   "concept": "muscle-lever-system",
+   "verb": "introduces"
+  },
+  {
+   "span": "muscles-levers",
+   "concept": "lever",
+   "verb": "uses"
+  },
+  {
+   "span": "muscles-levers",
+   "concept": "mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "muscles-levers",
+   "concept": "simple-machine",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "muscle-force-from-torque",
+   "verb": "introduces"
+  },
+  {
+   "span": "biceps",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "choose-pivot-to-simplify",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "biceps",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "joints",
+   "concept": "joint-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "joints",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "joints",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "joints",
+   "concept": "muscle-force-from-torque",
+   "verb": "reinforces"
+  },
+  {
+   "span": "posture",
+   "concept": "posture-and-back-strain",
+   "verb": "introduces"
+  },
+  {
+   "span": "posture",
+   "concept": "center-of-gravity",
+   "verb": "uses"
+  },
+  {
+   "span": "posture",
+   "concept": "base-of-support",
+   "verb": "uses"
+  },
+  {
+   "span": "posture",
+   "concept": "unstable-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "posture",
+   "concept": "torque",
+   "verb": "uses"
+  },
+  {
+   "span": "posture",
+   "concept": "mechanical-advantage",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lifting",
+   "concept": "posture-and-back-strain",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lifting",
+   "concept": "joint-force",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lifting",
+   "concept": "muscle-force-from-torque",
+   "verb": "reinforces"
+  },
+  {
+   "span": "lifting",
+   "concept": "second-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "first-condition-equilibrium",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "choose-pivot-to-simplify",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "resolving-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "lifting",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "short-lever-arms",
+   "concept": "benefits-of-short-lever-arms",
+   "verb": "introduces"
+  },
+  {
+   "span": "short-lever-arms",
+   "concept": "mechanical-advantage",
+   "verb": "reinforces"
+  },
+  {
+   "span": "short-lever-arms",
+   "concept": "muscle-lever-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complexities",
+   "concept": "muscle-lever-system",
+   "verb": "reinforces"
+  },
+  {
+   "span": "complexities",
+   "concept": "perpendicular-lever-arm",
+   "verb": "uses"
+  },
+  {
+   "span": "complexities",
+   "concept": "muscle-force-from-torque",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1169738064982",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "muscles-levers",
+   "prompt": "为什么我们身体的肢体对外界施加的力通常比体内肌肉施加的力小得多？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "肢体是一根杠杆，其支点是关节，而使它运动的肌肉通过肌腱附着在非常靠近该关节的地方。因此，肌肉作用在短的力臂上，而手或脚作用在长的力臂的远端，所以这个系统是一台机械利益远小于 1的简单机械。要使关于关节的两个力矩平衡，短力臂就必须承受大的力，而肢体能向外界施加的力只是肌肉所拉力的一部分。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1169738209013",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "joints",
+   "prompt": "解释为什么我们关节中的力比我们用肢体对外界施加的力大好几倍。这些力有没有可能比肌肉的力还大？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "肌肉的力本身就已是载荷的好几倍，因为肌肉作用在短力臂上，而一旦存在这个大的力，关节就必须提供平衡的第一条件所需要的任何力。在前臂中，肱二头肌向上拉的力为 470 N，而所托住的重力只有 63.7 N，所以肱骨必须在肘处向下推 407 N，合力才能为零。每当肌肉和载荷以同样的方向拉骨骼时，关节中的力就可能比肌肉中的力大，因为这时关节必须平衡的是二者之和，而不是二者之差。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id1169738209026",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "posture",
+   "prompt": "某些种类的恐龙是两足行走的（用两条腿走路）。有什么好的理由能说明，这些动物若长着长颈，就总是长着长尾巴？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "长颈把很大的重力带到髋部前方很远的地方，而两足行走的动物的支撑面只有两只脚。这个重力相对于髋部有很长的垂直力臂，所以会产生很大的力矩，整个动物的重心向前移向脚的前端，甚至超出前端。伸到髋部后方的长尾巴把重力放在支点的另一侧，它的力矩转向相反的方向，所以两者几乎抵消，重心保持在支撑面上方。这样，动物就可以站立和行走，而不必让肌肉整天承受很大的力矩。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1169737933072",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "posture",
+   "prompt": "游泳者和运动员在比赛中，需要在比赛开始时做出某些姿势。请考虑人的平衡，以及为什么出发对比赛如此重要。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "起跑时，运动员蹲伏，重心很低且明显偏前，靠近手和脚所构成的支撑面的前缘。这是一个不稳定平衡的位置：很小的一推就会使身体向前倾倒，于是重力本身就帮助把运动员带出起跑器，而不必被抬起和推动。一名直立起跑的运动员，重心稳稳地位于两脚中间的上方，处于稳定的位置，必须花费力和时间使身体脱离这个位置，才有任何一点推力用于比赛。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id1169737933090",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "prompt": "如果肱二头肌能施加的最大力是 1000 N，我们能拿起一个重 1000 N 的物体吗？请解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "不能。肱二头肌作用在约 4.00 cm 的力臂上，而手离肘约 38.0 cm，所以载荷的力臂几乎是肌肉力臂的十倍。使关于肘的两个力矩平衡，载荷只能是肌肉力的约十分之一，而且就连这一部分也有一部分要用来托住前臂本身的重力。因此，肱二头肌 1000 N 的拉力所能托住的东西远小于 100 N。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1169738146835",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "short-lever-arms",
+   "prompt": "假设肱二头肌通过肌腱附着在靠近肘的上臂和靠近手腕的前臂上。这种结构对手臂的运动有什么优点和缺点？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "优点在于力。这时肌肉的力臂几乎与手的力臂一样长，所以机械利益会接近 1，肱二头肌只需比它所托住的重力稍微用力拉一点，肘关节中的力也会随之下降。缺点就是实际布置的好处反过来看。肌肉得收缩几乎手所移动的全部距离，所以手能够到的范围会受肌肉所能缩短的程度的限制，运动会变得缓慢而不是迅速。一块一直延伸到手腕的肌肉，在跨过肘时也离肘太远，手臂会失去它现在所具有的大部分活动范围和敏捷性。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id1169738146846",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "posture",
+   "prompt": "解释孕妇在怀孕后期常常出现背部劳损的原因之一。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "身体前部所承载的重力使上身的重心前移，因而不再位于髋部支点的正上方。于是这个重力有了垂直力臂，而此前它没有，它对髋部产生的力矩必须由下背部的肌肉来抵消。这些肌肉作用在只有几厘米的力臂上，所以它们必须施加的力是前移那部分重力的许多倍，而一小时又一小时地保持它，正是使背部劳损的原因。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1320975",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "prompt": "当你用手以弯举动作举起一只 20 lb 的哑铃时，你的肱二头肌所受的力并不等于 20 lb。<ol><li>将肱二头肌所受力的大小与手举起的 20 lb 哑铃的力相比较。利用力矩的概念，说明哪个力更大，并解释这两个力为什么不相同。</li><li>当你把重物向身体弯举得更近时，肱二头肌所受的力会改变吗？（换句话说，你的前臂与上臂成 90° 角时，肌肉所受的力与成 45° 角时有什么不同吗？）利用力矩解释你的回答。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<ol><li>作用在你肱二头肌上的力将大于作用在哑铃上的力。肱二头肌离肘的距离比哑铃作用在你手上的向下的力离肘的距离更近。因为肘是这个系统的支点，所以这使得肱二头肌的力臂减小。因此，作用在肱二头肌上的力必定大于作用在哑铃上的力。（大多少？肱二头肌的力与哑铃的力之比，等于它们到肘的距离之比的倒数。如果哑铃到肘的距离是肱二头肌的十倍，肱二头肌所受的力将是 200 磅！）</li><li>作用在你肱二头肌上的力将减小。随着前臂举起哑铃，哑铃会更靠近肘。因此，重物作用在手臂上的力矩将减小，肱二头肌产生的与之对抗的力矩也将减小。</li></ol>"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1169738208828",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "joints",
+   "prompt": "验证例题 9.4 中肘关节中的力是 407 N，如正文所述。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 407,
+    "unit": "N",
+    "hint": "肱二头肌的力已知，所以平衡的第一条件就够了：肌肉向上的拉力减去肘处向下的推力，必须剩下所承受的重力。",
+    "solution": "$$\\begin{aligned}\\kFB &= 470\\ \\text{N};\\quad \\krone = 4.00\\ \\text{cm};\\quad \\kwarm = 2.50\\ \\text{kg};\\quad \\krtwo = 16.0\\ \\text{cm};\\quad \\kwbook = 4.00\\ \\text{kg};\\quad \\krthree = 38.0\\ \\text{cm}\\\\ \\kFE &= \\kwarm\\left(\\frac{\\krtwo}{\\krone} - 1\\right) + \\kwbook\\left(\\frac{\\krthree}{\\krone} - 1\\right)\\\\ &= (2.50\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\left(\\frac{16.0\\ \\text{cm}}{4.00\\ \\text{cm}} - 1\\right)\\\\ &\\quad + (4.00\\ \\text{kg})(9.80\\ \\text{m/s}^2)\\left(\\frac{38.0\\ \\text{cm}}{4.00\\ \\text{cm}} - 1\\right)\\\\ &= 407\\ \\text{N}\\end{aligned}$$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1169738208672",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "joints",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_06a.jpg",
+    "alt": "图中是膝部骨骼和股四头肌的侧视图。上面的骨骼与水平方向成五十五度角，股四头肌所施的张力为一千二百五十牛顿。从髌骨到下面骨骼的肌腱在水平线以下倾斜七十五度。这个方向上的力与股四头肌所提供的力相同。",
+    "caption": "膝关节像铰链一样工作，使小腿弯曲和伸直。它使人能够坐、站和转身。"
+   },
+   "prompt": "大腿肌肉（股四头肌）施加 1250 N 的力，该力由一条肌腱越过髌骨（膝盖骨），以图中所示的角度传递。求髌骨对大腿骨（股骨）所施力的方向和大小。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 1100,
+      "unit": "N",
+      "hint": "髌骨在图中所示角度的两个 1250 N 的拉力作用下处于平衡，所以按分量把这两个力相加，再把和反向。"
+     },
+     {
+      "part": "direction",
+      "value": 190,
+      "unit": "° counterclockwise from the positive x-axis",
+      "hint": "由和的分量求出方向，角度自正 $x$ 轴起沿逆时针方向量取。"
+     }
+    ],
+    "solution": "$1.1 \\times 10^{3}\\ \\text{N}$，$\\theta = 190^\\circ$，自正 $x$ 轴起沿逆时针方向。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1169737871960",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "lifting",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_08a.jpg",
+    "alt": "图中是一个人在绘图板前工作时处于放松姿势的头部。头部与水平方向的倾角为 θ，重心靠近头顶。头部的重力为五十牛顿，在重心处向下作用。图中画出了三个主要的力。沿颈部所施的力为六十牛顿。"
+   },
+   "prompt": "在绘图板前工作的人可能会像图中那样保持头部，需要肌肉活动来支撑头部。图中画出了作用的三个主要的力。计算上部椎骨为使头部保持静止所提供的力 $\\kFV$ 的方向和大小，假定该力与重力和肌肉的力一样，沿着通过质心的直线作用。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 97,
+      "unit": "N",
+      "hint": "三个力都通过质心，所以仅凭第一条件就能解决：椎骨所提供的力必须恰好使重力与肌肉的力加起来为零。"
+     },
+     {
+      "part": "direction",
+      "value": 59,
+      "unit": "°",
+      "hint": "求出另外两个力之和的水平分量和竖直分量，由它们求出角度。"
+     }
+    ],
+    "solution": "$\\kFV = 97\\ \\text{N}$, $\\theta = 59^\\circ$."
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1169737911382",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_09a.jpg",
+    "alt": "图中是一个直立的头部。头部的重力为五十牛顿。头部的重心位于其支点的前方。支点与头部重力之间的垂直距离为二点五厘米。在这两个力之间有一点，画出了一个竖直的力矢量。这个力标记为 F 下标 J。在头部后方，距支点后方五点零厘米处，有一个标为 F 下标 m 的向下的矢量。",
+    "caption": "头部的质心位于其主要支撑点的前方，需要肌肉活动才能使头部保持直立。图中画出的是简化的杠杆系统。"
+   },
+   "prompt": "即使像图中那样保持头部直立，它的质心也并不正好位于主要支撑点（寰枕关节）的上方。因此，颈后部的肌肉应当施加一个力来使头部保持直立。这就是你在课堂上睡着时头会向前垂下的原因。（a）利用图中的信息，计算这些肌肉所施加的力。（b）支点对头部所施的力是多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 25,
+      "unit": "N",
+      "hint": "取支点在关节处，使该处的力不产生力矩，再使重力的力矩与颈部肌肉的力矩相平衡。"
+     },
+     {
+      "part": "(b)",
+      "value": 75,
+      "unit": "N",
+      "hint": "肌肉的力已知后，由第一条件可得支点处的力：它必须同时平衡重力和肌肉向下的拉力。"
+     }
+    ],
+    "solution": "（a）25 N，向下。（b）75 N，向上。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1169738163893",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_10a.jpg",
+    "alt": "图中是一个人的脚。踝稍高于地面。踝的后部有一个力 F-A，方向向上。腿的重力向下。法向力作用在脚的前部，方向向上。法向力与力 F-A 之间的垂直距离为十六厘米。在这两个力之间有一点，画出了力 F-P，它起着简化杠杆系统的支点的作用。",
+    "caption": "踮起脚尖站立时，腿后部的肌肉拉动跟腱。图中画出的是简化的杠杆系统。"
+   },
+   "prompt": "一名 75 kg 的男子如图所示，通过跟腱施加向上的力而踮起脚尖站立。（a）如果他单脚站立，跟腱中的力是多少？（b）计算图中所示简化杠杆系统支点处的力——该力代表踝关节中的力。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2210,
+      "unit": "N",
+      "hint": "取支点在图中所画的位置，使跟腱的力矩与法向力的力矩相平衡，法向力在单脚上承受这名男子的全部重力。"
+     },
+     {
+      "part": "(b)",
+      "value": 2940,
+      "unit": "N",
+      "hint": "跟腱向上拉，地面向上推，所以支点必须以二者之和向下推，合力才能为零。"
+     }
+    ],
+    "solution": "（a）$F_{\\text{A}} = 2.21 \\times 10^{3}\\ \\text{N}$，向上。（b）$\\kFB = 2.94 \\times 10^{3}\\ \\text{N}$，向下。"
+   }
+  },
+  {
+   "id": "p10",
+   "source_id": "fs-id1169738086655",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "posture",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_12a.jpg",
+    "alt": "图中是一名男子颌部的咬肌。力 F 下标 M 等于二百牛顿，作用在肌肉上，方向向上；力 F 下标 J 作用在肌肉的左端，方向向下。肌肉上部的跨度为五厘米。在颌的关节处，反作用力向下。",
+    "caption": "一个人用牙齿咬紧一颗子弹。"
+   },
+   "prompt": "与我们身体中大多数其他肌肉不同，如图所示，颌部的咬肌附着在离关节相对较远的地方，使后牙能够施加很大的力。（a）利用图中的信息，计算下牙对子弹所施的力。（b）计算关节上的力。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 120,
+      "unit": "N",
+      "hint": "取支点在颌关节处，使咬肌的力矩与子弹所受力的力矩相平衡；这里肌肉的力臂较长。"
+     },
+     {
+      "part": "(b)",
+      "value": 84,
+      "unit": "N",
+      "hint": "另外两个力都已知后，由第一条件可得关节必须提供的力。"
+     }
+    ],
+    "solution": "（a）$F_{\\text{牙对子弹}} = 1.2 \\times 10^{2}\\ \\text{N}$，向上。（b）$F_{\\text{J}} = 84\\ \\text{N}$，向下。"
+   }
+  },
+  {
+   "id": "p12",
+   "source_id": "fs-id1169738110743",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "figure": {
+    "src": "/media/ch09/Figure_10_06_13a.jpg",
+    "alt": "图中是一名女子在做俯卧撑。她身体的重力 W 作用在身体长度的中点。她的手掌撑在地面上。手掌与脚之间的距离为一点五米。重心与脚之间的距离为零点九米。她手上的法向力向上。",
+    "caption": "一名女子在做俯卧撑。"
+   },
+   "prompt": "（a）图中的女子要做一个俯卧撑，每只手应对地板施加多大的力？假定她以恒定的速率向上运动。（b）她上臂后部的肱三头肌的有效力臂为 1.75 cm，她在离肘关节水平距离 20.0 cm 处对地板施力。计算每块肱三头肌中力的大小，并将它与她的重力相比较。（c）如果她的质心上升 0.240 m，她做了多少功？（d）如果她在一分钟内做 25 个俯卧撑，她的有用输出功率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 147,
+      "unit": "N",
+      "hint": "取支点在她的脚处，使她的重力（作用在离脚 0.9 m 处）的力矩，与地板向上推她双手（离脚 1.5 m 处）的力矩相平衡；然后把结果在两只手之间平分。"
+     },
+     {
+      "part": "(b)",
+      "value": 1680,
+      "unit": "N",
+      "hint": "取支点在肘处：肱三头肌作用在 1.75 cm 的力臂上，而手在 20.0 cm 远处推地板，所以只有肌肉的力是那个大的力，两个力矩才能平衡。"
+     },
+     {
+      "part": "(c)",
+      "value": 118,
+      "unit": "J",
+      "hint": "她所做的功，等于她对地板所施的力（对整个身体而言）乘以她的质心上升的高度。"
+     },
+     {
+      "part": "(d)",
+      "value": 49.0,
+      "unit": "W",
+      "hint": "她的有用输出功率等于一个俯卧撑所做的功乘以二十五个，再除以她所用的六十秒。"
+     }
+    ],
+    "solution": "（a）147 N，向下。（b）1680 N，是她的重力的 3.4 倍。（c）118 J。（d）49.0 W。"
+   }
+  },
+  {
+   "id": "p14",
+   "source_id": "fs-id1169738139248",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "biceps",
+   "prompt": "<strong>不合理的结果</strong> 假设两个孩子在玩一架均匀的跷跷板，它长 3.00 m，质心在支点上方。第一个孩子的质量为 30.0 kg，坐在离支点 1.40 m 处。（a）计算第二个质量为 18.0 kg 的孩子必须坐在哪里才能使跷跷板平衡。（b）这个结果有什么不合理之处？（c）哪个前提不合理，或者哪些前提互相矛盾？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "part": "(a)",
+    "value": 2.33,
+    "unit": "m",
+    "hint": "木板是均匀的，并支在其质心处，所以它自身的重力不产生力矩；令两个孩子关于支点的力矩相等。",
+    "solution": "（a）$\\bar{x}_2 = 2.33\\ \\text{m}$。（b）跷跷板长 3.0 m，因此支点另一侧只有 1.50 m 长的木板。第二个孩子已经落在木板之外。（c）第一个孩子的位置必须缩短，即移得更靠近支点。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "muscle-lever-system"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "muscle-force-from-torque",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "center-of-gravity"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "base-of-support"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "posture-and-back-strain",
+   "weight": 2
+  },
+  {
+   "exercise": "cq4",
+   "concept": "base-of-support"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "unstable-equilibrium"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "center-of-gravity",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "muscle-lever-system",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "benefits-of-short-lever-arms"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  },
+  {
+   "exercise": "cq7",
+   "concept": "posture-and-back-strain"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "center-of-gravity",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "torque",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "muscle-lever-system",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p1",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p3",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p3",
+   "concept": "magnitude-direction-from-components",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p5",
+   "concept": "magnitude-direction-from-components",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "first-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "p7",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p8",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "p8",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p10",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "p10",
+   "concept": "joint-force"
+  },
+  {
+   "exercise": "p10",
+   "concept": "mechanical-advantage",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "muscle-force-from-torque"
+  },
+  {
+   "exercise": "p12",
+   "concept": "second-condition-equilibrium",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "muscle-lever-system",
+   "weight": 2
+  },
+  {
+   "exercise": "p14",
+   "concept": "balanced-seesaw"
+  },
+  {
+   "exercise": "p14",
+   "concept": "second-condition-equilibrium"
+  },
+  {
+   "exercise": "p14",
+   "concept": "physical-solution",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "calculate-work",
+   "weight": 2
+  },
+  {
+   "exercise": "p12",
+   "concept": "calculate-power",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "forearm",
+   "label": "前臂",
+   "figures": [
+    "sim-forearm",
+    "sim-lever-arm-trade"
+   ]
+  },
+  {
+   "id": "biceps",
+   "label": "肱二头肌",
+   "figures": [
+    "sim-forearm",
+    "sim-lever-arm-trade"
+   ]
+  },
+  {
+   "id": "book",
+   "label": "手中的书",
+   "figures": [
+    "sim-forearm"
+   ]
+  },
+  {
+   "id": "elbow",
+   "label": "肘关节",
+   "figures": [
+    "sim-forearm",
+    "sim-lever-arm-trade"
+   ]
+  },
+  {
+   "id": "person",
+   "label": "站立的人",
+   "figures": [
+    "sim-posture"
+   ]
+  },
+  {
+   "id": "back-muscles",
+   "label": "背部肌肉",
+   "figures": [
+    "sim-posture",
+    "sim-lift"
+   ]
+  },
+  {
+   "id": "lifter",
+   "label": "搬举箱子的人",
+   "figures": [
+    "sim-lift"
+   ]
+  },
+  {
+   "id": "box",
+   "label": "箱子",
+   "figures": [
+    "sim-lift"
+   ]
+  }
+ ]
+}
