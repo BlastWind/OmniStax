@@ -1,0 +1,981 @@
+{
+ "id": "4.7",
+ "module": "m42132",
+ "chapter": "4",
+ "title": "牛顿运动定律的进一步应用",
+ "short": "进一步应用",
+ "lead": "三种情形让牛顿定律在不止一步的求解中发挥作用：<span data-ref=\"tug-1 tug-2\">两艘拖船</span>以彼此成<span data-type=\"angle\">直角</span>的方向推<span data-ref=\"barge\">一艘驳船</span>，<span data-ref=\"light\">一盏交通信号灯</span>被<span data-ref=\"wire-1 wire-2\">两根钢丝</span>以<span data-type=\"angle\">不同的角度</span>吊住，以及<span data-ref=\"man\">一个人</span>站在<span data-ref=\"elevator\">运行中的电梯</span>里的<span data-ref=\"scale\">体重秤</span>上。与前面各章的运动学结合起来，这些定律可以把一个问题从<span data-concept=\"force\">力</span>求到<span data-concept=\"distance\">距离</span>，或者从<span data-concept=\"distance\">距离</span>再求回<span data-concept=\"force\">力</span>。",
+ "objectives": [
+  "运用解题技巧，求解更复杂的力的系统中的各个量。",
+  "综合运动学的概念，利用牛顿运动定律解题。"
+ ],
+ "summary_html": "<ul><li>牛顿运动定律可以应用于许多情形，用来求解运动问题。</li><li>有些问题含有沿不同方向作用在物体上的多个<span data-concept=\"force\">力</span>矢量。务必画出示意图，把所有<span data-concept=\"force\">力</span>矢量分解为水平分量和竖直分量，并画出受力图。始终要分析物体加速的方向，以便确定应当用 $\\kFnet = m\\ka$ 还是 $\\kFnet = 0$。</li><li>物体所受的<span data-concept=\"normal-force\">法向力</span>在大小上并不总是等于物体的<span data-concept=\"weight\">重力</span>。如果物体在加速，<span data-concept=\"normal-force\">法向力</span>将小于或大于物体的<span data-concept=\"weight\">重力</span>。此外，如果物体在斜面上，<span data-concept=\"normal-force\">法向力</span>将总是小于物体的全部<span data-concept=\"weight\">重力</span>。</li><li>有些问题含有各种物理量，例如<span data-concept=\"force\">力</span>、<span data-concept=\"acceleration\">加速度</span>、<span data-concept=\"velocity\">速度</span>或<span data-concept=\"position\">位置</span>。你可以运用运动学和动力学的概念来求解这些运动问题。</li></ul>",
+ "notes": "关于在摩擦因数为 0.20 的表面上滑动的木块的 AP 备考练习题被略去，因为摩擦因数要到“摩擦力”一节才引入，而该节尚未制作；书中没有给出答案的七道题——跟腱、海豚、起飞时的火箭、竖直向上发射的烟花弹、载满乘客的电梯，以及两道“不合理的结果”题——也同样被略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "答案来自书后答案；布鲁姆层级、概念标签、权重和提示由 AI 撰写，两道思考题和第一道 AP 题（书中均未给出答案）的建议思路也是如此。两道思考题放在体重秤那一段之后就地给出，因为每道都是对刚读过内容的简短检测。七道题没有给出答案，因此被略去：跟腱（fs-id1427030）、海豚（fs-id1486506）、起飞时的火箭（fs-id2441621）、竖直向上发射的烟花弹（fs-id3178018）、载满乘客的电梯（fs-id3028228）和两道不合理的结果题（fs-id2670683 和 fs-id1890360）。第三道 AP 题（fs-id1046422）是一个在摩擦因数为 0.20 的表面上滑动的木块，需要一个书中直到“摩擦力”一节才引入的量；该节尚未制作，因此此题在这里略去，留待该节自己的那一遍来补上。与竖直方向成十度角发射烟花弹的那道题，在书中被印成了竖直向上发射烟花弹那道题的重复，而后者是被略去的七道之一，所以它的卡片用本题设定的角度，提出了原题所问的三个问题。没有任何内容取自其他小节：4.6 中关于加速上升的电梯缆绳张力的 AP 题，是这里最接近视重的内容，但它仍留在 4.6，因为书中把它印在那里，而且它所属的四个步骤也是在那里引入的。",
+ "figures": [
+  {
+   "id": "sim-barge",
+   "kind": "sim",
+   "number": "4.21",
+   "originals": [
+    "/media/ch04/Figure_04_07_01-386e.jpg"
+   ],
+   "original_caption": "（a）两艘拖船推一艘驳船的俯视图。（b）驳船的受力图只包含作用在水面所在平面内的力。图中略去了两个竖直方向的力——驳船的重力和水对它的浮力相互抵消，因此没有画出。由于外加力相互垂直，x 轴和 y 轴的方向与 F_x 和 F_y 的方向相同。沿 F_app 的方向，这个问题很快就变成了一维问题，因为摩擦力的方向与 F_app 相反。",
+   "draws": [
+    "force",
+    "acceleration",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note wording"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: tug hulls, labeller labels, a capped in panel (a), one-line readout"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-traffic-light",
+   "kind": "sim",
+   "number": "4.22",
+   "originals": [
+    "/media/ch04/Figure_04_07_02.jpg"
+   ],
+   "original_caption": "一盏交通信号灯悬挂在两根钢丝上。（b）涉及的一些力。（c）这里只画出作用在系统上的力。图中还给出了交通信号灯的受力图。（d）投影到竖直轴（y）和水平轴（x）上的力。张力的水平分量必须相互抵消，张力的竖直分量之和必须等于交通信号灯的重力。（e）受力图显示了作用在交通信号灯上的竖直方向和水平方向的力。",
+   "widths": [
+    475
+   ],
+   "draws": [
+    "force",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-elevator-scale",
+   "kind": "sim",
+   "number": "4.23",
+   "originals": [
+    "/media/ch04/Figure_04_07_03a.jpg"
+   ],
+   "original_caption": "（a）一个人站在电梯里的体重秤上时作用的各种力。图中的箭头大致对应电梯向上加速的情形——断开的箭头表示太大而无法按比例画出的力。T 是作用在电梯上的向上的力，w_s 是秤的重力，w_e 是电梯的重力，F_s 是秤对人的力，F_p 是人对秤的力，F_t 是秤对电梯地板的力，N 是地板对秤的向上的力。（b）受力图只显示作用在所指定的所研究的系统——人——上的外力。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "labels on panels, note dropped"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: silhouette, FBD under the shaft, labels outside the car, hover names"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-soccer",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-rescue",
+   "kind": "figure",
+   "originals": [
+    "/media/ch04/Figure_04_07_08a.jpg"
+   ],
+   "original_caption": "要使被从火场中救出的人保持稳定，所需的力 T_2 小于她的重力，也小于另一根绳中的力 T_1，因为更接近竖直的那根绳承担了她更大的一部分重力（一个竖直方向的力）。",
+   "draws": [
+    "force",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "headline dropped, rope note moved clear"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "drag",
+   "concept": "drag-force",
+   "verb": "introduces"
+  },
+  {
+   "span": "drag",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "magnitude-direction-from-components",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "resultant-vector",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "drag",
+   "concept": "newtons-first-law",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "unequal-tensions",
+   "verb": "introduces"
+  },
+  {
+   "span": "tensions",
+   "concept": "tension",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "net-force-by-axis",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "resolve-forces-into-components",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "components-from-magnitude-angle",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "tensions",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "apparent-weight",
+   "verb": "introduces"
+  },
+  {
+   "span": "scale",
+   "concept": "normal-force",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "free-fall",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "scale",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "integrated-kinematics-dynamics",
+   "verb": "introduces"
+  },
+  {
+   "span": "integrating",
+   "concept": "average-acceleration",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "newtons-laws-problem-solving",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "problem-solving-steps",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "const-a",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "choose-equation",
+   "verb": "uses"
+  },
+  {
+   "span": "integrating",
+   "concept": "newtons-second-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "rescue",
+   "concept": "unequal-tensions",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id3109644",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scale",
+   "prompt": "为了模拟太空轨道上的表观失重，航天员要在一架以 $\\kg$ 的加速度向下加速的货机货舱中接受训练。为什么在这个加速参考系中，用站在体重秤上来测量，他们看起来会是失重的？他们在轨道上的表观失重与在飞机上的表观失重有什么区别吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "体重秤显示的是它向上推站在上面的人的力 $\\kFs$，而这个力是 $\\kFs = m\\ka + m\\kg$。当飞机和机内的一切都以 $\\kg$ 的加速度向下加速时，加速度为 $\\ka = -\\kg$，所以 $\\kFs = -m\\kg + m\\kg = 0$，刻度盘读数为零。秤根本不必去推，因为航天员本来就在以仅由重力产生的加速度下落，她的脚下什么也感觉不到。两种情形下，她的感觉和秤的示数都没有区别。轨道上的航天员同样是在自由下落；唯一的区别是，地球在她脚下弯曲退去的速度与她下落的速度一样快，所以她永远不会落到地面，而飞机则必须在大约半分钟之后拉起，结束俯冲。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1449853",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "scale",
+   "prompt": "一幅漫画画的是，电梯在上行途中急停时，乘客头上的帽子飞了起来。如果这个人没有被绑在电梯的地板上，这真的会发生吗？请解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这是可能发生的，但只有当电梯停得非常突然时才行。上行即将结束时，电梯在减速，所以它的加速度向下，电梯里的一切都需要有向下的合力才能随它一起减速。乘客从地板得到这个力，地板对她向上的推力小于她的重力，这就是上一个例题中电梯减速时体重秤的示数小于重力的原因。帽子则没有这样的帮助：一旦它只是搭在她的头上，头可以向上推它，却不能向下拉它，所以帽子能有的最大向下加速度是 $\\kg$。如果电梯减速的快慢超过 $\\kg$，头就会比帽子下落得更快地离开，帽子便飞起来。电梯正常停靠时，减速度只是 $\\kg$ 的一小部分，帽子留在原处，所以这幅漫画夸大了一种真实存在的效应。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1471760",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drag",
+   "prompt": "一名篮球运动员在投篮时起跳。描述作用在球和篮球运动员上的力。结果是什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "球还在他手中时，有两个力作用在它上面：它的重力，把它向下拉；以及他的手的推力，在他投球时这个推力大于重力。因此球所受的合力向上，球加速离开他的手。球一离开他，作用在它上面的力就只有它的重力，所以它的加速度是向下的 $\\kg$：上升时它减速，朝篮筐落下时又加速。他的脚还在地面上时，有三个力作用在运动员身上：他的重力，地面向上的推力，以及球对他的手向下的推力。根据牛顿第三定律，最后这个推力与他对球的推力大小相等、方向相反。他之所以离开地面，是因为地面对他向上的推力，比他的重力和球的推力合在一起向下压他的力更大。他的脚一离开地面，作用在他身上的就只有他的重力，所以他也以 $\\kg$ 的加速度向下加速，回到地面。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1669265",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drag",
+   "prompt": "两个人推一块巨石，想使它移动。巨石的质量为 825 kg。一个人以 64 N 的力向北推。另一个人以 38 N 的力向西推。预测巨石加速度的大小。假设摩擦力可以忽略。",
+   "answer": {
+    "type": "number",
+    "value": 0.09,
+    "unit": "m/s²",
+    "generated_by": "source",
+    "hint": "这两个推力成直角，所以在除以质量之前，先用勾股定理把它们相加。",
+    "solution": "受力图会显示一个 64 N 的向北的力和一个 38 N 的向西的力。合力等于这两个外加力之和。它可以用勾股定理求出：$\\kFnet = \\sqrt{\\kFx^2 + \\kFy^2} = \\sqrt{(38\\ \\text{N})^2 + (64\\ \\text{N})^2} = 74.4\\ \\text{N}$。由于 $\\ka = \\kFnet / m$，所以 $\\ka = 74.4\\ \\text{N} / 825\\ \\text{kg} = 0.09\\ \\text{m/s}^2$。巨石将以 $0.09\\ \\text{m/s}^2$ 的加速度加速。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2391286",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "drag",
+   "prompt": "一只跳蚤起跳时，对地面施加 $1.20\\times 10^{-5}\\ \\text{N}$、竖直向下的力。一阵平行于地面吹来的微风，对跳蚤施加 $0.500\\times 10^{-6}\\ \\text{N}$ 的力。若跳蚤的质量为 $6.00\\times 10^{-7}\\ \\text{kg}$，求跳蚤加速度的方向和大小。不要忽略重力。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 10.2,
+      "unit": "m/s²",
+      "hint": "根据牛顿第三定律，地面以 $1.20\\times 10^{-5}\\ \\text{N}$ 的力向上推跳蚤；从中减去重力，得到竖直方向的力，再加上与它成直角的微风的力，然后除以质量。"
+     },
+     {
+      "part": "direction",
+      "value": 4.67,
+      "unit": "° from vertical",
+      "hint": "角度是水平力除以竖直力之后的 $\\tan^{-1}$。"
+     }
+    ],
+    "solution": "$10.2\\ \\text{m/s}^2$，与竖直方向成 $4.67^\\circ$ 角。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2953749",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "tensions",
+   "figure": {
+    "src": "/media/ch04/Figure_04_07_08a.jpg",
+    "alt": "一位女士正被一根绳子从着火的建筑物旁拉开。她在绳子的中间；她的重力用一个竖直向下作用的矢量表示。张力 T 下标一，沿绳的左半段向上作用，与竖直方向成十五度角。张力 T 下标二，沿绳的右半段作用，在正 x 轴上方成十度角。",
+    "caption": "要使被从火场中救出的人保持稳定，所需的力 T_2 小于她的重力，也小于另一根绳中的力 T_1，因为更接近竖直的那根绳承担了她更大的一部分重力（一个竖直方向的力）。"
+   },
+   "prompt": "如救援图所示，一个 76.0 kg 的人正被从着火的建筑物旁拉开。如果这个人暂时静止不动，求两根绳中的张力。请在解答中画出受力图。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "$\\kTone$",
+      "value": 736,
+      "unit": "N",
+      "hint": "把两个张力都分解到一条水平轴和一条竖直轴上。水平分量相互抵消，竖直分量相加等于她的重力，这样就得到关于两个未知量的两个方程。"
+     },
+     {
+      "part": "$\\kTtwo$",
+      "value": 194,
+      "unit": "N",
+      "hint": "更接近竖直的那根绳承担了重力中更大的一份，所以这个张力是两者中较小的一个。"
+     }
+    ],
+    "solution": "$\\kTone = 736\\ \\text{N}$，$\\kTtwo = 194\\ \\text{N}$。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id3078491",
+   "kind": "problem",
+   "bloom": "Apply",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating",
+   "prompt": "起跑时，一名 70.0 kg 的短跑运动员对地面向后施加 650 N 的平均力，持续 0.800 s。（a）他的末速率是多少？（b）他前进了多远？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 7.43,
+      "unit": "m/s",
+      "hint": "先由 $\\kFnet = m\\ka$ 求出加速度，再用 $\\kv = \\kvo + \\ka\\kt$，其中 $\\kvo = 0$。"
+     },
+     {
+      "part": "b",
+      "value": 2.97,
+      "unit": "m",
+      "hint": "从静止开始以恒定加速度运动时，距离为 $\\tfrac{1}{2}\\ka\\kt^2$。"
+     }
+    ],
+    "solution": "（a）$7.43\\ \\text{m/s}$；（b）2.97 m。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3065143",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating",
+   "prompt": "一名篮球运动员为抢球而竖直向上跳起。为此，运动员先把身体下蹲 0.300 m，然后用力伸直双腿，在这段距离内加速。运动员离开地面时的竖直速度，足以把运动员带到离地面 0.900 m 的高度。（a）计算运动员离开地面时的速度。（b）计算运动员伸直双腿时的加速度。运动员在 0.300 m 的距离内由零加速到（a）中求得的速度。（c）已知运动员的质量为 110 kg，计算运动员为此对地面施加的力。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 4.2,
+      "unit": "m/s",
+      "hint": "运动员一旦腾空，就只有重力作用，所以 $\\kv^2 = \\kvo^2 - 2\\kg\\ky$，其中最高点处 $\\kv = 0$。"
+     },
+     {
+      "part": "b",
+      "value": 29.4,
+      "unit": "m/s²",
+      "hint": "在双腿伸直的 0.300 m 内，用 $\\kv^2 = \\kvo^2 + 2\\ka\\kdx$。"
+     },
+     {
+      "part": "c",
+      "value": 4310,
+      "unit": "N",
+      "hint": "运动员所受的合力是 $m\\ka$，而地面还必须承担他的重力；他对地面施加的力与地面对他施加的力大小相等、方向相反。"
+     }
+    ],
+    "solution": "（a）$4.20\\ \\text{m/s}$；（b）$29.4\\ \\text{m/s}^2$；（c）$4.31\\times 10^{3}\\ \\text{N}$。"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2963222",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "tag": "综合概念",
+   "place": {
+    "at": "end"
+   },
+   "cite": "integrating",
+   "prompt": "一枚 2.50 kg 的烟花弹从发射筒中以与竖直方向成 $10.0^\\circ$ 角的方向发射出去，达到 110 m 的高度。（a）忽略空气阻力（这是个不好的假设，但在这个例子中我们这样假设），计算烟花弹离开发射筒时的速度。（b）发射筒本身是一根长 0.450 m 的筒。计算烟花弹在筒内由零加速到（a）中求得的速度这一过程中的平均加速度。（c）烟花弹在发射筒中所受的平均力是多少？请分别用牛顿和与烟花弹的重力之比表示你的答案。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 47.1,
+      "unit": "m/s",
+      "hint": "只有发射速度的竖直分量才能把烟花弹送到 110 m，而这个分量等于速率乘以与竖直方向所成角的余弦。"
+     },
+     {
+      "part": "b",
+      "value": 2470,
+      "unit": "m/s²",
+      "hint": "在筒长 0.450 m 的范围内，从静止开始，用 $\\kv^2 = \\kvo^2 + 2\\ka\\kdx$。"
+     },
+     {
+      "part": "c",
+      "value": 6180,
+      "unit": "N",
+      "hint": "合力是 $m\\ka$；把它除以烟花弹的重力 $m\\kg$，就得到比值。"
+     }
+    ],
+    "solution": "（a）47.1 m/s；（b）$2.47\\times 10^{3}\\ \\text{m/s}^2$；（c）$6.18\\times 10^{3}\\ \\text{N}$。平均力是烟花弹重力的 252 倍。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "apparent-weight"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "free-fall",
+   "weight": 2
+  },
+  {
+   "exercise": "cq1",
+   "concept": "weight",
+   "weight": 1
+  },
+  {
+   "exercise": "cq2",
+   "concept": "apparent-weight"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "newtons-first-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "normal-force",
+   "weight": 1
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "free-body-diagram",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "weight",
+   "weight": 1
+  },
+  {
+   "exercise": "ap2",
+   "concept": "drag-force"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "magnitude-direction-from-components",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "drag-force"
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "magnitude-direction-from-components",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "weight",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "unequal-tensions"
+  },
+  {
+   "exercise": "p3",
+   "concept": "tension",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "net-force-by-axis",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "integrated-kinematics-dynamics"
+  },
+  {
+   "exercise": "p5",
+   "concept": "newtons-second-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "v-from-at",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "x-quadratic",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "integrated-kinematics-dynamics"
+  },
+  {
+   "exercise": "p7",
+   "concept": "newtons-second-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p7",
+   "concept": "v-squared",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "free-fall-highest-point",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "integrated-kinematics-dynamics"
+  },
+  {
+   "exercise": "p9",
+   "concept": "newtons-second-law",
+   "weight": 3
+  },
+  {
+   "exercise": "p9",
+   "concept": "v-squared",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "components-from-magnitude-angle",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "tug-1",
+   "label": "第一艘拖船",
+   "figures": [
+    "sim-barge"
+   ]
+  },
+  {
+   "id": "tug-2",
+   "label": "第二艘拖船",
+   "figures": [
+    "sim-barge"
+   ]
+  },
+  {
+   "id": "barge",
+   "label": "驳船",
+   "figures": [
+    "sim-barge"
+   ]
+  },
+  {
+   "id": "man",
+   "label": "秤上的男子",
+   "figures": [
+    "sim-elevator-scale"
+   ]
+  },
+  {
+   "id": "scale",
+   "label": "体重秤",
+   "figures": [
+    "sim-elevator-scale"
+   ]
+  },
+  {
+   "id": "elevator",
+   "label": "电梯",
+   "figures": [
+    "sim-elevator-scale"
+   ]
+  },
+  {
+   "id": "player",
+   "label": "足球运动员",
+   "figures": [
+    "sim-soccer"
+   ]
+  },
+  {
+   "id": "ground",
+   "label": "地面",
+   "figures": [
+    "sim-soccer"
+   ]
+  },
+  {
+   "id": "rope-left",
+   "label": "左边的绳",
+   "figures": [
+    "fig-rescue"
+   ]
+  },
+  {
+   "id": "rope-right",
+   "label": "右边的绳",
+   "figures": [
+    "fig-rescue"
+   ]
+  },
+  {
+   "id": "wire-1",
+   "label": "左边的钢丝",
+   "figures": [
+    "sim-traffic-light"
+   ]
+  },
+  {
+   "id": "wire-2",
+   "label": "右边的钢丝",
+   "figures": [
+    "sim-traffic-light"
+   ]
+  },
+  {
+   "id": "light",
+   "label": "交通信号灯",
+   "figures": [
+    "sim-traffic-light"
+   ]
+  },
+  {
+   "id": "rescued",
+   "label": "被救的人",
+   "figures": [
+    "fig-rescue"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "scale-reading",
+   "what": "加速的电梯中体重秤的示数",
+   "source": "《大学物理（第2版）》，4.7 牛顿运动定律的进一步应用，例题 4.9",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "作用在这个人身上的力只有他的重力 $\\kwgt$（向下）和秤的力 $\\kFs$（向上）。",
+       "src": "图 4.23"
+      },
+      {
+       "tex": "\\kwgt = \\km\\kg",
+       "src": "4.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{F}{\\kFnet} = \\mk{m}{\\km\\ka}",
+      "src": "4.3",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{s}{\\kFs} - \\mk{w}{\\kwgt} = \\mk{m}{\\km\\ka}",
+       "uses": [
+        0
+       ],
+       "map": {
+        "F": [
+         "s",
+         "w"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{s}{\\kFs} = \\mk{m}{\\km\\ka} + \\mk{w}{\\kwgt}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{s}{\\kFs} = \\mk{m}{\\km\\ka} + \\mk{w}{\\km\\kg}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "例题 4.9"
+    }
+   ]
+  }
+ ]
+}

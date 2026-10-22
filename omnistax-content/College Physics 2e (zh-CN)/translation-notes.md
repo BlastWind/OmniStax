@@ -218,6 +218,179 @@ None recorded.
 | ch03/3.5/section.json | exercises[p5, p7, p11, p15].answer.parts[].part; exercises[p13].answer.parts[].unit | 'speed', 'angle above the ground', '(a) speed', '(a) angle south of west', 'angle south of west', 'angle north of east', 'km/s per Mly', 'billion years' left in English | translate.md 5 lists answer.parts[].part and answer.unit as kept byte for byte, although these are reader-visible words; owner to decide (as for 1.2, 1.3, 2.3, 2.8) |
 | ch03/3.5/figures.js, ch03/3.5/text.html | fig-galaxies labels '300 Mly' etc.; original_caption '(Mly)' | the labels on the canvas are written 300 百万光年 (the glossary row Mly spells the abbreviation out), while the caption keeps '百万光年（Mly）' once and '(MW)' beside 银河系, since the figure image itself prints them | an abbreviation printed in the book's figure; the glossary fixes the spelled-out form for labels the code draws |
 
+## Chapter 4 sections
+
+The forced scenarios the nine page translators recorded (folded in from their `glossary-pending.json` files in the 2026-10-22 merge), grouped by section. The weight and gravity row under ch04/4.3 is the merge's own.
+
+### ch04/intro
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch04/intro/text.html | #observation, last paragraph, 20th century sentence | 20<sup>th</sup> century written 20<sup></sup> 世纪初: the <sup> tag is kept, its English ordinal suffix th is dropped and the tag left empty, so it renders as 20 世纪. Accepted at the ch04 merge | English ordinal suffix with no Chinese form, in a tag the parity check requires (4.1) |
+
+### ch04/4.1
+
+None recorded.
+
+### ch04/4.2
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch04/4.2/figures.js | sim-frictionless headline and readout small line | operand order and sentence frames rebuilt in Chinese order ('On ' + surface + ' the block slides …' to '在' + surface + '上，滑块滑行 … m 后停下'; 'since stopping it would take' to '因为要使它停下需要') | Chinese word order of English sentences built from fragments in figure code (4.1) |
+| ch04/4.2/text.html | #first-law, third paragraph | 'due to the net force of friction acting on the object' written 由于物体受到摩擦力这一合力的作用, the friction span on 摩擦力 and the force span on the 力 of 合力 | Chinese has no 'net force of friction' phrase; the force and friction spans are kept in the block with the same multiset (word order) |
+| ch04/4.2/text.html | #mass | 'the standard kilogram' written 千克原器, the kilogram span on 千克 alone | the glossary row standard kilogram fixes 千克原器 and the book's span wraps only the word kilogram (4.5-like collision of span and term) |
+
+### ch04/4.3
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch04/4.3/figures.js | sim-sled headline: `(n > 1 ? 'give' : 'gives')` after the rockets-burning phrase | the singular/plural verb branch removed; the sentence is built as WORD[n] + 各 + thrust + 对抗 + friction + 使 2,100 kg 的滑橇获得 + acceleration, with the display array WORD ('One rocket' … 'Four rockets') translated word for word as 一枚火箭 … 四枚火箭 | English grammar in figure code (translate.md 4.1): Chinese verbs do not agree with number |
+| ch04/4.3/text.html, ch04/4.3/section.json, ch04/4.4/text.html, ch04/4.4/section.json, ch04/4.5/text.html | #mass-weight and its two notes (4.3), summary_html, cq6 solution and cq10 prompt (4.3), Figure 4.9 caption and ap7 prompt and hint (4.4), #normal-force first sentence (4.5) | weight (the force w = mg) stays 重力. Where the source explains it through 'gravity', 'the gravitational force' or 'the force of gravity', the explanans reads 引力: 重力是作用在物体上的引力的度量; 重力是引力，并且会随各地引力的不同而变化; 进入引力较强或较弱的区域; 这是因为月球上的引力较弱; 'defined as the force of gravity acting on an object of mass m' written as 引力. Where 'gravity' or 'the gravitational force' stands alone for the Earth's pull on a body it reads 重力 (the 4.4 Figure 4.9 caption's w, ap7's 539 N and its hint, the 4.3 cq10 basketball prompt and cq6's rock at the top of its flight, 4.7 p1, 4.8's 'our weight', which were already 重力 and stand). Where it is the interaction between bodies or the fundamental force (4.8's four basic forces, Earth on the Moon, 'gravity holds…', 'such as the gravitational pull', the law of gravity) it stays 引力. In 4.5 'Weight (also called force of gravity)' reads 重力（也称引力）. The everyday word for mass, as in 'mass and weight used interchangeably' and 'weight in kilograms', is 重量 (rows weight (everyday sense), losing weight 减重), and a load is 重物 (row weight (an object used as a load)). The heading rows with 重量 for the force became 重力 (质量与重力, 斜面上的重力, 把重力分解为分量) with old_target. | collision (translate.md 4.5): the authority's 重力 is the Chinese for weight and for the force of gravity, and 引力 for the gravitational force, so a literal rendering explains 重力 by 重力 (circular); the book also calls the Earth's pull on a body, its w, the gravitational force. The rows weight, gravity, force of gravity and gravitational force fix the split, the last one with the note that says where 重力 is meant |
+
+### ch04/4.4
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch04/4.4/figures.js | sim-swimmer, sim-cart, sim-rocket toplines and small line | clauses built by string concatenation reordered or reworded for Chinese (e.g. 'so her 60 kg accelerate at … away from it' to 所以她的 60 kg 以 … 的加速度加速远离池壁; 'On N kg' to 作用于 N kg); every interpolated value kept once in the source order | English clause order built into figure code (translate.md 4.1) |
+| ch04/4.4/figures.js | sim-swimmer, sim-cart lb.add and text labels F_{wall on feet}, F_{feet on wall}, F_net, F_floor, F_prof, f; ctl labels \km_{\text{prof}}, \km_{\text{cart}} | force symbols and the subscripts \text{prof} and \text{cart} kept as written, as are the hover names' 'F prof', 'F cart', 'F foot', 'F floor' spoken forms | an abbreviation of the English word used as a symbol subscript; translating it would change the symbol, which the book's macros \kFwallfeet, \kFfeetwall keep in English (translate.md 4.3, as 1.3 \text{unc}) |
+| ch04/4.4/section.json, ch04/4.4/text.html | Figure 4.9 caption (original_caption and data-original-caption), ap5 solution, cq5 solution | w, the swimmer's 'gravitational force', written 重力 (w（重力）… 支撑游泳者的重力), the same word the caption uses for her weight; the 引力 first written there was changed at the merge | collision (translate.md 4.5): 'gravitational force' stands alone for the Earth's pull on the swimmer, which is her weight; see the weight and gravity row of ch04/4.3 (the explanans of weight is 引力, the Earth's pull on a body standing alone is 重力) |
+| ch04/4.4/section.json | exercises[cq2].prompt | 'the 1940s' written 20 世纪 40 年代 | a decade expression with no word-for-word equivalent (translate.md 4.4) |
+| ch04/4.4/text.html, ch04/4.4/section.json | sentences of the sim-heads, #different-systems, #thrust and the Discussions carrying several data-concept/data-type/data-ref spans | the order of spans inside a sentence differs from the source where Chinese word order requires it; every span stays in its own block. Chapter-wide (ch04 review, 2026-10-22): the noun push as a force is 推力 in 4.1, 4.3, 4.4 and 4.5 (row push (force)), 推 only as the verb and in 推或拉; the one place left 推 is 4.4 #sim-swimmer's 她的推的力 ('the force of her push'), where 推力的力 would double the word | Chinese word order and a term collision between push and thrust (translate.md 3.3, 4.5) |
+| ch04/4.4/section.json | exercises[p1].answer.parts[].part ('the net external force on the shell', 'the magnitude of the force on the ship') | left in English | translate.md 5 lists answer.parts[].part as kept byte for byte, although these are reader-visible words; owner to decide, as for 1.2, 1.3, 2.3 and 2.8 |
+
+### ch04/4.5
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch04/4.5/text.html | #normal-force, first sentence | 'Weight (also called force of gravity)' written 重力（也称引力）, the force span on 引力 | collision (translate.md 4.5): the glossary maps both weight and force of gravity to 重力, so 'also called' cannot repeat it; the explanans of weight is 引力 (rows weight, force of gravity, gravitational force) |
+| ch04/4.5/text.html | #normal-force, 'The word normal means perpendicular to a surface' | written <em>法向</em>（normal）一词的意思是垂直于表面, the English word kept in parentheses | a sentence about an English word (translate.md 4.3); 法向 is the glossary term for normal |
+| ch04/4.5/text.html | #tension, 'The word “tension” comes from a Latin word' | written “张力”（tension）一词来自拉丁语中一个意为“拉伸”的词, the English word kept in parentheses | a sentence about the origin of an English word (translate.md 4.3) |
+| ch04/4.5/text.html | #tension ('The tension force pulls', 'the tension force in the rope'), #weight-on-incline ('The force of friction') | written 张力这种力, 张力这个力 and 摩擦力这种力, so that the tension (or friction) span and the force span are both kept | the source wraps tension and force (friction and force) as two spans; the Chinese terms 张力 and 摩擦力 already contain 力, so a span cannot be dropped or merged without a carrier word (translate.md 5, as 1.1 相对论) |
+| ch04/4.5/text.html | #weight-on-incline, #tension, #tightrope, sim-heads of Figures 4.12, 4.13, 4.14, 4.16 | inside a sentence the order of spans differs from the source (e.g. the weight span before the component span in 平行于斜坡的重力分量, the car and tree spans before the tension span in Figure 4.18's head); every span stays in its own block with the same multiset | Chinese word order (translate.md 3.3) |
+| ch04/4.5/text.html | #normal-force 'a mass placed on them', #tension 'a mass', 'the mass' | mass in the sense of a body written 物体 inside the mass span or the hanging-mass ref span, as the glossary row hanging mass 悬挂的物体 does | 质量 would name the quantity, not the body the book calls a mass |
+| ch04/4.5/text.html | #large-tension, 'the roped' | the book's typo for 'the rope' written 绳 | a typographical slip of the English with no Chinese equivalent; the ref span is kept |
+| ch04/4.5/text.html | #weight-on-incline, #tension, #tightrope, headings and prose | weight (the force w = mg) written 重力 everywhere, including the section heading 斜面上的重力, the Example 4.5 heading 斜面上的重力：一个二维问题 and the note eyebrow 把重力分解为分量 | the glossary row weight is 重力; the three heading rows (and the concept names weight-components-on-incline and mass-versus-weight) were changed from 重量 to 重力 at the ch04 merge, so page and glossary now agree |
+
+### ch04/4.6
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch04/4.6/figures.js | sim-tarzan draw(), text under panel (d): 'the sum ends N N above/below the start' | the trailing English piece ' the start' became an empty string literal '' and the order became number, then branch ('和的终点距起点 N N，位于起点上方/下方'); the branch words stay as the two source branches | English phrase order and the closing noun phrase cannot be kept in Chinese; the code skeleton is unchanged (translate.md item 4.1) |
+
+### ch04/4.7
+
+None recorded.
+
+### ch04/4.8
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch04/4.8/figures.js | sim-strengths FORCE names and headline | the English frame 'The ' + name + ' force is …' collapsed: the names are written 引力, 电磁力, 弱核力, 强核力 (力 inside the name) and the literal 'force' appended in code is dropped | English grammar in figure code (4.1): the article and the noun force are spliced around the name |
+| ch04/4.8/figures.js | sim-strengths headline (ratio branches) and bracket label | operands reordered: 'X is 10^e times the Y force' written X + '是' + Y + '的 10^e 倍', 'is 10^e of the' written '的 10^e', and the label '10^e between them' written '两者相差 10^e' | Chinese word order; English 'times the', 'of the' and 'between them' have no counterpart (4.1) |
+| ch04/4.8/figures.js | sim-field headline (off-axis branch) | '… and points N° above/below the axis' written '，方向在轴线上方/下方 N°': the above/below word moved ahead of the number | Chinese word order (4.1, grammar built in code) |
+| ch04/4.8/figures.js | sim-field unit 'units' and readout \text{units} | the arbitrary unit of the field's charge and force written 单位 | the English word units counts a quantity with no real unit; Chinese 单位 carries it |
+| ch04/4.8/text.html | #gravitational-waves, Einstein's general theory of relativity | written 广义相对论理论: the relativity span on 相对论 and the theory span on 理论 kept as two spans | collision of the term with its own name (as 1.1): 相对论 already contains 论, the source has both spans in the sentence |
+| ch04/4.8/text.html | #field, 'equations … for force fields surrounding objects' | the force span and the force-field span written on 力 and 场 separately (围绕物体的力场) | the source has two spans, force and fields, and the glossary term 力场 is one word |
+| ch04/4.8/text.html | #four-forces, first paragraph, 'Action at a distance' | written 超<span data-concept="distance">距</span>作用: the distance span wraps the character 距 alone, not the whole term 超距作用 | the source wraps only the word distance of 'Action at a distance'; the Chinese term is one word and the span stays on the character that carries the same meaning (added by the 2026-10-22 ch04 review; as 4.2's 千克原器) |
+
+## Chapter 5 sections
+
+The forced scenarios the four page translators recorded (folded in from their `glossary-pending.json` files in the 2026-10-22 merge), grouped by section. The 髋臼杯 row under ch05/intro and the pencil “lead” row under ch05/5.3 are the merge's own.
+
+### ch05/intro
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch05/intro/text.html | second paragraph, Newton’s laws of motion | written 牛顿<span motion>运动</span><span law>定律</span>: the law span and the motion span swap places, both kept in the same block | Chinese word order (3.3); the glossary row Newton’s laws of motion 牛顿运动定律 |
+| ch05/intro/text.html | Figure 5.1 alt ('a white plastic cup') and caption ('a cup that has a hard plastic-like inner lining', twice) | 'cup' of the hip prosthesis written 髋臼杯, the clinical name (alt: 一个白色塑料髋臼杯; caption: 嵌入一个髋臼杯，髋臼杯的内衬是…) instead of the 杯形件 first written; the glossary row cup (of a hip prosthesis) | the source says only 'cup', a word that names nothing by itself in Chinese; 髋臼杯 is what medicine calls this part (translate.md 4.4, a reference with no equivalent), decided at the ch05 merge |
+
+### ch05/5.1
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch05/5.1/figures.js | sim-interface, label of the touching spots | the branch touching === 1 ? 'the surfaces touch at one high spot, drawn heavy' : 'the surfaces touch at ' + touching + ' high spots, drawn heavy' collapsed to the one form '两个表面在 ' + touching + ' 个凸起处相接触，以粗线画出' | English plural grammar in figure code (4.1) |
+| ch05/5.1/figures.js | sim-probe, label of the adhering atoms | the branch hold === 1 ? 'one atom of the tip adheres' : hold + ' atoms of the tip adhere' collapsed to the one form '针尖有 ' + hold + ' 个原子黏附' | English plural grammar in figure code (4.1) |
+| ch05/5.1/text.html, ch05/5.1/section.json | spans of a block, e.g. #magnitudes ‘magnitude of the frictional force’, ‘the magnitude of the normal force’ | written 摩擦力的大小, 法向力的大小: the force/normal-force span and the magnitude span swap places; both kept in the same block | Chinese word order (3.3) |
+| ch05/5.1/text.html, ch05/5.1/figures.js | ‘kinetic friction force’, ‘static friction force’ (#characteristics) and the summary | written 滑动摩擦 + 力 and 静摩擦 + 力 with the kinetic-friction (static-friction) span on 滑动摩擦 (静摩擦) and the force span on the last character 力 | the source wraps the words kinetic friction and force in separate spans; 滑动摩擦力 is one word, so the force span takes its last character, as 合力 does in earlier sections |
+| ch05/5.1/text.html | ‘coefficient of kinetic/static friction’ | written 动摩擦因数, 静摩擦因数 (glossary rows), the kinetic-friction (static-friction) span on 动摩擦 (静摩擦) and 因数 outside it | the glossary row coefficient of kinetic friction is 动摩擦因数 (the GB 3102 name) while kinetic friction is 滑动摩擦力; the span cannot wrap 滑动摩擦力 inside 动摩擦因数 |
+
+### ch05/5.2
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch05/5.2/figures.js | sim-drag TABLE, bluff() and the 'skydiver' test | names written 翼型, 丰田凯美瑞, 福特福克斯, 本田思域, 法拉利Testarossa, 道奇Ram皮卡, 球体, 悍马H2 SUV, 跳伞者（脚朝下）, 自行车, 跳伞者（水平姿势）, 圆形平板, with the same literals changed in bluff()'s name comparisons and the who.indexOf('skydiver') test (now '跳伞者'); the English article 'a/an' of each name dropped | English grammar in figure code (4.1): the table names are both the lookup keys and the displayed names, with the article built into the string |
+| ch05/5.2/figures.js | sim-size text for the small body's label | '0.10 times the length, ' written 0.10 × 长度， so the number stays first as in the code | English phrase built from number + words in figure code (4.1); the Chinese 长度的 0.10 倍 would put a string before the number and change the code's concatenation |
+| ch05/5.2/figures.js | partOf() (unused helper) | '1 part in ' + n written '1/' + n | English grammar in figure code (4.1) |
+| ch05/5.2/text.html | #terminal, Example 5.2 Strategy, 'the force of gravity (the person’s weight)' | written 重力（即人的重力）, each with its own span as in the source | collision (translate.md 4.5): the glossary maps both force of gravity and weight to 重力, so the parenthetical gloss repeats the term |
+| ch05/5.2/text.html | #drag, first sentence 'the force of drag' | written 所受的阻力, the force span wrapping 阻力 | collision (translate.md 4.5): 'force of drag' and 'drag force' are both 阻力, so the word 'force' cannot be rendered apart from the term |
+| ch05/5.2/text.html | #size, Haldane quote 'a thousand-yard mine shaft' | written 一千码深的矿井, the printed word yard becoming the Chinese name 码 | unit with no SI equivalent, printed as a word (translate.md 4.4) |
+
+### ch05/5.3
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch05/5.3/text.html | ex-cable Discussion, 'This is quite a stretch' | translated for meaning as 这确实伸长了不少 | English wordplay on 'stretch' (a great stretch of cable and an exaggeration) that works only in English (translate.md 4.2); the passage does not turn on it, so no English is kept in parentheses |
+| ch05/5.3/section.json | exercises[p3] prompt and solution, the pencil 'lead' | the quoted “lead” written 铅笔的“铅” (later mentions in the same exercise shortened to “铅”) instead of 笔芯, and 笔芯 nowhere; the glossary row pencil lead | the book's point is that the pencil “lead” is not lead but graphite; Chinese shares the pun (铅笔的“铅”其实是石墨), so it is kept as a pun and no English is put in parentheses (translate.md 4.2); changed from 笔芯 at the ch05 merge |
+| ch05/5.3/figures.js | sim-rod, the mode array and its comparison (L206–207, L219) | ['tension','compression'] and mode === 'tension' written ['拉伸','压缩'] and mode === '拉伸' | the mode strings are both the branch key and the displayed caption (4.1) |
+
+## Chapter 6 sections
+
+The forced scenarios the seven page translators recorded (folded in from their `glossary-pending.json` files in the 2026-10-22 merge), grouped by section. The rev/min and rpm of 6.1 problem 7 are kept as the source prints them (they were written 转每分 on the page) and so are no longer a scenario; the 6.4 pressure span, which wrapped 低压 and 高压, now wraps 气压 as the source wraps “pressure”, and is no longer one either. The 引力 row under ch06/6.3 and the “” title in the 6.4 row are the merge's own.
+
+### ch06/intro
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch06/intro/text.html | second paragraph, Newton’s laws of motion | written 牛顿<span motion>运动</span><span law>定律</span>: the law span and the motion span swap places, both kept in the same block | Chinese word order (3.3); the glossary row Newton’s laws of motion 牛顿运动定律 |
+
+### ch06/6.1
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch06/6.1/figures.js | sim-omega, level labels on the revolution lines (k === 1 ? '1 revolution' : k + ' revolutions') | plural branch collapsed to the one form k + ' 圈'; the branch code is removed, the loop around it stays | English grammar in figure code (4.1) |
+| ch06/6.1/text.html | rotation-angle, first sentence: ‘the CD (compact disc)’ | written 光盘（compact disc，CD） so that the abbreviation’s letters stay beside the glossary word 光盘 | a parenthesis that spells out an English abbreviation (4.3); the glossary rows CD and compact disc are both 光盘 |
+| ch06/6.1/text.html | linear-angular and directions: ‘linear <span velocity>velocity</span>’, and ‘rotational <span motion>motion</span>’ in circular-motion | the span wraps the whole Chinese term (线速度, 转动), not only the word that translates ‘velocity’ or ‘motion’; where ‘angular and linear velocities’ sits in one <em> the span wraps 角速度和线速度 | Chinese word order and compounding (the glossary terms linear velocity 线速度 and rotational motion 转动 are single words; 3.3) |
+
+### ch06/6.2
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch06/6.2/text.html | #direction, second paragraph: “centripetal means ‘toward the center’ or ‘center seeking.’” | written “向心”的意思是“朝向中心”或“寻求中心”, with no English in parentheses | a sentence about the meaning of an English word (4.3); 向心 already means “toward the center”, so the gloss stays as printed and the English word is not needed |
+| ch06/6.2/text.html | #direction sim-triangles sim-head; #examples sim-curve and sim-centrifuge sim-heads; #magnitude first paragraph | the order of data-ref / data-type spans differs from the source (e.g. the angle span moved after 它; the two velocities span before the difference span) | Chinese word order (3.3); every span stays in its block, same multiset |
+
+### ch06/6.3
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch06/6.3/text.html, ch06/6.3/section.json | fig-race-track data-original-caption and figures[fig-race-track].original_caption, ‘(called cutting the corner)’ | written （称为抄近路）, the English idiom not kept in parentheses | an English idiom translated for meaning (4.4); 抄近路 is the Chinese idiom for the same driving line |
+| ch06/6.3/text.html | #level-curve (Example 6.4, strategy for (b)) and #ideal-speed (solution), lead-ins ‘Using the first expression for F_c from the equation’, ‘Starting with … we get’ | written 利用方程中 F_c 的第一个表达式 before the display, and 由 … 得到 around the two displays | English lead-in sentences that run into a display equation cannot keep their structure in Chinese; no content added or dropped (3.1) |
+| ch06/6.3/text.html | #centripetal-force, #level-curve, #banked, ‘net force’, ‘net external force’ | the force span wraps 合力 (not 力 alone) where the source span wraps only the word force of net force; the span is kept in its block | Chinese has the one word 合力 for net force (glossary), so the span wraps the whole word (as in earlier sections) |
+| ch06/6.3/text.html | #centripetal-force, first paragraph, ‘the force of Earth’s gravity on the Moon’ | written 地球对月球的引力, the force span wrapping 引力; the word gravity has no span of its own, as in the source | collision (translate.md 4.5): ‘force of gravity’ between bodies is the one word 引力 (glossary rows gravitational force and gravitational attraction), so ‘force’ cannot be rendered apart from the term, as 阻力 in ch05/5.2; the sentence read 地球重力对月球的力 before the ch06 merge |
+| ch06/6.3/text.html | #level-curve, #radius, #banked, sim-heads (several sentences) | within some sentences the order of spans differs from the source (e.g. cf before vm in ‘the magnitude of the centripetal force’, friction span before the centripetal-force span in ‘in the absence of friction’); every span is kept in its block with the same multiset | Chinese word order (3.3) |
+| ch06/6.3/text.html, ch06/6.3/section.json | coefficient of friction / static coefficient of friction | the friction span wraps 摩擦 in 摩擦因数 and 静摩擦因数, as 5.1 does | the term is one word in Chinese; the span wraps the part that names the concept |
+| ch06/6.3/section.json | exercises[p3].answer.hint | ‘meters per second’ written 米每秒, the unit word | unit named in words in the source (translate.md 5: symbols are kept only where the source prints a symbol) |
+
+### ch06/6.4
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch06/6.4/text.html | #frames, the sentence ending ‘Dynamics: Newton’s Laws of Motion’ (the source prints no full stop before ‘The car is a’) | the chapter title set in “” as “动力学：牛顿运动定律” and a 。 written after it | the source runs two sentences together without a full stop (a typographical slip); Chinese cannot join them, and no words are added (translate.md 4.4); a cited chapter title takes the book’s “” convention (changed from 《》 at the ch06 merge) |
+| ch06/6.4/text.html | #centrifugal, ‘<strong> (</strong>not to be confused with … <strong>)</strong>’ | written <strong>（</strong>不要与<span>向心力</span>混淆<strong>）</strong>, the closing parenthesis after 混淆 | Chinese word order puts the verb 混淆 after the object; the two strong marks keep their positions as wrappers of the parentheses (3.3) |
+| ch06/6.4/text.html | #frames, #centrifugal, #coriolis, sim-head of sim-merry and sim-centrifuge | order of data-concept / data-ref spans within a sentence differs from the source (e.g. 牛顿<span motion>运动</span><span law>定律</span>; <span particles>粒子</span>的<span inertia>惯性</span>带着<span particles>它们</span>) | Chinese word order (3.3); every span is kept in its block with the same multiset |
+| ch06/6.4/figures.js | sim-cyclone panel and topline | ‘Each parcel …’ / ‘so it …’ clause strings written as full Chinese sentences; the leading space of ' The drawing holds four complete turns and no more.' dropped | English sentence joining by spaces has no Chinese form (4.1) |
+| ch06/6.4/figures.js | sim-turn headline and sim-merry headline | operands kept in source order but ‘round the bend’ → 转过, ‘the driver … in a straight line’ → 沿直线前进了; ‘across the seat’ folded into the verb phrase | English prepositional phrases built into code strings have no word-for-word Chinese form (4.1) |
+
+### ch06/6.5
+
+None recorded.
+
+### ch06/6.6
+
+| File | Span or line | What was done | Why |
+|---|---|---|---|
+| ch06/6.6/figures.js | sim-frames headline (loops branch) | the four-way English branch ‘not once’ / ‘once’ / ‘twice’ / N + ' times' collapsed to loops + ' 次'; the words not once, once and twice are written 0 次, 1 次, 2 次 by the same expression | English grammar in figure code (4.1): count words built by rule |
+| ch06/6.6/text.html | #parent-mass note, ‘Einstein’s general theory of relativity’ | written 爱因斯坦的广义相对论理论: the relativity span on 相对论 and the theory span on 理论 kept as two spans | collision of the term with its own name (as 4.8): 相对论 already contains 论, the source has both spans in the sentence |
+
 ## For the owner
 
 1. **`answer.unit` and `answer.parts[].part` stay English.** translate.md 5 lists both as kept byte for byte, so 1.2 (`length in feet`, `length in inches`, `width in feet`, `width in inches`) and 1.3 (`figures`, `pounds`, `beats`, `beats/min`, `(a) lowest`, `heart rate`, `volume`, `area`, `uncertainty`) keep their English words, although a reader may see them beside the answer box. The owner decides whether these become translatable fields; if they do, translate.md 5 and the content check change first, then these strings.
@@ -225,3 +398,6 @@ None recorded.
 3. **Glossary decisions of the 2026-10-22 merge** that the owner or termonline should confirm: the photo-credit label 来源 (1.2's 图片来源 changed), heat 热量 everywhere (1.2's subject list changed from 热), speed of light 光速 as the span of the short form beside 真空中的光速, 估读 for reading a scale's last digit beside 估算 (1.3 changed), 扫描隧穿显微镜 and 放射性年代测定. Each row's `note` gives the reason; termonline.cn could not be reached, so each still carries `confirm`.
 4. **Glossary decisions of the chapter 2 merge (2026-10-22)** to confirm: 航天员 for astronaut (宇航员 is the everyday word), 起始位置 (starting position) as its own row beside 初位置, 末速率 for final speed, 具有加速度 for "is accelerating" when only the direction changes, 纵截距（*y* 截距） for y-intercept, 误区提醒 and 居家实验 for the apparatus labels, 时刻 for a point in time. In 2.4 the slider subscript `\text{top}` is written `\text{最大}` (the source word is top, not max, so it is not a `\text{max}` symbol). Every new row carries `confirm` until termonline is reachable.
 5. **gravity: 重力 or 引力 (judgement, 2026-10-22).** Source "gravity" became 重力 where it is the Earth's (or the Moon's) pull on things near the surface: 2.7 (引力与自由落体运动 heading, the free-fall prose, the hammer-and-feather caption, the sim line) and 3.4 ("gravity is weaker there" on the Moon). It stays 引力 for "gravitational field" (1.1, the ch01 concept rows), "Newton's theory of gravity" (universal gravitation), "from lightning to gravity" (1.1, gravity as a fundamental interaction) and gravitational lensing (1.2).
+6. **Glossary decisions of the chapter 4 merge (2026-10-22)** to confirm. Weight and gravity: weight (the force w = mg) is 重力 everywhere, its explanans is 引力, the Earth's pull on a body standing alone is 重力, the pull between bodies and the fundamental force are 引力 (the scenario row under ch04/4.3); the headings 质量与重力, 斜面上的重力 and 把重力分解为分量 and the concept names mass-versus-weight and weight-components-on-incline follow; the everyday weight of mass (重量, 减重) and a load (重物) are rows of their own. Graph axes are 横轴/纵轴 (rows horizontal axis (of a graph), vertical axis (of a graph)) and the spatial axes of a scene stay 水平轴/竖直轴. The noun push as a force is 推力 throughout chapter 4 (row push (force); decided at the 2026-10-22 ch04 review), 推 only the verb; electromagnetism as the interaction is 电磁相互作用 (4.8), 电磁学 the discipline. Where a page differed from an existing row the row won: 外加合力 (not 总外加力), 内部结构 (not 亚结构), 滚动摩擦 (not 滚动摩擦力), and the three physicists' names 罗杰·彭罗斯, 赖因哈德·根策尔, 安德烈娅·盖兹 (not the English). The 20<sup></sup> 世纪 form for "20th century" is accepted (ch04/intro). Every new row carries `confirm` until termonline is reachable.
+7. **Glossary decisions of the chapter 5 merge (2026-10-22)** to confirm. Friction: the force is 滑动摩擦力 and 静摩擦力, the magnitudes 滑动摩擦力的大小 and 静摩擦力和滑动摩擦力的大小, while the coefficients keep the GB 3102 names 动摩擦因数 and 静摩擦因数 (note on the row coefficient of kinetic friction). Drag: the coefficient is 阻力系数 (the headings 阻力系数的值 and 阻力系数与物体的形状) and the force is 阻力 (曳力 was the form until 2026-10-22). Pencil lead is 铅笔的“铅” (the pun survives in Chinese), the hip prosthesis cup is 髋臼杯, high spots and peaks of a rough surface are both 凸起处, bodysuits worn by bicyclists, swimmers and runners are 全身紧身服 beside 紧身泳衣 for swimwear, the sled-dog command mush is 冲啊, and the label of a wall in Figure 5.17 is 墙. Each row's `note` gives the reason; termonline.cn could not be reached, so the technical rows carry `confirm`.
+8. **Glossary decisions of the chapter 6 merge (2026-10-22)** to confirm. Gravity: the pull between bodies and the fundamental force is 引力 throughout chapter 6 (6.3's first paragraph, 地球对月球的引力; 6.5's opening, Newton, Moon, tide, black-hole and Cavendish passages, its lead, cq1, cq2 and problem 5; the two notes of 6.4 that say where gravity is introduced; the concept and heading 引力与月球的轨道 and 引力作为月球的向心力; the PhET name 引力与轨道（Gravity and Orbits）). 重力 stays for weight, for the Earth's pull on a body at its surface (the feet, the apple, the blood column, the plants), for the named quantity 重力加速度 wherever the source says “the acceleration due to gravity” (also at altitude and at the Moon's distance, as the row says) and for 零重力 and 微重力. Atmospheric pressure is 气压 (row pressure (atmospheric), authority cnterm-atmos, added to `authorities`), written 低气压 and 高气压 with the pressure span on 气压; 低压 stays for the low of a weather system (the LOW label), and 气块, 气旋 and the other weather rows now cite cnterm-atmos (the two 7.7 weather rows, global warming and lightning bolt, still cite termonline for the ch07 pass to settle). Static friction “a responsive force” is 响应式的力 as in 5.1 (6.3's 随需而变的力 changed), separation of two bodies or points is 间距 (6.2's 间隔 changed), and “the same two velocities, laid tail to tail” is 矢尾对矢尾 (it read 首尾相接, which is head to tail). Cited chapter and section titles take “” (《》 in 6.4's text and the 6.1 note changed; bare titles in the chapter intro and in the 6.4 and 6.6 notes quoted). rev/min and rpm stay as the source prints them and 转每分 stands only where the source writes the words (6.1 problem 7 changed). **太阴月** for the 27.3-day “lunar month” of 6.5 problem 5(b) is the book's word and stays; astronomy calls 27.3 d the 恒星月 (sidereal month) and 太阴月 the 29.5-day synodic month, so the owner decides whether the problem reads 恒星月. Answer-part labels and units that stay English as kept fields (the question of item 1): 6.1 p3 `unit` rotations and p7 `in rev/min`; the `part` labels of 6.2 p5, p7, p9, p11, p12 and p13 and of 6.5 p3, p7 and p10. Variants not added as rows because an existing row covers them: Problems and Exercises (row Problems & Exercises 习题), Earth radius (row radius of Earth 地球半径), and the repeated Unreasonable Results and kinetic energy. Every new row carries `confirm` until termonline is reachable.

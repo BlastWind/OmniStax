@@ -1,0 +1,154 @@
+<section id="drag">
+<h2>相互垂直的力的合成：驳船所受的阻力</h2>
+<p class="cite-target">牛顿<span data-concept="motion">运动</span><span data-concept="law">定律</span>有许多有趣的应用，本节再介绍其中的几个。它们还有助于说明<span data-concept="physics">物理学</span>的一些更深层的微妙之处，并有助于培养解题技能。</p>
+<div class="example" id="ex-barge">
+<h3>例题 4.7 · 驳船受到的阻力</h3>
+<p>假设<span data-ref="tug-1 tug-2">两艘拖船</span>以不同的<span data-concept="angle">角度</span>推<span data-ref="barge">一艘驳船</span>，如图 4.21 所示。<span data-ref="tug-1">第一艘拖船</span>沿 <em>x</em> 方向施加 $2.7\times 10^{5}\ \text{N}$ 的<span data-type="force"><span data-concept="force">力</span></span>，<span data-ref="tug-2">第二艘拖船</span>沿 <em>y</em> 方向施加 $3.6\times 10^{5}\ \text{N}$ 的<span data-type="force"><span data-concept="force">力</span></span>。</p>
+<figure class="sim" id="sim-barge" data-figure="4.21" data-original="/media/ch04/Figure_04_07_01-386e.jpg" data-original-caption="（a）两艘拖船推一艘驳船的俯视图。（b）驳船的受力图只包含作用在水面所在平面内的力。图中略去了两个竖直方向的力——驳船的重力和水对它的浮力相互抵消，因此没有画出。由于外加力相互垂直，x 轴和 y 轴的方向与 F_x 和 F_y 的方向相同。沿 F_app 的方向，这个问题很快就变成了一维问题，因为摩擦力的方向与 F_app 相反。">
+  <div class="sim-head"><span class="eyebrow">Figure 4.21</span><span>从上方看，<span data-ref="tug-1 tug-2">两艘拖船</span>以彼此成<span data-concept="angle">直角</span>的方向推<span data-ref="barge">一艘驳船</span>，<span data-ref="barge">驳船</span>的受力图就在场景旁边。改变任一推力，<span data-type="force">外加合力</span> $\kFa$ 就会随之转向并增大。改变<span data-type="mass">质量</span>或<span data-type="acceleration">观测到的加速度</span>，<span data-type="force">阻力</span> $\kFD$ 也随之改变，因为它是<span data-type="force">外加力</span>在使<span data-ref="barge">驳船</span>加速之后所剩下的部分。</span></div>
+</figure>
+<p>如果<span data-ref="barge">驳船</span>的<span data-type="mass"><span data-concept="mass">质量</span></span>为 $5.0\times 10^{6}\ \text{kg}$，并且观测到<span data-ref="barge">它</span>沿图示<span data-concept="vector-direction">方向</span>的<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>为 $7.5\times 10^{-2}\ \text{m/s}^{2}$，那么水对<span data-ref="barge">驳船</span>的、阻碍<span data-concept="motion">运动</span>的<span data-type="force"><span data-concept="drag-force">阻力</span></span>是多大？（注：<span data-concept="drag-force">阻力</span>是<span data-concept="fluid">流体</span>（如空气或水）施加的一种<span data-concept="force">摩擦力</span>。<span data-concept="drag-force">阻力</span>阻碍物体的<span data-concept="motion">运动</span>。）</p>
+<h4>思路</h4>
+<p><span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>和<span data-type="force">外加<span data-concept="force">力</span></span>的<span data-concept="vector-direction">方向</span>和<span data-concept="vector-magnitude">大小</span>已在图 4.21（a） 中给出。我们把<span data-ref="tug-1 tug-2">拖船</span>对<span data-ref="barge">驳船</span>的<span data-type="force">总<span data-concept="force">力</span></span>定义为 $\kFa$，于是有：</p>
+$$\kFa = \kFx + \kFy$$
+<p>由于<span data-ref="barge">驳船</span>是平底的，水的<span data-type="force">阻力</span> $\kFD$ 的<span data-concept="vector-direction">方向</span>将与 $\kFa$ 相反，如图 4.21（b） 的<span data-concept="free-body-diagram-def">受力图</span>所示。这里所研究的<span data-concept="system">系统</span>是<span data-ref="barge">驳船</span>，因为已知<span data-ref="barge"><em>它</em></span>所受的<span data-type="force"><span data-concept="force">力</span></span>以及<span data-ref="barge">它</span>的<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>。我们的思路是先求出<span data-type="force">外加合<span data-concept="force">力</span></span> $\kFa$ 的<span data-concept="vector-magnitude">大小</span>和<span data-concept="vector-direction">方向</span>，然后应用牛顿第二<span data-concept="law">定律</span>求<span data-type="force"><span data-concept="drag-force">阻力</span></span> $\kFD$。</p>
+<h4>解</h4>
+<p>由于 $\kFx$ 和 $\kFy$ 相互垂直，$\kFa$ 的<span data-concept="vector-magnitude">大小</span>和<span data-concept="vector-direction">方向</span>很容易求得。首先，<span data-concept="resultant-vector">合矢量</span>的<span data-concept="vector-magnitude">大小</span>由勾股定理给出：</p>
+$$\begin{aligned}\kFa &= \sqrt{\kFx^{2} + \kFy^{2}}\\ \kFa &= \sqrt{(2.7\times 10^{5}\ \text{N})^{2} + (3.6\times 10^{5}\ \text{N})^{2}} = 4.5\times 10^{5}\ \text{N}.\end{aligned}$$
+<p><span data-type="angle">角度</span>由下式给出</p>
+$$\begin{aligned}\ktheta &= \tan^{-1}\!\left(\frac{\kFy}{\kFx}\right)\\ \ktheta &= \tan^{-1}\!\left(\frac{3.6\times 10^{5}\ \text{N}}{2.7\times 10^{5}\ \text{N}}\right) = 53^\circ,\end{aligned}$$
+<p>根据牛顿第一<span data-concept="law">定律</span>，我们知道它与<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>的<span data-concept="vector-direction">方向</span>相同。$\kFD$ 的<span data-concept="vector-direction">方向</span>与 $\kFa$ 相反，因为它的作用是减缓<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>。因此，<span data-type="force"><span data-concept="net-external-force">合外力</span></span>的<span data-concept="vector-direction">方向</span>与 $\kFa$ 相同，但其<span data-concept="vector-magnitude">大小</span>略小于 $\kFa$。现在这个问题成了一维问题。由图 4.21（b） 可以看出</p>
+$$\kFnet = \kFa - \kFD.$$
+<p>但牛顿第二<span data-concept="law">定律</span>指出</p>
+$$\kFnet = \km\ka.$$
+<p>因此，</p>
+$$\kFa - \kFD = \km\ka.$$
+<p>由此可以用已知量求出水的<span data-type="force"><span data-concept="drag-force">阻力</span></span> $\kFD$ 的<span data-concept="vector-magnitude">大小</span>：</p>
+$$\kFD = \kFa - \km\ka.$$
+<p>代入已知数值，得到</p>
+$$\kFD = (4.5\times 10^{5}\ \text{N}) - (5.0\times 10^{6}\ \text{kg})(7.5\times 10^{-2}\ \text{m/s}^{2}) = 7.5\times 10^{4}\ \text{N}.$$
+<p>$\kFD$ 的<span data-concept="vector-direction">方向</span>已确定为与 $\kFa$ 的<span data-concept="vector-direction">方向</span>相反，即处于西偏南 $53^\circ$ 的<span data-type="angle">角度</span>。</p>
+<h4>讨论</h4>
+<p>本例中所用的数值，对一艘中等大小的驳船来说是合理的。用拖船确实很难获得更大的<span data-concept="acceleration">加速度</span>，而且为了避免<span data-ref="barge">驳船</span>撞上码头，低速是理想的。对于设计良好的船体，低速时的阻力相对较小，这与本例的结果一致，其中 $\kFD$ 小于<span data-ref="barge">该船</span>的<span data-type="force"><span data-concept="weight">重力</span></span>的 1/600。</p>
+</div>
+</section>
+
+<section id="tensions">
+<h2>成不同角度的两根钢丝</h2>
+<p class="cite-target">在前面走钢丝者的例子中，我们注意到，支撑一个<span data-concept="mass">物体</span>的钢丝中的<span data-type="force"><span data-concept="tension">张力</span></span>相等，只是因为<span data-type="angle">两侧的角度</span>相等。请看下面这个例子，其中<span data-type="angle">角度</span>并不相等；它涉及稍多一点的三角学。</p>
+<div class="example" id="ex-traffic-light">
+<h3>例题 4.8 · 不同角度下的不同张力</h3>
+<p>考虑如图 4.22 所示悬挂在<span data-ref="wire-1 wire-2">两根钢丝</span>下的<span data-ref="light">交通信号灯</span>（<span data-type="mass"><span data-concept="mass">质量</span></span> 15.0 kg）。求<span data-ref="wire-1 wire-2">每根钢丝</span>中的<span data-type="force"><span data-concept="tension">张力</span></span>，忽略钢丝的<span data-type="mass"><span data-concept="mass">质量</span></span>。</p>
+<figure class="sim" id="sim-traffic-light" data-figure="4.22" data-original="/media/ch04/Figure_04_07_02.jpg" data-original-width="475" data-original-caption="一盏交通信号灯悬挂在两根钢丝上。（b）涉及的一些力。（c）这里只画出作用在系统上的力。图中还给出了交通信号灯的受力图。（d）投影到竖直轴（y）和水平轴（x）上的力。张力的水平分量必须相互抵消，张力的竖直分量之和必须等于交通信号灯的重力。（e）受力图显示了作用在交通信号灯上的竖直方向和水平方向的力。">
+  <div class="sim-head"><span class="eyebrow">Figure 4.22</span><span><span data-ref="light">一盏交通信号灯</span>静止地悬挂在<span data-ref="wire-1 wire-2">两根钢丝</span>下，钢丝与水平方向成<span data-type="angle">不同的角度</span>，场景旁的受力图把每个<span data-type="force">张力</span>分解为水平部分和竖直部分。改变<span data-type="angle">任一角度</span>，会看到<span data-type="force">水平部分</span>始终保持彼此相等，而<span data-type="force">竖直部分</span>共同分担<span data-type="force">重力</span>；更接近竖直的那根钢丝总是承受<span data-type="force">较大的张力</span>，并且随着<span data-ref="wire-1 wire-2">钢丝</span>被拉向水平，两个<span data-type="force">张力</span>都会增大。</span></div>
+</figure>
+<h4>思路</h4>
+<p>所研究的<span data-concept="system">系统</span>是<span data-ref="light">交通信号灯</span>，<span data-ref="light">它</span>的<span data-concept="free-body-diagram-def">受力图</span>如图 4.22（c） 所示。所涉及的三个<span data-type="force"><span data-concept="force">力</span></span>不平行，因此必须把它们投影到一个坐标系上。最方便的坐标系是一条轴竖直、一条轴水平，<span data-type="force"><span data-concept="vector">矢量</span>在其上的投影</span>画在图的（d）部分。这个问题中有两个未知量（$\kTone$ 和 $\kTtwo$），所以需要两个方程来求它们。这两个方程来自沿竖直轴和水平轴应用牛顿第二<span data-concept="law">定律</span>，并注意到每条轴上的<span data-type="force"><span data-concept="net-external-force">合外力</span></span>都为零，因为<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>为零。</p>
+<h4>解</h4>
+<p>首先考虑水平轴，即 <em>x</em> 轴：</p>
+$$\kFnetx = \kTtwox - \kTonex = 0.$$
+<p>因此，正如你可能预料到的，</p>
+$$\kTonex = \kTtwox.$$
+<p>这给出 $\kTone$ 与 $\kTtwo$ 之间的如下关系：</p>
+$$\kTone\cos(30^\circ) = \kTtwo\cos(45^\circ).$$
+<p>因此，</p>
+$$\kTtwo = (1.225)\kTone.$$
+<p>注意，在这种情形下 $\kTone$ 和 $\kTtwo$ 并不相等，因为<span data-type="angle">两侧的角度</span>并不相等。$\kTtwo$ 最终大于 $\kTone$ 是合理的，因为它比 $\kTone$ 更接近竖直方向施加。</p>
+<p>现在考虑沿竖直轴即 <em>y</em> 轴的<span data-type="force"><span data-concept="force">力</span>的<span data-concept="vector-components">分量</span></span>：</p>
+$$\kFnety = \kToney + \kTtwoy - \kwgt = 0.$$
+<p>这意味着</p>
+$$\kToney + \kTtwoy = \kwgt.$$
+<p>代入竖直<span data-concept="vector-components">分量</span>的表达式，得到</p>
+$$\kTone\sin(30^\circ) + \kTtwo\sin(45^\circ) = \kwgt.$$
+<p>这个方程中有两个未知量，但代入用 $\kTone$ 表示 $\kTtwo$ 的表达式后，就化为一个含一个未知量的方程：</p>
+$$\kTone(0.500) + (1.225\kTone)(0.707) = \kwgt = \km\kg,$$
+<p>由此得到</p>
+$$(1.366)\kTone = (15.0\ \text{kg})(9.80\ \text{m/s}^{2}).$$
+<p>解这最后一个方程，得到 $\kTone$ 的<span data-concept="vector-magnitude">大小</span>为</p>
+$$\kTone = 108\ \text{N}.$$
+<p>最后，利用上面求得的二者之间的关系 $\kTtwo = 1.225\,\kTone$，确定 $\kTtwo$ 的<span data-concept="vector-magnitude">大小</span>。这样我们得到</p>
+$$\kTtwo = 132\ \text{N}.$$
+<h4>讨论</h4>
+<p>如果<span data-ref="wire-1 wire-2">两根钢丝</span>都更接近水平，两个<span data-type="force"><span data-concept="tension">张力</span></span>都会更大；当且仅当<span data-type="angle">两侧的角度</span>相同时（如前面走钢丝者的例子中那样），它们才会相等。</p>
+</div>
+</section>
+
+<section id="scale">
+<h2>电梯中体重秤的示数</h2>
+<p class="cite-target">体重秤是作用在物体上的<span data-concept="normal-force">法向力</span>的一个绝佳例子。它给出的是一个定量读数，说明为了支撑物体的<span data-concept="weight">重力</span>，它必须向上推多大的力。但是，你能预测出，如果你在乘电梯时站在体重秤上，刻度盘上会看到什么吗？电梯启动上升时，你会看到大于你的<span data-type="force"><span data-concept="weight">重力</span></span>的数值吗？电梯以<span data-type="velocity">恒定速率</span>上升时呢：秤的示数还会比你静止时的<span data-type="force"><span data-concept="weight">重力</span></span>大吗？请看下面这个例子。</p>
+<div class="example" id="ex-scale">
+<h3>例题 4.9 · 电梯中体重秤的示数是多少？</h3>
+<p>图 4.23 显示<span data-ref="man">一位 75.0 kg 的男子</span>（<span data-type="force"><span data-concept="weight">重力</span></span>约为 165 lb）站在<span data-ref="elevator">电梯</span>里的<span data-ref="scale">体重秤</span>上。计算<span data-type="force">秤的示数</span>：（a）<span data-ref="elevator">电梯</span>以 $1.20\ \text{m/s}^{2}$ 的加速度向上加速时，（b）<span data-ref="elevator">电梯</span>以 1 m/s 的<span data-type="velocity">恒定速率</span>向上运动时。</p>
+<figure class="sim" id="sim-elevator-scale" data-figure="4.23" data-original="/media/ch04/Figure_04_07_03a.jpg" data-original-width="550" data-original-caption="（a）一个人站在电梯里的体重秤上时作用的各种力。图中的箭头大致对应电梯向上加速的情形——断开的箭头表示太大而无法按比例画出的力。T 是作用在电梯上的向上的力，w_s 是秤的重力，w_e 是电梯的重力，F_s 是秤对人的力，F_p 是人对秤的力，F_t 是秤对电梯地板的力，N 是地板对秤的向上的力。（b）受力图只显示作用在所指定的所研究的系统——人——上的外力。">
+  <div class="sim-head"><span class="eyebrow">Figure 4.23</span><span><span data-ref="man">一名男子</span>站在<span data-ref="elevator">电梯</span>里的<span data-ref="scale">体重秤</span>上，电梯从静止开始，加速，以<span data-type="velocity">恒定速度</span>运行，然后减速直至停下，刻度盘随行程而变化。看<span data-type="force">示数</span>在<span data-ref="elevator">电梯</span>加速时升到高于<span data-ref="man">他</span>的<span data-type="force">重力</span>，在<span data-type="velocity">速度</span>恒定时恰好回落到<span data-ref="man">他</span>的<span data-type="force">重力</span>，而在<span data-ref="elevator">电梯</span>减速时降到低于<span data-ref="man">他</span>的<span data-type="force">重力</span>。改变<span data-ref="man">他</span>的<span data-type="mass">质量</span>或<span data-ref="elevator">电梯</span>的<span data-type="acceleration">加速度</span>，整个行程就会重新运行一遍。</span></div>
+</figure>
+<h4>思路</h4>
+<p>如果<span data-ref="scale">秤</span>是准确的，<span data-ref="scale">它</span>的<span data-type="force">示数</span>将等于 $\kFp$，即<span data-ref="man">人</span>向下压<span data-ref="scale">它</span>的<span data-type="force"><span data-concept="force">力</span></span>的<span data-concept="vector-magnitude">大小</span>。图 4.23（a） 显示了作用在<span data-ref="elevator">电梯</span>、<span data-ref="scale">秤</span>和<span data-ref="man">人</span>上的众多<span data-type="force"><span data-concept="force">力</span></span>。它使这个一维问题看起来，比选<span data-ref="man">人</span>作为所研究的<span data-concept="system">系统</span>并像图 4.23（b） 那样画出<span data-concept="free-body-diagram-def">受力图</span>要艰巨得多。用牛顿<span data-concept="law">定律</span>分析<span data-concept="free-body-diagram-def">受力图</span>，可以得出本例（a）、（b）两问的答案，以及可能出现的其他一些问题的答案。作用在<span data-ref="man">人</span>身上的<span data-type="force"><span data-concept="force">力</span></span>只有<span data-ref="man">他</span>的<span data-type="force"><span data-concept="weight">重力</span></span> $\kwgt$ 和<span data-ref="scale">秤</span>的向上的<span data-type="force"><span data-concept="force">力</span></span> $\kFs$。根据牛顿第三<span data-concept="law">定律</span>，$\kFp$ 和 $\kFs$ 的<span data-concept="vector-magnitude">大小</span>相等、<span data-concept="vector-direction">方向</span>相反，所以我们需要求出 $\kFs$，才能知道<span data-ref="scale">秤</span>的示数。我们可以像往常一样，应用牛顿第二<span data-concept="law">定律</span>来做到这一点。</p>
+<figure class="dv" id="drv-scale-reading"></figure>
+<p>我们没有对<span data-concept="acceleration">加速度</span>作任何假设，因此这个解对本题中的加速度之外的各种<span data-concept="acceleration">加速度</span>也应当成立。</p>
+<h4>（a）的解</h4>
+<p>在这一问中，$\ka = 1.20\ \text{m/s}^{2}$，因此</p>
+$$\kFs = (75.0\ \text{kg})(1.20\ \text{m/s}^{2}) + (75.0\ \text{kg})(9.80\ \text{m/s}^{2}),$$
+<p>得到</p>
+$$\kFs = 825\ \text{N}.$$
+<h4>（a）的讨论</h4>
+<p>这大约是 185 lb。如果<span data-ref="man">他</span>静止不动，<span data-ref="scale">秤</span>会显示多少？由于<span data-ref="man">他</span>的<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>将为零，<span data-ref="scale">秤</span>的<span data-type="force"><span data-concept="force">力</span></span>将等于<span data-ref="man">他</span>的<span data-type="force"><span data-concept="weight">重力</span></span>：</p>
+$$\begin{aligned}\kFnet &= \km\ka = 0 = \kFs - \kwgt\\ \kFs &= \kwgt = \km\kg\\ \kFs &= (75.0\ \text{kg})(9.80\ \text{m/s}^{2})\\ \kFs &= 735\ \text{N.}\end{aligned}$$
+<p>所以，<span data-ref="elevator">电梯</span>里的<span data-type="force">秤的示数</span>大于<span data-ref="man">他</span>的<span data-type="force">735 N（165 lb）的<span data-concept="weight">重力</span></span>。这意味着<span data-ref="scale">秤</span>向上推<span data-ref="man">人</span>的<span data-type="force"><span data-concept="force">力</span></span>大于<span data-ref="man">他</span>的<span data-type="force"><span data-concept="weight">重力</span></span>，<span data-ref="scale">它</span>必须如此，才能使<span data-ref="man">他</span>向上加速。显然，<span data-ref="elevator">电梯</span>的<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>越大，<span data-type="force">秤的示数</span>就越大，这与你在快速加速和缓慢加速的电梯中的感觉是一致的。</p>
+<h4>（b）的解</h4>
+<p>现在，当<span data-ref="elevator">电梯</span>达到<span data-type="velocity">恒定的向上<span data-concept="velocity">速度</span></span>时会怎样？<span data-ref="scale">秤</span>的示数还会比<span data-ref="man">他</span>的<span data-type="force"><span data-concept="weight">重力</span></span>大吗？对于任何恒定的<span data-concept="velocity">速度</span>——向上、向下或静止——<span data-concept="acceleration">加速度</span>都为零，因为 $\ka = \frac{\kdv}{\kdt}$，而 $\kdv = 0$。</p>
+<p>因此，</p>
+$$\kFs = \km\ka + \km\kg = 0 + \km\kg.$$
+<p>现在</p>
+$$\kFs = (75.0\ \text{kg})(9.80\ \text{m/s}^{2}),$$
+<p>由此得到</p>
+$$\kFs = 735\ \text{N}.$$
+<h4>（b）的讨论</h4>
+<p><span data-type="force">秤的示数</span>是 735 N，等于<span data-ref="man">人</span>的<span data-type="force"><span data-concept="weight">重力</span></span>。只要<span data-ref="elevator">电梯</span>的<span data-type="velocity">恒定<span data-concept="velocity">速度</span></span>——向上运动、向下运动或静止——情况都是如此。</p>
+</div>
+<p>如前面所提到的，上一个例题的解也适用于向下加速的电梯。电梯向下加速时，$\ka$ 为负，秤的示数<em>小于</em>人的<span data-concept="weight">重力</span>，直到达到恒定的向下<span data-concept="velocity">速度</span>，这时秤的示数又变得等于人的<span data-concept="weight">重力</span>。如果电梯处于<span data-concept="free-fall">自由落体运动</span>，以 $\kg$ 向下加速，那么秤的示数将为零，人将<em>看起来</em>是失重的。</p>
+<div class="exercises" data-place="scale"></div>
+</section>
+
+<section id="integrating">
+<h2>综合概念：牛顿运动定律与运动学</h2>
+<p class="cite-target"><span data-concept="physics">物理学</span>在应用于涉及的物理原理不止一小组的一般情形时，最有趣也最有力。牛顿<span data-concept="motion">运动</span><span data-concept="law">定律</span>还可以与本书前面讨论过的其他概念相结合，来解决<span data-concept="motion">运动</span>问题。例如，<span data-concept="force">力</span>产生<span data-concept="acceleration">加速度</span>，这是<span data-concept="kinematics">运动学</span>的一个课题，因而前面各章与此相关。在处理涉及各种类型的<span data-concept="force">力</span>、<span data-concept="acceleration">加速度</span>、<span data-concept="velocity">速度</span>和/或<span data-concept="position">位置</span>的问题时，请按下面的步骤来处理：</p>
+<div class="note">
+<div class="eyebrow">解题策略</div>
+<p><strong><em>步骤 1。</em></strong> <em>确定涉及哪些物理原理</em>。列出已知量和待求量，可以让你确定所涉及的原理。</p>
+<p><strong><em>步骤 2。</em></strong> <em>运用本书中概述的策略来解题</em>。如果针对具体主题有这类策略，你应当参考它们。你也应当参考本书中论述某个具体主题的各节。下面的例题说明了如何把这些策略应用于一道综合概念题。</p>
+</div>
+<figure class="sim" id="sim-soccer">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="player">一名足球运动员</span>从静止开始向前加速，条带下方的图线跟随<span data-ref="player">他</span>的<span data-type="velocity">速度</span>，随着<span data-ref="player">他</span>的奔跑而变化。那条直线的斜率就是<span data-ref="player">他</span>的<span data-type="acceleration">平均加速度</span>，<span data-ref="player">运动员</span>身上的箭头是<span data-ref="ground">地面</span>推<span data-ref="player">他</span>向前的<span data-type="force">力</span>，它等于<span data-ref="player">他</span>的<span data-type="mass">质量</span>乘以那个<span data-type="acceleration">加速度</span>。改变<span data-ref="player">他</span>的<span data-type="velocity">最大速率</span>、<span data-ref="player">他</span>达到最大速率所用的<span data-type="time">时间</span>，或<span data-ref="player">他</span>的<span data-type="mass">质量</span>，并观察两个运动学量之一的变化如何改变<span data-type="force">力</span>。</span></div>
+</figure>
+<div class="example" id="ex-soccer">
+<h3>例题 4.10 · 足球运动员要达到最大速率必须施加多大的力？</h3>
+<p><span data-ref="player">一名足球运动员</span>从静止开始向前加速，在 2.50 s 内达到 8.00 m/s 的<span data-type="velocity"><span data-concept="velocity">速度</span></span>。（a）<span data-ref="player">他</span>的<span data-type="acceleration"><span data-concept="average-acceleration">平均加速度</span></span>是多少？（b）<span data-ref="player">他</span>为达到这一<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>，对<span data-ref="ground">地面</span>向后施加了多大的<span data-type="force">平均<span data-concept="force">力</span></span>？<span data-ref="player">该运动员</span>的<span data-type="mass"><span data-concept="mass">质量</span></span>为 70.0 kg，<span data-type="force"><span data-concept="air-resistance">空气阻力</span></span>可以忽略。</p>
+<h4>思路</h4>
+<p>要解一道<em>综合概念题</em>，我们必须首先确定所涉及的物理原理，并确定它们所在的章。本例的（a）问考虑的是沿直线的<em><span data-concept="acceleration">加速度</span></em>。这是<em><span data-concept="kinematics">运动学</span></em>的一个课题。（b）问涉及<em><span data-concept="force">力</span></em>，这是本章中的<em><span data-concept="dynamics">动力学</span></em>的一个课题。</p>
+<p>下面对例题各部分的解，说明了具体的解题策略是如何应用的。这些策略包括确定已知量和未知量、检验答案是否合理，等等。</p>
+<h4>（a）的解</h4>
+<p>已知<span data-type="velocity"><span data-concept="velocity">初速度和末速度</span></span>（零和向前 8.00 m/s）；因此，<span data-type="velocity"><span data-concept="velocity">速度的变化量</span></span>为 $\kdv = 8.00\ \text{m/s}$。已知<span data-type="time"><span data-concept="elapsed-time">时间间隔</span></span>，所以 $\kdt = 2.50\ \text{s}$。未知量是<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>，可以由它的定义求得：</p>
+$$\ka = \frac{\kdv}{\kdt}.$$
+<p>代入已知数值，得到</p>
+$$\begin{aligned}\ka &= \frac{8.00\ \text{m/s}}{2.50\ \text{s}}\\ &= 3.20\ \text{m/s}^{2}.\end{aligned}$$
+<h4>（a）的讨论</h4>
+<p>对于一名状态良好的运动员，这是一个可以达到的<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>。</p>
+<h4>（b）的解</h4>
+<p>这里要求的是<span data-ref="player">运动员</span>为达到这一向前<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>而向后施加的平均<span data-type="force"><span data-concept="force">力</span></span>。忽略<span data-type="force"><span data-concept="air-resistance">空气阻力</span></span>，它的<span data-concept="vector-magnitude">大小</span>将等于作用在<span data-ref="player">运动员</span>身上的<span data-type="force"><span data-concept="net-external-force">合外力</span></span>，因为正是这个<span data-type="force"><span data-concept="force">力</span></span>使<span data-ref="player">他</span>产生<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>。既然我们现在知道<span data-ref="player">运动员</span>的<span data-type="acceleration"><span data-concept="acceleration">加速度</span></span>，并且已知<span data-ref="player">他</span>的<span data-type="mass"><span data-concept="mass">质量</span></span>，就可以用牛顿第二<span data-concept="law">定律</span>求出所施加的<span data-type="force"><span data-concept="force">力</span></span>。即，</p>
+$$\kFnet = \km\ka.$$
+<p>代入 $\km$ 和 $\ka$ 的已知值，得到</p>
+$$\begin{aligned}\kFnet &= (70.0\ \text{kg})(3.20\ \text{m/s}^{2})\\ &= 224\ \text{N}.\end{aligned}$$
+<h4>（b）的讨论</h4>
+<p>这大约是 50 磅，是一个合理的<span data-type="force">平均<span data-concept="force">力</span></span>。</p>
+<p>这个例题说明了如何把解题策略应用于包含不同章节主题的情形。第一步是确定问题所涉及的物理原理。第二步是用熟悉的解题策略求解未知量。这些策略贯穿全书，许多例题展示了如何把它们用于单个主题。你会发现，这些针对综合概念题的技巧，在<span data-concept="physics">物理学</span>课程之外的<span data-concept="physics">物理学</span>应用中也很有用，比如在你的职业中、在其他科学学科中，以及在日常生活中。下面的习题将培养你广泛应用物理原理的技能。</p>
+</div>
+</section>
+
+<section id="rescue">
+<h2>习题中的救援</h2>
+<p class="lead">有一道习题问的是，在<span data-ref="rescued">一个人</span>被从着火的建筑物旁拉开时，使<span data-ref="rescued">她</span>保持稳定的<span data-ref="rope-left rope-right">两根绳</span>中每一根的<span data-type="force"><span data-concept="tension">张力</span></span>。<span data-ref="rope-left rope-right">这两根绳</span>和<span data-ref="rope-left rope-right">它们</span>所成的<span data-type="angle">角度</span>画在下面。</p>
+<figure class="sim" id="fig-rescue" data-original="/media/ch04/Figure_04_07_08a.jpg" data-original-caption="要使被从火场中救出的人保持稳定，所需的力 T_2 小于她的重力，也小于另一根绳中的力 T_1，因为更接近竖直的那根绳承担了她更大的一部分重力（一个竖直方向的力）。">
+  <div class="sim-head"><span class="eyebrow">Figure</span><span><span data-ref="rescued">一个人</span>的<span data-type="mass">质量</span>为 $\km$，悬挂在两根绳之间保持不动。<span data-ref="rope-left">左边的绳</span>与竖直方向成<span data-type="angle">角度</span> $15^\circ$，承受<span data-type="force">张力</span> $\kTone$，<span data-ref="rope-right">右边的绳</span>在水平方向上方 $10^\circ$ 处斜向上，承受<span data-type="force">张力</span> $\kTtwo$。<span data-ref="rescued">她</span>的<span data-type="force">重力</span> $\kwgt$ 竖直向下拉。</span></div>
+</figure>
+</section>

@@ -1,0 +1,610 @@
+{
+ "id": "4.6",
+ "module": "m42076",
+ "chapter": "4",
+ "title": "解题策略",
+ "short": "解题策略",
+ "lead": "关于<span data-concept=\"force\">力</span>的问题每次都按同样的几个步骤来解：从草图和受力图开始，经过沿每个坐标轴应用牛顿第二定律，直到检查答案是否合理。",
+ "objectives": [
+  "理解并应用一套解题程序，用牛顿运动定律解决问题。"
+ ],
+ "summary_html": "<ul><li>要解决涉及牛顿运动定律的问题，请遵循所述的程序：<ol><li>画出问题的草图。</li><li>确定已知量和未知量，并确定所研究的系统。画出受力图，这是一幅显示作用在物体上的所有<span data-concept=\"force\">力</span>的草图。物体用一个点表示，<span data-concept=\"force\">力</span>用从该点向不同方向延伸的矢量表示。如果矢量的方向既不是水平的也不是竖直的，就把矢量分解为水平分量和竖直分量，并画在受力图上。</li><li>分别沿水平方向和竖直方向写出牛顿第二定律，并把作用在物体上的<span data-concept=\"force\">力</span>相加。如果物体在某个方向（例如 $x$ 方向）上没有加速度，则 $\\kFnetx = 0$。如果物体在该方向上有加速度，则 $\\kFnetx = m\\ka$。</li><li>检查你的答案。答案合理吗？单位正确吗？</li></ol></li></ul>",
+ "notes": "习题 2、4、6、8、10 和 12 至 17 在书后答案中没有给出，其中包括两道自拟习题和两道不合理的结果习题，因而略去；书中画在习题 1、3 和 11 的解答之内的受力图也随之略去，因为习题卡片带有其习题所指的图，而这些解答已用文字陈述了同样的方程。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案，它涵盖本节的奇数编号习题；习题 2、4、6、8、10 和 12 至 17 没有给出答案，因而略去，两道自拟习题和两道不合理的结果习题也在其中。三道 AP 备考练习中，书中给出了平底雪橇和受力图两题的答案，而电梯中悬挂的物体一题没有给出，因此保留为开放式题，四个选项照书中印出的样子给出，并附一段由 AI 撰写、已标明的建议思路。本节习题中，书里画了五幅图，都没有编号；属于有答案习题的两幅，即圆盘雪橇和牙套，随其卡片给出，另外三幅属于被略去的习题。没有任何内容留待后面的小节，也没有取自其他小节：这里每道题都用牛顿第二定律和本章已经提出的力来解答。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-tarzan",
+   "kind": "sim",
+   "number": "4.20",
+   "originals": [
+    "/media/ch04/Figure_04_06_01.jpg"
+   ],
+   "original_caption": "（a）泰山抓着藤蔓悬挂的草图。（b）用箭头表示所有的力。T 是泰山上方藤蔓中的张力，F_T 是他对藤蔓施加的力，w 是他的重力。所有其他的力，例如微风的轻推，都假定可以忽略。（c）假设已知这位人猿的质量，要求求出藤蔓中的张力。于是按图中所示确定所研究的系统，并画出受力图。F_T 不再画出，因为它不是作用在所研究的系统上的力；它作用于外部世界。（d）只画出箭头，并用首尾相接法相加。显然，如果泰山是静止的，则 T = −w。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: library silhouette and hands, labeller labels, note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-axes",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "acceleration",
+    "angle",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note dropped, angle label on a panel"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "skills",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "newtons-laws-problem-solving",
+   "verb": "introduces"
+  },
+  {
+   "span": "steps",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "newtons-third-law",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "tension",
+   "verb": "uses"
+  },
+  {
+   "span": "steps",
+   "concept": "weight",
+   "verb": "uses"
+  },
+  {
+   "span": "axes",
+   "concept": "resolve-forces-into-components",
+   "verb": "introduces"
+  },
+  {
+   "span": "axes",
+   "concept": "net-force-by-axis",
+   "verb": "introduces"
+  },
+  {
+   "span": "axes",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "axes",
+   "concept": "newtons-laws-problem-solving",
+   "verb": "reinforces"
+  },
+  {
+   "span": "axes",
+   "concept": "weight-components-on-incline",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "ap1",
+   "source_id": "fs-id1642540",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "一架平底雪橇载着两名乘坐者，总质量为 85.0 kg。第三个人沿运动方向用 42.5 N 的力推着这架雪橇，雪橇正在山顶一个向下倾角为 15° 的斜坡面上运动。雪橇受到的摩擦力为 31.0 N。下列哪一项陈述描述了表示这一情境的准确的受力图？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "一个大小为 10.5 N 的箭头沿山坡指向下方。",
+     "一个大小为 833 N 的箭头竖直向下。",
+     "一个大小为 833 N 的箭头垂直于山坡。",
+     "一个大小为 73.5 N 的箭头沿山坡指向下方。"
+    ],
+    "correct": 1,
+    "hint": "受力图中的每个箭头代表一个外力，而不是几个力的和。四个数中有一个是雪橇及乘坐者的重力，而重力总是竖直向下。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1459777",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "axes",
+   "prompt": "一个质量为 2.0 kg 的物体用绳悬挂在电梯的天花板上。当电梯（i）以 $1.5\\ \\text{m/s}^2$ 的加速度向上加速时，绳中的张力是多少？（ii）以 $1.5\\ \\text{m/s}^2$ 的加速度向下加速时，绳中的张力是多少？<ol type=\"a\"><li>（i）22.6 N；（ii）16.6 N</li><li>因为物体悬挂在电梯本身上，所以在这两种情况下绳中的张力都不会改变。</li><li>（i）22.6 N；（ii）19.6 N</li><li>（i）16.6 N；（ii）19.6 N</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电梯向上加速时张力为 22.6 N，向下加速时为 16.6 N，即四个选项中的第一个。只取悬挂的物体作为所研究的系统。作用在它上面的有两个力：沿绳向上的张力 $\\kTf$ 和向下的重力 $\\kwgt$。物体随电梯一起运动，因此与电梯具有相同的加速度，沿竖直轴的牛顿第二定律写作 $\\kFnety = \\kTf - \\kwgt = \\km\\ka$，所以 $\\kTf = \\km\\kg + \\km\\ka$。重力为 $\\kwgt = (2.0\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 19.6\\ \\text{N}$，而 $\\km\\ka = (2.0\\ \\text{kg})(1.5\\ \\text{m/s}^2) = 3.0\\ \\text{N}$。（i）当 $\\ka = +1.5\\ \\text{m/s}^2$ 时，$\\kTf = 19.6\\ \\text{N} + 3.0\\ \\text{N} = 22.6\\ \\text{N}$。（ii）当 $\\ka = -1.5\\ \\text{m/s}^2$ 时，$\\kTf = 19.6\\ \\text{N} - 3.0\\ \\text{N} = 16.6\\ \\text{N}$。张力不可能保持不变，因为加速度改变就需要合力改变。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1795701",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "关于画受力图，下列哪一项陈述是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "画受力图应当是解决有关力的问题的最后一步。",
+     "画受力图有助于你定量地比较各个力。",
+     "受力图中的力应当总是平衡的。",
+     "画受力图可以帮助你确定合力。"
+    ],
+    "correct": 3,
+    "hint": "想一想这幅图是用来做什么的。它在写出任何方程之前，把作用在系统上的每个外力集中画在一幅图里；而图中的力只有在系统没有加速度时才会平衡。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1250439",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "axes",
+   "prompt": "一枚 $5.00\\times 10^{5}\\text{-kg}$ 的火箭正在竖直向上加速。它的发动机产生 $1.250\\times 10^{7}\\ \\text{N}$ 的推力，空气阻力为 $4.50\\times 10^{6}\\ \\text{N}$。火箭的加速度是多少？请明确写出你是如何遵循牛顿运动定律的解题策略中的各个步骤的。",
+   "answer": {
+    "type": "number",
+    "value": 6.2,
+    "unit": "m/s²",
+    "generated_by": "source",
+    "hint": "取火箭作为所研究的系统。沿竖直轴有三个外力作用：向上的推力、向下的空气阻力和向下的重力。",
+    "solution": "利用受力图：$F_{\\text{net}} = T - f - mg = ma$，所以 $a = \\dfrac{T - f - mg}{m} = \\dfrac{1.250\\times 10^{7}\\ \\text{N} - 4.50\\times 10^{6}\\ \\text{N} - (5.00\\times 10^{5}\\ \\text{kg})(9.80\\ \\text{m/s}^2)}{5.00\\times 10^{5}\\ \\text{kg}} = 6.20\\ \\text{m/s}^2$。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1630579",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "axes",
+   "prompt": "计算一位质量为 70.0 kg 的跳高运动员必须对地面施加多大的力，才能产生 4.00 倍于重力加速度的向上加速度。请明确写出你是如何遵循牛顿运动定律的解题策略中的各个步骤的。",
+   "answer": {
+    "type": "number",
+    "value": 3430,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "跳高运动员向上加速，因此沿竖直轴的合力为 $ma$，等于地面向上的力减去他的重力。",
+    "solution": "1. 应用牛顿运动定律。 2. 已知：$a = 4.00g = (4.00)(9.80\\ \\text{m/s}^2) = 39.2\\ \\text{m/s}^2$；$m = 70.0\\ \\text{kg}$。求：$F$。 3. $\\sum F = +F - w = ma$，所以 $F = ma + w = ma + mg = m(a + g)$。$F = (70.0\\ \\text{kg})[(39.2\\ \\text{m/s}^2) + (9.80\\ \\text{m/s}^2)] = 3.43\\times 10^{3}\\ \\text{N}$。跳高运动员施加的力实际上是向下作用在地面上的，但 $F$ 是地面向上的力，正是它使他跳起。 4. 这个结果是合理的，因为一个人完全有可能施加量级为 $10^{3}\\ \\text{N}$ 的力。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id666647",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "一列货运列车由两台各 $8.00\\times 10^{4}\\text{-kg}$ 的机车和 45 节车厢组成，车厢的平均质量为 $5.50\\times 10^{4}\\ \\text{kg}$。（a）如果摩擦力为 $7.50\\times 10^{5}\\ \\text{N}$，假设两台机车施加相同的力，要使列车以 $5.00\\times 10^{-2}\\ \\text{m/s}^2$ 的加速度加速，每台机车必须对轨道向后施加多大的力？对于这样庞大的系统，这并不是一个大的摩擦力。火车的滚动摩擦很小，因此火车是非常节能的运输系统。（b）假设所有车厢的质量相同，且摩擦力均匀分布在所有车厢和机车上，那么第 37 节和第 38 节车厢之间的车钩中的力（即它们彼此施加的力）是多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 441000,
+      "unit": "N",
+      "hint": "取整列火车作为所研究的系统，把两台机车和 45 节车厢的质量相加，并记住两台机车平分向前的力。"
+     },
+     {
+      "part": "(b)",
+      "value": 150000,
+      "unit": "N",
+      "hint": "现在取车钩后面的那部分列车作为所研究的系统：沿轨道方向，车钩力和那部分所受的摩擦力份额是仅有的外力。"
+     }
+    ],
+    "solution": "（a）$4.41\\times 10^{5}\\ \\text{N}$ （b）$1.50\\times 10^{5}\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id1673888",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "steps",
+   "prompt": "一辆质量为 1100 kg 的汽车拉着挂车上的一条船。（a）如果汽车对路面施加 1900 N 的力，并产生 $0.550\\ \\text{m/s}^2$ 的加速度，那么阻碍汽车、船和挂车运动的合力是多大？船加挂车的质量为 700 kg。（b）如果船和挂车承受了阻力的 80%，那么汽车与挂车之间牵引钩中的力是多大？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 910,
+      "unit": "N",
+      "hint": "把汽车、船和挂车一起作为所研究的系统，这样牵引钩的力是内力，就被消去了。"
+     },
+     {
+      "part": "(b)",
+      "value": 1110,
+      "unit": "N",
+      "hint": "把所研究的系统改为只取船和挂车；于是牵引钩的力和它们所承受的那份阻力就是沿路面方向的外力。"
+     }
+    ],
+    "solution": "（a）$910\\ \\text{N}$ （b）$1.11\\times 10^{3}\\ \\text{N}$"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2159386",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "axes",
+   "figure": {
+    "src": "/media/ch04/Figure_04_06_05-5e7d.jpg",
+    "alt": "一个坐在圆盘雪橇上的孩子的俯视图。两个力，F 下标一等于十牛顿，F 下标二等于八牛顿，都向右作用。F 下标一与 x 轴成四十五度角，F 下标二与 x 轴成三十度角，沿顺时针方向。摩擦力 f 等于七点五牛顿，用指向 x 轴负方向的矢量表示。在受力图中，F 下标一和 F 下标二用向右的箭头表示，分别在水平线上方成四十五度角和在水平线下方成三十度角。摩擦力 f 用沿 x 轴负方向的箭头表示。",
+    "caption": "作用在一个孩子的圆盘雪橇上的水平力的俯视图。"
+   },
+   "prompt": "两个孩子拉着坐在圆盘雪橇上的第三个孩子，施加的力 $F_1$ 和 $F_2$ 如图中俯视所示。求质量为 49.00 kg 的雪橇与孩子这一系统的加速度。请注意，摩擦力的方向没有给出；它将与 $F_1$ 和 $F_2$ 之和的方向相反。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "magnitude",
+      "value": 0.139,
+      "unit": "m/s²",
+      "hint": "把两个拉力投影到东向和北向的坐标轴上，逐个坐标轴把分量相加，再减去与它们的和相反的摩擦力。"
+     },
+     {
+      "part": "direction",
+      "value": 12.4,
+      "unit": "° north of east",
+      "hint": "加速度的方向就是合力的方向，所以取北向分量与东向分量之比的反正切。"
+     }
+    ],
+    "solution": "$a = 0.139\\ \\text{m/s}^2$，$\\theta = 12.4^\\circ$ 东偏北"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id2607890",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "axes",
+   "figure": {
+    "src": "/media/ch04/Figure_04_06_07.jpg",
+    "alt": "图中显示一段有十六颗牙齿的颌部横截面。牙套沿牙齿外侧分布。突出的牙齿受到三个力的作用。一个力 T 用一个箭头表示，该箭头与 x 轴正方向成十五度角，位于其下方；第二个力 T 用一个箭头表示，该箭头与 x 轴负方向成十五度角，位于其下方。",
+    "caption": "牙套用来对牙齿施力，使其重新排齐。图中所示是钢丝施加在突出牙齿上的张力。钢丝施加在牙齿上的合力 $F_{\\text{app}}$ 笔直地指向口腔后部。"
+   },
+   "prompt": "如果钢丝中的张力为 25.0 N，图中的牙齿受到多大的力？请注意，施加在牙齿上的力小于钢丝中的张力，但这是出于在口腔中如何施力的实际考虑所必需的。请明确写出你是如何遵循牛顿运动定律的解题策略中的各个步骤的。",
+   "answer": {
+    "type": "number",
+    "value": 12.9,
+    "unit": "N",
+    "generated_by": "source",
+    "hint": "取牙齿作为所研究的系统，并选取沿钢丝和垂直于钢丝的坐标轴。两个张力沿钢丝方向的分量大小相等、方向相反，因此只剩下它们垂直于钢丝方向的分量。",
+    "solution": "1. 因为要求的是力，所以应用牛顿定律。 2. 画出受力图。 3. 已知张力 $T = 25.0\\ \\text{N}$。求 $F_{\\text{app}}$。应用牛顿定律得 $\\Sigma F_y = 0$，所以所施加的力来自两个张力的 $y$ 分量：$F_{\\text{app}} = 2T\\sin\\theta = 2(25.0\\ \\text{N})\\sin(15^\\circ) = 12.9\\ \\text{N}$。张力的 $x$ 分量相互抵消：$\\sum F_x = 0$。 4. 这看起来是合理的，因为所施加的张力应当大于施加在牙齿上的力。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "ap1",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "weight"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-laws-problem-solving",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "net-force-by-axis"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "tension-supports-weight",
+   "weight": 2
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-laws-problem-solving",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "newtons-laws-problem-solving"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "net-external-force",
+   "weight": 1
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-laws-problem-solving"
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "net-external-force",
+   "weight": 3
+  },
+  {
+   "exercise": "p1",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "thrust",
+   "weight": 1
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-laws-problem-solving"
+  },
+  {
+   "exercise": "p3",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p3",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "p5",
+   "concept": "newtons-laws-problem-solving"
+  },
+  {
+   "exercise": "p5",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p5",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "p5",
+   "concept": "net-external-force",
+   "weight": 3
+  },
+  {
+   "exercise": "p5",
+   "concept": "friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p7",
+   "concept": "newtons-laws-problem-solving"
+  },
+  {
+   "exercise": "p7",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p7",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "p7",
+   "concept": "friction",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "resolve-forces-into-components"
+  },
+  {
+   "exercise": "p9",
+   "concept": "net-force-by-axis"
+  },
+  {
+   "exercise": "p9",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p9",
+   "concept": "newtons-laws-problem-solving",
+   "weight": 2
+  },
+  {
+   "exercise": "p9",
+   "concept": "friction",
+   "weight": 1
+  },
+  {
+   "exercise": "p11",
+   "concept": "resolve-forces-into-components"
+  },
+  {
+   "exercise": "p11",
+   "concept": "net-force-by-axis"
+  },
+  {
+   "exercise": "p11",
+   "concept": "tension",
+   "weight": 2
+  },
+  {
+   "exercise": "p11",
+   "concept": "newtons-laws-problem-solving",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "tarzan",
+   "label": "泰山",
+   "figures": [
+    "sim-tarzan"
+   ]
+  },
+  {
+   "id": "vine",
+   "label": "藤蔓",
+   "figures": [
+    "sim-tarzan"
+   ]
+  },
+  {
+   "id": "block",
+   "label": "斜面上的物块",
+   "figures": [
+    "sim-axes"
+   ]
+  }
+ ]
+}

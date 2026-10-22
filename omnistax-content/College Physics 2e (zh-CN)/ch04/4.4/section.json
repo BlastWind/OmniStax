@@ -1,0 +1,864 @@
+{
+ "id": "4.4",
+ "module": "m42074",
+ "chapter": "4",
+ "title": "牛顿第三定律：力的对称性",
+ "short": "牛顿第三定律",
+ "lead": "牛顿第三定律既关乎推的一方，也同样关乎被推的一方，还关乎所研究的系统的选择如何决定哪些<span data-concept=\"force\">力</span>相对于它是外部的。",
+ "objectives": [
+  "理解牛顿第三定律。",
+  "应用牛顿第三定律来确定系统并解决运动问题。"
+ ],
+ "summary_html": "<ul><li>牛顿第三定律表达了自然界中一种基本的对称性。它指出：每当一个物体对第二个物体施加<span data-concept=\"force\">力</span>时，第一个物体也会受到一个<span data-concept=\"force\">力</span>，这个<span data-concept=\"force\">力</span>与第一个物体所施加的<span data-concept=\"force\">力</span>在大小上相等、在方向上相反。</li><li><span data-concept=\"thrust\">推力</span>是一种反作用<span data-concept=\"force\">力</span>，它响应向后的<span data-concept=\"force\">力</span>而把物体向前推。火箭、飞机和汽车是被<span data-concept=\"thrust\">推力</span>这种反作用<span data-concept=\"force\">力</span>向前推动的。</li></ul>",
+ "notes": "PhET 仿真的说明 Gravity Force Lab 略去；习题 2（关于两名橄榄球运动员）在书后答案中没有给出，因而也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案：它给出了十一道 AP 题中的六道和两道习题中的第一道。习题 2 要求求出橄榄球运动员所受的摩擦力和获胜球员的推力，书后没有给出答案，因而略去。其余五道没有给出答案的 AP 题（球与体育馆天花板、滑冰者 A 为什么不动、冰面上的物体、乘务员的手推车和两名滑水者）作为开放题保留，选项照书中印出的样子，并附有标明为 AI 撰写的建议思路，而不作为可评分的选择题；六道思考题书中同样没有给出答案，也以同样的方式保留。要求读者描述一个系统对另一个系统施力的情形的那道思考题，是对定律本身的一次简短的“理解”层级检测，因此被放在定律表述之后的行内；其余全部在习题集中。跳伞者、两名滑水者和花样滑冰运动员是放在第三定律情境中的第二定律算术题，每一题在做除法之前都先指出了物体对，所以三道题都留在本节。没有任何内容留给后面的小节，也没有任何内容取自其他小节：4.5 中关于拉着小车的孩子和拔河的题目同样提到了力对，但它们都是用 4.5 引入的张力、法向力和摩擦力来表述的，所以留在那里。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-swimmer",
+   "kind": "sim",
+   "number": "4.9",
+   "originals": [
+    "/media/ch04/Figure_04_04_01.jpg"
+   ],
+   "original_caption": "当游泳者对池壁施加力 F_feet on wall 时，她朝着与她的推力相反的方向加速。这意味着作用在她身上的合外力的方向与 F_feet on wall 相反。之所以会出现这种相反，是因为按照牛顿第三定律，池壁对她施加了力 F_wall on feet，其大小与她对池壁施加的力相等，方向与之相反。游泳者周围的线表示所研究的系统。请注意，F_feet on wall 并不作用在这个系统（游泳者）上，因此不会抵消 F_wall on feet。于是，受力图中只画出 F_wall on feet、w（重力）以及 BF（水的浮力，它支撑着游泳者的重力）。竖直方向的力 w 和 BF 相互抵消，因为没有竖直方向的运动。",
+   "widths": [
+    600
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rewritten: silhouette swimmer, labelled pair, 0 to 15 m/s axis"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-rocket",
+   "kind": "sim",
+   "draws": [
+    "force",
+    "acceleration",
+    "velocity",
+    "time",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "speed and slope labels placed, repeated scene label dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-cart",
+   "kind": "sim",
+   "number": "4.10",
+   "originals": [
+    "/media/ch04/Figure_04_04_02.jpg"
+   ],
+   "original_caption": "一位教授推着一辆载有演示器材的手推车。箭头的长度与力的大小成正比（f 除外，因为它太小，无法按比例画出）。每个例题提出的问题不同；因此，所研究的系统必须为每个例题分别定义。系统 1 适用于本例题，因为它要求的是整组物体的加速度。沿运动方向作用在系统 1 上的外力只有 F_floor 和 f。所有其他的力要么相互抵消，要么作用在外部世界上。系统 2 是为例题 4.4 选取的，这样 F_prof 就成为外力，并进入牛顿第二定律。请注意，能让我们应用牛顿第二定律的受力图，随所选的系统而变。",
+   "widths": [
+    550
+   ],
+   "draws": [
+    "force",
+    "acceleration",
+    "mass"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to one sentence"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "third-law",
+   "concept": "newtons-third-law",
+   "verb": "introduces"
+  },
+  {
+   "span": "third-law",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "third-law",
+   "concept": "external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "different-systems",
+   "concept": "action-reaction-pairs",
+   "verb": "introduces"
+  },
+  {
+   "span": "different-systems",
+   "concept": "newtons-third-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "different-systems",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "different-systems",
+   "concept": "external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "different-systems",
+   "concept": "free-body-diagram",
+   "verb": "uses"
+  },
+  {
+   "span": "different-systems",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "thrust",
+   "concept": "thrust",
+   "verb": "introduces"
+  },
+  {
+   "span": "thrust",
+   "concept": "newtons-third-law",
+   "verb": "reinforces"
+  },
+  {
+   "span": "thrust",
+   "concept": "force",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "internal-forces-cancel",
+   "verb": "introduces"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "action-reaction-pairs",
+   "verb": "reinforces"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "system-of-interest",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "net-external-force",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "newtons-second-law",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "friction",
+   "verb": "uses"
+  },
+  {
+   "span": "choosing-a-system",
+   "concept": "mass",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1572333",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "乘坐喷气式飞机起飞时，会有一种被推向座椅靠背的感觉。请解释你为什么会在座椅中向后移动——你真的受到了一个向后的力吗？（同样的道理也能解释挥鞭样损伤，在这种损伤中，头部显然被向后甩出。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "并没有什么力把你向后推。飞机向前加速时，你的身体倾向于保持它原有的速率，正如牛顿第一定律所说的那样，于是座椅必须向前推你，才能带着你随飞机一起运动。你感觉到的正是座椅向前推你后背的那个力，而且由于座椅在向前赶上你，你便陷入了座椅之中。根据牛顿第三定律，你的后背同样用力地向后推座椅，但这个力作用在座椅上而不是你身上，所以它不可能把你推向任何地方。挥鞭样损伤也是同样的道理：座椅使躯干向前加速，而头部没有任何东西推它，便留在后面，直到颈部把它拉着一起走。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1595226",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "自 20 世纪 40 年代以来，一直有一种用来测量心跳引起的身体冲击或反冲的装置，叫作“心冲击描记仪”。测量心脏收缩的力，这里涉及哪些物理学原理？我们可以怎样制作这样一种装置？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "牛顿第三定律和牛顿第二定律在这里都起作用。心脏每收缩一次，就把血液向前推入主动脉，根据牛顿第三定律，血液以大小相等、方向相反的力推回心脏，进而推回身体的其余部分。因此，身体在每次心跳时都会发生一点反冲。要测量这种反冲，你可以让人躺在一块轻质平台上，平台能沿其长度方向尽可能无摩擦地自由移动，然后记录平台如何运动。平台的加速度乘以平台与平台上的人的总质量，就可以由 $\\kFnet = m\\ka$ 得出心脏收缩的力。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2846557",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "描述一种情形：一个系统对另一个系统施加力，并因此受到一个大小相等、方向相反的力。其中适用牛顿运动定律中的哪几条？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "任何一次推或拉都可以，只要你指明两个物体。一个人从小船上跨上码头时，向后推船，而船向前推人：人踏上了码头，船则滑开了。锤子敲钉子时，向下推钉子，而钉子向上推锤子，正是这个力使锤子停了下来。说这两个力大小相等、方向相反的，正是牛顿第三定律。牛顿第二定律则把其中每个力变成它所作用的物体的加速度，而这两个加速度不必相同，因为两个物体的质量不必相同。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2661705",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "thrust",
+   "prompt": "为什么普通步枪在发射时会反冲（向后踢）？无后坐力炮的炮管两端是开口的。请描述发射无后坐力炮时牛顿第三定律是如何起作用的。你能安全地站在它的正后方近处吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "普通步枪对子弹和子弹后面的气体施加一个很大的向前的力，根据牛顿第三定律，子弹和气体对步枪施加一个大小相等的向后的力。这个向后的力就是反冲。步枪的质量比子弹大得多，所以同样的力使它获得的加速度小得多，但并不为零。无后坐力炮的后部是开口的，所以它向后喷出的气体与它随炮弹向前喷出的气体一样多。一股气流产生的向前的推力与另一股气流产生的向后的推力相平衡，炮几乎不动。发射时不要站在它的正后方近处：从开口端喷出的气体带着那个向后的推力，并以高速冲出。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2423524",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "different-systems",
+   "prompt": "一名美式橄榄球线锋这样推理：想在推力上胜过对方球员是毫无意义的，因为无论他推得多用力，都会受到来自对方球员的一个大小相等、方向相反的力。请运用牛顿定律，并画出一个合适的系统的受力图，解释只要他足够强壮，他仍然可以如何压倒对手。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "线锋之间的这一对力始终大小相等、方向相反，但它们作用在不同的物体上，所以永远不会相互抵消。取这名线锋本人作为所研究的系统。作用在他身上的力有：对方球员向后的推力，地面因他的脚向后蹬而对他的钉鞋施加的向前的力，以及他的重力和法向力，后两者因他在竖直方向没有运动而相互抵消。因此，他的受力图上有两个水平箭头，牛顿第二定律说明，只要来自地面的向前的力是两者中较大的，他就会向前加速。他压倒对手靠的是更用力地推地面，而不是战胜对方球员施加在他身上的力。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id2355576",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "牛顿第三定律告诉我们，力总是成对出现，大小相等、方向相反。请解释“所研究的系统”的选择如何影响这样的一对力是否相互抵消。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "只有当一对力中的两个力都作用在所研究的系统上时，它们才会抵消。如果系统只是手推车，教授对手推车的力是外力，使它加速，而手推车反过来对她的力作用在系统之外的物体上，对系统不起任何作用。如果系统是教授和手推车合在一起，这一对力中的两个力都在系统内部，相加为零。这时合外力只包含来自外部的力：地板的力和阻碍运动的力。这对力本身并没有改变；改变的只是系统的边界。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1642858",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "通常有哪些物体对下列运动中的物体施加力？（a）被踢的足球，（b）跃起的海豚，（c）飘落向地球的跳伞者。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）足球运动员、重力、空气和摩擦力通常对被踢的足球施加力。（b）重力和周围的水通常对跃起的海豚施加力。（海豚活动肌肉，对水施加一个力。水对海豚施加一个大小相等的力，使海豚产生运动。）（c）重力和空气对飘落向地球的跳伞者施加力。"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1681743",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "一个质量为 0.25 kg 的球以 78.0 N 的力撞击体育馆的天花板。球所受的合力是多少？<ol type=\"a\"><li>2.50 N，向下</li><li>75.5 N，向下</li><li>78.0 N，向下</li><li>80.5 N，向下</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "球以 78.0 N 的力推天花板，所以根据牛顿第三定律，天花板以 78.0 N 的力推回球，方向向下，背离天花板。这并不是球所受的唯一的力。它的重力也在起作用，而且同样向下：$\\kwgt = m\\kg = (0.25\\ \\text{kg})(9.80\\ \\text{m/s}^2) = 2.45\\ \\text{N}$。这两个力方向相同，所以相加，球所受的合力是 $78.0\\ \\text{N} + 2.45\\ \\text{N} = 80.45\\ \\text{N}$，向下，也就是所给四个值中的最后一个。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1900456",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "下列哪一项是正确的？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "地球对你的身体施加重力，而你的身体对地球施加的力较小，因为你的质量比地球的质量小。",
+     "月球绕地球运行，是因为地球对月球施加一个力，而月球对地球施加一个大小和方向都相等的力。",
+     "起飞的火箭对地球施加的力，等于地球对火箭施加的力。",
+     "以恒定速率巡航的飞机不受重力的影响。"
+    ],
+    "correct": 2,
+    "hint": "无论两个物体的质量是多少，第三定律中成对的两个力总是大小相等、方向相反。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1683591",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "different-systems",
+   "prompt": "静止的滑冰者 A 推静止的滑冰者 B，B 随即以 5.0 m/s$^2$ 的加速度加速。滑冰者 A 没有动。既然力总是以作用力与反作用力的形式成对出现，请解释滑冰者 A 为什么没有动？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "A 对 B 的力和 B 对 A 的反作用力大小相等、方向相反，所以 B 向后推 A 的力与 A 向前推 B 的力一样大。然而，一个物体动不动，取决于作用在该物体上的合外力，而不是一对力中的某一个力。B 对 A 的推力只是作用在 A 身上的力之一。她站稳了，冰刀扎进冰里，冰对她施加一个同样大小的向前的力。作用在她身上的力相加为零，所以她的加速度为零，她留在原地。没有任何东西与 B 受到的推力相平衡，所以他所受的合外力使他获得 5.0 m/s$^2$ 的加速度。这一对力是相等的；两名滑冰者的加速度却不必相等。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1870798",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "different-systems",
+   "prompt": "河中的水流对漂在河里的一个气球施加 9.0 N 的力。风对气球施加 13.0 N 的力，方向与水流的力相反。请画出受力图，表示作用在气球上的各个力。利用你的受力图，预测气球会发生什么。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "<figure class=\"photo\"><img src=\"/media/ch04/Figure_04_04_03.jpg\" alt=\"一幅受力图，表示作用在中心一点上的四个力。Fw（13.0 N）指向左，Fc（9.0 N）指向右，Fb 指向上，Fg 指向下。\"></figure>该图由中心的一个黑点、两个指向上（F_b）和下（F_g）的红色小箭头，以及两个指向右（F_c = 9.0 N）和左（F_w = 13.0 N）的红色长箭头组成。图中，$F_g$ 表示气球所受的重力，$F_b$ 表示浮力。这两个力大小相等、方向相反。$F_c$ 表示水流的力。$F_w$ 表示风的力。气球所受的合力为 $F_w - F_c = 4.0$ N，气球将沿风吹的方向加速。"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id946101",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "对光滑冰面上的一个物体施加一个力使它加速。当这个力停止作用时，下列哪一项将成立？（假设摩擦力为零。）<ol type=\"a\"><li>物体的加速度变为零。</li><li>物体的速率变为零。</li><li>物体的加速度以恒定的变化率继续增大。</li><li>物体仍在加速，但方向相反。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "牛顿第二定律说，物体的加速度等于它所受的合外力除以它的质量。外加的力作用时，物体加速。当这个力停止作用且没有摩擦力时，物体在水平方向上不再受任何力，合外力为零，加速度变为零。物体并不会停下来。没有任何东西改变它的速度，它就以力结束时的速率继续运动，正如牛顿第一定律对不受合外力的物体所说的那样。四项陈述中的第一项成立。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1651805",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "third-law",
+   "prompt": "跳伞者的下落由两个相反的力决定。一个 539 N 的重力作用在跳伞者身上。2 s 后，她打开降落伞，受到 615 N 的空气阻力。10 s 后，跳伞者下落的速率是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 8.4,
+    "unit": "m/s",
+    "hint": "由作用在她身上的重力求出她的质量，然后把最初的 2 s 和最后的 8 s 看作两段恒定加速度的运动，每一段有各自的合外力。",
+    "solution": "由于 $m = \\kF/\\ka$，跳伞者的质量为 $539\\ \\text{N} / 9.8\\ \\text{m/s}^2 = 55\\ \\text{kg}$。在最初的 2 s 内，跳伞者以 9.8 m/s$^2$ 的加速度加速，所以 $\\kv = \\ka\\kt = (9.8\\ \\text{m/s}^2)(2\\ \\text{s}) = 19.6\\ \\text{m/s}$。她在 2 s 后的速率为 19.6 m/s。从 2 s 到 10 s，作用在跳伞者身上的合力是 539 N – 615 N，即 76 N，向上，所以 $\\ka = \\kF/m = -76\\ \\text{N} / 55\\ \\text{kg} = -1.4\\ \\text{m/s}^2$。由于 $\\kv = \\kvo + \\ka\\kt$，$\\kv = 19.6\\ \\text{m/s} + (-1.4\\ \\text{m/s}^2)(8\\ \\text{s}) = 8.4\\ \\text{m/s}$。在 10 s 时，跳伞者以 8.4 m/s 的速率落向地球。"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id1437308",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "一名乘务员在飞行中的飞机过道上推着一辆手推车。在确定手推车相对于飞机的加速度时，下列哪个因素是你不需要考虑的？<ol type=\"a\"><li>手推车车轮的摩擦力。</li><li>乘务员的脚推地板的力。</li><li>飞机的速度。</li><li>手推车中物品的质量。</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "手推车相对于飞机的加速度，由所研究的系统所受的合外力及其质量得出。乘务员的脚对地板施加的力是有关系的，因为地板为反作用于它而向前推她；手推车车轮的摩擦力是有关系的，因为它阻碍运动；手推车中物品的质量是有关系的，因为它是被加速的质量的一部分。飞机的速度不属于这些因素。以恒定速度飞行的飞机是一个参考系，牛顿定律在其中与在地面上完全一样成立，恒定的速度既不改变力，也不改变加速度。飞机的速度就是你不需要的那个因素。"
+   }
+  },
+  {
+   "id": "ap9",
+   "source_id": "fs-id1045665",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "一名园艺工人正推着一辆装满土的独轮手推车缓缓下山。请确定你要分析的系统，并列出为计算独轮手推车的加速度而需要计入的所有力。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "该系统包括园艺工人和独轮手推车及其内装物。需要计入的重要的力有：独轮手推车的重力，园艺工人的重力，独轮手推车和园艺工人的法向力，园艺工人推地面的力和地面推回园艺工人的大小相等的力，以及独轮手推车车轮中的任何摩擦力。"
+   }
+  },
+  {
+   "id": "ap10",
+   "source_id": "fs-id1461301",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "两名滑水者，质量分别为 48 kg 和 61 kg，正准备被同一艘船拖着走。当船加速时，滑水者抓着的绳子随船一起加速，并对滑水者施加 290 N 的合力。滑水者将以多大的加速度运动？<ol type=\"a\"><li>10.8 m/s$^2$</li><li>2.7 m/s$^2$</li><li>6.0 m/s$^2$ 和 4.8 m/s$^2$</li><li>5.3 m/s$^2$</li></ol>",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两名滑水者被同一根绳子拖在同一艘船后面，所以他们作为一个整体加速，所研究的系统就是他们两人合在一起。他们的总质量为 $48\\ \\text{kg} + 61\\ \\text{kg} = 109\\ \\text{kg}$，该系统所受的合外力就是绳子施加的 290 N。于是，牛顿第二定律给出 $\\ka = \\kFnet/m = 290\\ \\text{N} / 109\\ \\text{kg} = 2.7\\ \\text{m/s}^2$，两名滑水者的加速度都是这个值。滑水者通过绳子相互施加的力对这个系统来说是内力，会相互抵消，所以它们从不进入计算。这样算出的是四个值中的第二个。"
+   }
+  },
+  {
+   "id": "ap11",
+   "source_id": "fs-id1433607",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "一名花样滑冰运动员的质量为 40 kg，她的搭档的质量为 50 kg。她用 120 N 的力蹬冰，使她和她的搭档向前运动。求这一对运动员的加速度。假设所有阻碍运动的力，例如摩擦力和空气阻力，总共为 5.0 N。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 1.28,
+    "unit": "m/s²",
+    "hint": "把两名滑冰运动员合起来作为所研究的系统，这样他们之间的力就是内力，会相互抵消。",
+    "solution": "发生加速的系统是两名花样滑冰运动员合在一起。合力 = $120\\ \\text{N} - 5.0\\ \\text{N} = 115\\ \\text{N}$。总质量 = $40\\ \\text{kg} + 50\\ \\text{kg} = 90\\ \\text{kg}$。利用牛顿第二定律，我们有 $\\ka = \\kF/m = 115\\ \\text{N} / 90\\ \\text{kg} = 1.28\\ \\text{m/s}^2$。这一对运动员以 1.28 m/s$^2$ 的加速度向前运动。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1740619",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "choosing-a-system",
+   "prompt": "从战列舰上发射的一枚 1100 kg 的炮弹，若其加速度为 $2.40 \\times 10^{4}\\ \\text{m/s}^2$，则它所受的合外力是多少？炮弹对战舰施加的力的大小是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "the net external force on the shell",
+      "value": 26400000.0,
+      "unit": "N",
+      "hint": "牛顿第二定律直接由炮弹的质量和加速度给出作用在炮弹上的合外力。"
+     },
+     {
+      "part": "the magnitude of the force on the ship",
+      "value": 26400000.0,
+      "unit": "N",
+      "hint": "炮弹和战舰是第三定律中的一对物体，所以这两个力大小相等、方向相反。"
+     }
+    ],
+    "solution": "炮弹所受的力：$2.64 \\times 10^{7}\\ \\text{N}$。炮弹对战舰施加的力 $= -2.64 \\times 10^{7}\\ \\text{N}$，由牛顿第三定律得出。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "newtons-first-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq2",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq3",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "thrust"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq5",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "newtons-third-law",
+   "weight": 2
+  },
+  {
+   "exercise": "cq6",
+   "concept": "internal-forces-cancel"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "action-reaction-pairs",
+   "weight": 2
+  },
+  {
+   "exercise": "ap1",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "external-force"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "ap3",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "net-external-force",
+   "weight": 2
+  },
+  {
+   "exercise": "ap5",
+   "concept": "free-body-diagram"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap6",
+   "concept": "newtons-first-law"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "newtons-second-law",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "weight",
+   "weight": 2
+  },
+  {
+   "exercise": "ap7",
+   "concept": "v-from-at",
+   "weight": 2
+  },
+  {
+   "exercise": "ap8",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "net-external-force"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "reference-frame",
+   "weight": 2
+  },
+  {
+   "exercise": "ap9",
+   "concept": "system-of-interest"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "action-reaction-pairs"
+  },
+  {
+   "exercise": "ap9",
+   "concept": "free-body-diagram",
+   "weight": 2
+  },
+  {
+   "exercise": "ap10",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "internal-forces-cancel"
+  },
+  {
+   "exercise": "ap10",
+   "concept": "system-of-interest",
+   "weight": 2
+  },
+  {
+   "exercise": "ap11",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "internal-forces-cancel"
+  },
+  {
+   "exercise": "ap11",
+   "concept": "system-of-interest",
+   "weight": 2
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-second-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "newtons-third-law"
+  },
+  {
+   "exercise": "p1",
+   "concept": "action-reaction-pairs",
+   "weight": 2
+  }
+ ],
+ "referents": [
+  {
+   "id": "swimmer",
+   "label": "游泳者",
+   "figures": [
+    "sim-swimmer"
+   ]
+  },
+  {
+   "id": "wall",
+   "label": "泳池池壁",
+   "figures": [
+    "sim-swimmer"
+   ]
+  },
+  {
+   "id": "rocket",
+   "label": "火箭",
+   "figures": [
+    "sim-rocket"
+   ]
+  },
+  {
+   "id": "gas",
+   "label": "尾气",
+   "figures": [
+    "sim-rocket"
+   ]
+  },
+  {
+   "id": "professor",
+   "label": "教授",
+   "figures": [
+    "sim-cart"
+   ]
+  },
+  {
+   "id": "cart",
+   "label": "器材手推车",
+   "figures": [
+    "sim-cart"
+   ]
+  },
+  {
+   "id": "floor",
+   "label": "地板",
+   "figures": [
+    "sim-cart"
+   ]
+  }
+ ]
+}
