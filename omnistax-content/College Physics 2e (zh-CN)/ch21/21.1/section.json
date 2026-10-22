@@ -1,0 +1,1336 @@
+{
+ "id": "21.1",
+ "module": "m42356",
+ "chapter": "21",
+ "title": "电阻器的串联与并联",
+ "short": "电阻器的串联与并联",
+ "lead": "几乎每个电路中都有不止一个电阻器，把它们连接起来的两种最简单的方式，一是沿同一条通路一个接一个地连接，二是各自占一条通路连在同样的两点之间。每一种连接，以及混合这两种连接的任何网络，都化成一个等效<span data-concept=\"resistance\">电阻</span>，本节最后讲<span data-ref=\"resistor-1\">导线</span>的<span data-type=\"resistance\">电阻</span>对它们所供电的<span data-ref=\"resistor-2\">灯泡</span>有什么影响。",
+ "objectives": [
+  "画出含有并联和串联电阻器的电路。",
+  "利用欧姆定律计算电流通过电阻器时的电压降。",
+  "比较串联电阻器和并联电阻器的总电阻的计算方式。",
+  "解释为什么并联电路的总电阻小于该电路中各电阻器的最小电阻。",
+  "计算含有串联和并联混合连接的电阻器的电路的总电阻。"
+ ],
+ "summary_html": "<ul><li>电阻器串联的电路的总<span data-concept=\"resistance\">电阻</span>等于各个<span data-concept=\"resistance\">电阻</span>之和：$\\kRess = \\kResone + \\kRestwo + \\kResthree + \\ldots$。</li><li>串联电路中的每个电阻器通过的<span data-concept=\"electric-current\">电流</span>大小相同。</li><li>串联中每个电阻器两端的电压降，或<span data-concept=\"power\">功率</span>耗散，各不相同，它们的总和等于电源的输入。</li><li>电阻器并联的电路的总<span data-concept=\"resistance\">电阻</span>小于其中任何一个元件的最小<span data-concept=\"resistance\">电阻</span>，可用下式确定：$\\frac{1}{\\kResp} = \\frac{1}{\\kResone} + \\frac{1}{\\kRestwo} + \\frac{1}{\\kResthree} + \\ldots$。</li><li>并联电路中的每个电阻器上所加的都是电源的完整<span data-concept=\"potential-difference\">电压</span>。</li><li>并联电路中流过每个电阻器的<span data-concept=\"electric-current\">电流</span>各不相同，取决于其<span data-concept=\"resistance\">电阻</span>。</li><li>如果电阻器的连接较复杂，是串联与并联的组合，则可以把它化简为单个等效<span data-concept=\"resistance\">电阻</span>：先判定其各个部分是串联还是并联，把每一部分化简为它的等效电阻，再继续化简，直到最终得到单个<span data-concept=\"resistance\">电阻</span>。</li></ul>",
+ "notes": "书中没有给出答案的六道习题略去，属于其中一道的输电塔照片也一并略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercises_lead": "从图中取得的数据可以认为精确到三位有效数字。",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。十三道习题中有七道给出了答案，在此收入；其余六道略去：100 Ω、2.50 kΩ 和 4.00 kΩ 电阻器的串联电阻和并联电阻，一个 15 A 电路上的烤面包机、煎锅和台灯，48.0 V 电池上两个电阻器的电流和功率，组合电路中 $R_3$ 所耗散的功率，输电线路上的陶瓷绝缘子，以及不合理的并联电阻对。每道思考题都附有标明为 AI 撰写的建议思路，而不是评分答案。五道 AP 题在原书中都给出了答案：三道是评分的选择题，多问的一题是开放式题目，以书中自己的答案作为其解答，要求读者在四个选项中选出两个的那一题也因同样的理由是开放式题目，因为只接受一个选择的卡片不能接受两个。",
+ "figures": [
+  {
+   "id": "sim-four-resistors",
+   "kind": "sim",
+   "number": "21.2",
+   "originals": [
+    "/media/ch21/Figure_22_01_01.jpg"
+   ],
+   "original_caption": "（a）电阻器的串联。（b）电阻器的并联。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the reason; headline already gives the total"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-three-resistors",
+   "kind": "sim",
+   "number": "21.3",
+   "folds": [
+    "21.4",
+    "21.6"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_01_02.jpg",
+    "/media/ch21/Figure_22_01_04.jpg",
+    "/media/ch21/Figure_22_01_06.jpg"
+   ],
+   "original_caption": "（图 21.3）三个电阻器串联在一个电池上（左），以及与之等效的单个电阻即串联电阻（右）。（图 21.4）（a）三个电阻器并联在一个电池上，以及与之等效的单个电阻即并联电阻。（b）住宅中的供电布置。（来源：Dmitry G, Wikimedia Commons）（图 21.6）这三个电阻器接在一个电压源上，使 R_2 和 R_3 相互并联，而这一并联组合再与 R_1 串联。",
+   "widths": [
+    300,
+    500,
+    350
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "drop and current labels moved off the cell sign, arrow and wire; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-reduce-network",
+   "kind": "sim",
+   "number": "21.5",
+   "originals": [
+    "/media/ch21/Figure_22_01_05.jpg"
+   ],
+   "original_caption": "这个由七个电阻器组成的组合既有串联部分，也有并联部分。每一部分都被判定出来并化简为一个等效电阻，这些等效电阻再继续化简，直到得到单个等效电阻。",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "resistance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "rows of the second pair spread; headline symbols typeset; notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-dimming-light",
+   "kind": "sim",
+   "number": "21.7",
+   "originals": [
+    "/media/ch21/Figure_22_01_07.jpg"
+   ],
+   "original_caption": "为什么大型用电器一接通，灯就会变暗？答案是，用电器的电动机所取用的大电流在导线中造成了显著的 IR 压降，使灯两端的电压降低。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage",
+    "power"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the fraction of power the bulb keeps"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "series",
+   "concept": "series-connection",
+   "verb": "introduces"
+  },
+  {
+   "span": "series",
+   "concept": "series-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "series",
+   "concept": "voltage-divides-in-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-connection",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "current-divides-in-parallel",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-resistance-least",
+   "verb": "introduces"
+  },
+  {
+   "span": "combinations",
+   "concept": "reduce-resistor-network",
+   "verb": "introduces"
+  },
+  {
+   "span": "practical",
+   "concept": "wire-resistance-ir-drop",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "series-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel",
+   "concept": "series-connection",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "series-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "parallel-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "voltage-divides-in-series",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "current-divides-in-parallel",
+   "verb": "uses"
+  },
+  {
+   "span": "practical",
+   "concept": "reduce-resistor-network",
+   "verb": "uses"
+  },
+  {
+   "span": "practical",
+   "concept": "series-connection",
+   "verb": "uses"
+  },
+  {
+   "span": "practical",
+   "concept": "voltage-divides-in-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "practical",
+   "concept": "parallel-resistance-least",
+   "verb": "reinforces"
+  },
+  {
+   "span": "connections",
+   "concept": "resistor",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2645156",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "practical"
+   },
+   "cite": "practical",
+   "prompt": "任意一种电阻器的组合都可以分解为串联和并联的组合吗？看看你能不能画出一个不能分解为串联与并联组合的电阻器电路图。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "不能，有许多连接电阻器的方式不是串联与并联的组合，包括回路和节点。在这样的情形中，将在“基尔霍夫定律”一节中介绍的基尔霍夫定律，可以用来分析电路。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id3009508",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "开关的电阻是可变电阻，闭合时几乎为零，断开时极大，它与它所控制的器件串联。解释下图中的开关在断开和闭合时对电流有什么影响。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "开关与它所控制的电阻串联，所以它的电阻直接加到电路的其余部分上。开关闭合时，它的电阻几乎为零，总电阻非常接近 $\\kRes + \\krint$，电流就是电源所能驱动的完整电流 $\\kIcur = \\kemf/(\\kRes + \\krint)$。开关断开时，它的电阻极大，而串联电阻相加，所以电路的总电阻也变得极大。于是欧姆定律给出的电流比任何有意义的电流都小，这就是所谓电路已关断的含义。"
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_08.jpg",
+    "alt": "图中显示一个电路，其中电压源及其内阻（小写 r）与一个电阻 R 和一个开关串联。",
+    "caption": "开关通常与一个电阻和电压源串联。理想情况下，开关闭合时电阻几乎为零，断开时电阻极大。（请注意，在这幅图中，花体 E 表示电池的电压（或电动势）。）"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3051530",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "下图中断开的开关两端的电压是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "几乎整个电源的电动势都出现在它两端。断开的开关和电阻 $\\kRes$ 串联，所以它们两端的电压相加等于电动势减去电源内部的小压降，而这两个电压与两个电阻成正比。开关的电阻比 $\\kRes$ 大得多，所以它几乎分得全部的这一电压，而 $\\kRes$ 两端的压降几乎为零，因为通过它的电流几乎为零。因此断开的开关两端的读数非常接近电池的电动势。"
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_08.jpg",
+    "alt": "图中显示一个电路，其中电压源及其内阻（小写 r）与一个电阻 R 和一个开关串联。",
+    "caption": "开关通常与一个电阻和电压源串联。理想情况下，开关闭合时电阻几乎为零，断开时电阻极大。（请注意，在这幅图中，花体 E 表示电池的电压（或电动势）。）"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3177845",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "断开的开关两端有电压，如下图所示。那么，为什么断开的开关所耗散的功率很小？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为功率是电压与电流的乘积，而变得微乎其微的是电流。断开的开关两端几乎有整个电动势，但电路是断开的，所以 $\\kIcur$ 几乎为零，$\\kP = \\kIcur\\kV$ 也几乎为零。由 $\\kP = \\kV^2/\\kRes$ 也得出同样的结论：电压很大，但断开的开关的电阻更大，除以它就几乎什么也不剩了。"
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_08.jpg",
+    "alt": "图中显示一个电路，其中电压源及其内阻（小写 r）与一个电阻 R 和一个开关串联。",
+    "caption": "开关通常与一个电阻和电压源串联。理想情况下，开关闭合时电阻几乎为零，断开时电阻极大。（请注意，在这幅图中，花体 E 表示电池的电压（或电动势）。）"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id2453210",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "为什么闭合的开关（如下图所示）所耗散的功率很小？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "因为这次变得微乎其微的是电压。闭合的开关通过电路的全部电流，但它的电阻几乎为零，所以它两端的电压 $\\kV = \\kIcur\\kRes$ 也几乎为零，$\\kP = \\kIcur\\kV$ 就很小。写成 $\\kP = \\kIcur^2\\kRes$ 时，同样的事情一目了然：电流是普通的，电阻几乎为零，所以几乎没有功率被耗散。开关之所以有用，正是因为它在两种状态下都浪费很少的功率。"
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_08.jpg",
+    "alt": "图中显示一个电路，其中电压源及其内阻（小写 r）与一个电阻 R 和一个开关串联。",
+    "caption": "开关通常与一个电阻和电压源串联。理想情况下，开关闭合时电阻几乎为零，断开时电阻极大。（请注意，在这幅图中，花体 E 表示电池的电压（或电动势）。）"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id2590884",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "prompt": "物理实验室里的一名学生把灯泡、电池和开关错接成了下图所示的样子。解释为什么开关断开时灯泡亮，而开关闭合时灯泡熄灭。（不要尝试这样做——这对电池很伤！）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "开关被接成与灯泡并联，而不是与它串联。开关断开时，它所在的支路没有电流，所以电池驱动的全部电流都通过灯泡，灯泡亮。开关闭合时，两条支路是灯泡和一条电阻几乎为零的通路，而并联组合的电阻小于其中最小的一个，所以几乎全部电流都走开关而不走灯泡。于是这对并联元件两端的电压几乎为零，灯泡熄灭。与此同时，电池遇到的电阻几乎为零，这就是为什么这样做对电池很伤。"
+   },
+   "figure": {
+    "src": "/media/ch21/Figure_22_01_09.jpg",
+    "alt": "这幅图显示一个电路，其中有电压源及其内阻（小写 r）。一个电阻 R 和一个断开的开关并联在它上面。",
+    "caption": "接线错误使这个开关与 R 所代表的器件并联。（请注意，在这幅图中，花体 E 表示电池的电压（或电动势）。）"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1927541",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "已知电击的严重程度取决于通过你身体的电流大小，如果被像烤面包机加热元件这样的电阻电击，你愿意与它串联还是并联？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "与它串联。串联时，加热元件的电阻加在你身体的电阻上，总电阻比任何一个都大，通过你的电流比原来小。并联时，你的身体两端是电源的完整电压，不管加热元件怎样，通过你的电流都只由该电压和你自己的电阻决定，电流达到可能的最大值。因为电击的严重程度随电流而定，所以应当选择串联。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id3106050",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "practical",
+   "prompt": "如果汽车里的导线是超导体，那么发动汽车的发动机时，前照灯还会变暗吗？（不要忽略电池的内阻。）请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它们仍然会变暗，只是比实际变暗得少。超导导线会消除导线中的 $\\kIcur\\kRes$ 压降，那是电压损失的两个地方之一，但电池自身的内阻仍然与电池供电的一切串联。起动机取用很大的电流，这个电流流过内阻，端电压下降 $\\kIcur\\krint$。前照灯接在电池两端，所以它们得到的是降低了的电压，于是变暗。"
+   }
+  },
+  {
+   "id": "cq8",
+   "source_id": "fs-id3177055",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "有些节日彩灯串为了节省接线成本而采用串联。老式的一种所用的灯泡烧坏时会像断开的开关一样切断电连接。如果有一个这样的灯泡烧坏了，其余的会怎样？如果这样的一串灯在 120 V 下工作，有 40 个相同的灯泡，每个灯泡的正常工作电压是多少？新式的所用的灯泡烧坏时会像闭合的开关一样短路。如果有一个这样的灯泡烧坏了，其余的会怎样？如果这样的一串灯在 120 V 下工作，剩下 39 个相同的灯泡，那么每个灯泡的工作电压是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "一个灯泡烧坏而断路，就切断了电流仅有的一条通路，所以这一串中的其他灯泡也都随之熄灭。四十个灯泡都正常工作时，它们平分 120 V，因为串联的电阻器按电阻的比例分担电源电压，而这些灯泡是相同的，所以每个灯泡两端为 120 V ÷ 40 = 3.0 V。一个灯泡烧坏而短路，通路并未断开，所以其他灯泡仍然亮着；120 V 现在由剩下的 39 个分担，每个灯泡两端为 120 V ÷ 39 ≈ 3.1 V。因此每个幸存的灯泡都比设计时运行得稍热一些，这就是这样的一串灯会一个接一个坏掉的原因。"
+   }
+  },
+  {
+   "id": "cq9",
+   "source_id": "fs-id3119307",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "如果把额定功率为 60 W 和 100 W 的两个家用灯泡串联到家用电源上，哪一个会更亮？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "60 W 的灯泡会更亮。灯泡的额定值是它在完整家用电压下耗散的功率，而 $\\kP = \\kV^2/\\kRes$，所以 60 W 的灯泡是电阻较大的那一个。串联时二者通过相同的电流，各自耗散的功率为 $\\kP = \\kIcur^2\\kRes$，电阻较大的那个耗散得多。因此额定功率较低的灯泡分得较大份额的电压，在两个灯泡中发光更亮，而二者都比各自单独使用时暗。"
+   }
+  },
+  {
+   "id": "cq10",
+   "source_id": "fs-id3177962",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "prompt": "假设你在做一个物理实验，要求在电路中接入一个电阻器，但提供的所有电阻器的阻值都比要求的值大。你会怎样连接现有的电阻来设法得到所要求的较小值？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "把它们并联。并联组合的电阻总是小于其中最小的一个，因为每多加一条支路，就给电流多一条通路，从而使总电阻降低，而 $1/\\kResp$ 是各倒数之和。因此手头的两个或更多电阻器，并排接在同样的两点之间，就会低于其中任何一个的阻值，再增加支路会使组合的电阻进一步下降，直到达到实验所要求的值。"
+   }
+  },
+  {
+   "id": "cq11",
+   "source_id": "fs-id2442330",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "第二次世界大战之前，有些收音机通过一根具有可观电阻的“电阻线”获得电力。这样的电阻线把电压降低到收音机电子管等所需的水平，并省去了一个变压器的开销。解释为什么收音机工作时，电阻线会发热并浪费能量。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电阻线是与收音机串联的一个电阻器，它靠自己分走一部分供电电压来完成任务。收音机的电流通过它，所以它两端有电压 $\\kV = \\kIcur\\kRes$，并耗散功率 $\\kP = \\kIcur^2\\kRes$。这份能量到不了收音机，而是用来加热电阻线，这就是电阻线发热的原因。电阻线为了把电压降得足够低所需要的电阻越大，它以这种方式浪费的供电能量就越多。"
+   }
+  },
+  {
+   "id": "cq12",
+   "source_id": "fs-id1615512",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "prompt": "有些灯泡有三个功率挡（不含零），这是由多根分别开关、并联连接的灯丝实现的。要有三个功率挡，至少需要多少根灯丝？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "两根。两根灯丝电阻不同时，有三种开关方式可以产生功率：只开第一根，只开第二根，两根都开。每根灯丝两端都是完整的供电电压，所以各自耗散 $\\kV^2/\\kRes$，两根都开时两个功率相加，给出第三个更大的挡位。一根灯丝只能给出一个挡位，所以两根是最少够用的。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1825729",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M1_S01_img.jpg",
+    "alt": "电路画成一个矩形，另有一条连接顶部和底部的线，线上有电阻器 Y。电路顶部在 Y 电阻器所在线的左边有一个 2 V 电池，电路左边标有一个点 P，然后是一个 14 V 电池，底部在 Y 电阻器所在线的左边有一个电阻器 X，右边有一个电阻器 Z。",
+    "caption": "一个含有两个电池和三个电阻均为 R 的相同电阻器的电路。"
+   },
+   "prompt": "图中所示的电路含有两个电池和三个电阻相同的电阻器，阻值均为 $\\kRes$。对电路作下列哪些改变会使 $P$ 点处的电流增大？选出两个答案。（a）把 14 V 电池的接线反接。（b）去掉 2 V 电池，并接上导线使左边的回路闭合。（c）重新安排电阻器，使三个全部串联。（d）去掉含电阻器 $Z$ 的支路。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）、（b）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id2716433",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "在一个电路中，六个 1.6 kΩ 电阻器的并联组合与四个 2.4 kΩ 电阻器的并联组合串联。如果电源电压为 24 V，其中一个 2.4 kΩ 电阻器中的电流占总电流的百分之几？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "10%",
+     "12%",
+     "20%",
+     "25%"
+    ],
+    "correct": 3,
+    "generated_by": "source",
+    "hint": "电源驱动的全部电流都到达这四个电阻器一组，四个相同的电阻器并联时两端电压相同，因而各自通过的电流彼此相同。",
+    "solution": "（d）"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1635797",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "如果把上一题中的电路改动一下，去掉一些 1.6 kΩ 的电阻器，电路中的总电流为 24 mA。去掉了多少个电阻器？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "correct": 1,
+    "hint": "24 V 电源上的总电流为 24 mA，意味着整个电路合起来为 1.0 kΩ，而四个 2.4 kΩ 电阻器一组已经占去其中的 0.6 kΩ。",
+    "solution": "（b）"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2337395",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "figure": {
+    "src": "/media/ch21/CNX_APPhysics_21_M1_S02_img.jpg",
+    "alt": "图示电路的顶部和底部都没有元件，左边是一个电池，右边是一个 2R 电阻器。另外，在电路左右两边之间有一个 R 电阻器连接电路的顶部和底部。",
+    "caption": "两个电阻分别为 R 和 2R 的电阻器，接在一个电压源上。"
+   },
+   "prompt": "如图所示，两个电阻分别为 $\\kRes$ 和 $2\\kRes$ 的电阻器接在一个电压源上。如果 $\\kRes$ 中耗散的功率为 10 W，$2\\kRes$ 中耗散的功率是多少？",
+   "answer": {
+    "type": "choice",
+    "options": [
+     "1 W",
+     "2.5 W",
+     "5 W",
+     "10 W"
+    ],
+    "correct": 2,
+    "generated_by": "source",
+    "hint": "每个电阻器都直接从电源的一个端子连到另一个端子，所以两端都是完整的电源电压，而在电压一定时功率为 $\\kP = \\kV^2/\\kRes$。",
+    "solution": "（c）"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1843350",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "在一个电路中，两个 20 Ω 和一个 10 Ω 电阻器的并联组合与一个 4 Ω 电阻器串联。电源电压为 36 V。（a）找出电流最大的电阻器。（b）找出电压降最大的电阻器。（c）求每个电阻器中耗散的功率，从而求出所有电阻器中耗散的总功率。再求电源的输出功率。它们相等吗？请论证你的答案。（d）如果在 4 Ω 电阻器上再串联一个 3 Ω 电阻器，问题（a）和（b）的答案会有不同吗？如果会，请对新的电阻器组合重做这些问题。（e）如果所有电阻器的阻值和电源电压都加倍，对电流有什么影响？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）4 Ω 电阻器；（b）20 Ω、20 Ω 和 10 Ω 电阻器的组合；（c）每个 20 Ω 电阻器中 20 W，10 Ω 电阻器中 40 W，4 Ω 电阻器中 64 W，电阻器中共 144 W，输出功率为 144 W，是的，它们相等（能量守恒定律）；（d）（a）问为 4 Ω 和 3 Ω，（b）问没有变化；（e）没有影响，电流保持不变。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1599495",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "（a）十个 $275\\text{-}Ω$ 电阻器串联，电阻是多少？（b）并联呢？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 2.75,
+      "unit": "kΩ",
+      "hint": "串联电阻直接相加，十个相同的电阻加起来是其中一个的十倍。"
+     },
+     {
+      "part": "(b)",
+      "value": 27.5,
+      "unit": "Ω",
+      "hint": "十个相同的电阻器并联，合起来是其中一个的十分之一，因为十个倒数相加。"
+     }
+    ],
+    "solution": "（a）2.75 kΩ （b）27.5 Ω"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id3017617",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "把一个 $36.0\\text{-}Ω$、一个 $50.0\\text{-}Ω$ 和一个 $700\\text{-}Ω$ 的电阻器连接在一起，能得到的最大和最小电阻各是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "largest",
+      "value": 786.0,
+      "unit": "Ω",
+      "hint": "串联相加，所以把三个一个接一个地接起来得到最大电阻。"
+     },
+     {
+      "part": "smallest",
+      "value": 20.3,
+      "unit": "Ω",
+      "hint": "并联低于其中最小的，所以把三个并排接起来得到最小电阻。"
+     }
+    ],
+    "solution": "（a）786 Ω （b）20.3 Ω"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1927186",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "你的汽车的 30.0 W 前照灯和 2.40 kW 起动机通常在 12.0 V 的系统中并联。如果把一个前照灯和起动机串联到 12.0 V 的电池上，它们共消耗多少功率？（忽略电路中的其他电阻，以及这两个器件电阻的任何变化。）",
+   "answer": {
+    "type": "number",
+    "value": 29.6,
+    "unit": "W",
+    "generated_by": "source",
+    "hint": "利用 $\\kP = \\kV^2/\\kRes$，由每个器件在 12.0 V 下的额定功率求出它的电阻，把两个电阻相加，再求同一个 12.0 V 加在这个总和上所提供的功率。",
+    "solution": "29.6 W"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1609224",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-combination",
+   "prompt": "参照结合串联与并联电路的例题和图 21.6，用下面两种不同的方法计算 $\\kIcurthree$：（a）由已知的 $\\kIcur$ 和 $\\kIcurtwo$ 的值；（b）对 $\\kResthree$ 用欧姆定律。在两问中都要明确显示你是如何遵循串联与并联电阻器的解题策略中的步骤的。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 0.74,
+      "unit": "A",
+      "hint": "两个支路电流相加等于到达节点的电流，所以 $\\kIcurthree = \\kIcur - \\kIcurtwo$。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.742,
+      "unit": "A",
+      "hint": "并联的一对电阻两端为 $\\kVp$，所以 $\\kIcurthree = \\kVp/\\kResthree$。"
+     }
+    ],
+    "solution": "（a）0.74 A （b）0.742 A"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2666378",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "practical",
+   "prompt": "参阅图 21.7，以及关于大型用电器接通时灯变暗的讨论。（a）已知电压源为 120 V，导线电阻为 $0.400\\ Ω$，灯泡的标称功率为 75.0 W，如果电动机接通时共有 15.0 A 通过导线，灯泡将耗散多少功率？假设灯泡电阻的变化可以忽略。（b）电动机消耗的功率是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 67.7,
+      "unit": "W",
+      "hint": "导线中的 15.0 A 使 120 V 中降掉 $\\kIcur\\kResone$，其余的留给灯泡；灯泡的电阻由它在 120 V 下的 75.0 W 额定功率求得。"
+     },
+     {
+      "part": "(b)",
+      "value": 1.64,
+      "unit": "kW",
+      "hint": "电动机取用灯泡没有取走的那部分电流，它两端的电压与灯泡相同，都是降低后的电压。"
+     }
+    ],
+    "solution": "（a）67.7 W （b）1.64 kW"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3051842",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "combinations",
+   "prompt": "证明：若把两个电阻器 $\\kResone$ 和 $\\kRestwo$ 组合起来，且其中一个比另一个大得多（$\\kResone \\gg \\kRestwo$）：（a）它们的串联电阻非常接近较大的电阻 $\\kResone$。（b）它们的并联电阻非常接近较小的电阻 $\\kRestwo$。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）$\\kRess = \\kResone + \\kRestwo$，所以当 $\\kResone \\gg \\kRestwo$ 时 $\\kRess \\approx \\kResone$。（b）$\\frac{1}{\\kResp} = \\frac{1}{\\kResone} + \\frac{1}{\\kRestwo} = \\frac{\\kResone + \\kRestwo}{\\kResone\\kRestwo}$，所以当 $\\kResone \\gg \\kRestwo$ 时 $\\kResp = \\frac{\\kResone\\kRestwo}{\\kResone + \\kRestwo} \\approx \\frac{\\kResone\\kRestwo}{\\kResone} = \\kRestwo$。"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3290888",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "不合理的结果。两个电阻器，其中一个的电阻为 $900\\ \\text{k}Ω$，串联后得到的总电阻为 $0.500\\ \\text{M}Ω$。（a）第二个电阻的值是多少？（b）这一结果有什么不合理之处？（c）哪些假设不合理或不自洽？",
+   "answer": {
+    "type": "number",
+    "value": -400.0,
+    "unit": "kΩ",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "串联电阻相加，所以第二个电阻等于所给的总电阻减去已知的那一个。",
+    "solution": "（a）$-400\\ \\text{k}Ω$。（b）电阻不可能是负的。（c）说串联电阻小于其中一个电阻器，但它必须大于其中任何一个电阻器。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "series-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "voltage-divides-in-series"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "series-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "parallel-connection"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "parallel-resistance-least",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "parallel-connection",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "wire-resistance-ir-drop"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "voltage-divides-in-series"
+  },
+  {
+   "exercise": "cq8",
+   "concept": "series-connection",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "series-connection"
+  },
+  {
+   "exercise": "cq9",
+   "concept": "voltage-divides-in-series",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "cq10",
+   "concept": "parallel-resistance-least",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "wire-resistance-ir-drop"
+  },
+  {
+   "exercise": "cq11",
+   "concept": "series-connection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "parallel-connection"
+  },
+  {
+   "exercise": "cq12",
+   "concept": "parallel-resistance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "current-divides-in-parallel",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "current-divides-in-parallel",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "parallel-resistance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "parallel-connection"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "parallel-resistance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "voltage-divides-in-series",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "current-divides-in-parallel",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "series-resistance"
+  },
+  {
+   "exercise": "p1",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "p2",
+   "concept": "reduce-resistor-network"
+  },
+  {
+   "exercise": "p2",
+   "concept": "series-resistance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "parallel-resistance-least",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "series-resistance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "series-connection",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "current-divides-in-parallel"
+  },
+  {
+   "exercise": "p4",
+   "concept": "reduce-resistor-network",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "wire-resistance-ir-drop"
+  },
+  {
+   "exercise": "p5",
+   "concept": "reduce-resistor-network",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "series-resistance"
+  },
+  {
+   "exercise": "p6",
+   "concept": "parallel-resistance"
+  },
+  {
+   "exercise": "p7",
+   "concept": "series-resistance"
+  }
+ ],
+ "referents": [
+  {
+   "id": "resistor-1",
+   "label": "电阻器 R₁",
+   "figures": [
+    "sim-four-resistors",
+    "sim-three-resistors",
+    "sim-dimming-light"
+   ]
+  },
+  {
+   "id": "resistor-2",
+   "label": "电阻器 R₂",
+   "figures": [
+    "sim-four-resistors",
+    "sim-three-resistors",
+    "sim-dimming-light"
+   ]
+  },
+  {
+   "id": "resistor-3",
+   "label": "电阻器 R₃",
+   "figures": [
+    "sim-four-resistors",
+    "sim-three-resistors",
+    "sim-dimming-light"
+   ]
+  },
+  {
+   "id": "resistor-4",
+   "label": "电阻器 R₄",
+   "figures": [
+    "sim-four-resistors",
+    "sim-three-resistors"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "resistance-in-series",
+   "what": "串联时的总电阻",
+   "source": "《大学物理（第2版）》，21.1 电阻器的串联与并联",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\text{PE} = \\kq\\kV",
+       "src": "19.1"
+      },
+      {
+       "text": "电路中没有能量的其他来源，也没有能量的其他去处。",
+       "src": "21.1"
+      },
+      {
+       "text": "在给定的时间内，同样多的电荷 $\\kq$ 通过电池和每个电阻器，因为没有电容来储存电荷，也没有地方让电荷泄漏。",
+       "src": "21.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kq\\kV} = \\mk{a}{\\kq\\kVone} + \\mk{b}{\\kq\\kVtwo} + \\mk{c}{\\kq\\kVthree}",
+      "src": "21.1",
+      "uses": [
+       0,
+       1,
+       2
+      ],
+      "why": "电源提供的能量等于各电阻器耗散的能量。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV} = \\mk{a}{\\kVone} + \\mk{b}{\\kVtwo} + \\mk{c}{\\kVthree}",
+       "uses": []
+      }
+     ],
+     "src": "21.1"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kV = \\kIcur\\kRes",
+       "src": "20.2"
+      },
+      {
+       "text": "串联时电流必须依次通过每个电阻器，所以流过每个电阻器的是同一个电流 $\\kIcur$。",
+       "src": "21.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kV} = \\mk{a}{\\kVone} + \\mk{b}{\\kVtwo} + \\mk{c}{\\kVthree}",
+      "src": "21.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV} = \\mk{a}{\\kIcur\\kResone} + \\mk{b}{\\kIcur\\kRestwo} + \\mk{c}{\\kIcur\\kResthree}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kV} = \\mk{I}{\\kIcur}(\\mk{a}{\\kResone} + \\mk{b}{\\kRestwo} + \\mk{c}{\\kResthree})",
+       "uses": []
+      }
+     ],
+     "src": "21.1"
+    },
+    {
+     "assumes": [
+      {
+       "text": "等效的单个串联电阻 $\\kRess$ 从电源取用的电流与那三个电阻器相同。",
+       "src": "21.1"
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kV} = \\mk{I}{\\kIcur}\\mk{R}{\\kRess}",
+      "src": "21.1",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIcur}\\mk{R}{\\kRess} = \\mk{V}{\\kIcur(\\kResone + \\kRestwo + \\kResthree)}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{R}{\\kRess} = \\mk{V}{\\kResone + \\kRestwo + \\kResthree}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{\\kRess} = \\mk{V}{\\kResone + \\kRestwo + \\kResthree} + \\mk{n}{\\ldots}",
+       "uses": [],
+       "cap": "同样的推理对任意个串联的电阻器都成立。"
+      }
+     ],
+     "src": "21.1"
+    }
+   ]
+  },
+  {
+   "id": "resistance-in-parallel",
+   "what": "并联时的总电阻",
+   "source": "《大学物理（第2版）》，21.1 电阻器的串联与并联",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "电荷守恒：电源产生的电流等于通过各电阻器的电流之和。",
+       "src": "21.1"
+      },
+      {
+       "text": "每个电阻器都直接接在电源上，所以每个电阻器两端都是完整的电压 $\\kV$。",
+       "src": "21.1"
+      },
+      {
+       "tex": "\\kIcur = \\dfrac{\\kV}{\\kRes}",
+       "src": "20.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIcur} = \\mk{a}{\\kIcurone} + \\mk{b}{\\kIcurtwo} + \\mk{c}{\\kIcurthree}",
+      "src": "21.1",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\mk{a}{\\dfrac{\\kV}{\\kResone}} + \\mk{b}{\\dfrac{\\kV}{\\kRestwo}} + \\mk{c}{\\dfrac{\\kV}{\\kResthree}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\mk{V}{\\kV}\\left(\\mk{a}{\\dfrac{1}{\\kResone}} + \\mk{b}{\\dfrac{1}{\\kRestwo}} + \\mk{c}{\\dfrac{1}{\\kResthree}}\\right)",
+       "uses": []
+      }
+     ],
+     "src": "21.1"
+    },
+    {
+     "assumes": [
+      {
+       "text": "等效的单个电阻 $\\kResp$ 从电源取用的电流与那三个电阻器相同。",
+       "src": "21.1"
+      },
+      {
+       "tex": "\\kIcur = \\dfrac{\\kV}{\\kRes}",
+       "src": "20.2"
+      },
+      {
+       "step": 0
+      }
+     ],
+     "then": {
+      "tex": "\\mk{I}{\\kIcur} = \\dfrac{\\mk{V}{\\kV}}{\\mk{R}{\\kResp}}",
+      "src": "21.1",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{I}{\\kIcur} = \\mk{V}{\\kV}\\left(\\mk{R}{\\dfrac{1}{\\kResp}}\\right)",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{I}{\\kV\\left(\\dfrac{1}{\\kResone} + \\dfrac{1}{\\kRestwo} + \\dfrac{1}{\\kResthree}\\right)} = \\mk{V}{\\kV}\\left(\\mk{R}{\\dfrac{1}{\\kResp}}\\right)",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{R}{\\dfrac{1}{\\kResp}} = \\mk{I}{\\dfrac{1}{\\kResone} + \\dfrac{1}{\\kRestwo} + \\dfrac{1}{\\kResthree}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{R}{\\dfrac{1}{\\kResp}} = \\mk{I}{\\dfrac{1}{\\kResone} + \\dfrac{1}{\\kRestwo} + \\dfrac{1}{\\kResthree}} + \\mk{n}{\\ldots}",
+       "uses": [],
+       "cap": "对任意个并联的电阻器同样成立。"
+      }
+     ],
+     "src": "21.1"
+    }
+   ]
+  }
+ ]
+}

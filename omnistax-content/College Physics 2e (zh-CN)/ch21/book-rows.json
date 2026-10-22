@@ -1,0 +1,1225 @@
+{
+ "types": [],
+ "symbols": [
+  {
+   "sym": "emf",
+   "latex": "\\mathcal{E}",
+   "macro": "\\kemf"
+  },
+  {
+   "sym": "emf_one",
+   "latex": "\\mathcal{E}_1",
+   "macro": "\\kemfone"
+  },
+  {
+   "sym": "emf_two",
+   "latex": "\\mathcal{E}_2",
+   "macro": "\\kemftwo"
+  },
+  {
+   "sym": "emf_x",
+   "latex": "\\mathcal{E}_{\\text{x}}",
+   "macro": "\\kemfx"
+  },
+  {
+   "sym": "emf_s",
+   "latex": "\\mathcal{E}_{\\text{s}}",
+   "macro": "\\kemfs"
+  },
+  {
+   "sym": "V_p",
+   "latex": "V_{\\text{p}}",
+   "macro": "\\kVp"
+  },
+  {
+   "sym": "V_c",
+   "latex": "V_{\\text{c}}",
+   "macro": "\\kVc"
+  },
+  {
+   "sym": "V_zero",
+   "latex": "V_0",
+   "macro": "\\kVzero"
+  },
+  {
+   "sym": "r_int",
+   "latex": "r",
+   "macro": "\\krint"
+  },
+  {
+   "sym": "r_intone",
+   "latex": "r_1",
+   "macro": "\\krintone"
+  },
+  {
+   "sym": "r_inttwo",
+   "latex": "r_2",
+   "macro": "\\krinttwo"
+  },
+  {
+   "sym": "r_inttot",
+   "latex": "r_{\\text{tot}}",
+   "macro": "\\krinttot"
+  },
+  {
+   "sym": "R_resone",
+   "latex": "R_1",
+   "macro": "\\kResone"
+  },
+  {
+   "sym": "R_restwo",
+   "latex": "R_2",
+   "macro": "\\kRestwo"
+  },
+  {
+   "sym": "R_resthree",
+   "latex": "R_3",
+   "macro": "\\kResthree"
+  },
+  {
+   "sym": "R_resfour",
+   "latex": "R_4",
+   "macro": "\\kResfour"
+  },
+  {
+   "sym": "R_ress",
+   "latex": "R_{\\text{s}}",
+   "macro": "\\kRess"
+  },
+  {
+   "sym": "R_resp",
+   "latex": "R_{\\text{p}}",
+   "macro": "\\kResp"
+  },
+  {
+   "sym": "R_restot",
+   "latex": "R_{\\text{tot}}",
+   "macro": "\\kRestot"
+  },
+  {
+   "sym": "R_resx",
+   "latex": "R_{\\text{x}}",
+   "macro": "\\kResx"
+  },
+  {
+   "sym": "R_load",
+   "latex": "R_{\\text{load}}",
+   "macro": "\\kRload"
+  },
+  {
+   "sym": "I_onecurr",
+   "latex": "I_1",
+   "macro": "\\kIcurone"
+  },
+  {
+   "sym": "I_twocurr",
+   "latex": "I_2",
+   "macro": "\\kIcurtwo"
+  },
+  {
+   "sym": "I_threecurr",
+   "latex": "I_3",
+   "macro": "\\kIcurthree"
+  },
+  {
+   "sym": "I_Gcurr",
+   "latex": "I_{\\text{G}}",
+   "macro": "\\kIcurG"
+  },
+  {
+   "sym": "P_onepow",
+   "latex": "P_1",
+   "macro": "\\kPonepow"
+  },
+  {
+   "sym": "P_twopow",
+   "latex": "P_2",
+   "macro": "\\kPtwopow"
+  },
+  {
+   "sym": "P_threepow",
+   "latex": "P_3",
+   "macro": "\\kPthreepow"
+  },
+  {
+   "sym": "τ_RC",
+   "latex": "\\tau",
+   "macro": "\\ktauRC"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "series-connection",
+   "kind": "definition",
+   "section": "21.1",
+   "name": "串联",
+   "terms": [
+    "串联"
+   ],
+   "statement": "每当电荷的流动必须依次通过各个电阻器，以致只有一条路径、每个电阻器都载有相同的电流时，这些电阻器就是串联的。书中自己的例子是一个人握着螺丝刀：刀杆、刀柄、人体和鞋子是同一电流必须依次穿过的四个电阻。认清这种连接方式，决定了两条组合规则中该用哪一条，所以它排在两者之前。"
+  },
+  {
+   "id": "series-resistance",
+   "kind": "result",
+   "section": "21.1",
+   "name": "串联电阻",
+   "statement": "由于所有电流都必须通过每个电阻器，电流依次遇到各个电阻器的电阻，这些电阻就直接相加。这一结果来自能量守恒：电源给予电荷的能量就是电阻器从电荷取走的能量，所以电源的电压等于各电压降之和，再除以共同的电流，就得到各电阻之和。这条规则说明了为什么更长的软线或更厚的鞋底会使电流减小。",
+   "forms": [
+    {
+     "id": "eq-series-resistance",
+     "latex": "R_{\\text{s}} = R_1 + R_2 + R_3 + \\ldots",
+     "ktex": "\\kRess = \\kResone + \\kRestwo + \\kResthree + \\ldots",
+     "anchor": "21.1-series"
+    }
+   ]
+  },
+  {
+   "id": "voltage-divides-in-series",
+   "kind": "result",
+   "section": "21.1",
+   "name": "串联分压",
+   "statement": "电源供给电荷的能量就是电阻器从电荷取走的能量，因为能量没有别的去处。把这份能量两边都写成 $qV$ 并约去电荷，就得到电源的电压等于各电阻器上电压降之和。串联的各个电阻器并不是每个都得到电源的全部电压；它们按各自电阻的比例分配电压。",
+   "forms": [
+    {
+     "id": "eq-series-voltage",
+     "latex": "V = V_1 + V_2 + V_3",
+     "ktex": "\\kV = \\kVone + \\kVtwo + \\kVthree",
+     "anchor": "21.1-series"
+    }
+   ]
+  },
+  {
+   "id": "parallel-connection",
+   "kind": "definition",
+   "section": "21.1",
+   "name": "并联",
+   "terms": [
+    "并联"
+   ],
+   "statement": "当每个电阻器都通过电阻可忽略的导线直接接到电压源上，以致每个电阻器两端都有电源的全部电压，并且各自吸取的电流就是它单独存在时所吸取的电流，这些电阻器就是并联的。这就是为什么住宅、汽车以及每一个配电系统都采用并联接线：每个设备得到相同的电压，并且彼此独立地工作。"
+  },
+  {
+   "id": "parallel-resistance",
+   "kind": "result",
+   "section": "21.1",
+   "name": "并联电阻",
+   "statement": "每条支路都得到电源的全部电压，所以每条支路中的电流等于该电压除以它自己的电阻，而电荷守恒使电源的电流等于各支路电流之和。把电压从和式中提出，就剩下各电阻的倒数相加，这就是并联的规则。增加一条支路就增加一条通路，因此总是使电流增大、总电阻减小。",
+   "forms": [
+    {
+     "id": "eq-parallel-resistance",
+     "latex": "\\frac{1}{R_{\\text{p}}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} + \\ldots",
+     "ktex": "\\frac{1}{\\kResp} = \\frac{1}{\\kResone} + \\frac{1}{\\kRestwo} + \\frac{1}{\\kResthree} + \\ldots",
+     "anchor": "21.1-parallel"
+    }
+   ]
+  },
+  {
+   "id": "current-divides-in-parallel",
+   "kind": "result",
+   "section": "21.1",
+   "name": "并联分流",
+   "statement": "电荷是守恒的，所以电源驱出的电流必定恰好等于各支路合起来载有的电流。并联的各个电阻器并不是每个都得到总电流；它们分配总电流，并且最小的电阻分得最大的份额。这是电荷守恒对并联所作的陈述，正如电压之和是能量守恒对串联所作的陈述。",
+   "forms": [
+    {
+     "id": "eq-parallel-current",
+     "latex": "I = I_1 + I_2 + I_3",
+     "ktex": "\\kIcur = \\kIcurone + \\kIcurtwo + \\kIcurthree",
+     "anchor": "21.1-parallel"
+    }
+   ]
+  },
+  {
+   "id": "parallel-resistance-least",
+   "kind": "result",
+   "section": "21.1",
+   "name": "并联电阻小于最小分电阻",
+   "statement": "当电阻器并联时，从电源流出的电流比单独通过其中任何一个的电流都多，所以总电阻必定低于其中最低的一个。倒数相加，而倒数之和大于其中任何一个倒数，所以它的倒数小于最小的电阻。这一结果可用来判断电路是否化简正确，因为并联总电阻大于它的某个组成部分，就是算术错误。"
+  },
+  {
+   "id": "reduce-resistor-network",
+   "kind": "skill",
+   "section": "21.1",
+   "name": "电阻网络的化简",
+   "statement": "较复杂的电阻器连接往往只是串联与并联部分的组合，而导线电阻与并联设备串联，使这种情形十分常见。找出各部分，把每一部分换成它的等效电阻，如此重复，直到只剩下一个电阻。这个过程更多是费时而不是困难，并且使你能够把欧姆定律用于不止一个回路的电路。",
+   "forms": [
+    {
+     "id": "eq-mixed-total-resistance",
+     "latex": "R_{\\text{tot}} = R_1 + R_{\\text{p}}",
+     "ktex": "\\kRestot = \\kResone + \\kResp",
+     "anchor": "21.1-combinations"
+    }
+   ]
+  },
+  {
+   "id": "wire-resistance-ir-drop",
+   "kind": "idea",
+   "section": "21.1",
+   "name": "导线中的 IR 压降",
+   "statement": "导线电阻与它所供电的设备串联，所以设备吸取的电流在导线中产生 $IR$ 压降，留给设备的电压就小于电源的电压。当一个电阻很低的设备接通时，它吸取的大电流使这一压降变大，同一导线上的其他一切设备得到的电压就减小。这就是电动机起动时冰箱灯会变暗的原因，也是旧的或很长的延长线浪费功率的原因。"
+  },
+  {
+   "id": "resistor",
+   "kind": "definition",
+   "section": "21.1",
+   "name": "电阻器",
+   "terms": [
+    "电阻器"
+   ],
+   "statement": "电阻器是制成具有确定电阻的元件，在电路图中，每一个转换电能的设备，从灯泡到加热器，都画成一个电阻器。"
+  },
+  {
+   "id": "emf",
+   "kind": "definition",
+   "section": "21.2",
+   "name": "电动势",
+   "symbol": "emf",
+   "terms": [
+    "电动势（emf）"
+   ],
+   "type": "voltage",
+   "statement": "每个电压源，无论是电池、发电机、太阳电池还是热电设备，都产生一个能够驱动电流通过电阻的电势差。在没有电流流动时测得的这一电势差称为电动势，即 emf。电动势根本不是力；它是一种特殊类型的电势差，其单位是伏特。它由电源的构造决定，例如电池中化学物质的特定组合。"
+  },
+  {
+   "id": "internal-resistance",
+   "kind": "definition",
+   "section": "21.2",
+   "name": "内阻",
+   "symbol": "r_int",
+   "terms": [
+    "内阻"
+   ],
+   "type": "resistance",
+   "statement": "每个电压源都有两个基本部分，一个电能来源和一个内阻，二者是串联的。内阻是电源自身内部对电流流动的固有阻碍，对于给定的电动势，内阻越小，电源能够提供的电流和功率就越大。这就是为什么电动势相同的卡车蓄电池和摩托车蓄电池不能互换，并且电池耗尽时内阻会增大。"
+  },
+  {
+   "id": "terminal-voltage",
+   "kind": "result",
+   "section": "21.2",
+   "name": "端电压",
+   "symbol": "V_volt",
+   "terms": [
+    "端电压"
+   ],
+   "type": "voltage",
+   "statement": "在电源接线端之间测得的电压等于它的电动势减去它自身内阻上的电压降，所以吸取的电流越大，或者内阻越大，端电压就越小。只有在没有电流流动时，端电压才等于电动势。这一个方程说明了为什么电池耗尽时汽车灯是逐渐变暗而不是一下子熄灭，也说明了为什么电池测试器是在负载下测量电压。",
+   "forms": [
+    {
+     "id": "eq-terminal-voltage",
+     "latex": "V = \\mathcal{E} - Ir",
+     "ktex": "\\kV = \\kemf - \\kIcur\\krint",
+     "anchor": "21.2-terminal"
+    }
+   ]
+  },
+  {
+   "id": "current-with-load",
+   "kind": "result",
+   "section": "21.2",
+   "name": "输送给负载的电流",
+   "statement": "内阻与负载串联，所以电路的总电阻是负载加内阻，由欧姆定律给出电流。内阻越小，电源输送给给定负载的电流就越大。当电池老化、内阻成为负载的相当一部分时，电流就明显下降，手电筒或起动机中用旧的电池就表现出这一点。",
+   "forms": [
+    {
+     "id": "eq-current-with-load",
+     "latex": "I = \\frac{\\mathcal{E}}{R_{\\text{load}} + r}",
+     "ktex": "\\kIcur = \\frac{\\kemf}{\\kRload + \\krint}",
+     "anchor": "21.2-terminal"
+    }
+   ]
+  },
+  {
+   "id": "sources-in-series",
+   "kind": "result",
+   "section": "21.2",
+   "name": "电源的串联",
+   "statement": "当电压源串联时，它们的电动势代数相加，内阻也相加，所以一排电池产生的总电动势比一个电池的大。反向装入用电器的电池是相减而不是相加。串联的缺点是内阻也相加，这就是作者用两个六伏电池代替一个十二伏电池时受到限制的原因。",
+   "forms": [
+    {
+     "id": "eq-sources-in-series",
+     "latex": "I = \\frac{\\mathcal{E}_1 + \\mathcal{E}_2}{r_1 + r_2 + R_{\\text{load}}}",
+     "ktex": "\\kIcur = \\frac{\\kemfone + \\kemftwo}{\\krintone + \\krinttwo + \\kRload}",
+     "anchor": "21.2-multiple-sources"
+    }
+   ]
+  },
+  {
+   "id": "sources-in-parallel",
+   "kind": "result",
+   "section": "21.2",
+   "name": "电源的并联",
+   "statement": "两个相同的电源并联时，产生的总电动势与其中一个相同，因为每个电源的电势差相同，但它们的内阻是并联的，所以总内阻比任何一个都小。因此并联能比单个电源向负载输送更多的电流。一些柴油车正是为此使用两个并联的十二伏电池：既是十二伏，又有足够的电流来转动柴油发动机。",
+   "forms": [
+    {
+     "id": "eq-sources-in-parallel",
+     "latex": "I = \\frac{\\mathcal{E}}{r_{\\text{tot}} + R_{\\text{load}}}",
+     "ktex": "\\kIcur = \\frac{\\kemf}{\\krinttot + \\kRload}",
+     "anchor": "21.2-multiple-sources"
+    }
+   ]
+  },
+  {
+   "id": "charging-reverses-the-current",
+   "kind": "idea",
+   "section": "21.2",
+   "name": "给电池充电",
+   "statement": "给电池充电的办法，是让电流以与它所供给的电流相反的方向通过它，这使它的化学反应逆转。因此充电器的电动势必须大于电池的电动势。这时两个电源串联，电动势方向相反，所以电流由电动势之差和内阻之和决定。电池充电时，它的端电压大于它的电动势，因为 $V = \\mathcal{E} - Ir$ 中的电流现在是负的。",
+   "forms": [
+    {
+     "id": "eq-sources-opposed",
+     "latex": "I = \\frac{\\mathcal{E}_1 - \\mathcal{E}_2}{r_1 + r_2}",
+     "ktex": "\\kIcur = \\frac{\\kemfone - \\kemftwo}{\\krintone + \\krinttwo}",
+     "anchor": "21.2-multiple-sources"
+    }
+   ]
+  },
+  {
+   "id": "battery-voltage-from-chemistry",
+   "kind": "idea",
+   "section": "21.2",
+   "name": "由化学反应产生的电池电动势",
+   "statement": "电池中的化学反应使电荷分离，把电子驱到阳极上并从阴极移走，反应给予每个电子的能量决定了电压。在铅酸电池中，反应给予每个电子约两电子伏特，而电子伏特是单个电子经过一伏特所获得的能量，所以这种电池产生约两伏特的电压。不同的反应给出不同的能量，因而给出不同的电压，并且由于参与反应的物质有电阻，不可能制成没有内阻的电动势。"
+  },
+  {
+   "id": "kirchhoff-from-conservation",
+   "kind": "idea",
+   "section": "21.3",
+   "name": "由守恒定律导出基尔霍夫定律",
+   "statement": "许多电路不能化简为串联和并联部分的组合，对于这些电路，你需要两条对任何电路都成立的规则。两者都是电路形式的守恒定律：节点定则把电荷守恒用于导线相交的点，回路定则把能量守恒用于闭合路径。因为它们是守恒定律，所以也适用于简单电路，并且串联和并联规则可由它们推出。"
+  },
+  {
+   "id": "junction-rule",
+   "kind": "result",
+   "section": "21.3",
+   "name": "节点定则",
+   "terms": [
+    "节点定则"
+   ],
+   "statement": "电流是电荷的流动，而电荷是守恒的，所以在给定时间内流入节点的电荷必定在同样的时间内流出节点；电荷不能在导线中的一点上堆积。因此流入节点的电流之和等于流出节点的电流之和。每个节点给出一个方程，这些方程与回路定则一起，决定网络中的未知电流。",
+   "forms": [
+    {
+     "id": "eq-junction-rule",
+     "latex": "I_1 = I_2 + I_3",
+     "ktex": "\\kIcurone = \\kIcurtwo + \\kIcurthree",
+     "anchor": "21.3-junction"
+    }
+   ]
+  },
+  {
+   "id": "loop-rule",
+   "kind": "result",
+   "section": "21.3",
+   "name": "回路定则",
+   "terms": [
+    "回路定则"
+   ],
+   "statement": "沿任何闭合路径，电势变化的代数和必定为零，因为绕回路一周的电荷回到它出发的地方，必定在那里具有相同的势能。电动势提供的能量，被回路中的各个设备转化为其他形式，所以电动势等于各 $IR$ 压降之和。每个独立回路再给出一个方程，而求解电路需要与未知数一样多的独立方程。",
+   "forms": [
+    {
+     "id": "eq-loop-rule",
+     "latex": "\\mathcal{E} = Ir + IR_1 + IR_2",
+     "ktex": "\\kemf = \\kIcur\\krint + \\kIcur\\kResone + \\kIcur\\kRestwo",
+     "anchor": "21.3-loop"
+    }
+   ]
+  },
+  {
+   "id": "loop-rule-signs",
+   "kind": "skill",
+   "section": "21.3",
+   "name": "回路定则中的符号",
+   "statement": "应用这些定则意味着作出两个选择，为每个未知电流选一个方向，为每个回路选一个绕行方向，而两个选择都不会错：假设反了的电流只会得出负值，而沿相反方向绕行的回路会使其方程中的每个符号反号。必须保持一致的是四种符号情形。电阻器顺着电流穿过时电势变化为 $-IR$，逆着电流穿过时为 $+IR$；电动势从负极穿到正极时贡献 $+\\mathcal{E}$，从正极穿到负极时贡献 $-\\mathcal{E}$。"
+  },
+  {
+   "id": "apply-kirchhoffs-rules",
+   "kind": "skill",
+   "section": "21.3",
+   "name": "应用基尔霍夫定律",
+   "statement": "在节点处应用节点定则，直到每个新方程都引入一个先前方程没有的电流。把回路定则应用于足够多的回路，使方程数与未知数的个数相符。然后解联立方程，并检查答案的符号和大小。负电流只表示假设的方向与实际相反。检查这些电流是否仍满足节点定则，可以发现大多数代数错误。"
+  },
+  {
+   "id": "kirchhoffs-rules",
+   "kind": "result",
+   "section": "21.3",
+   "name": "基尔霍夫定律",
+   "terms": [
+    "基尔霍夫定律"
+   ],
+   "statement": "基尔霍夫定律就是节点定则与回路定则合在一起，它们是守恒的两条陈述，使你能够分析任何电路，无论简单还是复杂。"
+  },
+  {
+   "id": "conservation-laws",
+   "kind": "idea",
+   "section": "21.3",
+   "name": "守恒定律",
+   "terms": [
+    "守恒定律"
+   ],
+   "statement": "守恒定律要求系统中的能量和电荷守恒，在电路中它们成为基尔霍夫的两条定则。"
+  },
+  {
+   "id": "voltmeter-in-parallel",
+   "kind": "result",
+   "section": "21.4",
+   "name": "并联的电压表",
+   "statement": "电压表测量设备两端的电势差，而并联的物体具有相同的电势差，所以要把电压表与你想测量的对象并联。测量端电压也是同样的做法，跨接在电源的接线端上。这也是电压表永远测不到电动势本身的原因：内阻总是包括在内。"
+  },
+  {
+   "id": "ammeter-in-series",
+   "kind": "result",
+   "section": "21.4",
+   "name": "串联的电流表",
+   "statement": "电流表测量一条支路中的电流，而串联的物体载有相同的电流，所以电流表要串联在待测的支路中，使该支路的全部电流都通过它。在同一串联支路的任何位置，读数都相同。把电流表反而与电阻器并联可能会损坏它，因为电流表的低电阻会使它分得电路的大部分电流。"
+  },
+  {
+   "id": "galvanometer",
+   "kind": "definition",
+   "section": "21.4",
+   "name": "电流计",
+   "terms": [
+    "电流计"
+   ],
+   "statement": "大多数模拟式电表的核心是电流计，它是一种指针偏转与通过它的电流成正比的设备。有两个数描述它：它的电阻和它的电流灵敏度，即给出满偏的电流。电流灵敏度为 $50\\ \\mu\\text{A}$ 的电流计在 $25\\ \\mu\\text{A}$ 时读数为半标度，而且电阻为 $25\\text{-}\\Omega$ 时，只需在它两端加 1.25 mV 就可读到满标度。电压表或电流表能做的一切，都是这一个设备再加上一个电阻器。"
+  },
+  {
+   "id": "galvanometer-as-voltmeter",
+   "kind": "result",
+   "section": "21.4",
+   "name": "用作电压表的电流计",
+   "statement": "要使某一电压对应满标度读数，电表的总电阻必须等于该电压除以电流计的电流灵敏度。电流计自身的电阻与之相比微不足道，所以这一电阻几乎全是与它串联的那个电阻。待测电压越大，该电阻必须越大，把不同的电阻接入串联，就使电表有了几个量程。",
+   "forms": [
+    {
+     "id": "eq-voltmeter-resistance",
+     "latex": "R_{\\text{tot}} = R + r = \\frac{V}{I}",
+     "ktex": "\\kRestot = \\kRes + \\krint = \\frac{\\kV}{\\kIcur}",
+     "anchor": "21.4-as-voltmeter"
+    }
+   ]
+  },
+  {
+   "id": "galvanometer-as-ammeter",
+   "kind": "result",
+   "section": "21.4",
+   "name": "用作电流表的电流计",
+   "statement": "与电流计并联一个小电阻，使几乎全部电流绕过电流计。这样，仪表就能读出比使其指针满偏的电流大得多的电流，并且电流计受到保护。由于分流电阻与电流计两端的电压相同，分流电阻的阻值就是电流计的电阻乘以电流计的电流与总电流之比。待测电流越大，分流电阻必须越小。",
+   "forms": [
+    {
+     "id": "eq-shunt-resistance",
+     "latex": "R = r\\frac{I_{\\text{G}}}{I}",
+     "ktex": "\\kRes = \\krint\\frac{\\kIcurG}{\\kIcur}",
+     "anchor": "21.4-as-ammeter"
+    }
+   ]
+  },
+  {
+   "id": "measurement-alters-circuit",
+   "kind": "idea",
+   "section": "21.4",
+   "name": "电表对电路的改变",
+   "statement": "电压表是另一个并联的电阻，电流表是另一个串联的电阻，所以每次测量都改变了被测量的电路。只有当电压表的电阻远大于它所跨接设备的电阻，并且电流表的电阻远小于它所在支路的电阻时，这种影响才可忽略。电阻与之相当的电压表使并联电阻减半，电阻与之相当的电流表使电流减半。这种误差不是电表的缺陷，也没有任何办法能完全消除它。"
+  },
+  {
+   "id": "voltmeter",
+   "kind": "definition",
+   "section": "21.4",
+   "name": "电压表",
+   "terms": [
+    "电压表"
+   ],
+   "statement": "电压表是测量两点之间电势差的仪表，即测量它所连接的对象两端的电压。"
+  },
+  {
+   "id": "ammeter",
+   "kind": "definition",
+   "section": "21.4",
+   "name": "电流表",
+   "terms": [
+    "电流表"
+   ],
+   "statement": "电流表是测量其所在电路支路中电流的仪表。"
+  },
+  {
+   "id": "analog-meter",
+   "kind": "definition",
+   "section": "21.4",
+   "name": "模拟式电表",
+   "terms": [
+    "模拟式电表"
+   ],
+   "statement": "模拟式电表以指针在刻度标尺上的位置给出读数，大多数是围绕电流计构成的。"
+  },
+  {
+   "id": "digital-meter",
+   "kind": "definition",
+   "section": "21.4",
+   "name": "数字式电表",
+   "terms": [
+    "数字式电表"
+   ],
+   "statement": "数字式电表以显示屏上的数字给出读数，它用电子电路而不是运动的指针来测量这个量。"
+  },
+  {
+   "id": "full-scale-deflection",
+   "kind": "definition",
+   "section": "21.4",
+   "name": "满偏",
+   "terms": [
+    "满偏"
+   ],
+   "statement": "电表的满偏是它的指针所能显示的最大读数，使它满偏的电流就是电流计的电流灵敏度。"
+  },
+  {
+   "id": "shunt-resistance",
+   "kind": "definition",
+   "section": "21.4",
+   "name": "分流电阻",
+   "terms": [
+    "分流电阻"
+   ],
+   "statement": "分流电阻是与电流计并联的小电阻，使大部分电流绕过电流计，这个组合就能测量更大的电流。"
+  },
+  {
+   "id": "current-sensitivity",
+   "kind": "definition",
+   "section": "21.4",
+   "name": "电流灵敏度",
+   "terms": [
+    "电流灵敏度"
+   ],
+   "statement": "电流计的电流灵敏度是使它满偏的电流。"
+  },
+  {
+   "id": "null-measurement",
+   "kind": "idea",
+   "section": "21.5",
+   "name": "零示测量",
+   "terms": [
+    "零示测量"
+   ],
+   "statement": "标准电表会改变它们所测量的电路，因为它们必须吸取一些电流才能工作。零示测量则是把电路调到使测量装置中根本没有电流流过，所以它不干扰任何东西，并且直接感知被测的量。零示方法比标准电表更精确但更复杂，而且它们仍有局限：平衡从来不会恰好为零，并且它们所依赖的标准本身也带有不确定度。"
+  },
+  {
+   "id": "potentiometer",
+   "kind": "result",
+   "section": "21.5",
+   "name": "电势差计",
+   "terms": [
+    "电势差计"
+   ],
+   "statement": "沿一根长的均匀导线的稳恒电流使电势沿导线均匀下降，所以位置合适的触点可以取出零到全部电压降之间的任何电压。把待测电动势通过电流计反向接入，并移动触点，直到指针读数为零。这时没有电流流过待测电动势，所以平衡点测量的是电动势本身而不是端电压。用已知的标准电动势重复这一平衡，就使待测电动势成为两个导线长度之比，而电流被约去。",
+   "forms": [
+    {
+     "id": "eq-potentiometer",
+     "latex": "\\mathcal{E}_{\\text{x}} = \\mathcal{E}_{\\text{s}}\\frac{R_{\\text{x}}}{R_{\\text{s}}}",
+     "ktex": "\\kemfx = \\kemfs\\frac{\\kResx}{\\kRess}",
+     "anchor": "21.5-potentiometer"
+    }
+   ]
+  },
+  {
+   "id": "ohmmeter",
+   "kind": "idea",
+   "section": "21.5",
+   "name": "欧姆表",
+   "terms": [
+    "欧姆表"
+   ],
+   "statement": "常见的欧姆表对一个电阻施加电压，测量电流，并把商作为电阻报告出来。它们的精度有限，因为它们所用的两个电表既改变了电阻器两端的电压，又改变了通过它的电流。测量端电压而不是假定为电源的电压，会更好。但是电流小时电压最精确，电流大时电流最精确，所以二者不能同时处于最佳状态。"
+  },
+  {
+   "id": "wheatstone-bridge",
+   "kind": "result",
+   "section": "21.5",
+   "name": "惠斯通电桥",
+   "terms": [
+    "惠斯通电桥"
+   ],
+   "statement": "惠斯通电桥把两个已知电阻和一个可变电阻布置在两条支路中，并用一个电流计跨接两者。调节可变臂，直到电流计读数为零。这时被跨接的两点电势相同，没有电流通过电桥，所以电流计不干扰任何东西。使两条支路中相应部分的 $IR$ 压降相等并取它们的比，就得出待测电阻是三个已知电阻的乘积与商，电流被约去。",
+   "forms": [
+    {
+     "id": "eq-wheatstone-bridge",
+     "latex": "R_{\\text{x}} = R_3\\frac{R_2}{R_1}",
+     "ktex": "\\kResx = \\kResthree\\frac{\\kRestwo}{\\kResone}",
+     "anchor": "21.5-wheatstone-bridge"
+    }
+   ]
+  },
+  {
+   "id": "bridge-device",
+   "kind": "definition",
+   "section": "21.5",
+   "name": "电桥",
+   "terms": [
+    "电桥"
+   ],
+   "statement": "电桥通过一个电表连接电路的两条支路，把它调到电表读数为零，就能用零示测量求出一个量。"
+  },
+  {
+   "id": "rc-circuit",
+   "kind": "definition",
+   "section": "21.6",
+   "name": "RC 电路",
+   "terms": [
+    "RC 电路"
+   ],
+   "statement": "含有一个电阻器和一个电容器的电路，其行为不同于纯电阻电路，因为电容器的电压 $V_{\\text{c}} = Q/C$ 随电荷聚集在它的极板上而增大，并且与电源相反。电流从 $I_0 = \\mathcal{E}/R$ 开始，这时全部电势差都在电阻器上，然后随电容器的电压升到电动势而降为零。电阻越小，给定的电容器充电越快，这里的电阻包括电源的内阻和导线的电阻。"
+  },
+  {
+   "id": "charging-a-capacitor",
+   "kind": "result",
+   "section": "21.6",
+   "name": "电容器的充电",
+   "statement": "充电的电容器两端的电压起初上升得很陡，这时电流最大，然后随着电容器自身的电压与电源相反而越来越慢。趋近电动势的过程是指数式的、渐近的：永远不会恰好达到终值，不过经过几个时间常量之后，差别就不再重要了。同一个方程决定了闪光装置、定时电路或心脏起搏器在两次脉冲之间必须等待多久。",
+   "forms": [
+    {
+     "id": "eq-charging-capacitor",
+     "latex": "V = \\mathcal{E}\\left(1 - e^{-t/RC}\\right)",
+     "ktex": "\\kV = \\kemf\\left(1 - e^{-\\kt/\\kRes\\kCap}\\right)",
+     "anchor": "21.6-rc-circuits"
+    }
+   ]
+  },
+  {
+   "id": "time-constant",
+   "kind": "definition",
+   "section": "21.6",
+   "name": "时间常量",
+   "symbol": "τ_RC",
+   "type": "time",
+   "statement": "电阻与电容的乘积以秒为单位，决定整个电路的快慢。小电阻使较大的电流流动，小电容需要较少的电荷，所以二者中任何一个都使电路更快；这两个事实都包含在 $\\tau = RC$ 中。因为两个指数定律中的指数都是 $-t/RC$，时间常量是问题中唯一的时间，关于充电和放电的每一个陈述，都是关于它的若干倍的陈述。",
+   "forms": [
+    {
+     "id": "eq-time-constant",
+     "latex": "\\tau = RC",
+     "ktex": "\\ktauRC = \\kRes\\kCap",
+     "anchor": "21.6-rc-circuits"
+    }
+   ]
+  },
+  {
+   "id": "discharging-a-capacitor",
+   "kind": "result",
+   "section": "21.6",
+   "name": "电容器的放电",
+   "statement": "通过电阻器放电的已充电电容器驱动它自己的电流，起初它的电压最高时电流最大，而它的电压以相同的时间常量按指数下降。闪光灯放电比充电快得多，因为闪光管中电离的气体的电阻比给它充电的电池小得多，正是这种短暂，不到一微秒，使蜂鸟的翅膀或飞行中的子弹看上去静止。",
+   "forms": [
+    {
+     "id": "eq-discharging-capacitor",
+     "latex": "V = V_0 e^{-t/RC}",
+     "ktex": "\\kV = \\kVzero e^{-\\kt/\\kRes\\kCap}",
+     "anchor": "21.6-discharging"
+    }
+   ]
+  },
+  {
+   "id": "fraction-per-time-constant",
+   "kind": "result",
+   "section": "21.6",
+   "name": "每个时间常量内的比例",
+   "statement": "在充电定律中令 $t = \\tau$ 得 $V = \\mathcal{E}(1 - e^{-1}) = 0.632\\mathcal{E}$，所以在每个时间常量内，电压走完剩余距离的 0.632。在放电定律中得 $V = 0.368V_0$，所以电压在每个时间常量内降到它原值的 0.368。这就是指数的特性：每个时间间隔内相同的是比例，而不是量，所以电压趋近它的终值但永远达不到。"
+  },
+  {
+   "id": "rc-timing-circuits",
+   "kind": "idea",
+   "section": "21.6",
+   "name": "RC 定时电路",
+   "statement": "因为时间常量由设计者选定的电阻和电容决定，RC 电路就是一个时钟。电阻在阈值电压处骤降的灯泡，充电、闪光、放电，然后重新开始，速率由电阻决定；同样的安排设定了间歇式风窗刮水器的间隔，以及人工心脏起搏器供给心脏的节律。调节电阻就调节了脉冲之间的时间。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "series-connection",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "series-resistance",
+   "prereq": "series-connection"
+  },
+  {
+   "concept": "series-resistance",
+   "prereq": "voltage-divides-in-series"
+  },
+  {
+   "concept": "voltage-divides-in-series",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "voltage-divides-in-series",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "voltage-divides-in-series",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "voltage-divides-in-series",
+   "prereq": "series-connection"
+  },
+  {
+   "concept": "parallel-connection",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "parallel-resistance",
+   "prereq": "parallel-connection"
+  },
+  {
+   "concept": "parallel-resistance",
+   "prereq": "current-divides-in-parallel"
+  },
+  {
+   "concept": "current-divides-in-parallel",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "current-divides-in-parallel",
+   "prereq": "parallel-connection"
+  },
+  {
+   "concept": "parallel-resistance-least",
+   "prereq": "parallel-resistance"
+  },
+  {
+   "concept": "reduce-resistor-network",
+   "prereq": "series-resistance"
+  },
+  {
+   "concept": "reduce-resistor-network",
+   "prereq": "parallel-resistance"
+  },
+  {
+   "concept": "reduce-resistor-network",
+   "prereq": "reduce-series-parallel-combinations"
+  },
+  {
+   "concept": "wire-resistance-ir-drop",
+   "prereq": "reduce-resistor-network"
+  },
+  {
+   "concept": "wire-resistance-ir-drop",
+   "prereq": "voltage-divides-in-series"
+  },
+  {
+   "concept": "emf",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "internal-resistance",
+   "prereq": "emf"
+  },
+  {
+   "concept": "terminal-voltage",
+   "prereq": "emf"
+  },
+  {
+   "concept": "terminal-voltage",
+   "prereq": "internal-resistance"
+  },
+  {
+   "concept": "terminal-voltage",
+   "prereq": "series-resistance"
+  },
+  {
+   "concept": "current-with-load",
+   "prereq": "terminal-voltage"
+  },
+  {
+   "concept": "current-with-load",
+   "prereq": "series-resistance"
+  },
+  {
+   "concept": "sources-in-series",
+   "prereq": "current-with-load"
+  },
+  {
+   "concept": "sources-in-series",
+   "prereq": "series-resistance"
+  },
+  {
+   "concept": "sources-in-parallel",
+   "prereq": "current-with-load"
+  },
+  {
+   "concept": "sources-in-parallel",
+   "prereq": "parallel-resistance"
+  },
+  {
+   "concept": "charging-reverses-the-current",
+   "prereq": "terminal-voltage"
+  },
+  {
+   "concept": "charging-reverses-the-current",
+   "prereq": "sources-in-series"
+  },
+  {
+   "concept": "battery-voltage-from-chemistry",
+   "prereq": "emf"
+  },
+  {
+   "concept": "battery-voltage-from-chemistry",
+   "prereq": "electron-volt"
+  },
+  {
+   "concept": "battery-voltage-from-chemistry",
+   "prereq": "electric-potential"
+  },
+  {
+   "concept": "kirchhoff-from-conservation",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "kirchhoff-from-conservation",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "junction-rule",
+   "prereq": "kirchhoff-from-conservation"
+  },
+  {
+   "concept": "junction-rule",
+   "prereq": "current-divides-in-parallel"
+  },
+  {
+   "concept": "loop-rule",
+   "prereq": "kirchhoff-from-conservation"
+  },
+  {
+   "concept": "loop-rule",
+   "prereq": "voltage-divides-in-series"
+  },
+  {
+   "concept": "loop-rule",
+   "prereq": "terminal-voltage"
+  },
+  {
+   "concept": "loop-rule-signs",
+   "prereq": "loop-rule"
+  },
+  {
+   "concept": "apply-kirchhoffs-rules",
+   "prereq": "junction-rule"
+  },
+  {
+   "concept": "apply-kirchhoffs-rules",
+   "prereq": "loop-rule"
+  },
+  {
+   "concept": "apply-kirchhoffs-rules",
+   "prereq": "loop-rule-signs"
+  },
+  {
+   "concept": "voltmeter-in-parallel",
+   "prereq": "parallel-connection"
+  },
+  {
+   "concept": "voltmeter-in-parallel",
+   "prereq": "terminal-voltage"
+  },
+  {
+   "concept": "ammeter-in-series",
+   "prereq": "series-connection"
+  },
+  {
+   "concept": "galvanometer",
+   "prereq": "voltmeter-in-parallel"
+  },
+  {
+   "concept": "galvanometer",
+   "prereq": "ammeter-in-series"
+  },
+  {
+   "concept": "galvanometer-as-voltmeter",
+   "prereq": "galvanometer"
+  },
+  {
+   "concept": "galvanometer-as-voltmeter",
+   "prereq": "series-resistance"
+  },
+  {
+   "concept": "galvanometer-as-ammeter",
+   "prereq": "galvanometer"
+  },
+  {
+   "concept": "galvanometer-as-ammeter",
+   "prereq": "parallel-resistance"
+  },
+  {
+   "concept": "galvanometer-as-ammeter",
+   "prereq": "current-divides-in-parallel"
+  },
+  {
+   "concept": "measurement-alters-circuit",
+   "prereq": "galvanometer-as-voltmeter"
+  },
+  {
+   "concept": "measurement-alters-circuit",
+   "prereq": "galvanometer-as-ammeter"
+  },
+  {
+   "concept": "measurement-alters-circuit",
+   "prereq": "parallel-resistance-least"
+  },
+  {
+   "concept": "null-measurement",
+   "prereq": "measurement-alters-circuit"
+  },
+  {
+   "concept": "null-measurement",
+   "prereq": "terminal-voltage"
+  },
+  {
+   "concept": "potentiometer",
+   "prereq": "null-measurement"
+  },
+  {
+   "concept": "potentiometer",
+   "prereq": "voltage-divides-in-series"
+  },
+  {
+   "concept": "ohmmeter",
+   "prereq": "measurement-alters-circuit"
+  },
+  {
+   "concept": "wheatstone-bridge",
+   "prereq": "null-measurement"
+  },
+  {
+   "concept": "wheatstone-bridge",
+   "prereq": "voltage-divides-in-series"
+  },
+  {
+   "concept": "wheatstone-bridge",
+   "prereq": "parallel-connection"
+  },
+  {
+   "concept": "rc-circuit",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "rc-circuit",
+   "prereq": "capacitor"
+  },
+  {
+   "concept": "rc-circuit",
+   "prereq": "series-resistance"
+  },
+  {
+   "concept": "rc-circuit",
+   "prereq": "emf"
+  },
+  {
+   "concept": "charging-a-capacitor",
+   "prereq": "rc-circuit"
+  },
+  {
+   "concept": "charging-a-capacitor",
+   "prereq": "loop-rule"
+  },
+  {
+   "concept": "time-constant",
+   "prereq": "charging-a-capacitor"
+  },
+  {
+   "concept": "discharging-a-capacitor",
+   "prereq": "rc-circuit"
+  },
+  {
+   "concept": "discharging-a-capacitor",
+   "prereq": "time-constant"
+  },
+  {
+   "concept": "fraction-per-time-constant",
+   "prereq": "time-constant"
+  },
+  {
+   "concept": "fraction-per-time-constant",
+   "prereq": "discharging-a-capacitor"
+  },
+  {
+   "concept": "rc-timing-circuits",
+   "prereq": "time-constant"
+  },
+  {
+   "concept": "rc-timing-circuits",
+   "prereq": "charging-a-capacitor"
+  },
+  {
+   "concept": "series-connection",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "series-connection",
+   "prereq": "circuit-schematic"
+  },
+  {
+   "concept": "series-resistance",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "series-resistance",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "voltage-divides-in-series",
+   "prereq": "ir-drop"
+  },
+  {
+   "concept": "parallel-connection",
+   "prereq": "circuit-schematic"
+  },
+  {
+   "concept": "parallel-resistance",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "parallel-resistance",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "current-divides-in-parallel",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "reduce-resistor-network",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "wire-resistance-ir-drop",
+   "prereq": "ir-drop"
+  },
+  {
+   "concept": "wire-resistance-ir-drop",
+   "prereq": "power-and-resistance"
+  },
+  {
+   "concept": "emf",
+   "prereq": "simple-circuit"
+  },
+  {
+   "concept": "internal-resistance",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "terminal-voltage",
+   "prereq": "ir-drop"
+  },
+  {
+   "concept": "current-with-load",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "junction-rule",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "loop-rule",
+   "prereq": "ir-drop"
+  },
+  {
+   "concept": "galvanometer",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "galvanometer-as-voltmeter",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "galvanometer-as-ammeter",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ohmmeter",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "ohmmeter",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "rc-circuit",
+   "prereq": "ohms-law"
+  },
+  {
+   "concept": "resistor",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "voltmeter",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "ammeter",
+   "prereq": "electric-current"
+  },
+  {
+   "concept": "full-scale-deflection",
+   "prereq": "galvanometer"
+  },
+  {
+   "concept": "shunt-resistance",
+   "prereq": "resistance"
+  },
+  {
+   "concept": "shunt-resistance",
+   "prereq": "parallel-connection"
+  },
+  {
+   "concept": "shunt-resistance",
+   "prereq": "galvanometer"
+  },
+  {
+   "concept": "bridge-device",
+   "prereq": "null-measurement"
+  },
+  {
+   "concept": "kirchhoffs-rules",
+   "prereq": "junction-rule"
+  },
+  {
+   "concept": "kirchhoffs-rules",
+   "prereq": "loop-rule"
+  },
+  {
+   "concept": "conservation-laws",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "conservation-laws",
+   "prereq": "conservation-of-energy"
+  },
+  {
+   "concept": "current-sensitivity",
+   "prereq": "galvanometer"
+  },
+  {
+   "concept": "current-sensitivity",
+   "prereq": "full-scale-deflection"
+  },
+  {
+   "concept": "reduce-resistor-network",
+   "prereq": "resistor"
+  },
+  {
+   "concept": "voltmeter-in-parallel",
+   "prereq": "voltmeter"
+  },
+  {
+   "concept": "ammeter-in-series",
+   "prereq": "ammeter"
+  },
+  {
+   "concept": "galvanometer-as-voltmeter",
+   "prereq": "voltmeter"
+  },
+  {
+   "concept": "galvanometer-as-ammeter",
+   "prereq": "ammeter"
+  },
+  {
+   "concept": "galvanometer-as-ammeter",
+   "prereq": "shunt-resistance"
+  },
+  {
+   "concept": "apply-kirchhoffs-rules",
+   "prereq": "kirchhoffs-rules"
+  }
+ ]
+}

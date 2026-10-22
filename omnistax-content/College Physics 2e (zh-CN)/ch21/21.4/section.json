@@ -1,0 +1,887 @@
+{
+ "id": "21.4",
+ "module": "m42360",
+ "chapter": "21",
+ "title": "直流电压表与电流表",
+ "short": "直流电压表与电流表",
+ "lead": "电压表和电流表测量的东西不同，所以它们接入电路的方式也不同，而且<span data-ref=\"galvanometer\">一个电流计</span>只要接上不同的<span data-concept=\"resistance\">电阻</span>，就可以改装成其中任何一种仪表。接入电表总会给电路增加另一个电阻器，本节最后讨论这会对测量产生什么影响。",
+ "objectives": [
+  "解释为什么电压表必须与电路并联。",
+  "画出电流表正确接入电路的示意图。",
+  "说明电流计如何既可用作电压表，也可用作电流表。",
+  "求为使电流计用作具有给定读数的电压表，须与之串联的电阻。",
+  "解释为什么对电路中电压或电流的测量永远不可能是精确的。"
+ ],
+ "summary_html": "<ul><li>电压表测量<span data-concept=\"potential-difference\">电压</span>，电流表测量<span data-concept=\"electric-current\">电流</span>。</li><li>电压表与<span data-concept=\"potential-difference\">电压</span>源并联，以接受全部<span data-concept=\"potential-difference\">电压</span>，并且必须有很大的<span data-concept=\"resistance\">电阻</span>，以限制它对电路的影响。</li><li>电流表串联接入，以获得流过某一支路的全部<span data-concept=\"electric-current\">电流</span>，并且必须有很小的<span data-concept=\"resistance\">电阻</span>，以限制它对电路的影响。</li><li>二者都可以基于电阻器与电流计的组合，电流计是一种给出<span data-concept=\"electric-current\">电流</span>模拟读数的器件。</li><li>标准的电压表和电流表会改变被测电路，因而准确度受到限制。</li></ul>",
+ "notes": "书中没有给出答案的七道习题，以及本节所链接的 PhET 仿真，均已略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。十五道习题中有八道给出了答案，在此收入；其余七道略去：25.0 kΩ 电压表在 100 V 刻度上其电流计的灵敏度，3000 V 读数所需的串联电阻，300 mA 读数所需的分流电阻，将 10.0 Ω 电流计改装成电流表的那道题的两个部分，用 1.00 kΩ 电压表测量锂电池的那道题，1.00 MΩ 电压表跨接在 75.0 kΩ 电阻器两端的那道题，以及两道“不合理的结果”题中的第一道。关于与 10.00 Ω 电阻器串联的电流表那道题，其答案的（a）部分是一幅电路图而不是一个数，因此未写入解答。四道思考题附有标明为 AI 撰写的建议思路，而不是评分答案；本节没有印出 AP 测试备考题。两道问零示测量会怎样的题仍留在本节，因为读者要到 21.5 才会遇到零示测量。",
+ "figures": [
+  {
+   "id": "fig-dashboard",
+   "kind": "photo",
+   "number": "21.26",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-meter-connection",
+   "kind": "sim",
+   "number": "21.27",
+   "folds": [
+    "21.28"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_04_02-ea56.jpg",
+    "/media/ch21/Figure_22_04_03.jpg"
+   ],
+   "original_caption": "（图 21.27）（a）为测量此串联电路中的电势差，电压表（V）与电压源或任一电阻器并联。注意，端电压是在 a、b 两点之间测得的。无法把电压表直接接在电动势两端而不把电源的内阻 r 包括在内。（b）正在使用的数字式电压表。（来源：Messtechniker, Wikimedia Commons）（图 21.28）电流表（A）串联接入以测量电流。此电路中的全部电流都流过该电表。电流表无论位于 d、e 两点之间，还是位于 f、a 两点之间，读数都与处于图示位置时相同。（注意，花体大写 E 代表电动势，r 代表电势差源的内阻。）",
+   "widths": [
+    275,
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label moved off the meter lead; notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-galvanometer",
+   "kind": "sim",
+   "draws": [
+    "current",
+    "resistance",
+    "voltage"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "case drawn round the dial so the leads meet it; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-galvanometer-meters",
+   "kind": "sim",
+   "number": "21.29",
+   "folds": [
+    "21.30"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_04_04.jpg",
+    "/media/ch21/Figure_22_04_05.jpg"
+   ],
+   "original_caption": "（图 21.29）把大电阻 R 与电流计 G 串联，就构成一个电压表，其满偏取决于 R 的选择。所要测量的电压越大，R 就必须越大。（注意，r 表示电流计的内阻。）（图 21.30）把小分流电阻 R 与电流计 G 并联，就构成一个电流表，其满偏取决于 R 的选择。所要测量的电流越大，R 就必须越小。流过该电表的大部分电流（I）经 R 分流，以保护电流计。（注意，r 表示电流计的内阻。）电流表也可以有多个刻度，以便更灵活地应用。各个刻度是通过把不同的分流电阻切换到与电流计并联来实现的——所要测量的最大电流越大，分流电阻就必须越小。",
+   "widths": [
+    200,
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "units set upright; shunt rule written I - I_G as computed; notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-meter-disturbs",
+   "kind": "sim",
+   "number": "21.31",
+   "folds": [
+    "21.32"
+   ],
+   "originals": [
+    "/media/ch21/Figure_22_04_06.jpg",
+    "/media/ch21/Figure_22_04_07.jpg"
+   ],
+   "original_caption": "（图 21.31）（a）电压表的电阻远大于与之并联的器件的电阻（R_Voltmeter ≫ R），它们并联后的电阻与该器件的电阻基本相同，不会明显影响被测电路。（b）此处电压表的电阻与器件的电阻相同（R_Voltmeter ≅ R），因此并联电阻是未接电压表时的一半。这是对电路造成显著改变的一个例子，应当避免。（图 21.32）（a）电流表的电阻通常很小，被测支路中的总串联电阻不会明显增大。与没有电流表时相比，电路基本上没有改变。（b）此处电流表的电阻与该支路的电阻相同，因此总电阻加倍，电流是没有电流表时的一半。这种对电路的显著改变应当避免。",
+   "widths": [
+    400,
+    200
+   ],
+   "draws": [
+    "resistance",
+    "current",
+    "voltage"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "label moved off the source wire; units set upright; notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "meters",
+   "concept": "voltmeter-in-parallel",
+   "verb": "introduces"
+  },
+  {
+   "span": "meters",
+   "concept": "ammeter-in-series",
+   "verb": "introduces"
+  },
+  {
+   "span": "meters",
+   "concept": "voltmeter",
+   "verb": "introduces"
+  },
+  {
+   "span": "meters",
+   "concept": "ammeter",
+   "verb": "introduces"
+  },
+  {
+   "span": "meters",
+   "concept": "analog-meter",
+   "verb": "introduces"
+  },
+  {
+   "span": "meters",
+   "concept": "digital-meter",
+   "verb": "introduces"
+  },
+  {
+   "span": "galvanometer",
+   "concept": "galvanometer",
+   "verb": "introduces"
+  },
+  {
+   "span": "galvanometer",
+   "concept": "voltmeter-in-parallel",
+   "verb": "uses"
+  },
+  {
+   "span": "galvanometer",
+   "concept": "full-scale-deflection",
+   "verb": "introduces"
+  },
+  {
+   "span": "galvanometer",
+   "concept": "current-sensitivity",
+   "verb": "introduces"
+  },
+  {
+   "span": "as-voltmeter",
+   "concept": "galvanometer-as-voltmeter",
+   "verb": "introduces"
+  },
+  {
+   "span": "as-voltmeter",
+   "concept": "galvanometer",
+   "verb": "uses"
+  },
+  {
+   "span": "as-ammeter",
+   "concept": "galvanometer-as-ammeter",
+   "verb": "introduces"
+  },
+  {
+   "span": "as-ammeter",
+   "concept": "galvanometer",
+   "verb": "uses"
+  },
+  {
+   "span": "as-ammeter",
+   "concept": "shunt-resistance",
+   "verb": "introduces"
+  },
+  {
+   "span": "altering",
+   "concept": "measurement-alters-circuit",
+   "verb": "introduces"
+  },
+  {
+   "span": "altering",
+   "concept": "voltmeter-in-parallel",
+   "verb": "reinforces"
+  },
+  {
+   "span": "altering",
+   "concept": "ammeter-in-series",
+   "verb": "reinforces"
+  },
+  {
+   "span": "altering",
+   "concept": "galvanometer-as-voltmeter",
+   "verb": "reinforces"
+  },
+  {
+   "span": "altering",
+   "concept": "galvanometer-as-ammeter",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-418",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "altering"
+   },
+   "cite": "altering",
+   "prompt": "数字式电表能够检测比采用电流计的模拟式电表更小的电流。这如何解释它们测量电压和电流比模拟式电表更准确的能力？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "由于数字式电表所需的电流比模拟式电表小，它们对电路的改变就比模拟式电表小。它们用作电压表时的电阻可以比模拟式电表大得多，用作电流表时的电阻可以比模拟式电表小得多。请参阅图 21.27 和图 21.28 及其在正文中的讨论。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1390392",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "meters",
+   "prompt": "为什么不应像下图所示那样把电流表直接接在电压源两端？（注意，图中的花体 E 代表电动势。）",
+   "figure": {
+    "src": "/media/ch21/Figure_22_04_08.jpg",
+    "alt": "一幅电路图显示一个电动势为花体 E、内阻为 r 的电池。电池的两个端子分别接在电流表的两端。电路是闭合的。",
+    "caption": "电流表直接接在电动势为花体 E、内阻为 r 的电池的两个端子之间。"
+   },
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电流表的电阻很小，所以它可以接在某一支路中而不改变那里的电流。若把它直接接在电源两端，那么除了电池的内阻 $\\krint$ 之外，它就是回路中唯一的电阻。于是电流为 $\\kIcur = \\kemf/(\\krint + R_{\\text{A}})$，几乎是该电池所能提供的最大电流。这一电流远大于表头的满偏电流，所以指针会猛撞到刻度的末端之外，电流会烧毁电流计或保护它的保险丝。务必把电流表与你要测其电流的器件串联，绝不要跨接在电源两端。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1397916",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "altering",
+   "prompt": "假设你在用多用电表（一种设计用来测量某一范围的电压、电流和电阻的仪表）测量电路中的电流，而你无意中把它留在了电压表模式。该电表会对电路产生什么影响？如果你在测量电压，却不小心把电表置于电流表模式，又会怎样？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "在电压表模式下，电表的电阻很大，而此时它串联在支路中。串联的电阻相加，所以支路的电阻变得极大，其中的电流降到几乎为零。电表没有测量电路，反而把电路关断了，读出的电流接近于零。在电流表模式下，电表的电阻很小，而此时它与你想测其电压的器件并联。小电阻与大电阻并联，其总电阻非常接近小电阻，所以电表使该器件短路，有很大的电流通过电表，表头或它的保险丝可能烧毁。第一种错误会毁掉读数；第二种错误可能毁掉仪器。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3149558",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "meters",
+   "figure": {
+    "src": "/media/ch21/Figure_22_04_09.jpg",
+    "alt": "此图显示一个电动势为花体 E、内阻为 r 的电池，与两条支路并联：一条支路含电阻器 R 下标 1，另一条支路含由电阻器 R 下标 2 和 R 下标 3 串联而成的一串。",
+    "caption": "电动势为花体 E、内阻为 r 的电源驱动两条支路，一条载有 R_1，另一条载有串联的 R_2 和 R_3。"
+   },
+   "prompt": "指出在下图中可将电压表接在哪些点之间，以测量下列电势差：（a）电压源的电势差；（b）$\\kResone$ 两端的电势差；（c）$\\kRestwo$ 两端；（d）$\\kResthree$ 两端；（e）$\\kRestwo$ 和 $\\kResthree$ 两端。注意，每一部分可能有不止一个答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电压表要与它所读的对象并联，而仅用导线相连的各点电势相同：a、b、c 和 i 在电学上是同一点，h、g、f 和 j 是另一点，d 和 e 是第三点。\n\n（a）a、b、c 或 i 中的任一点，与 h、g、f 或 j 中的任一点，例如 a 和 h。读数是端电压 $\\kemf - \\kIcur\\krint$，因为内阻 $\\krint$ 在这两点之内。\n\n（b）i 和 j，或（a）中的任何其他点对。$\\kResone$ 的两端位于上、下两条导线上，所以 $\\kResone$ 两端的电压与端电压相同。\n\n（c）a、b、c 或 i 中的任一点，与 d 或 e，例如 c 和 d。\n\n（d）d 或 e，与 h、g、f 或 j 中的任一点，例如 e 和 f。\n\n（e）c 和 f，或（a）中的任何其他点对，因为串联的 $\\kRestwo$ 和 $\\kResthree$ 也跨接在上、下两条导线之间。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id1348664",
+   "kind": "conceptual-question",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "meters",
+   "figure": {
+    "src": "/media/ch21/Figure_22_04_09.jpg",
+    "alt": "此图显示一个电动势为花体 E、内阻为 r 的电池，与两条支路并联：一条支路含电阻器 R 下标 1，另一条支路含由电阻器 R 下标 2 和 R 下标 3 串联而成的一串。",
+    "caption": "电动势为花体 E、内阻为 r 的电源驱动两条支路，一条载有 R_1，另一条载有串联的 R_2 和 R_3。"
+   },
+   "prompt": "为测量下图中的电流，你要把两点之间的一段导线换成电流表。指出你会在哪两点之间接入电流表，以测量下列各量：（a）总电流；（b）流过 $\\kResone$ 的电流；（c）流过 $\\kRestwo$ 的电流；（d）流过 $\\kResthree$ 的电流。注意，每一部分可能有不止一个答案。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电流表必须换下只载有所需电流的那段导线。\n\n（a）a 和 b 之间的导线，或 h 和 g 之间的导线。电路在 b 处分流之前和在 g 处重新汇合之后，来自电源的全部电流都沿这两段导线流过。\n\n（b）b 和 i 之间的导线，或 j 和 g 之间的导线，因为这两段导线只载有 $\\kResone$ 所在支路中的电流。\n\n（c）b 和 c 之间、d 和 e 之间，或 f 和 g 之间的导线。这些导线载有右侧支路中的电流，而 $\\kRestwo$ 和 $\\kResthree$ 在那里是串联的。\n\n（d）与（c）中相同的导线，即 b 和 c 之间、d 和 e 之间，或 f 和 g 之间的导线。串联的电阻器载有同一个电流，所以流过 $\\kResthree$ 的电流就是流过 $\\kRestwo$ 的电流。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id2008364",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-voltmeter",
+   "prompt": "在 30.0 V 刻度上电阻为 $1.00\\text{-M}Ω$ 的电压表，其内部电流计的灵敏度（即使其满偏的电流）是多少？",
+   "answer": {
+    "type": "number",
+    "value": 30,
+    "unit": "µA",
+    "generated_by": "source",
+    "hint": "满刻度时，全部 30.0 V 都加在电表上，所以电流等于该电压除以电表的总电阻。",
+    "solution": "$30\\ \\mu\\text{A}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2660082",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-voltmeter",
+   "prompt": "求为使一个 $25.0\\text{-}Ω$、灵敏度为 $50.0\\text{-}μ\\text{A}$ 的电流计（与正文所讨论的相同）用作满刻度读数为 0.100 V 的电压表，须与之串联的电阻。",
+   "answer": {
+    "type": "number",
+    "value": 1.98,
+    "unit": "kΩ",
+    "generated_by": "source",
+    "hint": "先求满刻度读数所要求的总电阻，再减去电流计自身的电阻。",
+    "solution": "$1.98\\ \\text{k}Ω$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1216022",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-ammeter",
+   "prompt": "求为使一个 $25.0\\text{-}Ω$、灵敏度为 $50.0\\text{-}μ\\text{A}$ 的电流计（与正文所讨论的相同）用作满刻度读数为 10.0 A 的电流表，须与之并联的电阻。请在解答中附上电路图。",
+   "answer": {
+    "type": "number",
+    "value": 0.000125,
+    "unit": "Ω",
+    "generated_by": "source",
+    "hint": "分流电阻与电流计两端的电压相同，除电流计自身的电流外，其余电流都通过分流电阻。",
+    "solution": "$1.25 × 10^{-4}\\ Ω$"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id1389596",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-voltmeter",
+   "prompt": "求为使一个 $10.0\\text{-}Ω$、灵敏度为 $100\\text{-}\\mu\\text{A}$ 的电流计用作下列满刻度读数的电压表，须与之串联的电阻：（a）300 V 满刻度读数，（b）0.300 V 满刻度读数。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 3.0,
+      "unit": "MΩ",
+      "hint": "总电阻等于满刻度电压除以满刻度电流。"
+     },
+     {
+      "part": "b",
+      "value": 2.99,
+      "unit": "kΩ",
+      "hint": "此处电流计自身的 10.0 Ω 已不能忽略，所以要减去它。"
+     }
+    ],
+    "solution": "（a）$3.00\\ \\text{M}Ω$\n（b）$2.99\\ \\text{k}Ω$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1931391",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "altering",
+   "figure": {
+    "src": "/media/ch21/Figure_22_04_10.jpg",
+    "alt": "该图是一幅电路图，包含一个内阻为 r 的电池，其两端接有一个电压表。电流 I 用一个箭头表示，方向为顺时针。",
+    "caption": "电压表接在电动势为花体 E、内阻为 r 的电池的两个端子之间，它取用的电流 I 沿回路顺时针流动。"
+   },
+   "prompt": "假设你要测量一节 1.585 V、内阻为 $0.100\\ Ω$ 的碱性电池的端电压，办法是把一个 $1.00\\text{-k}Ω$ 的电压表接在其两端。（见下图。）（a）流过的电流是多大？（b）求端电压。（c）为了看出测得的端电压与电动势有多接近，计算二者之比。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "a",
+      "value": 1.58,
+      "unit": "mA",
+      "hint": "电压表和内阻是回路中仅有的电阻。"
+     },
+     {
+      "part": "b",
+      "value": 1.5848,
+      "unit": "V",
+      "hint": "从电动势中减去内阻上的电压降；需要四位数字才能看出差别。"
+     },
+     {
+      "part": "c",
+      "value": 0.9999,
+      "hint": "需要五位数字才能看出与 1 的差别。"
+     }
+    ],
+    "solution": "（a）1.58 mA\n（b）1.5848 V（需要四位数字才能看出差别）\n（c）0.99990（需要五位数字才能看出与 1 的差别）"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id1355644",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-ammeter",
+   "prompt": "某电流表在其 3.00 A 刻度上的电阻为 $5.00 × 10^{-5}\\ Ω$，内含一个 $10.0\\text{-}Ω$ 的电流计。该电流计的灵敏度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 15.0,
+    "unit": "µA",
+    "generated_by": "source",
+    "hint": "电流表所标的电阻是分流电阻与电流计并联后的电阻，非常接近分流电阻本身。",
+    "solution": "$15.0\\ \\mu\\text{A}$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3007303",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "altering",
+   "prompt": "把一个 $0.0200\\text{-}Ω$ 的电流表与一个 $10.00\\text{-}Ω$ 的电阻器串联在电路中。（a）画出这一接法的电路图。（b）计算这一组合的电阻。（c）若组合两端的电压保持与只有 $10.00\\text{-}Ω$ 电阻器时相同，电流减小的百分比是多少？（d）若通过组合的电流保持与只有 $10.00\\text{-}Ω$ 电阻器时相同，电压增大的百分比是多少？（e）（c）和（d）中求得的变化显著吗？请讨论。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（b）$10.02\\ Ω$\n（c）0.9980，即减小百分之 $2.0 × 10^{-1}$\n（d）1.002，即增大百分之 $2.0 × 10^{-1}$\n（e）不显著。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id1990504",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "as-ammeter",
+   "prompt": "**不合理的结果** （a）应将多大的电阻与一个 $40.0\\text{-}Ω$、灵敏度为 $25.0\\text{-}μ\\text{A}$ 的电流计并联，才能使其用作在 $10.0\\text{-}μ\\text{A}$ 时满偏的电流表？（b）这个结果有什么不合理之处？（c）哪些假设导致了这一结果？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "（a）$-66.7\\ Ω$\n（b）电阻不可能为负。\n（c）$\\kIcurG$ 大于 $I_{\\text{tot}}$ 是不合理的（见图 21.30）。使用小于电流计灵敏度的电流，不可能实现满偏。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "measurement-alters-circuit"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "voltmeter-in-parallel",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "ammeter-in-series",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "ammeter-in-series"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "measurement-alters-circuit",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "galvanometer-as-ammeter",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "measurement-alters-circuit"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "voltmeter-in-parallel",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "ammeter-in-series",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "voltmeter-in-parallel"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "measurement-alters-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "ammeter-in-series"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "measurement-alters-circuit",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "galvanometer-as-voltmeter"
+  },
+  {
+   "exercise": "p1",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "galvanometer-as-voltmeter"
+  },
+  {
+   "exercise": "p3",
+   "concept": "galvanometer-as-ammeter"
+  },
+  {
+   "exercise": "p4",
+   "concept": "galvanometer-as-voltmeter"
+  },
+  {
+   "exercise": "p4",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "measurement-alters-circuit"
+  },
+  {
+   "exercise": "p5",
+   "concept": "voltmeter-in-parallel",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "galvanometer-as-ammeter"
+  },
+  {
+   "exercise": "p6",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "measurement-alters-circuit"
+  },
+  {
+   "exercise": "p7",
+   "concept": "ammeter-in-series",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "galvanometer-as-ammeter"
+  },
+  {
+   "exercise": "p8",
+   "concept": "galvanometer",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "voltmeter",
+   "label": "电压表 V",
+   "figures": [
+    "sim-meter-connection",
+    "sim-meter-disturbs"
+   ]
+  },
+  {
+   "id": "ammeter",
+   "label": "电流表 A",
+   "figures": [
+    "sim-meter-connection",
+    "sim-meter-disturbs"
+   ]
+  },
+  {
+   "id": "galvanometer",
+   "label": "电流计 G，25 Ω，灵敏度 50 µA",
+   "figures": [
+    "sim-galvanometer",
+    "sim-galvanometer-meters"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "shunt-resistance",
+   "what": "电流表的分流电阻",
+   "source": "《大学物理（第2版）》，21.4 直流电压表与电流表",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "分流电阻 $\\kRes$ 与电流计的电阻 $\\krint$ 并联，所以它们两端的电压相同。",
+       "src": "21.4"
+      },
+      {
+       "tex": "\\kV = \\kIcur\\kRes",
+       "src": "20.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{IR}{\\kIcur\\kRes} = \\mk{G}{\\kIcurG\\krint}",
+      "src": "21.4",
+      "uses": [
+       0,
+       1
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{IG}{\\kIcurG}}{\\mk{I}{\\kIcur}} = \\dfrac{\\mk{R}{\\kRes}}{\\mk{r}{\\krint}}",
+       "uses": [],
+       "map": {
+        "IR": [
+         "I",
+         "R"
+        ],
+        "G": [
+         "IG",
+         "r"
+        ]
+       }
+      },
+      {
+       "tex": "\\mk{R}{\\kRes} = \\mk{r}{\\krint}\\dfrac{\\mk{IG}{\\kIcurG}}{\\mk{I}{\\kIcur}}",
+       "uses": []
+      }
+     ],
+     "src": "21.4"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\krint = 25\\ \\Omega,\\quad \\kIcurG = 50\\ \\mu\\text{A}",
+       "src": "21.4"
+      },
+      {
+       "text": "分流电阻载有满刻度 1.0 A 中的其余部分，所以 $\\kIcur = 1.0\\ \\text{A} - 50\\ \\mu\\text{A} = 0.999950\\ \\text{A}$。",
+       "src": "21.4"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{R}{\\kRes} = \\mk{r}{\\krint}\\dfrac{\\mk{IG}{\\kIcurG}}{\\mk{I}{\\kIcur}}",
+      "src": "21.4"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{R}{\\kRes} = \\mk{r}{(25\\ \\Omega)}\\dfrac{\\mk{IG}{50\\ \\mu\\text{A}}}{\\mk{I}{0.999950\\ \\text{A}}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{R}{\\kRes} = \\mk{r}{1.25 \\times 10^{-3}\\ \\Omega}",
+       "uses": [],
+       "map": {
+        "IG": "r",
+        "I": "r"
+       }
+      }
+     ],
+     "src": "21.4"
+    }
+   ]
+  }
+ ]
+}

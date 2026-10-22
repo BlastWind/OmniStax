@@ -1,0 +1,674 @@
+{
+ "id": "21.5",
+ "module": "m42362",
+ "chapter": "21",
+ "title": "零示测量",
+ "short": "零示测量",
+ "lead": "上一节中的每一种电表都会取用<span data-concept=\"electric-current\">电流</span>，从而破坏自己的读数，而零示测量则通过平衡电路，使测量装置中没有<span data-concept=\"electric-current\">电流</span>通过。本节介绍两种按这种方式工作的仪器，即测量电动势的电势差计和测量<span data-concept=\"resistance\">电阻</span>的惠斯通电桥，以及仍然限制它们准确度的因素。",
+ "objectives": [
+  "解释为什么零示测量装置比标准电压表或电流表更准确。",
+  "演示如何用惠斯通电桥准确地计算电路中的电阻。"
+ ],
+ "summary_html": "<ul><li>零示测量技术通过平衡电路，使测量装置中没有<span data-concept=\"electric-current\">电流</span>流过，从而获得更高的准确度。</li><li>用于测定<span data-concept=\"potential-difference\">电压</span>的这样一种装置是电势差计。</li><li>另一种用于测定<span data-concept=\"resistance\">电阻</span>的零示测量装置是惠斯通电桥。</li><li>其他物理量也可以用零示测量技术来测量。</li></ul>",
+ "notes": "书中没有给出标准答案的两道习题已略去：一道是要根据与碱性标准电池的平衡来求干电池电动势的题，另一道是要为给定的待测电阻设定可变桥臂的电桥题。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成。答案取自书后答案。六道习题中有两道没有给出答案，已如注释所说略去。理解检测框是书中原有的，并附有书中的答案；它被内嵌在惠斯通电桥一段之后，因为那正是它所考查的段落。两道思考题的建议思路由 AI 撰写，并已标明。本节没有 AP 备考练习题。本节没有任何内容留待以后的页面，也没有来自前面页面而留给本节的内容；21.4 中那两道询问零示测量会怎样的习题仍留在 21.4，如该节的习题说明所记。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-voltmeter-emf",
+   "kind": "sim",
+   "number": "21.33",
+   "originals": [
+    "/media/ch21/Figure_22_05_01.jpg"
+   ],
+   "original_caption": "一只模拟式电压表接在电池上，取用一个很小但不为零的电流，测得的端电压与电池的电动势不同。（注意，花体大写字母 E 表示电动势。）由于电池的内阻并不精确知道，因此无法精确地算出电动势。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "voltmeter case widened off the r_G label; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-potentiometer",
+   "kind": "sim",
+   "number": "21.34",
+   "originals": [
+    "/media/ch21/Figure_22_05_02.jpg"
+   ],
+   "original_caption": "电势差计，一种零示测量装置。（a）接在一根长电阻丝上的电压源使恒定的电流 I 通过它。（b）按图连接一个待测电动势（图中标为花体 E_x），调节沿 R 的滑动触点位置，直到电流计读数为零。这段电阻丝的电阻为 R_x，且花体 E_x = IR_x，其中 I 不受这一连接的影响，因为没有电流流过电流计。因此待测电动势与这段电阻丝的电阻成正比。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "voltage",
+    "resistance",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "contact label lowered off the tick values; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-ohmmeter",
+   "kind": "sim",
+   "number": "21.35",
+   "originals": [
+    "/media/ch21/Figure_22_05_03.jpg"
+   ],
+   "original_caption": "用标准电表测量电阻的两种方法。（a）假定电源的电压已知，用电流表测量电流，电阻按 R = V/I 算出。（b）由于端电压 V 随电流变化，最好把它测出来。I 小时 V 最准确，而 I 本身在较大时才最准确。",
+   "widths": [
+    275
+   ],
+   "draws": [
+    "resistance",
+    "voltage",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "caption no longer names an ammeter control; method as a choice; notes cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-wheatstone",
+   "kind": "sim",
+   "number": "21.36",
+   "originals": [
+    "/media/ch21/Figure_22_05_04.jpg"
+   ],
+   "original_caption": "惠斯通电桥用来计算待测电阻。调节可变电阻 R_3，直到开关闭合时电流计读数为零。这就简化了电路，使 R_x 可以根据正文中讨论的 IR 压降算出。",
+   "widths": [
+    225
+   ],
+   "draws": [
+    "resistance",
+    "voltage",
+    "current"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "switch drawn closed; unbalanced readout written as not equal to R_x"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "null-measurements",
+   "concept": "null-measurement",
+   "verb": "introduces"
+  },
+  {
+   "span": "null-measurements",
+   "concept": "measurement-alters-circuit",
+   "verb": "uses"
+  },
+  {
+   "span": "null-measurements",
+   "concept": "voltmeter-in-parallel",
+   "verb": "uses"
+  },
+  {
+   "span": "null-measurements",
+   "concept": "ammeter-in-series",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "potentiometer",
+   "verb": "introduces"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "null-measurement",
+   "verb": "reinforces"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "terminal-voltage",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "internal-resistance",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "emf",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "galvanometer",
+   "verb": "uses"
+  },
+  {
+   "span": "potentiometer",
+   "concept": "ir-drop",
+   "verb": "uses"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "ohmmeter",
+   "verb": "introduces"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "wheatstone-bridge",
+   "verb": "introduces"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "null-measurement",
+   "verb": "reinforces"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "ohms-law",
+   "verb": "uses"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "ir-drop",
+   "verb": "uses"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "parallel-connection",
+   "verb": "uses"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "wheatstone-bridge",
+   "concept": "bridge-device",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "eip-745",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "wheatstone-bridge"
+   },
+   "cite": "wheatstone-bridge",
+   "prompt": "指出其他可能限制零示测量准确度的因素。使用比电流计更灵敏的数字装置，会提高零示测量的准确度吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "一个因素是零示测量中导线和连接处的电阻。这些电阻不可能做到为零，而且会随时间变化。另一个因素是电阻随温度的变化，选择材料可以减小它，但不能完全消除。对较小电流比模拟装置更灵敏的数字装置确实会提高零示测量的准确度，因为它们能使你把电流调得更接近零。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1053475",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "null-measurements",
+   "prompt": "为什么零示测量可以比使用标准电压表和电流表的测量更准确？哪些因素限制零示测量的准确度？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "标准电压表必须取用电流才能使指针偏转，而这个电流要经过电源的内阻，所以电表读出的是端电压而不是电动势。标准电流表自身有电阻，因此把它接入电路会减小它所测量的电流。零示测量没有这样的要求。你调节电势差计的滑动触点或电桥的可调桥臂，直到电流计读数为零，而这时没有电流流过测量装置，它就不从电路中取走任何东西，也不改变电路中的任何东西。限制准确度的，是平衡仍然依赖的一切因素。你能把指针读到多接近零，平衡就只能达到多接近零。计算中的电阻各有自己的不确定度，电势差计的标准电动势也是如此。导线和连接处有一个永远不为零的微小电阻，它还会随老化而变化，而电阻本身也会随温度漂移。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2653352",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "potentiometer",
+   "prompt": "如果用电势差计测量几伏量级的电池电动势，为什么让标准电动势 $\\kemfs$ 与之同一数量级、让电阻在几欧姆的范围内时最准确？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "测量给出待测电动势 $\\kemfx = \\kemfs\\kResx/\\kRess$，所以它的准确度取决于标准电动势的准确度，以及两个平衡电阻之比的准确度。如果标准电动势与待测电动势属于同一数量级，则比值 $\\kResx/\\kRess$ 接近 1。两个平衡点就都离电阻丝的两端很远，你在相近的长度上读出每个电阻。标准电动势若大得多或小得多，就会把一个平衡点推到电阻丝的一端，甚至推到电阻丝之外，在那里你只能粗略地读出长度，该电阻的相对不确定度就很大。电阻最好是几欧姆，原因与此相关。几欧姆的电阻丝对几伏的电源来说通过的电流比较方便，因此电势在可读的长度上下降一个可读的量。导线和连接处有数量级为百分之一欧姆、永远不为零的电阻，相对于几欧姆，它们可以忽略，而不是一个很大的修正。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1844231",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "potentiometer",
+   "prompt": "如果标准电池的电动势为 12.0 V，且电势差计在 $\\kResx = 5.000\\ Ω$ 和 $\\kRess = 2.500\\ Ω$ 时平衡，则电势差计中被测电池的 $\\kemfx$ 是多少？",
+   "answer": {
+    "type": "number",
+    "value": 24.0,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "沿电阻丝流过的电流在两次平衡中相同，所以两个电动势之比等于两个平衡电阻之比。",
+    "solution": "24.0 V"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1422615",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheatstone-bridge",
+   "prompt": "把待测电阻 $\\kResx$ 接入惠斯通电桥时，调节 $\\kResthree$ 为 $2500\\ Ω$ 就能使电桥平衡。若 $\\frac{\\kRestwo}{\\kResone} = 0.625$，则 $\\kResx$ 是多少？",
+   "answer": {
+    "type": "number",
+    "value": 1.56,
+    "unit": "kΩ",
+    "generated_by": "source",
+    "hint": "平衡条件给出，待测电阻等于可调桥臂乘以两个已知桥臂之比，而对这两个桥臂，答案只需要这个比值。",
+    "solution": "1.56 kΩ"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2391704",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "potentiometer",
+   "prompt": "（a）某电势差计在 $\\kResx$ 为 $10.0\\ Ω$ 时平衡，对于 3.000 V 的标准电动势，它在 $\\kRess$ 为 $15.0\\ Ω$ 时平衡，其中待测的 $\\kemfx$ 是多少？（b）把同一个 $\\kemfx$ 接入同一台电势差计，对于 3.100 V 的标准电动势，它现在在 $\\kRess$ 为 $15.0\\ Ω$ 时平衡。电势差计将在多大的电阻 $\\kResx$ 处平衡？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kemfx$",
+      "value": 2.0,
+      "unit": "V",
+      "hint": "待测电动势等于标准电动势乘以使它平衡的电阻与使标准电动势平衡的电阻之比。"
+     },
+     {
+      "part": "(b) $\\kResx$",
+      "value": 9.68,
+      "unit": "Ω",
+      "hint": "待测电动势没有变，但标准电动势变了，所以沿电阻丝的电流不同，同一个电动势在另一个电阻处平衡。"
+     }
+    ],
+    "solution": "（a）2.00 V（b）$9.68\\ Ω$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id3335517",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wheatstone-bridge",
+   "prompt": "假设你想用 $\\frac{\\kRestwo}{\\kResone} = 2.000$ 的惠斯通电桥测量从 $10.0\\ Ω$ 到 $10.0\\ \\text{k}Ω$ 范围内的电阻。$\\kResthree$ 应在什么范围内可调？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "范围 = 5.00 Ω 到 5.00 kΩ"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "null-measurement"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "null-measurement"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "measurement-alters-circuit",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "potentiometer"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "null-measurement",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "potentiometer"
+  },
+  {
+   "exercise": "p3",
+   "concept": "wheatstone-bridge"
+  },
+  {
+   "exercise": "p5",
+   "concept": "potentiometer"
+  },
+  {
+   "exercise": "p6",
+   "concept": "wheatstone-bridge"
+  }
+ ],
+ "referents": [
+  {
+   "id": "battery",
+   "label": "电压表要读取其电动势的电池",
+   "figures": [
+    "sim-voltmeter-emf"
+   ]
+  },
+  {
+   "id": "voltmeter",
+   "label": "跨接在电池两端的模拟式电压表",
+   "figures": [
+    "sim-voltmeter-emf"
+   ]
+  },
+  {
+   "id": "unknown-cell",
+   "label": "电动势 ℰₓ 待测的电池",
+   "figures": [
+    "sim-potentiometer"
+   ]
+  },
+  {
+   "id": "standard-cell",
+   "label": "电动势 ℰₛ 已知的标准电池",
+   "figures": [
+    "sim-potentiometer"
+   ]
+  },
+  {
+   "id": "wire",
+   "label": "电势差计的长均匀电阻丝",
+   "figures": [
+    "sim-potentiometer"
+   ]
+  },
+  {
+   "id": "resistor-1",
+   "label": "电桥的已知桥臂 R₁",
+   "figures": [
+    "sim-wheatstone"
+   ]
+  },
+  {
+   "id": "resistor-2",
+   "label": "电桥的已知桥臂 R₂",
+   "figures": [
+    "sim-wheatstone"
+   ]
+  },
+  {
+   "id": "resistor-3",
+   "label": "电桥的可调桥臂 R₃",
+   "figures": [
+    "sim-wheatstone"
+   ]
+  },
+  {
+   "id": "unknown-resistor",
+   "label": "待测电阻 Rₓ",
+   "figures": [
+    "sim-wheatstone",
+    "sim-ohmmeter"
+   ]
+  },
+  {
+   "id": "galvanometer",
+   "label": "平衡时读数为零的电流计",
+   "figures": [
+    "sim-wheatstone",
+    "sim-potentiometer"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "potentiometer-emf",
+   "what": "电势差计所测得的电动势",
+   "source": "《大学物理（第2版）》，21.5 零示测量",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "平衡时没有电流流过电流计，所以也没有电流流过待测电动势，$\\kemfx$ 等于沿电阻丝直到滑动触点的 $\\kIcur\\kRes$ 压降。",
+       "src": "21.5"
+      },
+      {
+       "tex": "\\kemfs = \\kIcur\\kRess",
+       "src": "21.5"
+      },
+      {
+       "text": "两种情形下都没有电流通过电流计，所以通过长电阻丝的电流 $\\kIcur$ 相同。",
+       "src": "21.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Ex}{\\kemfx} = \\mk{Ix}{\\kIcur\\kResx}",
+      "src": "21.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{Ex}{\\kemfx}}{\\mk{Es}{\\kemfs}} = \\dfrac{\\mk{Ix}{\\kIcur\\kResx}}{\\mk{Is}{\\kIcur\\kRess}}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{Ex}{\\kemfx}}{\\mk{Es}{\\kemfs}} = \\dfrac{\\mk{Ix}{\\kResx}}{\\mk{Is}{\\kRess}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{Ex}{\\kemfx} = \\mk{Es}{\\kemfs}\\dfrac{\\mk{Ix}{\\kResx}}{\\mk{Is}{\\kRess}}",
+       "uses": []
+      }
+     ],
+     "src": "21.5"
+    }
+   ]
+  },
+  {
+   "id": "wheatstone-bridge",
+   "what": "平衡的惠斯通电桥中的待测电阻",
+   "source": "《大学物理（第2版）》，21.5 零示测量",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "平衡时 b 和 d 的电势相同，所以沿 ad 和 ab 的 $\\kIcur\\kRes$ 压降相等，沿 dc 和 bc 的也相等。",
+       "src": "21.5"
+      },
+      {
+       "tex": "\\kIcurone\\kRestwo = \\kIcurtwo\\kResx",
+       "src": "21.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{a}{\\kIcurone\\kResone} = \\mk{b}{\\kIcurtwo\\kResthree}",
+      "src": "21.5",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\dfrac{\\mk{a}{\\kIcurone\\kResone}}{\\mk{c}{\\kIcurone\\kRestwo}} = \\dfrac{\\mk{b}{\\kIcurtwo\\kResthree}}{\\mk{d}{\\kIcurtwo\\kResx}}",
+       "uses": [
+        0,
+        1
+       ]
+      },
+      {
+       "tex": "\\dfrac{\\mk{a}{\\kResone}}{\\mk{c}{\\kRestwo}} = \\dfrac{\\mk{b}{\\kResthree}}{\\mk{d}{\\kResx}}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{d}{\\kResx} = \\mk{b}{\\kResthree}\\dfrac{\\mk{c}{\\kRestwo}}{\\mk{a}{\\kResone}}",
+       "uses": []
+      }
+     ],
+     "src": "21.5"
+    }
+   ]
+  }
+ ]
+}
