@@ -1,0 +1,811 @@
+{
+ "id": "17.6",
+ "module": "m42297",
+ "chapter": "17",
+ "title": "听觉",
+ "short": "听觉",
+ "lead": "耳朵把<span data-concept=\"pressure\">压强</span>波转变为音调、响度和音色的感觉，每一种感觉都以声音的某个物理量为基础。音调随<span data-concept=\"frequency\">频率</span>而变，响度同时取决于<span data-concept=\"intensity\">强度</span>和<span data-concept=\"frequency\">频率</span>，声音则经由外耳道、中耳的杠杆和耳蜗到达神经。",
+ "objectives": [
+  "定义听觉、音调、响度、音色、音、音质、方、超声和次声。",
+  "比较响度与声音的频率和强度。",
+  "识别内耳的结构，并解释它们与声音知觉的关系。"
+ ],
+ "summary_html": "<ul><li>可听<span data-concept=\"frequency\">频率</span>的范围是 20 到 20,000 Hz。</li><li>高于 20,000 Hz 的声音是超声，而低于 20 Hz 的声音是次声。</li><li>对<span data-concept=\"frequency\">频率</span>的知觉是音调。</li><li>对<span data-concept=\"intensity\">强度</span>的知觉是响度。</li><li>响度的单位是方。</li></ul>",
+ "notes": "本节开头的乐队照片已略去，书中未给出答案的八道习题也已略去：跨越 10³ 倍的速度计，2002 Hz 和 1999 Hz 的声音，电视从 70 dB 变到 73 dB，在 60、3000 和 8000 Hz 上达到 40 方所需的声强级，四个频率在 60.0、110 和 20.0 dB 时的响度，需要 5.0 × 10¹² 倍放大的女士，60.0 和 10,000 Hz 上 60 方时的强度，以及在 5000 Hz 附近有 60 dB 听力损失的儿童。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。关于超声和次声是否对所有有听觉的生物都感知不到的“理解检测”，书中给出了答案，并放在介绍狗、蝙蝠、海豚和大象听觉范围的那段文字之后。唯一的思考题，即为什么听力测试可以读出 250 Hz 处为 0 dB，而图 17.35 却表明没有人能听到低于 20 dB 的这个频率，书中没有给出答案，作为开放题保留，附有 AI 撰写的建议思路，并已标明。九道习题有答案并予以保留；最接近 500 Hz 的频率和从图 17.34 中读出的五个阈值按多个部分设置，因为书中给出了多个数值。八道习题没有给出答案，已略去：跨越 10³ 倍的速度计，2002 Hz 对 1999 Hz，电视从 70 dB 变到 73 dB，在 60、3000 和 8000 Hz 上达到 40 方，三个声强级下四个频率的响度，5.0 × 10¹² 倍的放大，60.0 和 10,000 Hz 上的 60 方，以及儿童在 5000 Hz 附近的 60 dB 损失。本节没有印出 AP 题，也没有取自其他小节的内容，没有留待后面小节的内容。数值答案允许 2% 的容差；从等响曲线上读出的答案是书中自己的读数，书中说它们带有若干分贝的不确定度。",
+ "figures": [
+  {
+   "id": "sim-equal-loudness",
+   "kind": "sim",
+   "number": "17.34",
+   "originals": [
+    "/media/ch17/Figure_18_06_02.jpg"
+   ],
+   "original_caption": "听力正常的人的响度（以方为单位）与声强级（以分贝为单位）和强度（以瓦每平方米为单位）的关系。曲线是等响曲线——给定曲线上的所有声音被感知为同样响。方与分贝在 1000 Hz 处被定义为相同。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "frequency",
+    "intensity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "axis title inside the stage; note above 120 phons"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-speech-region",
+   "kind": "sim",
+   "number": "17.35",
+   "originals": [
+    "/media/ch17/Figure_18_06_03.jpg"
+   ],
+   "original_caption": "阴影区域表示正常交谈语音中的频率和声强级。0 方线表示正常听阈，而 40 和 60 方线分别表示有 40 方和 60 方听力损失的人的阈值。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "threshold label clear of the speech label; notes trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-audiogram",
+   "kind": "sim",
+   "number": "17.36",
+   "originals": [
+    "/media/ch17/Figure_18_06_04.jpg"
+   ],
+   "original_caption": "三个不同的人的听力图，显示声强级阈值随频率的变化。声强级是相对于正常阈值测量的。左上方的图是听力正常者的听力图。其右边的图在 4000 Hz 处有一个凹处，是一名因火药玩具枪而听力受损的儿童的听力图。第三张图是老年性聋的典型情形，即随年龄增长，较高频率的听力逐渐丧失。通过骨传导（括号）进行的测试可以区分神经损伤与中耳损伤。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "frequency"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "notes no longer repeat the caption"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-ear",
+   "kind": "photo",
+   "number": "17.37",
+   "widths": [
+    350
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-middle-ear",
+   "kind": "sim",
+   "number": "17.38",
+   "originals": [
+    "/media/ch17/Figure_18_06_06.jpg"
+   ],
+   "original_caption": "这张示意图显示中耳的系统：把声压转换成力，通过杠杆系统增大该力，并把增大后的力施加到耳蜗的一小块面积上，从而产生约为原来声波中压强 40 倍的压强。对强烈声音的保护性肌肉反应会大大降低杠杆系统的机械利益。",
+   "widths": [
+    300
+   ],
+   "draws": [
+    "pressure",
+    "force",
+    "area",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "pivot and F2 labels clear of lines; note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-cochlea",
+   "kind": "photo",
+   "number": "17.39",
+   "widths": [
+    300
+   ],
+   "draws": []
+  }
+ ],
+ "coverage": [
+  {
+   "span": "hearing-range",
+   "concept": "audible-range",
+   "verb": "introduces"
+  },
+  {
+   "span": "hearing-range",
+   "concept": "hearing",
+   "verb": "uses"
+  },
+  {
+   "span": "hearing-range",
+   "concept": "sound",
+   "verb": "uses"
+  },
+  {
+   "span": "hearing-range",
+   "concept": "frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "hearing-range",
+   "concept": "ultrasound",
+   "verb": "introduces"
+  },
+  {
+   "span": "hearing-range",
+   "concept": "infrasound",
+   "verb": "introduces"
+  },
+  {
+   "span": "pitch",
+   "concept": "pitch-discrimination",
+   "verb": "introduces"
+  },
+  {
+   "span": "pitch",
+   "concept": "pitch",
+   "verb": "uses"
+  },
+  {
+   "span": "loudness-perception",
+   "concept": "loudness",
+   "verb": "introduces"
+  },
+  {
+   "span": "loudness-perception",
+   "concept": "threshold-of-hearing",
+   "verb": "uses"
+  },
+  {
+   "span": "loudness-perception",
+   "concept": "sound-intensity-level",
+   "verb": "uses"
+  },
+  {
+   "span": "loudness-perception",
+   "concept": "decibel-ratios",
+   "verb": "uses"
+  },
+  {
+   "span": "timbre-tone",
+   "concept": "timbre",
+   "verb": "introduces"
+  },
+  {
+   "span": "timbre-tone",
+   "concept": "fundamental-and-overtones",
+   "verb": "uses"
+  },
+  {
+   "span": "timbre-tone",
+   "concept": "note",
+   "verb": "introduces"
+  },
+  {
+   "span": "equal-loudness",
+   "concept": "equal-loudness-curves",
+   "verb": "introduces"
+  },
+  {
+   "span": "equal-loudness",
+   "concept": "loudness",
+   "verb": "reinforces"
+  },
+  {
+   "span": "equal-loudness",
+   "concept": "sound-intensity-level",
+   "verb": "uses"
+  },
+  {
+   "span": "equal-loudness",
+   "concept": "threshold-of-hearing",
+   "verb": "reinforces"
+  },
+  {
+   "span": "equal-loudness",
+   "concept": "phon",
+   "verb": "introduces"
+  },
+  {
+   "span": "hearing-loss",
+   "concept": "hearing-loss-and-audiograms",
+   "verb": "introduces"
+  },
+  {
+   "span": "hearing-loss",
+   "concept": "equal-loudness-curves",
+   "verb": "uses"
+  },
+  {
+   "span": "hearing-loss",
+   "concept": "decibel-ratios",
+   "verb": "uses"
+  },
+  {
+   "span": "ear-mechanism",
+   "concept": "hearing-mechanism",
+   "verb": "introduces"
+  },
+  {
+   "span": "ear-mechanism",
+   "concept": "lever",
+   "verb": "uses"
+  },
+  {
+   "span": "ear-mechanism",
+   "concept": "lever-mechanical-advantage",
+   "verb": "uses"
+  },
+  {
+   "span": "ear-mechanism",
+   "concept": "force-from-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "ear-mechanism",
+   "concept": "air-column-resonance",
+   "verb": "uses"
+  },
+  {
+   "span": "ear-mechanism",
+   "concept": "closed-tube-resonances",
+   "verb": "uses"
+  },
+  {
+   "span": "ear-mechanism",
+   "concept": "hearing-loss-and-audiograms",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id2684305",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "hearing-range"
+   },
+   "cite": "hearing-range",
+   "prompt": "超声和次声对所有有听觉的生物来说都是感知不到的吗？请解释你的回答。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "不是。可感知声音的范围是以人的听觉范围为基础的。许多其他生物能感知次声或超声。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2397751",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hearing-loss",
+   "prompt": "为什么听力测试可以显示你在 250 Hz 处的听阈是 0 dB，而图 17.35 却表明没有人能听到低于 20 dB 的这个频率？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "这两张图测量的是不同的东西。图 17.35 画的是声强级本身，以 $\\kIo = 10^{-12}\\ \\text{W/m}^2$ 为参考，在这个标度上，250 Hz 处的正常听阈确实约为 20 dB，因为耳朵在那里不如在 1000 Hz 处灵敏。听力图测量的是每个频率上相对于正常听阈的阈值，所以听力正常的人在每个受测频率上都记录为 0 dB。因此，听力测试上 250 Hz 处读数为 0 dB，意味着你在 250 Hz 处的阈值就是正常阈值，比 $\\kIo$ 高约 20 dB，而不是说你能听到强度为 $\\kIo$ 的 250 Hz 声音。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1405404",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "loudness-perception",
+   "prompt": "耳朵能够响应的强度范围，从阈值到短时间暴露后造成损伤的强度，其中的因子 $10^{-12}$ 确实非同寻常。如果你能用一台仪器测量同样大小范围内的距离，而你能测量的最小距离是 1 mm，那么最大的距离会是多少？",
+   "answer": {
+    "type": "number",
+    "value": 1000000,
+    "unit": "km",
+    "generated_by": "source",
+    "hint": "最大的距离是最小距离的 $10^{12}$ 倍。把 1 mm 乘以 $10^{12}$，再把结果换算成千米。",
+    "solution": "$1 \\times 10^{6}\\ \\text{km}$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3007431",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pitch",
+   "prompt": "普通人能够明确分辨出与 500 Hz 频率不同的、最接近 500 Hz 的频率是多少？这些声音不是同时出现的。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "below 500 Hz",
+      "value": 498.5,
+      "unit": "Hz",
+      "hint": "两个声音的频率相差 0.3% 或更多时，就能区分开。取 500 Hz 的 0.3%，再用 500 Hz 减去它。"
+     },
+     {
+      "part": "above 500 Hz",
+      "value": 501.5,
+      "unit": "Hz",
+      "hint": "同样是 500 Hz 的 0.3%，改为加上，而不是减去。"
+     }
+    ],
+    "solution": "498.5 或 501.5 Hz"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2621794",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "loudness-perception",
+   "prompt": "如果你的收音机产生的平均声强级是 85 dB，那么下一个明显更弱的较低声强级是多少？",
+   "answer": {
+    "type": "number",
+    "value": 82,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "在给定的频率下，你刚好能分辨约 1 dB 的差别，而 3 dB 的变化很容易察觉。你需要的是明显更弱的声强级。",
+    "solution": "82 dB"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2521311",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equal-loudness",
+   "prompt": "根据图 17.34 中的图，频率为 60、400、1000、4000 和 15,000 Hz 时的听阈各是多少分贝？注意，许多交流电器产生 60 Hz，音乐通常是 400 Hz，参考频率是 1000 Hz，你的最大灵敏度在 4000 Hz 附近，许多老式电视机会发出 15,750 Hz 的啸叫声。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "60 Hz",
+      "value": 48,
+      "unit": "dB",
+      "hint": "听阈就是 0 方曲线。沿着它找到 60 Hz，从纵轴上读出声强级。"
+     },
+     {
+      "part": "400 Hz",
+      "value": 9,
+      "unit": "dB",
+      "hint": "在 400 Hz 处读取 0 方曲线。"
+     },
+     {
+      "part": "1000 Hz",
+      "value": 0,
+      "unit": "dB",
+      "hint": "在 1000 Hz 处，方和分贝被定义为相等，所以 0 方曲线在那里经过 0 dB。"
+     },
+     {
+      "part": "4000 Hz",
+      "value": -7,
+      "unit": "dB",
+      "hint": "在耳朵最灵敏的地方，曲线凹到 0 dB 以下，所以 4000 Hz 处的听阈为负值。"
+     },
+     {
+      "part": "15,000 Hz",
+      "value": 20,
+      "unit": "dB",
+      "hint": "0 方曲线在频率范围的高频端急剧上升。"
+     }
+    ],
+    "solution": "分别约为 48、9、0、–7 和 20 dB"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2429436",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equal-loudness",
+   "prompt": "一个 600 Hz 的纯音，如果响度为 20 方，它的大致声强级是多少分贝？如果响度为 70 方呢？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) 20 phons",
+      "value": 23,
+      "unit": "dB",
+      "hint": "沿图 17.34 中的 20 方曲线找到 600 Hz，从纵轴上读出声强级。"
+     },
+     {
+      "part": "(b) 70 phons",
+      "value": 70,
+      "unit": "dB",
+      "hint": "70 方曲线在 400 到 1000 Hz 之间几乎是平的，所以在 600 Hz 处它的声强级接近它在 1000 Hz 处的值，在那里方与分贝一致。"
+     }
+    ],
+    "solution": "（a）23 dB（b）70 dB"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3161731",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hearing-loss",
+   "prompt": "假设一个人在所有频率上都有 50 dB 的听力损失。低强度的声音需要放大多少个 10 倍，才会让这个人觉得正常？注意，对于更强的声音，适当的放大倍数较小，以免造成进一步的听力损伤。",
+   "answer": {
+    "type": "number",
+    "value": 5,
+    "unit": "factors of 10",
+    "generated_by": "source",
+    "hint": "声强级每增加 10 dB，强度就增大为 10 倍，所以声强级高 50 dB 就是强度的 $10^{50/10}$ 倍。",
+    "solution": "五个 10 倍"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3201698",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "equal-loudness",
+   "prompt": "（a）刚好能听到的 200 Hz 声音，强度是多少瓦每平方米？（b）刚好能听到的 4000 Hz 声音，强度是多少瓦每平方米？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) 200 Hz",
+      "value": 2e-10,
+      "unit": "W/m²",
+      "hint": "从 0 方曲线上读出 200 Hz 处的听阈，约 23 dB，再用 $\\kIntens = \\kIo 10^{\\beta/10}$ 把声强级换算成强度，其中 $\\kIo = 10^{-12}\\ \\text{W/m}^2$。"
+     },
+     {
+      "part": "(b) 4000 Hz",
+      "value": 2e-13,
+      "unit": "W/m²",
+      "hint": "4000 Hz 处的听阈约为 −7 dB，低于 0 dB，所以强度小于 $\\kIo$。"
+     }
+    ],
+    "solution": "（a）$2 \\times 10^{-10}\\ \\text{W/m}^2$（b）$2 \\times 10^{-13}\\ \\text{W/m}^2$"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2056716",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "hearing-loss",
+   "prompt": "某人在 100 Hz 处的听阈比正常高 10 dB，在 4000 Hz 处比正常高 50 dB。如果 100 Hz 的纯音和 4000 Hz 的纯音对这个人都刚好能听到，那么 100 Hz 的纯音的强度必须比 4000 Hz 的纯音大多少？",
+   "answer": {
+    "type": "number",
+    "value": 2.5,
+    "generated_by": "source",
+    "hint": "把听力损失加到从图 17.34 的 0 方曲线读出的正常阈值上，就得到这个人对每个纯音的阈值，100 Hz 处约 37 dB，4000 Hz 处约 −7 dB。声强级之差通过 $\\beta_2 - \\beta_1 = 10\\log_{10}(\\kItwo/\\kIone)$ 给出强度之比。",
+    "solution": "2.5"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id1448928",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "loudness-perception",
+   "prompt": "两个频率相同的声音，如果第一个刚好能让人辨别出比第二个更响，那么它们的强度之比是多少？",
+   "answer": {
+    "type": "number",
+    "value": 1.26,
+    "generated_by": "source",
+    "hint": "在给定的频率下，约 1 dB 的差别可以分辨出来。声强级相差 1 dB，就是强度之比为 $10^{1/10}$。",
+    "solution": "1.26"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "audible-range"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "hearing-loss-and-audiograms"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "equal-loudness-curves",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "loudness"
+  },
+  {
+   "exercise": "p1",
+   "concept": "threshold-of-hearing",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "pitch-discrimination"
+  },
+  {
+   "exercise": "p5",
+   "concept": "loudness"
+  },
+  {
+   "exercise": "p5",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "equal-loudness-curves"
+  },
+  {
+   "exercise": "p9",
+   "concept": "equal-loudness-curves"
+  },
+  {
+   "exercise": "p11",
+   "concept": "hearing-loss-and-audiograms"
+  },
+  {
+   "exercise": "p11",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "equal-loudness-curves"
+  },
+  {
+   "exercise": "p13",
+   "concept": "sound-intensity-level",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "hearing-loss-and-audiograms"
+  },
+  {
+   "exercise": "p15",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p17",
+   "concept": "loudness"
+  },
+  {
+   "exercise": "p17",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "sound",
+   "label": "网格上标出的声音",
+   "figures": [
+    "sim-equal-loudness"
+   ]
+  },
+  {
+   "id": "right-ear",
+   "label": "右耳",
+   "figures": [
+    "sim-audiogram"
+   ]
+  },
+  {
+   "id": "left-ear",
+   "label": "左耳",
+   "figures": [
+    "sim-audiogram"
+   ]
+  },
+  {
+   "id": "eardrum",
+   "label": "鼓膜",
+   "figures": [
+    "sim-middle-ear"
+   ]
+  },
+  {
+   "id": "hammer",
+   "label": "锤骨",
+   "figures": [
+    "sim-middle-ear"
+   ]
+  },
+  {
+   "id": "anvil",
+   "label": "砧骨",
+   "figures": [
+    "sim-middle-ear"
+   ]
+  },
+  {
+   "id": "stirrup",
+   "label": "镫骨",
+   "figures": [
+    "sim-middle-ear"
+   ]
+  },
+  {
+   "id": "oval-window",
+   "label": "前庭窗",
+   "figures": [
+    "sim-middle-ear"
+   ]
+  }
+ ]
+}

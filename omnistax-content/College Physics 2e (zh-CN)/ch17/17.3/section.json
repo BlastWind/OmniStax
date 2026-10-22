@@ -1,0 +1,883 @@
+{
+ "id": "17.3",
+ "module": "m42257",
+ "chapter": "17",
+ "title": "声强与声强级",
+ "short": "声强与声强级",
+ "lead": "响度是一种我们熟悉的体验，其背后的物理量是声音的<span data-concept=\"intensity\">强度</span>，即声音穿过每平方米所携带的<span data-concept=\"power\">功率</span>。由于耳朵的响应取决于<span data-concept=\"intensity\">强度</span>的对数，我们用以分贝计的声强级、相对于听阈来衡量一个声音。",
+ "objectives": [
+  "定义强度、声强和声压级。",
+  "计算以分贝（dB）表示的声强级。"
+ ],
+ "summary_html": "<ul><li>声波的<span data-concept=\"intensity\">强度</span>与为所有波所定义的相同；它是 $\\kIntens = \\frac{\\kP}{A},$ 其中 $\\kP$ 是穿过<span data-concept=\"area\">面积</span> $A$ 的<span data-concept=\"power\">功率</span>。$\\kIntens$ 的 SI 单位是瓦特每平方米。声波的<span data-concept=\"intensity\">强度</span>还与<span data-concept=\"pressure\">压强</span><span data-concept=\"amplitude\">振幅</span> $\\kdpamp$ 有关，$\\kIntens = \\frac{(\\kdpamp)^2}{2\\krho\\kvw},$ 其中 $\\krho$ 是声波所传播的介质的<span data-concept=\"density\">密度</span>，$\\kvw$ 是该介质中的声速。</li><li>以分贝（dB）为单位的声强级为 $\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\frac{\\kIntens}{\\kIo}\\right),$ 其中 $\\kIo = 10^{-12}\\ \\text{W/m}^2$ 是听觉的阈<span data-concept=\"intensity\">强度</span>。</li></ul>",
+ "notes": "本节开头的德里街道照片属于装饰图，已略去；书中没有给出答案的九道习题也已略去。书中自己的笔误按原样保留：例题 17.2 思路中强度公式上放错位置的平方（书中在那里还把 ρv_w 写成了 pv_w），以及表 17.3 之前那一段中的同类笔误。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。有九道习题没有给出答案，因而略去：割草机的 91.0 dB 换算成瓦特每平方米、0.5 Pa 声波的声强级、证明 10⁻¹² W/m² 即 10⁻¹⁶ W/cm²、比 4.00 × 10⁻⁹ W/m² 低 7.00 dB 和高 3.00 dB 的强度、−8.00 dB 的声音、手提音响比赛中的十辆汽车、60 dB 和 120 dB 声音的最大表压强、助听喇叭，以及扬声器的功率输入。本节的第一道 AP 题（闹钟的音量调到三倍）答案为（e），设为有评分的选择题；第二道（吉他琴弦以两倍振幅振动）没有给出答案，作为开放题保留，附有 AI 写的建议思路，并已标明。两道思考题的建议思路由 AI 写成并已标明。两个理解检测框内嵌在它们所检测的段落之后，第一个在压强振幅之后，第二个在分贝表之后；其余都在节末。没有任何内容取自其他小节，本节自己的内容也没有留给后面的页面；17.7 中关于超声的三道分贝习题仍留在 17.7，并从那里标记本节的声强级。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-pressure-amplitude",
+   "kind": "sim",
+   "number": "17.12",
+   "originals": [
+    "/media/ch17/Figure_18_03_01ab.jpg"
+   ],
+   "original_caption": "两列强度不同的声波的表压强图线。强度较大的声音由振动振幅较大的声源产生，其压强的极大值和极小值也较大。由于强度较大的声音中压强较高，它能对所遇到的物体施加更大的力。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "pressure",
+    "intensity",
+    "density",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "air drawn as a jittered lattice; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-decibel-ladder",
+   "kind": "sim",
+   "draws": [
+    "intensity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "bracket label clear of the bars; note through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-many-sources",
+   "kind": "sim",
+   "draws": [
+    "intensity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note and panel repeats dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "intensity",
+   "concept": "sound-intensity",
+   "verb": "introduces"
+  },
+  {
+   "span": "intensity",
+   "concept": "power",
+   "verb": "uses"
+  },
+  {
+   "span": "intensity",
+   "concept": "energy-from-power",
+   "verb": "uses"
+  },
+  {
+   "span": "intensity",
+   "concept": "sound",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "intensity-and-pressure-amplitude",
+   "verb": "introduces"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "sound-intensity",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "gauge-pressure",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "speed-of-sound-in-media",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-amplitude",
+   "concept": "sound-longitudinal-pressure-wave",
+   "verb": "uses"
+  },
+  {
+   "span": "decibels",
+   "concept": "sound-intensity-level",
+   "verb": "introduces"
+  },
+  {
+   "span": "decibels",
+   "concept": "sound-intensity",
+   "verb": "uses"
+  },
+  {
+   "span": "decibels",
+   "concept": "order-of-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "threshold",
+   "concept": "threshold-of-hearing",
+   "verb": "introduces"
+  },
+  {
+   "span": "threshold",
+   "concept": "sound-intensity-level",
+   "verb": "reinforces"
+  },
+  {
+   "span": "threshold",
+   "concept": "order-of-magnitude",
+   "verb": "uses"
+  },
+  {
+   "span": "ratios",
+   "concept": "decibel-ratios",
+   "verb": "introduces"
+  },
+  {
+   "span": "ratios",
+   "concept": "sound-intensity-level",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ratios",
+   "concept": "intensity-and-pressure-amplitude",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ratios",
+   "concept": "speed-of-sound-in-media",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-level",
+   "concept": "sound-pressure-level",
+   "verb": "introduces"
+  },
+  {
+   "span": "pressure-level",
+   "concept": "sound-intensity-level",
+   "verb": "uses"
+  },
+  {
+   "span": "pressure-level",
+   "concept": "intensity-and-pressure-amplitude",
+   "verb": "uses"
+  },
+  {
+   "span": "many-sources",
+   "concept": "combining-sound-sources",
+   "verb": "introduces"
+  },
+  {
+   "span": "many-sources",
+   "concept": "decibel-ratios",
+   "verb": "uses"
+  },
+  {
+   "span": "many-sources",
+   "concept": "sound-intensity",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id3022970",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "pressure-amplitude"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "描述振幅与声音的响度有何关系。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "振幅与响度的感受成正比。随着振幅增大，响度增大。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id1282140",
+   "kind": "check-understanding",
+   "bloom": "Remember",
+   "place": {
+    "at": "inline",
+    "after": "decibels"
+   },
+   "cite": "decibels",
+   "prompt": "指出声强级为 10 dB、50 dB 和 100 dB 的常见声音。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "10 dB：手指穿过头发。<br>50 dB：没有电视机或收音机的安静住宅内。<br>100 dB：喷气式飞机起飞。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1373955",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "为了唤醒熟睡的孩子，把闹钟的音量调到原来的三倍。在这种新情形下，每秒撞击孩子鼓膜的能量是原来的多少倍？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "两倍",
+     "三倍",
+     "约 4.8 倍",
+     "六倍",
+     "九倍"
+    ],
+    "correct": 4,
+    "hint": "每秒撞击鼓膜的能量等于强度乘以鼓膜的面积，而强度与压强振幅的平方成正比。音量变为三倍，振幅就变为三倍。",
+    "solution": "（e）"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1725922",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "decibels",
+   "prompt": "一位音乐家弹拨吉他的琴弦，使它们以两倍的振幅振动。<br>（a）解释为什么这需要大于原来两倍的能量输入。<br>（b）解释为什么离开琴弦的声音不会使分贝数变成两倍。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "（a）振动的琴弦的能量，与振动的空气微元的能量一样，与其振幅的平方成正比，所以以两倍振幅振动的琴弦具有四倍的能量。音乐家必须输入四倍而不是两倍的能量，才能使琴弦这样振动。（b）琴弦发出的声波具有两倍的压强振幅，由 $\\kIntens = (\\kdpamp)^2/2\\krho\\kvw$，这是四倍的强度。声强级是强度的对数，$\\beta = 10\\log_{10}(\\kIntens/\\kIo)$，所以把强度乘以四，使声强级增加 $10\\log_{10}4 \\approx 6\\ \\text{dB}$，而不是使它加倍。以两倍振幅奏出的 60 dB 的音，变成 66 dB 的音，而不是 120 dB 的音。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id2023489",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "花样游泳队的六名队员戴着耳塞，以防深水处的水压对自己造成伤害，但队员们仍能听到音乐，并在水中完美地完成各种组合动作。有一天，他们被要求离开泳池，好让跳水队练习几个跳水动作，于是他们试着在垫子上练习，却似乎困难得多。这可能是为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "想一想在两种情形下声音是怎样到达内耳的。在空气中，声音以压强波的形式到来，必须沿外耳道向下传到鼓膜，而耳塞挡住了其中的大部分，所以在垫子上，游泳队员听到的音乐很微弱。在水中，人体的密度与周围的水几乎相同。声波进入头部，通过组织和骨骼直接到达内耳，根本不需要经过外耳道，所以耳塞在那里几乎没有影响。介质也有影响：水中的密度和声速都远大于空气中的，因此压强振幅相同的声音所携带的强度不同。水下扬声器使音乐大到足以通过身体听见。在垫子上，耳朵被堵住，只有空气传播声音，音乐就难跟得多了。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id2010060",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratios",
+   "prompt": "某社区对一项把列车服务从镇郊引入市中心的计划感到担忧。尽管铁路车场相隔好几个街区，现在市中心的声强级仍为 70 dB。市长向公众保证，市中心地区的声音只会有 30 dB 的差别。市民们应当担心吗？为什么？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "应当。30 dB 的差值作为一个数听起来不大，但分贝标度是对数的，由 $\\beta_2 - \\beta_1 = 10\\log_{10}(\\kItwo/\\kIone)$，30 dB 的差值是三个 10 倍因子，所以声音的强度将是现在的 $10^3 = 1000$ 倍。声强级将从 70 dB（表 17.2 列为嘈杂的办公室或繁忙的交通）升到 100 dB，即嘈杂的工厂或 30 m 处的警笛的声强级，每天暴露 8 小时就会对听力造成损伤。“只”这个字掩盖了声音强度增大一千倍的事实。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3387710",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "decibels",
+   "prompt": "85.0 dB 的声音，其以瓦特每平方米计的强度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.000316,
+    "unit": "W/m²",
+    "generated_by": "source",
+    "hint": "由声强级的定义解出强度：$\\kIntens = \\kIo\\,10^{\\beta/10}$。",
+    "solution": "$3.16 \\times 10^{-4}\\ \\text{W/m}^2$"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2450132",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "一列在 $20^\\circ\\text{C}$ 空气中传播的声波，压强振幅为 0.5 Pa。这列波的强度是多少？",
+   "answer": {
+    "type": "number",
+    "value": 0.000304,
+    "unit": "W/m²",
+    "generated_by": "source",
+    "hint": "使用 $\\kIntens = (\\kdpamp)^2/2\\krho\\kvw$，其中取 $20^\\circ\\text{C}$ 时空气的密度（约 $1.20\\ \\text{kg/m}^3$）和该温度下的声速 343 m/s。",
+    "solution": "$3.04 \\times 10^{-4}\\ \\text{W/m}^2$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1947000",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "decibels",
+   "prompt": "产生强度为 $4.00 \\times 10^{-2}\\ \\text{W/m}^2$ 的耳机，其声强级是多少 dB？",
+   "answer": {
+    "type": "number",
+    "value": 106,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "把强度和 $\\kIo = 10^{-12}\\ \\text{W/m}^2$ 代入 $\\beta = 10\\log_{10}(\\kIntens/\\kIo)$。",
+    "solution": "106 dB"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id3028387",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratios",
+   "prompt": "（a）强度是 90.0 dB 声音的两倍的声音，其声强级是多少？（b）强度是 90.0 dB 声音的五分之一的声音，其声强级是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 93,
+      "unit": "dB",
+      "hint": "强度大一倍，声强级相差 $10\\log_{10}2 \\approx 3$ dB，如例题 17.3 所示；把它加到 90.0 dB 上。"
+     },
+     {
+      "part": "(b)",
+      "value": 83,
+      "unit": "dB",
+      "hint": "五分之一的因子对应 $10\\log_{10}(1/5) \\approx -7$ dB；表 17.3 给出五倍因子为 7.0 dB。"
+     }
+    ],
+    "solution": "（a）93 dB<br>（b）83 dB"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id3076842",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ratios",
+   "prompt": "（a）声强级比另一个声音高 17.0 dB 的声音，其强度大多少倍？（b）如果一个声音的声强级比另一个低 23.0 dB，它们的强度之比是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 50.1,
+      "hint": "由 $\\beta_2 - \\beta_1 = 10\\log_{10}(\\kItwo/\\kIone)$ 解出比值：$\\kItwo/\\kIone = 10^{(\\beta_2 - \\beta_1)/10}$，差值为 17.0 dB。"
+     },
+     {
+      "part": "(b)",
+      "value": 0.00501,
+      "hint": "同一关系式，取差值 $-23.0$ dB，得到小于 1 的比值。"
+     }
+    ],
+    "solution": "（a）50.1<br>（b）$5.01 \\times 10^{-3}$ 或 $\\frac{1}{200}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id3017588",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "many-sources",
+   "prompt": "如果一只离你 3.0 m 远的大家蝇发出 40.0 dB 的噪声，假设干涉的影响可以忽略，那么 1000 只苍蝇在该距离处的噪声级是多少？",
+   "answer": {
+    "type": "number",
+    "value": 70.0,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "忽略干涉时强度相加，所以一千只苍蝇产生的强度是一只的一千倍；1000 倍是三个 10 倍因子，即 30 dB。",
+    "solution": "70.0 dB"
+   }
+  },
+  {
+   "id": "p13",
+   "source_id": "fs-id3356163",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "pressure-amplitude",
+   "prompt": "声波的振幅用它的最大表压强来度量。如果声强级升高 40.0 dB，声波的振幅增大到原来的多少倍？",
+   "answer": {
+    "type": "number",
+    "value": 100,
+    "generated_by": "source",
+    "hint": "升高 40.0 dB 意味着强度增大到 $10^4$ 倍，而强度与压强振幅的平方成正比，所以振幅增大到该倍数的平方根倍。",
+    "solution": "100"
+   }
+  },
+  {
+   "id": "p15",
+   "source_id": "fs-id2448344",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "intensity",
+   "prompt": "暴露在 90.0 dB 的声强级下 8 小时，可能造成听力损伤。如此暴露的直径 0.800 cm 的鼓膜上，落有多少焦耳的能量？",
+   "answer": {
+    "type": "number",
+    "value": 0.00145,
+    "unit": "J",
+    "generated_by": "source",
+    "hint": "由 90.0 dB 求出强度，乘以鼓膜的面积 $\\pi r^2$（$r = 0.400$ cm），得到落在鼓膜上的功率，再乘以时间，即以秒计的 8 小时。",
+    "solution": "$1.45 \\times 10^{-3}\\ \\text{J}$"
+   }
+  },
+  {
+   "id": "p17",
+   "source_id": "fs-id1382514",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "intensity",
+   "prompt": "声音通过直接接触传入听诊器，比通过空气传播更有效，而且由于集中到较小的鼓膜面积上而进一步增强。可以合理地假设，与通过空气传播相比，声音传入听诊器的效率是其 100 倍。那么，一个集声面积为 $15.0\\ \\text{cm}^2$、以 40.0% 的效率把声音集中到总面积为 $0.900\\ \\text{cm}^2$ 的两个鼓膜上的听诊器，所产生的增益是多少分贝？",
+   "answer": {
+    "type": "number",
+    "value": 28.2,
+    "unit": "dB",
+    "generated_by": "source",
+    "hint": "助听喇叭在 $15.0\\ \\text{cm}^2$ 上收集功率，并以 40.0% 的效率把它送到 $0.900\\ \\text{cm}^2$ 上，再加上直接接触的因子 100。鼓膜处的强度与空气中的强度之比为 $100 \\times 0.400 \\times (15.0/0.900)$，以分贝计的增益是其对数的十倍。",
+    "solution": "28.2 dB"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "sound-intensity-level"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "threshold-of-hearing",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "sound-intensity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "sound-intensity-level"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "intensity-and-pressure-amplitude",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "decibel-ratios",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "sound-pressure-level",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "decibel-ratios"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "sound-intensity-level",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "sound-intensity-level"
+  },
+  {
+   "exercise": "p1",
+   "concept": "threshold-of-hearing",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "p3",
+   "concept": "sound-intensity",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "sound-intensity-level"
+  },
+  {
+   "exercise": "p5",
+   "concept": "threshold-of-hearing",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "decibel-ratios"
+  },
+  {
+   "exercise": "p7",
+   "concept": "sound-intensity-level",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "decibel-ratios"
+  },
+  {
+   "exercise": "p9",
+   "concept": "sound-intensity-level",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "combining-sound-sources"
+  },
+  {
+   "exercise": "p11",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p13",
+   "concept": "intensity-and-pressure-amplitude"
+  },
+  {
+   "exercise": "p13",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p15",
+   "concept": "sound-intensity"
+  },
+  {
+   "exercise": "p15",
+   "concept": "sound-intensity-level",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p17",
+   "concept": "sound-intensity"
+  },
+  {
+   "exercise": "p17",
+   "concept": "decibel-ratios",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "loudspeaker",
+   "label": "扬声器",
+   "figures": [
+    "sim-pressure-amplitude"
+   ]
+  },
+  {
+   "id": "listener",
+   "label": "听者",
+   "figures": [
+    "sim-many-sources"
+   ]
+  },
+  {
+   "id": "sources",
+   "label": "一圈相同的声源",
+   "figures": [
+    "sim-many-sources"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-intensity-strategy",
+   "kind": "correction",
+   "html": "书中印的是 $I = (\\Delta p)^2/(2pv_{\\text{w}})^2$。强度应为 $I = (\\Delta p)^2/(2\\rho v_{\\text{w}})$，其中 $\\rho$ 为密度，分母不取平方，解中就是这样计算的。"
+  },
+  {
+   "id": "c-intensity-table",
+   "kind": "correction",
+   "html": "书中印的是 $I = \\frac{(\\Delta p)}{2\\rho v_{\\text{w}}}^{2}$，把整个分式平方了。强度应为 $I = \\frac{(\\Delta p)^2}{2\\rho v_{\\text{w}}}$。"
+  },
+  {
+   "id": "c-scream-figure",
+   "kind": "correction",
+   "html": "书在此处指向图 17.12，而该图显示的是两个声音的表压强，并没有尖叫的嘴；本节没有任何一幅图画出这句话所描述的卡通画。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "decibel-difference",
+   "what": "强度为两倍的声音的声强级",
+   "source": "《大学物理（第2版）》，17.3 声强与声强级，例题 17.3",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "tex": "\\beta\\ (\\text{dB}) = 10\\log_{10}\\left(\\dfrac{\\kIntens}{\\kIo}\\right)",
+       "src": "17.3"
+      },
+      {
+       "tex": "\\log_{10}b - \\log_{10}a = \\log_{10}\\left(\\dfrac{b}{a}\\right)",
+       "src": "例题 17.3"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\beta_2 - \\beta_1} = \\mk{a}{10\\log_{10}\\left(\\dfrac{\\kItwo}{\\kIo}\\right)} - \\mk{b}{10\\log_{10}\\left(\\dfrac{\\kIone}{\\kIo}\\right)}",
+      "uses": [
+       0
+      ],
+      "src": "例题 17.3"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\left[\\mk{a}{\\log_{10}\\left(\\dfrac{\\kItwo}{\\kIo}\\right)} - \\mk{b}{\\log_{10}\\left(\\dfrac{\\kIone}{\\kIo}\\right)}\\right]",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\log_{10}\\left(\\mk{a}{\\dfrac{\\kItwo/\\kIo}{\\kIone/\\kIo}}\\right)",
+       "uses": [
+        1
+       ],
+       "cap": "两个对数之差等于它们的商的对数。",
+       "map": {
+        "b": "a"
+       }
+      },
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\log_{10}\\left(\\mk{a}{\\dfrac{\\kItwo}{\\kIone}}\\right)",
+       "uses": []
+      }
+     ],
+     "src": "例题 17.3"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\dfrac{\\kItwo}{\\kIone} = 2.00",
+       "src": "例题 17.3"
+      },
+      {
+       "tex": "\\log_{10}2.00 = 0.301"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\log_{10}\\left(\\mk{a}{\\dfrac{\\kItwo}{\\kIone}}\\right)",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\,\\mk{a}{\\log_{10}2.00}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = 10\\,\\mk{a}{(0.301)}\\ \\text{dB}",
+       "uses": [
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{L}{\\beta_2 - \\beta_1} = \\mk{a}{3.01\\ \\text{dB}}",
+       "uses": []
+      }
+     ],
+     "src": "例题 17.3"
+    }
+   ]
+  }
+ ]
+}

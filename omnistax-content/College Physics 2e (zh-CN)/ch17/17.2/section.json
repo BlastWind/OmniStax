@@ -1,0 +1,714 @@
+{
+ "id": "17.2",
+ "module": "m42256",
+ "chapter": "17",
+ "title": "声速、频率和波长",
+ "short": "声速",
+ "lead": "声音以确定的速率传播，与每一种波一样，它的<span data-concept=\"frequency\">频率</span>（我们将它感知为音调）和<span data-concept=\"wavelength\">波长</span>都与这个速率相联系。声速取决于介质和空气的<span data-concept=\"temperature\">温度</span>，而且对每一个<span data-concept=\"frequency\">频率</span>几乎都相同。",
+ "objectives": [
+  "给出音调的定义。",
+  "描述声速及其频率和波长之间的关系。",
+  "描述声音在不同介质中传播时声速受到的影响。",
+  "描述温度对声速的影响。"
+ ],
+ "summary_html": "<ul><li>声速 $\\kvw$、<span data-concept=\"frequency\">频率</span> $\\kf$ 和<span data-concept=\"wavelength\">波长</span> $\\klam$ 之间的关系由 $\\kvw = \\kf\\klam,$ 给出，这与对所有波给出的关系相同。</li><li>在空气中，声速与空气<span data-concept=\"temperature\">温度</span> $\\kTemp$ 的关系为 $\\kvw = (331\\ \\text{m/s})\\sqrt{\\frac{\\kTemp}{273\\ \\text{K}}}.$</li><li>对所有<span data-concept=\"frequency\">频率</span>和<span data-concept=\"wavelength\">波长</span>，$\\kvw$ 都相同。</li></ul>",
+ "notes": "习题 2、4、6、8 和 10 在书后答案中没有给出，因而略去；本节开头烟花表演的照片也略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案；习题 2、4、6、8 和 10（0.10 m 的波长、100 kHz 时 5.96 cm 的波长、撒哈拉、潜艇 1.20 s 的回声以及烟花旁的物理学家）没有给出答案，因而略去。习题 5 要求读者证明一个结果，它作为开放式条目，对照本书的演算行来核对。习题 9 核对（a）问，（b）问的讨论放在解中；习题 11 核对其三个数值，（c）问的讨论放在解中。第一道 AP 题有答案，是可评分的选择题；第二道没有答案，作为开放式条目保留，附有标明为 AI 撰写的建议思路。两道思考题的建议思路由 AI 撰写，并已标明。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-tuning-fork",
+   "kind": "sim",
+   "number": "17.8",
+   "originals": [
+    "/media/ch17/Figure_18_02_02a.jpg"
+   ],
+   "original_caption": "声波从以频率 f 振动的声源发出，以 v_w 传播，具有波长 λ。",
+   "widths": [
+    350
+   ],
+   "draws": [
+    "frequency",
+    "position",
+    "temperature",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-bat",
+   "kind": "sim",
+   "number": "17.9",
+   "originals": [
+    "/media/ch17/Figure_18_02_03a.jpg"
+   ],
+   "original_caption": "蝙蝠利用声音的回声来辨别方向和捕捉猎物。回声返回所需的时间与距离成正比。",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "position",
+    "temperature",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "graph lowered; echo-time label in empty corner; clock raised"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-woofer",
+   "kind": "sim",
+   "number": "17.10",
+   "originals": [
+    "/media/ch17/Figure_18_02_04a.jpg"
+   ],
+   "original_caption": "因为在给定介质中它们以相同的速率传播，所以低频声音的波长必定大于高频声音的波长。这里，频率较低的声音由大扬声器发出，它称为低音扬声器，而频率较高的声音由小扬声器发出，它称为高音扬声器。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "frequency",
+    "position",
+    "time",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "woofer inside the cabinet; labels clear of lines; note trimmed"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-boundary",
+   "kind": "sim",
+   "draws": [
+    "frequency",
+    "position",
+    "velocity"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note one sentence, the ratio as numbers"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "pitch",
+   "concept": "pitch",
+   "verb": "introduces"
+  },
+  {
+   "span": "pitch",
+   "concept": "frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "wave-relation",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "verb": "introduces"
+  },
+  {
+   "span": "wave-relation",
+   "concept": "frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "wave-relation",
+   "concept": "period-frequency",
+   "verb": "uses"
+  },
+  {
+   "span": "media",
+   "concept": "speed-of-sound-in-media",
+   "verb": "introduces"
+  },
+  {
+   "span": "media",
+   "concept": "bulk-deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "media",
+   "concept": "shear-deformation",
+   "verb": "uses"
+  },
+  {
+   "span": "media",
+   "concept": "density",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature",
+   "concept": "speed-of-sound-temperature",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature",
+   "concept": "echo-ranging",
+   "verb": "introduces"
+  },
+  {
+   "span": "temperature",
+   "concept": "rms-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature",
+   "concept": "kinetic-theory",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature",
+   "concept": "boltzmann-constant",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature",
+   "concept": "temperature-scales",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature",
+   "concept": "elapsed-time",
+   "verb": "uses"
+  },
+  {
+   "span": "temperature",
+   "concept": "average-speed",
+   "verb": "uses"
+  },
+  {
+   "span": "frequency",
+   "concept": "speed-of-sound-independent-of-frequency",
+   "verb": "introduces"
+  },
+  {
+   "span": "frequency",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-wavelengths",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-wavelengths",
+   "concept": "speed-of-sound-temperature",
+   "verb": "uses"
+  },
+  {
+   "span": "crossing",
+   "concept": "frequency-fixed-across-media",
+   "verb": "introduces"
+  },
+  {
+   "span": "crossing",
+   "concept": "speed-of-sound-in-media",
+   "verb": "uses"
+  },
+  {
+   "span": "crossing",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cyu1",
+   "source_id": "fs-id1437960",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "temperature"
+   },
+   "cite": "temperature",
+   "prompt": "想象你观察到两个烟花爆炸。其中一个，你一看到它就听到了它的爆炸声。然而，另一个烟花，你在听到爆炸声之前先看到它好几毫秒。解释为什么会这样。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "声音和光都以确定的速率传播。声速比光速慢。第一个烟花可能离得很近，所以速率的差别并不明显。第二个烟花离得较远，所以光到达你眼睛的时刻明显早于声波到达你耳朵的时刻。"
+   }
+  },
+  {
+   "id": "cyu2",
+   "source_id": "fs-id1526208",
+   "kind": "check-understanding",
+   "bloom": "Understand",
+   "place": {
+    "at": "inline",
+    "after": "pitch"
+   },
+   "cite": "pitch",
+   "prompt": "你观察到两件无法辨认的乐器。一件发出高音调的声音，另一件发出低音调的声音。不听它们中任何一件的演奏，你怎样才能确定哪件是哪件？",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "比较它们的大小。高音调的乐器通常比低音调的乐器小，因为它们产生的波长较小。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id2584112",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "media",
+   "prompt": "一位老师想演示声速不是一个恒定的值。以她平常在教室里的嗓音作为对照，下列哪些做法会使离开她嘴的声速增大？<ol type=\"I\"><li>把她的嘴浸入水下，以同样的音量说话。</li><li>提高房间的温度，以同样的音量说话。</li><li>提高她嗓音的音调，以同样的音量说话。</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "仅 I",
+     "仅 I 和 II",
+     "I、II 和 III",
+     "II 和 III",
+     "仅 III"
+    ],
+    "correct": 1,
+    "hint": "声速由介质及其温度决定，而不是由声源的频率决定。这三种改变中，哪些会改变介质或它的温度？",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1207107",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "frequency",
+   "prompt": "管弦乐队的所有成员同时开始调音。一些木管乐器演奏高频率的音，而另一些弦乐器演奏频率较低的音。然而，观众会同时听到所有的音，这与上面的方程明显相悖。<br>解释一位学生如何利用弹簧圈、秒表和米尺来说明上述推理中的缺陷。务必说明上述方程真正表明的是什么关系，以及要使弹簧圈的速率真正改变需要什么条件。你可以在解释中包括图示和方程。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "缺陷在于把 $\\kvw = \\kf\\klam$ 读成了速率取决于频率。波的速率由介质决定，所以这个方程说的是频率和波长必须相互调整：频率越高，波长越短，而它们的乘积始终是同一个速率。你可以用沿地板拉到固定长度的弹簧圈来演示这一点。先慢后快地摇动一端，沿同一个弹簧圈送出两种不同频率的波。用秒表为每一个波计时，它传播的距离用米尺测量。两者得出的速率相同，而米尺显示出，快摇产生的波长比慢摇的短。要改变波的速率，就必须改变介质本身：把弹簧圈拉到更大的张力，或者使用更重或更轻的弹簧圈。这时同样的摇动会给出不同的速率，波长也随之改变。这就是你能同时听到管弦乐队中每一件乐器的声音，不论高音还是低音的原因。"
+   }
+  },
+  {
+   "id": "cq1",
+   "source_id": "fs-id1375143",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "temperature",
+   "prompt": "原子的声振动与热运动有何不同？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "热运动是无规则的。每个原子或分子都按自己的方向、以自己的速率运动，这些速率的平均就是方均根速率 $\\kvrms = \\sqrt{3k\\kTemp/m}$。因为方向是随机的，所以气体没有净运动。声振动是叠加在热运动之上的有组织的运动。一个区域里的原子一起沿声音传播的方向来回运动，因此密部和疏部以声速、以确定的频率和波长穿过介质。这两种运动是有联系的：粒子本来运动得有多快，决定了它们能多快地把扰动传递下去。这就是气体中的声速随温度的平方根增大的原因。不过，声振动是相干的，而热运动不是。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3008692",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "crossing",
+   "prompt": "声音从一种介质进入另一种传播速率不同的介质时，是频率改变，还是波长改变？请简要说明你的理由。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "波长改变，频率不变。第二种介质中的声音由从第一种介质传来的振动驱动，就像受迫振动一样，所以它具有原始声源的频率。因为 $\\kvw = \\kf\\klam$，而第二种介质中的速率不同、频率相同，所以波长必定与速率按同样的比例改变：新介质中的声速越高，那里的波长就越长。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id3451972",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-relation",
+   "prompt": "一位歌剧女高音被长矛刺到时，发出一声 1200 Hz 的尖叫。如果声速为 345 m/s，它的波长是多少？",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.288,
+    "unit": "m",
+    "hint": "把 $\\kvw = \\kf\\klam$ 对波长求解。",
+    "solution": "0.288 m"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id3043771",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "wave-relation",
+   "prompt": "某一天，1500 Hz 的声音波长为 0.221 m，计算这一天的声速。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 332,
+    "unit": "m/s",
+    "hint": "速率是频率与波长的乘积。",
+    "solution": "332 m/s"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1587092",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "temperature",
+   "prompt": "证明 $20.0^\\circ\\text{C}$ 空气中的声速为 343 m/s，正如正文中所述。",
+   "answer": {
+    "type": "open",
+    "generated_by": "source",
+    "solution": "$$\\begin{array}{lll}\\kvw & = & (331\\ \\text{m/s})\\sqrt{\\frac{\\kTemp}{273\\ \\text{K}}} = (331\\ \\text{m/s})\\sqrt{\\frac{293\\ \\text{K}}{273\\ \\text{K}}} \\\\ & = & 343\\ \\text{m/s}\\end{array}$$"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2032287",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "crossing",
+   "prompt": "海豚在空气和水中都能发出声音。声音在空气中的波长与它在海水中的波长之比是多少？假设空气温度为 $20.0^\\circ\\text{C}$。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 0.223,
+    "hint": "频率在两种介质中相同，所以波长之比就是速率之比。海水中的速率取自表 17.1，空气中的速率取自温度公式。",
+    "solution": "0.223"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id1986379",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "temperature",
+   "prompt": "（a）如果潜艇的声呐能以 0.0100 s 的精密度测量回声时间，它能探测到的最小距离差是多少？（假设潜艇在海洋中，而不是在淡水中。）<br>（b）讨论这种时间分辨率对声呐系统探测产生回声的物体的大小和形状的能力施加了哪些限制。",
+   "answer": {
+    "type": "number",
+    "generated_by": "source",
+    "value": 7.7,
+    "unit": "m",
+    "part": "(a)",
+    "hint": "回声一去一回，所以回声时间的差对应于距离差的两倍。使用表 17.1 中海水里的声速。",
+    "solution": "（a）7.70 m<br>（b）这意味着声呐善于发现和定位大物体，但无法分辨较小的物体，也无法探测物体的详细形状。像船只或飞机的大块部分这类物体可以用声呐找到，而较小的碎块必须用其他手段寻找。"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1386574",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "temperature",
+   "prompt": "假设一只蝙蝠利用声音的回声来定位 3.00 m 远处的昆虫猎物。（见图 17.9。）（a）计算温度为 $5.00^\\circ\\text{C}$ 和 $35.0^\\circ\\text{C}$ 时的回声时间。（b）这对蝙蝠定位昆虫造成多大的百分不确定度？（c）讨论这一不确定度的意义，以及它是否会给蝙蝠带来困难。（实际上，蝙蝠在逼近时会继续使用声音，这消除了由此以及其他效应，例如猎物的运动，所造成的大部分困难。）",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) at 5.00 °C",
+      "value": 18.0,
+      "unit": "ms",
+      "hint": "求出 278 K 时的声速，然后回声总共传播 6.00 m。"
+     },
+     {
+      "part": "(a) at 35.0 °C",
+      "value": 17.1,
+      "unit": "ms",
+      "hint": "求出 308 K 时的声速，然后回声总共传播 6.00 m。"
+     },
+     {
+      "part": "(b)",
+      "value": 5.0,
+      "unit": "%",
+      "hint": "把两个时间之差与时间本身相比。"
+     }
+    ],
+    "solution": "（a）18.0 ms，17.1 ms<br>（b）5.00%<br>（c）如果蝙蝠在逼近猎物时不继续使用声音，这一不确定度肯定会给它带来困难。5% 的不确定度可能就是抓住猎物的颈部还是胸部的差别，这意味着它可能抓不到猎物。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cyu1",
+   "concept": "echo-ranging"
+  },
+  {
+   "exercise": "cyu1",
+   "concept": "speed-of-sound-in-media",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "pitch"
+  },
+  {
+   "exercise": "cyu2",
+   "concept": "speed-of-sound-frequency-wavelength",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "speed-of-sound-in-media"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "speed-of-sound-temperature"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "speed-of-sound-independent-of-frequency"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "speed-of-sound-independent-of-frequency"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "speed-of-sound-temperature"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "frequency-fixed-across-media"
+  },
+  {
+   "exercise": "p1",
+   "concept": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "exercise": "p3",
+   "concept": "speed-of-sound-frequency-wavelength"
+  },
+  {
+   "exercise": "p5",
+   "concept": "speed-of-sound-temperature"
+  },
+  {
+   "exercise": "p7",
+   "concept": "frequency-fixed-across-media"
+  },
+  {
+   "exercise": "p7",
+   "concept": "speed-of-sound-in-media"
+  },
+  {
+   "exercise": "p7",
+   "concept": "speed-of-sound-temperature",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "echo-ranging"
+  },
+  {
+   "exercise": "p9",
+   "concept": "speed-of-sound-in-media",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "echo-ranging"
+  },
+  {
+   "exercise": "p11",
+   "concept": "speed-of-sound-temperature"
+  }
+ ],
+ "referents": [
+  {
+   "id": "tuning-fork",
+   "label": "音叉",
+   "figures": [
+    "sim-tuning-fork"
+   ]
+  },
+  {
+   "id": "bat",
+   "label": "蝙蝠",
+   "figures": [
+    "sim-bat"
+   ]
+  },
+  {
+   "id": "insect",
+   "label": "昆虫",
+   "figures": [
+    "sim-bat"
+   ]
+  },
+  {
+   "id": "woofer",
+   "label": "低音扬声器",
+   "figures": [
+    "sim-woofer"
+   ]
+  },
+  {
+   "id": "tweeter",
+   "label": "高音扬声器",
+   "figures": [
+    "sim-woofer"
+   ]
+  }
+ ]
+}

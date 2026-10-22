@@ -1,0 +1,628 @@
+{
+  "id": "17",
+  "dir": "ch17",
+  "title": "听觉物理",
+  "intro": {
+    "module": "m42254",
+    "slug": "17-introduction-to-the-physics-of-hearing"
+  },
+  "sections": [
+    {
+      "id": "17.1",
+      "module": "m42255",
+      "title": "声音",
+      "slug": "17-1-sound"
+    },
+    {
+      "id": "17.2",
+      "module": "m42256",
+      "title": "声速、频率和波长",
+      "slug": "17-2-speed-of-sound-frequency-and-wavelength"
+    },
+    {
+      "id": "17.3",
+      "module": "m42257",
+      "title": "声强与声强级",
+      "slug": "17-3-sound-intensity-and-sound-level"
+    },
+    {
+      "id": "17.4",
+      "module": "m42712",
+      "title": "多普勒效应与声爆",
+      "slug": "17-4-doppler-effect-and-sonic-booms"
+    },
+    {
+      "id": "17.5",
+      "module": "m42296",
+      "title": "声波的干涉与共振：气柱中的驻波",
+      "slug": "17-5-sound-interference-and-resonance-standing-waves-in-air-columns"
+    },
+    {
+      "id": "17.6",
+      "module": "m42297",
+      "title": "听觉",
+      "slug": "17-6-hearing"
+    },
+    {
+      "id": "17.7",
+      "module": "m42298",
+      "title": "超声",
+      "slug": "17-7-ultrasound"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "声波在鼓膜处的压强，它不同于鼓膜后方的大气压",
+      "unit": "Pa",
+      "section": "17.1",
+      "anchor": "17.1-fading"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "鼓膜的面积",
+      "unit": "m²",
+      "section": "17.1",
+      "anchor": "17.1-fading"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "作用在鼓膜上的合力，等于鼓膜两侧的压强差乘以它的面积",
+      "unit": "N",
+      "section": "17.1",
+      "anchor": "17.1-fading"
+    },
+    {
+      "sym": "v_w",
+      "concept": "wave-velocity",
+      "meaning": "声速，即扰动在介质中传播的速率",
+      "unit": "m/s",
+      "section": "17.2",
+      "anchor": "17.2-wave-relation"
+    },
+    {
+      "sym": "f",
+      "concept": "frequency",
+      "meaning": "声音的频率，与声源的频率相同，即单位时间内经过某一点的波的个数",
+      "unit": "Hz",
+      "section": "17.2",
+      "anchor": "17.2-wave-relation"
+    },
+    {
+      "sym": "λ",
+      "concept": "wavelength",
+      "meaning": "声音的波长，即波中相邻相同部分之间的距离，例如相邻密部之间的距离",
+      "unit": "m",
+      "section": "17.2",
+      "anchor": "17.2-wave-relation"
+    },
+    {
+      "sym": "T_temp",
+      "concept": "temperature",
+      "meaning": "空气的温度，以开尔文计",
+      "unit": "K",
+      "section": "17.2",
+      "anchor": "17.2-temperature"
+    },
+    {
+      "sym": "v_rms",
+      "concept": "rms-speed",
+      "meaning": "气体中粒子的平均速率，气体中的声速与之相关",
+      "unit": "m/s",
+      "section": "17.2",
+      "anchor": "17.2-temperature"
+    },
+    {
+      "sym": "k_boltz",
+      "concept": "boltzmann-constant",
+      "meaning": "玻尔兹曼常量，1.38 × 10⁻²³ J/K",
+      "unit": "J/K",
+      "section": "17.2",
+      "anchor": "17.2-temperature"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "气体中每个（相同的）粒子的质量",
+      "unit": "kg",
+      "section": "17.2",
+      "anchor": "17.2-temperature"
+    },
+    {
+      "sym": "I_intens",
+      "concept": "intensity",
+      "meaning": "声波的强度，即波携带的单位面积的功率",
+      "unit": "W/m²",
+      "section": "17.3",
+      "anchor": "17.3-intensity"
+    },
+    {
+      "sym": "P",
+      "concept": "power",
+      "meaning": "通过某一面积的功率，即波传递能量的速率",
+      "unit": "W",
+      "section": "17.3",
+      "anchor": "17.3-intensity"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "功率所通过的面积",
+      "unit": "m²",
+      "section": "17.3",
+      "anchor": "17.3-intensity"
+    },
+    {
+      "sym": "Δp_press",
+      "concept": "pressure",
+      "meaning": "压强变化或压强振幅，即声波中最大压强与最小压强之差的一半",
+      "unit": "Pa",
+      "section": "17.3",
+      "anchor": "17.3-pressure-amplitude"
+    },
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "声波所传播的材料的密度",
+      "unit": "kg/m³",
+      "section": "17.3",
+      "anchor": "17.3-pressure-amplitude"
+    },
+    {
+      "sym": "v_w",
+      "concept": "wave-velocity",
+      "meaning": "介质中的声速",
+      "unit": "m/s",
+      "section": "17.3",
+      "anchor": "17.3-pressure-amplitude"
+    },
+    {
+      "sym": "β_dB",
+      "concept": "sound-intensity-level",
+      "meaning": "以分贝计的声强级，是一个无单位的量，表示声音相对于一个固定标准的大小",
+      "unit": "dB",
+      "section": "17.3",
+      "anchor": "17.3-decibels"
+    },
+    {
+      "sym": "I_0",
+      "concept": "intensity",
+      "meaning": "参考强度，10⁻¹² W/m²，是听力正常的人在 1000 Hz 频率下能感知的最低声强或阈强度",
+      "unit": "W/m²",
+      "section": "17.3",
+      "anchor": "17.3-decibels"
+    },
+    {
+      "sym": "I_1",
+      "concept": "intensity",
+      "meaning": "所比较的两个声音中第一个的强度",
+      "unit": "W/m²",
+      "section": "17.3",
+      "anchor": "17.3-ratios"
+    },
+    {
+      "sym": "I_2",
+      "concept": "intensity",
+      "meaning": "所比较的两个声音中第二个的强度",
+      "unit": "W/m²",
+      "section": "17.3",
+      "anchor": "17.3-ratios"
+    },
+    {
+      "sym": "f_obs",
+      "concept": "frequency",
+      "meaning": "观察者接收到的频率",
+      "unit": "Hz",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "f_src",
+      "concept": "frequency",
+      "meaning": "声源的频率",
+      "unit": "Hz",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "v_s",
+      "concept": "instantaneous-velocity",
+      "meaning": "声源沿声源与观察者连线的速率",
+      "unit": "m/s",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "v_obs",
+      "concept": "instantaneous-velocity",
+      "meaning": "观察者沿声源与观察者连线的速率",
+      "unit": "m/s",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "v_w",
+      "concept": "wave-velocity",
+      "meaning": "声速，无论声源是否运动，在介质中都相同",
+      "unit": "m/s",
+      "section": "17.4",
+      "anchor": "17.4-doppler-shift"
+    },
+    {
+      "sym": "θ",
+      "concept": "sonic-boom",
+      "type": "angle",
+      "meaning": "超过声速运动的声源后方相长干涉圆锥的角；声源越快，这个角越小",
+      "unit": "°",
+      "section": "17.4",
+      "anchor": "17.4-sonic-boom"
+    },
+    {
+      "sym": "c",
+      "concept": "speed-of-light-in-vacuum",
+      "meaning": "真空中的光速，3.00 × 10⁸ m/s",
+      "unit": "m/s",
+      "section": "17.4",
+      "anchor": "17.4-bow-wake"
+    },
+    {
+      "sym": "L_len",
+      "concept": "length",
+      "meaning": "管的长度",
+      "unit": "m",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "λ",
+      "concept": "wavelength",
+      "meaning": "基频的波长；对于一端封闭的管，λ = 4L",
+      "unit": "m",
+      "section": "17.5",
+      "anchor": "17.5-nodes-antinodes"
+    },
+    {
+      "sym": "λ_prime",
+      "concept": "wavelength",
+      "meaning": "一端封闭的管的第一泛音的波长，λ′ = 4L/3",
+      "unit": "m",
+      "section": "17.5",
+      "anchor": "17.5-overtones"
+    },
+    {
+      "sym": "f",
+      "concept": "frequency",
+      "meaning": "管的基频，即最低的共振频率",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "f_prime",
+      "concept": "frequency",
+      "meaning": "第一泛音的频率，对于一端封闭的管为 3f",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "f_n",
+      "concept": "frequency",
+      "meaning": "管的第 n 个共振频率",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "n",
+      "concept": "fundamental-and-overtones",
+      "meaning": "谐波次数：一端封闭的管为 1, 3, 5, …，两端开口的管为 1, 2, 3, …",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "f_1",
+      "concept": "frequency",
+      "meaning": "基频，即一次谐波",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "f_2",
+      "concept": "frequency",
+      "meaning": "两端开口的管的第一泛音，即它的二次谐波",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-open-tube"
+    },
+    {
+      "sym": "f_3",
+      "concept": "frequency",
+      "meaning": "一端封闭的管的第一泛音，即它的三次谐波",
+      "unit": "Hz",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "v_w",
+      "concept": "wave-velocity",
+      "meaning": "空气中的声速，它取决于温度",
+      "unit": "m/s",
+      "section": "17.5",
+      "anchor": "17.5-closed-tube"
+    },
+    {
+      "sym": "I_intens",
+      "concept": "intensity",
+      "meaning": "声音的强度；最低的可听强度或阈值约为 10⁻¹² W/m²，即 0 dB",
+      "unit": "W/m²",
+      "section": "17.6",
+      "anchor": "17.6-loudness-perception"
+    },
+    {
+      "sym": "β_dB",
+      "concept": "sound-intensity-level",
+      "meaning": "以分贝计的声强级，在 1000 Hz 时它被取为在数值上等于以方计的响度",
+      "unit": "dB",
+      "section": "17.6",
+      "anchor": "17.6-loudness-perception"
+    },
+    {
+      "sym": "Z",
+      "concept": "acoustic-impedance",
+      "meaning": "介质的声阻抗，即使声波的传播更加困难的性质",
+      "unit": "kg/(m²·s)",
+      "section": "17.7",
+      "anchor": "17.7-impedance"
+    },
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "介质的密度",
+      "unit": "kg/m³",
+      "section": "17.7",
+      "anchor": "17.7-impedance"
+    },
+    {
+      "sym": "v",
+      "concept": "wave-velocity",
+      "meaning": "声音通过介质的速率",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-impedance"
+    },
+    {
+      "sym": "Z_1",
+      "concept": "acoustic-impedance",
+      "meaning": "构成边界的两种介质中第一种的声阻抗",
+      "unit": "kg/(m²·s)",
+      "section": "17.7",
+      "anchor": "17.7-reflection",
+      "ref": "medium-1"
+    },
+    {
+      "sym": "Z_2",
+      "concept": "acoustic-impedance",
+      "meaning": "构成边界的两种介质中第二种的声阻抗",
+      "unit": "kg/(m²·s)",
+      "section": "17.7",
+      "anchor": "17.7-reflection",
+      "ref": "medium-2"
+    },
+    {
+      "sym": "a_refl",
+      "concept": "intensity-reflection-coefficient",
+      "meaning": "强度反射系数，即反射波相对于入射波的强度之比；当两种介质的声阻抗相同时为零",
+      "section": "17.7",
+      "anchor": "17.7-reflection"
+    },
+    {
+      "sym": "λ",
+      "concept": "wavelength",
+      "meaning": "超声的波长，它限制了超声所能探测的细节的精细程度",
+      "unit": "m",
+      "section": "17.7",
+      "anchor": "17.7-imaging"
+    },
+    {
+      "sym": "f",
+      "concept": "frequency",
+      "meaning": "超声的频率",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-imaging"
+    },
+    {
+      "sym": "v_w",
+      "concept": "wave-velocity",
+      "meaning": "组织中的声速，约为 1540 m/s",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-imaging"
+    },
+    {
+      "sym": "I_intens",
+      "concept": "intensity",
+      "meaning": "超声的强度，即它携带的单位面积的功率，它决定超声是对组织成像还是破坏组织",
+      "unit": "W/m²",
+      "section": "17.7",
+      "anchor": "17.7-therapy"
+    },
+    {
+      "sym": "f_src",
+      "concept": "frequency",
+      "meaning": "换能器发射的频率",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler",
+      "ref": "transducer"
+    },
+    {
+      "sym": "f_obs",
+      "concept": "frequency",
+      "meaning": "接收到的频率，先由作为观察者的运动血液接收，再由换能器从作为运动声源的血液处接收",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "v_obs",
+      "concept": "instantaneous-velocity",
+      "meaning": "反射体即血液作为运动的观察者接收超声时的速率",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "v_s",
+      "concept": "instantaneous-velocity",
+      "meaning": "反射体作为运动的声源返回超声时的速率",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "v_blood",
+      "concept": "instantaneous-velocity",
+      "meaning": "动脉中血液的速度",
+      "unit": "m/s",
+      "section": "17.7",
+      "anchor": "17.7-doppler",
+      "ref": "blood"
+    },
+    {
+      "sym": "f_B",
+      "concept": "beat-frequency",
+      "meaning": "拍频，即发射频率与返回频率之差的绝对值，与反射体的速度成正比",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "f_1",
+      "concept": "frequency",
+      "meaning": "混合产生拍的两个频率中的第一个",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "f_2",
+      "concept": "frequency",
+      "meaning": "混合产生拍的两个频率中的第二个",
+      "unit": "Hz",
+      "section": "17.7",
+      "anchor": "17.7-doppler"
+    },
+    {
+      "sym": "P_1",
+      "concept": "pressure",
+      "meaning": "声波作用在鼓膜上的压强",
+      "unit": "Pa",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism",
+      "ref": "eardrum"
+    },
+    {
+      "sym": "F_1",
+      "concept": "force",
+      "meaning": "该压强作用在鼓膜上的力，等于压强与鼓膜面积之积",
+      "unit": "N",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism",
+      "ref": "eardrum"
+    },
+    {
+      "sym": "A_1",
+      "concept": "area",
+      "meaning": "声压所作用的鼓膜的面积",
+      "unit": "m²",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism",
+      "ref": "eardrum"
+    },
+    {
+      "sym": "F_2",
+      "concept": "force",
+      "meaning": "中耳的杠杆系统作用在前庭窗上的力",
+      "unit": "N",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism",
+      "ref": "oval-window"
+    },
+    {
+      "sym": "A_2",
+      "concept": "area",
+      "meaning": "前庭窗的面积，它比鼓膜的面积小得多",
+      "unit": "m²",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism",
+      "ref": "oval-window"
+    },
+    {
+      "sym": "P_2",
+      "concept": "pressure",
+      "meaning": "镫骨在前庭窗处产生的压强，约为鼓膜上压强的 40 倍",
+      "unit": "Pa",
+      "section": "17.6",
+      "anchor": "17.6-ear-mechanism",
+      "ref": "oval-window"
+    },
+    {
+      "sym": "f_1",
+      "concept": "frequency",
+      "ref": "woofer",
+      "meaning": "低音扬声器的频率，低音扬声器即大扬声器，发出两个音中较低的一个",
+      "unit": "Hz",
+      "section": "17.2",
+      "redefines": true
+    },
+    {
+      "sym": "f_2",
+      "concept": "frequency",
+      "ref": "tweeter",
+      "meaning": "高音扬声器的频率，高音扬声器即小扬声器，发出两个音中较高的一个",
+      "unit": "Hz",
+      "section": "17.2",
+      "redefines": true
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "空气振动元的质量，声波携带着它的动能",
+      "unit": "kg",
+      "section": "17.3",
+      "redefines": true
+    },
+    {
+      "sym": "v",
+      "concept": "instantaneous-velocity",
+      "meaning": "空气振动元的速率，而不是波的速率",
+      "unit": "m/s",
+      "section": "17.3",
+      "redefines": true
+    },
+    {
+      "sym": "r_1",
+      "concept": "perpendicular-lever-arm",
+      "ref": "hammer",
+      "meaning": "锤骨的力臂，从支点到锤骨与鼓膜相接处",
+      "unit": "m",
+      "section": "17.6",
+      "redefines": true
+    },
+    {
+      "sym": "r_2",
+      "concept": "perpendicular-lever-arm",
+      "ref": "stirrup",
+      "meaning": "镫骨的力臂，从支点到镫骨与前庭窗相接处",
+      "unit": "m",
+      "section": "17.6",
+      "redefines": true
+    }
+  ]
+}
