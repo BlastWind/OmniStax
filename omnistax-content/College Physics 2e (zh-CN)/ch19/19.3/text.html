@@ -1,0 +1,55 @@
+<section id="point-charge-potential">
+<h2>点电荷的电势</h2>
+<p class="cite-target"><span data-concept="point-charge">点电荷</span>，例如<span data-concept="electron">电子</span>，是物质的基本组成单元之一。此外，球形电荷分布（如金属球上的电荷）在外部产生的<span data-concept="electric-field">电场</span>与<span data-concept="point-charge">点电荷</span>的电场完全一样。因此，<span data-concept="point-charge">点电荷</span>的<span data-concept="electric-potential">电势</span>是我们需要考虑的一种情形。利用微积分，求出把<span data-type="charge"><span data-concept="test-charge">检验电荷</span></span> $\kq$ 从很远的<span data-concept="distance">距离</span>之外移到距<span data-type="charge"><span data-concept="point-charge">点电荷</span></span> $\kQch$ 的<span data-type="position"><span data-concept="distance">距离</span></span>为 $\kr$ 处所需的<span data-type="energy"><span data-concept="work">功</span></span>，并注意到<span data-concept="work">功</span>与电势之间的联系 $(\kW = -\kq\kdV)$，可以证明，<em><span data-concept="point-charge">点电荷</span>的<span data-concept="electric-potential">电势</span> $\kV$</em> 为</p>
+$$\kV = \frac{k\kQch}{\kr}\ \text{(点电荷),}$$
+<p>其中 $k$ 是常量，等于 $9.0 \times 10^{9}\ \text{N}\cdot\text{m}^{2}/\text{C}^{2}$。</p>
+<div class="note">
+<div class="eyebrow">点电荷的电势 $V$</div>
+<p><span data-concept="point-charge">点电荷</span>的<span data-concept="electric-potential">电势</span> $\kV$ 由下式给出</p>
+$$\kV = \frac{k\kQch}{\kr}\ \text{(点电荷).}$$
+</div>
+<figure class="sim" id="sim-point-charge-potential">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-type="charge">一个点电荷</span>位于它的等势圆的圆心，每个圆都标出了<span data-type="voltage">圆上的电势</span>，另有一个标记点位于距<span data-type="charge">电荷</span>的<span data-type="position">距离</span> $\kr$ 处。场景下方画出了<span data-type="voltage">电势</span>和<span data-type="electric-field">场强</span>随<span data-type="position">该距离</span>变化的图线。设定<span data-type="charge">电荷的大小和正负</span>并把标记点向外移动，观察<span data-type="position">距离加倍</span>使<span data-type="voltage">电势</span>减半，却使<span data-type="electric-field">场</span>变为四分之一，这就是等势圆在<span data-type="charge">电荷</span>附近挤得很密的原因。</span></div>
+</figure>
+</section>
+
+<section id="scalar-and-vector">
+<h2>按 $1/r$ 下降的电势，按 $1/r^2$ 下降的电场</h2>
+<p class="cite-target">取无穷远处的电势为零。因此，<span data-concept="point-charge">点电荷</span>的 $\kV$ 随<span data-concept="distance">距离</span>的增大而减小，而<span data-concept="point-charge">点电荷</span>的 $\kEf$ 则随<span data-concept="distance">距离</span>的平方减小：</p>
+$$\kEf = \frac{\kF}{\kq} = \frac{k\kQch}{\kr^{2}}.$$
+<p>回想一下，<span data-concept="electric-potential">电势</span> $\kV$ 是<span data-concept="scalar">标量</span>，没有<span data-concept="vector-direction">方向</span>，而<span data-concept="electric-field">电场</span> $\kEf$ 是<span data-concept="vector">矢量</span>。要求出由多个<span data-concept="point-charge">点电荷</span>组合产生的<span data-concept="potential-difference">电压</span>，只需把各个<span data-concept="potential-difference">电压</span>当作数相加。要求总<span data-concept="electric-field">电场</span>，则必须把各个<span data-concept="force-field">场</span>当作<em><span data-concept="vector">矢量</span></em>相加，同时考虑<span data-concept="vector-magnitude">大小</span>和<span data-concept="vector-direction">方向</span>。这与下面的事实相一致：$\kV$ 与<span data-concept="energy">能量</span>（一个<span data-concept="scalar">标量</span>）密切相关，而 $\kEf$ 与<span data-concept="force">力</span>（一个<span data-concept="vector">矢量</span>）密切相关。</p>
+<figure class="sim" id="sim-potentials-add">
+  <div class="sim-head"><span class="eyebrow">Sim</span><span><span data-ref="charge-1 charge-2">两个点电荷</span>位于一条直线上，一个标记点在<span data-ref="charge-1 charge-2">它们</span>上方移动。<span data-type="voltage">该点的电势</span>是两个数之和，<span data-ref="charge-1 charge-2">每个电荷</span>各给出一个，下方的图沿这条直线描出<span data-type="voltage">这个和</span>。<span data-type="electric-field">那里的场</span>则是两个箭头之和，只要两个箭头的指向不同，<span data-type="electric-field">合矢量箭头</span>就比把两个箭头首尾相接的总长要短。设定<span data-ref="charge-2">第二个电荷</span>及其正负，设定<span data-type="position">两个电荷相距多远</span>，再沿直线移动该点，看<span data-type="voltage">电势</span>在何处过零，以及<span data-type="electric-field">场</span>在那里是什么情形。</span></div>
+</figure>
+</section>
+
+<section id="charged-spheres">
+<h2>带电球，以及电势从何处量起</h2>
+<div class="example" id="ex-metal-sphere-voltage">
+<h3>例题 19.6 · 金属球上的小电荷产生多大的电压？</h3>
+<p class="cite-target"><span data-concept="static-electricity">静电</span>中的电荷通常在纳库仑 $(\text{nC})$ 到微库仑 $(\mu\text{C})$ 的范围内。在带有 $-3.00\ \text{nC}$ 静电荷的、<span data-type="position">直径 1 cm</span> 的金属球上，距球心 <span data-type="position">5.00 cm</span> 处的<span data-type="voltage"><span data-concept="potential-difference">电压</span></span>是多少？</p>
+<h4>思路</h4>
+<p>正如我们在“<span data-concept="electric-charge">电荷</span>与<span data-concept="electric-field">电场</span>”中讨论过的，金属球上的电荷会均匀分布，并产生一个像位于球心的<span data-concept="point-charge">点电荷</span>那样的<span data-concept="force-field">场</span>。因此，我们可以用公式 $\kV = k\kQch/\kr$ 求出<span data-type="voltage"><span data-concept="potential-difference">电压</span></span>。</p>
+<h4>解</h4>
+<p>把已知值代入<span data-concept="point-charge">点电荷</span>的电势表达式，得到</p>
+$$\begin{aligned}\kV &= k\frac{\kQch}{\kr}\\ &= (8.99 \times 10^{9}\ \text{N}\cdot\text{m}^{2}/\text{C}^{2})\left(\frac{-3.00 \times 10^{-9}\ \text{C}}{5.00 \times 10^{-2}\ \text{m}}\right)\\ &= -539\ \text{V.}\end{aligned}$$
+<h4>讨论</h4>
+<p><span data-type="voltage"><span data-concept="potential-difference">电压</span>的负值</span>意味着正电荷会从较远的<span data-concept="distance">距离</span>处被吸引过来，因为<span data-type="voltage">电势</span>比较远<span data-concept="distance">距离</span>处的更低（更负）。反之，负电荷会被排斥，这正如预期的那样。</p>
+</div>
+<div class="example" id="ex-van-de-graaff-charge">
+<h3>例题 19.7 · 范德格拉夫起电机上的过剩电荷是多少</h3>
+<p>一台演示用<span data-concept="van-de-graaff-generator">范德格拉夫起电机</span>有一个<span data-type="position">直径 25.0 cm</span> 的<span data-ref="sphere">金属球</span>，它在表面附近产生<span data-type="voltage">100 kV 的<span data-concept="potential-difference">电压</span></span>。（见图 19.7。）<span data-ref="sphere">球</span>上有多少<span data-type="charge">过剩电荷</span>？（假定这里的每个数值都以三位<span data-concept="significant-figures">有效数字</span>给出。）</p>
+<figure class="sim" id="sim-van-de-graaff" data-figure="19.7" data-original="/media/ch19/Figure_20_03_01a.jpg" data-original-width="200" data-original-caption="这台演示用范德格拉夫起电机的电压是在带电球与地之间测量的。取地球的电势为零作为参考。带电导体球的电势与位于其球心的等量点电荷的电势相同。">
+  <div class="sim-head"><span class="eyebrow">Figure 19.7</span><span>一条绕过两个滑轮的传送带把电荷送到演示用范德格拉夫起电机的<span data-ref="sphere">铝球</span>上，<span data-ref="voltmeter">一只电压表</span>读出<span data-type="voltage">球的电势</span>，以地为参考，地的电势取为零。<span data-type="voltage">表面处的电势</span>与位于球心的等量点电荷的电势相同，所以<span data-type="charge">球上的过剩电荷</span>等于<span data-type="position">半径</span>乘以<span data-type="voltage">电压</span>再除以 $k$。设定<span data-type="position">球的直径</span>和<span data-type="voltage">它的电压</span>。<span data-type="voltage">一百千伏</span>只需要<span data-type="charge">很少的电荷</span>，而<span data-ref="sphere">较小的球</span>会达到<span data-type="electric-field">使干空气被击穿的电场</span>，<span data-type="charge">电荷</span>就漏掉了。</span></div>
+</figure>
+<h4>思路</h4>
+<p><span data-type="voltage">球面上的电势</span>将与位于<span data-ref="sphere">球</span>心处的<span data-concept="point-charge">点电荷</span>的电势相同，该点电荷在 <span data-type="position">12.5 cm</span> 远处。（<span data-type="position">球的半径</span>为 12.5 cm。）因此，我们可以用下面的公式求出<span data-type="charge">过剩电荷</span>：</p>
+$$\kV = \frac{k\kQch}{\kr}.$$
+<h4>解</h4>
+<p>解出 $\kQch$ 并代入已知值，得到</p>
+$$\begin{aligned}\kQch &= \frac{\kr\kV}{k}\\ &= \frac{(0.125\ \text{m})(100 \times 10^{3}\ \text{V})}{8.99 \times 10^{9}\ \text{N}\cdot\text{m}^{2}/\text{C}^{2}}\\ &= 1.39 \times 10^{-6}\ \text{C} = 1.39\ \mu\text{C.}\end{aligned}$$
+<h4>讨论</h4>
+<p>这是<span data-type="charge">一个相对较小的电荷</span>，却产生了<span data-type="voltage">相当大的<span data-concept="potential-difference">电压</span></span>。这里我们又得到一个迹象，说明储存孤立电荷是困难的。</p>
+</div>
+<p>这两个例题中的参考点 $\kV = 0$ 都取在无穷远处。如果要测量<span data-type="voltage">这些<span data-concept="potential-difference">电压</span></span>，就要用一只<span data-concept="meter-and-galvanometer">电表</span>来做，它把被测的电势与一个不在无穷远处的参考点（例如地电势）作比较。重要的是两点之间的<span data-concept="potential-difference">电势差</span>，而且往往对那个参考点有一个默认的假定，例如地球或非常远的一点。正如“<span data-concept="electric-potential">电势</span>能：<span data-concept="potential-difference">电势差</span>”中所指出的，这类似于在考虑<span data-concept="gravitational-potential-energy">重力势能</span> $\kPEg = \km\kg\kh$ 时取海平面为 $\kh = 0$。</p>
+</section>

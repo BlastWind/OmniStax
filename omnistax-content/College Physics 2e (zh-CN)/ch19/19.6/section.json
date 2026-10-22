@@ -1,0 +1,543 @@
+{
+ "id": "19.6",
+ "module": "m42336",
+ "chapter": "19",
+ "title": "串联和并联的电容器",
+ "short": "串联和并联的电容器",
+ "lead": "电容器很少一个一个地单独工作：接在同一个电路中的几个电容器，其表现相当于单个等效电容器，而连接的方式决定了它的<span data-concept=\"capacitance\">电容</span>。本节求出电容器在串联、并联以及两者混合的电路中的这个<span data-concept=\"capacitance\">电容</span>。",
+ "objectives": [
+  "推导串联和并联时总电容的表达式。",
+  "在电容器的连接组合中，辨认出串联和并联的部分。",
+  "已知各个电容，计算串联和并联时的等效电容。"
+ ],
+ "summary_html": "<ul><li>串联的总电容 $\\frac{1}{\\kCS} = \\frac{1}{\\kCone} + \\frac{1}{\\kCtwo} + \\frac{1}{\\kCthree} + \\text{.}\\text{.}\\text{.}$</li><li>并联的总电容 $\\kCp = \\kCone + \\kCtwo + \\kCthree + \\text{.}\\text{.}\\text{.}$</li><li>如果电路中含有电容器的串联与并联组合，就辨认出串联和并联的部分，算出它们的<span data-concept=\"capacitance\">电容</span>，再求出总电容。</li></ul>",
+ "notes": "书中没有给出答案的两道习题略去了：用 1.50 mF 的电容器组成 0.750 F 的电容器组，以及含五个电容器的电路，后者的图片没有随之保留。本节唯一的思考题问的是，用来储存大量能量的电容器组应当串联还是并联；它放在“电容器中储存的能量”一页，因为它所涉及的能量在那里才引入。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示均由 AI 生成。答案取自书后答案。有两道习题没有给出答案，因此略去：用 1.50 mF 的电容器组成 0.750 F 的电容器组，以及第三个电路中画出的五个电容器的组合。保留下来的两道电路题，其卡片上附有书中自己的电路图。不合理的结果那一题只给出第一问的答案，所以卡片核对这个数，并在解中给出书中对另外两问的回答。本节的思考题问的是，为储存大量能量，电容器应当串联还是并联；它留给“电容器中储存的能量”一页，因为它所涉及的能量在那里才引入；那一页以 source_section 19.6 设置这道题，并在自己的说明中写明了这一点。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-series-parallel",
+   "kind": "sim",
+   "number": "19.20",
+   "folds": [
+    "19.21"
+   ],
+   "originals": [
+    "/media/ch19/Figure_20_06_01a.jpg",
+    "/media/ch19/Figure_20_06_02a.jpg"
+   ],
+   "original_caption": "（图 19.20）（a）串联的电容器。每块极板上的电荷大小为 Q。（b）等效电容器的极板间距 d 较大。串联连接产生的总电容小于其中任何一个单独电容器的电容。（图 19.21）（a）并联的电容器。每个电容器都直接接到电压源上，就像它单独存在一样，因此并联时的总电容就是各个电容之和。（b）等效电容器的极板面积较大，因此比单个电容器能容纳更多的电荷。",
+   "widths": [
+    185,
+    300
+   ],
+   "draws": [
+    "capacitance",
+    "voltage",
+    "charge",
+    "position",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "plate-area label off the wire; notes cut, set through readout.set"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-mixed",
+   "kind": "sim",
+   "number": "19.22",
+   "originals": [
+    "/media/ch19/Figure_20_06_03a.jpg"
+   ],
+   "original_caption": "（a）该电路中既有电容器的串联，也有并联。该电路总电容的计算见例题 19.10。（b）C₁ 和 C₂ 串联；它们的等效电容 C_S 小于二者中的任何一个。（c）请注意，C_S 与 C₃ 并联。因此，总电容是 C_S 与 C₃ 之和。",
+   "widths": [
+    500
+   ],
+   "draws": [
+    "capacitance"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note one equation through the macros"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "combinations",
+   "concept": "equivalent-capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "combinations",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "combinations",
+   "concept": "capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "series",
+   "concept": "series-capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "series",
+   "concept": "equivalent-capacitance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "series",
+   "concept": "conservation-of-charge",
+   "verb": "uses"
+  },
+  {
+   "span": "series",
+   "concept": "parallel-plate-capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "series",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel",
+   "concept": "conductor-is-equipotential",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel",
+   "concept": "parallel-plate-capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel",
+   "concept": "equivalent-capacitance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mixed",
+   "concept": "reduce-series-parallel-combinations",
+   "verb": "introduces"
+  },
+  {
+   "span": "mixed",
+   "concept": "series-capacitance",
+   "verb": "reinforces"
+  },
+  {
+   "span": "mixed",
+   "concept": "parallel-capacitance",
+   "verb": "reinforces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "p1",
+   "source_id": "fs-id1656785",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mixed",
+   "figure": {
+    "src": "/media/ch19/Figure_20_05_08a.jpg",
+    "alt": "图中是一个含三个电容器的电路。电容分别为十微法和二点五微法的两个电容器相互并联，它们的组合与一个零点三零微法的电容器串联。",
+    "caption": "电容器的串联与并联组合。"
+   },
+   "prompt": "求下图所示电路中电容器组合的总电容。",
+   "answer": {
+    "type": "number",
+    "value": 0.293,
+    "unit": "µF",
+    "generated_by": "source",
+    "hint": "先算并联的那一对，因为并排连接的两个电容器的电容直接相加，然后把得到的这个电容与第三个电容器串联。",
+    "solution": "0.293 µF"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1290190",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "series",
+   "prompt": "把一个 $5\\text{.}\\text{00 \\mu F}$ 的电容器和一个 $8\\text{.}\\text{00 \\mu F}$ 的电容器连接在一起，可以得到哪些总电容？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "in series",
+      "value": 3.08,
+      "unit": "µF",
+      "hint": "两个电容器串联，总电容小于其中任何一个；对两个电容器来说，是倒数相加。"
+     },
+     {
+      "part": "in parallel",
+      "value": 13.0,
+      "unit": "µF",
+      "hint": "两个电容器并联，总电容大于其中任何一个；对两个电容器来说，是电容相加。"
+     }
+    ],
+    "solution": "串联时 3.08 µF，并联时 13.0 µF"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2607784",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "mixed",
+   "figure": {
+    "src": "/media/ch19/Figure_20_05_09a.jpg",
+    "alt": "电路中含有三个电容器。一个零点三零微法的电容器和一个十微法的电容器串联，它们再一起与一个二点五微法的电容器并联。",
+    "caption": "电容器的串联与并联组合。"
+   },
+   "prompt": "求下图所示电容器组合的总电容。",
+   "answer": {
+    "type": "number",
+    "value": 2.79,
+    "unit": "µF",
+    "generated_by": "source",
+    "hint": "先算串联的那一对，其结果比两者中较小的那个略小，然后加上与这一对并联的电容器。",
+    "solution": "2.79 µF"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2605419",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel",
+   "prompt": "<strong>不合理的结果</strong>（a）一个 $8\\text{.}\\text{00 \\mu F}$ 的电容器与另一个电容器并联，得到的总电容为 $5\\text{.}\\text{00 \\mu F}$。第二个电容器的电容是多少？（b）这个结果有什么不合理之处？（c）哪些假设不合理或相互矛盾？",
+   "answer": {
+    "type": "number",
+    "value": -3.0,
+    "unit": "µF",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "按并联公式的字面意思，解出第二个电容，然后想一想，得到的这个数能不能属于一个真实的电容器。",
+    "solution": "（a）–3.00 µF（b）电容不可能为负值。（c）假设这两个电容器是并联而不是串联，这一假设是错误的。并联总是产生更大的电容，而这里假设的是更小的电容。只有当这两个电容器串联时，才会出现这种情况。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "p1",
+   "concept": "reduce-series-parallel-combinations"
+  },
+  {
+   "exercise": "p1",
+   "concept": "parallel-capacitance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "series-capacitance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "series-capacitance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "parallel-capacitance"
+  },
+  {
+   "exercise": "p3",
+   "concept": "equivalent-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "reduce-series-parallel-combinations"
+  },
+  {
+   "exercise": "p4",
+   "concept": "series-capacitance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "parallel-capacitance",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "parallel-capacitance"
+  },
+  {
+   "exercise": "p6",
+   "concept": "series-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "capacitor-1",
+   "label": "第一个电容器 C₁",
+   "figures": [
+    "sim-series-parallel",
+    "sim-mixed"
+   ]
+  },
+  {
+   "id": "capacitor-2",
+   "label": "第二个电容器 C₂",
+   "figures": [
+    "sim-series-parallel",
+    "sim-mixed"
+   ]
+  },
+  {
+   "id": "capacitor-3",
+   "label": "第三个电容器 C₃",
+   "figures": [
+    "sim-series-parallel",
+    "sim-mixed"
+   ]
+  },
+  {
+   "id": "equivalent",
+   "label": "与该组合等效的单个电容器",
+   "figures": [
+    "sim-series-parallel"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "capacitance-in-series",
+   "what": "串联的总电容",
+   "source": "《大学物理（第2版）》，19.6 串联和并联的电容器",
+   "nodes": [
+    {
+     "assumes": [],
+     "then": {
+      "tex": "\\mk{C}{\\kCap} = \\dfrac{\\mk{Q}{\\kQch}}{\\mk{V}{\\kV}}",
+      "src": "19.5"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV} = \\dfrac{\\mk{Q}{\\kQch}}{\\mk{C}{\\kCap}}",
+       "uses": []
+      }
+     ],
+     "src": "19.6"
+    },
+    {
+     "assumes": [
+      {
+       "text": "串联时，电源的电压由各个电容器分担。",
+       "src": "19.6，图 19.20"
+      },
+      {
+       "step": 0
+      },
+      {
+       "text": "总电容 $\\kCS$ 是与该组合等效的单个电容器的电容。",
+       "src": "19.6"
+      },
+      {
+       "text": "电荷守恒使每个电容器上都带有相同的电荷 $\\kQch$。",
+       "src": "19.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kV} = \\mk{a}{\\kVone} + \\mk{b}{\\kVtwo} + \\mk{c}{\\kVthree}",
+      "src": "19.6",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV} = \\mk{Q}{\\dfrac{\\kQch}{\\kCS}} = \\mk{a}{\\kVone} + \\mk{b}{\\kVtwo} + \\mk{c}{\\kVthree}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\dfrac{\\kQch}{\\kCS}} = \\mk{a}{\\dfrac{\\kQch}{\\kCone}} + \\mk{b}{\\dfrac{\\kQch}{\\kCtwo}} + \\mk{c}{\\dfrac{\\kQch}{\\kCthree}}",
+       "uses": [
+        1,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\dfrac{1}{\\kCS}} = \\mk{a}{\\dfrac{1}{\\kCone}} + \\mk{b}{\\dfrac{1}{\\kCtwo}} + \\mk{c}{\\dfrac{1}{\\kCthree}} + \\mk{n}{\\dots}",
+       "uses": []
+      }
+     ],
+     "src": "19.6"
+    }
+   ]
+  },
+  {
+   "id": "capacitance-in-parallel",
+   "what": "并联的总电容",
+   "source": "《大学物理（第2版）》，19.6 串联和并联的电容器",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "并联时，总电荷是各个电容器上的电荷之和。",
+       "src": "19.6，图 19.21"
+      },
+      {
+       "tex": "\\kQch = \\kCap\\kV",
+       "src": "19.5"
+      },
+      {
+       "text": "总电容 $\\kCp$ 是与该组合等效的单个电容器的电容。",
+       "src": "19.6"
+      },
+      {
+       "text": "每个电容器都直接接在电源上，所以每个电容器两端的电压都是电源的电压 $\\kV$。",
+       "src": "19.6"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{Q}{\\kQch} = \\mk{a}{\\kQchone} + \\mk{b}{\\kQchtwo} + \\mk{c}{\\kQchthree}",
+      "src": "19.6",
+      "uses": [
+       0
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{Q}{\\kCp\\kV} = \\mk{a}{\\kQchone} + \\mk{b}{\\kQchtwo} + \\mk{c}{\\kQchthree}",
+       "uses": [
+        1,
+        2
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\kCp\\kV} = \\mk{a}{\\kCone\\kV} + \\mk{b}{\\kCtwo\\kV} + \\mk{c}{\\kCthree\\kV}",
+       "uses": [
+        1,
+        3
+       ]
+      },
+      {
+       "tex": "\\mk{Q}{\\kCp} = \\mk{a}{\\kCone} + \\mk{b}{\\kCtwo} + \\mk{c}{\\kCthree} + \\mk{n}{\\dots}",
+       "uses": []
+      }
+     ],
+     "src": "19.6"
+    }
+   ]
+  }
+ ]
+}

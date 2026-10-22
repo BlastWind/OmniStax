@@ -1,0 +1,227 @@
+/* Figures for section 19.6 Capacitors in Series and Parallel. Boots against the section's text article.
+   A charged combination of capacitors sits at its voltage, so both figures
+   here are still pictures: neither registers a cycle, neither carries a
+   transport, and a slider's input alone redraws them. The wires and the
+   battery are the frame of a circuit diagram and are drawn in ink; the plates
+   of the three capacitors and of the equivalent capacitor wear their referent
+   hues (ch19/COLOR.md), and the capacitances, the voltages, the charges, the
+   equivalent separation and the equivalent plate area wear their type hues. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['19.6'] = function (root, F) {
+const { el, fmt, tex, C, PAL, ctl, choice, register, begin, line, arrow, dot, text, headline, hbracket, vbracket } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- the pieces of a circuit diagram, in ink but for a capacitor that is a referent ---------- */
+/* a capacitor in a wire: 'h' sits in a horizontal wire and has vertical
+   plates, 'v' sits in a vertical wire and has horizontal plates; its plates
+   take its referent's hue where it has one */
+function capacitor(ctx, x, y, orient, gap, half, color = PAL.ink) {
+  const g = gap / 2;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineCap = 'butt';
+  ctx.beginPath();
+  if (orient === 'h') { ctx.moveTo(x - g, y - half); ctx.lineTo(x - g, y + half); ctx.moveTo(x + g, y - half); ctx.lineTo(x + g, y + half); }
+  else { ctx.moveTo(x - half, y - g); ctx.lineTo(x + half, y - g); ctx.moveTo(x - half, y + g); ctx.lineTo(x + half, y + g); }
+  ctx.stroke(); ctx.restore();
+}
+/* a battery in a wire, the long plate the positive terminal */
+function battery(ctx, x, y, orient) {
+  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineCap = 'butt';
+  const pairs = [[-26, 30, 4], [-10, 15, 7], [10, 30, 4], [26, 15, 7]];
+  for (const [o, h, w] of pairs) {
+    ctx.lineWidth = w; ctx.beginPath();
+    if (orient === 'h') { ctx.moveTo(x + o, y - h); ctx.lineTo(x + o, y + h); }
+    else { ctx.moveTo(x - h, y + o); ctx.lineTo(x + h, y + o); }
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+/* the wire of a circuit, drawn along a path of corner points */
+function wire(ctx, pts) {
+  ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+  ctx.stroke(); ctx.restore();
+}
+/* a plus and a minus sign on the two plates of a capacitor, in the charge hue */
+function signs(ctx, x, y, orient, gap, half, color) {
+  const g = gap / 2 + 20, o = half + 24;
+  const put = (s, px, py) => text(ctx, s, px, py, color, { size: 22, weight: 600, align: 'center' });
+  if (orient === 'h') { put('+', x - g, y - o + 10); put('−', x + g, y - o + 10); }
+  else { put('+', x - o, y - g + 4); put('−', x - o, y + g + 4); }
+}
+
+/* =====================================================================
+   FIGURES 19.20 + 19.21, folded: the same three capacitors across the
+   same source, connected first in series and then in parallel, with the
+   single capacitor each combination is equivalent to drawn beside it.
+   A change of connection carries each capacitor from its place in the row
+   to its branch of the ladder, turning it as it goes, while the wires of
+   the old circuit fade and the new ones arrive; the equivalent capacitor's
+   separation and plates bend to the new values, and the formula bends
+   term by term into the other. Still: a charged combination sits at its
+   voltage and the figure answers its controls, so it registers no cycle.
+===================================================================== */
+(function () {
+  const d = sim('sim-series-parallel', 760);
+  const conn = choice(d.controls, { label: '\\text{连接方式}', options: [{ value: 'series', label: '串联' }, { value: 'parallel', label: '并联' }], value: 'series', aria: '三个电容器的连接方式' });
+  const c1 = ctl(d.controls, { label: '\\kCone', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 1, unit: 'µF', dec: 3, aria: '第一个电容器的电容' });
+  const c2 = ctl(d.controls, { label: '\\kCtwo', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 3, aria: '第二个电容器的电容' });
+  const c3 = ctl(d.controls, { label: '\\kCthree', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 8, unit: 'µF', dec: 3, aria: '第三个电容器的电容' });
+  const vs = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 2, max: 24, step: 0.5, value: 12, unit: 'V', dec: 1, aria: '电源的电压' });
+  const ro = F.readout(d);
+  let wasSer = null;
+  /* the gap and the plate width of the equivalent capacitor are drawn to a
+     fixed scale, bounded so that the widest separation and the widest plates
+     the sliders can reach still stand inside the panel */
+  const XS = [280, 450, 620], TOP = 260, BOT = 530, LFT = 160, RGT = 740, DIV = 820, EQ = 1110;
+  const LP = 250, XP = [350, 520, 690], YP = 395;
+  /* a capacitor of plate half-width `half` and gap `gap` at (x, y), turned by `th`: 0 sits in a horizontal wire, π/2 in a vertical one */
+  function turnedCap(ctx, x, y, th, gap, half, color) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(th); capacitor(ctx, 0, 0, 'h', gap, half, color); ctx.restore();
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const cc = C('capacitance'), vc = C('voltage'), qc = C('charge'), pc = C('position');
+    const cs = [c1.v, c2.v, c3.v], V = vs.v, ser = conn.value === 'series';
+    const Cs = 1 / (1 / cs[0] + 1 / cs[1] + 1 / cs[2]), Cp = cs[0] + cs[1] + cs[2];
+    const Ctot = ser ? Cs : Cp, Q = Ctot * V;                 /* µF times V is µC */
+    const aS = conn.a('series'), aP = conn.a('parallel');
+    line(ctx, DIV, 130, DIV, 660, PAL.rule, 2, [10, 10]);
+    F.faded(ctx, aS, [0, 0], () => text(ctx, '三个串联的电容器', 110, 134, PAL.muted, { size: 19 }));
+    F.faded(ctx, aP, [0, 0], () => text(ctx, '三个并联的电容器', 110, 134, PAL.muted, { size: 19 }));
+    text(ctx, '与这一组合等效的那一个电容器', 880, 134, PAL.muted, { size: 19 });
+    /* the wires and the source of each circuit */
+    F.faded(ctx, aS, [0, 0], () => {
+      wire(ctx, [[XS[0] - 34, TOP], [LFT, TOP], [LFT, BOT], [RGT, BOT], [RGT, TOP], [XS[2] + 34, TOP]]);
+      wire(ctx, [[XS[0] + 34, TOP], [XS[1] - 34, TOP]]);
+      wire(ctx, [[XS[1] + 34, TOP], [XS[2] - 34, TOP]]);
+      battery(ctx, 450, BOT, 'h');
+      text(ctx, 'V = ' + fmt(V, 1) + ' V', 450, BOT + 62, vc, { size: 22, weight: 600, align: 'center' });
+      XS.forEach((x, i) => text(ctx, 'V_' + (i + 1) + ' = ' + fmt((Cs * V) / cs[i], 2) + ' V', x, TOP + 116, vc, { size: 21, weight: 600, align: 'center', bg: PAL.panel }));
+      text(ctx, '每个电容器中分离出的电荷相同，Q = ' + fmt(Cs * V, 2) + ' µC。', 450, 636, qc, { size: 20, weight: 600, align: 'center' });
+    });
+    F.faded(ctx, aP, [0, 0], () => {
+      wire(ctx, [[LP, TOP], [RGT, TOP]]);
+      wire(ctx, [[LP, BOT], [RGT, BOT]]);
+      wire(ctx, [[LP, TOP], [LP, BOT]]);
+      battery(ctx, LP, YP, 'v');
+      text(ctx, 'V = ' + fmt(V, 1) + ' V', LP - 44, YP, vc, { size: 22, weight: 600, align: 'right' });
+      XP.forEach((x, i) => {
+        wire(ctx, [[x, TOP], [x, YP - 17]]);
+        wire(ctx, [[x, YP + 17], [x, BOT]]);
+        dot(ctx, x, TOP, PAL.ink, true, 6); dot(ctx, x, BOT, PAL.ink, true, 6);
+        text(ctx, 'Q_' + (i + 1) + ' = ' + fmt(cs[i] * V, 2) + ' µC', x + 12, 492, qc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+      });
+      text(ctx, '每个电容器两端都承受全部的 ' + fmt(V, 1) + ' V。', 470, 636, vc, { size: 20, weight: 600, align: 'center' });
+    });
+    /* the three capacitors themselves, each travelling from its place in one circuit to its place in the other */
+    const place = conn.mix((v) => (v === 'series' ? [...XS, TOP, 0, TOP - 84] : [...XP, YP, Math.PI / 2, 300]));
+    XS.forEach((_, i) => {
+      const x = place[i], y = place[3], th = place[4];
+      turnedCap(ctx, x, y, th, 34, 46, F.ref('capacitor-' + (i + 1)));
+      F.faded(ctx, aS, [0, 0], () => signs(ctx, x, y, 'h', 34, 46, qc));
+      F.faded(ctx, aP, [0, 0], () => signs(ctx, x, y, 'v', 34, 46, qc));
+      text(ctx, 'C_' + (i + 1) + ' = ' + fmt(cs[i], 3) + ' µF', x + 12 * (th / (Math.PI / 2)), place[5], cc, { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    });
+    /* the equivalent capacitor: a larger separation in series, a larger plate area in parallel */
+    const [gap, half] = conn.mix((v) => (v === 'series' ? [40 + 150 * Math.min(1, 1 / Math.max(Cs, 0.35) / 3), 116] : [46, 50 + 3.5 * Math.min(Cp, 30)]));
+    wire(ctx, [[EQ, 260], [EQ - 200, 260], [EQ - 200, 560], [EQ + 200, 560], [EQ + 200, 260], [EQ, 260]]);
+    wire(ctx, [[EQ, 260], [EQ, 380 - gap / 2]]);
+    wire(ctx, [[EQ, 380 + gap / 2], [EQ, 560]]);
+    capacitor(ctx, EQ, 380, 'v', gap, half, F.ref('equivalent'));
+    signs(ctx, EQ, 380, 'v', gap, half, qc);
+    battery(ctx, EQ - 200, 410, 'v');
+    text(ctx, 'V = ' + fmt(V, 1) + ' V', EQ - 252, 410, vc, { size: 21, weight: 600, align: 'right' });
+    F.faded(ctx, aS, [0, 0], () => {
+      vbracket(ctx, EQ + 152, 380 - gap / 2, 380 + gap / 2, pc, 'd', 1);
+      text(ctx, 'C_S = ' + fmt(Cs, 3) + ' µF', EQ, 200, cc, { size: 23, weight: 600, align: 'center' });
+      text(ctx, '较大的极板间距', EQ + 40, 636, PAL.muted, { size: 19, align: 'center' });
+    });
+    F.faded(ctx, aP, [0, 0], () => {
+      hbracket(ctx, EQ - half, EQ + half, 522, C('area'));
+      text(ctx, '极板面积 A', EQ + 16, 498, C('area'), { size: 20, weight: 600 });   /* above the bracket, beside the wire that runs down through it */
+      text(ctx, 'C_p = ' + fmt(Cp, 3) + ' µF', EQ, 200, cc, { size: 23, weight: 600, align: 'center' });
+      text(ctx, '较大的极板面积', EQ, 636, PAL.muted, { size: 19, align: 'center' });
+    });
+    const n = cs.map((c) => fmt(c, 3));
+    if (ser) {
+      headline(ctx, '电容为 ' + n[0] + '、' + n[1] + ' 和 ' + n[2] + ' µF 的三个电容器串联在 ' + fmt(V, 1) + ' V 的电压两端，各带有 ' + fmt(Q, 2) + ' µC 的电荷，其作用相当于一个 ' + fmt(Cs, 3) + ' µF 的电容器。');
+      ro.set(`\\frac{1}{\\mk{C}{\\kCS}} = \\frac{1}{\\mk{a}{\\kCone}} + \\frac{1}{\\mk{b}{\\kCtwo}} + \\frac{1}{\\mk{c}{\\kCthree}} = \\frac{1}{\\mk{na}{${n[0]}}} + \\frac{1}{\\mk{nb}{${n[1]}}} + \\frac{1}{\\mk{nc}{${n[2]}}} = \\frac{1}{\\mk{n}{${fmt(Cs, 3)}}\\ \\mu\\text{F}}`,
+        '三个电压之和等于电源电压，' + fmt(Q / cs[0], 2) + ' + ' + fmt(Q / cs[1], 2) + ' + ' + fmt(Q / cs[2], 2) + ' = ' + fmt(V, 1) + ' V，最小的电容分得最大的份额。', { force: wasSer !== null && wasSer !== ser });
+    } else {
+      headline(ctx, '同样的三个电容器并联在 ' + fmt(V, 1) + ' V 的电压两端，共带有 ' + fmt(Q, 2) + ' µC 的电荷，其作用相当于一个 ' + fmt(Cp, 3) + ' µF 的电容器。');
+      ro.set(`\\mk{C}{\\kCp} = \\mk{a}{\\kCone} + \\mk{b}{\\kCtwo} + \\mk{c}{\\kCthree} = \\mk{na}{${n[0]}} + \\mk{nb}{${n[1]}} + \\mk{nc}{${n[2]}} = \\mk{n}{${fmt(Cp, 3)}}\\ \\mu\\text{F}`,
+        '每个电容器所带的电荷 $\\kQch = \\kCap\\kV$ 与它单独存在时相同，三者相加为 ' + fmt(Q, 2) + ' µC。', { force: wasSer !== null && wasSer !== ser });
+    }
+    wasSer = ser;
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 19.22: the circuit that has both connections in it, reduced in
+   two steps drawn side by side. Still: the reduction is a way of reading
+   a circuit and not a process in time, so the three panels stand together
+   and nothing runs on a clock.
+===================================================================== */
+(function () {
+  const d = sim('sim-mixed', 620);
+  const c1 = ctl(d.controls, { label: '\\kCone', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 1, unit: 'µF', dec: 3, aria: '第一个电容器的电容' });
+  const c2 = ctl(d.controls, { label: '\\kCtwo', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 5, unit: 'µF', dec: 3, aria: '第二个电容器的电容' });
+  const c3 = ctl(d.controls, { label: '\\kCthree', cls: 'capacitance', min: 0.5, max: 10, step: 0.25, value: 8, unit: 'µF', dec: 3, aria: '第三个电容器的电容' });
+  const PX = [80, 520, 960], PW = 360, TOP = 250, BOT = 430, MID = 340;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const cc = C('capacitance');
+    const a = c1.v, b = c2.v, c = c3.v, Cs = (a * b) / (a + b), Ctot = Cs + c;
+    /* C₁, C₂ and C₃ are the three capacitors of Figures 19.20 and 19.21 again; the equivalents C_S and C_tot are ink */
+    const capColor = (nm) => ({ C_1: F.ref('capacitor-1'), C_2: F.ref('capacitor-2'), C_3: F.ref('capacitor-3') })[nm] || PAL.ink;
+    /* one panel of the reduction: `top` is the list of capacitors on the
+       upper branch and `bot` the one on the lower branch, or null where the
+       circuit has come down to a single capacitor */
+    function panel(x0, letter, top, bot, title) {
+      const L = x0 + 30, R = x0 + PW - 30;
+      text(ctx, '(' + letter + ')', x0 + 8, 132, PAL.muted, { size: 21, weight: 600 });
+      text(ctx, title, x0 + 44, 132, PAL.muted, { size: 19 });
+      if (!bot) {
+        wire(ctx, [[L, MID], [(L + R) / 2 - 24, MID]]);
+        wire(ctx, [[(L + R) / 2 + 24, MID], [R, MID]]);
+        capacitor(ctx, (L + R) / 2, MID, 'h', 30, 42, capColor(top[0][0]));
+        text(ctx, top[0][0] + ' = ' + fmt(top[0][1], 3) + ' µF', (L + R) / 2, MID - 96, cc, { size: 21, weight: 600, align: 'center' });
+        dot(ctx, L, MID, PAL.ink, true, 6); dot(ctx, R, MID, PAL.ink, true, 6);
+        return;
+      }
+      wire(ctx, [[L, MID], [L, TOP]]); wire(ctx, [[R, MID], [R, TOP]]);
+      wire(ctx, [[L, MID], [L, BOT]]); wire(ctx, [[R, MID], [R, BOT]]);
+      dot(ctx, L, MID, PAL.ink, true, 6); dot(ctx, R, MID, PAL.ink, true, 6);
+      /* the upper branch, with one capacitor or two in series along it */
+      const n = top.length, step = (R - L) / (n + 1);
+      let x = L;
+      top.forEach(([nm, val], i) => {
+        const cx = L + step * (i + 1);
+        wire(ctx, [[x, TOP], [cx - 24, TOP]]);
+        capacitor(ctx, cx, TOP, 'h', 30, 42, capColor(nm));
+        /* with two capacitors on one branch the names would collide, so the second is set below the wire */
+        text(ctx, nm + ' = ' + fmt(val, 3) + ' µF', cx, n > 1 && i === 1 ? TOP + 78 : TOP - 74, cc, { size: 20, weight: 600, align: 'center' });
+        x = cx + 24;
+      });
+      wire(ctx, [[x, TOP], [R, TOP]]);
+      /* the lower branch, with the capacitor that stands in parallel with it */
+      const bx = (L + R) / 2;
+      wire(ctx, [[L, BOT], [bx - 24, BOT]]); wire(ctx, [[bx + 24, BOT], [R, BOT]]);
+      capacitor(ctx, bx, BOT, 'h', 30, 42, capColor(bot[0]));
+      text(ctx, bot[0] + ' = ' + fmt(bot[1], 3) + ' µF', bx, BOT + 96, cc, { size: 20, weight: 600, align: 'center' });
+    }
+    panel(PX[0], 'a', [['C_1', a], ['C_2', b]], ['C_3', c], '原来的电路');
+    panel(PX[1], 'b', [['C_S', Cs]], ['C_3', c], 'C_1 和 C_2 串联');
+    panel(PX[2], 'c', [['C_tot', Ctot]], null, 'C_S 与 C_3 并联');
+    /* the arrows that carry one panel into the next */
+    for (const x of [PX[0] + PW + 10, PX[1] + PW + 10]) arrow(ctx, x, MID, x + 60, MID, PAL.muted, 4);
+    headline(ctx, '当 ' + fmt(a, 3) + ' µF 和 ' + fmt(b, 3) + ' µF 串联，且有 ' + fmt(c, 3) + ' µF 与它们并联时，该电路相当于一个 ' + fmt(Ctot, 3) + ' µF 的电容器。');
+    readout(d.readout, `\\kCtot = \\kCS + \\kCthree = ${fmt(Cs, 3)} + ${fmt(c, 3)} = ${fmt(Ctot, 3)}\\ \\mu\\text{F}`,
+      '先算串联的这一对：由 $1/\\kCS = 1/\\kCone + 1/\\kCtwo$ 得 ' + fmt(Cs, 3) + ' µF。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

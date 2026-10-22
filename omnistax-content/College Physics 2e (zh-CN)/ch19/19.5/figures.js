@@ -1,0 +1,459 @@
+/* Figures for section 19.5 Capacitors and Dielectrics. Boots against the section's text article.
+   A charged capacitor sitting on a battery has no time in it, so every figure
+   here but the last is a still picture: it registers no cycle, carries no
+   transport, and a slider or a choice alone redraws it. The membrane of
+   Figure 19.19 is the one process in the section that runs in time, and it
+   is the one figure that moves. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['19.5'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, select, register, cycle, begin, line, arrow, dot, text, topline, hbracket, vbracket, label } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- constants and small helpers ---------- */
+const EPS0 = 8.85e-12;                       /* F/m, the permittivity of free space */
+/* Table 19.1, the book's own values. A strength of null is the em dash the book prints. */
+const MATERIALS = [
+  { value: 'vacuum', label: '真空', k: 1.00000, strength: null },
+  { value: 'air', label: '空气', k: 1.00059, strength: 3e6 },
+  { value: 'bakelite', label: '电木', k: 4.9, strength: 24e6 },
+  { value: 'quartz', label: '熔融石英', k: 3.78, strength: 8e6 },
+  { value: 'neoprene', label: '氯丁橡胶', k: 6.7, strength: 12e6 },
+  { value: 'nylon', label: '尼龙', k: 3.4, strength: 14e6 },
+  { value: 'paper', label: '纸', k: 3.7, strength: 16e6 },
+  { value: 'polystyrene', label: '聚苯乙烯', k: 2.56, strength: 24e6 },
+  { value: 'pyrex', label: '派热克斯玻璃', k: 5.6, strength: 14e6 },
+  { value: 'oil', label: '硅油', k: 2.5, strength: 15e6 },
+  { value: 'strontium', label: '钛酸锶', k: 233, strength: 8e6 },
+  { value: 'teflon', label: '特氟龙', k: 2.1, strength: 60e6 },
+  { value: 'water', label: '水', k: 80, strength: null },
+];
+const materialOf = (v) => MATERIALS.find((m) => m.value === v) || MATERIALS[1];
+/* a number in scientific form for the readout, where a plain decimal would run long */
+function sci(x, d) {
+  if (x === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x))), m = x / Math.pow(10, e);
+  return fmt(m, d) + ' \\times 10^{' + e + '}';
+}
+/* the same number in plain text, for a headline or a note */
+function sciText(x, d) {
+  if (x === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x))), m = x / Math.pow(10, e);
+  const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+  return fmt(m, d) + ' × 10' + String(e).split('').map((c) => SUP[c]).join('');
+}
+/* a battery symbol standing at (x, y), h tall, its long plate the positive terminal */
+function battery(ctx, x, y, h) {
+  const g = 16;
+  line(ctx, x - h * 0.30, y - g, x + h * 0.30, y - g, PAL.ink, 5);
+  line(ctx, x - h * 0.14, y + g, x + h * 0.14, y + g, PAL.ink, 9);
+  text(ctx, '+', x - h * 0.30 - 22, y - g, PAL.ink, { size: 24, weight: 600, align: 'center' });
+  text(ctx, '−', x - h * 0.30 - 22, y + g, PAL.ink, { size: 24, weight: 600, align: 'center' });
+}
+/* a run of wire through the given points, in ink */
+function wire(ctx, pts) { for (let i = 1; i < pts.length; i++) line(ctx, pts[i - 1][0], pts[i - 1][1], pts[i][0], pts[i][1], PAL.ink, 4); }
+/* the + or − marks a charged plate carries, n of them down its face */
+function marks(ctx, x, y0, y1, n, sign, color) {
+  if (n <= 0) return;
+  for (let i = 0; i < n; i++) {
+    const y = y0 + ((i + 0.5) * (y1 - y0)) / n;
+    text(ctx, sign, x, y, color, { size: 24, weight: 600, align: 'center' });
+  }
+}
+/* one field line from the positive plate to the negative one, with its arrowhead midway */
+function fieldLine(ctx, x0, x1, y, color) {
+  line(ctx, x0, y, x1, y, color, 3);
+  const dir = x1 > x0 ? 1 : -1, m = (x0 + x1) / 2;
+  arrow(ctx, m - dir * 14, y, m + dir * 14, y, color, 3);
+}
+
+/* =====================================================================
+   FIGURE 19.12: a capacitor on a battery, either the parallel plate one or
+   the rolled one, holding +Q on the conductor wired to the positive
+   terminal and −Q on the other. Still: a charged capacitor has no time in
+   it, so the figure answers its choice and its slider and registers no
+   cycle. The construction is a state and so is a choice, not a slider
+   (rule 26.1). The rolled capacitor is the same two conductors rolled up,
+   so a change of kind bends each plate into its sheet of the roll and the
+   wires follow their ends.
+===================================================================== */
+(function () {
+  const d = sim('sim-capacitor', 560);
+  const kind = choice(d.controls, {
+    label: '\\text{电容器}',
+    options: [{ value: 'plates', label: '平行板' }, { value: 'rolled', label: '卷绕' }],
+    value: 'plates', aria: '画出哪一种电容器',
+  });
+  const Qs = ctl(d.controls, { label: '\\kQch', cls: 'charge', min: 0, max: 60, step: 0.2, value: 26.6, unit: 'µC', dec: 1, aria: '电容器储存的电荷' });
+  const BX = 210, BY = 300, PL = 640, PR = 900, PT = 150, PB = 430;
+  /* the roll: two sheets wound half a turn apart, each read from its outer end where its wire joins,
+     the positive one ending at the top of the roll and the negative one at the bottom, so neither lead crosses a turn */
+  const CX = 770, CY = 304, R0 = 34, KR = 17.3, TURNS = 3.75;
+  const spiral = (phase) => { const p = []; for (let t = 0; t <= TURNS * Math.PI * 2; t += 0.12) { const r = R0 + KR * (t / (Math.PI * 2)) * 2; p.push([CX + r * Math.cos(t + phase), CY + r * Math.sin(t + phase)]); } return p; };
+  const OUTER = spiral(0).reverse(), INNER = spiral(Math.PI).reverse();
+  const PLUS = [[PL, PT], [PL, PB]], MINUS = [[PR, PB], [PR, PT]];
+  const lerp2 = (a, b, u) => a.map((p, i) => [p[0] + (b[i][0] - p[0]) * u, p[1] + (b[i][1] - p[1]) * u]);
+  function draw() {
+    const { ctx } = begin(d.c);
+    const qc = C('charge'), Q = Qs.v, n = Math.min(10, Math.round(Q / 5)), rolled = kind.value === 'rolled';
+    const u = kind.mix((v) => (v === 'rolled' ? 1 : 0));
+    const plus = Q > 0 ? '+' + fmt(Q, 1) : '0.0', minus = Q > 0 ? '−' + fmt(Q, 1) : '0.0';
+    topline(ctx, Q > 0 ? '电池把 ' + fmt(Q, 1) + ' µC 分到一个导体上，把 −' + fmt(Q, 1) + ' µC 分到另一个导体上，电容器整体呈电中性。'
+      : '没有电荷被分开，两个导体都是电中性的，电容器什么也没有储存。');
+    battery(ctx, BX, BY, 150);
+    text(ctx, '电池', BX + 14, BY + 58, PAL.muted, { size: 19 });
+    const pos = u <= 0 ? PLUS : F.lerpPts(PLUS, OUTER, u), neg = u <= 0 ? MINUS : F.lerpPts(MINUS, INNER, u);
+    const strip = (pts, w, color) => { ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = w; ctx.lineJoin = 'round'; ctx.lineCap = 'butt'; ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]); pts.forEach((p) => ctx.lineTo(p[0], p[1])); ctx.stroke(); ctx.restore(); };
+    /* the insulating sheet between the two conductors of the roll */
+    if (u > 0.01) { strip(pos, 13, alpha(PAL.ink, 0.35 * u)); strip(neg, 13, alpha(PAL.ink, 0.35 * u)); }
+    strip(pos, 12 - 5 * u, PAL.ink); strip(neg, 12 - 5 * u, PAL.ink);
+    const e = pos[0], s = neg[0];
+    wire(ctx, lerp2([[BX, BY - 16], [BX, PT - 40], [PL, PT - 40], [PL, PT]], [[BX, BY - 16], [BX, 100], [e[0], 100], [e[0], e[1]]], u).map((p, i) => (i === 3 ? e : p)));
+    wire(ctx, lerp2([[BX, BY + 16], [BX, PB + 40], [PR, PB + 40], [PR, PB], [PR, PB]], [[BX, BY + 16], [BX, 486], [s[0], 486], [s[0], s[1]], [s[0], s[1]]], u).map((p, i) => (i === 4 ? s : p)));
+    ctx.save(); ctx.globalAlpha = kind.a('plates');
+    marks(ctx, PL + 32, PT, PB, n, '+', qc);
+    marks(ctx, PR - 32, PT, PB, n, '−', qc);
+    text(ctx, '两块互不接触的导体板', (PL + PR) / 2, PB + 96, PAL.muted, { size: 19, align: 'center' });
+    ctx.globalAlpha = kind.a('rolled');
+    text(ctx, '两张导体薄片，中间隔着绝缘体，卷在一起', CX, 540, PAL.muted, { size: 19, align: 'center' });
+    ctx.restore();
+    if (kind.k >= 1) {
+      if (rolled) {
+        label(ctx, '+Q = ' + plus + ' µC', e[0], e[1] - 20, { side: 'right', color: qc, gap: 12, size: 21 });
+        label(ctx, '−Q = ' + minus + ' µC', s[0], 486, { side: 'below', color: qc, gap: 10, size: 21 });
+      } else {
+        label(ctx, '+Q = ' + plus + ' µC', PL - 8, PT + 24, { side: 'left', color: qc, gap: 12, size: 21 });
+        label(ctx, '−Q = ' + minus + ' µC', PR + 8, PB - 24, { side: 'right', color: qc, gap: 12, size: 21 });
+      }
+    }
+    readout(d.readout, '\\kQch = ' + fmt(Q, 1) + '\\ \\mu\\text{C}');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 19.13: the field lines of a parallel plate capacitor, one drawn
+   for each unit of charge, so their number is proportional to Q. The
+   voltage follows the field and so follows the charge, which is what
+   Q = CV says. Still, for the same reason as Figure 19.12.
+===================================================================== */
+(function () {
+  const d = sim('sim-field-charge', 560);
+  const Qs = ctl(d.controls, { label: '\\kQch', cls: 'charge', min: 0, max: 60, step: 0.2, value: 26.6, unit: 'µC', dec: 1, aria: '电容器储存的电荷' });
+  const Cs = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 2, max: 20, step: 0.05, value: 8.85, unit: 'nF', dec: 2, aria: '电容器的电容' });
+  const PL = 470, PR = 930, PT = 140, PB = 430;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const qc = C('charge'), ec = C('electric-field'), vc = C('voltage');
+    const Q = Qs.v, Cv = Cs.v, V = (Q * 1e-6) / (Cv * 1e-9);     /* volts */
+    const n = Math.min(16, Math.round(Q / 3.75));
+    topline(ctx, '' + fmt(Q, 1) + ' µC 的电荷储存在 ' + fmt(Cv, 2) + ' nF 的电容上，需要在极板之间加 ' + fmt(V / 1000, 2) + ' kV 的电压，因为 $\\kQch = \\kCap\\kV$。');
+    battery(ctx, 200, 290, 150);
+    text(ctx, '电池', 214, 348, PAL.muted, { size: 19 });
+    wire(ctx, [[200, 274], [200, 100], [PL, 100], [PL, PT]]);
+    wire(ctx, [[200, 306], [200, 516], [PR, 516], [PR, PB]]);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineCap = 'butt';
+    ctx.beginPath(); ctx.moveTo(PL, PT); ctx.lineTo(PL, PB); ctx.moveTo(PR, PT); ctx.lineTo(PR, PB); ctx.stroke(); ctx.restore();
+    for (let i = 0; i < n; i++) {
+      const y = PT + ((i + 0.5) * (PB - PT)) / n;
+      fieldLine(ctx, PL + 10, PR - 10, y, ec);
+      text(ctx, '+', PL - 18, y, qc, { size: 22, weight: 600, align: 'center' });
+      text(ctx, '−', PR + 18, y, qc, { size: 22, weight: 600, align: 'center' });
+    }
+    if (n === 0) text(ctx, '没有电荷，没有电场', (PL + PR) / 2, (PT + PB) / 2, PAL.muted, { size: 21, align: 'center' });
+    label(ctx, 'E，每单位电荷画一条线', (PL + PR) / 2, PT - 6, { side: 'above', color: ec, gap: 14, size: 21 });
+    label(ctx, '+Q = ' + (Q > 0 ? '+' + fmt(Q, 1) : '0.0') + ' µC', PL - 30, PB + 14, { side: 'below', color: qc, gap: 12, size: 21 });
+    label(ctx, '−Q = ' + (Q > 0 ? '−' + fmt(Q, 1) : '0.0') + ' µC', PR + 30, PB + 14, { side: 'below', color: qc, gap: 12, size: 21 });
+    vbracket(ctx, PR + 120, PT, PB, vc, 'V = ' + fmt(V / 1000, 2) + ' kV', 1);
+    readout(d.readout, '\\kQch = \\kCap\\kV = (' + fmt(Cv, 2) + '\\ \\text{nF})(' + fmt(V / 1000, 2) + '\\ \\text{kV}) = ' + fmt(Q, 1) + '\\ \\mu\\text{C}');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 19.15: the parallel plate capacitor whose capacitance is set by
+   the area of its plates and their separation. It opens on the plates of
+   Example 19.8. Still: the reader is choosing a geometry, not watching a
+   process.
+===================================================================== */
+(function () {
+  const d = sim('sim-parallel-plate', 600);
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.1, max: 2, step: 0.05, value: 1, unit: 'm²', dec: 2, aria: '一块极板的面积' });
+  const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.25, max: 5, step: 0.25, value: 1, unit: 'mm', dec: 2, aria: '两板之间的距离' });
+  const Vs = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 0.5, max: 6, step: 0.25, value: 3, unit: 'kV', dec: 2, aria: '加在电容器上的电压' });
+  /* One fixed scale for the scene, from the greatest extents the sliders reach:
+     the separation runs 0.25 to 5 mm across 60 to 520 units, and the plate's
+     height goes as the square root of the area, 0.1 to 2 m² across 90 to 260. */
+  const CXC = 760, CY = 320;
+  const gapOf = (mm) => 60 + ((mm - 0.25) / 4.75) * 460;
+  const halfOf = (A) => 45 + ((Math.sqrt(A) - Math.sqrt(0.1)) / (Math.sqrt(2) - Math.sqrt(0.1))) * 85;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const qc = C('charge'), pc = C('position'), vc = C('voltage'), cc = C('capacitance');
+    const A = As.v, mm = ds.v, kV = Vs.v;
+    const Cf = (EPS0 * A) / (mm * 1e-3), Cn = Cf * 1e9, Q = Cf * kV * 1000 * 1e6;   /* nF and µC */
+    const g = gapOf(mm), h = halfOf(A), xl = CXC - g / 2, xr = CXC + g / 2;
+    topline(ctx, '面积为 ' + fmt(A, 2) + ' m²、相距 ' + fmt(mm, 2) + ' mm 的极板，电容为 ' + fmt(Cn, 2) + ' nF，储存了 ' + fmt(Q, 1) + ' µC，所加电压为 ' + fmt(kV, 2) + ' kV。');
+    battery(ctx, 190, CY, 150);
+    text(ctx, '电池', 204, CY + 58, PAL.muted, { size: 19 });
+    wire(ctx, [[190, CY - 16], [190, 130], [xl, 130], [xl, CY - h]]);
+    wire(ctx, [[190, CY + 16], [190, 550], [xr, 550], [xr, CY + h]]);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineCap = 'butt';
+    ctx.beginPath(); ctx.moveTo(xl, CY - h); ctx.lineTo(xl, CY + h); ctx.moveTo(xr, CY - h); ctx.lineTo(xr, CY + h); ctx.stroke(); ctx.restore();
+    const n = Math.max(1, Math.min(8, Math.round(h / 22)));
+    const mk = Math.min(22, g / 4);
+    marks(ctx, xl + mk, CY - h, CY + h, n, '+', qc);
+    marks(ctx, xr - mk, CY - h, CY + h, n, '−', qc);
+    /* the gap's label sits under its bracket, kept left of plate B's lead where the gap is narrow */
+    hbracket(ctx, xl, xr, CY + h + 36, pc);
+    const dl = 'd = ' + fmt(mm, 2) + ' mm', narrow = g < 220;
+    text(ctx, dl, narrow ? xr - 14 : CXC, CY + h + 66, pc, { size: 21, weight: 600, align: narrow ? 'right' : 'center', bg: PAL.panel });
+    vbracket(ctx, xl - 42, CY - h, CY + h, C('area'), 'A = ' + fmt(A, 2) + ' m²', -1);
+    label(ctx, 'V = ' + fmt(kV, 2) + ' kV', CXC, CY - h - 10, { side: 'above', color: vc, gap: 18, size: 21 });
+    label(ctx, 'Q = ' + fmt(Q, 1) + ' µC', xr + 20, CY - h + 10, { side: 'right', color: qc, gap: 14, size: 21 });
+    label(ctx, 'C = ' + fmt(Cn, 2) + ' nF', xr + 20, CY - h + 50, { side: 'right', color: cc, gap: 14, size: 21 });
+    readout(d.readout, '\\kCap = \\varepsilon_0\\frac{\\karea}{\\kd} = ' + sci(EPS0, 2) + '\\ \\frac{\\text{F}}{\\text{m}} \\cdot \\frac{' + fmt(A, 2) + '\\ \\text{m}^2}{' + sci(mm * 1e-3, 2) + '\\ \\text{m}} = ' + fmt(Cn, 2) + '\\ \\text{nF}',
+      '极板越大，电荷可以散开的空间就越多；极板靠得越近，其上异号电荷之间的吸引就越强。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 19.16: a dielectric between the plates. Its molecules turn to face
+   them and present a layer of opposite charge at each face; the field
+   inside falls by the factor κ, the voltage falls with it for the same
+   stored charge, and the capacitance rises. Still: the molecules facing
+   the plates is the state the material and the charge put them in and not a
+   process with a clock, as the chapter's config records. The material is a
+   state and so is a control with one option per state, a dropdown because a
+   row of thirteen buttons would wrap (rule 26.1).
+===================================================================== */
+(function () {
+  const d = sim('sim-dielectric', 640);
+  const mat = select(d.controls, { label: '\\text{电介质}', options: MATERIALS.map((m) => ({ value: m.value, label: m.label })), value: 'teflon', aria: '极板之间的材料' });
+  const Qs = ctl(d.controls, { label: '\\kQch', cls: 'charge', min: 1, max: 60, step: 0.2, value: 26.6, unit: 'µC', dec: 1, aria: '电容器储存的电荷' });
+  const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 0.25, max: 5, step: 0.25, value: 1, unit: 'mm', dec: 2, aria: '两板之间的距离' });
+  const A = 1.00;                              /* m², the plates of Example 19.8 */
+  const CXC = 720, CY = 335, PH = 152;
+  const gapOf = (mm) => 300 + ((mm - 0.25) / 4.75) * 420;
+  /* a molecule of the dielectric drawn as an oval with its two ends marked,
+     the negative end towards the positive plate on the left */
+  function molecule(ctx, x, y, w, h, color) {
+    ctx.save(); ctx.strokeStyle = color; ctx.fillStyle = PAL.panel; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.ellipse(x, y, w / 2, h / 2, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, '−', x - w / 2 + 9, y, color, { size: 17, weight: 600, align: 'center' });
+    text(ctx, '+', x + w / 2 - 9, y, color, { size: 17, weight: 600, align: 'center' });
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const qc = C('charge'), pc = C('position'), vc = C('voltage'), cc = C('capacitance'), ec = C('electric-field');
+    const m = materialOf(mat.value), Q = Qs.v, mm = ds.v, k = m.k;
+    const Cair = (EPS0 * A) / (mm * 1e-3), Cf = k * Cair;
+    const E0 = (Q * 1e-6) / (EPS0 * A), E = E0 / k, V = E * mm * 1e-3;
+    const g = gapOf(mm), xl = CXC - g / 2, xr = CXC + g / 2;
+    topline(ctx, m.label + '的介电常量为 ' + fmt(k, k < 10 ? 2 : 0) + '，所以同样的 ' + fmt(Q, 1) + ' µC 给出的电场为 ' + sciText(E, 2) + ' V/m，电容为 ' + fmt(Cf * 1e9, 2) + ' nF。');
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 12; ctx.lineCap = 'butt';
+    ctx.beginPath(); ctx.moveTo(xl, CY - PH); ctx.lineTo(xl, CY + PH); ctx.moveTo(xr, CY - PH); ctx.lineTo(xr, CY + PH); ctx.stroke(); ctx.restore();
+    /* the slab of dielectric, in ink, filling the space between the plates */
+    if (m.value !== 'vacuum') {
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, m.k > 1.01 ? 0.06 : 0.025); ctx.strokeStyle = PAL.rule; ctx.lineWidth = 2;
+      ctx.fillRect(xl + 8, CY - PH, g - 16, 2 * PH); ctx.strokeRect(xl + 8, CY - PH, g - 16, 2 * PH); ctx.restore();
+    }
+    /* the plates' own charge, and the surface layer the dielectric presents to each */
+    const np = Math.max(1, Math.min(9, Math.round(Q / 6)));
+    marks(ctx, xl - 20, CY - PH, CY + PH, np, '+', qc);
+    marks(ctx, xr + 20, CY - PH, CY + PH, np, '−', qc);
+    const rows = 4, cols = Math.max(3, Math.min(9, Math.round((g - 52) / 78)));
+    /* what is left of the field: fewer lines cross than would cross a vacuum, and they run
+       in the lanes between the rows of molecules so that neither hides the other; the three
+       inner lanes are taken first and the two at the plates' ends after them */
+    const nl = Math.max(0, Math.min(5, Math.round(5 / k)));
+    const lanes = [2, 1, 3, 0, 4].map((r) => CY - PH + (r * 2 * PH) / rows + (r === 0 ? 14 : r === rows ? -14 : 0));
+    for (let i = 0; i < nl; i++) fieldLine(ctx, xl + 16, xr - 16, lanes[i], ec);
+    /* a vacuum has nothing in it to polarize and air too little to draw, so the rows of
+       molecules belong to the solids and liquids of the table */
+    const solid = k > 1.01;
+    if (solid) for (let r = 0; r < rows; r++) {
+      const y = CY - PH + ((r + 0.5) * 2 * PH) / rows;
+      for (let c = 0; c < cols; c++) molecule(ctx, xl + 30 + ((c + 0.5) * (g - 60)) / cols, y, 58, 28, PAL.muted);
+      text(ctx, '−', xl + 20, y, qc, { size: 19, weight: 600, align: 'center' });
+      text(ctx, '+', xr - 20, y, qc, { size: 19, weight: 600, align: 'center' });
+    }
+    hbracket(ctx, xl, xr, CY + PH + 60, pc, 'd = ' + fmt(mm, 2) + ' mm');
+    label(ctx, solid ? '分子转向极板' : m.value === 'vacuum' ? '极板之间没有可极化的物质' : '空气太稀薄，极化的程度不超过两千分之一',
+      CXC, CY - PH - 6, { side: 'above', color: PAL.muted, gap: 14, size: 20 });
+    label(ctx, 'V = ' + (V >= 1000 ? fmt(V / 1000, 2) + ' kV' : fmt(V, 0) + ' V'), xr + 60, CY - 70, { side: 'right', color: vc, gap: 10, size: 21 });
+    label(ctx, 'C = ' + fmt(Cf * 1e9, 2) + ' nF', xr + 60, CY + 10, { side: 'right', color: cc, gap: 10, size: 21 });
+    label(ctx, 'E = E₀/κ', xl - 60, CY + 10, { side: 'left', color: ec, gap: 10, size: 21 });
+    text(ctx, '每块极板的面积 A = ' + fmt(A, 2) + ' m²', CXC, 600, C('area'), { size: 19, align: 'center' });
+    const limit = m.strength === null ? '书中没有给出' + m.label.toLowerCase() + '的介电强度，所以没有为它给出电压限度。'
+      : '它的介电强度为 ' + (m.strength / 1e6) + ' × 10⁶ V/m，最多允许 ' + fmt((m.strength * mm * 1e-3) / 1000, 1) + ' kV 的电压加在 ' + fmt(mm, 2) + ' mm 的间距上。';
+    readout(d.readout, '\\kCap = \\kappa\\varepsilon_0\\frac{\\karea}{\\kd} = (' + fmt(k, k < 10 ? 2 : 0) + ')(' + sci(EPS0, 2) + '\\ \\text{F/m})\\frac{' + fmt(A, 2) + '\\ \\text{m}^2}{' + sci(mm * 1e-3, 2) + '\\ \\text{m}} = ' + fmt(Cf * 1e9, 2) + '\\ \\text{nF}',
+      limit);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 19.17: the submicroscopic origin of polarization, drawn as the
+   book draws it, on its own and between two external charges. It is a
+   faithful copy: the book's own picture is an artist's conception whose
+   shift is drawn exaggerated and carries no number, so there is nothing
+   honest for a slider to set, and polarization is already under the
+   reader's hand in Figure 19.16. No controls and no motion.
+===================================================================== */
+(function () {
+  const d = sim('sim-polarized-atom', 520);
+  /* the nucleus and the electrons on an orbit that may be shifted and stretched */
+  function atom(ctx, cx, cy, rx, ry, shift) {
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2.5; ctx.setLineDash([8, 8]);
+    ctx.beginPath(); ctx.ellipse(cx + shift, cy, rx, ry, 0, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+    for (let i = 0; i < 4; i++) {
+      const a = (i * Math.PI) / 2 + Math.PI / 4;
+      dot(ctx, cx + shift + rx * Math.cos(a), cy + ry * Math.sin(a), F.el('e-'), true, 11);
+    }
+    dot(ctx, cx - shift * 0.35, cy, F.el('p+'), true, 17);
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const qc = C('charge');
+    topline(ctx, '单独的原子是对称的；处在两个外部电荷之间的原子，其电子被拉向一边，原子核被拉向另一边，因而被极化。');
+    const LX = 350, RX = 950, CY = 300, RX0 = 118, RY0 = 96;
+    atom(ctx, LX, CY, RX0, RY0, 0);
+    text(ctx, '原子核', LX, CY - 34, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, '电子', LX, CY + RY0 + 44, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, '（a）未极化', LX, 470, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    atom(ctx, RX, CY, RX0 + 26, RY0, 34);
+    text(ctx, '（b）被外部电荷极化', RX, 470, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    dot(ctx, RX - 270, CY, qc, false, 16);
+    dot(ctx, RX + 270, CY, qc, false, 16);
+    text(ctx, '−', RX - 270, CY, qc, { size: 24, weight: 600, align: 'center' });
+    text(ctx, '+', RX + 270, CY, qc, { size: 24, weight: 600, align: 'center' });
+    label(ctx, '外部的负电荷', RX - 270, CY - 18, { side: 'above', color: qc, gap: 14, size: 20 });
+    label(ctx, '外部的正电荷', RX + 270, CY - 18, { side: 'above', color: qc, gap: 14, size: 20 });
+    line(ctx, RX - 240, CY, RX - 160, CY, alpha(PAL.ink, 0.3), 2, [6, 8]);
+    line(ctx, RX + 160, CY, RX + 240, CY, alpha(PAL.ink, 0.3), 2, [6, 8]);
+    d.readout.hidden = true;
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 19.18: the water molecule, drawn as the book draws it. A faithful
+   copy: standardisation alone, no controls and no motion. The atoms are
+   drawn in the element palette, since a molecule with an identity is always
+   drawn in it (rule 7).
+===================================================================== */
+(function () {
+  const d = sim('sim-water-molecule', 520);
+  /* an atom in its element colour with an ink outline, so the light hydrogen fill reads on a light page */
+  function atom(ctx, x, y, color, r) {
+    ctx.save(); ctx.fillStyle = color; ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const OC = F.el('O'), HC = F.el('H');
+    topline(ctx, '水分子的两个键之间的夹角为 104.5°，它的电子聚集在氧原子核周围，所以分子虽然呈电中性，却是极性的。');
+    const LX = 400, RX = 1020, CY = 300, L = 150, half = 104.5 / 2;
+    const rad = (deg) => (deg * Math.PI) / 180;
+    const arms = (cx) => [-half, half].map((a) => ({ x: cx + L * Math.sin(rad(a)), y: CY - L * Math.cos(rad(a)) }));
+    /* (a) the shape, with the angle between the bonds */
+    const a1 = arms(LX);
+    a1.forEach((p) => line(ctx, LX, CY, p.x, p.y, PAL.ink, 6));
+    ctx.save(); ctx.strokeStyle = C('angle'); ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(LX, CY, 62, rad(-90 - half), rad(-90 + half)); ctx.stroke(); ctx.restore();
+    text(ctx, '104.5°', LX, CY - 88, C('angle'), { size: 21, weight: 600, align: 'center', bg: PAL.panel });
+    a1.forEach((p) => { atom(ctx, p.x, p.y, HC, 26); text(ctx, 'H', p.x, p.y, PAL.ink, { size: 21, weight: 600, align: 'center' }); });
+    atom(ctx, LX, CY, OC, 38); text(ctx, 'O', LX, CY, PAL.panel, { size: 26, weight: 600, align: 'center' });
+    text(ctx, '（a）分子的形状', LX, 492, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    /* (b) where the electrons gather, and the slight charges that leaves */
+    const a2 = arms(RX);
+    ctx.save(); ctx.fillStyle = alpha(OC, 0.22);
+    ctx.beginPath(); ctx.ellipse(RX, CY + 16, 138, 118, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    a2.forEach((p) => line(ctx, RX, CY, p.x, p.y, PAL.ink, 6));
+    a2.forEach((p, i) => {
+      atom(ctx, p.x, p.y, HC, 26); text(ctx, 'H', p.x, p.y, PAL.ink, { size: 21, weight: 600, align: 'center' });
+      label(ctx, '略带正电', p.x, p.y - 26, { side: i === 0 ? 'left' : 'right', color: C('charge'), gap: 16, size: 19 });
+    });
+    atom(ctx, RX, CY, OC, 38); text(ctx, 'O', RX, CY, PAL.panel, { size: 26, weight: 600, align: 'center' });
+    label(ctx, '略带负电，电子聚集处', RX, CY + 128, { side: 'below', color: C('charge'), gap: 8, size: 19 });
+    text(ctx, '（b）电子所在之处', RX, 492, PAL.ink, { size: 22, weight: 600, align: 'center' });
+    d.readout.textContent = '由于水分子的电荷本来就已分开，它很容易与外电场对齐，这就是水的介电常量为 80 的原因。';
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 19.19: the cell membrane. Diffusion carries potassium out of the
+   cell and chloride into it until the layers of charge left behind hold the
+   rest back, which is a process in time and so the one figure of this
+   section that moves: one loop of five seconds with a hold at its end. The
+   thickness of the membrane stays the reader's to set, because the field
+   across it is the voltage over that thickness.
+===================================================================== */
+(function () {
+  const d = sim('sim-membrane', 700);
+  const T = 5.0, V0 = -70e-3;                     /* the book's resting potential, in volts */
+  const ds = ctl(d.controls, { label: '\\kd', cls: 'position', min: 7, max: 10, step: 0.5, value: 8, unit: 'nm', dec: 1, aria: '细胞膜的厚度' });
+  const cy = cycle(() => T, 1.2);
+  const MX = 700, MT = 200, MB = 500;
+  /* one of n slots down the height of the scene */
+  const ys = (n, i) => MT + 44 + (i * (MB - MT - 88)) / Math.max(1, n - 1);
+  /* the ions, each with where it starts, where it ends and the moment it crosses.
+     Potassium and chloride are given tidy rows so that none is hidden by another. */
+  const IONS = [];
+  for (let i = 0; i < 6; i++) IONS.push({ sym: 'K', sign: '+', x0: 250 + (i % 2) * 120, y0: ys(3, Math.floor(i / 2)), x1: MX + 150 + (i % 2) * 64, y1: ys(6, i), t: 0.10 + 0.13 * i });
+  for (let i = 0; i < 5; i++) IONS.push({ sym: 'Cl', sign: '−', x0: 1210, y0: ys(5, i), x1: MX - 150 - (i % 2) * 64, y1: ys(5, i), t: 0.16 + 0.14 * i });
+  for (let i = 0; i < 6; i++) IONS.push({ sym: 'Na', sign: '+', x0: 960 + (i % 2) * 110, y0: ys(3, Math.floor(i / 2)) + 26, x1: 960 + (i % 2) * 110, y1: ys(3, Math.floor(i / 2)) + 26, t: 9 });
+  function ion(ctx, x, y, sym) {
+    ctx.save(); ctx.fillStyle = F.el(sym); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 15, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); ctx.restore();
+  }
+  /* seventeen ions of three kinds: each kind is named once, in the legend, and not on every ion (rule 26.7) */
+  function legend(ctx, y) {
+    [['K', '钾，K⁺', 400], ['Cl', '氯离子，Cl⁻', 640], ['Na', '钠，Na⁺', 870]].forEach(([sym, name, lx]) => {
+      ion(ctx, lx, y, sym);
+      text(ctx, name, lx + 26, y, PAL.ink, { size: 19 });
+    });
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const qc = C('charge'), vc = C('voltage'), ec = C('electric-field'), pc = C('position');
+    const nm = ds.v, u = Math.min(1, cy.now() / T);
+    const V = V0 * u, E = V / (nm * 1e-9);
+    topline(ctx, u < 1 ? '钾离子离开细胞，氯离子进入细胞，到目前为止，穿越留下的电荷在膜两侧保持着 ' + fmt(V * 1000, 1) + ' mV 的电压。'
+      : '留下的电荷层现在阻止了其余离子的通过，膜在 ' + fmt(nm, 1) + ' nm 的厚度上保持着它的静息电位 −70 mV。');
+    /* inside, the membrane and outside */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.05); ctx.fillRect(90, MT, MX - 126, MB - MT); ctx.restore();
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.14); ctx.strokeStyle = PAL.muted; ctx.lineWidth = 3;
+    ctx.fillRect(MX - 36, MT, 72, MB - MT); ctx.strokeRect(MX - 36, MT, 72, MB - MT); ctx.restore();
+    text(ctx, '细胞内', 330, MT - 28, PAL.muted, { size: 20, align: 'center' });
+    text(ctx, '细胞外', 1080, MT - 28, PAL.muted, { size: 20, align: 'center' });
+    /* the layers of charge the crossings leave behind, on the two faces */
+    const layers = Math.round(6 * u);
+    for (let i = 0; i < layers; i++) {
+      const y = ys(6, i);
+      text(ctx, '−', MX - 56, y, qc, { size: 22, weight: 600, align: 'center' });
+      text(ctx, '+', MX + 56, y, qc, { size: 22, weight: 600, align: 'center' });
+    }
+    /* the ions, each moving across at its own moment */
+    IONS.forEach((o) => {
+      const s = o.t > 1 ? 0 : Math.max(0, Math.min(1, (u - o.t) / 0.34));
+      ion(ctx, o.x0 + (o.x1 - o.x0) * s, o.y0 + (o.y1 - o.y0) * s, o.sym);
+    });
+    /* the two directions diffusion carries the ions, as the book draws them */
+    arrow(ctx, MX - 130, MT - 76, MX + 130, MT - 76, alpha(PAL.ink, 0.45), 4);
+    text(ctx, '钾离子流出', MX, MT - 50, PAL.muted, { size: 19, align: 'center' });
+    arrow(ctx, MX + 130, MB + 44, MX - 130, MB + 44, alpha(PAL.ink, 0.45), 4);
+    text(ctx, '氯离子流入', MX, MB + 70, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, '钠被挡在细胞外：细胞膜对它不通透', 1090, MB + 70, PAL.muted, { size: 19, align: 'center' });
+    hbracket(ctx, MX - 36, MX + 36, MB + 124, pc, '膜，d = ' + fmt(nm, 1) + ' nm');
+    legend(ctx, MB + 186);
+    text(ctx, '膜两侧的 E = ' + fmt(E / 1e6, 2) + ' × 10⁶ V/m', 300, MB + 132, ec, { size: 21, weight: 600, align: 'center' });
+    text(ctx, '膜两侧的 V = ' + fmt(V * 1000, 1) + ' mV', 1090, MB + 132, vc, { size: 21, weight: 600, align: 'center' });
+    readout(d.readout, '\\kEf = \\frac{\\kV}{\\kd} = \\frac{' + fmt(V * 1000, 1) + ' \\times 10^{-3}\\ \\text{V}}{' + fmt(nm, 1) + ' \\times 10^{-9}\\ \\text{m}} = ' + fmt(E / 1e6, 2) + ' \\times 10^{6}\\ \\text{V/m}',
+      '这样大小的电场会击穿空气，而膜在几纳米的厚度上承受着它。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+};

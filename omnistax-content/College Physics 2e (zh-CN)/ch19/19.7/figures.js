@@ -1,0 +1,140 @@
+/* Figures for section 19.7 Energy Stored in Capacitors. Boots against the section's text article.
+   Both figures are still. A capacitor does take time to charge, but what this
+   section asks the reader to see is how much energy a given charge and voltage
+   hold and how large a capacitor a given energy demands, and neither of those
+   is a motion; so neither figure registers a cycle, neither carries a
+   transport, and a slider's input alone redraws it (rule 14, and the chapter's
+   config.md, which settles the energy triangle as still). */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['19.7'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, headline, hbracket, axes, pinned, curve, label } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) host.appendChild(el('small', null, small)); }
+
+/* The three quantities of this section in the units the sliders carry: a
+   capacitance in microfarads and a voltage in kilovolts give a charge in
+   millicoulombs and an energy in joules with no powers of ten left over,
+   since a microfarad times a kilovolt is a millicoulomb. */
+const chargeOf = (Cuf, Vkv) => Cuf * Vkv;                 /* mC */
+const energyOf = (Cuf, Vkv) => 0.5 * Cuf * Vkv * Vkv;     /* J  */
+
+/* =====================================================================
+   SIM: the energy triangle. The voltage on the capacitor against the charge
+   already on it is a straight line of slope 1/C, the first charge arriving
+   at no voltage and the last at the full voltage, so the average voltage is
+   half the final one and the energy is the triangle under the line, half of
+   the rectangle QV drawn round it. The graph is the scene (archetype 2).
+   Still: it answers its two sliders and has no clock in it.
+===================================================================== */
+(function () {
+  const d = sim('sim-capacitor-energy', 660);
+  const cs = ctl(d.controls, { label: '\\kCap', cls: 'capacitance', min: 1, max: 20, step: 0.25, value: 8, unit: 'µF', dec: 2, aria: '电容器的电容' });
+  const vs = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 0.5, max: 10, step: 0.25, value: 10, unit: 'kV', dec: 2, aria: '电容器充电所达到的电压' });
+  /* fixed from the slider maxima: 20.0 µF at 10.0 kV is 200 mC, and the
+     voltage never passes 10.0 kV, so neither axis ever rescales */
+  const XR = [0, 200], YR = [0, 10];
+  const BOX = { l: 210, t: 140, r: 1240, b: 520 };
+  function draw() {
+    const { ctx } = begin(d.c);
+    const qc = C('charge'), vc = C('voltage'), cc = C('capacitance'), ec = C('energy');
+    const Cu = cs.v, Vk = vs.v, Q = chargeOf(Cu, Vk), E = energyOf(Cu, Vk);
+    const { X, Y } = axes(ctx, BOX, XR, YR, { xl: '电容器上的电荷 (mC)', xc: qc, yl: '电容器两端的电压 (kV)', yc: vc, nx: 4, ny: 5, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    /* the rectangle QV, in ink, so that the triangle can be seen to be half of it */
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.35); ctx.lineWidth = 2.5; ctx.setLineDash([10, 10]);
+    ctx.strokeRect(X(0), Y(Vk), X(Q) - X(0), Y(0) - Y(Vk)); ctx.restore();
+    /* the energy: the area under the line, which is the triangle */
+    ctx.save(); ctx.fillStyle = alpha(ec, 0.28); ctx.beginPath();
+    ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(Q), Y(0)); ctx.lineTo(X(Q), Y(Vk)); ctx.closePath(); ctx.fill(); ctx.restore();
+    /* the average voltage the whole charge passes through, drawn right across
+       the frame so that its name is readable however small the triangle is */
+    line(ctx, X(0), Y(Vk / 2), BOX.r, Y(Vk / 2), vc, 3, [10, 10]);
+    label(ctx, '平均电压 V/2 = ' + fmt(Vk / 2, 2) + ' kV', X(XR[1] * 0.82), Y(Vk / 2), { side: 'above', color: vc, gap: 18, size: 20 });
+    /* the capacitor's own line, whose slope is one over the capacitance */
+    curve(ctx, (q) => q / Cu, 0, Q, X, Y, cc, 5, 2);
+    /* a triangle too narrow to write inside has its two names set beside its
+       apex instead, which is where there is room at every slider setting */
+    const narrow = Q < 36;
+    label(ctx, 'V = Q/C，斜率为 1/C', narrow ? X(Q) : X(Q * 0.72), narrow ? Y(Vk) - (Vk < 2 ? 88 : 0) : Y((Q * 0.72) / Cu), { side: narrow ? 'right' : 'left', color: cc, gap: 26, size: 20 });
+    /* the state the sliders ask for, and the charge it puts on the plates */
+    pinned(ctx, BOX, X, Y, Q, Vk, vc, fmt(Vk, 2) + ' kV');
+    line(ctx, X(Q), Y(0), X(Q), Y(Vk), alpha(PAL.ink, 0.35), 2, [4, 8]);
+    hbracket(ctx, X(0), X(Q), BOX.b + 74, qc, 'Q = CV = ' + fmt(Q, Q < 10 ? 2 : 1) + ' mC');
+    const eLabel = 'E_cap = ' + fmt(E, E < 10 ? 2 : 0) + ' J';
+    /* a narrow triangle's energy is named to the right of its steep side, a row under the slope's name where the
+       box has room and a row over it near the base, and never above the apex, where the axis title runs */
+    if (narrow) label(ctx, eLabel, X(Q), Y(Vk) + 40 + 16 < BOX.b - 4 ? Y(Vk) + 40 : Y(Vk) - 40, { side: 'right', color: ec, gap: 26, size: 24 });
+    else text(ctx, eLabel, (X(0) + X(Q)) / 2, Y(Vk * 0.28), ec, { size: 24, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    headline(ctx, '电容为 ' + fmt(Cu, 2) + ' µF 的电容器充电到 ' + fmt(Vk, 2) + ' kV，带有 ' + fmt(Q, 1) + ' mC 分开的电荷，储存 ' + fmt(E, E < 10 ? 2 : 0) + ' J 的能量。');
+    readout(d.readout, `\\kEcap = \\frac{\\kQch\\kV}{2} = \\frac{\\kCap\\kV^2}{2} = \\frac{\\kQch^2}{2\\kCap} = ${fmt(E, E < 10 ? 2 : 0)}\\ \\text{J}`);
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the defibrillator of Example 19.11. The machine is set to deliver an
+   energy and its capacitor is charged to a voltage, and the capacitance it
+   must carry follows from C = 2E/V². The curve below the paddles is that
+   capacitance against the voltage at the chosen energy, which is what shows
+   why a defibrillator charges to thousands of volts and not to hundreds.
+   Still: the reader is choosing a setting, not watching a shock.
+===================================================================== */
+(function () {
+  const d = sim('sim-defibrillator', 900);
+  const es = ctl(d.controls, { label: '\\kEcap', cls: 'energy', min: 40, max: 400, step: 10, value: 400, unit: 'J', dec: 0, aria: '除颤器要释放的能量' });
+  const vs = ctl(d.controls, { label: '\\kV', cls: 'voltage', min: 2, max: 12, step: 0.25, value: 10, unit: 'kV', dec: 2, aria: '电容器充电所达到的电压' });
+  /* fixed from the slider ranges: 400 J at 2.00 kV is 200 µF, the largest the
+     sliders can ask for, and the voltage never passes 12.0 kV */
+  const XR = [0, 12], YR = [0, 200];
+  const BOX = { l: 210, t: 530, r: 1240, b: 790 };
+  const capOf = (E, Vk) => (2 * E) / (Vk * Vk);           /* µF */
+  /* a paddle: a rounded head on a handle, outlined in the paddles' referent hue, facing `face` */
+  function paddle(ctx, x, y, face, color) {
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.roundRect(x - face * 30, y - 58, face * 30, 116, 14); ctx.fill(); ctx.stroke();
+    ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.strokeStyle = PAL.muted;
+    ctx.beginPath(); ctx.moveTo(x - face * 30, y); ctx.lineTo(x - face * 104, y); ctx.stroke();
+    ctx.restore();
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const qc = C('charge'), vc = C('voltage'), cc = C('capacitance'), ec = C('energy');
+    const E = es.v, Vk = vs.v, Cu = capOf(E, Vk), Q = chargeOf(Cu, Vk);
+    /* the machine: its case, the energy it is set to deliver, the capacitor
+       inside it charged to the working voltage, and the two paddles */
+    const CX = 620, CY = 250, cDef = F.ref('defibrillator'), cCap = F.ref('capacitor'), cPad = F.ref('paddles');
+    ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = cDef; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.roundRect(CX - 190, CY - 140, 380, 280, 18); ctx.fill(); ctx.stroke(); ctx.restore();
+    text(ctx, '设定释放', CX, CY - 100, PAL.muted, { size: 19, align: 'center' });
+    text(ctx, fmt(E, 0) + ' J', CX, CY - 58, ec, { size: 30, weight: 600, align: 'center' });
+    /* the capacitor inside, drawn as two plates with their separated charge */
+    const PY = CY + 40;
+    for (const s of [-1, 1]) line(ctx, CX + s * 26, PY - 46, CX + s * 26, PY + 46, cCap, 6);
+    line(ctx, CX - 130, PY, CX - 26, PY, PAL.ink, 3); line(ctx, CX + 26, PY, CX + 130, PY, PAL.ink, 3);
+    text(ctx, '+Q', CX - 54, PY - 68, qc, { size: 22, weight: 600, align: 'center' });
+    text(ctx, '−Q', CX + 54, PY - 68, qc, { size: 22, weight: 600, align: 'center' });
+    text(ctx, 'C = ' + fmt(Cu, 2) + ' µF', CX, PY + 86, cc, { size: 23, weight: 600, align: 'center' });
+    /* the leads out to the paddles */
+    line(ctx, CX - 190, PY, CX - 290, PY, PAL.muted, 4);
+    line(ctx, CX + 190, PY, CX + 290, PY, PAL.muted, 4);
+    paddle(ctx, CX - 290, PY, -1, cPad); paddle(ctx, CX + 290, PY, 1, cPad);
+    text(ctx, '胸前的电极板', CX, CY + 190, cPad, { size: 19, align: 'center' });
+    /* what the capacitor is charged to, and what it therefore holds, set in a
+       column clear of the machine and of both paddles */
+    text(ctx, '充电到 ' + fmt(Vk, 2) + ' kV', 1130, CY - 40, vc, { size: 22, weight: 600, align: 'center' });
+    text(ctx, '带有 ' + fmt(Q, Q < 10 ? 2 : 1) + ' mC', 1130, CY + 4, qc, { size: 22, weight: 600, align: 'center' });
+    /* the capacitance the setting demands, against the working voltage */
+    const { X, Y } = axes(ctx, BOX, XR, YR, { xl: '电容器充电所达到的电压 (kV)', xc: vc, yl: '除颤器必须配备的电容 (µF)', yc: cc, nx: 6, ny: 4, fx: (v) => fmt(v, 0), fy: (v) => fmt(v, 0) });
+    curve(ctx, (v) => Math.min(capOf(E, v), YR[1] * 1.6), 2, 12, X, Y, cc, 5, 120);
+    line(ctx, X(Vk), Y(0), X(Vk), Y(Math.min(Cu, YR[1])), alpha(PAL.ink, 0.35), 2, [4, 8]);
+    pinned(ctx, BOX, X, Y, Vk, Cu, cc, fmt(Cu, 2) + ' µF');
+    /* the curve's name, anchored where the curve runs through the middle of
+       the frame at whatever energy has been asked for */
+    const va = Math.min(9, Math.max(3.2, Math.sqrt((2 * E) / 90)));
+    label(ctx, 'C = 2E/V²，所以它随电压的平方而减小', X(va), Y(capOf(E, va)) - 36, { side: 'right', color: cc, gap: 26, size: 20 });
+    headline(ctx, '释放 ' + fmt(E, 0) + ' J、电容器充电到 ' + fmt(Vk, 2) + ' kV 时，需要 ' + fmt(Cu, 2) + ' µF 的电容，带有 ' + fmt(Q, 1) + ' mC 的电荷。');
+    readout(d.readout, `\\kCap = \\frac{2\\kEcap}{\\kV^2} = \\frac{2(${fmt(E, 0)}\\ \\text{J})}{(${fmt(Vk * 1000, 0)}\\ \\text{V})^2} = ${fmt(Cu, 2)}\\ \\mu\\text{F}`,
+      '电压降到这个值的十分之一时，同样的 ' + fmt(E, 0) + ' J 需要 ' + fmt(capOf(E, Vk / 10), 0) + ' µF，这样的电容器太大，没法带到病人身边。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

@@ -1,0 +1,1054 @@
+{
+ "id": "19.5",
+ "module": "m42333",
+ "chapter": "19",
+ "title": "电容器与电介质",
+ "short": "电容器与电介质",
+ "lead": "电容器是两个彼此靠近但不接触的导体，把电池接在两者之间，就会把等量异号的电荷分开到这两个导体上。本节要问的是：电容器每伏能储存多少电荷，一对平行板的这一数量由什么决定，以及在极板之间放入绝缘体会带来什么改变。",
+ "objectives": [
+  "描述电容器的作用，并定义电容。",
+  "解释平行板电容器及其电容。",
+  "讨论增大电介质电容的过程。",
+  "根据电荷和电压确定电容。"
+ ],
+ "summary_html": "<ul><li>电容器是用来储存电荷的装置。</li><li>电容器所能储存的电荷 $\\kQch$ 的多少，取决于两个主要因素——所加的<span data-concept=\"potential-difference\">电压</span>，以及电容器自身的物理特性，例如它的大小。</li><li><span data-concept=\"capacitance\">电容</span> $\\kCap$ 是每伏所储存的电荷量，即 $\\kCap = \\frac{\\kQch}{\\kV}$。</li><li>当极板之间是空气或自由空间时，平行板电容器的电容为 $\\kCap = \\varepsilon_0\\frac{A}{\\kd}$。$\\varepsilon_0$ 称为真空电容率。</li><li>两极板之间有电介质的平行板电容器，其<span data-concept=\"capacitance\">电容</span>为 $\\kCap = \\kappa\\varepsilon_0\\frac{A}{\\kd}$，其中 $\\kappa$ 是材料的介电常量。</li><li>绝缘材料开始被击穿并导电时的最大<span data-concept=\"electric-field\">电场强度</span>，称为介电强度。</li></ul>",
+ "notes": "书中把表示细胞膜的图 19.19 印在思考题中，而思考题已移出正文、放入“习题”标签页；这里把它放在讲述膜的 −70 mV 的那一段旁边，因为这一段正是它所说明的内容。PhET 电容器实验室的链接略去。书中没有给出答案的五道题被略去：8.00 pF 电容器上加 5.50 V 电压时储存的电荷，储存 3.10 µC 的 2.00 µF 电容器上的电压，在 120 V 下储存 3.00 µC 所需的电容，极板面积为 5.00 m²、间隔 0.100 mm 特氟龙的电容，以及恶作剧者的电容器烧伤手指的综合概念题，该题还需要第 19.7 节的电容器中储存的能量和第 14 章的比热容。书后答案给出的例题 19.8 中电容器所储存的电荷是 80.0 mC，而例题本身算出的是 26.6 µC；题卡检查的是 26.6 µC，并在解中加一条更正，指出书后答案的值。转换程序从本节小结中带出的空强调标记，以及两道习题题干中的空强调标记，都只是标记，已删去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签和提示由 AI 生成，答案取自书后答案。本节没有印出“理解检测”栏目，所以所有习题都放在末尾。七道思考题全部是开放题，并附有 AI 撰写的建议思路，已标明。本节的六道 AP 题中，三道有答案，设为判分选择题，三道没有答案，保留为开放题，并附有 AI 撰写的建议思路。第 19.2 节中关于两块带 ±0.225 C 电荷、面积 0.75 m² 的极板的 AP 题，需要真空电容率和本节的平行板电容，所以放在这里，source_section 为 19.2，没有答案，设为开放题；第 19.2 节的说明中也这样写。本节自己的内容没有留到后面的页面。数值答案允许 2% 的容差。",
+ "figures": [
+  {
+   "id": "sim-capacitor",
+   "kind": "sim",
+   "number": "19.12",
+   "originals": [
+    "/media/ch19/Figure_20_05_01a.jpg"
+   ],
+   "original_caption": "这里所示的两个电容器在接上电池之前都不带电。现在，它们的两半上分别带有分开的电荷 +Q 和 −Q。（a）平行板电容器。（b）卷绕电容器，两张导电薄片之间有绝缘材料。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "roll leads join at outer ends; plate labels off the leads; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-field-charge",
+   "kind": "sim",
+   "number": "19.13",
+   "originals": [
+    "/media/ch19/Figure_20_05_02a.jpg"
+   ],
+   "original_caption": "这个平行板电容器中的电场线，一如既往，起于正电荷，止于负电荷。由于电场强度与电场线的密度成正比，所以它也与电容器上的电荷量成正比。",
+   "widths": [
+    150
+   ],
+   "draws": [
+    "charge",
+    "capacitance",
+    "voltage",
+    "electric-field"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "wire below the charge labels; headline formula typeset; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-typical-capacitors",
+   "kind": "photo",
+   "number": "19.14",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-parallel-plate",
+   "kind": "sim",
+   "number": "19.15",
+   "originals": [
+    "/media/ch19/Figure_20_05_04a.jpg"
+   ],
+   "original_caption": "平行板电容器，两块极板相隔距离 d。每块极板的面积为 A。",
+   "widths": [
+    150
+   ],
+   "draws": [
+    "capacitance",
+    "charge",
+    "position",
+    "voltage",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "d, A and C labels clear of wire and battery; note cut"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-dielectric",
+   "kind": "sim",
+   "number": "19.16",
+   "originals": [
+    "/media/ch19/Figure_20_05_05a.jpg"
+   ],
+   "original_caption": "（a）电容器极板之间绝缘材料中的分子被带电的极板极化。这在电介质的表面产生一层异号电荷，把更多的电荷吸引到极板上，从而增大了它的电容。（b）电介质减小了电容器内部的电场强度，使得在电荷相同时，极板之间的电压更小。电容器在更小的电压下储存同样多的电荷，意味着由于电介质的存在，它的电容更大。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "capacitance",
+    "charge",
+    "electric-field",
+    "position",
+    "voltage",
+    "area"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note cut to the dielectric strength"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-polarized-atom",
+   "kind": "sim",
+   "number": "19.17",
+   "originals": [
+    "/media/ch19/Figure_20_05_06(a)a.jpg"
+   ],
+   "original_caption": "极化原子的示意图。电子绕原子核的轨道被外部电荷略微移动了（图中画得夸大了）。由此产生的原子内部的电荷分离意味着它被极化了。注意，异号电荷现在更靠近外部电荷，这就造成了极化。",
+   "widths": [
+    200
+   ],
+   "draws": [
+    "charge"
+   ],
+   "conventions": [
+    "e-",
+    "p+"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "readout repeating the caption hidden"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-water-molecule",
+   "kind": "sim",
+   "number": "19.18",
+   "originals": [
+    "/media/ch19/Figure_20_05_06(b)a.jpg"
+   ],
+   "original_caption": "水分子的示意图。分子内部存在固有的电荷分离，所以水是极性分子。分子中的电子被氧原子核吸引，在两个氢原子核附近留下过剩的正电荷。（注意，右边的示意图只是对水分子中电子分布的粗略图示。它并未显示这一结构中实际涉及的质子和电子的数目。）",
+   "widths": [
+    250
+   ],
+   "draws": [
+    "charge",
+    "angle"
+   ],
+   "conventions": [
+    "O",
+    "H"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "sim-membrane",
+   "kind": "sim",
+   "number": "19.19",
+   "originals": [
+    "/media/ch19/Figure_20_05_07a-a478.jpg"
+   ],
+   "original_caption": "细胞的半透膜内外的离子浓度不同。扩散使 K+（钾）离子和 Cl–（氯）离子沿图示方向移动，直到库仑力阻止进一步的转移。其结果是外侧形成一层正电荷，内侧形成一层负电荷，从而在细胞膜两侧产生电压。膜对 Na+（钠离子）通常是不通透的。",
+   "widths": [],
+   "draws": [
+    "charge",
+    "electric-field",
+    "position",
+    "voltage"
+   ],
+   "conventions": [
+    "K",
+    "Cl",
+    "Na"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "potassium label below its arrow, off the headline"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "capacitor-defined",
+   "concept": "capacitor",
+   "verb": "introduces"
+  },
+  {
+   "span": "charge-and-voltage",
+   "concept": "capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "charge-and-voltage",
+   "concept": "capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel-plate",
+   "concept": "parallel-plate-capacitance",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel-plate",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "parallel-plate",
+   "concept": "permittivity-of-free-space",
+   "verb": "introduces"
+  },
+  {
+   "span": "parallel-plate",
+   "concept": "parallel-plate-capacitor",
+   "verb": "introduces"
+  },
+  {
+   "span": "membrane",
+   "concept": "capacitor",
+   "verb": "reinforces"
+  },
+  {
+   "span": "membrane",
+   "concept": "parallel-plate-capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "dielectric",
+   "concept": "dielectric",
+   "verb": "introduces"
+  },
+  {
+   "span": "dielectric",
+   "concept": "capacitance-with-dielectric",
+   "verb": "introduces"
+  },
+  {
+   "span": "dielectric",
+   "concept": "dielectric-strength",
+   "verb": "introduces"
+  },
+  {
+   "span": "dielectric",
+   "concept": "parallel-plate-capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "polarization",
+   "concept": "dielectric-polarization",
+   "verb": "introduces"
+  },
+  {
+   "span": "polarization",
+   "concept": "capacitance-with-dielectric",
+   "verb": "reinforces"
+  },
+  {
+   "span": "polarization",
+   "concept": "capacitance",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1964776",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-and-voltage",
+   "prompt": "一个装置的电容是否取决于所加的电压？它所储存的电荷呢？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电容与所加的电压无关。它是每伏所储存的电荷量，$\\kCap = \\kQch/\\kV$，对于平行板电容器则是 $\\kCap = \\kappa\\varepsilon_0 A/\\kd$，其中只出现装置的物理特性：极板的面积、极板之间的距离和极板之间的材料。电压升高，电荷也按完全相同的比例增加，所以比值不变。所储存的电荷确实取决于所加的电压，而且是正比关系：$\\kQch = \\kCap\\kV$，所以加在任何电容器上的电压越大，它所储存的电荷就越多。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id1511858",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "利用库仑力的特点，解释为什么电容应当与电容器的极板面积成正比。同样，解释为什么电容应当与极板之间的间距成反比。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "同号电荷相斥，所以极板上已有的电荷会阻碍更多电荷的到来。极板越大，这些电荷能散得越开，每个新电荷遇到的排斥就越弱，在相同电压下极板能容纳的电荷就越多；所以电容随面积 $A$ 增大。异号电荷相吸，而它们之间的库仑力随距离缩短而增大。两块极板靠得越近，一块极板上的电荷对另一块极板上的异号电荷的吸引就越强，每块极板就越牢固地留住自己的电荷，在相同电压下电容器储存的电荷也就更多；所以电容随间距 $\\kd$ 减小而增大。这两个比例关系都包含在 $\\kCap = \\varepsilon_0 A/\\kd$ 中。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2753579",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "说明与极板之间为空气时相比，电介质为什么能增大电容。电介质还使电容器能够加上更大的电压，这背后的独立原因是什么？（电介质因此既增大了 $\\kCap$，又允许更大的 $\\kV$。）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电介质发生极化。它的分子发生转向，使每个分子向离它最近的极板呈现一层与该极板符号相反的电荷。这些表面电荷层与极板之间的库仑力很强，因为它们靠得非常近，所以在相同电压下有更多的电荷聚集到极板上。换个角度看，电场线终止于电介质的表面电荷上，从一块极板通向另一块极板的电场线就变少了。电场，以及随之而来的电压 $\\kV = \\kEf\\kd$，在电荷相同时就更小，而由于 $\\kCap = \\kQch/\\kV$，电容就大了因子 $\\kappa$。介电强度是电容器能承受更大电压的另一个独立原因。许多绝缘体在被击穿并导电之前，能承受比空气大得多的电场。极板之间的电场是 $\\kV/\\kd$，所以能耐受更大电场的材料，在同样间距下就能耐受更大的电压。1.00 mm 间距的特氟龙能承受 60,000 V，而空气只能承受 3000 V。"
+   }
+  },
+  {
+   "id": "cq4",
+   "source_id": "fs-id3361548",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization",
+   "prompt": "水分子的极性如何有助于解释水相对较大的介电常量？（图 19.18）",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "介电常量衡量材料有多容易极化。大多数分子必须先被外部电荷拉得变形，才会呈现出分开的电荷。水分子本来就已经电荷分离：它不对称，电子聚集在氧原子核周围，所以氧端略带负电，两个氢端略带正电。这样的分子只需转动，就能与极板之间的电场对齐，而它很容易做到这一点，所以在电场不大时，水就能向每块极板呈现一大层表面电荷。这就是它的介电常量为 80 的原因，而表 19.1 中的大多数材料都在 2 到 7 之间。"
+   }
+  },
+  {
+   "id": "cq5",
+   "source_id": "fs-id3139942",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "polarization",
+   "prompt": "空气潮湿时，空气电容器极板之间出现火花所需的电压比空气干燥时低。请考虑水分子的极性，解释其原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "潮湿的空气中带有水分子，而水分子是极性的。在极板之间的电场中，每个水分子都会转动，与电场对齐。它的两端本来就带电，所以电场把它拉向极板，很容易把它撕开，而氮分子或氧分子这样的对称分子则会保持完整。分子一旦电离，空气中就有了自由电荷，开始导电，这就是火花。因此，潮湿空气的介电强度比干空气的低，而由于极板之间的电场为 $\\kEf = \\kV/\\kd$，击穿就在较低的电压下出现。"
+   }
+  },
+  {
+   "id": "cq6",
+   "source_id": "fs-id1311685",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "水的介电常量很大，却很少用于电容器。解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电介质必须是绝缘体，而水不是好的绝缘体。它的极性分子聚集离子的效率很高，所以普通的水总是带有溶解的离子，能够导电；放在一块极板上的电荷会直接漏到另一块极板上，电容器留不住它。表 19.1 没有给出水的介电强度，原因就在于此。水还是液体，需要容器盛放，而且会蒸发，而实际使用的材料是固体薄片，可以做得很薄，并与金属箔一起卷起来。如果电荷留不在极板上，很大的介电常量也毫无用处。"
+   }
+  },
+  {
+   "id": "cq7",
+   "source_id": "fs-id2601615",
+   "kind": "conceptual-question",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "membrane",
+   "prompt": "包括人体在内的活细胞中的膜，其特征是膜两侧存在电荷分离。实际上，这些膜因此就是带电的电容器，其重要功能与膜两侧的电势差有关。在活膜中分离这些电荷是否需要能量？如果需要，其来源是食物能量的代谢，还是别的来源？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "需要能量。在膜两侧分离电荷，与电池给电容器充电时所做的功相同：电荷之间隔着膜相互吸引，把它们拉开并克服库仑吸引力使它们保持分开，需要消耗能量，这些能量以电势能的形式储存在膜中。扩散无需代价就把最初的一些离子送过了膜，但细胞为了对抗漏电和浓度梯度而维持这种分离，需要把离子泵回原来的一侧，而泵送是细胞所做的功。这部分能量来自食物的代谢，细胞所消耗的几乎全部能量都来自这个来源。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1793317",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "两个平行板电容器除了第二个的极板间距是第一个的两倍之外，其余完全相同。如果把它们放入其他方面完全相同的电路中，第二块极板上的电荷与第一块相比是多少？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "四倍",
+     "两倍",
+     "相同",
+     "一半"
+    ],
+    "correct": 3,
+    "hint": "两个电路完全相同，所以两个电容器所加的电压相同。电容为 $\\kCap = \\varepsilon_0 A/\\kd$，因此间距加倍使电容减半，而 $\\kQch = \\kCap\\kV$ 使电荷也随之减半。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1669592",
+   "kind": "ap-test-prep",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "在一个由电池和极板间距可调的电容器组成的很简单的电路中，随着距离的改变，电压如何变化？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它不变。电池决定了加在所接元件两端的电压，所以无论极板怎样移动，电容器两端的电压都保持为电池的电压。变化的是电容 $\\kCap = \\varepsilon_0 A/\\kd$，它随极板分开而减小，电荷 $\\kQch = \\kCap\\kV$ 也随之减小。间距增大时，电荷流回电池；间距减小时，电荷从电池流出。只有当你先断开电池、使电荷固定时，电压才会变化，而且它会与间距成正比地增大。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1673098",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "一个极板为可调大小的正方形的平行板电容器接入电路。随着极板边长的增大，电容器上的电荷如何变化？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "与长度$^2$成正比地增大",
+     "与长度成正比地增大",
+     "与长度成正比地减小",
+     "与长度$^2$成正比地减小"
+    ],
+    "correct": 0,
+    "hint": "极板是正方形，所以面积是边长的平方，电容 $\\kCap = \\varepsilon_0 A/\\kd$ 随面积变化。电路使电压保持不变，所以 $\\kQch = \\kCap\\kV$ 随电容变化。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1742648",
+   "kind": "ap-test-prep",
+   "bloom": "Create",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "设计一个实验来测试各种材料的相对电容率，并简要描述结果的一些基本特征。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "建造一个平行板电容器，除了极板之间所填的东西，其他一概不变。用绝缘框架把两块方形金属板保持在固定的小间距上即可，再把待测材料裁成与间隙同样厚度的薄片。先在极板之间什么也没有时测量电容，得到 $\\kCair = \\varepsilon_0 A/\\kd$。然后依次插入每一片，再次测量；该材料的相对电容率就是比值 $\\kappa = \\kCap/\\kCair$。电容表可以直接读出电容。没有电容表时，可以把电容器充到已知的电压，再测量它的电荷，因为 $\\kCap = \\kQch/\\kV$。预期真空的比值恰好为 1，空气非常接近 1。常见的塑料和玻璃给出的是个位数，特氟龙约为 2，电木和派热克斯玻璃约为 5 或 6。极性材料给出非常大的数，水约为 80，因为电荷本来就已分开的分子，只需转动就能与电场对齐。薄片必须填满间隙，否则它旁边剩下的空气会使读数偏低。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1622873",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "一名学生在改变一个正方形平行板电容器的某一个尺寸，并在带电池的电路中测量由此得到的电荷。但是，这名学生忘了改变的是哪个尺寸，也没有把它或任何单位写下来。根据表中数据，改变的是哪个尺寸？<table class=\"data\"><tr><th>尺寸</th><th>电荷 (µC)</th></tr><tr><td>1.00</td><td>0.50</td></tr><tr><td>1.10</td><td>0.61</td></tr><tr><td>1.20</td><td>0.71</td></tr><tr><td>1.30</td><td>0.86</td></tr></table>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "两极板之间的距离",
+     "面积",
+     "边长",
+     "面积和边长两者"
+    ],
+    "correct": 2,
+    "hint": "电池使电压保持不变，所以电荷随电容变化。比较电荷增长的快慢与该尺寸增长的快慢：电荷比该尺寸增长得快，而对于正方形极板，面积是边长的平方。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1768328",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "在一个实验中，带电池的电路中的圆形平行板电容器，其半径和极板间距以相同的相对变化率增大，电容器上的总电荷会怎样？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它将与该变化率成正比地增大。把两个尺寸写成 $\\kr$ 和 $\\kd$ 乘以同一个因子 $f$。极板是圆形的，所以面积为 $\\pi\\kr^2$，按 $f^2$ 增长，而间距按 $f$ 增长；因此电容 $\\kCap = \\varepsilon_0 A/\\kd$ 按 $f^2/f = f$ 增长。电池使电压保持不变，所以 $\\kQch = \\kCap\\kV$ 也按 $f$ 增长：两个尺寸都加倍，电容器上的电荷也加倍。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id2337566",
+   "source_section": "19.2",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "parallel-plate",
+   "prompt": "两块平行导体板相距 15 cm，每块的面积为 0.75 m²。左边一块带有 −0.225 C 的电荷，右边一块带有 0.225 C 的电荷。两板之间的电场的大小和方向如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "先求这两块极板的电容，$\\kCap = \\varepsilon_0 A/\\kd = (8.85 \\times 10^{-12}\\ \\text{F/m})(0.75\\ \\text{m}^2)/(0.15\\ \\text{m}) = 4.4 \\times 10^{-11}\\ \\text{F}$。它们之间的电压由 $\\kQch = \\kCap\\kV$ 得出，即 $\\kV = 0.225\\ \\text{C} / (4.4 \\times 10^{-11}\\ \\text{F}) = 5.1 \\times 10^{9}\\ \\text{V}$，而平行板之间的电场为 $\\kEf = \\kV/\\kd = 3.4 \\times 10^{10}\\ \\text{V/m}$。它由正极板指向负极板，即从右边的极板指向左边。这么大的电场远远超过了空气的介电强度，所以这种布置在极板上放上这么多电荷之前很久就会被击穿。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "fs-id1338876",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-and-voltage",
+   "prompt": "在 180 µF 的电容器上加 120 V 的电压时，它储存了多少电荷？",
+   "answer": {
+    "type": "number",
+    "value": 21.6,
+    "unit": "mC",
+    "generated_by": "source",
+    "hint": "任何电容器中所储存的电荷为 $\\kQch = \\kCap\\kV$。",
+    "solution": "$21.6\\ \\text{mC}$"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2511345",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-parallel-plate",
+   "prompt": "例题 19.8 中的电容器储存了多少电荷？",
+   "answer": {
+    "type": "number",
+    "value": 26.6,
+    "unit": "µC",
+    "generated_by": "source",
+    "hint": "例题给出了这两块极板的电容，所储存的电荷由 $\\kQch = \\kCap\\kV$ 在例题所加的电压下得出。",
+    "solution": "$80.0\\ \\text{mC}$<sup class=\"fn\" data-note=\"c-p2-key\"></sup>"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id1326374",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-and-voltage",
+   "prompt": "要在 8.00 nF 的电容器上储存 0.160 mC 的电荷，必须加多大的电压？",
+   "answer": {
+    "type": "number",
+    "value": 20.0,
+    "unit": "kV",
+    "generated_by": "source",
+    "hint": "把 $\\kQch = \\kCap\\kV$ 变形，解出电压，并将电荷取为库仑、电容取为法拉。",
+    "solution": "20.0 kV"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "fs-id2756080",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "charge-and-voltage",
+   "prompt": "一个大型范德格拉夫起电机的接线端，在 12.0 MV 的电压下储存 8.00 mC 的电荷，它的电容是多少？",
+   "answer": {
+    "type": "number",
+    "value": 667,
+    "unit": "pF",
+    "generated_by": "source",
+    "hint": "电容是每伏所储存的电荷量，$\\kCap = \\kQch/\\kV$。",
+    "solution": "$667\\ \\text{pF}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id1949350",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "（a）一个平行板电容器，极板面积为 $1.50\\ \\text{m}^2$，极板之间隔着 0.0200 mm 的氯丁橡胶，它的电容是多少？（b）加上 9.00 V 的电压时，它储存了多少电荷？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 4.4,
+      "unit": "µF",
+      "hint": "氯丁橡胶是电介质，所以使用 $\\kCap = \\kappa\\varepsilon_0 A/\\kd$，其中的介电常量取表 19.1 给出的值。"
+     },
+     {
+      "part": "(b)",
+      "value": 4e-05,
+      "unit": "C",
+      "hint": "求出电容之后，所储存的电荷为 $\\kQch = \\kCap\\kV$。"
+     }
+    ],
+    "solution": "（a）$4.4\\ \\mu\\text{F}$（b）$4.0 \\times 10^{-5}\\ \\text{C}$"
+   }
+  },
+  {
+   "id": "p6",
+   "source_id": "fs-id2723762",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "dielectric",
+   "prompt": "（a）某平行板电容器的极板面积为 $4.00\\ \\text{m}^2$，极板之间隔着 0.0100 mm 的尼龙，储存了 0.170 C 的电荷。所加的电压是多少？（b）这个结果有什么不合理之处？（c）哪些假设造成了这一结果或与之不一致？",
+   "answer": {
+    "type": "number",
+    "value": 14.2,
+    "unit": "kV",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "用尼龙的介电常量，由 $\\kCap = \\kappa\\varepsilon_0 A/\\kd$ 求出电容，再由 $\\kQch = \\kCap\\kV$ 得出电压。把该电压所对应的电场 $\\kV/\\kd$ 与尼龙的介电强度比较。",
+    "solution": "（a）14.2 kV（b）这个电压大得不合理，是尼龙击穿电压的 100 多倍。（c）所设的电荷大得不合理，不可能储存在这种尺寸的电容器中。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "capacitor",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "capacitance-with-dielectric"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "dielectric-polarization"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "dielectric-strength"
+  },
+  {
+   "exercise": "cq4",
+   "concept": "dielectric-polarization"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "dielectric-strength"
+  },
+  {
+   "exercise": "cq5",
+   "concept": "dielectric-polarization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "dielectric"
+  },
+  {
+   "exercise": "cq6",
+   "concept": "dielectric-polarization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq7",
+   "concept": "capacitor"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "capacitance",
+   "weight": 1,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "capacitance-with-dielectric"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "dielectric-polarization",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "parallel-plate-capacitance"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "p2",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "p2",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "p4",
+   "concept": "capacitance"
+  },
+  {
+   "exercise": "p5",
+   "concept": "capacitance-with-dielectric"
+  },
+  {
+   "exercise": "p5",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p6",
+   "concept": "capacitance-with-dielectric"
+  },
+  {
+   "exercise": "p6",
+   "concept": "dielectric-strength",
+   "weight": 3,
+   "weights_by": "ai"
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-p2-key",
+   "kind": "correction",
+   "html": "书后答案给出的是 80.0 mC。例题 19.8 储存的电荷为 $Q = CV = (8.85\\ \\text{nF})(3.00\\ \\text{kV}) = 26.6\\ \\mu\\text{C}$，题卡检查的就是这个电荷。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "charge-proportional-voltage",
+   "what": "为什么所储存的电荷与电压成正比",
+   "source": "《大学物理（第2版）》，19.5 电容器与电介质",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "给定电容器的极板保持相距固定的距离 $\\kd$。",
+       "src": "19.5"
+      },
+      {
+       "tex": "\\kEf \\propto \\kQch",
+       "src": "19.5，图 19.13"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{V}{\\kV} = \\mk{E}{\\kEf}\\mk{d}{\\kd}",
+      "src": "19.2"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{V}{\\kV} \\propto \\mk{E}{\\kEf}",
+       "uses": [
+        0
+       ],
+       "cap": "符号 $\\propto$ 表示“与……成正比”：$\\kd$ 固定时，$\\kV$ 随 $\\kEf$ 同步增大。"
+      },
+      {
+       "tex": "\\mk{E}{\\kQch} \\propto \\mk{V}{\\kV}",
+       "uses": [
+        1
+       ],
+       "cap": "二者都随电场同步增大，所以它们彼此也同步增大。"
+      }
+     ],
+     "src": "19.5"
+    }
+   ]
+  }
+ ]
+}

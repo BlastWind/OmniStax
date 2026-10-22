@@ -1,0 +1,833 @@
+{
+ "id": "19.2",
+ "module": "m42326",
+ "chapter": "19",
+ "title": "匀强电场中的电势",
+ "short": "匀强电场",
+ "lead": "在两块平行金属板之间加上<span data-concept=\"potential-difference\">电势差</span>，就会在它们之间产生匀强<span data-concept=\"electric-field\">电场</span>；把一个电荷从一块板搬运到另一块板，就有两种方式来计算对它所做的<span data-concept=\"work\">功</span>。令这两者相等，就把<span data-concept=\"potential-difference\">电压</span>与电场联系起来，确定一段空气间隙在产生火花之前所能承受的<span data-concept=\"potential-difference\">电压</span>，并说明电场如何由电势随<span data-concept=\"distance\">距离</span>的变化方式得出。",
+ "objectives": [
+  "描述电压与电场之间的关系。",
+  "推导电势与电场的表达式。",
+  "已知距离和电压，计算电场强度。"
+ ],
+ "summary_html": "<ul><li>A、B 两点之间的<span data-concept=\"potential-difference\">电压</span>为$$\\begin{aligned}\\kVAB &= \\kEf\\kd\\\\ \\kEf &= \\frac{\\kVAB}{\\kd}\\end{aligned}\\quad\\text{(仅适用于匀强 }E\\text{ 场),}$$其中 $\\kd$ 是从 A 到 B 的<span data-concept=\"distance\">距离</span>，也就是两极板之间的<span data-concept=\"distance\">距离</span>。</li><li>用方程的形式写出，<span data-concept=\"potential-difference\">电压</span>与<span data-concept=\"electric-field\">电场</span>之间的一般关系为$$\\kEf = -\\frac{\\kdV}{\\kds},$$其中 $\\kds$ 是电势变化 $\\kdV$ 发生所跨越的<span data-concept=\"distance\">距离</span>。负号告诉我们 $\\kEf$ 指向电势降低的方向。）<span data-concept=\"electric-field\">电场</span>被称为<span data-concept=\"electric-potential\">电势</span>的<em>梯度</em>（如同坡度或斜率）。</li></ul>",
+ "notes": "本书没有给出答案的六道题被略去：证明伏每米与牛顿每库仑等价；相距 1.00 cm、电压为 1.50 × 10⁴ V 的两极板之间的电场；电场强度为 4.50 × 10³ V/m 时两极板相距多远；80.0 mV 电压加在 9.00 nm 厚的细胞壁上时壁两侧的电场；相距 10.0 cm、电压为 450 V 的两极板在 8.00 cm 处的电势；以及被加速到 32.0 keV 的二价离子。两道读取等值线的 AP 题放在“等势线”一节，另一道涉及带有 ±0.225 C 的两块极板的题放在“电容器与电介质”一节，因为每道题都需要后面某一节才给出的结果。书中自己的疏漏照其印出的样子保留：正文把电势差的相反量写成带撇的 V 下标 AB，而旁边的方程里并没有这个撇；本节小结的第二个要点以一个没有对应左括号的右括号结尾。指向出版方 PhET 交互程序的链接被略去。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。六道题没有给出答案，因而略去：证明伏每米与牛顿每库仑等价；相距 1.00 cm 的两极板之间的电场；电场强度为 4.50 × 10³ V/m 时两极板相距多远；9.00 nm 厚的细胞壁两侧的电场；相距 10.0 cm、电压为 450 V 的两极板在 8.00 cm 处的电势；以及被加速到 32.0 keV 的二价离子。本书在此处印出的三道 AP 题放在了别处：关于 40 cm 路径上六条 5.0 V 等值线的一道，以及关于两极板之间的等值线如何随其间距变化的一道，放在引入它们的“等势线”一节；关于面积为 0.75 m²、带有 ±0.225 C 的两块极板的一道，放在给出它所需电容的“电容器与电介质”一节。书中没有答案的 AP 题保留为开放式题目，选项照书中印出的样子给出，并附有 AI 撰写的建议思路。",
+ "figures": [
+  {
+   "id": "sim-plates-voltage-field",
+   "kind": "sim",
+   "number": "19.5",
+   "originals": [
+    "/media/ch19/Figure_20_02_01a.jpg"
+   ],
+   "original_caption": "平行导体板的 V 与 E 之间的关系为 E = V/d。（请注意，ΔV 的大小等于 V_AB。对于从电势较高的极板 A 移动到电势较低的极板 B 的电荷，需要包含一个负号，如下所示：–ΔV = V_A − V_B = V_AB。详见正文。）",
+   "widths": [
+    175
+   ],
+   "draws": [
+    "voltage",
+    "electric-field",
+    "position",
+    "charge",
+    "force"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note through the macros; field lines kept off the spark"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "photo-spark-chamber",
+   "kind": "photo",
+   "number": "19.6",
+   "originals": [
+    "/media/ch19/Figure_20_02_02a.jpg"
+   ],
+   "original_caption": "火花室用来追踪高能粒子的路径。粒子穿过极板之间的气体时产生的电离，使火花得以跳过。火花垂直于极板，沿着极板之间的电场线。相邻极板之间的电势差并没有高到足以引起火花，除非有来自加速器实验的粒子（或宇宙线）所产生的电离。（来源：Daderot, Wikimedia Commons）",
+   "widths": [
+    200
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-potential-gradient",
+   "kind": "sim",
+   "draws": [
+    "voltage",
+    "electric-field",
+    "position"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "note shortened; ΔV label clear of the curve; caption names the slider"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "potential-and-field",
+   "concept": "potential-scalar-field-vector",
+   "verb": "introduces"
+  },
+  {
+   "span": "potential-and-field",
+   "concept": "potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "potential-and-field",
+   "concept": "electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "potential-and-field",
+   "concept": "uniform-field-between-plates",
+   "verb": "uses"
+  },
+  {
+   "span": "potential-and-field",
+   "concept": "vector-in-two-dimensions",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "voltage-across-uniform-field",
+   "verb": "introduces"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "volts-per-meter",
+   "verb": "introduces"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "electric-potential-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "calculate-work",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "force-from-electric-field",
+   "verb": "uses"
+  },
+  {
+   "span": "voltage-between-plates",
+   "concept": "charge-sign-and-potential",
+   "verb": "uses"
+  },
+  {
+   "span": "ex-highest-voltage",
+   "concept": "dielectric-breakdown-of-air",
+   "verb": "introduces"
+  },
+  {
+   "span": "ex-highest-voltage",
+   "concept": "voltage-across-uniform-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-electron-gun-field",
+   "concept": "voltage-across-uniform-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-electron-gun-field",
+   "concept": "force-from-electric-field",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-electron-gun-field",
+   "concept": "volts-per-meter",
+   "verb": "reinforces"
+  },
+  {
+   "span": "ex-electron-gun-field",
+   "concept": "electron-volt",
+   "verb": "uses"
+  },
+  {
+   "span": "field-as-gradient",
+   "concept": "field-is-potential-gradient",
+   "verb": "introduces"
+  },
+  {
+   "span": "field-as-gradient",
+   "concept": "electric-field-direction",
+   "verb": "uses"
+  },
+  {
+   "span": "field-as-gradient",
+   "concept": "potential-difference",
+   "verb": "uses"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1570612",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-as-gradient",
+   "prompt": "讨论电势差与电场强度是如何联系的。举一个例子。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电场是电势的梯度：它的大小是电势随距离下降的速率，$\\kEf = -\\kdV/\\kds$，它指向电势降低的方向。在给定的距离上，电势变化得越快，电场就越强。最简单的例子是一对保持着电势差的平行板，电势在间隙中均匀下降，两板之间各处的电场都相同，$\\kEf = \\kVAB/\\kd$。相距 2.5 cm、之间电压为 75 kV 的两块极板，其电场为 $3.0 \\times 10^{6}$ V/m，这正是干空气所能承受的最大值；同样的 75 kV 加在 5 cm 的间隔上，电场只有这个值的一半。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "fs-id3080509",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "field-as-gradient",
+   "prompt": "在电势为常量的区域内，电场强度是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "那里的电场为零。电场是电势随距离变化的速率，$\\kEf = -\\kdV/\\kds$，所以在该区域内处处相同的电势，在区域内取的每一小段 $\\kds$ 上都给出 $\\kdV = 0$，电场也就消失了。换一种说法，电荷在该区域内无论移到何处，势能都没有变化，因此无论它沿哪条路径运动，都没有力作用在它上面。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id2558866",
+   "kind": "conceptual-question",
+   "bloom": "Understand",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "一个初始静止的负电荷，会向较高电势还是较低电势运动？解释原因。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "它向较高电势运动。电场中电荷所受的力为 $\\kF = \\kq\\kEf$，对于负电荷，这个力与电场方向相反；由于电场指向电势降低的方向，所以负电荷所受的力指向电势升高的方向。从能量出发也得到同样的答案：从静止释放的电荷会朝着降低其势能的方向运动，而 $\\kdPE = \\kq\\kdV$ 对负电荷只有在 $\\kdV$ 为正时才为负，也就是说，只有当它移向较高电势时才如此。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1418320",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-plates-voltage-field",
+   "prompt": "一个带负电的有质量粒子从图 19.5 中两块极板的上方落下，进入两板之间的空间。下列哪一项最能描述它所经过的轨迹？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "向右弯曲的抛物线",
+     "向左弯曲的抛物线",
+     "向右弯曲的一段圆弧",
+     "向左弯曲的一段圆弧"
+    ],
+    "correct": 1,
+    "hint": "两板之间的电场是均匀的，所以作用在粒子上的力是恒定的，而与初始运动方向垂直的恒力给出的路径，与抛体所走的路径相同。负电荷受到的推力与电场方向相反，也就是指向左边的正极板 A。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1392626",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "sim-plates-voltage-field",
+   "prompt": "两个电荷相同的有质量粒子，从同一抛出点以相同的速度被抛入两块极板之间的匀强电场中。它们都撞到带正电的极板上，但第二个粒子飞出的距离是第一个的四倍。电荷的正负号是什么？什么物理上的差异会使它们有不同的撞击点（以相对百分数定量表示）？这与重力作用下的抛体运动情形相比如何？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电荷是负的，因为电场把粒子推向正极板，而对负电荷来说，力 $\\kF = \\kq\\kEf$ 与电场方向相反。电荷、电场和抛出速度都相同，只有质量可能不同。加速度为 $\\kq\\kEf/m$，所以对于固定的间隙，飞行时间与质量的平方根成正比。沿着极板方向抛出的粒子，其侧向行程与飞行时间成正比，所以射程为四倍就需要飞行时间为四倍，质量就必须为十六倍，即增加 1500%。与重力作用下抛体运动的比较是：两种情形形式相同，但质量所起的作用不同。在两种情形中，恒力都给出抛物线，但重力加速度 $\\kg$ 对每一种质量都相同，所以以相同方式抛出的两个抛体落在同一处。而在这里，质量较大的粒子加速得较慢，因此在到达极板之前走得更远。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1837856",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "两块极板水平放置，叠在一起，一块在另一块上方 10.0 cm 处。若上极板保持在 +100 V，当下极板保持在 +50.0 V 时，两板之间电场的大小和方向是什么？保持在 -50.0 V 时呢？",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "500 V/m，1500 V/m，向下",
+     "500 V/m，1500 V/m，向上",
+     "1500 V/m，500 V/m，向下",
+     "1500 V/m，500 V/m，向上"
+    ],
+    "correct": 0,
+    "hint": "电场等于电势差除以间距，$\\kEf = \\kVAB/\\kd$，其中 $\\kd = 0.100$ m，它由较高电势指向较低电势，在这里两种情形中都是向下。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id1764873",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "考虑三块平行导体板，它们之间各有 3.0 cm 的间隔。最左边的一块电势为 +45 V，中间一块接地，最右边的一块电势为 -75 V。在这些极板之间运动的电子所受平均电场的大小是多少？（假设中间那块板上有孔，电子可以穿过。）",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "1500 V/m",
+     "2500 V/m",
+     "4000 V/m",
+     "2000 V/m"
+    ],
+    "correct": 3,
+    "hint": "沿一条路径的平均电场等于电势的总降落除以总距离，$\\kEf = -\\kdV/\\kds$。电势在两个 3.0 cm 的间隙上一共从 +45 V 降到 −75 V。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id1893948",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-electron-gun-field",
+   "prompt": "一种新型电子枪有一块后极板，电势为 −25.0 kV；在它前方 2.00 cm 处有一块接地的极板；再往前 4.00 cm 处有一块 +25.0 kV 的极板。平均电场的大小是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "沿一条路径的平均电场等于电势的全部变化除以全部距离，$\\kEf = -\\kdV/\\kds$。电势从后极板的 −25.0 kV 升高到前极板的 +25.0 kV，变化为 50.0 kV，所经过的距离为 2.00 cm 加 4.00 cm，即 0.0600 m。因此平均电场为 $(5.00 \\times 10^{4}\\ \\text{V})/(0.0600\\ \\text{m}) = 8.33 \\times 10^{5}$ V/m，方向由正极板指向负极板，所以电子在枪内被向前加速。两个间隙中的电场并不相同：在前 2.00 cm 上为 $1.25 \\times 10^{6}$ V/m，在接下来的 4.00 cm 上为 $6.25 \\times 10^{5}$ V/m。"
+   }
+  },
+  {
+   "id": "p3",
+   "source_id": "fs-id2635926",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "相距 4.00 cm 的两块平行导体板之间的电场强度为 $7.50 \\times 10^{4}\\ \\text{V/m}$。（a）两板之间的电势差是多少？（b）取电势最低的那块板为零伏。距该板 1.00 cm（距另一块板 3.00 cm）处的电势是多少？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 3000,
+      "unit": "V",
+      "hint": "两板之间的电压等于电场强度乘以间距，$\\kVAB = \\kEf\\kd$。"
+     },
+     {
+      "part": "(b)",
+      "value": 750,
+      "unit": "V",
+      "hint": "电场是均匀的，所以电势从零伏的极板起均匀升高：在 1.00 cm 的距离上升高 $\\kEf$ 乘以 0.0100 m。"
+     }
+    ],
+    "solution": "（a）$3.00\\ \\text{kV}$ （b）$750\\ \\text{V}$"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id2956436",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-highest-voltage",
+   "prompt": "（a）如果两块平行导体板相距 2.00 mm，并加上 $5.0 \\times 10^{3}\\ \\text{V}$ 的电势差，两板之间的电场强度会超过空气的击穿场强（$3.0 \\times 10^{6}\\ \\text{V/m}$）吗？（b）加上这个电压时，两板最近可以靠到多近？",
+   "answer": {
+    "type": "number",
+    "value": 1.7,
+    "unit": "mm",
+    "part": "(b)",
+    "generated_by": "source",
+    "hint": "由 $\\kEf = \\kVAB/\\kd$ 求出电场，并与击穿场强比较；然后令电场等于击穿场强，再由同一关系式解出间距。",
+    "solution": "（a）不会。两板之间的电场强度为 $2.5 \\times 10^{6}\\ \\text{V/m,}$ 低于空气的击穿场强（$3.0 \\times 10^{6}\\ \\text{V/m}$）。（b）1.7 mm"
+   }
+  },
+  {
+   "id": "p7",
+   "source_id": "fs-id2573954",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "由于离子的分离，活细胞的膜壁两侧有着大得惊人的电场。（膜在“神经传导与心电图”一节中有较详细的讨论。）如果一层 8.00 nm 厚的膜两侧的电场强度为 5.50 MV/m，那么膜两侧的电压是多少？可以假设电场是均匀的。",
+   "answer": {
+    "type": "number",
+    "value": 0.044,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "电场是均匀的，所以电压等于电场强度乘以厚度，$\\kVAB = \\kEf\\kd$，其中 $\\kd = 8.00 \\times 10^{-9}$ m。",
+    "solution": "44.0 mV"
+   }
+  },
+  {
+   "id": "p9",
+   "source_id": "fs-id2705714",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "ex-highest-voltage",
+   "prompt": "已知空气中所能维持的最大电场强度为 $3.0 \\times 10^{6}\\ \\text{V/m}$，求被 0.500 cm 空气隔开的两块平行导体板之间的最大电势差。",
+   "answer": {
+    "type": "number",
+    "value": 15000,
+    "unit": "V",
+    "generated_by": "source",
+    "hint": "间隙所能承受的最大电压等于击穿场强乘以间距，$\\kVAB = \\kEf\\kd$，如例题 19.4 所示。",
+    "solution": "$15\\ \\text{kV}$"
+   }
+  },
+  {
+   "id": "p11",
+   "source_id": "fs-id1948894",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "voltage-between-plates",
+   "prompt": "要让一个电子在强度为 $2.00 \\times 10^{6}\\ \\text{V/m}$ 的匀强电场中加速。（a）如果电子被加速通过 0.400 m，赋予它的能量是多少 keV？（b）要使它的能量增加 50.0 GeV，需要在多长的距离上加速？",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a)",
+      "value": 800,
+      "unit": "keV",
+      "hint": "这段距离上的电压为 $\\kVAB = \\kEf\\kd$，单个电荷被这个电压加速后，获得的电子伏数与电压的伏数相同。"
+     },
+     {
+      "part": "(b)",
+      "value": 25.0,
+      "unit": "km",
+      "hint": "把 50.0 GeV 换回电压，因为一个电子每经过一伏就获得一电子伏，然后由 $\\kd = \\kVAB/\\kEf$ 求出距离。"
+     }
+    ],
+    "solution": "（a）$800\\ \\text{KeV}$ （b）$25.0\\ \\text{km}$"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "field-is-potential-gradient"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "voltage-across-uniform-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "field-is-potential-gradient"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "charge-sign-and-potential"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "field-is-potential-gradient",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "projectile-motion",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "force-from-electric-field"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "projectile-analysis",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "voltage-across-uniform-field",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "electric-field-direction",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "field-is-potential-gradient",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "field-is-potential-gradient"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "voltage-across-uniform-field",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p3",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "p5",
+   "concept": "dielectric-breakdown-of-air"
+  },
+  {
+   "exercise": "p5",
+   "concept": "voltage-across-uniform-field",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p7",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "p7",
+   "concept": "volts-per-meter",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p9",
+   "concept": "dielectric-breakdown-of-air"
+  },
+  {
+   "exercise": "p9",
+   "concept": "voltage-across-uniform-field",
+   "weight": 4,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "voltage-across-uniform-field"
+  },
+  {
+   "exercise": "p11",
+   "concept": "energy-from-potential-difference",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p11",
+   "concept": "electron-volt",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "plate-a",
+   "label": "极板 A，正极板，电势较高",
+   "figures": [
+    "sim-plates-voltage-field"
+   ]
+  },
+  {
+   "id": "plate-b",
+   "label": "极板 B，负极板，电势较低",
+   "figures": [
+    "sim-plates-voltage-field"
+   ]
+  }
+ ],
+ "derivations": [
+  {
+   "id": "voltage-uniform-field",
+   "what": "两块平行板之间的电压",
+   "source": "《大学物理（第2版）》，19.2 匀强电场中的电势",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "静电力是保守力。",
+       "src": "19.1"
+      },
+      {
+       "tex": "\\kdPE = \\kq\\kdV",
+       "src": "19.1"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = -\\mk{PE}{\\kdPE}",
+      "src": "19.1",
+      "uses": [
+       0
+      ],
+      "why": "保守力所做的功等于势能变化的负值。"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = -\\mk{q}{\\kq}\\mk{V}{\\kdV}",
+       "uses": [
+        1
+       ],
+       "map": {
+        "PE": [
+         "q",
+         "V"
+        ]
+       }
+      }
+     ],
+     "src": "19.2"
+    },
+    {
+     "assumes": [
+      {
+       "tex": "\\kVAB = \\kVA - \\kVB",
+       "src": "19.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{dV}{\\kdV} = \\mk{d}{\\kVB - \\kVA}",
+      "src": "19.1",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "-\\mk{dV}{\\kdV} = -\\mk{d}{(\\kVB - \\kVA)}",
+       "uses": []
+      },
+      {
+       "tex": "-\\mk{dV}{\\kdV} = \\mk{d}{\\kVA - \\kVB}",
+       "uses": []
+      },
+      {
+       "tex": "-\\mk{dV}{\\kdV} = \\mk{d}{\\kVAB}",
+       "uses": [
+        0
+       ]
+      }
+     ],
+     "src": "19.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "step": 1
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = -\\mk{q}{\\kq}\\mk{V}{\\kdV}",
+      "src": "19.2",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{q}{\\kq}\\mk{V}{\\kVAB}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "19.2"
+    },
+    {
+     "assumes": [
+      {
+       "text": "从 A 到 B 的路径平行于电场，所以 $\\ktheta = 0^\\circ$，$\\cos\\ktheta = 1$。",
+       "src": "19.2"
+      },
+      {
+       "tex": "\\kF = \\kq\\kEf",
+       "src": "18.4"
+      },
+      {
+       "text": "两极板之间的电场是均匀的，所以电荷所受的力在其整条路径上处处相同。",
+       "src": "19.2"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}\\mk{c}{\\cos\\ktheta}",
+      "src": "7.1",
+      "uses": [
+       2
+      ]
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kF}\\mk{d}{\\kd}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{W}{\\kW} = \\mk{F}{\\kq\\kEf}\\mk{d}{\\kd}",
+       "uses": [
+        1
+       ]
+      }
+     ],
+     "src": "19.2"
+    },
+    {
+     "assumes": [
+      {
+       "step": 2
+      },
+      {
+       "step": 3
+      }
+     ],
+     "then": {
+      "tex": "\\mk{W}{\\kW} = \\mk{q}{\\kq}\\mk{V}{\\kVAB}",
+      "src": "19.2",
+      "uses": []
+     },
+     "steps": [
+      {
+       "tex": "\\mk{W}{\\kq\\kEf\\kd} = \\mk{q}{\\kq}\\mk{V}{\\kVAB}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{V}{\\kVAB} = \\mk{W}{\\kEf\\kd}",
+       "uses": []
+      },
+      {
+       "tex": "\\mk{V}{\\kVAB} = \\mk{W}{\\kEf\\kd},\\quad \\mk{E}{\\kEf} = \\dfrac{\\mk{V2}{\\kVAB}}{\\mk{d}{\\kd}}\\quad\\text{(仅适用于匀强 }\\kEf\\text{ 场)}",
+       "uses": []
+      }
+     ],
+     "src": "19.2"
+    }
+   ]
+  }
+ ]
+}

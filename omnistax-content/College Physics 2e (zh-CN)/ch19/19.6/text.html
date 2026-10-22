@@ -1,0 +1,73 @@
+<section id="combinations">
+<h2>几个电容器，一个等效电容</h2>
+<p class="cite-target">在各种应用中，可以把几个<span data-concept="capacitor">电容器</span>连接在一起。<span data-concept="capacitor">电容器</span>的多种连接，其作用就像单个等效<span data-concept="capacitor">电容器</span>。这个等效单个<span data-concept="capacitor">电容器</span>的<span data-concept="capacitance">总电容</span>既取决于各个<span data-concept="capacitor">电容器</span>，也取决于它们的连接方式。有两种简单而常见的连接方式，称为<em><span data-concept="series-connection">串联</span></em>和<em><span data-concept="parallel-connection">并联</span></em>，我们可以很容易地算出它们的<span data-concept="capacitance">总电容</span>。某些更复杂的连接也可以归结为<span data-concept="series-connection">串联</span>与<span data-concept="parallel-connection">并联</span>的组合。</p>
+</section>
+
+<section id="series">
+<h2>串联电容</h2>
+<p class="cite-target">图 19.20(a) 表示<span data-concept="series-connection">串联</span>的<span data-ref="capacitor-1 capacitor-2 capacitor-3">三个<span data-concept="capacitor">电容器</span></span>，并加有<span data-type="voltage">一个<span data-concept="potential-difference">电压</span></span>。与任何<span data-concept="capacitor">电容器</span>一样，这个组合的<span data-concept="capacitance">电容</span>通过 $\kCap = \frac{\kQch}{\kV}$ 与电荷和<span data-concept="potential-difference">电压</span>相联系。</p>
+<p>请注意，在图 19.20 中，当加上<span data-type="voltage"><span data-concept="potential-difference">电压</span></span> $\kV$ 时，<span data-type="charge">大小为 $\kQch$ 的异号电荷</span>流向<span data-ref="capacitor-1 capacitor-2 capacitor-3">原本不带电的<span data-concept="capacitor">电容器</span>组合</span>的两侧。电荷守恒要求在<span data-ref="capacitor-1 capacitor-2 capacitor-3">各个<span data-concept="capacitor">电容器</span></span>的极板上产生<span data-type="charge">大小相等的电荷</span>，因为在<span data-ref="capacitor-1 capacitor-2 capacitor-3">这些原本电中性的器件</span>中，电荷只是被分离开。最终的结果是，<span data-ref="capacitor-1 capacitor-2 capacitor-3">这个组合</span>类似于<span data-ref="equivalent">单个<span data-concept="capacitor">电容器</span></span>，其<span data-type="position">有效极板间距</span>大于<span data-ref="capacitor-1 capacitor-2 capacitor-3">各个<span data-concept="capacitor">电容器</span></span>单独的极板间距。（见图 19.20(b)。）较大的极板间距意味着较小的<span data-concept="capacitance">电容</span>。<span data-concept="capacitor">电容器</span>的<span data-concept="series-connection">串联</span>连接有一个普遍的特点：<span data-concept="capacitance">总电容</span>小于其中任何一个单独的<span data-concept="capacitance">电容</span>。</p>
+<figure class="sim" id="sim-series-parallel" data-figure="19.20 + 19.21" data-original="/media/ch19/Figure_20_06_01a.jpg,/media/ch19/Figure_20_06_02a.jpg" data-original-width="185,300" data-original-caption="（图 19.20）（a）串联的电容器。每块极板上的电荷大小为 Q。（b）等效电容器的极板间距 d 较大。串联连接产生的总电容小于其中任何一个单独电容器的电容。（图 19.21）（a）并联的电容器。每个电容器都直接接到电压源上，就像它单独存在一样，因此并联时的总电容就是各个电容之和。（b）等效电容器的极板面积较大，因此比单个电容器能容纳更多的电荷。">
+  <div class="sim-head"><span class="eyebrow">Figure 19.20 + 19.21</span><span><span data-ref="capacitor-1 capacitor-2 capacitor-3">三个电容器</span>接在同一个<span data-concept="potential-difference">电压</span>源上，电路旁边画出的是<span data-ref="equivalent">与该组合等效的单个电容器</span>。选择串联：<span data-ref="capacitor-1 capacitor-2 capacitor-3">每个电容器</span>分离出<span data-type="charge">相同的电荷</span>，而<span data-ref="capacitor-1 capacitor-2 capacitor-3">各个电容器</span>分担<span data-type="voltage">电源电压</span>，<span data-ref="equivalent">等效电容器</span>的极板相距更远。选择并联：<span data-ref="capacitor-1 capacitor-2 capacitor-3">每个电容器</span>两端都承受<span data-type="voltage">整个电压</span>，而<span data-type="charge">各个电荷</span>相加，<span data-ref="equivalent">等效电容器</span>具有<span data-type="area">较大的极板面积</span>。改变<span data-type="capacitance">三个电容</span>和<span data-type="voltage">电压</span>。<span data-type="capacitance">总电容</span>在串联时低于<span data-type="capacitance">其中最小的一个</span>，在并联时升到<span data-type="capacitance">三者之和</span>。</span></div>
+</figure>
+<p>通过考虑图 19.20 所示<span data-ref="capacitor-1 capacitor-2 capacitor-3">各个<span data-concept="capacitor">电容器</span></span>两端的<span data-type="voltage"><span data-concept="potential-difference">电压</span></span>，我们可以求出<span data-type="capacitance">总<span data-concept="capacitance">电容</span></span>的表达式。</p>
+<figure class="dv" id="drv-capacitance-in-series"></figure>
+<p>这里的“...”表示该表达式对任意个<span data-concept="series-connection">串联</span>的<span data-concept="capacitor">电容器</span>都成立。这种形式的表达式得到的<span data-concept="capacitance">总电容</span> $\kCS$ 总是小于任何一个单独的<span data-concept="capacitance">电容</span> $\kCone$、$\kCtwo$、...，下一个例题将说明这一点。</p>
+<div class="note">
+<div class="eyebrow">串联的总电容</div>
+<p><span data-concept="series-connection">串联</span>的总<span data-concept="capacitance">电容</span>：</p>
+$$\frac{1}{\kCS} = \frac{1}{\kCone} + \frac{1}{\kCtwo} + \frac{1}{\kCthree} + \text{.}\text{.}\text{.}$$
+</div>
+<div class="example" id="ex-series-capacitance">
+<h3>例题 19.9 · 串联电容是多少？</h3>
+<p>求<span data-ref="capacitor-1 capacitor-2 capacitor-3">三个<span data-concept="series-connection">串联</span>的<span data-concept="capacitor">电容器</span></span>的<span data-type="capacitance">总<span data-concept="capacitance">电容</span></span>，已知<span data-type="capacitance">它们各自的<span data-concept="capacitance">电容</span></span>分别为 1.000、5.000 和 8.000 $\text{\mu F}$。</p>
+<h4>思路</h4>
+<p>根据所给的信息，利用<span data-concept="series-connection">串联</span><span data-concept="capacitance">电容</span>的公式，就可以求出<span data-type="capacitance">总<span data-concept="capacitance">电容</span></span>。</p>
+<h4>解</h4>
+<p>把<span data-type="capacitance">所给的<span data-concept="capacitance">电容</span></span>代入 $\frac{1}{\kCS}$ 的表达式，得 $\frac{1}{\kCS} = \frac{1}{\kCone} + \frac{1}{\kCtwo} + \frac{1}{\kCthree}$。</p>
+$$\frac{1}{\kCS} = \frac{1}{1\text{.}\text{000 }\mu\text{F}} + \frac{1}{5\text{.}\text{000 }\mu\text{F}} + \frac{1}{8\text{.}\text{000 }\mu\text{F}} = \frac{1\text{.}\text{325}}{\text{}\mu\text{F}}$$
+<p>取倒数求 $\kCS$，得 $\kCS = \frac{\text{\mu F}}{1\text{.}\text{325}} = 0\text{.}\text{755 \mu F}$。</p>
+<h4>讨论</h4>
+<p><span data-type="capacitance"><span data-concept="series-connection">串联</span>总<span data-concept="capacitance">电容</span></span> $\kCS$ 小于<span data-type="capacitance">最小的单个<span data-concept="capacitance">电容</span></span>，正如前面所说。在<span data-concept="capacitor">电容器</span>的<span data-concept="series-connection">串联</span>连接中，总和小于各部分。事实上，它比其中任何一个都小。请注意，有时可以通过求最小公分母来解上面这样的方程，而且更方便；在这个例子中（只显示整数运算），最小公分母是 40。于是，</p>
+$$\frac{1}{\kCS} = \frac{\text{40}}{\text{40 }\mu\text{F}} + \frac{8}{\text{40 }\mu\text{F}} + \frac{5}{\text{40 }\mu\text{F}} = \frac{\text{53}}{\text{40 }\mu\text{F}},$$
+<p>所以</p>
+$$\kCS = \frac{\text{40 }\mu\text{F}}{\text{53}} = 0\text{.}\text{755 }\mu\text{F}.$$
+</div>
+</section>
+
+<section id="parallel">
+<h2>并联的电容器</h2>
+<p class="cite-target">图 19.21(a) 表示<span data-concept="parallel-connection">并联</span>的<span data-ref="capacitor-1 capacitor-2 capacitor-3">三个<span data-concept="capacitor">电容器</span></span>，并加有<span data-type="voltage">一个<span data-concept="potential-difference">电压</span></span>。这里的<span data-type="capacitance">总<span data-concept="capacitance">电容</span></span>比<span data-concept="series-connection">串联</span>的情形更容易求。为了求<span data-type="capacitance">等效总<span data-concept="capacitance">电容</span></span> $\kCp$，我们首先注意到，<span data-ref="capacitor-1 capacitor-2 capacitor-3">每个<span data-concept="capacitor">电容器</span></span>两端的<span data-type="voltage"><span data-concept="potential-difference">电压</span></span>都是 $\kV$，与电源的电压相同，因为<span data-ref="capacitor-1 capacitor-2 capacitor-3">它们</span>通过<span data-concept="conductor">导体</span>直接与电源相连。（<span data-concept="conductor">导体</span>是等势体，因此<span data-ref="capacitor-1 capacitor-2 capacitor-3">各个<span data-concept="capacitor">电容器</span></span>两端的<span data-type="voltage"><span data-concept="potential-difference">电压</span></span>与<span data-concept="potential-difference">电压</span>源两端的相同。）于是，<span data-ref="capacitor-1 capacitor-2 capacitor-3">各个<span data-concept="capacitor">电容器</span></span>上具有<span data-type="charge">相同的电荷</span>，就像它们单独接到<span data-concept="potential-difference">电压</span>源上时一样。</p>
+<figure class="dv" id="drv-capacitance-in-parallel"></figure>
+<p><span data-concept="parallel-connection">并联</span>时的<span data-concept="capacitance">总电容</span>就是各个<span data-concept="capacitance">电容</span>之和。（同样，“...”表示该表达式对任意个<span data-concept="parallel-connection">并联</span>的<span data-concept="capacitor">电容器</span>都成立。）因此，例如，如果<span data-ref="capacitor-1 capacitor-2 capacitor-3">上面例题中的<span data-concept="capacitor">电容器</span></span>是<span data-concept="parallel-connection">并联</span>的，那么<span data-type="capacitance">它们的<span data-concept="capacitance">电容</span></span>就将是</p>
+$$\kCp = 1\text{.}\text{000 }\mu\text{F} + 5\text{.}\text{000 }\mu\text{F} + 8\text{.}\text{000 }\mu\text{F} = \text{14}\text{.}000\ \text{}\mu\text{F}.$$
+<p><span data-ref="equivalent"><span data-concept="parallel-connection">并联</span>连接的等效<span data-concept="capacitor">电容器</span></span>具有<span data-type="area">更大的等效极板面积</span>，因此<span data-type="capacitance">具有较大的<span data-concept="capacitance">电容</span></span>，如图 19.21(b) 所示。</p>
+<div class="note">
+<div class="eyebrow">并联的总电容</div>
+<p><span data-concept="parallel-connection">并联</span>的总<span data-concept="capacitance">电容</span>：</p>
+$$\kCp = \kCone + \kCtwo + \kCthree + \text{.}\text{.}\text{.}$$
+</div>
+</section>
+
+<section id="mixed">
+<h2>同一电路中的串联与并联</h2>
+<p class="cite-target">更复杂的<span data-concept="capacitor">电容器</span>连接有时可以是<span data-concept="series-connection">串联</span>与<span data-concept="parallel-connection">并联</span>的组合。（见图 19.22。）要求这类组合的<span data-concept="capacitance">总电容</span>，我们先辨认出<span data-concept="series-connection">串联</span>和<span data-concept="parallel-connection">并联</span>的部分，算出它们的<span data-concept="capacitance">电容</span>，再求出总电容。</p>
+<figure class="sim" id="sim-mixed" data-figure="19.22" data-original="/media/ch19/Figure_20_06_03a.jpg" data-original-width="500" data-original-caption="（a）该电路中既有电容器的串联，也有并联。该电路总电容的计算见例题 19.10。（b）C₁ 和 C₂ 串联；它们的等效电容 C_S 小于二者中的任何一个。（c）请注意，C_S 与 C₃ 并联。因此，总电容是 C_S 与 C₃ 之和。">
+  <div class="sim-head"><span class="eyebrow">Figure 19.22</span><span>含有两种连接的电路分两步化简。第一步，用一个等效电容器代替<span data-ref="capacitor-1 capacitor-2">串联的那两个电容器</span>。然后，这一个与<span data-ref="capacitor-3">和它并联的那个电容器</span>相加。改变<span data-type="capacitance">三个电容中的任何一个</span>，观察两个步骤随之变化，这样无论数值是多少，同一方法都适用。</span></div>
+</figure>
+<div class="example" id="ex-mixed-capacitance">
+<h3>例题 19.10 · 串联与并联混合的电容</h3>
+<p>求<span data-ref="capacitor-1 capacitor-2 capacitor-3">图 19.22 所示的<span data-concept="capacitor">电容器</span>组合</span>的<span data-type="capacitance">总<span data-concept="capacitance">电容</span></span>。假设<span data-type="capacitance">图 19.22 中的<span data-concept="capacitance">电容</span></span>已知到三个小数位（$\kCone = 1.000\ \text{\mu F}$，$\kCtwo = 5.000\ \text{\mu F}$，$\kCthree = 8.000\ \text{\mu F}$），并把答案修约到三个小数位。</p>
+<h4>思路</h4>
+<p>为了求<span data-type="capacitance">总<span data-concept="capacitance">电容</span></span>，我们先辨认哪些<span data-concept="capacitor">电容器</span>是<span data-concept="series-connection">串联</span>的，哪些是<span data-concept="parallel-connection">并联</span>的。<span data-concept="capacitor">电容器</span> $\kCone$ 和 $\kCtwo$ 是<span data-concept="series-connection">串联</span>的。它们的组合在图中标为 $\kCS$，与 $\kCthree$ <span data-concept="parallel-connection">并联</span>。</p>
+<h4>解</h4>
+<p>因为 $\kCone$ 和 $\kCtwo$ 是<span data-concept="series-connection">串联</span>的，所以<span data-type="capacitance">它们的总<span data-concept="capacitance">电容</span></span>由 $\frac{1}{\kCS} = \frac{1}{\kCone} + \frac{1}{\kCtwo} + \frac{1}{\kCthree}$ 给出。把它们的值代入方程，得</p>
+$$\frac{1}{\kCS} = \frac{1}{\kCone} + \frac{1}{\kCtwo} = \frac{1}{1\text{.}\text{000}\;\mu\text{F}} + \frac{1}{5\text{.}\text{000}\;\mu\text{F}} = \frac{1\text{.}\text{200}}{\mu\text{F}}.$$
+<p>取倒数，得</p>
+$$\kCS = 0\text{.}\text{833 }\mu\text{F}.$$
+<p><span data-type="capacitance">这个等效<span data-concept="series-connection">串联</span><span data-concept="capacitance">电容</span></span>与<span data-ref="capacitor-3">第三个<span data-concept="capacitor">电容器</span></span><span data-concept="parallel-connection">并联</span>；因此，<span data-type="capacitance">总电容</span>是二者之和</p>
+$$\begin{aligned}\kCtot &= \kCS + \kCthree\\ &= 0.833\;\mu\text{F} + 8.000\;\mu\text{F}\\ &= 8.833\;\mu\text{F}.\end{aligned}$$
+<h4>讨论</h4>
+<p>这种把<span data-concept="capacitor">电容器</span>的组合逐段分析、直到得出总电容的方法，可以用于更大的<span data-concept="capacitor">电容器</span>组合。</p>
+</div>
+</section>

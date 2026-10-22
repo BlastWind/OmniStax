@@ -1,0 +1,156 @@
+/* Figures for section 19.2 Electric Potential in a Uniform Electric Field. Boots against the section's text article.
+   The section has one relation and one generalisation of it. Figure 19.5 is
+   the pair of parallel plates: the voltage across them, the gap between them
+   and the uniform field that is one divided by the other, with the potential
+   graphed across the gap so that the field is the steepness of that graph.
+   The sim that follows takes the same reading where the potential does not
+   fall evenly, which is what E = −ΔV/Δs says. Neither idea has a clock in
+   it, so both figures are still and neither takes a transport. The figures
+   colour voltage, electric-field, position, charge and force, and plates A
+   and B are referents in F.ref; the work and
+   the potential energy are not drawn, so they stay in ink, and the spark of
+   a gap that has broken down is drawn in ink as well. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['19.2'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, register, begin, line, arrow, dot, text, topline, hbracket, vbracket, axes } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- small helpers shared by the two figures ---------- */
+const TAU = 2 * Math.PI;
+const E_BREAKDOWN = 3.0e6;                               /* the field dry air will support, in V/m, as Example 19.4 gives it */
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = (n) => String(n).split('').map((c) => SUP[c] ?? c).join('');
+function sciParts(x, d) { const e = Math.floor(Math.log10(Math.abs(x))); return { m: (x / Math.pow(10, e)).toFixed(d), e }; }
+const sci = (x, d = 2) => { if (x === 0) return '0'; const { m, e } = sciParts(x, d); return m + ' × 10' + sup(e); };
+const sciTex = (x, d = 2) => { if (x === 0) return '0'; const { m, e } = sciParts(x, d); return m + ' \\times 10^{' + e + '}'; };
+const num = (v, d) => (v < 0 ? '−' : '') + fmt(Math.abs(v), d);
+/* a metal plate standing on the canvas, outlined in its referent's hue, its charge signs in the charge hue */
+function plate(ctx, x, y1, y2, w, sign, n, color) {
+  ctx.save(); ctx.fillStyle = PAL.soft; ctx.strokeStyle = color; ctx.lineWidth = 3;
+  ctx.fillRect(x - w / 2, y1, w, y2 - y1); ctx.strokeRect(x - w / 2, y1, w, y2 - y1); ctx.restore();
+  for (let i = 0; i < n; i++) text(ctx, sign, x, y1 + ((y2 - y1) * (i + 0.5)) / n, C('charge'), { size: 24, weight: 600, align: 'center' });
+}
+
+/* =====================================================================
+   FIGURE 19.5: the parallel plates. The voltage between them and the gap
+   between them set the uniform field, which the field lines draw and the
+   graph beneath reads as the steepness of the potential. Still: the
+   relation has no time in it, so the figure answers its sliders only.
+===================================================================== */
+(function () {
+  const d = sim('sim-plates-voltage-field', 880);
+  const V = ctl(d.controls, { label: '\\kVAB', cls: 'voltage', min: 5, max: 100, step: 0.5, value: 25, unit: 'kV', dec: 1, detents: [{ v: 25, label: '25.0' }, { v: 75, label: '75.0' }], snap: true, aria: '极板之间的电压' });
+  const D = ctl(d.controls, { label: '\\kd', cls: 'position', min: 1, max: 10, step: 0.1, value: 4, unit: 'cm', dec: 2, detents: [{ v: 2.5, label: '2.5' }, { v: 4, label: '4.0' }], snap: true, aria: '极板的间距' });
+  const Q = ctl(d.controls, { label: '\\kq', cls: 'charge', min: 0.1, max: 2, step: 0.05, value: 0.5, unit: 'µC', dec: 3, aria: '极板之间的电荷' });
+  const xA = 300, pT = 170, pB = 420, yq = 295;
+  const gx = { l: 300, r: 1180, t: 610, b: 790 };          /* the graph: 0 to 10 cm across, 0 to 100 kV up, the slider maxima, never rescaled */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const dm = D.v / 100, Vv = V.v * 1000, E = Vv / dm, q = Q.v * 1e-6, Fq = q * E;
+    const xB = xA + 200 + 62 * D.v;
+    const broken = E >= E_BREAKDOWN;
+    /* the plates and their potentials */
+    const cA = F.ref('plate-a'), cB = F.ref('plate-b');
+    plate(ctx, xA, pT, pB, 26, '+', 7, cA); plate(ctx, xB, pT, pB, 26, '−', 7, cB);
+    text(ctx, 'A', xA, pB + 32, cA, { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'B', xB, pB + 32, cB, { size: 24, weight: 600, align: 'center' });
+    text(ctx, 'V_A = ' + fmt(V.v, 1) + ' kV', xA - 26, pT - 34, C('voltage'), { size: 22, weight: 600, align: 'right' });
+    text(ctx, 'V_B = 0', xB + 26, pT - 34, C('voltage'), { size: 22, weight: 600 });
+    /* the field lines, drawn more closely together where the field is stronger */
+    const n = Math.max(5, Math.min(12, Math.round(4 + (8 * E) / E_BREAKDOWN)));
+    for (let i = 0; i < n; i++) {
+      const y = pT + 24 + ((pB - pT - 48) * i) / (n - 1);
+      if ((y > yq - 30 && y < yq + 62) || (broken && y > yq + 76)) continue;
+      arrow(ctx, xA + 20, y, xB - 20, y, C('electric-field'), 4);
+    }
+    text(ctx, 'E = ' + sci(E, 2) + ' V/m', (xA + xB) / 2, pT - 34, C('electric-field'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    /* the charge between the plates and the force on it */
+    const xq = xA + (xB - xA) / 2 - 60, len = Math.min(30 + 110 * Math.min(1, Fq / 0.6), xB - 40 - (xq + 16));
+    dot(ctx, xq, yq, C('charge'), true, 14);
+    text(ctx, '+q', xq, yq - 34, C('charge'), { size: 24, weight: 600, align: 'center', bg: PAL.panel });
+    arrow(ctx, xq + 16, yq, xq + 16 + len, yq, C('force'), 5);
+    text(ctx, 'F = ' + fmt(Fq, 3) + ' N', (xA + xB) / 2, yq + 46, C('force'), { size: 22, weight: 600, align: 'center', bg: PAL.panel });
+    /* the gap, bracketed */
+    hbracket(ctx, xA, xB, pB + 78, C('position'), 'd = ' + fmt(D.v, 2) + ' cm');
+    /* the spark, where the field has passed what dry air will support */
+    if (broken) {
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(xA + 14, yq + 100);
+      for (let i = 1; i <= 8; i++) ctx.lineTo(xA + 14 + ((xB - xA - 28) * i) / 8, yq + 100 + (i % 2 ? -20 : 20));
+      ctx.stroke(); ctx.restore();
+      text(ctx, '空气被击穿，火花跳过', (xA + xB) / 2, pB + 126, PAL.ink, { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    }
+    /* the graph: the potential falling across the gap, its steepness the field */
+    const { X, Y } = axes(ctx, gx, [0, 10], [0, 100], { nx: 5, ny: 4, xl: '到极板 A 的距离 (cm)', xc: C('position'), yl: 'V (kV)', yc: C('voltage') });
+    line(ctx, X(0), Y(V.v), X(D.v), Y(0), C('voltage'), 5);
+    line(ctx, X(D.v), Y(0), X(10), Y(0), alpha(PAL.ink, 0.35), 2, [10, 10]);
+    dot(ctx, X(0), Y(V.v), C('voltage'), true, 10); dot(ctx, X(D.v), Y(0), C('voltage'), true, 10);
+    const right = D.v <= 6.5;
+    text(ctx, '斜率为 −E = −' + sci(E, 2) + ' V/m', X(D.v) + (right ? 16 : -16), Y(V.v / 2), C('electric-field'), { size: 19, weight: 600, align: right ? 'left' : 'right', bg: PAL.panel });
+    topline(ctx, '在 ' + fmt(D.v, 2) + ' cm 的间距上，' + fmt(V.v, 1) + ' kV 产生 ' + sci(E, 2) + ' V/m 的电场，该电场把 ' + fmt(Q.v, 3) + ' µC 的电荷推向极板 B，力为 ' + fmt(Fq, 3) + ' N。'
+      + (broken ? '这超过了干空气所能承受的值，所以间隙被击穿，出现火花。' : ''));
+    readout(d.readout, `\\kEf = \\frac{\\kVAB}{\\kd} = \\frac{${sciTex(Vv, 2)}\\ \\text{V}}{${fmt(dm, 4)}\\ \\text{m}} = ${sciTex(E, 2)}\\ \\text{V/m}`,
+      '$\\kF = \\kq\\kEf$ 无论电荷位于何处都相同，因为电场是均匀的；它的单位是牛顿，因为 1 N/C = 1 V/m。'
+      + (broken ? '' : '这个间隙在被击穿、出现火花之前，最多能承受 ' + fmt((E_BREAKDOWN * dm) / 1000, 0) + ' kV。'));
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   SIM: the field as the gradient of the potential. A window of width Δs
+   slides along a potential, and the chord across it gives the average field
+   there. Where the potential falls evenly every window reads the same, and
+   where it falls unevenly the reading follows the steepness. Still: a
+   gradient has no clock, and the dragging is the reader's own.
+===================================================================== */
+(function () {
+  const d = sim('sim-potential-gradient', 740);
+  const shape = F.select(d.controls, { label: '\\text{电势}', options: [{ value: 'even', label: '均匀下降' }, { value: 'uneven', label: '不均匀下降' }], value: 'even', aria: '画出哪一种电势' });
+  const S = ctl(d.controls, { label: 's', cls: 'position', min: 0.5, max: 9.5, step: 0.1, value: 5, unit: 'cm', dec: 2, aria: '窗口的中点' });
+  const DS = ctl(d.controls, { label: '\\kds', cls: 'position', min: 0.5, max: 4, step: 0.1, value: 2, unit: 'cm', dec: 2, aria: '窗口的宽度' });
+  const gx = { l: 280, r: 1160, t: 130, b: 430 };          /* 0 to 10 cm across, 0 to 100 V up, both fixed */
+  const Vof = (s, kind) => (kind === 'even' ? 100 * (1 - s / 10) : 100 * (1 - Math.pow(s / 10, 3)));
+  const yArr = 610;
+  function draw() {
+    const { ctx } = begin(d.c);
+    const kind = shape.value;
+    /* a change of potential keeps the graph's frame and bends its curve into the other, the chord and the arrows following */
+    const u = shape.mix((v) => (v === 'uneven' ? 1 : 0));
+    const Vd = (s) => (1 - u) * Vof(s, 'even') + u * Vof(s, 'uneven');
+    const half = DS.v / 2, s1 = Math.max(0, Math.min(10 - DS.v, S.v - half)), s2 = s1 + DS.v;
+    const V1 = Vof(s1, kind), V2 = Vof(s2, kind), dV = V2 - V1, E = -dV / (DS.v / 100);
+    const W1 = Vd(s1), W2 = Vd(s2);
+    const { X, Y } = axes(ctx, gx, [0, 10], [0, 100], { nx: 5, ny: 4, xl: '距离 s (cm)', xc: C('position'), yl: 'V (V)', yc: C('voltage') });
+    /* the window, shaded, and the potential across it */
+    ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.07); ctx.fillRect(X(s1), gx.t, X(s2) - X(s1), gx.b - gx.t); ctx.restore();
+    F.curve(ctx, Vd, 0, 10, X, Y, C('voltage'), 5, 120);
+    line(ctx, X(s1), Y(W1), X(s1), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    line(ctx, X(s2), Y(W2), X(s2), gx.b, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    line(ctx, X(s1), Y(W1), X(s2), Y(W2), C('electric-field'), 5);
+    dot(ctx, X(s1), Y(W1), C('voltage'), false, 10); dot(ctx, X(s2), Y(W2), C('voltage'), true, 10);
+    text(ctx, '横跨窗口的弦', Math.max(X((s1 + s2) / 2), gx.l + 230), gx.t - 26, C('electric-field'), { size: 19, weight: 600, align: 'center', bg: PAL.panel });
+    hbracket(ctx, X(s1), X(s2), gx.b + 132, C('position'), 'Δs = ' + fmt(DS.v, 2) + ' cm');
+    /* a short bracket sets its label below its foot, clear of a potential that runs on nearly flat */
+    vbracket(ctx, X(s2) + 34, Y(W1), Y(W2), C('voltage'));
+    const ly = Y(W2) - Y(W1) < 44 ? Y(W2) + 30 : (Y(W1) + Y(W2)) / 2;
+    text(ctx, 'ΔV = ' + num(dV, 1) + ' V', X(s2) + 50, ly, C('voltage'), { size: 22, weight: 600, bg: PAL.panel });
+    /* the field at each place along the way, drawn to the same scale */
+
+    for (let i = 0; i < 10; i++) {
+      const s = 0.5 + i, h = 0.05;
+      const Eloc = (-(Vd(Math.min(10, s + h)) - Vd(Math.max(0, s - h))) / ((Math.min(10, s + h) - Math.max(0, s - h)) / 100));
+      const L = 8 + (120 * Eloc) / 3000;
+      arrow(ctx, X(s) - L / 2, yArr, X(s) + L / 2, yArr, C('electric-field'), 4);
+    }
+    line(ctx, X(s1), yArr - 36, X(s1), yArr + 36, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    line(ctx, X(s2), yArr - 36, X(s2), yArr + 36, alpha(PAL.ink, 0.35), 2, [4, 8]);
+    text(ctx, '沿途各处的电场', (gx.l + gx.r) / 2, yArr + 74, PAL.muted, { size: 17, align: 'center' });
+    topline(ctx, '在宽 ' + fmt(DS.v, 2) + ' cm、中心位于 ' + fmt((s1 + s2) / 2, 2) + ' cm 处的窗口内，电势下降 ' + fmt(-dV, 1) + ' V，所以那里的平均电场为 ' + sci(E, 2) + ' V/m。');
+    readout(d.readout, `\\kEf = -\\frac{\\kdV}{\\kds} = -\\frac{${(dV < 0 ? '-' : '') + fmt(Math.abs(dV), 1)}\\ \\text{V}}{${fmt(DS.v / 100, 4)}\\ \\text{m}} = ${sciTex(E, 2)}\\ \\text{V/m}`,
+      kind === 'even'
+        ? '每个窗口读出的电场都相同：这就是图 19.5 的匀强电场，当作斜率来读。'
+        : '负号使电场指向电势下降的方向，即向右。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};

@@ -1,0 +1,1278 @@
+{
+ "types": [
+  {
+   "id": "voltage",
+   "label": "电压",
+   "dimension": "V"
+  },
+  {
+   "id": "capacitance",
+   "label": "电容",
+   "dimension": "F"
+  }
+ ],
+ "symbols": [
+  {
+   "sym": "V_volt",
+   "latex": "V",
+   "macro": "\\kV"
+  },
+  {
+   "sym": "ΔV_volt",
+   "latex": "\\Delta V",
+   "macro": "\\kdV"
+  },
+  {
+   "sym": "V_A",
+   "latex": "V_{\\text{A}}",
+   "macro": "\\kVA"
+  },
+  {
+   "sym": "V_B",
+   "latex": "V_{\\text{B}}",
+   "macro": "\\kVB"
+  },
+  {
+   "sym": "V_AB",
+   "latex": "V_{\\text{AB}}",
+   "macro": "\\kVAB"
+  },
+  {
+   "sym": "V_1volt",
+   "latex": "V_1",
+   "macro": "\\kVone"
+  },
+  {
+   "sym": "V_2volt",
+   "latex": "V_2",
+   "macro": "\\kVtwo"
+  },
+  {
+   "sym": "V_3volt",
+   "latex": "V_3",
+   "macro": "\\kVthree"
+  },
+  {
+   "sym": "C_cap",
+   "latex": "C",
+   "macro": "\\kCap"
+  },
+  {
+   "sym": "C_air",
+   "latex": "C_{\\text{air}}",
+   "macro": "\\kCair"
+  },
+  {
+   "sym": "C_1",
+   "latex": "C_1",
+   "macro": "\\kCone"
+  },
+  {
+   "sym": "C_2",
+   "latex": "C_2",
+   "macro": "\\kCtwo"
+  },
+  {
+   "sym": "C_3",
+   "latex": "C_3",
+   "macro": "\\kCthree"
+  },
+  {
+   "sym": "C_S",
+   "latex": "C_{\\text{S}}",
+   "macro": "\\kCS"
+  },
+  {
+   "sym": "C_p",
+   "latex": "C_{\\text{p}}",
+   "macro": "\\kCp"
+  },
+  {
+   "sym": "C_tot",
+   "latex": "C_{\\text{tot}}",
+   "macro": "\\kCtot"
+  },
+  {
+   "sym": "Q_1charge",
+   "latex": "Q_1",
+   "macro": "\\kQchone"
+  },
+  {
+   "sym": "Q_2charge",
+   "latex": "Q_2",
+   "macro": "\\kQchtwo"
+  },
+  {
+   "sym": "Q_3charge",
+   "latex": "Q_3",
+   "macro": "\\kQchthree"
+  },
+  {
+   "sym": "E_0field",
+   "latex": "E_0",
+   "macro": "\\kEfo"
+  },
+  {
+   "sym": "E_cap",
+   "latex": "E_{\\text{cap}}",
+   "macro": "\\kEcap"
+  },
+  {
+   "sym": "ΔPE_cycle",
+   "latex": "\\Delta\\text{PE}_{\\text{cycle}}",
+   "macro": "\\kdPEcycle"
+  },
+  {
+   "sym": "ΔPE_car",
+   "latex": "\\Delta\\text{PE}_{\\text{car}}",
+   "macro": "\\kdPEcar"
+  },
+  {
+   "sym": "n_e",
+   "latex": "n_{\\text{e}}"
+  },
+  {
+   "sym": "ε_0",
+   "latex": "\\varepsilon_0"
+  },
+  {
+   "sym": "κ",
+   "latex": "\\kappa"
+  }
+ ],
+ "concepts": [
+  {
+   "id": "electric-potential-energy",
+   "kind": "definition",
+   "section": "19.1",
+   "name": "电势能",
+   "symbol": "PE",
+   "type": "energy",
+   "statement": "静电力或库仑力是保守力，这意味着电场对电荷所做的功与路径无关，与无摩擦时的重力完全一样。当一个力是保守力时，就可以定义与该力相关联的势能，而且处理势能通常比直接计算功更容易，因为势能只取决于位置。保守力所做的功等于势能变化的负值，所以使正电荷从静止开始加速所做的功为正，它来自 PE 的减少。",
+   "forms": [
+    {
+     "id": "eq-work-and-pe",
+     "latex": "W = -\\Delta\\text{PE}",
+     "ktex": "\\kW = -\\kdPE",
+     "anchor": "19.1-electric-potential-energy"
+    }
+   ]
+  },
+  {
+   "id": "electric-potential",
+   "kind": "definition",
+   "section": "19.1",
+   "name": "电势",
+   "symbol": "V_volt",
+   "terms": [
+    "电势"
+   ],
+   "type": "voltage",
+   "statement": "电势是单位电荷的势能，$V = \\text{PE}/q$。由于电场所做的功，从而势能的变化，与检验电荷成正比，所以对电荷的依赖相互抵消，$V$ 与 $q$ 无关。",
+   "forms": [
+    {
+     "id": "eq-electric-potential",
+     "latex": "V = \\frac{\\text{PE}}{q}",
+     "ktex": "\\kV = \\frac{\\kPEtot}{\\kq}",
+     "anchor": "19.1-electric-potential"
+    }
+   ]
+  },
+  {
+   "id": "potential-difference",
+   "kind": "definition",
+   "section": "19.1",
+   "name": "电势差",
+   "symbol": "ΔV_volt",
+   "terms": [
+    "电势差（或电压）",
+    "电压",
+    "电势差"
+   ],
+   "type": "voltage",
+   "statement": "A、B 两点之间的电势差，是电荷从 A 移到 B 时势能的变化除以电荷。它的单位焦耳每库仑就是伏特，以亚历山德罗·伏打命名。电压是电势差的通称，电压总是指两点之间的电势差。电压与能量不同：摩托车蓄电池和汽车蓄电池都可以是 12 V，但其中一个储存的能量比另一个多得多。",
+   "forms": [
+    {
+     "id": "eq-potential-difference",
+     "latex": "\\Delta V = V_{\\text{B}} - V_{\\text{A}} = \\frac{\\Delta\\text{PE}}{q}",
+     "ktex": "\\kdV = \\kVB - \\kVA = \\frac{\\kdPE}{\\kq}",
+     "anchor": "19.1-potential-difference"
+    },
+    {
+     "id": "eq-volt",
+     "latex": "1\\ \\text{V} = 1\\ \\frac{\\text{J}}{\\text{C}}",
+     "anchor": "19.1-potential-difference"
+    }
+   ]
+  },
+  {
+   "id": "energy-from-potential-difference",
+   "kind": "skill",
+   "section": "19.1",
+   "name": "由电势差求能量",
+   "statement": "电势差与电势能之间的关系可以从两个方向来读：电势差是单位电荷的势能变化，而势能的变化是电荷乘以电势差。要求电池所输送的能量，就用它所移动的电荷乘以它的电压；要求移动了多少电荷，就用能量除以电压。这样求得的能量是绝对值，而失去能量的电池，其势能的变化为负。",
+   "forms": [
+    {
+     "id": "eq-pe-from-voltage",
+     "latex": "\\Delta V = \\frac{\\Delta\\text{PE}}{q}\\ \\text{和}\\ \\Delta\\text{PE} = q\\Delta V",
+     "ktex": "\\kdV = \\frac{\\kdPE}{\\kq}\\ \\text{和}\\ \\kdPE = \\kq\\kdV",
+     "anchor": "19.1-energy-from-voltage"
+    }
+   ]
+  },
+  {
+   "id": "charge-sign-and-potential",
+   "kind": "result",
+   "section": "19.1",
+   "name": "电荷的运动与电势",
+   "statement": "对电子来说的下坡，对正电荷来说就是上坡。电池把电子从其负极排斥开，并把它们吸引到正极，所以负电荷从 A 移到 B 时电势变化为 +12 V，而由于电荷是负的，$\\Delta\\text{PE} = q\\Delta V$ 为负，电池的势能减少了。就电势而言，无论哪种符号的电荷在移动，正极的电压都比负极高。"
+  },
+  {
+   "id": "zero-of-potential",
+   "kind": "idea",
+   "section": "19.1",
+   "name": "电势零点",
+   "statement": "你选作零伏的那一点是任意的，正如重力势能的零点是任意的，比如海平面或阶梯教室的地板。每个电池都有两个接线端，其电压就是两个接线端之间的电势差；对单个点所给出的电势，是以某个参考点为前提的，对点电荷通常取无穷远处，对仪表通常取地，而重要的是两点之间的电势差。"
+  },
+  {
+   "id": "electron-volt",
+   "kind": "definition",
+   "section": "19.1",
+   "name": "电子伏",
+   "terms": [
+    "电子伏"
+   ],
+   "statement": "在亚微观尺度上，每个粒子的能量只是一焦耳的极小一部分，但它却足以破坏有机分子并伤害活组织，所以这个尺度上的能量单位很方便。电子伏是元电荷经 1 V 的电势差加速后所获得的能量。电子经 50 V 加速获得 50 eV，二价离子经 100 V 加速获得 200 eV。以电子伏为单位的电子能量，在数值上与极板之间的电压相同。",
+   "forms": [
+    {
+     "id": "eq-electron-volt",
+     "latex": "1\\ \\text{eV} = (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{V}) = (1.60 \\times 10^{-19}\\ \\text{C})(1\\ \\text{J/C}) = 1.60 \\times 10^{-19}\\ \\text{J}",
+     "anchor": "19.1-electron-volt"
+    }
+   ]
+  },
+  {
+   "id": "energy-conservation-for-charges",
+   "kind": "result",
+   "section": "19.1",
+   "name": "电荷的能量守恒",
+   "statement": "如果没有功或热传递对系统增加或带走能量，系统的总能量保持不变。对于静电力这样的保守力，能量守恒表明，机械能，即动能与势能之和，是一个常量。带电粒子 PE 的减少变成它 KE 的增加，这里的 PE 现在是电势能。正如此前许多次那样，能量给人以深入的理解，使问题比跟踪力更容易。",
+   "forms": [
+    {
+     "id": "eq-energy-conservation-charge",
+     "latex": "\\text{KE}_{\\text{i}} + \\text{PE}_{\\text{i}} = \\text{KE}_{\\text{f}} + \\text{PE}_{\\text{f}}",
+     "ktex": "\\kKEi + \\kPEi = \\kKEf + \\kPEf",
+     "condition": "只有保守力",
+     "anchor": "19.1-conservation-of-energy"
+    },
+    {
+     "id": "eq-mechanical-energy-constant",
+     "latex": "\\text{KE} + \\text{PE} = \\text{常量}",
+     "ktex": "\\kKE + \\kPEtot = \\text{常量}",
+     "condition": "只有保守力",
+     "anchor": "19.1-conservation-of-energy"
+    }
+   ]
+  },
+  {
+   "id": "speed-from-potential-difference",
+   "kind": "skill",
+   "section": "19.1",
+   "name": "求被加速电荷的速率",
+   "statement": "只有保守力作用时，在真空中从静止被加速的电荷，其全部电势能都变为动能，所以由 $qV = mv^2/2$ 可得末速率。电子的末速率很大，证实了重力可以忽略。这也表明，由于电子的质量非常小，很小的电压就能轻易地把它们加速。远高于 100 V 的电压所产生的速率非常大，以至于相对论效应变得重要。",
+   "forms": [
+    {
+     "id": "eq-speed-from-voltage",
+     "latex": "v = \\sqrt{\\frac{2qV}{m}}",
+     "ktex": "\\kv = \\sqrt{\\frac{2\\kq\\kV}{m}}",
+     "condition": "电荷从静止开始被加速，非相对论",
+     "anchor": "19.1-ex-electron-speed"
+    }
+   ]
+  },
+  {
+   "id": "voltage-across-uniform-field",
+   "kind": "result",
+   "section": "19.2",
+   "name": "平行板之间的电压与电场",
+   "statement": "在匀强电场中，两点之间的电压等于电场强度乘以它们沿电场方向的距离，$V_\\text{AB} = Ed$，所以电场等于电压除以距离。电场对从正极板移到负极板的正电荷所做的功既是 $qV_\\text{AB}$，也是 $qEd$，电荷相互抵消。",
+   "forms": [
+    {
+     "id": "eq-uniform-field-voltage",
+     "latex": "V_{\\text{AB}} = Ed \\quad E = \\frac{V_{\\text{AB}}}{d}",
+     "ktex": "\\kVAB = \\kEf\\kd \\quad \\kEf = \\frac{\\kVAB}{\\kd}",
+     "condition": "仅限匀强电场",
+     "anchor": "19.2-voltage-between-plates"
+    },
+    {
+     "id": "eq-work-in-uniform-field",
+     "latex": "W = -\\Delta\\text{PE} = -q\\Delta V = qV_{\\text{AB}}",
+     "ktex": "\\kW = -\\kdPE = -\\kq\\kdV = \\kq\\kVAB",
+     "anchor": "19.2-voltage-between-plates"
+    }
+   ]
+  },
+  {
+   "id": "potential-scalar-field-vector",
+   "kind": "idea",
+   "section": "19.2",
+   "name": "电势是标量，电场是矢量",
+   "statement": "电势差或电场都可以描述任何电荷分布。电势差与能量联系最紧密，是没有方向的标量，而电场与力联系最紧密，是既有大小又有方向的矢量。当有几个电荷作用时，这一区别就很重要：电压按数值相加，而电场按矢量相加。"
+  },
+  {
+   "id": "volts-per-meter",
+   "kind": "result",
+   "section": "19.2",
+   "name": "电场的单位",
+   "statement": "关系式 $E = V_\\text{AB}/d$ 意味着电场的单位是伏特每米，而由电场的定义已知的单位是牛顿每库仑，所以这两者必定是同一个单位。写哪一个取决于电场是从力还是从电压来读；例题 19.5 中电荷所受的力以牛顿为单位，因为 1 V/m 就是 1 N/C。",
+   "forms": [
+    {
+     "id": "eq-field-units",
+     "latex": "1\\ \\text{N/C} = 1\\ \\text{V/m}",
+     "anchor": "19.2-voltage-between-plates"
+    }
+   ]
+  },
+  {
+   "id": "dielectric-breakdown-of-air",
+   "kind": "idea",
+   "section": "19.2",
+   "name": "空气的击穿",
+   "statement": "干空气能承受的最大电场强度约为 $3.0 \\times 10^6$ V/m。超过这个值，电场会使足够多的空气电离而成为导体，产生放电或火花，从而使电场减小。因此要让火花跳过 2.5 cm 的间隙，大约需要 75 kV，这就限制了导体之间能够存在的电压，例如输电线上的电压。表面上的尖端比光滑表面产生更大的电场，因此在较小的电压下就会产生火花，而潮湿空气在比干空气更低的电场强度下被击穿。"
+  },
+  {
+   "id": "field-is-potential-gradient",
+   "kind": "result",
+   "section": "19.2",
+   "name": "电场是电势的梯度",
+   "statement": "一般来说，无论电场是否均匀，它都指向电势降低的方向，因为作用在正电荷上的力既沿着电场方向，又指向较低的电势。电场的大小等于电势随距离的降低率：电势在距离上降低得越快，电场就越大。负号表示电场指向电势降低的方向。对于连续变化的电势，差值变成无穷小量，就需要用到微分学。",
+   "forms": [
+    {
+     "id": "eq-field-gradient",
+     "latex": "E = -\\frac{\\Delta V}{\\Delta s}",
+     "ktex": "\\kEf = -\\frac{\\kdV}{\\kds}",
+     "anchor": "19.2-field-as-gradient"
+    }
+   ]
+  },
+  {
+   "id": "potential-of-point-charge",
+   "kind": "result",
+   "section": "19.3",
+   "name": "点电荷的电势",
+   "statement": "电子这样的点电荷是物质的基本构成单元之一，而球形电荷分布产生的外部电场与点电荷的电场完全一样，所以点电荷的电势至关重要。微积分给出了把检验电荷从很远处移到距点电荷 $r$ 处所需的功。结合 $W = -q\\Delta V$，可知电势为 $kQ/r$，无穷远处的电势为零。负值意味着该电荷会把正电荷从较远处吸引过来，因为那里的电势比较远处的电势低。",
+   "forms": [
+    {
+     "id": "eq-point-charge-potential",
+     "latex": "V = \\frac{kQ}{r}",
+     "ktex": "\\kV = \\frac{k\\kQch}{\\kr}",
+     "condition": "点电荷，无穷远处 V = 0",
+     "anchor": "19.3-point-charge-potential"
+    }
+   ]
+  },
+  {
+   "id": "potential-versus-field-of-point-charge",
+   "kind": "idea",
+   "section": "19.3",
+   "name": "点电荷的电势与电场之比较",
+   "statement": "点电荷的电势随距离增大而减小，而点电荷的电场随距离的平方增大而减小，因为电场是单位电荷所受的力，而库仑定律是平方反比定律。两者以两种方式描述同一个电荷，它们衰减快慢的差别，就是单位电荷的能量与单位电荷的力之间的差别：前者在从无穷远处一路移入的整个路径上累积，后者只作用在一点。"
+  },
+  {
+   "id": "superposition-of-potential",
+   "kind": "result",
+   "section": "19.3",
+   "name": "电势的叠加",
+   "statement": "要求几个点电荷产生的电压，就把各个电压按数值相加。要求合电场，就把各个电场按矢量相加，同时考虑大小和方向。这与电势对应于能量（标量）、而电场对应于力（矢量）这一事实相符。这使电势在有几个电荷存在时成为更容易处理的量。"
+  },
+  {
+   "id": "sphere-potential-as-point-charge",
+   "kind": "result",
+   "section": "19.3",
+   "name": "带电球外的电势",
+   "statement": "金属球上的电荷均匀地分布开来，产生的电场就像位于球心的点电荷的电场。因此球面上和球外的电势，就是球心处等量点电荷的电势，而球面附近的电势取球的半径处的值。这就是范德格拉夫起电机的接线端的电荷和半径决定其电压的原因，也是孤立电荷难以储存的原因：相对较小的电荷就会产生很大的电压。"
+  },
+  {
+   "id": "potential-energy-of-point-charges",
+   "kind": "skill",
+   "section": "19.3",
+   "name": "求两个电荷的电势能",
+   "statement": "要求一对点电荷的势能，取其中一个电荷在另一个电荷所在位置产生的电势，再乘以第二个电荷，因为电势是单位电荷的势能。几个电荷组成的系统的能量，是对每一对电荷求和。异号电荷相互吸引，其值为负，同号电荷相互排斥，其值为正。使同号电荷靠近会使它升高，使异号电荷靠近则使它降低。",
+   "forms": [
+    {
+     "id": "eq-potential-energy-of-point-charges",
+     "latex": "\\text{PE} = qV = kqQ/r",
+     "ktex": "\\kPEtot = \\kq\\kV = k\\kq\\kQch/\\kr"
+    }
+   ]
+  },
+  {
+   "id": "equipotential-lines",
+   "kind": "definition",
+   "section": "19.4",
+   "name": "等势线与等势面",
+   "terms": [
+    "等势线"
+   ],
+   "statement": "你可以把电势形象化，正如用场线把电场形象化。电势恒定的线，在二维中是等势线，在三维中是等势面，等势（equipotential）也可用作名词。点电荷的电势 $kQ/r$ 在围绕该电荷、半径为 $r$ 的球面上任何地方都相同。因此点电荷的等势面是球面，在平面内则是圆。使电荷沿这些线上任何地方移动都不需要做功，而使电荷从一条等势线移到另一条等势线则需要做功。"
+  },
+  {
+   "id": "equipotentials-perpendicular-to-field",
+   "kind": "result",
+   "section": "19.4",
+   "name": "等势线与场线垂直",
+   "statement": "沿等势线移动电荷不需要做功，因为沿等势线的电势差为零，而只有当力垂直于运动时功才为零。作用在电荷上的力沿电场方向，所以沿等势线的运动必定垂直于电场。电荷、电场和距离都不为零时，它们之间夹角的余弦必须为零，夹角必须是 90°。这条规则在任何情况下都成立，它使你能够由场线画出等势线，也能由等势线画出场线。",
+   "forms": [
+    {
+     "id": "eq-work-along-equipotential",
+     "latex": "W = -\\Delta\\text{PE} = -q\\Delta V = 0",
+     "ktex": "\\kW = -\\kdPE = -\\kq\\kdV = 0",
+     "condition": "沿等势线运动",
+     "anchor": "19.4-perpendicular-to-field"
+    },
+    {
+     "id": "eq-work-perpendicular-to-field",
+     "latex": "W = Fd\\cos\\theta = qEd\\cos\\theta = 0",
+     "ktex": "\\kW = \\kF\\kd\\cos\\theta = \\kq\\kEf\\kd\\cos\\theta = 0",
+     "condition": "沿等势线运动",
+     "anchor": "19.4-perpendicular-to-field"
+    }
+   ]
+  },
+  {
+   "id": "conductor-is-equipotential",
+   "kind": "result",
+   "section": "19.4",
+   "name": "导体是等势体",
+   "statement": "在静态情形下，电场必定垂直于任何导体的表面，而等势线垂直于电场，所以导体是一个等势面。导体表面上不能有电压差，否则电荷就会流动。因为导体是等势体，它可以替代任何等势面。带电的球形导体可以替代其等势球面中心的点电荷，而保持外部的电场和电势不变。放在两块极板之间等势线处的导体板会维持同样的电场。"
+  },
+  {
+   "id": "sketch-equipotentials",
+   "kind": "skill",
+   "section": "19.4",
+   "name": "画等势线",
+   "statement": "已知电场线，就画出与之垂直的等势线。已知等势线（比如在实验室里用电压表测得的），就画出与等势线垂直的场线。电势在正电荷附近最大，在负电荷附近最小，所以你也可以标出电势增大的方向，场线由高电势指向低电势。"
+  },
+  {
+   "id": "equipotential-spacing-and-field",
+   "kind": "idea",
+   "section": "19.4",
+   "name": "等势线的间距与场强",
+   "statement": "在两块平行导体板之间，等势线均匀间隔且相互平行，因为电场是均匀的，电势在间隙中以恒定的速率下降。电场较强处，电势随距离变化得较快，所以按相等电压间隔画出的等势线会挤在一起；电场较弱处则分得较开。电势的等值线越靠近，电场就越强，就像在重力势的等高线密集处山坡更陡。"
+  },
+  {
+   "id": "capacitor",
+   "kind": "definition",
+   "section": "19.5",
+   "name": "电容器",
+   "terms": [
+    "电容器"
+   ],
+   "statement": "电容器是储存电荷的器件，其应用范围从滤除无线电接收中的静电干扰，到心脏除颤器中的储能。商用电容器通常有两个彼此靠近但不接触的导电部分，其间通常有一层绝缘体。当你把电池的接线端接到一个原先不带电的电容器上时，等量的正电荷和负电荷分开，分别聚集在它的两块极板上。电容器整体仍为电中性，但说它储存了电荷 $Q$。它能储存的电荷量取决于所加的电压和它的物理特性，比如大小。"
+  },
+  {
+   "id": "capacitance",
+   "kind": "definition",
+   "section": "19.5",
+   "name": "电容",
+   "symbol": "C_cap",
+   "terms": [
+    "电容"
+   ],
+   "type": "capacitance",
+   "statement": "电容是电容器在两端每加 1 伏电压时所储存的电荷量，$C = Q/V$。加在任何电容器上的电压越大，储存的电荷越多，而不同的电容器在同样电压下储存的电荷不同。电容的单位法拉是库仑每伏特，是一个很大的电容，典型的电容器从皮法到毫法不等。",
+   "forms": [
+    {
+     "id": "eq-capacitance",
+     "latex": "C = \\frac{Q}{V}",
+     "ktex": "\\kCap = \\frac{\\kQch}{\\kV}",
+     "anchor": "19.5-charge-and-voltage"
+    },
+    {
+     "id": "eq-charge-proportional-to-voltage",
+     "latex": "E \\propto Q, \\quad V \\propto E, \\quad Q \\propto V",
+     "ktex": "\\kEf \\propto \\kQch, \\quad \\kV \\propto \\kEf, \\quad \\kQch \\propto \\kV",
+     "anchor": "19.5-charge-and-voltage"
+    },
+    {
+     "id": "eq-charge-stored",
+     "latex": "Q = CV",
+     "ktex": "\\kQch = \\kCap\\kV",
+     "anchor": "19.5-charge-and-voltage"
+    },
+    {
+     "id": "eq-farad",
+     "latex": "1\\ \\text{F} = \\frac{1\\ \\text{C}}{1\\ \\text{V}}",
+     "anchor": "19.5-charge-and-voltage"
+    },
+    {
+     "id": "eq-capacitor-voltage",
+     "latex": "V_{\\text{c}} = \\frac{Q}{C}",
+     "ktex": "\\kVc = \\frac{\\kQch}{\\kCap}",
+     "section": "21.6",
+     "anchor": "21.6-rc-circuits"
+    }
+   ]
+  },
+  {
+   "id": "parallel-plate-capacitance",
+   "kind": "result",
+   "section": "19.5",
+   "name": "平行板电容器的电容",
+   "statement": "平行板电容器是两块面积为 $A$、相距 $d$ 的相同导体板。同号电荷相互排斥，异号电荷相互吸引，而电荷之间的力随距离增大而减小。极板越大，能储存的电荷越多，因为电荷可以散布得更开。极板越靠近，其上异号电荷之间的吸引就越强。因此电容随面积增大、随间距减小，而且只有这两个因素。其中的常数是真空电容率，$8.85 \\times 10^{-12}$ F/m，它的值很小，与法拉很大相对应：平行板电容器必须有很大的面积才能接近一法拉。",
+   "forms": [
+    {
+     "id": "eq-parallel-plate-capacitance",
+     "latex": "C = \\varepsilon_0\\frac{A}{d}",
+     "ktex": "\\kCap = \\varepsilon_0\\frac{A}{\\kd}",
+     "condition": "平行极板，其间为空气或真空",
+     "anchor": "19.5-parallel-plate"
+    }
+   ]
+  },
+  {
+   "id": "dielectric",
+   "kind": "definition",
+   "section": "19.5",
+   "name": "电介质",
+   "terms": [
+    "电介质"
+   ],
+   "statement": "使间距变小可得到更大的电容，但这时最大电压必须按比例降低以避免击穿，因为 $E = V/d$。一个重要的解决办法，是在极板之间放入一种称为电介质的绝缘材料，并使间距尽可能小。间距变小提高了电容，而且许多绝缘体在被击穿之前能承受比空气更强的电场。水的介电常量很大，但很少用作电介质，而潮湿空气在比干空气更低的电压下就会产生火花。"
+  },
+  {
+   "id": "capacitance-with-dielectric",
+   "kind": "result",
+   "section": "19.5",
+   "name": "有电介质时的电容",
+   "statement": "两块极板之间有电介质时，电容比同样的极板在真空中的电容大一个因子 $\\kappa$，$\\kappa$ 称为介电常量，它取决于材料。真空的介电常量恰为 1，空气的非常接近 1。因此充满空气的电容器的行为很像极板之间是真空的电容器，只是当电场变得太大时空气可能变成导体。特氟龙的介电常量是 2.1，水的是 80，钛酸锶的是 233。同一个电容器充满特氟龙后，电容更大，也能加上大得多的电压，因此储存的电荷是 42 倍。",
+   "forms": [
+    {
+     "id": "eq-parallel-plate-dielectric",
+     "latex": "C = \\kappa\\varepsilon_0\\frac{A}{d}",
+     "ktex": "\\kCap = \\kappa\\varepsilon_0\\frac{A}{\\kd}",
+     "condition": "有电介质的平行板电容器",
+     "anchor": "19.5-dielectric"
+    }
+   ]
+  },
+  {
+   "id": "dielectric-strength",
+   "kind": "definition",
+   "section": "19.5",
+   "name": "介电强度",
+   "terms": [
+    "介电强度"
+   ],
+   "statement": "绝缘材料的介电强度，是使它开始被击穿并导电的最大电场强度。平行板之间的电场是电压除以间距，所以介电强度限制了对给定的极板间距所能加的电压。对于 1.00 mm 的空气，极限是 3000 V；对于 1.00 mm 的特氟龙，其介电强度为 $60 \\times 10^6$ V/m，极限是 60,000 V。"
+  },
+  {
+   "id": "dielectric-polarization",
+   "kind": "idea",
+   "section": "19.5",
+   "name": "电介质的极化",
+   "statement": "从微观上看，电介质之所以增大电容，是因为它被极化：它的分子越容易极化，介电常量就越大。极化分子最靠近极板的一端与极板上的电荷之间的库仑力是吸引力，而且非常强，因为它们靠得非常近。它把比空间为真空时更多的电荷吸引到极板上。换个角度看，场线终止于电介质的表面电荷上，所以从一块极板穿到另一块极板的场线更少。对于同样的电荷，内部的电场比真空中的小，电压 $V = Ed$ 也一样，而由于 $C = Q/V$，电容就更大。介电常量是真空中的电场与材料中的电场之比，它与材料的可极化性密切相关。原子之所以极化，是因为外部电荷使其电子云移位，而水这样的极性分子本身带有电荷分离，因此更容易极化。",
+   "forms": [
+    {
+     "id": "eq-dielectric-constant",
+     "latex": "\\kappa = \\frac{E_0}{E}",
+     "ktex": "\\kappa = \\frac{\\kEfo}{\\kEf}",
+     "anchor": "19.5-polarization"
+    }
+   ]
+  },
+  {
+   "id": "permittivity-of-free-space",
+   "kind": "axiom",
+   "section": "19.5",
+   "name": "真空电容率",
+   "symbol": "ε_0",
+   "statement": "真空电容率是常量 $\\varepsilon_0 = 8.85 \\times 10^{-12}$ F/m，它决定极板之间为真空的平行板电容器的电容。它的值很小，与法拉很大有关。",
+   "forms": [
+    {
+     "id": "eq-permittivity-of-free-space",
+     "latex": "\\varepsilon_0 = 8.85 \\times 10^{-12}\\;\\text{F/m}"
+    }
+   ]
+  },
+  {
+   "id": "parallel-plate-capacitor",
+   "kind": "definition",
+   "section": "19.5",
+   "name": "平行板电容器",
+   "terms": [
+    "平行板电容器"
+   ],
+   "statement": "平行板电容器是两块相隔一定距离的相同导体板。"
+  },
+  {
+   "id": "equivalent-capacitance",
+   "kind": "definition",
+   "section": "19.6",
+   "name": "等效电容",
+   "statement": "许多应用把几个电容器连接在一起，这个组合的作用就像一个等效电容器。它的总电容既取决于各个电容器，也取决于它们的连接方式。串联和并联这两种简单而常见的连接方式给出的总电容容易计算，一些更复杂的连接可化为这两种的组合。"
+  },
+  {
+   "id": "series-capacitance",
+   "kind": "result",
+   "section": "19.6",
+   "name": "串联电容",
+   "statement": "在串联的电容器上加一个电压时，大小为 $Q$ 的异号电荷流向原先不带电的组合的两端。电荷守恒要求每个电容器的极板上电荷的大小相等，因为这些原先电中性的器件只是使电荷分开。各个电容器两端的电压为 $Q/C_1$、$Q/C_2$ 和 $Q/C_3$，总电压是它们之和。把总电压写成 $Q/C_\\text{S}$ 并约去电荷，就得到倒数之和。这个组合类似于一个极板间距比任何单个电容器都大的有效电容器，所以串联的总电容小于任何单个电容。",
+   "forms": [
+    {
+     "id": "eq-series-capacitance",
+     "latex": "\\frac{1}{C_{\\text{S}}} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\frac{1}{C_3} + \\ldots",
+     "ktex": "\\frac{1}{\\kCS} = \\frac{1}{\\kCone} + \\frac{1}{\\kCtwo} + \\frac{1}{\\kCthree} + \\ldots",
+     "condition": "串联的电容器",
+     "anchor": "19.6-series"
+    },
+    {
+     "id": "eq-series-voltages",
+     "latex": "V = V_1 + V_2 + V_3",
+     "ktex": "\\kV = \\kVone + \\kVtwo + \\kVthree",
+     "condition": "串联的电容器",
+     "anchor": "19.6-series"
+    }
+   ]
+  },
+  {
+   "id": "parallel-capacitance",
+   "kind": "result",
+   "section": "19.6",
+   "name": "并联电容",
+   "statement": "在并联中，每个电容器两端的电压都等于电源的电压，因为导体把每个电容器直接连到电源上，而导体是等势体。因此每个电容器所带的电荷，就是它单独存在时所带的电荷。总电荷是各个电荷之和，$C_\\text{p}V = C_1V + C_2V + C_3V$，约去电压，就得到并联的总电容恰是各个电容之和。这个等效电容器有效的极板面积更大，因而电容更大。",
+   "forms": [
+    {
+     "id": "eq-parallel-capacitance",
+     "latex": "C_{\\text{p}} = C_1 + C_2 + C_3 + \\ldots",
+     "ktex": "\\kCp = \\kCone + \\kCtwo + \\kCthree + \\ldots",
+     "condition": "并联的电容器",
+     "anchor": "19.6-parallel"
+    },
+    {
+     "id": "eq-parallel-charges",
+     "latex": "Q = Q_1 + Q_2 + Q_3",
+     "ktex": "\\kQch = \\kQchone + \\kQchtwo + \\kQchthree",
+     "condition": "并联的电容器",
+     "anchor": "19.6-parallel"
+    }
+   ]
+  },
+  {
+   "id": "reduce-series-parallel-combinations",
+   "kind": "skill",
+   "section": "19.6",
+   "name": "化简串联和并联的电容器",
+   "statement": "更复杂的电容器连接有时可以是串联和并联的组合。要求总电容，就要识别出串联和并联的部分，算出它们的电容，再求总电容。例如，把两个串联的电容器换成它们的串联电容，再把它与第三个电容器按并联相加。对更大的组合，一块一块地做下去直到得到总电容，也同样适用。"
+  },
+  {
+   "id": "capacitor-energy",
+   "kind": "result",
+   "section": "19.7",
+   "name": "电容器中储存的能量",
+   "symbol": "E_cap",
+   "type": "energy",
+   "statement": "电容器中储存的能量是电势能，取决于电容器上的电荷和电压。应用 $\\Delta\\text{PE} = q\\Delta V$ 时要小心，因为电容器开始时电压为零，在充电过程中逐渐升到全电压。充电期间的平均电压是最终电压的一半，所以储存的能量是电荷与电压乘积的一半，而不是整个乘积。因为 $Q = CV$，你可以用电荷、电压和电容中的任意两个把同一能量表示出来。电荷以库仑为单位、电压以伏特为单位、电容以法拉为单位时，能量以焦耳为单位。",
+   "forms": [
+    {
+     "id": "eq-capacitor-energy",
+     "latex": "E_{\\text{cap}} = \\frac{QV}{2} = \\frac{CV^2}{2} = \\frac{Q^2}{2C}",
+     "ktex": "\\kEcap = \\frac{\\kQch\\kV}{2} = \\frac{\\kCap\\kV^2}{2} = \\frac{\\kQch^2}{2\\kCap}",
+     "anchor": "19.7-energy-stored"
+    },
+    {
+     "id": "eq-capacitor-energy-qv",
+     "latex": "E_{\\text{cap}} = \\frac{QV}{2}",
+     "ktex": "\\kEcap = \\frac{\\kQch\\kV}{2}",
+     "anchor": "19.7-energy-stored"
+    }
+   ]
+  },
+  {
+   "id": "average-voltage-while-charging",
+   "kind": "idea",
+   "section": "19.7",
+   "name": "充电时的平均电压",
+   "statement": "放在电容器上的第一份电荷所经历的电压变化为零，因为电容器不带电时电压为零；最后一份电荷经历全部电压，因为此时电容器上已有全电压。电压与电荷成正比上升，所以充电过程中电容器上的平均电压是最终电压的一半，全部电荷应当按通过这一电压来计算。这就是能量为 $QV/2$ 而不是 $QV$ 的原因。"
+  },
+  {
+   "id": "capacitor-energy-applications",
+   "kind": "idea",
+   "section": "19.7",
+   "name": "电容器储能的用途",
+   "statement": "除颤器把它的能量储存在电容器中，操作者可以根据情况调节。在短时间内送到一个人胸前一对电极板上的大量电荷，可以终止心脏或心室颤动那种快速而不规则的跳动，让身体自身的起搏器恢复正常的节律。许多公共场所的自动体外除颤器会诊断患者的心脏状况，并以合适的能量和波形施加电击。不那么引人注目的是，微电子学中的电容器在你更换电池时供给能量，它们还为照相机的闪光灯供电。"
+  },
+  {
+   "id": "defibrillator",
+   "kind": "idea",
+   "section": "19.7",
+   "name": "除颤器",
+   "terms": [
+    "除颤器"
+   ],
+   "statement": "除颤器是向心脏病发作患者的心脏施加电击、以恢复其正常跳动节律的机器。它把能量储存在电容器中，并以一次猝发的形式释放出来。"
+  }
+ ],
+ "concept_prereqs": [
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "potential-energy"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "conservative-force"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "path-independence-of-gravity"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "work"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "electric-potential-energy",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "electric-potential",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "electric-potential",
+   "prereq": "test-charge"
+  },
+  {
+   "concept": "electric-potential",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "electric-potential",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "potential-difference",
+   "prereq": "electric-potential"
+  },
+  {
+   "concept": "potential-difference",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "potential-difference",
+   "prereq": "joule"
+  },
+  {
+   "concept": "potential-difference",
+   "prereq": "pe-reference-level"
+  },
+  {
+   "concept": "energy-from-potential-difference",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "energy-from-potential-difference",
+   "prereq": "count-charges-from-charge"
+  },
+  {
+   "concept": "energy-from-potential-difference",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "charge-sign-and-potential",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "charge-sign-and-potential",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "charge-sign-and-potential",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "charge-sign-and-potential",
+   "prereq": "electric-field-direction"
+  },
+  {
+   "concept": "zero-of-potential",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "zero-of-potential",
+   "prereq": "pe-reference-level"
+  },
+  {
+   "concept": "electron-volt",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "electron-volt",
+   "prereq": "elementary-charge"
+  },
+  {
+   "concept": "electron-volt",
+   "prereq": "joule"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "mechanical-energy"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "conservation-of-mechanical-energy"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "kinetic-energy"
+  },
+  {
+   "concept": "energy-conservation-for-charges",
+   "prereq": "pe-to-ke"
+  },
+  {
+   "concept": "speed-from-potential-difference",
+   "prereq": "energy-conservation-for-charges"
+  },
+  {
+   "concept": "speed-from-potential-difference",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "speed-from-potential-difference",
+   "prereq": "speed-from-work-energy"
+  },
+  {
+   "concept": "speed-from-potential-difference",
+   "prereq": "solve-with-mechanical-energy"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "force-from-electric-field"
+  },
+  {
+   "concept": "voltage-across-uniform-field",
+   "prereq": "calculate-work"
+  },
+  {
+   "concept": "potential-scalar-field-vector",
+   "prereq": "electric-potential"
+  },
+  {
+   "concept": "potential-scalar-field-vector",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "potential-scalar-field-vector",
+   "prereq": "scalar"
+  },
+  {
+   "concept": "potential-scalar-field-vector",
+   "prereq": "vector"
+  },
+  {
+   "concept": "volts-per-meter",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "volts-per-meter",
+   "prereq": "electric-field"
+  },
+  {
+   "concept": "dielectric-breakdown-of-air",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "dielectric-breakdown-of-air",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "dielectric-breakdown-of-air",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "field-is-potential-gradient",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "field-is-potential-gradient",
+   "prereq": "electric-field-direction"
+  },
+  {
+   "concept": "field-is-potential-gradient",
+   "prereq": "charge-sign-and-potential"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "electric-potential"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "coulomb-constant"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "zero-of-potential"
+  },
+  {
+   "concept": "potential-of-point-charge",
+   "prereq": "field-of-point-charge"
+  },
+  {
+   "concept": "potential-versus-field-of-point-charge",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "potential-versus-field-of-point-charge",
+   "prereq": "field-of-point-charge"
+  },
+  {
+   "concept": "potential-versus-field-of-point-charge",
+   "prereq": "universal-gravitation"
+  },
+  {
+   "concept": "superposition-of-potential",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "superposition-of-potential",
+   "prereq": "potential-scalar-field-vector"
+  },
+  {
+   "concept": "superposition-of-potential",
+   "prereq": "superposition-of-electric-fields"
+  },
+  {
+   "concept": "superposition-of-potential",
+   "prereq": "analytical-vector-addition"
+  },
+  {
+   "concept": "sphere-potential-as-point-charge",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "sphere-potential-as-point-charge",
+   "prereq": "excess-charge-on-surface"
+  },
+  {
+   "concept": "sphere-potential-as-point-charge",
+   "prereq": "van-de-graaff-generator"
+  },
+  {
+   "concept": "potential-energy-of-point-charges",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "potential-energy-of-point-charges",
+   "prereq": "superposition-of-potential"
+  },
+  {
+   "concept": "potential-energy-of-point-charges",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "potential-energy-of-point-charges",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "equipotential-lines",
+   "prereq": "potential-of-point-charge"
+  },
+  {
+   "concept": "equipotential-lines",
+   "prereq": "electric-field-lines"
+  },
+  {
+   "concept": "equipotential-lines",
+   "prereq": "electric-potential"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "equipotential-lines"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "field-is-potential-gradient"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "calculate-work"
+  },
+  {
+   "concept": "equipotentials-perpendicular-to-field",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "equipotentials-perpendicular-to-field"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "field-perpendicular-to-conductor"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "electrostatic-equilibrium"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "grounding"
+  },
+  {
+   "concept": "conductor-is-equipotential",
+   "prereq": "excess-charge-on-surface"
+  },
+  {
+   "concept": "sketch-equipotentials",
+   "prereq": "equipotentials-perpendicular-to-field"
+  },
+  {
+   "concept": "sketch-equipotentials",
+   "prereq": "sketch-field-lines"
+  },
+  {
+   "concept": "sketch-equipotentials",
+   "prereq": "field-of-two-charges"
+  },
+  {
+   "concept": "sketch-equipotentials",
+   "prereq": "charge-sign-and-potential"
+  },
+  {
+   "concept": "equipotential-spacing-and-field",
+   "prereq": "equipotential-lines"
+  },
+  {
+   "concept": "equipotential-spacing-and-field",
+   "prereq": "field-is-potential-gradient"
+  },
+  {
+   "concept": "equipotential-spacing-and-field",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "equipotential-spacing-and-field",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "conductor"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "electric-charge"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "capacitor",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "capacitance",
+   "prereq": "capacitor"
+  },
+  {
+   "concept": "capacitance",
+   "prereq": "potential-difference"
+  },
+  {
+   "concept": "capacitance",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "capacitance",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "parallel-plate-capacitance",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "parallel-plate-capacitance",
+   "prereq": "like-charges-repel"
+  },
+  {
+   "concept": "parallel-plate-capacitance",
+   "prereq": "coulombs-law"
+  },
+  {
+   "concept": "parallel-plate-capacitance",
+   "prereq": "uniform-field-between-plates"
+  },
+  {
+   "concept": "dielectric",
+   "prereq": "parallel-plate-capacitance"
+  },
+  {
+   "concept": "dielectric",
+   "prereq": "dielectric-breakdown-of-air"
+  },
+  {
+   "concept": "dielectric",
+   "prereq": "insulator"
+  },
+  {
+   "concept": "capacitance-with-dielectric",
+   "prereq": "parallel-plate-capacitance"
+  },
+  {
+   "concept": "capacitance-with-dielectric",
+   "prereq": "dielectric"
+  },
+  {
+   "concept": "dielectric-strength",
+   "prereq": "dielectric"
+  },
+  {
+   "concept": "dielectric-strength",
+   "prereq": "dielectric-breakdown-of-air"
+  },
+  {
+   "concept": "dielectric-strength",
+   "prereq": "voltage-across-uniform-field"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "capacitance-with-dielectric"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "polarization"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "polar-molecule"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "field-line-properties"
+  },
+  {
+   "concept": "dielectric-polarization",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "equivalent-capacitance",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "series-capacitance",
+   "prereq": "equivalent-capacitance"
+  },
+  {
+   "concept": "series-capacitance",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "series-capacitance",
+   "prereq": "conservation-of-charge"
+  },
+  {
+   "concept": "series-capacitance",
+   "prereq": "parallel-plate-capacitance"
+  },
+  {
+   "concept": "parallel-capacitance",
+   "prereq": "equivalent-capacitance"
+  },
+  {
+   "concept": "parallel-capacitance",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "parallel-capacitance",
+   "prereq": "conductor-is-equipotential"
+  },
+  {
+   "concept": "parallel-capacitance",
+   "prereq": "parallel-plate-capacitance"
+  },
+  {
+   "concept": "reduce-series-parallel-combinations",
+   "prereq": "series-capacitance"
+  },
+  {
+   "concept": "reduce-series-parallel-combinations",
+   "prereq": "parallel-capacitance"
+  },
+  {
+   "concept": "capacitor-energy",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "capacitor-energy",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "capacitor-energy",
+   "prereq": "electric-potential-energy"
+  },
+  {
+   "concept": "capacitor-energy",
+   "prereq": "work-as-area"
+  },
+  {
+   "concept": "average-voltage-while-charging",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "average-voltage-while-charging",
+   "prereq": "energy-from-potential-difference"
+  },
+  {
+   "concept": "capacitor-energy-applications",
+   "prereq": "capacitor-energy"
+  },
+  {
+   "concept": "capacitor-energy-applications",
+   "prereq": "capacitor"
+  },
+  {
+   "concept": "permittivity-of-free-space",
+   "prereq": "capacitance"
+  },
+  {
+   "concept": "parallel-plate-capacitor",
+   "prereq": "capacitor"
+  },
+  {
+   "concept": "defibrillator",
+   "prereq": "capacitor-energy"
+  }
+ ]
+}

@@ -1,0 +1,888 @@
+{
+ "id": "19.7",
+ "module": "m42395",
+ "chapter": "19",
+ "title": "电容器中储存的能量",
+ "short": "电容器中储存的能量",
+ "lead": "电容器把<span data-concept=\"energy\">能量</span>储存在它所分开的电荷中，而储存的量并不简单地等于电荷乘以<span data-concept=\"potential-difference\">电压</span>。本节算出储存了多少，并顺着这份<span data-concept=\"energy\">能量</span>讲到它最重要的用途，即心脏除颤器，它把这份能量一次性释放到病人的胸前。",
+ "objectives": [
+  "列举电容器的一些用途。",
+  "用方程的形式表示电容器中储存的能量。",
+  "说明除颤器的功能。"
+ ],
+ "summary_html": "<ul><li>电容器用于多种装置，包括除颤器、计算器之类的微电子装置和闪光灯，用来供给<span data-concept=\"energy\">能量</span>。</li><li><span data-concept=\"capacitor-energy\">电容器中储存的能量</span>可以用三种方式表示：$\\kEcap = \\frac{\\kQch\\kV}{2} = \\frac{\\kCap\\kV^2}{2} = \\frac{\\kQch^2}{2\\kCap}$，其中 $\\kQch$ 是电荷，$\\kV$ 是<span data-concept=\"potential-difference\">电压</span>，$\\kCap$ 是电容器的<span data-concept=\"capacitance\">电容</span>。电荷以库仑为单位、<span data-concept=\"potential-difference\">电压</span>以伏特为单位、<span data-concept=\"capacitance\">电容</span>以法拉为单位时，<span data-concept=\"energy\">能量</span>的单位是焦耳。</li></ul>",
+ "notes": "书中没有给出答案的三道习题被略去：加上 119 V 电压的 165 µF 电动机电容器中储存的能量，证明电容器所能储存的最大能量与其电介质的体积成正比，以及关于除颤器的“自拟习题”。",
+ "ai": {
+  "text": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "low"
+   },
+   {
+    "model": "claude-opus-5-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ],
+  "figures": [
+   {
+    "model": "claude-opus-5",
+    "effort": "high"
+   },
+   {
+    "model": "claude-fable-5-1",
+    "effort": "low"
+   },
+   {
+    "model": "claude-sonnet-5-5",
+    "effort": "medium"
+   }
+  ]
+ },
+ "built": "2026-10-22",
+ "exercise_notes": "布鲁姆层级、概念标签、权重和提示由 AI 生成。答案取自书后答案。本节没有答案的三道习题被略去：119 V 下的 165 µF 电动机电容器，证明最大能量与电介质的体积成正比，以及“自拟习题”。八道 AP 题中有四道有答案，设为判分选择题；另外四道没有印出选项，也没有答案，所以各作为开放题，附有一条由 AI 撰写并已标明的建议思路。19.6 节唯一的一道思考题问的是，要储存大量能量的电容器组应当串联还是并联；本节电容器的能量就能回答它，所以它放在这里，source_section 为 19.6，19.6 的说明也这样讲。本节自己的内容没有留待后面的页面。三道思考题的建议思路由 AI 撰写并已标明。数值答案接受 2% 的容差。",
+ "figures": [
+  {
+   "id": "fig-calculator",
+   "kind": "photo",
+   "number": "19.23",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-capacitor-energy",
+   "kind": "sim",
+   "draws": [
+    "capacitance",
+    "voltage",
+    "charge",
+    "energy"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "slope label off the average line; note dropped"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  },
+  {
+   "id": "fig-aed",
+   "kind": "photo",
+   "number": "19.24",
+   "widths": [
+    250
+   ],
+   "draws": []
+  },
+  {
+   "id": "sim-defibrillator",
+   "kind": "sim",
+   "draws": [
+    "energy",
+    "voltage",
+    "capacitance",
+    "charge"
+   ],
+   "ai": [
+    {
+     "model": "claude-opus-5",
+     "effort": "high",
+     "part": "built"
+    },
+    {
+     "model": "claude-fable-5-1",
+     "effort": "low",
+     "part": "built"
+    },
+    {
+     "model": "claude-opus-5-5",
+     "effort": "high",
+     "part": "curve label off the curve; note cut to one fact"
+    },
+    {
+     "model": "claude-sonnet-5-5",
+     "effort": "medium",
+     "part": "翻译"
+    }
+   ]
+  }
+ ],
+ "coverage": [
+  {
+   "span": "capacitor-uses",
+   "concept": "capacitor-energy-applications",
+   "verb": "introduces"
+  },
+  {
+   "span": "capacitor-uses",
+   "concept": "capacitor",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "average-voltage-while-charging",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "capacitor-energy",
+   "verb": "introduces"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "energy-from-potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "potential-difference",
+   "verb": "uses"
+  },
+  {
+   "span": "energy-stored",
+   "concept": "capacitance",
+   "verb": "uses"
+  },
+  {
+   "span": "defibrillator",
+   "concept": "capacitor-energy",
+   "verb": "uses"
+  },
+  {
+   "span": "defibrillator",
+   "concept": "capacitor-energy-applications",
+   "verb": "uses"
+  },
+  {
+   "span": "defibrillator",
+   "concept": "defibrillator",
+   "verb": "introduces"
+  }
+ ],
+ "exercises": [
+  {
+   "id": "cq1",
+   "source_id": "fs-id1579143",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "在一个孤立的电容器中，电荷保持不变；插入电介质时，带电电容器中所含的能量如何变化？这是否意味着做了功？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电容器是孤立的，所以没有电荷能离开或到达极板，$\\kQch$ 保持不变。在能量的三种形式中，用已知量写出的是 $\\kEcap = \\kQch^2/2\\kCap$。插入电介质使电容从 $\\kCap$ 增大到 $\\kappa\\kCap$，而电荷不变，所以能量减小为原来的 $1/\\kappa$。电容器两端的电压以同样的倍数减小，因为 $\\kV = \\kQch/\\kCap$。减少的能量用于对平板做功。电容器把被极化的电介质吸入极板之间的区域，并对它做功，所以你得把平板拉住，而不是去推它。功是做了，但是电容器对电介质做的，不是你对电容器做的。"
+   }
+  },
+  {
+   "id": "cq2",
+   "source_id": "eip-482",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "与电池相连的电容器中储存的能量，在插入电介质时会怎样？这个过程中做功了吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电池使电容器两端的电压保持不变，所以用 $\\kEcap = \\kCap\\kV^2/2$。电介质使电容从 $\\kCap$ 增大到 $\\kappa\\kCap$，而 $\\kV$ 仍是电池所定的值，所以储存的能量增大为原来的 $\\kappa$ 倍。极板上的电荷也增大同样的倍数，因为 $\\kQch = \\kCap\\kV$。多出来的电荷来自电池，电池把它推到极板上，是做了功的。电池供给的能量多于电容器得到的能量，因为它还要做电容器把平板拉进去时所做的功。所以功是做了，是电池做的。这两种情形的方向相反：电荷保持不变时能量减小，电压保持不变时能量增大，答案取决于电路保持这二者中的哪一个不变。"
+   }
+  },
+  {
+   "id": "cq3",
+   "source_id": "fs-id3075419",
+   "source_section": "19.6",
+   "kind": "conceptual-question",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "如果想在电容器组中储存大量能量，应该把电容器串联还是并联？请解释。",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "应当并联。并联的电容器电容相加，$\\kCp = \\kCone + \\kCtwo + \\kCthree + \\ldots$，所以电容器组的电容比其中任何一个都大；而串联的电容器按 $1/\\kCS = 1/\\kCone + 1/\\kCtwo + \\ldots$ 组合，总电容比其中最小的还小。给定电压下储存的能量是 $\\kEcap = \\kCap\\kV^2/2$，它随电容增大，所以在同样的电压下，并联组储存的能量比串联组多得多。不过串联也有它自己的用处：每个电容器只承受总电压的一部分，所以一串串联的电容器可以充电到一个会把其中任何一个单独击穿的电压。"
+   }
+  },
+  {
+   "id": "ap1",
+   "source_id": "fs-id1679446",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "考虑一个没有电介质的平行板电容器，与电压固定的电池相连。往电容器中插入电介质时会发生什么？<ol type=\"a\"><li>什么都不变，只是电容器里现在有了电介质。</li><li>系统中的能量减小，使得很容易把电介质移入。</li><li>你必须做功才能移动电介质，系统中的能量增大。</li><li>极性反转会毁坏电池。</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "什么都不变，只是电容器里现在有了电介质。",
+     "系统中的能量减小，使得很容易把电介质移入。",
+     "你必须做功才能移动电介质，系统中的能量增大。",
+     "极性反转会毁坏电池。"
+    ],
+    "correct": 2,
+    "hint": "电池使电压保持不变，所以想一想：电介质使电容增大而电压不变时，$\\kEcap = \\kCap\\kV^2/2$ 会怎样变化。",
+    "solution": "(c)"
+   }
+  },
+  {
+   "id": "ap2",
+   "source_id": "fs-id1635118",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "考虑一个没有电介质的平行板电容器。它原先与电压固定的电池相连来充电，现在电池已被断开。往电容器中插入电介质时，系统的能量和电介质材料会怎样？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电池断开后，极板上的电荷不能再变化，所以保持不变的量是 $\\kQch$，推理要用的形式是 $\\kEcap = \\kQch^2/2\\kCap$。电介质使电容增大为原来的 $\\kappa$ 倍，所以储存的能量减小为原来的 $1/\\kappa$，电容器两端的电压也随之减小，因为 $\\kV = \\kQch/\\kCap$。电容器失去的能量用在了电介质上：极板之间的场使平板极化，然后把被极化的平板拉进缝隙，所以电容器把电介质吸进去，并对它做功，你得把平板拉住，而不是去推它。这与电池仍然连着时的情形相反，那时固定的是电压而不是电荷，储存的能量增大。"
+   }
+  },
+  {
+   "id": "ap3",
+   "source_id": "fs-id1381555",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "增加并联的电容器个数时，电路中储存的能量会怎样？串联呢？<ol type=\"a\"><li>增大，增大</li><li>增大，减小</li><li>减小，增大</li><li>减小，减小</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "增大，增大",
+     "增大，减小",
+     "减小，增大",
+     "减小，减小"
+    ],
+    "correct": 1,
+    "hint": "在给定电压下，能量随总电容变化，而并联的电容相加，串联的电容按倒数组合。",
+    "solution": "(b)"
+   }
+  },
+  {
+   "id": "ap4",
+   "source_id": "fs-id2643905",
+   "kind": "ap-test-prep",
+   "bloom": "Evaluate",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defibrillator",
+   "prompt": "电容与例题 19.1 中的汽车蓄电池具有相同总内能的电容器，其电容必须是多少？你能解释为什么这个用途要用电池而不用电容器吗？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "电容必须是 $1.00\\times 10^{4}\\ \\text{F}$。例题 19.1 求得，12.0 V 的汽车蓄电池移动 60,000 C 的电荷，释放 $\\kq\\kdV = (60{,}000\\ \\text{C})(12.0\\ \\text{V}) = 7.20\\times 10^{5}\\ \\text{J}$。由 $\\kEcap = \\kCap\\kV^2/2$ 解出电容，得 $\\kCap = 2\\kEcap/\\kV^2 = 2(7.20\\times 10^{5}\\ \\text{J})/(12.0\\ \\text{V})^2 = 1.00\\times 10^{4}\\ \\text{F}$，是心脏除颤器的 $10.0\\ \\mu\\text{F}$ 的 10 亿倍。若把它做成空气填充、极板间距 1.00 mm 的平行板电容器，则需要面积为 $A = \\kCap\\kd/\\varepsilon_0 = 1.13\\times 10^{12}\\ \\text{m}^2$ 的极板。能量与电压的平方成正比，所以只工作在 12 V 的装置必须容纳巨大的电荷，而电池把能量储存在化学反应中，比极板上分开的电荷紧凑得多。电池在数小时内释放能量时，电压还几乎保持稳定，而电容器的电压 $\\kV = \\kQch/\\kCap$ 会随电荷的流失而下降，并且它是一下子把能量放出来。"
+   }
+  },
+  {
+   "id": "ap5",
+   "source_id": "fs-id2646945",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "考虑一个平行板电容器，金属极板各为边长 1.00 m 的正方形，间距 1.00 mm。加上 $3.00\\times 10^{3}\\ \\text{V}$ 的电压时，这个电容器的能量是多少？<ol type=\"a\"><li>$3.98\\times 10^{-2}\\ \\text{J}$</li><li>$5.08\\times 10^{14}\\ \\text{J}$</li><li>$1.33\\times 10^{-5}\\ \\text{J}$</li><li>$1.69\\times 10^{11}\\ \\text{J}$</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "$3.98\\times 10^{-2}\\ \\text{J}$",
+     "$5.08\\times 10^{14}\\ \\text{J}$",
+     "$1.33\\times 10^{-5}\\ \\text{J}$",
+     "$1.69\\times 10^{11}\\ \\text{J}$"
+    ],
+    "correct": 0,
+    "hint": "先由 $\\kCap = \\varepsilon_0 A/\\kd$ 求电容（极板之间什么都没有），再把它和电压代入 $\\kEcap = \\kCap\\kV^2/2$。",
+    "solution": "(a)"
+   }
+  },
+  {
+   "id": "ap6",
+   "source_id": "fs-id1222456",
+   "kind": "ap-test-prep",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "考虑一个平行板电容器，金属极板各为边长 1.00 m 的正方形，间距 1.00 mm。如果电容器上的电荷为 30.0 µC，这个系统中储存的内能是多少？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "储存的能量是 $5.08\\times 10^{-2}\\ \\text{J}$。已知电荷而未给电压，所以用 $\\kEcap = \\kQch^2/2\\kCap$。极板的电容为 $\\kCap = \\varepsilon_0 A/\\kd = (8.85\\times 10^{-12}\\ \\text{F/m})(1.00\\ \\text{m}^2)/(1.00\\times 10^{-3}\\ \\text{m}) = 8.85\\times 10^{-9}\\ \\text{F}$。于是 $\\kEcap = (3.00\\times 10^{-5}\\ \\text{C})^2/(2 \\times 8.85\\times 10^{-9}\\ \\text{F}) = 5.08\\times 10^{-2}\\ \\text{J}$。极板两端的电压为 $\\kV = \\kQch/\\kCap = 3.39\\times 10^{3}\\ \\text{V}$，用 $\\kQch\\kV/2$ 算出的能量相同。"
+   }
+  },
+  {
+   "id": "ap7",
+   "source_id": "fs-id1368915",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "考虑一个平行板电容器，金属极板各为边长 1.00 m 的正方形，间距 1.00 mm。如果电压保持不变而极板面积增大，则电容___，储存的能量___。<ol type=\"a\"><li>减小，减小</li><li>减小，增大</li><li>增大，减小</li><li>增大，增大</li></ol>",
+   "answer": {
+    "type": "choice",
+    "generated_by": "source",
+    "options": [
+     "减小，减小",
+     "减小，增大",
+     "增大，减小",
+     "增大，增大"
+    ],
+    "correct": 3,
+    "hint": "平行板的电容是 $\\varepsilon_0 A/\\kd$，电压保持不变时能量是 $\\kCap\\kV^2/2$，所以两个答案都由面积对 $\\kCap$ 的影响得出。",
+    "solution": "(d)"
+   }
+  },
+  {
+   "id": "ap8",
+   "source_id": "fs-id3530911",
+   "kind": "ap-test-prep",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "考虑一个平行板电容器，金属极板各为边长 1.00 m 的正方形，间距 1.00 mm。如果电荷保持不变而极板面积增大，这个系统的能量会怎样？",
+   "answer": {
+    "type": "open",
+    "generated_by": "ai",
+    "solution": "极板变大使电容增大，因为 $\\kCap = \\varepsilon_0 A/\\kd$，面积在分子上。能量如何变化，取决于面积变化时哪个量保持不变。这里保持不变的是电荷，所以用 $\\kEcap = \\kQch^2/2\\kCap$ 推理：$\\kQch$ 不变而 $\\kCap$ 增大，储存的能量减小。极板两端的电压也随之减小，因为 $\\kV = \\kQch/\\kCap$。在上一题中，保持不变的是电压，同样的面积增大使能量增大。两种情形里，面积对电容的作用相同，而决定能量增大还是减小的，是电路保持不变的那个量。"
+   }
+  },
+  {
+   "id": "p1",
+   "source_id": "eip-838",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defibrillator",
+   "prompt": "（a）一台心脏除颤器的 $10.0\\ \\mu\\text{F}$ 电容器充电到 $9.00\\times 10^{3}\\ \\text{V}$，其中储存的能量是多少？（b）求储存的电荷量。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kEcap$",
+      "value": 405,
+      "unit": "J",
+      "hint": "已知电容和电压，所以用 $\\kEcap = \\kCap\\kV^2/2$。"
+     },
+     {
+      "part": "(b) $\\kQch$",
+      "value": 90.0,
+      "unit": "mC",
+      "hint": "电容器在给定电压下所带的电荷是 $\\kQch = \\kCap\\kV$。"
+     }
+    ],
+    "solution": "（a）405 J。（b）90.0 mC。"
+   }
+  },
+  {
+   "id": "p2",
+   "source_id": "fs-id2657760",
+   "kind": "problem",
+   "bloom": "Apply",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defibrillator",
+   "prompt": "在心脏直视手术中，使心脏除颤所需的能量要小得多。（a）储存 40.0 J 能量的心脏除颤器，其 $8.00\\ \\mu\\text{F}$ 电容器上所加的电压是多少？（b）求储存的电荷量。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kV$",
+      "value": 3.16,
+      "unit": "kV",
+      "hint": "由 $\\kEcap = \\kCap\\kV^2/2$ 解出电压，得 $\\kV = \\sqrt{2\\kEcap/\\kCap}$。"
+     },
+     {
+      "part": "(b) $\\kQch$",
+      "value": 25.3,
+      "unit": "mC",
+      "hint": "电压求出后，电荷由 $\\kQch = \\kCap\\kV$ 得出。"
+     }
+    ],
+    "solution": "（a）3.16 kV。（b）25.3 mC。"
+   }
+  },
+  {
+   "id": "p4",
+   "source_id": "eip-981",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "假设你有一个 9.00 V 的电池、一个 $2.00\\ \\mu\\text{F}$ 的电容器和一个 $7.40\\ \\mu\\text{F}$ 的电容器。（a）求两个电容器串联到电池上时储存的电荷和能量。（b）并联时同样求解。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kQch$ in series",
+      "value": 1.42e-05,
+      "unit": "C",
+      "hint": "先由 $1/\\kCS = 1/\\kCone + 1/\\kCtwo$ 求串联电容，再用 $\\kQch = \\kCS\\kV$，其中 $\\kV$ 为电池的 9.00 V。"
+     },
+     {
+      "part": "(a) $\\kEcap$ in series",
+      "value": 6.38e-05,
+      "unit": "J",
+      "hint": "用串联电容，按 $\\kEcap = \\kCS\\kV^2/2$ 计算。"
+     },
+     {
+      "part": "(b) $\\kQch$ in parallel",
+      "value": 8.46e-05,
+      "unit": "C",
+      "hint": "并联的电容相加，$\\kCp = \\kCone + \\kCtwo$，电荷为 $\\kQch = \\kCp\\kV$。"
+     },
+     {
+      "part": "(b) $\\kEcap$ in parallel",
+      "value": 0.000381,
+      "unit": "J",
+      "hint": "用并联电容，按 $\\kEcap = \\kCp\\kV^2/2$ 计算；同样两个电容器这样连接，储存的能量多得多。"
+     }
+    ],
+    "solution": "（a）$1.42\\times 10^{-5}\\ \\text{C}$，$6.38\\times 10^{-5}\\ \\text{J}$。（b）$8.46\\times 10^{-5}\\ \\text{C}$，$3.81\\times 10^{-4}\\ \\text{J}$。"
+   }
+  },
+  {
+   "id": "p5",
+   "source_id": "fs-id832930",
+   "kind": "problem",
+   "bloom": "Analyze",
+   "place": {
+    "at": "end"
+   },
+   "cite": "energy-stored",
+   "prompt": "一位紧张的物理学家担心，他的木框书柜的两块金属搁板如果被静电（也许由摩擦产生）充电，可能获得很高的电压。（a）如果空搁板的面积为 $1.00\\times 10^{2}\\ \\text{m}^{2}$，相距 0.200 m，它们的电容是多少？（b）如果在它们上面放上大小为 2.00 nC 的异号电荷，它们之间的电压是多少？（c）为了说明这个电压的危害很小，计算储存的能量。",
+   "answer": {
+    "type": "multi",
+    "generated_by": "source",
+    "parts": [
+     {
+      "part": "(a) $\\kCap$",
+      "value": 4.43e-09,
+      "unit": "F",
+      "hint": "两块搁板是中间为空气的平行板电容器，所以 $\\kCap = \\varepsilon_0 A/\\kd$。"
+     },
+     {
+      "part": "(b) $\\kV$",
+      "value": 0.452,
+      "unit": "V",
+      "hint": "由电荷和电容，按 $\\kV = \\kQch/\\kCap$ 得出电压。"
+     },
+     {
+      "part": "(c) $\\kEcap$",
+      "value": 4.52e-10,
+      "unit": "J",
+      "hint": "电荷和电容都已知，三种形式中最快的是 $\\kEcap = \\kQch^2/2\\kCap$。"
+     }
+    ],
+    "solution": "（a）$4.43\\times 10^{-9}\\ \\text{F}$。（b）$0.452\\ \\text{V}$。（c）$4.52\\times 10^{-10}\\ \\text{J}$。"
+   }
+  },
+  {
+   "id": "p8",
+   "source_id": "fs-id3088661",
+   "kind": "problem",
+   "bloom": "Evaluate",
+   "tag": "不合理的结果",
+   "place": {
+    "at": "end"
+   },
+   "cite": "defibrillator",
+   "prompt": "<strong>不合理的结果</strong>（a）某一天，起动一台卡车的发动机需要 $9.60\\times 10^{3}\\ \\text{J}$ 的电能。计算在 12.0 V 下能储存这么多能量的电容器的电容。（b）这个结果有什么不合理之处？（c）是哪些假设造成的？",
+   "answer": {
+    "type": "number",
+    "value": 133,
+    "unit": "F",
+    "part": "(a)",
+    "generated_by": "source",
+    "hint": "由 $\\kEcap = \\kCap\\kV^2/2$ 解出电容，$\\kCap = 2\\kEcap/\\kV^2$，并记住电压是平方的，所以 12.0 V 对这样的要求来说是很小的电压。",
+    "solution": "（a）133 F。（b）这样的电容器太大，没法由卡车携带。电容器的尺寸会极其巨大。（c）假设电容器能储存所需的那么多能量，是不合理的。"
+   }
+  }
+ ],
+ "exercise_concepts": [
+  {
+   "exercise": "cq1",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "cq1",
+   "concept": "capacitance-with-dielectric",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "cq2",
+   "concept": "capacitance-with-dielectric",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "parallel-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "cq3",
+   "concept": "series-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap1",
+   "concept": "capacitance-with-dielectric",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap2",
+   "concept": "capacitance-with-dielectric",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "parallel-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap3",
+   "concept": "series-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap4",
+   "concept": "capacitor-energy-applications",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap5",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap6",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap7",
+   "concept": "average-voltage-while-charging",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "parallel-plate-capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "ap8",
+   "concept": "average-voltage-while-charging",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p1",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p1",
+   "concept": "capacitor-energy-applications",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p2",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p2",
+   "concept": "capacitor-energy-applications",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p4",
+   "concept": "series-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p4",
+   "concept": "parallel-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p5",
+   "concept": "parallel-plate-capacitance",
+   "weight": 3,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p5",
+   "concept": "capacitance",
+   "weight": 2,
+   "weights_by": "ai"
+  },
+  {
+   "exercise": "p8",
+   "concept": "capacitor-energy"
+  },
+  {
+   "exercise": "p8",
+   "concept": "capacitor-energy-applications",
+   "weight": 2,
+   "weights_by": "ai"
+  }
+ ],
+ "referents": [
+  {
+   "id": "defibrillator",
+   "label": "例题 19.11 中的心脏除颤器",
+   "figures": [
+    "sim-defibrillator"
+   ]
+  },
+  {
+   "id": "capacitor",
+   "label": "除颤器的电容器",
+   "figures": [
+    "sim-defibrillator"
+   ]
+  },
+  {
+   "id": "paddles",
+   "label": "除颤器的电极板",
+   "figures": [
+    "sim-defibrillator"
+   ]
+  }
+ ],
+ "footnotes": [
+  {
+   "id": "c-defib-figure",
+   "kind": "correction",
+   "html": "书中指向图 19.23，而那是计算器，电容器保存的是它的存储器内容；除颤器是图 19.24。"
+  }
+ ],
+ "derivations": [
+  {
+   "id": "capacitor-energy",
+   "what": "电容器中储存的能量",
+   "source": "《大学物理（第2版）》，19.7 电容器中储存的能量",
+   "nodes": [
+    {
+     "assumes": [
+      {
+       "text": "电容器中储存的能量是放在它上面的电荷 $\\kQch$ 的电势能。",
+       "src": "19.7"
+      },
+      {
+       "text": "电容器充电时，电压从 $0$ 稳定地升到 $\\kV$，所以全部电荷所经历的平均电压是 $\\kV/2$。",
+       "src": "19.7"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kdPE} = \\mk{q}{\\kq}\\mk{V}{\\kdV}",
+      "src": "19.1"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\mk{q}{\\kQch}\\mk{V}{\\kdV}",
+       "uses": [
+        0
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\mk{q}{\\kQch}\\mk{V}{\\dfrac{\\kV}{2}}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch}\\mk{V}{\\kV}}{2}",
+       "uses": []
+      }
+     ],
+     "src": "19.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kQch = \\kCap\\kV",
+       "src": "19.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch}\\mk{V}{\\kV}}{2}",
+      "src": "19.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kCap\\kV}\\,\\mk{V}{\\kV}}{2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kCap\\kV^2}}{2}",
+       "uses": [],
+       "map": {
+        "V": "q"
+       }
+      }
+     ],
+     "src": "19.7"
+    },
+    {
+     "assumes": [
+      {
+       "step": 0
+      },
+      {
+       "tex": "\\kQch = \\kCap\\kV",
+       "src": "19.5"
+      }
+     ],
+     "then": {
+      "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch}\\mk{V}{\\kV}}{2}",
+      "src": "19.7"
+     },
+     "steps": [
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch}\\,\\mk{V}{\\dfrac{\\kQch}{\\kCap}}}{2}",
+       "uses": [
+        1
+       ]
+      },
+      {
+       "tex": "\\mk{E}{\\kEcap} = \\dfrac{\\mk{q}{\\kQch^2}}{\\mk{V}{2\\kCap}}",
+       "uses": []
+      }
+     ],
+     "src": "19.7"
+    }
+   ]
+  }
+ ]
+}

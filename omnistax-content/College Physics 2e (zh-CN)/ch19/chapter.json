@@ -1,0 +1,730 @@
+{
+  "id": "19",
+  "dir": "ch19",
+  "title": "电势与电场",
+  "intro": {
+    "module": "m42320",
+    "slug": "19-introduction-to-electric-potential-and-electric-energy"
+  },
+  "sections": [
+    {
+      "id": "19.1",
+      "module": "m42324",
+      "title": "电势能：电势差",
+      "slug": "19-1-electric-potential-energy-potential-difference"
+    },
+    {
+      "id": "19.2",
+      "module": "m42326",
+      "title": "匀强电场中的电势",
+      "slug": "19-2-electric-potential-in-a-uniform-electric-field"
+    },
+    {
+      "id": "19.3",
+      "module": "m42328",
+      "title": "点电荷的电势",
+      "slug": "19-3-electrical-potential-due-to-a-point-charge"
+    },
+    {
+      "id": "19.4",
+      "module": "m42331",
+      "title": "等势线",
+      "slug": "19-4-equipotential-lines"
+    },
+    {
+      "id": "19.5",
+      "module": "m42333",
+      "title": "电容器与电介质",
+      "slug": "19-5-capacitors-and-dielectrics"
+    },
+    {
+      "id": "19.6",
+      "module": "m42336",
+      "title": "串联和并联的电容器",
+      "slug": "19-6-capacitors-in-series-and-parallel"
+    },
+    {
+      "id": "19.7",
+      "module": "m42395",
+      "title": "电容器中储存的能量",
+      "slug": "19-7-energy-stored-in-capacitors"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "q",
+      "concept": "electric-charge",
+      "meaning": "在电场中被移动的电荷，可正可负；也就是检验电荷，电势能要除以它",
+      "unit": "C",
+      "section": "19.1",
+      "anchor": "19.1-electric-potential-energy"
+    },
+    {
+      "sym": "E_field",
+      "concept": "electric-field",
+      "meaning": "使电荷加速的电场，所以作用在电荷上的力为 qE",
+      "unit": "N/C",
+      "section": "19.1",
+      "anchor": "19.1-electric-potential"
+    },
+    {
+      "sym": "W",
+      "concept": "work",
+      "meaning": "电场对电荷所做的功，它等于电荷势能变化的负值",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-electric-potential-energy"
+    },
+    {
+      "sym": "PE",
+      "concept": "electric-potential-energy",
+      "meaning": "电荷的电势能，之所以能定义，是因为库仑力是保守力；取某一点为参考点即可在任何点求得",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-electric-potential-energy"
+    },
+    {
+      "sym": "ΔPE",
+      "concept": "electric-potential-energy",
+      "meaning": "电荷从一点移到另一点时电势能的变化，电荷加速时为负",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-electric-potential-energy"
+    },
+    {
+      "sym": "V_volt",
+      "concept": "electric-potential",
+      "meaning": "电势，即单位电荷的势能，与检验电荷无关",
+      "unit": "V",
+      "section": "19.1",
+      "anchor": "19.1-electric-potential"
+    },
+    {
+      "sym": "ΔV_volt",
+      "concept": "potential-difference",
+      "meaning": "两点之间的电势差，或称电压：电荷在两点之间移动时势能的变化除以电荷",
+      "unit": "V",
+      "section": "19.1",
+      "anchor": "19.1-potential-difference"
+    },
+    {
+      "sym": "V_A",
+      "concept": "electric-potential",
+      "meaning": "A 点的电势，即电荷出发的那一点",
+      "unit": "V",
+      "section": "19.1",
+      "anchor": "19.1-potential-difference"
+    },
+    {
+      "sym": "V_B",
+      "concept": "electric-potential",
+      "meaning": "B 点的电势，即电荷移到的那一点",
+      "unit": "V",
+      "section": "19.1",
+      "anchor": "19.1-potential-difference"
+    },
+    {
+      "sym": "ΔPE_cycle",
+      "concept": "electric-potential-energy",
+      "meaning": "例题 19.1 中摩托车蓄电池所输送的能量，即它所移动的电荷乘以它的电压",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-ex-batteries"
+    },
+    {
+      "sym": "ΔPE_car",
+      "concept": "electric-potential-energy",
+      "meaning": "例题 19.1 中汽车蓄电池所输送的能量",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-ex-batteries"
+    },
+    {
+      "sym": "n_e",
+      "concept": "count-charges-from-charge",
+      "meaning": "每秒通过前照灯的电子数，即总电荷除以每个电子的电荷",
+      "section": "19.1",
+      "anchor": "19.1-ex-headlight"
+    },
+    {
+      "sym": "KE",
+      "concept": "kinetic-energy",
+      "meaning": "带电粒子的动能，随其电势能减小而增大",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-conservation-of-energy"
+    },
+    {
+      "sym": "KE_i",
+      "concept": "kinetic-energy",
+      "meaning": "起始时的动能，对从静止开始加速的电荷为零",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-conservation-of-energy"
+    },
+    {
+      "sym": "KE_f",
+      "concept": "kinetic-energy",
+      "meaning": "末了时的动能，mv²/2",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-conservation-of-energy"
+    },
+    {
+      "sym": "PE_i",
+      "concept": "electric-potential-energy",
+      "meaning": "起始时的电势能，对处于电势 V 的电荷为 qV",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-conservation-of-energy"
+    },
+    {
+      "sym": "PE_f",
+      "concept": "electric-potential-energy",
+      "meaning": "末了时的电势能，在取参考点处为零",
+      "unit": "J",
+      "section": "19.1",
+      "anchor": "19.1-conservation-of-energy"
+    },
+    {
+      "sym": "v",
+      "concept": "instantaneous-speed",
+      "meaning": "电荷经电势差加速后的末速率",
+      "unit": "m/s",
+      "section": "19.1",
+      "anchor": "19.1-ex-electron-speed"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "被加速粒子的质量，电子为 9.11 × 10⁻³¹ kg",
+      "unit": "kg",
+      "section": "19.1",
+      "anchor": "19.1-ex-electron-speed"
+    },
+    {
+      "sym": "E_field",
+      "concept": "electric-field",
+      "meaning": "两块平行金属板之间的匀强电场，是一个矢量，其大小记为 E",
+      "unit": "V/m",
+      "section": "19.2",
+      "anchor": "19.2-potential-and-field"
+    },
+    {
+      "sym": "ΔV_volt",
+      "concept": "potential-difference",
+      "meaning": "极板之间的电势差，是与能量联系最紧密的标量",
+      "unit": "V",
+      "section": "19.2",
+      "anchor": "19.2-potential-and-field"
+    },
+    {
+      "sym": "V_AB",
+      "concept": "potential-difference",
+      "meaning": "A、B 两点之间的电压，与电势差相反：V_A − V_B，对从高电势移到低电势的电荷为正",
+      "unit": "V",
+      "section": "19.2",
+      "anchor": "19.2-voltage-between-plates"
+    },
+    {
+      "sym": "V_A",
+      "concept": "electric-potential",
+      "meaning": "极板 A 的电势，即处于较高电势的正极板",
+      "unit": "V",
+      "section": "19.2",
+      "anchor": "19.2-voltage-between-plates",
+      "ref": "plate-a"
+    },
+    {
+      "sym": "V_B",
+      "concept": "electric-potential",
+      "meaning": "极板 B 的电势，即处于较低电势的负极板",
+      "unit": "V",
+      "section": "19.2",
+      "anchor": "19.2-voltage-between-plates",
+      "ref": "plate-b"
+    },
+    {
+      "sym": "W",
+      "concept": "work",
+      "meaning": "电场使正电荷从极板 A 移到极板 B 所做的功，qV_AB 或 qEd",
+      "unit": "J",
+      "section": "19.2",
+      "anchor": "19.2-voltage-between-plates"
+    },
+    {
+      "sym": "q",
+      "concept": "electric-charge",
+      "meaning": "从 A 移到 B 的正电荷，它在电压与电场的关系中相互抵消",
+      "unit": "C",
+      "section": "19.2",
+      "anchor": "19.2-voltage-between-plates"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "作用在电荷上的力 qE，因电场均匀，在极板之间各处相同",
+      "unit": "N",
+      "section": "19.2",
+      "anchor": "19.2-ex-electron-gun-field"
+    },
+    {
+      "sym": "d",
+      "concept": "distance",
+      "meaning": "从 A 到 B 的距离，即极板间距",
+      "unit": "m",
+      "section": "19.2",
+      "anchor": "19.2-voltage-between-plates"
+    },
+    {
+      "sym": "Δs",
+      "concept": "distance",
+      "meaning": "电势发生变化所跨越的距离",
+      "unit": "m",
+      "section": "19.2",
+      "anchor": "19.2-field-as-gradient"
+    },
+    {
+      "sym": "V_volt",
+      "concept": "electric-potential",
+      "meaning": "点电荷在距它 r 处的电势，取无穷远处的电势为零",
+      "unit": "V",
+      "section": "19.3",
+      "anchor": "19.3-point-charge-potential"
+    },
+    {
+      "sym": "Q_charge",
+      "concept": "electric-charge",
+      "meaning": "产生该电势的点电荷，或金属球上的电荷",
+      "unit": "C",
+      "section": "19.3",
+      "anchor": "19.3-point-charge-potential"
+    },
+    {
+      "sym": "q",
+      "concept": "electric-charge",
+      "meaning": "从很远处移到距点电荷 r 处的检验电荷",
+      "unit": "C",
+      "section": "19.3",
+      "anchor": "19.3-point-charge-potential"
+    },
+    {
+      "sym": "r_curv",
+      "concept": "distance",
+      "meaning": "从点电荷或带电球的球心到取电势的那一点的距离",
+      "unit": "m",
+      "section": "19.3",
+      "anchor": "19.3-point-charge-potential"
+    },
+    {
+      "sym": "k_coul",
+      "concept": "coulomb-constant",
+      "meaning": "库仑常量，8.99 × 10⁹ N·m²/C²",
+      "unit": "N·m²/C²",
+      "section": "19.3",
+      "anchor": "19.3-point-charge-potential"
+    },
+    {
+      "sym": "E_field",
+      "concept": "electric-field",
+      "meaning": "点电荷的电场，即单位电荷所受的力，按 1/r² 减小，而电势按 1/r 减小",
+      "unit": "N/C",
+      "section": "19.3",
+      "anchor": "19.3-scalar-and-vector"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "作用在检验电荷上的库仑力",
+      "unit": "N",
+      "section": "19.3",
+      "anchor": "19.3-scalar-and-vector"
+    },
+    {
+      "sym": "PE_g",
+      "concept": "gravitational-potential-energy",
+      "meaning": "重力势能 mgh，其零点取在海平面，类比于电势的零点",
+      "unit": "J",
+      "section": "19.3",
+      "anchor": "19.3-charged-spheres"
+    },
+    {
+      "sym": "h",
+      "concept": "position",
+      "meaning": "重力类比中海平面以上的高度",
+      "unit": "m",
+      "section": "19.3",
+      "anchor": "19.3-charged-spheres"
+    },
+    {
+      "sym": "V_volt",
+      "concept": "electric-potential",
+      "meaning": "电势，沿一条等势线或等势面保持恒定",
+      "unit": "V",
+      "section": "19.4",
+      "anchor": "19.4-equipotential-map"
+    },
+    {
+      "sym": "ΔV_volt",
+      "concept": "potential-difference",
+      "meaning": "等势线上两点之间的电势差，为零",
+      "unit": "V",
+      "section": "19.4",
+      "anchor": "19.4-perpendicular-to-field"
+    },
+    {
+      "sym": "Q_charge",
+      "concept": "electric-charge",
+      "meaning": "孤立的点电荷（其等势面是球面），或可以替代它的带电球",
+      "unit": "C",
+      "section": "19.4",
+      "anchor": "19.4-equipotential-map"
+    },
+    {
+      "sym": "q",
+      "concept": "electric-charge",
+      "meaning": "沿等势线移动的电荷，在等势线上不做功",
+      "unit": "C",
+      "section": "19.4",
+      "anchor": "19.4-perpendicular-to-field"
+    },
+    {
+      "sym": "W",
+      "concept": "work",
+      "meaning": "沿等势线移动电荷所做的功，因力垂直于运动而为零",
+      "unit": "J",
+      "section": "19.4",
+      "anchor": "19.4-perpendicular-to-field"
+    },
+    {
+      "sym": "E_field",
+      "concept": "electric-field",
+      "meaning": "电场，其场线在任何情况下都垂直于等势线",
+      "unit": "N/C",
+      "section": "19.4",
+      "anchor": "19.4-perpendicular-to-field"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "作用在电荷上的力的大小，沿电场方向",
+      "unit": "N",
+      "section": "19.4",
+      "anchor": "19.4-perpendicular-to-field"
+    },
+    {
+      "sym": "d",
+      "concept": "distance",
+      "meaning": "电荷沿等势线移动的距离",
+      "unit": "m",
+      "section": "19.4",
+      "anchor": "19.4-perpendicular-to-field"
+    },
+    {
+      "sym": "θ",
+      "concept": "angle",
+      "meaning": "力与运动之间的夹角，沿等势线必须为 90°",
+      "section": "19.4",
+      "anchor": "19.4-perpendicular-to-field"
+    },
+    {
+      "sym": "Q_charge",
+      "concept": "electric-charge",
+      "meaning": "电容器所储存的电荷：一块极板上为 +Q，另一块上为 −Q，电容器整体仍为电中性",
+      "redefines": true,
+      "unit": "C",
+      "section": "19.5",
+      "anchor": "19.5-capacitor-defined"
+    },
+    {
+      "sym": "V_volt",
+      "concept": "potential-difference",
+      "meaning": "加在电容器极板两端的电压",
+      "redefines": true,
+      "unit": "V",
+      "section": "19.5",
+      "anchor": "19.5-charge-and-voltage"
+    },
+    {
+      "sym": "E_field",
+      "concept": "electric-field",
+      "meaning": "极板之间的电场，与极板上的电荷成正比；在电介质中为减小后的电场",
+      "unit": "V/m",
+      "section": "19.5",
+      "anchor": "19.5-charge-and-voltage"
+    },
+    {
+      "sym": "E_0field",
+      "concept": "electric-field",
+      "meaning": "对同样的电荷，极板之间为真空时的电场",
+      "unit": "V/m",
+      "section": "19.5",
+      "anchor": "19.5-polarization"
+    },
+    {
+      "sym": "C_cap",
+      "concept": "capacitance",
+      "meaning": "电容，即每伏所储存的电荷量，由电容器的物理特性决定",
+      "unit": "F",
+      "section": "19.5",
+      "anchor": "19.5-charge-and-voltage"
+    },
+    {
+      "sym": "C_air",
+      "concept": "capacitance",
+      "meaning": "同样的极板之间为空气、尚未放入电介质时的电容",
+      "unit": "F",
+      "section": "19.5",
+      "anchor": "19.5-dielectric"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "一块极板的面积，以平方米计",
+      "unit": "m²",
+      "section": "19.5",
+      "anchor": "19.5-parallel-plate"
+    },
+    {
+      "sym": "d",
+      "concept": "distance",
+      "meaning": "极板之间的距离，以米计",
+      "unit": "m",
+      "section": "19.5",
+      "anchor": "19.5-parallel-plate"
+    },
+    {
+      "sym": "ε_0",
+      "concept": "permittivity-of-free-space",
+      "meaning": "真空电容率，8.85 × 10⁻¹² F/m，其值很小，与法拉很大有关",
+      "unit": "F/m",
+      "section": "19.5",
+      "anchor": "19.5-parallel-plate"
+    },
+    {
+      "sym": "κ",
+      "concept": "dielectric-polarization",
+      "meaning": "介电常量，电介质使电容增大的倍数；真空中的电场与材料中的电场之比，真空恰为 1",
+      "section": "19.5",
+      "anchor": "19.5-dielectric"
+    },
+    {
+      "sym": "C_1",
+      "concept": "capacitance",
+      "meaning": "组合中第一个电容器的电容",
+      "unit": "F",
+      "section": "19.6",
+      "anchor": "19.6-series",
+      "ref": "capacitor-1"
+    },
+    {
+      "sym": "C_2",
+      "concept": "capacitance",
+      "meaning": "组合中第二个电容器的电容",
+      "unit": "F",
+      "section": "19.6",
+      "anchor": "19.6-series",
+      "ref": "capacitor-2"
+    },
+    {
+      "sym": "C_3",
+      "concept": "capacitance",
+      "meaning": "组合中第三个电容器的电容",
+      "unit": "F",
+      "section": "19.6",
+      "anchor": "19.6-series",
+      "ref": "capacitor-3"
+    },
+    {
+      "sym": "C_S",
+      "concept": "capacitance",
+      "meaning": "串联电容器的总电容，小于任何单个电容",
+      "unit": "F",
+      "section": "19.6",
+      "anchor": "19.6-series"
+    },
+    {
+      "sym": "C_p",
+      "concept": "capacitance",
+      "meaning": "并联电容器的总电容，即各个电容之和",
+      "unit": "F",
+      "section": "19.6",
+      "anchor": "19.6-parallel"
+    },
+    {
+      "sym": "C_tot",
+      "concept": "capacitance",
+      "meaning": "串联与并联混合连接的电容器组合的总电容",
+      "unit": "F",
+      "section": "19.6",
+      "anchor": "19.6-mixed"
+    },
+    {
+      "sym": "C_cap",
+      "concept": "capacitance",
+      "meaning": "等效的单个电容器的电容，Q/V",
+      "unit": "F",
+      "section": "19.6",
+      "anchor": "19.6-series"
+    },
+    {
+      "sym": "Q_charge",
+      "concept": "electric-charge",
+      "meaning": "串联电容器每块极板上的电荷大小，或并联电容器的总电荷",
+      "redefines": true,
+      "unit": "C",
+      "section": "19.6",
+      "anchor": "19.6-series"
+    },
+    {
+      "sym": "Q_1charge",
+      "concept": "electric-charge",
+      "meaning": "并联时第一个电容器上的电荷，C₁V",
+      "unit": "C",
+      "section": "19.6",
+      "anchor": "19.6-parallel",
+      "ref": "capacitor-1"
+    },
+    {
+      "sym": "Q_2charge",
+      "concept": "electric-charge",
+      "meaning": "并联时第二个电容器上的电荷，C₂V",
+      "unit": "C",
+      "section": "19.6",
+      "anchor": "19.6-parallel",
+      "ref": "capacitor-2"
+    },
+    {
+      "sym": "Q_3charge",
+      "concept": "electric-charge",
+      "meaning": "并联时第三个电容器上的电荷，C₃V",
+      "unit": "C",
+      "section": "19.6",
+      "anchor": "19.6-parallel",
+      "ref": "capacitor-3"
+    },
+    {
+      "sym": "V_volt",
+      "concept": "potential-difference",
+      "meaning": "加在组合上的电压；并联时各电容器两端相同，串联时是各个电压之和",
+      "redefines": true,
+      "unit": "V",
+      "section": "19.6",
+      "anchor": "19.6-series"
+    },
+    {
+      "sym": "V_1volt",
+      "concept": "potential-difference",
+      "meaning": "串联时第一个电容器两端的电压，Q/C₁",
+      "unit": "V",
+      "section": "19.6",
+      "anchor": "19.6-series",
+      "ref": "capacitor-1"
+    },
+    {
+      "sym": "V_2volt",
+      "concept": "potential-difference",
+      "meaning": "串联时第二个电容器两端的电压，Q/C₂",
+      "unit": "V",
+      "section": "19.6",
+      "anchor": "19.6-series",
+      "ref": "capacitor-2"
+    },
+    {
+      "sym": "V_3volt",
+      "concept": "potential-difference",
+      "meaning": "串联时第三个电容器两端的电压，Q/C₃",
+      "unit": "V",
+      "section": "19.6",
+      "anchor": "19.6-series",
+      "ref": "capacitor-3"
+    },
+    {
+      "sym": "d",
+      "concept": "distance",
+      "meaning": "与串联连接等效的电容器的较大的极板间距",
+      "unit": "m",
+      "section": "19.6",
+      "anchor": "19.6-series"
+    },
+    {
+      "sym": "E_cap",
+      "concept": "capacitor-energy",
+      "meaning": "电容器中储存的能量，即其分开的电荷的电势能",
+      "unit": "J",
+      "section": "19.7",
+      "anchor": "19.7-energy-stored"
+    },
+    {
+      "sym": "Q_charge",
+      "concept": "electric-charge",
+      "meaning": "加上电压 V 时电容器上的电荷",
+      "unit": "C",
+      "section": "19.7",
+      "anchor": "19.7-energy-stored"
+    },
+    {
+      "sym": "V_volt",
+      "concept": "potential-difference",
+      "meaning": "电容器上的电压，随充电从零升到全值",
+      "redefines": true,
+      "unit": "V",
+      "section": "19.7",
+      "anchor": "19.7-energy-stored"
+    },
+    {
+      "sym": "ΔV_volt",
+      "concept": "potential-difference",
+      "meaning": "放在电容器上的电荷所经过的电势差：第一份电荷为零，最后一份为 V",
+      "unit": "V",
+      "section": "19.7",
+      "anchor": "19.7-energy-stored"
+    },
+    {
+      "sym": "C_cap",
+      "concept": "capacitance",
+      "meaning": "电容器的电容，通过 Q = CV 联系其电荷与电压",
+      "unit": "F",
+      "section": "19.7",
+      "anchor": "19.7-energy-stored"
+    },
+    {
+      "sym": "ΔPE",
+      "concept": "electric-potential-energy",
+      "meaning": "电荷 q 经过电压 ΔV 时的势能，应用于电容器时要小心",
+      "unit": "J",
+      "section": "19.7",
+      "anchor": "19.7-energy-stored"
+    },
+    {
+      "sym": "q",
+      "concept": "electric-charge",
+      "meaning": "充电时放在电容器上的全部电荷，视为经过平均电压 V/2",
+      "unit": "C",
+      "section": "19.7",
+      "anchor": "19.7-energy-stored"
+    },
+    {
+      "sym": "θ",
+      "concept": "angle",
+      "meaning": "力与路径之间的夹角，出现在难以直接计算的功 Fd cos θ 中",
+      "section": "19.1",
+      "anchor": "19.1-electric-potential"
+    },
+    {
+      "sym": "θ",
+      "concept": "angle",
+      "meaning": "力与路径之间的夹角，在极板之间为零，因为路径平行于电场",
+      "section": "19.2",
+      "anchor": "19.2-voltage-between-plates"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "海平面类比中重力势能 mgh 里的质量",
+      "unit": "kg",
+      "section": "19.3",
+      "anchor": "19.3-charged-spheres"
+    }
+  ]
+}
