@@ -38,7 +38,8 @@
     "ch07",
     "ch08",
     "ch09",
-    "ch10"
+    "ch10",
+    "ch11"
   ],
   "intro": {
     "module": "m42955",
@@ -5248,7 +5249,7 @@
       "name": "终极速度",
       "symbol": "v_t",
       "terms": [
-        "收尾速率"
+        "终极速率"
       ],
       "type": "velocity",
       "statement": "下落的物体不断加速，直到阻力增大到与它的重力相等。此时合力为零，所以由牛顿第二定律，加速度为零，速率保持不变。一旦不再忽略空气，自由落体最终就成了终极速度。",
@@ -5299,7 +5300,7 @@
           "id": "eq-stokes-sphere",
           "latex": "F_{\\text{S}} = 6\\pi R\\eta v",
           "ktex": "\\kFs = 6\\pi R\\keta\\kv",
-          "condition": "a small sphere moving slowly in a fluid",
+          "condition": "小球在流体中缓慢运动",
           "section": "12.6",
           "anchor": "12.6-viscous-drag"
         }
@@ -8417,7 +8418,7 @@
       "terms": [
         "流体"
       ],
-      "statement": "流体是一种物质状态，它会在侧向力（即切向力）作用下屈服，而固体则抵抗这种力。液体、气体和等离子体都是流体，因为其中的粒子都能彼此滑过，物质得以流动。本章的其余内容都建立在这一性质之上：由于流体不能承受切向力，它也就不能施加切向力，因此它对任何表面所施的力都垂直于该表面。"
+      "statement": "流体是一种物质状态，它会顺从侧向力（即切向力），而固体则抵抗这种力。液体、气体和等离子体都是流体，因为其中的粒子都能彼此滑过，物质得以流动。本章的其余内容都建立在这一性质之上：由于流体不能承受切向力，它也就不能施加切向力，因此它对任何表面所施的力都垂直于该表面。"
     },
     {
       "id": "phases-of-matter",
@@ -8458,7 +8459,7 @@
       "kind": "idea",
       "section": "11.2",
       "name": "密度可以识别物质",
-      "statement": "每种物质都有自己的密度，所以测得的密度有助于识别物体由什么构成。金的密度约为铁的两倍半，而铁的密度又约为铝的两倍半。密度还能揭示物质的物态和内部结构。液体和固体的密度大致相当，因为它们的原子紧密接触，而气体的密度则小得多，因为大量空隙把它们的原子隔开。"
+      "statement": "每种物质都有自己的密度，所以测得的密度有助于识别物体由什么构成。金的密度约为铁的两倍半，而铁的密度又约为铝的两倍半。密度还能揭示物质的物态和内部结构。液体和固体的密度大致相当，因为它们的原子紧密接触，而气体的密度则小得多，因为大量空旷空间把它们的原子隔开。"
     },
     {
       "id": "calculate-mass-from-density",
@@ -8500,7 +8501,7 @@
       "kind": "definition",
       "section": "11.3",
       "name": "帕斯卡",
-      "statement": "压强的SI单位是帕斯卡，等于每平方米一牛顿。日常的压强要用很大的帕斯卡数值来表示，所以其他几种单位仍在通用：气象学中用毫巴，轮胎压强用磅每平方英寸，血压用毫米汞柱。知道其中每一种等于多少帕斯卡，才能把用一种仪器测得的结果与另一种相比较。",
+      "statement": "压强的 SI 单位是帕斯卡，等于每平方米一牛顿。日常的压强要用很大的帕斯卡数值来表示，所以其他几种单位仍在通用：气象学中用毫巴，轮胎压强用磅每平方英寸，血压用毫米汞柱。知道其中每一种等于多少帕斯卡，才能把用一种仪器测得的结果与另一种相比较。",
       "forms": [
         {
           "id": "eq-pascal",
@@ -8514,7 +8515,7 @@
       "kind": "result",
       "section": "11.3",
       "name": "流体压强的方向",
-      "statement": "静止流体不能承受切向力，所以它也不能施加切向力。因此流体对任何表面所施的力都垂直于该表面，而且流体同时推着每一个表面：游泳者在各个方向上都感到压强，轮胎中的空气向外推着轮胎的每一个部分。压强本身是标量，没有方向；只有它所产生的力才有方向。"
+      "statement": "静态流体不能承受切向力，所以它也不能施加切向力。因此流体对任何表面所施的力都垂直于该表面，而且流体同时推着每一个表面：游泳者在各个方向上都感到压强，轮胎中的空气向外推着轮胎的每一个部分。压强本身是标量，没有方向；只有它所产生的力才有方向。"
     },
     {
       "id": "force-from-pressure",
@@ -8579,7 +8580,7 @@
       "name": "大气压",
       "symbol": "P_atm",
       "type": "pressure",
-      "statement": "大气压和任何其他流体一样，是由流体的重力产生的压强，这里指的是某一高度以上空气的重力。平均而言，在海平面上，立在一平方米上的一柱空气重 $1.01\\times 10^{5}$ N，这就是一个大气压。随着你爬高，它会下降，因为你上方的空气变少了，这就是你乘飞机时耳朵会发出爆响的原因。",
+      "statement": "大气压是由流体的重力产生的压强，这种流体与其他任何流体一样，在这里指的是某一高度以上空气的重力。平均而言，在海平面上，立在一平方米上的一柱空气重 $1.01\\times 10^{5}$ N，这就是一个大气压。随着你爬高，它会下降，因为你上方的空气变少了，这就是你乘飞机时耳朵会发出爆响的原因。",
       "forms": [
         {
           "id": "eq-atmospheric-pressure",
@@ -8639,7 +8640,7 @@
       "terms": [
         "帕斯卡原理"
       ],
-      "statement": "施加在封闭流体上的压强变化，会不减弱地传递到流体的所有部分以及容器的器壁。流体中的原子可以自由运动，所以它们把这一变化带到各处，而封闭的流体不能像河水那样从推力下流走。这一经实验验证的事实，使压强在流体中如此重要，因为在一处施加的压强，在其他每一处也就都已知了。",
+      "statement": "施加在密闭流体上的压强变化，会大小不变地传递到流体的所有部分以及容器的器壁。流体中的原子可以自由运动，所以它们把这一变化带到各处，而密闭的流体不能像河水那样从推力下流走。这一经实验验证的事实，使压强在流体中如此重要，因为在一处施加的压强，在其他每一处也就都已知了。",
       "forms": [
         {
           "id": "eq-hydraulic-pressures-equal",
@@ -8654,14 +8655,14 @@
       "kind": "result",
       "section": "11.5",
       "name": "压强相加",
-      "statement": "流体会不减弱地传递压强的变化，所以流体中的总压强是作用在它上面的各个来源的压强之和。游泳池中 10.3 m 深处的压强是两个大气压，其中一半来自上方的水，一半来自水面上方的空气。敞开通向空气的流体中任何地方的压强，都是该流体自身的压强加上大气压。"
+      "statement": "流体会把压强的变化大小不变地传递，所以流体中的总压强是作用在它上面的各个来源的压强之和。游泳池中 10.3 m 深处的压强是两个大气压，其中一半来自上方的水，一半来自水面上方的空气。敞开通向空气的流体中任何地方的压强，都是该流体自身的压强加上大气压。"
     },
     {
       "id": "hydraulic-system",
       "kind": "definition",
       "section": "11.5",
       "name": "液压系统",
-      "statement": "液压系统是用来施加力的封闭流体系统。推一个活塞会使流体中各处的压强升高，这个压强又推着系统中其他每个活塞。它相对于杠杆的优点是，压强可以通过曲折弯绕的管路同时送到几个地方，这就是一个制动踏板能带动四个车轮的原因。"
+      "statement": "液压系统是用来施加力的密闭流体系统。推一个活塞会使流体中各处的压强升高，这个压强又推着系统中其他每个活塞。它相对于杠杆的优点是，压强可以通过曲折弯绕的管路同时送到几个地方，这就是一个刹车踏板能带动四个车轮的原因。"
     },
     {
       "id": "hydraulic-force-ratio",
@@ -8689,7 +8690,7 @@
       "kind": "result",
       "section": "11.5",
       "name": "液压系统中的功",
-      "statement": "液压系统像简单机械一样增大力，也像简单机械一样遵守能量守恒。功是力乘以移动的距离。轮缸移动的距离比踏板缸小，小的倍数恰好等于力增大的倍数，所以输出的功等于输入的功。你加的轮缸越多，每个轮缸移动的距离就越小。"
+      "statement": "液压系统像简单机械一样增大力，也像简单机械一样遵守能量守恒。功是力乘以移动的距离。轮缸移动的距离比主缸小，小的倍数恰好等于力增大的倍数，所以输出的功等于输入的功。你加的轮缸越多，每个轮缸移动的距离就越小。"
     },
     {
       "id": "gauge-pressure",
@@ -8701,7 +8702,7 @@
         "表压强"
       ],
       "type": "pressure",
-      "statement": "表压强是相对于大气压的压强。压强计被制成在大气压下读数为零，所以一个有大洞的轮胎，尽管里面有空气，读数仍然为零。"
+      "statement": "表压强是相对于大气压的压强。压强表被制成在大气压下读数为零，所以一个有大洞的轮胎，尽管里面有空气，读数仍然为零。"
     },
     {
       "id": "absolute-pressure",
@@ -8728,7 +8729,7 @@
       "kind": "skill",
       "section": "11.6",
       "name": "读取压强计",
-      "statement": "压强计是一根U形管，其中一端通大气。两端都敞开时，两边的流体处在相同的深度，因为大气压对两边的向下压力相等。把一端连到压强源上，液面就会移动，直到高度差与压强差相平衡，于是表压强就是 $\\kh\\krho\\kg$，通过测量 $\\kh$ 就能求出。压强源的压强高于大气压时，高度差为正，低于大气压时为负。",
+      "statement": "压强计是一根 U 形管，其中一端通大气。两端都敞开时，两边的流体处在相同的深度，因为大气压对两边的向下压力相等。把一端连到压强源上，液面就会移动，直到高度差与压强差相平衡，于是表压强就是 $\\kh\\krho\\kg$，通过测量 $\\kh$ 就能求出。压强源的压强高于大气压时，高度差为正，低于大气压时为负。",
       "forms": [
         {
           "id": "eq-gauge-pressure-manometer",
@@ -8758,7 +8759,7 @@
       "kind": "idea",
       "section": "11.6",
       "name": "测量血压",
-      "statement": "上臂上的充气袖带不断收紧，直到它所施加的压强截断其下方的血流，然后用水银压强计读出这个压强。随着袖带的压强慢慢下降，血流刚开始出现时的值就是收缩压，即心脏产生的最大压强。血液毫无中断地流动时的值就是舒张压，即两次心跳之间的最小压强。年轻成年人的典型读数是 120 mm Hg 比 80 mm Hg。压强计使用水银，是因为水银的密度是水的 13.6 倍，因而给出的液柱短得便于读数。"
+      "statement": "上臂上的充气袖带不断收紧，直到它所施加的压强截断其下方的血流，然后用汞压强计读出这个压强。随着袖带的压强慢慢下降，血流刚开始出现时的值就是收缩压，即心脏产生的最大压强。血液毫无中断地流动时的值就是舒张压，即两次心跳之间的最小压强。年轻成年人的典型读数是 120 mm Hg 比 80 mm Hg。压强计使用汞，是因为汞的密度是水的 13.6 倍，因而给出的液柱短得便于读数。"
     },
     {
       "id": "systolic-pressure",
@@ -8785,7 +8786,7 @@
       "kind": "definition",
       "section": "11.6",
       "name": "毫米汞柱",
-      "statement": "一毫米汞柱是能支撑一毫米高水银柱的压强，等于 133 Pa。水银气压计和水银压强计非常普遍，所以大气压强和血压常常用这个单位来表示。",
+      "statement": "一毫米汞柱是能支撑一毫米高汞柱的压强，等于 133 Pa。汞气压计和汞压强计非常普遍，所以大气压和血压常常用这个单位来表示。",
       "forms": [
         {
           "id": "eq-mm-hg",
@@ -8804,7 +8805,7 @@
         "浮力"
       ],
       "type": "force",
-      "statement": "浮力是流体对其中任何物体所施的向上的净力。它的产生是因为压强随深度增加，所以流体向上推物体底部的力比向下推物体顶部的力更大。",
+      "statement": "浮力是流体对其中任何物体所施的向上的合力。它的产生是因为压强随深度增加，所以流体向上推物体底部的力比向下推物体顶部的力更大。",
       "forms": [
         {
           "id": "eq-buoyant-force-difference",
@@ -8851,17 +8852,17 @@
       "kind": "result",
       "section": "11.7",
       "name": "浸入的比例",
-      "statement": "漂浮物体位于水面以下的部分所占的比例，是其平均密度与流体密度之比 $\\bar{\\rho}_{\\text{物体}}/\\rho_{\\text{流体}}$，因为浸入的体积等于排开的流体的体积，而两者具有相同的质量。",
+      "statement": "漂浮物体位于液面以下的部分所占的比例，是其平均密度与流体密度之比 $\\bar{\\rho}_{\\text{obj}}/\\rho_{\\text{fl}}$，因为浸入的体积等于排开的流体的体积，而两者具有相同的质量。",
       "forms": [
         {
           "id": "eq-fraction-submerged",
-          "latex": "\\text{fraction submerged} = \\frac{\\bar{\\rho}_{\\text{obj}}}{\\rho_{\\text{fl}}}",
-          "ktex": "\\text{fraction submerged} = \\frac{\\krhoobj}{\\krhofl}",
+          "latex": "\\text{浸入的比例} = \\frac{\\bar{\\rho}_{\\text{obj}}}{\\rho_{\\text{fl}}}",
+          "ktex": "\\text{浸入的比例} = \\frac{\\krhoobj}{\\krhofl}",
           "anchor": "11.7-density-and-archimedes"
         },
         {
           "id": "eq-fraction-submerged-volumes",
-          "latex": "\\text{fraction submerged} = \\frac{V_{\\text{sub}}}{V_{\\text{obj}}} = \\frac{V_{\\text{fl}}}{V_{\\text{obj}}}",
+          "latex": "\\text{浸入的比例} = \\frac{V_{\\text{sub}}}{V_{\\text{obj}}} = \\frac{V_{\\text{fl}}}{V_{\\text{obj}}}",
           "anchor": "11.7-density-and-archimedes"
         }
       ]
@@ -8870,16 +8871,16 @@
       "id": "specific-gravity",
       "kind": "definition",
       "section": "11.7",
-      "name": "相对密度",
+      "name": "比重",
       "terms": [
         "相对密度"
       ],
-      "statement": "相对密度是物体的密度与某种流体（通常是水）的密度之比，它是无量纲的，所以无论密度用什么单位写出，结果都相同。相对密度小于一的物质漂浮，大于一的物质下沉，恰好等于一的物质则悬浮，这正是水肺潜水员努力达到的状态。对于漂浮的物体，相对密度也是浸入的比例，这是液体比重计可以直接读出的。",
+      "statement": "比重是物体的密度与某种流体（通常是水）的密度之比，它是无量纲的，所以无论密度用什么单位写出，结果都相同。比重小于一的物质漂浮，大于一的物质下沉，恰好等于一的物质则悬浮，这正是水肺潜水员努力达到的状态。对于漂浮的物体，比重也是浸入的比例，这是液体比重计可以直接读出的。",
       "forms": [
         {
           "id": "eq-specific-gravity",
-          "latex": "\\text{specific gravity} = \\frac{\\bar{\\rho}}{\\rho_{\\text{w}}}",
-          "ktex": "\\text{specific gravity} = \\frac{\\krhobar}{\\krhow}",
+          "latex": "\\text{相对密度} = \\frac{\\bar{\\rho}}{\\rho_{\\text{w}}}",
+          "ktex": "\\text{相对密度} = \\frac{\\krhobar}{\\krhow}",
           "anchor": "11.7-specific-gravity"
         }
       ]
@@ -8893,12 +8894,12 @@
       "forms": [
         {
           "id": "eq-apparent-weight-loss",
-          "latex": "\\text{apparent weight loss} = \\text{weight of fluid displaced}",
+          "latex": "\\text{视重减小量} = \\text{排开的流体的重力}",
           "anchor": "11.7-density-measurements"
         },
         {
           "id": "eq-apparent-mass-loss",
-          "latex": "\\text{apparent mass loss} = \\text{mass of fluid displaced}",
+          "latex": "\\text{视质量减小量} = \\text{排开的流体的质量}",
           "anchor": "11.7-density-measurements"
         }
       ]
@@ -8911,7 +8912,7 @@
       "terms": [
         "内聚力"
       ],
-      "statement": "内聚力是同类分子之间的吸引力。正是它们把敞口容器中的液体聚在一起，把液体的表面拉成它所能取的最小面积，也使树中的一柱汁液能像每一环都连在一起的链条那样被向上拉起。"
+      "statement": "内聚力是同类分子之间的吸引力。正是它们把敞口容器中的液体聚在一起，把液体的表面拉成它所能取的最小面积，也使树中的一柱树液能像每一环都连在一起的链条那样被向上拉起。"
     },
     {
       "id": "adhesive-forces",
@@ -8933,7 +8934,7 @@
         "表面张力"
       ],
       "type": "surface-tension",
-      "statement": "液体表面的分子被下方的邻近分子向内拉，而液体内部的分子则完全不受净力，所以表面收缩到它所能取的最小面积。于是表面表现得像一张拉紧的弹性薄膜：昆虫的脚会把它压出凹陷，它还能托住一根钢针，尽管钢针的密度比水大得多。表面张力 $\\kgamma$ 是这张拉紧的薄膜所施的单位长度上的力，内聚力越强的液体，表面张力越大。",
+      "statement": "液体表面的分子被下方的邻近分子向内拉，而液体内部的分子则完全不受合力，所以表面收缩到它所能取的最小面积。于是表面表现得像一张拉紧的弹性薄膜：昆虫的脚会把它压出凹陷，它还能托住一根钢针，尽管钢针的密度比水大得多。表面张力 $\\kgamma$ 是这张拉紧的薄膜所施的单位长度上的力，内聚力越强的液体，表面张力越大。",
       "forms": [
         {
           "id": "eq-surface-tension",
@@ -8975,7 +8976,7 @@
       "kind": "idea",
       "section": "11.8",
       "name": "肺中的表面张力",
-      "statement": "肺的末端是数以亿计的、内壁有黏液的小囊，称为肺泡，直径约 0.1 mm，肺泡内壁的表面张力就足以把空气挤出去，完全不需要任何肌肉活动。因为小囊缩小时压强会升高，小的肺泡就会向大的肺泡排空而塌陷；内壁中的脂蛋白表面活性物质通过在小囊伸展时增大壁的张力、在小囊收缩时减小壁的张力来防止这种情况。出生时没有这种表面活性物质的婴儿，肺非常难以充气。"
+      "statement": "肺的末端是数以亿计的、内壁有黏液的小囊，称为肺泡，直径约 0.1 mm，肺泡内壁的表面张力就足以把空气挤出去，完全不需要任何肌肉活动。因为小囊缩小时压强会升高，小的肺泡就会向大的肺泡排空而塌陷；内壁中的脂蛋白表面活性剂通过在小囊伸展时增大壁的张力、在小囊收缩时减小壁的张力来防止这种情况。出生时没有这种表面活性剂的婴儿，肺非常难以充气。"
     },
     {
       "id": "contact-angle",
@@ -9052,7 +9053,7 @@
       "kind": "idea",
       "section": "11.9",
       "name": "肺内的压强",
-      "statement": "当膈肌和胸廓的肌肉活动使胸腔扩张时，肺内的压强降到大气压强以下，这就把空气吸入。当肌肉放松、肺泡中的表面张力使肺收缩时，压强升到大气压强以上，这就把空气挤出。把肺附着在胸壁内侧的液体处于 $-4$ 到 $-8$ mm Hg 的负表压强，这种附着使肺不致塌陷。让空气进入胸腔会破坏这种附着，肺就可能塌陷。"
+      "statement": "当膈肌和胸廓的肌肉活动使胸腔扩张时，肺内的压强降到大气压以下，这就把空气吸入。当肌肉放松、肺泡中的表面张力使肺收缩时，压强升到大气压以上，这就把空气挤出。把肺附着在胸壁内侧的液体处于 $-4$ 到 $-8$ mm Hg 的负表压强，这种附着使肺不致塌陷。让空气进入胸腔会破坏这种附着，肺就可能塌陷。"
     },
     {
       "id": "bladder-pressure",
@@ -9092,13 +9093,13 @@
       "id": "flow-rate",
       "kind": "definition",
       "section": "12.1",
-      "name": "Flow rate",
+      "name": "流量",
       "symbol": "Q",
       "terms": [
-        "flow rate"
+        "流量"
       ],
       "type": "flow-rate",
-      "statement": "Flow rate is the volume of fluid that passes a location through an area during a period of time. Almost every question about a moving fluid asks for it: how much blood a heart pumps, how much water a hose delivers, how much air a duct carries. Because it counts volume rather than distance, it tells you nothing on its own about how fast the fluid is moving or how wide the conduit is, only about the product of the two.",
+      "statement": "流量是在一段时间内通过某一位置的某一面积的流体体积。几乎每一个关于运动流体的问题都要问到它：心脏泵出多少血液，水管送出多少水，风道输送多少空气。因为它数的是体积而不是距离，所以它本身并不告诉你流体运动得有多快或导管有多宽，只告诉你这两者的乘积。",
       "forms": [
         {
           "id": "eq-flow-rate",
@@ -9112,15 +9113,15 @@
       "id": "flow-rate-units",
       "kind": "skill",
       "section": "12.1",
-      "name": "Converting flow rate units",
-      "statement": "The SI unit of flow rate is the cubic meter per second, but almost nothing uses it: a heart pumps liters per minute, a fire hose delivers liters per second, and a capillary carries cubic centimeters per second. A liter is a thousandth of a cubic meter. Use whatever metric units are most convenient for the situation, and expect to convert between them in almost every problem."
+      "name": "流量单位的换算",
+      "statement": "流量的国际单位是立方米每秒，但几乎没有什么场合用它：心脏每分钟泵出若干升，消防水带每秒送出若干升，毛细血管每秒输送若干立方厘米。一升是一立方米的千分之一。要用对当前情形最方便的公制单位，并预期几乎每道题都要在它们之间换算。"
     },
     {
       "id": "flow-rate-velocity",
       "kind": "result",
       "section": "12.1",
-      "name": "Flow rate and velocity",
-      "statement": "The flow rate is the cross-sectional area of the conduit times the average velocity of the fluid across it, $Q = A\\bar{v}$. Flow rate and velocity are therefore related but different quantities: a wide, slow river can carry more water than a narrow, fast one.",
+      "name": "流量与速度",
+      "statement": "流量等于导管的横截面积乘以流体穿过它的平均速度，$Q = A\\bar{v}$。因此流量和速度是相关但不同的量：宽而缓的河流可以比窄而急的河流输送更多的水。",
       "forms": [
         {
           "id": "eq-flow-rate-velocity",
@@ -9134,21 +9135,21 @@
       "id": "incompressible-fluid",
       "kind": "definition",
       "section": "12.1",
-      "name": "Incompressible fluid",
-      "statement": "A fluid is incompressible when a given amount of it always occupies the same volume, however hard you press it. Liquids are nearly incompressible, so the equation of continuity is valid for all of them. Gases are compressible, and you must apply the equation to them with caution when they compress or expand. Every result of this chapter, Bernoulli’s equation and Poiseuille’s law included, assumes an incompressible fluid."
+      "name": "不可压缩流体",
+      "statement": "当一定量的流体无论受到多大的挤压都始终占据相同的体积时，这种流体是不可压缩的。液体几乎是不可压缩的，所以连续性方程对所有液体都成立。气体是可压缩的，当它们被压缩或膨胀时，应用这个方程必须谨慎。本章的每一个结果，包括伯努利方程和泊肃叶定律在内，都假定流体是不可压缩的。"
     },
     {
       "id": "equation-of-continuity",
       "kind": "result",
       "section": "12.1",
-      "name": "Equation of continuity",
-      "statement": "Because the fluid is incompressible, the same amount of fluid must flow past any point of a tube in a given time, so the flow rate is the same at all points along it. Where the cross-sectional area decreases the velocity must necessarily increase, and where it increases the velocity drops. That is the purpose of a nozzle, and it is why water slows considerably when a river empties into a reservoir and picks up speed again when it leaves.",
+      "name": "连续性方程",
+      "statement": "因为流体是不可压缩的，所以在给定的时间内，同样多的流体必定流过管子的任何一点，因此沿管各点的流量相同。在横截面积减小的地方，速度必然增大；在横截面积增大的地方，速度就下降。这正是喷嘴的用途，也是河流汇入水库时水流明显变缓、离开水库时又重新加快的原因。",
       "forms": [
         {
           "id": "eq-continuity",
           "latex": "Q_1 = Q_2,\\quad A_1\\bar{v}_1 = A_2\\bar{v}_2",
           "ktex": "\\kQone = \\kQtwo,\\quad A_1\\kvbone = A_2\\kvbtwo",
-          "condition": "incompressible fluid",
+          "condition": "不可压缩流体",
           "anchor": "12.1-continuity"
         }
       ]
@@ -9157,14 +9158,14 @@
       "id": "continuity-branching",
       "kind": "result",
       "section": "12.1",
-      "name": "Continuity in branching flow",
-      "statement": "In the cardiovascular system and in any other branching network, the flow does not stay in one tube. Continuity still holds, but for the sum of the flow rates in all the branches in any portion along the tube, so the number of branches enters the equation along with their areas and their speeds. The capillaries have an enormously greater total cross-section than the aorta, so the blood in them moves at about a millimeter per second. That is slow enough for the blood to exchange substances with the cells and still fast enough to avoid clotting.",
+      "name": "分支流动中的连续性",
+      "statement": "在心血管系统和任何其他分支网络中，流动并不停留在一根管子里。连续性仍然成立，但它针对的是沿管任一部分中所有分支的流量之和，所以分支的数目与它们的面积和速率一起进入方程。毛细血管的总横截面积比主动脉大得多，所以其中的血液以大约每秒一毫米的速率流动。这个速率慢得足以让血液与细胞交换物质，又快得足以避免凝血。",
       "forms": [
         {
           "id": "eq-continuity-branching",
           "latex": "n_1A_1\\bar{v}_1 = n_2A_2\\bar{v}_2",
           "ktex": "n_1A_1\\kvbone = n_2A_2\\kvbtwo",
-          "condition": "incompressible fluid that branches",
+          "condition": "不可压缩流体发生分支",
           "anchor": "12.1-branching"
         }
       ]
@@ -9173,51 +9174,51 @@
       "id": "fluid-dynamics",
       "kind": "definition",
       "section": "12.1",
-      "name": "Fluid dynamics",
+      "name": "流体动力学",
       "terms": [
-        "fluid dynamics"
+        "流体动力学"
       ],
-      "statement": "Fluid dynamics is the physics of fluids in motion."
+      "statement": "流体动力学是研究运动流体的物理学。"
     },
     {
       "id": "liter",
       "kind": "definition",
       "section": "12.1",
-      "name": "Liter",
+      "name": "升",
       "terms": [
-        "liter"
+        "升"
       ],
-      "statement": "A liter is a unit of volume equal to $10^{-3}\\;\\text{m}^3$, or 1000 cubic centimeters."
+      "statement": "升是体积单位，等于 $10^{-3}\\;\\text{m}^3$，即 1000 立方厘米。"
     },
     {
       "id": "pressure-drops-in-fast-fluid",
       "kind": "result",
       "section": "12.2",
-      "name": "Pressure drop in a fast fluid",
-      "statement": "Where a fluid speeds up, its pressure drops. A fluid flowing into a narrower channel gains kinetic energy, and that energy comes from the net work done by the higher pressure behind it pushing it into the channel."
+      "name": "高速流体中的压强降低",
+      "statement": "流体加速的地方，它的压强下降。流入较窄通道的流体获得动能，而这些能量来自后方较高的压强把它推入通道时所做的合外力的功。"
     },
     {
       "id": "bernoullis-equation",
       "kind": "result",
       "section": "12.2",
-      "name": "Bernoulli’s equation",
+      "name": "伯努利方程",
       "terms": [
-        "Bernoulli’s equation"
+        "伯努利方程"
       ],
-      "statement": "Bernoulli’s equation states the relationship between pressure and velocity in a fluid quantitatively: for an incompressible, frictionless fluid the sum of the pressure, the term in the square of the speed and the term in the height is constant along the path a bit of fluid follows. Various quantities in the sum may change as the fluid moves, but the total does not, so a gain in speed or in height has to be paid for out of pressure.",
+      "statement": "伯努利方程定量地给出了流体中压强与速度之间的关系：对于不可压缩、无摩擦的流体，压强、含速率平方的项和含高度的项这三者之和，沿着一小块流体所经过的路径保持不变。和中的各个量可以随流体的运动而变化，但总和不变，所以速率或高度的增加必须由压强来支付。",
       "forms": [
         {
           "id": "eq-bernoulli",
-          "latex": "P + \\frac{1}{2}\\rho v^2 + \\rho gh = \\text{constant}",
-          "ktex": "\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{constant}",
-          "condition": "incompressible, frictionless fluid",
+          "latex": "P + \\frac{1}{2}\\rho v^2 + \\rho gh = \\text{常量}",
+          "ktex": "\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh = \\text{常量}",
+          "condition": "不可压缩、无摩擦的流体",
           "anchor": "12.2-bernoullis-equation"
         },
         {
           "id": "eq-bernoulli-two-points",
           "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 + \\rho gh_1 = P_2 + \\frac{1}{2}\\rho v_2^2 + \\rho gh_2",
           "ktex": "\\kProne + \\frac{1}{2}\\krho\\kvone^2 + \\krho\\kg\\khone = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2 + \\krho\\kg\\khtwo",
-          "condition": "incompressible, frictionless fluid",
+          "condition": "不可压缩、无摩擦的流体",
           "anchor": "12.2-bernoullis-equation"
         }
       ]
@@ -9226,8 +9227,8 @@
       "id": "bernoulli-energy-per-volume",
       "kind": "idea",
       "section": "12.2",
-      "name": "Bernoulli’s equation as energy per volume",
-      "statement": "Bernoulli’s equation is a form of the conservation of energy principle. The second and third terms are the kinetic and the gravitational potential energy with the mass replaced by the density, so each is an energy divided by a volume, and the pressure is an energy per unit volume too, since a newton per square meter multiplied by meter over meter is a joule per cubic meter. Bernoulli’s equation is, in fact, just a convenient statement of conservation of energy for an incompressible fluid in the absence of friction.",
+      "name": "伯努利方程：单位体积的能量",
+      "statement": "伯努利方程是能量守恒原理的一种形式。第二项和第三项分别是动能和重力势能，只是把质量换成了密度，所以每一项都是能量除以体积，而压强也是单位体积的能量，因为牛顿每平方米乘以米比米等于焦耳每立方米。事实上，伯努利方程只是对没有摩擦的不可压缩流体的能量守恒的一种方便的表述。",
       "forms": [
         {
           "id": "eq-ke-per-volume",
@@ -9247,14 +9248,14 @@
       "id": "bernoulli-static-fluid",
       "kind": "result",
       "section": "12.2",
-      "name": "Bernoulli’s equation for a static fluid",
-      "statement": "When the fluid is not moving, both speed terms vanish and Bernoulli’s equation says that pressure increases with depth: going down by a height adds the weight of that column of fluid to the pressure. In the simplest case the pressure at the top is zero, and you recover the familiar relationship for the pressure due to the weight of a fluid. So although Bernoulli’s equation describes fluid flow, it includes much of what the preceding chapter found for static fluids.",
+      "name": "静止流体的伯努利方程",
+      "statement": "当流体不运动时，两个速率项都消失，伯努利方程说明压强随深度增加：向下一段高度，就在压强上加上那一段流体柱的重力。在最简单的情形下，顶部的压强为零，你就得到了流体的重力所产生的压强这一熟悉的关系。所以，虽然伯努利方程描述的是流体的流动，它却包含了上一章对静止流体所得到的许多内容。",
       "forms": [
         {
           "id": "eq-bernoulli-static",
           "latex": "P_2 = P_1 + \\rho gh_1",
           "ktex": "\\kPrtwo = \\kProne + \\krho\\kg\\khone",
-          "condition": "static fluid, with the lower point taken as the reference height",
+          "condition": "静止流体，取较低点为参考高度",
           "anchor": "12.2-static-fluids"
         }
       ]
@@ -9263,17 +9264,17 @@
       "id": "bernoullis-principle",
       "kind": "result",
       "section": "12.2",
-      "name": "Bernoulli’s principle",
+      "name": "伯努利原理",
       "terms": [
-        "Bernoulli’s principle"
+        "伯努利原理"
       ],
-      "statement": "When a fluid moves but its depth is constant, the terms in the height subtract out and Bernoulli’s equation becomes a statement about pressure and speed alone. Situations of that kind are so important that the equation has a name of its own. It says what the opening of the section argued: if the speed at one point is greater, the pressure there must be less for the equality to hold.",
+      "statement": "当流体在运动但其深度不变时，含高度的项相减抵消，伯努利方程就成了只关于压强和速率的表述。这类情形非常重要，所以这个方程有了自己的名称。它说的正是本节开头所论证的：如果某一点的速率较大，则为了使等式成立，该点的压强必定较小。",
       "forms": [
         {
           "id": "eq-bernoullis-principle",
           "latex": "P_1 + \\frac{1}{2}\\rho v_1^2 = P_2 + \\frac{1}{2}\\rho v_2^2",
           "ktex": "\\kProne + \\frac{1}{2}\\krho\\kvone^2 = \\kPrtwo + \\frac{1}{2}\\krho\\kvtwo^2",
-          "condition": "constant depth",
+          "condition": "等深度",
           "anchor": "12.2-bernoullis-principle"
         }
       ]
@@ -9282,22 +9283,22 @@
       "id": "entrainment",
       "kind": "idea",
       "section": "12.2",
-      "name": "Entrainment",
-      "statement": "People have long put Bernoulli’s principle to work by using the reduced pressure in a high-velocity fluid to move things about: with a higher pressure on the outside, the fast stream forces other fluids into itself. Entrainment devices have been in use since ancient times as pumps to raise water small heights, and the same trick runs a Bunsen burner, an atomizer, a paint sprayer, an aspirator and the chimney of a water heater."
+      "name": "卷吸",
+      "statement": "人们早就利用伯努利原理，用高速流体中降低的压强来推动东西：外侧压强较高，快速的流束就迫使其他流体进入它自身。卷吸装置自古就被用作把水提升小高度的泵，同样的手法还驱动着本生灯、雾化器、喷漆器、抽气器和热水器的烟囱。"
     },
     {
       "id": "lift-from-bernoulli",
       "kind": "idea",
       "section": "12.2",
-      "name": "Lift on a wing",
-      "statement": "The airplane wing is a beautiful example of Bernoulli’s principle in action. The wing tilts upward at a small angle and its upper surface is longer, so air flows faster over the top, the pressure there drops, and the difference is a net upward force. A sail has the characteristic shape of a wing too: the pressure on its front is lower than the pressure on its back, which gives a forward force and even lets a boat sail into the wind. Wings also gain lift by pushing air downward, and the deflected air pushes back on the wing by Newton’s third law."
+      "name": "机翼上的升力",
+      "statement": "飞机机翼是伯努利原理实际应用的绝佳例子。机翼以小角度向上倾斜，上表面较长，所以空气在上方流得更快，那里的压强下降，压强差就是一个向上的合力。帆也具有机翼的特征形状：帆前面的压强比后面的压强低，这产生一个向前的力，甚至使船能够逆风航行。机翼还通过把空气向下推来获得升力，被偏转的空气根据牛顿第三定律反过来推机翼。"
     },
     {
       "id": "velocity-measurement",
       "kind": "result",
       "section": "12.2",
-      "name": "Measuring fluid speed",
-      "statement": "Two tubes small enough not to disturb the flow, joined by a manometer, measure the speed of a fluid. The tube facing the oncoming fluid creates a dead spot with zero velocity in front of it, while the fluid passing the other tube keeps its speed, so the pressure at the second opening is lower by the term in the square of the speed. The manometer fluid rises by a height proportional to that term, and the speed is therefore proportional to the square root of the height. The pitot tube built on this principle is the air speed indicator of an aircraft.",
+      "name": "流体速率的测量",
+      "statement": "用压强计连接两根细到不会扰动流动的管子，可以测量流体的速率。迎着来流的那根管子在其前方形成一个速度为零的死区，而流经另一根管子的流体保持它的速率，所以第二个开口处的压强比前者低，低的量就是含速率平方的那一项。压强计中的流体升高的高度与该项成正比，因此速率与高度的平方根成正比。基于这一原理制成的皮托管就是飞机的空速表。",
       "forms": [
         {
           "id": "eq-speed-from-manometer",
@@ -9317,8 +9318,8 @@
       "id": "torricellis-theorem",
       "kind": "result",
       "section": "12.3",
-      "name": "Torricelli’s theorem",
-      "statement": "Fluid leaving a reservoir through an opening a height $h$ below its surface emerges at the speed it would have if it had fallen freely through that height, $v_2^2 = v_1^2 + 2gh$, whatever the size of the opening.",
+      "name": "托里拆利定理",
+      "statement": "流体从水库表面以下高度 $h$ 处的开口流出时，其出流速率等于它自由下落这一高度所具有的速率，$v_2^2 = v_1^2 + 2gh$，与开口大小无关。",
       "forms": [
         {
           "id": "eq-torricelli",
@@ -9332,20 +9333,20 @@
       "id": "bernoulli-general-application",
       "kind": "skill",
       "section": "12.3",
-      "name": "Applying Bernoulli’s equation",
-      "statement": "Every earlier use of Bernoulli’s equation simplified it first, by holding the height constant or the pressure equal at both points. The general case keeps all three terms at both points. Find the speeds from the flow rate and the two cross-sections, measure the heights from whichever point you take as the reference, and solve for the remaining pressure. A fire hose that runs ten meters up a ladder to a narrow nozzle is exactly this case, and its pressure falls for both reasons at once."
+      "name": "伯努利方程的应用",
+      "statement": "伯努利方程以前的每一次应用都先将它简化，或者令高度不变，或者令两点的压强相等。一般情形则在两点都保留全部三项。由流量和两处横截面积求出速率，从你取作参考的那一点量起测量高度，然后解出其余的压强。一条沿梯子向上延伸十米、接到窄喷嘴的消防水带正是这种情形，它的压强同时由于两个原因而下降。"
     },
     {
       "id": "power-in-fluid-flow",
       "kind": "result",
       "section": "12.3",
-      "name": "Power in fluid flow",
-      "statement": "Power is the rate at which work is done or energy is used or supplied. Every term of Bernoulli’s equation is an energy per unit volume, so multiplying the whole equation by the flow rate, which is a volume per unit time, gives a power. Each term then has a clear physical meaning: one is the power supplied to give the fluid its pressure, one the power supplied to give it its kinetic energy, and one the power that goes to gravitational potential energy.",
+      "name": "流体流动中的功率",
+      "statement": "功率是做功或使用或提供能量的快慢。伯努利方程的每一项都是单位体积的能量，所以把整个方程乘以流量（即单位时间的体积）就得到功率。于是每一项都有明确的物理意义：一项是为使流体具有其压强而提供的功率，一项是为使它具有其动能而提供的功率，还有一项是用于重力势能的功率。",
       "forms": [
         {
           "id": "eq-power-in-fluid-flow",
-          "latex": "\\left(P + \\frac{1}{2}\\rho v^2 + \\rho gh\\right)Q = \\text{power}",
-          "ktex": "\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{power}",
+          "latex": "\\left(P + \\frac{1}{2}\\rho v^2 + \\rho gh\\right)Q = \\text{功率}",
+          "ktex": "\\left(\\kPr + \\frac{1}{2}\\krho\\kv^2 + \\krho\\kg\\kh\\right)\\kQ = \\text{功率}",
           "anchor": "12.3-power-in-fluid-flow"
         }
       ]
@@ -9354,13 +9355,13 @@
       "id": "pump-power",
       "kind": "skill",
       "section": "12.3",
-      "name": "Finding the power of a pump",
-      "statement": "A pump that takes fluid in and sends it out through a hose of the same diameter at the same height changes neither the speed nor the height of the fluid. Its kinetic and gravitational potential energy stay the same, and only the pressure term remains. The power the pump supplies is then the pressure it adds multiplied by the flow rate. A pump that raises velocity and height as well, as the heart does, needs all three terms.",
+      "name": "求泵的功率",
+      "statement": "一台泵把流体吸入，再通过同样直径、同样高度的水带送出，它既不改变流体的速率，也不改变流体的高度。流体的动能和重力势能保持不变，只剩下压强项。于是泵提供的功率就是它增加的压强乘以流量。像心脏那样同时提高速度和高度的泵，则需要全部三项。",
       "forms": [
         {
           "id": "eq-power-from-pressure",
-          "latex": "\\text{power} = PQ",
-          "ktex": "\\text{power} = \\kPr\\kQ",
+          "latex": "\\text{功率} = PQ",
+          "ktex": "\\text{功率} = \\kPr\\kQ",
           "anchor": "12.3-pump-power"
         }
       ]
@@ -9369,39 +9370,39 @@
       "id": "laminar-flow",
       "kind": "definition",
       "section": "12.4",
-      "name": "Laminar flow",
+      "name": "层流",
       "terms": [
-        "laminar"
+        "层流"
       ],
-      "statement": "In laminar flow a fluid moves smoothly in layers that do not mix. The lines in this chapter's figures are streamlines, the paths that small volumes of fluid follow, and in laminar flow they are smooth and continuous. The precise definition of viscosity rests on laminar flow, and so does Poiseuille’s law."
+      "statement": "在层流中，流体分层平滑地运动，各层互不混合。本章图中的线条是流线，即小体积流体所遵循的路径，在层流中它们平滑而连续。黏度的精确定义建立在层流的基础上，泊肃叶定律也是如此。"
     },
     {
       "id": "turbulent-flow",
       "kind": "definition",
       "section": "12.4",
-      "name": "Turbulent flow",
+      "name": "湍流",
       "terms": [
-        "turbulence"
+        "湍流"
       ],
-      "statement": "Turbulence is characterized by eddies and swirls that mix layers of fluid together, and its streamlines break up rather than running smoothly. It has two main causes: any obstruction or sharp corner imparts velocities perpendicular to the flow, and high speeds alone will do it, since the drag between adjacent layers and between the fluid and its surroundings forms swirls if the speed is great enough. Turbulent flow mixes the fluid, heats it more and resists more than laminar flow does."
+      "statement": "湍流的特征是涡旋和旋流把各层流体混合在一起，它的流线断裂而不是平滑地延伸。它有两个主要原因：任何障碍物或急转弯都会产生垂直于流动方向的速度，而仅仅高速也足以引起湍流，因为只要速率足够大，相邻各层之间以及流体与周围环境之间的阻力就会形成旋流。湍流使流体混合，使它发热更多，所受的阻力也比层流大。"
     },
     {
       "id": "viscosity",
       "kind": "definition",
       "section": "12.4",
-      "name": "Viscosity",
+      "name": "黏度",
       "symbol": "η_visc",
       "terms": [
-        "viscosity"
+        "黏度"
       ],
       "type": "viscosity",
-      "statement": "Viscosity is fluid friction, both within the fluid and between the fluid and its surroundings: juice pours freely and syrup sticks to the pitcher. To measure it, shear a fluid between two plates, one fixed and one moving at a steady speed, and find the force that keeps the top plate moving. That force grows with the speed, with the area of the plate and with the viscosity, and falls as the plates move apart. The viscosity is therefore the force times the separation divided by the speed times the area. Viscosities vary from one fluid to another by several orders of magnitude, gases being far less viscous than liquids, and most of them depend on temperature.",
+      "statement": "黏度是流体摩擦，既包括流体内部的，也包括流体与周围环境之间的：果汁倒起来很顺畅，糖浆却黏在壶上。要测量它，就让流体在两块板之间受剪切，一块固定，另一块以恒定速率运动，然后求出保持上板运动的力。这个力随速率、板的面积和黏度的增大而增大，随两板的分开而减小。因此黏度等于力乘以间距再除以速率乘以面积。不同流体的黏度相差几个数量级，气体的黏度远小于液体，而且大多数流体的黏度都与温度有关。",
       "forms": [
         {
           "id": "eq-viscosity-force",
           "latex": "F = \\eta\\frac{vA}{L}",
           "ktex": "\\kF = \\keta\\frac{\\kv A}{L}",
-          "condition": "laminar flow",
+          "condition": "层流",
           "anchor": "12.4-laminar-viscosity"
         },
         {
@@ -9416,16 +9417,16 @@
       "id": "velocity-profile-in-tube",
       "kind": "idea",
       "section": "12.4",
-      "name": "Velocity profile in a tube",
-      "statement": "If the flow in a tube has negligible resistance the speed is the same all across it. When a viscous fluid flows, the layer in contact with the wall does not move at all, and the speed increases steadily to its maximum at the center of the tube. The shape of a Bunsen burner flame is that velocity profile made visible, even though the viscosity of natural gas is small."
+      "name": "管内的速度分布",
+      "statement": "如果管中的流动阻力可以忽略，速率在管内各处相同。当黏性流体流动时，与管壁接触的那一层完全不动，速率稳定地增大，在管的中心达到最大值。本生灯火焰的形状就是这种速度分布的可见化，尽管天然气的黏度很小。"
     },
     {
       "id": "flow-resistance",
       "kind": "definition",
       "section": "12.4",
-      "name": "Resistance to flow",
+      "name": "流阻",
       "symbol": "R_flow",
-      "statement": "The resistance to flow is defined by the relationship between flow rate and pressure difference: the flow rate is the pressure difference divided by the resistance, $Q = (P_2 - P_1)/R$, and it is in the direction from high to low pressure. The resistance includes everything except pressure that affects the flow rate.",
+      "statement": "流阻由流量与压强差之间的关系来定义：流量等于压强差除以流阻，$Q = (P_2 - P_1)/R$，方向是从高压指向低压。流阻包括除压强以外一切影响流量的因素。",
       "forms": [
         {
           "id": "eq-flow-from-resistance",
@@ -9440,17 +9441,17 @@
       "id": "poiseuilles-law-resistance",
       "kind": "result",
       "section": "12.4",
-      "name": "Poiseuille’s law for resistance",
+      "name": "流阻的泊肃叶定律",
       "terms": [
-        "Poiseuille’s law for resistance"
+        "流阻的泊肃叶定律"
       ],
-      "statement": "For laminar flow of an incompressible fluid through a horizontal tube of uniform radius, the resistance is eight times the viscosity times the length, divided by pi times the fourth power of the radius. Resistance directly proportional to viscosity and to length makes good intuitive sense, since both directly affect the amount of friction encountered. The fourth power of the radius is the surprise. J. L. Poiseuille derived the law in an attempt to understand the flow of blood.",
+      "statement": "对于不可压缩流体通过半径均匀的水平管的层流，流阻等于八倍的黏度乘以长度，再除以圆周率乘以半径的四次方。流阻与黏度和长度成正比，这很合乎直觉，因为两者都直接影响所遇到的摩擦量。半径的四次方才是出人意料之处。J. L. 泊肃叶为了弄清血液的流动而推导出了这条定律。",
       "forms": [
         {
           "id": "eq-poiseuille-resistance",
           "latex": "R = \\frac{8\\eta l}{\\pi r^4}",
           "ktex": "R = \\frac{8\\keta l}{\\pi r^4}",
-          "condition": "laminar flow in a horizontal tube of uniform radius",
+          "condition": "半径均匀的水平管中的层流",
           "anchor": "12.4-poiseuille"
         }
       ]
@@ -9459,17 +9460,17 @@
       "id": "poiseuilles-law",
       "kind": "result",
       "section": "12.4",
-      "name": "Poiseuille’s law",
+      "name": "泊肃叶定律",
       "terms": [
-        "Poiseuille’s law"
+        "泊肃叶定律"
       ],
-      "statement": "Putting the resistance into the relationship between flow rate and pressure difference gives one equation for laminar flow through a tube: the flow rate is the pressure difference times pi times the fourth power of the radius, divided by eight times the viscosity times the length. It is the working equation of the section, and of every medical application in the chapter.",
+      "statement": "把流阻代入流量与压强差之间的关系，就得到通过管的层流的一个方程：流量等于压强差乘以圆周率乘以半径的四次方，再除以八倍的黏度乘以长度。它是本节的工作方程，也是本章每一个医学应用的工作方程。",
       "forms": [
         {
           "id": "eq-poiseuille",
           "latex": "Q = \\frac{(P_2 - P_1)\\pi r^4}{8\\eta l}",
           "ktex": "\\kQ = \\frac{(\\kPrtwo - \\kProne)\\pi r^4}{8\\keta l}",
-          "condition": "laminar flow in a horizontal tube of uniform radius",
+          "condition": "半径均匀的水平管中的层流",
           "anchor": "12.4-poiseuille"
         }
       ]
@@ -9478,15 +9479,15 @@
       "id": "radius-fourth-power-sensitivity",
       "kind": "idea",
       "section": "12.4",
-      "name": "Sensitivity of flow to radius",
-      "statement": "The radius enters to the fourth power, so any change in it has a very large effect on the resistance. Doubling the radius decreases the resistance by a factor of sixteen, and reducing a vessel’s radius by only five percent cuts the flow to about eighty-one percent of its original value. That is why the body regulates blood flow mostly by dilating and constricting vessels rather than by working the heart harder, and why plaque in an artery is dangerous out of all proportion to its thickness. The body may compensate by raising the blood pressure, but that puts the heart and any weakened vessel at risk."
+      "name": "流量对半径的敏感性",
+      "statement": "半径以四次方进入，所以它的任何变化都对流阻有很大的影响。半径加倍使流阻减小为原来的十六分之一，而血管的半径只减小百分之五，就会使流量降到原来的约百分之八十一。这就是为什么身体主要通过扩张和收缩血管而不是让心脏更加费力地工作来调节血流，也是为什么动脉中的斑块与它的厚度极不相称地危险。身体可以通过升高血压来补偿，但这会使心脏和任何已经变弱的血管面临风险。"
     },
     {
       "id": "pressure-drop-from-resistance",
       "kind": "result",
       "section": "12.4",
-      "name": "Pressure drop from resistance",
-      "statement": "Rearranged, the relationship between flow rate, pressure difference and resistance says that flow through a resistance makes the pressure drop along it. That is why the water pressure in a house is lower on a hot summer day when the neighborhood draws heavily: the flow rate in the main is large, so the drop along it is large, and less pressure arrives. The relationship holds for turbulent as well as laminar flow. It also applies to a system whose radius varies, where the drop is greatest at the narrowest place.",
+      "name": "流阻引起的压强降",
+      "statement": "把流量、压强差和流阻之间的关系改写一下，就是说流体通过流阻时，沿途压强下降。这就是为什么在炎热的夏日，附近居民大量用水时，房屋里的水压会较低：干管中的流量很大，所以沿管的压强降很大，到达的压强就变小了。这一关系对湍流和层流都成立。它也适用于半径变化的系统，在那里压强降在最窄处最大。",
       "forms": [
         {
           "id": "eq-pressure-drop",
@@ -9500,18 +9501,18 @@
       "id": "reynolds-number",
       "kind": "definition",
       "section": "12.5",
-      "name": "Reynolds number for flow in a tube",
+      "name": "管内流动的雷诺数",
       "symbol": "N_R",
       "terms": [
-        "Reynolds number"
+        "雷诺数"
       ],
-      "statement": "The Reynolds number for flow in a tube, $N_{\\text{R}} = 2\\rho vr/\\eta$, is a dimensionless quantity that reveals whether the flow is likely to be laminar or turbulent.",
+      "statement": "管内流动的雷诺数 $N_{\\text{R}} = 2\\rho vr/\\eta$ 是一个无量纲的量，它揭示流动可能是层流还是湍流。",
       "forms": [
         {
           "id": "eq-reynolds-tube",
           "latex": "N_{\\text{R}} = \\frac{2\\rho vr}{\\eta}",
           "ktex": "N_{\\text{R}} = \\frac{2\\krho\\kv r}{\\keta}",
-          "condition": "flow in a tube of uniform diameter",
+          "condition": "直径均匀的管内的流动",
           "anchor": "12.5-reynolds-number"
         }
       ]
@@ -9520,36 +9521,36 @@
       "id": "turbulence-onset-thresholds",
       "kind": "axiom",
       "section": "12.5",
-      "name": "Onset of turbulence",
-      "statement": "For a Reynolds number below about 2000 the flow is laminar, and above about 3000 it is turbulent. Between 2000 and 3000 the flow is unstable: it can be laminar, but small obstructions and surface roughness can make it turbulent, and it may oscillate randomly between the two. Most of the blood flow in the body is quiet and laminar; the exception is the aorta, where the speed rises above a critical value and the flow becomes turbulent."
+      "name": "湍流的发生",
+      "statement": "雷诺数低于约 2000 时，流动是层流；高于约 3000 时，流动是湍流。在 2000 到 3000 之间，流动是不稳定的：它可以是层流，但微小的障碍物和表面粗糙度都可能使它变成湍流，而且它可能在这两者之间随机振荡。人体内的大部分血流是平静的层流；主动脉是个例外，那里的速率上升到临界值以上，流动变成湍流。"
     },
     {
       "id": "turbulence-in-circulation",
       "kind": "idea",
       "section": "12.5",
-      "name": "Turbulence in the circulatory system",
-      "statement": "An occlusion or narrowing of an artery is likely to cause turbulence, both because of the irregularity of the blockage and because of the complexity of blood as a fluid. Turbulence in the circulatory system is noisy and can often be heard: the Korotkoff sounds heard through a stethoscope when a blood pressure cuff is released, the sounds of an aneurysm, and the heart murmurs made by damaged valves that do not close. Ultrasound detects the same turbulence in a way analogous to Doppler-shift radar detecting a storm."
+      "name": "循环系统中的湍流",
+      "statement": "动脉的阻塞或变窄很可能引起湍流，既因为堵塞处不规则，也因为血液作为流体很复杂。循环系统中的湍流是有声音的，常常可以听到：松开血压计袖带时通过听诊器听到的科罗特科夫音、动脉瘤的声音，以及关闭不严的受损瓣膜产生的心脏杂音。超声检测同样的湍流，方式类似于多普勒频移雷达探测风暴。"
     },
     {
       "id": "chaotic-flow",
       "kind": "definition",
       "section": "12.5",
-      "name": "Chaotic behavior",
-      "statement": "A system is chaotic when its behavior is so sensitive to some factor that it is extremely difficult to predict. Flow with a Reynolds number between 2000 and 3000 is a good example: whether it is turbulent is difficult but not impossible to predict, and the difficulty lies in the extremely sensitive dependence on roughness and obstructions, where a tiny variation in one factor has an exaggerated effect on the flow. Phenomena as disparate as turbulence, the orbit of Pluto and the onset of irregular heartbeats are chaotic and can be analyzed with similar techniques."
+      "name": "混沌行为",
+      "statement": "当一个系统的行为对某个因素极其敏感，以至于极难预测时，这个系统就是混沌的。雷诺数在 2000 到 3000 之间的流动就是一个很好的例子：它是否为湍流难以预测但并非不可能预测，难点在于它极其敏感地依赖于粗糙度和障碍物，其中某个因素的微小变化会对流动产生被夸大的影响。湍流、冥王星的轨道和不规则心跳的发生，这些截然不同的现象都是混沌的，可以用类似的技术来分析。"
     },
     {
       "id": "reynolds-number-object",
       "kind": "definition",
       "section": "12.6",
-      "name": "Reynolds number for an object",
+      "name": "物体的雷诺数",
       "symbol": "N_Rprime",
-      "statement": "The Reynolds number for an object moving in a fluid, ${N'}_{\\text{R}} = \\rho vL/\\eta$, where $L$ is a characteristic length of the object, indicates whether the flow around it is laminar or turbulent. A moving object in a still fluid is equivalent to a stationary object in a flowing stream.",
+      "statement": "在流体中运动的物体的雷诺数 ${N'}_{\\text{R}} = \\rho vL/\\eta$（其中 $L$ 是物体的特征长度）表明物体周围的流动是层流还是湍流。静止流体中运动的物体等价于流动水流中静止的物体。",
       "forms": [
         {
           "id": "eq-reynolds-object",
           "latex": "{N'}_{\\text{R}} = \\frac{\\rho vL}{\\eta}",
           "ktex": "{N'}_{\\text{R}} = \\frac{\\krho\\kv L}{\\keta}",
-          "condition": "object moving in a fluid",
+          "condition": "物体在流体中运动",
           "anchor": "12.6-reynolds-object"
         }
       ]
@@ -9558,45 +9559,45 @@
       "id": "flow-regimes-around-object",
       "kind": "idea",
       "section": "12.6",
-      "name": "Flow around an object",
-      "statement": "Below about 1 the flow around an object can be laminar, particularly if the object has a smooth shape. Between 1 and about 10 the flow turns turbulent, the exact point depending on surface roughness, and a turbulent wake forms behind the object while some laminar flow remains over its surface. Between 10 and a million the flow may be either and may oscillate between the two, and above a million it is turbulent everywhere, even at the surface. Laminar flow occurs mostly when the objects are small, such as raindrops, pollen and blood cells in plasma, so most large objects, airplanes and sailboats among them, create significant turbulence as they move."
+      "name": "绕物体的流动",
+      "statement": "雷诺数低于约 1 时，物体周围的流动可以是层流，尤其是当物体形状光滑时。在 1 到约 10 之间，流动变成湍流，确切的位置取决于表面粗糙度，物体后面形成湍流尾流，而其表面上仍保留一些层流。在 10 到一百万之间，流动可能是其中任何一种，也可能在两者之间振荡；高于一百万时，流动处处都是湍流，连表面也不例外。层流主要出现在物体很小的时候，例如雨滴、花粉和血浆中的血细胞，所以大多数大型物体，包括飞机和帆船，在运动时都会产生显著的湍流。"
     },
     {
       "id": "viscous-drag",
       "kind": "definition",
       "section": "12.6",
-      "name": "Viscous drag",
+      "name": "黏性阻力",
       "symbol": "F_V",
       "terms": [
-        "viscous drag"
+        "黏性阻力"
       ],
       "type": "force",
-      "statement": "One consequence of viscosity is a resistance force called viscous drag, exerted on an object moving through a fluid. Unlike simple friction, it depends on the object’s speed, and how it depends on it changes with the Reynolds number. For laminar flow the drag is proportional to the speed, while between about 10 and a million it is proportional to the speed squared. That is why even a small headwind costs a bicycle racer so much and why cyclists take turns leading the pack. For laminar flow around a sphere the drag is proportional to the viscosity, the size of the object and its speed: a more viscous fluid and a larger object both mean more drag. Stokes’ law gives the constant."
+      "statement": "黏性的一个后果是一种叫作黏性阻力的力，作用在穿过流体运动的物体上。与简单的摩擦不同，它依赖于物体的速率，而且这种依赖关系随雷诺数而变化。对于层流，阻力与速率成正比，而在约 10 到一百万之间，它与速率的平方成正比。这就是为什么即使是很小的顶头风也使自行车赛车手付出这么大的代价，也是为什么骑手们轮流领骑车队。对于绕球体的层流，阻力与黏度、物体的大小及其速率成正比：黏度更大的流体和更大的物体都意味着更大的阻力。斯托克斯定律给出了其中的常量。"
     },
     {
       "id": "sedimentation-rate",
       "kind": "idea",
       "section": "12.6",
-      "name": "Sedimentation and the centrifuge",
-      "statement": "Because the viscous drag grows with speed, an object falling through a fluid does not accelerate indefinitely. The drag increases, the acceleration falls, and at the terminal speed the object continues to fall at a constant speed. This is the case for particles of sand falling in the ocean, cells falling in a centrifuge and sky divers falling through the air, and the terminal speed is greatest for low-viscosity fluids and for objects that are dense and small, which is why a skydiver falls more slowly with outspread limbs than in a pike position. Knowing it is useful for estimating how quickly small particles settle, and a centrifuge speeds that settling by replacing gravitational acceleration with a much greater centripetal acceleration."
+      "name": "沉降与离心机",
+      "statement": "因为黏性阻力随速率增大，所以在流体中下落的物体不会无限地加速。阻力增大，加速度减小，到了终极速率时，物体就以恒定的速率继续下落。海洋中下落的沙粒、离心机中下落的细胞和穿过空气下落的跳伞者都是这种情形，而终极速率在低黏度流体中以及对密度大而体积小的物体最大，这就是为什么跳伞者四肢张开时比屈体姿势下落得更慢。了解它有助于估算小颗粒沉降的快慢，而离心机用大得多的向心加速度取代重力加速度，从而加快这种沉降。"
     },
     {
       "id": "diffusion",
       "kind": "definition",
       "section": "12.7",
-      "name": "Diffusion",
+      "name": "扩散",
       "terms": [
-        "diffusion"
+        "扩散"
       ],
-      "statement": "Atoms and molecules are in constant motion at any temperature, and in fluids they move about randomly even where there is no macroscopic flow. That motion is a random walk, and diffusion is the movement of substances that it produces. It explains how an ice cube picks up the odors of a freezer, and fluids can even diffuse through solids. It is a slow process over macroscopic distances, because the densities of common materials are great enough that a molecule cannot travel far before a collision scatters it in any direction, including straight backward."
+      "statement": "原子和分子在任何温度下都在不停地运动，在流体中，即使没有宏观的流动，它们也在随机地运动。这种运动是无规行走，而扩散就是它所产生的物质迁移。它解释了冰块如何沾上冰箱里的气味，流体甚至可以在固体中扩散。在宏观距离上这是一个缓慢的过程，因为常见材料的密度大得足以使一个分子在被碰撞向任意方向（包括直接向后）散射之前走不远。"
     },
     {
       "id": "random-walk-distance",
       "kind": "result",
       "section": "12.7",
-      "name": "Diffusion distance",
+      "name": "扩散距离",
       "type": "position",
-      "statement": "The root-mean-square distance a molecule travels by diffusion is proportional to the square root of the time, $x_{\\text{rms}} = \\sqrt{2Dt}$, not to the time itself, which is what makes diffusion so slow over any large distance.",
+      "statement": "分子通过扩散行进的方均根距离与时间的平方根成正比，$x_{\\text{rms}} = \\sqrt{2Dt}$，而不是与时间本身成正比，这正是扩散在任何较大距离上都如此缓慢的原因。",
       "forms": [
         {
           "id": "eq-rms-distance",
@@ -9610,97 +9611,97 @@
       "id": "diffusion-constant",
       "kind": "definition",
       "section": "12.7",
-      "name": "Diffusion constant",
+      "name": "扩散常量",
       "symbol": "D_diff",
       "type": "diffusion-constant",
-      "statement": "The diffusion constant is determined experimentally and gathers into one number most of the things that set the rate: the molecule, the medium, the temperature and the cohesive and adhesive forces. It gets progressively smaller for more massive molecules, because the average molecular speed at a given temperature is inversely proportional to molecular mass, and it is far smaller in water than in air, because a molecule in water makes many more collisions in its random walk. It increases with temperature, since the average kinetic energy of the molecules is proportional to absolute temperature."
+      "statement": "扩散常量由实验确定，它把决定速率的大部分因素汇集成一个数：分子、介质、温度以及内聚力和黏附力。分子越重，它越小，因为给定温度下的平均分子速率与分子质量成反比；它在水中比在空气中小得多，因为水中的分子在无规行走中发生的碰撞多得多。它随温度升高而增大，因为分子的平均动能与热力学温度成正比。"
     },
     {
       "id": "diffusion-rate-direction",
       "kind": "idea",
       "section": "12.7",
-      "name": "Rate and direction of diffusion",
-      "statement": "A drop of food coloring placed carefully in still water spreads until its concentration is the same everywhere, which is free diffusion, since no barrier inhibits it. Molecular motion is random in direction, so simple chance dictates that more molecules leave a region of high concentration than enter it, and the net rate of diffusion is proportional to the difference in concentration; if the concentrations were the same there would be no net movement at all. The net rate is higher at the start than after the process is partly complete, and it is proportional to the diffusion constant as well."
+      "name": "扩散的速率和方向",
+      "statement": "小心地滴入静水中的一滴食用色素会扩散，直到各处浓度相同，这是自由扩散，因为没有屏障阻碍它。分子运动的方向是随机的，所以单凭机会就决定了离开高浓度区域的分子比进入的多，净扩散速率与浓度差成正比；如果浓度相同，就根本没有净移动。净速率在开始时比过程完成一部分之后更高，而且它也与扩散常量成正比。"
     },
     {
       "id": "semipermeable-membrane",
       "kind": "definition",
       "section": "12.7",
-      "name": "Semipermeable membranes",
+      "name": "半透膜",
       "terms": [
-        "semipermeable"
+        "半透的"
       ],
-      "statement": "A semipermeable membrane allows only certain small molecules to pass through it. Membranes in living things are generally of this kind, and they affect the rates at which substances diffuse across them."
+      "statement": "半透膜只允许某些小分子通过。生物体内的膜一般都是这一类，它们影响物质扩散穿过它们的速率。"
     },
     {
       "id": "osmosis",
       "kind": "definition",
       "section": "12.7",
-      "name": "Osmosis",
+      "name": "渗透",
       "terms": [
-        "osmosis"
+        "渗透"
       ],
-      "statement": "Osmosis is the transport of water through a semipermeable membrane from a region of high concentration to a region of low concentration, and it is driven by the imbalance in water concentration. Water is more concentrated in the body than in Epsom salt, so soaking a swollen ankle in Epsom salt moves water out of the body into the lower-concentration region in the salt. Both osmosis and dialysis are used by the kidneys to cleanse the blood."
+      "statement": "渗透是水通过半透膜从高浓度区域向低浓度区域的输运，它由水的浓度失衡所驱动。水在体内的浓度比在泻盐中高，所以把肿胀的脚踝浸泡在泻盐中，会使水从体内移向盐中浓度较低的区域。肾既利用渗透也利用透析来净化血液。"
     },
     {
       "id": "dialysis",
       "kind": "definition",
       "section": "12.7",
-      "name": "Dialysis",
+      "name": "透析",
       "terms": [
-        "dialysis"
+        "透析"
       ],
-      "statement": "Dialysis is the transport of any molecule other than water through a semipermeable membrane because of its concentration difference. It is the same process as osmosis with a different substance moving, and like osmosis it can create substantial pressures. The kidneys use both."
+      "statement": "透析是水以外的任何分子因其浓度差而通过半透膜的输运。它与渗透是同一个过程，只是移动的物质不同，而且和渗透一样，它可以产生可观的压强。肾两者都用。"
     },
     {
       "id": "osmotic-pressure",
       "kind": "definition",
       "section": "12.7",
-      "name": "Osmotic pressure and back pressure",
+      "name": "渗透压与背压",
       "terms": [
-        "osmotic pressure"
+        "渗透压"
       ],
-      "statement": "Osmosis can create a substantial pressure. Water moving through a membrane raises the solution on the low-concentration side, and the movement continues until the pressure of the extra height of fluid stops further osmosis. That back pressure is the relative osmotic pressure if neither solution is pure water, and the osmotic pressure if one of them is. It can be very large. Pure water and sea water separated by a membrane that passes no salt come to equilibrium at 25.9 atmospheres, which would raise the salt water 268 meters above the pure water. Turgor, the pressure of a plant cell’s fluid against its wall, is the same effect holding a plant up. Where the back pressure is large enough to reverse the normal direction, the process becomes reverse osmosis or reverse dialysis, which desalinates water and lets a membrane act as a filter."
+      "statement": "渗透可以产生可观的压强。水通过膜移动，使低浓度一侧的溶液升高，这种移动一直持续到多出的那段流体高度的压强阻止了进一步的渗透为止。如果两种溶液都不是纯水，这个背压就是相对渗透压；如果其中一种是纯水，它就是渗透压。它可以非常大。被一张不让盐通过的膜隔开的纯水和海水在 25.9 个大气压下达到平衡，这会使盐水比纯水高出 268 米。膨压，即植物细胞液对细胞壁的压强，是同一种效应，它使植物挺立。当背压大到足以使正常方向反转时，这一过程就成为反渗透或反透析，它使水脱盐，并使膜起到过滤器的作用。"
     },
     {
       "id": "active-transport",
       "kind": "definition",
       "section": "12.7",
-      "name": "Active transport",
+      "name": "主动运输",
       "terms": [
-        "active transport"
+        "主动运输"
       ],
-      "statement": "Substances sometimes pass through a membrane in the direction opposite to the one expected. Cypress tree roots extract pure water from salt water although osmosis would move it the other way. This is not reverse osmosis, because no back pressure causes it. It is active transport, in which a living membrane expends energy to move substances across it. Many living membranes do this, the kidneys among them, and at least a quarter of the body’s energy by some estimates goes to active transport at the cellular level."
+      "statement": "物质有时沿着与预期相反的方向通过膜。柏树的根从盐水中提取纯水，尽管渗透会使水朝相反的方向移动。这不是反渗透，因为没有背压引起它。这是主动运输，其中活的膜消耗能量使物质穿过它。许多活的膜都这样做，肾就是其中之一，而且据一些估计，人体至少有四分之一的能量用于细胞水平的主动运输。"
     },
     {
       "id": "relative-osmotic-pressure",
       "kind": "definition",
       "section": "12.7",
-      "name": "Relative osmotic pressure",
+      "name": "相对渗透压",
       "terms": [
-        "relative osmotic pressure"
+        "相对渗透压"
       ],
-      "statement": "Relative osmotic pressure is the back pressure that stops the osmotic process when neither solution is pure water."
+      "statement": "相对渗透压是当两种溶液都不是纯水时，阻止渗透过程的背压。"
     },
     {
       "id": "reverse-osmosis",
       "kind": "definition",
       "section": "12.7",
-      "name": "Reverse osmosis",
+      "name": "反渗透",
       "terms": [
-        "reverse osmosis"
+        "反渗透"
       ],
-      "statement": "Reverse osmosis is the process that occurs when back pressure is great enough to reverse the normal direction of osmosis, driving water out of the more concentrated solution. It is used to desalinate water by forcing it through a membrane that will not pass salt."
+      "statement": "反渗透是当背压大到足以使渗透的正常方向反转时发生的过程，它把水从浓度更高的溶液中驱出。它通过迫使水穿过不让盐通过的膜来使水脱盐。"
     },
     {
       "id": "reverse-dialysis",
       "kind": "definition",
       "section": "12.7",
-      "name": "Reverse dialysis",
+      "name": "反透析",
       "terms": [
-        "reverse dialysis"
+        "反透析"
       ],
-      "statement": "Reverse dialysis is the process that occurs when back pressure is great enough to reverse the normal direction of dialysis, and it can be used to filter out a substance that a membrane will not pass."
+      "statement": "反透析是当背压大到足以使透析的正常方向反转时发生的过程，它可以用来滤除膜不让通过的物质。"
     },
     {
       "id": "first-law-of-thermodynamics",
@@ -10433,37 +10434,37 @@
       "id": "heat",
       "kind": "definition",
       "section": "14.1",
-      "name": "Heat",
+      "name": "热量",
       "symbol": "Q_heat",
       "terms": [
-        "heat"
+        "热量"
       ],
       "type": "energy",
-      "statement": "Heat is the spontaneous transfer of energy due to a temperature difference. When two objects at different temperatures are brought into contact, energy passes from the hotter to the colder one until they reach the same temperature, and no force acts through a distance while it does, so the transfer is not work. Heat is therefore a form of energy in transit: it exists only while the temperature difference drives it, and it ceases once the temperatures are equal."
+      "statement": "热量是由温度差引起的能量自发传递。当两个温度不同的物体相接触时，能量由较热的物体传向较冷的物体，直到它们达到相同的温度；在此过程中没有力作用一段距离，所以这种传递不是功。因此，热量是一种传递中的能量形式：它只在温度差驱动它的时候存在，一旦温度相等便终止。"
     },
     {
       "id": "heat-vs-temperature",
       "kind": "idea",
       "section": "14.1",
-      "name": "Heat versus temperature",
-      "statement": "We may say the heat was unbearable when we mean the temperature was high. Heat is a form of energy, measured in joules; temperature is not an energy but a measure of the average kinetic energy of the atoms and molecules. The confusion arises because we sense the flow of heat rather than the temperature itself. Keeping the two apart lets the rest of the chapter show that adding heat need not raise a temperature at all."
+      "name": "热量与温度之别",
+      "statement": "我们可能会说热量令人难以忍受，而实际想说的是温度很高。热量是能量的一种形式，以焦耳计量；温度不是能量，而是原子和分子平均动能的量度。之所以产生这种混淆，是因为我们感觉到的是热量的流动，而不是温度本身。把两者区分开，本章后面的内容才能说明，加入热量并不一定会使温度升高。"
     },
     {
       "id": "units-of-heat",
       "kind": "definition",
       "section": "14.1",
-      "name": "Units of heat",
-      "statement": "Because heat is a form of energy, its SI unit is the joule, but heat is also measured in the calorie, the energy needed to warm 1.00 g of water by 1.00 °C, and most often in the kilocalorie, which warms 1.00 kg of water by the same amount. A food calorie is a kilocalorie, a fact not easily determined from package labeling, and converting among these units is part of almost every problem in the chapter."
+      "name": "热量的单位",
+      "statement": "由于热量是能量的一种形式，其 SI 单位是焦耳，但热量也用卡来计量，卡是使 1.00 g 水的温度升高 1.00 °C 所需的能量，而最常用的是千卡，它使 1.00 kg 水升高同样的温度。食物大卡就是千卡，这一点很难从包装标签上确定，而在这些单位之间换算是本章几乎每道题的一部分。"
     },
     {
       "id": "mechanical-equivalent-of-heat",
       "kind": "axiom",
       "section": "14.1",
-      "name": "Mechanical equivalent of heat",
+      "name": "热功当量",
       "terms": [
-        "mechanical equivalent of heat"
+        "热功当量"
       ],
-      "statement": "Doing work can also change the temperature of a substance, and James Prescott Joule's experiments established the mechanical equivalent of heat, the work that produces the same effects as heat transfer. The best modern value is 1.000 kcal = 4186 J, which we treat as the conversion between two units of energy. In Joule's apparatus falling weights turn paddles in water. Gravitational potential energy becomes kinetic energy, viscosity randomizes it into the motion of the molecules, and the thermometer rises exactly as it would have with heat added instead.",
+      "statement": "做功也可以改变物质的温度，詹姆斯·普雷斯科特·焦耳的实验确立了热功当量，即产生与热传递相同效果的功。现代最佳值是 1.000 kcal = 4186 J，我们把它当作两个能量单位之间的换算关系。在焦耳的装置中，下落的重物带动水中的桨叶转动。重力势能变为动能，黏度把它随机化为分子的运动，温度计的示数恰好像加入热量时一样上升。",
       "forms": [
         {
           "id": "eq-mechanical-equivalent",
@@ -10477,18 +10478,18 @@
       "id": "internal-energy-changed-by-heat-or-work",
       "kind": "idea",
       "section": "14.1",
-      "name": "Changing internal energy by heat or work",
-      "statement": "Heat added to a system changes its internal energy and usually its temperature, and so does work done on the system, by stirring or by rubbing. A system has a well-defined internal energy, but it does not have a heat content or a work content: once the energy is inside, nothing about the sample says which way it came. This is why the book says heat transfer rather than heat, and it is the idea Chapter 15 will build the first law of thermodynamics on."
+      "name": "由热量或功改变内能",
+      "statement": "加给系统的热量会改变其内能，通常也改变其温度，对系统做功（通过搅拌或摩擦）同样如此。系统有确定的内能，却没有热含量，也没有功含量：能量一旦进入内部，样品本身就看不出它是以哪种方式进来的。这就是本书说热传递而不说热量的原因，也是第 15 章建立热力学第一定律所依据的思想。"
     },
     {
       "id": "kilocalorie",
       "kind": "definition",
       "section": "14.1",
-      "name": "Kilocalorie",
+      "name": "千卡",
       "terms": [
-        "kilocalorie"
+        "千卡"
       ],
-      "statement": "The kilocalorie is a unit of heat, 1000 calories, the energy needed to raise the temperature of 1.00 kg of water by 1.00 °C. A food calorie is a kilocalorie.",
+      "statement": "千卡是热量的单位，等于 1000 卡，即使 1.00 kg 水的温度升高 1.00 °C 所需的能量。食物大卡就是千卡。",
       "forms": [
         {
           "id": "eq-kilocalorie",
@@ -10500,15 +10501,15 @@
       "id": "three-factors-of-heat-transfer",
       "kind": "idea",
       "section": "14.2",
-      "name": "Factors in heat transfer",
-      "statement": "Experiments show that the heat transferred to change a body's temperature depends on three factors: the change in temperature, the mass of the body, and the substance and its phase. Doubling the temperature change of a given mass takes twice the heat, doubling the mass takes twice the heat for the same change, and the same change in the same mass of water takes 10.8 times the heat it takes in copper. The first two follow from the internal energy being proportional to the absolute temperature and to the number of molecules; the third is a property of the material."
+      "name": "热传递中的因素",
+      "statement": "实验表明，使物体温度改变所传递的热量取决于三个因素：温度的变化、物体的质量，以及物质及其相。给定质量的温度变化加倍，所需热量加倍；质量加倍，在同样的温度变化下所需热量也加倍；而相同质量的水发生同样的温度变化，所需热量是铜的 10.8 倍。前两条源于内能与热力学温度和分子数成正比；第三条是材料的性质。"
     },
     {
       "id": "heat-and-temperature-change",
       "kind": "axiom",
       "section": "14.2",
-      "name": "Heat and temperature change",
-      "statement": "The heat transferred is the mass times the specific heat times the change in temperature, provided there is no phase change and no work is done. The temperature change is the same in kelvin and in degrees Celsius, so either will do, and with heat in kilocalories the specific heat is in kcal/(kg·°C). This is the working equation of the whole chapter, since every later method of heat transfer comes back to the temperature change it produces.",
+      "name": "热量与温度变化",
+      "statement": "在没有相变且不做功的条件下，传递的热量等于质量乘以比热容再乘以温度变化。温度变化以开尔文计和以摄氏度计是相同的，所以用哪个都行；热量以千卡为单位时，比热容的单位是 kcal/(kg·°C)。这是整章的工作方程，因为之后每一种热传递方式都要回到它所产生的温度变化上来。",
       "forms": [
         {
           "id": "eq-heat-temperature-change",
@@ -10523,20 +10524,20 @@
       "id": "specific-heat",
       "kind": "definition",
       "section": "14.2",
-      "name": "Specific heat",
+      "name": "比热容",
       "symbol": "c_spec",
       "terms": [
-        "specific heat"
+        "比热容"
       ],
       "type": "specific-heat",
-      "statement": "The specific heat is the amount of heat necessary to change the temperature of 1.00 kg of a substance by 1.00 °C. It depends on the material and its phase, must generally be looked up in a table because there is no simple way to calculate it, and varies little with temperature for most solids and liquids. Water's is among the largest of any material, five times that of glass and ten times that of iron, which is important for sustaining life on Earth."
+      "statement": "比热容是使 1.00 kg 某种物质的温度改变 1.00 °C 所需的热量。它取决于材料及其相，一般必须查表，因为没有简单的方法可以计算它，而且对大多数固体和液体，它随温度变化不大。水的比热容是所有材料中最大的之一，是玻璃的五倍、铁的十倍，这对维持地球上的生命很重要。"
     },
     {
       "id": "temperature-rise-from-work",
       "kind": "skill",
       "section": "14.2",
-      "name": "Finding the temperature rise from work",
-      "statement": "When work turns into internal energy, the same equation, solved for the temperature change, gives the rise: the energy delivered divided by the mass and the specific heat of what absorbs it. Truck brakes on a downhill run convert the gravitational potential energy the truck loses into internal energy of the brake material. Because the brakes are small compared with the truck, even a tenth of that energy warms them quickly.",
+      "name": "由功求温度升高",
+      "statement": "当功转化为内能时，把同一个方程对温度变化求解，就得到温度升高：传递的能量除以吸收它的物体的质量与比热容。卡车在下坡行驶时，刹车片把卡车失去的重力势能转化为刹车材料的内能。由于刹车片相对于卡车很小，即使只有十分之一的能量也会使它们迅速升温。",
       "forms": [
         {
           "id": "eq-temperature-change-from-heat",
@@ -10550,8 +10551,8 @@
       "id": "calorimetry",
       "kind": "result",
       "section": "14.2",
-      "name": "Calorimetry",
-      "statement": "When two bodies at different temperatures touch in an insulated container, heat passes from the hotter to the colder until they reach a common temperature. No heat leaves the pair, so the heat the hot body loses is the heat the cold one gains. With signs, the heat into the cold body is positive, the heat out of the hot body is negative, and the two sum to zero. This is a calorimetry problem, and calorimetry measures the heat content of foods and the specific heats of materials.",
+      "name": "量热学",
+      "statement": "当两个温度不同的物体在隔热容器中接触时，热量由较热的物体传向较冷的物体，直到它们达到共同温度。没有热量离开这一对物体，所以热物体失去的热量就是冷物体得到的热量。考虑正负号，流入冷物体的热量为正，流出热物体的热量为负，二者之和为零。这是一个量热学问题，而量热学测量食物的热含量和材料的比热容。",
       "forms": [
         {
           "id": "eq-calorimetry",
@@ -10571,8 +10572,8 @@
       "id": "final-temperature-from-heat-exchange",
       "kind": "skill",
       "section": "14.2",
-      "name": "Finding the final temperature of two bodies",
-      "statement": "Solving the calorimetry balance for the final temperature gives a weighted average of the two starting temperatures, each weighted by its body's mass times specific heat. The pan at 150 °C and the water at 20.0 °C meet at 59.1 °C, much closer to the water, because water's specific heat is more than four times aluminum's and its mass times specific heat is the larger weight. The skill is to write the heat lost and the heat gained in terms of the one unknown temperature and then collect the terms.",
+      "name": "求两个物体的末温",
+      "statement": "对量热学平衡式求解末温，得到两个起始温度的加权平均，每个起始温度的权重是该物体的质量乘以比热容。150 °C 的锅与 20.0 °C 的水最终达到 59.1 °C，更接近水的温度，因为水的比热容是铝的四倍多，其质量乘以比热容是较大的权重。关键技巧是用唯一的未知温度写出失去的热量和得到的热量，然后合并各项。",
       "forms": [
         {
           "id": "eq-final-temperature",
@@ -10586,20 +10587,20 @@
       "id": "water-moderates-temperature",
       "kind": "idea",
       "section": "14.2",
-      "name": "Water moderating temperature",
-      "statement": "Because water has a greater specific heat than most common substances, it undergoes a small temperature change for a given heat transfer. A large body of water such as a lake needs a great deal of heat to warm appreciably, so its temperature stays nearly constant through a day even when the air's changes a great deal, while it does change over the longer times from summer to winter. Land warms and cools faster than water, which is what drives land breezes and sea breezes."
+      "name": "水对温度的调节作用",
+      "statement": "由于水的比热容比大多数常见物质大，在给定的热传递下它的温度变化很小。像湖泊这样的大片水体需要大量热量才能明显升温，所以即使气温在一天中变化很大，它的温度也几乎保持不变，而在从夏季到冬季的较长时间内它的温度确实会变化。陆地比水升温和降温更快，这正是陆风和海风的成因。"
     },
     {
       "id": "latent-heat",
       "kind": "definition",
       "section": "14.3",
-      "name": "Latent heat",
+      "name": "潜热",
       "symbol": "L_latent",
       "terms": [
-        "latent heat coefficient"
+        "潜热系数"
       ],
       "type": "latent-heat",
-      "statement": "Heat transfer causes no temperature change while a substance changes phase. The energy goes into breaking the cohesive bonds between molecules rather than into their kinetic energy, so ice at 0 °C stays at 0 °C until all of it has melted. The same energy comes back out, usually as thermal energy, when the bonds form again in freezing or condensation. The heat that changes the phase of a mass is that mass times a latent heat coefficient, a material constant. It is latent, or hidden, because the energy enters or leaves without changing the temperature.",
+      "statement": "物质发生相变时，热传递并不引起温度变化。能量用于破坏分子之间的内聚键，而不是增加它们的动能，所以 0 °C 的冰在全部熔化之前一直保持 0 °C。当键在凝固或凝结中重新形成时，同样的能量又释放出来，通常以热能的形式。改变一定质量的相所需的热量，等于该质量乘以潜热系数，这是一个材料常量。之所以称为潜热，即隐藏的热，是因为能量进入或离开时并不改变温度。",
       "forms": [
         {
           "id": "eq-latent-heat",
@@ -10614,10 +10615,10 @@
       "id": "heat-of-fusion",
       "kind": "definition",
       "section": "14.3",
-      "name": "Heat of fusion",
+      "name": "熔化热",
       "symbol": "L_f",
       "type": "latent-heat",
-      "statement": "The latent heat of fusion is the heat that melts a kilogram of a substance at its melting point, and the kilogram releases the same heat when it freezes. For water it is 334 kJ/kg, enough to warm a kilogram of liquid water from 0 °C to 79.8 °C. A bag of ice at 0 °C therefore absorbs far more energy than a bag of water at the same temperature, and water freezing on a sprayed orchard warms the trees.",
+      "statement": "熔化热是使一千克物质在熔点熔化所需的热量，这一千克物质凝固时释放同样的热量。对水而言它是 334 kJ/kg，足以使一千克液态水从 0 °C 升温到 79.8 °C。因此，一袋 0 °C 的冰比同样温度的一袋水吸收的能量多得多，在喷过水的果园里，水结冰会使树木变暖。",
       "forms": [
         {
           "id": "eq-heat-fusion",
@@ -10640,10 +10641,10 @@
       "id": "heat-of-vaporization",
       "kind": "definition",
       "section": "14.3",
-      "name": "Heat of vaporization",
+      "name": "汽化热",
       "symbol": "L_v",
       "type": "latent-heat",
-      "statement": "The latent heat of vaporization is the heat that turns a kilogram of liquid into vapor at the boiling point, and the vapor releases the same heat when it condenses. For water it is 2256 kJ/kg, nearly seven times its heat of fusion, so boiling away a kilogram of water costs more than raising it from ice-cold to boiling. Condensation on a glass of iced tea releases energy into the glass and speeds the melting of the ice.",
+      "statement": "汽化热是使一千克液体在沸点变为蒸气所需的热量，蒸气凝结时释放同样的热量。对水而言它是 2256 kJ/kg，几乎是其熔化热的七倍，所以把一千克水煮干所耗的热量，比把它从冰冷升温到沸腾还多。一杯冰茶外壁上的凝结把能量释放到杯子里，加速了冰的熔化。",
       "forms": [
         {
           "id": "eq-heat-vaporization",
@@ -10658,34 +10659,34 @@
       "id": "heating-curve",
       "kind": "idea",
       "section": "14.3",
-      "name": "Heating curve of water",
-      "statement": "Adding heat to ice at −20 °C traces a graph with slopes and plateaus. The temperature rises linearly while the ice warms, stops at 0 °C while the ice melts and every joule goes into the phase change, rises again more slowly through the liquid because water's specific heat is twice ice's, stops at 100 °C for a much longer plateau while the water boils, and rises once more as steam. The plateaus are the latent heats, and their lengths beside the slopes show that the energy of a phase change is enormous compared with that of a temperature change."
+      "name": "水的加热曲线",
+      "statement": "给 −20 °C 的冰加热，描出的图线有斜坡也有平台。冰升温时温度线性上升；冰熔化时停在 0 °C，每一焦耳都用于相变；然后在液态水中再次上升，但更慢，因为水的比热容是冰的两倍；水沸腾时停在 100 °C，平台长得多；之后作为蒸汽再次上升。这些平台就是潜热，把它们的长度与斜坡相比较可以看出，相变的能量比温度变化的能量大得多。"
     },
     {
       "id": "evaporation-below-boiling",
       "kind": "idea",
       "section": "14.3",
-      "name": "Evaporation below the boiling point",
-      "statement": "Water evaporates at temperatures below its boiling point, and it costs more energy per kilogram to do so, because the molecules have less kinetic energy to draw on: at body temperature the heat of vaporization is 2430 kJ/kg, about ten percent higher than at 100 °C. Perspiration takes this heat from the skin, which is why sweating cools, and high humidity slows evaporation so that the sweat stays on your brow. The same evaporation is why air temperatures in humid climates rarely rise above 35 °C."
+      "name": "沸点以下的蒸发",
+      "statement": "水在低于沸点的温度也会蒸发，而且每千克所耗的能量更多，因为分子可资利用的动能更少：在体温下汽化热为 2430 kJ/kg，比 100 °C 时约高百分之十。汗液从皮肤带走这份热量，所以出汗能降温，而高湿度减缓蒸发，汗就留在你的额头上。同样的蒸发也是潮湿气候中气温很少升到 35 °C 以上的原因。"
     },
     {
       "id": "condensation-and-freezing-release-heat",
       "kind": "idea",
       "section": "14.3",
-      "name": "Condensation and freezing release heat",
-      "statement": "To make vapor condense or liquid freeze, you must remove exactly the energy the phase change absorbed in the other direction, and the surroundings receive it. That is why condensation on a cold glass speeds the melting of the ice inside, why temperatures in humid weather rarely fall below the dew point, why spraying an orchard with water protects it from a hard frost, and why freezing water stays at 0 °C and no colder."
+      "name": "凝结和凝固释放热量",
+      "statement": "要使蒸气凝结或使液体凝固，必须移走相变在相反方向上所吸收的全部能量，周围环境接收这些能量。这就是为什么冷杯上的凝结加快了杯内冰的熔化，为什么潮湿天气里气温很少降到露点以下，为什么给果园喷水能使它免受严重霜冻，以及为什么结冰的水保持在 0 °C 而不会更冷。"
     },
     {
       "id": "heat-of-sublimation",
       "kind": "definition",
       "section": "14.3",
-      "name": "Heat of sublimation",
+      "name": "升华热",
       "symbol": "L_s",
       "terms": [
-        "heat of sublimation"
+        "升华热"
       ],
       "type": "latent-heat",
-      "statement": "Sublimation is the transition from the solid phase directly to the vapor phase, as when snow disappears without a trace of liquid, dry ice makes its smoke, or frost forms on a cold window from vapor alone. It occurs because the equilibrium vapor pressure of a solid is not zero. The energy required is the mass times the heat of sublimation, a constant of the same order as the other latent heats, so dry ice is an effective coolant and frosting releases energy.",
+      "statement": "升华是由固相直接变为气相的转变，如雪不留一点液体痕迹地消失，干冰冒出它的烟，或霜仅由蒸气在冷窗上形成。它的发生是因为固体的平衡蒸气压不为零。所需能量是质量乘以升华热，升华热是与其他潜热同一数量级的常量，所以干冰是有效的冷却剂，而凝华释放能量。",
       "forms": [
         {
           "id": "eq-heat-sublimation",
@@ -10700,8 +10701,8 @@
       "id": "phase-change-calorimetry",
       "kind": "skill",
       "section": "14.3",
-      "name": "Finding the final temperature with a phase change",
-      "statement": "When a phase change takes part in a heat exchange, work the problem in stages. The heat that melts the ice, then the heat that warms the melted water, balance the heat the other body gives up, with every term in the one unknown final temperature. Try the problem without a phase change first. If the temperature change would carry a body past a melting or boiling point, go back and do it in steps, and check at the end that you have missed no phase change.",
+      "name": "求有相变时的末温",
+      "statement": "当相变参与热交换时，要分阶段求解。使冰熔化的热量，再加上使熔化后的水升温的热量，与另一物体放出的热量相平衡，每一项都含有唯一的未知末温。先试着按没有相变来求解。如果温度变化会使某个物体越过熔点或沸点，就回去分步来做，并在最后检查有没有漏掉任何相变。",
       "forms": [
         {
           "id": "eq-ice-soda-balance",
@@ -10715,55 +10716,55 @@
       "id": "heat-transfer-methods",
       "kind": "idea",
       "section": "14.4",
-      "name": "Three methods of heat transfer",
-      "statement": "Whenever there is a temperature difference, heat transfer occurs, and every process by which it does takes place by only three methods: conduction, convection and radiation. All three have one thing in common, that they transfer heat solely because of a temperature difference, and we control their rates by choosing materials, controlling the movement of air and choosing colors. A fireplace shows all three at once."
+      "name": "热传递的三种方式",
+      "statement": "只要有温度差，就会发生热传递，而热传递的每一个过程都只通过三种方式进行：热传导、对流和辐射。三者有一个共同点，即它们传递热量仅仅是因为温度差，我们通过选择材料、控制空气的运动和选择颜色来控制它们的速率。壁炉同时显示了这三种方式。"
     },
     {
       "id": "conduction",
       "kind": "definition",
       "section": "14.4",
-      "name": "Conduction",
+      "name": "热传导",
       "terms": [
-        "conduction"
+        "热传导"
       ],
-      "statement": "Conduction is heat transfer through stationary matter by physical contact. The matter is stationary on the large scale, though its atoms and molecules are in thermal motion at any temperature above absolute zero, and the heat passes between the electric burner of a stove and the bottom of a pan, or from a hot floor into the sole of a foot, without anything moving from one place to the other."
+      "statement": "热传导是通过物理接触、经由静止物质的热传递。物质在宏观上是静止的，尽管在高于绝对零度的任何温度下，它的原子和分子都在做热运动，热量在炉灶的电热灶头与锅底之间传递，或从发热的地板传入脚掌，而没有任何东西从一处移到另一处。"
     },
     {
       "id": "convection",
       "kind": "definition",
       "section": "14.4",
-      "name": "Convection",
+      "name": "对流",
       "terms": [
-        "convection"
+        "对流"
       ],
-      "statement": "Convection is heat transfer by the macroscopic movement of a fluid. The fluid itself carries the energy from one place to another, as the air does in a forced-air furnace, in the draft up a chimney and in the weather, and as water does in the cooling system of a car."
+      "statement": "对流是通过流体的宏观运动传递热量。流体本身把能量从一处带到另一处，如强制送风炉中的空气、烟囱中向上的气流和天气中的空气，以及汽车冷却系统中的水。"
     },
     {
       "id": "radiation-heat-transfer",
       "kind": "definition",
       "section": "14.4",
-      "name": "Radiation",
+      "name": "辐射",
       "terms": [
-        "radiation"
+        "辐射"
       ],
-      "statement": "Heat transfer by radiation occurs when microwaves, infrared radiation, visible light or another form of electromagnetic radiation is emitted or absorbed. The Sun warms the Earth this way across empty space, a fire warms the room mostly this way, and the human body radiates infrared whether or not anything touches it."
+      "statement": "通过辐射的热传递发生在微波、红外辐射、可见光或其他形式的电磁辐射被发射或吸收的时候。太阳就是这样穿过空旷的空间使地球变暖，火也主要这样使房间变暖，人体不论是否接触任何东西都会辐射红外线。"
     },
     {
       "id": "conduction-by-molecular-collisions",
       "kind": "idea",
       "section": "14.5",
-      "name": "Conduction by molecular collisions",
-      "statement": "The molecules of a hotter body have the greater average kinetic energy, and when a fast molecule and a slow one collide at the surface where two bodies touch, energy passes from the faster to the slower. The cumulative effect of all the collisions is a net flux of heat from the hot body to the cold one that grows with the temperature difference and with the area of contact, and that falls to zero when the temperatures are equal. Because it relies on random motion, conduction is slow over distances larger than a molecule's reach."
+      "name": "分子碰撞引起的热传导",
+      "statement": "较热物体的分子平均动能较大，当一个快分子与一个慢分子在两物体接触的表面处碰撞时，能量由较快的传给较慢的。所有碰撞的累积效果，是从热物体到冷物体的净热流，它随温度差和接触面积增大，温度相等时降为零。由于依赖随机运动，热传导在大于分子作用范围的距离上是缓慢的。"
     },
     {
       "id": "rate-of-conductive-heat-transfer",
       "kind": "axiom",
       "section": "14.5",
-      "name": "Rate of conductive heat transfer",
+      "name": "热传导速率",
       "terms": [
-        "rate of conductive heat transfer"
+        "热传导速率"
       ],
-      "statement": "The rate at which heat flows through a slab of material by conduction is proportional to the temperature difference across it and to its area, inversely proportional to its thickness, and set by a constant of the material, its thermal conductivity. Experiment revealed and confirms these four factors, and the equation holds whether the slab is window glass or walrus blubber. It gives the rate in watts.",
+      "statement": "热量通过热传导流过一块材料平板的速率，正比于平板两侧的温度差和面积，反比于其厚度，并由材料的一个常量即其热导率决定。实验揭示并证实了这四个因素，无论平板是窗玻璃还是海象的皮下脂肪层，该方程都成立。它给出以瓦为单位的速率。",
       "forms": [
         {
           "id": "eq-conduction-rate",
@@ -10784,38 +10785,38 @@
       "id": "thermal-conductivity",
       "kind": "definition",
       "section": "14.5",
-      "name": "Thermal conductivity",
+      "name": "热导率",
       "symbol": "k_cond",
       "terms": [
-        "thermal conductivity"
+        "热导率"
       ],
       "type": "thermal-conductivity",
-      "statement": "Thermal conductivity measures a material's ability to conduct heat, and it spans more than four orders of magnitude across common substances. The best thermal conductors, silver, copper, gold and aluminum, are also the best electrical conductors, because of the density of free electrons in them, and cooks use utensils made of them. Styrofoam, fiberglass, wool and down conduct poorly because they trap many small pockets of air, whose own conductivity is among the lowest of all."
+      "statement": "热导率衡量材料传导热量的能力，在常见物质中跨越四个以上数量级。最好的热导体银、铜、金和铝，同时也是最好的电导体，因为它们含有密度很高的自由电子，厨师使用由它们制成的器具。Styrofoam、玻璃纤维、羊毛和羽绒导热很差，因为它们截留了许多小气室，而气室中空气自身的热导率是所有物质中最低的之一。"
     },
     {
       "id": "r-factor",
       "kind": "definition",
       "section": "14.5",
-      "name": "R factor",
+      "name": "R 值",
       "symbol": "R_factor",
       "terms": [
-        "R factor"
+        "R 值"
       ],
-      "statement": "A good insulator combines a small conductivity with a large thickness, and the ratio of thickness to conductivity is the R factor. The rate of conductive heat transfer is inversely proportional to it, so the larger the R factor, the better the insulation. Household insulation quotes it, still in non-metric units: 3.5-inch fiberglass batts rate 11 and 6.5-inch batts 19."
+      "statement": "良好的隔热体把小的热导率与大的厚度结合起来，厚度与热导率之比就是 R 值。热传导速率与它成反比，所以 R 值越大，隔热越好。家用隔热材料标出的就是它，而且仍用非公制单位：3.5 英寸玻璃纤维棉毡的 R 值为 11，6.5 英寸的为 19。"
     },
     {
       "id": "conduction-with-phase-change",
       "kind": "skill",
       "section": "14.5",
-      "name": "Finding the mass melted by conduction",
-      "statement": "The conduction equation gives a rate; multiplying it by a time gives the heat, and that heat may be spent on a phase change. A Styrofoam ice box in a hot car trunk lets heat in at a rate set by its walls, and over a day that heat melts a mass of ice equal to the total heat divided by the heat of fusion. The skill is to carry a rate into an amount and an amount into a mass, keeping each step's units."
+      "name": "求热传导所熔化的质量",
+      "statement": "热传导方程给出的是速率；乘以时间得到热量，这些热量可能用于相变。热车后备箱里的 Styrofoam 保温箱以由箱壁决定的速率让热量进入，一天之内这些热量所熔化的冰的质量，等于总热量除以熔化热。关键技巧是把速率换成量，再把量换成质量，并保持每一步的单位。"
     },
     {
       "id": "temperature-difference-from-conduction",
       "kind": "skill",
       "section": "14.5",
-      "name": "Finding the temperature difference from a heat flow",
-      "statement": "Solved the other way, the conduction equation gives the temperature difference that a known rate of heat transfer keeps across a slab. Through the aluminum bottom of a pan boiling away a gram of water a second, 2.26 kW crosses with a difference of only 5.33 °C, because aluminum conducts so well; across a ceramic stove top of the same area the same rate would need a thousand degrees. A small temperature difference with a large heat flow is the mark of a good conductor.",
+      "name": "由热流求温度差",
+      "statement": "反过来求解，热传导方程给出已知热传递速率在平板两侧所维持的温度差。通过每秒煮干一克水的锅的铝底，传过 2.26 kW，温度差只有 5.33 °C，因为铝的导热性极好；而穿过同样面积的陶瓷灶面，同样的速率则需要一千度的温度差。较小的温度差伴随较大的热流，是良导体的标志。",
       "forms": [
         {
           "id": "eq-conduction-temperature-difference",
@@ -10829,22 +10830,22 @@
       "id": "conduction-rate-scaling",
       "kind": "result",
       "section": "14.5",
-      "name": "Scaling of the conduction rate",
-      "statement": "Because area is the product of two lengths and thickness is one, doubling every dimension of a slab quadruples the area and only doubles the thickness, and the rate of conductive heat transfer doubles. Comparisons of this kind, a thin window against a thick wall, a callus against a bare sole, are answered by ratios of the four factors without evaluating either rate."
+      "name": "热传导速率的比例关系",
+      "statement": "因为面积是两个长度的乘积，而厚度只是一个长度，所以把平板的每个尺寸加倍，面积变为四倍而厚度只变为两倍，热传导速率便加倍。这类比较，如薄窗与厚墙、老茧与光脚掌，都可以通过四个因素的比值来回答，而无需算出任何一个速率。"
     },
     {
       "id": "natural-convection",
       "kind": "idea",
       "section": "14.6",
-      "name": "Natural convection",
-      "statement": "Buoyant forces drive natural convection. A heated fluid expands, its density falls, and it rises through the cooler, denser fluid around it, which sinks to take its place; the loop that forms carries heat with the moving matter. A gravity furnace heats a house this way, a pot of water on a stove circulates this way, and ocean currents and the atmosphere carry energy across the globe this way. Forced convection, in a car's cooling system or the blood vessels of the skin, is the same transport driven by a pump."
+      "name": "自然对流",
+      "statement": "浮力驱动自然对流。受热的流体膨胀，密度降低，在周围较冷、较密的流体中上升，较冷的流体下沉来填补它的位置；所形成的环流随运动的物质携带热量。重力式热风炉以这种方式给房子供暖，炉灶上的一锅水以这种方式循环，洋流和大气也以这种方式把能量送到全球各地。强制对流，如汽车冷却系统中或皮肤的血管中的对流，是由泵驱动的同样的输运。"
     },
     {
       "id": "convection-heat-rate",
       "kind": "skill",
       "section": "14.6",
-      "name": "Finding heat transfer by convection",
-      "statement": "To find the heat convection carries, find the mass of fluid moved, from its density and volume, and multiply by its specific heat and its temperature change. Divide by the time in which that mass is replaced to get the rate. Warming the air of a house by 10.0 °C, when all of it is replaced every half hour, takes 4.64 kW, the power of forty-six 100 W bulbs, which is why houses are weather-stripped.",
+      "name": "求对流传递的热量",
+      "statement": "要求对流所携带的热量，先由密度和体积求出被移动的流体的质量，再乘以它的比热容和温度变化。除以这些质量被替换所用的时间，就得到速率。把房子里的空气升温 10.0 °C，若每半小时全部更换一次，需要 4.64 kW，相当于四十六个 100 W 灯泡的功率，这就是房屋要装防风条的原因。",
       "forms": [
         {
           "id": "eq-convection-heat-rate",
@@ -10859,22 +10860,22 @@
       "id": "wind-chill",
       "kind": "idea",
       "section": "14.6",
-      "name": "Wind chill",
-      "statement": "A cold wind is much more chilling than still cold air, because convection combines with conduction in the body to increase the rate at which energy leaves it. Wind-chill factors are the temperatures of still air that would produce the same rate of cooling as air of a given temperature and speed, and they are a dramatic reminder of convection's ability to transfer heat faster than conduction: a 15.0 m/s wind at 0 °C chills like still air at about −18 °C."
+      "name": "风寒",
+      "statement": "冷风比静止的冷空气冷得多，因为对流与人体内的热传导结合起来，加快了能量离开身体的速率。风寒温度是能产生与给定温度和风速的空气相同冷却速率的静止空气的温度，它们生动地提醒我们对流传递热量的能力强于热传导：0 °C 时 15.0 m/s 的风使人感到的寒冷，就像约 −18 °C 的静止空气。"
     },
     {
       "id": "air-as-insulator",
       "kind": "idea",
       "section": "14.6",
-      "name": "Trapped air is an insulator",
-      "statement": "Air transfers heat rapidly by convection but conducts poorly, so whether it insulates depends on whether it can flow. The 9 cm space inside a house wall is large enough for convection, so builders fill it with insulation to stop the air moving. The 1 cm gap of a double-paned window is too small for convection and takes advantage of air's low conductivity. Fur, feathers and fiberglass all trap air in pockets too small for convection, which is why they are light and warm."
+      "name": "被截留的空气是隔热体",
+      "statement": "空气通过对流传热很快，但热传导很差，所以它是否隔热取决于它能否流动。房屋墙体内 9 cm 的空间大到足以发生对流，因此建筑工人用隔热材料把它填满，以阻止空气运动。双层玻璃窗 1 cm 的间隙小到不能发生对流，从而利用了空气热导率低的特点。皮毛、羽毛和玻璃纤维都把空气截留在小到不能发生对流的气室里，这就是它们轻而保暖的原因。"
     },
     {
       "id": "convection-with-phase-change",
       "kind": "result",
       "section": "14.6",
-      "name": "Evaporation rate",
-      "statement": "When convection is accompanied by a phase change, the moving fluid carries the latent heat with it, and the rate at which mass evaporates to remove a given power is that power divided by the heat of vaporization. Sweat evaporating from the skin can carry away a resting body's 120 W at about 3 g per minute, even when the air is as warm as the skin, provided air flow replaces the saturated air. The same process carries heat from the ocean into the atmosphere, drives thunderheads 20 km into the stratosphere by positive feedback, and lets a melting iceberg cool the sea it drifts through.",
+      "name": "蒸发速率",
+      "statement": "当对流伴有相变时，流动的流体把潜热一起带走，带走给定功率所需的蒸发质量速率，等于该功率除以汽化热。汗液从皮肤蒸发，每分钟约 3 g，就能带走静息身体的 120 W，即使空气与皮肤一样温暖，只要气流替换掉饱和的空气。同样的过程把热量从海洋带入大气，通过正反馈把积雨云推升到平流层 20 km 的高度，也让融化的冰山冷却它漂过的海水。",
       "forms": [
         {
           "id": "eq-evaporation-rate",
@@ -10889,36 +10890,36 @@
       "id": "radiation-spectrum-and-temperature",
       "kind": "idea",
       "section": "14.7",
-      "name": "Radiation spectrum and temperature",
-      "statement": "A hot body emits electromagnetic waves that need no medium to travel, and shorter wavelengths carry more energy. Because a body radiates more heat at higher temperatures, its color changes with its temperature: from the infrared you feel from a stove element that has not yet begun to glow, to red, to the yellow and white of steel in a blast furnace. The spectrum of an ideal radiator rises dramatically with temperature, and its peak shifts toward the visible and the ultraviolet."
+      "name": "辐射谱与温度",
+      "statement": "热物体发射不需要介质即可传播的电磁波，而且波长越短携带的能量越大。因为物体在较高温度下辐射的热量更多，所以它的颜色随温度改变：从你在尚未开始发光的炉灶加热元件上感到的红外线，到红色，再到高炉中钢的黄色和白色。理想辐射体的光谱随温度急剧上升，其峰值向可见光和紫外线移动。"
     },
     {
       "id": "absorbers-and-emitters",
       "kind": "idea",
       "section": "14.7",
-      "name": "Absorbers and emitters",
-      "statement": "The rate of heat transfer by radiation is largely determined by the color of the object. Black absorbs best and radiates best, so black asphalt is hotter than gray sidewalk by day and colder by night; white and silver absorb poorly and radiate poorly, reflecting radiation like a mirror. An ideal radiator is the same color as an ideal absorber, and the balance of radiation into and out of an object depends only on how well the object itself emits and absorbs."
+      "name": "吸收体与发射体",
+      "statement": "辐射传热的速率主要由物体的颜色决定。黑色吸收得最好，也辐射得最好，所以黑色沥青白天比灰色人行道热，夜晚比它冷；白色和银色吸收得差，辐射得也差，像镜子一样反射辐射。理想辐射体与理想吸收体颜色相同，物体辐射进出的平衡只取决于物体自身发射和吸收得多好。"
     },
     {
       "id": "emissivity",
       "kind": "definition",
       "section": "14.7",
-      "name": "Emissivity",
+      "name": "发射率",
       "symbol": "e_emis",
       "terms": [
-        "emissivity"
+        "发射率"
       ],
-      "statement": "The emissivity is a measure of how well an object radiates. An ideal jet-black radiator, a black body, has an emissivity of 1, a perfect reflector has 0, and real objects fall between: tungsten filaments about 0.5, carbon black about 0.99, and skin 0.97 in the infrared, so that we are all nearly black in the infrared whatever our visible color. The Earth's average emissivity is about 0.65, complicated by its varying cloud cover."
+      "statement": "发射率衡量物体辐射得多好。纯黑的理想辐射体即黑体，发射率为 1，完全反射体为 0，实际物体介于两者之间：钨丝约 0.5，炭黑约 0.99，皮肤在红外波段为 0.97，所以不论可见光下是什么颜色，我们在红外波段都近乎黑色。地球的平均发射率约为 0.65，因云量的变化而变得复杂。"
     },
     {
       "id": "stefan-boltzmann-law",
       "kind": "axiom",
       "section": "14.7",
-      "name": "Stefan-Boltzmann law",
+      "name": "斯特藩-玻尔兹曼定律",
       "terms": [
-        "Stefan-Boltzmann law of radiation"
+        "辐射的斯特藩-玻尔兹曼定律"
       ],
-      "statement": "The rate of heat transfer by emitted radiation is the Stefan-Boltzmann constant times the emissivity times the surface area times the fourth power of the absolute temperature in kelvin. The radiation rate goes as the surface area, which is why knocking apart the coals of a fire makes it noticeably hotter to stand near, and it goes as the fourth power of the temperature, a remarkably strong dependence that the next two results turn on. The temperature must be absolute; a Celsius value in this equation is wrong.",
+      "statement": "发射辐射的热传递速率等于斯特藩-玻尔兹曼常量乘以发射率，乘以表面积，再乘以以开尔文计的热力学温度的四次方。辐射速率与表面积成正比，所以把火中的炭块拨散会使站在附近明显更热；它又与温度的四次方成正比，这是极强的依赖关系，接下来的两个结果都取决于它。温度必须是热力学温度；在这个方程中代入摄氏温度值是错的。",
       "forms": [
         {
           "id": "eq-stefan-boltzmann",
@@ -10933,18 +10934,18 @@
       "id": "radiation-fourth-power",
       "kind": "result",
       "section": "14.7",
-      "name": "Fourth-power dependence of radiation",
-      "statement": "Because the radiated power goes as the fourth power of the absolute temperature, small temperature differences produce detectable differences in radiation: a body at 40 °C radiates about 30 percent more than the same body at 20 °C, and skin at 34.0 °C radiates 1.31 percent more than at 33.0 °C, enough for a thermograph to map. At larger ratios the effect is enormous, a radiator at four times the absolute temperature emitting 256 times the power."
+      "name": "辐射对四次方的依赖关系",
+      "statement": "由于辐射功率与热力学温度的四次方成正比，很小的温度差就会产生可探测的辐射差：40 °C 的物体比同一物体在 20 °C 时多辐射约 30%，34.0 °C 的皮肤比 33.0 °C 时多辐射 1.31%，足以让热像图把它显示出来。比值更大时，效应极其巨大，热力学温度为四倍的辐射体发射的功率为 256 倍。"
     },
     {
       "id": "net-radiation-rate",
       "kind": "result",
       "section": "14.7",
-      "name": "Net rate of heat transfer by radiation",
+      "name": "辐射的净热传递速率",
       "terms": [
-        "net rate of heat transfer by radiation"
+        "辐射的净热传递速率"
       ],
-      "statement": "All objects emit and absorb radiation, so the net rate is the absorption minus the emission, which for an object at one temperature surrounded by an environment at another is the Stefan-Boltzmann expression in the difference of the two fourth powers, with the emissivity of the object alone. It does not matter whether the surroundings are white, gray or black; when the surroundings are hotter the net transfer is into the object, and when they are colder it is out. An unclothed person in a 22.0 °C room loses about 99 W this way.",
+      "statement": "所有物体都发射并吸收辐射，所以净速率是吸收减去发射；对于处在一种温度、被另一种温度的周围环境包围的物体，它是斯特藩-玻尔兹曼表达式中两个四次方之差，发射率只取物体自身的。周围是白色、灰色还是黑色都没有关系；当周围较热时，净传递是传入物体的，当周围较冷时则是传出的。一个没穿衣服的人在 22.0 °C 的房间里以这种方式损失约 99 W。",
       "forms": [
         {
           "id": "eq-net-radiation",
@@ -10959,26 +10960,26 @@
       "id": "greenhouse-effect",
       "kind": "idea",
       "section": "14.7",
-      "name": "Greenhouse effect",
+      "name": "温室效应",
       "terms": [
-        "greenhouse effect"
+        "温室效应"
       ],
-      "statement": "The Earth receives almost all its energy as radiation from the Sun and radiates energy back into a dark sky at about 3 K, and its steady temperature is the balance of the two. The atmosphere is transparent to the Sun's visible light and most of its infrared, but the infrared the cooler Earth emits is at longer wavelengths that carbon dioxide and water vapor absorb and re-radiate, part of it back to the surface, which keeps the Earth about 40 °C warmer than it would be with no atmosphere. Eunice Newton Foote first measured this in flasks of carbon dioxide left in the sun, and the effect is central to global warming from the gases that industry and farming emit."
+      "statement": "地球几乎所有能量都以太阳辐射的形式接收，并向约 3 K 的暗空辐射回去，它的稳定温度是二者的平衡。大气对太阳的可见光和大部分红外线是透明的，但较冷的地球发射的红外线波长更长，二氧化碳和水蒸气会吸收并重新辐射它，其中一部分回到地表，使地球比没有大气时约暖 40 °C。Eunice Newton Foote 最先在放在阳光下的二氧化碳烧瓶中测量到这一点，这种效应是工业和农业所排放气体引起的全球变暖的核心。"
     },
     {
       "id": "heat-transfer-methods-strategy",
       "kind": "skill",
       "section": "14.7",
-      "name": "Solving heat transfer problems",
-      "statement": "To solve a problem in heat transfer, identify which of the three methods is at work and reach for the right relation. Conduction uses the conduction equation with a conductivity from the table; convection uses the temperature-change or latent-heat equation for the mass it carries; radiation uses the net radiation equation for exchange with the surroundings. List the knowns and unknowns, solve the equation for the unknown before putting in numbers, and check the answer for sense: a person cannot warm by 36 °C in a day, and a window cannot lose 1.46 kW."
+      "name": "求解热传递问题",
+      "statement": "要解决热传递问题，先确定起作用的是三种方式中的哪一种，再选用相应的关系式。热传导用热传导方程，热导率取自表格；对流用所携带质量的温度变化方程或潜热方程；辐射用与周围环境交换的净辐射方程。列出已知量和未知量，在代入数值之前先把方程对未知量求解，并检查答案是否合理：一个人一天之内不可能升温 36 °C，一扇窗也不可能损失 1.46 kW。"
     },
     {
       "id": "stefan-boltzmann-constant",
       "kind": "axiom",
       "section": "14.7",
-      "name": "Stefan-Boltzmann constant",
+      "name": "斯特藩-玻尔兹曼常量",
       "symbol": "σ_SB",
-      "statement": "The Stefan-Boltzmann constant sets the rate at which a surface radiates for a given area, emissivity and absolute temperature. Its value is 5.67 × 10⁻⁸ J/(s·m²·K⁴)."
+      "statement": "斯特藩-玻尔兹曼常量确定了给定面积、发射率和热力学温度的表面的辐射速率。其值为 5.67 × 10⁻⁸ J/(s·m²·K⁴)。"
     },
     {
       "id": "restoring-force",
@@ -21744,13 +21745,13 @@
       "id": "temperature",
       "kind": "definition",
       "section": "13.1",
-      "name": "Temperature",
+      "name": "温度",
       "symbol": "T_temp",
       "terms": [
-        "temperature"
+        "温度"
       ],
       "type": "temperature",
-      "statement": "Temperature is operationally defined to be what we measure with a thermometer. Your senses of hot and cold are relative: tepid water feels cool to a hand that was in hot water and warm to a hand that was in cold water. Two accurate thermometers placed in the same water give the same reading. Many physical quantities are defined solely by how we measure them, and later in the chapter temperature gains a more physical meaning, tied to the kinetic energies of atoms and molecules.",
+      "statement": "温度在操作上被定义为用温度计测量的量。你对冷热的感觉是相对的：对于刚才放在热水里的手，温水感觉是凉的；对于刚才放在冷水里的手，温水感觉是暖的。放在同一水中的两支精确的温度计给出相同的读数。许多物理量只是由我们测量它们的方式来定义的，而在本章后面，温度获得了更偏物理的含义，它与原子和分子的动能相联系。",
       "forms": [
         {
           "id": "eq-temperature-difference",
@@ -21765,22 +21766,22 @@
       "id": "thermometer",
       "kind": "idea",
       "section": "13.1",
-      "name": "Thermometer",
-      "statement": "Any physical property that depends on temperature, and whose response to temperature is reproducible, can serve as the basis of a thermometer. Volume increases with temperature for most substances, which is the basis for the alcohol thermometer, the mercury thermometer and the bimetallic strip. Electrical resistance, color and the emission of infrared radiation serve as well. Because so many properties depend on temperature, the variety of thermometers is remarkable."
+      "name": "温度计",
+      "statement": "任何依赖于温度、且对温度的响应可重复的物理性质，都可以作为温度计的基础。对大多数物质来说，体积随温度升高而增大，这是酒精温度计、水银温度计和双金属片的基础。电阻、颜色和红外辐射的发射同样可以用。由于有这么多性质依赖于温度，温度计的种类之多令人惊叹。"
     },
     {
       "id": "temperature-scales",
       "kind": "definition",
       "section": "13.1",
-      "name": "Temperature scales",
-      "statement": "A temperature scale starts from two easily reproducible temperatures, commonly the freezing and boiling points of water at standard atmospheric pressure. The Celsius scale puts them at 0 °C and 100 °C and the Fahrenheit scale at 32 °F and 212 °F, so one Celsius degree is 1.8 times the size of one Fahrenheit degree. The Kelvin scale is the absolute scale of science. Its zero is absolute zero, its unit is the kelvin with no degree sign, and a kelvin equals a degree Celsius in size, so water freezes at 273.15 K and boils at 373.15 K."
+      "name": "温标",
+      "statement": "温标以两个易于复现的温度为起点，通常是水在标准大气压下的凝固点和沸点。摄氏温标把它们定为 0 °C 和 100 °C，华氏温标把它们定为 32 °F 和 212 °F，所以一摄氏度的大小是一华氏度的 1.8 倍。开尔文温标是科学上的绝对温标。它的零点是绝对零度，它的单位是开尔文，不带度的符号，一开尔文与一摄氏度大小相等，所以水在 273.15 K 凝固，在 373.15 K 沸腾。"
     },
     {
       "id": "convert-temperature-scales",
       "kind": "skill",
       "section": "13.1",
-      "name": "Converting a temperature between scales",
-      "statement": "Temperatures on the three common scales are converted with the equations of Table 13.1. Celsius to Fahrenheit multiplies by nine fifths and adds 32, Celsius to Kelvin adds 273.15, and the conversions between Fahrenheit and Kelvin, which look complicated, are simple combinations of those two. A temperature difference converts differently from a temperature: a change of one degree Celsius is a change of one kelvin and of nine fifths of a Fahrenheit degree, with no offset.",
+      "name": "温标之间的温度换算",
+      "statement": "三种常用温标之间的温度换算用表 13.1 的方程进行。由摄氏温标换算到华氏温标是乘以五分之九再加 32，由摄氏温标换算到开尔文温标是加 273.15，而华氏温标与开尔文温标之间的换算看起来复杂，其实就是这两者的简单组合。温差的换算与温度的换算不同：摄氏度改变一度，就是开尔文改变一度，也是华氏度改变五分之九度，没有偏移量。",
       "forms": [
         {
           "id": "eq-celsius-to-fahrenheit",
@@ -21824,104 +21825,104 @@
       "id": "absolute-zero",
       "kind": "idea",
       "section": "13.1",
-      "name": "Absolute zero",
+      "name": "绝对零度",
       "terms": [
-        "absolute zero"
+        "绝对零度"
       ],
-      "statement": "The concept of absolute zero arises from the behavior of gases. The pressure of a gas kept at constant volume falls in a straight line as its temperature falls, and the lines for different gases all extrapolate to zero pressure at the same temperature, −273.15 °C. This suggests that there is a lowest temperature, and other thermodynamic relationships lead to the same conclusion. At absolute zero, 0 K, molecular motion is at the minimum energy possible; most gases liquefy and then freeze before it is reached, and it is not actually possible to reach it."
+      "statement": "绝对零度的概念来自气体的行为。保持体积不变的气体的压强，随温度降低而沿一条直线下降，不同气体的直线都外推到同一温度时压强为零，这个温度是 −273.15 °C。这表明存在一个最低温度，而其他热力学关系也导出同样的结论。在绝对零度 0 K 时，分子运动处于可能的最低能量；大多数气体在达到绝对零度之前就已液化然后凝固，而且实际上不可能达到绝对零度。"
     },
     {
       "id": "thermal-equilibrium",
       "kind": "definition",
       "section": "13.1",
-      "name": "Thermal equilibrium",
+      "name": "热平衡",
       "terms": [
-        "thermal equilibrium"
+        "热平衡"
       ],
-      "statement": "Two systems in thermal contact are in thermal equilibrium when they have the same temperature, so that no heat flows between them and neither temperature changes. Any two systems placed in thermal contact but isolated from the rest of the environment reach this state: heat flows from the hotter object to the cooler one until their temperatures are equal. That is why a thermometer, which actually takes its own temperature, reads the temperature of the object it touches once enough time has passed. A single object is in internal thermal equilibrium when no heat flows within it and its temperature is uniform."
+      "statement": "两个处于热接触的系统，当它们的温度相同时就处于热平衡，这时没有热量在它们之间流动，两者的温度也都不再变化。任何两个处于热接触、但与环境的其余部分隔绝的系统都会达到这种状态：热量从较热的物体流向较冷的物体，直到它们的温度相等。这就是为什么温度计（它实际测量的是它自己的温度）在经过足够长的时间之后，读出的是它所接触物体的温度。单个物体在其内部没有热量流动、温度均匀时，处于内部热平衡。"
     },
     {
       "id": "zeroth-law-of-thermodynamics",
       "kind": "axiom",
       "section": "13.1",
-      "name": "Zeroth law of thermodynamics",
+      "name": "热力学第零定律",
       "terms": [
-        "zeroth law of thermodynamics"
+        "热力学第零定律"
       ],
-      "statement": "If two systems, A and B, are in thermal equilibrium with each other, and B is in thermal equilibrium with a third system, C, then A is also in thermal equilibrium with C. The conclusion may seem obvious, because all three have the same temperature, but it is basic to thermodynamics. It bears the name zeroth law because it comes logically before the first and second laws, although physicists stated it after them. It lets you trust two thermometers, each touching a different block on the same plate, to read the same number, and so it makes temperature a meaningful concept."
+      "statement": "如果系统 A 和 B 彼此处于热平衡，而 B 又与第三个系统 C 处于热平衡，那么 A 也与 C 处于热平衡。这个结论看似显而易见，因为三者具有相同的温度，但它是热力学的基础。它之所以称为第零定律，是因为它在逻辑上先于第一和第二定律，尽管物理学家是在它们之后才表述它的。它让你可以相信，分别接触同一块板上两个不同方块的两支温度计，读出的是同一个数，因此它使温度成为一个有意义的概念。"
     },
     {
       "id": "celsius-scale",
       "kind": "definition",
       "section": "13.1",
-      "name": "Celsius scale",
+      "name": "摄氏温标",
       "terms": [
-        "Celsius scale"
+        "摄氏温标"
       ],
-      "statement": "The Celsius scale is the temperature scale on which the freezing point of water is 0 °C and its boiling point is 100 °C, both at standard atmospheric pressure."
+      "statement": "摄氏温标是这样一种温标：在标准大气压下，水的凝固点为 0 °C，沸点为 100 °C。"
     },
     {
       "id": "degree-celsius",
       "kind": "definition",
       "section": "13.1",
-      "name": "Degree Celsius",
+      "name": "摄氏度",
       "terms": [
-        "degree Celsius"
+        "摄氏度"
       ],
-      "statement": "The degree Celsius is the unit of the Celsius scale, one hundredth of the interval between the freezing and boiling points of water. It is the same size as the kelvin."
+      "statement": "摄氏度是摄氏温标的单位，为水的凝固点与沸点之间间隔的百分之一。它与开尔文大小相同。"
     },
     {
       "id": "fahrenheit-scale",
       "kind": "definition",
       "section": "13.1",
-      "name": "Fahrenheit scale",
+      "name": "华氏温标",
       "terms": [
-        "Fahrenheit scale"
+        "华氏温标"
       ],
-      "statement": "The Fahrenheit scale is the temperature scale on which the freezing point of water is 32 °F and its boiling point is 212 °F, both at standard atmospheric pressure."
+      "statement": "华氏温标是这样一种温标：在标准大气压下，水的凝固点为 32 °F，沸点为 212 °F。"
     },
     {
       "id": "degree-fahrenheit",
       "kind": "definition",
       "section": "13.1",
-      "name": "Degree Fahrenheit",
+      "name": "华氏度",
       "terms": [
-        "degree Fahrenheit"
+        "华氏度"
       ],
-      "statement": "The degree Fahrenheit is the unit of the Fahrenheit scale, one hundred eightieth of the interval between the freezing and boiling points of water, so a degree Celsius is 1.8 times as large."
+      "statement": "华氏度是华氏温标的单位，为水的凝固点与沸点之间间隔的一百八十分之一，所以一摄氏度的大小是它的 1.8 倍。"
     },
     {
       "id": "kelvin-scale",
       "kind": "definition",
       "section": "13.1",
-      "name": "Kelvin scale",
+      "name": "开尔文温标",
       "terms": [
-        "Kelvin scale"
+        "开尔文温标"
       ],
-      "statement": "The Kelvin scale is the absolute temperature scale of science. Its zero is absolute zero, and its unit, the kelvin, is written K with no degree sign and equals a degree Celsius in size, so water freezes at 273.15 K and boils at 373.15 K."
+      "statement": "开尔文温标是科学上的绝对温标。它的零点是绝对零度，它的单位开尔文写作 K，不带度的符号，与一摄氏度大小相等，所以水在 273.15 K 凝固，在 373.15 K 沸腾。"
     },
     {
       "id": "thermal-expansion",
       "kind": "idea",
       "section": "13.2",
-      "name": "Thermal expansion",
+      "name": "热膨胀",
       "terms": [
-        "thermal expansion"
+        "热膨胀"
       ],
-      "statement": "Thermal expansion is the change in size or volume of a given mass with temperature. It is why hot air rises, since air that expands has a smaller density than the air around it and a larger buoyant force on a given mass, and it is why railroad tracks and bridges need expansion joints. Its cause is that an increase in temperature increases the kinetic energy of the atoms, whose small, rapid vibrations push their neighbors slightly farther apart on average, and that slightly greater spacing adds up to a larger body. For most substances there is no preferred direction, and the body grows by the same fraction in every dimension."
+      "statement": "热膨胀是给定质量的物体的大小或体积随温度的变化。热空气上升是由于它：膨胀的空气密度比周围的空气小，对给定质量的浮力更大；铁轨和桥需要伸缩缝也是由于它。其原因在于，温度升高使原子的动能增大，原子微小而快速的振动平均而言把相邻的原子推得稍远一些，这稍大一点的间距累积起来就成为更大的物体。对大多数物质来说，没有择优的方向，物体在每个维度上按相同的比例增大。"
     },
     {
       "id": "linear-thermal-expansion",
       "kind": "axiom",
       "section": "13.2",
-      "name": "Linear thermal expansion",
-      "statement": "The change in length of a body is proportional to its length and to the change in temperature, with a coefficient of linear expansion that depends on the material and varies slightly with temperature. Because a kelvin and a degree Celsius are the same size, the coefficient and the temperature change may use either. The equation is accurate for small changes in temperature and serves for large ones with an average value of the coefficient.",
+      "name": "线膨胀",
+      "statement": "物体长度的变化与其长度和温度的变化成正比，比例系数是线膨胀系数，它取决于材料，并随温度略有变化。由于一开尔文与一摄氏度大小相同，系数和温度变化都可以用其中任何一种。该方程对温度的小变化是精确的，对大的变化可以用线膨胀系数的平均值。",
       "forms": [
         {
           "id": "eq-linear-expansion",
           "latex": "\\Delta L = \\alpha L\\Delta T",
           "ktex": "\\kdL = \\alpha L\\kdTemp",
-          "condition": "small changes in temperature",
+          "condition": "温度的小变化",
           "anchor": "13.2-linear-expansion"
         }
       ]
@@ -21930,14 +21931,14 @@
       "id": "area-thermal-expansion",
       "kind": "result",
       "section": "13.2",
-      "name": "Thermal expansion in two dimensions",
-      "statement": "Objects expand in all dimensions, so an area grows because both its length and its width grow. For small temperature changes the change in area is twice the coefficient of linear expansion times the area times the change in temperature, since each of two dimensions contributes the linear fraction.",
+      "name": "二维热膨胀",
+      "statement": "物体在所有维度上都膨胀，所以面积增大，是因为它的长度和宽度都增大。对于小的温度变化，面积的变化等于线膨胀系数的两倍乘以面积再乘以温度的变化，因为两个维度各自贡献线性的比例。",
       "forms": [
         {
           "id": "eq-area-expansion",
           "latex": "\\Delta A = 2\\alpha A\\Delta T",
           "ktex": "\\Delta A = 2\\alpha A\\kdTemp",
-          "condition": "small changes in temperature",
+          "condition": "温度的小变化",
           "anchor": "13.2-two-and-three-dimensions"
         }
       ]
@@ -21946,15 +21947,15 @@
       "id": "holes-expand-too",
       "kind": "result",
       "section": "13.2",
-      "name": "Expansion of a hole",
-      "statement": "If you cut a hole in a metal plate, the remaining material expands exactly as it would if the plug were still in place. The plug would get bigger, and so the hole must get bigger too: the ring of neighboring atoms on the wall of the hole push each other farther apart as the temperature rises, and the ring gets slightly larger. Holes do not close up when a body is heated."
+      "name": "孔的膨胀",
+      "statement": "如果在一块金属板上切出一个孔，剩下的材料的膨胀恰如那块圆塞仍在原处时一样。圆塞会变大，所以孔也一定变大：孔壁上相邻的一圈原子随温度升高而相互推得更远，这一圈就变得稍大一些。加热一个物体时，孔不会闭合。"
     },
     {
       "id": "volume-thermal-expansion",
       "kind": "axiom",
       "section": "13.2",
-      "name": "Thermal expansion in three dimensions",
-      "statement": "The change in volume is very nearly three times the linear coefficient times the volume times the temperature change. The equation usually uses a coefficient of volume expansion about three times the coefficient of linear expansion, as the values in Table 13.2 show almost exactly. Liquids and gases have only a volume coefficient, and the coefficient for gases is the largest of all and nearly the same for every gas.",
+      "name": "三维热膨胀",
+      "statement": "体积的变化非常接近于线膨胀系数的三倍乘以体积再乘以温度变化。该方程通常使用约为线膨胀系数三倍的体膨胀系数，表 13.2 中的数值几乎精确地显示了这一点。液体和气体只有体膨胀系数，而气体的系数是所有系数中最大的，并且对每一种气体几乎相同。",
       "forms": [
         {
           "id": "eq-volume-expansion",
@@ -21973,8 +21974,8 @@
       "id": "differential-thermal-expansion",
       "kind": "skill",
       "section": "13.2",
-      "name": "Finding what spills from an expanding liquid",
-      "statement": "When a full container and the liquid in it warm together, both expand, but the liquid expands more, and the amount that spills is the difference of their volume changes. Because the original volumes are equal, the three equations combine into one: the spill is the difference of the two volume coefficients times the volume times the temperature change. The same difference is why a gasoline gauge reads empty with less mass in the tank in summer than in winter, and why a beaker filled to the brim overflows as it warms.",
+      "name": "求膨胀的液体溢出多少",
+      "statement": "当装满的容器和其中的液体一起变暖时，两者都膨胀，但液体膨胀得更多，溢出的量是两者体积变化之差。由于原来的体积相等，三个方程合并成一个：溢出量等于两个体膨胀系数之差乘以体积再乘以温度变化。同样的差值，也是夏天油箱里的质量比冬天更少时汽油表就显示为空的原因，也是装满到杯口的烧杯变暖时会溢出的原因。",
       "forms": [
         {
           "id": "eq-spill-volume",
@@ -21988,18 +21989,18 @@
       "id": "anomalous-expansion-of-water",
       "kind": "idea",
       "section": "13.2",
-      "name": "Anomalous expansion of water",
-      "statement": "Water is the most important exception to the rule that objects expand with increasing temperature. Above 4 °C it expands as its temperature rises, but between 4 °C and 0 °C it expands as its temperature falls, so that it is densest at 4 °C. The most striking effect is the freezing of a pond: water at the surface cools to 4 °C, sinks, and turns the pond over until the whole of it is at 4 °C; a surface layer that cools further is less dense than the water below and stays on top, so the surface freezes over and the ice insulates the water beneath, where fish survive the winter."
+      "name": "水的反常膨胀",
+      "statement": "水是物体随温度升高而膨胀这一规律的最重要的例外。在 4 °C 以上，它随温度升高而膨胀，但在 4 °C 和 0 °C 之间，它随温度降低而膨胀，所以它在 4 °C 时密度最大。最显著的效应是池塘的结冰：表面的水冷却到 4 °C，下沉，并使池塘的水上下翻转，直到整个池塘的水都处于 4 °C；表面一层进一步冷却后，密度比下面的水小而留在上面，于是表面结冰，冰使下面的水与外界隔热，鱼就在那里度过冬天。"
     },
     {
       "id": "thermal-stress",
       "kind": "result",
       "section": "13.2",
-      "name": "Thermal stress",
+      "name": "热应力",
       "terms": [
-        "thermal stress"
+        "热应力"
       ],
-      "statement": "Thermal stress arises when something constrains thermal expansion or contraction. To find the pressure a heated body would exert if it could not expand, take the volume change it would make at fixed pressure and use the bulk modulus to find the pressure that squeezes that volume back out. Such pressures are typically enormous: gasoline held at fixed volume through a 20 °C rise would reach 1.83 × 10⁷ Pa, about 2500 lb/in², far more than a tank can hold. Thermal stress buckles rails, snaps power lines, cracks unevenly cooled glass, weathers rock and pavement, and bursts biological cells when food freezes.",
+      "statement": "当有东西限制热膨胀或收缩时，就会产生热应力。要求一个受热物体若不能膨胀将会施加的压强，先取它在固定压强下会产生的体积变化，再用体积模量求出把这一体积挤回去所需的压强。这样的压强通常大得惊人：保持体积不变的汽油经历 20 °C 的升温，将达到 1.83 × 10⁷ Pa，约 2500 lb/in²，远远超出油箱所能承受的。热应力使铁轨弯曲，使输电线绷断，使冷却不均匀的玻璃开裂，使岩石和路面风化，也使食物冻结时的生物细胞胀破。",
       "forms": [
         {
           "id": "eq-thermal-stress",
@@ -22013,42 +22014,42 @@
       "id": "coefficient-of-linear-expansion",
       "kind": "definition",
       "section": "13.2",
-      "name": "Coefficient of linear expansion",
+      "name": "线膨胀系数",
       "symbol": "α_exp",
       "terms": [
-        "coefficient of linear expansion"
+        "线膨胀系数"
       ],
       "type": "temperature-coefficient",
-      "statement": "The coefficient of linear expansion is the change in length per unit length per degree of temperature change. It depends on the material and varies slightly with temperature, and its unit is the inverse degree Celsius, 1/°C."
+      "statement": "线膨胀系数是每单位长度、温度每改变一度时长度的变化。它取决于材料，并随温度略有变化，它的单位是摄氏度的倒数，1/°C。"
     },
     {
       "id": "coefficient-of-volume-expansion",
       "kind": "definition",
       "section": "13.2",
-      "name": "Coefficient of volume expansion",
+      "name": "体膨胀系数",
       "symbol": "β",
       "terms": [
-        "coefficient of volume expansion"
+        "体膨胀系数"
       ],
       "type": "temperature-coefficient",
-      "statement": "The coefficient of volume expansion is the change in volume per unit volume per degree of temperature change. For a solid it is very nearly three times the coefficient of linear expansion, and liquids have much larger values than solids."
+      "statement": "体膨胀系数是每单位体积、温度每改变一度时体积的变化。对固体来说，它非常接近线膨胀系数的三倍，而液体的值比固体大得多。"
     },
     {
       "id": "ideal-gas",
       "kind": "idea",
       "section": "13.3",
-      "name": "An ideal gas",
-      "statement": "Atoms and molecules in a gas are widely separated compared with their sizes, so the forces between them can be ignored except when they collide, and the gas expands to fill whatever volume it can reach. That is why gases have the largest coefficients of volume expansion and why they all have nearly the same one, when liquids and solids differ widely: the properties of a gas depend on how many molecules there are per unit volume and on temperature, not on what kind of molecule it is. A gas whose particles have negligible volume and interact only through perfectly elastic collisions is called an ideal gas, and room temperature air is one in most circumstances."
+      "name": "理想气体",
+      "statement": "气体中的原子和分子相互间隔与它们自身的大小相比相距很远，所以除了碰撞时，它们之间的力可以忽略，气体会膨胀到充满它所能到达的任何体积。这就是为什么气体的体膨胀系数最大、而且几乎全都相同，而液体和固体则相差很大：气体的性质取决于单位体积内有多少个分子以及温度，而不取决于分子的种类。粒子体积可以忽略、只通过完全弹性碰撞相互作用的气体称为理想气体，室温下的空气在大多数情况下都是理想气体。"
     },
     {
       "id": "ideal-gas-law",
       "kind": "axiom",
       "section": "13.3",
-      "name": "Ideal gas law",
+      "name": "理想气体定律",
       "terms": [
-        "ideal gas law"
+        "理想气体定律"
       ],
-      "statement": "The ideal gas law relates the absolute pressure of a gas, its volume, the number of atoms and molecules in it and its absolute temperature through the Boltzmann constant. It is an equation of state, a relation among the thermodynamic properties of a system. It first came from experiment: Charles' law says volume is proportional to temperature at fixed pressure, and Boyle's law says pressure times volume is constant at fixed temperature. It describes real gases under most conditions, and it holds for any gas or mixture of gases, since only the total number of molecules enters. Always use absolute pressure and absolute temperature.",
+      "statement": "理想气体定律通过玻尔兹曼常量，把气体的绝对压强、体积、其中的原子和分子数以及它的热力学温度联系起来。它是一个物态方程，即系统的热力学性质之间的一个关系。它最初来自实验：查理定律说，在压强一定时体积与温度成正比；玻意耳定律说，在温度一定时压强乘以体积是常量。它在大多数条件下描述实际气体，并且对任何气体或混合气体都成立，因为只有分子的总数进入方程。务必使用绝对压强和热力学温度。",
       "forms": [
         {
           "id": "eq-ideal-gas-law",
@@ -22062,12 +22063,12 @@
       "id": "boltzmann-constant",
       "kind": "axiom",
       "section": "13.3",
-      "name": "Boltzmann constant",
+      "name": "玻尔兹曼常量",
       "symbol": "k_boltz",
       "terms": [
-        "Boltzmann constant"
+        "玻尔兹曼常量"
       ],
-      "statement": "The constant that turns the count of molecules and the absolute temperature into the product of pressure and volume is the Boltzmann constant, named for Ludwig Boltzmann, with the value 1.38 × 10⁻²³ J/K. Its unit says what it does: it relates an energy to a temperature, so that kT is an energy per molecule.",
+      "statement": "把分子数和热力学温度换算为压强与体积之积的常量，是以路德维希·玻尔兹曼（Ludwig Boltzmann）命名的玻尔兹曼常量，其值为 1.38 × 10⁻²³ J/K。它的单位说明了它的作用：它把能量与温度联系起来，所以 kT 是每个分子的能量。",
       "forms": [
         {
           "id": "eq-boltzmann-constant",
@@ -22080,14 +22081,14 @@
       "id": "ideal-gas-ratio-method",
       "kind": "skill",
       "section": "13.3",
-      "name": "Using the ideal gas law as a ratio",
-      "statement": "When a gas changes state with some of its properties fixed, write the law once for the initial state and once for the final state and divide one by the other. Whatever stays constant cancels, and so does the Boltzmann constant, leaving a relation among the quantities that changed. For a tire whose volume and contents do not change, the ratio of final to initial pressure equals the ratio of final to initial absolute temperature, which is why the temperatures must be in kelvins.",
+      "name": "把理想气体定律用作比值",
+      "statement": "当气体改变状态而它的某些性质保持不变时，对初态写一次这个定律，对末态再写一次，然后用一个除以另一个。保持不变的量都约掉了，玻尔兹曼常量也约掉了，只剩下一个关于发生变化的量的关系。对于体积和其中所含的气体都不变的轮胎，末态压强与初态压强的比值等于末态热力学温度与初态热力学温度的比值，这就是温度必须用开尔文的原因。",
       "forms": [
         {
           "id": "eq-ideal-gas-ratio",
           "latex": "\\frac{P_{\\text{f}}}{P_0} = \\frac{T_{\\text{f}}}{T_0}",
           "ktex": "\\frac{\\kPrf}{\\kPro} = \\frac{\\kTempf}{\\kTempo}",
-          "condition": "constant volume and number of molecules",
+          "condition": "体积和分子数不变",
           "anchor": "13.3-tire-pressure"
         }
       ]
@@ -22096,12 +22097,12 @@
       "id": "mole",
       "kind": "definition",
       "section": "13.3",
-      "name": "Mole",
+      "name": "摩尔",
       "symbol": "n",
       "terms": [
-        "mole"
+        "摩尔"
       ],
-      "statement": "The mole is the SI unit for the amount of a substance, and it is convenient because the number of molecules in any ordinary object is enormous. One mole contains Avogadro's number of particles, whatever the substance, and a mole of any substance has a mass in grams equal to its molecular mass, which is read off the periodic table. The number of moles is the number of molecules divided by Avogadro's number.",
+      "statement": "摩尔是物质的量的 SI 单位，它很方便，因为任何普通物体中的分子数都极其庞大。一摩尔含有阿伏伽德罗常量个粒子，不论是什么物质，并且任何物质的一摩尔，其以克为单位的质量等于它的分子质量，这可以从元素周期表上读出。物质的量等于分子数除以阿伏伽德罗常量。",
       "forms": [
         {
           "id": "eq-moles-from-molecules",
@@ -22114,12 +22115,12 @@
       "id": "avogadros-number",
       "kind": "definition",
       "section": "13.3",
-      "name": "Avogadro’s number",
+      "name": "阿伏伽德罗常量",
       "symbol": "N_A",
       "terms": [
-        "Avogadro's number"
+        "阿伏伽德罗常量"
       ],
-      "statement": "Avogadro's number is the number of particles in one mole, 6.02 × 10²³ per mole to three significant figures. It honors Amedeo Avogadro, who proposed, correctly, that equal volumes of gas at the same pressure and temperature contain equal numbers of molecules. Since 2019 one mole is exactly 6.02214076 × 10²³ elementary entities. The number is so large that a mole of table tennis balls would cover the Earth to a depth of about 40 km.",
+      "statement": "阿伏伽德罗常量是一摩尔中的粒子数，取三位有效数字为每摩尔 6.02 × 10²³ 个。这是为纪念阿梅代奥·阿伏伽德罗（Amedeo Avogadro），他正确地提出：在相同压强和温度下，相同体积的气体含有相同数目的分子。自 2019 年起，一摩尔恰好是 6.02214076 × 10²³ 个基本单元。这个数如此之大，以至于一摩尔乒乓球可以把地球覆盖到约 40 km 的深度。",
       "forms": [
         {
           "id": "eq-avogadros-number",
@@ -22132,8 +22133,8 @@
       "id": "ideal-gas-law-moles",
       "kind": "result",
       "section": "13.3",
-      "name": "Ideal gas law in moles",
-      "statement": "Multiplying and dividing the ideal gas law by Avogadro's number turns the count of molecules into a number of moles and the Boltzmann constant into the universal gas constant. That constant is Avogadro's number times the Boltzmann constant: 8.31 J/(mol·K) in SI units, 1.99 cal/(mol·K) or 0.0821 L·atm/(mol·K) in others. Use the form of the law that matches what you know, the number of molecules or the number of moles, and the value of the gas constant that matches the units of the problem.",
+      "name": "用物质的量表示的理想气体定律",
+      "statement": "将理想气体定律乘以并除以阿伏伽德罗常量，就把分子数变成了物质的量，把玻尔兹曼常量变成了摩尔气体常量。这个常量是阿伏伽德罗常量乘以玻尔兹曼常量：在 SI 单位制中是 8.31 J/(mol·K)，在其他单位制中是 1.99 cal/(mol·K) 或 0.0821 L·atm/(mol·K)。使用与你已知量相匹配的定律形式，即分子数或物质的量，并使用与问题所用单位相匹配的气体常量的值。",
       "forms": [
         {
           "id": "eq-ideal-gas-law-moles",
@@ -22147,13 +22148,13 @@
       "id": "molar-volume-at-stp",
       "kind": "result",
       "section": "13.3",
-      "name": "Molar volume at STP",
-      "statement": "Standard temperature and pressure are 0 °C and atmospheric pressure. At STP the ideal gas law gives 2.68 × 10²⁵ molecules in every cubic meter of any gas, 44.5 mol per cubic meter, and 22.5 L per mole to the precision of three-figure inputs (the accepted value is 22.4 L/mol). Because the count is the same for every gas, the mass of a cubic meter follows from the molar mass alone. Dry air at 28.8 g/mol weighs 1.28 kg per cubic meter, so a living room holds about 90 kg of air, the mass of a person.",
+      "name": "标准状况下的摩尔体积",
+      "statement": "标准状况是 0 °C 和大气压。在标准状况下，理想气体定律给出任何气体每立方米中有 2.68 × 10²⁵ 个分子，即每立方米 44.5 mol，每摩尔 22.5 L（在三位数字输入的精度范围内；公认值是 22.4 L/mol）。由于每种气体的数目相同，一立方米气体的质量仅由摩尔质量就可得出。摩尔质量为 28.8 g/mol 的干空气每立方米重 1.28 kg，所以一间客厅里约有 90 kg 的空气，相当于一个人的质量。",
       "forms": [
         {
           "id": "eq-molar-volume-stp",
           "latex": "\\frac{N}{V} = 2.68\\times10^{25}\\ \\text{m}^{-3},\\quad 22.4\\ \\text{L/mol}",
-          "condition": "at standard temperature and pressure, 0 °C and 1 atm",
+          "condition": "在标准状况下，0 °C 和 1 atm",
           "anchor": "13.3-stp"
         }
       ]
@@ -22162,16 +22163,16 @@
       "id": "ideal-gas-law-energy",
       "kind": "idea",
       "section": "13.3",
-      "name": "Ideal gas law as energy",
-      "statement": "Both sides of the ideal gas law have the dimensions of energy, joules in SI units. Pressure is force per unit area, so pressure times volume is force times displacement, which is work. The right-hand side is proportional to the translational kinetic energy of the molecules at that temperature, as the next section shows. A gas holds energy related to both its pressure and its volume, and the ideal gas law is another expression of the conservation of energy: the work of pumping up a tire goes into the pressure of the air and into warming the pump and the air."
+      "name": "能量形式的理想气体定律",
+      "statement": "理想气体定律的两边都具有能量的量纲，在 SI 单位制中是焦耳。压强是单位面积上的力，所以压强乘以体积是力乘以位移，也就是功。右边与该温度下分子的平动动能成正比，下一节将会说明这一点。气体含有与它的压强和体积两者都有关的能量，而理想气体定律是能量守恒的另一种表达：给轮胎打气所做的功，用于产生空气的压强，并用于使打气筒和空气变暖。"
     },
     {
       "id": "universal-gas-constant",
       "kind": "definition",
       "section": "13.3",
-      "name": "Universal gas constant",
+      "name": "摩尔气体常量",
       "symbol": "R_gas",
-      "statement": "The universal gas constant is the product of Avogadro's number and the Boltzmann constant, R = 8.31 J/(mol·K). It plays the part for a mole of gas that the Boltzmann constant plays for a single molecule.",
+      "statement": "摩尔气体常量是阿伏伽德罗常量与玻尔兹曼常量的乘积，R = 8.31 J/(mol·K)。它对一摩尔气体所起的作用，就像玻尔兹曼常量对单个分子所起的作用。",
       "forms": [
         {
           "id": "eq-gas-constant",
@@ -22189,15 +22190,15 @@
       "id": "kinetic-theory",
       "kind": "idea",
       "section": "13.4",
-      "name": "Kinetic theory",
-      "statement": "Kinetic theory assumes that atoms and molecules are in continuous random motion, and it explains pressure and temperature from that assumption. When a molecule collides elastically with a rigid wall, the component of its momentum perpendicular to the wall is reversed, so the wall exerts a force on it and, by Newton's third law, it exerts a force on the wall. A huge number of molecules strike the wall in a short time, and we observe the average force per unit area. More molecules mean more collisions and more pressure; faster molecules mean harder collisions and more pressure."
+      "name": "气体动理论",
+      "statement": "气体动理论假设原子和分子处于持续的无规运动中，并由这个假设解释压强和温度。当分子与刚性器壁发生弹性碰撞时，它的动量垂直于器壁的分量反向，所以器壁对它施加一个力，并且根据牛顿第三定律，它也对器壁施加一个力。极大数目的分子在短时间内撞击器壁，我们观察到的是单位面积上的平均力。分子越多，碰撞越多，压强越大；分子越快，碰撞越猛，压强越大。"
     },
     {
       "id": "molecular-origin-of-pressure",
       "kind": "result",
       "section": "13.4",
-      "name": "Ideal gas law from molecules",
-      "statement": "Following one molecule in a box gives the pressure of the gas. Its momentum changes by twice its perpendicular momentum at each collision, the average time between collisions with one wall is the time to cross the box and back, so the average force from one molecule is its mass times the square of its perpendicular speed over the length of the box. Multiplying by the number of molecules, replacing the perpendicular component by a third of the mean square speed because the motion is random and the three directions are alike, and dividing by the area of the wall gives the pressure. The result, PV = ⅓Nm v̄², is another expression of the ideal gas law, now in terms of the mass and speed of the molecules.",
+      "name": "由分子推出理想气体定律",
+      "statement": "跟踪盒子里的一个分子，就得到气体的压强。每次碰撞时，它的动量变化是其垂直动量的两倍，它与一面器壁相继两次碰撞的平均时间间隔，是穿过盒子再返回的时间，所以单个分子产生的平均力，等于它的质量乘以其垂直速率的平方再除以盒子的长度。乘以分子数，把垂直分量换成速率平方的平均值的三分之一（因为运动是无规的，三个方向相同），再除以器壁的面积，就得到压强。结果 PV = ⅓Nm v̄² 是理想气体定律的另一种表达，现在是用分子的质量和速率表示的。",
       "forms": [
         {
           "id": "eq-pressure-from-molecules",
@@ -22223,12 +22224,12 @@
       "id": "thermal-energy",
       "kind": "result",
       "section": "13.4",
-      "name": "Thermal energy of a molecule",
+      "name": "分子的热能",
       "terms": [
-        "thermal energy"
+        "热能"
       ],
       "type": "energy",
-      "statement": "Setting the molecular form of the ideal gas law equal to PV = NkT and rearranging shows that the average translational kinetic energy of a molecule is three halves of the Boltzmann constant times the absolute temperature. This average kinetic energy is the thermal energy. The equation gives a molecular interpretation of temperature, valid for gases and reasonably accurate in liquids and solids. It defines temperature in terms of the energy of molecular motion, and at a given temperature it is the same for every kind of molecule.",
+      "statement": "令理想气体定律的分子形式等于 PV = NkT 并整理，可知分子的平均平动动能等于玻尔兹曼常量与热力学温度之乘积的二分之三。这个平均动能就是热能。这个方程给出了温度的分子解释，对气体成立，对液体和固体也相当准确。它用分子运动的能量来定义温度，并且在给定温度下，对每一种分子都是相同的。",
       "forms": [
         {
           "id": "eq-thermal-energy",
@@ -22246,7 +22247,7 @@
           "id": "eq-average-kinetic-energy",
           "latex": "\\tfrac{1}{2}m\\bar{v}^2 = \\tfrac{3}{2}kT",
           "ktex": "\\tfrac{1}{2}m\\kvb^2 = \\tfrac{3}{2}k\\kTemp",
-          "condition": "monatomic ideal gas",
+          "condition": "单原子理想气体",
           "section": "15.2",
           "anchor": "15.2-isothermal-adiabatic"
         }
@@ -22256,9 +22257,9 @@
       "id": "rms-speed",
       "kind": "result",
       "section": "13.4",
-      "name": "rms speed",
+      "name": "方均根速率",
       "type": "velocity",
-      "statement": "Solving the thermal energy equation for speed gives the root-mean-square speed of the molecules, the square root of the average of the speed squared, which grows with the square root of the absolute temperature and falls with the square root of the mass of the molecule. It is surprisingly large, 511 m/s for nitrogen at room temperature, yet it produces no wind, because the molecules move in every direction alike and travel only a tiny mean free path between collisions. The speed of sound, about 340 m/s at room temperature, reflects it, which is why sound is faster in hot air and in light gases such as helium.",
+      "statement": "由热能方程解出速率，得到分子的方均根速率，即速率平方的平均值的平方根，它随热力学温度的平方根增大，随分子质量的平方根减小。它大得出奇，室温下氮气为 511 m/s，但它不产生风，因为分子向各个方向运动的情形相同，并且在两次碰撞之间只运动极小的平均自由程。声速在室温下约为 340 m/s，它反映了这一点，这就是为什么声音在热空气和氦这样的轻质气体中更快。",
       "forms": [
         {
           "id": "eq-rms-speed",
@@ -22279,12 +22280,12 @@
       "id": "molecular-mass-from-molar-mass",
       "kind": "skill",
       "section": "13.4",
-      "name": "Finding the mass of a molecule",
-      "statement": "The mass of a single atom or molecule is the molar mass, read from the periodic table in grams per mole and converted to kilograms, divided by the number of particles in a mole. A nitrogen molecule is two atoms of 14.0067 g/mol, so it has a mass of 4.65 × 10⁻²⁶ kg; a helium atom has 6.65 × 10⁻²⁷ kg. Every calculation of an rms speed or of a temperature from a speed passes through this step.",
+      "name": "求分子的质量",
+      "statement": "单个原子或分子的质量，等于摩尔质量（从元素周期表上读出，以克每摩尔为单位，再换算为千克）除以一摩尔中的粒子数。氮分子是两个 14.0067 g/mol 的原子，所以质量为 4.65 × 10⁻²⁶ kg；氦原子为 6.65 × 10⁻²⁷ kg。每一次对方均根速率的计算，或由速率求温度的计算，都要经过这一步。",
       "forms": [
         {
           "id": "eq-molecular-mass",
-          "latex": "m = \\frac{\\text{molar mass}}{\\text{number of atoms per mole}}",
+          "latex": "m = \\frac{\\text{摩尔质量}}{\\text{每摩尔的原子数}}",
           "anchor": "13.4-ex-kinetic-energy"
         }
       ]
@@ -22293,38 +22294,38 @@
       "id": "maxwell-boltzmann-distribution",
       "kind": "idea",
       "section": "13.4",
-      "name": "Maxwell-Boltzmann distribution",
-      "statement": "The motion of any one molecule is random in magnitude and direction, but a gas of many molecules has a predictable distribution of speeds, the Maxwell-Boltzmann distribution, calculated from kinetic theory and confirmed by experiment. The distribution has a long tail, since a few molecules move at several times the rms speed, and its peak, the most probable speed, lies below the rms speed. As the temperature rises the whole distribution shifts to higher speeds and broadens, which is why a person with a fever loses more water from the linings of the mouth and lungs."
+      "name": "麦克斯韦-玻尔兹曼分布",
+      "statement": "任何一个分子的运动，其大小和方向都是无规的，但由许多分子组成的气体具有可以预测的速率分布，即麦克斯韦-玻尔兹曼分布，它由气体动理论算出，并为实验所证实。这个分布有一条长长的尾部，因为有少数分子的速率是方均根速率的几倍，而它的峰值，即最概然速率，低于方均根速率。随着温度升高，整个分布向较高的速率移动并变宽，这就是为什么发热的人会从口腔和肺的内壁损失更多的水分。"
     },
     {
       "id": "atmospheric-escape",
       "kind": "idea",
       "section": "13.4",
-      "name": "Escape of light gases from an atmosphere",
-      "statement": "To escape Earth's gravity from the top of the atmosphere an object must travel at 11.1 km/s, and helium would need a temperature near 2 × 10⁴ K for its rms speed to reach that. Yet the air holds very little helium. The speed of an atom changes from instant to instant, and at any instant a small fraction in the tail of the distribution exceeds the escape velocity; over billions of years that fraction leaks away. Heavier molecules, oxygen, nitrogen and water, have smaller rms speeds, and so few of them ever reach escape speed that Earth keeps its atmosphere. The Moon's gravity is so much weaker that it has lost almost all of its atmosphere, and its daytime sky is black."
+      "name": "轻质气体从大气中逃逸",
+      "statement": "要从大气顶部摆脱地球的重力，物体必须以 11.1 km/s 的速率运动，而氦需要约 2 × 10⁴ K 的温度，其方均根速率才能达到这个值。然而空气中的氦含量极少。原子的速率时时刻刻都在变化，而在任一时刻，分布尾部中的一小部分都超过逃逸速度；经过几十亿年，这一部分就逸散掉了。较重的分子，氧、氮和水，方均根速率较小，能达到逃逸速度的非常之少，所以地球保住了它的大气。月球的重力弱得多，它几乎失去了全部大气，它白天的天空是黑色的。"
     },
     {
       "id": "real-gas-condensation",
       "kind": "idea",
       "section": "13.5",
-      "name": "Condensation of a real gas",
-      "statement": "Real gases behave like ideal gases at high temperatures, but at lower temperatures the interactions between molecules and the volumes of the molecules begin to matter. The molecules come very close, the gas condenses, and the volume drops precipitously as the substance becomes a liquid. Cooled further it becomes a solid, and the volume shrinks a little more but never reaches zero, because the molecules themselves have volume. High pressure can also liquefy a gas, which is how industry makes liquid carbon dioxide and liquid nitrogen."
+      "name": "实际气体的凝结",
+      "statement": "实际气体在高温时的行为像理想气体，但在较低温度时，分子之间的相互作用和分子本身的体积开始起作用。分子靠得很近，气体凝结，物质变成液体时体积骤然下降。进一步冷却变成固体，体积再略微缩小，但永远不会缩到零，因为分子本身有体积。高压也可以使气体液化，工业上就是这样制造液态二氧化碳和液氮的。"
     },
     {
       "id": "pv-diagram",
       "kind": "idea",
       "section": "13.5",
-      "name": "PV diagram",
+      "name": "P-V 图",
       "terms": [
-        "PV diagram"
+        "P-V 图"
       ],
-      "statement": "A graph of pressure against volume is a PV diagram. For an ideal gas at fixed temperature and number of molecules the product PV is constant, so each isotherm, a curve at one temperature, is a hyperbola, and the upper curves are the hotter ones. At lower temperatures the curves stop looking like hyperbolas, since the gas no longer behaves ideally and may contain liquid; along the flat part of a low isotherm the pressure stays constant while the volume changes, because the substance is changing phase.",
+      "statement": "压强对体积的图像是 P-V 图。对于温度和分子数固定的理想气体，乘积 PV 是常量，所以每条等温线，即某一温度下的曲线，都是双曲线，上面的曲线对应更热的温度。在较低的温度下，这些曲线不再像双曲线，因为气体不再表现为理想气体，并且可能含有液体；沿着低温等温线的平坦部分，压强保持不变而体积变化，因为物质正在发生相变。",
       "forms": [
         {
           "id": "eq-isotherm",
-          "latex": "PV = \\text{constant}",
-          "ktex": "\\kPr V = \\text{constant}",
-          "condition": "ideal gas, constant temperature and number of molecules",
+          "latex": "PV = \\text{常量}",
+          "ktex": "\\kPr V = \\text{常量}",
+          "condition": "理想气体，温度和分子数不变",
           "anchor": "13.5-pv-diagrams"
         }
       ]
@@ -22333,129 +22334,129 @@
       "id": "critical-point",
       "kind": "definition",
       "section": "13.5",
-      "name": "Critical point",
+      "name": "临界点",
       "terms": [
-        "critical point"
+        "临界点"
       ],
-      "statement": "Above a substance's critical temperature the liquid phase cannot exist at any pressure. The isotherm at that temperature is the highest one with a flat, two-phase part, and above it a gas compressed hard enough may reach the density of a liquid without condensing. The critical pressure is the minimum pressure needed for the liquid to exist at the critical temperature. Carbon dioxide cannot become a liquid above 31 °C, nor oxygen above −118 °C, so no amount of squeezing liquefies oxygen at room temperature."
+      "statement": "在物质的临界温度以上，液相在任何压强下都不能存在。该温度的等温线是具有平坦的两相部分的最高一条，在它之上，被压缩得足够厉害的气体可以达到液体的密度而不凝结。临界压强是液体在临界温度下存在所需的最小压强。二氧化碳在 31 °C 以上不能成为液体，氧在 −118 °C 以上也不能，所以无论怎样挤压都不能使氧在室温下液化。"
     },
     {
       "id": "phase-diagram",
       "kind": "idea",
       "section": "13.5",
-      "name": "Phase diagram",
+      "name": "相图",
       "terms": [
-        "phase diagram"
+        "相图"
       ],
-      "statement": "A graph of pressure against temperature is a phase diagram: there are well-defined regions in which the substance is solid, liquid or gas, and the solid lines between them are the temperatures and pressures at which two phases coexist. For water the liquid-vapor curve gives the boiling point at each pressure, 100 °C at 1.00 atm rising to 374 °C at 218 atm, which is why a pressure cooker cooks faster; the solid-liquid curve gives the melting point, and for water it leans so that the melting temperature falls with increasing pressure, which is why a snowball packs and why tires melt snow into an ice layer. Knowing the pressure and temperature, you can read the phase off the diagram."
+      "statement": "压强对温度的图像是相图：其中有明确的区域，物质在这些区域里是固体、液体或气体，而区域之间的实线是两个相共存的温度和压强。对水来说，液体-蒸气曲线给出每个压强下的沸点，1.00 atm 时为 100 °C，218 atm 时升高到 374 °C，这就是为什么高压锅烹饪更快；固体-液体曲线给出熔点，对水来说它向一侧倾斜，使熔点随压强增大而降低，这就是为什么雪球能被压实，也是为什么轮胎会把雪融化成一层冰。知道了压强和温度，你就可以从图上读出相。"
     },
     {
       "id": "sublimation",
       "kind": "definition",
       "section": "13.5",
-      "name": "Sublimation",
+      "name": "升华",
       "terms": [
-        "sublimation"
+        "升华"
       ],
-      "statement": "At sufficiently low pressures there is no liquid phase, and the substance goes directly between solid and gas. The phase change from solid to gas is sublimation; it accounts for snow pack that is lost without ever running into a river, for the automatic defrosting of a freezer and for freeze-drying. For water there is no liquid below 0.00600 atm, while carbon dioxide sublimates at ordinary atmospheric pressure, which is why solid carbon dioxide is dry ice: it does not melt."
+      "statement": "在足够低的压强下，不存在液相，物质直接在固态和气态之间转变。从固态到气态的相变是升华；它解释了积雪没有汇入河流就消失的现象、冰箱的自动除霜以及冷冻干燥。对水来说，低于 0.00600 atm 时没有液体，而二氧化碳在通常的大气压下就升华，这就是为什么固态二氧化碳是干冰：它不熔化。"
     },
     {
       "id": "triple-point",
       "kind": "definition",
       "section": "13.5",
-      "name": "Triple point",
+      "name": "三相点",
       "terms": [
-        "triple point"
+        "三相点"
       ],
-      "statement": "The three curves of a phase diagram meet at a single point, the triple point, where solid, liquid and gas all exist in equilibrium. For water it is at 273.16 K and 0.00600 atm, and because it is a single well-defined temperature and pressure it is a more accurate calibration temperature than the melting point at 1.00 atm, which is 273.15 K. Every substance has one, and Table 13.4 lists several."
+      "statement": "相图的三条曲线交于一点，即三相点，固体、液体和气体在此同时处于平衡共存。对水来说，它在 273.16 K 和 0.00600 atm，由于它是单一的、明确的温度和压强，所以它作为校准温度，比 1.00 atm 下的熔点 273.15 K 更精确。每种物质都有一个三相点，表 13.4 列出了几种。"
     },
     {
       "id": "phase-equilibrium",
       "kind": "idea",
       "section": "13.5",
-      "name": "Phase equilibrium",
-      "statement": "Liquid and gas are in equilibrium at the boiling temperature. In a closed container the liquid boils and the gas condenses at the same rate, with no net change in their amounts, because molecules leave the liquid as gas as fast as gas molecules stick to the liquid. At a higher temperature the liquid boils faster, more molecules are in the gas, the gas pressure is higher and condensation speeds up to match, so the pair reaches equilibrium again at the new pressure. An open pot of water at 100 °C boils away, and an open glass at 20 °C evaporates, because the gas above them is air rather than pure water vapor. A gas below its boiling temperature is a vapor."
+      "name": "相平衡",
+      "statement": "液体和气体在沸点下处于平衡。在密闭容器中，液体沸腾和气体凝结的速率相同，两者的量没有净变化，因为分子离开液体成为气体的速度，与气体分子附着于液体的速度一样快。在较高温度下，液体沸腾得更快，气体中的分子更多，气体压强更高，凝结加快到与之相当，所以这一对在新的压强下再次达到平衡。敞口锅中 100 °C 的水会沸腾蒸发殆尽，敞口杯中 20 °C 的水会蒸发，因为它们上方的气体是空气而不是纯水蒸气。低于其沸点的气体是蒸气。"
     },
     {
       "id": "vapor-pressure",
       "kind": "definition",
       "section": "13.5",
-      "name": "Vapor pressure",
+      "name": "蒸气压",
       "symbol": "P_press",
       "terms": [
-        "vapor pressure"
+        "蒸气压"
       ],
       "type": "pressure",
-      "statement": "Vapor pressure is the pressure at which a gas coexists with its solid or liquid phase. It is created by the faster molecules that break away from the liquid or solid and enter the gas, so it depends on the substance and on its temperature, and an increase in temperature increases it. Water evaporates and ice sublimates when their vapor pressure exceeds the partial pressure of water vapor in the surrounding gas, and droplets or frost form when it is less."
+      "statement": "蒸气压是气体与其固相或液相共存时的压强。它由从液体或固体挣脱出来进入气体的较快的分子产生，所以它取决于物质及其温度，温度升高使它增大。当水的蒸气压超过周围气体中水蒸气的分压强时，水蒸发，冰升华；小于时，则形成液滴或霜。"
     },
     {
       "id": "daltons-law",
       "kind": "axiom",
       "section": "13.5",
-      "name": "Dalton’s law of partial pressures",
+      "name": "道尔顿分压定律",
       "terms": [
-        "Dalton's law of partial pressures"
+        "道尔顿分压定律"
       ],
-      "statement": "The partial pressure of a gas is the pressure it would create if it alone occupied the total volume available, and in a mixture of gases the total pressure is the sum of the partial pressures of the components, assuming ideal gas behavior and no chemical reactions. This is Dalton's law, and it follows from kinetic theory: each gas creates its pressure by its own molecular collisions, independent of the other gases present, and pressures add as Pascal's principle says they do."
+      "statement": "气体的分压强是它单独占据全部可用体积时所产生的压强，在气体混合物中，总压强等于各组分分压强之和，假设气体表现为理想气体且不发生化学反应。这就是道尔顿分压定律，它可由气体动理论得出：每种气体靠自己的分子碰撞产生压强，与存在的其他气体无关，而压强相加正如帕斯卡原理所说。"
     },
     {
       "id": "vapor",
       "kind": "definition",
       "section": "13.5",
-      "name": "Vapor",
+      "name": "蒸气",
       "terms": [
-        "vapor"
+        "蒸气"
       ],
-      "statement": "A vapor is a gas at a temperature below the boiling temperature of its substance, so that it can coexist with the liquid."
+      "statement": "蒸气是温度低于其物质沸点的气体，因此它可以与液体共存。"
     },
     {
       "id": "partial-pressure",
       "kind": "definition",
       "section": "13.5",
-      "name": "Partial pressure",
+      "name": "分压强",
       "terms": [
-        "partial pressure"
+        "分压强"
       ],
-      "statement": "The partial pressure of a gas in a mixture is the pressure it would create if it alone occupied the total volume available."
+      "statement": "混合气体中一种气体的分压强，是它单独占据全部可用体积时所产生的压强。"
     },
     {
       "id": "critical-temperature",
       "kind": "definition",
       "section": "13.5",
-      "name": "Critical temperature",
+      "name": "临界温度",
       "symbol": "T_c",
       "terms": [
-        "critical temperature"
+        "临界温度"
       ],
       "type": "temperature",
-      "statement": "The critical temperature of a substance is the temperature above which its liquid phase cannot exist, however great the pressure."
+      "statement": "物质的临界温度是这样一个温度：高于它，无论压强多大，其液相都不能存在。"
     },
     {
       "id": "critical-pressure",
       "kind": "definition",
       "section": "13.5",
-      "name": "Critical pressure",
+      "name": "临界压强",
       "terms": [
-        "critical pressure"
+        "临界压强"
       ],
-      "statement": "The critical pressure of a substance is the minimum pressure needed for its liquid phase to exist at the critical temperature."
+      "statement": "物质的临界压强是其液相在临界温度下存在所需的最小压强。"
     },
     {
       "id": "relative-humidity",
       "kind": "definition",
       "section": "13.6",
-      "name": "Relative humidity and saturation",
+      "name": "相对湿度与饱和",
       "terms": [
-        "relative humidity"
+        "相对湿度"
       ],
-      "statement": "Relative humidity tells how much water vapor is in the air compared with the maximum possible. At the maximum, saturation, the relative humidity is 100%, evaporation is inhibited and we feel hotter, because sweat no longer cools us. The amount of water vapor the air can carry depends on temperature through the vapor pressure of water: at 100% humidity the partial pressure of water vapor equals the vapor pressure, below it evaporation goes on, above it condensation. The water is not held by the air; the amount of water in air is set by the vapor pressure of water alone and has nothing to do with the properties of air."
+      "statement": "相对湿度表明空气中的水蒸气相对于可能的最大量有多少。在最大量，即饱和时，相对湿度为 100%，蒸发受到抑制，我们感觉更热，因为汗不再使我们变凉。空气能够容纳的水蒸气量通过水的蒸气压而取决于温度：在 100% 湿度时，水蒸气的分压强等于蒸气压，低于它则蒸发继续进行，高于它则发生凝结。水并不是由空气容纳的；空气中的水量仅由水的蒸气压决定，与空气的性质无关。"
     },
     {
       "id": "vapor-density-from-vapor-pressure",
       "kind": "skill",
       "section": "13.6",
-      "name": "Finding the saturation vapor density",
-      "statement": "Water vapor behaves like an ideal gas. The density of vapor that creates a given partial pressure follows from PV = nRT, solved for the moles per cubic meter and converted to grams with the molar mass of water, 18.0 g/mol. At 20.0 °C the vapor pressure of 2.33 × 10³ Pa gives 17.2 g/m³, exactly the saturation vapor density in Table 13.5. The table's densities are the maximum amounts of water vapor a cubic meter can carry at each temperature.",
+      "name": "求饱和蒸气密度",
+      "statement": "水蒸气的行为像理想气体。产生给定分压强的蒸气的密度，可由 PV = nRT 解出每立方米的物质的量，再用水的摩尔质量 18.0 g/mol 换算成克得到。在 20.0 °C 时，2.33 × 10³ Pa 的蒸气压给出 17.2 g/m³，恰好是表 13.5 中的饱和蒸气密度。该表中的密度是每个温度下每立方米所能容纳的水蒸气的最大量。",
       "forms": [
         {
           "id": "eq-vapor-density",
@@ -22469,15 +22470,15 @@
       "id": "percent-relative-humidity",
       "kind": "definition",
       "section": "13.6",
-      "name": "Percent relative humidity",
+      "name": "相对湿度百分数",
       "terms": [
-        "percent relative humidity"
+        "相对湿度百分数"
       ],
-      "statement": "Percent relative humidity is the ratio of the vapor density actually in the air to the saturation vapor density at that temperature, times 100. With Table 13.5 it answers many questions about a day's weather: air at 25.0 °C holding 9.40 g/m³ has a relative humidity of 40.9%, and the same air with a dew point of −10.0 °C has only 10.3%.",
+      "statement": "相对湿度百分数是空气中实际的蒸气密度与该温度下的饱和蒸气密度之比乘以 100。借助表 13.5，它可以回答许多关于一天天气的问题：25.0 °C 且含有 9.40 g/m³ 的空气，相对湿度为 40.9%，而露点为 −10.0 °C 的同样的空气，相对湿度只有 10.3%。",
       "forms": [
         {
           "id": "eq-percent-relative-humidity",
-          "latex": "\\text{percent relative humidity} = \\frac{\\text{vapor density}}{\\text{saturation vapor density}}\\times 100",
+          "latex": "\\text{相对湿度百分数} = \\frac{\\text{蒸气密度}}{\\text{饱和蒸气密度}}\\times 100",
           "anchor": "13.6-percent-humidity"
         }
       ]
@@ -22486,42 +22487,42 @@
       "id": "dew-point",
       "kind": "definition",
       "section": "13.6",
-      "name": "Dew point",
+      "name": "露点",
       "terms": [
-        "dew point"
+        "露点"
       ],
-      "statement": "The dew point is the temperature at which the air's water vapor would be the saturation density, so that the relative humidity would be 100%. At that temperature water starts to condense out of the air as dew, fog or frost. The air temperature cannot fall below the dew point without water condensing, and condensation releases considerable heat, which holds the temperature up. That is why farmers watch the dew point, why desert nights are so cold and why fog forms as the evening cools."
+      "statement": "露点是空气中的水蒸气达到饱和密度时的温度，这时相对湿度将为 100%。在该温度，水开始从空气中凝结出来，成为露、雾或霜。气温不能降到露点以下而不发生水的凝结，而凝结释放出可观的热量，使温度维持不降。这就是为什么农民要关注露点，为什么沙漠的夜晚如此寒冷，以及为什么雾会在傍晚降温时形成。"
     },
     {
       "id": "humidity-from-the-table",
       "kind": "skill",
       "section": "13.6",
-      "name": "Reading humidity from the saturation table",
-      "statement": "Every humidity problem runs through Table 13.5. The vapor density in the air, the saturation density at the air temperature and the saturation density at the dew point are three entries of the same column. Any one of humidity, vapor density, dew point and temperature follows from the others. The humidity is the ratio of two densities, the dew point is the temperature whose saturation density equals the vapor density in the air, and the water that condenses when air cools is the difference of two saturation densities. Where a temperature falls between rows, interpolate."
+      "name": "由饱和表读出湿度",
+      "statement": "每个湿度问题都要用到表 13.5。空气中的蒸气密度、空气温度下的饱和密度和露点下的饱和密度，是同一列中的三个条目。湿度、蒸气密度、露点和温度中的任何一个，都可由其余几个得出。湿度是两个密度之比，露点是饱和密度等于空气中蒸气密度的那个温度，而空气冷却时凝结出的水是两个饱和密度之差。当温度落在两行之间时，进行内插。"
     },
     {
       "id": "boiling",
       "kind": "idea",
       "section": "13.6",
-      "name": "Boiling point and pressure",
-      "statement": "Water boils at 100 °C because that is where its vapor pressure reaches 1.01 × 10⁵ Pa, one atmosphere, so that it can evaporate without limit. Bubbles form because water holds dissolved air: a bubble at the bottom of a pot contains air and water vapor at a total pressure of 1.00 atm, and as the temperature rises the water vapor in it increases and the bubble expands to keep its pressure; at 100 °C vapor enters continuously, the bubble grows, its buoyant force grows, and it breaks away and rises. Where the pressure on the water is different the boiling temperature is different: higher in a pressure cooker or at depth, lower at altitude and in a vacuum chamber."
+      "name": "沸点与压强",
+      "statement": "水在 100 °C 沸腾，因为那是它的蒸气压达到 1.01 × 10⁵ Pa（一个大气压）的温度，这样它就能无限制地蒸发。气泡的形成是因为水中溶有空气：锅底的气泡含有空气和水蒸气，总压强为 1.00 atm，随着温度升高，其中的水蒸气增多，气泡膨胀以保持其压强；在 100 °C 时蒸气不断进入，气泡长大，它的浮力增大，于是脱离并上升。当水所受的压强不同，沸腾温度也不同：在高压锅里或在深处较高，在高海拔处和真空室里较低。"
     },
     {
       "id": "evaporative-cooling",
       "kind": "idea",
       "section": "13.6",
-      "name": "Evaporation cools what it leaves",
-      "statement": "We keep cool in hot weather by evaporating sweat from our skin and water from our breathing passages, and high humidity inhibits that evaporation, which is why humid heat is worse. The molecules most likely to escape a liquid are those with the greatest speeds, so the molecules that remain have a lower average speed and a lower temperature; lowering the surrounding pressure lowers the partial pressure of water, speeds evaporation, and can cool food until it freezes, which is what a freeze-dryer does. Blowing hot air dries hair faster because the higher temperature raises the rate of evaporation."
+      "name": "蒸发使留下的物体变冷",
+      "statement": "我们在炎热的天气里靠皮肤上汗水的蒸发和呼吸道里水的蒸发来保持凉爽，而高湿度抑制这种蒸发，这就是潮湿的炎热更难受的原因。最可能从液体逸出的分子是速率最大的那些，所以留下的分子平均速率较低，温度也较低；降低周围的压强会降低水的分压强，加快蒸发，并且可以使食物冷却到冻结，冷冻干燥机就是这样工作的。吹热风使头发干得更快，因为较高的温度提高了蒸发的速率。"
     },
     {
       "id": "saturation",
       "kind": "definition",
       "section": "13.6",
-      "name": "Saturation",
+      "name": "饱和",
       "terms": [
-        "saturation"
+        "饱和"
       ],
-      "statement": "Air is saturated when its relative humidity is 100%, so that it holds the most water vapor it can at its temperature and the partial pressure equals the vapor pressure of water."
+      "statement": "当空气的相对湿度为 100% 时，空气是饱和的，即它在该温度下所含的水蒸气已达最大量，水蒸气的分压强等于水的蒸气压。"
     },
     {
       "id": "nuclear-radioactivity",
@@ -24783,12 +24784,12 @@
       "id": "thermal-conductor-and-insulator",
       "kind": "definition",
       "section": "14.5",
-      "name": "Thermal conductors and insulators",
+      "name": "热导体与隔热体",
       "terms": [
-        "heat conductor",
-        "thermal conductor"
+        "热导体",
+        "热导体"
       ],
-      "statement": "A good conductor of heat, such as silver, copper or aluminum, has a large thermal conductivity and passes heat readily; a good insulator, such as Styrofoam, fiberglass, wool or still air, has a small one. Good conductors of electricity are generally good heat conductors too, because the free electrons that carry charge also carry thermal energy."
+      "statement": "银、铜或铝等良好的热导体热导率大，容易传热；Styrofoam、玻璃纤维、羊毛或静止空气等良好的隔热体热导率小。电的良导体一般也是热的良导体，因为携带电荷的自由电子也携带热能。"
     },
     {
       "id": "free-charge-density",

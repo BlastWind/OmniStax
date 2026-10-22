@@ -1,0 +1,870 @@
+{
+  "id": "11",
+  "dir": "ch11",
+  "title": "流体静力学",
+  "intro": {
+    "module": "m42185",
+    "slug": "11-introduction-to-fluid-statics"
+  },
+  "sections": [
+    {
+      "id": "11.1",
+      "module": "m42186",
+      "title": "什么是流体？",
+      "slug": "11-1-what-is-a-fluid"
+    },
+    {
+      "id": "11.2",
+      "module": "m42187",
+      "title": "密度",
+      "slug": "11-2-density"
+    },
+    {
+      "id": "11.3",
+      "module": "m42189",
+      "title": "压强",
+      "slug": "11-3-pressure"
+    },
+    {
+      "id": "11.4",
+      "module": "m42192",
+      "title": "流体中压强随深度的变化",
+      "slug": "11-4-variation-of-pressure-with-depth-in-a-fluid"
+    },
+    {
+      "id": "11.5",
+      "module": "m42193",
+      "title": "帕斯卡原理",
+      "slug": "11-5-pascals-principle"
+    },
+    {
+      "id": "11.6",
+      "module": "m42195",
+      "title": "表压强、绝对压强与压强的测量",
+      "slug": "11-6-gauge-pressure-absolute-pressure-and-pressure-measurement"
+    },
+    {
+      "id": "11.7",
+      "module": "m42196",
+      "title": "阿基米德原理",
+      "slug": "11-7-archimedes-principle"
+    },
+    {
+      "id": "11.8",
+      "module": "m42197",
+      "title": "液体中的内聚与附着：表面张力与毛细现象",
+      "slug": "11-8-cohesion-and-adhesion-in-liquids-surface-tension-and-capillary-action"
+    },
+    {
+      "id": "11.9",
+      "module": "m42199",
+      "title": "人体内的压强",
+      "slug": "11-9-pressures-in-the-body"
+    }
+  ],
+  "variables": [
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "物质或物体的密度，即其单位体积的质量",
+      "unit": "kg/m³",
+      "section": "11.2",
+      "anchor": "11.2-definition"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "物质或物体的质量",
+      "unit": "kg",
+      "section": "11.2",
+      "anchor": "11.2-definition"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "物质或物体所占的体积",
+      "unit": "m³",
+      "section": "11.2",
+      "anchor": "11.2-definition"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "压强，即力除以该力所作用的、与力垂直的面积",
+      "unit": "N/m²",
+      "section": "11.3",
+      "anchor": "11.3-pressure-defined"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "作用在表面上的力，垂直于该表面",
+      "unit": "N",
+      "section": "11.3",
+      "anchor": "11.3-pressure-defined"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "力所作用的面积，与力垂直",
+      "unit": "m²",
+      "section": "11.3",
+      "anchor": "11.3-pressure-defined"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "流体中某一深度处的压强，由该深度以上流体的重力产生",
+      "unit": "N/m²",
+      "section": "11.4",
+      "anchor": "11.4-weight-of-fluid"
+    },
+    {
+      "sym": "h",
+      "concept": "position",
+      "meaning": "流体表面以下的深度",
+      "unit": "m",
+      "section": "11.4",
+      "anchor": "11.4-weight-of-fluid"
+    },
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "流体的平均密度",
+      "unit": "kg/m³",
+      "section": "11.4",
+      "anchor": "11.4-weight-of-fluid"
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "重力加速度，在地球表面约为 9.80 m/s²",
+      "unit": "m/s²",
+      "section": "11.4",
+      "anchor": "11.4-weight-of-fluid"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "容器底部所支撑的流体的质量",
+      "unit": "kg",
+      "section": "11.4",
+      "anchor": "11.4-weight-of-fluid"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "该流体的体积，等于底面积乘以深度",
+      "unit": "m³",
+      "section": "11.4",
+      "anchor": "11.4-weight-of-fluid"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "流体所压的横截面积",
+      "unit": "m²",
+      "section": "11.4",
+      "anchor": "11.4-weight-of-fluid"
+    },
+    {
+      "sym": "P_bar",
+      "concept": "pressure",
+      "meaning": "表面所受的平均压强，因为压强随深度线性增加，所以等于其平均深度处的压强",
+      "unit": "N/m²",
+      "section": "11.4",
+      "anchor": "11.4-dam"
+    },
+    {
+      "sym": "h_bar",
+      "concept": "position",
+      "meaning": "表面在流体表面以下的平均深度",
+      "unit": "m",
+      "section": "11.4",
+      "anchor": "11.4-dam"
+    },
+    {
+      "sym": "ρ_bar",
+      "concept": "density",
+      "meaning": "密度随高度变化的流体（如大气）的平均密度",
+      "unit": "kg/m³",
+      "section": "11.4",
+      "anchor": "11.4-atmosphere"
+    },
+    {
+      "sym": "P_atm",
+      "concept": "atmospheric-pressure",
+      "meaning": "标准大气压，即海平面上空气的平均压强",
+      "unit": "N/m²",
+      "section": "11.4",
+      "anchor": "11.4-atmosphere"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "流体对表面所施的力，等于平均压强乘以接触面积",
+      "unit": "N",
+      "section": "11.4",
+      "anchor": "11.4-dam"
+    },
+    {
+      "sym": "P_1",
+      "concept": "pressure",
+      "meaning": "第一个活塞在密闭流体中产生的压强",
+      "unit": "N/m²",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-1"
+    },
+    {
+      "sym": "P_2",
+      "concept": "pressure",
+      "meaning": "第二个活塞处感受到的压强，因为流体把压强大小不变地传递，所以等于第一个活塞处的压强",
+      "unit": "N/m²",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-2"
+    },
+    {
+      "sym": "F_1",
+      "concept": "force",
+      "meaning": "施加在第一个活塞上的力",
+      "unit": "N",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-1"
+    },
+    {
+      "sym": "F_2",
+      "concept": "force",
+      "meaning": "流体对第二个活塞所施的力",
+      "unit": "N",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-2"
+    },
+    {
+      "sym": "A_1",
+      "concept": "area",
+      "meaning": "第一个活塞的横截面积",
+      "unit": "m²",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-1"
+    },
+    {
+      "sym": "A_2",
+      "concept": "area",
+      "meaning": "第二个活塞的横截面积",
+      "unit": "m²",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces",
+      "ref": "piston-2"
+    },
+    {
+      "sym": "P_g",
+      "concept": "gauge-pressure",
+      "meaning": "表压强，即相对于大气压的压强，轮胎压强表或血压袖带读出的就是它",
+      "unit": "N/m²",
+      "section": "11.6",
+      "anchor": "11.6-gauge"
+    },
+    {
+      "sym": "P_abs",
+      "concept": "absolute-pressure",
+      "meaning": "绝对压强，即流体中的总压强",
+      "unit": "N/m²",
+      "section": "11.6",
+      "anchor": "11.6-absolute"
+    },
+    {
+      "sym": "P_atm",
+      "concept": "atmospheric-pressure",
+      "meaning": "大气压，压强表被制成在它之下读数为零",
+      "unit": "N/m²",
+      "section": "11.6",
+      "anchor": "11.6-gauge"
+    },
+    {
+      "sym": "h",
+      "concept": "position",
+      "meaning": "压强在压强计或气压计中所支撑的流体柱的高度",
+      "unit": "m",
+      "section": "11.6",
+      "anchor": "11.6-manometer"
+    },
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "压强计或气压计中流体的密度，通常是汞或水",
+      "unit": "kg/m³",
+      "section": "11.6",
+      "anchor": "11.6-manometer"
+    },
+    {
+      "sym": "F_B",
+      "concept": "buoyant-force",
+      "meaning": "浮力，即流体对其中任何物体所施的向上的合力",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-archimedes"
+    },
+    {
+      "sym": "w_fl",
+      "concept": "weight",
+      "meaning": "物体所排开的流体的重力",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-archimedes"
+    },
+    {
+      "sym": "ρ_obj",
+      "concept": "density",
+      "meaning": "物体的平均密度",
+      "unit": "kg/m³",
+      "section": "11.7",
+      "anchor": "11.7-density-and-archimedes"
+    },
+    {
+      "sym": "ρ_fl",
+      "concept": "density",
+      "meaning": "物体所在流体的密度",
+      "unit": "kg/m³",
+      "section": "11.7",
+      "anchor": "11.7-density-and-archimedes"
+    },
+    {
+      "sym": "ρ_bar",
+      "concept": "density",
+      "meaning": "物体或物质的平均密度，其比重就是以它来度量的",
+      "unit": "kg/m³",
+      "section": "11.7",
+      "anchor": "11.7-specific-gravity"
+    },
+    {
+      "sym": "ρ_w",
+      "concept": "density",
+      "meaning": "4.00 °C 时水的密度，比重就是以它为基准来度量的",
+      "unit": "kg/m³",
+      "section": "11.7",
+      "anchor": "11.7-specific-gravity"
+    },
+    {
+      "sym": "V_sub",
+      "concept": "volume",
+      "meaning": "物体位于流体表面以下的体积",
+      "unit": "m³",
+      "section": "11.7",
+      "anchor": "11.7-density-and-archimedes"
+    },
+    {
+      "sym": "V_obj",
+      "concept": "volume",
+      "meaning": "整个物体的体积",
+      "unit": "m³",
+      "section": "11.7",
+      "anchor": "11.7-density-and-archimedes"
+    },
+    {
+      "sym": "V_fl",
+      "concept": "volume",
+      "meaning": "物体所排开的流体的体积，等于浸入的体积",
+      "unit": "m³",
+      "section": "11.7",
+      "anchor": "11.7-density-and-archimedes"
+    },
+    {
+      "sym": "V_w",
+      "concept": "volume",
+      "meaning": "物体所排开的水的体积，物体完全浸没时就是物体自身的体积",
+      "unit": "m³",
+      "section": "11.7",
+      "anchor": "11.7-floating-sinking"
+    },
+    {
+      "sym": "γ",
+      "concept": "surface-tension",
+      "meaning": "液体的表面张力，即其拉紧的表面所施的单位长度上的力",
+      "unit": "N/m",
+      "section": "11.8",
+      "anchor": "11.8-surface-tension"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "拉伸的液体表面对金属丝所施的力",
+      "unit": "N",
+      "section": "11.8",
+      "anchor": "11.8-surface-tension"
+    },
+    {
+      "sym": "F_ST",
+      "concept": "force",
+      "meaning": "液体表面的回复力，平行于表面作用",
+      "unit": "N",
+      "section": "11.8",
+      "anchor": "11.8-surface-tension"
+    },
+    {
+      "sym": "L_wire",
+      "concept": "position",
+      "meaning": "表面张力所分布的那条线的长度",
+      "unit": "m",
+      "section": "11.8",
+      "anchor": "11.8-surface-tension"
+    },
+    {
+      "sym": "l",
+      "concept": "position",
+      "meaning": "滑动金属丝的长度，它拉着液膜的两个表面，所以力所作用的那条线的长度是 2l",
+      "unit": "m",
+      "section": "11.8",
+      "anchor": "11.8-surface-tension"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "球形气泡内气体的表压强",
+      "unit": "N/m²",
+      "section": "11.8",
+      "anchor": "11.8-bubbles"
+    },
+    {
+      "sym": "r",
+      "concept": "position",
+      "meaning": "气泡或毛细管的半径",
+      "unit": "m",
+      "section": "11.8",
+      "anchor": "11.8-bubbles"
+    },
+    {
+      "sym": "h",
+      "concept": "position",
+      "meaning": "液体在毛细管中被升高或压低的高度",
+      "redefines": true,
+      "unit": "m",
+      "section": "11.8",
+      "anchor": "11.8-capillary-action"
+    },
+    {
+      "sym": "θ",
+      "concept": "contact-angle",
+      "meaning": "接触角，即液体表面的切线与固体表面之间的夹角",
+      "unit": "°",
+      "section": "11.8",
+      "anchor": "11.8-contact-angle"
+    },
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "管中液体的密度",
+      "unit": "kg/m³",
+      "section": "11.8",
+      "anchor": "11.8-capillary-action"
+    },
+    {
+      "sym": "ΔP",
+      "concept": "pressure",
+      "meaning": "心脏与其下方某点之间血压的增加量",
+      "unit": "N/m²",
+      "section": "11.9",
+      "anchor": "11.9-blood-pressure"
+    },
+    {
+      "sym": "Δh",
+      "concept": "position",
+      "meaning": "心脏高于该点的高度，例如站立的人的心脏与双脚之间的 1.4 m",
+      "unit": "m",
+      "section": "11.9",
+      "anchor": "11.9-blood-pressure"
+    },
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "流体的密度，血液的密度约为 1050 kg/m³",
+      "unit": "kg/m³",
+      "section": "11.9",
+      "anchor": "11.9-blood-pressure"
+    },
+    {
+      "sym": "P_g",
+      "concept": "gauge-pressure",
+      "meaning": "身体某部分的表压强，即表 11.5 所列的、测量所读出的压强",
+      "unit": "N/m²",
+      "section": "11.9",
+      "anchor": "11.9-body-pressures"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "压强在身体某一面积上产生的力，例如在眼球后部或鼓膜上",
+      "unit": "N",
+      "section": "11.9",
+      "anchor": "11.9-eye"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "压强所作用的身体面积",
+      "unit": "m²",
+      "section": "11.9",
+      "anchor": "11.9-eye"
+    },
+    {
+      "sym": "h",
+      "concept": "position",
+      "meaning": "身体压强所支撑的流体柱的高度",
+      "unit": "m",
+      "section": "11.9",
+      "anchor": "11.9-eye"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "水库的表面积",
+      "unit": "m²",
+      "section": "11.2",
+      "anchor": "11.2-reservoir"
+    },
+    {
+      "sym": "h",
+      "concept": "position",
+      "meaning": "水库在其水面以下的平均深度",
+      "unit": "m",
+      "section": "11.2",
+      "anchor": "11.2-reservoir",
+      "redefines": true
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "地球的重力加速度，约为 9.80 m/s²",
+      "unit": "m/s²",
+      "section": "11.2",
+      "anchor": "11.2-reservoir"
+    },
+    {
+      "sym": "r",
+      "concept": "position",
+      "meaning": "气瓶平端的半径，由它求得其面积 πr²",
+      "unit": "m",
+      "section": "11.3",
+      "anchor": "11.3-force-from-pressure"
+    },
+    {
+      "sym": "d",
+      "concept": "position",
+      "meaning": "一次按压所分布的圆形接触面的宽度",
+      "unit": "m",
+      "section": "11.3",
+      "anchor": "11.3-units"
+    },
+    {
+      "sym": "L_len",
+      "concept": "position",
+      "meaning": "水坝沿坝顶的长度",
+      "unit": "m",
+      "section": "11.4",
+      "anchor": "11.4-dam"
+    },
+    {
+      "sym": "r_1",
+      "concept": "position",
+      "meaning": "主缸的半径",
+      "unit": "m",
+      "section": "11.5",
+      "anchor": "11.5-ex-brakes",
+      "ref": "pedal-cylinder"
+    },
+    {
+      "sym": "r_2",
+      "concept": "position",
+      "meaning": "每个轮缸的半径",
+      "unit": "m",
+      "section": "11.5",
+      "anchor": "11.5-ex-brakes",
+      "ref": "wheel-cylinders"
+    },
+    {
+      "sym": "h_1",
+      "concept": "position",
+      "meaning": "圆柱体顶面在表面以下的深度",
+      "unit": "m",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "h_2",
+      "concept": "position",
+      "meaning": "圆柱体底面在表面以下的深度",
+      "unit": "m",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "F_1",
+      "concept": "force",
+      "meaning": "流体对圆柱体顶面的向下的力",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "F_2",
+      "concept": "force",
+      "meaning": "流体对圆柱体底面的向上的力",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "圆柱体每个端面的面积",
+      "unit": "m²",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "重力加速度，在地球表面约为 9.80 m/s²",
+      "unit": "m/s²",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "m",
+      "concept": "mass",
+      "meaning": "物质或物体的质量",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-floating-sinking"
+    },
+    {
+      "sym": "V",
+      "concept": "volume",
+      "meaning": "物质或物体所占的体积",
+      "unit": "m³",
+      "section": "11.7",
+      "anchor": "11.7-floating-sinking"
+    },
+    {
+      "sym": "V_st",
+      "concept": "volume",
+      "meaning": "例题 11.8 中钢的体积",
+      "unit": "m³",
+      "section": "11.7",
+      "anchor": "11.7-ex-steel"
+    },
+    {
+      "sym": "m_st",
+      "concept": "mass",
+      "meaning": "例题 11.8 中钢的质量",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-ex-steel"
+    },
+    {
+      "sym": "m_w",
+      "concept": "mass",
+      "meaning": "物体所排开的水的质量",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-ex-steel",
+      "redefines": true
+    },
+    {
+      "sym": "w_w",
+      "concept": "weight",
+      "meaning": "物体所排开的水的重力",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-ex-steel"
+    },
+    {
+      "sym": "m_fl",
+      "concept": "mass",
+      "meaning": "漂浮物体所排开的流体的质量",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-density-and-archimedes"
+    },
+    {
+      "sym": "m_obj_mass",
+      "concept": "mass",
+      "meaning": "漂浮物体的质量",
+      "unit": "kg",
+      "section": "11.7",
+      "anchor": "11.7-density-and-archimedes"
+    },
+    {
+      "sym": "m_c",
+      "concept": "mass",
+      "meaning": "例题 11.10 中硬币的质量",
+      "unit": "g",
+      "section": "11.7",
+      "anchor": "11.7-ex-coin"
+    },
+    {
+      "sym": "V_coin",
+      "concept": "volume",
+      "meaning": "例题 11.10 中硬币的体积",
+      "unit": "cm³",
+      "section": "11.7",
+      "anchor": "11.7-ex-coin"
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "拉伸液体的活塞的面积",
+      "unit": "m²",
+      "section": "11.8",
+      "anchor": "11.8-negative-pressure"
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "重力加速度，在地球表面约为 9.80 m/s²",
+      "unit": "m/s²",
+      "section": "11.8",
+      "anchor": "11.8-capillary-action"
+    },
+    {
+      "sym": "P_1",
+      "concept": "pressure",
+      "meaning": "第一个气球内的表压强",
+      "unit": "N/m²",
+      "section": "11.8",
+      "anchor": "11.8-bubbles",
+      "ref": "balloon-1",
+      "redefines": true
+    },
+    {
+      "sym": "P_2",
+      "concept": "pressure",
+      "meaning": "第二个气球内的表压强",
+      "unit": "N/m²",
+      "section": "11.8",
+      "anchor": "11.8-bubbles",
+      "ref": "balloon-2",
+      "redefines": true
+    },
+    {
+      "sym": "r_1",
+      "concept": "position",
+      "meaning": "第一个气球的半径",
+      "unit": "m",
+      "section": "11.8",
+      "anchor": "11.8-bubbles",
+      "ref": "balloon-1",
+      "redefines": true
+    },
+    {
+      "sym": "r_2",
+      "concept": "position",
+      "meaning": "第二个气球的半径",
+      "unit": "m",
+      "section": "11.8",
+      "anchor": "11.8-bubbles",
+      "ref": "balloon-2",
+      "redefines": true
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "压强，即力除以该力所作用的、与力垂直的面积",
+      "unit": "N/m²",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "垂直于表面所施的力；在刹车踏板上是脚的推力",
+      "unit": "N",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces",
+      "redefines": true
+    },
+    {
+      "sym": "A",
+      "concept": "area",
+      "meaning": "力所作用的、与力垂直的面积",
+      "unit": "m²",
+      "section": "11.5",
+      "anchor": "11.5-hydraulic-forces"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "流体柱的重力产生的压强",
+      "unit": "N/m²",
+      "section": "11.6",
+      "anchor": "11.6-manometer"
+    },
+    {
+      "sym": "F",
+      "concept": "force",
+      "meaning": "被测压强对无液压强表的波纹管所施的力",
+      "unit": "N",
+      "section": "11.6",
+      "anchor": "11.6-gauges",
+      "redefines": true
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "重力加速度，在地球表面约为 9.80 m/s²",
+      "unit": "m/s²",
+      "section": "11.6",
+      "anchor": "11.6-manometer"
+    },
+    {
+      "sym": "ρ_dens",
+      "concept": "density",
+      "meaning": "物质或物体的密度，即其单位体积的质量",
+      "unit": "kg/m³",
+      "section": "11.7",
+      "anchor": "11.7-floating-sinking"
+    },
+    {
+      "sym": "w",
+      "concept": "weight",
+      "meaning": "物体在流体中的重力",
+      "unit": "N",
+      "section": "11.7",
+      "anchor": "11.7-buoyant-force"
+    },
+    {
+      "sym": "w",
+      "concept": "weight",
+      "meaning": "静置在液体表面上的物体的重力",
+      "unit": "N",
+      "section": "11.8",
+      "anchor": "11.8-surface-tension"
+    },
+    {
+      "sym": "P_press",
+      "concept": "pressure",
+      "meaning": "流体柱的重力产生的压强，或作用在身体某一面积上的压强",
+      "unit": "N/m²",
+      "section": "11.9",
+      "anchor": "11.9-blood-pressure"
+    },
+    {
+      "sym": "g",
+      "concept": "acceleration-due-to-gravity",
+      "type": "acceleration",
+      "meaning": "重力加速度，在地球表面约为 9.80 m/s²",
+      "unit": "m/s²",
+      "section": "11.9",
+      "anchor": "11.9-blood-pressure"
+    }
+  ]
+}

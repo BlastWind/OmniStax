@@ -1,0 +1,532 @@
+/* Figures for section 11.8 Cohesion and Adhesion in Liquids: Surface Tension and Capillary Action.
+   Boots against the section's text article. A liquid at rest has no time in it, so every
+   figure here but one is a still picture that answers its sliders and registers no cycle; the
+   one that moves is the pair of balloons, whose emptying is a genuine clock. */
+window.OMNISTAX_FIGURES = window.OMNISTAX_FIGURES || {};
+window.OMNISTAX_FIGURES['11.8'] = function (root, F) {
+const { el, fmt, tex, C, PAL, alpha, ctl, choice, register, cycle, begin, line, arrow, dot, text, headline, topline, hbracket, vbracket, axes, curve, pinned, labeller, hover, fixed, view } = F;
+const sim = (id, H) => F.sim(root, id, H);
+function readout(host, main, small) { tex(host, main); if (small) { const n = el('small', null, small); host.appendChild(n); F.renderMath(n); } }
+
+/* ---------- numbers ---------- */
+const G = 9.80, ATM = 1.013e5, RAD = Math.PI / 180, TAU = 2 * Math.PI;
+const SUP = { '-': '⁻', 0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹' };
+const sup = (n) => String(n).split('').map((c) => SUP[c] ?? c).join('');
+/* a value to n significant figures as a mantissa and a power of ten */
+function sci(v, n) {
+  if (v === 0) return { ms: (0).toFixed(n - 1), e: 0 };
+  let e = Math.floor(Math.log10(Math.abs(v))), ms = (v / Math.pow(10, e)).toPrecision(n);
+  if (Math.abs(+ms) >= 10) { e += 1; ms = (v / Math.pow(10, e)).toPrecision(n); }
+  return { ms, e };
+}
+const sciTex = (v, n) => { const { ms, e } = sci(v, n); return e === 0 ? ms : `${ms} \\times 10^{${e}}`; };
+const sciText = (v, n) => { const { ms, e } = sci(v, n); return e === 0 ? ms : `${ms} × 10${sup(e)}`; };
+/* a plain number to n significant figures, keeping trailing zeros where it is between 0.01 and 1000 */
+const sigz = (v, n) => { const a = Math.abs(v); if (a === 0) return (0).toFixed(n - 1); if (!(a >= 0.01 && a < 1000)) return sciText(v, n); const d = Math.max(0, n - 1 - Math.floor(Math.log10(a))); return v.toFixed(d); };
+const minus = (s) => String(s).replace(/^-/, '−');
+/* a value that rounds to nothing is nothing, so that cos 90° does not print as 10⁻¹⁷ */
+const zero = (v, tol = 5e-4) => (Math.abs(v) < tol ? 0 : v);
+
+/* ---------- Table 11.3 and Table 11.4 ---------- */
+/* the surface tensions of Table 11.3, in N/m, in the book's order */
+const TABLE = [
+  { n: '0°C 的水', g: 0.0756 }, { n: '20°C 的水', g: 0.0728 }, { n: '100°C 的水', g: 0.0589 },
+  { n: '肥皂水', g: 0.0370 }, { n: '乙醇', g: 0.0223 }, { n: '丙三醇', g: 0.0631 },
+  { n: '汞', g: 0.465 }, { n: '橄榄油', g: 0.032 }, { n: '组织液', g: 0.050 },
+  { n: '37°C 的全血', g: 0.058 }, { n: '37°C 的血浆', g: 0.073 }, { n: '1070°C 的金', g: 1.0 },
+  { n: '−193°C 的氧', g: 0.0157 }, { n: '−269°C 的氦', g: 0.00012 },
+];
+/* the detents a surface-tension slider settles on: the four liquids of the table that a reader meets in the examples and problems */
+const GAMMA_DETENTS = [{ v: 0.0223, label: '乙醇' }, { v: 0.037, label: '肥皂水' }, { v: 0.0631, label: '丙三醇' }, { v: 0.0728, label: '水' }];
+const GAMMA_TICKS = GAMMA_DETENTS.map((d) => d.v), THETA_TICKS = [0, 26, 90, 107, 140];   /* the same stops without labels, for a slider too short to carry them */
+const gammaName = (g) => { const d = GAMMA_DETENTS.find((x) => Math.abs(x.v - g) < 0.0006); return d ? (d.label === '水' ? '20°C 的水' : d.label === '乙醇' ? '乙醇' : d.label) : null; };
+/* the contact angles of Table 11.4 that a contact-angle slider settles on */
+const THETA_DETENTS = [{ v: 0, label: '水–玻璃' }, { v: 26, label: '煤油' }, { v: 90, label: '银' }, { v: 107, label: '石蜡' }, { v: 140, label: '汞' }];
+const PAIRS = { 0: '玻璃上的水、玻璃上的乙醇和玻璃上的大多数有机液体', 26: '玻璃上的煤油', 90: '银上的水', 107: '石蜡上的水', 140: '玻璃上的汞' };
+
+/* ---------- small drawing helpers ---------- */
+/* the angle between two directions at (x, y): an arc from the canvas angle a0 sweeping deg degrees, its label beyond the middle */
+function angleArc(ctx, x, y, a0, deg, R, color, label, lsz = 20) {
+  const d = deg * RAD;
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(x, y, R, a0, a0 + d, d < 0); ctx.stroke(); ctx.restore();
+  if (label) { const m = a0 + d / 2; text(ctx, label, x + (R + 30) * Math.cos(m), y + (R + 30) * Math.sin(m), color, { align: 'center', size: lsz, weight: 600, bg: alpha(PAL.panel, 0.85) }); }
+}
+/* a filled shape from a path-building function, in a fill and an optional stroke */
+function shape(ctx, build, fill, stroke, w = 3) {
+  ctx.save(); ctx.beginPath(); build(ctx); if (fill) { ctx.fillStyle = fill; ctx.fill(); } if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = w; ctx.stroke(); } ctx.restore();
+}
+/* a glass wall: a pale double line */
+function glass(ctx, x1, y1, x2, y2, w = 5, color = PAL.ink) { line(ctx, x1, y1, x2, y2, alpha(color, 0.35), w); }
+
+/* =====================================================================
+   FIGURE 11.25: the surface as a stretched sheet. A body rests on the
+   liquid in cross-section; the surface dents under its weight, and the two
+   restoring forces along the surface turn toward the vertical until their
+   upward parts hold the weight, or the weight is more than γL and the
+   surface breaks. Still: an equilibrium with no time in it.
+===================================================================== */
+/* A water strider's leg, seen from the side: the tarsus lies along the points `foot` (tip first,
+   joint last) and dimples the surface under it, its hairs splayed at the tip; the tibia rises
+   from the joint at `rise` degrees to the knee and the femur runs on toward the body, fading
+   out where the scene ends. Thin jointed segments in the referent's colour, rimmed in ink.
+   A candidate for figlib, as F.striderLeg, once a second figure needs an insect on water. */
+function striderLeg(ctx, foot, color, { rise = 64, tibia = 140, femur = 130, tilt = 24 } = {}) {
+  const rim = alpha(PAL.ink, 0.6);
+  const seg = (a, b, w0, w1, fill) => {
+    const dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L;
+    shape(ctx, (c) => {
+      c.moveTo(a.x + nx * w0 / 2, a.y + ny * w0 / 2); c.lineTo(b.x + nx * w1 / 2, b.y + ny * w1 / 2);
+      c.arc(b.x, b.y, w1 / 2, Math.atan2(ny, nx), Math.atan2(-ny, -nx));
+      c.lineTo(a.x - nx * w0 / 2, a.y - ny * w0 / 2);
+      c.arc(a.x, a.y, w0 / 2, Math.atan2(-ny, -nx), Math.atan2(ny, nx));
+    }, fill, rim, 1.5);
+  };
+  const joint = foot[foot.length - 1], tip = foot[0];
+  const knee = { x: joint.x + tibia * Math.cos(rise * RAD), y: joint.y - tibia * Math.sin(rise * RAD) };
+  const hip = { x: knee.x + femur * Math.cos(tilt * RAD), y: knee.y - femur * Math.sin(tilt * RAD) };
+  /* the femur fades toward the body the scene leaves out */
+  const g = ctx.createLinearGradient(knee.x, knee.y, hip.x, hip.y); g.addColorStop(0, color); g.addColorStop(1, alpha(color, 0));
+  ctx.save(); ctx.globalAlpha = 1; seg(knee, hip, 12, 15, g); ctx.restore();
+  seg(joint, knee, 8, 11, color);
+  dot(ctx, knee.x, knee.y, color, true, 7.5); dot(ctx, knee.x, knee.y, rim, false, 7.5);
+  /* the tarsus, tapering to the tip, and the hairs that splay from it onto the surface */
+  for (let i = foot.length - 1; i > 0; i--) seg(foot[i], foot[i - 1], 4 + 4 * i / (foot.length - 1), 4 + 4 * (i - 1) / (foot.length - 1), color);
+  const ux = (tip.x - foot[1].x), uy = (tip.y - foot[1].y), u = Math.hypot(ux, uy) || 1;
+  for (const a of [-28, 0, 28]) { const t = Math.atan2(uy, ux) + a * RAD; line(ctx, tip.x, tip.y, tip.x + 22 * Math.cos(t), tip.y + 22 * Math.sin(t), color, 2.5); }
+  for (let i = 1; i < foot.length - 1; i++) { const p = foot[i], q = foot[i + 1], L = Math.hypot(q.x - p.x, q.y - p.y) || 1; line(ctx, p.x, p.y, p.x + (q.y - p.y) / L * -9 - (q.x - p.x) / L * 6, p.y + (q.x - p.x) / L * 9 - (q.y - p.y) / L * 6, alpha(color, 0.8), 1.5); }
+  return { joint, knee, hip };
+}
+/* An iron needle seen end-on: a steel disc shaded as a polished round bar, lit from the upper left. */
+function needleEnd(ctx, x, y, R, color) {
+  const g = ctx.createRadialGradient(x - R * 0.35, y - R * 0.4, R * 0.1, x, y, R);
+  g.addColorStop(0, F.mixColor(color, PAL.panel, 0.7)); g.addColorStop(0.55, color); g.addColorStop(1, F.mixColor(color, PAL.ink, 0.45));
+  shape(ctx, (c) => c.arc(x, y, R, 0, TAU), g, alpha(PAL.ink, 0.7), 1.5);
+  shape(ctx, (c) => c.arc(x, y, R * 0.72, 0, TAU), null, alpha(PAL.panel, 0.35), 1.2);
+}
+(function () {
+  const d = sim('sim-surface-sheet', 660);
+  const BODIES = { insect: { L: 10, w: 0.3 }, needle: { L: 70, w: 1.0 } };
+  const body = choice(d.controls, { label: '\\text{该物体}', options: [{ value: 'insect', label: '昆虫的脚' }, { value: 'needle', label: '铁针' }], value: 'insect', aria: '哪个物体停在液面上', onInput: (v) => { ws.set(BODIES[v].w); Ls.set(BODIES[v].L); } });
+  const ws = ctl(d.controls, { label: '\\kwgt', cls: 'force', min: 0, max: 8, step: 0.01, value: 0.3, unit: 'mN', dec: 2, aria: '物体的重力' });
+  const Ls = ctl(d.controls, { label: '\\kLwire', cls: 'position', min: 2, max: 100, step: 1, value: 10, unit: 'mm', dec: 0, aria: '物体与液体接触的那条线的长度' });
+  const gs = ctl(d.controls, { label: '\\kgamma', cls: 'surface-tension', min: 0.01, max: 0.1, step: 0.0001, value: 0.0728, unit: 'N/m', dec: 4, detents: GAMMA_TICKS, snap: true, aria: '液体的表面张力' });
+  /* the basin, the undisturbed surface and the force scale: 220 units per millinewton, so that the book's own weights are readable, every arrow capped at 250 units and carrying its number */
+  const XL = 90, XR = 900, Y0 = 320, YB = 580, CX = 495, KF = 220, DENT = 120, CAP = 250;
+  const alen = (mN) => Math.min(CAP, mN * KF);
+  function draw() {
+    const { ctx, H } = begin(d.c);
+    const fc = C('force');
+    const w = ws.v, L = Ls.v / 1000, g = gs.v, hold = g * L * 1000;          /* hold: the most the surface can carry, in mN */
+    const s = hold > 0 ? w / hold : Infinity, breaks = s > 1, th = breaks ? 90 : Math.asin(s) / RAD;
+    const needle = body.value === 'needle';
+    /* the half-width of the contact and the depth the surface wraps under the body: the needle's round side, or the tarsus lying flat */
+    const R = body.mix((v) => (v === 'needle' ? 16 : 56)), RY = body.mix((v) => (v === 'needle' ? 16 : 9));
+    const D = breaks ? DENT : DENT * Math.sin(th * RAD), yc = Y0 + D;      /* the contact points sit at this depth */
+    const cosT = Math.cos(th * RAD), sinT = Math.sin(th * RAD), k = 0.35 * (CX - R - XL);
+    const left = (c) => c.bezierCurveTo(XL + 0.5 * (CX - R - XL), Y0, CX - R - k * cosT, yc - k * sinT, CX - R, yc);
+    const right = (c) => c.bezierCurveTo(CX + R + k * cosT, yc - k * sinT, XR - 0.5 * (XR - CX - R), Y0, XR, Y0);
+    /* the liquid: flat far away, dented to the contact points and wrapped under the body, or closed over a body that has sunk */
+    shape(ctx, (c) => {
+      c.moveTo(XL, YB); c.lineTo(XL, Y0);
+      if (breaks) c.lineTo(XR, Y0);
+      else { left(c); c.ellipse(CX, yc, R, RY, 0, Math.PI, 0, true); right(c); }
+      c.lineTo(XR, YB); c.closePath();
+    }, alpha(PAL.ink, 0.1));
+    shape(ctx, (c) => {
+      c.moveTo(XL, Y0);
+      if (breaks) c.lineTo(XR, Y0);
+      else { left(c); c.ellipse(CX, yc, R, RY, 0, Math.PI, 0, true); right(c); }
+    }, null, PAL.ink, 3);
+    glass(ctx, XL, Y0 - 40, XL, YB); glass(ctx, XR, Y0 - 40, XR, YB); glass(ctx, XL, YB, XR, YB);
+    const liq = gammaName(g);
+    text(ctx, liq ? liq : '该液体，γ = ' + sigz(g, 3) + ' N/m', XL + 16, YB - 26, PAL.muted, { size: 18 });
+    /* the body: a strider's leg with its tarsus in the dent, or a needle seen end-on; each fades and slides as the choice turns, while the dent and the pulls stay */
+    const by = breaks ? Y0 + 110 : yc;
+    const lab = labeller(ctx, H); lab.block(0, 0, 1400, 96);
+    const footPts = Array.from({ length: 7 }, (_, i) => { const a = Math.PI - (i / 6) * Math.PI; return { x: CX + R * Math.cos(a), y: by + RY * Math.sin(a) * 0.9 - 4 }; });
+    let leg = null;
+    body.only(ctx, 'insect', () => { leg = striderLeg(ctx, footPts, F.ref('insect')); }, [0, -40]);
+    body.only(ctx, 'needle', () => needleEnd(ctx, CX, by, R, F.ref('needle')), [0, -40]);
+    if (needle) lab.add('铁针，正对针端看', CX + R * 0.7, by + R * 0.7, 0.8, 0.6, F.ref('needle'), 19, 34);
+    else if (leg) lab.beside({ x1: leg.knee.x, y1: leg.knee.y, x2: leg.hip.x, y2: leg.hip.y }, 1, '水黾的腿', F.ref('insect'), 19, { offset: 0.6, gap: 20 });
+    /* the forces: the two pulls of the surface along itself, their net, and the weight */
+    const half = hold / 2;
+    if (!breaks && w > 0) {
+      const len = Math.max(120, alen(half));
+      arrow(ctx, CX - R, yc, CX - R - len * cosT, yc - len * sinT, fc, 4); lab.add('F_ST', CX - R - len * cosT, yc - len * sinT, -cosT, -sinT, fc, 20, 22);
+      lab.halo({ x1: CX + R + 12 * cosT, y1: yc - 12 * sinT, x2: CX + R + len * cosT, y2: yc - len * sinT }, 10); arrow(ctx, CX + R, yc, CX + R + len * cosT, yc - len * sinT, fc, 4); lab.add('F_ST', CX + R + len * cosT, yc - len * sinT, cosT, -sinT, fc, 20, 22);
+      const top = yc - RY, nl = Math.min(alen(w), top - 150); arrow(ctx, CX, top, CX, top - nl, fc, 5); lab.add('合力 F_ST = ' + sigz(w, 3) + ' mN', CX, top - nl, 0, -1, fc, 20, 22);
+      F.angleArc(ctx, { x: CX - R, y: yc }, 64, Math.PI - th * RAD, Math.PI, 'θ = ' + fmt(th, 0) + '°', lab, C('angle'));
+    } else if (!breaks) {
+      arrow(ctx, CX - R, yc, CX - R - alen(half), yc, fc, 4); lab.add('F_ST', CX - R - alen(half), yc, -1, 0, fc, 20, 22);
+      arrow(ctx, CX + R, yc, CX + R + alen(half), yc, fc, 4); lab.add('F_ST', CX + R + alen(half), yc, 1, 0, fc, 20, 22);
+    }
+    if (w > 0) { const wl = Math.min(alen(w), YB - 62 - by - RY); arrow(ctx, CX, by + RY, CX, by + RY + wl, fc, 5); lab.add('w = ' + sigz(w, 3) + ' mN', CX, by + RY + wl, 0, 1, fc, 20, 22); }
+    /* the free-body diagram the book draws beside each panel: each pull 100 long, and the weight as their two upward parts, 200 sin θ */
+    const FX = 1160, FY = 300, fl = 100;
+    text(ctx, '受力图', FX, FY - 175, PAL.muted, { size: 19, align: 'center' }); lab.place({ l: FX - 90, t: FY - 190, r: FX + 90, b: FY - 160 });
+    const fb = breaks || w === 0 ? (w === 0 ? [[-1, 0, fl, 'F_ST'], [1, 0, fl, 'F_ST']] : [[0, 1, 150, 'w']])
+      : [[-cosT, -sinT, fl, 'F_ST'], [cosT, -sinT, fl, 'F_ST'], [0, 1, Math.max(24, 2 * fl * sinT), 'w']];
+    for (const [ux, uy, l, n] of fb) { arrow(ctx, FX, FY, FX + ux * l, FY + uy * l, fc, 4); lab.add(n, FX + ux * l, FY + uy * l, ux ? Math.sign(ux) : 0, ux ? -0.25 : uy, fc, 20, 18); }
+    dot(ctx, FX, FY, PAL.ink, true, 7);
+    const missed = lab.flush(); d.fig.dataset.missed = missed.join(' | ');
+    const what = needle ? '铁针' : '脚';
+    topline(ctx, breaks ? '重力 ' + sigz(w, 3) + ' mN 超过了这个表面所能承受的 ' + sigz(hold, 3) + ' mN（沿 ' + fmt(Ls.v, 0) + ' mm 的长度），所以表面破裂，' + what + '下沉。'
+      : w === 0 ? '表面不受重力作用时保持平坦，它的两个拉力沿水平方向，相互抵消。'
+      : '重力 ' + sigz(w, 3) + ' mN 作用在长 ' + fmt(Ls.v, 0) + ' mm 的接触线上，使表面凹陷，直到表面的拉力以 ' + fmt(th, 0) + '° 向上倾斜，把' + what + '托住。');
+    readout(d.readout, breaks
+      ? `\\kwgt = ${sigz(w, 3)}\\ \\text{mN} > \\kgamma \\kLwire = (${sigz(g, 3)}\\ \\text{N/m})(${sigz(L, 3)}\\ \\text{m}) = ${sigz(hold, 3)}\\ \\text{mN}`
+      : `\\kwgt = \\kgamma \\kLwire\\sin\\ktheta:\\quad ${sigz(w, 3)}\\times 10^{-3}\\ \\text{N} = (${sigz(g, 3)}\\ \\text{N/m})(${sigz(L, 3)}\\ \\text{m})\\sin\\ktheta,\\quad \\ktheta = ${fmt(th, 0)}^\\circ`,
+      breaks ? '表面的拉力不可能超过 $\\kgamma\\kLwire$，当它的两个拉力都竖直向上时才达到这个值，所以更重的物体会穿破表面。'
+        : '表面所能承载的最大值为 $\\kgamma\\kLwire = ' + sigz(hold, 3) + '\\ \\text{mN}$，此时两个拉力都是竖直的。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 11.26: the sliding wire device, and Table 11.3 on one axis. The
+   film pulls the wire inward along both of its surfaces; the force that
+   holds the wire gives γ = F/(2l), and the value is read against the
+   liquids of the table. Still: a measurement with no clock.
+===================================================================== */
+(function () {
+  const d = sim('sim-slide-wire', 780);
+  const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 8, step: 0.01, value: 3.16, unit: 'mN', dec: 2, aria: '使金属丝保持原位的力' });
+  const ls = ctl(d.controls, { label: '\\kl', cls: 'position', min: 5, max: 50, step: 0.1, value: 25, unit: 'mm', dec: 1, aria: '滑动金属丝的长度' });
+  /* the frame, the axis and the force scale: 40 units per millinewton, fixed from the slider maximum; the axis runs 0 to 0.10 N/m */
+  const FL = 260, FY = 280, WX = 580, KF = 40;
+  const AX = { l: 200, r: 1300, t: 620, b: 690 }, GR = [0, 0.1];
+  const onAxis = TABLE.filter((r) => r.g <= GR[1]), beyond = TABLE.filter((r) => r.g > GR[1]);
+  /* the four liquids the examples use carry their names; the rest are named on hover, and the labeller drops any that would collide */
+  const named = new Set(GAMMA_DETENTS.map((x) => x.v));
+  let hits = [];
+  hover(d.stage, () => hits);
+  function draw() {
+    const { ctx, H } = begin(d.c);
+    const fc = C('force'), gc = C('surface-tension');
+    const Fv = Fs.v, l = ls.v, g = (Fv / 1000) / (2 * l / 1000);
+    const hgt = 7 * l, FT = FY - hgt / 2, FB = FY + hgt / 2;
+    /* the frame and the film, seen face on */
+    shape(ctx, (c) => c.rect(FL, FT, WX - FL, hgt), alpha(PAL.ink, 0.1));
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.45); ctx.lineWidth = 12; ctx.lineJoin = 'round';
+    ctx.beginPath(); ctx.moveTo(FL + 560, FT); ctx.lineTo(FL, FT); ctx.lineTo(FL, FB); ctx.lineTo(FL + 560, FB); ctx.stroke(); ctx.restore();
+    line(ctx, WX, FT - 10, WX, FB + 10, F.ref('wire'), 9);
+    const tall = FT < 160;   /* a short wire is named above the frame, clear of the force; a long one beside its top, under the headline */
+    text(ctx, '滑动的金属丝', tall ? WX + 18 : WX, tall ? FT + 16 : FT - 36, F.ref('wire'), { size: 19, align: tall ? 'left' : 'center', bg: alpha(PAL.panel, 0.85) });
+    if (hgt > 90) text(ctx, '液膜', (FL + WX) / 2 - 40, FT + hgt * 0.22, F.ref('film'), { size: 18, align: 'center' });
+    /* the film's pull on the wire, spread along its length, and the force that holds the wire */
+    const n = Math.max(2, Math.round(hgt / 70));
+    for (let i = 0; i < n; i++) { const y = FT + hgt * (i + 0.5) / n; arrow(ctx, WX - 12, y, WX - 12 - Math.min(70, 26 + g * 600), y, fc, 3); }
+    if (Fv > 0) { arrow(ctx, WX + 12, (FT + FB) / 2, WX + 12 + Fv * KF, (FT + FB) / 2, fc, 5); text(ctx, 'F = ' + sigz(Fv, 3) + ' mN', WX + 12 + Fv * KF + 14, (FT + FB) / 2 - 22, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) }); }
+    vbracket(ctx, FL - 60, FT, FB, C('position'), 'l = ' + fmt(l, 1) + ' mm', -1);
+    /* the side view: two film surfaces between the frame wire and the sliding wire */
+    const SY = FB + 44, SL = 260, SR = 580;
+    dot(ctx, SL, SY, alpha(PAL.ink, 0.45), true, 8); dot(ctx, SR, SY, PAL.ink, true, 8);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(SL + 8, SY - 4); ctx.quadraticCurveTo((SL + SR) / 2, SY - 14, SR - 8, SY - 4); ctx.moveTo(SL + 8, SY + 4); ctx.quadraticCurveTo((SL + SR) / 2, SY + 14, SR - 8, SY + 4); ctx.stroke(); ctx.restore();
+    text(ctx, '侧视图：液膜的两个表面', SR + 24, SY, PAL.muted, { size: 18 });
+    /* Table 11.3 on one fixed axis of surface tension */
+    const { X } = axes(ctx, AX, GR, [0, 1], { nx: 5, ny: 0, fx: (v) => fmt(v, 2), fy: () => '', xl: '表面张力 γ (N/m)', xc: gc });
+    const near = TABLE.slice().sort((a, b) => Math.abs(a.g - g) - Math.abs(b.g - g))[0], match = Math.abs(near.g - g) <= 0.025 * near.g;
+    hits = onAxis.map((r) => ({ x: X(r.g), y: AX.b - 20, r: 16, name: r.n + ', ' + sigz(r.g, 3) + ' N/m' }));
+    const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92); lab.block(AX.l - 60, AX.b - 4, AX.r + 60, H);
+    onAxis.forEach((r, i) => {
+      const x = X(r.g), isMatch = match && r === near;
+      line(ctx, x, AX.b - 36, x, AX.b, isMatch ? gc : PAL.ink, isMatch ? 4 : 2);
+      dot(ctx, x, AX.b - 36, isMatch ? gc : PAL.ink, isMatch, isMatch ? 8 : 6);
+      if (named.has(r.g) || isMatch) lab.add(r.n, x, AX.b - 36, i % 2 ? 0.4 : -0.4, -1, isMatch ? gc : PAL.ink, 17, i % 2 ? 24 : 58);
+    });
+    text(ctx, beyond.map((r) => r.n + '（' + sigz(r.g, 3) + ' N/m）').join('和') + '位于坐标轴之外', AX.l, AX.b + 58, PAL.muted, { size: 17 });
+    const p = pinned(ctx, AX, X, (v) => AX.b, g, 0, gc, 'γ = ' + sigz(g, 3) + ' N/m');
+    if (!p.out) { line(ctx, p.x, AX.t + 10, p.x, AX.b, gc, 3, [8, 8]); text(ctx, 'γ = ' + sigz(g, 3) + ' N/m', p.x, AX.t - 44, gc, { size: 20, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) }); lab.block(p.x - 120, AX.t - 62, p.x + 120, AX.t - 26); }
+    lab.flush();
+    topline(ctx, Fv === 0 ? '金属丝不受力时，没有液膜拉它，也就什么都测不到。'
+      : '大小为 ' + sigz(Fv, 3) + ' mN 的力使一根长 ' + fmt(l, 1) + ' mm 的金属丝抵住两个液体表面，所以表面张力为 ' + sigz(g, 3) + ' N/m' + (match ? '，这正是' + near.n + '的值。' : '。'));
+    readout(d.readout, `\\kgamma = \\frac{\\kF}{\\kLwire} = \\frac{\\kF}{2\\kl} = \\frac{${sigz(Fv, 3)}\\times 10^{-3}\\ \\text{N}}{2(${sigz(l / 1000, 3)}\\ \\text{m})} = ${sigz(g, 3)}\\ \\text{N/m}`,
+      '液膜有前后两个表面，所以力分布在长度 $2\\kl$ 上，而不是 $\\kl$ 上。' + (match ? '该值与表 11.3 中' + near.n + '的值吻合。' : '表 11.3 中没有哪种液体与该值相差在百分之几以内；最接近的是' + near.n + '，为 ' + sigz(near.g, 3) + ' N/m。'));
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 11.27: two balloons joined by a tube. The gauge pressure in each is
+   4γ/r, so the smaller holds the higher pressure; open the valve and the air
+   runs from the small one into the large one until the small one is empty.
+   Moving: the emptying is a clock, one of the three the chapter allows.
+===================================================================== */
+(function () {
+  const d = sim('sim-two-balloons', 660);
+  const reset = () => cy.reset();
+  const r1s = ctl(d.controls, { label: '\\krone', cls: 'position', min: 1, max: 8, step: 0.1, value: 6, unit: 'cm', dec: 1, onInput: reset, aria: '第一个气球的半径' });
+  const r2s = ctl(d.controls, { label: '\\krtwo', cls: 'position', min: 1, max: 8, step: 0.1, value: 3, unit: 'cm', dec: 1, onInput: reset, aria: '第二个气球的半径' });
+  const gs = ctl(d.controls, { label: '\\kgamma', cls: 'surface-tension', min: 0.01, max: 0.1, step: 0.0001, value: 0.037, unit: 'N/m', dec: 4, detents: GAMMA_TICKS, snap: true, onInput: reset, aria: '液膜的表面张力' });
+  /* one loop: the valve is closed for the first 0.8 s, the air crosses over the next 3.4 s, then the picture holds */
+  const T0 = 0.8, T1 = 4.2;
+  const cy = cycle(() => T1, 1.4);
+  /* the tube, the balloon scale (16 units per centimetre, so that two 8 cm balloons merged still fit under the headline) and the pressure bars, capped at 20 Pa, half the pressure of the smallest balloon at the largest surface tension, so that the book's own balloons read as more than slivers */
+  const TY = 460, X1 = 380, X2 = 1020, S = 16, PCAP = 20, BW = 260;
+  const P = (g, r) => (r > 0 ? 4 * g / (r / 100) : Infinity);
+  function balloon(ctx, x, r, name, p, ok, bc = PAL.ink) {
+    if (r < 0.03) { line(ctx, x, TY, x, TY - 40, bc, 4); text(ctx, name + ' 已排空', x, TY - 66, bc, { size: 19, align: 'center' }); return; }
+    const R = r * S, cyy = TY - 40 - R;
+    line(ctx, x, TY, x, cyy + R - 2, bc, 4);
+    shape(ctx, (c) => c.arc(x, cyy, R, 0, TAU), alpha(PAL.ink, 0.06), bc, 3);
+    text(ctx, name, x, cyy - R - 22, bc, { size: 19, align: 'center' });
+    if (R > 50) text(ctx, 'r = ' + fmt(r, 1) + ' cm', x, cyy, C('position'), { size: 19, align: 'center' });
+  }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pc = C('pressure'), gc = C('surface-tension');
+    const t = cy.now(), g = gs.v, ra = r1s.v, rb = r2s.v;
+    const same = Math.abs(ra - rb) < 0.05, open = t >= T0;
+    /* the small balloon empties into the large one with the total volume kept: its volume fraction falls from 1 to 0 along an eased ramp */
+    const prog = same ? 0 : Math.min(1, Math.max(0, (t - T0) / (T1 - T0))), f = 1 - (1 - Math.cos(Math.PI * prog)) / 2;
+    const smallFirst = ra <= rb, rs = smallFirst ? ra : rb, rl = smallFirst ? rb : ra;
+    const V = ra ** 3 + rb ** 3, rsn = rs * Math.cbrt(f), rln = Math.cbrt(V - rsn ** 3);
+    const r1 = smallFirst ? rsn : rln, r2 = smallFirst ? rln : rsn, p1 = P(g, r1), p2 = P(g, r2);
+    /* the tube and the valve */
+    line(ctx, X1, TY, X2, TY, PAL.ink, 4);
+    const VX = (X1 + X2) / 2;
+    dot(ctx, VX, TY, PAL.ink, false, 18);
+    line(ctx, VX + (open ? -12 : 0), TY + (open ? 0 : -12), VX + (open ? 12 : 0), TY + (open ? 0 : 12), PAL.ink, 5);
+    text(ctx, open ? '阀门打开' : '阀门关闭', VX, TY + 44, PAL.ink, { size: 19, align: 'center' });
+    balloon(ctx, X1, r1, '气球 1', p1, true, F.ref('balloon-1')); balloon(ctx, X2, r2, '气球 2', p2, true, F.ref('balloon-2'));
+    /* the air on its way: a dashed run along the tube toward the larger balloon while the small one empties */
+    if (open && !same && prog < 1) {
+      const dir = smallFirst ? 1 : -1, from = smallFirst ? X1 : X2;
+      ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 3; ctx.setLineDash([14, 14]); ctx.lineDashOffset = -(t * 120) * dir; ctx.beginPath(); ctx.moveTo(X1 + 30, TY - 12); ctx.lineTo(X2 - 30, TY - 12); ctx.stroke(); ctx.restore();
+      arrow(ctx, VX - dir * 90, TY - 12, VX - dir * 30, TY - 12, PAL.ink, 4);
+      text(ctx, '空气', VX - dir * 60, TY - 40, PAL.ink, { size: 18, align: 'center' });
+    }
+    /* the two pressures as bars on one fixed scale */
+    for (const [x, p, r, k] of [[X1, p1, r1, 1], [X2, p2, r2, 2]]) {
+      const y = TY + 80, w = BW * Math.min(1, p / PCAP), lx = x - BW / 2;
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(lx, y, BW, 26); ctx.fillStyle = pc; if (r >= 0.03) ctx.fillRect(lx, y, w, 26); ctx.restore();
+      text(ctx, r < 0.03 ? '没有气球，没有压强' : (p > PCAP ? '表压强 P_' + k + ' > ' + fmt(PCAP, 0) + ' Pa' : '表压强 P_' + k + ' = ' + sigz(p, 3) + ' Pa'), x, y + 48, pc, { size: 20, weight: 600, align: 'center' });
+      text(ctx, '0', lx, y - 14, PAL.muted, { size: 15, align: 'center' }); text(ctx, fmt(PCAP, 0) + ' Pa', lx + BW, y - 14, PAL.muted, { size: 15, align: 'center' });
+    }
+    const nm = smallFirst ? ['气球 1', '气球 2'] : ['气球 2', '气球 1'];
+    topline(ctx, same ? '两个气球一样大，所以它们的压强相等，各为 ' + sigz(p1, 3) + ' Pa，打开阀门不会使任何空气流动。'
+      : !open ? '阀门关闭时，' + nm[0] + ' 内的压强比外界空气高 ' + sigz(P(g, rs), 3) + ' Pa，' + nm[1] + ' 内的则高 ' + sigz(P(g, rl), 3) + ' Pa，所以空气将从小气球流向大气球。'
+      : prog < 1 ? '阀门已打开，空气从' + nm[0] + ' 流入' + nm[1] + '：小气球缩小，它的压强上升，大气球变大。'
+      : nm[0][0].toUpperCase() + nm[0].slice(1) + ' 已排空，空气全部流入' + nm[1] + '，后者现在的半径为 ' + fmt(rln, 2) + ' cm，压强为 ' + sigz(P(g, rln), 3) + ' Pa。');
+    const one = r1 < 0.03 ? '\\kProne:\\ \\text{气球 1 已排空}' : `\\kProne = \\frac{4\\kgamma}{\\krone} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r1 / 100, 3)}\\ \\text{m}} = ${sigz(p1, 3)}\\ \\text{Pa}`;
+    const two = r2 < 0.03 ? '\\kPrtwo:\\ \\text{气球 2 已排空}' : `\\kPrtwo = \\frac{4\\kgamma}{\\krtwo} = \\frac{4(${sigz(g, 3)}\\ \\text{N/m})}{${sigz(r2 / 100, 3)}\\ \\text{m}} = ${sigz(p2, 3)}\\ \\text{Pa}`;
+    readout(d.readout, `${one},\\qquad ${two}`,
+      '小气球缩小时，它的压强进一步上升，所以气体的流动要到它排空时才会停止。');
+  }
+  register(d.fig, { update: (dt) => cy.step(dt, () => 1), draw });
+})();
+
+/* =====================================================================
+   FIGURE 11.29: surface tension against surface area for three linings of
+   an alveolus, with the sac drawn at the radius you choose and the pressure
+   4γ/r inside it for each. Still: the graph and the sac answer the slider.
+   The book prints no numbers on this graph, so the values are representative.
+===================================================================== */
+(function () {
+  const d = sim('sim-surfactant', 640);
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.02, max: 0.1, step: 0.001, value: 0.05, unit: 'mm', dec: 3, aria: '肺泡的半径' });
+  /* the three linings: the surfactant's surface tension runs from 0.010 N/m at the smallest area to 0.050 N/m at the largest; the detergent stands at soapy water's 0.037 N/m and the tissue fluid at Table 11.3's 0.050 N/m */
+  const AMIN = 4 * Math.PI * 0.02 ** 2, AMAX = 4 * Math.PI * 0.1 ** 2;
+  const gSurf = (A) => 0.01 + 0.04 * (A - AMIN) / (AMAX - AMIN);
+  const LININGS = [{ n: '肺表面活性剂', g: gSurf }, { n: '洗涤剂', g: () => 0.037 }, { n: '组织液', g: () => 0.05 }];
+  /* fixed axes: surface tension 0 to 0.08 N/m across, area 0 to 0.14 mm² up; the pressure bars are capped at 10 kPa, the tissue fluid's pressure in the smallest sac */
+  const BOX = { l: 130, t: 130, r: 700, b: 560 }, GR = [0, 0.08], AR = [0, 0.14], PCAP = 10000;
+  const SX = 1090, SY = 250, SS = 1500;                                       /* the sac: 0.1 mm draws as a 150-unit radius */
+  const REF = ['surfactant', 'detergent', 'tissue-fluid'];                   /* each lining is a referent the caption names */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pc = C('pressure'), gc = C('surface-tension');
+    const r = rs.v, A = 4 * Math.PI * r * r;
+    const { X, Y } = axes(ctx, BOX, GR, AR, { nx: 4, ny: 7, fx: (v) => fmt(v, 2), fy: (v) => fmt(v, 2), xl: '表面张力 γ (N/m)', xc: gc, yl: '肺泡的表面积 (mm²)' });
+    /* the three linings, told apart by the categorical palette and named in a legend */
+    LININGS.forEach((L, i) => { const c = F.ref(REF[i]); ctx.save(); ctx.strokeStyle = c; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(X(L.g(AMIN)), Y(AMIN)); ctx.lineTo(X(L.g(AMAX)), Y(AMAX)); ctx.stroke(); ctx.restore(); });
+    LININGS.forEach((L, i) => { const c = F.ref(REF[i]), y = BOX.t + 22 + i * 30; line(ctx, BOX.l + 24, y, BOX.l + 64, y, c, 4); text(ctx, L.n, BOX.l + 76, y, c, { size: 18, weight: 600 }); });
+    /* the chosen area, and the surface tension of each lining at it */
+    line(ctx, BOX.l, Y(A), BOX.r, Y(A), alpha(PAL.ink, 0.4), 2, [8, 8]);
+    text(ctx, 'A = 4πr² = ' + sigz(A, 3) + ' mm²', BOX.r - 10, Y(A) - 18, C('area'), { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    const vals = LININGS.map((L, i) => { const g = L.g(A), p = 4 * g / (r / 1000); dot(ctx, X(g), Y(A), F.ref(REF[i]), true, 8); return { n: L.n, g, p, c: F.ref(REF[i]) }; });
+    /* the sac at the chosen radius, and the pressure inside it for each lining */
+    const R = r * SS;
+    shape(ctx, (c) => c.arc(SX, SY, R, 0, TAU), alpha(PAL.ink, 0.06), F.ref('alveolus'), 3);
+    text(ctx, '一个肺泡，r = ' + fmt(r, 3) + ' mm', SX, SY + R + 28, F.ref('alveolus'), { size: 19, align: 'center' });
+    hbracket(ctx, SX - R, SX, SY - R - 30, C('position'), 'r');
+    text(ctx, '内部的表压强，P = 4γ/r', SX + 20, 432, PAL.muted, { size: 18, align: 'center' });
+    vals.forEach((v, i) => {
+      const y = 472 + i * 48, w = 260 * Math.min(1, v.p / PCAP), lx = SX - 110;
+      ctx.save(); ctx.fillStyle = PAL.soft; ctx.fillRect(lx, y, 260, 22); ctx.fillStyle = pc; ctx.fillRect(lx, y, w, 22); ctx.restore();
+      text(ctx, v.n, lx - 12, y + 11, v.c, { size: 17, weight: 600, align: 'right' });
+      text(ctx, sigz(v.p / 1000, 3) + ' kPa', lx + 260 + 12, y + 11, pc, { size: 18, weight: 600 });
+    });
+    text(ctx, '0', SX - 110, 464, PAL.muted, { size: 14, align: 'center' }); text(ctx, '10 kPa', SX + 150, 464, PAL.muted, { size: 14, align: 'center' });
+    const [s, dg, tf] = vals;
+    topline(ctx, '半径为 ' + fmt(r, 3) + ' mm 时，表面活性剂的表面张力为 ' + sigz(s.g, 3) + ' N/m，囊内的压强为 ' + sigz(s.p / 1000, 3) + ' kPa；相比之下，洗涤剂对应 ' + sigz(dg.p / 1000, 3) + ' kPa，组织液对应 ' + sigz(tf.p / 1000, 3) + ' kPa。');
+    readout(d.readout, `\\kPr = \\frac{4\\kgamma}{\\krad} = \\frac{4(${sigz(s.g, 3)}\\ \\text{N/m})}{${sciTex(r / 1000, 3)}\\ \\text{m}} = ${sigz(s.p / 1000, 3)}\\ \\text{kPa}\\ \\text{对表面活性剂}`,
+      '表面张力不变的内衬会使压强随 $1/\\krad$ 增大，所以小肺泡会把气体排入大肺泡。这些值是三种内衬的代表值，而不是测量值。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 11.30: a drop on a solid at the contact angle you choose. The drop
+   keeps its volume and takes every shape from a thin film to a bead; the
+   tangent and the angle are drawn as the book draws them. Still: a drop at
+   rest has no clock. Everything here is ink: the angle is untyped.
+===================================================================== */
+(function () {
+  const d = sim('sim-contact-angle', 560);
+  const ts = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 1, value: 107, unit: '°', dec: 0, detents: THETA_DETENTS, snap: true, specials: [{ at: 90, label: '润湿与不润湿的分界线' }], aria: '接触角' });
+  const YS = 420, CX = 620, A0 = 150 * 150 * Math.PI / 2;                    /* the drop's area: a half-disc of radius 150 at 90°; below 10° and above 172° the drawing holds its shape, since a thinner film would run off the canvas */
+  function draw() {
+    const { ctx } = begin(d.c);
+    const th = ts.v, td = Math.max(10, Math.min(172, th)) * RAD, sn = Math.sin(td), cs = Math.cos(td);
+    const R = Math.sqrt(A0 / (td - sn * cs)), a = R * sn, yc = YS + R * cs;
+    /* the solid and the drop */
+    fixed(ctx, 60, YS, 1280, 40);
+    text(ctx, th <= 20 ? '液体润湿的固体' : th >= 160 ? '液体几乎不接触的固体' : '固体', 80, YS + 66, PAL.muted, { size: 18 });
+    shape(ctx, (c) => c.arc(CX, yc, R, td - Math.PI / 2, 1.5 * Math.PI - td, true), alpha(PAL.ink, 0.12), F.ref('drop'), 3);
+    line(ctx, CX - a, YS, CX + a, YS, PAL.ink, 3);
+    text(ctx, '液体', CX, Math.max(YS - 24, yc - R + Math.min(R, 40)) - (th < 30 ? 44 : 0), F.ref('drop'), { size: 19, align: 'center' });
+    /* the tangent to the liquid surface at the contact point, and the angle between it and the solid, measured through the liquid */
+    const px = CX + a, ux = -cs, uy = -sn;
+    line(ctx, px - 320 * ux, YS - 320 * uy, px + 320 * ux, YS + 320 * uy, PAL.ink, 2, [10, 10]);
+    const rad = Math.min(260, Math.max(90, 2 * R + 20));
+    angleArc(ctx, px, YS, Math.PI, th, rad, C('angle'), 'θ = ' + fmt(th, 0) + '°', 22);
+    dot(ctx, px, YS, PAL.ink, true, 6);
+    text(ctx, '液面的切线', px + 60 * ux + 16, YS + 60 * uy - 28, PAL.ink, { size: 17, bg: alpha(PAL.panel, 0.85), align: ux < 0 ? 'right' : 'left' });
+    const pair = PAIRS[th];
+    topline(ctx, th < 90 ? '接触角为 ' + fmt(th, 0) + '° 时，附着力较强，液体铺展开来，在固体上摊平。'
+      : th === 90 ? '接触角为 90° 时，内聚力和附着力势均力敌，液滴呈半圆顶状。'
+      : '接触角为 ' + fmt(th, 0) + '° 时，内聚力较强，液体收拢成小珠。');
+    readout(d.readout, th < 90 ? `\\ktheta = ${fmt(th, 0)}^\\circ < 90^\\circ` : th === 90 ? `\\ktheta = 90^\\circ` : `\\ktheta = ${fmt(th, 0)}^\\circ > 90^\\circ`,
+      (pair ? '表 11.4 给出了' + pair + '的这个角。' : '') + '角越大，内聚力与附着力之比就越大。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 11.31 + 11.32: a capillary tube in a container of liquid. The
+   liquid, the contact angle and the radius are set; the column stands at
+   h = 2γ cos θ / ρgr, raised or suppressed, with the meniscus curved as the
+   angle says, the pulls of the surface at its edge, and the graph of h
+   against r beside it. Still: the column stands at its equilibrium height.
+===================================================================== */
+(function () {
+  const d = sim('sim-capillary', 740);
+  const LIQ = { water: { n: '水', g: 0.0728, rho: 1000 }, alcohol: { n: '乙醇', g: 0.0223, rho: 790 }, glycerin: { n: '丙三醇', g: 0.0631, rho: 1260 }, mercury: { n: '汞', g: 0.465, rho: 13600 }, olive: { n: '橄榄油', g: 0.032, rho: 920 } };
+  const liq = choice(d.controls, { label: '\\text{液体}', options: Object.entries(LIQ).map(([v, L]) => ({ value: v, label: L.n })), value: 'water', aria: '容器中的液体', onInput: (v) => ts.drive(v === 'mercury' ? 140 : 0) });   /* each liquid arrives at its Table 11.4 angle on glass */
+  const ts = ctl(d.controls, { label: '\\ktheta', cls: 'angle', min: 0, max: 180, step: 1, value: 0, unit: '°', dec: 0, detents: THETA_TICKS, snap: true, specials: [{ at: 90, label: '既不升高也不压低' }], aria: '液体与玻璃之间的接触角' });
+  const rs = ctl(d.controls, { label: '\\krad', cls: 'position', min: 0.1, max: 9, step: 0.01, value: 0.5, unit: 'mm', dec: 2, aria: '管的半径' });
+  /* the scene: the level in the container at Y0, 20 units per centimetre of height, the tube from 16 cm above to 8 cm below; the graph: r 0 to 9 mm, h −8 to 16 cm, fixed */
+  const Y0 = 480, SC = 20, HMAX = 16, HMIN = -8, TX = 400, BL = 160, BR = 640, BB = 680;
+  const BOX = { l: 860, t: 150, r: 1340, b: 630 }, RR = [0, 9], HR = [HMIN, HMAX];
+  const hOf = (L, th, r) => 2 * L.g * Math.cos(th * RAD) / (L.rho * G * (r / 1000));   /* metres */
+  function draw() {
+    const { ctx, H } = begin(d.c);
+    const hc = C('position'), gc = C('surface-tension'), dc = C('density'), fc = C('force');
+    const L = { ...LIQ[liq.value], ...liq.mix((v) => ({ g: LIQ[v].g, rho: LIQ[v].rho })) }, th = ts.v, r = rs.v, h = zero(hOf(L, th, r), 5e-6), hcm = h * 100;
+    const fill = alpha(PAL.ink, liq.mix((v) => (v === 'mercury' ? 0.35 : 0.1)));
+    const bw = 14 + r * 6, wall = 5, TT = Y0 - (HMAX + 3) * SC;              /* the bore half-width follows the radius; the tube top stands above the tallest column the frame shows */
+    const ytop = Y0 - Math.max(HMIN, Math.min(HMAX, hcm)) * SC, out = hcm > HMAX || hcm < HMIN;
+    /* the container and its liquid */
+    shape(ctx, (c) => c.rect(BL, Y0, BR - BL, BB - Y0), fill);
+    glass(ctx, BL, Y0 - 120, BL, BB); glass(ctx, BR, Y0 - 120, BR, BB); glass(ctx, BL, BB, BR, BB);
+    line(ctx, BL, Y0, TX - bw - wall, Y0, PAL.ink, 2); line(ctx, TX + bw + wall, Y0, BR, Y0, PAL.ink, 2);
+    text(ctx, L.n, BL + 18, BB - 26, PAL.ink, { size: 19 });
+    /* the tube, and the column in it with its meniscus */
+    const dep = Math.max(-bw, Math.min(bw, bw * (1 - Math.sin(th * RAD)) / Math.max(0.05, Math.abs(Math.cos(th * RAD))) * Math.sign(Math.cos(th * RAD) || 1)));
+    shape(ctx, (c) => { c.moveTo(TX - bw, BB - 30); c.lineTo(TX - bw, ytop); c.quadraticCurveTo(TX, ytop + 2 * dep, TX + bw, ytop); c.lineTo(TX + bw, BB - 30); c.closePath(); }, fill);
+    ctx.save(); ctx.strokeStyle = PAL.ink; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(TX - bw, ytop); ctx.quadraticCurveTo(TX, ytop + 2 * dep, TX + bw, ytop); ctx.stroke(); ctx.restore();
+    const tc = F.ref('tube');
+    glass(ctx, TX - bw - wall / 2, TT, TX - bw - wall / 2, BB - 30, wall, tc); glass(ctx, TX + bw + wall / 2, TT, TX + bw + wall / 2, BB - 30, wall, tc);
+    text(ctx, '玻璃管，r = ' + fmt(r, 2) + ' mm', TX, BB + 26, tc, { size: 18, align: 'center' });
+    /* the pulls of the surface at the edge of the meniscus, and their net */
+    const lab = labeller(ctx, H); lab.block(0, 0, 1400, 92);
+    const cs = Math.cos(th * RAD), sn = Math.sin(th * RAD), len = Math.max(30, Math.min(50 + 180 * L.g, ytop - 120));
+    if (Math.abs(cs) > 0.02) {
+      for (const s of [-1, 1]) { const x0 = TX + s * bw, ux = s * sn, uy = -cs; arrow(ctx, x0, ytop, x0 + ux * len, ytop + uy * len, fc, 4); lab.add('F_ST', x0 + ux * len, ytop + uy * len, s, 0.2, fc, 19, 22); }
+      const nl = Math.max(24, Math.min(150, len * 1.3 * Math.abs(cs), cs > 0 ? ytop + dep - 140 : 150));
+      arrow(ctx, TX, ytop + dep, TX, ytop + dep - Math.sign(cs) * nl, fc, 5); lab.add('合力 F_ST', TX, ytop + dep - Math.sign(cs) * nl, 1, -0.3 * Math.sign(cs), fc, 19, 22);
+    }
+    /* the height, bracketed from the level in the container to the column */
+    if (Math.abs(hcm) > 0.15) vbracket(ctx, TX + bw + 60, Math.min(Y0, ytop), Math.max(Y0, ytop), hc, 'h = ' + (out ? sigz(hcm, 3) + ' cm，超出画面' : sigz(hcm, 3) + ' cm'), 1);
+    if (out) dot(ctx, TX, ytop + dep, hc, false, 9);
+    lab.flush();
+    /* the graph of h against r for this liquid and angle */
+    const { X, Y } = axes(ctx, BOX, RR, HR, { nx: 3, ny: 6, fx: (v) => fmt(v, 0), fy: (v) => minus(fmt(v, 0)), xl: '管半径 r (mm)', yl: '高度 h (cm)', yc: hc });
+    ctx.save(); ctx.beginPath(); ctx.rect(BOX.l, BOX.t, BOX.r - BOX.l, BOX.b - BOX.t); ctx.clip();
+    curve(ctx, (rr) => hOf(L, th, rr) * 100, 0.1, 9, X, Y, hc, 4, 240);
+    ctx.restore();
+    pinned(ctx, BOX, X, Y, r, hcm, hc, 'h = ' + sigz(hcm, 3) + ' cm');
+    text(ctx, L.n + ', θ = ' + fmt(th, 0) + '°', BOX.r - 10, BOX.t + 22, PAL.ink, { size: 18, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    const rword = fmt(r, 2) + ' mm', tword = fmt(th, 0) + '°';
+    topline(ctx, Math.abs(cs) <= 0.02 ? L.n[0].toUpperCase() + L.n.slice(1) + '在半径为 ' + rword + ' 的玻璃管中，接触角为 90°，既不升高也不压低。'
+      : L.n[0].toUpperCase() + L.n.slice(1) + '在半径为 ' + rword + ' 的玻璃管中，接触角为 ' + tword + '，' + (h > 0 ? '升高了 ' : '被压低了 ') + sigz(Math.abs(hcm), 3) + ' cm' + (out ? '，超出了这里画出的画面。' : '。'));
+    readout(d.readout, `\\kh = \\frac{2\\kgamma\\cos\\ktheta}{\\krho\\kg \\krad} = \\frac{2(${sigz(L.g, 3)}\\ \\text{N/m})\\cos ${fmt(th, 0)}^\\circ}{(${Math.round(L.rho)}\\ \\text{kg/m}^3)(9.80\\ \\text{m/s}^2)(${sciTex(r / 1000, 3)}\\ \\text{m})} = ${minus(sigz(hcm, 3))}\\ \\text{cm}`,
+      '液柱上升到它的重力与表面沿管口边缘的拉力相等为止，所以较细的管和较轻的液体升得更高。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+
+/* =====================================================================
+   FIGURE 11.33: the piston that stretches a liquid. The force on the piston
+   puts the water under a negative pressure P = −F/A; past 25 atm below zero
+   the cohesive forces give way and the water parts. Still: a held piston
+   has no clock. The cylinder is drawn from a locked view (rule 28.2).
+===================================================================== */
+(function () {
+  const d = sim('sim-negative-pressure', 680);
+  const Fs = ctl(d.controls, { label: '\\kF', cls: 'force', min: 0, max: 300, step: 1, value: 100, unit: 'N', dec: 0, aria: '向上拉活塞的力' });
+  const As = ctl(d.controls, { label: '\\karea', cls: 'area', min: 0.5, max: 4, step: 0.05, value: 1, unit: 'cm²', dec: 2, aria: '活塞的面积' });
+  const LIMIT = 25.0;                                                        /* atmospheres below zero, the value the book states for this device */
+  const V = view({ yaw: 0.0, pitch: 0.42, dist: 2600, cx: 560, cy: 400 });
+  const ring = (R, y, n = 48) => Array.from({ length: n + 1 }, (_, i) => V.P([R * Math.cos(TAU * i / n), y, R * Math.sin(TAU * i / n)]));
+  const half = (pts, front) => pts.filter((_, i) => (front ? i <= (pts.length - 1) / 2 : i >= (pts.length - 1) / 2));   /* the ring runs from +x through +z (the front) to −x and round the back */
+  function path(ctx, pts, close) { ctx.beginPath(); pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]))); if (close) ctx.closePath(); }
+  function draw() {
+    const { ctx } = begin(d.c);
+    const pc = C('pressure'), fc = C('force');
+    const Fv = Fs.v, A = As.v, P = -Fv / (A * 1e-4), atm = P / ATM, parts = -atm > LIMIT;
+    const R = 110 * Math.sqrt(A), YB = -170, YT = 230, YL = parts ? 110 : 60;                /* the cylinder's radius follows the area; the piston sits at YL */
+    const front = (y) => half(ring(R, y), true), back = (y) => half(ring(R, y), false);
+    /* the liquid: from the bottom rim up to the piston, or, parted, a lower body and a layer clinging to the piston */
+    const body = (yLow, yHigh, wavyTop) => {
+      const lo = front(yLow), hi = wavyTop ? ring(R, yHigh).map((p, i) => [p[0], p[1] + 6 * Math.sin(i * 0.9)]) : ring(R, yHigh);
+      const hiF = half(hi, true);
+      ctx.save(); ctx.fillStyle = alpha(PAL.ink, 0.1); path(ctx, [...lo, ...hiF.slice().reverse()], true); ctx.fill();
+      ctx.strokeStyle = alpha(PAL.ink, 0.6); ctx.lineWidth = 2; path(ctx, hi, false); ctx.stroke(); ctx.restore();
+    };
+    /* the glass: the back rim of the bottom dashed, the front solid, the two sides */
+    const bot = ring(R, YB);
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 2.5; ctx.setLineDash([8, 8]); path(ctx, half(bot, false), false); ctx.stroke(); ctx.restore();
+    if (parts) { body(YB, -10, true); body(YL - 46, YL, false); const gapC = V.P([0, 30, 0]); text(ctx, '水已被拉断', gapC[0], gapC[1], PAL.ink, { size: 18, align: 'center', bg: alpha(PAL.panel, 0.85) }); }
+    else body(YB, YL, false);
+    ctx.save(); ctx.strokeStyle = alpha(PAL.ink, 0.5); ctx.lineWidth = 2.5; path(ctx, half(bot, true), false); ctx.stroke(); ctx.restore();
+    const lt = V.P([-R, YT, 0]), lb = V.P([-R, YB, 0]), rt = V.P([R, YT, 0]), rb = V.P([R, YB, 0]);
+    glass(ctx, lt[0], lt[1], lb[0], lb[1], 4); glass(ctx, rt[0], rt[1], rb[0], rb[1], 4);
+    /* the piston, a disc with a rod, and the pull on it */
+    const pT = ring(R, YL + 28), pB = ring(R, YL);
+    ctx.save(); ctx.fillStyle = PAL.soft; path(ctx, [...half(pB, true), ...half(pT, true).slice().reverse()], true); ctx.fill(); ctx.fillStyle = alpha(PAL.ink, 0.18); ctx.fill();
+    ctx.strokeStyle = F.ref('piston'); ctx.lineWidth = 2.5; ctx.stroke(); ctx.fillStyle = PAL.soft; path(ctx, pT, true); ctx.fill(); ctx.stroke(); ctx.restore();
+    const rodB = V.P([0, YL + 28, 0]), rodT = V.P([0, YL + 90, 0]);
+    line(ctx, rodB[0], rodB[1], rodT[0], rodT[1], F.ref('piston'), 6);
+    text(ctx, '活塞', rodB[0] + 22, rodB[1] - 8, F.ref('piston'), { size: 18, bg: alpha(PAL.panel, 0.85) });
+    if (Fv > 0) { const al = Math.min(40 + Fv * 0.42, rodT[1] - 104); arrow(ctx, rodT[0], rodT[1], rodT[0], rodT[1] - al, fc, 7); text(ctx, 'F = ' + fmt(Fv, 0) + ' N', rodT[0] + 22, rodT[1] - al / 2, fc, { size: 21, weight: 600, bg: alpha(PAL.panel, 0.85) }); }
+    const wl = V.P([0, YB + 40, 0]);
+    text(ctx, '水', wl[0], wl[1], PAL.ink, { size: 18, align: 'center' });
+    const aL = V.P([-R, YL + 14, 0]);
+    text(ctx, 'A = ' + fmt(A, 2) + ' cm²', aL[0] - 18, aL[1], C('area'), { size: 20, weight: 600, align: 'right', bg: alpha(PAL.panel, 0.85) });
+    const pL = V.P([0, parts ? -100 : (YB + YL) / 2, 0]);
+    if (Fv > 0 && !parts) text(ctx, 'P = −F/A = ' + minus(sigz(atm, 3)) + ' atm', pL[0], pL[1], pc, { size: 21, weight: 600, align: 'center', bg: alpha(PAL.panel, 0.85) });
+    /* the height of water a pull this size could hold up, stated beside the cylinder */
+    const hw = -P / (1000 * G);
+    topline(ctx, Fv === 0 ? '活塞不受拉力时，水不受张力，它的压强就是活塞上方空气的压强。'
+      : parts ? '用 ' + fmt(Fv, 0) + ' N 的拉力拉面积为 ' + fmt(A, 2) + ' cm² 的活塞，会使水的压强低于零 ' + sigz(-atm, 3) + ' atm，这超过了它的内聚力所能承受的限度，水便分开了。'
+      : '用 ' + fmt(Fv, 0) + ' N 的拉力拉面积为 ' + fmt(A, 2) + ' cm² 的活塞，使水处于大小为 ' + sigz(-atm, 3) + ' atm 的负压之下，水保持连在一起。');
+    readout(d.readout, `\\kPr = -\\frac{\\kF}{\\karea} = -\\frac{${fmt(Fv, 0)}\\ \\text{N}}{${sciTex(A * 1e-4, 3)}\\ \\text{m}^2} = ${minus(sciTex(P, 3))}\\ \\text{Pa} = ${minus(sigz(atm, 3))}\\ \\text{atm}`,
+      parts ? '在达到这一极限之前，水处于张力之下，靠分子之间的内聚力维系在一起。'
+        : '这样大小的负压能够托住 $\\kh = |\\kPr|/\\krho\\kg = ' + sigz(hw, 3) + '\\ \\text{m}$ 高的水柱。');
+  }
+  register(d.fig, { update: () => {}, draw });
+})();
+};
